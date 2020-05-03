@@ -40,6 +40,7 @@ include_directories(${PROJECT_SOURCE_DIR}/include)
 file(GLOB FILES_LIB
   "${PROJECT_SOURCE_DIR}/src/api/*.cpp"
   "${PROJECT_SOURCE_DIR}/src/window/*.cpp"
+  "${PROJECT_SOURCE_DIR}/src/*.cpp"
 )
 
 # LIBRARY

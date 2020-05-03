@@ -9,7 +9,7 @@ namespace RX
     {
       case VULKAN:
         m_api = new VulkanApi();
-        break;  
+        break;
     }
   }
 

@@ -1,18 +1,20 @@
 #ifndef WINDOWPROPERTIES_HPP
 #define WINDOWPROPERTIES_HPP
 
-namespace Renderer
+namespace RX
 {
   class WindowProperties
   {
   public:
-    const char* title = "My application";
-    
-    int width = 500;
-    int height = 400;
+
 
     float time;
     float deltaTime;
+    
+    int m_width = 500;
+    int m_height = 400;
+
+    const char* m_title = "My application";
   };
 }
 

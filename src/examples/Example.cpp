@@ -1,10 +1,17 @@
-#include "api/VulkanApi.hpp"
+#include "Renderer.hpp"
 
 using namespace RX;
 
 int main()
 {
-  std::unique_ptr<Api> api = std::make_unique<VulkanApi>();
+  Renderer renderer(VULKAN);
+
+  renderer.initialize();
+
+  while (true)
+  {
+    
+  }
 
   return 0;
 }

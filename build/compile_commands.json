@@ -1,0 +1,22 @@
+[
+{
+  "directory": "/home/n30/Repos/Renderer/build",
+  "command": "/usr/bin/c++  -DSHADER_PATH=\\\"/home/n30/Repos/Renderer/resources/shaders/\\\" -Drenderer_EXPORTS -I\"/home/n30/Repos/Renderer/external/Vulkan SDK 1.2.131.2/x86_64/include\" -I/usr/include/SDL2 -I/home/n30/Repos/Renderer/include  -g -fPIC   -std=gnu++1z -o CMakeFiles/renderer.dir/src/api/Api.cpp.o -c /home/n30/Repos/Renderer/src/api/Api.cpp",
+  "file": "/home/n30/Repos/Renderer/src/api/Api.cpp"
+},
+{
+  "directory": "/home/n30/Repos/Renderer/build",
+  "command": "/usr/bin/c++  -DSHADER_PATH=\\\"/home/n30/Repos/Renderer/resources/shaders/\\\" -Drenderer_EXPORTS -I\"/home/n30/Repos/Renderer/external/Vulkan SDK 1.2.131.2/x86_64/include\" -I/usr/include/SDL2 -I/home/n30/Repos/Renderer/include  -g -fPIC   -std=gnu++1z -o CMakeFiles/renderer.dir/src/api/VulkanApi.cpp.o -c /home/n30/Repos/Renderer/src/api/VulkanApi.cpp",
+  "file": "/home/n30/Repos/Renderer/src/api/VulkanApi.cpp"
+},
+{
+  "directory": "/home/n30/Repos/Renderer/build",
+  "command": "/usr/bin/c++  -DSHADER_PATH=\\\"/home/n30/Repos/Renderer/resources/shaders/\\\" -Drenderer_EXPORTS -I\"/home/n30/Repos/Renderer/external/Vulkan SDK 1.2.131.2/x86_64/include\" -I/usr/include/SDL2 -I/home/n30/Repos/Renderer/include  -g -fPIC   -std=gnu++1z -o CMakeFiles/renderer.dir/src/window/Window.cpp.o -c /home/n30/Repos/Renderer/src/window/Window.cpp",
+  "file": "/home/n30/Repos/Renderer/src/window/Window.cpp"
+},
+{
+  "directory": "/home/n30/Repos/Renderer/build",
+  "command": "/usr/bin/c++  -DSHADER_PATH=\\\"/home/n30/Repos/Renderer/resources/shaders/\\\" -I\"/home/n30/Repos/Renderer/external/Vulkan SDK 1.2.131.2/x86_64/include\" -I/usr/include/SDL2 -I/home/n30/Repos/Renderer/include  -g   -o CMakeFiles/example.dir/src/examples/Example.cpp.o -c /home/n30/Repos/Renderer/src/examples/Example.cpp",
+  "file": "/home/n30/Repos/Renderer/src/examples/Example.cpp"
+}
+]

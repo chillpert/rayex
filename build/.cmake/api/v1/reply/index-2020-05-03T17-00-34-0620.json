@@ -1,0 +1,88 @@
+{
+	"cmake" : 
+	{
+		"generator" : 
+		{
+			"multiConfig" : false,
+			"name" : "Unix Makefiles"
+		},
+		"paths" : 
+		{
+			"cmake" : "/snap/cmake/340/bin/cmake",
+			"cpack" : "/snap/cmake/340/bin/cpack",
+			"ctest" : "/snap/cmake/340/bin/ctest",
+			"root" : "/snap/cmake/340/share/cmake-3.17"
+		},
+		"version" : 
+		{
+			"isDirty" : false,
+			"major" : 3,
+			"minor" : 17,
+			"patch" : 2,
+			"string" : "3.17.2",
+			"suffix" : ""
+		}
+	},
+	"objects" : 
+	[
+		{
+			"jsonFile" : "codemodel-v2-767a575e8da6686bfd1e.json",
+			"kind" : "codemodel",
+			"version" : 
+			{
+				"major" : 2,
+				"minor" : 0
+			}
+		},
+		{
+			"jsonFile" : "cache-v2-d67908058ef61a82ea77.json",
+			"kind" : "cache",
+			"version" : 
+			{
+				"major" : 2,
+				"minor" : 0
+			}
+		}
+	],
+	"reply" : 
+	{
+		"client-vscode" : 
+		{
+			"query.json" : 
+			{
+				"requests" : 
+				[
+					{
+						"kind" : "cache",
+						"version" : 2
+					},
+					{
+						"kind" : "codemodel",
+						"version" : 2
+					}
+				],
+				"responses" : 
+				[
+					{
+						"jsonFile" : "cache-v2-d67908058ef61a82ea77.json",
+						"kind" : "cache",
+						"version" : 
+						{
+							"major" : 2,
+							"minor" : 0
+						}
+					},
+					{
+						"jsonFile" : "codemodel-v2-767a575e8da6686bfd1e.json",
+						"kind" : "codemodel",
+						"version" : 
+						{
+							"major" : 2,
+							"minor" : 0
+						}
+					}
+				]
+			}
+		}
+	}
+}

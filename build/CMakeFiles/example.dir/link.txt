@@ -1,0 +1,1 @@
+/usr/bin/c++  -g   CMakeFiles/example.dir/src/examples/Example.cpp.o  -o example   -L"/home/n30/Repos/Renderer/external/Vulkan SDK 1.2.131.2/x86_64/lib"  -Wl,-rpath,"/home/n30/Repos/Renderer/external/Vulkan SDK 1.2.131.2/x86_64/lib:/home/n30/Repos/Renderer/build" librenderer.so -lSDL2 -lvulkan 

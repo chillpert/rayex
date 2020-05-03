@@ -1,0 +1,4 @@
+/home/n30/Repos/Renderer/build/CMakeFiles/edit_cache.dir
+/home/n30/Repos/Renderer/build/CMakeFiles/rebuild_cache.dir
+/home/n30/Repos/Renderer/build/CMakeFiles/renderer.dir
+/home/n30/Repos/Renderer/build/CMakeFiles/example.dir

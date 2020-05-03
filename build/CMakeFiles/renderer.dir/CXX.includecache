@@ -1,0 +1,38 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+../include/api/Api.hpp
+window/Window.hpp
+../include/api/window/Window.hpp
+memory
+-
+iostream
+-
+
+../include/api/VulkanApi.hpp
+api/Api.hpp
+../include/api/api/Api.hpp
+
+../include/window/Window.hpp
+SDL2/SDL.h
+../include/window/SDL2/SDL.h
+
+/home/n30/Repos/Renderer/src/api/Api.cpp
+api/Api.hpp
+/home/n30/Repos/Renderer/src/api/api/Api.hpp
+
+/home/n30/Repos/Renderer/src/api/VulkanApi.cpp
+api/VulkanApi.hpp
+/home/n30/Repos/Renderer/src/api/api/VulkanApi.hpp
+
+/home/n30/Repos/Renderer/src/window/Window.cpp
+window/Window.hpp
+/home/n30/Repos/Renderer/src/window/window/Window.hpp
+iostream
+-
+

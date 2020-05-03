@@ -1,0 +1,1 @@
+/usr/bin/c++ -fPIC -g  -shared -Wl,-soname,librenderer.so -o librenderer.so CMakeFiles/renderer.dir/src/api/Api.cpp.o CMakeFiles/renderer.dir/src/api/VulkanApi.cpp.o CMakeFiles/renderer.dir/src/window/Window.cpp.o   -L"/home/n30/Repos/Renderer/external/Vulkan SDK 1.2.131.2/x86_64/lib"  -Wl,-rpath,"/home/n30/Repos/Renderer/external/Vulkan SDK 1.2.131.2/x86_64/lib" -lSDL2 -lvulkan 

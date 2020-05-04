@@ -12,9 +12,7 @@ namespace RX
   void Window::initialize()
   {
     if (SDL_Init(SDL_INIT_EVERYTHING) != 0)
-    {
       Error::runtime(SDL_GetError(), Error::WINDOW);
-    }
 
     m_window = SDL_CreateWindow(
       m_properties.getTitle(),
@@ -24,6 +22,9 @@ namespace RX
       m_properties.getHeight(),
       m_properties.getFlags()
     );
+
+    if (m_window == nullptr)
+      Error::runtime("Failed to create window", Error::WINDOW);
   }
 
   void Window::update()

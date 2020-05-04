@@ -8,7 +8,7 @@ namespace RX
   class VulkanApi : public Api
   {
   private:
-    RX_API bool initialize() override;
+    RX_API bool initialize(std::shared_ptr<Window> window) override;
     RX_API void update() override;
     RX_API void render() override;
     RX_API void clean() override;

@@ -10,6 +10,8 @@ namespace RX
   class Window
   {
   public:
+    RX_API Window(int width, int height, const char* title);
+
     RX_API bool initialize();
     RX_API void update();
     RX_API void render();
@@ -18,6 +20,7 @@ namespace RX
     RX_API void resize();
   
   private:
+    SDL_Window* m_window;
     WindowProperties m_properties;
   };
 }

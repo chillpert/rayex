@@ -4,9 +4,17 @@ using namespace RX;
 
 int main(int argc, char* argv[])
 {
-  Renderer renderer(VULKAN);
+  Renderer renderer(API::VULKAN, 300, 200, "Example");
 
-  renderer.initialize();
+  try
+  {
+    renderer.initialize();
+  }
+  catch (std::exception e)
+  {
+    std::cerr << e.what() << std::endl;
+  }
+
 
   while (true)
   {

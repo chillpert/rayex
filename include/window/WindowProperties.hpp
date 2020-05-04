@@ -2,19 +2,30 @@
 #define WINDOWPROPERTIES_HPP
 
 #include "Export.hpp"
+#include "window/Timer.hpp"
 
 namespace RX
 {
   class WindowProperties
   {
   public:
-    float time;
-    float deltaTime;
-    
-    int m_width = 500;
-    int m_height = 400;
+    WindowProperties(int width, int height, const char* title);
 
-    const char* m_title = "My application";
+    inline int getWidth() { return m_width; }
+    inline int getHeight() { return m_height; }
+
+    inline const char* getTitle() { return m_title; }
+
+    void resize(int width, int height);
+    void setTitle(const char* title);
+
+  private:
+    int m_width;
+    int m_height;
+
+    const char* m_title;
+
+    Timer time;
   };
 }
 

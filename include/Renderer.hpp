@@ -10,14 +10,14 @@ namespace RX
   class Renderer
   {
   public:
-    Renderer(API api = VULKAN);
+    RX_API Renderer(API api = VULKAN);
 
-    bool initialize();
-    void update();
-    void render();
-    void clean();
+    RX_API bool initialize();
+    RX_API void update();
+    RX_API void render();
+    RX_API void clean();
 
-    inline Window* getWindow() { return &m_window; }
+    RX_API inline Window* getWindow() { return &m_window; }
 
   private:
     Api* m_api;

@@ -20,6 +20,8 @@ namespace RX
       m_properties.m_height,
       0
     );
+
+    return true;
   }
 
   void Window::update()

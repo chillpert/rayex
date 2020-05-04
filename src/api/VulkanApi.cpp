@@ -4,7 +4,7 @@ namespace RX
 {
   bool VulkanApi::initialize()
   {
-
+    return true;
   }
 
   void VulkanApi::update()

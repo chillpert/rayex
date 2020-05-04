@@ -11,10 +11,10 @@ namespace RX
   class Api
   {
   public:
-    virtual bool initialize() = 0;
-    virtual void update() = 0;
-    virtual void render() = 0;
-    virtual void clean() = 0;
+    RX_API virtual bool initialize() = 0;
+    RX_API virtual void update() = 0;
+    RX_API virtual void render() = 0;
+    RX_API virtual void clean() = 0;
   };
 }
 

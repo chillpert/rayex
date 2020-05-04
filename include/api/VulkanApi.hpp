@@ -8,10 +8,10 @@ namespace RX
   class VulkanApi : public Api
   {
   private:
-    bool initialize() override;
-    void update() override;
-    void render() override;
-    void clean() override;
+    RX_API bool initialize() override;
+    RX_API void update() override;
+    RX_API void render() override;
+    RX_API void clean() override;
   };
 }
 

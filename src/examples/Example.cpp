@@ -2,7 +2,7 @@
 
 using namespace RX;
 
-int main()
+int main(int argc, char* argv[])
 {
   Renderer renderer(VULKAN);
 

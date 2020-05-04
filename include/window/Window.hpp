@@ -10,12 +10,12 @@ namespace RX
   class Window
   {
   public:
-    bool initialize();
-    void update();
-    void render();
-    void clean();
+    RX_API bool initialize();
+    RX_API void update();
+    RX_API void render();
+    RX_API void clean();
 
-    void resize();
+    RX_API void resize();
   
   private:
     WindowProperties m_properties;

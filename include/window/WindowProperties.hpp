@@ -1,13 +1,13 @@
 #ifndef WINDOWPROPERTIES_HPP
 #define WINDOWPROPERTIES_HPP
 
+#include "Export.hpp"
+
 namespace RX
 {
   class WindowProperties
   {
   public:
-
-
     float time;
     float deltaTime;
     

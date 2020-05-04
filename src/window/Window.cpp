@@ -1,4 +1,5 @@
 #include "window/Window.hpp"
+#include "events/Error.hpp"
 
 #include <vulkan/vulkan.h>
 #include <iostream>
@@ -12,8 +13,7 @@ namespace RX
   {
     if (SDL_Init(SDL_INIT_EVERYTHING) != 0)
     {
-      std::cerr << "Renderer: Error initializing SDL2: " << SDL_GetError() << std::endl;
-      
+      Error::runtime(SDL_GetError(), Error::WINDOW);
     }
 
     m_window = SDL_CreateWindow(

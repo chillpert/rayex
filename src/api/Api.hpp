@@ -8,7 +8,6 @@
 
 namespace RX
 {
-
   class Api
   {
   public:

@@ -8,8 +8,8 @@ namespace RX
   class Timer
   {
   public:
-    RX_API inline float getTime() { return m_time; }
-    RX_API inline float getDeltaTime() { return m_deltaTime; }
+    RX_API inline float getTime() const { return m_time; }
+    RX_API inline float getDeltaTime() const { return m_deltaTime; }
 
   private:
     float m_time;

@@ -20,6 +20,8 @@ namespace RX
   
   private:
     SDL_Window* m_window;
+    
+
     WindowProperties m_properties;
 
     Timer m_timer;

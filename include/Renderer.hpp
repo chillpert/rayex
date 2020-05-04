@@ -15,7 +15,7 @@ namespace RX
     RX_API void render();
     RX_API void clean();
 
-    RX_API inline std::shared_ptr<Window> getWindow() { return m_window; }
+    RX_API inline const std::shared_ptr<Window> getWindow() const { return m_window; }
 
   private:
     std::shared_ptr<Api> m_api;

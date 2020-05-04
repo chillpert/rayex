@@ -1,11 +1,15 @@
 cmake_minimum_required(VERSION 3.14.0)
 project(Renderer VERSION 0.0.1)
 
+set (CMAKE_MODULE_PATH "${CMAKE_SOURCE_DIR}/external/Cotire")
+include(cotire)
+
 option(BUILD_EXAMPLE "Build example" ON)
 
 if(WIN32 OR MSVC)
 
   set(OS ${OS} "Windows")
+  add_compile_definitions(RX_BUILD_DLL)
   add_compile_definitions(RX_PLATFORM_WINDOWS_X64)
   message("Renderer: Target platform Windows (x64)")
 
@@ -64,11 +68,13 @@ endif()
 
 # HEADER PROJECT FILES
 include_directories(${PROJECT_SOURCE_DIR}/include)
+include_directories(${PROJECT_SOURCE_DIR}/src)
 
 # SOURCE PROJECT FILES
 file(GLOB FILES_LIB
   "${PROJECT_SOURCE_DIR}/src/api/*.cpp"
   "${PROJECT_SOURCE_DIR}/src/window/*.cpp"
+  "${PROJECT_SOURCE_DIR}/src/pch/*.cpp"
   "${PROJECT_SOURCE_DIR}/src/*.cpp"
 )
 
@@ -103,12 +109,15 @@ set_target_properties(renderer
   RUNTIME_OUTPUT_DIRECTORY_RELWITHDEBINFO "${PROJECT_SOURCE_DIR}/build/bin/relwithbebinfo"
   )
 
-link_directories(${PROJECT_SOURCE_DIR}/build/bin/renderer/debug)
+set_target_properties(renderer PROPERTIES COTIRE_CXX_PREFIX_HEADER_INIT "${PROJECT_SOURCE_DIR}/src/pch/stdafx.hpp")
+cotire(renderer)
 
 # EXAMPLE
 if (BUILD_EXAMPLE)
 
   add_executable(example ${PROJECT_SOURCE_DIR}/src/examples/Example.cpp)
+
+  link_directories(${PROJECT_SOURCE_DIR}/build/bin/renderer/debug)
 
   target_link_libraries(example
     renderer
@@ -152,7 +161,7 @@ if (BUILD_EXAMPLE)
 
   endif()
 
-  ## copy dlls to binary location in post build
+  # copy dlls to binary location in post build
   if(${OS} STREQUAL "Windows")
 
     add_custom_command(

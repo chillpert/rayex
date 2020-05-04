@@ -3,26 +3,23 @@
 
 namespace RX
 {
-  Renderer::Renderer(API api, int width, int height, const char* title)
+  Renderer::Renderer(Api::Type api, WindowProperties windowProperties)
   {
     switch (api)
     {
-      case API::VULKAN:
+    case Api::VULKAN:
+        api = Api::VULKAN;
         m_api = std::make_shared<VulkanApi>();
         break;
     }
 
-    m_window = std::make_shared<Window>(width, height, title);
+    m_window = std::make_shared<Window>(windowProperties);
   }
 
-  bool Renderer::initialize()
+  void Renderer::initialize()
   {
-    bool success = false;
-
-    success = m_window->initialize();
-    success = m_api->initialize(m_window);
-
-    return success;
+    m_window->initialize();
+    m_api->initialize(m_window);
   }
 
   void Renderer::update()

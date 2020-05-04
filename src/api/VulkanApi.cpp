@@ -2,11 +2,9 @@
 
 namespace RX
 {
-  bool VulkanApi::initialize(std::shared_ptr<Window> window)
+  void VulkanApi::initialize(std::shared_ptr<Window> window)
   {
     Api::initialize(window);
-
-    return true;
   }
 
   void VulkanApi::update()

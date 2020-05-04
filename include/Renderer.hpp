@@ -5,14 +5,12 @@
 
 namespace RX
 {
-  enum class API { VULKAN };
-
   class Renderer
   {
   public:
-    RX_API Renderer(API api, int width = 600, int height = 400, const char* title = "My application");
+    RX_API Renderer(Api::Type api, WindowProperties windowProperties = WindowProperties());
 
-    RX_API bool initialize();
+    RX_API void initialize();
     RX_API void update();
     RX_API void render();
     RX_API void clean();

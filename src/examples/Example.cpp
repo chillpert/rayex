@@ -4,7 +4,10 @@ using namespace RX;
 
 int main(int argc, char* argv[])
 {
-  Renderer renderer(API::VULKAN, 300, 200, "Example");
+  uint32_t flags = WINDOW_RESIZABLE;
+  WindowProperties windowProperties(300, 200, "Example", flags);
+
+  Renderer renderer(Api::VULKAN, windowProperties);
 
   try
   {
@@ -14,7 +17,6 @@ int main(int argc, char* argv[])
   {
     std::cerr << e.what() << std::endl;
   }
-
 
   while (true)
   {

@@ -1,5 +1,5 @@
-#ifndef EXPORT_HPP
-#define EXPORT_HPP
+#ifndef CORE_HPP
+#define CORE_HPP
 
 #ifdef RX_PLATFORM_WINDOWS_X64
   #ifdef RX_BUILD_DLL
@@ -15,4 +15,4 @@
   #endif
 #endif
 
-#endif // EXPORT_HPP
+#endif // CORE_HPP

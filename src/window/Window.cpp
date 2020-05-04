@@ -5,15 +5,15 @@
 
 namespace RX
 {
-  Window::Window(int width, int height, const char* title)
-    : m_window(nullptr), m_properties(WindowProperties(width, height, title)) { }
+  Window::Window(WindowProperties windowProperties)
+    : m_window(nullptr), m_properties(windowProperties), m_timer(Timer()) { }
 
-  bool Window::initialize()
+  void Window::initialize()
   {
     if (SDL_Init(SDL_INIT_EVERYTHING) != 0)
     {
       std::cerr << "Renderer: Error initializing SDL2: " << SDL_GetError() << std::endl;
-      return false;
+      
     }
 
     m_window = SDL_CreateWindow(
@@ -22,13 +22,8 @@ namespace RX
       SDL_WINDOWPOS_CENTERED,
       m_properties.getWidth(),
       m_properties.getHeight(),
-      0
+      m_properties.getFlags()
     );
-
-    if (m_window == nullptr)
-      return false;
-
-    return true;
   }
 
   void Window::update()
@@ -44,5 +39,10 @@ namespace RX
   void Window::clean()
   {
 
+  }
+
+  void Window::resize()
+  {
+    
   }
 }

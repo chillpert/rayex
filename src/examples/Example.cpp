@@ -11,11 +11,10 @@ int main(int argc, char* argv[])
 
   try
   {
-    renderer.initialize();
-
-    while (true)
+    while (renderer.isRunning())
     {
-
+      renderer.update();
+      renderer.render();
     }
   }
   catch (std::exception e)

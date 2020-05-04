@@ -6,6 +6,13 @@ include(cotire)
 
 option(BUILD_EXAMPLE "Build example" ON)
 
+# LOGGING
+if(CMAKE_BUILD_TYPE STREQUAL "Debug")
+
+  add_compile_definitions(RX_DEBUG)
+
+endif()
+
 if(WIN32 OR MSVC)
 
   set(OS ${OS} "Windows")

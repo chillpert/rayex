@@ -2,7 +2,7 @@
 #define WINDOW_HPP
 
 #include "window/WindowProperties.hpp"
-#include "window/Timer.hpp"
+#include "window/Time.hpp"
 
 namespace RX
 {
@@ -12,11 +12,11 @@ namespace RX
     Window(WindowProperties windowProperties);
 
     void initialize();
-    void update();
-    void render();
+    bool update();
+    bool render();
     void clean();
 
-    RX_API void resize();
+    RX_API void resize(int width, int height);
   
   private:
     SDL_Window* m_window;
@@ -24,7 +24,7 @@ namespace RX
 
     WindowProperties m_properties;
 
-    Timer m_timer;
+    Time m_time;
   };
 }
 

@@ -4,6 +4,7 @@
 namespace RX
 {
   Renderer::Renderer(Api::Type api, WindowProperties windowProperties)
+    : m_running(true)
   {
     switch (api)
     {
@@ -14,6 +15,13 @@ namespace RX
     }
 
     m_window = std::make_shared<Window>(windowProperties);
+
+    initialize();
+  }
+
+  Renderer::~Renderer()
+  {
+    clean();
   }
 
   void Renderer::initialize()
@@ -24,14 +32,14 @@ namespace RX
 
   void Renderer::update()
   {
-    m_window->update();
+    m_running = m_window->update();
     m_api->update();
   }
 
   void Renderer::render()
   {
-    m_window->update();
-    m_api->update();
+    m_running = m_window->render();
+    m_api->render();
   }
 
   void Renderer::clean()

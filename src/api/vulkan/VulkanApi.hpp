@@ -12,6 +12,13 @@ namespace RX
     void update() override;
     void render() override;
     void clean() override;
+
+    void assertVulkan(VkResult result, const char* message);
+
+    void createInstance();
+
+
+    VkInstance m_instance;
   };
 }
 

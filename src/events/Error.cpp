@@ -4,6 +4,8 @@
 
 namespace RX
 {
+  std::string Error::s_label = "RX";
+  
   const char* EnumStrings[] = { "Window" , "Api", "General" };
 
   std::string Error::typeToString(Type type)
@@ -26,6 +28,4 @@ namespace RX
 
     throw std::runtime_error(ss.str());
   }
-
-  std::string Error::s_label = "RX";
 }

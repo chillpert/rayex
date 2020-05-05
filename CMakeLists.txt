@@ -80,6 +80,7 @@ include_directories(${PROJECT_SOURCE_DIR}/src)
 # SOURCE PROJECT FILES
 file(GLOB FILES_LIB
   "${PROJECT_SOURCE_DIR}/src/api/*.cpp"
+  "${PROJECT_SOURCE_DIR}/src/api/vulkan/*.cpp"
   "${PROJECT_SOURCE_DIR}/src/window/*.cpp"
   "${PROJECT_SOURCE_DIR}/src/pch/*.cpp"
   "${PROJECT_SOURCE_DIR}/src/events/*.cpp"

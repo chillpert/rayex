@@ -4,7 +4,7 @@
 namespace RX
 {
   WindowProperties::WindowProperties(int width, int height, const char* title, uint32_t flags)
-    : m_width(width), m_height(height), m_title(title), m_flags(flags)
+    : m_width(width), m_height(height), m_title(title), m_engineTitle("No engine"), m_flags(flags)
   {
     switch (Api::getType())
     {
@@ -23,5 +23,10 @@ namespace RX
   void WindowProperties::setTitle(const char* title)
   {
     m_title = title;
+  }
+
+  void WindowProperties::setEngineTitle(const char* title)
+  {
+    m_engineTitle = title;
   }
 }

@@ -30,16 +30,20 @@ namespace RX
     RX_API inline int getHeight() const { return m_height; }
 
     RX_API inline const char* getTitle() const { return m_title; }
+    inline const char* getEngineTitle() const { return m_engineTitle; }
+
     RX_API inline uint32_t getFlags() const { return m_flags; }
    
     void resize(int width, int height);
     void setTitle(const char* title);
+    RX_API void setEngineTitle(const char* title);
 
   private:
     int m_width;
     int m_height;
 
     const char* m_title;
+    const char* m_engineTitle;
 
     uint32_t m_flags;
   };

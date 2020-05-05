@@ -44,13 +44,12 @@ namespace RX
   {
     SDL_Event event;
     SDL_bool done = SDL_FALSE;
-
+  
     while (SDL_PollEvent(&event))
     {
       switch (event.type)
       {
         case SDL_QUIT:
-          
           done = SDL_TRUE;
           break;
 

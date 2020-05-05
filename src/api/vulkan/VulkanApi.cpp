@@ -17,7 +17,7 @@ namespace RX
     Api::initialize(window);
 
     createInstance();
-    m_physicalDeviceManager.findBestDevice(m_instance);
+    m_deviceManager.findPhysicalDevice(m_instance);
   }
 
   void VulkanApi::update()

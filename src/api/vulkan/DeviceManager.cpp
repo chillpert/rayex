@@ -1,12 +1,11 @@
-#include "api/vulkan/PhysicalDeviceManager.hpp"
-#include "PhysicalDeviceManager.hpp"
+#include "api/vulkan/DeviceManager.hpp"
 
 namespace RX
 {
-  PhysicalDeviceManager::PhysicalDeviceManager()
-    : m_device(VK_NULL_HANDLE) { }
+  DeviceManager::DeviceManager()
+    : m_physicalDevice(VK_NULL_HANDLE) { }
 
-  void PhysicalDeviceManager::findBestDevice(VkInstance instance)
+  void DeviceManager::findPhysicalDevice(VkInstance instance)
   {
     uint32_t deviceCount = 0;
     vkEnumeratePhysicalDevices(instance, &deviceCount, nullptr);
@@ -22,47 +21,47 @@ namespace RX
     size_t prevScore = 0;
     for (const auto& device : devices)
     {
-      size_t score = evaluate(device);
+      size_t score = evaluatePhysicalDevice(device);
 
       if (score > prevScore)
-        m_device = device;
+        m_physicalDevice = device;
 
       prevScore = score;
     }
 
-    if (m_device == VK_NULL_HANDLE)
+    if (m_physicalDevice == VK_NULL_HANDLE)
     {
       Error::runtime("Could not find a suitable GPU", Error::API);
     }
 
   #ifdef RX_DEBUG
-    printDeviceInfo();
+    printPhysicalDeviceInfo();
   #endif
   }
 
-  VkPhysicalDeviceProperties PhysicalDeviceManager::getDeviceProperties(VkPhysicalDevice device)
+  VkPhysicalDeviceProperties DeviceManager::getPhysicalDeviceProperties(VkPhysicalDevice device)
   {
     VkPhysicalDeviceProperties deviceProperties;
     vkGetPhysicalDeviceProperties(device, &deviceProperties);
     return deviceProperties;
   }
 
-  VkPhysicalDeviceFeatures PhysicalDeviceManager::getDeviceFeatures(VkPhysicalDevice device)
+  VkPhysicalDeviceFeatures DeviceManager::getPhysicalDeviceFeatures(VkPhysicalDevice device)
   {
     VkPhysicalDeviceFeatures deviceFeatures;
     vkGetPhysicalDeviceFeatures(device, &deviceFeatures);
     return deviceFeatures;
   }
 
-  size_t PhysicalDeviceManager::evaluate(VkPhysicalDevice device)
+  size_t DeviceManager::evaluatePhysicalDevice(VkPhysicalDevice device)
   {
     QueueFamilyIndices indices = findQueueFamilies(device);
 
     if (!indices.graphicsFamily.has_value())
       return 0;
 
-    VkPhysicalDeviceProperties properties = getDeviceProperties(device);
-    VkPhysicalDeviceFeatures features = getDeviceFeatures(device);
+    VkPhysicalDeviceProperties properties = getPhysicalDeviceProperties(device);
+    VkPhysicalDeviceFeatures features = getPhysicalDeviceFeatures(device);
     
     size_t score = 0;
 
@@ -75,7 +74,7 @@ namespace RX
     return score;
   }
 
-  QueueFamilyIndices PhysicalDeviceManager::findQueueFamilies(VkPhysicalDevice device)
+  QueueFamilyIndices DeviceManager::findQueueFamilies(VkPhysicalDevice device)
   {
     QueueFamilyIndices indices;
 
@@ -97,11 +96,11 @@ namespace RX
     return indices;
   }
 
-  void PhysicalDeviceManager::printDeviceInfo()
+  void DeviceManager::printPhysicalDeviceInfo()
   {
-    if (m_device != VK_NULL_HANDLE)
+    if (m_physicalDevice != VK_NULL_HANDLE)
     {
-      VkPhysicalDeviceProperties properties = getDeviceProperties(m_device);
+      VkPhysicalDeviceProperties properties = getPhysicalDeviceProperties(m_physicalDevice);
 
       std::cout << properties.deviceName << std::endl;
 

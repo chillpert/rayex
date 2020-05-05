@@ -2,7 +2,7 @@
 #define VULKAN_API_HPP
 
 #include "api/Api.hpp"
-#include "api/vulkan/PhysicalDeviceManager.hpp"
+#include "api/vulkan/DeviceManager.hpp"
 
 namespace RX
 {
@@ -25,7 +25,7 @@ namespace RX
     std::vector<const char*> getRequiredExtensions();
 
     VkInstance m_instance;
-    PhysicalDeviceManager m_physicalDeviceManager;
+    DeviceManager m_deviceManager;
 
     const std::vector<const char*> m_validationLayers;
   };

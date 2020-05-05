@@ -2,11 +2,10 @@
 #define STDAFX_HPP
 
 #include "Core.hpp"
-#include "events/Error.hpp"
+#include "events/Assert.hpp"
 
 #include <SDL2/SDL.h>
 #include <SDL2/SDL_vulkan.h>
-#include <vulkan/vulkan.h>
 
 #include <vector>
 #include <iostream>

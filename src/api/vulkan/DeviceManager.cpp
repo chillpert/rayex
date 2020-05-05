@@ -3,7 +3,23 @@
 namespace RX
 {
   DeviceManager::DeviceManager()
-    : m_physicalDevice(VK_NULL_HANDLE) { }
+    : m_physicalDevice(VK_NULL_HANDLE), m_logicalDevice(VK_NULL_HANDLE) { }
+
+  void DeviceManager::createDevices(VkInstance instance)
+  {
+    findPhysicalDevice(instance);
+    createLogicalDevice();
+  }
+
+  void DeviceManager::destroyDevices()
+  {
+    if (m_logicalDevice == VK_NULL_HANDLE)
+    {
+      Error::runtime("Failed to destroy logical device, because it has not been created yet", Error::API);
+    }
+
+    vkDestroyDevice(m_logicalDevice, nullptr);
+  }
 
   void DeviceManager::findPhysicalDevice(VkInstance instance)
   {
@@ -119,5 +135,36 @@ namespace RX
     {
       Error::runtime("Can not print physical device information, because it has not been determined yet", Error::API);
     }
+  }
+
+  void DeviceManager::createLogicalDevice()
+  {
+    if (m_physicalDevice == VK_NULL_HANDLE)
+    {
+      Error::runtime("Can not create logical device before creating physical device", Error::API);
+    }
+
+    QueueFamilyIndices indices = findQueueFamilies(m_physicalDevice);
+
+    // device queue create info
+    VkDeviceQueueCreateInfo queueCreateInfo { };
+    queueCreateInfo.sType = VK_STRUCTURE_TYPE_DEVICE_QUEUE_CREATE_INFO;
+    queueCreateInfo.queueFamilyIndex = indices.graphicsFamily.value();
+    queueCreateInfo.queueCount = 1;
+    float queuePriority = 1.0f;
+    queueCreateInfo.pQueuePriorities = &queuePriority;
+
+    // physical device features
+    VkPhysicalDeviceFeatures deviceFeatures { };
+
+    // device create info
+    VkDeviceCreateInfo createInfo { };
+    createInfo.sType = VK_STRUCTURE_TYPE_DEVICE_CREATE_INFO;
+    createInfo.pQueueCreateInfos = &queueCreateInfo;
+    createInfo.queueCreateInfoCount = 1;
+    createInfo.pEnabledFeatures = &deviceFeatures;
+    createInfo.enabledExtensionCount = 0;
+
+    Assert::vulkan(vkCreateDevice(m_physicalDevice, &createInfo, nullptr, &m_logicalDevice), "Failed to create logical device");
   }
 }

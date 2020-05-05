@@ -17,12 +17,11 @@ namespace RX
     void render() override;
     void clean() override;
 
-    void assertVulkan(VkResult result, const char* message);
-
     void createInstance();
     bool checkExtensionSupport(const char** sdlExtensions, uint32_t sdlExtensionsCount);
     bool checkValidationLayerSupport();
     std::vector<const char*> getRequiredExtensions();
+    void createDevices();
 
     VkInstance m_instance;
     DeviceManager m_deviceManager;

@@ -1,12 +1,6 @@
 #include "api/vulkan/VulkanApi.hpp"
 #include "pch/stdafx.hpp"
 
-#ifdef RX_DEBUG
-  const bool enableValidationLayers = true;
-#else
-  const bool enableValidationLayers = false;
-#endif
-
 namespace RX
 {
   VulkanApi::VulkanApi()
@@ -17,7 +11,7 @@ namespace RX
     Api::initialize(window);
 
     createInstance();
-    m_deviceManager.findPhysicalDevice(m_instance);
+    createDevices();
   }
 
   void VulkanApi::update()
@@ -32,24 +26,19 @@ namespace RX
 
   void VulkanApi::clean()
   {
+    m_deviceManager.destroyDevices();
     vkDestroyInstance(m_instance, nullptr);
-  }
-
-  void VulkanApi::assertVulkan(VkResult result, const char* message)
-  {
-    if (result != VK_SUCCESS)
-    {
-      Error::runtime(message, Error::API);
-    }
   }
 
   void VulkanApi::createInstance()
   {
+ #ifdef RX_DEBUG
     // only use validation layers for debug build
-    if (enableValidationLayers && !checkValidationLayerSupport())
+    if (!checkValidationLayerSupport())
     {
       Error::runtime("Requested validation layers are not available", Error::API);
     }
+ #endif
 
     // application info
     VkApplicationInfo appInfo { };
@@ -83,23 +72,20 @@ namespace RX
     createInfo.enabledExtensionCount = static_cast<uint32_t>(extensions.size());
     createInfo.ppEnabledExtensionNames = extensions.data();
 
-    if (enableValidationLayers)
-    {
-      createInfo.enabledLayerCount = static_cast<uint32_t>(m_validationLayers.size());
-      createInfo.ppEnabledLayerNames = m_validationLayers.data();
-    }
-    else
-    {
-      createInfo.enabledLayerCount = 0;
-    }
-    
+#ifdef RX_DEBUG
+    createInfo.enabledLayerCount = static_cast<uint32_t>(m_validationLayers.size());
+    createInfo.ppEnabledLayerNames = m_validationLayers.data();
+#else
+    createInfo.enabledLayerCount = 0;
+#endif
+
     if (!checkExtensionSupport(sdlExtensions, sdlExtensionsCount))
     {
       Error::runtime("Requested extension not available", Error::API);
     }
     
     // create instance
-    assertVulkan(vkCreateInstance(&createInfo, nullptr, &m_instance), "Failed to create Vulkan instance");
+    Assert::vulkan(vkCreateInstance(&createInfo, nullptr, &m_instance), "Failed to create Vulkan instance");
 
     delete[] sdlExtensions;
   }
@@ -180,11 +166,15 @@ namespace RX
 
     std::vector<const char*> extensions(sdlExtensions, sdlExtensions + sdlExtensionsCount);
 
-    if (enableValidationLayers)
-    {
-      extensions.push_back(VK_EXT_DEBUG_UTILS_EXTENSION_NAME);
-    }
+#ifdef RX_DEBUG
+    extensions.push_back(VK_EXT_DEBUG_UTILS_EXTENSION_NAME);
+#endif
 
     return extensions;
+  }
+
+  void VulkanApi::createDevices()
+  {
+    m_deviceManager.createDevices(m_instance);
   }
 }

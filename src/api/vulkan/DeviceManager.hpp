@@ -15,20 +15,28 @@ namespace RX
   public:
     DeviceManager();
 
+    void createDevices(VkInstance instance);
+    void destroyDevices();
+
     inline VkPhysicalDevice getPhysicalDevice() { return m_physicalDevice; }
+    inline VkDevice getLogicalDevice() { return m_logicalDevice; }
+
+  private:
+    // physical
     void findPhysicalDevice(VkInstance instance);
 
+    size_t evaluatePhysicalDevice(VkPhysicalDevice device);
     VkPhysicalDeviceProperties getPhysicalDeviceProperties(VkPhysicalDevice device);
     VkPhysicalDeviceFeatures getPhysicalDeviceFeatures(VkPhysicalDevice device);
-
     QueueFamilyIndices findQueueFamilies(VkPhysicalDevice device);
 
     void printPhysicalDeviceInfo();
 
-  private:
-    size_t evaluatePhysicalDevice(VkPhysicalDevice device);
+    // logical
+    void createLogicalDevice();
     
     VkPhysicalDevice m_physicalDevice;
+    VkDevice m_logicalDevice;
   };
 }
 

@@ -1,10 +1,7 @@
 #ifndef WINDOWPROPERTIES_HPP
 #define WINDOWPROPERTIES_HPP
 
-#include "Core.hpp"
-
-#include <SDL2/SDL.h>
-#include <cstdint>
+#include "pch/stdafx.hpp"
 
 namespace RX
 {

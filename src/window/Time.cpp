@@ -3,8 +3,21 @@
 
 namespace RX
 {
+  float Time::m_time;
+  float Time::m_deltaTime;
+
   int frames = 0;
   float prevTime = 0.0f;
+
+  float Time::getTime()
+  {
+    return m_time;
+  }
+
+  float Time::getDeltaTime()
+  {
+    return m_deltaTime;
+  }
 
   void Time::update()
   {
@@ -24,7 +37,4 @@ namespace RX
     m_deltaTime = current_time - m_prevTime;
     m_prevTime = current_time;
   }
-
-  float Time::m_time;
-  float Time::m_deltaTime;
 }

@@ -8,8 +8,8 @@ namespace RX
   class Time
   {
   public:
-    RX_API static inline float getTime() { return m_time; }
-    RX_API static inline float getDeltaTime() { return m_deltaTime; }
+    RX_API static float getTime();
+    RX_API static float getDeltaTime();
 
     void update();
 

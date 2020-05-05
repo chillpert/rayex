@@ -22,9 +22,11 @@ namespace RX
     bool checkValidationLayerSupport();
     std::vector<const char*> getRequiredExtensions();
     void createDevices();
+    void createSurface();
 
     VkInstance m_instance;
     DeviceManager m_deviceManager;
+    VkSurfaceKHR m_surface;
 
     const std::vector<const char*> m_validationLayers;
   };

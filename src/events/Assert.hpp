@@ -3,6 +3,8 @@
 
 #include "events/Error.hpp"
 
+#include <SDL2/SDL.h>
+#include <SDL2/SDL_vulkan.h>
 #include <vulkan/vulkan.h>
 
 namespace RX
@@ -11,6 +13,7 @@ namespace RX
   {
   public:
     static void vulkan(VkResult result, const char* message);
+    static void sdl(SDL_bool result, const char* message);
   };
 }
 

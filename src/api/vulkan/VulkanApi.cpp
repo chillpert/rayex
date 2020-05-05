@@ -11,6 +11,7 @@ namespace RX
     Api::initialize(window);
 
     createInstance();
+    createSurface();
     createDevices();
   }
 
@@ -176,5 +177,10 @@ namespace RX
   void VulkanApi::createDevices()
   {
     m_deviceManager.createDevices(m_instance);
+  }
+
+  void VulkanApi::createSurface()
+  {
+    //SDL_Vulkan_CreateSurface(m_window->getWindow(), m_instance, &m_surface);
   }
 }

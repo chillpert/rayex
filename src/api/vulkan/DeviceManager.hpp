@@ -37,6 +37,7 @@ namespace RX
     
     VkPhysicalDevice m_physicalDevice;
     VkDevice m_logicalDevice;
+    VkQueue m_graphicsQueue;
   };
 }
 

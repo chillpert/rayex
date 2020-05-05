@@ -12,6 +12,7 @@ namespace RX
     {
       WINDOW,
       API,
+      SDL,
       UNDEFINED
     };
 

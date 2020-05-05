@@ -166,5 +166,7 @@ namespace RX
     createInfo.enabledExtensionCount = 0;
 
     Assert::vulkan(vkCreateDevice(m_physicalDevice, &createInfo, nullptr, &m_logicalDevice), "Failed to create logical device");
+    
+    vkGetDeviceQueue(m_logicalDevice, indices.graphicsFamily.value(), 0, &m_graphicsQueue);
   }
 }

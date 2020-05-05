@@ -9,4 +9,12 @@ namespace RX
       Error::runtime(message, Error::API);
     }
   }
+
+  void Assert::sdl(SDL_bool result, const char* message)
+  {
+    if (result != SDL_TRUE)
+    {
+      Error::runtime(message, Error::SDL);
+    }
+  }
 }

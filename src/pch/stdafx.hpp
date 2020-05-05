@@ -9,8 +9,10 @@
 #include <vulkan/vulkan.h>
 
 #include <vector>
+#include <iostream>
 #include <cstdint>
 #include <cstdlib>
+#include <cstring>
 #include <stdexcept>
 
 #endif // STDAFX_HPP

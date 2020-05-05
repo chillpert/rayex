@@ -9,13 +9,16 @@
 
 namespace RX
 {
-  const std::vector<const char*> validationLayers = { "VK_LAYER_KHRONOS_validation" };
+  VulkanApi::VulkanApi()
+    : m_validationLayers({ "VK_LAYER_KHRONOS_validation" }) { }
 
   void VulkanApi::initialize(std::shared_ptr<Window> window)
   {
     Api::initialize(window);
 
     createInstance();
+    m_physicalDeviceManager.findBestDevice(m_instance);
+    m_physicalDeviceManager.printDeviceInfo();
   }
 
   void VulkanApi::update()
@@ -43,6 +46,12 @@ namespace RX
 
   void VulkanApi::createInstance()
   {
+    // only use validation layers for debug build
+    if (enableValidationLayers && !checkValidationLayerSupport())
+    {
+      Error::runtime("Requested validation layers are not available", Error::API);
+    }
+
     // application info
     VkApplicationInfo appInfo { };
     appInfo.sType = VK_STRUCTURE_TYPE_APPLICATION_INFO;
@@ -71,31 +80,112 @@ namespace RX
       Error::runtime("SDL failed to get instance extensions", Error::API);
     }
 
-    createInfo.enabledExtensionCount = sdlExtensionsCount;
-    createInfo.ppEnabledExtensionNames = sdlExtensions;
-    createInfo.enabledLayerCount = 0;
+    auto extensions = getRequiredExtensions();
+    createInfo.enabledExtensionCount = static_cast<uint32_t>(extensions.size());
+    createInfo.ppEnabledExtensionNames = extensions.data();
 
+    if (enableValidationLayers)
+    {
+      createInfo.enabledLayerCount = static_cast<uint32_t>(m_validationLayers.size());
+      createInfo.ppEnabledLayerNames = m_validationLayers.data();
+    }
+    else
+    {
+      createInfo.enabledLayerCount = 0;
+    }
+    
+    if (!checkExtensionSupport(sdlExtensions, sdlExtensionsCount))
+    {
+      Error::runtime("Requested extension not available", Error::API);
+    }
     
     // create instance
     assertVulkan(vkCreateInstance(&createInfo, nullptr, &m_instance), "Failed to create Vulkan instance");
-  
-    // checking for extension support
-    /*
+
+    delete[] sdlExtensions;
+  }
+
+  bool VulkanApi::checkExtensionSupport(const char** sdlExtensions, uint32_t sdlExtensionsCount)
+  {
     uint32_t extensionCount = 0;
     vkEnumerateInstanceExtensionProperties(nullptr, &extensionCount, nullptr);
-
-    std::cout << extensionCount << std::endl;
 
     std::vector<VkExtensionProperties> extensions(extensionCount);
     vkEnumerateInstanceExtensionProperties(nullptr, &extensionCount, extensions.data());
 
-    std::cout << "Available extensions:\n";
+    // check if all extensions requested by SDL are available on this device
+    for (size_t i = 0; i < sdlExtensionsCount; ++i)
+    {
+      bool found = false;
 
-    for (const auto& extension : extensions) {
-      std::cout << '\t' << extension.extensionName << '\n';
+      for (const auto& extension : extensions)
+      {
+        if (strcmp(sdlExtensions[i], extension.extensionName))
+        {
+          found = true;
+          break;
+        }  
+      }
+
+      if (!found)
+        return false;
+
     }
-    */
 
-    delete[] sdlExtensions;
+    return true;
+  }
+
+  bool VulkanApi::checkValidationLayerSupport()
+  {
+    uint32_t layerCount;
+    vkEnumerateInstanceLayerProperties(&layerCount, nullptr);
+
+    std::vector<VkLayerProperties> availableLayers(layerCount);
+    vkEnumerateInstanceLayerProperties(&layerCount, availableLayers.data());
+
+    for (const auto layerName : m_validationLayers)
+    {
+      bool found = false;
+
+      for (const auto& layerProperties : availableLayers)
+      {
+        if (strcmp(layerName, layerProperties.layerName) == 0)
+        {
+          found = true;
+          break;
+        }
+      }
+
+      if (!found)
+        return false;
+    }
+
+    return true;
+  }
+
+  std::vector<const char*> VulkanApi::getRequiredExtensions()
+  {
+    uint32_t sdlExtensionsCount = 0;
+
+    if (!SDL_Vulkan_GetInstanceExtensions(m_window->getWindow(), &sdlExtensionsCount, NULL))
+    {
+      Error::runtime("SDL failed to get instance extensions", Error::API);
+    }
+
+    const char** sdlExtensions = new const char* [sdlExtensionsCount];
+
+    if (!SDL_Vulkan_GetInstanceExtensions(m_window->getWindow(), &sdlExtensionsCount, sdlExtensions))
+    {
+      Error::runtime("SDL failed to get instance extensions", Error::API);
+    }
+
+    std::vector<const char*> extensions(sdlExtensions, sdlExtensions + sdlExtensionsCount);
+
+    if (enableValidationLayers)
+    {
+      extensions.push_back(VK_EXT_DEBUG_UTILS_EXTENSION_NAME);
+    }
+
+    return extensions;
   }
 }

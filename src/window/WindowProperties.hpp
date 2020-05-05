@@ -29,14 +29,14 @@ namespace RX
   public:
     RX_API WindowProperties(int width = 600, int height = 400, const char* title = "My Application", uint32_t flags = 0);
 
-    inline int getWidth() const { return m_width; } 
-    inline int getHeight() const { return m_height; }
+    RX_API inline int getWidth() const { return m_width; } 
+    RX_API inline int getHeight() const { return m_height; }
 
-    inline const char* getTitle() const { return m_title; }
-    inline uint32_t getFlags() const { return m_flags; }
+    RX_API inline const char* getTitle() const { return m_title; }
+    RX_API inline uint32_t getFlags() const { return m_flags; }
    
-    RX_API void resize(int width, int height);
-    RX_API void setTitle(const char* title);
+    void resize(int width, int height);
+    void setTitle(const char* title);
 
   private:
     int m_width;

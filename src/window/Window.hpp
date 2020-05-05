@@ -17,11 +17,12 @@ namespace RX
     void clean();
 
     RX_API void resize(int width, int height);
+    RX_API void setTitle(const char* title);
+    RX_API inline WindowProperties& getProperties() { return m_properties; }
   
   private:
     SDL_Window* m_window;
     
-
     WindowProperties m_properties;
 
     Time m_time;

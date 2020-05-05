@@ -89,4 +89,9 @@ namespace RX
     m_properties.resize(width, height);
     SDL_SetWindowSize(m_window, m_properties.getWidth(), m_properties.getHeight());
   }
+
+  void Window::setTitle(const char* title)
+  {
+    m_properties.setTitle(title);
+  }
 }

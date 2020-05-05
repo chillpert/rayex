@@ -5,6 +5,11 @@
 
 namespace RX
 {
+  struct QueueFamilyIndices
+  {
+    std::optional<uint32_t> graphicsFamily;
+  };
+
   class PhysicalDeviceManager
   {
   public:
@@ -15,6 +20,8 @@ namespace RX
 
     VkPhysicalDeviceProperties getDeviceProperties(VkPhysicalDevice device);
     VkPhysicalDeviceFeatures getDeviceFeatures(VkPhysicalDevice device);
+
+    QueueFamilyIndices findQueueFamilies(VkPhysicalDevice device);
 
     void printDeviceInfo();
 

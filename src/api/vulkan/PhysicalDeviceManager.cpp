@@ -34,6 +34,10 @@ namespace RX
     {
       Error::runtime("Could not find a suitable GPU", Error::API);
     }
+
+  #ifdef RX_DEBUG
+    printDeviceInfo();
+  #endif
   }
 
   VkPhysicalDeviceProperties PhysicalDeviceManager::getDeviceProperties(VkPhysicalDevice device)
@@ -52,6 +56,11 @@ namespace RX
 
   size_t PhysicalDeviceManager::evaluate(VkPhysicalDevice device)
   {
+    QueueFamilyIndices indices = findQueueFamilies(device);
+
+    if (!indices.graphicsFamily.has_value())
+      return 0;
+
     VkPhysicalDeviceProperties properties = getDeviceProperties(device);
     VkPhysicalDeviceFeatures features = getDeviceFeatures(device);
     
@@ -64,6 +73,28 @@ namespace RX
     }
 
     return score;
+  }
+
+  QueueFamilyIndices PhysicalDeviceManager::findQueueFamilies(VkPhysicalDevice device)
+  {
+    QueueFamilyIndices indices;
+
+    uint32_t queueFamilyCount = 0;
+    vkGetPhysicalDeviceQueueFamilyProperties(device, &queueFamilyCount, nullptr);
+
+    std::vector<VkQueueFamilyProperties> queueFamilies(queueFamilyCount);
+    vkGetPhysicalDeviceQueueFamilyProperties(device, &queueFamilyCount, queueFamilies.data());
+
+    uint32_t i = 0;
+    for (const auto& queueFamily : queueFamilies)
+    {
+      if (queueFamily.queueFlags & VK_QUEUE_GRAPHICS_BIT)
+        indices.graphicsFamily = i;
+
+      i++;
+    }
+
+    return indices;
   }
 
   void PhysicalDeviceManager::printDeviceInfo()
@@ -82,7 +113,8 @@ namespace RX
         << "- Device Type:             " << properties.deviceType << std::endl
         << "- Vendor ID:               " << properties.vendorID << std::endl
         << "- Device ID:               " << properties.deviceID << std::endl
-        << "- discreteQueuePrioreties: " << properties.limits.discreteQueuePriorities << std::endl;    
+        << "- discreteQueuePrioreties: " << properties.limits.discreteQueuePriorities << std::endl << 
+      std::endl;    
     }
     else
     {

@@ -18,7 +18,6 @@ namespace RX
 
     createInstance();
     m_physicalDeviceManager.findBestDevice(m_instance);
-    m_physicalDeviceManager.printDeviceInfo();
   }
 
   void VulkanApi::update()

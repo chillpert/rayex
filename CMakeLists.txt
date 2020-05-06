@@ -36,21 +36,8 @@ endif()
 add_compile_definitions(SHADER_PATH="${PROJECT_SOURCE_DIR}/resources/shaders/")
 
 # VULKAN
-set(VULKAN_PATH "${PROJECT_SOURCE_DIR}/external/Vulkan SDK 1.2.131.2/x86_64/")
-
-if(${OS} STREQUAL "Windows")
-
-  set(VULKAN_LIB ${VULKAN_LIB} "vulkan-1.lib")
-  include_directories("C:/VulkanSDK/1.2.135.0/Include")
-  link_directories("C:/VulkanSDK/1.2.135.0/Lib")
-
-elseif(${OS} STREQUAL "Linux")
-
-  set(VULKAN_LIN ${VULKAN_LIB} "libvulkan.so")
-  include_directories(${VULKAN_PATH}/include)
-  link_directories(${VULKAN_PATH}/lib)
-
-endif()
+find_package(Vulkan REQUIRED)
+include_directories(${Vulkan_INCLUDE_DIRS})
 
 # SDL
 if(${OS} STREQUAL "Windows")
@@ -92,7 +79,7 @@ add_library(renderer SHARED ${FILES_LIB})
 
 target_link_libraries(renderer
   ${WINDOWING}
-  ${VULKAN_LIB}
+  ${Vulkan_LIBRARY}
 )
 
 set_target_properties(renderer PROPERTIES

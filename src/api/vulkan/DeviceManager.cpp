@@ -1,17 +1,16 @@
 #include "api/vulkan/DeviceManager.hpp"
+#include "api/vulkan/SwapChain.hpp"
 
 namespace RX
 {
   const std::vector<const char*> deviceExtensions = { VK_KHR_SWAPCHAIN_EXTENSION_NAME };
 
-  DeviceManager::DeviceManager(VkInstance* instance, VkSurfaceKHR* surface) :
+  DeviceManager::DeviceManager(VkInstance* instance) :
     m_physicalDevice(VK_NULL_HANDLE),
     m_logicalDevice(VK_NULL_HANDLE),
     m_graphicsQueue(VK_NULL_HANDLE),
-    m_instance(instance),
-    m_surface(surface) {
-    std::cout << "ok" << std::endl; 
-  }
+    m_presentQueue(VK_NULL_HANDLE),
+    m_instance(instance) { }
 
   void DeviceManager::pickPhysicalDevice()
   {
@@ -116,6 +115,18 @@ namespace RX
   {
     QueueFamilyIndices indices = findQueueFamilies(device);
 
+    bool extensionsSupported = checkDeviceExtensionSupport(device);
+
+    bool swapChainAdequate = false;
+    if (extensionsSupported)
+    {
+      SwapChainSupportDetails swapChainSupport = SwapChain::querySwapChainSupport(device);
+      swapChainAdequate = !swapChainSupport.formats.empty() && !swapChainSupport.presentModes.empty();
+    }
+
+    if (!swapChainAdequate)
+      return 0;
+
     if (!indices.isComplete())
       return 0;
 
@@ -154,15 +165,6 @@ namespace RX
     return requiredExtensions.empty();
   }
 
-  SwapChainSupportDetails DeviceManager::querySwapChainSupport(VkPhysicalDevice device)
-  {
-    SwapChainSupportDetails details;
-
-    vkGetPhysicalDeviceSurfaceCapabilitiesKHR(device, *m_surface, &details.capabilities);
-
-    return details;
-  }
-
   QueueFamilyIndices DeviceManager::findQueueFamilies(VkPhysicalDevice device)
   {
     QueueFamilyIndices indices;
@@ -180,7 +182,7 @@ namespace RX
         indices.graphicsFamily = i;
 
       VkBool32 presentSupport = false;
-      vkGetPhysicalDeviceSurfaceSupportKHR(device, i, *m_surface, &presentSupport);
+      vkGetPhysicalDeviceSurfaceSupportKHR(device, i, *SwapChain::getSurface(), &presentSupport);
 
       if (presentSupport)
         indices.presentFamily = i;

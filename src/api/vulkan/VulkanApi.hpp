@@ -2,7 +2,9 @@
 #define VULKAN_API_HPP
 
 #include "api/Api.hpp"
+#include "api/vulkan/Instance.hpp"
 #include "api/vulkan/DeviceManager.hpp"
+#include "api/vulkan/SwapChain.hpp"
 
 namespace RX
 {
@@ -18,15 +20,15 @@ namespace RX
     void clean() override;
 
     void createInstance();
-    bool checkExtensionSupport(const char** sdlExtensions, uint32_t sdlExtensionsCount);
-    bool checkValidationLayerSupport();
-    std::vector<const char*> getRequiredExtensions();
     void createDevices();
     void createSurface();
+    void createSwapChain();
+    void createImageViews();
 
-    VkInstance m_instance;
+    Instance m_instance;
     VkSurfaceKHR m_surface;
     DeviceManager m_deviceManager;
+    SwapChain m_swapChain;
   };
 }
 

@@ -8,9 +8,11 @@
 #include <iostream>
 #include <cstdint>
 #include <cstdlib>
+#include <cstdint>
 #include <cstring>
 #include <optional>
 #include <set>
 #include <stdexcept>
+#include <algorithm>
 
 #endif // STDAFX_HPP

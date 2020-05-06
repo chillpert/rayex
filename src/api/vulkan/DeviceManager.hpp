@@ -13,38 +13,31 @@ namespace RX
     bool isComplete() { return graphicsFamily.has_value() && presentFamily.has_value(); }
   };
 
-  struct SwapChainSupportDetails
-  {
-    VkSurfaceCapabilitiesKHR capabilities;
-    std::vector<VkSurfaceFormatKHR> formats;
-    std::vector<VkPresentModeKHR> presentModes;
-  };
-
   class DeviceManager
   {
   public:
-    DeviceManager(VkInstance* instance, VkSurfaceKHR* surface);
+    DeviceManager(VkInstance* instance);
 
     void pickPhysicalDevice();
     void createLogicalDevice();
 
     void destroyLogicalDevice();
 
-    inline VkPhysicalDevice getPhysicalDevice() { return m_physicalDevice; }
-    inline VkDevice getLogicalDevice() { return m_logicalDevice; }
+    inline VkPhysicalDevice* getPhysicalDevice() { return &m_physicalDevice; }
+    inline VkDevice* getLogicalDevice() { return &m_logicalDevice; }
 
+    static QueueFamilyIndices findQueueFamilies(VkPhysicalDevice device);
+  
   private:
-    // physical
+    // Returns a score for any given physical device, based on supported features.
+    // It will also check for queue family support, device extension support and swap chain support.
     size_t evaluatePhysicalDevice(VkPhysicalDevice device);
+
     bool checkDeviceExtensionSupport(VkPhysicalDevice device);
-    SwapChainSupportDetails querySwapChainSupport(VkPhysicalDevice device);
     VkPhysicalDeviceProperties getPhysicalDeviceProperties(VkPhysicalDevice device);
     VkPhysicalDeviceFeatures getPhysicalDeviceFeatures(VkPhysicalDevice device);
-    QueueFamilyIndices findQueueFamilies(VkPhysicalDevice device);
 
     void printPhysicalDeviceInfo();
-
-    // logical
     
     VkPhysicalDevice m_physicalDevice;
     VkDevice m_logicalDevice;
@@ -52,9 +45,8 @@ namespace RX
     VkQueue m_graphicsQueue;
     VkQueue m_presentQueue;
 
-    // pointer to VulkanApi class
+    // pointer to VulkanApi class members
     VkInstance* m_instance;
-    VkSurfaceKHR* m_surface;
   };
 }
 

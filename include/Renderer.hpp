@@ -22,8 +22,8 @@ namespace RX
     RX_API inline const std::shared_ptr<Window> getWindow() const { return m_window; }
 
   private:
-    std::shared_ptr<Api> m_api;
     std::shared_ptr<Window> m_window;
+    std::shared_ptr<Api> m_api;
 
     bool m_running;
   };

@@ -6,6 +6,8 @@ namespace RX
   Renderer::Renderer(Api::Type api, WindowProperties windowProperties)
     : m_running(true)
   {
+    m_window = std::make_shared<Window>(windowProperties);
+
     switch (api)
     {
     case Api::VULKAN:
@@ -13,8 +15,6 @@ namespace RX
         m_api = std::make_shared<VulkanApi>();
         break;
     }
-
-    m_window = std::make_shared<Window>(windowProperties);
 
     initialize();
   }

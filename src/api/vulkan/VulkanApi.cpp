@@ -4,9 +4,10 @@
 namespace RX
 {
   VulkanApi::VulkanApi() :
-    m_surface(VK_NULL_HANDLE),
-    m_deviceManager(DeviceManager(m_instance.getInstance())),
-    m_swapChain(SwapChain(&m_surface, &m_window->getProperties())) { }
+    m_instance { },
+    m_surface { },
+    m_deviceManager { VK_NULL_HANDLE },
+    m_swapChain { m_surface.getSurface(), nullptr } { }
 
   void VulkanApi::initialize(std::shared_ptr<Window> window)
   {
@@ -32,7 +33,7 @@ namespace RX
   {
     m_swapChain.destroySwapChain();
     m_deviceManager.destroyLogicalDevice();
-    vkDestroySurfaceKHR(*m_instance.getInstance(), m_surface, nullptr);
+    m_surface.destroySurface();
     m_instance.destroyInstance();
   }
 
@@ -43,17 +44,21 @@ namespace RX
 
   void VulkanApi::createDevices()
   {
+    m_deviceManager = DeviceManager(m_instance.getInstance());
+
     m_deviceManager.pickPhysicalDevice();
     m_deviceManager.createLogicalDevice();
   }
 
   void VulkanApi::createSurface()
   {
-    Assert::sdl(SDL_Vulkan_CreateSurface(m_window->getWindow(), *m_instance.getInstance(), &m_surface), "Failed to create surface");
+    m_surface.createSurface(m_window, m_instance.getInstance());
   }
 
   void VulkanApi::createSwapChain()
   {
+    m_swapChain = SwapChain(m_surface.getSurface(), &m_window->getProperties());
+
     m_swapChain.createSwapChain(m_deviceManager.getPhysicalDevice(), m_deviceManager.getLogicalDevice());
   }
 

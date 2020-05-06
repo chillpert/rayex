@@ -3,6 +3,7 @@
 
 #include "api/Api.hpp"
 #include "api/vulkan/Instance.hpp"
+#include "api/vulkan/Surface.hpp"
 #include "api/vulkan/DeviceManager.hpp"
 #include "api/vulkan/SwapChain.hpp"
 
@@ -26,7 +27,7 @@ namespace RX
     void createImageViews();
 
     Instance m_instance;
-    VkSurfaceKHR m_surface;
+    Surface m_surface;
     DeviceManager m_deviceManager;
     SwapChain m_swapChain;
   };

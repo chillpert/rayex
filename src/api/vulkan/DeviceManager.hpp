@@ -23,10 +23,10 @@ namespace RX
   class DeviceManager
   {
   public:
-    DeviceManager();
+    DeviceManager(VkInstance* instance, VkSurfaceKHR* surface);
 
-    void pickPhysicalDevice(VkInstance instance, VkSurfaceKHR surface);
-    void createLogicalDevice(VkInstance instance, VkSurfaceKHR surface);
+    void pickPhysicalDevice();
+    void createLogicalDevice();
 
     void destroyLogicalDevice();
 
@@ -35,12 +35,12 @@ namespace RX
 
   private:
     // physical
-    size_t evaluatePhysicalDevice(VkPhysicalDevice device, VkSurfaceKHR surface);
+    size_t evaluatePhysicalDevice(VkPhysicalDevice device);
     bool checkDeviceExtensionSupport(VkPhysicalDevice device);
-    SwapChainSupportDetails querySwapChainSupport(VkPhysicalDevice device, VkSurfaceKHR surface);
+    SwapChainSupportDetails querySwapChainSupport(VkPhysicalDevice device);
     VkPhysicalDeviceProperties getPhysicalDeviceProperties(VkPhysicalDevice device);
     VkPhysicalDeviceFeatures getPhysicalDeviceFeatures(VkPhysicalDevice device);
-    QueueFamilyIndices findQueueFamilies(VkPhysicalDevice device, VkSurfaceKHR surface);
+    QueueFamilyIndices findQueueFamilies(VkPhysicalDevice device);
 
     void printPhysicalDeviceInfo();
 
@@ -51,6 +51,10 @@ namespace RX
 
     VkQueue m_graphicsQueue;
     VkQueue m_presentQueue;
+
+    // pointer to VulkanApi class
+    VkInstance* m_instance;
+    VkSurfaceKHR* m_surface;
   };
 }
 

@@ -5,6 +5,11 @@ namespace RX
 {
   const std::vector<const char*> validationLayers = { "VK_LAYER_KHRONOS_validation" };
 
+  VulkanApi::VulkanApi() :
+    m_instance(VK_NULL_HANDLE),
+    m_surface(VK_NULL_HANDLE),
+    m_deviceManager(DeviceManager(&m_instance, &m_surface)) { }
+
   void VulkanApi::initialize(std::shared_ptr<Window> window)
   {
     Api::initialize(window);
@@ -176,8 +181,8 @@ namespace RX
 
   void VulkanApi::createDevices()
   {
-    m_deviceManager.pickPhysicalDevice(m_instance, m_surface);
-    m_deviceManager.createLogicalDevice(m_instance, m_surface);
+    m_deviceManager.pickPhysicalDevice();
+    m_deviceManager.createLogicalDevice();
   }
 
   void VulkanApi::createSurface()

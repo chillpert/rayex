@@ -4,15 +4,19 @@ namespace RX
 {
   const std::vector<const char*> deviceExtensions = { VK_KHR_SWAPCHAIN_EXTENSION_NAME };
 
-  DeviceManager::DeviceManager() : 
-    m_physicalDevice(VK_NULL_HANDLE), 
+  DeviceManager::DeviceManager(VkInstance* instance, VkSurfaceKHR* surface) :
+    m_physicalDevice(VK_NULL_HANDLE),
     m_logicalDevice(VK_NULL_HANDLE),
-    m_graphicsQueue(VK_NULL_HANDLE) { }
+    m_graphicsQueue(VK_NULL_HANDLE),
+    m_instance(instance),
+    m_surface(surface) {
+    std::cout << "ok" << std::endl; 
+  }
 
-  void DeviceManager::pickPhysicalDevice(VkInstance instance, VkSurfaceKHR surface)
+  void DeviceManager::pickPhysicalDevice()
   {
     uint32_t deviceCount = 0;
-    vkEnumeratePhysicalDevices(instance, &deviceCount, nullptr);
+    vkEnumeratePhysicalDevices(*m_instance, &deviceCount, nullptr);
 
     if (deviceCount == 0)
     {
@@ -20,12 +24,12 @@ namespace RX
     }
 
     std::vector<VkPhysicalDevice> devices(deviceCount);
-    vkEnumeratePhysicalDevices(instance, &deviceCount, devices.data());
+    vkEnumeratePhysicalDevices(*m_instance, &deviceCount, devices.data());
 
     size_t prevScore = 0;
     for (const auto& device : devices)
     {
-      size_t score = evaluatePhysicalDevice(device, surface);
+      size_t score = evaluatePhysicalDevice(device);
 
       if (score > prevScore)
         m_physicalDevice = device;
@@ -43,14 +47,14 @@ namespace RX
 #endif
   }
 
-  void DeviceManager::createLogicalDevice(VkInstance instance, VkSurfaceKHR surface)
+  void DeviceManager::createLogicalDevice()
   {
     if (m_physicalDevice == VK_NULL_HANDLE)
     {
       Error::runtime("Can not create logical device before creating physical device", Error::API);
     }
 
-    QueueFamilyIndices indices = findQueueFamilies(m_physicalDevice, surface);
+    QueueFamilyIndices indices = findQueueFamilies(m_physicalDevice);
 
     std::vector<VkDeviceQueueCreateInfo> queueCreateInfos;
     std::set<uint32_t> uniqueQueueFamilies = { indices.graphicsFamily.value(), indices.presentFamily.value() };
@@ -108,9 +112,9 @@ namespace RX
     return deviceFeatures;
   }
 
-  size_t DeviceManager::evaluatePhysicalDevice(VkPhysicalDevice device, VkSurfaceKHR surface)
+  size_t DeviceManager::evaluatePhysicalDevice(VkPhysicalDevice device)
   {
-    QueueFamilyIndices indices = findQueueFamilies(device, surface);
+    QueueFamilyIndices indices = findQueueFamilies(device);
 
     if (!indices.isComplete())
       return 0;
@@ -150,16 +154,16 @@ namespace RX
     return requiredExtensions.empty();
   }
 
-  SwapChainSupportDetails DeviceManager::querySwapChainSupport(VkPhysicalDevice device, VkSurfaceKHR surface)
+  SwapChainSupportDetails DeviceManager::querySwapChainSupport(VkPhysicalDevice device)
   {
     SwapChainSupportDetails details;
 
-    vkGetPhysicalDeviceSurfaceCapabilitiesKHR(device, surface, &details.capabilities);
+    vkGetPhysicalDeviceSurfaceCapabilitiesKHR(device, *m_surface, &details.capabilities);
 
     return details;
   }
 
-  QueueFamilyIndices DeviceManager::findQueueFamilies(VkPhysicalDevice device, VkSurfaceKHR surface)
+  QueueFamilyIndices DeviceManager::findQueueFamilies(VkPhysicalDevice device)
   {
     QueueFamilyIndices indices;
 
@@ -176,7 +180,7 @@ namespace RX
         indices.graphicsFamily = i;
 
       VkBool32 presentSupport = false;
-      vkGetPhysicalDeviceSurfaceSupportKHR(device, i, surface, &presentSupport);
+      vkGetPhysicalDeviceSurfaceSupportKHR(device, i, *m_surface, &presentSupport);
 
       if (presentSupport)
         indices.presentFamily = i;

@@ -3,8 +3,7 @@
 
 namespace RX
 {
-  VulkanApi::VulkanApi()
-    : m_validationLayers({ "VK_LAYER_KHRONOS_validation" }) { }
+  const std::vector<const char*> validationLayers = { "VK_LAYER_KHRONOS_validation" };
 
   void VulkanApi::initialize(std::shared_ptr<Window> window)
   {
@@ -75,8 +74,8 @@ namespace RX
     createInfo.ppEnabledExtensionNames = extensions.data();
 
 #ifdef RX_DEBUG
-    createInfo.enabledLayerCount = static_cast<uint32_t>(m_validationLayers.size());
-    createInfo.ppEnabledLayerNames = m_validationLayers.data();
+    createInfo.enabledLayerCount = static_cast<uint32_t>(validationLayers.size());
+    createInfo.ppEnabledLayerNames = validationLayers.data();
 #else
     createInfo.enabledLayerCount = 0;
 #endif
@@ -130,7 +129,7 @@ namespace RX
     std::vector<VkLayerProperties> availableLayers(layerCount);
     vkEnumerateInstanceLayerProperties(&layerCount, availableLayers.data());
 
-    for (const auto layerName : m_validationLayers)
+    for (const auto layerName : validationLayers)
     {
       bool found = false;
 

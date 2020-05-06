@@ -13,6 +13,13 @@ namespace RX
     bool isComplete() { return graphicsFamily.has_value() && presentFamily.has_value(); }
   };
 
+  struct SwapChainSupportDetails
+  {
+    VkSurfaceCapabilitiesKHR capabilities;
+    std::vector<VkSurfaceFormatKHR> formats;
+    std::vector<VkPresentModeKHR> presentModes;
+  };
+
   class DeviceManager
   {
   public:
@@ -29,6 +36,8 @@ namespace RX
   private:
     // physical
     size_t evaluatePhysicalDevice(VkPhysicalDevice device, VkSurfaceKHR surface);
+    bool checkDeviceExtensionSupport(VkPhysicalDevice device);
+    SwapChainSupportDetails querySwapChainSupport(VkPhysicalDevice device, VkSurfaceKHR surface);
     VkPhysicalDeviceProperties getPhysicalDeviceProperties(VkPhysicalDevice device);
     VkPhysicalDeviceFeatures getPhysicalDeviceFeatures(VkPhysicalDevice device);
     QueueFamilyIndices findQueueFamilies(VkPhysicalDevice device, VkSurfaceKHR surface);

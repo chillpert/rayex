@@ -2,6 +2,8 @@
 
 namespace RX
 {
+  const std::vector<const char*> deviceExtensions = { VK_KHR_SWAPCHAIN_EXTENSION_NAME };
+
   DeviceManager::DeviceManager() : 
     m_physicalDevice(VK_NULL_HANDLE), 
     m_logicalDevice(VK_NULL_HANDLE),
@@ -73,7 +75,8 @@ namespace RX
     createInfo.queueCreateInfoCount = static_cast<uint32_t>(queueCreateInfos.size());
     createInfo.pQueueCreateInfos = queueCreateInfos.data();
     createInfo.pEnabledFeatures = &deviceFeatures;
-    createInfo.enabledExtensionCount = 0;
+    createInfo.enabledExtensionCount = static_cast<uint32_t>(deviceExtensions.size());
+    createInfo.ppEnabledExtensionNames = deviceExtensions.data();
 
     Assert::vulkan(vkCreateDevice(m_physicalDevice, &createInfo, nullptr, &m_logicalDevice), "Failed to create logical device");
 
@@ -112,6 +115,9 @@ namespace RX
     if (!indices.isComplete())
       return 0;
 
+    if (!checkDeviceExtensionSupport(device))
+      return 0;
+
     VkPhysicalDeviceProperties properties = getPhysicalDeviceProperties(device);
     VkPhysicalDeviceFeatures features = getPhysicalDeviceFeatures(device);
     
@@ -124,6 +130,33 @@ namespace RX
     }
 
     return score;
+  }
+
+  bool DeviceManager::checkDeviceExtensionSupport(VkPhysicalDevice device)
+  {
+    uint32_t extensionCount;
+    vkEnumerateDeviceExtensionProperties(device, nullptr, &extensionCount, nullptr);
+
+    std::vector<VkExtensionProperties> availableExtensions(extensionCount);
+    vkEnumerateDeviceExtensionProperties(device, nullptr, &extensionCount, availableExtensions.data());
+
+    std::set<std::string> requiredExtensions(deviceExtensions.begin(), deviceExtensions.end());
+
+    for (const auto& extension : availableExtensions)
+    {
+      requiredExtensions.erase(extension.extensionName);
+    }
+
+    return requiredExtensions.empty();
+  }
+
+  SwapChainSupportDetails DeviceManager::querySwapChainSupport(VkPhysicalDevice device, VkSurfaceKHR surface)
+  {
+    SwapChainSupportDetails details;
+
+    vkGetPhysicalDeviceSurfaceCapabilitiesKHR(device, surface, &details.capabilities);
+
+    return details;
   }
 
   QueueFamilyIndices DeviceManager::findQueueFamilies(VkPhysicalDevice device, VkSurfaceKHR surface)

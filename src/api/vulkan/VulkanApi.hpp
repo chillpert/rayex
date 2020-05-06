@@ -8,9 +8,6 @@ namespace RX
 {
   class VulkanApi : public Api
   {
-  public:
-    VulkanApi();
-
   private:
     void initialize(std::shared_ptr<Window> window) override;
     void update() override;
@@ -27,8 +24,6 @@ namespace RX
     VkInstance m_instance;
     DeviceManager m_deviceManager;
     VkSurfaceKHR m_surface;
-
-    const std::vector<const char*> m_validationLayers;
   };
 }
 

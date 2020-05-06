@@ -17,6 +17,7 @@ namespace RX
     createSurface();
     createDevices();
     createSwapChain();
+    createImageViews();
   }
 
   void VulkanApi::update()
@@ -31,6 +32,7 @@ namespace RX
 
   void VulkanApi::clean()
   {
+    m_swapChain.destroyImageView();
     m_swapChain.destroySwapChain();
     m_deviceManager.destroyLogicalDevice();
     m_surface.destroySurface();
@@ -64,6 +66,6 @@ namespace RX
 
   void VulkanApi::createImageViews()
   {
-
+    m_swapChain.createImageViews();
   }
 }

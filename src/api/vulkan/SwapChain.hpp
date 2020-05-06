@@ -19,7 +19,10 @@ namespace RX
     SwapChain(VkSurfaceKHR* surface, WindowProperties* windowProperties);
 
     void createSwapChain(VkPhysicalDevice* physicalDevice, VkDevice* logicalDevice);
+    void createImageViews();
+
     void destroySwapChain();
+    void destroyImageView();
 
     static SwapChainSupportDetails querySwapChainSupport(VkPhysicalDevice device);
     static inline VkSurfaceKHR* getSurface() { return s_surface; }
@@ -36,7 +39,7 @@ namespace RX
     VkExtent2D chooseSwapExtent(const VkSurfaceCapabilitiesKHR& capabilities);
 
     VkSwapchainKHR m_swapChain;
-    std::vector<VkImage> swapChainImages;
+    std::vector<VkImage> m_swapChainImages;
 
     // swap chain properties
     VkFormat m_swapChainImageFormat;
@@ -47,6 +50,8 @@ namespace RX
     VkDevice* m_logicalDevice;
 
     WindowProperties* m_windowProperties;
+
+    std::vector<VkImageView> m_swapChainImageViews;
   };
 }
 

@@ -2,26 +2,12 @@
 
 namespace RX
 {
-  DeviceManager::DeviceManager()
-    : m_physicalDevice(VK_NULL_HANDLE), m_logicalDevice(VK_NULL_HANDLE) { }
+  DeviceManager::DeviceManager() : 
+    m_physicalDevice(VK_NULL_HANDLE), 
+    m_logicalDevice(VK_NULL_HANDLE),
+    m_graphicsQueue(VK_NULL_HANDLE) { }
 
-  void DeviceManager::createDevices(VkInstance instance)
-  {
-    findPhysicalDevice(instance);
-    createLogicalDevice();
-  }
-
-  void DeviceManager::destroyDevices()
-  {
-    if (m_logicalDevice == VK_NULL_HANDLE)
-    {
-      Error::runtime("Failed to destroy logical device, because it has not been created yet", Error::API);
-    }
-
-    vkDestroyDevice(m_logicalDevice, nullptr);
-  }
-
-  void DeviceManager::findPhysicalDevice(VkInstance instance)
+  void DeviceManager::pickPhysicalDevice(VkInstance instance, VkSurfaceKHR surface)
   {
     uint32_t deviceCount = 0;
     vkEnumeratePhysicalDevices(instance, &deviceCount, nullptr);
@@ -37,7 +23,7 @@ namespace RX
     size_t prevScore = 0;
     for (const auto& device : devices)
     {
-      size_t score = evaluatePhysicalDevice(device);
+      size_t score = evaluatePhysicalDevice(device, surface);
 
       if (score > prevScore)
         m_physicalDevice = device;
@@ -50,9 +36,59 @@ namespace RX
       Error::runtime("Could not find a suitable GPU", Error::API);
     }
 
-  #ifdef RX_DEBUG
+#ifdef RX_DEBUG
     printPhysicalDeviceInfo();
-  #endif
+#endif
+  }
+
+  void DeviceManager::createLogicalDevice(VkInstance instance, VkSurfaceKHR surface)
+  {
+    if (m_physicalDevice == VK_NULL_HANDLE)
+    {
+      Error::runtime("Can not create logical device before creating physical device", Error::API);
+    }
+
+    QueueFamilyIndices indices = findQueueFamilies(m_physicalDevice, surface);
+
+    std::vector<VkDeviceQueueCreateInfo> queueCreateInfos;
+    std::set<uint32_t> uniqueQueueFamilies = { indices.graphicsFamily.value(), indices.presentFamily.value() };
+
+    float queuePriority = 1.0f;
+    for (uint32_t queueFamily : uniqueQueueFamilies)
+    {
+      VkDeviceQueueCreateInfo queueCreateInfo { };
+      queueCreateInfo.sType = VK_STRUCTURE_TYPE_DEVICE_QUEUE_CREATE_INFO;
+      queueCreateInfo.queueFamilyIndex = queueFamily;
+      queueCreateInfo.queueCount = 1;
+      queueCreateInfo.pQueuePriorities = &queuePriority;
+      queueCreateInfos.push_back(queueCreateInfo);
+    }
+
+    // physical device features
+    VkPhysicalDeviceFeatures deviceFeatures{ };
+
+    // device create info
+    VkDeviceCreateInfo createInfo { };
+    createInfo.sType = VK_STRUCTURE_TYPE_DEVICE_CREATE_INFO;
+    createInfo.queueCreateInfoCount = static_cast<uint32_t>(queueCreateInfos.size());
+    createInfo.pQueueCreateInfos = queueCreateInfos.data();
+    createInfo.pEnabledFeatures = &deviceFeatures;
+    createInfo.enabledExtensionCount = 0;
+
+    Assert::vulkan(vkCreateDevice(m_physicalDevice, &createInfo, nullptr, &m_logicalDevice), "Failed to create logical device");
+
+    vkGetDeviceQueue(m_logicalDevice, indices.graphicsFamily.value(), 0, &m_graphicsQueue);
+    vkGetDeviceQueue(m_logicalDevice, indices.presentFamily.value(), 0, &m_presentQueue);
+  }
+
+  void DeviceManager::destroyLogicalDevice()
+  {
+    if (m_logicalDevice == VK_NULL_HANDLE)
+    {
+      Error::runtime("Failed to destroy logical device, because it has not been created yet", Error::API);
+    }
+
+    vkDestroyDevice(m_logicalDevice, nullptr);
   }
 
   VkPhysicalDeviceProperties DeviceManager::getPhysicalDeviceProperties(VkPhysicalDevice device)
@@ -69,11 +105,11 @@ namespace RX
     return deviceFeatures;
   }
 
-  size_t DeviceManager::evaluatePhysicalDevice(VkPhysicalDevice device)
+  size_t DeviceManager::evaluatePhysicalDevice(VkPhysicalDevice device, VkSurfaceKHR surface)
   {
-    QueueFamilyIndices indices = findQueueFamilies(device);
+    QueueFamilyIndices indices = findQueueFamilies(device, surface);
 
-    if (!indices.graphicsFamily.has_value())
+    if (!indices.isComplete())
       return 0;
 
     VkPhysicalDeviceProperties properties = getPhysicalDeviceProperties(device);
@@ -90,7 +126,7 @@ namespace RX
     return score;
   }
 
-  QueueFamilyIndices DeviceManager::findQueueFamilies(VkPhysicalDevice device)
+  QueueFamilyIndices DeviceManager::findQueueFamilies(VkPhysicalDevice device, VkSurfaceKHR surface)
   {
     QueueFamilyIndices indices;
 
@@ -105,6 +141,15 @@ namespace RX
     {
       if (queueFamily.queueFlags & VK_QUEUE_GRAPHICS_BIT)
         indices.graphicsFamily = i;
+
+      VkBool32 presentSupport = false;
+      vkGetPhysicalDeviceSurfaceSupportKHR(device, i, surface, &presentSupport);
+
+      if (presentSupport)
+        indices.presentFamily = i;
+
+      if (indices.isComplete())
+        break;
 
       i++;
     }
@@ -135,38 +180,5 @@ namespace RX
     {
       Error::runtime("Can not print physical device information, because it has not been determined yet", Error::API);
     }
-  }
-
-  void DeviceManager::createLogicalDevice()
-  {
-    if (m_physicalDevice == VK_NULL_HANDLE)
-    {
-      Error::runtime("Can not create logical device before creating physical device", Error::API);
-    }
-
-    QueueFamilyIndices indices = findQueueFamilies(m_physicalDevice);
-
-    // device queue create info
-    VkDeviceQueueCreateInfo queueCreateInfo { };
-    queueCreateInfo.sType = VK_STRUCTURE_TYPE_DEVICE_QUEUE_CREATE_INFO;
-    queueCreateInfo.queueFamilyIndex = indices.graphicsFamily.value();
-    queueCreateInfo.queueCount = 1;
-    float queuePriority = 1.0f;
-    queueCreateInfo.pQueuePriorities = &queuePriority;
-
-    // physical device features
-    VkPhysicalDeviceFeatures deviceFeatures { };
-
-    // device create info
-    VkDeviceCreateInfo createInfo { };
-    createInfo.sType = VK_STRUCTURE_TYPE_DEVICE_CREATE_INFO;
-    createInfo.pQueueCreateInfos = &queueCreateInfo;
-    createInfo.queueCreateInfoCount = 1;
-    createInfo.pEnabledFeatures = &deviceFeatures;
-    createInfo.enabledExtensionCount = 0;
-
-    Assert::vulkan(vkCreateDevice(m_physicalDevice, &createInfo, nullptr, &m_logicalDevice), "Failed to create logical device");
-    
-    vkGetDeviceQueue(m_logicalDevice, indices.graphicsFamily.value(), 0, &m_graphicsQueue);
   }
 }

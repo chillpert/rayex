@@ -27,7 +27,8 @@ namespace RX
 
   void VulkanApi::clean()
   {
-    m_deviceManager.destroyDevices();
+    m_deviceManager.destroyLogicalDevice();
+    vkDestroySurfaceKHR(m_instance, m_surface, nullptr);
     vkDestroyInstance(m_instance, nullptr);
   }
 
@@ -176,11 +177,12 @@ namespace RX
 
   void VulkanApi::createDevices()
   {
-    m_deviceManager.createDevices(m_instance);
+    m_deviceManager.pickPhysicalDevice(m_instance, m_surface);
+    m_deviceManager.createLogicalDevice(m_instance, m_surface);
   }
 
   void VulkanApi::createSurface()
   {
-    //SDL_Vulkan_CreateSurface(m_window->getWindow(), m_instance, &m_surface);
+    Assert::sdl(SDL_Vulkan_CreateSurface(m_window->getWindow(), m_instance, &m_surface), "Failed to create surface");
   }
 }

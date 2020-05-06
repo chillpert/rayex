@@ -8,6 +8,9 @@ namespace RX
   struct QueueFamilyIndices
   {
     std::optional<uint32_t> graphicsFamily;
+    std::optional<uint32_t> presentFamily;
+
+    bool isComplete() { return graphicsFamily.has_value() && presentFamily.has_value(); }
   };
 
   class DeviceManager
@@ -15,29 +18,30 @@ namespace RX
   public:
     DeviceManager();
 
-    void createDevices(VkInstance instance);
-    void destroyDevices();
+    void pickPhysicalDevice(VkInstance instance, VkSurfaceKHR surface);
+    void createLogicalDevice(VkInstance instance, VkSurfaceKHR surface);
+
+    void destroyLogicalDevice();
 
     inline VkPhysicalDevice getPhysicalDevice() { return m_physicalDevice; }
     inline VkDevice getLogicalDevice() { return m_logicalDevice; }
 
   private:
     // physical
-    void findPhysicalDevice(VkInstance instance);
-
-    size_t evaluatePhysicalDevice(VkPhysicalDevice device);
+    size_t evaluatePhysicalDevice(VkPhysicalDevice device, VkSurfaceKHR surface);
     VkPhysicalDeviceProperties getPhysicalDeviceProperties(VkPhysicalDevice device);
     VkPhysicalDeviceFeatures getPhysicalDeviceFeatures(VkPhysicalDevice device);
-    QueueFamilyIndices findQueueFamilies(VkPhysicalDevice device);
+    QueueFamilyIndices findQueueFamilies(VkPhysicalDevice device, VkSurfaceKHR surface);
 
     void printPhysicalDeviceInfo();
 
     // logical
-    void createLogicalDevice();
     
     VkPhysicalDevice m_physicalDevice;
     VkDevice m_logicalDevice;
+
     VkQueue m_graphicsQueue;
+    VkQueue m_presentQueue;
   };
 }
 

@@ -10,6 +10,7 @@
 #include <cstdlib>
 #include <cstring>
 #include <optional>
+#include <set>
 #include <stdexcept>
 
 #endif // STDAFX_HPP

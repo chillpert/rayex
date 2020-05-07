@@ -14,6 +14,7 @@ namespace RX
       API,
       SDL,
       SHADER,
+      PIPELINE,
       UNDEFINED
     };
 

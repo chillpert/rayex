@@ -8,7 +8,7 @@ namespace RX
     m_surface { },
     m_deviceManager { VK_NULL_HANDLE },
     m_swapChain { m_surface.getSurface(), nullptr },
-    m_graphicsPipeline { } { }
+    m_graphicsPipeline { VK_NULL_HANDLE, nullptr } { }
 
   void VulkanApi::initialize(std::shared_ptr<Window> window)
   {
@@ -34,6 +34,7 @@ namespace RX
 
   void VulkanApi::clean()
   {
+    m_graphicsPipeline.destroyGraphicsPipeline();
     m_swapChain.destroyImageView();
     m_swapChain.destroySwapChain();
     m_deviceManager.destroyLogicalDevice();
@@ -73,6 +74,8 @@ namespace RX
 
   void VulkanApi::createGraphicsPipeline()
   {
+    m_graphicsPipeline = GraphicsPipeline(m_deviceManager.getLogicalDevice(), &m_swapChain);
+
     m_graphicsPipeline.createGraphicsPipeline();
   }
 }

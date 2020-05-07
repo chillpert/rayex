@@ -35,6 +35,7 @@ namespace RX
 
     inline std::vector<VkImageView>& getImageViews() { return m_swapChainImageViews; }
     inline std::vector<VkFramebuffer>& getFramebuffers() { return m_swapChainFramebuffers; }
+    inline std::vector<VkImage>& getImages() { return m_swapChainImages; }
 
   private: 
     // Returns the surface format and color space.

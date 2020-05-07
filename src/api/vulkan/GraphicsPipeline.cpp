@@ -10,6 +10,37 @@ namespace RX
     m_vertexShader(nullptr),
     m_fragmentShader(nullptr) { }
 
+  void GraphicsPipeline::createRenderPass()
+  {
+    VkAttachmentDescription colorAttachment{};
+    colorAttachment.format = *m_swapChain->getImageFormat();
+    colorAttachment.samples = VK_SAMPLE_COUNT_1_BIT;
+    colorAttachment.loadOp = VK_ATTACHMENT_LOAD_OP_CLEAR;
+    colorAttachment.storeOp = VK_ATTACHMENT_STORE_OP_STORE;
+    colorAttachment.stencilLoadOp = VK_ATTACHMENT_LOAD_OP_DONT_CARE;
+    colorAttachment.stencilStoreOp = VK_ATTACHMENT_STORE_OP_DONT_CARE;
+    colorAttachment.initialLayout = VK_IMAGE_LAYOUT_UNDEFINED;
+    colorAttachment.finalLayout = VK_IMAGE_LAYOUT_PRESENT_SRC_KHR;
+
+    VkAttachmentReference colorAttachmentRef { };
+    colorAttachmentRef.attachment = 0;
+    colorAttachmentRef.layout = VK_IMAGE_LAYOUT_COLOR_ATTACHMENT_OPTIMAL;
+
+    VkSubpassDescription subpass { };
+    subpass.pipelineBindPoint = VK_PIPELINE_BIND_POINT_GRAPHICS;
+    subpass.colorAttachmentCount = 1;
+    subpass.pColorAttachments = &colorAttachmentRef;
+
+    VkRenderPassCreateInfo renderPassInfo { };
+    renderPassInfo.sType = VK_STRUCTURE_TYPE_RENDER_PASS_CREATE_INFO;
+    renderPassInfo.attachmentCount = 1;
+    renderPassInfo.pAttachments = &colorAttachment;
+    renderPassInfo.subpassCount = 1;
+    renderPassInfo.pSubpasses = &subpass;
+
+    Assert::vulkan(vkCreateRenderPass(*m_logicalDevice, &renderPassInfo, nullptr, &m_renderPass), "Failed to create render pass");
+  }
+
   void GraphicsPipeline::createGraphicsPipeline()
   {
     // trying both constructors
@@ -101,12 +132,39 @@ namespace RX
 
     Assert::vulkan(vkCreatePipelineLayout(*m_logicalDevice, &pipelineLayoutInfo, nullptr, &m_pipelineLayout), "Failed to create pipeline layout");
   
+    VkGraphicsPipelineCreateInfo pipelineInfo { };
+    pipelineInfo.sType = VK_STRUCTURE_TYPE_GRAPHICS_PIPELINE_CREATE_INFO;
+    pipelineInfo.stageCount = 2;
+    pipelineInfo.pStages = shaderStages;
+    pipelineInfo.pVertexInputState = &vertexInputInfo;
+    pipelineInfo.pInputAssemblyState = &inputAssembly;
+    pipelineInfo.pViewportState = &viewportState;
+    pipelineInfo.pRasterizationState = &rasterizer;
+    pipelineInfo.pMultisampleState = &multisampling;
+    pipelineInfo.pColorBlendState = &colorBlending;
+    pipelineInfo.layout = m_pipelineLayout;
+    pipelineInfo.renderPass = m_renderPass;
+    pipelineInfo.subpass = 0;
+    pipelineInfo.basePipelineHandle = VK_NULL_HANDLE;
+
+    Assert::vulkan(vkCreateGraphicsPipelines(*m_logicalDevice, VK_NULL_HANDLE, 1, &pipelineInfo, nullptr, &m_graphicsPipeline), "Failed to create graphics pipeline");
+
     m_vertexShader->destroy();
     m_fragmentShader->destroy();
   }
 
-  void GraphicsPipeline::destroyGraphicsPipeline()
+  void GraphicsPipeline::destroyRenderPass()
+  {
+    vkDestroyRenderPass(*m_logicalDevice, m_renderPass, nullptr);
+  }
+
+  void GraphicsPipeline::destroyGraphicsPipelineLayout()
   {
     vkDestroyPipelineLayout(*m_logicalDevice, m_pipelineLayout, nullptr);
+  }
+
+  void GraphicsPipeline::destroyGraphicsPipeline()
+  {
+    vkDestroyPipeline(*m_logicalDevice, m_graphicsPipeline, nullptr);
   }
 }

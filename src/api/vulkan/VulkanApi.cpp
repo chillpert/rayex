@@ -35,6 +35,8 @@ namespace RX
   void VulkanApi::clean()
   {
     m_graphicsPipeline.destroyGraphicsPipeline();
+    m_graphicsPipeline.destroyRenderPass();
+    m_graphicsPipeline.destroyGraphicsPipelineLayout();
     m_swapChain.destroyImageView();
     m_swapChain.destroySwapChain();
     m_deviceManager.destroyLogicalDevice();
@@ -76,6 +78,7 @@ namespace RX
   {
     m_graphicsPipeline = GraphicsPipeline(m_deviceManager.getLogicalDevice(), &m_swapChain);
 
+    m_graphicsPipeline.createRenderPass();
     m_graphicsPipeline.createGraphicsPipeline();
   }
 }

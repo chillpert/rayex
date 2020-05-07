@@ -11,10 +11,16 @@ namespace RX
   public:
     GraphicsPipeline(VkDevice* logicalDevice, SwapChain* swapChain);
 
+    void createRenderPass();
     void createGraphicsPipeline();
+
+    void destroyRenderPass();
+    void destroyGraphicsPipelineLayout();
     void destroyGraphicsPipeline();
     
   private:
+    VkPipeline m_graphicsPipeline;
+    VkRenderPass m_renderPass;
     VkPipelineLayout m_pipelineLayout;
 
     VkDevice* m_logicalDevice;

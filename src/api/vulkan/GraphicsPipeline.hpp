@@ -17,7 +17,9 @@ namespace RX
     void destroyRenderPass();
     void destroyGraphicsPipelineLayout();
     void destroyGraphicsPipeline();
-    
+
+    inline VkRenderPass* getRenderPass() { return &m_renderPass; }
+
   private:
     VkPipeline m_graphicsPipeline;
     VkRenderPass m_renderPass;

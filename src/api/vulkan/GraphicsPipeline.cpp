@@ -13,7 +13,7 @@ namespace RX
   void GraphicsPipeline::createRenderPass()
   {
     VkAttachmentDescription colorAttachment{};
-    colorAttachment.format = *m_swapChain->getImageFormat();
+    colorAttachment.format = m_swapChain->getImageFormat();
     colorAttachment.samples = VK_SAMPLE_COUNT_1_BIT;
     colorAttachment.loadOp = VK_ATTACHMENT_LOAD_OP_CLEAR;
     colorAttachment.storeOp = VK_ATTACHMENT_STORE_OP_STORE;
@@ -79,14 +79,14 @@ namespace RX
     VkViewport viewport { };
     viewport.x = 0.0f;
     viewport.y = 0.0f;
-    viewport.width = static_cast<float>(m_swapChain->getExtent()->width);
-    viewport.height = static_cast<float>(m_swapChain->getExtent()->height);
+    viewport.width = static_cast<float>(m_swapChain->getExtent().width);
+    viewport.height = static_cast<float>(m_swapChain->getExtent().height);
     viewport.minDepth = 0.0f;
     viewport.maxDepth = 1.0f;
 
     VkRect2D scissor { };
     scissor.offset = { 0, 0 };
-    scissor.extent = *m_swapChain->getExtent();
+    scissor.extent = m_swapChain->getExtent();
   
     VkPipelineViewportStateCreateInfo viewportState { };
     viewportState.sType = VK_STRUCTURE_TYPE_PIPELINE_VIEWPORT_STATE_CREATE_INFO;

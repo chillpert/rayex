@@ -101,6 +101,27 @@ namespace RX
     }
   }
 
+  void SwapChain::createFramebuffers(VkRenderPass* renderPass)
+  {
+    m_swapChainFramebuffers.resize(m_swapChainImageViews.size());
+
+    for (size_t i = 0; i < m_swapChainImageViews.size(); ++i)
+    {
+      VkImageView attachments[] = { m_swapChainImageViews[i] };
+
+      VkFramebufferCreateInfo framebufferInfo{};
+      framebufferInfo.sType = VK_STRUCTURE_TYPE_FRAMEBUFFER_CREATE_INFO;
+      framebufferInfo.renderPass = *renderPass;
+      framebufferInfo.attachmentCount = 1;
+      framebufferInfo.pAttachments = attachments;
+      framebufferInfo.width = m_swapChainExtent.width;
+      framebufferInfo.height = m_swapChainExtent.height;
+      framebufferInfo.layers = 1;
+
+      Assert::vulkan(vkCreateFramebuffer(*m_logicalDevice, &framebufferInfo, nullptr, &m_swapChainFramebuffers[i]), "Failed to create framebuffer");
+    }
+  }
+
   void SwapChain::destroySwapChain()
   {
     vkDestroySwapchainKHR(*m_logicalDevice, m_swapChain, nullptr);
@@ -111,6 +132,14 @@ namespace RX
     for (auto imageView : m_swapChainImageViews)
     {
       vkDestroyImageView(*m_logicalDevice, imageView, nullptr);
+    }
+  }
+
+  void SwapChain::destroyFramebuffers()
+  {
+    for (auto framebuffer : m_swapChainFramebuffers)
+    {
+      vkDestroyFramebuffer(*m_logicalDevice, framebuffer, nullptr);
     }
   }
   

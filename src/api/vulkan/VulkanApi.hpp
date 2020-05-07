@@ -27,6 +27,7 @@ namespace RX
     void createSwapChain();
     void createImageViews();
     void createGraphicsPipeline();
+    void createFramebuffers();
 
     Instance m_instance;
     Surface m_surface;

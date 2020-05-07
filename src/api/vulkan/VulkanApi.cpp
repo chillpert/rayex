@@ -20,6 +20,7 @@ namespace RX
     createSwapChain();
     createImageViews();
     createGraphicsPipeline();
+    createFramebuffers();
   }
 
   void VulkanApi::update()
@@ -34,13 +35,19 @@ namespace RX
 
   void VulkanApi::clean()
   {
+    m_swapChain.destroyFramebuffers();
+
     m_graphicsPipeline.destroyGraphicsPipeline();
     m_graphicsPipeline.destroyRenderPass();
     m_graphicsPipeline.destroyGraphicsPipelineLayout();
+
     m_swapChain.destroyImageView();
     m_swapChain.destroySwapChain();
+
     m_deviceManager.destroyLogicalDevice();
+
     m_surface.destroySurface();
+
     m_instance.destroyInstance();
   }
 
@@ -80,5 +87,10 @@ namespace RX
 
     m_graphicsPipeline.createRenderPass();
     m_graphicsPipeline.createGraphicsPipeline();
+  }
+
+  void VulkanApi::createFramebuffers()
+  {
+    m_swapChain.createFramebuffers(m_graphicsPipeline.getRenderPass());
   }
 }

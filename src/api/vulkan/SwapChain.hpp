@@ -20,15 +20,18 @@ namespace RX
 
     void createSwapChain(VkPhysicalDevice* physicalDevice, VkDevice* logicalDevice);
     void createImageViews();
+    void createFramebuffers(VkRenderPass* renderPass);
 
     void destroySwapChain();
     void destroyImageView();
+    void destroyFramebuffers();
 
     static SwapChainSupportDetails querySwapChainSupport(VkPhysicalDevice device);
     static inline VkSurfaceKHR* getSurface() { return s_surface; }
 
-    inline VkFormat* getImageFormat() { return &m_swapChainImageFormat; }
-    inline VkExtent2D* getExtent() { return &m_swapChainExtent; }
+    inline VkFormat& getImageFormat() { return m_swapChainImageFormat; }
+    inline VkExtent2D& getExtent() { return m_swapChainExtent; }
+    inline std::vector<VkImageView>& getImageViews() { return m_swapChainImageViews; }
 
   private: 
     // Returns the surface format and color space.
@@ -55,6 +58,7 @@ namespace RX
     WindowProperties* m_windowProperties;
 
     std::vector<VkImageView> m_swapChainImageViews;
+    std::vector<VkFramebuffer> m_swapChainFramebuffers;
   };
 }
 

@@ -6,6 +6,7 @@
 #include "api/vulkan/Surface.hpp"
 #include "api/vulkan/DeviceManager.hpp"
 #include "api/vulkan/SwapChain.hpp"
+#include "api/vulkan/GraphicsPipeline.hpp"
 
 namespace RX
 {
@@ -25,11 +26,13 @@ namespace RX
     void createSurface();
     void createSwapChain();
     void createImageViews();
+    void createGraphicsPipeline();
 
     Instance m_instance;
     Surface m_surface;
     DeviceManager m_deviceManager;
     SwapChain m_swapChain;
+    GraphicsPipeline m_graphicsPipeline;
   };
 }
 

@@ -7,7 +7,8 @@ namespace RX
     m_instance { },
     m_surface { },
     m_deviceManager { VK_NULL_HANDLE },
-    m_swapChain { m_surface.getSurface(), nullptr } { }
+    m_swapChain { m_surface.getSurface(), nullptr },
+    m_graphicsPipeline { } { }
 
   void VulkanApi::initialize(std::shared_ptr<Window> window)
   {
@@ -18,6 +19,7 @@ namespace RX
     createDevices();
     createSwapChain();
     createImageViews();
+    createGraphicsPipeline();
   }
 
   void VulkanApi::update()
@@ -67,5 +69,10 @@ namespace RX
   void VulkanApi::createImageViews()
   {
     m_swapChain.createImageViews();
+  }
+
+  void VulkanApi::createGraphicsPipeline()
+  {
+    m_graphicsPipeline.createGraphicsPipeline();
   }
 }

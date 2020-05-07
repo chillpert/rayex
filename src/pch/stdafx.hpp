@@ -14,5 +14,6 @@
 #include <set>
 #include <stdexcept>
 #include <algorithm>
+#include <fstream>
 
 #endif // STDAFX_HPP

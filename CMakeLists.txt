@@ -33,11 +33,25 @@ else()
 endif()
 
 # RESOURCES
-add_compile_definitions(SHADER_PATH="${PROJECT_SOURCE_DIR}/resources/shaders/")
+add_compile_definitions(RX_PROJECT_PATH="${PROJECT_SOURCE_DIR}/")
+add_compile_definitions(RX_RESOURCES_PATH="${PROJECT_SOURCE_DIR}/resources/")
+add_compile_definitions(RX_SHADER_PATH="${PROJECT_SOURCE_DIR}/resources/shaders/")
 
 # VULKAN
 find_package(Vulkan REQUIRED)
 include_directories(${Vulkan_INCLUDE_DIRS})
+
+if(${OS} STREQUAL "Windows")
+  
+  add_compile_definitions(RX_GLSLC_PATH="${Vulkan_INCLUDE_DIRS}/../Bin/glslc.exe")
+  message("${Vulkan_INCLUDE_DIRS}/../Bin/glslc.exe")
+  message("${PROJECT_SOURCE_DIR}/resources/shaders/")
+
+elseif(${OS} STREQUAL "Linux")
+
+  message(FATAL_ERROR, "SHADER COMPILER NOT YET SETUP FOR LINUX")
+
+endif()
 
 # SDL
 if(${OS} STREQUAL "Windows")

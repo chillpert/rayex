@@ -13,6 +13,7 @@ namespace RX
       WINDOW,
       API,
       SDL,
+      SHADER,
       UNDEFINED
     };
 

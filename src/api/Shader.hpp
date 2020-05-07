@@ -8,12 +8,24 @@ namespace RX
   class Shader
   {
   public:
-    Shader(const char* path);
+    Shader(const std::string& pathToFile, const std::string& fileName);
+    Shader(const std::string& fullPath);
 
-    void parse();
+    // This function calls glslc.exe to compile the given shader file to .spv.
+    void compile();
+
+    inline std::vector<char>& getSource() { return m_source; }
 
   private:
-    const char* m_path;
+    // This function opens the .spv file and retrieves the source code
+    void load();
+
+    std::string m_pathToFile;
+
+    std::string m_fileName;
+    std::string m_fileNameOut;
+
+    std::vector<char> m_source;
   };
 }
 

@@ -2,13 +2,14 @@
 
 namespace RX
 {
-  Shader::Shader(const std::string& pathToFile, const std::string& fileName) :
-    m_pathToFile(pathToFile), m_fileName(fileName)
+  Shader::Shader(const std::string& pathToFile, const std::string& fileName, VkDevice* device) :
+    m_pathToFile(pathToFile), m_fileName(fileName), m_logicalDevice(device)
   {
     compile();
   }
 
-  Shader::Shader(const std::string& fullPath)
+  Shader::Shader(const std::string& fullPath, VkDevice* device)
+    : m_logicalDevice(device)
   {
     std::string delimiter = "/";
 
@@ -56,6 +57,11 @@ namespace RX
     load();
   }
 
+  void Shader::destroy()
+  {
+    vkDestroyShaderModule(*m_logicalDevice, m_shaderModule, nullptr);
+  }
+
   void Shader::load()
   {
     std::ifstream file(m_pathToFile + m_fileNameOut, std::ios::ate | std::ios::binary);
@@ -74,5 +80,26 @@ namespace RX
     file.close();
 
     m_source = buffer;
+  
+    createShaderModule();
+  }
+
+  void Shader::createShaderModule()
+  {
+    VkShaderModuleCreateInfo createInfo{};
+    createInfo.sType = VK_STRUCTURE_TYPE_SHADER_MODULE_CREATE_INFO;
+    createInfo.codeSize = m_source.size();
+    createInfo.pCode = reinterpret_cast<const uint32_t*>(m_source.data());
+
+    if (m_logicalDevice != nullptr)
+    {
+      Assert::vulkan(vkCreateShaderModule(*m_logicalDevice, &createInfo, nullptr, &m_shaderModule), "Failed to create shader module");
+    }
+    else
+    {
+      Error::runtime("Failed to create shader module, because a logical device has not been created yet", Error::SHADER);
+    }
+
+
   }
 }

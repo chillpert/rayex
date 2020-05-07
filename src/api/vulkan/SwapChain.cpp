@@ -1,5 +1,5 @@
 #include "api/vulkan/SwapChain.hpp"
-#include "api/vulkan/DeviceManager.hpp"
+#include "api/vulkan/Device.hpp"
 
 namespace RX
 {
@@ -47,7 +47,7 @@ namespace RX
     createInfo.imageArrayLayers = 1;
     createInfo.imageUsage = VK_IMAGE_USAGE_COLOR_ATTACHMENT_BIT; // for post-processing might use VK_IMAGE_USAGE_TRANSFER_DST_BIT
 
-    QueueFamilyIndices indices = DeviceManager::findQueueFamilies(*physicalDevice);
+    QueueFamilyIndices indices = Device::findQueueFamilies(*physicalDevice);
     uint32_t queueFamilyIndices[] = { indices.graphicsFamily.value(), indices.presentFamily.value() };
 
     if (indices.graphicsFamily != indices.presentFamily)

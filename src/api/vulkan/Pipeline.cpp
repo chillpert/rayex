@@ -1,16 +1,15 @@
-#include "api/vulkan/GraphicsPipeline.hpp"
-#include "GraphicsPipeline.hpp"
+#include "api/vulkan/Pipeline.hpp"
 #include "api/Shader.hpp"
 
 namespace RX
 {
-  GraphicsPipeline::GraphicsPipeline(VkDevice* logicalDevice, SwapChain* swapChain) :
+  Pipeline::Pipeline(VkDevice* logicalDevice, SwapChain* swapChain) :
     m_logicalDevice(logicalDevice),
     m_swapChain(swapChain),
     m_vertexShader(nullptr),
     m_fragmentShader(nullptr) { }
 
-  void GraphicsPipeline::createRenderPass()
+  void Pipeline::createRenderPass()
   {
     VkAttachmentDescription colorAttachment{};
     colorAttachment.format = m_swapChain->getImageFormat();
@@ -41,7 +40,7 @@ namespace RX
     Assert::vulkan(vkCreateRenderPass(*m_logicalDevice, &renderPassInfo, nullptr, &m_renderPass), "Failed to create render pass");
   }
 
-  void GraphicsPipeline::createGraphicsPipeline()
+  void Pipeline::createGraphicsPipeline()
   {
     // trying both constructors
     m_vertexShader = std::make_shared<Shader>(RX_SHADER_PATH, "test.vert", m_logicalDevice);
@@ -153,17 +152,17 @@ namespace RX
     m_fragmentShader->destroy();
   }
 
-  void GraphicsPipeline::destroyRenderPass()
+  void Pipeline::destroyRenderPass()
   {
     vkDestroyRenderPass(*m_logicalDevice, m_renderPass, nullptr);
   }
 
-  void GraphicsPipeline::destroyGraphicsPipelineLayout()
+  void Pipeline::destroyGraphicsPipelineLayout()
   {
     vkDestroyPipelineLayout(*m_logicalDevice, m_pipelineLayout, nullptr);
   }
 
-  void GraphicsPipeline::destroyGraphicsPipeline()
+  void Pipeline::destroyGraphicsPipeline()
   {
     vkDestroyPipeline(*m_logicalDevice, m_graphicsPipeline, nullptr);
   }

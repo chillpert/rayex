@@ -1,5 +1,5 @@
-#ifndef DEVICE_MANAGER_HPP
-#define DEVICE_MANAGER_HPP
+#ifndef DEVICE_HPP
+#define DEVICE_HPP
 
 #include "pch/stdafx.hpp"
 
@@ -13,10 +13,10 @@ namespace RX
     bool isComplete() { return graphicsFamily.has_value() && presentFamily.has_value(); }
   };
 
-  class DeviceManager
+  class Device
   {
   public:
-    DeviceManager(VkInstance* instance);
+    Device(VkInstance* instance);
 
     void pickPhysicalDevice();
     void createLogicalDevice();
@@ -50,4 +50,4 @@ namespace RX
   };
 }
 
-#endif // PHYSICAL_DEVICE_MANAGER_HPP
+#endif // DEVICE_HPP

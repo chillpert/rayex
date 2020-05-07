@@ -1,18 +1,18 @@
-#include "api/vulkan/DeviceManager.hpp"
+#include "api/vulkan/Device.hpp"
 #include "api/vulkan/SwapChain.hpp"
 
 namespace RX
 {
   const std::vector<const char*> deviceExtensions = { VK_KHR_SWAPCHAIN_EXTENSION_NAME };
 
-  DeviceManager::DeviceManager(VkInstance* instance) :
+  Device::Device(VkInstance* instance) :
     m_physicalDevice(VK_NULL_HANDLE),
     m_logicalDevice(VK_NULL_HANDLE),
     m_graphicsQueue(VK_NULL_HANDLE),
     m_presentQueue(VK_NULL_HANDLE),
     m_instance(instance) { }
 
-  void DeviceManager::pickPhysicalDevice()
+  void Device::pickPhysicalDevice()
   {
     uint32_t deviceCount = 0;
     vkEnumeratePhysicalDevices(*m_instance, &deviceCount, nullptr);
@@ -46,7 +46,7 @@ namespace RX
 #endif
   }
 
-  void DeviceManager::createLogicalDevice()
+  void Device::createLogicalDevice()
   {
     if (m_physicalDevice == VK_NULL_HANDLE)
     {
@@ -87,7 +87,7 @@ namespace RX
     vkGetDeviceQueue(m_logicalDevice, indices.presentFamily.value(), 0, &m_presentQueue);
   }
 
-  void DeviceManager::destroyLogicalDevice()
+  void Device::destroyLogicalDevice()
   {
     if (m_logicalDevice == VK_NULL_HANDLE)
     {
@@ -97,21 +97,21 @@ namespace RX
     vkDestroyDevice(m_logicalDevice, nullptr);
   }
 
-  VkPhysicalDeviceProperties DeviceManager::getPhysicalDeviceProperties(VkPhysicalDevice device)
+  VkPhysicalDeviceProperties Device::getPhysicalDeviceProperties(VkPhysicalDevice device)
   {
     VkPhysicalDeviceProperties deviceProperties;
     vkGetPhysicalDeviceProperties(device, &deviceProperties);
     return deviceProperties;
   }
 
-  VkPhysicalDeviceFeatures DeviceManager::getPhysicalDeviceFeatures(VkPhysicalDevice device)
+  VkPhysicalDeviceFeatures Device::getPhysicalDeviceFeatures(VkPhysicalDevice device)
   {
     VkPhysicalDeviceFeatures deviceFeatures;
     vkGetPhysicalDeviceFeatures(device, &deviceFeatures);
     return deviceFeatures;
   }
 
-  size_t DeviceManager::evaluatePhysicalDevice(VkPhysicalDevice device)
+  size_t Device::evaluatePhysicalDevice(VkPhysicalDevice device)
   {
     QueueFamilyIndices indices = findQueueFamilies(device);
 
@@ -147,7 +147,7 @@ namespace RX
     return score;
   }
 
-  bool DeviceManager::checkDeviceExtensionSupport(VkPhysicalDevice device)
+  bool Device::checkDeviceExtensionSupport(VkPhysicalDevice device)
   {
     uint32_t extensionCount;
     vkEnumerateDeviceExtensionProperties(device, nullptr, &extensionCount, nullptr);
@@ -165,7 +165,7 @@ namespace RX
     return requiredExtensions.empty();
   }
 
-  QueueFamilyIndices DeviceManager::findQueueFamilies(VkPhysicalDevice device)
+  QueueFamilyIndices Device::findQueueFamilies(VkPhysicalDevice device)
   {
     QueueFamilyIndices indices;
 
@@ -196,7 +196,7 @@ namespace RX
     return indices;
   }
 
-  void DeviceManager::printPhysicalDeviceInfo()
+  void Device::printPhysicalDeviceInfo()
   {
     if (m_physicalDevice != VK_NULL_HANDLE)
     {

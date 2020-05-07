@@ -58,7 +58,7 @@ namespace RX
 
   void VulkanApi::createDevices()
   {
-    m_deviceManager = DeviceManager(m_instance.getInstance());
+    m_deviceManager = Device(m_instance.getInstance());
 
     m_deviceManager.pickPhysicalDevice();
     m_deviceManager.createLogicalDevice();
@@ -83,7 +83,7 @@ namespace RX
 
   void VulkanApi::createGraphicsPipeline()
   {
-    m_graphicsPipeline = GraphicsPipeline(m_deviceManager.getLogicalDevice(), &m_swapChain);
+    m_graphicsPipeline = Pipeline(m_deviceManager.getLogicalDevice(), &m_swapChain);
 
     m_graphicsPipeline.createRenderPass();
     m_graphicsPipeline.createGraphicsPipeline();

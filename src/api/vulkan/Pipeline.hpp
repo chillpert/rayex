@@ -1,15 +1,15 @@
-#ifndef GRAPHICS_PIPELINE_HPP
-#define GRAPHICS_PIPELINE_HPP
+#ifndef GRAPHICS_HPP
+#define GRAPHICS_HPP
 
 #include "api/Shader.hpp"
 #include "api/vulkan/SwapChain.hpp"
 
 namespace RX
 {
-  class GraphicsPipeline
+  class Pipeline
   {
   public:
-    GraphicsPipeline(VkDevice* logicalDevice, SwapChain* swapChain);
+    Pipeline(VkDevice* logicalDevice, SwapChain* swapChain);
 
     void createRenderPass();
     void createGraphicsPipeline();
@@ -27,7 +27,7 @@ namespace RX
 
     VkDevice* m_logicalDevice;
 
-    // pointer to VulkanApi class members
+    // A pointer to VulkanApi class members
     SwapChain* m_swapChain;
 
     std::shared_ptr<Shader> m_vertexShader;
@@ -35,4 +35,4 @@ namespace RX
   };
 }
 
-#endif // GRAPHICS_PIPELINE_HPP
+#endif // GRAPHICS_HPP

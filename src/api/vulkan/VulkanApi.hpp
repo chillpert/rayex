@@ -4,9 +4,9 @@
 #include "api/Api.hpp"
 #include "api/vulkan/Instance.hpp"
 #include "api/vulkan/Surface.hpp"
-#include "api/vulkan/DeviceManager.hpp"
+#include "api/vulkan/Device.hpp"
 #include "api/vulkan/SwapChain.hpp"
-#include "api/vulkan/GraphicsPipeline.hpp"
+#include "api/vulkan/Pipeline.hpp"
 
 namespace RX
 {
@@ -31,9 +31,9 @@ namespace RX
 
     Instance m_instance;
     Surface m_surface;
-    DeviceManager m_deviceManager;
+    Device m_deviceManager;
     SwapChain m_swapChain;
-    GraphicsPipeline m_graphicsPipeline;
+    Pipeline m_graphicsPipeline;
   };
 }
 

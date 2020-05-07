@@ -31,7 +31,9 @@ namespace RX
 
     inline VkFormat& getImageFormat() { return m_swapChainImageFormat; }
     inline VkExtent2D& getExtent() { return m_swapChainExtent; }
+
     inline std::vector<VkImageView>& getImageViews() { return m_swapChainImageViews; }
+    inline std::vector<VkFramebuffer>& getFramebuffers() { return m_swapChainFramebuffers; }
 
   private: 
     // Returns the surface format and color space.

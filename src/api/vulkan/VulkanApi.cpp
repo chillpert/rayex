@@ -9,7 +9,7 @@ namespace RX
     m_device { VK_NULL_HANDLE },
     m_swapChain { m_surface.getSurface(), nullptr },
     m_graphicsPipeline { VK_NULL_HANDLE, nullptr },
-    m_commandBuffer { VK_NULL_HANDLE, VK_NULL_HANDLE } { }
+    m_commandBuffer { VK_NULL_HANDLE, VK_NULL_HANDLE, nullptr } { }
 
   void VulkanApi::initialize(std::shared_ptr<Window> window)
   {
@@ -100,7 +100,7 @@ namespace RX
 
   void VulkanApi::createCommandPool()
   {
-    m_commandBuffer = CommandBuffer(m_device.getPhysicalDevice(), m_device.getLogicalDevice());
+    m_commandBuffer = CommandBuffer(m_device.getPhysicalDevice(), m_device.getLogicalDevice(), &m_swapChain);
 
     m_commandBuffer.createCommandPool();
   }

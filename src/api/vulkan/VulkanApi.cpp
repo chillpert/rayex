@@ -6,9 +6,10 @@ namespace RX
   VulkanApi::VulkanApi() :
     m_instance { },
     m_surface { },
-    m_deviceManager { VK_NULL_HANDLE },
+    m_device { VK_NULL_HANDLE },
     m_swapChain { m_surface.getSurface(), nullptr },
-    m_graphicsPipeline { VK_NULL_HANDLE, nullptr } { }
+    m_graphicsPipeline { VK_NULL_HANDLE, nullptr },
+    m_commandBuffer { VK_NULL_HANDLE, VK_NULL_HANDLE } { }
 
   void VulkanApi::initialize(std::shared_ptr<Window> window)
   {
@@ -21,6 +22,7 @@ namespace RX
     createImageViews();
     createGraphicsPipeline();
     createFramebuffers();
+    createCommandPool();
   }
 
   void VulkanApi::update()
@@ -35,6 +37,8 @@ namespace RX
 
   void VulkanApi::clean()
   {
+    m_commandBuffer.destroyCommandPool();
+
     m_swapChain.destroyFramebuffers();
 
     m_graphicsPipeline.destroyGraphicsPipeline();
@@ -44,7 +48,7 @@ namespace RX
     m_swapChain.destroyImageView();
     m_swapChain.destroySwapChain();
 
-    m_deviceManager.destroyLogicalDevice();
+    m_device.destroyLogicalDevice();
 
     m_surface.destroySurface();
 
@@ -58,10 +62,10 @@ namespace RX
 
   void VulkanApi::createDevices()
   {
-    m_deviceManager = Device(m_instance.getInstance());
+    m_device = Device(m_instance.getInstance());
 
-    m_deviceManager.pickPhysicalDevice();
-    m_deviceManager.createLogicalDevice();
+    m_device.pickPhysicalDevice();
+    m_device.createLogicalDevice();
   }
 
   void VulkanApi::createSurface()
@@ -73,7 +77,7 @@ namespace RX
   {
     m_swapChain = SwapChain(m_surface.getSurface(), &m_window->getProperties());
 
-    m_swapChain.createSwapChain(m_deviceManager.getPhysicalDevice(), m_deviceManager.getLogicalDevice());
+    m_swapChain.createSwapChain(m_device.getPhysicalDevice(), m_device.getLogicalDevice());
   }
 
   void VulkanApi::createImageViews()
@@ -83,7 +87,7 @@ namespace RX
 
   void VulkanApi::createGraphicsPipeline()
   {
-    m_graphicsPipeline = Pipeline(m_deviceManager.getLogicalDevice(), &m_swapChain);
+    m_graphicsPipeline = Pipeline(m_device.getLogicalDevice(), &m_swapChain);
 
     m_graphicsPipeline.createRenderPass();
     m_graphicsPipeline.createGraphicsPipeline();
@@ -92,5 +96,12 @@ namespace RX
   void VulkanApi::createFramebuffers()
   {
     m_swapChain.createFramebuffers(m_graphicsPipeline.getRenderPass());
+  }
+
+  void VulkanApi::createCommandPool()
+  {
+    m_commandBuffer = CommandBuffer(m_device.getPhysicalDevice(), m_device.getLogicalDevice());
+
+    m_commandBuffer.createCommandPool();
   }
 }

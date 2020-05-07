@@ -7,6 +7,7 @@
 #include "api/vulkan/Device.hpp"
 #include "api/vulkan/SwapChain.hpp"
 #include "api/vulkan/Pipeline.hpp"
+#include "api/vulkan/CommandBuffer.hpp"
 
 namespace RX
 {
@@ -28,12 +29,14 @@ namespace RX
     void createImageViews();
     void createGraphicsPipeline();
     void createFramebuffers();
+    void createCommandPool();
 
     Instance m_instance;
     Surface m_surface;
-    Device m_deviceManager;
+    Device m_device;
     SwapChain m_swapChain;
     Pipeline m_graphicsPipeline;
+    CommandBuffer m_commandBuffer;
   };
 }
 

@@ -31,6 +31,7 @@ namespace RX
     void createFramebuffers();
     void createCommandPool();
     void createCommandBuffers();
+    void createSemaphores();
 
     Instance m_instance;
     Surface m_surface;

@@ -27,6 +27,9 @@ namespace RX
     inline VkDevice* getLogicalDevice() { return &m_logicalDevice; }
 
     static QueueFamilyIndices findQueueFamilies(VkPhysicalDevice device);
+    
+    inline VkQueue* getGraphicsQueue() { return &m_graphicsQueue; }
+    inline VkQueue* getPresentQueue() { return &m_presentQueue; }
   
   private:
     // Returns a score for any given physical device, based on supported features.

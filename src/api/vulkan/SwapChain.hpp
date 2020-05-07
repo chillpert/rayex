@@ -29,6 +29,7 @@ namespace RX
     static SwapChainSupportDetails querySwapChainSupport(VkPhysicalDevice device);
     static inline VkSurfaceKHR* getSurface() { return s_surface; }
 
+    inline VkSwapchainKHR* getSwapChain() { return &m_swapChain; }
     inline VkFormat& getImageFormat() { return m_swapChainImageFormat; }
     inline VkExtent2D& getExtent() { return m_swapChainExtent; }
 

@@ -16,6 +16,8 @@ namespace RX
 
     void destroyCommandPool();
 
+    inline std::vector<VkCommandBuffer>& getCommandBuffers() { return m_commandBuffers; }
+
   private:
     void startCommandBufferRecording();
     

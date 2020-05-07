@@ -30,12 +30,13 @@ namespace RX
     void createGraphicsPipeline();
     void createFramebuffers();
     void createCommandPool();
+    void createCommandBuffers();
 
     Instance m_instance;
     Surface m_surface;
     Device m_device;
     SwapChain m_swapChain;
-    Pipeline m_graphicsPipeline;
+    Pipeline m_pipeline;
     CommandBuffer m_commandBuffer;
   };
 }

@@ -2,13 +2,14 @@
 #define COMMAND_BUFFER_HPP
 
 #include "api/vulkan/SwapChain.hpp"
+#include "api/vulkan/Pipeline.hpp"
 
 namespace RX
 {
   class CommandBuffer
   {
   public:
-    CommandBuffer(VkPhysicalDevice* physicalDevice, VkDevice* logicalDevice, SwapChain* swapChain);
+    CommandBuffer(VkPhysicalDevice* physicalDevice, VkDevice* logicalDevice, SwapChain* swapChain, Pipeline* pipeline);
 
     void createCommandPool();
     void createCommandBuffers();
@@ -16,14 +17,17 @@ namespace RX
     void destroyCommandPool();
 
   private:
+    void startCommandBufferRecording();
+    
     VkCommandPool m_commandPool;
     std::vector<VkCommandBuffer> m_commandBuffers;
 
     VkPhysicalDevice* m_physicalDevice;
     VkDevice* m_logicalDevice;
 
-    // Pointer to VulkanApi class member
+    // Pointers to VulkanApi class member
     SwapChain* m_swapChain;
+    Pipeline* m_pipeline;
   };
 }
 

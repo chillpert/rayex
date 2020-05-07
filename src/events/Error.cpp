@@ -6,7 +6,7 @@ namespace RX
 {
   std::string Error::s_label = "RX";
   
-  const char* EnumStrings[] = { "Window" , "Api", "Sdl", "Shader", "Pipeline", "General" };
+  const char* EnumStrings[] = { "Window" , "Api", "Sdl", "Shader", "Pipeline", "Swapchain", "General" };
 
   std::string Error::typeToString(Type type)
   {

@@ -8,8 +8,8 @@ namespace RX
     m_surface { },
     m_device { VK_NULL_HANDLE },
     m_swapChain { m_surface.getSurface(), nullptr },
-    m_graphicsPipeline { VK_NULL_HANDLE, nullptr },
-    m_commandBuffer { VK_NULL_HANDLE, VK_NULL_HANDLE, nullptr } { }
+    m_pipeline{ VK_NULL_HANDLE, nullptr },
+    m_commandBuffer { VK_NULL_HANDLE, VK_NULL_HANDLE, nullptr, nullptr } { }
 
   void VulkanApi::initialize(std::shared_ptr<Window> window)
   {
@@ -23,6 +23,7 @@ namespace RX
     createGraphicsPipeline();
     createFramebuffers();
     createCommandPool();
+    createCommandBuffers();
   }
 
   void VulkanApi::update()
@@ -41,9 +42,9 @@ namespace RX
 
     m_swapChain.destroyFramebuffers();
 
-    m_graphicsPipeline.destroyGraphicsPipeline();
-    m_graphicsPipeline.destroyRenderPass();
-    m_graphicsPipeline.destroyGraphicsPipelineLayout();
+    m_pipeline.destroyGraphicsPipeline();
+    m_pipeline.destroyRenderPass();
+    m_pipeline.destroyGraphicsPipelineLayout();
 
     m_swapChain.destroyImageView();
     m_swapChain.destroySwapChain();
@@ -87,21 +88,26 @@ namespace RX
 
   void VulkanApi::createGraphicsPipeline()
   {
-    m_graphicsPipeline = Pipeline(m_device.getLogicalDevice(), &m_swapChain);
+    m_pipeline = Pipeline(m_device.getLogicalDevice(), &m_swapChain);
 
-    m_graphicsPipeline.createRenderPass();
-    m_graphicsPipeline.createGraphicsPipeline();
+    m_pipeline.createRenderPass();
+    m_pipeline.createGraphicsPipeline();
   }
 
   void VulkanApi::createFramebuffers()
   {
-    m_swapChain.createFramebuffers(m_graphicsPipeline.getRenderPass());
+    m_swapChain.createFramebuffers(m_pipeline.getRenderPass());
   }
 
   void VulkanApi::createCommandPool()
   {
-    m_commandBuffer = CommandBuffer(m_device.getPhysicalDevice(), m_device.getLogicalDevice(), &m_swapChain);
+    m_commandBuffer = CommandBuffer(m_device.getPhysicalDevice(), m_device.getLogicalDevice(), &m_swapChain, &m_pipeline);
 
     m_commandBuffer.createCommandPool();
+  }
+
+  void VulkanApi::createCommandBuffers()
+  {
+    m_commandBuffer.createCommandBuffers();
   }
 }

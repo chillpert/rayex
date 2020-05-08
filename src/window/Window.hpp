@@ -1,6 +1,7 @@
 #ifndef WINDOW_HPP
 #define WINDOW_HPP
 
+#include "pch/stdafx.hpp"
 #include "window/WindowProperties.hpp"
 #include "window/Time.hpp"
 

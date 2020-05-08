@@ -7,12 +7,12 @@ namespace RX
 {
   namespace KEY
   {
-    bool w = false;
-    bool a = false;
-    bool s = false;
-    bool d = false;
-    bool c = false;
-    bool space = false;
+    extern bool w;
+    extern bool a;
+    extern bool s;
+    extern bool d;
+    extern bool c;
+    extern bool space;
   }
 
   class Camera

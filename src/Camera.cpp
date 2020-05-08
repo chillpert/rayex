@@ -2,6 +2,16 @@
 
 namespace RX
 {
+  namespace KEY
+  {
+    bool w = false;
+    bool a = false;
+    bool s = false;
+    bool d = false;
+    bool c = false;
+    bool space = false;
+  }
+
   Camera::Camera(float width, float height) :
     m_worldUp{ 0.0f, 1.0f, 0.0f },
     m_width(width),

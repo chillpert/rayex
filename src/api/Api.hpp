@@ -3,9 +3,6 @@
 
 #include "window/Window.hpp"
 
-#include <memory>
-#include <iostream>
-
 namespace RX
 {
   class Api
@@ -18,12 +15,7 @@ namespace RX
     virtual void render() = 0;
     virtual void clean() = 0;
   
-    enum Type { VULKAN };
-     
-    inline static Type getType() { return s_type; }
-
   protected:
-    static Type s_type;
     std::shared_ptr<Window> m_window;
   };
 }

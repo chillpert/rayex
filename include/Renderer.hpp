@@ -8,7 +8,7 @@ namespace RX
   class Renderer
   {
   public:
-    RX_API Renderer(Api::Type api, WindowProperties windowProperties = WindowProperties());
+    RX_API Renderer(WindowProperties windowProperties = WindowProperties());
     RX_API ~Renderer();
 
     RX_API void initialize();

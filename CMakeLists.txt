@@ -5,6 +5,15 @@ set (CMAKE_MODULE_PATH "${CMAKE_SOURCE_DIR}/external/Cotire")
 include(cotire)
 
 option(BUILD_EXAMPLE "Build example" ON)
+option(USE_VULKAN "Use Vulkan" ON)
+
+if(USE_VULKAN)
+  add_compile_definitions(RX_VULKAN)
+endif()
+
+if(!USE_VULKAN)
+  message(FATAL_ERROR "Please enable USE_VULKAN")
+endif()
 
 # LOGGING
 if(CMAKE_BUILD_TYPE STREQUAL "Debug")

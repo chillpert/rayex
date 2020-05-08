@@ -3,18 +3,14 @@
 
 namespace RX
 {
-  Renderer::Renderer(Api::Type api, WindowProperties windowProperties)
+  Renderer::Renderer(WindowProperties windowProperties)
     : m_running(true)
   {
     m_window = std::make_shared<Window>(windowProperties);
 
-    switch (api)
-    {
-    case Api::VULKAN:
-        api = Api::VULKAN;
-        m_api = std::make_shared<VulkanApi>();
-        break;
-    }
+#ifdef RX_VULKAN
+    m_api = std::make_shared<VulkanApi>();
+#endif
 
     initialize();
   }

@@ -1,13 +1,12 @@
-#include "pch/stdafx.hpp"
 #include "window/Window.hpp"
-#include "events/Error.hpp"
-
-#include <iostream>
+#include "Camera.hpp"
 
 namespace RX
 {
-  Window::Window(WindowProperties windowProperties)
-    : m_window(nullptr), m_properties(windowProperties), m_time(Time()) { }
+  Window::Window(WindowProperties windowProperties) :
+    m_window{ nullptr },
+    m_properties{ windowProperties },
+    m_time{ } { }
 
   void Window::initialize()
   {
@@ -52,7 +51,6 @@ namespace RX
           return false;
 
         case SDL_WINDOWEVENT:
-
           switch (event.window.event)
           {
             case SDL_WINDOWEVENT_CLOSE:
@@ -65,15 +63,64 @@ namespace RX
               break;
             }
           }
-
           break;
 
         case SDL_KEYDOWN:
+          switch (event.key.keysym.sym)
+          {
+            case SDLK_w:
+              std::cout << "w pressed" << std::endl;
+              break;
 
+            case SDLK_a:
+
+              break;
+
+            case SDLK_s:
+
+              break;
+
+            case SDLK_d:
+
+              break;
+
+            case SDLK_c:
+
+              break;
+
+            case SDLK_SPACE:
+
+              break;
+          }
           break;
 
         case SDL_KEYUP:
+          switch (event.key.keysym.sym)
+          {
+          case SDLK_w:
 
+            break;
+
+          case SDLK_a:
+
+            break;
+
+          case SDLK_s:
+
+            break;
+
+          case SDLK_d:
+
+            break;
+
+          case SDLK_c:
+
+            break;
+
+          case SDLK_SPACE:
+
+            break;
+          }
           break;
 
         case SDL_MOUSEMOTION:

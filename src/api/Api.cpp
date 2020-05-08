@@ -13,19 +13,17 @@ namespace RX
 
   size_t currentFrame = 0;
 
-  Api::Api() :
-    m_instance(),
-    m_surface(),
-    m_device(VK_NULL_HANDLE),
-    m_swapChain(m_surface.getSurface(), nullptr),
-    m_pipeline(VK_NULL_HANDLE, nullptr),
-    m_commandBuffer(VK_NULL_HANDLE, VK_NULL_HANDLE, nullptr, nullptr),
-    m_window(nullptr) { }
+  Api::Api(Window& window) :
+    m_instance{ },
+    m_surface{ },
+    m_device{ VK_NULL_HANDLE },
+    m_swapChain{ m_surface.getSurface(), nullptr },
+    m_pipeline{ VK_NULL_HANDLE, nullptr },
+    m_commandBuffer{ VK_NULL_HANDLE, VK_NULL_HANDLE, nullptr, nullptr },
+    m_window(&window) { }
 
-  void Api::initialize(Window* window)
+  void Api::initialize()
   {
-    m_window = window;
-
     createInstance();
     createSurface();
     createDevices();
@@ -210,7 +208,7 @@ namespace RX
     m_swapChain.destroyImageView();
     m_swapChain.destroySwapChain();
   }
-
+  
   void Api::recreateSwapChain()
   {
     vkDeviceWaitIdle(*m_device.getLogicalDevice());

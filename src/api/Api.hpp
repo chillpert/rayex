@@ -14,9 +14,9 @@ namespace RX
   class Api
   {
   public:
-    Api();
+    Api(Window& window);
 
-    void initialize(Window* window);
+    void initialize();
     void update();
     void render();
     void clean();

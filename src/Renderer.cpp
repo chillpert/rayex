@@ -4,8 +4,8 @@
 namespace RX
 {
   Renderer::Renderer(WindowProperties windowProperties) : 
-    m_window(Window(windowProperties)), 
-    m_api{ }, 
+    m_window(Window(windowProperties)),
+    m_api(m_window),
     m_running(true)
   {
     initialize();
@@ -19,7 +19,7 @@ namespace RX
   void Renderer::initialize()
   {
     m_window.initialize();
-    m_api.initialize(&m_window);
+    m_api.initialize();
   }
 
   void Renderer::update()

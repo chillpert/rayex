@@ -4,7 +4,11 @@
 namespace RX
 {
   CommandBuffer::CommandBuffer(VkPhysicalDevice* physicalDevice, VkDevice* logicalDevice, SwapChain* swapChain, Pipeline* pipeline) :
-    m_commandPool(VK_NULL_HANDLE), m_physicalDevice(physicalDevice), m_logicalDevice(logicalDevice), m_swapChain(swapChain), m_pipeline(pipeline) { }
+    m_commandPool(VK_NULL_HANDLE), 
+    m_physicalDevice(physicalDevice), 
+    m_logicalDevice(logicalDevice), 
+    m_swapChain(swapChain), 
+    m_pipeline(pipeline) { }
 
   void CommandBuffer::createCommandPool()
   {

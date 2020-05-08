@@ -46,7 +46,17 @@ namespace RX
     vkWaitForFences(*m_device.getLogicalDevice(), 1, &inFlightFences[currentFrame], VK_TRUE, UINT64_MAX);
 
     uint32_t imageIndex;
-    vkAcquireNextImageKHR(*m_device.getLogicalDevice(), *m_swapChain.getSwapChain(), UINT64_MAX, imageAvailableSemaphores[currentFrame], VK_NULL_HANDLE, &imageIndex);
+    VkResult result = vkAcquireNextImageKHR(*m_device.getLogicalDevice(), *m_swapChain.getSwapChain(), UINT64_MAX, imageAvailableSemaphores[currentFrame], VK_NULL_HANDLE, &imageIndex);
+
+    if (result == VK_ERROR_OUT_OF_DATE_KHR)
+    {
+      recreateSwapChain();
+      return;
+    }
+    else if (result != VK_SUCCESS && result != VK_SUBOPTIMAL_KHR)
+    {
+      Error::runtime("Failed to acquire swap chain image", Error::SWAPCHAIN);
+    }
 
     if (imagesInFlight[imageIndex] != VK_NULL_HANDLE)
     {
@@ -96,6 +106,8 @@ namespace RX
   {
     vkDeviceWaitIdle(*m_device.getLogicalDevice());
 
+    cleanSwapChain();
+
     for (size_t i = 0; i < MAX_FRAMES_IN_FLIGHT; ++i)
     {
       vkDestroySemaphore(*m_device.getLogicalDevice(), renderFinishedSemaphores[i], nullptr);
@@ -104,15 +116,6 @@ namespace RX
     }
 
     m_commandBuffer.destroyCommandPool();
-
-    m_swapChain.destroyFramebuffers();
-
-    m_pipeline.destroyGraphicsPipeline();
-    m_pipeline.destroyRenderPass();
-    m_pipeline.destroyGraphicsPipelineLayout();
-
-    m_swapChain.destroyImageView();
-    m_swapChain.destroySwapChain();
 
     m_device.destroyLogicalDevice();
 
@@ -201,10 +204,13 @@ namespace RX
   void Api::cleanSwapChain()
   {
     m_swapChain.destroyFramebuffers();
+
     m_commandBuffer.freeCommandBuffers();
+
     m_pipeline.destroyGraphicsPipeline();
     m_pipeline.destroyGraphicsPipelineLayout();
     m_pipeline.destroyRenderPass();
+
     m_swapChain.destroyImageView();
     m_swapChain.destroySwapChain();
   }

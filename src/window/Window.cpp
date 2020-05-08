@@ -54,14 +54,17 @@ namespace RX
           switch (event.window.event)
           {
             case SDL_WINDOWEVENT_CLOSE:
-            {
               return false;
-            }
+
             case SDL_WINDOWEVENT_RESIZED:
-            {
               resize(static_cast<int>(event.window.data1), static_cast<int>(event.window.data2));
+              resizeFramebuffer(static_cast<int>(event.window.data1), static_cast<int>(event.window.data2));
               break;
-            }
+
+            case SDL_WINDOWEVENT_MINIMIZED:
+              resize(0, 0);
+              resizeFramebuffer(0, 0);
+              break;
           }
           break;
 
@@ -97,29 +100,29 @@ namespace RX
         case SDL_KEYUP:
           switch (event.key.keysym.sym)
           {
-          case SDLK_w:
+            case SDLK_w:
 
-            break;
+              break;
 
-          case SDLK_a:
+            case SDLK_a:
 
-            break;
+              break;
 
-          case SDLK_s:
+            case SDLK_s:
 
-            break;
+              break;
 
-          case SDLK_d:
+            case SDLK_d:
 
-            break;
+              break;
 
-          case SDLK_c:
+            case SDLK_c:
 
-            break;
+              break;
 
-          case SDLK_SPACE:
+            case SDLK_SPACE:
 
-            break;
+              break;
           }
           break;
 
@@ -152,6 +155,11 @@ namespace RX
   {
     m_properties.resize(width, height);
     SDL_SetWindowSize(m_window, m_properties.getWidth(), m_properties.getHeight());
+  }
+
+  void Window::resizeFramebuffer(int width, int height)
+  {
+    m_properties.resizeFramebuffer(width, height);
   }
 
   void Window::setTitle(const char* title)

@@ -1,10 +1,10 @@
-#include "api/vulkan/Instance.hpp"
+#include "api/Instance.hpp"
 
 namespace RX
 {
   const std::vector<const char*> validationLayers = { "VK_LAYER_KHRONOS_validation" };
 
-  void Instance::createInstance(std::shared_ptr<Window> window)
+  void Instance::createInstance(Window* window)
   {
 #ifdef RX_DEBUG
     // only use validation layers for debug build
@@ -127,7 +127,7 @@ namespace RX
     return true;
   }
 
-  std::vector<const char*> Instance::getRequiredExtensions(std::shared_ptr<Window> window)
+  std::vector<const char*> Instance::getRequiredExtensions(Window* window)
   {
     uint32_t sdlExtensionsCount = 0;
 

@@ -5,15 +5,6 @@ set (CMAKE_MODULE_PATH "${CMAKE_SOURCE_DIR}/external/Cotire")
 include(cotire)
 
 option(BUILD_EXAMPLE "Build example" ON)
-option(USE_VULKAN "Use Vulkan" ON)
-
-if(USE_VULKAN)
-  add_compile_definitions(RX_VULKAN)
-endif()
-
-if(!USE_VULKAN)
-  message(FATAL_ERROR "Please enable USE_VULKAN")
-endif()
 
 # LOGGING
 if(CMAKE_BUILD_TYPE STREQUAL "Debug")
@@ -91,7 +82,6 @@ include_directories(${PROJECT_SOURCE_DIR}/src)
 # SOURCE PROJECT FILES
 file(GLOB FILES_LIB
   "${PROJECT_SOURCE_DIR}/src/api/*.cpp"
-  "${PROJECT_SOURCE_DIR}/src/api/vulkan/*.cpp"
   "${PROJECT_SOURCE_DIR}/src/window/*.cpp"
   "${PROJECT_SOURCE_DIR}/src/pch/*.cpp"
   "${PROJECT_SOURCE_DIR}/src/events/*.cpp"
@@ -141,6 +131,10 @@ if (BUILD_EXAMPLE)
 
   target_link_libraries(example
     renderer
+  )
+
+  set_target_properties(example PROPERTIES
+    CXX_STANDARD 17
   )
 
   set_target_properties(example

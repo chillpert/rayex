@@ -1,5 +1,5 @@
-#include "api/Vulkan/CommandBuffer.hpp"
-#include "api/Vulkan/Device.hpp"
+#include "api/CommandBuffer.hpp"
+#include "api/Device.hpp"
 
 namespace RX
 {

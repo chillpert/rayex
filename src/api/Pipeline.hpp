@@ -2,7 +2,7 @@
 #define GRAPHICS_HPP
 
 #include "api/Shader.hpp"
-#include "api/vulkan/SwapChain.hpp"
+#include "api/SwapChain.hpp"
 
 namespace RX
 {

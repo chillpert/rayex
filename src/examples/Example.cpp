@@ -9,17 +9,10 @@ int main(int argc, char* argv[])
 
   Renderer renderer(windowProperties);
 
-  try
+  while (renderer.isRunning())
   {
-    while (renderer.isRunning())
-    {
-      renderer.update();
-      renderer.render();
-    }
-  }
-  catch (std::exception e)
-  {
-    std::cerr << e.what() << std::endl;
+    renderer.update();
+    renderer.render();
   }
 
   return 0;

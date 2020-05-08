@@ -4,7 +4,7 @@
 namespace RX
 {
   Window::Window(WindowProperties windowProperties) :
-    m_window{ nullptr },
+    m_window(nullptr),
     m_properties{ windowProperties },
     m_time{ } { }
 

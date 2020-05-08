@@ -1,6 +1,12 @@
-#ifndef API_HPP
-#define API_HPP
+#ifndef VULKAN_API_HPP
+#define VULKAN_API_HPP
 
+#include "api/Instance.hpp"
+#include "api/Surface.hpp"
+#include "api/Device.hpp"
+#include "api/SwapChain.hpp"
+#include "api/Pipeline.hpp"
+#include "api/CommandBuffer.hpp"
 #include "window/Window.hpp"
 
 namespace RX
@@ -8,16 +14,36 @@ namespace RX
   class Api
   {
   public:
-    virtual ~Api();
+    Api();
 
-    virtual void initialize(std::shared_ptr<Window> window) = 0;
-    virtual void update() = 0;
-    virtual void render() = 0;
-    virtual void clean() = 0;
-  
-  protected:
-    std::shared_ptr<Window> m_window;
+    void initialize(Window* window);
+    void update();
+    void render();
+    void clean();
+
+  private:
+    void createInstance();
+    void createDevices();
+    void createSurface();
+    void createSwapChain();
+    void createImageViews();
+    void createGraphicsPipeline();
+    void createFramebuffers();
+    void createCommandPool();
+    void createCommandBuffers();
+    void createSemaphores();
+
+    void recreateSwapChain();
+
+    Instance m_instance;
+    Surface m_surface;
+    Device m_device;
+    SwapChain m_swapChain;
+    Pipeline m_pipeline;
+    CommandBuffer m_commandBuffer;
+
+    Window* m_window;
   };
 }
 
-#endif // API_HPP
+#endif // VULKAN_API_HPP

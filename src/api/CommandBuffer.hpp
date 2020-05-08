@@ -1,8 +1,8 @@
 #ifndef COMMAND_BUFFER_HPP
 #define COMMAND_BUFFER_HPP
 
-#include "api/vulkan/SwapChain.hpp"
-#include "api/vulkan/Pipeline.hpp"
+#include "api/SwapChain.hpp"
+#include "api/Pipeline.hpp"
 
 namespace RX
 {

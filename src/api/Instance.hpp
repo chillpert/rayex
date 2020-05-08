@@ -9,7 +9,7 @@ namespace RX
   class Instance
   {
   public:
-    void createInstance(std::shared_ptr<Window> window);
+    void createInstance(Window* window);
     void destroyInstance();
 
     inline VkInstance* getInstance() { return &m_instance; }
@@ -17,7 +17,7 @@ namespace RX
   private:
     bool checkExtensionSupport(const char** sdlExtensions, uint32_t sdlExtensionsCount);
     bool checkValidationLayerSupport();
-    std::vector<const char*> getRequiredExtensions(std::shared_ptr<Window> window);
+    std::vector<const char*> getRequiredExtensions(Window* window);
 
     VkInstance m_instance;
   };

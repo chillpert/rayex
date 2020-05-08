@@ -1,5 +1,5 @@
-#include "api/vulkan/Device.hpp"
-#include "api/vulkan/SwapChain.hpp"
+#include "api/Device.hpp"
+#include "api/SwapChain.hpp"
 
 namespace RX
 {

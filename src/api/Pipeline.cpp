@@ -1,4 +1,4 @@
-#include "api/vulkan/Pipeline.hpp"
+#include "api/Pipeline.hpp"
 #include "api/Shader.hpp"
 
 namespace RX

@@ -142,7 +142,7 @@ namespace RX
       vkDestroyFramebuffer(*m_logicalDevice, framebuffer, nullptr);
     }
   }
-  
+
   SwapChainSupportDetails SwapChain::querySwapChainSupport(VkPhysicalDevice device)
   {
     if (s_surface == VK_NULL_HANDLE)

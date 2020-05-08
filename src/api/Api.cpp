@@ -14,12 +14,13 @@ namespace RX
   size_t currentFrame = 0;
 
   Api::Api() :
-    m_instance { },
-    m_surface { },
-    m_device { VK_NULL_HANDLE },
-    m_swapChain { m_surface.getSurface(), nullptr },
-    m_pipeline{ VK_NULL_HANDLE, nullptr },
-    m_commandBuffer { VK_NULL_HANDLE, VK_NULL_HANDLE, nullptr, nullptr } { }
+    m_instance(),
+    m_surface(),
+    m_device(VK_NULL_HANDLE),
+    m_swapChain(m_surface.getSurface(), nullptr),
+    m_pipeline(VK_NULL_HANDLE, nullptr),
+    m_commandBuffer(VK_NULL_HANDLE, VK_NULL_HANDLE, nullptr, nullptr),
+    m_window(nullptr) { }
 
   void Api::initialize(Window* window)
   {
@@ -197,5 +198,29 @@ namespace RX
       Assert::vulkan(vkCreateSemaphore(*m_device.getLogicalDevice(), &semaphoreInfo, nullptr, &renderFinishedSemaphores[i]), "Failed to create finished rendering semaphore");
       Assert::vulkan(vkCreateFence(*m_device.getLogicalDevice(), &fenceInfo, nullptr, &inFlightFences[i]), "Failed to create fence");
     }
+  }
+
+  void Api::cleanSwapChain()
+  {
+    m_swapChain.destroyFramebuffers();
+    m_commandBuffer.freeCommandBuffers();
+    m_pipeline.destroyGraphicsPipeline();
+    m_pipeline.destroyGraphicsPipelineLayout();
+    m_pipeline.destroyRenderPass();
+    m_swapChain.destroyImageView();
+    m_swapChain.destroySwapChain();
+  }
+
+  void Api::recreateSwapChain()
+  {
+    vkDeviceWaitIdle(*m_device.getLogicalDevice());
+
+    cleanSwapChain();
+
+    createSwapChain();
+    createImageViews();
+    createGraphicsPipeline();
+    createFramebuffers();
+    createCommandBuffers();
   }
 }

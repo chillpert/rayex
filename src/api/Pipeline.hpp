@@ -20,6 +20,7 @@ namespace RX
 
     inline VkPipeline* getPipeline() { return &m_graphicsPipeline; }
     inline VkRenderPass* getRenderPass() { return &m_renderPass; }
+    inline VkPipelineLayout* getPipelineLayout() { return &m_pipelineLayout; }
 
   private:
     VkPipeline m_graphicsPipeline;

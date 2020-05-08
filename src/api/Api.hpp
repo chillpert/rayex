@@ -34,6 +34,7 @@ namespace RX
     void createSemaphores();
 
     void recreateSwapChain();
+    void cleanSwapChain();
 
     Instance m_instance;
     Surface m_surface;

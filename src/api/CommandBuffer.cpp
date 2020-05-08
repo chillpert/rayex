@@ -77,4 +77,9 @@ namespace RX
   {
     vkDestroyCommandPool(*m_logicalDevice, m_commandPool, nullptr);
   }
+
+  void CommandBuffer::freeCommandBuffers()
+  {
+    vkFreeCommandBuffers(*m_logicalDevice, m_commandPool, static_cast<uint32_t>(m_commandBuffers.size()), m_commandBuffers.data());
+  }
 }

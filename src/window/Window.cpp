@@ -43,15 +43,13 @@ namespace RX
   bool Window::render()
   {
     SDL_Event event;
-    SDL_bool done = SDL_FALSE;
-  
+
     while (SDL_PollEvent(&event))
     {
       switch (event.type)
       {
         case SDL_QUIT:
-          done = SDL_TRUE;
-          break;
+          return false;
 
         case SDL_WINDOWEVENT:
 
@@ -67,6 +65,26 @@ namespace RX
               break;
             }
           }
+
+          break;
+
+        case SDL_KEYDOWN:
+
+          break;
+
+        case SDL_KEYUP:
+
+          break;
+
+        case SDL_MOUSEMOTION:
+
+          break;
+
+        case SDL_MOUSEBUTTONDOWN:
+          
+          break;
+
+        case SDL_MOUSEBUTTONUP:
 
           break;
       }

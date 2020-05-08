@@ -5,7 +5,7 @@ using namespace RX;
 int main(int argc, char* argv[])
 {
   uint32_t flags = WINDOW_RESIZABLE | WINDOW_VISIBLE;
-  WindowProperties windowProperties(300, 200, "Example", flags);
+  WindowProperties windowProperties(900, 600, "Example", flags);
 
   Renderer renderer(Api::VULKAN, windowProperties);
 

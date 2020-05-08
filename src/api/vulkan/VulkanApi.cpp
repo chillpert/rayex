@@ -194,7 +194,7 @@ namespace RX
     for (size_t i = 0; i < MAX_FRAMES_IN_FLIGHT; ++i)
     {
       Assert::vulkan(vkCreateSemaphore(*m_device.getLogicalDevice(), &semaphoreInfo, nullptr, &imageAvailableSemaphores[i]), "Failed to create image available semaphore");
-      Assert::vulkan(vkCreateSemaphore(*m_device.getLogicalDevice(), &semaphoreInfo, nullptr, &renderFinishedSemaphores[i]), "Failed to create image available semaphore");
+      Assert::vulkan(vkCreateSemaphore(*m_device.getLogicalDevice(), &semaphoreInfo, nullptr, &renderFinishedSemaphores[i]), "Failed to create finished rendering semaphore");
       Assert::vulkan(vkCreateFence(*m_device.getLogicalDevice(), &fenceInfo, nullptr, &inFlightFences[i]), "Failed to create fence");
     }
   }

@@ -75,6 +75,7 @@ else()
 endif()
 
 # HEADER PROJECT FILES
+include_directories(${PROJECT_SOURCE_DIR}/external/glm/include)
 include_directories(${PROJECT_SOURCE_DIR}/include)
 include_directories(${PROJECT_SOURCE_DIR}/src)
 

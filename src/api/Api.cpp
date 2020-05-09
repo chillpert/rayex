@@ -13,14 +13,14 @@ namespace RX
 
   size_t currentFrame = 0;
 
-  Api::Api(Window& window) :
+  Api::Api(std::shared_ptr<Window> window) :
     m_instance{ },
     m_surface{ },
     m_device{ VK_NULL_HANDLE },
     m_swapChain{ m_surface.getSurface(), nullptr },
     m_pipeline{ VK_NULL_HANDLE, nullptr },
     m_commandBuffer{ VK_NULL_HANDLE, VK_NULL_HANDLE, nullptr, nullptr },
-    m_window(&window) { }
+    m_window(window) { }
 
   void Api::initialize()
   {
@@ -144,7 +144,7 @@ namespace RX
 
   void Api::createSwapChain()
   {
-    m_swapChain = SwapChain(m_surface.getSurface(), &m_window->getProperties());
+    m_swapChain = SwapChain(m_surface.getSurface(), m_window);
 
     m_swapChain.createSwapChain(m_device.getPhysicalDevice(), m_device.getLogicalDevice());
   }
@@ -218,6 +218,15 @@ namespace RX
   void Api::recreateSwapChain()
   {
     vkDeviceWaitIdle(*m_device.getLogicalDevice());
+
+    // Handle the window getting minimized.
+    int w = m_window->getProperties().getFramebufferWidth();
+    int h = m_window->getProperties().getFramebufferHeight();
+
+    while (w <= 0 || h <= 0)
+    {
+      SDL_GetWindowSize(m_window->getWindow(), &w, &h);
+    }
 
     cleanSwapChain();
 

@@ -9,7 +9,7 @@ namespace RX
   class Surface
   {
   public:
-    void createSurface(Window* window, VkInstance* instance);
+    void createSurface(std::shared_ptr<Window> window, VkInstance* instance);
     void destroySurface();
 
     inline VkSurfaceKHR* getSurface() { return &m_surface; }

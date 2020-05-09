@@ -4,7 +4,12 @@ project(Renderer VERSION 0.0.1)
 set (CMAKE_MODULE_PATH "${CMAKE_SOURCE_DIR}/external/Cotire")
 include(cotire)
 
-option(BUILD_EXAMPLE "Build example" ON)
+option(BUILD_EXAMPLES "Build examples" ON)
+option(HANDLE_KEY_INPUT "Handle keyboard and mouse input on renderer side" ON)
+
+if (HANDLE_KEY_INPUT)
+  add_compile_definitions(RX_HANDLE_KEY_INPUT)
+endif()
 
 # LOGGING
 if(CMAKE_BUILD_TYPE STREQUAL "Debug")
@@ -123,79 +128,87 @@ set_target_properties(renderer PROPERTIES COTIRE_CXX_PREFIX_HEADER_INIT "${PROJE
 cotire(renderer)
 
 # EXAMPLE
-if (BUILD_EXAMPLE)
+if(BUILD_EXAMPLES)
 
-  add_executable(example ${PROJECT_SOURCE_DIR}/src/examples/Example.cpp)
+  function(buildExample EXAMPLE_NAME PATH_TO_SOURCE_FILE)
 
-  link_directories(${PROJECT_SOURCE_DIR}/build/bin/renderer/debug)
+    add_executable(${EXAMPLE_NAME} ${PATH_TO_SOURCE_FILE})
 
-  target_link_libraries(example
-    renderer
-  )
+    link_directories(${PROJECT_SOURCE_DIR}/build/bin/renderer/debug)
 
-  set_target_properties(example PROPERTIES
-    CXX_STANDARD 17
-  )
+    target_link_libraries(${EXAMPLE_NAME}
+      renderer
+    )
 
-  set_target_properties(example
-    PROPERTIES
-    ARCHIVE_OUTPUT_DIRECTORY_DEBUG "${PROJECT_SOURCE_DIR}/build/lib/debug"
-    LIBRARY_OUTPUT_DIRECTORY_DEBUG "${PROJECT_SOURCE_DIR}/build/lib/debug"
-    RUNTIME_OUTPUT_DIRECTORY_DEBUG "${PROJECT_SOURCE_DIR}/build/bin/debug"
+    set_target_properties(${EXAMPLE_NAME} PROPERTIES
+      CXX_STANDARD 17
+    )
 
-    ARCHIVE_OUTPUT_DIRECTORY_RELEASE "${PROJECT_SOURCE_DIR}/build/lib/release"
-    LIBRARY_OUTPUT_DIRECTORY_RELEASE "${PROJECT_SOURCE_DIR}/build/lib/release"
-    RUNTIME_OUTPUT_DIRECTORY_RELEASE "${PROJECT_SOURCE_DIR}/build/bin/release"
+    set_target_properties(${EXAMPLE_NAME}
+      PROPERTIES
+      ARCHIVE_OUTPUT_DIRECTORY_DEBUG "${PROJECT_SOURCE_DIR}/build/lib/debug"
+      LIBRARY_OUTPUT_DIRECTORY_DEBUG "${PROJECT_SOURCE_DIR}/build/lib/debug"
+      RUNTIME_OUTPUT_DIRECTORY_DEBUG "${PROJECT_SOURCE_DIR}/build/bin/debug"
 
-    ARCHIVE_OUTPUT_DIRECTORY_MINSIZEREL "${PROJECT_SOURCE_DIR}/build/lib/minsizerel"
-    LIBRARY_OUTPUT_DIRECTORY_MINSIZEREL "${PROJECT_SOURCE_DIR}/build/lib/minsizerel"
-    RUNTIME_OUTPUT_DIRECTORY_MINSIZEREL "${PROJECT_SOURCE_DIR}/build/bin/minsizerel"   
+      ARCHIVE_OUTPUT_DIRECTORY_RELEASE "${PROJECT_SOURCE_DIR}/build/lib/release"
+      LIBRARY_OUTPUT_DIRECTORY_RELEASE "${PROJECT_SOURCE_DIR}/build/lib/release"
+      RUNTIME_OUTPUT_DIRECTORY_RELEASE "${PROJECT_SOURCE_DIR}/build/bin/release"
 
-    ARCHIVE_OUTPUT_DIRECTORY_RELWITHDEBINFO "${PROJECT_SOURCE_DIR}/build/lib/relwithbebinfo"
-    LIBRARY_OUTPUT_DIRECTORY_RELWITHDEBINFO "${PROJECT_SOURCE_DIR}/build/lib/relwithbebinfo"
-    RUNTIME_OUTPUT_DIRECTORY_RELWITHDEBINFO "${PROJECT_SOURCE_DIR}/build/bin/relwithbebinfo"
-  )
+      ARCHIVE_OUTPUT_DIRECTORY_MINSIZEREL "${PROJECT_SOURCE_DIR}/build/lib/minsizerel"
+      LIBRARY_OUTPUT_DIRECTORY_MINSIZEREL "${PROJECT_SOURCE_DIR}/build/lib/minsizerel"
+      RUNTIME_OUTPUT_DIRECTORY_MINSIZEREL "${PROJECT_SOURCE_DIR}/build/bin/minsizerel"   
 
-  # set build paths
-  if(CMAKE_BUILD_TYPE STREQUAL "Debug")
+      ARCHIVE_OUTPUT_DIRECTORY_RELWITHDEBINFO "${PROJECT_SOURCE_DIR}/build/lib/relwithbebinfo"
+      LIBRARY_OUTPUT_DIRECTORY_RELWITHDEBINFO "${PROJECT_SOURCE_DIR}/build/lib/relwithbebinfo"
+      RUNTIME_OUTPUT_DIRECTORY_RELWITHDEBINFO "${PROJECT_SOURCE_DIR}/build/bin/relwithbebinfo"
+    )
 
-    set(BUILD_PATH debug)
+    # set build paths
+    if(CMAKE_BUILD_TYPE STREQUAL "Debug")
 
-  elseif(CMAKE_BUILD_TYPE STREQUAL "Release")
+      set(BUILD_PATH debug)
 
-    set(BUILD_PATH release)
+    elseif(CMAKE_BUILD_TYPE STREQUAL "Release")
+
+      set(BUILD_PATH release)
   
-  elseif(CMAKE_BUILD_TYPE STREQUAL "RelWithDebInfo")
+    elseif(CMAKE_BUILD_TYPE STREQUAL "RelWithDebInfo")
 
-    set(BUILD_PATH relWithDebInfo)
+      set(BUILD_PATH relWithDebInfo)
 
-  elseif(CMAKE_BUILD_TYPE STREQUAL "MinSizeRel")
+    elseif(CMAKE_BUILD_TYPE STREQUAL "MinSizeRel")
 
-    set(BUILD_PATH minSizeRel)
+      set(BUILD_PATH minSizeRel)
 
-  endif()
+    endif()
 
-  # copy dlls to binary location in post build
-  if(${OS} STREQUAL "Windows")
+    # copy dlls to binary location in post build
+    if(${OS} STREQUAL "Windows")
 
-    add_custom_command(
-      TARGET example
-      POST_BUILD
-      COMMAND ${CMAKE_COMMAND} -E copy
-              ${PROJECT_SOURCE_DIR}/external/SDL2/binaries/win64/SDL2.dll
-              ${PROJECT_SOURCE_DIR}/build/bin/${BUILD_PATH}/SDL2.dll
-      COMMENT "Running POST_BUILD action: Copying SDL2d.dll to binary location"
-      )
+      add_custom_command(
+        TARGET ${EXAMPLE_NAME}
+        POST_BUILD
+        COMMAND ${CMAKE_COMMAND} -E copy
+                ${PROJECT_SOURCE_DIR}/external/SDL2/binaries/win64/SDL2.dll
+                ${PROJECT_SOURCE_DIR}/build/bin/${BUILD_PATH}/SDL2.dll
+        COMMENT "Running POST_BUILD action: Copying SDL2d.dll to binary location"
+        )
 
-    add_custom_command(
-      TARGET example
-      POST_BUILD
-      COMMAND ${CMAKE_COMMAND} -E copy
-              ${PROJECT_SOURCE_DIR}/build/bin/${BUILD_PATH}/renderer.dll
-              ${PROJECT_SOURCE_DIR}/build/bin/${BUILD_PATH}/renderer.dll
-      COMMENT "Running POST_BUILD action: Copying renderer.dll to binary location"
-      )
+      add_custom_command(
+        TARGET ${EXAMPLE_NAME}
+        POST_BUILD
+        COMMAND ${CMAKE_COMMAND} -E copy
+                ${PROJECT_SOURCE_DIR}/build/bin/${BUILD_PATH}/renderer.dll
+                ${PROJECT_SOURCE_DIR}/build/bin/${BUILD_PATH}/renderer.dll
+        COMMENT "Running POST_BUILD action: Copying renderer.dll to binary location"
+        )
 
-  endif()
+    endif()
+
+  endfunction()
+
+  buildExample(example1 ${PROJECT_SOURCE_DIR}/src/examples/Example1.cpp)
+  buildExample(example2 ${PROJECT_SOURCE_DIR}/src/examples/Example2.cpp)
+  buildExample(example3 ${PROJECT_SOURCE_DIR}/src/examples/Example3.cpp)
 
 endif()

@@ -2,7 +2,7 @@
 
 namespace RX
 {
-  void Surface::createSurface(Window* window, VkInstance* instance)
+  void Surface::createSurface(std::shared_ptr<Window> window, VkInstance* instance)
   {
     m_instance = instance;
 

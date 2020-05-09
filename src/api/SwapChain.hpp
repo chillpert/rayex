@@ -2,7 +2,7 @@
 #define SWAPCHAIN_HPP
 
 #include "pch/stdafx.hpp"
-#include "window/WindowProperties.hpp"
+#include "window/Window.hpp"
 
 namespace RX
 {
@@ -16,7 +16,7 @@ namespace RX
   class SwapChain
   {
   public:
-    SwapChain(VkSurfaceKHR* surface, WindowProperties* windowProperties);
+    SwapChain(VkSurfaceKHR* surface, std::shared_ptr<Window> window);
 
     void createSwapChain(VkPhysicalDevice* physicalDevice, VkDevice* logicalDevice);
     void createImageViews();
@@ -59,7 +59,7 @@ namespace RX
     static VkSurfaceKHR* s_surface;
     VkDevice* m_logicalDevice;
 
-    WindowProperties* m_windowProperties;
+    std::shared_ptr<Window> m_window;
 
     std::vector<VkImageView> m_swapChainImageViews;
     std::vector<VkFramebuffer> m_swapChainFramebuffers;

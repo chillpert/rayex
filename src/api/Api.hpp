@@ -14,7 +14,7 @@ namespace RX
   class Api
   {
   public:
-    Api(Window& window);
+    Api(std::shared_ptr<Window> window);
 
     void initialize();
     void update();
@@ -43,7 +43,7 @@ namespace RX
     Pipeline m_pipeline;
     CommandBuffer m_commandBuffer;
 
-    Window* m_window;
+    std::shared_ptr<Window> m_window;
   };
 }
 

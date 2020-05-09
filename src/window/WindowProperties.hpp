@@ -40,7 +40,7 @@ namespace RX
     void resize(int width, int height);
     void resizeFramebuffer(int width, int height);
     void setTitle(const char* title);
-    RX_API void setEngineTitle(const char* title);
+    void setEngineTitle(const char* title);
 
   private:
     int m_width;

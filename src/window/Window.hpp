@@ -10,12 +10,13 @@ namespace RX
   class Window
   {
   public:
-    Window(WindowProperties windowProperties);
+    RX_API Window(WindowProperties windowProperties = WindowProperties());
+    virtual ~Window() = default;
 
-    void initialize();
-    bool update();
-    bool render();
-    void clean();
+    RX_API virtual void initialize();
+    RX_API virtual bool update();
+    RX_API virtual bool render();
+    RX_API virtual void clean();
 
     RX_API void resize(int width, int height);
     RX_API void resizeFramebuffer(int width, int height);
@@ -25,7 +26,7 @@ namespace RX
     RX_API inline SDL_Window* getWindow() { return m_window; }
     RX_API inline WindowProperties& getProperties() { return m_properties; }
   
-  private:
+  protected:
     SDL_Window* m_window;
     
     WindowProperties m_properties;

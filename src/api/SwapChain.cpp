@@ -5,13 +5,13 @@ namespace RX
 {
   VkSurfaceKHR* SwapChain::s_surface = VK_NULL_HANDLE;
 
-  SwapChain::SwapChain(VkSurfaceKHR* surface, WindowProperties* windowProperties) :
+  SwapChain::SwapChain(VkSurfaceKHR* surface, std::shared_ptr<Window> window) :
     m_logicalDevice(VK_NULL_HANDLE),
     m_swapChain(VK_NULL_HANDLE),
-    m_swapChainExtent { }
+    m_swapChainExtent { },
+    m_window(window)
   {
     s_surface = surface;
-    m_windowProperties = windowProperties;
   }
 
   void SwapChain::createSwapChain(VkPhysicalDevice* physicalDevice, VkDevice* logicalDevice)
@@ -205,7 +205,7 @@ namespace RX
     }
     else
     {
-      VkExtent2D actualExtent = { m_windowProperties->getFramebufferWidth(), m_windowProperties->getFramebufferHeight() };
+      VkExtent2D actualExtent = { m_window->getProperties().getFramebufferWidth(), m_window->getProperties().getFramebufferHeight() };
 
       actualExtent.width = std::max(capabilities.minImageExtent.width, std::min(capabilities.maxImageExtent.width, actualExtent.width));
       actualExtent.height = std::max(capabilities.minImageExtent.height, std::min(capabilities.maxImageExtent.height, actualExtent.height));

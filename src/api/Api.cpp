@@ -220,8 +220,8 @@ namespace RX
     vkDeviceWaitIdle(*m_device.getLogicalDevice());
 
     // Handle the window getting minimized.
-    int w = m_window->getProperties().getFramebufferWidth();
-    int h = m_window->getProperties().getFramebufferHeight();
+    int w = m_window->getProperties().getWidth();
+    int h = m_window->getProperties().getHeight();
 
     while (w <= 0 || h <= 0)
     {

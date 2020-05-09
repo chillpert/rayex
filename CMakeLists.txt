@@ -5,17 +5,10 @@ set (CMAKE_MODULE_PATH "${CMAKE_SOURCE_DIR}/external/Cotire")
 include(cotire)
 
 option(BUILD_EXAMPLES "Build examples" ON)
-option(HANDLE_KEY_INPUT "Handle keyboard and mouse input on renderer side" ON)
-
-if (HANDLE_KEY_INPUT)
-  add_compile_definitions(RX_HANDLE_KEY_INPUT)
-endif()
 
 # LOGGING
 if(CMAKE_BUILD_TYPE STREQUAL "Debug")
-
   add_compile_definitions(RX_DEBUG)
-
 endif()
 
 if(WIN32 OR MSVC)
@@ -32,9 +25,7 @@ elseif(UNIX)
   message("Renderer: Target platform Windows (x64)")
 
 else()
-
   message(FATAL_ERROR "Renderer: Target platform is not supported")
-
 endif()
 
 # RESOURCES
@@ -53,9 +44,7 @@ if(${OS} STREQUAL "Windows")
   message("${PROJECT_SOURCE_DIR}/resources/shaders/")
 
 elseif(${OS} STREQUAL "Linux")
-
   message(FATAL_ERROR, "SHADER COMPILER NOT YET SETUP FOR LINUX")
-
 endif()
 
 # SDL
@@ -74,9 +63,7 @@ elseif(${OS} STREQUAL "Linux")
   set(WINDOWING ${WINDOWING} "${SDL2_LIBRARIES}")
 
 else()
-
   message(FATAL_ERROR, "Target platform not supported")
-
 endif()
 
 # HEADER PROJECT FILES
@@ -122,7 +109,7 @@ set_target_properties(renderer
   ARCHIVE_OUTPUT_DIRECTORY_RELWITHDEBINFO "${PROJECT_SOURCE_DIR}/build/lib/relwithbebinfo"
   LIBRARY_OUTPUT_DIRECTORY_RELWITHDEBINFO "${PROJECT_SOURCE_DIR}/build/lib/relwithbebinfo"
   RUNTIME_OUTPUT_DIRECTORY_RELWITHDEBINFO "${PROJECT_SOURCE_DIR}/build/bin/relwithbebinfo"
-  )
+)
 
 set_target_properties(renderer PROPERTIES COTIRE_CXX_PREFIX_HEADER_INIT "${PROJECT_SOURCE_DIR}/src/pch/stdafx.hpp")
 cotire(renderer)
@@ -132,7 +119,13 @@ if(BUILD_EXAMPLES)
 
   function(buildExample EXAMPLE_NAME PATH_TO_SOURCE_FILE)
 
-    add_executable(${EXAMPLE_NAME} ${PATH_TO_SOURCE_FILE})
+    include_directories(${PROJECT_SOURCE_DIR}/src/example)
+
+    file(GLOB FILES_EXAMPLE
+      "${PROJECT_SOURCE_DIR}/example/*.cpp"
+    )
+
+    add_executable(${EXAMPLE_NAME} ${PATH_TO_SOURCE_FILE} ${FILES_EXAMPLE})
 
     link_directories(${PROJECT_SOURCE_DIR}/build/bin/renderer/debug)
 
@@ -207,8 +200,6 @@ if(BUILD_EXAMPLES)
 
   endfunction()
 
-  buildExample(example1 ${PROJECT_SOURCE_DIR}/src/examples/Example1.cpp)
-  buildExample(example2 ${PROJECT_SOURCE_DIR}/src/examples/Example2.cpp)
-  buildExample(example3 ${PROJECT_SOURCE_DIR}/src/examples/Example3.cpp)
+  buildExample(example ${PROJECT_SOURCE_DIR}/src/example/main.cpp)
 
 endif()

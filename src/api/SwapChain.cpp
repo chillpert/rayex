@@ -205,7 +205,7 @@ namespace RX
     }
     else
     {
-      VkExtent2D actualExtent = { m_window->getProperties().getFramebufferWidth(), m_window->getProperties().getFramebufferHeight() };
+      VkExtent2D actualExtent = { m_window->getProperties().getWidth(), m_window->getProperties().getHeight() };
 
       actualExtent.width = std::max(capabilities.minImageExtent.width, std::min(capabilities.maxImageExtent.width, actualExtent.width));
       actualExtent.height = std::max(capabilities.minImageExtent.height, std::min(capabilities.maxImageExtent.height, actualExtent.height));

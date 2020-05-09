@@ -11,14 +11,14 @@ namespace RX
   public:
     void createInstance(std::shared_ptr<Window> window);
 
-    inline vk::UniqueInstance& getInstance() { return m_instance; }
+    inline VkInstance& getInstance() { return m_instance; }
 
   private:
     bool checkExtensionSupport(const char** sdlExtensions, uint32_t sdlExtensionsCount);
     bool checkValidationLayerSupport();
     std::vector<const char*> getRequiredExtensions(std::shared_ptr<Window> window);
 
-    vk::UniqueInstance m_instance;
+    VkInstance m_instance;
   };
 }
 

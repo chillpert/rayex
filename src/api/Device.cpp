@@ -5,7 +5,7 @@ namespace RX
 {
   const std::vector<const char*> deviceExtensions = { VK_KHR_SWAPCHAIN_EXTENSION_NAME };
 
-  Device::Device(vk::UniqueInstance* instance) :
+  Device::Device(VkInstance* instance) :
     m_physicalDevice(VK_NULL_HANDLE),
     m_logicalDevice(VK_NULL_HANDLE),
     m_graphicsQueue(VK_NULL_HANDLE),
@@ -15,7 +15,7 @@ namespace RX
   void Device::pickPhysicalDevice()
   {
     uint32_t deviceCount = 0;
-    vkEnumeratePhysicalDevices(m_instance->get(), &deviceCount, nullptr);
+    vkEnumeratePhysicalDevices(*m_instance, &deviceCount, nullptr);
 
     if (deviceCount == 0)
     {
@@ -23,7 +23,7 @@ namespace RX
     }
 
     std::vector<VkPhysicalDevice> devices(deviceCount);
-    vkEnumeratePhysicalDevices(m_instance->get(), &deviceCount, devices.data());
+    vkEnumeratePhysicalDevices(*m_instance, &deviceCount, devices.data());
 
     size_t prevScore = 0;
     for (const auto& device : devices)

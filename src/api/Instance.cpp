@@ -14,11 +14,18 @@ namespace RX
     }
 #endif
 
-    const char* title = window->getProperties().getTitle();
-    const char* engineTitle = window->getProperties().getEngineTitle();
+    VkApplicationInfo appInfo{ };
+    appInfo.sType = VK_STRUCTURE_TYPE_APPLICATION_INFO;
+    appInfo.pApplicationName = window->getProperties().getTitle();
+    appInfo.applicationVersion = VK_MAKE_VERSION(1, 0, 0);
+    appInfo.pEngineName = window->getProperties().getEngineTitle();
+    appInfo.engineVersion = VK_MAKE_VERSION(1, 0, 0);
+    appInfo.apiVersion = VK_API_VERSION_1_0;
 
-    vk::ApplicationInfo appInfo(title, VK_MAKE_VERSION(1, 0, 0), engineTitle, VK_MAKE_VERSION(1, 0, 0));
-    vk::InstanceCreateInfo createInfo({ }, &appInfo);
+    // create info
+    VkInstanceCreateInfo createInfo{ };
+    createInfo.sType = VK_STRUCTURE_TYPE_INSTANCE_CREATE_INFO;
+    createInfo.pApplicationInfo = &appInfo;
 
     uint32_t sdlExtensionsCount = 0;
     window->getInstanceExtensions(sdlExtensionsCount, NULL);
@@ -43,7 +50,7 @@ namespace RX
     }
 
     // create instance
-    m_instance = vk::createInstanceUnique(createInfo);
+    Assert::vulkan(vkCreateInstance(&createInfo, nullptr, &m_instance), "Failed to create Vulkan instance");
 
     delete[] sdlExtensions;
   }

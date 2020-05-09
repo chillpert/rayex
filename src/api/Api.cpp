@@ -24,21 +24,7 @@ namespace RX
 
   void Api::initialize()
   {
-    try
-    {
-      createInstance();
-    }
-    catch (const vk::SystemError & error)
-    {
-      std::cerr << "Vk: SystemError: " << error.what() << std::endl;
-      exit(-1);
-    }
-    catch (...)
-    {
-      std::cerr << "Vk: Unkown error" << std::endl;
-      exit(-1);
-    }
-
+    createInstance();
     createSurface();
     createDevices();
     createSwapChain();

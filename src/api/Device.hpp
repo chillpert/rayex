@@ -16,7 +16,7 @@ namespace RX
   class Device
   {
   public:
-    Device(vk::UniqueInstance* instance);
+    Device(VkInstance* instance);
 
     void pickPhysicalDevice();
     void createLogicalDevice();
@@ -49,7 +49,7 @@ namespace RX
     VkQueue m_presentQueue;
 
     // pointer to VulkanApi class members
-    vk::UniqueInstance* m_instance;
+    VkInstance* m_instance;
   };
 }
 

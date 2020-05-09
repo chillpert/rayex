@@ -1,7 +1,6 @@
 #ifndef INSTANCE_HPP
 #define INSTANCE_HPP
 
-#include "pch/stdafx.hpp"
 #include "window/Window.hpp"
 
 namespace RX

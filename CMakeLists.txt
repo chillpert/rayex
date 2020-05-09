@@ -77,6 +77,7 @@ file(GLOB FILES_LIB
   "${PROJECT_SOURCE_DIR}/src/window/*.cpp"
   "${PROJECT_SOURCE_DIR}/src/pch/*.cpp"
   "${PROJECT_SOURCE_DIR}/src/events/*.cpp"
+  "${PROJECT_SOURCE_DIR}/src/utils/*.cpp"
   "${PROJECT_SOURCE_DIR}/src/*.cpp"
 )
 
@@ -101,14 +102,6 @@ set_target_properties(renderer
   ARCHIVE_OUTPUT_DIRECTORY_RELEASE "${PROJECT_SOURCE_DIR}/build/lib/release"
   LIBRARY_OUTPUT_DIRECTORY_RELEASE "${PROJECT_SOURCE_DIR}/build/lib/release"
   RUNTIME_OUTPUT_DIRECTORY_RELEASE "${PROJECT_SOURCE_DIR}/build/bin/release"
-
-  ARCHIVE_OUTPUT_DIRECTORY_MINSIZEREL "${PROJECT_SOURCE_DIR}/build/lib/minsizerel"
-  LIBRARY_OUTPUT_DIRECTORY_MINSIZEREL "${PROJECT_SOURCE_DIR}/build/lib/minsizerel"
-  RUNTIME_OUTPUT_DIRECTORY_MINSIZEREL "${PROJECT_SOURCE_DIR}/build/bin/minsizerel"   
-
-  ARCHIVE_OUTPUT_DIRECTORY_RELWITHDEBINFO "${PROJECT_SOURCE_DIR}/build/lib/relwithbebinfo"
-  LIBRARY_OUTPUT_DIRECTORY_RELWITHDEBINFO "${PROJECT_SOURCE_DIR}/build/lib/relwithbebinfo"
-  RUNTIME_OUTPUT_DIRECTORY_RELWITHDEBINFO "${PROJECT_SOURCE_DIR}/build/bin/relwithbebinfo"
 )
 
 set_target_properties(renderer PROPERTIES COTIRE_CXX_PREFIX_HEADER_INIT "${PROJECT_SOURCE_DIR}/src/pch/stdafx.hpp")
@@ -116,90 +109,63 @@ cotire(renderer)
 
 # EXAMPLE
 if(BUILD_EXAMPLES)
+  include_directories(${PROJECT_SOURCE_DIR}/src/example)
 
-  function(buildExample EXAMPLE_NAME PATH_TO_SOURCE_FILE)
+  file(GLOB FILES_EXAMPLE
+    "${PROJECT_SOURCE_DIR}/example/*.cpp"
+  )
 
-    include_directories(${PROJECT_SOURCE_DIR}/src/example)
+  add_executable(example ${PROJECT_SOURCE_DIR}/src/example/main.cpp ${FILES_EXAMPLE})
 
-    file(GLOB FILES_EXAMPLE
-      "${PROJECT_SOURCE_DIR}/example/*.cpp"
-    )
+  link_directories(${PROJECT_SOURCE_DIR}/build/bin/renderer/debug)
 
-    add_executable(${EXAMPLE_NAME} ${PATH_TO_SOURCE_FILE} ${FILES_EXAMPLE})
+  target_link_libraries(example
+    renderer
+  )
 
-    link_directories(${PROJECT_SOURCE_DIR}/build/bin/renderer/debug)
+  set_target_properties(example
+    PROPERTIES
+    CXX_STANDARD 17
+    ARCHIVE_OUTPUT_DIRECTORY_DEBUG "${PROJECT_SOURCE_DIR}/build/lib/debug"
+    LIBRARY_OUTPUT_DIRECTORY_DEBUG "${PROJECT_SOURCE_DIR}/build/lib/debug"
+    RUNTIME_OUTPUT_DIRECTORY_DEBUG "${PROJECT_SOURCE_DIR}/build/bin/debug"
 
-    target_link_libraries(${EXAMPLE_NAME}
-      renderer
-    )
+    ARCHIVE_OUTPUT_DIRECTORY_RELEASE "${PROJECT_SOURCE_DIR}/build/lib/release"
+    LIBRARY_OUTPUT_DIRECTORY_RELEASE "${PROJECT_SOURCE_DIR}/build/lib/release"
+    RUNTIME_OUTPUT_DIRECTORY_RELEASE "${PROJECT_SOURCE_DIR}/build/bin/release"
+  )
 
-    set_target_properties(${EXAMPLE_NAME} PROPERTIES
-      CXX_STANDARD 17
-    )
+  # set build paths
+  if(CMAKE_BUILD_TYPE STREQUAL "Debug")
+    set(BUILD_PATH debug)
+  elseif(CMAKE_BUILD_TYPE STREQUAL "Release")
+    set(BUILD_PATH release)
+  elseif(CMAKE_BUILD_TYPE STREQUAL "RelWithDebInfo")
+    set(BUILD_PATH relWithDebInfo) 
+  elseif(CMAKE_BUILD_TYPE STREQUAL "MinSizeRel")
+    set(BUILD_PATH minSizeRel)
+  endif()
 
-    set_target_properties(${EXAMPLE_NAME}
-      PROPERTIES
-      ARCHIVE_OUTPUT_DIRECTORY_DEBUG "${PROJECT_SOURCE_DIR}/build/lib/debug"
-      LIBRARY_OUTPUT_DIRECTORY_DEBUG "${PROJECT_SOURCE_DIR}/build/lib/debug"
-      RUNTIME_OUTPUT_DIRECTORY_DEBUG "${PROJECT_SOURCE_DIR}/build/bin/debug"
+  # copy dlls to binary location in post build
+  if(${OS} STREQUAL "Windows")
 
-      ARCHIVE_OUTPUT_DIRECTORY_RELEASE "${PROJECT_SOURCE_DIR}/build/lib/release"
-      LIBRARY_OUTPUT_DIRECTORY_RELEASE "${PROJECT_SOURCE_DIR}/build/lib/release"
-      RUNTIME_OUTPUT_DIRECTORY_RELEASE "${PROJECT_SOURCE_DIR}/build/bin/release"
+    add_custom_command(
+      TARGET example
+      POST_BUILD
+      COMMAND ${CMAKE_COMMAND} -E copy
+              ${PROJECT_SOURCE_DIR}/external/SDL2/binaries/win64/SDL2.dll
+              ${PROJECT_SOURCE_DIR}/build/bin/${BUILD_PATH}/SDL2.dll
+      COMMENT "Running POST_BUILD action: Copying SDL2d.dll to binary location"
+      )
 
-      ARCHIVE_OUTPUT_DIRECTORY_MINSIZEREL "${PROJECT_SOURCE_DIR}/build/lib/minsizerel"
-      LIBRARY_OUTPUT_DIRECTORY_MINSIZEREL "${PROJECT_SOURCE_DIR}/build/lib/minsizerel"
-      RUNTIME_OUTPUT_DIRECTORY_MINSIZEREL "${PROJECT_SOURCE_DIR}/build/bin/minsizerel"   
+    add_custom_command(
+      TARGET example
+      POST_BUILD
+      COMMAND ${CMAKE_COMMAND} -E copy
+              ${PROJECT_SOURCE_DIR}/build/bin/${BUILD_PATH}/renderer.dll
+              ${PROJECT_SOURCE_DIR}/build/bin/${BUILD_PATH}/renderer.dll
+      COMMENT "Running POST_BUILD action: Copying renderer.dll to binary location"
+      )
 
-      ARCHIVE_OUTPUT_DIRECTORY_RELWITHDEBINFO "${PROJECT_SOURCE_DIR}/build/lib/relwithbebinfo"
-      LIBRARY_OUTPUT_DIRECTORY_RELWITHDEBINFO "${PROJECT_SOURCE_DIR}/build/lib/relwithbebinfo"
-      RUNTIME_OUTPUT_DIRECTORY_RELWITHDEBINFO "${PROJECT_SOURCE_DIR}/build/bin/relwithbebinfo"
-    )
-
-    # set build paths
-    if(CMAKE_BUILD_TYPE STREQUAL "Debug")
-
-      set(BUILD_PATH debug)
-
-    elseif(CMAKE_BUILD_TYPE STREQUAL "Release")
-
-      set(BUILD_PATH release)
-  
-    elseif(CMAKE_BUILD_TYPE STREQUAL "RelWithDebInfo")
-
-      set(BUILD_PATH relWithDebInfo)
-
-    elseif(CMAKE_BUILD_TYPE STREQUAL "MinSizeRel")
-
-      set(BUILD_PATH minSizeRel)
-
-    endif()
-
-    # copy dlls to binary location in post build
-    if(${OS} STREQUAL "Windows")
-
-      add_custom_command(
-        TARGET ${EXAMPLE_NAME}
-        POST_BUILD
-        COMMAND ${CMAKE_COMMAND} -E copy
-                ${PROJECT_SOURCE_DIR}/external/SDL2/binaries/win64/SDL2.dll
-                ${PROJECT_SOURCE_DIR}/build/bin/${BUILD_PATH}/SDL2.dll
-        COMMENT "Running POST_BUILD action: Copying SDL2d.dll to binary location"
-        )
-
-      add_custom_command(
-        TARGET ${EXAMPLE_NAME}
-        POST_BUILD
-        COMMAND ${CMAKE_COMMAND} -E copy
-                ${PROJECT_SOURCE_DIR}/build/bin/${BUILD_PATH}/renderer.dll
-                ${PROJECT_SOURCE_DIR}/build/bin/${BUILD_PATH}/renderer.dll
-        COMMENT "Running POST_BUILD action: Copying renderer.dll to binary location"
-        )
-
-    endif()
-
-  endfunction()
-
-  buildExample(example ${PROJECT_SOURCE_DIR}/src/example/main.cpp)
-
+  endif()
 endif()

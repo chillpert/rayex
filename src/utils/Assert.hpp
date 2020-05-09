@@ -1,7 +1,7 @@
 #ifndef ASSERT_HPP
 #define ASSERT_HPP
 
-#include "events/Error.hpp"
+#include "utils/Error.hpp"
 
 #include <SDL2/SDL.h>
 #include <SDL2/SDL_vulkan.h>

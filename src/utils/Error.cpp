@@ -1,4 +1,4 @@
-#include "events/Error.hpp"
+#include "utils/Error.hpp"
 
 #include <exception>
 

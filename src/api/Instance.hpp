@@ -13,10 +13,6 @@ namespace RX
     inline VkInstance& getInstance() { return m_instance; }
 
   private:
-    bool checkExtensionSupport(const char** sdlExtensions, uint32_t sdlExtensionsCount);
-    bool checkValidationLayerSupport();
-    std::vector<const char*> getRequiredExtensions(std::shared_ptr<Window> window);
-
     VkInstance m_instance;
   };
 }

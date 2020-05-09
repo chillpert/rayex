@@ -46,6 +46,7 @@ int main(int argc, char* argv[])
   WindowProperties props(900, 600, "Example", flags);
 
   std::shared_ptr<Window> myWindow = std::make_shared<CustomWindow>(props);
+
   Renderer renderer(myWindow);
 
   renderer.initialize();

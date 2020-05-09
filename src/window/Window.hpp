@@ -21,6 +21,8 @@ namespace RX
     RX_API void resize(int width, int height);
     RX_API void resizeFramebuffer(int width, int height);
 
+    RX_API void getInstanceExtensions(uint32_t& count, const char** extensions);
+
     RX_API void setTitle(const char* title);
 
     RX_API inline SDL_Window* getWindow() { return m_window; }

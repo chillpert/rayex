@@ -9,7 +9,7 @@ namespace RX
   class Surface
   {
   public:
-    void createSurface(std::shared_ptr<Window> window, VkInstance* instance);
+    void createSurface(std::shared_ptr<Window> window, vk::UniqueInstance* instance);
     void destroySurface();
 
     inline VkSurfaceKHR* getSurface() { return &m_surface; }
@@ -18,7 +18,7 @@ namespace RX
     VkSurfaceKHR m_surface;
 
     // pointer to VulkanApi class member
-    VkInstance* m_instance;
+    vk::UniqueInstance* m_instance;
   };
 }
 

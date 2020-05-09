@@ -62,6 +62,24 @@ namespace RX
     m_properties.resizeFramebuffer(width, height);
   }
 
+  void Window::getInstanceExtensions(uint32_t& count, const char** extensions)
+  {
+    if (extensions == NULL)
+    {
+      if (!SDL_Vulkan_GetInstanceExtensions(m_window, &count, NULL))
+      {
+        Error::runtime("SDL failed to get instance extensions", Error::API);
+      }
+    }
+    else
+    {
+      if (!SDL_Vulkan_GetInstanceExtensions(m_window, &count, extensions))
+      {
+        Error::runtime("SDL failed to get instance extensions", Error::API);
+      }
+    }
+  }
+
   void Window::setTitle(const char* title)
   {
     m_properties.setTitle(title);

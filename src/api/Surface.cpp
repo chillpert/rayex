@@ -2,15 +2,15 @@
 
 namespace RX
 {
-  void Surface::createSurface(std::shared_ptr<Window> window, VkInstance* instance)
+  void Surface::createSurface(std::shared_ptr<Window> window, vk::UniqueInstance* instance)
   {
     m_instance = instance;
 
-    Assert::sdl(SDL_Vulkan_CreateSurface(window->getWindow(), *m_instance, &m_surface), "Failed to create surface");
+    Assert::sdl(SDL_Vulkan_CreateSurface(window->getWindow(), m_instance->get(), &m_surface), "Failed to create surface");
   }
 
   void Surface::destroySurface()
   {
-    vkDestroySurfaceKHR(*m_instance, m_surface, nullptr);
+    vkDestroySurfaceKHR(m_instance->get(), m_surface, nullptr);
   }
 }

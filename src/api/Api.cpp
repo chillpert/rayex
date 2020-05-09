@@ -24,7 +24,21 @@ namespace RX
 
   void Api::initialize()
   {
-    createInstance();
+    try
+    {
+      createInstance();
+    }
+    catch (const vk::SystemError & error)
+    {
+      std::cerr << "Vk: SystemError: " << error.what() << std::endl;
+      exit(-1);
+    }
+    catch (...)
+    {
+      std::cerr << "Vk: Unkown error" << std::endl;
+      exit(-1);
+    }
+
     createSurface();
     createDevices();
     createSwapChain();
@@ -119,9 +133,7 @@ namespace RX
 
     m_device.destroyLogicalDevice();
 
-    m_surface.destroySurface();
-
-    m_instance.destroyInstance();    
+    m_surface.destroySurface(); 
   }
 
   void Api::createInstance()
@@ -131,7 +143,7 @@ namespace RX
 
   void Api::createDevices()
   {
-    m_device = Device(m_instance.getInstance());
+    m_device = Device(&m_instance.getInstance());
 
     m_device.pickPhysicalDevice();
     m_device.createLogicalDevice();
@@ -139,7 +151,7 @@ namespace RX
 
   void Api::createSurface()
   {
-    m_surface.createSurface(m_window, m_instance.getInstance());
+    m_surface.createSurface(m_window, &m_instance.getInstance());
   }
 
   void Api::createSwapChain()

@@ -14,33 +14,17 @@ namespace RX
     }
 #endif
 
-    // application info
-    VkApplicationInfo appInfo{ };
-    appInfo.sType = VK_STRUCTURE_TYPE_APPLICATION_INFO;
-    appInfo.pApplicationName = window->getProperties().getTitle();
-    appInfo.applicationVersion = VK_MAKE_VERSION(1, 0, 0);
-    appInfo.pEngineName = window->getProperties().getEngineTitle();
-    appInfo.engineVersion = VK_MAKE_VERSION(1, 0, 0);
-    appInfo.apiVersion = VK_API_VERSION_1_0;
+    const char* title = window->getProperties().getTitle();
+    const char* engineTitle = window->getProperties().getEngineTitle();
 
-    // create info
-    VkInstanceCreateInfo createInfo{ };
-    createInfo.sType = VK_STRUCTURE_TYPE_INSTANCE_CREATE_INFO;
-    createInfo.pApplicationInfo = &appInfo;
+    vk::ApplicationInfo appInfo(title, VK_MAKE_VERSION(1, 0, 0), engineTitle, VK_MAKE_VERSION(1, 0, 0));
+    vk::InstanceCreateInfo createInfo({ }, &appInfo);
 
     uint32_t sdlExtensionsCount = 0;
-
-    if (!SDL_Vulkan_GetInstanceExtensions(window->getWindow(), &sdlExtensionsCount, NULL))
-    {
-      Error::runtime("SDL failed to get instance extensions", Error::API);
-    }
+    window->getInstanceExtensions(sdlExtensionsCount, NULL);
 
     const char** sdlExtensions = new const char* [sdlExtensionsCount];
-
-    if (!SDL_Vulkan_GetInstanceExtensions(window->getWindow(), &sdlExtensionsCount, sdlExtensions))
-    {
-      Error::runtime("SDL failed to get instance extensions", Error::API);
-    }
+    window->getInstanceExtensions(sdlExtensionsCount, sdlExtensions);
 
     auto extensions = getRequiredExtensions(window);
     createInfo.enabledExtensionCount = static_cast<uint32_t>(extensions.size());
@@ -59,14 +43,9 @@ namespace RX
     }
 
     // create instance
-    Assert::vulkan(vkCreateInstance(&createInfo, nullptr, &m_instance), "Failed to create Vulkan instance");
+    m_instance = vk::createInstanceUnique(createInfo);
 
     delete[] sdlExtensions;
-  }
-
-  void Instance::destroyInstance()
-  {
-    vkDestroyInstance(m_instance, nullptr);
   }
 
   bool Instance::checkExtensionSupport(const char** sdlExtensions, uint32_t sdlExtensionsCount)

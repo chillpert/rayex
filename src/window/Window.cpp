@@ -80,6 +80,18 @@ namespace RX
     }
   }
 
+  VkSurfaceKHR Window::createSurface(VkInstance& instance)
+  {
+    VkSurfaceKHR surface;
+
+    Assert::sdl(
+      SDL_Vulkan_CreateSurface(m_window, instance, &surface), 
+      "Failed to create surface"
+    );
+
+    return surface;
+  }
+
   void Window::setTitle(const char* title)
   {
     m_properties.setTitle(title);

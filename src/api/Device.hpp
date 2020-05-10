@@ -18,16 +18,15 @@ namespace RX
   public:
     Device(VkInstance* instance);
 
-    void pickPhysicalDevice();
+    void enumeratePhysicalDevice();
     void createLogicalDevice();
 
     void destroyLogicalDevice();
 
-    inline VkPhysicalDevice* getPhysicalDevice() { return &m_physicalDevice; }
-    inline VkDevice* getLogicalDevice() { return &m_logicalDevice; }
-
     static QueueFamilyIndices findQueueFamilies(VkPhysicalDevice device);
-    
+
+    inline VkPhysicalDevice* getPhysicalDevice() { return &m_physicalDevice; }
+    inline VkDevice* getLogicalDevice() { return &m_logicalDevice; }    
     inline VkQueue* getGraphicsQueue() { return &m_graphicsQueue; }
     inline VkQueue* getPresentQueue() { return &m_presentQueue; }
   

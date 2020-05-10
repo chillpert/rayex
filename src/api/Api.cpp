@@ -131,7 +131,7 @@ namespace RX
   {
     m_device = Device(&m_instance.getInstance());
 
-    m_device.pickPhysicalDevice();
+    m_device.enumeratePhysicalDevice();
     m_device.createLogicalDevice();
   }
 

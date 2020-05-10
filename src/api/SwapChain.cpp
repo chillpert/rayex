@@ -1,5 +1,6 @@
 #include "api/SwapChain.hpp"
 #include "api/Device.hpp"
+#include "utils/VkUtils.hpp"
 
 namespace RX
 {

@@ -1,5 +1,6 @@
 #include "api/CommandBuffer.hpp"
 #include "api/Device.hpp"
+#include "utils/VkUtils.hpp"
 
 namespace RX
 {

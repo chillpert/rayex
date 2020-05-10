@@ -127,6 +127,25 @@ namespace RX
 
     vkCmdBeginRenderPass(m_commandBuffer, &renderPassBeginInfo, VK_SUBPASS_CONTENTS_INLINE);
 
+    /*
+    VkViewport viewport = { };
+    viewport.x = 0.0f;
+    viewport.y = 0.0f;
+    viewport.width = static_cast<float>(width);
+    viewport.height = static_cast<float>(height);
+    viewport.minDepth = 0.0f;
+    viewport.maxDepth = 1.0f;
+
+    VkRect2D scissor = { };
+    scissor.offset.x = 0;
+    scissor.offset.y = 0;
+    scissor.extent.width = static_cast<uint32_t>(width);
+    scissor.extent.height = static_cast<uint32_t>(height);
+    
+    vkCmdSetViewport(m_commandBuffer, 0, 1, &viewport);
+    vkCmdSetScissor(m_commandBuffer, 0, 1, &scissor);
+    */
+
     // draw calls go here
     vkCmdBindPipeline(m_commandBuffer, VK_PIPELINE_BIND_POINT_GRAPHICS, m_pipeline);
     vkCmdDraw(m_commandBuffer, 3, 1, 0, 0);

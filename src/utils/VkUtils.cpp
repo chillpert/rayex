@@ -370,7 +370,7 @@ namespace RX
     inputAssembly.topology = VK_PRIMITIVE_TOPOLOGY_TRIANGLE_LIST;
     inputAssembly.primitiveRestartEnable = VK_FALSE;
 
-    VkViewport viewport{ };
+    VkViewport viewport = { };
     viewport.x = 0.0f;
     viewport.y = 0.0f;
 
@@ -383,9 +383,9 @@ namespace RX
 
     VkRect2D scissor = { };
     scissor.offset = { 0, 0 };
-    VkExtent2D temp;
-    temp.height = height;
-    temp.width = width;
+
+    VkExtent2D temp { width, height };
+
     scissor.extent = temp;
 
     VkPipelineViewportStateCreateInfo viewportState = { };

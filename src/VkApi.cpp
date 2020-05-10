@@ -10,8 +10,14 @@ namespace RX
     m_device(VK_NULL_HANDLE),
     m_surface(VK_NULL_HANDLE),
     m_swapChain(VK_NULL_HANDLE),
-    m_semaphore(VK_NULL_HANDLE),
-    m_queue(VK_NULL_HANDLE) { }
+    m_swapChainFormat(VK_FORMAT_B8G8R8A8_UNORM),
+    m_renderPass(VK_NULL_HANDLE),
+    m_pipeline(VK_NULL_HANDLE),
+    m_imageAvailableSemaphore(VK_NULL_HANDLE),
+    m_finishedRenderSemaphore(VK_NULL_HANDLE),
+    m_queue(VK_NULL_HANDLE),
+    m_commandPool(VK_NULL_HANDLE),
+    m_commandBuffer(VK_NULL_HANDLE) { }
 
   void VkApi::initialize()
   {
@@ -21,22 +27,58 @@ namespace RX
     m_physicalDevice = pickPhysicalDevice(m_instance);
     m_device = createDevice(m_instance, m_physicalDevice, &familyIndex);
     m_surface = m_window->createSurface(m_instance);
-    m_swapChain = createSwapChain(m_physicalDevice, m_device, m_surface, m_window, &familyIndex);
+    m_swapChain = createSwapChain(m_physicalDevice, m_device, m_surface, m_window, &familyIndex, &m_swapChainFormat);
 
+    m_imageAvailableSemaphore = createSemaphore(m_device);
+    m_finishedRenderSemaphore = createSemaphore(m_device);
+    
     vkGetDeviceQueue(m_device, familyIndex, 0, &m_queue);
-
+    
+    m_renderPass = createRenderPass(m_device, m_swapChainFormat);
+    
+    m_vertexShader = std::make_shared<Shader>(RX_SHADER_PATH, "test.vert", &m_device);
+    m_fragmentShader = std::make_shared<Shader>(RX_SHADER_PATH, "test.frag", &m_device);
+    m_pipeline = createPipeline(m_device, m_renderPass, m_window, m_vertexShader, m_fragmentShader);
+    
     uint32_t swapChainImageCount;
-    vkGetSwapchainImagesKHR(m_device, m_swapChain, &swapChainImageCount, nullptr);
+    Assert::vulkan(
+      vkGetSwapchainImagesKHR(m_device, m_swapChain, &swapChainImageCount, nullptr),
+      "Failed to get swap chain images"
+    );
 
-    std::vector<VkImage> swapChainImages(swapChainImageCount);
-    vkGetSwapchainImagesKHR(m_device, m_swapChain, &swapChainImageCount, swapChainImages.data());
+    // TODO: move all the stuff below in another function
+    m_swapChainImages.resize(swapChainImageCount);
+    Assert::vulkan(
+      vkGetSwapchainImagesKHR(m_device, m_swapChain, &swapChainImageCount, m_swapChainImages.data()),
+      "Failed to get swap chain images"
+    );
 
-    /*
-    Here is an image index that you can use in the future.
-    But it's used conditional on the fact, that the GPU stops using this image before
-    you start using it again.
-    And the way how you know when it stopped is using the semaphore.
-    */
+    m_swapChainImageViews.resize(m_swapChainImages.size());
+
+    for (uint32_t i = 0; i < swapChainImageCount; i++)
+    {
+      m_swapChainImageViews[i] = createImageView(m_device, m_swapChainImages[i], m_swapChainFormat);
+    }
+
+    m_swapChainFramebuffers.resize(m_swapChainImageViews.size());
+
+    for (uint32_t i = 0; i < swapChainImageCount; i++)
+    {
+      m_swapChainFramebuffers[i] = createFramebuffer(m_device, m_renderPass, m_swapChainImageViews[i], m_window);
+    }
+
+    m_commandPool = createCommandPool(m_device, &familyIndex);
+
+    VkCommandBufferAllocateInfo allocateInfo = { };
+    allocateInfo.sType = VK_STRUCTURE_TYPE_COMMAND_BUFFER_ALLOCATE_INFO;
+    allocateInfo.commandPool = m_commandPool;
+    allocateInfo.level = VK_COMMAND_BUFFER_LEVEL_PRIMARY;
+    allocateInfo.commandBufferCount = 1;
+
+    Assert::vulkan(
+      vkAllocateCommandBuffers(m_device, &allocateInfo, &m_commandBuffer),
+      "Failed to allocate command buffers"
+    );
   }
 
   bool VkApi::update()
@@ -47,15 +89,79 @@ namespace RX
   bool VkApi::render()
   {
     uint32_t imageIndex = 0;
-    vkAcquireNextImageKHR(m_device, m_swapChain, VK_TIMEOUT, m_semaphore, VK_NULL_HANDLE, &imageIndex);
+
+    Assert::vulkan(
+      vkAcquireNextImageKHR(m_device, m_swapChain, VK_TIMEOUT, m_imageAvailableSemaphore, VK_NULL_HANDLE, &imageIndex),
+      "Failed to acquire next image from swap chain"
+    );
+
+    Assert::vulkan(
+      vkResetCommandPool(m_device, m_commandPool, 0),
+      "Failed to reset command pool"
+    );
+
+    VkCommandBufferBeginInfo beginInfo = { };
+    beginInfo.sType = VK_STRUCTURE_TYPE_COMMAND_BUFFER_BEGIN_INFO;
+    beginInfo.flags = VK_COMMAND_BUFFER_USAGE_ONE_TIME_SUBMIT_BIT;
+
+    Assert::vulkan(
+      vkBeginCommandBuffer(m_commandBuffer, &beginInfo),
+      "Failed to begin command buffer"
+    );
+
+    VkRenderPassBeginInfo renderPassBeginInfo = { };
+    renderPassBeginInfo.sType = VK_STRUCTURE_TYPE_RENDER_PASS_BEGIN_INFO;
+    renderPassBeginInfo.renderPass = m_renderPass;
+    renderPassBeginInfo.framebuffer = m_swapChainFramebuffers[imageIndex];
+
+    int width, height;
+    m_window->getWindowSize(&width, &height);
+    renderPassBeginInfo.renderArea.extent.width = static_cast<uint32_t>(width);
+    renderPassBeginInfo.renderArea.extent.height = static_cast<uint32_t>(height);
+
+    renderPassBeginInfo.clearValueCount = 1;
+
+    VkClearValue color = { };
+    color.color = { 0.2f, 0.2f, 0.2f, 1.0f };
+    renderPassBeginInfo.pClearValues = &color;
+
+    vkCmdBeginRenderPass(m_commandBuffer, &renderPassBeginInfo, VK_SUBPASS_CONTENTS_INLINE);
+
+    // draw calls go here
+    vkCmdBindPipeline(m_commandBuffer, VK_PIPELINE_BIND_POINT_GRAPHICS, m_pipeline);
+    vkCmdDraw(m_commandBuffer, 3, 1, 0, 0);
+
+    vkCmdEndRenderPass(m_commandBuffer);
+    
+    Assert::vulkan(
+      vkEndCommandBuffer(m_commandBuffer),
+      "Failed to end command buffer"
+    );
+
+    VkPipelineStageFlags submitStageMask = VK_PIPELINE_STAGE_COLOR_ATTACHMENT_OUTPUT_BIT;
+
+    VkSubmitInfo submitInfo = { };
+    submitInfo.sType = VK_STRUCTURE_TYPE_SUBMIT_INFO;
+    submitInfo.waitSemaphoreCount = 1;
+    submitInfo.pWaitSemaphores = &m_imageAvailableSemaphore;
+    submitInfo.pWaitDstStageMask = &submitStageMask;
+    submitInfo.commandBufferCount = 1;
+    submitInfo.pCommandBuffers = &m_commandBuffer;
+    submitInfo.signalSemaphoreCount = 1;
+    submitInfo.pSignalSemaphores = &m_finishedRenderSemaphore;
+
+    Assert::vulkan(
+      vkQueueSubmit(m_queue, 1, &submitInfo, VK_NULL_HANDLE),
+      "Failed to submit queue"
+    );
 
     VkPresentInfoKHR presentInfo = { };
     presentInfo.sType = VK_STRUCTURE_TYPE_PRESENT_INFO_KHR;
+    presentInfo.waitSemaphoreCount = 1;
+    presentInfo.pWaitSemaphores = &m_finishedRenderSemaphore;
     presentInfo.swapchainCount = 1;
     presentInfo.pSwapchains = &m_swapChain;
     presentInfo.pImageIndices = &imageIndex;
-
-    
 
     Assert::vulkan(
       vkQueuePresentKHR(m_queue, &presentInfo),
@@ -72,6 +178,6 @@ namespace RX
 
   void VkApi::clean()
   {
-
+    
   }
 }

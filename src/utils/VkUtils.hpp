@@ -3,19 +3,77 @@
 
 #include "pch/stdafx.hpp"
 #include "window/Window.hpp"
+#include "api/Shader.hpp"
 
 namespace RX
 {
-  VkInstance createInstance(std::shared_ptr<Window> window);
+  VkInstance createInstance
+  (
+    std::shared_ptr<Window> window
+  );
 
-  // Retrieves all physical devices and returns the first discrete GPU that was found
-  VkPhysicalDevice pickPhysicalDevice(VkInstance instance);
+  VkPhysicalDevice pickPhysicalDevice
+  (
+    VkInstance instance
+  );
 
-  VkDevice createDevice(VkInstance instance, VkPhysicalDevice physicalDevice, uint32_t* familyIndex);
+  VkDevice createDevice
+  (
+    VkInstance instance,
+    VkPhysicalDevice physicalDevice,
+    uint32_t* familyIndex
+  );
 
-  VkSwapchainKHR createSwapChain(VkPhysicalDevice physicalDevice, VkDevice device, VkSurfaceKHR surface, std::shared_ptr<Window> window, uint32_t* familyIndex);
+  VkSwapchainKHR createSwapChain
+  (
+    VkPhysicalDevice physicalDevice, 
+    VkDevice device, 
+    VkSurfaceKHR surface, 
+    std::shared_ptr<Window> window, 
+    uint32_t* familyIndex, 
+    VkFormat* format
+  );
 
-  VkSemaphore createSemaphore(VkDevice device);
+  VkSemaphore createSemaphore
+  (
+    VkDevice device
+  );
+
+  VkCommandPool createCommandPool
+  (
+    VkDevice device, 
+    uint32_t* familyIndex
+  );
+
+  VkRenderPass createRenderPass
+  (
+    VkDevice device, 
+    VkFormat format
+  );
+
+  VkPipeline createPipeline
+  (
+    VkDevice device, 
+    VkRenderPass renderPass,
+    std::shared_ptr<Window> window,
+    std::shared_ptr<Shader> vertex, 
+    std::shared_ptr<Shader> fragment
+  );
+
+  VkFramebuffer createFramebuffer
+  (
+    VkDevice device, 
+    VkRenderPass renderPass, 
+    VkImageView imageView, 
+    std::shared_ptr<Window> window
+  );
+
+  VkImageView createImageView
+  (
+    VkDevice device,
+    VkImage image, 
+    VkFormat format
+  );
 }
 
 #endif // VK_UTILS_HPP

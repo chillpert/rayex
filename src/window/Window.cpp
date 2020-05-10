@@ -96,4 +96,9 @@ namespace RX
   {
     m_properties.setTitle(title);
   }
+
+  void Window::getWindowSize(int* width, int* height)
+  {
+    SDL_GetWindowSize(m_window, width, height);
+  }
 }

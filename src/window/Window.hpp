@@ -28,6 +28,7 @@ namespace RX
 
     RX_API inline SDL_Window* getWindow() { return m_window; }
     RX_API inline WindowProperties& getProperties() { return m_properties; }
+    RX_API inline void getWindowSize(int* width, int* height);
   
   protected:
     SDL_Window* m_window;

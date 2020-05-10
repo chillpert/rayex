@@ -2,6 +2,7 @@
 #define VK_API_HPP
 
 #include "window/Window.hpp"
+#include "api/Shader.hpp"
 
 namespace RX
 {
@@ -22,9 +23,23 @@ namespace RX
     VkPhysicalDevice m_physicalDevice;
     VkDevice m_device;
     VkSurfaceKHR m_surface;
+
     VkSwapchainKHR m_swapChain;
-    VkSemaphore m_semaphore;
+    std::vector<VkImage> m_swapChainImages;
+    std::vector<VkImageView> m_swapChainImageViews;
+    std::vector<VkFramebuffer> m_swapChainFramebuffers;
+    VkFormat m_swapChainFormat;
+
+    VkRenderPass m_renderPass;
+    VkPipeline m_pipeline;
+    std::shared_ptr<Shader> m_vertexShader;
+    std::shared_ptr<Shader> m_fragmentShader;
+
+    VkSemaphore m_imageAvailableSemaphore;
+    VkSemaphore m_finishedRenderSemaphore;
     VkQueue m_queue;
+    VkCommandPool m_commandPool;
+    VkCommandBuffer m_commandBuffer;
   };
 }
 

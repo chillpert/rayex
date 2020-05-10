@@ -15,6 +15,34 @@ namespace RX
 #ifdef RX_DEBUG
     std::vector<const char*> validationLayers = { "VK_LAYER_KHRONOS_validation" };
 
+    // Checks if given validation layers are available on this device.
+    uint32_t propertyCount;
+    vkEnumerateInstanceLayerProperties(&propertyCount, nullptr);
+
+    std::vector<VkLayerProperties> properties(propertyCount);
+    vkEnumerateInstanceLayerProperties(&propertyCount, properties.data());
+
+    for (const auto& layerName : validationLayers)
+    {
+      bool found = false;
+
+      for (const auto& property : properties)
+      {
+        std::cout << layerName << " : " << property.layerName << std::endl;
+
+        if (strcmp(property.layerName, layerName))
+        {
+          found = true;
+          break;
+        }
+      }
+
+      if (!found)
+      {
+        Error::runtime("Validation layer is not available on this device", Error::API);
+      }
+    }
+
     createInfo.ppEnabledLayerNames = validationLayers.data();
     createInfo.enabledLayerCount = static_cast<uint32_t>(validationLayers.size());
 #endif

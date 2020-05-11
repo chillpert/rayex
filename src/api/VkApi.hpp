@@ -38,12 +38,8 @@ namespace RX
     Swapchain swapchain;
     Surface surface;
 
-    std::shared_ptr<VkShader> m_vertexShader;
-    std::shared_ptr<VkShader> m_fragmentShader;
-
-    std::vector<VkImage> m_swapChainImages;
-    std::vector<VkImageView> m_swapChainImageViews;
-    std::vector<VkFramebuffer> m_swapChainFramebuffers;
+    std::shared_ptr<VkShader> vs;
+    std::shared_ptr<VkShader> fs;
 
     RenderPass renderPass;
     Pipeline pipeline;

@@ -1,14 +1,14 @@
-#include "api/Shader.hpp"
+#include "api/VkShader.hpp"
 
 namespace RX
 {
-  Shader::Shader(const std::string& pathToFile, const std::string& fileName, VkDevice* device) :
+  VkShader::VkShader(const std::string& pathToFile, const std::string& fileName, VkDevice* device) :
     m_pathToFile(pathToFile), m_fileName(fileName), m_logicalDevice(device)
   {
     compile();
   }
 
-  Shader::Shader(const std::string& fullPath, VkDevice* device)
+  VkShader::VkShader(const std::string& fullPath, VkDevice* device)
     : m_logicalDevice(device)
   {
     std::string delimiter = "/";
@@ -27,7 +27,7 @@ namespace RX
     compile();
   }
 
-  void Shader::compile()
+  void VkShader::compile()
   {
     // This is the name of the resulting shader.
     // For example, myShader.frag will turn into myShader_frag.spv
@@ -57,12 +57,12 @@ namespace RX
     load();
   }
 
-  void Shader::destroy()
+  void VkShader::destroy()
   {
     vkDestroyShaderModule(*m_logicalDevice, m_shaderModule, nullptr);
   }
 
-  void Shader::load()
+  void VkShader::load()
   {
     std::ifstream file(m_pathToFile + m_fileNameOut, std::ios::ate | std::ios::binary);
 
@@ -84,7 +84,7 @@ namespace RX
     createShaderModule();
   }
 
-  void Shader::createShaderModule()
+  void VkShader::createShaderModule()
   {
     VkShaderModuleCreateInfo createInfo{};
     createInfo.sType = VK_STRUCTURE_TYPE_SHADER_MODULE_CREATE_INFO;

@@ -1,5 +1,4 @@
 #include "Renderer.hpp"
-#include "api/Api.hpp"
 
 namespace RX
 {

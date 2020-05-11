@@ -3,7 +3,7 @@
 
 #include "pch/stdafx.hpp"
 #include "window/Window.hpp"
-#include "api/Shader.hpp"
+#include "api/VkShader.hpp"
 
 namespace RX
 {
@@ -34,8 +34,8 @@ namespace RX
     VkDevice device, 
     VkRenderPass renderPass,
     std::shared_ptr<Window> window,
-    std::shared_ptr<Shader> vertex, 
-    std::shared_ptr<Shader> fragment
+    std::shared_ptr<VkShader> vertex, 
+    std::shared_ptr<VkShader> fragment
   );
 
   VkFramebuffer createFramebuffer

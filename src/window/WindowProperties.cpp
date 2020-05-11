@@ -1,5 +1,4 @@
 #include "window/WindowProperties.hpp"
-#include "api/Api.hpp"
 
 namespace RX
 {

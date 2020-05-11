@@ -5,11 +5,11 @@
 
 namespace RX
 {
-  class Shader
+  class VkShader
   {
   public:
-    Shader(const std::string& pathToFile, const std::string& fileName, VkDevice* device);
-    Shader(const std::string& fullPath, VkDevice* device);
+    VkShader(const std::string& pathToFile, const std::string& fileName, VkDevice* device);
+    VkShader(const std::string& fullPath, VkDevice* device);
 
     // This function calls glslc.exe to compile the given shader file to .spv.
     void compile();

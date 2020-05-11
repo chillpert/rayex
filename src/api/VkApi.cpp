@@ -1,5 +1,5 @@
-#include "VkApi.hpp"
-#include "utils/VkUtils.hpp"
+#include "api/VkApi.hpp"
+#include "api/VkUtils.hpp"
 
 namespace RX
 {
@@ -21,24 +21,24 @@ namespace RX
 
   void VkApi::initialize()
   {
-    uint32_t familyIndex = 0;
+    uint32_t queueFamilyIndex = 0;
 
     m_instance = createInstance(m_window);
     m_messenger.create(m_instance);
     m_physicalDevice = pickPhysicalDevice(m_instance);
-    m_device = createDevice(m_instance, m_physicalDevice, &familyIndex);
+    m_device = createDevice(m_instance, m_physicalDevice, &queueFamilyIndex);
     m_surface = m_window->createSurface(m_instance);
-    m_swapChain = createSwapChain(m_physicalDevice, m_device, m_surface, m_window, &familyIndex, &m_swapChainFormat);
+    m_swapChain = createSwapChain(m_physicalDevice, m_device, m_surface, m_window, &queueFamilyIndex, &m_swapChainFormat);
 
     m_imageAvailableSemaphore = createSemaphore(m_device);
     m_finishedRenderSemaphore = createSemaphore(m_device);
     
-    vkGetDeviceQueue(m_device, familyIndex, 0, &m_queue);
+    vkGetDeviceQueue(m_device, queueFamilyIndex, 0, &m_queue);
     
     m_renderPass = createRenderPass(m_device, m_swapChainFormat);
     
-    m_vertexShader = std::make_shared<Shader>(RX_SHADER_PATH, "test.vert", &m_device);
-    m_fragmentShader = std::make_shared<Shader>(RX_SHADER_PATH, "test.frag", &m_device);
+    m_vertexShader = std::make_shared<VkShader>(RX_SHADER_PATH, "test.vert", &m_device);
+    m_fragmentShader = std::make_shared<VkShader>(RX_SHADER_PATH, "test.frag", &m_device);
     m_pipeline = createPipeline(m_device, m_renderPass, m_window, m_vertexShader, m_fragmentShader);
     
     uint32_t swapChainImageCount;
@@ -68,7 +68,7 @@ namespace RX
       m_swapChainFramebuffers[i] = createFramebuffer(m_device, m_renderPass, m_swapChainImageViews[i], m_window);
     }
 
-    m_commandPool = createCommandPool(m_device, &familyIndex);
+    m_commandPool = createCommandPool(m_device, &queueFamilyIndex);
 
     VkCommandBufferAllocateInfo allocateInfo = { };
     allocateInfo.sType = VK_STRUCTURE_TYPE_COMMAND_BUFFER_ALLOCATE_INFO;

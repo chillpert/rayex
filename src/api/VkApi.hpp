@@ -2,7 +2,7 @@
 #define VK_API_HPP
 
 #include "window/Window.hpp"
-#include "api/Shader.hpp"
+#include "api/VkShader.hpp"
 #include "VkMessenger.hpp"
 
 namespace RX
@@ -35,8 +35,8 @@ namespace RX
 
     VkRenderPass m_renderPass;
     VkPipeline m_pipeline;
-    std::shared_ptr<Shader> m_vertexShader;
-    std::shared_ptr<Shader> m_fragmentShader;
+    std::shared_ptr<VkShader> m_vertexShader;
+    std::shared_ptr<VkShader> m_fragmentShader;
 
     VkSemaphore m_imageAvailableSemaphore;
     VkSemaphore m_finishedRenderSemaphore;

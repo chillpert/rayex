@@ -18,6 +18,8 @@ namespace RX
     std::stringstream ss;
     ss << s_label << ": " << typeToString(type) << ": " << message;
 
+    std::cout << ss.str() << std::endl;
+
     throw std::runtime_error(ss.str());
   }
 
@@ -25,6 +27,8 @@ namespace RX
   {
     std::stringstream ss;
     ss << s_label << ": " << typeToString(type) << ": " << message;
+
+    std::cout << ss.str() << std::endl;
 
     throw std::runtime_error(ss.str());
   }

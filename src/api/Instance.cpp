@@ -78,10 +78,10 @@ namespace RX
   void Instance::checkExtensionSupport(const char* name)
   {
     uint32_t propertyCount;
-    VK_ASSERT(vkEnumerateInstanceExtensionProperties(nullptr, &propertyCount, nullptr), "Failed to enumerate instance layer properties");
+    VK_ASSERT(vkEnumerateInstanceExtensionProperties(nullptr, &propertyCount, nullptr), "Failed to enumerate instance extension properties");
 
     std::vector<VkExtensionProperties> properties(propertyCount);
-    VK_ASSERT(vkEnumerateInstanceExtensionProperties(nullptr, &propertyCount, properties.data()), "Failed to enumerate instance layer properties");
+    VK_ASSERT(vkEnumerateInstanceExtensionProperties(nullptr, &propertyCount, properties.data()), "Failed to enumerate instance extension properties");
 
     for (const auto& property : properties)
     {
@@ -97,8 +97,14 @@ namespace RX
     uint32_t apiVersion;
     VK_ASSERT(vkEnumerateInstanceVersion(&apiVersion), "Failed to enumerate instance version");
 
-    if (apiVersion < VK_API_VERSION_1_1)
-      VK_ERROR("The Vulkan envinroment on this device is outdated");
+    if (apiVersion >= VK_API_VERSION_1_2)
+      VK_LOG("Found Vulkan SDK API Version 1.2");
+
+    else if (apiVersion >= VK_API_VERSION_1_1)
+      VK_LOG("Found Vulkan SDK API Version 1.1");
+
+    else
+      VK_ERROR("The Vulkan SDK on this device is outdated");
   
     return apiVersion;
   }

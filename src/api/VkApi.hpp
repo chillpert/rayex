@@ -2,9 +2,10 @@
 #define VK_API_HPP
 
 #include "window/Window.hpp"
-#include "api/VkShader.hpp"
+
+#include "VkShader.hpp"
 #include "VkMessenger.hpp"
-#include "api/Instance.hpp"
+#include "PhysicalDevice.hpp"
 
 namespace RX
 {
@@ -24,8 +25,7 @@ namespace RX
     Instance instance;
     VkMessenger m_messenger;
 
-    //VkInstance m_instance;
-    VkPhysicalDevice m_physicalDevice;
+    PhysicalDevice physicalDevice;
     VkDevice m_device;
     VkSurfaceKHR m_surface;
 

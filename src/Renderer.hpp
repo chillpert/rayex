@@ -1,7 +1,7 @@
 #ifndef RENDERER_HPP
 #define RENDERER_HPP
 
-#include "api/VkApi.hpp"
+#include "api/Api.hpp"
 
 namespace RX
 {
@@ -26,7 +26,7 @@ namespace RX
 
   private:
     std::shared_ptr<Window> m_window;
-    VkApi m_api;
+    Api m_api;
 
     bool m_initialized;
     bool m_running;

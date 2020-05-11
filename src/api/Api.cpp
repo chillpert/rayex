@@ -1,12 +1,12 @@
-#include "api/VkApi.hpp"
+#include "api/Api.hpp"
 
 namespace RX
 {
-  VkApi::VkApi(std::shared_ptr<Window> window) :
+  Api::Api(std::shared_ptr<Window> window) :
     m_window(window),
     m_queue(VK_NULL_HANDLE) { }
 
-  void VkApi::initialize()
+  void Api::initialize()
   {
     uint32_t queueFamilyIndex = 0;
 
@@ -35,12 +35,12 @@ namespace RX
     commandBuffer.create(device.get(), commandPool.get());
   }
 
-  bool VkApi::update()
+  bool Api::update()
   {
     return true;
   }
 
-  bool VkApi::render()
+  bool Api::render()
   {
     uint32_t imageIndex = 0;
 
@@ -139,7 +139,7 @@ namespace RX
     return true;
   }
 
-  void VkApi::clean()
+  void Api::clean()
   {
     debugMessenger.destroy(instance.get());
   }

@@ -1,5 +1,5 @@
-#ifndef VK_API_HPP
-#define VK_API_HPP
+#ifndef API_HPP
+#define API_HPP
 
 #include "window/Window.hpp"
 
@@ -18,10 +18,10 @@
 
 namespace RX
 {
-  class VkApi
+  class Api
   {
   public:
-    VkApi(std::shared_ptr<Window> window);
+    Api(std::shared_ptr<Window> window);
 
     void initialize();
     bool update();
@@ -52,4 +52,4 @@ namespace RX
   };
 }
 
-#endif // VK_API_HPP
+#endif // API_HPP

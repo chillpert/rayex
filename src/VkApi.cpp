@@ -24,6 +24,7 @@ namespace RX
     uint32_t familyIndex = 0;
 
     m_instance = createInstance(m_window);
+    m_messenger.create(m_instance);
     m_physicalDevice = pickPhysicalDevice(m_instance);
     m_device = createDevice(m_instance, m_physicalDevice, &familyIndex);
     m_surface = m_window->createSurface(m_instance);
@@ -126,7 +127,7 @@ namespace RX
     renderPassBeginInfo.pClearValues = &color;
 
     vkCmdBeginRenderPass(m_commandBuffer, &renderPassBeginInfo, VK_SUBPASS_CONTENTS_INLINE);
-
+     
     /*
     VkViewport viewport = { };
     viewport.x = 0.0f;
@@ -197,6 +198,6 @@ namespace RX
 
   void VkApi::clean()
   {
-    
+    m_messenger.destroy(m_instance);
   }
 }

@@ -5,7 +5,10 @@
 
 #include "VkShader.hpp"
 #include "VkMessenger.hpp"
+#include "Instance.hpp"
+#include "PhysicalDevice.hpp"
 #include "Device.hpp"
+#include "Swapchain.hpp"
 
 namespace RX
 {
@@ -26,10 +29,10 @@ namespace RX
     VkMessenger m_messenger;
     PhysicalDevice physicalDevice;
     Device device;
+    Swapchain swapchain;
 
     VkSurfaceKHR m_surface;
 
-    VkSwapchainKHR m_swapChain;
     std::vector<VkImage> m_swapChainImages;
     std::vector<VkImageView> m_swapChainImageViews;
     std::vector<VkFramebuffer> m_swapChainFramebuffers;

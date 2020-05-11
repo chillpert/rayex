@@ -1,7 +1,7 @@
 #ifndef DEVICE_HPP
 #define DEVICE_HPP
 
-#include "PhysicalDevice.hpp"
+#include "pch/stdafx.hpp"
 
 namespace RX
 {

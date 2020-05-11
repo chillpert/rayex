@@ -6,7 +6,6 @@ namespace RX
   VkApi::VkApi(std::shared_ptr<Window> window) :
     m_window(window),
     m_surface(VK_NULL_HANDLE),
-    m_swapChain(VK_NULL_HANDLE),
     m_swapChainFormat(VK_FORMAT_B8G8R8A8_UNORM),
     m_renderPass(VK_NULL_HANDLE),
     m_pipeline(VK_NULL_HANDLE),
@@ -25,7 +24,7 @@ namespace RX
     physicalDevice.create(instance.get());
     device.create(instance.get(), physicalDevice.get(), &queueFamilyIndex);
     m_surface = m_window->createSurface(instance.get());
-    m_swapChain = createSwapChain(physicalDevice.get(), device.get(), m_surface, m_window, &queueFamilyIndex, &m_swapChainFormat);
+    swapchain.create(physicalDevice.get(), device.get(), m_surface, m_window, &queueFamilyIndex);
 
     m_imageAvailableSemaphore = createSemaphore(device.get());
     m_finishedRenderSemaphore = createSemaphore(device.get());
@@ -40,14 +39,14 @@ namespace RX
     
     uint32_t swapChainImageCount;
     Assert::vulkan(
-      vkGetSwapchainImagesKHR(device.get(), m_swapChain, &swapChainImageCount, nullptr),
+      vkGetSwapchainImagesKHR(device.get(), swapchain.get(), &swapChainImageCount, nullptr),
       "Failed to get swap chain images"
     );
 
     // TODO: move all the stuff below in another function
     m_swapChainImages.resize(swapChainImageCount);
     Assert::vulkan(
-      vkGetSwapchainImagesKHR(device.get(), m_swapChain, &swapChainImageCount, m_swapChainImages.data()),
+      vkGetSwapchainImagesKHR(device.get(), swapchain.get(), &swapChainImageCount, m_swapChainImages.data()),
       "Failed to get swap chain images"
     );
 
@@ -89,7 +88,7 @@ namespace RX
     uint32_t imageIndex = 0;
 
     Assert::vulkan(
-      vkAcquireNextImageKHR(device.get(), m_swapChain, VK_TIMEOUT, m_imageAvailableSemaphore, VK_NULL_HANDLE, &imageIndex),
+      vkAcquireNextImageKHR(device.get(), swapchain.get(), VK_TIMEOUT, m_imageAvailableSemaphore, VK_NULL_HANDLE, &imageIndex),
       "Failed to acquire next image from swap chain"
     );
 
@@ -177,7 +176,8 @@ namespace RX
     presentInfo.waitSemaphoreCount = 1;
     presentInfo.pWaitSemaphores = &m_finishedRenderSemaphore;
     presentInfo.swapchainCount = 1;
-    presentInfo.pSwapchains = &m_swapChain;
+    VkSwapchainKHR swapChains[] = { swapchain.get() };
+    presentInfo.pSwapchains = swapChains;
     presentInfo.pImageIndices = &imageIndex;
 
     Assert::vulkan(

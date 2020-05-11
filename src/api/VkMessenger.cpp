@@ -1,11 +1,11 @@
 #include "api/VkMessenger.hpp"
 
-#ifdef RX_DEBUG
 
 namespace RX
 {
   void VkMessenger::create(VkInstance instance)
   {
+#ifdef RX_DEBUG
     m_createDebugUtilsMessengerEXT = (PFN_vkCreateDebugUtilsMessengerEXT)vkGetInstanceProcAddr(instance, "vkCreateDebugUtilsMessengerEXT");
     m_destroyDebugUtilsMessengerEXT = (PFN_vkDestroyDebugUtilsMessengerEXT)vkGetInstanceProcAddr(instance, "vkDestroyDebugUtilsMessengerEXT");
 
@@ -24,11 +24,14 @@ namespace RX
       m_createDebugUtilsMessengerEXT(instance, &createInfo, nullptr, &m_debugMessenger),
       "Failed to create debug utils messenger"
     );
+#endif
   }
 
   void VkMessenger::destroy(VkInstance instance)
   {
+#ifdef RX_DEBUG
     m_destroyDebugUtilsMessengerEXT(instance, m_debugMessenger, nullptr);
+#endif
   }
 
   // The source for this function is the official LunarG tutorial.
@@ -94,5 +97,3 @@ namespace RX
     return VK_FALSE;
   }
 }
-
-#endif // RX_DEBUG

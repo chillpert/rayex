@@ -23,9 +23,7 @@ namespace RX
     uint32_t queueFamilyIndex = 0;
 
     instance.create(m_window);
-#ifdef RX_DEBUG
     m_messenger.create(instance.get());
-#endif
     m_physicalDevice = pickPhysicalDevice(instance.get());
     m_device = createDevice(instance.get(), m_physicalDevice, &queueFamilyIndex);
     m_surface = m_window->createSurface(instance.get());
@@ -199,8 +197,6 @@ namespace RX
 
   void VkApi::clean()
   {
-#ifdef RX_DEBUG
     m_messenger.destroy(instance.get());
-#endif
   }
 }

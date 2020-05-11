@@ -22,9 +22,8 @@ namespace RX
     std::shared_ptr<Window> m_window;
 
     Instance instance;
-#ifdef RX_DEBUG
     VkMessenger m_messenger;
-#endif
+
     //VkInstance m_instance;
     VkPhysicalDevice m_physicalDevice;
     VkDevice m_device;

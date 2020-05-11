@@ -1,7 +1,6 @@
 #ifndef VK_MESSENGER_HPP
 #define VK_MESSENGER_HPP
 
-#ifdef RX_DEBUG
 #include "pch/stdafx.hpp"
 
 namespace RX
@@ -26,7 +25,5 @@ namespace RX
     void* userData
   );
 }
-
-#endif // RX_DEBUG
 
 #endif // VK_MESSENGER_HPP

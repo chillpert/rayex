@@ -7,7 +7,7 @@ namespace RX
     checkLayerSupport(name);
 
     layers.push_back(name);
-    //VK_LOG("Added Layer: " << name);
+    VK_LOG("Added Layer: " << name);
   }
 
   void Instance::pushExtension(const char* name)
@@ -15,7 +15,7 @@ namespace RX
     checkExtensionSupport(name);
 
     extensions.push_back(name);
-    //VK_LOG("Added Extension: " << name);
+    VK_LOG("Added Extension: " << name);
   }
 
   void Instance::create(const std::shared_ptr<Window> const window)
@@ -97,8 +97,8 @@ namespace RX
     uint32_t apiVersion;
     VK_ASSERT(vkEnumerateInstanceVersion(&apiVersion), "Failed to enumerate instance version");
 
-    //if (apiVersion < VK_API_VERSION_1_1)
-      //VK_ERROR("The Vulkan envinroment on this device is outdated");
+    if (apiVersion < VK_API_VERSION_1_1)
+      VK_ERROR("The Vulkan envinroment on this device is outdated");
   
     return apiVersion;
   }

@@ -9,6 +9,7 @@
 #include "PhysicalDevice.hpp"
 #include "Device.hpp"
 #include "Swapchain.hpp"
+#include "Surface.hpp"
 
 namespace RX
 {
@@ -31,7 +32,7 @@ namespace RX
     Device device;
     Swapchain swapchain;
 
-    VkSurfaceKHR m_surface;
+    Surface surface;
 
     std::vector<VkImage> m_swapChainImages;
     std::vector<VkImageView> m_swapChainImageViews;

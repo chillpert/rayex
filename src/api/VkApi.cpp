@@ -5,7 +5,6 @@ namespace RX
 {
   VkApi::VkApi(std::shared_ptr<Window> window) :
     m_window(window),
-    m_surface(VK_NULL_HANDLE),
     m_swapChainFormat(VK_FORMAT_B8G8R8A8_UNORM),
     m_renderPass(VK_NULL_HANDLE),
     m_pipeline(VK_NULL_HANDLE),
@@ -23,8 +22,8 @@ namespace RX
     m_messenger.create(instance.get());
     physicalDevice.create(instance.get());
     device.create(instance.get(), physicalDevice.get(), &queueFamilyIndex);
-    m_surface = m_window->createSurface(instance.get());
-    swapchain.create(physicalDevice.get(), device.get(), m_surface, m_window, &queueFamilyIndex);
+    surface.create(instance.get(), m_window);
+    swapchain.create(physicalDevice.get(), device.get(), surface, m_window, &queueFamilyIndex);
 
     m_imageAvailableSemaphore = createSemaphore(device.get());
     m_finishedRenderSemaphore = createSemaphore(device.get());

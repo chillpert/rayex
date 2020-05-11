@@ -8,6 +8,8 @@ namespace RX
   class Surface
   {
   public:
+    Surface();
+
     inline VkSurfaceKHR get() { return surface; }
     inline VkSurfaceFormatKHR getFormat() { return surfaceFormat; }
 

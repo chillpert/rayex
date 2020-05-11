@@ -5,9 +5,6 @@ namespace RX
 {
   VkApi::VkApi(std::shared_ptr<Window> window) :
     m_window(window),
-    m_swapChainFormat(VK_FORMAT_B8G8R8A8_UNORM),
-    m_renderPass(VK_NULL_HANDLE),
-    m_pipeline(VK_NULL_HANDLE),
     m_queue(VK_NULL_HANDLE) { }
 
   void VkApi::initialize()
@@ -26,37 +23,31 @@ namespace RX
     
     vkGetDeviceQueue(device.get(), queueFamilyIndex, 0, &m_queue);
     
-    m_renderPass = createRenderPass(device.get(), m_swapChainFormat);
+    renderPass.create(device.get(), surface.getFormat().format);
     
     m_vertexShader = std::make_shared<VkShader>(RX_SHADER_PATH, "test.vert", device.get());
     m_fragmentShader = std::make_shared<VkShader>(RX_SHADER_PATH, "test.frag", device.get());
-    m_pipeline = createPipeline(device.get(), m_renderPass, m_window, m_vertexShader, m_fragmentShader);
+    pipeline.create(device.get(), renderPass.get(), m_window, m_vertexShader, m_fragmentShader);
     
     uint32_t swapChainImageCount;
-    Assert::vulkan(
-      vkGetSwapchainImagesKHR(device.get(), swapchain.get(), &swapChainImageCount, nullptr),
-      "Failed to get swap chain images"
-    );
+    VK_ASSERT(vkGetSwapchainImagesKHR(device.get(), swapchain.get(), &swapChainImageCount, nullptr), "Failed to get swap chain images");
 
     // TODO: move all the stuff below in another function
     m_swapChainImages.resize(swapChainImageCount);
-    Assert::vulkan(
-      vkGetSwapchainImagesKHR(device.get(), swapchain.get(), &swapChainImageCount, m_swapChainImages.data()),
-      "Failed to get swap chain images"
-    );
+    VK_ASSERT(vkGetSwapchainImagesKHR(device.get(), swapchain.get(), &swapChainImageCount, m_swapChainImages.data()), "Failed to get swap chain images");
 
     m_swapChainImageViews.resize(m_swapChainImages.size());
 
     for (uint32_t i = 0; i < swapChainImageCount; i++)
     {
-      m_swapChainImageViews[i] = createImageView(device.get(), m_swapChainImages[i], m_swapChainFormat);
+      m_swapChainImageViews[i] = createImageView(device.get(), m_swapChainImages[i], surface.getFormat().format);
     }
 
     m_swapChainFramebuffers.resize(m_swapChainImageViews.size());
 
     for (uint32_t i = 0; i < swapChainImageCount; i++)
     {
-      m_swapChainFramebuffers[i] = createFramebuffer(device.get(), m_renderPass, m_swapChainImageViews[i], m_window);
+      m_swapChainFramebuffers[i] = createFramebuffer(device.get(), renderPass.get(), m_swapChainImageViews[i], m_window);
     }
 
     commandPool.create(device.get(), &queueFamilyIndex);
@@ -84,7 +75,7 @@ namespace RX
 
     VkRenderPassBeginInfo renderPassBeginInfo = { };
     renderPassBeginInfo.sType = VK_STRUCTURE_TYPE_RENDER_PASS_BEGIN_INFO;
-    renderPassBeginInfo.renderPass = m_renderPass;
+    renderPassBeginInfo.renderPass = renderPass.get();
     renderPassBeginInfo.framebuffer = m_swapChainFramebuffers[imageIndex];
 
     int width, height;
@@ -120,7 +111,7 @@ namespace RX
     */
 
     // draw calls go here
-    vkCmdBindPipeline(commandBuffer.get(), VK_PIPELINE_BIND_POINT_GRAPHICS, m_pipeline);
+    vkCmdBindPipeline(commandBuffer.get(), VK_PIPELINE_BIND_POINT_GRAPHICS, pipeline.get());
     vkCmdDraw(commandBuffer.get(), 3, 1, 0, 0);
 
     vkCmdEndRenderPass(commandBuffer.get());

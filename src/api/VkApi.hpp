@@ -13,6 +13,8 @@
 #include "Semaphore.hpp"
 #include "CommandPool.hpp"
 #include "CommandBuffer.hpp"
+#include "Pipeline.hpp"
+#include "RenderPass.hpp"
 
 namespace RX
 {
@@ -34,18 +36,17 @@ namespace RX
     PhysicalDevice physicalDevice;
     Device device;
     Swapchain swapchain;
-
     Surface surface;
+
+    std::shared_ptr<VkShader> m_vertexShader;
+    std::shared_ptr<VkShader> m_fragmentShader;
 
     std::vector<VkImage> m_swapChainImages;
     std::vector<VkImageView> m_swapChainImageViews;
     std::vector<VkFramebuffer> m_swapChainFramebuffers;
-    VkFormat m_swapChainFormat;
 
-    VkRenderPass m_renderPass;
-    VkPipeline m_pipeline;
-    std::shared_ptr<VkShader> m_vertexShader;
-    std::shared_ptr<VkShader> m_fragmentShader;
+    RenderPass renderPass;
+    Pipeline pipeline;
 
     Semaphore imageAvailableSemaphore;
     Semaphore finishedRenderSemaphore;

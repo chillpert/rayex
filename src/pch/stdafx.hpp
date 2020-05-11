@@ -19,6 +19,7 @@
 #include <set>
 #include <stdexcept>
 #include <algorithm>
+#include <map>
 #include <fstream>
 
 #endif // STDAFX_HPP

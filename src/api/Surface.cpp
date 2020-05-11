@@ -2,6 +2,14 @@
 
 namespace RX
 {
+  Surface::Surface() :
+    surface(VK_NULL_HANDLE)
+  {
+    // Define prefered surface formats.
+    surfaceFormat.colorSpace = VK_COLOR_SPACE_SRGB_NONLINEAR_KHR;
+    surfaceFormat.format = VK_FORMAT_B8G8R8A8_UNORM;
+  }
+
   void Surface::create(VkInstance instance, std::shared_ptr<Window> window)
   {
     surface = window->createSurface(instance);
@@ -37,10 +45,6 @@ namespace RX
 
   void Surface::checkFormatSupport(VkPhysicalDevice physicalDevice)
   {
-    // Define prefered surface formats.
-    surfaceFormat.colorSpace = VK_COLOR_SPACE_SRGB_NONLINEAR_KHR;
-    surfaceFormat.format = VK_FORMAT_B8G8R8A8_UNORM;
-
     VkFormatProperties formatProperties{ };
     vkGetPhysicalDeviceFormatProperties(physicalDevice, surfaceFormat.format, &formatProperties); // TODO: Check if this color format is supported
 
@@ -52,11 +56,11 @@ namespace RX
 
     for (const auto& iter : surfaceFormats)
     {
-      if (iter.format == surfaceFormat.format && iter.colorSpace == VK_COLOR_SPACE_SRGB_NONLINEAR_KHR)
+      if (iter.format == surfaceFormat.format && iter.colorSpace == surfaceFormat.colorSpace)
         return;
     }
 
-    // If the wanted format and space are not available, fall back.
+    // If the prefered format and color space are not available, fall back.
     surfaceFormat.format = surfaceFormats[0].format;
     surfaceFormat.colorSpace = surfaceFormats[0].colorSpace;
   }

@@ -8,10 +8,7 @@ namespace RX
     m_swapChainFormat(VK_FORMAT_B8G8R8A8_UNORM),
     m_renderPass(VK_NULL_HANDLE),
     m_pipeline(VK_NULL_HANDLE),
-    m_imageAvailableSemaphore(VK_NULL_HANDLE),
-    m_finishedRenderSemaphore(VK_NULL_HANDLE),
     m_queue(VK_NULL_HANDLE),
-    m_commandPool(VK_NULL_HANDLE),
     m_commandBuffer(VK_NULL_HANDLE) { }
 
   void VkApi::initialize()
@@ -25,8 +22,8 @@ namespace RX
     surface.create(instance.get(), m_window);
     swapchain.create(physicalDevice.get(), device.get(), surface, m_window, &queueFamilyIndex);
 
-    m_imageAvailableSemaphore = createSemaphore(device.get());
-    m_finishedRenderSemaphore = createSemaphore(device.get());
+    imageAvailableSemaphore.create(device.get());
+    finishedRenderSemaphore.create(device.get());
     
     vkGetDeviceQueue(device.get(), queueFamilyIndex, 0, &m_queue);
     
@@ -63,11 +60,11 @@ namespace RX
       m_swapChainFramebuffers[i] = createFramebuffer(device.get(), m_renderPass, m_swapChainImageViews[i], m_window);
     }
 
-    m_commandPool = createCommandPool(device.get(), &queueFamilyIndex);
+    commandPool.create(device.get(), &queueFamilyIndex);
 
     VkCommandBufferAllocateInfo allocateInfo = { };
     allocateInfo.sType = VK_STRUCTURE_TYPE_COMMAND_BUFFER_ALLOCATE_INFO;
-    allocateInfo.commandPool = m_commandPool;
+    allocateInfo.commandPool = commandPool.get();
     allocateInfo.level = VK_COMMAND_BUFFER_LEVEL_PRIMARY;
     allocateInfo.commandBufferCount = 1;
 
@@ -87,14 +84,11 @@ namespace RX
     uint32_t imageIndex = 0;
 
     Assert::vulkan(
-      vkAcquireNextImageKHR(device.get(), swapchain.get(), VK_TIMEOUT, m_imageAvailableSemaphore, VK_NULL_HANDLE, &imageIndex),
+      vkAcquireNextImageKHR(device.get(), swapchain.get(), VK_TIMEOUT, imageAvailableSemaphore.get(), VK_NULL_HANDLE, &imageIndex),
       "Failed to acquire next image from swap chain"
     );
 
-    Assert::vulkan(
-      vkResetCommandPool(device.get(), m_commandPool, 0),
-      "Failed to reset command pool"
-    );
+    commandPool.reset(device.get());
 
     VkCommandBufferBeginInfo beginInfo = { };
     beginInfo.sType = VK_STRUCTURE_TYPE_COMMAND_BUFFER_BEGIN_INFO;
@@ -158,12 +152,14 @@ namespace RX
     VkSubmitInfo submitInfo = { };
     submitInfo.sType = VK_STRUCTURE_TYPE_SUBMIT_INFO;
     submitInfo.waitSemaphoreCount = 1;
-    submitInfo.pWaitSemaphores = &m_imageAvailableSemaphore;
+    VkSemaphore imageAvailableSemaphores[] = { imageAvailableSemaphore.get() };
+    submitInfo.pWaitSemaphores = imageAvailableSemaphores;
     submitInfo.pWaitDstStageMask = &submitStageMask;
     submitInfo.commandBufferCount = 1;
     submitInfo.pCommandBuffers = &m_commandBuffer;
     submitInfo.signalSemaphoreCount = 1;
-    submitInfo.pSignalSemaphores = &m_finishedRenderSemaphore;
+    VkSemaphore finishedRenderSemaphores[] = { finishedRenderSemaphore.get() };
+    submitInfo.pSignalSemaphores = finishedRenderSemaphores;
 
     Assert::vulkan(
       vkQueueSubmit(m_queue, 1, &submitInfo, VK_NULL_HANDLE),
@@ -173,7 +169,7 @@ namespace RX
     VkPresentInfoKHR presentInfo = { };
     presentInfo.sType = VK_STRUCTURE_TYPE_PRESENT_INFO_KHR;
     presentInfo.waitSemaphoreCount = 1;
-    presentInfo.pWaitSemaphores = &m_finishedRenderSemaphore;
+    presentInfo.pWaitSemaphores = finishedRenderSemaphores;
     presentInfo.swapchainCount = 1;
     VkSwapchainKHR swapChains[] = { swapchain.get() };
     presentInfo.pSwapchains = swapChains;

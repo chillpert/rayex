@@ -10,6 +10,8 @@
 #include "Device.hpp"
 #include "Swapchain.hpp"
 #include "Surface.hpp"
+#include "Semaphore.hpp"
+#include "CommandPool.hpp"
 
 namespace RX
 {
@@ -44,10 +46,10 @@ namespace RX
     std::shared_ptr<VkShader> m_vertexShader;
     std::shared_ptr<VkShader> m_fragmentShader;
 
-    VkSemaphore m_imageAvailableSemaphore;
-    VkSemaphore m_finishedRenderSemaphore;
+    Semaphore imageAvailableSemaphore;
+    Semaphore finishedRenderSemaphore;
     VkQueue m_queue;
-    VkCommandPool m_commandPool;
+    CommandPool commandPool;
     VkCommandBuffer m_commandBuffer;
   };
 }

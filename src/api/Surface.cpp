@@ -26,10 +26,10 @@ namespace RX
     return surfaceCapabilitites;
   }
 
-  void Surface::checkPhysicalDeviceSupport(VkPhysicalDevice physicalDevice, uint32_t* familyIndex)
+  void Surface::checkPhysicalDeviceSupport(VkPhysicalDevice physicalDevice, uint32_t* queueFamilyIndex)
   {
     VkBool32 supported = false;
-    VK_ASSERT(vkGetPhysicalDeviceSurfaceSupportKHR(physicalDevice, *familyIndex, surface, &supported), "Failed to query pyhsical device surface support");
+    VK_ASSERT(vkGetPhysicalDeviceSurfaceSupportKHR(physicalDevice, *queueFamilyIndex, surface, &supported), "Failed to query pyhsical device surface support");
 
     if (supported == VK_FALSE)
       VK_ERROR("Physical device surface does not support WSI");

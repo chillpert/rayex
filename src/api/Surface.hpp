@@ -18,7 +18,7 @@ namespace RX
     // Returns the optimal surface capabilities.
     VkSurfaceCapabilitiesKHR getCapabilitites(VkPhysicalDevice physicalDevice);
     // Checks if the physical device supports a surface.
-    void checkPhysicalDeviceSupport(VkPhysicalDevice physicalDevice, uint32_t* familyIndex);
+    void checkPhysicalDeviceSupport(VkPhysicalDevice physicalDevice, uint32_t* queueFamilyIndex);
     // First checks if the physical device supports the prefered surface format and second if the surface supports it as well.
     void checkFormatSupport(VkPhysicalDevice physicalDevice);
 

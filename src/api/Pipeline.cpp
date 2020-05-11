@@ -2,18 +2,18 @@
 
 namespace RX
 {
-  void Pipeline::create(VkDevice device, VkRenderPass renderPass, std::shared_ptr<Window> window, std::shared_ptr<VkShader> vs, std::shared_ptr<VkShader> fs)
+  void Pipeline::create(VkDevice device, VkRenderPass renderPass, std::shared_ptr<Window> window, Shader& vs, Shader& fs)
   {
     VkPipelineShaderStageCreateInfo vertShaderStageInfo{ };
     vertShaderStageInfo.sType = VK_STRUCTURE_TYPE_PIPELINE_SHADER_STAGE_CREATE_INFO;
     vertShaderStageInfo.stage = VK_SHADER_STAGE_VERTEX_BIT;
-    vertShaderStageInfo.module = *vs->getShaderModule();
+    vertShaderStageInfo.module = vs.getShaderModule();
     vertShaderStageInfo.pName = "main";
 
     VkPipelineShaderStageCreateInfo fragShaderStageInfo{ };
     fragShaderStageInfo.sType = VK_STRUCTURE_TYPE_PIPELINE_SHADER_STAGE_CREATE_INFO;
     fragShaderStageInfo.stage = VK_SHADER_STAGE_FRAGMENT_BIT;
-    fragShaderStageInfo.module = *fs->getShaderModule();
+    fragShaderStageInfo.module = fs.getShaderModule();
     fragShaderStageInfo.pName = "main";
 
     VkPipelineShaderStageCreateInfo shaderStages[] = { vertShaderStageInfo, fragShaderStageInfo };

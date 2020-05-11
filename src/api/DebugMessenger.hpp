@@ -1,11 +1,11 @@
-#ifndef VK_MESSENGER_HPP
-#define VK_MESSENGER_HPP
+#ifndef VK_DEBUG_MESSENGER_HPP
+#define VK_DEBUG_MESSENGER_HPP
 
 #include "pch/stdafx.hpp"
 
 namespace RX
 {
-  class VkMessenger
+  class DebugMessenger
   {
   public:
     void create(VkInstance instance);
@@ -26,4 +26,4 @@ namespace RX
   );
 }
 
-#endif // VK_MESSENGER_HPP
+#endif // VK_DEBUG_MESSENGER_HPP

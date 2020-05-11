@@ -1,5 +1,4 @@
 #include "api/VkApi.hpp"
-#include "api/VkUtils.hpp"
 
 namespace RX
 {
@@ -12,7 +11,7 @@ namespace RX
     uint32_t queueFamilyIndex = 0;
 
     instance.create(m_window);
-    m_messenger.create(instance.get());
+    debugMessenger.create(instance.get());
     physicalDevice.create(instance.get());
     device.create(instance.get(), physicalDevice.get(), &queueFamilyIndex);
     surface.create(instance.get(), m_window);
@@ -21,12 +20,12 @@ namespace RX
     imageAvailableSemaphore.create(device.get());
     finishedRenderSemaphore.create(device.get());
     
-    vkGetDeviceQueue(device.get(), queueFamilyIndex, 0, &m_queue);
+    vkGetDeviceQueue(device.get(), queueFamilyIndex, 0, &m_queue); // TODO: create queue abstraction
     
     renderPass.create(device.get(), surface.getFormat().format);
     
-    vs = std::make_shared<VkShader>(RX_SHADER_PATH, "test.vert", device.get());
-    fs = std::make_shared<VkShader>(RX_SHADER_PATH, "test.frag", device.get());
+    vs.create(RX_SHADER_PATH "test.vert", device.get());
+    fs.create(RX_SHADER_PATH "test.frag", device.get());
     pipeline.create(device.get(), renderPass.get(), m_window, vs, fs);
     
     swapchain.createImages(device.get());
@@ -142,6 +141,6 @@ namespace RX
 
   void VkApi::clean()
   {
-    m_messenger.destroy(instance.get());
+    debugMessenger.destroy(instance.get());
   }
 }

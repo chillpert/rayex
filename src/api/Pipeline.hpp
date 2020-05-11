@@ -2,7 +2,7 @@
 #define PIPELINE_HPP
 
 #include "window/Window.hpp"
-#include "VkShader.hpp"
+#include "Shader.hpp"
 
 namespace RX
 {
@@ -11,7 +11,7 @@ namespace RX
   public:
     inline VkPipeline get() { return pipeline; }
 
-    void create(VkDevice device, VkRenderPass renderPass, std::shared_ptr<Window> window, std::shared_ptr<VkShader> vs, std::shared_ptr<VkShader> fs);
+    void create(VkDevice device, VkRenderPass renderPass, std::shared_ptr<Window> window, Shader& vs, Shader& fs);
     void destroy(VkDevice device);
 
   private:

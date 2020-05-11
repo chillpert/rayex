@@ -1,9 +1,9 @@
-#include "api/VkMessenger.hpp"
+#include "api/DebugMessenger.hpp"
 
 
 namespace RX
 {
-  void VkMessenger::create(VkInstance instance)
+  void DebugMessenger::create(VkInstance instance)
   {
 #ifdef RX_DEBUG
     m_createDebugUtilsMessengerEXT = (PFN_vkCreateDebugUtilsMessengerEXT)vkGetInstanceProcAddr(instance, "vkCreateDebugUtilsMessengerEXT");
@@ -20,14 +20,11 @@ namespace RX
       VK_DEBUG_UTILS_MESSAGE_TYPE_VALIDATION_BIT_EXT;
     createInfo.pfnUserCallback = debugMessengerCallback;
     
-    Assert::vulkan(
-      m_createDebugUtilsMessengerEXT(instance, &createInfo, nullptr, &m_debugMessenger),
-      "Failed to create debug utils messenger"
-    );
+    VK_ASSERT(m_createDebugUtilsMessengerEXT(instance, &createInfo, nullptr, &m_debugMessenger), "Failed to create debug utils messenger");
 #endif
   }
 
-  void VkMessenger::destroy(VkInstance instance)
+  void DebugMessenger::destroy(VkInstance instance)
   {
 #ifdef RX_DEBUG
     m_destroyDebugUtilsMessengerEXT(instance, m_debugMessenger, nullptr);

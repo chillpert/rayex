@@ -3,8 +3,7 @@
 
 #include "window/Window.hpp"
 
-#include "VkShader.hpp"
-#include "VkMessenger.hpp"
+#include "DebugMessenger.hpp"
 #include "Instance.hpp"
 #include "PhysicalDevice.hpp"
 #include "Device.hpp"
@@ -15,6 +14,7 @@
 #include "CommandBuffer.hpp"
 #include "Pipeline.hpp"
 #include "RenderPass.hpp"
+#include "Shader.hpp"
 
 namespace RX
 {
@@ -32,14 +32,14 @@ namespace RX
     std::shared_ptr<Window> m_window;
 
     Instance instance;
-    VkMessenger m_messenger;
+    DebugMessenger debugMessenger;
     PhysicalDevice physicalDevice;
     Device device;
     Swapchain swapchain;
     Surface surface;
 
-    std::shared_ptr<VkShader> vs;
-    std::shared_ptr<VkShader> fs;
+    Shader vs;
+    Shader fs;
 
     RenderPass renderPass;
     Pipeline pipeline;

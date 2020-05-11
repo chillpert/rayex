@@ -4,6 +4,7 @@
 #include "window/Window.hpp"
 #include "api/VkShader.hpp"
 #include "VkMessenger.hpp"
+#include "api/Instance.hpp"
 
 namespace RX
 {
@@ -19,6 +20,8 @@ namespace RX
   
   private:
     std::shared_ptr<Window> m_window;
+
+    //Instance instance_;
 
     VkMessenger m_messenger;
 

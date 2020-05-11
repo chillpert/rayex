@@ -3,6 +3,8 @@
 
 #include <sstream>
 
+#define VK_ERROR(message) Error::runtime(message, Error::API)
+
 namespace RX
 {
   class Error

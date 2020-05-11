@@ -7,6 +7,12 @@
 #include <SDL2/SDL_vulkan.h>
 #include <vulkan/vulkan.h>
 
+#ifdef RX_DEBUG
+  #define VK_ASSERT(result, message) Assert::vulkan(result, message)         
+#else
+  #define VK_ASSERT(result, message) result
+#endif
+
 namespace RX
 {
   class Assert

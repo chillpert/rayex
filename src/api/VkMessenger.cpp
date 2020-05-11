@@ -1,5 +1,7 @@
 #include "api/VkMessenger.hpp"
 
+#ifdef RX_DEBUG
+
 namespace RX
 {
   void VkMessenger::create(VkInstance instance)
@@ -92,3 +94,5 @@ namespace RX
     return VK_FALSE;
   }
 }
+
+#endif // RX_DEBUG

@@ -5,7 +5,6 @@ namespace RX
 {
   VkApi::VkApi(std::shared_ptr<Window> window) :
     m_window(window),
-    m_instance(VK_NULL_HANDLE),
     m_physicalDevice(VK_NULL_HANDLE),
     m_device(VK_NULL_HANDLE),
     m_surface(VK_NULL_HANDLE),
@@ -23,11 +22,13 @@ namespace RX
   {
     uint32_t queueFamilyIndex = 0;
 
-    m_instance = createInstance(m_window);
-    m_messenger.create(m_instance);
-    m_physicalDevice = pickPhysicalDevice(m_instance);
-    m_device = createDevice(m_instance, m_physicalDevice, &queueFamilyIndex);
-    m_surface = m_window->createSurface(m_instance);
+    instance.create(m_window);
+#ifdef RX_DEBUG
+    m_messenger.create(instance.get());
+#endif
+    m_physicalDevice = pickPhysicalDevice(instance.get());
+    m_device = createDevice(instance.get(), m_physicalDevice, &queueFamilyIndex);
+    m_surface = m_window->createSurface(instance.get());
     m_swapChain = createSwapChain(m_physicalDevice, m_device, m_surface, m_window, &queueFamilyIndex, &m_swapChainFormat);
 
     m_imageAvailableSemaphore = createSemaphore(m_device);
@@ -198,6 +199,8 @@ namespace RX
 
   void VkApi::clean()
   {
-    m_messenger.destroy(m_instance);
+#ifdef RX_DEBUG
+    m_messenger.destroy(instance.get());
+#endif
   }
 }

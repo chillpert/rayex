@@ -21,11 +21,11 @@ namespace RX
   private:
     std::shared_ptr<Window> m_window;
 
-    //Instance instance_;
-
+    Instance instance;
+#ifdef RX_DEBUG
     VkMessenger m_messenger;
-
-    VkInstance m_instance;
+#endif
+    //VkInstance m_instance;
     VkPhysicalDevice m_physicalDevice;
     VkDevice m_device;
     VkSurfaceKHR m_surface;

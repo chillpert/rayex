@@ -158,14 +158,5 @@ if(BUILD_EXAMPLES)
       COMMENT "Running POST_BUILD action: Copying SDL2d.dll to binary location"
       )
 
-    add_custom_command(
-      TARGET example
-      POST_BUILD
-      COMMAND ${CMAKE_COMMAND} -E copy
-              ${PROJECT_SOURCE_DIR}/build/bin/${BUILD_PATH}/renderer.dll
-              ${PROJECT_SOURCE_DIR}/build/bin/${BUILD_PATH}/renderer.dll
-      COMMENT "Running POST_BUILD action: Copying renderer.dll to binary location"
-      )
-
   endif()
 endif()

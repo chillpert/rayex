@@ -8,7 +8,7 @@ namespace RX
   class Instance
   {
   public:
-    inline VkInstance get() { return m_instance; }
+    inline VkInstance get() { return instance; }
 
     // Needs to be called before create
     void pushLayer(const char* name);
@@ -21,10 +21,12 @@ namespace RX
     void checkLayerSupport(const char* name);
     void checkExtensionSupport(const char* name);
 
-    VkInstance m_instance;
+    uint32_t getApiVersion();
 
-    std::vector<const char*> m_layers;
-    std::vector<const char*> m_extensions;
+    VkInstance instance;
+
+    std::vector<const char*> layers;
+    std::vector<const char*> extensions;
   };
 }
 

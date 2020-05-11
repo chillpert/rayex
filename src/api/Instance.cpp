@@ -6,20 +6,23 @@ namespace RX
   {
     checkLayerSupport(name);
 
-    m_layers.push_back(name);
+    layers.push_back(name);
+    //VK_LOG("Added Layer: " << name);
   }
+
   void Instance::pushExtension(const char* name)
   {
     checkExtensionSupport(name);
 
-    m_extensions.push_back(name);
+    extensions.push_back(name);
+    //VK_LOG("Added Extension: " << name);
   }
 
   void Instance::create(const std::shared_ptr<Window> const window)
   {
     VkApplicationInfo appInfo{ };
     appInfo.sType = VK_STRUCTURE_TYPE_APPLICATION_INFO;
-    appInfo.apiVersion = VK_API_VERSION_1_2;
+    appInfo.apiVersion = getApiVersion();
 
     VkInstanceCreateInfo createInfo{ };
     createInfo.sType = VK_STRUCTURE_TYPE_INSTANCE_CREATE_INFO;
@@ -28,8 +31,8 @@ namespace RX
 #ifdef RX_DEBUG
     pushLayer("VK_LAYER_KHRONOS_validation");
 
-    createInfo.ppEnabledLayerNames = m_layers.data();
-    createInfo.enabledLayerCount = static_cast<uint32_t>(m_layers.size());
+    createInfo.ppEnabledLayerNames = layers.data();
+    createInfo.enabledLayerCount = static_cast<uint32_t>(layers.size());
 #endif
 
     // Retrieves all extensions needed by SDL2
@@ -37,18 +40,22 @@ namespace RX
     window->getInstanceExtensions(sdlExtensionsCount, NULL);
 
     const char** sdlExtensionsNames = new const char* [sdlExtensionsCount];
+
     window->getInstanceExtensions(sdlExtensionsCount, sdlExtensionsNames);
 
-    m_extensions = std::vector<const char*>(sdlExtensionsNames, sdlExtensionsNames + sdlExtensionsCount);
+    for (size_t i = 0; i < sdlExtensionsCount; ++i)
+    {
+      pushExtension(sdlExtensionsNames[i]);
+    }
 
 #ifdef RX_DEBUG
     pushExtension(VK_EXT_DEBUG_UTILS_EXTENSION_NAME);
 #endif
 
-    createInfo.ppEnabledExtensionNames = m_extensions.data();
-    createInfo.enabledExtensionCount = static_cast<uint32_t>(m_extensions.size());
+    createInfo.ppEnabledExtensionNames = extensions.data();
+    createInfo.enabledExtensionCount = static_cast<uint32_t>(extensions.size());
 
-    VK_ASSERT(vkCreateInstance(&createInfo, nullptr, &m_instance), "Failed to create instance");
+    VK_ASSERT(vkCreateInstance(&createInfo, nullptr, &instance), "Failed to create instance");
   }
 
   void Instance::checkLayerSupport(const char* name)
@@ -83,5 +90,16 @@ namespace RX
     }
 
     VK_ERROR("Validation layer is not available on this device");
+  }
+
+  uint32_t Instance::getApiVersion()
+  {
+    uint32_t apiVersion;
+    VK_ASSERT(vkEnumerateInstanceVersion(&apiVersion), "Failed to enumerate instance version");
+
+    //if (apiVersion < VK_API_VERSION_1_1)
+      //VK_ERROR("The Vulkan envinroment on this device is outdated");
+  
+    return apiVersion;
   }
 }

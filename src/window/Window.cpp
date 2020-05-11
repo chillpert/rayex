@@ -80,7 +80,7 @@ namespace RX
     }
   }
 
-  VkSurfaceKHR Window::createSurface(VkInstance& instance)
+  VkSurfaceKHR Window::createSurface(VkInstance instance)
   {
     VkSurfaceKHR surface;
 

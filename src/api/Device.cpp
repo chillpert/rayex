@@ -113,6 +113,7 @@ namespace RX
         indices.graphicsFamily = i;
 
       VkBool32 presentSupport = false;
+
       vkGetPhysicalDeviceSurfaceSupportKHR(device, i, *SwapChain::getSurface(), &presentSupport);
 
       if (presentSupport)

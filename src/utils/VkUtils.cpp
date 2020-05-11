@@ -2,10 +2,7 @@
 
 namespace RX
 {
-  VkInstance createInstance
-  (
-    std::shared_ptr<Window> window
-  )
+  VkInstance createInstance(std::shared_ptr<Window> window)
   {
     VkApplicationInfo appInfo = { };
     appInfo.sType = VK_STRUCTURE_TYPE_APPLICATION_INFO;
@@ -75,10 +72,7 @@ namespace RX
     return instance;
   }
 
-  VkPhysicalDevice pickPhysicalDevice
-  (
-    VkInstance instance
-  )
+  VkPhysicalDevice pickPhysicalDevice(VkInstance instance)
   {
     uint32_t physicalDeviceCount = 0;
     Assert::vulkan(
@@ -110,12 +104,7 @@ namespace RX
     Error::runtime("No discrete GPU with Vulkan support available", Error::API);
   }
 
-  VkDevice createDevice
-  (
-    VkInstance instance, 
-    VkPhysicalDevice physicalDevice,
-    uint32_t* familyIndex
-  )
+  VkDevice createDevice(VkInstance instance, VkPhysicalDevice physicalDevice, uint32_t* familyIndex)
   {
     VkDevice device;
 
@@ -231,8 +220,18 @@ namespace RX
 
     VkSurfaceCapabilitiesKHR surfaceCapabilitites;
     vkGetPhysicalDeviceSurfaceCapabilitiesKHR(physicalDevice, surface, &surfaceCapabilitites);
+
+    if (!(surfaceCapabilitites.supportedCompositeAlpha & VK_COMPOSITE_ALPHA_OPAQUE_BIT_KHR))
+    {
+      Error::runtime("VK_COMPOSITE_ALPHA_OPAQUE_BIT_KHR is not supported on this device", Error::API); // TODO: make generic
+    }
+
+    if (!(surfaceCapabilitites.supportedUsageFlags & VK_IMAGE_USAGE_COLOR_ATTACHMENT_BIT))
+    {
+      Error::runtime("VK_IMAGE_USAGE_COLOR_ATTACHMENT_BIT is not supported on this device", Error::API); // TODO: make generic
+    }
     
-    createInfo.preTransform = surfaceCapabilitites.currentTransform; // causes error?!
+    createInfo.preTransform = surfaceCapabilitites.currentTransform;
     createInfo.compositeAlpha = VK_COMPOSITE_ALPHA_OPAQUE_BIT_KHR;
 
     int width, height;
@@ -254,10 +253,7 @@ namespace RX
     return swapChain;
   }
  
-  VkSemaphore createSemaphore
-  (
-    VkDevice device
-  )
+  VkSemaphore createSemaphore(VkDevice device)
   {
     VkSemaphore semaphore;
     
@@ -272,11 +268,7 @@ namespace RX
     return semaphore;
   }
 
-  VkCommandPool createCommandPool
-  (
-    VkDevice device, 
-    uint32_t* familyIndex
-  )
+  VkCommandPool createCommandPool(VkDevice device, uint32_t* familyIndex)
   {
     VkCommandPool commandPool;
 
@@ -293,11 +285,7 @@ namespace RX
     return commandPool;
   }
 
-  VkRenderPass createRenderPass
-  (
-    VkDevice device, 
-    VkFormat format
-  )
+  VkRenderPass createRenderPass(VkDevice device, VkFormat format)
   {
     VkRenderPass renderPass;
 
@@ -491,12 +479,7 @@ namespace RX
     return framebuffer;
   }
 
-  VkImageView createImageView
-  (
-    VkDevice device,
-    VkImage image, 
-    VkFormat format
-  )
+  VkImageView createImageView(VkDevice device, VkImage image, VkFormat format)
   {
     VkImageView imageView;
 
@@ -514,6 +497,7 @@ namespace RX
     createInfo.subresourceRange.levelCount = 1;
     createInfo.subresourceRange.baseArrayLayer = 0;
     createInfo.subresourceRange.layerCount = 1;
+
     Assert::vulkan(
       vkCreateImageView(device, &createInfo, nullptr, &imageView),
       "Failed to create image view"

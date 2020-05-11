@@ -7,22 +7,11 @@
 
 namespace RX
 {
-  VkInstance createInstance
-  (
-    std::shared_ptr<Window> window
-  );
+  VkInstance createInstance(std::shared_ptr<Window> window);
 
-  VkPhysicalDevice pickPhysicalDevice
-  (
-    VkInstance instance
-  );
+  VkPhysicalDevice pickPhysicalDevice(VkInstance instance);
 
-  VkDevice createDevice
-  (
-    VkInstance instance,
-    VkPhysicalDevice physicalDevice,
-    uint32_t* familyIndex
-  );
+  VkDevice createDevice(VkInstance instance, VkPhysicalDevice physicalDevice, uint32_t* familyIndex);
 
   VkSwapchainKHR createSwapChain
   (
@@ -34,22 +23,11 @@ namespace RX
     VkFormat* format
   );
 
-  VkSemaphore createSemaphore
-  (
-    VkDevice device
-  );
+  VkSemaphore createSemaphore(VkDevice device);
 
-  VkCommandPool createCommandPool
-  (
-    VkDevice device, 
-    uint32_t* familyIndex
-  );
+  VkCommandPool createCommandPool(VkDevice device, uint32_t* familyIndex);
 
-  VkRenderPass createRenderPass
-  (
-    VkDevice device, 
-    VkFormat format
-  );
+  VkRenderPass createRenderPass(VkDevice device,  VkFormat format);
 
   VkPipeline createPipeline
   (
@@ -68,12 +46,7 @@ namespace RX
     std::shared_ptr<Window> window
   );
 
-  VkImageView createImageView
-  (
-    VkDevice device,
-    VkImage image, 
-    VkFormat format
-  );
+  VkImageView createImageView(VkDevice device, VkImage image, VkFormat format);
 }
 
 #endif // VK_UTILS_HPP

@@ -10,7 +10,7 @@ namespace RX
   public:
     inline VkPhysicalDevice get() { return physicalDevice; }
 
-    // Technically not created, but enumerated. However, better for the naming scheme
+    // Technically not created, but enumerated. However, this way is better for the naming scheme.
     void create(VkInstance instance);
   
   private:

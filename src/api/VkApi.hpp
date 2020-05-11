@@ -5,7 +5,7 @@
 
 #include "VkShader.hpp"
 #include "VkMessenger.hpp"
-#include "PhysicalDevice.hpp"
+#include "Device.hpp"
 
 namespace RX
 {
@@ -24,9 +24,9 @@ namespace RX
 
     Instance instance;
     VkMessenger m_messenger;
-
     PhysicalDevice physicalDevice;
-    VkDevice m_device;
+    Device device;
+
     VkSurfaceKHR m_surface;
 
     VkSwapchainKHR m_swapChain;

@@ -5,7 +5,6 @@ namespace RX
 {
   VkApi::VkApi(std::shared_ptr<Window> window) :
     m_window(window),
-    m_device(VK_NULL_HANDLE),
     m_surface(VK_NULL_HANDLE),
     m_swapChain(VK_NULL_HANDLE),
     m_swapChainFormat(VK_FORMAT_B8G8R8A8_UNORM),
@@ -24,31 +23,31 @@ namespace RX
     instance.create(m_window);
     m_messenger.create(instance.get());
     physicalDevice.create(instance.get());
-    m_device = createDevice(instance.get(), physicalDevice.get(), &queueFamilyIndex);
+    device.create(instance.get(), physicalDevice.get(), &queueFamilyIndex);
     m_surface = m_window->createSurface(instance.get());
-    m_swapChain = createSwapChain(physicalDevice.get(), m_device, m_surface, m_window, &queueFamilyIndex, &m_swapChainFormat);
+    m_swapChain = createSwapChain(physicalDevice.get(), device.get(), m_surface, m_window, &queueFamilyIndex, &m_swapChainFormat);
 
-    m_imageAvailableSemaphore = createSemaphore(m_device);
-    m_finishedRenderSemaphore = createSemaphore(m_device);
+    m_imageAvailableSemaphore = createSemaphore(device.get());
+    m_finishedRenderSemaphore = createSemaphore(device.get());
     
-    vkGetDeviceQueue(m_device, queueFamilyIndex, 0, &m_queue);
+    vkGetDeviceQueue(device.get(), queueFamilyIndex, 0, &m_queue);
     
-    m_renderPass = createRenderPass(m_device, m_swapChainFormat);
+    m_renderPass = createRenderPass(device.get(), m_swapChainFormat);
     
-    m_vertexShader = std::make_shared<VkShader>(RX_SHADER_PATH, "test.vert", &m_device);
-    m_fragmentShader = std::make_shared<VkShader>(RX_SHADER_PATH, "test.frag", &m_device);
-    m_pipeline = createPipeline(m_device, m_renderPass, m_window, m_vertexShader, m_fragmentShader);
+    m_vertexShader = std::make_shared<VkShader>(RX_SHADER_PATH, "test.vert", device.get());
+    m_fragmentShader = std::make_shared<VkShader>(RX_SHADER_PATH, "test.frag", device.get());
+    m_pipeline = createPipeline(device.get(), m_renderPass, m_window, m_vertexShader, m_fragmentShader);
     
     uint32_t swapChainImageCount;
     Assert::vulkan(
-      vkGetSwapchainImagesKHR(m_device, m_swapChain, &swapChainImageCount, nullptr),
+      vkGetSwapchainImagesKHR(device.get(), m_swapChain, &swapChainImageCount, nullptr),
       "Failed to get swap chain images"
     );
 
     // TODO: move all the stuff below in another function
     m_swapChainImages.resize(swapChainImageCount);
     Assert::vulkan(
-      vkGetSwapchainImagesKHR(m_device, m_swapChain, &swapChainImageCount, m_swapChainImages.data()),
+      vkGetSwapchainImagesKHR(device.get(), m_swapChain, &swapChainImageCount, m_swapChainImages.data()),
       "Failed to get swap chain images"
     );
 
@@ -56,17 +55,17 @@ namespace RX
 
     for (uint32_t i = 0; i < swapChainImageCount; i++)
     {
-      m_swapChainImageViews[i] = createImageView(m_device, m_swapChainImages[i], m_swapChainFormat);
+      m_swapChainImageViews[i] = createImageView(device.get(), m_swapChainImages[i], m_swapChainFormat);
     }
 
     m_swapChainFramebuffers.resize(m_swapChainImageViews.size());
 
     for (uint32_t i = 0; i < swapChainImageCount; i++)
     {
-      m_swapChainFramebuffers[i] = createFramebuffer(m_device, m_renderPass, m_swapChainImageViews[i], m_window);
+      m_swapChainFramebuffers[i] = createFramebuffer(device.get(), m_renderPass, m_swapChainImageViews[i], m_window);
     }
 
-    m_commandPool = createCommandPool(m_device, &queueFamilyIndex);
+    m_commandPool = createCommandPool(device.get(), &queueFamilyIndex);
 
     VkCommandBufferAllocateInfo allocateInfo = { };
     allocateInfo.sType = VK_STRUCTURE_TYPE_COMMAND_BUFFER_ALLOCATE_INFO;
@@ -75,7 +74,7 @@ namespace RX
     allocateInfo.commandBufferCount = 1;
 
     Assert::vulkan(
-      vkAllocateCommandBuffers(m_device, &allocateInfo, &m_commandBuffer),
+      vkAllocateCommandBuffers(device.get(), &allocateInfo, &m_commandBuffer),
       "Failed to allocate command buffers"
     );
   }
@@ -90,12 +89,12 @@ namespace RX
     uint32_t imageIndex = 0;
 
     Assert::vulkan(
-      vkAcquireNextImageKHR(m_device, m_swapChain, VK_TIMEOUT, m_imageAvailableSemaphore, VK_NULL_HANDLE, &imageIndex),
+      vkAcquireNextImageKHR(device.get(), m_swapChain, VK_TIMEOUT, m_imageAvailableSemaphore, VK_NULL_HANDLE, &imageIndex),
       "Failed to acquire next image from swap chain"
     );
 
     Assert::vulkan(
-      vkResetCommandPool(m_device, m_commandPool, 0),
+      vkResetCommandPool(device.get(), m_commandPool, 0),
       "Failed to reset command pool"
     );
 
@@ -187,7 +186,7 @@ namespace RX
     );
 
     Assert::vulkan(
-      vkDeviceWaitIdle(m_device),
+      vkDeviceWaitIdle(device.get()),
       "Device failed to wait idle"
     );
 

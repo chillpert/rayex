@@ -8,6 +8,8 @@ namespace RX
   class Instance
   {
   public:
+    ~Instance();
+
     inline VkInstance get() { return instance; }
 
     // Needs to be called before create
@@ -16,6 +18,8 @@ namespace RX
     void pushExtension(const char* name);
 
     void create(const std::shared_ptr<Window> const window);
+    // No need to call destroy at application shutdown.
+    void destroy();
 
   private:
     void checkLayerSupport(const char* name);

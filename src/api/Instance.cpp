@@ -2,6 +2,11 @@
 
 namespace RX
 {
+  Instance::~Instance()
+  {
+    destroy();
+  }
+
   void Instance::pushLayer(const char* name)
   {
     checkLayerSupport(name);
@@ -56,6 +61,11 @@ namespace RX
     createInfo.enabledExtensionCount = static_cast<uint32_t>(extensions.size());
 
     VK_ASSERT(vkCreateInstance(&createInfo, nullptr, &instance), "Failed to create instance");
+  }
+
+  void Instance::destroy()
+  {
+    vkDestroyInstance(instance, nullptr);
   }
 
   void Instance::checkLayerSupport(const char* name)

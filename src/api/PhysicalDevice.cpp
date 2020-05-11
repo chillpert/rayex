@@ -17,7 +17,7 @@ namespace RX
 
       if (props.deviceType == VK_PHYSICAL_DEVICE_TYPE_DISCRETE_GPU)
       {
-        physicalDevice = physicalDevices[i];
+        physicalDevice = physicalDevices[i]; // TODO: Do proper device scoring!
         VK_LOG("GPU: " << props.deviceName);
         return;
       }

@@ -2,14 +2,14 @@
 
 namespace RX
 {
-  VkShader::VkShader(const std::string& pathToFile, const std::string& fileName, VkDevice* device) :
-    m_pathToFile(pathToFile), m_fileName(fileName), m_logicalDevice(device)
+  VkShader::VkShader(const std::string& pathToFile, const std::string& fileName, VkDevice device) :
+    m_pathToFile(pathToFile), m_fileName(fileName), m_logicalDevice(&device)
   {
     compile();
   }
 
-  VkShader::VkShader(const std::string& fullPath, VkDevice* device)
-    : m_logicalDevice(device)
+  VkShader::VkShader(const std::string& fullPath, VkDevice device)
+    : m_logicalDevice(&device)
   {
     std::string delimiter = "/";
 

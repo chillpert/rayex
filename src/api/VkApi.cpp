@@ -8,8 +8,7 @@ namespace RX
     m_swapChainFormat(VK_FORMAT_B8G8R8A8_UNORM),
     m_renderPass(VK_NULL_HANDLE),
     m_pipeline(VK_NULL_HANDLE),
-    m_queue(VK_NULL_HANDLE),
-    m_commandBuffer(VK_NULL_HANDLE) { }
+    m_queue(VK_NULL_HANDLE) { }
 
   void VkApi::initialize()
   {
@@ -61,17 +60,7 @@ namespace RX
     }
 
     commandPool.create(device.get(), &queueFamilyIndex);
-
-    VkCommandBufferAllocateInfo allocateInfo = { };
-    allocateInfo.sType = VK_STRUCTURE_TYPE_COMMAND_BUFFER_ALLOCATE_INFO;
-    allocateInfo.commandPool = commandPool.get();
-    allocateInfo.level = VK_COMMAND_BUFFER_LEVEL_PRIMARY;
-    allocateInfo.commandBufferCount = 1;
-
-    Assert::vulkan(
-      vkAllocateCommandBuffers(device.get(), &allocateInfo, &m_commandBuffer),
-      "Failed to allocate command buffers"
-    );
+    commandBuffer.create(device.get(), commandPool.get());
   }
 
   bool VkApi::update()
@@ -83,10 +72,7 @@ namespace RX
   {
     uint32_t imageIndex = 0;
 
-    Assert::vulkan(
-      vkAcquireNextImageKHR(device.get(), swapchain.get(), VK_TIMEOUT, imageAvailableSemaphore.get(), VK_NULL_HANDLE, &imageIndex),
-      "Failed to acquire next image from swap chain"
-    );
+    VK_ASSERT(vkAcquireNextImageKHR(device.get(), swapchain.get(), VK_TIMEOUT, imageAvailableSemaphore.get(), VK_NULL_HANDLE, &imageIndex), "Failed to acquire next image from swap chain");
 
     commandPool.reset(device.get());
 
@@ -94,10 +80,7 @@ namespace RX
     beginInfo.sType = VK_STRUCTURE_TYPE_COMMAND_BUFFER_BEGIN_INFO;
     beginInfo.flags = VK_COMMAND_BUFFER_USAGE_ONE_TIME_SUBMIT_BIT;
 
-    Assert::vulkan(
-      vkBeginCommandBuffer(m_commandBuffer, &beginInfo),
-      "Failed to begin command buffer"
-    );
+    VK_ASSERT(vkBeginCommandBuffer(commandBuffer.get(), &beginInfo), "Failed to begin command buffer");
 
     VkRenderPassBeginInfo renderPassBeginInfo = { };
     renderPassBeginInfo.sType = VK_STRUCTURE_TYPE_RENDER_PASS_BEGIN_INFO;
@@ -115,7 +98,7 @@ namespace RX
     color.color = { 0.2f, 0.2f, 0.2f, 1.0f };
     renderPassBeginInfo.pClearValues = &color;
 
-    vkCmdBeginRenderPass(m_commandBuffer, &renderPassBeginInfo, VK_SUBPASS_CONTENTS_INLINE);
+    vkCmdBeginRenderPass(commandBuffer.get(), &renderPassBeginInfo, VK_SUBPASS_CONTENTS_INLINE);
      
     /*
     VkViewport viewport = { };
@@ -137,13 +120,13 @@ namespace RX
     */
 
     // draw calls go here
-    vkCmdBindPipeline(m_commandBuffer, VK_PIPELINE_BIND_POINT_GRAPHICS, m_pipeline);
-    vkCmdDraw(m_commandBuffer, 3, 1, 0, 0);
+    vkCmdBindPipeline(commandBuffer.get(), VK_PIPELINE_BIND_POINT_GRAPHICS, m_pipeline);
+    vkCmdDraw(commandBuffer.get(), 3, 1, 0, 0);
 
-    vkCmdEndRenderPass(m_commandBuffer);
+    vkCmdEndRenderPass(commandBuffer.get());
     
     Assert::vulkan(
-      vkEndCommandBuffer(m_commandBuffer),
+      vkEndCommandBuffer(commandBuffer.get()),
       "Failed to end command buffer"
     );
 
@@ -156,7 +139,8 @@ namespace RX
     submitInfo.pWaitSemaphores = imageAvailableSemaphores;
     submitInfo.pWaitDstStageMask = &submitStageMask;
     submitInfo.commandBufferCount = 1;
-    submitInfo.pCommandBuffers = &m_commandBuffer;
+    VkCommandBuffer commandBuffers[] = { commandBuffer.get() };
+    submitInfo.pCommandBuffers = commandBuffers;
     submitInfo.signalSemaphoreCount = 1;
     VkSemaphore finishedRenderSemaphores[] = { finishedRenderSemaphore.get() };
     submitInfo.pSignalSemaphores = finishedRenderSemaphores;

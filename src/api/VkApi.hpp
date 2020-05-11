@@ -12,6 +12,7 @@
 #include "Surface.hpp"
 #include "Semaphore.hpp"
 #include "CommandPool.hpp"
+#include "CommandBuffer.hpp"
 
 namespace RX
 {
@@ -50,7 +51,7 @@ namespace RX
     Semaphore finishedRenderSemaphore;
     VkQueue m_queue;
     CommandPool commandPool;
-    VkCommandBuffer m_commandBuffer;
+    CommandBuffer commandBuffer;
   };
 }
 

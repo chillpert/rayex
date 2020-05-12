@@ -2,11 +2,6 @@
 
 namespace RX
 {
-  Instance::~Instance()
-  {
-    destroy();
-  }
-
   void Instance::pushLayer(const char* name)
   {
     checkLayerSupport(name);

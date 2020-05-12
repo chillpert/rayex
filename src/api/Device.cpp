@@ -2,11 +2,6 @@
 
 namespace RX
 {
-  Device::~Device()
-  {
-    destroy();
-  }
-
   void Device::create(VkInstance instance, VkPhysicalDevice physicalDevice, uint32_t* queueFamilyIndex)
   {
     *queueFamilyIndex = 0;

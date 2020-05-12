@@ -35,26 +35,18 @@ namespace RX
     for (const auto& extension : extensions)
       requiredExtensions.emplace(extension, false);
 
-    bool found_VK_KHR_get_physical_device_properties2 = false;
-    bool found_VK_KHR_get_memory_requirements2 = false;
-    bool found_VK_EXT_descriptor_indexing = false;
-    bool found_VK_KHR_buffer_device_address = false;
-    bool found_VK_KHR_deferred_host_operations = false;
-    bool found_VK_KHR_pipeline_library = false;
-    bool found_VK_KHR_ray_tracing = false;
-
     uint32_t physicalDeviceExtensionCount;
-    VK_ASSERT(vkEnumerateDeviceExtensionProperties(physicalDevice, "VK_LAYER_KHRONOS_validation", &physicalDeviceExtensionCount, nullptr), "Failed to enumerate physical device extensions");
+    VK_ASSERT(vkEnumerateDeviceExtensionProperties(physicalDevice, NULL, &physicalDeviceExtensionCount, nullptr), "Failed to enumerate physical device extensions");
 
     std::vector<VkExtensionProperties> physicalDeviceExtensions(physicalDeviceExtensionCount);
-    VK_ASSERT(vkEnumerateDeviceExtensionProperties(physicalDevice, "VK_LAYER_KHRONOS_validation", &physicalDeviceExtensionCount, physicalDeviceExtensions.data()), "Failed to enumerate physical device extensions");
-
+    VK_ASSERT(vkEnumerateDeviceExtensionProperties(physicalDevice, NULL, &physicalDeviceExtensionCount, physicalDeviceExtensions.data()), "Failed to enumerate physical device extensions");
+      
     // Iterates over all enumerated physical device extensions to see if they are available.
     for (const auto& physicalDeviceExtension : physicalDeviceExtensions)
     {
       for (auto& requiredphysicalDeviceExtension : requiredExtensions)
       {
-        if (strcmp(physicalDeviceExtension.extensionName, requiredphysicalDeviceExtension.first))
+        if (strcmp(physicalDeviceExtension.extensionName, requiredphysicalDeviceExtension.first) == 0)
           requiredphysicalDeviceExtension.second = true;
       }
     }

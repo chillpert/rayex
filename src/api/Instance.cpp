@@ -30,7 +30,7 @@ namespace RX
 
 #ifdef RX_DEBUG
     pushLayer("VK_LAYER_KHRONOS_validation");
-
+    
     createInfo.ppEnabledLayerNames = layers.data();
     createInfo.enabledLayerCount = static_cast<uint32_t>(layers.size());
 #endif
@@ -66,27 +66,27 @@ namespace RX
   void Instance::print()
   {
     uint32_t layerCount;
-    VK_ASSERT(vkEnumerateInstanceExtensionProperties(nullptr, &layerCount, nullptr), "Failed to enumerate instance extension properties");
+    VK_ASSERT(vkEnumerateInstanceLayerProperties(&layerCount, nullptr), "Failed to enumerate instance layer properties");
 
-    std::vector<VkExtensionProperties> layers(layerCount);
-    VK_ASSERT(vkEnumerateInstanceExtensionProperties(nullptr, &layerCount, layers.data()), "Failed to enumerate instance extension properties");
+    std::vector<VkLayerProperties> layers(layerCount);
+    VK_ASSERT(vkEnumerateInstanceLayerProperties(&layerCount, layers.data()), "Failed to enumerate instance layer properties");
     
     VK_LOG("\n\nAvailable extensions on this device:");
     std::cout << "==================================================================\n";
     for (const auto& layer : layers)
-      std::cout << "  " << layer.extensionName << std::endl;
+      std::cout << "  " << layer.layerName << ":\n\t" << "Description: " << layer.description << std::endl;
     std::cout << std::endl;
 
     uint32_t extensionCount;
-    VK_ASSERT(vkEnumerateInstanceLayerProperties(&extensionCount, nullptr), "Failed to enumerate instance layer properties");
+    VK_ASSERT(vkEnumerateInstanceExtensionProperties(nullptr, &extensionCount, nullptr), "Failed to enumerate instance extension properties");
 
-    std::vector<VkLayerProperties> extensions(extensionCount);
-    VK_ASSERT(vkEnumerateInstanceLayerProperties(&extensionCount, extensions.data()), "Failed to enumerate instance layer properties");
+    std::vector<VkExtensionProperties> extensions(extensionCount);
+    VK_ASSERT(vkEnumerateInstanceExtensionProperties(nullptr, &extensionCount, extensions.data()), "Failed to enumerate instance extension properties");
 
     VK_LOG("\n\nAvailable layers on this device:");
     std::cout << "==================================================================\n";
     for (const auto& extension : extensions)
-      std::cout << "  " << extension.layerName << ":\n\t" << "Description: " << extension.description << std::endl;
+      std::cout << "  " << extension.extensionName << std::endl;
     std::cout << std::endl;
   }
 
@@ -100,7 +100,7 @@ namespace RX
 
     for (const auto& property : properties)
     {
-      if (strcmp(property.layerName, name))
+      if (strcmp(property.layerName, name) == 0)
         return;
     }
     
@@ -117,7 +117,7 @@ namespace RX
 
     for (const auto& property : properties)
     {
-      if (strcmp(property.extensionName, name))
+      if (strcmp(property.extensionName, name) == 0)
         return;
     }
 
@@ -128,15 +128,17 @@ namespace RX
   {
     uint32_t apiVersion;
     VK_ASSERT(vkEnumerateInstanceVersion(&apiVersion), "Failed to enumerate instance version");
-    std::cout << "Api version: " << apiVersion << " - " << VK_API_VERSION_1_2 << std::endl;
+
+    //std::cout << "cool : " << VK_VERSION_MINOR(apiVersion) << std::endl;
+
     if (apiVersion >= VK_API_VERSION_1_2)
-      VK_LOG("Found Vulkan SDK API Version 1.2");
+      VK_LOG("Found Vulkan SDK API Version 1.2.x");
 
     else if (apiVersion >= VK_API_VERSION_1_1)
-      VK_LOG("Found Vulkan SDK API Version 1.1");
+      VK_LOG("Found Vulkan SDK API Version 1.1.x");
 
     else
-      VK_ERROR("The Vulkan SDK on this device is outdated");
+      VK_ERROR("This application requires Vulkan SDK API Version 1.1 or higher");
   
     return apiVersion;
   }

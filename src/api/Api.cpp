@@ -10,6 +10,8 @@ namespace RX
   {
     uint32_t queueFamilyIndex = 0;
 
+    // Required for extending the physical device from device extensions.
+    instance.pushExtension("VK_KHR_get_physical_device_properties2");
     instance.create(m_window);
     instance.print();
 
@@ -20,7 +22,7 @@ namespace RX
     // Extensions required for ray tracing.
     std::vector<const char*> requiredExtensions =
     {
-      "VK_KHR_get_physical_device_properties2",
+      //"VK_KHR_get_physical_device_properties2",
       "VK_KHR_get_memory_requirements2",
       "VK_EXT_descriptor_indexing",
       "VK_KHR_buffer_device_address",
@@ -28,6 +30,10 @@ namespace RX
       "VK_KHR_pipeline_library",
       "VK_KHR_ray_tracing"
     };
+
+#ifdef VK_KHR_ray_tracing
+    int i = 0;
+#endif
 
     physicalDevice.checkExtensionSupport(requiredExtensions);
 

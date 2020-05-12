@@ -11,8 +11,26 @@ namespace RX
     uint32_t queueFamilyIndex = 0;
 
     instance.create(m_window);
+    instance.print();
+
     debugMessenger.create(instance.get());
+    
     physicalDevice.create(instance.get());
+
+    // Extensions required for ray tracing.
+    std::vector<const char*> requiredExtensions =
+    {
+      "VK_KHR_get_physical_device_properties2",
+      "VK_KHR_get_memory_requirements2",
+      "VK_EXT_descriptor_indexing",
+      "VK_KHR_buffer_device_address",
+      "VK_KHR_deferred_host_operations",
+      "VK_KHR_pipeline_library",
+      "VK_KHR_ray_tracing"
+    };
+
+    physicalDevice.checkExtensionSupport(requiredExtensions);
+
     device.create(instance.get(), physicalDevice.get(), &queueFamilyIndex);
     surface.create(instance.get(), m_window);
     swapchain.create(physicalDevice.get(), device.get(), surface, m_window, &queueFamilyIndex);
@@ -106,7 +124,7 @@ namespace RX
 
     VkPipelineStageFlags submitStageMask = VK_PIPELINE_STAGE_COLOR_ATTACHMENT_OUTPUT_BIT;
 
-    VkSubmitInfo submitInfo = { };
+    VkSubmitInfo submitInfo{ };
     submitInfo.sType = VK_STRUCTURE_TYPE_SUBMIT_INFO;
     submitInfo.waitSemaphoreCount = 1;
     VkSemaphore imageAvailableSemaphores[] = { imageAvailableSemaphore.get() };
@@ -122,7 +140,7 @@ namespace RX
     // submit queue
     VK_ASSERT(vkQueueSubmit(m_queue, 1, &submitInfo, VK_NULL_HANDLE), "Failed to submit queue");
 
-    VkPresentInfoKHR presentInfo = { };
+    VkPresentInfoKHR presentInfo{ };
     presentInfo.sType = VK_STRUCTURE_TYPE_PRESENT_INFO_KHR;
     presentInfo.waitSemaphoreCount = 1;
     presentInfo.pWaitSemaphores = finishedRenderSemaphores;

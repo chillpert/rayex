@@ -18,6 +18,8 @@ namespace RX
     void create(const std::shared_ptr<Window> const window);
     void destroy();
 
+    void print();
+
   private:
     void checkLayerSupport(const char* name);
     void checkExtensionSupport(const char* name);

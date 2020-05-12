@@ -63,6 +63,33 @@ namespace RX
     vkDestroyInstance(instance, nullptr);
   }
 
+  void Instance::print()
+  {
+    uint32_t layerCount;
+    VK_ASSERT(vkEnumerateInstanceExtensionProperties(nullptr, &layerCount, nullptr), "Failed to enumerate instance extension properties");
+
+    std::vector<VkExtensionProperties> layers(layerCount);
+    VK_ASSERT(vkEnumerateInstanceExtensionProperties(nullptr, &layerCount, layers.data()), "Failed to enumerate instance extension properties");
+    
+    VK_LOG("\n\nAvailable extensions on this device:");
+    std::cout << "==================================================================\n";
+    for (const auto& layer : layers)
+      std::cout << "  " << layer.extensionName << std::endl;
+    std::cout << std::endl;
+
+    uint32_t extensionCount;
+    VK_ASSERT(vkEnumerateInstanceLayerProperties(&extensionCount, nullptr), "Failed to enumerate instance layer properties");
+
+    std::vector<VkLayerProperties> extensions(extensionCount);
+    VK_ASSERT(vkEnumerateInstanceLayerProperties(&extensionCount, extensions.data()), "Failed to enumerate instance layer properties");
+
+    VK_LOG("\n\nAvailable layers on this device:");
+    std::cout << "==================================================================\n";
+    for (const auto& extension : extensions)
+      std::cout << "  " << extension.layerName << ":\n\t" << "Description: " << extension.description << std::endl;
+    std::cout << std::endl;
+  }
+
   void Instance::checkLayerSupport(const char* name)
   {
     uint32_t propertyCount;
@@ -101,7 +128,7 @@ namespace RX
   {
     uint32_t apiVersion;
     VK_ASSERT(vkEnumerateInstanceVersion(&apiVersion), "Failed to enumerate instance version");
-
+    std::cout << "Api version: " << apiVersion << " - " << VK_API_VERSION_1_2 << std::endl;
     if (apiVersion >= VK_API_VERSION_1_2)
       VK_LOG("Found Vulkan SDK API Version 1.2");
 

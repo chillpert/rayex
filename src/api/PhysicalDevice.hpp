@@ -13,6 +13,9 @@ namespace RX
     // Technically not created, but enumerated. However, this way is better for the naming scheme.
     void create(VkInstance instance);
   
+    // Checks if all given physical device extensions are available.
+    void checkExtensionSupport(const std::vector<const char*>& extensions) const;
+
   private:
     VkPhysicalDevice physicalDevice;
   };

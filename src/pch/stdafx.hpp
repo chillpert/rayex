@@ -21,5 +21,6 @@
 #include <algorithm>
 #include <map>
 #include <fstream>
+#include <memory>
 
 #endif // STDAFX_HPP

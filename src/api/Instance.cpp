@@ -18,7 +18,7 @@ namespace RX
     VK_LOG("Added Extension: " << name);
   }
 
-  void Instance::create(const std::shared_ptr<Window> const window)
+  void Instance::create(const std::shared_ptr<Window> window)
   {
     VkApplicationInfo appInfo{ };
     appInfo.sType = VK_STRUCTURE_TYPE_APPLICATION_INFO;
@@ -29,8 +29,11 @@ namespace RX
     createInfo.pApplicationInfo = &appInfo;
 
 #ifdef RX_DEBUG
+#if RX_PLATFORM_WINDOWS_X64
     pushLayer("VK_LAYER_KHRONOS_validation");
-    
+#elif RX_PLATFORM_UNIX_X64
+    pushLayer("VK_LAYER_LUNARG_standard_validation");
+#endif
     createInfo.ppEnabledLayerNames = layers.data();
     createInfo.enabledLayerCount = static_cast<uint32_t>(layers.size());
 #endif
@@ -132,15 +135,24 @@ namespace RX
     if (vkGetInstanceProcAddr(instance, "vkEnumerateInstanceVersion") == nullptr)
       VK_ERROR("This application requires Vulkan SDK API Version 1.1 or higher");
 
+#ifdef VK_API_VERSION_1_2
     if (apiVersion >= VK_API_VERSION_1_2)
+    {
       VK_LOG("Found Vulkan SDK API Version 1.2.x");
+      return apiVersion;
+    }
+#endif
 
-    else if (apiVersion >= VK_API_VERSION_1_1)
+#ifdef VK_API_VERSION_1_1  _
+    if (apiVersion >= VK_API_VERSION_1_1)
+    {
       VK_LOG("Found Vulkan SDK API Version 1.1.x");
-
-    else
-      VK_ERROR("This application requires Vulkan SDK API Version 1.1 or higher");
+      return apiVersion;
+    }
+#endif
+    
+    VK_ERROR("This application requires Vulkan SDK API Version 1.1 or higher");
   
-    return apiVersion;
+    return 0;
   }
 }

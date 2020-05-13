@@ -1,6 +1,7 @@
 #include "utils/Error.hpp"
 
 #include <exception>
+#include <iostream>
 
 namespace RX
 {

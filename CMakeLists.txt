@@ -1,31 +1,36 @@
 cmake_minimum_required(VERSION 3.14.0)
 project(Renderer VERSION 0.0.1)
 
-set (CMAKE_MODULE_PATH "${CMAKE_SOURCE_DIR}/external/Cotire")
-include(cotire)
-
 option(BUILD_EXAMPLES "Build examples" ON)
 
-# LOGGING
-if(CMAKE_BUILD_TYPE STREQUAL "Debug")
-  add_compile_definitions(RX_DEBUG)
-endif()
+if(NOT CMAKE_BUILD_TYPE)
+  message("MX: Build type not set. Continuing with: Debug")
+  set(CMAKE_BUILD_TYPE "Debug" CACHE STRING
+      "No build type was set"
+      FORCE)
+endif(NOT CMAKE_BUILD_TYPE)
+
+add_compile_definitions(RX_BUILD_DLL)
 
 if(WIN32 OR MSVC)
-
   set(OS ${OS} "Windows")
-  add_compile_definitions(RX_BUILD_DLL)
   add_compile_definitions(RX_PLATFORM_WINDOWS_X64)
   message("Renderer: Target platform Windows (x64)")
-
 elseif(UNIX)
-
   set(OS ${OS} "Linux")
   add_compile_definitions(RX_PLATFORM_UNIX_X64)
   message("Renderer: Target platform Windows (x64)")
-
 else()
   message(FATAL_ERROR "Renderer: Target platform is not supported")
+endif()
+
+if (${OS} STREQUAL "Windows")
+  set (CMAKE_MODULE_PATH "${CMAKE_SOURCE_DIR}/external/Cotire")
+  include(cotire)
+endif()
+
+if(CMAKE_BUILD_TYPE STREQUAL "Debug")
+  add_compile_definitions(RX_DEBUG)
 endif()
 
 # RESOURCES
@@ -38,30 +43,22 @@ find_package(Vulkan REQUIRED)
 include_directories(${Vulkan_INCLUDE_DIRS})
 
 if(${OS} STREQUAL "Windows")
-  
   add_compile_definitions(RX_GLSLC_PATH="${Vulkan_INCLUDE_DIRS}/../Bin/glslc.exe")
-  message("${Vulkan_INCLUDE_DIRS}/../Bin/glslc.exe")
-  message("${PROJECT_SOURCE_DIR}/resources/shaders/")
-
 elseif(${OS} STREQUAL "Linux")
-  message(FATAL_ERROR, "SHADER COMPILER NOT YET SETUP FOR LINUX")
+  add_compile_definitions(RX_GLSLC_PATH="${PROJECT_SOURCE_DIR}/external/Vulkan/glslc")
 endif()
 
 # SDL
 if(${OS} STREQUAL "Windows")
-
   link_directories(${PROJECT_SOURCE_DIR}/external/SDL2/binaries/win64)
   include_directories(${PROJECT_SOURCE_DIR}/external/SDL2/include)
 
   set(WINDOWING ${WINDOWING} "SDL2main.lib" "SDL2.lib")
-
 elseif(${OS} STREQUAL "Linux")
-
   find_package(SDL2 REQUIRED)
   include_directories(${SDL2_INCLUDE_DIRS})
 
   set(WINDOWING ${WINDOWING} "${SDL2_LIBRARIES}")
-
 else()
   message(FATAL_ERROR, "Target platform not supported")
 endif()
@@ -102,10 +99,20 @@ set_target_properties(renderer
   ARCHIVE_OUTPUT_DIRECTORY_RELEASE "${PROJECT_SOURCE_DIR}/build/lib/release"
   LIBRARY_OUTPUT_DIRECTORY_RELEASE "${PROJECT_SOURCE_DIR}/build/lib/release"
   RUNTIME_OUTPUT_DIRECTORY_RELEASE "${PROJECT_SOURCE_DIR}/build/bin/release"
+
+  ARCHIVE_OUTPUT_DIRECTORY_MINSIZEREL "${PROJECT_SOURCE_DIR}/build/lib/minsizerel"
+  LIBRARY_OUTPUT_DIRECTORY_MINSIZEREL "${PROJECT_SOURCE_DIR}/build/lib/minsizerel"
+  RUNTIME_OUTPUT_DIRECTORY_MINSIZEREL "${PROJECT_SOURCE_DIR}/build/bin/minsizerel"   
+
+  ARCHIVE_OUTPUT_DIRECTORY_RELWITHDEBINFO "${PROJECT_SOURCE_DIR}/build/lib/relwithbebinfo"
+  LIBRARY_OUTPUT_DIRECTORY_RELWITHDEBINFO "${PROJECT_SOURCE_DIR}/build/lib/relwithbebinfo"
+  RUNTIME_OUTPUT_DIRECTORY_RELWITHDEBINFO "${PROJECT_SOURCE_DIR}/build/bin/relwithbebinfo"
 )
 
-set_target_properties(renderer PROPERTIES COTIRE_CXX_PREFIX_HEADER_INIT "${PROJECT_SOURCE_DIR}/src/pch/stdafx.hpp")
-cotire(renderer)
+if(${OS} STREQUAL "Windows")
+  set_target_properties(renderer PROPERTIES COTIRE_CXX_PREFIX_HEADER_INIT "${PROJECT_SOURCE_DIR}/src/pch/stdafx.hpp")
+  cotire(renderer)
+endif()
 
 # EXAMPLE
 if(BUILD_EXAMPLES)
@@ -133,6 +140,14 @@ if(BUILD_EXAMPLES)
     ARCHIVE_OUTPUT_DIRECTORY_RELEASE "${PROJECT_SOURCE_DIR}/build/lib/release"
     LIBRARY_OUTPUT_DIRECTORY_RELEASE "${PROJECT_SOURCE_DIR}/build/lib/release"
     RUNTIME_OUTPUT_DIRECTORY_RELEASE "${PROJECT_SOURCE_DIR}/build/bin/release"
+
+    ARCHIVE_OUTPUT_DIRECTORY_MINSIZEREL "${PROJECT_SOURCE_DIR}/build/lib/minsizerel"
+    LIBRARY_OUTPUT_DIRECTORY_MINSIZEREL "${PROJECT_SOURCE_DIR}/build/lib/minsizerel"
+    RUNTIME_OUTPUT_DIRECTORY_MINSIZEREL "${PROJECT_SOURCE_DIR}/build/bin/minsizerel"   
+
+    ARCHIVE_OUTPUT_DIRECTORY_RELWITHDEBINFO "${PROJECT_SOURCE_DIR}/build/lib/relwithbebinfo"
+    LIBRARY_OUTPUT_DIRECTORY_RELWITHDEBINFO "${PROJECT_SOURCE_DIR}/build/lib/relwithbebinfo"
+    RUNTIME_OUTPUT_DIRECTORY_RELWITHDEBINFO "${PROJECT_SOURCE_DIR}/build/bin/relwithbebinfo"
   )
 
   # set build paths
@@ -148,7 +163,6 @@ if(BUILD_EXAMPLES)
 
   # copy dlls to binary location in post build
   if(${OS} STREQUAL "Windows")
-
     add_custom_command(
       TARGET example
       POST_BUILD
@@ -157,6 +171,5 @@ if(BUILD_EXAMPLES)
               ${PROJECT_SOURCE_DIR}/build/bin/${BUILD_PATH}/SDL2.dll
       COMMENT "Running POST_BUILD action: Copying SDL2d.dll to binary location"
       )
-
   endif()
 endif()

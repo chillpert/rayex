@@ -12,17 +12,7 @@ namespace RX
 
     for (uint32_t i = 0; i < physicalDeviceCount; ++i)
     {
-      VkPhysicalDeviceProperties props;
-      vkGetPhysicalDeviceProperties(physicalDevices[i], &props);
-
-      // TODO: https://www.reddit.com/r/vulkan/comments/9i2me9/new_to_vulkan_what_happens_if_api_versions_are/
-
-      if (props.deviceType == VK_PHYSICAL_DEVICE_TYPE_DISCRETE_GPU)
-      {
-        physicalDevice = physicalDevices[i]; // TODO: Do proper device scoring!
-        VK_LOG("GPU: " << props.deviceName);
-        return;
-      }
+      
     }
 
     // Any non-discrete GPU will not have enough performance to do path tracing at all.
@@ -59,5 +49,23 @@ namespace RX
       if (!requiredphysicalDeviceExtension.second)
         VK_ERROR("Missing physical device extension: " + std::string(requiredphysicalDeviceExtension.first));
     }
+  }
+
+  size_t PhysicalDevice::evaluate(VkPhysicalDevice device)
+  {
+    VkPhysicalDeviceProperties props;
+    vkGetPhysicalDeviceProperties(physicalDevice, &props);
+
+
+
+
+    if (props.deviceType == VK_PHYSICAL_DEVICE_TYPE_DISCRETE_GPU)
+    {
+      physicalDevice = physicalDevice; // TODO: Do proper device scoring!
+      VK_LOG("GPU: " << props.deviceName);
+      return;
+    }
+
+    return size_t();
   }
 }

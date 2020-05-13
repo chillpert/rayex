@@ -15,7 +15,7 @@ namespace RX
     // Needs to be called before create
     void pushExtension(const char* name);
 
-    void create(const std::shared_ptr<Window> const window);
+    void create(const std::shared_ptr<Window> window);
     void destroy();
 
     void print();

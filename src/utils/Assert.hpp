@@ -7,8 +7,6 @@
 #include <SDL2/SDL_vulkan.h>
 #define VK_ENABLE_BETA_EXTENSIONS
 #include <vulkan/vulkan.h>
-//#include <vulkan/vulkan_core.h>
-//#include <vulkan/vulkan_beta.h>
 
 #ifdef RX_DEBUG
   #define VK_LOG(message) std::cout << "Vk: Log: " << message << std::endl

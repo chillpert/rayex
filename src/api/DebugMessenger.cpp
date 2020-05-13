@@ -1,6 +1,5 @@
 #include "api/DebugMessenger.hpp"
 
-
 namespace RX
 {
   void DebugMessenger::create(VkInstance instance)

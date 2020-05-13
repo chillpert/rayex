@@ -10,13 +10,26 @@ namespace RX
     std::vector<VkPhysicalDevice> physicalDevices(physicalDeviceCount);
     VK_ASSERT(vkEnumeratePhysicalDevices(instance, &physicalDeviceCount, physicalDevices.data()), "Failed to enumerate physical devices");
 
-    for (uint32_t i = 0; i < physicalDeviceCount; ++i)
+    unsigned int score = 0;
+    for (const auto& it : physicalDevices)
     {
-      
+      {
+        unsigned int temp = evaluate(it);
+        if (temp > score)
+        {
+          physicalDevice = it;
+          score = temp;
+        }
+      }
     }
 
-    // Any non-discrete GPU will not have enough performance to do path tracing at all.
-    VK_ERROR("No discrete GPU with Vulkan support available");
+    if (score == 0 || physicalDevice == VK_NULL_HANDLE)
+      VK_ERROR("No suitable device was found");
+
+    // Print information about the GPU that was selected.
+    VkPhysicalDeviceProperties props;
+    vkGetPhysicalDeviceProperties(physicalDevice, &props);
+    VK_LOG("Selected GPU: " << props.deviceName);
   }
 
   void PhysicalDevice::checkExtensionSupport(const std::vector<const char*>& extensions) const
@@ -42,30 +55,43 @@ namespace RX
           requiredphysicalDeviceExtension.second = true;
       }
     }
-
-    // Give feedback on the previous operations
+    
+    // Give feedback on the previous operations.
     for (const auto& requiredphysicalDeviceExtension : requiredExtensions)
     {
       if (!requiredphysicalDeviceExtension.second)
-        VK_ERROR("Missing physical device extension: " + std::string(requiredphysicalDeviceExtension.first));
+        VK_ERROR("Missing physical device extension: " + std::string(requiredphysicalDeviceExtension.first) + ". Have you tried installing the NVIDIA Beta drivers?");
     }
   }
 
-  size_t PhysicalDevice::evaluate(VkPhysicalDevice device)
+  unsigned int PhysicalDevice::evaluate(VkPhysicalDevice device)
   {
+    unsigned int score = 0u;
+
     VkPhysicalDeviceProperties props;
-    vkGetPhysicalDeviceProperties(physicalDevice, &props);
-
-
-
+    vkGetPhysicalDeviceProperties(device, &props);
 
     if (props.deviceType == VK_PHYSICAL_DEVICE_TYPE_DISCRETE_GPU)
-    {
-      physicalDevice = physicalDevice; // TODO: Do proper device scoring!
-      VK_LOG("GPU: " << props.deviceName);
-      return;
-    }
+      score += 100u;
+    else
+      return 0u;
 
-    return size_t();
+#ifdef VK_API_VERSION_1_1
+    if (props.apiVersion >= VK_API_VERSION_1_1)
+      score += 10u;
+#endif
+
+#ifdef VK_API_VERSION_1_2
+    if (props.apiVersion >= VK_API_VERSION_1_2)
+      score += 10u;
+#endif
+
+    std::string name = props.deviceName;
+    if (name.find("RTX") != std::string::npos)
+      score += 100u;
+
+    // TODO: add more hardware specific evaulation (those that are benefitial for path tracing)
+
+    return score;
   }
 }

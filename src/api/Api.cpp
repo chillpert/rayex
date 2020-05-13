@@ -13,8 +13,9 @@ namespace RX
     // Required for extending the physical device from device extensions.
     instance.pushExtension("VK_KHR_get_physical_device_properties2");
     instance.create(m_window);
+#ifdef RX_DEBUG
     instance.print();
-
+#endif
     debugMessenger.create(instance.get());
     
     physicalDevice.create(instance.get());

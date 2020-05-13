@@ -17,7 +17,7 @@ namespace RX
     void checkExtensionSupport(const std::vector<const char*>& extensions) const;
 
   private:
-    size_t evaluate(VkPhysicalDevice device);
+    unsigned int evaluate(VkPhysicalDevice device);
 
     VkPhysicalDevice physicalDevice;
   };

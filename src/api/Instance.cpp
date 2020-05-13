@@ -128,8 +128,9 @@ namespace RX
   {
     uint32_t apiVersion;
     VK_ASSERT(vkEnumerateInstanceVersion(&apiVersion), "Failed to enumerate instance version");
-
-    //std::cout << "cool : " << VK_VERSION_MINOR(apiVersion) << std::endl;
+    
+    if (vkGetInstanceProcAddr(instance, "vkEnumerateInstanceVersion") == nullptr)
+      VK_ERROR("This application requires Vulkan SDK API Version 1.1 or higher");
 
     if (apiVersion >= VK_API_VERSION_1_2)
       VK_LOG("Found Vulkan SDK API Version 1.2.x");

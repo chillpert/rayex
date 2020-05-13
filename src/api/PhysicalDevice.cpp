@@ -15,6 +15,8 @@ namespace RX
       VkPhysicalDeviceProperties props;
       vkGetPhysicalDeviceProperties(physicalDevices[i], &props);
 
+      // TODO: https://www.reddit.com/r/vulkan/comments/9i2me9/new_to_vulkan_what_happens_if_api_versions_are/
+
       if (props.deviceType == VK_PHYSICAL_DEVICE_TYPE_DISCRETE_GPU)
       {
         physicalDevice = physicalDevices[i]; // TODO: Do proper device scoring!

@@ -1,17 +1,19 @@
 cmake_minimum_required(VERSION 3.14.0)
 project(Renderer VERSION 0.0.1)
 
-option(BUILD_EXAMPLES "Build examples" OFF)
+option(BUILD_EXAMPLES "Build examples" ON)
 
 if(NOT CMAKE_BUILD_TYPE)
-  message("MX: Build type not set. Continuing with: ${CMAKE_BUILD_TYPE}")
+  message("MX: Build type not set. Continuing with: Debug")
   set(CMAKE_BUILD_TYPE "Debug" CACHE STRING
-      "No build type was set ... continue with DEBUG"
+      "No build type was set"
       FORCE)
 endif(NOT CMAKE_BUILD_TYPE)
 
 #add_compile_definitions(RX_BUILD_DLL)
 add_definitions(-DRX_BUILD_DLL)
+
+message("THE FUCK YOU SAY TO ME YOU LITTLE CMAKE SHIT!")
 
 if(WIN32 OR MSVC)
   set(OS ${OS} "Windows")

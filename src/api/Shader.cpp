@@ -34,17 +34,9 @@ namespace RX
     else
       VK_ERROR("Can not process shader file name");
 
-
-#ifdef RX_PLATFORM_WINDOWS_X64
     std::stringstream command;
     command << "cd " << pathToFile << " && " << RX_GLSLC_PATH << " " << fileName << " -o " << fileNameOut;
-
     std::system(command.str().c_str());
-#elif RX_PLATFORM_LINUX_X64
-  #error TODO: Linux shader compilation
-#else 
-  #error Yare yare daze
-#endif
 
     load(device);
   }

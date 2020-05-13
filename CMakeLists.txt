@@ -10,10 +10,7 @@ if(NOT CMAKE_BUILD_TYPE)
       FORCE)
 endif(NOT CMAKE_BUILD_TYPE)
 
-#add_compile_definitions(RX_BUILD_DLL)
-add_definitions(-DRX_BUILD_DLL)
-
-message("THE FUCK YOU SAY TO ME YOU LITTLE CMAKE SHIT!")
+add_compile_definitions(RX_BUILD_DLL)
 
 if(WIN32 OR MSVC)
   set(OS ${OS} "Windows")
@@ -21,9 +18,7 @@ if(WIN32 OR MSVC)
   message("Renderer: Target platform Windows (x64)")
 elseif(UNIX)
   set(OS ${OS} "Linux")
-  #add_compile_definitions(RX_PLATFORM_UNIX_X64)
-  add_definitions(-DRX_PLATFORM_UNIX_X64)
-
+  add_compile_definitions(RX_PLATFORM_UNIX_X64)
   message("Renderer: Target platform Windows (x64)")
 else()
   message(FATAL_ERROR "Renderer: Target platform is not supported")
@@ -43,40 +38,27 @@ add_compile_definitions(RX_PROJECT_PATH="${PROJECT_SOURCE_DIR}/")
 add_compile_definitions(RX_RESOURCES_PATH="${PROJECT_SOURCE_DIR}/resources/")
 add_compile_definitions(RX_SHADER_PATH="${PROJECT_SOURCE_DIR}/resources/shaders/")
 
-#add_definitions(RX_PROJECT_PATH="${PROJECT_SOURCE_DIR}/")
-#add_definitions(RX_RESOURCES_PATH="${PROJECT_SOURCE_DIR}/resources/")
-#add_definitions(RX_SHADER_PATH="${PROJECT_SOURCE_DIR}/resources/shaders/")
-
 # VULKAN
 find_package(Vulkan REQUIRED)
 include_directories(${Vulkan_INCLUDE_DIRS})
 
 if(${OS} STREQUAL "Windows")
-  
   add_compile_definitions(RX_GLSLC_PATH="${Vulkan_INCLUDE_DIRS}/../Bin/glslc.exe")
-
 elseif(${OS} STREQUAL "Linux")
-
   add_compile_definitions(RX_GLSLC_PATH="${PROJECT_SOURCE_DIR}/external/Vulkan/glslc")
-  #add_definitions(RX_GLSLC_PATH="${PROJECT_SOURCE_DIR}/external/Vulkan/glslc")
-
 endif()
 
 # SDL
 if(${OS} STREQUAL "Windows")
-
   link_directories(${PROJECT_SOURCE_DIR}/external/SDL2/binaries/win64)
   include_directories(${PROJECT_SOURCE_DIR}/external/SDL2/include)
 
   set(WINDOWING ${WINDOWING} "SDL2main.lib" "SDL2.lib")
-
 elseif(${OS} STREQUAL "Linux")
-
   find_package(SDL2 REQUIRED)
   include_directories(${SDL2_INCLUDE_DIRS})
 
   set(WINDOWING ${WINDOWING} "${SDL2_LIBRARIES}")
-
 else()
   message(FATAL_ERROR, "Target platform not supported")
 endif()
@@ -117,6 +99,14 @@ set_target_properties(renderer
   ARCHIVE_OUTPUT_DIRECTORY_RELEASE "${PROJECT_SOURCE_DIR}/build/lib/release"
   LIBRARY_OUTPUT_DIRECTORY_RELEASE "${PROJECT_SOURCE_DIR}/build/lib/release"
   RUNTIME_OUTPUT_DIRECTORY_RELEASE "${PROJECT_SOURCE_DIR}/build/bin/release"
+
+  ARCHIVE_OUTPUT_DIRECTORY_MINSIZEREL "${PROJECT_SOURCE_DIR}/build/lib/minsizerel"
+  LIBRARY_OUTPUT_DIRECTORY_MINSIZEREL "${PROJECT_SOURCE_DIR}/build/lib/minsizerel"
+  RUNTIME_OUTPUT_DIRECTORY_MINSIZEREL "${PROJECT_SOURCE_DIR}/build/bin/minsizerel"   
+
+  ARCHIVE_OUTPUT_DIRECTORY_RELWITHDEBINFO "${PROJECT_SOURCE_DIR}/build/lib/relwithbebinfo"
+  LIBRARY_OUTPUT_DIRECTORY_RELWITHDEBINFO "${PROJECT_SOURCE_DIR}/build/lib/relwithbebinfo"
+  RUNTIME_OUTPUT_DIRECTORY_RELWITHDEBINFO "${PROJECT_SOURCE_DIR}/build/bin/relwithbebinfo"
 )
 
 if(${OS} STREQUAL "Windows")
@@ -150,6 +140,14 @@ if(BUILD_EXAMPLES)
     ARCHIVE_OUTPUT_DIRECTORY_RELEASE "${PROJECT_SOURCE_DIR}/build/lib/release"
     LIBRARY_OUTPUT_DIRECTORY_RELEASE "${PROJECT_SOURCE_DIR}/build/lib/release"
     RUNTIME_OUTPUT_DIRECTORY_RELEASE "${PROJECT_SOURCE_DIR}/build/bin/release"
+
+    ARCHIVE_OUTPUT_DIRECTORY_MINSIZEREL "${PROJECT_SOURCE_DIR}/build/lib/minsizerel"
+    LIBRARY_OUTPUT_DIRECTORY_MINSIZEREL "${PROJECT_SOURCE_DIR}/build/lib/minsizerel"
+    RUNTIME_OUTPUT_DIRECTORY_MINSIZEREL "${PROJECT_SOURCE_DIR}/build/bin/minsizerel"   
+
+    ARCHIVE_OUTPUT_DIRECTORY_RELWITHDEBINFO "${PROJECT_SOURCE_DIR}/build/lib/relwithbebinfo"
+    LIBRARY_OUTPUT_DIRECTORY_RELWITHDEBINFO "${PROJECT_SOURCE_DIR}/build/lib/relwithbebinfo"
+    RUNTIME_OUTPUT_DIRECTORY_RELWITHDEBINFO "${PROJECT_SOURCE_DIR}/build/bin/relwithbebinfo"
   )
 
   # set build paths
@@ -165,7 +163,6 @@ if(BUILD_EXAMPLES)
 
   # copy dlls to binary location in post build
   if(${OS} STREQUAL "Windows")
-
     add_custom_command(
       TARGET example
       POST_BUILD
@@ -174,6 +171,5 @@ if(BUILD_EXAMPLES)
               ${PROJECT_SOURCE_DIR}/build/bin/${BUILD_PATH}/SDL2.dll
       COMMENT "Running POST_BUILD action: Copying SDL2d.dll to binary location"
       )
-
   endif()
 endif()

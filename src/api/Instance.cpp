@@ -28,10 +28,12 @@ namespace RX
     createInfo.sType = VK_STRUCTURE_TYPE_INSTANCE_CREATE_INFO;
     createInfo.pApplicationInfo = &appInfo;
 
-#ifndef NDEBUG
-    //pushLayer("VK_LAYER_KHRONOS_validation");
+#ifdef RX_DEBUG
+#if RX_PLATFORM_WINDOWS_X64
+    pushLayer("VK_LAYER_KHRONOS_validation");
+#elif RX_PLATFORM_UNIX_X64
     pushLayer("VK_LAYER_LUNARG_standard_validation");
-
+#endif
     createInfo.ppEnabledLayerNames = layers.data();
     createInfo.enabledLayerCount = static_cast<uint32_t>(layers.size());
 #endif
@@ -49,7 +51,7 @@ namespace RX
       pushExtension(sdlExtensionsNames[i]);
     }
 
-#ifndef NDEBUG
+#ifdef RX_DEBUG
     pushExtension(VK_EXT_DEBUG_UTILS_EXTENSION_NAME);
 #endif
 

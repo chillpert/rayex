@@ -4,7 +4,7 @@ namespace RX
 {
   void DebugMessenger::create(VkInstance instance)
   {
-#ifndef NDEBUG
+#ifdef RX_DEBUG
     m_createDebugUtilsMessengerEXT = (PFN_vkCreateDebugUtilsMessengerEXT)vkGetInstanceProcAddr(instance, "vkCreateDebugUtilsMessengerEXT");
     m_destroyDebugUtilsMessengerEXT = (PFN_vkDestroyDebugUtilsMessengerEXT)vkGetInstanceProcAddr(instance, "vkDestroyDebugUtilsMessengerEXT");
 
@@ -25,7 +25,7 @@ namespace RX
 
   void DebugMessenger::destroy(VkInstance instance)
   {
-#ifndef NDEBUG
+#ifdef RX_DEBUG
     m_destroyDebugUtilsMessengerEXT(instance, m_debugMessenger, nullptr);
 #endif
   }

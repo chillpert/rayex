@@ -1,37 +1,49 @@
 cmake_minimum_required(VERSION 3.14.0)
 project(Renderer VERSION 0.0.1)
 
-set (CMAKE_MODULE_PATH "${CMAKE_SOURCE_DIR}/external/Cotire")
-include(cotire)
+option(BUILD_EXAMPLES "Build examples" OFF)
 
-option(BUILD_EXAMPLES "Build examples" ON)
+if(NOT CMAKE_BUILD_TYPE)
+  message("MX: Build type not set. Continuing with: ${CMAKE_BUILD_TYPE}")
+  set(CMAKE_BUILD_TYPE "Debug" CACHE STRING
+      "No build type was set ... continue with DEBUG"
+      FORCE)
+endif(NOT CMAKE_BUILD_TYPE)
 
-# LOGGING
-if(CMAKE_BUILD_TYPE STREQUAL "Debug")
-  add_compile_definitions(RX_DEBUG)
-endif()
+#add_compile_definitions(RX_BUILD_DLL)
+add_definitions(-DRX_BUILD_DLL)
 
 if(WIN32 OR MSVC)
-
   set(OS ${OS} "Windows")
-  add_compile_definitions(RX_BUILD_DLL)
   add_compile_definitions(RX_PLATFORM_WINDOWS_X64)
   message("Renderer: Target platform Windows (x64)")
-
 elseif(UNIX)
-
   set(OS ${OS} "Linux")
-  add_compile_definitions(RX_PLATFORM_UNIX_X64)
-  message("Renderer: Target platform Windows (x64)")
+  #add_compile_definitions(RX_PLATFORM_UNIX_X64)
+  add_definitions(-DRX_PLATFORM_UNIX_X64)
 
+  message("Renderer: Target platform Windows (x64)")
 else()
   message(FATAL_ERROR "Renderer: Target platform is not supported")
+endif()
+
+if (${OS} STREQUAL "Windows")
+  set (CMAKE_MODULE_PATH "${CMAKE_SOURCE_DIR}/external/Cotire")
+  include(cotire)
+endif()
+
+if(CMAKE_BUILD_TYPE STREQUAL "Debug")
+  add_compile_definitions(RX_DEBUG)
 endif()
 
 # RESOURCES
 add_compile_definitions(RX_PROJECT_PATH="${PROJECT_SOURCE_DIR}/")
 add_compile_definitions(RX_RESOURCES_PATH="${PROJECT_SOURCE_DIR}/resources/")
 add_compile_definitions(RX_SHADER_PATH="${PROJECT_SOURCE_DIR}/resources/shaders/")
+
+#add_definitions(RX_PROJECT_PATH="${PROJECT_SOURCE_DIR}/")
+#add_definitions(RX_RESOURCES_PATH="${PROJECT_SOURCE_DIR}/resources/")
+#add_definitions(RX_SHADER_PATH="${PROJECT_SOURCE_DIR}/resources/shaders/")
 
 # VULKAN
 find_package(Vulkan REQUIRED)
@@ -40,11 +52,12 @@ include_directories(${Vulkan_INCLUDE_DIRS})
 if(${OS} STREQUAL "Windows")
   
   add_compile_definitions(RX_GLSLC_PATH="${Vulkan_INCLUDE_DIRS}/../Bin/glslc.exe")
-  message("${Vulkan_INCLUDE_DIRS}/../Bin/glslc.exe")
-  message("${PROJECT_SOURCE_DIR}/resources/shaders/")
 
 elseif(${OS} STREQUAL "Linux")
-  message(FATAL_ERROR, "SHADER COMPILER NOT YET SETUP FOR LINUX")
+
+  add_compile_definitions(RX_GLSLC_PATH="${PROJECT_SOURCE_DIR}/external/Vulkan/glslc")
+  #add_definitions(RX_GLSLC_PATH="${PROJECT_SOURCE_DIR}/external/Vulkan/glslc")
+
 endif()
 
 # SDL
@@ -104,8 +117,10 @@ set_target_properties(renderer
   RUNTIME_OUTPUT_DIRECTORY_RELEASE "${PROJECT_SOURCE_DIR}/build/bin/release"
 )
 
-set_target_properties(renderer PROPERTIES COTIRE_CXX_PREFIX_HEADER_INIT "${PROJECT_SOURCE_DIR}/src/pch/stdafx.hpp")
-cotire(renderer)
+if(${OS} STREQUAL "Windows")
+  set_target_properties(renderer PROPERTIES COTIRE_CXX_PREFIX_HEADER_INIT "${PROJECT_SOURCE_DIR}/src/pch/stdafx.hpp")
+  cotire(renderer)
+endif()
 
 # EXAMPLE
 if(BUILD_EXAMPLES)

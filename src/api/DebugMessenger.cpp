@@ -1,11 +1,10 @@
 #include "api/DebugMessenger.hpp"
 
-
 namespace RX
 {
   void DebugMessenger::create(VkInstance instance)
   {
-#ifdef RX_DEBUG
+#ifndef NDEBUG
     m_createDebugUtilsMessengerEXT = (PFN_vkCreateDebugUtilsMessengerEXT)vkGetInstanceProcAddr(instance, "vkCreateDebugUtilsMessengerEXT");
     m_destroyDebugUtilsMessengerEXT = (PFN_vkDestroyDebugUtilsMessengerEXT)vkGetInstanceProcAddr(instance, "vkDestroyDebugUtilsMessengerEXT");
 
@@ -26,7 +25,7 @@ namespace RX
 
   void DebugMessenger::destroy(VkInstance instance)
   {
-#ifdef RX_DEBUG
+#ifndef NDEBUG
     m_destroyDebugUtilsMessengerEXT(instance, m_debugMessenger, nullptr);
 #endif
   }

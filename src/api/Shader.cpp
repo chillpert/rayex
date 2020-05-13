@@ -42,6 +42,8 @@ namespace RX
     std::system(command.str().c_str());
 #elif RX_PLATFORM_LINUX_X64
   #error TODO: Linux shader compilation
+#else 
+  #error Yare yare daze
 #endif
 
     load(device);

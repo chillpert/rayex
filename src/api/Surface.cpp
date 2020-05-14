@@ -101,7 +101,7 @@ namespace RX
   
     for (const auto& mode : presentModes)
     {
-      if (mode & VK_PRESENT_MODE_MAILBOX_KHR)
+      if (mode == VK_PRESENT_MODE_MAILBOX_KHR)
       {
         presentMode = VK_PRESENT_MODE_MAILBOX_KHR;
         return;

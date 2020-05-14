@@ -2,14 +2,6 @@
 
 namespace RX
 {
-  bool QueueManager::created = false;
-
-  std::optional<uint32_t> QueueManager::graphicsIndex;
-  std::optional<uint32_t> QueueManager::presentIndex;
-
-  VkQueue QueueManager::graphicsQueue;
-  VkQueue QueueManager::presentQueue;
-
   void QueueManager::create(VkPhysicalDevice physicalDevice, VkSurfaceKHR surface)
   {
     if (created)
@@ -38,6 +30,26 @@ namespace RX
 
     vkGetDeviceQueue(device, getGraphicsIndex(), 0, &graphicsQueue);
     vkGetDeviceQueue(device, getPresentIndex(), 0, &presentQueue);
+  }
+
+  void QueueManager::submit(VkSubmitInfo& submitInfo)
+  {
+    // If the queue families are not unique only submit once.
+    if (getPresentIndex() == getGraphicsIndex())
+    {
+      VK_ASSERT(vkQueueSubmit(graphicsQueue, 1, &submitInfo, VK_NULL_HANDLE), "Failed to submit queue.");
+    }
+    else
+    {
+      // TODO: This is probably entirely wrong! 
+      VK_ASSERT(vkQueueSubmit(graphicsQueue, 1, &submitInfo, VK_NULL_HANDLE), "Failed to submit graphics queue.");
+      VK_ASSERT(vkQueueSubmit(presentQueue, 1, &submitInfo, VK_NULL_HANDLE), "Failed to submit present queue.");
+    }
+  }
+
+  void QueueManager::present(VkPresentInfoKHR& presentInfo)
+  {
+    VK_ASSERT(vkQueuePresentKHR(presentQueue, &presentInfo), "Failed to present");
   }
 
   uint32_t QueueManager::getGraphicsIndex()

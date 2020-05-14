@@ -49,7 +49,7 @@ namespace RX
 
     Semaphore imageAvailableSemaphore;
     Semaphore finishedRenderSemaphore;
-    VkQueue m_queue;
+
     CommandPool commandPool;
     CommandBuffer commandBuffer;
   };

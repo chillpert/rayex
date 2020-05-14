@@ -13,6 +13,8 @@ namespace RX
     void create(VkPhysicalDevice physicalDevice, VkSurfaceKHR surface);
 
     void retrieveAllQueueHandles(VkDevice device);
+    void submit(VkSubmitInfo& submitInfo);
+    void present(VkPresentInfoKHR& presentInfo);
 
     uint32_t getGraphicsIndex(); 
     uint32_t getPresentIndex();
@@ -27,12 +29,12 @@ namespace RX
   private:
     static std::pair<std::optional<uint32_t>, std::optional<uint32_t>> findQueueFamilies(VkPhysicalDevice physicalDevice, VkSurfaceKHR surface);
 
-    static bool created;
-    static std::optional<uint32_t> graphicsIndex;
-    static std::optional<uint32_t> presentIndex;
+    bool created = false;
+    std::optional<uint32_t> graphicsIndex;
+    std::optional<uint32_t> presentIndex;
 
-    static VkQueue graphicsQueue;
-    static VkQueue presentQueue;
+    VkQueue graphicsQueue;
+    VkQueue presentQueue;
   };
 }
 

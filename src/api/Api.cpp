@@ -3,8 +3,7 @@
 namespace RX
 {
   Api::Api(std::shared_ptr<Window> window) :
-    m_window(window),
-    m_queue(VK_NULL_HANDLE) { }
+    m_window(window) { }
 
   void Api::initialize()
   {
@@ -17,7 +16,7 @@ namespace RX
     instance.print();
 #endif
     debugMessenger.create(instance.get());
-    
+
     surface.create(instance.get(), m_window);
 
     physicalDevice.create(instance.get(), surface.get());
@@ -49,8 +48,6 @@ namespace RX
     imageAvailableSemaphore.create(device.get());
     finishedRenderSemaphore.create(device.get());
     
-    vkGetDeviceQueue(device.get(), queueFamilyIndex, 0, &m_queue); // TODO: create queue abstraction
-    
     renderPass.create(device.get(), surface.getFormat().format);
     
     vs.create(RX_SHADER_PATH "test.vert", device.get());
@@ -71,7 +68,7 @@ namespace RX
 
   bool Api::render()
   {
-    /*
+    
       uint32_t imageIndex = 0;
 
       // get image from swap chain
@@ -150,7 +147,8 @@ namespace RX
       submitInfo.pSignalSemaphores = finishedRenderSemaphores;
 
       // submit queue
-      VK_ASSERT(vkQueueSubmit(m_queue, 1, &submitInfo, VK_NULL_HANDLE), "Failed to submit queue");
+      queueManager.submit(submitInfo);
+      //VK_ASSERT(vkQueueSubmit(m_queue, 1, &submitInfo, VK_NULL_HANDLE), "Failed to submit queue");
 
       VkPresentInfoKHR presentInfo{ };
       presentInfo.sType = VK_STRUCTURE_TYPE_PRESENT_INFO_KHR;
@@ -162,9 +160,11 @@ namespace RX
       presentInfo.pImageIndices = &imageIndex;
 
       // present
-      VK_ASSERT(vkQueuePresentKHR(m_queue, &presentInfo), "Failed to present");
+      queueManager.present(presentInfo);
+      //VK_ASSERT(vkQueuePresentKHR(m_queue, &presentInfo), "Failed to present");
 
-      VK_ASSERT(vkDeviceWaitIdle(device.get()), "Device failed to wait idle");*/
+      VK_ASSERT(vkDeviceWaitIdle(device.get()), "Device failed to wait idle");
+    
 
     /*
     uint32_t imageIndex;

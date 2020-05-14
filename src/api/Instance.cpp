@@ -20,11 +20,11 @@ namespace RX
 
   void Instance::create(const std::shared_ptr<Window> window)
   {
-    VkApplicationInfo appInfo{ };
+    appInfo = { };
     appInfo.sType = VK_STRUCTURE_TYPE_APPLICATION_INFO;
     appInfo.apiVersion = getApiVersion();
 
-    VkInstanceCreateInfo createInfo{ };
+    createInfo = { };
     createInfo.sType = VK_STRUCTURE_TYPE_INSTANCE_CREATE_INFO;
     createInfo.pApplicationInfo = &appInfo;
 
@@ -91,6 +91,18 @@ namespace RX
     for (const auto& extension : extensions)
       std::cout << "  " << extension.extensionName << std::endl;
     std::cout << std::endl;
+
+    // Print information about structs.
+    VK_LOG("VkApplicationInfo:");
+    std::cout << "==================================================================\n"
+              << "  sType: " << appInfo.sType << std::endl
+              << "  apiVersion: " << appInfo.apiVersion << std::endl
+              << std::endl;
+
+    VK_LOG("VkInstanceCreateInfo:");
+    std::cout << "==================================================================\n"
+              << "  sType: " << createInfo.sType << std::endl
+              << std::endl;
   }
 
   void Instance::checkLayerSupport(const char* name)

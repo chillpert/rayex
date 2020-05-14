@@ -25,8 +25,7 @@ namespace RX
 
   void QueueManager::retrieveAllQueueHandles(VkDevice device)
   {
-    if (!created)
-      VK_ERROR("Queue families have not been evaluated yet. Make sure to call QueueManager::create first.");
+    errorCheck();
 
     vkGetDeviceQueue(device, getGraphicsIndex(), 0, &graphicsQueue);
     vkGetDeviceQueue(device, getPresentIndex(), 0, &presentQueue);
@@ -34,6 +33,8 @@ namespace RX
 
   void QueueManager::submit(VkSubmitInfo& submitInfo)
   {
+    errorCheck();
+
     // If the queue families are not unique only submit once.
     if (getPresentIndex() == getGraphicsIndex())
     {
@@ -49,30 +50,29 @@ namespace RX
 
   void QueueManager::present(VkPresentInfoKHR& presentInfo)
   {
+    errorCheck();
+
     VK_ASSERT(vkQueuePresentKHR(presentQueue, &presentInfo), "Failed to present");
   }
 
   uint32_t QueueManager::getGraphicsIndex()
   {
-    if (!created)
-      VK_ERROR("Queue families have not been evaluated yet. Make sure to call QueueManager::create first.");
+    errorCheck();
 
     return graphicsIndex.value();
   }
 
   uint32_t QueueManager::getPresentIndex()
   {
-    if (!created)
-      VK_ERROR("Queue families have not been evaluated yet. Make sure to call QueueManager::create first.");
+    errorCheck();
 
     return presentIndex.value();
   }
 
   std::vector<uint32_t> QueueManager::getQueueFamilyIndices()
   {
-    if (!created)
-      VK_ERROR("Queue families have not been evaluated yet. Make sure to call QueueManager::create first.");
-
+    errorCheck();
+    
     if (getPresentIndex() == getGraphicsIndex())
       return { getGraphicsIndex() };
 
@@ -120,5 +120,11 @@ namespace RX
     }
 
     return { graphicsIndex_t, presentIndex_t };
+  }
+
+  void QueueManager::errorCheck()
+  {
+    if (!created)
+      VK_ERROR("Queue families have not been evaluated yet. Make sure to call QueueManager::create first.");
   }
 }

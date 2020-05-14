@@ -28,6 +28,7 @@ namespace RX
 
   private:
     static std::pair<std::optional<uint32_t>, std::optional<uint32_t>> findQueueFamilies(VkPhysicalDevice physicalDevice, VkSurfaceKHR surface);
+    void errorCheck();
 
     bool created = false;
     std::optional<uint32_t> graphicsIndex;

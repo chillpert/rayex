@@ -33,6 +33,10 @@ namespace RX
 
     std::vector<const char*> layers;
     std::vector<const char*> extensions;
+
+    // Structs
+    VkApplicationInfo appInfo;
+    VkInstanceCreateInfo createInfo;
   };
 }
 

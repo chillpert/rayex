@@ -1,9 +1,8 @@
 #include "Swapchain.hpp"
-#include "QueueManager.hpp"
 
 namespace RX
 {
-  void Swapchain::create(VkPhysicalDevice physicalDevice, VkDevice device, Surface surface, std::shared_ptr<Window> window, uint32_t* familyIndex)
+  void Swapchain::create(VkPhysicalDevice physicalDevice, VkDevice device, Surface surface, std::shared_ptr<Window> window, QueueManager& queueManager)
   {
     auto surfaceCapabilities = surface.getCapabilitites(physicalDevice);
 
@@ -70,8 +69,8 @@ namespace RX
     createInfo.imageArrayLayers = 1;
     createInfo.imageUsage = VK_IMAGE_USAGE_COLOR_ATTACHMENT_BIT;
 
-    auto graphicsIndex = QueueManager::getGraphicsIndex();
-    auto presentIndex = QueueManager::getPresentIndex();
+    auto graphicsIndex = queueManager.getGraphicsIndex();
+    auto presentIndex = queueManager.getPresentIndex();
     std::vector<uint32_t> queueFamilyIndices = { graphicsIndex, presentIndex };
 
     if (graphicsIndex != presentIndex)

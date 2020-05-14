@@ -2,6 +2,7 @@
 #define SWAPCHAIN_HPP
 
 #include "Surface.hpp"
+#include "QueueManager.hpp"
 
 namespace RX
 {
@@ -16,7 +17,7 @@ namespace RX
     
     inline VkExtent2D& getExtent() { return extent; } 
 
-    void create(VkPhysicalDevice physicalDevice, VkDevice device, Surface surface, std::shared_ptr<Window> window, uint32_t* familyIndex);
+    void create(VkPhysicalDevice physicalDevice, VkDevice device, Surface surface, std::shared_ptr<Window> window, QueueManager& queueManager);
     void destroy(VkDevice device);
     
     void createImages(VkDevice device);

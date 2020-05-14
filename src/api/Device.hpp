@@ -3,6 +3,7 @@
 
 #include "pch/stdafx.hpp"
 #include "Instance.hpp"
+#include "QueueManager.hpp"
 
 namespace RX
 {
@@ -11,7 +12,7 @@ namespace RX
   public:
     inline VkDevice get() { return device; }
 
-    void create(VkPhysicalDevice physicalDevice);
+    void create(VkPhysicalDevice physicalDevice, QueueManager& queueManager);
     void destroy();
 
     // To verify the support of any device extension, use PhysicalDevice::checkExtensionSupport.

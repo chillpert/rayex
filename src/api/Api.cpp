@@ -42,9 +42,9 @@ namespace RX
     //for (const auto& extension : requiredExtensions)
     //  device.pushExtension(extension);
 
-    device.create(physicalDevice.get());
+    device.create(physicalDevice.get(), queueManager);
 
-    swapchain.create(physicalDevice.get(), device.get(), surface, m_window, &queueFamilyIndex);
+    swapchain.create(physicalDevice.get(), device.get(), surface, m_window, queueManager);
 
     imageAvailableSemaphore.create(device.get());
     finishedRenderSemaphore.create(device.get());

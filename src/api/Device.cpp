@@ -1,14 +1,13 @@
 #include "Device.hpp"
-#include "QueueManager.hpp"
 
 namespace RX
 {
-  void Device::create(VkPhysicalDevice physicalDevice)
+  void Device::create(VkPhysicalDevice physicalDevice, QueueManager& queueManager)
   {
     float queuePriority = 1.0f;
 
     std::vector<VkDeviceQueueCreateInfo> queueCreateInfos;
-    std::vector<uint32_t> queueFamilyIndices = QueueManager::getQueueFamilyIndices();
+    std::vector<uint32_t> queueFamilyIndices = queueManager.getQueueFamilyIndices();
 
     for (uint32_t queueFamilyIndex : queueFamilyIndices)
     {
@@ -44,7 +43,7 @@ namespace RX
 
     VK_ASSERT(vkCreateDevice(physicalDevice, &createInfo, nullptr, &device), "Failed to create device.");
 
-    QueueManager::retrieveAllQueueHandles(device);
+    queueManager.retrieveAllQueueHandles(device);
 
     created = true;
   }

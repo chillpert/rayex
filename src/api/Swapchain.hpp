@@ -25,12 +25,15 @@ namespace RX
     void createFramebuffers(VkDevice device, VkRenderPass renderPass, std::shared_ptr<Window> window);
 
   private:
+    void errorCheck();
+
     VkSwapchainKHR swapchain;
     std::vector<VkImage> images;
     std::vector<VkImageView> imageViews;
     std::vector<VkFramebuffer> framebuffers;
 
     VkExtent2D extent;
+    bool created = false;
   };
 }
 

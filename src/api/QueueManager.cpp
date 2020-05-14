@@ -25,7 +25,9 @@ namespace RX
 
   void QueueManager::retrieveAllQueueHandles(VkDevice device)
   {
+#ifdef RX_DEBUG
     errorCheck();
+#endif
 
     vkGetDeviceQueue(device, getGraphicsIndex(), 0, &graphicsQueue);
     vkGetDeviceQueue(device, getPresentIndex(), 0, &presentQueue);
@@ -33,7 +35,9 @@ namespace RX
 
   void QueueManager::submit(VkSubmitInfo& submitInfo)
   {
+#ifdef RX_DEBUG
     errorCheck();
+#endif
 
     // If the queue families are not unique only submit once.
     if (getPresentIndex() == getGraphicsIndex())
@@ -50,28 +54,36 @@ namespace RX
 
   void QueueManager::present(VkPresentInfoKHR& presentInfo)
   {
+#ifdef RX_DEBUG
     errorCheck();
+#endif
 
     VK_ASSERT(vkQueuePresentKHR(presentQueue, &presentInfo), "Failed to present");
   }
 
   uint32_t QueueManager::getGraphicsIndex()
   {
+#ifdef RX_DEBUG
     errorCheck();
+#endif
 
     return graphicsIndex.value();
   }
 
   uint32_t QueueManager::getPresentIndex()
   {
+#ifdef RX_DEBUG
     errorCheck();
-
+#endif
+    
     return presentIndex.value();
   }
 
   std::vector<uint32_t> QueueManager::getQueueFamilyIndices()
   {
+#ifdef RX_DEBUG
     errorCheck();
+#endif
     
     if (getPresentIndex() == getGraphicsIndex())
       return { getGraphicsIndex() };

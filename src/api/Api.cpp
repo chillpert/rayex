@@ -62,6 +62,7 @@ namespace RX
 
   bool Api::render()
   {
+    /*
     uint32_t imageIndex = 0;
 
     // get image from swap chain
@@ -95,24 +96,24 @@ namespace RX
       // begin render pass
       vkCmdBeginRenderPass(commandBuffer.get(), &renderPassBeginInfo, VK_SUBPASS_CONTENTS_INLINE);
       {
-        /*
-        VkViewport viewport = { };
-        viewport.x = 0.0f;
-        viewport.y = 0.0f;
-        viewport.width = static_cast<float>(width);
-        viewport.height = static_cast<float>(height);
-        viewport.minDepth = 0.0f;
-        viewport.maxDepth = 1.0f;
-
-        VkRect2D scissor = { };
-        scissor.offset.x = 0;
-        scissor.offset.y = 0;
-        scissor.extent.width = static_cast<uint32_t>(width);
-        scissor.extent.height = static_cast<uint32_t>(height);
-
-        vkCmdSetViewport(m_commandBuffer, 0, 1, &viewport);
-        vkCmdSetScissor(m_commandBuffer, 0, 1, &scissor);
-        */
+        {
+        //VkViewport viewport = { };
+        //viewport.x = 0.0f;
+        //viewport.y = 0.0f;
+        //viewport.width = static_cast<float>(width);
+        //viewport.height = static_cast<float>(height);
+        //viewport.minDepth = 0.0f;
+        //viewport.maxDepth = 1.0f;
+        //
+        //VkRect2D scissor = { };
+        //scissor.offset.x = 0;
+        //scissor.offset.y = 0;
+        //scissor.extent.width = static_cast<uint32_t>(width);
+        //scissor.extent.height = static_cast<uint32_t>(height);
+        //
+        //vkCmdSetViewport(m_commandBuffer, 0, 1, &viewport);
+        //vkCmdSetScissor(m_commandBuffer, 0, 1, &scissor);
+        }
         
         // draw calls go here
         vkCmdBindPipeline(commandBuffer.get(), VK_PIPELINE_BIND_POINT_GRAPHICS, pipeline.get());
@@ -155,6 +156,44 @@ namespace RX
     VK_ASSERT(vkQueuePresentKHR(m_queue, &presentInfo), "Failed to present");
 
     VK_ASSERT(vkDeviceWaitIdle(device.get()), "Device failed to wait idle");
+        */
+
+    uint32_t imageIndex;
+    vkAcquireNextImageKHR(device.get(), swapchain.get(), UINT64_MAX, imageAvailableSemaphore.get(), VK_NULL_HANDLE, &imageIndex);
+
+    VkSubmitInfo submitInfo{ };
+    submitInfo.sType = VK_STRUCTURE_TYPE_SUBMIT_INFO;
+
+    VkSemaphore waitSemaphores[] = { imageAvailableSemaphore.get() };
+    VkPipelineStageFlags waitStages[] = { VK_PIPELINE_STAGE_COLOR_ATTACHMENT_OUTPUT_BIT };
+    submitInfo.waitSemaphoreCount = 1;
+    submitInfo.pWaitSemaphores = waitSemaphores;
+    submitInfo.pWaitDstStageMask = waitStages;
+    submitInfo.commandBufferCount = 1;
+    VkCommandBuffer commandBuffers[] = { commandBuffer.get() };
+    submitInfo.pCommandBuffers = commandBuffers;//&[imageIndex];
+
+    VkSemaphore signalSemaphores[] = { finishedRenderSemaphore.get() };
+    submitInfo.signalSemaphoreCount = 1;
+    submitInfo.pSignalSemaphores = signalSemaphores;
+
+    vkQueueSubmit(m_queue, 1, &submitInfo, VK_NULL_HANDLE);
+
+    VkPresentInfoKHR presentInfo{ };
+    presentInfo.sType = VK_STRUCTURE_TYPE_PRESENT_INFO_KHR;
+    presentInfo.waitSemaphoreCount = 1;
+    presentInfo.pWaitSemaphores = signalSemaphores;
+
+    VkSwapchainKHR swapChains[] = { swapchain.get() };
+    presentInfo.swapchainCount = 1;
+    presentInfo.pSwapchains = swapChains;
+    presentInfo.pImageIndices = &imageIndex;
+
+    vkQueuePresentKHR(m_queue, &presentInfo);
+
+    /*
+    The fix is probably to set up the present queue as well and differentitate between them
+    */
 
     return true;
   }

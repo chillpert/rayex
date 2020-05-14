@@ -68,8 +68,12 @@ namespace RX
   {
     unsigned int score = 0u;
 
+    // Check the device's features and properties.
     VkPhysicalDeviceProperties props;
     vkGetPhysicalDeviceProperties(device, &props);
+
+    VkPhysicalDeviceFeatures feats;
+    vkGetPhysicalDeviceFeatures(device, &feats);
 
     if (props.deviceType == VK_PHYSICAL_DEVICE_TYPE_DISCRETE_GPU)
       score += 100u;
@@ -89,6 +93,26 @@ namespace RX
     std::string name = props.deviceName;
     if (name.find("RTX") != std::string::npos)
       score += 100u;
+
+    // Check the queue family suitability.
+    uint32_t queueFamilyCount = 0;
+    vkGetPhysicalDeviceQueueFamilyProperties(device, &queueFamilyCount, nullptr);
+
+    std::vector<VkQueueFamilyProperties> queueFamilies(queueFamilyCount);
+    vkGetPhysicalDeviceQueueFamilyProperties(device, &queueFamilyCount, queueFamilies.data());
+    
+    bool hasGraphicsBit = false;
+    for (const auto& it : queueFamilies)
+    {
+      if (it.queueFlags & VK_QUEUE_GRAPHICS_BIT)
+      {
+        score += 100u;
+        hasGraphicsBit = true;
+      }
+    }
+
+    if (!hasGraphicsBit)
+      return 0u;
 
     // TODO: add more hardware specific evaulation (those that are benefitial for path tracing)
 

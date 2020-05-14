@@ -3,6 +3,7 @@
 
 #include "window/Window.hpp"
 
+#include "QueueManager.hpp"
 #include "DebugMessenger.hpp"
 #include "Instance.hpp"
 #include "PhysicalDevice.hpp"
@@ -43,6 +44,8 @@ namespace RX
 
     RenderPass renderPass;
     Pipeline pipeline;
+
+    QueueManager queueManager;
 
     Semaphore imageAvailableSemaphore;
     Semaphore finishedRenderSemaphore;

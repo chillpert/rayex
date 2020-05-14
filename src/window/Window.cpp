@@ -97,8 +97,16 @@ namespace RX
     m_properties.setTitle(title);
   }
 
-  void Window::getWindowSize(int* width, int* height)
+  void Window::getSize(int* width, int* height)
   {
     SDL_GetWindowSize(m_window, width, height);
+  }
+
+  VkExtent2D Window::getExtent()
+  {
+    int width, height;
+    SDL_GetWindowSize(m_window, &width, &height);
+  
+    return { static_cast<uint32_t>(width), static_cast<uint32_t>(height) };
   }
 }

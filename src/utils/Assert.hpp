@@ -10,7 +10,7 @@
 
 #ifdef RX_DEBUG
   #define VK_LOG(message) std::cout << "Vk: Log: " << message << std::endl
-  #define VK_ASSERT(result, message) Assert::vulkan(result, message)         
+  #define VK_ASSERT(result, message) Assert::vulkan(result, message)
 #else
   #define VK_LOG(message)
   #define VK_ASSERT(result, message) result

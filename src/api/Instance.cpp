@@ -139,7 +139,7 @@ namespace RX
     if (apiVersion >= VK_API_VERSION_1_2)
     {
       VK_LOG("Found Vulkan SDK API Version 1.2.x");
-      return apiVersion;
+      return VK_API_VERSION_1_2;
     }
 #endif
 
@@ -147,7 +147,7 @@ namespace RX
     if (apiVersion >= VK_API_VERSION_1_1)
     {
       VK_LOG("Found Vulkan SDK API Version 1.1.x");
-      return apiVersion;
+      return VK_API_VERSION_1_1;
     }
 #endif
     

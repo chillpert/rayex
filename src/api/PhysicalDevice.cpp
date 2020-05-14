@@ -1,8 +1,9 @@
 #include "PhysicalDevice.hpp"
+#include "QueueManager.hpp"
 
 namespace RX
 {
-  void PhysicalDevice::create(VkInstance instance)
+  void PhysicalDevice::create(VkInstance instance, VkSurfaceKHR surface)
   {
     uint32_t physicalDeviceCount = 0;
     VK_ASSERT(vkEnumeratePhysicalDevices(instance, &physicalDeviceCount, nullptr), "Failed to enumerate physical devices");
@@ -14,7 +15,7 @@ namespace RX
     for (const auto& it : physicalDevices)
     {
       {
-        unsigned int temp = evaluate(it);
+        unsigned int temp = evaluate(it, surface);
         if (temp > score)
         {
           physicalDevice = it;
@@ -64,7 +65,7 @@ namespace RX
     }
   }
 
-  unsigned int PhysicalDevice::evaluate(VkPhysicalDevice device)
+  unsigned int PhysicalDevice::evaluate(VkPhysicalDevice device, VkSurfaceKHR surface)
   {
     unsigned int score = 0u;
 
@@ -94,24 +95,9 @@ namespace RX
     if (name.find("RTX") != std::string::npos)
       score += 100u;
 
-    // Check the queue family suitability.
-    uint32_t queueFamilyCount = 0;
-    vkGetPhysicalDeviceQueueFamilyProperties(device, &queueFamilyCount, nullptr);
-
-    std::vector<VkQueueFamilyProperties> queueFamilies(queueFamilyCount);
-    vkGetPhysicalDeviceQueueFamilyProperties(device, &queueFamilyCount, queueFamilies.data());
-    
-    bool hasGraphicsBit = false;
-    for (const auto& it : queueFamilies)
-    {
-      if (it.queueFlags & VK_QUEUE_GRAPHICS_BIT)
-      {
-        score += 100u;
-        hasGraphicsBit = true;
-      }
-    }
-
-    if (!hasGraphicsBit)
+    if (QueueManager::isComplete(device, surface))
+      score += 100u;
+    else
       return 0u;
 
     // TODO: add more hardware specific evaulation (those that are benefitial for path tracing)

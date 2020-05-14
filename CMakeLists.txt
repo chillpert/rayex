@@ -1,6 +1,8 @@
 cmake_minimum_required(VERSION 3.14.0)
 project(Renderer VERSION 0.0.1)
 
+message("Using compiler: " + ${CMAKE_CXX_COMPILER_ID})
+
 option(BUILD_EXAMPLES "Build examples" ON)
 
 if(NOT CMAKE_BUILD_TYPE)

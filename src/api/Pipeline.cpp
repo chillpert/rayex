@@ -33,7 +33,7 @@ namespace RX
     viewport.y = 0.0f;
 
     int width, height;
-    window->getWindowSize(&width, &height);
+    window->getSize(&width, &height);
     viewport.width = static_cast<float>(width);
     viewport.height = static_cast<float>(height);
     viewport.minDepth = 0.0f;

@@ -9,10 +9,13 @@ namespace RX
   {
   public:
     inline VkSwapchainKHR get() { return swapchain; }
+    
     inline std::vector<VkImage>& getImages() { return images; }
     inline std::vector<VkImageView>& getImageViews() { return imageViews; }
     inline std::vector<VkFramebuffer> getFramebuffers() { return framebuffers; }
     
+    inline VkExtent2D& getExtent() { return extent; } 
+
     void create(VkPhysicalDevice physicalDevice, VkDevice device, Surface surface, std::shared_ptr<Window> window, uint32_t* familyIndex);
     void destroy(VkDevice device);
     
@@ -25,6 +28,8 @@ namespace RX
     std::vector<VkImage> images;
     std::vector<VkImageView> imageViews;
     std::vector<VkFramebuffer> framebuffers;
+
+    VkExtent2D extent;
   };
 }
 

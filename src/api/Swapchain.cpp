@@ -1,31 +1,90 @@
 #include "Swapchain.hpp"
+#include "QueueManager.hpp"
 
 namespace RX
 {
   void Swapchain::create(VkPhysicalDevice physicalDevice, VkDevice device, Surface surface, std::shared_ptr<Window> window, uint32_t* familyIndex)
   {
-    surface.checkFormatSupport(physicalDevice);
     surface.checkPhysicalDeviceSupport(physicalDevice, familyIndex);
     auto surfaceCapabilities = surface.getCapabilitites(physicalDevice);
-
-    int width, height;
-    window->getWindowSize(&width, &height);
 
     VkSwapchainCreateInfoKHR createInfo{ };
     createInfo.sType = VK_STRUCTURE_TYPE_SWAPCHAIN_CREATE_INFO_KHR;
     createInfo.surface = surface.get();
-    createInfo.minImageCount = 2; // Remark: Maybe triple buffering at some point 
-    createInfo.imageFormat = surface.getFormat().format;
-    createInfo.imageColorSpace = surface.getFormat().colorSpace;
+
+    // Add another image so that the application does not have to wait for the driver before another image can be acquired.
+    uint32_t imageCount = surfaceCapabilities.minImageCount + 1;
+
+    if (surfaceCapabilities.maxImageCount == 0)
+      VK_ERROR("The surface does not support any images for a swap chain");
+
+    // If the preferred image count is exceeding the supported amount then use the maximum amount of images supported by the surface.
+    if (imageCount > surfaceCapabilities.maxImageCount && surfaceCapabilities.maxImageCount > 0)
+      imageCount = surfaceCapabilities.maxImageCount;
+
+    createInfo.minImageCount = imageCount;
+    
+    createInfo.imageFormat = surface.getFormat(physicalDevice).format;
+    createInfo.imageColorSpace = surface.getFormat(physicalDevice).colorSpace;
     createInfo.preTransform = surfaceCapabilities.currentTransform;
-    createInfo.compositeAlpha = VK_COMPOSITE_ALPHA_OPAQUE_BIT_KHR; // TODO: check if available
-    createInfo.imageExtent.width = static_cast<uint32_t>(width);
-    createInfo.imageExtent.height = static_cast<uint32_t>(height);
+    
+    // Prefer opaque bit over any other composite alpha value.
+    createInfo.compositeAlpha = 
+      surfaceCapabilities.supportedCompositeAlpha & VK_COMPOSITE_ALPHA_OPAQUE_BIT_KHR ? VK_COMPOSITE_ALPHA_OPAQUE_BIT_KHR :
+      surfaceCapabilities.supportedCompositeAlpha & VK_COMPOSITE_ALPHA_PRE_MULTIPLIED_BIT_KHR ? VK_COMPOSITE_ALPHA_PRE_MULTIPLIED_BIT_KHR :
+      surfaceCapabilities.supportedCompositeAlpha & VK_COMPOSITE_ALPHA_POST_MULTIPLIED_BIT_KHR ? VK_COMPOSITE_ALPHA_POST_MULTIPLIED_BIT_KHR :
+      VK_COMPOSITE_ALPHA_PRE_MULTIPLIED_BIT_KHR;
+
+    // Handle the swap chain image extent.
+    if (surfaceCapabilities.currentExtent.width != 0xFFFFFFFF)
+    {
+      // The surface size will be determined by the extent of a swapchain targeting the surface.
+      extent = surfaceCapabilities.currentExtent;
+    }
+    else
+    {
+      // Clamp width and height.
+      extent = window->getExtent();
+
+      uint32_t width_t = extent.width;
+      if (surfaceCapabilities.maxImageExtent.width < extent.width)
+        width_t = surfaceCapabilities.maxImageExtent.width;
+
+      uint32_t height_t = extent.height;
+      if (surfaceCapabilities.maxImageExtent.height < extent.height)
+        height_t = surfaceCapabilities.maxImageExtent.height;
+
+      extent.width = width_t;
+      if (surfaceCapabilities.minImageExtent.width > width_t)
+        extent.width = surfaceCapabilities.minImageExtent.width;
+
+      extent.height = height_t;
+      if (surfaceCapabilities.minImageExtent.height > height_t)
+        extent.height = surfaceCapabilities.minImageExtent.height;      
+    }
+
+    createInfo.imageExtent = extent;
+
+    if (surfaceCapabilities.maxImageArrayLayers < 1)
+      VK_ERROR("The surface does not support a single array layer");
+
     createInfo.imageArrayLayers = 1;
     createInfo.imageUsage = VK_IMAGE_USAGE_COLOR_ATTACHMENT_BIT;
-    createInfo.queueFamilyIndexCount = 1;
-    createInfo.pQueueFamilyIndices = familyIndex;
-    createInfo.presentMode = VK_PRESENT_MODE_FIFO_KHR; // TODO
+
+    auto graphicsIndex = QueueManager::getGraphicsIndex();
+    auto presentIndex = QueueManager::getPresentIndex();
+    std::vector<uint32_t> queueFamilyIndices = { graphicsIndex, presentIndex };
+
+    if (graphicsIndex != presentIndex)
+    {
+      createInfo.imageSharingMode = VK_SHARING_MODE_CONCURRENT;
+      createInfo.queueFamilyIndexCount = static_cast<uint32_t>(queueFamilyIndices.size());
+      createInfo.pQueueFamilyIndices = queueFamilyIndices.data();
+    }
+    else
+      createInfo.imageSharingMode = VK_SHARING_MODE_EXCLUSIVE;
+
+    createInfo.presentMode = surface.getPresentMode(physicalDevice);
     
     VK_ASSERT(vkCreateSwapchainKHR(device, &createInfo, nullptr, &swapchain), "Failed to create swapchain");
   }
@@ -78,7 +137,7 @@ namespace RX
     uint32_t imageCount = static_cast<uint32_t>(imageViews.size());
 
     int width, height;
-    window->getWindowSize(&width, &height);
+    window->getSize(&width, &height);
 
     for (uint32_t i = 0; i < imageCount; ++i)
     {

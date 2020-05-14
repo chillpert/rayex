@@ -5,7 +5,6 @@ namespace RX
 {
   void Swapchain::create(VkPhysicalDevice physicalDevice, VkDevice device, Surface surface, std::shared_ptr<Window> window, uint32_t* familyIndex)
   {
-    surface.checkPhysicalDeviceSupport(physicalDevice, familyIndex);
     auto surfaceCapabilities = surface.getCapabilitites(physicalDevice);
 
     VkSwapchainCreateInfoKHR createInfo{ };

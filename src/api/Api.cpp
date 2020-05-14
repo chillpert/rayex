@@ -35,10 +35,14 @@ namespace RX
 
     physicalDevice.checkExtensionSupport(requiredExtensions);
 
-    // Find queues.
+    // Set up queues.
     queueManager.create(physicalDevice.get(), surface.get());
 
-    device.create(instance.get(), physicalDevice.get(), &queueFamilyIndex);
+    // Add all of the device extensions from above.
+    //for (const auto& extension : requiredExtensions)
+    //  device.pushExtension(extension);
+
+    device.create(physicalDevice.get());
 
     swapchain.create(physicalDevice.get(), device.get(), surface, m_window, &queueFamilyIndex);
 

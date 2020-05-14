@@ -2,6 +2,7 @@
 #define DEVICE_HPP
 
 #include "pch/stdafx.hpp"
+#include "Instance.hpp"
 
 namespace RX
 {
@@ -10,11 +11,17 @@ namespace RX
   public:
     inline VkDevice get() { return device; }
 
-    void create(VkInstance instance, VkPhysicalDevice physicalDevice, uint32_t* queueFamilyIndex);
+    void create(VkPhysicalDevice physicalDevice);
     void destroy();
+
+    // To verify the support of any device extension, use PhysicalDevice::checkExtensionSupport.
+    void pushExtension(const char* name);
 
   private:
     VkDevice device;
+
+    std::vector<const char*> extensions;
+    bool created = false;
   };
 }
 

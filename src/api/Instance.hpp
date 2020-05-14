@@ -10,6 +10,9 @@ namespace RX
   public:
     inline VkInstance get() { return instance; }
 
+    inline std::vector<const char*>& getLayers() { return layers; }
+    inline std::vector<const char*>& getExtension() { return extensions; }
+
     // Needs to be called before create
     void pushLayer(const char* name);
     // Needs to be called before create

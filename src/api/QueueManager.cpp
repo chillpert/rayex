@@ -7,6 +7,9 @@ namespace RX
   std::optional<uint32_t> QueueManager::graphicsIndex;
   std::optional<uint32_t> QueueManager::presentIndex;
 
+  VkQueue QueueManager::graphicsQueue;
+  VkQueue QueueManager::presentQueue;
+
   void QueueManager::create(VkPhysicalDevice physicalDevice, VkSurfaceKHR surface)
   {
     if (created)
@@ -16,10 +19,10 @@ namespace RX
     }
 
     if (physicalDevice == VK_NULL_HANDLE)
-      VK_ERROR("Queue families can not be set up because a physical device has not been picked yet");
+      VK_ERROR("Queue families can not be set up because a physical device has not been picked yet.");
 
     if (surface == VK_NULL_HANDLE)
-      VK_ERROR("Queue families can not be set up because the surface has not been created yet");
+      VK_ERROR("Queue families can not be set up because the surface has not been created yet.");
 
     auto temp = findQueueFamilies(physicalDevice, surface);
     graphicsIndex = temp.first;
@@ -28,10 +31,19 @@ namespace RX
     created = true;
   }
 
+  void QueueManager::retrieveAllQueueHandles(VkDevice device)
+  {
+    if (!created)
+      VK_ERROR("Queue families have not been evaluated yet. Make sure to call QueueManager::create first.");
+
+    vkGetDeviceQueue(device, getGraphicsIndex(), 0, &graphicsQueue);
+    vkGetDeviceQueue(device, getPresentIndex(), 0, &presentQueue);
+  }
+
   uint32_t QueueManager::getGraphicsIndex()
   {
     if (!created)
-      VK_ERROR("Queue families have not been evaluated yet. Make sure to call QueueManager::create first");
+      VK_ERROR("Queue families have not been evaluated yet. Make sure to call QueueManager::create first.");
 
     return graphicsIndex.value();
   }
@@ -39,9 +51,20 @@ namespace RX
   uint32_t QueueManager::getPresentIndex()
   {
     if (!created)
-      VK_ERROR("Queue families have not been evaluated yet. Make sure to call QueueManager::create first");
+      VK_ERROR("Queue families have not been evaluated yet. Make sure to call QueueManager::create first.");
 
     return presentIndex.value();
+  }
+
+  std::vector<uint32_t> QueueManager::getQueueFamilyIndices()
+  {
+    if (!created)
+      VK_ERROR("Queue families have not been evaluated yet. Make sure to call QueueManager::create first.");
+
+    if (getPresentIndex() == getGraphicsIndex())
+      return { getGraphicsIndex() };
+
+    return { getGraphicsIndex(), getPresentIndex() };
   }
 
   bool QueueManager::isComplete(VkPhysicalDevice physicalDevice, VkSurfaceKHR surface)
@@ -73,7 +96,7 @@ namespace RX
 
       // Check if the current queue index is able to present.
       VkBool32 supported;
-      VK_ASSERT(vkGetPhysicalDeviceSurfaceSupportKHR(physicalDevice, index, surface, &supported), "Failed to get physical device surface support");
+      VK_ASSERT(vkGetPhysicalDeviceSurfaceSupportKHR(physicalDevice, index, surface, &supported), "Failed to get physical device surface support.");
 
       if (supported)
         presentIndex_t = index;

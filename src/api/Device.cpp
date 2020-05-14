@@ -1,48 +1,70 @@
 #include "Device.hpp"
+#include "QueueManager.hpp"
 
 namespace RX
 {
-  void Device::create(VkInstance instance, VkPhysicalDevice physicalDevice, uint32_t* queueFamilyIndex)
+  void Device::create(VkPhysicalDevice physicalDevice)
   {
-    *queueFamilyIndex = 0;
-
-    uint32_t queueFamilyPropertyCount;
-    vkGetPhysicalDeviceQueueFamilyProperties(physicalDevice, &queueFamilyPropertyCount, nullptr);
-
-    std::vector<VkQueueFamilyProperties> queueFamilyProperties(queueFamilyPropertyCount);
-    vkGetPhysicalDeviceQueueFamilyProperties(physicalDevice, &queueFamilyPropertyCount, queueFamilyProperties.data());
-
-    // Iterates over all available queue families and find one that supports the graphics bit.
-    for (uint32_t i = 0; i < queueFamilyPropertyCount; ++i)
-    {
-      if (queueFamilyProperties[i].queueFlags & VK_QUEUE_GRAPHICS_BIT)
-      {
-        *queueFamilyIndex = i;
-        break;
-      }
-    }
-
     float queuePriority = 1.0f;
 
-    VkDeviceQueueCreateInfo queueInfo = { VK_STRUCTURE_TYPE_DEVICE_QUEUE_CREATE_INFO };
-    queueInfo.queueFamilyIndex = *queueFamilyIndex;
-    queueInfo.queueCount = 1;
-    queueInfo.pQueuePriorities = &queuePriority;
+    std::vector<VkDeviceQueueCreateInfo> queueCreateInfos;
+    std::vector<uint32_t> queueFamilyIndices = QueueManager::getQueueFamilyIndices();
 
-    VkDeviceCreateInfo createInfo = { VK_STRUCTURE_TYPE_DEVICE_CREATE_INFO };
-    createInfo.queueCreateInfoCount = 1;
-    createInfo.pQueueCreateInfos = &queueInfo;
+    for (uint32_t queueFamilyIndex : queueFamilyIndices)
+    {
+      VkDeviceQueueCreateInfo queueCreateInfo{ };
+      queueCreateInfo.sType = VK_STRUCTURE_TYPE_DEVICE_QUEUE_CREATE_INFO;
+      queueCreateInfo.queueFamilyIndex = queueFamilyIndex;
+      queueCreateInfo.queueCount = 1;
+      queueCreateInfo.pQueuePriorities = &queuePriority;
+      queueCreateInfos.push_back(queueCreateInfo);
+    }
 
-    std::vector<const char*> extensions = { VK_KHR_SWAPCHAIN_EXTENSION_NAME };
+    VkPhysicalDeviceFeatures deviceFeatures{ };
+
+    VkPhysicalDeviceFeatures2 deviceFeatures2{ };
+    deviceFeatures2.sType = VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_FEATURES_2;
+    deviceFeatures2.pNext = nullptr;
+    deviceFeatures2.features = deviceFeatures;
+
+    VkDeviceCreateInfo createInfo{ };
+    createInfo.sType = VK_STRUCTURE_TYPE_DEVICE_CREATE_INFO;
+    createInfo.pNext = &deviceFeatures2;
+
+    createInfo.queueCreateInfoCount = static_cast<uint32_t>(queueCreateInfos.size());
+    createInfo.pQueueCreateInfos = queueCreateInfos.data();
+
+    // This must be NULL because the VkDeviceCreateInfo::pNext chain includes VkPhysicalDeviceFeatures2.
+    createInfo.pEnabledFeatures = nullptr;
+
+    pushExtension(VK_KHR_SWAPCHAIN_EXTENSION_NAME);
 
     createInfo.enabledExtensionCount = static_cast<uint32_t>(extensions.size());
     createInfo.ppEnabledExtensionNames = extensions.data();
 
-    VK_ASSERT(vkCreateDevice(physicalDevice, &createInfo, nullptr, &device), "Failed to create device");
+    VK_ASSERT(vkCreateDevice(physicalDevice, &createInfo, nullptr, &device), "Failed to create device.");
+
+    QueueManager::retrieveAllQueueHandles(device);
+
+    created = true;
   }
 
   void Device::destroy()
   {
-    vkDestroyDevice(device, nullptr);
+    if (created)
+    {
+      vkDestroyDevice(device, nullptr);
+      created = false;
+    }
+
+    VK_ERROR("Logical device was aready deleted or not created to begin with.");
+  }
+
+  void Device::pushExtension(const char* name)
+  {
+    if (created)
+      VK_ERROR("The logical device was already created. Can not push another extension.");
+
+    extensions.push_back(name);
   }
 }

@@ -101,6 +101,7 @@ namespace RX
       return 0u;
 
     // TODO: add more hardware specific evaulation (those that are benefitial for path tracing)
+    // https://www.khronos.org/registry/vulkan/specs/1.2-extensions/html/vkspec.html#features
 
     return score;
   }

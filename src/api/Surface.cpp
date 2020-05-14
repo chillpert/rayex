@@ -15,7 +15,7 @@ namespace RX
     static bool checked = false;
 
     if (physicalDevice == VK_NULL_HANDLE && !checked)
-      VK_ERROR("Surface::getFormat was called for the first time but the physical device has not been passed");
+      VK_ERROR("Surface::getFormat was called for the first time but without passing the pyhsical device to the function.");
 
     if (!checked)
     {
@@ -31,7 +31,7 @@ namespace RX
     static bool checked = false;
 
     if (physicalDevice == VK_NULL_HANDLE && !checked)
-      VK_ERROR("Surface::getPresentMode was called for the first time but the physical device has not been passed");
+      VK_ERROR("Surface::getPresentMode was called for the first time but without passing the pyhsical device to the function.");
 
     if (!checked)
     {
@@ -42,6 +42,23 @@ namespace RX
     return presentMode;
   }
 
+  VkSurfaceCapabilitiesKHR& Surface::getCapabilitites(VkPhysicalDevice physicalDevice)
+  {
+    static bool checked = false;
+
+    if (physicalDevice == VK_NULL_HANDLE && !checked)
+      VK_ERROR("Surface::getCapabilitites was called for the first time but without passing the pyhsical device to the function.");
+
+    if (!checked)
+    {
+      evaluateCapabilities(physicalDevice);
+      checked = true;
+    }
+    
+
+    return surfaceCapabilitites;
+  }
+
   void Surface::create(VkInstance instance, std::shared_ptr<Window> window)
   {
     surface = window->createSurface(instance);
@@ -50,23 +67,6 @@ namespace RX
   void Surface::destroy(VkInstance instance)
   {
     vkDestroySurfaceKHR(instance, surface, nullptr);
-  }
-
-  VkSurfaceCapabilitiesKHR Surface::getCapabilitites(VkPhysicalDevice physicalDevice)
-  {
-    VkSurfaceCapabilitiesKHR surfaceCapabilitites;
-    vkGetPhysicalDeviceSurfaceCapabilitiesKHR(physicalDevice, surface, &surfaceCapabilitites);
-
-    return surfaceCapabilitites;
-  }
-
-  void Surface::checkPhysicalDeviceSupport(VkPhysicalDevice physicalDevice, uint32_t* queueFamilyIndex)
-  {
-    VkBool32 supported = false;
-    VK_ASSERT(vkGetPhysicalDeviceSurfaceSupportKHR(physicalDevice, *queueFamilyIndex, surface, &supported), "Failed to query pyhsical device surface support");
-
-    if (supported == VK_FALSE)
-      VK_ERROR("Physical device surface does not support WSI");
   }
 
   void Surface::evaluateFormat(VkPhysicalDevice physicalDevice)
@@ -109,5 +109,10 @@ namespace RX
     }
 
     presentMode = VK_PRESENT_MODE_FIFO_KHR;
+  }
+
+  void Surface::evaluateCapabilities(VkPhysicalDevice physicalDevice)
+  {
+    vkGetPhysicalDeviceSurfaceCapabilitiesKHR(physicalDevice, surface, &surfaceCapabilitites);
   }
 }

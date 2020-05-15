@@ -48,6 +48,8 @@ namespace RX
     Semaphore m_finishedRenderSemaphore;
 
     CommandPool m_commandPool;
+
+    std::vector<CommandBuffer> m_commandBuffers;
     CommandBuffer m_commandBuffer;
   };
 }

@@ -5,22 +5,8 @@ namespace RX
   Pipeline::Pipeline() :
     BaseComponent("Pipeline") { }
 
-  void Pipeline::initialize(VkDevice device, VkRenderPass renderPass, std::shared_ptr<Window> window, Shader& vs, Shader& fs)
+  void Pipeline::initialize(VkDevice device, VkRenderPass renderPass, VkExtent2D& extent, std::shared_ptr<Window> window, Shader& vs, Shader& fs)
   {
-    VkPipelineShaderStageCreateInfo vertShaderStageInfo{ };
-    vertShaderStageInfo.sType = VK_STRUCTURE_TYPE_PIPELINE_SHADER_STAGE_CREATE_INFO;
-    vertShaderStageInfo.stage = VK_SHADER_STAGE_VERTEX_BIT;
-    vertShaderStageInfo.module = vs.getShaderModule();
-    vertShaderStageInfo.pName = "main";
-
-    VkPipelineShaderStageCreateInfo fragShaderStageInfo{ };
-    fragShaderStageInfo.sType = VK_STRUCTURE_TYPE_PIPELINE_SHADER_STAGE_CREATE_INFO;
-    fragShaderStageInfo.stage = VK_SHADER_STAGE_FRAGMENT_BIT;
-    fragShaderStageInfo.module = fs.getShaderModule();
-    fragShaderStageInfo.pName = "main";
-
-    VkPipelineShaderStageCreateInfo shaderStages[] = { vertShaderStageInfo, fragShaderStageInfo };
-
     VkPipelineVertexInputStateCreateInfo vertexInputInfo{ };
     vertexInputInfo.sType = VK_STRUCTURE_TYPE_PIPELINE_VERTEX_INPUT_STATE_CREATE_INFO;
     vertexInputInfo.vertexBindingDescriptionCount = 0;
@@ -45,7 +31,7 @@ namespace RX
     VkRect2D scissor{ };
     scissor.offset = { 0, 0 };
 
-    VkExtent2D temp{ static_cast<uint32_t>(width), static_cast<uint32_t>(height) };
+    VkExtent2D temp{ extent.width, extent.height };
 
     scissor.extent = temp;
 
@@ -94,10 +80,24 @@ namespace RX
     VkPipelineLayout pipelineLayout;
     VK_ASSERT(vkCreatePipelineLayout(device, &pipelineLayoutInfo, nullptr, &pipelineLayout), "Failed to create pipeline layout.");
 
+    VkPipelineShaderStageCreateInfo vertShaderStageInfo{ };
+    vertShaderStageInfo.sType = VK_STRUCTURE_TYPE_PIPELINE_SHADER_STAGE_CREATE_INFO;
+    vertShaderStageInfo.stage = VK_SHADER_STAGE_VERTEX_BIT;
+    vertShaderStageInfo.module = vs.getShaderModule();
+    vertShaderStageInfo.pName = "main";
+
+    VkPipelineShaderStageCreateInfo fragShaderStageInfo{ };
+    fragShaderStageInfo.sType = VK_STRUCTURE_TYPE_PIPELINE_SHADER_STAGE_CREATE_INFO;
+    fragShaderStageInfo.stage = VK_SHADER_STAGE_FRAGMENT_BIT;
+    fragShaderStageInfo.module = fs.getShaderModule();
+    fragShaderStageInfo.pName = "main";
+
+    std::vector<VkPipelineShaderStageCreateInfo> shaderStages = { vertShaderStageInfo, fragShaderStageInfo };
+
     VkGraphicsPipelineCreateInfo pipelineInfo{ };
     pipelineInfo.sType = VK_STRUCTURE_TYPE_GRAPHICS_PIPELINE_CREATE_INFO;
-    pipelineInfo.stageCount = 2;
-    pipelineInfo.pStages = shaderStages;
+    pipelineInfo.stageCount = static_cast<uint32_t>(shaderStages.size());
+    pipelineInfo.pStages = shaderStages.data();
     pipelineInfo.pVertexInputState = &vertexInputInfo;
     pipelineInfo.pInputAssemblyState = &inputAssembly;
     pipelineInfo.pViewportState = &viewportState;

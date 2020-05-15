@@ -5,6 +5,7 @@
 
 namespace RX
 {
+  // TODO: add macros so that in a release build these checks won't get executed.
   class BaseComponent
   {
   protected:
@@ -19,10 +20,12 @@ namespace RX
     // Ensures that a component is only deleted if it is initialized at that point of time.
     void assertDestruction();
 
+    // Needs to be called right after the initialization finished.
     void initializationCallback();
 
   private:
     bool m_initialized;
+    // The name of the inherited class used to print more detailed error messages.
     const char* m_componentName;
   };
 }

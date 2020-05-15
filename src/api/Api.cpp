@@ -10,9 +10,8 @@ namespace RX
     // Required for extending the physical m_device from m_device extensions.
     m_instance.pushExtension("VK_KHR_get_physical_device_properties2");
     m_instance.initialize(m_window);
-#ifdef RX_DEBUG
-    m_instance.print();
-#endif
+    //m_instance.print();
+
     m_debugMessenger.initialize(m_instance.get());
 
     m_surface.initialize(m_instance.get(), m_window);
@@ -51,7 +50,7 @@ namespace RX
     Shader vs, fs;
     vs.initialize(RX_SHADER_PATH "test.vert", m_device.get());
     fs.initialize(RX_SHADER_PATH "test.frag", m_device.get());
-    m_pipeline.initialize(m_device.get(), m_renderPass.get(), m_window, vs, fs);
+    m_pipeline.initialize(m_device.get(), m_renderPass.get(), m_swapchain.getExtent(), m_window, vs, fs);
     
     m_swapchain.initializeImages(m_device.get());
     m_swapchain.initializeImageViews(m_device.get(), m_surface);
@@ -163,7 +162,7 @@ namespace RX
 
     VK_ASSERT(vkDeviceWaitIdle(m_device.get()), "Device failed to wait idle");
     
-
+    
     /*
     uint32_t imageIndex;
     vkAcquireNextImageKHR(m_device.get(), m_swapchain.get(), UINT64_MAX, m_imageAvailableSemaphore.get(), VK_NULL_HANDLE, &imageIndex);

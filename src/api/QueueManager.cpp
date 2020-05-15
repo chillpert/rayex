@@ -5,7 +5,7 @@ namespace RX
   QueueManager::QueueManager() :
     BaseComponent("QueueManager") { }
 
-  void QueueManager::create(VkPhysicalDevice physicalDevice, VkSurfaceKHR surface)
+  void QueueManager::initialize(VkPhysicalDevice physicalDevice, VkSurfaceKHR surface)
   {
     if (physicalDevice == VK_NULL_HANDLE)
       VK_ERROR("Queue families can not be set up because a physical device has not been picked yet.");

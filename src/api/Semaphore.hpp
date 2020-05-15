@@ -13,7 +13,7 @@ namespace RX
 
     inline VkSemaphore get() { return m_semaphore; }
 
-    void create(VkDevice device)
+    void initialize(VkDevice device)
     {
       VkSemaphoreCreateInfo createInfo{ };
       createInfo.sType = VK_STRUCTURE_TYPE_SEMAPHORE_CREATE_INFO;

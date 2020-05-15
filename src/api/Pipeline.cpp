@@ -5,7 +5,7 @@ namespace RX
   Pipeline::Pipeline() :
     BaseComponent("Pipeline") { }
 
-  void Pipeline::create(VkDevice device, VkRenderPass renderPass, std::shared_ptr<Window> window, Shader& vs, Shader& fs)
+  void Pipeline::initialize(VkDevice device, VkRenderPass renderPass, std::shared_ptr<Window> window, Shader& vs, Shader& fs)
   {
     VkPipelineShaderStageCreateInfo vertShaderStageInfo{ };
     vertShaderStageInfo.sType = VK_STRUCTURE_TYPE_PIPELINE_SHADER_STAGE_CREATE_INFO;

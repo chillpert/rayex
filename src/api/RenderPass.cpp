@@ -5,7 +5,7 @@ namespace RX
   RenderPass::RenderPass() :
     BaseComponent("RenderPass") { }
 
-  void RenderPass::create(VkDevice device, VkFormat format)
+  void RenderPass::initialize(VkDevice device, VkFormat format)
   {
     VkAttachmentDescription colorAttachmentDescription{ };
     colorAttachmentDescription.format = format;

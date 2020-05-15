@@ -60,7 +60,7 @@ namespace RX
     return surfaceCapabilitites;
   }
 
-  void Surface::create(VkInstance instance, std::shared_ptr<Window> window)
+  void Surface::initialize(VkInstance instance, std::shared_ptr<Window> window)
   {
     surface = window->createSurface(instance);
     initializedCallback();

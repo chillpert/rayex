@@ -14,7 +14,7 @@ namespace RX
 
     inline VkDevice get() { return m_device; }
 
-    void create(VkPhysicalDevice physicalDevice, QueueManager& queueManager);
+    void initialize(VkPhysicalDevice physicalDevice, QueueManager& queueManager);
     void destroy();
 
     // To verify the support of any device extension, use PhysicalDevice::checkExtensionSupport.

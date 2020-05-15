@@ -17,7 +17,7 @@ namespace RX
     VkPresentModeKHR& getPresentMode(VkPhysicalDevice physicalDevice = VK_NULL_HANDLE);
     VkSurfaceCapabilitiesKHR& getCapabilitites(VkPhysicalDevice physicalDevice = VK_NULL_HANDLE);
 
-    void create(VkInstance instance, std::shared_ptr<Window> window);
+    void initialize(VkInstance instance, std::shared_ptr<Window> window);
     void destroy(VkInstance instance);
 
   private:

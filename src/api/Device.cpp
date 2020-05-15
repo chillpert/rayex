@@ -5,7 +5,7 @@ namespace RX
   Device::Device() :
     BaseComponent("Device") { }
 
-  void Device::create(VkPhysicalDevice physicalDevice, QueueManager& queueManager)
+  void Device::initialize(VkPhysicalDevice physicalDevice, QueueManager& queueManager)
   {
     float queuePriority = 1.0f;
 

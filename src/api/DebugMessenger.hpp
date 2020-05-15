@@ -8,7 +8,7 @@ namespace RX
   class DebugMessenger
   {
   public:
-    void create(VkInstance instance);
+    void initialize(VkInstance instance);
     void destroy(VkInstance instance);
 
   private:

@@ -11,7 +11,7 @@ namespace RX
     inline VkPhysicalDevice get() { return m_physicalDevice; }
 
     // Technically not created, but enumerated. However, this way is better for the naming scheme.
-    void create(VkInstance instance, VkSurfaceKHR surface);
+    void initialize(VkInstance instance, VkSurfaceKHR surface);
   
     // Checks if all given physical device extensions are available.
     void checkExtensionSupport(const std::vector<const char*>& extensions) const;

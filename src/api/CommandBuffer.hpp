@@ -10,7 +10,7 @@ namespace RX
   public:
     inline VkCommandBuffer get() { return m_commandBuffer; }
 
-    void create(VkDevice device, VkCommandPool commandPool)
+    void initialize(VkDevice device, VkCommandPool commandPool)
     {
       VkCommandBufferAllocateInfo allocateInfo{ };
       allocateInfo.sType = VK_STRUCTURE_TYPE_COMMAND_BUFFER_ALLOCATE_INFO;

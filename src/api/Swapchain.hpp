@@ -20,12 +20,12 @@ namespace RX
     
     inline VkExtent2D& getExtent() { return extent; } 
 
-    void create(VkPhysicalDevice physicalDevice, VkDevice device, Surface surface, std::shared_ptr<Window> window, QueueManager& queueManager);
+    void initialize(VkPhysicalDevice physicalDevice, VkDevice device, Surface surface, std::shared_ptr<Window> window, QueueManager& queueManager);
     void destroy(VkDevice device);
     
-    void createImages(VkDevice device);
-    void createImageViews(VkDevice device, Surface surface);
-    void createFramebuffers(VkDevice device, VkRenderPass renderPass, std::shared_ptr<Window> window);
+    void initializeImages(VkDevice device);
+    void initializeImageViews(VkDevice device, Surface surface);
+    void initializeFramebuffers(VkDevice device, VkRenderPass renderPass, std::shared_ptr<Window> window);
 
   private:
     VkSwapchainKHR swapchain;

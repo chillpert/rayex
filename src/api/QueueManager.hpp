@@ -12,7 +12,7 @@ namespace RX
 
     // This function should be called right after the physical device was enumerated and the 
     // surface was created. The surface has to be created before the physical device is picked.
-    void create(VkPhysicalDevice physicalDevice, VkSurfaceKHR surface);
+    void initialize(VkPhysicalDevice physicalDevice, VkSurfaceKHR surface);
 
     void retrieveAllQueueHandles(VkDevice device);
     void submit(VkSubmitInfo& submitInfo);

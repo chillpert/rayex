@@ -5,7 +5,7 @@ namespace RX
   Shader::Shader() :
     BaseComponent("Shader") { }
 
-  void Shader::create(const std::string& fullPath, VkDevice device)
+  void Shader::initialize(const std::string& fullPath, VkDevice device)
   {
     std::string delimiter = "/";
 

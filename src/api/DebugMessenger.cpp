@@ -2,7 +2,7 @@
 
 namespace RX
 {
-  void DebugMessenger::create(VkInstance instance)
+  void DebugMessenger::initialize(VkInstance instance)
   {
 #ifdef RX_DEBUG
     m_createDebugUtilsMessengerEXT = (PFN_vkCreateDebugUtilsMessengerEXT)vkGetInstanceProcAddr(instance, "vkCreateDebugUtilsMessengerEXT");

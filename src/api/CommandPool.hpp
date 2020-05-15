@@ -13,7 +13,7 @@ namespace RX
 
     inline VkCommandPool get() { return m_commandPool; }
 
-    void create(VkDevice device, uint32_t queueFamilyIndex)
+    void initialize(VkDevice device, uint32_t queueFamilyIndex)
     {
       VkCommandPoolCreateInfo createInfo{ };
       createInfo.sType = VK_STRUCTURE_TYPE_COMMAND_POOL_CREATE_INFO;

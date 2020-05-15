@@ -3,7 +3,7 @@
 
 namespace RX
 {
-  void PhysicalDevice::create(VkInstance instance, VkSurfaceKHR surface)
+  void PhysicalDevice::initialize(VkInstance instance, VkSurfaceKHR surface)
   {
     uint32_t physicalDeviceCount = 0;
     VK_ASSERT(vkEnumeratePhysicalDevices(instance, &physicalDeviceCount, nullptr), "Failed to enumerate physical devices");

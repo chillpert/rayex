@@ -10,7 +10,7 @@ namespace RX
   public:
     Shader();
 
-    void create(const std::string& fullPath, VkDevice device);
+    void initialize(const std::string& fullPath, VkDevice device);
     void destroy(VkDevice device);
 
     inline std::vector<char>& getSource() { return m_source; }

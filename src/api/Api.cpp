@@ -9,15 +9,15 @@ namespace RX
   {
     // Required for extending the physical m_device from m_device extensions.
     m_instance.pushExtension("VK_KHR_get_physical_device_properties2");
-    m_instance.create(m_window);
+    m_instance.initialize(m_window);
 #ifdef RX_DEBUG
     m_instance.print();
 #endif
-    m_debugMessenger.create(m_instance.get());
+    m_debugMessenger.initialize(m_instance.get());
 
-    m_surface.create(m_instance.get(), m_window);
+    m_surface.initialize(m_instance.get(), m_window);
 
-    m_physicalDevice.create(m_instance.get(), m_surface.get());
+    m_physicalDevice.initialize(m_instance.get(), m_surface.get());
 
     // Extensions required for ray tracing.
     std::vector<const char*> requiredExtensions =
@@ -33,31 +33,31 @@ namespace RX
     m_physicalDevice.checkExtensionSupport(requiredExtensions);
 
     // Set up queues.
-    m_queueManager.create(m_physicalDevice.get(), m_surface.get());
+    m_queueManager.initialize(m_physicalDevice.get(), m_surface.get());
 
     // Add all of the device extensions from above.
     //for (const auto& extension : requiredExtensions)
     //  m_device.pushExtension(extension);
 
-    m_device.create(m_physicalDevice.get(), m_queueManager);
+    m_device.initialize(m_physicalDevice.get(), m_queueManager);
 
-    m_swapchain.create(m_physicalDevice.get(), m_device.get(), m_surface, m_window, m_queueManager);
+    m_swapchain.initialize(m_physicalDevice.get(), m_device.get(), m_surface, m_window, m_queueManager);
 
-    m_imageAvailableSemaphore.create(m_device.get());
-    m_finishedRenderSemaphore.create(m_device.get());
+    m_imageAvailableSemaphore.initialize(m_device.get());
+    m_finishedRenderSemaphore.initialize(m_device.get());
     
-    m_renderPass.create(m_device.get(), m_surface.getFormat().format);
+    m_renderPass.initialize(m_device.get(), m_surface.getFormat().format);
     
     Shader vs, fs;
-    vs.create(RX_SHADER_PATH "test.vert", m_device.get());
-    fs.create(RX_SHADER_PATH "test.frag", m_device.get());
-    m_pipeline.create(m_device.get(), m_renderPass.get(), m_window, vs, fs);
+    vs.initialize(RX_SHADER_PATH "test.vert", m_device.get());
+    fs.initialize(RX_SHADER_PATH "test.frag", m_device.get());
+    m_pipeline.initialize(m_device.get(), m_renderPass.get(), m_window, vs, fs);
     
-    m_swapchain.createImages(m_device.get());
-    m_swapchain.createImageViews(m_device.get(), m_surface);
-    m_swapchain.createFramebuffers(m_device.get(), m_renderPass.get(), m_window);
-    m_commandPool.create(m_device.get(), m_queueManager.getGraphicsIndex());
-    m_commandBuffer.create(m_device.get(), m_commandPool.get());
+    m_swapchain.initializeImages(m_device.get());
+    m_swapchain.initializeImageViews(m_device.get(), m_surface);
+    m_swapchain.initializeFramebuffers(m_device.get(), m_renderPass.get(), m_window);
+    m_commandPool.initialize(m_device.get(), m_queueManager.getGraphicsIndex());
+    m_commandBuffer.initialize(m_device.get(), m_commandPool.get());
   }
 
   bool Api::update()

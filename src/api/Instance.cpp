@@ -23,7 +23,7 @@ namespace RX
     VK_LOG("Added Extension: " << name);
   }
 
-  void Instance::create(const std::shared_ptr<Window> window)
+  void Instance::initialize(const std::shared_ptr<Window> window)
   {
     VkApplicationInfo appInfo{ };
     appInfo.sType = VK_STRUCTURE_TYPE_APPLICATION_INFO;

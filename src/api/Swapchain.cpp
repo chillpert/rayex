@@ -5,7 +5,7 @@ namespace RX
   Swapchain::Swapchain() :
     BaseComponent("Swapchain") { }
 
-  void Swapchain::create(VkPhysicalDevice physicalDevice, VkDevice device, Surface surface, std::shared_ptr<Window> window, QueueManager& queueManager)
+  void Swapchain::initialize(VkPhysicalDevice physicalDevice, VkDevice device, Surface surface, std::shared_ptr<Window> window, QueueManager& queueManager)
   {
     auto surfaceCapabilities = surface.getCapabilitites(physicalDevice);
 
@@ -98,7 +98,7 @@ namespace RX
     vkDestroySwapchainKHR(device, swapchain, nullptr);
   }
 
-  void Swapchain::createImages(VkDevice device)
+  void Swapchain::initializeImages(VkDevice device)
   {
     assertInitialized("createImages");
 
@@ -109,7 +109,7 @@ namespace RX
     VK_ASSERT(vkGetSwapchainImagesKHR(device, swapchain, &imageCount, images.data()), "Failed to get swap chain images");
   }
 
-  void Swapchain::createImageViews(VkDevice device, Surface surface)
+  void Swapchain::initializeImageViews(VkDevice device, Surface surface)
   {
     assertInitialized("createImageViews");
 
@@ -138,7 +138,7 @@ namespace RX
     }
   }
 
-  void Swapchain::createFramebuffers(VkDevice device, VkRenderPass renderPass, std::shared_ptr<Window> window)
+  void Swapchain::initializeFramebuffers(VkDevice device, VkRenderPass renderPass, std::shared_ptr<Window> window)
   {
     assertInitialized("createFramebuffers");
 

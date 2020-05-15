@@ -63,7 +63,7 @@ namespace RX
 
     VK_ASSERT(vkCreateInstance(&createInfo, nullptr, &m_instance), "Failed to create instance.");
 
-    initializedCallback();
+    initializationCallback();
   }
 
   void Instance::destroy()
@@ -113,7 +113,7 @@ namespace RX
         return;
     }
     
-    VK_ERROR("Validation layer is not available on this device.");
+    RX_ERROR("Validation layer is not available on this device.");
   }
 
   void Instance::checkExtensionSupport(const char* name)
@@ -130,7 +130,7 @@ namespace RX
         return;
     }
 
-    VK_ERROR("Validation layer is not available on this device.");
+    RX_ERROR("Validation layer is not available on this device.");
   }
 
   uint32_t Instance::getApiVersion()
@@ -146,7 +146,7 @@ namespace RX
     }
 #endif
 
-#ifdef VK_API_VERSION_1_1  _
+#ifdef VK_API_VERSION_1_1
     if (apiVersion >= VK_API_VERSION_1_1)
     {
       VK_LOG("Found Vulkan SDK API Version 1.1.x");
@@ -154,7 +154,7 @@ namespace RX
     }
 #endif
     
-    VK_ERROR("This application requires Vulkan SDK API Version 1.1 or higher.");
+    RX_ERROR("This application requires Vulkan SDK API Version 1.1 or higher.");
   
     return 0;
   }

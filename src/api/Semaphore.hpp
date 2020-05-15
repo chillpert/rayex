@@ -20,7 +20,7 @@ namespace RX
 
       VK_ASSERT(vkCreateSemaphore(device, &createInfo, nullptr, &m_semaphore), "Failed to create semaphore.");
 
-      initializedCallback();
+      initializationCallback();
     }
 
     void destroy(VkDevice device)

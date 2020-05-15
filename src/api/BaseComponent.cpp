@@ -18,7 +18,7 @@ namespace RX
       strcat(result, m_componentName);
       strcat(result, ": ");
       strcat(result, message);
-      VK_ERROR(result);
+      RX_ERROR(result);
     }
   }
 
@@ -32,7 +32,7 @@ namespace RX
       strcat(result, m_componentName);
       strcat(result, ": ");
       strcat(result, message);
-      VK_ERROR(result);
+      RX_ERROR(result);
     }
   }
 
@@ -44,20 +44,20 @@ namespace RX
       char result[100];
       strcpy(result, messagePrefix);
       strcat(result, m_componentName);
-      VK_ERROR(result);
+      RX_ERROR(result);
     }
 
     m_initialized = false;
   }
 
-  void BaseComponent::initializedCallback()
+  void BaseComponent::initializationCallback()
   {
     if (m_initialized)
     {
       char result[100];
       strcpy(result, messagePrefix);
       strcat(result, m_componentName);
-      VK_ERROR(result);
+      RX_ERROR(result);
     }
 
     m_initialized = true;

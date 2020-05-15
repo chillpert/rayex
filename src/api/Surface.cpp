@@ -16,7 +16,7 @@ namespace RX
     static bool checked = false;
 
     if (physicalDevice == VK_NULL_HANDLE && !checked)
-      VK_ERROR("Surface::getFormat was called for the first time but without passing the pyhsical device to the function.");
+      RX_ERROR("Surface::getFormat was called for the first time but without passing the pyhsical device to the function.");
 
     if (!checked)
     {
@@ -32,7 +32,7 @@ namespace RX
     static bool checked = false;
 
     if (physicalDevice == VK_NULL_HANDLE && !checked)
-      VK_ERROR("Surface::getPresentMode was called for the first time but without passing the pyhsical device to the function.");
+      RX_ERROR("Surface::getPresentMode was called for the first time but without passing the pyhsical device to the function.");
 
     if (!checked)
     {
@@ -48,7 +48,7 @@ namespace RX
     static bool checked = false;
 
     if (physicalDevice == VK_NULL_HANDLE && !checked)
-      VK_ERROR("Surface::getCapabilitites was called for the first time but without passing the pyhsical device to the function.");
+      RX_ERROR("Surface::getCapabilitites was called for the first time but without passing the pyhsical device to the function.");
 
     if (!checked)
     {
@@ -63,7 +63,7 @@ namespace RX
   void Surface::initialize(VkInstance instance, std::shared_ptr<Window> window)
   {
     surface = window->createSurface(instance);
-    initializedCallback();
+    initializationCallback();
   }
 
   void Surface::destroy(VkInstance instance)

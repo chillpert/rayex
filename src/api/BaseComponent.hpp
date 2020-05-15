@@ -19,7 +19,7 @@ namespace RX
     // Ensures that a component is only deleted if it is initialized at that point of time.
     void assertDestruction();
 
-    void initializedCallback();
+    void initializationCallback();
 
   private:
     bool m_initialized;

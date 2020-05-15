@@ -35,7 +35,7 @@ namespace RX
 
     VK_ASSERT(vkCreateRenderPass(device, &createInfo, nullptr, &m_renderPass), "Failed to create render pass");
 
-    initializedCallback();
+    initializationCallback();
   }
 
   void RenderPass::destroy(VkDevice device)

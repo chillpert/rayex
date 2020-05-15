@@ -3,7 +3,7 @@
 
 #include "Core.hpp"
 #include "window/Time.hpp"
-#include "utils/Assert.hpp"
+#include "utils/Utility.hpp"
 
 #include <glm/glm.hpp>
 #include <glm/ext/matrix_transform.hpp>

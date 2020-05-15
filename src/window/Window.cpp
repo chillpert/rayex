@@ -12,9 +12,7 @@ namespace RX
     SDL_SetHint(SDL_HINT_FRAMEBUFFER_ACCELERATION, "1");
 
     if (SDL_Init(SDL_INIT_VIDEO) < 0)
-    {
-      Error::runtime(SDL_GetError(), Error::WINDOW);
-    }
+      RX_ERROR(SDL_GetError());
 
     m_window = SDL_CreateWindow(
       m_properties.getTitle(),
@@ -26,9 +24,7 @@ namespace RX
     );
     
     if (m_window == nullptr)
-    {
-      Error::runtime("Failed to create window", Error::WINDOW);
-    }
+      RX_ERROR("Failed to create window.");
   }
 
   bool Window::update()
@@ -67,16 +63,12 @@ namespace RX
     if (extensions == NULL)
     {
       if (!SDL_Vulkan_GetInstanceExtensions(m_window, &count, NULL))
-      {
-        Error::runtime("SDL failed to get instance extensions", Error::API);
-      }
+        RX_ERROR("SDL failed to get instance extensions");
     }
     else
     {
       if (!SDL_Vulkan_GetInstanceExtensions(m_window, &count, extensions))
-      {
-        Error::runtime("SDL failed to get instance extensions", Error::API);
-      }
+        RX_ERROR("SDL failed to get instance extensions");
     }
   }
 
@@ -84,10 +76,7 @@ namespace RX
   {
     VkSurfaceKHR surface;
 
-    Assert::sdl(
-      SDL_Vulkan_CreateSurface(m_window, instance, &surface), 
-      "Failed to create surface"
-    );
+    SDL_ASSERT(SDL_Vulkan_CreateSurface(m_window, instance, &surface), "Failed to create surface");
 
     return surface;
   }

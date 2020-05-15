@@ -16,7 +16,7 @@ namespace RX
       m_fileName = fullPath.substr(pos + 1).c_str();
     }
     else
-      VK_ERROR("Can not process shader paths.");
+      RX_ERROR("Can not process shader paths.");
 
     compile(device);
   }
@@ -41,7 +41,7 @@ namespace RX
       m_fileNameOut += ".spv";
     }
     else
-      VK_ERROR("Can not process shader file name.");
+      RX_ERROR("Can not process shader file name.");
 
     // Calls glslc to compile the glsl file into spir-v.
     std::stringstream command;
@@ -56,7 +56,7 @@ namespace RX
     std::ifstream file(m_pathToFile + m_fileNameOut, std::ios::ate | std::ios::binary);
 
     if (!file.is_open())
-      VK_ERROR("Failed to open shader source file.");
+      RX_ERROR("Failed to open shader source file.");
 
     size_t fileSize = static_cast<size_t>(file.tellg());
     std::vector<char> buffer(fileSize);
@@ -83,8 +83,8 @@ namespace RX
       VK_ASSERT(vkCreateShaderModule(device, &createInfo, nullptr, &m_shaderModule), "Failed to create shader module.");
     }
     else
-      VK_ERROR("Failed to create shader module, because a logical device has not been created yet.");
+      RX_ERROR("Failed to create shader module, because a logical device has not been created yet.");
   
-    initializedCallback();
+    initializationCallback();
   }
 }

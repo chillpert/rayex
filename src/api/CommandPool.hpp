@@ -22,7 +22,7 @@ namespace RX
 
       VK_ASSERT(vkCreateCommandPool(device, &createInfo, nullptr, &m_commandPool), "Failed to create command pool.");
 
-      initializedCallback();
+      initializationCallback();
     }
 
     void destroy(VkDevice device)

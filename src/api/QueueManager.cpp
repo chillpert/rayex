@@ -8,16 +8,16 @@ namespace RX
   void QueueManager::initialize(VkPhysicalDevice physicalDevice, VkSurfaceKHR surface)
   {
     if (physicalDevice == VK_NULL_HANDLE)
-      VK_ERROR("Queue families can not be set up because a physical device has not been picked yet.");
+      RX_ERROR("Queue families can not be set up because a physical device has not been picked yet.");
 
     if (surface == VK_NULL_HANDLE)
-      VK_ERROR("Queue families can not be set up because the surface has not been initialized yet.");
+      RX_ERROR("Queue families can not be set up because the surface has not been initialized yet.");
 
     auto temp = findQueueFamilies(physicalDevice, surface);
     m_graphicsIndex = temp.first;
     m_presentIndex = temp.second; 
 
-    initializedCallback();
+    initializationCallback();
   }
 
   void QueueManager::retrieveAllQueueHandles(VkDevice device)

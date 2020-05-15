@@ -17,7 +17,7 @@ namespace RX
     uint32_t imageCount = surfaceCapabilities.minImageCount + 1;
 
     if (surfaceCapabilities.maxImageCount == 0)
-      VK_ERROR("The surface does not support any images for a swap chain");
+      RX_ERROR("The surface does not support any images for a swap chain");
 
     // If the preferred image count is exceeding the supported amount then use the maximum amount of images supported by the surface.
     if (imageCount > surfaceCapabilities.maxImageCount && surfaceCapabilities.maxImageCount > 0)
@@ -67,7 +67,7 @@ namespace RX
     createInfo.imageExtent = extent;
 
     if (surfaceCapabilities.maxImageArrayLayers < 1)
-      VK_ERROR("The surface does not support a single array layer");
+      RX_ERROR("The surface does not support a single array layer");
 
     createInfo.imageArrayLayers = 1;
     createInfo.imageUsage = VK_IMAGE_USAGE_COLOR_ATTACHMENT_BIT;
@@ -89,7 +89,7 @@ namespace RX
     
     VK_ASSERT(vkCreateSwapchainKHR(device, &createInfo, nullptr, &swapchain), "Failed to create swapchain");
 
-    initializedCallback();
+    initializationCallback();
   }
 
   void Swapchain::destroy(VkDevice device)

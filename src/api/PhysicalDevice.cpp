@@ -25,7 +25,7 @@ namespace RX
     }
 
     if (score == 0 || m_physicalDevice == VK_NULL_HANDLE)
-      VK_ERROR("No suitable device was found");
+      RX_ERROR("No suitable device was found");
 
     // Print information about the GPU that was selected.
     VkPhysicalDeviceProperties props;
@@ -61,7 +61,7 @@ namespace RX
     for (const auto& requiredphysicalDeviceExtension : requiredExtensions)
     {
       if (!requiredphysicalDeviceExtension.second)
-        VK_ERROR("Missing physical device extension: " + std::string(requiredphysicalDeviceExtension.first) + ". Have you tried installing the NVIDIA Beta drivers?");
+        RX_ERROR("Missing physical device extension: " + std::string(requiredphysicalDeviceExtension.first) + ". Have you tried installing the NVIDIA Beta drivers?");
     }
   }
 

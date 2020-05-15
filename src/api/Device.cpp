@@ -48,7 +48,7 @@ namespace RX
 
     queueManager.retrieveAllQueueHandles(m_device);
 
-    initializedCallback();
+    initializationCallback();
   }
 
   void Device::destroy()

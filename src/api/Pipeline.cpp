@@ -45,7 +45,7 @@ namespace RX
     VkRect2D scissor{ };
     scissor.offset = { 0, 0 };
 
-    VkExtent2D temp{ width, height };
+    VkExtent2D temp{ static_cast<uint32_t>(width), static_cast<uint32_t>(height) };
 
     scissor.extent = temp;
 
@@ -111,7 +111,7 @@ namespace RX
 
     VK_ASSERT(vkCreateGraphicsPipelines(device, VK_NULL_HANDLE, 1, &pipelineInfo, nullptr, &m_pipeline), "Failed to create graphics pipeline.");
   
-    initializedCallback();
+    initializationCallback();
   }
 
   void Pipeline::destroy(VkDevice device)

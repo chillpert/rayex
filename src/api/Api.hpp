@@ -32,26 +32,23 @@ namespace RX
   private:
     std::shared_ptr<Window> m_window;
 
-    Instance instance;
-    DebugMessenger debugMessenger;
-    PhysicalDevice physicalDevice;
-    Device device;
-    Swapchain swapchain;
-    Surface surface;
+    Instance m_instance;
+    DebugMessenger m_debugMessenger;
+    PhysicalDevice m_physicalDevice;
+    Device m_device;
+    Swapchain m_swapchain;
+    Surface m_surface;
 
-    Shader vs;
-    Shader fs;
+    RenderPass m_renderPass;
+    Pipeline m_pipeline;
 
-    RenderPass renderPass;
-    Pipeline pipeline;
+    QueueManager m_queueManager;
 
-    QueueManager queueManager;
+    Semaphore m_imageAvailableSemaphore;
+    Semaphore m_finishedRenderSemaphore;
 
-    Semaphore imageAvailableSemaphore;
-    Semaphore finishedRenderSemaphore;
-
-    CommandPool commandPool;
-    CommandBuffer commandBuffer;
+    CommandPool m_commandPool;
+    CommandBuffer m_commandBuffer;
   };
 }
 

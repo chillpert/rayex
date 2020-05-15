@@ -1,14 +1,17 @@
 #ifndef SWAPCHAIN_HPP
 #define SWAPCHAIN_HPP
 
+#include "BaseComponent.hpp"
 #include "Surface.hpp"
 #include "QueueManager.hpp"
 
 namespace RX
 {
-  class Swapchain
+  class Swapchain : public BaseComponent
   {
   public:
+    Swapchain();
+
     inline VkSwapchainKHR get() { return swapchain; }
     
     inline std::vector<VkImage>& getImages() { return images; }
@@ -25,15 +28,12 @@ namespace RX
     void createFramebuffers(VkDevice device, VkRenderPass renderPass, std::shared_ptr<Window> window);
 
   private:
-    void errorCheck();
-
     VkSwapchainKHR swapchain;
     std::vector<VkImage> images;
     std::vector<VkImageView> imageViews;
     std::vector<VkFramebuffer> framebuffers;
 
     VkExtent2D extent;
-    bool created = false;
   };
 }
 

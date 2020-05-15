@@ -1,17 +1,20 @@
 #ifndef INSTANCE_HPP
 #define INSTANCE_HPP
 
+#include "BaseComponent.hpp"
 #include "window/Window.hpp"
 
 namespace RX
 {
-  class Instance
+  class Instance : public BaseComponent
   {
   public:
-    inline VkInstance get() { return instance; }
+    Instance();
 
-    inline std::vector<const char*>& getLayers() { return layers; }
-    inline std::vector<const char*>& getExtension() { return extensions; }
+    inline VkInstance get() { return m_instance; }
+
+    inline std::vector<const char*>& getLayers() { return m_layers; }
+    inline std::vector<const char*>& getExtension() { return m_extensions; }
 
     // Needs to be called before create
     void pushLayer(const char* name);
@@ -29,14 +32,10 @@ namespace RX
 
     uint32_t getApiVersion();
 
-    VkInstance instance;
+    VkInstance m_instance;
 
-    std::vector<const char*> layers;
-    std::vector<const char*> extensions;
-
-    // Structs
-    VkApplicationInfo appInfo;
-    VkInstanceCreateInfo createInfo;
+    std::vector<const char*> m_layers;
+    std::vector<const char*> m_extensions;
   };
 }
 

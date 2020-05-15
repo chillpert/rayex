@@ -1,13 +1,15 @@
 #ifndef QUEUE_MANAGER_HPP
 #define QUEUE_MANAGER_HPP
 
-#include "pch/stdafx.hpp"
+#include "BaseComponent.hpp"
 
 namespace RX
 {
-  class QueueManager
+  class QueueManager : public BaseComponent
   {
   public:
+    QueueManager();
+
     // This function should be called right after the physical device was enumerated and the 
     // surface was created. The surface has to be created before the physical device is picked.
     void create(VkPhysicalDevice physicalDevice, VkSurfaceKHR surface);
@@ -28,14 +30,12 @@ namespace RX
 
   private:
     static std::pair<std::optional<uint32_t>, std::optional<uint32_t>> findQueueFamilies(VkPhysicalDevice physicalDevice, VkSurfaceKHR surface);
-    void errorCheck();
 
-    bool created = false;
-    std::optional<uint32_t> graphicsIndex;
-    std::optional<uint32_t> presentIndex;
+    std::optional<uint32_t> m_graphicsIndex;
+    std::optional<uint32_t> m_presentIndex;
 
-    VkQueue graphicsQueue;
-    VkQueue presentQueue;
+    VkQueue m_graphicsQueue;
+    VkQueue m_presentQueue;
   };
 }
 

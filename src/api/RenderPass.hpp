@@ -1,20 +1,22 @@
 #ifndef RENDER_PASS_HPP
 #define RENDER_PASS_HPP
 
-#include "pch/stdafx.hpp"
+#include "BaseComponent.hpp"
 
 namespace RX
 {
-  class RenderPass
+  class RenderPass : public BaseComponent
   {
   public:
-    inline VkRenderPass get() { return renderPass; }
+    RenderPass();
+
+    inline VkRenderPass get() { return m_renderPass; }
 
     void create(VkDevice device, VkFormat format);
     void destroy(VkDevice device);
 
   private:
-    VkRenderPass renderPass;
+    VkRenderPass m_renderPass;
   };
 }
 

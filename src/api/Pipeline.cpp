@@ -2,6 +2,9 @@
 
 namespace RX
 {
+  Pipeline::Pipeline() :
+    BaseComponent("Pipeline") { }
+
   void Pipeline::create(VkDevice device, VkRenderPass renderPass, std::shared_ptr<Window> window, Shader& vs, Shader& fs)
   {
     VkPipelineShaderStageCreateInfo vertShaderStageInfo{ };
@@ -89,7 +92,7 @@ namespace RX
     pipelineLayoutInfo.pushConstantRangeCount = 0;
 
     VkPipelineLayout pipelineLayout;
-    VK_ASSERT(vkCreatePipelineLayout(device, &pipelineLayoutInfo, nullptr, &pipelineLayout), "Failed to create pipeline layout");
+    VK_ASSERT(vkCreatePipelineLayout(device, &pipelineLayoutInfo, nullptr, &pipelineLayout), "Failed to create pipeline layout.");
 
     VkGraphicsPipelineCreateInfo pipelineInfo{ };
     pipelineInfo.sType = VK_STRUCTURE_TYPE_GRAPHICS_PIPELINE_CREATE_INFO;
@@ -106,11 +109,14 @@ namespace RX
     pipelineInfo.subpass = 0;
     pipelineInfo.basePipelineHandle = VK_NULL_HANDLE;
 
-    VK_ASSERT(vkCreateGraphicsPipelines(device, VK_NULL_HANDLE, 1, &pipelineInfo, nullptr, &pipeline), "Failed to create graphics pipeline");
+    VK_ASSERT(vkCreateGraphicsPipelines(device, VK_NULL_HANDLE, 1, &pipelineInfo, nullptr, &m_pipeline), "Failed to create graphics pipeline.");
+  
+    initializedCallback();
   }
 
   void Pipeline::destroy(VkDevice device)
   {
-    vkDestroyPipeline(device, pipeline, nullptr);
+    assertDestruction();
+    vkDestroyPipeline(device, m_pipeline, nullptr);
   }
 }

@@ -1,18 +1,20 @@
 #ifndef SHADER_HPP
 #define SHADER_HPP
 
-#include "pch/stdafx.hpp"
+#include "BaseComponent.hpp"
 
 namespace RX
 {
-  class Shader
+  class Shader : public BaseComponent
   {
   public:
+    Shader();
+
     void create(const std::string& fullPath, VkDevice device);
     void destroy(VkDevice device);
 
-    inline std::vector<char>& getSource() { return source; }
-    inline VkShaderModule getShaderModule() { return shaderModule; }
+    inline std::vector<char>& getSource() { return m_source; }
+    inline VkShaderModule getShaderModule() { return m_shaderModule; }
 
   private:
     // This function calls glslc.exe to compile the given shader file to .spv.
@@ -21,14 +23,13 @@ namespace RX
     void load(VkDevice device);
     void createShaderModule(VkDevice device);
 
-    std::string pathToFile;
+    std::string m_pathToFile;
+    std::string m_fileName;
+    std::string m_fileNameOut;
 
-    std::string fileName;
-    std::string fileNameOut;
+    std::vector<char> m_source;
 
-    std::vector<char> source;
-
-    VkShaderModule shaderModule;
+    VkShaderModule m_shaderModule;
   };
 }
 

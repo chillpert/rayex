@@ -18,18 +18,18 @@ namespace RX
         unsigned int temp = evaluate(it, surface);
         if (temp > score)
         {
-          physicalDevice = it;
+          m_physicalDevice = it;
           score = temp;
         }
       }
     }
 
-    if (score == 0 || physicalDevice == VK_NULL_HANDLE)
+    if (score == 0 || m_physicalDevice == VK_NULL_HANDLE)
       VK_ERROR("No suitable device was found");
 
     // Print information about the GPU that was selected.
     VkPhysicalDeviceProperties props;
-    vkGetPhysicalDeviceProperties(physicalDevice, &props);
+    vkGetPhysicalDeviceProperties(m_physicalDevice, &props);
     VK_LOG("Selected GPU: " << props.deviceName);
   }
 
@@ -42,10 +42,10 @@ namespace RX
       requiredExtensions.emplace(extension, false);
 
     uint32_t physicalDeviceExtensionCount;
-    VK_ASSERT(vkEnumerateDeviceExtensionProperties(physicalDevice, NULL, &physicalDeviceExtensionCount, nullptr), "Failed to enumerate physical device extensions");
+    VK_ASSERT(vkEnumerateDeviceExtensionProperties(m_physicalDevice, NULL, &physicalDeviceExtensionCount, nullptr), "Failed to enumerate physical device extensions");
 
     std::vector<VkExtensionProperties> physicalDeviceExtensions(physicalDeviceExtensionCount);
-    VK_ASSERT(vkEnumerateDeviceExtensionProperties(physicalDevice, NULL, &physicalDeviceExtensionCount, physicalDeviceExtensions.data()), "Failed to enumerate physical device extensions");
+    VK_ASSERT(vkEnumerateDeviceExtensionProperties(m_physicalDevice, NULL, &physicalDeviceExtensionCount, physicalDeviceExtensions.data()), "Failed to enumerate physical device extensions");
       
     // Iterates over all enumerated physical device extensions to see if they are available.
     for (const auto& physicalDeviceExtension : physicalDeviceExtensions)

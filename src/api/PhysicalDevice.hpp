@@ -1,14 +1,14 @@
 #ifndef PHYSICAL_DEVICE_HPP
 #define PHYSICAL_DEVICE_HPP
 
-#include "pch/stdafx.hpp"
+#include "BaseComponent.hpp"
 
 namespace RX
 {
   class PhysicalDevice
   {
   public:
-    inline VkPhysicalDevice get() { return physicalDevice; }
+    inline VkPhysicalDevice get() { return m_physicalDevice; }
 
     // Technically not created, but enumerated. However, this way is better for the naming scheme.
     void create(VkInstance instance, VkSurfaceKHR surface);
@@ -19,7 +19,7 @@ namespace RX
   private:
     unsigned int evaluate(VkPhysicalDevice device, VkSurfaceKHR surface);
 
-    VkPhysicalDevice physicalDevice;
+    VkPhysicalDevice m_physicalDevice;
   };
 }
 

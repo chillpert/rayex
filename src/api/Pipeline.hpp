@@ -1,21 +1,24 @@
 #ifndef PIPELINE_HPP
 #define PIPELINE_HPP
 
+#include "BaseComponent.hpp"
 #include "window/Window.hpp"
 #include "Shader.hpp"
 
 namespace RX
 {
-  class Pipeline
+  class Pipeline : public BaseComponent
   {
   public:
-    inline VkPipeline get() { return pipeline; }
+    Pipeline();
+
+    inline VkPipeline get() { return m_pipeline; }
 
     void create(VkDevice device, VkRenderPass renderPass, std::shared_ptr<Window> window, Shader& vs, Shader& fs);
     void destroy(VkDevice device);
 
   private:
-    VkPipeline pipeline;
+    VkPipeline m_pipeline;
   };
 }
 

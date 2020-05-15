@@ -2,6 +2,9 @@
 
 namespace RX
 {
+  RenderPass::RenderPass() :
+    BaseComponent("RenderPass") { }
+
   void RenderPass::create(VkDevice device, VkFormat format)
   {
     VkAttachmentDescription colorAttachmentDescription{ };
@@ -30,11 +33,14 @@ namespace RX
     createInfo.subpassCount = 1;
     createInfo.pSubpasses = &subpassDescription;
 
-    VK_ASSERT(vkCreateRenderPass(device, &createInfo, nullptr, &renderPass), "Failed to create render pass");
+    VK_ASSERT(vkCreateRenderPass(device, &createInfo, nullptr, &m_renderPass), "Failed to create render pass");
+
+    initializedCallback();
   }
 
   void RenderPass::destroy(VkDevice device)
   {
-    vkDestroyRenderPass(device, renderPass, nullptr);
+    assertDestruction();
+    vkDestroyRenderPass(device, m_renderPass, nullptr);
   }
 }

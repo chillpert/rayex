@@ -1,11 +1,12 @@
 #ifndef SURFACE_HPP
 #define SURFACE_HPP
 
+#include "BaseComponent.hpp"
 #include "window/Window.hpp"
 
 namespace RX
 {
-  class Surface
+  class Surface : public BaseComponent
   {
   public:
     Surface();

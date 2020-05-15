@@ -2,6 +2,9 @@
 
 namespace RX
 {
+  Device::Device() :
+    BaseComponent("Device") { }
+
   void Device::create(VkPhysicalDevice physicalDevice, QueueManager& queueManager)
   {
     float queuePriority = 1.0f;
@@ -38,32 +41,25 @@ namespace RX
 
     pushExtension(VK_KHR_SWAPCHAIN_EXTENSION_NAME);
 
-    createInfo.enabledExtensionCount = static_cast<uint32_t>(extensions.size());
-    createInfo.ppEnabledExtensionNames = extensions.data();
+    createInfo.enabledExtensionCount = static_cast<uint32_t>(m_extensions.size());
+    createInfo.ppEnabledExtensionNames = m_extensions.data();
 
-    VK_ASSERT(vkCreateDevice(physicalDevice, &createInfo, nullptr, &device), "Failed to create device.");
+    VK_ASSERT(vkCreateDevice(physicalDevice, &createInfo, nullptr, &m_device), "Failed to create device.");
 
-    queueManager.retrieveAllQueueHandles(device);
+    queueManager.retrieveAllQueueHandles(m_device);
 
-    created = true;
+    initializedCallback();
   }
 
   void Device::destroy()
   {
-    if (created)
-    {
-      vkDestroyDevice(device, nullptr);
-      created = false;
-    }
-
-    VK_ERROR("Logical device was aready deleted or not created to begin with.");
+    assertDestruction();
+    vkDestroyDevice(m_device, nullptr);
   }
 
   void Device::pushExtension(const char* name)
   {
-    if (created)
-      VK_ERROR("The logical device was already created. Can not push another extension.");
-
-    extensions.push_back(name);
+    assertNotInitialized("pushExtension");
+    m_extensions.push_back(name);
   }
 }

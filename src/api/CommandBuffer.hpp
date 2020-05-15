@@ -8,7 +8,7 @@ namespace RX
   class CommandBuffer
   {
   public:
-    inline VkCommandBuffer get() { return commandBuffer; }
+    inline VkCommandBuffer get() { return m_commandBuffer; }
 
     void create(VkDevice device, VkCommandPool commandPool)
     {
@@ -18,11 +18,11 @@ namespace RX
       allocateInfo.level = VK_COMMAND_BUFFER_LEVEL_PRIMARY;
       allocateInfo.commandBufferCount = 1;
 
-      VK_ASSERT(vkAllocateCommandBuffers(device, &allocateInfo, &commandBuffer), "Failed to allocate command buffers");
+      VK_ASSERT(vkAllocateCommandBuffers(device, &allocateInfo, &m_commandBuffer), "Failed to allocate command buffers");
     }
 
   private:
-    VkCommandBuffer commandBuffer;
+    VkCommandBuffer m_commandBuffer;
   };
 }
 

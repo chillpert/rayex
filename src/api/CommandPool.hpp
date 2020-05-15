@@ -1,14 +1,17 @@
 #ifndef COMMAND_POOL_HPP
 #define COMMAND_POOL_HPP
 
-#include "pch/stdafx.hpp"
+#include "BaseComponent.hpp"
 
 namespace RX
 {
-  class CommandPool
+  class CommandPool : public BaseComponent
   {
   public:
-    inline VkCommandPool get() { return commandPool; }
+    CommandPool() :
+      BaseComponent("CommandPool") { }
+
+    inline VkCommandPool get() { return m_commandPool; }
 
     void create(VkDevice device, uint32_t queueFamilyIndex)
     {
@@ -17,35 +20,25 @@ namespace RX
       createInfo.flags = VK_COMMAND_POOL_CREATE_TRANSIENT_BIT;
       createInfo.queueFamilyIndex = queueFamilyIndex;
 
-      VK_ASSERT(vkCreateCommandPool(device, &createInfo, nullptr, &commandPool), "Failed to create command pool.");
+      VK_ASSERT(vkCreateCommandPool(device, &createInfo, nullptr, &m_commandPool), "Failed to create command pool.");
 
-      created = true;
+      initializedCallback();
     }
 
     void destroy(VkDevice device)
     {
-      if (created)
-      {
-        vkDestroyCommandPool(device, commandPool, nullptr);
-        created = true;
-      }
-      else
-        VK_ERROR("Can not destroy command pool because it was already destroyed or never created to begin with.");
-    }
+      assertDestruction();
+      vkDestroyCommandPool(device, m_commandPool, nullptr);
+     }
 
     void reset(VkDevice device, VkCommandPoolResetFlags flags = 0)
     {
-#ifdef RX_DEBUG
-      if (!created)
-        VK_ERROR("Can not reset the command pool because it was already destroyed or never created to begin with.");
-#endif
-      VK_ASSERT(vkResetCommandPool(device, commandPool, flags), "Failed to reset command pool.");
+      assertInitialized("reset");
+      VK_ASSERT(vkResetCommandPool(device, m_commandPool, flags), "Failed to reset command pool.");
     }
 
   private:
-    VkCommandPool commandPool;
-
-    bool created = false;
+    VkCommandPool m_commandPool;
   };
 }
 

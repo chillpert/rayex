@@ -7,17 +7,17 @@ namespace RX
 
   void Api::initialize()
   {
-    // Required for extending the physical device from device extensions.
-    instance.pushExtension("VK_KHR_get_physical_device_properties2");
-    instance.create(m_window);
+    // Required for extending the physical m_device from m_device extensions.
+    m_instance.pushExtension("VK_KHR_get_physical_device_properties2");
+    m_instance.create(m_window);
 #ifdef RX_DEBUG
-    instance.print();
+    m_instance.print();
 #endif
-    debugMessenger.create(instance.get());
+    m_debugMessenger.create(m_instance.get());
 
-    surface.create(instance.get(), m_window);
+    m_surface.create(m_instance.get(), m_window);
 
-    physicalDevice.create(instance.get(), surface.get());
+    m_physicalDevice.create(m_instance.get(), m_surface.get());
 
     // Extensions required for ray tracing.
     std::vector<const char*> requiredExtensions =
@@ -30,33 +30,34 @@ namespace RX
       "VK_KHR_ray_tracing"
     };
 
-    physicalDevice.checkExtensionSupport(requiredExtensions);
+    m_physicalDevice.checkExtensionSupport(requiredExtensions);
 
     // Set up queues.
-    queueManager.create(physicalDevice.get(), surface.get());
+    m_queueManager.create(m_physicalDevice.get(), m_surface.get());
 
     // Add all of the device extensions from above.
     //for (const auto& extension : requiredExtensions)
-    //  device.pushExtension(extension);
+    //  m_device.pushExtension(extension);
 
-    device.create(physicalDevice.get(), queueManager);
+    m_device.create(m_physicalDevice.get(), m_queueManager);
 
-    swapchain.create(physicalDevice.get(), device.get(), surface, m_window, queueManager);
+    m_swapchain.create(m_physicalDevice.get(), m_device.get(), m_surface, m_window, m_queueManager);
 
-    imageAvailableSemaphore.create(device.get());
-    finishedRenderSemaphore.create(device.get());
+    m_imageAvailableSemaphore.create(m_device.get());
+    m_finishedRenderSemaphore.create(m_device.get());
     
-    renderPass.create(device.get(), surface.getFormat().format);
+    m_renderPass.create(m_device.get(), m_surface.getFormat().format);
     
-    vs.create(RX_SHADER_PATH "test.vert", device.get());
-    fs.create(RX_SHADER_PATH "test.frag", device.get());
-    pipeline.create(device.get(), renderPass.get(), m_window, vs, fs);
+    Shader vs, fs;
+    vs.create(RX_SHADER_PATH "test.vert", m_device.get());
+    fs.create(RX_SHADER_PATH "test.frag", m_device.get());
+    m_pipeline.create(m_device.get(), m_renderPass.get(), m_window, vs, fs);
     
-    swapchain.createImages(device.get());
-    swapchain.createImageViews(device.get(), surface);
-    swapchain.createFramebuffers(device.get(), renderPass.get(), m_window);
-    commandPool.create(device.get(), queueManager.getGraphicsIndex());
-    commandBuffer.create(device.get(), commandPool.get());
+    m_swapchain.createImages(m_device.get());
+    m_swapchain.createImageViews(m_device.get(), m_surface);
+    m_swapchain.createFramebuffers(m_device.get(), m_renderPass.get(), m_window);
+    m_commandPool.create(m_device.get(), m_queueManager.getGraphicsIndex());
+    m_commandBuffer.create(m_device.get(), m_commandPool.get());
   }
 
   bool Api::update()
@@ -69,21 +70,21 @@ namespace RX
     uint32_t imageIndex = 0;
 
     // get image from swap chain
-    VK_ASSERT(vkAcquireNextImageKHR(device.get(), swapchain.get(), VK_TIMEOUT, imageAvailableSemaphore.get(), VK_NULL_HANDLE, &imageIndex), "Failed to acquire next image from swap chain");
+    VK_ASSERT(vkAcquireNextImageKHR(m_device.get(), m_swapchain.get(), VK_TIMEOUT, m_imageAvailableSemaphore.get(), VK_NULL_HANDLE, &imageIndex), "Failed to acquire next image from swap chain");
 
-    commandPool.reset(device.get());
+    m_commandPool.reset(m_device.get());
 
     VkCommandBufferBeginInfo beginInfo = { };
     beginInfo.sType = VK_STRUCTURE_TYPE_COMMAND_BUFFER_BEGIN_INFO;
     beginInfo.flags = VK_COMMAND_BUFFER_USAGE_ONE_TIME_SUBMIT_BIT;
 
     // begin command buffer
-    VK_ASSERT(vkBeginCommandBuffer(commandBuffer.get(), &beginInfo), "Failed to begin command buffer");
+    VK_ASSERT(vkBeginCommandBuffer(m_commandBuffer.get(), &beginInfo), "Failed to begin command buffer");
     {
       VkRenderPassBeginInfo renderPassBeginInfo = { };
       renderPassBeginInfo.sType = VK_STRUCTURE_TYPE_RENDER_PASS_BEGIN_INFO;
-      renderPassBeginInfo.renderPass = renderPass.get();
-      renderPassBeginInfo.framebuffer = swapchain.getFramebuffers()[imageIndex];
+      renderPassBeginInfo.renderPass = m_renderPass.get();
+      renderPassBeginInfo.framebuffer = m_swapchain.getFramebuffers()[imageIndex];
 
       int width, height;
       m_window->getSize(&width, &height);
@@ -97,7 +98,7 @@ namespace RX
       renderPassBeginInfo.pClearValues = &color;
 
       // begin render pass
-      vkCmdBeginRenderPass(commandBuffer.get(), &renderPassBeginInfo, VK_SUBPASS_CONTENTS_INLINE);
+      vkCmdBeginRenderPass(m_commandBuffer.get(), &renderPassBeginInfo, VK_SUBPASS_CONTENTS_INLINE);
       {
         {
         //VkViewport viewport = { };
@@ -119,67 +120,67 @@ namespace RX
         }
         
         // draw calls go here
-        vkCmdBindPipeline(commandBuffer.get(), VK_PIPELINE_BIND_POINT_GRAPHICS, pipeline.get());
-        vkCmdDraw(commandBuffer.get(), 3, 1, 0, 0);
+        vkCmdBindPipeline(m_commandBuffer.get(), VK_PIPELINE_BIND_POINT_GRAPHICS, m_pipeline.get());
+        vkCmdDraw(m_commandBuffer.get(), 3, 1, 0, 0);
       }
       // end render pass
-      vkCmdEndRenderPass(commandBuffer.get());
+      vkCmdEndRenderPass(m_commandBuffer.get());
     }
     // end command buffer
-    VK_ASSERT(vkEndCommandBuffer(commandBuffer.get()), "Failed to end command buffer");
+    VK_ASSERT(vkEndCommandBuffer(m_commandBuffer.get()), "Failed to end command buffer");
 
     VkPipelineStageFlags submitStageMask = VK_PIPELINE_STAGE_COLOR_ATTACHMENT_OUTPUT_BIT;
 
     VkSubmitInfo submitInfo{ };
     submitInfo.sType = VK_STRUCTURE_TYPE_SUBMIT_INFO;
     submitInfo.waitSemaphoreCount = 1;
-    VkSemaphore imageAvailableSemaphores[] = { imageAvailableSemaphore.get() };
-    submitInfo.pWaitSemaphores = imageAvailableSemaphores;
+    VkSemaphore m_imageAvailableSemaphores[] = { m_imageAvailableSemaphore.get() };
+    submitInfo.pWaitSemaphores = m_imageAvailableSemaphores;
     submitInfo.pWaitDstStageMask = &submitStageMask;
     submitInfo.commandBufferCount = 1;
-    VkCommandBuffer commandBuffers[] = { commandBuffer.get() };
+    VkCommandBuffer commandBuffers[] = { m_commandBuffer.get() };
     submitInfo.pCommandBuffers = commandBuffers;
     submitInfo.signalSemaphoreCount = 1;
-    VkSemaphore finishedRenderSemaphores[] = { finishedRenderSemaphore.get() };
-    submitInfo.pSignalSemaphores = finishedRenderSemaphores;
+    VkSemaphore m_finishedRenderSemaphores[] = { m_finishedRenderSemaphore.get() };
+    submitInfo.pSignalSemaphores = m_finishedRenderSemaphores;
 
     // submit queue
-    queueManager.submit(submitInfo);
+    m_queueManager.submit(submitInfo);
     //VK_ASSERT(vkQueueSubmit(m_queue, 1, &submitInfo, VK_NULL_HANDLE), "Failed to submit queue");
 
     VkPresentInfoKHR presentInfo{ };
     presentInfo.sType = VK_STRUCTURE_TYPE_PRESENT_INFO_KHR;
     presentInfo.waitSemaphoreCount = 1;
-    presentInfo.pWaitSemaphores = finishedRenderSemaphores;
+    presentInfo.pWaitSemaphores = m_finishedRenderSemaphores;
     presentInfo.swapchainCount = 1;
-    VkSwapchainKHR swapChains[] = { swapchain.get() };
+    VkSwapchainKHR swapChains[] = { m_swapchain.get() };
     presentInfo.pSwapchains = swapChains;
     presentInfo.pImageIndices = &imageIndex;
 
     // present
-    queueManager.present(presentInfo);
+    m_queueManager.present(presentInfo);
     //VK_ASSERT(vkQueuePresentKHR(m_queue, &presentInfo), "Failed to present");
 
-    VK_ASSERT(vkDeviceWaitIdle(device.get()), "Device failed to wait idle");
+    VK_ASSERT(vkDeviceWaitIdle(m_device.get()), "Device failed to wait idle");
     
 
     /*
     uint32_t imageIndex;
-    vkAcquireNextImageKHR(device.get(), swapchain.get(), UINT64_MAX, imageAvailableSemaphore.get(), VK_NULL_HANDLE, &imageIndex);
+    vkAcquireNextImageKHR(m_device.get(), m_swapchain.get(), UINT64_MAX, m_imageAvailableSemaphore.get(), VK_NULL_HANDLE, &imageIndex);
 
     VkSubmitInfo submitInfo{ };
     submitInfo.sType = VK_STRUCTURE_TYPE_SUBMIT_INFO;
 
-    VkSemaphore waitSemaphores[] = { imageAvailableSemaphore.get() };
+    VkSemaphore waitSemaphores[] = { m_imageAvailableSemaphore.get() };
     VkPipelineStageFlags waitStages[] = { VK_PIPELINE_STAGE_COLOR_ATTACHMENT_OUTPUT_BIT };
     submitInfo.waitSemaphoreCount = 1;
     submitInfo.pWaitSemaphores = waitSemaphores;
     submitInfo.pWaitDstStageMask = waitStages;
     submitInfo.commandBufferCount = 1;
-    VkCommandBuffer commandBuffers[] = { commandBuffer.get() };
+    VkCommandBuffer commandBuffers[] = { m_commandBuffer.get() };
     submitInfo.pCommandBuffers = commandBuffers;//&[imageIndex];
 
-    VkSemaphore signalSemaphores[] = { finishedRenderSemaphore.get() };
+    VkSemaphore signalSemaphores[] = { m_finishedRenderSemaphore.get() };
     submitInfo.signalSemaphoreCount = 1;
     submitInfo.pSignalSemaphores = signalSemaphores;
 
@@ -190,7 +191,7 @@ namespace RX
     presentInfo.waitSemaphoreCount = 1;
     presentInfo.pWaitSemaphores = signalSemaphores;
 
-    VkSwapchainKHR swapChains[] = { swapchain.get() };
+    VkSwapchainKHR swapChains[] = { m_swapchain.get() };
     presentInfo.swapchainCount = 1;
     presentInfo.pSwapchains = swapChains;
     presentInfo.pImageIndices = &imageIndex;
@@ -206,6 +207,6 @@ namespace RX
 
   void Api::clean()
   {
-    debugMessenger.destroy(instance.get());
+    m_debugMessenger.destroy(m_instance.get());
   }
 }

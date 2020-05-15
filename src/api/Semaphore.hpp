@@ -5,27 +5,32 @@
 
 namespace RX
 {
-  class Semaphore
+  class Semaphore : public BaseComponent
   {
   public:
-    inline VkSemaphore get() { return semaphore; }
+    Semaphore() :
+      BaseComponent("Semaphore") { }
+
+    inline VkSemaphore get() { return m_semaphore; }
 
     void create(VkDevice device)
     {
       VkSemaphoreCreateInfo createInfo{ };
       createInfo.sType = VK_STRUCTURE_TYPE_SEMAPHORE_CREATE_INFO;
 
-      VK_ASSERT(vkCreateSemaphore(device, &createInfo, nullptr, &semaphore), "Failed to create semaphore");
-      
+      VK_ASSERT(vkCreateSemaphore(device, &createInfo, nullptr, &m_semaphore), "Failed to create semaphore.");
+
+      initializedCallback();
     }
 
     void destroy(VkDevice device)
     {
-      vkDestroySemaphore(device, semaphore, nullptr);
+      assertDestruction();
+      vkDestroySemaphore(device, m_semaphore, nullptr);
     }
 
   private:
-    VkSemaphore semaphore;
+    VkSemaphore m_semaphore;
   };
 }
 

@@ -1,16 +1,18 @@
 #ifndef DEVICE_HPP
 #define DEVICE_HPP
 
-#include "pch/stdafx.hpp"
+#include "BaseComponent.hpp"
 #include "Instance.hpp"
 #include "QueueManager.hpp"
 
 namespace RX
 {
-  class Device
+  class Device : public BaseComponent
   {
   public:
-    inline VkDevice get() { return device; }
+    Device();
+
+    inline VkDevice get() { return m_device; }
 
     void create(VkPhysicalDevice physicalDevice, QueueManager& queueManager);
     void destroy();
@@ -19,10 +21,9 @@ namespace RX
     void pushExtension(const char* name);
 
   private:
-    VkDevice device;
+    VkDevice m_device;
 
-    std::vector<const char*> extensions;
-    bool created = false;
+    std::vector<const char*> m_extensions;
   };
 }
 

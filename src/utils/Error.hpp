@@ -2,6 +2,7 @@
 #define ERROR_HPP
 
 #include <sstream>
+#include <ostream>
 
 #define VK_ERROR(message) Error::runtime(message, Error::API)
 

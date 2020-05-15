@@ -2,6 +2,9 @@
 
 namespace RX
 {
+  Swapchain::Swapchain() :
+    BaseComponent("Swapchain") { }
+
   void Swapchain::create(VkPhysicalDevice physicalDevice, VkDevice device, Surface surface, std::shared_ptr<Window> window, QueueManager& queueManager)
   {
     auto surfaceCapabilities = surface.getCapabilitites(physicalDevice);
@@ -86,25 +89,18 @@ namespace RX
     
     VK_ASSERT(vkCreateSwapchainKHR(device, &createInfo, nullptr, &swapchain), "Failed to create swapchain");
 
-    created = true;
+    initializedCallback();
   }
 
   void Swapchain::destroy(VkDevice device)
   {
-    if (created)
-    {
-      vkDestroySwapchainKHR(device, swapchain, nullptr);
-      created = false;
-    }
-    else
-      VK_ERROR("Can not destroy swapchain because it was already destroyed or never created to begin with");
+    assertDestruction();
+    vkDestroySwapchainKHR(device, swapchain, nullptr);
   }
 
   void Swapchain::createImages(VkDevice device)
   {
-#ifdef RX_DEBUG
-    errorCheck();
-#endif
+    assertInitialized("createImages");
 
     uint32_t imageCount;
     VK_ASSERT(vkGetSwapchainImagesKHR(device, swapchain, &imageCount, nullptr), "Failed to get swap chain images");
@@ -115,9 +111,7 @@ namespace RX
 
   void Swapchain::createImageViews(VkDevice device, Surface surface)
   {
-#ifdef RX_DEBUG
-    errorCheck();
-#endif
+    assertInitialized("createImageViews");
 
     imageViews.resize(images.size());
 
@@ -146,9 +140,7 @@ namespace RX
 
   void Swapchain::createFramebuffers(VkDevice device, VkRenderPass renderPass, std::shared_ptr<Window> window)
   {
-#ifdef RX_DEBUG
-    errorCheck();
-#endif
+    assertInitialized("createFramebuffers");
 
     framebuffers.resize(imageViews.size());
 
@@ -171,11 +163,5 @@ namespace RX
 
       VK_ASSERT(vkCreateFramebuffer(device, &createInfo, nullptr, &framebuffers[i]), "Failed to create frame buffer");
     }
-  }
-
-  void Swapchain::errorCheck()
-  {
-    if (!created)
-      VK_ERROR("Swapchain has not been created yet.");
   }
 }

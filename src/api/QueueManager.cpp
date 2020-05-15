@@ -2,88 +2,73 @@
 
 namespace RX
 {
+  QueueManager::QueueManager() :
+    BaseComponent("QueueManager") { }
+
   void QueueManager::create(VkPhysicalDevice physicalDevice, VkSurfaceKHR surface)
   {
-    if (created)
-    {
-      VK_LOG("Queues have already been evaluated");
-      return;
-    }
-
     if (physicalDevice == VK_NULL_HANDLE)
       VK_ERROR("Queue families can not be set up because a physical device has not been picked yet.");
 
     if (surface == VK_NULL_HANDLE)
-      VK_ERROR("Queue families can not be set up because the surface has not been created yet.");
+      VK_ERROR("Queue families can not be set up because the surface has not been initialized yet.");
 
     auto temp = findQueueFamilies(physicalDevice, surface);
-    graphicsIndex = temp.first;
-    presentIndex = temp.second; 
+    m_graphicsIndex = temp.first;
+    m_presentIndex = temp.second; 
 
-    created = true;
+    initializedCallback();
   }
 
   void QueueManager::retrieveAllQueueHandles(VkDevice device)
   {
-#ifdef RX_DEBUG
-    errorCheck();
-#endif
+    assertInitialized("retrieveAllQueueHandles");
 
-    vkGetDeviceQueue(device, getGraphicsIndex(), 0, &graphicsQueue);
-    vkGetDeviceQueue(device, getPresentIndex(), 0, &presentQueue);
+    vkGetDeviceQueue(device, getGraphicsIndex(), 0, &m_graphicsQueue);
+    vkGetDeviceQueue(device, getPresentIndex(), 0, &m_presentQueue);
   }
 
   void QueueManager::submit(VkSubmitInfo& submitInfo)
   {
-#ifdef RX_DEBUG
-    errorCheck();
-#endif
+    assertInitialized("submit");
 
     // If the queue families are not unique only submit once.
     if (getPresentIndex() == getGraphicsIndex())
     {
-      VK_ASSERT(vkQueueSubmit(graphicsQueue, 1, &submitInfo, VK_NULL_HANDLE), "Failed to submit queue.");
+      VK_ASSERT(vkQueueSubmit(m_graphicsQueue, 1, &submitInfo, VK_NULL_HANDLE), "Failed to submit queue.");
     }
     else
     {
       // TODO: This is probably entirely wrong! 
-      VK_ASSERT(vkQueueSubmit(graphicsQueue, 1, &submitInfo, VK_NULL_HANDLE), "Failed to submit graphics queue.");
-      VK_ASSERT(vkQueueSubmit(presentQueue, 1, &submitInfo, VK_NULL_HANDLE), "Failed to submit present queue.");
+      VK_ASSERT(vkQueueSubmit(m_graphicsQueue, 1, &submitInfo, VK_NULL_HANDLE), "Failed to submit graphics queue.");
+      VK_ASSERT(vkQueueSubmit(m_presentQueue, 1, &submitInfo, VK_NULL_HANDLE), "Failed to submit present queue.");
     }
   }
 
   void QueueManager::present(VkPresentInfoKHR& presentInfo)
   {
-#ifdef RX_DEBUG
-    errorCheck();
-#endif
+    assertInitialized("present");
 
-    VK_ASSERT(vkQueuePresentKHR(presentQueue, &presentInfo), "Failed to present");
+    VK_ASSERT(vkQueuePresentKHR(m_presentQueue, &presentInfo), "Failed to present");
   }
 
   uint32_t QueueManager::getGraphicsIndex()
   {
-#ifdef RX_DEBUG
-    errorCheck();
-#endif
+    assertInitialized("getGraphicsIndex");
 
-    return graphicsIndex.value();
+    return m_graphicsIndex.value();
   }
 
   uint32_t QueueManager::getPresentIndex()
   {
-#ifdef RX_DEBUG
-    errorCheck();
-#endif
+    assertInitialized("getPresentIndex");
     
-    return presentIndex.value();
+    return m_presentIndex.value();
   }
 
   std::vector<uint32_t> QueueManager::getQueueFamilyIndices()
   {
-#ifdef RX_DEBUG
-    errorCheck();
-#endif
+    assertInitialized("getQueueFamilyIndices");
     
     if (getPresentIndex() == getGraphicsIndex())
       return { getGraphicsIndex() };
@@ -132,11 +117,5 @@ namespace RX
     }
 
     return { graphicsIndex_t, presentIndex_t };
-  }
-
-  void QueueManager::errorCheck()
-  {
-    if (!created)
-      VK_ERROR("Queue families have not been evaluated yet. Make sure to call QueueManager::create first.");
   }
 }

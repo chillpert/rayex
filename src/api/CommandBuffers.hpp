@@ -3,6 +3,7 @@
 
 #include "Swapchain.hpp"
 #include "RenderPass.hpp"
+#include "Pipeline.hpp"
 
 namespace RX
 {
@@ -12,7 +13,7 @@ namespace RX
     inline std::vector<VkCommandBuffer>& get() { return m_commandBuffers; }
 
     void initialize(VkDevice device, VkCommandPool commandPool, size_t swapchainFramebufferSize);
-    void record(const Swapchain& spwachain, const RenderPass& renderPass);
+    void record(Swapchain& spwachain, RenderPass& renderPass, Pipeline& pipeline);
 
   private:
     std::vector<VkCommandBuffer> m_commandBuffers;

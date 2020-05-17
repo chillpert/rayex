@@ -41,9 +41,6 @@ namespace RX
     m_device.initialize(m_physicalDevice.get(), m_queueManager);
 
     m_swapchain.initialize(m_physicalDevice.get(), m_device.get(), m_surface, m_window, m_queueManager);
-
-    m_imageAvailableSemaphore.initialize(m_device.get());
-    m_finishedRenderSemaphore.initialize(m_device.get());
     
     m_renderPass.initialize(m_device.get(), m_surface.getFormat().format);
     
@@ -57,6 +54,11 @@ namespace RX
     m_swapchain.initializeFramebuffers(m_device.get(), m_renderPass.get(), m_window);
     m_commandPool.initialize(m_device.get(), m_queueManager.getGraphicsIndex());
     m_commandBuffers.initialize(m_device.get(), m_commandPool.get(), m_swapchain.getFramebuffers().size());
+    m_commandBuffers.record(m_swapchain, m_renderPass, m_pipeline);
+
+    m_imageAvailableSemaphore.initialize(m_device.get());
+    m_finishedRenderSemaphore.initialize(m_device.get());
+
   }
 
   bool Api::update()
@@ -66,7 +68,47 @@ namespace RX
 
   bool Api::render()
   {
-    
+    uint32_t imageIndex;
+    VK_ASSERT(vkAcquireNextImageKHR(m_device.get(), m_swapchain.get(), UINT64_MAX, m_imageAvailableSemaphore.get(), VK_NULL_HANDLE, &imageIndex), "Failed to acquire image from swapchain");
+
+    VkSemaphore waitSemaphores[] = { m_imageAvailableSemaphore.get() };
+    VkSemaphore signalSemaphores[] = { m_finishedRenderSemaphore.get() };
+
+    VkPipelineStageFlags waitStages[] = { VK_PIPELINE_STAGE_COLOR_ATTACHMENT_OUTPUT_BIT };
+
+    VkSubmitInfo submitInfo{ };
+    submitInfo.sType = VK_STRUCTURE_TYPE_SUBMIT_INFO;
+    submitInfo.waitSemaphoreCount = 1;
+    submitInfo.pWaitSemaphores = waitSemaphores;
+    submitInfo.pWaitDstStageMask = waitStages;
+    // Define which command buffers should be submitted for execution.
+    submitInfo.commandBufferCount = 1;
+    submitInfo.pCommandBuffers = &m_commandBuffers.get()[imageIndex];
+    // Define which semaphores to signal once the command buffers have finished execution.
+    submitInfo.signalSemaphoreCount = 1;
+    submitInfo.pSignalSemaphores = signalSemaphores;
+
+    m_queueManager.submit(submitInfo);
+
+    VkSubpassDependency subpassDependency{ };
+    subpassDependency.srcSubpass = VK_SUBPASS_EXTERNAL;
+    subpassDependency.dstSubpass = 0;
+    subpassDependency.srcStageMask = VK_PIPELINE_STAGE_COLOR_ATTACHMENT_OUTPUT_BIT;
+    subpassDependency.srcAccessMask = 0;
+    subpassDependency.dstStageMask = VK_PIPELINE_STAGE_COLOR_ATTACHMENT_OUTPUT_BIT;
+    subpassDependency.dstAccessMask = VK_ACCESS_COLOR_ATTACHMENT_WRITE_BIT;
+
+    VkPresentInfoKHR presentInfo{ };
+    presentInfo.sType = VK_STRUCTURE_TYPE_PRESENT_INFO_KHR;
+    presentInfo.waitSemaphoreCount = 1;
+    presentInfo.pWaitSemaphores = signalSemaphores;
+
+    VkSwapchainKHR swapchains[] = { m_swapchain.get() };
+    presentInfo.swapchainCount = 1;
+    presentInfo.pSwapchains = swapchains;
+    presentInfo.pImageIndices = &imageIndex;
+
+    m_queueManager.present(presentInfo);
 
     return true;
   }

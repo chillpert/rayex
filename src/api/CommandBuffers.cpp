@@ -15,9 +15,9 @@ namespace RX
 	  VK_ASSERT(vkAllocateCommandBuffers(device, &allocateInfo, m_commandBuffers.data()), "Failed to allocate command buffers");
 	}
 
-	void CommandBuffers::record(const Swapchain& swapchain, const RenderPass& renderPass)
+	void CommandBuffers::record(Swapchain& swapchain, RenderPass& renderPass, Pipeline& pipeline)
 	{
-		for (size_t i = 0; i < commandBuffers.size(); i++)
+		for (size_t i = 0; i < m_commandBuffers.size(); ++i)
 		{
 	    VkCommandBufferBeginInfo beginInfo{ };
 	    beginInfo.sType = VK_STRUCTURE_TYPE_COMMAND_BUFFER_BEGIN_INFO;
@@ -35,14 +35,14 @@ namespace RX
 	    renderPassInfo.clearValueCount = 1;
 	    renderPassInfo.pClearValues = &clearColor;
 
-	    vkCmdBeginRenderPass(commandBuffers[i], &renderPassInfo, VK_SUBPASS_CONTENTS_INLINE);
+	    vkCmdBeginRenderPass(m_commandBuffers[i], &renderPassInfo, VK_SUBPASS_CONTENTS_INLINE);
 
-      vkCmdBindPipeline(commandBuffers[i], VK_PIPELINE_BIND_POINT_GRAPHICS, graphicsPipeline);
-      vkCmdDraw(commandBuffers[i], 3, 1, 0, 0);
+      vkCmdBindPipeline(m_commandBuffers[i], VK_PIPELINE_BIND_POINT_GRAPHICS, pipeline.get());
+      vkCmdDraw(m_commandBuffers[i], 3, 1, 0, 0);
 
-	    vkCmdEndRenderPass(commandBuffers[i]);
+	    vkCmdEndRenderPass(m_commandBuffers[i]);
 
-	    VK_ASSERT(vkEndCommandBuffer(commandBuffers[i]), "Failed to record command buffers");
+	    VK_ASSERT(vkEndCommandBuffer(m_commandBuffers[i]), "Failed to record command buffers");
     }
 	}
 }

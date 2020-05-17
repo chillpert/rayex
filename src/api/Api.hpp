@@ -12,7 +12,7 @@
 #include "Surface.hpp"
 #include "Semaphore.hpp"
 #include "CommandPool.hpp"
-#include "CommandBuffer.hpp"
+#include "CommandBuffers.hpp"
 #include "Pipeline.hpp"
 #include "RenderPass.hpp"
 #include "Shader.hpp"
@@ -48,9 +48,7 @@ namespace RX
     Semaphore m_finishedRenderSemaphore;
 
     CommandPool m_commandPool;
-
-    std::vector<CommandBuffer> m_commandBuffers;
-    CommandBuffer m_commandBuffer;
+    CommandBuffers m_commandBuffers;
   };
 }
 

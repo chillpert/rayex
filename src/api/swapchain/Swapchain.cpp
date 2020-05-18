@@ -5,8 +5,15 @@ namespace RX
   Swapchain::Swapchain() :
     BaseComponent("Swapchain") { }
 
-  void Swapchain::initialize(VkPhysicalDevice physicalDevice, VkDevice device, Surface surface, std::shared_ptr<Window> window, QueueManager& queueManager)
+  Swapchain::~Swapchain()
   {
+    destroy();
+  }
+
+  void Swapchain::initialize(VkPhysicalDevice physicalDevice, VkDevice device, Surface& surface, std::shared_ptr<Window> window, QueueManager& queueManager)
+  {
+    m_device = device;
+
     auto surfaceCapabilities = surface.getCapabilitites(physicalDevice);
 
     VkSwapchainCreateInfoKHR createInfo{ };
@@ -17,7 +24,7 @@ namespace RX
     uint32_t imageCount = surfaceCapabilities.minImageCount + 1;
 
     if (surfaceCapabilities.maxImageCount == 0)
-      RX_ERROR("The surface does not support any images for a swap chain");
+      RX_ERROR("The surface does not support any images for a swap chain.");
 
     // If the preferred image count is exceeding the supported amount then use the maximum amount of images supported by the surface.
     if (imageCount > surfaceCapabilities.maxImageCount && surfaceCapabilities.maxImageCount > 0)
@@ -40,34 +47,34 @@ namespace RX
     if (surfaceCapabilities.currentExtent.width != 0xFFFFFFFF)
     {
       // The surface size will be determined by the extent of a swapchain targeting the surface.
-      extent = surfaceCapabilities.currentExtent;
+      m_extent = surfaceCapabilities.currentExtent;
     }
     else
     {
       // Clamp width and height.
-      extent = window->getExtent();
+      m_extent = window->getExtent();
 
-      uint32_t width_t = extent.width;
-      if (surfaceCapabilities.maxImageExtent.width < extent.width)
+      uint32_t width_t = m_extent.width;
+      if (surfaceCapabilities.maxImageExtent.width < m_extent.width)
         width_t = surfaceCapabilities.maxImageExtent.width;
 
-      uint32_t height_t = extent.height;
-      if (surfaceCapabilities.maxImageExtent.height < extent.height)
+      uint32_t height_t = m_extent.height;
+      if (surfaceCapabilities.maxImageExtent.height < m_extent.height)
         height_t = surfaceCapabilities.maxImageExtent.height;
 
-      extent.width = width_t;
+      m_extent.width = width_t;
       if (surfaceCapabilities.minImageExtent.width > width_t)
-        extent.width = surfaceCapabilities.minImageExtent.width;
+        m_extent.width = surfaceCapabilities.minImageExtent.width;
 
-      extent.height = height_t;
+      m_extent.height = height_t;
       if (surfaceCapabilities.minImageExtent.height > height_t)
-        extent.height = surfaceCapabilities.minImageExtent.height;      
+        m_extent.height = surfaceCapabilities.minImageExtent.height;      
     }
 
-    createInfo.imageExtent = extent;
+    createInfo.imageExtent = m_extent;
 
     if (surfaceCapabilities.maxImageArrayLayers < 1)
-      RX_ERROR("The surface does not support a single array layer");
+      RX_ERROR("The surface does not support a single array layer.");
 
     createInfo.imageArrayLayers = 1;
     createInfo.imageUsage = VK_IMAGE_USAGE_COLOR_ATTACHMENT_BIT;
@@ -87,14 +94,14 @@ namespace RX
 
     createInfo.presentMode = surface.getPresentMode(physicalDevice);
     
-    VK_ASSERT(vkCreateSwapchainKHR(device, &createInfo, nullptr, &swapchain), "Failed to create swapchain");
+    VK_ASSERT(vkCreateSwapchainKHR(device, &createInfo, nullptr, &m_swapchain), "Failed to create swapchain.");
 
     initializationCallback();
   }
 
-  void Swapchain::destroy(VkDevice device)
+  void Swapchain::destroy()
   {
     assertDestruction();
-    vkDestroySwapchainKHR(device, swapchain, nullptr);
+    vkDestroySwapchainKHR(m_device, m_swapchain, nullptr);
   }
 }

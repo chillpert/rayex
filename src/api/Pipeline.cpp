@@ -5,8 +5,15 @@ namespace RX
   Pipeline::Pipeline() :
     BaseComponent("Pipeline") { }
 
+  Pipeline::~Pipeline()
+  {
+    destroy();
+  }
+
   void Pipeline::initialize(VkDevice device, VkRenderPass renderPass, VkExtent2D& extent, std::shared_ptr<Window> window, Shader& vs, Shader& fs)
   {
+    m_device = device;
+
     VkPipelineVertexInputStateCreateInfo vertexInputInfo{ };
     vertexInputInfo.sType = VK_STRUCTURE_TYPE_PIPELINE_VERTEX_INPUT_STATE_CREATE_INFO;
     vertexInputInfo.vertexBindingDescriptionCount = 0;
@@ -77,8 +84,7 @@ namespace RX
     pipelineLayoutInfo.setLayoutCount = 0;
     pipelineLayoutInfo.pushConstantRangeCount = 0;
 
-    VkPipelineLayout pipelineLayout;
-    VK_ASSERT(vkCreatePipelineLayout(device, &pipelineLayoutInfo, nullptr, &pipelineLayout), "Failed to create pipeline layout.");
+    VK_ASSERT(vkCreatePipelineLayout(device, &pipelineLayoutInfo, nullptr, &m_layout), "Failed to create pipeline layout.");
 
     VkPipelineShaderStageCreateInfo vertShaderStageInfo{ };
     vertShaderStageInfo.sType = VK_STRUCTURE_TYPE_PIPELINE_SHADER_STAGE_CREATE_INFO;
@@ -104,7 +110,7 @@ namespace RX
     pipelineInfo.pRasterizationState = &rasterizer;
     pipelineInfo.pMultisampleState = &multisampling;
     pipelineInfo.pColorBlendState = &colorBlending;
-    pipelineInfo.layout = pipelineLayout;
+    pipelineInfo.layout = m_layout;
     pipelineInfo.renderPass = renderPass;
     pipelineInfo.subpass = 0;
     pipelineInfo.basePipelineHandle = VK_NULL_HANDLE;
@@ -114,9 +120,10 @@ namespace RX
     initializationCallback();
   }
 
-  void Pipeline::destroy(VkDevice device)
+  void Pipeline::destroy()
   {
     assertDestruction();
-    vkDestroyPipeline(device, m_pipeline, nullptr);
+    vkDestroyPipeline(m_device, m_pipeline, nullptr);
+    vkDestroyPipelineLayout(m_device, m_layout, nullptr);
   }
 }

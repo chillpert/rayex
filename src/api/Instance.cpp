@@ -7,7 +7,7 @@ namespace RX
 
   Instance::~Instance()
   {
-    //destroy();
+    destroy();
   }
 
   void Instance::pushLayer(const char* name)

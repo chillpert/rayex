@@ -9,14 +9,16 @@ namespace RX
   {
   public:
     RenderPass();
+    ~RenderPass();
 
     inline VkRenderPass get() { return m_renderPass; }
 
     void initialize(VkDevice device, VkFormat format);
-    void destroy(VkDevice device);
+    void destroy();
 
   private:
     VkRenderPass m_renderPass;
+    VkDevice m_device;
   };
 }
 

@@ -1,18 +1,28 @@
 #ifndef IMAGE_VIEWS_HPP
 #define IMAGE_VIEWS_HPP
 
+#include "api/BaseComponent.hpp"
 #include "api/Surface.hpp"
 #include "Images.hpp"
 
 namespace RX
 {
-	class ImageViews
+	class ImageViews : public BaseComponent
 	{
 	public:
+		ImageViews() :
+			BaseComponent("ImageViews") { }
+
+		~ImageViews()
+		{
+			destroy();
+		}
+
 		inline std::vector<VkImageView>& get() { return m_imageViews; }
 
 		void initialize(VkDevice device, VkFormat surfaceFormat, Images& images)
 	  {
+	  	m_device = device;
 	    m_imageViews.resize(images.get().size());
 
 	    uint32_t temp = static_cast<uint32_t>(images.get().size());
@@ -35,10 +45,21 @@ namespace RX
 
 	      VK_ASSERT(vkCreateImageView(device, &createInfo, nullptr, &m_imageViews[i]), "Failed to create image view");
 	    }
+
+	    initializationCallback();
+	  }
+
+	  void destroy()
+	  {
+	  	assertDestruction();
+
+	  	for (auto imageView : m_imageViews)
+	  		vkDestroyImageView(m_device, imageView, nullptr);
 	  }
 
 	private:
 		std::vector<VkImageView> m_imageViews;
+		VkDevice m_device;
 	};
 }
 

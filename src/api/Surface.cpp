@@ -11,6 +11,11 @@ namespace RX
     surfaceFormat.format = VK_FORMAT_B8G8R8A8_UNORM;
   }
 
+  Surface::~Surface()
+  {
+    destroy();
+  }
+
   VkSurfaceFormatKHR& Surface::getFormat(VkPhysicalDevice physicalDevice)
   {
     static bool checked = false;
@@ -62,14 +67,16 @@ namespace RX
 
   void Surface::initialize(VkInstance instance, std::shared_ptr<Window> window)
   {
+    m_instance = instance;
+
     surface = window->createSurface(instance);
     initializationCallback();
   }
 
-  void Surface::destroy(VkInstance instance)
+  void Surface::destroy()
   {
     assertDestruction();
-    vkDestroySurfaceKHR(instance, surface, nullptr);
+    vkDestroySurfaceKHR(m_instance, surface, nullptr);
   }
 
   void Surface::evaluateFormat(VkPhysicalDevice physicalDevice)

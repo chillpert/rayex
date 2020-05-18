@@ -7,7 +7,7 @@ namespace RX
 
   CommandPool::~CommandPool()
   {
-    destroy();
+    //destroy();
   }
 
 	void CommandPool::initialize(VkDevice device, uint32_t queueFamilyIndex)

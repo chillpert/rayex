@@ -2,9 +2,19 @@
 
 namespace RX
 {
+  DebugMessenger::DebugMessenger() :
+    BaseComponent("DebugMessenger") { }
+
+  DebugMessenger::~DebugMessenger()
+  {
+    destroy();
+  }
+
   void DebugMessenger::initialize(VkInstance instance)
   {
 #ifdef RX_DEBUG
+    m_instance = instance;
+
     m_createDebugUtilsMessengerEXT = (PFN_vkCreateDebugUtilsMessengerEXT)vkGetInstanceProcAddr(instance, "vkCreateDebugUtilsMessengerEXT");
     m_destroyDebugUtilsMessengerEXT = (PFN_vkDestroyDebugUtilsMessengerEXT)vkGetInstanceProcAddr(instance, "vkDestroyDebugUtilsMessengerEXT");
 
@@ -22,13 +32,16 @@ namespace RX
     createInfo.pfnUserCallback = debugMessengerCallback;
     
     VK_ASSERT(m_createDebugUtilsMessengerEXT(instance, &createInfo, nullptr, &m_debugMessenger), "Failed to create debug utils messenger");
+
+    initializationCallback();
 #endif
   }
 
-  void DebugMessenger::destroy(VkInstance instance)
+  void DebugMessenger::destroy()
   {
 #ifdef RX_DEBUG
-    m_destroyDebugUtilsMessengerEXT(instance, m_debugMessenger, nullptr);
+    assertDestruction();
+    m_destroyDebugUtilsMessengerEXT(m_instance, m_debugMessenger, nullptr);
 #endif
   }
 

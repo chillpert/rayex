@@ -11,6 +11,7 @@ namespace RX
   {
   public:
     Device();
+    ~Device();
 
     inline VkDevice get() { return m_device; }
 

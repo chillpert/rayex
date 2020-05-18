@@ -12,14 +12,17 @@ namespace RX
   {
   public:
     Pipeline();
+    ~Pipeline();
 
     inline VkPipeline get() { return m_pipeline; }
 
     void initialize(VkDevice device, VkRenderPass renderPass, VkExtent2D& extent, std::shared_ptr<Window> window, Shader& vs, Shader& fs);
-    void destroy(VkDevice device);
+    void destroy();
 
   private:
     VkPipeline m_pipeline;
+    VkPipelineLayout m_layout;
+    VkDevice m_device;
   };
 }
 

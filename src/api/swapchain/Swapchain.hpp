@@ -11,16 +11,18 @@ namespace RX
   {
   public:
     Swapchain();
+    ~Swapchain();
 
-    inline VkSwapchainKHR get() { return swapchain; }    
-    inline VkExtent2D& getExtent() { return extent; } 
+    inline VkSwapchainKHR get() { return m_swapchain; }    
+    inline VkExtent2D& getExtent() { return m_extent; } 
 
-    void initialize(VkPhysicalDevice physicalDevice, VkDevice device, Surface surface, std::shared_ptr<Window> window, QueueManager& queueManager);
-    void destroy(VkDevice device);
+    void initialize(VkPhysicalDevice physicalDevice, VkDevice device, Surface& surface, std::shared_ptr<Window> window, QueueManager& queueManager);
+    void destroy();
     
   private:
-    VkSwapchainKHR swapchain;
-    VkExtent2D extent;
+    VkSwapchainKHR m_swapchain; // TODO: rename
+    VkExtent2D m_extent; // TODO: rename
+    VkDevice m_device;
   };
 }
 

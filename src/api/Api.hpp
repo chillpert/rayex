@@ -44,8 +44,8 @@ namespace RX
     Pipeline m_pipeline;
     Framebuffers m_framebuffers;
     CommandPool m_commandPool;
-    Semaphore m_imageAvailableSemaphore;
     Semaphore m_finishedRenderSemaphore;
+    Semaphore m_imageAvailableSemaphore;
 
     // No destruction necessary for following members:
     Images m_images;

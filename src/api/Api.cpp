@@ -42,7 +42,6 @@ namespace RX
 
     m_renderPass.initialize(m_device.get(), m_surface.getFormat(m_physicalDevice.get()).format);
 
-    // Set up swapchain including framebuffers and images.
     m_swapchain.initialize(m_physicalDevice.get(), m_device.get(), m_surface, m_window, m_queueManager);
     m_images.initialize(m_device.get(), m_swapchain.get());
     m_imageViews.initialize(m_device.get(), m_surface.getFormat().format, m_images);
@@ -90,14 +89,6 @@ namespace RX
 
     m_queueManager.submit(submitInfo);
 
-    VkSubpassDependency subpassDependency{ };
-    subpassDependency.srcSubpass = VK_SUBPASS_EXTERNAL;
-    subpassDependency.dstSubpass = 0;
-    subpassDependency.srcStageMask = VK_PIPELINE_STAGE_COLOR_ATTACHMENT_OUTPUT_BIT;
-    subpassDependency.srcAccessMask = 0;
-    subpassDependency.dstStageMask = VK_PIPELINE_STAGE_COLOR_ATTACHMENT_OUTPUT_BIT;
-    subpassDependency.dstAccessMask = VK_ACCESS_COLOR_ATTACHMENT_WRITE_BIT;
-
     VkPresentInfoKHR presentInfo{ };
     presentInfo.sType = VK_STRUCTURE_TYPE_PRESENT_INFO_KHR;
     presentInfo.waitSemaphoreCount = 1;
@@ -116,7 +107,5 @@ namespace RX
   void Api::clean()
   {
     vkDeviceWaitIdle(m_device.get());
-
-    m_debugMessenger.destroy(m_instance.get());
   }
 }

@@ -10,6 +10,7 @@ namespace RX
   {
   public:
     Surface();
+    ~Surface();
 
     inline VkSurfaceKHR get() { return surface; }
     
@@ -18,7 +19,7 @@ namespace RX
     VkSurfaceCapabilitiesKHR& getCapabilitites(VkPhysicalDevice physicalDevice = VK_NULL_HANDLE);
 
     void initialize(VkInstance instance, std::shared_ptr<Window> window);
-    void destroy(VkInstance instance);
+    void destroy();
 
   private:
     // First checks if the physical device supports the prefered surface format and second if the surface supports it as well.
@@ -26,11 +27,13 @@ namespace RX
     void evaluatePresentMode(VkPhysicalDevice physicalDevice);
     void evaluateCapabilities(VkPhysicalDevice physicalDevice);
 
-    VkSurfaceKHR surface;
+    VkSurfaceKHR surface; // TODO: rename
 
-    VkSurfaceFormatKHR surfaceFormat;
-    VkPresentModeKHR presentMode;
-    VkSurfaceCapabilitiesKHR surfaceCapabilitites;
+    VkSurfaceFormatKHR surfaceFormat; // TODO: rename
+    VkPresentModeKHR presentMode; // TODO: rename
+    VkSurfaceCapabilitiesKHR surfaceCapabilitites; // TODO: rename
+
+    VkInstance m_instance;
   };
 }
 

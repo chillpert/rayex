@@ -73,6 +73,7 @@ include_directories(${PROJECT_SOURCE_DIR}/src)
 file(GLOB FILES_LIB
   "${PROJECT_SOURCE_DIR}/src/api/*.cpp"
   "${PROJECT_SOURCE_DIR}/src/api/swapchain/*.cpp"
+  "${PROJECT_SOURCE_DIR}/src/api/sync/*.cpp"
   "${PROJECT_SOURCE_DIR}/src/window/*.cpp"
   "${PROJECT_SOURCE_DIR}/src/pch/*.cpp"
   "${PROJECT_SOURCE_DIR}/src/events/*.cpp"

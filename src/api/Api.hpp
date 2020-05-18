@@ -11,7 +11,7 @@
 #include "swapchain/ImageViews.hpp"
 #include "swapchain/Framebuffers.hpp"
 #include "Surface.hpp"
-#include "Semaphore.hpp"
+#include "sync/Semaphore.hpp"
 #include "CommandPool.hpp"
 #include "CommandBuffers.hpp"
 #include "Pipeline.hpp"

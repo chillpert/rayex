@@ -34,11 +34,8 @@ namespace RX
     createInfo.pApplicationInfo = &appInfo;
 
 #ifdef RX_DEBUG
-#if RX_PLATFORM_WINDOWS_X64
     pushLayer("VK_LAYER_KHRONOS_validation");
-#elif RX_PLATFORM_UNIX_X64
-    pushLayer("VK_LAYER_LUNARG_standard_validation");
-#endif
+
     createInfo.ppEnabledLayerNames = m_layers.data();
     createInfo.enabledLayerCount = static_cast<uint32_t>(m_layers.size());
 #endif
@@ -55,7 +52,7 @@ namespace RX
       pushExtension(sdlExtensionsNames[i]);
 
 #ifdef RX_DEBUG
-    pushExtension(VK_EXT_DEBUG_UTILS_EXTENSION_NAME);
+    pushExtension("VK_EXT_debug_utils");
 #endif
 
     createInfo.ppEnabledExtensionNames = m_extensions.data();
@@ -80,7 +77,7 @@ namespace RX
     std::vector<VkLayerProperties> layers(layerCount);
     VK_ASSERT(vkEnumerateInstanceLayerProperties(&layerCount, layers.data()), "Failed to enumerate instance layer properties.");
     
-    VK_LOG("\n\nAvailable extensions on this device:");
+    VK_LOG("\n\nAvailable layers on this device:");
     std::cout << "==================================================================\n";
     for (const auto& layer : layers)
       std::cout << "  " << layer.layerName << ":\n\t" << "Description: " << layer.description << std::endl;
@@ -92,7 +89,7 @@ namespace RX
     std::vector<VkExtensionProperties> extensions(extensionCount);
     VK_ASSERT(vkEnumerateInstanceExtensionProperties(nullptr, &extensionCount, extensions.data()), "Failed to enumerate instance extension properties.");
 
-    VK_LOG("\n\nAvailable layers on this device:");
+    VK_LOG("\n\nAvailable extensions on this device:");
     std::cout << "==================================================================\n";
     for (const auto& extension : extensions)
       std::cout << "  " << extension.extensionName << std::endl;
@@ -113,7 +110,12 @@ namespace RX
         return;
     }
     
-    RX_ERROR("Validation layer is not available on this device.");
+    char message[200];
+    strcpy(message, "Validation layer ");
+    strcat(message, name);
+    strcat(message, " is not available on this device");
+    
+    RX_ERROR(message);
   }
 
   void Instance::checkExtensionSupport(const char* name)
@@ -130,7 +132,12 @@ namespace RX
         return;
     }
 
-    RX_ERROR("Validation layer is not available on this device.");
+    char message[200];
+    strcpy(message, "Extension ");
+    strcat(message, name);
+    strcat(message, " is not available on this device");
+
+    RX_ERROR(message);
   }
 
   uint32_t Instance::getApiVersion()

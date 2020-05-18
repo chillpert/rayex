@@ -58,7 +58,6 @@ namespace RX
 
     m_imageAvailableSemaphore.initialize(m_device.get());
     m_finishedRenderSemaphore.initialize(m_device.get());
-
   }
 
   bool Api::update()

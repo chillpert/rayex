@@ -5,6 +5,11 @@ namespace RX
   Instance::Instance() :
     BaseComponent("Instance") { }
 
+  Instance::~Instance()
+  {
+    //destroy();
+  }
+
   void Instance::pushLayer(const char* name)
   {
     assertNotInitialized("pushLayer");

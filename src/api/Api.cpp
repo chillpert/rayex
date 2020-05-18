@@ -40,21 +40,22 @@ namespace RX
 
     m_device.initialize(m_physicalDevice.get(), m_queueManager);
 
+    m_renderPass.initialize(m_device.get(), m_surface.getFormat(m_physicalDevice.get()).format);
+
+    // Set up swapchain including framebuffers and images.
     m_swapchain.initialize(m_physicalDevice.get(), m_device.get(), m_surface, m_window, m_queueManager);
-    
-    m_renderPass.initialize(m_device.get(), m_surface.getFormat().format);
+    m_images.initialize(m_device.get(), m_swapchain.get());
+    m_imageViews.initialize(m_device.get(), m_surface.getFormat().format, m_images);
+    m_framebuffers.initialize(m_device.get(), m_imageViews, m_renderPass.get(), m_window);
     
     Shader vs, fs;
     vs.initialize(RX_SHADER_PATH "test.vert", m_device.get());
     fs.initialize(RX_SHADER_PATH "test.frag", m_device.get());
     m_pipeline.initialize(m_device.get(), m_renderPass.get(), m_swapchain.getExtent(), m_window, vs, fs);
     
-    m_swapchain.initializeImages(m_device.get());
-    m_swapchain.initializeImageViews(m_device.get(), m_surface);
-    m_swapchain.initializeFramebuffers(m_device.get(), m_renderPass.get(), m_window);
     m_commandPool.initialize(m_device.get(), m_queueManager.getGraphicsIndex());
-    m_commandBuffers.initialize(m_device.get(), m_commandPool.get(), m_swapchain.getFramebuffers().size());
-    m_commandBuffers.record(m_swapchain, m_renderPass, m_pipeline);
+    m_commandBuffers.initialize(m_device.get(), m_commandPool.get(), m_framebuffers.get().size());
+    m_commandBuffers.record(m_swapchain, m_framebuffers, m_renderPass, m_pipeline);
 
     m_imageAvailableSemaphore.initialize(m_device.get());
     m_finishedRenderSemaphore.initialize(m_device.get());
@@ -114,6 +115,8 @@ namespace RX
 
   void Api::clean()
   {
+    vkDeviceWaitIdle(m_device.get());
+
     m_debugMessenger.destroy(m_instance.get());
   }
 }

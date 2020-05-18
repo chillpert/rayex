@@ -9,16 +9,18 @@ namespace RX
   {
   public:
     CommandPool();
+    ~CommandPool();
     
     inline VkCommandPool get() { return m_commandPool; }
 
     void initialize(VkDevice device, uint32_t queueFamilyIndex);
-    void destroy(VkDevice device);
+    void destroy();
 
-    void reset(VkDevice device, VkCommandPoolResetFlags flags = 0);
+    void reset(VkCommandPoolResetFlags flags = 0);
 
   private:
     VkCommandPool m_commandPool;
+    VkDevice m_device;
   };
 }
 

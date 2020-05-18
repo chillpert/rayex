@@ -1,7 +1,8 @@
 #ifndef COMMAND_BUFFERS_HPP
 #define COMMAND_BUFFERS_HPP
 
-#include "Swapchain.hpp"
+#include "swapchain/Swapchain.hpp"
+#include "swapchain/Framebuffers.hpp"
 #include "RenderPass.hpp"
 #include "Pipeline.hpp"
 
@@ -13,7 +14,7 @@ namespace RX
     inline std::vector<VkCommandBuffer>& get() { return m_commandBuffers; }
 
     void initialize(VkDevice device, VkCommandPool commandPool, size_t swapchainFramebufferSize);
-    void record(Swapchain& spwachain, RenderPass& renderPass, Pipeline& pipeline);
+    void record(Swapchain& spwachain, Framebuffers& framebuffers, RenderPass& renderPass, Pipeline& pipeline);
 
   private:
     std::vector<VkCommandBuffer> m_commandBuffers;

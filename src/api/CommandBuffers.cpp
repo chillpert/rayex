@@ -15,7 +15,7 @@ namespace RX
 	  VK_ASSERT(vkAllocateCommandBuffers(device, &allocateInfo, m_commandBuffers.data()), "Failed to allocate command buffers");
 	}
 
-	void CommandBuffers::record(Swapchain& swapchain, RenderPass& renderPass, Pipeline& pipeline)
+	void CommandBuffers::record(Swapchain& swapchain, Framebuffers& framebuffers, RenderPass& renderPass, Pipeline& pipeline)
 	{
 		for (size_t i = 0; i < m_commandBuffers.size(); ++i)
 		{
@@ -27,7 +27,7 @@ namespace RX
 	    VkRenderPassBeginInfo renderPassInfo{ };
 	    renderPassInfo.sType = VK_STRUCTURE_TYPE_RENDER_PASS_BEGIN_INFO;
 	    renderPassInfo.renderPass = renderPass.get();
-	    renderPassInfo.framebuffer = swapchain.getFramebuffers()[i];
+	    renderPassInfo.framebuffer = framebuffers.get()[i];
 	    renderPassInfo.renderArea.offset = { 0, 0 };
 	    renderPassInfo.renderArea.extent = swapchain.getExtent();
 

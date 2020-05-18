@@ -11,10 +11,17 @@ namespace RX
     Semaphore() :
       BaseComponent("Semaphore") { }
 
+    ~Semaphore()
+    {
+      destroy();
+    }
+
     inline VkSemaphore get() { return m_semaphore; }
 
     void initialize(VkDevice device)
     {
+      m_device = device;
+
       VkSemaphoreCreateInfo createInfo{ };
       createInfo.sType = VK_STRUCTURE_TYPE_SEMAPHORE_CREATE_INFO;
 
@@ -23,14 +30,15 @@ namespace RX
       initializationCallback();
     }
 
-    void destroy(VkDevice device)
+    void destroy()
     {
       assertDestruction();
-      vkDestroySemaphore(device, m_semaphore, nullptr);
+      vkDestroySemaphore(m_device, m_semaphore, nullptr);
     }
 
   private:
     VkSemaphore m_semaphore;
+    VkDevice m_device;
   };
 }
 

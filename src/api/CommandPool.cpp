@@ -5,6 +5,11 @@ namespace RX
 	CommandPool::CommandPool() :
 		BaseComponent("CommandPool") { }
 
+  CommandPool::~CommandPool()
+  {
+    destroy();
+  }
+
 	void CommandPool::initialize(VkDevice device, uint32_t queueFamilyIndex)
   {
     VkCommandPoolCreateInfo createInfo{ };
@@ -17,15 +22,15 @@ namespace RX
     initializationCallback();
   }
 
-  void CommandPool::destroy(VkDevice device)
+  void CommandPool::destroy()
   {
     assertDestruction();
-    vkDestroyCommandPool(device, m_commandPool, nullptr);
+    vkDestroyCommandPool(m_device, m_commandPool, nullptr);
    }
 
-  void CommandPool::reset(VkDevice device, VkCommandPoolResetFlags flags)
+  void CommandPool::reset(VkCommandPoolResetFlags flags)
   {
     assertInitialized("reset");
-    VK_ASSERT(vkResetCommandPool(device, m_commandPool, flags), "Failed to reset command pool.");
+    VK_ASSERT(vkResetCommandPool(m_device, m_commandPool, flags), "Failed to reset command pool.");
   }
 }

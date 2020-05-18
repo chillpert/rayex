@@ -3,7 +3,7 @@
 
 #include "BaseComponent.hpp"
 #include "window/Window.hpp"
-#include "Swapchain.hpp"
+#include "swapchain/Swapchain.hpp"
 #include "Shader.hpp"
 
 namespace RX

@@ -10,6 +10,7 @@ namespace RX
   {
   public:
     Instance();
+    ~Instance();
 
     inline VkInstance get() { return m_instance; }
 

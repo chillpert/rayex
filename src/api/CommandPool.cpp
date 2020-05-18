@@ -7,11 +7,13 @@ namespace RX
 
   CommandPool::~CommandPool()
   {
-    //destroy();
+    destroy();
   }
 
 	void CommandPool::initialize(VkDevice device, uint32_t queueFamilyIndex)
   {
+    m_device = device;
+
     VkCommandPoolCreateInfo createInfo{ };
     createInfo.sType = VK_STRUCTURE_TYPE_COMMAND_POOL_CREATE_INFO;
     //createInfo.flags = VK_COMMAND_POOL_CREATE_RESET_COMMAND_BUFFER_BIT;//VK_COMMAND_POOL_CREATE_TRANSIENT_BIT;

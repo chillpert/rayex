@@ -9,9 +9,10 @@ namespace RX
   {
   public:
     Shader();
+    ~Shader();
 
     void initialize(const std::string& fullPath, VkDevice device);
-    void destroy(VkDevice device);
+    void destroy();
 
     inline std::vector<char>& getSource() { return m_source; }
     inline VkShaderModule getShaderModule() { return m_shaderModule; }
@@ -30,6 +31,7 @@ namespace RX
     std::vector<char> m_source;
 
     VkShaderModule m_shaderModule;
+    VkDevice m_device;
   };
 }
 

@@ -5,8 +5,15 @@ namespace RX
   Shader::Shader() :
     BaseComponent("Shader") { }
 
+  Shader::~Shader()
+  {
+    destroy();
+  }
+
   void Shader::initialize(const std::string& fullPath, VkDevice device)
   {
+    m_device = device;
+
     std::string delimiter = "/";
 
     size_t pos = fullPath.find_last_of(delimiter);
@@ -21,10 +28,10 @@ namespace RX
     compile(device);
   }
 
-  void Shader::destroy(VkDevice device)
+  void Shader::destroy()
   {
     assertDestruction();
-    vkDestroyShaderModule(device, m_shaderModule, nullptr);
+    vkDestroyShaderModule(m_device, m_shaderModule, nullptr);
   }
 
   void Shader::compile(VkDevice device)

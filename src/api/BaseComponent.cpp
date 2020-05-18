@@ -62,5 +62,6 @@ namespace RX
     }
 
     m_initialized = true;
+    VK_LOG("Created " << m_componentName);
   }
 }

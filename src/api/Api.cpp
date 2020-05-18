@@ -2,6 +2,7 @@
 
 namespace RX
 {
+  // Defines the maximum amount of frames that will be processed concurrently.
   const size_t maxFramesInFlight = 2;
 
   Api::Api(std::shared_ptr<Window> window) :
@@ -93,14 +94,17 @@ namespace RX
   {
     static size_t currentFrame = 0;
 
+    // Wait for the current frame's fences.
     vkWaitForFences(m_device.get(), 1, &m_inFlightFences[currentFrame].get(), VK_TRUE, UINT64_MAX);
 
     uint32_t imageIndex;
     VK_ASSERT(vkAcquireNextImageKHR(m_device.get(), m_swapchain.get(), UINT64_MAX, m_imageAvailableSemaphores[currentFrame].get(), VK_NULL_HANDLE, &imageIndex), "Failed to acquire image from swapchain");
 
+    // Check if a previous frame is using the current image.
     if (m_imagesInFlight[imageIndex] != VK_NULL_HANDLE)
       vkWaitForFences(m_device.get(), 1, &m_imagesInFlight[currentFrame], VK_TRUE, UINT64_MAX);
 
+    // This will mark the current image to be in use by this frame.
     m_imagesInFlight[imageIndex] = m_inFlightFences[currentFrame].get();
 
     VkSubmitInfo submitInfo{ };
@@ -111,7 +115,7 @@ namespace RX
     submitInfo.waitSemaphoreCount = 1;
     submitInfo.pWaitSemaphores = waitSemaphores;
     submitInfo.pWaitDstStageMask = waitStages;
-
+    
     submitInfo.commandBufferCount = 1;
     submitInfo.pCommandBuffers = &m_commandBuffers.get()[imageIndex];
 
@@ -119,8 +123,10 @@ namespace RX
     submitInfo.signalSemaphoreCount = 1;
     submitInfo.pSignalSemaphores = signalSemaphores;
 
+    // Reset the signaled state of the current frame's fence to the unsignaled one.
     vkResetFences(m_device.get(), 1, &m_inFlightFences[currentFrame].get());
 
+    // Submits / executes the current image's / framebuffer's command buffer.
     m_queues.submit(submitInfo, m_inFlightFences[currentFrame].get());
 
     VkPresentInfoKHR presentInfo{ };
@@ -134,6 +140,7 @@ namespace RX
     presentInfo.pSwapchains = swapChains;
 
     presentInfo.pImageIndices = &imageIndex;
+    // Tell the presentation engine that the current image is ready.
     m_queues.present(presentInfo);
 
     currentFrame = (currentFrame + 1) % maxFramesInFlight;

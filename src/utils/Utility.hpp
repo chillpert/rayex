@@ -9,7 +9,7 @@
 #include <sstream>
 
 #ifdef RX_DEBUG
-  #define VK_LOG(message) std::cout << "Vk: Log: " << message << std::endl
+  #define VK_LOG(message) std::cout << "RX: Log: " << message << std::endl
 
   #define VK_ASSERT(result, message) Utils::assertVulkan(result, message)
   #define SDL_ASSERT(result, message) Utils::assertSdl(result, message)

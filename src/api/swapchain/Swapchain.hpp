@@ -20,8 +20,8 @@ namespace RX
     void destroy();
     
   private:
-    VkSwapchainKHR m_swapchain; // TODO: rename
-    VkExtent2D m_extent; // TODO: rename
+    VkSwapchainKHR m_swapchain;
+    VkExtent2D m_extent;
     VkDevice m_device;
   };
 }

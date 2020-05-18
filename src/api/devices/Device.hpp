@@ -1,9 +1,9 @@
 #ifndef DEVICE_HPP
 #define DEVICE_HPP
 
-#include "BaseComponent.hpp"
-#include "Instance.hpp"
-#include "Queues.hpp"
+#include "api/CommandBuffers.hpp"
+#include "api/Instance.hpp"
+#include "api/Queues.hpp"
 
 namespace RX
 {

@@ -10,12 +10,12 @@ namespace RX
     destroy();
   }
 
-  void Device::initialize(VkPhysicalDevice physicalDevice, QueueManager& queueManager)
+  void Device::initialize(VkPhysicalDevice physicalDevice, Queues& queues)
   {
     float queuePriority = 1.0f;
 
     std::vector<VkDeviceQueueCreateInfo> queueCreateInfos;
-    std::vector<uint32_t> queueFamilyIndices = queueManager.getQueueFamilyIndices();
+    std::vector<uint32_t> queueFamilyIndices = queues.getQueueFamilyIndices();
 
     for (uint32_t queueFamilyIndex : queueFamilyIndices)
     {
@@ -51,7 +51,7 @@ namespace RX
 
     VK_ASSERT(vkCreateDevice(physicalDevice, &createInfo, nullptr, &m_device), "Failed to create device.");
 
-    queueManager.retrieveAllQueueHandles(m_device);
+    queues.retrieveAllHandles(m_device);
 
     initializationCallback();
   }

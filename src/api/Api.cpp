@@ -32,17 +32,17 @@ namespace RX
     m_physicalDevice.checkExtensionSupport(requiredExtensions);
 
     // Set up queues.
-    m_queueManager.initialize(m_physicalDevice.get(), m_surface.get());
+    m_queues.initialize(m_physicalDevice.get(), m_surface.get());
 
     // Add all of the device extensions from above.
     for (const auto& extension : requiredExtensions)
       m_device.pushExtension(extension);
 
-    m_device.initialize(m_physicalDevice.get(), m_queueManager);
+    m_device.initialize(m_physicalDevice.get(), m_queues);
 
     m_renderPass.initialize(m_device.get(), m_surface.getFormat(m_physicalDevice.get()).format);
 
-    m_swapchain.initialize(m_physicalDevice.get(), m_device.get(), m_surface, m_window, m_queueManager);
+    m_swapchain.initialize(m_physicalDevice.get(), m_device.get(), m_surface, m_window, m_queues);
     m_images.initialize(m_device.get(), m_swapchain.get());
     m_imageViews.initialize(m_device.get(), m_surface.getFormat().format, m_images);
     m_framebuffers.initialize(m_device.get(), m_imageViews, m_renderPass.get(), m_window);
@@ -52,7 +52,7 @@ namespace RX
     fs.initialize(RX_SHADER_PATH "test.frag", m_device.get());
     m_pipeline.initialize(m_device.get(), m_renderPass.get(), m_swapchain.getExtent(), m_window, vs, fs);
     
-    m_commandPool.initialize(m_device.get(), m_queueManager.getGraphicsIndex());
+    m_commandPool.initialize(m_device.get(), m_queues.getGraphicsIndex());
     m_commandBuffers.initialize(m_device.get(), m_commandPool.get(), m_framebuffers.get().size());
     m_commandBuffers.record(m_swapchain, m_framebuffers, m_renderPass, m_pipeline);
 
@@ -87,7 +87,7 @@ namespace RX
     submitInfo.signalSemaphoreCount = 1;
     submitInfo.pSignalSemaphores = signalSemaphores;
 
-    m_queueManager.submit(submitInfo);
+    m_queues.submit(submitInfo);
 
     VkPresentInfoKHR presentInfo{ };
     presentInfo.sType = VK_STRUCTURE_TYPE_PRESENT_INFO_KHR;
@@ -99,7 +99,7 @@ namespace RX
     presentInfo.pSwapchains = swapchains;
     presentInfo.pImageIndices = &imageIndex;
 
-    m_queueManager.present(presentInfo);
+    m_queues.present(presentInfo);
 
     return true;
   }

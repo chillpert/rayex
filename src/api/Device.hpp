@@ -3,7 +3,7 @@
 
 #include "BaseComponent.hpp"
 #include "Instance.hpp"
-#include "QueueManager.hpp"
+#include "Queues.hpp"
 
 namespace RX
 {
@@ -15,7 +15,7 @@ namespace RX
 
     inline VkDevice get() { return m_device; }
 
-    void initialize(VkPhysicalDevice physicalDevice, QueueManager& queueManager);
+    void initialize(VkPhysicalDevice physicalDevice, Queues& queues);
     void destroy();
 
     // To verify the support of any device extension, use PhysicalDevice::checkExtensionSupport.

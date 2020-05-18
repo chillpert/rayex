@@ -1,20 +1,20 @@
-#ifndef QUEUE_MANAGER_HPP
-#define QUEUE_MANAGER_HPP
+#ifndef QUEUES_HPP
+#define QUEUES_HPP
 
 #include "BaseComponent.hpp"
 
 namespace RX
 {
-  class QueueManager : public BaseComponent
+  class Queues : public BaseComponent
   {
   public:
-    QueueManager();
+    Queues();
 
     // This function should be called right after the physical device was enumerated and the 
     // surface was created. The surface has to be created before the physical device is picked.
     void initialize(VkPhysicalDevice physicalDevice, VkSurfaceKHR surface);
 
-    void retrieveAllQueueHandles(VkDevice device);
+    void retrieveAllHandles(VkDevice device);
     void submit(VkSubmitInfo& submitInfo);
     void present(VkPresentInfoKHR& presentInfo);
 
@@ -39,4 +39,4 @@ namespace RX
   };
 }
 
-#endif
+#endif // QUEUES_HPP

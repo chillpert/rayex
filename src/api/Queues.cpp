@@ -1,11 +1,11 @@
-#include "QueueManager.hpp"
+#include "Queues.hpp"
 
 namespace RX
 {
-  QueueManager::QueueManager() :
-    BaseComponent("QueueManager") { }
+  Queues::Queues() :
+    BaseComponent("Queues") { }
 
-  void QueueManager::initialize(VkPhysicalDevice physicalDevice, VkSurfaceKHR surface)
+  void Queues::initialize(VkPhysicalDevice physicalDevice, VkSurfaceKHR surface)
   {
     if (physicalDevice == VK_NULL_HANDLE)
       RX_ERROR("Queue families can not be set up because a physical device has not been picked yet.");
@@ -20,15 +20,15 @@ namespace RX
     initializationCallback();
   }
 
-  void QueueManager::retrieveAllQueueHandles(VkDevice device)
+  void Queues::retrieveAllHandles(VkDevice device)
   {
-    assertInitialized("retrieveAllQueueHandles");
+    assertInitialized("retrieveAllHandles");
 
     vkGetDeviceQueue(device, getGraphicsIndex(), 0, &m_graphicsQueue);
     vkGetDeviceQueue(device, getPresentIndex(), 0, &m_presentQueue);
   }
 
-  void QueueManager::submit(VkSubmitInfo& submitInfo)
+  void Queues::submit(VkSubmitInfo& submitInfo)
   {
     assertInitialized("submit");
 
@@ -45,28 +45,28 @@ namespace RX
     }
   }
 
-  void QueueManager::present(VkPresentInfoKHR& presentInfo)
+  void Queues::present(VkPresentInfoKHR& presentInfo)
   {
     assertInitialized("present");
 
     VK_ASSERT(vkQueuePresentKHR(m_presentQueue, &presentInfo), "Failed to present");
   }
 
-  uint32_t QueueManager::getGraphicsIndex()
+  uint32_t Queues::getGraphicsIndex()
   {
     assertInitialized("getGraphicsIndex");
 
     return m_graphicsIndex.value();
   }
 
-  uint32_t QueueManager::getPresentIndex()
+  uint32_t Queues::getPresentIndex()
   {
     assertInitialized("getPresentIndex");
     
     return m_presentIndex.value();
   }
 
-  std::vector<uint32_t> QueueManager::getQueueFamilyIndices()
+  std::vector<uint32_t> Queues::getQueueFamilyIndices()
   {
     assertInitialized("getQueueFamilyIndices");
     
@@ -76,7 +76,7 @@ namespace RX
     return { getGraphicsIndex(), getPresentIndex() };
   }
 
-  bool QueueManager::isComplete(VkPhysicalDevice physicalDevice, VkSurfaceKHR surface)
+  bool Queues::isComplete(VkPhysicalDevice physicalDevice, VkSurfaceKHR surface)
   {
     auto temp = findQueueFamilies(physicalDevice, surface);
     
@@ -86,7 +86,7 @@ namespace RX
     return false;
   }
 
-  std::pair<std::optional<uint32_t>, std::optional<uint32_t>> QueueManager::findQueueFamilies(VkPhysicalDevice physicalDevice, VkSurfaceKHR surface)
+  std::pair<std::optional<uint32_t>, std::optional<uint32_t>> Queues::findQueueFamilies(VkPhysicalDevice physicalDevice, VkSurfaceKHR surface)
   {
     std::optional<uint32_t> graphicsIndex_t;
     std::optional<uint32_t> presentIndex_t;

@@ -1,5 +1,5 @@
 #include "PhysicalDevice.hpp"
-#include "QueueManager.hpp"
+#include "Queues.hpp"
 
 namespace RX
 {
@@ -95,7 +95,7 @@ namespace RX
     if (name.find("RTX") != std::string::npos)
       score += 100u;
 
-    if (QueueManager::isComplete(device, surface))
+    if (Queues::isComplete(device, surface))
       score += 100u;
     else
       return 0u;

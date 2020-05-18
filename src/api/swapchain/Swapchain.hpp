@@ -3,7 +3,7 @@
 
 #include "api/BaseComponent.hpp"
 #include "api/Surface.hpp"
-#include "api/QueueManager.hpp"
+#include "api/Queues.hpp"
 
 namespace RX
 {
@@ -16,7 +16,7 @@ namespace RX
     inline VkSwapchainKHR get() { return m_swapchain; }    
     inline VkExtent2D& getExtent() { return m_extent; } 
 
-    void initialize(VkPhysicalDevice physicalDevice, VkDevice device, Surface& surface, std::shared_ptr<Window> window, QueueManager& queueManager);
+    void initialize(VkPhysicalDevice physicalDevice, VkDevice device, Surface& surface, std::shared_ptr<Window> window, Queues& queues);
     void destroy();
     
   private:

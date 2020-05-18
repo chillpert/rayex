@@ -1,7 +1,7 @@
 #ifndef API_HPP
 #define API_HPP
 
-#include "QueueManager.hpp"
+#include "Queues.hpp"
 #include "DebugMessenger.hpp"
 #include "Instance.hpp"
 #include "PhysicalDevice.hpp"
@@ -50,7 +50,7 @@ namespace RX
     // No destruction necessary for following members:
     Images m_images;
     PhysicalDevice m_physicalDevice;
-    QueueManager m_queueManager;
+    Queues m_queues;
     CommandBuffers m_commandBuffers;
   };
 }

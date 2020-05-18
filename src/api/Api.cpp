@@ -35,8 +35,8 @@ namespace RX
     m_queueManager.initialize(m_physicalDevice.get(), m_surface.get());
 
     // Add all of the device extensions from above.
-    //for (const auto& extension : requiredExtensions)
-    //  m_device.pushExtension(extension);
+    for (const auto& extension : requiredExtensions)
+      m_device.pushExtension(extension);
 
     m_device.initialize(m_physicalDevice.get(), m_queueManager);
 

@@ -114,7 +114,7 @@ namespace RX
     strcpy(message, "Validation layer ");
     strcat(message, name);
     strcat(message, " is not available on this device");
-    
+
     RX_ERROR(message);
   }
 
@@ -133,7 +133,7 @@ namespace RX
     }
 
     char message[200];
-    strcpy(message, "Extension ");
+    strcpy(message, "Instance extension ");
     strcat(message, name);
     strcat(message, " is not available on this device");
 

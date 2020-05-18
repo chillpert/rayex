@@ -61,5 +61,7 @@ namespace RX
   {
     assertNotInitialized("pushExtension");
     m_extensions.push_back(name);
+
+    VK_LOG("Added Device extension: " << name);
   }
 }

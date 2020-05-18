@@ -11,7 +11,7 @@ namespace RX
     Fence();
     ~Fence();
 
-    inline VkFence get() { return m_fence; }
+    inline VkFence& get() { return m_fence; }
 
     void initialize(VkDevice device);
     void destroy();

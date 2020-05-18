@@ -11,7 +11,7 @@ namespace RX
     Semaphore();
     ~Semaphore();
 
-    inline VkSemaphore get() { return m_semaphore; }
+    inline VkSemaphore& get() { return m_semaphore; }
 
     void initialize(VkDevice device);
     void destroy();

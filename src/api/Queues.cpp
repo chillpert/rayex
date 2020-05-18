@@ -28,20 +28,20 @@ namespace RX
     vkGetDeviceQueue(device, getPresentIndex(), 0, &m_presentQueue);
   }
 
-  void Queues::submit(VkSubmitInfo& submitInfo)
+  void Queues::submit(VkSubmitInfo& submitInfo, VkFence fence)
   {
     assertInitialized("submit");
 
     // If the queue families are not unique only submit once.
     if (getPresentIndex() == getGraphicsIndex())
     {
-      VK_ASSERT(vkQueueSubmit(m_graphicsQueue, 1, &submitInfo, VK_NULL_HANDLE), "Failed to submit queue.");
+      VK_ASSERT(vkQueueSubmit(m_graphicsQueue, 1, &submitInfo, fence), "Failed to submit queue.");
     }
     else
     {
       // TODO: This is probably entirely wrong! 
-      VK_ASSERT(vkQueueSubmit(m_graphicsQueue, 1, &submitInfo, VK_NULL_HANDLE), "Failed to submit graphics queue.");
-      VK_ASSERT(vkQueueSubmit(m_presentQueue, 1, &submitInfo, VK_NULL_HANDLE), "Failed to submit present queue.");
+      VK_ASSERT(vkQueueSubmit(m_graphicsQueue, 1, &submitInfo, fence), "Failed to submit graphics queue.");
+      VK_ASSERT(vkQueueSubmit(m_presentQueue, 1, &submitInfo, fence), "Failed to submit present queue.");
     }
   }
 

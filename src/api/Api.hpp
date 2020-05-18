@@ -45,8 +45,11 @@ namespace RX
     Pipeline m_pipeline;
     Framebuffers m_framebuffers;
     CommandPool m_commandPool;
-    Semaphore m_finishedRenderSemaphore;
-    Semaphore m_imageAvailableSemaphore;
+
+    std::vector<VkFence> m_imagesInFlight;
+    std::vector<Fence> m_inFlightFences;
+    std::vector<Semaphore> m_imageAvailableSemaphores;
+    std::vector<Semaphore> m_finishedRenderSemaphores;
 
     // No destruction necessary for following members:
     Images m_images;

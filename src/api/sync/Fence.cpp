@@ -3,7 +3,8 @@
 namespace RX
 {
   Fence::Fence() :
-    BaseComponent("Fence") { }
+    BaseComponent("Fence"),
+    m_fence(VK_NULL_HANDLE) { }
 
   Fence::~Fence()
   {
@@ -26,6 +27,6 @@ namespace RX
   void Fence::destroy()
   {
     assertDestruction();
-    VK_ASSERT(vkDestroyFence(m_device, m_fence, nullptr), "Failed to destroy fence.");
+    vkDestroyFence(m_device, m_fence, nullptr);
   }
 }

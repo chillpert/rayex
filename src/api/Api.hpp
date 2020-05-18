@@ -12,6 +12,7 @@
 #include "swapchain/Framebuffers.hpp"
 #include "Surface.hpp"
 #include "sync/Semaphore.hpp"
+#include "sync/Fence.hpp"
 #include "CommandPool.hpp"
 #include "CommandBuffers.hpp"
 #include "Pipeline.hpp"

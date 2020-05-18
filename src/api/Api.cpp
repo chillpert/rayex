@@ -7,18 +7,22 @@ namespace RX
 
   void Api::initialize()
   {
-    // Required for extending the physical m_device from m_device extensions.
+    // This extension is required for extending the physical m_device from m_device extensions.
+    // A list of available layers and instance extensions can be printed by using Instance::print. 
     m_instance.pushExtension("VK_KHR_get_physical_device_properties2");
+    // Set up the instance for interacting with the Vulkan library.
     m_instance.initialize(m_window);
-    //m_instance.print();
 
+    // Set up debug messenger. This will only have an effect if the build is a release build.
     m_debugMessenger.initialize(m_instance.get());
 
+    // Set up the window surface that will access the actual SDL window.
     m_surface.initialize(m_instance.get(), m_window);
 
+    // Enumerate and pick one of the available physical devices on the given device.
     m_physicalDevice.initialize(m_instance.get(), m_surface.get());
 
-    // Extensions required for ray tracing.
+    // All device extensions required for ray tracing.
     std::vector<const char*> requiredExtensions =
     {
       "VK_KHR_get_memory_requirements2",
@@ -29,6 +33,7 @@ namespace RX
       "VK_KHR_ray_tracing"
     };
 
+    // Make sure that the device extensions are supported by the physical device.
     m_physicalDevice.checkExtensionSupport(requiredExtensions);
 
     // Set up queues.
@@ -38,24 +43,32 @@ namespace RX
     for (const auto& extension : requiredExtensions)
       m_device.pushExtension(extension);
 
+    // Set up the logical device.
     m_device.initialize(m_physicalDevice.get(), m_queues);
 
+    // Set up the render pass.
     m_renderPass.initialize(m_device.get(), m_surface.getFormat(m_physicalDevice.get()).format);
 
+    // Set up the swapchain and its related components.
     m_swapchain.initialize(m_physicalDevice.get(), m_device.get(), m_surface, m_window, m_queues);
     m_images.initialize(m_device.get(), m_swapchain.get());
     m_imageViews.initialize(m_device.get(), m_surface.getFormat().format, m_images);
     m_framebuffers.initialize(m_device.get(), m_imageViews, m_renderPass.get(), m_window);
     
+    // Set up simple example shaders.
     Shader vs, fs;
     vs.initialize(RX_SHADER_PATH "test.vert", m_device.get());
     fs.initialize(RX_SHADER_PATH "test.frag", m_device.get());
+    
+    // Set up the graphics pipeline.
     m_pipeline.initialize(m_device.get(), m_renderPass.get(), m_swapchain.getExtent(), m_window, vs, fs);
     
+    // Set up the command pool, allocate the command buffer and start command buffer recording.
     m_commandPool.initialize(m_device.get(), m_queues.getGraphicsIndex());
     m_commandBuffers.initialize(m_device.get(), m_commandPool.get(), m_framebuffers.get().size());
     m_commandBuffers.record(m_swapchain, m_framebuffers, m_renderPass, m_pipeline);
 
+    // Set up the synchronization objects.
     m_imageAvailableSemaphore.initialize(m_device.get());
     m_finishedRenderSemaphore.initialize(m_device.get());
   }

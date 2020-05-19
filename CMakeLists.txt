@@ -26,10 +26,8 @@ else()
   message(FATAL_ERROR "Renderer: Target platform is not supported")
 endif()
 
-if (${OS} STREQUAL "Windows")
-  set (CMAKE_MODULE_PATH "${CMAKE_SOURCE_DIR}/external/Cotire")
-  include(cotire)
-endif()
+set (CMAKE_MODULE_PATH "${PROJECT_SOURCE_DIR}/external/Cotire")
+include(cotire)
 
 if(CMAKE_BUILD_TYPE STREQUAL "Debug")
   add_compile_definitions(RX_DEBUG)
@@ -113,10 +111,7 @@ set_target_properties(renderer
   RUNTIME_OUTPUT_DIRECTORY_RELWITHDEBINFO "${PROJECT_SOURCE_DIR}/build/bin/relwithbebinfo"
 )
 
-if(${OS} STREQUAL "Windows")
-  set_target_properties(renderer PROPERTIES COTIRE_CXX_PREFIX_HEADER_INIT "${PROJECT_SOURCE_DIR}/src/pch/stdafx.hpp")
-  cotire(renderer)
-endif()
+set_target_properties(renderer PROPERTIES COTIRE_CXX_PREFIX_HEADER_INIT "${PROJECT_SOURCE_DIR}/src/pch/stdafx.hpp")
 
 # EXAMPLE
 if(BUILD_EXAMPLES)
@@ -133,6 +128,8 @@ if(BUILD_EXAMPLES)
   target_link_libraries(example
     renderer
   )
+
+  cotire(example)
 
   set_target_properties(example
     PROPERTIES

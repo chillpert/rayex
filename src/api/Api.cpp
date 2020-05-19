@@ -97,6 +97,10 @@ namespace RX
     // Wait for the current frame's fences.
     vkWaitForFences(m_device.get(), 1, &m_inFlightFences[currentFrame].get(), VK_TRUE, UINT64_MAX);
 
+    // If the window is minimized then simply do not render anything anymore.
+    if (m_window->minimized())
+      return true;
+
     // If the window size has changed the swapchain has to be recreated.
     if (m_window->changed())
     {

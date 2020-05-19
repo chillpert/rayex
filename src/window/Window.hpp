@@ -32,6 +32,7 @@ namespace RX
     RX_API VkExtent2D getExtent();
     // Returns true if the window size changed.
     RX_API bool changed();
+    RX_API bool minimized();
   
   protected:
     SDL_Window* m_window;

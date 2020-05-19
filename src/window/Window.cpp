@@ -112,7 +112,18 @@ namespace RX
       prevWidth = width;
       prevHeight = height;
 
-      VK_LOG("Window refresh event.");
+      VK_LOG("Window refresh event");
+      return true;
+    }
+
+    return false;
+  }
+
+  bool Window::minimized()
+  {
+    if (m_properties.getWidth() == 0 && m_properties.getHeight() == 0)
+    {
+      VK_LOG("Window minimized event");
       return true;
     }
 

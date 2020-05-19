@@ -18,6 +18,11 @@ namespace RX
 
     void initialize(VkPhysicalDevice physicalDevice, VkDevice device, Surface& surface, std::shared_ptr<Window> window, Queues& queues);
     void destroy();
+
+    void acquireNextImage(VkDevice device, VkSemaphore semaphore, VkFence fence, uint32_t* imageIndex);
+
+    //static void clean();
+    //static void recreate();
     
   private:
     VkSwapchainKHR m_swapchain;

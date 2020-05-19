@@ -69,4 +69,9 @@ namespace RX
 
     VK_LOG("Added Device extension: " << name);
   }
+
+  void Device::waitIdle()
+  {
+    vkDeviceWaitIdle(m_device);
+  }
 }

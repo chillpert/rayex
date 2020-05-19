@@ -32,6 +32,9 @@ namespace RX
     void clean();
   
   private:
+    void cleanSwapchain();
+    void recreateSwapchain();
+
     std::shared_ptr<Window> m_window;
 
     // Destruction through RAII for following members:

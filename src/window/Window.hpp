@@ -30,6 +30,8 @@ namespace RX
     RX_API inline WindowProperties& getProperties() { return m_properties; }
     RX_API void getSize(int* width, int* height);
     RX_API VkExtent2D getExtent();
+    // Returns true if the window size changed.
+    RX_API bool changed();
   
   protected:
     SDL_Window* m_window;

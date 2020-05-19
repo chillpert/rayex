@@ -15,8 +15,8 @@ namespace RX
     void initialize(VkPhysicalDevice physicalDevice, VkSurfaceKHR surface);
 
     void retrieveAllHandles(VkDevice device);
-    void submit(VkSubmitInfo& submitInfo, VkFence fence);
-    void present(VkPresentInfoKHR& presentInfo);
+    VkResult submit(VkSubmitInfo& submitInfo, VkFence fence);
+    VkResult present(VkPresentInfoKHR& presentInfo);
 
     uint32_t getGraphicsIndex(); 
     uint32_t getPresentIndex();

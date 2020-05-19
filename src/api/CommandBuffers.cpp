@@ -2,6 +2,9 @@
 
 namespace RX
 {
+	CommandBuffers::CommandBuffers() :
+		BaseComponent("CommandBuffers") { }
+
 	void CommandBuffers::initialize(VkDevice device, VkCommandPool commandPool, size_t swapchainFramebufferSize)
 	{
 	  m_commandBuffers.resize(swapchainFramebufferSize);
@@ -44,5 +47,10 @@ namespace RX
 
 	    VK_ASSERT(vkEndCommandBuffer(m_commandBuffers[i]), "Failed to record command buffers");
     }
+	}
+
+	void CommandBuffers::free(VkDevice device, VkCommandPool commandPool)
+	{
+		vkFreeCommandBuffers(device, commandPool, static_cast<uint32_t>(m_commandBuffers.size()), m_commandBuffers.data());
 	}
 }

@@ -44,7 +44,7 @@ namespace RX
       VK_COMPOSITE_ALPHA_PRE_MULTIPLIED_BIT_KHR;
 
     // Handle the swap chain image extent.
-    if (surfaceCapabilities.currentExtent.width != 0xFFFFFFFF)
+    if (surfaceCapabilities.currentExtent.width != UINT32_MAX)
     {
       // The surface size will be determined by the extent of a swapchain targeting the surface.
       m_extent = surfaceCapabilities.currentExtent;
@@ -68,7 +68,8 @@ namespace RX
 
       m_extent.height = height_t;
       if (surfaceCapabilities.minImageExtent.height > height_t)
-        m_extent.height = surfaceCapabilities.minImageExtent.height;      
+        m_extent.height = surfaceCapabilities.minImageExtent.height;   
+
     }
 
     createInfo.imageExtent = m_extent;
@@ -93,7 +94,7 @@ namespace RX
       createInfo.imageSharingMode = VK_SHARING_MODE_EXCLUSIVE;
 
     createInfo.presentMode = surface.getPresentMode(physicalDevice);
-    
+
     VK_ASSERT(vkCreateSwapchainKHR(device, &createInfo, nullptr, &m_swapchain), "Failed to create swapchain.");
 
     initializationCallback();
@@ -103,5 +104,10 @@ namespace RX
   {
     assertDestruction();
     vkDestroySwapchainKHR(m_device, m_swapchain, nullptr);
+  }
+
+  void Swapchain::acquireNextImage(VkDevice device, VkSemaphore semaphore, VkFence fence, uint32_t* imageIndex)
+  {
+    VK_ASSERT(vkAcquireNextImageKHR(m_device, m_swapchain, UINT64_MAX, semaphore, fence, imageIndex), "Failed to acquire next image from swapchain");
   }
 }

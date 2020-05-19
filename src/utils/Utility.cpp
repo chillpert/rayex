@@ -24,10 +24,12 @@ namespace RX
       throw std::runtime_error(ss.str());
     }
 
-    void assertVulkan(VkResult result, const char* message)
+    VkResult assertVulkan(VkResult result, const char* message)
     {
       if (result != VK_SUCCESS)
         throwRuntimeError(message);
+
+      return result;
     }
 
     void assertSdl(SDL_bool result, const char* message)

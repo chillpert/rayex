@@ -98,4 +98,24 @@ namespace RX
   
     return { static_cast<uint32_t>(width), static_cast<uint32_t>(height) };
   }
+
+  bool Window::changed()
+  {
+    static int prevWidth = m_properties.getWidth();
+    static int prevHeight = m_properties.getHeight();
+
+    int width = m_properties.getWidth();
+    int height = m_properties.getHeight();
+
+    if (width != prevWidth || height != prevHeight)
+    {
+      prevWidth = width;
+      prevHeight = height;
+
+      VK_LOG("Window refresh event.");
+      return true;
+    }
+
+    return false;
+  }
 }

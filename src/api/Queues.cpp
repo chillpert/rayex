@@ -28,18 +28,24 @@ namespace RX
     vkGetDeviceQueue(device, getPresentIndex(), 0, &m_presentQueue);
   }
 
-  void Queues::submit(VkSubmitInfo& submitInfo, VkFence fence)
+  VkResult Queues::submit(VkSubmitInfo& submitInfo, VkFence fence)
   {
     assertInitialized("submit");
 
-    VK_ASSERT(vkQueueSubmit(m_graphicsQueue, 1, &submitInfo, fence), "Failed to submit queue.");
+    VkResult res = vkQueueSubmit(m_graphicsQueue, 1, &submitInfo, fence);
+    VK_ASSERT(res, "Failed to submit queue.");
+
+    return res;
   }
 
-  void Queues::present(VkPresentInfoKHR& presentInfo)
+  VkResult Queues::present(VkPresentInfoKHR& presentInfo)
   {
     assertInitialized("present");
 
-    VK_ASSERT(vkQueuePresentKHR(m_presentQueue, &presentInfo), "Failed to present");
+    VkResult res = vkQueuePresentKHR(m_presentQueue, &presentInfo);
+    VK_ASSERT(res, "Failed to present");
+
+    return res;
   }
 
   uint32_t Queues::getGraphicsIndex()

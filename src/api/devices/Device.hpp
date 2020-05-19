@@ -20,6 +20,7 @@ namespace RX
 
     // To verify the support of any device extension, use PhysicalDevice::checkExtensionSupport.
     void pushExtension(const char* name);
+    void waitIdle();
 
   private:
     VkDevice m_device;

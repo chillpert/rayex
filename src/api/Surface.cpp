@@ -50,17 +50,7 @@ namespace RX
 
   VkSurfaceCapabilitiesKHR& Surface::getCapabilitites(VkPhysicalDevice physicalDevice)
   {
-    static bool checked = false;
-
-    if (physicalDevice == VK_NULL_HANDLE && !checked)
-      RX_ERROR("Surface::getCapabilitites was called for the first time but without passing the pyhsical device to the function.");
-
-    if (!checked)
-    {
-      evaluateCapabilities(physicalDevice);
-      checked = true;
-    }
-    
+    evaluateCapabilities(physicalDevice);
 
     return surfaceCapabilitites;
   }

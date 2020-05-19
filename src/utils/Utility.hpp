@@ -9,6 +9,7 @@
 #include <sstream>
 
 #ifdef RX_DEBUG
+  // TODO: rename to RX_LOG
   #define VK_LOG(message) std::cout << "RX: Log: " << message << std::endl
 
   #define VK_ASSERT(result, message) Utils::assertVulkan(result, message)
@@ -29,7 +30,7 @@ namespace RX
     void throwRuntimeError(const char* message);
     void throwRuntimeError(const std::string& message);
 
-    void assertVulkan(VkResult result, const char* message);
+    VkResult assertVulkan(VkResult result, const char* message);
     void assertSdl(SDL_bool result, const char* message);
   }
 }

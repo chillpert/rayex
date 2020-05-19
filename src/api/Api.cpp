@@ -97,8 +97,15 @@ namespace RX
     // Wait for the current frame's fences.
     vkWaitForFences(m_device.get(), 1, &m_inFlightFences[currentFrame].get(), VK_TRUE, UINT64_MAX);
 
+    // If the window size has changed the swapchain has to be recreated.
+    if (m_window->changed())
+    {
+      recreateSwapchain();
+      return true;
+    }
+
     uint32_t imageIndex;
-    VK_ASSERT(vkAcquireNextImageKHR(m_device.get(), m_swapchain.get(), UINT64_MAX, m_imageAvailableSemaphores[currentFrame].get(), VK_NULL_HANDLE, &imageIndex), "Failed to acquire image from swapchain");
+    m_swapchain.acquireNextImage(m_device.get(), m_imageAvailableSemaphores[currentFrame].get(), VK_NULL_HANDLE, &imageIndex);
 
     // Check if a previous frame is using the current image.
     if (m_imagesInFlight[imageIndex] != VK_NULL_HANDLE)
@@ -144,12 +151,50 @@ namespace RX
     m_queues.present(presentInfo);
 
     currentFrame = (currentFrame + 1) % maxFramesInFlight;
-
     return true;
   }
 
   void Api::clean()
   {
-    vkDeviceWaitIdle(m_device.get());
+    m_device.waitIdle();
+  }
+
+  void Api::cleanSwapchain() // TODO: make it a free function inside swapchain file, if the includes allow it.
+  {
+    m_framebuffers.destroy();
+    m_commandBuffers.free(m_device.get(), m_commandPool.get());
+    m_pipeline.destroy();
+    //m_renderPass.destroy();
+    m_imageViews.destroy();
+    m_swapchain.destroy();
+  }
+
+  void Api::recreateSwapchain() // TODO: make it a free function inside swapchain file, if the includes allow it.
+  {
+    VK_LOG("recreating the swapchain");
+
+    m_device.waitIdle();
+
+    cleanSwapchain();
+
+    //m_renderPass.initialize(m_device.get(), m_surface.getFormat(m_physicalDevice.get()).format);
+
+    // Set up the swapchain and its related components.
+    m_swapchain.initialize(m_physicalDevice.get(), m_device.get(), m_surface, m_window, m_queues);
+    m_images.initialize(m_device.get(), m_swapchain.get());
+    m_imageViews.initialize(m_device.get(), m_surface.getFormat().format, m_images);
+    m_framebuffers.initialize(m_device.get(), m_imageViews, m_renderPass.get(), m_window);
+
+    // Set up simple example shaders.
+    Shader vs, fs;
+    vs.initialize(RX_SHADER_PATH "test.vert", m_device.get());
+    fs.initialize(RX_SHADER_PATH "test.frag", m_device.get());
+
+    // Set up the graphics pipeline.
+    m_pipeline.initialize(m_device.get(), m_renderPass.get(), m_swapchain.getExtent(), m_window, vs, fs);
+
+    // Set up the command pool, allocate the command buffer and start command buffer recording.
+    m_commandBuffers.initialize(m_device.get(), m_commandPool.get(), m_framebuffers.get().size());
+    m_commandBuffers.record(m_swapchain, m_framebuffers, m_renderPass, m_pipeline);
   }
 }

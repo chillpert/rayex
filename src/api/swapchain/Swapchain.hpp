@@ -20,9 +20,6 @@ namespace RX
     void destroy();
 
     void acquireNextImage(VkDevice device, VkSemaphore semaphore, VkFence fence, uint32_t* imageIndex);
-
-    //static void clean();
-    //static void recreate();
     
   private:
     VkSwapchainKHR m_swapchain;

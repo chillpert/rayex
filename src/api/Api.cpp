@@ -163,7 +163,7 @@ namespace RX
     m_device.waitIdle();
   }
 
-  void Api::cleanSwapchain() // TODO: make it a free function inside swapchain file, if the includes allow it.
+  void Api::cleanSwapchain()
   {
     m_framebuffers.destroy();
     m_commandBuffers.free(m_device.get(), m_commandPool.get());
@@ -173,9 +173,9 @@ namespace RX
     m_swapchain.destroy();
   }
 
-  void Api::recreateSwapchain() // TODO: make it a free function inside swapchain file, if the includes allow it.
+  void Api::recreateSwapchain()
   {
-    VK_LOG("recreating the swapchain");
+    RX_DISABLE_LOG;
 
     m_device.waitIdle();
 
@@ -200,5 +200,7 @@ namespace RX
     // Set up the command pool, allocate the command buffer and start command buffer recording.
     m_commandBuffers.initialize(m_device.get(), m_commandPool.get(), m_framebuffers.get().size());
     m_commandBuffers.record(m_swapchain, m_framebuffers, m_renderPass, m_pipeline);
+
+    RX_ENABLE_LOG;
   }
 }

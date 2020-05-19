@@ -8,13 +8,19 @@
 #include <iostream>
 #include <sstream>
 
+// TODO: rename to RX_LOG
 #ifdef RX_DEBUG
-  // TODO: rename to RX_LOG
-  #define VK_LOG(message) std::cout << "RX: Log: " << message << std::endl
+  #define RX_DISABLE_LOG Utils::setLogging(false)
+  #define RX_ENABLE_LOG Utils::setLogging(true)  
+
+  #define VK_LOG(message) if (Utils::log) std::cout << "RX: Log: " << message << std::endl
 
   #define VK_ASSERT(result, message) Utils::assertVulkan(result, message)
   #define SDL_ASSERT(result, message) Utils::assertSdl(result, message)
 #else
+  #define RX_DISABLE_LOG
+  #define RX_ENABLE_LOG 
+
   #define VK_LOG(message)
 
   #define VK_ASSERT(result, message) result
@@ -27,6 +33,10 @@ namespace RX
 {
   namespace Utils
   {
+    extern bool log;
+
+    void setLogging(bool state);
+
     void throwRuntimeError(const char* message);
     void throwRuntimeError(const std::string& message);
 

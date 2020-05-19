@@ -4,6 +4,13 @@ namespace RX
 {
   namespace Utils
   {
+    bool log = true;
+
+    void setLogging(bool state)
+    {
+      log = state;
+    }
+
     void throwRuntimeError(const char* message)
     {
       std::stringstream ss;

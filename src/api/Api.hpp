@@ -18,6 +18,7 @@
 #include "Pipeline.hpp"
 #include "RenderPass.hpp"
 #include "Shader.hpp"
+#include "VertexBuffer.hpp"
 
 namespace RX
 {
@@ -42,6 +43,7 @@ namespace RX
     DebugMessenger m_debugMessenger;
     Surface m_surface;
     Device m_device;
+    VertexBuffer m_vertexBuffer;
     Swapchain m_swapchain;
     ImageViews m_imageViews;
     RenderPass m_renderPass;
@@ -59,6 +61,9 @@ namespace RX
     PhysicalDevice m_physicalDevice;
     Queues m_queues;
     CommandBuffers m_commandBuffers;
+
+    // TODO: make abstraction
+    ;
   };
 }
 

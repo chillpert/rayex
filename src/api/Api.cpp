@@ -60,16 +60,19 @@ namespace RX
     
     // Set up simple example shaders.
     Shader vs, fs;
-    vs.initialize(RX_SHADER_PATH "test.vert", m_device.get());
-    fs.initialize(RX_SHADER_PATH "test.frag", m_device.get());
+    vs.initialize(RX_SHADER_PATH "basic.vert", m_device.get());
+    fs.initialize(RX_SHADER_PATH "basic.frag", m_device.get());
     
     // Set up the graphics pipeline.
     m_pipeline.initialize(m_device.get(), m_renderPass.get(), m_swapchain.getExtent(), m_window, vs, fs);
     
     // Set up the command pool, allocate the command buffer and start command buffer recording.
     m_commandPool.initialize(m_device.get(), m_queues.getGraphicsIndex());
+
+    m_vertexBuffer.initialize(m_device.get(), m_physicalDevice.get());
+
     m_commandBuffers.initialize(m_device.get(), m_commandPool.get(), m_framebuffers.get().size());
-    m_commandBuffers.record(m_swapchain, m_framebuffers, m_renderPass, m_pipeline);
+    m_commandBuffers.record(m_swapchain, m_framebuffers, m_renderPass, m_pipeline, m_vertexBuffer.get());
 
     // Set up the synchronization objects.
     m_imageAvailableSemaphores.resize(maxFramesInFlight);
@@ -175,6 +178,7 @@ namespace RX
 
   void Api::recreateSwapchain()
   {
+    VK_LOG("Recreating swapchain");
     RX_DISABLE_LOG;
 
     m_device.waitIdle();
@@ -191,15 +195,15 @@ namespace RX
 
     // Set up simple example shaders.
     Shader vs, fs;
-    vs.initialize(RX_SHADER_PATH "test.vert", m_device.get());
-    fs.initialize(RX_SHADER_PATH "test.frag", m_device.get());
+    vs.initialize(RX_SHADER_PATH "basic.vert", m_device.get());
+    fs.initialize(RX_SHADER_PATH "basic.frag", m_device.get());
 
     // Set up the graphics pipeline.
     m_pipeline.initialize(m_device.get(), m_renderPass.get(), m_swapchain.getExtent(), m_window, vs, fs);
 
     // Set up the command pool, allocate the command buffer and start command buffer recording.
     m_commandBuffers.initialize(m_device.get(), m_commandPool.get(), m_framebuffers.get().size());
-    m_commandBuffers.record(m_swapchain, m_framebuffers, m_renderPass, m_pipeline);
+    m_commandBuffers.record(m_swapchain, m_framebuffers, m_renderPass, m_pipeline, m_vertexBuffer.get());
 
     RX_ENABLE_LOG;
   }

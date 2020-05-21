@@ -7,17 +7,15 @@ namespace RX
 {
   struct Vertex
   {
-    static const uint32_t attributeCount = 2;
-
     glm::vec2 pos;
     glm::vec3 color;
 
-    static VkVertexInputBindingDescription getBindingDescription()
+    static std::array<VkVertexInputBindingDescription, 1> getBindingDescriptions()
     {
-      VkVertexInputBindingDescription description{ };
-      description.binding = 0;
-      description.stride = sizeof(Vertex);
-      description.inputRate = VK_VERTEX_INPUT_RATE_VERTEX;
+      std::array<VkVertexInputBindingDescription, 1> description{ };
+      description[0].binding = 0;
+      description[0].stride = sizeof(Vertex);
+      description[0].inputRate = VK_VERTEX_INPUT_RATE_VERTEX;
 
       return description;
     }

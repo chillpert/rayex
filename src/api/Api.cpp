@@ -1,4 +1,5 @@
 #include "api/Api.hpp"
+#include "buffers/Vertex.hpp"
 
 namespace RX
 {
@@ -70,12 +71,23 @@ namespace RX
     m_pipeline.initialize(m_device.get(), m_renderPass.get(), m_swapchain.getExtent(), m_window, vs, fs);
     
     // Set up the command pool, allocate the command buffer and start command buffer recording.
-    m_commandPool.initialize(m_device.get(), m_queues.getGraphicsIndex());
+    m_commandPool.initialize(m_device.get(), m_queues.getGraphicsIndex()); // TODO: What if the graphics and present index are not identical?
+    //m_transferCommandPool.initialize(m_device.get(), m_queues.getTransferIndex()); // TODO: initialize with VK_SHARING_MODE_CONCURRENT
 
-    m_vertexBuffer.initialize(m_device.get(), m_physicalDevice.get());
+    // Triangle :D
+    std::vector<Vertex> vertices =
+    {
+      {{0.0f, -0.5f}, {0.8f, 0.0f, 0.3f}},
+      {{0.5f, 0.5f}, {0.3f, 0.1f, 0.0f}},
+      {{-0.5f, 0.5f}, {0.5f, 0.1f, 0.7f}}
+    };
+
+    m_vertexBuffer.initialize(m_device.get(), m_physicalDevice.get(), vertices);
 
     m_commandBuffers.initialize(m_device.get(), m_commandPool.get(), m_framebuffers.get().size());
-    m_commandBuffers.record(m_swapchain, m_framebuffers, m_renderPass, m_pipeline, m_vertexBuffer.get());
+    m_commandBuffers.record(m_swapchain, m_framebuffers, m_renderPass, m_pipeline, m_vertexBuffer);
+
+    // TODO: transfer command pool inizialization and recording
 
     // Set up the synchronization objects.
     m_imageAvailableSemaphores.resize(maxFramesInFlight);
@@ -206,7 +218,7 @@ namespace RX
 
     // Set up the command pool, allocate the command buffer and start command buffer recording.
     m_commandBuffers.initialize(m_device.get(), m_commandPool.get(), m_framebuffers.get().size());
-    m_commandBuffers.record(m_swapchain, m_framebuffers, m_renderPass, m_pipeline, m_vertexBuffer.get());
+    m_commandBuffers.record(m_swapchain, m_framebuffers, m_renderPass, m_pipeline, m_vertexBuffer);
 
     RX_ENABLE_LOG;
   }

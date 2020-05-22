@@ -14,8 +14,9 @@ namespace RX
       RX_ERROR("Queue families can not be set up because the surface has not been initialized yet.");
 
     auto temp = findQueueFamilies(physicalDevice, surface);
-    m_graphicsIndex = temp.first;
-    m_presentIndex = temp.second; 
+    m_graphicsIndex = temp[0];
+    m_presentIndex = temp[1];
+    m_transferIndex = temp[2];
 
     initializationCallback();
   }
@@ -26,6 +27,7 @@ namespace RX
 
     vkGetDeviceQueue(device, getGraphicsIndex(), 0, &m_graphicsQueue);
     vkGetDeviceQueue(device, getPresentIndex(), 0, &m_presentQueue);
+    vkGetDeviceQueue(device, getTransferIndex(), 0, &m_transferQueue);
   }
 
   VkResult Queues::submit(VkSubmitInfo& submitInfo, VkFence fence)
@@ -48,18 +50,25 @@ namespace RX
     return res;
   }
 
-  uint32_t Queues::getGraphicsIndex()
+  uint32_t Queues::getGraphicsIndex() const
   {
     assertInitialized("getGraphicsIndex");
 
     return m_graphicsIndex.value();
   }
 
-  uint32_t Queues::getPresentIndex()
+  uint32_t Queues::getPresentIndex() const
   {
     assertInitialized("getPresentIndex");
     
     return m_presentIndex.value();
+  }
+
+  uint32_t Queues::getTransferIndex() const
+  {
+    assertInitialized("getTransferIndex");
+
+    return m_transferIndex.value();
   }
 
   std::vector<uint32_t> Queues::getQueueFamilyIndices()
@@ -67,25 +76,29 @@ namespace RX
     assertInitialized("getQueueFamilyIndices");
     
     if (getPresentIndex() == getGraphicsIndex())
-      return { getGraphicsIndex() };
+      return { getGraphicsIndex(), getTransferIndex() };
 
-    return { getGraphicsIndex(), getPresentIndex() };
+    return { getGraphicsIndex(), getPresentIndex(), getTransferIndex() };
   }
 
   bool Queues::isComplete(VkPhysicalDevice physicalDevice, VkSurfaceKHR surface)
   {
-    auto temp = findQueueFamilies(physicalDevice, surface);
-    
-    if (temp.first.has_value() && temp.second.has_value())
-      return true;
+    auto queueFamiliesIndices = findQueueFamilies(physicalDevice, surface);
 
-    return false;
+    for (auto& index : queueFamiliesIndices)
+    {
+      if (!index.has_value())
+        return false;
+    }
+  
+    return true;
   }
 
-  std::pair<std::optional<uint32_t>, std::optional<uint32_t>> Queues::findQueueFamilies(VkPhysicalDevice physicalDevice, VkSurfaceKHR surface)
+  std::vector<std::optional<uint32_t>> Queues::findQueueFamilies(VkPhysicalDevice physicalDevice, VkSurfaceKHR surface)
   {
     std::optional<uint32_t> graphicsIndex_t;
     std::optional<uint32_t> presentIndex_t;
+    std::optional<uint32_t> transferIndex_t;
 
     uint32_t propertiesCount = 0;
     vkGetPhysicalDeviceQueueFamilyProperties(physicalDevice, &propertiesCount, nullptr);
@@ -96,6 +109,9 @@ namespace RX
     uint32_t index = 0;
     for (const auto& property : properties)
     {
+      if (property.queueFlags & VK_QUEUE_TRANSFER_BIT && !(property.queueFlags & VK_QUEUE_GRAPHICS_BIT))
+        transferIndex_t = index;
+      
       if (property.queueFlags & VK_QUEUE_GRAPHICS_BIT)
         graphicsIndex_t = index;
 
@@ -106,12 +122,15 @@ namespace RX
       if (supported)
         presentIndex_t = index;
 
-      if (graphicsIndex_t.has_value() && presentIndex_t.has_value())
+      if (graphicsIndex_t.has_value() && presentIndex_t.has_value() && transferIndex_t.has_value())
         break;           
 
       ++index;
     }
 
-    return { graphicsIndex_t, presentIndex_t };
+    if (!graphicsIndex_t.has_value() || !presentIndex_t.has_value() || !transferIndex_t.has_value())
+      RX_ERROR("Missing queue families.");
+
+    return { graphicsIndex_t, presentIndex_t, transferIndex_t };
   }
 }

@@ -9,29 +9,29 @@ namespace RX
     m_componentName(componentName) { }
 
   // Used to ensure the respective component has been initialized.
-  void BaseComponent::assertInitialized(const char* message)
+  void BaseComponent::assertInitialized(const char* message) const
   {
     if (!m_initialized)
     {
       char result[100];
-      strcpy(result, messagePrefix);
-      strcat(result, m_componentName);
-      strcat(result, ": ");
-      strcat(result, message);
+      strcpy_s(result, messagePrefix);
+      strcat_s(result, m_componentName);
+      strcat_s(result, ": ");
+      strcat_s(result, message);
       RX_ERROR(result);
     }
   }
 
   // Used to ensure the respective component has not been initialized yet.
-  void BaseComponent::assertNotInitialized(const char* message)
+  void BaseComponent::assertNotInitialized(const char* message) const
   {
     if (m_initialized)
     {
       char result[100];
-      strcpy(result, messagePrefix);
-      strcat(result, m_componentName);
-      strcat(result, ": ");
-      strcat(result, message);
+      strcpy_s(result, messagePrefix);
+      strcat_s(result, m_componentName);
+      strcat_s(result, ": ");
+      strcat_s(result, message);
       RX_ERROR(result);
     }
   }
@@ -42,8 +42,8 @@ namespace RX
     if (!m_initialized)
     {
       char result[100];
-      strcpy(result, messagePrefix);
-      strcat(result, m_componentName);
+      strcpy_s(result, messagePrefix);
+      strcat_s(result, m_componentName);
       RX_ERROR(result);
     }
 
@@ -56,8 +56,8 @@ namespace RX
     if (m_initialized)
     {
       char result[100];
-      strcpy(result, messagePrefix);
-      strcat(result, m_componentName);
+      strcpy_s(result, messagePrefix);
+      strcat_s(result, m_componentName);
       RX_ERROR(result);
     }
 

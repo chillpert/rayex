@@ -18,7 +18,7 @@
 #include "Pipeline.hpp"
 #include "RenderPass.hpp"
 #include "Shader.hpp"
-#include "VertexBuffer.hpp"
+#include "Buffers/VertexBuffer.hpp"
 
 namespace RX
 {
@@ -50,6 +50,7 @@ namespace RX
     Pipeline m_pipeline;
     Framebuffers m_framebuffers;
     CommandPool m_commandPool;
+    //CommandPool m_transferCommandPool;
 
     std::vector<VkFence> m_imagesInFlight;
     std::vector<Fence> m_inFlightFences;

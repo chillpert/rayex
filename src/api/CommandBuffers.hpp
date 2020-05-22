@@ -5,6 +5,7 @@
 #include "swapchain/Framebuffers.hpp"
 #include "RenderPass.hpp"
 #include "Pipeline.hpp"
+#include "buffers/VertexBuffer.hpp"
 
 namespace RX
 {
@@ -16,7 +17,7 @@ namespace RX
     inline std::vector<VkCommandBuffer>& get() { return m_commandBuffers; }
 
     void initialize(VkDevice device, VkCommandPool commandPool, size_t swapchainFramebufferSize);
-    void record(Swapchain& spwachain, Framebuffers& framebuffers, RenderPass& renderPass, Pipeline& pipeline, VkBuffer vertexBuffer);
+    void record(Swapchain& spwachain, Framebuffers& framebuffers, RenderPass& renderPass, Pipeline& pipeline, VertexBuffer& vertexBuffer);
     void free(VkDevice device, VkCommandPool commandPool);
 
   private:

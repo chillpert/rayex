@@ -1,5 +1,5 @@
 #include "CommandBuffers.hpp"
-#include "VertexBuffer.hpp"
+#include "Buffers/Vertex.hpp"
 
 namespace RX
 {
@@ -19,7 +19,7 @@ namespace RX
 	  VK_ASSERT(vkAllocateCommandBuffers(device, &allocateInfo, m_commandBuffers.data()), "Failed to allocate command buffers");
 	}
 
-	void CommandBuffers::record(Swapchain& swapchain, Framebuffers& framebuffers, RenderPass& renderPass, Pipeline& pipeline, VkBuffer vertexBuffer)
+	void CommandBuffers::record(Swapchain& swapchain, Framebuffers& framebuffers, RenderPass& renderPass, Pipeline& pipeline, VertexBuffer& vertexBuffer)
 	{
 		for (size_t i = 0; i < m_commandBuffers.size(); ++i)
 		{
@@ -43,11 +43,11 @@ namespace RX
 
 				vkCmdBindPipeline(m_commandBuffers[i], VK_PIPELINE_BIND_POINT_GRAPHICS, pipeline.get());
 
-				VkBuffer vertexBuffers[] = { vertexBuffer };
+				VkBuffer vertexBuffers[] = { vertexBuffer.get() };
 				VkDeviceSize offsets[] = { 0 };
 				vkCmdBindVertexBuffers(m_commandBuffers[i], 0, 1, vertexBuffers, offsets);
 
-				vkCmdDraw(m_commandBuffers[i], static_cast<uint32_t>(vertices.size()), 1, 0, 0); // TODO: vertices should be passed to this function
+				vkCmdDraw(m_commandBuffers[i], vertexBuffer.getVertexCount(), 1, 0, 0); // TODO: vertices should be passed to this function
 
 	    vkCmdEndRenderPass(m_commandBuffers[i]);
 

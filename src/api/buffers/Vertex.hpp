@@ -1,7 +1,7 @@
-#ifndef VERTEX_BUFFER_HPP
-#define VERTEX_BUFFER_HPP
+#ifndef VERTEX_HPP
+#define VERTEX_HPP
 
-#include "BaseComponent.hpp"
+#include "pch/stdafx.hpp"
 
 namespace RX
 {
@@ -37,35 +37,6 @@ namespace RX
       return description;
     }
   };
-  
-  class VertexBuffer : public BaseComponent
-  {
-  public:
-    VertexBuffer();
-    ~VertexBuffer();
-
-    inline VkBuffer get() { return m_buffer; }
-
-    void initialize(VkDevice device, VkPhysicalDevice physicalDevice);
-    void destroy();
-
-  private:
-    uint32_t findMemoryType(uint32_t typeFilter, VkMemoryPropertyFlags properties);
-
-    VkBuffer m_buffer;
-    VkDeviceMemory m_memory;
-
-    VkDevice m_device;
-    VkPhysicalDevice m_physicalDevice;
-  };
-
-  // Triangle :D
-  const std::vector<Vertex> vertices =
-  {
-    {{0.0f, -0.5f}, {0.8f, 0.0f, 0.3f}},
-    {{0.5f, 0.5f}, {0.3f, 0.1f, 0.0f}},
-    {{-0.5f, 0.5f}, {0.5f, 0.1f, 0.7f}}
-  };
 }
 
-#endif // VERTEX_BUFFER_HPP
+#endif // VERTEX_HPP

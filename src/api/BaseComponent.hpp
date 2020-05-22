@@ -12,10 +12,10 @@ namespace RX
     BaseComponent(const char* componentName);
 
     // Used to ensure the respective component has been initialized.
-    void assertInitialized(const char* message);
+    void assertInitialized(const char* message) const;
 
     // Used to ensure the respective component has not been initialized yet.
-    void assertNotInitialized(const char* message);
+    void assertNotInitialized(const char* message) const;
 
     // Ensures that a component is only deleted if it is initialized at that point of time.
     void assertDestruction();

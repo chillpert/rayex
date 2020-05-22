@@ -18,8 +18,9 @@ namespace RX
     VkResult submit(VkSubmitInfo& submitInfo, VkFence fence);
     VkResult present(VkPresentInfoKHR& presentInfo);
 
-    uint32_t getGraphicsIndex(); 
-    uint32_t getPresentIndex();
+    uint32_t getGraphicsIndex() const; 
+    uint32_t getPresentIndex() const;
+    uint32_t getTransferIndex() const;
 
     // Returns a vector filled with the actual unique family indices.    
     std::vector<uint32_t> getQueueFamilyIndices();
@@ -29,13 +30,15 @@ namespace RX
     static bool isComplete(VkPhysicalDevice physicalDevice, VkSurfaceKHR surface);
 
   private:
-    static std::pair<std::optional<uint32_t>, std::optional<uint32_t>> findQueueFamilies(VkPhysicalDevice physicalDevice, VkSurfaceKHR surface);
+    static std::vector<std::optional<uint32_t>> findQueueFamilies(VkPhysicalDevice physicalDevice, VkSurfaceKHR surface);
 
     std::optional<uint32_t> m_graphicsIndex;
     std::optional<uint32_t> m_presentIndex;
+    std::optional<uint32_t> m_transferIndex;
 
     VkQueue m_graphicsQueue;
     VkQueue m_presentQueue;
+    VkQueue m_transferQueue;
   };
 }
 

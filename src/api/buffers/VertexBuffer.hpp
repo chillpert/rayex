@@ -9,14 +9,12 @@ namespace RX
   class VertexBuffer
   {
   public:
-    inline uint32_t getVertexCount() { return static_cast<uint32_t>(m_vertices.size()); }
-    inline VkBuffer get() { return m_buffer.get(); }
+    inline uint32_t getVertexCount() const { return static_cast<uint32_t>(m_buffer.getSize()); }
+    inline VkBuffer get() const { return m_buffer.get(); }
 
     void initialize(VkDevice device, VkPhysicalDevice physicalDevice, VkCommandPool commandPool, VkQueue queue, std::vector<Vertex>& vertices);
 
   private:
-    std::vector<Vertex> m_vertices;
-
     Buffer m_buffer;
   };
 }

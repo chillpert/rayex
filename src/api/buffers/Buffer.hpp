@@ -25,6 +25,7 @@ namespace RX
 
     inline VkBuffer get() const { return m_buffer; }
     inline VkDeviceMemory getMemory() const { return m_memory; }
+    inline VkDeviceSize getSize() const { return m_info.size; }
 
     void create(BufferCreateInfo& createInfo);
 

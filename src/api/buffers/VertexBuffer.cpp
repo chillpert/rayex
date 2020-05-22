@@ -5,12 +5,7 @@ namespace RX
 {
   void VertexBuffer::initialize(VkDevice device, VkPhysicalDevice physicalDevice, VkCommandPool commandPool, VkQueue queue, std::vector<Vertex>& vertices)
   {
-    m_vertices.resize(vertices.size());
-    std::move(vertices.begin(), vertices.end(), std::back_inserter(m_vertices));
-    vertices.erase(vertices.begin(), vertices.end());
-    vertices.clear();
-
-    VkDeviceSize size = sizeof(m_vertices[0]) * m_vertices.size(); // TODO: this should not be hard-coded obviously
+    VkDeviceSize size = sizeof(vertices[0]) * vertices.size();
 
     // Set up the staging buffer.
     BufferCreateInfo stagingInfo{ };

@@ -49,6 +49,9 @@ namespace RX
     // Set up the logical device.
     m_device.initialize(m_physicalDevice.get(), m_queues);
 
+    // Retrieve all queue handles.
+    m_queues.retrieveAllHandles(m_device.get());
+
     // Set up the render pass.
     m_renderPass.initialize(m_device.get(), m_surface.getFormat(m_physicalDevice.get()).format);
 

@@ -92,6 +92,8 @@ set_target_properties(renderer PROPERTIES
   CXX_STANDARD 17
 )
 
+cotire(renderer)
+
 set_target_properties(renderer
   PROPERTIES
   ARCHIVE_OUTPUT_DIRECTORY_DEBUG "${PROJECT_SOURCE_DIR}/build/lib/debug"
@@ -128,8 +130,6 @@ if(BUILD_EXAMPLES)
   target_link_libraries(example
     renderer
   )
-
-  cotire(example)
 
   set_target_properties(example
     PROPERTIES

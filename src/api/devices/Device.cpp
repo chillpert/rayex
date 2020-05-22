@@ -51,8 +51,6 @@ namespace RX
 
     VK_ASSERT(vkCreateDevice(physicalDevice, &createInfo, nullptr, &m_device), "Failed to create device.");
 
-    queues.retrieveAllHandles(m_device);
-
     initializationCallback();
   }
 

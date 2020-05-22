@@ -71,8 +71,7 @@ namespace RX
     m_pipeline.initialize(m_device.get(), m_renderPass.get(), m_swapchain.getExtent(), m_window, vs, fs);
     
     // Set up the command pool, allocate the command buffer and start command buffer recording.
-    m_commandPool.initialize(m_device.get(), m_queues.getGraphicsIndex()); // TODO: What if the graphics and present index are not identical?
-    //m_transferCommandPool.initialize(m_device.get(), m_queues.getTransferIndex()); // TODO: initialize with VK_SHARING_MODE_CONCURRENT
+    m_graphicsCmdPool.initialize(m_device.get(), m_queues.getGraphicsIndex()); // TODO: What if the graphics and present index are not identical?
 
     // Triangle :D
     std::vector<Vertex> vertices =
@@ -82,9 +81,9 @@ namespace RX
       {{-0.5f, 0.5f}, {0.5f, 0.1f, 0.7f}}
     };
 
-    m_vertexBuffer.initialize(m_device.get(), m_physicalDevice.get(), m_commandPool.get(), m_queues.getGraphicsQueue(), vertices);
+    m_vertexBuffer.initialize(m_device.get(), m_physicalDevice.get(), m_graphicsCmdPool.get(), m_queues, vertices);
 
-    m_commandBuffers.initialize(m_device.get(), m_commandPool.get(), m_framebuffers.get().size());
+    m_commandBuffers.initialize(m_device.get(), m_graphicsCmdPool.get(), m_framebuffers.get().size());
     m_commandBuffers.record(m_swapchain, m_framebuffers, m_renderPass, m_pipeline, m_vertexBuffer);
 
     // TODO: transfer command pool inizialization and recording
@@ -184,7 +183,7 @@ namespace RX
   void Api::cleanSwapchain()
   {
     m_framebuffers.destroy();
-    m_commandBuffers.free(m_device.get(), m_commandPool.get());
+    m_commandBuffers.free(m_device.get(), m_graphicsCmdPool.get());
     m_pipeline.destroy();
     //m_renderPass.destroy();
     m_imageViews.destroy();
@@ -217,7 +216,7 @@ namespace RX
     m_pipeline.initialize(m_device.get(), m_renderPass.get(), m_swapchain.getExtent(), m_window, vs, fs);
 
     // Set up the command pool, allocate the command buffer and start command buffer recording.
-    m_commandBuffers.initialize(m_device.get(), m_commandPool.get(), m_framebuffers.get().size());
+    m_commandBuffers.initialize(m_device.get(), m_graphicsCmdPool.get(), m_framebuffers.get().size());
     m_commandBuffers.record(m_swapchain, m_framebuffers, m_renderPass, m_pipeline, m_vertexBuffer);
 
     RX_ENABLE_LOG;

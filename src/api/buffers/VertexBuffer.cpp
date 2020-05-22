@@ -3,7 +3,7 @@
 
 namespace RX
 {
-  void VertexBuffer::initialize(VkDevice device, VkPhysicalDevice physicalDevice, VkCommandPool commandPool, VkQueue queue, std::vector<Vertex>& vertices)
+  void VertexBuffer::initialize(VkDevice device, VkPhysicalDevice physicalDevice, VkCommandPool commandPool, Queues& queue, std::vector<Vertex>& vertices)
   {
     VkDeviceSize size = sizeof(vertices[0]) * vertices.size();
 
@@ -16,7 +16,7 @@ namespace RX
     stagingInfo.sharingMode = VK_SHARING_MODE_EXCLUSIVE;
     stagingInfo.properties = VK_MEMORY_PROPERTY_HOST_VISIBLE_BIT | VK_MEMORY_PROPERTY_HOST_COHERENT_BIT;
     stagingInfo.commandPool = commandPool;
-    stagingInfo.queue = queue;
+    stagingInfo.queue = queue.getGraphicsQueue();
 
     Buffer stagingBuffer;
     stagingBuffer.create(stagingInfo);
@@ -35,7 +35,7 @@ namespace RX
     bufferInfo.sharingMode = VK_SHARING_MODE_EXCLUSIVE;
     bufferInfo.properties = VK_MEMORY_PROPERTY_DEVICE_LOCAL_BIT;
     bufferInfo.commandPool = commandPool;
-    bufferInfo.queue = queue;
+    bufferInfo.queue = queue.getGraphicsQueue();
 
     m_buffer.create(bufferInfo);
 

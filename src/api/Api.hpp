@@ -48,7 +48,7 @@ namespace RX
     RenderPass m_renderPass;
     Pipeline m_pipeline;
     Framebuffers m_framebuffers;
-    CommandPool m_commandPool;
+    CommandPool m_graphicsCmdPool;
     std::vector<VkFence> m_imagesInFlight;
     std::vector<Fence> m_inFlightFences;
     std::vector<Semaphore> m_imageAvailableSemaphores;

@@ -32,6 +32,12 @@ namespace RX
     allocInfo.allocationSize = memRequirements.size;
     allocInfo.memoryTypeIndex = findMemoryType(memRequirements.memoryTypeBits, m_info.properties);
 
+    /*  
+    TODO:
+       The right way to allocate memory for a large number of objects at the same time is to create a custom 
+       allocator that splits up a single allocation among many different objects by using the offset parameters 
+       that we've seen in many functions.
+    */
     VK_ASSERT(vkAllocateMemory(m_info.device, &allocInfo, nullptr, &m_memory), "Failed to allocate memory for buffer");
 
     // Bind the buffer to the allocated memory.

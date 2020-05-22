@@ -3,6 +3,7 @@
 
 #include "Buffer.hpp"
 #include "Vertex.hpp"
+#include "api/Queues.hpp"
 
 namespace RX
 {
@@ -12,7 +13,7 @@ namespace RX
     inline uint32_t getVertexCount() const { return static_cast<uint32_t>(m_buffer.getSize()); }
     inline VkBuffer get() const { return m_buffer.get(); }
 
-    void initialize(VkDevice device, VkPhysicalDevice physicalDevice, VkCommandPool commandPool, VkQueue queue, std::vector<Vertex>& vertices);
+    void initialize(VkDevice device, VkPhysicalDevice physicalDevice, VkCommandPool commandPool, Queues& queue, std::vector<Vertex>& vertices);
 
   private:
     Buffer m_buffer;

@@ -23,6 +23,8 @@ namespace RX
     uint32_t getTransferIndex() const;
 
     inline VkQueue getGraphicsQueue() { return m_graphicsQueue; }
+    inline VkQueue getPresentQueue() { return m_presentQueue; }
+    inline VkQueue getTransferQueue() { return m_transferQueue; }
 
     // Returns a vector filled with the actual unique family indices.    
     std::vector<uint32_t> getQueueFamilyIndices();

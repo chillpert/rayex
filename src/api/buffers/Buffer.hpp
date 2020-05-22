@@ -15,6 +15,8 @@ namespace RX
     VkMemoryPropertyFlags properties;
     VkCommandPool commandPool;
     VkQueue queue;
+    uint32_t queueFamilyIndexCount;
+    const uint32_t* pQueueFamilyIndices;
   };
 
   class Buffer : public BaseComponent

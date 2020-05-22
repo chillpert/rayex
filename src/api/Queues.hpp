@@ -18,9 +18,11 @@ namespace RX
     VkResult submit(VkSubmitInfo& submitInfo, VkFence fence);
     VkResult present(VkPresentInfoKHR& presentInfo);
 
-    uint32_t getGraphicsIndex() const; 
+    uint32_t getGraphicsIndex() const;
     uint32_t getPresentIndex() const;
     uint32_t getTransferIndex() const;
+
+    inline VkQueue getGraphicsQueue() { return m_graphicsQueue; }
 
     // Returns a vector filled with the actual unique family indices.    
     std::vector<uint32_t> getQueueFamilyIndices();

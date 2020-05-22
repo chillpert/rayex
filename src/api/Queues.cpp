@@ -111,7 +111,7 @@ namespace RX
     {
       if (property.queueFlags & VK_QUEUE_TRANSFER_BIT && !(property.queueFlags & VK_QUEUE_GRAPHICS_BIT))
         transferIndex_t = index;
-      
+
       if (property.queueFlags & VK_QUEUE_GRAPHICS_BIT)
         graphicsIndex_t = index;
 

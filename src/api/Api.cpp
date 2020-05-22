@@ -82,7 +82,7 @@ namespace RX
       {{-0.5f, 0.5f}, {0.5f, 0.1f, 0.7f}}
     };
 
-    m_vertexBuffer.initialize(m_device.get(), m_physicalDevice.get(), vertices);
+    m_vertexBuffer.initialize(m_device.get(), m_physicalDevice.get(), m_commandPool.get(), m_queues.getGraphicsQueue(), vertices);
 
     m_commandBuffers.initialize(m_device.get(), m_commandPool.get(), m_framebuffers.get().size());
     m_commandBuffers.record(m_swapchain, m_framebuffers, m_renderPass, m_pipeline, m_vertexBuffer);

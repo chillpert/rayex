@@ -27,7 +27,6 @@ else()
 endif()
 
 set (CMAKE_MODULE_PATH "${PROJECT_SOURCE_DIR}/external/Cotire")
-include(cotire)
 
 if(CMAKE_BUILD_TYPE STREQUAL "Debug")
   add_compile_definitions(RX_DEBUG)
@@ -93,8 +92,6 @@ set_target_properties(renderer PROPERTIES
   CXX_STANDARD 17
 )
 
-cotire(renderer)
-
 set_target_properties(renderer
   PROPERTIES
   ARCHIVE_OUTPUT_DIRECTORY_DEBUG "${PROJECT_SOURCE_DIR}/build/lib/debug"
@@ -113,8 +110,6 @@ set_target_properties(renderer
   LIBRARY_OUTPUT_DIRECTORY_RELWITHDEBINFO "${PROJECT_SOURCE_DIR}/build/lib/relwithbebinfo"
   RUNTIME_OUTPUT_DIRECTORY_RELWITHDEBINFO "${PROJECT_SOURCE_DIR}/build/bin/relwithbebinfo"
 )
-
-set_target_properties(renderer PROPERTIES COTIRE_CXX_PREFIX_HEADER_INIT "${PROJECT_SOURCE_DIR}/src/pch/stdafx.hpp")
 
 # EXAMPLE
 if(BUILD_EXAMPLES)

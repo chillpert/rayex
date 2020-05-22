@@ -2,13 +2,96 @@
 
 namespace RX
 {
-  Buffer::Buffer(const char* componentName) :
-    BaseComponent(componentName) { }
+  Buffer::Buffer() :
+    BaseComponent("Buffer") { }
+
+  Buffer::~Buffer()
+  {
+    destroy();
+  }
+
+  void Buffer::create(BufferCreateInfo& createInfo)
+  {
+    m_info = createInfo;
+
+    // Create the buffer.
+    VkBufferCreateInfo bufferInfo{ };
+    bufferInfo.sType = VK_STRUCTURE_TYPE_BUFFER_CREATE_INFO;
+    bufferInfo.size =  m_info.size;
+    bufferInfo.usage = m_info.usage;
+    bufferInfo.sharingMode = m_info.sharingMode;
+
+    VK_ASSERT(vkCreateBuffer(m_info.device, &bufferInfo, nullptr, &m_buffer), "Failed to create vertex buffer");
+
+    // Allocate memory for the buffer.
+    VkMemoryRequirements memRequirements;
+    vkGetBufferMemoryRequirements(m_info.device, m_buffer, &memRequirements);
+
+    VkMemoryAllocateInfo allocInfo{ };
+    allocInfo.sType = VK_STRUCTURE_TYPE_MEMORY_ALLOCATE_INFO;
+    allocInfo.allocationSize = memRequirements.size;
+    allocInfo.memoryTypeIndex = findMemoryType(memRequirements.memoryTypeBits, m_info.properties);
+
+    VK_ASSERT(vkAllocateMemory(m_info.device, &allocInfo, nullptr, &m_memory), "Failed to allocate memory for buffer");
+
+    // Bind the buffer to the allocated memory.
+    VK_ASSERT(vkBindBufferMemory(m_info.device, m_buffer, m_memory, 0), "Failed to bind buffer to memory");
+  
+    initializationCallback();
+  }
+  
+  void Buffer::destroy()
+  {
+    assertDestruction();
+
+    vkDestroyBuffer(m_info.device, m_buffer, nullptr);
+    vkFreeMemory(m_info.device, m_memory, nullptr);
+  }
+
+  Buffer& Buffer::operator=(const Buffer& buffer)
+  {
+    buffer.copyTo(*this);
+    return *this;
+  }
+
+  void Buffer::copyTo(const Buffer& buffer) const
+  {
+    VkCommandBufferAllocateInfo allocInfo{};
+    allocInfo.sType = VK_STRUCTURE_TYPE_COMMAND_BUFFER_ALLOCATE_INFO;
+    allocInfo.level = VK_COMMAND_BUFFER_LEVEL_PRIMARY;
+    allocInfo.commandPool = m_info.commandPool;
+    allocInfo.commandBufferCount = 1;
+
+    VkCommandBuffer commandBuffer;
+    vkAllocateCommandBuffers(m_info.device, &allocInfo, &commandBuffer);
+
+    VkCommandBufferBeginInfo beginInfo{};
+    beginInfo.sType = VK_STRUCTURE_TYPE_COMMAND_BUFFER_BEGIN_INFO;
+    beginInfo.flags = VK_COMMAND_BUFFER_USAGE_ONE_TIME_SUBMIT_BIT;
+
+    vkBeginCommandBuffer(commandBuffer, &beginInfo);
+
+    VkBufferCopy copyRegion{};
+    copyRegion.size = m_info.size;
+    vkCmdCopyBuffer(commandBuffer, m_buffer, buffer.get(), 1, &copyRegion);
+
+    vkEndCommandBuffer(commandBuffer);
+
+    VkSubmitInfo submitInfo{};
+    submitInfo.sType = VK_STRUCTURE_TYPE_SUBMIT_INFO;
+    submitInfo.commandBufferCount = 1;
+    submitInfo.pCommandBuffers = &commandBuffer;
+
+    vkQueueSubmit(m_info.queue, 1, &submitInfo, VK_NULL_HANDLE);
+    vkQueueWaitIdle(m_info.queue);
+
+    vkFreeCommandBuffers(m_info.device, m_info.commandPool, 1, &commandBuffer);
+  }
 
   uint32_t Buffer::findMemoryType(uint32_t typeFilter, VkMemoryPropertyFlags properties)
   {
     VkPhysicalDeviceMemoryProperties memProperties;
-    vkGetPhysicalDeviceMemoryProperties(m_physicalDevice, &memProperties);
+    vkGetPhysicalDeviceMemoryProperties(m_info.physicalDevice, &memProperties);
 
     for (uint32_t i = 0; i < memProperties.memoryTypeCount; i++)
     {
@@ -17,35 +100,5 @@ namespace RX
     }
 
     RX_ERROR("Failed to find suitable memory type");
-  }
-  
-  void Buffer::create(VkBufferUsageFlags usage, VkSharingMode sharingMode)
-  {
-    VkBufferCreateInfo bufferInfo{ };
-    bufferInfo.sType = VK_STRUCTURE_TYPE_BUFFER_CREATE_INFO;
-    bufferInfo.size =  m_size;
-    bufferInfo.usage = usage;
-    bufferInfo.sharingMode = sharingMode;
-
-    VK_ASSERT(vkCreateBuffer(m_device, &bufferInfo, nullptr, &m_buffer), "Failed to create vertex buffer");
-  }
-
-  void Buffer::allocate(VkMemoryPropertyFlags properties)
-  {
-    // Allocate the Buffer.
-    VkMemoryRequirements memRequirements;
-    vkGetBufferMemoryRequirements(m_device, m_buffer, &memRequirements);
-
-    VkMemoryAllocateInfo allocInfo{ };
-    allocInfo.sType = VK_STRUCTURE_TYPE_MEMORY_ALLOCATE_INFO;
-    allocInfo.allocationSize = memRequirements.size;
-    allocInfo.memoryTypeIndex = findMemoryType(memRequirements.memoryTypeBits, properties);
-
-    VK_ASSERT(vkAllocateMemory(m_device, &allocInfo, nullptr, &m_memory), "Failed to allocate memory for buffer");
-  }
-
-  void Buffer::bind()
-  {
-    VK_ASSERT(vkBindBufferMemory(m_device, m_buffer, m_memory, 0), "Failed to bind buffer to memory");
   }
 }

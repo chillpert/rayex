@@ -3,42 +3,48 @@
 
 namespace RX
 {
-  VertexBuffer::VertexBuffer() :
-    Buffer("VertexBuffer") { }
-
-  VertexBuffer::~VertexBuffer()
+  void VertexBuffer::initialize(VkDevice device, VkPhysicalDevice physicalDevice, VkCommandPool commandPool, VkQueue queue, std::vector<Vertex>& vertices)
   {
-    destroy();
-  }
+    m_vertices.resize(vertices.size());
+    std::move(vertices.begin(), vertices.end(), std::back_inserter(m_vertices));
+    vertices.erase(vertices.begin(), vertices.end());
+    vertices.clear();
 
-  void VertexBuffer::initialize(VkDevice device, VkPhysicalDevice physicalDevice, std::vector<Vertex>& vertices)
-  {
-    m_device = device;
-    m_physicalDevice = physicalDevice;
+    VkDeviceSize size = sizeof(m_vertices[0]) * m_vertices.size(); // TODO: this should not be hard-coded obviously
 
-    auto iter = std::next(vertices.begin(), vertices.size());
-    std::move(vertices.begin(), iter, std::back_inserter(m_vertices));
-    vertices.erase(vertices.begin(), iter);
+    // Set up the staging buffer.
+    BufferCreateInfo stagingInfo{ };
+    stagingInfo.physicalDevice = physicalDevice;
+    stagingInfo.device = device;
+    stagingInfo.size = size;
+    stagingInfo.usage = VK_BUFFER_USAGE_TRANSFER_SRC_BIT;
+    stagingInfo.sharingMode = VK_SHARING_MODE_EXCLUSIVE;
+    stagingInfo.properties = VK_MEMORY_PROPERTY_HOST_VISIBLE_BIT | VK_MEMORY_PROPERTY_HOST_COHERENT_BIT;
+    stagingInfo.commandPool = commandPool;
+    stagingInfo.queue = queue;
 
-    m_size = sizeof(m_vertices[0]) * m_vertices.size(); // TODO: this should not be hard-coded obviously
+    Buffer stagingBuffer;
+    stagingBuffer.create(stagingInfo);
 
-    create(VK_BUFFER_USAGE_VERTEX_BUFFER_BIT, VK_SHARING_MODE_EXCLUSIVE);
-    allocate(VK_MEMORY_PROPERTY_HOST_VISIBLE_BIT | VK_MEMORY_PROPERTY_HOST_COHERENT_BIT);
-    bind();
-    
-    // Fill the buffer.
     void* data;
-    vkMapMemory(device, m_memory, 0, m_size, 0, &data);
-    memcpy(data, vertices.data(), m_size);
-    vkUnmapMemory(device, m_memory);
+    vkMapMemory(device, stagingBuffer.getMemory(), 0, size, 0, &data);
+    memcpy(data, vertices.data(), static_cast<uint32_t>(size));
+    vkUnmapMemory(device, stagingBuffer.getMemory());
 
-    initializationCallback();
-  }
+    // Set up the actual vertex buffer.
+    BufferCreateInfo bufferInfo{ };
+    bufferInfo.physicalDevice = physicalDevice;
+    bufferInfo.device = device;
+    bufferInfo.size = size;
+    bufferInfo.usage = VK_BUFFER_USAGE_TRANSFER_DST_BIT | VK_BUFFER_USAGE_VERTEX_BUFFER_BIT;
+    bufferInfo.sharingMode = VK_SHARING_MODE_EXCLUSIVE;
+    bufferInfo.properties = VK_MEMORY_PROPERTY_DEVICE_LOCAL_BIT;
+    bufferInfo.commandPool = commandPool;
+    bufferInfo.queue = queue;
 
-  void VertexBuffer::destroy()
-  {
-    assertDestruction();
-    vkDestroyBuffer(m_device, m_buffer, nullptr);
-    vkFreeMemory(m_device, m_memory, nullptr);
+    m_buffer.create(bufferInfo);
+
+    // Copy staging buffer to the actual vertex buffer.
+    m_buffer = stagingBuffer;
   }
 }

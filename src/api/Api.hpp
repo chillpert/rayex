@@ -43,19 +43,17 @@ namespace RX
     DebugMessenger m_debugMessenger;
     Surface m_surface;
     Device m_device;
-    VertexBuffer m_vertexBuffer;
     Swapchain m_swapchain;
     ImageViews m_imageViews;
     RenderPass m_renderPass;
     Pipeline m_pipeline;
     Framebuffers m_framebuffers;
     CommandPool m_commandPool;
-    //CommandPool m_transferCommandPool;
-
     std::vector<VkFence> m_imagesInFlight;
     std::vector<Fence> m_inFlightFences;
     std::vector<Semaphore> m_imageAvailableSemaphores;
     std::vector<Semaphore> m_finishedRenderSemaphores;
+    VertexBuffer m_vertexBuffer;
 
     // No destruction necessary for following members:
     Images m_images;

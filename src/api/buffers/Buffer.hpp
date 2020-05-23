@@ -35,9 +35,9 @@ namespace RX
 
     Buffer& operator=(const Buffer& buffer);
     void copyTo(const Buffer& buffer) const;
+    void destroy();
 
   private:
-    void destroy();
     uint32_t findMemoryType(uint32_t typeFilter, VkMemoryPropertyFlags properties);
   
     VkBuffer m_buffer;

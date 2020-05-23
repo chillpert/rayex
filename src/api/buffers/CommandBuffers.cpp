@@ -24,7 +24,7 @@ namespace RX
 		RX_INITIALIZATION_CALLBACK;
 	}
 
-	void CommandBuffers::record(Swapchain& swapchain, Framebuffers& framebuffers, RenderPass& renderPass, Pipeline& pipeline, VertexBuffer& vertexBuffer, IndexBuffer& indexBuffer)
+	void CommandBuffers::record(Swapchain& swapchain, Framebuffers& framebuffers, RenderPass& renderPass, Pipeline& pipeline, VertexBuffer& vertexBuffer, IndexBuffer& indexBuffer, DescriptorSets& descriptorSets)
 	{
 		RX_ASSERT_INITIALIZED("record");
 
@@ -56,8 +56,9 @@ namespace RX
 
 				vkCmdBindIndexBuffer(m_commandBuffers[i], indexBuffer.get(), 0, indexBuffer.getType());
 
-				//vkCmdDraw(m_commandBuffers[i], vertexBuffer.getVertexCount(), 1, 0, 0); // TODO: vertices should be passed to this function
-				vkCmdDrawIndexed(m_commandBuffers[i], indexBuffer.getCount(), 1, 0, 0, 0); // TODO: 6 is hard-coded size of indices in index buffer
+				vkCmdBindDescriptorSets(m_commandBuffers[i], VK_PIPELINE_BIND_POINT_GRAPHICS, pipeline.getLayout(), 0, 1, &descriptorSets.get()[i], 0, nullptr);
+
+				vkCmdDrawIndexed(m_commandBuffers[i], indexBuffer.getCount(), 1, 0, 0, 0);
 
 	    vkCmdEndRenderPass(m_commandBuffers[i]);
 

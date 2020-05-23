@@ -64,13 +64,13 @@ namespace RX
     
     // Set up simple example shaders.
     Shader vs, fs;
-    vs.initialize(RX_SHADER_PATH "basic.vert", m_device.get());
-    fs.initialize(RX_SHADER_PATH "basic.frag", m_device.get());
+    vs.initialize(RX_SHADER_PATH "simple3D.vert", m_device.get());
+    fs.initialize(RX_SHADER_PATH "simple3D.frag", m_device.get());
     
-    m_descriptorSet.initialize(m_device.get());
+    m_descriptorSetLayout.initialize(m_device.get());
 
     // Set up the graphics pipeline.
-    m_pipeline.initialize(m_device.get(), m_renderPass.get(), m_swapchain.getExtent(), m_window, vs, fs, m_descriptorSet.get());
+    m_pipeline.initialize(m_device.get(), m_renderPass.get(), m_swapchain.getExtent(), m_window, vs, fs, m_descriptorSetLayout.get());
     
     // Set up the command pool, allocate the command buffer and start command buffer recording.
     m_graphicsCmdPool.initialize(m_device.get(), m_queues.getGraphicsIndex()); // TODO: What if the graphics and present index are not identical?
@@ -89,8 +89,11 @@ namespace RX
     m_indexBuffer.initialize<uint32_t>(m_device.get(), m_physicalDevice.get(), m_graphicsCmdPool.get(), m_queues.getGraphicsQueue(), rectangleIndices);
     m_uniformBuffers.initialize(m_device.get(), m_physicalDevice.get(), m_swapchain.getExtent(), m_images.getSize());
 
+    m_descriptorPool.initialize(m_device.get(), m_images.getSize());
+    m_descriptorSets.initialize(m_device.get(), m_images.getSize(), m_descriptorPool.get(), m_descriptorSetLayout.get(), m_uniformBuffers.get());
+
     m_commandBuffers.initialize(m_device.get(), m_graphicsCmdPool.get(), m_framebuffers.getSize());
-    m_commandBuffers.record(m_swapchain, m_framebuffers, m_renderPass, m_pipeline, m_vertexBuffer, m_indexBuffer);
+    m_commandBuffers.record(m_swapchain, m_framebuffers, m_renderPass, m_pipeline, m_vertexBuffer, m_indexBuffer, m_descriptorSets);
 
     // TODO: transfer command pool inizialization and recording
 
@@ -134,15 +137,16 @@ namespace RX
     uint32_t imageIndex;
     m_swapchain.acquireNextImage(m_device.get(), m_imageAvailableSemaphores[currentFrame].get(), VK_NULL_HANDLE, &imageIndex);
 
+    // TODO: Temporary
+    m_uniformBuffers.update(imageIndex);
+    m_uniformBuffers.render();
+
     // Check if a previous frame is using the current image.
     if (m_imagesInFlight[imageIndex] != VK_NULL_HANDLE)
       vkWaitForFences(m_device.get(), 1, &m_imagesInFlight[currentFrame], VK_TRUE, UINT64_MAX);
 
     // This will mark the current image to be in use by this frame.
     m_imagesInFlight[imageIndex] = m_inFlightFences[currentFrame].get();
-
-    m_uniformBuffers.update(imageIndex);
-    m_uniformBuffers.render();
 
     VkSubmitInfo submitInfo{ };
     submitInfo.sType = VK_STRUCTURE_TYPE_SUBMIT_INFO;
@@ -189,16 +193,6 @@ namespace RX
     m_device.waitIdle();
   }
 
-  void Api::cleanSwapchain()
-  {
-    m_framebuffers.destroy();
-    m_commandBuffers.free();
-    m_pipeline.destroy();
-    //m_renderPass.destroy();
-    m_imageViews.destroy();
-    m_swapchain.destroy();
-  }
-
   void Api::recreateSwapchain()
   {
     VK_LOG("Recreating swapchain");
@@ -206,27 +200,39 @@ namespace RX
 
     m_device.waitIdle();
 
-    cleanSwapchain();
+    // 1. Cleaning the existing swapchain.
+    m_framebuffers.destroy();
+    m_commandBuffers.free();
+    m_uniformBuffers.destroy();
+    m_descriptorPool.destroy();
+    m_pipeline.destroy();
+    //m_renderPass.destroy();
+    m_imageViews.destroy();
+    m_swapchain.destroy();
 
-    //m_renderPass.initialize(m_device.get(), m_surface.getFormat(m_physicalDevice.get()).format);
+    // 2. Recreating the swapchain.
 
     // Set up the swapchain and its related components.
     m_swapchain.initialize(m_physicalDevice.get(), m_device.get(), m_surface, m_window, m_queues);
     m_images.initialize(m_device.get(), m_swapchain.get());
     m_imageViews.initialize(m_device.get(), m_surface.getFormat().format, m_images);
+    //m_renderPass.initialize(m_device.get(), m_surface.getFormat(m_physicalDevice.get()).format);
     m_framebuffers.initialize(m_device.get(), m_imageViews, m_renderPass.get(), m_window);
 
     // Set up simple example shaders.
     Shader vs, fs;
-    vs.initialize(RX_SHADER_PATH "basic.vert", m_device.get());
-    fs.initialize(RX_SHADER_PATH "basic.frag", m_device.get());
+    vs.initialize(RX_SHADER_PATH "simple3D.vert", m_device.get());
+    fs.initialize(RX_SHADER_PATH "simple3D.frag", m_device.get());
 
     // Set up the graphics pipeline.
-    m_pipeline.initialize(m_device.get(), m_renderPass.get(), m_swapchain.getExtent(), m_window, vs, fs, m_descriptorSet.get());
+    m_pipeline.initialize(m_device.get(), m_renderPass.get(), m_swapchain.getExtent(), m_window, vs, fs, m_descriptorSetLayout.get());
+
+    m_uniformBuffers.initialize(m_device.get(), m_physicalDevice.get(), m_swapchain.getExtent(), m_images.getSize());
+    m_descriptorPool.initialize(m_device.get(), m_images.getSize());
 
     // Set up the command pool, allocate the command buffer and start command buffer recording.
     m_commandBuffers.initialize(m_device.get(), m_graphicsCmdPool.get(), m_framebuffers.getSize());
-    m_commandBuffers.record(m_swapchain, m_framebuffers, m_renderPass, m_pipeline, m_vertexBuffer, m_indexBuffer);
+    m_commandBuffers.record(m_swapchain, m_framebuffers, m_renderPass, m_pipeline, m_vertexBuffer, m_indexBuffer, m_descriptorSets);
 
     RX_ENABLE_LOG;
   }

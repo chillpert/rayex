@@ -1,16 +1,24 @@
 #ifndef DESCRIPTOR_POOL
 #define DESCRIPTOR_POOL
 
-#include "pch/stdafx.hpp"
+#include "api/BaseComponent.hpp"
 
 namespace RX
 {
-  class DescriptorPool
+  class DescriptorPool : public BaseComponent
   {
   public:
+    DescriptorPool();
+    ~DescriptorPool();
+
+    inline VkDescriptorPool get() { return m_pool; }
+
+    void initialize(VkDevice device, size_t swapchainImagesCount);
+    void destroy();
 
   private:
-    
+    VkDescriptorPool m_pool;
+    VkDevice m_device;
   };
 }
 

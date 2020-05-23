@@ -49,6 +49,12 @@ namespace RX
 
   void UniformBuffers::render()
   {
-    
+
+  }
+
+  void UniformBuffers::destroy()
+  {
+    for (auto& it : m_buffers)
+      it.destroy();
   }
 }

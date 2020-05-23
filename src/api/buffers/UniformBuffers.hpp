@@ -15,9 +15,12 @@ namespace RX
   class UniformBuffers
   {
   public:
+    inline std::vector<Buffer>& get() { return m_buffers; }
+
     void initialize(VkDevice device, VkPhysicalDevice physicalDevice, VkExtent2D extent, size_t swapchainImagesCount);
     void update(uint32_t imageIndex);
     void render();
+    void destroy();
 
   private:
     std::vector<Buffer> m_buffers;

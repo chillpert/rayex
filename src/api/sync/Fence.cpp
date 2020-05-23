@@ -21,12 +21,12 @@ namespace RX
 
     VK_ASSERT(vkCreateFence(device, &createInfo, nullptr, &m_fence), "Failed to create fence.");
 
-    initializationCallback();
+    RX_INITIALIZATION_CALLBACK;
   }
 
   void Fence::destroy()
   {
-    assertDestruction();
+    RX_ASSERT_DESTRUCTION;
     vkDestroyFence(m_device, m_fence, nullptr);
   }
 }

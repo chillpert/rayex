@@ -43,12 +43,12 @@ namespace RX
     // Bind the buffer to the allocated memory.
     VK_ASSERT(vkBindBufferMemory(m_info.device, m_buffer, m_memory, 0), "Failed to bind buffer to memory");
   
-    initializationCallback();
+    RX_INITIALIZATION_CALLBACK;
   }
   
   void BufferWrapper::destroy()
   {
-    assertDestruction();
+    RX_ASSERT_DESTRUCTION;
 
     vkDestroyBuffer(m_info.device, m_buffer, nullptr);
     vkFreeMemory(m_info.device, m_memory, nullptr);

@@ -36,12 +36,12 @@ namespace RX
       VK_ASSERT(vkCreateImageView(device, &createInfo, nullptr, &m_imageViews[i]), "Failed to create image view");
     }
 
-    initializationCallback();
+    RX_INITIALIZATION_CALLBACK;
   }
 
   void ImageViews::destroy()
   {
-    assertDestruction();
+    RX_ASSERT_DESTRUCTION;
 
     for (auto imageView : m_imageViews)
       vkDestroyImageView(m_device, imageView, nullptr);

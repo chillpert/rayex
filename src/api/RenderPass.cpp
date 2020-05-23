@@ -52,12 +52,12 @@ namespace RX
 
     VK_ASSERT(vkCreateRenderPass(device, &createInfo, nullptr, &m_renderPass), "Failed to create render pass");
 
-    initializationCallback();
+    RX_INITIALIZATION_CALLBACK;
   }
 
   void RenderPass::destroy()
   {
-    assertDestruction();
+    RX_ASSERT_DESTRUCTION;
     vkDestroyRenderPass(m_device, m_renderPass, nullptr);
   }
 }

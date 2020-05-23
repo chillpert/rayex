@@ -3,9 +3,20 @@
 
 #include "pch/stdafx.hpp"
 
+#ifdef RX_DEBUG
+  #define RX_ASSERT_INITIALIZED(message) assertInitialized(message)
+  #define RX_ASSERT_NOT_INITIALIZED(message) assertNotInitialized(message)
+  #define RX_ASSERT_DESTRUCTION assertDestruction();
+  #define RX_INITIALIZATION_CALLBACK initializationCallback();
+#else
+  #define RX_ASSERT_INITIALIZED(message)
+  #define RX_ASSERT_NOT_INITIALIZED(message)
+  #define RX_ASSERT_DESTRUCTION
+  #define RX_INITIALIZATION_CALLBACK
+#endif
+
 namespace RX
 {
-  // TODO: add macros so that in a release build these checks won't get executed.
   class BaseComponent
   {
   protected:

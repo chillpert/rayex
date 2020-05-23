@@ -51,18 +51,18 @@ namespace RX
 
     VK_ASSERT(vkCreateDevice(physicalDevice, &createInfo, nullptr, &m_device), "Failed to create device.");
 
-    initializationCallback();
+    RX_INITIALIZATION_CALLBACK;
   }
 
   void Device::destroy()
   {
-    assertDestruction();
+    RX_ASSERT_DESTRUCTION;
     vkDestroyDevice(m_device, nullptr);
   }
 
   void Device::pushExtension(const char* name)
   {
-    assertNotInitialized("pushExtension");
+    RX_ASSERT_NOT_INITIALIZED("pushExtension");
     m_extensions.push_back(name);
 
     VK_LOG("Added Device extension: " << name);

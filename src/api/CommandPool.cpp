@@ -21,18 +21,18 @@ namespace RX
 
     VK_ASSERT(vkCreateCommandPool(device, &createInfo, nullptr, &m_commandPool), "Failed to create command pool.");
 
-    initializationCallback();
+    RX_INITIALIZATION_CALLBACK;
   }
 
   void CommandPool::destroy()
   {
-    assertDestruction();
+    RX_ASSERT_DESTRUCTION;
     vkDestroyCommandPool(m_device, m_commandPool, nullptr);
    }
 
   void CommandPool::reset(VkCommandPoolResetFlags flags)
   {
-    assertInitialized("reset");
+    RX_ASSERT_INITIALIZED("reset");
     VK_ASSERT(vkResetCommandPool(m_device, m_commandPool, flags), "Failed to reset command pool.");
   }
 }

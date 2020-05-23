@@ -19,12 +19,12 @@ namespace RX
 
     VK_ASSERT(vkCreateSemaphore(device, &createInfo, nullptr, &m_semaphore), "Failed to create semaphore.");
 
-    initializationCallback();
+    RX_INITIALIZATION_CALLBACK;
   }
 
   void Semaphore::destroy()
   {
-    assertDestruction();
+    RX_ASSERT_DESTRUCTION;
     vkDestroySemaphore(m_device, m_semaphore, nullptr);
   }
 }

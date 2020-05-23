@@ -33,14 +33,14 @@ namespace RX
     
     VK_ASSERT(m_createDebugUtilsMessengerEXT(instance, &createInfo, nullptr, &m_debugMessenger), "Failed to create debug utils messenger");
 
-    initializationCallback();
+    RX_INITIALIZATION_CALLBACK;
 #endif
   }
 
   void DebugMessenger::destroy()
   {
 #ifdef RX_DEBUG
-    assertDestruction();
+    RX_ASSERT_DESTRUCTION;
     m_destroyDebugUtilsMessengerEXT(m_instance, m_debugMessenger, nullptr);
 #endif
   }

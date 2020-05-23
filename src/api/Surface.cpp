@@ -60,18 +60,18 @@ namespace RX
     m_instance = instance;
 
     surface = window->createSurface(instance);
-    initializationCallback();
+    RX_INITIALIZATION_CALLBACK;
   }
 
   void Surface::destroy()
   {
-    assertDestruction();
+    RX_ASSERT_DESTRUCTION;
     vkDestroySurfaceKHR(m_instance, surface, nullptr);
   }
 
   void Surface::evaluateFormat(VkPhysicalDevice physicalDevice)
   {
-    assertInitialized("evaluateFormat");
+    RX_ASSERT_INITIALIZED("evaluateFormat");
 
     VkFormatProperties formatProperties{ };
     vkGetPhysicalDeviceFormatProperties(physicalDevice, surfaceFormat.format, &formatProperties); // TODO: Check if this color format is supported
@@ -95,7 +95,7 @@ namespace RX
 
   void Surface::evaluatePresentMode(VkPhysicalDevice physicalDevice)
   {
-    assertInitialized("evaluatePresentMode");
+    RX_ASSERT_INITIALIZED("evaluatePresentMode");
 
     uint32_t presentModeCount;
     VK_ASSERT(vkGetPhysicalDeviceSurfacePresentModesKHR(physicalDevice, surface, &presentModeCount, nullptr), "Failed to get physical device surface present modes");
@@ -117,7 +117,7 @@ namespace RX
 
   void Surface::evaluateCapabilities(VkPhysicalDevice physicalDevice)
   {
-    assertInitialized("evaluateCapabilities");
+    RX_ASSERT_INITIALIZED("evaluateCapabilities");
     vkGetPhysicalDeviceSurfaceCapabilitiesKHR(physicalDevice, surface, &surfaceCapabilitites);
   }
 }

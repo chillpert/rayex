@@ -30,7 +30,7 @@ namespace RX
 
   void Shader::destroy()
   {
-    assertDestruction();
+    RX_ASSERT_DESTRUCTION;
     vkDestroyShaderModule(m_device, m_shaderModule, nullptr);
   }
 
@@ -92,6 +92,6 @@ namespace RX
     else
       RX_ERROR("Failed to create shader module, because a logical device has not been created yet.");
   
-    initializationCallback();
+    RX_INITIALIZATION_CALLBACK;
   }
 }

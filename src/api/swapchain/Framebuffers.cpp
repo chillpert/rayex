@@ -36,12 +36,12 @@ namespace RX
       VK_ASSERT(vkCreateFramebuffer(device, &createInfo, nullptr, &m_framebuffers[i]), "Failed to create frame buffer");
     }
 
-    initializationCallback();
+    RX_INITIALIZATION_CALLBACK;
   }
 
   void Framebuffers::destroy()
   {
-    assertDestruction();
+    RX_ASSERT_DESTRUCTION;
 
     for (auto framebuffer : m_framebuffers)
       vkDestroyFramebuffer(m_device, framebuffer, nullptr);

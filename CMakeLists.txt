@@ -12,6 +12,8 @@ if(NOT CMAKE_BUILD_TYPE)
       FORCE)
 endif(NOT CMAKE_BUILD_TYPE)
 
+message(${CMAKE_BUILD_TYPE})
+
 add_compile_definitions(RX_BUILD_DLL)
 
 if(WIN32 OR MSVC)
@@ -152,13 +154,13 @@ if(BUILD_EXAMPLES)
   )
 
   # set build paths
-  if(CMAKE_BUILD_TYPE STREQUAL "Debug")
+  if(${CMAKE_BUILD_TYPE} STREQUAL "Debug")
     set(BUILD_PATH debug)
-  elseif(CMAKE_BUILD_TYPE STREQUAL "Release")
+  elseif(${CMAKE_BUILD_TYPE} STREQUAL "Release")
     set(BUILD_PATH release)
-  elseif(CMAKE_BUILD_TYPE STREQUAL "RelWithDebInfo")
+  elseif(${CMAKE_BUILD_TYPE} STREQUAL "RelWithDebInfo")
     set(BUILD_PATH relWithDebInfo) 
-  elseif(CMAKE_BUILD_TYPE STREQUAL "MinSizeRel")
+  elseif(${CMAKE_BUILD_TYPE} STREQUAL "MinSizeRel")
     set(BUILD_PATH minSizeRel)
   endif()
 

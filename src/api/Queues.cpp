@@ -18,12 +18,12 @@ namespace RX
     m_presentIndex = temp[1];
     m_transferIndex = temp[2];
 
-    initializationCallback();
+    RX_INITIALIZATION_CALLBACK;
   }
 
   void Queues::retrieveAllHandles(VkDevice device)
   {
-    assertInitialized("retrieveAllHandles");
+    RX_ASSERT_INITIALIZED("retrieveAllHandles");
 
     vkGetDeviceQueue(device, getGraphicsIndex(), 0, &m_graphicsQueue);
     vkGetDeviceQueue(device, getPresentIndex(), 0, &m_presentQueue);
@@ -32,7 +32,7 @@ namespace RX
 
   VkResult Queues::submit(VkSubmitInfo& submitInfo, VkFence fence)
   {
-    assertInitialized("submit");
+    RX_ASSERT_INITIALIZED("submit");
 
     VkResult res = vkQueueSubmit(m_graphicsQueue, 1, &submitInfo, fence);
     VK_ASSERT(res, "Failed to submit queue.");
@@ -42,7 +42,7 @@ namespace RX
 
   VkResult Queues::present(VkPresentInfoKHR& presentInfo)
   {
-    assertInitialized("present");
+    RX_ASSERT_INITIALIZED("present");
 
     VkResult res = vkQueuePresentKHR(m_presentQueue, &presentInfo);
     VK_ASSERT(res, "Failed to present");
@@ -52,28 +52,28 @@ namespace RX
 
   uint32_t Queues::getGraphicsIndex() const
   {
-    assertInitialized("getGraphicsIndex");
+    RX_ASSERT_INITIALIZED("getGraphicsIndex");
 
     return m_graphicsIndex.value();
   }
 
   uint32_t Queues::getPresentIndex() const
   {
-    assertInitialized("getPresentIndex");
+    RX_ASSERT_INITIALIZED("getPresentIndex");
     
     return m_presentIndex.value();
   }
 
   uint32_t Queues::getTransferIndex() const
   {
-    assertInitialized("getTransferIndex");
+    RX_ASSERT_INITIALIZED("getTransferIndex");
 
     return m_transferIndex.value();
   }
 
   std::vector<uint32_t> Queues::getQueueFamilyIndices()
   {
-    assertInitialized("getQueueFamilyIndices");
+    RX_ASSERT_INITIALIZED("getQueueFamilyIndices");
     
     if (getPresentIndex() == getGraphicsIndex())
       return { getGraphicsIndex(), getTransferIndex() };

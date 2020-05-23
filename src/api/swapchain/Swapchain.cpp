@@ -97,12 +97,12 @@ namespace RX
 
     VK_ASSERT(vkCreateSwapchainKHR(device, &createInfo, nullptr, &m_swapchain), "Failed to create swapchain.");
 
-    initializationCallback();
+    RX_INITIALIZATION_CALLBACK;
   }
 
   void Swapchain::destroy()
   {
-    assertDestruction();
+    RX_ASSERT_DESTRUCTION;
     vkDestroySwapchainKHR(m_device, m_swapchain, nullptr);
   }
 

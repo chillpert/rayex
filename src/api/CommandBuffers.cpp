@@ -21,12 +21,12 @@ namespace RX
 
 	  VK_ASSERT(vkAllocateCommandBuffers(device, &allocateInfo, m_commandBuffers.data()), "Failed to allocate command buffers");
 	
-		initializationCallback();
+		RX_INITIALIZATION_CALLBACK;
 	}
 
 	void CommandBuffers::record(Swapchain& swapchain, Framebuffers& framebuffers, RenderPass& renderPass, Pipeline& pipeline, Buffer& vertexBuffer, Buffer& indexBuffer)
 	{
-		assertInitialized("record");
+		RX_ASSERT_INITIALIZED("record");
 
 		for (size_t i = 0; i < m_commandBuffers.size(); ++i)
 		{
@@ -67,7 +67,7 @@ namespace RX
 
 	void CommandBuffers::free()
 	{
-		assertDestruction();
+		RX_ASSERT_DESTRUCTION;
 		vkFreeCommandBuffers(m_device, m_commandPool, static_cast<uint32_t>(m_commandBuffers.size()), m_commandBuffers.data());
 	}
 }

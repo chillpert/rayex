@@ -123,12 +123,12 @@ namespace RX
 
     VK_ASSERT(vkCreateGraphicsPipelines(device, VK_NULL_HANDLE, 1, &pipelineInfo, nullptr, &m_pipeline), "Failed to create graphics pipeline.");
   
-    initializationCallback();
+    RX_INITIALIZATION_CALLBACK;
   }
 
   void Pipeline::destroy()
   {
-    assertDestruction();
+    RX_ASSERT_DESTRUCTION;
     vkDestroyPipeline(m_device, m_pipeline, nullptr);
     vkDestroyPipelineLayout(m_device, m_layout, nullptr);
   }

@@ -12,7 +12,7 @@ namespace RX
 
   void Instance::pushLayer(const char* name)
   {
-    assertNotInitialized("pushLayer");
+    RX_ASSERT_NOT_INITIALIZED("pushLayer");
     checkLayerSupport(name);
 
     m_layers.push_back(name);
@@ -21,7 +21,7 @@ namespace RX
 
   void Instance::pushExtension(const char* name)
   {
-    assertNotInitialized("pushExtension");
+    RX_ASSERT_NOT_INITIALIZED("pushExtension");
     checkExtensionSupport(name);
 
     m_extensions.push_back(name);
@@ -65,12 +65,12 @@ namespace RX
 
     VK_ASSERT(vkCreateInstance(&createInfo, nullptr, &m_instance), "Failed to create instance.");
 
-    initializationCallback();
+    RX_INITIALIZATION_CALLBACK;
   }
 
   void Instance::destroy()
   {
-    assertDestruction();
+    RX_ASSERT_DESTRUCTION;
     vkDestroyInstance(m_instance, nullptr);
   }
 

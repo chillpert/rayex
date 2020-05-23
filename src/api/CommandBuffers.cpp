@@ -54,10 +54,10 @@ namespace RX
 				VkDeviceSize offsets[] = { 0 };
 				vkCmdBindVertexBuffers(m_commandBuffers[i], 0, 1, vertexBuffers, offsets);
 
-				vkCmdBindIndexBuffer(m_commandBuffers[i], indexBuffer.get(), 0, indexBuffer.getType()); // TODO: get data type from index buffer
+				vkCmdBindIndexBuffer(m_commandBuffers[i], indexBuffer.get(), 0, indexBuffer.getType());
 
 				//vkCmdDraw(m_commandBuffers[i], vertexBuffer.getVertexCount(), 1, 0, 0); // TODO: vertices should be passed to this function
-				vkCmdDrawIndexed(m_commandBuffers[i], 6, 1, 0, 0, 0); // TODO: 6 is hard-coded size of indices in index buffer
+				vkCmdDrawIndexed(m_commandBuffers[i], indexBuffer.getCount(), 1, 0, 0, 0); // TODO: 6 is hard-coded size of indices in index buffer
 
 	    vkCmdEndRenderPass(m_commandBuffers[i]);
 

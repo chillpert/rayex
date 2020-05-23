@@ -5,19 +5,21 @@
 
 namespace RX
 {
+  // Custom struct for saving information related to buffer creation.
   struct BufferCreateInfo
   {
     VkPhysicalDevice physicalDevice;
     VkDevice device;
-    VkDeviceSize deviceSize;
-    uint32_t entryCount;
+    VkDeviceSize deviceSize; // The size required for the buffer.
+    uint32_t count; // The amount of elements in the received vector.
     VkBufferUsageFlags usage;
     VkSharingMode sharingMode;
     VkMemoryPropertyFlags properties;
     VkCommandPool commandPool;
     VkQueue queue;
-    uint32_t queueFamilyIndexCount;
-    const uint32_t* pQueueFamilyIndices;
+    uint32_t queueFamilyIndexCount; // Optional, if sharing mode is concurrent.
+    const uint32_t* pQueueFamilyIndices; // Optional, if sharing mode is concurrent.
+    VkIndexType type; // Optional, if the buffer is not an index buffer.
   };
 
   class BufferWrapper : public BaseComponent

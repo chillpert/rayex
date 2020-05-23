@@ -83,8 +83,8 @@ namespace RX
 
     std::vector<uint32_t> rectangleIndices = { 0, 1, 2, 2, 3, 0 };
 
-    m_vertexBuffer.initialize<Vertex>(m_device.get(), m_physicalDevice.get(), m_graphicsCmdPool.get(), m_queues, rectangleVertices, VK_BUFFER_USAGE_VERTEX_BUFFER_BIT);
-    m_indexBuffer.initialize<uint32_t>(m_device.get(), m_physicalDevice.get(), m_graphicsCmdPool.get(), m_queues, rectangleIndices, VK_BUFFER_USAGE_INDEX_BUFFER_BIT);
+    m_vertexBuffer.initialize<Vertex>(m_device.get(), m_physicalDevice.get(), m_graphicsCmdPool.get(), m_queues.getGraphicsQueue(), rectangleVertices);
+    m_indexBuffer.initialize<uint32_t>(m_device.get(), m_physicalDevice.get(), m_graphicsCmdPool.get(), m_queues.getGraphicsQueue(), rectangleIndices);
 
     m_commandBuffers.initialize(m_device.get(), m_graphicsCmdPool.get(), m_framebuffers.get().size());
     m_commandBuffers.record(m_swapchain, m_framebuffers, m_renderPass, m_pipeline, m_vertexBuffer, m_indexBuffer);

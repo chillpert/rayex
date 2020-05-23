@@ -5,8 +5,6 @@ namespace RX
   WindowProperties::WindowProperties(int width, int height, const char* title, uint32_t flags) : 
     m_width(width), 
     m_height(height),
-    m_framebufferWidth(width),
-    m_framebufferHeight(height),
     m_title(title),
     m_engineTitle("No engine"),
     m_flags(flags)
@@ -18,12 +16,6 @@ namespace RX
   {
     m_width = width;
     m_height = height;
-  }
-
-  void WindowProperties::resizeFramebuffer(int width, int height)
-  {
-    m_framebufferWidth = width;
-    m_framebufferHeight = height;
   }
 
   void WindowProperties::setTitle(const char* title)

@@ -44,8 +44,7 @@ public:
 
 int main(int argc, char* argv[])
 {
-  uint32_t flags = WINDOW_RESIZABLE | WINDOW_VISIBLE;
-  WindowProperties props(900, 600, "Example", flags);
+  WindowProperties props(900, 600, "Example", WINDOW_RESIZABLE | WINDOW_VISIBLE);
 
   std::shared_ptr<Window> myWindow = std::make_shared<CustomWindow>(props);
 

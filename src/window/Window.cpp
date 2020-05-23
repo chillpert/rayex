@@ -59,11 +59,6 @@ namespace RX
     SDL_SetWindowSize(m_window, m_properties.getWidth(), m_properties.getHeight());
   }
 
-  void Window::resizeFramebuffer(int width, int height)
-  {
-    m_properties.resizeFramebuffer(width, height);
-  }
-
   void Window::getInstanceExtensions(uint32_t& count, const char** extensions)
   {
     if (extensions == NULL)

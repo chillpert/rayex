@@ -19,8 +19,7 @@ namespace RX
     RX_API virtual void clean();
 
     RX_API void resize(int width, int height);
-    RX_API void resizeFramebuffer(int width, int height);
-
+    
     RX_API void getInstanceExtensions(uint32_t& count, const char** extensions);
     RX_API VkSurfaceKHR createSurface(VkInstance instance);
 

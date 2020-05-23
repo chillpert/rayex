@@ -18,7 +18,7 @@
 #include "Pipeline.hpp"
 #include "RenderPass.hpp"
 #include "Shader.hpp"
-#include "Buffers/VertexBuffer.hpp"
+#include "Buffers/Buffer.hpp"
 
 namespace RX
 {
@@ -53,16 +53,14 @@ namespace RX
     std::vector<Fence> m_inFlightFences;
     std::vector<Semaphore> m_imageAvailableSemaphores;
     std::vector<Semaphore> m_finishedRenderSemaphores;
-    VertexBuffer m_vertexBuffer;
+    Buffer m_vertexBuffer;
+    Buffer m_indexBuffer;
 
     // No destruction necessary for following members:
     Images m_images;
     PhysicalDevice m_physicalDevice;
     Queues m_queues;
     CommandBuffers m_commandBuffers;
-
-    // TODO: make abstraction
-    ;
   };
 }
 

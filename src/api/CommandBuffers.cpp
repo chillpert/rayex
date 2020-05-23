@@ -8,6 +8,9 @@ namespace RX
 
 	void CommandBuffers::initialize(VkDevice device, VkCommandPool commandPool, size_t swapchainFramebufferSize)
 	{
+		m_device = device;
+		m_commandPool = commandPool;
+
 	  m_commandBuffers.resize(swapchainFramebufferSize);
 
 	  VkCommandBufferAllocateInfo allocateInfo{ };
@@ -17,10 +20,14 @@ namespace RX
 	  allocateInfo.commandBufferCount = static_cast<uint32_t>(m_commandBuffers.size());
 
 	  VK_ASSERT(vkAllocateCommandBuffers(device, &allocateInfo, m_commandBuffers.data()), "Failed to allocate command buffers");
+	
+		initializationCallback();
 	}
 
-	void CommandBuffers::record(Swapchain& swapchain, Framebuffers& framebuffers, RenderPass& renderPass, Pipeline& pipeline, VertexBuffer& vertexBuffer)
+	void CommandBuffers::record(Swapchain& swapchain, Framebuffers& framebuffers, RenderPass& renderPass, Pipeline& pipeline, Buffer& vertexBuffer, Buffer& indexBuffer)
 	{
+		assertInitialized("record");
+
 		for (size_t i = 0; i < m_commandBuffers.size(); ++i)
 		{
 	    VkCommandBufferBeginInfo beginInfo{ };
@@ -47,7 +54,10 @@ namespace RX
 				VkDeviceSize offsets[] = { 0 };
 				vkCmdBindVertexBuffers(m_commandBuffers[i], 0, 1, vertexBuffers, offsets);
 
-				vkCmdDraw(m_commandBuffers[i], vertexBuffer.getVertexCount(), 1, 0, 0); // TODO: vertices should be passed to this function
+				vkCmdBindIndexBuffer(m_commandBuffers[i], indexBuffer.get(), 0, VK_INDEX_TYPE_UINT32); // TODO: get data type from index buffer
+
+				//vkCmdDraw(m_commandBuffers[i], vertexBuffer.getVertexCount(), 1, 0, 0); // TODO: vertices should be passed to this function
+				vkCmdDrawIndexed(m_commandBuffers[i], 6, 1, 0, 0, 0); // TODO: 6 is hard-coded size of indices in index buffer
 
 	    vkCmdEndRenderPass(m_commandBuffers[i]);
 
@@ -55,8 +65,9 @@ namespace RX
     }
 	}
 
-	void CommandBuffers::free(VkDevice device, VkCommandPool commandPool)
+	void CommandBuffers::free()
 	{
-		vkFreeCommandBuffers(device, commandPool, static_cast<uint32_t>(m_commandBuffers.size()), m_commandBuffers.data());
+		assertDestruction();
+		vkFreeCommandBuffers(m_device, m_commandPool, static_cast<uint32_t>(m_commandBuffers.size()), m_commandBuffers.data());
 	}
 }

@@ -1,0 +1,47 @@
+#ifndef BUFFER_WRAPPER_HPP
+#define BUFFER_WRAPPER_HPP
+
+#include "api/BaseComponent.hpp"
+
+namespace RX
+{
+  struct BufferCreateInfo
+  {
+    VkPhysicalDevice physicalDevice;
+    VkDevice device;
+    VkDeviceSize size;
+    VkBufferUsageFlags usage;
+    VkSharingMode sharingMode;
+    VkMemoryPropertyFlags properties;
+    VkCommandPool commandPool;
+    VkQueue queue;
+    uint32_t queueFamilyIndexCount;
+    const uint32_t* pQueueFamilyIndices;
+  };
+
+  class BufferWrapper : public BaseComponent
+  {
+  public:
+    BufferWrapper();
+    ~BufferWrapper();
+
+    inline VkBuffer get() const { return m_buffer; }
+    inline VkDeviceMemory getMemory() const { return m_memory; }
+    inline VkDeviceSize getSize() const { return m_info.size; }
+
+    void create(BufferCreateInfo& createInfo);
+
+    BufferWrapper& operator=(const BufferWrapper& buffer);
+    void copyTo(const BufferWrapper& buffer) const;
+
+  private:
+    void destroy();
+    uint32_t findMemoryType(uint32_t typeFilter, VkMemoryPropertyFlags properties);
+  
+    BufferCreateInfo m_info;
+    VkBuffer m_buffer;
+    VkDeviceMemory m_memory;
+  };
+}
+
+#endif // BUFFER_WRAPPER_HPP

@@ -1,16 +1,16 @@
-#include "Buffer.hpp"
+#include "BufferWrapper.hpp"
 
 namespace RX
 {
-  Buffer::Buffer() :
-    BaseComponent("Buffer") { }
+  BufferWrapper::BufferWrapper() :
+    BaseComponent("BufferWrapper") { }
 
-  Buffer::~Buffer()
+  BufferWrapper::~BufferWrapper()
   {
     destroy();
   }
 
-  void Buffer::create(BufferCreateInfo& createInfo)
+  void BufferWrapper::create(BufferCreateInfo& createInfo)
   {
     m_info = createInfo;
 
@@ -46,7 +46,7 @@ namespace RX
     initializationCallback();
   }
   
-  void Buffer::destroy()
+  void BufferWrapper::destroy()
   {
     assertDestruction();
 
@@ -54,13 +54,13 @@ namespace RX
     vkFreeMemory(m_info.device, m_memory, nullptr);
   }
 
-  Buffer& Buffer::operator=(const Buffer& buffer)
+  BufferWrapper& BufferWrapper::operator=(const BufferWrapper& buffer)
   {
     buffer.copyTo(*this);
     return *this;
   }
 
-  void Buffer::copyTo(const Buffer& buffer) const
+  void BufferWrapper::copyTo(const BufferWrapper& buffer) const
   {
     VkCommandBufferAllocateInfo allocInfo{};
     allocInfo.sType = VK_STRUCTURE_TYPE_COMMAND_BUFFER_ALLOCATE_INFO;
@@ -94,7 +94,7 @@ namespace RX
     vkFreeCommandBuffers(m_info.device, m_info.commandPool, 1, &commandBuffer);
   }
 
-  uint32_t Buffer::findMemoryType(uint32_t typeFilter, VkMemoryPropertyFlags properties)
+  uint32_t BufferWrapper::findMemoryType(uint32_t typeFilter, VkMemoryPropertyFlags properties)
   {
     VkPhysicalDeviceMemoryProperties memProperties;
     vkGetPhysicalDeviceMemoryProperties(m_info.physicalDevice, &memProperties);

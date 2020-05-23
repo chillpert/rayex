@@ -16,12 +16,14 @@ namespace RX
   {
   public:
     CommandBuffers();
+    ~CommandBuffers();
 
     inline std::vector<VkCommandBuffer>& get() { return m_commandBuffers; }
 
     void initialize(VkDevice device, VkCommandPool commandPool, size_t swapchainFramebufferSize);
     void record(Swapchain& spwachain, Framebuffers& framebuffers, RenderPass& renderPass, Pipeline& pipeline, VertexBuffer& vertexBuffer, IndexBuffer& indexBuffer, DescriptorSets& descriptorSets);
     void free();
+    void destroy();
 
   private:
     std::vector<VkCommandBuffer> m_commandBuffers;

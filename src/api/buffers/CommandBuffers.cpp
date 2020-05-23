@@ -6,6 +6,11 @@ namespace RX
 	CommandBuffers::CommandBuffers() :
 		BaseComponent("CommandBuffers") { }
 
+	CommandBuffers::~CommandBuffers()
+	{
+		destroy();
+	}
+
 	void CommandBuffers::initialize(VkDevice device, VkCommandPool commandPool, size_t swapchainFramebufferSize)
 	{
 		m_device = device;
@@ -70,5 +75,10 @@ namespace RX
 	{
 		RX_ASSERT_DESTRUCTION;
 		vkFreeCommandBuffers(m_device, m_commandPool, static_cast<uint32_t>(m_commandBuffers.size()), m_commandBuffers.data());
+	}
+
+	void CommandBuffers::destroy()
+	{
+		free();
 	}
 }

@@ -202,35 +202,29 @@ namespace RX
 
     // 1. Cleaning the existing swapchain.
     m_framebuffers.destroy();
-    m_commandBuffers.free();
-    m_uniformBuffers.destroy();
-    m_descriptorPool.destroy();
+    m_commandBuffers.destroy();
     m_pipeline.destroy();
-    //m_renderPass.destroy();
+    m_renderPass.destroy();
     m_imageViews.destroy();
     m_swapchain.destroy();
+    m_uniformBuffers.destroy();
+    m_descriptorPool.destroy();
 
     // 2. Recreating the swapchain.
-
-    // Set up the swapchain and its related components.
     m_swapchain.initialize(m_physicalDevice.get(), m_device.get(), m_surface, m_window, m_queues);
     m_images.initialize(m_device.get(), m_swapchain.get());
     m_imageViews.initialize(m_device.get(), m_surface.getFormat().format, m_images);
-    //m_renderPass.initialize(m_device.get(), m_surface.getFormat(m_physicalDevice.get()).format);
-    m_framebuffers.initialize(m_device.get(), m_imageViews, m_renderPass.get(), m_window);
-
-    // Set up simple example shaders.
+    m_renderPass.initialize(m_device.get(), m_surface.getFormat(m_physicalDevice.get()).format);
+    
     Shader vs, fs;
     vs.initialize(RX_SHADER_PATH "simple3D.vert", m_device.get());
     fs.initialize(RX_SHADER_PATH "simple3D.frag", m_device.get());
-
-    // Set up the graphics pipeline.
     m_pipeline.initialize(m_device.get(), m_renderPass.get(), m_swapchain.getExtent(), m_window, vs, fs, m_descriptorSetLayout.get());
 
+    m_framebuffers.initialize(m_device.get(), m_imageViews, m_renderPass.get(), m_window);
     m_uniformBuffers.initialize(m_device.get(), m_physicalDevice.get(), m_swapchain.getExtent(), m_images.getSize());
     m_descriptorPool.initialize(m_device.get(), m_images.getSize());
-
-    // Set up the command pool, allocate the command buffer and start command buffer recording.
+    m_descriptorSets.initialize(m_device.get(), m_images.getSize(), m_descriptorPool.get(), m_descriptorSetLayout.get(), m_uniformBuffers.get());
     m_commandBuffers.initialize(m_device.get(), m_graphicsCmdPool.get(), m_framebuffers.getSize());
     m_commandBuffers.record(m_swapchain, m_framebuffers, m_renderPass, m_pipeline, m_vertexBuffer, m_indexBuffer, m_descriptorSets);
 

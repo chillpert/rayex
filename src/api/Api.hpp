@@ -51,28 +51,28 @@ namespace RX
     DebugMessenger m_debugMessenger;
     Surface m_surface;
     Device m_device;
-    Swapchain m_swapchain;
-    ImageViews m_imageViews;
-    RenderPass m_renderPass;
-    Pipeline m_pipeline;
-    Framebuffers m_framebuffers;
     CommandPool m_graphicsCmdPool;
-    std::vector<VkFence> m_imagesInFlight;
     std::vector<Fence> m_inFlightFences;
     std::vector<Semaphore> m_imageAvailableSemaphores;
     std::vector<Semaphore> m_finishedRenderSemaphores;
     VertexBuffer m_vertexBuffer;
     IndexBuffer m_indexBuffer;
     DescriptorSetLayout m_descriptorSetLayout;
-    DescriptorSets m_descriptorSets;
     DescriptorPool m_descriptorPool;
     UniformBuffers m_uniformBuffers;
+    Swapchain m_swapchain;
+    ImageViews m_imageViews;
+    RenderPass m_renderPass;
+    Pipeline m_pipeline;
+    CommandBuffers m_commandBuffers;
+    Framebuffers m_framebuffers;
 
     // No destruction necessary for following members:
     Images m_images;
     PhysicalDevice m_physicalDevice;
     Queues m_queues;
-    CommandBuffers m_commandBuffers;
+    DescriptorSets m_descriptorSets;
+    std::vector<VkFence> m_imagesInFlight;
   };
 }
 

@@ -9,7 +9,8 @@ namespace RX
   {
     VkPhysicalDevice physicalDevice;
     VkDevice device;
-    VkDeviceSize size;
+    VkDeviceSize deviceSize;
+    uint32_t entryCount;
     VkBufferUsageFlags usage;
     VkSharingMode sharingMode;
     VkMemoryPropertyFlags properties;
@@ -27,7 +28,6 @@ namespace RX
 
     inline VkBuffer get() const { return m_buffer; }
     inline VkDeviceMemory getMemory() const { return m_memory; }
-    inline VkDeviceSize getSize() const { return m_info.size; }
 
     void create(BufferCreateInfo& createInfo);
 
@@ -38,9 +38,11 @@ namespace RX
     void destroy();
     uint32_t findMemoryType(uint32_t typeFilter, VkMemoryPropertyFlags properties);
   
-    BufferCreateInfo m_info;
     VkBuffer m_buffer;
     VkDeviceMemory m_memory;
+
+  public:
+    BufferCreateInfo m_info;
   };
 }
 

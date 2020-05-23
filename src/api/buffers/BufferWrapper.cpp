@@ -17,7 +17,7 @@ namespace RX
     // Create the buffer.
     VkBufferCreateInfo bufferInfo{ };
     bufferInfo.sType = VK_STRUCTURE_TYPE_BUFFER_CREATE_INFO;
-    bufferInfo.size =  m_info.size;
+    bufferInfo.size = m_info.deviceSize;
     bufferInfo.usage = m_info.usage;
     bufferInfo.sharingMode = m_info.sharingMode;
 
@@ -78,7 +78,7 @@ namespace RX
     vkBeginCommandBuffer(commandBuffer, &beginInfo);
 
     VkBufferCopy copyRegion{};
-    copyRegion.size = m_info.size;
+    copyRegion.size = m_info.deviceSize;
     vkCmdCopyBuffer(commandBuffer, m_buffer, buffer.get(), 1, &copyRegion);
 
     vkEndCommandBuffer(commandBuffer);

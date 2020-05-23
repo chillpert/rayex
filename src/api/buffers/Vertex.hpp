@@ -5,6 +5,13 @@
 
 namespace RX
 {
+  struct UniformBufferObject
+  {
+    glm::mat4 model;
+    glm::mat4 view;
+    glm::mat4 proj;
+  };
+
   struct Vertex
   {
     glm::vec2 pos;

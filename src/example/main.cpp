@@ -1,4 +1,5 @@
 #include "Renderer.hpp"
+#include "Camera.hpp"
 
 using namespace RX;
 
@@ -43,7 +44,7 @@ public:
 };
 
 int main(int argc, char* argv[])
-{
+{  
   WindowProperties props(900, 600, "Example", WINDOW_RESIZABLE | WINDOW_VISIBLE);
 
   std::shared_ptr<Window> myWindow = std::make_shared<CustomWindow>(props);

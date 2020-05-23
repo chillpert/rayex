@@ -16,7 +16,7 @@ namespace RX
 
     inline VkPipeline get() { return m_pipeline; }
 
-    void initialize(VkDevice device, VkRenderPass renderPass, VkExtent2D& extent, std::shared_ptr<Window> window, Shader& vs, Shader& fs);
+    void initialize(VkDevice device, VkRenderPass renderPass, VkExtent2D& extent, std::shared_ptr<Window> window, Shader& vs, Shader& fs, VkDescriptorSetLayout descriptorSetLayout);
     void destroy();
 
   private:

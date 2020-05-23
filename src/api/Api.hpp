@@ -18,7 +18,9 @@
 #include "Pipeline.hpp"
 #include "RenderPass.hpp"
 #include "Shader.hpp"
-#include "Buffers/Buffer.hpp"
+#include "Buffers/VertexBuffer.hpp"
+#include "Buffers/IndexBuffer.hpp"
+#include "buffers/DescriptorSet.hpp"
 
 namespace RX
 {
@@ -46,6 +48,7 @@ namespace RX
     Swapchain m_swapchain;
     ImageViews m_imageViews;
     RenderPass m_renderPass;
+    DescriptorSet m_descriptorSet;
     Pipeline m_pipeline;
     Framebuffers m_framebuffers;
     CommandPool m_graphicsCmdPool;
@@ -53,8 +56,8 @@ namespace RX
     std::vector<Fence> m_inFlightFences;
     std::vector<Semaphore> m_imageAvailableSemaphores;
     std::vector<Semaphore> m_finishedRenderSemaphores;
-    Buffer m_vertexBuffer;
-    Buffer m_indexBuffer;
+    VertexBuffer m_vertexBuffer;
+    IndexBuffer m_indexBuffer;
 
     // No destruction necessary for following members:
     Images m_images;

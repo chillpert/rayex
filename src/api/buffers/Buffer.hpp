@@ -1,91 +1,51 @@
 #ifndef BUFFER_HPP
 #define BUFFER_HPP
 
-#include "BufferWrapper.hpp"
-#include "Vertex.hpp"
-#include "api/Queues.hpp"
+#include "api/BaseComponent.hpp"
 
 namespace RX
 {
-  class Buffer
+  // Custom struct for saving information related to buffer creation.
+  struct BufferCreateInfo
   {
-  public:
-    inline VkBuffer get() const { return m_buffer.get(); }
-
-    inline VkIndexType getType() const { return m_buffer.m_info.type; }
-    inline uint32_t getCount() const { return m_buffer.m_info.count; }
-    inline uint32_t getDeviceSize() const { return static_cast<uint32_t>(m_buffer.m_info.deviceSize); }
-
-    // This will setup the buffer in a way that works with the given input. 
-    // The process is based on the data type of the vector that has been passed to this function.
-    template <class T>
-    void initialize(VkDevice device, VkPhysicalDevice physicalDevice, VkCommandPool commandPool, VkQueue queue, std::vector<T>& vertices);
-    // TODO: if a queue with Transfer Bit only is available utilize it. Otherwise fall back to just using the graphics queue.
-
-  private:
-    BufferWrapper m_buffer;
+    VkPhysicalDevice physicalDevice;
+    VkDevice device;
+    VkDeviceSize deviceSize; // The size required for the buffer.
+    uint32_t count; // The amount of elements in the received vector.
+    VkBufferUsageFlags usage;
+    VkSharingMode sharingMode;
+    VkMemoryPropertyFlags properties;
+    VkCommandPool commandPool;
+    VkQueue queue;
+    uint32_t queueFamilyIndexCount; // Optional, if sharing mode is concurrent.
+    const uint32_t* pQueueFamilyIndices; // Optional, if sharing mode is concurrent.
+    VkIndexType type; // Optional, if the buffer is not an index buffer.
   };
 
-  template<class T>
-  inline void Buffer::initialize(VkDevice device, VkPhysicalDevice physicalDevice, VkCommandPool commandPool, VkQueue queue, std::vector<T>& vertices)
+  class Buffer : public BaseComponent
   {
-    VkDeviceSize size = sizeof(vertices[0]) * vertices.size();
+  public:
+    Buffer();
+    ~Buffer();
 
-    // Set up the staging buffer.
-    BufferCreateInfo stagingInfo{ };
-    stagingInfo.physicalDevice = physicalDevice;
-    stagingInfo.device = device;
-    stagingInfo.deviceSize = size;
-    stagingInfo.count = static_cast<uint32_t>(vertices.size());
-    stagingInfo.usage = VK_BUFFER_USAGE_TRANSFER_SRC_BIT;
-    stagingInfo.sharingMode = VK_SHARING_MODE_EXCLUSIVE;
-    stagingInfo.properties = VK_MEMORY_PROPERTY_HOST_VISIBLE_BIT | VK_MEMORY_PROPERTY_HOST_COHERENT_BIT;
-    stagingInfo.commandPool = commandPool;
-    stagingInfo.queue = queue;
+    inline VkBuffer get() const { return m_buffer; }
+    inline VkDeviceMemory getMemory() const { return m_memory; }
 
-    BufferWrapper stagingBuffer;
-    stagingBuffer.create(stagingInfo);
+    void create(BufferCreateInfo& createInfo);
 
-    void* data;
-    vkMapMemory(device, stagingBuffer.getMemory(), 0, size, 0, &data);
-    memcpy(data, vertices.data(), static_cast<uint32_t>(size));
-    vkUnmapMemory(device, stagingBuffer.getMemory());
+    Buffer& operator=(const Buffer& buffer);
+    void copyTo(const Buffer& buffer) const;
 
-    // Set up the actual vertex buffer.
-    BufferCreateInfo bufferInfo = stagingInfo;
-    bufferInfo.usage = VK_BUFFER_USAGE_TRANSFER_DST_BIT;
-    bufferInfo.properties = VK_MEMORY_PROPERTY_DEVICE_LOCAL_BIT;
+  private:
+    void destroy();
+    uint32_t findMemoryType(uint32_t typeFilter, VkMemoryPropertyFlags properties);
+  
+    VkBuffer m_buffer;
+    VkDeviceMemory m_memory;
 
-    // Every incoming data type must be supported by the implementation.
-    if (typeid(T) == typeid(uint8_t))
-    {
-      bufferInfo.type = VK_INDEX_TYPE_UINT8_EXT;
-      bufferInfo.usage |= VK_BUFFER_USAGE_INDEX_BUFFER_BIT;
-    }
-    else if (typeid(T) == typeid(uint16_t))
-    {
-      bufferInfo.type = VK_INDEX_TYPE_UINT16;
-      bufferInfo.usage |= VK_BUFFER_USAGE_INDEX_BUFFER_BIT;
-    }
-    else if (typeid(T) == typeid(uint32_t))
-    {
-      bufferInfo.type = VK_INDEX_TYPE_UINT32;
-      bufferInfo.usage |= VK_BUFFER_USAGE_INDEX_BUFFER_BIT;
-    }
-    else if (typeid(T) == typeid(Vertex))
-    {
-      bufferInfo.usage |= VK_BUFFER_USAGE_VERTEX_BUFFER_BIT;
-    }
-    else
-    {
-      RX_ERROR("Could not deduce buffer data input type.");
-    }
-
-    m_buffer.create(bufferInfo);
-
-    // Copy staging buffer to the actual vertex buffer.
-    m_buffer = stagingBuffer;
-  }
+  public:
+    BufferCreateInfo m_info;
+  };
 }
 
 #endif // BUFFER_HPP

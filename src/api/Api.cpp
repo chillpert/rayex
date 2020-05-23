@@ -67,8 +67,10 @@ namespace RX
     vs.initialize(RX_SHADER_PATH "basic.vert", m_device.get());
     fs.initialize(RX_SHADER_PATH "basic.frag", m_device.get());
     
+    m_descriptorSet.initialize(m_device.get());
+
     // Set up the graphics pipeline.
-    m_pipeline.initialize(m_device.get(), m_renderPass.get(), m_swapchain.getExtent(), m_window, vs, fs);
+    m_pipeline.initialize(m_device.get(), m_renderPass.get(), m_swapchain.getExtent(), m_window, vs, fs, m_descriptorSet.get());
     
     // Set up the command pool, allocate the command buffer and start command buffer recording.
     m_graphicsCmdPool.initialize(m_device.get(), m_queues.getGraphicsIndex()); // TODO: What if the graphics and present index are not identical?
@@ -83,7 +85,7 @@ namespace RX
 
     std::vector<uint32_t> rectangleIndices = { 0, 1, 2, 2, 3, 0 };
 
-    m_vertexBuffer.initialize<Vertex>(m_device.get(), m_physicalDevice.get(), m_graphicsCmdPool.get(), m_queues.getGraphicsQueue(), rectangleVertices);
+    m_vertexBuffer.initialize(m_device.get(), m_physicalDevice.get(), m_graphicsCmdPool.get(), m_queues.getGraphicsQueue(), rectangleVertices);
     m_indexBuffer.initialize<uint32_t>(m_device.get(), m_physicalDevice.get(), m_graphicsCmdPool.get(), m_queues.getGraphicsQueue(), rectangleIndices);
 
     m_commandBuffers.initialize(m_device.get(), m_graphicsCmdPool.get(), m_framebuffers.get().size());
@@ -216,7 +218,7 @@ namespace RX
     fs.initialize(RX_SHADER_PATH "basic.frag", m_device.get());
 
     // Set up the graphics pipeline.
-    m_pipeline.initialize(m_device.get(), m_renderPass.get(), m_swapchain.getExtent(), m_window, vs, fs);
+    m_pipeline.initialize(m_device.get(), m_renderPass.get(), m_swapchain.getExtent(), m_window, vs, fs, m_descriptorSet.get());
 
     // Set up the command pool, allocate the command buffer and start command buffer recording.
     m_commandBuffers.initialize(m_device.get(), m_graphicsCmdPool.get(), m_framebuffers.get().size());

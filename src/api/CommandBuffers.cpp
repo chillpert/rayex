@@ -24,7 +24,7 @@ namespace RX
 		RX_INITIALIZATION_CALLBACK;
 	}
 
-	void CommandBuffers::record(Swapchain& swapchain, Framebuffers& framebuffers, RenderPass& renderPass, Pipeline& pipeline, Buffer& vertexBuffer, Buffer& indexBuffer)
+	void CommandBuffers::record(Swapchain& swapchain, Framebuffers& framebuffers, RenderPass& renderPass, Pipeline& pipeline, VertexBuffer& vertexBuffer, IndexBuffer& indexBuffer)
 	{
 		RX_ASSERT_INITIALIZED("record");
 

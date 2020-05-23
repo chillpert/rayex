@@ -11,7 +11,7 @@ namespace RX
     destroy();
   }
 
-  void Pipeline::initialize(VkDevice device, VkRenderPass renderPass, VkExtent2D& extent, std::shared_ptr<Window> window, Shader& vs, Shader& fs)
+  void Pipeline::initialize(VkDevice device, VkRenderPass renderPass, VkExtent2D& extent, std::shared_ptr<Window> window, Shader& vs, Shader& fs, VkDescriptorSetLayout descriptorSetLayout)
   {
     m_device = device;
 
@@ -87,8 +87,8 @@ namespace RX
 
     VkPipelineLayoutCreateInfo pipelineLayoutInfo{ };
     pipelineLayoutInfo.sType = VK_STRUCTURE_TYPE_PIPELINE_LAYOUT_CREATE_INFO;
-    pipelineLayoutInfo.setLayoutCount = 0;
-    pipelineLayoutInfo.pushConstantRangeCount = 0;
+    pipelineLayoutInfo.setLayoutCount = 1;
+    pipelineLayoutInfo.pSetLayouts = &descriptorSetLayout;
 
     VK_ASSERT(vkCreatePipelineLayout(device, &pipelineLayoutInfo, nullptr, &m_layout), "Failed to create pipeline layout.");
 

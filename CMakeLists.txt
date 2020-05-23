@@ -1,4 +1,4 @@
-cmake_minimum_required(VERSION 3.14.0)
+cmake_minimum_required(VERSION 3.17.2)
 project(Renderer VERSION 0.0.1)
 
 message("Using compiler: " + ${CMAKE_CXX_COMPILER_ID})
@@ -86,6 +86,10 @@ add_library(renderer SHARED ${FILES_LIB})
 target_link_libraries(renderer
   ${WINDOWING}
   ${Vulkan_LIBRARY}
+)
+
+target_precompile_headers(renderer
+  PUBLIC "${PROJECT_SOURCE_DIR}/src/pch/stdafx.hpp"
 )
 
 set_target_properties(renderer PROPERTIES

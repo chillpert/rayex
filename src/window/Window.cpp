@@ -29,7 +29,13 @@ namespace RX
 
   bool Window::update()
   {
+    // Update local timer bound to this window.
     m_time.update();
+
+    // Fetch the latest window dimensions.
+    int width, height;
+    SDL_GetWindowSize(m_window, &width, &height);
+    m_properties.resize(width, height);
 
     return true;
   }
@@ -121,11 +127,8 @@ namespace RX
 
   bool Window::minimized()
   {
-    if (m_properties.getWidth() == 0 && m_properties.getHeight() == 0)
-    {
-      VK_LOG("Window minimized event");
+    if (SDL_GetWindowFlags(m_window) & SDL_WINDOW_MINIMIZED)
       return true;
-    }
 
     return false;
   }

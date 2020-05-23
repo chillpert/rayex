@@ -10,6 +10,8 @@ public:
 
   bool update() override
   {
+    Window::update();
+
     SDL_Event event;
 
     while (SDL_PollEvent(&event))

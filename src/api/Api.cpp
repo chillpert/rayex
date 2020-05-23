@@ -87,8 +87,9 @@ namespace RX
 
     m_vertexBuffer.initialize(m_device.get(), m_physicalDevice.get(), m_graphicsCmdPool.get(), m_queues.getGraphicsQueue(), rectangleVertices);
     m_indexBuffer.initialize<uint32_t>(m_device.get(), m_physicalDevice.get(), m_graphicsCmdPool.get(), m_queues.getGraphicsQueue(), rectangleIndices);
+    m_uniformBuffers.initialize(m_device.get(), m_physicalDevice.get(), m_swapchain.getExtent(), m_images.getSize());
 
-    m_commandBuffers.initialize(m_device.get(), m_graphicsCmdPool.get(), m_framebuffers.get().size());
+    m_commandBuffers.initialize(m_device.get(), m_graphicsCmdPool.get(), m_framebuffers.getSize());
     m_commandBuffers.record(m_swapchain, m_framebuffers, m_renderPass, m_pipeline, m_vertexBuffer, m_indexBuffer);
 
     // TODO: transfer command pool inizialization and recording
@@ -97,7 +98,7 @@ namespace RX
     m_imageAvailableSemaphores.resize(maxFramesInFlight);
     m_finishedRenderSemaphores.resize(maxFramesInFlight);
     m_inFlightFences.resize(maxFramesInFlight);
-    m_imagesInFlight.resize(m_images.get().size(), VK_NULL_HANDLE);
+    m_imagesInFlight.resize(m_images.getSize(), VK_NULL_HANDLE);
 
     for (size_t i = 0; i < maxFramesInFlight; ++i)
     {
@@ -139,6 +140,9 @@ namespace RX
 
     // This will mark the current image to be in use by this frame.
     m_imagesInFlight[imageIndex] = m_inFlightFences[currentFrame].get();
+
+    m_uniformBuffers.update(imageIndex);
+    m_uniformBuffers.render();
 
     VkSubmitInfo submitInfo{ };
     submitInfo.sType = VK_STRUCTURE_TYPE_SUBMIT_INFO;
@@ -221,7 +225,7 @@ namespace RX
     m_pipeline.initialize(m_device.get(), m_renderPass.get(), m_swapchain.getExtent(), m_window, vs, fs, m_descriptorSet.get());
 
     // Set up the command pool, allocate the command buffer and start command buffer recording.
-    m_commandBuffers.initialize(m_device.get(), m_graphicsCmdPool.get(), m_framebuffers.get().size());
+    m_commandBuffers.initialize(m_device.get(), m_graphicsCmdPool.get(), m_framebuffers.getSize());
     m_commandBuffers.record(m_swapchain, m_framebuffers, m_renderPass, m_pipeline, m_vertexBuffer, m_indexBuffer);
 
     RX_ENABLE_LOG;

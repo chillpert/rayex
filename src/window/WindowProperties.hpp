@@ -19,7 +19,7 @@ namespace RX
     WINDOW_MOUSE_FOCUS = 0x00000400,
     WINDOW_FULLSCREEN_DESKTOP = (WINDOW_FULLSCREEN | 0x00001000),
     WINDOW_MOUSE_CAPTURE = 0x00004000
-  };
+  } WindowFlags;
 
   class WindowProperties
   {

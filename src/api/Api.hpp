@@ -21,6 +21,7 @@
 #include "Buffers/VertexBuffer.hpp"
 #include "Buffers/IndexBuffer.hpp"
 #include "buffers/DescriptorSet.hpp"
+#include "buffers/UniformBuffers.hpp"
 
 namespace RX
 {
@@ -58,6 +59,7 @@ namespace RX
     std::vector<Semaphore> m_finishedRenderSemaphores;
     VertexBuffer m_vertexBuffer;
     IndexBuffer m_indexBuffer;
+    UniformBuffers m_uniformBuffers;
 
     // No destruction necessary for following members:
     Images m_images;

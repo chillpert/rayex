@@ -17,31 +17,31 @@ namespace RX
     // Create the buffer.
     VkBufferCreateInfo bufferInfo{ };
     bufferInfo.sType = VK_STRUCTURE_TYPE_BUFFER_CREATE_INFO;
-    bufferInfo.size = m_info.deviceSize;
-    bufferInfo.usage = m_info.usage;
-    bufferInfo.sharingMode = m_info.sharingMode;
-
-    VK_ASSERT(vkCreateBuffer(m_info.device, &bufferInfo, nullptr, &m_buffer), "Failed to create vertex buffer");
+    bufferInfo.size = createInfo.deviceSize;
+    bufferInfo.usage = createInfo.usage;
+    bufferInfo.sharingMode = createInfo.sharingMode;
+    
+    VK_ASSERT(vkCreateBuffer(createInfo.device, &bufferInfo, nullptr, &m_buffer), "Failed to create vertex buffer");
 
     // Allocate memory for the buffer.
     VkMemoryRequirements memRequirements;
-    vkGetBufferMemoryRequirements(m_info.device, m_buffer, &memRequirements);
+    vkGetBufferMemoryRequirements(createInfo.device, m_buffer, &memRequirements);
 
     VkMemoryAllocateInfo allocInfo{ };
     allocInfo.sType = VK_STRUCTURE_TYPE_MEMORY_ALLOCATE_INFO;
     allocInfo.allocationSize = memRequirements.size;
-    allocInfo.memoryTypeIndex = findMemoryType(memRequirements.memoryTypeBits, m_info.properties);
+    allocInfo.memoryTypeIndex = findMemoryType(memRequirements.memoryTypeBits, createInfo.properties);
 
-    /*  
+    /*
     TODO:
        The right way to allocate memory for a large number of objects at the same time is to create a custom 
        allocator that splits up a single allocation among many different objects by using the offset parameters 
        that we've seen in many functions.
     */
-    VK_ASSERT(vkAllocateMemory(m_info.device, &allocInfo, nullptr, &m_memory), "Failed to allocate memory for buffer");
+    VK_ASSERT(vkAllocateMemory(createInfo.device, &allocInfo, nullptr, &m_memory), "Failed to allocate memory for buffer");
 
     // Bind the buffer to the allocated memory.
-    VK_ASSERT(vkBindBufferMemory(m_info.device, m_buffer, m_memory, 0), "Failed to bind buffer to memory");
+    VK_ASSERT(vkBindBufferMemory(createInfo.device, m_buffer, m_memory, 0), "Failed to bind buffer to memory");
   
     RX_INITIALIZATION_CALLBACK;
   }

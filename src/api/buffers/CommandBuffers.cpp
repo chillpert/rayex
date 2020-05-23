@@ -1,5 +1,5 @@
 #include "CommandBuffers.hpp"
-#include "Buffers/Vertex.hpp"
+#include "Vertex.hpp"
 
 namespace RX
 {

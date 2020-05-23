@@ -1,7 +1,7 @@
 #ifndef COMMAND_POOL_HPP
 #define COMMAND_POOL_HPP
 
-#include "BaseComponent.hpp"
+#include "api/BaseComponent.hpp"
 
 namespace RX
 {

@@ -1,12 +1,12 @@
 #ifndef COMMAND_BUFFERS_HPP
 #define COMMAND_BUFFERS_HPP
 
-#include "swapchain/Swapchain.hpp"
-#include "swapchain/Framebuffers.hpp"
-#include "RenderPass.hpp"
-#include "Pipeline.hpp"
-#include "buffers/VertexBuffer.hpp"
-#include "buffers/IndexBuffer.hpp"
+#include "api/swapchain/Swapchain.hpp"
+#include "api/swapchain/Framebuffers.hpp"
+#include "api/RenderPass.hpp"
+#include "api/Pipeline.hpp"
+#include "VertexBuffer.hpp"
+#include "IndexBuffer.hpp"
 
 namespace RX
 {

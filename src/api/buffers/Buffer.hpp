@@ -32,6 +32,8 @@ namespace RX
     inline VkDeviceMemory getMemory() const { return m_memory; }
 
     void create(BufferCreateInfo& createInfo);
+    template <class T>
+    void fill(T* source);
 
     Buffer& operator=(const Buffer& buffer);
     void copyTo(const Buffer& buffer) const;
@@ -46,6 +48,17 @@ namespace RX
   public:
     BufferCreateInfo m_info;
   };
+
+  template <class T>
+  inline void Buffer::fill(T* source)
+  {
+    RX_ASSERT_INITIALIZED("fill");
+
+    void* data;
+    vkMapMemory(m_info.device, m_memory, 0, m_info.deviceSize, 0, &data);
+    memcpy(data, source, static_cast<uint32_t>(m_info.deviceSize));
+    vkUnmapMemory(m_info.device, m_memory);
+  }
 }
 
 #endif // BUFFER_HPP

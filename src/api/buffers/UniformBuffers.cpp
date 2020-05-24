@@ -29,13 +29,7 @@ namespace RX
 
   void UniformBuffers::upload(uint32_t imageIndex)
   {
-    UniformBufferObject temp = (*m_ubo.get());
-
-    void* data;
-    vkMapMemory(m_device, m_buffers[imageIndex].getMemory(), 0, sizeof(temp), 0, &data);
-
-    memcpy(data, &temp, sizeof(temp));
-    vkUnmapMemory(m_device, m_buffers[imageIndex].getMemory());
+    m_buffers[imageIndex].fill<UniformBufferObject>(m_ubo.get());
   }
 
   void UniformBuffers::destroy()

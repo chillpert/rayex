@@ -53,11 +53,7 @@ namespace RX
 
     Buffer stagingBuffer;
     stagingBuffer.create(stagingInfo);
-
-    void* data;
-    vkMapMemory(device, stagingBuffer.getMemory(), 0, stagingInfo.deviceSize, 0, &data);
-    memcpy(data, indices.data(), static_cast<uint32_t>(stagingInfo.deviceSize));
-    vkUnmapMemory(device, stagingBuffer.getMemory());
+    stagingBuffer.fill<T>(indices.data());
 
     m_buffer.create(bufferInfo);
 

@@ -38,6 +38,7 @@ endif()
 add_compile_definitions(RX_PROJECT_PATH="${PROJECT_SOURCE_DIR}/")
 add_compile_definitions(RX_RESOURCES_PATH="${PROJECT_SOURCE_DIR}/resources/")
 add_compile_definitions(RX_SHADER_PATH="${PROJECT_SOURCE_DIR}/resources/shaders/")
+add_compile_definitions(RX_TEXTURE_PATH="${PROJECT_SOURCE_DIR}/resources/textures/")
 
 # VULKAN
 find_package(Vulkan REQUIRED)
@@ -53,6 +54,7 @@ endif()
 if(${OS} STREQUAL "Windows")
   link_directories(${PROJECT_SOURCE_DIR}/external/SDL2/binaries/win64)
   include_directories(${PROJECT_SOURCE_DIR}/external/SDL2/include)
+  include_directories(${PROJECT_SOURCE_DIR}/external/STB)
 
   set(WINDOWING ${WINDOWING} "SDL2main.lib" "SDL2.lib")
 elseif(${OS} STREQUAL "Linux")
@@ -72,6 +74,7 @@ include_directories(${PROJECT_SOURCE_DIR}/src)
 file(GLOB FILES_LIB
   "${PROJECT_SOURCE_DIR}/src/api/*.cpp"
   "${PROJECT_SOURCE_DIR}/src/api/swapchain/*.cpp"
+  "${PROJECT_SOURCE_DIR}/src/api/texture/*.cpp"
   "${PROJECT_SOURCE_DIR}/src/api/buffers/*.cpp"
   "${PROJECT_SOURCE_DIR}/src/api/devices/*.cpp"
   "${PROJECT_SOURCE_DIR}/src/api/sync/*.cpp"

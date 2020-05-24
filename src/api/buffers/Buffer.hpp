@@ -2,6 +2,7 @@
 #define BUFFER_HPP
 
 #include "api/BaseComponent.hpp"
+#include "api/texture/Image.hpp"
 
 namespace RX
 {
@@ -32,16 +33,21 @@ namespace RX
     inline VkDeviceMemory getMemory() const { return m_memory; }
 
     void create(BufferCreateInfo& createInfo);
+
     template <class T>
     void fill(T* source);
 
+    // Is associated with the copyToBuffer function.
     Buffer& operator=(const Buffer& buffer);
-    void copyTo(const Buffer& buffer) const;
+    void copyToBuffer(const Buffer& buffer) const;
+
+    void copyToImage(const Image& image) const;
+
     void destroy();
 
-  private:
-    uint32_t findMemoryType(uint32_t typeFilter, VkMemoryPropertyFlags properties);
+    static uint32_t findMemoryType(VkPhysicalDevice physicalDevice, uint32_t typeFilter, VkMemoryPropertyFlags properties);
   
+  private:
     VkBuffer m_buffer;
     VkDeviceMemory m_memory;
 

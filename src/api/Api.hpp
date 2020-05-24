@@ -21,6 +21,8 @@
 #include "sync/Semaphore.hpp"
 #include "sync/Fence.hpp"
 
+#include "texture/Texture.hpp"
+
 #include "buffers/CommandPool.hpp"
 #include "buffers/CommandBuffers.hpp"
 #include "buffers/VertexBuffer.hpp"

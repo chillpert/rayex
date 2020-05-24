@@ -1,4 +1,5 @@
 #include "Buffer.hpp"
+#include "CommandBuffer.hpp"
 
 namespace RX
 {
@@ -30,7 +31,7 @@ namespace RX
     VkMemoryAllocateInfo allocInfo{ };
     allocInfo.sType = VK_STRUCTURE_TYPE_MEMORY_ALLOCATE_INFO;
     allocInfo.allocationSize = memRequirements.size;
-    allocInfo.memoryTypeIndex = findMemoryType(memRequirements.memoryTypeBits, createInfo.properties);
+    allocInfo.memoryTypeIndex = findMemoryType(m_info.physicalDevice, memRequirements.memoryTypeBits, createInfo.properties);
 
     /*
     TODO:
@@ -56,11 +57,11 @@ namespace RX
 
   Buffer& Buffer::operator=(const Buffer& buffer)
   {
-    buffer.copyTo(*this);
+    buffer.copyToBuffer(*this);
     return *this;
   }
 
-  void Buffer::copyTo(const Buffer& buffer) const
+  void Buffer::copyToBuffer(const Buffer& buffer) const
   {
     VkCommandBufferAllocateInfo allocInfo{};
     allocInfo.sType = VK_STRUCTURE_TYPE_COMMAND_BUFFER_ALLOCATE_INFO;
@@ -94,10 +95,32 @@ namespace RX
     vkFreeCommandBuffers(m_info.device, m_info.commandPool, 1, &commandBuffer);
   }
 
-  uint32_t Buffer::findMemoryType(uint32_t typeFilter, VkMemoryPropertyFlags properties)
+  void Buffer::copyToImage(const Image& image) const
+  {
+    CommandBuffer commandBuffer;
+
+    commandBuffer.begin(image.getDevice(), image.getCommandPool(), image.getQueue());
+
+    VkBufferImageCopy region{ };
+    region.bufferOffset = 0;
+    region.bufferRowLength = 0;
+    region.bufferImageHeight = 0;
+    region.imageSubresource.aspectMask = VK_IMAGE_ASPECT_COLOR_BIT;
+    region.imageSubresource.mipLevel = 0;
+    region.imageSubresource.baseArrayLayer = 0;
+    region.imageSubresource.layerCount = 1;
+    region.imageOffset = { 0, 0, 0 };
+    region.imageExtent = { image.getWidth(), image.getHeight(), 1 };
+
+    vkCmdCopyBufferToImage(commandBuffer.get(), m_buffer, image.get(), VK_IMAGE_LAYOUT_TRANSFER_DST_OPTIMAL, 1, &region);
+
+    commandBuffer.end();
+  }
+
+  uint32_t Buffer::findMemoryType(VkPhysicalDevice physicalDevice, uint32_t typeFilter, VkMemoryPropertyFlags properties)
   {
     VkPhysicalDeviceMemoryProperties memProperties;
-    vkGetPhysicalDeviceMemoryProperties(m_info.physicalDevice, &memProperties);
+    vkGetPhysicalDeviceMemoryProperties(physicalDevice, &memProperties);
 
     for (uint32_t i = 0; i < memProperties.memoryTypeCount; i++)
     {

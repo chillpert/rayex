@@ -63,6 +63,8 @@ namespace RX
     DescriptorSetLayout m_descriptorSetLayout;
     DescriptorPool m_descriptorPool;
     UniformBuffers m_uniformBuffers;
+    // TODO: temporary
+    Texture m_texture;
   
   public:
     std::vector<std::shared_ptr<Model>> m_models;

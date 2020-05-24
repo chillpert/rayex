@@ -9,6 +9,7 @@
 #include "api/buffers/DescriptorPool.hpp"
 #include "api/buffers/DescriptorSetLayout.hpp"
 #include "api/Shader.hpp"
+#include "api/texture/Texture.hpp"
 
 namespace RX
 {
@@ -22,6 +23,8 @@ namespace RX
 
     std::vector<Vertex> vertices;
     std::vector<uint32_t> indices;
+
+    std::shared_ptr<Texture> texture;
 
     // Transform
     std::shared_ptr<UniformBufferObject> ubo;

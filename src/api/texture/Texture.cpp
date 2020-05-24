@@ -49,9 +49,10 @@ namespace RX
     m_image.initialize(physicalDevice, device, queue, commandPool, createInfo);
 
     m_image.transitionToLayout(VK_IMAGE_LAYOUT_TRANSFER_DST_OPTIMAL);
-
     stagingBuffer.copyToImage(m_image);
-
     m_image.transitionToLayout(VK_IMAGE_LAYOUT_SHADER_READ_ONLY_OPTIMAL);
+
+    m_imageView.initialize(m_image);
+    m_sampler.initialize(device);
   }
 }

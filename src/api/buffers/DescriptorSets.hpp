@@ -4,6 +4,7 @@
 #include "DescriptorSetLayout.hpp"
 #include "Buffer.hpp"
 #include "UniformBuffers.hpp"
+#include "api/texture/Texture.hpp"
 
 namespace RX
 {
@@ -12,7 +13,7 @@ namespace RX
   public:
     inline std::vector<VkDescriptorSet> get() { return m_sets; }
 
-    void initialize(VkDevice device, size_t swapchainImagesCount, VkDescriptorPool descriptorPool, VkDescriptorSetLayout descriptorSetLayout, std::vector<Buffer>& uniformBuffers);
+    void initialize(VkDevice device, size_t swapchainImagesCount, VkDescriptorPool descriptorPool, VkDescriptorSetLayout descriptorSetLayout, std::vector<Buffer>& uniformBuffers, Texture& texture);
 
   private:
     std::vector<VkDescriptorSet> m_sets;

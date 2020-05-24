@@ -16,7 +16,7 @@ namespace KEY
 class Camera
 {
 public:
-  Camera(float width, float height);
+  Camera(int width, int height);
 
   void processKeyboard();
   void processMouse(float xoffset, float yoffset);

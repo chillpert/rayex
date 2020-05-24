@@ -11,10 +11,10 @@ namespace KEY
   bool space = false;
 }
 
-Camera::Camera(float width, float height) :
+Camera::Camera(int width, int height) :
   m_worldUp{ 0.0f, 1.0f, 0.0f },
-  m_width(width),
-  m_height(height),
+  m_width(static_cast<float>(width)),
+  m_height(static_cast<float>(height)),
   m_position{ 0.0f, 0.0f, 3.0f },
   m_front{ 0.0f, 0.0f, -1.0f },
   m_yaw(-90.0f),

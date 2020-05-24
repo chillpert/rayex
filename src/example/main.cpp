@@ -6,7 +6,7 @@ using namespace RX;
 
 int width = 900;
 int height = 600;
-Camera cam(static_cast<float>(width), static_cast<float>(height));
+Camera cam(width, height);
 
 // Create your own custom window class, to propagate it to your own event system.  
 class CustomWindow : public Window
@@ -28,7 +28,9 @@ public:
   {
     // Updates the timer bound to the window as well as the window size.
     Window::update();
-        
+
+    cam.setScreenDimensions(m_properties.getWidth(), m_properties.getHeight());
+
     // Add your custom event polling and integrate your event system.
     SDL_Event event;
 
@@ -88,11 +90,12 @@ public:
               {
                 m_mouseVisible = false;
                 SDL_SetRelativeMouseMode(SDL_TRUE);
+                SDL_GetRelativeMouseState(nullptr, nullptr); // Magic fix!
               }
               else
               {
-                m_mouseVisible = true;
                 SDL_SetRelativeMouseMode(SDL_FALSE);
+                m_mouseVisible = true;
               }
 
               break;
@@ -153,13 +156,13 @@ int main(int argc, char* argv[])
   auto rectangle = std::make_shared<Model>();
   rectangle->vertices = 
   {
-    {{-0.5f, -0.5f, 0.0f}, {1.0f, 0.0f, 0.0f}},
-    {{0.5f, -0.5f, 0.0f}, {0.0f, 1.0f, 0.0f}},
-    {{0.5f, 0.5f, 0.0f}, {0.0f, 0.0f, 1.0f}},
-    {{-0.5f, 0.5f, 0.0f}, {1.0f, 1.0f, 1.0f}}
+    {{-0.5f, -0.5f, 0.0f}, {1.0f, 0.0f, 0.4f}},
+    {{0.5f, -0.5f, 0.0f}, {0.8f, 0.1f, 0.3f}},
+    {{0.5f, 0.5f, 0.0f}, {0.9f, 0.3f, 0.0f}},
+    {{-0.5f, 0.5f, 0.0f}, {1.0f, 0.8f, 0.2f}}
   };
   rectangle->indices = { 0, 1, 2, 2, 3, 0 };
-  
+
   // Add the rectangle to the renderer. This way it will be queued for rendering.
   renderer.pushModel(rectangle);
 

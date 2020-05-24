@@ -109,7 +109,7 @@ public:
         {
           int x, y;
           SDL_GetRelativeMouseState(&x, &y);
-          cam.processMouse(x, -y);
+          cam.processMouse(x, y);
           break;
         }
       }
@@ -126,10 +126,10 @@ int main(int argc, char* argv[])
 
   std::vector<Vertex> vertices =
   {
-    {{-0.5f, -0.5f}, {1.0f, 0.0f, 0.0f}},
-    {{0.5f, -0.5f}, {0.0f, 1.0f, 0.0f}},
-    {{0.5f, 0.5f}, {0.0f, 0.0f, 1.0f}},
-    {{-0.5f, 0.5f}, {1.0f, 1.0f, 1.0f}}
+    {{-0.5f, -0.5f, 0.0f}, {1.0f, 0.0f, 0.0f}},
+    {{0.5f, -0.5f, 0.0f}, {0.0f, 1.0f, 0.0f}},
+    {{0.5f, 0.5f, 0.0f}, {0.0f, 0.0f, 1.0f}},
+    {{-0.5f, 0.5f, 0.0f}, {1.0f, 1.0f, 1.0f}}
   };
 
   std::vector<uint32_t> indices = { 0, 1, 2, 2, 3, 0 };
@@ -155,7 +155,6 @@ int main(int argc, char* argv[])
     rectangle->ubo->model = glm::rotate(glm::mat4(1.0f), time * glm::radians(90.0f), glm::vec3(0.0f, 0.0f, 1.0f));
     rectangle->ubo->view = cam.getViewMatrix();
     rectangle->ubo->projection = cam.getProjectionMatrix();
-    rectangle->ubo->projection[1][1] *= -1;
 
     renderer.update();
     renderer.render();

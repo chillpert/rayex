@@ -7,7 +7,7 @@ namespace RX
 {
   struct Vertex
   {
-    glm::vec2 pos;
+    glm::vec3 pos;
     glm::vec3 color;
 
     static std::array<VkVertexInputBindingDescription, 1> getBindingDescriptions()
@@ -26,7 +26,7 @@ namespace RX
 
       description[0].binding = 0;
       description[0].location = 0;
-      description[0].format = VK_FORMAT_R32G32_SFLOAT;
+      description[0].format = VK_FORMAT_R32G32B32_SFLOAT;
       description[0].offset = offsetof(Vertex, pos);
 
       description[1].binding = 0;

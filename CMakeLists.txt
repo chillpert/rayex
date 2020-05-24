@@ -122,7 +122,7 @@ if(BUILD_EXAMPLES)
   include_directories(${PROJECT_SOURCE_DIR}/src/example)
 
   file(GLOB FILES_EXAMPLE
-    "${PROJECT_SOURCE_DIR}/example/*.cpp"
+    "${PROJECT_SOURCE_DIR}/src/example/*.cpp"
   )
 
   add_executable(example ${PROJECT_SOURCE_DIR}/src/example/main.cpp ${FILES_EXAMPLE})

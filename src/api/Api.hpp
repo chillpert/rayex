@@ -8,6 +8,7 @@
 #include "Pipeline.hpp"
 #include "RenderPass.hpp"
 #include "Shader.hpp"
+#include "Model.hpp"
 
 #include "devices/PhysicalDevice.hpp"
 #include "devices/Device.hpp"
@@ -60,6 +61,11 @@ namespace RX
     DescriptorSetLayout m_descriptorSetLayout;
     DescriptorPool m_descriptorPool;
     UniformBuffers m_uniformBuffers;
+  
+  public:
+    std::vector<std::shared_ptr<Model>> m_models;
+
+  private:
     Swapchain m_swapchain;
     ImageViews m_imageViews;
     RenderPass m_renderPass;

@@ -1,55 +1,57 @@
 #ifndef CAMERA_HPP
 #define CAMERA_HPP
 
-#include "pch/stdafx.hpp"
+#include "glm/glm.hpp"
 
-namespace RX
+namespace KEY
 {
-  namespace KEY
-  {
-    extern bool w;
-    extern bool a;
-    extern bool s;
-    extern bool d;
-    extern bool c;
-    extern bool space;
-  }
-
-  class Camera
-  {
-  public:
-    RX_API Camera(float width, float height);
-  
-    RX_API void processKeyboard();
-    RX_API void processMouse(float xoffset, float yoffset);
-
-    RX_API void update();
-
-    RX_API inline glm::mat4 getViewMatrix() { return glm::lookAt(m_position, m_position + m_front, m_worldUp); }
-    RX_API inline glm::mat4 getProjectionMatrix() { return glm::perspective(glm::radians(m_fov), m_width / m_height, 0.1f, 100.0f); }
-
-    RX_API void setScreenDimensions(int width, int height);
-
-  private:
-    glm::fvec3 m_worldUp;
-    glm::fvec3 m_up;
-    glm::fvec3 m_right;
-
-    // viewport dimensions
-    float m_width;
-    float m_height;
-
-    RX_API void updateVectors();
-  
-  public:
-    glm::fvec3 m_position;
-    glm::fvec3 m_front;
-
-    float m_yaw;
-    float m_pitch;
-    float m_sensitivity;
-    float m_fov;
-  };
+  extern bool w;
+  extern bool a;
+  extern bool s;
+  extern bool d;
+  extern bool c;
+  extern bool space;
 }
+
+class Camera
+{
+public:
+  Camera(float width, float height);
+
+  void processKeyboard();
+  void processMouse(float xoffset, float yoffset);
+
+  void update();
+
+  inline glm::mat4 getViewMatrix() { return glm::lookAt(m_position, m_position + m_front, m_worldUp); }
+  inline glm::mat4 getProjectionMatrix() { return glm::perspective(glm::radians(m_fov), m_width / m_height, 0.1f, 100.0f); }
+
+  void setScreenDimensions(int width, int height);
+
+private:
+  glm::fvec3 m_worldUp;
+  glm::fvec3 m_up;
+  glm::fvec3 m_right;
+
+  // viewport dimensions
+  float m_width;
+  float m_height;
+
+  void updateVectors();
+
+public:
+  glm::fvec3 m_position;
+  glm::fvec3 m_front;
+
+  float m_yaw;
+  float m_pitch;
+  float m_sensitivity;
+  float m_fov;
+
+  bool m_firstMovement;
+  float m_mouseX;
+  float m_mouseY;
+};
+
 
 #endif // CAMERA_HPPs

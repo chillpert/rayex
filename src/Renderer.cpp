@@ -64,4 +64,9 @@ namespace RX
     m_api.clean();
     m_window->clean();
   }
+
+  void Renderer::pushModel(std::shared_ptr<Model> model)
+  {
+    m_api.m_models.push_back(model);
+  }
 }

@@ -75,19 +75,12 @@ namespace RX
     // Set up the command pool, allocate the command buffer and start command buffer recording.
     m_graphicsCmdPool.initialize(m_device.get(), m_queues.getGraphicsIndex()); // TODO: What if the graphics and present index are not identical?
 
-    std::vector<Vertex> rectangleVertices =
+    for (auto model : m_models)
     {
-      {{-0.5f, -0.5f}, {1.0f, 0.0f, 0.0f}},
-      {{0.5f, -0.5f}, {0.0f, 1.0f, 0.0f}},
-      {{0.5f, 0.5f}, {0.0f, 0.0f, 1.0f}},
-      {{-0.5f, 0.5f}, {1.0f, 1.0f, 1.0f}}
-    };
-
-    std::vector<uint32_t> rectangleIndices = { 0, 1, 2, 2, 3, 0 };
-
-    m_vertexBuffer.initialize(m_device.get(), m_physicalDevice.get(), m_graphicsCmdPool.get(), m_queues.getGraphicsQueue(), rectangleVertices);
-    m_indexBuffer.initialize<uint32_t>(m_device.get(), m_physicalDevice.get(), m_graphicsCmdPool.get(), m_queues.getGraphicsQueue(), rectangleIndices);
-    m_uniformBuffers.initialize(m_device.get(), m_physicalDevice.get(), m_swapchain.getExtent(), m_images.getSize());
+      m_vertexBuffer.initialize(m_device.get(), m_physicalDevice.get(), m_graphicsCmdPool.get(), m_queues.getGraphicsQueue(), model->vertices);
+      m_indexBuffer.initialize<uint32_t>(m_device.get(), m_physicalDevice.get(), m_graphicsCmdPool.get(), m_queues.getGraphicsQueue(), model->indices); 
+      m_uniformBuffers.initialize(m_device.get(), m_physicalDevice.get(), m_swapchain.getExtent(), m_images.getSize(), model->ubo);
+    }
 
     m_descriptorPool.initialize(m_device.get(), m_images.getSize());
     m_descriptorSets.initialize(m_device.get(), m_images.getSize(), m_descriptorPool.get(), m_descriptorSetLayout.get(), m_uniformBuffers.get());
@@ -138,8 +131,7 @@ namespace RX
     m_swapchain.acquireNextImage(m_device.get(), m_imageAvailableSemaphores[currentFrame].get(), VK_NULL_HANDLE, &imageIndex);
 
     // TODO: Temporary
-    m_uniformBuffers.update(imageIndex);
-    m_uniformBuffers.render();
+    m_uniformBuffers.upload(imageIndex);
 
     // Check if a previous frame is using the current image.
     if (m_imagesInFlight[imageIndex] != VK_NULL_HANDLE)
@@ -222,7 +214,12 @@ namespace RX
     m_pipeline.initialize(m_device.get(), m_renderPass.get(), m_swapchain.getExtent(), m_window, vs, fs, m_descriptorSetLayout.get());
 
     m_framebuffers.initialize(m_device.get(), m_imageViews, m_renderPass.get(), m_window);
-    m_uniformBuffers.initialize(m_device.get(), m_physicalDevice.get(), m_swapchain.getExtent(), m_images.getSize());
+
+    for (auto model : m_models)
+    {
+      m_uniformBuffers.initialize(m_device.get(), m_physicalDevice.get(), m_swapchain.getExtent(), m_images.getSize(), model->ubo);
+    }
+
     m_descriptorPool.initialize(m_device.get(), m_images.getSize());
     m_descriptorSets.initialize(m_device.get(), m_images.getSize(), m_descriptorPool.get(), m_descriptorSetLayout.get(), m_uniformBuffers.get());
     m_commandBuffers.initialize(m_device.get(), m_graphicsCmdPool.get(), m_framebuffers.getSize());

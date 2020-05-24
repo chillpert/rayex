@@ -15,20 +15,20 @@ public:
   CustomWindow(WindowProperties windowProps) : 
     Window(windowProps) { }
 
+  bool m_mouseVisible = true;
+
   void initialize() override
   {
     Window::initialize();
 
-    
+    SDL_SetRelativeMouseMode(SDL_FALSE);
   }
 
   bool update() override
   {
     // Updates the timer bound to the window as well as the window size.
     Window::update();
-    
-    SDL_SetRelativeMouseMode(SDL_TRUE);
-    
+        
     // Add your custom event polling and integrate your event system.
     SDL_Event event;
 
@@ -78,6 +78,25 @@ public:
             case SDLK_d:
               KEY::d = true;
               break;
+
+            case SDLK_ESCAPE:
+              return false;
+
+            case SDLK_SPACE:
+            {
+              if (m_mouseVisible)
+              {
+                m_mouseVisible = false;
+                SDL_SetRelativeMouseMode(SDL_TRUE);
+              }
+              else
+              {
+                m_mouseVisible = true;
+                SDL_SetRelativeMouseMode(SDL_FALSE);
+              }
+
+              break;
+            }
           }
           break;
         }
@@ -107,10 +126,13 @@ public:
 
         case SDL_MOUSEMOTION:
         {
-          int x, y;
-          SDL_GetRelativeMouseState(&x, &y);
-          cam.processMouse(x, y);
-          break;
+          if (!m_mouseVisible)
+          {
+            int x, y;
+            SDL_GetRelativeMouseState(&x, &y);
+            cam.processMouse(x, y);
+            break;
+          }
         }
       }
     }
@@ -120,35 +142,37 @@ public:
 
 int main(int argc, char* argv[])
 {
-  // Create the window.
+  // Define the window's properties according to your preferences.
   WindowProperties props(width, height, "Example", WINDOW_RESIZABLE | WINDOW_VISIBLE);
-  std::shared_ptr<Window> myWindow = std::make_shared<CustomWindow>(props);
+  // Now create the actual window using the window properties from above.
+  auto myWindow = std::make_shared<CustomWindow>(props);
+  // Create the renderer object.
+  Renderer renderer(myWindow);
 
-  std::vector<Vertex> vertices =
+  // Create a rectangle.
+  auto rectangle = std::make_shared<Model>();
+  rectangle->vertices = 
   {
     {{-0.5f, -0.5f, 0.0f}, {1.0f, 0.0f, 0.0f}},
     {{0.5f, -0.5f, 0.0f}, {0.0f, 1.0f, 0.0f}},
     {{0.5f, 0.5f, 0.0f}, {0.0f, 0.0f, 1.0f}},
     {{-0.5f, 0.5f, 0.0f}, {1.0f, 1.0f, 1.0f}}
   };
-
-  std::vector<uint32_t> indices = { 0, 1, 2, 2, 3, 0 };
-
-  Renderer renderer(myWindow);
-
-  std::shared_ptr<Model> rectangle = std::make_shared<Model>();
-  rectangle->vertices = vertices;
-  rectangle->indices = indices;
+  rectangle->indices = { 0, 1, 2, 2, 3, 0 };
+  
+  // Add the rectangle to the renderer. This way it will be queued for rendering.
   renderer.pushModel(rectangle);
 
+  // This will set up the entire Vulkan pipeline.
   renderer.initialize();
 
   while (renderer.isRunning())
   {
+    // Update the camera so that key inputs will have an effect on it.
     cam.update();
 
+    // Rotate the rectangle using the provided timer functions.
     static float startTime = Time::getTime();
-
     float currentTime = Time::getTime();
     float time = currentTime - startTime;
 
@@ -156,6 +180,7 @@ int main(int argc, char* argv[])
     rectangle->ubo->view = cam.getViewMatrix();
     rectangle->ubo->projection = cam.getProjectionMatrix();
 
+    // Call udpate and render for the renderer to work properly.
     renderer.update();
     renderer.render();
   }

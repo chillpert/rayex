@@ -20,10 +20,7 @@ Camera::Camera(float width, float height) :
   m_yaw(-90.0f),
   m_pitch(0.0f),
   m_sensitivity(0.06f),
-  m_fov(45.0f),
-  m_firstMovement(true),
-  m_mouseX(0.0f),
-  m_mouseY(0.0f)
+  m_fov(45.0f)
 {
   updateVectors();
 }

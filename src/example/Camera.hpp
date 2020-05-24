@@ -47,10 +47,6 @@ public:
   float m_pitch;
   float m_sensitivity;
   float m_fov;
-
-  bool m_firstMovement;
-  float m_mouseX;
-  float m_mouseY;
 };
 
 

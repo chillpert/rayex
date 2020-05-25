@@ -38,6 +38,7 @@ namespace RX
   {
   public:
     Api(std::shared_ptr<Window> window);
+    ~Api();
 
     void initialize();
     bool update();
@@ -54,28 +55,27 @@ namespace RX
     DebugMessenger m_debugMessenger;
     Surface m_surface;
     Device m_device;
+    RenderPass m_renderPass;
+    Swapchain m_swapchain;
+    ImageViews m_imageViews;
+    Framebuffers m_framebuffers;
+    DescriptorSetLayout m_descriptorSetLayout;
+    Pipeline m_pipeline;
     CommandPool m_graphicsCmdPool;
+    Texture m_texture;
+    VertexBuffer m_vertexBuffer;
+    IndexBuffer m_indexBuffer;
+    UniformBuffers m_uniformBuffers;
+    DescriptorPool m_descriptorPool;
     std::vector<Fence> m_inFlightFences;
     std::vector<Semaphore> m_imageAvailableSemaphores;
     std::vector<Semaphore> m_finishedRenderSemaphores;
-    VertexBuffer m_vertexBuffer;
-    IndexBuffer m_indexBuffer;
-    DescriptorSetLayout m_descriptorSetLayout;
-    DescriptorPool m_descriptorPool;
-    UniformBuffers m_uniformBuffers;
     // TODO: temporary
-    Texture m_texture;
   
   public:
     std::vector<std::shared_ptr<Model>> m_models;
 
   private:
-    Swapchain m_swapchain;
-    ImageViews m_imageViews;
-    RenderPass m_renderPass;
-    Pipeline m_pipeline;
-    CommandBuffers m_commandBuffers;
-    Framebuffers m_framebuffers;
 
     // No destruction necessary for following members:
     Images m_images;
@@ -83,6 +83,7 @@ namespace RX
     Queues m_queues;
     DescriptorSets m_descriptorSets;
     std::vector<VkFence> m_imagesInFlight;
+    CommandBuffers m_commandBuffers;
   };
 }
 

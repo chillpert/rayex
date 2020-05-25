@@ -8,7 +8,7 @@ namespace RX
 
 	CommandBuffers::~CommandBuffers()
 	{
-		destroy();
+		//destroy();
 	}
 
 	void CommandBuffers::initialize(VkDevice device, VkCommandPool commandPool, size_t swapchainFramebufferSize)

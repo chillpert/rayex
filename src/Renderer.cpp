@@ -16,7 +16,7 @@ namespace RX
 
   Renderer::~Renderer()
   {
-    clean();
+    //clean();
   }
 
   void Renderer::initialize()

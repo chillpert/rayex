@@ -7,6 +7,11 @@ namespace RX
     m_properties{ windowProperties },
     m_time{ } { }
 
+  Window::~Window()
+  {
+    clean();
+  }
+
   void Window::initialize()
   {
     SDL_SetHint(SDL_HINT_FRAMEBUFFER_ACCELERATION, "1");

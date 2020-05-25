@@ -9,6 +9,11 @@ namespace RX
   Api::Api(std::shared_ptr<Window> window) :
     m_window(window) { }
 
+  Api::~Api()
+  {
+    clean();
+  }
+
   void Api::initialize()
   {
     // This extension is required for extending the physical m_device from m_device extensions.

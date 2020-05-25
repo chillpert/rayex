@@ -11,7 +11,7 @@ namespace RX
   {
   public:
     RX_API Window(WindowProperties windowProperties = WindowProperties());
-    virtual ~Window();
+    RX_API virtual ~Window();
 
     RX_API virtual void initialize();
     RX_API virtual bool update();

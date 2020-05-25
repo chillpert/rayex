@@ -59,13 +59,12 @@ namespace RX
     m_queues.retrieveAllHandles(m_device.get());
 
     // Set up the render pass.
-    m_renderPass.initialize(m_device.get(), m_surface.getFormat(m_physicalDevice.get()).format);
+    m_renderPass.initialize(m_physicalDevice.get(), m_device.get(), m_surface.getFormat(m_physicalDevice.get()).format);
 
     // Set up the swapchain and its related components.
     m_swapchain.initialize(m_physicalDevice.get(), m_device.get(), m_surface, m_window, m_queues);
     m_images.initialize(m_device.get(), m_swapchain.get());
     m_imageViews.initialize(m_device.get(), m_surface.getFormat().format, m_images);
-    m_framebuffers.initialize(m_device.get(), m_imageViews, m_renderPass.get(), m_window);
     
     // Set up simple example shaders.
     Shader vs, fs;
@@ -79,6 +78,9 @@ namespace RX
     
     // Set up the command pool, allocate the command buffer and start command buffer recording.
     m_graphicsCmdPool.initialize(m_device.get(), m_queues.getGraphicsIndex()); // TODO: What if the graphics and present index are not identical?
+
+    m_depthImage.initialize(m_physicalDevice.get(), m_device.get(), m_swapchain.getExtent());
+    m_framebuffers.initialize(m_device.get(), m_imageViews, m_depthImage.getView(), m_renderPass.get(), m_window);
 
     // TODO: temporary
     m_texture.initialize(m_physicalDevice.get(), m_device.get(), m_queues.getGraphicsQueue(), m_graphicsCmdPool.get(), RX_TEXTURE_PATH "awesomeface.png");
@@ -215,14 +217,14 @@ namespace RX
     m_swapchain.initialize(m_physicalDevice.get(), m_device.get(), m_surface, m_window, m_queues);
     m_images.initialize(m_device.get(), m_swapchain.get());
     m_imageViews.initialize(m_device.get(), m_surface.getFormat().format, m_images);
-    m_renderPass.initialize(m_device.get(), m_surface.getFormat(m_physicalDevice.get()).format);
+    m_renderPass.initialize(m_physicalDevice.get(), m_device.get(), m_surface.getFormat(m_physicalDevice.get()).format);
     
     Shader vs, fs;
     vs.initialize(RX_SHADER_PATH "simple3D.vert", m_device.get());
     fs.initialize(RX_SHADER_PATH "simple3D.frag", m_device.get());
     m_pipeline.initialize(m_device.get(), m_renderPass.get(), m_swapchain.getExtent(), m_window, vs, fs, m_descriptorSetLayout.get());
 
-    m_framebuffers.initialize(m_device.get(), m_imageViews, m_renderPass.get(), m_window);
+    m_framebuffers.initialize(m_device.get(), m_imageViews, m_depthImage.getView(), m_renderPass.get(), m_window);
 
     for (auto model : m_models)
     {

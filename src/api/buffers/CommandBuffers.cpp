@@ -47,9 +47,14 @@ namespace RX
 	    renderPassInfo.renderArea.offset = { 0, 0 };
 	    renderPassInfo.renderArea.extent = swapchain.getExtent();
 
-	    VkClearValue clearColor = { 0.2f, 0.2f, 0.2f, 1.0f };
-	    renderPassInfo.clearValueCount = 1;
-	    renderPassInfo.pClearValues = &clearColor;
+			VkClearValue colorValue;
+			colorValue.color =	{0.0f, 0.0f, 0.0f, 1.0f};
+			VkClearValue depthValue;
+			depthValue.depthStencil = {1.0f, 0};
+
+			VkClearValue clearValues[] = { colorValue, depthValue };
+	    renderPassInfo.clearValueCount = 2;
+	    renderPassInfo.pClearValues = clearValues;
 
 	    vkCmdBeginRenderPass(m_commandBuffers[i], &renderPassInfo, VK_SUBPASS_CONTENTS_INLINE);
 

@@ -18,6 +18,7 @@ namespace RX
     m_device = device;
     m_queue = queue;
     m_commandPool = commandPool;
+    
     m_width = createInfo.extent.width;
     m_height = createInfo.extent.height;
     m_format = createInfo.format;
@@ -93,6 +94,25 @@ namespace RX
     commandBuffer.end();
 
     m_layout = layout;
+  }
+
+  VkFormat Image::findSupportedFormat(VkPhysicalDevice physicalDevice, const std::vector<VkFormat>& formatsToTest, VkFormatFeatureFlags features, VkImageTiling tiling)
+  {
+    for (VkFormat format : formatsToTest)
+    {
+      VkFormatProperties props;
+      vkGetPhysicalDeviceFormatProperties(physicalDevice, format, &props);
+
+      if (tiling == VK_IMAGE_TILING_LINEAR && (props.linearTilingFeatures & features) == features)
+        return format;
+
+      else if (tiling == VK_IMAGE_TILING_OPTIMAL && (props.optimalTilingFeatures & features) == features)
+        return format;
+    }
+
+    RX_ERROR("Failed to retrieve any supported image format.");
+
+    return VK_FORMAT_UNDEFINED;
   }
 
   void Image::destroy()

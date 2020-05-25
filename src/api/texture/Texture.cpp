@@ -31,7 +31,7 @@ namespace RX
 
     stbi_image_free(pixels);
 
-    VkImageCreateInfo createInfo{};
+    VkImageCreateInfo createInfo{ };
     createInfo.sType = VK_STRUCTURE_TYPE_IMAGE_CREATE_INFO;
     createInfo.imageType = VK_IMAGE_TYPE_2D;
     createInfo.extent.width = static_cast<uint32_t>(width);

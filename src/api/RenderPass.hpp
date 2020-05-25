@@ -13,7 +13,7 @@ namespace RX
 
     inline VkRenderPass get() { return m_renderPass; }
 
-    void initialize(VkDevice device, VkFormat format);
+    void initialize(VkPhysicalDevice physicalDevice, VkDevice device, VkFormat format);
     void destroy();
 
   private:

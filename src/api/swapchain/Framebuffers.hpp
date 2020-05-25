@@ -17,7 +17,7 @@ namespace RX
 		inline std::vector<VkFramebuffer> get() { return m_framebuffers; }
 		inline size_t getSize() { return m_framebuffers.size(); }
 
-		void initialize(VkDevice device, ImageViews& imageViews, VkRenderPass renderPass, std::shared_ptr<Window> window);
+		void initialize(VkDevice device, ImageViews& swapchainImageViews, VkImageView depthImageView, VkRenderPass renderPass, std::shared_ptr<Window> window);
     void destroy();
 
 	private:

@@ -9,9 +9,9 @@ namespace RX
   {
   public:
     Image();
-    ~Image();
+    virtual ~Image();
 
-    inline VkImage get() const { return m_image; }
+    virtual inline VkImage get() const { return m_image; }
     inline VkFormat getFormat() const { return m_format; }
     inline VkDevice getDevice() const { return m_device; }
     inline VkQueue getQueue() const { return m_queue; }
@@ -20,11 +20,13 @@ namespace RX
     inline uint32_t getHeight() const { return m_height; }
     inline VkExtent2D getExtent() const { return { m_width, m_height }; }
 
-    void initialize(VkPhysicalDevice physicalDevice, VkDevice device, VkQueue queue, VkCommandPool commandPool, VkImageCreateInfo& createInfo);
-    void transitionToLayout(VkImageLayout layout);
+    virtual void initialize(VkPhysicalDevice physicalDevice, VkDevice device, VkQueue queue, VkCommandPool commandPool, VkImageCreateInfo& createInfo);
+    virtual void transitionToLayout(VkImageLayout layout);
+    
+    static VkFormat findSupportedFormat(VkPhysicalDevice physicalDevice, const std::vector<VkFormat>& formatsToTest, VkFormatFeatureFlags features, VkImageTiling tiling);
     void destroy();
   
-  private:
+  protected:
     VkImage m_image;
     VkDeviceMemory m_memory;
     VkImageLayout m_layout;

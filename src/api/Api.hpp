@@ -22,6 +22,7 @@
 #include "sync/Fence.hpp"
 
 #include "texture/Texture.hpp"
+#include "texture/DepthImage.hpp"
 
 #include "buffers/CommandPool.hpp"
 #include "buffers/CommandBuffers.hpp"
@@ -70,8 +71,9 @@ namespace RX
     std::vector<Fence> m_inFlightFences;
     std::vector<Semaphore> m_imageAvailableSemaphores;
     std::vector<Semaphore> m_finishedRenderSemaphores;
+    DepthImage m_depthImage;
+
     // TODO: temporary
-  
   public:
     std::vector<std::shared_ptr<Model>> m_models;
 

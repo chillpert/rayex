@@ -21,10 +21,13 @@ namespace RX
       ubo = std::make_shared<UniformBufferObject>();
     }
 
+    void load();
+
     std::vector<Vertex> vertices;
     std::vector<uint32_t> indices;
 
     std::string texturePath;
+    std::string modelPath;
 
     // Transform
     std::shared_ptr<UniformBufferObject> ubo;

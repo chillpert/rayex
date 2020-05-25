@@ -85,6 +85,8 @@ namespace RX
     
     for (auto model : m_models)
     {
+      model->load();
+
       m_texture.initialize(m_physicalDevice.get(), m_device.get(), m_queues.getGraphicsQueue(), m_graphicsCmdPool.get(), model->texturePath);
       m_vertexBuffer.initialize(m_device.get(), m_physicalDevice.get(), m_graphicsCmdPool.get(), m_queues.getGraphicsQueue(), model->vertices);
       m_indexBuffer.initialize<uint32_t>(m_device.get(), m_physicalDevice.get(), m_graphicsCmdPool.get(), m_queues.getGraphicsQueue(), model->indices); 
@@ -218,7 +220,7 @@ namespace RX
     m_images.initialize(m_device.get(), m_swapchain.get());
     m_imageViews.initialize(m_device.get(), m_surface.getFormat().format, m_images);
     m_renderPass.initialize(m_physicalDevice.get(), m_device.get(), m_surface.getFormat(m_physicalDevice.get()).format);
-    
+
     Shader vs, fs;
     vs.initialize(RX_SHADER_PATH "simple3D.vert", m_device.get());
     fs.initialize(RX_SHADER_PATH "simple3D.frag", m_device.get());

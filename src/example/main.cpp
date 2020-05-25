@@ -154,20 +154,10 @@ int main(int argc, char* argv[])
 
   // Create a rectangle.
   auto rectangle = std::make_shared<Model>();
-  rectangle->vertices = 
-  {
-    {{-0.5f, -0.5f, 0.0f}, {1.0f, 0.0f, 0.4f}, {0.0f, 0.0f}},
-    {{0.5f, -0.5f, 0.0f}, {0.8f, 0.1f, 0.3f}, {1.0f, 0.0f}},
-    {{0.5f, 0.5f, 0.0f}, {0.9f, 0.3f, 0.0f}, {1.0f, 1.0f}},
-    {{-0.5f, 0.5f, 0.0f}, {1.0f, 0.8f, 0.2f}, {0.0f, 1.0f}}
-  };
-
-  rectangle->indices = 
-  {
-    0, 1, 2, 2, 3, 0
-  };
-  
-  rectangle->texturePath = RX_TEXTURE_PATH "awesomeface.png";
+  rectangle->texturePath = RX_TEXTURE_PATH "viking_room.png";
+  rectangle->modelPath = RX_MODEL_PATH "viking_room.obj";
+  rectangle->ubo->model = glm::rotate(rectangle->ubo->model, glm::radians(90.0f), glm::vec3(1.0f, 0.0f, 0.0f));
+  rectangle->ubo->model = glm::rotate(rectangle->ubo->model, glm::radians(90.0f), glm::vec3(0.0f, 0.0f, 1.0f));
 
   // Add the rectangle to the renderer. This way it will be queued for rendering.
   renderer.pushModel(rectangle);
@@ -181,11 +171,8 @@ int main(int argc, char* argv[])
     cam.update();
 
     // Rotate the rectangle using the provided timer functions.
-    static float startTime = Time::getTime();
-    float currentTime = Time::getTime();
-    float time = currentTime - startTime;
-
-    rectangle->ubo->model = glm::rotate(glm::mat4(1.0f), time * glm::radians(90.0f), glm::vec3(0.0f, 0.0f, 1.0f));
+    static float speed = 0.01f;
+    rectangle->ubo->model = glm::rotate(rectangle->ubo->model, glm::radians(90.0f) * Time::getDeltaTime() * speed, glm::vec3(0.0f, 0.0f, 1.0f));
     rectangle->ubo->view = cam.getViewMatrix();
     rectangle->ubo->projection = cam.getProjectionMatrix();
 

@@ -23,5 +23,6 @@
 #include <fstream>
 #include <array>
 #include <memory>
+#include <unordered_map>
 
 #endif // STDAFX_HPP

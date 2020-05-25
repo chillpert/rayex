@@ -54,7 +54,6 @@ endif()
 if(${OS} STREQUAL "Windows")
   link_directories(${PROJECT_SOURCE_DIR}/external/SDL2/binaries/win64)
   include_directories(${PROJECT_SOURCE_DIR}/external/SDL2/include)
-  include_directories(${PROJECT_SOURCE_DIR}/external/STB)
 
   set(WINDOWING ${WINDOWING} "SDL2main.lib" "SDL2.lib")
 elseif(${OS} STREQUAL "Linux")
@@ -68,6 +67,7 @@ endif()
 
 # HEADER PROJECT FILES
 include_directories(${PROJECT_SOURCE_DIR}/external/glm/include)
+include_directories(${PROJECT_SOURCE_DIR}/external/STB)
 include_directories(${PROJECT_SOURCE_DIR}/src)
 
 # SOURCE PROJECT FILES

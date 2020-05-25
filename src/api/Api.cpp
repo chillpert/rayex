@@ -76,7 +76,6 @@ namespace RX
     m_graphicsCmdPool.initialize(m_device.get(), m_queues.getGraphicsIndex()); // TODO: What if the graphics and present index are not identical?
 
     // TODO: temporary
-    
     m_texture.initialize(m_physicalDevice.get(), m_device.get(), m_queues.getGraphicsQueue(), m_graphicsCmdPool.get(), RX_TEXTURE_PATH "awesomeface.png");
 
     for (auto model : m_models)
@@ -177,6 +176,7 @@ namespace RX
     presentInfo.pSwapchains = swapChains;
 
     presentInfo.pImageIndices = &imageIndex;
+
     // Tell the presentation engine that the current image is ready.
     m_queues.present(presentInfo);
 

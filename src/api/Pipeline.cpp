@@ -1,5 +1,5 @@
 #include "Pipeline.hpp"
-#include "Buffers/Vertex.hpp"
+#include "buffers/Vertex.hpp"
 
 namespace RX
 {

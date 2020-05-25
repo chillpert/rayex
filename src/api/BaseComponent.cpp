@@ -14,10 +14,10 @@ namespace RX
     if (!m_initialized)
     {
       char result[100];
-      strcpy_s(result, messagePrefix);
-      strcat_s(result, m_componentName);
-      strcat_s(result, ": ");
-      strcat_s(result, message);
+      strcpy(result, messagePrefix);
+      strcat(result, m_componentName);
+      strcat(result, ": ");
+      strcat(result, message);
       RX_ERROR(result);
     }
   }
@@ -28,10 +28,10 @@ namespace RX
     if (m_initialized)
     {
       char result[100];
-      strcpy_s(result, messagePrefix);
-      strcat_s(result, m_componentName);
-      strcat_s(result, ": ");
-      strcat_s(result, message);
+      strcpy(result, messagePrefix);
+      strcat(result, m_componentName);
+      strcat(result, ": ");
+      strcat(result, message);
       RX_ERROR(result);
     }
   }
@@ -42,8 +42,8 @@ namespace RX
     if (!m_initialized)
     {
       char result[100];
-      strcpy_s(result, messagePrefix);
-      strcat_s(result, m_componentName);
+      strcpy(result, messagePrefix);
+      strcat(result, m_componentName);
       RX_ERROR(result);
     }
 
@@ -56,8 +56,8 @@ namespace RX
     if (m_initialized)
     {
       char result[100];
-      strcpy_s(result, messagePrefix);
-      strcat_s(result, m_componentName);
+      strcpy(result, messagePrefix);
+      strcat(result, m_componentName);
       RX_ERROR(result);
     }
 

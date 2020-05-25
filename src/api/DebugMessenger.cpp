@@ -60,33 +60,33 @@ namespace RX
 
     if (messageSeverity & VK_DEBUG_UTILS_MESSAGE_SEVERITY_VERBOSE_BIT_EXT)
     {
-      strcpy_s(prefix, "VERBOSE: ");
+      strcpy(prefix, "VERBOSE: ");
     }
     else if (messageSeverity & VK_DEBUG_UTILS_MESSAGE_SEVERITY_INFO_BIT_EXT)
     {
-      strcpy_s(prefix, "INFO: ");
+      strcpy(prefix, "INFO: ");
     }
     else if (messageSeverity & VK_DEBUG_UTILS_MESSAGE_SEVERITY_WARNING_BIT_EXT)
     {
-      strcpy_s(prefix, "WARNING: ");
+      strcpy(prefix, "WARNING: ");
     }
     else if (messageSeverity & VK_DEBUG_UTILS_MESSAGE_SEVERITY_ERROR_BIT_EXT)
     {
-      strcpy_s(prefix, "ERROR: ");
+      strcpy(prefix, "ERROR: ");
     }
 
     if (messageType & VK_DEBUG_UTILS_MESSAGE_TYPE_GENERAL_BIT_EXT)
     {
-      strcat_s(prefix, "GENERAL");
+      strcat(prefix, "GENERAL");
     }
     else
     {
       if (messageType & VK_DEBUG_UTILS_MESSAGE_TYPE_VALIDATION_BIT_EXT)
       {
-        strcat_s(prefix, "VALIDATION");
+        strcat(prefix, "VALIDATION");
         if (messageType & VK_DEBUG_UTILS_MESSAGE_TYPE_PERFORMANCE_BIT_EXT)
         {
-          strcat_s(prefix, " | PERFORMANCE");
+          strcat(prefix, " | PERFORMANCE");
         }
       }
     }

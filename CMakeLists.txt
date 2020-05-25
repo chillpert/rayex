@@ -39,6 +39,7 @@ add_compile_definitions(RX_PROJECT_PATH="${PROJECT_SOURCE_DIR}/")
 add_compile_definitions(RX_RESOURCES_PATH="${PROJECT_SOURCE_DIR}/resources/")
 add_compile_definitions(RX_SHADER_PATH="${PROJECT_SOURCE_DIR}/resources/shaders/")
 add_compile_definitions(RX_TEXTURE_PATH="${PROJECT_SOURCE_DIR}/resources/textures/")
+add_compile_definitions(RX_MODEL_PATH="${PROJECT_SOURCE_DIR}/resources/models/")
 
 # VULKAN
 find_package(Vulkan REQUIRED)
@@ -68,6 +69,7 @@ endif()
 # HEADER PROJECT FILES
 include_directories(${PROJECT_SOURCE_DIR}/external/glm/include)
 include_directories(${PROJECT_SOURCE_DIR}/external/STB)
+include_directories(${PROJECT_SOURCE_DIR}/external/ModelLoading)
 include_directories(${PROJECT_SOURCE_DIR}/src)
 
 # SOURCE PROJECT FILES

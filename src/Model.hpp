@@ -24,7 +24,7 @@ namespace RX
     std::vector<Vertex> vertices;
     std::vector<uint32_t> indices;
 
-    std::shared_ptr<Texture> texture;
+    std::string texturePath;
 
     // Transform
     std::shared_ptr<UniformBufferObject> ubo;

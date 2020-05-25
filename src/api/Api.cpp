@@ -82,11 +82,10 @@ namespace RX
     m_depthImage.initialize(m_physicalDevice.get(), m_device.get(), m_swapchain.getExtent());
     m_framebuffers.initialize(m_device.get(), m_imageViews, m_depthImage.getView(), m_renderPass.get(), m_window);
 
-    // TODO: temporary
-    m_texture.initialize(m_physicalDevice.get(), m_device.get(), m_queues.getGraphicsQueue(), m_graphicsCmdPool.get(), RX_TEXTURE_PATH "awesomeface.png");
-
+    
     for (auto model : m_models)
     {
+      m_texture.initialize(m_physicalDevice.get(), m_device.get(), m_queues.getGraphicsQueue(), m_graphicsCmdPool.get(), model->texturePath);
       m_vertexBuffer.initialize(m_device.get(), m_physicalDevice.get(), m_graphicsCmdPool.get(), m_queues.getGraphicsQueue(), model->vertices);
       m_indexBuffer.initialize<uint32_t>(m_device.get(), m_physicalDevice.get(), m_graphicsCmdPool.get(), m_queues.getGraphicsQueue(), model->indices); 
       m_uniformBuffers.initialize(m_device.get(), m_physicalDevice.get(), m_swapchain.getExtent(), m_images.getSize(), model->ubo);
@@ -204,6 +203,7 @@ namespace RX
     m_device.waitIdle();
 
     // 1. Cleaning the existing swapchain.
+    m_depthImage.destroy();
     m_framebuffers.destroy();
     m_commandBuffers.destroy();
     m_pipeline.destroy();
@@ -224,6 +224,7 @@ namespace RX
     fs.initialize(RX_SHADER_PATH "simple3D.frag", m_device.get());
     m_pipeline.initialize(m_device.get(), m_renderPass.get(), m_swapchain.getExtent(), m_window, vs, fs, m_descriptorSetLayout.get());
 
+    m_depthImage.initialize(m_physicalDevice.get(), m_device.get(), m_swapchain.getExtent());
     m_framebuffers.initialize(m_device.get(), m_imageViews, m_depthImage.getView(), m_renderPass.get(), m_window);
 
     for (auto model : m_models)

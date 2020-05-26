@@ -70,6 +70,7 @@ endif()
 include_directories(${PROJECT_SOURCE_DIR}/external/glm/include)
 include_directories(${PROJECT_SOURCE_DIR}/external/STB)
 include_directories(${PROJECT_SOURCE_DIR}/external/ModelLoading)
+include_directories(${PROJECT_SOURCE_DIR}/external/ImGui)
 include_directories(${PROJECT_SOURCE_DIR}/src)
 
 # SOURCE PROJECT FILES
@@ -85,6 +86,9 @@ file(GLOB FILES_LIB
   "${PROJECT_SOURCE_DIR}/src/events/*.cpp"
   "${PROJECT_SOURCE_DIR}/src/utils/*.cpp"
   "${PROJECT_SOURCE_DIR}/src/*.cpp"
+
+  # ImGui files
+  "${PROJECT_SOURCE_DIR}/external/ImGui/*.cpp"
 )
 
 # LIBRARY

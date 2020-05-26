@@ -8,8 +8,8 @@ namespace RX
   class Sampler : public BaseComponent
   {
   public:
-    Sampler();
-    ~Sampler();
+    RX_API Sampler();
+    RX_API ~Sampler();
 
     inline VkSampler get() const { return m_sampler; }
 

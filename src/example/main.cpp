@@ -152,15 +152,25 @@ int main(int argc, char* argv[])
   // Create the renderer object.
   Renderer renderer(myWindow);
 
-  // Create a rectangle.
-  auto rectangle = std::make_shared<Model>();
-  rectangle->texturePath = RX_TEXTURE_PATH "viking_room.png";
-  rectangle->modelPath = RX_MODEL_PATH "viking_room.obj";
-  rectangle->ubo->model = glm::rotate(rectangle->ubo->model, glm::radians(90.0f), glm::vec3(1.0f, 0.0f, 0.0f));
-  rectangle->ubo->model = glm::rotate(rectangle->ubo->model, glm::radians(90.0f), glm::vec3(0.0f, 0.0f, 1.0f));
+  // Create a model.
+  auto vikingRoom1 = std::make_shared<Model>();
+  vikingRoom1->texturePath = RX_TEXTURE_PATH "viking_room.png";
+  vikingRoom1->modelPath = RX_MODEL_PATH "viking_room.obj";
+  vikingRoom1->ubo->model = glm::rotate(vikingRoom1->ubo->model, glm::radians(90.0f), glm::vec3(1.0f, 0.0f, 0.0f));
+  vikingRoom1->ubo->model = glm::rotate(vikingRoom1->ubo->model, glm::radians(90.0f), glm::vec3(0.0f, 0.0f, 1.0f));
 
-  // Add the rectangle to the renderer. This way it will be queued for rendering.
-  renderer.pushModel(rectangle);
+  // Add the model to the renderer. This way it will be queued for rendering.
+  renderer.pushModel(vikingRoom1);
+
+  auto vikingRoom2 = std::make_shared<Model>();
+  vikingRoom2->texturePath = RX_TEXTURE_PATH "viking_room.png";
+  vikingRoom2->modelPath = RX_MODEL_PATH "viking_room.obj";
+  vikingRoom2->ubo->model = glm::rotate(vikingRoom2->ubo->model, glm::radians(90.0f), glm::vec3(1.0f, 0.0f, 0.0f));
+  vikingRoom2->ubo->model = glm::rotate(vikingRoom2->ubo->model, glm::radians(90.0f), glm::vec3(0.0f, 0.0f, 1.0f));
+  vikingRoom2->ubo->model = glm::translate(vikingRoom2->ubo->model, glm::vec3(0.0f, 0.0f, -1.0f));
+
+  // Add the model to the renderer. This way it will be queued for rendering.
+  renderer.pushModel(vikingRoom2);
 
   // This will set up the entire Vulkan pipeline.
   renderer.initialize();
@@ -170,11 +180,14 @@ int main(int argc, char* argv[])
     // Update the camera so that key inputs will have an effect on it.
     cam.update();
 
-    // Rotate the rectangle using the provided timer functions.
+    // Rotate the model using the provided timer functions.
     static float speed = 0.01f;
-    rectangle->ubo->model = glm::rotate(rectangle->ubo->model, glm::radians(90.0f) * Time::getDeltaTime() * speed, glm::vec3(0.0f, 0.0f, 1.0f));
-    rectangle->ubo->view = cam.getViewMatrix();
-    rectangle->ubo->projection = cam.getProjectionMatrix();
+    vikingRoom1->ubo->model = glm::rotate(vikingRoom1->ubo->model, glm::radians(90.0f) * Time::getDeltaTime() * speed, glm::vec3(0.0f, 0.0f, 1.0f));
+    vikingRoom1->ubo->view = cam.getViewMatrix();
+    vikingRoom1->ubo->projection = cam.getProjectionMatrix();
+
+    vikingRoom2->ubo->view = cam.getViewMatrix();
+    vikingRoom2->ubo->projection = cam.getProjectionMatrix();
 
     // Call udpate and render for the renderer to work properly.
     renderer.update();

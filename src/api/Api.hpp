@@ -63,11 +63,11 @@ namespace RX
     DescriptorSetLayout m_descriptorSetLayout;
     Pipeline m_pipeline;
     CommandPool m_graphicsCmdPool;
-    Texture m_texture;
-    VertexBuffer m_vertexBuffer;
-    IndexBuffer m_indexBuffer;
-    UniformBuffers m_uniformBuffers;
-    DescriptorPool m_descriptorPool;
+    //Texture m_texture;
+    //VertexBuffer m_vertexBuffer;
+    //IndexBuffer m_indexBuffer;
+    //UniformBuffers m_uniformBuffers;
+    //DescriptorPool m_descriptorPool;
     std::vector<Fence> m_inFlightFences;
     std::vector<Semaphore> m_imageAvailableSemaphores;
     std::vector<Semaphore> m_finishedRenderSemaphores;
@@ -78,12 +78,11 @@ namespace RX
     std::vector<std::shared_ptr<Model>> m_models;
 
   private:
-
     // No destruction necessary for following members:
     Images m_images;
     PhysicalDevice m_physicalDevice;
     Queues m_queues;
-    DescriptorSets m_descriptorSets;
+    //DescriptorSets m_descriptorSets;
     std::vector<VkFence> m_imagesInFlight;
     CommandBuffers m_commandBuffers;
   };

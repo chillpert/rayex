@@ -29,7 +29,7 @@ namespace RX
 		RX_INITIALIZATION_CALLBACK;
 	}
 
-	void CommandBuffers::record(Swapchain& swapchain, Framebuffers& framebuffers, RenderPass& renderPass, Pipeline& pipeline, VertexBuffer& vertexBuffer, IndexBuffer& indexBuffer, DescriptorSets& descriptorSets)
+	void CommandBuffers::record(Swapchain& swapchain, Framebuffers& framebuffers, RenderPass& renderPass, Pipeline& pipeline, std::vector<std::shared_ptr<Model>>& models)
 	{
 		RX_ASSERT_INITIALIZED("record");
 
@@ -60,15 +60,18 @@ namespace RX
 
 				vkCmdBindPipeline(m_commandBuffers[i], VK_PIPELINE_BIND_POINT_GRAPHICS, pipeline.get());
 
-				VkBuffer vertexBuffers[] = { vertexBuffer.get() };
-				VkDeviceSize offsets[] = { 0 };
-				vkCmdBindVertexBuffers(m_commandBuffers[i], 0, 1, vertexBuffers, offsets);
+				for (std::shared_ptr<Model> model : models)
+				{
+					VkDeviceSize offsets[] = { 0 };
+					VkBuffer vertexBuffers[] = { model->vertexBuffer.get() };
+					vkCmdBindVertexBuffers(m_commandBuffers[i], 0, 1, vertexBuffers, offsets);
 
-				vkCmdBindIndexBuffer(m_commandBuffers[i], indexBuffer.get(), 0, indexBuffer.getType());
+					vkCmdBindIndexBuffer(m_commandBuffers[i], model->indexBuffer.get(), 0, model->indexBuffer.getType());
 
-				vkCmdBindDescriptorSets(m_commandBuffers[i], VK_PIPELINE_BIND_POINT_GRAPHICS, pipeline.getLayout(), 0, 1, &descriptorSets.get()[i], 0, nullptr);
+					vkCmdBindDescriptorSets(m_commandBuffers[i], VK_PIPELINE_BIND_POINT_GRAPHICS, pipeline.getLayout(), 0, 1, &model->descriptorSets.get()[i], 0, nullptr);
 
-				vkCmdDrawIndexed(m_commandBuffers[i], indexBuffer.getCount(), 1, 0, 0, 0);
+					vkCmdDrawIndexed(m_commandBuffers[i], model->indexBuffer.getCount(), 1, 0, 0, 0);
+				}
 
 	    vkCmdEndRenderPass(m_commandBuffers[i]);
 

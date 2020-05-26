@@ -10,6 +10,7 @@ namespace RX
   {
   public:
     inline VkBuffer get() const { return m_buffer.get(); }
+    inline VkDeviceSize getSize() const { return m_buffer.getSize(); }
 
     void initialize(VkDevice device, VkPhysicalDevice physicalDevice, VkCommandPool commandPool, VkQueue queue, std::vector<Vertex>& vertices);
 

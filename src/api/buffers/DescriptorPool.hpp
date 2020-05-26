@@ -8,8 +8,8 @@ namespace RX
   class DescriptorPool : public BaseComponent
   {
   public:
-    DescriptorPool();
-    ~DescriptorPool();
+    RX_API DescriptorPool();
+    RX_API ~DescriptorPool();
 
     inline VkDescriptorPool get() { return m_pool; }
 

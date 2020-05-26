@@ -26,11 +26,12 @@ namespace RX
   class Buffer : public BaseComponent
   {
   public:
-    Buffer();
-    ~Buffer();
+    RX_API Buffer();
+    RX_API ~Buffer();
 
     inline VkBuffer get() const { return m_buffer; }
     inline VkDeviceMemory getMemory() const { return m_memory; }
+    inline VkDeviceSize getSize() const { return m_info.deviceSize; }
 
     void create(BufferCreateInfo& createInfo);
 

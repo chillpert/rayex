@@ -8,8 +8,8 @@ namespace RX
   class Image : public BaseComponent
   {
   public:
-    Image();
-    virtual ~Image();
+    RX_API Image();
+    RX_API virtual ~Image();
 
     virtual inline VkImage get() const { return m_image; }
     inline VkFormat getFormat() const { return m_format; }

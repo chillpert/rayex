@@ -8,6 +8,7 @@
 #include "VertexBuffer.hpp"
 #include "IndexBuffer.hpp"
 #include "DescriptorSets.hpp"
+#include "Model.hpp"
 
 namespace RX
 {
@@ -15,13 +16,13 @@ namespace RX
   class CommandBuffers : public BaseComponent
   {
   public:
-    CommandBuffers();
-    ~CommandBuffers();
+    RX_API CommandBuffers();
+    RX_API ~CommandBuffers();
 
     inline std::vector<VkCommandBuffer>& get() { return m_commandBuffers; }
 
     void initialize(VkDevice device, VkCommandPool commandPool, size_t swapchainFramebufferSize);
-    void record(Swapchain& spwachain, Framebuffers& framebuffers, RenderPass& renderPass, Pipeline& pipeline, VertexBuffer& vertexBuffer, IndexBuffer& indexBuffer, DescriptorSets& descriptorSets);
+    void record(Swapchain& spwachain, Framebuffers& framebuffers, RenderPass& renderPass, Pipeline& pipeline, std::vector<std::shared_ptr<Model>>& models);
     void free();
     void destroy();
 

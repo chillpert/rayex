@@ -129,5 +129,6 @@ namespace RX
     }
 
     RX_ERROR("Failed to find suitable memory type");
+    return uint32_t();
   }
 }

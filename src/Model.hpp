@@ -16,21 +16,30 @@ namespace RX
   class Model
   {
   public:
-    Model()
+    RX_API Model()
     {
       ubo = std::make_shared<UniformBufferObject>();
     }
 
+    // Fill the vectors with vertex and index data
     void load();
+
+    // Destruction through RAII
+    Texture texture;
+    VertexBuffer vertexBuffer;
+    IndexBuffer indexBuffer;
+    UniformBuffers uniformBuffers;
+    DescriptorPool descriptorPool;
+
+    // No destruction necessary
+    DescriptorSets descriptorSets;
+    std::shared_ptr<UniformBufferObject> ubo;
 
     std::vector<Vertex> vertices;
     std::vector<uint32_t> indices;
 
     std::string texturePath;
     std::string modelPath;
-
-    // Transform
-    std::shared_ptr<UniformBufferObject> ubo;
   };
 }
 

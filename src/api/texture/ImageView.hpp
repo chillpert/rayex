@@ -8,8 +8,8 @@ namespace RX
   class ImageView : public BaseComponent
   {
   public:
-    ImageView();
-    ~ImageView();
+    RX_API ImageView();
+    RX_API ~ImageView();
 
     inline VkImageView get() const { return m_imageView; }
 

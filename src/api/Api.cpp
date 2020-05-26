@@ -82,6 +82,8 @@ namespace RX
     m_depthImage.initialize(m_physicalDevice.get(), m_device.get(), m_swapchain.getExtent());
     m_framebuffers.initialize(m_device.get(), m_imageViews, m_depthImage.getView(), m_renderPass.get(), m_window);
 
+    m_descriptorPool.initialize(m_device.get(), m_images.getSize());
+    
     for (std::shared_ptr<Model> model : m_models)
     {
       model->load();
@@ -192,6 +194,21 @@ namespace RX
     currentFrame = (currentFrame + 1) % maxFramesInFlight;
     return true;
   }
+  
+  void Api::clearModels()
+  {
+    m_models.clear();
+  }
+
+  void Api::pushModel(const std::shared_ptr<Model> model)
+  {
+    m_models.push_back(model);
+  }
+
+  void Api::setModels(const std::vector<std::shared_ptr<Model>>& models)
+  {
+
+  }
 
   void Api::clean()
   {
@@ -215,10 +232,9 @@ namespace RX
     m_swapchain.destroy();
 
     for (std::shared_ptr<Model> model : m_models)
-    {
       model->uniformBuffers.destroy();
-      model->descriptorPool.destroy();
-    }
+
+    m_descriptorPool.destroy();
 
     // 2. Recreating the swapchain.
     m_swapchain.initialize(m_physicalDevice.get(), m_device.get(), m_surface, m_window, m_queues);
@@ -234,11 +250,12 @@ namespace RX
     m_depthImage.initialize(m_physicalDevice.get(), m_device.get(), m_swapchain.getExtent());
     m_framebuffers.initialize(m_device.get(), m_imageViews, m_depthImage.getView(), m_renderPass.get(), m_window);
 
+    m_descriptorPool.initialize(m_device.get(), m_images.getSize());
+
     for (auto model : m_models)
     {
       model->uniformBuffers.initialize(m_device.get(), m_physicalDevice.get(), m_swapchain.getExtent(), m_images.getSize(), model->ubo);
-      model->descriptorPool.initialize(m_device.get(), m_images.getSize());
-      model->descriptorSets.initialize(m_device.get(), m_images.getSize(), model->descriptorPool.get(), m_descriptorSetLayout.get(), model->uniformBuffers.get(), model->texture);
+      model->descriptorSets.initialize(m_device.get(), m_images.getSize(), m_descriptorPool.get(), m_descriptorSetLayout.get(), model->uniformBuffers.get(), model->texture);
     }
 
     m_commandBuffers.initialize(m_device.get(), m_graphicsCmdPool.get(), m_framebuffers.getSize());

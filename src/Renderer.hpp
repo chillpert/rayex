@@ -10,7 +10,7 @@ namespace RX
   public:
     RX_API Renderer();
     RX_API Renderer(std::shared_ptr<Window> window);
-    RX_API ~Renderer();
+    RX_API ~Renderer() = default;
 
     RX_API void initialize();
     RX_API void update();
@@ -20,11 +20,11 @@ namespace RX
 
     RX_API bool isRunning() { return m_running;  }
 
-    void clean();
-
     RX_API inline const std::shared_ptr<Window> getWindow() const { return m_window; }
 
-    RX_API void pushModel(std::shared_ptr<Model> model);
+    RX_API void clearModels();
+    RX_API void pushModel(const std::shared_ptr<Model> model);
+    RX_API void setModels(const std::vector<std::shared_ptr<Model>>& models);
 
   private:
     std::shared_ptr<Window> m_window;

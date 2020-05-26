@@ -133,7 +133,7 @@ public:
           {
             int x, y;
             SDL_GetRelativeMouseState(&x, &y);
-            cam.processMouse(x, y);
+            cam.processMouse(x, -y);
             break;
           }
         }
@@ -152,25 +152,12 @@ int main(int argc, char* argv[])
   // Create the renderer object.
   Renderer renderer(myWindow);
 
-  // Create a model.
-  auto vikingRoom1 = std::make_shared<Model>();
-  vikingRoom1->texturePath = RX_TEXTURE_PATH "viking_room.png";
-  vikingRoom1->modelPath = RX_MODEL_PATH "viking_room.obj";
-  vikingRoom1->ubo->model = glm::rotate(vikingRoom1->ubo->model, glm::radians(90.0f), glm::vec3(1.0f, 0.0f, 0.0f));
-  vikingRoom1->ubo->model = glm::rotate(vikingRoom1->ubo->model, glm::radians(90.0f), glm::vec3(0.0f, 0.0f, 1.0f));
+  auto monkey = std::make_shared<Model>();
+  monkey->texturePath = RX_TEXTURE_PATH "viking_room.png";
+  monkey->modelPath = RX_MODEL_PATH "viking_room.obj";
 
   // Add the model to the renderer. This way it will be queued for rendering.
-  renderer.pushModel(vikingRoom1);
-
-  auto vikingRoom2 = std::make_shared<Model>();
-  vikingRoom2->texturePath = RX_TEXTURE_PATH "viking_room.png";
-  vikingRoom2->modelPath = RX_MODEL_PATH "viking_room.obj";
-  vikingRoom2->ubo->model = glm::rotate(vikingRoom2->ubo->model, glm::radians(90.0f), glm::vec3(1.0f, 0.0f, 0.0f));
-  vikingRoom2->ubo->model = glm::rotate(vikingRoom2->ubo->model, glm::radians(90.0f), glm::vec3(0.0f, 0.0f, 1.0f));
-  vikingRoom2->ubo->model = glm::translate(vikingRoom2->ubo->model, glm::vec3(0.0f, 0.0f, -1.0f));
-
-  // Add the model to the renderer. This way it will be queued for rendering.
-  renderer.pushModel(vikingRoom2);
+  renderer.pushModel(monkey);
 
   // This will set up the entire Vulkan pipeline.
   renderer.initialize();
@@ -182,12 +169,12 @@ int main(int argc, char* argv[])
 
     // Rotate the model using the provided timer functions.
     static float speed = 0.01f;
-    vikingRoom1->ubo->model = glm::rotate(vikingRoom1->ubo->model, glm::radians(90.0f) * Time::getDeltaTime() * speed, glm::vec3(0.0f, 0.0f, 1.0f));
-    vikingRoom1->ubo->view = cam.getViewMatrix();
-    vikingRoom1->ubo->projection = cam.getProjectionMatrix();
+    monkey->ubo->model = glm::rotate(monkey->ubo->model, glm::radians(90.0f) * Time::getDeltaTime() * speed, glm::vec3(0.0f, 1.0f, 0.0f));
+    monkey->ubo->view = cam.getViewMatrix();
+    monkey->ubo->projection = cam.getProjectionMatrix();
 
-    vikingRoom2->ubo->view = cam.getViewMatrix();
-    vikingRoom2->ubo->projection = cam.getProjectionMatrix();
+    monkey->ubo->view = cam.getViewMatrix();
+    monkey->ubo->projection = cam.getProjectionMatrix();
 
     // Call udpate and render for the renderer to work properly.
     renderer.update();

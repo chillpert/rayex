@@ -13,10 +13,12 @@ namespace KEY
 
 Camera::Camera(int width, int height) :
   m_worldUp{ 0.0f, 1.0f, 0.0f },
+  m_up{ },
+  m_right{ },
   m_width(static_cast<float>(width)),
   m_height(static_cast<float>(height)),
   m_position{ 0.0f, 0.0f, 3.0f },
-  m_front{ 0.0f, 0.0f, -1.0f },
+  m_front{ },
   m_yaw(-90.0f),
   m_pitch(0.0f),
   m_sensitivity(0.06f),
@@ -28,6 +30,13 @@ Camera::Camera(int width, int height) :
 void Camera::update()
 {
   processKeyboard();
+}
+
+glm::mat4 Camera::getProjectionMatrix()
+{
+  auto res = glm::perspective(glm::radians(m_fov), m_width / m_height, 0.1f, 100.0f);
+  res[1, 1] *= -1;
+  return res; 
 }
 
 void Camera::updateVectors()

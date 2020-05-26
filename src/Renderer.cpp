@@ -14,11 +14,6 @@ namespace RX
     m_initialized(false),
     m_running(true) { }
 
-  Renderer::~Renderer()
-  {
-    //clean();
-  }
-
   void Renderer::initialize()
   {
     if (m_initialized)
@@ -59,14 +54,18 @@ namespace RX
     }
   }
 
-  void Renderer::clean()
+  void Renderer::clearModels()
   {
-    m_api.clean();
-    m_window->clean();
+    m_api.clearModels();
   }
 
-  void Renderer::pushModel(std::shared_ptr<Model> model)
+  void Renderer::pushModel(const std::shared_ptr<Model> model)
   {
-    m_api.m_models.push_back(model);
+    m_api.pushModel(model);
+  }
+
+  void Renderer::setModels(const std::vector<std::shared_ptr<Model>>& models)
+  {
+    m_api.setModels(models);
   }
 }

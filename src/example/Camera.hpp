@@ -1,7 +1,7 @@
 #ifndef CAMERA_HPP
 #define CAMERA_HPP
 
-#include "glm/glm.hpp"
+#include "pch/stdafx.hpp"
 
 namespace KEY
 {
@@ -24,7 +24,7 @@ public:
   void update();
 
   inline glm::mat4 getViewMatrix() { return glm::lookAt(m_position, m_position + m_front, m_worldUp); }
-  inline glm::mat4 getProjectionMatrix() { return glm::perspective(glm::radians(m_fov), m_width / m_height, 0.1f, 100.0f); }
+  glm::mat4 getProjectionMatrix();
 
   void setScreenDimensions(int width, int height);
 

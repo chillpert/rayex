@@ -39,14 +39,18 @@ namespace RX
   {
   public:
     Api(std::shared_ptr<Window> window);
-    ~Api();
+    RX_API ~Api();
 
     void initialize();
     bool update();
     bool render();
-    void clean();
   
+    void clearModels();
+    void pushModel(const std::shared_ptr<Model> model);
+    void setModels(const std::vector<std::shared_ptr<Model>>& models);
+
   private:
+    void clean();
     void recreateSwapchain();
 
     std::shared_ptr<Window> m_window;
@@ -63,28 +67,19 @@ namespace RX
     DescriptorSetLayout m_descriptorSetLayout;
     Pipeline m_pipeline;
     CommandPool m_graphicsCmdPool;
-    //Texture m_texture;
-    //VertexBuffer m_vertexBuffer;
-    //IndexBuffer m_indexBuffer;
-    //UniformBuffers m_uniformBuffers;
-    //DescriptorPool m_descriptorPool;
+    DescriptorPool m_descriptorPool;
     std::vector<Fence> m_inFlightFences;
     std::vector<Semaphore> m_imageAvailableSemaphores;
     std::vector<Semaphore> m_finishedRenderSemaphores;
     DepthImage m_depthImage;
-
-    // TODO: temporary
-  public:
+    CommandBuffers m_commandBuffers;
     std::vector<std::shared_ptr<Model>> m_models;
 
-  private:
     // No destruction necessary for following members:
     Images m_images;
     PhysicalDevice m_physicalDevice;
     Queues m_queues;
-    //DescriptorSets m_descriptorSets;
     std::vector<VkFence> m_imagesInFlight;
-    CommandBuffers m_commandBuffers;
   };
 }
 

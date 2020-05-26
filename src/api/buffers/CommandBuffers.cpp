@@ -8,7 +8,7 @@ namespace RX
 
 	CommandBuffers::~CommandBuffers()
 	{
-		//destroy();
+		destroy();
 	}
 
 	void CommandBuffers::initialize(VkDevice device, VkCommandPool commandPool, size_t swapchainFramebufferSize)
@@ -62,8 +62,8 @@ namespace RX
 
 				for (std::shared_ptr<Model> model : models)
 				{
-					VkDeviceSize offsets[] = { 0 };
 					VkBuffer vertexBuffers[] = { model->vertexBuffer.get() };
+					VkDeviceSize offsets[] = { 0 };
 					vkCmdBindVertexBuffers(m_commandBuffers[i], 0, 1, vertexBuffers, offsets);
 
 					vkCmdBindIndexBuffer(m_commandBuffers[i], model->indexBuffer.get(), 0, model->indexBuffer.getType());

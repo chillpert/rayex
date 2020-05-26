@@ -24,11 +24,18 @@ namespace RX
     // Fill the vectors with vertex and index data
     void load();
 
+    inline UniformBufferObject getUbo() { return { model, view, projection }; }
+
     // Destruction through RAII
     Texture texture;
     VertexBuffer vertexBuffer;
     IndexBuffer indexBuffer;
     UniformBuffers uniformBuffers;
+
+    glm::mat4 model = glm::mat4(1.0f);
+    glm::mat4 view = glm::mat4(1.0f);
+    glm::mat4 projection = glm::mat4(1.0f);
+
     DescriptorPool descriptorPool;
 
     // No destruction necessary

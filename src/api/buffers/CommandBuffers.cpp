@@ -62,15 +62,15 @@ namespace RX
 
 				for (std::shared_ptr<Model> model : models)
 				{
-					VkBuffer vertexBuffers[] = { model->vertexBuffer.get() };
+					VkBuffer vertexBuffers[] = { model->m_vertexBuffer.get() };
 					VkDeviceSize offsets[] = { 0 };
 					vkCmdBindVertexBuffers(m_commandBuffers[i], 0, 1, vertexBuffers, offsets);
 
-					vkCmdBindIndexBuffer(m_commandBuffers[i], model->indexBuffer.get(), 0, model->indexBuffer.getType());
+					vkCmdBindIndexBuffer(m_commandBuffers[i], model->m_indexBuffer.get(), 0, model->m_indexBuffer.getType());
 
-					vkCmdBindDescriptorSets(m_commandBuffers[i], VK_PIPELINE_BIND_POINT_GRAPHICS, pipeline.getLayout(), 0, 1, &model->descriptorSets.get()[i], 0, nullptr);
+					vkCmdBindDescriptorSets(m_commandBuffers[i], VK_PIPELINE_BIND_POINT_GRAPHICS, pipeline.getLayout(), 0, 1, &model->m_descriptorSets.get()[i], 0, nullptr);
 
-					vkCmdDrawIndexed(m_commandBuffers[i], model->indexBuffer.getCount(), 1, 0, 0, 0);
+					vkCmdDrawIndexed(m_commandBuffers[i], model->m_indexBuffer.getCount(), 1, 0, 0, 0);
 				}
 
 	    vkCmdEndRenderPass(m_commandBuffers[i]);

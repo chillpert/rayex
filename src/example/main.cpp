@@ -153,8 +153,8 @@ int main(int argc, char* argv[])
   Renderer renderer(myWindow);
 
   auto monkey = std::make_shared<Model>();
-  monkey->texturePath = RX_TEXTURE_PATH "viking_room.png";
-  monkey->modelPath = RX_MODEL_PATH "viking_room.obj";
+  monkey->m_pathToTexture = RX_TEXTURE_PATH "wood.png";
+  monkey->m_pathToModel = RX_MODEL_PATH "monkey.obj";
 
   // Add the model to the renderer. This way it will be queued for rendering.
   renderer.pushModel(monkey);
@@ -169,12 +169,12 @@ int main(int argc, char* argv[])
 
     // Rotate the model using the provided timer functions.
     static float speed = 0.01f;
-    monkey->ubo->model = glm::rotate(monkey->ubo->model, glm::radians(90.0f) * Time::getDeltaTime() * speed, glm::vec3(0.0f, 1.0f, 0.0f));
-    monkey->ubo->view = cam.getViewMatrix();
-    monkey->ubo->projection = cam.getProjectionMatrix();
+    monkey->m_model = glm::rotate(monkey->m_model, glm::radians(90.0f) * Time::getDeltaTime() * speed, glm::vec3(0.0f, 1.0f, 0.0f));
+    monkey->m_view = cam.getViewMatrix();
+    monkey->m_projection = cam.getProjectionMatrix();
 
-    monkey->ubo->view = cam.getViewMatrix();
-    monkey->ubo->projection = cam.getProjectionMatrix();
+    monkey->m_view = cam.getViewMatrix();
+    monkey->m_projection = cam.getProjectionMatrix();
 
     // Call udpate and render for the renderer to work properly.
     renderer.update();

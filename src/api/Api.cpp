@@ -86,15 +86,15 @@ namespace RX
     
     for (std::shared_ptr<Model> model : m_models)
     {
-      model->load();
+      model->initialize();
 
-      model->texture.initialize(m_physicalDevice.get(), m_device.get(), m_queues.getGraphicsQueue(), m_graphicsCmdPool.get(), model->texturePath);
-      model->vertexBuffer.initialize(m_device.get(), m_physicalDevice.get(), m_graphicsCmdPool.get(), m_queues.getGraphicsQueue(), model->vertices);
-      model->indexBuffer.initialize<uint32_t>(m_device.get(), m_physicalDevice.get(), m_graphicsCmdPool.get(), m_queues.getGraphicsQueue(), model->indices); 
-      model->uniformBuffers.initialize(m_device.get(), m_physicalDevice.get(), m_swapchain.getExtent(), m_images.getSize(), model->ubo);
+      model->m_texture.initialize(m_physicalDevice.get(), m_device.get(), m_queues.getGraphicsQueue(), m_graphicsCmdPool.get(), model->m_pathToTexture);
+      model->m_vertexBuffer.initialize(m_device.get(), m_physicalDevice.get(), m_graphicsCmdPool.get(), m_queues.getGraphicsQueue(), model->m_vertices);
+      model->m_indexBuffer.initialize<uint32_t>(m_device.get(), m_physicalDevice.get(), m_graphicsCmdPool.get(), m_queues.getGraphicsQueue(), model->m_indices); 
+      model->m_uniformBuffers.initialize(m_device.get(), m_physicalDevice.get(), m_swapchain.getExtent(), m_images.getSize(), model->getUbo());
 
-      model->descriptorPool.initialize(m_device.get(), m_images.getSize());
-      model->descriptorSets.initialize(m_device.get(), m_images.getSize(), model->descriptorPool.get(), m_descriptorSetLayout.get(), model->uniformBuffers.get(), model->texture);
+      model->m_descriptorPool.initialize(m_device.get(), m_images.getSize());
+      model->m_descriptorSets.initialize(m_device.get(), m_images.getSize(), model->m_descriptorPool.get(), m_descriptorSetLayout.get(), model->m_uniformBuffers.get(), model->m_texture);
     }
 
     m_commandBuffers.initialize(m_device.get(), m_graphicsCmdPool.get(), m_framebuffers.getSize());
@@ -145,7 +145,7 @@ namespace RX
     // TODO: Temporary
     for (std::shared_ptr<Model> model : m_models)
     {
-      model->uniformBuffers.upload(imageIndex);
+      model->m_uniformBuffers.upload(imageIndex, model->getUbo());
     }
 
     // Check if a previous frame is using the current image.
@@ -232,7 +232,7 @@ namespace RX
     m_swapchain.destroy();
 
     for (std::shared_ptr<Model> model : m_models)
-      model->uniformBuffers.destroy();
+      model->m_uniformBuffers.destroy();
 
     m_descriptorPool.destroy();
 
@@ -254,8 +254,8 @@ namespace RX
 
     for (auto model : m_models)
     {
-      model->uniformBuffers.initialize(m_device.get(), m_physicalDevice.get(), m_swapchain.getExtent(), m_images.getSize(), model->ubo);
-      model->descriptorSets.initialize(m_device.get(), m_images.getSize(), m_descriptorPool.get(), m_descriptorSetLayout.get(), model->uniformBuffers.get(), model->texture);
+      model->m_uniformBuffers.initialize(m_device.get(), m_physicalDevice.get(), m_swapchain.getExtent(), m_images.getSize(), model->getUbo());
+      model->m_descriptorSets.initialize(m_device.get(), m_images.getSize(), m_descriptorPool.get(), m_descriptorSetLayout.get(), model->m_uniformBuffers.get(), model->m_texture);
     }
 
     m_commandBuffers.initialize(m_device.get(), m_graphicsCmdPool.get(), m_framebuffers.getSize());

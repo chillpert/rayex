@@ -5,24 +5,27 @@
 #define GLM_ENABLE_EXPERIMENTAL
 #include <glm/gtx/hash.hpp>
 
-namespace std {
-  template<> struct hash<RX::Vertex> {
-      size_t operator()(RX::Vertex const& vertex) const {
-          return ((hash<glm::vec3>()(vertex.pos) ^ (hash<glm::vec3>()(vertex.color) << 1)) >> 1) ^ (hash<glm::vec2>()(vertex.texCoord) << 1);
-      }
+namespace std
+{
+  template<> struct hash<RX::Vertex>
+  {
+    size_t operator()(RX::Vertex const& vertex) const
+    {
+      return ((hash<glm::vec3>()(vertex.pos) ^ (hash<glm::vec3>()(vertex.color) << 1)) >> 1) ^ (hash<glm::vec2>()(vertex.texCoord) << 1);
+    }
   };
 }
 
 namespace RX
 {
-  void Model::load()
+  void Model::initialize()
   {
     tinyobj::attrib_t attrib;
     std::vector<tinyobj::shape_t> shapes;
     std::vector<tinyobj::material_t> materials;
     std::string warn, err;
 
-    if (!tinyobj::LoadObj(&attrib, &shapes, &materials, &warn, &err, modelPath.c_str()))
+    if (!tinyobj::LoadObj(&attrib, &shapes, &materials, &warn, &err, m_pathToModel.c_str()))
       RX_ERROR(warn + err);
 
     std::unordered_map<Vertex, uint32_t> uniqueVertices;
@@ -50,13 +53,12 @@ namespace RX
 
         if (uniqueVertices.count(vertex) == 0)
         {
-          uniqueVertices[vertex] = static_cast<uint32_t>(vertices.size());
-          vertices.push_back(vertex);
+          uniqueVertices[vertex] = static_cast<uint32_t>(m_vertices.size());
+          m_vertices.push_back(vertex);
         }
         
-        indices.push_back(uniqueVertices[vertex]);
+        m_indices.push_back(uniqueVertices[vertex]);
       }
     }
-    
   }
 }

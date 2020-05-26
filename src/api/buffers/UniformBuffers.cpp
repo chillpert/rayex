@@ -5,10 +5,9 @@
 
 namespace RX
 {
-  void UniformBuffers::initialize(VkDevice device, VkPhysicalDevice physicalDevice, VkExtent2D extent, size_t swapchainImagesCount, std::shared_ptr<UniformBufferObject> uniformBufferObject)
+  void UniformBuffers::initialize(VkDevice device, VkPhysicalDevice physicalDevice, VkExtent2D extent, size_t swapchainImagesCount, UniformBufferObject& uniformBufferObject)
   {
     m_device = device;
-    m_ubo = uniformBufferObject;
     m_width = static_cast<float>(extent.width);
     m_height = static_cast<float>(extent.height);
 
@@ -27,9 +26,9 @@ namespace RX
       it.create(createInfo);
   }
 
-  void UniformBuffers::upload(uint32_t imageIndex)
+  void UniformBuffers::upload(uint32_t imageIndex, UniformBufferObject& ubo)
   {
-    m_buffers[imageIndex].fill<UniformBufferObject>(m_ubo.get());
+    m_buffers[imageIndex].fill<UniformBufferObject>(&ubo);
   }
 
   void UniformBuffers::destroy()

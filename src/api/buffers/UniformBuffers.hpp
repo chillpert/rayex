@@ -17,13 +17,12 @@ namespace RX
   public:
     inline std::vector<Buffer>& get() { return m_buffers; }
 
-    void initialize(VkDevice device, VkPhysicalDevice physicalDevice, VkExtent2D extent, size_t swapchainImagesCount, std::shared_ptr<UniformBufferObject> uniformBufferObject);
+    void initialize(VkDevice device, VkPhysicalDevice physicalDevice, VkExtent2D extent, size_t swapchainImagesCount, UniformBufferObject& uniformBufferObject);
 
-    void upload(uint32_t imageIndex);
+    void upload(uint32_t imageIndex, UniformBufferObject& ubo);
     void destroy();
 
   private:
-    std::shared_ptr<UniformBufferObject> m_ubo;
     std::vector<Buffer> m_buffers;
     VkDevice m_device;
 

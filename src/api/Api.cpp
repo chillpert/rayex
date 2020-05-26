@@ -65,7 +65,7 @@ namespace RX
     m_swapchain.initialize(m_physicalDevice.get(), m_device.get(), m_surface, m_window, m_queues);
     m_images.initialize(m_device.get(), m_swapchain.get());
     m_imageViews.initialize(m_device.get(), m_surface.getFormat().format, m_images);
-    
+
     // Set up simple example shaders.
     Shader vs, fs;
     vs.initialize(RX_SHADER_PATH "simple3D.vert", m_device.get());
@@ -83,7 +83,19 @@ namespace RX
     m_framebuffers.initialize(m_device.get(), m_imageViews, m_depthImage.getView(), m_renderPass.get(), m_window);
 
     m_descriptorPool.initialize(m_device.get(), m_images.getSize());
-    
+
+    m_imgui.initialize(
+      m_instance.get(),
+      m_physicalDevice.get(),
+      m_device.get(),
+      m_queues,
+      m_descriptorPool.get(),
+      m_surface,
+      m_renderPass.get(),
+      m_window->get(),
+      m_images.getSize()
+    );
+
     for (std::shared_ptr<Model> model : m_models)
     {
       model->initialize();
@@ -139,6 +151,10 @@ namespace RX
       return true;
     }
 
+    m_imgui.beginRender();
+    m_imgui.renderDemo();
+    m_imgui.render();
+
     uint32_t imageIndex;
     m_swapchain.acquireNextImage(m_device.get(), m_imageAvailableSemaphores[currentFrame].get(), VK_NULL_HANDLE, &imageIndex);
 
@@ -170,6 +186,8 @@ namespace RX
     submitInfo.signalSemaphoreCount = 1;
     submitInfo.pSignalSemaphores = signalSemaphores;
 
+    m_imgui.endRender(m_device.get(), m_queues, m_renderPass.get(), m_framebuffers.get()[imageIndex]);
+
     // Reset the signaled state of the current frame's fence to the unsignaled one.
     vkResetFences(m_device.get(), 1, &m_inFlightFences[currentFrame].get());
 
@@ -192,6 +210,7 @@ namespace RX
     m_queues.present(presentInfo);
 
     currentFrame = (currentFrame + 1) % maxFramesInFlight;
+
     return true;
   }
   
@@ -255,7 +274,8 @@ namespace RX
     for (auto model : m_models)
     {
       model->m_uniformBuffers.initialize(m_device.get(), m_physicalDevice.get(), m_swapchain.getExtent(), m_images.getSize(), model->getUbo());
-      model->m_descriptorSets.initialize(m_device.get(), m_images.getSize(), m_descriptorPool.get(), m_descriptorSetLayout.get(), model->m_uniformBuffers.get(), model->m_texture);
+      model->m_descriptorPool.initialize(m_device.get(), m_images.getSize());
+      model->m_descriptorSets.initialize(m_device.get(), m_images.getSize(), model->m_descriptorPool.get(), m_descriptorSetLayout.get(), model->m_uniformBuffers.get(), model->m_texture);
     }
 
     m_commandBuffers.initialize(m_device.get(), m_graphicsCmdPool.get(), m_framebuffers.getSize());

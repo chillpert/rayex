@@ -36,6 +36,9 @@ public:
 
     while (SDL_PollEvent(&event))
     {
+      // Propagates the event to ImGui.
+      processGuiEvent(event);
+
       switch (event.type)
       {
         case SDL_QUIT:

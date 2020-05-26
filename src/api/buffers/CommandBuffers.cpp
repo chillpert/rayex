@@ -48,7 +48,7 @@ namespace RX
 	    renderPassInfo.renderArea.extent = swapchain.getExtent();
 
 			VkClearValue colorValue;
-			colorValue.color =	{0.0f, 0.0f, 0.0f, 1.0f};
+			colorValue.color =	{0.3f, 0.3f, 0.3f, 1.0f};
 			VkClearValue depthValue;
 			depthValue.depthStencil = {1.0f, 0};
 

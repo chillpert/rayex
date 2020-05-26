@@ -23,9 +23,11 @@ namespace RX
     RX_API void getInstanceExtensions(uint32_t& count, const char** extensions);
     RX_API VkSurfaceKHR createSurface(VkInstance instance);
 
+    RX_API void processGuiEvent(SDL_Event& event);
+
     RX_API void setTitle(const char* title);
 
-    RX_API inline SDL_Window* getWindow() { return m_window; }
+    RX_API inline SDL_Window* get() { return m_window; }
     RX_API inline WindowProperties& getProperties() { return m_properties; }
 
     RX_API void getSize(int* width, int* height);

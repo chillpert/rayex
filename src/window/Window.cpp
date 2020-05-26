@@ -87,6 +87,11 @@ namespace RX
     return surface;
   }
 
+  void Window::processGuiEvent(SDL_Event& event)
+  {
+    ImGui_ImplSDL2_ProcessEvent(&event);
+  }
+
   void Window::setTitle(const char* title)
   {
     m_properties.setTitle(title);

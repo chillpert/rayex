@@ -33,6 +33,8 @@
 #include "buffers/DescriptorSetLayout.hpp"
 #include "buffers/UniformBuffers.hpp"
 
+#include "gui/Gui.hpp"
+
 namespace RX
 {
   class Api
@@ -74,6 +76,8 @@ namespace RX
     DepthImage m_depthImage;
     CommandBuffers m_commandBuffers;
     std::vector<std::shared_ptr<Model>> m_models;
+
+    Gui m_imgui;
 
     // No destruction necessary for following members:
     Images m_images;

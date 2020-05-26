@@ -81,6 +81,7 @@ file(GLOB FILES_LIB
   "${PROJECT_SOURCE_DIR}/src/api/buffers/*.cpp"
   "${PROJECT_SOURCE_DIR}/src/api/devices/*.cpp"
   "${PROJECT_SOURCE_DIR}/src/api/sync/*.cpp"
+  "${PROJECT_SOURCE_DIR}/src/api/gui/*.cpp"
   "${PROJECT_SOURCE_DIR}/src/window/*.cpp"
   "${PROJECT_SOURCE_DIR}/src/pch/*.cpp"
   "${PROJECT_SOURCE_DIR}/src/events/*.cpp"

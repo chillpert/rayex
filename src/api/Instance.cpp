@@ -16,8 +16,8 @@ namespace RX
     m_info.extensions.insert(m_info.extensions.end(), windowExtensions.begin(), windowExtensions.end());
 
     // Check if all extensions and layers needed are available.
-    checkLayersSupport(m_info.layers);
-    checkExtensionsSupport(m_info.extensions);
+    checkLayersSupport();
+    checkExtensionsSupport();
 
     // Start creating the instance.
     VkApplicationInfo appInfo{ };
@@ -40,7 +40,7 @@ namespace RX
     vkDestroyInstance(m_instance, nullptr);
   }
 
-  void Instance::checkLayersSupport(const std::vector<const char*>& layers)
+  void Instance::checkLayersSupport()
   {
     uint32_t propertyCount;
     VK_ASSERT(vkEnumerateInstanceLayerProperties(&propertyCount, nullptr), "Failed to enumerate instance layer properties.");
@@ -48,7 +48,7 @@ namespace RX
     std::vector<VkLayerProperties> properties(propertyCount);
     VK_ASSERT(vkEnumerateInstanceLayerProperties(&propertyCount, properties.data()), "Failed to enumerate instance layer properties.");
 
-    for (const char* name : layers)
+    for (const char* name : m_info.layers)
     {
       bool found = false;
       for (const auto& property : properties)
@@ -67,7 +67,7 @@ namespace RX
     }
   }
 
-  void Instance::checkExtensionsSupport(const std::vector<const char*>& extensions)
+  void Instance::checkExtensionsSupport()
   {
     uint32_t propertyCount;
     VK_ASSERT(vkEnumerateInstanceExtensionProperties(nullptr, &propertyCount, nullptr), "Failed to enumerate instance extension properties.");
@@ -75,7 +75,7 @@ namespace RX
     std::vector<VkExtensionProperties> properties(propertyCount);
     VK_ASSERT(vkEnumerateInstanceExtensionProperties(nullptr, &propertyCount, properties.data()), "Failed to enumerate instance extension properties.");
 
-    for (const char* name : extensions)
+    for (const char* name : m_info.extensions)
     {
       bool found = false;
       for (const auto& property : properties)

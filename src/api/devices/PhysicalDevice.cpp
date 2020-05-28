@@ -3,19 +3,21 @@
 
 namespace RX
 {
-  void PhysicalDevice::initialize(VkInstance instance, VkSurfaceKHR surface)
+  void PhysicalDevice::initialize(PhysicalDeviceInfo& info)
   {
+    m_info = info;
+
     uint32_t physicalDeviceCount = 0;
-    VK_ASSERT(vkEnumeratePhysicalDevices(instance, &physicalDeviceCount, nullptr), "Failed to enumerate physical devices");
+    VK_ASSERT(vkEnumeratePhysicalDevices(m_info.instance, &physicalDeviceCount, nullptr), "Failed to enumerate physical devices");
 
     std::vector<VkPhysicalDevice> physicalDevices(physicalDeviceCount);
-    VK_ASSERT(vkEnumeratePhysicalDevices(instance, &physicalDeviceCount, physicalDevices.data()), "Failed to enumerate physical devices");
+    VK_ASSERT(vkEnumeratePhysicalDevices(m_info.instance, &physicalDeviceCount, physicalDevices.data()), "Failed to enumerate physical devices");
 
     unsigned int score = 0;
     for (const auto& it : physicalDevices)
     {
       {
-        unsigned int temp = evaluate(it, surface);
+        unsigned int temp = evaluate(it);
         if (temp > score)
         {
           m_physicalDevice = it;
@@ -33,39 +35,7 @@ namespace RX
     VK_LOG("Selected GPU: " << props.deviceName);
   }
 
-  void PhysicalDevice::checkExtensionSupport(const std::vector<const char*>& extensions) const
-  {
-    // Stores the name of the extension and a bool that tells if they were found or not.
-    std::map<const char*, bool> requiredExtensions;
-
-    for (const auto& extension : extensions)
-      requiredExtensions.emplace(extension, false);
-
-    uint32_t physicalDeviceExtensionCount;
-    VK_ASSERT(vkEnumerateDeviceExtensionProperties(m_physicalDevice, NULL, &physicalDeviceExtensionCount, nullptr), "Failed to enumerate physical device extensions");
-
-    std::vector<VkExtensionProperties> physicalDeviceExtensions(physicalDeviceExtensionCount);
-    VK_ASSERT(vkEnumerateDeviceExtensionProperties(m_physicalDevice, NULL, &physicalDeviceExtensionCount, physicalDeviceExtensions.data()), "Failed to enumerate physical device extensions");
-      
-    // Iterates over all enumerated physical device extensions to see if they are available.
-    for (const auto& physicalDeviceExtension : physicalDeviceExtensions)
-    {
-      for (auto& requiredphysicalDeviceExtension : requiredExtensions)
-      {
-        if (strcmp(physicalDeviceExtension.extensionName, requiredphysicalDeviceExtension.first) == 0)
-          requiredphysicalDeviceExtension.second = true;
-      }
-    }
-    
-    // Give feedback on the previous operations.
-    for (const auto& requiredphysicalDeviceExtension : requiredExtensions)
-    {
-      if (!requiredphysicalDeviceExtension.second)
-        RX_ERROR("Missing physical device extension: " + std::string(requiredphysicalDeviceExtension.first) + ". Have you tried installing the NVIDIA Beta drivers?");
-    }
-  }
-
-  unsigned int PhysicalDevice::evaluate(VkPhysicalDevice device, VkSurfaceKHR surface)
+  unsigned int PhysicalDevice::evaluate(VkPhysicalDevice device) const
   {
     unsigned int score = 0u;
 
@@ -95,7 +65,7 @@ namespace RX
     if (name.find("RTX") != std::string::npos)
       score += 100u;
 
-    if (Queues::isComplete(device, surface))
+    if (Queues::isComplete(device, m_info.surface))
       score += 100u;
     else
       return 0u;

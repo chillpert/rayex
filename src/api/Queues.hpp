@@ -1,36 +1,40 @@
 #ifndef QUEUES_HPP
 #define QUEUES_HPP
 
-#include "BaseComponent.hpp"
+#include "pch/stdafx.hpp"
 
 namespace RX
 {
-  class Queues : public BaseComponent
+  struct QueuesInfo
+  {
+    VkPhysicalDevice physicalDevice;
+    VkSurfaceKHR surface;
+  };
+
+  class Queues
   {
   public:
-    Queues();
-
     // This function should be called right after the physical device was enumerated and the 
     // surface was created. The surface has to be created before the physical device is picked.
-    void initialize(VkPhysicalDevice physicalDevice, VkSurfaceKHR surface);
+    void initialize(QueuesInfo& queuesInfo);
+
+    inline QueuesInfo& getInfo() { return m_info; }
 
     void retrieveAllHandles(VkDevice device);
-    VkResult submit(VkSubmitInfo& submitInfo, VkFence fence);
-    VkResult present(VkPresentInfoKHR& presentInfo);
 
-    uint32_t getGraphicsIndex() const;
-    uint32_t getPresentIndex() const;
-    uint32_t getTransferIndex() const;
+    void submit(VkSubmitInfo& submitInfo, VkFence fence);
+    void present(VkPresentInfoKHR& presentInfo);
+
+    inline uint32_t getGraphicsFamilyIndex() const { return m_graphicsIndex.value(); }
+    inline uint32_t getPresentFamilyIndex() const { return m_presentIndex.value(); }
 
     inline VkQueue getGraphicsQueue() { return m_graphicsQueue; }
     inline VkQueue getPresentQueue() { return m_presentQueue; }
-    inline VkQueue getTransferQueue() { return m_transferQueue; }
 
-    // Returns a vector filled with the actual unique family indices.    
+    // Returns a vector filled with the actual unique queue family indices.    
     std::vector<uint32_t> getQueueFamilyIndices();
 
     // This function can be used at the time a physical device is picked.
-    // It won't have an impact on the members of this function.
     static bool isComplete(VkPhysicalDevice physicalDevice, VkSurfaceKHR surface);
 
   private:
@@ -38,11 +42,11 @@ namespace RX
 
     std::optional<uint32_t> m_graphicsIndex;
     std::optional<uint32_t> m_presentIndex;
-    std::optional<uint32_t> m_transferIndex;
 
     VkQueue m_graphicsQueue;
     VkQueue m_presentQueue;
-    VkQueue m_transferQueue;
+
+    QueuesInfo m_info;
   };
 }
 

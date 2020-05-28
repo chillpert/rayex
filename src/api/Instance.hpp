@@ -25,8 +25,8 @@ namespace RX
   private:
     void destroy();
 
-    void checkLayersSupport(const std::vector<const char*>& layers);
-    void checkExtensionsSupport(const std::vector<const char*>& extensions);
+    void checkLayersSupport();
+    void checkExtensionsSupport();
 
     uint32_t getApiVersion();
 

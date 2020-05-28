@@ -27,7 +27,7 @@
   #define SDL_ASSERT(result, message) result
 #endif
 
-#define RX_ERROR(message) throw std::runtime_error(std::string("RX: ") + message);
+#define RX_ERROR(message) throw std::runtime_error(std::string("RX: ") + message)
 
 namespace RX
 {

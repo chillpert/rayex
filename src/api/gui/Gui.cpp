@@ -49,7 +49,7 @@ namespace RX
     init_info.Instance = instance;
     init_info.PhysicalDevice = physicalDevice;
     init_info.Device = device;
-    init_info.QueueFamily = queues.getGraphicsIndex();
+    init_info.QueueFamily = queues.getGraphicsFamilyIndex();
     init_info.Queue = queues.getGraphicsQueue();
     init_info.PipelineCache = nullptr;
     init_info.DescriptorPool = descriptorPool;
@@ -60,7 +60,7 @@ namespace RX
     ImGui_ImplVulkan_Init(&init_info, renderPass);
 
     CommandPool commandPool;
-    commandPool.initialize(device, queues.getGraphicsIndex());
+    commandPool.initialize(device, queues.getGraphicsFamilyIndex());
 
     commandPool.reset();
 
@@ -75,7 +75,7 @@ namespace RX
 
     ImGui_ImplVulkan_DestroyFontUploadObjects();
 
-    m_commandPool.initialize(device, queues.getGraphicsIndex());
+    m_commandPool.initialize(device, queues.getGraphicsFamilyIndex());
 
     RX_INITIALIZATION_CALLBACK;
   }

@@ -80,8 +80,8 @@ namespace RX
     createInfo.imageArrayLayers = 1;
     createInfo.imageUsage = VK_IMAGE_USAGE_COLOR_ATTACHMENT_BIT;
 
-    auto graphicsIndex = queues.getGraphicsIndex();
-    auto presentIndex = queues.getPresentIndex();
+    auto graphicsIndex = queues.getGraphicsFamilyIndex();
+    auto presentIndex = queues.getPresentFamilyIndex();
     std::vector<uint32_t> queueFamilyIndices = { graphicsIndex, presentIndex };
 
     if (graphicsIndex != presentIndex)

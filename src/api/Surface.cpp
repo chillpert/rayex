@@ -14,7 +14,7 @@ namespace RX
     m_surface = m_info.window->createSurface(m_info.instance);
   }
 
-  void Surface::checkSettings(VkPhysicalDevice physicalDevice)
+  void Surface::checkSettingSupport(VkPhysicalDevice physicalDevice)
   {
     // Get all surface capabilities.
     vkGetPhysicalDeviceSurfaceCapabilitiesKHR(physicalDevice, m_surface, &m_capabilities);

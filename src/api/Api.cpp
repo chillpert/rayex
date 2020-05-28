@@ -38,34 +38,29 @@ namespace RX
     m_surface.initialize(surfaceInfo);
 
     // Physical device
+    PhysicalDeviceInfo physicalDeviceInfo{ };
+    physicalDeviceInfo.instance = m_instance.get();
+    physicalDeviceInfo.surface = m_surface.get();
+    
+    m_physicalDevice.initialize(physicalDeviceInfo);
 
-    m_physicalDevice.initialize(m_instance.get(), m_surface.get());
+    // Reassess the support of the preferred surface settings.
+    m_surface.checkSettingSupport(m_physicalDevice.get());
 
-    // All device extensions required for ray tracing.
-    std::vector<const char*> requiredExtensions =
-    {
-      "VK_KHR_get_memory_requirements2",
-      "VK_EXT_descriptor_indexing",
-      "VK_KHR_buffer_device_address",
-      "VK_KHR_deferred_host_operations",
-      "VK_KHR_pipeline_library",
-      "VK_KHR_ray_tracing"
-    };
+    // Queues
+    QueuesInfo queuesInfo{ };
+    queuesInfo.physicalDevice = m_physicalDevice.get();
+    queuesInfo.surface = m_surface.get();
 
-    // Make sure that the device extensions are supported by the physical device.
-    m_physicalDevice.checkExtensionSupport(requiredExtensions);
+    m_queues.initialize(queuesInfo);
 
-    m_surface.checkSettings(m_physicalDevice.get());
+    // Device
+    DeviceInfo deviceInfo{ };
+    deviceInfo.physicalDevice = m_physicalDevice.get();
+    deviceInfo.queueFamilyIndices = m_queues.getQueueFamilyIndices();
+    deviceInfo.extensions = { "VK_KHR_get_memory_requirements2", "VK_EXT_descriptor_indexing", "VK_KHR_buffer_device_address",  "VK_KHR_deferred_host_operations", "VK_KHR_pipeline_library", "VK_KHR_ray_tracing"};
 
-    // Set up queues.
-    m_queues.initialize(m_physicalDevice.get(), m_surface.get());
-
-    // Add all of the device extensions from above.
-    for (const auto& extension : requiredExtensions)
-      m_device.pushExtension(extension);
-
-    // Set up the logical device.
-    m_device.initialize(m_physicalDevice.get(), m_queues);
+    m_device.initialize(deviceInfo);
 
     // Retrieve all queue handles.
     m_queues.retrieveAllHandles(m_device.get());
@@ -89,7 +84,7 @@ namespace RX
     m_pipeline.initialize(m_device.get(), m_renderPass.get(), m_swapchain.getExtent(), m_window, vs, fs, m_descriptorSetLayout.get());
     
     // Set up the command pool, allocate the command buffer and start command buffer recording.
-    m_graphicsCmdPool.initialize(m_device.get(), m_queues.getGraphicsIndex()); // TODO: What if the graphics and present index are not identical?
+    m_graphicsCmdPool.initialize(m_device.get(), m_queues.getGraphicsFamilyIndex()); // TODO: What if the graphics and present index are not identical?
 
     m_depthImage.initialize(m_physicalDevice.get(), m_device.get(), m_swapchain.getExtent());
     m_framebuffers.initialize(m_device.get(), m_imageViews, m_depthImage.getView(), m_renderPass.get(), m_window);

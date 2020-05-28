@@ -7,25 +7,30 @@
 
 namespace RX
 {
+  struct DeviceInfo
+  {
+    VkPhysicalDevice physicalDevice;
+    std::vector<uint32_t> queueFamilyIndices;
+    std::vector<const char*> extensions;
+  };
+
   class Device
   {
   public:
     ~Device();
 
     inline VkDevice get() { return m_device; }
+    inline DeviceInfo& getInfo() { return m_info; }
 
-    void initialize(VkPhysicalDevice physicalDevice, Queues& queues);
-
-    // To verify the support of any device extension, use PhysicalDevice::checkExtensionSupport.
-    void pushExtension(const char* name);
+    void initialize(DeviceInfo& info);
     void waitIdle();
 
   private:
     void destroy();
+    void checkExtensionSupport() const;
 
     VkDevice m_device;
-
-    std::vector<const char*> m_extensions;
+    DeviceInfo m_info;
   };
 }
 

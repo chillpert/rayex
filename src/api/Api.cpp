@@ -9,6 +9,7 @@ namespace RX
   SwapchainInfo swapchainInfo{ };
   ShaderInfo vertexShaderInfo{ };
   ShaderInfo fragmentShaderInfo{ };
+  PipelineInfo pipelineInfo{ };
 
   Api::Api(std::shared_ptr<Window> window) :
     m_window(window) { }
@@ -100,6 +101,7 @@ namespace RX
     vertexShaderInfo.descriptorCount = 1;
     vertexShaderInfo.descriptorType = VK_DESCRIPTOR_TYPE_UNIFORM_BUFFER;
     vertexShaderInfo.stageFlags = VK_SHADER_STAGE_VERTEX_BIT;
+
     vs.initialize(vertexShaderInfo);
 
     Shader fs; 
@@ -109,6 +111,7 @@ namespace RX
     fragmentShaderInfo.descriptorCount = 1;
     fragmentShaderInfo.descriptorType = VK_DESCRIPTOR_TYPE_COMBINED_IMAGE_SAMPLER;
     fragmentShaderInfo.stageFlags = VK_SHADER_STAGE_FRAGMENT_BIT;
+
     fs.initialize(fragmentShaderInfo);
     
     // Descriptor Set Layout
@@ -118,14 +121,29 @@ namespace RX
 
     m_descriptorSetLayout.initialize(descriptorSetLayoutInfo);
     
-    // Set up the graphics pipeline.
-    m_pipeline.initialize(m_device.get(), m_renderPass.get(), m_swapchain.getInfo().extent, m_window, vs, fs, m_descriptorSetLayout.get());
-    
-    // Set up the command pool, allocate the command buffer and start command buffer recording.
-    m_graphicsCmdPool.initialize(m_device.get(), m_queues.getGraphicsFamilyIndex()); // TODO: What if the graphics and present index are not identical?
+    // Graphics pipeline
+    pipelineInfo.device = m_device.get();
+    pipelineInfo.renderPass = m_renderPass.get();
+    pipelineInfo.viewport = { 0.0f, 0.0f, static_cast<float>(m_swapchain.getInfo().extent.width), static_cast<float>(m_swapchain.getInfo().extent.height), 0.0f, 1.0f };
+    pipelineInfo.scissor = { 0, 0, m_swapchain.getInfo().extent.width, m_swapchain.getInfo().extent.height };
+    pipelineInfo.vertexShader = vs.get();
+    pipelineInfo.fragmentShader = fs.get();
+    pipelineInfo.descriptorSetLayout = m_descriptorSetLayout.get();
 
+    m_pipeline.initialize(pipelineInfo);
+    
+    // Command pool
+    CommandPoolInfo commandPoolInfo{ };
+    commandPoolInfo.device = m_device.get();
+    commandPoolInfo.queueFamilyIndex = m_queues.getGraphicsFamilyIndex();
+
+    m_graphicsCmdPool.initialize(commandPoolInfo);
+
+    // Swapchain depth image
     m_swapchain.initDepthImage();
     m_swapchain.initDepthImageView();
+
+    // Swapchain framebuffers
     m_swapchain.initFramebuffers();
 
     for (std::shared_ptr<Model> model : m_models)
@@ -265,11 +283,10 @@ namespace RX
   void Api::recreateSwapchain()
   {
     RX_LOG("Recreating swapchain");
-    //RX_DISABLE_LOG;
 
     m_device.waitIdle();
 
-    // 1. Cleaning the existing swapchain.
+    // Cleaning the existing swapchain.
     m_swapchain.destroyDepthImageView();
     m_swapchain.destroyDepthImage();
     m_swapchain.destroyFramebuffers();
@@ -282,29 +299,33 @@ namespace RX
     for (std::shared_ptr<Model> model : m_models)
       model->m_uniformBuffers.destroy();
 
-    // 2. Recreating the swapchain.
+    // Recreating the swapchain.
     m_renderPass.initialize(renderPassInfo);
 
     // Swapchain
     m_surface.checkSettingSupport(m_physicalDevice.get());
     swapchainInfo.surfaceCapabilities = m_surface.getInfo().capabilities;
     m_swapchain.initialize(swapchainInfo);
-
     m_swapchain.initImageViews();
 
+    // Shaders
     Shader vs;
     ShaderInfo vertexShaderInfo{ };
     vertexShaderInfo.fullPath = RX_SHADER_PATH "simple3D.vert";
     vertexShaderInfo.device = m_device.get();
+
     vs.initialize(vertexShaderInfo);
 
     Shader fs;
     ShaderInfo fragmentShaderInfo{ };
     fragmentShaderInfo.fullPath = RX_SHADER_PATH "simple3D.frag";
     fragmentShaderInfo.device = m_device.get();
+
     fs.initialize(fragmentShaderInfo);
 
-    m_pipeline.initialize(m_device.get(), m_renderPass.get(), m_swapchain.getInfo().extent, m_window, vs, fs, m_descriptorSetLayout.get());
+    // Pipeline
+    pipelineInfo.viewport = { 0.0f, 0.0f, static_cast<float>(m_swapchain.getInfo().extent.width), static_cast<float>(m_swapchain.getInfo().extent.height), 0.0f, 1.0f };
+    m_pipeline.initialize(pipelineInfo);
 
     m_swapchain.initDepthImage();
     m_swapchain.initDepthImageView();
@@ -319,7 +340,5 @@ namespace RX
 
     m_commandBuffers.initialize(m_device.get(), m_graphicsCmdPool.get(), m_swapchain.getInfo().framebuffers.size());
     m_commandBuffers.record(m_swapchain, m_swapchain.getInfo().framebuffers, m_renderPass, m_pipeline, m_models);
-
-    RX_ENABLE_LOG;
   }
 }

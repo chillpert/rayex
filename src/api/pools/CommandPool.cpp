@@ -7,26 +7,26 @@ namespace RX
     destroy();
   }
 
-	void CommandPool::initialize(VkDevice device, uint32_t queueFamilyIndex)
+	void CommandPool::initialize(CommandPoolInfo& info)
   {
-    m_device = device;
+    m_info = info;
 
     VkCommandPoolCreateInfo createInfo{ };
     createInfo.sType = VK_STRUCTURE_TYPE_COMMAND_POOL_CREATE_INFO;
-    //createInfo.flags = VK_COMMAND_POOL_CREATE_RESET_COMMAND_BUFFER_BIT;//VK_COMMAND_POOL_CREATE_TRANSIENT_BIT;
-    createInfo.queueFamilyIndex = queueFamilyIndex;
+    createInfo.flags = m_info.createFlags;
+    createInfo.queueFamilyIndex = m_info.queueFamilyIndex;
 
-    VK_CREATE(vkCreateCommandPool(device, &createInfo, nullptr, &m_commandPool), "command pool");
+    VK_CREATE(vkCreateCommandPool(m_info.device, &createInfo, nullptr, &m_commandPool), "command pool");
   }
 
   void CommandPool::destroy()
   {
-    VK_DESTROY(vkDestroyCommandPool(m_device, m_commandPool, nullptr), "command pool");
+    VK_DESTROY(vkDestroyCommandPool(m_info.device, m_commandPool, nullptr), "command pool");
     m_commandPool = VK_NULL_HANDLE;
-   }
+  }
 
-  void CommandPool::reset(VkCommandPoolResetFlags flags)
+  void CommandPool::reset()
   {
-    VK_ASSERT(vkResetCommandPool(m_device, m_commandPool, flags), "Failed to reset command pool.");
+    VK_ASSERT(vkResetCommandPool(m_info.device, m_commandPool, m_info.resetFlags), "Failed to reset command pool.");
   }
 }

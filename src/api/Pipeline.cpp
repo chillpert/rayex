@@ -8,10 +8,11 @@ namespace RX
     destroy();
   }
 
-  void Pipeline::initialize(VkDevice device, VkRenderPass renderPass, VkExtent2D& extent, std::shared_ptr<Window> window, Shader& vs, Shader& fs, VkDescriptorSetLayout descriptorSetLayout)
+  void Pipeline::initialize(PipelineInfo& info)
   {
-    m_device = device;
+    m_info = info;
 
+    // TODO: this has to be more adjustable.
     auto bindingDescription = Vertex::getBindingDescriptions();
     auto attributeDescriptions = Vertex::getAttributeDescriptions();
 
@@ -24,33 +25,15 @@ namespace RX
 
     VkPipelineInputAssemblyStateCreateInfo inputAssembly{ };
     inputAssembly.sType = VK_STRUCTURE_TYPE_PIPELINE_INPUT_ASSEMBLY_STATE_CREATE_INFO;
-    inputAssembly.topology = VK_PRIMITIVE_TOPOLOGY_TRIANGLE_LIST;
+    inputAssembly.topology = m_info.topology;
     inputAssembly.primitiveRestartEnable = VK_FALSE;
-
-    VkViewport viewport{ };
-    viewport.x = 0.0f;
-    viewport.y = 0.0f;
-
-    int width, height;
-    window->getSize(&width, &height);
-    viewport.width = static_cast<float>(width);
-    viewport.height = static_cast<float>(height);
-    viewport.minDepth = 0.0f;
-    viewport.maxDepth = 1.0f;
-
-    VkRect2D scissor{ };
-    scissor.offset = { 0, 0 };
-
-    VkExtent2D temp{ extent.width, extent.height };
-
-    scissor.extent = temp;
 
     VkPipelineViewportStateCreateInfo viewportState{ };
     viewportState.sType = VK_STRUCTURE_TYPE_PIPELINE_VIEWPORT_STATE_CREATE_INFO;
     viewportState.viewportCount = 1;
-    viewportState.pViewports = &viewport;
+    viewportState.pViewports = &m_info.viewport; // TODO: spec states if the viewport is dynamic this is ignored.
     viewportState.scissorCount = 1;
-    viewportState.pScissors = &scissor;
+    viewportState.pScissors = &m_info.scissor;
 
     VkPipelineRasterizationStateCreateInfo rasterizer{ };
     rasterizer.sType = VK_STRUCTURE_TYPE_PIPELINE_RASTERIZATION_STATE_CREATE_INFO;
@@ -93,21 +76,21 @@ namespace RX
     VkPipelineLayoutCreateInfo pipelineLayoutInfo{ };
     pipelineLayoutInfo.sType = VK_STRUCTURE_TYPE_PIPELINE_LAYOUT_CREATE_INFO;
     pipelineLayoutInfo.setLayoutCount = 1;
-    pipelineLayoutInfo.pSetLayouts = &descriptorSetLayout;
+    pipelineLayoutInfo.pSetLayouts = &m_info.descriptorSetLayout;
 
-    VK_CREATE(vkCreatePipelineLayout(device, &pipelineLayoutInfo, nullptr, &m_layout), "pipeline layout");
+    VK_CREATE(vkCreatePipelineLayout(m_info.device, &pipelineLayoutInfo, nullptr, &m_layout), "pipeline layout");
     m_created = false;
 
     VkPipelineShaderStageCreateInfo vertShaderStageInfo{ };
     vertShaderStageInfo.sType = VK_STRUCTURE_TYPE_PIPELINE_SHADER_STAGE_CREATE_INFO;
     vertShaderStageInfo.stage = VK_SHADER_STAGE_VERTEX_BIT;
-    vertShaderStageInfo.module = vs.get();
+    vertShaderStageInfo.module = m_info.vertexShader;
     vertShaderStageInfo.pName = "main";
 
     VkPipelineShaderStageCreateInfo fragShaderStageInfo{ };
     fragShaderStageInfo.sType = VK_STRUCTURE_TYPE_PIPELINE_SHADER_STAGE_CREATE_INFO;
     fragShaderStageInfo.stage = VK_SHADER_STAGE_FRAGMENT_BIT;
-    fragShaderStageInfo.module = fs.get();
+    fragShaderStageInfo.module = m_info.fragmentShader;
     fragShaderStageInfo.pName = "main";
 
     std::vector<VkPipelineShaderStageCreateInfo> shaderStages = { vertShaderStageInfo, fragShaderStageInfo };
@@ -124,17 +107,17 @@ namespace RX
     createInfo.pDepthStencilState = &depthStencil;
     createInfo.pColorBlendState = &colorBlending;
     createInfo.layout = m_layout;
-    createInfo.renderPass = renderPass;
+    createInfo.renderPass = m_info.renderPass;
     createInfo.subpass = 0;
     createInfo.basePipelineHandle = VK_NULL_HANDLE;
 
-    VK_CREATE(vkCreateGraphicsPipelines(device, VK_NULL_HANDLE, 1, &createInfo, nullptr, &m_pipeline), "graphics pipeline");
+    VK_CREATE(vkCreateGraphicsPipelines(m_info.device, VK_NULL_HANDLE, 1, &createInfo, nullptr, &m_pipeline), "graphics pipeline");
   }
 
   void Pipeline::destroy()
   {
-    VK_DESTROY(vkDestroyPipeline(m_device, m_pipeline, nullptr), "pipeline");
-    VK_DESTROY(vkDestroyPipelineLayout(m_device, m_layout, nullptr), "pipeline layout");
+    VK_DESTROY(vkDestroyPipeline(m_info.device, m_pipeline, nullptr), "pipeline");
+    VK_DESTROY(vkDestroyPipelineLayout(m_info.device, m_layout, nullptr), "pipeline layout");
 
     m_pipeline = VK_NULL_HANDLE;
     m_layout = VK_NULL_HANDLE;

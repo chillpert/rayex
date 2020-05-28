@@ -5,21 +5,30 @@
 
 namespace RX
 {
+  struct CommandPoolInfo
+  {
+    VkDevice device;
+    uint32_t queueFamilyIndex;
+    VkCommandPoolCreateFlags createFlags;
+    VkCommandPoolResetFlags resetFlags = 0;
+  };
+
   class CommandPool
   {
   public:
     ~CommandPool();
     
     inline VkCommandPool get() { return m_commandPool; }
+    inline CommandPoolInfo& getInfo() { return m_info; }
 
-    void initialize(VkDevice device, uint32_t queueFamilyIndex);
+    void initialize(CommandPoolInfo& info);
     void destroy();
 
-    void reset(VkCommandPoolResetFlags flags = 0);
+    void reset();
 
   private:
     VkCommandPool m_commandPool;
-    VkDevice m_device;
+    CommandPoolInfo m_info;
 
     bool m_created = false;
   };

@@ -29,6 +29,8 @@ namespace RX
 	private:
 		VkFramebuffer m_framebuffer;
 		FramebufferInfo m_info;
+
+		bool m_created = false;
 	};
 }
 

@@ -29,6 +29,8 @@ namespace RX
   private:
     VkImageView m_imageView;
     ImageViewInfo m_info;
+  
+    bool m_created = false;
   };
 }
 

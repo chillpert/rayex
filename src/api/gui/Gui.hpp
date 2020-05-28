@@ -1,8 +1,6 @@
 #ifndef GUI_HPP
 #define GUI_HPP
 
-#include "pch/stdafx.hpp"
-
 #include "api/Surface.hpp"
 #include "api/Queues.hpp"
 #include "api/RenderPass.hpp"
@@ -10,7 +8,7 @@
 
 namespace RX
 {
-  class Gui : public BaseComponent
+  class Gui
   {
   public:
     Gui();

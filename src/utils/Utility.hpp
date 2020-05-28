@@ -17,12 +17,17 @@
 
   #define VK_CREATE(result, componentName) if (result != VK_SUCCESS)\
                                            {\
-                                             RX_ERROR("Failed to create " + componentName);\
+                                             RX_ERROR("Failed to create: " + componentName);\
                                            }\
                                            else\
-                                             RX_LOG("Created: " << componentName)
+                                           {\
+                                             RX_LOG("Created: " << componentName);\
+                                           }\
+                                           m_created = true
 
-  #define VK_DESTROY(term, componentName) term; if (Utils::log) std::cout << "RX: Destroyed: " << componentName << std::endl;
+  #define VK_DESTROY(term, componentName) if (!m_created) return; term; if (Utils::log) RX_LOG("Destroyed: " << componentName)
+
+  #define VK_FREE(term, componentName) if (!m_created) return; term; if (Utils::log) RX_LOG("Freed: " << componentName)
 
   #define VK_ASSERT(result, message) if (result != VK_SUCCESS) RX_ERROR(message)
 
@@ -33,8 +38,9 @@
   #define RX_ENABLE_LOG
 
   #define RX_LOG(message)
-  #define VK_DESTROY(term, componentName) term
   #define VK_CREATE(result, componentName) result
+  #define VK_DESTROY(term, componentName) term
+  #define VK_FREE(term, componentName) term
 
   #define VK_ASSERT(result, message) result
   #define SDL_ASSERT(result, message) result

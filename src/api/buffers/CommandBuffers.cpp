@@ -3,9 +3,6 @@
 
 namespace RX
 {
-	CommandBuffers::CommandBuffers() :
-		BaseComponent("CommandBuffers") { }
-
 	CommandBuffers::~CommandBuffers()
 	{
 		destroy();
@@ -25,14 +22,10 @@ namespace RX
 	  allocateInfo.commandBufferCount = static_cast<uint32_t>(m_commandBuffers.size());
 
 	  VK_ASSERT(vkAllocateCommandBuffers(device, &allocateInfo, m_commandBuffers.data()), "Failed to allocate command buffers");
-	
-		RX_INITIALIZATION_CALLBACK;
 	}
 
 	void CommandBuffers::record(Swapchain& swapchain, std::vector<Framebuffer>& framebuffers, RenderPass& renderPass, Pipeline& pipeline, std::vector<std::shared_ptr<Model>>& models)
 	{
-		RX_ASSERT_INITIALIZED("record");
-
 		for (size_t i = 0; i < m_commandBuffers.size(); ++i)
 		{
 	    VkCommandBufferBeginInfo beginInfo{ };
@@ -81,8 +74,7 @@ namespace RX
 
 	void CommandBuffers::free()
 	{
-		RX_ASSERT_DESTRUCTION;
-		vkFreeCommandBuffers(m_device, m_commandPool, static_cast<uint32_t>(m_commandBuffers.size()), m_commandBuffers.data());
+		VK_FREE(vkFreeCommandBuffers(m_device, m_commandPool, static_cast<uint32_t>(m_commandBuffers.size()), m_commandBuffers.data()), "command buffers");
 	}
 
 	void CommandBuffers::destroy()

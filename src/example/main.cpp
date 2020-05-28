@@ -154,7 +154,8 @@ int main(int argc, char* argv[])
   auto myWindow = std::make_shared<CustomWindow>(props);
   // Create the renderer object.
   Renderer renderer(myWindow);
-
+  
+  /*
   auto mars = std::make_shared<Model>();
   mars->m_pathToTexture = RX_TEXTURE_PATH "mars.jpg";
   mars->m_pathToModel = RX_MODEL_PATH "sphere.obj";
@@ -165,6 +166,7 @@ int main(int argc, char* argv[])
 
   rock->m_model = glm::scale(rock->m_model, glm::vec3(0.2f, 0.2f, 0.2f));
   rock->m_model = glm::translate(rock->m_model, glm::vec3(4.0f, 5.0f, 0.0f));
+  */
 
   // Add the model to the renderer. This way it will be queued for rendering.
   //renderer.pushModel(mars);

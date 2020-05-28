@@ -35,6 +35,8 @@ namespace RX
 
     VkSurfaceKHR m_surface;
     SurfaceInfo m_info;
+
+    bool m_created = false;
   };
 }
 

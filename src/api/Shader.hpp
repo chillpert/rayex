@@ -1,7 +1,7 @@
 #ifndef SHADER_HPP
 #define SHADER_HPP
 
-#include "BaseComponent.hpp"
+#include "pch/stdafx.hpp"
 
 namespace RX
 {
@@ -32,6 +32,8 @@ namespace RX
 
     VkShaderModule m_shaderModule;
     ShaderInfo m_info;
+
+    bool m_created = false;
   };
 }
 

@@ -1,7 +1,6 @@
 #ifndef BUFFER_HPP
 #define BUFFER_HPP
 
-#include "api/BaseComponent.hpp"
 #include "api/texture/Image.hpp"
 
 namespace RX
@@ -23,10 +22,9 @@ namespace RX
     VkIndexType type; // Optional, if the buffer is not an index buffer.
   };
 
-  class Buffer : public BaseComponent
+  class Buffer
   {
   public:
-    RX_API Buffer();
     RX_API ~Buffer();
 
     inline VkBuffer get() const { return m_buffer; }
@@ -52,6 +50,8 @@ namespace RX
     VkBuffer m_buffer;
     VkDeviceMemory m_memory;
 
+    bool m_created = false;
+
   public:
     BufferCreateInfo m_info;
   };
@@ -59,8 +59,6 @@ namespace RX
   template <class T>
   inline void Buffer::fill(T* source)
   {
-    RX_ASSERT_INITIALIZED("fill");
-
     void* data;
     vkMapMemory(m_info.device, m_memory, 0, m_info.deviceSize, 0, &data);
     memcpy(data, source, static_cast<uint32_t>(m_info.deviceSize));

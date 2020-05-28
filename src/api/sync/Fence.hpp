@@ -1,14 +1,13 @@
 #ifndef FENCE_HPP
 #define FENCE_HPP
 
-#include "api/BaseComponent.hpp"
+#include "pch/stdafx.hpp"
 
 namespace RX
 {
-  class Fence : public BaseComponent
+  class Fence
   {
   public:
-    Fence();
     ~Fence();
 
     inline VkFence& get() { return m_fence; }
@@ -17,8 +16,10 @@ namespace RX
     void destroy();
 
   private:
-    VkFence m_fence;
+    VkFence m_fence = VK_NULL_HANDLE;
     VkDevice m_device;
+
+    bool m_created = false;
   };
 }
 

@@ -1,14 +1,13 @@
 #ifndef COMMAND_POOL_HPP
 #define COMMAND_POOL_HPP
 
-#include "api/BaseComponent.hpp"
+#include "pch/stdafx.hpp"
 
 namespace RX
 {
-  class CommandPool : public BaseComponent
+  class CommandPool
   {
   public:
-    CommandPool();
     ~CommandPool();
     
     inline VkCommandPool get() { return m_commandPool; }
@@ -21,6 +20,8 @@ namespace RX
   private:
     VkCommandPool m_commandPool;
     VkDevice m_device;
+
+    bool m_created = false;
   };
 }
 

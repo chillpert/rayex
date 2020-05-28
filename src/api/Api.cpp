@@ -6,9 +6,6 @@ namespace RX
   // Defines the maximum amount of frames that will be processed concurrently.
   const size_t maxFramesInFlight = 2;
 
-  RenderPassInfo renderPassInfo{ };
-  SwapchainInfo swapchainInfo{ };
-
   Api::Api(std::shared_ptr<Window> window) :
     m_window(window) { }
 
@@ -69,6 +66,7 @@ namespace RX
     m_queues.retrieveAllHandles(m_device.get());
 
     // Render pass
+    RenderPassInfo renderPassInfo{ };
     renderPassInfo.physicalDevice = m_physicalDevice.get();
     renderPassInfo.device = m_device.get();
     renderPassInfo.surfaceFormat = m_surface.getInfo().format;
@@ -77,6 +75,7 @@ namespace RX
     m_renderPass.initialize(renderPassInfo);
 
     // Swapchain
+    SwapchainInfo swapchainInfo{ };
     swapchainInfo.window = m_window;
     swapchainInfo.physicalDevice = m_physicalDevice.get();
     swapchainInfo.device = m_device.get();
@@ -115,22 +114,6 @@ namespace RX
     m_swapchain.initDepthImage();
     m_swapchain.initDepthImageView();
     m_swapchain.initFramebuffers();
-
-    m_descriptorPool.initialize(m_device.get(), m_swapchain.getInfo().images.size());
-    
-/*
-    m_imgui.initialize(
-      m_instance.get(),
-      m_physicalDevice.get(),
-      m_device.get(),
-      m_queues,
-      m_descriptorPool.get(),
-      m_surface,
-      m_renderPass.get(),
-      m_window->get(),
-      m_swapchain.getInfo().images.size()
-    );
-*/
 
     for (std::shared_ptr<Model> model : m_models)
     {
@@ -187,10 +170,6 @@ namespace RX
       return true;
     }
 
-    //m_imgui.beginRender();
-    //m_imgui.renderDemo();
-    //m_imgui.render();
-
     uint32_t imageIndex;
     m_swapchain.acquireNextImage(m_imageAvailableSemaphores[currentFrame].get(), VK_NULL_HANDLE, &imageIndex);
 
@@ -221,8 +200,6 @@ namespace RX
     VkSemaphore signalSemaphores[] = { m_finishedRenderSemaphores[currentFrame].get() };
     submitInfo.signalSemaphoreCount = 1;
     submitInfo.pSignalSemaphores = signalSemaphores;
-
-    //m_imgui.endRender(m_device.get(), m_queues, m_renderPass.get(), m_framebuffers.get()[imageIndex]);
 
     // Reset the signaled state of the current frame's fence to the unsignaled one.
     vkResetFences(m_device.get(), 1, &m_inFlightFences[currentFrame].get());
@@ -290,12 +267,30 @@ namespace RX
     for (std::shared_ptr<Model> model : m_models)
       model->m_uniformBuffers.destroy();
 
-    m_descriptorPool.destroy();
-
     // 2. Recreating the swapchain.
+    RenderPassInfo renderPassInfo{ };
+    renderPassInfo.physicalDevice = m_physicalDevice.get();
+    renderPassInfo.device = m_device.get();
+    renderPassInfo.surfaceFormat = m_surface.getInfo().format;
+    renderPassInfo.depthFormat = getSupportedDepthFormat(m_physicalDevice.get());
+
+    m_renderPass.initialize(renderPassInfo);
+
+    // Swapchain
+    SwapchainInfo swapchainInfo{ };
+    swapchainInfo.window = m_window;
+    swapchainInfo.physicalDevice = m_physicalDevice.get();
+    swapchainInfo.device = m_device.get();
+    swapchainInfo.surface = m_surface.get();
+    swapchainInfo.surfaceFormat = m_surface.getInfo().format;
+    swapchainInfo.surfaceColorSpace = m_surface.getInfo().colorSpace;
+    swapchainInfo.surfacePresentMode = m_surface.getInfo().presentMode;
+    swapchainInfo.surfaceCapabilities = m_surface.getInfo().capabilities;
+    swapchainInfo.queueFamilyIndices = m_queues.getQueueFamilyIndices();
+    swapchainInfo.renderPass = m_renderPass.get();
+
     m_swapchain.initialize(swapchainInfo);
     m_swapchain.initImageViews();
-    m_renderPass.initialize(renderPassInfo);
 
     Shader vs;
     ShaderInfo vertexShaderInfo{ };
@@ -314,8 +309,6 @@ namespace RX
     m_swapchain.initDepthImage();
     m_swapchain.initDepthImageView();
     m_swapchain.initFramebuffers();
-
-    m_descriptorPool.initialize(m_device.get(), m_swapchain.getInfo().images.size());
 
     for (auto model : m_models)
     {

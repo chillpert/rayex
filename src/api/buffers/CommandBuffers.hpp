@@ -12,10 +12,9 @@
 namespace RX
 {
   // TODO: move to buffers directory
-  class CommandBuffers : public BaseComponent
+  class CommandBuffers
   {
   public:
-    RX_API CommandBuffers();
     RX_API ~CommandBuffers();
 
     inline std::vector<VkCommandBuffer>& get() { return m_commandBuffers; }
@@ -30,6 +29,8 @@ namespace RX
 
     VkDevice m_device;
     VkCommandPool m_commandPool;
+
+    bool m_created = false;
   };
 }
 

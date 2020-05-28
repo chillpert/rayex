@@ -3,9 +3,6 @@
 
 namespace RX
 {
-  Buffer::Buffer() :
-    BaseComponent("Buffer") { }
-
   Buffer::~Buffer()
   {
     destroy();
@@ -43,14 +40,10 @@ namespace RX
 
     // Bind the buffer to the allocated memory.
     VK_ASSERT(vkBindBufferMemory(createInfo.device, m_buffer, m_memory, 0), "Failed to bind buffer to memory");
-  
-    RX_INITIALIZATION_CALLBACK;
   }
   
   void Buffer::destroy()
   {
-    RX_ASSERT_DESTRUCTION;
-
     VK_DESTROY(vkDestroyBuffer(m_info.device, m_buffer, nullptr), "buffer");
     vkFreeMemory(m_info.device, m_memory, nullptr);
   }

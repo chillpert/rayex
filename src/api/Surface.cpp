@@ -12,6 +12,8 @@ namespace RX
     m_info = info;
 
     m_surface = m_info.window->createSurface(m_info.instance);
+    
+    m_created = true;
   }
 
   void Surface::checkSettingSupport(VkPhysicalDevice physicalDevice)

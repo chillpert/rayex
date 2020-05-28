@@ -1,7 +1,7 @@
 #ifndef IMAGE_HPP
 #define IMAGE_HPP
 
-#include "api/BaseComponent.hpp"
+#include "pch/stdafx.hpp"
 
 namespace RX
 {
@@ -43,6 +43,8 @@ namespace RX
     VkImage m_image;
     VkDeviceMemory m_memory;
     ImageInfo m_info;
+
+    bool m_created = false;
   };
 }
 

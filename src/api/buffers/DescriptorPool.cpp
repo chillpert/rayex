@@ -2,9 +2,6 @@
 
 namespace RX
 {
-  DescriptorPool::DescriptorPool() :
-    BaseComponent("DescriptorPool") { }
-
   DescriptorPool::~DescriptorPool()
   {
     destroy();

@@ -2,10 +2,6 @@
 
 namespace RX
 {
-  Fence::Fence() :
-    BaseComponent("Fence"),
-    m_fence(VK_NULL_HANDLE) { }
-
   Fence::~Fence()
   {
     destroy();
@@ -20,8 +16,6 @@ namespace RX
     createInfo.flags = VK_FENCE_CREATE_SIGNALED_BIT;
 
     VK_CREATE(vkCreateFence(device, &createInfo, nullptr, &m_fence), "fence");
-
-    RX_INITIALIZATION_CALLBACK;
   }
 
   void Fence::destroy()

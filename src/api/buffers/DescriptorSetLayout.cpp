@@ -2,9 +2,6 @@
 
 namespace RX
 {
-  DescriptorSetLayout::DescriptorSetLayout() :
-    BaseComponent("DescriptorSetLayout") { }
-
   DescriptorSetLayout::~DescriptorSetLayout()
   {
     destroy();
@@ -36,8 +33,6 @@ namespace RX
     createInfo.pBindings = bindings.data();
 
     VK_CREATE(vkCreateDescriptorSetLayout(device, &createInfo, nullptr, &m_layout), "descriptor set layout");
-
-    RX_INITIALIZATION_CALLBACK;
   }
 
   void DescriptorSetLayout::destroy()

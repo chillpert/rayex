@@ -1,14 +1,13 @@
 #ifndef DESCRIPTOR_POOL
 #define DESCRIPTOR_POOL
 
-#include "api/BaseComponent.hpp"
+#include "pch/stdafx.hpp"
 
 namespace RX
 {
-  class DescriptorPool : public BaseComponent
+  class DescriptorPool
   {
   public:
-    RX_API DescriptorPool();
     RX_API ~DescriptorPool();
 
     inline VkDescriptorPool get() { return m_pool; }
@@ -19,6 +18,8 @@ namespace RX
   private:
     VkDescriptorPool m_pool;
     VkDevice m_device;
+
+    bool m_created = false;
   };
 }
 

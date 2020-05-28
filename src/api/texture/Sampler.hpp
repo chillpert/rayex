@@ -1,14 +1,13 @@
 #ifndef SAMPLER_HPP
 #define SAMPLER_HPP
 
-#include "api/BaseComponent.hpp"
+#include "pch/stdafx.hpp"
 
 namespace RX
 {
-  class Sampler : public BaseComponent
+  class Sampler
   {
   public:
-    RX_API Sampler();
     RX_API ~Sampler();
 
     inline VkSampler get() const { return m_sampler; }
@@ -19,6 +18,8 @@ namespace RX
   private:
     VkSampler m_sampler;
     VkDevice m_device;
+
+    bool m_created = false;
   };  
 }
 

@@ -3,9 +3,6 @@
 
 namespace RX
 {
-  Pipeline::Pipeline() :
-    BaseComponent("Pipeline") { }
-
   Pipeline::~Pipeline()
   {
     destroy();
@@ -131,8 +128,6 @@ namespace RX
     createInfo.basePipelineHandle = VK_NULL_HANDLE;
 
     VK_CREATE(vkCreateGraphicsPipelines(device, VK_NULL_HANDLE, 1, &createInfo, nullptr, &m_pipeline), "graphics pipeline");
-  
-    RX_INITIALIZATION_CALLBACK;
   }
 
   void Pipeline::destroy()

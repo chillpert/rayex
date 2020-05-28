@@ -32,6 +32,8 @@ namespace RX
 
     VkInstance m_instance;
     InstanceInfo m_info;
+
+    bool m_created = false;
   };
 }
 

@@ -57,7 +57,9 @@ namespace RX
     
   private:
     VkSwapchainKHR m_swapchain;
-    SwapchainInfo m_info;   
+    SwapchainInfo m_info;
+
+    bool m_created = false;
   };
 
   VkFormat getSupportedDepthFormat(VkPhysicalDevice physicalDevice);

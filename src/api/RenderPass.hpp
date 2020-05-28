@@ -30,6 +30,8 @@ namespace RX
     
     VkRenderPass m_renderPass;
     RenderPassInfo m_info;
+
+    bool m_created = false;
   };
 }
 

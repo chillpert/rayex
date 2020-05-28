@@ -62,14 +62,11 @@ namespace RX
     DescriptorSetLayout m_descriptorSetLayout;
     Pipeline m_pipeline;
     CommandPool m_graphicsCmdPool;
-    DescriptorPool m_descriptorPool;
     std::vector<Fence> m_inFlightFences;
     std::vector<Semaphore> m_imageAvailableSemaphores;
     std::vector<Semaphore> m_finishedRenderSemaphores;
     CommandBuffers m_commandBuffers;
     std::vector<std::shared_ptr<Model>> m_models;
-
-    //Gui m_imgui;
 
     // No destruction necessary for following members:
     PhysicalDevice m_physicalDevice;

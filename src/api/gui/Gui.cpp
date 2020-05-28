@@ -14,9 +14,6 @@ namespace RX
       abort();
   }
 
-  Gui::Gui() :
-    BaseComponent("Gui") { }
-
   Gui::~Gui()
   {
     clean();
@@ -76,14 +73,10 @@ namespace RX
     ImGui_ImplVulkan_DestroyFontUploadObjects();
 
     m_commandPool.initialize(device, queues.getGraphicsFamilyIndex());
-
-    RX_INITIALIZATION_CALLBACK;
   }
 
   void Gui::beginRender()
   {
-    RX_ASSERT_INITIALIZED("beginRender");
-    
     ImGui_ImplVulkan_NewFrame();
     ImGui_ImplSDL2_NewFrame(m_window);
     ImGui::NewFrame();
@@ -91,16 +84,12 @@ namespace RX
 
   void Gui::render()
   {
-    RX_ASSERT_INITIALIZED("render");
-
     ImGui::Render();
     m_drawData = ImGui::GetDrawData();
   }
 
   void Gui::endRender(VkDevice device, Queues& queues, VkRenderPass renderPass, VkFramebuffer framebuffer)
   {
-    RX_ASSERT_INITIALIZED("endRender");
-
     m_commandPool.reset();
 
     CommandBuffer commandBuffer;
@@ -143,14 +132,11 @@ namespace RX
 
   void Gui::recreate()
   {
-    RX_ASSERT_INITIALIZED("recreate");
 
   }
 
   void Gui::clean()
   {
-    RX_ASSERT_DESTRUCTION;
-
     ImGui_ImplVulkan_Shutdown();
     ImGui_ImplSDL2_Shutdown();
     ImGui::DestroyContext();

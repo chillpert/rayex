@@ -2,9 +2,6 @@
 
 namespace RX
 {
-  Semaphore::Semaphore() :
-    BaseComponent("Semaphore") { }
-
   Semaphore::~Semaphore()
   {
     destroy();
@@ -18,8 +15,6 @@ namespace RX
     createInfo.sType = VK_STRUCTURE_TYPE_SEMAPHORE_CREATE_INFO;
 
     VK_CREATE(vkCreateSemaphore(device, &createInfo, nullptr, &m_semaphore), "semaphore");
-
-    RX_INITIALIZATION_CALLBACK;
   }
 
   void Semaphore::destroy()

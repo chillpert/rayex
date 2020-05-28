@@ -2,9 +2,6 @@
 
 namespace RX
 {
-  Sampler::Sampler() :
-    BaseComponent("Sampler") { }
-
   Sampler::~Sampler()
   {
     destroy();
@@ -30,8 +27,6 @@ namespace RX
     createInfo.mipmapMode = VK_SAMPLER_MIPMAP_MODE_LINEAR;
 
     VK_CREATE(vkCreateSampler(device, &createInfo, nullptr, &m_sampler), "sampler");
-
-    RX_INITIALIZATION_CALLBACK;
   }
 
   void Sampler::destroy()

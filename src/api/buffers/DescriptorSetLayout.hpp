@@ -1,14 +1,13 @@
 #ifndef DESCRIPTOR_SET_LAYOUT_HPP
 #define DESCRIPTOR_SET_LAYOUT_HPP
 
-#include "api/BaseComponent.hpp"
+#include "pch/stdafx.hpp"
 
 namespace RX
 {
-  class DescriptorSetLayout : public BaseComponent
+  class DescriptorSetLayout
   {
   public:
-    DescriptorSetLayout();
     ~DescriptorSetLayout();
 
     inline VkDescriptorSetLayout get() { return m_layout; }
@@ -20,6 +19,8 @@ namespace RX
   private:
     VkDescriptorSetLayout m_layout;
     VkDevice m_device;
+
+    bool m_created = false;
   };
 }
 

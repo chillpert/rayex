@@ -1,17 +1,15 @@
 #ifndef PIPELINE_HPP
 #define PIPELINE_HPP
 
-#include "BaseComponent.hpp"
 #include "window/Window.hpp"
 #include "swapchain/Swapchain.hpp"
 #include "Shader.hpp"
 
 namespace RX
 {
-  class Pipeline : public BaseComponent
+  class Pipeline
   {
   public:
-    Pipeline();
     ~Pipeline();
 
     inline VkPipeline get() { return m_pipeline; }
@@ -24,6 +22,8 @@ namespace RX
     VkPipeline m_pipeline;
     VkPipelineLayout m_layout;
     VkDevice m_device;
+
+    bool m_created = false;
   };
 }
 

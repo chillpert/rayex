@@ -2,9 +2,6 @@
 
 namespace RX
 {
-	CommandPool::CommandPool() :
-		BaseComponent("CommandPool") { }
-
   CommandPool::~CommandPool()
   {
     destroy();
@@ -20,8 +17,6 @@ namespace RX
     createInfo.queueFamilyIndex = queueFamilyIndex;
 
     VK_CREATE(vkCreateCommandPool(device, &createInfo, nullptr, &m_commandPool), "command pool");
-
-    RX_INITIALIZATION_CALLBACK;
   }
 
   void CommandPool::destroy()

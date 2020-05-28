@@ -1,14 +1,13 @@
 #ifndef SEMAPHORE_HPP
 #define SEMAPHORE_HPP
 
-#include "api/BaseComponent.hpp"
+#include "pch/stdafx.hpp"
 
 namespace RX
 {
-  class Semaphore : public BaseComponent
+  class Semaphore
   {
   public:
-    Semaphore();
     ~Semaphore();
 
     inline VkSemaphore& get() { return m_semaphore; }
@@ -19,6 +18,8 @@ namespace RX
   private:
     VkSemaphore m_semaphore;
     VkDevice m_device;
+
+    bool m_created = false;
   };
 }
 

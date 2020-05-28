@@ -24,7 +24,6 @@ namespace RX
 
   void Semaphore::destroy()
   {
-    RX_ASSERT_DESTRUCTION;
-    vkDestroySemaphore(m_device, m_semaphore, nullptr);
+    RX_DESTROY(vkDestroySemaphore(m_device, m_semaphore, nullptr), "semaphore");
   }
 }

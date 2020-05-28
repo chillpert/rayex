@@ -5,33 +5,33 @@
 
 namespace RX
 {
-  class Shader : public BaseComponent
+  struct ShaderInfo
+  {
+    std::string fullPath;
+    VkDevice device;
+
+    std::string pathToFile; // Ignore, will be initialized automatically.
+    std::string fileName; // Ignore, will be initialized automatically.
+    std::string fileNameOut; // Ignore, will be initialized automatically.
+    std::vector<char> source; // Ignore, will be initialized automatically.
+  };
+
+  class Shader
   {
   public:
-    Shader();
     ~Shader();
 
-    void initialize(const std::string& fullPath, VkDevice device);
+    inline VkShaderModule get() { return m_shaderModule; }
+    inline ShaderInfo getInfo() { return m_info; }
+
+    void initialize(ShaderInfo& info);
     void destroy();
 
-    inline std::vector<char>& getSource() { return m_source; }
-    inline VkShaderModule getShaderModule() { return m_shaderModule; }
-
   private:
-    // This function calls glslc.exe to compile the given shader file to .spv.
-    void compile(VkDevice device);
-    // This function opens the .spv file and retrieves the source code
-    void load(VkDevice device);
-    void createShaderModule(VkDevice device);
-
-    std::string m_pathToFile;
-    std::string m_fileName;
-    std::string m_fileNameOut;
-
-    std::vector<char> m_source;
+    void createShaderModule();
 
     VkShaderModule m_shaderModule;
-    VkDevice m_device;
+    ShaderInfo m_info;
   };
 }
 

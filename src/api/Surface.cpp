@@ -60,6 +60,6 @@ namespace RX
 
   void Surface::destroy()
   {
-    vkDestroySurfaceKHR(m_info.instance, m_surface, nullptr);
+    RX_DESTROY(vkDestroySurfaceKHR(m_info.instance, m_surface, nullptr), "surface");
   }
 }

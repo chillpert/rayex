@@ -167,8 +167,8 @@ int main(int argc, char* argv[])
   rock->m_model = glm::translate(rock->m_model, glm::vec3(4.0f, 5.0f, 0.0f));
 
   // Add the model to the renderer. This way it will be queued for rendering.
-  renderer.pushModel(mars);
-  renderer.pushModel(rock);
+  //renderer.pushModel(mars);
+  //renderer.pushModel(rock);
 
   // This will set up the entire Vulkan pipeline.
   renderer.initialize();
@@ -177,7 +177,7 @@ int main(int argc, char* argv[])
   {
     // Update the camera so that key inputs will have an effect on it.
     cam.update();
-
+    /*
     // Rotate the model using the provided timer functions.
     static float speed = 0.01f;
     mars->m_model = glm::rotate(mars->m_model, glm::radians(90.0f) * Time::getDeltaTime() * speed, glm::vec3(0.0f, 1.0f, 0.0f));
@@ -186,6 +186,7 @@ int main(int argc, char* argv[])
 
     rock->m_view = cam.getViewMatrix();
     rock->m_projection = cam.getProjectionMatrix();
+    */
 
     // Call udpate and render for the renderer to work properly.
     renderer.update();

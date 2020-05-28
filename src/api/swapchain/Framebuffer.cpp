@@ -30,6 +30,6 @@ namespace RX
 
   void Framebuffer::destroy()
   {
-    vkDestroyFramebuffer(m_info.device, m_framebuffer, nullptr);
+    RX_DESTROY(vkDestroyFramebuffer(m_info.device, m_framebuffer, nullptr), "framebuffer");
   }
 }

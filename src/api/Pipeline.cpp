@@ -103,13 +103,13 @@ namespace RX
     VkPipelineShaderStageCreateInfo vertShaderStageInfo{ };
     vertShaderStageInfo.sType = VK_STRUCTURE_TYPE_PIPELINE_SHADER_STAGE_CREATE_INFO;
     vertShaderStageInfo.stage = VK_SHADER_STAGE_VERTEX_BIT;
-    vertShaderStageInfo.module = vs.getShaderModule();
+    vertShaderStageInfo.module = vs.get();
     vertShaderStageInfo.pName = "main";
 
     VkPipelineShaderStageCreateInfo fragShaderStageInfo{ };
     fragShaderStageInfo.sType = VK_STRUCTURE_TYPE_PIPELINE_SHADER_STAGE_CREATE_INFO;
     fragShaderStageInfo.stage = VK_SHADER_STAGE_FRAGMENT_BIT;
-    fragShaderStageInfo.module = fs.getShaderModule();
+    fragShaderStageInfo.module = fs.get();
     fragShaderStageInfo.pName = "main";
 
     std::vector<VkPipelineShaderStageCreateInfo> shaderStages = { vertShaderStageInfo, fragShaderStageInfo };
@@ -137,8 +137,7 @@ namespace RX
 
   void Pipeline::destroy()
   {
-    RX_ASSERT_DESTRUCTION;
-    vkDestroyPipeline(m_device, m_pipeline, nullptr);
-    vkDestroyPipelineLayout(m_device, m_layout, nullptr);
+    RX_DESTROY(vkDestroyPipeline(m_device, m_pipeline, nullptr), "pipeline");
+    RX_DESTROY(vkDestroyPipelineLayout(m_device, m_layout, nullptr), "pipeline layout");
   }
 }

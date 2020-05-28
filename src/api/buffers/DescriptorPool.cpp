@@ -33,7 +33,6 @@ namespace RX
 
   void DescriptorPool::destroy()
   {
-    RX_ASSERT_DESTRUCTION;
-    vkDestroyDescriptorPool(m_device, m_pool, nullptr);
+    RX_DESTROY(vkDestroyDescriptorPool(m_device, m_pool, nullptr), "descriptor pool");
   }
 }

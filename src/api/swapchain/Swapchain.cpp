@@ -96,7 +96,7 @@ namespace RX
 
   void Swapchain::destroy()
   {
-    vkDestroySwapchainKHR(m_info.device, m_swapchain, nullptr);
+    RX_DESTROY(vkDestroySwapchainKHR(m_info.device, m_swapchain, nullptr), "swapchain");
   }
 
   void Swapchain::initDepthImage()

@@ -51,7 +51,7 @@ namespace RX
   {
     RX_ASSERT_DESTRUCTION;
 
-    vkDestroyBuffer(m_info.device, m_buffer, nullptr);
+    RX_DESTROY(vkDestroyBuffer(m_info.device, m_buffer, nullptr), "buffer");
     vkFreeMemory(m_info.device, m_memory, nullptr);
   }
 

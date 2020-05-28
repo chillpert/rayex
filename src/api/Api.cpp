@@ -92,9 +92,17 @@ namespace RX
     m_swapchain.initImageViews();
 
     // Set up simple example shaders.
-    Shader vs, fs;
-    vs.initialize(RX_SHADER_PATH "simple3D.vert", m_device.get());
-    fs.initialize(RX_SHADER_PATH "simple3D.frag", m_device.get());
+    Shader vs; 
+    ShaderInfo vertexShaderInfo{ };
+    vertexShaderInfo.fullPath = RX_SHADER_PATH "simple3D.vert";
+    vertexShaderInfo.device = m_device.get();
+    vs.initialize(vertexShaderInfo);
+
+    Shader fs; 
+    ShaderInfo fragmentShaderInfo{ };
+    fragmentShaderInfo.fullPath = RX_SHADER_PATH "simple3D.frag";
+    fragmentShaderInfo.device = m_device.get();
+    fs.initialize(fragmentShaderInfo);
     
     m_descriptorSetLayout.initialize(m_device.get());
     
@@ -289,9 +297,18 @@ namespace RX
     m_swapchain.initImageViews();
     m_renderPass.initialize(renderPassInfo);
 
-    Shader vs, fs;
-    vs.initialize(RX_SHADER_PATH "simple3D.vert", m_device.get());
-    fs.initialize(RX_SHADER_PATH "simple3D.frag", m_device.get());
+    Shader vs;
+    ShaderInfo vertexShaderInfo{ };
+    vertexShaderInfo.fullPath = RX_SHADER_PATH "simple3D.vert";
+    vertexShaderInfo.device = m_device.get();
+    vs.initialize(vertexShaderInfo);
+
+    Shader fs;
+    ShaderInfo fragmentShaderInfo{ };
+    fragmentShaderInfo.fullPath = RX_SHADER_PATH "simple3D.frag";
+    fragmentShaderInfo.device = m_device.get();
+    fs.initialize(fragmentShaderInfo);
+
     m_pipeline.initialize(m_device.get(), m_renderPass.get(), m_swapchain.getInfo().extent, m_window, vs, fs, m_descriptorSetLayout.get());
 
     m_swapchain.initDepthImage();

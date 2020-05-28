@@ -37,7 +37,7 @@ namespace RX
 
   void Instance::destroy()
   {
-    vkDestroyInstance(m_instance, nullptr);
+    RX_DESTROY(vkDestroyInstance(m_instance, nullptr), "instance");
   }
 
   void Instance::checkLayersSupport()

@@ -29,5 +29,6 @@ namespace RX
   void DescriptorPool::destroy()
   {
     VK_DESTROY(vkDestroyDescriptorPool(m_device, m_pool, nullptr), "descriptor pool");
+    m_pool = VK_NULL_HANDLE;
   }
 }

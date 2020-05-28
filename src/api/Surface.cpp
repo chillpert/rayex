@@ -13,7 +13,7 @@ namespace RX
 
     m_surface = m_info.window->createSurface(m_info.instance);
     
-    m_created = true;
+    VK_CREATE(VK_SUCCESS, "surface");
   }
 
   void Surface::checkSettingSupport(VkPhysicalDevice physicalDevice)
@@ -58,10 +58,13 @@ namespace RX
     // If the prefered format and color space are not available, fall back.
     m_info.format = surfaceFormats[0].format;
     m_info.colorSpace = surfaceFormats[0].colorSpace;
+
+    VK_CREATE(VK_SUCCESS, "swapchain");
   }
 
   void Surface::destroy()
   {
     VK_DESTROY(vkDestroySurfaceKHR(m_info.instance, m_surface, nullptr), "surface");
+    m_surface = VK_NULL_HANDLE;
   }
 }

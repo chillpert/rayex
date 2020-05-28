@@ -46,6 +46,9 @@ namespace RX
   {
     VK_DESTROY(vkDestroyBuffer(m_info.device, m_buffer, nullptr), "buffer");
     vkFreeMemory(m_info.device, m_memory, nullptr);
+
+    m_buffer = VK_NULL_HANDLE;
+    m_memory = VK_NULL_HANDLE;
   }
 
   Buffer& Buffer::operator=(const Buffer& buffer)

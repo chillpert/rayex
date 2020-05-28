@@ -5,6 +5,11 @@ namespace RX
   // Defines the maximum amount of frames that will be processed concurrently.
   const size_t maxFramesInFlight = 2;
 
+  RenderPassInfo renderPassInfo{ };
+  SwapchainInfo swapchainInfo{ };
+  ShaderInfo vertexShaderInfo{ };
+  ShaderInfo fragmentShaderInfo{ };
+
   Api::Api(std::shared_ptr<Window> window) :
     m_window(window) { }
 
@@ -65,7 +70,6 @@ namespace RX
     m_queues.retrieveAllHandles(m_device.get());
 
     // Render pass
-    RenderPassInfo renderPassInfo{ };
     renderPassInfo.physicalDevice = m_physicalDevice.get();
     renderPassInfo.device = m_device.get();
     renderPassInfo.surfaceFormat = m_surface.getInfo().format;
@@ -74,7 +78,6 @@ namespace RX
     m_renderPass.initialize(renderPassInfo);
 
     // Swapchain
-    SwapchainInfo swapchainInfo{ };
     swapchainInfo.window = m_window;
     swapchainInfo.physicalDevice = m_physicalDevice.get();
     swapchainInfo.device = m_device.get();
@@ -89,20 +92,31 @@ namespace RX
     m_swapchain.initialize(swapchainInfo);
     m_swapchain.initImageViews();
 
-    // Set up simple example shaders.
-    Shader vs; 
-    ShaderInfo vertexShaderInfo{ };
+    // Shaders
+    Shader vs;
     vertexShaderInfo.fullPath = RX_SHADER_PATH "simple3D.vert";
     vertexShaderInfo.device = m_device.get();
+    vertexShaderInfo.binding = 0;
+    vertexShaderInfo.descriptorCount = 1;
+    vertexShaderInfo.descriptorType = VK_DESCRIPTOR_TYPE_UNIFORM_BUFFER;
+    vertexShaderInfo.stageFlags = VK_SHADER_STAGE_VERTEX_BIT;
     vs.initialize(vertexShaderInfo);
 
     Shader fs; 
-    ShaderInfo fragmentShaderInfo{ };
     fragmentShaderInfo.fullPath = RX_SHADER_PATH "simple3D.frag";
     fragmentShaderInfo.device = m_device.get();
+    fragmentShaderInfo.binding = 1;
+    fragmentShaderInfo.descriptorCount = 1;
+    fragmentShaderInfo.descriptorType = VK_DESCRIPTOR_TYPE_COMBINED_IMAGE_SAMPLER;
+    fragmentShaderInfo.stageFlags = VK_SHADER_STAGE_FRAGMENT_BIT;
     fs.initialize(fragmentShaderInfo);
     
-    m_descriptorSetLayout.initialize(m_device.get());
+    // Descriptor Set Layout
+    DescriptorSetLayoutInfo descriptorSetLayoutInfo{ };
+    descriptorSetLayoutInfo.device = m_device.get();
+    descriptorSetLayoutInfo.layoutBindings = { vs.getDescriptorSetLayoutBinding(), fs.getDescriptorSetLayoutBinding() };
+
+    m_descriptorSetLayout.initialize(descriptorSetLayoutInfo);
     
     // Set up the graphics pipeline.
     m_pipeline.initialize(m_device.get(), m_renderPass.get(), m_swapchain.getInfo().extent, m_window, vs, fs, m_descriptorSetLayout.get());
@@ -144,6 +158,8 @@ namespace RX
       m_finishedRenderSemaphores[i].initialize(m_device.get());
       m_inFlightFences[i].initialize(m_device.get());
     }
+
+    RX_LOG("Finished API initialization.");
   }
 
   bool Api::update()
@@ -249,7 +265,7 @@ namespace RX
   void Api::recreateSwapchain()
   {
     RX_LOG("Recreating swapchain");
-    RX_DISABLE_LOG;
+    //RX_DISABLE_LOG;
 
     m_device.waitIdle();
 
@@ -267,28 +283,13 @@ namespace RX
       model->m_uniformBuffers.destroy();
 
     // 2. Recreating the swapchain.
-    RenderPassInfo renderPassInfo{ };
-    renderPassInfo.physicalDevice = m_physicalDevice.get();
-    renderPassInfo.device = m_device.get();
-    renderPassInfo.surfaceFormat = m_surface.getInfo().format;
-    renderPassInfo.depthFormat = getSupportedDepthFormat(m_physicalDevice.get());
-
     m_renderPass.initialize(renderPassInfo);
 
     // Swapchain
-    SwapchainInfo swapchainInfo{ };
-    swapchainInfo.window = m_window;
-    swapchainInfo.physicalDevice = m_physicalDevice.get();
-    swapchainInfo.device = m_device.get();
-    swapchainInfo.surface = m_surface.get();
-    swapchainInfo.surfaceFormat = m_surface.getInfo().format;
-    swapchainInfo.surfaceColorSpace = m_surface.getInfo().colorSpace;
-    swapchainInfo.surfacePresentMode = m_surface.getInfo().presentMode;
+    m_surface.checkSettingSupport(m_physicalDevice.get());
     swapchainInfo.surfaceCapabilities = m_surface.getInfo().capabilities;
-    swapchainInfo.queueFamilyIndices = m_queues.getQueueFamilyIndices();
-    swapchainInfo.renderPass = m_renderPass.get();
-
     m_swapchain.initialize(swapchainInfo);
+
     m_swapchain.initImageViews();
 
     Shader vs;

@@ -7,36 +7,21 @@ namespace RX
     destroy();
   }
 
-  void DescriptorSetLayout::initialize(VkDevice device)
+  void DescriptorSetLayout::initialize(DescriptorSetLayoutInfo& info)
   {
-    m_device = device;
+    m_info = info;
 
-    VkDescriptorSetLayoutBinding uboLayoutBinding{ };
-    uboLayoutBinding.binding = 0;
-    uboLayoutBinding.descriptorCount = 1;
-    uboLayoutBinding.descriptorType = VK_DESCRIPTOR_TYPE_UNIFORM_BUFFER;
-    uboLayoutBinding.pImmutableSamplers = nullptr;
-    uboLayoutBinding.stageFlags = VK_SHADER_STAGE_VERTEX_BIT;
-
-    VkDescriptorSetLayoutBinding samplerLayoutBinding{ };
-    samplerLayoutBinding.binding = 1;
-    samplerLayoutBinding.descriptorCount = 1;
-    samplerLayoutBinding.descriptorType = VK_DESCRIPTOR_TYPE_COMBINED_IMAGE_SAMPLER;
-    samplerLayoutBinding.pImmutableSamplers = nullptr;
-    samplerLayoutBinding.stageFlags = VK_SHADER_STAGE_FRAGMENT_BIT;
-
-    std::array<VkDescriptorSetLayoutBinding, 2> bindings = {uboLayoutBinding, samplerLayoutBinding};
-  
     VkDescriptorSetLayoutCreateInfo createInfo{ };
     createInfo.sType = VK_STRUCTURE_TYPE_DESCRIPTOR_SET_LAYOUT_CREATE_INFO;
-    createInfo.bindingCount = static_cast<uint32_t>(bindings.size());
-    createInfo.pBindings = bindings.data();
-
-    VK_CREATE(vkCreateDescriptorSetLayout(device, &createInfo, nullptr, &m_layout), "descriptor set layout");
+    createInfo.bindingCount = static_cast<uint32_t>(m_info.layoutBindings.size());
+    createInfo.pBindings = m_info.layoutBindings.data();
+ 
+    VK_CREATE(vkCreateDescriptorSetLayout(m_info.device, &createInfo, nullptr, &m_layout), "descriptor set layout");
   }
 
   void DescriptorSetLayout::destroy()
   {
-    VK_DESTROY(vkDestroyDescriptorSetLayout(m_device, m_layout, nullptr), "layout");
+    VK_DESTROY(vkDestroyDescriptorSetLayout(m_info.device, m_layout, nullptr), "layout");
+    m_layout = VK_NULL_HANDLE;
   }
 }

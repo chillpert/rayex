@@ -21,5 +21,6 @@ namespace RX
   void Fence::destroy()
   {
     VK_DESTROY(vkDestroyFence(m_device, m_fence, nullptr), "fence");
+    m_fence = VK_NULL_HANDLE;
   }
 }

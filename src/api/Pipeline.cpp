@@ -96,6 +96,7 @@ namespace RX
     pipelineLayoutInfo.pSetLayouts = &descriptorSetLayout;
 
     VK_CREATE(vkCreatePipelineLayout(device, &pipelineLayoutInfo, nullptr, &m_layout), "pipeline layout");
+    m_created = false;
 
     VkPipelineShaderStageCreateInfo vertShaderStageInfo{ };
     vertShaderStageInfo.sType = VK_STRUCTURE_TYPE_PIPELINE_SHADER_STAGE_CREATE_INFO;
@@ -134,5 +135,8 @@ namespace RX
   {
     VK_DESTROY(vkDestroyPipeline(m_device, m_pipeline, nullptr), "pipeline");
     VK_DESTROY(vkDestroyPipelineLayout(m_device, m_layout, nullptr), "pipeline layout");
+
+    m_pipeline = VK_NULL_HANDLE;
+    m_layout = VK_NULL_HANDLE;
   }
 }

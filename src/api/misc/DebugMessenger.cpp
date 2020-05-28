@@ -21,7 +21,7 @@ namespace RX
     createInfo.messageType = m_info.messageType;
     createInfo.pfnUserCallback = debugMessengerCallback;
     
-    VK_ASSERT(m_createDebugUtilsMessengerEXT(m_info.instance, &createInfo, nullptr, &m_debugMessenger), "Failed to create debug utils messenger");
+    VK_CREATE(m_createDebugUtilsMessengerEXT(m_info.instance, &createInfo, nullptr, &m_debugMessenger), "DebugMessenger");
 #endif
   }
 
@@ -29,6 +29,9 @@ namespace RX
   {
 #ifdef RX_DEBUG
     m_destroyDebugUtilsMessengerEXT(m_info.instance, m_debugMessenger, nullptr);
+    m_debugMessenger = VK_NULL_HANDLE;
+
+    VK_DESTROY(VK_SUCCESS, "DebugMessenger");
 #endif
   }
 

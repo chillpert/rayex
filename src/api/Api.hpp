@@ -61,6 +61,7 @@ namespace RX
     std::vector<Fence> m_inFlightFences;
     std::vector<Semaphore> m_imageAvailableSemaphores;
     std::vector<Semaphore> m_finishedRenderSemaphores;
+
     CommandBuffers m_commandBuffers;
     std::vector<std::shared_ptr<Model>> m_models;
 

@@ -30,6 +30,8 @@ namespace RX
 
     VkDebugUtilsMessengerEXT m_debugMessenger;
     DebugMessengerInfo m_info;
+
+    bool m_created = false;
   };
 
   VKAPI_ATTR VkBool32 VKAPI_CALL debugMessengerCallback

@@ -32,5 +32,6 @@ namespace RX
   void Sampler::destroy()
   {
     VK_DESTROY(vkDestroySampler(m_device, m_sampler, nullptr), "sampler");
+    m_sampler = VK_NULL_HANDLE;
   }
 }

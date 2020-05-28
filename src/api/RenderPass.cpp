@@ -69,5 +69,6 @@ namespace RX
   void RenderPass::destroy()
   {
     VK_DESTROY(vkDestroyRenderPass(m_info.device, m_renderPass, nullptr), "render pass");
+    m_renderPass = VK_NULL_HANDLE;
   }
 }

@@ -20,5 +20,6 @@ namespace RX
   void Semaphore::destroy()
   {
     VK_DESTROY(vkDestroySemaphore(m_device, m_semaphore, nullptr), "semaphore");
+    m_semaphore = VK_NULL_HANDLE;
   }
 }

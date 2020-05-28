@@ -50,6 +50,7 @@ namespace RX
   void Device::destroy()
   {
     VK_DESTROY(vkDestroyDevice(m_device, nullptr), "device");
+    m_device = VK_NULL_HANDLE;
   }
 
   void Device::waitIdle()

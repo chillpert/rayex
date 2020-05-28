@@ -23,13 +23,13 @@ namespace RX
     {
       m_info = info;
 
-      // If RX_CREATE() macro is not used, update creation status manually.
+      // If VK_CREATE() macro is not used, update creation status manually.
       m_created = true;
     }
 
     void destroy()
     {
-      // Use the RX_DESTROY macro.
+      // Use the VK_DESTROY macro.
     }
 
   private:

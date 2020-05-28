@@ -41,6 +41,7 @@ namespace RX
     command << "cd " << m_info.pathToFile << " && " << RX_GLSLC_PATH << " " << m_info.fileName << " -o " << m_info.fileNameOut;
     std::system(command.str().c_str());
 
+    // Read the file and retrieve the source.
     std::ifstream file(m_info.pathToFile + m_info.fileNameOut, std::ios::ate | std::ios::binary);
 
     if (!file.is_open())
@@ -56,21 +57,18 @@ namespace RX
 
     m_info.source = buffer;
 
-    createShaderModule();
-  }
-
-  void Shader::destroy()
-  {
-    VK_DESTROY(vkDestroyShaderModule(m_info.device, m_shaderModule, nullptr), "shader module");
-  }
-
-  void Shader::createShaderModule()
-  {
+    // Create the shader module.
     VkShaderModuleCreateInfo createInfo{ };
     createInfo.sType = VK_STRUCTURE_TYPE_SHADER_MODULE_CREATE_INFO;
     createInfo.codeSize = m_info.source.size();
     createInfo.pCode = reinterpret_cast<const uint32_t*>(m_info.source.data());
 
     VK_CREATE(vkCreateShaderModule(m_info.device, &createInfo, nullptr, &m_shaderModule), "shader module");
+  }
+
+  void Shader::destroy()
+  {
+    VK_DESTROY(vkDestroyShaderModule(m_info.device, m_shaderModule, nullptr), "shader module");
+    m_shaderModule = VK_NULL_HANDLE;
   }
 }

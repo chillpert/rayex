@@ -8,7 +8,7 @@ namespace RX
   class PhysicalDevice
   {
   public:
-    inline VkPhysicalDevice get() { return m_physicalDevice; }
+    PhysicalDevice(VkPhysicalDevice* physicalDevice);
 
     // Technically not created, but enumerated. However, this way is better for the naming scheme.
     void initialize(VkInstance instance, VkSurfaceKHR surface);
@@ -19,7 +19,7 @@ namespace RX
   private:
     unsigned int evaluate(VkPhysicalDevice device, VkSurfaceKHR surface);
 
-    VkPhysicalDevice m_physicalDevice;
+    VkPhysicalDevice* m_physicalDevice;
   };
 }
 

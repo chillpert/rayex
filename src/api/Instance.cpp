@@ -2,76 +2,43 @@
 
 namespace RX
 {
-  Instance::Instance() :
-    BaseComponent("Instance") { }
+  Instance::Instance(VkInstance* instance) :
+    m_instance(instance) { }
 
   Instance::~Instance()
   {
     destroy();
   }
 
-  void Instance::pushLayer(const char* name)
+  void Instance::initialize(InstanceInfo& info)
   {
-    RX_ASSERT_NOT_INITIALIZED("pushLayer");
-    checkLayerSupport(name);
+    // Retrieve all extensions needed by SDL2.
+    std::vector<const char*> windowExtensions = info.window->getInstanceExtensions();
+    info.extensions.insert(info.extensions.end(), windowExtensions.begin(), windowExtensions.end());
 
-    m_layers.push_back(name);
-    VK_LOG("Added Layer: " << name);
-  }
+    // Check if all extensions and layers needed are available.
+    checkLayersSupport(info.layers);
+    checkExtensionsSupport(info.extensions);
 
-  void Instance::pushExtension(const char* name)
-  {
-    RX_ASSERT_NOT_INITIALIZED("pushExtension");
-    checkExtensionSupport(name);
-
-    m_extensions.push_back(name);
-    VK_LOG("Added Extension: " << name);
-  }
-
-  void Instance::initialize(const std::shared_ptr<Window> window)
-  {
+    // Start creating the instance.
     VkApplicationInfo appInfo{ };
     appInfo.sType = VK_STRUCTURE_TYPE_APPLICATION_INFO;
     appInfo.apiVersion = getApiVersion();
-
+ 
     VkInstanceCreateInfo createInfo{ };
     createInfo.sType = VK_STRUCTURE_TYPE_INSTANCE_CREATE_INFO;
     createInfo.pApplicationInfo = &appInfo;
+    createInfo.ppEnabledLayerNames = info.layers.data();
+    createInfo.enabledLayerCount = static_cast<uint32_t>(info.layers.size());    
+    createInfo.ppEnabledExtensionNames = info.extensions.data();
+    createInfo.enabledExtensionCount = static_cast<uint32_t>(info.extensions.size());
 
-#ifdef RX_DEBUG
-    pushLayer("VK_LAYER_KHRONOS_validation");
-
-    createInfo.ppEnabledLayerNames = m_layers.data();
-    createInfo.enabledLayerCount = static_cast<uint32_t>(m_layers.size());
-#endif
-
-    // Retrieves all extensions needed by SDL2
-    uint32_t sdlExtensionsCount;
-    window->getInstanceExtensions(sdlExtensionsCount, NULL);
-
-    const char** sdlExtensionsNames = new const char* [sdlExtensionsCount];
-
-    window->getInstanceExtensions(sdlExtensionsCount, sdlExtensionsNames);
-
-    for (size_t i = 0; i < sdlExtensionsCount; ++i)
-      pushExtension(sdlExtensionsNames[i]);
-
-#ifdef RX_DEBUG
-    pushExtension("VK_EXT_debug_utils");
-#endif
-
-    createInfo.ppEnabledExtensionNames = m_extensions.data();
-    createInfo.enabledExtensionCount = static_cast<uint32_t>(m_extensions.size());
-
-    VK_ASSERT(vkCreateInstance(&createInfo, nullptr, &m_instance), "Failed to create instance.");
-
-    RX_INITIALIZATION_CALLBACK;
+    VK_ASSERT(vkCreateInstance(&createInfo, nullptr, m_instance), "Failed to create instance.");
   }
 
   void Instance::destroy()
   {
-    RX_ASSERT_DESTRUCTION;
-    vkDestroyInstance(m_instance, nullptr);
+    vkDestroyInstance(*m_instance, nullptr);
   }
 
   void Instance::print()
@@ -101,7 +68,7 @@ namespace RX
     std::cout << std::endl;
   }
 
-  void Instance::checkLayerSupport(const char* name)
+  void Instance::checkLayersSupport(const std::vector<const char*>& layers)
   {
     uint32_t propertyCount;
     VK_ASSERT(vkEnumerateInstanceLayerProperties(&propertyCount, nullptr), "Failed to enumerate instance layer properties.");
@@ -109,21 +76,26 @@ namespace RX
     std::vector<VkLayerProperties> properties(propertyCount);
     VK_ASSERT(vkEnumerateInstanceLayerProperties(&propertyCount, properties.data()), "Failed to enumerate instance layer properties.");
 
-    for (const auto& property : properties)
+    for (const char* name : layers)
     {
-      if (strcmp(property.layerName, name) == 0)
-        return;
-    }
-    
-    char message[200];
-    strcpy(message, "Validation layer ");
-    strcat(message, name);
-    strcat(message, " is not available on this device");
+      bool found = false;
+      for (const auto& property : properties)
+      {
+        if (strcmp(property.layerName, name) == 0)
+        {
+          found = true;
+          break;
+        }
+      }
 
-    RX_ERROR(message);
+      if (!found)
+        RX_ERROR("Validation layer " + name + " is not available on this device");
+
+      VK_LOG("Added layer: " << name);
+    }
   }
 
-  void Instance::checkExtensionSupport(const char* name)
+  void Instance::checkExtensionsSupport(const std::vector<const char*>& extensions)
   {
     uint32_t propertyCount;
     VK_ASSERT(vkEnumerateInstanceExtensionProperties(nullptr, &propertyCount, nullptr), "Failed to enumerate instance extension properties.");
@@ -131,18 +103,23 @@ namespace RX
     std::vector<VkExtensionProperties> properties(propertyCount);
     VK_ASSERT(vkEnumerateInstanceExtensionProperties(nullptr, &propertyCount, properties.data()), "Failed to enumerate instance extension properties.");
 
-    for (const auto& property : properties)
+    for (const char* name : extensions)
     {
-      if (strcmp(property.extensionName, name) == 0)
-        return;
+      bool found = false;
+      for (const auto& property : properties)
+      {
+        if (strcmp(property.extensionName, name) == 0)
+        {
+          found = true;
+          break;
+        }
+      }
+
+      if (!found)
+        RX_ERROR("Instance extensions " + name + " is not available on this device");
+
+      VK_LOG("Added extension: " << name);
     }
-
-    char message[200];
-    strcpy(message, "Instance extension ");
-    strcat(message, name);
-    strcat(message, " is not available on this device");
-
-    RX_ERROR(message);
   }
 
   uint32_t Instance::getApiVersion()

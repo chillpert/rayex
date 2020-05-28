@@ -64,18 +64,20 @@ namespace RX
     SDL_SetWindowSize(m_window, m_properties.getWidth(), m_properties.getHeight());
   }
 
-  void Window::getInstanceExtensions(uint32_t& count, const char** extensions)
+  std::vector<const char*> Window::getInstanceExtensions()
   {
-    if (extensions == NULL)
-    {
-      if (!SDL_Vulkan_GetInstanceExtensions(m_window, &count, NULL))
-        RX_ERROR("SDL failed to get instance extensions");
-    }
-    else
-    {
-      if (!SDL_Vulkan_GetInstanceExtensions(m_window, &count, extensions))
-        RX_ERROR("SDL failed to get instance extensions");
-    }
+    uint32_t sdlExtensionsCount;
+    SDL_ASSERT(SDL_Vulkan_GetInstanceExtensions(m_window, &sdlExtensionsCount, nullptr), "Failed to get instance extensions count.");
+    
+    const char** sdlExtensionsNames = new const char* [sdlExtensionsCount];
+    SDL_ASSERT(SDL_Vulkan_GetInstanceExtensions(m_window, &sdlExtensionsCount, sdlExtensionsNames), "Failed to get instance extensions.");
+
+    std::vector<const char*> extensions;
+
+    for (size_t i = 0; i < sdlExtensionsCount; ++i)
+      extensions.push_back(sdlExtensionsNames[i]);
+
+    return extensions;
   }
 
   VkSurfaceKHR Window::createSurface(VkInstance instance)

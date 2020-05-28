@@ -10,10 +10,8 @@ namespace RX
   class Device : public BaseComponent
   {
   public:
-    Device();
+    Device(VkDevice* device);
     ~Device();
-
-    inline VkDevice get() { return m_device; }
 
     void initialize(VkPhysicalDevice physicalDevice, Queues& queues);
     void destroy();
@@ -23,7 +21,7 @@ namespace RX
     void waitIdle();
 
   private:
-    VkDevice m_device;
+    VkDevice* m_device;
 
     std::vector<const char*> m_extensions;
   };

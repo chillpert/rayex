@@ -20,7 +20,8 @@ namespace RX
 
     RX_API void resize(int width, int height);
     
-    RX_API void getInstanceExtensions(uint32_t& count, const char** extensions);
+    std::vector<const char*> getInstanceExtensions();
+
     RX_API VkSurfaceKHR createSurface(VkInstance instance);
 
     RX_API void processGuiEvent(SDL_Event& event);

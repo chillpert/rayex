@@ -27,7 +27,7 @@
   #define SDL_ASSERT(result, message) result
 #endif
 
-#define RX_ERROR(message) Utils::throwRuntimeError(message)
+#define RX_ERROR(message) throw std::runtime_error(std::string("RX: ") + message);
 
 namespace RX
 {
@@ -37,11 +37,22 @@ namespace RX
 
     void setLogging(bool state);
 
-    void throwRuntimeError(const char* message);
-    void throwRuntimeError(const std::string& message);
-
     VkResult assertVulkan(VkResult result, const char* message);
     void assertSdl(SDL_bool result, const char* message);
+
+    struct StringBuilder
+    {
+      std::stringstream ss;
+
+      template<typename T>
+      StringBuilder& operator<<(const T& data)
+      {
+        ss << data;
+        return *this;
+      }
+
+      operator std::string() { return ss.str(); }
+    };
   }
 }
 

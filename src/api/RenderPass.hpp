@@ -1,24 +1,35 @@
 #ifndef RENDER_PASS_HPP
 #define RENDER_PASS_HPP
 
-#include "BaseComponent.hpp"
+#include "pch/stdafx.hpp"
 
 namespace RX
 {
-  class RenderPass : public BaseComponent
+  struct RenderPassInfo
+  {
+    VkPhysicalDevice physicalDevice;
+    VkDevice device;
+    VkFormat surfaceFormat; // Should be the same as the surface format.
+    VkFormat depthFormat;
+    VkImageLayout initialLayout = VK_IMAGE_LAYOUT_UNDEFINED;
+    VkImageLayout finalLayout = VK_IMAGE_LAYOUT_PRESENT_SRC_KHR;
+  };
+
+  class RenderPass
   {
   public:
-    RenderPass();
     ~RenderPass();
 
     inline VkRenderPass get() { return m_renderPass; }
+    inline RenderPassInfo getInfo() { return m_info; }
 
-    void initialize(VkPhysicalDevice physicalDevice, VkDevice device, VkFormat format);
+    void initialize(RenderPassInfo& info);
+
     void destroy();
-
   private:
+    
     VkRenderPass m_renderPass;
-    VkDevice m_device;
+    RenderPassInfo m_info;
   };
 }
 

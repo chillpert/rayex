@@ -1,30 +1,41 @@
 #ifndef SWAPCHAIN_HPP
 #define SWAPCHAIN_HPP
 
-#include "api/BaseComponent.hpp"
 #include "api/Surface.hpp"
 #include "api/Queues.hpp"
 
 namespace RX
 {
-  class Swapchain : public BaseComponent
+  struct SwapchainInfo
+  {
+    std::shared_ptr<Window> window;
+    VkPhysicalDevice physicalDevice;
+    VkDevice device;
+    VkSurfaceKHR surface;
+    VkFormat surfaceFormat;
+    VkColorSpaceKHR surfaceColorSpace;
+    VkPresentModeKHR surfacePresentMode;
+    VkSurfaceCapabilitiesKHR surfaceCapabilities;
+    std::vector<uint32_t> queueFamilyIndices;
+    VkExtent2D extent; // Ignore, will be initialized automatically
+  };
+
+  class Swapchain
   {
   public:
-    Swapchain();
     ~Swapchain();
 
     inline VkSwapchainKHR get() { return m_swapchain; }    
-    inline VkExtent2D& getExtent() { return m_extent; } 
+    inline SwapchainInfo& getInfo() { return m_info; }
 
-    void initialize(VkPhysicalDevice physicalDevice, VkDevice device, Surface& surface, std::shared_ptr<Window> window, Queues& queues);
+    void initialize(SwapchainInfo& info);
     void destroy();
 
     void acquireNextImage(VkDevice device, VkSemaphore semaphore, VkFence fence, uint32_t* imageIndex);
     
   private:
     VkSwapchainKHR m_swapchain;
-    VkExtent2D m_extent;
-    VkDevice m_device;
+    SwapchainInfo m_info;   
   };
 }
 

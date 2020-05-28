@@ -45,7 +45,7 @@ namespace RX
 	    renderPassInfo.renderPass = renderPass.get();
 	    renderPassInfo.framebuffer = framebuffers.get()[i];
 	    renderPassInfo.renderArea.offset = { 0, 0 };
-	    renderPassInfo.renderArea.extent = swapchain.getExtent();
+	    renderPassInfo.renderArea.extent = swapchain.getInfo().extent;
 
 			VkClearValue colorValue;
 			colorValue.color =	{0.3f, 0.3f, 0.3f, 1.0f};

@@ -18,18 +18,16 @@ namespace RX
     // surface was created. The surface has to be created before the physical device is picked.
     void initialize(QueuesInfo& queuesInfo);
 
+    inline uint32_t getGraphicsFamilyIndex() const { return m_graphicsIndex.value(); }
+    inline uint32_t getPresentFamilyIndex() const { return m_presentIndex.value(); }
+    inline VkQueue getGraphicsQueue() { return m_graphicsQueue; }
+    inline VkQueue getPresentQueue() { return m_presentQueue; }
     inline QueuesInfo& getInfo() { return m_info; }
 
     void retrieveAllHandles(VkDevice device);
 
     void submit(VkSubmitInfo& submitInfo, VkFence fence);
     void present(VkPresentInfoKHR& presentInfo);
-
-    inline uint32_t getGraphicsFamilyIndex() const { return m_graphicsIndex.value(); }
-    inline uint32_t getPresentFamilyIndex() const { return m_presentIndex.value(); }
-
-    inline VkQueue getGraphicsQueue() { return m_graphicsQueue; }
-    inline VkQueue getPresentQueue() { return m_presentQueue; }
 
     // Returns a vector filled with the actual unique queue family indices.    
     std::vector<uint32_t> getQueueFamilyIndices();

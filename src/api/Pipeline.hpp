@@ -1,8 +1,8 @@
 #ifndef PIPELINE_HPP
 #define PIPELINE_HPP
 
-#include "window/Window.hpp"
-#include "swapchain/Swapchain.hpp"
+#include "Window.hpp"
+#include "Swapchain.hpp"
 #include "Shader.hpp"
 
 namespace RX

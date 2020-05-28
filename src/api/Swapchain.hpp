@@ -1,11 +1,11 @@
 #ifndef SWAPCHAIN_HPP
 #define SWAPCHAIN_HPP
 
-#include "api/Surface.hpp"
-#include "api/Queues.hpp"
-#include "api/texture/ImageView.hpp"
+#include "Surface.hpp"
+#include "Queues.hpp"
+#include "ImageView.hpp"
 #include "Framebuffer.hpp"
-#include "api/texture/Image.hpp"
+#include "Image.hpp"
 
 namespace RX
 {

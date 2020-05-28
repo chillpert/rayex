@@ -4,7 +4,7 @@
 #include "DescriptorSetLayout.hpp"
 #include "Buffer.hpp"
 #include "UniformBuffers.hpp"
-#include "api/texture/Texture.hpp"
+#include "Texture.hpp"
 
 namespace RX
 {

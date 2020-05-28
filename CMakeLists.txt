@@ -72,16 +72,33 @@ include_directories(${PROJECT_SOURCE_DIR}/external/STB)
 include_directories(${PROJECT_SOURCE_DIR}/external/ModelLoading)
 include_directories(${PROJECT_SOURCE_DIR}/external/ImGui)
 include_directories(${PROJECT_SOURCE_DIR}/src)
+include_directories(${PROJECT_SOURCE_DIR}/src/pch)
+include_directories(${PROJECT_SOURCE_DIR}/src/window)
+include_directories(${PROJECT_SOURCE_DIR}/src/utils)
+include_directories(${PROJECT_SOURCE_DIR}/src/api)
+include_directories(${PROJECT_SOURCE_DIR}/src/api/buffers)
+include_directories(${PROJECT_SOURCE_DIR}/src/api/descriptors)
+include_directories(${PROJECT_SOURCE_DIR}/src/api/devices)
+include_directories(${PROJECT_SOURCE_DIR}/src/api/gui)
+include_directories(${PROJECT_SOURCE_DIR}/src/api/image)
+include_directories(${PROJECT_SOURCE_DIR}/src/api/misc)
+include_directories(${PROJECT_SOURCE_DIR}/src/api/model)
+include_directories(${PROJECT_SOURCE_DIR}/src/api/pools)
+include_directories(${PROJECT_SOURCE_DIR}/src/api/sync)
 
 # SOURCE PROJECT FILES
 file(GLOB FILES_LIB
   "${PROJECT_SOURCE_DIR}/src/api/*.cpp"
-  "${PROJECT_SOURCE_DIR}/src/api/swapchain/*.cpp"
-  "${PROJECT_SOURCE_DIR}/src/api/texture/*.cpp"
   "${PROJECT_SOURCE_DIR}/src/api/buffers/*.cpp"
+  "${PROJECT_SOURCE_DIR}/src/api/descriptors/*.cpp"
   "${PROJECT_SOURCE_DIR}/src/api/devices/*.cpp"
-  "${PROJECT_SOURCE_DIR}/src/api/sync/*.cpp"
   "${PROJECT_SOURCE_DIR}/src/api/gui/*.cpp"
+  "${PROJECT_SOURCE_DIR}/src/api/image/*.cpp"
+  "${PROJECT_SOURCE_DIR}/src/api/misc/*.cpp"
+  "${PROJECT_SOURCE_DIR}/src/api/model/*.cpp"
+  "${PROJECT_SOURCE_DIR}/src/api/pools/*.cpp"
+  "${PROJECT_SOURCE_DIR}/src/api/sync/*.cpp"
+
   "${PROJECT_SOURCE_DIR}/src/window/*.cpp"
   "${PROJECT_SOURCE_DIR}/src/pch/*.cpp"
   "${PROJECT_SOURCE_DIR}/src/events/*.cpp"

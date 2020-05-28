@@ -9,26 +9,22 @@
 #include "RenderPass.hpp"
 #include "Shader.hpp"
 #include "Model.hpp"
-
-#include "devices/PhysicalDevice.hpp"
-#include "devices/Device.hpp"
-
-#include "swapchain/Swapchain.hpp"
-#include "sync/Semaphore.hpp"
-#include "sync/Fence.hpp"
-
-#include "texture/Texture.hpp"
-
-#include "buffers/CommandPool.hpp"
-#include "buffers/CommandBuffers.hpp"
-#include "buffers/VertexBuffer.hpp"
-#include "buffers/IndexBuffer.hpp"
-#include "buffers/DescriptorSets.hpp"
-#include "buffers/DescriptorPool.hpp"
-#include "buffers/DescriptorSetLayout.hpp"
-#include "buffers/UniformBuffers.hpp"
-
-#include "gui/Gui.hpp"
+#include "PhysicalDevice.hpp"
+#include "Device.hpp"
+#include "Swapchain.hpp"
+#include "Semaphore.hpp"
+#include "Fence.hpp"
+#include "Texture.hpp"
+#include "Vertex.hpp"
+#include "CommandPool.hpp"
+#include "CommandBuffers.hpp"
+#include "VertexBuffer.hpp"
+#include "IndexBuffer.hpp"
+#include "DescriptorSets.hpp"
+#include "DescriptorPool.hpp"
+#include "DescriptorSetLayout.hpp"
+#include "UniformBuffers.hpp"
+#include "Gui.hpp"
 
 namespace RX
 {

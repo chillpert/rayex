@@ -1,10 +1,10 @@
 #ifndef GUI_HPP
 #define GUI_HPP
 
-#include "api/Surface.hpp"
-#include "api/Queues.hpp"
-#include "api/RenderPass.hpp"
-#include "api/buffers/CommandPool.hpp"
+#include "Surface.hpp"
+#include "Queues.hpp"
+#include "RenderPass.hpp"
+#include "CommandPool.hpp"
 
 namespace RX
 {

@@ -1,9 +1,9 @@
 #ifndef COMMAND_BUFFERS_HPP
 #define COMMAND_BUFFERS_HPP
 
-#include "api/swapchain/Swapchain.hpp"
-#include "api/RenderPass.hpp"
-#include "api/Pipeline.hpp"
+#include "Swapchain.hpp"
+#include "RenderPass.hpp"
+#include "Pipeline.hpp"
 #include "VertexBuffer.hpp"
 #include "IndexBuffer.hpp"
 #include "DescriptorSets.hpp"

@@ -1,7 +1,7 @@
 #ifndef BUFFER_HPP
 #define BUFFER_HPP
 
-#include "api/texture/Image.hpp"
+#include "Image.hpp"
 
 namespace RX
 {

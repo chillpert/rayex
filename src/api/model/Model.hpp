@@ -1,15 +1,15 @@
 #ifndef MODEL_HPP
 #define MODEL_HPP
 
-#include "api/buffers/Vertex.hpp"
-#include "api/buffers/VertexBuffer.hpp"
-#include "api/buffers/IndexBuffer.hpp"
-#include "api/buffers/UniformBuffers.hpp"
-#include "api/buffers/DescriptorSets.hpp"
-#include "api/buffers/DescriptorPool.hpp"
-#include "api/buffers/DescriptorSetLayout.hpp"
-#include "api/Shader.hpp"
-#include "api/texture/Texture.hpp"
+#include "Vertex.hpp"
+#include "VertexBuffer.hpp"
+#include "IndexBuffer.hpp"
+#include "UniformBuffers.hpp"
+#include "DescriptorSets.hpp"
+#include "DescriptorPool.hpp"
+#include "DescriptorSetLayout.hpp"
+#include "Shader.hpp"
+#include "Texture.hpp"
 
 namespace RX
 {

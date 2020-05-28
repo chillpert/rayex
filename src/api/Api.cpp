@@ -1,5 +1,4 @@
 #include "Api.hpp"
-#include "buffers/Vertex.hpp"
 
 namespace RX
 {

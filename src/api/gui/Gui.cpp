@@ -36,7 +36,7 @@ namespace RX
   {
     m_window = window;
 
-    auto surfaceCapabilities = surface.getCapabilitites(physicalDevice);
+    auto surfaceCapabilities = surface.getInfo().capabilities;
     uint32_t minImageCount = surfaceCapabilities.minImageCount + 1;
     
     IMGUI_CHECKVERSION();

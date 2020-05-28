@@ -72,7 +72,7 @@ namespace RX
     renderPassInfo.physicalDevice = m_physicalDevice.get();
     renderPassInfo.device = m_device.get();
     renderPassInfo.surfaceFormat = m_surface.getInfo().format;
-    renderPassInfo.depthFormat = DepthImage::getSupportedFormat(m_physicalDevice.get());
+    renderPassInfo.depthFormat = getSupportedDepthFormat(m_physicalDevice.get());
 
     m_renderPass.initialize(renderPassInfo);
 
@@ -84,14 +84,12 @@ namespace RX
     swapchainInfo.surfaceFormat = m_surface.getInfo().format;
     swapchainInfo.surfaceColorSpace = m_surface.getInfo().colorSpace;
     swapchainInfo.surfacePresentMode = m_surface.getInfo().presentMode;
-    swapchainInfo.surfaceCapabilities = m_surface.getCapabilitites(m_physicalDevice.get());
+    swapchainInfo.surfaceCapabilities = m_surface.getInfo().capabilities;
     swapchainInfo.queueFamilyIndices = m_queues.getQueueFamilyIndices();
+    swapchainInfo.renderPass = m_renderPass.get();
 
     m_swapchain.initialize(swapchainInfo);
-
-    // Images
-    m_images.initialize(m_device.get(), m_swapchain.get());
-    m_imageViews.initialize(m_device.get(), m_surface.getInfo().format, m_images);
+    m_swapchain.initImageViews();
 
     // Set up simple example shaders.
     Shader vs, fs;
@@ -106,11 +104,13 @@ namespace RX
     // Set up the command pool, allocate the command buffer and start command buffer recording.
     m_graphicsCmdPool.initialize(m_device.get(), m_queues.getGraphicsFamilyIndex()); // TODO: What if the graphics and present index are not identical?
 
-    m_depthImage.initialize(m_physicalDevice.get(), m_device.get(), m_swapchain.getInfo().extent);
-    m_framebuffers.initialize(m_device.get(), m_imageViews, m_depthImage.getView(), m_renderPass.get(), m_window);
+    m_swapchain.initDepthImage();
+    m_swapchain.initDepthImageView();
+    m_swapchain.initFramebuffers();
 
-    m_descriptorPool.initialize(m_device.get(), m_images.getSize());
+    m_descriptorPool.initialize(m_device.get(), m_swapchain.getInfo().images.size());
     
+/*
     m_imgui.initialize(
       m_instance.get(),
       m_physicalDevice.get(),
@@ -120,8 +120,9 @@ namespace RX
       m_surface,
       m_renderPass.get(),
       m_window->get(),
-      m_images.getSize()
+      m_swapchain.getInfo().images.size()
     );
+*/
 
     for (std::shared_ptr<Model> model : m_models)
     {
@@ -130,14 +131,14 @@ namespace RX
       model->m_texture.initialize(m_physicalDevice.get(), m_device.get(), m_queues.getGraphicsQueue(), m_graphicsCmdPool.get(), model->m_pathToTexture);
       model->m_vertexBuffer.initialize(m_device.get(), m_physicalDevice.get(), m_graphicsCmdPool.get(), m_queues.getGraphicsQueue(), model->m_vertices);
       model->m_indexBuffer.initialize<uint32_t>(m_device.get(), m_physicalDevice.get(), m_graphicsCmdPool.get(), m_queues.getGraphicsQueue(), model->m_indices);
-      model->m_uniformBuffers.initialize(m_device.get(), m_physicalDevice.get(), m_swapchain.getInfo().extent, m_images.getSize(), model->getUbo());
+      model->m_uniformBuffers.initialize(m_device.get(), m_physicalDevice.get(), m_swapchain.getInfo().extent, m_swapchain.getInfo().images.size(), model->getUbo());
 
-      model->m_descriptorPool.initialize(m_device.get(), m_images.getSize());
-      model->m_descriptorSets.initialize(m_device.get(), m_images.getSize(), model->m_descriptorPool.get(), m_descriptorSetLayout.get(), model->m_uniformBuffers.get(), model->m_texture);
+      model->m_descriptorPool.initialize(m_device.get(),m_swapchain.getInfo().images.size());
+      model->m_descriptorSets.initialize(m_device.get(),m_swapchain.getInfo().images.size(), model->m_descriptorPool.get(), m_descriptorSetLayout.get(), model->m_uniformBuffers.get(), model->m_texture);
     }
 
-    m_commandBuffers.initialize(m_device.get(), m_graphicsCmdPool.get(), m_framebuffers.getSize());
-    m_commandBuffers.record(m_swapchain, m_framebuffers, m_renderPass, m_pipeline, m_models);
+    m_commandBuffers.initialize(m_device.get(), m_graphicsCmdPool.get(), m_swapchain.getInfo().framebuffers.size());
+    m_commandBuffers.record(m_swapchain, m_swapchain.getInfo().framebuffers, m_renderPass, m_pipeline, m_models);
 
     // TODO: transfer command pool inizialization and recording
 
@@ -145,7 +146,7 @@ namespace RX
     m_imageAvailableSemaphores.resize(maxFramesInFlight);
     m_finishedRenderSemaphores.resize(maxFramesInFlight);
     m_inFlightFences.resize(maxFramesInFlight);
-    m_imagesInFlight.resize(m_images.getSize(), VK_NULL_HANDLE);
+    m_imagesInFlight.resize(m_swapchain.getInfo().images.size(), VK_NULL_HANDLE);
 
     for (size_t i = 0; i < maxFramesInFlight; ++i)
     {
@@ -178,12 +179,12 @@ namespace RX
       return true;
     }
 
-    m_imgui.beginRender();
-    m_imgui.renderDemo();
-    m_imgui.render();
+    //m_imgui.beginRender();
+    //m_imgui.renderDemo();
+    //m_imgui.render();
 
     uint32_t imageIndex;
-    m_swapchain.acquireNextImage(m_device.get(), m_imageAvailableSemaphores[currentFrame].get(), VK_NULL_HANDLE, &imageIndex);
+    m_swapchain.acquireNextImage(m_imageAvailableSemaphores[currentFrame].get(), VK_NULL_HANDLE, &imageIndex);
 
     // TODO: Temporary
     for (std::shared_ptr<Model> model : m_models)
@@ -213,7 +214,7 @@ namespace RX
     submitInfo.signalSemaphoreCount = 1;
     submitInfo.pSignalSemaphores = signalSemaphores;
 
-    m_imgui.endRender(m_device.get(), m_queues, m_renderPass.get(), m_framebuffers.get()[imageIndex]);
+    //m_imgui.endRender(m_device.get(), m_queues, m_renderPass.get(), m_framebuffers.get()[imageIndex]);
 
     // Reset the signaled state of the current frame's fence to the unsignaled one.
     vkResetFences(m_device.get(), 1, &m_inFlightFences[currentFrame].get());
@@ -269,12 +270,13 @@ namespace RX
     m_device.waitIdle();
 
     // 1. Cleaning the existing swapchain.
-    m_depthImage.destroy();
-    m_framebuffers.destroy();
+    m_swapchain.destroyDepthImageView();
+    m_swapchain.destroyDepthImage();
+    m_swapchain.destroyFramebuffers();
     m_commandBuffers.destroy();
     m_pipeline.destroy();
     m_renderPass.destroy();
-    m_imageViews.destroy();
+    m_swapchain.destroyImageViews();
     m_swapchain.destroy();
 
     for (std::shared_ptr<Model> model : m_models)
@@ -284,8 +286,7 @@ namespace RX
 
     // 2. Recreating the swapchain.
     m_swapchain.initialize(swapchainInfo);
-    m_images.initialize(m_device.get(), m_swapchain.get());
-    m_imageViews.initialize(m_device.get(), m_surface.getInfo().format, m_images);
+    m_swapchain.initImageViews();
     m_renderPass.initialize(renderPassInfo);
 
     Shader vs, fs;
@@ -293,20 +294,21 @@ namespace RX
     fs.initialize(RX_SHADER_PATH "simple3D.frag", m_device.get());
     m_pipeline.initialize(m_device.get(), m_renderPass.get(), m_swapchain.getInfo().extent, m_window, vs, fs, m_descriptorSetLayout.get());
 
-    m_depthImage.initialize(m_physicalDevice.get(), m_device.get(), m_swapchain.getInfo().extent);
-    m_framebuffers.initialize(m_device.get(), m_imageViews, m_depthImage.getView(), m_renderPass.get(), m_window);
+    m_swapchain.initDepthImage();
+    m_swapchain.initDepthImageView();
+    m_swapchain.initFramebuffers();
 
-    m_descriptorPool.initialize(m_device.get(), m_images.getSize());
+    m_descriptorPool.initialize(m_device.get(), m_swapchain.getInfo().images.size());
 
     for (auto model : m_models)
     {
-      model->m_uniformBuffers.initialize(m_device.get(), m_physicalDevice.get(), m_swapchain.getInfo().extent, m_images.getSize(), model->getUbo());
-      model->m_descriptorPool.initialize(m_device.get(), m_images.getSize());
-      model->m_descriptorSets.initialize(m_device.get(), m_images.getSize(), model->m_descriptorPool.get(), m_descriptorSetLayout.get(), model->m_uniformBuffers.get(), model->m_texture);
+      model->m_uniformBuffers.initialize(m_device.get(), m_physicalDevice.get(), m_swapchain.getInfo().extent, m_swapchain.getInfo().images.size(), model->getUbo());
+      model->m_descriptorPool.initialize(m_device.get(), m_swapchain.getInfo().images.size());
+      model->m_descriptorSets.initialize(m_device.get(), m_swapchain.getInfo().images.size(), model->m_descriptorPool.get(), m_descriptorSetLayout.get(), model->m_uniformBuffers.get(), model->m_texture);
     }
 
-    m_commandBuffers.initialize(m_device.get(), m_graphicsCmdPool.get(), m_framebuffers.getSize());
-    m_commandBuffers.record(m_swapchain, m_framebuffers, m_renderPass, m_pipeline, m_models);
+    m_commandBuffers.initialize(m_device.get(), m_graphicsCmdPool.get(), m_swapchain.getInfo().framebuffers.size());
+    m_commandBuffers.record(m_swapchain, m_swapchain.getInfo().framebuffers, m_renderPass, m_pipeline, m_models);
 
     RX_ENABLE_LOG;
   }

@@ -42,7 +42,7 @@ namespace RX
     Buffer& operator=(const Buffer& buffer);
     void copyToBuffer(const Buffer& buffer) const;
 
-    void copyToImage(const Image& image) const;
+    void copyToImage(Image& image) const;
 
     void destroy();
 

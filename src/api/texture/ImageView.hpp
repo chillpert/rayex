@@ -1,25 +1,34 @@
 #ifndef IMAGE_VIEW_HPP
 #define IMAGE_VIEW_HPP
 
-#include "Image.hpp"
+#include "pch/stdafx.hpp"
 
 namespace RX
 {
-  class ImageView : public BaseComponent
+  struct ImageViewInfo
+  {
+    VkDevice device;
+    VkImage image;
+    VkFormat format;
+    VkImageViewType viewType = VK_IMAGE_VIEW_TYPE_2D;
+    VkComponentMapping components = { VK_COMPONENT_SWIZZLE_IDENTITY, VK_COMPONENT_SWIZZLE_IDENTITY, VK_COMPONENT_SWIZZLE_IDENTITY, VK_COMPONENT_SWIZZLE_IDENTITY };
+    VkImageSubresourceRange subresourceRange = { VK_IMAGE_ASPECT_COLOR_BIT, 0, 1, 0, 1 };
+  };
+
+  class ImageView
   {
   public:
-    RX_API ImageView();
     RX_API ~ImageView();
 
-    inline VkImageView get() const { return m_imageView; }
+    inline VkImageView get() { return m_imageView; }
+    inline ImageViewInfo getInfo() { return m_info; }
 
-    void initialize(Image& image, VkImageAspectFlags aspectFlags = VK_IMAGE_ASPECT_COLOR_BIT);
-    void initialize(VkDevice device, VkImage image, VkFormat format, VkImageAspectFlags aspectFlags = VK_IMAGE_ASPECT_COLOR_BIT);
+    void initialize(ImageViewInfo& info);
     void destroy();
 
   private:
     VkImageView m_imageView;
-    VkDevice m_device;
+    ImageViewInfo m_info;
   };
 }
 

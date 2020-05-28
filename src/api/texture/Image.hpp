@@ -5,23 +5,36 @@
 
 namespace RX
 {
-  class Image : public BaseComponent
+  struct ImageInfo
+  {
+    VkPhysicalDevice physicalDevice;
+    VkDevice device;
+    VkQueue queue; // Define in case you want to transition the image to another layout.
+    VkCommandPool commandPool; // Define in case you want to transition the image to another layout.
+    VkExtent3D extent;
+
+    VkImageUsageFlags usage = VK_IMAGE_USAGE_TRANSFER_DST_BIT | VK_IMAGE_USAGE_SAMPLED_BIT;
+    VkFormat format = VK_FORMAT_R8G8B8A8_SRGB;
+    VkImageTiling tiling = VK_IMAGE_TILING_OPTIMAL;
+    VkImageType imageType = VK_IMAGE_TYPE_2D;
+    VkImageLayout layout = VK_IMAGE_LAYOUT_UNDEFINED; // The initial image layout.
+    uint32_t mipLevels = 1;
+    uint32_t arrayLayers = 1;
+    VkSampleCountFlagBits samples = VK_SAMPLE_COUNT_1_BIT;
+    VkSharingMode sharingMode = VK_SHARING_MODE_EXCLUSIVE;
+  };
+
+  class Image
   {
   public:
-    RX_API Image();
-    RX_API virtual ~Image();
+    RX_API ~Image();
 
-    virtual inline VkImage get() const { return m_image; }
-    inline VkFormat getFormat() const { return m_format; }
-    inline VkDevice getDevice() const { return m_device; }
-    inline VkQueue getQueue() const { return m_queue; }
-    inline VkCommandPool getCommandPool() const { return m_commandPool; }
-    inline uint32_t getWidth() const { return m_width; }
-    inline uint32_t getHeight() const { return m_height; }
-    inline VkExtent2D getExtent() const { return { m_width, m_height }; }
+    inline VkImage get() { return m_image; }
+    inline VkDeviceMemory getMemory() { return m_memory; }
+    inline ImageInfo& getInfo() { return m_info; }
 
-    virtual void initialize(VkPhysicalDevice physicalDevice, VkDevice device, VkQueue queue, VkCommandPool commandPool, VkImageCreateInfo& createInfo);
-    virtual void transitionToLayout(VkImageLayout layout);
+    void initialize(ImageInfo& info);
+    void transitionToLayout(VkImageLayout layout);
     
     static VkFormat findSupportedFormat(VkPhysicalDevice physicalDevice, const std::vector<VkFormat>& formatsToTest, VkFormatFeatureFlags features, VkImageTiling tiling);
     void destroy();
@@ -29,16 +42,7 @@ namespace RX
   protected:
     VkImage m_image;
     VkDeviceMemory m_memory;
-    VkImageLayout m_layout;
-    VkFormat m_format;
-
-    uint32_t m_width;
-    uint32_t m_height;
-
-    VkPhysicalDevice m_physicalDevice;
-    VkDevice m_device;
-    VkQueue m_queue;
-    VkCommandPool m_commandPool;
+    ImageInfo m_info;
   };
 }
 

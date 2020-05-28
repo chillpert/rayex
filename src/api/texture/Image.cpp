@@ -4,51 +4,50 @@
 
 namespace RX
 {
-  Image::Image() :
-    BaseComponent("Image") { }
-
   Image::~Image()
   {
     destroy();
   }
   
-  void Image::initialize(VkPhysicalDevice physicalDevice, VkDevice device, VkQueue queue, VkCommandPool commandPool, VkImageCreateInfo& createInfo)
+  void Image::initialize(ImageInfo& info)
   {
-    m_physicalDevice = physicalDevice;
-    m_device = device;
-    m_queue = queue;
-    m_commandPool = commandPool;
-    
-    m_width = createInfo.extent.width;
-    m_height = createInfo.extent.height;
-    m_format = createInfo.format;
-    m_layout = createInfo.initialLayout;
+    m_info = info;
 
-    VK_ASSERT(vkCreateImage(device, &createInfo, nullptr, &m_image), "Failed to create image");
+    VkImageCreateInfo createInfo{ };
+    createInfo.sType = VK_STRUCTURE_TYPE_IMAGE_CREATE_INFO;
+    createInfo.imageType = m_info.imageType;
+    createInfo.format = m_info.format;
+    createInfo.extent = m_info.extent;
+    createInfo.mipLevels = m_info.mipLevels;
+    createInfo.arrayLayers = m_info.arrayLayers;
+    createInfo.samples = m_info.samples;
+    createInfo.tiling = m_info.tiling;
+    createInfo.usage = m_info.usage;
+    createInfo.sharingMode = m_info.sharingMode;
+    createInfo.initialLayout = m_info.layout;
+    
+    VK_ASSERT(vkCreateImage(m_info.device, &createInfo, nullptr, &m_image), "Failed to create image.");
 
     VkMemoryRequirements memoryRequirements;
-    vkGetImageMemoryRequirements(device, m_image, &memoryRequirements);
+    vkGetImageMemoryRequirements(m_info.device, m_image, &memoryRequirements);
 
     VkMemoryAllocateInfo allocateInfo{ };
     allocateInfo.sType = VK_STRUCTURE_TYPE_MEMORY_ALLOCATE_INFO;
     allocateInfo.allocationSize = memoryRequirements.size;
-    allocateInfo.memoryTypeIndex = Buffer::findMemoryType(physicalDevice, memoryRequirements.memoryTypeBits, VK_MEMORY_PROPERTY_DEVICE_LOCAL_BIT);
+    allocateInfo.memoryTypeIndex = Buffer::findMemoryType(m_info.physicalDevice, memoryRequirements.memoryTypeBits, VK_MEMORY_PROPERTY_DEVICE_LOCAL_BIT);
 
-    VK_ASSERT(vkAllocateMemory(device, &allocateInfo, nullptr, &m_memory), "Failed to allocate memory for image");
-
-    vkBindImageMemory(device, m_image, m_memory, 0);
-
-    RX_INITIALIZATION_CALLBACK;
+    VK_ASSERT(vkAllocateMemory(m_info.device, &allocateInfo, nullptr, &m_memory), "Failed to allocate memory for image.");
+    VK_ASSERT(vkBindImageMemory(m_info.device, m_image, m_memory, 0), "Failed to bind image memory.");
   }
 
   void Image::transitionToLayout(VkImageLayout layout)
   {
     CommandBuffer commandBuffer;
-    commandBuffer.begin(m_device, m_commandPool, m_queue);
+    commandBuffer.begin(m_info.device, m_info.commandPool, m_info.queue);
 
     VkImageMemoryBarrier barrier{ };
     barrier.sType = VK_STRUCTURE_TYPE_IMAGE_MEMORY_BARRIER;
-    barrier.oldLayout = m_layout;
+    barrier.oldLayout = m_info.layout;
     barrier.newLayout = layout;
     barrier.srcQueueFamilyIndex = VK_QUEUE_FAMILY_IGNORED;
     barrier.dstQueueFamilyIndex = VK_QUEUE_FAMILY_IGNORED;
@@ -62,7 +61,7 @@ namespace RX
     VkPipelineStageFlags sourceStage;
     VkPipelineStageFlags destinationStage;
 
-    if (m_layout == VK_IMAGE_LAYOUT_UNDEFINED && layout == VK_IMAGE_LAYOUT_TRANSFER_DST_OPTIMAL)
+    if (m_info.layout == VK_IMAGE_LAYOUT_UNDEFINED && layout == VK_IMAGE_LAYOUT_TRANSFER_DST_OPTIMAL)
     {
       barrier.srcAccessMask = 0;
       barrier.dstAccessMask = VK_ACCESS_TRANSFER_WRITE_BIT;
@@ -70,7 +69,7 @@ namespace RX
       sourceStage = VK_PIPELINE_STAGE_TOP_OF_PIPE_BIT;
       destinationStage = VK_PIPELINE_STAGE_TRANSFER_BIT;
     }
-    else if (m_layout == VK_IMAGE_LAYOUT_TRANSFER_DST_OPTIMAL && layout == VK_IMAGE_LAYOUT_SHADER_READ_ONLY_OPTIMAL)
+    else if (m_info.layout == VK_IMAGE_LAYOUT_TRANSFER_DST_OPTIMAL && layout == VK_IMAGE_LAYOUT_SHADER_READ_ONLY_OPTIMAL)
     {
       barrier.srcAccessMask = VK_ACCESS_TRANSFER_WRITE_BIT;
       barrier.dstAccessMask = VK_ACCESS_SHADER_READ_BIT;
@@ -93,7 +92,7 @@ namespace RX
 
     commandBuffer.end();
 
-    m_layout = layout;
+    m_info.layout = layout;
   }
 
   VkFormat Image::findSupportedFormat(VkPhysicalDevice physicalDevice, const std::vector<VkFormat>& formatsToTest, VkFormatFeatureFlags features, VkImageTiling tiling)
@@ -117,9 +116,7 @@ namespace RX
 
   void Image::destroy()
   {
-    RX_ASSERT_DESTRUCTION;
-
-    vkDestroyImage(m_device, m_image, nullptr);
-    vkFreeMemory(m_device, m_memory, nullptr);
+    vkDestroyImage(m_info.device, m_image, nullptr);
+    vkFreeMemory(m_info.device, m_memory, nullptr);
   }
 }

@@ -1,5 +1,4 @@
 #include "RenderPass.hpp"
-#include "api/texture/DepthImage.hpp"
 
 namespace RX
 {

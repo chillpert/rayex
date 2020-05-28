@@ -17,7 +17,7 @@ namespace RX
   void Surface::checkSettingSupport(VkPhysicalDevice physicalDevice)
   {
     // Get all surface capabilities.
-    vkGetPhysicalDeviceSurfaceCapabilitiesKHR(physicalDevice, m_surface, &m_capabilities);
+    vkGetPhysicalDeviceSurfaceCapabilitiesKHR(physicalDevice, m_surface, &m_info.capabilities);
 
     // Check a present mode.
     uint32_t presentModeCount;

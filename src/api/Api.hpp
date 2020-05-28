@@ -14,15 +14,10 @@
 #include "devices/Device.hpp"
 
 #include "swapchain/Swapchain.hpp"
-#include "swapchain/Images.hpp"
-#include "swapchain/ImageViews.hpp"
-#include "swapchain/Framebuffers.hpp"
-
 #include "sync/Semaphore.hpp"
 #include "sync/Fence.hpp"
 
 #include "texture/Texture.hpp"
-#include "texture/DepthImage.hpp"
 
 #include "buffers/CommandPool.hpp"
 #include "buffers/CommandBuffers.hpp"
@@ -64,8 +59,6 @@ namespace RX
     Device m_device;
     RenderPass m_renderPass;
     Swapchain m_swapchain;
-    ImageViews m_imageViews;
-    Framebuffers m_framebuffers;
     DescriptorSetLayout m_descriptorSetLayout;
     Pipeline m_pipeline;
     CommandPool m_graphicsCmdPool;
@@ -73,14 +66,12 @@ namespace RX
     std::vector<Fence> m_inFlightFences;
     std::vector<Semaphore> m_imageAvailableSemaphores;
     std::vector<Semaphore> m_finishedRenderSemaphores;
-    DepthImage m_depthImage;
     CommandBuffers m_commandBuffers;
     std::vector<std::shared_ptr<Model>> m_models;
 
-    Gui m_imgui;
+    //Gui m_imgui;
 
     // No destruction necessary for following members:
-    Images m_images;
     PhysicalDevice m_physicalDevice;
     Queues m_queues;
     std::vector<VkFence> m_imagesInFlight;

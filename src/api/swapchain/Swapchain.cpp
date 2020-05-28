@@ -85,6 +85,13 @@ namespace RX
     createInfo.presentMode = m_info.surfacePresentMode;
 
     VK_ASSERT(vkCreateSwapchainKHR(m_info.device, &createInfo, nullptr, &m_swapchain), "Failed to create swapchain.");
+
+    // Get swapchain images.
+    uint32_t imageCount_t;
+    VK_ASSERT(vkGetSwapchainImagesKHR(m_info.device, m_swapchain, &imageCount_t, nullptr), "Failed to get swap chain images.");
+
+    m_info.images.resize(static_cast<size_t>(imageCount_t));
+    VK_ASSERT(vkGetSwapchainImagesKHR(m_info.device, m_swapchain, &imageCount_t, m_info.images.data()), "Failed to get swap chain images.");
   }
 
   void Swapchain::destroy()
@@ -92,8 +99,94 @@ namespace RX
     vkDestroySwapchainKHR(m_info.device, m_swapchain, nullptr);
   }
 
-  void Swapchain::acquireNextImage(VkDevice device, VkSemaphore semaphore, VkFence fence, uint32_t* imageIndex)
+  void Swapchain::initDepthImage()
+  {
+    m_info.depthFormat = getSupportedDepthFormat(m_info.physicalDevice);
+ 
+    ImageInfo imageInfo{ };
+    imageInfo.physicalDevice = m_info.physicalDevice;
+    imageInfo.device = m_info.device;
+    imageInfo.extent = { m_info.extent.width, m_info.extent.height, 1 };
+    imageInfo.format = m_info.depthFormat;
+    imageInfo.tiling = VK_IMAGE_TILING_OPTIMAL;
+    imageInfo.usage = VK_IMAGE_USAGE_DEPTH_STENCIL_ATTACHMENT_BIT;
+  
+    m_info.depthImage.initialize(imageInfo);
+  }
+
+  void Swapchain::initDepthImageView()
+  {
+    ImageViewInfo imageViewInfo{ };
+    imageViewInfo.device = m_info.device;
+    imageViewInfo.format = m_info.depthFormat;
+    imageViewInfo.image = m_info.depthImage.get();
+    imageViewInfo.subresourceRange.aspectMask = VK_IMAGE_ASPECT_DEPTH_BIT;
+
+    m_info.depthImageView.initialize(imageViewInfo);
+  }
+
+  void Swapchain::initImageViews()
+  {
+    m_info.imageViews.resize(m_info.images.size());
+    for (size_t i = 0; i < m_info.images.size(); ++i)
+    {
+      ImageViewInfo imageViewInfo{ };
+      imageViewInfo.device = m_info.device;
+      imageViewInfo.image = m_info.images[i];
+      imageViewInfo.format = m_info.surfaceFormat;
+      imageViewInfo.subresourceRange.aspectMask = m_info.imageAspect;
+
+      m_info.imageViews[i].initialize(imageViewInfo);
+    }
+  }
+
+  void Swapchain::initFramebuffers()
+  {
+    m_info.framebuffers.resize(m_info.imageViews.size());
+    for (size_t i = 0; i < m_info.images.size(); ++i)
+    {
+      FramebufferInfo framebufferInfo{ };
+      framebufferInfo.window = m_info.window;
+      framebufferInfo.device = m_info.device;
+      framebufferInfo.imageView = m_info.imageViews[i].get();
+      framebufferInfo.depthImageView = m_info.depthImageView.get();
+      framebufferInfo.renderPass = m_info.renderPass;
+      framebufferInfo.extent = m_info.extent;
+
+      m_info.framebuffers[i].initialize(framebufferInfo);
+    }
+  }
+
+  void Swapchain::destroyDepthImage()
+  {
+    m_info.depthImage.destroy();
+  }
+
+  void Swapchain::destroyDepthImageView()
+  {
+    m_info.depthImageView.destroy();
+  }
+
+  void Swapchain::destroyImageViews()
+  {
+    for (ImageView& imageView : m_info.imageViews)
+      imageView.destroy();
+  }
+
+  void Swapchain::destroyFramebuffers()
+  {
+    for (Framebuffer& framebuffer : m_info.framebuffers)
+      framebuffer.destroy();
+  }
+
+  void Swapchain::acquireNextImage(VkSemaphore semaphore, VkFence fence, uint32_t* imageIndex)
   {
     VK_ASSERT(vkAcquireNextImageKHR(m_info.device, m_swapchain, UINT64_MAX, semaphore, fence, imageIndex), "Failed to acquire next image from swapchain");
+  }
+
+  VkFormat getSupportedDepthFormat(VkPhysicalDevice physicalDevice)
+  {
+    std::vector<VkFormat> candidates{ VK_FORMAT_D32_SFLOAT, VK_FORMAT_D32_SFLOAT_S8_UINT, VK_FORMAT_D24_UNORM_S8_UINT };
+    return Image::findSupportedFormat(physicalDevice, candidates, VK_FORMAT_FEATURE_DEPTH_STENCIL_ATTACHMENT_BIT, VK_IMAGE_TILING_OPTIMAL);
   }
 }

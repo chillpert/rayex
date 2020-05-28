@@ -95,11 +95,11 @@ namespace RX
     vkFreeCommandBuffers(m_info.device, m_info.commandPool, 1, &commandBuffer);
   }
 
-  void Buffer::copyToImage(const Image& image) const
+  void Buffer::copyToImage(Image& image) const
   {
     CommandBuffer commandBuffer;
 
-    commandBuffer.begin(image.getDevice(), image.getCommandPool(), image.getQueue());
+    commandBuffer.begin(image.getInfo().device, image.getInfo().commandPool, image.getInfo().queue);
 
     VkBufferImageCopy region{ };
     region.bufferOffset = 0;
@@ -110,7 +110,7 @@ namespace RX
     region.imageSubresource.baseArrayLayer = 0;
     region.imageSubresource.layerCount = 1;
     region.imageOffset = { 0, 0, 0 };
-    region.imageExtent = { image.getWidth(), image.getHeight(), 1 };
+    region.imageExtent = image.getInfo().extent;
 
     vkCmdCopyBufferToImage(commandBuffer.get(), m_buffer, image.get(), VK_IMAGE_LAYOUT_TRANSFER_DST_OPTIMAL, 1, &region);
 

@@ -32,7 +32,7 @@ namespace RX
     // Print information about the GPU that was selected.
     VkPhysicalDeviceProperties props;
     vkGetPhysicalDeviceProperties(m_physicalDevice, &props);
-    VK_LOG("Selected GPU: " << props.deviceName);
+    RX_LOG("Selected GPU: " << props.deviceName);
   }
 
   unsigned int PhysicalDevice::evaluate(VkPhysicalDevice device) const

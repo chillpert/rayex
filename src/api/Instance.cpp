@@ -32,12 +32,12 @@ namespace RX
     createInfo.ppEnabledExtensionNames = m_info.extensions.data();
     createInfo.enabledExtensionCount = static_cast<uint32_t>(m_info.extensions.size());
 
-    VK_ASSERT(vkCreateInstance(&createInfo, nullptr, &m_instance), "Failed to create instance.");
+    VK_CREATE(vkCreateInstance(&createInfo, nullptr, &m_instance), "instance.");
   }
 
   void Instance::destroy()
   {
-    RX_DESTROY(vkDestroyInstance(m_instance, nullptr), "instance");
+    VK_DESTROY(vkDestroyInstance(m_instance, nullptr), "instance");
   }
 
   void Instance::checkLayersSupport()
@@ -63,7 +63,7 @@ namespace RX
       if (!found)
         RX_ERROR("Validation layer " + name + " is not available on this device");
 
-      VK_LOG("Added layer: " << name);
+      RX_LOG("Added layer: " << name);
     }
   }
 
@@ -90,7 +90,7 @@ namespace RX
       if (!found)
         RX_ERROR("Instance extensions " + name + " is not available on this device");
 
-      VK_LOG("Added extension: " << name);
+      RX_LOG("Added extension: " << name);
     }
   }
 
@@ -102,7 +102,7 @@ namespace RX
 #ifdef VK_API_VERSION_1_2
     if (apiVersion >= VK_API_VERSION_1_2)
     {
-      VK_LOG("Found Vulkan SDK API Version 1.2.x");
+      RX_LOG("Found Vulkan SDK API Version 1.2.x");
       return VK_API_VERSION_1_2;
     }
 #endif
@@ -110,7 +110,7 @@ namespace RX
 #ifdef VK_API_VERSION_1_1
     if (apiVersion >= VK_API_VERSION_1_1)
     {
-      VK_LOG("Found Vulkan SDK API Version 1.1.x");
+      RX_LOG("Found Vulkan SDK API Version 1.1.x");
       return VK_API_VERSION_1_1;
     }
 #endif

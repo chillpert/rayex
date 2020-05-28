@@ -272,7 +272,7 @@ namespace RX
 
   void Api::recreateSwapchain()
   {
-    VK_LOG("Recreating swapchain");
+    RX_LOG("Recreating swapchain");
     RX_DISABLE_LOG;
 
     m_device.waitIdle();

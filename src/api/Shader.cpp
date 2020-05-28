@@ -61,7 +61,7 @@ namespace RX
 
   void Shader::destroy()
   {
-    RX_DESTROY(vkDestroyShaderModule(m_info.device, m_shaderModule, nullptr), "shader module");
+    VK_DESTROY(vkDestroyShaderModule(m_info.device, m_shaderModule, nullptr), "shader module");
   }
 
   void Shader::createShaderModule()
@@ -71,10 +71,6 @@ namespace RX
     createInfo.codeSize = m_info.source.size();
     createInfo.pCode = reinterpret_cast<const uint32_t*>(m_info.source.data());
 
-    if (m_info.device != VK_NULL_HANDLE)
-      VK_ASSERT(vkCreateShaderModule(m_info.device, &createInfo, nullptr, &m_shaderModule), "Failed to create shader module.");
-
-    else
-      RX_ERROR("Failed to create shader module, because a logical device has not been created yet.");
+    VK_ASSERT(vkCreateShaderModule(m_info.device, &createInfo, nullptr, &m_shaderModule), "Failed to create shader module.");
   }
 }

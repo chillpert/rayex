@@ -116,7 +116,7 @@ namespace RX
 
   void Image::destroy()
   {
-    RX_DESTROY(vkDestroyImage(m_info.device, m_image, nullptr), "image");
+    VK_DESTROY(vkDestroyImage(m_info.device, m_image, nullptr), "image");
     vkFreeMemory(m_info.device, m_memory, nullptr);
   }
 }

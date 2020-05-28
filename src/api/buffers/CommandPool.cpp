@@ -26,7 +26,7 @@ namespace RX
 
   void CommandPool::destroy()
   {
-    RX_DESTROY(vkDestroyCommandPool(m_device, m_commandPool, nullptr), "command pool");
+    VK_DESTROY(vkDestroyCommandPool(m_device, m_commandPool, nullptr), "command pool");
    }
 
   void CommandPool::reset(VkCommandPoolResetFlags flags)

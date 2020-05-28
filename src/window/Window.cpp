@@ -125,7 +125,7 @@ namespace RX
       prevWidth = width;
       prevHeight = height;
 
-      VK_LOG("Window refresh event");
+      RX_LOG("Window refresh event");
       return true;
     }
 

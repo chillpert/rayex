@@ -137,7 +137,7 @@ namespace RX
 
   void Pipeline::destroy()
   {
-    RX_DESTROY(vkDestroyPipeline(m_device, m_pipeline, nullptr), "pipeline");
-    RX_DESTROY(vkDestroyPipelineLayout(m_device, m_layout, nullptr), "pipeline layout");
+    VK_DESTROY(vkDestroyPipeline(m_device, m_pipeline, nullptr), "pipeline");
+    VK_DESTROY(vkDestroyPipelineLayout(m_device, m_layout, nullptr), "pipeline layout");
   }
 }

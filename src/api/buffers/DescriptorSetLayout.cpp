@@ -42,6 +42,6 @@ namespace RX
 
   void DescriptorSetLayout::destroy()
   {
-    RX_DESTROY(vkDestroyDescriptorSetLayout(m_device, m_layout, nullptr), "layout");
+    VK_DESTROY(vkDestroyDescriptorSetLayout(m_device, m_layout, nullptr), "layout");
   }
 }

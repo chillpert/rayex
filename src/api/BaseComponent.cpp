@@ -48,7 +48,7 @@ namespace RX
     }
 
     m_initialized = false;
-    VK_LOG("Destroyed " << m_componentName);
+    RX_LOG("Destroyed " << m_componentName);
   }
 
   void BaseComponent::initializationCallback()
@@ -62,6 +62,6 @@ namespace RX
     }
 
     m_initialized = true;
-    VK_LOG("Created " << m_componentName);
+    RX_LOG("Created " << m_componentName);
   }
 }

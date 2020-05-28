@@ -49,7 +49,7 @@ namespace RX
 
   void Device::destroy()
   {
-    RX_DESTROY(vkDestroyDevice(m_device, nullptr), "device");
+    VK_DESTROY(vkDestroyDevice(m_device, nullptr), "device");
   }
 
   void Device::waitIdle()
@@ -87,7 +87,7 @@ namespace RX
       if (!requiredphysicalDeviceExtension.second)
         RX_ERROR("Missing physical device extension: " + requiredphysicalDeviceExtension.first + ". Have you tried installing the NVIDIA Beta drivers?");
       else
-        VK_LOG("Added device extension: " << requiredphysicalDeviceExtension.first);
+        RX_LOG("Added device extension: " << requiredphysicalDeviceExtension.first);
     }
   }
 }

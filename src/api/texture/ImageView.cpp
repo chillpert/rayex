@@ -24,6 +24,6 @@ namespace RX
 
   void ImageView::destroy()
   {
-    RX_DESTROY(vkDestroyImageView(m_info.device, m_imageView, nullptr), "image view");
+    VK_DESTROY(vkDestroyImageView(m_info.device, m_imageView, nullptr), "image view");
   }
 }

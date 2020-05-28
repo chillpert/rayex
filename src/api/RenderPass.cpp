@@ -63,7 +63,7 @@ namespace RX
     createInfo.dependencyCount = 1;
     createInfo.pDependencies = &subpassDependency;
 
-    VK_ASSERT(vkCreateRenderPass(m_info.device, &createInfo, nullptr, &m_renderPass), "Failed to create render pass");
+    VK_CREATE(vkCreateRenderPass(m_info.device, &createInfo, nullptr, &m_renderPass), "render pass");
   }
 
   void RenderPass::destroy()

@@ -84,7 +84,7 @@ namespace RX
 
     createInfo.presentMode = m_info.surfacePresentMode;
 
-    VK_ASSERT(vkCreateSwapchainKHR(m_info.device, &createInfo, nullptr, &m_swapchain), "Failed to create swapchain.");
+    VK_CREATE(vkCreateSwapchainKHR(m_info.device, &createInfo, nullptr, &m_swapchain), "swapchain.");
 
     // Get swapchain images.
     uint32_t imageCount_t;

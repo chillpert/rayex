@@ -22,7 +22,7 @@ namespace RX
     bufferInfo.usage = createInfo.usage;
     bufferInfo.sharingMode = createInfo.sharingMode;
     
-    VK_ASSERT(vkCreateBuffer(createInfo.device, &bufferInfo, nullptr, &m_buffer), "Failed to create vertex buffer");
+    VK_CREATE(vkCreateBuffer(createInfo.device, &bufferInfo, nullptr, &m_buffer), "vertex buffer");
 
     // Allocate memory for the buffer.
     VkMemoryRequirements memRequirements;

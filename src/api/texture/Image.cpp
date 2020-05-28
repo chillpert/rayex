@@ -26,7 +26,7 @@ namespace RX
     createInfo.sharingMode = m_info.sharingMode;
     createInfo.initialLayout = m_info.layout;
     
-    VK_ASSERT(vkCreateImage(m_info.device, &createInfo, nullptr, &m_image), "Failed to create image.");
+    VK_CREATE(vkCreateImage(m_info.device, &createInfo, nullptr, &m_image), "image");
 
     VkMemoryRequirements memoryRequirements;
     vkGetImageMemoryRequirements(m_info.device, m_image, &memoryRequirements);

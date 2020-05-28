@@ -25,7 +25,7 @@ namespace RX
     createInfo.height = m_info.extent.height;
     createInfo.layers = 1;
 
-    VK_ASSERT(vkCreateFramebuffer(m_info.device, &createInfo, nullptr, &m_framebuffer), "Failed to create frame buffer");
+    VK_CREATE(vkCreateFramebuffer(m_info.device, &createInfo, nullptr, &m_framebuffer), "framebuffer");
   }
 
   void Framebuffer::destroy()

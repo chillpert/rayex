@@ -32,7 +32,7 @@ namespace RX
     createInfo.ppEnabledExtensionNames = m_info.extensions.data();
     createInfo.enabledExtensionCount = static_cast<uint32_t>(m_info.extensions.size());
 
-    VK_CREATE(vkCreateInstance(&createInfo, nullptr, &m_instance), "instance.");
+    VK_CREATE(vkCreateInstance(&createInfo, nullptr, &m_instance), "instance");
   }
 
   void Instance::destroy()

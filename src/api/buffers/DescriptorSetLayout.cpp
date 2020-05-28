@@ -35,7 +35,7 @@ namespace RX
     createInfo.bindingCount = static_cast<uint32_t>(bindings.size());
     createInfo.pBindings = bindings.data();
 
-    VK_ASSERT(vkCreateDescriptorSetLayout(device, &createInfo, nullptr, &m_layout), "Failed to create descriptor set layout");
+    VK_CREATE(vkCreateDescriptorSetLayout(device, &createInfo, nullptr, &m_layout), "descriptor set layout");
 
     RX_INITIALIZATION_CALLBACK;
   }

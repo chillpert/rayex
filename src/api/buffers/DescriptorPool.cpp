@@ -26,9 +26,7 @@ namespace RX
     createInfo.pPoolSizes = poolSizes.data();
     createInfo.maxSets = static_cast<uint32_t>(swapchainImagesCount);
 
-    VK_ASSERT(vkCreateDescriptorPool(device, &createInfo, nullptr, &m_pool), "Failed to create descriptor pool.");
-
-    RX_INITIALIZATION_CALLBACK;
+    VK_CREATE(vkCreateDescriptorPool(device, &createInfo, nullptr, &m_pool), "descriptor pool");
   }
 
   void DescriptorPool::destroy()

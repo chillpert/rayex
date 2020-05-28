@@ -29,7 +29,7 @@ namespace RX
     createInfo.compareOp = VK_COMPARE_OP_ALWAYS;
     createInfo.mipmapMode = VK_SAMPLER_MIPMAP_MODE_LINEAR;
 
-    VK_ASSERT(vkCreateSampler(device, &createInfo, nullptr, &m_sampler), "Failed to create sampler.");
+    VK_CREATE(vkCreateSampler(device, &createInfo, nullptr, &m_sampler), "sampler");
 
     RX_INITIALIZATION_CALLBACK;
   }

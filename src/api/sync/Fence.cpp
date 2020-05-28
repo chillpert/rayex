@@ -19,7 +19,7 @@ namespace RX
     createInfo.sType = VK_STRUCTURE_TYPE_FENCE_CREATE_INFO;
     createInfo.flags = VK_FENCE_CREATE_SIGNALED_BIT;
 
-    VK_ASSERT(vkCreateFence(device, &createInfo, nullptr, &m_fence), "Failed to create fence.");
+    VK_CREATE(vkCreateFence(device, &createInfo, nullptr, &m_fence), "fence");
 
     RX_INITIALIZATION_CALLBACK;
   }

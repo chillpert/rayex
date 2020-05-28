@@ -71,6 +71,6 @@ namespace RX
     createInfo.codeSize = m_info.source.size();
     createInfo.pCode = reinterpret_cast<const uint32_t*>(m_info.source.data());
 
-    VK_ASSERT(vkCreateShaderModule(m_info.device, &createInfo, nullptr, &m_shaderModule), "Failed to create shader module.");
+    VK_CREATE(vkCreateShaderModule(m_info.device, &createInfo, nullptr, &m_shaderModule), "shader module");
   }
 }

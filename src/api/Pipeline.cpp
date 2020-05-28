@@ -98,7 +98,7 @@ namespace RX
     pipelineLayoutInfo.setLayoutCount = 1;
     pipelineLayoutInfo.pSetLayouts = &descriptorSetLayout;
 
-    VK_ASSERT(vkCreatePipelineLayout(device, &pipelineLayoutInfo, nullptr, &m_layout), "Failed to create pipeline layout.");
+    VK_CREATE(vkCreatePipelineLayout(device, &pipelineLayoutInfo, nullptr, &m_layout), "pipeline layout");
 
     VkPipelineShaderStageCreateInfo vertShaderStageInfo{ };
     vertShaderStageInfo.sType = VK_STRUCTURE_TYPE_PIPELINE_SHADER_STAGE_CREATE_INFO;
@@ -130,7 +130,7 @@ namespace RX
     createInfo.subpass = 0;
     createInfo.basePipelineHandle = VK_NULL_HANDLE;
 
-    VK_ASSERT(vkCreateGraphicsPipelines(device, VK_NULL_HANDLE, 1, &createInfo, nullptr, &m_pipeline), "Failed to create graphics pipeline.");
+    VK_CREATE(vkCreateGraphicsPipelines(device, VK_NULL_HANDLE, 1, &createInfo, nullptr, &m_pipeline), "graphics pipeline");
   
     RX_INITIALIZATION_CALLBACK;
   }

@@ -19,7 +19,7 @@ namespace RX
     //createInfo.flags = VK_COMMAND_POOL_CREATE_RESET_COMMAND_BUFFER_BIT;//VK_COMMAND_POOL_CREATE_TRANSIENT_BIT;
     createInfo.queueFamilyIndex = queueFamilyIndex;
 
-    VK_ASSERT(vkCreateCommandPool(device, &createInfo, nullptr, &m_commandPool), "Failed to create command pool.");
+    VK_CREATE(vkCreateCommandPool(device, &createInfo, nullptr, &m_commandPool), "command pool");
 
     RX_INITIALIZATION_CALLBACK;
   }
@@ -31,7 +31,6 @@ namespace RX
 
   void CommandPool::reset(VkCommandPoolResetFlags flags)
   {
-    RX_ASSERT_INITIALIZED("reset");
     VK_ASSERT(vkResetCommandPool(m_device, m_commandPool, flags), "Failed to reset command pool.");
   }
 }

@@ -44,7 +44,7 @@ namespace RX
     createInfo.enabledExtensionCount = static_cast<uint32_t>(m_info.extensions.size());
     createInfo.ppEnabledExtensionNames = m_info.extensions.data();
 
-    VK_ASSERT(vkCreateDevice(m_info.physicalDevice, &createInfo, nullptr, &m_device), "Failed to create device.");
+    VK_CREATE(vkCreateDevice(m_info.physicalDevice, &createInfo, nullptr, &m_device), "device");
   }
 
   void Device::destroy()

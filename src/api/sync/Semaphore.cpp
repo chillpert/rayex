@@ -17,7 +17,7 @@ namespace RX
     VkSemaphoreCreateInfo createInfo{ };
     createInfo.sType = VK_STRUCTURE_TYPE_SEMAPHORE_CREATE_INFO;
 
-    VK_ASSERT(vkCreateSemaphore(device, &createInfo, nullptr, &m_semaphore), "Failed to create semaphore.");
+    VK_CREATE(vkCreateSemaphore(device, &createInfo, nullptr, &m_semaphore), "semaphore");
 
     RX_INITIALIZATION_CALLBACK;
   }

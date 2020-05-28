@@ -19,7 +19,7 @@ namespace RX
     createInfo.components = m_info.components;
     createInfo.subresourceRange = m_info.subresourceRange;
 
-    VK_ASSERT(vkCreateImageView(m_info.device, &createInfo, nullptr, &m_imageView), "Failed to create image view");
+    VK_CREATE(vkCreateImageView(m_info.device, &createInfo, nullptr, &m_imageView), "image view");
   }
 
   void ImageView::destroy()

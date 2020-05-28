@@ -1,26 +1,35 @@
 #ifndef VK_DEBUG_MESSENGER_HPP
 #define VK_DEBUG_MESSENGER_HPP
 
-#include "BaseComponent.hpp"
+#include "pch/stdafx.hpp"
 
 namespace RX
 {
-  class DebugMessenger : public BaseComponent
+  struct DebugMessengerInfo
+  {
+    VkInstance instance;
+    VkDebugUtilsMessageSeverityFlagsEXT messageSeverity = VK_DEBUG_UTILS_MESSAGE_SEVERITY_VERBOSE_BIT_EXT | VK_DEBUG_UTILS_MESSAGE_SEVERITY_WARNING_BIT_EXT | VK_DEBUG_UTILS_MESSAGE_SEVERITY_ERROR_BIT_EXT;
+    VkDebugUtilsMessageTypeFlagsEXT messageType = VK_DEBUG_UTILS_MESSAGE_TYPE_GENERAL_BIT_EXT | VK_DEBUG_UTILS_MESSAGE_TYPE_PERFORMANCE_BIT_EXT | VK_DEBUG_UTILS_MESSAGE_TYPE_VALIDATION_BIT_EXT;
+  };
+
+  class DebugMessenger
   {
   public:
-    DebugMessenger();
     ~DebugMessenger();
 
-    void initialize(VkInstance instance);
+    inline VkDebugUtilsMessengerEXT get() { return m_debugMessenger; }
+    inline DebugMessengerInfo& getInfo() { return m_info; }
+
+    void initialize(DebugMessengerInfo& info);
 
   private:
     void destroy();
     
     PFN_vkCreateDebugUtilsMessengerEXT m_createDebugUtilsMessengerEXT;
     PFN_vkDestroyDebugUtilsMessengerEXT m_destroyDebugUtilsMessengerEXT;
-    VkDebugUtilsMessengerEXT m_debugMessenger;
 
-    VkInstance m_instance;
+    VkDebugUtilsMessengerEXT m_debugMessenger;
+    DebugMessengerInfo m_info;
   };
 
   VKAPI_ATTR VkBool32 VKAPI_CALL debugMessengerCallback

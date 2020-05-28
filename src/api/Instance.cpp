@@ -2,9 +2,6 @@
 
 namespace RX
 {
-  Instance::Instance(VkInstance* instance) :
-    m_instance(instance) { }
-
   Instance::~Instance()
   {
     destroy();
@@ -12,13 +9,15 @@ namespace RX
 
   void Instance::initialize(InstanceInfo& info)
   {
+    m_info = info;
+
     // Retrieve all extensions needed by SDL2.
-    std::vector<const char*> windowExtensions = info.window->getInstanceExtensions();
-    info.extensions.insert(info.extensions.end(), windowExtensions.begin(), windowExtensions.end());
+    std::vector<const char*> windowExtensions = m_info.window->getInstanceExtensions();
+    m_info.extensions.insert(m_info.extensions.end(), windowExtensions.begin(), windowExtensions.end());
 
     // Check if all extensions and layers needed are available.
-    checkLayersSupport(info.layers);
-    checkExtensionsSupport(info.extensions);
+    checkLayersSupport(m_info.layers);
+    checkExtensionsSupport(m_info.extensions);
 
     // Start creating the instance.
     VkApplicationInfo appInfo{ };
@@ -28,44 +27,17 @@ namespace RX
     VkInstanceCreateInfo createInfo{ };
     createInfo.sType = VK_STRUCTURE_TYPE_INSTANCE_CREATE_INFO;
     createInfo.pApplicationInfo = &appInfo;
-    createInfo.ppEnabledLayerNames = info.layers.data();
-    createInfo.enabledLayerCount = static_cast<uint32_t>(info.layers.size());    
-    createInfo.ppEnabledExtensionNames = info.extensions.data();
-    createInfo.enabledExtensionCount = static_cast<uint32_t>(info.extensions.size());
+    createInfo.ppEnabledLayerNames = m_info.layers.data();
+    createInfo.enabledLayerCount = static_cast<uint32_t>(m_info.layers.size());
+    createInfo.ppEnabledExtensionNames = m_info.extensions.data();
+    createInfo.enabledExtensionCount = static_cast<uint32_t>(m_info.extensions.size());
 
-    VK_ASSERT(vkCreateInstance(&createInfo, nullptr, m_instance), "Failed to create instance.");
+    VK_ASSERT(vkCreateInstance(&createInfo, nullptr, &m_instance), "Failed to create instance.");
   }
 
   void Instance::destroy()
   {
-    vkDestroyInstance(*m_instance, nullptr);
-  }
-
-  void Instance::print()
-  {
-    uint32_t layerCount;
-    VK_ASSERT(vkEnumerateInstanceLayerProperties(&layerCount, nullptr), "Failed to enumerate instance layer properties.");
-
-    std::vector<VkLayerProperties> layers(layerCount);
-    VK_ASSERT(vkEnumerateInstanceLayerProperties(&layerCount, layers.data()), "Failed to enumerate instance layer properties.");
-    
-    VK_LOG("\n\nAvailable layers on this device:");
-    std::cout << "==================================================================\n";
-    for (const auto& layer : layers)
-      std::cout << "  " << layer.layerName << ":\n\t" << "Description: " << layer.description << std::endl;
-    std::cout << std::endl;
-
-    uint32_t extensionCount;
-    VK_ASSERT(vkEnumerateInstanceExtensionProperties(nullptr, &extensionCount, nullptr), "Failed to enumerate instance extension properties.");
-
-    std::vector<VkExtensionProperties> extensions(extensionCount);
-    VK_ASSERT(vkEnumerateInstanceExtensionProperties(nullptr, &extensionCount, extensions.data()), "Failed to enumerate instance extension properties.");
-
-    VK_LOG("\n\nAvailable extensions on this device:");
-    std::cout << "==================================================================\n";
-    for (const auto& extension : extensions)
-      std::cout << "  " << extension.extensionName << std::endl;
-    std::cout << std::endl;
+    vkDestroyInstance(m_instance, nullptr);
   }
 
   void Instance::checkLayersSupport(const std::vector<const char*>& layers)

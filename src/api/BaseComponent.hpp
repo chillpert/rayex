@@ -1,7 +1,7 @@
 #ifndef BASE_COMPONENT_HPP
 #define BASE_COMPONENT_HPP
 
-#include "Components.hpp"
+#include "pch/stdafx.hpp"
 
 #ifdef RX_DEBUG
   #define RX_ASSERT_INITIALIZED(message) assertInitialized(message)

@@ -7,10 +7,7 @@ namespace RX
   const size_t maxFramesInFlight = 2;
 
   Api::Api(std::shared_ptr<Window> window) :
-    m_window(window),
-    m_instance(&m_components.instance),
-    m_physicalDevice(&m_components.physicalDevice),
-    m_device(&m_components.device) { }
+    m_window(window) { }
 
   Api::~Api()
   {
@@ -24,17 +21,17 @@ namespace RX
     instanceInfo.layers = { "VK_LAYER_KHRONOS_validation" };
     instanceInfo.extensions = { "VK_EXT_debug_utils", "VK_KHR_get_physical_device_properties2" };
 
-    // Set up the instance for interacting with the Vulkan library.
     m_instance.initialize(instanceInfo);
 
-    // Set up debug messenger. This will only have an effect if the build is a release build.
-    m_debugMessenger.initialize(m_components.instance);
+    DebugMessengerInfo debugMessengerInfo{ };
+    debugMessengerInfo.instance = m_instance.get();
+    m_debugMessenger.initialize(debugMessengerInfo);
 
     // Set up the window surface that will access the actual SDL window.
-    m_surface.initialize(m_components.instance, m_window);
+    m_surface.initialize(m_instance.get(), m_window);
 
     // Enumerate and pick one of the available physical devices on the given device.
-    m_physicalDevice.initialize(m_components.instance, m_surface.get());
+    m_physicalDevice.initialize(m_instance.get(), m_surface.get());
 
     // All device extensions required for ray tracing.
     std::vector<const char*> requiredExtensions =
@@ -51,48 +48,48 @@ namespace RX
     m_physicalDevice.checkExtensionSupport(requiredExtensions);
 
     // Set up queues.
-    m_queues.initialize(m_components.physicalDevice, m_surface.get());
+    m_queues.initialize(m_physicalDevice.get(), m_surface.get());
 
     // Add all of the device extensions from above.
     for (const auto& extension : requiredExtensions)
       m_device.pushExtension(extension);
 
     // Set up the logical device.
-    m_device.initialize(m_components.physicalDevice, m_queues);
+    m_device.initialize(m_physicalDevice.get(), m_queues);
 
     // Retrieve all queue handles.
-    m_queues.retrieveAllHandles(m_components.device);
+    m_queues.retrieveAllHandles(m_device.get());
 
     // Set up the render pass.
-    m_renderPass.initialize(m_components.physicalDevice, m_components.device, m_surface.getFormat(m_components.physicalDevice).format);
+    m_renderPass.initialize(m_physicalDevice.get(), m_device.get(), m_surface.getFormat(m_physicalDevice.get()).format);
 
     // Set up the swapchain and its related components.
-    m_swapchain.initialize(m_components.physicalDevice, m_components.device, m_surface, m_window, m_queues);
-    m_images.initialize(m_components.device, m_swapchain.get());
-    m_imageViews.initialize(m_components.device, m_surface.getFormat().format, m_images);
+    m_swapchain.initialize(m_physicalDevice.get(), m_device.get(), m_surface, m_window, m_queues);
+    m_images.initialize(m_device.get(), m_swapchain.get());
+    m_imageViews.initialize(m_device.get(), m_surface.getFormat().format, m_images);
 
     // Set up simple example shaders.
     Shader vs, fs;
-    vs.initialize(RX_SHADER_PATH "simple3D.vert", m_components.device);
-    fs.initialize(RX_SHADER_PATH "simple3D.frag", m_components.device);
+    vs.initialize(RX_SHADER_PATH "simple3D.vert", m_device.get());
+    fs.initialize(RX_SHADER_PATH "simple3D.frag", m_device.get());
     
-    m_descriptorSetLayout.initialize(m_components.device);
+    m_descriptorSetLayout.initialize(m_device.get());
 
     // Set up the graphics pipeline.
-    m_pipeline.initialize(m_components.device, m_renderPass.get(), m_swapchain.getExtent(), m_window, vs, fs, m_descriptorSetLayout.get());
+    m_pipeline.initialize(m_device.get(), m_renderPass.get(), m_swapchain.getExtent(), m_window, vs, fs, m_descriptorSetLayout.get());
     
     // Set up the command pool, allocate the command buffer and start command buffer recording.
-    m_graphicsCmdPool.initialize(m_components.device, m_queues.getGraphicsIndex()); // TODO: What if the graphics and present index are not identical?
+    m_graphicsCmdPool.initialize(m_device.get(), m_queues.getGraphicsIndex()); // TODO: What if the graphics and present index are not identical?
 
-    m_depthImage.initialize(m_components.physicalDevice, m_components.device, m_swapchain.getExtent());
-    m_framebuffers.initialize(m_components.device, m_imageViews, m_depthImage.getView(), m_renderPass.get(), m_window);
+    m_depthImage.initialize(m_physicalDevice.get(), m_device.get(), m_swapchain.getExtent());
+    m_framebuffers.initialize(m_device.get(), m_imageViews, m_depthImage.getView(), m_renderPass.get(), m_window);
 
-    m_descriptorPool.initialize(m_components.device, m_images.getSize());
+    m_descriptorPool.initialize(m_device.get(), m_images.getSize());
     
     m_imgui.initialize(
-      m_components.instance,
-      m_components.physicalDevice,
-      m_components.device,
+      m_instance.get(),
+      m_physicalDevice.get(),
+      m_device.get(),
       m_queues,
       m_descriptorPool.get(),
       m_surface,
@@ -105,16 +102,16 @@ namespace RX
     {
       model->initialize();
 
-      model->m_texture.initialize(m_components.physicalDevice, m_components.device, m_queues.getGraphicsQueue(), m_graphicsCmdPool.get(), model->m_pathToTexture);
-      model->m_vertexBuffer.initialize(m_components.device, m_components.physicalDevice, m_graphicsCmdPool.get(), m_queues.getGraphicsQueue(), model->m_vertices);
-      model->m_indexBuffer.initialize<uint32_t>(m_components.device, m_components.physicalDevice, m_graphicsCmdPool.get(), m_queues.getGraphicsQueue(), model->m_indices);
-      model->m_uniformBuffers.initialize(m_components.device, m_components.physicalDevice, m_swapchain.getExtent(), m_images.getSize(), model->getUbo());
+      model->m_texture.initialize(m_physicalDevice.get(), m_device.get(), m_queues.getGraphicsQueue(), m_graphicsCmdPool.get(), model->m_pathToTexture);
+      model->m_vertexBuffer.initialize(m_device.get(), m_physicalDevice.get(), m_graphicsCmdPool.get(), m_queues.getGraphicsQueue(), model->m_vertices);
+      model->m_indexBuffer.initialize<uint32_t>(m_device.get(), m_physicalDevice.get(), m_graphicsCmdPool.get(), m_queues.getGraphicsQueue(), model->m_indices);
+      model->m_uniformBuffers.initialize(m_device.get(), m_physicalDevice.get(), m_swapchain.getExtent(), m_images.getSize(), model->getUbo());
 
-      model->m_descriptorPool.initialize(m_components.device, m_images.getSize());
-      model->m_descriptorSets.initialize(m_components.device, m_images.getSize(), model->m_descriptorPool.get(), m_descriptorSetLayout.get(), model->m_uniformBuffers.get(), model->m_texture);
+      model->m_descriptorPool.initialize(m_device.get(), m_images.getSize());
+      model->m_descriptorSets.initialize(m_device.get(), m_images.getSize(), model->m_descriptorPool.get(), m_descriptorSetLayout.get(), model->m_uniformBuffers.get(), model->m_texture);
     }
 
-    m_commandBuffers.initialize(m_components.device, m_graphicsCmdPool.get(), m_framebuffers.getSize());
+    m_commandBuffers.initialize(m_device.get(), m_graphicsCmdPool.get(), m_framebuffers.getSize());
     m_commandBuffers.record(m_swapchain, m_framebuffers, m_renderPass, m_pipeline, m_models);
 
     // TODO: transfer command pool inizialization and recording
@@ -127,9 +124,9 @@ namespace RX
 
     for (size_t i = 0; i < maxFramesInFlight; ++i)
     {
-      m_imageAvailableSemaphores[i].initialize(m_components.device);
-      m_finishedRenderSemaphores[i].initialize(m_components.device);
-      m_inFlightFences[i].initialize(m_components.device);
+      m_imageAvailableSemaphores[i].initialize(m_device.get());
+      m_finishedRenderSemaphores[i].initialize(m_device.get());
+      m_inFlightFences[i].initialize(m_device.get());
     }
   }
 
@@ -143,7 +140,7 @@ namespace RX
     static size_t currentFrame = 0;
 
     // Wait for the current frame's fences.
-    vkWaitForFences(m_components.device, 1, &m_inFlightFences[currentFrame].get(), VK_TRUE, UINT64_MAX);
+    vkWaitForFences(m_device.get(), 1, &m_inFlightFences[currentFrame].get(), VK_TRUE, UINT64_MAX);
 
     // If the window is minimized then simply do not render anything anymore.
     if (m_window->minimized())
@@ -161,7 +158,7 @@ namespace RX
     m_imgui.render();
 
     uint32_t imageIndex;
-    m_swapchain.acquireNextImage(m_components.device, m_imageAvailableSemaphores[currentFrame].get(), VK_NULL_HANDLE, &imageIndex);
+    m_swapchain.acquireNextImage(m_device.get(), m_imageAvailableSemaphores[currentFrame].get(), VK_NULL_HANDLE, &imageIndex);
 
     // TODO: Temporary
     for (std::shared_ptr<Model> model : m_models)
@@ -171,7 +168,7 @@ namespace RX
 
     // Check if a previous frame is using the current image.
     if (m_imagesInFlight[imageIndex] != VK_NULL_HANDLE)
-      vkWaitForFences(m_components.device, 1, &m_imagesInFlight[currentFrame], VK_TRUE, UINT64_MAX);
+      vkWaitForFences(m_device.get(), 1, &m_imagesInFlight[currentFrame], VK_TRUE, UINT64_MAX);
 
     // This will mark the current image to be in use by this frame.
     m_imagesInFlight[imageIndex] = m_inFlightFences[currentFrame].get();
@@ -191,10 +188,10 @@ namespace RX
     submitInfo.signalSemaphoreCount = 1;
     submitInfo.pSignalSemaphores = signalSemaphores;
 
-    m_imgui.endRender(m_components.device, m_queues, m_renderPass.get(), m_framebuffers.get()[imageIndex]);
+    m_imgui.endRender(m_device.get(), m_queues, m_renderPass.get(), m_framebuffers.get()[imageIndex]);
 
     // Reset the signaled state of the current frame's fence to the unsignaled one.
-    vkResetFences(m_components.device, 1, &m_inFlightFences[currentFrame].get());
+    vkResetFences(m_device.get(), 1, &m_inFlightFences[currentFrame].get());
 
     // Submits / executes the current image's / framebuffer's command buffer.
     m_queues.submit(submitInfo, m_inFlightFences[currentFrame].get());
@@ -261,29 +258,29 @@ namespace RX
     m_descriptorPool.destroy();
 
     // 2. Recreating the swapchain.
-    m_swapchain.initialize(m_components.physicalDevice, m_components.device, m_surface, m_window, m_queues);
-    m_images.initialize(m_components.device, m_swapchain.get());
-    m_imageViews.initialize(m_components.device, m_surface.getFormat().format, m_images);
-    m_renderPass.initialize(m_components.physicalDevice, m_components.device, m_surface.getFormat(m_components.physicalDevice).format);
+    m_swapchain.initialize(m_physicalDevice.get(), m_device.get(), m_surface, m_window, m_queues);
+    m_images.initialize(m_device.get(), m_swapchain.get());
+    m_imageViews.initialize(m_device.get(), m_surface.getFormat().format, m_images);
+    m_renderPass.initialize(m_physicalDevice.get(), m_device.get(), m_surface.getFormat(m_physicalDevice.get()).format);
 
     Shader vs, fs;
-    vs.initialize(RX_SHADER_PATH "simple3D.vert", m_components.device);
-    fs.initialize(RX_SHADER_PATH "simple3D.frag", m_components.device);
-    m_pipeline.initialize(m_components.device, m_renderPass.get(), m_swapchain.getExtent(), m_window, vs, fs, m_descriptorSetLayout.get());
+    vs.initialize(RX_SHADER_PATH "simple3D.vert", m_device.get());
+    fs.initialize(RX_SHADER_PATH "simple3D.frag", m_device.get());
+    m_pipeline.initialize(m_device.get(), m_renderPass.get(), m_swapchain.getExtent(), m_window, vs, fs, m_descriptorSetLayout.get());
 
-    m_depthImage.initialize(m_components.physicalDevice, m_components.device, m_swapchain.getExtent());
-    m_framebuffers.initialize(m_components.device, m_imageViews, m_depthImage.getView(), m_renderPass.get(), m_window);
+    m_depthImage.initialize(m_physicalDevice.get(), m_device.get(), m_swapchain.getExtent());
+    m_framebuffers.initialize(m_device.get(), m_imageViews, m_depthImage.getView(), m_renderPass.get(), m_window);
 
-    m_descriptorPool.initialize(m_components.device, m_images.getSize());
+    m_descriptorPool.initialize(m_device.get(), m_images.getSize());
 
     for (auto model : m_models)
     {
-      model->m_uniformBuffers.initialize(m_components.device, m_components.physicalDevice, m_swapchain.getExtent(), m_images.getSize(), model->getUbo());
-      model->m_descriptorPool.initialize(m_components.device, m_images.getSize());
-      model->m_descriptorSets.initialize(m_components.device, m_images.getSize(), model->m_descriptorPool.get(), m_descriptorSetLayout.get(), model->m_uniformBuffers.get(), model->m_texture);
+      model->m_uniformBuffers.initialize(m_device.get(), m_physicalDevice.get(), m_swapchain.getExtent(), m_images.getSize(), model->getUbo());
+      model->m_descriptorPool.initialize(m_device.get(), m_images.getSize());
+      model->m_descriptorSets.initialize(m_device.get(), m_images.getSize(), model->m_descriptorPool.get(), m_descriptorSetLayout.get(), model->m_uniformBuffers.get(), model->m_texture);
     }
 
-    m_commandBuffers.initialize(m_components.device, m_graphicsCmdPool.get(), m_framebuffers.getSize());
+    m_commandBuffers.initialize(m_device.get(), m_graphicsCmdPool.get(), m_framebuffers.getSize());
     m_commandBuffers.record(m_swapchain, m_framebuffers, m_renderPass, m_pipeline, m_models);
 
     RX_ENABLE_LOG;

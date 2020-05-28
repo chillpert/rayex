@@ -2,46 +2,33 @@
 
 namespace RX
 {
-  DebugMessenger::DebugMessenger() :
-    BaseComponent("DebugMessenger") { }
-
   DebugMessenger::~DebugMessenger()
   {
     destroy();
   }
 
-  void DebugMessenger::initialize(VkInstance instance)
+  void DebugMessenger::initialize(DebugMessengerInfo& info)
   {
-#ifdef RX_DEBUG
-    m_instance = instance;
+    m_info = info;
 
-    m_createDebugUtilsMessengerEXT = (PFN_vkCreateDebugUtilsMessengerEXT)vkGetInstanceProcAddr(instance, "vkCreateDebugUtilsMessengerEXT");
-    m_destroyDebugUtilsMessengerEXT = (PFN_vkDestroyDebugUtilsMessengerEXT)vkGetInstanceProcAddr(instance, "vkDestroyDebugUtilsMessengerEXT");
+#ifdef RX_DEBUG
+    m_createDebugUtilsMessengerEXT = (PFN_vkCreateDebugUtilsMessengerEXT)vkGetInstanceProcAddr(m_info.instance, "vkCreateDebugUtilsMessengerEXT");
+    m_destroyDebugUtilsMessengerEXT = (PFN_vkDestroyDebugUtilsMessengerEXT)vkGetInstanceProcAddr(m_info.instance, "vkDestroyDebugUtilsMessengerEXT");
 
     VkDebugUtilsMessengerCreateInfoEXT createInfo{ };
     createInfo.sType = VK_STRUCTURE_TYPE_DEBUG_UTILS_MESSENGER_CREATE_INFO_EXT;
-    createInfo.messageSeverity =
-      //VK_DEBUG_UTILS_MESSAGE_SEVERITY_INFO_BIT_EXT |
-      VK_DEBUG_UTILS_MESSAGE_SEVERITY_VERBOSE_BIT_EXT |
-      VK_DEBUG_UTILS_MESSAGE_SEVERITY_WARNING_BIT_EXT |
-      VK_DEBUG_UTILS_MESSAGE_SEVERITY_ERROR_BIT_EXT;
-    createInfo.messageType =
-      VK_DEBUG_UTILS_MESSAGE_TYPE_GENERAL_BIT_EXT |
-      VK_DEBUG_UTILS_MESSAGE_TYPE_PERFORMANCE_BIT_EXT |
-      VK_DEBUG_UTILS_MESSAGE_TYPE_VALIDATION_BIT_EXT;
+    createInfo.messageSeverity = m_info.messageSeverity;
+    createInfo.messageType = m_info.messageType;
     createInfo.pfnUserCallback = debugMessengerCallback;
     
-    VK_ASSERT(m_createDebugUtilsMessengerEXT(instance, &createInfo, nullptr, &m_debugMessenger), "Failed to create debug utils messenger");
-
-    RX_INITIALIZATION_CALLBACK;
+    VK_ASSERT(m_createDebugUtilsMessengerEXT(m_info.instance, &createInfo, nullptr, &m_debugMessenger), "Failed to create debug utils messenger");
 #endif
   }
 
   void DebugMessenger::destroy()
   {
 #ifdef RX_DEBUG
-    RX_ASSERT_DESTRUCTION;
-    m_destroyDebugUtilsMessengerEXT(m_instance, m_debugMessenger, nullptr);
+    m_destroyDebugUtilsMessengerEXT(m_info.instance, m_debugMessenger, nullptr);
 #endif
   }
 

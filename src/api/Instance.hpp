@@ -15,21 +15,23 @@ namespace RX
   class Instance
   {
   public:
-    Instance(VkInstance* instance);
     ~Instance();
 
-    void initialize(InstanceInfo& info);
-    void destroy();
+    inline VkInstance get() { return m_instance; }
+    inline InstanceInfo& getInfo() { return m_info; }
 
-    void print();
+    void initialize(InstanceInfo& info);
 
   private:
+    void destroy();
+
     void checkLayersSupport(const std::vector<const char*>& layers);
     void checkExtensionsSupport(const std::vector<const char*>& extensions);
 
     uint32_t getApiVersion();
 
-    VkInstance* m_instance;
+    VkInstance m_instance;
+    InstanceInfo m_info;
   };
 }
 

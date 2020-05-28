@@ -1,8 +1,6 @@
 #ifndef API_HPP
 #define API_HPP
 
-#include "Components.hpp"
-
 #include "Instance.hpp"
 #include "DebugMessenger.hpp"
 #include "Queues.hpp"
@@ -59,7 +57,6 @@ namespace RX
 
     std::shared_ptr<Window> m_window;
 
-    Components m_components;
     // Destruction through RAII for following members:
     Instance m_instance;
     DebugMessenger m_debugMessenger;

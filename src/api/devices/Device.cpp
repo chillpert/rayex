@@ -2,10 +2,6 @@
 
 namespace RX
 {
-  Device::Device(VkDevice* device) :
-    BaseComponent("Device"),
-    m_device(device) { }
-
   Device::~Device()
   {
     destroy();
@@ -51,20 +47,16 @@ namespace RX
     createInfo.enabledExtensionCount = static_cast<uint32_t>(m_extensions.size());
     createInfo.ppEnabledExtensionNames = m_extensions.data();
 
-    VK_ASSERT(vkCreateDevice(physicalDevice, &createInfo, nullptr, m_device), "Failed to create device.");
-
-    RX_INITIALIZATION_CALLBACK;
+    VK_ASSERT(vkCreateDevice(physicalDevice, &createInfo, nullptr, &m_device), "Failed to create device.");
   }
 
   void Device::destroy()
   {
-    RX_ASSERT_DESTRUCTION;
-    vkDestroyDevice(*m_device, nullptr);
+    vkDestroyDevice(m_device, nullptr);
   }
 
   void Device::pushExtension(const char* name)
   {
-    RX_ASSERT_NOT_INITIALIZED("pushExtension");
     m_extensions.push_back(name);
 
     VK_LOG("Added Device extension: " << name);
@@ -72,6 +64,6 @@ namespace RX
 
   void Device::waitIdle()
   {
-    vkDeviceWaitIdle(*m_device);
+    vkDeviceWaitIdle(m_device);
   }
 }

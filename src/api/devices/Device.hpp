@@ -7,21 +7,23 @@
 
 namespace RX
 {
-  class Device : public BaseComponent
+  class Device
   {
   public:
-    Device(VkDevice* device);
     ~Device();
 
+    inline VkDevice get() { return m_device; }
+
     void initialize(VkPhysicalDevice physicalDevice, Queues& queues);
-    void destroy();
 
     // To verify the support of any device extension, use PhysicalDevice::checkExtensionSupport.
     void pushExtension(const char* name);
     void waitIdle();
 
   private:
-    VkDevice* m_device;
+    void destroy();
+
+    VkDevice m_device;
 
     std::vector<const char*> m_extensions;
   };

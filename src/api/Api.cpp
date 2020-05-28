@@ -16,6 +16,7 @@ namespace RX
 
   void Api::initialize()
   {
+    // Instance
     InstanceInfo instanceInfo{ };
     instanceInfo.window = m_window;
     instanceInfo.layers = { "VK_LAYER_KHRONOS_validation" };
@@ -23,14 +24,21 @@ namespace RX
 
     m_instance.initialize(instanceInfo);
 
+    // Debug messenger
     DebugMessengerInfo debugMessengerInfo{ };
     debugMessengerInfo.instance = m_instance.get();
+
     m_debugMessenger.initialize(debugMessengerInfo);
 
-    // Set up the window surface that will access the actual SDL window.
-    m_surface.initialize(m_instance.get(), m_window);
+    // Surface
+    SurfaceInfo surfaceInfo{ };
+    surfaceInfo.window = m_window;
+    surfaceInfo.instance = m_instance.get();
 
-    // Enumerate and pick one of the available physical devices on the given device.
+    m_surface.initialize(surfaceInfo);
+
+    // Physical device
+
     m_physicalDevice.initialize(m_instance.get(), m_surface.get());
 
     // All device extensions required for ray tracing.
@@ -47,6 +55,8 @@ namespace RX
     // Make sure that the device extensions are supported by the physical device.
     m_physicalDevice.checkExtensionSupport(requiredExtensions);
 
+    m_surface.checkSettings(m_physicalDevice.get());
+
     // Set up queues.
     m_queues.initialize(m_physicalDevice.get(), m_surface.get());
 
@@ -61,12 +71,12 @@ namespace RX
     m_queues.retrieveAllHandles(m_device.get());
 
     // Set up the render pass.
-    m_renderPass.initialize(m_physicalDevice.get(), m_device.get(), m_surface.getFormat(m_physicalDevice.get()).format);
+    m_renderPass.initialize(m_physicalDevice.get(), m_device.get(), m_surface.getInfo().format);
 
     // Set up the swapchain and its related components.
     m_swapchain.initialize(m_physicalDevice.get(), m_device.get(), m_surface, m_window, m_queues);
     m_images.initialize(m_device.get(), m_swapchain.get());
-    m_imageViews.initialize(m_device.get(), m_surface.getFormat().format, m_images);
+    m_imageViews.initialize(m_device.get(), m_surface.getInfo().format, m_images);
 
     // Set up simple example shaders.
     Shader vs, fs;
@@ -260,8 +270,8 @@ namespace RX
     // 2. Recreating the swapchain.
     m_swapchain.initialize(m_physicalDevice.get(), m_device.get(), m_surface, m_window, m_queues);
     m_images.initialize(m_device.get(), m_swapchain.get());
-    m_imageViews.initialize(m_device.get(), m_surface.getFormat().format, m_images);
-    m_renderPass.initialize(m_physicalDevice.get(), m_device.get(), m_surface.getFormat(m_physicalDevice.get()).format);
+    m_imageViews.initialize(m_device.get(), m_surface.getInfo().format, m_images);
+    m_renderPass.initialize(m_physicalDevice.get(), m_device.get(), m_surface.getInfo().format);
 
     Shader vs, fs;
     vs.initialize(RX_SHADER_PATH "simple3D.vert", m_device.get());

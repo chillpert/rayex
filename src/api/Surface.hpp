@@ -1,39 +1,43 @@
 #ifndef SURFACE_HPP
 #define SURFACE_HPP
 
-#include "BaseComponent.hpp"
 #include "window/Window.hpp"
 
 namespace RX
 {
-  class Surface : public BaseComponent
+  struct SurfaceInfo
+  {
+    std::shared_ptr<Window> window;
+    VkInstance instance;
+    VkFormat format = VK_FORMAT_B8G8R8A8_UNORM;
+    VkColorSpaceKHR colorSpace = VK_COLOR_SPACE_SRGB_NONLINEAR_KHR;
+    VkPresentModeKHR presentMode = VK_PRESENT_MODE_FIFO_KHR;
+  };
+
+  class Surface
   {
   public:
-    Surface();
     ~Surface();
 
-    inline VkSurfaceKHR get() { return surface; }
+    inline VkSurfaceKHR get() { return m_surface; }
+    inline SurfaceInfo& getInfo() { return m_info; }
     
-    VkSurfaceFormatKHR& getFormat(VkPhysicalDevice physicalDevice = VK_NULL_HANDLE);
-    VkPresentModeKHR& getPresentMode(VkPhysicalDevice physicalDevice = VK_NULL_HANDLE);
-    VkSurfaceCapabilitiesKHR& getCapabilitites(VkPhysicalDevice physicalDevice);
+    VkSurfaceCapabilitiesKHR& getCapabilitites(VkPhysicalDevice physicalDevice) { return m_capabilities;  }
 
-    void initialize(VkInstance instance, std::shared_ptr<Window> window);
-    void destroy();
+    void initialize(SurfaceInfo& info);
+
+    // Checks if the preferred settings for format, color space and present mode are available.
+    // If not, the function will set them to some fall back values.
+    // Must be called right after the enumeration of the physical device.
+    void checkSettings(VkPhysicalDevice physicalDevice);
 
   private:
-    // First checks if the physical device supports the prefered surface format and second if the surface supports it as well.
-    void evaluateFormat(VkPhysicalDevice physicalDevice);
-    void evaluatePresentMode(VkPhysicalDevice physicalDevice);
-    void evaluateCapabilities(VkPhysicalDevice physicalDevice);
+    void destroy();
 
-    VkSurfaceKHR surface; // TODO: rename
+    VkSurfaceCapabilitiesKHR m_capabilities;
 
-    VkSurfaceFormatKHR surfaceFormat; // TODO: rename
-    VkPresentModeKHR presentMode; // TODO: rename
-    VkSurfaceCapabilitiesKHR surfaceCapabilitites; // TODO: rename
-
-    VkInstance m_instance;
+    VkSurfaceKHR m_surface;
+    SurfaceInfo m_info;
   };
 }
 

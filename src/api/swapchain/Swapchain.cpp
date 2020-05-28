@@ -32,8 +32,8 @@ namespace RX
 
     createInfo.minImageCount = imageCount;
     
-    createInfo.imageFormat = surface.getFormat(physicalDevice).format;
-    createInfo.imageColorSpace = surface.getFormat(physicalDevice).colorSpace;
+    createInfo.imageFormat = surface.getInfo().format;
+    createInfo.imageColorSpace = surface.getInfo().colorSpace;
     createInfo.preTransform = surfaceCapabilities.currentTransform;
     
     // Prefer opaque bit over any other composite alpha value.
@@ -93,7 +93,7 @@ namespace RX
     else
       createInfo.imageSharingMode = VK_SHARING_MODE_EXCLUSIVE;
 
-    createInfo.presentMode = surface.getPresentMode(physicalDevice);
+    createInfo.presentMode = surface.getInfo().presentMode;
 
     VK_ASSERT(vkCreateSwapchainKHR(device, &createInfo, nullptr, &m_swapchain), "Failed to create swapchain.");
 

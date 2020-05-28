@@ -57,14 +57,21 @@ namespace RX
     ImGui_ImplVulkan_Init(&init_info, renderPass);
 
     CommandPool commandPool;
-    commandPool.initialize(device, queues.getGraphicsFamilyIndex());
+    //commandPool.initialize(device, queues.getGraphicsFamilyIndex());
 
     commandPool.reset();
 
-    CommandBuffer commandBuffer;
-    commandBuffer.begin(device, commandPool.get(), queues.getGraphicsQueue());
+    CommandBufferInfo commandBufferInfo{ };
+    commandBufferInfo.device = device;
+    commandBufferInfo.commandPool = commandPool.get();
+    commandBufferInfo.queue = queues.getGraphicsQueue();
 
-    ImGui_ImplVulkan_CreateFontsTexture(commandBuffer.get());
+    CommandBuffer commandBuffer;
+    commandBuffer.initialize(commandBufferInfo);
+
+    commandBuffer.begin();
+
+    ImGui_ImplVulkan_CreateFontsTexture(commandBuffer.get()[0]);
 
     commandBuffer.end();
   
@@ -72,7 +79,7 @@ namespace RX
 
     ImGui_ImplVulkan_DestroyFontUploadObjects();
 
-    m_commandPool.initialize(device, queues.getGraphicsFamilyIndex());
+    //m_commandPool.initialize(device, queues.getGraphicsFamilyIndex());
   }
 
   void Gui::beginRender()
@@ -92,8 +99,15 @@ namespace RX
   {
     m_commandPool.reset();
 
+    CommandBufferInfo commandBufferInfo{ };
+    commandBufferInfo.device = device;
+    commandBufferInfo.commandPool = m_commandPool.get();
+    commandBufferInfo.queue = queues.getGraphicsQueue();
+
     CommandBuffer commandBuffer;
-    commandBuffer.begin(device, m_commandPool.get(), queues.getGraphicsQueue());
+    commandBuffer.initialize(commandBufferInfo);
+
+    commandBuffer.begin();
 
     VkRenderPassBeginInfo info{ };
     info.sType = VK_STRUCTURE_TYPE_RENDER_PASS_BEGIN_INFO;
@@ -112,11 +126,11 @@ namespace RX
     info.clearValueCount = 2;
     info.pClearValues = clearValues;
 
-    vkCmdBeginRenderPass(commandBuffer.get(), &info, VK_SUBPASS_CONTENTS_INLINE);
+    vkCmdBeginRenderPass(commandBuffer.get()[0], &info, VK_SUBPASS_CONTENTS_INLINE);
 
-    ImGui_ImplVulkan_RenderDrawData(m_drawData, commandBuffer.get());
+    ImGui_ImplVulkan_RenderDrawData(m_drawData, commandBuffer.get()[0]);
 
-    vkCmdEndRenderPass(commandBuffer.get());
+    vkCmdEndRenderPass(commandBuffer.get()[0]);
 
     commandBuffer.end();
   }

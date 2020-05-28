@@ -42,8 +42,15 @@ namespace RX
 
   void Image::transitionToLayout(VkImageLayout layout)
   {
+    CommandBufferInfo commandBufferInfo{ };
+    commandBufferInfo.device = m_info.device;
+    commandBufferInfo.commandPool = m_info.commandPool;
+    commandBufferInfo.queue = m_info.queue;
+
     CommandBuffer commandBuffer;
-    commandBuffer.begin(m_info.device, m_info.commandPool, m_info.queue);
+    commandBuffer.initialize(commandBufferInfo);
+
+    commandBuffer.begin();
 
     VkImageMemoryBarrier barrier{ };
     barrier.sType = VK_STRUCTURE_TYPE_IMAGE_MEMORY_BARRIER;
@@ -82,7 +89,7 @@ namespace RX
 
     vkCmdPipelineBarrier
     (
-      commandBuffer.get(),
+      commandBuffer.get()[0],
       sourceStage, destinationStage,
       0,
       0, nullptr,

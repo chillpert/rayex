@@ -10,6 +10,8 @@ namespace RX
   ShaderInfo vertexShaderInfo{ };
   ShaderInfo fragmentShaderInfo{ };
   PipelineInfo pipelineInfo{ };
+  CommandBufferInfo commandBufferInfo{ };
+  RenderPassBeginInfo renderPassBeginInfo{ };
 
   Api::Api(std::shared_ptr<Window> window) :
     m_window(window) { }
@@ -159,10 +161,14 @@ namespace RX
       model->m_descriptorSets.initialize(m_device.get(),m_swapchain.getInfo().images.size(), model->m_descriptorPool.get(), m_descriptorSetLayout.get(), model->m_uniformBuffers.get(), model->m_texture);
     }
 
-    m_commandBuffers.initialize(m_device.get(), m_graphicsCmdPool.get(), m_swapchain.getInfo().framebuffers.size());
-    m_commandBuffers.record(m_swapchain, m_swapchain.getInfo().framebuffers, m_renderPass, m_pipeline, m_models);
+    // Command buffers for swapchain
+    commandBufferInfo.device = m_device.get();
+    commandBufferInfo.commandPool = m_graphicsCmdPool.get();
+    commandBufferInfo.commandBufferCount = m_swapchain.getInfo().framebuffers.size();
+    commandBufferInfo.usageFlags = 0;
 
-    // TODO: transfer command pool inizialization and recording
+    m_swapchainCmdBuffers.initialize(commandBufferInfo);
+    record();
 
     // Set up the synchronization objects.
     m_imageAvailableSemaphores.resize(maxFramesInFlight);
@@ -228,7 +234,7 @@ namespace RX
     submitInfo.pWaitSemaphores = waitSemaphores;
     submitInfo.pWaitDstStageMask = waitStages;
     submitInfo.commandBufferCount = 1;
-    submitInfo.pCommandBuffers = &m_commandBuffers.get()[imageIndex];
+    submitInfo.pCommandBuffers = &m_swapchainCmdBuffers.get()[imageIndex];
 
     VkSemaphore signalSemaphores[] = { m_finishedRenderSemaphores[currentFrame].get() };
     submitInfo.signalSemaphoreCount = 1;
@@ -290,7 +296,7 @@ namespace RX
     m_swapchain.destroyDepthImageView();
     m_swapchain.destroyDepthImage();
     m_swapchain.destroyFramebuffers();
-    m_commandBuffers.destroy();
+    m_swapchainCmdBuffers.free();
     m_pipeline.destroy();
     m_renderPass.destroy();
     m_swapchain.destroyImageViews();
@@ -338,7 +344,45 @@ namespace RX
       model->m_descriptorSets.initialize(m_device.get(), m_swapchain.getInfo().images.size(), model->m_descriptorPool.get(), m_descriptorSetLayout.get(), model->m_uniformBuffers.get(), model->m_texture);
     }
 
-    m_commandBuffers.initialize(m_device.get(), m_graphicsCmdPool.get(), m_swapchain.getInfo().framebuffers.size());
-    m_commandBuffers.record(m_swapchain, m_swapchain.getInfo().framebuffers, m_renderPass, m_pipeline, m_models);
+    m_swapchainCmdBuffers.initialize(commandBufferInfo);
+    record();
+  }
+
+  void Api::record()
+  {
+    RX_LOG("Started recording.");
+
+    // Set up render pass begin info
+    renderPassBeginInfo.renderArea = { 0, 0, m_swapchain.getInfo().extent.width, m_swapchain.getInfo().extent.height };
+    renderPassBeginInfo.clearValues = { { 0.3f, 0.3f, 0.3f, 1.0f }, { 1.0f, 0 } };
+    renderPassBeginInfo.commandBuffers = m_swapchainCmdBuffers.get();
+
+    for (Framebuffer& framebuffer : m_swapchain.getInfo().framebuffers)
+      renderPassBeginInfo.framebuffers.push_back(framebuffer.get());
+
+    m_renderPass.setBeginInfo(renderPassBeginInfo);
+
+    // Start recording the swapchain framebuffers
+    for (size_t imageIndex = 0; imageIndex < m_swapchainCmdBuffers.get().size(); ++imageIndex)
+    {
+      m_swapchainCmdBuffers.begin(imageIndex);
+      m_renderPass.begin(imageIndex);
+
+      vkCmdBindPipeline(m_swapchainCmdBuffers.get()[imageIndex], VK_PIPELINE_BIND_POINT_GRAPHICS, m_pipeline.get());
+
+      for (std::shared_ptr<Model> model : m_models)
+      {
+        VkBuffer vertexBuffers[] = { model->m_vertexBuffer.get() };
+        VkDeviceSize offsets[] = { 0 };
+
+        vkCmdBindVertexBuffers(m_swapchainCmdBuffers.get()[imageIndex], 0, 1, vertexBuffers, offsets);
+        vkCmdBindIndexBuffer(m_swapchainCmdBuffers.get()[imageIndex], model->m_indexBuffer.get(), 0, model->m_indexBuffer.getType());
+        vkCmdBindDescriptorSets(m_swapchainCmdBuffers.get()[imageIndex], VK_PIPELINE_BIND_POINT_GRAPHICS, m_pipeline.getLayout(), 0, 1, &model->m_descriptorSets.get()[imageIndex], 0, nullptr);
+        vkCmdDrawIndexed(m_swapchainCmdBuffers.get()[imageIndex], model->m_indexBuffer.getCount(), 1, 0, 0, 0);
+      }
+
+      m_renderPass.end(imageIndex);
+      m_swapchainCmdBuffers.end(imageIndex);
+    }
   }
 }

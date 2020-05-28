@@ -2,39 +2,55 @@
 
 namespace RX
 {
-  void CommandBuffer::begin(VkDevice device, VkCommandPool commandPool, VkQueue queue)
+  void CommandBuffer::initialize(CommandBufferInfo& info)
   {
-    m_device = device;
-    m_commandPool = commandPool;
-    m_queue = queue;
+    m_info = info;
+
+    m_commandBuffers.resize(m_info.commandBufferCount);
 
     VkCommandBufferAllocateInfo allocateInfo{ };
     allocateInfo.sType = VK_STRUCTURE_TYPE_COMMAND_BUFFER_ALLOCATE_INFO;
-    allocateInfo.level = VK_COMMAND_BUFFER_LEVEL_PRIMARY;
-    allocateInfo.commandPool = commandPool;
-    allocateInfo.commandBufferCount = 1;
+    allocateInfo.commandPool = m_info.commandPool;
+    allocateInfo.level = m_info.level;
+    allocateInfo.commandBufferCount = static_cast<uint32_t>(m_info.commandBufferCount);
 
-    vkAllocateCommandBuffers(device, &allocateInfo, &m_commandBuffer);
+    VK_CREATE(vkAllocateCommandBuffers(m_info.device, &allocateInfo, m_commandBuffers.data()), "command buffer(s)");
 
-    VkCommandBufferBeginInfo beginInfo{ };
-    beginInfo.sType = VK_STRUCTURE_TYPE_COMMAND_BUFFER_BEGIN_INFO;
-    beginInfo.flags = VK_COMMAND_BUFFER_USAGE_ONE_TIME_SUBMIT_BIT;
+    // set up begin info.
+    m_info.beginInfo.flags = m_info.usageFlags;
 
-    vkBeginCommandBuffer(m_commandBuffer, &beginInfo);
+    // Set up submit info.
+    m_info.submitInfo.commandBufferCount = static_cast<uint32_t>(m_commandBuffers.size());
+    m_info.submitInfo.pCommandBuffers = m_commandBuffers.data();
   }
 
-  void CommandBuffer::end()
+  void CommandBuffer::free()
   {
-    vkEndCommandBuffer(m_commandBuffer);
+    VK_FREE(vkFreeCommandBuffers(m_info.device, m_info.commandPool, static_cast<uint32_t>(m_commandBuffers.size()), m_commandBuffers.data()), "command buffer(s)");
+  }
 
-    VkSubmitInfo submitInfo{ };
-    submitInfo.sType = VK_STRUCTURE_TYPE_SUBMIT_INFO;
-    submitInfo.commandBufferCount = 1;
-    submitInfo.pCommandBuffers = &m_commandBuffer;
+  void CommandBuffer::begin(size_t index)
+  {
+    VK_ASSERT(vkBeginCommandBuffer(m_commandBuffers[index], &m_info.beginInfo), "Failed to begin command buffer(s)");
+  }
 
-    vkQueueSubmit(m_queue, 1, &submitInfo, VK_NULL_HANDLE);
-    vkQueueWaitIdle(m_queue);
+  void CommandBuffer::end(size_t index)
+  {
+    VK_ASSERT(vkEndCommandBuffer(m_commandBuffers[index]), "Failed to end command buffer(s)");
 
-    vkFreeCommandBuffers(m_device, m_commandPool, 1, &m_commandBuffer);
+    if (m_info.usageFlags & VK_COMMAND_BUFFER_USAGE_ONE_TIME_SUBMIT_BIT)
+    {
+      RX_ASSERT(m_info.queue != VK_NULL_HANDLE, "Command buffer object is one time usage, but no queue for immediate execution was specified.");
+
+      VK_ASSERT(vkQueueSubmit(m_info.queue, 1, &m_info.submitInfo, VK_NULL_HANDLE), "failed to submit queue of one time usage command buffer");
+      VK_ASSERT(vkQueueWaitIdle(m_info.queue), "Queue for one time usage command buffer failed to wait idle");
+
+      free();
+    }
+  }
+
+  void CommandBuffer::record()
+  {
+    
   }
 }

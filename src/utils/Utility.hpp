@@ -15,18 +15,11 @@
 
   #define RX_LOG(message) if (Utils::log) std::cout << "RX: Log: " << message << std::endl
 
-  #define VK_CREATE(result, componentName) if (m_created)\
-                                           {\
-                                             RX_ERROR(componentName + " was already created.");\
-                                           }\
-                                           if (result != VK_SUCCESS)\
-                                           {\
-                                             RX_ERROR("Failed to create: " + componentName);\
-                                           }\
-                                           else\
-                                           {\
-                                             RX_LOG("Created: " << componentName);\
-                                           }\
+  #define RX_ASSERT(statement, message) if (!statement) RX_ERROR(message)
+
+  #define VK_CREATE(result, componentName) if (m_created) RX_ERROR(componentName + " was already created.");\
+                                           if (result != VK_SUCCESS) RX_ERROR("Failed to create: " + componentName);\
+                                           else RX_LOG("Created: " << componentName);\
                                            m_created = true
 
   #define VK_DESTROY(term, componentName) if (!m_created) return;\
@@ -46,6 +39,7 @@
 #else
   #define RX_DISABLE_LOG
   #define RX_ENABLE_LOG
+  #define RX_ASSERT(statement, message) statement
 
   #define RX_LOG(message)
   #define VK_CREATE(result, componentName) result

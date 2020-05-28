@@ -9,7 +9,7 @@ namespace RX
   {
     VkDevice device;
     uint32_t queueFamilyIndex;
-    VkCommandPoolCreateFlags createFlags;
+    VkCommandPoolCreateFlags createFlags = 0;
     VkCommandPoolResetFlags resetFlags = 0;
   };
 

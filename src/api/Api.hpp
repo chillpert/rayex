@@ -17,7 +17,7 @@
 #include "Texture.hpp"
 #include "Vertex.hpp"
 #include "CommandPool.hpp"
-#include "CommandBuffers.hpp"
+#include "CommandBuffer.hpp"
 #include "VertexBuffer.hpp"
 #include "IndexBuffer.hpp"
 #include "DescriptorSets.hpp"
@@ -45,6 +45,7 @@ namespace RX
   private:
     void clean();
     void recreateSwapchain();
+    void record();
 
     std::shared_ptr<Window> m_window;
 
@@ -62,7 +63,7 @@ namespace RX
     std::vector<Semaphore> m_imageAvailableSemaphores;
     std::vector<Semaphore> m_finishedRenderSemaphores;
 
-    CommandBuffers m_commandBuffers;
+    CommandBuffer m_swapchainCmdBuffers;
     std::vector<std::shared_ptr<Model>> m_models;
 
     // No destruction necessary for following members:

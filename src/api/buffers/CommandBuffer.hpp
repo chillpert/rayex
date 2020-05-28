@@ -5,21 +5,37 @@
 
 namespace RX
 {
-  // A Commandbuffer for single usage.
+  struct CommandBufferInfo
+  {
+    VkDevice device;
+    VkCommandPool commandPool;
+    VkQueue queue;
+    size_t commandBufferCount = 1; // Amount of command buffers that will be created.
+    VkCommandBufferUsageFlags usageFlags = VK_COMMAND_BUFFER_USAGE_ONE_TIME_SUBMIT_BIT;
+    VkCommandBufferLevel level = VK_COMMAND_BUFFER_LEVEL_PRIMARY;
+
+    VkCommandBufferBeginInfo beginInfo = { VK_STRUCTURE_TYPE_COMMAND_BUFFER_BEGIN_INFO, nullptr, 0, nullptr }; // Ignore
+    VkSubmitInfo submitInfo = { VK_STRUCTURE_TYPE_SUBMIT_INFO, nullptr, 0, nullptr, nullptr, 0, nullptr, 0, nullptr}; // Ignore
+  };
+
   class CommandBuffer
   {
   public:
-    inline VkCommandBuffer get() { return m_commandBuffer; }
+    inline std::vector<VkCommandBuffer>& get() { return m_commandBuffers; }
+    inline CommandBufferInfo& getInfo() { return m_info; }
 
-    void begin(VkDevice device, VkCommandPool commandPool, VkQueue queue);
-    void end();
+    void initialize(CommandBufferInfo& info);
+    void free();
+
+    void begin(size_t index = 0);
+    void end(size_t index = 0);
+    void record();
 
   private:
-    VkCommandBuffer m_commandBuffer;
+    std::vector<VkCommandBuffer> m_commandBuffers;
+    CommandBufferInfo m_info;
 
-    VkDevice m_device;
-    VkCommandPool m_commandPool;
-    VkQueue m_queue;
+    bool m_created = false;
   };
 }
 

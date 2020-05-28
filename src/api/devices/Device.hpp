@@ -1,7 +1,6 @@
 #ifndef DEVICE_HPP
 #define DEVICE_HPP
 
-#include "api/buffers/CommandBuffers.hpp"
 #include "api/Instance.hpp"
 #include "api/Queues.hpp"
 

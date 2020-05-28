@@ -71,4 +71,27 @@ namespace RX
     VK_DESTROY(vkDestroyRenderPass(m_info.device, m_renderPass, nullptr), "render pass");
     m_renderPass = VK_NULL_HANDLE;
   }
+
+  void RenderPass::setBeginInfo(RenderPassBeginInfo& beginInfo)
+  {
+    m_beginInfo = beginInfo;
+  }
+
+  void RenderPass::begin(size_t index)
+  {
+    VkRenderPassBeginInfo renderPassInfo{ };
+    renderPassInfo.sType = VK_STRUCTURE_TYPE_RENDER_PASS_BEGIN_INFO;
+    renderPassInfo.renderPass = m_renderPass;
+    renderPassInfo.framebuffer = m_beginInfo.framebuffers[index];
+    renderPassInfo.renderArea = m_beginInfo.renderArea;
+    renderPassInfo.clearValueCount = static_cast<uint32_t>(m_beginInfo.clearValues.size());
+    renderPassInfo.pClearValues = m_beginInfo.clearValues.data();
+
+    vkCmdBeginRenderPass(m_beginInfo.commandBuffers[index], &renderPassInfo, VK_SUBPASS_CONTENTS_INLINE);
+  }
+
+  void RenderPass::end(size_t index)
+  {
+    vkCmdEndRenderPass(m_beginInfo.commandBuffers[index]);
+  }
 }

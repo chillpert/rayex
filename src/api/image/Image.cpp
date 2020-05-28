@@ -89,7 +89,7 @@ namespace RX
 
     vkCmdPipelineBarrier
     (
-      commandBuffer.get()[0],
+      commandBuffer.getFront(),
       sourceStage, destinationStage,
       0,
       0, nullptr,

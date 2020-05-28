@@ -71,7 +71,7 @@ namespace RX
 
     commandBuffer.begin();
 
-    ImGui_ImplVulkan_CreateFontsTexture(commandBuffer.get()[0]);
+    ImGui_ImplVulkan_CreateFontsTexture(commandBuffer.getFront());
 
     commandBuffer.end();
   
@@ -126,11 +126,11 @@ namespace RX
     info.clearValueCount = 2;
     info.pClearValues = clearValues;
 
-    vkCmdBeginRenderPass(commandBuffer.get()[0], &info, VK_SUBPASS_CONTENTS_INLINE);
+    vkCmdBeginRenderPass(commandBuffer.getFront(), &info, VK_SUBPASS_CONTENTS_INLINE);
 
-    ImGui_ImplVulkan_RenderDrawData(m_drawData, commandBuffer.get()[0]);
+    ImGui_ImplVulkan_RenderDrawData(m_drawData, commandBuffer.getFront());
 
-    vkCmdEndRenderPass(commandBuffer.get()[0]);
+    vkCmdEndRenderPass(commandBuffer.getFront());
 
     commandBuffer.end();
   }

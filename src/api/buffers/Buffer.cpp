@@ -114,7 +114,7 @@ namespace RX
     region.imageOffset = { 0, 0, 0 };
     region.imageExtent = image.getInfo().extent;
 
-    vkCmdCopyBufferToImage(commandBuffer.get()[0], m_buffer, image.get(), VK_IMAGE_LAYOUT_TRANSFER_DST_OPTIMAL, 1, &region);
+    vkCmdCopyBufferToImage(commandBuffer.getFront(), m_buffer, image.get(), VK_IMAGE_LAYOUT_TRANSFER_DST_OPTIMAL, 1, &region);
 
     commandBuffer.end();
   }

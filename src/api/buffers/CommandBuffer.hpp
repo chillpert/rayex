@@ -22,6 +22,7 @@ namespace RX
   {
   public:
     inline std::vector<VkCommandBuffer>& get() { return m_commandBuffers; }
+    inline VkCommandBuffer getFront() { return m_commandBuffers[0]; }
     inline CommandBufferInfo& getInfo() { return m_info; }
 
     void initialize(CommandBufferInfo& info);

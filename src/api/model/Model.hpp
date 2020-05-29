@@ -4,7 +4,7 @@
 #include "Vertex.hpp"
 #include "VertexBuffer.hpp"
 #include "IndexBuffer.hpp"
-#include "UniformBuffers.hpp"
+#include "UniformBuffer.hpp"
 #include "DescriptorSets.hpp"
 #include "DescriptorPool.hpp"
 #include "DescriptorSetLayout.hpp"
@@ -36,8 +36,8 @@ namespace RX
     // Destruction through RAII
     Texture m_texture;
     VertexBuffer m_vertexBuffer;
-    IndexBuffer m_indexBuffer;
-    UniformBuffers m_uniformBuffers;
+    IndexBuffer<> m_indexBuffer;
+    UniformBuffer m_uniformBuffers;
     DescriptorPool m_descriptorPool;
 
     glm::mat4 m_model = glm::mat4(1.0f);

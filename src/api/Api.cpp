@@ -12,7 +12,8 @@ namespace RX
   PipelineInfo pipelineInfo{ };
   CommandBufferInfo commandBufferInfo{ };
   RenderPassBeginInfo renderPassBeginInfo{ };
-
+  UniformBufferInfo uniformBufferInfo{ };
+  
   Api::Api(std::shared_ptr<Window> window) :
     m_window(window) { }
 
@@ -148,14 +149,43 @@ namespace RX
     // Swapchain framebuffers
     m_swapchain.initFramebuffers();
 
+    TextureInfo textureInfo{ };
+    textureInfo.physicalDevice = m_physicalDevice.get();
+    textureInfo.device = m_device.get();
+    textureInfo.queue = m_queues.getGraphicsQueue();
+    textureInfo.commandPool = m_graphicsCmdPool.get();
+
+    VertexBufferInfo vertexBufferInfo{ };
+    vertexBufferInfo.physicalDevice = m_physicalDevice.get();
+    vertexBufferInfo.device = m_device.get();
+    vertexBufferInfo.commandPool = m_graphicsCmdPool.get();
+    vertexBufferInfo.queue = m_queues.getGraphicsQueue();
+
+    IndexBufferInfo indexBufferInfo{ };
+    indexBufferInfo.physicalDevice = m_physicalDevice.get();
+    indexBufferInfo.device = m_device.get();
+    indexBufferInfo.commandPool = m_graphicsCmdPool.get();
+    indexBufferInfo.queue = m_queues.getGraphicsQueue();
+
+    uniformBufferInfo.physicalDevice = m_physicalDevice.get();
+    uniformBufferInfo.device = m_device.get();
+    uniformBufferInfo.swapchainImagesCount = m_swapchain.getInfo().images.size();
+
     for (std::shared_ptr<Model> model : m_models)
     {
       model->initialize();
 
-      model->m_texture.initialize(m_physicalDevice.get(), m_device.get(), m_queues.getGraphicsQueue(), m_graphicsCmdPool.get(), model->m_pathToTexture);
-      model->m_vertexBuffer.initialize(m_device.get(), m_physicalDevice.get(), m_graphicsCmdPool.get(), m_queues.getGraphicsQueue(), model->m_vertices);
-      model->m_indexBuffer.initialize<uint32_t>(m_device.get(), m_physicalDevice.get(), m_graphicsCmdPool.get(), m_queues.getGraphicsQueue(), model->m_indices);
-      model->m_uniformBuffers.initialize(m_device.get(), m_physicalDevice.get(), m_swapchain.getInfo().extent, m_swapchain.getInfo().images.size(), model->getUbo());
+      textureInfo.path = model->m_pathToTexture;
+      model->m_texture.initialize(textureInfo);
+
+      vertexBufferInfo.vertices = model->m_vertices;
+      model->m_vertexBuffer.initialize(vertexBufferInfo);
+
+      indexBufferInfo.indices = model->m_indices;
+      model->m_indexBuffer.initialize(indexBufferInfo);
+
+      uniformBufferInfo.uniformBufferObject = model->getUbo();
+      model->m_uniformBuffers.initialize(uniformBufferInfo);
 
       model->m_descriptorPool.initialize(m_device.get(),m_swapchain.getInfo().images.size());
       model->m_descriptorSets.initialize(m_device.get(),m_swapchain.getInfo().images.size(), model->m_descriptorPool.get(), m_descriptorSetLayout.get(), model->m_uniformBuffers.get(), model->m_texture);
@@ -176,11 +206,17 @@ namespace RX
     m_inFlightFences.resize(maxFramesInFlight);
     m_imagesInFlight.resize(m_swapchain.getInfo().images.size(), VK_NULL_HANDLE);
 
+    SemaphoreInfo semaphoreInfo{ };
+    semaphoreInfo.device = m_device.get();
+
+    FenceInfo fenceInfo{ };
+    fenceInfo.device = m_device.get();
+
     for (size_t i = 0; i < maxFramesInFlight; ++i)
     {
-      m_imageAvailableSemaphores[i].initialize(m_device.get());
-      m_finishedRenderSemaphores[i].initialize(m_device.get());
-      m_inFlightFences[i].initialize(m_device.get());
+      m_imageAvailableSemaphores[i].initialize(semaphoreInfo);
+      m_finishedRenderSemaphores[i].initialize(semaphoreInfo);
+      m_inFlightFences[i].initialize(fenceInfo);
     }
 
     RX_LOG("Finished API initialization.");
@@ -288,7 +324,7 @@ namespace RX
 
   void Api::recreateSwapchain()
   {
-    RX_LOG("Recreating swapchain");
+    RX_LOG("Recreating swapchain.");
 
     m_device.waitIdle();
 
@@ -339,13 +375,17 @@ namespace RX
 
     for (auto model : m_models)
     {
-      model->m_uniformBuffers.initialize(m_device.get(), m_physicalDevice.get(), m_swapchain.getInfo().extent, m_swapchain.getInfo().images.size(), model->getUbo());
+      uniformBufferInfo.uniformBufferObject = model->getUbo();
+      model->m_uniformBuffers.initialize(uniformBufferInfo);
+
       model->m_descriptorPool.initialize(m_device.get(), m_swapchain.getInfo().images.size());
       model->m_descriptorSets.initialize(m_device.get(), m_swapchain.getInfo().images.size(), model->m_descriptorPool.get(), m_descriptorSetLayout.get(), model->m_uniformBuffers.get(), model->m_texture);
     }
 
     m_swapchainCmdBuffers.initialize(commandBufferInfo);
     record();
+
+    RX_LOG("Finished swapchain recreation.");
   }
 
   void Api::record()

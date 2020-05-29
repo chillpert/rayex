@@ -2,6 +2,12 @@
 
 namespace RX
 {
+  CommandBuffer::~CommandBuffer()
+  {
+    if (m_info.freeAutomatically)
+      free();
+  }
+
   void CommandBuffer::initialize(CommandBufferInfo& info)
   {
     m_info = info;

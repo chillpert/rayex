@@ -19,7 +19,8 @@ namespace RX
     VkQueue queue;
     uint32_t queueFamilyIndexCount; // Optional, if sharing mode is concurrent.
     const uint32_t* pQueueFamilyIndices; // Optional, if sharing mode is concurrent.
-    VkIndexType type; // Optional, if the buffer is not an index buffer.
+
+    VkIndexType type; // Ignore, will be filled automatically.
   };
 
   class Buffer
@@ -28,16 +29,18 @@ namespace RX
     RX_API ~Buffer();
 
     inline VkBuffer get() const { return m_buffer; }
-    inline VkDeviceMemory getMemory() const { return m_memory; }
+    inline VkDeviceMemory getMemory() { return m_memory; }
     inline VkDeviceSize getSize() const { return m_info.deviceSize; }
+    inline BufferCreateInfo& getInfo() { return m_info; }
 
-    void create(BufferCreateInfo& createInfo);
+    void initialize(BufferCreateInfo& createInfo);
 
     template <class T>
     void fill(T* source);
 
     // Is associated with the copyToBuffer function.
-    Buffer& operator=(const Buffer& buffer);
+    Buffer& operator()(const Buffer& buffer);
+    Buffer& operator=(const Buffer& buffer) = delete;
     void copyToBuffer(const Buffer& buffer) const;
 
     void copyToImage(Image& image) const;

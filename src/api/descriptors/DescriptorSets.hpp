@@ -3,7 +3,7 @@
 
 #include "DescriptorSetLayout.hpp"
 #include "Buffer.hpp"
-#include "UniformBuffers.hpp"
+#include "UniformBuffer.hpp"
 #include "Texture.hpp"
 
 namespace RX

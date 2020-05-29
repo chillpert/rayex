@@ -13,6 +13,7 @@ namespace RX
     size_t commandBufferCount = 1; // Amount of command buffers that will be created.
     VkCommandBufferUsageFlags usageFlags = VK_COMMAND_BUFFER_USAGE_ONE_TIME_SUBMIT_BIT;
     VkCommandBufferLevel level = VK_COMMAND_BUFFER_LEVEL_PRIMARY;
+    bool freeAutomatically = false;
 
     VkCommandBufferBeginInfo beginInfo = { VK_STRUCTURE_TYPE_COMMAND_BUFFER_BEGIN_INFO, nullptr, 0, nullptr }; // Ignore
     VkSubmitInfo submitInfo = { VK_STRUCTURE_TYPE_SUBMIT_INFO, nullptr, 0, nullptr, nullptr, 0, nullptr, 0, nullptr}; // Ignore
@@ -21,6 +22,8 @@ namespace RX
   class CommandBuffer
   {
   public:
+    ~CommandBuffer();
+
     inline std::vector<VkCommandBuffer>& get() { return m_commandBuffers; }
     inline VkCommandBuffer getFront() { return m_commandBuffers[0]; }
     inline CommandBufferInfo& getInfo() { return m_info; }

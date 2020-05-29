@@ -5,19 +5,25 @@
 
 namespace RX
 {
+  struct FenceInfo
+  {
+    VkDevice device;
+  };
+
   class Fence
   {
   public:
     ~Fence();
 
     inline VkFence& get() { return m_fence; }
+    inline FenceInfo& getInfo() { return m_info; }
 
-    void initialize(VkDevice device);
+    void initialize(FenceInfo& info);
     void destroy();
 
   private:
     VkFence m_fence = VK_NULL_HANDLE;
-    VkDevice m_device;
+    FenceInfo m_info;
 
     bool m_created = false;
   };

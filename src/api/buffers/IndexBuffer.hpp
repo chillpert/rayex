@@ -5,34 +5,48 @@
 
 namespace RX
 {
+  template <typename T = uint32_t>
+  struct IndexBufferInfo
+  {
+    std::vector<T> indices;
+    VkDevice device;
+    VkPhysicalDevice physicalDevice;
+    VkCommandPool commandPool;
+    VkQueue queue;
+  };
+
+  template <typename T = uint32_t>
   class IndexBuffer
   {
   public:
     inline VkBuffer get() const { return m_buffer.get(); }
     inline uint32_t getCount() const { return m_buffer.m_info.count; }
     inline VkIndexType getType() const { return m_buffer.m_info.type; }
+    inline IndexBufferInfo<T> getInfo() { return m_info; }
 
-    template <typename T>
-    void initialize(VkDevice device, VkPhysicalDevice physicalDevice, VkCommandPool commandPool, VkQueue queue, std::vector<T>& indices);
+    void initialize(IndexBufferInfo<T>& info);
   
   private:
     Buffer m_buffer;
+    IndexBufferInfo<T> m_info;
   };
 
   template <typename T>
-  void IndexBuffer::initialize(VkDevice device, VkPhysicalDevice physicalDevice, VkCommandPool commandPool, VkQueue queue, std::vector<T>& indices)
+  void IndexBuffer<T>::initialize(IndexBufferInfo<T>& info)
   {
+    m_info = info;
+
     // Set up the staging buffer.
     BufferCreateInfo stagingInfo{ };
-    stagingInfo.physicalDevice = physicalDevice;
-    stagingInfo.device = device;
-    stagingInfo.deviceSize = sizeof(indices[0]) * indices.size();
-    stagingInfo.count = static_cast<uint32_t>(indices.size());
+    stagingInfo.physicalDevice = m_info.physicalDevice;
+    stagingInfo.device = m_info.device;
+    stagingInfo.deviceSize = sizeof(m_info.indices[0]) * m_info.indices.size();
+    stagingInfo.count = static_cast<uint32_t>(m_info.indices.size());
     stagingInfo.usage = VK_BUFFER_USAGE_TRANSFER_SRC_BIT;
     stagingInfo.sharingMode = VK_SHARING_MODE_EXCLUSIVE;
     stagingInfo.properties = VK_MEMORY_PROPERTY_HOST_VISIBLE_BIT | VK_MEMORY_PROPERTY_HOST_COHERENT_BIT;
-    stagingInfo.commandPool = commandPool;
-    stagingInfo.queue = queue;
+    stagingInfo.commandPool = m_info.commandPool;
+    stagingInfo.queue = m_info.queue;
 
     // Set up the actual index buffer.
     BufferCreateInfo bufferInfo = stagingInfo;
@@ -52,13 +66,13 @@ namespace RX
       RX_ERROR("Invalid data type for index buffer was specified.");
 
     Buffer stagingBuffer;
-    stagingBuffer.create(stagingInfo);
-    stagingBuffer.fill<T>(indices.data());
+    stagingBuffer.initialize(stagingInfo);
+    stagingBuffer.fill<T>(m_info.indices.data());
 
-    m_buffer.create(bufferInfo);
+    m_buffer.initialize(bufferInfo);
 
     // Copy staging buffer to the actual index buffer.
-    m_buffer = stagingBuffer;
+    m_buffer(stagingBuffer);
   }
 }
 

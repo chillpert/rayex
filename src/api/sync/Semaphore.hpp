@@ -5,19 +5,25 @@
 
 namespace RX
 {
+  struct SemaphoreInfo
+  {
+    VkDevice device;
+  };
+
   class Semaphore
   {
   public:
     ~Semaphore();
 
     inline VkSemaphore& get() { return m_semaphore; }
+    inline SemaphoreInfo& getInfo() { return m_info; }
 
-    void initialize(VkDevice device);
+    void initialize(SemaphoreInfo& info);
     void destroy();
 
   private:
     VkSemaphore m_semaphore;
-    VkDevice m_device;
+    SemaphoreInfo m_info;
 
     bool m_created = false;
   };

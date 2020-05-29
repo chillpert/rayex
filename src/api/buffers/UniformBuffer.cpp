@@ -1,37 +1,40 @@
-#include "UniformBuffers.hpp"
+#include "UniformBuffer.hpp"
 #include "window/Time.hpp"
 
 #include <glm/gtx/string_cast.hpp>
 
 namespace RX
 {
-  void UniformBuffers::initialize(VkDevice device, VkPhysicalDevice physicalDevice, VkExtent2D extent, size_t swapchainImagesCount, UniformBufferObject& uniformBufferObject)
+  UniformBuffer::~UniformBuffer()
   {
-    m_device = device;
-    m_width = static_cast<float>(extent.width);
-    m_height = static_cast<float>(extent.height);
+    destroy();
+  }
+
+  void UniformBuffer::initialize(UniformBufferInfo& info)
+  {
+    m_info = info;
 
     // Set up the staging buffer.
     BufferCreateInfo createInfo{ };
-    createInfo.device = device;
-    createInfo.physicalDevice = physicalDevice;
+    createInfo.device = m_info.device;
+    createInfo.physicalDevice = m_info.physicalDevice;
     createInfo.deviceSize = sizeof(UniformBufferObject);
     createInfo.usage = VK_BUFFER_USAGE_UNIFORM_BUFFER_BIT;
     createInfo.sharingMode = VK_SHARING_MODE_EXCLUSIVE;
     createInfo.properties = VK_MEMORY_PROPERTY_HOST_VISIBLE_BIT | VK_MEMORY_PROPERTY_HOST_COHERENT_BIT;
 
-    m_buffers.resize(swapchainImagesCount);
+    m_buffers.resize(m_info.swapchainImagesCount);
 
     for (auto& it : m_buffers)
-      it.create(createInfo);
+      it.initialize(createInfo);
   }
 
-  void UniformBuffers::upload(uint32_t imageIndex, UniformBufferObject& ubo)
+  void UniformBuffer::upload(uint32_t imageIndex, UniformBufferObject& ubo)
   {
     m_buffers[imageIndex].fill<UniformBufferObject>(&ubo);
   }
 
-  void UniformBuffers::destroy()
+  void UniformBuffer::destroy()
   {
     for (auto& it : m_buffers)
       it.destroy();

@@ -23,7 +23,7 @@
 #include "DescriptorSets.hpp"
 #include "DescriptorPool.hpp"
 #include "DescriptorSetLayout.hpp"
-#include "UniformBuffers.hpp"
+#include "UniformBuffer.hpp"
 #include "Gui.hpp"
 
 namespace RX

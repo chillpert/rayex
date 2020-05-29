@@ -8,7 +8,7 @@ namespace RX
     destroy();
   }
 
-  void Buffer::create(BufferCreateInfo& createInfo)
+  void Buffer::initialize(BufferCreateInfo& createInfo)
   {
     m_info = createInfo;
 
@@ -51,7 +51,7 @@ namespace RX
     m_memory = VK_NULL_HANDLE;
   }
 
-  Buffer& Buffer::operator=(const Buffer& buffer)
+  Buffer& Buffer::operator()(const Buffer& buffer)
   {
     buffer.copyToBuffer(*this);
     return *this;
@@ -59,36 +59,22 @@ namespace RX
 
   void Buffer::copyToBuffer(const Buffer& buffer) const
   {
-    VkCommandBufferAllocateInfo allocInfo{};
-    allocInfo.sType = VK_STRUCTURE_TYPE_COMMAND_BUFFER_ALLOCATE_INFO;
-    allocInfo.level = VK_COMMAND_BUFFER_LEVEL_PRIMARY;
-    allocInfo.commandPool = m_info.commandPool;
-    allocInfo.commandBufferCount = 1;
+    CommandBufferInfo commandBufferInfo{ };
+    commandBufferInfo.device = m_info.device;
+    commandBufferInfo.commandPool = m_info.commandPool;
+    commandBufferInfo.queue = m_info.queue;
+    commandBufferInfo.freeAutomatically = true;
 
-    VkCommandBuffer commandBuffer;
-    vkAllocateCommandBuffers(m_info.device, &allocInfo, &commandBuffer);
+    CommandBuffer commandBuffer;
+    commandBuffer.initialize(commandBufferInfo);
 
-    VkCommandBufferBeginInfo beginInfo{};
-    beginInfo.sType = VK_STRUCTURE_TYPE_COMMAND_BUFFER_BEGIN_INFO;
-    beginInfo.flags = VK_COMMAND_BUFFER_USAGE_ONE_TIME_SUBMIT_BIT;
-
-    vkBeginCommandBuffer(commandBuffer, &beginInfo);
+    commandBuffer.begin();
 
     VkBufferCopy copyRegion{};
     copyRegion.size = m_info.deviceSize;
-    vkCmdCopyBuffer(commandBuffer, m_buffer, buffer.get(), 1, &copyRegion);
+    vkCmdCopyBuffer(commandBuffer.getFront(), m_buffer, buffer.get(), 1, &copyRegion);
 
-    vkEndCommandBuffer(commandBuffer);
-
-    VkSubmitInfo submitInfo{};
-    submitInfo.sType = VK_STRUCTURE_TYPE_SUBMIT_INFO;
-    submitInfo.commandBufferCount = 1;
-    submitInfo.pCommandBuffers = &commandBuffer;
-
-    vkQueueSubmit(m_info.queue, 1, &submitInfo, VK_NULL_HANDLE);
-    vkQueueWaitIdle(m_info.queue);
-
-    vkFreeCommandBuffers(m_info.device, m_info.commandPool, 1, &commandBuffer);
+    commandBuffer.end();
   }
 
   void Buffer::copyToImage(Image& image) const

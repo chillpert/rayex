@@ -164,10 +164,9 @@ int main(int argc, char* argv[])
   rock->m_pathToTexture = RX_TEXTURE_PATH "metal.png";
   rock->m_pathToModel = RX_MODEL_PATH "rock.obj";
 
-  rock->m_model = glm::scale(rock->m_model, glm::vec3(0.2f, 0.2f, 0.2f));
-  rock->m_model = glm::translate(rock->m_model, glm::vec3(4.0f, 5.0f, 0.0f));
-  
-
+  rock->m_model = glm::translate(rock->m_model, glm::vec3(2.0f, 1.0f, 0.0f));
+  rock->m_model = glm::scale(rock->m_model, glm::vec3(0.05f, 0.05f, 0.05f));
+ 
   // Add the model to the renderer. This way it will be queued for rendering.
   renderer.pushModel(mars);
   renderer.pushModel(rock);
@@ -186,6 +185,7 @@ int main(int argc, char* argv[])
     mars->m_view = cam.getViewMatrix();
     mars->m_projection = cam.getProjectionMatrix();
 
+    rock->m_model = glm::translate(rock->m_model, glm::vec3(-10.0f * Time::getDeltaTime(), 0.0f, 0.0f));
     rock->m_view = cam.getViewMatrix();
     rock->m_projection = cam.getProjectionMatrix();
     

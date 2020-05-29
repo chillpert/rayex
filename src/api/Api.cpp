@@ -513,7 +513,7 @@ namespace RX
     // Set up render pass begin info
     RenderPassBeginInfo renderPassBeginInfo{ };
     renderPassBeginInfo.renderArea = { 0, 0, m_swapchain.getInfo().extent.width, m_swapchain.getInfo().extent.height };
-    renderPassBeginInfo.clearValues = { { 0.3f, 0.3f, 0.3f, 1.0f }, { 1.0f, 0 } };
+    renderPassBeginInfo.clearValues = { { 0.05f, 0.05f, 0.05f, 1.0f }, { 1.0f, 0 } };
     renderPassBeginInfo.commandBuffers = m_swapchainCmdBuffers.get();
 
     for (Framebuffer& framebuffer : m_swapchainFramebuffers)

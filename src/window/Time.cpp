@@ -29,6 +29,7 @@ namespace RX
 
     if (current_time - prevTime >= 1.0f)
     {
+      std::cout << "FPS: " << frames << std::endl;
       m_frames = frames;
       frames = 0;
       prevTime = current_time;

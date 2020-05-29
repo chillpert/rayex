@@ -45,7 +45,7 @@ namespace RX
   void Buffer::destroy()
   {
     VK_DESTROY(vkDestroyBuffer(m_info.device, m_buffer, nullptr), "buffer");
-    vkFreeMemory(m_info.device, m_memory, nullptr);
+    VK_FREE(vkFreeMemory(m_info.device, m_memory, nullptr), "buffer");
 
     m_buffer = VK_NULL_HANDLE;
     m_memory = VK_NULL_HANDLE;

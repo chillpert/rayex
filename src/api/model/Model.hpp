@@ -16,7 +16,6 @@ namespace RX
   class Model
   {
   public:
-    RX_API Model() = default;
     RX_API virtual ~Model();
 
     // Fill the vectors with vertex and index data.
@@ -34,7 +33,6 @@ namespace RX
     VertexBuffer m_vertexBuffer;
     IndexBuffer<> m_indexBuffer;
     Texture m_texture;
-    DescriptorPool m_descriptorPool;
     UniformBuffer m_uniformBuffers;
 
     glm::mat4 m_model = glm::mat4(1.0f);

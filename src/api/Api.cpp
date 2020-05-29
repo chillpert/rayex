@@ -181,11 +181,11 @@ namespace RX
       model->m_uniformBuffers.destroy();
 
       //model->m_descriptorSets.destroy();
-      model->m_descriptorPool.destroy();
+      
     }
 
     // TODO: here goes the global descriptor pool
-
+    m_descriptorPool.destroy();
     // Recreating the swapchain.
 
     // Swapchain
@@ -440,7 +440,9 @@ namespace RX
     descriptorPoolInfo.device = m_device.get();
     descriptorPoolInfo.swapchainImagesCount = m_swapchain.getInfo().images.size();
     descriptorPoolInfo.types = { VK_DESCRIPTOR_TYPE_UNIFORM_BUFFER, VK_DESCRIPTOR_TYPE_COMBINED_IMAGE_SAMPLER };
-    descriptorPoolInfo.maxSets = descriptorPoolInfo.swapchainImagesCount; // TODO: Set this to the number of models in your scene.
+    descriptorPoolInfo.maxSets = m_models.size() * descriptorPoolInfo.swapchainImagesCount; // TODO: Set this to the number of models in your scene.
+
+    m_descriptorPool.initialize(descriptorPoolInfo);
 
     DescriptorSetInfo descriptorSetInfo{ };
     descriptorSetInfo.device = m_device.get();
@@ -465,9 +467,7 @@ namespace RX
         uniformBufferInfo.uniformBufferObject = model->getUbo();
         model->m_uniformBuffers.initialize(uniformBufferInfo);
 
-        model->m_descriptorPool.initialize(descriptorPoolInfo);
-
-        descriptorSetInfo.descriptorPool = model->m_descriptorPool.get();
+        descriptorSetInfo.descriptorPool = m_descriptorPool.get();
         descriptorSetInfo.textureSampler = model->m_texture.getSampler();
         descriptorSetInfo.textureImageView = model->m_texture.getImageView();
         descriptorSetInfo.uniformBuffers = model->m_uniformBuffers.getRaw();
@@ -482,10 +482,7 @@ namespace RX
         uniformBufferInfo.uniformBufferObject = model->getUbo();
         model->m_uniformBuffers.initialize(uniformBufferInfo);
 
-        descriptorPoolInfo.swapchainImagesCount = m_swapchain.getInfo().images.size();
-        model->m_descriptorPool.initialize(descriptorPoolInfo);
-
-        descriptorSetInfo.descriptorPool = model->m_descriptorPool.get();
+        descriptorSetInfo.descriptorPool = m_descriptorPool.get();
         descriptorSetInfo.textureSampler = model->m_texture.getSampler();
         descriptorSetInfo.textureImageView = model->m_texture.getImageView();
         descriptorSetInfo.uniformBuffers = model->m_uniformBuffers.getRaw();

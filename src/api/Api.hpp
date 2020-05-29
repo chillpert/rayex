@@ -79,6 +79,7 @@ namespace RX
 
     DescriptorSetLayout m_descriptorSetLayout;
     std::vector<std::shared_ptr<Model>> m_models;
+    DescriptorPool m_descriptorPool;
     Swapchain m_swapchain;
     std::vector<ImageView> m_swapchainImageViews;
     RenderPass m_renderPass;

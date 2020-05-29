@@ -20,8 +20,14 @@ namespace RX
 
     inline uint32_t getGraphicsFamilyIndex() const { return m_graphicsIndex.value(); }
     inline uint32_t getPresentFamilyIndex() const { return m_presentIndex.value(); }
+
     inline VkQueue getGraphicsQueue() { return m_graphicsQueue; }
     inline VkQueue getPresentQueue() { return m_presentQueue; }
+
+    inline std::vector<VkQueue> getGraphicsQueues() { return m_graphicsQueues; }
+    inline std::vector<VkQueue> getPresentQueues() { return m_presentQueues; }
+    inline std::vector<VkQueue> getTransferQueues() { return m_transferQueues; }
+
     inline QueuesInfo& getInfo() { return m_info; }
 
     void retrieveAllHandles(VkDevice device);
@@ -43,6 +49,10 @@ namespace RX
 
     VkQueue m_graphicsQueue;
     VkQueue m_presentQueue;
+
+    std::vector<VkQueue> m_graphicsQueues;
+    std::vector<VkQueue> m_presentQueues;
+    std::vector<VkQueue> m_transferQueues;
 
     QueuesInfo m_info;
   };

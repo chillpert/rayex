@@ -53,16 +53,21 @@ namespace RX
     std::optional<uint32_t> graphicsIndex_t;
     std::optional<uint32_t> presentIndex_t;
 
-    uint32_t propertiesCount = 0;
-    vkGetPhysicalDeviceQueueFamilyProperties(physicalDevice, &propertiesCount, nullptr);
+    uint32_t queueFamilyIndicesCount = 0;
+    vkGetPhysicalDeviceQueueFamilyProperties(physicalDevice, &queueFamilyIndicesCount, nullptr);
+    RX_ASSERT(queueFamilyIndicesCount > 0, "Failed to retrieve any queue family index");
 
-    std::vector<VkQueueFamilyProperties> properties(propertiesCount);
-    vkGetPhysicalDeviceQueueFamilyProperties(physicalDevice, &propertiesCount, properties.data());
-
-    uint32_t index = 0;
-    for (const auto& property : properties)
+    std::vector<VkQueueFamilyProperties> queueFamilyIndices(queueFamilyIndicesCount);
+    vkGetPhysicalDeviceQueueFamilyProperties(physicalDevice, &queueFamilyIndicesCount, queueFamilyIndices.data());
+    RX_ASSERT(queueFamilyIndices.size() > 0, "Failed to retrieve queue family properties");
+    
+    for (uint32_t index = 0; index < queueFamilyIndicesCount; ++index)
     {
-      if (property.queueFlags & VK_QUEUE_GRAPHICS_BIT)
+      // Make sure the current queue family index contains at least one queue.
+      if (queueFamilyIndices[index].queueCount == 0)
+        continue;
+
+      if (queueFamilyIndices[index].queueFlags & VK_QUEUE_GRAPHICS_BIT)
         graphicsIndex_t = index;
 
       // Check if the current queue index is able to present.

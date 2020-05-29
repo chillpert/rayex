@@ -72,6 +72,7 @@ namespace RX
 
     VkBufferCopy copyRegion{};
     copyRegion.size = m_info.deviceSize;
+
     vkCmdCopyBuffer(commandBuffer.getFront(), m_buffer, buffer.get(), 1, &copyRegion);
 
     commandBuffer.end();

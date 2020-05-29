@@ -18,7 +18,7 @@ namespace RX
   class VertexBuffer
   {
   public:
-    inline VkBuffer get() const { return m_buffer.get(); }
+    inline VkBuffer get()& { return m_buffer.get(); }
     inline VkDeviceSize getSize() const { return m_buffer.getSize(); }
     inline VertexBufferInfo& getInfo() { return m_info; }
 

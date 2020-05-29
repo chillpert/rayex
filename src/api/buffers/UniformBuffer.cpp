@@ -10,6 +10,15 @@ namespace RX
     destroy();
   }
 
+  std::vector<VkBuffer> UniformBuffer::getRaw()
+  {
+    std::vector<VkBuffer> res;
+    for (Buffer& buffer : m_buffers)
+      res.push_back(buffer.get());
+    
+    return res;
+  }
+
   void UniformBuffer::initialize(UniformBufferInfo& info)
   {
     m_info = info;

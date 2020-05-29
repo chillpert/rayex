@@ -26,6 +26,7 @@ namespace RX
     RX_API ~UniformBuffer();
 
     inline std::vector<Buffer>& get() { return m_buffers; }
+    std::vector<VkBuffer> getRaw();
     inline UniformBufferInfo& getInfo() { return m_info; }
 
     void initialize(UniformBufferInfo& info);

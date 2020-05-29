@@ -203,9 +203,7 @@ namespace RX
       descriptorSetInfo.descriptorPool = model->m_descriptorPool.get();
       descriptorSetInfo.textureSampler = model->m_texture.getSampler();
       descriptorSetInfo.textureImageView = model->m_texture.getImageView();
-
-      for (Buffer& buffer : model->m_uniformBuffers.get())
-        descriptorSetInfo.uniformBuffers.push_back(buffer.get());
+      descriptorSetInfo.uniformBuffers = model->m_uniformBuffers.getRaw();
 
       model->m_descriptorSets.initialize(descriptorSetInfo);
     }

@@ -51,7 +51,7 @@ namespace RX
     m_memory = VK_NULL_HANDLE;
   }
 
-  Buffer& Buffer::operator()(const Buffer& buffer)
+  Buffer& Buffer::operator=(const Buffer& buffer)
   {
     buffer.copyToBuffer(*this);
     return *this;

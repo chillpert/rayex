@@ -72,7 +72,7 @@ namespace RX
     m_buffer.initialize(bufferInfo);
 
     // Copy staging buffer to the actual index buffer.
-    m_buffer(stagingBuffer);
+    m_buffer = stagingBuffer;
   }
 }
 

@@ -5,7 +5,7 @@
 #include "VertexBuffer.hpp"
 #include "IndexBuffer.hpp"
 #include "UniformBuffer.hpp"
-#include "DescriptorSets.hpp"
+#include "DescriptorSet.hpp"
 #include "DescriptorPool.hpp"
 #include "DescriptorSetLayout.hpp"
 #include "Shader.hpp"
@@ -45,7 +45,7 @@ namespace RX
     glm::mat4 m_projection = glm::mat4(1.0f);
 
     // No destruction necessary
-    DescriptorSets m_descriptorSets;
+    DescriptorSet m_descriptorSets;
   };
 }
 

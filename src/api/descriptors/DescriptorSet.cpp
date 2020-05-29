@@ -1,32 +1,34 @@
-#include "DescriptorSets.hpp"
+#include "DescriptorSet.hpp"
 
 namespace RX
 {
-  void DescriptorSets::initialize(VkDevice device, size_t swapchainImagesCount, VkDescriptorPool descriptorPool, VkDescriptorSetLayout descriptorSetLayout, std::vector<Buffer>& uniformBuffers, Texture& texture)
+  void DescriptorSet::initialize(DescriptorSetInfo& info)
   {
-    std::vector<VkDescriptorSetLayout> layouts(swapchainImagesCount, descriptorSetLayout);
+    m_info = info;
+
+    std::vector<VkDescriptorSetLayout> layouts(m_info.swapchainImagesCount, m_info.descriptorSetLayout);
 
     VkDescriptorSetAllocateInfo allocInfo{ };
     allocInfo.sType = VK_STRUCTURE_TYPE_DESCRIPTOR_SET_ALLOCATE_INFO;
-    allocInfo.descriptorPool = descriptorPool;
-    allocInfo.descriptorSetCount = static_cast<uint32_t>(swapchainImagesCount);
+    allocInfo.descriptorPool = m_info.descriptorPool;
+    allocInfo.descriptorSetCount = static_cast<uint32_t>(m_info.swapchainImagesCount);
     allocInfo.pSetLayouts = layouts.data();
 
-    m_sets.resize(swapchainImagesCount);
+    m_sets.resize(m_info.swapchainImagesCount);
 
-    VK_ASSERT(vkAllocateDescriptorSets(device, &allocInfo, m_sets.data()), "Failed to allocate descriptor sets.");
+    VK_ASSERT(vkAllocateDescriptorSets(m_info.device, &allocInfo, m_sets.data()), "Failed to allocate descriptor sets.");
 
-    for (size_t i = 0; i < swapchainImagesCount; ++i)
+    for (size_t i = 0; i < m_info.swapchainImagesCount; ++i)
     {
       VkDescriptorBufferInfo bufferInfo{ };
-      bufferInfo.buffer = uniformBuffers[i].get();
+      bufferInfo.buffer = m_info.uniformBuffers[i];
       bufferInfo.offset = 0;
       bufferInfo.range = sizeof(UniformBufferObject);
 
       VkDescriptorImageInfo imageInfo{ };
       imageInfo.imageLayout = VK_IMAGE_LAYOUT_SHADER_READ_ONLY_OPTIMAL;
-      imageInfo.imageView = texture.getImageView();
-      imageInfo.sampler = texture.getSampler();
+      imageInfo.imageView = m_info.textureImageView;
+      imageInfo.sampler = m_info.textureSampler;
 
       std::array<VkWriteDescriptorSet, 2> descriptorWrites{};
 
@@ -46,7 +48,7 @@ namespace RX
       descriptorWrites[1].descriptorCount = 1;
       descriptorWrites[1].pImageInfo = &imageInfo;
 
-      vkUpdateDescriptorSets(device, static_cast<uint32_t>(descriptorWrites.size()), descriptorWrites.data(), 0, nullptr);
+      vkUpdateDescriptorSets(m_info.device, static_cast<uint32_t>(descriptorWrites.size()), descriptorWrites.data(), 0, nullptr);
     }
   }
 }

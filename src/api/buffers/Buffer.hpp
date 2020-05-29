@@ -39,8 +39,8 @@ namespace RX
     void fill(T* source);
 
     // Is associated with the copyToBuffer function.
-    Buffer& operator()(const Buffer& buffer);
-    Buffer& operator=(const Buffer& buffer) = delete;
+    //Buffer& operator()(const Buffer& buffer);
+    Buffer& operator=(const Buffer& buffer);
     void copyToBuffer(const Buffer& buffer) const;
 
     void copyToImage(Image& image) const;

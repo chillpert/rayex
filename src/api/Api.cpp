@@ -14,6 +14,7 @@ namespace RX
   RenderPassBeginInfo renderPassBeginInfo{ };
   UniformBufferInfo uniformBufferInfo{ };
   DescriptorPoolInfo descriptorPoolInfo{ };
+  DescriptorSetInfo descriptorSetInfo{ };
   
   Api::Api(std::shared_ptr<Window> window) :
     m_window(window) { }
@@ -177,6 +178,10 @@ namespace RX
     descriptorPoolInfo.types = { VK_DESCRIPTOR_TYPE_UNIFORM_BUFFER, VK_DESCRIPTOR_TYPE_COMBINED_IMAGE_SAMPLER };
     descriptorPoolInfo.maxSets = descriptorPoolInfo.swapchainImagesCount; // TODO: Set this to the number of models in your scene.
 
+    descriptorSetInfo.device = m_device.get();
+    descriptorSetInfo.swapchainImagesCount = m_swapchain.getInfo().images.size();
+    descriptorSetInfo.descriptorSetLayout = m_descriptorSetLayout.get();
+
     for (std::shared_ptr<Model> model : m_models)
     {
       model->initialize();
@@ -194,7 +199,15 @@ namespace RX
       model->m_uniformBuffers.initialize(uniformBufferInfo);
 
       model->m_descriptorPool.initialize(descriptorPoolInfo);
-      model->m_descriptorSets.initialize(m_device.get(),m_swapchain.getInfo().images.size(), model->m_descriptorPool.get(), m_descriptorSetLayout.get(), model->m_uniformBuffers.get(), model->m_texture);
+      
+      descriptorSetInfo.descriptorPool = model->m_descriptorPool.get();
+      descriptorSetInfo.textureSampler = model->m_texture.getSampler();
+      descriptorSetInfo.textureImageView = model->m_texture.getImageView();
+
+      for (Buffer& buffer : model->m_uniformBuffers.get())
+        descriptorSetInfo.uniformBuffers.push_back(buffer.get());
+
+      model->m_descriptorSets.initialize(descriptorSetInfo);
     }
 
     // Command buffers for swapchain
@@ -385,7 +398,7 @@ namespace RX
       model->m_uniformBuffers.initialize(uniformBufferInfo);
 
       model->m_descriptorPool.initialize(descriptorPoolInfo);
-      model->m_descriptorSets.initialize(m_device.get(), m_swapchain.getInfo().images.size(), model->m_descriptorPool.get(), m_descriptorSetLayout.get(), model->m_uniformBuffers.get(), model->m_texture);
+      model->m_descriptorSets.initialize(descriptorSetInfo);
     }
 
     m_swapchainCmdBuffers.initialize(commandBufferInfo);

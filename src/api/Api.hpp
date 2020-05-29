@@ -20,7 +20,7 @@
 #include "CommandBuffer.hpp"
 #include "VertexBuffer.hpp"
 #include "IndexBuffer.hpp"
-#include "DescriptorSets.hpp"
+#include "DescriptorSet.hpp"
 #include "DescriptorPool.hpp"
 #include "DescriptorSetLayout.hpp"
 #include "UniformBuffer.hpp"

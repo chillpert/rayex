@@ -27,7 +27,6 @@ namespace RX
     createInfo.initialLayout = m_info.layout;
     
     VK_CREATE(vkCreateImage(m_info.device, &createInfo, nullptr, &m_image), "image");
-    m_created = false;
 
     VkMemoryRequirements memoryRequirements;
     vkGetImageMemoryRequirements(m_info.device, m_image, &memoryRequirements);
@@ -127,7 +126,6 @@ namespace RX
   void Image::destroy()
   {
     VK_DESTROY(vkDestroyImage(m_info.device, m_image, nullptr), "image");
-    m_created = true;
     VK_FREE(vkFreeMemory(m_info.device, m_memory, nullptr), "image");
 
     m_image = VK_NULL_HANDLE;

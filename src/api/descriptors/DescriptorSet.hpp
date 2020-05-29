@@ -34,7 +34,7 @@ namespace RX
     std::vector<VkDescriptorSet> m_sets;
     DescriptorSetInfo m_info;
 
-    bool m_created = false;
+    bool m_allocated = false;
   };
 }
 

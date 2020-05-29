@@ -5,7 +5,6 @@ namespace RX
   Swapchain::~Swapchain()
   {
     destroy();
-    RX_LOG("SWAPCHAIN DESTROYED .... ANTICIPATING MODEL DESTRUCTION");
   }
 
   void Swapchain::initialize(SwapchainInfo& info)

@@ -30,7 +30,7 @@
                                            else RX_LOG("Created:   " << componentName);\
                                            m_created = true
 
-  #define VK_ALLOCATE(result, componentName) if (m_created)\
+  #define VK_ALLOCATE(result, componentName) if (m_allocated)\
                                              {\
                                                RX_LOG(componentName << " was already allocated.");\
                                                RX_ERROR(componentName + " was already allocated.");\
@@ -41,7 +41,7 @@
                                                RX_ERROR("Failed to allocate: " + componentName);\
                                              }\
                                              else RX_LOG("Allocated: " << componentName);\
-                                             m_created = true
+                                             m_allocated = true
 
   #define VK_DESTROY(term, componentName) if (!m_created)\
                                           {\
@@ -54,13 +54,13 @@
                                           Utils::destroyCounter += 1;\
                                           if (Utils::log) RX_LOG("Destroyed: " << componentName)
 
-  #define VK_FREE(term, componentName) if (!m_created)\
+  #define VK_FREE(term, componentName) if (!m_allocated)\
                                        {\
                                          RX_LOG(componentName << " was not allocated and cannot be freed.");\
                                          RX_ERROR(componentName + " was not allocated and cannot be freed.");\
                                          return;\
                                        }\
-                                       m_created = false;\
+                                       m_allocated = false;\
                                        term;\
                                        Utils::freeCounter += 1;\
                                        if (Utils::log) RX_LOG("Freed:     " << componentName)

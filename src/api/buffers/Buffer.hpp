@@ -56,6 +56,7 @@ namespace RX
     BufferCreateInfo m_info;
 
     bool m_created = false;
+    bool m_allocated = false;
   };
 
   template <class T>

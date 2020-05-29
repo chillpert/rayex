@@ -40,7 +40,7 @@ namespace RX
     std::vector<VkCommandBuffer> m_commandBuffers;
     CommandBufferInfo m_info;
 
-    bool m_created = false;
+    bool m_allocated = false;
   };
 }
 

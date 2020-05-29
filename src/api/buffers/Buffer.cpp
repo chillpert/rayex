@@ -20,7 +20,6 @@ namespace RX
     bufferInfo.sharingMode = createInfo.sharingMode;
     
     VK_CREATE(vkCreateBuffer(createInfo.device, &bufferInfo, nullptr, &m_buffer), "vertex buffer");
-    m_created = false;
 
     // Allocate memory for the buffer.
     VkMemoryRequirements memRequirements;
@@ -46,7 +45,6 @@ namespace RX
   void Buffer::destroy()
   {
     VK_DESTROY(vkDestroyBuffer(m_info.device, m_buffer, nullptr), m_info.componentName);
-    m_created = true;
     VK_FREE(vkFreeMemory(m_info.device, m_memory, nullptr), m_info.componentName);
 
     m_buffer = VK_NULL_HANDLE;

@@ -21,8 +21,6 @@ namespace RX
   Model::~Model()
   {
     RX_LOG("Destroying model");
-    
-
   }
 
   void Model::initialize()

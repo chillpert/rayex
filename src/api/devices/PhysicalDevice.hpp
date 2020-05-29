@@ -21,7 +21,7 @@ namespace RX
     inline PhysicalDeviceInfo& getInfo() { return m_info; }
 
   private:
-    unsigned int evaluate(VkPhysicalDevice device) const;
+    std::pair<unsigned int, std::string> evaluate(VkPhysicalDevice device) const;
 
     VkPhysicalDevice m_physicalDevice;
     PhysicalDeviceInfo m_info;

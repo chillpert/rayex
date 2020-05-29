@@ -185,7 +185,7 @@ int main(int argc, char* argv[])
     mars->m_view = cam.getViewMatrix();
     mars->m_projection = cam.getProjectionMatrix();
 
-    rock->m_model = glm::translate(rock->m_model, glm::vec3(-10.0f * Time::getDeltaTime(), 0.0f, 0.0f));
+    rock->m_model = glm::translate(rock->m_model, glm::vec3(-2.5f * Time::getDeltaTime(), 0.0f, 0.0f));
     rock->m_view = cam.getViewMatrix();
     rock->m_projection = cam.getProjectionMatrix();
     

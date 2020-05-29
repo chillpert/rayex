@@ -21,6 +21,7 @@ namespace RX
 
     m_sets.resize(m_info.swapchainImagesCount);
 
+    m_allocated = false; // TODO: hardcoded fix
     VK_ALLOCATE(vkAllocateDescriptorSets(m_info.device, &allocInfo, m_sets.data()), "descriptor sets");
     
     for (size_t i = 0; i < m_info.swapchainImagesCount; ++i)

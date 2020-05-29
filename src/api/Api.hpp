@@ -45,9 +45,25 @@ namespace RX
     void setModels(const std::vector<std::shared_ptr<Model>>& models);
 
   private:
+    void initInstance();
+    void initDebugMessenger();
+    void initSurface();
+    void initPhysicalDevice();
+    void initQueues();
+    void initDevice();
+    void initRenderPass();
+    void initSwapchain();
+    void initSwapchainImageViews();
+    void initPipeline(bool firstRun = true);
+    void initgraphicsCmdPool();
+    void initDepthBuffering();
+    void initSwapchainFramebuffers();
+    void initModels(bool firstRun = true);
+    void initSwapchainCmdBuffers();
+    void recordSwapchainCommandBuffers();
+
     void clean();
     void recreateSwapchain();
-    void record();
 
     std::shared_ptr<Window> m_window;
 

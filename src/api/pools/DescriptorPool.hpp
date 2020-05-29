@@ -5,19 +5,28 @@
 
 namespace RX
 {
+  struct DescriptorPoolInfo
+  {
+    VkDevice device;
+    size_t swapchainImagesCount;
+    std::vector<VkDescriptorType> types;
+    uint32_t maxSets;
+  };
+
   class DescriptorPool
   {
   public:
     RX_API ~DescriptorPool();
 
     inline VkDescriptorPool get() { return m_pool; }
+    inline DescriptorPoolInfo& getInfo() { return m_info; }
 
-    void initialize(VkDevice device, size_t swapchainImagesCount);
+    void initialize(DescriptorPoolInfo& info);
     void destroy();
 
   private:
     VkDescriptorPool m_pool;
-    VkDevice m_device;
+    DescriptorPoolInfo m_info;
 
     bool m_created = false;
   };

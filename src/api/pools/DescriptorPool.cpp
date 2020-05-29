@@ -7,28 +7,30 @@ namespace RX
     destroy();
   }
 
-  void DescriptorPool::initialize(VkDevice device, size_t swapchainImagesCount)
+  void DescriptorPool::initialize(DescriptorPoolInfo& info)
   {
-    m_device = device;
+    m_info = info;
 
-    std::array<VkDescriptorPoolSize, 2> poolSizes{ };
-    poolSizes[0].type = VK_DESCRIPTOR_TYPE_UNIFORM_BUFFER;
-    poolSizes[0].descriptorCount = static_cast<uint32_t>(swapchainImagesCount);
-    poolSizes[1].type = VK_DESCRIPTOR_TYPE_COMBINED_IMAGE_SAMPLER;
-    poolSizes[1].descriptorCount = static_cast<uint32_t>(swapchainImagesCount);
+    std::vector< VkDescriptorPoolSize> poolSizes(m_info.types.size());
+
+    for (size_t i = 0; i < m_info.types.size(); ++i)
+    {
+      poolSizes[i].type = m_info.types[i];
+      poolSizes[i].descriptorCount = static_cast<uint32_t>(m_info.swapchainImagesCount);
+    }
 
     VkDescriptorPoolCreateInfo createInfo{ };
     createInfo.sType = VK_STRUCTURE_TYPE_DESCRIPTOR_POOL_CREATE_INFO;
     createInfo.poolSizeCount = static_cast<uint32_t>(poolSizes.size());
     createInfo.pPoolSizes = poolSizes.data();
-    createInfo.maxSets = static_cast<uint32_t>(swapchainImagesCount);
+    createInfo.maxSets = m_info.maxSets;
 
-    VK_CREATE(vkCreateDescriptorPool(device, &createInfo, nullptr, &m_pool), "descriptor pool");
+    VK_CREATE(vkCreateDescriptorPool(m_info.device, &createInfo, nullptr, &m_pool), "descriptor pool");
   }
 
   void DescriptorPool::destroy()
   {
-    VK_DESTROY(vkDestroyDescriptorPool(m_device, m_pool, nullptr), "descriptor pool");
+    VK_DESTROY(vkDestroyDescriptorPool(m_info.device, m_pool, nullptr), "descriptor pool");
     m_pool = VK_NULL_HANDLE;
   }
 }

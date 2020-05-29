@@ -13,6 +13,7 @@ namespace RX
   CommandBufferInfo commandBufferInfo{ };
   RenderPassBeginInfo renderPassBeginInfo{ };
   UniformBufferInfo uniformBufferInfo{ };
+  DescriptorPoolInfo descriptorPoolInfo{ };
   
   Api::Api(std::shared_ptr<Window> window) :
     m_window(window) { }
@@ -171,6 +172,11 @@ namespace RX
     uniformBufferInfo.device = m_device.get();
     uniformBufferInfo.swapchainImagesCount = m_swapchain.getInfo().images.size();
 
+    descriptorPoolInfo.device = m_device.get();
+    descriptorPoolInfo.swapchainImagesCount = m_swapchain.getInfo().images.size();
+    descriptorPoolInfo.types = { VK_DESCRIPTOR_TYPE_UNIFORM_BUFFER, VK_DESCRIPTOR_TYPE_COMBINED_IMAGE_SAMPLER };
+    descriptorPoolInfo.maxSets = descriptorPoolInfo.swapchainImagesCount; // TODO: Set this to the number of models in your scene.
+
     for (std::shared_ptr<Model> model : m_models)
     {
       model->initialize();
@@ -187,7 +193,7 @@ namespace RX
       uniformBufferInfo.uniformBufferObject = model->getUbo();
       model->m_uniformBuffers.initialize(uniformBufferInfo);
 
-      model->m_descriptorPool.initialize(m_device.get(),m_swapchain.getInfo().images.size());
+      model->m_descriptorPool.initialize(descriptorPoolInfo);
       model->m_descriptorSets.initialize(m_device.get(),m_swapchain.getInfo().images.size(), model->m_descriptorPool.get(), m_descriptorSetLayout.get(), model->m_uniformBuffers.get(), model->m_texture);
     }
 
@@ -378,7 +384,7 @@ namespace RX
       uniformBufferInfo.uniformBufferObject = model->getUbo();
       model->m_uniformBuffers.initialize(uniformBufferInfo);
 
-      model->m_descriptorPool.initialize(m_device.get(), m_swapchain.getInfo().images.size());
+      model->m_descriptorPool.initialize(descriptorPoolInfo);
       model->m_descriptorSets.initialize(m_device.get(), m_swapchain.getInfo().images.size(), model->m_descriptorPool.get(), m_descriptorSetLayout.get(), model->m_uniformBuffers.get(), model->m_texture);
     }
 

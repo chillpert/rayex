@@ -23,13 +23,14 @@ namespace RX
     {
       m_info = info;
 
-      // If VK_CREATE() macro is not used, update creation status manually.
-      m_created = true;
+      // Use VK_CREATE macro even if you don't actually create a resource.
+      VkResult res = VK_SUCCESS;
+      VK_CREATE(res, "Dummy");
     }
 
     void destroy()
     {
-      // Use the VK_DESTROY macro.
+      // Use the VK_DESTROY or VK_FREE macro
     }
 
   private:

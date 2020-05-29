@@ -4,3 +4,4 @@ build
 out
 CMakeSettings.json
 VSOpenFileFromDirFilters.json
+imgui.ini

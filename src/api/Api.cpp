@@ -7,10 +7,13 @@ namespace RX
 
   RenderPassInfo renderPassInfo{ };
   SwapchainInfo swapchainInfo{ };
+  ImageInfo imageInfo{ };
+  ImageViewInfo depthImageViewInfo{ };
   ShaderInfo vertexShaderInfo{ };
   ShaderInfo fragmentShaderInfo{ };
   PipelineInfo pipelineInfo{ };
   CommandBufferInfo commandBufferInfo{ };
+  FramebufferInfo framebufferInfo{ };
   RenderPassBeginInfo renderPassBeginInfo{ };
   UniformBufferInfo uniformBufferInfo{ };
   DescriptorPoolInfo descriptorPoolInfo{ };
@@ -96,7 +99,19 @@ namespace RX
     swapchainInfo.renderPass = m_renderPass.get();
 
     m_swapchain.initialize(swapchainInfo);
-    m_swapchain.initImageViews();
+
+    // Image views for swapchain images
+    m_swapchainImageViews.resize(m_swapchain.getInfo().images.size());
+    for (size_t i = 0; i < m_swapchainImageViews.size(); ++i)
+    {
+      ImageViewInfo imageViewInfo{ };
+      imageViewInfo.device = m_device.get();
+      imageViewInfo.image = m_swapchain.getInfo().images[i];
+      imageViewInfo.format = m_swapchain.getInfo().surfaceFormat;
+      imageViewInfo.subresourceRange.aspectMask = m_swapchain.getInfo().imageAspect;
+
+      m_swapchainImageViews[i].initialize(imageViewInfo);
+    }
 
     // Shaders
     Shader vs;
@@ -144,12 +159,39 @@ namespace RX
 
     m_graphicsCmdPool.initialize(commandPoolInfo);
 
-    // Swapchain depth image
-    m_swapchain.initDepthImage();
-    m_swapchain.initDepthImageView();
+    // Depth image for depth buffering
+    VkFormat depthFormat = getSupportedDepthFormat(m_physicalDevice.get());
+    
+    imageInfo.physicalDevice = m_physicalDevice.get();
+    imageInfo.device = m_device.get();
+    imageInfo.extent = { m_swapchain.getInfo().extent.width, m_swapchain.getInfo().extent.height, 1 };
+    imageInfo.format = depthFormat;
+    imageInfo.tiling = VK_IMAGE_TILING_OPTIMAL;
+    imageInfo.usage = VK_IMAGE_USAGE_DEPTH_STENCIL_ATTACHMENT_BIT;
 
+    m_depthImage.initialize(imageInfo);
+
+    // Image view for depth image
+    depthImageViewInfo.device = m_device.get();
+    depthImageViewInfo.format = depthFormat;
+    depthImageViewInfo.image = m_depthImage.get();
+    depthImageViewInfo.subresourceRange.aspectMask = VK_IMAGE_ASPECT_DEPTH_BIT;
+
+    m_depthImageView.initialize(depthImageViewInfo);
+    
     // Swapchain framebuffers
-    m_swapchain.initFramebuffers();
+    framebufferInfo.window = m_window;
+    framebufferInfo.device = m_device.get();
+    framebufferInfo.depthImageView = m_depthImageView.get();
+    framebufferInfo.renderPass = m_renderPass.get();
+    framebufferInfo.extent = m_swapchain.getInfo().extent;
+
+    m_swapchainFramebuffers.resize(m_swapchainImageViews.size());
+    for (size_t i = 0; i < m_swapchainFramebuffers.size(); ++i)
+    {
+      framebufferInfo.imageView = m_swapchainImageViews[i].get();
+      m_swapchainFramebuffers[i].initialize(framebufferInfo);
+    }
 
     TextureInfo textureInfo{ };
     textureInfo.physicalDevice = m_physicalDevice.get();
@@ -211,8 +253,9 @@ namespace RX
     // Command buffers for swapchain
     commandBufferInfo.device = m_device.get();
     commandBufferInfo.commandPool = m_graphicsCmdPool.get();
-    commandBufferInfo.commandBufferCount = m_swapchain.getInfo().framebuffers.size();
+    commandBufferInfo.commandBufferCount = m_swapchainFramebuffers.size();
     commandBufferInfo.usageFlags = 0;
+    commandBufferInfo.freeAutomatically = true;
 
     m_swapchainCmdBuffers.initialize(commandBufferInfo);
     record();
@@ -346,49 +389,71 @@ namespace RX
     m_device.waitIdle();
 
     // Cleaning the existing swapchain.
-    m_swapchain.destroyDepthImageView();
-    m_swapchain.destroyDepthImage();
-    m_swapchain.destroyFramebuffers();
+    m_depthImageView.destroy();
+    m_depthImage.destroy();
+
+    for (Framebuffer& framebuffer : m_swapchainFramebuffers)
+      framebuffer.destroy();
+
     m_swapchainCmdBuffers.free();
     m_pipeline.destroy();
     m_renderPass.destroy();
-    m_swapchain.destroyImageViews();
+
+    for (ImageView& imageView : m_swapchainImageViews)
+      imageView.destroy();
+
     m_swapchain.destroy();
 
     for (std::shared_ptr<Model> model : m_models)
       model->m_uniformBuffers.destroy();
 
+    // TODO: here goes the global descriptor pool
+
     // Recreating the swapchain.
-    m_renderPass.initialize(renderPassInfo);
 
     // Swapchain
+    // TODO: the new swapchain's extent should be set using the framebuffer width and height stored in the window.
     m_surface.checkSettingSupport(m_physicalDevice.get());
     swapchainInfo.surfaceCapabilities = m_surface.getInfo().capabilities;
+
     m_swapchain.initialize(swapchainInfo);
-    m_swapchain.initImageViews();
 
-    // Shaders
-    Shader vs;
-    ShaderInfo vertexShaderInfo{ };
-    vertexShaderInfo.fullPath = RX_SHADER_PATH "simple3D.vert";
-    vertexShaderInfo.device = m_device.get();
+    // Image views for swapchain images
+    m_swapchainImageViews.resize(m_swapchain.getInfo().images.size());
+    for (size_t i = 0; i < m_swapchainImageViews.size(); ++i)
+    {
+      ImageViewInfo imageViewInfo{ };
+      imageViewInfo.device = m_device.get();
+      imageViewInfo.image = m_swapchain.getInfo().images[i];
+      imageViewInfo.format = m_swapchain.getInfo().surfaceFormat;
+      imageViewInfo.subresourceRange.aspectMask = m_swapchain.getInfo().imageAspect;
 
-    vs.initialize(vertexShaderInfo);
+      m_swapchainImageViews[i].initialize(imageViewInfo);
+    }
 
-    Shader fs;
-    ShaderInfo fragmentShaderInfo{ };
-    fragmentShaderInfo.fullPath = RX_SHADER_PATH "simple3D.frag";
-    fragmentShaderInfo.device = m_device.get();
-
-    fs.initialize(fragmentShaderInfo);
+    // Renderpass
+    m_renderPass.initialize(renderPassInfo);
 
     // Pipeline
     pipelineInfo.viewport = { 0.0f, 0.0f, static_cast<float>(m_swapchain.getInfo().extent.width), static_cast<float>(m_swapchain.getInfo().extent.height), 0.0f, 1.0f };
     m_pipeline.initialize(pipelineInfo);
+    
+    // Depth image
+    imageInfo.extent = { m_swapchain.getInfo().extent.width, m_swapchain.getInfo().extent.height, 1 };
+    m_depthImage.initialize(imageInfo);
 
-    m_swapchain.initDepthImage();
-    m_swapchain.initDepthImageView();
-    m_swapchain.initFramebuffers();
+    // Image view for depth image
+    m_depthImageView.initialize(depthImageViewInfo);
+
+    // Swapchain framebuffers
+    m_swapchainFramebuffers.resize(m_swapchainImageViews.size());
+    for (size_t i = 0; i < m_swapchainFramebuffers.size(); ++i)
+    {
+      framebufferInfo.imageView = m_swapchainImageViews[i].get();
+      framebufferInfo.extent = m_swapchain.getInfo().extent;
+
+      m_swapchainFramebuffers[i].initialize(framebufferInfo);
+    }
 
     for (auto model : m_models)
     {
@@ -414,7 +479,7 @@ namespace RX
     renderPassBeginInfo.clearValues = { { 0.3f, 0.3f, 0.3f, 1.0f }, { 1.0f, 0 } };
     renderPassBeginInfo.commandBuffers = m_swapchainCmdBuffers.get();
 
-    for (Framebuffer& framebuffer : m_swapchain.getInfo().framebuffers)
+    for (Framebuffer& framebuffer : m_swapchainFramebuffers)
       renderPassBeginInfo.framebuffers.push_back(framebuffer.get());
 
     m_renderPass.setBeginInfo(renderPassBeginInfo);

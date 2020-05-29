@@ -20,8 +20,8 @@ namespace RX
   {
   public:
     inline VkBuffer get() const { return m_buffer.get(); }
-    inline uint32_t getCount() const { return m_buffer.m_info.count; }
-    inline VkIndexType getType() const { return m_buffer.m_info.type; }
+    inline uint32_t getCount() { return m_buffer.getInfo().count; }
+    inline VkIndexType getType() { return m_buffer.getInfo().type; }
     inline IndexBufferInfo<T> getInfo() { return m_info; }
 
     void initialize(IndexBufferInfo<T>& info);

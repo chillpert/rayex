@@ -34,11 +34,11 @@ namespace RX
     std::string m_pathToModel;
 
     // Destruction through RAII
-    Texture m_texture;
     VertexBuffer m_vertexBuffer;
     IndexBuffer<> m_indexBuffer;
-    UniformBuffer m_uniformBuffers;
+    Texture m_texture;
     DescriptorPool m_descriptorPool;
+    UniformBuffer m_uniformBuffers;
 
     glm::mat4 m_model = glm::mat4(1.0f);
     glm::mat4 m_view = glm::mat4(1.0f);

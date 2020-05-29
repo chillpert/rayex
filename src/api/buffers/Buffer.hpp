@@ -52,11 +52,9 @@ namespace RX
   private:
     VkBuffer m_buffer;
     VkDeviceMemory m_memory;
+    BufferCreateInfo m_info;
 
     bool m_created = false;
-
-  public:
-    BufferCreateInfo m_info;
   };
 
   template <class T>

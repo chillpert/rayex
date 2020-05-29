@@ -256,6 +256,7 @@ namespace RX
     commandBufferInfo.commandBufferCount = m_swapchainFramebuffers.size();
     commandBufferInfo.usageFlags = 0;
     commandBufferInfo.freeAutomatically = true;
+    commandBufferInfo.componentName = "swapchain command buffers";
 
     m_swapchainCmdBuffers.initialize(commandBufferInfo);
     record();

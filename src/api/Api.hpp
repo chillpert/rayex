@@ -26,6 +26,8 @@
 #include "UniformBuffer.hpp"
 #include "Gui.hpp"
 
+//RX_LOG("Status Report:\n\t\tCreated: " << Utils::createCounter << "\n\t\tDestroyed: " << Utils::destroyCounter << "\n\t\tAllocated: " << Utils::allocateCounter << "\n\t\tFreed: " << Utils::freeCounter);
+  
 namespace RX
 {
   class Api

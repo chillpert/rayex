@@ -47,11 +47,13 @@ namespace RX
     stagingInfo.properties = VK_MEMORY_PROPERTY_HOST_VISIBLE_BIT | VK_MEMORY_PROPERTY_HOST_COHERENT_BIT;
     stagingInfo.commandPool = m_info.commandPool;
     stagingInfo.queue = m_info.queue;
+    stagingInfo.componentName = "index staging buffer";
 
     // Set up the actual index buffer.
     BufferCreateInfo bufferInfo = stagingInfo;
     bufferInfo.usage = VK_BUFFER_USAGE_TRANSFER_DST_BIT | VK_BUFFER_USAGE_INDEX_BUFFER_BIT;
     bufferInfo.properties = VK_MEMORY_PROPERTY_DEVICE_LOCAL_BIT;
+    bufferInfo.componentName = "index buffer";
 
     if (typeid(T) == typeid(uint8_t))
       bufferInfo.type = VK_INDEX_TYPE_UINT8_EXT;

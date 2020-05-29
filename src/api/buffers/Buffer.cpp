@@ -20,6 +20,7 @@ namespace RX
     bufferInfo.sharingMode = createInfo.sharingMode;
     
     VK_CREATE(vkCreateBuffer(createInfo.device, &bufferInfo, nullptr, &m_buffer), "vertex buffer");
+    m_created = false;
 
     // Allocate memory for the buffer.
     VkMemoryRequirements memRequirements;
@@ -36,7 +37,7 @@ namespace RX
        allocator that splits up a single allocation among many different objects by using the offset parameters 
        that we've seen in many functions.
     */
-    VK_ASSERT(vkAllocateMemory(createInfo.device, &allocInfo, nullptr, &m_memory), "Failed to allocate memory for buffer");
+    VK_ALLOCATE(vkAllocateMemory(createInfo.device, &allocInfo, nullptr, &m_memory), "memory for buffer");
 
     // Bind the buffer to the allocated memory.
     VK_ASSERT(vkBindBufferMemory(createInfo.device, m_buffer, m_memory, 0), "Failed to bind buffer to memory");
@@ -44,8 +45,9 @@ namespace RX
   
   void Buffer::destroy()
   {
-    VK_DESTROY(vkDestroyBuffer(m_info.device, m_buffer, nullptr), "buffer");
-    VK_FREE(vkFreeMemory(m_info.device, m_memory, nullptr), "buffer");
+    VK_DESTROY(vkDestroyBuffer(m_info.device, m_buffer, nullptr), m_info.componentName);
+    m_created = true;
+    VK_FREE(vkFreeMemory(m_info.device, m_memory, nullptr), m_info.componentName);
 
     m_buffer = VK_NULL_HANDLE;
     m_memory = VK_NULL_HANDLE;
@@ -64,6 +66,7 @@ namespace RX
     commandBufferInfo.commandPool = m_info.commandPool;
     commandBufferInfo.queue = m_info.queue;
     commandBufferInfo.freeAutomatically = true;
+    commandBufferInfo.componentName = "command buffer for copying a buffer to another buffer";
 
     CommandBuffer commandBuffer;
     commandBuffer.initialize(commandBufferInfo);
@@ -84,6 +87,8 @@ namespace RX
     commandBufferInfo.device = image.getInfo().device;
     commandBufferInfo.commandPool = image.getInfo().commandPool;
     commandBufferInfo.queue = image.getInfo().queue;
+    commandBufferInfo.freeAutomatically = true;
+    commandBufferInfo.componentName = "command buffer for copying a buffer to an image";
 
     CommandBuffer commandBuffer;
     commandBuffer.initialize(commandBufferInfo);

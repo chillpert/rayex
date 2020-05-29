@@ -19,12 +19,15 @@ namespace RX
   class Texture
   {
   public:
+    RX_API ~Texture();
+
     inline VkImage getImage() { return m_image.get(); }
     inline VkImageView getImageView() { return m_imageView.get(); }
     inline VkSampler getSampler() { return m_sampler.get(); }
     inline TextureInfo& getInfo() { return m_info; }
 
     void initialize(TextureInfo& info);
+    void destroy();
   
   private:
     Image m_image;

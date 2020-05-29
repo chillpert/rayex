@@ -65,6 +65,7 @@ namespace RX
     commandBufferInfo.device = device;
     commandBufferInfo.commandPool = commandPool.get();
     commandBufferInfo.queue = queues.getGraphicsQueue();
+    commandBufferInfo.freeAutomatically = true;
 
     CommandBuffer commandBuffer;
     commandBuffer.initialize(commandBufferInfo);
@@ -103,6 +104,7 @@ namespace RX
     commandBufferInfo.device = device;
     commandBufferInfo.commandPool = m_commandPool.get();
     commandBufferInfo.queue = queues.getGraphicsQueue();
+    commandBufferInfo.freeAutomatically = true;
 
     CommandBuffer commandBuffer;
     commandBuffer.initialize(commandBufferInfo);

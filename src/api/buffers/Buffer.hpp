@@ -20,6 +20,7 @@ namespace RX
     uint32_t queueFamilyIndexCount; // Optional, if sharing mode is concurrent.
     const uint32_t* pQueueFamilyIndices; // Optional, if sharing mode is concurrent.
 
+    const char* componentName = "buffer"; // Optional, if you happen to use the default buffer for another purpose you can give it a better name. This will only effect logging output.
     VkIndexType type; // Ignore, will be filled automatically.
   };
 
@@ -29,7 +30,7 @@ namespace RX
     RX_API ~Buffer();
 
     inline VkBuffer get() const { return m_buffer; }
-    inline VkDeviceMemory getMemory() { return m_memory; }
+    inline VkDeviceMemory& getMemory() { return m_memory; }
     inline VkDeviceSize getSize() const { return m_info.deviceSize; }
     inline BufferCreateInfo& getInfo() { return m_info; }
 
@@ -45,7 +46,7 @@ namespace RX
 
     void copyToImage(Image& image) const;
 
-    void destroy();
+    RX_API void destroy();
 
     static uint32_t findMemoryType(VkPhysicalDevice physicalDevice, uint32_t typeFilter, VkMemoryPropertyFlags properties);
   

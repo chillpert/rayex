@@ -17,12 +17,9 @@ namespace RX
   {
   public:
     RX_API Model() = default;
-    RX_API Model(const std::string& pathToModel) :
-      m_pathToModel(pathToModel) { }
+    RX_API virtual ~Model();
 
-    RX_API virtual ~Model() = default;
-
-    // Fill the vectors with vertex and index data
+    // Fill the vectors with vertex and index data.
     RX_API virtual void initialize();
 
     inline UniformBufferObject getUbo() { return { m_model, m_view, m_projection }; }

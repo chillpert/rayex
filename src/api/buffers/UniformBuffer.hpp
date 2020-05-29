@@ -23,16 +23,14 @@ namespace RX
   class UniformBuffer
   {
   public:
-    RX_API ~UniformBuffer();
-
     inline std::vector<Buffer>& get() { return m_buffers; }
     std::vector<VkBuffer> getRaw();
     inline UniformBufferInfo& getInfo() { return m_info; }
 
     void initialize(UniformBufferInfo& info);
+    void destroy();
 
     void upload(uint32_t imageIndex, UniformBufferObject& ubo);
-    void destroy();
 
   private:
     std::vector<Buffer> m_buffers;

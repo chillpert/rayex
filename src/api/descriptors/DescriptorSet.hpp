@@ -22,14 +22,19 @@ namespace RX
   class DescriptorSet
   {
   public:
+    ~DescriptorSet();
+
     inline std::vector<VkDescriptorSet> get() { return m_sets; }
     inline DescriptorSetInfo& getInfo() { return m_info; }
 
     void initialize(DescriptorSetInfo& info);
+    void destroy();
 
   private:
     std::vector<VkDescriptorSet> m_sets;
     DescriptorSetInfo m_info;
+
+    bool m_created = false;
   };
 }
 

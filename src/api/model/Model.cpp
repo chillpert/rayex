@@ -18,6 +18,13 @@ namespace std
 
 namespace RX
 {
+  Model::~Model()
+  {
+    RX_LOG("Destroying model");
+    
+
+  }
+
   void Model::initialize()
   {
     tinyobj::attrib_t attrib;

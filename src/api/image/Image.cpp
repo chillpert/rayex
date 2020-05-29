@@ -27,6 +27,7 @@ namespace RX
     createInfo.initialLayout = m_info.layout;
     
     VK_CREATE(vkCreateImage(m_info.device, &createInfo, nullptr, &m_image), "image");
+    m_created = false;
 
     VkMemoryRequirements memoryRequirements;
     vkGetImageMemoryRequirements(m_info.device, m_image, &memoryRequirements);
@@ -36,7 +37,7 @@ namespace RX
     allocateInfo.allocationSize = memoryRequirements.size;
     allocateInfo.memoryTypeIndex = Buffer::findMemoryType(m_info.physicalDevice, memoryRequirements.memoryTypeBits, VK_MEMORY_PROPERTY_DEVICE_LOCAL_BIT);
 
-    VK_ASSERT(vkAllocateMemory(m_info.device, &allocateInfo, nullptr, &m_memory), "Failed to allocate memory for image.");
+    VK_ALLOCATE(vkAllocateMemory(m_info.device, &allocateInfo, nullptr, &m_memory), "memory for image.");
     VK_ASSERT(vkBindImageMemory(m_info.device, m_image, m_memory, 0), "Failed to bind image memory.");
   }
 
@@ -46,6 +47,8 @@ namespace RX
     commandBufferInfo.device = m_info.device;
     commandBufferInfo.commandPool = m_info.commandPool;
     commandBufferInfo.queue = m_info.queue;
+    commandBufferInfo.freeAutomatically = true;
+    commandBufferInfo.componentName = "command buffer for image layout transitions";
 
     CommandBuffer commandBuffer;
     commandBuffer.initialize(commandBufferInfo);
@@ -124,6 +127,7 @@ namespace RX
   void Image::destroy()
   {
     VK_DESTROY(vkDestroyImage(m_info.device, m_image, nullptr), "image");
+    m_created = true;
     VK_FREE(vkFreeMemory(m_info.device, m_memory, nullptr), "image");
 
     m_image = VK_NULL_HANDLE;

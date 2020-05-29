@@ -13,7 +13,8 @@ namespace RX
     size_t commandBufferCount = 1; // Amount of command buffers that will be created.
     VkCommandBufferUsageFlags usageFlags = VK_COMMAND_BUFFER_USAGE_ONE_TIME_SUBMIT_BIT;
     VkCommandBufferLevel level = VK_COMMAND_BUFFER_LEVEL_PRIMARY;
-    bool freeAutomatically = false;
+    bool freeAutomatically = true;
+    const char* componentName = "command buffer(s)"; // Optional, used to give a more precise name for the object which will improve logging output.
 
     VkCommandBufferBeginInfo beginInfo = { VK_STRUCTURE_TYPE_COMMAND_BUFFER_BEGIN_INFO, nullptr, 0, nullptr }; // Ignore
     VkSubmitInfo submitInfo = { VK_STRUCTURE_TYPE_SUBMIT_INFO, nullptr, 0, nullptr, nullptr, 0, nullptr, 0, nullptr}; // Ignore

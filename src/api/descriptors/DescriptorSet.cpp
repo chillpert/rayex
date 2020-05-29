@@ -2,10 +2,15 @@
 
 namespace RX
 {
+  DescriptorSet::~DescriptorSet()
+  {
+    //destroy();
+  }
+
   void DescriptorSet::initialize(DescriptorSetInfo& info)
   {
     m_info = info;
-
+    
     std::vector<VkDescriptorSetLayout> layouts(m_info.swapchainImagesCount, m_info.descriptorSetLayout);
 
     VkDescriptorSetAllocateInfo allocInfo{ };
@@ -16,8 +21,8 @@ namespace RX
 
     m_sets.resize(m_info.swapchainImagesCount);
 
-    VK_ASSERT(vkAllocateDescriptorSets(m_info.device, &allocInfo, m_sets.data()), "Failed to allocate descriptor sets.");
-
+    VK_ALLOCATE(vkAllocateDescriptorSets(m_info.device, &allocInfo, m_sets.data()), "descriptor sets");
+    
     for (size_t i = 0; i < m_info.swapchainImagesCount; ++i)
     {
       VkDescriptorBufferInfo bufferInfo{ };
@@ -50,5 +55,10 @@ namespace RX
 
       vkUpdateDescriptorSets(m_info.device, static_cast<uint32_t>(descriptorWrites.size()), descriptorWrites.data(), 0, nullptr);
     }
+  }
+
+  void DescriptorSet::destroy()
+  {
+    VK_FREE(vkFreeDescriptorSets(m_info.device, m_info.descriptorPool, static_cast<uint32_t>(m_sets.size()), m_sets.data()), "descriptor sets");
   }
 }

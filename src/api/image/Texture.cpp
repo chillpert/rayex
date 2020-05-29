@@ -6,6 +6,11 @@
 
 namespace RX
 {
+  Texture::~Texture()
+  {
+    destroy();
+  }
+
   void Texture::initialize(TextureInfo& info)
   {
     m_info = info;
@@ -26,6 +31,7 @@ namespace RX
     stagingInfo.properties = VK_MEMORY_PROPERTY_HOST_VISIBLE_BIT | VK_MEMORY_PROPERTY_HOST_COHERENT_BIT;
     stagingInfo.commandPool = m_info.commandPool;
     stagingInfo.queue = m_info.queue;
+    stagingInfo.componentName = "texture image staging buffer";
 
     Buffer stagingBuffer;
     stagingBuffer.initialize(stagingInfo);
@@ -53,5 +59,10 @@ namespace RX
     m_imageView.initialize(imageViewInfo);
 
     m_sampler.initialize(m_info.device);
+  }
+
+  void Texture::destroy()
+  {
+
   }
 }

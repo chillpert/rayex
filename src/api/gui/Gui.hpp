@@ -11,7 +11,7 @@ namespace RX
   class Gui
   {
   public:
-    Gui();
+    Gui() = delete;
     ~Gui();
 
     void initialize(

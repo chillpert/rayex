@@ -20,7 +20,7 @@ namespace RX
     allocateInfo.level = m_info.level;
     allocateInfo.commandBufferCount = static_cast<uint32_t>(m_info.commandBufferCount);
 
-    VK_CREATE(vkAllocateCommandBuffers(m_info.device, &allocateInfo, m_commandBuffers.data()), "command buffer(s)");
+    VK_ALLOCATE(vkAllocateCommandBuffers(m_info.device, &allocateInfo, m_commandBuffers.data()), m_info.componentName);
 
     // set up begin info.
     m_info.beginInfo.flags = m_info.usageFlags;
@@ -32,17 +32,17 @@ namespace RX
 
   void CommandBuffer::free()
   {
-    VK_FREE(vkFreeCommandBuffers(m_info.device, m_info.commandPool, static_cast<uint32_t>(m_commandBuffers.size()), m_commandBuffers.data()), "command buffer(s)");
+    VK_FREE(vkFreeCommandBuffers(m_info.device, m_info.commandPool, static_cast<uint32_t>(m_commandBuffers.size()), m_commandBuffers.data()), m_info.componentName);
   }
 
   void CommandBuffer::begin(size_t index)
   {
-    VK_ASSERT(vkBeginCommandBuffer(m_commandBuffers[index], &m_info.beginInfo), "Failed to begin command buffer(s)");
+    VK_ASSERT(vkBeginCommandBuffer(m_commandBuffers[index], &m_info.beginInfo), "Failed to begin " + m_info.componentName);
   }
 
   void CommandBuffer::end(size_t index)
   {
-    VK_ASSERT(vkEndCommandBuffer(m_commandBuffers[index]), "Failed to end command buffer(s)");
+    VK_ASSERT(vkEndCommandBuffer(m_commandBuffers[index]), "Failed to end " + m_info.componentName);
 
     if (m_info.usageFlags & VK_COMMAND_BUFFER_USAGE_ONE_TIME_SUBMIT_BIT)
     {
@@ -50,8 +50,6 @@ namespace RX
 
       VK_ASSERT(vkQueueSubmit(m_info.queue, 1, &m_info.submitInfo, VK_NULL_HANDLE), "failed to submit queue of one time usage command buffer");
       VK_ASSERT(vkQueueWaitIdle(m_info.queue), "Queue for one time usage command buffer failed to wait idle");
-
-      free();
     }
   }
 

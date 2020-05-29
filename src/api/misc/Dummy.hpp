@@ -11,12 +11,15 @@ namespace RX
   class Dummy
   {
   public:
+    // Make sure no body can use this class
+    Dummy() = delete;
+
     ~Dummy()
     {
       destroy();
     }
 
-    inline VkInstance get() { return m_dummy; }
+    inline uint32_t get() { return m_dummy; }
     inline DummyInfo getInfo() { return m_info; }
 
     void initialize(DummyInfo& info)
@@ -34,7 +37,7 @@ namespace RX
     }
 
   private:
-    VkInstance m_dummy;
+    uint32_t m_dummy;
     DummyInfo m_info;
 
     // Make sure that non-initialized resources won't get destroyed via RAII.

@@ -30,7 +30,7 @@ namespace RX
     RX_API ~Image();
 
     inline VkImage get() { return m_image; }
-    inline VkDeviceMemory getMemory() { return m_memory; }
+    inline VkDeviceMemory& getMemory() { return m_memory; }
     inline ImageInfo& getInfo() { return m_info; }
 
     void initialize(ImageInfo& info);

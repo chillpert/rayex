@@ -73,11 +73,9 @@
   #define RX_EMPTY_LINE std::cout << std::endl
 
   #define RX_SEPARATOR "==================================================================="
-  #define RX_FORMAT_INFO(message, term) RX_LOG(message << "\n" << RX_SEPARATOR);\
-                                        term;\
-                                        std::cout << std::endl
+  #define RX_FORMAT_INFO(message) RX_LOG(message << "\n" << RX_SEPARATOR)
 
-  #define RX_FORMAT_TABLE2(message, column1, column2, term) RX_LOG("\n\n" << message << "\n" << RX_SEPARATOR << "\n" << column1 << "\t\t\t" << column2);\
+  #define RX_FORMAT_TABLE2(message, column1, column2, term) RX_LOG(message << "\n" << RX_SEPARATOR << "\n" << column1 << "\t\t\t" << column2);\
                                                             std::cout << RX_SEPARATOR << "\n";\
                                                             term;\
                                                             std::cout << std::endl
@@ -109,6 +107,7 @@
 #endif
 
 #define RX_ERROR(message) throw std::runtime_error(std::string("RX: ") + message)
+#define RX_PRINT(message) std::cout << message << std::endl
 
 namespace RX
 {

@@ -82,6 +82,9 @@ namespace RX
     else
       return { 0u, deviceName };
 
+    if (Queues::hasDedicatedTransferQueueFamily(device, m_info.surface))
+      score += 25;
+
     // TODO: add more hardware specific evaulation (those that are benefitial for path tracing)
     // https://www.khronos.org/registry/vulkan/specs/1.2-extensions/html/vkspec.html#features
 

@@ -29,5 +29,6 @@
 #include <array>
 #include <memory>
 #include <unordered_map>
+#include <unordered_set>
 
 #endif // STDAFX_HPP

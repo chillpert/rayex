@@ -21,9 +21,9 @@ namespace RX
     {
       VkDeviceQueueCreateInfo queueCreateInfo{ };
       queueCreateInfo.sType = VK_STRUCTURE_TYPE_DEVICE_QUEUE_CREATE_INFO;
-      queueCreateInfo.queueFamilyIndex = queueFamilyIndex;
-      queueCreateInfo.queueCount = 1;
-      queueCreateInfo.pQueuePriorities = &queuePriority;
+      queueCreateInfo.queueFamilyIndex = queueFamilyIndex; // queueFamily[i].index
+      queueCreateInfo.queueCount = 1; // queueFamily[i].index.queues.size()
+      queueCreateInfo.pQueuePriorities = &queuePriority; // queueFamily[i].index.queues.priority // needs vector conversion
       queueCreateInfos.push_back(queueCreateInfo);
     }
 

@@ -264,6 +264,8 @@ namespace RX
 
     // Retrieve all queue handles.
     m_queues.retrieveAllHandles(m_device.get());
+
+    m_queues.print();
   }
 
   void Api::initRenderPass()

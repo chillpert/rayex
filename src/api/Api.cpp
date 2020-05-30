@@ -257,7 +257,7 @@ namespace RX
   {
     DeviceInfo deviceInfo{ };
     deviceInfo.physicalDevice = m_physicalDevice.get();
-    deviceInfo.queueFamilyIndices = m_queues.getQueueFamilyIndices();
+    deviceInfo.queueFamilies = m_queues.getQueueFamilies();
     deviceInfo.extensions = { "VK_KHR_get_memory_requirements2", "VK_EXT_descriptor_indexing", "VK_KHR_buffer_device_address",  "VK_KHR_deferred_host_operations", "VK_KHR_pipeline_library", "VK_KHR_ray_tracing" };
 
     m_device.initialize(deviceInfo);

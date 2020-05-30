@@ -30,6 +30,8 @@ namespace RX
     inline VkQueue getPresentQueue() { return m_presentQueue; }
     inline VkQueue getTransferQueue() { return m_transferQueue; }
 
+    inline std::vector<QueueFamily>& getQueueFamilies() { return m_uniqueQueueFamilies; }
+
     inline QueuesInfo& getInfo() { return m_info; }
 
     void retrieveAllHandles(VkDevice device);
@@ -74,7 +76,7 @@ namespace RX
 
     VkQueue queue;
     uint32_t index;
-    float priority;
+    float priority = 1.0f;
 
     friend std::ostream& operator<<(std::ostream& os, const std::shared_ptr<Queue> queue);
   };

@@ -9,7 +9,7 @@ namespace RX
   struct DeviceInfo
   {
     VkPhysicalDevice physicalDevice;
-    std::vector<uint32_t> queueFamilyIndices;
+    std::vector<QueueFamily> queueFamilies;
     std::vector<const char*> extensions;
   };
 

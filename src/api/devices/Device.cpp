@@ -14,17 +14,30 @@ namespace RX
     m_info.extensions.push_back(VK_KHR_SWAPCHAIN_EXTENSION_NAME);
     checkExtensionSupport();
 
-    const float queuePriority = 1.0f;
     std::vector<VkDeviceQueueCreateInfo> queueCreateInfos;
 
-    for (uint32_t queueFamilyIndex : m_info.queueFamilyIndices)
+    std::vector<std::shared_ptr<std::vector<float>>> priorities(m_info.queueFamilies.size());
+
+    uint32_t index = 0;
+    for (QueueFamily& queueFamily : m_info.queueFamilies)
     {
+      priorities[index] = std::make_shared<std::vector<float>>(queueFamily.queues.size());
+
       VkDeviceQueueCreateInfo queueCreateInfo{ };
       queueCreateInfo.sType = VK_STRUCTURE_TYPE_DEVICE_QUEUE_CREATE_INFO;
-      queueCreateInfo.queueFamilyIndex = queueFamilyIndex; // queueFamily[i].index
-      queueCreateInfo.queueCount = 1; // queueFamily[i].index.queues.size()
-      queueCreateInfo.pQueuePriorities = &queuePriority; // queueFamily[i].index.queues.priority // needs vector conversion
+      queueCreateInfo.queueFamilyIndex = queueFamily.index;
+      queueCreateInfo.queueCount = static_cast<uint32_t>(queueFamily.queues.size());
+      //queueCreateInfo.flags = VK_DEVICE_QUEUE_CREATE_PROTECTED_BIT;
+
+      for (size_t i = 0; i < queueFamily.queues.size(); ++i)
+        priorities[index]->at(i) = queueFamily.queues[i]->priority;
+
+      RX_ASSERT(queueFamily.queues.size() == priorities[index]->size(), "Amount of queues in family index are not equal to the specified amount of priorities.");
+
+      queueCreateInfo.pQueuePriorities = priorities[index]->data();
       queueCreateInfos.push_back(queueCreateInfo);
+
+      ++index;
     }
 
     VkPhysicalDeviceFeatures deviceFeatures{ };

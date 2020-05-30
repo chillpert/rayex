@@ -20,6 +20,8 @@ namespace RX
     // Create a queue wrapper for each queue available on the device.
     for (uint32_t index = 0; index < m_uniqueQueueFamilies.size(); ++index)
     {
+      m_uniqueQueueFamilies[index].index = index;
+
       for (uint32_t i = 0; i < queueFamilyProperties[index].queueCount; ++i)
         m_uniqueQueueFamilies[index].queues.push_back(std::make_shared<Queue>(index, queuePriority));
     }

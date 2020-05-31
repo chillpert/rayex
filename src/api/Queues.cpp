@@ -5,12 +5,6 @@ namespace RX
   void Queues::initialize(QueuesInfo& info)
   {
     m_info = info;
-    auto queueFamilyIndices = findQueueFamilyIndices(info.physicalDevice, info.surface);
-    
-    // NOTE: Legacy
-    m_graphicsQueueIndex = queueFamilyIndices.graphicsQueueIndices[0];
-    m_presentQueueIndex = queueFamilyIndices.presentQueueIndices[0];
-    m_transferQueueIndex = queueFamilyIndices.transferQueueIndices[0];
 
     auto queueFamilyProperties = getQueueFamilyProperties(m_info.physicalDevice);
     m_uniqueQueueFamilies.resize(queueFamilyProperties.size());
@@ -18,7 +12,7 @@ namespace RX
     const float queuePriority = 1.0f;
 
     // Create a queue wrapper for each queue available on the device.
-    for (uint32_t index = 0; index < m_uniqueQueueFamilies.size(); ++index)
+    for (uint32_t index = 0; index < static_cast<uint32_t>(m_uniqueQueueFamilies.size()); ++index)
     {
       m_uniqueQueueFamilies[index].index = index;
 
@@ -26,7 +20,7 @@ namespace RX
         m_uniqueQueueFamilies[index].queues.push_back(std::make_shared<Queue>(index, queuePriority));
     }
 
-    for (uint32_t index = 0; index < m_uniqueQueueFamilies.size(); ++index)
+    for (uint32_t index = 0; index < static_cast<uint32_t>(m_uniqueQueueFamilies.size()); ++index)
     {
       for (const std::shared_ptr<Queue> queue : m_uniqueQueueFamilies[index].queues)
       {
@@ -66,9 +60,15 @@ namespace RX
 
   void Queues::retrieveAllHandles(VkDevice device)
   {
-    // TODO: iterate over all graphics / present / transfer queues and retrieve each handle
-    vkGetDeviceQueue(device, getGraphicsFamilyIndex(), 0, &m_graphicsQueue);
-    vkGetDeviceQueue(device, getPresentFamilyIndex(), 0, &m_presentQueue);
+    for (std::shared_ptr<Queue> queue : m_graphicsQueues)
+      vkGetDeviceQueue(device, queue->index, 0, &queue->queue);
+
+    for (std::shared_ptr<Queue> queue : m_presentQueues)
+      vkGetDeviceQueue(device, queue->index, 0, &queue->queue);
+      
+    for (std::shared_ptr<Queue> queue : m_transferQueues)
+      vkGetDeviceQueue(device, queue->index, 0, &queue->queue);
+
     // TODO: retrieve transfer queue
   }
 
@@ -117,14 +117,14 @@ namespace RX
     }
   }
 
-  void Queues::submit(VkSubmitInfo& submitInfo, VkFence fence)
+  void Queues::submit(VkSubmitInfo& submitInfo, VkFence fence, size_t index)
   {
-    VK_ASSERT(vkQueueSubmit(m_graphicsQueue, 1, &submitInfo, fence), "Failed to submit queue.");
+    VK_ASSERT(vkQueueSubmit(m_graphicsQueues[index]->queue, 1, &submitInfo, fence), "Failed to submit queue.");
   }
 
-  void Queues::present(VkPresentInfoKHR& presentInfo)
+  void Queues::present(VkPresentInfoKHR& presentInfo, size_t index)
   {
-    VK_ASSERT(vkQueuePresentKHR(m_presentQueue, &presentInfo), "Failed to present");
+    VK_ASSERT(vkQueuePresentKHR(m_presentQueues[index]->queue, &presentInfo), "Failed to present");
   }
 
   std::vector<uint32_t> Queues::getQueuesWithSwapchainAccess()

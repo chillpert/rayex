@@ -18,6 +18,7 @@ namespace RX
 
     std::vector<std::shared_ptr<std::vector<float>>> priorities(m_info.queueFamilies.size());
 
+    // Note: This process takes about half a second on a Ryzen 5 3600x + RTX 2070. Maybe it's not worth creating all queues available for a path tracer.
     uint32_t index = 0;
     for (QueueFamily& queueFamily : m_info.queueFamilies)
     {

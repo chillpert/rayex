@@ -26,6 +26,7 @@ namespace RX
     initSwapchainImageViews();
     initPipeline();
     initgraphicsCmdPool();
+    inittransferCmdPool();
     initDepthBuffering();
     initSwapchainFramebuffers();
     initModels();
@@ -177,17 +178,11 @@ namespace RX
     m_swapchain.destroy();
 
     for (std::shared_ptr<Model> model : m_models)
-    {
       model->m_uniformBuffers.destroy();
 
-      //model->m_descriptorSets.destroy();
-      
-    }
-
-    // TODO: here goes the global descriptor pool
     m_descriptorPool.destroy();
-    // Recreating the swapchain.
 
+    // Recreating the swapchain.
     // Swapchain
     // TODO: the new swapchain's extent should be set using the framebuffer width and height stored in the window.
     initSwapchain();
@@ -251,6 +246,7 @@ namespace RX
     queuesInfo.surface = m_surface.get();
 
     m_queues.initialize(queuesInfo);
+    m_queues.print();
   }
 
   void Api::initDevice()
@@ -264,8 +260,6 @@ namespace RX
 
     // Retrieve all queue handles.
     m_queues.retrieveAllHandles(m_device.get());
-
-    m_queues.print();
   }
 
   void Api::initRenderPass()
@@ -370,6 +364,15 @@ namespace RX
     m_graphicsCmdPool.initialize(commandPoolInfo);
   }
 
+  void Api::inittransferCmdPool()
+  {
+    CommandPoolInfo commandPoolInfo{ };
+    commandPoolInfo.device = m_device.get();
+    commandPoolInfo.queueFamilyIndex = m_queues.getTransferFamilyIndex();
+    
+    m_transferCmdPool.initialize(commandPoolInfo);
+  }
+
   void Api::initDepthBuffering()
   {
     // Depth image for depth buffering
@@ -415,23 +418,29 @@ namespace RX
 
   void Api::initModels(bool firstRun)
   {
+    auto queueIndices = m_queues.getUniqueQueueIndices({ GRAPHICS, TRANSFER });
+    
     TextureInfo textureInfo{ };
     textureInfo.physicalDevice = m_physicalDevice.get();
     textureInfo.device = m_device.get();
     textureInfo.queue = m_queues.getGraphicsQueue();
     textureInfo.commandPool = m_graphicsCmdPool.get();
+    textureInfo.queue = m_queues.getTransferQueue();
+    textureInfo.queueIndices = queueIndices;
 
     VertexBufferInfo vertexBufferInfo{ };
     vertexBufferInfo.physicalDevice = m_physicalDevice.get();
     vertexBufferInfo.device = m_device.get();
     vertexBufferInfo.commandPool = m_graphicsCmdPool.get();
-    vertexBufferInfo.queue = m_queues.getGraphicsQueue();
+    vertexBufferInfo.queue = m_queues.getTransferQueue();
+    vertexBufferInfo.queueIndices = queueIndices;
 
     IndexBufferInfo indexBufferInfo{ };
     indexBufferInfo.physicalDevice = m_physicalDevice.get();
     indexBufferInfo.device = m_device.get();
     indexBufferInfo.commandPool = m_graphicsCmdPool.get();
-    indexBufferInfo.queue = m_queues.getGraphicsQueue();
+    indexBufferInfo.queue = m_queues.getTransferQueue();
+    indexBufferInfo.queueIndices = queueIndices;
 
     UniformBufferInfo uniformBufferInfo{ };
     uniformBufferInfo.physicalDevice = m_physicalDevice.get();

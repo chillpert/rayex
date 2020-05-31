@@ -5,6 +5,14 @@
 
 namespace RX
 {
+  enum QueueCapabilities
+  {
+    GRAPHICS = 0x01,
+    PRESENT = 0x02,
+    TRANSFER = 0x04,
+    COMPUTE = 0x08
+  };
+
   struct Queue
   {
     Queue(uint32_t i, float p) :
@@ -13,6 +21,7 @@ namespace RX
     VkQueue queue;
     uint32_t index;
     float priority = 1.0f;
+    QueueCapabilities capbilities;
 
     friend std::ostream& operator<<(std::ostream& os, const std::shared_ptr<Queue> queue);
   };
@@ -41,9 +50,11 @@ namespace RX
     inline uint32_t getPresentFamilyIndex() const { return m_presentQueues[0]->index; }
     inline uint32_t getTransferFamilyIndex() const { return m_transferQueues[0]->index; }
 
-    inline VkQueue getGraphicsQueue() { return m_graphicsQueues[0]->queue; }
-    inline VkQueue getPresentQueue() { return m_presentQueues[0]->queue; }
-    inline VkQueue getTransferQueue() { return m_transferQueues[0]->queue; }
+    std::vector<uint32_t> getUniqueQueueIndices(std::initializer_list<QueueCapabilities> list);
+
+    VkQueue getGraphicsQueue(int queueFamilyIndex = -1);
+    VkQueue getPresentQueue(int queueFamilyIndex = -1);
+    VkQueue getTransferQueue(int queueFamilyIndex = -1);
 
     inline std::vector<QueueFamily>& getQueueFamilies() { return m_uniqueQueueFamilies; }
 

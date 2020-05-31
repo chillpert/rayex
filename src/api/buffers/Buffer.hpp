@@ -17,8 +17,8 @@ namespace RX
     VkMemoryPropertyFlags properties;
     VkCommandPool commandPool;
     VkQueue queue;
-    uint32_t queueFamilyIndexCount; // Optional, if sharing mode is concurrent.
-    const uint32_t* pQueueFamilyIndices; // Optional, if sharing mode is concurrent.
+    uint32_t queueFamilyIndexCount = UINT32_MAX; // Optional, if sharing mode is not concurrent.
+    std::vector<uint32_t> queueFamilyIndices; // Optional, if sharing mode is not concurrent.
 
     const char* componentName = "buffer"; // Optional, if you happen to use the default buffer for another purpose you can give it a better name. This will only effect logging output.
     VkIndexType type; // Ignore, will be filled automatically.
@@ -40,7 +40,6 @@ namespace RX
     void fill(T* source);
 
     // Is associated with the copyToBuffer function.
-    //Buffer& operator()(const Buffer& buffer);
     Buffer& operator=(const Buffer& buffer);
     void copyToBuffer(const Buffer& buffer) const;
 

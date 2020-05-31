@@ -13,6 +13,7 @@ namespace RX
     VkDevice device;
     VkCommandPool commandPool;
     VkQueue queue;
+    std::vector<uint32_t> queueIndices;
   };
 
   class VertexBuffer

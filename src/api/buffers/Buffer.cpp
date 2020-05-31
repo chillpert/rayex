@@ -18,6 +18,14 @@ namespace RX
     bufferInfo.size = createInfo.deviceSize;
     bufferInfo.usage = createInfo.usage;
     bufferInfo.sharingMode = createInfo.sharingMode;
+
+    if (createInfo.sharingMode == VK_SHARING_MODE_CONCURRENT)
+    {
+      RX_ASSERT((m_info.queueFamilyIndices.size() > 0), "Queue family indices were not specified for buffer creation");
+
+      bufferInfo.pQueueFamilyIndices = m_info.queueFamilyIndices.data();
+      bufferInfo.queueFamilyIndexCount = m_info.queueFamilyIndexCount;
+    }
     
     VK_CREATE(vkCreateBuffer(createInfo.device, &bufferInfo, nullptr, &m_buffer), "vertex buffer");
 
@@ -85,6 +93,7 @@ namespace RX
     commandBufferInfo.device = image.getInfo().device;
     commandBufferInfo.commandPool = image.getInfo().commandPool;
     commandBufferInfo.queue = image.getInfo().queue;
+    // TODO: assert that this queue has transfer capbalitites
     commandBufferInfo.freeAutomatically = true;
     commandBufferInfo.componentName = "command buffer for copying a buffer to an image";
 

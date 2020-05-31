@@ -58,6 +58,131 @@ namespace RX
       RX_PRINT(queueFamily);
   }
 
+  std::vector<uint32_t> Queues::getUniqueQueueIndices(std::initializer_list<QueueCapabilities> list)
+  {
+    std::unordered_set<uint32_t> temp;
+
+    size_t uniqueGraphicsQueue = 0;
+    size_t uniquePresentQueue = 0;
+    size_t uniqueTransferQueue = 0;
+
+    for (auto capabilities : list)
+    {
+      if (capabilities & GRAPHICS)
+        ++uniqueGraphicsQueue;
+
+      if (capabilities & PRESENT)
+        ++uniquePresentQueue;
+
+      if (capabilities & TRANSFER)
+        ++uniqueTransferQueue;
+    }
+
+    size_t max_size = m_uniqueQueueFamilies.size();
+    size_t totalAmountOfRequestedCapbilities = uniqueGraphicsQueue + uniquePresentQueue + uniqueTransferQueue;
+
+    if (totalAmountOfRequestedCapbilities > max_size)
+      RX_ERROR("Can not retrieve more unique queue family indices than there exist.");
+
+    for (size_t i = 0; i < uniqueGraphicsQueue; ++i)
+    {
+      temp.insert(m_graphicsQueues[i]->index);
+    }
+
+    if (uniqueGraphicsQueue == 0)
+    {
+      for (size_t i = 0; i < uniquePresentQueue; ++i)
+      {
+        temp.insert(m_presentQueues[i]->index);
+      }
+    }
+    else
+    {
+      for (size_t i = 0; i < uniquePresentQueue; ++i)
+      {
+        for (size_t j = 0; j < m_presentQueues.size(); ++j)
+        {
+          auto result = temp.insert(m_presentQueues[j]->index);
+          if (result.second)
+            break;
+        }
+      }
+    }
+
+    if (uniquePresentQueue == 0 && uniqueGraphicsQueue == 0)
+    {
+      for (size_t i = 0; i < uniqueTransferQueue; ++i)
+      {
+        temp.insert(m_transferQueues[i]->index);
+      }
+    }
+    else
+    {
+      for (size_t i = 0; i < uniqueTransferQueue; ++i)
+      {
+        for (size_t j = 0; j < m_transferQueues.size(); ++j)
+        {
+          auto result = temp.insert(m_transferQueues[j]->index);
+          if (result.second)
+            break;
+        }
+      }
+    }
+
+    std::vector<uint32_t> res;
+    std::copy(temp.cbegin(), temp.cend(), std::back_inserter(res));
+    
+    if (totalAmountOfRequestedCapbilities != res.size())
+      RX_ERROR("Failed to retrieve unique queue family indices for the desired queue capabilities.");
+
+    return res;
+  }
+
+  VkQueue Queues::getGraphicsQueue(int queueFamilyIndex)
+  {
+    if (queueFamilyIndex == -1)
+      return m_graphicsQueues[0]->queue;
+
+    for (const std::shared_ptr<Queue>& queue : m_graphicsQueues)
+    {
+      if (queue->index == queueFamilyIndex)
+        return queue->queue;
+    }
+
+    RX_ERROR("There is no graphics queue available on the specified queue family index.");
+    return VK_NULL_HANDLE;
+  }
+
+  VkQueue Queues::getPresentQueue(int queueFamilyIndex)
+  {
+    if (queueFamilyIndex == -1)
+      return m_presentQueues[0]->queue;
+
+    for (const std::shared_ptr<Queue>& queue : m_presentQueues)
+    {
+      if (queue->index == queueFamilyIndex)
+        return queue->queue;
+    }
+
+    RX_ERROR("There is no present queue available on the specified queue family index.");
+    return VK_NULL_HANDLE;
+  }
+
+  VkQueue Queues::getTransferQueue(int queueFamilyIndex)
+  {
+    if (queueFamilyIndex == -1)
+      return m_transferQueues[0]->queue;
+
+    for (const std::shared_ptr<Queue>& queue : m_transferQueues)
+    {
+      if (queue->index == queueFamilyIndex)
+        return queue->queue;
+    }
+
+    RX_ERROR("There is no transfer queue available on the specified queue family index.");
+    return VK_NULL_HANDLE;
+  }
+
   void Queues::retrieveAllHandles(VkDevice device)
   {
     for (std::shared_ptr<Queue> queue : m_graphicsQueues)

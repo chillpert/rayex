@@ -13,11 +13,14 @@ namespace RX
     stagingInfo.deviceSize = sizeof(m_info.vertices[0]) * m_info.vertices.size();
     stagingInfo.count = static_cast<uint32_t>(m_info.vertices.size());
     stagingInfo.usage = VK_BUFFER_USAGE_TRANSFER_SRC_BIT;
-    stagingInfo.sharingMode = VK_SHARING_MODE_EXCLUSIVE;
+    stagingInfo.sharingMode = VK_SHARING_MODE_CONCURRENT;
     stagingInfo.properties = VK_MEMORY_PROPERTY_HOST_VISIBLE_BIT | VK_MEMORY_PROPERTY_HOST_COHERENT_BIT;
     stagingInfo.commandPool = m_info.commandPool;
-    stagingInfo.queue = m_info.queue;
     stagingInfo.componentName = "vertex staging buffer";
+
+    stagingInfo.queue = m_info.queue;
+    stagingInfo.queueFamilyIndexCount = static_cast<uint32_t>(m_info.queueIndices.size());
+    stagingInfo.queueFamilyIndices = m_info.queueIndices;
 
     // Set up the actual index buffer.
     BufferCreateInfo bufferInfo = stagingInfo;

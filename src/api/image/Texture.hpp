@@ -14,6 +14,7 @@ namespace RX
     VkDevice device;
     VkQueue queue;
     VkCommandPool commandPool;
+    std::vector<uint32_t> queueIndices;
   };
 
   class Texture

@@ -56,6 +56,7 @@ namespace RX
     void initSwapchainImageViews();
     void initPipeline(bool firstRun = true);
     void initgraphicsCmdPool();
+    void inittransferCmdPool();
     void initDepthBuffering();
     void initSwapchainFramebuffers();
     void initModels(bool firstRun = true);
@@ -73,6 +74,7 @@ namespace RX
     Surface m_surface;
     Device m_device;
     CommandPool m_graphicsCmdPool;
+    CommandPool m_transferCmdPool;
     std::vector<Fence> m_inFlightFences;
     std::vector<Semaphore> m_imageAvailableSemaphores;
     std::vector<Semaphore> m_finishedRenderSemaphores;

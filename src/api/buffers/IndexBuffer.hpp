@@ -13,6 +13,7 @@ namespace RX
     VkPhysicalDevice physicalDevice;
     VkCommandPool commandPool;
     VkQueue queue;
+    std::vector<uint32_t> queueIndices;
   };
 
   template <typename T = uint32_t>
@@ -43,11 +44,14 @@ namespace RX
     stagingInfo.deviceSize = sizeof(m_info.indices[0]) * m_info.indices.size();
     stagingInfo.count = static_cast<uint32_t>(m_info.indices.size());
     stagingInfo.usage = VK_BUFFER_USAGE_TRANSFER_SRC_BIT;
-    stagingInfo.sharingMode = VK_SHARING_MODE_EXCLUSIVE;
+    stagingInfo.sharingMode = VK_SHARING_MODE_CONCURRENT;
     stagingInfo.properties = VK_MEMORY_PROPERTY_HOST_VISIBLE_BIT | VK_MEMORY_PROPERTY_HOST_COHERENT_BIT;
     stagingInfo.commandPool = m_info.commandPool;
-    stagingInfo.queue = m_info.queue;
     stagingInfo.componentName = "index staging buffer";
+    
+    stagingInfo.queue = m_info.queue;
+    stagingInfo.queueFamilyIndexCount = static_cast<uint32_t>(m_info.queueIndices.size());
+    stagingInfo.queueFamilyIndices = m_info.queueIndices;
 
     // Set up the actual index buffer.
     BufferCreateInfo bufferInfo = stagingInfo;

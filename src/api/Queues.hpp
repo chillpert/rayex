@@ -5,29 +5,47 @@
 
 namespace RX
 {
-  enum QueueCapabilities
+  typedef enum QueueCapability
   {
     GRAPHICS = 0x01,
     PRESENT = 0x02,
-    TRANSFER = 0x04,
-    COMPUTE = 0x08
-  };
+    TRANSFER = 0x04
+  } QueueCapability;
 
-  struct Queue
+  class Queue
   {
-    Queue(uint32_t i, float p) :
-      queue(VK_NULL_HANDLE), index(i), priority(p) { }
+  public:
+    Queue(uint32_t index, int capability, float priority);
 
-    VkQueue queue;
-    uint32_t index;
-    float priority = 1.0f;
-    QueueCapabilities capbilities;
+    inline VkQueue& getQueue() { return m_queue; }
+    inline uint32_t getIndex() { return m_index; }
+    inline float getPriority() { return m_priority; }
+    int getCapability() { return m_capbility; }
 
     friend std::ostream& operator<<(std::ostream& os, const std::shared_ptr<Queue> queue);
+
+  private:
+    VkQueue m_queue;
+    uint32_t m_index;
+    float m_priority;
+    int m_capbility;
   };
 
-  struct QueueFamily;
-  struct QueueIndices;
+  struct QueueFamily
+  {
+    uint32_t index;
+    std::vector<std::shared_ptr<Queue>> queues; // The queues in the given index
+
+    friend std::ostream& operator<<(std::ostream& os, const QueueFamily& queueFamily);
+  };
+
+  struct QueueIndices // TODO: bad name
+  {
+    // Stores family indices and each entries queue priority. 
+    std::vector<uint32_t> graphicsQueueIndices;
+    std::vector<uint32_t> presentQueueIndices;
+    std::vector<uint32_t> transferQueueIndices;
+  };
 
   struct QueuesInfo
   {
@@ -46,11 +64,11 @@ namespace RX
     // surface was created. The surface has to be created before the physical device is picked.
     void initialize(QueuesInfo& queuesInfo);
 
-    inline uint32_t getGraphicsFamilyIndex() const { return m_graphicsQueues[0]->index; }
-    inline uint32_t getPresentFamilyIndex() const { return m_presentQueues[0]->index; }
-    inline uint32_t getTransferFamilyIndex() const { return m_transferQueues[0]->index; }
+    inline uint32_t getGraphicsFamilyIndex() const { return m_graphicsQueues[0]->getIndex(); }
+    inline uint32_t getPresentFamilyIndex() const { return m_presentQueues[0]->getIndex(); }
+    inline uint32_t getTransferFamilyIndex() const { return m_transferQueues[0]->getIndex(); }
 
-    std::vector<uint32_t> getUniqueQueueIndices(std::initializer_list<QueueCapabilities> list);
+    std::vector<uint32_t> getUniqueQueueIndices(std::initializer_list<QueueCapability> list);
 
     VkQueue getGraphicsQueue(int queueFamilyIndex = -1);
     VkQueue getPresentQueue(int queueFamilyIndex = -1);
@@ -77,14 +95,6 @@ namespace RX
     static QueueIndices findQueueFamilyIndices(VkPhysicalDevice physicalDevice, VkSurfaceKHR surface);
     static std::vector<VkQueueFamilyProperties> getQueueFamilyProperties(VkPhysicalDevice physicalDevice);
 
-    //std::optional<uint32_t> m_graphicsQueueIndex;
-    //std::optional<uint32_t> m_presentQueueIndex;
-    //std::optional<uint32_t> m_transferQueueIndex;
-
-    //VkQueue m_graphicsQueue;
-    //VkQueue m_presentQueue;
-    //VkQueue m_transferQueue;
-
     std::vector<QueueFamily> m_uniqueQueueFamilies;
 
     std::vector<std::shared_ptr<Queue>> m_graphicsQueues;
@@ -92,22 +102,6 @@ namespace RX
     std::vector<std::shared_ptr<Queue>> m_transferQueues;
 
     QueuesInfo m_info;
-  };
-
-  struct QueueFamily
-  {
-    uint32_t index;
-    std::vector<std::shared_ptr<Queue>> queues; // The queues in the given index
-
-    friend std::ostream& operator<<(std::ostream& os, const QueueFamily& queueFamily);
-  };
-
-  struct QueueIndices // TODO: bad name
-  {
-    // Stores family indices and each entries queue priority. 
-    std::vector<uint32_t> graphicsQueueIndices;
-    std::vector<uint32_t> presentQueueIndices;
-    std::vector<uint32_t> transferQueueIndices;
   };
 }
 

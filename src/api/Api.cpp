@@ -422,15 +422,13 @@ namespace RX
 
   void Api::initModels(bool firstRun)
   {
-    auto queueIndices = m_queues.getUniqueQueueIndices({ GRAPHICS, TRANSFER });
-    std::cout << queueIndices[1] << std::endl;
-    
     TextureInfo textureInfo{ };
     textureInfo.physicalDevice = m_physicalDevice.get();
     textureInfo.device = m_device.get();
     textureInfo.commandPool = m_graphicsCmdPool.get();
     textureInfo.queue = m_queues.getGraphicsQueue();
-    textureInfo.queueIndices = queueIndices;
+
+    auto queueIndices = m_queues.getUniqueQueueIndices({ GRAPHICS, TRANSFER });
 
     VertexBufferInfo vertexBufferInfo{ };
     vertexBufferInfo.physicalDevice = m_physicalDevice.get();

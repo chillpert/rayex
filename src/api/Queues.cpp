@@ -2,6 +2,9 @@
 
 namespace RX
 {
+  Queue::Queue(uint32_t index, int capability, float priority) :
+    m_index(index), m_capbility(capability), m_priority(priority) { }
+
   void Queues::initialize(QueuesInfo& info)
   {
     m_info = info;
@@ -17,7 +20,22 @@ namespace RX
       m_uniqueQueueFamilies[index].index = index;
 
       for (uint32_t i = 0; i < queueFamilyProperties[index].queueCount; ++i)
-        m_uniqueQueueFamilies[index].queues.push_back(std::make_shared<Queue>(index, queuePriority));
+      {
+        int capability;
+        if (queueFamilyProperties[index].queueFlags & VK_QUEUE_GRAPHICS_BIT)
+          capability |= GRAPHICS;
+
+        if (queueFamilyProperties[index].queueFlags & VK_QUEUE_TRANSFER_BIT)
+          capability |= TRANSFER;
+
+        VkBool32 supported;
+        VK_ASSERT(vkGetPhysicalDeviceSurfaceSupportKHR(m_info.physicalDevice, index, m_info.surface, &supported), "Failed to get physical device surface support.");
+
+        if (supported)
+          capability |= PRESENT;
+
+        m_uniqueQueueFamilies[index].queues.push_back(std::make_shared<Queue>(index, capability, queuePriority));
+      }
     }
 
     for (uint32_t index = 0; index < static_cast<uint32_t>(m_uniqueQueueFamilies.size()); ++index)
@@ -58,7 +76,7 @@ namespace RX
       RX_PRINT(queueFamily);
   }
 
-  std::vector<uint32_t> Queues::getUniqueQueueIndices(std::initializer_list<QueueCapabilities> list)
+  std::vector<uint32_t> Queues::getUniqueQueueIndices(std::initializer_list<QueueCapability> list)
   {
     std::unordered_set<uint32_t> temp;
 
@@ -90,7 +108,7 @@ namespace RX
 
     for (size_t i = 0; i < uniqueGraphicsQueue; ++i)
     {
-      temp.insert(m_graphicsQueues[i]->index);
+      temp.insert(m_graphicsQueues[i]->getIndex());
       ++uniqueGraphicsQueue_t;
     }
 
@@ -98,7 +116,7 @@ namespace RX
     {
       for (size_t i = 0; i < uniquePresentQueue; ++i)
       {
-        temp.insert(m_presentQueues[i]->index);
+        temp.insert(m_presentQueues[i]->getIndex());
         ++uniquePresentQueue_t;
       }
     }
@@ -108,7 +126,7 @@ namespace RX
       {
         for (size_t j = 0; j < m_presentQueues.size(); ++j)
         {
-          auto result = temp.insert(m_presentQueues[j]->index);
+          auto result = temp.insert(m_presentQueues[j]->getIndex());
           if (result.second)
           {
             ++uniquePresentQueue_t;
@@ -122,7 +140,7 @@ namespace RX
     {
       for (size_t i = 0; i < uniqueTransferQueue; ++i)
       {
-        temp.insert(m_transferQueues[i]->index);
+        temp.insert(m_transferQueues[i]->getIndex());
         ++uniqueTransferQueue_t;
       }
     }
@@ -132,7 +150,7 @@ namespace RX
       {
         for (size_t j = 0; j < m_transferQueues.size(); ++j)
         {
-          auto result = temp.insert(m_transferQueues[j]->index);
+          auto result = temp.insert(m_transferQueues[j]->getIndex());
           if (result.second)
           {
             ++uniqueTransferQueue_t;
@@ -168,64 +186,58 @@ namespace RX
   VkQueue Queues::getGraphicsQueue(int queueFamilyIndex)
   {
     if (queueFamilyIndex == -1)
-      return m_graphicsQueues[0]->queue;
+      return m_graphicsQueues[0]->getQueue();
 
     for (const std::shared_ptr<Queue>& queue : m_graphicsQueues)
     {
-      if (queue->index == queueFamilyIndex)
-        return queue->queue;
+      if (queue->getIndex() == queueFamilyIndex)
+        return queue->getQueue();
     }
 
-    RX_ERROR("There is no graphics queue available on the specified queue family index.");
-    return VK_NULL_HANDLE;
+    RX_LOG("There is no graphics queue available on the specified queue family index. Returning any graphics queue instead ...");
+    return m_graphicsQueues[0]->getQueue();
   }
 
   VkQueue Queues::getPresentQueue(int queueFamilyIndex)
   {
     if (queueFamilyIndex == -1)
-      return m_presentQueues[0]->queue;
+      return m_presentQueues[0]->getQueue();
 
     for (const std::shared_ptr<Queue>& queue : m_presentQueues)
     {
-      if (queue->index == queueFamilyIndex)
-        return queue->queue;
+      if (queue->getIndex() == queueFamilyIndex)
+        return queue->getQueue();
     }
 
-    RX_ERROR("There is no present queue available on the specified queue family index.");
-    return VK_NULL_HANDLE;
+    RX_LOG("There is no present queue available on the specified queue family index. Returning any present queue instead ...");
+    return m_presentQueues[0]->getQueue();
   }
 
   VkQueue Queues::getTransferQueue(int queueFamilyIndex)
   {
     if (queueFamilyIndex == -1)
-    {
-      std::cout << m_transferQueues[0]->index << std::endl;
-      return m_transferQueues[0]->queue;
-    }
+      return m_transferQueues[0]->getQueue();
 
     for (const std::shared_ptr<Queue>& queue : m_transferQueues)
     {
-      if (queue->index == queueFamilyIndex)
-      {
-        std::cout << "NICE: " << queue->index << std::endl;
-        return queue->queue;
-      }
+      if (queue->getIndex() == queueFamilyIndex)
+        return queue->getQueue();
     }
 
-    RX_ERROR("There is no transfer queue available on the specified queue family index.");
-    return VK_NULL_HANDLE;
+    RX_LOG("There is no transfer queue available on the specified queue family index. Returning any transfer queue instead ...");
+    return m_transferQueues[0]->getQueue();
   }
 
   void Queues::retrieveAllHandles(VkDevice device)
   {
     for (std::shared_ptr<Queue> queue : m_graphicsQueues)
-      vkGetDeviceQueue(device, queue->index, 0, &queue->queue);
+      vkGetDeviceQueue(device, queue->getIndex(), 0, &queue->getQueue());
 
     for (std::shared_ptr<Queue> queue : m_presentQueues)
-      vkGetDeviceQueue(device, queue->index, 0, &queue->queue);
+      vkGetDeviceQueue(device, queue->getIndex(), 0, &queue->getQueue());
       
     for (std::shared_ptr<Queue> queue : m_transferQueues)
-      vkGetDeviceQueue(device, queue->index, 0, &queue->queue);
+      vkGetDeviceQueue(device, queue->getIndex(), 0, &queue->getQueue());
   }
 
   void Queues::print()
@@ -275,12 +287,12 @@ namespace RX
 
   void Queues::submit(VkSubmitInfo& submitInfo, VkFence fence, size_t index)
   {
-    VK_ASSERT(vkQueueSubmit(m_graphicsQueues[index]->queue, 1, &submitInfo, fence), "Failed to submit queue.");
+    VK_ASSERT(vkQueueSubmit(m_graphicsQueues[index]->getQueue(), 1, &submitInfo, fence), "Failed to submit queue.");
   }
 
   void Queues::present(VkPresentInfoKHR& presentInfo, size_t index)
   {
-    VK_ASSERT(vkQueuePresentKHR(m_presentQueues[index]->queue, &presentInfo), "Failed to present");
+    VK_ASSERT(vkQueuePresentKHR(m_presentQueues[index]->getQueue(), &presentInfo), "Failed to present");
   }
 
   std::vector<uint32_t> Queues::getQueueFamilyIndicesForSwapchainAccess()
@@ -366,7 +378,7 @@ namespace RX
 
   std::ostream& operator<<(std::ostream& os, const std::shared_ptr<Queue> queue)
   {
-    os << "\tIndex: " << queue->index << " | Priority: " << queue->priority;
+    os << "\tIndex: " << queue->getIndex() << " | Priority: " << queue->getPriority();
     return os;
   }
 

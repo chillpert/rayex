@@ -31,7 +31,7 @@ namespace RX
       //queueCreateInfo.flags = VK_DEVICE_QUEUE_CREATE_PROTECTED_BIT;
 
       for (size_t i = 0; i < queueFamily.queues.size(); ++i)
-        priorities[index]->at(i) = queueFamily.queues[i]->priority;
+        priorities[index]->at(i) = queueFamily.queues[i]->getPriority();
 
       RX_ASSERT(queueFamily.queues.size() == priorities[index]->size(), "Amount of queues in family index are not equal to the specified amount of priorities.");
 

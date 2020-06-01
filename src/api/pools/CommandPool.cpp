@@ -16,7 +16,7 @@ namespace RX
     createInfo.flags = m_info.createFlags;
     createInfo.queueFamilyIndex = m_info.queueFamilyIndex;
 
-    VK_CREATE(vkCreateCommandPool(m_info.device, &createInfo, nullptr, &m_commandPool), "command pool");
+    VK_CREATE(vkCreateCommandPool(m_info.device, &createInfo, nullptr, &m_commandPool), "command pool from family index: " + std::to_string(m_info.queueFamilyIndex));
   }
 
   void CommandPool::destroy()

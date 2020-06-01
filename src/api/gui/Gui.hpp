@@ -2,7 +2,7 @@
 #define GUI_HPP
 
 #include "Surface.hpp"
-#include "Queues.hpp"
+#include "QueueManager.hpp"
 #include "RenderPass.hpp"
 #include "CommandPool.hpp"
 
@@ -18,7 +18,7 @@ namespace RX
       VkInstance instance, 
       VkPhysicalDevice physicalDevice, 
       VkDevice device, 
-      Queues& queues, 
+      QueueManager& queueManager,
       VkDescriptorPool descriptorPool, 
       Surface& surface, 
       VkRenderPass renderPass,
@@ -28,7 +28,7 @@ namespace RX
 
     void beginRender();
     void render();
-    void endRender(VkDevice device, Queues& queues, VkRenderPass renderPass, VkFramebuffer framebuffer);
+    void endRender(VkDevice device, QueueManager& queueManager, VkRenderPass renderPass, VkFramebuffer framebuffer);
 
     void renderDemo();
 

@@ -1,5 +1,5 @@
 #include "PhysicalDevice.hpp"
-#include "api/Queues.hpp"
+#include "QueueManager.hpp"
 
 namespace RX
 {
@@ -77,12 +77,12 @@ namespace RX
     if (deviceName.find("RTX") != std::string::npos)
       score += 100u;
 
-    if (Queues::isComplete(device, m_info.surface))
+    if (QueueManager::isComplete(device, m_info.surface))
       score += 100u;
     else
       return { 0u, deviceName };
 
-    if (Queues::hasDedicatedTransferQueueFamily(device, m_info.surface))
+    if (QueueManager::hasDedicatedTransferQueueFamily(device, m_info.surface))
       score += 25;
 
     // TODO: add more hardware specific evaulation (those that are benefitial for path tracing)

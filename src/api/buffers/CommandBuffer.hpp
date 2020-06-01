@@ -10,8 +10,10 @@ namespace RX
     VkDevice device;
     VkCommandPool commandPool;
     VkQueue queue;
+
     size_t commandBufferCount = 1; // Amount of command buffers that will be created.
     VkCommandBufferUsageFlags usageFlags = VK_COMMAND_BUFFER_USAGE_ONE_TIME_SUBMIT_BIT;
+    VkCommandBufferResetFlags resetFlags = VK_COMMAND_BUFFER_RESET_RELEASE_RESOURCES_BIT;
     VkCommandBufferLevel level = VK_COMMAND_BUFFER_LEVEL_PRIMARY;
     bool freeAutomatically = true;
     const char* componentName = "command buffer(s)"; // Optional, used to give a more precise name for the object which will improve logging output.
@@ -31,10 +33,12 @@ namespace RX
 
     void initialize(CommandBufferInfo& info);
     void free();
+    // Can only be used explicitly if the command pool's used to create the command buffer(s) 
+    // from was created with resetFlags equal to VK_COMMAND_BUFFER_RESET_RELEASE_RESOURCES_BIT.
+    void reset();
 
     void begin(size_t index = 0);
     void end(size_t index = 0);
-    void record();
 
   private:
     std::vector<VkCommandBuffer> m_commandBuffers;

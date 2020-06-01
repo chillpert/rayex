@@ -23,7 +23,7 @@ namespace RX
     VkInstance instance, 
     VkPhysicalDevice physicalDevice, 
     VkDevice device,
-    Queues& queues, 
+    QueueManager& queueManager,
     VkDescriptorPool descriptorPool,
     Surface& surface,
     VkRenderPass renderPass,
@@ -46,8 +46,8 @@ namespace RX
     init_info.Instance = instance;
     init_info.PhysicalDevice = physicalDevice;
     init_info.Device = device;
-    init_info.QueueFamily = queues.getGraphicsFamilyIndex();
-    init_info.Queue = queues.getGraphicsQueue();
+    init_info.QueueFamily = queueManager.getGraphicsFamilyIndex();
+    init_info.Queue = queueManager.getGraphicsQueue();
     init_info.PipelineCache = nullptr;
     init_info.DescriptorPool = descriptorPool;
     init_info.Allocator = nullptr;
@@ -64,7 +64,7 @@ namespace RX
     CommandBufferInfo commandBufferInfo{ };
     commandBufferInfo.device = device;
     commandBufferInfo.commandPool = commandPool.get();
-    commandBufferInfo.queue = queues.getGraphicsQueue();
+    commandBufferInfo.queue = queueManager.getGraphicsQueue();
     commandBufferInfo.freeAutomatically = true;
 
     CommandBuffer commandBuffer;
@@ -96,14 +96,15 @@ namespace RX
     m_drawData = ImGui::GetDrawData();
   }
 
-  void Gui::endRender(VkDevice device, Queues& queues, VkRenderPass renderPass, VkFramebuffer framebuffer)
+  // TODO: DO NOT PASS THE ENTIRE MANAGER. WHY WOULD YOU EVER WANT TO DO THAT???
+  void Gui::endRender(VkDevice device, QueueManager& queueManager, VkRenderPass renderPass, VkFramebuffer framebuffer)
   {
     m_commandPool.reset();
 
     CommandBufferInfo commandBufferInfo{ };
     commandBufferInfo.device = device;
     commandBufferInfo.commandPool = m_commandPool.get();
-    commandBufferInfo.queue = queues.getGraphicsQueue();
+    commandBufferInfo.queue = queueManager.getGraphicsQueue();
     commandBufferInfo.freeAutomatically = true;
 
     CommandBuffer commandBuffer;

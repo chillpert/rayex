@@ -24,6 +24,8 @@ namespace RX
     void initialize(CommandPoolInfo& info);
     void destroy();
 
+    // All command buffers allocated from this pool will return to their initial state.
+    // All recording that might have been done will disappear.
     void reset();
 
   private:

@@ -1,51 +1,12 @@
-#ifndef QUEUES_HPP
-#define QUEUES_HPP
+#ifndef QUEUE_MANAGER_HPP
+#define QUEUE_MANAGER_HPP
 
-#include "pch/stdafx.hpp"
+#include "Queue.hpp"
 
 namespace RX
 {
-  typedef enum QueueCapability
-  {
-    GRAPHICS = 0x01,
-    PRESENT = 0x02,
-    TRANSFER = 0x04
-  } QueueCapability;
-
-  class Queue
-  {
-  public:
-    Queue(uint32_t index, int capability, float priority);
-
-    inline VkQueue& getQueue() { return m_queue; }
-    inline uint32_t getIndex() { return m_index; }
-    inline float getPriority() { return m_priority; }
-    int getCapability() { return m_capbility; }
-
-    friend std::ostream& operator<<(std::ostream& os, const std::shared_ptr<Queue> queue);
-
-  private:
-    VkQueue m_queue;
-    uint32_t m_index;
-    float m_priority;
-    int m_capbility;
-  };
-
-  struct QueueFamily
-  {
-    uint32_t index;
-    std::vector<std::shared_ptr<Queue>> queues; // The queues in the given index
-
-    friend std::ostream& operator<<(std::ostream& os, const QueueFamily& queueFamily);
-  };
-
-  struct QueueIndices // TODO: bad name
-  {
-    // Stores family indices and each entries queue priority. 
-    std::vector<uint32_t> graphicsQueueIndices;
-    std::vector<uint32_t> presentQueueIndices;
-    std::vector<uint32_t> transferQueueIndices;
-  };
+  struct QueueFamily;
+  struct QueueIndices;
 
   struct QueuesInfo
   {
@@ -57,7 +18,7 @@ namespace RX
     size_t requestTransferQueueAmount = SIZE_MAX; // TODO: Not implemented yet
   };
 
-  class Queues
+  class QueueManager
   {
   public:
     // This function should be called right after the physical device was enumerated and the 
@@ -74,7 +35,9 @@ namespace RX
     VkQueue getPresentQueue(int queueFamilyIndex = -1);
     VkQueue getTransferQueue(int queueFamilyIndex = -1);
 
-    inline std::vector<QueueFamily>& getQueueFamilies() { return m_uniqueQueueFamilies; }
+    inline std::vector<QueueFamily>& getQueueFamilies() { return m_queueFamilies; }
+
+    std::vector<uint32_t> getAllFamilyIndicesOfType(QueueCapability type);
 
     inline QueuesInfo& getInfo() { return m_info; }
 
@@ -95,7 +58,7 @@ namespace RX
     static QueueIndices findQueueFamilyIndices(VkPhysicalDevice physicalDevice, VkSurfaceKHR surface);
     static std::vector<VkQueueFamilyProperties> getQueueFamilyProperties(VkPhysicalDevice physicalDevice);
 
-    std::vector<QueueFamily> m_uniqueQueueFamilies;
+    std::vector<QueueFamily> m_queueFamilies;
 
     std::vector<std::shared_ptr<Queue>> m_graphicsQueues;
     std::vector<std::shared_ptr<Queue>> m_presentQueues;
@@ -103,6 +66,23 @@ namespace RX
 
     QueuesInfo m_info;
   };
+
+  struct QueueFamily
+  {
+    uint32_t index;
+    int capability;
+    std::vector<std::shared_ptr<Queue>> queues; // The queues in the given index
+
+    friend std::ostream& operator<<(std::ostream& os, const QueueFamily& queueFamily);
+  };
+
+  struct QueueIndices // TODO: bad name
+  {
+    // Stores family indices and each entries queue priority. 
+    std::vector<uint32_t> graphicsQueueIndices;
+    std::vector<uint32_t> presentQueueIndices;
+    std::vector<uint32_t> transferQueueIndices;
+  };
 }
 
-#endif // QUEUES_HPP
+#endif // QUEUE_MANAGER_HPP

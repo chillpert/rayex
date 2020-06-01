@@ -35,6 +35,12 @@ namespace RX
     VK_FREE(vkFreeCommandBuffers(m_info.device, m_info.commandPool, static_cast<uint32_t>(m_commandBuffers.size()), m_commandBuffers.data()), m_info.componentName);
   }
 
+  void CommandBuffer::reset()
+  {
+    for (VkCommandBuffer& buffer : m_commandBuffers)
+      VK_ASSERT(vkResetCommandBuffer(buffer, m_info.resetFlags), "Failed to reset " + m_info.componentName);
+  }
+
   void CommandBuffer::begin(size_t index)
   {
     VK_ASSERT(vkBeginCommandBuffer(m_commandBuffers[index], &m_info.beginInfo), "Failed to begin " + m_info.componentName);
@@ -51,10 +57,5 @@ namespace RX
       VK_ASSERT(vkQueueSubmit(m_info.queue, 1, &m_info.submitInfo, VK_NULL_HANDLE), "failed to submit queue of one time usage command buffer");
       VK_ASSERT(vkQueueWaitIdle(m_info.queue), "Queue for one time usage command buffer failed to wait idle");
     }
-  }
-
-  void CommandBuffer::record()
-  {
-    
   }
 }

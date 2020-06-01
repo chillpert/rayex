@@ -113,7 +113,7 @@ namespace RX
     vkResetFences(m_device.get(), 1, &m_inFlightFences[currentFrame].get());
 
     // Submits / executes the current image's / framebuffer's command buffer.
-    m_queues.submit(submitInfo, m_inFlightFences[currentFrame].get());
+    m_queueManager.submit(submitInfo, m_inFlightFences[currentFrame].get());
 
     VkPresentInfoKHR presentInfo{ };
     presentInfo.sType = VK_STRUCTURE_TYPE_PRESENT_INFO_KHR;
@@ -128,7 +128,7 @@ namespace RX
     presentInfo.pImageIndices = &imageIndex;
 
     // Tell the presentation engine that the current image is ready.
-    m_queues.present(presentInfo);
+    m_queueManager.present(presentInfo);
 
     currentFrame = (currentFrame + 1) % maxFramesInFlight;
 
@@ -245,21 +245,21 @@ namespace RX
     queuesInfo.physicalDevice = m_physicalDevice.get();
     queuesInfo.surface = m_surface.get();
 
-    m_queues.initialize(queuesInfo);
-    m_queues.print();
+    m_queueManager.initialize(queuesInfo);
+    m_queueManager.print();
   }
 
   void Api::initDevice()
   {
     DeviceInfo deviceInfo{ };
     deviceInfo.physicalDevice = m_physicalDevice.get();
-    deviceInfo.queueFamilies = m_queues.getQueueFamilies();
+    deviceInfo.queueFamilies = m_queueManager.getQueueFamilies();
     deviceInfo.extensions = { "VK_KHR_get_memory_requirements2", "VK_EXT_descriptor_indexing", "VK_KHR_buffer_device_address",  "VK_KHR_deferred_host_operations", "VK_KHR_pipeline_library", "VK_KHR_ray_tracing" };
 
     m_device.initialize(deviceInfo);
 
     // Retrieve all queue handles.
-    m_queues.retrieveAllHandles(m_device.get());
+    m_queueManager.retrieveAllHandles(m_device.get());
   }
 
   void Api::initRenderPass()
@@ -286,7 +286,7 @@ namespace RX
     swapchainInfo.surfaceColorSpace = m_surface.getInfo().colorSpace;
     swapchainInfo.surfacePresentMode = m_surface.getInfo().presentMode;
     swapchainInfo.surfaceCapabilities = m_surface.getInfo().capabilities;
-    swapchainInfo.queueFamilyIndices = m_queues.getQueueFamilyIndicesForSwapchainAccess();
+    swapchainInfo.queueFamilyIndices = m_queueManager.getQueueFamilyIndicesForSwapchainAccess();
     swapchainInfo.renderPass = m_renderPass.get();
 
     m_swapchain.initialize(swapchainInfo);
@@ -359,7 +359,7 @@ namespace RX
   {
     CommandPoolInfo commandPoolInfo{ };
     commandPoolInfo.device = m_device.get();
-    commandPoolInfo.queueFamilyIndex = m_queues.getGraphicsFamilyIndex();
+    commandPoolInfo.queueFamilyIndex = m_queueManager.getGraphicsFamilyIndex();
 
     m_graphicsCmdPool.initialize(commandPoolInfo);
   }
@@ -371,9 +371,8 @@ namespace RX
     // With the given parameters the function will return two different queue family indices. 
     // This means that the transfer queue family index will be a different one than the graphics queue family index.
     // However, this will only be the case if the queue family indices on this device allow it.
-    commandPoolInfo.queueFamilyIndex = m_queues.getUniqueQueueIndices({ GRAPHICS, TRANSFER })[1];
-    std::cout << "Transfer command Pool index: " << commandPoolInfo.queueFamilyIndex << std::endl;
-    
+    commandPoolInfo.queueFamilyIndex = m_queueManager.getUniqueQueueIndices({ GRAPHICS, TRANSFER })[1];
+
     m_transferCmdPool.initialize(commandPoolInfo);
   }
 
@@ -426,22 +425,22 @@ namespace RX
     textureInfo.physicalDevice = m_physicalDevice.get();
     textureInfo.device = m_device.get();
     textureInfo.commandPool = m_graphicsCmdPool.get();
-    textureInfo.queue = m_queues.getGraphicsQueue();
+    textureInfo.queue = m_queueManager.getGraphicsQueue();
 
-    auto queueIndices = m_queues.getUniqueQueueIndices({ GRAPHICS, TRANSFER });
+    auto queueIndices = m_queueManager.getUniqueQueueIndices({ GRAPHICS, TRANSFER });
 
     VertexBufferInfo vertexBufferInfo{ };
     vertexBufferInfo.physicalDevice = m_physicalDevice.get();
     vertexBufferInfo.device = m_device.get();
     vertexBufferInfo.commandPool = m_transferCmdPool.get();
-    vertexBufferInfo.queue = m_queues.getTransferQueue(queueIndices[1]);
+    vertexBufferInfo.queue = m_queueManager.getTransferQueue(queueIndices[1]);
     vertexBufferInfo.queueIndices = queueIndices;
 
     IndexBufferInfo indexBufferInfo{ };
     indexBufferInfo.physicalDevice = m_physicalDevice.get();
     indexBufferInfo.device = m_device.get();
     indexBufferInfo.commandPool = m_transferCmdPool.get();
-    indexBufferInfo.queue = m_queues.getTransferQueue(queueIndices[1]);
+    indexBufferInfo.queue = m_queueManager.getTransferQueue(queueIndices[1]);
     indexBufferInfo.queueIndices = queueIndices;
 
     UniformBufferInfo uniformBufferInfo{ };

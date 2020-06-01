@@ -1,27 +1,25 @@
-#include "Queues.hpp"
+#include "QueueManager.hpp"
 
 namespace RX
 {
-  Queue::Queue(uint32_t index, int capability, float priority) :
-    m_index(index), m_capbility(capability), m_priority(priority) { }
-
-  void Queues::initialize(QueuesInfo& info)
+  void QueueManager::initialize(QueuesInfo& info)
   {
     m_info = info;
 
     auto queueFamilyProperties = getQueueFamilyProperties(m_info.physicalDevice);
-    m_uniqueQueueFamilies.resize(queueFamilyProperties.size());
+    m_queueFamilies.resize(queueFamilyProperties.size());
     
     const float queuePriority = 1.0f;
 
     // Create a queue wrapper for each queue available on the device.
-    for (uint32_t index = 0; index < static_cast<uint32_t>(m_uniqueQueueFamilies.size()); ++index)
+    for (uint32_t index = 0; index < static_cast<uint32_t>(m_queueFamilies.size()); ++index)
     {
-      m_uniqueQueueFamilies[index].index = index;
+      m_queueFamilies[index].index = index;
 
+      int capability;
       for (uint32_t i = 0; i < queueFamilyProperties[index].queueCount; ++i)
       {
-        int capability;
+        
         if (queueFamilyProperties[index].queueFlags & VK_QUEUE_GRAPHICS_BIT)
           capability |= GRAPHICS;
 
@@ -34,13 +32,15 @@ namespace RX
         if (supported)
           capability |= PRESENT;
 
-        m_uniqueQueueFamilies[index].queues.push_back(std::make_shared<Queue>(index, capability, queuePriority));
+        m_queueFamilies[index].queues.push_back(std::make_shared<Queue>(index, capability, queuePriority));
       }
+
+      m_queueFamilies[index].capability = capability;
     }
 
-    for (uint32_t index = 0; index < static_cast<uint32_t>(m_uniqueQueueFamilies.size()); ++index)
+    for (uint32_t index = 0; index < static_cast<uint32_t>(m_queueFamilies.size()); ++index)
     {
-      for (const std::shared_ptr<Queue> queue : m_uniqueQueueFamilies[index].queues)
+      for (const std::shared_ptr<Queue> queue : m_queueFamilies[index].queues)
       {
         if (queueFamilyProperties[index].queueFlags & VK_QUEUE_GRAPHICS_BIT)
           m_graphicsQueues.push_back(queue);
@@ -59,24 +59,24 @@ namespace RX
     RX_FORMAT_INFO("Queues sorted by their capabilities:");
     RX_PRINT("Graphics Queues");
     for (const std::shared_ptr<Queue>& queue : m_graphicsQueues)
-      std::cout << queue << std::endl;
+      RX_PRINT(queue);
 
     RX_PRINT("Present Queues");
     for (const std::shared_ptr<Queue>& queue : m_presentQueues)
-      std::cout << queue << std::endl;
+      RX_PRINT(queue);
 
     RX_PRINT("Transfer Queues");
     for (const std::shared_ptr<Queue>& queue : m_transferQueues)
-      std::cout << queue << std::endl;
+      RX_PRINT(queue);
 
     RX_PRINT("");
 
     RX_FORMAT_INFO("Queues sorted by their family index:");
-    for (auto queueFamily : m_uniqueQueueFamilies)
+    for (auto queueFamily : m_queueFamilies)
       RX_PRINT(queueFamily);
   }
 
-  std::vector<uint32_t> Queues::getUniqueQueueIndices(std::initializer_list<QueueCapability> list)
+  std::vector<uint32_t> QueueManager::getUniqueQueueIndices(std::initializer_list<QueueCapability> list)
   {
     std::unordered_set<uint32_t> temp;
 
@@ -100,7 +100,7 @@ namespace RX
         ++uniqueTransferQueue;
     }
 
-    size_t max_size = m_uniqueQueueFamilies.size();
+    size_t max_size = m_queueFamilies.size();
     size_t totalAmountOfRequestedCapbilities = uniqueGraphicsQueue + uniquePresentQueue + uniqueTransferQueue;
 
     if (totalAmountOfRequestedCapbilities > max_size)
@@ -183,7 +183,7 @@ namespace RX
     return res;
   }
 
-  VkQueue Queues::getGraphicsQueue(int queueFamilyIndex)
+  VkQueue QueueManager::getGraphicsQueue(int queueFamilyIndex)
   {
     if (queueFamilyIndex == -1)
       return m_graphicsQueues[0]->getQueue();
@@ -198,7 +198,7 @@ namespace RX
     return m_graphicsQueues[0]->getQueue();
   }
 
-  VkQueue Queues::getPresentQueue(int queueFamilyIndex)
+  VkQueue QueueManager::getPresentQueue(int queueFamilyIndex)
   {
     if (queueFamilyIndex == -1)
       return m_presentQueues[0]->getQueue();
@@ -213,7 +213,7 @@ namespace RX
     return m_presentQueues[0]->getQueue();
   }
 
-  VkQueue Queues::getTransferQueue(int queueFamilyIndex)
+  VkQueue QueueManager::getTransferQueue(int queueFamilyIndex)
   {
     if (queueFamilyIndex == -1)
       return m_transferQueues[0]->getQueue();
@@ -228,7 +228,20 @@ namespace RX
     return m_transferQueues[0]->getQueue();
   }
 
-  void Queues::retrieveAllHandles(VkDevice device)
+  std::vector<uint32_t> QueueManager::getAllFamilyIndicesOfType(QueueCapability type)
+  {
+    std::vector<uint32_t> result;
+
+    for (QueueFamily& family : m_queueFamilies)
+    {
+      if (family.capability & type)
+        result.push_back(family.index);
+    }
+
+    return result;
+  }
+
+  void QueueManager::retrieveAllHandles(VkDevice device)
   {
     for (std::shared_ptr<Queue> queue : m_graphicsQueues)
       vkGetDeviceQueue(device, queue->getIndex(), 0, &queue->getQueue());
@@ -240,7 +253,7 @@ namespace RX
       vkGetDeviceQueue(device, queue->getIndex(), 0, &queue->getQueue());
   }
 
-  void Queues::print()
+  void QueueManager::print()
   {
     std::vector<VkQueueFamilyProperties> queueFamilies = getQueueFamilyProperties(m_info.physicalDevice);
     uint32_t queueFamilyIndicesCount = static_cast<uint32_t>(queueFamilies.size());
@@ -277,25 +290,25 @@ namespace RX
       for (size_t i = 0; i < properties.size(); ++i)
       {
         if (i + 1 < properties.size())
-          std::cout << properties[i] << " | ";
+          RX_PRINT_CONTINOUS(properties[i] << " | ");
         else
-          std::cout << properties[i] << std::endl;
+          RX_PRINT(properties[i]);
       }
       RX_PRINT("");
     }
   }
 
-  void Queues::submit(VkSubmitInfo& submitInfo, VkFence fence, size_t index)
+  void QueueManager::submit(VkSubmitInfo& submitInfo, VkFence fence, size_t index)
   {
     VK_ASSERT(vkQueueSubmit(m_graphicsQueues[index]->getQueue(), 1, &submitInfo, fence), "Failed to submit queue.");
   }
 
-  void Queues::present(VkPresentInfoKHR& presentInfo, size_t index)
+  void QueueManager::present(VkPresentInfoKHR& presentInfo, size_t index)
   {
     VK_ASSERT(vkQueuePresentKHR(m_presentQueues[index]->getQueue(), &presentInfo), "Failed to present");
   }
 
-  std::vector<uint32_t> Queues::getQueueFamilyIndicesForSwapchainAccess()
+  std::vector<uint32_t> QueueManager::getQueueFamilyIndicesForSwapchainAccess()
   {
     if (getPresentFamilyIndex() == getGraphicsFamilyIndex())
       return { getGraphicsFamilyIndex() };
@@ -303,7 +316,7 @@ namespace RX
     return { getGraphicsFamilyIndex(), getPresentFamilyIndex() };
   }
 
-  bool Queues::isComplete(VkPhysicalDevice physicalDevice, VkSurfaceKHR surface)
+  bool QueueManager::isComplete(VkPhysicalDevice physicalDevice, VkSurfaceKHR surface)
   {
     auto temp = findQueueFamilyIndices(physicalDevice, surface);
 
@@ -313,7 +326,7 @@ namespace RX
     return true;
   }
 
-  bool Queues::hasDedicatedTransferQueueFamily(VkPhysicalDevice physicalDevice, VkSurfaceKHR surface)
+  bool QueueManager::hasDedicatedTransferQueueFamily(VkPhysicalDevice physicalDevice, VkSurfaceKHR surface)
   {
     auto temp = findQueueFamilyIndices(physicalDevice, surface);
 
@@ -329,7 +342,7 @@ namespace RX
     return false;
   }
 
-  QueueIndices Queues::findQueueFamilyIndices(VkPhysicalDevice physicalDevice, VkSurfaceKHR surface)
+  QueueIndices QueueManager::findQueueFamilyIndices(VkPhysicalDevice physicalDevice, VkSurfaceKHR surface)
   {
     std::vector<VkQueueFamilyProperties> queueFamilies = getQueueFamilyProperties(physicalDevice);
     uint32_t queueFamilyIndicesCount = static_cast<uint32_t>(queueFamilies.size());
@@ -363,7 +376,7 @@ namespace RX
     return { graphicsQueueFamilyIndices, presentQueueFamilyIndices, transferQueueFamilyIndices };
   }
   
-  std::vector<VkQueueFamilyProperties> Queues::getQueueFamilyProperties(VkPhysicalDevice physicalDevice)
+  std::vector<VkQueueFamilyProperties> QueueManager::getQueueFamilyProperties(VkPhysicalDevice physicalDevice)
   {
     uint32_t queueFamilyCount = 0;
     vkGetPhysicalDeviceQueueFamilyProperties(physicalDevice, &queueFamilyCount, nullptr);

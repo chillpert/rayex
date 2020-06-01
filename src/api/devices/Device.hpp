@@ -1,8 +1,8 @@
 #ifndef DEVICE_HPP
 #define DEVICE_HPP
 
-#include "api/Instance.hpp"
-#include "api/Queues.hpp"
+#include "Instance.hpp"
+#include "QueueManager.hpp"
 
 namespace RX
 {

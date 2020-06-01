@@ -2,7 +2,7 @@
 #define SWAPCHAIN_HPP
 
 #include "Surface.hpp"
-#include "Queues.hpp"
+#include "QueueManager.hpp"
 #include "ImageView.hpp"
 #include "Framebuffer.hpp"
 #include "Image.hpp"

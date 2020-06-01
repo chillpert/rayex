@@ -9,6 +9,8 @@ namespace RX
   int frames = 0;
   float prevTime = 0.0f;
 
+  const float timeToWaitForStartingBenchmark = 3.0f;
+
   Time::~Time()
   {
     m_allFrames;
@@ -17,7 +19,8 @@ namespace RX
     for (int value : m_allFrames)
       res += value;
 
-    RX_LOG("Average FPS: " << static_cast<float>(res) / static_cast<float>(m_allFrames.size()) << " over time: " << m_time / 60.0f << " minutes.");
+    if (m_time >= timeToWaitForStartingBenchmark)
+      std::cout << "Average FPS: " << static_cast<float>(res) / static_cast<float>(m_allFrames.size()) << "\nBenchmark Length: " << m_time / 60.0f << " minutes." << std::endl;
   }
 
   float Time::getTime()
@@ -40,11 +43,12 @@ namespace RX
 
     if (current_time - prevTime >= 1.0f)
     {
-      std::cout << "FPS: " << frames << std::endl;
-
       // Give the application some time to start before recording the fps.
-      if (m_time > 3.0f)
+      if (m_time > timeToWaitForStartingBenchmark)
+      {
+        std::cout << "FPS: " << frames << std::endl;
         m_allFrames.push_back(frames);
+      }
 
       m_frames = frames;
       frames = 0;

@@ -9,8 +9,9 @@
 #include <sstream>
 #include <iomanip>
 
-// TODO: rename to RX_LOG
-#ifdef RX_DEBUG
+//#define NO_UTILS
+
+#ifndef NO_UTILS
   #define RX_DISABLE_LOG Utils::log = false
   #define RX_ENABLE_LOG Utils::log = true
 
@@ -83,7 +84,8 @@
   #define RX_FORMAT_TABLE2_ENTRY(entry1, entry2) std::cout << std::left << std::setw(32) << std::setfill(' ') << entry1 << std::left << std::setw(32) << std::setfill(' ') << entry2
 
   #define RX_DEBUG_ONLY(term) term
-
+  #define RX_PRINT(message) std::cout << message << std::endl
+  #define RX_PRINT_CONTINOUS(message) std::cout << message
 #else
   #define RX_DISABLE_LOG
   #define RX_ENABLE_LOG
@@ -104,10 +106,11 @@
   #define RX_FORMAT_TABLE2_ENTRY(entry1, entry2)
 
   #define RX_DEBUG_ONLY(term)
+  #define RX_PRINT(message)
+  #define RX_PRINT_CONTINOUS(message)
 #endif
 
 #define RX_ERROR(message) throw std::runtime_error(std::string("RX: ") + message)
-#define RX_PRINT(message) std::cout << message << std::endl
 
 namespace RX
 {

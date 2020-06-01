@@ -3,7 +3,7 @@
 
 #include "Instance.hpp"
 #include "DebugMessenger.hpp"
-#include "Queues.hpp"
+#include "QueueManager.hpp"
 #include "Surface.hpp"
 #include "Pipeline.hpp"
 #include "RenderPass.hpp"
@@ -26,8 +26,6 @@
 #include "UniformBuffer.hpp"
 #include "Gui.hpp"
 
-//RX_LOG("Status Report:\n\t\tCreated: " << Utils::createCounter << "\n\t\tDestroyed: " << Utils::destroyCounter << "\n\t\tAllocated: " << Utils::allocateCounter << "\n\t\tFreed: " << Utils::freeCounter);
-  
 namespace RX
 {
   class Api
@@ -93,7 +91,7 @@ namespace RX
 
     // No destruction necessary for following members:
     PhysicalDevice m_physicalDevice;
-    Queues m_queues;
+    QueueManager m_queueManager;
     std::vector<VkFence> m_imagesInFlight;
   };
 }

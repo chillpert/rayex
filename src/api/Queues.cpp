@@ -66,6 +66,10 @@ namespace RX
     size_t uniquePresentQueue = 0;
     size_t uniqueTransferQueue = 0;
 
+    size_t uniqueGraphicsQueue_t = 0;
+    size_t uniquePresentQueue_t = 0;
+    size_t uniqueTransferQueue_t = 0;
+
     for (auto capabilities : list)
     {
       if (capabilities & GRAPHICS)
@@ -87,6 +91,7 @@ namespace RX
     for (size_t i = 0; i < uniqueGraphicsQueue; ++i)
     {
       temp.insert(m_graphicsQueues[i]->index);
+      ++uniqueGraphicsQueue_t;
     }
 
     if (uniqueGraphicsQueue == 0)
@@ -94,6 +99,7 @@ namespace RX
       for (size_t i = 0; i < uniquePresentQueue; ++i)
       {
         temp.insert(m_presentQueues[i]->index);
+        ++uniquePresentQueue_t;
       }
     }
     else
@@ -104,7 +110,10 @@ namespace RX
         {
           auto result = temp.insert(m_presentQueues[j]->index);
           if (result.second)
+          {
+            ++uniquePresentQueue_t;
             break;
+          }
         }
       }
     }
@@ -114,6 +123,7 @@ namespace RX
       for (size_t i = 0; i < uniqueTransferQueue; ++i)
       {
         temp.insert(m_transferQueues[i]->index);
+        ++uniqueTransferQueue_t;
       }
     }
     else
@@ -124,7 +134,10 @@ namespace RX
         {
           auto result = temp.insert(m_transferQueues[j]->index);
           if (result.second)
+          {
+            ++uniqueTransferQueue_t;
             break;
+          }
         }
       }
     }
@@ -133,7 +146,21 @@ namespace RX
     std::copy(temp.cbegin(), temp.cend(), std::back_inserter(res));
     
     if (totalAmountOfRequestedCapbilities != res.size())
-      RX_ERROR("Failed to retrieve unique queue family indices for the desired queue capabilities.");
+      RX_ERROR("Failed to retrieve unique queue family indices for the desired queue capabilities. Falling back ...");
+
+    // TODO: implementation of fall back
+
+    /*
+    if (uniqueGraphicsQueue > uniqueGraphicsQueue_t)
+    {
+      size_t queuesToAdd = uniqueGraphicsQueue - uniqueGraphicsQueue_t;      
+      for (size_t i = 0; i < queuesToAdd; ++i)
+      {
+
+        res.push_back(m_graphicsQueues[0]->index);
+      }
+    }
+    */
 
     return res;
   }
@@ -171,12 +198,18 @@ namespace RX
   VkQueue Queues::getTransferQueue(int queueFamilyIndex)
   {
     if (queueFamilyIndex == -1)
+    {
+      std::cout << m_transferQueues[0]->index << std::endl;
       return m_transferQueues[0]->queue;
+    }
 
     for (const std::shared_ptr<Queue>& queue : m_transferQueues)
     {
       if (queue->index == queueFamilyIndex)
+      {
+        std::cout << "NICE: " << queue->index << std::endl;
         return queue->queue;
+      }
     }
 
     RX_ERROR("There is no transfer queue available on the specified queue family index.");
@@ -193,8 +226,6 @@ namespace RX
       
     for (std::shared_ptr<Queue> queue : m_transferQueues)
       vkGetDeviceQueue(device, queue->index, 0, &queue->queue);
-
-    // TODO: retrieve transfer queue
   }
 
   void Queues::print()
@@ -252,15 +283,7 @@ namespace RX
     VK_ASSERT(vkQueuePresentKHR(m_presentQueues[index]->queue, &presentInfo), "Failed to present");
   }
 
-  std::vector<uint32_t> Queues::getQueuesWithSwapchainAccess()
-  {
-    if (getPresentFamilyIndex() == getGraphicsFamilyIndex())
-      return { getGraphicsFamilyIndex() };
-
-    return { getGraphicsFamilyIndex(), getPresentFamilyIndex() };
-  }
-
-  std::vector<uint32_t> Queues::getQueueFamilyIndices()
+  std::vector<uint32_t> Queues::getQueueFamilyIndicesForSwapchainAccess()
   {
     if (getPresentFamilyIndex() == getGraphicsFamilyIndex())
       return { getGraphicsFamilyIndex() };

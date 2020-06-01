@@ -15,19 +15,26 @@ namespace RX
     // Create the buffer.
     VkBufferCreateInfo bufferInfo{ };
     bufferInfo.sType = VK_STRUCTURE_TYPE_BUFFER_CREATE_INFO;
-    bufferInfo.size = createInfo.deviceSize;
-    bufferInfo.usage = createInfo.usage;
-    bufferInfo.sharingMode = createInfo.sharingMode;
+    bufferInfo.size = m_info.deviceSize;
+    bufferInfo.usage = m_info.usage;
+    bufferInfo.sharingMode = m_info.sharingMode;
 
-    if (createInfo.sharingMode == VK_SHARING_MODE_CONCURRENT)
+    if (m_info.sharingMode == VK_SHARING_MODE_CONCURRENT)
     {
-      RX_ASSERT((m_info.queueFamilyIndices.size() > 0), "Queue family indices were not specified for buffer creation");
+      if (m_info.queueFamilyIndices.size() == 0)
+      {
+        bufferInfo.sharingMode = VK_SHARING_MODE_EXCLUSIVE;
+      }
+      else
+      {
+        RX_ASSERT((m_info.queueFamilyIndices.size() > 0), "Queue family indices were not specified for buffer creation");
 
-      bufferInfo.pQueueFamilyIndices = m_info.queueFamilyIndices.data();
-      bufferInfo.queueFamilyIndexCount = m_info.queueFamilyIndexCount;
+        bufferInfo.pQueueFamilyIndices = m_info.queueFamilyIndices.data();
+        bufferInfo.queueFamilyIndexCount = m_info.queueFamilyIndexCount;
+      }
     }
     
-    VK_CREATE(vkCreateBuffer(createInfo.device, &bufferInfo, nullptr, &m_buffer), "vertex buffer");
+    VK_CREATE(vkCreateBuffer(m_info.device, &bufferInfo, nullptr, &m_buffer), "vertex buffer");
 
     // Allocate memory for the buffer.
     VkMemoryRequirements memRequirements;

@@ -37,6 +37,7 @@ namespace RX
       }
     }
 
+    // Fall back, as FIFO is always supported on every device.
     m_info.presentMode = VK_PRESENT_MODE_FIFO_KHR;
 
     // Check format and color space.

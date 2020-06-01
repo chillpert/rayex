@@ -16,16 +16,16 @@ namespace RX
     createInfo.surface = m_info.surface;
 
     // Add another image so that the application does not have to wait for the driver before another image can be acquired.
-    uint32_t imageCount = m_info.surfaceCapabilities.minImageCount + 1;
+    uint32_t minImageCount = m_info.surfaceCapabilities.minImageCount + 1;
 
     if (m_info.surfaceCapabilities.maxImageCount == 0)
       RX_ERROR("The surface does not support any images for a swap chain.");
 
     // If the preferred image count is exceeding the supported amount then use the maximum amount of images supported by the surface.
-    if (imageCount > m_info.surfaceCapabilities.maxImageCount && m_info.surfaceCapabilities.maxImageCount > 0)
-      imageCount = m_info.surfaceCapabilities.maxImageCount;
+    if (minImageCount > m_info.surfaceCapabilities.maxImageCount)
+      minImageCount = m_info.surfaceCapabilities.maxImageCount;
 
-    createInfo.minImageCount = imageCount;
+    createInfo.minImageCount = minImageCount;
     createInfo.imageFormat = m_info.surfaceFormat;
     createInfo.imageColorSpace = m_info.surfaceColorSpace;
     createInfo.preTransform = m_info.surfaceCapabilities.currentTransform;

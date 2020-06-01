@@ -67,8 +67,7 @@ namespace RX
     void submit(VkSubmitInfo& submitInfo, VkFence fence, size_t index = 0);
     void present(VkPresentInfoKHR& presentInfo, size_t index = 0);
 
-    std::vector<uint32_t> getQueuesWithSwapchainAccess(); // This will probably turn out to be all the graphics and present queues which are already stored in members
-    std::vector<uint32_t> getQueueFamilyIndices();
+    std::vector<uint32_t> getQueueFamilyIndicesForSwapchainAccess(); // This will probably turn out to be all the graphics and present queues which are already stored in members
 
     // This function can be used at the time a physical device is picked.
     static bool isComplete(VkPhysicalDevice physicalDevice, VkSurfaceKHR surface);

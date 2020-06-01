@@ -16,26 +16,24 @@ namespace RX
     {
       m_queueFamilies[index].index = index;
 
-      int capability;
-      for (uint32_t i = 0; i < queueFamilyProperties[index].queueCount; ++i)
-      {
-        
-        if (queueFamilyProperties[index].queueFlags & VK_QUEUE_GRAPHICS_BIT)
-          capability |= GRAPHICS;
+      int capability = 0;
 
-        if (queueFamilyProperties[index].queueFlags & VK_QUEUE_TRANSFER_BIT)
-          capability |= TRANSFER;
+      if (queueFamilyProperties[index].queueFlags & VK_QUEUE_GRAPHICS_BIT)
+        capability |= GRAPHICS;
 
-        VkBool32 supported;
-        VK_ASSERT(vkGetPhysicalDeviceSurfaceSupportKHR(m_info.physicalDevice, index, m_info.surface, &supported), "Failed to get physical device surface support.");
+      if (queueFamilyProperties[index].queueFlags & VK_QUEUE_TRANSFER_BIT)
+        capability |= TRANSFER;
 
-        if (supported)
-          capability |= PRESENT;
+      VkBool32 supported;
+      VK_ASSERT(vkGetPhysicalDeviceSurfaceSupportKHR(m_info.physicalDevice, index, m_info.surface, &supported), "Failed to get physical device surface support.");
 
-        m_queueFamilies[index].queues.push_back(std::make_shared<Queue>(index, capability, queuePriority));
-      }
+      if (supported)
+        capability |= PRESENT;
 
       m_queueFamilies[index].capability = capability;
+
+      for (uint32_t i = 0; i < queueFamilyProperties[index].queueCount; ++i)       
+        m_queueFamilies[index].queues.push_back(std::make_shared<Queue>(index, capability, queuePriority));
     }
 
     for (uint32_t index = 0; index < static_cast<uint32_t>(m_queueFamilies.size()); ++index)
@@ -76,84 +74,66 @@ namespace RX
       RX_PRINT(queueFamily);
   }
 
-  std::vector<uint32_t> QueueManager::getUniqueQueueIndices(std::initializer_list<QueueCapability> list)
+  std::vector<uint32_t> QueueManager::getUniqueQueueIndices(std::vector<QueueCapability> list)
   {
     std::unordered_set<uint32_t> temp;
+    
+    auto graphicsFamilyIndices = getAllFamilyIndicesOfType(GRAPHICS);
+    auto presentFamilyIndices = getAllFamilyIndicesOfType(PRESENT);
+    auto transferFamilyIndices = getAllFamilyIndicesOfType(TRANSFER);
 
-    size_t uniqueGraphicsQueue = 0;
-    size_t uniquePresentQueue = 0;
-    size_t uniqueTransferQueue = 0;
+    size_t requiredGraphicsIndices = 0;
+    size_t requiredPresentIndices = 0;
+    size_t requiredTransferIndices = 0;
 
-    size_t uniqueGraphicsQueue_t = 0;
-    size_t uniquePresentQueue_t = 0;
-    size_t uniqueTransferQueue_t = 0;
-
-    for (auto capabilities : list)
+    for (QueueCapability capbility : list)
     {
-      if (capabilities & GRAPHICS)
-        ++uniqueGraphicsQueue;
+      if (capbility == GRAPHICS)
+        ++requiredGraphicsIndices;
 
-      if (capabilities & PRESENT)
-        ++uniquePresentQueue;
+      if (capbility == PRESENT)
+        ++requiredPresentIndices;
 
-      if (capabilities & TRANSFER)
-        ++uniqueTransferQueue;
+      if (capbility == TRANSFER)
+        ++requiredTransferIndices;
     }
 
-    size_t max_size = m_queueFamilies.size();
-    size_t totalAmountOfRequestedCapbilities = uniqueGraphicsQueue + uniquePresentQueue + uniqueTransferQueue;
-
-    if (totalAmountOfRequestedCapbilities > max_size)
-      RX_ERROR("Can not retrieve more unique queue family indices than there exist.");
-
-    for (size_t i = 0; i < uniqueGraphicsQueue; ++i)
+    for (QueueCapability capbility : list)
     {
-      temp.insert(m_graphicsQueues[i]->getIndex());
-      ++uniqueGraphicsQueue_t;
-    }
-
-    if (uniqueGraphicsQueue == 0)
-    {
-      for (size_t i = 0; i < uniquePresentQueue; ++i)
+      if (capbility == GRAPHICS && requiredGraphicsIndices > 0)
       {
-        temp.insert(m_presentQueues[i]->getIndex());
-        ++uniquePresentQueue_t;
-      }
-    }
-    else
-    {
-      for (size_t i = 0; i < uniquePresentQueue; ++i)
-      {
-        for (size_t j = 0; j < m_presentQueues.size(); ++j)
+        for (uint32_t index : graphicsFamilyIndices)
         {
-          auto result = temp.insert(m_presentQueues[j]->getIndex());
+          auto result = temp.insert(index);
           if (result.second)
           {
-            ++uniquePresentQueue_t;
+            --requiredGraphicsIndices;
             break;
           }
         }
       }
-    }
 
-    if (uniquePresentQueue == 0 && uniqueGraphicsQueue == 0)
-    {
-      for (size_t i = 0; i < uniqueTransferQueue; ++i)
+      if (capbility == PRESENT && requiredPresentIndices > 0)
       {
-        temp.insert(m_transferQueues[i]->getIndex());
-        ++uniqueTransferQueue_t;
-      }
-    }
-    else
-    {
-      for (size_t i = 0; i < uniqueTransferQueue; ++i)
-      {
-        for (size_t j = 0; j < m_transferQueues.size(); ++j)
+        for (uint32_t index : presentFamilyIndices)
         {
-          auto result = temp.insert(m_transferQueues[j]->getIndex());
+          auto result = temp.insert(index);
           if (result.second)
           {
-            ++uniqueTransferQueue_t;
+            --requiredPresentIndices;
+            break;
+          }
+        }
+      }
+
+      if (capbility == TRANSFER && requiredTransferIndices > 0)
+      {
+        for (uint32_t index : transferFamilyIndices)
+        {
+          auto result = temp.insert(index);
+          if (result.second)
+          {
+            --requiredTransferIndices;
             break;
           }
         }
@@ -163,22 +143,11 @@ namespace RX
     std::vector<uint32_t> res;
     std::copy(temp.cbegin(), temp.cend(), std::back_inserter(res));
     
-    if (totalAmountOfRequestedCapbilities != res.size())
-      RX_ERROR("Failed to retrieve unique queue family indices for the desired queue capabilities. Falling back ...");
-
-    // TODO: implementation of fall back
-
-    /*
-    if (uniqueGraphicsQueue > uniqueGraphicsQueue_t)
+    if (list.size() != res.size())
     {
-      size_t queuesToAdd = uniqueGraphicsQueue - uniqueGraphicsQueue_t;      
-      for (size_t i = 0; i < queuesToAdd; ++i)
-      {
-
-        res.push_back(m_graphicsQueues[0]->index);
-      }
+      RX_PRINT("Failed to retrieve unique queue family indices for the specified configuration. Returning empty vector ...");
+      return std::vector<uint32_t>();
     }
-    */
 
     return res;
   }
@@ -234,7 +203,7 @@ namespace RX
 
     for (QueueFamily& family : m_queueFamilies)
     {
-      if (family.capability & type)
+      if ((family.capability & type) == type)
         result.push_back(family.index);
     }
 
@@ -380,11 +349,11 @@ namespace RX
   {
     uint32_t queueFamilyCount = 0;
     vkGetPhysicalDeviceQueueFamilyProperties(physicalDevice, &queueFamilyCount, nullptr);
-    RX_ASSERT(queueFamilyCount > 0, "Failed to retrieve any queue family index");
+    RX_ASSERT((queueFamilyCount > 0), "Failed to retrieve any queue family index");
 
     std::vector<VkQueueFamilyProperties> queueFamilies(queueFamilyCount);
     vkGetPhysicalDeviceQueueFamilyProperties(physicalDevice, &queueFamilyCount, queueFamilies.data());
-    RX_ASSERT(queueFamilies.size() > 0, "Failed to retrieve queue family properties");
+    RX_ASSERT((queueFamilies.size() > 0), "Failed to retrieve queue family properties");
 
     return queueFamilies;
   }

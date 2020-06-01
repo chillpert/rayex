@@ -52,7 +52,7 @@ namespace RX
 
     if (m_info.usageFlags & VK_COMMAND_BUFFER_USAGE_ONE_TIME_SUBMIT_BIT)
     {
-      RX_ASSERT(m_info.queue != VK_NULL_HANDLE, "Command buffer object is one time usage, but no queue for immediate execution was specified.");
+      RX_ASSERT((m_info.queue != VK_NULL_HANDLE), "Command buffer object is one time usage, but no queue for immediate execution was specified.");
 
       VK_ASSERT(vkQueueSubmit(m_info.queue, 1, &m_info.submitInfo, VK_NULL_HANDLE), "failed to submit queue of one time usage command buffer");
       VK_ASSERT(vkQueueWaitIdle(m_info.queue), "Queue for one time usage command buffer failed to wait idle");

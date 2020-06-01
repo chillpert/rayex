@@ -33,7 +33,7 @@ namespace RX
       for (size_t i = 0; i < queueFamily.queues.size(); ++i)
         priorities[index]->at(i) = queueFamily.queues[i]->getPriority();
 
-      RX_ASSERT(queueFamily.queues.size() == priorities[index]->size(), "Amount of queues in family index are not equal to the specified amount of priorities.");
+      RX_ASSERT((queueFamily.queues.size() == priorities[index]->size()), "Amount of queues in family index are not equal to the specified amount of priorities.");
 
       queueCreateInfo.pQueuePriorities = priorities[index]->data();
       queueCreateInfos.push_back(queueCreateInfo);

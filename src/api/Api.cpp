@@ -371,7 +371,8 @@ namespace RX
     // With the given parameters the function will return two different queue family indices. 
     // This means that the transfer queue family index will be a different one than the graphics queue family index.
     // However, this will only be the case if the queue family indices on this device allow it.
-    commandPoolInfo.queueFamilyIndex = m_queueManager.getUniqueQueueIndices({ GRAPHICS, TRANSFER })[1];
+    static auto indices = m_queueManager.getUniqueQueueIndices({ GRAPHICS, TRANSFER });
+    commandPoolInfo.queueFamilyIndex = indices.size() > 1 ? indices[1] : m_queueManager.getTransferFamilyIndex();
 
     m_transferCmdPool.initialize(commandPoolInfo);
   }
@@ -427,21 +428,22 @@ namespace RX
     textureInfo.commandPool = m_graphicsCmdPool.get();
     textureInfo.queue = m_queueManager.getGraphicsQueue();
 
-    auto queueIndices = m_queueManager.getUniqueQueueIndices({ GRAPHICS, TRANSFER });
+    static auto queueIndices = m_queueManager.getUniqueQueueIndices({ GRAPHICS, TRANSFER });
+    static auto queue = queueIndices.size() > 1 ? m_queueManager.getTransferQueue(queueIndices[1]) : m_queueManager.getGraphicsQueue();
 
     VertexBufferInfo vertexBufferInfo{ };
     vertexBufferInfo.physicalDevice = m_physicalDevice.get();
     vertexBufferInfo.device = m_device.get();
     vertexBufferInfo.commandPool = m_transferCmdPool.get();
-    vertexBufferInfo.queue = m_queueManager.getTransferQueue(queueIndices[1]);
-    vertexBufferInfo.queueIndices = queueIndices;
+    vertexBufferInfo.queue = queue;
+    vertexBufferInfo.queueIndices = queueIndices.size() > 1 ? queueIndices : std::vector<uint32_t>();
 
     IndexBufferInfo indexBufferInfo{ };
     indexBufferInfo.physicalDevice = m_physicalDevice.get();
     indexBufferInfo.device = m_device.get();
     indexBufferInfo.commandPool = m_transferCmdPool.get();
-    indexBufferInfo.queue = m_queueManager.getTransferQueue(queueIndices[1]);
-    indexBufferInfo.queueIndices = queueIndices;
+    indexBufferInfo.queue = queue;
+    indexBufferInfo.queueIndices = queueIndices.size() > 1 ? queueIndices : std::vector<uint32_t>();
 
     UniformBufferInfo uniformBufferInfo{ };
     uniformBufferInfo.physicalDevice = m_physicalDevice.get();

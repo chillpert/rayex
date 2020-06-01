@@ -29,7 +29,7 @@ namespace RX
     inline uint32_t getPresentFamilyIndex() const { return m_presentQueues[0]->getIndex(); }
     inline uint32_t getTransferFamilyIndex() const { return m_transferQueues[0]->getIndex(); }
 
-    std::vector<uint32_t> getUniqueQueueIndices(std::initializer_list<QueueCapability> list);
+    std::vector<uint32_t> getUniqueQueueIndices(std::vector<QueueCapability> list);
 
     VkQueue getGraphicsQueue(int queueFamilyIndex = -1);
     VkQueue getPresentQueue(int queueFamilyIndex = -1);

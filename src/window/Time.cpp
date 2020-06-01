@@ -19,7 +19,7 @@ namespace RX
     for (int value : m_allFrames)
       res += value;
 
-    if (m_time >= timeToWaitForStartingBenchmark)
+    if (m_time >= timeToWaitForStartingBenchmark && m_allFrames.size() > 0)
       std::cout << "Average FPS: " << static_cast<float>(res) / static_cast<float>(m_allFrames.size()) << "\nBenchmark Length: " << m_time / 60.0f << " minutes." << std::endl;
   }
 

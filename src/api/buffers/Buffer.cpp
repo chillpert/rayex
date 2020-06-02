@@ -43,7 +43,7 @@ namespace RX
     VkMemoryAllocateInfo allocInfo{ };
     allocInfo.sType = VK_STRUCTURE_TYPE_MEMORY_ALLOCATE_INFO;
     allocInfo.allocationSize = memRequirements.size;
-    allocInfo.memoryTypeIndex = findMemoryType(m_info.physicalDevice, memRequirements.memoryTypeBits, createInfo.properties);
+    allocInfo.memoryTypeIndex = findMemoryType(m_info.physicalDevice, memRequirements.memoryTypeBits, createInfo.properties); 
 
     /*
     TODO:
@@ -54,7 +54,7 @@ namespace RX
     VK_ALLOCATE(vkAllocateMemory(createInfo.device, &allocInfo, nullptr, &m_memory), "memory for buffer");
 
     // Bind the buffer to the allocated memory.
-    VK_ASSERT(vkBindBufferMemory(createInfo.device, m_buffer, m_memory, 0), "Failed to bind buffer to memory");
+    VK_ASSERT(vkBindBufferMemory(createInfo.device, m_buffer, m_memory, 0), "Failed to bind buffer to memory"); // TODO: expose offset (0)
   }
   
   void Buffer::destroy()
@@ -80,7 +80,7 @@ namespace RX
     commandBufferInfo.queue = m_info.queue;
     commandBufferInfo.freeAutomatically = true;
     commandBufferInfo.componentName = "command buffer for copying a buffer to another buffer";
-
+    
     CommandBuffer commandBuffer;
     commandBuffer.initialize(commandBufferInfo);
 
@@ -125,14 +125,20 @@ namespace RX
     commandBuffer.end();
   }
 
-  uint32_t Buffer::findMemoryType(VkPhysicalDevice physicalDevice, uint32_t typeFilter, VkMemoryPropertyFlags properties)
+  uint32_t Buffer::findMemoryType(VkPhysicalDevice physicalDevice, uint32_t types, VkMemoryPropertyFlags properties)
   {
-    VkPhysicalDeviceMemoryProperties memProperties;
-    vkGetPhysicalDeviceMemoryProperties(physicalDevice, &memProperties);
-
-    for (uint32_t i = 0; i < memProperties.memoryTypeCount; i++)
+    static VkPhysicalDeviceMemoryProperties memoryProperties;
+    
+    static bool firstRun = true;
+    if (firstRun)
     {
-      if (typeFilter & (1 << i) && (memProperties.memoryTypes[i].propertyFlags & properties) == properties)
+      vkGetPhysicalDeviceMemoryProperties(physicalDevice, &memoryProperties);
+      firstRun = false;
+    }
+    
+    for (uint32_t i = 0; i < memoryProperties.memoryTypeCount; ++i)
+    {
+      if (types & (1 << i) && (memoryProperties.memoryTypes[i].propertyFlags & properties) == properties)
         return i;
     }
 

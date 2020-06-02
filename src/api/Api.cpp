@@ -204,8 +204,20 @@ namespace RX
   {
     InstanceInfo instanceInfo{ };
     instanceInfo.window = m_window;
+#ifdef RX_DEBUG
     instanceInfo.layers = { "VK_LAYER_KHRONOS_validation" };
-    instanceInfo.extensions = { "VK_EXT_debug_utils", "VK_KHR_get_physical_device_properties2" };
+#endif
+
+#ifndef RX_TEST_BUILD
+    instanceInfo.extensions = { "VK_KHR_get_physical_device_properties2" };
+#endif
+
+#ifdef RX_DEBUG
+    if (instanceInfo.extensions.size() == 0)
+      instanceInfo.extensions = { "VK_EXT_debug_utils" };
+    else
+      instanceInfo.extensions.push_back("VK_EXT_debug_utils");
+#endif
 
     m_instance.initialize(instanceInfo);
   }
@@ -254,8 +266,10 @@ namespace RX
     DeviceInfo deviceInfo{ };
     deviceInfo.physicalDevice = m_physicalDevice.get();
     deviceInfo.queueFamilies = m_queueManager.getQueueFamilies();
-    deviceInfo.extensions = { "VK_KHR_get_memory_requirements2", "VK_EXT_descriptor_indexing", "VK_KHR_buffer_device_address",  "VK_KHR_deferred_host_operations", "VK_KHR_pipeline_library", "VK_KHR_ray_tracing" };
 
+#ifndef RX_TEST_BUILD
+    deviceInfo.extensions = { "VK_KHR_get_memory_requirements2", "VK_EXT_descriptor_indexing", "VK_KHR_buffer_device_address",  "VK_KHR_deferred_host_operations", "VK_KHR_pipeline_library", "VK_KHR_ray_tracing" };
+#endif
     m_device.initialize(deviceInfo);
 
     // Retrieve all queue handles.

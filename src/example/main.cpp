@@ -155,7 +155,6 @@ int main(int argc, char* argv[])
   // Create the renderer object.
   Renderer renderer(myWindow);
   
-  
   auto mars = std::make_shared<Model>();
   mars->m_pathToTexture = RX_TEXTURE_PATH "mars.jpg";
   mars->m_pathToModel = RX_MODEL_PATH "sphere.obj";

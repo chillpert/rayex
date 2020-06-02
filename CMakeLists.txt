@@ -4,6 +4,7 @@ project(Renderer VERSION 0.0.1)
 message("Using compiler: " + ${CMAKE_CXX_COMPILER_ID})
 
 option(BUILD_EXAMPLES "Build examples" ON)
+option(TEST_BUILD "Test build" OFF)
 
 if(NOT CMAKE_BUILD_TYPE)
   message("MX: Build type not set. Continuing with: Debug")
@@ -36,10 +37,19 @@ endif()
 
 # RESOURCES
 add_compile_definitions(RX_PROJECT_PATH="${PROJECT_SOURCE_DIR}/")
-add_compile_definitions(RX_RESOURCES_PATH="${PROJECT_SOURCE_DIR}/resources/")
-add_compile_definitions(RX_SHADER_PATH="${PROJECT_SOURCE_DIR}/resources/shaders/")
-add_compile_definitions(RX_TEXTURE_PATH="${PROJECT_SOURCE_DIR}/resources/textures/")
-add_compile_definitions(RX_MODEL_PATH="${PROJECT_SOURCE_DIR}/resources/models/")
+
+if(TEST_BUILD)
+  add_compile_definitions(RX_TEST_BUILD)
+  add_compile_definitions(RX_RESOURCES_PATH="")
+  add_compile_definitions(RX_SHADER_PATH="resources/shaders/")
+  add_compile_definitions(RX_TEXTURE_PATH="resources/textures/")
+  add_compile_definitions(RX_MODEL_PATH="resources/models/")
+else()
+  add_compile_definitions(RX_RESOURCES_PATH="${PROJECT_SOURCE_DIR}/resources/")
+  add_compile_definitions(RX_SHADER_PATH="${PROJECT_SOURCE_DIR}/resources/shaders/")
+  add_compile_definitions(RX_TEXTURE_PATH="${PROJECT_SOURCE_DIR}/resources/textures/")
+  add_compile_definitions(RX_MODEL_PATH="${PROJECT_SOURCE_DIR}/resources/models/")
+endif()
 
 # VULKAN
 find_package(Vulkan REQUIRED)

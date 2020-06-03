@@ -84,7 +84,7 @@ namespace RX
     // TODO: Temporary
     for (std::shared_ptr<Model> model : m_models)
     {
-      model->m_uniformBuffers.upload(imageIndex, model->getUbo());
+      model->m_uniformBuffers.upload(imageIndex, model->m_model, model->m_view, model->m_projection);
     }
 
     // Check if a previous frame is using the current image.

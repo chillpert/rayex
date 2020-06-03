@@ -30,7 +30,7 @@ namespace RX
     void initialize(UniformBufferInfo& info);
     void destroy();
 
-    void upload(uint32_t imageIndex, UniformBufferObject& ubo);
+    void upload(uint32_t imageIndex, glm::mat4& model, glm::mat4& view, glm::mat4& projection);
 
   private:
     std::vector<Buffer> m_buffers;

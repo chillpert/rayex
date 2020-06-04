@@ -28,7 +28,7 @@ namespace RX
       }
     }
 
-    if (score == 0 || m_physicalDevice == VK_NULL_HANDLE)
+    if (m_physicalDevice == VK_NULL_HANDLE)
       RX_ERROR("No suitable device was found");
 
     RX_FORMAT_TABLE2(
@@ -41,9 +41,19 @@ namespace RX
     );
 
     // Print information about the GPU that was selected.
-    VkPhysicalDeviceProperties props;
-    vkGetPhysicalDeviceProperties(m_physicalDevice, &props);
-    RX_LOG("Selected GPU: " << props.deviceName);
+    vkGetPhysicalDeviceProperties(m_physicalDevice, &m_properties);
+    
+    m_properties2 = { };
+    m_properties2.sType = VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_PROPERTIES_2;
+    vkGetPhysicalDeviceProperties2(m_physicalDevice, &m_properties2);
+
+    vkGetPhysicalDeviceFeatures(m_physicalDevice, &m_features);
+
+    m_features2 = { };
+    m_features2.sType = VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_FEATURES_2;
+    vkGetPhysicalDeviceFeatures2(m_physicalDevice, &m_features2);
+
+    RX_LOG("Selected GPU: " << m_properties.deviceName);
   }
 
   std::pair<unsigned int, std::string> PhysicalDevice::evaluate(VkPhysicalDevice device) const

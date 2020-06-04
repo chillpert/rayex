@@ -155,20 +155,15 @@ int main(int argc, char* argv[])
   // Create the renderer object.
   Renderer renderer(myWindow);
   
-  auto mars = std::make_shared<Model>();
-  mars->m_pathToTexture = RX_TEXTURE_PATH "mars.jpg";
-  mars->m_pathToModel = RX_MODEL_PATH "sphere.obj";
+  auto dlore = std::make_shared<Model>();
+  dlore->m_pathToTexture = RX_TEXTURE_PATH "awpdlore.png";
+  dlore->m_pathToModel = RX_MODEL_PATH "awpdlore/awpdlore.obj";
 
-  auto rock = std::make_shared<Model>();
-  rock->m_pathToTexture = RX_TEXTURE_PATH "metal.png";
-  rock->m_pathToModel = RX_MODEL_PATH "rock.obj";
+  dlore->m_model = glm::scale(dlore->m_model, glm::vec3(0.25f));
+  dlore->m_model = glm::rotate(dlore->m_model, glm::radians(90.0f), glm::vec3(0.0f, 1.0f, 0.0f));
 
-  rock->m_model = glm::translate(rock->m_model, glm::vec3(2.0f, 1.0f, 0.0f));
-  rock->m_model = glm::scale(rock->m_model, glm::vec3(0.05f, 0.05f, 0.05f));
- 
   // Add the model to the renderer. This way it will be queued for rendering.
-  renderer.pushModel(mars);
-  renderer.pushModel(rock);
+  renderer.pushModel(dlore);
 
   // This will set up the entire Vulkan pipeline.
   renderer.initialize();
@@ -179,15 +174,11 @@ int main(int argc, char* argv[])
     cam.update();
     
     // Rotate the model using the provided timer functions.
-    static float speed = 0.01f;
-    mars->m_model = glm::rotate(mars->m_model, glm::radians(90.0f) * Time::getDeltaTime() * speed, glm::vec3(0.0f, 1.0f, 0.0f));
-    mars->m_view = cam.getViewMatrix();
-    mars->m_projection = cam.getProjectionMatrix();
-
-    rock->m_model = glm::translate(rock->m_model, glm::vec3(-2.5f * Time::getDeltaTime(), 0.0f, 0.0f));
-    rock->m_view = cam.getViewMatrix();
-    rock->m_projection = cam.getProjectionMatrix();
-    
+    static float speed = 0.1f;
+    //dlore->m_model = glm::rotate(dlore->m_model, glm::radians(90.0f) * Time::getDeltaTime() * speed, glm::vec3(0.0f, 1.0f, 0.0f));
+    dlore->m_view = cam.getViewMatrix();
+    dlore->m_projection = cam.getProjectionMatrix();
+    dlore->m_cameraPos = cam.m_position;
 
     // Call udpate and render for the renderer to work properly.
     renderer.update();

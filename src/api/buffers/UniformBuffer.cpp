@@ -40,9 +40,8 @@ namespace RX
       buffer.destroy();
   }
 
-  void UniformBuffer::upload(uint32_t imageIndex, glm::mat4& model, glm::mat4& view, glm::mat4& projection)
+  void UniformBuffer::upload(uint32_t imageIndex, UniformBufferObject& ubo)
   {
-    UniformBufferObject ubo { model, view, projection };
     m_buffers[imageIndex].fill<UniformBufferObject>(&ubo);
   }
 }

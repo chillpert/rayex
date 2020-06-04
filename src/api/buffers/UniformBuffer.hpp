@@ -10,6 +10,7 @@ namespace RX
     glm::mat4 model = glm::mat4(1.0f);
     glm::mat4 view = glm::mat4(1.0f);
     glm::mat4 projection = glm::mat4(1.0f);
+    glm::vec3 cameraPos = glm::vec3(1.0f);
   };
 
   struct UniformBufferInfo
@@ -30,7 +31,7 @@ namespace RX
     void initialize(UniformBufferInfo& info);
     void destroy();
 
-    void upload(uint32_t imageIndex, glm::mat4& model, glm::mat4& view, glm::mat4& projection);
+    void upload(uint32_t imageIndex, UniformBufferObject& ubo);
 
   private:
     std::vector<Buffer> m_buffers;

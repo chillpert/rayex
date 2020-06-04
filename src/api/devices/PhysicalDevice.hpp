@@ -20,11 +20,21 @@ namespace RX
     inline VkPhysicalDevice get() { return m_physicalDevice; }
     inline PhysicalDeviceInfo& getInfo() { return m_info; }
 
+    inline VkPhysicalDeviceProperties getProperties() const { return m_properties; }
+    inline VkPhysicalDeviceProperties2 getProperties2() const { return m_properties2; }
+    inline VkPhysicalDeviceFeatures getFeatures() const { return m_features; }
+    inline VkPhysicalDeviceFeatures2 getFeatures2() const { return m_features2; }
+
   private:
     std::pair<unsigned int, std::string> evaluate(VkPhysicalDevice device) const;
 
     VkPhysicalDevice m_physicalDevice;
     PhysicalDeviceInfo m_info;
+
+    VkPhysicalDeviceProperties m_properties;
+    VkPhysicalDeviceProperties2 m_properties2;
+    VkPhysicalDeviceFeatures m_features;
+    VkPhysicalDeviceFeatures2 m_features2;
   };
 }
 

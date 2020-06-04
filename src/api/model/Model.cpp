@@ -1,20 +1,6 @@
 #include "Model.hpp"
-
 #define TINYOBJLOADER_IMPLEMENTATION
 #include <tiny_obj_loader.h>
-#define GLM_ENABLE_EXPERIMENTAL
-#include <glm/gtx/hash.hpp>
-
-namespace std
-{
-  template<> struct hash<RX::Vertex>
-  {
-    size_t operator()(RX::Vertex const& vertex) const
-    {
-      return ((hash<glm::vec3>()(vertex.pos) ^ (hash<glm::vec3>()(vertex.color) << 1)) >> 1) ^ (hash<glm::vec2>()(vertex.texCoord) << 1);
-    }
-  };
-}
 
 namespace RX
 {
@@ -46,6 +32,13 @@ namespace RX
           attrib.vertices[3 * index.vertex_index + 0],
           attrib.vertices[3 * index.vertex_index + 1],
           attrib.vertices[3 * index.vertex_index + 2]
+        };
+
+        vertex.normal =
+        {
+          attrib.normals[3 * index.normal_index + 0],
+          attrib.normals[3 * index.normal_index + 1],
+          attrib.normals[3 * index.normal_index + 2]
         };
 
         vertex.texCoord =

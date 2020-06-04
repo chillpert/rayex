@@ -84,7 +84,15 @@ namespace RX
     // TODO: Temporary
     for (std::shared_ptr<Model> model : m_models)
     {
-      model->m_uniformBuffers.upload(imageIndex, model->m_model, model->m_view, model->m_projection);
+      UniformBufferObject ubo
+      {
+         model->m_model,
+         model->m_view,
+         model->m_projection,
+         model->m_cameraPos
+      };
+
+      model->m_uniformBuffers.upload(imageIndex, ubo);
     }
 
     // Check if a previous frame is using the current image.
@@ -541,7 +549,7 @@ namespace RX
     // Set up render pass begin info
     RenderPassBeginInfo renderPassBeginInfo{ };
     renderPassBeginInfo.renderArea = { 0, 0, m_swapchain.getInfo().extent.width, m_swapchain.getInfo().extent.height };
-    renderPassBeginInfo.clearValues = { { 0.05f, 0.05f, 0.05f, 1.0f }, { 1.0f, 0 } };
+    renderPassBeginInfo.clearValues = { { 0.5f, 0.5f, 0.5f, 1.0f }, { 1.0f, 0 } };
     renderPassBeginInfo.commandBuffers = m_swapchainCmdBuffers.get();
 
     for (Framebuffer& framebuffer : m_swapchainFramebuffers)
@@ -586,3 +594,27 @@ namespace RX
     }
   }
 }
+
+#include <vulkan/vulkan.hpp>
+
+namespace RX
+{
+  void Api::initRayTracing()
+  {
+    VkPhysicalDeviceProperties2 properties2 = m_physicalDevice.getProperties2();
+
+    m_rayTracingProperties = { };
+    m_rayTracingProperties.sType = VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_RAY_TRACING_PROPERTIES_KHR;
+    m_rayTracingProperties.pNext = nullptr;
+    m_rayTracingProperties.shaderGroupHandleSize = 0; // TODO: this should have been set using the properties2 somehow.
+    m_rayTracingProperties.maxRecursionDepth = 0; // TODO: this should have been set using the properties2 somehow.
+    m_rayTracingProperties.maxShaderGroupStride = 0;
+    m_rayTracingProperties.shaderGroupBaseAlignment = 0;
+    m_rayTracingProperties.maxGeometryCount = 0;
+    m_rayTracingProperties.maxInstanceCount = 0;
+    m_rayTracingProperties.maxPrimitiveCount = 0;
+    m_rayTracingProperties.maxDescriptorSetAccelerationStructures = 0;
+    m_rayTracingProperties.shaderGroupHandleCaptureReplaySize = 0;
+  }
+}
+

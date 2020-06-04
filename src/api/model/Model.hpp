@@ -38,6 +38,7 @@ namespace RX
     glm::mat4 m_model = glm::mat4(1.0f);
     glm::mat4 m_view = glm::mat4(1.0f);
     glm::mat4 m_projection = glm::mat4(1.0f);
+    glm::vec3 m_cameraPos = glm::vec3(1.0f);
 
     // No destruction necessary
     DescriptorSet m_descriptorSets;

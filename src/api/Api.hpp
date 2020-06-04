@@ -64,6 +64,8 @@ namespace RX
     void clean();
     void recreateSwapchain();
 
+    void initRayTracing();
+
     std::shared_ptr<Window> m_window;
 
     // Destruction through RAII for following members:
@@ -93,6 +95,8 @@ namespace RX
     PhysicalDevice m_physicalDevice;
     QueueManager m_queueManager;
     std::vector<VkFence> m_imagesInFlight;
+
+    VkPhysicalDeviceRayTracingPropertiesKHR m_rayTracingProperties;
   };
 }
 

@@ -474,9 +474,9 @@ namespace RX
 
     DescriptorPoolInfo descriptorPoolInfo{ };
     descriptorPoolInfo.device = m_device.get();
-    descriptorPoolInfo.swapchainImagesCount = m_swapchain.getInfo().images.size();
-    descriptorPoolInfo.types = { VK_DESCRIPTOR_TYPE_UNIFORM_BUFFER, VK_DESCRIPTOR_TYPE_COMBINED_IMAGE_SAMPLER };
-    descriptorPoolInfo.maxSets = m_models.size() * descriptorPoolInfo.swapchainImagesCount; // TODO: Set this to the number of models in your scene.
+    uint32_t swapchainImagesCount = m_swapchain.getInfo().images.size();
+    descriptorPoolInfo.poolSizes = { { VK_DESCRIPTOR_TYPE_UNIFORM_BUFFER, swapchainImagesCount }, { VK_DESCRIPTOR_TYPE_COMBINED_IMAGE_SAMPLER, swapchainImagesCount } };
+    descriptorPoolInfo.maxSets = m_models.size() * swapchainImagesCount;
 
     m_descriptorPool.initialize(descriptorPoolInfo);
 

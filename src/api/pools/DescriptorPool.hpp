@@ -8,8 +8,7 @@ namespace RX
   struct DescriptorPoolInfo
   {
     VkDevice device;
-    size_t swapchainImagesCount;
-    std::vector<VkDescriptorType> types;
+    std::vector<VkDescriptorPoolSize> poolSizes;
     uint32_t maxSets;
   };
 

@@ -73,6 +73,13 @@ namespace RX
     colorBlending.blendConstants[2] = 0.0f;
     colorBlending.blendConstants[3] = 0.0f;
 
+    std::array<VkDynamicState, 2> dynamicStates{ VK_DYNAMIC_STATE_VIEWPORT, VK_DYNAMIC_STATE_SCISSOR };
+
+    VkPipelineDynamicStateCreateInfo dynamicStateInfo{ };
+    dynamicStateInfo.sType = VK_STRUCTURE_TYPE_PIPELINE_DYNAMIC_STATE_CREATE_INFO;
+    dynamicStateInfo.dynamicStateCount = static_cast<uint32_t>(dynamicStates.size());
+    dynamicStateInfo.pDynamicStates = dynamicStates.data();
+
     VkPipelineLayoutCreateInfo pipelineLayoutInfo{ };
     pipelineLayoutInfo.sType = VK_STRUCTURE_TYPE_PIPELINE_LAYOUT_CREATE_INFO;
     pipelineLayoutInfo.setLayoutCount = 1;
@@ -110,6 +117,7 @@ namespace RX
     createInfo.renderPass = m_info.renderPass;
     createInfo.subpass = 0;
     createInfo.basePipelineHandle = VK_NULL_HANDLE;
+    createInfo.pDynamicState = &dynamicStateInfo;
 
     VK_CREATE(vkCreateGraphicsPipelines(m_info.device, VK_NULL_HANDLE, 1, &createInfo, nullptr, &m_pipeline), "graphics pipeline");
   }

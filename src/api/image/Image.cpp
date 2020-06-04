@@ -89,14 +89,17 @@ namespace RX
     else
       RX_ERROR("Failed to transition image layout.");
 
-    vkCmdPipelineBarrier
-    (
+    vkCmdPipelineBarrier(
       commandBuffer.getFront(),
-      sourceStage, destinationStage,
+      sourceStage,
+      destinationStage,
       0,
-      0, nullptr,
-      0, nullptr,
-      1, &barrier
+      0,
+      nullptr,
+      0,
+      nullptr,
+      1,
+      &barrier
     );
 
     commandBuffer.end();

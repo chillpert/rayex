@@ -1,45 +1,20 @@
 #ifndef GUI_HPP
 #define GUI_HPP
 
-#include "Surface.hpp"
-#include "QueueManager.hpp"
-#include "RenderPass.hpp"
-#include "CommandPool.hpp"
-
 namespace RX
 {
   class Gui
   {
   public:
-    Gui() = delete;
     ~Gui();
 
-    void initialize(
-      VkInstance instance, 
-      VkPhysicalDevice physicalDevice, 
-      VkDevice device, 
-      QueueManager& queueManager,
-      VkDescriptorPool descriptorPool, 
-      Surface& surface, 
-      VkRenderPass renderPass,
-      SDL_Window* window,
-      uint32_t imageCount
-    );
-
-    void beginRender();
+    void initialize();
+    void begin();
     void render();
-    void endRender(VkDevice device, QueueManager& queueManager, VkRenderPass renderPass, VkFramebuffer framebuffer);
+    void end();
 
-    void renderDemo();
-
-    void clean();
+    void destroy();
     void recreate();
-
-  private:
-    ImGui_ImplVulkanH_Window m_mainWindowData;
-    ImDrawData* m_drawData;
-    SDL_Window* m_window;
-    CommandPool m_commandPool;
   };
 }
 

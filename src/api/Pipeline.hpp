@@ -26,7 +26,7 @@ namespace RX
 
     inline VkPipeline get() { return m_pipeline; }
     inline VkPipelineLayout getLayout() { return m_layout; }
-    inline PipelineInfo getInfo() { return m_info; }
+    inline PipelineInfo& getInfo() { return m_info; }
 
     void initialize(PipelineInfo& info);
     void destroy();

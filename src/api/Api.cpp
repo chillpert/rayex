@@ -169,7 +169,7 @@ namespace RX
       framebuffer.destroy();
 
     m_swapchainCmdBuffers.free();
-    m_pipeline.destroy();
+    //m_pipeline.destroy();
     m_renderPass.destroy();
 
     for (ImageView& imageView : m_swapchainImageViews)
@@ -190,7 +190,7 @@ namespace RX
     // Image views for swapchain images
     initSwapchainImageViews();
     initRenderPass();
-    initPipeline(false);
+    //initPipeline(false);
     initDepthBuffering();
     initSwapchainFramebuffers();
     initModels(false);
@@ -557,6 +557,19 @@ namespace RX
 
       vkCmdBindPipeline(m_swapchainCmdBuffers.get()[imageIndex], VK_PIPELINE_BIND_POINT_GRAPHICS, m_pipeline.get());
 
+      // Dynamic states
+      VkViewport viewport = m_pipeline.getInfo().viewport;
+      viewport.width = m_window->getProperties().getWidth();
+      viewport.height = m_window->getProperties().getHeight();
+
+      vkCmdSetViewport(m_swapchainCmdBuffers.get()[imageIndex], 0, 1, &viewport);
+
+      VkRect2D scissor = m_pipeline.getInfo().scissor;
+      scissor.extent = m_window->getExtent();
+
+      vkCmdSetScissor(m_swapchainCmdBuffers.get()[imageIndex], 0, 1, &scissor);
+
+      // Draw models
       for (std::shared_ptr<Model> model : m_models)
       {
         VkBuffer vertexBuffers[] = { model->m_vertexBuffer.get() };

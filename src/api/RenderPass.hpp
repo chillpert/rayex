@@ -9,7 +9,7 @@ namespace RX
   {
     VkPhysicalDevice physicalDevice;
     VkDevice device;
-    VkFormat surfaceFormat; // Should be the same as the surface format.
+    VkFormat surfaceFormat;
     VkFormat depthFormat;
     VkImageLayout initialLayout = VK_IMAGE_LAYOUT_UNDEFINED;
     VkImageLayout finalLayout = VK_IMAGE_LAYOUT_PRESENT_SRC_KHR;

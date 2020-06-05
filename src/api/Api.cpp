@@ -63,7 +63,9 @@ namespace RX
 
   bool Api::render()
   {
+#ifdef RX_GUI
     m_gui.render();
+#endif RX_GUI
 
     static size_t currentFrame = 0;
 
@@ -113,8 +115,17 @@ namespace RX
     submitInfo.waitSemaphoreCount = 1;
     submitInfo.pWaitSemaphores = waitSemaphores;
     submitInfo.pWaitDstStageMask = waitStages;
-    submitInfo.commandBufferCount = 1;
-    submitInfo.pCommandBuffers = &m_swapchainCmdBuffers.get()[imageIndex];
+
+    VkCommandBuffer commandBuffers[] =
+    { 
+      m_swapchainCmdBuffers.get()[imageIndex], 
+#ifdef RX_GUI
+      m_gui.getCommandBuffer().get()[imageIndex] 
+#endif
+    };
+
+    submitInfo.commandBufferCount = sizeof(commandBuffers) / sizeof(commandBuffers[0]);
+    submitInfo.pCommandBuffers = commandBuffers;
 
     VkSemaphore signalSemaphores[] = { m_finishedRenderSemaphores[currentFrame].get() };
     submitInfo.signalSemaphoreCount = 1;
@@ -122,6 +133,11 @@ namespace RX
 
     // Reset the signaled state of the current frame's fence to the unsignaled one.
     vkResetFences(m_device.get(), 1, &m_inFlightFences[currentFrame].get());
+
+#ifdef RX_GUI
+    m_gui.beginRenderPass(imageIndex);
+    m_gui.endRenderPass(imageIndex);
+#endif
 
     // Submits / executes the current image's / framebuffer's command buffer.
     m_queueManager.submit(submitInfo, m_inFlightFences[currentFrame].get());
@@ -138,12 +154,8 @@ namespace RX
 
     presentInfo.pImageIndices = &imageIndex;
 
-    m_gui.beginRenderPass(imageIndex);
-    m_gui.endRenderPass(imageIndex);
-
     // Tell the presentation engine that the current image is ready.
     m_queueManager.present(presentInfo);
-
 
     currentFrame = (currentFrame + 1) % maxFramesInFlight;
 
@@ -212,6 +224,20 @@ namespace RX
     initSwapchainCmdBuffers();
     recordSwapchainCommandBuffers();
 
+#ifdef RX_GUI
+    m_gui.getInfo().minImageCount = m_surface.getInfo().capabilities.minImageCount + 1;
+    m_gui.getInfo().imageCount = static_cast<uint32_t>(m_swapchain.getInfo().images.size());
+    m_gui.getInfo().swapchainImageFormat = m_swapchain.getInfo().surfaceFormat;
+    m_gui.getInfo().swapchainImageExtent = m_swapchain.getInfo().extent;
+
+    std::vector<VkImageView> temp(m_swapchainImageViews.size());
+
+    for (size_t i = 0; i < m_swapchainImageViews.size(); ++i)
+      temp[i] = m_swapchainImageViews[i].get();
+
+    m_gui.getInfo().swapchainImageViews = temp;
+    m_gui.recreate();
+#endif
     RX_LOG("Finished swapchain recreation.");
   }
 
@@ -569,7 +595,9 @@ namespace RX
 
     guiInfo.swapchainImageViews = temp;
 
+#ifdef RX_GUI
     m_gui.initialize(guiInfo);
+#endif
   }
 
   void Api::recordSwapchainCommandBuffers()

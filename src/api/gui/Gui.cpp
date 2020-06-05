@@ -3,6 +3,9 @@
 
 namespace RX
 {
+  CommandBufferInfo commandBufferInfo{ };
+  ImGui_ImplVulkan_InitInfo init_info{ };
+
   static void check_vk_result(VkResult err)
   {
     if (err == 0)
@@ -27,8 +30,7 @@ namespace RX
     ImGui::StyleColorsDark();
 
     ImGui_ImplSDL2_InitForVulkan(info.window);
-
-    ImGui_ImplVulkan_InitInfo init_info{ };
+    
     init_info.Instance = info.instance;
     init_info.PhysicalDevice = info.physicalDevice;
     init_info.Device = info.device;
@@ -45,53 +47,10 @@ namespace RX
     initRenderPass();
     ImGui_ImplVulkan_Init(&init_info, m_renderPass);
 
-    // Command pool dedicated for ImGui.
-    CommandPoolInfo commandPoolInfo{ };
-    commandPoolInfo.device = info.device;
-    commandPoolInfo.queueFamilyIndex = info.queueFamilyIndex; // This should definitely be the a graphics queue family index.
-    commandPoolInfo.createFlags = VK_COMMAND_POOL_CREATE_RESET_COMMAND_BUFFER_BIT;
-
-    m_commandPool.initialize(commandPoolInfo);
-
-    // Fonts
-    CommandBufferInfo singleTimeCommandBufferInfo{ };
-    singleTimeCommandBufferInfo.device = info.device;
-    singleTimeCommandBufferInfo.commandPool = m_commandPool.get();
-    singleTimeCommandBufferInfo.queue = info.queue;
-    singleTimeCommandBufferInfo.freeAutomatically = true;
-    singleTimeCommandBufferInfo.componentName = "command buffer for ImGui font creation";
-
-    CommandBuffer commandBuffer;
-    commandBuffer.initialize(singleTimeCommandBufferInfo);
-    commandBuffer.begin();
-      ImGui_ImplVulkan_CreateFontsTexture(commandBuffer.getFront());
-    commandBuffer.end();
-    
-    // Create command buffers for each image in the swapchain.
-    CommandBufferInfo commandBufferInfo{ };
-    commandBufferInfo.device = info.device;
-    commandBufferInfo.commandPool = m_commandPool.get();
-    commandBufferInfo.queue = info.queue; // A graphics queue from the index of the command pool.
-    commandBufferInfo.commandBufferCount = info.imageCount;
-    commandBufferInfo.level = VK_COMMAND_BUFFER_LEVEL_PRIMARY;
-    commandBufferInfo.freeAutomatically = false;
-    //commandBufferInfo.submitAutomatically = false;
-    commandBufferInfo.usageFlags = VK_COMMAND_BUFFER_USAGE_ONE_TIME_SUBMIT_BIT;
-    commandBufferInfo.componentName = "command buffers for ImGui";
-
-    m_commandBuffers.initialize(commandBufferInfo);
-
-    FramebufferInfo framebufferInfo{ };
-    framebufferInfo.device = info.device;
-    framebufferInfo.renderPass = m_renderPass;
-    framebufferInfo.extent = info.swapchainImageExtent;
-
-    m_framebuffers.resize(info.imageCount);
-    for (size_t i = 0; i < m_framebuffers.size(); ++i)
-    {
-      framebufferInfo.imageView = info.swapchainImageViews[i];
-      m_framebuffers[i].initialize(framebufferInfo);
-    }
+    initCommandPool();
+    initFonts();
+    initCommandBuffers();
+    initFramebuffers();
   }
 
   void Gui::render()
@@ -106,7 +65,6 @@ namespace RX
   void Gui::beginRenderPass(int index)
   {
     {
-      m_commandPool.reset();   
       m_commandBuffers.begin(index);
     }
     {
@@ -125,7 +83,6 @@ namespace RX
     }
   }
 
-
   void Gui::endRenderPass(int index)
   {
     ImGui_ImplVulkan_RenderDrawData(ImGui::GetDrawData(), m_commandBuffers.get()[index]);
@@ -133,25 +90,48 @@ namespace RX
     vkCmdEndRenderPass(m_commandBuffers.get()[index]);
 
     m_commandBuffers.end(index);
-
-
   }
 
   void Gui::recreate()
   {
+    // Clean up
+    m_commandBuffers.free();
+    m_commandPool.destroy(); // TODO unncessary
+    
+    for (Framebuffer& framebuffer : m_framebuffers)
+      framebuffer.destroy();
 
+    m_descriptorPool.destroy();
+
+    destroy();
+
+    // Re-initialize
+    initialize(m_info);
   }
 
   void Gui::destroy()
   {
-    // TODO:
+    vkDestroyRenderPass(m_info.device, m_renderPass, nullptr);
+    ImGui_ImplVulkan_Shutdown();
+    ImGui_ImplSDL2_Shutdown();
+    ImGui::DestroyContext();
+  }
+
+  void Gui::initCommandPool()
+  {
+    CommandPoolInfo commandPoolInfo{ };
+    commandPoolInfo.device = m_info.device;
+    commandPoolInfo.queueFamilyIndex = m_info.queueFamilyIndex; // This should definitely be the a graphics queue family index.
+    commandPoolInfo.createFlags = VK_COMMAND_POOL_CREATE_RESET_COMMAND_BUFFER_BIT;
+
+    m_commandPool.initialize(commandPoolInfo);
   }
 
   void Gui::initDescriptorPool()
   {
     DescriptorPoolInfo info{ };
     info.device = m_info.device;
-    info.maxSets = m_info.imageCount; // TODO: might be wrong.
+    info.maxSets = m_info.imageCount;
     info.poolSizes =
     {
       { VK_DESCRIPTOR_TYPE_SAMPLER, 1000 },
@@ -209,5 +189,51 @@ namespace RX
     info.pDependencies = &dependency;
 
     VK_ASSERT(vkCreateRenderPass(m_info.device, &info, nullptr, &m_renderPass), "Failed to create render pass for GUI.");
+  }
+
+  void Gui::initFonts()
+  {
+    CommandBufferInfo singleTimeCommandBufferInfo{ };
+    singleTimeCommandBufferInfo.device = m_info.device;
+    singleTimeCommandBufferInfo.commandPool = m_commandPool.get();
+    singleTimeCommandBufferInfo.queue = m_info.queue;
+    singleTimeCommandBufferInfo.freeAutomatically = true;
+    singleTimeCommandBufferInfo.componentName = "command buffer for ImGui font creation";
+
+    CommandBuffer commandBuffer;
+    commandBuffer.initialize(singleTimeCommandBufferInfo);
+    commandBuffer.begin();
+    ImGui_ImplVulkan_CreateFontsTexture(commandBuffer.getFront());
+    commandBuffer.end();
+  }
+
+  void Gui::initCommandBuffers()
+  {
+    // Create command buffers for each image in the swapchain.
+    commandBufferInfo.device = m_info.device;
+    commandBufferInfo.commandPool = m_commandPool.get();
+    commandBufferInfo.queue = m_info.queue; // A graphics queue from the index of the command pool.
+    commandBufferInfo.commandBufferCount = m_info.imageCount;
+    commandBufferInfo.level = VK_COMMAND_BUFFER_LEVEL_PRIMARY;
+    commandBufferInfo.freeAutomatically = false;
+    commandBufferInfo.usageFlags = 0;
+    commandBufferInfo.componentName = "command buffers for ImGui";
+
+    m_commandBuffers.initialize(commandBufferInfo);
+  }
+
+  void Gui::initFramebuffers()
+  {
+    FramebufferInfo framebufferInfo{ };
+    framebufferInfo.device = m_info.device;
+    framebufferInfo.renderPass = m_renderPass;
+    framebufferInfo.extent = m_info.swapchainImageExtent;
+
+    m_framebuffers.resize(m_info.imageCount);
+    for (size_t i = 0; i < m_framebuffers.size(); ++i)
+    {
+      framebufferInfo.imageView = m_info.swapchainImageViews[i];
+      m_framebuffers[i].initialize(framebufferInfo);
+    }
   }
 }

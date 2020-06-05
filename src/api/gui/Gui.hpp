@@ -34,9 +34,10 @@ namespace RX
   public:
     ~Gui();
 
-    inline VkCommandBuffer& getCommandBuffer(size_t index) { return m_commandBuffers.get()[index]; }
+    inline GuiInfo& getInfo() { return m_info; }
+    inline CommandBuffer& getCommandBuffer() { return m_commandBuffers; }
 
-    void initialize(GuiInfo& gui);
+    void initialize(GuiInfo& info);
     void render();
     void beginRenderPass(int index);
     void endRenderPass(int index);
@@ -47,15 +48,18 @@ namespace RX
   private:
     void initDescriptorPool();
     void initRenderPass();
+    void initCommandPool();
+    void initFonts();
+    void initCommandBuffers();
+    void initFramebuffers();
 
   private:
     GuiInfo m_info;
 
     DescriptorPool m_descriptorPool;
-    VkRenderPass m_renderPass;
-
     CommandPool m_commandPool;
     CommandBuffer m_commandBuffers;
+    VkRenderPass m_renderPass;
     std::vector<Framebuffer> m_framebuffers;
   };
 }

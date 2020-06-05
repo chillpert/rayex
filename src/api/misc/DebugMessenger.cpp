@@ -97,7 +97,7 @@ namespace RX
 
     if (messageSeverity & VK_DEBUG_UTILS_MESSAGE_SEVERITY_ERROR_BIT_EXT)
     {
-      //RX_ERROR("Fatal error");
+      RX_ERROR("Fatal error");
     }
 
     return VK_FALSE;

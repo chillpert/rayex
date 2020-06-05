@@ -92,7 +92,9 @@ namespace RX
     Image m_depthImage;
     ImageView m_depthImageView;
 
+#ifdef RX_GUI
     Gui m_gui;
+#endif
 
     // No destruction necessary for following members:
     PhysicalDevice m_physicalDevice;

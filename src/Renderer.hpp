@@ -8,7 +8,8 @@ namespace RX
   class Renderer
   {
   public:
-    //RX_API Renderer();
+    RX_API Renderer();
+    RX_API Renderer(std::shared_ptr<Window> window);
     RX_API Renderer(std::shared_ptr<Window> window, std::unique_ptr<Gui> gui);
     RX_API ~Renderer() = default;
 

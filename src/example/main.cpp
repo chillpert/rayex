@@ -9,6 +9,8 @@ int width = 900;
 int height = 600;
 Camera cam(width, height);
 
+float speed = 0.0f;
+
 // Create your own custom window class, to propagate events to your own event system.
 class CustomWindow : public Window
 {
@@ -152,7 +154,11 @@ class CustomGui : public Gui
 public:
   void render() override
   {
-    ImGui::ShowDemoWindow();
+    if (ImGui::Begin("Settings"))
+    {
+      ImGui::SliderFloat("Speed", &speed, 0.0f, 2.0f);
+    }
+    ImGui::End();
   }
 };
 
@@ -162,7 +168,8 @@ int main(int argc, char* argv[])
   WindowProperties props(width, height, "Example", WINDOW_RESIZABLE | WINDOW_VISIBLE);
   // Now create the actual window using the window properties from above.
   auto myWindow = std::make_shared<CustomWindow>(props);
-  std::unique_ptr<Gui> myGui = std::make_unique<Gui>();
+  // Setup your own ImGui based Gui.
+  auto myGui = std::make_unique<CustomGui>();
 
   // Create the renderer object.
   Renderer renderer(myWindow, std::move(myGui));
@@ -185,9 +192,7 @@ int main(int argc, char* argv[])
     // Update the camera so that key inputs will have an effect on it.
     cam.update();
     
-    // Rotate the model using the provided timer functions.
-    static float speed = 0.1f;
-    //dlore->m_model = glm::rotate(dlore->m_model, glm::radians(90.0f) * Time::getDeltaTime() * speed, glm::vec3(0.0f, 1.0f, 0.0f));
+    dlore->m_model = glm::rotate(dlore->m_model, glm::radians(90.0f) * Time::getDeltaTime() * speed, glm::vec3(0.0f, 1.0f, 0.0f));
     dlore->m_view = cam.getViewMatrix();
     dlore->m_projection = cam.getProjectionMatrix();
     dlore->m_cameraPos = cam.m_position;

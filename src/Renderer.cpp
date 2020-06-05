@@ -2,13 +2,17 @@
 
 namespace RX
 {
-  /*
   Renderer::Renderer() :
     m_window(std::make_shared<Window>()),
-    m_api(m_window, std::make_shared<Gui>(nullptr)),
+    m_api(m_window),
     m_initialized(false),
     m_running(true) { }
-  */
+
+  Renderer::Renderer(std::shared_ptr<Window> window) :
+    m_window(window),
+    m_api(window),
+    m_initialized(false),
+    m_running(true) { }
 
   Renderer::Renderer(std::shared_ptr<Window> window, std::unique_ptr<Gui> gui) :
     m_window(window),

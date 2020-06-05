@@ -31,6 +31,7 @@ namespace RX
   class Api
   {
   public:
+    Api(std::shared_ptr<Window> window);
     Api(std::shared_ptr<Window> window, std::unique_ptr<Gui> gui);
     RX_API ~Api();
 

@@ -5,8 +5,9 @@ namespace RX
   // Defines the maximum amount of frames that will be processed concurrently.
   const size_t maxFramesInFlight = 2;
 
-  Api::Api(std::shared_ptr<Window> window) :
-    m_window(window) { }
+  Api::Api(std::shared_ptr<Window> window, std::shared_ptr<Gui> gui) :
+    m_window(window),
+    m_gui(gui) { }
 
   Api::~Api()
   {
@@ -63,9 +64,12 @@ namespace RX
 
   bool Api::render()
   {
-#ifdef RX_GUI
-    m_gui.render();
-#endif RX_GUI
+    if (m_gui != nullptr)
+    {
+      m_gui->beginRender();
+      m_gui->render();
+      m_gui->endRender();
+    }
 
     static size_t currentFrame = 0;
 
@@ -116,16 +120,12 @@ namespace RX
     submitInfo.pWaitSemaphores = waitSemaphores;
     submitInfo.pWaitDstStageMask = waitStages;
 
-    VkCommandBuffer commandBuffers[] =
-    { 
-      m_swapchainCmdBuffers.get()[imageIndex], 
-#ifdef RX_GUI
-      m_gui.getCommandBuffer().get()[imageIndex] 
-#endif
-    };
+    std::vector<VkCommandBuffer> commandBuffers = { m_swapchainCmdBuffers.get()[imageIndex] };
+    if (m_gui != nullptr)
+      commandBuffers.push_back(m_gui->getCommandBuffer().get()[imageIndex]);
 
-    submitInfo.commandBufferCount = sizeof(commandBuffers) / sizeof(commandBuffers[0]);
-    submitInfo.pCommandBuffers = commandBuffers;
+    submitInfo.commandBufferCount = static_cast<uint32_t>(commandBuffers.size());
+    submitInfo.pCommandBuffers = commandBuffers.data();
 
     VkSemaphore signalSemaphores[] = { m_finishedRenderSemaphores[currentFrame].get() };
     submitInfo.signalSemaphoreCount = 1;
@@ -134,10 +134,11 @@ namespace RX
     // Reset the signaled state of the current frame's fence to the unsignaled one.
     vkResetFences(m_device.get(), 1, &m_inFlightFences[currentFrame].get());
 
-#ifdef RX_GUI
-    m_gui.beginRenderPass(imageIndex);
-    m_gui.endRenderPass(imageIndex);
-#endif
+    if (m_gui != nullptr)
+    {
+      m_gui->beginRenderPass(imageIndex);
+      m_gui->endRenderPass(imageIndex);
+    }
 
     // Submits / executes the current image's / framebuffer's command buffer.
     m_queueManager.submit(submitInfo, m_inFlightFences[currentFrame].get());
@@ -224,20 +225,22 @@ namespace RX
     initSwapchainCmdBuffers();
     recordSwapchainCommandBuffers();
 
-#ifdef RX_GUI
-    m_gui.getInfo().minImageCount = m_surface.getInfo().capabilities.minImageCount + 1;
-    m_gui.getInfo().imageCount = static_cast<uint32_t>(m_swapchain.getInfo().images.size());
-    m_gui.getInfo().swapchainImageFormat = m_swapchain.getInfo().surfaceFormat;
-    m_gui.getInfo().swapchainImageExtent = m_swapchain.getInfo().extent;
+    if (m_gui != nullptr)
+    {
+      m_gui->getInfo().minImageCount = m_surface.getInfo().capabilities.minImageCount + 1;
+      m_gui->getInfo().imageCount = static_cast<uint32_t>(m_swapchain.getInfo().images.size());
+      m_gui->getInfo().swapchainImageFormat = m_swapchain.getInfo().surfaceFormat;
+      m_gui->getInfo().swapchainImageExtent = m_swapchain.getInfo().extent;
 
-    std::vector<VkImageView> temp(m_swapchainImageViews.size());
+      std::vector<VkImageView> temp(m_swapchainImageViews.size());
 
-    for (size_t i = 0; i < m_swapchainImageViews.size(); ++i)
-      temp[i] = m_swapchainImageViews[i].get();
+      for (size_t i = 0; i < m_swapchainImageViews.size(); ++i)
+        temp[i] = m_swapchainImageViews[i].get();
 
-    m_gui.getInfo().swapchainImageViews = temp;
-    m_gui.recreate();
-#endif
+      m_gui->getInfo().swapchainImageViews = temp;
+      m_gui->recreate();
+    }
+
     RX_LOG("Finished swapchain recreation.");
   }
 
@@ -324,6 +327,11 @@ namespace RX
     renderPassInfo.device = m_device.get();
     renderPassInfo.surfaceFormat = m_surface.getInfo().format;
     renderPassInfo.depthFormat = getSupportedDepthFormat(m_physicalDevice.get());
+    
+    if (m_gui == nullptr)
+      renderPassInfo.guiEnabled = false;
+    else
+      renderPassInfo.guiEnabled = true;
 
     m_renderPass.initialize(renderPassInfo);
   }
@@ -595,9 +603,8 @@ namespace RX
 
     guiInfo.swapchainImageViews = temp;
 
-#ifdef RX_GUI
-    m_gui.initialize(guiInfo);
-#endif
+    if (m_gui != nullptr)
+      m_gui->initialize(guiInfo);
   }
 
   void Api::recordSwapchainCommandBuffers()

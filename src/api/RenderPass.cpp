@@ -19,11 +19,11 @@ namespace RX
     colorAttachmentDescription.stencilLoadOp = VK_ATTACHMENT_LOAD_OP_DONT_CARE;
     colorAttachmentDescription.stencilStoreOp = VK_ATTACHMENT_STORE_OP_DONT_CARE;
     colorAttachmentDescription.initialLayout = m_info.initialLayout;
-#ifdef RX_GUI
-    colorAttachmentDescription.finalLayout = VK_IMAGE_LAYOUT_COLOR_ATTACHMENT_OPTIMAL;
-#else
-    colorAttachmentDescription.finalLayout = m_info.finalLayout;
-#endif
+
+    if (m_info.guiEnabled)
+      colorAttachmentDescription.finalLayout = VK_IMAGE_LAYOUT_COLOR_ATTACHMENT_OPTIMAL;
+    else
+      colorAttachmentDescription.finalLayout = m_info.finalLayout;
 
     VkAttachmentReference colorAttachmentReference{ };
     colorAttachmentReference.attachment = 0;

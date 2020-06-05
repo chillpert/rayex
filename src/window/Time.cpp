@@ -57,5 +57,7 @@ namespace RX
 
     m_deltaTime = current_time - m_prevTime;
     m_prevTime = current_time;
+
+    //std::cout << "Frametime: " << m_deltaTime << std::endl;
   }
 }

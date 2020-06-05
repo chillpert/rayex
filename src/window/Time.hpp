@@ -24,6 +24,7 @@ namespace RX
     float m_frames;
 
     std::vector<int> m_allFrames;
+    std::vector<float> m_allFrametimes;
   };
 }
 

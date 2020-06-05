@@ -13,6 +13,7 @@ namespace RX
     VkFormat depthFormat;
     VkImageLayout initialLayout = VK_IMAGE_LAYOUT_UNDEFINED;
     VkImageLayout finalLayout = VK_IMAGE_LAYOUT_PRESENT_SRC_KHR;
+    bool guiEnabled;
   };
 
   struct RenderPassBeginInfo

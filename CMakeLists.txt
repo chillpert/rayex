@@ -5,7 +5,6 @@ message("Using compiler: " + ${CMAKE_CXX_COMPILER_ID})
 
 option(BUILD_EXAMPLES "Build examples" ON)
 option(TEST_BUILD "Test build" OFF)
-option(IMGUI "Use imgui" ON)
 
 if(NOT CMAKE_BUILD_TYPE)
   message("MX: Build type not set. Continuing with: Debug")
@@ -38,10 +37,6 @@ endif()
 
 # RESOURCES
 add_compile_definitions(RX_PROJECT_PATH="${PROJECT_SOURCE_DIR}/")
-
-if(IMGUI)
-  add_compile_definitions(RX_GUI)
-endif()
 
 if(TEST_BUILD)
   add_compile_definitions(RX_TEST_BUILD)

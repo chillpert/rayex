@@ -1,6 +1,7 @@
 #include "Renderer.hpp"
 #include "Camera.hpp"
 #include "Model.hpp"
+#include "Gui.hpp"
 
 using namespace RX;
 
@@ -146,14 +147,24 @@ public:
   }
 };
 
+class CustomGui : public Gui
+{
+  void render() override
+  {
+    ImGui::ShowDemoWindow();
+  }
+};
+
 int main(int argc, char* argv[])
 {
   // Define the window's properties according to your preferences.
   WindowProperties props(width, height, "Example", WINDOW_RESIZABLE | WINDOW_VISIBLE);
   // Now create the actual window using the window properties from above.
   auto myWindow = std::make_shared<CustomWindow>(props);
+  auto myGui = std::make_shared<CustomGui>();
+
   // Create the renderer object.
-  Renderer renderer(myWindow);
+  Renderer renderer(myWindow, myGui);
   
   auto dlore = std::make_shared<Model>();
   dlore->m_pathToTexture = RX_TEXTURE_PATH "awpdlore.png";

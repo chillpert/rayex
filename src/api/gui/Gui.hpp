@@ -32,13 +32,15 @@ namespace RX
   class Gui
   {
   public:
-    ~Gui();
+    RX_API virtual ~Gui();
 
     inline GuiInfo& getInfo() { return m_info; }
     inline CommandBuffer& getCommandBuffer() { return m_commandBuffers; }
 
     void initialize(GuiInfo& info);
-    void render();
+    void beginRender();
+    RX_API virtual void render();
+    void endRender();
     void beginRenderPass(int index);
     void endRenderPass(int index);
 

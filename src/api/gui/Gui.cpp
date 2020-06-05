@@ -53,34 +53,39 @@ namespace RX
     initFramebuffers();
   }
 
-  void Gui::render()
+  void Gui::beginRender()
   {
     ImGui_ImplVulkan_NewFrame();
     ImGui_ImplSDL2_NewFrame(m_info.window);
     ImGui::NewFrame();
+  }
+
+  void Gui::render()
+  {
     ImGui::ShowDemoWindow();
+  }
+
+  void Gui::endRender()
+  {
     ImGui::Render();
   }
 
   void Gui::beginRenderPass(int index)
   {
-    {
-      m_commandBuffers.begin(index);
-    }
-    {
-      VkRenderPassBeginInfo info{ };
-      info.sType = VK_STRUCTURE_TYPE_RENDER_PASS_BEGIN_INFO;
-      info.renderPass = m_renderPass;
-      info.framebuffer = m_framebuffers[index].get();
-      info.renderArea.extent = m_info.swapchainImageExtent;
-      info.clearValueCount = 1;
+    m_commandBuffers.begin(index);
 
-      VkClearValue clearValue;
-      clearValue.color = { 0.5f, 0.5, 0.5f, 1.0f };
-      info.pClearValues = &clearValue;
+    VkRenderPassBeginInfo info{ };
+    info.sType = VK_STRUCTURE_TYPE_RENDER_PASS_BEGIN_INFO;
+    info.renderPass = m_renderPass;
+    info.framebuffer = m_framebuffers[index].get();
+    info.renderArea.extent = m_info.swapchainImageExtent;
+    info.clearValueCount = 1;
 
-      vkCmdBeginRenderPass(m_commandBuffers.get()[index], &info, VK_SUBPASS_CONTENTS_INLINE);
-    }
+    VkClearValue clearValue;
+    clearValue.color = { 0.5f, 0.5, 0.5f, 1.0f };
+    info.pClearValues = &clearValue;
+
+    vkCmdBeginRenderPass(m_commandBuffers.get()[index], &info, VK_SUBPASS_CONTENTS_INLINE);
   }
 
   void Gui::endRenderPass(int index)

@@ -31,7 +31,7 @@ namespace RX
   class Api
   {
   public:
-    Api(std::shared_ptr<Window> window, std::shared_ptr<Gui> gui = nullptr);
+    Api(std::shared_ptr<Window> window, std::unique_ptr<Gui> gui);
     RX_API ~Api();
 
     void initialize();
@@ -92,7 +92,7 @@ namespace RX
     Image m_depthImage;
     ImageView m_depthImageView;
 
-    std::shared_ptr<Gui> m_gui;
+    std::unique_ptr<Gui> m_gui;
 
     // No destruction necessary for following members:
     PhysicalDevice m_physicalDevice;

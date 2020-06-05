@@ -27,8 +27,6 @@ namespace RX
     std::vector<VkImageView> swapchainImageViews;
   };
 
-  // TODO: implement ImGui_ImplVulkan_SetMinImageCount in case a swapchain suddenly has different MinImageCount.
-
   class Gui
   {
   public:
@@ -37,14 +35,15 @@ namespace RX
     inline GuiInfo& getInfo() { return m_info; }
     inline CommandBuffer& getCommandBuffer() { return m_commandBuffers; }
 
+    RX_API virtual void render();
+
     void initialize(GuiInfo& info);
     void beginRender();
-    RX_API virtual void render();
     void endRender();
     void beginRenderPass(int index);
     void endRenderPass(int index);
 
-    void destroy();
+    RX_API void destroy();
     void recreate();
 
   private:

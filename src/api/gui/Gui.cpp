@@ -3,18 +3,6 @@
 
 namespace RX
 {
-  CommandBufferInfo commandBufferInfo{ };
-  ImGui_ImplVulkan_InitInfo init_info{ };
-
-  static void check_vk_result(VkResult err)
-  {
-    if (err == 0)
-      return;
-    fprintf(stderr, "[vulkan] Error: VkResult = %d\n", err);
-    if (err < 0)
-      abort();
-  }
-
   Gui::~Gui()
   {
     destroy();
@@ -31,6 +19,7 @@ namespace RX
 
     ImGui_ImplSDL2_InitForVulkan(info.window);
     
+    ImGui_ImplVulkan_InitInfo init_info{ };
     init_info.Instance = info.instance;
     init_info.PhysicalDevice = info.physicalDevice;
     init_info.Device = info.device;
@@ -42,7 +31,6 @@ namespace RX
     init_info.Allocator = nullptr;
     init_info.MinImageCount = info.minImageCount;
     init_info.ImageCount = info.imageCount;
-    init_info.CheckVkResultFn = check_vk_result;
 
     initRenderPass();
     ImGui_ImplVulkan_Init(&init_info, m_renderPass);
@@ -116,6 +104,7 @@ namespace RX
 
   void Gui::destroy()
   {
+    std::cout << "okay\n";
     vkDestroyRenderPass(m_info.device, m_renderPass, nullptr);
     ImGui_ImplVulkan_Shutdown();
     ImGui_ImplSDL2_Shutdown();
@@ -215,6 +204,7 @@ namespace RX
   void Gui::initCommandBuffers()
   {
     // Create command buffers for each image in the swapchain.
+    CommandBufferInfo commandBufferInfo{ };
     commandBufferInfo.device = m_info.device;
     commandBufferInfo.commandPool = m_commandPool.get();
     commandBufferInfo.queue = m_info.queue; // A graphics queue from the index of the command pool.

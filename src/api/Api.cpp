@@ -5,9 +5,9 @@ namespace RX
   // Defines the maximum amount of frames that will be processed concurrently.
   const size_t maxFramesInFlight = 2;
 
-  Api::Api(std::shared_ptr<Window> window, std::shared_ptr<Gui> gui) :
+  Api::Api(std::shared_ptr<Window> window, std::unique_ptr<Gui> gui) :
     m_window(window),
-    m_gui(gui) { }
+    m_gui(std::move(gui)) { }
 
   Api::~Api()
   {

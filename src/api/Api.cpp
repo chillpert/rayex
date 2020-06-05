@@ -31,6 +31,7 @@ namespace RX
     initSwapchainFramebuffers();
     initModels();
     initSwapchainCmdBuffers();
+    initGui();
     recordSwapchainCommandBuffers();
 
     // Synchronization
@@ -62,6 +63,8 @@ namespace RX
 
   bool Api::render()
   {
+    m_gui.render();
+
     static size_t currentFrame = 0;
 
     // Wait for the current frame's fences.
@@ -135,8 +138,12 @@ namespace RX
 
     presentInfo.pImageIndices = &imageIndex;
 
+    m_gui.beginRenderPass(imageIndex);
+    m_gui.endRenderPass(imageIndex);
+
     // Tell the presentation engine that the current image is ready.
     m_queueManager.present(presentInfo);
+
 
     currentFrame = (currentFrame + 1) % maxFramesInFlight;
 
@@ -428,7 +435,6 @@ namespace RX
   {
     // Swapchain framebuffers
     FramebufferInfo framebufferInfo{ };
-    framebufferInfo.window = m_window;
     framebufferInfo.device = m_device.get();
     framebufferInfo.depthImageView = m_depthImageView.get();
     framebufferInfo.renderPass = m_renderPass.get();
@@ -540,6 +546,30 @@ namespace RX
     commandBufferInfo.componentName = "swapchain command buffers";
 
     m_swapchainCmdBuffers.initialize(commandBufferInfo);
+  }
+
+  void Api::initGui()
+  {
+    GuiInfo guiInfo{ };
+    guiInfo.window = m_window->get();
+    guiInfo.instance = m_instance.get();
+    guiInfo.physicalDevice = m_physicalDevice.get();
+    guiInfo.device = m_device.get();
+    guiInfo.queueFamilyIndex = m_queueManager.getGraphicsFamilyIndex(); 
+    guiInfo.queue = m_queueManager.getGraphicsQueue();
+    guiInfo.minImageCount = m_surface.getInfo().capabilities.minImageCount + 1;
+    guiInfo.imageCount = static_cast<uint32_t>(m_swapchain.getInfo().images.size());
+    guiInfo.swapchainImageFormat = m_swapchain.getInfo().surfaceFormat;
+    guiInfo.swapchainImageExtent = m_swapchain.getInfo().extent;
+
+    std::vector<VkImageView> temp(m_swapchainImageViews.size());
+    
+    for (size_t i = 0; i < m_swapchainImageViews.size(); ++i)
+      temp[i] = m_swapchainImageViews[i].get();
+
+    guiInfo.swapchainImageViews = temp;
+
+    m_gui.initialize(guiInfo);
   }
 
   void Api::recordSwapchainCommandBuffers()

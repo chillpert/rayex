@@ -16,6 +16,7 @@ namespace RX
     VkCommandBufferResetFlags resetFlags = VK_COMMAND_BUFFER_RESET_RELEASE_RESOURCES_BIT;
     VkCommandBufferLevel level = VK_COMMAND_BUFFER_LEVEL_PRIMARY;
     bool freeAutomatically = true;
+    bool submitAutomatically = true; // Only submits automatically if usageFlags contains ONE_TIME_SUBMIT
     const char* componentName = "command buffer(s)"; // Optional, used to give a more precise name for the object which will improve logging output.
 
     VkCommandBufferBeginInfo beginInfo = { VK_STRUCTURE_TYPE_COMMAND_BUFFER_BEGIN_INFO, nullptr, 0, nullptr }; // Ignore
@@ -27,7 +28,7 @@ namespace RX
   public:
     ~CommandBuffer();
 
-    inline std::vector<VkCommandBuffer>& get() { return m_commandBuffers; }
+    inline std::vector<VkCommandBuffer>& get() { return m_commandBuffers; } // TODO: getter where you can an index.
     inline VkCommandBuffer getFront() { return m_commandBuffers[0]; }
     inline CommandBufferInfo& getInfo() { return m_info; }
 

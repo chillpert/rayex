@@ -7,10 +7,9 @@ namespace RX
 {
 	struct FramebufferInfo
 	{
-		std::shared_ptr<Window> window;
 		VkDevice device;
-		VkImageView imageView;
-		VkImageView depthImageView;
+		VkImageView imageView; // TODO: make this an array, so that depth image view doesn't need to be passed separetly anymore.
+		VkImageView depthImageView = VK_NULL_HANDLE;
 		VkRenderPass renderPass;
 		VkExtent2D extent;
 	};

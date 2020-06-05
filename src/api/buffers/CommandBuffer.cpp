@@ -50,7 +50,7 @@ namespace RX
   {
     VK_ASSERT(vkEndCommandBuffer(m_commandBuffers[index]), "Failed to end " + m_info.componentName);
 
-    if (m_info.usageFlags & VK_COMMAND_BUFFER_USAGE_ONE_TIME_SUBMIT_BIT)
+    if (m_info.usageFlags & VK_COMMAND_BUFFER_USAGE_ONE_TIME_SUBMIT_BIT && m_info.submitAutomatically)
     {
       RX_ASSERT((m_info.queue != VK_NULL_HANDLE), "Command buffer object is one time usage, but no queue for immediate execution was specified.");
 

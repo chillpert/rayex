@@ -45,8 +45,8 @@ namespace RX
 
     void print();
 
-    void submit(VkSubmitInfo& submitInfo, VkFence fence, size_t index = 0);
-    void present(VkPresentInfoKHR& presentInfo, size_t index = 0);
+    void submit(VkSubmitInfo& submitInfo, VkFence fence, size_t index = 0); // TODO: These functions are absolutely terrible.
+    void present(VkPresentInfoKHR& presentInfo, size_t index = 0); // TODO: These functions are absolutely terrible.
 
     std::vector<uint32_t> getQueueFamilyIndicesForSwapchainAccess(); // This will probably turn out to be all the graphics and present queues which are already stored in members
 

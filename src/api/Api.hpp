@@ -59,6 +59,7 @@ namespace RX
     void initSwapchainFramebuffers();
     void initModels(bool firstRun = true);
     void initSwapchainCmdBuffers();
+    void initGui();
     void recordSwapchainCommandBuffers();
 
     void clean();
@@ -90,6 +91,8 @@ namespace RX
     std::vector<Framebuffer> m_swapchainFramebuffers;
     Image m_depthImage;
     ImageView m_depthImageView;
+
+    Gui m_gui;
 
     // No destruction necessary for following members:
     PhysicalDevice m_physicalDevice;

@@ -15,39 +15,39 @@ namespace RX
     glm::vec2 texCoord;
     glm::vec3 normal;
 
-    static std::array<VkVertexInputBindingDescription, 1> getBindingDescriptions()
+    static std::array<vk::VertexInputBindingDescription, 1> getBindingDescriptions()
     {
-      std::array<VkVertexInputBindingDescription, 1> bindindDescriptions{ };
+      std::array<vk::VertexInputBindingDescription, 1> bindindDescriptions{ };
 
       bindindDescriptions[0].binding = 0;
       bindindDescriptions[0].stride = sizeof(Vertex);
-      bindindDescriptions[0].inputRate = VK_VERTEX_INPUT_RATE_VERTEX;
+      bindindDescriptions[0].inputRate = vk::VertexInputRate::eVertex;
 
       return bindindDescriptions;
     }
 
-    static std::array<VkVertexInputAttributeDescription, 4> getAttributeDescriptions()
+    static std::array<vk::VertexInputAttributeDescription, 4> getAttributeDescriptions()
     {
-      std::array<VkVertexInputAttributeDescription, 4> attributeDescriptions{ };
+      std::array<vk::VertexInputAttributeDescription, 4> attributeDescriptions{ };
 
       attributeDescriptions[0].binding = 0;
       attributeDescriptions[0].location = 0;
-      attributeDescriptions[0].format = VK_FORMAT_R32G32B32_SFLOAT;
+      attributeDescriptions[0].format = vk::Format::eR32G32B32Sfloat;
       attributeDescriptions[0].offset = offsetof(Vertex, pos);
 
       attributeDescriptions[1].binding = 0;
       attributeDescriptions[1].location = 1;
-      attributeDescriptions[1].format = VK_FORMAT_R32G32B32_SFLOAT;
+      attributeDescriptions[1].format = vk::Format::eR32G32B32Sfloat;
       attributeDescriptions[1].offset = offsetof(Vertex, color);
 
       attributeDescriptions[2].binding = 0;
       attributeDescriptions[2].location = 2;
-      attributeDescriptions[2].format = VK_FORMAT_R32G32_SFLOAT;
+      attributeDescriptions[2].format = vk::Format::eR32G32Sfloat;
       attributeDescriptions[2].offset = offsetof(Vertex, texCoord);
 
       attributeDescriptions[3].binding = 0;
       attributeDescriptions[3].location = 3;
-      attributeDescriptions[3].format = VK_FORMAT_R32G32B32_SFLOAT;
+      attributeDescriptions[3].format = vk::Format::eR32G32B32Sfloat;
       attributeDescriptions[3].offset = offsetof(Vertex, normal);
 
       return attributeDescriptions;

@@ -11,17 +11,18 @@ namespace RX
   {
     m_info = info;
 
-    VkDescriptorSetLayoutCreateInfo createInfo{ };
-    createInfo.sType = VK_STRUCTURE_TYPE_DESCRIPTOR_SET_LAYOUT_CREATE_INFO;
+    vk::DescriptorSetLayoutCreateInfo createInfo;
     createInfo.bindingCount = static_cast<uint32_t>(m_info.layoutBindings.size());
     createInfo.pBindings = m_info.layoutBindings.data();
- 
-    VK_CREATE(vkCreateDescriptorSetLayout(m_info.device, &createInfo, nullptr, &m_layout), "descriptor set layout");
+
+    m_layout = m_info.device.createDescriptorSetLayout(createInfo);
+    if (!m_layout)
+      RX_ERROR("Failed to create descriptor set layout.");
   }
 
   void DescriptorSetLayout::destroy()
   {
-    VK_DESTROY(vkDestroyDescriptorSetLayout(m_info.device, m_layout, nullptr), "descriptor set layout");
-    m_layout = VK_NULL_HANDLE;
+    m_info.device.destroyDescriptorSetLayout(m_layout);
+    m_layout = nullptr;
   }
 }

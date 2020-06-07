@@ -13,17 +13,16 @@ namespace RX
     m_info = createInfo;
 
     // Create the buffer.
-    VkBufferCreateInfo bufferInfo{ };
-    bufferInfo.sType = VK_STRUCTURE_TYPE_BUFFER_CREATE_INFO;
+    vk::BufferCreateInfo bufferInfo;
     bufferInfo.size = m_info.deviceSize;
     bufferInfo.usage = m_info.usage;
     bufferInfo.sharingMode = m_info.sharingMode;
 
-    if (m_info.sharingMode == VK_SHARING_MODE_CONCURRENT)
+    if (m_info.sharingMode == vk::SharingMode::eConcurrent)
     {
       if (m_info.queueFamilyIndices.size() == 0)
       {
-        bufferInfo.sharingMode = VK_SHARING_MODE_EXCLUSIVE;
+        bufferInfo.sharingMode = vk::SharingMode::eExclusive;
       }
       else
       {
@@ -34,14 +33,14 @@ namespace RX
       }
     }
     
-    VK_CREATE(vkCreateBuffer(m_info.device, &bufferInfo, nullptr, &m_buffer), "vertex buffer");
+    m_buffer = m_info.device.createBuffer(bufferInfo);
+    if (!m_buffer)
+      RX_ERROR("Failed to create " + m_info.componentName);
 
     // Allocate memory for the buffer.
-    VkMemoryRequirements memRequirements;
-    vkGetBufferMemoryRequirements(createInfo.device, m_buffer, &memRequirements);
+    auto memRequirements = m_info.device.getBufferMemoryRequirements(m_buffer);
 
-    VkMemoryAllocateInfo allocInfo{ };
-    allocInfo.sType = VK_STRUCTURE_TYPE_MEMORY_ALLOCATE_INFO;
+    vk::MemoryAllocateInfo allocInfo;
     allocInfo.allocationSize = memRequirements.size;
     allocInfo.memoryTypeIndex = findMemoryType(m_info.physicalDevice, memRequirements.memoryTypeBits, createInfo.properties); 
 
@@ -51,19 +50,22 @@ namespace RX
        allocator that splits up a single allocation among many different objects by using the offset parameters 
        that we've seen in many functions.
     */
-    VK_ALLOCATE(vkAllocateMemory(createInfo.device, &allocInfo, nullptr, &m_memory), "memory for buffer");
+
+    m_memory = m_info.device.allocateMemory(allocInfo);
+    if (!m_memory)
+      RX_ERROR("Failed to allocate memory for " + m_info.componentName);
 
     // Bind the buffer to the allocated memory.
-    VK_ASSERT(vkBindBufferMemory(createInfo.device, m_buffer, m_memory, 0), "Failed to bind buffer to memory"); // TODO: expose offset (0)
+    m_info.device.bindBufferMemory(m_buffer, m_memory, 0); // TODO: expose 0
   }
   
   void Buffer::destroy()
   {
-    VK_DESTROY(vkDestroyBuffer(m_info.device, m_buffer, nullptr), m_info.componentName);
-    VK_FREE(vkFreeMemory(m_info.device, m_memory, nullptr), m_info.componentName);
+    m_info.device.destroyBuffer(m_buffer);
+    m_buffer = nullptr;
 
-    m_buffer = VK_NULL_HANDLE;
-    m_memory = VK_NULL_HANDLE;
+    m_info.device.freeMemory(m_memory);
+    m_memory = nullptr;
   }
 
   Buffer& Buffer::operator=(const Buffer& buffer)
@@ -86,10 +88,10 @@ namespace RX
 
     commandBuffer.begin();
 
-    VkBufferCopy copyRegion{};
+    vk::BufferCopy copyRegion;
     copyRegion.size = m_info.deviceSize;
 
-    vkCmdCopyBuffer(commandBuffer.getFront(), m_buffer, buffer.get(), 1, &copyRegion);
+    commandBuffer.getFront().copyBuffer(m_buffer, buffer.get(), 1, &copyRegion); // CMD
 
     commandBuffer.end();
   }
@@ -109,33 +111,26 @@ namespace RX
 
     commandBuffer.begin();
 
-    VkBufferImageCopy region{ };
+    vk::BufferImageCopy region;
     region.bufferOffset = 0;
     region.bufferRowLength = 0;
     region.bufferImageHeight = 0;
-    region.imageSubresource.aspectMask = VK_IMAGE_ASPECT_COLOR_BIT;
+    region.imageSubresource.aspectMask = vk::ImageAspectFlagBits::eColor;
     region.imageSubresource.mipLevel = 0;
     region.imageSubresource.baseArrayLayer = 0;
     region.imageSubresource.layerCount = 1;
-    region.imageOffset = { 0, 0, 0 };
+    region.imageOffset = vk::Offset3D{ 0, 0, 0 };
     region.imageExtent = image.getInfo().extent;
 
-    vkCmdCopyBufferToImage(commandBuffer.getFront(), m_buffer, image.get(), VK_IMAGE_LAYOUT_TRANSFER_DST_OPTIMAL, 1, &region);
+    commandBuffer.getFront().copyBufferToImage(m_buffer, image.get(), vk::ImageLayout::eTransferDstOptimal, 1, &region); // CMD
 
     commandBuffer.end();
   }
 
-  uint32_t Buffer::findMemoryType(VkPhysicalDevice physicalDevice, uint32_t types, VkMemoryPropertyFlags properties)
+  uint32_t Buffer::findMemoryType(vk::PhysicalDevice physicalDevice, uint32_t types, vk::MemoryPropertyFlags properties)
   {
-    static VkPhysicalDeviceMemoryProperties memoryProperties;
-    
-    static bool firstRun = true;
-    if (firstRun)
-    {
-      vkGetPhysicalDeviceMemoryProperties(physicalDevice, &memoryProperties);
-      firstRun = false;
-    }
-    
+    static vk::PhysicalDeviceMemoryProperties memoryProperties = physicalDevice.getMemoryProperties();
+
     for (uint32_t i = 0; i < memoryProperties.memoryTypeCount; ++i)
     {
       if (types & (1 << i) && (memoryProperties.memoryTypes[i].propertyFlags & properties) == properties)

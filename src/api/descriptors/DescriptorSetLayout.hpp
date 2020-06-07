@@ -7,8 +7,8 @@ namespace RX
 {
   struct DescriptorSetLayoutInfo
   {
-    VkDevice device;
-    std::vector<VkDescriptorSetLayoutBinding> layoutBindings;
+    vk::Device device;
+    std::vector<vk::DescriptorSetLayoutBinding> layoutBindings;
   };
 
   class DescriptorSetLayout
@@ -16,7 +16,7 @@ namespace RX
   public:
     ~DescriptorSetLayout();
 
-    inline VkDescriptorSetLayout get() { return m_layout; }
+    inline vk::DescriptorSetLayout get() { return m_layout; }
     inline DescriptorSetLayoutInfo getInfo() { return m_info; }
 
     // Creates the layout of the descriptor set.
@@ -24,7 +24,7 @@ namespace RX
     void destroy();
 
   private:
-    VkDescriptorSetLayout m_layout;
+    vk::DescriptorSetLayout m_layout;
     DescriptorSetLayoutInfo m_info;
 
     bool m_created = false;

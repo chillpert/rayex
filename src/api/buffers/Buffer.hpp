@@ -8,20 +8,20 @@ namespace RX
   // Custom struct for saving information related to buffer creation.
   struct BufferCreateInfo
   {
-    VkPhysicalDevice physicalDevice;
-    VkDevice device;
-    VkDeviceSize deviceSize; // The size required for the buffer.
+    vk::PhysicalDevice physicalDevice;
+    vk::Device device;
+    vk::DeviceSize deviceSize; // The size required for the buffer.
     uint32_t count; // The amount of elements in the received vector.
-    VkBufferUsageFlags usage;
-    VkSharingMode sharingMode;
-    VkMemoryPropertyFlags properties;
-    VkCommandPool commandPool;
-    VkQueue queue;
+    vk::BufferUsageFlags usage;
+    vk::SharingMode sharingMode;
+    vk::MemoryPropertyFlags properties;
+    vk::CommandPool commandPool;
+    vk::Queue queue;
     uint32_t queueFamilyIndexCount = UINT32_MAX; // Optional, if sharing mode is not concurrent.
     std::vector<uint32_t> queueFamilyIndices; // Optional, if sharing mode is not concurrent.
 
     const char* componentName = "buffer"; // Optional, if you happen to use the default buffer for another purpose you can give it a better name. This will only effect logging output.
-    VkIndexType type; // Ignore, will be filled automatically.
+    vk::IndexType type; // Ignore, will be filled automatically.
   };
 
   class Buffer
@@ -29,9 +29,9 @@ namespace RX
   public:
     RX_API ~Buffer();
 
-    inline VkBuffer get() const { return m_buffer; }
-    inline VkDeviceMemory& getMemory() { return m_memory; }
-    inline VkDeviceSize getSize() const { return m_info.deviceSize; }
+    inline vk::Buffer get() const { return m_buffer; }
+    inline vk::DeviceMemory& getMemory() { return m_memory; }
+    inline vk::DeviceSize getSize() const { return m_info.deviceSize; }
     inline BufferCreateInfo& getInfo() { return m_info; }
 
     void initialize(BufferCreateInfo& createInfo);
@@ -47,11 +47,11 @@ namespace RX
 
     RX_API void destroy();
 
-    static uint32_t findMemoryType(VkPhysicalDevice physicalDevice, uint32_t typeFilter, VkMemoryPropertyFlags properties);
+    static uint32_t findMemoryType(vk::PhysicalDevice physicalDevice, uint32_t typeFilter, vk::MemoryPropertyFlags properties);
   
   private:
-    VkBuffer m_buffer;
-    VkDeviceMemory m_memory;
+    vk::Buffer m_buffer;
+    vk::DeviceMemory m_memory;
     BufferCreateInfo m_info;
 
     bool m_created = false;

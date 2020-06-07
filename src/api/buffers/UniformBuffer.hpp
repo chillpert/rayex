@@ -16,8 +16,8 @@ namespace RX
   struct UniformBufferInfo
   {
     UniformBufferObject uniformBufferObject;
-    VkPhysicalDevice physicalDevice;
-    VkDevice device;
+    vk::PhysicalDevice physicalDevice;
+    vk::Device device;
     size_t swapchainImagesCount;
   };
 
@@ -25,7 +25,7 @@ namespace RX
   {
   public:
     inline std::vector<Buffer>& get() { return m_buffers; }
-    std::vector<VkBuffer> getRaw();
+    std::vector<vk::Buffer> getRaw();
     inline UniformBufferInfo& getInfo() { return m_info; }
 
     void initialize(UniformBufferInfo& info);

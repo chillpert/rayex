@@ -10,8 +10,8 @@ namespace RX
 
   struct QueuesInfo
   {
-    VkPhysicalDevice physicalDevice;
-    VkSurfaceKHR surface;
+    vk::PhysicalDevice physicalDevice;
+    vk::SurfaceKHR surface;
 
     size_t requestGraphicsQueueAmount = SIZE_MAX; // TODO: Not implemented yet
     size_t requestPresentQueueAmount = SIZE_MAX; // TODO: Not implemented yet
@@ -31,9 +31,9 @@ namespace RX
 
     std::vector<uint32_t> getUniqueQueueIndices(std::vector<QueueCapability> list);
 
-    VkQueue getGraphicsQueue(int queueFamilyIndex = -1);
-    VkQueue getPresentQueue(int queueFamilyIndex = -1);
-    VkQueue getTransferQueue(int queueFamilyIndex = -1);
+    vk::Queue getGraphicsQueue(int queueFamilyIndex = -1);
+    vk::Queue getPresentQueue(int queueFamilyIndex = -1);
+    vk::Queue getTransferQueue(int queueFamilyIndex = -1);
 
     inline std::vector<QueueFamily>& getQueueFamilies() { return m_queueFamilies; }
 
@@ -41,22 +41,22 @@ namespace RX
 
     inline QueuesInfo& getInfo() { return m_info; }
 
-    void retrieveAllHandles(VkDevice device);
+    void retrieveAllHandles(vk::Device device);
 
     void print();
 
-    void submit(VkSubmitInfo& submitInfo, VkFence fence, size_t index = 0); // TODO: These functions are absolutely terrible.
-    void present(VkPresentInfoKHR& presentInfo, size_t index = 0); // TODO: These functions are absolutely terrible.
+    void submit(vk::SubmitInfo& submitInfo, vk::Fence fence, size_t index = 0); // TODO: These functions are absolutely terrible.
+    void present(vk::PresentInfoKHR& presentInfo, size_t index = 0); // TODO: These functions are absolutely terrible.
 
     std::vector<uint32_t> getQueueFamilyIndicesForSwapchainAccess(); // This will probably turn out to be all the graphics and present queues which are already stored in members
 
     // This function can be used at the time a physical device is picked.
-    static bool isComplete(VkPhysicalDevice physicalDevice, VkSurfaceKHR surface);
-    static bool hasDedicatedTransferQueueFamily(VkPhysicalDevice physicalDevice, VkSurfaceKHR surface);
+    static bool isComplete(vk::PhysicalDevice physicalDevice, vk::SurfaceKHR surface);
+    static bool hasDedicatedTransferQueueFamily(vk::PhysicalDevice physicalDevice, vk::SurfaceKHR surface);
 
   private:
-    static QueueIndices findQueueFamilyIndices(VkPhysicalDevice physicalDevice, VkSurfaceKHR surface);
-    static std::vector<VkQueueFamilyProperties> getQueueFamilyProperties(VkPhysicalDevice physicalDevice);
+    static QueueIndices findQueueFamilyIndices(vk::PhysicalDevice physicalDevice, vk::SurfaceKHR surface);
+    static std::vector<vk::QueueFamilyProperties> getQueueFamilyProperties(vk::PhysicalDevice physicalDevice) { return physicalDevice.getQueueFamilyProperties(); }
 
     std::vector<QueueFamily> m_queueFamilies;
 

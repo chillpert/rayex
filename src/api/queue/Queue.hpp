@@ -16,9 +16,9 @@ namespace RX
   {
   public:
     Queue(uint32_t index, int capability, float priority) :
-      m_queue(VK_NULL_HANDLE), m_index(index), m_capbility(capability), m_priority(priority) { }
+      m_queue(nullptr), m_index(index), m_capbility(capability), m_priority(priority) { }
 
-    inline VkQueue& getQueue() { return m_queue; }
+    inline vk::Queue& getQueue() { return m_queue; }
     inline uint32_t getIndex() { return m_index; }
     inline float getPriority() { return m_priority; }
     int getCapability() { return m_capbility; }
@@ -26,7 +26,7 @@ namespace RX
     friend std::ostream& operator<<(std::ostream& os, const std::shared_ptr<Queue> queue);
 
   private:
-    VkQueue m_queue;
+    vk::Queue m_queue;
     uint32_t m_index;
     float m_priority;
     int m_capbility;

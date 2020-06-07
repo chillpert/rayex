@@ -5,9 +5,9 @@
 
 namespace RX
 {
-  std::vector<VkBuffer> UniformBuffer::getRaw()
+  std::vector<vk::Buffer> UniformBuffer::getRaw()
   {
-    std::vector<VkBuffer> res;
+    std::vector<vk::Buffer> res;
     for (Buffer& buffer : m_buffers)
       res.push_back(buffer.get());
     
@@ -23,9 +23,9 @@ namespace RX
     createInfo.device = m_info.device;
     createInfo.physicalDevice = m_info.physicalDevice;
     createInfo.deviceSize = sizeof(UniformBufferObject);
-    createInfo.usage = VK_BUFFER_USAGE_UNIFORM_BUFFER_BIT;
-    createInfo.sharingMode = VK_SHARING_MODE_EXCLUSIVE;
-    createInfo.properties = VK_MEMORY_PROPERTY_HOST_VISIBLE_BIT | VK_MEMORY_PROPERTY_HOST_COHERENT_BIT;
+    createInfo.usage = vk::BufferUsageFlagBits::eUniformBuffer;
+    createInfo.sharingMode = vk::SharingMode::eExclusive;
+    createInfo.properties = vk::MemoryPropertyFlagBits::eHostVisible | vk::MemoryPropertyFlagBits::eHostCoherent;
     createInfo.componentName = "uniform buffer";
 
     m_buffers.resize(m_info.swapchainImagesCount);

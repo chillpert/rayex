@@ -7,11 +7,11 @@ namespace RX
 {
 	struct FramebufferInfo
 	{
-		VkDevice device;
-		VkImageView imageView; // TODO: make this an array, so that depth image view doesn't need to be passed separetly anymore.
-		VkImageView depthImageView = VK_NULL_HANDLE;
-		VkRenderPass renderPass;
-		VkExtent2D extent;
+		vk::Device device;
+		vk::ImageView imageView; // TODO: make this an array, so that depth image view doesn't need to be passed separetly anymore.
+		vk::ImageView depthImageView = nullptr;
+		vk::RenderPass renderPass;
+		vk::Extent2D extent;
 	};
 
 	class Framebuffer
@@ -19,14 +19,14 @@ namespace RX
 	public:
     ~Framebuffer();
 
-		inline VkFramebuffer get() { return m_framebuffer; }
+		inline vk::Framebuffer get() { return m_framebuffer; }
 		inline FramebufferInfo& getInfo() { return m_info; }
 
 		void initialize(FramebufferInfo& info);
     void destroy();
 
 	private:
-		VkFramebuffer m_framebuffer;
+		vk::Framebuffer m_framebuffer;
 		FramebufferInfo m_info;
 
 		bool m_created = false;

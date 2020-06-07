@@ -7,31 +7,32 @@ namespace RX
     destroy();
   }
 
-  void Sampler::initialize(VkDevice device)
+  void Sampler::initialize(vk::Device device)
   {
     m_device = device;
 
-    VkSamplerCreateInfo createInfo{ };
-    createInfo.sType = VK_STRUCTURE_TYPE_SAMPLER_CREATE_INFO;
-    createInfo.magFilter = VK_FILTER_LINEAR;
-    createInfo.minFilter = VK_FILTER_LINEAR;
-    createInfo.addressModeU = VK_SAMPLER_ADDRESS_MODE_REPEAT;
-    createInfo.addressModeV = VK_SAMPLER_ADDRESS_MODE_REPEAT;
-    createInfo.addressModeW = VK_SAMPLER_ADDRESS_MODE_REPEAT;
+    vk::SamplerCreateInfo createInfo;
+    createInfo.magFilter = vk::Filter::eLinear;
+    createInfo.minFilter = vk::Filter::eLinear;
+    createInfo.addressModeU = vk::SamplerAddressMode::eRepeat;
+    createInfo.addressModeV = vk::SamplerAddressMode::eRepeat;
+    createInfo.addressModeW = vk::SamplerAddressMode::eRepeat;
     createInfo.anisotropyEnable = VK_TRUE;
     createInfo.maxAnisotropy = 16.0f;
-    createInfo.borderColor = VK_BORDER_COLOR_INT_OPAQUE_BLACK;
+    createInfo.borderColor = vk::BorderColor::eIntOpaqueBlack;
     createInfo.unnormalizedCoordinates = VK_FALSE;
     createInfo.compareEnable = VK_FALSE;
-    createInfo.compareOp = VK_COMPARE_OP_ALWAYS;
-    createInfo.mipmapMode = VK_SAMPLER_MIPMAP_MODE_LINEAR;
+    createInfo.compareOp = vk::CompareOp::eAlways;
+    createInfo.mipmapMode = vk::SamplerMipmapMode::eLinear;
 
-    VK_CREATE(vkCreateSampler(device, &createInfo, nullptr, &m_sampler), "sampler");
+    m_sampler = m_device.createSampler(createInfo);
+    if (!m_sampler)
+      RX_ERROR("Failed to create sampler.");
   }
 
   void Sampler::destroy()
   {
-    VK_DESTROY(vkDestroySampler(m_device, m_sampler, nullptr), "sampler");
-    m_sampler = VK_NULL_HANDLE;
+    m_device.destroySampler(m_sampler);
+    m_sampler = nullptr;
   }
 }

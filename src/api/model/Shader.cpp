@@ -58,17 +58,18 @@ namespace RX
     m_info.source = buffer;
 
     // Create the shader module.
-    VkShaderModuleCreateInfo createInfo{ };
-    createInfo.sType = VK_STRUCTURE_TYPE_SHADER_MODULE_CREATE_INFO;
+    vk::ShaderModuleCreateInfo createInfo;
     createInfo.codeSize = m_info.source.size();
     createInfo.pCode = reinterpret_cast<const uint32_t*>(m_info.source.data());
 
-    VK_CREATE(vkCreateShaderModule(m_info.device, &createInfo, nullptr, &m_shaderModule), "shader module");
+    m_shaderModule = m_info.device.createShaderModule(createInfo);
+    if (!m_shaderModule)
+      RX_ERROR("Failed to create shader module.");
   }
 
   void Shader::destroy()
   {
-    VK_DESTROY(vkDestroyShaderModule(m_info.device, m_shaderModule, nullptr), "shader module");
-    m_shaderModule = VK_NULL_HANDLE;
+    m_info.device.destroyShaderModule(m_shaderModule);
+    m_shaderModule = nullptr;
   }
 }

@@ -10,14 +10,14 @@ namespace RX
   public:
     RX_API ~Sampler();
 
-    inline VkSampler get() const { return m_sampler; }
+    inline vk::Sampler get() const { return m_sampler; }
 
-    void initialize(VkDevice device);
+    void initialize(vk::Device device);
     void destroy();
 
   private:
-    VkSampler m_sampler;
-    VkDevice m_device;
+    vk::Sampler m_sampler;
+    vk::Device m_device;
 
     bool m_created = false;
   };  

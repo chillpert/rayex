@@ -11,15 +11,16 @@ namespace RX
   {
     m_info = info;
 
-    VkSemaphoreCreateInfo createInfo{ };
-    createInfo.sType = VK_STRUCTURE_TYPE_SEMAPHORE_CREATE_INFO;
+    vk::SemaphoreCreateInfo createInfo;
 
-    VK_CREATE(vkCreateSemaphore(m_info.device, &createInfo, nullptr, &m_semaphore), "semaphore");
+    m_semaphore = m_info.device.createSemaphore(createInfo);
+    if (!m_semaphore)
+      RX_ERROR("Failed to create semaphore.");
   }
 
   void Semaphore::destroy()
   {
-    VK_DESTROY(vkDestroySemaphore(m_info.device, m_semaphore, nullptr), "semaphore");
-    m_semaphore = VK_NULL_HANDLE;
+    m_info.device.destroySemaphore(m_semaphore);
+    m_semaphore = nullptr;
   }
 }

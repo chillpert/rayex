@@ -9,10 +9,10 @@ namespace RX
   struct IndexBufferInfo
   {
     std::vector<T> indices;
-    VkDevice device;
-    VkPhysicalDevice physicalDevice;
-    VkCommandPool commandPool;
-    VkQueue queue;
+    vk::Device device;
+    vk::PhysicalDevice physicalDevice;
+    vk::CommandPool commandPool;
+    vk::Queue queue;
     std::vector<uint32_t> queueIndices;
   };
 
@@ -20,9 +20,9 @@ namespace RX
   class IndexBuffer
   {
   public:
-    inline VkBuffer get() const { return m_buffer.get(); }
+    inline vk::Buffer get() const { return m_buffer.get(); }
     inline uint32_t getCount() { return m_buffer.getInfo().count; }
-    inline VkIndexType getType() { return m_buffer.getInfo().type; }
+    inline vk::IndexType getType() { return m_buffer.getInfo().type; }
     inline IndexBufferInfo<T> getInfo() { return m_info; }
 
     void initialize(IndexBufferInfo<T>& info);
@@ -43,9 +43,9 @@ namespace RX
     stagingInfo.device = m_info.device;
     stagingInfo.deviceSize = sizeof(m_info.indices[0]) * m_info.indices.size();
     stagingInfo.count = static_cast<uint32_t>(m_info.indices.size());
-    stagingInfo.usage = VK_BUFFER_USAGE_TRANSFER_SRC_BIT;
-    stagingInfo.sharingMode = VK_SHARING_MODE_CONCURRENT;
-    stagingInfo.properties = VK_MEMORY_PROPERTY_HOST_VISIBLE_BIT | VK_MEMORY_PROPERTY_HOST_COHERENT_BIT;
+    stagingInfo.usage = vk::BufferUsageFlagBits::eTransferSrc;
+    stagingInfo.sharingMode = vk::SharingMode::eConcurrent;
+    stagingInfo.properties = vk::MemoryPropertyFlagBits::eHostVisible | vk::MemoryPropertyFlagBits::eHostCoherent;
     stagingInfo.commandPool = m_info.commandPool;
     stagingInfo.componentName = "index staging buffer";
     
@@ -55,18 +55,18 @@ namespace RX
 
     // Set up the actual index buffer.
     BufferCreateInfo bufferInfo = stagingInfo;
-    bufferInfo.usage = VK_BUFFER_USAGE_TRANSFER_DST_BIT | VK_BUFFER_USAGE_INDEX_BUFFER_BIT;
-    bufferInfo.properties = VK_MEMORY_PROPERTY_DEVICE_LOCAL_BIT;
+    bufferInfo.usage = vk::BufferUsageFlagBits::eTransferDst | vk::BufferUsageFlagBits::eIndexBuffer;
+    bufferInfo.properties = vk::MemoryPropertyFlagBits::eDeviceLocal;
     bufferInfo.componentName = "index buffer";
 
     if (typeid(T) == typeid(uint8_t))
-      bufferInfo.type = VK_INDEX_TYPE_UINT8_EXT;
+      bufferInfo.type = vk::IndexType::eUint8EXT;
 
     else if (typeid(T) == typeid(uint16_t))
-      bufferInfo.type = VK_INDEX_TYPE_UINT16;
+      bufferInfo.type = vk::IndexType::eUint16;
 
     else if (typeid(T) == typeid(uint32_t))
-      bufferInfo.type = VK_INDEX_TYPE_UINT32;
+      bufferInfo.type = vk::IndexType::eUint32;
 
     else
       RX_ERROR("Invalid data type for index buffer was specified.");

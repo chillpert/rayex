@@ -12,9 +12,9 @@ namespace RX
     stagingInfo.device = m_info.device;
     stagingInfo.deviceSize = sizeof(m_info.vertices[0]) * m_info.vertices.size();
     stagingInfo.count = static_cast<uint32_t>(m_info.vertices.size());
-    stagingInfo.usage = VK_BUFFER_USAGE_TRANSFER_SRC_BIT;
-    stagingInfo.sharingMode = VK_SHARING_MODE_CONCURRENT;
-    stagingInfo.properties = VK_MEMORY_PROPERTY_HOST_VISIBLE_BIT | VK_MEMORY_PROPERTY_HOST_COHERENT_BIT;
+    stagingInfo.usage = vk::BufferUsageFlagBits::eTransferSrc;
+    stagingInfo.sharingMode = vk::SharingMode::eConcurrent;
+    stagingInfo.properties = vk::MemoryPropertyFlagBits::eHostVisible | vk::MemoryPropertyFlagBits::eHostCoherent;
     stagingInfo.commandPool = m_info.commandPool;
     stagingInfo.componentName = "vertex staging buffer";
 
@@ -24,8 +24,8 @@ namespace RX
 
     // Set up the actual index buffer.
     BufferCreateInfo bufferInfo = stagingInfo;
-    bufferInfo.usage = VK_BUFFER_USAGE_TRANSFER_DST_BIT | VK_BUFFER_USAGE_VERTEX_BUFFER_BIT;
-    bufferInfo.properties = VK_MEMORY_PROPERTY_DEVICE_LOCAL_BIT;
+    bufferInfo.usage = vk::BufferUsageFlagBits::eTransferDst | vk::BufferUsageFlagBits::eVertexBuffer;
+    bufferInfo.properties = vk::MemoryPropertyFlagBits::eDeviceLocal;
     bufferInfo.componentName = "vertex buffer";
 
     Buffer stagingBuffer;

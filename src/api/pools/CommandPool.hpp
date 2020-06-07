@@ -7,10 +7,10 @@ namespace RX
 {
   struct CommandPoolInfo
   {
-    VkDevice device;
+    vk::Device device;
     uint32_t queueFamilyIndex;
-    VkCommandPoolCreateFlags createFlags = 0;
-    VkCommandPoolResetFlags resetFlags = 0;
+    vk::CommandPoolCreateFlags createFlags;
+    vk::CommandPoolResetFlags resetFlags;
   };
 
   class CommandPool
@@ -18,7 +18,7 @@ namespace RX
   public:
     ~CommandPool();
     
-    inline VkCommandPool get() { return m_commandPool; }
+    inline vk::CommandPool get() { return m_commandPool; }
     inline CommandPoolInfo& getInfo() { return m_info; }
 
     void initialize(CommandPoolInfo& info);
@@ -29,7 +29,7 @@ namespace RX
     void reset();
 
   private:
-    VkCommandPool m_commandPool;
+    vk::CommandPool m_commandPool;
     CommandPoolInfo m_info;
 
     bool m_created = false;

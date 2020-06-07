@@ -7,7 +7,7 @@ namespace RX
 {
   struct FenceInfo
   {
-    VkDevice device;
+    vk::Device device;
   };
 
   class Fence
@@ -15,14 +15,14 @@ namespace RX
   public:
     ~Fence();
 
-    inline VkFence& get() { return m_fence; }
+    inline vk::Fence& get() { return m_fence; }
     inline FenceInfo& getInfo() { return m_info; }
 
     void initialize(FenceInfo& info);
     void destroy();
 
   private:
-    VkFence m_fence = VK_NULL_HANDLE;
+    vk::Fence m_fence = nullptr;
     FenceInfo m_info;
 
     bool m_created = false;

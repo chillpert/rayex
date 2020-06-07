@@ -78,7 +78,7 @@ namespace RX
     static size_t currentFrame = 0;
 
     // Wait for the current frame's fences.
-    vkWaitForFences(m_device.get(), 1, &m_inFlightFences[currentFrame].get(), VK_TRUE, UINT64_MAX);
+    m_device.get().waitForFences(1, &m_inFlightFences[currentFrame].get(), VK_TRUE, UINT64_MAX);
 
     // If the window is minimized then simply do not render anything anymore.
     if (m_window->minimized())
@@ -115,28 +115,27 @@ namespace RX
     // This will mark the current image to be in use by this frame.
     m_imagesInFlight[imageIndex] = m_inFlightFences[currentFrame].get();
 
-    VkSubmitInfo submitInfo{ };
-    submitInfo.sType = VK_STRUCTURE_TYPE_SUBMIT_INFO;
+    vk::SubmitInfo submitInfo;
 
-    VkSemaphore waitSemaphores[] = { m_imageAvailableSemaphores[currentFrame].get() };
-    VkPipelineStageFlags waitStages[] = { VK_PIPELINE_STAGE_COLOR_ATTACHMENT_OUTPUT_BIT };
+    vk::Semaphore waitSemaphores[] = { m_imageAvailableSemaphores[currentFrame].get() };
+    vk::PipelineStageFlags waitStages[] = { vk::PipelineStageFlagBits::eColorAttachmentOutput };
     submitInfo.waitSemaphoreCount = 1;
     submitInfo.pWaitSemaphores = waitSemaphores;
     submitInfo.pWaitDstStageMask = waitStages;
 
-    std::vector<VkCommandBuffer> commandBuffers = { m_swapchainCmdBuffers.get()[imageIndex] };
+    std::vector<vk::CommandBuffer> commandBuffers = { m_swapchainCmdBuffers.get()[imageIndex] };
     if (m_gui != nullptr)
       commandBuffers.push_back(m_gui->getCommandBuffer().get()[imageIndex]);
 
     submitInfo.commandBufferCount = static_cast<uint32_t>(commandBuffers.size());
     submitInfo.pCommandBuffers = commandBuffers.data();
 
-    VkSemaphore signalSemaphores[] = { m_finishedRenderSemaphores[currentFrame].get() };
+    vk::Semaphore signalSemaphores[] = { m_finishedRenderSemaphores[currentFrame].get() };
     submitInfo.signalSemaphoreCount = 1;
     submitInfo.pSignalSemaphores = signalSemaphores;
 
     // Reset the signaled state of the current frame's fence to the unsignaled one.
-    vkResetFences(m_device.get(), 1, &m_inFlightFences[currentFrame].get());
+    m_device.get().resetFences(1, &m_inFlightFences[currentFrame].get());
 
     if (m_gui != nullptr)
     {
@@ -147,13 +146,11 @@ namespace RX
     // Submits / executes the current image's / framebuffer's command buffer.
     m_queueManager.submit(submitInfo, m_inFlightFences[currentFrame].get());
 
-    VkPresentInfoKHR presentInfo{ };
-    presentInfo.sType = VK_STRUCTURE_TYPE_PRESENT_INFO_KHR;
-
+    vk::PresentInfoKHR presentInfo;
     presentInfo.waitSemaphoreCount = 1;
     presentInfo.pWaitSemaphores = signalSemaphores;
 
-    VkSwapchainKHR swapChains[] = { m_swapchain.get() };
+    vk::SwapchainKHR swapChains[] = { m_swapchain.get() };
     presentInfo.swapchainCount = 1;
     presentInfo.pSwapchains = swapChains;
 
@@ -383,8 +380,8 @@ namespace RX
     vertexShaderInfo.device = m_device.get();
     vertexShaderInfo.binding = 0;
     vertexShaderInfo.descriptorCount = 1;
-    vertexShaderInfo.descriptorType = VK_DESCRIPTOR_TYPE_UNIFORM_BUFFER;
-    vertexShaderInfo.stageFlags = VK_SHADER_STAGE_VERTEX_BIT;
+    vertexShaderInfo.descriptorType = vk::DescriptorType::eUniformBuffer;
+    vertexShaderInfo.stageFlags = vk::ShaderStageFlagBits::eVertex;
 
     vs.initialize(vertexShaderInfo);
 
@@ -394,8 +391,8 @@ namespace RX
     fragmentShaderInfo.device = m_device.get();
     fragmentShaderInfo.binding = 1;
     fragmentShaderInfo.descriptorCount = 1;
-    fragmentShaderInfo.descriptorType = VK_DESCRIPTOR_TYPE_COMBINED_IMAGE_SAMPLER;
-    fragmentShaderInfo.stageFlags = VK_SHADER_STAGE_FRAGMENT_BIT;
+    fragmentShaderInfo.descriptorType = vk::DescriptorType::eCombinedImageSampler;
+    fragmentShaderInfo.stageFlags = vk::ShaderStageFlagBits::eFragment;
 
     fs.initialize(fragmentShaderInfo);
 
@@ -413,7 +410,7 @@ namespace RX
     PipelineInfo pipelineInfo{ };
     pipelineInfo.device = m_device.get();
     pipelineInfo.renderPass = m_renderPass.get();
-    pipelineInfo.viewport = { 0.0f, 0.0f, static_cast<float>(m_swapchain.getInfo().extent.width), static_cast<float>(m_swapchain.getInfo().extent.height), 0.0f, 1.0f };
+    pipelineInfo.viewport = vk::Viewport{ 0.0f, 0.0f, static_cast<float>(m_swapchain.getInfo().extent.width), static_cast<float>(m_swapchain.getInfo().extent.height), 0.0f, 1.0f };
     pipelineInfo.scissor = { 0, 0, m_swapchain.getInfo().extent.width, m_swapchain.getInfo().extent.height };
     pipelineInfo.vertexShader = vs.get();
     pipelineInfo.fragmentShader = fs.get();
@@ -519,7 +516,7 @@ namespace RX
     DescriptorPoolInfo descriptorPoolInfo{ };
     descriptorPoolInfo.device = m_device.get();
     uint32_t swapchainImagesCount = m_swapchain.getInfo().images.size();
-    descriptorPoolInfo.poolSizes = { { VK_DESCRIPTOR_TYPE_UNIFORM_BUFFER, swapchainImagesCount }, { VK_DESCRIPTOR_TYPE_COMBINED_IMAGE_SAMPLER, swapchainImagesCount } };
+    descriptorPoolInfo.poolSizes = { { vk::DescriptorType::eUniformBuffer, swapchainImagesCount }, { vk::DescriptorType::eCombinedImageSampler, swapchainImagesCount } };
     descriptorPoolInfo.maxSets = m_models.size() * swapchainImagesCount;
 
     m_descriptorPool.initialize(descriptorPoolInfo);
@@ -661,8 +658,8 @@ namespace RX
         VkDeviceSize offsets[] = { 0 };
 
         vkCmdBindVertexBuffers(m_swapchainCmdBuffers.get()[imageIndex], 0, 1, vertexBuffers, offsets);
-        vkCmdBindIndexBuffer(m_swapchainCmdBuffers.get()[imageIndex], model->m_indexBuffer.get(), 0, model->m_indexBuffer.getType());
-        vkCmdBindDescriptorSets(m_swapchainCmdBuffers.get()[imageIndex], VK_PIPELINE_BIND_POINT_GRAPHICS, m_pipeline.getLayout(), 0, 1, &model->m_descriptorSets.get()[imageIndex], 0, nullptr);
+        m_swapchainCmdBuffers.get()[imageIndex].bindIndexBuffer(model->m_indexBuffer.get(), 0, model->m_indexBuffer.getType()); // CMD
+        m_swapchainCmdBuffers.get()[imageIndex].bindDescriptorSets(vk::PipelineBindPoint::eGraphics, m_pipeline.getLayout(), 0, 1, &model->m_descriptorSets.get()[imageIndex], 0, nullptr); // CMD
         vkCmdDrawIndexed(m_swapchainCmdBuffers.get()[imageIndex], model->m_indexBuffer.getCount(), 1, 0, 0, 0);
       }
 
@@ -671,8 +668,6 @@ namespace RX
     }
   }
 }
-
-#include <vulkan/vulkan.hpp>
 
 namespace RX
 {

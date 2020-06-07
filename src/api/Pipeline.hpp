@@ -9,14 +9,14 @@ namespace RX
 {
   struct PipelineInfo
   {
-    VkDevice device;
-    VkRenderPass renderPass;
-    VkViewport viewport;
-    VkRect2D scissor;
-    VkShaderModule vertexShader;
-    VkShaderModule fragmentShader;
-    VkDescriptorSetLayout descriptorSetLayout;
-    VkPrimitiveTopology topology = VK_PRIMITIVE_TOPOLOGY_TRIANGLE_LIST;
+    vk::Device device;
+    vk::RenderPass renderPass;
+    vk::Viewport viewport;
+    vk::Rect2D scissor;
+    vk::ShaderModule vertexShader;
+    vk::ShaderModule fragmentShader;
+    vk::DescriptorSetLayout descriptorSetLayout;
+    vk::PrimitiveTopology topology = vk::PrimitiveTopology::eTriangleList;
   };
 
   class Pipeline
@@ -24,16 +24,16 @@ namespace RX
   public:
     ~Pipeline();
 
-    inline VkPipeline get() { return m_pipeline; }
-    inline VkPipelineLayout getLayout() { return m_layout; }
+    inline vk::Pipeline get() { return m_pipeline; }
+    inline vk::PipelineLayout getLayout() { return m_layout; }
     inline PipelineInfo& getInfo() { return m_info; }
 
     void initialize(PipelineInfo& info);
     void destroy();
 
   private:
-    VkPipeline m_pipeline;
-    VkPipelineLayout m_layout;
+    vk::Pipeline m_pipeline;
+    vk::PipelineLayout m_layout;
     PipelineInfo m_info;
 
     bool m_created = false;

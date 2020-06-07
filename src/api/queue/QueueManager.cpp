@@ -18,16 +18,13 @@ namespace RX
 
       int capability = 0;
 
-      if (queueFamilyProperties[index].queueFlags & VK_QUEUE_GRAPHICS_BIT)
+      if (queueFamilyProperties[index].queueFlags & vk::QueueFlagBits::eGraphics)
         capability |= GRAPHICS;
 
-      if (queueFamilyProperties[index].queueFlags & VK_QUEUE_TRANSFER_BIT)
+      if (queueFamilyProperties[index].queueFlags & vk::QueueFlagBits::eTransfer)
         capability |= TRANSFER;
 
-      VkBool32 supported;
-      VK_ASSERT(vkGetPhysicalDeviceSurfaceSupportKHR(m_info.physicalDevice, index, m_info.surface, &supported), "Failed to get physical device surface support.");
-
-      if (supported)
+      if (m_info.physicalDevice.getSurfaceSupportKHR(index, m_info.surface))
         capability |= PRESENT;
 
       m_queueFamilies[index].capability = capability;
@@ -40,16 +37,13 @@ namespace RX
     {
       for (const std::shared_ptr<Queue> queue : m_queueFamilies[index].queues)
       {
-        if (queueFamilyProperties[index].queueFlags & VK_QUEUE_GRAPHICS_BIT)
+        if (queueFamilyProperties[index].queueFlags & vk::QueueFlagBits::eGraphics)
           m_graphicsQueues.push_back(queue);
 
-        VkBool32 supported;
-        VK_ASSERT(vkGetPhysicalDeviceSurfaceSupportKHR(m_info.physicalDevice, index, m_info.surface, &supported), "Failed to get physical device surface support.");
-
-        if (supported)
+        if (m_info.physicalDevice.getSurfaceSupportKHR(index, m_info.surface))
           m_presentQueues.push_back(queue);
 
-        if (queueFamilyProperties[index].queueFlags & VK_QUEUE_TRANSFER_BIT)
+        if (queueFamilyProperties[index].queueFlags & vk::QueueFlagBits::eTransfer)
           m_transferQueues.push_back(queue);
       }
     }
@@ -152,7 +146,7 @@ namespace RX
     return res;
   }
 
-  VkQueue QueueManager::getGraphicsQueue(int queueFamilyIndex)
+  vk::Queue QueueManager::getGraphicsQueue(int queueFamilyIndex)
   {
     if (queueFamilyIndex == -1)
       return m_graphicsQueues[0]->getQueue();
@@ -167,7 +161,7 @@ namespace RX
     return m_graphicsQueues[0]->getQueue();
   }
 
-  VkQueue QueueManager::getPresentQueue(int queueFamilyIndex)
+  vk::Queue QueueManager::getPresentQueue(int queueFamilyIndex)
   {
     if (queueFamilyIndex == -1)
       return m_presentQueues[0]->getQueue();
@@ -182,7 +176,7 @@ namespace RX
     return m_presentQueues[0]->getQueue();
   }
 
-  VkQueue QueueManager::getTransferQueue(int queueFamilyIndex)
+  vk::Queue QueueManager::getTransferQueue(int queueFamilyIndex)
   {
     if (queueFamilyIndex == -1)
       return m_transferQueues[0]->getQueue();
@@ -210,21 +204,21 @@ namespace RX
     return result;
   }
 
-  void QueueManager::retrieveAllHandles(VkDevice device)
+  void QueueManager::retrieveAllHandles(vk::Device device)
   {
     for (std::shared_ptr<Queue> queue : m_graphicsQueues)
-      vkGetDeviceQueue(device, queue->getIndex(), 0, &queue->getQueue());
+      device.getQueue(queue->getIndex(), 0, &queue->getQueue());
 
     for (std::shared_ptr<Queue> queue : m_presentQueues)
-      vkGetDeviceQueue(device, queue->getIndex(), 0, &queue->getQueue());
+      device.getQueue(queue->getIndex(), 0, &queue->getQueue());
       
     for (std::shared_ptr<Queue> queue : m_transferQueues)
-      vkGetDeviceQueue(device, queue->getIndex(), 0, &queue->getQueue());
+      device.getQueue(queue->getIndex(), 0, &queue->getQueue());
   }
 
   void QueueManager::print()
   {
-    std::vector<VkQueueFamilyProperties> queueFamilies = getQueueFamilyProperties(m_info.physicalDevice);
+    auto queueFamilies = getQueueFamilyProperties(m_info.physicalDevice);
     uint32_t queueFamilyIndicesCount = static_cast<uint32_t>(queueFamilies.size());
 
     RX_FORMAT_INFO("Queue Report:");
@@ -233,27 +227,22 @@ namespace RX
       std::vector<std::string> properties;
 
       RX_PRINT("Queue Family Index: " << index << " | " << queueFamilies[index].queueCount << " Queue(s)");
-      if (queueFamilies[index].queueFlags & VK_QUEUE_TRANSFER_BIT)
+      if (queueFamilies[index].queueFlags & vk::QueueFlagBits::eTransfer)
         properties.push_back(std::string("Transfer"));
 
-      if (queueFamilies[index].queueFlags & VK_QUEUE_COMPUTE_BIT)
+      if (queueFamilies[index].queueFlags & vk::QueueFlagBits::eCompute)
         properties.push_back(std::string("Compute"));
 
-      if (queueFamilies[index].queueFlags & VK_QUEUE_GRAPHICS_BIT)
-      {
+      if (queueFamilies[index].queueFlags & vk::QueueFlagBits::eGraphics)
         properties.push_back(std::string("Graphics"));
-      }
 
-      VkBool32 supported;
-      VK_ASSERT(vkGetPhysicalDeviceSurfaceSupportKHR(m_info.physicalDevice, index, m_info.surface, &supported), "Failed to get physical device surface support.");
-      
-      if (supported)
+      if (m_info.physicalDevice.getSurfaceSupportKHR(index, m_info.surface))
         properties.push_back(std::string("Present"));
 
-      if (queueFamilies[index].queueFlags & VK_QUEUE_SPARSE_BINDING_BIT)
+      if (queueFamilies[index].queueFlags & vk::QueueFlagBits::eSparseBinding)
         properties.push_back(std::string("Sparse"));
 
-      if (queueFamilies[index].queueFlags & VK_QUEUE_PROTECTED_BIT)
+      if (queueFamilies[index].queueFlags & vk::QueueFlagBits::eProtected)
         properties.push_back(std::string("Protected"));
 
       for (size_t i = 0; i < properties.size(); ++i)
@@ -267,14 +256,14 @@ namespace RX
     }
   }
 
-  void QueueManager::submit(VkSubmitInfo& submitInfo, VkFence fence, size_t index)
+  void QueueManager::submit(vk::SubmitInfo& submitInfo, vk::Fence fence, size_t index)
   {
-    VK_ASSERT(vkQueueSubmit(m_graphicsQueues[index]->getQueue(), 1, &submitInfo, fence), "Failed to submit queue.");
+    m_graphicsQueues[index]->getQueue().submit(1, &submitInfo, fence);
   }
 
-  void QueueManager::present(VkPresentInfoKHR& presentInfo, size_t index)
+  void QueueManager::present(vk::PresentInfoKHR& presentInfo, size_t index)
   {
-    VK_ASSERT(vkQueuePresentKHR(m_presentQueues[index]->getQueue(), &presentInfo), "Failed to present");
+    m_presentQueues[index]->getQueue().presentKHR(presentInfo);
   }
 
   std::vector<uint32_t> QueueManager::getQueueFamilyIndicesForSwapchainAccess()
@@ -285,7 +274,7 @@ namespace RX
     return { getGraphicsFamilyIndex(), getPresentFamilyIndex() };
   }
 
-  bool QueueManager::isComplete(VkPhysicalDevice physicalDevice, VkSurfaceKHR surface)
+  bool QueueManager::isComplete(vk::PhysicalDevice physicalDevice, vk::SurfaceKHR surface)
   {
     auto temp = findQueueFamilyIndices(physicalDevice, surface);
 
@@ -295,25 +284,25 @@ namespace RX
     return true;
   }
 
-  bool QueueManager::hasDedicatedTransferQueueFamily(VkPhysicalDevice physicalDevice, VkSurfaceKHR surface)
+  bool QueueManager::hasDedicatedTransferQueueFamily(vk::PhysicalDevice physicalDevice, vk::SurfaceKHR surface)
   {
     auto temp = findQueueFamilyIndices(physicalDevice, surface);
 
-    std::vector<VkQueueFamilyProperties> queueFamilies = getQueueFamilyProperties(physicalDevice);
+    auto queueFamilies = getQueueFamilyProperties(physicalDevice);
     uint32_t queueFamilyIndicesCount = static_cast<uint32_t>(queueFamilies.size());
 
     for (uint32_t index = 0; index < temp.transferQueueIndices.size(); ++index)
     {
-      if (!(queueFamilies[index].queueFlags & VK_QUEUE_GRAPHICS_BIT))
+      if (!(queueFamilies[index].queueFlags & vk::QueueFlagBits::eGraphics))
         return true;
     }
 
     return false;
   }
 
-  QueueIndices QueueManager::findQueueFamilyIndices(VkPhysicalDevice physicalDevice, VkSurfaceKHR surface)
+  QueueIndices QueueManager::findQueueFamilyIndices(vk::PhysicalDevice physicalDevice, vk::SurfaceKHR surface)
   {
-    std::vector<VkQueueFamilyProperties> queueFamilies = getQueueFamilyProperties(physicalDevice);
+    auto queueFamilies = getQueueFamilyProperties(physicalDevice);
     uint32_t queueFamilyIndicesCount = static_cast<uint32_t>(queueFamilies.size());
 
     // Get all possible queue family indices with transfer support.
@@ -329,35 +318,19 @@ namespace RX
       if (queueFamilies[index].queueCount == 0)
         continue;
 
-      if (queueFamilies[index].queueFlags & VK_QUEUE_TRANSFER_BIT)
+      if (queueFamilies[index].queueFlags & vk::QueueFlagBits::eTransfer)
         transferQueueFamilyIndices.push_back(index);
 
-      if (queueFamilies[index].queueFlags & VK_QUEUE_GRAPHICS_BIT)
+      if (queueFamilies[index].queueFlags & vk::QueueFlagBits::eGraphics)
         graphicsQueueFamilyIndices.push_back(index);
 
-      VkBool32 supported;
-      VK_ASSERT(vkGetPhysicalDeviceSurfaceSupportKHR(physicalDevice, index, surface, &supported), "Failed to get physical device surface support.");
-
-      if (supported)
+      if (physicalDevice.getSurfaceSupportKHR(index, surface))
         presentQueueFamilyIndices.push_back(index);
     }
 
     return { graphicsQueueFamilyIndices, presentQueueFamilyIndices, transferQueueFamilyIndices };
   }
   
-  std::vector<VkQueueFamilyProperties> QueueManager::getQueueFamilyProperties(VkPhysicalDevice physicalDevice)
-  {
-    uint32_t queueFamilyCount = 0;
-    vkGetPhysicalDeviceQueueFamilyProperties(physicalDevice, &queueFamilyCount, nullptr);
-    RX_ASSERT((queueFamilyCount > 0), "Failed to retrieve any queue family index");
-
-    std::vector<VkQueueFamilyProperties> queueFamilies(queueFamilyCount);
-    vkGetPhysicalDeviceQueueFamilyProperties(physicalDevice, &queueFamilyCount, queueFamilies.data());
-    RX_ASSERT((queueFamilies.size() > 0), "Failed to retrieve queue family properties");
-
-    return queueFamilies;
-  }
-
   std::ostream& operator<<(std::ostream& os, const std::shared_ptr<Queue> queue)
   {
     os << "\tIndex: " << queue->getIndex() << " | Priority: " << queue->getPriority();

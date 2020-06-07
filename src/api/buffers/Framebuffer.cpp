@@ -11,13 +11,15 @@ namespace RX
   {
     m_info = info;
 
-    std::vector<VkImageView> attachments{ m_info.imageView };
+    std::vector<vk::ImageView> attachments{ m_info.imageView };
 
-    if (m_info.depthImageView != VK_NULL_HANDLE)
+    // Note: It seems like ==operator is bugged, since != nullptr does not work directly
+    void* temp = m_info.depthImageView;
+
+    if (temp != nullptr)
       attachments.push_back(m_info.depthImageView);
 
-    VkFramebufferCreateInfo createInfo{ };
-    createInfo.sType = VK_STRUCTURE_TYPE_FRAMEBUFFER_CREATE_INFO;
+    vk::FramebufferCreateInfo createInfo;
     createInfo.renderPass = m_info.renderPass;
     createInfo.attachmentCount = static_cast<uint32_t>(attachments.size());
     createInfo.pAttachments = attachments.data();
@@ -25,12 +27,14 @@ namespace RX
     createInfo.height = m_info.extent.height;
     createInfo.layers = 1;
 
-    VK_CREATE(vkCreateFramebuffer(m_info.device, &createInfo, nullptr, &m_framebuffer), "framebuffer");
+    m_framebuffer = m_info.device.createFramebuffer(createInfo);
+    if (!m_framebuffer)
+      RX_ERROR("Failed to create framebuffer.");
   }
 
   void Framebuffer::destroy()
   {
-    VK_DESTROY(vkDestroyFramebuffer(m_info.device, m_framebuffer, nullptr), "framebuffer");
-    m_framebuffer = VK_NULL_HANDLE;
+    m_info.device.destroyFramebuffer(m_framebuffer);
+    m_framebuffer = nullptr;
   }
 }

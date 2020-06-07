@@ -62,26 +62,24 @@ namespace RX
   {
     m_commandBuffers.begin(index);
 
-    VkRenderPassBeginInfo info{ };
-    info.sType = VK_STRUCTURE_TYPE_RENDER_PASS_BEGIN_INFO;
+    vk::RenderPassBeginInfo info;
     info.renderPass = m_renderPass;
     info.framebuffer = m_framebuffers[index].get();
     info.renderArea.extent = m_info.swapchainImageExtent;
     info.clearValueCount = 1;
 
-    VkClearValue clearValue;
-    clearValue.color = { 0.5f, 0.5, 0.5f, 1.0f };
+    vk::ClearValue clearValue;
+    clearValue.color = std::array<float, 4>{ 0.5f, 0.5, 0.5f, 1.0f };
     info.pClearValues = &clearValue;
 
-    vkCmdBeginRenderPass(m_commandBuffers.get()[index], &info, VK_SUBPASS_CONTENTS_INLINE);
+    m_commandBuffers.get()[index].beginRenderPass(info, vk::SubpassContents::eInline);
   }
 
   void Gui::endRenderPass(int index)
   {
     ImGui_ImplVulkan_RenderDrawData(ImGui::GetDrawData(), m_commandBuffers.get()[index]);
 
-    vkCmdEndRenderPass(m_commandBuffers.get()[index]);
-
+    m_commandBuffers.get()[index].endRenderPass();
     m_commandBuffers.end(index);
   }
 
@@ -115,7 +113,7 @@ namespace RX
     CommandPoolInfo commandPoolInfo{ };
     commandPoolInfo.device = m_info.device;
     commandPoolInfo.queueFamilyIndex = m_info.queueFamilyIndex; // This should definitely be the a graphics queue family index.
-    commandPoolInfo.createFlags = VK_COMMAND_POOL_CREATE_RESET_COMMAND_BUFFER_BIT;
+    commandPoolInfo.createFlags = vk::CommandPoolCreateFlagBits::eResetCommandBuffer;
 
     m_commandPool.initialize(commandPoolInfo);
   }
@@ -127,17 +125,17 @@ namespace RX
     info.maxSets = m_info.imageCount;
     info.poolSizes =
     {
-      { VK_DESCRIPTOR_TYPE_SAMPLER, 1000 },
-      { VK_DESCRIPTOR_TYPE_COMBINED_IMAGE_SAMPLER, 1000 },
-      { VK_DESCRIPTOR_TYPE_SAMPLED_IMAGE, 1000 },
-      { VK_DESCRIPTOR_TYPE_STORAGE_IMAGE, 1000 },
-      { VK_DESCRIPTOR_TYPE_UNIFORM_TEXEL_BUFFER, 1000 },
-      { VK_DESCRIPTOR_TYPE_STORAGE_TEXEL_BUFFER, 1000 },
-      { VK_DESCRIPTOR_TYPE_UNIFORM_BUFFER, 1000 },
-      { VK_DESCRIPTOR_TYPE_STORAGE_BUFFER, 1000 },
-      { VK_DESCRIPTOR_TYPE_UNIFORM_BUFFER_DYNAMIC, 1000 },
-      { VK_DESCRIPTOR_TYPE_STORAGE_BUFFER_DYNAMIC, 1000 },
-      { VK_DESCRIPTOR_TYPE_INPUT_ATTACHMENT, 1000 }
+      { vk::DescriptorType::eSampler, 1000 },
+      { vk::DescriptorType::eCombinedImageSampler, 1000 },
+      { vk::DescriptorType::eSampledImage, 1000 },
+      { vk::DescriptorType::eStorageImage, 1000 },
+      { vk::DescriptorType::eUniformTexelBuffer, 1000 },
+      { vk::DescriptorType::eStorageTexelBuffer, 1000 },
+      { vk::DescriptorType::eUniformBuffer, 1000 },
+      { vk::DescriptorType::eStorageBuffer, 1000 },
+      { vk::DescriptorType::eUniformBufferDynamic, 1000 },
+      { vk::DescriptorType::eStorageBufferDynamic, 1000 },
+      { vk::DescriptorType::eInputAttachment, 1000 }
     };
 
     m_descriptorPool.initialize(info);
@@ -169,7 +167,7 @@ namespace RX
     dependency.dstSubpass = 0;
     dependency.srcStageMask = vk::PipelineStageFlagBits::eColorAttachmentOutput;
     dependency.dstStageMask = vk::PipelineStageFlagBits::eColorAttachmentOutput;
-    //dependency.srcAccessMask = vk::AccessFlagBits::eColorAttachmentWrite; // or 0
+    dependency.srcAccessMask = vk::AccessFlagBits::eColorAttachmentWrite; // or 0
     dependency.dstAccessMask = vk::AccessFlagBits::eColorAttachmentWrite;
 
     vk::RenderPassCreateInfo info;
@@ -180,7 +178,7 @@ namespace RX
     info.dependencyCount = 1;
     info.pDependencies = &dependency;
 
-    m_info.device.createRenderPass(info);
+    m_renderPass = m_info.device.createRenderPass(info);
 
     if (!m_renderPass)
       RX_ERROR("Failed to create GUI render pass.");
@@ -212,7 +210,7 @@ namespace RX
     commandBufferInfo.commandBufferCount = m_info.imageCount;
     commandBufferInfo.level = vk::CommandBufferLevel::ePrimary;
     commandBufferInfo.freeAutomatically = false;
-    //commandBufferInfo.usageFlags = 0;
+    commandBufferInfo.usageFlags = vk::CommandBufferUsageFlagBits::eRenderPassContinue;
     commandBufferInfo.componentName = "command buffers for ImGui";
 
     m_commandBuffers.initialize(commandBufferInfo);

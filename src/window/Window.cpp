@@ -67,10 +67,16 @@ namespace RX
   std::vector<const char*> Window::getInstanceExtensions()
   {
     uint32_t sdlExtensionsCount;
-    SDL_ASSERT(SDL_Vulkan_GetInstanceExtensions(m_window, &sdlExtensionsCount, nullptr), "Failed to get instance extensions count.");
+    SDL_bool result = SDL_Vulkan_GetInstanceExtensions(m_window, &sdlExtensionsCount, nullptr);
+
+    if (result != SDL_TRUE)
+      RX_ERROR("Failed to get extensions required by SDL.");
     
     const char** sdlExtensionsNames = new const char* [sdlExtensionsCount];
-    SDL_ASSERT(SDL_Vulkan_GetInstanceExtensions(m_window, &sdlExtensionsCount, sdlExtensionsNames), "Failed to get instance extensions.");
+    result = SDL_Vulkan_GetInstanceExtensions(m_window, &sdlExtensionsCount, sdlExtensionsNames);
+
+    if (result != SDL_TRUE)
+      RX_ERROR("Failed to get extensions required by SDL.");
 
     std::vector<const char*> extensions;
 
@@ -83,8 +89,10 @@ namespace RX
   VkSurfaceKHR Window::createSurface(vk::Instance instance)
   {
     VkSurfaceKHR surface;
+    SDL_bool result = SDL_Vulkan_CreateSurface(m_window, instance, &surface);
 
-    SDL_ASSERT(SDL_Vulkan_CreateSurface(m_window, instance, &surface), "Failed to create surface");
+    if (result != SDL_TRUE)
+      RX_ERROR("Failed to create surface");
 
     return surface;
   }

@@ -43,9 +43,9 @@ namespace RX
   {
     m_commandBuffers[index].end();
 
-    if (m_info.usageFlags & vk::CommandBufferUsageFlagBits::eOneTimeSubmit && m_info.submitAutomatically)
+    if ((m_info.usageFlags & vk::CommandBufferUsageFlagBits::eOneTimeSubmit) && m_info.submitAutomatically)
     {
-      m_info.queue.submit(1, &m_info.submitInfo, nullptr);
+      m_info.queue.submit(1, &m_info.submitInfo, nullptr); // TODO: update assert
       m_info.queue.waitIdle();
     }
   }

@@ -10,12 +10,12 @@ namespace RX
 {
   struct DescriptorSetInfo
   {
-    std::vector<VkBuffer> uniformBuffers;
-    VkImageView textureImageView;
-    VkSampler textureSampler;
-    VkDevice device; 
-    VkDescriptorPool descriptorPool;
-    VkDescriptorSetLayout descriptorSetLayout;
+    std::vector<vk::Buffer> uniformBuffers;
+    vk::ImageView textureImageView;
+    vk::Sampler textureSampler;
+    vk::Device device; 
+    vk::DescriptorPool descriptorPool;
+    vk::DescriptorSetLayout descriptorSetLayout;
     size_t swapchainImagesCount; 
   };
 
@@ -24,14 +24,14 @@ namespace RX
   public:
     ~DescriptorSet();
 
-    inline std::vector<VkDescriptorSet> get() { return m_sets; }
+    inline std::vector<vk::DescriptorSet> get() { return m_sets; }
     inline DescriptorSetInfo& getInfo() { return m_info; }
 
     void initialize(DescriptorSetInfo& info);
     void destroy();
 
   private:
-    std::vector<VkDescriptorSet> m_sets;
+    std::vector<vk::DescriptorSet> m_sets;
     DescriptorSetInfo m_info;
 
     bool m_allocated = false;

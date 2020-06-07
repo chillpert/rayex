@@ -11,22 +11,23 @@ namespace RX
   {
     m_info = info;
 
-    VkCommandPoolCreateInfo createInfo{ };
-    createInfo.sType = VK_STRUCTURE_TYPE_COMMAND_POOL_CREATE_INFO;
+    vk::CommandPoolCreateInfo createInfo;
     createInfo.flags = m_info.createFlags;
     createInfo.queueFamilyIndex = m_info.queueFamilyIndex;
 
-    VK_CREATE(vkCreateCommandPool(m_info.device, &createInfo, nullptr, &m_commandPool), "command pool from family index: " + std::to_string(m_info.queueFamilyIndex));
+    m_commandPool = m_info.device.createCommandPool(createInfo);
+    if (!m_commandPool)
+      RX_ERROR("Failed to create command pool");
   }
 
   void CommandPool::destroy()
   {
-    VK_DESTROY(vkDestroyCommandPool(m_info.device, m_commandPool, nullptr), "command pool");
-    m_commandPool = VK_NULL_HANDLE;
+    m_info.device.destroyCommandPool(m_commandPool);
+    m_commandPool = nullptr;
   }
 
   void CommandPool::reset()
   {
-    VK_ASSERT(vkResetCommandPool(m_info.device, m_commandPool, m_info.resetFlags), "Failed to reset command pool.");
+    m_info.device.resetCommandPool(m_commandPool, m_info.resetFlags);
   }
 }

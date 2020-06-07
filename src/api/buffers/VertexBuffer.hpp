@@ -9,18 +9,18 @@ namespace RX
   struct VertexBufferInfo
   {
     std::vector<Vertex> vertices;
-    VkPhysicalDevice physicalDevice;
-    VkDevice device;
-    VkCommandPool commandPool;
-    VkQueue queue;
+    vk::PhysicalDevice physicalDevice;
+    vk::Device device;
+    vk::CommandPool commandPool;
+    vk::Queue queue;
     std::vector<uint32_t> queueIndices;
   };
 
   class VertexBuffer
   {
   public:
-    inline VkBuffer get()& { return m_buffer.get(); }
-    inline VkDeviceSize getSize() const { return m_buffer.getSize(); }
+    inline vk::Buffer get()& { return m_buffer.get(); }
+    inline vk::DeviceSize getSize() const { return m_buffer.getSize(); }
     inline VertexBufferInfo& getInfo() { return m_info; }
 
     void initialize(VertexBufferInfo& info);

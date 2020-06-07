@@ -12,11 +12,8 @@ namespace RX
     m_info = info;
 
     m_surface = m_info.window->createSurface(m_info.instance);
-    
     if (!m_surface)
       RX_ERROR("Failed to create surface.");
-
-    VK_CREATE(VK_SUCCESS, "surface");
   }
 
   void Surface::destroy()
@@ -57,7 +54,5 @@ namespace RX
     // If the prefered format and color space are not available, fall back.
     m_info.format = surfaceFormats[0].format;
     m_info.colorSpace = surfaceFormats[0].colorSpace;
-
-    VK_CREATE(VK_SUCCESS, "surface");
   }
 }

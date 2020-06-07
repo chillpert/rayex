@@ -25,6 +25,7 @@ namespace RX
     initSurface();
     initPhysicalDevice();
     initQueues();
+    initRayTracing();
     initDevice();
     initRenderPass();
     initSwapchain();
@@ -43,7 +44,7 @@ namespace RX
     m_imageAvailableSemaphores.resize(maxFramesInFlight);
     m_finishedRenderSemaphores.resize(maxFramesInFlight);
     m_inFlightFences.resize(maxFramesInFlight);
-    m_imagesInFlight.resize(m_swapchain.getInfo().images.size(), VK_NULL_HANDLE);
+    m_imagesInFlight.resize(m_swapchain.getImages().size(), VK_NULL_HANDLE);
 
     SemaphoreInfo semaphoreInfo{ };
     semaphoreInfo.device = m_device.get();
@@ -229,9 +230,9 @@ namespace RX
     if (m_gui != nullptr)
     {
       m_gui->getInfo().minImageCount = m_surface.getCapabilities().minImageCount + 1;
-      m_gui->getInfo().imageCount = static_cast<uint32_t>(m_swapchain.getInfo().images.size());
-      m_gui->getInfo().swapchainImageFormat = m_swapchain.getInfo().surfaceFormat;
-      m_gui->getInfo().swapchainImageExtent = m_swapchain.getInfo().extent;
+      m_gui->getInfo().imageCount = static_cast<uint32_t>(m_swapchain.getImages().size());
+      m_gui->getInfo().swapchainImageFormat = m_surface.getInfo().format;
+      m_gui->getInfo().swapchainImageExtent = m_swapchain.getExtent();
 
       std::vector<vk::ImageView> temp(m_swapchainImageViews.size());
 
@@ -278,7 +279,7 @@ namespace RX
   void Api::initSurface()
   {
     SurfaceInfo surfaceInfo{ };
-    surfaceInfo.window = m_window;
+    surfaceInfo.window = m_window.get();
     surfaceInfo.instance = m_instance.get();
 
     m_surface.initialize(surfaceInfo);
@@ -342,15 +343,12 @@ namespace RX
     m_surface.checkSettingSupport(m_physicalDevice.get());
 
     SwapchainInfo swapchainInfo{ };
-    swapchainInfo.window = m_window;
+    swapchainInfo.window = m_window.get();
     swapchainInfo.physicalDevice = m_physicalDevice.get();
     swapchainInfo.device = m_device.get();
-    swapchainInfo.surface = m_surface.get();
-    swapchainInfo.surfaceFormat = m_surface.getInfo().format;
-    swapchainInfo.surfaceColorSpace = m_surface.getInfo().colorSpace;
-    swapchainInfo.surfacePresentMode = m_surface.getInfo().presentMode;
-    swapchainInfo.surfaceCapabilities = m_surface.getCapabilities();
+    swapchainInfo.surface = &m_surface;
     swapchainInfo.queueFamilyIndices = m_queueManager.getQueueFamilyIndicesForSwapchainAccess();
+    swapchainInfo.imageAspect = vk::ImageAspectFlagBits::eColor;
     swapchainInfo.renderPass = m_renderPass.get();
 
     m_swapchain.initialize(swapchainInfo);
@@ -358,13 +356,13 @@ namespace RX
 
   void Api::initSwapchainImageViews()
   {
-    m_swapchainImageViews.resize(m_swapchain.getInfo().images.size());
+    m_swapchainImageViews.resize(m_swapchain.getImages().size());
     for (size_t i = 0; i < m_swapchainImageViews.size(); ++i)
     {
       ImageViewInfo imageViewInfo{ };
       imageViewInfo.device = m_device.get();
-      imageViewInfo.image = m_swapchain.getInfo().images[i];
-      imageViewInfo.format = m_swapchain.getInfo().surfaceFormat;
+      imageViewInfo.image = m_swapchain.getImage(i);
+      imageViewInfo.format = m_surface.getInfo().format;
       imageViewInfo.subresourceRange.aspectMask = m_swapchain.getInfo().imageAspect;
 
       m_swapchainImageViews[i].initialize(imageViewInfo);
@@ -410,8 +408,8 @@ namespace RX
     PipelineInfo pipelineInfo{ };
     pipelineInfo.device = m_device.get();
     pipelineInfo.renderPass = m_renderPass.get();
-    pipelineInfo.viewport = vk::Viewport{ 0.0f, 0.0f, static_cast<float>(m_swapchain.getInfo().extent.width), static_cast<float>(m_swapchain.getInfo().extent.height), 0.0f, 1.0f };
-    pipelineInfo.scissor = { 0, 0, m_swapchain.getInfo().extent.width, m_swapchain.getInfo().extent.height };
+    pipelineInfo.viewport = vk::Viewport{ 0.0f, 0.0f, static_cast<float>(m_swapchain.getExtent().width), static_cast<float>(m_swapchain.getExtent().height), 0.0f, 1.0f };
+    pipelineInfo.scissor = { 0, 0, m_swapchain.getExtent().width, m_swapchain.getExtent().height };
     pipelineInfo.vertexShader = vs.get();
     pipelineInfo.fragmentShader = fs.get();
     pipelineInfo.descriptorSetLayout = m_descriptorSetLayout.get();
@@ -449,7 +447,7 @@ namespace RX
     ImageInfo imageInfo{ };
     imageInfo.physicalDevice = m_physicalDevice.get();
     imageInfo.device = m_device.get();
-    imageInfo.extent = vk::Extent3D(m_swapchain.getInfo().extent.width, m_swapchain.getInfo().extent.height, 1);
+    imageInfo.extent = vk::Extent3D(m_swapchain.getExtent().width, m_swapchain.getExtent().height, 1);
     imageInfo.format = depthFormat;
     imageInfo.tiling = vk::ImageTiling::eOptimal;
     imageInfo.usage = vk::ImageUsageFlagBits::eDepthStencilAttachment;
@@ -468,12 +466,11 @@ namespace RX
 
   void Api::initSwapchainFramebuffers()
   {
-    // Swapchain framebuffers
     FramebufferInfo framebufferInfo{ };
     framebufferInfo.device = m_device.get();
     framebufferInfo.depthImageView = m_depthImageView.get();
     framebufferInfo.renderPass = m_renderPass.get();
-    framebufferInfo.extent = m_swapchain.getInfo().extent;
+    framebufferInfo.extent = m_swapchain.getExtent();
 
     m_swapchainFramebuffers.resize(m_swapchainImageViews.size());
     for (size_t i = 0; i < m_swapchainFramebuffers.size(); ++i)
@@ -511,11 +508,11 @@ namespace RX
     UniformBufferInfo uniformBufferInfo{ };
     uniformBufferInfo.physicalDevice = m_physicalDevice.get();
     uniformBufferInfo.device = m_device.get();
-    uniformBufferInfo.swapchainImagesCount = m_swapchain.getInfo().images.size();
+    uniformBufferInfo.swapchainImagesCount = m_swapchain.getImages().size();
 
     DescriptorPoolInfo descriptorPoolInfo{ };
     descriptorPoolInfo.device = m_device.get();
-    uint32_t swapchainImagesCount = m_swapchain.getInfo().images.size();
+    uint32_t swapchainImagesCount = m_swapchain.getImages().size();
     descriptorPoolInfo.poolSizes = { { vk::DescriptorType::eUniformBuffer, swapchainImagesCount }, { vk::DescriptorType::eCombinedImageSampler, swapchainImagesCount } };
     descriptorPoolInfo.maxSets = m_models.size() * swapchainImagesCount;
 
@@ -523,7 +520,7 @@ namespace RX
 
     DescriptorSetInfo descriptorSetInfo{ };
     descriptorSetInfo.device = m_device.get();
-    descriptorSetInfo.swapchainImagesCount = m_swapchain.getInfo().images.size();
+    descriptorSetInfo.swapchainImagesCount = m_swapchain.getImages().size();
     descriptorSetInfo.descriptorSetLayout = m_descriptorSetLayout.get();
 
     if (firstRun)
@@ -572,12 +569,10 @@ namespace RX
 
   void Api::initSwapchainCmdBuffers()
   {
-    // Command buffers for swapchain
     CommandBufferInfo commandBufferInfo{ };
     commandBufferInfo.device = m_device.get();
     commandBufferInfo.commandPool = m_graphicsCmdPool.get();
     commandBufferInfo.commandBufferCount = m_swapchainFramebuffers.size();
-    //commandBufferInfo.usageFlags = vk::CommandBufferUsageFlagBits::eRenderPassContinue; // TODO: might be cause of an erorr
     commandBufferInfo.usageFlags = vk::CommandBufferUsageFlagBits::eRenderPassContinue;
     commandBufferInfo.freeAutomatically = true;
     commandBufferInfo.componentName = "swapchain command buffers";
@@ -595,9 +590,9 @@ namespace RX
     guiInfo.queueFamilyIndex = m_queueManager.getGraphicsFamilyIndex(); 
     guiInfo.queue = m_queueManager.getGraphicsQueue();
     guiInfo.minImageCount = m_surface.getCapabilities().minImageCount + 1;
-    guiInfo.imageCount = static_cast<uint32_t>(m_swapchain.getInfo().images.size());
-    guiInfo.swapchainImageFormat = m_swapchain.getInfo().surfaceFormat;
-    guiInfo.swapchainImageExtent = m_swapchain.getInfo().extent;
+    guiInfo.imageCount = static_cast<uint32_t>(m_swapchain.getImages().size());
+    guiInfo.swapchainImageFormat = m_surface.getInfo().format;
+    guiInfo.swapchainImageExtent = m_swapchain.getExtent();
 
     std::vector<vk::ImageView> temp(m_swapchainImageViews.size());
     
@@ -616,7 +611,7 @@ namespace RX
 
     // Set up render pass begin info
     RenderPassBeginInfo renderPassBeginInfo{ };
-    renderPassBeginInfo.renderArea = { 0, 0, m_swapchain.getInfo().extent.width, m_swapchain.getInfo().extent.height };
+    renderPassBeginInfo.renderArea = { 0, 0, m_swapchain.getExtent() };
 
     vk::ClearValue clearValues[2];
     clearValues[0].color = { std::array<float, 4>{ 0.5f, 0.5f, 0.5f, 1.0f } };
@@ -640,27 +635,27 @@ namespace RX
       vkCmdBindPipeline(m_swapchainCmdBuffers.get()[imageIndex], VK_PIPELINE_BIND_POINT_GRAPHICS, m_pipeline.get());
 
       // Dynamic states
-      VkViewport viewport = m_pipeline.getInfo().viewport;
+      vk::Viewport viewport = m_pipeline.getInfo().viewport;
       viewport.width = m_window->getProperties().getWidth();
       viewport.height = m_window->getProperties().getHeight();
 
-      vkCmdSetViewport(m_swapchainCmdBuffers.get()[imageIndex], 0, 1, &viewport);
+      m_swapchainCmdBuffers.get()[imageIndex].setViewport(0, 1, &viewport); // CMD
 
-      VkRect2D scissor = m_pipeline.getInfo().scissor;
+      vk::Rect2D scissor = m_pipeline.getInfo().scissor;
       scissor.extent = m_window->getExtent();
 
-      vkCmdSetScissor(m_swapchainCmdBuffers.get()[imageIndex], 0, 1, &scissor);
+      m_swapchainCmdBuffers.get()[imageIndex].setScissor(0, 1, &scissor); // CMD
 
       // Draw models
       for (std::shared_ptr<Model> model : m_models)
       {
-        VkBuffer vertexBuffers[] = { model->m_vertexBuffer.get() };
-        VkDeviceSize offsets[] = { 0 };
+        vk::Buffer vertexBuffers[] = { model->m_vertexBuffer.get() };
+        vk::DeviceSize offsets[] = { 0 };
 
-        vkCmdBindVertexBuffers(m_swapchainCmdBuffers.get()[imageIndex], 0, 1, vertexBuffers, offsets);
+        m_swapchainCmdBuffers.get()[imageIndex].bindVertexBuffers(0, 1, vertexBuffers, offsets); // CMD
         m_swapchainCmdBuffers.get()[imageIndex].bindIndexBuffer(model->m_indexBuffer.get(), 0, model->m_indexBuffer.getType()); // CMD
         m_swapchainCmdBuffers.get()[imageIndex].bindDescriptorSets(vk::PipelineBindPoint::eGraphics, m_pipeline.getLayout(), 0, 1, &model->m_descriptorSets.get()[imageIndex], 0, nullptr); // CMD
-        vkCmdDrawIndexed(m_swapchainCmdBuffers.get()[imageIndex], model->m_indexBuffer.getCount(), 1, 0, 0, 0);
+        m_swapchainCmdBuffers.get()[imageIndex].drawIndexed(model->m_indexBuffer.getCount(), 1, 0, 0, 0); // CMD
       }
 
       m_renderPass.end(imageIndex);
@@ -673,20 +668,8 @@ namespace RX
 {
   void Api::initRayTracing()
   {
-    VkPhysicalDeviceProperties2 properties2 = m_physicalDevice.getProperties2();
-
-    m_rayTracingProperties = { };
-    m_rayTracingProperties.sType = VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_RAY_TRACING_PROPERTIES_KHR;
-    m_rayTracingProperties.pNext = nullptr;
-    m_rayTracingProperties.shaderGroupHandleSize = 0; // TODO: this should have been set using the properties2 somehow.
-    m_rayTracingProperties.maxRecursionDepth = 0; // TODO: this should have been set using the properties2 somehow.
-    m_rayTracingProperties.maxShaderGroupStride = 0;
-    m_rayTracingProperties.shaderGroupBaseAlignment = 0;
-    m_rayTracingProperties.maxGeometryCount = 0;
-    m_rayTracingProperties.maxInstanceCount = 0;
-    m_rayTracingProperties.maxPrimitiveCount = 0;
-    m_rayTracingProperties.maxDescriptorSetAccelerationStructures = 0;
-    m_rayTracingProperties.shaderGroupHandleCaptureReplaySize = 0;
+    auto properties = m_physicalDevice.get().getProperties2<vk::PhysicalDeviceProperties2, vk::PhysicalDeviceRayTracingPropertiesKHR>();
+    m_rayTracingProperties = properties.get<vk::PhysicalDeviceRayTracingPropertiesKHR>();
   }
 }
 

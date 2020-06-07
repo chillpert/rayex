@@ -4,10 +4,7 @@
 
 namespace RX
 {
-  Model::~Model()
-  {
-    RX_LOG("Destroying model");
-  }
+  Model::~Model() { }
 
   void Model::initialize()
   {

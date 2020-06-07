@@ -16,7 +16,7 @@ namespace RX
   class Model
   {
   public:
-    RX_API virtual ~Model();
+    RX_API ~Model();
 
     // Fill the vectors with vertex and index data.
     RX_API virtual void initialize();

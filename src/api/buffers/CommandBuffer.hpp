@@ -7,29 +7,27 @@ namespace RX
 {
   struct CommandBufferInfo
   {
-    VkDevice device;
-    VkCommandPool commandPool;
-    VkQueue queue;
+    vk::Device device;
+    vk::CommandPool commandPool;
+    vk::Queue queue;
 
     size_t commandBufferCount = 1; // Amount of command buffers that will be created.
-    VkCommandBufferUsageFlags usageFlags = VK_COMMAND_BUFFER_USAGE_ONE_TIME_SUBMIT_BIT;
-    VkCommandBufferResetFlags resetFlags = VK_COMMAND_BUFFER_RESET_RELEASE_RESOURCES_BIT;
-    VkCommandBufferLevel level = VK_COMMAND_BUFFER_LEVEL_PRIMARY;
+    vk::CommandBufferUsageFlags usageFlags = vk::CommandBufferUsageFlagBits::eOneTimeSubmit;
+    vk::CommandBufferResetFlags resetFlags = vk::CommandBufferResetFlagBits::eReleaseResources;
+    vk::CommandBufferLevel level = vk::CommandBufferLevel::ePrimary;
     bool freeAutomatically = true;
     bool submitAutomatically = true; // Only submits automatically if usageFlags contains ONE_TIME_SUBMIT
     const char* componentName = "command buffer(s)"; // Optional, used to give a more precise name for the object which will improve logging output.
 
-    VkCommandBufferBeginInfo beginInfo = { VK_STRUCTURE_TYPE_COMMAND_BUFFER_BEGIN_INFO, nullptr, 0, nullptr }; // Ignore
-    VkSubmitInfo submitInfo = { VK_STRUCTURE_TYPE_SUBMIT_INFO, nullptr, 0, nullptr, nullptr, 0, nullptr, 0, nullptr}; // Ignore
+    vk::CommandBufferBeginInfo beginInfo; // Ignore
+    vk::SubmitInfo submitInfo; // Ignore
   };
 
   class CommandBuffer
   {
   public:
-    ~CommandBuffer();
-
-    inline std::vector<VkCommandBuffer>& get() { return m_commandBuffers; } // TODO: getter where you can an index.
-    inline VkCommandBuffer getFront() { return m_commandBuffers[0]; }
+    inline std::vector<vk::CommandBuffer>& get() { return m_commandBuffers; } // TODO: getter where you can an index.
+    inline vk::CommandBuffer getFront() { return m_commandBuffers[0]; }
     inline CommandBufferInfo& getInfo() { return m_info; }
 
     void initialize(CommandBufferInfo& info);
@@ -42,7 +40,7 @@ namespace RX
     void end(size_t index = 0);
 
   private:
-    std::vector<VkCommandBuffer> m_commandBuffers;
+    std::vector<vk::CommandBuffer> m_commandBuffers;
     CommandBufferInfo m_info;
 
     bool m_allocated = false;

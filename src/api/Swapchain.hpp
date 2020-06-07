@@ -12,20 +12,20 @@ namespace RX
   struct SwapchainInfo
   {
     std::shared_ptr<Window> window;
-    VkPhysicalDevice physicalDevice;
-    VkDevice device;
-    VkSurfaceKHR surface;
-    VkFormat surfaceFormat;
-    VkFormat depthFormat;
-    VkColorSpaceKHR surfaceColorSpace;
-    VkPresentModeKHR surfacePresentMode;
-    VkSurfaceCapabilitiesKHR surfaceCapabilities;
+    vk::PhysicalDevice physicalDevice;
+    vk::Device device;
+    vk::SurfaceKHR surface;
+    vk::Format surfaceFormat;
+    vk::Format depthFormat;
+    vk::ColorSpaceKHR surfaceColorSpace;
+    vk::PresentModeKHR surfacePresentMode;
+    vk::SurfaceCapabilitiesKHR surfaceCapabilities;
     std::vector<uint32_t> queueFamilyIndices;
-    VkImageAspectFlags imageAspect = VK_IMAGE_ASPECT_COLOR_BIT;
-    VkRenderPass renderPass;
+    vk::ImageAspectFlags imageAspect = vk::ImageAspectFlagBits::eColor;
+    vk::RenderPass renderPass;
 
-    VkExtent2D extent; // Ignore, will be initialized automatically
-    std::vector<VkImage> images; // Ignore, will be initialized automatically
+    vk::Extent2D extent; // Ignore, will be initialized automatically
+    std::vector<vk::Image> images; // Ignore, will be initialized automatically
   };
 
   class Swapchain
@@ -33,22 +33,22 @@ namespace RX
   public:
     ~Swapchain();
 
-    inline VkSwapchainKHR get() { return m_swapchain; }    
+    inline vk::SwapchainKHR get() { return m_swapchain; }    
     inline SwapchainInfo& getInfo() { return m_info; }
 
     void initialize(SwapchainInfo& info);
     void destroy();
 
-    void acquireNextImage(VkSemaphore semaphore, VkFence fence, uint32_t* imageIndex);
+    void acquireNextImage(vk::Semaphore semaphore, vk::Fence fence, uint32_t* imageIndex);
     
   private:
-    VkSwapchainKHR m_swapchain;
+    vk::SwapchainKHR m_swapchain;
     SwapchainInfo m_info;
 
     bool m_created = false;
   };
 
-  VkFormat getSupportedDepthFormat(VkPhysicalDevice physicalDevice);
+  vk::Format getSupportedDepthFormat(vk::PhysicalDevice physicalDevice);
 }
 
 #endif // SWAPCHAIN_HPP

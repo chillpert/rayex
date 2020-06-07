@@ -2,11 +2,6 @@
 
 namespace RX
 {
-  Device::~Device()
-  {
-    destroy();
-  }
-
   void Device::initialize(DeviceInfo& info)
   {
     m_info = info;
@@ -14,7 +9,7 @@ namespace RX
     m_info.extensions.push_back(VK_KHR_SWAPCHAIN_EXTENSION_NAME);
     checkExtensionSupport();
 
-    std::vector<VkDeviceQueueCreateInfo> queueCreateInfos;
+    std::vector<vk::DeviceQueueCreateInfo> queueCreateInfos;
 
     std::vector<std::shared_ptr<std::vector<float>>> priorities(m_info.queueFamilies.size());
 
@@ -24,8 +19,7 @@ namespace RX
     {
       priorities[index] = std::make_shared<std::vector<float>>(queueFamily.queues.size());
 
-      VkDeviceQueueCreateInfo queueCreateInfo{ };
-      queueCreateInfo.sType = VK_STRUCTURE_TYPE_DEVICE_QUEUE_CREATE_INFO;
+      vk::DeviceQueueCreateInfo queueCreateInfo;
       queueCreateInfo.queueFamilyIndex = queueFamily.index;
       queueCreateInfo.queueCount = static_cast<uint32_t>(queueFamily.queues.size());
       //queueCreateInfo.flags = VK_DEVICE_QUEUE_CREATE_PROTECTED_BIT;
@@ -41,16 +35,14 @@ namespace RX
       ++index;
     }
 
-    VkPhysicalDeviceFeatures deviceFeatures{ };
+    vk::PhysicalDeviceFeatures deviceFeatures;
     deviceFeatures.samplerAnisotropy = VK_TRUE;
 
-    VkPhysicalDeviceFeatures2 deviceFeatures2{ };
-    deviceFeatures2.sType = VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_FEATURES_2;
+    vk::PhysicalDeviceFeatures2 deviceFeatures2;
     deviceFeatures2.pNext = nullptr;
     deviceFeatures2.features = deviceFeatures;
 
-    VkDeviceCreateInfo createInfo{ };
-    createInfo.sType = VK_STRUCTURE_TYPE_DEVICE_CREATE_INFO;
+    vk::DeviceCreateInfo createInfo;
     createInfo.pNext = &deviceFeatures2;
     createInfo.queueCreateInfoCount = static_cast<uint32_t>(queueCreateInfos.size());
     createInfo.pQueueCreateInfos = queueCreateInfos.data();
@@ -58,18 +50,15 @@ namespace RX
     createInfo.enabledExtensionCount = static_cast<uint32_t>(m_info.extensions.size());
     createInfo.ppEnabledExtensionNames = m_info.extensions.data();
 
-    VK_CREATE(vkCreateDevice(m_info.physicalDevice, &createInfo, nullptr, &m_device), "device");
-  }
+    m_device = m_info.physicalDevice.createDeviceUnique(createInfo);
 
-  void Device::destroy()
-  {
-    VK_DESTROY(vkDestroyDevice(m_device, nullptr), "device");
-    m_device = VK_NULL_HANDLE;
+    if (!m_device)
+      RX_ERROR("Failed to create logical device.");
   }
 
   void Device::waitIdle()
   {
-    vkDeviceWaitIdle(m_device);
+    m_device->waitIdle();
   }
 
   void Device::checkExtensionSupport() const
@@ -80,11 +69,7 @@ namespace RX
     for (const auto& extension : m_info.extensions)
       requiredExtensions.emplace(extension, false);
 
-    uint32_t physicalDeviceExtensionCount;
-    VK_ASSERT(vkEnumerateDeviceExtensionProperties(m_info.physicalDevice, NULL, &physicalDeviceExtensionCount, nullptr), "Failed to enumerate physical device extensions");
-
-    std::vector<VkExtensionProperties> physicalDeviceExtensions(physicalDeviceExtensionCount);
-    VK_ASSERT(vkEnumerateDeviceExtensionProperties(m_info.physicalDevice, NULL, &physicalDeviceExtensionCount, physicalDeviceExtensions.data()), "Failed to enumerate physical device extensions");
+    std::vector<vk::ExtensionProperties> physicalDeviceExtensions = m_info.physicalDevice.enumerateDeviceExtensionProperties();
 
     // Iterates over all enumerated physical device extensions to see if they are available.
     for (const auto& physicalDeviceExtension : physicalDeviceExtensions)

@@ -2,11 +2,6 @@
 
 namespace RX
 {
-  Instance::~Instance()
-  {
-    destroy();
-  }
-
   void Instance::initialize(InstanceInfo& info)
   {
     m_info = info;
@@ -20,34 +15,25 @@ namespace RX
     checkExtensionsSupport();
 
     // Start creating the instance.
-    VkApplicationInfo appInfo{ };
-    appInfo.sType = VK_STRUCTURE_TYPE_APPLICATION_INFO;
+    vk::ApplicationInfo appInfo;
     appInfo.apiVersion = getApiVersion();
  
-    VkInstanceCreateInfo createInfo{ };
-    createInfo.sType = VK_STRUCTURE_TYPE_INSTANCE_CREATE_INFO;
+    vk::InstanceCreateInfo createInfo;
     createInfo.pApplicationInfo = &appInfo;
     createInfo.ppEnabledLayerNames = m_info.layers.data();
     createInfo.enabledLayerCount = static_cast<uint32_t>(m_info.layers.size());
     createInfo.ppEnabledExtensionNames = m_info.extensions.data();
     createInfo.enabledExtensionCount = static_cast<uint32_t>(m_info.extensions.size());
 
-    VK_CREATE(vkCreateInstance(&createInfo, nullptr, &m_instance), "instance");
-  }
+    m_instance = vk::createInstanceUnique(createInfo);
 
-  void Instance::destroy()
-  {
-    VK_DESTROY(vkDestroyInstance(m_instance, nullptr), "instance");
-    m_instance = VK_NULL_HANDLE;
+    if (!m_instance)
+      RX_ERROR("Failed to create instance.");
   }
 
   void Instance::checkLayersSupport()
   {
-    uint32_t propertyCount;
-    VK_ASSERT(vkEnumerateInstanceLayerProperties(&propertyCount, nullptr), "Failed to enumerate instance layer properties.");
-
-    std::vector<VkLayerProperties> properties(propertyCount);
-    VK_ASSERT(vkEnumerateInstanceLayerProperties(&propertyCount, properties.data()), "Failed to enumerate instance layer properties.");
+    auto properties = vk::enumerateInstanceLayerProperties();
 
     for (const char* name : m_info.layers)
     {
@@ -70,11 +56,7 @@ namespace RX
 
   void Instance::checkExtensionsSupport()
   {
-    uint32_t propertyCount;
-    VK_ASSERT(vkEnumerateInstanceExtensionProperties(nullptr, &propertyCount, nullptr), "Failed to enumerate instance extension properties.");
-
-    std::vector<VkExtensionProperties> properties(propertyCount);
-    VK_ASSERT(vkEnumerateInstanceExtensionProperties(nullptr, &propertyCount, properties.data()), "Failed to enumerate instance extension properties.");
+    auto properties = vk::enumerateInstanceExtensionProperties();
 
     for (const char* name : m_info.extensions)
     {
@@ -97,8 +79,7 @@ namespace RX
 
   uint32_t Instance::getApiVersion()
   {
-    uint32_t apiVersion;
-    VK_ASSERT(vkEnumerateInstanceVersion(&apiVersion), "Failed to enumerate instance version.");
+    uint32_t apiVersion = vk::enumerateInstanceVersion();
 
 #ifdef VK_API_VERSION_1_2
     if (apiVersion >= VK_API_VERSION_1_2)

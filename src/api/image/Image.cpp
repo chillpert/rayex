@@ -8,13 +8,12 @@ namespace RX
   {
     destroy();
   }
-  
+
   void Image::initialize(ImageInfo& info)
   {
     m_info = info;
 
-    VkImageCreateInfo createInfo{ };
-    createInfo.sType = VK_STRUCTURE_TYPE_IMAGE_CREATE_INFO;
+    vk::ImageCreateInfo createInfo;
     createInfo.imageType = m_info.imageType;
     createInfo.format = m_info.format;
     createInfo.extent = m_info.extent;
@@ -26,21 +25,32 @@ namespace RX
     createInfo.sharingMode = m_info.sharingMode;
     createInfo.initialLayout = m_info.layout;
     
-    VK_CREATE(vkCreateImage(m_info.device, &createInfo, nullptr, &m_image), "image");
+    m_image = m_info.device.createImage(createInfo);
 
-    VkMemoryRequirements memoryRequirements;
-    vkGetImageMemoryRequirements(m_info.device, m_image, &memoryRequirements);
+    if (!m_image)
+      RX_ERROR("Failed to create image.");
 
-    VkMemoryAllocateInfo allocateInfo{ };
-    allocateInfo.sType = VK_STRUCTURE_TYPE_MEMORY_ALLOCATE_INFO;
+    auto memoryRequirements = m_info.device.getImageMemoryRequirements(m_image);
+
+    vk::MemoryAllocateInfo allocateInfo;
     allocateInfo.allocationSize = memoryRequirements.size;
     allocateInfo.memoryTypeIndex = Buffer::findMemoryType(m_info.physicalDevice, memoryRequirements.memoryTypeBits, VK_MEMORY_PROPERTY_DEVICE_LOCAL_BIT);
 
-    VK_ALLOCATE(vkAllocateMemory(m_info.device, &allocateInfo, nullptr, &m_memory), "memory for image.");
-    VK_ASSERT(vkBindImageMemory(m_info.device, m_image, m_memory, 0), "Failed to bind image memory.");
+    m_memory = m_info.device.allocateMemory(allocateInfo);
+
+    if (!m_memory)
+      RX_ERROR("Failed to create memory for image.");
+
+    m_info.device.bindImageMemory(m_image, m_memory, 0);
   }
 
-  void Image::transitionToLayout(VkImageLayout layout)
+  void Image::destroy()
+  {
+    m_info.device.destroyImage(m_image);
+    m_info.device.freeMemory(m_memory);
+  }
+
+  void Image::transitionToLayout(vk::ImageLayout layout)
   {
     CommandBufferInfo commandBufferInfo{ };
     commandBufferInfo.device = m_info.device;
@@ -54,46 +64,44 @@ namespace RX
 
     commandBuffer.begin();
 
-    VkImageMemoryBarrier barrier{ };
-    barrier.sType = VK_STRUCTURE_TYPE_IMAGE_MEMORY_BARRIER;
+    vk::ImageMemoryBarrier barrier;
     barrier.oldLayout = m_info.layout;
     barrier.newLayout = layout;
     barrier.srcQueueFamilyIndex = VK_QUEUE_FAMILY_IGNORED;
     barrier.dstQueueFamilyIndex = VK_QUEUE_FAMILY_IGNORED;
     barrier.image = m_image;
-    barrier.subresourceRange.aspectMask = VK_IMAGE_ASPECT_COLOR_BIT;
+    barrier.subresourceRange.aspectMask = vk::ImageAspectFlagBits::eColor;
     barrier.subresourceRange.baseMipLevel = 0;
     barrier.subresourceRange.levelCount = 1;
     barrier.subresourceRange.baseArrayLayer = 0;
     barrier.subresourceRange.layerCount = 1;
 
-    VkPipelineStageFlags sourceStage;
-    VkPipelineStageFlags destinationStage;
+    vk::PipelineStageFlags sourceStage;
+    vk::PipelineStageFlags destinationStage;
 
-    if (m_info.layout == VK_IMAGE_LAYOUT_UNDEFINED && layout == VK_IMAGE_LAYOUT_TRANSFER_DST_OPTIMAL)
+    if (m_info.layout == vk::ImageLayout::eUndefined && layout == vk::ImageLayout::eTransferDstOptimal)
     {
-      barrier.srcAccessMask = 0;
-      barrier.dstAccessMask = VK_ACCESS_TRANSFER_WRITE_BIT;
+      //barrier.srcAccessMask = 0;
+      barrier.dstAccessMask = vk::AccessFlagBits::eTransferWrite;
 
-      sourceStage = VK_PIPELINE_STAGE_TOP_OF_PIPE_BIT;
-      destinationStage = VK_PIPELINE_STAGE_TRANSFER_BIT;
+      sourceStage = vk::PipelineStageFlagBits::eTopOfPipe;
+      destinationStage = vk::PipelineStageFlagBits::eTransfer;
     }
-    else if (m_info.layout == VK_IMAGE_LAYOUT_TRANSFER_DST_OPTIMAL && layout == VK_IMAGE_LAYOUT_SHADER_READ_ONLY_OPTIMAL)
+    else if (m_info.layout == vk::ImageLayout::eTransferDstOptimal && layout == vk::ImageLayout::eShaderReadOnlyOptimal)
     {
-      barrier.srcAccessMask = VK_ACCESS_TRANSFER_WRITE_BIT;
-      barrier.dstAccessMask = VK_ACCESS_SHADER_READ_BIT;
+      barrier.srcAccessMask = vk::AccessFlagBits::eTransferWrite;
+      barrier.dstAccessMask = vk::AccessFlagBits::eShaderRead;
 
-      sourceStage = VK_PIPELINE_STAGE_TRANSFER_BIT;
-      destinationStage = VK_PIPELINE_STAGE_FRAGMENT_SHADER_BIT;
+      sourceStage = vk::PipelineStageFlagBits::eTransfer;
+      destinationStage = vk::PipelineStageFlagBits::eFragmentShader;
     }
     else
       RX_ERROR("Failed to transition image layout.");
 
-    vkCmdPipelineBarrier(
-      commandBuffer.getFront(),
+    commandBuffer.getFront().pipelineBarrier(
       sourceStage,
       destinationStage,
-      0,
+      vk::DependencyFlagBits::eByRegion, // TODO: might be cause of an error
       0,
       nullptr,
       0,
@@ -107,31 +115,21 @@ namespace RX
     m_info.layout = layout;
   }
 
-  VkFormat Image::findSupportedFormat(VkPhysicalDevice physicalDevice, const std::vector<VkFormat>& formatsToTest, VkFormatFeatureFlags features, VkImageTiling tiling)
+  vk::Format Image::findSupportedFormat(vk::PhysicalDevice physicalDevice, const std::vector<vk::Format>& formatsToTest, vk::FormatFeatureFlagBits features, vk::ImageTiling tiling)
   {
-    for (VkFormat format : formatsToTest)
+    for (vk::Format format : formatsToTest)
     {
-      VkFormatProperties props;
-      vkGetPhysicalDeviceFormatProperties(physicalDevice, format, &props);
+      auto props = physicalDevice.getFormatProperties(format);
 
-      if (tiling == VK_IMAGE_TILING_LINEAR && (props.linearTilingFeatures & features) == features)
+      if (tiling == vk::ImageTiling::eLinear && (props.linearTilingFeatures & features) == features)
         return format;
 
-      else if (tiling == VK_IMAGE_TILING_OPTIMAL && (props.optimalTilingFeatures & features) == features)
+      else if (tiling == vk::ImageTiling::eOptimal && (props.optimalTilingFeatures & features) == features)
         return format;
     }
 
     RX_ERROR("Failed to retrieve any supported image format.");
 
-    return VK_FORMAT_UNDEFINED;
-  }
-
-  void Image::destroy()
-  {
-    VK_DESTROY(vkDestroyImage(m_info.device, m_image, nullptr), "image");
-    VK_FREE(vkFreeMemory(m_info.device, m_memory, nullptr), "image");
-
-    m_image = VK_NULL_HANDLE;
-    m_memory = VK_NULL_HANDLE;
+    return vk::Format::eUndefined;
   }
 }

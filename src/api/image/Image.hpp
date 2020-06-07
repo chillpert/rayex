@@ -7,41 +7,42 @@ namespace RX
 {
   struct ImageInfo
   {
-    VkPhysicalDevice physicalDevice;
-    VkDevice device;
-    VkQueue queue; // Define in case you want to transition the image to another layout.
-    VkCommandPool commandPool; // Define in case you want to transition the image to another layout.
-    VkExtent3D extent;
+    vk::PhysicalDevice physicalDevice;
+    vk::Device device;
+    vk::Queue queue; // Define in case you want to transition the image to another layout.
+    vk::CommandPool commandPool; // Define in case you want to transition the image to another layout.
+    vk::Extent3D extent;
 
-    VkImageUsageFlags usage = VK_IMAGE_USAGE_TRANSFER_DST_BIT | VK_IMAGE_USAGE_SAMPLED_BIT;
-    VkFormat format = VK_FORMAT_R8G8B8A8_SRGB;
-    VkImageTiling tiling = VK_IMAGE_TILING_OPTIMAL;
-    VkImageType imageType = VK_IMAGE_TYPE_2D;
-    VkImageLayout layout = VK_IMAGE_LAYOUT_UNDEFINED; // The initial image layout.
+    vk::ImageUsageFlags usage = vk::ImageUsageFlagBits::eTransferDst | vk::ImageUsageFlagBits::eSampled;
+    vk::Format format = vk::Format::eR8G8B8A8Srgb;
+    vk::ImageTiling tiling = vk::ImageTiling::eOptimal;
+    vk::ImageType imageType = vk::ImageType::e2D;
+    vk::ImageLayout layout = vk::ImageLayout::eUndefined; // The initial image layout.
     uint32_t mipLevels = 1;
     uint32_t arrayLayers = 1;
-    VkSampleCountFlagBits samples = VK_SAMPLE_COUNT_1_BIT;
-    VkSharingMode sharingMode = VK_SHARING_MODE_EXCLUSIVE;
+    vk::SampleCountFlagBits samples = vk::SampleCountFlagBits::e1;
+    vk::SharingMode sharingMode = vk::SharingMode::eExclusive;
   };
 
   class Image
   {
   public:
-    RX_API ~Image();
+    ~Image();
 
-    inline VkImage get() { return m_image; }
-    inline VkDeviceMemory& getMemory() { return m_memory; }
+    inline vk::Image get() { return m_image; }
+    inline vk::DeviceMemory& getMemory() { return m_memory; }
     inline ImageInfo& getInfo() { return m_info; }
 
     void initialize(ImageInfo& info);
-    void transitionToLayout(VkImageLayout layout);
-    
-    static VkFormat findSupportedFormat(VkPhysicalDevice physicalDevice, const std::vector<VkFormat>& formatsToTest, VkFormatFeatureFlags features, VkImageTiling tiling);
     void destroy();
+
+    void transitionToLayout(vk::ImageLayout layout);
+    
+    static vk::Format findSupportedFormat(vk::PhysicalDevice physicalDevice, const std::vector<vk::Format>& formatsToTest, vk::FormatFeatureFlagBits features, vk::ImageTiling tiling);
   
   protected:
-    VkImage m_image;
-    VkDeviceMemory m_memory;
+    vk::Image m_image;
+    vk::DeviceMemory m_memory;
     ImageInfo m_info;
 
     bool m_created = false;

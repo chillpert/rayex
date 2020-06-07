@@ -80,7 +80,7 @@ namespace RX
     return extensions;
   }
 
-  VkSurfaceKHR Window::createSurface(VkInstance instance)
+  VkSurfaceKHR Window::createSurface(vk::Instance instance)
   {
     VkSurfaceKHR surface;
 
@@ -104,7 +104,7 @@ namespace RX
     SDL_GetWindowSize(m_window, width, height);
   }
 
-  VkExtent2D Window::getExtent()
+  vk::Extent2D Window::getExtent()
   {
     int width, height;
     SDL_GetWindowSize(m_window, &width, &height);

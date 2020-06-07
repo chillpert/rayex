@@ -2,25 +2,18 @@
 
 namespace RX
 {
-  CommandBuffer::~CommandBuffer()
-  {
-    if (m_info.freeAutomatically)
-      free();
-  }
-
   void CommandBuffer::initialize(CommandBufferInfo& info)
   {
     m_info = info;
 
     m_commandBuffers.resize(m_info.commandBufferCount);
 
-    VkCommandBufferAllocateInfo allocateInfo{ };
-    allocateInfo.sType = VK_STRUCTURE_TYPE_COMMAND_BUFFER_ALLOCATE_INFO;
+    vk::CommandBufferAllocateInfo allocateInfo;
     allocateInfo.commandPool = m_info.commandPool;
     allocateInfo.level = m_info.level;
     allocateInfo.commandBufferCount = static_cast<uint32_t>(m_info.commandBufferCount);
 
-    VK_ALLOCATE(vkAllocateCommandBuffers(m_info.device, &allocateInfo, m_commandBuffers.data()), m_info.componentName);
+    m_commandBuffers = m_info.device.allocateCommandBuffers(allocateInfo);
 
     // set up begin info.
     m_info.beginInfo.flags = m_info.usageFlags;
@@ -32,30 +25,28 @@ namespace RX
 
   void CommandBuffer::free()
   {
-    VK_FREE(vkFreeCommandBuffers(m_info.device, m_info.commandPool, static_cast<uint32_t>(m_commandBuffers.size()), m_commandBuffers.data()), m_info.componentName);
+    m_info.device.freeCommandBuffers(m_info.commandPool, static_cast<uint32_t>(m_commandBuffers.size()), m_commandBuffers.data());
   }
 
   void CommandBuffer::reset()
   {
-    for (VkCommandBuffer& buffer : m_commandBuffers)
-      VK_ASSERT(vkResetCommandBuffer(buffer, m_info.resetFlags), "Failed to reset " + m_info.componentName);
+    for (vk::CommandBuffer& buffer : m_commandBuffers)
+      buffer.reset(m_info.resetFlags);
   }
 
   void CommandBuffer::begin(size_t index)
   {
-    VK_ASSERT(vkBeginCommandBuffer(m_commandBuffers[index], &m_info.beginInfo), "Failed to begin " + m_info.componentName);
+    m_commandBuffers[index].begin(m_info.beginInfo);
   }
 
   void CommandBuffer::end(size_t index)
   {
-    VK_ASSERT(vkEndCommandBuffer(m_commandBuffers[index]), "Failed to end " + m_info.componentName);
+    m_commandBuffers[index].end();
 
-    if (m_info.usageFlags & VK_COMMAND_BUFFER_USAGE_ONE_TIME_SUBMIT_BIT && m_info.submitAutomatically)
+    if (m_info.usageFlags & vk::CommandBufferUsageFlagBits::eOneTimeSubmit && m_info.submitAutomatically)
     {
-      RX_ASSERT((m_info.queue != VK_NULL_HANDLE), "Command buffer object is one time usage, but no queue for immediate execution was specified.");
-
-      VK_ASSERT(vkQueueSubmit(m_info.queue, 1, &m_info.submitInfo, VK_NULL_HANDLE), "failed to submit queue of one time usage command buffer");
-      VK_ASSERT(vkQueueWaitIdle(m_info.queue), "Queue for one time usage command buffer failed to wait idle");
+      m_info.queue.submit(1, &m_info.submitInfo, nullptr);
+      m_info.queue.waitIdle();
     }
   }
 }

@@ -47,13 +47,13 @@ namespace RX
     imageInfo.device = m_info.device;
     imageInfo.queue = m_info.queue;
     imageInfo.commandPool = m_info.commandPool;
-    imageInfo.extent = { static_cast<uint32_t>(width), static_cast<uint32_t>(height), 1 };
+    imageInfo.extent = VkExtent3D{ static_cast<uint32_t>(width), static_cast<uint32_t>(height), 1 };
 
     m_image.initialize(imageInfo);
 
-    m_image.transitionToLayout(VK_IMAGE_LAYOUT_TRANSFER_DST_OPTIMAL);
+    m_image.transitionToLayout(vk::ImageLayout::eTransferDstOptimal);
     stagingBuffer.copyToImage(m_image);
-    m_image.transitionToLayout(VK_IMAGE_LAYOUT_SHADER_READ_ONLY_OPTIMAL);
+    m_image.transitionToLayout(vk::ImageLayout::eShaderReadOnlyOptimal);
 
     ImageViewInfo imageViewInfo{ };
     imageViewInfo.device = m_info.device;

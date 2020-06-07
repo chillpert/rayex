@@ -92,7 +92,7 @@ namespace RX
     }
 
     uint32_t imageIndex;
-    m_swapchain.acquireNextImage(m_imageAvailableSemaphores[currentFrame].get(), VK_NULL_HANDLE, &imageIndex);
+    m_swapchain.acquireNextImage(m_imageAvailableSemaphores[currentFrame].get(), nullptr, &imageIndex);
 
     // TODO: Temporary
     for (std::shared_ptr<Model> model : m_models)
@@ -231,12 +231,12 @@ namespace RX
 
     if (m_gui != nullptr)
     {
-      m_gui->getInfo().minImageCount = m_surface.getInfo().capabilities.minImageCount + 1;
+      m_gui->getInfo().minImageCount = m_surface.getCapabilities().minImageCount + 1;
       m_gui->getInfo().imageCount = static_cast<uint32_t>(m_swapchain.getInfo().images.size());
       m_gui->getInfo().swapchainImageFormat = m_swapchain.getInfo().surfaceFormat;
       m_gui->getInfo().swapchainImageExtent = m_swapchain.getInfo().extent;
 
-      std::vector<VkImageView> temp(m_swapchainImageViews.size());
+      std::vector<vk::ImageView> temp(m_swapchainImageViews.size());
 
       for (size_t i = 0; i < m_swapchainImageViews.size(); ++i)
         temp[i] = m_swapchainImageViews[i].get();
@@ -352,7 +352,7 @@ namespace RX
     swapchainInfo.surfaceFormat = m_surface.getInfo().format;
     swapchainInfo.surfaceColorSpace = m_surface.getInfo().colorSpace;
     swapchainInfo.surfacePresentMode = m_surface.getInfo().presentMode;
-    swapchainInfo.surfaceCapabilities = m_surface.getInfo().capabilities;
+    swapchainInfo.surfaceCapabilities = m_surface.getCapabilities();
     swapchainInfo.queueFamilyIndices = m_queueManager.getQueueFamilyIndicesForSwapchainAccess();
     swapchainInfo.renderPass = m_renderPass.get();
 
@@ -447,15 +447,15 @@ namespace RX
   void Api::initDepthBuffering()
   {
     // Depth image for depth buffering
-    VkFormat depthFormat = getSupportedDepthFormat(m_physicalDevice.get());
+    vk::Format depthFormat = getSupportedDepthFormat(m_physicalDevice.get());
 
     ImageInfo imageInfo{ };
     imageInfo.physicalDevice = m_physicalDevice.get();
     imageInfo.device = m_device.get();
-    imageInfo.extent = { m_swapchain.getInfo().extent.width, m_swapchain.getInfo().extent.height, 1 };
+    imageInfo.extent = vk::Extent3D(m_swapchain.getInfo().extent.width, m_swapchain.getInfo().extent.height, 1);
     imageInfo.format = depthFormat;
-    imageInfo.tiling = VK_IMAGE_TILING_OPTIMAL;
-    imageInfo.usage = VK_IMAGE_USAGE_DEPTH_STENCIL_ATTACHMENT_BIT;
+    imageInfo.tiling = vk::ImageTiling::eOptimal;
+    imageInfo.usage = vk::ImageUsageFlagBits::eDepthStencilAttachment;
 
     m_depthImage.initialize(imageInfo);
 
@@ -464,7 +464,7 @@ namespace RX
     depthImageViewInfo.device = m_device.get();
     depthImageViewInfo.format = depthFormat;
     depthImageViewInfo.image = m_depthImage.get();
-    depthImageViewInfo.subresourceRange.aspectMask = VK_IMAGE_ASPECT_DEPTH_BIT;
+    depthImageViewInfo.subresourceRange.aspectMask = vk::ImageAspectFlagBits::eDepth;
 
     m_depthImageView.initialize(depthImageViewInfo);
   }
@@ -536,7 +536,8 @@ namespace RX
         model->initialize();
 
         textureInfo.path = model->m_pathToTexture;
-        model->m_texture.initialize(textureInfo);
+        if (!textureInfo.path.empty())
+          model->m_texture.initialize(textureInfo);
 
         vertexBufferInfo.vertices = model->m_vertices;
         model->m_vertexBuffer.initialize(vertexBufferInfo);
@@ -579,7 +580,8 @@ namespace RX
     commandBufferInfo.device = m_device.get();
     commandBufferInfo.commandPool = m_graphicsCmdPool.get();
     commandBufferInfo.commandBufferCount = m_swapchainFramebuffers.size();
-    commandBufferInfo.usageFlags = 0;
+    //commandBufferInfo.usageFlags = vk::CommandBufferUsageFlagBits::eRenderPassContinue; // TODO: might be cause of an erorr
+    commandBufferInfo.usageFlags = vk::CommandBufferUsageFlagBits::eRenderPassContinue;
     commandBufferInfo.freeAutomatically = true;
     commandBufferInfo.componentName = "swapchain command buffers";
 
@@ -595,12 +597,12 @@ namespace RX
     guiInfo.device = m_device.get();
     guiInfo.queueFamilyIndex = m_queueManager.getGraphicsFamilyIndex(); 
     guiInfo.queue = m_queueManager.getGraphicsQueue();
-    guiInfo.minImageCount = m_surface.getInfo().capabilities.minImageCount + 1;
+    guiInfo.minImageCount = m_surface.getCapabilities().minImageCount + 1;
     guiInfo.imageCount = static_cast<uint32_t>(m_swapchain.getInfo().images.size());
     guiInfo.swapchainImageFormat = m_swapchain.getInfo().surfaceFormat;
     guiInfo.swapchainImageExtent = m_swapchain.getInfo().extent;
 
-    std::vector<VkImageView> temp(m_swapchainImageViews.size());
+    std::vector<vk::ImageView> temp(m_swapchainImageViews.size());
     
     for (size_t i = 0; i < m_swapchainImageViews.size(); ++i)
       temp[i] = m_swapchainImageViews[i].get();
@@ -618,8 +620,14 @@ namespace RX
     // Set up render pass begin info
     RenderPassBeginInfo renderPassBeginInfo{ };
     renderPassBeginInfo.renderArea = { 0, 0, m_swapchain.getInfo().extent.width, m_swapchain.getInfo().extent.height };
-    renderPassBeginInfo.clearValues = { { 0.5f, 0.5f, 0.5f, 1.0f }, { 1.0f, 0 } };
+
+    vk::ClearValue clearValues[2];
+    clearValues[0].color = { std::array<float, 4>{ 0.5f, 0.5f, 0.5f, 1.0f } };
+    clearValues[1].depthStencil = vk::ClearDepthStencilValue{ 1.0f, 0 };
+
+    renderPassBeginInfo.clearValues = { clearValues[0], clearValues[1] };
     renderPassBeginInfo.commandBuffers = m_swapchainCmdBuffers.get();
+
 
     for (Framebuffer& framebuffer : m_swapchainFramebuffers)
       renderPassBeginInfo.framebuffers.push_back(framebuffer.get());

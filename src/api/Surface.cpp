@@ -13,42 +13,40 @@ namespace RX
 
     m_surface = m_info.window->createSurface(m_info.instance);
     
+    if (!m_surface)
+      RX_ERROR("Failed to create surface.");
+
     VK_CREATE(VK_SUCCESS, "surface");
   }
 
-  void Surface::checkSettingSupport(VkPhysicalDevice physicalDevice)
+  void Surface::destroy()
+  {
+    m_info.instance.destroySurfaceKHR(m_surface);
+  }
+
+  void Surface::checkSettingSupport(vk::PhysicalDevice physicalDevice)
   {
     // Get all surface capabilities.
-    vkGetPhysicalDeviceSurfaceCapabilitiesKHR(physicalDevice, m_surface, &m_info.capabilities);
+    m_capabilities = physicalDevice.getSurfaceCapabilitiesKHR(m_surface);
 
     // Check a present mode.
-    uint32_t presentModeCount;
-    VK_ASSERT(vkGetPhysicalDeviceSurfacePresentModesKHR(physicalDevice, m_surface, &presentModeCount, nullptr), "Failed to get physical device surface present modes");
-
-    std::vector<VkPresentModeKHR> presentModes(presentModeCount);
-    VK_ASSERT(vkGetPhysicalDeviceSurfacePresentModesKHR(physicalDevice, m_surface, &presentModeCount, presentModes.data()), "Failed to get physical device surface present modes");
+    std::vector<vk::PresentModeKHR> presentModes = physicalDevice.getSurfacePresentModesKHR(m_surface);
 
     for (const auto& mode : presentModes)
     {
-      if (mode == VK_PRESENT_MODE_MAILBOX_KHR)
+      if (mode == vk::PresentModeKHR::eMailbox)
       {
-        m_info.presentMode = VK_PRESENT_MODE_MAILBOX_KHR;
+        m_info.presentMode = vk::PresentModeKHR::eMailbox;
         return;
       }
     }
 
     // Fall back, as FIFO is always supported on every device.
-    m_info.presentMode = VK_PRESENT_MODE_FIFO_KHR;
+    m_info.presentMode = vk::PresentModeKHR::eFifo;
 
     // Check format and color space.
-    VkFormatProperties formatProperties{ };
-    vkGetPhysicalDeviceFormatProperties(physicalDevice, m_info.format, &formatProperties); // TODO: Check if this color format is supported
-
-    uint32_t surfaceFormatCounts;
-    VK_ASSERT(vkGetPhysicalDeviceSurfaceFormatsKHR(physicalDevice, m_surface, &surfaceFormatCounts, nullptr), "Failed to query physical device surface formats");
-
-    std::vector<VkSurfaceFormatKHR> surfaceFormats(surfaceFormatCounts);
-    VK_ASSERT(vkGetPhysicalDeviceSurfaceFormatsKHR(physicalDevice, m_surface, &surfaceFormatCounts, surfaceFormats.data()), "Failed to query physical device surface formats");
+    auto formatProperties = physicalDevice.getFormatProperties(m_info.format); // TODO: not used.
+    auto surfaceFormats = physicalDevice.getSurfaceFormatsKHR(m_surface);
 
     for (const auto& iter : surfaceFormats)
     {
@@ -60,12 +58,6 @@ namespace RX
     m_info.format = surfaceFormats[0].format;
     m_info.colorSpace = surfaceFormats[0].colorSpace;
 
-    VK_CREATE(VK_SUCCESS, "swapchain");
-  }
-
-  void Surface::destroy()
-  {
-    VK_DESTROY(vkDestroySurfaceKHR(m_info.instance, m_surface, nullptr), "surface");
-    m_surface = VK_NULL_HANDLE;
+    VK_CREATE(VK_SUCCESS, "surface");
   }
 }

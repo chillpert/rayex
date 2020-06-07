@@ -15,22 +15,18 @@ namespace RX
   class Instance
   {
   public:
-    ~Instance();
-
-    inline VkInstance get() { return m_instance; }
+    inline vk::Instance get() { return m_instance.get(); }
     inline InstanceInfo& getInfo() { return m_info; }
 
     void initialize(InstanceInfo& info);
 
   private:
-    void destroy();
-
     void checkLayersSupport();
     void checkExtensionsSupport();
 
     uint32_t getApiVersion();
 
-    VkInstance m_instance;
+    vk::UniqueInstance m_instance;
     InstanceInfo m_info;
 
     bool m_created = false;

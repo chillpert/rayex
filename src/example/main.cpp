@@ -158,6 +158,7 @@ public:
     {
       ImGui::SliderFloat("Speed", &speed, 0.0f, 2.0f);
     }
+
     ImGui::End();
   }
 };
@@ -169,10 +170,10 @@ int main(int argc, char* argv[])
   // Now create the actual window using the window properties from above.
   auto myWindow = std::make_shared<CustomWindow>(props);
   // Setup your own ImGui based Gui.
-  auto myGui = std::make_unique<CustomGui>();
+  //auto myGui = std::make_unique<CustomGui>();
 
   // Create the renderer object.
-  Renderer renderer(myWindow, std::move(myGui));
+  Renderer renderer(myWindow);//, std::move(myGui));
   
   auto dlore = std::make_shared<Model>();
   dlore->m_pathToTexture = RX_TEXTURE_PATH "awpdlore.png";

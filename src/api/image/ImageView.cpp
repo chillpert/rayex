@@ -11,20 +11,21 @@ namespace RX
   {
     m_info = info;
 
-    VkImageViewCreateInfo createInfo{ };
-    createInfo.sType = VK_STRUCTURE_TYPE_IMAGE_VIEW_CREATE_INFO;
+    vk::ImageViewCreateInfo createInfo;
     createInfo.image = m_info.image;
     createInfo.viewType = m_info.viewType;
     createInfo.format = m_info.format;
     createInfo.components = m_info.components;
     createInfo.subresourceRange = m_info.subresourceRange;
 
-    VK_CREATE(vkCreateImageView(m_info.device, &createInfo, nullptr, &m_imageView), "image view");
+    m_imageView = m_info.device.createImageView(createInfo);
+
+    if (!m_imageView)
+      RX_ERROR("Failed to create image view.");
   }
 
   void ImageView::destroy()
   {
-    VK_DESTROY(vkDestroyImageView(m_info.device, m_imageView, nullptr), "image view");
-    m_imageView = VK_NULL_HANDLE;
+    m_info.device.destroyImageView(m_imageView);
   }
 }

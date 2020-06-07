@@ -145,35 +145,34 @@ namespace RX
 
   void Gui::initRenderPass()
   {
-    VkAttachmentDescription attachment{ };
+    vk::AttachmentDescription attachment;
     attachment.format = m_info.swapchainImageFormat;
-    attachment.samples = VK_SAMPLE_COUNT_1_BIT;
-    attachment.loadOp = VK_ATTACHMENT_LOAD_OP_LOAD;
-    attachment.storeOp = VK_ATTACHMENT_STORE_OP_STORE;
-    attachment.stencilLoadOp = VK_ATTACHMENT_LOAD_OP_DONT_CARE;
-    attachment.stencilStoreOp = VK_ATTACHMENT_STORE_OP_DONT_CARE;
-    attachment.initialLayout = VK_IMAGE_LAYOUT_COLOR_ATTACHMENT_OPTIMAL;
-    attachment.finalLayout = VK_IMAGE_LAYOUT_PRESENT_SRC_KHR;
+    attachment.samples = vk::SampleCountFlagBits::e1;
+    attachment.loadOp = vk::AttachmentLoadOp::eLoad;
+    attachment.storeOp = vk::AttachmentStoreOp::eStore;
+    attachment.stencilLoadOp = vk::AttachmentLoadOp::eDontCare;
+    attachment.stencilStoreOp = vk::AttachmentStoreOp::eDontCare;
+    attachment.initialLayout = vk::ImageLayout::eColorAttachmentOptimal;
+    attachment.finalLayout = vk::ImageLayout::ePresentSrcKHR;
 
-    VkAttachmentReference color_attachment{ };
+    vk::AttachmentReference color_attachment;
     color_attachment.attachment = 0;
-    color_attachment.layout = VK_IMAGE_LAYOUT_COLOR_ATTACHMENT_OPTIMAL;
+    color_attachment.layout = vk::ImageLayout::eColorAttachmentOptimal;
 
-    VkSubpassDescription subpass{ };
-    subpass.pipelineBindPoint = VK_PIPELINE_BIND_POINT_GRAPHICS;
+    vk::SubpassDescription subpass;
+    subpass.pipelineBindPoint = vk::PipelineBindPoint::eGraphics;
     subpass.colorAttachmentCount = 1;
     subpass.pColorAttachments = &color_attachment;
 
-    VkSubpassDependency dependency{ };
+    vk::SubpassDependency dependency;
     dependency.srcSubpass = VK_SUBPASS_EXTERNAL;
     dependency.dstSubpass = 0;
-    dependency.srcStageMask = VK_PIPELINE_STAGE_COLOR_ATTACHMENT_OUTPUT_BIT;
-    dependency.dstStageMask = VK_PIPELINE_STAGE_COLOR_ATTACHMENT_OUTPUT_BIT;
-    dependency.srcAccessMask = 0;  // or VK_ACCESS_COLOR_ATTACHMENT_WRITE_BIT;
-    dependency.dstAccessMask = VK_ACCESS_COLOR_ATTACHMENT_WRITE_BIT;
+    dependency.srcStageMask = vk::PipelineStageFlagBits::eColorAttachmentOutput;
+    dependency.dstStageMask = vk::PipelineStageFlagBits::eColorAttachmentOutput;
+    //dependency.srcAccessMask = vk::AccessFlagBits::eColorAttachmentWrite; // or 0
+    dependency.dstAccessMask = vk::AccessFlagBits::eColorAttachmentWrite;
 
-    VkRenderPassCreateInfo info{ };
-    info.sType = VK_STRUCTURE_TYPE_RENDER_PASS_CREATE_INFO;
+    vk::RenderPassCreateInfo info;
     info.attachmentCount = 1;
     info.pAttachments = &attachment;
     info.subpassCount = 1;
@@ -181,7 +180,10 @@ namespace RX
     info.dependencyCount = 1;
     info.pDependencies = &dependency;
 
-    VK_ASSERT(vkCreateRenderPass(m_info.device, &info, nullptr, &m_renderPass), "Failed to create render pass for GUI.");
+    m_info.device.createRenderPass(info);
+
+    if (!m_renderPass)
+      RX_ERROR("Failed to create GUI render pass.");
   }
 
   void Gui::initFonts()
@@ -208,9 +210,9 @@ namespace RX
     commandBufferInfo.commandPool = m_commandPool.get();
     commandBufferInfo.queue = m_info.queue; // A graphics queue from the index of the command pool.
     commandBufferInfo.commandBufferCount = m_info.imageCount;
-    commandBufferInfo.level = VK_COMMAND_BUFFER_LEVEL_PRIMARY;
+    commandBufferInfo.level = vk::CommandBufferLevel::ePrimary;
     commandBufferInfo.freeAutomatically = false;
-    commandBufferInfo.usageFlags = 0;
+    //commandBufferInfo.usageFlags = 0;
     commandBufferInfo.componentName = "command buffers for ImGui";
 
     m_commandBuffers.initialize(commandBufferInfo);

@@ -8,11 +8,10 @@ namespace RX
   struct SurfaceInfo
   {
     std::shared_ptr<Window> window;
-    VkInstance instance;
-    VkFormat format = VK_FORMAT_B8G8R8A8_UNORM;
-    VkColorSpaceKHR colorSpace = VK_COLOR_SPACE_SRGB_NONLINEAR_KHR;
-    VkPresentModeKHR presentMode = VK_PRESENT_MODE_FIFO_KHR;
-    VkSurfaceCapabilitiesKHR capabilities; // Ignore, will be initilized automatically.
+    vk::Instance instance;
+    vk::Format format = vk::Format::eB8G8R8A8Unorm;
+    vk::ColorSpaceKHR colorSpace = vk::ColorSpaceKHR::eSrgbNonlinear;
+    vk::PresentModeKHR presentMode = vk::PresentModeKHR::eMailbox;
   };
 
   class Surface
@@ -20,21 +19,24 @@ namespace RX
   public:
     ~Surface();
 
-    inline VkSurfaceKHR get() { return m_surface; }
+    inline vk::SurfaceKHR get() { return m_surface; }
     inline SurfaceInfo& getInfo() { return m_info; }
     
+    inline vk::SurfaceCapabilitiesKHR getCapabilities() { return m_capabilities; }
+
     void initialize(SurfaceInfo& info);
+    void destroy();
 
     // Checks if the preferred settings for format, color space and present mode are available.
     // If not, the function will set them to some fall back values.
     // Must be called right after the enumeration of the physical device.
-    void checkSettingSupport(VkPhysicalDevice physicalDevice);
+    void checkSettingSupport(vk::PhysicalDevice physicalDevice);
 
   private:
-    void destroy();
-
-    VkSurfaceKHR m_surface;
+    vk::SurfaceKHR m_surface;
     SurfaceInfo m_info;
+
+    vk::SurfaceCapabilitiesKHR m_capabilities;
 
     bool m_created = false;
   };

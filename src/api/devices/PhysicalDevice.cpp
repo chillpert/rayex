@@ -7,12 +7,8 @@ namespace RX
   {
     m_info = info;
 
-    uint32_t physicalDeviceCount = 0;
-    VK_ASSERT(vkEnumeratePhysicalDevices(m_info.instance, &physicalDeviceCount, nullptr), "Failed to enumerate physical devices");
-
-    std::vector<VkPhysicalDevice> physicalDevices(physicalDeviceCount);
-    VK_ASSERT(vkEnumeratePhysicalDevices(m_info.instance, &physicalDeviceCount, physicalDevices.data()), "Failed to enumerate physical devices");
-
+    auto physicalDevices = m_info.instance.enumeratePhysicalDevices();
+    
     std::vector<std::pair<unsigned int, std::string>> results;
 
     unsigned int score = 0;
@@ -28,7 +24,7 @@ namespace RX
       }
     }
 
-    if (m_physicalDevice == VK_NULL_HANDLE)
+    if (!m_physicalDevice)
       RX_ERROR("No suitable device was found");
 
     RX_FORMAT_TABLE2(
@@ -41,35 +37,26 @@ namespace RX
     );
 
     // Print information about the GPU that was selected.
-    vkGetPhysicalDeviceProperties(m_physicalDevice, &m_properties);
+    m_properties = m_physicalDevice.getProperties();
+    m_properties2 = m_physicalDevice.getProperties2();
     
-    m_properties2 = { };
-    m_properties2.sType = VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_PROPERTIES_2;
-    vkGetPhysicalDeviceProperties2(m_physicalDevice, &m_properties2);
-
-    vkGetPhysicalDeviceFeatures(m_physicalDevice, &m_features);
-
-    m_features2 = { };
-    m_features2.sType = VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_FEATURES_2;
-    vkGetPhysicalDeviceFeatures2(m_physicalDevice, &m_features2);
+    m_features = m_physicalDevice.getFeatures();
+    m_features2 = m_physicalDevice.getFeatures2();
 
     RX_LOG("Selected GPU: " << m_properties.deviceName);
   }
 
-  std::pair<unsigned int, std::string> PhysicalDevice::evaluate(VkPhysicalDevice device) const
+  std::pair<unsigned int, std::string> PhysicalDevice::evaluate(vk::PhysicalDevice physicalDevice) const
   {
     unsigned int score = 0u;
 
     // Check the device's features and properties.
-    VkPhysicalDeviceProperties props;
-    vkGetPhysicalDeviceProperties(device, &props);
+    auto props = physicalDevice.getProperties();
+    auto feats = physicalDevice.getFeatures();
 
     std::string deviceName = props.deviceName;
 
-    VkPhysicalDeviceFeatures feats;
-    vkGetPhysicalDeviceFeatures(device, &feats);
-
-    if (props.deviceType == VK_PHYSICAL_DEVICE_TYPE_DISCRETE_GPU)
+    if (props.deviceType == vk::PhysicalDeviceType::eDiscreteGpu)
       score += 100u;
     else
       return { 0u, deviceName };
@@ -87,12 +74,12 @@ namespace RX
     if (deviceName.find("RTX") != std::string::npos)
       score += 100u;
 
-    if (QueueManager::isComplete(device, m_info.surface))
+    if (QueueManager::isComplete(physicalDevice, m_info.surface))
       score += 100u;
     else
       return { 0u, deviceName };
 
-    if (QueueManager::hasDedicatedTransferQueueFamily(device, m_info.surface))
+    if (QueueManager::hasDedicatedTransferQueueFamily(physicalDevice, m_info.surface))
       score += 25;
 
     // TODO: add more hardware specific evaulation (those that are benefitial for path tracing)

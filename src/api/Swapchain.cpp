@@ -11,8 +11,7 @@ namespace RX
   {
     m_info = info;
 
-    VkSwapchainCreateInfoKHR createInfo{ };
-    createInfo.sType = VK_STRUCTURE_TYPE_SWAPCHAIN_CREATE_INFO_KHR;
+    vk::SwapchainCreateInfoKHR createInfo;
     createInfo.surface = m_info.surface;
 
     // Add another image so that the application does not have to wait for the driver before another image can be acquired.
@@ -32,10 +31,10 @@ namespace RX
     
     // Prefer opaque bit over any other composite alpha value.
     createInfo.compositeAlpha = 
-      m_info.surfaceCapabilities.supportedCompositeAlpha & VK_COMPOSITE_ALPHA_OPAQUE_BIT_KHR ? VK_COMPOSITE_ALPHA_OPAQUE_BIT_KHR :
-      m_info.surfaceCapabilities.supportedCompositeAlpha & VK_COMPOSITE_ALPHA_PRE_MULTIPLIED_BIT_KHR ? VK_COMPOSITE_ALPHA_PRE_MULTIPLIED_BIT_KHR :
-      m_info.surfaceCapabilities.supportedCompositeAlpha & VK_COMPOSITE_ALPHA_POST_MULTIPLIED_BIT_KHR ? VK_COMPOSITE_ALPHA_POST_MULTIPLIED_BIT_KHR :
-      VK_COMPOSITE_ALPHA_PRE_MULTIPLIED_BIT_KHR;
+      m_info.surfaceCapabilities.supportedCompositeAlpha & vk::CompositeAlphaFlagBitsKHR::eOpaque ? vk::CompositeAlphaFlagBitsKHR::eOpaque :
+      m_info.surfaceCapabilities.supportedCompositeAlpha & vk::CompositeAlphaFlagBitsKHR::ePreMultiplied ? vk::CompositeAlphaFlagBitsKHR::ePreMultiplied :
+      m_info.surfaceCapabilities.supportedCompositeAlpha & vk::CompositeAlphaFlagBitsKHR::ePostMultiplied ? vk::CompositeAlphaFlagBitsKHR::ePostMultiplied :
+      vk::CompositeAlphaFlagBitsKHR::eInherit;
 
     // Handle the swap chain image extent.
     if (m_info.surfaceCapabilities.currentExtent.width != UINT32_MAX)
@@ -71,43 +70,41 @@ namespace RX
       RX_ERROR("The surface does not support a single array layer.");
 
     createInfo.imageArrayLayers = 1;
-    createInfo.imageUsage = VK_IMAGE_USAGE_COLOR_ATTACHMENT_BIT;
+    createInfo.imageUsage = vk::ImageUsageFlagBits::eColorAttachment;
 
     if (m_info.queueFamilyIndices.size() > 1)
     {
-      createInfo.imageSharingMode = VK_SHARING_MODE_CONCURRENT;
+      createInfo.imageSharingMode = vk::SharingMode::eConcurrent;
       createInfo.queueFamilyIndexCount = static_cast<uint32_t>(m_info.queueFamilyIndices.size());
       createInfo.pQueueFamilyIndices = m_info.queueFamilyIndices.data();
     }
     else
-      createInfo.imageSharingMode = VK_SHARING_MODE_EXCLUSIVE;
+      createInfo.imageSharingMode = vk::SharingMode::eExclusive;
 
     createInfo.presentMode = m_info.surfacePresentMode;
 
-    VK_CREATE(vkCreateSwapchainKHR(m_info.device, &createInfo, nullptr, &m_swapchain), "swapchain");
-
+    m_swapchain = m_info.device.createSwapchainKHR(createInfo);
+    if (!m_swapchain)
+      RX_ERROR("Failed to create swapchain.");
+    
     // Get swapchain images.
-    uint32_t imageCount_t;
-    VK_ASSERT(vkGetSwapchainImagesKHR(m_info.device, m_swapchain, &imageCount_t, nullptr), "Failed to get swap chain images.");
-
-    m_info.images.resize(static_cast<size_t>(imageCount_t));
-    VK_ASSERT(vkGetSwapchainImagesKHR(m_info.device, m_swapchain, &imageCount_t, m_info.images.data()), "Failed to get swap chain images.");
+    m_info.images = m_info.device.getSwapchainImagesKHR(m_swapchain);
   }
 
   void Swapchain::destroy()
   {
-    VK_DESTROY(vkDestroySwapchainKHR(m_info.device, m_swapchain, nullptr), "swapchain");
-    m_swapchain = VK_NULL_HANDLE;
+    m_info.device.destroySwapchainKHR(m_swapchain);
+    m_swapchain = nullptr;
   }
 
-  void Swapchain::acquireNextImage(VkSemaphore semaphore, VkFence fence, uint32_t* imageIndex)
+  void Swapchain::acquireNextImage(vk::Semaphore semaphore, vk::Fence fence, uint32_t* imageIndex)
   {
-    VK_ASSERT(vkAcquireNextImageKHR(m_info.device, m_swapchain, UINT64_MAX, semaphore, fence, imageIndex), "Failed to acquire next image from swapchain");
+    m_info.device.acquireNextImageKHR(m_swapchain, UINT64_MAX, semaphore, fence, imageIndex);
   }
 
-  VkFormat getSupportedDepthFormat(VkPhysicalDevice physicalDevice)
+  vk::Format getSupportedDepthFormat(vk::PhysicalDevice physicalDevice)
   {
-    std::vector<VkFormat> candidates{ VK_FORMAT_D32_SFLOAT, VK_FORMAT_D32_SFLOAT_S8_UINT, VK_FORMAT_D24_UNORM_S8_UINT };
-    return Image::findSupportedFormat(physicalDevice, candidates, VK_FORMAT_FEATURE_DEPTH_STENCIL_ATTACHMENT_BIT, VK_IMAGE_TILING_OPTIMAL);
+    std::vector<vk::Format> candidates{ vk::Format::eD32Sfloat, vk::Format::eD32SfloatS8Uint, vk::Format::eD24UnormS8Uint };
+    return Image::findSupportedFormat(physicalDevice, candidates, vk::FormatFeatureFlagBits::eDepthStencilAttachment, vk::ImageTiling::eOptimal);
   }
 }

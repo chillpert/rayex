@@ -14,17 +14,17 @@ namespace RX
   struct GuiInfo
   {
     SDL_Window* window;
-    VkInstance instance;
-    VkPhysicalDevice physicalDevice;
-    VkDevice device;
+    vk::Instance instance;
+    vk::PhysicalDevice physicalDevice;
+    vk::Device device;
     uint32_t queueFamilyIndex; // Note: is actually used for the command pools.
-    VkQueue queue;  // TODO: In total there are 3 queues involved in the initialization process. This might need to be split up.
-    VkPipelineCache pipelineCache = VK_NULL_HANDLE;
+    vk::Queue queue;  // TODO: In total there are 3 queues involved in the initialization process. This might need to be split up.
+    vk::PipelineCache pipelineCache = nullptr;
     uint32_t minImageCount; // Note: is a pseudo value
     uint32_t imageCount;
-    VkFormat swapchainImageFormat;
-    VkExtent2D swapchainImageExtent;
-    std::vector<VkImageView> swapchainImageViews;
+    vk::Format swapchainImageFormat;
+    vk::Extent2D swapchainImageExtent;
+    std::vector<vk::ImageView> swapchainImageViews;
   };
 
   class Gui
@@ -60,7 +60,7 @@ namespace RX
     DescriptorPool m_descriptorPool;
     CommandPool m_commandPool;
     CommandBuffer m_commandBuffers;
-    VkRenderPass m_renderPass;
+    vk::RenderPass m_renderPass;
     std::vector<Framebuffer> m_framebuffers;
   };
 }

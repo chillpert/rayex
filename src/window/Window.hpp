@@ -22,7 +22,7 @@ namespace RX
     
     std::vector<const char*> getInstanceExtensions();
 
-    RX_API VkSurfaceKHR createSurface(VkInstance instance);
+    RX_API VkSurfaceKHR createSurface(vk::Instance instance);
 
     RX_API void processGuiEvent(SDL_Event& event);
 
@@ -32,7 +32,7 @@ namespace RX
     RX_API inline WindowProperties& getProperties() { return m_properties; }
 
     RX_API void getSize(int* width, int* height);
-    RX_API VkExtent2D getExtent();
+    RX_API vk::Extent2D getExtent();
 
     // Returns true if the window size changed.
     RX_API bool changed();

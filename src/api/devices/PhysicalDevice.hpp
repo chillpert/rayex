@@ -7,7 +7,7 @@ namespace RX
 {
   struct PhysicalDeviceInfo
   {
-    VkInstance instance;
+    vk::Instance instance;
     VkSurfaceKHR surface;
   };
 
@@ -17,24 +17,24 @@ namespace RX
     // Technically not created, but enumerated. However, this way is better for the naming scheme.
     void initialize(PhysicalDeviceInfo& info);
 
-    inline VkPhysicalDevice get() { return m_physicalDevice; }
+    inline vk::PhysicalDevice get() { return m_physicalDevice; }
     inline PhysicalDeviceInfo& getInfo() { return m_info; }
 
-    inline VkPhysicalDeviceProperties getProperties() const { return m_properties; }
-    inline VkPhysicalDeviceProperties2 getProperties2() const { return m_properties2; }
-    inline VkPhysicalDeviceFeatures getFeatures() const { return m_features; }
-    inline VkPhysicalDeviceFeatures2 getFeatures2() const { return m_features2; }
+    inline vk::PhysicalDeviceProperties getProperties() const { return m_properties; }
+    inline vk::PhysicalDeviceProperties2 getProperties2() const { return m_properties2; }
+    inline vk::PhysicalDeviceFeatures getFeatures() const { return m_features; }
+    inline vk::PhysicalDeviceFeatures2 getFeatures2() const { return m_features2; }
 
   private:
-    std::pair<unsigned int, std::string> evaluate(VkPhysicalDevice device) const;
+    std::pair<unsigned int, std::string> evaluate(vk::PhysicalDevice physicalDevice) const;
 
-    VkPhysicalDevice m_physicalDevice;
+    vk::PhysicalDevice m_physicalDevice;
     PhysicalDeviceInfo m_info;
 
-    VkPhysicalDeviceProperties m_properties;
-    VkPhysicalDeviceProperties2 m_properties2;
-    VkPhysicalDeviceFeatures m_features;
-    VkPhysicalDeviceFeatures2 m_features2;
+    vk::PhysicalDeviceProperties m_properties;
+    vk::PhysicalDeviceProperties2 m_properties2;
+    vk::PhysicalDeviceFeatures m_features;
+    vk::PhysicalDeviceFeatures2 m_features2;
   };
 }
 

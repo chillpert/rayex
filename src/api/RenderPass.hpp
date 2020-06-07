@@ -7,21 +7,21 @@ namespace RX
 {
   struct RenderPassInfo
   {
-    VkPhysicalDevice physicalDevice;
-    VkDevice device;
-    VkFormat surfaceFormat;
-    VkFormat depthFormat;
-    VkImageLayout initialLayout = VK_IMAGE_LAYOUT_UNDEFINED;
-    VkImageLayout finalLayout = VK_IMAGE_LAYOUT_PRESENT_SRC_KHR;
+    vk::PhysicalDevice physicalDevice;
+    vk::Device device;
+    vk::Format surfaceFormat;
+    vk::Format depthFormat;
+    vk::ImageLayout initialLayout = vk::ImageLayout::eUndefined;
+    vk::ImageLayout finalLayout = vk::ImageLayout::ePresentSrcKHR;
     bool guiEnabled;
   };
 
   struct RenderPassBeginInfo
   {
-    VkRect2D renderArea;
-    std::vector<VkClearValue> clearValues;
-    std::vector<VkCommandBuffer> commandBuffers;
-    std::vector<VkFramebuffer> framebuffers;
+    vk::Rect2D renderArea;
+    std::vector<vk::ClearValue> clearValues;
+    std::vector<vk::CommandBuffer> commandBuffers;
+    std::vector<vk::Framebuffer> framebuffers;
   };
 
   class RenderPass
@@ -41,8 +41,7 @@ namespace RX
     void end(size_t index = 0);
 
   private:
-    
-    VkRenderPass m_renderPass;
+    vk::RenderPass m_renderPass;
     RenderPassInfo m_info;
     RenderPassBeginInfo m_beginInfo;
 

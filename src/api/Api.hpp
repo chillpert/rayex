@@ -25,6 +25,7 @@
 #include "DescriptorSetLayout.hpp"
 #include "UniformBuffer.hpp"
 #include "Gui.hpp"
+#include "RaytraceBuilder.hpp"
 
 namespace RX
 {
@@ -100,7 +101,7 @@ namespace RX
     QueueManager m_queueManager;
     std::vector<VkFence> m_imagesInFlight;
 
-    VkPhysicalDeviceRayTracingPropertiesKHR m_rayTracingProperties;
+    RaytraceBuilder m_raytraceBuilder;
   };
 }
 

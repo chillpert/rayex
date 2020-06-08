@@ -26,7 +26,8 @@ namespace RX
   class CommandBuffer
   {
   public:
-    inline std::vector<vk::CommandBuffer>& get() { return m_commandBuffers; } // TODO: getter where you can an index.
+    inline std::vector<vk::CommandBuffer>& get() { return m_commandBuffers; }
+    inline vk::CommandBuffer get(size_t index) { return m_commandBuffers[index]; }
     inline vk::CommandBuffer getFront() { return m_commandBuffers[0]; }
     inline CommandBufferInfo& getInfo() { return m_info; }
 

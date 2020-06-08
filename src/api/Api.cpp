@@ -25,8 +25,8 @@ namespace RX
     initSurface();
     initPhysicalDevice();
     initQueues();
-    initRayTracing();
     initDevice();
+    initRayTracing();
     initRenderPass();
     initSwapchain();
     initSwapchainImageViews();
@@ -246,6 +246,17 @@ namespace RX
     RX_LOG("Finished swapchain recreation.");
   }
 
+  void Api::initRayTracing()
+  {
+    RaytraceBuilderInfo info{ };
+    info.instance = m_instance.get();
+    info.physicalDevice = m_physicalDevice.get();
+    info.device = m_device.get();
+    info.queueFamilyIndex = m_queueManager.getGraphicsFamilyIndex();
+
+    m_raytraceBuilder.initialize(info);
+  }
+
   void Api::initInstance()
   {
     InstanceInfo instanceInfo{ };
@@ -254,9 +265,7 @@ namespace RX
     instanceInfo.layers = { "VK_LAYER_KHRONOS_validation" };
 #endif
 
-#ifndef RX_TEST_BUILD
     instanceInfo.extensions = { "VK_KHR_get_physical_device_properties2" };
-#endif
 
 #ifdef RX_DEBUG
     if (instanceInfo.extensions.size() == 0)
@@ -313,9 +322,17 @@ namespace RX
     deviceInfo.physicalDevice = m_physicalDevice.get();
     deviceInfo.queueFamilies = m_queueManager.getQueueFamilies();
 
-#ifndef RX_TEST_BUILD
-    deviceInfo.extensions = { "VK_KHR_get_memory_requirements2", "VK_EXT_descriptor_indexing", "VK_KHR_buffer_device_address",  "VK_KHR_deferred_host_operations", "VK_KHR_pipeline_library", "VK_KHR_ray_tracing" };
-#endif
+    deviceInfo.extensions =
+    { 
+      "VK_KHR_get_memory_requirements2", 
+      "VK_EXT_descriptor_indexing", 
+      VK_KHR_BUFFER_DEVICE_ADDRESS_EXTENSION_NAME,
+      VK_KHR_DEFERRED_HOST_OPERATIONS_EXTENSION_NAME,
+      VK_KHR_PIPELINE_LIBRARY_EXTENSION_NAME,
+      VK_KHR_MAINTENANCE3_EXTENSION_NAME,
+      VK_KHR_RAY_TRACING_EXTENSION_NAME
+    };
+
     m_device.initialize(deviceInfo);
 
     // Retrieve all queue handles.
@@ -549,6 +566,8 @@ namespace RX
 
         model->m_descriptorSets.initialize(descriptorSetInfo);
       }
+
+      m_raytraceBuilder.createAllBLAS(m_models);
     }
     else
     {
@@ -620,7 +639,6 @@ namespace RX
     renderPassBeginInfo.clearValues = { clearValues[0], clearValues[1] };
     renderPassBeginInfo.commandBuffers = m_swapchainCmdBuffers.get();
 
-
     for (Framebuffer& framebuffer : m_swapchainFramebuffers)
       renderPassBeginInfo.framebuffers.push_back(framebuffer.get());
 
@@ -632,19 +650,19 @@ namespace RX
       m_swapchainCmdBuffers.begin(imageIndex);
       m_renderPass.begin(imageIndex);
 
-      vkCmdBindPipeline(m_swapchainCmdBuffers.get()[imageIndex], VK_PIPELINE_BIND_POINT_GRAPHICS, m_pipeline.get());
+      m_swapchainCmdBuffers.get(imageIndex).bindPipeline(vk::PipelineBindPoint::eGraphics, m_pipeline.get()); // CMD
 
       // Dynamic states
       vk::Viewport viewport = m_pipeline.getInfo().viewport;
       viewport.width = m_window->getProperties().getWidth();
       viewport.height = m_window->getProperties().getHeight();
 
-      m_swapchainCmdBuffers.get()[imageIndex].setViewport(0, 1, &viewport); // CMD
+      m_swapchainCmdBuffers.get(imageIndex).setViewport(0, 1, &viewport); // CMD
 
       vk::Rect2D scissor = m_pipeline.getInfo().scissor;
       scissor.extent = m_window->getExtent();
 
-      m_swapchainCmdBuffers.get()[imageIndex].setScissor(0, 1, &scissor); // CMD
+      m_swapchainCmdBuffers.get(imageIndex).setScissor(0, 1, &scissor); // CMD
 
       // Draw models
       for (std::shared_ptr<Model> model : m_models)
@@ -652,10 +670,10 @@ namespace RX
         vk::Buffer vertexBuffers[] = { model->m_vertexBuffer.get() };
         vk::DeviceSize offsets[] = { 0 };
 
-        m_swapchainCmdBuffers.get()[imageIndex].bindVertexBuffers(0, 1, vertexBuffers, offsets); // CMD
-        m_swapchainCmdBuffers.get()[imageIndex].bindIndexBuffer(model->m_indexBuffer.get(), 0, model->m_indexBuffer.getType()); // CMD
-        m_swapchainCmdBuffers.get()[imageIndex].bindDescriptorSets(vk::PipelineBindPoint::eGraphics, m_pipeline.getLayout(), 0, 1, &model->m_descriptorSets.get()[imageIndex], 0, nullptr); // CMD
-        m_swapchainCmdBuffers.get()[imageIndex].drawIndexed(model->m_indexBuffer.getCount(), 1, 0, 0, 0); // CMD
+        m_swapchainCmdBuffers.get(imageIndex).bindVertexBuffers(0, 1, vertexBuffers, offsets); // CMD
+        m_swapchainCmdBuffers.get(imageIndex).bindIndexBuffer(model->m_indexBuffer.get(), 0, model->m_indexBuffer.getType()); // CMD
+        m_swapchainCmdBuffers.get(imageIndex).bindDescriptorSets(vk::PipelineBindPoint::eGraphics, m_pipeline.getLayout(), 0, 1, &model->m_descriptorSets.get()[imageIndex], 0, nullptr); // CMD
+        m_swapchainCmdBuffers.get(imageIndex).drawIndexed(model->m_indexBuffer.getCount(), 1, 0, 0, 0); // CMD
       }
 
       m_renderPass.end(imageIndex);
@@ -663,13 +681,3 @@ namespace RX
     }
   }
 }
-
-namespace RX
-{
-  void Api::initRayTracing()
-  {
-    auto properties = m_physicalDevice.get().getProperties2<vk::PhysicalDeviceProperties2, vk::PhysicalDeviceRayTracingPropertiesKHR>();
-    m_rayTracingProperties = properties.get<vk::PhysicalDeviceRayTracingPropertiesKHR>();
-  }
-}
-

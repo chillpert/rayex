@@ -5,21 +5,19 @@ namespace RX
   void VertexBuffer::initialize(VertexBufferInfo& info)
   {
     m_info = info;
+    m_count = static_cast<uint32_t>(m_info.vertices.size());
 
     // Set up the staging buffer.
     BufferCreateInfo stagingInfo{ };
     stagingInfo.physicalDevice = m_info.physicalDevice;
     stagingInfo.device = m_info.device;
-    stagingInfo.deviceSize = sizeof(m_info.vertices[0]) * m_info.vertices.size();
-    stagingInfo.count = static_cast<uint32_t>(m_info.vertices.size());
+    stagingInfo.size = sizeof(m_info.vertices[0]) * m_info.vertices.size();
     stagingInfo.usage = vk::BufferUsageFlagBits::eTransferSrc | vk::BufferUsageFlagBits::eShaderDeviceAddress;
     stagingInfo.sharingMode = vk::SharingMode::eConcurrent;
-    stagingInfo.properties = vk::MemoryPropertyFlagBits::eHostVisible | vk::MemoryPropertyFlagBits::eHostCoherent;
-    stagingInfo.commandPool = m_info.commandPool;
-    stagingInfo.componentName = "vertex staging buffer";
-
-    stagingInfo.queue = m_info.queue;
-    stagingInfo.queueFamilyIndexCount = static_cast<uint32_t>(m_info.queueIndices.size());
+    stagingInfo.memoryProperties = vk::MemoryPropertyFlagBits::eHostVisible | vk::MemoryPropertyFlagBits::eHostCoherent;
+    stagingInfo.stagingCommandPool = m_info.commandPool;
+    
+    stagingInfo.stagingQueue = m_info.queue;
     stagingInfo.queueFamilyIndices = m_info.queueIndices;
 
     vk::MemoryAllocateFlagsInfo allocateFlags;
@@ -30,8 +28,7 @@ namespace RX
     // Set up the actual index buffer.
     BufferCreateInfo bufferInfo = stagingInfo;
     bufferInfo.usage = vk::BufferUsageFlagBits::eTransferDst | vk::BufferUsageFlagBits::eVertexBuffer | vk::BufferUsageFlagBits::eShaderDeviceAddress;
-    bufferInfo.properties = vk::MemoryPropertyFlagBits::eDeviceLocal;
-    bufferInfo.componentName = "vertex buffer";
+    bufferInfo.memoryProperties = vk::MemoryPropertyFlagBits::eDeviceLocal;
 
     Buffer stagingBuffer;
     stagingBuffer.initialize(stagingInfo);

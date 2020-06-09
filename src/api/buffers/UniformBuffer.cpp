@@ -22,12 +22,11 @@ namespace RX
     BufferCreateInfo createInfo{ };
     createInfo.device = m_info.device;
     createInfo.physicalDevice = m_info.physicalDevice;
-    createInfo.deviceSize = sizeof(UniformBufferObject);
+    createInfo.size = sizeof(UniformBufferObject);
     createInfo.usage = vk::BufferUsageFlagBits::eUniformBuffer;
     createInfo.sharingMode = vk::SharingMode::eExclusive;
-    createInfo.properties = vk::MemoryPropertyFlagBits::eHostVisible | vk::MemoryPropertyFlagBits::eHostCoherent;
-    createInfo.componentName = "uniform buffer";
-
+    createInfo.memoryProperties = vk::MemoryPropertyFlagBits::eHostVisible | vk::MemoryPropertyFlagBits::eHostCoherent;
+    
     m_buffers.resize(m_info.swapchainImagesCount);
 
     for (Buffer& buffer : m_buffers)

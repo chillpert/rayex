@@ -14,7 +14,9 @@ namespace RX
 
     // Create the buffer.
     vk::BufferCreateInfo bufferInfo;
-    bufferInfo.size = m_info.deviceSize;
+    bufferInfo.pNext = m_info.pNextBuffer;
+    bufferInfo.flags = m_info.bufferFlags;
+    bufferInfo.size = m_info.size;
     bufferInfo.usage = m_info.usage;
     bufferInfo.sharingMode = m_info.sharingMode;
 
@@ -28,14 +30,14 @@ namespace RX
       {
         RX_ASSERT((m_info.queueFamilyIndices.size() > 0), "Queue family indices were not specified for buffer creation");
 
+        bufferInfo.queueFamilyIndexCount = static_cast<uint32_t>(m_info.queueFamilyIndices.size());
         bufferInfo.pQueueFamilyIndices = m_info.queueFamilyIndices.data();
-        bufferInfo.queueFamilyIndexCount = m_info.queueFamilyIndexCount;
       }
     }
     
     m_buffer = m_info.device.createBuffer(bufferInfo);
     if (!m_buffer)
-      RX_ERROR("Failed to create " + m_info.componentName);
+      RX_ERROR("Failed to create buffer");
 
     // Allocate memory for the buffer.
     auto memRequirements = m_info.device.getBufferMemoryRequirements(m_buffer);
@@ -43,7 +45,7 @@ namespace RX
     vk::MemoryAllocateInfo allocInfo;
     allocInfo.pNext = m_info.pNextMemory;
     allocInfo.allocationSize = memRequirements.size;
-    allocInfo.memoryTypeIndex = findMemoryType(m_info.physicalDevice, memRequirements.memoryTypeBits, createInfo.properties); 
+    allocInfo.memoryTypeIndex = findMemoryType(m_info.physicalDevice, memRequirements.memoryTypeBits, m_info.memoryProperties);
     
     /*
     TODO:
@@ -54,10 +56,10 @@ namespace RX
 
     m_memory = m_info.device.allocateMemory(allocInfo);
     if (!m_memory)
-      RX_ERROR("Failed to allocate memory for " + m_info.componentName);
+      RX_ERROR("Failed to allocate memory for buffer.");
 
     // Bind the buffer to the allocated memory.
-    m_info.device.bindBufferMemory(m_buffer, m_memory, 0); // TODO: expose 0
+    m_info.device.bindBufferMemory(m_buffer, m_memory, m_info.memoryOffset);
   }
   
   void Buffer::destroy()
@@ -79,8 +81,8 @@ namespace RX
   {
     CommandBufferInfo commandBufferInfo{ };
     commandBufferInfo.device = m_info.device;
-    commandBufferInfo.commandPool = m_info.commandPool;
-    commandBufferInfo.queue = m_info.queue;
+    commandBufferInfo.commandPool = m_info.stagingCommandPool;
+    commandBufferInfo.queue = m_info.stagingQueue;
     commandBufferInfo.freeAutomatically = true;
     commandBufferInfo.componentName = "command buffer for copying a buffer to another buffer";
     
@@ -90,7 +92,7 @@ namespace RX
     commandBuffer.begin();
 
     vk::BufferCopy copyRegion;
-    copyRegion.size = m_info.deviceSize;
+    copyRegion.size = m_info.size;
 
     commandBuffer.getFront().copyBuffer(m_buffer, buffer.get(), 1, &copyRegion); // CMD
 

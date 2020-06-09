@@ -5,24 +5,28 @@
 
 namespace RX
 {
-  // Custom struct for saving information related to buffer creation.
   struct BufferCreateInfo
   {
+    // General information
     vk::PhysicalDevice physicalDevice;
     vk::Device device;
-    vk::DeviceSize deviceSize; // The size required for the buffer.
-    uint32_t count; // The amount of elements in the received vector.
+
+    // Staging
+    vk::CommandPool stagingCommandPool; // Optional, if there is no staging buffer involved.
+    vk::Queue stagingQueue; // Optional, if there is no staging buffer involved.
+
+    // Buffer
+    void* pNextBuffer = nullptr; // Optional
+    vk::BufferCreateFlags bufferFlags; // Optional
+    vk::DeviceSize size; // The size required for the buffer.
     vk::BufferUsageFlags usage;
     vk::SharingMode sharingMode;
-    vk::MemoryPropertyFlags properties;
-    vk::CommandPool commandPool;
-    vk::Queue queue;
-    uint32_t queueFamilyIndexCount = UINT32_MAX; // Optional, if sharing mode is not concurrent.
     std::vector<uint32_t> queueFamilyIndices; // Optional, if sharing mode is not concurrent.
-    void* pNextMemory; // Ignore, if buffer was not set with BufferUsageFlagBits::eShaderDeviceAddressKHR
 
-    const char* componentName = "buffer"; // Optional, if you happen to use the default buffer for another purpose you can give it a better name. This will only effect logging output.
-    vk::IndexType type; // Ignore, will be filled automatically.
+    // Memory
+    vk::MemoryPropertyFlags memoryProperties;
+    void* pNextMemory = nullptr; // Optional
+    vk::DeviceSize memoryOffset = 0;
   };
 
   class Buffer
@@ -32,7 +36,7 @@ namespace RX
 
     inline vk::Buffer get() const { return m_buffer; }
     inline vk::DeviceMemory& getMemory() { return m_memory; }
-    inline vk::DeviceSize getSize() const { return m_info.deviceSize; }
+    inline vk::DeviceSize getSize() const { return m_info.size; }
     inline BufferCreateInfo& getInfo() { return m_info; }
 
     void initialize(BufferCreateInfo& createInfo);
@@ -40,7 +44,6 @@ namespace RX
     template <class T>
     void fill(T* source);
 
-    // Is associated with the copyToBuffer function.
     Buffer& operator=(const Buffer& buffer);
     void copyToBuffer(const Buffer& buffer) const;
 
@@ -63,8 +66,8 @@ namespace RX
   inline void Buffer::fill(T* source)
   {
     void* data;
-    vkMapMemory(m_info.device, m_memory, 0, m_info.deviceSize, 0, &data);
-    memcpy(data, source, static_cast<uint32_t>(m_info.deviceSize));
+    vkMapMemory(m_info.device, m_memory, 0, m_info.size, 0, &data);
+    memcpy(data, source, static_cast<uint32_t>(m_info.size));
     vkUnmapMemory(m_info.device, m_memory);
   }
 }

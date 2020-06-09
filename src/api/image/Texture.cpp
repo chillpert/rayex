@@ -25,15 +25,12 @@ namespace RX
     BufferCreateInfo stagingInfo{ };
     stagingInfo.physicalDevice = m_info.physicalDevice;
     stagingInfo.device = m_info.device;
-    stagingInfo.deviceSize = width * height * 4;
+    stagingInfo.size = width * height * 4;
     stagingInfo.usage = vk::BufferUsageFlagBits::eTransferSrc;
     stagingInfo.sharingMode = vk::SharingMode::eConcurrent;
-    stagingInfo.properties = vk::MemoryPropertyFlagBits::eHostVisible | vk::MemoryPropertyFlagBits::eHostCoherent;
-    stagingInfo.commandPool = m_info.commandPool;
-    stagingInfo.componentName = "texture image staging buffer";
-
-    stagingInfo.queue = m_info.queue;
-    stagingInfo.queueFamilyIndexCount = static_cast<uint32_t>(m_info.queueIndices.size());
+    stagingInfo.memoryProperties = vk::MemoryPropertyFlagBits::eHostVisible | vk::MemoryPropertyFlagBits::eHostCoherent;
+    stagingInfo.stagingQueue = m_info.queue;
+    stagingInfo.stagingCommandPool = m_info.commandPool;
     stagingInfo.queueFamilyIndices = m_info.queueIndices;
 
     Buffer stagingBuffer;

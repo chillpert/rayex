@@ -43,11 +43,16 @@ namespace RX
     stagingInfo.device = m_info.device;
     stagingInfo.deviceSize = sizeof(m_info.indices[0]) * m_info.indices.size();
     stagingInfo.count = static_cast<uint32_t>(m_info.indices.size());
-    stagingInfo.usage = vk::BufferUsageFlagBits::eTransferSrc;
+    stagingInfo.usage = vk::BufferUsageFlagBits::eTransferSrc | vk::BufferUsageFlagBits::eShaderDeviceAddress;
     stagingInfo.sharingMode = vk::SharingMode::eConcurrent;
     stagingInfo.properties = vk::MemoryPropertyFlagBits::eHostVisible | vk::MemoryPropertyFlagBits::eHostCoherent;
     stagingInfo.commandPool = m_info.commandPool;
     stagingInfo.componentName = "index staging buffer";
+
+    vk::MemoryAllocateFlagsInfo allocateFlags;
+    allocateFlags.flags = vk::MemoryAllocateFlagBitsKHR::eDeviceAddress;
+
+    stagingInfo.pNextMemory = &allocateFlags;
     
     stagingInfo.queue = m_info.queue;
     stagingInfo.queueFamilyIndexCount = static_cast<uint32_t>(m_info.queueIndices.size());
@@ -55,7 +60,7 @@ namespace RX
 
     // Set up the actual index buffer.
     BufferCreateInfo bufferInfo = stagingInfo;
-    bufferInfo.usage = vk::BufferUsageFlagBits::eTransferDst | vk::BufferUsageFlagBits::eIndexBuffer;
+    bufferInfo.usage = vk::BufferUsageFlagBits::eTransferDst | vk::BufferUsageFlagBits::eIndexBuffer | vk::BufferUsageFlagBits::eShaderDeviceAddress;
     bufferInfo.properties = vk::MemoryPropertyFlagBits::eDeviceLocal;
     bufferInfo.componentName = "index buffer";
 

@@ -41,9 +41,10 @@ namespace RX
     auto memRequirements = m_info.device.getBufferMemoryRequirements(m_buffer);
 
     vk::MemoryAllocateInfo allocInfo;
+    allocInfo.pNext = m_info.pNextMemory;
     allocInfo.allocationSize = memRequirements.size;
     allocInfo.memoryTypeIndex = findMemoryType(m_info.physicalDevice, memRequirements.memoryTypeBits, createInfo.properties); 
-
+    
     /*
     TODO:
        The right way to allocate memory for a large number of objects at the same time is to create a custom 

@@ -29,8 +29,6 @@ namespace RX
     vk::BufferDeviceAddressInfo vertexAddressInfo;
     vertexAddressInfo.buffer = model->m_vertexBuffer.get();
 
-    m_info.device;
-
     vk::DeviceAddress vertexAddress = m_info.device.getBufferAddress(vertexAddressInfo);
     vk::DeviceAddress indexAddress = m_info.device.getBufferAddress({ model->m_indexBuffer.get() });
 

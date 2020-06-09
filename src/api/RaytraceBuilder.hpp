@@ -26,6 +26,7 @@ namespace RX
     void destroy();
 
     BottomLevelAS objToBlas(const std::shared_ptr<Model> model);
+
     void createAllBLAS(const std::vector<std::shared_ptr<Model>> models);
     void buildAllBLAS(const std::vector<BottomLevelAS>& allBlas, vk::BuildAccelerationStructureFlagsKHR flags);
 

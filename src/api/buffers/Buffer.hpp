@@ -19,6 +19,7 @@ namespace RX
     vk::Queue queue;
     uint32_t queueFamilyIndexCount = UINT32_MAX; // Optional, if sharing mode is not concurrent.
     std::vector<uint32_t> queueFamilyIndices; // Optional, if sharing mode is not concurrent.
+    void* pNextMemory; // Ignore, if buffer was not set with BufferUsageFlagBits::eShaderDeviceAddressKHR
 
     const char* componentName = "buffer"; // Optional, if you happen to use the default buffer for another purpose you can give it a better name. This will only effect logging output.
     vk::IndexType type; // Ignore, will be filled automatically.

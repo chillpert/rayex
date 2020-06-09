@@ -38,8 +38,11 @@ namespace RX
     vk::PhysicalDeviceFeatures deviceFeatures;
     deviceFeatures.samplerAnisotropy = VK_TRUE;
 
+    vk::PhysicalDeviceBufferDeviceAddressFeatures bufferDeviceAddressFeatures;
+    bufferDeviceAddressFeatures.bufferDeviceAddress = VK_TRUE;
+
     vk::PhysicalDeviceFeatures2 deviceFeatures2;
-    deviceFeatures2.pNext = nullptr;
+    deviceFeatures2.pNext = &bufferDeviceAddressFeatures;
     deviceFeatures2.features = deviceFeatures;
 
     vk::DeviceCreateInfo createInfo;

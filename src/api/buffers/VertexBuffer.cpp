@@ -20,9 +20,7 @@ namespace RX
     stagingInfo.stagingQueue = m_info.queue;
     stagingInfo.queueFamilyIndices = m_info.queueIndices;
 
-    vk::MemoryAllocateFlagsInfo allocateFlags;
-    allocateFlags.flags = vk::MemoryAllocateFlagBitsKHR::eDeviceAddress;
-
+    vk::MemoryAllocateFlagsInfo allocateFlags(vk::MemoryAllocateFlagBitsKHR::eDeviceAddress);
     stagingInfo.pNextMemory = &allocateFlags;
 
     // Set up the actual index buffer.
@@ -30,8 +28,7 @@ namespace RX
     bufferInfo.usage = vk::BufferUsageFlagBits::eTransferDst | vk::BufferUsageFlagBits::eVertexBuffer | vk::BufferUsageFlagBits::eShaderDeviceAddress;
     bufferInfo.memoryProperties = vk::MemoryPropertyFlagBits::eDeviceLocal;
 
-    Buffer stagingBuffer;
-    stagingBuffer.initialize(stagingInfo);
+    Buffer stagingBuffer(stagingInfo);
     stagingBuffer.fill<Vertex>(m_info.vertices.data());
 
     m_buffer.initialize(bufferInfo);

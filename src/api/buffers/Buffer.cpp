@@ -3,6 +3,11 @@
 
 namespace RX
 {
+  Buffer::Buffer(BufferCreateInfo& createInfo)
+  {
+    initialize(createInfo);
+  }
+  
   Buffer::~Buffer()
   {
     destroy();

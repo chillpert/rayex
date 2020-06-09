@@ -63,9 +63,7 @@ namespace RX
     stagingInfo.memoryProperties = vk::MemoryPropertyFlagBits::eHostVisible | vk::MemoryPropertyFlagBits::eHostCoherent;
     stagingInfo.stagingCommandPool = m_info.commandPool;
     
-    vk::MemoryAllocateFlagsInfo allocateFlags;
-    allocateFlags.flags = vk::MemoryAllocateFlagBitsKHR::eDeviceAddress;
-
+    vk::MemoryAllocateFlagsInfo allocateFlags(vk::MemoryAllocateFlagBitsKHR::eDeviceAddress);
     stagingInfo.pNextMemory = &allocateFlags;
     
     stagingInfo.stagingQueue = m_info.queue;
@@ -76,8 +74,7 @@ namespace RX
     bufferInfo.usage = vk::BufferUsageFlagBits::eTransferDst | vk::BufferUsageFlagBits::eIndexBuffer | vk::BufferUsageFlagBits::eShaderDeviceAddress;
     bufferInfo.memoryProperties = vk::MemoryPropertyFlagBits::eDeviceLocal;
 
-    Buffer stagingBuffer;
-    stagingBuffer.initialize(stagingInfo);
+    Buffer stagingBuffer(stagingInfo);
     stagingBuffer.fill<T>(m_info.indices.data());
 
     m_buffer.initialize(bufferInfo);

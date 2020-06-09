@@ -34,6 +34,7 @@ namespace RX
     RaytraceBuilderInfo m_info;
 
     VkPhysicalDeviceRayTracingPropertiesKHR m_rayTracingProperties;
+    vk::DispatchLoaderDynamic m_dispatchLoaderDynamic;
   };
 
   struct BottomLevelAS

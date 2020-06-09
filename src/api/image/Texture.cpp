@@ -33,8 +33,7 @@ namespace RX
     stagingInfo.stagingCommandPool = m_info.commandPool;
     stagingInfo.queueFamilyIndices = m_info.queueIndices;
 
-    Buffer stagingBuffer;
-    stagingBuffer.initialize(stagingInfo);
+    Buffer stagingBuffer(stagingInfo);
     stagingBuffer.fill<stbi_uc>(pixels);
 
     stbi_image_free(pixels);

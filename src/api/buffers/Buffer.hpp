@@ -32,7 +32,13 @@ namespace RX
   class Buffer
   {
   public:
+    Buffer() = default;
+    Buffer(BufferCreateInfo& createInfo);
     RX_API ~Buffer();
+
+    Buffer& operator=(const Buffer& buffer);
+    void copyToBuffer(const Buffer& buffer) const;
+    void copyToImage(Image& image) const;
 
     inline vk::Buffer get() const { return m_buffer; }
     inline vk::DeviceMemory& getMemory() { return m_memory; }
@@ -43,11 +49,6 @@ namespace RX
 
     template <class T>
     void fill(T* source);
-
-    Buffer& operator=(const Buffer& buffer);
-    void copyToBuffer(const Buffer& buffer) const;
-
-    void copyToImage(Image& image) const;
 
     RX_API void destroy();
 

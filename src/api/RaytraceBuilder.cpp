@@ -8,6 +8,8 @@ namespace RX
 
     auto properties = m_info.physicalDevice.getProperties2<vk::PhysicalDeviceProperties2, vk::PhysicalDeviceRayTracingPropertiesKHR>();
     m_rayTracingProperties = properties.get<vk::PhysicalDeviceRayTracingPropertiesKHR>();
+
+    m_dispatchLoaderDynamic = vk::DispatchLoaderDynamic(m_info.instance, vkGetInstanceProcAddr);
   }
 
   void RaytraceBuilder::destroy()
@@ -90,7 +92,7 @@ namespace RX
     originalSizes.resize(m_blas.size());
 
     // Iterate over the groups of geometries, creating one BLAS for each group
-    int idx = 0;
+    size_t idx = 0;
     for (auto& blas : m_blas)
     {
       vk::AccelerationStructureCreateInfoKHR asCreateInfo;
@@ -98,19 +100,42 @@ namespace RX
       asCreateInfo.flags = flags;
       asCreateInfo.maxGeometryCount = static_cast<uint32_t>(blas.asCreateGeometryInfo.size());
       asCreateInfo.pGeometryInfos = blas.asCreateGeometryInfo.data();
-
-      vk::DispatchLoaderDynamic instanceLoader(m_info.instance, vkGetInstanceProcAddr);
-      blas.accelerationStructure = m_info.device.createAccelerationStructureKHR(asCreateInfo, nullptr, instanceLoader);
-      //m_debug.setObjectName(blas.as.accel, (std::string("Blas" + std::to_string(idx)).c_str()));
+      
+      blas.accelerationStructure = m_info.device.createAccelerationStructureKHR(asCreateInfo, nullptr, m_dispatchLoaderDynamic);
       
       vk::AccelerationStructureMemoryRequirementsInfoKHR memoryRequirementsInfo;
       memoryRequirementsInfo.type = vk::AccelerationStructureMemoryRequirementsTypeKHR::eBuildScratch;
       memoryRequirementsInfo.accelerationStructure = blas.accelerationStructure;
       memoryRequirementsInfo.buildType = vk::AccelerationStructureBuildTypeKHR::eDevice;
       
-      instanceLoader = vk::DispatchLoaderDynamic(m_info.instance, vkGetInstanceProcAddr);
-      vk::MemoryRequirements2 reqMem = m_info.device.getAccelerationStructureMemoryRequirementsKHR(memoryRequirementsInfo, instanceLoader);
+      vk::MemoryRequirements2 reqMem = m_info.device.getAccelerationStructureMemoryRequirementsKHR(memoryRequirementsInfo, m_dispatchLoaderDynamic);
       vk::DeviceSize scratchSize = reqMem.memoryRequirements.size;
+
+      blas.flags = flags;
+      maxScratch = std::max(maxScratch, scratchSize);
+
+      memoryRequirementsInfo.type = vk::AccelerationStructureMemoryRequirementsTypeKHR::eObject;
+      reqMem = m_info.device.getAccelerationStructureMemoryRequirementsKHR(memoryRequirementsInfo, m_dispatchLoaderDynamic);
+      originalSizes[idx] = reqMem.memoryRequirements.size;
+
+      ++idx;
     }
+
+    BufferCreateInfo bufferCreateInfo{ };
+    bufferCreateInfo.physicalDevice = m_info.physicalDevice;
+    bufferCreateInfo.device = m_info.device;
+    bufferCreateInfo.size = maxScratch;
+    bufferCreateInfo.usage = vk::BufferUsageFlagBits::eRayTracingKHR | vk::BufferUsageFlagBits::eShaderDeviceAddress;
+    bufferCreateInfo.sharingMode = vk::SharingMode::eConcurrent;
+
+    vk::MemoryAllocateFlagsInfo allocateFlags(vk::MemoryAllocateFlagBitsKHR::eDeviceAddress);
+    bufferCreateInfo.pNextMemory = &allocateFlags;
+
+    Buffer scratchBuffer(bufferCreateInfo);
+
+    vk::BufferDeviceAddressInfo bufferInfo;
+    bufferInfo.buffer = scratchBuffer.get();
+
+    vk::DeviceAddress scratchAddress = m_info.device.getBufferAddress(bufferInfo, m_dispatchLoaderDynamic);
   }
 }

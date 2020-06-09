@@ -35,6 +35,7 @@ namespace RX
     inline GuiInfo& getInfo() { return m_info; }
     inline CommandBuffer& getCommandBuffer() { return m_commandBuffers; }
 
+    RX_API virtual void configure();
     RX_API virtual void render();
 
     void initialize(GuiInfo& info);

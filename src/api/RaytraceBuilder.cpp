@@ -83,8 +83,8 @@ namespace RX
   {
     auto m_blas = allBlas;  // Keeping a copy
 
-    VkDeviceSize maxScratch{ 0 };  // Largest scratch buffer for our BLAS
-
+    vk::DeviceSize maxScratch = 0;  // Largest scratch buffer for our BLAS
+    
     // Is compaction requested?
     bool doCompaction = (flags & vk::BuildAccelerationStructureFlagBitsKHR::eAllowCompaction) == vk::BuildAccelerationStructureFlagBitsKHR::eAllowCompaction;
 
@@ -104,15 +104,15 @@ namespace RX
       vk::DispatchLoaderDynamic instanceLoader(m_info.instance, vkGetInstanceProcAddr);
       blas.accelerationStructure = m_info.device.createAccelerationStructureKHR(asCreateInfo, nullptr, instanceLoader);
       //m_debug.setObjectName(blas.as.accel, (std::string("Blas" + std::to_string(idx)).c_str()));
-    
+      
       vk::AccelerationStructureMemoryRequirementsInfoKHR memoryRequirementsInfo;
       memoryRequirementsInfo.type = vk::AccelerationStructureMemoryRequirementsTypeKHR::eBuildScratch;
       memoryRequirementsInfo.accelerationStructure = blas.accelerationStructure;
       memoryRequirementsInfo.buildType = vk::AccelerationStructureBuildTypeKHR::eDevice;
-     
+      
       instanceLoader = vk::DispatchLoaderDynamic(m_info.instance, vkGetInstanceProcAddr);
       vk::MemoryRequirements2 reqMem = m_info.device.getAccelerationStructureMemoryRequirementsKHR(memoryRequirementsInfo, instanceLoader);
-      VkDeviceSize scratchSize = reqMem.memoryRequirements.size;
+      vk::DeviceSize scratchSize = reqMem.memoryRequirements.size;
     }
   }
 }

@@ -8,14 +8,18 @@ namespace RX
     destroy();
   }
 
+  void Gui::configure()
+  {
+    IMGUI_CHECKVERSION();
+    ImGui::CreateContext();
+    ImGuiIO& io = ImGui::GetIO(); (void)io;
+  }
+
   void Gui::initialize(GuiInfo& info)
   {
     m_info = info;
 
-    IMGUI_CHECKVERSION();
-    ImGui::CreateContext();
-    ImGuiIO& io = ImGui::GetIO(); (void)io;
-    ImGui::StyleColorsDark();
+    configure();
 
     ImGui_ImplSDL2_InitForVulkan(info.window);
     

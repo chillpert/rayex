@@ -152,6 +152,12 @@ public:
 class CustomGui : public Gui
 {
 public:
+  void configure() override
+  {
+    Gui::configure();
+    ImGui::StyleColorsDark();
+  }
+
   void render() override
   {
     if (ImGui::Begin("Settings"))

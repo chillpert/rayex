@@ -16,6 +16,8 @@ namespace RX
   class CommandPool
   {
   public:
+    CommandPool() = default;
+    CommandPool(CommandPoolInfo& info);
     ~CommandPool();
     
     inline vk::CommandPool get() { return m_commandPool; }

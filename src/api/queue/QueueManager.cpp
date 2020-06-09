@@ -149,46 +149,104 @@ namespace RX
   vk::Queue QueueManager::getGraphicsQueue(int queueFamilyIndex)
   {
     if (queueFamilyIndex == -1)
-      return m_graphicsQueues[0]->getQueue();
+      return m_graphicsQueues[0]->get();
 
     for (const std::shared_ptr<Queue>& queue : m_graphicsQueues)
     {
       if (queue->getIndex() == queueFamilyIndex)
-        return queue->getQueue();
+        return queue->get();
     }
 
     RX_LOG("There is no graphics queue available on the specified queue family index. Returning any graphics queue instead ...");
-    return m_graphicsQueues[0]->getQueue();
+    return m_graphicsQueues[0]->get();
   }
 
   vk::Queue QueueManager::getPresentQueue(int queueFamilyIndex)
   {
     if (queueFamilyIndex == -1)
-      return m_presentQueues[0]->getQueue();
+      return m_presentQueues[0]->get();
 
     for (const std::shared_ptr<Queue>& queue : m_presentQueues)
     {
       if (queue->getIndex() == queueFamilyIndex)
-        return queue->getQueue();
+        return queue->get();
     }
 
     RX_LOG("There is no present queue available on the specified queue family index. Returning any present queue instead ...");
-    return m_presentQueues[0]->getQueue();
+    return m_presentQueues[0]->get();
   }
 
   vk::Queue QueueManager::getTransferQueue(int queueFamilyIndex)
   {
     if (queueFamilyIndex == -1)
-      return m_transferQueues[0]->getQueue();
+      return m_transferQueues[0]->get();
 
     for (const std::shared_ptr<Queue>& queue : m_transferQueues)
     {
       if (queue->getIndex() == queueFamilyIndex)
-        return queue->getQueue();
+        return queue->get();
     }
 
     RX_LOG("There is no transfer queue available on the specified queue family index. Returning any transfer queue instead ...");
-    return m_transferQueues[0]->getQueue();
+    return m_transferQueues[0]->get();
+  }
+
+  std::shared_ptr<Queue> QueueManager::getQueue(QueueCapability type, int queueFamilyIndex)
+  {
+    if (queueFamilyIndex == -1 && type == GRAPHICS)
+      return m_graphicsQueues[0];
+
+    else if (type == GRAPHICS)
+    {
+      for (const std::shared_ptr<Queue>& queue : m_graphicsQueues)
+      {
+        if (queue->getIndex() == queueFamilyIndex)
+          return queue;
+      }
+    }
+
+    if (queueFamilyIndex == -1 && type == PRESENT)
+      return m_presentQueues[0];
+
+    else if (type == PRESENT)
+    {
+      for (const std::shared_ptr<Queue>& queue : m_presentQueues)
+      {
+        if (queue->getIndex() == queueFamilyIndex)
+          return queue;
+      }
+    }
+
+    if (queueFamilyIndex == -1 && type == TRANSFER)
+      return m_graphicsQueues[0];
+
+    else if (type == TRANSFER)
+    {
+      for (const std::shared_ptr<Queue>& queue : m_transferQueues)
+      {
+        if (queue->getIndex() == queueFamilyIndex)
+          return queue;
+      }
+    }
+
+    switch (type)
+    {
+    case GRAPHICS:
+      RX_LOG("There is no queue available on the specified queue family index. Returning any graphics queue instead ...");
+      return m_graphicsQueues[0];
+
+    case PRESENT:
+      RX_LOG("There is no queue available on the specified queue family index. Returning any present queue instead ...");
+      return m_presentQueues[0];
+
+    case TRANSFER:
+      RX_LOG("There is no queue available on the specified queue family index. Returning any transfer queue instead ...");
+      return m_transferQueues[0];
+
+    default:
+      RX_ERROR("Given queue type could not be handled.");
+      return m_transferQueues[0];
+    }
   }
 
   std::vector<uint32_t> QueueManager::getAllFamilyIndicesOfType(QueueCapability type)
@@ -207,13 +265,13 @@ namespace RX
   void QueueManager::retrieveAllHandles(vk::Device device)
   {
     for (std::shared_ptr<Queue> queue : m_graphicsQueues)
-      device.getQueue(queue->getIndex(), 0, &queue->getQueue());
+      device.getQueue(queue->getIndex(), 0, &queue->get());
 
     for (std::shared_ptr<Queue> queue : m_presentQueues)
-      device.getQueue(queue->getIndex(), 0, &queue->getQueue());
+      device.getQueue(queue->getIndex(), 0, &queue->get());
       
     for (std::shared_ptr<Queue> queue : m_transferQueues)
-      device.getQueue(queue->getIndex(), 0, &queue->getQueue());
+      device.getQueue(queue->getIndex(), 0, &queue->get());
   }
 
   void QueueManager::print()
@@ -258,12 +316,12 @@ namespace RX
 
   void QueueManager::submit(vk::SubmitInfo& submitInfo, vk::Fence fence, size_t index)
   {
-    m_graphicsQueues[index]->getQueue().submit(1, &submitInfo, fence);
+    m_graphicsQueues[index]->get().submit(1, &submitInfo, fence);
   }
 
   void QueueManager::present(vk::PresentInfoKHR& presentInfo, size_t index)
   {
-    m_presentQueues[index]->getQueue().presentKHR(presentInfo);
+    m_presentQueues[index]->get().presentKHR(presentInfo);
   }
 
   std::vector<uint32_t> QueueManager::getQueueFamilyIndicesForSwapchainAccess()

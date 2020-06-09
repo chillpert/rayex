@@ -2,6 +2,11 @@
 
 namespace RX
 {
+  CommandPool::CommandPool(CommandPoolInfo& info)
+  {
+    initialize(info);
+  }
+
   CommandPool::~CommandPool()
   {
     destroy();

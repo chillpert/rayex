@@ -18,7 +18,7 @@ namespace RX
     Queue(uint32_t index, int capability, float priority) :
       m_queue(nullptr), m_index(index), m_capbility(capability), m_priority(priority) { }
 
-    inline vk::Queue& getQueue() { return m_queue; }
+    inline vk::Queue& get() { return m_queue; }
     inline uint32_t getIndex() { return m_index; }
     inline float getPriority() { return m_priority; }
     int getCapability() { return m_capbility; }

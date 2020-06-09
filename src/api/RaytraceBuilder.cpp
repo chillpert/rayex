@@ -1,4 +1,7 @@
 #include "RaytraceBuilder.hpp"
+#include "CommandPool.hpp"
+#include "CommandBuffer.hpp"
+#include "QueryPool.hpp"
 
 namespace RX
 {
@@ -121,6 +124,7 @@ namespace RX
       ++idx;
     }
 
+    // Allocate the scratch buffers holding the temporary data of the acceleration structure builder
     BufferCreateInfo bufferCreateInfo{ };
     bufferCreateInfo.physicalDevice = m_info.physicalDevice;
     bufferCreateInfo.device = m_info.device;
@@ -135,7 +139,49 @@ namespace RX
 
     vk::BufferDeviceAddressInfo bufferInfo;
     bufferInfo.buffer = scratchBuffer.get();
-
     vk::DeviceAddress scratchAddress = m_info.device.getBufferAddress(bufferInfo, m_dispatchLoaderDynamic);
+
+    // Query size of compact BLAS    
+    QueryPoolInfo queryPoolInfo{ };
+    queryPoolInfo.device = m_info.device;
+    queryPoolInfo.dispatchLoaderDynamic = m_dispatchLoaderDynamic;
+    queryPoolInfo.queryCount = static_cast<uint32_t>(m_blas.size());
+    queryPoolInfo.queryType = vk::QueryType::eAccelerationStructureCompactedSizeKHR;
+
+    QueryPool queryPool(queryPoolInfo);
+
+    // Create a command buffer containing all the BLAS builds
+    CommandPoolInfo commandPoolInfo{ };
+    commandPoolInfo.device = m_info.device;
+    commandPoolInfo.queueFamilyIndex = m_info.queue->getIndex();
+
+    CommandPool commandPool(commandPoolInfo);
+
+    int ctr = 0;
+    CommandBufferInfo commandBufferInfo{ };
+    commandBufferInfo.device = m_info.device;
+    commandBufferInfo.commandPool = commandPool.get();
+    commandBufferInfo.queue = m_info.queue->get();
+
+    /*
+    commandBufferCount = 1; // Amount of command buffers that will be created.
+    usageFlags = vk::CommandBufferUsageFlagBits::eOneTimeSubmit;
+    resetFlags = vk::CommandBufferResetFlagBits::eReleaseResources;
+    level = vk::CommandBufferLevel::ePrimary;
+    freeAutomatically = true;
+    submitAutomatically = true; // Only submits automatically if usageFlags contains ONE_TIME_SUBMIT
+
+    vk::CommandBufferBeginInfo beginInfo; // Ignore
+    vk::SubmitInfo submitInfo; // Ignore
+
+    std::vector<VkCommandBuffer> allCmdBufs;
+    allCmdBufs.reserve(m_blas.size());
+    for (auto& blas : m_blas)
+    {
+      VkCommandBuffer cmdBuf = genCmdBuf.createCommandBuffer();
+      allCmdBufs.push_back(cmdBuf);
+
+    }
+    */
   }
 }

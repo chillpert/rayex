@@ -3,6 +3,7 @@
 
 #include "pch/stdafx.hpp"
 #include "Model.hpp"
+#include "Queue.hpp"
 
 namespace RX
 {
@@ -13,7 +14,8 @@ namespace RX
     vk::Instance instance;
     vk::PhysicalDevice physicalDevice;
     vk::Device device;
-    uint32_t queueFamilyIndex;
+    //uint32_t queueFamilyIndex; Propbably pointless, as queue already contains the family index of the given queue.
+    std::shared_ptr<Queue> queue;
   };
 
   class RaytraceBuilder

@@ -252,7 +252,7 @@ namespace RX
     info.instance = m_instance.get();
     info.physicalDevice = m_physicalDevice.get();
     info.device = m_device.get();
-    info.queueFamilyIndex = m_queueManager.getGraphicsFamilyIndex();
+    info.queue = m_queueManager.getQueue(GRAPHICS);
 
     m_raytraceBuilder.initialize(info);
   }

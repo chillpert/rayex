@@ -503,10 +503,10 @@ namespace RX
     textureInfo.physicalDevice = m_physicalDevice.get();
     textureInfo.device = m_device.get();
     textureInfo.commandPool = m_graphicsCmdPool.get();
-    textureInfo.queue = m_queueManager.getGraphicsQueue();
+    textureInfo.queue = m_queueManager.getQueue(GRAPHICS)->get();
 
     static auto queueIndices = m_queueManager.getUniqueQueueIndices({ GRAPHICS, TRANSFER });
-    static auto queue = queueIndices.size() > 1 ? m_queueManager.getTransferQueue(queueIndices[1]) : m_queueManager.getGraphicsQueue();
+    static auto queue = queueIndices.size() > 1 ? m_queueManager.getQueue(TRANSFER, queueIndices[1])->get() : m_queueManager.getQueue(GRAPHICS)->get();
 
     VertexBufferInfo vertexBufferInfo{ };
     vertexBufferInfo.physicalDevice = m_physicalDevice.get();
@@ -607,7 +607,7 @@ namespace RX
     guiInfo.physicalDevice = m_physicalDevice.get();
     guiInfo.device = m_device.get();
     guiInfo.queueFamilyIndex = m_queueManager.getGraphicsFamilyIndex(); 
-    guiInfo.queue = m_queueManager.getGraphicsQueue();
+    guiInfo.queue = m_queueManager.getQueue(GRAPHICS)->get();
     guiInfo.minImageCount = m_surface.getCapabilities().minImageCount + 1;
     guiInfo.imageCount = static_cast<uint32_t>(m_swapchain.getImages().size());
     guiInfo.swapchainImageFormat = m_surface.getInfo().format;

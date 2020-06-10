@@ -31,10 +31,6 @@ namespace RX
 
     std::vector<uint32_t> getUniqueQueueIndices(std::vector<QueueCapability> list);
 
-    vk::Queue getGraphicsQueue(int queueFamilyIndex = -1);
-    vk::Queue getPresentQueue(int queueFamilyIndex = -1);
-    vk::Queue getTransferQueue(int queueFamilyIndex = -1);
-
     std::shared_ptr<Queue> getQueue(QueueCapability type, int queueFamilyIndex = -1);
 
     inline std::vector<QueueFamily>& getQueueFamilies() { return m_queueFamilies; }

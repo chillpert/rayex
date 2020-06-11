@@ -13,6 +13,26 @@
 
 namespace RX
 {
+  struct Material
+  {
+    glm::fvec3 ambient;
+    glm::fvec3 diffuse;
+    glm::fvec3 specular;
+    glm::fvec3 transmittance;
+    glm::fvec3 emission;
+    float shininess;
+    float reflectionIndex;
+    float opacity;
+
+    std::string ambientTexture;
+    std::string diffuseTexture;
+    std::string specularTexture;
+    std::string bumpTexture;
+    std::string displacementTexture;
+    std::string alphaTexture;
+    std::string reflectionATexture;
+  };
+
   class Model
   {
   public:
@@ -32,13 +52,20 @@ namespace RX
     // Destruction through RAII
     VertexBuffer m_vertexBuffer;
     IndexBuffer<> m_indexBuffer;
-    Texture m_texture;
+    // TODO: do not store the texture in here like this. Use the strings from materials. 
+    Texture m_texture; 
     UniformBuffer m_uniformBuffers;
 
     glm::mat4 m_model = glm::mat4(1.0f);
+    glm::mat4 m_inversedModel = glm::mat4(1.0f);
     glm::mat4 m_view = glm::mat4(1.0f);
     glm::mat4 m_projection = glm::mat4(1.0f);
     glm::vec3 m_cameraPos = glm::vec3(1.0f);
+
+    uint32_t objIndex = 0; // Reference to the 'm_objModel'
+    uint32_t txtOffset = 0; // Offset in 'm_textures'
+
+    std::vector<Material> m_materials; // This probably requires keeping track of submeshes.
 
     // No destruction necessary
     DescriptorSet m_descriptorSets;

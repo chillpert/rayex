@@ -13,6 +13,8 @@ namespace RX
     m_rayTracingProperties = properties.get<vk::PhysicalDeviceRayTracingPropertiesKHR>();
 
     m_dispatchLoaderDynamic = vk::DispatchLoaderDynamic(m_info.instance, vkGetInstanceProcAddr);
+
+    //m_debugUtils.initialize(DebugUtilInfo{ m_info.device, m_dispatchLoaderDynamic });
   }
 
   void RaytraceBuilder::destroy()
@@ -63,11 +65,13 @@ namespace RX
     blas.asGeometry.emplace_back(asGeom);
     blas.asCreateGeometryInfo.emplace_back(createInfo);
     blas.asBuildOffsetInfo.emplace_back(offset);
+    blas.device = m_info.device;
+    blas.dispatchLoaderDynamic = m_dispatchLoaderDynamic;
 
     return blas;
   }
 
-  void RaytraceBuilder::createAllBLAS(const std::vector<std::shared_ptr<Model>> models)
+  void RaytraceBuilder::createBottomLevelAS(const std::vector<std::shared_ptr<Model>> models)
   {
     std::vector<BottomLevelAS> allBlas;
     allBlas.reserve(models.size());
@@ -79,10 +83,29 @@ namespace RX
       allBlas.emplace_back(blas);
     }
 
-    buildAllBLAS(allBlas, vk::BuildAccelerationStructureFlagBitsKHR::ePreferFastTrace);
+    buildBottomLevelAS(allBlas, vk::BuildAccelerationStructureFlagBitsKHR::ePreferFastTrace);
   }
 
-  void RaytraceBuilder::buildAllBLAS(const std::vector<BottomLevelAS>& allBlas, vk::BuildAccelerationStructureFlagsKHR flags)
+  void RaytraceBuilder::createTopLevelAS(const std::vector<std::shared_ptr<Model>> models)
+  {
+    std::vector<Instance> tlas;
+    
+    tlas.reserve(models.size());
+    for (uint32_t i = 0; i < static_cast<int>(models.size()); ++i)
+    {
+      Instance rayInst;
+      rayInst.transform = models[i]->m_model; // Position of the instance
+      rayInst.instanceId = i; // gl_InstanceID
+      rayInst.blasId = models[i]->objIndex;
+      rayInst.hitGroupId = 0; // We will use the same hit group for all objects
+      rayInst.flags = vk::GeometryInstanceFlagBitsKHR::eTriangleFacingCullDisable;
+      tlas.push_back(rayInst);
+    }
+
+    //m_rtBuilder.buildTlas(tlas, vk::BuildAccelerationStructureFlagBitsKHR::ePreferFastTrace);
+  }
+
+  void RaytraceBuilder::buildBottomLevelAS(const std::vector<BottomLevelAS>& allBlas, vk::BuildAccelerationStructureFlagsKHR flags)
   {
     auto m_blas = allBlas;  // Keeping a copy
 
@@ -105,7 +128,8 @@ namespace RX
       asCreateInfo.pGeometryInfos = blas.asCreateGeometryInfo.data();
       
       blas.accelerationStructure = m_info.device.createAccelerationStructureKHR(asCreateInfo, nullptr, m_dispatchLoaderDynamic);
-      
+      //m_debugUtils.setObjectName((uint64_t)(VkAccelerationStructureKHR(blas.accelerationStructure)), (std::string("Blas" + std::to_string(idx)).c_str()), vk::ObjectType::eAccelerationStructureKHR);
+
       vk::AccelerationStructureMemoryRequirementsInfoKHR memoryRequirementsInfo;
       memoryRequirementsInfo.type = vk::AccelerationStructureMemoryRequirementsTypeKHR::eBuildScratch;
       memoryRequirementsInfo.accelerationStructure = blas.accelerationStructure;
@@ -151,37 +175,82 @@ namespace RX
     QueryPool queryPool(queryPoolInfo);
 
     // Create a command buffer containing all the BLAS builds
-    CommandPoolInfo commandPoolInfo{ };
-    commandPoolInfo.device = m_info.device;
-    commandPoolInfo.queueFamilyIndex = m_info.queue->getIndex();
-
-    CommandPool commandPool(commandPoolInfo);
+    CommandPool commandPool(CommandPoolInfo{ m_info.device, m_info.queue->getIndex(), vk::CommandPoolCreateFlagBits::eResetCommandBuffer });
 
     int ctr = 0;
     CommandBufferInfo commandBufferInfo{ };
     commandBufferInfo.device = m_info.device;
     commandBufferInfo.commandPool = commandPool.get();
     commandBufferInfo.queue = m_info.queue->get();
+    commandBufferInfo.commandBufferCount = m_blas.size();
+    commandBufferInfo.usageFlags = vk::CommandBufferUsageFlagBits::eSimultaneousUse;
+    commandBufferInfo.level = vk::CommandBufferLevel::ePrimary;
+    commandBufferInfo.freeAutomatically = true;
+    commandBufferInfo.submitAutomatically = true;
 
-    /*
-    commandBufferCount = 1; // Amount of command buffers that will be created.
-    usageFlags = vk::CommandBufferUsageFlagBits::eOneTimeSubmit;
-    resetFlags = vk::CommandBufferResetFlagBits::eReleaseResources;
-    level = vk::CommandBufferLevel::ePrimary;
-    freeAutomatically = true;
-    submitAutomatically = true; // Only submits automatically if usageFlags contains ONE_TIME_SUBMIT
+    CommandBuffer commandBuffers(commandBufferInfo);
 
-    vk::CommandBufferBeginInfo beginInfo; // Ignore
-    vk::SubmitInfo submitInfo; // Ignore
-
-    std::vector<VkCommandBuffer> allCmdBufs;
-    allCmdBufs.reserve(m_blas.size());
-    for (auto& blas : m_blas)
+    for (size_t i = 0; i < m_blas.size(); ++i)
     {
-      VkCommandBuffer cmdBuf = genCmdBuf.createCommandBuffer();
-      allCmdBufs.push_back(cmdBuf);
+      const vk::AccelerationStructureGeometryKHR* pGeometry = m_blas[i].asGeometry.data();
+      
+      vk::AccelerationStructureBuildGeometryInfoKHR bottomASInfo;
+      bottomASInfo.type = vk::AccelerationStructureTypeKHR::eBottomLevel;
+      bottomASInfo.flags = flags;
+      bottomASInfo.update = VK_FALSE;
+      bottomASInfo.srcAccelerationStructure = nullptr;
+      bottomASInfo.dstAccelerationStructure = m_blas[i].accelerationStructure;
+      bottomASInfo.geometryArrayOfPointers = VK_FALSE;
+      bottomASInfo.geometryCount = static_cast<uint32_t>(m_blas[i].asGeometry.size());
+      bottomASInfo.ppGeometries = &pGeometry;
+      bottomASInfo.scratchData.deviceAddress = scratchAddress;
 
+      // Pointers of offset
+      std::vector<const vk::AccelerationStructureBuildOffsetInfoKHR*> pBuildOffset(m_blas[i].asBuildOffsetInfo.size());
+      for (size_t j = 0; j < m_blas[i].asBuildOffsetInfo.size(); ++j)
+        pBuildOffset[j] = &m_blas[i].asBuildOffsetInfo[j];
+
+      commandBuffers.reset();
+      commandBuffers.begin(i);
+
+      // Building the AS
+      commandBuffers.get(i).buildAccelerationStructureKHR(1, &bottomASInfo, pBuildOffset.data(), m_dispatchLoaderDynamic); // CMD
+
+      // Since the scratch buffer is reused across builds, we need a barrier to ensure one build
+      // is finished before starting the next one
+      vk::MemoryBarrier barrier;
+      barrier.srcAccessMask = vk::AccessFlagBits::eAccelerationStructureWriteKHR;
+      barrier.dstAccessMask = vk::AccessFlagBits::eAccelerationStructureReadKHR;
+
+      commandBuffers.get(i).pipelineBarrier(
+        vk::PipelineStageFlagBits::eAccelerationStructureBuildKHR, 
+        vk::PipelineStageFlagBits::eAccelerationStructureBuildKHR, 
+        vk::DependencyFlagBits::eByRegion,
+        1,
+        &barrier,
+        0,
+        nullptr,
+        0, 
+        nullptr
+      ); // CMD
+      
+      // Query the compact size
+      if (doCompaction)
+        commandBuffers.get(i).writeAccelerationStructuresPropertiesKHR(1, &m_blas[i].accelerationStructure, vk::QueryType::eAccelerationStructureCompactedSizeKHR, queryPool.get(), ++ctr, m_dispatchLoaderDynamic);
+      
+      commandBuffers.end(i);
     }
-    */
+
+  }
+
+  BottomLevelAS::~BottomLevelAS()
+  {
+    if (accelerationStructure)
+      destroy();
+  }
+
+  void BottomLevelAS::destroy()
+  {
+    device.destroyAccelerationStructureKHR(accelerationStructure, nullptr, dispatchLoaderDynamic);
   }
 }

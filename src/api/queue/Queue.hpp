@@ -23,6 +23,11 @@ namespace RX
     inline float getPriority() { return m_priority; }
     int getCapability() { return m_capbility; }
 
+    void submit(vk::SubmitInfo& submitInfo, vk::Fence fence = nullptr, uint32_t submitCount = 1)
+    {
+      m_queue.submit(submitCount, &submitInfo, fence);
+    }
+
     friend std::ostream& operator<<(std::ostream& os, const std::shared_ptr<Queue> queue);
 
   private:

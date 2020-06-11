@@ -567,7 +567,8 @@ namespace RX
         model->m_descriptorSets.initialize(descriptorSetInfo);
       }
 
-      m_raytraceBuilder.createAllBLAS(m_models);
+      m_raytraceBuilder.createBottomLevelAS(m_models);
+      m_raytraceBuilder.createTopLevelAS(m_models);
     }
     else
     {

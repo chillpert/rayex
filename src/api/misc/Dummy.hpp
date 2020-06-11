@@ -6,13 +6,20 @@
 namespace RX
 {
   // Contains all data needed for the creation process and possibly byproducts as well.
-  struct DummyInfo { };
+  struct DummyInfo
+  { 
+  
+  };
 
   class Dummy
   {
   public:
     // Make sure no body can use this class
-    Dummy() = delete;
+    Dummy() = default;
+    Dummy(DummyInfo& info)
+    {
+      initialize(info);
+    }
 
     ~Dummy()
     {
@@ -25,23 +32,16 @@ namespace RX
     void initialize(DummyInfo& info)
     {
       m_info = info;
-
-      // Use VK_CREATE macro even if you don't actually create a resource.
-      VkResult res = VK_SUCCESS;
-      VK_CREATE(res, "Dummy");
     }
 
     void destroy()
     {
-      // Use the VK_DESTROY or VK_FREE macro
+      
     }
 
   private:
     uint32_t m_dummy;
     DummyInfo m_info;
-
-    // Make sure that non-initialized resources won't get destroyed via RAII.
-    bool m_created = false;
   };
 }
 

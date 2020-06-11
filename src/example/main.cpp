@@ -188,8 +188,18 @@ int main(int argc, char* argv[])
   dlore->m_model = glm::scale(dlore->m_model, glm::vec3(0.25f));
   dlore->m_model = glm::rotate(dlore->m_model, glm::radians(90.0f), glm::vec3(0.0f, 1.0f, 0.0f));
 
+  auto mars = std::make_shared<Model>();
+  mars->m_pathToTexture = RX_TEXTURE_PATH "mars.jpg";
+  mars->m_pathToModel = RX_MODEL_PATH "sphere.obj";
+
+  mars->m_model = glm::scale(mars->m_model, glm::vec3(0.25f));
+  mars->m_model = glm::rotate(mars->m_model, glm::radians(90.0f), glm::vec3(0.0f, 1.0f, 0.0f));
+  mars->m_model = glm::translate(mars->m_model, glm::vec3(0.0f, -2.0f, 0.0f));
+
   // Add the model to the renderer. This way it will be queued for rendering.
+  //renderer.setModels({ dlore, mars }); // TODO: causes crash
   renderer.pushModel(dlore);
+  renderer.pushModel(mars);
 
   // This will set up the entire Vulkan pipeline.
   renderer.initialize();
@@ -203,6 +213,11 @@ int main(int argc, char* argv[])
     dlore->m_view = cam.getViewMatrix();
     dlore->m_projection = cam.getProjectionMatrix();
     dlore->m_cameraPos = cam.m_position;
+
+    mars->m_model = glm::rotate(mars->m_model, glm::radians(90.0f) * Time::getDeltaTime() * -speed, glm::vec3(0.0f, 1.0f, 0.0f));
+    mars->m_view = cam.getViewMatrix();
+    mars->m_projection = cam.getProjectionMatrix();
+    mars->m_cameraPos = cam.m_position;
 
     // Call udpate and render for the renderer to work properly.
     renderer.update();

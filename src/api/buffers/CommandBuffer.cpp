@@ -2,6 +2,11 @@
 
 namespace RX
 {
+  CommandBuffer::CommandBuffer(CommandBufferInfo& info)
+  {
+    initialize(info);
+  }
+
   void CommandBuffer::initialize(CommandBufferInfo& info)
   {
     m_info = info;

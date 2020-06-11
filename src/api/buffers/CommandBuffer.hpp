@@ -26,6 +26,9 @@ namespace RX
   class CommandBuffer
   {
   public:
+    CommandBuffer() = default;
+    CommandBuffer(CommandBufferInfo& info);
+
     inline std::vector<vk::CommandBuffer>& get() { return m_commandBuffers; }
     inline vk::CommandBuffer get(size_t index) { return m_commandBuffers[index]; }
     inline vk::CommandBuffer getFront() { return m_commandBuffers[0]; }

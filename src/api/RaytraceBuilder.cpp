@@ -88,18 +88,18 @@ namespace RX
 
   void RaytraceBuilder::createTopLevelAS(const std::vector<std::shared_ptr<Model>> models)
   {
-    std::vector<Instance> tlas;
-    
-    tlas.reserve(models.size());
+    std::vector<Instance> allTlas;
+    allTlas.reserve(models.size());
+
     for (uint32_t i = 0; i < static_cast<int>(models.size()); ++i)
     {
       Instance rayInst;
       rayInst.transform = models[i]->m_model; // Position of the instance
       rayInst.instanceId = i; // gl_InstanceID
-      rayInst.blasId = models[i]->objIndex;
+      rayInst.blasId = static_cast<uint32_t>(models.size());
       rayInst.hitGroupId = 0; // We will use the same hit group for all objects
       rayInst.flags = vk::GeometryInstanceFlagBitsKHR::eTriangleFacingCullDisable;
-      tlas.push_back(rayInst);
+      allTlas.push_back(rayInst);
     }
 
     //m_rtBuilder.buildTlas(tlas, vk::BuildAccelerationStructureFlagBitsKHR::ePreferFastTrace);
@@ -189,7 +189,7 @@ namespace RX
     commandBufferInfo.submitAutomatically = true;
 
     CommandBuffer commandBuffers(commandBufferInfo);
-
+    
     for (size_t i = 0; i < m_blas.size(); ++i)
     {
       const vk::AccelerationStructureGeometryKHR* pGeometry = m_blas[i].asGeometry.data();
@@ -240,6 +240,11 @@ namespace RX
       
       commandBuffers.end(i);
     }
+
+  }
+
+  void RaytraceBuilder::buildTopLevelAS(const std::vector<Instance> allTlas, vk::BuildAccelerationStructureFlagsKHR flags)
+  {
 
   }
 

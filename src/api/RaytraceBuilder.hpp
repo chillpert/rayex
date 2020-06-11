@@ -20,20 +20,6 @@ namespace RX
 
   class RaytraceBuilder
   {
-  public:
-
-    inline RaytraceBuilderInfo& getInfo() { return m_info; }
-
-    void initialize(RaytraceBuilderInfo& info);
-    void destroy();
-
-    BottomLevelAS objToBlas(const std::shared_ptr<Model> model);
-
-    void createBottomLevelAS(const std::vector<std::shared_ptr<Model>> models);
-    void createTopLevelAS(const std::vector<std::shared_ptr<Model>> models);
-
-    void buildBottomLevelAS(const std::vector<BottomLevelAS>& allBlas, vk::BuildAccelerationStructureFlagsKHR flags);
-
   private:
     struct Instance
     {
@@ -45,6 +31,21 @@ namespace RX
       vk::GeometryInstanceFlagsKHR flags = vk::GeometryInstanceFlagBitsKHR::eTriangleFacingCullDisable;
     };
 
+  public:
+    inline RaytraceBuilderInfo& getInfo() { return m_info; }
+
+    void initialize(RaytraceBuilderInfo& info);
+    void destroy();
+
+    BottomLevelAS objToBlas(const std::shared_ptr<Model> model);
+
+    void createBottomLevelAS(const std::vector<std::shared_ptr<Model>> models);
+    void createTopLevelAS(const std::vector<std::shared_ptr<Model>> models);
+
+    void buildBottomLevelAS(const std::vector<BottomLevelAS>& allBlas, vk::BuildAccelerationStructureFlagsKHR flags);
+    void buildTopLevelAS(const std::vector<Instance> allTlas, vk::BuildAccelerationStructureFlagsKHR flags);
+
+  private:
     RaytraceBuilderInfo m_info;
 
     VkPhysicalDeviceRayTracingPropertiesKHR m_rayTracingProperties;

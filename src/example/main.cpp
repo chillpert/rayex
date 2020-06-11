@@ -197,9 +197,7 @@ int main(int argc, char* argv[])
   mars->m_model = glm::translate(mars->m_model, glm::vec3(0.0f, -2.0f, 0.0f));
 
   // Add the model to the renderer. This way it will be queued for rendering.
-  //renderer.setModels({ dlore, mars }); // TODO: causes crash
-  renderer.pushModel(dlore);
-  renderer.pushModel(mars);
+  renderer.setModels({ dlore, mars });
 
   // This will set up the entire Vulkan pipeline.
   renderer.initialize();

@@ -177,7 +177,9 @@ namespace RX
 
   void Api::setModels(const std::vector<std::shared_ptr<Model>>& models)
   {
-
+    m_models.clear();
+    m_models.reserve(models.size());
+    m_models = models;
   }
 
   void Api::clean()

@@ -4,7 +4,8 @@ namespace RX
 {
   Swapchain::~Swapchain()
   {
-    destroy();
+    if (m_swapchain)
+      destroy();
   }
 
   void Swapchain::initialize(SwapchainInfo& info)

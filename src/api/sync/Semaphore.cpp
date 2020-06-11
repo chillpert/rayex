@@ -4,7 +4,8 @@ namespace RX
 {
   Semaphore::~Semaphore()
   {
-    destroy();
+    if (m_semaphore)
+      destroy();
   }
 
   void Semaphore::initialize(SemaphoreInfo& info)

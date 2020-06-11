@@ -44,8 +44,6 @@ namespace RX
     vk::RenderPass m_renderPass;
     RenderPassInfo m_info;
     RenderPassBeginInfo m_beginInfo;
-
-    bool m_created = false;
   };
 }
 

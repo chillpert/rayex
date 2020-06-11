@@ -10,7 +10,8 @@ namespace RX
   
   Buffer::~Buffer()
   {
-    destroy();
+    if (m_buffer && m_memory)
+      destroy();
   }
 
   void Buffer::initialize(BufferCreateInfo& createInfo)

@@ -4,7 +4,8 @@ namespace RX
 {
   Shader::~Shader()
   {
-    destroy();
+    if (m_shaderModule)
+      destroy();
   }
 
   void Shader::initialize(ShaderInfo& info)

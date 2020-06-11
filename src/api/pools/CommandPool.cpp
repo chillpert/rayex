@@ -9,7 +9,8 @@ namespace RX
 
   CommandPool::~CommandPool()
   {
-    destroy();
+    if (m_commandPool)
+      destroy();
   }
 
 	void CommandPool::initialize(CommandPoolInfo& info)

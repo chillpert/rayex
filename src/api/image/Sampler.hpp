@@ -18,8 +18,6 @@ namespace RX
   private:
     vk::Sampler m_sampler;
     vk::Device m_device;
-
-    bool m_created = false;
   };  
 }
 

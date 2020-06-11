@@ -24,8 +24,6 @@ namespace RX
   private:
     vk::Semaphore m_semaphore;
     SemaphoreInfo m_info;
-
-    bool m_created = false;
   };
 }
 

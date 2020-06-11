@@ -58,9 +58,6 @@ namespace RX
     vk::Buffer m_buffer;
     vk::DeviceMemory m_memory;
     BufferCreateInfo m_info;
-
-    bool m_created = false;
-    bool m_allocated = false;
   };
 
   template <class T>

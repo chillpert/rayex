@@ -26,8 +26,6 @@ namespace RX
   private:
     vk::DescriptorPool m_pool;
     DescriptorPoolInfo m_info;
-
-    bool m_created = false;
   };
 }
 

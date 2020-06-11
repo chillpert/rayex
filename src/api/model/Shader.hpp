@@ -36,8 +36,6 @@ namespace RX
   private:
     vk::ShaderModule m_shaderModule;
     ShaderInfo m_info;
-
-    bool m_created = false;
   };
 }
 

@@ -37,8 +37,6 @@ namespace RX
     SurfaceInfo m_info;
 
     vk::SurfaceCapabilitiesKHR m_capabilities;
-
-    bool m_created = false;
   };
 }
 

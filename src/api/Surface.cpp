@@ -4,7 +4,8 @@ namespace RX
 {
   Surface::~Surface()
   {
-    destroy();
+    if (m_surface)
+      destroy();
   }
 
   void Surface::initialize(SurfaceInfo& info)

@@ -4,7 +4,8 @@ namespace RX
 {
   ImageView::~ImageView()
   {
-    destroy();
+    if (m_imageView)
+      destroy();
   }
 
   void ImageView::initialize(ImageViewInfo& info)

@@ -44,9 +44,6 @@ namespace RX
     vk::Image m_image;
     vk::DeviceMemory m_memory;
     ImageInfo m_info;
-
-    bool m_created = false;
-    bool m_allocated = false;
   };
 }
 

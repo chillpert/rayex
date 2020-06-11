@@ -106,7 +106,7 @@ namespace RX
 
   void Gui::destroy()
   {
-    vkDestroyRenderPass(m_info.device, m_renderPass, nullptr);
+    m_info.device.destroyRenderPass(m_renderPass);
     ImGui_ImplVulkan_Shutdown();
     ImGui_ImplSDL2_Shutdown();
     ImGui::DestroyContext();

@@ -4,7 +4,8 @@ namespace RX
 {
   DebugMessenger::~DebugMessenger()
   {
-    destroy();
+    if (m_debugMessenger)
+      destroy();
   }
 
   void DebugMessenger::initialize(DebugMessengerInfo& info)

@@ -4,7 +4,8 @@ namespace RX
 {
   DescriptorPool::~DescriptorPool()
   {
-    destroy();
+    if (m_pool)
+      destroy();
   }
 
   void DescriptorPool::initialize(DescriptorPoolInfo& info)

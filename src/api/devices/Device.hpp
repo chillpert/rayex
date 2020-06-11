@@ -27,8 +27,6 @@ namespace RX
 
     vk::UniqueDevice m_device;
     DeviceInfo m_info;
-
-    bool m_created = false;
   };
 }
 

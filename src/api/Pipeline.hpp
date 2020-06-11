@@ -35,8 +35,6 @@ namespace RX
     vk::Pipeline m_pipeline;
     vk::PipelineLayout m_layout;
     PipelineInfo m_info;
-
-    bool m_created = false;
   };
 }
 

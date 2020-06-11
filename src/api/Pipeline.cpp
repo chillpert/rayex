@@ -5,7 +5,8 @@ namespace RX
 {
   Pipeline::~Pipeline()
   {
-    destroy();
+    if (m_pipeline)
+      destroy();
   }
 
   void Pipeline::initialize(PipelineInfo& info)
@@ -85,8 +86,6 @@ namespace RX
     m_layout = m_info.device.createPipelineLayout(pipelineLayoutInfo);
     if (!m_layout)
       RX_ERROR("Failed to create pipeline layout.");
-
-    m_created = false;
 
     vk::PipelineShaderStageCreateInfo vertShaderStageInfo;
     vertShaderStageInfo.stage = vk::ShaderStageFlagBits::eVertex;

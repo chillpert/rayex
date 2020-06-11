@@ -28,8 +28,6 @@ namespace RX
 	private:
 		vk::Framebuffer m_framebuffer;
 		FramebufferInfo m_info;
-
-		bool m_created = false;
 	};
 }
 

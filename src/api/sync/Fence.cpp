@@ -4,7 +4,8 @@ namespace RX
 {
   Fence::~Fence()
   {
-    destroy();
+    if (m_fence)
+      destroy();
   }
 
   void Fence::initialize(FenceInfo& info)

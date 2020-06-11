@@ -26,8 +26,6 @@ namespace RX
   private:
     vk::DescriptorSetLayout m_layout;
     DescriptorSetLayoutInfo m_info;
-
-    bool m_created = false;
   };
 }
 

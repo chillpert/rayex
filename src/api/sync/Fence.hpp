@@ -24,8 +24,6 @@ namespace RX
   private:
     vk::Fence m_fence = nullptr;
     FenceInfo m_info;
-
-    bool m_created = false;
   };
 }
 

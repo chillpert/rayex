@@ -4,7 +4,8 @@ namespace RX
 {
   DescriptorSetLayout::~DescriptorSetLayout()
   {
-    destroy();
+    if (m_layout)
+      destroy();
   }
 
   void DescriptorSetLayout::initialize(DescriptorSetLayoutInfo& info)

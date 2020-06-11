@@ -6,7 +6,8 @@ namespace RX
 {
   Image::~Image()
   {
-    destroy();
+    if (m_image)
+      destroy();
   }
 
   void Image::initialize(ImageInfo& info)

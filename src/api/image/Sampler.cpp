@@ -4,7 +4,8 @@ namespace RX
 {
   Sampler::~Sampler()
   {
-    destroy();
+    if (m_sampler)
+      destroy();
   }
 
   void Sampler::initialize(vk::Device device)

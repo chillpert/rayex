@@ -33,8 +33,6 @@ namespace RX
   private:
     vk::CommandPool m_commandPool;
     CommandPoolInfo m_info;
-
-    bool m_created = false;
   };
 }
 

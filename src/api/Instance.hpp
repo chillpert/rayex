@@ -28,8 +28,6 @@ namespace RX
 
     vk::UniqueInstance m_instance;
     InstanceInfo m_info;
-
-    bool m_created = false;
   };
 }
 

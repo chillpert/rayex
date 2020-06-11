@@ -4,7 +4,8 @@ namespace RX
 {
   RenderPass::~RenderPass()
   {
-    destroy();
+    if (m_renderPass)
+      destroy();
   }
 
   void RenderPass::initialize(RenderPassInfo& info)

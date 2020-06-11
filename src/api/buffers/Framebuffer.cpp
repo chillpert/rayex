@@ -4,7 +4,8 @@ namespace RX
 {
   Framebuffer::~Framebuffer()
   {
-    destroy();
+    if (m_framebuffer)
+      destroy();
   }
 
   void Framebuffer::initialize(FramebufferInfo& info)

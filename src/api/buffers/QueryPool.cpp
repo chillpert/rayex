@@ -9,7 +9,8 @@ namespace RX
 
   QueryPool::~QueryPool()
   {
-    destroy();
+    if (m_queryPool)
+      destroy();
   }
 
   void QueryPool::initialize(QueryPoolInfo& info)

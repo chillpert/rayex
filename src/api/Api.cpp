@@ -343,16 +343,54 @@ namespace RX
 
   void Api::initRenderPass()
   {
+    vk::AttachmentDescription colorAttachmentDescription;
+    colorAttachmentDescription.format = m_surface.getInfo().format;
+    colorAttachmentDescription.samples = vk::SampleCountFlagBits::e1;
+    colorAttachmentDescription.loadOp = vk::AttachmentLoadOp::eClear;
+    colorAttachmentDescription.storeOp = vk::AttachmentStoreOp::eStore;
+    colorAttachmentDescription.stencilLoadOp = vk::AttachmentLoadOp::eDontCare;
+    colorAttachmentDescription.stencilStoreOp = vk::AttachmentStoreOp::eDontCare;
+    colorAttachmentDescription.initialLayout = vk::ImageLayout::eUndefined;
+    colorAttachmentDescription.finalLayout = m_gui != nullptr ? vk::ImageLayout::eColorAttachmentOptimal : vk::ImageLayout::ePresentSrcKHR;
+
+    vk::AttachmentReference colorAttachmentReference;
+    colorAttachmentReference.attachment = 0;
+    colorAttachmentReference.layout = vk::ImageLayout::eColorAttachmentOptimal;
+
+    vk::AttachmentDescription depthAttachmentDescription;
+    depthAttachmentDescription.format = getSupportedDepthFormat(m_physicalDevice.get());
+    depthAttachmentDescription.samples = vk::SampleCountFlagBits::e1;
+    depthAttachmentDescription.loadOp = vk::AttachmentLoadOp::eClear;
+    depthAttachmentDescription.storeOp = vk::AttachmentStoreOp::eDontCare;
+    depthAttachmentDescription.stencilLoadOp = vk::AttachmentLoadOp::eDontCare;
+    depthAttachmentDescription.stencilStoreOp = vk::AttachmentStoreOp::eDontCare;
+    depthAttachmentDescription.initialLayout = vk::ImageLayout::eUndefined;
+    depthAttachmentDescription.finalLayout = vk::ImageLayout::eDepthStencilAttachmentOptimal;
+
+    vk::AttachmentReference depthAttachmentRef;
+    depthAttachmentRef.attachment = 1;
+    depthAttachmentRef.layout = vk::ImageLayout::eDepthStencilAttachmentOptimal;
+
+    vk::SubpassDescription subpassDescription;
+    subpassDescription.pipelineBindPoint = vk::PipelineBindPoint::eGraphics;
+    subpassDescription.colorAttachmentCount = 1;
+    subpassDescription.pColorAttachments = &colorAttachmentReference;
+    subpassDescription.pDepthStencilAttachment = &depthAttachmentRef;
+
+    vk::SubpassDependency subpassDependency;
+    subpassDependency.srcSubpass = VK_SUBPASS_EXTERNAL;
+    subpassDependency.dstSubpass = 0;
+    subpassDependency.srcStageMask = vk::PipelineStageFlagBits::eColorAttachmentOutput;
+    //subpassDependency.srcAccessMask = vk::AccessFlagBits:: ;
+    subpassDependency.dstStageMask = vk::PipelineStageFlagBits::eColorAttachmentOutput;
+    subpassDependency.dstAccessMask = vk::AccessFlagBits::eColorAttachmentWrite;
+
     RenderPassInfo renderPassInfo{ };
     renderPassInfo.physicalDevice = m_physicalDevice.get();
     renderPassInfo.device = m_device.get();
-    renderPassInfo.surfaceFormat = m_surface.getInfo().format;
-    renderPassInfo.depthFormat = getSupportedDepthFormat(m_physicalDevice.get());
-    
-    if (m_gui == nullptr)
-      renderPassInfo.guiEnabled = false;
-    else
-      renderPassInfo.guiEnabled = true;
+    renderPassInfo.attachments = { colorAttachmentDescription, depthAttachmentDescription };
+    renderPassInfo.subpasses = { subpassDescription };
+    renderPassInfo.dependencies = { subpassDependency };
 
     m_renderPass.initialize(renderPassInfo);
   }

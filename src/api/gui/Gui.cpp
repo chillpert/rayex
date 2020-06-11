@@ -37,12 +37,26 @@ namespace RX
     init_info.ImageCount = info.imageCount;
 
     initRenderPass();
-    ImGui_ImplVulkan_Init(&init_info, m_renderPass);
+    ImGui_ImplVulkan_Init(&init_info, m_renderPass.get());
 
     initCommandPool();
     initFonts();
     initCommandBuffers();
     initFramebuffers();
+
+    // Initialize render pass begin info.
+    vk::ClearValue clearValue;
+    clearValue.color = std::array<float, 4>{ 0.5f, 0.5, 0.5f, 1.0f };
+
+    RenderPassBeginInfo beginInfo{ };
+    beginInfo.renderArea.extent = m_info.swapchainImageExtent;
+    beginInfo.clearValues = { clearValue };
+    beginInfo.commandBuffers = m_commandBuffers.get();
+
+    for (Framebuffer& framebuffer : m_framebuffers)
+      beginInfo.framebuffers.push_back(framebuffer.get());
+
+    m_renderPass.setBeginInfo(beginInfo);
   }
 
   void Gui::beginRender()
@@ -65,25 +79,14 @@ namespace RX
   void Gui::beginRenderPass(int index)
   {
     m_commandBuffers.begin(index);
-
-    vk::RenderPassBeginInfo info;
-    info.renderPass = m_renderPass;
-    info.framebuffer = m_framebuffers[index].get();
-    info.renderArea.extent = m_info.swapchainImageExtent;
-    info.clearValueCount = 1;
-
-    vk::ClearValue clearValue;
-    clearValue.color = std::array<float, 4>{ 0.5f, 0.5, 0.5f, 1.0f };
-    info.pClearValues = &clearValue;
-
-    m_commandBuffers.get()[index].beginRenderPass(info, vk::SubpassContents::eInline);
+    m_renderPass.begin(index);
   }
 
   void Gui::endRenderPass(int index)
   {
     ImGui_ImplVulkan_RenderDrawData(ImGui::GetDrawData(), m_commandBuffers.get()[index]);
 
-    m_commandBuffers.get()[index].endRenderPass();
+    m_renderPass.end(index);
     m_commandBuffers.end(index);
   }
 
@@ -106,7 +109,6 @@ namespace RX
 
   void Gui::destroy()
   {
-    m_info.device.destroyRenderPass(m_renderPass);
     ImGui_ImplVulkan_Shutdown();
     ImGui_ImplSDL2_Shutdown();
     ImGui::DestroyContext();
@@ -182,10 +184,14 @@ namespace RX
     info.dependencyCount = 1;
     info.pDependencies = &dependency;
 
-    m_renderPass = m_info.device.createRenderPass(info);
+    RenderPassInfo renderPassInfo{ };
+    renderPassInfo.physicalDevice = m_info.physicalDevice;
+    renderPassInfo.device = m_info.device;
+    renderPassInfo.attachments = { attachment };
+    renderPassInfo.subpasses = { subpass };
+    renderPassInfo.dependencies = { dependency };
 
-    if (!m_renderPass)
-      RX_ERROR("Failed to create GUI render pass.");
+    m_renderPass.initialize(renderPassInfo);
   }
 
   void Gui::initFonts()
@@ -224,7 +230,7 @@ namespace RX
   {
     FramebufferInfo framebufferInfo{ };
     framebufferInfo.device = m_info.device;
-    framebufferInfo.renderPass = m_renderPass;
+    framebufferInfo.renderPass = m_renderPass.get();
     framebufferInfo.extent = m_info.swapchainImageExtent;
 
     m_framebuffers.resize(m_info.imageCount);

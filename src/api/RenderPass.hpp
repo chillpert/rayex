@@ -9,12 +9,23 @@ namespace RX
   {
     vk::PhysicalDevice physicalDevice;
     vk::Device device;
+    std::vector<vk::AttachmentDescription> attachments;
+    std::vector<vk::SubpassDescription> subpasses;
+    std::vector<vk::SubpassDependency> dependencies;
+  };
+
+  /*
+  struct RenderPassInfo
+  {
+    vk::PhysicalDevice physicalDevice;
+    vk::Device device;
     vk::Format surfaceFormat;
     vk::Format depthFormat;
     vk::ImageLayout initialLayout = vk::ImageLayout::eUndefined;
     vk::ImageLayout finalLayout = vk::ImageLayout::ePresentSrcKHR;
     bool guiEnabled;
   };
+  */
 
   struct RenderPassBeginInfo
   {
@@ -27,6 +38,8 @@ namespace RX
   class RenderPass
   {
   public:
+    RenderPass() = default;
+    RenderPass(RenderPassInfo& info);
     ~RenderPass();
 
     inline VkRenderPass get() { return m_renderPass; }

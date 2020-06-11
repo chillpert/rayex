@@ -5,6 +5,7 @@
 #include "CommandPool.hpp"
 #include "CommandBuffer.hpp"
 #include "Framebuffer.hpp"
+#include "RenderPass.hpp"
 
 #include <imgui.h>
 #include <imgui_impl_vulkan.h>
@@ -61,7 +62,7 @@ namespace RX
     DescriptorPool m_descriptorPool;
     CommandPool m_commandPool;
     CommandBuffer m_commandBuffers;
-    vk::RenderPass m_renderPass;
+    RenderPass m_renderPass;
     std::vector<Framebuffer> m_framebuffers;
   };
 }

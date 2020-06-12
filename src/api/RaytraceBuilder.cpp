@@ -75,9 +75,9 @@ namespace RX
   {
     std::vector<BottomLevelAS> allBlas;
     allBlas.reserve(models.size());
-    for (const auto& obj : models)
+    for (const auto& model : models)
     {
-      auto blas = objToBlas(obj);
+      auto blas = objToBlas(model);
 
       // We could add more geometry in each BLAS, but we add only one for now
       allBlas.emplace_back(blas);
@@ -96,18 +96,18 @@ namespace RX
       Instance rayInst;
       rayInst.transform = models[i]->m_model; // Position of the instance
       rayInst.instanceId = i; // gl_InstanceID
-      rayInst.blasId = static_cast<uint32_t>(models.size());
+      rayInst.blasId = models[i]->m_objIndex;
       rayInst.hitGroupId = 0; // We will use the same hit group for all objects
       rayInst.flags = vk::GeometryInstanceFlagBitsKHR::eTriangleFacingCullDisable;
       allTlas.push_back(rayInst);
     }
 
-    //m_rtBuilder.buildTlas(tlas, vk::BuildAccelerationStructureFlagBitsKHR::ePreferFastTrace);
+    buildTopLevelAS(allTlas, vk::BuildAccelerationStructureFlagBitsKHR::ePreferFastTrace);
   }
 
   void RaytraceBuilder::buildBottomLevelAS(const std::vector<BottomLevelAS>& allBlas, vk::BuildAccelerationStructureFlagsKHR flags)
   {
-    auto m_blas = allBlas;  // Keeping a copy
+    m_blas = allBlas;  // Keeping a copy
 
     vk::DeviceSize maxScratch = 0;  // Largest scratch buffer for our BLAS
     
@@ -243,9 +243,83 @@ namespace RX
 
   }
 
-  void RaytraceBuilder::buildTopLevelAS(const std::vector<Instance> allTlas, vk::BuildAccelerationStructureFlagsKHR flags)
+  void RaytraceBuilder::buildTopLevelAS(const std::vector<Instance> instances, vk::BuildAccelerationStructureFlagsKHR flags)
   {
+    m_tlas.flags = flags;
+    m_tlas.device = m_info.device;
+    m_tlas.dispatchLoaderDynamic = m_dispatchLoaderDynamic;
 
+    vk::AccelerationStructureCreateGeometryTypeInfoKHR geometryCreate;
+    geometryCreate.geometryType = vk::GeometryTypeKHR::eInstances;
+    geometryCreate.maxPrimitiveCount = static_cast<uint32_t>(instances.size());
+    geometryCreate.allowsTransforms = VK_TRUE;
+
+    vk::AccelerationStructureCreateInfoKHR asCreateInfo;
+    asCreateInfo.type = vk::AccelerationStructureTypeKHR::eTopLevel;
+    asCreateInfo.flags = flags;
+    asCreateInfo.maxGeometryCount = 1;
+    asCreateInfo.pGeometryInfos = &geometryCreate;
+    
+    m_tlas.asInfo = asCreateInfo;
+    m_tlas.accelerationStructure = m_info.device.createAccelerationStructureKHR(asCreateInfo, nullptr, m_dispatchLoaderDynamic);
+
+    vk::AccelerationStructureMemoryRequirementsInfoKHR memoryRequirementsInfo;
+    memoryRequirementsInfo.type = vk::AccelerationStructureMemoryRequirementsTypeKHR::eBuildScratch;
+    memoryRequirementsInfo.accelerationStructure = m_tlas.accelerationStructure;
+    memoryRequirementsInfo.buildType = vk::AccelerationStructureBuildTypeKHR::eDevice;
+
+    vk::MemoryRequirements2 reqMem = m_info.device.getAccelerationStructureMemoryRequirementsKHR(memoryRequirementsInfo, m_dispatchLoaderDynamic);
+    vk::DeviceSize scratchSize = reqMem.memoryRequirements.size;
+
+    BufferCreateInfo bufferInfo{ };
+    bufferInfo.physicalDevice = m_info.physicalDevice;
+    bufferInfo.device = m_info.device;
+    bufferInfo.size = scratchSize;
+    bufferInfo.usage = vk::BufferUsageFlagBits::eRayTracingKHR | vk::BufferUsageFlagBits::eShaderDeviceAddress;
+    bufferInfo.sharingMode = vk::SharingMode::eConcurrent;
+
+    vk::MemoryAllocateFlagsInfo allocateFlags(vk::MemoryAllocateFlagBitsKHR::eDeviceAddress);
+    bufferInfo.pNextMemory = &allocateFlags;
+    vk::DeviceSize memoryOffset = 0;
+
+    Buffer scratchBuffer(bufferInfo);
+
+    vk::BufferDeviceAddressInfo bufferAddressInfo;
+    bufferAddressInfo.buffer = scratchBuffer.get();
+    vk::DeviceAddress scratchAddress = m_info.device.getBufferAddress(bufferAddressInfo);
+
+    // For each instance, build the corresponding instance descriptor
+    std::vector<vk::AccelerationStructureInstanceKHR> geometryInstances;
+    geometryInstances.reserve(instances.size());
+    for (const auto& inst : instances)
+    {
+      geometryInstances.push_back(instanceToVkGeometryInstanceKHR(inst));
+    }
+  }
+
+  vk::AccelerationStructureInstanceKHR RaytraceBuilder::instanceToVkGeometryInstanceKHR(const Instance& instance)
+  {
+    BottomLevelAS& blas{ m_blas[instance.blasId] };
+
+    vk::AccelerationStructureDeviceAddressInfoKHR addressInfo(blas.accelerationStructure);
+    vk::DeviceAddress blasAddress = m_info.device.getAccelerationStructureAddressKHR(addressInfo, m_dispatchLoaderDynamic);
+
+    vk::AccelerationStructureInstanceKHR gInst;
+    // The matrices for the instance transforms are row-major, instead of
+    // column-major in the rest of the application
+    glm::mat4 transpose = glm::transpose(instance.transform);
+    // The gInst.transform value only contains 12 values, corresponding to a 4x3
+    // matrix, hence saving the last row that is anyway always (0,0,0,1). Since
+    // the matrix is row-major, we simply copy the first 12 values of the
+    // original 4x4 matrix
+    memcpy(&gInst.transform, &transpose, sizeof(gInst.transform));
+    gInst.instanceCustomIndex = instance.instanceId;
+    gInst.mask = instance.mask;
+    gInst.instanceShaderBindingTableRecordOffset = instance.hitGroupId;
+    gInst.flags = VkGeometryFlagsKHR(instance.flags);
+    gInst.accelerationStructureReference = blasAddress;
+
+    return gInst;
   }
 
   BottomLevelAS::~BottomLevelAS()
@@ -255,6 +329,17 @@ namespace RX
   }
 
   void BottomLevelAS::destroy()
+  {
+    device.destroyAccelerationStructureKHR(accelerationStructure, nullptr, dispatchLoaderDynamic);
+  }
+
+  TopLevelAS::~TopLevelAS()
+  {
+    if (accelerationStructure)
+      destroy();
+  }
+
+  void TopLevelAS::destroy()
   {
     device.destroyAccelerationStructureKHR(accelerationStructure, nullptr, dispatchLoaderDynamic);
   }

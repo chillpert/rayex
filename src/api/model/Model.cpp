@@ -4,10 +4,14 @@
 
 namespace RX
 {
+  static uint32_t modelCounter;
+
   Model::~Model() { }
 
   void Model::initialize()
   {
+    m_objIndex = modelCounter++; // TODO: decrease if model gets deleted
+
     tinyobj::attrib_t attrib;
     std::vector<tinyobj::shape_t> shapes;
     std::vector<tinyobj::material_t> materials;

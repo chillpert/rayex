@@ -196,7 +196,7 @@ int main(int argc, char* argv[])
   mars->m_model = glm::rotate(mars->m_model, glm::radians(90.0f), glm::vec3(0.0f, 1.0f, 0.0f));
   mars->m_model = glm::translate(mars->m_model, glm::vec3(0.0f, -2.0f, 0.0f));
 
-  // Add the model to the renderer. This way it will be queued for rendering.
+  // Add the model to the renderer. This way they will be queued for rendering.
   renderer.setModels({ dlore, mars });
 
   // This will set up the entire Vulkan pipeline.

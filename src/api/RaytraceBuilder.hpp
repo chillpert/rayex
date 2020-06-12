@@ -9,6 +9,21 @@
 namespace RX
 {
   struct BottomLevelAS;
+  // Top-level acceleration structure
+
+  struct TopLevelAS
+  {
+    ~TopLevelAS();
+    void destroy();
+
+    vk::AccelerationStructureKHR accelerationStructure;
+    vk::DeviceMemory accelerationStructureAllocation;
+    vk::AccelerationStructureCreateInfoKHR asInfo;
+    vk::BuildAccelerationStructureFlagsKHR flags;
+
+    vk::DispatchLoaderDynamic dispatchLoaderDynamic;
+    vk::Device device;
+  };
 
   struct RaytraceBuilderInfo
   {
@@ -45,11 +60,18 @@ namespace RX
     void buildBottomLevelAS(const std::vector<BottomLevelAS>& allBlas, vk::BuildAccelerationStructureFlagsKHR flags);
     void buildTopLevelAS(const std::vector<Instance> allTlas, vk::BuildAccelerationStructureFlagsKHR flags);
 
+    vk::AccelerationStructureInstanceKHR instanceToVkGeometryInstanceKHR(const Instance& instance);
+
   private:
     RaytraceBuilderInfo m_info;
 
     VkPhysicalDeviceRayTracingPropertiesKHR m_rayTracingProperties;
     vk::DispatchLoaderDynamic m_dispatchLoaderDynamic;
+
+    std::vector<BottomLevelAS> m_blas;
+    TopLevelAS m_tlas;
+
+    std::vector<Instance> m_instances;
 
     //DebugUtility m_debugUtil;
   };

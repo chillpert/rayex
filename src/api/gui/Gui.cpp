@@ -101,6 +101,7 @@ namespace RX
 
     m_descriptorPool.destroy();
 
+    m_renderPass.destroy();
     destroy();
 
     // Re-initialize

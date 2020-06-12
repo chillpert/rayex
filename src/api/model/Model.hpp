@@ -62,6 +62,7 @@ namespace RX
     glm::mat4 m_projection = glm::mat4(1.0f);
     glm::vec3 m_cameraPos = glm::vec3(1.0f);
 
+    uint32_t m_objIndex = 0;
     uint32_t txtOffset = 0; // Offset in 'm_textures'
 
     std::vector<Material> m_materials; // This probably requires keeping track of submeshes.

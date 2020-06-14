@@ -409,6 +409,34 @@ namespace RX
     return gInst;
   }
 
+  void RaytraceBuilder::createDescriptorSet()
+  {
+    m_bindings = { 
+      { 0, vk::DescriptorType::eAccelerationStructureKHR, 1, vk::ShaderStageFlagBits::eRaygenKHR | vk::ShaderStageFlagBits::eClosestHitKHR },
+      { 1, vk::DescriptorType::eStorageImage, 1, vk::ShaderStageFlagBits::eRaygenKHR }
+    };
+
+    DescriptorPoolInfo poolInfo{ };
+    poolInfo.device = m_info.device;
+    poolInfo.poolSizes = { { vk::DescriptorType::eAccelerationStructureKHR, 1 }, { vk::DescriptorType::eStorageImage, 1 } };
+    poolInfo.maxSets = 2;
+
+    m_descriptorPool.initialize(poolInfo);
+
+    DescriptorSetLayoutInfo layoutInfo{ };
+    layoutInfo.device = m_info.device;
+    layoutInfo.layoutBindings = m_bindings;
+
+    m_descriptorSetLayout.initialize(layoutInfo);
+
+    DescriptorSetInfo setInfo{ };
+    setInfo.device = m_info.device;
+    setInfo.pool = m_descriptorPool.get();
+    setInfo.layouts = std::vector<vk::DescriptorSetLayout>(1, m_descriptorSetLayout.get());
+
+    m_descriptorSet.initialize(setInfo);
+  }
+
   BottomLevelAS::~BottomLevelAS()
   {
     if (accelerationStructure)

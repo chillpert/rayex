@@ -15,6 +15,7 @@ namespace RX
     vk::DescriptorSetLayoutCreateInfo createInfo;
     createInfo.bindingCount = static_cast<uint32_t>(m_info.layoutBindings.size());
     createInfo.pBindings = m_info.layoutBindings.data();
+    //createInfo.flags = m_info.flags;
 
     m_layout = m_info.device.createDescriptorSetLayout(createInfo);
     if (!m_layout)

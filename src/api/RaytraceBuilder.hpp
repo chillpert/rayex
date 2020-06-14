@@ -5,6 +5,9 @@
 #include "Model.hpp"
 #include "Queue.hpp"
 #include "DebugUtility.hpp"
+#include "DescriptorPool.hpp"
+#include "DescriptorSet.hpp"
+#include "DescriptorSetLayout.hpp"
 
 namespace RX
 {
@@ -62,6 +65,8 @@ namespace RX
 
     vk::AccelerationStructureInstanceKHR instanceToVkGeometryInstanceKHR(const Instance& instance);
 
+    void createDescriptorSet();
+
   private:
     RaytraceBuilderInfo m_info;
 
@@ -74,6 +79,12 @@ namespace RX
     std::vector<Instance> m_instances;
 
     //DebugUtility m_debugUtil;
+
+    std::vector<vk::DescriptorSetLayoutBinding> m_bindings;
+    std::vector<vk::DescriptorBindingFlags> m_bindingFlags;
+    DescriptorPool m_descriptorPool;
+    DescriptorSetLayout m_descriptorSetLayout;
+    DescriptorSet m_descriptorSet;
   };
 
   struct BottomLevelAS

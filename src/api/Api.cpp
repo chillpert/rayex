@@ -577,8 +577,10 @@ namespace RX
 
     DescriptorSetInfo descriptorSetInfo{ };
     descriptorSetInfo.device = m_device.get();
-    descriptorSetInfo.swapchainImagesCount = m_swapchain.getImages().size();
-    descriptorSetInfo.descriptorSetLayout = m_descriptorSetLayout.get();
+    descriptorSetInfo.pool = m_descriptorPool.get();
+    descriptorSetInfo.layouts = std::vector<vk::DescriptorSetLayout>(m_swapchain.getImages().size(), m_descriptorSetLayout.get());
+
+    SwapchainUpdateDescriptorSetInfo descriptorSetUpdateInfo{ };
 
     if (firstRun)
     {
@@ -599,16 +601,18 @@ namespace RX
         uniformBufferInfo.uniformBufferObject = model->getUbo();
         model->m_uniformBuffers.initialize(uniformBufferInfo);
 
-        descriptorSetInfo.descriptorPool = m_descriptorPool.get();
-        descriptorSetInfo.textureSampler = model->m_texture.getSampler();
-        descriptorSetInfo.textureImageView = model->m_texture.getImageView();
-        descriptorSetInfo.uniformBuffers = model->m_uniformBuffers.getRaw();
+        descriptorSetUpdateInfo.descriptorPool = m_descriptorPool.get();
+        descriptorSetUpdateInfo.textureSampler = model->m_texture.getSampler();
+        descriptorSetUpdateInfo.textureImageView = model->m_texture.getImageView();
+        descriptorSetUpdateInfo.uniformBuffers = model->m_uniformBuffers.getRaw();
 
         model->m_descriptorSets.initialize(descriptorSetInfo);
+        model->m_descriptorSets.update(descriptorSetUpdateInfo);
       }
 
       m_raytraceBuilder.createBottomLevelAS(m_models);
       m_raytraceBuilder.createTopLevelAS(m_models);
+      m_raytraceBuilder.createDescriptorSet();
     }
     else
     {
@@ -617,12 +621,13 @@ namespace RX
         uniformBufferInfo.uniformBufferObject = model->getUbo();
         model->m_uniformBuffers.initialize(uniformBufferInfo);
 
-        descriptorSetInfo.descriptorPool = m_descriptorPool.get();
-        descriptorSetInfo.textureSampler = model->m_texture.getSampler();
-        descriptorSetInfo.textureImageView = model->m_texture.getImageView();
-        descriptorSetInfo.uniformBuffers = model->m_uniformBuffers.getRaw();
+        descriptorSetUpdateInfo.descriptorPool = m_descriptorPool.get();
+        descriptorSetUpdateInfo.textureSampler = model->m_texture.getSampler();
+        descriptorSetUpdateInfo.textureImageView = model->m_texture.getImageView();
+        descriptorSetUpdateInfo.uniformBuffers = model->m_uniformBuffers.getRaw();
 
         model->m_descriptorSets.initialize(descriptorSetInfo);
+        model->m_descriptorSets.update(descriptorSetUpdateInfo);
       }
     }
   }

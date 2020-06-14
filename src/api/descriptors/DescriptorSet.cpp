@@ -11,26 +11,27 @@ namespace RX
   {
     m_info = info;
     
-    std::vector<vk::DescriptorSetLayout> layouts(m_info.swapchainImagesCount, m_info.descriptorSetLayout);
-
     vk::DescriptorSetAllocateInfo allocInfo;
-    allocInfo.descriptorPool = m_info.descriptorPool;
-    allocInfo.descriptorSetCount = static_cast<uint32_t>(m_info.swapchainImagesCount);
-    allocInfo.pSetLayouts = layouts.data();
+    allocInfo.descriptorPool = m_info.pool;
+    allocInfo.descriptorSetCount = m_info.layouts.size();
+    allocInfo.pSetLayouts = m_info.layouts.data();
 
     m_sets = m_info.device.allocateDescriptorSets(allocInfo);
+  }
 
-    for (size_t i = 0; i < m_info.swapchainImagesCount; ++i)
+  void DescriptorSet::update(SwapchainUpdateDescriptorSetInfo& info)
+  {
+    for (size_t i = 0; i < m_info.layouts.size(); ++i)
     {
       vk::DescriptorBufferInfo bufferInfo;
-      bufferInfo.buffer = m_info.uniformBuffers[i];
+      bufferInfo.buffer = info.uniformBuffers[i];
       bufferInfo.offset = 0;
       bufferInfo.range = sizeof(UniformBufferObject);
 
       vk::DescriptorImageInfo imageInfo;
       imageInfo.imageLayout = vk::ImageLayout::eShaderReadOnlyOptimal;
-      imageInfo.imageView = m_info.textureImageView;
-      imageInfo.sampler = m_info.textureSampler;
+      imageInfo.imageView = info.textureImageView;
+      imageInfo.sampler = info.textureSampler;
 
       std::array<vk::WriteDescriptorSet, 2> descriptorWrites{};
       descriptorWrites[0].dstSet = m_sets[i];
@@ -53,6 +54,6 @@ namespace RX
 
   void DescriptorSet::destroy()
   {
-    m_info.device.freeDescriptorSets(m_info.descriptorPool, m_sets);
+    m_info.device.freeDescriptorSets(m_info.pool, m_sets);
   }
 }

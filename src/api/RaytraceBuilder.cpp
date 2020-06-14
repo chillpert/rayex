@@ -156,8 +156,8 @@ namespace RX
     bufferCreateInfo.usage = vk::BufferUsageFlagBits::eRayTracingKHR | vk::BufferUsageFlagBits::eShaderDeviceAddress;
     bufferCreateInfo.sharingMode = vk::SharingMode::eConcurrent;
 
-    vk::MemoryAllocateFlagsInfo allocateFlags(vk::MemoryAllocateFlagBitsKHR::eDeviceAddress);
-    bufferCreateInfo.pNextMemory = &allocateFlags;
+    vk::MemoryAllocateFlagsInfo allocateFlags2(vk::MemoryAllocateFlagBitsKHR::eDeviceAddress);
+    bufferCreateInfo.pNextMemory = &allocateFlags2;
 
     Buffer scratchBuffer(bufferCreateInfo);
 
@@ -271,18 +271,18 @@ namespace RX
     vk::MemoryRequirements2 reqMem = m_info.device.getAccelerationStructureMemoryRequirementsKHR(memoryRequirementsInfo, m_dispatchLoaderDynamic);
     vk::DeviceSize scratchSize = reqMem.memoryRequirements.size;
 
-    BufferCreateInfo bufferInfo{ };
-    bufferInfo.physicalDevice = m_info.physicalDevice;
-    bufferInfo.device = m_info.device;
-    bufferInfo.size = scratchSize;
-    bufferInfo.usage = vk::BufferUsageFlagBits::eRayTracingKHR | vk::BufferUsageFlagBits::eShaderDeviceAddress;
-    bufferInfo.sharingMode = vk::SharingMode::eConcurrent;
+    BufferCreateInfo scratchBufferInfo{ };
+    scratchBufferInfo.physicalDevice = m_info.physicalDevice;
+    scratchBufferInfo.device = m_info.device;
+    scratchBufferInfo.size = scratchSize;
+    scratchBufferInfo.usage = vk::BufferUsageFlagBits::eRayTracingKHR | vk::BufferUsageFlagBits::eShaderDeviceAddress;
+    scratchBufferInfo.sharingMode = vk::SharingMode::eConcurrent;
 
-    vk::MemoryAllocateFlagsInfo allocateFlags(vk::MemoryAllocateFlagBitsKHR::eDeviceAddress);
-    bufferInfo.pNextMemory = &allocateFlags;
+    vk::MemoryAllocateFlagsInfo allocateFlags3(vk::MemoryAllocateFlagBitsKHR::eDeviceAddress);
+    scratchBufferInfo.pNextMemory = &allocateFlags3;
     vk::DeviceSize memoryOffset = 0;
 
-    Buffer scratchBuffer(bufferInfo);
+    Buffer scratchBuffer(scratchBufferInfo);
 
     vk::BufferDeviceAddressInfo bufferAddressInfo;
     bufferAddressInfo.buffer = scratchBuffer.get();
@@ -295,6 +295,93 @@ namespace RX
     {
       geometryInstances.push_back(instanceToVkGeometryInstanceKHR(inst));
     }
+
+    // Building the TLAS
+    CommandPool commandPool(CommandPoolInfo{ m_info.device, m_info.queue->getIndex(), vk::CommandPoolCreateFlagBits::eResetCommandBuffer });
+
+    CommandBufferInfo commandBufferInfo{ };
+    commandBufferInfo.device = m_info.device;
+    commandBufferInfo.commandPool = commandPool.get();
+    commandBufferInfo.queue = m_info.queue->get();
+    commandBufferInfo.commandBufferCount = m_blas.size();
+    commandBufferInfo.usageFlags = vk::CommandBufferUsageFlagBits::eSimultaneousUse;
+    commandBufferInfo.level = vk::CommandBufferLevel::ePrimary;
+    commandBufferInfo.freeAutomatically = true;
+    commandBufferInfo.submitAutomatically = true;
+
+    CommandBuffer commandBuffers(commandBufferInfo);
+    
+    // Create a buffer holding the actual instance data for use by the AS builder
+    vk::DeviceSize instanceDescsSizeInBytes = instances.size() * sizeof(vk::AccelerationStructureInstanceKHR);
+
+    // Allocate the instance buffer and copy its contents from host to device
+    // memory
+    //m_instBuffer = m_alloc.createBuffer(commandBuffers.get(), geometryInstances,
+    //  VK_BUFFER_USAGE_RAY_TRACING_BIT_KHR | VK_BUFFER_USAGE_SHADER_DEVICE_ADDRESS_BIT);
+
+    BufferCreateInfo instBufferInfo{ };
+    instBufferInfo.physicalDevice = m_info.physicalDevice;
+    instBufferInfo.device = m_info.device;
+    instBufferInfo.size = scratchSize;
+    instBufferInfo.usage = vk::BufferUsageFlagBits::eRayTracingKHR | vk::BufferUsageFlagBits::eShaderDeviceAddress;
+    instBufferInfo.sharingMode = vk::SharingMode::eConcurrent;
+
+    vk::MemoryAllocateFlagsInfo allocateFlags(vk::MemoryAllocateFlagBitsKHR::eDeviceAddress);
+    instBufferInfo.pNextMemory = &allocateFlags;
+    memoryOffset = 0;
+
+    Buffer instBuffer(instBufferInfo);
+
+    bufferAddressInfo.buffer = instBuffer.get();
+    vk::DeviceAddress instanceAddress = m_info.device.getBufferAddress(bufferAddressInfo);
+    
+    // Make sure the copy of the instance buffer are copied before triggering the
+    // acceleration structure build
+    vk::MemoryBarrier barrier;
+    barrier.srcAccessMask = vk::AccessFlagBits::eTransferWrite;
+    barrier.dstAccessMask = vk::AccessFlagBits::eAccelerationStructureWriteKHR;
+
+    commandBuffers.begin(0);
+
+    commandBuffers.get(0).pipelineBarrier(
+      vk::PipelineStageFlagBits::eTransfer,
+      vk::PipelineStageFlagBits::eAccelerationStructureBuildKHR,
+      vk::DependencyFlagBits::eByRegion,
+      1,
+      &barrier,
+      0,
+      nullptr,
+      0,
+      nullptr
+    ); // CMD
+
+    commandBuffers.end(0);
+
+    // Build the TLAS
+    vk::AccelerationStructureGeometryDataKHR geometry;
+    geometry.instances.arrayOfPointers = VK_FALSE;
+    geometry.instances.data.deviceAddress = instanceAddress;
+    vk::AccelerationStructureGeometryKHR topASGeometry;
+    topASGeometry.geometryType = vk::GeometryTypeKHR::eInstances;
+    topASGeometry.geometry = geometry;
+
+    const vk::AccelerationStructureGeometryKHR* pGeometry = &topASGeometry;
+    vk::AccelerationStructureBuildGeometryInfoKHR topASInfo;
+    topASInfo.flags = flags;
+    topASInfo.update = VK_FALSE;
+    topASInfo.srcAccelerationStructure = nullptr;
+    topASInfo.dstAccelerationStructure = m_tlas.accelerationStructure;
+    topASInfo.geometryArrayOfPointers = VK_FALSE;
+    topASInfo.geometryCount = 1;
+    topASInfo.ppGeometries = &pGeometry;
+    topASInfo.scratchData.deviceAddress = scratchAddress;
+
+    // Build Offsets info: n instances
+    vk::AccelerationStructureBuildOffsetInfoKHR buildOffsetInfo{ static_cast<uint32_t>(instances.size()), 0, 0, 0 };
+    const vk::AccelerationStructureBuildOffsetInfoKHR* pBuildOffsetInfo = &buildOffsetInfo;
+
+    // Build the TLAS
+    commandBuffers.get(0).buildAccelerationStructureKHR(1, &topASInfo, &pBuildOffsetInfo, m_dispatchLoaderDynamic); // CMD
   }
 
   vk::AccelerationStructureInstanceKHR RaytraceBuilder::instanceToVkGeometryInstanceKHR(const Instance& instance)

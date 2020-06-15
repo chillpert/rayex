@@ -25,6 +25,7 @@
 #include "DescriptorSetLayout.hpp"
 #include "UniformBuffer.hpp"
 #include "Gui.hpp"
+#include "Base.hpp"
 #include "RaytraceBuilder.hpp"
 
 namespace RX
@@ -32,17 +33,16 @@ namespace RX
   class Api
   {
   public:
-    Api(std::shared_ptr<Window> window);
-    Api(std::shared_ptr<Window> window, std::unique_ptr<Gui> gui);
+    Api(std::shared_ptr<Window> window, std::shared_ptr<CameraBase> camera);
+    Api(std::shared_ptr<Window> window, std::unique_ptr<Gui> gui, std::shared_ptr<CameraBase> camera );
     RX_API ~Api();
 
     void initialize();
     bool update();
     bool render();
   
-    void clearModels();
-    void pushModel(const std::shared_ptr<Model> model);
-    void setModels(const std::vector<std::shared_ptr<Model>>& models);
+    void pushNode(const std::shared_ptr<GeometryNodeBase> nodes);
+    void setNodes(const std::vector<std::shared_ptr<GeometryNodeBase>>& nodes);
 
   private:
     void initInstance();
@@ -70,6 +70,7 @@ namespace RX
     void initRayTracing();
 
     std::shared_ptr<Window> m_window;
+    std::shared_ptr<CameraBase> m_camera;
 
     // Destruction through RAII for following members:
     Instance m_instance;
@@ -83,7 +84,11 @@ namespace RX
     std::vector<Semaphore> m_finishedRenderSemaphores;
 
     DescriptorSetLayout m_descriptorSetLayout;
-    std::vector<std::shared_ptr<Model>> m_models;
+
+    std::vector<std::shared_ptr<GeometryNodeBase>> m_nodes;
+    std::unordered_set<std::shared_ptr<ModelBase>> m_models;
+    std::unordered_set<std::shared_ptr<Texture>> m_textures;
+
     DescriptorPool m_descriptorPool;
     Swapchain m_swapchain;
     std::vector<ImageView> m_swapchainImageViews;

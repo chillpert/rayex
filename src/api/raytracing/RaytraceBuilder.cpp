@@ -22,7 +22,7 @@ namespace RX
 
   }
 
-  void RaytraceBuilder::initAccelerationStructures(const std::vector<std::shared_ptr<Model>> models)
+  void RaytraceBuilder::initAccelerationStructures(const std::unordered_set<std::shared_ptr<ModelBase>> models)
   {
     //initBottomLevelAS(models);
     //initTopLevelAS(models);

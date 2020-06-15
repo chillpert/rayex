@@ -20,11 +20,11 @@ namespace RX
     accelerationStructure = nullptr;
   }
 
-  void initBottomLevelAS_(BottomLevelASInfo& info, const std::vector<std::shared_ptr<Model>>& models)
+  void initBottomLevelAS_(BottomLevelASInfo& info, const std::unordered_set<std::shared_ptr<ModelBase>>& models)
   {
     std::vector<BottomLevelAS> blas_;
     blas_.reserve(models.size());
-    for (const std::shared_ptr<Model> model : models)
+    for (const std::shared_ptr<ModelBase> model : models)
     {
       // Convert model to bottom level acceleration structure.
       BottomLevelAS blas(info);
@@ -163,19 +163,28 @@ namespace RX
       
       // Query the compact size
       if (doCompaction)
-        commandBuffers.get(i).writeAccelerationStructuresPropertiesKHR(1, &m_blas[i].accelerationStructure, vk::QueryType::eAccelerationStructureCompactedSizeKHR, queryPool.get(), ++ctr, info.dispatchLoaderDynamic);
+      {
+        commandBuffers.get(i).writeAccelerationStructuresPropertiesKHR(
+          1,
+          &m_blas[i].accelerationStructure,
+          vk::QueryType::eAccelerationStructureCompactedSizeKHR,
+          queryPool.get(),
+          ++ctr, 
+          info.dispatchLoaderDynamic
+        );
+      }
       
       commandBuffers.end(i);
     }
   }
 
-  BottomLevelAS& BottomLevelAS::operator=(const std::shared_ptr<Model> model)
+  BottomLevelAS& BottomLevelAS::operator=(const std::shared_ptr<ModelBase> model)
   {
-    wavefrontToBottomLevelAS(model);
+    wavefrontToBottomLevelAS(*this, model);
     return *this;
   }
 
-  void BottomLevelAS::wavefrontToBottomLevelAS(std::shared_ptr<Model> model)
+  void wavefrontToBottomLevelAS(BottomLevelAS& blas, std::shared_ptr<ModelBase> model)
   {
     vk::AccelerationStructureCreateGeometryTypeInfoKHR createInfo;
     createInfo.setGeometryType(vk::GeometryTypeKHR::eTriangles);
@@ -189,8 +198,8 @@ namespace RX
     vk::BufferDeviceAddressInfo vertexAddressInfo;
     vertexAddressInfo.buffer = model->m_vertexBuffer.get();
 
-    vk::DeviceAddress vertexAddress = m_info.device.getBufferAddress(vertexAddressInfo);
-    vk::DeviceAddress indexAddress = m_info.device.getBufferAddress({ model->m_indexBuffer.get() });
+    vk::DeviceAddress vertexAddress = blas.getInfo().device.getBufferAddress(vertexAddressInfo);
+    vk::DeviceAddress indexAddress = blas.getInfo().device.getBufferAddress({ model->m_indexBuffer.get() });
 
     vk::AccelerationStructureGeometryTrianglesDataKHR triangles;
     triangles.setVertexFormat(createInfo.vertexFormat);
@@ -214,8 +223,8 @@ namespace RX
     offset.setTransformOffset(0);
 
     // Our blas is only one geometry, but could be made of many geometries
-    asGeometry.emplace_back(asGeom);
-    asCreateGeometryInfo.emplace_back(createInfo);
-    asBuildOffsetInfo.emplace_back(offset);
+    blas.asGeometry.emplace_back(asGeom);
+    blas.asCreateGeometryInfo.emplace_back(createInfo);
+    blas.asBuildOffsetInfo.emplace_back(offset);
   }
 }

@@ -4,19 +4,43 @@ namespace RX
 {
   Renderer::Renderer() :
     m_window(std::make_shared<Window>()),
-    m_api(m_window),
+    m_camera(std::make_shared<CameraBase>(m_window->getSize())),
+    m_api(m_window, m_camera),
+    m_initialized(false),
+    m_running(true) { }
+
+  Renderer::Renderer(std::shared_ptr<CameraBase> camera) :
+    m_window(std::make_shared<Window>()),
+    m_camera(camera),
+    m_api(m_window, m_camera),
     m_initialized(false),
     m_running(true) { }
 
   Renderer::Renderer(std::shared_ptr<Window> window) :
     m_window(window),
-    m_api(window),
+    m_camera(std::make_shared<CameraBase>(m_window->getSize())),
+    m_api(window, m_camera),
+    m_initialized(false),
+    m_running(true) { }
+
+  Renderer::Renderer(std::shared_ptr<Window> window, std::shared_ptr<CameraBase> camera) :
+    m_window(std::make_shared<Window>()),
+    m_camera(camera),
+    m_api(m_window, m_camera),
     m_initialized(false),
     m_running(true) { }
 
   Renderer::Renderer(std::shared_ptr<Window> window, std::unique_ptr<Gui> gui) :
     m_window(window),
-    m_api(m_window, std::move(gui)),
+    m_camera(std::make_shared<CameraBase>(m_window->getSize())),
+    m_api(m_window, std::move(gui), m_camera),
+    m_initialized(false),
+    m_running(true) { }
+
+  Renderer::Renderer(std::shared_ptr<Window> window, std::unique_ptr<Gui> gui, std::shared_ptr<CameraBase> camera) :
+    m_window(window),
+    m_camera(camera),
+    m_api(m_window, std::move(gui), m_camera),
     m_initialized(false),
     m_running(true) { }
 
@@ -37,6 +61,7 @@ namespace RX
       return;
 
     m_running = m_window->update();
+    m_camera->update();
     m_api.update();
   }
 
@@ -60,18 +85,13 @@ namespace RX
     }
   }
 
-  void Renderer::clearModels()
+  void Renderer::pushNode(const std::shared_ptr<GeometryNodeBase> node)
   {
-    m_api.clearModels();
+    m_api.pushNode(node);
   }
 
-  void Renderer::pushModel(const std::shared_ptr<Model> model)
+  void Renderer::setNodes(const std::vector<std::shared_ptr<GeometryNodeBase>>& nodes)
   {
-    m_api.pushModel(model);
-  }
-
-  void Renderer::setModels(const std::vector<std::shared_ptr<Model>>& models)
-  {
-    m_api.setModels(models);
+    m_api.setNodes(nodes);
   }
 }

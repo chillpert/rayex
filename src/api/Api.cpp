@@ -5,12 +5,14 @@ namespace RX
   // Defines the maximum amount of frames that will be processed concurrently.
   const size_t maxFramesInFlight = 2;
 
-  Api::Api(std::shared_ptr<Window> window) :
+  Api::Api(std::shared_ptr<Window> window, std::shared_ptr<CameraBase> camera) :
     m_window(window),
+    m_camera(camera),
     m_gui(nullptr) { }
 
-  Api::Api(std::shared_ptr<Window> window, std::unique_ptr<Gui> gui) :
+  Api::Api(std::shared_ptr<Window> window, std::unique_ptr<Gui> gui, std::shared_ptr<CameraBase> camera) :
     m_window(window),
+    m_camera(camera),
     m_gui(std::move(gui)) { }
 
   Api::~Api()
@@ -96,17 +98,15 @@ namespace RX
     m_swapchain.acquireNextImage(m_imageAvailableSemaphores[currentFrame].get(), nullptr, &imageIndex);
 
     // TODO: Temporary
-    for (std::shared_ptr<Model> model : m_models)
+    for (std::shared_ptr<GeometryNodeBase> node : m_nodes)
     {
-      UniformBufferObject ubo
-      {
-         model->m_model,
-         model->m_view,
-         model->m_projection,
-         model->m_cameraPos
-      };
+      UniformBufferObject ubo{ };
+      ubo.model = node->m_worldTransform;
+      ubo.view = m_camera->getViewMatrix();
+      ubo.projection = m_camera->getProjectionMatrix();
+      ubo.cameraPos = m_camera->getPosition();
 
-      model->m_uniformBuffers.upload(imageIndex, ubo);
+      node->m_model->m_uniformBuffers.upload(imageIndex, ubo);
     }
 
     // Check if a previous frame is using the current image.
@@ -165,21 +165,20 @@ namespace RX
     return true;
   }
   
-  void Api::clearModels()
+  void Api::pushNode(const std::shared_ptr<GeometryNodeBase> node)
   {
-    m_models.clear();
+    m_nodes.push_back(node);
+    m_models.insert(node->m_model);
   }
 
-  void Api::pushModel(const std::shared_ptr<Model> model)
+  void Api::setNodes(const std::vector<std::shared_ptr<GeometryNodeBase>>& nodes)
   {
-    m_models.push_back(model);
-  }
+    m_nodes.clear();
+    m_nodes.reserve(nodes.size());
+    m_nodes = nodes;
 
-  void Api::setModels(const std::vector<std::shared_ptr<Model>>& models)
-  {
-    m_models.clear();
-    m_models.reserve(models.size());
-    m_models = models;
+    for (const auto node : nodes)
+      m_models.insert(node->m_model);
   }
 
   void Api::clean()
@@ -209,8 +208,8 @@ namespace RX
 
     m_swapchain.destroy();
 
-    for (std::shared_ptr<Model> model : m_models)
-      model->m_uniformBuffers.destroy();
+    for (std::shared_ptr<GeometryNodeBase> node : m_nodes)
+      node->m_model->m_uniformBuffers.destroy();
 
     m_descriptorPool.destroy();
 
@@ -244,6 +243,13 @@ namespace RX
       m_gui->getInfo().swapchainImageViews = temp;
       m_gui->recreate();
     }
+
+    // Update the camera screen size to avoid image stretching.
+    auto screenSize = m_swapchain.getExtent();
+    int screenWidth = static_cast<int>(screenSize.width);
+    int screenHeight = static_cast<int>(screenSize.height);
+
+    m_camera->setScreenSize(glm::ivec2{ screenWidth, screenHeight });
 
     RX_LOG("Finished swapchain recreation.");
   }
@@ -571,7 +577,7 @@ namespace RX
     descriptorPoolInfo.device = m_device.get();
     uint32_t swapchainImagesCount = m_swapchain.getImages().size();
     descriptorPoolInfo.poolSizes = { { vk::DescriptorType::eUniformBuffer, swapchainImagesCount }, { vk::DescriptorType::eCombinedImageSampler, swapchainImagesCount } };
-    descriptorPoolInfo.maxSets = m_models.size() * swapchainImagesCount;
+    descriptorPoolInfo.maxSets = m_nodes.size() * swapchainImagesCount;
 
     m_descriptorPool.initialize(descriptorPoolInfo);
 
@@ -584,11 +590,12 @@ namespace RX
 
     if (firstRun)
     {
-      for (std::shared_ptr<Model> model : m_models)
+      for (std::shared_ptr<ModelBase> model : m_models)
       {
         model->initialize();
 
-        textureInfo.path = model->m_pathToTexture;
+        // TODO: this should load all textures
+        textureInfo.path = model->m_material.diffuseTexture;
         if (!textureInfo.path.empty())
           model->m_texture.initialize(textureInfo);
 
@@ -598,7 +605,7 @@ namespace RX
         indexBufferInfo.indices = model->m_indices;
         model->m_indexBuffer.initialize(indexBufferInfo);
 
-        uniformBufferInfo.uniformBufferObject = model->getUbo();
+        //uniformBufferInfo.uniformBufferObject = model->getUbo();
         model->m_uniformBuffers.initialize(uniformBufferInfo);
 
         descriptorSetUpdateInfo.descriptorPool = m_descriptorPool.get();
@@ -614,9 +621,9 @@ namespace RX
     }
     else
     {
-      for (std::shared_ptr<Model> model : m_models)
+      for (std::shared_ptr<ModelBase> model : m_models)
       {
-        uniformBufferInfo.uniformBufferObject = model->getUbo();
+        //uniformBufferInfo.uniformBufferObject = model->getUbo();
         model->m_uniformBuffers.initialize(uniformBufferInfo);
 
         descriptorSetUpdateInfo.descriptorPool = m_descriptorPool.get();
@@ -709,7 +716,7 @@ namespace RX
       m_swapchainCmdBuffers.get(imageIndex).setScissor(0, 1, &scissor); // CMD
 
       // Draw models
-      for (std::shared_ptr<Model> model : m_models)
+      for (std::shared_ptr<ModelBase> model : m_models)
       {
         vk::Buffer vertexBuffers[] = { model->m_vertexBuffer.get() };
         vk::DeviceSize offsets[] = { 0 };

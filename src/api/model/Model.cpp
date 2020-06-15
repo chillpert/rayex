@@ -6,6 +6,9 @@ namespace RX
 {
   static uint32_t modelCounter;
 
+  Model::Model(const std::string& path) :
+    ModelBase(path) { }
+
   Model::~Model() { }
 
   void Model::initialize()
@@ -17,7 +20,7 @@ namespace RX
     std::vector<tinyobj::material_t> materials;
     std::string warn, err;
 
-    if (!tinyobj::LoadObj(&attrib, &shapes, &materials, &warn, &err, m_pathToModel.c_str()))
+    if (!tinyobj::LoadObj(&attrib, &shapes, &materials, &warn, &err, m_path.c_str()))
       RX_ERROR(warn + err);
 
     std::unordered_map<Vertex, uint32_t> uniqueVertices;

@@ -1,15 +1,125 @@
 #include "Renderer.hpp"
-#include "Camera.hpp"
-#include "Model.hpp"
-#include "Gui.hpp"
 
 using namespace RX;
 
-int width = 900;
-int height = 600;
-Camera cam(width, height);
-
 float speed = 0.0f;
+
+class CustomCamera;
+std::shared_ptr<CustomCamera> myCam;
+
+namespace Key
+{
+  bool eW;
+  bool eA;
+  bool eS;
+  bool eD;
+  bool eC;
+  bool eSpace;
+}
+
+class CustomCamera : public RX::CameraBase
+{
+public:
+  CustomCamera(const glm::ivec2& screenSize, const glm::vec3& position) :
+    CameraBase(screenSize, position),
+    m_worldUp{ 0.0f, 1.0f, 0.0f },
+    m_up{ },
+    m_right{ },
+    m_front{ },
+    m_yaw(-90.0f),
+    m_pitch(0.0f),
+    m_sensitivity(0.06f),
+    m_fov(45.0f)
+  { 
+    updateVectors(); 
+  }
+
+  void update() override
+  {
+    processKeyboard();
+  }
+
+  inline const glm::mat4& getViewMatrix() override { return glm::lookAt(m_position, m_position + m_front, m_worldUp); }
+
+  const glm::mat4& getProjectionMatrix()
+  {
+    auto res = glm::perspective(glm::radians(m_fov), static_cast<float>(m_screenSize.x) / static_cast<float>(m_screenSize.y), 0.1f, 100.0f);
+    res[1, 1] *= -1;
+    return res;
+  }
+
+  void processKeyboard()
+  {
+    static float speed = 1.0f;
+
+    float finalSpeed = speed * RX::Time::getDeltaTime();
+    // TODO: Use switch case statement instead.
+    if (Key::eW)
+      m_position += m_front * finalSpeed;
+
+    if (Key::eS)
+      m_position -= m_front * finalSpeed;
+
+    if (Key::eA)
+      m_position -= m_right * finalSpeed;
+
+    if (Key::eD)
+      m_position += m_right * finalSpeed;
+
+    if (Key::eC)
+      m_position.y -= finalSpeed / 2.0f;
+
+    if (Key::eSpace)
+      m_position.y += finalSpeed / 2.0f;
+  }
+
+  void processMouse(float xoffset, float yoffset)
+  {
+    xoffset *= m_sensitivity;
+    yoffset *= m_sensitivity;
+
+    m_yaw += xoffset;
+    m_pitch += yoffset;
+
+    if (m_yaw > 360.0f)
+      m_yaw = fmod(m_yaw, 360.0f);
+
+    if (m_yaw < 0.0f)
+      m_yaw = 360.0f + fmod(m_yaw, 360.0f);
+
+    if (m_pitch > 89.0f)
+      m_pitch = 89.0f;
+
+    if (m_pitch < -89.0f)
+      m_pitch = -89.0f;
+
+    updateVectors();
+  }
+
+private:
+  void updateVectors()
+  {
+    glm::vec3 t_front;
+    t_front.x = cos(glm::radians(m_yaw)) * cos(glm::radians(m_pitch));
+    t_front.y = sin(glm::radians(m_pitch));
+    t_front.z = sin(glm::radians(m_yaw)) * cos(glm::radians(m_pitch));
+    m_front = glm::normalize(t_front);
+    m_right = glm::normalize(glm::cross(m_front, m_worldUp));
+    m_up = glm::normalize(glm::cross(m_right, m_front));
+  }
+
+  glm::fvec3 m_worldUp;
+  glm::fvec3 m_up;
+  glm::fvec3 m_right;
+
+public:
+  glm::fvec3 m_front;
+
+  float m_yaw;
+  float m_pitch;
+  float m_sensitivity;
+  float m_fov;
+};
 
 // Create your own custom window class, to propagate events to your own event system.
 class CustomWindow : public Window
@@ -32,8 +142,8 @@ public:
     // Updates the timer bound to the window as well as the window size.
     Window::update();
 
-    cam.setScreenDimensions(m_properties.getWidth(), m_properties.getHeight());
-
+    myCam->setScreenSize(glm::ivec2{ m_properties.getWidth(), m_properties.getHeight() } );
+    
     // Add your custom event polling and integrate your event system.
     SDL_Event event;
 
@@ -72,19 +182,19 @@ public:
           switch (event.key.keysym.sym)
           {
             case SDLK_w:
-              KEY::w = true;
+              Key::eW = true;
               break;
 
             case SDLK_a:
-              KEY::a = true;
+              Key::eA = true;
               break;
 
             case SDLK_s:
-              KEY::s = true;
+              Key::eS = true;
               break;
 
             case SDLK_d:
-              KEY::d = true;
+              Key::eD = true;
               break;
 
             case SDLK_ESCAPE:
@@ -115,19 +225,19 @@ public:
           switch (event.key.keysym.sym)
           {
             case SDLK_w:
-              KEY::w = false;
+              Key::eW = false;
               break;
 
             case SDLK_a:
-              KEY::a = false;
+              Key::eA = false;
               break;
 
             case SDLK_s:
-              KEY::s = false;
+              Key::eS = false;
               break;
 
             case SDLK_d:
-              KEY::d = false;
+              Key::eD = false;
               break;
           }
           break;
@@ -139,7 +249,7 @@ public:
           {
             int x, y;
             SDL_GetRelativeMouseState(&x, &y);
-            cam.processMouse(x, -y);
+            myCam->processMouse(x, -y);
             break;
           }
         }
@@ -171,6 +281,10 @@ public:
 
 int main(int argc, char* argv[])
 {
+  // Screen dimensions.
+  int width = 900;
+  int height = 600;
+
   // Define the window's properties according to your preferences.
   WindowProperties props(width, height, "Example", WINDOW_RESIZABLE | WINDOW_VISIBLE);
   // Now create the actual window using the window properties from above.
@@ -178,44 +292,37 @@ int main(int argc, char* argv[])
   // Setup your own ImGui based Gui.
   auto myGui = std::make_unique<CustomGui>();
 
+  myCam = std::make_shared<CustomCamera>(glm::ivec2{ width, height }, glm::vec3{ 0.0f, 0.0f, 3.0f });
+
   // Create the renderer object.
-  Renderer renderer(myWindow, std::move(myGui));
+  Renderer renderer(myWindow, std::move(myGui), myCam);
   
-  auto dlore = std::make_shared<Model>();
-  dlore->m_pathToTexture = RX_TEXTURE_PATH "awpdlore.png";
-  dlore->m_pathToModel = RX_MODEL_PATH "awpdlore/awpdlore.obj";
+  auto dragonLore = std::make_shared<GeometryNodeBase>();
+  dragonLore->m_model = std::make_shared<Model>(RX_MODEL_PATH "awpdlore/awpdlore.obj");
+  dragonLore->m_model->m_material.diffuseTexture = RX_TEXTURE_PATH "awpdlore.png";
 
-  dlore->m_model = glm::scale(dlore->m_model, glm::vec3(0.25f));
-  dlore->m_model = glm::rotate(dlore->m_model, glm::radians(90.0f), glm::vec3(0.0f, 1.0f, 0.0f));
+  dragonLore->m_worldTransform = glm::scale(dragonLore->m_worldTransform, glm::vec3(0.25f));
+  dragonLore->m_worldTransform = glm::rotate(dragonLore->m_worldTransform, glm::radians(90.0f), glm::vec3(0.0f, 1.0f, 0.0f));
 
-  auto mars = std::make_shared<Model>();
-  mars->m_pathToTexture = RX_TEXTURE_PATH "mars.jpg";
-  mars->m_pathToModel = RX_MODEL_PATH "sphere.obj";
+  auto mars = std::make_shared<GeometryNodeBase>();
+  mars->m_model = std::make_shared<Model>(RX_MODEL_PATH "sphere.obj");
+  mars->m_model->m_material.diffuseTexture = RX_TEXTURE_PATH "mars.jpg";
 
-  mars->m_model = glm::scale(mars->m_model, glm::vec3(0.25f));
-  mars->m_model = glm::rotate(mars->m_model, glm::radians(90.0f), glm::vec3(0.0f, 1.0f, 0.0f));
-  mars->m_model = glm::translate(mars->m_model, glm::vec3(0.0f, -2.0f, 0.0f));
+  mars->m_worldTransform = glm::scale(mars->m_worldTransform, glm::vec3(0.25f));
+  mars->m_worldTransform = glm::rotate(mars->m_worldTransform, glm::radians(90.0f), glm::vec3(0.0f, 1.0f, 0.0f));
+  mars->m_worldTransform = glm::translate(mars->m_worldTransform, glm::vec3(0.0f, -2.0f, 0.0f));
 
   // Add the model to the renderer. This way they will be queued for rendering.
-  renderer.setModels({ dlore, mars });
+  renderer.setNodes({ dragonLore, mars });
 
   // This will set up the entire Vulkan pipeline.
   renderer.initialize();
 
   while (renderer.isRunning())
   {
-    // Update the camera so that key inputs will have an effect on it.
-    cam.update();
-    
-    dlore->m_model = glm::rotate(dlore->m_model, glm::radians(90.0f) * Time::getDeltaTime() * speed, glm::vec3(0.0f, 1.0f, 0.0f));
-    dlore->m_view = cam.getViewMatrix();
-    dlore->m_projection = cam.getProjectionMatrix();
-    dlore->m_cameraPos = cam.m_position;
-
-    mars->m_model = glm::rotate(mars->m_model, glm::radians(90.0f) * Time::getDeltaTime() * -speed, glm::vec3(0.0f, 1.0f, 0.0f));
-    mars->m_view = cam.getViewMatrix();
-    mars->m_projection = cam.getProjectionMatrix();
-    mars->m_cameraPos = cam.m_position;
+    // Update the camera so that key inputs will have an effect on it.    
+    dragonLore->m_worldTransform = glm::rotate(dragonLore->m_worldTransform, glm::radians(90.0f) * Time::getDeltaTime() * speed, glm::vec3(0.0f, 1.0f, 0.0f));
+    mars->m_worldTransform = glm::rotate(mars->m_worldTransform, glm::radians(90.0f) * Time::getDeltaTime() * -speed, glm::vec3(0.0f, 1.0f, 0.0f));
 
     // Call udpate and render for the renderer to work properly.
     renderer.update();

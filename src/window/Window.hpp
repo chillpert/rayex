@@ -32,6 +32,7 @@ namespace RX
     RX_API inline WindowProperties& getProperties() { return m_properties; }
 
     RX_API void getSize(int* width, int* height);
+    RX_API inline glm::ivec2 getSize() const { return glm::ivec2{ m_properties.getWidth(), m_properties.getHeight() }; }
     RX_API vk::Extent2D getExtent();
 
     // Returns true if the window size changed.

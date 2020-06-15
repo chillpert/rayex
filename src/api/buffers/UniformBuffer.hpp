@@ -15,7 +15,7 @@ namespace RX
 
   struct UniformBufferInfo
   {
-    UniformBufferObject uniformBufferObject;
+    //UniformBufferObject uniformBufferObject;
     vk::PhysicalDevice physicalDevice;
     vk::Device device;
     size_t swapchainImagesCount;

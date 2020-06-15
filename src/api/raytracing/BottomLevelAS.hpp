@@ -1,7 +1,7 @@
 #ifndef BOTTOM_LEVEL_AS_HPP
 #define BOTTOM_LEVEL_AS_HPP
 
-#include "Model.hpp"
+#include "Base.hpp"
 #include "Queue.hpp"
 
 namespace RX
@@ -20,22 +20,22 @@ namespace RX
   public:
     BottomLevelAS() = default;
     BottomLevelAS(BottomLevelASInfo& info);
+    
     ~BottomLevelAS();
     void destroy();
 
     inline BottomLevelASInfo& getInfo() { return m_info; }
 
-    friend void initBottomLevelAS_(BottomLevelASInfo& info, const std::vector<std::shared_ptr<Model>>& models);
+    friend void initBottomLevelAS_(BottomLevelASInfo& info, const std::unordered_set<std::shared_ptr<ModelBase>>& models);
 
-    BottomLevelAS& operator=(const std::shared_ptr<Model> model);
-    void wavefrontToBottomLevelAS(std::shared_ptr<Model> model);
+    BottomLevelAS& operator=(const std::shared_ptr<ModelBase> model);
+    friend void wavefrontToBottomLevelAS(BottomLevelAS& blas, std::shared_ptr<ModelBase> model);
 
   private:
     BottomLevelASInfo m_info;
 
     vk::AccelerationStructureKHR accelerationStructure;
-    vk::DeviceMemory accelerationStructureAllocation;
-    
+
     std::vector<vk::AccelerationStructureCreateGeometryTypeInfoKHR> asCreateGeometryInfo;
     std::vector<vk::AccelerationStructureGeometryKHR> asGeometry;
     std::vector<vk::AccelerationStructureBuildOffsetInfoKHR> asBuildOffsetInfo;

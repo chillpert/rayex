@@ -64,7 +64,7 @@ namespace std
 {
   template<> struct hash<RX::Vertex>
   {
-    size_t operator()(RX::Vertex const& vertex) const
+    size_t operator()(const RX::Vertex& vertex) const
     {
       size_t hashPos = hash<glm::vec3>()(vertex.pos);
       size_t hashColor = hash<glm::vec3>()(vertex.color);

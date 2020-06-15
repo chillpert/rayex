@@ -97,6 +97,7 @@ include_directories(${PROJECT_SOURCE_DIR}/src/api/model)
 include_directories(${PROJECT_SOURCE_DIR}/src/api/pools)
 include_directories(${PROJECT_SOURCE_DIR}/src/api/sync)
 include_directories(${PROJECT_SOURCE_DIR}/src/api/queue)
+include_directories(${PROJECT_SOURCE_DIR}/src/api/raytracing)
 
 # SOURCE PROJECT FILES
 file(GLOB FILES_LIB
@@ -111,6 +112,7 @@ file(GLOB FILES_LIB
   "${PROJECT_SOURCE_DIR}/src/api/pools/*.cpp"
   "${PROJECT_SOURCE_DIR}/src/api/sync/*.cpp"
   "${PROJECT_SOURCE_DIR}/src/api/queue/*.cpp"
+  "${PROJECT_SOURCE_DIR}/src/api/raytracing/*.cpp"
 
   "${PROJECT_SOURCE_DIR}/src/window/*.cpp"
   "${PROJECT_SOURCE_DIR}/src/pch/*.cpp"

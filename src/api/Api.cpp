@@ -610,9 +610,7 @@ namespace RX
         model->m_descriptorSets.update(descriptorSetUpdateInfo);
       }
 
-      m_raytraceBuilder.createBottomLevelAS(m_models);
-      m_raytraceBuilder.createTopLevelAS(m_models);
-      m_raytraceBuilder.createDescriptorSet();
+      m_raytraceBuilder.initAccelerationStructures(m_models);
     }
     else
     {

@@ -1,7 +1,7 @@
 #ifndef TOP_LEVEL_AS_HPP
 #define TOP_LEVEL_AS_HPP
 
-#include "Model.hpp"
+#include "ModelBase.hpp"
 
 namespace RX
 {

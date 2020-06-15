@@ -2,7 +2,6 @@
 #define RAYTRACE_BUILDER_HPP
 
 #include "pch/stdafx.hpp"
-#include "Model.hpp"
 #include "Queue.hpp"
 #include "DebugUtility.hpp"
 #include "DescriptorPool.hpp"

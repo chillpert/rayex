@@ -8,7 +8,6 @@
 #include "Pipeline.hpp"
 #include "RenderPass.hpp"
 #include "Shader.hpp"
-#include "Model.hpp"
 #include "PhysicalDevice.hpp"
 #include "Device.hpp"
 #include "Swapchain.hpp"

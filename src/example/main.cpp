@@ -262,6 +262,8 @@ public:
 class CustomGui : public GuiBase
 {
 public:
+  Renderer* m_renderer;
+
   void configure() override
   {
     GuiBase::configure();
@@ -273,9 +275,15 @@ public:
     if (ImGui::Begin("Settings"))
     {
       ImGui::SliderFloat("Speed", &speed, 0.0f, 2.0f);
+      
+      if (ImGui::Button("Add Mars"))
+      {
+
+      }
     }
 
     ImGui::End();
+    ImGui::ShowDemoWindow();
   }
 };
 
@@ -358,7 +366,10 @@ int main(int argc, char* argv[])
   myWindow->m_camera = myCam;
   // Create the renderer object.
   Renderer renderer(myWindow, std::move(myGui), myCam);
+
+  myGui->m_renderer = &renderer;
   
+  // Setup the scene.
   auto dragonLore = std::make_shared<GeometryNodeBase>();
   dragonLore->m_model = std::make_shared<CustomModel>(RX_MODEL_PATH "awpdlore/awpdlore.obj");
   dragonLore->m_material.diffuseTexture = RX_TEXTURE_PATH "awpdlore.png";

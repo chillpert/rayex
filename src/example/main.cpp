@@ -29,7 +29,7 @@ public:
     m_pitch(0.0f),
     m_sensitivity(0.06f),
     m_fov(45.0f)
-  { 
+  {
     updateVectors(); 
   }
 

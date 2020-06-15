@@ -1,13 +1,13 @@
 #ifndef INSTANCE_HPP
 #define INSTANCE_HPP
 
-#include "window/Window.hpp"
+#include "WindowBase.hpp"
 
 namespace RX
 {
   struct InstanceInfo
   {
-    std::shared_ptr<Window> window;
+    std::shared_ptr<WindowBase> window;
     std::vector<const char*> layers;
     std::vector<const char*> extensions;
   };

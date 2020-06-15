@@ -2,8 +2,8 @@
 #define WINDOW_HPP
 
 #include "pch/stdafx.hpp"
-#include "WindowProperties.hpp"
-#include "Time.hpp"
+#include "window/WindowProperties.hpp"
+#include "window/Time.hpp"
 
 namespace RX
 {

@@ -24,7 +24,7 @@
 #include "DescriptorPool.hpp"
 #include "DescriptorSetLayout.hpp"
 #include "UniformBuffer.hpp"
-#include "Gui.hpp"
+#include "GuiBase.hpp"
 #include "Base.hpp"
 #include "RaytraceBuilder.hpp"
 
@@ -33,8 +33,8 @@ namespace RX
   class Api
   {
   public:
-    Api(std::shared_ptr<Window> window, std::shared_ptr<CameraBase> camera);
-    Api(std::shared_ptr<Window> window, std::unique_ptr<Gui> gui, std::shared_ptr<CameraBase> camera );
+    Api(std::shared_ptr<WindowBase> window, std::shared_ptr<CameraBase> camera);
+    Api(std::shared_ptr<WindowBase> window, std::unique_ptr<GuiBase> gui, std::shared_ptr<CameraBase> camera );
     RX_API ~Api();
 
     void initialize();
@@ -69,7 +69,7 @@ namespace RX
 
     void initRayTracing();
 
-    std::shared_ptr<Window> m_window;
+    std::shared_ptr<WindowBase> m_window;
     std::shared_ptr<CameraBase> m_camera;
 
     // Destruction through RAII for following members:
@@ -85,9 +85,10 @@ namespace RX
 
     DescriptorSetLayout m_descriptorSetLayout;
 
+    // Nodes to render.
     std::vector<std::shared_ptr<GeometryNodeBase>> m_nodes;
-    std::unordered_set<std::shared_ptr<ModelBase>> m_models;
-    std::unordered_set<std::shared_ptr<Texture>> m_textures;
+    // Textures
+    std::unordered_map<std::string, std::shared_ptr<Texture>> m_textures;
 
     DescriptorPool m_descriptorPool;
     Swapchain m_swapchain;
@@ -99,7 +100,7 @@ namespace RX
     Image m_depthImage;
     ImageView m_depthImageView;
 
-    std::unique_ptr<Gui> m_gui;
+    std::unique_ptr<GuiBase> m_gui;
 
     // No destruction necessary for following members:
     PhysicalDevice m_physicalDevice;

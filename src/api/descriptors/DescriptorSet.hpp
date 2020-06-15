@@ -27,7 +27,7 @@ namespace RX
   class DescriptorSet
   {
   public:
-    ~DescriptorSet();
+    RX_API ~DescriptorSet();
 
     inline std::vector<vk::DescriptorSet> get() { return m_sets; }
     inline DescriptorSetInfo& getInfo() { return m_info; }

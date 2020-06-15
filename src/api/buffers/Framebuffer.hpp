@@ -1,7 +1,7 @@
 #ifndef FRAMEBUFFER_HPP
 #define FRAMEBUFFER_HPP
 
-#include "window/Window.hpp"
+#include "WindowBase.hpp"
 
 namespace RX
 {

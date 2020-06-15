@@ -20,6 +20,8 @@ namespace RX
   class Texture
   {
   public:
+    RX_API Texture() = default;
+    RX_API Texture(TextureInfo& info);
     RX_API ~Texture();
 
     inline vk::Image getImage() { return m_image.get(); }
@@ -35,6 +37,14 @@ namespace RX
     ImageView m_imageView;
     Sampler m_sampler;
     TextureInfo m_info;
+  };
+}
+
+namespace std
+{
+  template<> struct hash<RX::Texture>
+  {
+    size_t operator()(const std::shared_ptr<RX::Texture> texture) const { return hash<std::string>()(texture->getInfo().path); }
   };
 }
 

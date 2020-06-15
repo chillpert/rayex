@@ -6,6 +6,11 @@
 
 namespace RX
 {
+  Texture::Texture(TextureInfo& info)
+  {
+    initialize(info);
+  }
+
   Texture::~Texture()
   {
     destroy();

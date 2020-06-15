@@ -28,10 +28,10 @@ namespace RX
     std::vector<vk::ImageView> swapchainImageViews;
   };
 
-  class Gui
+  class GuiBase
   {
   public:
-    RX_API virtual ~Gui();
+    RX_API virtual ~GuiBase();
 
     inline GuiInfo& getInfo() { return m_info; }
     inline CommandBuffer& getCommandBuffer() { return m_commandBuffers; }

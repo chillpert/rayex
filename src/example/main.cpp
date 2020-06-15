@@ -1,11 +1,10 @@
 #include "Renderer.hpp"
+#define TINYOBJLOADER_IMPLEMENTATION
+#include <tiny_obj_loader.h>
 
 using namespace RX;
 
 float speed = 0.0f;
-
-class CustomCamera;
-std::shared_ptr<CustomCamera> myCam;
 
 namespace Key
 {
@@ -122,17 +121,18 @@ public:
 };
 
 // Create your own custom window class, to propagate events to your own event system.
-class CustomWindow : public Window
+class CustomWindow : public WindowBase
 {
 public:
   CustomWindow(WindowProperties windowProps) : 
-    Window(windowProps) { }
+    WindowBase(windowProps) { }
 
+  std::shared_ptr<CustomCamera> m_camera;
   bool m_mouseVisible = true;
 
   void initialize() override
   {
-    Window::initialize();
+    WindowBase::initialize();
 
     SDL_SetRelativeMouseMode(SDL_FALSE);
   }
@@ -140,9 +140,9 @@ public:
   bool update() override
   {
     // Updates the timer bound to the window as well as the window size.
-    Window::update();
+    WindowBase::update();
 
-    myCam->setScreenSize(glm::ivec2{ m_properties.getWidth(), m_properties.getHeight() } );
+    m_camera->setScreenSize(glm::ivec2{ m_properties.getWidth(), m_properties.getHeight() } );
     
     // Add your custom event polling and integrate your event system.
     SDL_Event event;
@@ -150,7 +150,7 @@ public:
     while (SDL_PollEvent(&event))
     {
       // Propagates the event to ImGui.
-      //processGuiEvent(event);
+      processGuiEvent(event);
 
       switch (event.type)
       {
@@ -249,7 +249,7 @@ public:
           {
             int x, y;
             SDL_GetRelativeMouseState(&x, &y);
-            myCam->processMouse(x, -y);
+            m_camera->processMouse(x, -y);
             break;
           }
         }
@@ -259,12 +259,12 @@ public:
   }
 };
 
-class CustomGui : public Gui
+class CustomGui : public GuiBase
 {
 public:
   void configure() override
   {
-    Gui::configure();
+    GuiBase::configure();
     ImGui::StyleColorsDark();
   }
 
@@ -276,6 +276,68 @@ public:
     }
 
     ImGui::End();
+  }
+};
+
+// Custom model class that only parses obj files using tinyObjLoader.
+class CustomModel : public ModelBase
+{
+public:
+  CustomModel(const std::string& path) :
+    ModelBase(path)
+  {
+    initialize();
+  }
+
+  void initialize() override
+  {
+    tinyobj::attrib_t attrib;
+    std::vector<tinyobj::shape_t> shapes;
+    std::vector<tinyobj::material_t> materials;
+    std::string warn, err;
+
+    if (!tinyobj::LoadObj(&attrib, &shapes, &materials, &warn, &err, m_path.c_str()))
+      RX_ERROR(warn + err);
+
+    std::unordered_map<Vertex, uint32_t> uniqueVertices;
+
+    for (const auto& shape : shapes)
+    {
+      for (const auto& index : shape.mesh.indices)
+      {
+        Vertex vertex{};
+
+        vertex.pos =
+        {
+          attrib.vertices[3 * index.vertex_index + 0],
+          attrib.vertices[3 * index.vertex_index + 1],
+          attrib.vertices[3 * index.vertex_index + 2]
+        };
+
+        vertex.normal =
+        {
+          attrib.normals[3 * index.normal_index + 0],
+          attrib.normals[3 * index.normal_index + 1],
+          attrib.normals[3 * index.normal_index + 2]
+        };
+
+        vertex.texCoord =
+        {
+          attrib.texcoords[2 * index.texcoord_index + 0],
+          1.0f - attrib.texcoords[2 * index.texcoord_index + 1]
+        };
+
+        vertex.color = { 1.0f, 1.0f, 1.0f };
+
+        if (uniqueVertices.count(vertex) == 0)
+        {
+          uniqueVertices[vertex] = static_cast<uint32_t>(m_vertices.size());
+          m_vertices.push_back(vertex);
+        }
+
+        m_indices.push_back(uniqueVertices[vertex]);
+      }
+    }
   }
 };
 
@@ -292,21 +354,21 @@ int main(int argc, char* argv[])
   // Setup your own ImGui based Gui.
   auto myGui = std::make_unique<CustomGui>();
 
-  myCam = std::make_shared<CustomCamera>(glm::ivec2{ width, height }, glm::vec3{ 0.0f, 0.0f, 3.0f });
-
+  auto myCam = std::make_shared<CustomCamera>(glm::ivec2{ width, height }, glm::vec3{ 0.0f, 0.0f, 3.0f });
+  myWindow->m_camera = myCam;
   // Create the renderer object.
   Renderer renderer(myWindow, std::move(myGui), myCam);
   
   auto dragonLore = std::make_shared<GeometryNodeBase>();
-  dragonLore->m_model = std::make_shared<Model>(RX_MODEL_PATH "awpdlore/awpdlore.obj");
-  dragonLore->m_model->m_material.diffuseTexture = RX_TEXTURE_PATH "awpdlore.png";
+  dragonLore->m_model = std::make_shared<CustomModel>(RX_MODEL_PATH "awpdlore/awpdlore.obj");
+  dragonLore->m_material.diffuseTexture = RX_TEXTURE_PATH "awpdlore.png";
 
   dragonLore->m_worldTransform = glm::scale(dragonLore->m_worldTransform, glm::vec3(0.25f));
   dragonLore->m_worldTransform = glm::rotate(dragonLore->m_worldTransform, glm::radians(90.0f), glm::vec3(0.0f, 1.0f, 0.0f));
 
   auto mars = std::make_shared<GeometryNodeBase>();
-  mars->m_model = std::make_shared<Model>(RX_MODEL_PATH "sphere.obj");
-  mars->m_model->m_material.diffuseTexture = RX_TEXTURE_PATH "mars.jpg";
+  mars->m_model = std::make_shared<CustomModel>(RX_MODEL_PATH "sphere.obj");
+  mars->m_material.diffuseTexture = RX_TEXTURE_PATH "mars.jpg";
 
   mars->m_worldTransform = glm::scale(mars->m_worldTransform, glm::vec3(0.25f));
   mars->m_worldTransform = glm::rotate(mars->m_worldTransform, glm::radians(90.0f), glm::vec3(0.0f, 1.0f, 0.0f));
@@ -315,7 +377,6 @@ int main(int argc, char* argv[])
   // Add the model to the renderer. This way they will be queued for rendering.
   renderer.setNodes({ dragonLore, mars });
 
-  // This will set up the entire Vulkan pipeline.
   renderer.initialize();
 
   while (renderer.isRunning())

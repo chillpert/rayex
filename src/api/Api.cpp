@@ -5,12 +5,12 @@ namespace RX
   // Defines the maximum amount of frames that will be processed concurrently.
   const size_t maxFramesInFlight = 2;
 
-  Api::Api(std::shared_ptr<Window> window, std::shared_ptr<CameraBase> camera) :
+  Api::Api(std::shared_ptr<WindowBase> window, std::shared_ptr<CameraBase> camera) :
     m_window(window),
     m_camera(camera),
     m_gui(nullptr) { }
 
-  Api::Api(std::shared_ptr<Window> window, std::unique_ptr<Gui> gui, std::shared_ptr<CameraBase> camera) :
+  Api::Api(std::shared_ptr<WindowBase> window, std::unique_ptr<GuiBase> gui, std::shared_ptr<CameraBase> camera) :
     m_window(window),
     m_camera(camera),
     m_gui(std::move(gui)) { }
@@ -168,17 +168,30 @@ namespace RX
   void Api::pushNode(const std::shared_ptr<GeometryNodeBase> node)
   {
     m_nodes.push_back(node);
-    m_models.insert(node->m_model);
+
+    // Handle the node's texture.
+    auto texturePaths = node->m_material.getTextures();
+
+    for (const auto& texturePath : texturePaths)
+    {
+      auto it = m_textures.find(texturePath);
+      // Texture does not exist already. It will be created.
+      if (it == m_textures.end())
+      {
+        m_textures.insert({ texturePath, nullptr });
+      }
+    }
   }
 
   void Api::setNodes(const std::vector<std::shared_ptr<GeometryNodeBase>>& nodes)
   {
     m_nodes.clear();
     m_nodes.reserve(nodes.size());
-    m_nodes = nodes;
-
-    for (const auto node : nodes)
-      m_models.insert(node->m_model);
+    
+    for (const auto& node : nodes)
+    {
+      pushNode(node);
+    }
   }
 
   void Api::clean()
@@ -590,49 +603,61 @@ namespace RX
 
     if (firstRun)
     {
-      for (std::shared_ptr<ModelBase> model : m_models)
+      // Initialize all textures.
+      for (auto& texture : m_textures)
       {
-        model->initialize();
-
-        // TODO: this should load all textures
-        textureInfo.path = model->m_material.diffuseTexture;
-        if (!textureInfo.path.empty())
-          model->m_texture.initialize(textureInfo);
-
-        vertexBufferInfo.vertices = model->m_vertices;
-        model->m_vertexBuffer.initialize(vertexBufferInfo);
-
-        indexBufferInfo.indices = model->m_indices;
-        model->m_indexBuffer.initialize(indexBufferInfo);
-
-        //uniformBufferInfo.uniformBufferObject = model->getUbo();
-        model->m_uniformBuffers.initialize(uniformBufferInfo);
-
-        descriptorSetUpdateInfo.descriptorPool = m_descriptorPool.get();
-        descriptorSetUpdateInfo.textureSampler = model->m_texture.getSampler();
-        descriptorSetUpdateInfo.textureImageView = model->m_texture.getImageView();
-        descriptorSetUpdateInfo.uniformBuffers = model->m_uniformBuffers.getRaw();
-
-        model->m_descriptorSets.initialize(descriptorSetInfo);
-        model->m_descriptorSets.update(descriptorSetUpdateInfo);
+        if (texture.second == nullptr)
+        { 
+          textureInfo.path = texture.first;
+          texture.second = std::make_shared<Texture>(textureInfo);
+        }
       }
 
-      m_raytraceBuilder.initAccelerationStructures(m_models);
+      for (const auto& node : m_nodes)
+      {
+        vertexBufferInfo.vertices = node->m_model->m_vertices;
+        node->m_model->m_vertexBuffer.initialize(vertexBufferInfo);
+
+        indexBufferInfo.indices = node->m_model->m_indices;
+        node->m_model->m_indexBuffer.initialize(indexBufferInfo);
+
+        //uniformBufferInfo.uniformBufferObject = model->getUbo();
+        node->m_model->m_uniformBuffers.initialize(uniformBufferInfo);
+
+        // TODO: add support for multiple textures.
+        auto diffuseIter = m_textures.find(node->m_material.diffuseTexture);
+        RX_ASSERT((diffuseIter != m_textures.end()), "Can not use diffuse texture because it was not loaded.");
+ 
+        descriptorSetUpdateInfo.descriptorPool = m_descriptorPool.get();
+        descriptorSetUpdateInfo.textureSampler = diffuseIter->second->getSampler();
+        descriptorSetUpdateInfo.textureImageView = diffuseIter->second->getImageView();
+        descriptorSetUpdateInfo.uniformBuffers = node->m_model->m_uniformBuffers.getRaw();
+
+        node->m_model->m_descriptorSets.initialize(descriptorSetInfo);
+        node->m_model->m_descriptorSets.update(descriptorSetUpdateInfo);
+      }
+
+      //m_raytraceBuilder.initAccelerationStructures(m_models);
     }
     else
     {
-      for (std::shared_ptr<ModelBase> model : m_models)
+      // TODO: Is this stuff really necesary?
+      for (const auto& node : m_nodes)
       {
         //uniformBufferInfo.uniformBufferObject = model->getUbo();
-        model->m_uniformBuffers.initialize(uniformBufferInfo);
+        node->m_model->m_uniformBuffers.initialize(uniformBufferInfo);
+
+        // TODO: add support for multiple textures.
+        auto diffuseIter = m_textures.find(node->m_material.diffuseTexture);
+        RX_ASSERT((diffuseIter != m_textures.end()), "Can not use diffuse texture because it was not loaded.");
 
         descriptorSetUpdateInfo.descriptorPool = m_descriptorPool.get();
-        descriptorSetUpdateInfo.textureSampler = model->m_texture.getSampler();
-        descriptorSetUpdateInfo.textureImageView = model->m_texture.getImageView();
-        descriptorSetUpdateInfo.uniformBuffers = model->m_uniformBuffers.getRaw();
+        descriptorSetUpdateInfo.textureSampler = diffuseIter->second->getSampler();
+        descriptorSetUpdateInfo.textureImageView = diffuseIter->second->getImageView();
+        descriptorSetUpdateInfo.uniformBuffers = node->m_model->m_uniformBuffers.getRaw();
 
-        model->m_descriptorSets.initialize(descriptorSetInfo);
-        model->m_descriptorSets.update(descriptorSetUpdateInfo);
+        node->m_model->m_descriptorSets.initialize(descriptorSetInfo);
+        node->m_model->m_descriptorSets.update(descriptorSetUpdateInfo);
       }
     }
   }
@@ -716,15 +741,15 @@ namespace RX
       m_swapchainCmdBuffers.get(imageIndex).setScissor(0, 1, &scissor); // CMD
 
       // Draw models
-      for (std::shared_ptr<ModelBase> model : m_models)
+      for (const auto& node : m_nodes)
       {
-        vk::Buffer vertexBuffers[] = { model->m_vertexBuffer.get() };
+        vk::Buffer vertexBuffers[] = { node->m_model->m_vertexBuffer.get() };
         vk::DeviceSize offsets[] = { 0 };
 
         m_swapchainCmdBuffers.get(imageIndex).bindVertexBuffers(0, 1, vertexBuffers, offsets); // CMD
-        m_swapchainCmdBuffers.get(imageIndex).bindIndexBuffer(model->m_indexBuffer.get(), 0, model->m_indexBuffer.getType()); // CMD
-        m_swapchainCmdBuffers.get(imageIndex).bindDescriptorSets(vk::PipelineBindPoint::eGraphics, m_pipeline.getLayout(), 0, 1, &model->m_descriptorSets.get()[imageIndex], 0, nullptr); // CMD
-        m_swapchainCmdBuffers.get(imageIndex).drawIndexed(model->m_indexBuffer.getCount(), 1, 0, 0, 0); // CMD
+        m_swapchainCmdBuffers.get(imageIndex).bindIndexBuffer(node->m_model->m_indexBuffer.get(), 0, node->m_model->m_indexBuffer.getType()); // CMD
+        m_swapchainCmdBuffers.get(imageIndex).bindDescriptorSets(vk::PipelineBindPoint::eGraphics, m_pipeline.getLayout(), 0, 1, &node->m_model->m_descriptorSets.get()[imageIndex], 0, nullptr); // CMD
+        m_swapchainCmdBuffers.get(imageIndex).drawIndexed(node->m_model->m_indexBuffer.getCount(), 1, 0, 0, 0); // CMD
       }
 
       m_renderPass.end(imageIndex);

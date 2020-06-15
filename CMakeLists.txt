@@ -83,6 +83,7 @@ include_directories(${PROJECT_SOURCE_DIR}/external/ModelLoading)
 include_directories(${PROJECT_SOURCE_DIR}/external/ImGui)
 
 include_directories(${PROJECT_SOURCE_DIR}/src)
+include_directories(${PROJECT_SOURCE_DIR}/src/base)
 include_directories(${PROJECT_SOURCE_DIR}/src/pch)
 include_directories(${PROJECT_SOURCE_DIR}/src/window)
 include_directories(${PROJECT_SOURCE_DIR}/src/utils)

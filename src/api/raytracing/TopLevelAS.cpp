@@ -14,7 +14,7 @@ namespace RX
     accelerationStructure = nullptr;
   }
 
-  void TopLevelAS::initialize(const std::vector<std::shared_ptr<Model>>& models)
+  void TopLevelAS::initialize(const std::vector<std::shared_ptr<ModelBase>>& models)
   {
     
   }

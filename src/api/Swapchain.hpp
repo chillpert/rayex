@@ -11,7 +11,7 @@ namespace RX
 {
   struct SwapchainInfo
   {
-    Window* window;
+    WindowBase* window;
     Surface* surface;
 
     vk::PhysicalDevice physicalDevice;

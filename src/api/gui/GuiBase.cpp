@@ -1,21 +1,21 @@
-#include "Gui.hpp"
+#include "GuiBase.hpp"
 #include "CommandBuffer.hpp"
 
 namespace RX
 {
-  Gui::~Gui()
+  GuiBase::~GuiBase()
   {
     destroy();
   }
 
-  void Gui::configure()
+  void GuiBase::configure()
   {
     IMGUI_CHECKVERSION();
     ImGui::CreateContext();
     ImGuiIO& io = ImGui::GetIO(); (void)io;
   }
 
-  void Gui::initialize(GuiInfo& info)
+  void GuiBase::initialize(GuiInfo& info)
   {
     m_info = info;
 
@@ -59,30 +59,30 @@ namespace RX
     m_renderPass.setBeginInfo(beginInfo);
   }
 
-  void Gui::beginRender()
+  void GuiBase::beginRender()
   {
     ImGui_ImplVulkan_NewFrame();
     ImGui_ImplSDL2_NewFrame(m_info.window);
     ImGui::NewFrame();
   }
 
-  void Gui::render()
+  void GuiBase::render()
   {
     ImGui::ShowDemoWindow();
   }
 
-  void Gui::endRender()
+  void GuiBase::endRender()
   {
     ImGui::Render();
   }
 
-  void Gui::beginRenderPass(int index)
+  void GuiBase::beginRenderPass(int index)
   {
     m_commandBuffers.begin(index);
     m_renderPass.begin(index);
   }
 
-  void Gui::endRenderPass(int index)
+  void GuiBase::endRenderPass(int index)
   {
     ImGui_ImplVulkan_RenderDrawData(ImGui::GetDrawData(), m_commandBuffers.get()[index]);
 
@@ -90,7 +90,7 @@ namespace RX
     m_commandBuffers.end(index);
   }
 
-  void Gui::recreate()
+  void GuiBase::recreate()
   {
     // Clean up
     m_commandBuffers.free();
@@ -108,14 +108,14 @@ namespace RX
     initialize(m_info);
   }
 
-  void Gui::destroy()
+  void GuiBase::destroy()
   {
     ImGui_ImplVulkan_Shutdown();
     ImGui_ImplSDL2_Shutdown();
     ImGui::DestroyContext();
   }
 
-  void Gui::initCommandPool()
+  void GuiBase::initCommandPool()
   {
     CommandPoolInfo commandPoolInfo{ };
     commandPoolInfo.device = m_info.device;
@@ -125,7 +125,7 @@ namespace RX
     m_commandPool.initialize(commandPoolInfo);
   }
 
-  void Gui::initDescriptorPool()
+  void GuiBase::initDescriptorPool()
   {
     DescriptorPoolInfo info{ };
     info.device = m_info.device;
@@ -148,7 +148,7 @@ namespace RX
     m_descriptorPool.initialize(info);
   }
 
-  void Gui::initRenderPass()
+  void GuiBase::initRenderPass()
   {
     vk::AttachmentDescription attachment;
     attachment.format = m_info.swapchainImageFormat;
@@ -195,7 +195,7 @@ namespace RX
     m_renderPass.initialize(renderPassInfo);
   }
 
-  void Gui::initFonts()
+  void GuiBase::initFonts()
   {
     CommandBufferInfo singleTimeCommandBufferInfo{ };
     singleTimeCommandBufferInfo.device = m_info.device;
@@ -211,7 +211,7 @@ namespace RX
     commandBuffer.end();
   }
 
-  void Gui::initCommandBuffers()
+  void GuiBase::initCommandBuffers()
   {
     // Create command buffers for each image in the swapchain.
     CommandBufferInfo commandBufferInfo{ };
@@ -227,7 +227,7 @@ namespace RX
     m_commandBuffers.initialize(commandBufferInfo);
   }
 
-  void Gui::initFramebuffers()
+  void GuiBase::initFramebuffers()
   {
     FramebufferInfo framebufferInfo{ };
     framebufferInfo.device = m_info.device;

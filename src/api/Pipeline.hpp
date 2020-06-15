@@ -1,7 +1,7 @@
 #ifndef PIPELINE_HPP
 #define PIPELINE_HPP
 
-#include "Window.hpp"
+#include "WindowBase.hpp"
 #include "Swapchain.hpp"
 #include "Shader.hpp"
 

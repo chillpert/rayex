@@ -11,7 +11,7 @@ namespace RX
     ~TopLevelAS();
     void destroy();
 
-    static void initialize(const std::vector<std::shared_ptr<Model>>& models);
+    static void initialize(const std::vector<std::shared_ptr<ModelBase>>& models);
     static void build(std::vector<TopLevelAS>& tlas_);
 
   private:

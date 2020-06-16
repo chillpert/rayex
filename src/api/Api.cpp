@@ -2,6 +2,8 @@
 
 namespace RX
 {
+  const size_t maxNodes = 4096;
+
   // Defines the maximum amount of frames that will be processed concurrently.
   const size_t maxFramesInFlight = 2;
 
@@ -13,18 +15,22 @@ namespace RX
   Api::Api(std::shared_ptr<WindowBase> window, std::shared_ptr<GuiBase> gui, std::shared_ptr<CameraBase> camera) :
     m_window(window),
     m_camera(camera),
-    m_gui(std::move(gui)) { }
+    m_gui(gui) { }
 
   Api::~Api()
   {
     clean();
 
     // Gui needs to be destroyed manually, as RAII destruction will not be possible.
-    m_gui->destroy();
+    if (m_gui != nullptr)
+      m_gui->destroy();
   }
 
   void Api::initialize()
   {
+    m_nodes.reserve(maxNodes);
+    m_textures.reserve(maxNodes);
+
     initInstance();
     initDebugMessenger();
     initSurface();
@@ -40,6 +46,7 @@ namespace RX
     inittransferCmdPool();
     initDepthBuffering();
     initSwapchainFramebuffers();
+    initDescriptorPool();
     //initModels();
     initSwapchainCmdBuffers();
     initGui();
@@ -69,13 +76,6 @@ namespace RX
 
   bool Api::update()
   {
-    // Check if nodes have changed.
-    if (m_updateNodes)
-    {
-      m_recreateSwapchain = true;
-      m_updateNodes = false;
-    }
-
     return true;
   }
 
@@ -179,12 +179,24 @@ namespace RX
     return true;
   }
   
-  void Api::pushNode(const std::shared_ptr<GeometryNodeBase> node)
+  void Api::pushNode(const std::shared_ptr<GeometryNodeBase> node, bool record)
   {
+    if (node->m_model != nullptr)
+    {
+      if (!node->m_model->isLoaded())
+        node->m_model->load();
+    }
+
     m_nodes.push_back(node);
 
     // Handle the node's texture.
     auto texturePaths = node->m_material.getTextures();
+
+    TextureInfo textureInfo{ };
+    textureInfo.physicalDevice = m_physicalDevice.get();
+    textureInfo.device = m_device.get();
+    textureInfo.commandPool = m_graphicsCmdPool.get();
+    textureInfo.queue = m_queueManager.getQueue(GRAPHICS)->get();
 
     for (const auto& texturePath : texturePaths)
     {
@@ -192,24 +204,30 @@ namespace RX
       // Texture does not exist already. It will be created.
       if (it == m_textures.end())
       {
-        m_textures.insert({ texturePath, nullptr });
+        textureInfo.path = texturePath;
+        m_textures.insert({ texturePath, std::make_shared<Texture>(textureInfo) });
       }
     }
 
-    m_updateNodes = true;
+    if (record)
+    {
+      initModel(node);
+      m_swapchainCmdBuffers.reset();
+      recordSwapchainCommandBuffers();
+    }
   }
 
   void Api::setNodes(const std::vector<std::shared_ptr<GeometryNodeBase>>& nodes)
   {
     m_nodes.clear();
-    m_nodes.reserve(nodes.size());
+    m_nodes.reserve(4096);
     
     for (const auto& node : nodes)
-    {
-      pushNode(node);
-    }
+      pushNode(node, false);
 
-    m_updateNodes = true;
+    initModels(true);
+    m_swapchainCmdBuffers.reset();
+    recordSwapchainCommandBuffers();
   }
 
   void Api::clean()
@@ -247,7 +265,7 @@ namespace RX
       node->m_model->m_uniformBuffers.destroy();
     }
 
-    m_descriptorPool.destroy();
+    //m_descriptorPool.destroy();
 
     // Recreating the swapchain.
     // Swapchain
@@ -260,7 +278,8 @@ namespace RX
     //initPipeline(false);
     initDepthBuffering();
     initSwapchainFramebuffers();
-    initModels();
+    //initDescriptorPool();
+    initModels(false);
     initSwapchainCmdBuffers();
     recordSwapchainCommandBuffers();
 
@@ -307,15 +326,9 @@ namespace RX
     instanceInfo.window = m_window;
 #ifdef RX_DEBUG
     instanceInfo.layers = { "VK_LAYER_KHRONOS_validation" };
-#endif
-
+    instanceInfo.extensions = { "VK_KHR_get_physical_device_properties2", "VK_EXT_debug_utils" };
+#elif
     instanceInfo.extensions = { "VK_KHR_get_physical_device_properties2" };
-
-#ifdef RX_DEBUG
-    if (instanceInfo.extensions.size() == 0)
-      instanceInfo.extensions = { "VK_EXT_debug_utils" };
-    else
-      instanceInfo.extensions.push_back("VK_EXT_debug_utils");
 #endif
 
     m_instance.initialize(instanceInfo);
@@ -521,7 +534,7 @@ namespace RX
     CommandPoolInfo commandPoolInfo{ };
     commandPoolInfo.device = m_device.get();
     commandPoolInfo.queueFamilyIndex = m_queueManager.getGraphicsFamilyIndex();
-    //commandPoolInfo.createFlags = vk::CommandPoolCreateFlagBits::eResetCommandBuffer;
+    commandPoolInfo.createFlags = vk::CommandPoolCreateFlagBits::eResetCommandBuffer;
 
     m_graphicsCmdPool.initialize(commandPoolInfo);
   }
@@ -580,14 +593,19 @@ namespace RX
     }
   }
 
-  void Api::initModels(bool firstRun)
+  void Api::initDescriptorPool()
   {
-    TextureInfo textureInfo{ };
-    textureInfo.physicalDevice = m_physicalDevice.get();
-    textureInfo.device = m_device.get();
-    textureInfo.commandPool = m_graphicsCmdPool.get();
-    textureInfo.queue = m_queueManager.getQueue(GRAPHICS)->get();
+    DescriptorPoolInfo descriptorPoolInfo{ };
+    descriptorPoolInfo.device = m_device.get();
+    uint32_t swapchainImagesCount = m_swapchain.getImages().size();
+    descriptorPoolInfo.poolSizes = { { vk::DescriptorType::eUniformBuffer, swapchainImagesCount }, { vk::DescriptorType::eCombinedImageSampler, swapchainImagesCount } };
+    descriptorPoolInfo.maxSets = maxNodes * swapchainImagesCount;
 
+    m_descriptorPool.initialize(descriptorPoolInfo);
+  }
+
+  void Api::initModel(const std::shared_ptr<GeometryNodeBase> node)
+  {
     static auto queueIndices = m_queueManager.getUniqueQueueIndices({ GRAPHICS, TRANSFER });
     static auto queue = queueIndices.size() > 1 ? m_queueManager.getQueue(TRANSFER, queueIndices[1])->get() : m_queueManager.getQueue(GRAPHICS)->get();
 
@@ -610,13 +628,62 @@ namespace RX
     uniformBufferInfo.device = m_device.get();
     uniformBufferInfo.swapchainImagesCount = m_swapchain.getImages().size();
 
-    DescriptorPoolInfo descriptorPoolInfo{ };
-    descriptorPoolInfo.device = m_device.get();
-    uint32_t swapchainImagesCount = m_swapchain.getImages().size();
-    descriptorPoolInfo.poolSizes = { { vk::DescriptorType::eUniformBuffer, swapchainImagesCount }, { vk::DescriptorType::eCombinedImageSampler, swapchainImagesCount } };
-    descriptorPoolInfo.maxSets = m_nodes.size() * swapchainImagesCount;
+    DescriptorSetInfo descriptorSetInfo{ };
+    descriptorSetInfo.device = m_device.get();
+    descriptorSetInfo.pool = m_descriptorPool.get();
+    descriptorSetInfo.layouts = std::vector<vk::DescriptorSetLayout>(m_swapchain.getImages().size(), m_descriptorSetLayout.get());
 
-    m_descriptorPool.initialize(descriptorPoolInfo);
+    SwapchainUpdateDescriptorSetInfo descriptorSetUpdateInfo{ };
+
+    if (node->m_model == nullptr)
+      return;
+
+    vertexBufferInfo.vertices = node->m_model->m_vertices;
+    node->m_model->m_vertexBuffer.initialize(vertexBufferInfo);
+
+    indexBufferInfo.indices = node->m_model->m_indices;
+    node->m_model->m_indexBuffer.initialize(indexBufferInfo);
+
+    node->m_model->m_uniformBuffers.initialize(uniformBufferInfo);
+
+    // TODO: add support for multiple textures.
+    auto diffuseIter = m_textures.find(node->m_material.m_diffuseTexture);
+    if (diffuseIter != m_textures.end())
+    {
+      descriptorSetUpdateInfo.textureSampler = diffuseIter->second->getSampler();
+      descriptorSetUpdateInfo.textureImageView = diffuseIter->second->getImageView();
+    }
+
+    descriptorSetUpdateInfo.descriptorPool = m_descriptorPool.get();
+    descriptorSetUpdateInfo.uniformBuffers = node->m_model->m_uniformBuffers.getRaw();
+
+    node->m_model->m_descriptorSets.initialize(descriptorSetInfo);
+    node->m_model->m_descriptorSets.update(descriptorSetUpdateInfo);
+  }
+
+  void Api::initModels(bool isNew)
+  {
+    static auto queueIndices = m_queueManager.getUniqueQueueIndices({ GRAPHICS, TRANSFER });
+    static auto queue = queueIndices.size() > 1 ? m_queueManager.getQueue(TRANSFER, queueIndices[1])->get() : m_queueManager.getQueue(GRAPHICS)->get();
+
+    VertexBufferInfo vertexBufferInfo{ };
+    vertexBufferInfo.physicalDevice = m_physicalDevice.get();
+    vertexBufferInfo.device = m_device.get();
+    vertexBufferInfo.commandPool = m_transferCmdPool.get();
+    vertexBufferInfo.queue = queue;
+    vertexBufferInfo.queueIndices = queueIndices.size() > 1 ? queueIndices : std::vector<uint32_t>();
+
+    IndexBufferInfo indexBufferInfo{ };
+    indexBufferInfo.physicalDevice = m_physicalDevice.get();
+    indexBufferInfo.device = m_device.get();
+    indexBufferInfo.commandPool = m_transferCmdPool.get();
+    indexBufferInfo.queue = queue;
+    indexBufferInfo.queueIndices = queueIndices.size() > 1 ? queueIndices : std::vector<uint32_t>();
+
+    UniformBufferInfo uniformBufferInfo{ };
+    uniformBufferInfo.physicalDevice = m_physicalDevice.get();
+    uniformBufferInfo.device = m_device.get();
+    uniformBufferInfo.swapchainImagesCount = m_swapchain.getImages().size();
 
     DescriptorSetInfo descriptorSetInfo{ };
     descriptorSetInfo.device = m_device.get();
@@ -625,72 +692,38 @@ namespace RX
 
     SwapchainUpdateDescriptorSetInfo descriptorSetUpdateInfo{ };
 
-    // TODO: firstRun will always be true, since recreateSwapchain is not changing it anymore.
-    if (firstRun)
+    for (const auto& node : m_nodes)
     {
-      // Initialize all textures.
-      for (auto& texture : m_textures)
-      {
-        if (texture.second == nullptr)
-        { 
-          textureInfo.path = texture.first;
-          texture.second = std::make_shared<Texture>(textureInfo);
-        }
-      }
+      if (node->m_model == nullptr)
+        continue;
 
-      for (const auto& node : m_nodes)
+      if (isNew)
       {
-        if (node->m_model == nullptr)
-          continue;
-
         vertexBufferInfo.vertices = node->m_model->m_vertices;
         node->m_model->m_vertexBuffer.initialize(vertexBufferInfo);
 
         indexBufferInfo.indices = node->m_model->m_indices;
         node->m_model->m_indexBuffer.initialize(indexBufferInfo);
-
-        //uniformBufferInfo.uniformBufferObject = model->getUbo();
-        node->m_model->m_uniformBuffers.initialize(uniformBufferInfo);
-
-        // TODO: add support for multiple textures.
-        auto diffuseIter = m_textures.find(node->m_material.diffuseTexture);
-        RX_ASSERT((diffuseIter != m_textures.end()), "Can not use diffuse texture because it was not loaded.");
- 
-        descriptorSetUpdateInfo.descriptorPool = m_descriptorPool.get();
-        descriptorSetUpdateInfo.textureSampler = diffuseIter->second->getSampler();
-        descriptorSetUpdateInfo.textureImageView = diffuseIter->second->getImageView();
-        descriptorSetUpdateInfo.uniformBuffers = node->m_model->m_uniformBuffers.getRaw();
-
-        node->m_model->m_descriptorSets.initialize(descriptorSetInfo);
-        node->m_model->m_descriptorSets.update(descriptorSetUpdateInfo);
       }
 
-      //m_raytraceBuilder.initAccelerationStructures(m_models);
-    }
-    else
-    {
-      // TODO: Is this stuff really necesary?
-      for (const auto& node : m_nodes)
+      node->m_model->m_uniformBuffers.initialize(uniformBufferInfo);
+
+      // TODO: add support for multiple textures.
+      auto diffuseIter = m_textures.find(node->m_material.m_diffuseTexture);
+      if (diffuseIter != m_textures.end())
       {
-        if (node->m_model == nullptr)
-          continue;
-
-        //uniformBufferInfo.uniformBufferObject = model->getUbo();
-        node->m_model->m_uniformBuffers.initialize(uniformBufferInfo);
-
-        // TODO: add support for multiple textures.
-        auto diffuseIter = m_textures.find(node->m_material.diffuseTexture);
-        RX_ASSERT((diffuseIter != m_textures.end()), "Can not use diffuse texture because it was not loaded.");
-
-        descriptorSetUpdateInfo.descriptorPool = m_descriptorPool.get();
         descriptorSetUpdateInfo.textureSampler = diffuseIter->second->getSampler();
         descriptorSetUpdateInfo.textureImageView = diffuseIter->second->getImageView();
-        descriptorSetUpdateInfo.uniformBuffers = node->m_model->m_uniformBuffers.getRaw();
-
-        node->m_model->m_descriptorSets.initialize(descriptorSetInfo);
-        node->m_model->m_descriptorSets.update(descriptorSetUpdateInfo);
       }
+
+      descriptorSetUpdateInfo.descriptorPool = m_descriptorPool.get();
+      descriptorSetUpdateInfo.uniformBuffers = node->m_model->m_uniformBuffers.getRaw();
+
+      node->m_model->m_descriptorSets.initialize(descriptorSetInfo);
+      node->m_model->m_descriptorSets.update(descriptorSetUpdateInfo);
     }
+
+    //m_raytraceBuilder.initAccelerationStructures(m_models);
   }
 
   void Api::initSwapchainCmdBuffers()
@@ -780,10 +813,35 @@ namespace RX
         vk::Buffer vertexBuffers[] = { node->m_model->m_vertexBuffer.get() };
         vk::DeviceSize offsets[] = { 0 };
 
-        m_swapchainCmdBuffers.get(imageIndex).bindVertexBuffers(0, 1, vertexBuffers, offsets); // CMD
-        m_swapchainCmdBuffers.get(imageIndex).bindIndexBuffer(node->m_model->m_indexBuffer.get(), 0, node->m_model->m_indexBuffer.getType()); // CMD
-        m_swapchainCmdBuffers.get(imageIndex).bindDescriptorSets(vk::PipelineBindPoint::eGraphics, m_pipeline.getLayout(), 0, 1, &node->m_model->m_descriptorSets.get()[imageIndex], 0, nullptr); // CMD
-        m_swapchainCmdBuffers.get(imageIndex).drawIndexed(node->m_model->m_indexBuffer.getCount(), 1, 0, 0, 0); // CMD
+        m_swapchainCmdBuffers.get(imageIndex).bindVertexBuffers(
+          0, 
+          1, 
+          vertexBuffers,
+          offsets
+        ); // CMD
+
+        m_swapchainCmdBuffers.get(imageIndex).bindIndexBuffer(
+          node->m_model->m_indexBuffer.get(),
+          0, 
+          node->m_model->m_indexBuffer.getType()
+        ); // CMD
+
+        m_swapchainCmdBuffers.get(imageIndex).bindDescriptorSets(
+          vk::PipelineBindPoint::eGraphics, 
+          m_pipeline.getLayout(),
+          0,
+          1,
+          &node->m_model->m_descriptorSets.get()[imageIndex], 
+          0, 
+          nullptr); // CMD
+
+        m_swapchainCmdBuffers.get(imageIndex).drawIndexed(
+          node->m_model->m_indexBuffer.getCount(),
+          1,
+          0,
+          0, 
+          0
+        ); // CMD
       }
 
       m_renderPass.end(imageIndex);

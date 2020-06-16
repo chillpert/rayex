@@ -11,50 +11,55 @@
 
 namespace RX
 {
-  struct Material
+  class Material
   {
-    glm::vec3 ambient;
-    glm::vec3 diffuse;
-    glm::vec3 specular;
-    glm::vec3 transmittance;
-    glm::vec3 emission;
+  public:
+    Material() = default;
+    Material(const std::string& diffuseTexture) :
+      m_diffuseTexture(diffuseTexture) { }
 
-    float shininess;
-    float reflectionIndex;
-    float opacity;
+    glm::vec3 m_ambient;
+    glm::vec3 m_diffuse;
+    glm::vec3 m_specular;
+    glm::vec3 m_transmittance;
+    glm::vec3 m_emission;
 
-    std::string ambientTexture;
-    std::string diffuseTexture;
-    std::string specularTexture;
-    std::string bumpTexture;
-    std::string displacementTexture;
-    std::string alphaTexture;
-    std::string reflectionTexture;
+    float m_shininess;
+    float m_reflectionIndex;
+    float m_opacity;
+
+    std::string m_ambientTexture;
+    std::string m_diffuseTexture;
+    std::string m_specularTexture;
+    std::string m_bumpTexture;
+    std::string m_displacementTexture;
+    std::string m_alphaTexture;
+    std::string m_reflectionTexture;
 
     std::unordered_set<std::string> getTextures()
     {
       std::unordered_set<std::string> textures;
 
-      if (!ambientTexture.empty())
-        textures.insert(ambientTexture);
+      if (!m_ambientTexture.empty())
+        textures.insert(m_ambientTexture);
 
-      if (!diffuseTexture.empty())
-        textures.insert(diffuseTexture);
+      if (!m_diffuseTexture.empty())
+        textures.insert(m_diffuseTexture);
 
-      if (!specularTexture.empty())
-        textures.insert(specularTexture);
+      if (!m_specularTexture.empty())
+        textures.insert(m_specularTexture);
 
-      if (!bumpTexture.empty())
-        textures.insert(bumpTexture);
+      if (!m_bumpTexture.empty())
+        textures.insert(m_bumpTexture);
 
-      if (!displacementTexture.empty())
-        textures.insert(displacementTexture);
+      if (!m_displacementTexture.empty())
+        textures.insert(m_displacementTexture);
 
-      if (!alphaTexture.empty())
-        textures.insert(alphaTexture);
+      if (!m_alphaTexture.empty())
+        textures.insert(m_alphaTexture);
 
-      if (!reflectionTexture.empty())
-        textures.insert(reflectionTexture);
+      if (!m_reflectionTexture.empty())
+        textures.insert(m_reflectionTexture);
 
       return textures;
     }
@@ -64,14 +69,19 @@ namespace RX
   {
   public:
     ModelBase(const std::string& path) :
-      m_path(path)
-    {
-      initialize();
-    }
+      m_path(path) { }
 
     virtual ~ModelBase() = default;
 
-    virtual void initialize() { }
+    virtual void load() = 0;
+
+    bool isLoaded()
+    {
+      if (m_vertices.size() > 0)
+        return true;
+
+      return false;
+    }
 
     std::string m_path;
     Material m_material;

@@ -26,9 +26,16 @@ namespace RX
   class GeometryNodeBase : public TransformNodeBase
   {
   public:
+    GeometryNodeBase() = default;
+    GeometryNodeBase(const std::shared_ptr<ModelBase> model) :
+      m_model(model) { }
+    GeometryNodeBase(const std::shared_ptr<ModelBase> model, const Material& material) :
+      m_model(model),
+      m_material(material) { }
+
     virtual ~GeometryNodeBase() = default;
 
-    std::shared_ptr<ModelBase> m_model;
+    std::shared_ptr<ModelBase> m_model = nullptr;
     Material m_material;
   };
 }

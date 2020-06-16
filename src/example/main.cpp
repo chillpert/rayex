@@ -151,9 +151,6 @@ public:
 
     while (SDL_PollEvent(&event))
     {
-      // Propagates the event to ImGui.
-      processGuiEvent(event);
-
       switch (event.type)
       {
         case SDL_QUIT:
@@ -268,10 +265,10 @@ public:
   CustomModel(const std::string& path) :
     ModelBase(path)
   {
-    initialize();
+    load();
   }
 
-  void initialize() override
+  void load() override
   {
     tinyobj::attrib_t attrib;
     std::vector<tinyobj::shape_t> shapes;
@@ -287,7 +284,7 @@ public:
     {
       for (const auto& index : shape.mesh.indices)
       {
-        Vertex vertex{};
+        Vertex vertex{ };
 
         vertex.pos =
         {
@@ -323,9 +320,6 @@ public:
   }
 };
 
-bool test = false;
-
-
 class CustomGui : public GuiBase
 {
 public:
@@ -343,16 +337,31 @@ public:
     {
       ImGui::SliderFloat("Speed", &speed, 0.0f, 2.0f);
       
+      if (ImGui::Button("Add Box"))
+      {
+        auto box = std::make_shared<GeometryNodeBase>(
+          std::make_shared<CustomModel>(RX_MODEL_PATH "cube.obj"), // TODO: ideally this would also only take a string.
+          Material(RX_TEXTURE_PATH "container.png")
+        );
+
+        m_renderer->pushNode(box);
+      }
+
       if (ImGui::Button("Add Sphere"))
       {
-        test = true;
+        auto sphere = std::make_shared<GeometryNodeBase>(
+          std::make_shared<CustomModel>(RX_MODEL_PATH "sphere.obj"),
+          Material(RX_TEXTURE_PATH "metal.png")
+        );
+
+        m_renderer->pushNode(sphere);
       }
     }
 
     ImGui::End();
-    ImGui::ShowDemoWindow();
   }
 };
+
 
 int main(int argc, char* argv[])
 {
@@ -375,15 +384,19 @@ int main(int argc, char* argv[])
   myGui->m_renderer = &renderer;
   
   // Setup the scene.
-  auto dragonLore = std::make_shared<GeometryNodeBase>();
-  dragonLore->m_model = std::make_shared<CustomModel>(RX_MODEL_PATH "awpdlore/awpdlore.obj");
-  dragonLore->m_material.diffuseTexture = RX_TEXTURE_PATH "awpdlore.png";
+  auto dragonLore = std::make_shared<GeometryNodeBase>(
+    std::make_shared<CustomModel>(RX_MODEL_PATH "awpdlore/awpdlore.obj"),
+    Material(RX_TEXTURE_PATH "awpdlore.png")
+  );
+
   dragonLore->m_worldTransform = glm::scale(dragonLore->m_worldTransform, glm::vec3(0.25f));
   dragonLore->m_worldTransform = glm::rotate(dragonLore->m_worldTransform, glm::radians(90.0f), glm::vec3(0.0f, 1.0f, 0.0f));
 
-  auto mars = std::make_shared<GeometryNodeBase>();
-  mars->m_model = std::make_shared<CustomModel>(RX_MODEL_PATH "sphere.obj");
-  mars->m_material.diffuseTexture = RX_TEXTURE_PATH "mars.jpg";
+  auto mars = std::make_shared<GeometryNodeBase>(
+    std::make_shared<CustomModel>(RX_MODEL_PATH "sphere.obj"),
+    Material(RX_TEXTURE_PATH "mars.jpg")
+  );
+
   mars->m_worldTransform = glm::scale(mars->m_worldTransform, glm::vec3(0.25f));
   mars->m_worldTransform = glm::rotate(mars->m_worldTransform, glm::radians(90.0f), glm::vec3(0.0f, 1.0f, 0.0f));
   mars->m_worldTransform = glm::translate(mars->m_worldTransform, glm::vec3(0.0f, -2.0f, 0.0f));
@@ -395,18 +408,8 @@ int main(int argc, char* argv[])
   {
     // Update the camera so that key inputs will have an effect on it.    
     dragonLore->m_worldTransform = glm::rotate(dragonLore->m_worldTransform, glm::radians(90.0f) * Time::getDeltaTime() * speed, glm::vec3(0.0f, 1.0f, 0.0f));
-    mars->m_worldTransform = glm::rotate(mars->m_worldTransform, glm::radians(90.0f) * Time::getDeltaTime() * -speed, glm::vec3(0.0f, 1.0f, 0.0f));
-
-    if (test)
-    {
-      auto sphere = std::make_shared<GeometryNodeBase>();
-      //sphere->m_model = std::make_shared<CustomModel>(RX_MODEL_PATH "sphere.obj");
-      //sphere->m_material.diffuseTexture = RX_TEXTURE_PATH "awpdlore.png";
-
-      renderer.pushNode(sphere);
-      test = false;
-    }
-
+    mars->m_worldTransform = glm::rotate(mars->m_worldTransform, glm::radians(90.0f) * Time::getDeltaTime() * -speed, glm::vec3(0.0f, 1.0f, 0.0f));    
+    
     // Call udpate and render for the renderer to work properly.
     // This will also call your custom classes.
     renderer.update();

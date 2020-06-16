@@ -18,8 +18,8 @@ namespace RX
   struct SwapchainUpdateDescriptorSetInfo
   {
     std::vector<vk::Buffer> uniformBuffers;
-    vk::ImageView textureImageView;
-    vk::Sampler textureSampler;
+    vk::ImageView textureImageView = nullptr;
+    vk::Sampler textureSampler = nullptr;
     vk::DescriptorPool descriptorPool;
     vk::DescriptorSetLayout descriptorSetLayout;
   };

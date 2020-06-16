@@ -33,7 +33,7 @@ namespace RX
   }
 
   Renderer::Renderer(std::shared_ptr<WindowBase> window, std::shared_ptr<CameraBase> camera) :
-    m_window(std::make_shared<WindowBase>()),
+    m_window(window),
     m_camera(camera),
     m_api(m_window, m_camera),
     m_initialized(false),

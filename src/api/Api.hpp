@@ -40,7 +40,7 @@ namespace RX
     bool update();
     bool render();
   
-    void pushNode(const std::shared_ptr<GeometryNodeBase> nodes);
+    void pushNode(const std::shared_ptr<GeometryNodeBase> nodes, bool record = true);
     void setNodes(const std::vector<std::shared_ptr<GeometryNodeBase>>& nodes);
 
   private:
@@ -58,7 +58,9 @@ namespace RX
     void inittransferCmdPool();
     void initDepthBuffering();
     void initSwapchainFramebuffers();
-    void initModels(bool firstRun = true);
+    void initDescriptorPool();
+    void initModels(bool isNew);
+    void initModel(const std::shared_ptr<GeometryNodeBase> node);
     void initSwapchainCmdBuffers();
     void initGui();
     void recordSwapchainCommandBuffers();
@@ -109,7 +111,6 @@ namespace RX
     RaytraceBuilder m_raytraceBuilder;
 
     bool m_recreateSwapchain = false;
-    bool m_updateNodes = false;
   };
 }
 

@@ -28,27 +28,43 @@ namespace RX
       bufferInfo.offset = 0;
       bufferInfo.range = sizeof(UniformBufferObject);
 
-      vk::DescriptorImageInfo imageInfo;
-      imageInfo.imageLayout = vk::ImageLayout::eShaderReadOnlyOptimal;
-      imageInfo.imageView = info.textureImageView;
-      imageInfo.sampler = info.textureSampler;
+      if (info.textureImageView && info.textureSampler)
+      {
+        vk::DescriptorImageInfo imageInfo;
+        imageInfo.imageLayout = vk::ImageLayout::eShaderReadOnlyOptimal;
+        imageInfo.imageView = info.textureImageView;
+        imageInfo.sampler = info.textureSampler;
 
-      std::array<vk::WriteDescriptorSet, 2> descriptorWrites{};
-      descriptorWrites[0].dstSet = m_sets[i];
-      descriptorWrites[0].dstBinding = 0;
-      descriptorWrites[0].dstArrayElement = 0;
-      descriptorWrites[0].descriptorType = vk::DescriptorType::eUniformBuffer;
-      descriptorWrites[0].descriptorCount = 1;
-      descriptorWrites[0].pBufferInfo = &bufferInfo;
+        std::array<vk::WriteDescriptorSet, 2> descriptorWrites{ };
+        descriptorWrites[0].dstSet = m_sets[i];
+        descriptorWrites[0].dstBinding = 0;
+        descriptorWrites[0].dstArrayElement = 0;
+        descriptorWrites[0].descriptorType = vk::DescriptorType::eUniformBuffer;
+        descriptorWrites[0].descriptorCount = 1;
+        descriptorWrites[0].pBufferInfo = &bufferInfo;
 
-      descriptorWrites[1].dstSet = m_sets[i];
-      descriptorWrites[1].dstBinding = 1;
-      descriptorWrites[1].dstArrayElement = 0;
-      descriptorWrites[1].descriptorType = vk::DescriptorType::eCombinedImageSampler;
-      descriptorWrites[1].descriptorCount = 1;
-      descriptorWrites[1].pImageInfo = &imageInfo;
+        descriptorWrites[1].dstSet = m_sets[i];
+        descriptorWrites[1].dstBinding = 1;
+        descriptorWrites[1].dstArrayElement = 0;
+        descriptorWrites[1].descriptorType = vk::DescriptorType::eCombinedImageSampler;
+        descriptorWrites[1].descriptorCount = 1;
+        descriptorWrites[1].pImageInfo = &imageInfo;
 
-      m_info.device.updateDescriptorSets(descriptorWrites, 0);
+        m_info.device.updateDescriptorSets(descriptorWrites, 0);
+      }
+      // TODO: Enables models without textures, but causes validation errors.
+      else
+      {
+        std::array<vk::WriteDescriptorSet, 1> descriptorWrites{ };
+        descriptorWrites[0].dstSet = m_sets[i];
+        descriptorWrites[0].dstBinding = 0;
+        descriptorWrites[0].dstArrayElement = 0;
+        descriptorWrites[0].descriptorType = vk::DescriptorType::eUniformBuffer;
+        descriptorWrites[0].descriptorCount = 1;
+        descriptorWrites[0].pBufferInfo = &bufferInfo;
+
+        m_info.device.updateDescriptorSets(descriptorWrites, 0);
+      }      
     }
   }
 

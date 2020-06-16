@@ -5,7 +5,8 @@ namespace RX
 {
   GuiBase::~GuiBase()
   {
-    destroy();
+    if (m_created)
+      destroy();
   }
 
   void GuiBase::configure()
@@ -57,6 +58,8 @@ namespace RX
       beginInfo.framebuffers.push_back(framebuffer.get());
 
     m_renderPass.setBeginInfo(beginInfo);
+
+    m_created = true;
   }
 
   void GuiBase::beginRender()
@@ -92,16 +95,6 @@ namespace RX
 
   void GuiBase::recreate()
   {
-    // Clean up
-    m_commandBuffers.free();
-    m_commandPool.destroy(); // TODO unncessary
-    
-    for (Framebuffer& framebuffer : m_framebuffers)
-      framebuffer.destroy();
-
-    m_descriptorPool.destroy();
-
-    m_renderPass.destroy();
     destroy();
 
     // Re-initialize
@@ -110,9 +103,22 @@ namespace RX
 
   void GuiBase::destroy()
   {
+    // Clean up
+    m_commandBuffers.free();
+    m_commandPool.destroy(); // TODO unncessary
+
+    for (Framebuffer& framebuffer : m_framebuffers)
+      framebuffer.destroy();
+
+    m_descriptorPool.destroy();
+
+    m_renderPass.destroy();
+
     ImGui_ImplVulkan_Shutdown();
     ImGui_ImplSDL2_Shutdown();
     ImGui::DestroyContext();
+
+    m_created = false;
   }
 
   void GuiBase::initCommandPool()

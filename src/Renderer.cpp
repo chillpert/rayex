@@ -7,42 +7,60 @@ namespace RX
     m_camera(std::make_shared<CameraBase>(m_window->getSize())),
     m_api(m_window, m_camera),
     m_initialized(false),
-    m_running(true) { }
+    m_running(true) 
+  {
+    initialize();
+  }
 
   Renderer::Renderer(std::shared_ptr<CameraBase> camera) :
     m_window(std::make_shared<WindowBase>()),
     m_camera(camera),
     m_api(m_window, m_camera),
     m_initialized(false),
-    m_running(true) { }
+    m_running(true) 
+  {
+    initialize();
+  }
 
   Renderer::Renderer(std::shared_ptr<WindowBase> window) :
     m_window(window),
     m_camera(std::make_shared<CameraBase>(m_window->getSize())),
     m_api(window, m_camera),
     m_initialized(false),
-    m_running(true) { }
+    m_running(true) 
+  {
+    initialize();
+  }
 
   Renderer::Renderer(std::shared_ptr<WindowBase> window, std::shared_ptr<CameraBase> camera) :
     m_window(std::make_shared<WindowBase>()),
     m_camera(camera),
     m_api(m_window, m_camera),
     m_initialized(false),
-    m_running(true) { }
+    m_running(true) 
+  {
+    initialize();
+  }
 
-  Renderer::Renderer(std::shared_ptr<WindowBase> window, std::unique_ptr<GuiBase> gui) :
+  Renderer::Renderer(std::shared_ptr<WindowBase> window, std::shared_ptr<GuiBase> gui) :
     m_window(window),
     m_camera(std::make_shared<CameraBase>(m_window->getSize())),
-    m_api(m_window, std::move(gui), m_camera),
+    m_api(m_window, gui, m_camera),
     m_initialized(false),
-    m_running(true) { }
+    m_running(true) 
+  {
+    initialize();
+  }
 
-  Renderer::Renderer(std::shared_ptr<WindowBase> window, std::unique_ptr<GuiBase> gui, std::shared_ptr<CameraBase> camera) :
+  Renderer::Renderer(std::shared_ptr<WindowBase> window, std::shared_ptr<GuiBase> gui, std::shared_ptr<CameraBase> camera) :
     m_window(window),
     m_camera(camera),
-    m_api(m_window, std::move(gui), m_camera),
+    m_api(m_window, gui, m_camera),
     m_initialized(false),
-    m_running(true) { }
+    m_running(true) 
+  {
+    initialize();
+  }
 
   void Renderer::initialize()
   {

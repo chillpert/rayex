@@ -18,8 +18,8 @@ namespace RX
     RX_API Renderer(std::shared_ptr<CameraBase> camera);
     RX_API Renderer(std::shared_ptr<WindowBase> window);
     RX_API Renderer(std::shared_ptr<WindowBase> window, std::shared_ptr<CameraBase> camera);
-    RX_API Renderer(std::shared_ptr<WindowBase> window, std::unique_ptr<GuiBase> gui);
-    RX_API Renderer(std::shared_ptr<WindowBase> window, std::unique_ptr<GuiBase> gui, std::shared_ptr<CameraBase> camera);
+    RX_API Renderer(std::shared_ptr<WindowBase> window, std::shared_ptr<GuiBase> gui);
+    RX_API Renderer(std::shared_ptr<WindowBase> window, std::shared_ptr<GuiBase> gui, std::shared_ptr<CameraBase> camera);
     RX_API ~Renderer() = default;
 
     RX_API void initialize();

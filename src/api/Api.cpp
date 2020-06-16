@@ -10,7 +10,7 @@ namespace RX
     m_camera(camera),
     m_gui(nullptr) { }
 
-  Api::Api(std::shared_ptr<WindowBase> window, std::unique_ptr<GuiBase> gui, std::shared_ptr<CameraBase> camera) :
+  Api::Api(std::shared_ptr<WindowBase> window, std::shared_ptr<GuiBase> gui, std::shared_ptr<CameraBase> camera) :
     m_window(window),
     m_camera(camera),
     m_gui(std::move(gui)) { }
@@ -18,6 +18,9 @@ namespace RX
   Api::~Api()
   {
     clean();
+
+    // Gui needs to be destroyed manually, as RAII destruction will not be possible.
+    m_gui->destroy();
   }
 
   void Api::initialize()
@@ -37,7 +40,7 @@ namespace RX
     inittransferCmdPool();
     initDepthBuffering();
     initSwapchainFramebuffers();
-    initModels();
+    //initModels();
     initSwapchainCmdBuffers();
     initGui();
     recordSwapchainCommandBuffers();
@@ -66,6 +69,13 @@ namespace RX
 
   bool Api::update()
   {
+    // Check if nodes have changed.
+    if (m_updateNodes)
+    {
+      m_recreateSwapchain = true;
+      m_updateNodes = false;
+    }
+
     return true;
   }
 
@@ -88,8 +98,9 @@ namespace RX
       return true;
 
     // If the window size has changed the swapchain has to be recreated.
-    if (m_window->changed())
+    if (m_window->changed() || m_recreateSwapchain)
     {
+      m_recreateSwapchain = false;
       recreateSwapchain();
       return true;
     }
@@ -100,6 +111,9 @@ namespace RX
     // TODO: Temporary
     for (std::shared_ptr<GeometryNodeBase> node : m_nodes)
     {
+      if (node->m_model == nullptr)
+        continue;
+
       UniformBufferObject ubo{ };
       ubo.model = node->m_worldTransform;
       ubo.view = m_camera->getViewMatrix();
@@ -181,6 +195,8 @@ namespace RX
         m_textures.insert({ texturePath, nullptr });
       }
     }
+
+    m_updateNodes = true;
   }
 
   void Api::setNodes(const std::vector<std::shared_ptr<GeometryNodeBase>>& nodes)
@@ -192,6 +208,8 @@ namespace RX
     {
       pushNode(node);
     }
+
+    m_updateNodes = true;
   }
 
   void Api::clean()
@@ -222,7 +240,12 @@ namespace RX
     m_swapchain.destroy();
 
     for (std::shared_ptr<GeometryNodeBase> node : m_nodes)
+    {
+      if (node->m_model == nullptr)
+        continue;
+
       node->m_model->m_uniformBuffers.destroy();
+    }
 
     m_descriptorPool.destroy();
 
@@ -237,7 +260,7 @@ namespace RX
     //initPipeline(false);
     initDepthBuffering();
     initSwapchainFramebuffers();
-    initModels(false);
+    initModels();
     initSwapchainCmdBuffers();
     recordSwapchainCommandBuffers();
 
@@ -498,6 +521,7 @@ namespace RX
     CommandPoolInfo commandPoolInfo{ };
     commandPoolInfo.device = m_device.get();
     commandPoolInfo.queueFamilyIndex = m_queueManager.getGraphicsFamilyIndex();
+    //commandPoolInfo.createFlags = vk::CommandPoolCreateFlagBits::eResetCommandBuffer;
 
     m_graphicsCmdPool.initialize(commandPoolInfo);
   }
@@ -601,6 +625,7 @@ namespace RX
 
     SwapchainUpdateDescriptorSetInfo descriptorSetUpdateInfo{ };
 
+    // TODO: firstRun will always be true, since recreateSwapchain is not changing it anymore.
     if (firstRun)
     {
       // Initialize all textures.
@@ -615,6 +640,9 @@ namespace RX
 
       for (const auto& node : m_nodes)
       {
+        if (node->m_model == nullptr)
+          continue;
+
         vertexBufferInfo.vertices = node->m_model->m_vertices;
         node->m_model->m_vertexBuffer.initialize(vertexBufferInfo);
 
@@ -644,6 +672,9 @@ namespace RX
       // TODO: Is this stuff really necesary?
       for (const auto& node : m_nodes)
       {
+        if (node->m_model == nullptr)
+          continue;
+
         //uniformBufferInfo.uniformBufferObject = model->getUbo();
         node->m_model->m_uniformBuffers.initialize(uniformBufferInfo);
 
@@ -743,6 +774,9 @@ namespace RX
       // Draw models
       for (const auto& node : m_nodes)
       {
+        if (node->m_model == nullptr)
+          continue;
+
         vk::Buffer vertexBuffers[] = { node->m_model->m_vertexBuffer.get() };
         vk::DeviceSize offsets[] = { 0 };
 

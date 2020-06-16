@@ -64,6 +64,8 @@ namespace RX
     CommandBuffer m_commandBuffers;
     RenderPass m_renderPass;
     std::vector<Framebuffer> m_framebuffers;
+
+    bool m_created = false;
   };
 }
 

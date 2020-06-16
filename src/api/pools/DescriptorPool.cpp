@@ -24,6 +24,9 @@ namespace RX
 
   void DescriptorPool::destroy()
   {
+    if (!m_pool)
+      return;
+
     m_info.device.destroyDescriptorPool(m_pool);
     m_pool = nullptr;
   }

@@ -4,6 +4,8 @@
 
 using namespace RX;
 
+std::shared_ptr<Renderer> renderer;
+
 float speed = 0.0f;
 
 namespace Key
@@ -16,7 +18,7 @@ namespace Key
   bool eSpace;
 }
 
-class CustomCamera : public RX::CameraBase
+class CustomCamera : public CameraBase
 {
 public:
   CustomCamera(const glm::ivec2& screenSize, const glm::vec3& position) :
@@ -51,7 +53,7 @@ public:
   {
     static float speed = 1.0f;
 
-    float finalSpeed = speed * RX::Time::getDeltaTime();
+    float finalSpeed = speed * Time::getDeltaTime();
     // TODO: Use switch case statement instead.
     if (Key::eW)
       m_position += m_front * finalSpeed;
@@ -259,34 +261,6 @@ public:
   }
 };
 
-class CustomGui : public GuiBase
-{
-public:
-  Renderer* m_renderer;
-
-  void configure() override
-  {
-    GuiBase::configure();
-    ImGui::StyleColorsDark();
-  }
-
-  void render() override
-  {
-    if (ImGui::Begin("Settings"))
-    {
-      ImGui::SliderFloat("Speed", &speed, 0.0f, 2.0f);
-      
-      if (ImGui::Button("Add Mars"))
-      {
-
-      }
-    }
-
-    ImGui::End();
-    ImGui::ShowDemoWindow();
-  }
-};
-
 // Custom model class that only parses obj files using tinyObjLoader.
 class CustomModel : public ModelBase
 {
@@ -349,6 +323,37 @@ public:
   }
 };
 
+bool test = false;
+
+
+class CustomGui : public GuiBase
+{
+public:
+  Renderer* m_renderer;
+
+  void configure() override
+  {
+    GuiBase::configure();
+    ImGui::StyleColorsDark();
+  }
+
+  void render() override
+  {
+    if (ImGui::Begin("Settings"))
+    {
+      ImGui::SliderFloat("Speed", &speed, 0.0f, 2.0f);
+      
+      if (ImGui::Button("Add Sphere"))
+      {
+        test = true;
+      }
+    }
+
+    ImGui::End();
+    ImGui::ShowDemoWindow();
+  }
+};
+
 int main(int argc, char* argv[])
 {
   // Screen dimensions.
@@ -360,27 +365,25 @@ int main(int argc, char* argv[])
   // Now create the actual window using the window properties from above.
   auto myWindow = std::make_shared<CustomWindow>(props);
   // Setup your own ImGui based Gui.
-  auto myGui = std::make_unique<CustomGui>();
-
+  auto myGui = std::make_shared<CustomGui>();
+  // Create instance of your custom camera class.
   auto myCam = std::make_shared<CustomCamera>(glm::ivec2{ width, height }, glm::vec3{ 0.0f, 0.0f, 3.0f });
-  myWindow->m_camera = myCam;
-  // Create the renderer object.
-  Renderer renderer(myWindow, std::move(myGui), myCam);
+  // Create the renderer object. This will automatically initialize it and all its components.
+  Renderer renderer(myWindow, myGui, myCam);
 
+  myWindow->m_camera = myCam;
   myGui->m_renderer = &renderer;
   
   // Setup the scene.
   auto dragonLore = std::make_shared<GeometryNodeBase>();
   dragonLore->m_model = std::make_shared<CustomModel>(RX_MODEL_PATH "awpdlore/awpdlore.obj");
   dragonLore->m_material.diffuseTexture = RX_TEXTURE_PATH "awpdlore.png";
-
   dragonLore->m_worldTransform = glm::scale(dragonLore->m_worldTransform, glm::vec3(0.25f));
   dragonLore->m_worldTransform = glm::rotate(dragonLore->m_worldTransform, glm::radians(90.0f), glm::vec3(0.0f, 1.0f, 0.0f));
 
   auto mars = std::make_shared<GeometryNodeBase>();
   mars->m_model = std::make_shared<CustomModel>(RX_MODEL_PATH "sphere.obj");
   mars->m_material.diffuseTexture = RX_TEXTURE_PATH "mars.jpg";
-
   mars->m_worldTransform = glm::scale(mars->m_worldTransform, glm::vec3(0.25f));
   mars->m_worldTransform = glm::rotate(mars->m_worldTransform, glm::radians(90.0f), glm::vec3(0.0f, 1.0f, 0.0f));
   mars->m_worldTransform = glm::translate(mars->m_worldTransform, glm::vec3(0.0f, -2.0f, 0.0f));
@@ -388,15 +391,24 @@ int main(int argc, char* argv[])
   // Add the model to the renderer. This way they will be queued for rendering.
   renderer.setNodes({ dragonLore, mars });
 
-  renderer.initialize();
-
   while (renderer.isRunning())
   {
     // Update the camera so that key inputs will have an effect on it.    
     dragonLore->m_worldTransform = glm::rotate(dragonLore->m_worldTransform, glm::radians(90.0f) * Time::getDeltaTime() * speed, glm::vec3(0.0f, 1.0f, 0.0f));
     mars->m_worldTransform = glm::rotate(mars->m_worldTransform, glm::radians(90.0f) * Time::getDeltaTime() * -speed, glm::vec3(0.0f, 1.0f, 0.0f));
 
+    if (test)
+    {
+      auto sphere = std::make_shared<GeometryNodeBase>();
+      //sphere->m_model = std::make_shared<CustomModel>(RX_MODEL_PATH "sphere.obj");
+      //sphere->m_material.diffuseTexture = RX_TEXTURE_PATH "awpdlore.png";
+
+      renderer.pushNode(sphere);
+      test = false;
+    }
+
     // Call udpate and render for the renderer to work properly.
+    // This will also call your custom classes.
     renderer.update();
     renderer.render();
   }

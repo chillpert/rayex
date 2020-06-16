@@ -33,7 +33,7 @@ namespace RX
   {
   public:
     Api(std::shared_ptr<WindowBase> window, std::shared_ptr<CameraBase> camera);
-    Api(std::shared_ptr<WindowBase> window, std::unique_ptr<GuiBase> gui, std::shared_ptr<CameraBase> camera );
+    Api(std::shared_ptr<WindowBase> window, std::shared_ptr<GuiBase> gui, std::shared_ptr<CameraBase> camera );
     RX_API ~Api();
 
     void initialize();
@@ -99,7 +99,7 @@ namespace RX
     Image m_depthImage;
     ImageView m_depthImageView;
 
-    std::unique_ptr<GuiBase> m_gui;
+    std::shared_ptr<GuiBase> m_gui;
 
     // No destruction necessary for following members:
     PhysicalDevice m_physicalDevice;
@@ -107,6 +107,9 @@ namespace RX
     std::vector<VkFence> m_imagesInFlight;
 
     RaytraceBuilder m_raytraceBuilder;
+
+    bool m_recreateSwapchain = false;
+    bool m_updateNodes = false;
   };
 }
 

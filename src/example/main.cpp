@@ -1,6 +1,4 @@
 #include "Renderer.hpp"
-#define TINYOBJLOADER_IMPLEMENTATION
-#include <tiny_obj_loader.h>
 
 using namespace RX;
 
@@ -258,68 +256,6 @@ public:
   }
 };
 
-// Custom model class that only parses obj files using tinyObjLoader.
-class CustomModel : public ModelBase
-{
-public:
-  CustomModel(const std::string& path) :
-    ModelBase(path)
-  {
-    load();
-  }
-
-  void load() override
-  {
-    tinyobj::attrib_t attrib;
-    std::vector<tinyobj::shape_t> shapes;
-    std::vector<tinyobj::material_t> materials;
-    std::string warn, err;
-
-    if (!tinyobj::LoadObj(&attrib, &shapes, &materials, &warn, &err, m_path.c_str()))
-      RX_ERROR(warn + err);
-
-    std::unordered_map<Vertex, uint32_t> uniqueVertices;
-
-    for (const auto& shape : shapes)
-    {
-      for (const auto& index : shape.mesh.indices)
-      {
-        Vertex vertex{ };
-
-        vertex.pos =
-        {
-          attrib.vertices[3 * index.vertex_index + 0],
-          attrib.vertices[3 * index.vertex_index + 1],
-          attrib.vertices[3 * index.vertex_index + 2]
-        };
-
-        vertex.normal =
-        {
-          attrib.normals[3 * index.normal_index + 0],
-          attrib.normals[3 * index.normal_index + 1],
-          attrib.normals[3 * index.normal_index + 2]
-        };
-
-        vertex.texCoord =
-        {
-          attrib.texcoords[2 * index.texcoord_index + 0],
-          1.0f - attrib.texcoords[2 * index.texcoord_index + 1]
-        };
-
-        vertex.color = { 1.0f, 1.0f, 1.0f };
-
-        if (uniqueVertices.count(vertex) == 0)
-        {
-          uniqueVertices[vertex] = static_cast<uint32_t>(m_vertices.size());
-          m_vertices.push_back(vertex);
-        }
-
-        m_indices.push_back(uniqueVertices[vertex]);
-      }
-    }
-  }
-};
-
 class CustomGui : public GuiBase
 {
 public:
@@ -339,10 +275,17 @@ public:
       
       if (ImGui::Button("Add Box"))
       {
+        int max = 5;
+        int min = 1;
+        srand(time(NULL)); // Seed the time
+        int finalNum = rand() % (max - min + 1) + min;
+
         auto box = std::make_shared<GeometryNodeBase>(
-          std::make_shared<CustomModel>(RX_MODEL_PATH "cube.obj"), // TODO: ideally this would also only take a string.
+          RX_MODEL_PATH "cube.obj",
           Material(RX_TEXTURE_PATH "container.png")
         );
+
+        box->m_worldTransform = glm::translate(box->m_worldTransform, glm::vec3(finalNum, 0.0f, 0.0f));
 
         m_renderer->pushNode(box);
       }
@@ -350,7 +293,7 @@ public:
       if (ImGui::Button("Add Sphere"))
       {
         auto sphere = std::make_shared<GeometryNodeBase>(
-          std::make_shared<CustomModel>(RX_MODEL_PATH "sphere.obj"),
+          RX_MODEL_PATH "sphere.obj",
           Material(RX_TEXTURE_PATH "metal.png")
         );
 
@@ -362,6 +305,12 @@ public:
   }
 };
 
+/*
+  TODO:
+  - is it possible to only give the path to the model to the node constructor while still using the custom model class
+  - find a way to deal with duplicate models efficiently
+  - verify that the same thing correctly applies to all texture (it probably should)
+*/
 
 int main(int argc, char* argv[])
 {
@@ -385,7 +334,7 @@ int main(int argc, char* argv[])
   
   // Setup the scene.
   auto dragonLore = std::make_shared<GeometryNodeBase>(
-    std::make_shared<CustomModel>(RX_MODEL_PATH "awpdlore/awpdlore.obj"),
+    RX_MODEL_PATH "awpdlore/awpdlore.obj",
     Material(RX_TEXTURE_PATH "awpdlore.png")
   );
 
@@ -393,7 +342,7 @@ int main(int argc, char* argv[])
   dragonLore->m_worldTransform = glm::rotate(dragonLore->m_worldTransform, glm::radians(90.0f), glm::vec3(0.0f, 1.0f, 0.0f));
 
   auto mars = std::make_shared<GeometryNodeBase>(
-    std::make_shared<CustomModel>(RX_MODEL_PATH "sphere.obj"),
+    RX_MODEL_PATH "sphere.obj",
     Material(RX_TEXTURE_PATH "mars.jpg")
   );
 

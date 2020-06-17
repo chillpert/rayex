@@ -18,11 +18,11 @@ namespace RX
     Material(const std::string& diffuseTexture) :
       m_diffuseTexture(diffuseTexture) { }
 
-    glm::vec3 m_ambient;
-    glm::vec3 m_diffuse;
-    glm::vec3 m_specular;
-    glm::vec3 m_transmittance;
-    glm::vec3 m_emission;
+    glm::vec3 m_ambient = glm::vec3(0.0f);
+    glm::vec3 m_diffuse = glm::vec3(0.0f);
+    glm::vec3 m_specular = glm::vec3(0.0f);
+    glm::vec3 m_transmittance = glm::vec3(0.0f);
+    glm::vec3 m_emission = glm::vec3(0.0f);
 
     float m_shininess;
     float m_reflectionIndex;
@@ -65,23 +65,14 @@ namespace RX
     }
   };
 
-  class ModelBase
+  class Model
   {
   public:
-    ModelBase(const std::string& path) :
-      m_path(path) { }
+    Model() = default;
+    Model(const std::string& path);
 
-    virtual ~ModelBase() = default;
-
-    virtual void load() = 0;
-
-    bool isLoaded()
-    {
-      if (m_vertices.size() > 0)
-        return true;
-
-      return false;
-    }
+    void load();
+    bool isLoaded();
 
     std::string m_path;
     Material m_material;
@@ -96,14 +87,16 @@ namespace RX
 
     // No destruction necessary
     DescriptorSet m_descriptorSets;
+
+    bool m_initialized = false;
   };
 }
 
 namespace std
 {
-  template<> struct hash<RX::ModelBase>
+  template<> struct hash<RX::Model>
   {
-    size_t operator()(const std::shared_ptr<RX::ModelBase> model) const { return hash<std::string>()(model->m_path); }
+    size_t operator()(const std::shared_ptr<RX::Model> model) const { return hash<std::string>()(model->m_path); }
   };
 }
 

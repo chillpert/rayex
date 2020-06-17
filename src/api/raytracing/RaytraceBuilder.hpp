@@ -39,7 +39,7 @@ namespace RX
     void initialize(RaytraceBuilderInfo& info);
     void destroy();
 
-    void initAccelerationStructures(const std::unordered_set<std::shared_ptr<ModelBase>> models);
+    void initAccelerationStructures(const std::unordered_set<std::shared_ptr<Model>> models);
     
   private:
     void initDescriptorSet();

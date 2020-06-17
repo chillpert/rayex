@@ -1,7 +1,7 @@
 #ifndef TOP_LEVEL_AS_HPP
 #define TOP_LEVEL_AS_HPP
 
-#include "ModelBase.hpp"
+#include "Model.hpp"
 
 namespace RX
 {
@@ -11,7 +11,7 @@ namespace RX
     ~TopLevelAS();
     void destroy();
 
-    static void initialize(const std::vector<std::shared_ptr<ModelBase>>& models);
+    static void initialize(const std::vector<std::shared_ptr<Model>>& models);
     static void build(std::vector<TopLevelAS>& tlas_);
 
   private:

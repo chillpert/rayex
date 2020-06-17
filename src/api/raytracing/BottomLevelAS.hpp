@@ -26,10 +26,10 @@ namespace RX
 
     inline BottomLevelASInfo& getInfo() { return m_info; }
 
-    friend void initBottomLevelAS_(BottomLevelASInfo& info, const std::unordered_set<std::shared_ptr<ModelBase>>& models);
+    friend void initBottomLevelAS_(BottomLevelASInfo& info, const std::unordered_set<std::shared_ptr<Model>>& models);
 
-    BottomLevelAS& operator=(const std::shared_ptr<ModelBase> model);
-    friend void wavefrontToBottomLevelAS(BottomLevelAS& blas, std::shared_ptr<ModelBase> model);
+    BottomLevelAS& operator=(const std::shared_ptr<Model> model);
+    friend void wavefrontToBottomLevelAS(BottomLevelAS& blas, std::shared_ptr<Model> model);
 
   private:
     BottomLevelASInfo m_info;

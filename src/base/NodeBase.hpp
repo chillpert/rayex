@@ -1,7 +1,7 @@
-#ifndef NODE_BASE_HPP
-#define NODE_BASE_HPP
+#ifndef NODE_HPP
+#define NODE_HPP
 
-#include "ModelBase.hpp"
+#include "Model.hpp"
 
 namespace RX
 {
@@ -27,17 +27,14 @@ namespace RX
   {
   public:
     GeometryNodeBase() = default;
-    GeometryNodeBase(const std::shared_ptr<ModelBase> model) :
-      m_model(model) { }
-    GeometryNodeBase(const std::shared_ptr<ModelBase> model, const Material& material) :
-      m_model(model),
-      m_material(material) { }
+    GeometryNodeBase(const std::string& modelPath, const Material& material) :
+      m_modelPath(modelPath), m_material(material) { }
 
     virtual ~GeometryNodeBase() = default;
 
-    std::shared_ptr<ModelBase> m_model = nullptr;
+    std::string m_modelPath;
     Material m_material;
   };
 }
 
-#endif // NODE_BASE_HPP
+#endif // NODE_HPP

@@ -20,11 +20,11 @@ namespace RX
     accelerationStructure = nullptr;
   }
 
-  void initBottomLevelAS_(BottomLevelASInfo& info, const std::unordered_set<std::shared_ptr<ModelBase>>& models)
+  void initBottomLevelAS_(BottomLevelASInfo& info, const std::unordered_set<std::shared_ptr<Model>>& models)
   {
     std::vector<BottomLevelAS> blas_;
     blas_.reserve(models.size());
-    for (const std::shared_ptr<ModelBase> model : models)
+    for (const std::shared_ptr<Model> model : models)
     {
       // Convert model to bottom level acceleration structure.
       BottomLevelAS blas(info);
@@ -178,13 +178,13 @@ namespace RX
     }
   }
 
-  BottomLevelAS& BottomLevelAS::operator=(const std::shared_ptr<ModelBase> model)
+  BottomLevelAS& BottomLevelAS::operator=(const std::shared_ptr<Model> model)
   {
     wavefrontToBottomLevelAS(*this, model);
     return *this;
   }
 
-  void wavefrontToBottomLevelAS(BottomLevelAS& blas, std::shared_ptr<ModelBase> model)
+  void wavefrontToBottomLevelAS(BottomLevelAS& blas, std::shared_ptr<Model> model)
   {
     vk::AccelerationStructureCreateGeometryTypeInfoKHR createInfo;
     createInfo.setGeometryType(vk::GeometryTypeKHR::eTriangles);

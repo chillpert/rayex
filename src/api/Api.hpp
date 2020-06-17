@@ -88,6 +88,8 @@ namespace RX
 
     // Nodes to render.
     std::vector<std::shared_ptr<GeometryNodeBase>> m_nodes;
+    // Models
+    std::unordered_map<std::string, std::shared_ptr<Model>> m_models;
     // Textures
     std::unordered_map<std::string, std::shared_ptr<Texture>> m_textures;
 

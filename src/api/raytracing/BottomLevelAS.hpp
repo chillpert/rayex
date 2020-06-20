@@ -29,13 +29,14 @@ namespace RX
     // Creates a single bottom level AS.
     void initialize(BottomLevelASInfo& info, const std::shared_ptr<Model> model, std::vector<BottomLevelAS>& blas);
     // Creates bottom level AS for all given models.
-    friend void initBottomLevelAS_(BottomLevelASInfo& info, const std::unordered_map<std::string, std::shared_ptr<Model>>& models, std::vector<BottomLevelAS>& blas_);
+    friend void initBottomLevelAS_(BottomLevelASInfo& info, const std::vector<std::shared_ptr<Model>>& models, std::vector<BottomLevelAS>& blas_);
 
   private:
     BottomLevelASInfo m_info;
 
-    vk::AccelerationStructureKHR as;
-    vk::DeviceMemory asMemory;
+    vk::AccelerationStructureKHR m_as;
+    vk::DeviceMemory m_memory;
+    uint64_t m_handle;
   };
 }
 

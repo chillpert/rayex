@@ -12,11 +12,6 @@
 
 namespace RX
 {
-  typedef struct coord
-  {
-
-  };
-
   struct RaytraceBuilderInfo
   {
     vk::Instance instance;
@@ -44,14 +39,10 @@ namespace RX
     void initialize(RaytraceBuilderInfo& info);
     void destroy();
 
-    void initAccelerationStructures(const std::unordered_map<std::string, std::shared_ptr<Model>>& models);
+    void initAccelerationStructures(const std::vector<std::shared_ptr<GeometryNodeBase>>& nodes, const std::vector<std::shared_ptr<Model>>& models);
     
   private:
     void initDescriptorSet();
-    //void initBottomLevelAS(const std::vector<std::shared_ptr<Model>> models);
-    //void initTopLevelAS(const std::vector<std::shared_ptr<Model>> models);
-    //void buildTopLevelAS(const std::vector<Instance> allTlas, vk::BuildAccelerationStructureFlagsKHR flags);
-    //vk::AccelerationStructureInstanceKHR instanceToVkGeometryInstanceKHR(const Instance& instance);
 
     RaytraceBuilderInfo m_info;
 

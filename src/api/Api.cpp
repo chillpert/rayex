@@ -754,7 +754,13 @@ namespace RX
       model->m_initialized = true;
     }
 
-    m_raytraceBuilder.initAccelerationStructures(m_models);
+    std::vector<std::shared_ptr<Model>> models;
+    models.reserve(m_models.size());
+
+    for (const auto& model : m_models)
+      models.push_back(model.second);    
+
+    m_raytraceBuilder.initAccelerationStructures(m_nodes, models);
   }
 
   void Api::initSwapchainCmdBuffers()

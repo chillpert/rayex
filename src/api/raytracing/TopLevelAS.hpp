@@ -2,26 +2,36 @@
 #define TOP_LEVEL_AS_HPP
 
 #include "Model.hpp"
+#include "NodeBase.hpp"
 
 namespace RX
 {
+  struct TopLevelASInfo
+  {
+    vk::Device device;
+    vk::PhysicalDevice physicalDevice;
+    vk::DispatchLoaderDynamic dispatchLoaderDynamic;
+    std::vector<std::shared_ptr<GeometryNodeBase>> nodes;
+    vk::BuildAccelerationStructureFlagsKHR flags;
+  };
+
   class TopLevelAS
   {
   public:
     ~TopLevelAS();
     void destroy();
 
-    static void initialize(const std::vector<std::shared_ptr<Model>>& models);
-    static void build(std::vector<TopLevelAS>& tlas_);
+    inline TopLevelASInfo& getInfo() { return m_info; }
+
+    // Creates top level AS for all given models.
+    void initialize(TopLevelASInfo& info);
 
   private:
-    vk::AccelerationStructureKHR accelerationStructure;
-    vk::DeviceMemory accelerationStructureAllocation;
-    vk::AccelerationStructureCreateInfoKHR asInfo;
-    vk::BuildAccelerationStructureFlagsKHR flags;
+    TopLevelASInfo m_info;
 
-    vk::DispatchLoaderDynamic dispatchLoaderDynamic;
-    vk::Device device;
+    vk::AccelerationStructureKHR m_as;
+    vk::DeviceMemory m_memory;
+    uint64_t m_handle;
   };
 }
 

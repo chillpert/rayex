@@ -275,9 +275,9 @@ public:
       
       if (ImGui::Button("Add Box"))
       {
-        int max = 5;
-        int min = 1;
-        srand(time(NULL)); // Seed the time
+        int max = 4;
+        int min = -4;
+        srand(time(NULL));
         int finalNum = rand() % (max - min + 1) + min;
 
         auto box = std::make_shared<GeometryNodeBase>(
@@ -305,16 +305,9 @@ public:
   }
 };
 
-/*
-  TODO:
-  - is it possible to only give the path to the model to the node constructor while still using the custom model class
-  - find a way to deal with duplicate models efficiently
-  - verify that the same thing correctly applies to all texture (it probably should)
-*/
-
 int main(int argc, char* argv[])
 {
-  // Screen dimensions.
+  // Window dimensions.
   int width = 900;
   int height = 600;
 

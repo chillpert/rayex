@@ -52,8 +52,6 @@ namespace RX
 
     RX_API void destroy();
 
-    static uint32_t findMemoryType(vk::PhysicalDevice physicalDevice, uint32_t typeFilter, vk::MemoryPropertyFlags properties);
-  
   private:
     vk::Buffer m_buffer;
     vk::DeviceMemory m_memory;

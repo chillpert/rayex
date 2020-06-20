@@ -1,6 +1,7 @@
 #include "Texture.hpp"
-#include "api/buffers/Buffer.hpp"
-#include "api/buffers/CommandBuffer.hpp"
+#include "Buffer.hpp"
+#include "CommandBuffer.hpp"
+#include "Memory.hpp"
 
 namespace RX
 {
@@ -35,7 +36,7 @@ namespace RX
 
     vk::MemoryAllocateInfo allocateInfo;
     allocateInfo.allocationSize = memoryRequirements.size;
-    allocateInfo.memoryTypeIndex = Buffer::findMemoryType(m_info.physicalDevice, memoryRequirements.memoryTypeBits, vk::MemoryPropertyFlagBits::eDeviceLocal);
+    allocateInfo.memoryTypeIndex = Memory::findType(m_info.physicalDevice, memoryRequirements.memoryTypeBits, vk::MemoryPropertyFlagBits::eDeviceLocal);
 
     m_memory = m_info.device.allocateMemory(allocateInfo);
 

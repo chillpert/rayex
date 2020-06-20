@@ -83,7 +83,6 @@ namespace RX
     // Destruction through RAII
     VertexBuffer m_vertexBuffer;
     IndexBuffer<uint32_t> m_indexBuffer;
-    UniformBuffer m_uniformBuffers;
 
     // No destruction necessary
     DescriptorSet m_descriptorSets;

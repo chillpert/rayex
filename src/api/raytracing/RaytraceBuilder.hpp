@@ -12,6 +12,11 @@
 
 namespace RX
 {
+  typedef struct coord
+  {
+
+  };
+
   struct RaytraceBuilderInfo
   {
     vk::Instance instance;
@@ -39,7 +44,7 @@ namespace RX
     void initialize(RaytraceBuilderInfo& info);
     void destroy();
 
-    void initAccelerationStructures(const std::unordered_set<std::shared_ptr<Model>> models);
+    void initAccelerationStructures(const std::unordered_map<std::string, std::shared_ptr<Model>>& models);
     
   private:
     void initDescriptorSet();

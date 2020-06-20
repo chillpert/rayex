@@ -114,15 +114,15 @@ namespace RX
       if (node->m_modelPath.empty())
         continue;
 
-      UniformBufferObject ubo{ };
-      ubo.model = node->m_worldTransform;
-      ubo.view = m_camera->getViewMatrix();
-      ubo.projection = m_camera->getProjectionMatrix();
-      ubo.cameraPos = m_camera->getPosition();
-
-      auto it = m_models.find(node->m_modelPath);
-      RX_ASSERT((it != m_models.end()), "Can not upload uniform buffer because node does not have a (valid) model.");
-      it->second->m_uniformBuffers.upload(imageIndex, ubo);
+      UniformBufferObject ubo
+      {
+        node->m_worldTransform,
+        m_camera->getViewMatrix(),
+        m_camera->getProjectionMatrix(),
+        m_camera->getPosition()
+      };
+      
+      node->m_uniformBuffers.upload(imageIndex, ubo);
     }
 
     // Check if a previous frame is using the current image.
@@ -229,8 +229,10 @@ namespace RX
 
   void Api::setNodes(const std::vector<std::shared_ptr<GeometryNodeBase>>& nodes)
   {
-    m_nodes.erase(m_nodes.begin(), m_nodes.end());
-    
+    //m_nodes.erase(m_nodes.begin(), m_nodes.end());
+    m_nodes.clear();
+    m_nodes.reserve(maxNodes);
+
     for (const auto& node : nodes)
       pushNode(node, false);
 
@@ -271,9 +273,7 @@ namespace RX
       if (node->m_modelPath.empty())
         continue;
 
-      auto it = m_models.find(node->m_modelPath);
-      RX_ASSERT((it != m_models.end()), "Can not upload uniform buffer because node does not have a (valid) model.");
-      it->second->m_uniformBuffers.destroy();
+      node->m_uniformBuffers.destroy();
     }
 
     //m_descriptorPool.destroy();
@@ -625,9 +625,6 @@ namespace RX
 
     auto model = it->second;
 
-    if (model->m_initialized)
-      return;
-
     static auto queueIndices = m_queueManager.getUniqueQueueIndices({ GRAPHICS, TRANSFER });
     static auto queue = queueIndices.size() > 1 ? m_queueManager.getQueue(TRANSFER, queueIndices[1])->get() : m_queueManager.getQueue(GRAPHICS)->get();
 
@@ -657,13 +654,18 @@ namespace RX
 
     SwapchainUpdateDescriptorSetInfo descriptorSetUpdateInfo{ };
 
-    vertexBufferInfo.vertices = model->m_vertices;
-    model->m_vertexBuffer.initialize(vertexBufferInfo);
+    if (!model->m_initialized)
+    {
+      vertexBufferInfo.vertices = model->m_vertices;
+      model->m_vertexBuffer.initialize(vertexBufferInfo);
 
-    indexBufferInfo.indices = model->m_indices;
-    model->m_indexBuffer.initialize(indexBufferInfo);
+      indexBufferInfo.indices = model->m_indices;
+      model->m_indexBuffer.initialize(indexBufferInfo);
+      
+      model->m_initialized = true;
+    }
 
-    model->m_uniformBuffers.initialize(uniformBufferInfo);
+    node->m_uniformBuffers.initialize(uniformBufferInfo);
 
     // TODO: add support for multiple textures.
     auto diffuseIter = m_textures.find(node->m_material.m_diffuseTexture);
@@ -674,12 +676,10 @@ namespace RX
     }
 
     descriptorSetUpdateInfo.descriptorPool = m_descriptorPool.get();
-    descriptorSetUpdateInfo.uniformBuffers = model->m_uniformBuffers.getRaw();
+    descriptorSetUpdateInfo.uniformBuffers = node->m_uniformBuffers.getRaw();
 
     model->m_descriptorSets.initialize(descriptorSetInfo);
     model->m_descriptorSets.update(descriptorSetUpdateInfo);
-
-    model->m_initialized = true;
   }
 
   void Api::initModels(bool isNew)
@@ -735,7 +735,7 @@ namespace RX
         model->m_indexBuffer.initialize(indexBufferInfo);
       }
 
-      model->m_uniformBuffers.initialize(uniformBufferInfo);
+      node->m_uniformBuffers.initialize(uniformBufferInfo);
 
       // TODO: add support for multiple textures.
       auto diffuseIter = m_textures.find(node->m_material.m_diffuseTexture);
@@ -746,7 +746,7 @@ namespace RX
       }
 
       descriptorSetUpdateInfo.descriptorPool = m_descriptorPool.get();
-      descriptorSetUpdateInfo.uniformBuffers = model->m_uniformBuffers.getRaw();
+      descriptorSetUpdateInfo.uniformBuffers = node->m_uniformBuffers.getRaw();
 
       model->m_descriptorSets.initialize(descriptorSetInfo);
       model->m_descriptorSets.update(descriptorSetUpdateInfo);
@@ -754,7 +754,7 @@ namespace RX
       model->m_initialized = true;
     }
 
-    //m_raytraceBuilder.initAccelerationStructures(m_models);
+    m_raytraceBuilder.initAccelerationStructures(m_models);
   }
 
   void Api::initSwapchainCmdBuffers()
@@ -799,6 +799,19 @@ namespace RX
   {
     RX_LOG("Started recording.");
 
+    /*
+    std::unordered_map<std::string, uint32_t> models;
+    for (const auto& node : m_nodes)
+    {
+      auto res = models.insert({ node->m_modelPath, 1 });
+      if (!res.second)
+      {
+        auto it = models.find(node->m_modelPath);
+        ++(it->second);
+      }
+    }
+    */
+
     // Set up render pass begin info
     RenderPassBeginInfo renderPassBeginInfo{ };
     renderPassBeginInfo.renderArea = { 0, 0, m_swapchain.getExtent() };
@@ -842,9 +855,12 @@ namespace RX
           continue;
 
         auto it = m_models.find(node->m_modelPath);
-        RX_ASSERT((it != m_models.end()), "Can not upload uniform buffer because node does not have a (valid) model.");
+        RX_ASSERT((it != m_models.end()), "Can not draw model because it was not found.");
 
         auto model = it->second;
+
+        //auto it2 = models.find(model->m_path);
+        //RX_ASSERT((it2 != models.end()), "Can not draw model because it was not found.");
 
         vk::Buffer vertexBuffers[] = { model->m_vertexBuffer.get() };
         vk::DeviceSize offsets[] = { 0 };
@@ -871,9 +887,11 @@ namespace RX
           0, 
           nullptr); // CMD
 
+        //std::cout << it2->first << ": " << it2->second << std::endl;
+
         m_swapchainCmdBuffers.get(imageIndex).drawIndexed(
           model->m_indexBuffer.getCount(),
-          1,
+          1, //it2->second,
           0,
           0, 
           0

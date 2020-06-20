@@ -34,6 +34,8 @@ namespace RX
 
     std::string m_modelPath;
     Material m_material;
+
+    UniformBuffer m_uniformBuffers;
   };
 }
 

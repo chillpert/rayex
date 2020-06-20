@@ -1,5 +1,6 @@
 #include "Buffer.hpp"
 #include "CommandBuffer.hpp"
+#include "Memory.hpp"
 
 namespace RX
 {
@@ -51,7 +52,7 @@ namespace RX
     vk::MemoryAllocateInfo allocInfo;
     allocInfo.pNext = m_info.pNextMemory;
     allocInfo.allocationSize = memRequirements.size;
-    allocInfo.memoryTypeIndex = findMemoryType(m_info.physicalDevice, memRequirements.memoryTypeBits, m_info.memoryProperties);
+    allocInfo.memoryTypeIndex = Memory::findType(m_info.physicalDevice, memRequirements.memoryTypeBits, m_info.memoryProperties);
     
     /*
     TODO:
@@ -134,19 +135,5 @@ namespace RX
     commandBuffer.getFront().copyBufferToImage(m_buffer, image.get(), vk::ImageLayout::eTransferDstOptimal, 1, &region); // CMD
 
     commandBuffer.end();
-  }
-
-  uint32_t Buffer::findMemoryType(vk::PhysicalDevice physicalDevice, uint32_t types, vk::MemoryPropertyFlags properties)
-  {
-    static vk::PhysicalDeviceMemoryProperties memoryProperties = physicalDevice.getMemoryProperties();
-
-    for (uint32_t i = 0; i < memoryProperties.memoryTypeCount; ++i)
-    {
-      if (types & (1 << i) && (memoryProperties.memoryTypes[i].propertyFlags & properties) == properties)
-        return i;
-    }
-
-    RX_ERROR("Failed to find suitable memory type");
-    return uint32_t();
   }
 }

@@ -22,7 +22,7 @@ namespace RX
 
   }
 
-  void RaytraceBuilder::initAccelerationStructures(const std::unordered_set<std::shared_ptr<Model>> models)
+  void RaytraceBuilder::initAccelerationStructures(const std::unordered_map<std::string, std::shared_ptr<Model>>& models)
   {
     //initBottomLevelAS(models);
     //initTopLevelAS(models);
@@ -35,7 +35,7 @@ namespace RX
     bottomLevelASInfo.flags = vk::BuildAccelerationStructureFlagBitsKHR::ePreferFastTrace;
     bottomLevelASInfo.queue = m_info.queue;
 
-    initBottomLevelAS_(bottomLevelASInfo, models);
+    initBottomLevelAS_(bottomLevelASInfo, models, m_blas);
   }
 
   void RaytraceBuilder::initDescriptorSet()
@@ -65,23 +65,6 @@ namespace RX
 
     m_descriptorSet.initialize(setInfo);
   }
-
-/*
-  void RaytraceBuilder::initBottomLevelAS(const std::vector<std::shared_ptr<Model>> models)
-  {
-    std::vector<BottomLevelAS> allBlas;
-    allBlas.reserve(models.size());
-    for (const auto& model : models)
-    {
-      auto blas = objToBlas(model);
-
-      // We could add more geometry in each BLAS, but we add only one for now
-      allBlas.emplace_back(blas);
-    }
-
-    buildBottomLevelAS(allBlas, vk::BuildAccelerationStructureFlagBitsKHR::ePreferFastTrace);
-  }
-*/
 
 /*
   void RaytraceBuilder::initTopLevelAS(const std::vector<std::shared_ptr<Model>> models)

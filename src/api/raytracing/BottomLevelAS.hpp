@@ -26,19 +26,16 @@ namespace RX
 
     inline BottomLevelASInfo& getInfo() { return m_info; }
 
-    friend void initBottomLevelAS_(BottomLevelASInfo& info, const std::unordered_set<std::shared_ptr<Model>>& models);
-
-    BottomLevelAS& operator=(const std::shared_ptr<Model> model);
-    friend void wavefrontToBottomLevelAS(BottomLevelAS& blas, std::shared_ptr<Model> model);
+    // Creates a single bottom level AS.
+    void initialize(BottomLevelASInfo& info, const std::shared_ptr<Model> model, std::vector<BottomLevelAS>& blas);
+    // Creates bottom level AS for all given models.
+    friend void initBottomLevelAS_(BottomLevelASInfo& info, const std::unordered_map<std::string, std::shared_ptr<Model>>& models, std::vector<BottomLevelAS>& blas_);
 
   private:
     BottomLevelASInfo m_info;
 
-    vk::AccelerationStructureKHR accelerationStructure;
-
-    std::vector<vk::AccelerationStructureCreateGeometryTypeInfoKHR> asCreateGeometryInfo;
-    std::vector<vk::AccelerationStructureGeometryKHR> asGeometry;
-    std::vector<vk::AccelerationStructureBuildOffsetInfoKHR> asBuildOffsetInfo;
+    vk::AccelerationStructureKHR as;
+    vk::DeviceMemory asMemory;
   };
 }
 

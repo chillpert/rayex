@@ -43,10 +43,14 @@ namespace RX
     
     // Create a single bottom level acceleration structure.
     m_tlas.initialize(topLevelASInfo);
+
+    // Create descriptor set.
+    initDescriptorSet();
   }
 
   void RaytraceBuilder::initDescriptorSet()
   {
+    // Init pool.
     m_bindings = { 
       { 0, vk::DescriptorType::eAccelerationStructureKHR, 1, vk::ShaderStageFlagBits::eRaygenKHR | vk::ShaderStageFlagBits::eClosestHitKHR },
       { 1, vk::DescriptorType::eStorageImage, 1, vk::ShaderStageFlagBits::eRaygenKHR }
@@ -55,21 +59,53 @@ namespace RX
     DescriptorPoolInfo poolInfo{ };
     poolInfo.device = m_info.device;
     poolInfo.poolSizes = { { vk::DescriptorType::eAccelerationStructureKHR, 1 }, { vk::DescriptorType::eStorageImage, 1 } };
-    poolInfo.maxSets = 2;
+    poolInfo.maxSets = 1;
 
     m_descriptorPool.initialize(poolInfo);
 
+    // Init descriptor set layout.
     DescriptorSetLayoutInfo layoutInfo{ };
     layoutInfo.device = m_info.device;
     layoutInfo.layoutBindings = m_bindings;
 
     m_descriptorSetLayout.initialize(layoutInfo);
 
+    // Init descriptor set.
     DescriptorSetInfo setInfo{ };
     setInfo.device = m_info.device;
     setInfo.pool = m_descriptorPool.get();
-    setInfo.layouts = std::vector<vk::DescriptorSetLayout>(1, m_descriptorSetLayout.get());
+    setInfo.layouts = { m_descriptorSetLayout.get() };
 
     m_descriptorSet.initialize(setInfo);
+
+    // Create the storage image.
+    ImageInfo imageInfo{ };
+    imageInfo.physicalDevice = m_info.physicalDevice;
+    imageInfo.device = m_info.device;
+    imageInfo.usage = vk::ImageUsageFlagBits::eStorage;
+    
+
+    vk::Extent3D extent;
+    extent.width = 900;
+    extent.height = 600;
+    extent.depth = 1;
+    imageInfo.extent = extent;
+
+    Image storageImage(imageInfo);
+
+    ImageViewInfo imageViewInfo;
+    imageViewInfo.device = m_info.device;
+    imageViewInfo.image = storageImage.get();
+    imageViewInfo.format = storageImage.getInfo().format;
+
+    ImageView storageImageView(imageViewInfo);
+
+    // Update descriptor set.
+    UpdateRaytracingDescriptorSetInfo updateInfo{ };
+    updateInfo.tlas = m_tlas.get();
+    updateInfo.storageImageView = storageImageView.get(); // TODO: what to put here?
+    updateInfo.bindings = m_bindings;
+
+    m_descriptorSet.update(updateInfo);
   }
 }

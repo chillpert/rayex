@@ -24,6 +24,7 @@ namespace RX
     ~BottomLevelAS();
     void destroy();
 
+    inline vk::AccelerationStructureKHR& get() { return m_as; }
     inline BottomLevelASInfo& getInfo() { return m_info; }
 
     // Creates a single bottom level AS.

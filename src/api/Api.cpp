@@ -872,35 +872,36 @@ namespace RX
         vk::DeviceSize offsets[] = { 0 };
 
         m_swapchainCmdBuffers.get(imageIndex).bindVertexBuffers(
-          0, 
-          1, 
+          0, // first binding
+          1, // binding count
           vertexBuffers,
           offsets
         ); // CMD
 
         m_swapchainCmdBuffers.get(imageIndex).bindIndexBuffer(
           model->m_indexBuffer.get(),
-          0, 
+          0, // offset
           model->m_indexBuffer.getType()
         ); // CMD
 
         m_swapchainCmdBuffers.get(imageIndex).bindDescriptorSets(
           vk::PipelineBindPoint::eGraphics, 
           m_pipeline.getLayout(),
-          0,
-          1,
-          &model->m_descriptorSets.get()[imageIndex], 
-          0, 
-          nullptr); // CMD
+          0, // first set
+          1, // descriptor set count
+          &model->m_descriptorSets.get()[imageIndex], // descriptor sets
+          0, // dynamic offset count
+          nullptr // dynamic offsets
+        ); // CMD
 
         //std::cout << it2->first << ": " << it2->second << std::endl;
 
         m_swapchainCmdBuffers.get(imageIndex).drawIndexed(
-          model->m_indexBuffer.getCount(),
-          1, //it2->second,
-          0,
-          0, 
-          0
+          model->m_indexBuffer.getCount(), // index count
+          1, //it2->second, // instance count
+          0, // first index
+          0, // vertex offset
+          0 // first instance
         ); // CMD
       }
 

@@ -21,6 +21,7 @@ namespace RX
     ~TopLevelAS();
     void destroy();
 
+    inline vk::AccelerationStructureKHR& get() { return m_as; }
     inline TopLevelASInfo& getInfo() { return m_info; }
 
     // Creates top level AS for all given models.

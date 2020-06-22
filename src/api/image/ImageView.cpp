@@ -2,6 +2,11 @@
 
 namespace RX
 {
+  ImageView::ImageView(ImageViewInfo& info)
+  {
+    initialize(info);
+  }
+
   ImageView::~ImageView()
   {
     if (m_imageView)

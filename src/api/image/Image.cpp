@@ -5,6 +5,11 @@
 
 namespace RX
 {
+  Image::Image(ImageInfo& info)
+  {
+    initialize(info);
+  }
+
   Image::~Image()
   {
     if (m_image)

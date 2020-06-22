@@ -27,6 +27,8 @@ namespace RX
   class Image
   {
   public:
+    Image() = default;
+    Image(ImageInfo& info);
     ~Image();
 
     inline vk::Image get() { return m_image; }

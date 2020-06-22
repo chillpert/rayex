@@ -18,6 +18,8 @@ namespace RX
   class ImageView
   {
   public:
+    ImageView() = default;
+    ImageView(ImageViewInfo& info);
     ~ImageView();
 
     inline vk::ImageView get() { return m_imageView; }

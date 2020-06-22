@@ -24,16 +24,25 @@ namespace RX
     vk::DescriptorSetLayout descriptorSetLayout;
   };
 
+  struct UpdateRaytracingDescriptorSetInfo
+  {
+    vk::AccelerationStructureKHR tlas;
+    vk::ImageView storageImageView;
+    std::vector<vk::DescriptorSetLayoutBinding> bindings;
+  };
+
   class DescriptorSet
   {
   public:
     RX_API ~DescriptorSet();
 
-    inline std::vector<vk::DescriptorSet> get() { return m_sets; }
+    inline std::vector<vk::DescriptorSet>& get() { return m_sets; }
+    inline vk::DescriptorSet& get(size_t index) { return m_sets[index]; }
     inline DescriptorSetInfo& getInfo() { return m_info; }
 
     void initialize(DescriptorSetInfo& info);
     void update(SwapchainUpdateDescriptorSetInfo& info);
+    void update(UpdateRaytracingDescriptorSetInfo& info);
     void destroy();
 
   private:

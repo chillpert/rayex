@@ -2,8 +2,6 @@
 
 using namespace RX;
 
-std::shared_ptr<Renderer> renderer;
-
 float speed = 0.0f;
 
 namespace Key

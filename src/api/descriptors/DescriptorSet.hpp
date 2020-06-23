@@ -12,6 +12,7 @@ namespace RX
   {
     vk::Device device;
     vk::DescriptorPool pool;
+    uint32_t setCount;
     std::vector<vk::DescriptorSetLayout> layouts;
   };
 
@@ -28,7 +29,6 @@ namespace RX
   {
     vk::AccelerationStructureKHR tlas;
     vk::ImageView storageImageView;
-    std::vector<vk::DescriptorSetLayoutBinding> bindings;
   };
 
   class DescriptorSet

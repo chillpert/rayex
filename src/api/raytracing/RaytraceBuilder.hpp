@@ -9,11 +9,13 @@
 #include "DescriptorSetLayout.hpp"
 #include "TopLevelAS.hpp"
 #include "BottomLevelAS.hpp"
+#include "Surface.hpp"
 
 namespace RX
 {
   struct RaytraceBuilderInfo
   {
+    Surface* surface;
     vk::Instance instance;
     vk::PhysicalDevice physicalDevice;
     vk::Device device;
@@ -59,8 +61,6 @@ namespace RX
 
     //DebugUtility m_debugUtil;
 
-    std::vector<vk::DescriptorSetLayoutBinding> m_bindings;
-    std::vector<vk::DescriptorBindingFlags> m_bindingFlags;
     DescriptorPool m_descriptorPool;
     DescriptorSetLayout m_descriptorSetLayout;
     DescriptorSet m_descriptorSet;

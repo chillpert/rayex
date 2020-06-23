@@ -37,7 +37,6 @@ namespace RX
     initPhysicalDevice();
     initQueues();
     initDevice();
-    initRayTracing();
     initRenderPass();
     initSwapchain();
     initSwapchainImageViews();
@@ -47,6 +46,7 @@ namespace RX
     initDepthBuffering();
     initSwapchainFramebuffers();
     initDescriptorPool();
+    initRayTracing();
     //initModels();
     initSwapchainCmdBuffers();
     initGui();
@@ -327,6 +327,7 @@ namespace RX
     info.physicalDevice = m_physicalDevice.get();
     info.device = m_device.get();
     info.queue = m_queueManager.getQueue(GRAPHICS);
+    info.surface = &m_surface;
 
     m_raytraceBuilder.initialize(info);
   }
@@ -651,6 +652,7 @@ namespace RX
     descriptorSetInfo.device = m_device.get();
     descriptorSetInfo.pool = m_descriptorPool.get();
     descriptorSetInfo.layouts = std::vector<vk::DescriptorSetLayout>(m_swapchain.getImages().size(), m_descriptorSetLayout.get());
+    descriptorSetInfo.setCount = static_cast<uint32_t>(descriptorSetInfo.layouts.size());
 
     SwapchainUpdateDescriptorSetInfo descriptorSetUpdateInfo{ };
 
@@ -710,6 +712,7 @@ namespace RX
     descriptorSetInfo.device = m_device.get();
     descriptorSetInfo.pool = m_descriptorPool.get();
     descriptorSetInfo.layouts = std::vector<vk::DescriptorSetLayout>(m_swapchain.getImages().size(), m_descriptorSetLayout.get());
+    descriptorSetInfo.setCount = static_cast<uint32_t>(descriptorSetInfo.layouts.size());
 
     SwapchainUpdateDescriptorSetInfo descriptorSetUpdateInfo{ };
 

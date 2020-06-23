@@ -50,23 +50,40 @@ namespace RX
 
   void RaytraceBuilder::initDescriptorSet()
   {
-    // Init pool.
-    m_bindings = { 
-      { 0, vk::DescriptorType::eAccelerationStructureKHR, 1, vk::ShaderStageFlagBits::eRaygenKHR | vk::ShaderStageFlagBits::eClosestHitKHR },
-      { 1, vk::DescriptorType::eStorageImage, 1, vk::ShaderStageFlagBits::eRaygenKHR }
+    std::vector<vk::DescriptorPoolSize> poolSizes =
+    {
+      { vk::DescriptorType::eAccelerationStructureKHR, 1 },
+      { vk::DescriptorType::eStorageImage, 1 },
+      { vk::DescriptorType::eUniformBuffer, 1 },
+      { vk::DescriptorType::eStorageBuffer, 2 }
     };
 
+    // Init descriptor pool.
     DescriptorPoolInfo poolInfo{ };
     poolInfo.device = m_info.device;
-    poolInfo.poolSizes = { { vk::DescriptorType::eAccelerationStructureKHR, 1 }, { vk::DescriptorType::eStorageImage, 1 } };
+    poolInfo.poolSizes = poolSizes;
     poolInfo.maxSets = 1;
 
     m_descriptorPool.initialize(poolInfo);
 
     // Init descriptor set layout.
+    vk::DescriptorSetLayoutBinding asLayoutBinding;
+    asLayoutBinding.binding = 0;
+    asLayoutBinding.descriptorType = vk::DescriptorType::eAccelerationStructureKHR;
+    asLayoutBinding.descriptorCount = 1;
+    asLayoutBinding.stageFlags = vk::ShaderStageFlagBits::eRaygenKHR | vk::ShaderStageFlagBits::eClosestHitKHR;
+    asLayoutBinding.pImmutableSamplers = nullptr;
+
+    vk::DescriptorSetLayoutBinding storageImageLayoutBinding;
+    storageImageLayoutBinding.binding = 1;
+    storageImageLayoutBinding.descriptorType = vk::DescriptorType::eStorageImage;
+    storageImageLayoutBinding.descriptorCount = 1;
+    storageImageLayoutBinding.stageFlags = vk::ShaderStageFlagBits::eRaygenKHR;
+    storageImageLayoutBinding.pImmutableSamplers = nullptr;
+
     DescriptorSetLayoutInfo layoutInfo{ };
     layoutInfo.device = m_info.device;
-    layoutInfo.layoutBindings = m_bindings;
+    layoutInfo.layoutBindings = { asLayoutBinding, storageImageLayoutBinding };
 
     m_descriptorSetLayout.initialize(layoutInfo);
 
@@ -74,32 +91,35 @@ namespace RX
     DescriptorSetInfo setInfo{ };
     setInfo.device = m_info.device;
     setInfo.pool = m_descriptorPool.get();
+    setInfo.setCount = 1;
     setInfo.layouts = { m_descriptorSetLayout.get() };
-
+    
     m_descriptorSet.initialize(setInfo);
+    
+    // Storage Image
+    {
+      // Create the storage image.
+      ImageInfo imageInfo{ };
+      imageInfo.physicalDevice = m_info.physicalDevice;
+      imageInfo.device = m_info.device;
+      imageInfo.usage = vk::ImageUsageFlagBits::eStorage;
+      imageInfo.format = m_info.surface->getInfo().format;
+      imageInfo.extent = vk::Extent3D(m_info.surface->getCapabilities().currentExtent, 1);
 
-    // Create the storage image.
-    ImageInfo imageInfo{ };
-    imageInfo.physicalDevice = m_info.physicalDevice;
-    imageInfo.device = m_info.device;
-    imageInfo.usage = vk::ImageUsageFlagBits::eStorage;
-    imageInfo.format = vk::Format::eR8G8B8A8Unorm;
-    imageInfo.extent = vk::Extent3D(900, 600, 1);
+      m_storageImage.initialize(imageInfo);
 
-    m_storageImage.initialize(imageInfo);
+      ImageViewInfo imageViewInfo;
+      imageViewInfo.device = m_info.device;
+      imageViewInfo.image = m_storageImage.get();
+      imageViewInfo.format = m_storageImage.getInfo().format;
 
-    ImageViewInfo imageViewInfo;
-    imageViewInfo.device = m_info.device;
-    imageViewInfo.image = m_storageImage.get();
-    imageViewInfo.format = m_storageImage.getInfo().format;
-
-    m_storageImageView.initialize(imageViewInfo);
+      m_storageImageView.initialize(imageViewInfo);
+    } 
 
     // Update descriptor set.
     UpdateRaytracingDescriptorSetInfo updateInfo{ };
     updateInfo.tlas = m_tlas.get();
     updateInfo.storageImageView = m_storageImageView.get(); // TODO: what to put here?
-    updateInfo.bindings = m_bindings;
 
     m_descriptorSet.update(updateInfo);
   }

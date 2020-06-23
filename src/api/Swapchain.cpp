@@ -28,8 +28,8 @@ namespace RX
       minImageCount = surfaceCapabilities.maxImageCount;
 
     createInfo.minImageCount = minImageCount;
-    createInfo.imageFormat = m_info.surface->getInfo().format;
-    createInfo.imageColorSpace = m_info.surface->getInfo().colorSpace;
+    createInfo.imageFormat = m_info.surface->getFormat();
+    createInfo.imageColorSpace = m_info.surface->getColorSpace();
     createInfo.preTransform = surfaceCapabilities.currentTransform;
     
     // Prefer opaque bit over any other composite alpha value.
@@ -84,7 +84,7 @@ namespace RX
     else
       createInfo.imageSharingMode = vk::SharingMode::eExclusive;
 
-    createInfo.presentMode = m_info.surface->getInfo().presentMode;
+    createInfo.presentMode = m_info.surface->getPresentMode();
 
     m_swapchain = m_info.device.createSwapchainKHR(createInfo);
     if (!m_swapchain)

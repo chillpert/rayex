@@ -21,7 +21,6 @@ namespace RX
     ~CommandPool();
     
     inline vk::CommandPool get() { return m_commandPool; }
-    inline CommandPoolInfo& getInfo() { return m_info; }
 
     void initialize(CommandPoolInfo& info);
     void destroy();

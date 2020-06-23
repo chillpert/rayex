@@ -32,8 +32,9 @@ namespace RX
     ~Image();
 
     inline vk::Image get() { return m_image; }
+    inline vk::Extent3D getExtent() const { return m_info.extent; }
     inline vk::DeviceMemory& getMemory() { return m_memory; }
-    inline ImageInfo& getInfo() { return m_info; }
+    inline vk::Format getFormat() const { return m_info.format; }
 
     void initialize(ImageInfo& info);
     void destroy();

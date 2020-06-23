@@ -34,8 +34,8 @@ namespace RX
     stagingInfo.usage = vk::BufferUsageFlagBits::eTransferSrc;
     stagingInfo.sharingMode = vk::SharingMode::eConcurrent;
     stagingInfo.memoryProperties = vk::MemoryPropertyFlagBits::eHostVisible | vk::MemoryPropertyFlagBits::eHostCoherent;
-    stagingInfo.stagingQueue = m_info.queue;
-    stagingInfo.stagingCommandPool = m_info.commandPool;
+    stagingInfo.queue = m_info.queue;
+    stagingInfo.commandPool = m_info.commandPool;
     stagingInfo.queueFamilyIndices = m_info.queueIndices;
 
     Buffer stagingBuffer(stagingInfo);
@@ -58,11 +58,11 @@ namespace RX
 
     ImageViewInfo imageViewInfo{ };
     imageViewInfo.device = m_info.device;
-    imageViewInfo.format = m_image.getInfo().format;
+    imageViewInfo.format = m_image.getFormat();
     imageViewInfo.image = m_image.get();
     m_imageView.initialize(imageViewInfo);
 
-    m_sampler.initialize(m_info.device);
+    m_sampler.initialize(SamplerInfo{ m_info.device });
   }
 
   void Texture::destroy()

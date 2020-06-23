@@ -8,9 +8,9 @@ namespace RX
       destroy();
   }
 
-  void Sampler::initialize(vk::Device device)
+  void Sampler::initialize(SamplerInfo& info)
   {
-    m_device = device;
+    m_info = info;
 
     vk::SamplerCreateInfo createInfo;
     createInfo.magFilter = vk::Filter::eLinear;
@@ -26,14 +26,14 @@ namespace RX
     createInfo.compareOp = vk::CompareOp::eAlways;
     createInfo.mipmapMode = vk::SamplerMipmapMode::eLinear;
 
-    m_sampler = m_device.createSampler(createInfo);
+    m_sampler = m_info.device.createSampler(createInfo);
     if (!m_sampler)
       RX_ERROR("Failed to create sampler.");
   }
 
   void Sampler::destroy()
   {
-    m_device.destroySampler(m_sampler);
+    m_info.device.destroySampler(m_sampler);
     m_sampler = nullptr;
   }
 }

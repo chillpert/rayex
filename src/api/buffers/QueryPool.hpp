@@ -21,7 +21,6 @@ namespace RX
     ~QueryPool();
      
     inline vk::QueryPool get() { return m_queryPool; }
-    inline QueryPoolInfo& getInfo() { return m_info; }
 
     void initialize(QueryPoolInfo& info);
     void destroy();

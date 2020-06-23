@@ -28,11 +28,11 @@ namespace RX
     ~Swapchain();
 
     inline vk::SwapchainKHR get() { return m_swapchain; }    
-    inline SwapchainInfo& getInfo() { return m_info; }
 
     inline vk::Extent2D getExtent() const { return m_extent; }
     inline vk::Image& getImage(size_t index) { return m_images[index]; }
     inline std::vector<vk::Image>& getImages() { return m_images; }
+    inline vk::ImageAspectFlags getImageAspect() const { return m_info.imageAspect; }
 
     void initialize(SwapchainInfo& info);
     void destroy();

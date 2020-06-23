@@ -27,7 +27,7 @@ namespace RX
     inline vk::Image getImage() { return m_image.get(); }
     inline vk::ImageView getImageView() { return m_imageView.get(); }
     inline vk::Sampler getSampler() { return m_sampler.get(); }
-    inline TextureInfo& getInfo() { return m_info; }
+    inline const std::string& getPath() const { return m_info.path; }
 
     void initialize(TextureInfo& info);
     void destroy();
@@ -44,7 +44,7 @@ namespace std
 {
   template<> struct hash<RX::Texture>
   {
-    size_t operator()(const std::shared_ptr<RX::Texture> texture) const { return hash<std::string>()(texture->getInfo().path); }
+    size_t operator()(const std::shared_ptr<RX::Texture> texture) const { return hash<std::string>()(texture->getPath()); }
   };
 }
 

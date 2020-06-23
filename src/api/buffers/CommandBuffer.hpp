@@ -32,7 +32,6 @@ namespace RX
     inline std::vector<vk::CommandBuffer>& get() { return m_commandBuffers; }
     inline vk::CommandBuffer get(size_t index) { return m_commandBuffers[index]; }
     inline vk::CommandBuffer getFront() { return m_commandBuffers[0]; }
-    inline CommandBufferInfo& getInfo() { return m_info; }
 
     void initialize(CommandBufferInfo& info);
     void free();

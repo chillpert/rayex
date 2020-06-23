@@ -27,7 +27,6 @@ namespace RX
     ~Shader();
 
     inline vk::ShaderModule get() { return m_shaderModule; }
-    inline ShaderInfo getInfo() { return m_info; }
     inline vk::DescriptorSetLayoutBinding getDescriptorSetLayoutBinding() const { return { m_info.binding, m_info.descriptorType, m_info.descriptorCount, m_info.stageFlags, m_info.pImmutableSamplers }; }
 
     void initialize(ShaderInfo& info);

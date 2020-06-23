@@ -27,7 +27,6 @@ namespace RX
     }
 
     inline uint32_t get() { return m_dummy; }
-    inline DummyInfo getInfo() { return m_info; }
 
     void initialize(DummyInfo& info)
     {

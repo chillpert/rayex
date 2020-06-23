@@ -5,6 +5,11 @@
 
 namespace RX
 {
+  struct SamplerInfo
+  {
+    vk::Device device;
+  };
+
   class Sampler
   {
   public:
@@ -12,12 +17,13 @@ namespace RX
 
     inline vk::Sampler get() const { return m_sampler; }
 
-    void initialize(vk::Device device);
+    void initialize(SamplerInfo& info);
     void destroy();
 
   private:
     vk::Sampler m_sampler;
-    vk::Device m_device;
+    
+    SamplerInfo m_info;
   };  
 }
 

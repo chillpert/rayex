@@ -23,7 +23,6 @@ namespace RX
     inline vk::Buffer get() const { return m_buffer.get(); }
     inline uint32_t getCount() { return m_count; }
     inline vk::IndexType getType() { return m_indexType; }
-    inline IndexBufferInfo<T> getInfo() { return m_info; }
 
     void initialize(IndexBufferInfo<T>& info);
   
@@ -61,12 +60,11 @@ namespace RX
     stagingInfo.usage = vk::BufferUsageFlagBits::eTransferSrc | vk::BufferUsageFlagBits::eShaderDeviceAddress;
     stagingInfo.sharingMode = vk::SharingMode::eConcurrent;
     stagingInfo.memoryProperties = vk::MemoryPropertyFlagBits::eHostVisible | vk::MemoryPropertyFlagBits::eHostCoherent;
-    stagingInfo.stagingCommandPool = m_info.commandPool;
+    stagingInfo.commandPool = m_info.commandPool;
     
     vk::MemoryAllocateFlagsInfo allocateFlags(vk::MemoryAllocateFlagBitsKHR::eDeviceAddress);
     stagingInfo.pNextMemory = &allocateFlags;
-    
-    stagingInfo.stagingQueue = m_info.queue;
+    stagingInfo.queue = m_info.queue;
     stagingInfo.queueFamilyIndices = m_info.queueIndices;
 
     // Set up the actual index buffer.

@@ -88,8 +88,8 @@ namespace RX
   {
     CommandBufferInfo commandBufferInfo{ };
     commandBufferInfo.device = m_info.device;
-    commandBufferInfo.commandPool = m_info.stagingCommandPool;
-    commandBufferInfo.queue = m_info.stagingQueue;
+    commandBufferInfo.commandPool = m_info.commandPool;
+    commandBufferInfo.queue = m_info.queue;
     commandBufferInfo.freeAutomatically = true;
     commandBufferInfo.componentName = "command buffer for copying a buffer to another buffer";
     
@@ -109,9 +109,9 @@ namespace RX
   void Buffer::copyToImage(Image& image) const
   {
     CommandBufferInfo commandBufferInfo{ };
-    commandBufferInfo.device = image.getInfo().device;
-    commandBufferInfo.commandPool = image.getInfo().commandPool;
-    commandBufferInfo.queue = image.getInfo().queue;
+    commandBufferInfo.device = m_info.device;
+    commandBufferInfo.commandPool = m_info.commandPool;
+    commandBufferInfo.queue = m_info.queue;
     // TODO: assert that this queue has transfer capbalitites
     commandBufferInfo.freeAutomatically = true;
     commandBufferInfo.componentName = "command buffer for copying a buffer to an image";
@@ -130,7 +130,7 @@ namespace RX
     region.imageSubresource.baseArrayLayer = 0;
     region.imageSubresource.layerCount = 1;
     region.imageOffset = vk::Offset3D{ 0, 0, 0 };
-    region.imageExtent = image.getInfo().extent;
+    region.imageExtent = image.getExtent();
 
     commandBuffer.getFront().copyBufferToImage(m_buffer, image.get(), vk::ImageLayout::eTransferDstOptimal, 1, &region); // CMD
 

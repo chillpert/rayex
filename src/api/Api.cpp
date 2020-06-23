@@ -273,7 +273,7 @@ namespace RX
       if (node->m_modelPath.empty())
         continue;
 
-      node->m_uniformBuffers.destroy();
+      //node->m_uniformBuffers.destroy();
     }
 
     //m_descriptorPool.destroy();
@@ -296,18 +296,19 @@ namespace RX
 
     if (m_gui != nullptr)
     {
-      m_gui->getInfo().minImageCount = m_surface.getCapabilities().minImageCount + 1;
-      m_gui->getInfo().imageCount = static_cast<uint32_t>(m_swapchain.getImages().size());
-      m_gui->getInfo().swapchainImageFormat = m_surface.getInfo().format;
-      m_gui->getInfo().swapchainImageExtent = m_swapchain.getExtent();
+      GuiRecreateInfo guiRecreateInfo{ };
+      guiRecreateInfo.minImageCount = m_surface.getCapabilities().minImageCount + 1;
+      guiRecreateInfo.imageCount = static_cast<uint32_t>(m_swapchain.getImages().size());
+      guiRecreateInfo.swapchainImageFormat = m_surface.getFormat();
+      guiRecreateInfo.swapchainImageExtent = m_swapchain.getExtent();
 
       std::vector<vk::ImageView> temp(m_swapchainImageViews.size());
 
       for (size_t i = 0; i < m_swapchainImageViews.size(); ++i)
         temp[i] = m_swapchainImageViews[i].get();
 
-      m_gui->getInfo().swapchainImageViews = temp;
-      m_gui->recreate();
+      guiRecreateInfo.swapchainImageViews = temp;
+      m_gui->recreate(guiRecreateInfo);
     }
 
     // Update the camera screen size to avoid image stretching.
@@ -411,7 +412,7 @@ namespace RX
   void Api::initRenderPass()
   {
     vk::AttachmentDescription colorAttachmentDescription;
-    colorAttachmentDescription.format = m_surface.getInfo().format;
+    colorAttachmentDescription.format = m_surface.getFormat();
     colorAttachmentDescription.samples = vk::SampleCountFlagBits::e1;
     colorAttachmentDescription.loadOp = vk::AttachmentLoadOp::eClear;
     colorAttachmentDescription.storeOp = vk::AttachmentStoreOp::eStore;
@@ -486,8 +487,8 @@ namespace RX
       ImageViewInfo imageViewInfo{ };
       imageViewInfo.device = m_device.get();
       imageViewInfo.image = m_swapchain.getImage(i);
-      imageViewInfo.format = m_surface.getInfo().format;
-      imageViewInfo.subresourceRange.aspectMask = m_swapchain.getInfo().imageAspect;
+      imageViewInfo.format = m_surface.getFormat();
+      imageViewInfo.subresourceRange.aspectMask = m_swapchain.getImageAspect();
 
       m_swapchainImageViews[i].initialize(imageViewInfo);
     }
@@ -790,7 +791,7 @@ namespace RX
     guiInfo.queue = m_queueManager.getQueue(GRAPHICS)->get();
     guiInfo.minImageCount = m_surface.getCapabilities().minImageCount + 1;
     guiInfo.imageCount = static_cast<uint32_t>(m_swapchain.getImages().size());
-    guiInfo.swapchainImageFormat = m_surface.getInfo().format;
+    guiInfo.swapchainImageFormat = m_surface.getFormat();
     guiInfo.swapchainImageExtent = m_swapchain.getExtent();
 
     std::vector<vk::ImageView> temp(m_swapchainImageViews.size());
@@ -846,13 +847,13 @@ namespace RX
       m_swapchainCmdBuffers.get(imageIndex).bindPipeline(vk::PipelineBindPoint::eGraphics, m_pipeline.get()); // CMD
 
       // Dynamic states
-      vk::Viewport viewport = m_pipeline.getInfo().viewport;
+      vk::Viewport viewport = m_pipeline.getViewport();
       viewport.width = m_window->getProperties().getWidth();
       viewport.height = m_window->getProperties().getHeight();
 
       m_swapchainCmdBuffers.get(imageIndex).setViewport(0, 1, &viewport); // CMD
 
-      vk::Rect2D scissor = m_pipeline.getInfo().scissor;
+      vk::Rect2D scissor = m_pipeline.getScissor();
       scissor.extent = m_window->getExtent();
 
       m_swapchainCmdBuffers.get(imageIndex).setScissor(0, 1, &scissor); // CMD

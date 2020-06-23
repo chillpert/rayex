@@ -26,7 +26,6 @@ namespace RX
   public:
     inline std::vector<Buffer>& get() { return m_buffers; }
     std::vector<vk::Buffer> getRaw();
-    inline UniformBufferInfo& getInfo() { return m_info; }
 
     void initialize(UniformBufferInfo& info);
     void destroy();

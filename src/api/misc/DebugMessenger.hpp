@@ -18,7 +18,6 @@ namespace RX
     ~DebugMessenger();
 
     inline VkDebugUtilsMessengerEXT get() { return m_debugMessenger; }
-    inline DebugMessengerInfo& getInfo() { return m_info; }
 
     void initialize(DebugMessengerInfo& info);
 

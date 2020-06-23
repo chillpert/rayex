@@ -38,7 +38,6 @@ namespace RX
 
     inline std::vector<vk::DescriptorSet>& get() { return m_sets; }
     inline vk::DescriptorSet& get(size_t index) { return m_sets[index]; }
-    inline DescriptorSetInfo& getInfo() { return m_info; }
 
     void initialize(DescriptorSetInfo& info);
     void update(SwapchainUpdateDescriptorSetInfo& info);

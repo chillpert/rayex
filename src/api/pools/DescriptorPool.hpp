@@ -18,7 +18,6 @@ namespace RX
     RX_API ~DescriptorPool();
 
     inline vk::DescriptorPool get() { return m_pool; }
-    inline DescriptorPoolInfo& getInfo() { return m_info; }
 
     void initialize(DescriptorPoolInfo& info);
     void destroy();

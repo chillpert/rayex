@@ -28,12 +28,20 @@ namespace RX
     std::vector<vk::ImageView> swapchainImageViews;
   };
 
+  struct GuiRecreateInfo
+  {
+    uint32_t minImageCount;
+    uint32_t imageCount;
+    vk::Format swapchainImageFormat;
+    vk::Extent2D swapchainImageExtent;
+    std::vector<vk::ImageView> swapchainImageViews;
+  };
+
   class GuiBase
   {
   public:
     RX_API virtual ~GuiBase();
 
-    inline GuiInfo& getInfo() { return m_info; }
     inline CommandBuffer& getCommandBuffer() { return m_commandBuffers; }
 
     RX_API virtual void configure();
@@ -46,7 +54,7 @@ namespace RX
     void endRenderPass(int index);
 
     RX_API void destroy();
-    void recreate();
+    void recreate(GuiRecreateInfo& info);
 
   private:
     void initDescriptorPool();

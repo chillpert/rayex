@@ -25,6 +25,7 @@ namespace RX
 
   struct RaytracingPipelineInfo : public PipelineInfo
   {
+    std::vector<vk::DescriptorSetLayout> layouts;
 
   };
 
@@ -34,8 +35,9 @@ namespace RX
     ~Pipeline();
 
     inline vk::Pipeline get() { return m_pipeline; }
-    inline PipelineInfo& getInfo() { return m_info; }
     inline vk::PipelineLayout getLayout() { return m_layout; }
+    inline vk::Rect2D getScissor() const { return m_info.scissor; }
+    inline vk::Viewport getViewport() const { return m_info.viewport; }
 
     void initialize(RasterizationPipelineInfo& info);
     void initialize(RaytracingPipelineInfo& info);

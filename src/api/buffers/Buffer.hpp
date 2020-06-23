@@ -11,9 +11,8 @@ namespace RX
     vk::PhysicalDevice physicalDevice;
     vk::Device device;
 
-    // Staging
-    vk::CommandPool stagingCommandPool; // Optional, if there is no staging buffer involved.
-    vk::Queue stagingQueue; // Optional, if there is no staging buffer involved.
+    vk::CommandPool commandPool; // Optional, if there is no staging or copying involved.
+    vk::Queue queue; // Optional, if there is no staging or copying involved.
 
     // Buffer
     void* pNextBuffer = nullptr; // Optional
@@ -43,7 +42,6 @@ namespace RX
     inline vk::Buffer get() const { return m_buffer; }
     inline vk::DeviceMemory& getMemory() { return m_memory; }
     inline vk::DeviceSize getSize() const { return m_info.size; }
-    inline BufferCreateInfo& getInfo() { return m_info; }
 
     void initialize(BufferCreateInfo& createInfo);
 

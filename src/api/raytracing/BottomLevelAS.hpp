@@ -25,7 +25,6 @@ namespace RX
     void destroy();
 
     inline vk::AccelerationStructureKHR& get() { return m_as; }
-    inline BottomLevelASInfo& getInfo() { return m_info; }
 
     // Creates a single bottom level AS.
     void initialize(BottomLevelASInfo& info, const std::shared_ptr<Model> model, std::vector<BottomLevelAS>& blas);

@@ -103,7 +103,7 @@ namespace RX
       imageInfo.physicalDevice = m_info.physicalDevice;
       imageInfo.device = m_info.device;
       imageInfo.usage = vk::ImageUsageFlagBits::eStorage;
-      imageInfo.format = m_info.surface->getInfo().format;
+      imageInfo.format = m_info.surface->getFormat();
       imageInfo.extent = vk::Extent3D(m_info.surface->getCapabilities().currentExtent, 1);
 
       m_storageImage.initialize(imageInfo);
@@ -111,7 +111,7 @@ namespace RX
       ImageViewInfo imageViewInfo;
       imageViewInfo.device = m_info.device;
       imageViewInfo.image = m_storageImage.get();
-      imageViewInfo.format = m_storageImage.getInfo().format;
+      imageViewInfo.format = m_storageImage.getFormat();
 
       m_storageImageView.initialize(imageViewInfo);
     } 

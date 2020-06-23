@@ -15,9 +15,8 @@ namespace RX
     stagingInfo.usage = vk::BufferUsageFlagBits::eTransferSrc | vk::BufferUsageFlagBits::eShaderDeviceAddress;
     stagingInfo.sharingMode = vk::SharingMode::eConcurrent;
     stagingInfo.memoryProperties = vk::MemoryPropertyFlagBits::eHostVisible | vk::MemoryPropertyFlagBits::eHostCoherent;
-    stagingInfo.stagingCommandPool = m_info.commandPool;
-    
-    stagingInfo.stagingQueue = m_info.queue;
+    stagingInfo.commandPool = m_info.commandPool;
+    stagingInfo.queue = m_info.queue;
     stagingInfo.queueFamilyIndices = m_info.queueIndices;
 
     vk::MemoryAllocateFlagsInfo allocateFlags(vk::MemoryAllocateFlagBitsKHR::eDeviceAddress);

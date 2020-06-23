@@ -36,8 +36,6 @@ namespace RX
     };
 
   public:
-    inline RaytraceBuilderInfo& getInfo() { return m_info; }
-
     void initialize(RaytraceBuilderInfo& info);
     void destroy();
 

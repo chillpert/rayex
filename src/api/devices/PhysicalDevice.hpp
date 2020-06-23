@@ -18,7 +18,6 @@ namespace RX
     void initialize(PhysicalDeviceInfo& info);
 
     inline vk::PhysicalDevice get() { return m_physicalDevice; }
-    inline PhysicalDeviceInfo& getInfo() { return m_info; }
 
     inline vk::PhysicalDeviceProperties getProperties() const { return m_properties; }
     inline vk::PhysicalDeviceProperties2 getProperties2() const { return m_properties2; }

@@ -43,7 +43,6 @@ namespace RX
     ~RenderPass();
 
     inline VkRenderPass get() { return m_renderPass; }
-    inline RenderPassInfo& getInfo() { return m_info; }
     inline RenderPassBeginInfo& getBeginInfo() { return m_beginInfo; }
 
     void initialize(RenderPassInfo& info);

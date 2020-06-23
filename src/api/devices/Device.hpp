@@ -17,7 +17,6 @@ namespace RX
   {
   public:
     inline vk::Device get() { return m_device.get(); }
-    inline DeviceInfo& getInfo() { return m_info; }
 
     void initialize(DeviceInfo& info);
     void waitIdle();

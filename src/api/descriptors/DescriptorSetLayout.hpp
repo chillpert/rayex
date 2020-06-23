@@ -17,7 +17,6 @@ namespace RX
     ~DescriptorSetLayout();
 
     inline vk::DescriptorSetLayout get() { return m_layout; }
-    inline DescriptorSetLayoutInfo getInfo() { return m_info; }
 
     // Creates the layout of the descriptor set.
     void initialize(DescriptorSetLayoutInfo& info);

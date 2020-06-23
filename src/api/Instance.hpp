@@ -16,7 +16,6 @@ namespace RX
   {
   public:
     inline vk::Instance get() { return m_instance.get(); }
-    inline InstanceInfo& getInfo() { return m_info; }
 
     void initialize(InstanceInfo& info);
 

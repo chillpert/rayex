@@ -20,7 +20,6 @@ namespace RX
     ~Framebuffer();
 
 		inline vk::Framebuffer get() { return m_framebuffer; }
-		inline FramebufferInfo& getInfo() { return m_info; }
 
 		void initialize(FramebufferInfo& info);
     void destroy();

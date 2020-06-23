@@ -37,8 +37,6 @@ namespace RX
 
     std::vector<uint32_t> getAllFamilyIndicesOfType(QueueCapability type);
 
-    inline QueuesInfo& getInfo() { return m_info; }
-
     void retrieveAllHandles(vk::Device device);
 
     void print();

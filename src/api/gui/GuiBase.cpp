@@ -93,8 +93,14 @@ namespace RX
     m_commandBuffers.end(index);
   }
 
-  void GuiBase::recreate()
+  void GuiBase::recreate(GuiRecreateInfo& info)
   {
+    m_info.minImageCount = info.minImageCount;
+    m_info.imageCount = info.imageCount;
+    m_info.swapchainImageFormat = info.swapchainImageFormat;
+    m_info.swapchainImageExtent = info.swapchainImageExtent;
+    m_info.swapchainImageViews = info.swapchainImageViews;
+
     destroy();
 
     // Re-initialize

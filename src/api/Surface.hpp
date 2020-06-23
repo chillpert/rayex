@@ -20,9 +20,10 @@ namespace RX
     ~Surface();
 
     inline vk::SurfaceKHR get() { return m_surface; }
-    inline SurfaceInfo& getInfo() { return m_info; }
-    
-    inline vk::SurfaceCapabilitiesKHR getCapabilities() { return m_capabilities; }
+    inline vk::Format getFormat() const { return m_info.format; }
+    inline vk::ColorSpaceKHR getColorSpace() const { return m_info.colorSpace; }
+    inline vk::SurfaceCapabilitiesKHR getCapabilities() const { return m_capabilities; }
+    inline vk::PresentModeKHR getPresentMode() const { return m_info.presentMode; }
 
     void initialize(SurfaceInfo& info);
     void destroy();

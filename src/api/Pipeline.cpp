@@ -9,7 +9,7 @@ namespace RX
       destroy();
   }
 
-  void Pipeline::initialize(PipelineInfo& info)
+  void Pipeline::initialize(RasterizationPipelineInfo& info)
   {
     m_info = info;
 
@@ -24,7 +24,7 @@ namespace RX
     vertexInputInfo.pVertexAttributeDescriptions = attributeDescriptions.data();
 
     vk::PipelineInputAssemblyStateCreateInfo inputAssembly;
-    inputAssembly.topology = m_info.topology;
+    inputAssembly.topology = info.topology;
     inputAssembly.primitiveRestartEnable = VK_FALSE;
 
     vk::PipelineViewportStateCreateInfo viewportState;
@@ -80,7 +80,7 @@ namespace RX
 
     vk::PipelineLayoutCreateInfo pipelineLayoutInfo;
     pipelineLayoutInfo.setLayoutCount = 1;
-    pipelineLayoutInfo.pSetLayouts = &m_info.descriptorSetLayout;
+    pipelineLayoutInfo.pSetLayouts = &info.descriptorSetLayout;
     pipelineLayoutInfo.pPushConstantRanges = &pushConstantRange;
 
     m_layout = m_info.device.createPipelineLayout(pipelineLayoutInfo);
@@ -89,12 +89,12 @@ namespace RX
 
     vk::PipelineShaderStageCreateInfo vertShaderStageInfo;
     vertShaderStageInfo.stage = vk::ShaderStageFlagBits::eVertex;
-    vertShaderStageInfo.module = m_info.vertexShader;
+    vertShaderStageInfo.module = info.vertexShader;
     vertShaderStageInfo.pName = "main";
 
     vk::PipelineShaderStageCreateInfo fragShaderStageInfo;
     fragShaderStageInfo.stage = vk::ShaderStageFlagBits::eFragment;
-    fragShaderStageInfo.module = m_info.fragmentShader;
+    fragShaderStageInfo.module = info.fragmentShader;
     fragShaderStageInfo.pName = "main";
 
     std::vector<vk::PipelineShaderStageCreateInfo> shaderStages = { vertShaderStageInfo, fragShaderStageInfo };
@@ -118,6 +118,11 @@ namespace RX
     m_pipeline = m_info.device.createGraphicsPipeline(nullptr, createInfo, nullptr);
     if (!m_pipeline)
       RX_ERROR("Failed to create graphics pipeline."); 
+  }
+
+  void Pipeline::initialize(RaytracingPipelineInfo& info)
+  {
+
   }
 
   void Pipeline::destroy()

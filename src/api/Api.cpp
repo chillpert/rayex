@@ -529,7 +529,7 @@ namespace RX
     }
 
     // Graphics pipeline
-    PipelineInfo pipelineInfo{ };
+    RasterizationPipelineInfo pipelineInfo{ };
     pipelineInfo.device = m_device.get();
     pipelineInfo.renderPass = m_renderPass.get();
     pipelineInfo.viewport = vk::Viewport{ 0.0f, 0.0f, static_cast<float>(m_swapchain.getExtent().width), static_cast<float>(m_swapchain.getExtent().height), 0.0f, 1.0f };

@@ -13,10 +13,19 @@ namespace RX
     vk::RenderPass renderPass;
     vk::Viewport viewport;
     vk::Rect2D scissor;
+  };
+
+  struct RasterizationPipelineInfo : public PipelineInfo
+  {
     vk::ShaderModule vertexShader;
     vk::ShaderModule fragmentShader;
     vk::DescriptorSetLayout descriptorSetLayout;
     vk::PrimitiveTopology topology = vk::PrimitiveTopology::eTriangleList;
+  };
+
+  struct RaytracingPipelineInfo : public PipelineInfo
+  {
+
   };
 
   class Pipeline
@@ -25,15 +34,17 @@ namespace RX
     ~Pipeline();
 
     inline vk::Pipeline get() { return m_pipeline; }
-    inline vk::PipelineLayout getLayout() { return m_layout; }
     inline PipelineInfo& getInfo() { return m_info; }
+    inline vk::PipelineLayout getLayout() { return m_layout; }
 
-    void initialize(PipelineInfo& info);
+    void initialize(RasterizationPipelineInfo& info);
+    void initialize(RaytracingPipelineInfo& info);
     void destroy();
 
   private:
     vk::Pipeline m_pipeline;
     vk::PipelineLayout m_layout;
+
     PipelineInfo m_info;
   };
 }

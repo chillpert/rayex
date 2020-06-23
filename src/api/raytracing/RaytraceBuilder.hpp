@@ -54,6 +54,9 @@ namespace RX
 
     std::vector<Instance> m_instances;
 
+    Image m_storageImage;
+    ImageView m_storageImageView;
+
     //DebugUtility m_debugUtil;
 
     std::vector<vk::DescriptorSetLayoutBinding> m_bindings;

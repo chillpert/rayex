@@ -83,27 +83,22 @@ namespace RX
     imageInfo.physicalDevice = m_info.physicalDevice;
     imageInfo.device = m_info.device;
     imageInfo.usage = vk::ImageUsageFlagBits::eStorage;
-    
+    imageInfo.format = vk::Format::eR8G8B8A8Unorm;
+    imageInfo.extent = vk::Extent3D(900, 600, 1);
 
-    vk::Extent3D extent;
-    extent.width = 900;
-    extent.height = 600;
-    extent.depth = 1;
-    imageInfo.extent = extent;
-
-    Image storageImage(imageInfo);
+    m_storageImage.initialize(imageInfo);
 
     ImageViewInfo imageViewInfo;
     imageViewInfo.device = m_info.device;
-    imageViewInfo.image = storageImage.get();
-    imageViewInfo.format = storageImage.getInfo().format;
+    imageViewInfo.image = m_storageImage.get();
+    imageViewInfo.format = m_storageImage.getInfo().format;
 
-    ImageView storageImageView(imageViewInfo);
+    m_storageImageView.initialize(imageViewInfo);
 
     // Update descriptor set.
     UpdateRaytracingDescriptorSetInfo updateInfo{ };
     updateInfo.tlas = m_tlas.get();
-    updateInfo.storageImageView = storageImageView.get(); // TODO: what to put here?
+    updateInfo.storageImageView = m_storageImageView.get(); // TODO: what to put here?
     updateInfo.bindings = m_bindings;
 
     m_descriptorSet.update(updateInfo);

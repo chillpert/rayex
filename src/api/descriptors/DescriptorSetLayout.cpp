@@ -8,13 +8,26 @@ namespace RX
       destroy();
   }
 
+  void DescriptorSetLayout::addBinding(const vk::DescriptorSetLayoutBinding& binding)
+  {
+    if (m_layout)
+      RX_ERROR("Failed to add binding because the descriptor set layout was already initialized.");
+
+    m_bindings.push_back(binding);
+  }
+
+  void DescriptorSetLayout::clearBindings()
+  {
+    m_bindings.clear();
+  }
+
   void DescriptorSetLayout::initialize(DescriptorSetLayoutInfo& info)
   {
     m_info = info;
 
     vk::DescriptorSetLayoutCreateInfo createInfo;
-    createInfo.bindingCount = static_cast<uint32_t>(m_info.layoutBindings.size());
-    createInfo.pBindings = m_info.layoutBindings.data();
+    createInfo.bindingCount = static_cast<uint32_t>(m_bindings.size());
+    createInfo.pBindings = m_bindings.data();
     //createInfo.flags = m_info.flags;
 
     m_layout = m_info.device.createDescriptorSetLayout(createInfo);

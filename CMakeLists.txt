@@ -138,7 +138,7 @@ target_precompile_headers(renderer
 )
 
 set_target_properties(renderer PROPERTIES
-  CXX_STANDARD 17
+  CXX_STANDARD 20
 )
 
 set_target_properties(renderer

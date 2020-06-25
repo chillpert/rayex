@@ -1,5 +1,6 @@
 #include "Pipeline.hpp"
 #include "Vertex.hpp"
+#include "Initializers.hpp"
 
 namespace RX
 {
@@ -122,7 +123,40 @@ namespace RX
 
   void Pipeline::initialize(RaytracingPipelineInfo& info)
   {
+    m_info = info;
 
+    vk::PipelineLayoutCreateInfo layoutInfo
+    {
+      { },                                        // flags
+      static_cast<uint32_t>(info.layouts.size()), // setLayoutCount
+      info.layouts.data(),                        // pSetLayouts
+      0,                                          // pushConstantRangeCount
+      nullptr                                     // pPushConstantRanges
+    };
+
+    m_layout = m_info.device.createPipelineLayout(layoutInfo);
+    if (!m_layout)
+      RX_ERROR("Failed to create pipeline layout.");
+
+    vk::SpecializationMapEntry specializationMapEntry
+    {
+      0,                // constantID
+      0,                // offset
+      sizeof(uint32_t)  // size
+    };
+
+    vk::SpecializationInfo specializationInfo
+    {
+       1,                         // mapEntryCount
+       &specializationMapEntry,   // pMapEntries
+       sizeof(info.maxRecursion), // dataSize
+       &info.maxRecursion         // pData
+    };
+
+    std::array<vk::PipelineShaderStageCreateInfo, 3> shaderStages;
+    shaderStages[0] = Initializers::getPipelineShaderStageCreateInfo(vk::ShaderStageFlagBits::eRaygenKHR, info.rayGen->get());
+    shaderStages[1] = Initializers::getPipelineShaderStageCreateInfo(vk::ShaderStageFlagBits::eMissKHR, info.miss->get());
+    shaderStages[2] = Initializers::getPipelineShaderStageCreateInfo(vk::ShaderStageFlagBits::eClosestHitKHR, info.closestHit->get());
   }
 
   void Pipeline::destroy()

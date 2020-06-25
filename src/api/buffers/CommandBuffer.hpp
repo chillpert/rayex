@@ -1,28 +1,10 @@
 #ifndef COMMAND_BUFFER_HPP
 #define COMMAND_BUFFER_HPP
 
-#include "pch/stdafx.hpp"
+#include "InitializerInfos.hpp"
 
 namespace RX
 {
-  struct CommandBufferInfo
-  {
-    vk::Device device;
-    vk::CommandPool commandPool;
-    vk::Queue queue;
-
-    size_t commandBufferCount = 1; // Amount of command buffers that will be created.
-    vk::CommandBufferUsageFlags usageFlags = vk::CommandBufferUsageFlagBits::eOneTimeSubmit;
-    vk::CommandBufferResetFlags resetFlags = vk::CommandBufferResetFlagBits::eReleaseResources;
-    vk::CommandBufferLevel level = vk::CommandBufferLevel::ePrimary;
-    bool freeAutomatically = true;
-    bool submitAutomatically = true; // Only submits automatically if usageFlags contains ONE_TIME_SUBMIT
-    const char* componentName = "command buffer(s)"; // Optional, used to give a more precise name for the object which will improve logging output.
-
-    vk::CommandBufferBeginInfo beginInfo; // Ignore
-    vk::SubmitInfo submitInfo; // Ignore
-  };
-
   class CommandBuffer
   {
   public:

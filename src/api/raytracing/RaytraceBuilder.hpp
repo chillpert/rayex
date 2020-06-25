@@ -36,6 +36,10 @@ namespace RX
     };
 
   public:
+    inline Shader& getRayGenShader() { return m_rayGen; }
+    inline Shader& getMissShader() { return m_miss; }
+    inline Shader& getClosestHitShader() { return m_closestHit; }
+
     void initialize(RaytraceBuilderInfo& info);
     void destroy();
 
@@ -62,6 +66,10 @@ namespace RX
     DescriptorPool m_descriptorPool;
     DescriptorSetLayout m_descriptorSetLayout;
     DescriptorSet m_descriptorSet;
+
+    Shader m_rayGen;
+    Shader m_miss;
+    Shader m_closestHit;
   };
 }
 

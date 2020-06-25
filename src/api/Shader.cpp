@@ -2,6 +2,11 @@
 
 namespace RX
 {
+  Shader::Shader(ShaderInfo& info)
+  {
+    initialize(info);
+  }
+
   Shader::~Shader()
   {
     if (m_shaderModule)

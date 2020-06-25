@@ -496,35 +496,46 @@ namespace RX
 
   void Api::initPipeline(bool firstRun)
   {
-    // Shaders
-    Shader vs;
-    ShaderInfo vertexShaderInfo{ };
-    vertexShaderInfo.fullPath = RX_SHADER_PATH "simple3D.vert";
-    vertexShaderInfo.device = m_device.get();
-    vertexShaderInfo.binding = 0;
-    vertexShaderInfo.descriptorCount = 1;
-    vertexShaderInfo.descriptorType = vk::DescriptorType::eUniformBuffer;
-    vertexShaderInfo.stageFlags = vk::ShaderStageFlagBits::eVertex;
+    // Create shaders.
+    Shader vs(
+      ShaderInfo{
+        .fullPath = RX_SHADER_PATH "simple3D.vert",
+        .device = m_device.get()
+      }
+    );
 
-    vs.initialize(vertexShaderInfo);
-
-    Shader fs;
-    ShaderInfo fragmentShaderInfo{ };
-    fragmentShaderInfo.fullPath = RX_SHADER_PATH "simple3D.frag";
-    fragmentShaderInfo.device = m_device.get();
-    fragmentShaderInfo.binding = 1;
-    fragmentShaderInfo.descriptorCount = 1;
-    fragmentShaderInfo.descriptorType = vk::DescriptorType::eCombinedImageSampler;
-    fragmentShaderInfo.stageFlags = vk::ShaderStageFlagBits::eFragment;
-
-    fs.initialize(fragmentShaderInfo);
+    Shader fs(
+      ShaderInfo{
+        .fullPath = RX_SHADER_PATH "simple3D.frag",
+        .device = m_device.get()
+      }
+    );
 
     if (firstRun)
     {
+      vk::DescriptorSetLayoutBinding vertexBinding{
+        0,                                  // binding
+        vk::DescriptorType::eUniformBuffer, // descriptorType
+        1,                                  // descriptorCount
+        vk::ShaderStageFlagBits::eVertex,   // stageFlags
+        nullptr
+      };
+
+      vk::DescriptorSetLayoutBinding fragmentBinding{
+        1,                                          // binding
+        vk::DescriptorType::eCombinedImageSampler,  // descriptorType
+        1,                                          // descriptorCount
+        vk::ShaderStageFlagBits::eFragment,         // stageFlags
+        nullptr
+      };
+
+      m_descriptorSetLayout.addBinding(vertexBinding);
+      m_descriptorSetLayout.addBinding(fragmentBinding);
+
       // Descriptor Set Layout
-      DescriptorSetLayoutInfo descriptorSetLayoutInfo{ };
-      descriptorSetLayoutInfo.device = m_device.get();
-      descriptorSetLayoutInfo.layoutBindings = { vs.getDescriptorSetLayoutBinding(), fs.getDescriptorSetLayoutBinding() };
+      DescriptorSetLayoutInfo descriptorSetLayoutInfo{
+        .device = m_device.get()
+      };
 
       m_descriptorSetLayout.initialize(descriptorSetLayoutInfo);
     }

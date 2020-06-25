@@ -9,11 +9,6 @@ namespace RX
   {
     std::string fullPath;
     vk::Device device;
-    uint32_t binding;
-    uint32_t descriptorCount;
-    vk::DescriptorType descriptorType;
-    vk::ShaderStageFlags stageFlags;
-    vk::Sampler* pImmutableSamplers = nullptr;
 
     std::string pathToFile; // Ignore, will be initialized automatically.
     std::string fileName; // Ignore, will be initialized automatically.
@@ -24,11 +19,12 @@ namespace RX
   class Shader
   {
   public:
+    Shader() = default;
+    Shader(ShaderInfo& info);
     ~Shader();
 
-    inline vk::ShaderModule get() { return m_shaderModule; }
-    inline vk::DescriptorSetLayoutBinding getDescriptorSetLayoutBinding() const { return { m_info.binding, m_info.descriptorType, m_info.descriptorCount, m_info.stageFlags, m_info.pImmutableSamplers }; }
-
+    inline vk::ShaderModule get() const { return m_shaderModule; }
+    
     void initialize(ShaderInfo& info);
     void destroy();
 

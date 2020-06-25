@@ -25,8 +25,11 @@ namespace RX
 
   struct RaytracingPipelineInfo : public PipelineInfo
   {
+    uint32_t maxRecursion = 4;
     std::vector<vk::DescriptorSetLayout> layouts;
-
+    Shader* rayGen;
+    Shader* miss;
+    Shader* closestHit;
   };
 
   class Pipeline

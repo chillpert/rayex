@@ -8,7 +8,6 @@ namespace RX
   struct DescriptorSetLayoutInfo
   {
     vk::Device device;
-    std::vector<vk::DescriptorSetLayoutBinding> layoutBindings;
   };
 
   class DescriptorSetLayout
@@ -18,6 +17,9 @@ namespace RX
 
     inline vk::DescriptorSetLayout get() { return m_layout; }
 
+    void addBinding(const vk::DescriptorSetLayoutBinding& binding);
+    void clearBindings();
+
     // Creates the layout of the descriptor set.
     void initialize(DescriptorSetLayoutInfo& info);
     void destroy();
@@ -25,6 +27,8 @@ namespace RX
   private:
     vk::DescriptorSetLayout m_layout;
     DescriptorSetLayoutInfo m_info;
+
+    std::vector<vk::DescriptorSetLayoutBinding> m_bindings;
   };
 }
 

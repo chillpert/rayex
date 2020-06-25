@@ -12,8 +12,6 @@ namespace RX
     auto properties = m_info.physicalDevice.getProperties2<vk::PhysicalDeviceProperties2, vk::PhysicalDeviceRayTracingPropertiesKHR>();
     m_rayTracingProperties = properties.get<vk::PhysicalDeviceRayTracingPropertiesKHR>();
 
-    m_dispatchLoaderDynamic = vk::DispatchLoaderDynamic(m_info.instance, vkGetInstanceProcAddr);
-
     //m_debugUtils.initialize(DebugUtilInfo{ m_info.device, m_dispatchLoaderDynamic });
   }
 
@@ -26,7 +24,7 @@ namespace RX
   {
     BottomLevelASInfo bottomLevelASInfo{ };
     bottomLevelASInfo.device = m_info.device;
-    bottomLevelASInfo.dispatchLoaderDynamic = m_dispatchLoaderDynamic;
+    bottomLevelASInfo.dispatchLoaderDynamic = m_info.dispatchLoaderDynamic;
     bottomLevelASInfo.physicalDevice = m_info.physicalDevice;
     bottomLevelASInfo.flags = vk::BuildAccelerationStructureFlagBitsKHR::ePreferFastTrace;
     bottomLevelASInfo.queue = m_info.queue;
@@ -37,7 +35,7 @@ namespace RX
     TopLevelASInfo topLevelASInfo{ };
     topLevelASInfo.device = m_info.device;
     topLevelASInfo.physicalDevice = m_info.physicalDevice;
-    topLevelASInfo.dispatchLoaderDynamic = m_dispatchLoaderDynamic;
+    topLevelASInfo.dispatchLoaderDynamic = m_info.dispatchLoaderDynamic;
     topLevelASInfo.nodes = nodes;
     topLevelASInfo.flags = vk::BuildAccelerationStructureFlagBitsKHR::ePreferFastTrace;
     

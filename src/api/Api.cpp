@@ -32,6 +32,7 @@ namespace RX
     m_textures.reserve(maxNodes);
 
     initInstance();
+    m_dispatchLoaderDynamic = vk::DispatchLoaderDynamic(m_instance.get(), vkGetInstanceProcAddr);
     initDebugMessenger();
     initSurface();
     initPhysicalDevice();
@@ -323,12 +324,14 @@ namespace RX
 
   void Api::initRayTracing()
   {
-    RaytraceBuilderInfo info{ };
-    info.instance = m_instance.get();
-    info.physicalDevice = m_physicalDevice.get();
-    info.device = m_device.get();
-    info.queue = m_queueManager.getQueue(GRAPHICS);
-    info.surface = &m_surface;
+    RaytraceBuilderInfo info{
+      .instance = m_instance.get(),
+      .physicalDevice = m_physicalDevice.get(),
+      .device = m_device.get(),
+      .surface = &m_surface,
+      .queue = m_queueManager.getQueue(GRAPHICS),
+      .dispatchLoaderDynamic = m_dispatchLoaderDynamic
+    };
 
     m_raytraceBuilder.initialize(info);
   }

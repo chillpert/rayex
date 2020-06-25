@@ -15,11 +15,12 @@ namespace RX
 {
   struct RaytraceBuilderInfo
   {
-    Surface* surface;
     vk::Instance instance;
     vk::PhysicalDevice physicalDevice;
     vk::Device device;
+    Surface* surface;
     std::shared_ptr<Queue> queue;
+    vk::DispatchLoaderDynamic dispatchLoaderDynamic;
   };
 
   class RaytraceBuilder
@@ -51,7 +52,6 @@ namespace RX
     RaytraceBuilderInfo m_info;
 
     vk::PhysicalDeviceRayTracingPropertiesKHR m_rayTracingProperties;
-    vk::DispatchLoaderDynamic m_dispatchLoaderDynamic;
 
     std::vector<BottomLevelAS> m_blas;
     TopLevelAS m_tlas;

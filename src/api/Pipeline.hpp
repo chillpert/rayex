@@ -26,10 +26,11 @@ namespace RX
   struct RaytracingPipelineInfo : public PipelineInfo
   {
     uint32_t maxRecursion = 4;
-    std::vector<vk::DescriptorSetLayout> layouts;
+    std::vector<vk::DescriptorSetLayout> layouts; // Note: Needs to include the layouts for raytracing shaders as well as uniform, index and vertex buffers.
     Shader* rayGen;
     Shader* miss;
     Shader* closestHit;
+    vk::DispatchLoaderDynamic dispatchLoaderDynamic;
   };
 
   class Pipeline

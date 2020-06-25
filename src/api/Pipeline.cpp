@@ -157,6 +157,35 @@ namespace RX
     shaderStages[0] = Initializers::getPipelineShaderStageCreateInfo(vk::ShaderStageFlagBits::eRaygenKHR, info.rayGen->get());
     shaderStages[1] = Initializers::getPipelineShaderStageCreateInfo(vk::ShaderStageFlagBits::eMissKHR, info.miss->get());
     shaderStages[2] = Initializers::getPipelineShaderStageCreateInfo(vk::ShaderStageFlagBits::eClosestHitKHR, info.closestHit->get());
+
+    // Set up raytracing shader groups.
+    std::array<vk::RayTracingShaderGroupCreateInfoKHR, 3> groups;
+
+    groups[0].generalShader = 0;
+    
+    groups[1].generalShader = 1;
+    
+    groups[2].closestHitShader = 2;
+
+    vk::RayTracingPipelineCreateInfoKHR createInfo{
+      { },                                        // flags
+      static_cast<uint32_t>(shaderStages.size()), // stageCount
+      shaderStages.data(),                        // pStages
+      static_cast<uint32_t>(groups.size()),       // groupCount
+      groups.data(),                              // pGroups
+      info.maxRecursion,                          // maxRecursionDepth
+      0,                                          // libraries
+      nullptr,                                    // pLibraryInterface
+      m_layout,                                   // layout
+      nullptr,                                    // basePipelineHandle
+      0                                           // basePipelineIndex
+    };
+
+    auto result = m_info.device.createRayTracingPipelineKHR(nullptr, createInfo, nullptr, info.dispatchLoaderDynamic);
+    if (result.result != vk::Result::eSuccess)
+      RX_ERROR("Failed to create ray tracing pipeline.");
+
+    m_pipeline = result.value;
   }
 
   void Pipeline::destroy()

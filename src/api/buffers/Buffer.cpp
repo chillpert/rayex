@@ -4,18 +4,23 @@
 
 namespace RX
 {
-  Buffer::Buffer(BufferCreateInfo& createInfo)
+  Buffer::Buffer(BufferInfo& createInfo)
   {
     init(createInfo);
   }
-  
+
+  Buffer::Buffer(BufferInfo&& createInfo)
+  {
+    init(createInfo);
+  }
+
   Buffer::~Buffer()
   {
     if (m_buffer && m_memory)
       destroy();
   }
 
-  void Buffer::init(BufferCreateInfo& createInfo)
+  void Buffer::init(BufferInfo& createInfo)
   {
     m_info = createInfo;
 
@@ -68,6 +73,11 @@ namespace RX
     // Bind the buffer to the allocated memory.
     m_info.device.bindBufferMemory(m_buffer, m_memory, m_info.memoryOffset);
   }
+
+  void Buffer::init(BufferInfo&& info)
+  {
+    init(info);
+  }
   
   void Buffer::destroy()
   {
@@ -86,12 +96,7 @@ namespace RX
 
   void Buffer::copyToBuffer(const Buffer& buffer) const
   {
-    CommandBufferInfo commandBufferInfo{
-      .device = m_info.device,
-      .commandPool = m_info.commandPool
-    };
-
-    CommandBuffer commandBuffer(commandBufferInfo);
+    CmdBuffer commandBuffer({ m_info.device, m_info.commandPool });
     commandBuffer.begin();
     {
       vk::BufferCopy copyRegion;
@@ -105,14 +110,8 @@ namespace RX
 
   void Buffer::copyToImage(Image& image) const
   {
-    CommandBufferInfo commandBufferInfo{ 
-      .device = m_info.device,
-      .commandPool = m_info.commandPool
-    };
-
     // TODO: assert that this queue has transfer capbalitites
-
-    CommandBuffer commandBuffer(commandBufferInfo);
+    CmdBuffer commandBuffer({ m_info.device, m_info.commandPool });
     commandBuffer.begin();
     {
       vk::BufferImageCopy region;

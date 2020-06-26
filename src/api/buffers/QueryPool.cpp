@@ -6,6 +6,11 @@ namespace RX
   {
     init(info);
   }
+  
+  QueryPool::QueryPool(QueryPoolInfo&& info)
+  {
+    init(info);
+  }
 
   QueryPool::~QueryPool()
   {
@@ -22,6 +27,11 @@ namespace RX
     createInfo.queryType = m_info.queryType;
 
     m_queryPool = m_info.device.createQueryPool(createInfo, nullptr, m_info.dispatchLoaderDynamic);
+  }
+
+  void QueryPool::init(QueryPoolInfo&& info)
+  {
+    init(info);
   }
 
   void QueryPool::destroy()

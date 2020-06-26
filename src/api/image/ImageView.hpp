@@ -20,11 +20,14 @@ namespace RX
   public:
     ImageView() = default;
     ImageView(ImageViewInfo& info);
+    ImageView(ImageViewInfo&& info);
     ~ImageView();
 
     inline vk::ImageView get() { return m_imageView; }
 
     void init(ImageViewInfo& info);
+    void init(ImageViewInfo&& info);
+
     void destroy();
 
   private:

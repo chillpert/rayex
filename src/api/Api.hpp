@@ -99,7 +99,7 @@ namespace RX
     std::vector<ImageView> m_swapchainImageViews;
     RenderPass m_renderPass;
     Pipeline m_pipeline;
-    CommandBuffer m_swapchainCmdBuffers;
+    CmdBuffer m_swapchainCmdBuffers;
     std::vector<Framebuffer> m_swapchainFramebuffers;
     Image m_depthImage;
     ImageView m_depthImageView;

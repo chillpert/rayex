@@ -2,6 +2,16 @@
 
 namespace RX
 {
+  DescriptorPool::DescriptorPool(DescriptorPoolInfo& info)
+  {
+    init(info);
+  }
+
+  DescriptorPool::DescriptorPool(DescriptorPoolInfo&& info)
+  {
+    init(info);
+  }
+
   DescriptorPool::~DescriptorPool()
   {
     if (m_pool)
@@ -20,6 +30,11 @@ namespace RX
     m_pool = m_info.device.createDescriptorPool(createInfo);
     if (!m_pool)
       RX_ERROR("Failed to create descriptor pool.");
+  }
+
+  void DescriptorPool::init(DescriptorPoolInfo&& info)
+  {
+    init(info);
   }
 
   void DescriptorPool::destroy()

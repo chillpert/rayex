@@ -13,9 +13,14 @@ namespace RX
   class DebugUtility
   {
   public:
-    DebugUtility() { };
+    DebugUtility() = default;
     
     DebugUtility(DebugUtilInfo& info)
+    {
+      init(info);
+    }
+
+    DebugUtility(DebugUtilInfo&& info)
     {
       init(info);
     }
@@ -23,6 +28,11 @@ namespace RX
     void init(DebugUtilInfo& info)
     {
       m_info = info;
+    }
+
+    void init(DebugUtilInfo&& info)
+    {
+      init(info);
     }
 
     void setObjectName(const size_t object, const char* name, vk::ObjectType t, vk::DispatchLoaderDynamic dispatchLoaderDynamic)

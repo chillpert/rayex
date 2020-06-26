@@ -35,6 +35,8 @@ namespace RX
     inline vk::ImageAspectFlags getImageAspect() const { return m_info.imageAspect; }
 
     void init(SwapchainInfo& info);
+    void init(SwapchainInfo&& info);
+
     void destroy();
 
     void acquireNextImage(vk::Semaphore semaphore, vk::Fence fence, uint32_t* imageIndex);

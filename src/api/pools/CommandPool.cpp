@@ -7,6 +7,11 @@ namespace RX
     init(info);
   }
 
+  CommandPool::CommandPool(CommandPoolInfo&& info)
+  {
+    init(info);
+  }
+
   CommandPool::~CommandPool()
   {
     if (m_commandPool)
@@ -24,6 +29,11 @@ namespace RX
     m_commandPool = m_info.device.createCommandPool(createInfo);
     if (!m_commandPool)
       RX_ERROR("Failed to create command pool");
+  }
+  
+  void CommandPool::init(CommandPoolInfo&& info)
+  {
+    init(info);
   }
 
   void CommandPool::destroy()

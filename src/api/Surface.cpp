@@ -17,6 +17,11 @@ namespace RX
       RX_ERROR("Failed to create surface.");
   }
 
+  void Surface::init(SurfaceInfo&& info)
+  {
+    init(info);
+  }
+
   void Surface::destroy()
   {
     m_info.instance.destroySurfaceKHR(m_surface);

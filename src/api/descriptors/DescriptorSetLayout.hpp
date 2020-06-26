@@ -13,6 +13,10 @@ namespace RX
   class DescriptorSetLayout
   {
   public:
+    DescriptorSetLayout() = default;
+    DescriptorSetLayout(DescriptorSetLayoutInfo& info);
+    DescriptorSetLayout(DescriptorSetLayoutInfo&& info);
+
     ~DescriptorSetLayout();
 
     inline vk::DescriptorSetLayout get() { return m_layout; }
@@ -23,6 +27,7 @@ namespace RX
     // Creates the layout of the descriptor set.
     void init(DescriptorSetLayoutInfo& info);
     void init(DescriptorSetLayoutInfo&& info);
+
     void destroy();
 
   private:

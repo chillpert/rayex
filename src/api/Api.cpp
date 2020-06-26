@@ -198,11 +198,12 @@ namespace RX
     // Handle the node's texture.
     auto texturePaths = node->m_material.getTextures();
 
-    TextureInfo textureInfo{ };
-    textureInfo.physicalDevice = m_physicalDevice.get();
-    textureInfo.device = m_device.get();
-    textureInfo.commandPool = m_graphicsCmdPool.get();
-    textureInfo.queue = m_queueManager.getQueue(GRAPHICS)->get();
+    TextureInfo textureInfo{
+      .physicalDevice = m_physicalDevice.get(),
+      .device = m_device.get(),
+      .commandPool = m_graphicsCmdPool.get(),
+      .queue = m_queueManager.getQueue(GRAPHICS)->get()
+    };
 
     for (const auto& texturePath : texturePaths)
     {
@@ -338,45 +339,31 @@ namespace RX
 
   void Api::initInstance()
   {
-    InstanceInfo instanceInfo{ };
-    instanceInfo.window = m_window;
+    m_instance.init({
+        .window = m_window,
 #ifdef RX_DEBUG
-    instanceInfo.layers = { "VK_LAYER_KHRONOS_validation" };
-    instanceInfo.extensions = { "VK_KHR_get_physical_device_properties2", "VK_EXT_debug_utils" };
+        .layers = { "VK_LAYER_KHRONOS_validation" },
+        .extensions = { "VK_KHR_get_physical_device_properties2", "VK_EXT_debug_utils" }
 #elif
-    instanceInfo.extensions = { "VK_KHR_get_physical_device_properties2" };
+        .extensions = { "VK_KHR_get_physical_device_properties2" }
 #endif
-
-    m_instance.init(instanceInfo);
+      }
+    );
   }
 
   void Api::initDebugMessenger()
   {
-    DebugMessengerInfo debugMessengerInfo{
-      .instance = m_instance.get()
-    };
-
-    m_debugMessenger.init(debugMessengerInfo);
+    m_debugMessenger.init({ m_instance.get() });
   }
 
   void Api::initSurface()
   {
-    SurfaceInfo surfaceInfo{
-      .window = m_window.get(),
-      .instance = m_instance.get()
-    };
-
-    m_surface.init(surfaceInfo);
+    m_surface.init({ m_window.get(), m_instance.get() });
   }
 
   void Api::initPhysicalDevice()
   {
-    PhysicalDeviceInfo physicalDeviceInfo{
-      .instance = m_instance.get(),
-      .surface = m_surface.get()
-    };
-
-    m_physicalDevice.init(physicalDeviceInfo);
+    m_physicalDevice.init({ m_instance.get(), m_surface.get() });
 
     // Reassess the support of the preferred surface settings.
     m_surface.checkSettingSupport(m_physicalDevice.get());
@@ -397,21 +384,20 @@ namespace RX
 
   void Api::initDevice()
   {
-    DeviceInfo deviceInfo{
-      .physicalDevice = m_physicalDevice.get(),
-      .queueFamilies = m_queueManager.getQueueFamilies(),
-      .extensions = { 
-        "VK_KHR_get_memory_requirements2", 
-        "VK_EXT_descriptor_indexing", 
-        VK_KHR_BUFFER_DEVICE_ADDRESS_EXTENSION_NAME,
-        VK_KHR_DEFERRED_HOST_OPERATIONS_EXTENSION_NAME,
-        VK_KHR_PIPELINE_LIBRARY_EXTENSION_NAME,
-        VK_KHR_MAINTENANCE3_EXTENSION_NAME,
-        VK_KHR_RAY_TRACING_EXTENSION_NAME
+    m_device.init({
+        .physicalDevice = m_physicalDevice.get(),
+        .queueFamilies = m_queueManager.getQueueFamilies(),
+        .extensions = {
+          "VK_KHR_get_memory_requirements2",
+          "VK_EXT_descriptor_indexing",
+          VK_KHR_BUFFER_DEVICE_ADDRESS_EXTENSION_NAME,
+          VK_KHR_DEFERRED_HOST_OPERATIONS_EXTENSION_NAME,
+          VK_KHR_PIPELINE_LIBRARY_EXTENSION_NAME,
+          VK_KHR_MAINTENANCE3_EXTENSION_NAME,
+          VK_KHR_RAY_TRACING_EXTENSION_NAME
+        }
       }
-    };
-
-    m_device.init(deviceInfo);
+    );
 
     // Retrieve all queue handles.
     m_queueManager.retrieveAllHandles(m_device.get());
@@ -476,15 +462,14 @@ namespace RX
       {}                                                  // dependencyFlags
     };
 
-    RenderPassInfo renderPassInfo{
-      .physicalDevice = m_physicalDevice.get(),
-      .device = m_device.get(),
-      .attachments = { colorAttachmentDescription, depthAttachmentDescription },
-      .subpasses = { subpassDescription },
-      .dependencies = { subpassDependency }
-    };
-
-    m_renderPass.init(renderPassInfo);
+    m_renderPass.init({
+        .physicalDevice = m_physicalDevice.get(),
+        .device = m_device.get(),
+        .attachments = { colorAttachmentDescription, depthAttachmentDescription },
+        .subpasses = { subpassDescription },
+        .dependencies = { subpassDependency }
+      }
+    );
   }
 
   void Api::initSwapchain()
@@ -637,9 +622,9 @@ namespace RX
   {
     FramebufferInfo framebufferInfo{
       .device = m_device.get(),
-      .depthImageView = m_depthImageView.get(),
       .renderPass = m_renderPass.get(),
-      .extent = m_swapchain.getExtent()
+      .extent = m_swapchain.getExtent(),
+      .depthImageView = m_depthImageView.get()
     };
 
     m_swapchainFramebuffers.resize(m_swapchainImageViews.size());
@@ -654,13 +639,12 @@ namespace RX
   {
     uint32_t swapchainImagesCount = m_swapchain.getImages().size();
 
-    DescriptorPoolInfo descriptorPoolInfo{
+    m_descriptorPool.init({
       .device = m_device.get(),
       .poolSizes = { { vk::DescriptorType::eUniformBuffer, swapchainImagesCount }, { vk::DescriptorType::eCombinedImageSampler, swapchainImagesCount } },
       .maxSets = maxNodes * swapchainImagesCount
-    };
-
-    m_descriptorPool.init(descriptorPoolInfo);
+      }
+    );
   }
 
   void Api::initModel(const std::shared_ptr<GeometryNodeBase> node)
@@ -692,21 +676,6 @@ namespace RX
       .queueIndices = queueIndices.size() > 1 ? queueIndices : std::vector<uint32_t>(),
     };
 
-    UniformBufferInfo uniformBufferInfo{
-      .physicalDevice = m_physicalDevice.get(),
-      .device = m_device.get(),
-      .swapchainImagesCount = m_swapchain.getImages().size()
-    };
-
-    DescriptorSetInfo descriptorSetInfo{
-      .device = m_device.get(),
-      .pool = m_descriptorPool.get(),
-      .setCount = static_cast<uint32_t>(m_swapchain.getImages().size()),
-      // Create as many identical layouts as swapchain images exist.
-      .layouts = std::vector<vk::DescriptorSetLayout>(m_swapchain.getImages().size(), m_descriptorSetLayout.get())
-    };
-
-
     if (!model->m_initialized)
     {
       vertexBufferInfo.vertices = model->m_vertices;
@@ -718,7 +687,12 @@ namespace RX
       model->m_initialized = true;
     }
 
-    node->m_uniformBuffers.init(uniformBufferInfo);
+    node->m_uniformBuffers.init({
+        .physicalDevice = m_physicalDevice.get(),
+        .device = m_device.get(),
+        .swapchainImagesCount = m_swapchain.getImages().size()
+      }
+    );
 
     SwapchainUpdateDescriptorSetInfo descriptorSetUpdateInfo{
       .descriptorPool = m_descriptorPool.get(),
@@ -733,7 +707,14 @@ namespace RX
       descriptorSetUpdateInfo.textureImageView = diffuseIter->second->getImageView();
     }
 
-    model->m_descriptorSets.init(descriptorSetInfo);
+    // Create the descriptor set.
+    model->m_descriptorSets.init({
+        .device = m_device.get(),
+        .pool = m_descriptorPool.get(),
+        .setCount = static_cast<uint32_t>(m_swapchain.getImages().size()),
+        .layouts = std::vector<vk::DescriptorSetLayout>(m_swapchain.getImages().size(), m_descriptorSetLayout.get()) // Create as many identical layouts as swapchain images exist.
+      }
+    );
     model->m_descriptorSets.update(descriptorSetUpdateInfo);
   }
 
@@ -762,13 +743,6 @@ namespace RX
       .physicalDevice = m_physicalDevice.get(),
       .device = m_device.get(),
       .swapchainImagesCount = m_swapchain.getImages().size()
-    };
-
-    DescriptorSetInfo descriptorSetInfo{
-      .device = m_device.get(),
-      .pool = m_descriptorPool.get(),
-      .setCount = static_cast<uint32_t>(m_swapchain.getImages().size()),
-      .layouts = std::vector<vk::DescriptorSetLayout>(m_swapchain.getImages().size(), m_descriptorSetLayout.get())
     };
 
     for (const auto& node : m_nodes)
@@ -808,7 +782,14 @@ namespace RX
         descriptorSetUpdateInfo.textureImageView = diffuseIter->second->getImageView();
       }
 
-      model->m_descriptorSets.init(descriptorSetInfo);
+      // Create the descriptor set.
+      model->m_descriptorSets.init({
+          .device = m_device.get(),
+          .pool = m_descriptorPool.get(),
+          .setCount = static_cast<uint32_t>(m_swapchain.getImages().size()),
+          .layouts = std::vector<vk::DescriptorSetLayout>(m_swapchain.getImages().size(), m_descriptorSetLayout.get())
+        }
+      );
       model->m_descriptorSets.update(descriptorSetUpdateInfo);
 
       model->m_initialized = true;
@@ -825,7 +806,7 @@ namespace RX
 
   void Api::initSwapchainCmdBuffers()
   {
-    CommandBufferInfo commandBufferInfo{
+    CmdBufferInfo commandBufferInfo{
       .device = m_device.get(),
       .commandPool = m_graphicsCmdPool.get(),
       .commandBufferCount = m_swapchainFramebuffers.size(),

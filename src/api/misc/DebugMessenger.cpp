@@ -2,6 +2,16 @@
 
 namespace RX
 {
+  DebugMessenger::DebugMessenger(DebugMessengerInfo& info)
+  {
+    init(info);
+  }
+
+  DebugMessenger::DebugMessenger(DebugMessengerInfo&& info)
+  {
+    init(info);
+  }
+
   DebugMessenger::~DebugMessenger()
   {
     if (m_debugMessenger)
@@ -24,6 +34,11 @@ namespace RX
     
     m_createDebugUtilsMessengerEXT(m_info.instance, &createInfo, nullptr, &m_debugMessenger);
 #endif
+  }
+
+  void DebugMessenger::init(DebugMessengerInfo&& info)
+  {
+    init(info);
   }
 
   void DebugMessenger::destroy()

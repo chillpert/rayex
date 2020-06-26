@@ -2,6 +2,16 @@
 
 namespace RX
 {
+  Instance::Instance(InstanceInfo& info)
+  {
+    init(info);
+  }
+
+  Instance::Instance(InstanceInfo&& info)
+  {
+    init(info);
+  }
+
   void Instance::init(InstanceInfo& info)
   {
     m_info = info;
@@ -29,6 +39,11 @@ namespace RX
 
     if (!m_instance)
       RX_ERROR("Failed to create instance.");
+  }
+
+  void Instance::init(InstanceInfo&& info)
+  {
+    init(info);
   }
 
   void Instance::checkLayersSupport()

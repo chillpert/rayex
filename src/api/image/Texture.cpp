@@ -11,6 +11,11 @@ namespace RX
     init(info);
   }
 
+  Texture::Texture(TextureInfo&& info)
+  {
+    init(info);
+  }
+
   Texture::~Texture()
   {
     destroy();
@@ -27,7 +32,7 @@ namespace RX
       RX_ERROR("Failed to load texture");
 
     // Set up the staging buffer.
-    BufferCreateInfo stagingInfo{ };
+    BufferInfo stagingInfo{ };
     stagingInfo.physicalDevice = m_info.physicalDevice;
     stagingInfo.device = m_info.device;
     stagingInfo.size = width * height * 4;
@@ -56,13 +61,13 @@ namespace RX
     stagingBuffer.copyToImage(m_image);
     m_image.transitionToLayout(vk::ImageLayout::eShaderReadOnlyOptimal);
 
-    ImageViewInfo imageViewInfo{ };
-    imageViewInfo.device = m_info.device;
-    imageViewInfo.format = m_image.getFormat();
-    imageViewInfo.image = m_image.get();
-    m_imageView.init(imageViewInfo);
+    m_imageView.init({ m_info.device, m_image.get(), m_image.getFormat() });
+    m_sampler.init({ m_info.device });
+  }
 
-    m_sampler.init(SamplerInfo{ m_info.device });
+  void Texture::init(TextureInfo&& info)
+  {
+    init(info);
   }
 
   void Texture::destroy()

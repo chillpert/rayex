@@ -5,6 +5,16 @@
 
 namespace RX
 {
+  UniformBuffer::UniformBuffer(UniformBufferInfo& info)
+  {
+    init(info);
+  }
+
+  UniformBuffer::UniformBuffer(UniformBufferInfo&& info)
+  {
+    init(info);
+  }
+
   std::vector<vk::Buffer> UniformBuffer::getRaw()
   {
     std::vector<vk::Buffer> res;
@@ -19,7 +29,7 @@ namespace RX
     m_info = info;
 
     // Set up the staging buffer.
-    BufferCreateInfo createInfo{ };
+    BufferInfo createInfo{ };
     createInfo.device = m_info.device;
     createInfo.physicalDevice = m_info.physicalDevice;
     createInfo.size = sizeof(UniformBufferObject);
@@ -31,6 +41,11 @@ namespace RX
 
     for (Buffer& buffer : m_buffers)
       buffer.init(createInfo);
+  }
+
+  void UniformBuffer::init(UniformBufferInfo&& info)
+  {
+    init(info);
   }
 
   void UniformBuffer::destroy()

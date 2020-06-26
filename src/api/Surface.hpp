@@ -17,6 +17,8 @@ namespace RX
     inline vk::PresentModeKHR getPresentMode() const { return m_info.presentMode; }
 
     void init(SurfaceInfo& info);
+    void init(SurfaceInfo&& info);
+
     void destroy();
 
     // Checks if the preferred settings for format, color space and present mode are available.

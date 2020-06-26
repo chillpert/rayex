@@ -7,6 +7,11 @@ namespace RX
     init(info);
   }
 
+  RenderPass::RenderPass(RenderPassInfo&& info)
+  {
+    init(info);
+  }
+
   RenderPass::~RenderPass()
   {
     if (m_renderPass)
@@ -26,6 +31,11 @@ namespace RX
     createInfo.pDependencies = m_info.dependencies.data();
 
     m_renderPass = m_info.device.createRenderPass(createInfo);
+  }
+
+  void RenderPass::init(RenderPassInfo&& info)
+  {
+    init(info);
   }
 
   void RenderPass::destroy()

@@ -3,6 +3,16 @@
 
 namespace RX
 {
+  PhysicalDevice::PhysicalDevice(PhysicalDeviceInfo& info)
+  {
+    init(info);
+  }
+
+  PhysicalDevice::PhysicalDevice(PhysicalDeviceInfo&& info)
+  {
+    init(info);
+  }
+
   void PhysicalDevice::init(PhysicalDeviceInfo& info)
   {
     m_info = info;
@@ -44,6 +54,11 @@ namespace RX
     m_features2 = m_physicalDevice.getFeatures2();
 
     RX_LOG("Selected GPU: " << m_properties.deviceName);
+  }
+
+  void PhysicalDevice::init(PhysicalDeviceInfo&& info)
+  {
+    init(info);
   }
 
   std::pair<unsigned int, std::string> PhysicalDevice::evaluate(vk::PhysicalDevice physicalDevice) const

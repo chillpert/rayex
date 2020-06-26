@@ -19,11 +19,16 @@ namespace RX
   class VertexBuffer
   {
   public:
+    VertexBuffer() = default;
+    VertexBuffer(VertexBufferInfo& info);
+    VertexBuffer(VertexBufferInfo&& info);
+
     inline vk::Buffer get() { return m_buffer.get(); }
     inline vk::DeviceSize getSize() const { return m_buffer.getSize(); }
     inline uint32_t getCount() const { return m_count; }
 
     void init(VertexBufferInfo& info);
+    void init(VertexBufferInfo&& info);
 
   private:
     Buffer m_buffer;

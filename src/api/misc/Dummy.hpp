@@ -5,7 +5,7 @@
 
 namespace RX
 {
-  // Contains all data needed for the creation process and possibly byproducts as well.
+  // Contains all data needed for the creation process.
   struct DummyInfo
   { 
   
@@ -21,6 +21,12 @@ namespace RX
       init(info);
     }
 
+    Dummy(DummyInfo&& info)
+    {
+      init(info);
+    }
+
+    // RAII destruction
     ~Dummy()
     {
       destroy();
@@ -33,6 +39,11 @@ namespace RX
       m_info = info;
     }
 
+    void init(DummyInfo&& info)
+    {
+      init(info);
+    }
+
     void destroy()
     {
       
@@ -40,6 +51,7 @@ namespace RX
 
   private:
     uint32_t m_dummy;
+
     DummyInfo m_info;
   };
 }

@@ -2,6 +2,16 @@
 
 namespace RX
 {
+  DescriptorSet::DescriptorSet(DescriptorSetInfo& info)
+  {
+    init(info);
+  }
+
+  DescriptorSet::DescriptorSet(DescriptorSetInfo&& info)
+  {
+    init(info);
+  }
+
   DescriptorSet::~DescriptorSet()
   {
     //destroy();
@@ -23,6 +33,11 @@ namespace RX
       if (!set)
         RX_ERROR("Failed to allocate descriptor sets.");
     }
+  }
+
+  void DescriptorSet::init(DescriptorSetInfo&& info)
+  {
+    init(info);
   }
 
   void DescriptorSet::update(SwapchainUpdateDescriptorSetInfo& info)
@@ -59,6 +74,11 @@ namespace RX
     }
   }
 
+  void DescriptorSet::update(SwapchainUpdateDescriptorSetInfo&& info)
+  {
+    update(info);
+  }
+
   void DescriptorSet::update(UpdateRaytracingDescriptorSetInfo& info)
   {
     vk::WriteDescriptorSetAccelerationStructureKHR descriptorInfoAS;
@@ -85,6 +105,11 @@ namespace RX
     descriptorWrites[1].descriptorCount = 1;
 
     m_info.device.updateDescriptorSets(descriptorWrites, 0);
+  }
+
+  void DescriptorSet::update(UpdateRaytracingDescriptorSetInfo&& info)
+  {
+    update(info);
   }
 
   void DescriptorSet::destroy()

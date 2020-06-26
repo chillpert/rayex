@@ -20,9 +20,6 @@ namespace RX
     return typeInfo;
   }
 
-  BottomLevelAS::BottomLevelAS(BottomLevelASInfo& info) :
-    m_info(info) { }
-
   BottomLevelAS::~BottomLevelAS()
   {
     if (m_as)

@@ -57,13 +57,12 @@ namespace RX
     };
 
     // Init descriptor pool.
-    DescriptorPoolInfo poolInfo{
+    m_descriptorPool.init({
       .device = m_info.device,
       .poolSizes = poolSizes,
       .maxSets = 1
-    };
-
-    m_descriptorPool.init(poolInfo);
+      }
+    );
 
     // Create raytracing shaders.
     m_rayGen.init(
@@ -107,21 +106,16 @@ namespace RX
     m_descriptorSetLayout.addBinding(asLayoutBinding);
     m_descriptorSetLayout.addBinding(storageImageLayoutBinding);
 
-    DescriptorSetLayoutInfo layoutInfo{
-      .device = m_info.device,
-    };
+    m_descriptorSetLayout.init({ m_info.device });
 
-    m_descriptorSetLayout.init(layoutInfo);
-
-    // Init descriptor set.
-    DescriptorSetInfo setInfo{
-      .device = m_info.device,
-      .pool = m_descriptorPool.get(),
-      .setCount = 1,
-      .layouts = { m_descriptorSetLayout.get() }
-    };
-    
-    m_descriptorSet.init(setInfo);
+    // Create the descriptor set.
+    m_descriptorSet.init({
+        .device = m_info.device,
+        .pool = m_descriptorPool.get(),
+        .setCount = 1,
+        .layouts = { m_descriptorSetLayout.get() }
+      }
+    );
     
     // Create the storage image.
     ImageInfo imageInfo{ };

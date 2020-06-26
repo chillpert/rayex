@@ -2,6 +2,16 @@
 
 namespace RX
 {
+  Sampler::Sampler(SamplerInfo& info)
+  {
+    init(info);
+  }
+
+  Sampler::Sampler(SamplerInfo&& info)
+  {
+    init(info);
+  }
+
   Sampler::~Sampler()
   {
     if (m_sampler)
@@ -29,6 +39,11 @@ namespace RX
     m_sampler = m_info.device.createSampler(createInfo);
     if (!m_sampler)
       RX_ERROR("Failed to create sampler.");
+  }
+
+  void Sampler::init(SamplerInfo&& info)
+  {
+    init(info);
   }
 
   void Sampler::destroy()

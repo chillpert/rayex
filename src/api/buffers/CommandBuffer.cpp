@@ -2,12 +2,17 @@
 
 namespace RX
 {
-  CommandBuffer::CommandBuffer(CommandBufferInfo& info)
+  CmdBuffer::CmdBuffer(CmdBufferInfo& info)
   {
     init(info);
   }
 
-  void CommandBuffer::init(CommandBufferInfo& info)
+  CmdBuffer::CmdBuffer(CmdBufferInfo&& info)
+  {
+    init(info);
+  }
+
+  void CmdBuffer::init(CmdBufferInfo& info)
   {
     m_info = info;
 
@@ -21,42 +26,52 @@ namespace RX
     m_commandBuffers = m_info.device.allocateCommandBuffers(allocateInfo);
 
     // set up begin info.
-    m_info.beginInfo.flags = m_info.usageFlags;
+    m_beginInfo.flags = m_info.usageFlags;
 
     // Set up submit info.
-    m_info.submitInfo.commandBufferCount = static_cast<uint32_t>(m_commandBuffers.size());
-    m_info.submitInfo.pCommandBuffers = m_commandBuffers.data();
+    m_submitInfo.commandBufferCount = static_cast<uint32_t>(m_commandBuffers.size());
+    m_submitInfo.pCommandBuffers = m_commandBuffers.data();
   }
 
-  void CommandBuffer::free()
+  void CmdBuffer::init(CmdBufferInfo&& info)
+  {
+    init(info);
+  }
+
+  void CmdBuffer::free()
   {
     m_info.device.freeCommandBuffers(m_info.commandPool, static_cast<uint32_t>(m_commandBuffers.size()), m_commandBuffers.data());
   }
 
-  void CommandBuffer::reset()
+  void CmdBuffer::reset()
   {
     for (vk::CommandBuffer& buffer : m_commandBuffers)
       buffer.reset(m_info.resetFlags);
   }
 
-  void CommandBuffer::begin(size_t index)
+  void CmdBuffer::begin(size_t index)
   {
-    m_commandBuffers[index].begin(m_info.beginInfo);
+    m_commandBuffers[index].begin(m_beginInfo);
   }
 
-  void CommandBuffer::end(size_t index)
+  void CmdBuffer::end(size_t index)
   {
     m_commandBuffers[index].end();
   }
 
-  void CommandBuffer::submitToQueue(const vk::Queue const queue) const
+  void CmdBuffer::submitToQueue(const vk::Queue queue) const
   {
     if (m_info.usageFlags & vk::CommandBufferUsageFlagBits::eOneTimeSubmit)
     {
-      queue.submit(1, &m_info.submitInfo, nullptr); // TODO: update assert
+      queue.submit(1, &m_submitInfo, nullptr); // TODO: update assert
       queue.waitIdle();
     }
     else
       RX_ERROR("Only command buffers with a usage flag containing eOneTimeSubmit should be submitted automatically");
+  }
+
+  void CmdBuffer::setSubmitInfo(const vk::SubmitInfo& submitInfo)
+  {
+    m_submitInfo = submitInfo;
   }
 }

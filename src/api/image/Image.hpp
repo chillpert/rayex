@@ -29,6 +29,7 @@ namespace RX
   public:
     Image() = default;
     Image(ImageInfo& info);
+    Image(ImageInfo&& info);
     ~Image();
 
     inline vk::Image get() { return m_image; }
@@ -37,6 +38,8 @@ namespace RX
     inline vk::Format getFormat() const { return m_info.format; }
 
     void init(ImageInfo& info);
+    void init(ImageInfo&& info);
+
     void destroy();
 
     void transitionToLayout(vk::ImageLayout layout);

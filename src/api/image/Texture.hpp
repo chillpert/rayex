@@ -9,11 +9,11 @@ namespace RX
 {
   struct TextureInfo
   {
-    std::string path;
     vk::PhysicalDevice physicalDevice;
     vk::Device device;
-    vk::Queue queue;
     vk::CommandPool commandPool;
+    vk::Queue queue;
+    std::string path;
     std::vector<uint32_t> queueIndices;
   };
 
@@ -22,6 +22,7 @@ namespace RX
   public:
     RX_API Texture() = default;
     RX_API Texture(TextureInfo& info);
+    RX_API Texture(TextureInfo&& info);
     RX_API ~Texture();
 
     inline vk::Image getImage() { return m_image.get(); }
@@ -30,6 +31,8 @@ namespace RX
     inline const std::string& getPath() const { return m_info.path; }
 
     void init(TextureInfo& info);
+    void init(TextureInfo&& info);
+
     void destroy();
   
   private:

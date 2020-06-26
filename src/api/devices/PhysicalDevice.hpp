@@ -14,8 +14,13 @@ namespace RX
   class PhysicalDevice
   {
   public:
+    PhysicalDevice() = default;
+    PhysicalDevice(PhysicalDeviceInfo& info);
+    PhysicalDevice(PhysicalDeviceInfo&& info);
+
     // Technically not created, but enumerated. However, this way is better for the naming scheme.
     void init(PhysicalDeviceInfo& info);
+    void init(PhysicalDeviceInfo&& info);
 
     inline vk::PhysicalDevice get() { return m_physicalDevice; }
 

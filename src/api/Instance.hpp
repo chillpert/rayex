@@ -15,9 +15,14 @@ namespace RX
   class Instance
   {
   public:
+    Instance() = default;
+    Instance(InstanceInfo& info);
+    Instance(InstanceInfo&& info);
+
     inline vk::Instance get() { return m_instance.get(); }
 
     void init(InstanceInfo& info);
+    void init(InstanceInfo&& info);
 
   private:
     void checkLayersSupport();

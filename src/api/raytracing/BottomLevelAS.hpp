@@ -18,9 +18,6 @@ namespace RX
   class BottomLevelAS
   {
   public:
-    BottomLevelAS() = default;
-    BottomLevelAS(BottomLevelASInfo& info);
-    
     ~BottomLevelAS();
     void destroy();
 
@@ -28,6 +25,7 @@ namespace RX
 
     // Creates a single bottom level AS.
     void init(BottomLevelASInfo& info, const std::shared_ptr<Model> model, std::vector<BottomLevelAS>& blas);
+
     // Creates bottom level AS for all given models.
     friend void initBottomLevelAS_(BottomLevelASInfo& info, const std::vector<std::shared_ptr<Model>>& models, std::vector<BottomLevelAS>& blas_);
 

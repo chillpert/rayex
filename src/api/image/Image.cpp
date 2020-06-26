@@ -10,6 +10,11 @@ namespace RX
     init(info);
   }
 
+  Image::Image(ImageInfo&& info)
+  {
+    init(info);
+  }
+
   Image::~Image()
   {
     if (m_image)
@@ -51,6 +56,11 @@ namespace RX
     m_info.device.bindImageMemory(m_image, m_memory, 0);
   }
 
+  void Image::init(ImageInfo&& info)
+  {
+    init(info);
+  }
+
   void Image::destroy()
   {
     m_info.device.destroyImage(m_image);
@@ -59,61 +69,57 @@ namespace RX
 
   void Image::transitionToLayout(vk::ImageLayout layout)
   {
-    CommandBufferInfo commandBufferInfo{ };
-    commandBufferInfo.device = m_info.device;
-    commandBufferInfo.commandPool = m_info.commandPool;
-
-    CommandBuffer commandBuffer;
-    commandBuffer.init(commandBufferInfo);
+    CmdBuffer commandBuffer;
+    commandBuffer.init({ m_info.device, m_info.commandPool });
 
     commandBuffer.begin();
-
-    vk::ImageMemoryBarrier barrier;
-    barrier.oldLayout = m_info.layout;
-    barrier.newLayout = layout;
-    barrier.srcQueueFamilyIndex = VK_QUEUE_FAMILY_IGNORED;
-    barrier.dstQueueFamilyIndex = VK_QUEUE_FAMILY_IGNORED;
-    barrier.image = m_image;
-    barrier.subresourceRange.aspectMask = vk::ImageAspectFlagBits::eColor;
-    barrier.subresourceRange.baseMipLevel = 0;
-    barrier.subresourceRange.levelCount = 1;
-    barrier.subresourceRange.baseArrayLayer = 0;
-    barrier.subresourceRange.layerCount = 1;
-
-    vk::PipelineStageFlags sourceStage;
-    vk::PipelineStageFlags destinationStage;
-
-    if (m_info.layout == vk::ImageLayout::eUndefined && layout == vk::ImageLayout::eTransferDstOptimal)
     {
-      //barrier.srcAccessMask = 0;
-      barrier.dstAccessMask = vk::AccessFlagBits::eTransferWrite;
+      vk::ImageMemoryBarrier barrier;
+      barrier.oldLayout = m_info.layout;
+      barrier.newLayout = layout;
+      barrier.srcQueueFamilyIndex = VK_QUEUE_FAMILY_IGNORED;
+      barrier.dstQueueFamilyIndex = VK_QUEUE_FAMILY_IGNORED;
+      barrier.image = m_image;
+      barrier.subresourceRange.aspectMask = vk::ImageAspectFlagBits::eColor;
+      barrier.subresourceRange.baseMipLevel = 0;
+      barrier.subresourceRange.levelCount = 1;
+      barrier.subresourceRange.baseArrayLayer = 0;
+      barrier.subresourceRange.layerCount = 1;
 
-      sourceStage = vk::PipelineStageFlagBits::eTopOfPipe;
-      destinationStage = vk::PipelineStageFlagBits::eTransfer;
+      vk::PipelineStageFlags sourceStage;
+      vk::PipelineStageFlags destinationStage;
+
+      if (m_info.layout == vk::ImageLayout::eUndefined && layout == vk::ImageLayout::eTransferDstOptimal)
+      {
+        //barrier.srcAccessMask = 0;
+        barrier.dstAccessMask = vk::AccessFlagBits::eTransferWrite;
+
+        sourceStage = vk::PipelineStageFlagBits::eTopOfPipe;
+        destinationStage = vk::PipelineStageFlagBits::eTransfer;
+      }
+      else if (m_info.layout == vk::ImageLayout::eTransferDstOptimal && layout == vk::ImageLayout::eShaderReadOnlyOptimal)
+      {
+        barrier.srcAccessMask = vk::AccessFlagBits::eTransferWrite;
+        barrier.dstAccessMask = vk::AccessFlagBits::eShaderRead;
+
+        sourceStage = vk::PipelineStageFlagBits::eTransfer;
+        destinationStage = vk::PipelineStageFlagBits::eFragmentShader;
+      }
+      else
+        RX_ERROR("Failed to transition image layout.");
+
+      commandBuffer.getFront().pipelineBarrier(
+        sourceStage,
+        destinationStage,
+        vk::DependencyFlagBits::eByRegion, // TODO: might be cause of an error
+        0,
+        nullptr,
+        0,
+        nullptr,
+        1,
+        &barrier
+      );
     }
-    else if (m_info.layout == vk::ImageLayout::eTransferDstOptimal && layout == vk::ImageLayout::eShaderReadOnlyOptimal)
-    {
-      barrier.srcAccessMask = vk::AccessFlagBits::eTransferWrite;
-      barrier.dstAccessMask = vk::AccessFlagBits::eShaderRead;
-
-      sourceStage = vk::PipelineStageFlagBits::eTransfer;
-      destinationStage = vk::PipelineStageFlagBits::eFragmentShader;
-    }
-    else
-      RX_ERROR("Failed to transition image layout.");
-
-    commandBuffer.getFront().pipelineBarrier(
-      sourceStage,
-      destinationStage,
-      vk::DependencyFlagBits::eByRegion, // TODO: might be cause of an error
-      0,
-      nullptr,
-      0,
-      nullptr,
-      1,
-      &barrier
-    );
-
     commandBuffer.end();
     commandBuffer.submitToQueue(m_info.queue);
 

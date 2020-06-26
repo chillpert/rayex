@@ -16,9 +16,15 @@ namespace RX
   class Device
   {
   public:
+    Device() = default;
+    Device(DeviceInfo& info);
+    Device(DeviceInfo&& info);
+
     inline vk::Device get() { return m_device.get(); }
 
     void init(DeviceInfo& info);
+    void init(DeviceInfo&& info);
+
     void waitIdle();
 
   private:

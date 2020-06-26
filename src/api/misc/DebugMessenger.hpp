@@ -15,11 +15,16 @@ namespace RX
   class DebugMessenger
   {
   public:
+    DebugMessenger() = default;
+    DebugMessenger(DebugMessengerInfo& info);
+    DebugMessenger(DebugMessengerInfo&& info);
+
     ~DebugMessenger();
 
     inline VkDebugUtilsMessengerEXT get() { return m_debugMessenger; }
 
     void init(DebugMessengerInfo& info);
+    void init(DebugMessengerInfo&& info);
 
   private:
     void destroy();

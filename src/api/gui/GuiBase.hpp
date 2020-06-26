@@ -40,14 +40,19 @@ namespace RX
   class GuiBase
   {
   public:
+    GuiBase() = default;
+    GuiBase(GuiInfo& info);
+    GuiBase(GuiInfo&& info);
     RX_API virtual ~GuiBase();
 
-    inline CommandBuffer& getCommandBuffer() { return m_commandBuffers; }
+    inline CmdBuffer& getCommandBuffer() { return m_commandBuffers; }
 
     RX_API virtual void configure();
     RX_API virtual void render();
 
     void init(GuiInfo& info);
+    void init(GuiInfo&& info);
+
     void beginRender();
     void endRender();
     void beginRenderPass(int index);
@@ -69,7 +74,7 @@ namespace RX
 
     DescriptorPool m_descriptorPool;
     CommandPool m_commandPool;
-    CommandBuffer m_commandBuffers;
+    CmdBuffer m_commandBuffers;
     RenderPass m_renderPass;
     std::vector<Framebuffer> m_framebuffers;
 

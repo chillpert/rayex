@@ -5,7 +5,7 @@
 
 namespace RX
 {
-  class Memory
+  class Memory // TODO: this should take care of vk::DeviceMemory and provide a custom allocator.
   {
   public:
     static uint32_t findType(vk::PhysicalDevice physicalDevice, uint32_t typeFilter, vk::MemoryPropertyFlags properties)

@@ -2,6 +2,16 @@
 
 namespace RX
 {
+  DescriptorSetLayout::DescriptorSetLayout(DescriptorSetLayoutInfo& info)
+  {
+    init(info);
+  }
+
+  DescriptorSetLayout::DescriptorSetLayout(DescriptorSetLayoutInfo&& info)
+  {
+    init(info);
+  }
+
   DescriptorSetLayout::~DescriptorSetLayout()
   {
     if (m_layout)

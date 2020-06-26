@@ -20,11 +20,16 @@ namespace RX
   class IndexBuffer
   {
   public:
+    IndexBuffer() = default;
+    IndexBuffer(IndexBufferInfo<T>& info);
+    IndexBuffer(IndexBufferInfo<T>&& info);
+
     inline vk::Buffer get() const { return m_buffer.get(); }
     inline uint32_t getCount() { return m_count; }
     inline vk::IndexType getType() { return m_indexType; }
 
     void init(IndexBufferInfo<T>& info);
+    void init(IndexBufferInfo<T>&& info);
   
   private:
     Buffer m_buffer;
@@ -33,6 +38,18 @@ namespace RX
     uint32_t m_count;
     vk::IndexType m_indexType;
   };
+
+  template<typename T>
+  inline IndexBuffer<T>::IndexBuffer(IndexBufferInfo<T>& info)
+  {
+    init(info);
+  }
+
+  template<typename T>
+  inline IndexBuffer<T>::IndexBuffer(IndexBufferInfo<T>&& info)
+  {
+    init(info);
+  }
 
   template <typename T>
   void IndexBuffer<T>::init(IndexBufferInfo<T>& info)
@@ -53,7 +70,7 @@ namespace RX
       RX_ERROR("Invalid data type for index buffer was specified.");
 
     // Set up the staging buffer.
-    BufferCreateInfo stagingInfo{ };
+    BufferInfo stagingInfo{ };
     stagingInfo.physicalDevice = m_info.physicalDevice;
     stagingInfo.device = m_info.device;
     stagingInfo.size = sizeof(m_info.indices[0]) * m_info.indices.size();
@@ -68,7 +85,7 @@ namespace RX
     stagingInfo.queueFamilyIndices = m_info.queueIndices;
 
     // Set up the actual index buffer.
-    BufferCreateInfo bufferInfo = stagingInfo;
+    BufferInfo bufferInfo = stagingInfo;
     bufferInfo.usage = vk::BufferUsageFlagBits::eTransferDst | vk::BufferUsageFlagBits::eIndexBuffer | vk::BufferUsageFlagBits::eShaderDeviceAddress;
     bufferInfo.memoryProperties = vk::MemoryPropertyFlagBits::eDeviceLocal;
 
@@ -79,6 +96,12 @@ namespace RX
 
     // Copy staging buffer to the actual index buffer.
     m_buffer = stagingBuffer;
+  }
+
+  template <typename T>
+  void IndexBuffer<T>::init(IndexBufferInfo<T>&& info)
+  {
+    init(info);
   }
 }
 

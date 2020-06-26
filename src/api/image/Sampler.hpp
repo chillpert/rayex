@@ -13,11 +13,15 @@ namespace RX
   class Sampler
   {
   public:
+    Sampler() = default;
+    Sampler(SamplerInfo& info);
+    Sampler(SamplerInfo&& info);
     RX_API ~Sampler();
 
     inline vk::Sampler get() const { return m_sampler; }
 
     void init(SamplerInfo& info);
+    void init(SamplerInfo&& info);
     void destroy();
 
   private:

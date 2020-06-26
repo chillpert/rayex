@@ -2,6 +2,16 @@
 
 namespace RX
 {
+  Framebuffer::Framebuffer(FramebufferInfo& info)
+  {
+    init(info);
+  }
+
+  Framebuffer::Framebuffer(FramebufferInfo&& info)
+  {
+    init(info);
+  }
+
   Framebuffer::~Framebuffer()
   {
     if (m_framebuffer)
@@ -31,6 +41,11 @@ namespace RX
     m_framebuffer = m_info.device.createFramebuffer(createInfo);
     if (!m_framebuffer)
       RX_ERROR("Failed to create framebuffer.");
+  }
+
+  void Framebuffer::init(FramebufferInfo&& info)
+  {
+    init(info);
   }
 
   void Framebuffer::destroy()

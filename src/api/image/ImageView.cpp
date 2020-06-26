@@ -7,6 +7,11 @@ namespace RX
     init(info);
   }
 
+  ImageView::ImageView(ImageViewInfo&& info)
+  {
+    init(info);
+  }
+
   ImageView::~ImageView()
   {
     if (m_imageView)
@@ -28,6 +33,11 @@ namespace RX
 
     if (!m_imageView)
       RX_ERROR("Failed to create image view.");
+  }
+
+  void ImageView::init(ImageViewInfo&& info)
+  {
+    init(info);
   }
 
   void ImageView::destroy()

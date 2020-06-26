@@ -3,6 +3,16 @@
 
 namespace RX
 {
+  GuiBase::GuiBase(GuiInfo& info)
+  {
+    init(info);
+  }
+
+  GuiBase::GuiBase(GuiInfo&& info)
+  {
+    init(info);
+  }
+
   GuiBase::~GuiBase()
   {
     if (m_created)
@@ -60,6 +70,11 @@ namespace RX
     m_renderPass.setBeginInfo(beginInfo);
 
     m_created = true;
+  }
+
+  void GuiBase::init(GuiInfo&& info)
+  {
+    init(info);
   }
 
   void GuiBase::beginRender()
@@ -129,35 +144,34 @@ namespace RX
 
   void GuiBase::initCommandPool()
   {
-    CommandPoolInfo commandPoolInfo{ };
-    commandPoolInfo.device = m_info.device;
-    commandPoolInfo.queueFamilyIndex = m_info.queueFamilyIndex; // This should definitely be the a graphics queue family index.
-    commandPoolInfo.createFlags = vk::CommandPoolCreateFlagBits::eResetCommandBuffer;
-
-    m_commandPool.init(commandPoolInfo);
+    m_commandPool.init({
+      .device = m_info.device,
+      .queueFamilyIndex = m_info.queueFamilyIndex,
+      .createFlags = vk::CommandPoolCreateFlagBits::eResetCommandBuffer
+      }
+    );
   }
 
   void GuiBase::initDescriptorPool()
   {
-    DescriptorPoolInfo info{ };
-    info.device = m_info.device;
-    info.maxSets = m_info.imageCount;
-    info.poolSizes =
-    {
-      { vk::DescriptorType::eSampler, 1000 },
-      { vk::DescriptorType::eCombinedImageSampler, 1000 },
-      { vk::DescriptorType::eSampledImage, 1000 },
-      { vk::DescriptorType::eStorageImage, 1000 },
-      { vk::DescriptorType::eUniformTexelBuffer, 1000 },
-      { vk::DescriptorType::eStorageTexelBuffer, 1000 },
-      { vk::DescriptorType::eUniformBuffer, 1000 },
-      { vk::DescriptorType::eStorageBuffer, 1000 },
-      { vk::DescriptorType::eUniformBufferDynamic, 1000 },
-      { vk::DescriptorType::eStorageBufferDynamic, 1000 },
-      { vk::DescriptorType::eInputAttachment, 1000 }
-    };
-
-    m_descriptorPool.init(info);
+    m_descriptorPool.init({
+      .device = m_info.device,
+      .poolSizes = {
+          { vk::DescriptorType::eSampler, 1000 },
+          { vk::DescriptorType::eCombinedImageSampler, 1000 },
+          { vk::DescriptorType::eSampledImage, 1000 },
+          { vk::DescriptorType::eStorageImage, 1000 },
+          { vk::DescriptorType::eUniformTexelBuffer, 1000 },
+          { vk::DescriptorType::eStorageTexelBuffer, 1000 },
+          { vk::DescriptorType::eUniformBuffer, 1000 },
+          { vk::DescriptorType::eStorageBuffer, 1000 },
+          { vk::DescriptorType::eUniformBufferDynamic, 1000 },
+          { vk::DescriptorType::eStorageBufferDynamic, 1000 },
+          { vk::DescriptorType::eInputAttachment, 1000 }
+        },
+      .maxSets = m_info.imageCount
+      }
+    );
   }
 
   void GuiBase::initRenderPass()
@@ -209,11 +223,7 @@ namespace RX
 
   void GuiBase::initFonts()
   {
-    CommandBufferInfo singleTimeCommandBufferInfo{ };
-    singleTimeCommandBufferInfo.device = m_info.device;
-    singleTimeCommandBufferInfo.commandPool = m_commandPool.get();
-
-    CommandBuffer commandBuffer(singleTimeCommandBufferInfo);
+    CmdBuffer commandBuffer({ m_info.device, m_commandPool.get() });
     commandBuffer.begin();
       ImGui_ImplVulkan_CreateFontsTexture(commandBuffer.getFront());
     commandBuffer.end();
@@ -223,7 +233,7 @@ namespace RX
   void GuiBase::initCommandBuffers()
   {
     // Create command buffers for each image in the swapchain.
-    CommandBufferInfo commandBufferInfo{ };
+    CmdBufferInfo commandBufferInfo{ };
     commandBufferInfo.device = m_info.device;
     commandBufferInfo.commandPool = m_commandPool.get();
     commandBufferInfo.commandBufferCount = m_info.imageCount;
@@ -235,10 +245,11 @@ namespace RX
 
   void GuiBase::initFramebuffers()
   {
-    FramebufferInfo framebufferInfo{ };
-    framebufferInfo.device = m_info.device;
-    framebufferInfo.renderPass = m_renderPass.get();
-    framebufferInfo.extent = m_info.swapchainImageExtent;
+    FramebufferInfo framebufferInfo{
+      .device = m_info.device,
+      .renderPass = m_renderPass.get(),
+      .extent = m_info.swapchainImageExtent
+    };
 
     m_framebuffers.resize(m_info.imageCount);
     for (size_t i = 0; i < m_framebuffers.size(); ++i)

@@ -94,6 +94,11 @@ namespace RX
     m_images = m_info.device.getSwapchainImagesKHR(m_swapchain);
   }
 
+  void Swapchain::init(SwapchainInfo&& info)
+  {
+    init(info);
+  }
+
   void Swapchain::destroy()
   {
     m_info.device.destroySwapchainKHR(m_swapchain);

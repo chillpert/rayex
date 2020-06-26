@@ -15,7 +15,6 @@ namespace RX
 
   struct UniformBufferInfo
   {
-    //UniformBufferObject uniformBufferObject;
     vk::PhysicalDevice physicalDevice;
     vk::Device device;
     size_t swapchainImagesCount;
@@ -24,10 +23,16 @@ namespace RX
   class UniformBuffer
   {
   public:
+    UniformBuffer() = default;
+    UniformBuffer(UniformBufferInfo& info);
+    UniformBuffer(UniformBufferInfo&& info);
+
     inline std::vector<Buffer>& get() { return m_buffers; }
     std::vector<vk::Buffer> getRaw();
 
     void init(UniformBufferInfo& info);
+    void init(UniformBufferInfo&& info);
+
     void destroy();
 
     void upload(uint32_t imageIndex, UniformBufferObject& ubo);

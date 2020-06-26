@@ -5,32 +5,32 @@
 
 namespace RX
 {
-  struct CommandBufferInfo
+  struct CmdBufferInfo
   {
     vk::Device device;
     vk::CommandPool commandPool;
     vk::Queue queue;
 
     size_t commandBufferCount = 1; // Amount of command buffers that will be created.
+    vk::CommandBufferLevel level = vk::CommandBufferLevel::ePrimary;
     vk::CommandBufferUsageFlags usageFlags = vk::CommandBufferUsageFlagBits::eOneTimeSubmit;
     vk::CommandBufferResetFlags resetFlags = vk::CommandBufferResetFlagBits::eReleaseResources;
-    vk::CommandBufferLevel level = vk::CommandBufferLevel::ePrimary;
-
-    vk::CommandBufferBeginInfo beginInfo; // Ignore
-    vk::SubmitInfo submitInfo; // Ignore
   };
 
-  class CommandBuffer
+  class CmdBuffer
   {
   public:
-    CommandBuffer() = default;
-    CommandBuffer(CommandBufferInfo& info);
+    CmdBuffer() = default;
+    CmdBuffer(CmdBufferInfo& info); 
+    CmdBuffer(CmdBufferInfo&& info);
 
     inline std::vector<vk::CommandBuffer>& get() { return m_commandBuffers; }
     inline vk::CommandBuffer get(size_t index) { return m_commandBuffers[index]; }
     inline vk::CommandBuffer getFront() { return m_commandBuffers[0]; }
 
-    void init(CommandBufferInfo& info);
+    void init(CmdBufferInfo& info);
+    void init(CmdBufferInfo&& info);
+
     void free();
     // Can only be used explicitly if the command pool's used to create the command buffer(s) 
     // from was created with resetFlags equal to VK_COMMAND_BUFFER_RESET_RELEASE_RESOURCES_BIT.
@@ -39,11 +39,16 @@ namespace RX
     void begin(size_t index = 0);
     void end(size_t index = 0);
 
-    void submitToQueue(const vk::Queue const queue) const;
+    void submitToQueue(const vk::Queue queue) const;
+
+    void setSubmitInfo(const vk::SubmitInfo& submitInfo);
 
   private:
     std::vector<vk::CommandBuffer> m_commandBuffers;
-    CommandBufferInfo m_info;
+
+    CmdBufferInfo m_info;
+    vk::CommandBufferBeginInfo m_beginInfo;
+    vk::SubmitInfo m_submitInfo;
 
     bool m_allocated = false;
   };

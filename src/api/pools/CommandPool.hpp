@@ -18,11 +18,14 @@ namespace RX
   public:
     CommandPool() = default;
     CommandPool(CommandPoolInfo& info);
+    CommandPool(CommandPoolInfo&& info);
     ~CommandPool();
     
     inline vk::CommandPool get() { return m_commandPool; }
 
     void init(CommandPoolInfo& info);
+    void init(CommandPoolInfo&& info);
+
     void destroy();
 
     // All command buffers allocated from this pool will return to their initial state.

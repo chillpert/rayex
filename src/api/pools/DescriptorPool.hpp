@@ -15,11 +15,16 @@ namespace RX
   class DescriptorPool
   {
   public:
+    DescriptorPool() = default;
+    DescriptorPool(DescriptorPoolInfo& info);
+    DescriptorPool(DescriptorPoolInfo&& info);
     RX_API ~DescriptorPool();
 
     inline vk::DescriptorPool get() { return m_pool; }
 
     void init(DescriptorPoolInfo& info);
+    void init(DescriptorPoolInfo&& info);
+
     void destroy();
 
   private:

@@ -8,9 +8,9 @@ namespace RX
   struct QueryPoolInfo
   {
     vk::Device device;
-    vk::DispatchLoaderDynamic dispatchLoaderDynamic;
     uint32_t queryCount;
     vk::QueryType queryType;
+    vk::DispatchLoaderDynamic dispatchLoaderDynamic;
   };
 
   class QueryPool
@@ -18,11 +18,14 @@ namespace RX
   public:
     QueryPool() = default;
     QueryPool(QueryPoolInfo& info);
+    QueryPool(QueryPoolInfo&& info);
     ~QueryPool();
      
     inline vk::QueryPool get() { return m_queryPool; }
 
     void init(QueryPoolInfo& info);
+    void init(QueryPoolInfo&& info);
+    
     void destroy();
 
   private:

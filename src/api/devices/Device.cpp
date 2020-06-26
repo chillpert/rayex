@@ -2,6 +2,16 @@
 
 namespace RX
 {
+  Device::Device(DeviceInfo& info)
+  {
+    init(info);
+  }
+
+  Device::Device(DeviceInfo&& info)
+  {
+    init(info);
+  }
+
   void Device::init(DeviceInfo& info)
   {
     m_info = info;
@@ -57,6 +67,11 @@ namespace RX
 
     if (!m_device)
       RX_ERROR("Failed to create logical device.");
+  }
+
+  void Device::init(DeviceInfo&& info)
+  {
+    init(info);
   }
 
   void Device::waitIdle()

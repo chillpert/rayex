@@ -14,7 +14,7 @@ namespace RX
     return res;
   }
 
-  void UniformBuffer::initialize(UniformBufferInfo& info)
+  void UniformBuffer::init(UniformBufferInfo& info)
   {
     m_info = info;
 
@@ -30,7 +30,7 @@ namespace RX
     m_buffers.resize(m_info.swapchainImagesCount);
 
     for (Buffer& buffer : m_buffers)
-      buffer.initialize(createInfo);
+      buffer.init(createInfo);
   }
 
   void UniformBuffer::destroy()

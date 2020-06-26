@@ -4,7 +4,7 @@ namespace RX
 {
   RenderPass::RenderPass(RenderPassInfo& info)
   {
-    initialize(info);
+    init(info);
   }
 
   RenderPass::~RenderPass()
@@ -13,7 +13,7 @@ namespace RX
       destroy();
   }
 
-  void RenderPass::initialize(RenderPassInfo& info)
+  void RenderPass::init(RenderPassInfo& info)
   {
     m_info = info;
 

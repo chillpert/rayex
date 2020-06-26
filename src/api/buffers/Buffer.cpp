@@ -6,7 +6,7 @@ namespace RX
 {
   Buffer::Buffer(BufferCreateInfo& createInfo)
   {
-    initialize(createInfo);
+    init(createInfo);
   }
   
   Buffer::~Buffer()
@@ -15,7 +15,7 @@ namespace RX
       destroy();
   }
 
-  void Buffer::initialize(BufferCreateInfo& createInfo)
+  void Buffer::init(BufferCreateInfo& createInfo)
   {
     m_info = createInfo;
 

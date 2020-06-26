@@ -8,7 +8,7 @@ namespace RX
       destroy();
   }
 
-  void Swapchain::initialize(SwapchainInfo& info)
+  void Swapchain::init(SwapchainInfo& info)
   {
     m_info = info;
 

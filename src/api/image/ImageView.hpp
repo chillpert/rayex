@@ -24,7 +24,7 @@ namespace RX
 
     inline vk::ImageView get() { return m_imageView; }
 
-    void initialize(ImageViewInfo& info);
+    void init(ImageViewInfo& info);
     void destroy();
 
   private:

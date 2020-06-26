@@ -2,7 +2,7 @@
 
 namespace RX
 {
-  void QueueManager::initialize(QueuesInfo& info)
+  void QueueManager::init(QueuesInfo& info)
   {
     m_info = info;
 

@@ -8,7 +8,7 @@ namespace RX
       destroy();
   }
 
-  void Fence::initialize(FenceInfo& info)
+  void Fence::init(FenceInfo& info)
   {
     m_info = info;
 

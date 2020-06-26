@@ -41,7 +41,7 @@ namespace RX
     inline Shader& getMissShader() { return m_miss; }
     inline Shader& getClosestHitShader() { return m_closestHit; }
 
-    void initialize(RaytraceBuilderInfo& info);
+    void init(RaytraceBuilderInfo& info);
     void destroy();
 
     void initAccelerationStructures(const std::vector<std::shared_ptr<GeometryNodeBase>>& nodes, const std::vector<std::shared_ptr<Model>>& models);

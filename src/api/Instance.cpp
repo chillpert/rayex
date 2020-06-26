@@ -2,7 +2,7 @@
 
 namespace RX
 {
-  void Instance::initialize(InstanceInfo& info)
+  void Instance::init(InstanceInfo& info)
   {
     m_info = info;
 

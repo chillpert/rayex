@@ -17,7 +17,7 @@ namespace RX
   public:
     inline vk::Instance get() { return m_instance.get(); }
 
-    void initialize(InstanceInfo& info);
+    void init(InstanceInfo& info);
 
   private:
     void checkLayersSupport();

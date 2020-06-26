@@ -5,14 +5,14 @@
 
 namespace RX
 {
-  void RaytraceBuilder::initialize(RaytraceBuilderInfo& info)
+  void RaytraceBuilder::init(RaytraceBuilderInfo& info)
   {
     m_info = info;
 
     auto properties = m_info.physicalDevice.getProperties2<vk::PhysicalDeviceProperties2, vk::PhysicalDeviceRayTracingPropertiesKHR>();
     m_rayTracingProperties = properties.get<vk::PhysicalDeviceRayTracingPropertiesKHR>();
 
-    //m_debugUtils.initialize(DebugUtilInfo{ m_info.device, m_dispatchLoaderDynamic });
+    //m_debugUtils.init(DebugUtilInfo{ m_info.device, m_dispatchLoaderDynamic });
   }
 
   void RaytraceBuilder::destroy()
@@ -40,7 +40,7 @@ namespace RX
     topLevelASInfo.flags = vk::BuildAccelerationStructureFlagBitsKHR::ePreferFastTrace;
     
     // Create a single bottom level acceleration structure.
-    m_tlas.initialize(topLevelASInfo);
+    m_tlas.init(topLevelASInfo);
 
     // Create descriptor set.
     initDescriptorSet();
@@ -63,24 +63,24 @@ namespace RX
       .maxSets = 1
     };
 
-    m_descriptorPool.initialize(poolInfo);
+    m_descriptorPool.init(poolInfo);
 
     // Create raytracing shaders.
-    m_rayGen.initialize(
+    m_rayGen.init(
       ShaderInfo{
         .fullPath = RX_SHADER_PATH "raygen.rgen",
         .device = m_info.device
       }
     );
 
-    m_miss.initialize(
+    m_miss.init(
       ShaderInfo{
         .fullPath = RX_SHADER_PATH "miss.rmiss",
         .device = m_info.device
       }
     );
 
-    m_closestHit.initialize(
+    m_closestHit.init(
       ShaderInfo{
         .fullPath = RX_SHADER_PATH "closesthit.rchit",
         .device = m_info.device
@@ -111,7 +111,7 @@ namespace RX
       .device = m_info.device,
     };
 
-    m_descriptorSetLayout.initialize(layoutInfo);
+    m_descriptorSetLayout.init(layoutInfo);
 
     // Init descriptor set.
     DescriptorSetInfo setInfo{
@@ -121,7 +121,7 @@ namespace RX
       .layouts = { m_descriptorSetLayout.get() }
     };
     
-    m_descriptorSet.initialize(setInfo);
+    m_descriptorSet.init(setInfo);
     
     // Create the storage image.
     ImageInfo imageInfo{ };
@@ -131,7 +131,7 @@ namespace RX
     imageInfo.format = m_info.surface->getFormat();
     imageInfo.extent = vk::Extent3D(m_info.surface->getCapabilities().currentExtent, 1);
 
-    m_storageImage.initialize(imageInfo);
+    m_storageImage.init(imageInfo);
 
     ImageViewInfo imageViewInfo{
       .device = m_info.device,
@@ -139,7 +139,7 @@ namespace RX
       .format = m_storageImage.getFormat()
     };
 
-    m_storageImageView.initialize(imageViewInfo);
+    m_storageImageView.init(imageViewInfo);
 
     // Update descriptor set.
     UpdateRaytracingDescriptorSetInfo updateInfo{

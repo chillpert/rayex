@@ -16,7 +16,7 @@ namespace RX
     inline vk::SurfaceCapabilitiesKHR getCapabilities() const { return m_capabilities; }
     inline vk::PresentModeKHR getPresentMode() const { return m_info.presentMode; }
 
-    void initialize(SurfaceInfo& info);
+    void init(SurfaceInfo& info);
     void destroy();
 
     // Checks if the preferred settings for format, color space and present mode are available.

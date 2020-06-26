@@ -27,7 +27,7 @@ namespace RX
     inline std::vector<Buffer>& get() { return m_buffers; }
     std::vector<vk::Buffer> getRaw();
 
-    void initialize(UniformBufferInfo& info);
+    void init(UniformBufferInfo& info);
     void destroy();
 
     void upload(uint32_t imageIndex, UniformBufferObject& ubo);

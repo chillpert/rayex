@@ -8,7 +8,7 @@ namespace RX
 {
   Texture::Texture(TextureInfo& info)
   {
-    initialize(info);
+    init(info);
   }
 
   Texture::~Texture()
@@ -16,7 +16,7 @@ namespace RX
     destroy();
   }
 
-  void Texture::initialize(TextureInfo& info)
+  void Texture::init(TextureInfo& info)
   {
     m_info = info;
 
@@ -50,7 +50,7 @@ namespace RX
     imageInfo.commandPool = m_info.commandPool;
     imageInfo.extent = VkExtent3D{ static_cast<uint32_t>(width), static_cast<uint32_t>(height), 1 };
 
-    m_image.initialize(imageInfo);
+    m_image.init(imageInfo);
 
     m_image.transitionToLayout(vk::ImageLayout::eTransferDstOptimal);
     stagingBuffer.copyToImage(m_image);
@@ -60,9 +60,9 @@ namespace RX
     imageViewInfo.device = m_info.device;
     imageViewInfo.format = m_image.getFormat();
     imageViewInfo.image = m_image.get();
-    m_imageView.initialize(imageViewInfo);
+    m_imageView.init(imageViewInfo);
 
-    m_sampler.initialize(SamplerInfo{ m_info.device });
+    m_sampler.init(SamplerInfo{ m_info.device });
   }
 
   void Texture::destroy()

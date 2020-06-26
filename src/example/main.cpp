@@ -128,9 +128,9 @@ public:
   std::shared_ptr<CustomCamera> m_camera;
   bool m_mouseVisible = true;
 
-  void initialize() override
+  void init() override
   {
-    WindowBase::initialize();
+    WindowBase::init();
 
     SDL_SetRelativeMouseMode(SDL_FALSE);
   }

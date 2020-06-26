@@ -23,7 +23,7 @@ namespace RX
     inline vk::DeviceSize getSize() const { return m_buffer.getSize(); }
     inline uint32_t getCount() const { return m_count; }
 
-    void initialize(VertexBufferInfo& info);
+    void init(VertexBufferInfo& info);
 
   private:
     Buffer m_buffer;

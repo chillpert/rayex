@@ -47,7 +47,7 @@ namespace RX
     RX_API virtual void configure();
     RX_API virtual void render();
 
-    void initialize(GuiInfo& info);
+    void init(GuiInfo& info);
     void beginRender();
     void endRender();
     void beginRenderPass(int index);

@@ -21,7 +21,7 @@ namespace RX
     m_bindings.clear();
   }
 
-  void DescriptorSetLayout::initialize(DescriptorSetLayoutInfo& info)
+  void DescriptorSetLayout::init(DescriptorSetLayoutInfo& info)
   {
     m_info = info;
 
@@ -33,6 +33,11 @@ namespace RX
     m_layout = m_info.device.createDescriptorSetLayout(createInfo);
     if (!m_layout)
       RX_ERROR("Failed to create descriptor set layout.");
+  }
+
+  void DescriptorSetLayout::init(DescriptorSetLayoutInfo&& info)
+  {
+    init(info);
   }
 
   void DescriptorSetLayout::destroy()

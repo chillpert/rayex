@@ -30,7 +30,7 @@ namespace RX
     inline vk::CommandBuffer get(size_t index) { return m_commandBuffers[index]; }
     inline vk::CommandBuffer getFront() { return m_commandBuffers[0]; }
 
-    void initialize(CommandBufferInfo& info);
+    void init(CommandBufferInfo& info);
     void free();
     // Can only be used explicitly if the command pool's used to create the command buffer(s) 
     // from was created with resetFlags equal to VK_COMMAND_BUFFER_RESET_RELEASE_RESOURCES_BIT.

@@ -17,7 +17,7 @@ namespace RX
 
     inline vk::Fence& get() { return m_fence; }
 
-    void initialize(FenceInfo& info);
+    void init(FenceInfo& info);
     void destroy();
 
   private:

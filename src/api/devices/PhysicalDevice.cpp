@@ -3,7 +3,7 @@
 
 namespace RX
 {
-  void PhysicalDevice::initialize(PhysicalDeviceInfo& info)
+  void PhysicalDevice::init(PhysicalDeviceInfo& info)
   {
     m_info = info;
 

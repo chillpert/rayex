@@ -8,7 +8,7 @@ namespace RX
       destroy();
   }
 
-  void Framebuffer::initialize(FramebufferInfo& info)
+  void Framebuffer::init(FramebufferInfo& info)
   {
     m_info = info;
 

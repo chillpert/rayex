@@ -17,7 +17,7 @@ namespace RX
 
     inline vk::Semaphore& get() { return m_semaphore; }
 
-    void initialize(SemaphoreInfo& info);
+    void init(SemaphoreInfo& info);
     void destroy();
 
   private:

@@ -21,7 +21,8 @@ namespace RX
     void clearBindings();
 
     // Creates the layout of the descriptor set.
-    void initialize(DescriptorSetLayoutInfo& info);
+    void init(DescriptorSetLayoutInfo& info);
+    void init(DescriptorSetLayoutInfo&& info);
     void destroy();
 
   private:

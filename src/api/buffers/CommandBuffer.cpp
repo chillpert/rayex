@@ -4,10 +4,10 @@ namespace RX
 {
   CommandBuffer::CommandBuffer(CommandBufferInfo& info)
   {
-    initialize(info);
+    init(info);
   }
 
-  void CommandBuffer::initialize(CommandBufferInfo& info)
+  void CommandBuffer::init(CommandBufferInfo& info)
   {
     m_info = info;
 

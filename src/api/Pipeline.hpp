@@ -43,8 +43,8 @@ namespace RX
     inline vk::Rect2D getScissor() const { return m_info.scissor; }
     inline vk::Viewport getViewport() const { return m_info.viewport; }
 
-    void initialize(RasterizationPipelineInfo& info);
-    void initialize(RaytracingPipelineInfo& info);
+    void init(RasterizationPipelineInfo& info);
+    void init(RaytracingPipelineInfo& info);
     void destroy();
 
   private:

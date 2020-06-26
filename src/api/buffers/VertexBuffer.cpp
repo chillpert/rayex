@@ -2,7 +2,7 @@
 
 namespace RX
 {
-  void VertexBuffer::initialize(VertexBufferInfo& info)
+  void VertexBuffer::init(VertexBufferInfo& info)
   {
     m_info = info;
     m_count = static_cast<uint32_t>(m_info.vertices.size());
@@ -30,7 +30,7 @@ namespace RX
     Buffer stagingBuffer(stagingInfo);
     stagingBuffer.fill<Vertex>(m_info.vertices.data());
 
-    m_buffer.initialize(bufferInfo);
+    m_buffer.init(bufferInfo);
 
     // Copy staging buffer to the actual index buffer.
     m_buffer = stagingBuffer;

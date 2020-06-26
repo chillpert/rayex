@@ -29,7 +29,7 @@ namespace RX
     inline vk::Sampler getSampler() { return m_sampler.get(); }
     inline const std::string& getPath() const { return m_info.path; }
 
-    void initialize(TextureInfo& info);
+    void init(TextureInfo& info);
     void destroy();
   
   private:

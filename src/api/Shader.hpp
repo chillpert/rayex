@@ -21,11 +21,13 @@ namespace RX
   public:
     Shader() = default;
     Shader(ShaderInfo& info);
+    Shader(ShaderInfo&& info);
     ~Shader();
 
     inline vk::ShaderModule get() const { return m_shaderModule; }
     
-    void initialize(ShaderInfo& info);
+    void init(ShaderInfo& info);
+
     void destroy();
 
   private:

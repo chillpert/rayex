@@ -15,7 +15,7 @@ namespace RX
   {
   public:
     // Technically not created, but enumerated. However, this way is better for the naming scheme.
-    void initialize(PhysicalDeviceInfo& info);
+    void init(PhysicalDeviceInfo& info);
 
     inline vk::PhysicalDevice get() { return m_physicalDevice; }
 

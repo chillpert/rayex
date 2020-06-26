@@ -21,7 +21,7 @@ namespace RX
 
 		inline vk::Framebuffer get() { return m_framebuffer; }
 
-		void initialize(FramebufferInfo& info);
+		void init(FramebufferInfo& info);
     void destroy();
 
 	private:

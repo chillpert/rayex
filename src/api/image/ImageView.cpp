@@ -4,7 +4,7 @@ namespace RX
 {
   ImageView::ImageView(ImageViewInfo& info)
   {
-    initialize(info);
+    init(info);
   }
 
   ImageView::~ImageView()
@@ -13,7 +13,7 @@ namespace RX
       destroy();
   }
 
-  void ImageView::initialize(ImageViewInfo& info)
+  void ImageView::init(ImageViewInfo& info)
   {
     m_info = info;
 

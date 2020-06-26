@@ -18,7 +18,7 @@ namespace RX
     Dummy() = default;
     Dummy(DummyInfo& info)
     {
-      initialize(info);
+      init(info);
     }
 
     ~Dummy()
@@ -28,7 +28,7 @@ namespace RX
 
     inline uint32_t get() { return m_dummy; }
 
-    void initialize(DummyInfo& info)
+    void init(DummyInfo& info)
     {
       m_info = info;
     }

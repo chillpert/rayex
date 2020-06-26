@@ -17,7 +17,7 @@ namespace RX
 
     inline vk::Sampler get() const { return m_sampler; }
 
-    void initialize(SamplerInfo& info);
+    void init(SamplerInfo& info);
     void destroy();
 
   private:

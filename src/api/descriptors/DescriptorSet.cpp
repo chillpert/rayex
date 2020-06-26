@@ -7,7 +7,7 @@ namespace RX
     //destroy();
   }
 
-  void DescriptorSet::initialize(DescriptorSetInfo& info)
+  void DescriptorSet::init(DescriptorSetInfo& info)
   {
     m_info = info;
     

@@ -36,7 +36,7 @@ namespace RX
     inline vk::DeviceMemory& getMemory() { return m_memory; }
     inline vk::Format getFormat() const { return m_info.format; }
 
-    void initialize(ImageInfo& info);
+    void init(ImageInfo& info);
     void destroy();
 
     void transitionToLayout(vk::ImageLayout layout);

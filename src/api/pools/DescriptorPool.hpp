@@ -19,7 +19,7 @@ namespace RX
 
     inline vk::DescriptorPool get() { return m_pool; }
 
-    void initialize(DescriptorPoolInfo& info);
+    void init(DescriptorPoolInfo& info);
     void destroy();
 
   private:

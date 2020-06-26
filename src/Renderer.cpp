@@ -9,7 +9,7 @@ namespace RX
     m_initialized(false),
     m_running(true) 
   {
-    initialize();
+    init();
   }
 
   Renderer::Renderer(std::shared_ptr<CameraBase> camera) :
@@ -19,7 +19,7 @@ namespace RX
     m_initialized(false),
     m_running(true) 
   {
-    initialize();
+    init();
   }
 
   Renderer::Renderer(std::shared_ptr<WindowBase> window) :
@@ -29,7 +29,7 @@ namespace RX
     m_initialized(false),
     m_running(true) 
   {
-    initialize();
+    init();
   }
 
   Renderer::Renderer(std::shared_ptr<WindowBase> window, std::shared_ptr<CameraBase> camera) :
@@ -39,7 +39,7 @@ namespace RX
     m_initialized(false),
     m_running(true) 
   {
-    initialize();
+    init();
   }
 
   Renderer::Renderer(std::shared_ptr<WindowBase> window, std::shared_ptr<GuiBase> gui) :
@@ -49,7 +49,7 @@ namespace RX
     m_initialized(false),
     m_running(true) 
   {
-    initialize();
+    init();
   }
 
   Renderer::Renderer(std::shared_ptr<WindowBase> window, std::shared_ptr<GuiBase> gui, std::shared_ptr<CameraBase> camera) :
@@ -59,16 +59,16 @@ namespace RX
     m_initialized(false),
     m_running(true) 
   {
-    initialize();
+    init();
   }
 
-  void Renderer::initialize()
+  void Renderer::init()
   {
     if (m_initialized)
       return;
 
-    m_window->initialize();
-    m_api.initialize();
+    m_window->init();
+    m_api.init();
 
     m_initialized = true;
   }
@@ -94,7 +94,7 @@ namespace RX
 
   void Renderer::start()
   {
-    initialize();
+    init();
 
     while (m_running)
     {

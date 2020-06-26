@@ -36,7 +36,7 @@ namespace RX
     Api(std::shared_ptr<WindowBase> window, std::shared_ptr<GuiBase> gui, std::shared_ptr<CameraBase> camera );
     RX_API ~Api();
 
-    void initialize();
+    void init();
     bool update();
     bool render();
   

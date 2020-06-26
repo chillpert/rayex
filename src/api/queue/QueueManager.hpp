@@ -23,7 +23,7 @@ namespace RX
   public:
     // This function should be called right after the physical device was enumerated and the 
     // surface was created. The surface has to be created before the physical device is picked.
-    void initialize(QueuesInfo& queuesInfo);
+    void init(QueuesInfo& queuesInfo);
 
     inline uint32_t getGraphicsFamilyIndex() const { return m_graphicsQueues[0]->getIndex(); }
     inline uint32_t getPresentFamilyIndex() const { return m_presentQueues[0]->getIndex(); }

@@ -10,7 +10,7 @@ namespace RX
       destroy();
   }
 
-  void Pipeline::initialize(RasterizationPipelineInfo& info)
+  void Pipeline::init(RasterizationPipelineInfo& info)
   {
     m_info = info;
 
@@ -121,7 +121,7 @@ namespace RX
       RX_ERROR("Failed to create graphics pipeline."); 
   }
 
-  void Pipeline::initialize(RaytracingPipelineInfo& info)
+  void Pipeline::init(RaytracingPipelineInfo& info)
   {
     m_info = info;
 

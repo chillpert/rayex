@@ -8,7 +8,7 @@ namespace RX
       destroy();
   }
 
-  void DebugMessenger::initialize(DebugMessengerInfo& info)
+  void DebugMessenger::init(DebugMessengerInfo& info)
   {
     m_info = info;
 

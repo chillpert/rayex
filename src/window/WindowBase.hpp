@@ -13,7 +13,7 @@ namespace RX
     RX_API WindowBase(WindowProperties windowProperties = WindowProperties());
     RX_API virtual ~WindowBase();
 
-    RX_API virtual void initialize();
+    RX_API virtual void init();
     RX_API virtual bool update();
     RX_API virtual bool render();
     RX_API virtual void clean();

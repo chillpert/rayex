@@ -8,7 +8,7 @@ namespace RX
       destroy();
   }
 
-  void Surface::initialize(SurfaceInfo& info)
+  void Surface::init(SurfaceInfo& info)
   {
     m_info = info;
 

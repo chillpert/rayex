@@ -109,7 +109,7 @@ namespace RX
     }
   }
 
-  void BottomLevelAS::initialize(BottomLevelASInfo& info, const std::shared_ptr<Model> model, std::vector<BottomLevelAS>& blasCopy)
+  void BottomLevelAS::init(BottomLevelASInfo& info, const std::shared_ptr<Model> model, std::vector<BottomLevelAS>& blasCopy)
   {
     // TODO
     RX_ASSERT(false, "not implemented yet");

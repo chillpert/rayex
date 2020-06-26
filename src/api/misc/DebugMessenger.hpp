@@ -19,7 +19,7 @@ namespace RX
 
     inline VkDebugUtilsMessengerEXT get() { return m_debugMessenger; }
 
-    void initialize(DebugMessengerInfo& info);
+    void init(DebugMessengerInfo& info);
 
   private:
     void destroy();

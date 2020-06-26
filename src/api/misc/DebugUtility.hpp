@@ -17,10 +17,10 @@ namespace RX
     
     DebugUtility(DebugUtilInfo& info)
     {
-      initialize(info);
+      init(info);
     }
     
-    void initialize(DebugUtilInfo& info)
+    void init(DebugUtilInfo& info)
     {
       m_info = info;
     }

@@ -12,7 +12,7 @@ namespace RX
     clean();
   }
 
-  void WindowBase::initialize()
+  void WindowBase::init()
   {
     SDL_SetHint(SDL_HINT_FRAMEBUFFER_ACCELERATION, "1");
 

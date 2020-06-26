@@ -8,7 +8,7 @@ namespace RX
       destroy();
   }
 
-  void Sampler::initialize(SamplerInfo& info)
+  void Sampler::init(SamplerInfo& info)
   {
     m_info = info;
 

@@ -7,7 +7,7 @@ namespace RX
 {
   Image::Image(ImageInfo& info)
   {
-    initialize(info);
+    init(info);
   }
 
   Image::~Image()
@@ -16,7 +16,7 @@ namespace RX
       destroy();
   }
 
-  void Image::initialize(ImageInfo& info)
+  void Image::init(ImageInfo& info)
   {
     m_info = info;
 
@@ -64,7 +64,7 @@ namespace RX
     commandBufferInfo.commandPool = m_info.commandPool;
 
     CommandBuffer commandBuffer;
-    commandBuffer.initialize(commandBufferInfo);
+    commandBuffer.init(commandBufferInfo);
 
     commandBuffer.begin();
 

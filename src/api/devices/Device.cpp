@@ -2,7 +2,7 @@
 
 namespace RX
 {
-  void Device::initialize(DeviceInfo& info)
+  void Device::init(DeviceInfo& info)
   {
     m_info = info;
 

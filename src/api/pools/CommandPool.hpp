@@ -22,7 +22,7 @@ namespace RX
     
     inline vk::CommandPool get() { return m_commandPool; }
 
-    void initialize(CommandPoolInfo& info);
+    void init(CommandPoolInfo& info);
     void destroy();
 
     // All command buffers allocated from this pool will return to their initial state.

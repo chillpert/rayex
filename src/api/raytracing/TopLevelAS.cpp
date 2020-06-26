@@ -21,7 +21,7 @@ namespace RX
     m_memory = nullptr;
   }
 
-  void TopLevelAS::initialize(TopLevelASInfo& info)
+  void TopLevelAS::init(TopLevelASInfo& info)
   {
     m_info = info;
 

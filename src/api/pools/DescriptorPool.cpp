@@ -8,7 +8,7 @@ namespace RX
       destroy();
   }
 
-  void DescriptorPool::initialize(DescriptorPoolInfo& info)
+  void DescriptorPool::init(DescriptorPoolInfo& info)
   {
     m_info = info;
 

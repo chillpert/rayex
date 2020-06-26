@@ -21,7 +21,7 @@ namespace RX
     inline vk::DeviceMemory& getMemory() { return m_memory; }
     inline vk::DeviceSize getSize() const { return m_info.size; }
 
-    void initialize(BufferCreateInfo& createInfo);
+    void init(BufferCreateInfo& createInfo);
 
     template <class T>
     void fill(T* source);

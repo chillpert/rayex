@@ -4,7 +4,12 @@ namespace RX
 {
   Shader::Shader(ShaderInfo& info)
   {
-    initialize(info);
+    init(info);
+  }
+
+  Shader::Shader(ShaderInfo&& info)
+  {
+    init(info);
   }
 
   Shader::~Shader()
@@ -13,7 +18,7 @@ namespace RX
       destroy();
   }
 
-  void Shader::initialize(ShaderInfo& info)
+  void Shader::init(ShaderInfo& info)
   {
     m_info = info;
 

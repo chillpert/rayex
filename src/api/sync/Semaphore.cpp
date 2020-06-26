@@ -8,7 +8,7 @@ namespace RX
       destroy();
   }
 
-  void Semaphore::initialize(SemaphoreInfo& info)
+  void Semaphore::init(SemaphoreInfo& info)
   {
     m_info = info;
 

@@ -26,7 +26,7 @@ namespace RX
       m_gui->destroy();
   }
 
-  void Api::initialize()
+  void Api::init()
   {
     m_nodes.reserve(maxNodes);
     m_textures.reserve(maxNodes);
@@ -67,9 +67,9 @@ namespace RX
 
     for (size_t i = 0; i < maxFramesInFlight; ++i)
     {
-      m_imageAvailableSemaphores[i].initialize(semaphoreInfo);
-      m_finishedRenderSemaphores[i].initialize(semaphoreInfo);
-      m_inFlightFences[i].initialize(fenceInfo);
+      m_imageAvailableSemaphores[i].init(semaphoreInfo);
+      m_finishedRenderSemaphores[i].init(semaphoreInfo);
+      m_inFlightFences[i].init(fenceInfo);
     }
 
     RX_LOG("Finished API initialization.");
@@ -333,7 +333,7 @@ namespace RX
       .dispatchLoaderDynamic = m_dispatchLoaderDynamic
     };
 
-    m_raytraceBuilder.initialize(info);
+    m_raytraceBuilder.init(info);
   }
 
   void Api::initInstance()
@@ -347,7 +347,7 @@ namespace RX
     instanceInfo.extensions = { "VK_KHR_get_physical_device_properties2" };
 #endif
 
-    m_instance.initialize(instanceInfo);
+    m_instance.init(instanceInfo);
   }
 
   void Api::initDebugMessenger()
@@ -356,7 +356,7 @@ namespace RX
       .instance = m_instance.get()
     };
 
-    m_debugMessenger.initialize(debugMessengerInfo);
+    m_debugMessenger.init(debugMessengerInfo);
   }
 
   void Api::initSurface()
@@ -366,7 +366,7 @@ namespace RX
       .instance = m_instance.get()
     };
 
-    m_surface.initialize(surfaceInfo);
+    m_surface.init(surfaceInfo);
   }
 
   void Api::initPhysicalDevice()
@@ -376,7 +376,7 @@ namespace RX
       .surface = m_surface.get()
     };
 
-    m_physicalDevice.initialize(physicalDeviceInfo);
+    m_physicalDevice.init(physicalDeviceInfo);
 
     // Reassess the support of the preferred surface settings.
     m_surface.checkSettingSupport(m_physicalDevice.get());
@@ -389,7 +389,7 @@ namespace RX
       .surface = m_surface.get()
     };
 
-    m_queueManager.initialize(queuesInfo);
+    m_queueManager.init(queuesInfo);
 #ifdef RX_DEBUG
     m_queueManager.print();
 #endif
@@ -411,7 +411,7 @@ namespace RX
       }
     };
 
-    m_device.initialize(deviceInfo);
+    m_device.init(deviceInfo);
 
     // Retrieve all queue handles.
     m_queueManager.retrieveAllHandles(m_device.get());
@@ -484,7 +484,7 @@ namespace RX
       .dependencies = { subpassDependency }
     };
 
-    m_renderPass.initialize(renderPassInfo);
+    m_renderPass.init(renderPassInfo);
   }
 
   void Api::initSwapchain()
@@ -501,7 +501,7 @@ namespace RX
       .renderPass = m_renderPass.get()
     };
 
-    m_swapchain.initialize(swapchainInfo);
+    m_swapchain.init(swapchainInfo);
   }
 
   void Api::initSwapchainImageViews()
@@ -517,22 +517,20 @@ namespace RX
 
       imageViewInfo.subresourceRange.aspectMask = m_swapchain.getImageAspect();
 
-      m_swapchainImageViews[i].initialize(imageViewInfo);
+      m_swapchainImageViews[i].init(imageViewInfo);
     }
   }
 
   void Api::initPipeline(bool firstRun)
   {
     // Create shaders.
-    Shader vs(
-      ShaderInfo{
+    Shader vs({
         .fullPath = RX_SHADER_PATH "simple3D.vert",
         .device = m_device.get()
       }
     );
 
-    Shader fs(
-      ShaderInfo{
+    Shader fs({
         .fullPath = RX_SHADER_PATH "simple3D.frag",
         .device = m_device.get()
       }
@@ -560,11 +558,10 @@ namespace RX
       m_descriptorSetLayout.addBinding(fragmentBinding);
 
       // Descriptor Set Layout
-      DescriptorSetLayoutInfo descriptorSetLayoutInfo{
-        .device = m_device.get()
-      };
-
-      m_descriptorSetLayout.initialize(descriptorSetLayoutInfo);
+      m_descriptorSetLayout.init({
+          .device = m_device.get()
+        }
+      );
     }
 
     // Graphics pipeline
@@ -580,7 +577,7 @@ namespace RX
     pipelineInfo.viewport = vk::Viewport{ 0.0f, 0.0f, static_cast<float>(m_swapchain.getExtent().width), static_cast<float>(m_swapchain.getExtent().height), 0.0f, 1.0f };
     pipelineInfo.scissor = { 0, 0, m_swapchain.getExtent().width, m_swapchain.getExtent().height };
 
-    m_pipeline.initialize(pipelineInfo);
+    m_pipeline.init(pipelineInfo);
   }
 
   void Api::initgraphicsCmdPool()
@@ -591,7 +588,7 @@ namespace RX
       .createFlags = vk::CommandPoolCreateFlagBits::eResetCommandBuffer
     };
 
-    m_graphicsCmdPool.initialize(commandPoolInfo);
+    m_graphicsCmdPool.init(commandPoolInfo);
   }
 
   void Api::inittransferCmdPool()
@@ -606,7 +603,7 @@ namespace RX
       .queueFamilyIndex = indices.size() > 1 ? indices[1] : m_queueManager.getTransferFamilyIndex()
     };
 
-    m_transferCmdPool.initialize(commandPoolInfo);
+    m_transferCmdPool.init(commandPoolInfo);
   }
 
   void Api::initDepthBuffering()
@@ -622,7 +619,7 @@ namespace RX
     imageInfo.tiling = vk::ImageTiling::eOptimal;
     imageInfo.usage = vk::ImageUsageFlagBits::eDepthStencilAttachment;
 
-    m_depthImage.initialize(imageInfo);
+    m_depthImage.init(imageInfo);
 
     // Image view for depth image
     ImageViewInfo depthImageViewInfo{
@@ -633,7 +630,7 @@ namespace RX
 
     depthImageViewInfo.subresourceRange.aspectMask = vk::ImageAspectFlagBits::eDepth;
 
-    m_depthImageView.initialize(depthImageViewInfo);
+    m_depthImageView.init(depthImageViewInfo);
   }
 
   void Api::initSwapchainFramebuffers()
@@ -649,7 +646,7 @@ namespace RX
     for (size_t i = 0; i < m_swapchainFramebuffers.size(); ++i)
     {
       framebufferInfo.imageView = m_swapchainImageViews[i].get();
-      m_swapchainFramebuffers[i].initialize(framebufferInfo);
+      m_swapchainFramebuffers[i].init(framebufferInfo);
     }
   }
 
@@ -663,7 +660,7 @@ namespace RX
       .maxSets = maxNodes * swapchainImagesCount
     };
 
-    m_descriptorPool.initialize(descriptorPoolInfo);
+    m_descriptorPool.init(descriptorPoolInfo);
   }
 
   void Api::initModel(const std::shared_ptr<GeometryNodeBase> node)
@@ -713,15 +710,15 @@ namespace RX
     if (!model->m_initialized)
     {
       vertexBufferInfo.vertices = model->m_vertices;
-      model->m_vertexBuffer.initialize(vertexBufferInfo);
+      model->m_vertexBuffer.init(vertexBufferInfo);
 
       indexBufferInfo.indices = model->m_indices;
-      model->m_indexBuffer.initialize(indexBufferInfo);
+      model->m_indexBuffer.init(indexBufferInfo);
       
       model->m_initialized = true;
     }
 
-    node->m_uniformBuffers.initialize(uniformBufferInfo);
+    node->m_uniformBuffers.init(uniformBufferInfo);
 
     SwapchainUpdateDescriptorSetInfo descriptorSetUpdateInfo{
       .descriptorPool = m_descriptorPool.get(),
@@ -736,7 +733,7 @@ namespace RX
       descriptorSetUpdateInfo.textureImageView = diffuseIter->second->getImageView();
     }
 
-    model->m_descriptorSets.initialize(descriptorSetInfo);
+    model->m_descriptorSets.init(descriptorSetInfo);
     model->m_descriptorSets.update(descriptorSetUpdateInfo);
   }
 
@@ -790,13 +787,13 @@ namespace RX
       if (isNew)
       {
         vertexBufferInfo.vertices = model->m_vertices;
-        model->m_vertexBuffer.initialize(vertexBufferInfo);
+        model->m_vertexBuffer.init(vertexBufferInfo);
 
         indexBufferInfo.indices = model->m_indices;
-        model->m_indexBuffer.initialize(indexBufferInfo);
+        model->m_indexBuffer.init(indexBufferInfo);
       }
 
-      node->m_uniformBuffers.initialize(uniformBufferInfo);
+      node->m_uniformBuffers.init(uniformBufferInfo);
 
       SwapchainUpdateDescriptorSetInfo descriptorSetUpdateInfo{
         .descriptorPool = m_descriptorPool.get(),
@@ -811,7 +808,7 @@ namespace RX
         descriptorSetUpdateInfo.textureImageView = diffuseIter->second->getImageView();
       }
 
-      model->m_descriptorSets.initialize(descriptorSetInfo);
+      model->m_descriptorSets.init(descriptorSetInfo);
       model->m_descriptorSets.update(descriptorSetUpdateInfo);
 
       model->m_initialized = true;
@@ -835,7 +832,7 @@ namespace RX
       .usageFlags = vk::CommandBufferUsageFlagBits::eRenderPassContinue
     };
 
-    m_swapchainCmdBuffers.initialize(commandBufferInfo);
+    m_swapchainCmdBuffers.init(commandBufferInfo);
   }
 
   void Api::initGui()
@@ -860,7 +857,7 @@ namespace RX
     guiInfo.swapchainImageViews = temp;
 
     if (m_gui != nullptr)
-      m_gui->initialize(guiInfo);
+      m_gui->init(guiInfo);
   }
 
   void Api::recordSwapchainCommandBuffers()

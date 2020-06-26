@@ -4,7 +4,7 @@ namespace RX
 {
   CommandPool::CommandPool(CommandPoolInfo& info)
   {
-    initialize(info);
+    init(info);
   }
 
   CommandPool::~CommandPool()
@@ -13,7 +13,7 @@ namespace RX
       destroy();
   }
 
-	void CommandPool::initialize(CommandPoolInfo& info)
+	void CommandPool::init(CommandPoolInfo& info)
   {
     m_info = info;
 

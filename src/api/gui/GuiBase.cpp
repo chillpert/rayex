@@ -16,7 +16,7 @@ namespace RX
     ImGuiIO& io = ImGui::GetIO(); (void)io;
   }
 
-  void GuiBase::initialize(GuiInfo& info)
+  void GuiBase::init(GuiInfo& info)
   {
     m_info = info;
 
@@ -104,7 +104,7 @@ namespace RX
     destroy();
 
     // Re-initialize
-    initialize(m_info);
+    init(m_info);
   }
 
   void GuiBase::destroy()
@@ -134,7 +134,7 @@ namespace RX
     commandPoolInfo.queueFamilyIndex = m_info.queueFamilyIndex; // This should definitely be the a graphics queue family index.
     commandPoolInfo.createFlags = vk::CommandPoolCreateFlagBits::eResetCommandBuffer;
 
-    m_commandPool.initialize(commandPoolInfo);
+    m_commandPool.init(commandPoolInfo);
   }
 
   void GuiBase::initDescriptorPool()
@@ -157,7 +157,7 @@ namespace RX
       { vk::DescriptorType::eInputAttachment, 1000 }
     };
 
-    m_descriptorPool.initialize(info);
+    m_descriptorPool.init(info);
   }
 
   void GuiBase::initRenderPass()
@@ -204,7 +204,7 @@ namespace RX
     renderPassInfo.subpasses = { subpass };
     renderPassInfo.dependencies = { dependency };
 
-    m_renderPass.initialize(renderPassInfo);
+    m_renderPass.init(renderPassInfo);
   }
 
   void GuiBase::initFonts()
@@ -230,7 +230,7 @@ namespace RX
     commandBufferInfo.level = vk::CommandBufferLevel::ePrimary;
     commandBufferInfo.usageFlags = vk::CommandBufferUsageFlagBits::eRenderPassContinue;
 
-    m_commandBuffers.initialize(commandBufferInfo);
+    m_commandBuffers.init(commandBufferInfo);
   }
 
   void GuiBase::initFramebuffers()
@@ -244,7 +244,7 @@ namespace RX
     for (size_t i = 0; i < m_framebuffers.size(); ++i)
     {
       framebufferInfo.imageView = m_info.swapchainImageViews[i];
-      m_framebuffers[i].initialize(framebufferInfo);
+      m_framebuffers[i].init(framebufferInfo);
     }
   }
 }

@@ -24,7 +24,7 @@ namespace RX
     inline uint32_t getCount() { return m_count; }
     inline vk::IndexType getType() { return m_indexType; }
 
-    void initialize(IndexBufferInfo<T>& info);
+    void init(IndexBufferInfo<T>& info);
   
   private:
     Buffer m_buffer;
@@ -35,7 +35,7 @@ namespace RX
   };
 
   template <typename T>
-  void IndexBuffer<T>::initialize(IndexBufferInfo<T>& info)
+  void IndexBuffer<T>::init(IndexBufferInfo<T>& info)
   {
     m_info = info;
     m_count = static_cast<uint32_t>(m_info.indices.size());
@@ -75,7 +75,7 @@ namespace RX
     Buffer stagingBuffer(stagingInfo);
     stagingBuffer.fill<T>(m_info.indices.data());
 
-    m_buffer.initialize(bufferInfo);
+    m_buffer.init(bufferInfo);
 
     // Copy staging buffer to the actual index buffer.
     m_buffer = stagingBuffer;

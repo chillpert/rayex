@@ -4,7 +4,7 @@ namespace RX
 {
   QueryPool::QueryPool(QueryPoolInfo& info)
   {
-    initialize(info);
+    init(info);
   }
 
   QueryPool::~QueryPool()
@@ -13,7 +13,7 @@ namespace RX
       destroy();
   }
 
-  void QueryPool::initialize(QueryPoolInfo& info)
+  void QueryPool::init(QueryPoolInfo& info)
   {
     m_info = info;
 

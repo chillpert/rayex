@@ -47,11 +47,16 @@ namespace RX
   void CommandBuffer::end(size_t index)
   {
     m_commandBuffers[index].end();
+  }
 
-    if ((m_info.usageFlags & vk::CommandBufferUsageFlagBits::eOneTimeSubmit) && m_info.submitAutomatically)
+  void CommandBuffer::submitToQueue(const vk::Queue const queue) const
+  {
+    if (m_info.usageFlags & vk::CommandBufferUsageFlagBits::eOneTimeSubmit)
     {
-      m_info.queue.submit(1, &m_info.submitInfo, nullptr); // TODO: update assert
-      m_info.queue.waitIdle();
+      queue.submit(1, &m_info.submitInfo, nullptr); // TODO: update assert
+      queue.waitIdle();
     }
+    else
+      RX_ERROR("Only command buffers with a usage flag containing eOneTimeSubmit should be submitted automatically");
   }
 }

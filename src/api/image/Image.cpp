@@ -62,9 +62,6 @@ namespace RX
     CommandBufferInfo commandBufferInfo{ };
     commandBufferInfo.device = m_info.device;
     commandBufferInfo.commandPool = m_info.commandPool;
-    commandBufferInfo.queue = m_info.queue;
-    commandBufferInfo.freeAutomatically = true;
-    commandBufferInfo.componentName = "command buffer for image layout transitions";
 
     CommandBuffer commandBuffer;
     commandBuffer.initialize(commandBufferInfo);
@@ -118,6 +115,7 @@ namespace RX
     );
 
     commandBuffer.end();
+    commandBuffer.submitToQueue(m_info.queue);
 
     m_info.layout = layout;
   }

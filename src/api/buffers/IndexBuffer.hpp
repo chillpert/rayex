@@ -8,12 +8,12 @@ namespace RX
   template <typename T = uint32_t>
   struct IndexBufferInfo
   {
-    std::vector<T> indices;
-    vk::Device device;
     vk::PhysicalDevice physicalDevice;
+    vk::Device device;
     vk::CommandPool commandPool;
     vk::Queue queue;
     std::vector<uint32_t> queueIndices;
+    std::vector<T> indices;
   };
 
   template <typename T = uint32_t>

@@ -212,15 +212,12 @@ namespace RX
     CommandBufferInfo singleTimeCommandBufferInfo{ };
     singleTimeCommandBufferInfo.device = m_info.device;
     singleTimeCommandBufferInfo.commandPool = m_commandPool.get();
-    singleTimeCommandBufferInfo.queue = m_info.queue;
-    singleTimeCommandBufferInfo.freeAutomatically = true;
-    singleTimeCommandBufferInfo.componentName = "command buffer for ImGui font creation";
 
-    CommandBuffer commandBuffer;
-    commandBuffer.initialize(singleTimeCommandBufferInfo);
+    CommandBuffer commandBuffer(singleTimeCommandBufferInfo);
     commandBuffer.begin();
-    ImGui_ImplVulkan_CreateFontsTexture(commandBuffer.getFront());
+      ImGui_ImplVulkan_CreateFontsTexture(commandBuffer.getFront());
     commandBuffer.end();
+    commandBuffer.submitToQueue(m_info.queue);
   }
 
   void GuiBase::initCommandBuffers()
@@ -229,12 +226,9 @@ namespace RX
     CommandBufferInfo commandBufferInfo{ };
     commandBufferInfo.device = m_info.device;
     commandBufferInfo.commandPool = m_commandPool.get();
-    commandBufferInfo.queue = m_info.queue; // A graphics queue from the index of the command pool.
     commandBufferInfo.commandBufferCount = m_info.imageCount;
     commandBufferInfo.level = vk::CommandBufferLevel::ePrimary;
-    commandBufferInfo.freeAutomatically = false;
     commandBufferInfo.usageFlags = vk::CommandBufferUsageFlagBits::eRenderPassContinue;
-    commandBufferInfo.componentName = "command buffers for ImGui";
 
     m_commandBuffers.initialize(commandBufferInfo);
   }

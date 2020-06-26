@@ -5,6 +5,21 @@
 
 namespace RX
 {
+  struct CommandBufferInfo
+  {
+    vk::Device device;
+    vk::CommandPool commandPool;
+    vk::Queue queue;
+
+    size_t commandBufferCount = 1; // Amount of command buffers that will be created.
+    vk::CommandBufferUsageFlags usageFlags = vk::CommandBufferUsageFlagBits::eOneTimeSubmit;
+    vk::CommandBufferResetFlags resetFlags = vk::CommandBufferResetFlagBits::eReleaseResources;
+    vk::CommandBufferLevel level = vk::CommandBufferLevel::ePrimary;
+
+    vk::CommandBufferBeginInfo beginInfo; // Ignore
+    vk::SubmitInfo submitInfo; // Ignore
+  };
+
   class CommandBuffer
   {
   public:
@@ -23,6 +38,8 @@ namespace RX
 
     void begin(size_t index = 0);
     void end(size_t index = 0);
+
+    void submitToQueue(const vk::Queue const queue) const;
 
   private:
     std::vector<vk::CommandBuffer> m_commandBuffers;

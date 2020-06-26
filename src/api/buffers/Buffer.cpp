@@ -86,54 +86,49 @@ namespace RX
 
   void Buffer::copyToBuffer(const Buffer& buffer) const
   {
-    CommandBufferInfo commandBufferInfo{ };
-    commandBufferInfo.device = m_info.device;
-    commandBufferInfo.commandPool = m_info.commandPool;
-    commandBufferInfo.queue = m_info.queue;
-    commandBufferInfo.freeAutomatically = true;
-    commandBufferInfo.componentName = "command buffer for copying a buffer to another buffer";
-    
-    CommandBuffer commandBuffer;
-    commandBuffer.initialize(commandBufferInfo);
+    CommandBufferInfo commandBufferInfo{
+      .device = m_info.device,
+      .commandPool = m_info.commandPool
+    };
 
+    CommandBuffer commandBuffer(commandBufferInfo);
     commandBuffer.begin();
+    {
+      vk::BufferCopy copyRegion;
+      copyRegion.size = m_info.size;
 
-    vk::BufferCopy copyRegion;
-    copyRegion.size = m_info.size;
-
-    commandBuffer.getFront().copyBuffer(m_buffer, buffer.get(), 1, &copyRegion); // CMD
-
+      commandBuffer.getFront().copyBuffer(m_buffer, buffer.get(), 1, &copyRegion); // CMD
+    }
     commandBuffer.end();
+    commandBuffer.submitToQueue(m_info.queue);
   }
 
   void Buffer::copyToImage(Image& image) const
   {
-    CommandBufferInfo commandBufferInfo{ };
-    commandBufferInfo.device = m_info.device;
-    commandBufferInfo.commandPool = m_info.commandPool;
-    commandBufferInfo.queue = m_info.queue;
+    CommandBufferInfo commandBufferInfo{ 
+      .device = m_info.device,
+      .commandPool = m_info.commandPool
+    };
+
     // TODO: assert that this queue has transfer capbalitites
-    commandBufferInfo.freeAutomatically = true;
-    commandBufferInfo.componentName = "command buffer for copying a buffer to an image";
 
-    CommandBuffer commandBuffer;
-    commandBuffer.initialize(commandBufferInfo);
-
+    CommandBuffer commandBuffer(commandBufferInfo);
     commandBuffer.begin();
+    {
+      vk::BufferImageCopy region;
+      region.bufferOffset = 0;
+      region.bufferRowLength = 0;
+      region.bufferImageHeight = 0;
+      region.imageSubresource.aspectMask = vk::ImageAspectFlagBits::eColor;
+      region.imageSubresource.mipLevel = 0;
+      region.imageSubresource.baseArrayLayer = 0;
+      region.imageSubresource.layerCount = 1;
+      region.imageOffset = vk::Offset3D{ 0, 0, 0 };
+      region.imageExtent = image.getExtent();
 
-    vk::BufferImageCopy region;
-    region.bufferOffset = 0;
-    region.bufferRowLength = 0;
-    region.bufferImageHeight = 0;
-    region.imageSubresource.aspectMask = vk::ImageAspectFlagBits::eColor;
-    region.imageSubresource.mipLevel = 0;
-    region.imageSubresource.baseArrayLayer = 0;
-    region.imageSubresource.layerCount = 1;
-    region.imageOffset = vk::Offset3D{ 0, 0, 0 };
-    region.imageExtent = image.getExtent();
-
-    commandBuffer.getFront().copyBufferToImage(m_buffer, image.get(), vk::ImageLayout::eTransferDstOptimal, 1, &region); // CMD
-
+      commandBuffer.getFront().copyBufferToImage(m_buffer, image.get(), vk::ImageLayout::eTransferDstOptimal, 1, &region); // CMD
+    }
     commandBuffer.end();
+    commandBuffer.submitToQueue(m_info.queue);
   }
 }

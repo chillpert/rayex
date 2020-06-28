@@ -1,5 +1,6 @@
 #include "PhysicalDevice.hpp"
 #include "QueueManager.hpp"
+#include "Components.hpp"
 
 namespace RX
 {

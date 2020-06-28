@@ -7,7 +7,6 @@ namespace RX
 {
   struct BufferInfo
   {
-    // General information
     vk::PhysicalDevice physicalDevice;
     vk::Device device;
 
@@ -48,7 +47,7 @@ namespace RX
     void init(BufferInfo&& createInfo);
 
     template <class T>
-    void fill(T* source);
+    void fill(T* source, vk::DeviceSize offset = 0);
 
     RX_API void destroy();
 
@@ -59,12 +58,15 @@ namespace RX
   };
 
   template <class T>
-  inline void Buffer::fill(T* source)
+  inline void Buffer::fill(T* source, vk::DeviceSize offset)
   {
     void* data;
-    vkMapMemory(m_info.device, m_memory, 0, m_info.size, 0, &data);
+    if (m_info.device.mapMemory(m_memory, offset, m_info.size, { }, &data) != vk::Result::eSuccess)
+      RX_ERROR("Failed to map memory.");
+
     memcpy(data, source, static_cast<uint32_t>(m_info.size));
-    vkUnmapMemory(m_info.device, m_memory);
+
+    m_info.device.unmapMemory(m_memory);
   }
 }
 

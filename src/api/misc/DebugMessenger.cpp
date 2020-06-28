@@ -1,16 +1,13 @@
 #include "DebugMessenger.hpp"
 #include "Api.hpp"
+#include "Components.hpp"
 
 namespace RX
 {
-  DebugMessenger::DebugMessenger(DebugMessengerInfo& info)
+  DebugMessenger::DebugMessenger(VkDebugUtilsMessageSeverityFlagsEXT messageSeverity, VkDebugUtilsMessageTypeFlagsEXT messageType, bool initialize)
   {
-    init(info);
-  }
-
-  DebugMessenger::DebugMessenger(DebugMessengerInfo&& info)
-  {
-    init(info);
+    if (initialize)
+      init(messageSeverity, messageType);
   }
 
   DebugMessenger::~DebugMessenger()
@@ -19,33 +16,30 @@ namespace RX
       destroy();
   }
 
-  void DebugMessenger::init(DebugMessengerInfo& info)
+  void DebugMessenger::init(VkDebugUtilsMessageSeverityFlagsEXT messageSeverity, VkDebugUtilsMessageTypeFlagsEXT messageType)
   {
-    m_info = info;
-
 #ifdef RX_DEBUG
-    m_createDebugUtilsMessengerEXT = (PFN_vkCreateDebugUtilsMessengerEXT)vkGetInstanceProcAddr(info.instance, "vkCreateDebugUtilsMessengerEXT");
-    m_destroyDebugUtilsMessengerEXT = (PFN_vkDestroyDebugUtilsMessengerEXT)vkGetInstanceProcAddr(info.instance, "vkDestroyDebugUtilsMessengerEXT");
+    m_createDebugUtilsMessengerEXT = (PFN_vkCreateDebugUtilsMessengerEXT)vkGetInstanceProcAddr(g_instance, "vkCreateDebugUtilsMessengerEXT");
+    m_destroyDebugUtilsMessengerEXT = (PFN_vkDestroyDebugUtilsMessengerEXT)vkGetInstanceProcAddr(g_instance, "vkDestroyDebugUtilsMessengerEXT");
 
-    VkDebugUtilsMessengerCreateInfoEXT createInfo{ };
-    createInfo.sType = VK_STRUCTURE_TYPE_DEBUG_UTILS_MESSENGER_CREATE_INFO_EXT;
-    createInfo.messageSeverity = info.messageSeverity;
-    createInfo.messageType = info.messageType;
-    createInfo.pfnUserCallback = debugMessengerCallback;
+    VkDebugUtilsMessengerCreateInfoEXT createInfo{
+      .sType = VK_STRUCTURE_TYPE_DEBUG_UTILS_MESSENGER_CREATE_INFO_EXT,
+      .pNext = nullptr,
+      .flags = 0,
+      .messageSeverity = messageSeverity,
+      .messageType = messageType,
+      .pfnUserCallback = debugMessengerCallback,
+      .pUserData = nullptr
+    };
     
-    m_createDebugUtilsMessengerEXT(info.instance, &createInfo, nullptr, &m_debugMessenger);
+    m_createDebugUtilsMessengerEXT(g_instance, &createInfo, nullptr, &m_debugMessenger);
 #endif
-  }
-
-  void DebugMessenger::init(DebugMessengerInfo&& info)
-  {
-    init(info);
   }
 
   void DebugMessenger::destroy()
   {
 #ifdef RX_DEBUG
-    m_destroyDebugUtilsMessengerEXT(m_info.instance, m_debugMessenger, nullptr);
+    m_destroyDebugUtilsMessengerEXT(g_instance, m_debugMessenger, nullptr);
     m_debugMessenger = VK_NULL_HANDLE;
 #endif
   }

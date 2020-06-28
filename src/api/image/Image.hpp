@@ -30,7 +30,7 @@ namespace RX
     Image() = default;
     Image(ImageInfo& info);
     Image(ImageInfo&& info);
-    ~Image();
+    RX_API ~Image();
 
     inline vk::Image get() { return m_image; }
     inline vk::Extent3D getExtent() const { return m_info.extent; }

@@ -23,6 +23,15 @@ namespace RX
     glm::mat4 m_inverseLocalTransform;
   };
 
+  struct RaytracingInstance
+  {
+    uint32_t m_instanceId;
+    uint32_t m_mask;
+    uint32_t m_instanceOffset;
+    uint32_t m_flags;
+    uint64_t m_asHandle;
+  };
+
   class GeometryNodeBase : public TransformNodeBase
   {
   public:
@@ -38,11 +47,7 @@ namespace RX
     UniformBuffer m_uniformBuffers;
     
     // Ray tracing geometry instance data.
-    uint32_t m_instanceId : 24;
-    uint32_t m_mask : 8;
-    uint32_t m_instanceOffset : 24;
-    uint32_t m_flags : 8;
-    uint64_t m_asHandle;
+    RaytracingInstance m_rtInstance;
   };
 }
 

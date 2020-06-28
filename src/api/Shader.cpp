@@ -78,6 +78,11 @@ namespace RX
       RX_ERROR("Failed to create shader module.");
   }
 
+  void Shader::init(ShaderInfo&& info)
+  {
+    init(info);
+  }
+
   void Shader::destroy()
   {
     m_info.device.destroyShaderModule(m_shaderModule);

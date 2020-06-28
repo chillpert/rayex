@@ -3,6 +3,7 @@
 #include "CommandPool.hpp"
 #include "CommandBuffer.hpp"
 #include "Memory.hpp"
+#include "Components.hpp"
 
 namespace RX
 {
@@ -20,6 +21,28 @@ namespace RX
     return typeInfo;
   }
 
+  std::vector<vk::AccelerationStructureCreateGeometryTypeInfoKHR> getGeometryTypeInfos(const std::vector<std::shared_ptr<Model>>& models)
+  {
+    std::vector<vk::AccelerationStructureCreateGeometryTypeInfoKHR> typeInfos;
+    typeInfos.reserve(models.size());
+
+    for (const auto& model : models)
+    {
+      vk::AccelerationStructureCreateGeometryTypeInfoKHR typeInfo;
+      typeInfo.pNext = nullptr;
+      typeInfo.geometryType = vk::GeometryTypeKHR::eTriangles;
+      typeInfo.maxPrimitiveCount = model->m_indexBuffer.getCount() / 3;
+      typeInfo.indexType = model->m_indexBuffer.getType();
+      typeInfo.maxVertexCount = model->m_vertexBuffer.getCount();
+      typeInfo.vertexFormat = vk::Format::eR32G32B32Sfloat; // Note: Hard-coded value.
+      typeInfo.allowsTransforms = VK_FALSE;
+
+      typeInfos.push_back(typeInfo);
+    }
+
+    return typeInfos;
+  }
+
   BottomLevelAS::~BottomLevelAS()
   {
     if (m_as)
@@ -28,10 +51,10 @@ namespace RX
 
   void BottomLevelAS::destroy()
   {
-    m_info.device.destroyAccelerationStructureKHR(m_as, nullptr, m_info.dispatchLoaderDynamic);
+    g_device.destroyAccelerationStructureKHR(m_as, nullptr, *g_dispatchLoaderDynamic);
     m_as = nullptr;
 
-    m_info.device.freeMemory(m_memory);
+    g_device.freeMemory(m_memory);
     m_memory = nullptr;
   }
 
@@ -39,13 +62,7 @@ namespace RX
   {
     blas_.resize(models.size());
 
-    std::vector<vk::AccelerationStructureCreateGeometryTypeInfoKHR> geometryInfos;
-    geometryInfos.reserve(models.size());
-
-    for (const auto& model : models)
-    {
-      geometryInfos.push_back(getGeometryTypeInfo(model));
-    }
+    std::vector<vk::AccelerationStructureCreateGeometryTypeInfoKHR> geometryInfos = getGeometryTypeInfos(models);
 
     vk::AccelerationStructureCreateInfoKHR createInfo;
     createInfo.pNext = nullptr;
@@ -61,7 +78,7 @@ namespace RX
       blas.m_info = info;
 
       // Create the acceleration structure.
-      blas.m_as = info.device.createAccelerationStructureKHR(createInfo, nullptr, info.dispatchLoaderDynamic);
+      blas.m_as = g_device.createAccelerationStructureKHR(createInfo, nullptr, *g_dispatchLoaderDynamic);
       if (!blas.m_as)
         RX_ERROR("Failed to create acceleration structure.");
 
@@ -73,14 +90,14 @@ namespace RX
       memReqInfo.accelerationStructure = blas.m_as;
 
       vk::MemoryRequirements2 memReq2;
-      info.device.getAccelerationStructureMemoryRequirementsKHR(&memReqInfo, &memReq2, info.dispatchLoaderDynamic);
-    
+      g_device.getAccelerationStructureMemoryRequirementsKHR(&memReqInfo, &memReq2, *g_dispatchLoaderDynamic);
+
       vk::MemoryAllocateInfo memAllocInfo;
       memAllocInfo.pNext = nullptr;
       memAllocInfo.allocationSize = memReq2.memoryRequirements.size;
-      memAllocInfo.memoryTypeIndex = Memory::findType(info.physicalDevice, memReq2.memoryRequirements.memoryTypeBits, vk::MemoryPropertyFlagBits::eDeviceLocal);
-    
-      blas.m_memory = info.device.allocateMemory(memAllocInfo);
+      memAllocInfo.memoryTypeIndex = Memory::findType(g_physicalDevice, memReq2.memoryRequirements.memoryTypeBits, vk::MemoryPropertyFlagBits::eDeviceLocal);
+
+      blas.m_memory = g_device.allocateMemory(memAllocInfo);
       if (!blas.m_memory)
         RX_ERROR("Failed to allocate memory.");
 
@@ -93,7 +110,7 @@ namespace RX
       bindInfo.deviceIndexCount = 0;
       bindInfo.pDeviceIndices = nullptr;
 
-      vk::Result res = info.device.bindAccelerationStructureMemoryKHR(1, &bindInfo, info.dispatchLoaderDynamic);
+      vk::Result res = g_device.bindAccelerationStructureMemoryKHR(1, &bindInfo, *g_dispatchLoaderDynamic);
       if (res != vk::Result::eSuccess)
         RX_ERROR("Failed to bind acceleration structure memory.");
 
@@ -102,8 +119,44 @@ namespace RX
       addressInfo.pNext = nullptr;
       addressInfo.accelerationStructure = blas.m_as;
 
-      blas.m_handle = info.device.getAccelerationStructureAddressKHR(addressInfo, info.dispatchLoaderDynamic);
+      blas.m_handle = g_device.getAccelerationStructureAddressKHR(addressInfo, *g_dispatchLoaderDynamic);
     }
+  }
+
+  void buildBottomLevelAS_(BottomLevelASInfo& info, const std::vector<std::shared_ptr<Model>>& models, std::vector<BottomLevelAS>& blas_)
+  {
+    std::vector<vk::AccelerationStructureCreateGeometryTypeInfoKHR> geometryInfos = getGeometryTypeInfos(models);
+
+    //vk::AccelerationStructureBuildGeometryInfoKHR test;
+    //test.
+
+    vk::AccelerationStructureCreateInfoKHR buildInfo{
+      { },                                            // compactedSize
+      vk::AccelerationStructureTypeKHR::eBottomLevel, // type
+      { },                                            // flags
+      static_cast<uint32_t>(blas_.size()),            // maxGeometryCount
+      geometryInfos.data(),                           // pGeometryInfos
+      0                                               // deviceAddress
+    };
+
+    CmdBuffer cmdBuffer({
+      .device = g_device,
+      .commandPool = g_graphicsCmdPool,
+      .queue = info.queue->get()
+      }
+    );
+
+    cmdBuffer.begin();
+    {
+      /*
+      cmdBuffer.getFront().buildAccelerationStructureKHR(
+        1,
+        &buildInfo,
+        
+      );
+      */
+    }
+    cmdBuffer.end();
   }
 
   void BottomLevelAS::init(BottomLevelASInfo& info, const std::shared_ptr<Model> model, std::vector<BottomLevelAS>& blasCopy)

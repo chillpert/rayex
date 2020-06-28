@@ -8,9 +8,6 @@ namespace RX
 {
   struct TopLevelASInfo
   {
-    vk::Device device;
-    vk::PhysicalDevice physicalDevice;
-    vk::DispatchLoaderDynamic dispatchLoaderDynamic;
     std::vector<std::shared_ptr<GeometryNodeBase>> nodes;
     vk::BuildAccelerationStructureFlagsKHR flags;
   };

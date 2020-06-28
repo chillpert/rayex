@@ -8,9 +8,6 @@ namespace RX
 {
   struct BottomLevelASInfo
   {
-    vk::DispatchLoaderDynamic dispatchLoaderDynamic;
-    vk::Device device;
-    vk::PhysicalDevice physicalDevice;
     vk::BuildAccelerationStructureFlagsKHR flags;
     std::shared_ptr<Queue> queue;
   };
@@ -28,6 +25,8 @@ namespace RX
 
     // Creates bottom level AS for all given models.
     friend void initBottomLevelAS_(BottomLevelASInfo& info, const std::vector<std::shared_ptr<Model>>& models, std::vector<BottomLevelAS>& blas_);
+    // Builds all bottom level AS for all given models.
+    friend void buildBottomLevelAS_(BottomLevelASInfo& info, const std::vector<std::shared_ptr<Model>>& models, std::vector<BottomLevelAS>& blas_);
 
   private:
     BottomLevelASInfo m_info;

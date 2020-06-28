@@ -62,7 +62,7 @@ namespace RX
     m_image.transitionToLayout(vk::ImageLayout::eShaderReadOnlyOptimal);
 
     m_imageView.init({ m_info.device, m_image.get(), m_image.getFormat() });
-    m_sampler.init({ m_info.device });
+    m_sampler.init();
   }
 
   void Texture::init(TextureInfo&& info)

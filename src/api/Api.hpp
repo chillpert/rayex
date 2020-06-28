@@ -78,7 +78,6 @@ namespace RX
     DebugMessenger m_debugMessenger;
     Surface m_surface;
     Device m_device;
-    vk::DispatchLoaderDynamic m_dispatchLoaderDynamic;
     CommandPool m_graphicsCmdPool;
     CommandPool m_transferCmdPool;
     std::vector<Fence> m_inFlightFences;

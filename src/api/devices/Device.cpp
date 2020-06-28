@@ -1,4 +1,5 @@
 #include "Device.hpp"
+#include "Components.hpp"
 
 namespace RX
 {

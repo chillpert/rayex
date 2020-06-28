@@ -19,11 +19,11 @@ namespace RX
   public:
     ~Surface();
 
-    inline vk::SurfaceKHR get() { return m_surface; }
-    inline vk::Format getFormat() const { return m_info.format; }
-    inline vk::ColorSpaceKHR getColorSpace() const { return m_info.colorSpace; }
-    inline vk::SurfaceCapabilitiesKHR getCapabilities() const { return m_capabilities; }
-    inline vk::PresentModeKHR getPresentMode() const { return m_info.presentMode; }
+    inline const vk::SurfaceKHR get() const { return m_surface; }
+    inline const vk::Format getFormat() const { return m_info.format; }
+    inline const vk::ColorSpaceKHR getColorSpace() const { return m_info.colorSpace; }
+    inline const vk::SurfaceCapabilitiesKHR getCapabilities() const { return m_capabilities; }
+    inline const vk::PresentModeKHR getPresentMode() const { return m_info.presentMode; }
 
     void init(SurfaceInfo& info);
     void init(SurfaceInfo&& info);

@@ -5,26 +5,22 @@
 
 namespace RX
 {
-  struct DebugMessengerInfo
-  {
-    VkInstance instance;
-    VkDebugUtilsMessageSeverityFlagsEXT messageSeverity = VK_DEBUG_UTILS_MESSAGE_SEVERITY_VERBOSE_BIT_EXT | VK_DEBUG_UTILS_MESSAGE_SEVERITY_WARNING_BIT_EXT | VK_DEBUG_UTILS_MESSAGE_SEVERITY_ERROR_BIT_EXT;
-    VkDebugUtilsMessageTypeFlagsEXT messageType = VK_DEBUG_UTILS_MESSAGE_TYPE_GENERAL_BIT_EXT | VK_DEBUG_UTILS_MESSAGE_TYPE_PERFORMANCE_BIT_EXT | VK_DEBUG_UTILS_MESSAGE_TYPE_VALIDATION_BIT_EXT;
-  };
-
+  // TODO: Use C++ Wrapper instead of native API.
   class DebugMessenger
   {
   public:
     DebugMessenger() = default;
-    DebugMessenger(DebugMessengerInfo& info);
-    DebugMessenger(DebugMessengerInfo&& info);
+    DebugMessenger(VkDebugUtilsMessageSeverityFlagsEXT messageSeverity, VkDebugUtilsMessageTypeFlagsEXT messageType, bool initialize = true);
 
+    // Scope-bound destruction.
     ~DebugMessenger();
 
-    inline VkDebugUtilsMessengerEXT get() { return m_debugMessenger; }
-
-    void init(DebugMessengerInfo& info);
-    void init(DebugMessengerInfo&& info);
+    /*
+      Creates the debug messenger with the given properties.
+      @param messageSeverity - Only messages that match the provided flag bits will be printed to the console.
+      @param messageType - Only messages that match the provided flag bits will be printed to the console.
+    */
+    void init(VkDebugUtilsMessageSeverityFlagsEXT messageSeverity, VkDebugUtilsMessageTypeFlagsEXT messageType);
 
   private:
     void destroy();
@@ -33,7 +29,6 @@ namespace RX
     PFN_vkDestroyDebugUtilsMessengerEXT m_destroyDebugUtilsMessengerEXT;
 
     VkDebugUtilsMessengerEXT m_debugMessenger;
-    DebugMessengerInfo m_info;
   };
 
   VKAPI_ATTR VkBool32 VKAPI_CALL debugMessengerCallback

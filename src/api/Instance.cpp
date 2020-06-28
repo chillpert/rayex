@@ -1,29 +1,24 @@
 #include "Instance.hpp"
 #include "Api.hpp"
+#include "Components.hpp"
 
 namespace RX
 {
-  Instance::Instance(InstanceInfo& info)
+  Instance::Instance(const std::vector<const char*>& layers, std::vector<const char*>& extensions, bool initialize)
   {
-    init(info);
+    if (initialize)
+      init(layers, extensions);
   }
 
-  Instance::Instance(InstanceInfo&& info)
+  void Instance::init(const std::vector<const char*>& layers, std::vector<const char*>& extensions)
   {
-    init(info);
-  }
-
-  void Instance::init(InstanceInfo& info)
-  {
-    m_info = info;
-
     // Retrieve all extensions needed by SDL2.
-    std::vector<const char*> windowExtensions = m_info.window->getInstanceExtensions();
-    m_info.extensions.insert(m_info.extensions.end(), windowExtensions.begin(), windowExtensions.end());
+    std::vector<const char*> windowExtensions = g_window->getInstanceExtensions();
+    extensions.insert(extensions.end(), windowExtensions.begin(), windowExtensions.end());
 
     // Check if all extensions and layers needed are available.
-    checkLayersSupport();
-    checkExtensionsSupport();
+    checkLayersSupport(layers);
+    checkExtensionsSupport(extensions);
 
     // Start creating the instance.
     vk::ApplicationInfo appInfo;
@@ -31,27 +26,25 @@ namespace RX
  
     vk::InstanceCreateInfo createInfo;
     createInfo.pApplicationInfo = &appInfo;
-    createInfo.ppEnabledLayerNames = m_info.layers.data();
-    createInfo.enabledLayerCount = static_cast<uint32_t>(m_info.layers.size());
-    createInfo.ppEnabledExtensionNames = m_info.extensions.data();
-    createInfo.enabledExtensionCount = static_cast<uint32_t>(m_info.extensions.size());
+    createInfo.ppEnabledLayerNames = layers.data();
+    createInfo.enabledLayerCount = static_cast<uint32_t>(layers.size());
+    createInfo.ppEnabledExtensionNames = extensions.data();
+    createInfo.enabledExtensionCount = static_cast<uint32_t>(extensions.size());
 
     m_instance = vk::createInstanceUnique(createInfo);
+    g_instance = m_instance.get();
 
     if (!m_instance)
       RX_ERROR("Failed to create instance.");
+
+    g_dispatchLoaderDynamic = std::make_unique<vk::DispatchLoaderDynamic>(g_instance, vkGetInstanceProcAddr);
   }
 
-  void Instance::init(InstanceInfo&& info)
-  {
-    init(info);
-  }
-
-  void Instance::checkLayersSupport()
+  void Instance::checkLayersSupport(const std::vector<const char*>& layers)
   {
     auto properties = vk::enumerateInstanceLayerProperties();
 
-    for (const char* name : m_info.layers)
+    for (const char* name : layers)
     {
       bool found = false;
       for (const auto& property : properties)
@@ -70,11 +63,11 @@ namespace RX
     }
   }
 
-  void Instance::checkExtensionsSupport()
+  void Instance::checkExtensionsSupport(const std::vector<const char*>& extensions)
   {
     auto properties = vk::enumerateInstanceExtensionProperties();
 
-    for (const char* name : m_info.extensions)
+    for (const char* name : extensions)
     {
       bool found = false;
       for (const auto& property : properties)

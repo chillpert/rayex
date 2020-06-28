@@ -1,27 +1,10 @@
 #include "Sampler.hpp"
+#include "Components.hpp"
 
 namespace RX
 {
-  Sampler::Sampler(SamplerInfo& info)
+  void Sampler::init()
   {
-    init(info);
-  }
-
-  Sampler::Sampler(SamplerInfo&& info)
-  {
-    init(info);
-  }
-
-  Sampler::~Sampler()
-  {
-    if (m_sampler)
-      destroy();
-  }
-
-  void Sampler::init(SamplerInfo& info)
-  {
-    m_info = info;
-
     vk::SamplerCreateInfo createInfo;
     createInfo.magFilter = vk::Filter::eLinear;
     createInfo.minFilter = vk::Filter::eLinear;
@@ -36,19 +19,8 @@ namespace RX
     createInfo.compareOp = vk::CompareOp::eAlways;
     createInfo.mipmapMode = vk::SamplerMipmapMode::eLinear;
 
-    m_sampler = m_info.device.createSampler(createInfo);
+    m_sampler = g_device.createSamplerUnique(createInfo);
     if (!m_sampler)
       RX_ERROR("Failed to create sampler.");
-  }
-
-  void Sampler::init(SamplerInfo&& info)
-  {
-    init(info);
-  }
-
-  void Sampler::destroy()
-  {
-    m_info.device.destroySampler(m_sampler);
-    m_sampler = nullptr;
   }
 }

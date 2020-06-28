@@ -15,12 +15,9 @@ namespace RX
 {
   struct RaytraceBuilderInfo
   {
-    vk::Instance instance;
-    vk::PhysicalDevice physicalDevice;
-    vk::Device device;
     Surface* surface;
     std::shared_ptr<Queue> queue;
-    vk::DispatchLoaderDynamic dispatchLoaderDynamic;
+    vk::CommandPool commandPool;
   };
 
   class RaytraceBuilder

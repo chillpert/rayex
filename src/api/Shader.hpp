@@ -27,6 +27,7 @@ namespace RX
     inline vk::ShaderModule get() const { return m_shaderModule; }
     
     void init(ShaderInfo& info);
+    void init(ShaderInfo&& info);
 
     void destroy();
 

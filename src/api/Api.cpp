@@ -1,4 +1,5 @@
 #include "Api.hpp"
+#include "Components.hpp"
 
 namespace RX
 {
@@ -28,11 +29,12 @@ namespace RX
 
   void Api::init()
   {
+    g_window = m_window;
+
     m_nodes.reserve(maxNodes);
     m_textures.reserve(maxNodes);
 
     initInstance();
-    m_dispatchLoaderDynamic = vk::DispatchLoaderDynamic(m_instance.get(), vkGetInstanceProcAddr);
     initDebugMessenger();
     initSurface();
     initPhysicalDevice();
@@ -316,12 +318,9 @@ namespace RX
   void Api::initRayTracing()
   {
     RaytraceBuilderInfo info{
-      .instance = m_instance.get(),
-      .physicalDevice = m_physicalDevice.get(),
-      .device = m_device.get(),
       .surface = &m_surface,
       .queue = m_queueManager.getQueue(GRAPHICS),
-      .dispatchLoaderDynamic = m_dispatchLoaderDynamic
+      .commandPool = m_graphicsCmdPool.get()
     };
 
     m_raytraceBuilder.init(info);
@@ -329,31 +328,33 @@ namespace RX
 
   void Api::initInstance()
   {
-    m_instance.init({
-        .window = m_window,
+    std::vector<const char*> layers = { "VK_LAYER_KHRONOS_validation" };
 #ifdef RX_DEBUG
-        .layers = { "VK_LAYER_KHRONOS_validation" },
-        .extensions = { "VK_KHR_get_physical_device_properties2", "VK_EXT_debug_utils" }
+    std::vector<const char*> extensions = { "VK_KHR_get_physical_device_properties2", "VK_EXT_debug_utils" };
 #elif
-        .extensions = { "VK_KHR_get_physical_device_properties2" }
+    std::vector<const char*> extensions = { "VK_KHR_get_physical_device_properties2" };
 #endif
-      }
-    );
+    m_instance.init(layers, extensions);
   }
 
   void Api::initDebugMessenger()
   {
-    m_debugMessenger.init({ m_instance.get() });
+    m_debugMessenger.init(
+      VK_DEBUG_UTILS_MESSAGE_SEVERITY_VERBOSE_BIT_EXT | VK_DEBUG_UTILS_MESSAGE_SEVERITY_WARNING_BIT_EXT | VK_DEBUG_UTILS_MESSAGE_SEVERITY_ERROR_BIT_EXT, 
+      VK_DEBUG_UTILS_MESSAGE_TYPE_GENERAL_BIT_EXT | VK_DEBUG_UTILS_MESSAGE_TYPE_PERFORMANCE_BIT_EXT | VK_DEBUG_UTILS_MESSAGE_TYPE_VALIDATION_BIT_EXT
+    );
   }
 
   void Api::initSurface()
   {
-    m_surface.init({ m_window.get(), m_instance.get() });
+    m_surface.init({ m_window.get(), g_instance });
+    g_surface = m_surface.get();
   }
 
   void Api::initPhysicalDevice()
   {
-    m_physicalDevice.init({ m_instance.get(), m_surface.get() });
+    m_physicalDevice.init({ g_instance, m_surface.get() });
+    g_physicalDevice = m_physicalDevice.get();
 
     // Reassess the support of the preferred surface settings.
     m_surface.checkSettingSupport(m_physicalDevice.get());
@@ -388,6 +389,8 @@ namespace RX
         }
       }
     );
+
+    g_device = m_device.get();
 
     // Retrieve all queue handles.
     m_queueManager.retrieveAllHandles(m_device.get());
@@ -564,6 +567,7 @@ namespace RX
     };
 
     m_graphicsCmdPool.init(commandPoolInfo);
+    g_graphicsCmdPool = m_graphicsCmdPool.get();
   }
 
   void Api::inittransferCmdPool()
@@ -810,7 +814,7 @@ namespace RX
   {
     GuiInfo guiInfo{ };
     guiInfo.window = m_window->get();
-    guiInfo.instance = m_instance.get();
+    guiInfo.instance = g_instance;
     guiInfo.physicalDevice = m_physicalDevice.get();
     guiInfo.device = m_device.get();
     guiInfo.queueFamilyIndex = m_queueManager.getGraphicsFamilyIndex(); 

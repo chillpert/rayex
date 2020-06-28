@@ -152,7 +152,7 @@ namespace RX
        sizeof(info.maxRecursion), // dataSize
        &info.maxRecursion         // pData
     };
-
+    
     std::array<vk::PipelineShaderStageCreateInfo, 3> shaderStages;
     shaderStages[0] = Initializers::getPipelineShaderStageCreateInfo(vk::ShaderStageFlagBits::eRaygenKHR, info.rayGen->get());
     shaderStages[1] = Initializers::getPipelineShaderStageCreateInfo(vk::ShaderStageFlagBits::eMissKHR, info.miss->get());

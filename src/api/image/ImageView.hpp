@@ -21,7 +21,7 @@ namespace RX
     ImageView() = default;
     ImageView(ImageViewInfo& info);
     ImageView(ImageViewInfo&& info);
-    ~ImageView();
+    RX_API ~ImageView();
 
     inline vk::ImageView get() { return m_imageView; }
 

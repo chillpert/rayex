@@ -1,5 +1,6 @@
 #include "TopLevelAS.hpp"
 #include "Memory.hpp"
+#include "Components.hpp"
 
 namespace RX
 {
@@ -11,12 +12,12 @@ namespace RX
   void TopLevelAS::destroy()
   {
     if (m_as)
-      m_info.device.destroyAccelerationStructureKHR(m_as, nullptr, m_info.dispatchLoaderDynamic);
-    
+      g_device.destroyAccelerationStructureKHR(m_as, nullptr, *g_dispatchLoaderDynamic);
+
     m_as = nullptr;
 
     if (m_memory)
-      m_info.device.freeMemory(m_memory);
+      g_device.freeMemory(m_memory);
 
     m_memory = nullptr;
   }
@@ -44,7 +45,7 @@ namespace RX
     createInfo.pGeometryInfos = &typeInfo;
     createInfo.deviceAddress = 0; // Only required if CaptureReplay feature is being used.
 
-    m_as = m_info.device.createAccelerationStructureKHR(createInfo, nullptr, m_info.dispatchLoaderDynamic);
+    m_as = g_device.createAccelerationStructureKHR(createInfo, nullptr, *g_dispatchLoaderDynamic);
     if (!m_as)
       RX_ERROR("Failed to create top level acceleration structure.");
 
@@ -56,14 +57,14 @@ namespace RX
     memReqInfo.accelerationStructure = m_as;
 
     vk::MemoryRequirements2 memReq2;
-    m_info.device.getAccelerationStructureMemoryRequirementsKHR(&memReqInfo, &memReq2, m_info.dispatchLoaderDynamic);
+    g_device.getAccelerationStructureMemoryRequirementsKHR(&memReqInfo, &memReq2, *g_dispatchLoaderDynamic);
 
     vk::MemoryAllocateInfo memAllocInfo;
     memAllocInfo.pNext = nullptr;
     memAllocInfo.allocationSize = memReq2.memoryRequirements.size;
-    memAllocInfo.memoryTypeIndex = Memory::findType(m_info.physicalDevice, memReq2.memoryRequirements.memoryTypeBits, vk::MemoryPropertyFlagBits::eDeviceLocal);
+    memAllocInfo.memoryTypeIndex = Memory::findType(g_physicalDevice, memReq2.memoryRequirements.memoryTypeBits, vk::MemoryPropertyFlagBits::eDeviceLocal);
 
-    m_memory = info.device.allocateMemory(memAllocInfo);
+    m_memory = g_device.allocateMemory(memAllocInfo);
     if (!m_memory)
       RX_ERROR("Failed to allocate memory.");
 
@@ -76,7 +77,7 @@ namespace RX
     bindInfo.deviceIndexCount = 0;
     bindInfo.pDeviceIndices = nullptr;
 
-    vk::Result res = m_info.device.bindAccelerationStructureMemoryKHR(1, &bindInfo, m_info.dispatchLoaderDynamic);
+    vk::Result res = g_device.bindAccelerationStructureMemoryKHR(1, &bindInfo, *g_dispatchLoaderDynamic);
     if (res != vk::Result::eSuccess)
       RX_ERROR("Failed to bind acceleration structure memory.");
 
@@ -85,6 +86,6 @@ namespace RX
     addressInfo.pNext = nullptr;
     addressInfo.accelerationStructure = m_as;
 
-    m_handle = info.device.getAccelerationStructureAddressKHR(addressInfo, info.dispatchLoaderDynamic);
+    m_handle = g_device.getAccelerationStructureAddressKHR(addressInfo, *g_dispatchLoaderDynamic);
   }
 }

@@ -1,4 +1,5 @@
 #include "Instance.hpp"
+#include "Api.hpp"
 
 namespace RX
 {

@@ -22,7 +22,7 @@ namespace RX
     
     std::vector<const char*> getInstanceExtensions();
 
-    RX_API VkSurfaceKHR createSurface(vk::Instance instance);
+    RX_API vk::SurfaceKHR createSurface(vk::Instance instance);
 
     RX_API void processGuiEvent(SDL_Event& event);
 

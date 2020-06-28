@@ -54,10 +54,12 @@ namespace RX
     // Allocate memory for the buffer.
     auto memRequirements = m_info.device.getBufferMemoryRequirements(m_buffer);
 
-    vk::MemoryAllocateInfo allocInfo;
+    vk::MemoryAllocateInfo allocInfo{
+      memRequirements.size,                                                                             // allocationSize
+      Memory::findType(m_info.physicalDevice, memRequirements.memoryTypeBits, m_info.memoryProperties)  // memoryTypeIndex
+    };
+
     allocInfo.pNext = m_info.pNextMemory;
-    allocInfo.allocationSize = memRequirements.size;
-    allocInfo.memoryTypeIndex = Memory::findType(m_info.physicalDevice, memRequirements.memoryTypeBits, m_info.memoryProperties);
     
     /*
     TODO:
@@ -114,16 +116,14 @@ namespace RX
     CmdBuffer commandBuffer({ m_info.device, m_info.commandPool });
     commandBuffer.begin();
     {
-      vk::BufferImageCopy region;
-      region.bufferOffset = 0;
-      region.bufferRowLength = 0;
-      region.bufferImageHeight = 0;
-      region.imageSubresource.aspectMask = vk::ImageAspectFlagBits::eColor;
-      region.imageSubresource.mipLevel = 0;
-      region.imageSubresource.baseArrayLayer = 0;
-      region.imageSubresource.layerCount = 1;
-      region.imageOffset = vk::Offset3D{ 0, 0, 0 };
-      region.imageExtent = image.getExtent();
+      vk::BufferImageCopy region{
+        0,                                            // bufferOffset
+        0,                                            // bufferRowLength
+        0,                                            // bufferImageHeight
+        { vk::ImageAspectFlagBits::eColor, 0, 0, 1 }, // imageSubresource (aspectMask, mipLevel, baseArrayLayer, layerCount)
+        vk::Offset3D{ 0, 0, 0 },                      // imageOffset
+        image.getExtent()                             // imageExtent
+      };
 
       commandBuffer.getFront().copyBufferToImage(m_buffer, image.get(), vk::ImageLayout::eTransferDstOptimal, 1, &region); // CMD
     }

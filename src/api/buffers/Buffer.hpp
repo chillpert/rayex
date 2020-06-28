@@ -1,7 +1,6 @@
 #ifndef BUFFER_HPP
 #define BUFFER_HPP
 
-#include "InitializerInfos.hpp"
 #include "Image.hpp"
 
 namespace RX
@@ -12,9 +11,6 @@ namespace RX
     vk::PhysicalDevice physicalDevice;
     vk::Device device;
 
-    vk::CommandPool commandPool; // Optional, if there is no staging or copying involved.
-    vk::Queue queue; // Optional, if there is no staging or copying involved.
-
     // Buffer
     void* pNextBuffer = nullptr; // Optional
     vk::BufferCreateFlags bufferFlags; // Optional
@@ -22,6 +18,9 @@ namespace RX
     vk::BufferUsageFlags usage;
     vk::SharingMode sharingMode;
     std::vector<uint32_t> queueFamilyIndices; // Optional, if sharing mode is not concurrent.
+
+    vk::CommandPool commandPool; // Optional, if there is no staging or copying involved.
+    vk::Queue queue; // Optional, if there is no staging or copying involved.
 
     // Memory
     vk::MemoryPropertyFlags memoryProperties;

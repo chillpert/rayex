@@ -22,11 +22,16 @@ namespace RX
   {
     m_info = info;
 
-    vk::QueryPoolCreateInfo createInfo;
-    createInfo.queryCount = m_info.queryCount;
-    createInfo.queryType = m_info.queryType;
+    vk::QueryPoolCreateInfo createInfo{
+      { },                // flags
+      m_info.queryType,   // queryType
+      m_info.queryCount,  // queryCount
+      { }                 // pipelineStatistics
+    };
 
     m_queryPool = m_info.device.createQueryPool(createInfo, nullptr, m_info.dispatchLoaderDynamic);
+    if (!m_queryPool)
+      RX_ERROR("Failed to create query pool");
   }
 
   void QueryPool::init(QueryPoolInfo&& info)

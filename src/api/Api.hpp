@@ -39,7 +39,7 @@ namespace RX
     void init();
     bool update();
     bool render();
-  
+    
     void pushNode(const std::shared_ptr<GeometryNodeBase> nodes, bool record = true);
     void setNodes(const std::vector<std::shared_ptr<GeometryNodeBase>>& nodes);
 
@@ -109,7 +109,7 @@ namespace RX
     // No destruction necessary for following members:
     PhysicalDevice m_physicalDevice;
     QueueManager m_queueManager;
-    std::vector<VkFence> m_imagesInFlight;
+    std::vector<vk::Fence> m_imagesInFlight;
 
     RaytraceBuilder m_raytraceBuilder;
 

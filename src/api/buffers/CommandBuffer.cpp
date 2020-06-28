@@ -18,12 +18,12 @@ namespace RX
 
     m_commandBuffers.resize(m_info.commandBufferCount);
 
-    vk::CommandBufferAllocateInfo allocateInfo;
-    allocateInfo.commandPool = m_info.commandPool;
-    allocateInfo.level = m_info.level;
-    allocateInfo.commandBufferCount = static_cast<uint32_t>(m_info.commandBufferCount);
-
-    m_commandBuffers = m_info.device.allocateCommandBuffers(allocateInfo);
+    m_commandBuffers = m_info.device.allocateCommandBuffers({
+      m_info.commandPool, // commandPool
+      m_info.level, // level
+      static_cast<uint32_t>(m_info.commandBufferCount) // commandBufferCount
+      }
+    );
 
     // set up begin info.
     m_beginInfo.flags = m_info.usageFlags;
@@ -63,7 +63,9 @@ namespace RX
   {
     if (m_info.usageFlags & vk::CommandBufferUsageFlagBits::eOneTimeSubmit)
     {
-      queue.submit(1, &m_submitInfo, nullptr); // TODO: update assert
+      if (queue.submit(1, &m_submitInfo, nullptr) != vk::Result::eSuccess)
+        RX_ERROR("Failed to submit");
+
       queue.waitIdle();
     }
     else

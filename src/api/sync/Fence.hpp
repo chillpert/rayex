@@ -13,11 +13,16 @@ namespace RX
   class Fence
   {
   public:
+    Fence() = default;
+    Fence(FenceInfo& info);
+    Fence(FenceInfo&& info);
     ~Fence();
 
     inline vk::Fence& get() { return m_fence; }
 
     void init(FenceInfo& info);
+    void init(FenceInfo&& info);
+
     void destroy();
 
   private:

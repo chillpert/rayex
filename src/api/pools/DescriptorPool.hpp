@@ -10,6 +10,7 @@ namespace RX
     vk::Device device;
     std::vector<vk::DescriptorPoolSize> poolSizes;
     uint32_t maxSets;
+    vk::DescriptorPoolCreateFlags flags = { };
   };
 
   class DescriptorPool

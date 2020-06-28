@@ -26,6 +26,7 @@ namespace RX
     createInfo.poolSizeCount = static_cast<uint32_t>(m_info.poolSizes.size());
     createInfo.pPoolSizes = m_info.poolSizes.data();
     createInfo.maxSets = m_info.maxSets;
+    createInfo.flags = m_info.flags;
 
     m_pool = m_info.device.createDescriptorPool(createInfo);
     if (!m_pool)

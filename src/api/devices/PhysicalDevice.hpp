@@ -8,7 +8,7 @@ namespace RX
   struct PhysicalDeviceInfo
   {
     vk::Instance instance;
-    VkSurfaceKHR surface;
+    vk::SurfaceKHR surface;
   };
 
   class PhysicalDevice

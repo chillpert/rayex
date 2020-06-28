@@ -53,7 +53,7 @@ namespace RX
     imageInfo.device = m_info.device;
     imageInfo.queue = m_info.queue;
     imageInfo.commandPool = m_info.commandPool;
-    imageInfo.extent = VkExtent3D{ static_cast<uint32_t>(width), static_cast<uint32_t>(height), 1 };
+    imageInfo.extent = vk::Extent3D{ static_cast<uint32_t>(width), static_cast<uint32_t>(height), 1 };
 
     m_image.init(imageInfo);
 

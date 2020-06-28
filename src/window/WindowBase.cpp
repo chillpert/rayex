@@ -86,7 +86,7 @@ namespace RX
     return extensions;
   }
 
-  VkSurfaceKHR WindowBase::createSurface(vk::Instance instance)
+  vk::SurfaceKHR WindowBase::createSurface(vk::Instance instance)
   {
     VkSurfaceKHR surface;
     SDL_bool result = SDL_Vulkan_CreateSurface(m_window, instance, &surface);

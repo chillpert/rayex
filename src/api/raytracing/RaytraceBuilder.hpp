@@ -25,17 +25,6 @@ namespace RX
 
   class RaytraceBuilder
   {
-  private:
-    struct Instance
-    {
-      glm::mat4 transform = glm::mat4(1.0f);
-      uint32_t blasId = 0;      // Index of the BLAS in m_blas
-      uint32_t instanceId = 0;  // Instance Index (gl_InstanceID)
-      uint32_t hitGroupId = 0;  // Hit group index in the SBT
-      uint32_t mask = 0xFF;     // Visibility mask, will be AND-ed with ray mask
-      vk::GeometryInstanceFlagsKHR flags = vk::GeometryInstanceFlagBitsKHR::eTriangleFacingCullDisable;
-    };
-
   public:
     inline Shader& getRayGenShader() { return m_rayGen; }
     inline Shader& getMissShader() { return m_miss; }
@@ -56,12 +45,8 @@ namespace RX
     std::vector<BottomLevelAS> m_blas;
     TopLevelAS m_tlas;
 
-    std::vector<Instance> m_instances;
-
     Image m_storageImage;
     ImageView m_storageImageView;
-
-    //DebugUtility m_debugUtil;
 
     DescriptorPool m_descriptorPool;
     DescriptorSetLayout m_descriptorSetLayout;

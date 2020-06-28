@@ -1,4 +1,5 @@
 #include "DebugMessenger.hpp"
+#include "Api.hpp"
 
 namespace RX
 {
@@ -23,16 +24,16 @@ namespace RX
     m_info = info;
 
 #ifdef RX_DEBUG
-    m_createDebugUtilsMessengerEXT = (PFN_vkCreateDebugUtilsMessengerEXT)vkGetInstanceProcAddr(m_info.instance, "vkCreateDebugUtilsMessengerEXT");
-    m_destroyDebugUtilsMessengerEXT = (PFN_vkDestroyDebugUtilsMessengerEXT)vkGetInstanceProcAddr(m_info.instance, "vkDestroyDebugUtilsMessengerEXT");
+    m_createDebugUtilsMessengerEXT = (PFN_vkCreateDebugUtilsMessengerEXT)vkGetInstanceProcAddr(info.instance, "vkCreateDebugUtilsMessengerEXT");
+    m_destroyDebugUtilsMessengerEXT = (PFN_vkDestroyDebugUtilsMessengerEXT)vkGetInstanceProcAddr(info.instance, "vkDestroyDebugUtilsMessengerEXT");
 
     VkDebugUtilsMessengerCreateInfoEXT createInfo{ };
     createInfo.sType = VK_STRUCTURE_TYPE_DEBUG_UTILS_MESSENGER_CREATE_INFO_EXT;
-    createInfo.messageSeverity = m_info.messageSeverity;
-    createInfo.messageType = m_info.messageType;
+    createInfo.messageSeverity = info.messageSeverity;
+    createInfo.messageType = info.messageType;
     createInfo.pfnUserCallback = debugMessengerCallback;
     
-    m_createDebugUtilsMessengerEXT(m_info.instance, &createInfo, nullptr, &m_debugMessenger);
+    m_createDebugUtilsMessengerEXT(info.instance, &createInfo, nullptr, &m_debugMessenger);
 #endif
   }
 

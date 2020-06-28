@@ -54,5 +54,7 @@ namespace RX
   {
     m_info.device.destroyDescriptorSetLayout(m_layout);
     m_layout = nullptr;
+
+    m_bindings.clear();
   }
 }

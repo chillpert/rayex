@@ -27,7 +27,7 @@ namespace RX
   public:
     ~Swapchain();
 
-    inline vk::SwapchainKHR get() { return m_swapchain; }    
+    inline vk::SwapchainKHR& get() { return m_swapchain; }    
 
     inline vk::Extent2D getExtent() const { return m_extent; }
     inline vk::Image& getImage(size_t index) { return m_images[index]; }

@@ -13,11 +13,16 @@ namespace RX
   class Semaphore
   {
   public:
+    Semaphore() = default;
+    Semaphore(SemaphoreInfo& info);
+    Semaphore(SemaphoreInfo&& info);
     ~Semaphore();
 
     inline vk::Semaphore& get() { return m_semaphore; }
 
     void init(SemaphoreInfo& info);
+    void init(SemaphoreInfo&& info);
+    
     void destroy();
 
   private:

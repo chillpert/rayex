@@ -57,19 +57,13 @@ namespace RX
     m_imageAvailableSemaphores.resize(maxFramesInFlight);
     m_finishedRenderSemaphores.resize(maxFramesInFlight);
     m_inFlightFences.resize(maxFramesInFlight);
-    m_imagesInFlight.resize(m_swapchain.getImages().size(), VK_NULL_HANDLE);
-
-    SemaphoreInfo semaphoreInfo{ };
-    semaphoreInfo.device = m_device.get();
-
-    FenceInfo fenceInfo{ };
-    fenceInfo.device = m_device.get();
+    m_imagesInFlight.resize(m_swapchain.getImages().size(), nullptr);
 
     for (size_t i = 0; i < maxFramesInFlight; ++i)
     {
-      m_imageAvailableSemaphores[i].init(semaphoreInfo);
-      m_finishedRenderSemaphores[i].init(semaphoreInfo);
-      m_inFlightFences[i].init(fenceInfo);
+      m_imageAvailableSemaphores[i].init({ m_device.get() });
+      m_finishedRenderSemaphores[i].init({ m_device.get() });
+      m_inFlightFences[i].init({ m_device.get() });
     }
 
     RX_LOG("Finished API initialization.");
@@ -127,30 +121,25 @@ namespace RX
     }
 
     // Check if a previous frame is using the current image.
-    if (m_imagesInFlight[imageIndex] != VK_NULL_HANDLE)
-      vkWaitForFences(m_device.get(), 1, &m_imagesInFlight[currentFrame], VK_TRUE, UINT64_MAX);
+    if (static_cast<void*>(m_imagesInFlight[imageIndex]) != nullptr)
+      m_device.get().waitForFences(1, &m_imagesInFlight[currentFrame], VK_TRUE, UINT64_MAX);
 
     // This will mark the current image to be in use by this frame.
     m_imagesInFlight[imageIndex] = m_inFlightFences[currentFrame].get();
-
-    vk::SubmitInfo submitInfo;
-
-    vk::Semaphore waitSemaphores[] = { m_imageAvailableSemaphores[currentFrame].get() };
-    vk::PipelineStageFlags waitStages[] = { vk::PipelineStageFlagBits::eColorAttachmentOutput };
-    submitInfo.waitSemaphoreCount = 1;
-    submitInfo.pWaitSemaphores = waitSemaphores;
-    submitInfo.pWaitDstStageMask = waitStages;
 
     std::vector<vk::CommandBuffer> commandBuffers = { m_swapchainCmdBuffers.get()[imageIndex] };
     if (m_gui != nullptr)
       commandBuffers.push_back(m_gui->getCommandBuffer().get()[imageIndex]);
 
-    submitInfo.commandBufferCount = static_cast<uint32_t>(commandBuffers.size());
-    submitInfo.pCommandBuffers = commandBuffers.data();
-
-    vk::Semaphore signalSemaphores[] = { m_finishedRenderSemaphores[currentFrame].get() };
-    submitInfo.signalSemaphoreCount = 1;
-    submitInfo.pSignalSemaphores = signalSemaphores;
+    vk::SubmitInfo submitInfo{
+      1,                                                                                                  // waitSemaphoreCount
+      &m_imageAvailableSemaphores[currentFrame].get(),                                                    // pWaitSemaphores
+      std::array<vk::PipelineStageFlags, 1>{ vk::PipelineStageFlagBits::eColorAttachmentOutput }.data(),  // pWaitDstStageMask
+      static_cast<uint32_t>(commandBuffers.size()),                                                       // commandBufferCount
+      commandBuffers.data(),                                                                              // pCommandBuffers
+      1,                                                                                                  // signalSemaphoreCount
+      &m_finishedRenderSemaphores[currentFrame].get()                                                     // pSignalSemaphores
+    };
 
     // Reset the signaled state of the current frame's fence to the unsignaled one.
     m_device.get().resetFences(1, &m_inFlightFences[currentFrame].get());
@@ -164,15 +153,14 @@ namespace RX
     // Submits / executes the current image's / framebuffer's command buffer.
     m_queueManager.submit(submitInfo, m_inFlightFences[currentFrame].get());
 
-    vk::PresentInfoKHR presentInfo;
-    presentInfo.waitSemaphoreCount = 1;
-    presentInfo.pWaitSemaphores = signalSemaphores;
-
-    vk::SwapchainKHR swapChains[] = { m_swapchain.get() };
-    presentInfo.swapchainCount = 1;
-    presentInfo.pSwapchains = swapChains;
-
-    presentInfo.pImageIndices = &imageIndex;
+    vk::PresentInfoKHR presentInfo{
+      1,                                                // waitSemaphoreCount
+      &m_finishedRenderSemaphores[currentFrame].get(),  // pWaitSemaphores
+      1,                                                // swapchainCount
+      &m_swapchain.get(),                               // pSwapchains
+      &imageIndex,                                      // pImageIndices
+      nullptr,                                          // pResults
+    };
 
     // Tell the presentation engine that the current image is ready.
     m_queueManager.present(presentInfo);
@@ -253,6 +241,8 @@ namespace RX
     RX_LOG("Recreating swapchain.");
 
     m_device.waitIdle();
+
+    m_raytraceBuilder.destroy();
 
     // Cleaning the existing swapchain.
     m_depthImageView.destroy();

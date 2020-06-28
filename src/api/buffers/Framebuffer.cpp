@@ -24,19 +24,18 @@ namespace RX
 
     std::vector<vk::ImageView> attachments{ m_info.imageView };
 
-    // Note: It seems like ==operator is bugged, since != nullptr does not work directly
-    void* temp = m_info.depthImageView;
-
-    if (temp != nullptr)
+    if (static_cast<void*>(m_info.depthImageView) != nullptr)
       attachments.push_back(m_info.depthImageView);
 
-    vk::FramebufferCreateInfo createInfo;
-    createInfo.renderPass = m_info.renderPass;
-    createInfo.attachmentCount = static_cast<uint32_t>(attachments.size());
-    createInfo.pAttachments = attachments.data();
-    createInfo.width = m_info.extent.width;
-    createInfo.height = m_info.extent.height;
-    createInfo.layers = 1;
+    vk::FramebufferCreateInfo createInfo{
+      { },                                        // flags
+      m_info.renderPass,                          // renderPass
+      static_cast<uint32_t>(attachments.size()),  // attachmentCount
+      attachments.data(),                         // pAttachments
+      m_info.extent.width,                        // width
+      m_info.extent.height,                       // height
+      1                                           // layers
+    };
 
     m_framebuffer = m_info.device.createFramebuffer(createInfo);
     if (!m_framebuffer)

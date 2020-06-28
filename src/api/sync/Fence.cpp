@@ -2,6 +2,16 @@
 
 namespace RX
 {
+  Fence::Fence(FenceInfo& info)
+  {
+    init(info);
+  }
+
+  Fence::Fence(FenceInfo&& info)
+  {
+    init(info);
+  }
+
   Fence::~Fence()
   {
     if (m_fence)
@@ -18,6 +28,11 @@ namespace RX
     m_fence = m_info.device.createFence(createInfo);
     if (!m_fence)
       RX_ERROR("Failed to create fence.");
+  }
+
+  void Fence::init(FenceInfo&& info)
+  {
+    init(info);
   }
 
   void Fence::destroy()

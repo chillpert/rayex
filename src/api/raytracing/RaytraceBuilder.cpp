@@ -17,7 +17,20 @@ namespace RX
 
   void RaytraceBuilder::destroy()
   {
+    m_rayGen.destroy();
+    m_miss.destroy();
+    m_closestHit.destroy();
 
+    m_tlas.destroy();
+    for (auto& blas : m_blas)
+      blas.destroy();
+
+    m_storageImageView.destroy();
+    m_storageImage.destroy();
+
+    m_descriptorSet.destroy();
+    m_descriptorSetLayout.destroy();
+    m_descriptorPool.destroy();
   }
 
   void RaytraceBuilder::initAccelerationStructures(const std::vector<std::shared_ptr<GeometryNodeBase>>& nodes, const std::vector<std::shared_ptr<Model>>& models)
@@ -60,7 +73,8 @@ namespace RX
     m_descriptorPool.init({
       .device = m_info.device,
       .poolSizes = poolSizes,
-      .maxSets = 1
+      .maxSets = 1,
+      .flags = vk::DescriptorPoolCreateFlagBits::eFreeDescriptorSet
       }
     );
 

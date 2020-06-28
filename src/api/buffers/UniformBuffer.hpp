@@ -41,6 +41,7 @@ namespace RX
     std::vector<Buffer> m_buffers;
     UniformBufferInfo m_info;
   };
+
 }
 
 #endif // UNIFORM_BUFFER_HPP

@@ -1,4 +1,5 @@
 #include "Swapchain.hpp"
+#include "Components.hpp"
 
 namespace RX
 {
@@ -15,7 +16,7 @@ namespace RX
     auto surfaceCapabilities = m_info.surface->getCapabilities();
 
     vk::SwapchainCreateInfoKHR createInfo;
-    createInfo.surface = m_info.surface->get();
+    createInfo.surface = g_surface;
 
     // Add another image so that the application does not have to wait for the driver before another image can be acquired.
     uint32_t minImageCount = surfaceCapabilities.minImageCount + 1;

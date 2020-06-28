@@ -15,6 +15,7 @@ namespace RX
       Initializes the instance object and checks support for any given layer and extension.
       @param layers - All validation layers that should be used.
       @param extensions - All instance extensions that should be used.
+      Note: The given vector with the extensions will be appended by ones that are required by the window.
     */
     void init(const std::vector<const char*>& layers, std::vector<const char*>& extensions);
 

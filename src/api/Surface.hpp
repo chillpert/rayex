@@ -5,40 +5,36 @@
 
 namespace RX
 {
-  struct SurfaceInfo
-  {
-    WindowBase* window;
-    vk::Instance instance;
-    vk::Format format = vk::Format::eB8G8R8A8Unorm;
-    vk::ColorSpaceKHR colorSpace = vk::ColorSpaceKHR::eSrgbNonlinear;
-    vk::PresentModeKHR presentMode = vk::PresentModeKHR::eMailbox;
-  };
-
   class Surface
   {
   public:
+    Surface();
+    Surface(vk::Format format, vk::ColorSpaceKHR colorSpace, vk::PresentModeKHR presentMode, bool initialize = true);
     ~Surface();
 
-    inline const vk::SurfaceKHR get() const { return m_surface; }
-    inline const vk::Format getFormat() const { return m_info.format; }
-    inline const vk::ColorSpaceKHR getColorSpace() const { return m_info.colorSpace; }
+    inline const vk::Format getFormat() const { return m_format; }
+    inline const vk::ColorSpaceKHR getColorSpace() const { return m_colorSpace; }
+    inline const vk::PresentModeKHR getPresentMode() const { return m_presentMode; }
     inline const vk::SurfaceCapabilitiesKHR getCapabilities() const { return m_capabilities; }
-    inline const vk::PresentModeKHR getPresentMode() const { return m_info.presentMode; }
 
-    void init(SurfaceInfo& info);
-    void init(SurfaceInfo&& info);
+    // Creates the surface.
+    void init();
 
-    void destroy();
-
-    // Checks if the preferred settings for format, color space and present mode are available.
-    // If not, the function will set them to some fall back values.
-    // Must be called right after the enumeration of the physical device.
-    void checkSettingSupport(vk::PhysicalDevice physicalDevice);
+    /*
+      Checks if the preferred settings for format, color space and present mode are available. If not, the function will set them to some fall back values.
+      Note: Must be called right after the enumeration of the physical device.
+    */
+    void checkSettingSupport();
 
   private:
-    vk::SurfaceKHR m_surface;
-    SurfaceInfo m_info;
+    // Destroys the surface.
+    void destroy();
 
+    vk::SurfaceKHR m_surface;
+
+    vk::Format m_format;
+    vk::ColorSpaceKHR m_colorSpace;
+    vk::PresentModeKHR m_presentMode;
     vk::SurfaceCapabilitiesKHR m_capabilities;
   };
 }

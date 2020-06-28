@@ -1,5 +1,4 @@
 #include "Instance.hpp"
-#include "Api.hpp"
 #include "Components.hpp"
 
 namespace RX
@@ -24,12 +23,14 @@ namespace RX
     vk::ApplicationInfo appInfo;
     appInfo.apiVersion = getApiVersion();
  
-    vk::InstanceCreateInfo createInfo;
-    createInfo.pApplicationInfo = &appInfo;
-    createInfo.ppEnabledLayerNames = layers.data();
-    createInfo.enabledLayerCount = static_cast<uint32_t>(layers.size());
-    createInfo.ppEnabledExtensionNames = extensions.data();
-    createInfo.enabledExtensionCount = static_cast<uint32_t>(extensions.size());
+    vk::InstanceCreateInfo createInfo{
+      { },                                      // flags
+      &appInfo,                                 // pApplicationInfo
+      static_cast<uint32_t>(layers.size()),     // enabledLayerCount
+      layers.data(),                            // ppEnabledLayerNames
+      static_cast<uint32_t>(extensions.size()), // enabledExtensionCount
+      extensions.data()                         // ppEnabledExtensionNames
+    };
 
     m_instance = vk::createInstanceUnique(createInfo);
     g_instance = m_instance.get();

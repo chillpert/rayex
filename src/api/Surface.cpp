@@ -1,64 +1,79 @@
 #include "Surface.hpp"
+#include "Components.hpp"
 
 namespace RX
 {
-  Surface::~Surface()
+  Surface::Surface() :
+    m_format(vk::Format::eB8G8R8A8Unorm),
+    m_colorSpace(vk::ColorSpaceKHR::eSrgbNonlinear),
+    m_presentMode(vk::PresentModeKHR::eMailbox),
+    m_capabilities(0) { }
+
+  Surface::Surface(vk::Format format, vk::ColorSpaceKHR colorSpace, vk::PresentModeKHR presentMode, bool initialize) :
+    m_format(vk::Format::eB8G8R8A8Unorm),
+    m_colorSpace(vk::ColorSpaceKHR::eSrgbNonlinear),
+    m_presentMode(vk::PresentModeKHR::eMailbox),
+    m_capabilities(0)
   {
-    if (m_surface)
-      destroy();
+    if (initialize)
+      init();
   }
 
-  void Surface::init(SurfaceInfo& info)
+  Surface::~Surface()
   {
-    m_info = info;
+    destroy();
+  }
 
-    m_surface = m_info.window->createSurface(m_info.instance);
+  void Surface::init()
+  {
+    m_surface = g_window->createSurface(g_instance);
+    g_surface = m_surface;
+
     if (!m_surface)
       RX_ERROR("Failed to create surface.");
   }
 
-  void Surface::init(SurfaceInfo&& info)
-  {
-    init(info);
-  }
-
-  void Surface::destroy()
-  {
-    m_info.instance.destroySurfaceKHR(m_surface);
-  }
-
-  void Surface::checkSettingSupport(vk::PhysicalDevice physicalDevice)
+  void Surface::checkSettingSupport()
   {
     // Get all surface capabilities.
-    m_capabilities = physicalDevice.getSurfaceCapabilitiesKHR(m_surface);
+    m_capabilities = g_physicalDevice.getSurfaceCapabilitiesKHR(m_surface);
 
     // Check a present mode.
-    std::vector<vk::PresentModeKHR> presentModes = physicalDevice.getSurfacePresentModesKHR(m_surface);
+    std::vector<vk::PresentModeKHR> presentModes = g_physicalDevice.getSurfacePresentModesKHR(m_surface);
 
     for (const auto& mode : presentModes)
     {
       if (mode == vk::PresentModeKHR::eMailbox)
       {
-        m_info.presentMode = vk::PresentModeKHR::eMailbox;
+        m_presentMode = vk::PresentModeKHR::eMailbox;
         return;
       }
     }
 
     // Fall back, as FIFO is always supported on every device.
-    m_info.presentMode = vk::PresentModeKHR::eFifo;
+    m_presentMode = vk::PresentModeKHR::eFifo;
 
     // Check format and color space.
-    auto formatProperties = physicalDevice.getFormatProperties(m_info.format); // TODO: not used.
-    auto surfaceFormats = physicalDevice.getSurfaceFormatsKHR(m_surface);
+    auto formatProperties = g_physicalDevice.getFormatProperties(m_format); // TODO: not used.
+    auto surfaceFormats = g_physicalDevice.getSurfaceFormatsKHR(m_surface);
 
     for (const auto& iter : surfaceFormats)
     {
-      if (iter.format == m_info.format && iter.colorSpace == m_info.colorSpace)
+      if (iter.format == m_format && iter.colorSpace == m_colorSpace)
         return;
     }
 
     // If the prefered format and color space are not available, fall back.
-    m_info.format = surfaceFormats[0].format;
-    m_info.colorSpace = surfaceFormats[0].colorSpace;
+    m_format = surfaceFormats[0].format;
+    m_colorSpace = surfaceFormats[0].colorSpace;
+  }
+
+  void Surface::destroy()
+  {
+    if (m_surface)
+    {
+      g_instance.destroySurfaceKHR(m_surface);
+      m_surface = nullptr;
+    }
   }
 }

@@ -63,9 +63,9 @@ namespace RX
 
     for (size_t i = 0; i < maxFramesInFlight; ++i)
     {
-      m_imageAvailableSemaphores[i].init({ m_device.get() });
-      m_finishedRenderSemaphores[i].init({ m_device.get() });
-      m_inFlightFences[i].init({ m_device.get() });
+      m_imageAvailableSemaphores[i].init({ g_device });
+      m_finishedRenderSemaphores[i].init({ g_device });
+      m_inFlightFences[i].init({ g_device });
     }
 
     RX_LOG("Finished API initialization.");
@@ -88,7 +88,7 @@ namespace RX
     static size_t currentFrame = 0;
 
     // Wait for the current frame's fences.
-    m_device.get().waitForFences(1, &m_inFlightFences[currentFrame].get(), VK_TRUE, UINT64_MAX);
+    g_device.waitForFences(1, &m_inFlightFences[currentFrame].get(), VK_TRUE, UINT64_MAX);
 
     // If the window is minimized then simply do not render anything anymore.
     if (m_window->minimized())
@@ -124,7 +124,7 @@ namespace RX
 
     // Check if a previous frame is using the current image.
     if (static_cast<void*>(m_imagesInFlight[imageIndex]) != nullptr)
-      m_device.get().waitForFences(1, &m_imagesInFlight[currentFrame], VK_TRUE, UINT64_MAX);
+      g_device.waitForFences(1, &m_imagesInFlight[currentFrame], VK_TRUE, UINT64_MAX);
 
     // This will mark the current image to be in use by this frame.
     m_imagesInFlight[imageIndex] = m_inFlightFences[currentFrame].get();
@@ -144,7 +144,7 @@ namespace RX
     };
 
     // Reset the signaled state of the current frame's fence to the unsignaled one.
-    m_device.get().resetFences(1, &m_inFlightFences[currentFrame].get());
+    g_device.resetFences(1, &m_inFlightFences[currentFrame].get());
 
     if (m_gui != nullptr)
     {
@@ -190,7 +190,7 @@ namespace RX
 
     TextureInfo textureInfo{
       .physicalDevice = m_physicalDevice.get(),
-      .device = m_device.get(),
+      .device = g_device,
       .commandPool = m_graphicsCmdPool.get(),
       .queue = m_queueManager.getQueue(GRAPHICS)->get()
     };
@@ -235,14 +235,14 @@ namespace RX
 
   void Api::clean()
   {
-    m_device.waitIdle();
+    g_device.waitIdle();
   }
 
   void Api::recreateSwapchain()
   {
     RX_LOG("Recreating swapchain.");
 
-    m_device.waitIdle();
+    g_device.waitIdle();
 
     m_raytraceBuilder.destroy();
 
@@ -347,24 +347,23 @@ namespace RX
 
   void Api::initSurface()
   {
-    m_surface.init({ m_window.get(), g_instance });
-    g_surface = m_surface.get();
+    m_surface.init();
   }
 
   void Api::initPhysicalDevice()
   {
-    m_physicalDevice.init({ g_instance, m_surface.get() });
+    m_physicalDevice.init({ g_instance, g_surface });
     g_physicalDevice = m_physicalDevice.get();
 
     // Reassess the support of the preferred surface settings.
-    m_surface.checkSettingSupport(m_physicalDevice.get());
+    m_surface.checkSettingSupport();
   }
 
   void Api::initQueues()
   {
     QueuesInfo queuesInfo{
       .physicalDevice = m_physicalDevice.get(),
-      .surface = m_surface.get()
+      .surface = g_surface
     };
 
     m_queueManager.init(queuesInfo);
@@ -375,25 +374,21 @@ namespace RX
 
   void Api::initDevice()
   {
-    m_device.init({
-        .physicalDevice = m_physicalDevice.get(),
-        .queueFamilies = m_queueManager.getQueueFamilies(),
-        .extensions = {
-          "VK_KHR_get_memory_requirements2",
-          "VK_EXT_descriptor_indexing",
-          VK_KHR_BUFFER_DEVICE_ADDRESS_EXTENSION_NAME,
-          VK_KHR_DEFERRED_HOST_OPERATIONS_EXTENSION_NAME,
-          VK_KHR_PIPELINE_LIBRARY_EXTENSION_NAME,
-          VK_KHR_MAINTENANCE3_EXTENSION_NAME,
-          VK_KHR_RAY_TRACING_EXTENSION_NAME
-        }
-      }
-    );
+    std::vector<const char*> deviceExtensions =
+    {
+      "VK_KHR_get_memory_requirements2",
+      "VK_EXT_descriptor_indexing",
+      VK_KHR_BUFFER_DEVICE_ADDRESS_EXTENSION_NAME,
+      VK_KHR_DEFERRED_HOST_OPERATIONS_EXTENSION_NAME,
+      VK_KHR_PIPELINE_LIBRARY_EXTENSION_NAME,
+      VK_KHR_MAINTENANCE3_EXTENSION_NAME,
+      VK_KHR_RAY_TRACING_EXTENSION_NAME
+    };
 
-    g_device = m_device.get();
+    m_device.init(m_queueManager.getQueueFamilies(), deviceExtensions);
 
     // Retrieve all queue handles.
-    m_queueManager.retrieveAllHandles(m_device.get());
+    m_queueManager.retrieveAllHandles(g_device);
   }
 
   void Api::initRenderPass()
@@ -457,7 +452,7 @@ namespace RX
 
     m_renderPass.init({
         .physicalDevice = m_physicalDevice.get(),
-        .device = m_device.get(),
+        .device = g_device,
         .attachments = { colorAttachmentDescription, depthAttachmentDescription },
         .subpasses = { subpassDescription },
         .dependencies = { subpassDependency }
@@ -467,13 +462,13 @@ namespace RX
 
   void Api::initSwapchain()
   {
-    m_surface.checkSettingSupport(m_physicalDevice.get());
+    m_surface.checkSettingSupport();
 
     SwapchainInfo swapchainInfo{
       .window = m_window.get(),
       .surface = &m_surface,
       .physicalDevice = m_physicalDevice.get(),
-      .device = m_device.get(),
+      .device = g_device,
       .queueFamilyIndices = m_queueManager.getQueueFamilyIndicesForSwapchainAccess(),
       .imageAspect = vk::ImageAspectFlagBits::eColor,
       .renderPass = m_renderPass.get()
@@ -488,7 +483,7 @@ namespace RX
     for (size_t i = 0; i < m_swapchainImageViews.size(); ++i)
     {
       ImageViewInfo imageViewInfo{
-        .device = m_device.get(),
+        .device = g_device,
         .image = m_swapchain.getImage(i),
         .format = m_surface.getFormat(),
       };
@@ -504,13 +499,13 @@ namespace RX
     // Create shaders.
     Shader vs({
         .fullPath = RX_SHADER_PATH "simple3D.vert",
-        .device = m_device.get()
+        .device = g_device
       }
     );
 
     Shader fs({
         .fullPath = RX_SHADER_PATH "simple3D.frag",
-        .device = m_device.get()
+        .device = g_device
       }
     );
 
@@ -537,7 +532,7 @@ namespace RX
 
       // Descriptor Set Layout
       m_descriptorSetLayout.init({
-          .device = m_device.get()
+          .device = g_device
         }
       );
     }
@@ -550,7 +545,7 @@ namespace RX
       .topology = vk::PrimitiveTopology::eTriangleList,
     };
 
-    pipelineInfo.device = m_device.get();
+    pipelineInfo.device = g_device;
     pipelineInfo.renderPass = m_renderPass.get();
     pipelineInfo.viewport = vk::Viewport{ 0.0f, 0.0f, static_cast<float>(m_swapchain.getExtent().width), static_cast<float>(m_swapchain.getExtent().height), 0.0f, 1.0f };
     pipelineInfo.scissor = { 0, 0, m_swapchain.getExtent().width, m_swapchain.getExtent().height };
@@ -561,7 +556,7 @@ namespace RX
   void Api::initgraphicsCmdPool()
   {
     CommandPoolInfo commandPoolInfo{
-      .device = m_device.get(),
+      .device = g_device,
       .queueFamilyIndex = m_queueManager.getGraphicsFamilyIndex(),
       .createFlags = vk::CommandPoolCreateFlagBits::eResetCommandBuffer
     };
@@ -578,7 +573,7 @@ namespace RX
     static auto indices = m_queueManager.getUniqueQueueIndices({ GRAPHICS, TRANSFER });
     
     CommandPoolInfo commandPoolInfo{
-      .device = m_device.get(),
+      .device = g_device,
       .queueFamilyIndex = indices.size() > 1 ? indices[1] : m_queueManager.getTransferFamilyIndex()
     };
 
@@ -592,7 +587,7 @@ namespace RX
 
     ImageInfo imageInfo{ };
     imageInfo.physicalDevice = m_physicalDevice.get();
-    imageInfo.device = m_device.get();
+    imageInfo.device = g_device;
     imageInfo.extent = vk::Extent3D(m_swapchain.getExtent().width, m_swapchain.getExtent().height, 1);
     imageInfo.format = depthFormat;
     imageInfo.tiling = vk::ImageTiling::eOptimal;
@@ -602,7 +597,7 @@ namespace RX
 
     // Image view for depth image
     ImageViewInfo depthImageViewInfo{
-      .device = m_device.get(),
+      .device = g_device,
       .image = m_depthImage.get(),
       .format = depthFormat,
     };
@@ -615,7 +610,7 @@ namespace RX
   void Api::initSwapchainFramebuffers()
   {
     FramebufferInfo framebufferInfo{
-      .device = m_device.get(),
+      .device = g_device,
       .renderPass = m_renderPass.get(),
       .extent = m_swapchain.getExtent(),
       .depthImageView = m_depthImageView.get()
@@ -634,7 +629,7 @@ namespace RX
     uint32_t swapchainImagesCount = m_swapchain.getImages().size();
 
     m_descriptorPool.init({
-      .device = m_device.get(),
+      .device = g_device,
       .poolSizes = { { vk::DescriptorType::eUniformBuffer, swapchainImagesCount }, { vk::DescriptorType::eCombinedImageSampler, swapchainImagesCount } },
       .maxSets = maxNodes * swapchainImagesCount
       }
@@ -656,7 +651,7 @@ namespace RX
 
     VertexBufferInfo vertexBufferInfo{
       .physicalDevice = m_physicalDevice.get(),
-      .device = m_device.get(),
+      .device = g_device,
       .commandPool = m_transferCmdPool.get(),
       .queue = queue,
       .queueIndices = queueIndices.size() > 1 ? queueIndices : std::vector<uint32_t>()
@@ -664,7 +659,7 @@ namespace RX
 
     IndexBufferInfo<uint32_t> indexBufferInfo{
       .physicalDevice = m_physicalDevice.get(),
-      .device = m_device.get(),
+      .device = g_device,
       .commandPool = m_transferCmdPool.get(),
       .queue = queue,
       .queueIndices = queueIndices.size() > 1 ? queueIndices : std::vector<uint32_t>(),
@@ -683,7 +678,7 @@ namespace RX
 
     node->m_uniformBuffers.init({
         .physicalDevice = m_physicalDevice.get(),
-        .device = m_device.get(),
+        .device = g_device,
         .swapchainImagesCount = m_swapchain.getImages().size()
       }
     );
@@ -703,7 +698,7 @@ namespace RX
 
     // Create the descriptor set.
     model->m_descriptorSets.init({
-        .device = m_device.get(),
+        .device = g_device,
         .pool = m_descriptorPool.get(),
         .setCount = static_cast<uint32_t>(m_swapchain.getImages().size()),
         .layouts = std::vector<vk::DescriptorSetLayout>(m_swapchain.getImages().size(), m_descriptorSetLayout.get()) // Create as many identical layouts as swapchain images exist.
@@ -719,7 +714,7 @@ namespace RX
 
     VertexBufferInfo vertexBufferInfo{
       .physicalDevice = m_physicalDevice.get(),
-      .device = m_device.get(),
+      .device = g_device,
       .commandPool = m_transferCmdPool.get(),
       .queue = queue,
       .queueIndices = queueIndices.size() > 1 ? queueIndices : std::vector<uint32_t>()
@@ -727,7 +722,7 @@ namespace RX
 
     IndexBufferInfo<uint32_t> indexBufferInfo{
       .physicalDevice = m_physicalDevice.get(),
-      .device = m_device.get(),
+      .device = g_device,
       .commandPool = m_transferCmdPool.get(),
       .queue = queue,
       .queueIndices = queueIndices.size() > 1 ? queueIndices : std::vector<uint32_t>()
@@ -735,7 +730,7 @@ namespace RX
 
     UniformBufferInfo uniformBufferInfo{
       .physicalDevice = m_physicalDevice.get(),
-      .device = m_device.get(),
+      .device = g_device,
       .swapchainImagesCount = m_swapchain.getImages().size()
     };
 
@@ -778,7 +773,7 @@ namespace RX
 
       // Create the descriptor set.
       model->m_descriptorSets.init({
-          .device = m_device.get(),
+          .device = g_device,
           .pool = m_descriptorPool.get(),
           .setCount = static_cast<uint32_t>(m_swapchain.getImages().size()),
           .layouts = std::vector<vk::DescriptorSetLayout>(m_swapchain.getImages().size(), m_descriptorSetLayout.get())
@@ -801,7 +796,7 @@ namespace RX
   void Api::initSwapchainCmdBuffers()
   {
     CmdBufferInfo commandBufferInfo{
-      .device = m_device.get(),
+      .device = g_device,
       .commandPool = m_graphicsCmdPool.get(),
       .commandBufferCount = m_swapchainFramebuffers.size(),
       .usageFlags = vk::CommandBufferUsageFlagBits::eRenderPassContinue
@@ -816,7 +811,7 @@ namespace RX
     guiInfo.window = m_window->get();
     guiInfo.instance = g_instance;
     guiInfo.physicalDevice = m_physicalDevice.get();
-    guiInfo.device = m_device.get();
+    guiInfo.device = g_device;
     guiInfo.queueFamilyIndex = m_queueManager.getGraphicsFamilyIndex(); 
     guiInfo.queue = m_queueManager.getQueue(GRAPHICS)->get();
     guiInfo.minImageCount = m_surface.getCapabilities().minImageCount + 1;

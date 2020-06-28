@@ -5,35 +5,51 @@
 
 namespace RX
 {
-  struct PhysicalDeviceInfo
-  {
-    vk::Instance instance;
-    vk::SurfaceKHR surface;
-  };
-
   class PhysicalDevice
   {
   public:
     PhysicalDevice() = default;
-    PhysicalDevice(PhysicalDeviceInfo& info);
-    PhysicalDevice(PhysicalDeviceInfo&& info);
 
-    // Technically not created, but enumerated. However, this way is better for the naming scheme.
-    void init(PhysicalDeviceInfo& info);
-    void init(PhysicalDeviceInfo&& info);
+    /*
+      Retrieves the most suited GPU on the current machine. If a device is found its properties and features will be retrieved.
+      Note: SLI, Crossfire and similar is NOT supported.
+    */
+    void init();
 
-    inline vk::PhysicalDevice get() { return m_physicalDevice; }
+    /*
+     Returns the device's properties.
+     Note: Must be called after PhysicalDevice::init().
+    */
+    const vk::PhysicalDeviceProperties getProperties() const;
 
-    inline vk::PhysicalDeviceProperties getProperties() const { return m_properties; }
-    inline vk::PhysicalDeviceProperties2 getProperties2() const { return m_properties2; }
-    inline vk::PhysicalDeviceFeatures getFeatures() const { return m_features; }
-    inline vk::PhysicalDeviceFeatures2 getFeatures2() const { return m_features2; }
+    /*
+     Returns the device's second properties.
+     Note: Must be called after PhysicalDevice::init().
+    */
+    const vk::PhysicalDeviceProperties2 getProperties2() const;
+
+    /*
+     Returns the device's features.
+     Note: Must be called after PhysicalDevice::init().
+    */
+    const vk::PhysicalDeviceFeatures getFeatures() const;
+
+    /*
+     Returns the device's second features.
+     Note: Must be called after PhysicalDevice::init().
+    */
+    const vk::PhysicalDeviceFeatures2 getFeatures2() const;
 
   private:
+    /*
+      Scores a given physical device (GPU).
+      @param physicalDevice - The physical device to score.
+      @return - Returns a pair consisting out of the determined score and the name of the physical device.
+      Note: RTX hardware surpasses any other GPU.
+    */
     std::pair<unsigned int, std::string> evaluate(vk::PhysicalDevice physicalDevice) const;
 
     vk::PhysicalDevice m_physicalDevice;
-    PhysicalDeviceInfo m_info;
 
     vk::PhysicalDeviceProperties m_properties;
     vk::PhysicalDeviceProperties2 m_properties2;

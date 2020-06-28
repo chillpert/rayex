@@ -21,7 +21,7 @@ namespace RX
     void init();
 
     /*
-      Checks if the preferred settings for format, color space and present mode are available. If not, the function will set them to some fall back values.
+      Checks if the preferred settings for format, color space and present mode are available. If not, the function will set them to some fallback values.
       Note: Must be called right after the enumeration of the physical device.
     */
     void checkSettingSupport();

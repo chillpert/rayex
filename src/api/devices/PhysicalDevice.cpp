@@ -4,21 +4,9 @@
 
 namespace RX
 {
-  PhysicalDevice::PhysicalDevice(PhysicalDeviceInfo& info)
+  void PhysicalDevice::init()
   {
-    init(info);
-  }
-
-  PhysicalDevice::PhysicalDevice(PhysicalDeviceInfo&& info)
-  {
-    init(info);
-  }
-
-  void PhysicalDevice::init(PhysicalDeviceInfo& info)
-  {
-    m_info = info;
-
-    auto physicalDevices = m_info.instance.enumeratePhysicalDevices();
+    auto physicalDevices = g_instance.enumeratePhysicalDevices();
     
     std::vector<std::pair<unsigned int, std::string>> results;
 
@@ -55,11 +43,40 @@ namespace RX
     m_features2 = m_physicalDevice.getFeatures2();
 
     RX_LOG("Selected GPU: " << m_properties.deviceName);
+
+    g_physicalDevice = m_physicalDevice;
   }
 
-  void PhysicalDevice::init(PhysicalDeviceInfo&& info)
-  {
-    init(info);
+  const vk::PhysicalDeviceProperties PhysicalDevice::getProperties() const
+  { 
+    if (!m_physicalDevice)
+      RX_ERROR("Initialize the physical device before calling PhysicalDevice::getProperties()");
+
+    return m_properties;
+  }
+
+  const vk::PhysicalDeviceProperties2 PhysicalDevice::getProperties2() const
+  { 
+    if (!m_physicalDevice)
+      RX_ERROR("Initialize the physical device before calling PhysicalDevice::getProperties()");
+
+    return m_properties2; 
+  }
+
+  const vk::PhysicalDeviceFeatures PhysicalDevice::getFeatures() const
+  { 
+    if (!m_physicalDevice)
+      RX_ERROR("Initialize the physical device before calling PhysicalDevice::getProperties()");
+
+    return m_features; 
+  }
+
+  const vk::PhysicalDeviceFeatures2 PhysicalDevice::getFeatures2() const
+  { 
+    if (!m_physicalDevice)
+      RX_ERROR("Initialize the physical device before calling PhysicalDevice::getProperties()");
+
+    return m_features2; 
   }
 
   std::pair<unsigned int, std::string> PhysicalDevice::evaluate(vk::PhysicalDevice physicalDevice) const
@@ -90,12 +107,12 @@ namespace RX
     if (deviceName.find("RTX") != std::string::npos)
       score += 100u;
 
-    if (QueueManager::isComplete(physicalDevice, m_info.surface))
+    if (QueueManager::isComplete(physicalDevice, g_surface))
       score += 100u;
     else
       return { 0u, deviceName };
 
-    if (QueueManager::hasDedicatedTransferQueueFamily(physicalDevice, m_info.surface))
+    if (QueueManager::hasDedicatedTransferQueueFamily(physicalDevice, g_surface))
       score += 25;
 
     // TODO: add more hardware specific evaulation (those that are benefitial for path tracing)

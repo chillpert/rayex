@@ -189,7 +189,7 @@ namespace RX
     auto texturePaths = node->m_material.getTextures();
 
     TextureInfo textureInfo{
-      .physicalDevice = m_physicalDevice.get(),
+      .physicalDevice = g_physicalDevice,
       .device = g_device,
       .commandPool = m_graphicsCmdPool.get(),
       .queue = m_queueManager.getQueue(GRAPHICS)->get()
@@ -352,8 +352,7 @@ namespace RX
 
   void Api::initPhysicalDevice()
   {
-    m_physicalDevice.init({ g_instance, g_surface });
-    g_physicalDevice = m_physicalDevice.get();
+    m_physicalDevice.init();
 
     // Reassess the support of the preferred surface settings.
     m_surface.checkSettingSupport();
@@ -362,7 +361,7 @@ namespace RX
   void Api::initQueues()
   {
     QueuesInfo queuesInfo{
-      .physicalDevice = m_physicalDevice.get(),
+      .physicalDevice = g_physicalDevice,
       .surface = g_surface
     };
 
@@ -412,7 +411,7 @@ namespace RX
 
     vk::AttachmentDescription depthAttachmentDescription{
       { },                                             // flags
-      getSupportedDepthFormat(m_physicalDevice.get()), // format
+      getSupportedDepthFormat(g_physicalDevice), // format
       vk::SampleCountFlagBits::e1,                     // samples
       vk::AttachmentLoadOp::eClear,                    // loadOp
       vk::AttachmentStoreOp::eDontCare,                // storeOp
@@ -451,7 +450,7 @@ namespace RX
     };
 
     m_renderPass.init({
-        .physicalDevice = m_physicalDevice.get(),
+        .physicalDevice = g_physicalDevice,
         .device = g_device,
         .attachments = { colorAttachmentDescription, depthAttachmentDescription },
         .subpasses = { subpassDescription },
@@ -467,7 +466,7 @@ namespace RX
     SwapchainInfo swapchainInfo{
       .window = m_window.get(),
       .surface = &m_surface,
-      .physicalDevice = m_physicalDevice.get(),
+      .physicalDevice = g_physicalDevice,
       .device = g_device,
       .queueFamilyIndices = m_queueManager.getQueueFamilyIndicesForSwapchainAccess(),
       .imageAspect = vk::ImageAspectFlagBits::eColor,
@@ -583,10 +582,10 @@ namespace RX
   void Api::initDepthBuffering()
   {
     // Depth image for depth buffering
-    vk::Format depthFormat = getSupportedDepthFormat(m_physicalDevice.get());
+    vk::Format depthFormat = getSupportedDepthFormat(g_physicalDevice);
 
     ImageInfo imageInfo{ };
-    imageInfo.physicalDevice = m_physicalDevice.get();
+    imageInfo.physicalDevice = g_physicalDevice;
     imageInfo.device = g_device;
     imageInfo.extent = vk::Extent3D(m_swapchain.getExtent().width, m_swapchain.getExtent().height, 1);
     imageInfo.format = depthFormat;
@@ -650,7 +649,7 @@ namespace RX
     static auto queue = queueIndices.size() > 1 ? m_queueManager.getQueue(TRANSFER, queueIndices[1])->get() : m_queueManager.getQueue(GRAPHICS)->get();
 
     VertexBufferInfo vertexBufferInfo{
-      .physicalDevice = m_physicalDevice.get(),
+      .physicalDevice = g_physicalDevice,
       .device = g_device,
       .commandPool = m_transferCmdPool.get(),
       .queue = queue,
@@ -658,7 +657,7 @@ namespace RX
     };
 
     IndexBufferInfo<uint32_t> indexBufferInfo{
-      .physicalDevice = m_physicalDevice.get(),
+      .physicalDevice = g_physicalDevice,
       .device = g_device,
       .commandPool = m_transferCmdPool.get(),
       .queue = queue,
@@ -677,7 +676,7 @@ namespace RX
     }
 
     node->m_uniformBuffers.init({
-        .physicalDevice = m_physicalDevice.get(),
+        .physicalDevice = g_physicalDevice,
         .device = g_device,
         .swapchainImagesCount = m_swapchain.getImages().size()
       }
@@ -713,7 +712,7 @@ namespace RX
     static auto queue = queueIndices.size() > 1 ? m_queueManager.getQueue(TRANSFER, queueIndices[1])->get() : m_queueManager.getQueue(GRAPHICS)->get();
 
     VertexBufferInfo vertexBufferInfo{
-      .physicalDevice = m_physicalDevice.get(),
+      .physicalDevice = g_physicalDevice,
       .device = g_device,
       .commandPool = m_transferCmdPool.get(),
       .queue = queue,
@@ -721,7 +720,7 @@ namespace RX
     };
 
     IndexBufferInfo<uint32_t> indexBufferInfo{
-      .physicalDevice = m_physicalDevice.get(),
+      .physicalDevice = g_physicalDevice,
       .device = g_device,
       .commandPool = m_transferCmdPool.get(),
       .queue = queue,
@@ -729,7 +728,7 @@ namespace RX
     };
 
     UniformBufferInfo uniformBufferInfo{
-      .physicalDevice = m_physicalDevice.get(),
+      .physicalDevice = g_physicalDevice,
       .device = g_device,
       .swapchainImagesCount = m_swapchain.getImages().size()
     };
@@ -810,7 +809,7 @@ namespace RX
     GuiInfo guiInfo{ };
     guiInfo.window = m_window->get();
     guiInfo.instance = g_instance;
-    guiInfo.physicalDevice = m_physicalDevice.get();
+    guiInfo.physicalDevice = g_physicalDevice;
     guiInfo.device = g_device;
     guiInfo.queueFamilyIndex = m_queueManager.getGraphicsFamilyIndex(); 
     guiInfo.queue = m_queueManager.getQueue(GRAPHICS)->get();

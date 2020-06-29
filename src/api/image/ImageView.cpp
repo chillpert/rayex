@@ -44,4 +44,10 @@ namespace RX
   {
     m_info.device.destroyImageView(m_imageView);
   }
+
+  void destroy(std::vector<ImageView>& imageViews)
+  {
+    for (ImageView& imageView : imageViews)
+      imageView.destroy();
+  }
 }

@@ -2,84 +2,42 @@
 #include "Buffer.hpp"
 #include "CommandBuffer.hpp"
 #include "Memory.hpp"
+#include "Components.hpp"
 
 namespace RX
 {
-  Image::Image(ImageInfo& info)
+  Image::Image(const vk::ImageCreateInfo& createInfo, bool initialize)
   {
-    init(info);
+    if (initialize)
+      init(createInfo);
   }
 
-  Image::Image(ImageInfo&& info)
+  void Image::init(const vk::ImageCreateInfo& createInfo)
   {
-    init(info);
-  }
+    m_extent = createInfo.extent;
+    m_format = createInfo.format;
+    m_layout = createInfo.initialLayout;
 
-  Image::~Image()
-  {
-    if (m_image)
-      destroy();
-  }
-
-  void Image::init(ImageInfo& info)
-  {
-    m_info = info;
-
-    vk::ImageCreateInfo createInfo;
-    createInfo.imageType = m_info.imageType;
-    createInfo.format = m_info.format;
-    createInfo.extent = m_info.extent;
-    createInfo.mipLevels = m_info.mipLevels;
-    createInfo.arrayLayers = m_info.arrayLayers;
-    createInfo.samples = m_info.samples;
-    createInfo.tiling = m_info.tiling;
-    createInfo.usage = m_info.usage;
-    createInfo.sharingMode = m_info.sharingMode;
-    createInfo.initialLayout = m_info.layout;
-    
-    m_image = m_info.device.createImage(createInfo);
-
+    m_image = g_device.createImageUnique(createInfo);
     if (!m_image)
       RX_ERROR("Failed to create image.");
 
-    auto memoryRequirements = m_info.device.getImageMemoryRequirements(m_image);
-
-    vk::MemoryAllocateInfo allocateInfo;
-    allocateInfo.allocationSize = memoryRequirements.size;
-    allocateInfo.memoryTypeIndex = Memory::findType(m_info.physicalDevice, memoryRequirements.memoryTypeBits, vk::MemoryPropertyFlagBits::eDeviceLocal);
-
-    m_memory = m_info.device.allocateMemory(allocateInfo);
-
-    if (!m_memory)
-      RX_ERROR("Failed to create memory for image.");
-
-    m_info.device.bindImageMemory(m_image, m_memory, 0);
+    m_memory.alloc(m_image.get());
   }
 
-  void Image::init(ImageInfo&& info)
-  {
-    init(info);
-  }
-
-  void Image::destroy()
-  {
-    m_info.device.destroyImage(m_image);
-    m_info.device.freeMemory(m_memory);
-  }
-
-  void Image::transitionToLayout(vk::ImageLayout layout)
+  void Image::transitionToLayout(const vk::ImageLayout& layout, const vk::CommandPool& cmdPool, const vk::Queue& queue)
   {
     CmdBuffer commandBuffer;
-    commandBuffer.init({ m_info.device, m_info.commandPool });
+    commandBuffer.init({ g_device, cmdPool });
 
     commandBuffer.begin();
     {
       vk::ImageMemoryBarrier barrier;
-      barrier.oldLayout = m_info.layout;
+      barrier.oldLayout = m_layout;
       barrier.newLayout = layout;
       barrier.srcQueueFamilyIndex = VK_QUEUE_FAMILY_IGNORED;
       barrier.dstQueueFamilyIndex = VK_QUEUE_FAMILY_IGNORED;
-      barrier.image = m_image;
+      barrier.image = m_image.get();
       barrier.subresourceRange.aspectMask = vk::ImageAspectFlagBits::eColor;
       barrier.subresourceRange.baseMipLevel = 0;
       barrier.subresourceRange.levelCount = 1;
@@ -89,7 +47,7 @@ namespace RX
       vk::PipelineStageFlags sourceStage;
       vk::PipelineStageFlags destinationStage;
 
-      if (m_info.layout == vk::ImageLayout::eUndefined && layout == vk::ImageLayout::eTransferDstOptimal)
+      if (m_layout == vk::ImageLayout::eUndefined && layout == vk::ImageLayout::eTransferDstOptimal)
       {
         //barrier.srcAccessMask = 0;
         barrier.dstAccessMask = vk::AccessFlagBits::eTransferWrite;
@@ -97,7 +55,7 @@ namespace RX
         sourceStage = vk::PipelineStageFlagBits::eTopOfPipe;
         destinationStage = vk::PipelineStageFlagBits::eTransfer;
       }
-      else if (m_info.layout == vk::ImageLayout::eTransferDstOptimal && layout == vk::ImageLayout::eShaderReadOnlyOptimal)
+      else if (m_layout == vk::ImageLayout::eTransferDstOptimal && layout == vk::ImageLayout::eShaderReadOnlyOptimal)
       {
         barrier.srcAccessMask = vk::AccessFlagBits::eTransferWrite;
         barrier.dstAccessMask = vk::AccessFlagBits::eShaderRead;
@@ -121,9 +79,9 @@ namespace RX
       );
     }
     commandBuffer.end();
-    commandBuffer.submitToQueue(m_info.queue);
+    commandBuffer.submitToQueue(queue);
 
-    m_info.layout = layout;
+    m_layout = layout;
   }
 
   vk::Format Image::findSupportedFormat(vk::PhysicalDevice physicalDevice, const std::vector<vk::Format>& formatsToTest, vk::FormatFeatureFlagBits features, vk::ImageTiling tiling)

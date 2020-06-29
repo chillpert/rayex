@@ -144,12 +144,7 @@ namespace RX
 
   void GuiBase::initCommandPool()
   {
-    m_commandPool.init({
-      .device = m_info.device,
-      .queueFamilyIndex = m_info.queueFamilyIndex,
-      .createFlags = vk::CommandPoolCreateFlagBits::eResetCommandBuffer
-      }
-    );
+    m_commandPool.init(m_info.queueFamilyIndex, vk::CommandPoolCreateFlagBits::eResetCommandBuffer, { });
   }
 
   void GuiBase::initDescriptorPool()

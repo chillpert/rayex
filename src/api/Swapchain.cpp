@@ -3,17 +3,15 @@
 
 namespace RX
 {
-  Swapchain::~Swapchain()
+  Swapchain::Swapchain(Surface* surface, const std::vector<uint32_t>& queueFamilyIndices, bool initialize)
   {
-    if (m_swapchain)
-      destroy();
+    if (initialize)
+      init(surface, queueFamilyIndices);
   }
 
-  void Swapchain::init(SwapchainInfo& info)
+  void Swapchain::init(Surface* surface, const std::vector<uint32_t>& queueFamilyIndices)
   {
-    m_info = info;
-
-    auto surfaceCapabilities = m_info.surface->getCapabilities();
+    auto surfaceCapabilities = surface->getCapabilities();
 
     vk::SwapchainCreateInfoKHR createInfo;
     createInfo.surface = g_surface;
@@ -29,8 +27,8 @@ namespace RX
       minImageCount = surfaceCapabilities.maxImageCount;
 
     createInfo.minImageCount = minImageCount;
-    createInfo.imageFormat = m_info.surface->getFormat();
-    createInfo.imageColorSpace = m_info.surface->getColorSpace();
+    createInfo.imageFormat = surface->getFormat();
+    createInfo.imageColorSpace = surface->getColorSpace();
     createInfo.preTransform = surfaceCapabilities.currentTransform;
     
     // Prefer opaque bit over any other composite alpha value.
@@ -49,7 +47,7 @@ namespace RX
     else
     {
       // Clamp width and height.
-      m_extent = m_info.window->getExtent();
+      m_extent = g_window->getExtent();
 
       uint32_t width_t = m_extent.width;
       if (surfaceCapabilities.maxImageExtent.width < m_extent.width)
@@ -76,39 +74,42 @@ namespace RX
     createInfo.imageArrayLayers = 1;
     createInfo.imageUsage = vk::ImageUsageFlagBits::eColorAttachment;
 
-    if (m_info.queueFamilyIndices.size() > 1)
+    if (queueFamilyIndices.size() > 1)
     {
       createInfo.imageSharingMode = vk::SharingMode::eConcurrent;
-      createInfo.queueFamilyIndexCount = static_cast<uint32_t>(m_info.queueFamilyIndices.size());
-      createInfo.pQueueFamilyIndices = m_info.queueFamilyIndices.data();
+      createInfo.queueFamilyIndexCount = static_cast<uint32_t>(queueFamilyIndices.size());
+      createInfo.pQueueFamilyIndices = queueFamilyIndices.data();
     }
     else
       createInfo.imageSharingMode = vk::SharingMode::eExclusive;
 
-    createInfo.presentMode = m_info.surface->getPresentMode();
+    createInfo.presentMode = surface->getPresentMode();
 
-    m_swapchain = m_info.device.createSwapchainKHR(createInfo);
+    m_swapchain = g_device.createSwapchainKHRUnique(createInfo);
     if (!m_swapchain)
       RX_ERROR("Failed to create swapchain.");
     
     // Get swapchain images.
-    m_images = m_info.device.getSwapchainImagesKHR(m_swapchain);
-  }
-
-  void Swapchain::init(SwapchainInfo&& info)
-  {
-    init(info);
+    m_images = g_device.getSwapchainImagesKHR(m_swapchain.get());
   }
 
   void Swapchain::destroy()
   {
-    m_info.device.destroySwapchainKHR(m_swapchain);
-    m_swapchain = nullptr;
+    if (m_swapchain)
+    {
+      g_device.destroySwapchainKHR(m_swapchain.get());
+      m_swapchain.get() = nullptr;
+    }
+  }
+
+  void Swapchain::setImageAspect(vk::ImageAspectFlags flags)
+  {
+    m_imageAspect = flags;
   }
 
   void Swapchain::acquireNextImage(vk::Semaphore semaphore, vk::Fence fence, uint32_t* imageIndex)
   {
-    m_info.device.acquireNextImageKHR(m_swapchain, UINT64_MAX, semaphore, fence, imageIndex);
+    g_device.acquireNextImageKHR(m_swapchain.get(), UINT64_MAX, semaphore, fence, imageIndex);
   }
 
   vk::Format getSupportedDepthFormat(vk::PhysicalDevice physicalDevice)

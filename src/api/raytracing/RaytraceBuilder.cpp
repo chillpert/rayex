@@ -4,6 +4,7 @@
 #include "QueryPool.hpp"
 #include "Buffer.hpp"
 #include "Components.hpp"
+#include "Initializers.hpp"
 
 namespace RX
 {
@@ -28,7 +29,7 @@ namespace RX
       blas.destroy();
 
     m_storageImageView.destroy();
-    m_storageImage.destroy();
+    //m_storageImage.destroy();
 
     m_descriptorSet.destroy();
     m_descriptorSetLayout.destroy();
@@ -198,14 +199,11 @@ namespace RX
     );
 
     // Create the storage image.
-    ImageInfo imageInfo{ };
-    imageInfo.physicalDevice = g_physicalDevice;
-    imageInfo.device = g_device;
-    imageInfo.usage = vk::ImageUsageFlagBits::eStorage;
-    imageInfo.format = m_info.surface->getFormat();
-    imageInfo.extent = vk::Extent3D(m_info.surface->getCapabilities().currentExtent, 1);
+    auto imageCreateInfo = Initializers::getImageCreateInfo(vk::Extent3D(m_info.surface->getCapabilities().currentExtent, 1));
+    imageCreateInfo.format = m_info.surface->getFormat();
+    imageCreateInfo.usage = vk::ImageUsageFlagBits::eStorage;
 
-    m_storageImage.init(imageInfo);
+    m_storageImage.init(imageCreateInfo);
 
     ImageViewInfo imageViewInfo{
       .device = g_device,

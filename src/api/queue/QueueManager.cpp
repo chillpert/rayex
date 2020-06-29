@@ -67,7 +67,7 @@ namespace RX
     for (auto queueFamily : m_queueFamilies)
       RX_PRINT(queueFamily);
   }
-
+  
   std::vector<uint32_t> QueueManager::getUniqueQueueIndices(std::vector<QueueCapability> list)
   {
     std::unordered_set<uint32_t> temp;

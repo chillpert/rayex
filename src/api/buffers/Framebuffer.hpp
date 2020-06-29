@@ -33,6 +33,8 @@ namespace RX
 		vk::Framebuffer m_framebuffer;
 		FramebufferInfo m_info;
 	};
+
+	void destroy(std::vector<Framebuffer>& framebuffers);
 }
 
 #endif // FRAMEBUFFER_HPP

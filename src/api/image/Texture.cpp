@@ -1,5 +1,6 @@
 #include "Texture.hpp"
-#include "api/buffers/Buffer.hpp"
+#include "Buffer.hpp"
+#include "Initializers.hpp"
 
 #define STB_IMAGE_IMPLEMENTATION
 #include <stb_image.h>
@@ -48,18 +49,12 @@ namespace RX
 
     stbi_image_free(pixels);
 
-    ImageInfo imageInfo{ };
-    imageInfo.physicalDevice = m_info.physicalDevice;
-    imageInfo.device = m_info.device;
-    imageInfo.queue = m_info.queue;
-    imageInfo.commandPool = m_info.commandPool;
-    imageInfo.extent = vk::Extent3D{ static_cast<uint32_t>(width), static_cast<uint32_t>(height), 1 };
+    auto imageCreateInfo = Initializers::getImageCreateInfo(vk::Extent3D{ static_cast<uint32_t>(width), static_cast<uint32_t>(height), 1 });
+    m_image.init(imageCreateInfo);
 
-    m_image.init(imageInfo);
-
-    m_image.transitionToLayout(vk::ImageLayout::eTransferDstOptimal);
+    m_image.transitionToLayout(vk::ImageLayout::eTransferDstOptimal, m_info.commandPool, m_info.queue);
     stagingBuffer.copyToImage(m_image);
-    m_image.transitionToLayout(vk::ImageLayout::eShaderReadOnlyOptimal);
+    m_image.transitionToLayout(vk::ImageLayout::eShaderReadOnlyOptimal, m_info.commandPool, m_info.queue);
 
     m_imageView.init({ m_info.device, m_image.get(), m_image.getFormat() });
     m_sampler.init();

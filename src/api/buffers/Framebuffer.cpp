@@ -52,4 +52,10 @@ namespace RX
     m_info.device.destroyFramebuffer(m_framebuffer);
     m_framebuffer = nullptr;
   }
+
+  void destroy(std::vector<Framebuffer>& framebuffers)
+  {
+    for (auto& framebuffer : framebuffers)
+      framebuffer.destroy();
+  }
 }

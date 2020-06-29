@@ -34,6 +34,8 @@ namespace RX
     vk::ImageView m_imageView;
     ImageViewInfo m_info;
   };
+
+  void destroy(std::vector<ImageView>& imageViews);
 }
 
 #endif // IMAGE_VIEW_HPP

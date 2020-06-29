@@ -5,36 +5,23 @@
 
 namespace RX
 {
-  struct CommandPoolInfo
-  {
-    vk::Device device;
-    uint32_t queueFamilyIndex;
-    vk::CommandPoolCreateFlags createFlags;
-    vk::CommandPoolResetFlags resetFlags;
-  };
-
   class CommandPool
   {
   public:
     CommandPool() = default;
-    CommandPool(CommandPoolInfo& info);
-    CommandPool(CommandPoolInfo&& info);
-    ~CommandPool();
+    CommandPool(uint32_t queueFamilyIndex, vk::CommandPoolCreateFlags createFlags, vk::CommandPoolResetFlags resetFlags, bool initialize = true);
     
-    inline vk::CommandPool get() { return m_commandPool; }
+    inline vk::CommandPool get() { return m_commandPool.get(); }
 
-    void init(CommandPoolInfo& info);
-    void init(CommandPoolInfo&& info);
-
+    void init(uint32_t queueFamilyIndex, vk::CommandPoolCreateFlags createFlags, vk::CommandPoolResetFlags resetFlags);
     void destroy();
 
-    // All command buffers allocated from this pool will return to their initial state.
-    // All recording that might have been done will disappear.
     void reset();
 
   private:
-    vk::CommandPool m_commandPool;
-    CommandPoolInfo m_info;
+    vk::UniqueCommandPool m_commandPool;
+
+    vk::CommandPoolResetFlags m_resetFlags;
   };
 }
 

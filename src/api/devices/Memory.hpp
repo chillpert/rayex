@@ -5,22 +5,18 @@
 
 namespace RX
 {
-  class Memory // TODO: this should take care of vk::DeviceMemory and provide a custom allocator.
+  class Memory
   {
   public:
-    static uint32_t findType(vk::PhysicalDevice physicalDevice, uint32_t typeFilter, vk::MemoryPropertyFlags properties)
-    {
-      static vk::PhysicalDeviceMemoryProperties memoryProperties = physicalDevice.getMemoryProperties();
+    Memory() = default;
+    Memory(vk::Image image, bool allocate = true);
 
-      for (uint32_t i = 0; i < memoryProperties.memoryTypeCount; ++i)
-      {
-        if (typeFilter & (1 << i) && (memoryProperties.memoryTypes[i].propertyFlags & properties) == properties)
-          return i;
-      }
+    void alloc(vk::Image image);
 
-      RX_ERROR("Failed to find suitable memory type");
-      return uint32_t();
-    }
+    static uint32_t findType(vk::PhysicalDevice physicalDevice, uint32_t typeFilter, vk::MemoryPropertyFlags properties);
+
+  private:
+    vk::UniqueDeviceMemory m_memory;
   };
 }
 

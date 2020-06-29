@@ -9,44 +9,36 @@
 
 namespace RX
 {
-  struct SwapchainInfo
-  {
-    WindowBase* window;
-    Surface* surface;
-
-    vk::PhysicalDevice physicalDevice;
-    vk::Device device;
-    std::vector<uint32_t> queueFamilyIndices;
-    vk::ImageAspectFlags imageAspect;
-    vk::RenderPass renderPass;
-    vk::Extent2D customExtent; // Optional, leave empty if you want to use the entire size available. // TODO: implement
-  };
-
   class Swapchain
   {
   public:
-    ~Swapchain();
+    Swapchain() = default;
+    Swapchain(Surface* surface, const std::vector<uint32_t>& queueFamilyIndices, bool initialize = true);
 
-    inline vk::SwapchainKHR& get() { return m_swapchain; }    
-
-    inline vk::Extent2D getExtent() const { return m_extent; }
-    inline vk::Image& getImage(size_t index) { return m_images[index]; }
-    inline std::vector<vk::Image>& getImages() { return m_images; }
-    inline vk::ImageAspectFlags getImageAspect() const { return m_info.imageAspect; }
-
-    void init(SwapchainInfo& info);
-    void init(SwapchainInfo&& info);
-
+    /*
+      Creates the swapchain.
+      @param surface - Pointer to an RX::Surface object.
+      @param queueFamilyIndices - All queue family indices which shall be accessed by the swapchain.
+    */
+    void init(Surface* surface, const std::vector<uint32_t>& queueFamilyIndices);
     void destroy();
 
-    void acquireNextImage(vk::Semaphore semaphore, vk::Fence fence, uint32_t* imageIndex);
+    inline const vk::SwapchainKHR get() const { return m_swapchain.get(); }    
+    inline const vk::Extent2D getExtent() const { return m_extent; }
+    inline const vk::Image& getImage(size_t index) { return m_images[index]; }
+    inline const std::vector<vk::Image>& getImages() { return m_images; }
+    inline const vk::ImageAspectFlags getImageAspect() const { return m_imageAspect; }
+    
+    void setImageAspect(vk::ImageAspectFlags flags);
+
+    void acquireNextImage(vk::Semaphore semaphore, vk::Fence fence, uint32_t* imageIndex); 
     
   private:
-    vk::SwapchainKHR m_swapchain;
-    SwapchainInfo m_info;
+    vk::UniqueSwapchainKHR m_swapchain;
 
     vk::Extent2D m_extent;
     std::vector<vk::Image> m_images;
+    vk::ImageAspectFlags m_imageAspect = vk::ImageAspectFlagBits::eColor;
   };
 
   vk::Format getSupportedDepthFormat(vk::PhysicalDevice physicalDevice);

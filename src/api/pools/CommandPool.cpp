@@ -1,49 +1,34 @@
 #include "CommandPool.hpp"
+#include "Components.hpp"
 
 namespace RX
 {
-  CommandPool::CommandPool(CommandPoolInfo& info)
+  CommandPool::CommandPool(uint32_t queueFamilyIndex, vk::CommandPoolCreateFlags createFlags, vk::CommandPoolResetFlags resetFlags, bool initialize)
   {
-    init(info);
+    if (initialize)
+      init(queueFamilyIndex, createFlags, resetFlags);
   }
 
-  CommandPool::CommandPool(CommandPoolInfo&& info)
+	void CommandPool::init(uint32_t queueFamilyIndex, vk::CommandPoolCreateFlags createFlags, vk::CommandPoolResetFlags resetFlags)
   {
-    init(info);
-  }
-
-  CommandPool::~CommandPool()
-  {
-    if (m_commandPool)
-      destroy();
-  }
-
-	void CommandPool::init(CommandPoolInfo& info)
-  {
-    m_info = info;
+    m_resetFlags = resetFlags;
 
     vk::CommandPoolCreateInfo createInfo;
-    createInfo.flags = m_info.createFlags;
-    createInfo.queueFamilyIndex = m_info.queueFamilyIndex;
+    createInfo.flags = createFlags;
+    createInfo.queueFamilyIndex = queueFamilyIndex;
 
-    m_commandPool = m_info.device.createCommandPool(createInfo);
+    m_commandPool = g_device.createCommandPoolUnique(createInfo);
     if (!m_commandPool)
-      RX_ERROR("Failed to create command pool");
-  }
-  
-  void CommandPool::init(CommandPoolInfo&& info)
-  {
-    init(info);
+      RX_ERROR("Failed to create command pool.");
   }
 
   void CommandPool::destroy()
   {
-    m_info.device.destroyCommandPool(m_commandPool);
-    m_commandPool = nullptr;
+
   }
 
   void CommandPool::reset()
   {
-    m_info.device.resetCommandPool(m_commandPool, m_info.resetFlags);
+    g_device.resetCommandPool(m_commandPool.get(), m_resetFlags);
   }
 }

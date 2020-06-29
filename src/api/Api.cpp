@@ -1,5 +1,6 @@
 #include "Api.hpp"
 #include "Components.hpp"
+#include "Initializers.hpp"
 
 namespace RX
 {
@@ -244,74 +245,52 @@ namespace RX
 
     g_device.waitIdle();
 
-    m_raytraceBuilder.destroy();
-
-    // Cleaning the existing swapchain.
-    m_depthImageView.destroy();
-    m_depthImage.destroy();
-
-    for (Framebuffer& framebuffer : m_swapchainFramebuffers)
-      framebuffer.destroy();
-
-    m_swapchainCmdBuffers.free();
-    //m_pipeline.destroy();
-    m_renderPass.destroy();
-
-    for (ImageView& imageView : m_swapchainImageViews)
-      imageView.destroy();
-
-    m_swapchain.destroy();
-
-    for (std::shared_ptr<GeometryNodeBase> node : m_nodes)
+    // Clean up existing swapchain and dependencies.
     {
-      if (node->m_modelPath.empty())
-        continue;
-
-      //node->m_uniformBuffers.destroy();
+      m_raytraceBuilder.destroy();
+      m_depthImageView.destroy();
+      //m_depthImage.destroy();
+      destroy(m_swapchainFramebuffers);
+      m_swapchainCmdBuffers.free();
+      destroy(m_swapchainImageViews);
+      m_swapchain.destroy();
     }
-
-    //m_descriptorPool.destroy();
 
     // Recreating the swapchain.
-    // Swapchain
-    // TODO: the new swapchain's extent should be set using the framebuffer width and height stored in the window.
-    initSwapchain();
-
-    // Image views for swapchain images
-    initSwapchainImageViews();
-    initRenderPass();
-    //initPipeline(false);
-    initDepthBuffering();
-    initSwapchainFramebuffers();
-    //initDescriptorPool();
-    initModels(false);
-    initSwapchainCmdBuffers();
-    recordSwapchainCommandBuffers();
-
-    if (m_gui != nullptr)
     {
-      GuiRecreateInfo guiRecreateInfo{ };
-      guiRecreateInfo.minImageCount = m_surface.getCapabilities().minImageCount + 1;
-      guiRecreateInfo.imageCount = static_cast<uint32_t>(m_swapchain.getImages().size());
-      guiRecreateInfo.swapchainImageFormat = m_surface.getFormat();
-      guiRecreateInfo.swapchainImageExtent = m_swapchain.getExtent();
+      initSwapchain();
+      initSwapchainImageViews();
+      initDepthBuffering();
+      initSwapchainFramebuffers();
+      initModels(false);
+      initSwapchainCmdBuffers();
+      recordSwapchainCommandBuffers();
 
-      std::vector<vk::ImageView> temp(m_swapchainImageViews.size());
+      // TODO: Clean up (will be possible as soon as swapchain is a global
+      if (m_gui != nullptr)
+      {
+        GuiRecreateInfo guiRecreateInfo{ };
+        guiRecreateInfo.minImageCount = m_surface.getCapabilities().minImageCount + 1;
+        guiRecreateInfo.imageCount = static_cast<uint32_t>(m_swapchain.getImages().size());
+        guiRecreateInfo.swapchainImageFormat = m_surface.getFormat();
+        guiRecreateInfo.swapchainImageExtent = m_swapchain.getExtent();
 
-      for (size_t i = 0; i < m_swapchainImageViews.size(); ++i)
-        temp[i] = m_swapchainImageViews[i].get();
+        std::vector<vk::ImageView> temp(m_swapchainImageViews.size());
 
-      guiRecreateInfo.swapchainImageViews = temp;
-      m_gui->recreate(guiRecreateInfo);
+        for (size_t i = 0; i < m_swapchainImageViews.size(); ++i)
+          temp[i] = m_swapchainImageViews[i].get();
+
+        guiRecreateInfo.swapchainImageViews = temp;
+        m_gui->recreate(guiRecreateInfo);
+      }
+
+      // Update the camera screen size to avoid image stretching.
+      auto screenSize = m_swapchain.getExtent();
+      int screenWidth = static_cast<int>(screenSize.width);
+      int screenHeight = static_cast<int>(screenSize.height);
+
+      m_camera->setScreenSize(glm::ivec2{ screenWidth, screenHeight });
     }
-
-    // Update the camera screen size to avoid image stretching.
-    auto screenSize = m_swapchain.getExtent();
-    int screenWidth = static_cast<int>(screenSize.width);
-    int screenHeight = static_cast<int>(screenSize.height);
-
-    m_camera->setScreenSize(glm::ivec2{ screenWidth, screenHeight });
-
     RX_LOG("Finished swapchain recreation.");
   }
 
@@ -463,17 +442,8 @@ namespace RX
   {
     m_surface.checkSettingSupport();
 
-    SwapchainInfo swapchainInfo{
-      .window = m_window.get(),
-      .surface = &m_surface,
-      .physicalDevice = g_physicalDevice,
-      .device = g_device,
-      .queueFamilyIndices = m_queueManager.getQueueFamilyIndicesForSwapchainAccess(),
-      .imageAspect = vk::ImageAspectFlagBits::eColor,
-      .renderPass = m_renderPass.get()
-    };
-
-    m_swapchain.init(swapchainInfo);
+    m_swapchain.init(&m_surface, m_queueManager.getQueueFamilyIndicesForSwapchainAccess());
+    m_swapchain.setImageAspect(vk::ImageAspectFlagBits::eColor);
   }
 
   void Api::initSwapchainImageViews()
@@ -554,13 +524,7 @@ namespace RX
 
   void Api::initgraphicsCmdPool()
   {
-    CommandPoolInfo commandPoolInfo{
-      .device = g_device,
-      .queueFamilyIndex = m_queueManager.getGraphicsFamilyIndex(),
-      .createFlags = vk::CommandPoolCreateFlagBits::eResetCommandBuffer
-    };
-
-    m_graphicsCmdPool.init(commandPoolInfo);
+    m_graphicsCmdPool.init(m_queueManager.getGraphicsFamilyIndex(), vk::CommandPoolCreateFlagBits::eResetCommandBuffer, { });
     g_graphicsCmdPool = m_graphicsCmdPool.get();
   }
 
@@ -569,14 +533,8 @@ namespace RX
     // With the given parameters the function will return two different queue family indices. 
     // This means that the transfer queue family index will be a different one than the graphics queue family index.
     // However, this will only be the case if the queue family indices on this device allow it.
-    static auto indices = m_queueManager.getUniqueQueueIndices({ GRAPHICS, TRANSFER });
-    
-    CommandPoolInfo commandPoolInfo{
-      .device = g_device,
-      .queueFamilyIndex = indices.size() > 1 ? indices[1] : m_queueManager.getTransferFamilyIndex()
-    };
-
-    m_transferCmdPool.init(commandPoolInfo);
+    static auto indices = m_queueManager.getUniqueQueueIndices({ GRAPHICS, TRANSFER }); 
+    m_transferCmdPool.init(indices.size() > 1 ? indices[1] : m_queueManager.getTransferFamilyIndex(), { }, { });
   }
 
   void Api::initDepthBuffering()
@@ -584,15 +542,11 @@ namespace RX
     // Depth image for depth buffering
     vk::Format depthFormat = getSupportedDepthFormat(g_physicalDevice);
 
-    ImageInfo imageInfo{ };
-    imageInfo.physicalDevice = g_physicalDevice;
-    imageInfo.device = g_device;
-    imageInfo.extent = vk::Extent3D(m_swapchain.getExtent().width, m_swapchain.getExtent().height, 1);
-    imageInfo.format = depthFormat;
-    imageInfo.tiling = vk::ImageTiling::eOptimal;
-    imageInfo.usage = vk::ImageUsageFlagBits::eDepthStencilAttachment;
+    auto imageCreateInfo = Initializers::getImageCreateInfo(vk::Extent3D(m_swapchain.getExtent().width, m_swapchain.getExtent().height, 1));
+    imageCreateInfo.format = depthFormat;
+    imageCreateInfo.usage = vk::ImageUsageFlagBits::eDepthStencilAttachment;
 
-    m_depthImage.init(imageInfo);
+    m_depthImage.init(imageCreateInfo);
 
     // Image view for depth image
     ImageViewInfo depthImageViewInfo{

@@ -4,7 +4,7 @@
 
 namespace rx
 {
-  DebugMessenger::DebugMessenger( VkDebugUtilsMessageSeverityFlagsEXT messageSeverity, VkDebugUtilsMessageTypeFlagsEXT messageType, bool initialize )
+  DebugMessenger::DebugMessenger( vk::DebugUtilsMessageSeverityFlagsEXT messageSeverity, vk::DebugUtilsMessageTypeFlagsEXT messageType, bool initialize )
   {
     if ( initialize )
       init( messageSeverity, messageType );
@@ -16,31 +16,28 @@ namespace rx
       destroy( );
   }
 
-  void DebugMessenger::init( VkDebugUtilsMessageSeverityFlagsEXT messageSeverity, VkDebugUtilsMessageTypeFlagsEXT messageType )
+  void DebugMessenger::init( vk::DebugUtilsMessageSeverityFlagsEXT messageSeverity, vk::DebugUtilsMessageTypeFlagsEXT messageType )
   {
   #ifdef RX_DEBUG
-    m_createDebugUtilsMessengerEXT = (PFN_vkCreateDebugUtilsMessengerEXT) vkGetInstanceProcAddr( g_instance, "vkCreateDebugUtilsMessengerEXT" );
-    m_destroyDebugUtilsMessengerEXT = (PFN_vkDestroyDebugUtilsMessengerEXT) vkGetInstanceProcAddr( g_instance, "vkDestroyDebugUtilsMessengerEXT" );
+    vk::DebugUtilsMessengerCreateInfoEXT createInfo( { },
+                                                     messageSeverity,
+                                                     messageType,
+                                                     debugMessengerCallback,
+                                                     nullptr );
 
-    VkDebugUtilsMessengerCreateInfoEXT createInfo {
-      .sType = VK_STRUCTURE_TYPE_DEBUG_UTILS_MESSENGER_CREATE_INFO_EXT,
-      .pNext = nullptr,
-      .flags = 0,
-      .messageSeverity = messageSeverity,
-      .messageType = messageType,
-      .pfnUserCallback = debugMessengerCallback,
-      .pUserData = nullptr
-    };
-
-    m_createDebugUtilsMessengerEXT( g_instance, &createInfo, nullptr, &m_debugMessenger );
+    m_debugMessenger = g_instance.createDebugUtilsMessengerEXT( createInfo, nullptr, *g_dispatchLoaderDynamic );
+    RX_ASSERT( m_debugMessenger, "Failed to create debug messenger." );
   #endif
   }
 
   void DebugMessenger::destroy( )
   {
   #ifdef RX_DEBUG
-    m_destroyDebugUtilsMessengerEXT( g_instance, m_debugMessenger, nullptr );
-    m_debugMessenger = VK_NULL_HANDLE;
+    if ( m_debugMessenger )
+    {
+      g_instance.destroyDebugUtilsMessengerEXT( m_debugMessenger, nullptr, *g_dispatchLoaderDynamic );
+      m_debugMessenger = nullptr;
+    }
   #endif
   }
 
@@ -90,15 +87,12 @@ namespace rx
       }
     }
 
-    sprintf
-    (
-      message,
-      "%s \n\tID Number: %d\n\tID String: %s \n\tMessage:   %s",
-      prefix,
-      callbackData->messageIdNumber,
-      callbackData->pMessageIdName,
-      callbackData->pMessage
-    );
+    sprintf( message,
+             "%s \n\tID Number: %d\n\tID String: %s \n\tMessage:   %s",
+             prefix,
+             callbackData->messageIdNumber,
+             callbackData->pMessageIdName,
+             callbackData->pMessage );
 
     printf( "%s\n", message );
     fflush( stdout );

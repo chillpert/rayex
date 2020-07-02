@@ -55,7 +55,6 @@ namespace rx
     initSwapchainFramebuffers( );
     initDescriptorPool( );
     initRayTracing( );
-    //initModels();
     initSwapchainCommandBuffers( );
     initGui( );
     recordSwapchainCommandBuffers( );
@@ -138,15 +137,13 @@ namespace rx
     if ( m_gui != nullptr )
       commandBuffers.push_back( m_gui->getCommandBuffer( imageIndex ) );
 
-    vk::SubmitInfo submitInfo {
-      1,                                                                                                  // waitSemaphoreCount
-      &m_imageAvailableSemaphores[currentFrame].get( ),                                                    // pWaitSemaphores
-      std::array<vk::PipelineStageFlags, 1>{ vk::PipelineStageFlagBits::eColorAttachmentOutput }.data( ),  // pWaitDstStageMask
-      static_cast<uint32_t>( commandBuffers.size( ) ),                                                       // commandBufferCount
-      commandBuffers.data( ),                                                                              // pCommandBuffers
-      1,                                                                                                  // signalSemaphoreCount
-      &m_finishedRenderSemaphores[currentFrame].get( )                                                     // pSignalSemaphores
-    };
+    vk::SubmitInfo submitInfo( 1,                                                                                                  // waitSemaphoreCount
+                               &m_imageAvailableSemaphores[currentFrame].get( ),                                                   // pWaitSemaphores
+                               std::array<vk::PipelineStageFlags, 1>{ vk::PipelineStageFlagBits::eColorAttachmentOutput }.data( ), // pWaitDstStageMask
+                               static_cast<uint32_t>( commandBuffers.size( ) ),                                                    // commandBufferCount
+                               commandBuffers.data( ),                                                                             // pCommandBuffers
+                               1,                                                                                                  // signalSemaphoreCount
+                               & m_finishedRenderSemaphores[currentFrame].get( ) );                                                // pSignalSemaphores
 
     // Reset the signaled state of the current frame's fence to the unsignaled one.
     g_device.resetFences( 1, &m_inFlightFences[currentFrame].get( ) );
@@ -178,14 +175,9 @@ namespace rx
 
   void Api::pushNode( const std::shared_ptr<GeometryNodeBase> node, bool record )
   {
-    bool isNew = false;
-
     auto it = m_models.find( node->m_modelPath );
     if ( it == m_models.end( ) )
-    {
       m_models.insert( { node->m_modelPath, std::make_shared<Model>( node->m_modelPath ) } );
-      isNew = true;
-    }
 
     m_nodes.push_back( node );
 
@@ -207,11 +199,6 @@ namespace rx
       initModel( node );
       m_swapchainCommandBuffers.reset( );
       recordSwapchainCommandBuffers( );
-    }
-
-    if ( record && isNew )
-    {
-
     }
   }
 
@@ -298,8 +285,8 @@ namespace rx
 
   void Api::initDebugMessenger( )
   {
-    m_debugMessenger.init( VK_DEBUG_UTILS_MESSAGE_SEVERITY_VERBOSE_BIT_EXT | VK_DEBUG_UTILS_MESSAGE_SEVERITY_WARNING_BIT_EXT | VK_DEBUG_UTILS_MESSAGE_SEVERITY_ERROR_BIT_EXT,
-                           VK_DEBUG_UTILS_MESSAGE_TYPE_PERFORMANCE_BIT_EXT | VK_DEBUG_UTILS_MESSAGE_TYPE_VALIDATION_BIT_EXT );
+    m_debugMessenger.init( vk::DebugUtilsMessageSeverityFlagBitsEXT::eVerbose | vk::DebugUtilsMessageSeverityFlagBitsEXT::eWarning | vk::DebugUtilsMessageSeverityFlagBitsEXT::eError,
+                           vk::DebugUtilsMessageTypeFlagBitsEXT::ePerformance | vk::DebugUtilsMessageTypeFlagBitsEXT::eValidation );
   }
 
   void Api::initSurface( )

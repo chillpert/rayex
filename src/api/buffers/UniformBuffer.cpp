@@ -1,62 +1,39 @@
 #include "UniformBuffer.hpp"
-#include "window/Time.hpp"
+#include "Components.hpp"
 
-#include <glm/gtx/string_cast.hpp>
-
-namespace RX
+namespace rx
 {
-  UniformBuffer::UniformBuffer(UniformBufferInfo& info)
+  UniformBuffer::UniformBuffer( size_t swapchainImagesCount, bool initialize )
   {
-    init(info);
+    if ( initialize )
+      init( swapchainImagesCount );
   }
 
-  UniformBuffer::UniformBuffer(UniformBufferInfo&& info)
+  const std::vector<vk::Buffer> UniformBuffer::getRaw( ) const
   {
-    init(info);
-  }
+    std::vector<vk::Buffer> res( m_buffers.size( ), nullptr );
 
-  std::vector<vk::Buffer> UniformBuffer::getRaw()
-  {
-    std::vector<vk::Buffer> res(m_buffers.size(), nullptr);
-
-    for (size_t i = 0; i < m_buffers.size(); ++i)
-      res[i] = m_buffers[i].get();
+    for ( size_t i = 0; i < m_buffers.size( ); ++i )
+      res[i] = m_buffers[i].get( );
 
     return res;
   }
 
-  void UniformBuffer::init(UniformBufferInfo& info)
+  void UniformBuffer::init( size_t swapchainImagesCount )
   {
-    m_info = info;
+    m_buffers.resize( swapchainImagesCount );
 
-    // Set up the staging buffer.
-    BufferInfo createInfo{ };
-    createInfo.device = m_info.device;
-    createInfo.physicalDevice = m_info.physicalDevice;
-    createInfo.size = sizeof(UniformBufferObject);
-    createInfo.usage = vk::BufferUsageFlagBits::eUniformBuffer;
-    createInfo.sharingMode = vk::SharingMode::eExclusive;
-    createInfo.memoryProperties = vk::MemoryPropertyFlagBits::eHostVisible | vk::MemoryPropertyFlagBits::eHostCoherent;
-    
-    m_buffers.resize(m_info.swapchainImagesCount);
-
-    for (Buffer& buffer : m_buffers)
-      buffer.init(createInfo);
+    for ( Buffer& buffer : m_buffers )
+    {
+      buffer.init( sizeof( UniformBufferObject ),
+                   vk::BufferUsageFlagBits::eUniformBuffer,
+                   { },
+                   vk::MemoryPropertyFlagBits::eHostVisible | vk::MemoryPropertyFlagBits::eHostCoherent );
+    }
   }
 
-  void UniformBuffer::init(UniformBufferInfo&& info)
+  void UniformBuffer::upload( uint32_t imageIndex, UniformBufferObject& ubo )
   {
-    init(info);
-  }
-
-  void UniformBuffer::destroy()
-  {
-    for (Buffer& buffer : m_buffers)
-      buffer.destroy();
-  }
-
-  void UniformBuffer::upload(uint32_t imageIndex, UniformBufferObject& ubo)
-  {
-    m_buffers[imageIndex].fill<UniformBufferObject>(&ubo);
+    m_buffers[imageIndex].fill<UniformBufferObject>( &ubo );
   }
 }

@@ -4,35 +4,22 @@
 #include "Buffer.hpp"
 #include "Vertex.hpp"
 
-namespace RX
+namespace rx
 {
-  struct VertexBufferInfo
-  {
-    std::vector<Vertex> vertices;
-    vk::PhysicalDevice physicalDevice;
-    vk::Device device;
-    vk::CommandPool commandPool;
-    vk::Queue queue;
-    std::vector<uint32_t> queueIndices;
-  };
-
   class VertexBuffer
   {
   public:
-    VertexBuffer() = default;
-    VertexBuffer(VertexBufferInfo& info);
-    VertexBuffer(VertexBufferInfo&& info);
+    VertexBuffer( ) = default;
+    VertexBuffer( std::vector<Vertex>& vertices, bool initialize = true );
 
-    inline vk::Buffer get() { return m_buffer.get(); }
-    inline vk::DeviceSize getSize() const { return m_buffer.getSize(); }
-    inline uint32_t getCount() const { return m_count; }
+    inline const vk::Buffer get( ) const { return m_buffer.get( ); }
+    inline vk::DeviceSize getSize( ) const { return m_buffer.getSize( ); }
+    inline uint32_t getCount( ) const { return m_count; }
 
-    void init(VertexBufferInfo& info);
-    void init(VertexBufferInfo&& info);
+    void init( std::vector<Vertex>& vertices );
 
   private:
     Buffer m_buffer;
-    VertexBufferInfo m_info;
 
     uint32_t m_count;
   };

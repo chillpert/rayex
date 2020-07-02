@@ -1,79 +1,71 @@
 #include "CommandBuffer.hpp"
+#include "Components.hpp"
 
-namespace RX
+namespace rx
 {
-  CmdBuffer::CmdBuffer(CmdBufferInfo& info)
+  CommandBuffer::CommandBuffer( vk::CommandPool commandPool, uint32_t count, vk::CommandBufferUsageFlags usageFlags, bool initialize )
   {
-    init(info);
+    if ( initialize )
+      init( commandPool, count, usageFlags );
   }
 
-  CmdBuffer::CmdBuffer(CmdBufferInfo&& info)
+  void CommandBuffer::init( vk::CommandPool commandPool, uint32_t count, vk::CommandBufferUsageFlags usageFlags )
   {
-    init(info);
+    m_commandPool = commandPool;
+
+    m_commandBuffers.resize( count );
+
+    vk::CommandBufferAllocateInfo allocateInfo( commandPool,                      // commandPool
+                                                vk::CommandBufferLevel::ePrimary, // level
+                                                count );                          // commandBufferCount
+
+    m_commandBuffers = g_device.allocateCommandBuffers( allocateInfo );
+    for ( const vk::CommandBuffer& commandBuffer : m_commandBuffers )
+      RX_ASSERT( commandBuffer, "Failed to create command buffer." );
+
+    // Set up begin info.
+    m_beginInfo.flags = usageFlags;
   }
 
-  void CmdBuffer::init(CmdBufferInfo& info)
+  void CommandBuffer::free( )
   {
-    m_info = info;
-
-    m_commandBuffers.resize(m_info.commandBufferCount);
-
-    m_commandBuffers = m_info.device.allocateCommandBuffers({
-      m_info.commandPool, // commandPool
-      m_info.level, // level
-      static_cast<uint32_t>(m_info.commandBufferCount) // commandBufferCount
-      }
-    );
-
-    // set up begin info.
-    m_beginInfo.flags = m_info.usageFlags;
-
-    // Set up submit info.
-    m_submitInfo.commandBufferCount = static_cast<uint32_t>(m_commandBuffers.size());
-    m_submitInfo.pCommandBuffers = m_commandBuffers.data();
+    g_device.freeCommandBuffers( m_commandPool, static_cast< uint32_t >( m_commandBuffers.size( ) ), m_commandBuffers.data( ) );
   }
 
-  void CmdBuffer::init(CmdBufferInfo&& info)
+  void CommandBuffer::reset( )
   {
-    init(info);
+    for ( vk::CommandBuffer& buffer : m_commandBuffers )
+      buffer.reset( vk::CommandBufferResetFlagBits::eReleaseResources );
   }
 
-  void CmdBuffer::free()
+  void CommandBuffer::begin( size_t index )
   {
-    m_info.device.freeCommandBuffers(m_info.commandPool, static_cast<uint32_t>(m_commandBuffers.size()), m_commandBuffers.data());
+    m_commandBuffers[index].begin( m_beginInfo );
   }
 
-  void CmdBuffer::reset()
+  void CommandBuffer::end( size_t index )
   {
-    for (vk::CommandBuffer& buffer : m_commandBuffers)
-      buffer.reset(m_info.resetFlags);
+    m_commandBuffers[index].end( );
   }
 
-  void CmdBuffer::begin(size_t index)
+  void CommandBuffer::submitToQueue( vk::Queue queue, const std::vector<vk::Semaphore>& waitSemaphores, const std::vector<vk::Semaphore>& signalSemaphores, vk::PipelineStageFlags* waitDstStageMask )
   {
-    m_commandBuffers[index].begin(m_beginInfo);
-  }
-
-  void CmdBuffer::end(size_t index)
-  {
-    m_commandBuffers[index].end();
-  }
-
-  void CmdBuffer::submitToQueue(const vk::Queue queue) const
-  {
-    if (m_info.usageFlags & vk::CommandBufferUsageFlagBits::eOneTimeSubmit)
+    if ( m_beginInfo.flags & vk::CommandBufferUsageFlagBits::eOneTimeSubmit )
     {
-      if (queue.submit(1, &m_submitInfo, nullptr) != vk::Result::eSuccess)
-        RX_ERROR("Failed to submit");
+      vk::SubmitInfo submitInfo( static_cast< uint32_t >( waitSemaphores.size( ) ),   // waitSemaphoreCount
+                                 waitSemaphores.data( ),                              // pWaitSemaphores
+                                 waitDstStageMask,                                    // pWaitDstStageMask
+                                 static_cast< uint32_t >( m_commandBuffers.size( ) ), // commandBufferCount
+                                 m_commandBuffers.data( ),                            // pCommandBuffers
+                                 static_cast< uint32_t >( signalSemaphores.size( ) ), // signalSemaphoreCount
+                                 signalSemaphores.data( ) );                          // pSignalSemaphores
 
-      queue.waitIdle();
+      if ( queue.submit( 1, &submitInfo, nullptr ) != vk::Result::eSuccess )
+        RX_ERROR( "Failed to submit" );
+
+      queue.waitIdle( );
     }
     else
-      RX_ERROR("Only command buffers with a usage flag containing eOneTimeSubmit should be submitted automatically");
-  }
-
-  void CmdBuffer::setSubmitInfo(const vk::SubmitInfo& submitInfo)
-  {
-    m_submitInfo = submitInfo;
+      RX_ERROR( "Only command buffers with a usage flag containing eOneTimeSubmit should be submitted automatically" );
   }
 }

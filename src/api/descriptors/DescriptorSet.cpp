@@ -1,58 +1,42 @@
 #include "DescriptorSet.hpp"
+#include "Components.hpp"
 
-namespace RX
+namespace rx
 {
-  DescriptorSet::DescriptorSet(DescriptorSetInfo& info)
+  DescriptorSet::DescriptorSet( vk::DescriptorPool descriptorPool, uint32_t count, const std::vector<vk::DescriptorSetLayout>& layouts, bool initialize )
   {
-    init(info);
+    if ( initialize )
+      init( descriptorPool, count, layouts );
   }
 
-  DescriptorSet::DescriptorSet(DescriptorSetInfo&& info)
+  void DescriptorSet::init( vk::DescriptorPool descriptorPool, uint32_t count, const std::vector<vk::DescriptorSetLayout>& layouts )
   {
-    init(info);
+    m_descriptorPool = descriptorPool;
+    m_layouts = layouts;
+
+    vk::DescriptorSetAllocateInfo allocInfo( descriptorPool,
+                                             count,
+                                             layouts.data() );
+
+    m_sets = g_device.allocateDescriptorSets(allocInfo);
+
+    for ( const vk::DescriptorSet& set : m_sets )
+      RX_ASSERT( set, "Failed to create descriptor sets." );
   }
 
-  DescriptorSet::~DescriptorSet()
+  void DescriptorSet::update( const std::vector<vk::Buffer>& uniformBuffers, vk::ImageView textureImageView, vk::Sampler textureSampler )
   {
-    //destroy();
-  }
-
-  void DescriptorSet::init(DescriptorSetInfo& info)
-  {
-    m_info = info;
-    
-    vk::DescriptorSetAllocateInfo allocInfo;
-    allocInfo.descriptorPool = m_info.pool;
-    allocInfo.descriptorSetCount = m_info.setCount;
-    allocInfo.pSetLayouts = m_info.layouts.data();
-
-    m_sets = m_info.device.allocateDescriptorSets(allocInfo);
-
-    for (const auto& set : m_sets)
-    {
-      if (!set)
-        RX_ERROR("Failed to allocate descriptor sets.");
-    }
-  }
-
-  void DescriptorSet::init(DescriptorSetInfo&& info)
-  {
-    init(info);
-  }
-
-  void DescriptorSet::update(SwapchainUpdateDescriptorSetInfo& info)
-  {
-    for (size_t i = 0; i < m_info.layouts.size(); ++i)
+    for (size_t i = 0; i < m_layouts.size(); ++i)
     {
       vk::DescriptorBufferInfo bufferInfo;
-      bufferInfo.buffer = info.uniformBuffers[i];
+      bufferInfo.buffer = uniformBuffers[i];
       bufferInfo.offset = 0;
       bufferInfo.range = sizeof(UniformBufferObject);
 
       vk::DescriptorImageInfo imageInfo;
       imageInfo.imageLayout = vk::ImageLayout::eShaderReadOnlyOptimal;
-      imageInfo.imageView = info.textureImageView;
-      imageInfo.sampler = info.textureSampler;
+      imageInfo.imageView = textureImageView;
+      imageInfo.sampler = textureSampler;
 
       // TODO: a lot of this information is already stored in the bindings which are part of DescriptorSetLayout. Re-use this here.
       std::array<vk::WriteDescriptorSet, 2> descriptorWrites{ };
@@ -70,24 +54,19 @@ namespace RX
       descriptorWrites[1].descriptorCount = 1;
       descriptorWrites[1].pImageInfo = &imageInfo;
 
-      m_info.device.updateDescriptorSets(descriptorWrites, 0);    
+      g_device.updateDescriptorSets(descriptorWrites, 0);    
     }
   }
 
-  void DescriptorSet::update(SwapchainUpdateDescriptorSetInfo&& info)
-  {
-    update(info);
-  }
-
-  void DescriptorSet::update(UpdateRaytracingDescriptorSetInfo& info)
+  void DescriptorSet::update( vk::AccelerationStructureKHR tlas, vk::ImageView storageImageView )
   {
     vk::WriteDescriptorSetAccelerationStructureKHR descriptorInfoAS;
     descriptorInfoAS.pNext = nullptr;
     descriptorInfoAS.accelerationStructureCount = 1;
-    descriptorInfoAS.pAccelerationStructures = &info.tlas;
+    descriptorInfoAS.pAccelerationStructures = &tlas;
 
     vk::DescriptorImageInfo storageImageInfo;
-    storageImageInfo.imageView = info.storageImageView;
+    storageImageInfo.imageView = storageImageView;
     storageImageInfo.imageLayout = vk::ImageLayout::eGeneral;
 
     // TODO: a lot of this information is already stored in the bindings which are part of DescriptorSetLayout. Re-use this here.
@@ -104,16 +83,11 @@ namespace RX
     descriptorWrites[1].pImageInfo = &storageImageInfo;
     descriptorWrites[1].descriptorCount = 1;
 
-    m_info.device.updateDescriptorSets(descriptorWrites, 0);
+    g_device.updateDescriptorSets(descriptorWrites, 0);
   }
 
-  void DescriptorSet::update(UpdateRaytracingDescriptorSetInfo&& info)
+  void DescriptorSet::free( )
   {
-    update(info);
-  }
-
-  void DescriptorSet::destroy()
-  {
-    m_info.device.freeDescriptorSets(m_info.pool, m_sets);
+    g_device.freeDescriptorSets( m_descriptorPool, m_sets );
   }
 }

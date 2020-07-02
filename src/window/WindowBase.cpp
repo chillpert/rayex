@@ -1,6 +1,6 @@
 #include "WindowBase.hpp"
 
-namespace RX
+namespace rx
 {
   WindowBase::WindowBase(WindowProperties windowProperties) :
     m_window(nullptr),

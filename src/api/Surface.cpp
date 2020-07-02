@@ -1,7 +1,7 @@
 #include "Surface.hpp"
 #include "Components.hpp"
 
-namespace RX
+namespace rx
 {
   Surface::Surface() :
     m_format(vk::Format::eB8G8R8A8Unorm),

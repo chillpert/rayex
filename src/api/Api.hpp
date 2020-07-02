@@ -3,45 +3,40 @@
 
 #include "Instance.hpp"
 #include "DebugMessenger.hpp"
-#include "QueueManager.hpp"
+#include "Queues.hpp"
 #include "Surface.hpp"
 #include "Pipeline.hpp"
 #include "RenderPass.hpp"
-#include "Shader.hpp"
 #include "PhysicalDevice.hpp"
 #include "Device.hpp"
 #include "Swapchain.hpp"
-#include "Semaphore.hpp"
-#include "Fence.hpp"
 #include "Texture.hpp"
 #include "Vertex.hpp"
-#include "CommandPool.hpp"
 #include "CommandBuffer.hpp"
 #include "VertexBuffer.hpp"
 #include "IndexBuffer.hpp"
 #include "DescriptorSet.hpp"
-#include "DescriptorPool.hpp"
 #include "DescriptorSetLayout.hpp"
 #include "UniformBuffer.hpp"
 #include "GuiBase.hpp"
 #include "Base.hpp"
 #include "RaytraceBuilder.hpp"
 
-namespace RX
+namespace rx
 {
   class Api
   {
   public:
-    Api(std::shared_ptr<WindowBase> window, std::shared_ptr<CameraBase> camera);
-    Api(std::shared_ptr<WindowBase> window, std::shared_ptr<GuiBase> gui, std::shared_ptr<CameraBase> camera );
+    Api( std::shared_ptr<WindowBase> window, std::shared_ptr<CameraBase> camera );
+    Api( std::shared_ptr<WindowBase> window, std::shared_ptr<GuiBase> gui, std::shared_ptr<CameraBase> camera );
     RX_API ~Api();
 
     void init();
     bool update();
     bool render();
-    
-    void pushNode(const std::shared_ptr<GeometryNodeBase> nodes, bool record = true);
-    void setNodes(const std::vector<std::shared_ptr<GeometryNodeBase>>& nodes);
+
+    void pushNode( const std::shared_ptr<GeometryNodeBase> nodes, bool record = true );
+    void setNodes( const std::vector<std::shared_ptr<GeometryNodeBase>>& nodes );
 
   private:
     void initInstance();
@@ -53,15 +48,15 @@ namespace RX
     void initRenderPass();
     void initSwapchain();
     void initSwapchainImageViews();
-    void initPipeline(bool firstRun = true);
-    void initgraphicsCmdPool();
-    void inittransferCmdPool();
+    void initPipeline( bool firstRun = true );
+    void initGraphicsCommandPool();
+    void initTransferCommandPool();
     void initDepthBuffering();
     void initSwapchainFramebuffers();
     void initDescriptorPool();
-    void initModels(bool isNew);
-    void initModel(const std::shared_ptr<GeometryNodeBase> node);
-    void initSwapchainCmdBuffers();
+    void initModels( bool isNew );
+    void initModel( const std::shared_ptr<GeometryNodeBase> node );
+    void initSwapchainCommandBuffers();
     void initGui();
     void recordSwapchainCommandBuffers();
 
@@ -78,11 +73,11 @@ namespace RX
     DebugMessenger m_debugMessenger;
     Surface m_surface;
     Device m_device;
-    CommandPool m_graphicsCmdPool;
-    CommandPool m_transferCmdPool;
-    std::vector<Fence> m_inFlightFences;
-    std::vector<Semaphore> m_imageAvailableSemaphores;
-    std::vector<Semaphore> m_finishedRenderSemaphores;
+    vk::UniqueCommandPool m_graphicsCmdPool;
+    vk::UniqueCommandPool m_transferCmdPool;
+    std::vector<vk::UniqueFence> m_inFlightFences;
+    std::vector<vk::UniqueSemaphore> m_imageAvailableSemaphores;
+    std::vector<vk::UniqueSemaphore> m_finishedRenderSemaphores;
 
     DescriptorSetLayout m_descriptorSetLayout;
 
@@ -93,21 +88,22 @@ namespace RX
     // Textures
     std::unordered_map<std::string, std::shared_ptr<Texture>> m_textures;
 
-    DescriptorPool m_descriptorPool;
+    vk::UniqueDescriptorPool m_descriptorPool;
     Swapchain m_swapchain;
-    std::vector<ImageView> m_swapchainImageViews;
+    std::vector<vk::UniqueImageView> m_swapchainImageViews;
     RenderPass m_renderPass;
-    Pipeline m_pipeline;
-    CmdBuffer m_swapchainCmdBuffers;
-    std::vector<Framebuffer> m_swapchainFramebuffers;
+    RasterizationPipeline m_pipeline;
+    CommandBuffer m_swapchainCommandBuffers;
+    std::vector<vk::UniqueFramebuffer> m_swapchainFramebuffers;
     Image m_depthImage;
-    ImageView m_depthImageView;
+    vk::UniqueImageView m_depthImageView;
 
+  public:
     std::shared_ptr<GuiBase> m_gui;
-
+  private:
     // No destruction necessary for following members:
     PhysicalDevice m_physicalDevice;
-    QueueManager m_queueManager;
+    Queues m_queues;
     std::vector<vk::Fence> m_imagesInFlight;
 
     RaytraceBuilder m_raytraceBuilder;

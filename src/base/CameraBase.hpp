@@ -3,7 +3,7 @@
 
 #include "pch/stdafx.hpp"
 
-namespace RX
+namespace rx
 {
   class CameraBase
   {
@@ -17,7 +17,7 @@ namespace RX
     virtual ~CameraBase() = default;
     virtual void update() { };
 
-    inline const glm::vec3& getPosition() { return m_position; }
+    inline const glm::vec3& getPosition() const { return m_position; }
 
     void setPosition(const glm::vec3& position)
     {
@@ -29,8 +29,8 @@ namespace RX
       m_screenSize = screenSize;
     }
 
-    virtual inline const glm::mat4& getViewMatrix() { return m_view; }
-    virtual inline const glm::mat4& getProjectionMatrix() { return m_projection; }
+    virtual inline glm::mat4 getViewMatrix() const { return m_view; }
+    virtual inline glm::mat4 getProjectionMatrix() const { return m_projection; }
 
   protected:
     glm::ivec2 m_screenSize;

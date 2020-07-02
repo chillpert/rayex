@@ -1,53 +1,36 @@
 #include "VertexBuffer.hpp"
 
-namespace RX
+namespace rx
 {
-  VertexBuffer::VertexBuffer(VertexBufferInfo& info)
+  VertexBuffer::VertexBuffer( std::vector<Vertex>& vertices, bool initialize )
   {
-    init(info);
+    if ( initialize )
+      init( vertices );
   }
 
-  VertexBuffer::VertexBuffer(VertexBufferInfo&& info)
+  void VertexBuffer::init( std::vector<Vertex>& vertices )
   {
-    init(info);
-  }
+    m_count = static_cast< uint32_t >( vertices.size( ) );
 
-  void VertexBuffer::init(VertexBufferInfo& info)
-  {
-    m_info = info;
-    m_count = static_cast<uint32_t>(m_info.vertices.size());
+    vk::DeviceSize size = sizeof( vertices[0] ) * vertices.size( );
+    vk::MemoryAllocateFlagsInfo allocateFlags( vk::MemoryAllocateFlagBitsKHR::eDeviceAddress );
 
     // Set up the staging buffer.
-    BufferInfo stagingInfo{ };
-    stagingInfo.physicalDevice = m_info.physicalDevice;
-    stagingInfo.device = m_info.device;
-    stagingInfo.size = sizeof(m_info.vertices[0]) * m_info.vertices.size();
-    stagingInfo.usage = vk::BufferUsageFlagBits::eTransferSrc | vk::BufferUsageFlagBits::eShaderDeviceAddress;
-    stagingInfo.sharingMode = vk::SharingMode::eConcurrent;
-    stagingInfo.memoryProperties = vk::MemoryPropertyFlagBits::eHostVisible | vk::MemoryPropertyFlagBits::eHostCoherent;
-    stagingInfo.commandPool = m_info.commandPool;
-    stagingInfo.queue = m_info.queue;
-    stagingInfo.queueFamilyIndices = m_info.queueIndices;
+    Buffer stagingBuffer( size,                                                                                   // size
+                          vk::BufferUsageFlagBits::eTransferSrc | vk::BufferUsageFlagBits::eShaderDeviceAddress,  // usage
+                          { g_transferFamilyIndex },                                                              // queueFamilyIndices
+                          vk::MemoryPropertyFlagBits::eHostVisible | vk::MemoryPropertyFlagBits::eHostCoherent,   // memoryPropertyFlags
+                          &allocateFlags );                                                                       // pNext of memory
 
-    vk::MemoryAllocateFlagsInfo allocateFlags(vk::MemoryAllocateFlagBitsKHR::eDeviceAddress);
-    stagingInfo.pNextMemory = &allocateFlags;
+    m_buffer.init( size,                                                                                                                            // size
+                   vk::BufferUsageFlagBits::eTransferDst | vk::BufferUsageFlagBits::eVertexBuffer | vk::BufferUsageFlagBits::eShaderDeviceAddress,  // usage
+                   { g_transferFamilyIndex },                                                                                                       // queueFamilyIndices
+                   vk::MemoryPropertyFlagBits::eHostVisible | vk::MemoryPropertyFlagBits::eHostCoherent,                                            // memoryPropertyFlags
+                   &allocateFlags );                                                                                                                // pNext of memory
 
-    // Set up the actual index buffer.
-    BufferInfo bufferInfo = stagingInfo;
-    bufferInfo.usage = vk::BufferUsageFlagBits::eTransferDst | vk::BufferUsageFlagBits::eVertexBuffer | vk::BufferUsageFlagBits::eShaderDeviceAddress;
-    bufferInfo.memoryProperties = vk::MemoryPropertyFlagBits::eDeviceLocal;
-
-    Buffer stagingBuffer(stagingInfo);
-    stagingBuffer.fill<Vertex>(m_info.vertices.data());
-
-    m_buffer.init(bufferInfo);
+    stagingBuffer.fill<Vertex>( vertices.data( ) );
 
     // Copy staging buffer to the actual index buffer.
-    m_buffer = stagingBuffer;
-  }
-
-  void VertexBuffer::init(VertexBufferInfo&& info)
-  {
-    init(info);
+    stagingBuffer.copyToBuffer( m_buffer );
   }
 }

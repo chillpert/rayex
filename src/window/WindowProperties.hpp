@@ -3,7 +3,7 @@
 
 #include "pch/stdafx.hpp"
 
-namespace RX
+namespace rx
 {
   typedef enum WindowFlags
   {

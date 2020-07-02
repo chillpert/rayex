@@ -1,66 +1,34 @@
 #include "Renderer.hpp"
 
-namespace RX
+namespace rx
 {
   Renderer::Renderer() :
     m_window(std::make_shared<WindowBase>()),
     m_camera(std::make_shared<CameraBase>(m_window->getSize())),
     m_api(m_window, m_camera),
     m_initialized(false),
-    m_running(true) 
-  {
-    init();
-  }
+    m_running(true) { }
 
   Renderer::Renderer(std::shared_ptr<CameraBase> camera) :
     m_window(std::make_shared<WindowBase>()),
     m_camera(camera),
     m_api(m_window, m_camera),
     m_initialized(false),
-    m_running(true) 
-  {
-    init();
-  }
+    m_running(true) { }
 
   Renderer::Renderer(std::shared_ptr<WindowBase> window) :
     m_window(window),
     m_camera(std::make_shared<CameraBase>(m_window->getSize())),
     m_api(window, m_camera),
     m_initialized(false),
-    m_running(true) 
-  {
-    init();
-  }
+    m_running(true) { }
 
   Renderer::Renderer(std::shared_ptr<WindowBase> window, std::shared_ptr<CameraBase> camera) :
     m_window(window),
     m_camera(camera),
     m_api(m_window, m_camera),
     m_initialized(false),
-    m_running(true) 
-  {
-    init();
-  }
-
-  Renderer::Renderer(std::shared_ptr<WindowBase> window, std::shared_ptr<GuiBase> gui) :
-    m_window(window),
-    m_camera(std::make_shared<CameraBase>(m_window->getSize())),
-    m_api(m_window, gui, m_camera),
-    m_initialized(false),
-    m_running(true) 
-  {
-    init();
-  }
-
-  Renderer::Renderer(std::shared_ptr<WindowBase> window, std::shared_ptr<GuiBase> gui, std::shared_ptr<CameraBase> camera) :
-    m_window(window),
-    m_camera(camera),
-    m_api(m_window, gui, m_camera),
-    m_initialized(false),
-    m_running(true) 
-  {
-    init();
-  }
+    m_running(true) { }
 
   void Renderer::init()
   {

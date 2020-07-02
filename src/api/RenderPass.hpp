@@ -3,49 +3,25 @@
 
 #include "pch/stdafx.hpp"
 
-namespace RX
+namespace rx
 {
-  struct RenderPassInfo
-  {
-    vk::PhysicalDevice physicalDevice;
-    vk::Device device;
-    std::vector<vk::AttachmentDescription> attachments;
-    std::vector<vk::SubpassDescription> subpasses;
-    std::vector<vk::SubpassDependency> dependencies;
-  };
-
-  struct RenderPassBeginInfo
-  {
-    vk::Rect2D renderArea;
-    std::vector<vk::ClearValue> clearValues;
-    std::vector<vk::CommandBuffer> commandBuffers;
-    std::vector<vk::Framebuffer> framebuffers;
-  };
-
   class RenderPass
   {
   public:
-    RenderPass() = default;
-    RenderPass(RenderPassInfo& info);
-    RenderPass(RenderPassInfo&& info);
-    ~RenderPass();
+    RenderPass( ) = default;
+    RenderPass( const std::vector<vk::AttachmentDescription>& attachments, const std::vector<vk::SubpassDescription>& subpasses, const std::vector<vk::SubpassDependency>& dependencies, bool initialize = true );
+    RX_API ~RenderPass( );
 
-    inline vk::RenderPass get() { return m_renderPass; }
-    inline RenderPassBeginInfo& getBeginInfo() { return m_beginInfo; }
+    inline const vk::RenderPass get( ) const { return m_renderPass.get( ); }
 
-    void init(RenderPassInfo& info);
-    void init(RenderPassInfo&& info);
+    void init( const std::vector<vk::AttachmentDescription>& attachments, const std::vector<vk::SubpassDescription>& subpasses, const std::vector<vk::SubpassDependency>& dependencies );
+    void destroy( );
 
-    void destroy();
-
-    void setBeginInfo(RenderPassBeginInfo& beginInfo);
-    void begin(size_t index = 0);
-    void end(size_t index = 0);
+    void begin( vk::Framebuffer framebuffer, vk::CommandBuffer CommandBuffer, vk::Rect2D renderArea, const std::vector<vk::ClearValue>& clearValues ) const;
+    void end( vk::CommandBuffer CommandBuffer ) const;
 
   private:
-    vk::RenderPass m_renderPass;
-    RenderPassInfo m_info;
-    RenderPassBeginInfo m_beginInfo;
+    vk::UniqueRenderPass m_renderPass;
   };
 }
 

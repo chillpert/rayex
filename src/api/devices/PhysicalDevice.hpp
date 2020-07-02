@@ -3,7 +3,7 @@
 
 #include "pch/stdafx.hpp"
 
-namespace RX
+namespace rx
 {
   class PhysicalDevice
   {
@@ -17,26 +17,26 @@ namespace RX
     void init();
 
     /*
-     Returns the device's properties.
-     Note: Must be called after PhysicalDevice::init().
+      Returns the device's properties.
+      Note: Must be called after PhysicalDevice::init().
     */
     const vk::PhysicalDeviceProperties getProperties() const;
 
     /*
-     Returns the device's second properties.
-     Note: Must be called after PhysicalDevice::init().
+      Returns the device's second properties.
+      Note: Must be called after PhysicalDevice::init().
     */
     const vk::PhysicalDeviceProperties2 getProperties2() const;
 
     /*
-     Returns the device's features.
-     Note: Must be called after PhysicalDevice::init().
+      Returns the device's features.
+      Note: Must be called after PhysicalDevice::init().
     */
     const vk::PhysicalDeviceFeatures getFeatures() const;
 
     /*
-     Returns the device's second features.
-     Note: Must be called after PhysicalDevice::init().
+      Returns the device's second features.
+      Note: Must be called after PhysicalDevice::init().
     */
     const vk::PhysicalDeviceFeatures2 getFeatures2() const;
 
@@ -56,6 +56,13 @@ namespace RX
     vk::PhysicalDeviceFeatures m_features;
     vk::PhysicalDeviceFeatures2 m_features2;
   };
+
+  /*
+    This function is used to check if a device is suitable for the application's task.
+    @param physicalDevice - The physical device to check.
+    @return - Returns the GPU's supported ray tracing features.
+  */
+  const vk::PhysicalDeviceRayTracingFeaturesKHR getRayTracingFeatures(vk::PhysicalDevice physicalDevice);
 }
 
 #endif // PHYSICAL_DEVICE_HPP

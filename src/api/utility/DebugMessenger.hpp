@@ -3,7 +3,7 @@
 
 #include "pch/stdafx.hpp"
 
-namespace RX
+namespace rx
 {
   // TODO: Use C++ Wrapper instead of native API.
   class DebugMessenger

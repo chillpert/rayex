@@ -2,7 +2,7 @@
 #include "Api.hpp"
 #include "Components.hpp"
 
-namespace RX
+namespace rx
 {
   DebugMessenger::DebugMessenger(VkDebugUtilsMessageSeverityFlagsEXT messageSeverity, VkDebugUtilsMessageTypeFlagsEXT messageType, bool initialize)
   {

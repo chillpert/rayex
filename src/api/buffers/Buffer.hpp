@@ -2,71 +2,45 @@
 #define BUFFER_HPP
 
 #include "Image.hpp"
+#include "Components.hpp"
 
-namespace RX
+namespace rx
 {
-  struct BufferInfo
-  {
-    vk::PhysicalDevice physicalDevice;
-    vk::Device device;
-
-    // Buffer
-    void* pNextBuffer = nullptr; // Optional
-    vk::BufferCreateFlags bufferFlags; // Optional
-    vk::DeviceSize size; // The size required for the buffer.
-    vk::BufferUsageFlags usage;
-    vk::SharingMode sharingMode;
-    std::vector<uint32_t> queueFamilyIndices; // Optional, if sharing mode is not concurrent.
-
-    vk::CommandPool commandPool; // Optional, if there is no staging or copying involved.
-    vk::Queue queue; // Optional, if there is no staging or copying involved.
-
-    // Memory
-    vk::MemoryPropertyFlags memoryProperties;
-    void* pNextMemory = nullptr; // Optional
-    vk::DeviceSize memoryOffset = 0;
-  };
-
   class Buffer
   {
   public:
-    Buffer() = default;
-    Buffer(BufferInfo& createInfo);
-    Buffer(BufferInfo&& createInfo);
-    RX_API ~Buffer();
+    Buffer( ) = default;
+    Buffer( vk::DeviceSize size, vk::BufferUsageFlags usage, const std::vector<uint32_t>& queueFamilyIndices = { }, vk::MemoryPropertyFlags memoryPropertyFlags = vk::MemoryPropertyFlagBits::eDeviceLocal, void* pNextMemory = nullptr, bool initialize = true );
 
-    Buffer& operator=(const Buffer& buffer);
-    void copyToBuffer(const Buffer& buffer) const;
-    void copyToImage(Image& image) const;
+    void copyToBuffer( Buffer& buffer ) const;
+    void copyToImage( Image& image ) const;
 
-    inline vk::Buffer get() const { return m_buffer; }
-    inline vk::DeviceMemory& getMemory() { return m_memory; }
-    inline vk::DeviceSize getSize() const { return m_info.size; }
+    inline const vk::Buffer get( ) const { return m_buffer.get( ); }
+    inline const vk::DeviceMemory getMemory( ) const { return m_memory.get( ); }
+    inline const vk::DeviceSize getSize( ) const { return m_size; }
 
-    void init(BufferInfo& createInfo);
-    void init(BufferInfo&& createInfo);
+    void init( vk::DeviceSize size, vk::BufferUsageFlags usage, const std::vector<uint32_t>& queueFamilyIndices = { }, vk::MemoryPropertyFlags memoryPropertyFlags = vk::MemoryPropertyFlagBits::eDeviceLocal, void* pNextMemory = nullptr );
 
     template <class T>
-    void fill(T* source, vk::DeviceSize offset = 0);
-
-    RX_API void destroy();
+    void fill( T* source, vk::DeviceSize offset = 0 );
 
   private:
-    vk::Buffer m_buffer;
-    vk::DeviceMemory m_memory;
-    BufferInfo m_info;
+    vk::UniqueBuffer m_buffer;
+    vk::UniqueDeviceMemory m_memory;
+
+    vk::DeviceSize m_size = 0;
   };
 
   template <class T>
-  inline void Buffer::fill(T* source, vk::DeviceSize offset)
+  inline void Buffer::fill( T* source, vk::DeviceSize offset )
   {
     void* data;
-    if (m_info.device.mapMemory(m_memory, offset, m_info.size, { }, &data) != vk::Result::eSuccess)
-      RX_ERROR("Failed to map memory.");
+    if ( g_device.mapMemory( m_memory.get( ), offset, m_size, { }, &data ) != vk::Result::eSuccess )
+      RX_ERROR( "Failed to map memory." );
 
-    memcpy(data, source, static_cast<uint32_t>(m_info.size));
+    memcpy( data, source, static_cast< uint32_t >( m_size ) );
 
-    m_info.device.unmapMemory(m_memory);
+    g_device.unmapMemory( m_memory.get( ) );
   }
 }
 

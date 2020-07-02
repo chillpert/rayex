@@ -6,7 +6,7 @@
 #define GLM_ENABLE_EXPERIMENTAL
 #include <glm/gtx/hash.hpp>
 
-namespace RX
+namespace rx
 {
   struct Vertex
   {
@@ -62,9 +62,9 @@ namespace RX
 
 namespace std
 {
-  template<> struct hash<RX::Vertex>
+  template<> struct hash<rx::Vertex>
   {
-    size_t operator()(const RX::Vertex& vertex) const
+    size_t operator()(const rx::Vertex& vertex) const
     {
       size_t hashPos = hash<glm::vec3>()(vertex.pos);
       size_t hashColor = hash<glm::vec3>()(vertex.color);

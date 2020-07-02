@@ -1,6 +1,6 @@
 #include "window/WindowProperties.hpp"
 
-namespace RX
+namespace rx
 {
   WindowProperties::WindowProperties(int width, int height, const char* title, uint32_t flags) : 
     m_width(width), 

@@ -5,7 +5,7 @@
 #include "window/WindowProperties.hpp"
 #include "window/Time.hpp"
 
-namespace RX
+namespace rx
 {
   class WindowBase
   {

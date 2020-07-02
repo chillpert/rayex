@@ -1,80 +1,50 @@
 #include "RaytraceBuilder.hpp"
-#include "CommandPool.hpp"
 #include "CommandBuffer.hpp"
-#include "QueryPool.hpp"
 #include "Buffer.hpp"
 #include "Components.hpp"
 #include "Initializers.hpp"
+#include "Helpers.hpp"
+#include "Destructors.hpp"
+#include "Components.hpp"
 
-namespace RX
+namespace rx
 {
-  void RaytraceBuilder::init(RaytraceBuilderInfo& info)
+  void RaytraceBuilder::init( )
   {
-    m_info = info;
-
-    auto properties = g_physicalDevice.getProperties2<vk::PhysicalDeviceProperties2, vk::PhysicalDeviceRayTracingPropertiesKHR>();
-    m_rayTracingProperties = properties.get<vk::PhysicalDeviceRayTracingPropertiesKHR>();
-
-    //m_debugUtils.init(DebugUtilInfo{ m_info.device, m_dispatchLoaderDynamic });
+    auto properties = g_physicalDevice.getProperties2<vk::PhysicalDeviceProperties2, vk::PhysicalDeviceRayTracingPropertiesKHR>( );
+    m_rayTracingProperties = properties.get<vk::PhysicalDeviceRayTracingPropertiesKHR>( );
   }
 
-  void RaytraceBuilder::destroy()
+  void RaytraceBuilder::destroy( )
   {
-    m_rayGen.destroy();
-    m_miss.destroy();
-    m_closestHit.destroy();
+    m_tlas.destroy( );
+    for ( auto& blas : m_blas )
+      blas.destroy( );
 
-    m_tlas.destroy();
-    for (auto& blas : m_blas)
-      blas.destroy();
+    //vk::Destructor::destroyImageView( m_storageImageView );
 
-    m_storageImageView.destroy();
     //m_storageImage.destroy();
 
-    m_descriptorSet.destroy();
-    m_descriptorSetLayout.destroy();
-    m_descriptorPool.destroy();
+    m_descriptorSet.free( );
+    m_descriptorSetLayout.destroy( );
+    //m_descriptorPool.destroy();
   }
 
-  void RaytraceBuilder::initAccelerationStructures(const std::vector<std::shared_ptr<GeometryNodeBase>>& nodes, const std::vector<std::shared_ptr<Model>>& models)
+  void RaytraceBuilder::initAccelerationStructures( const std::vector<std::shared_ptr<GeometryNodeBase>>& nodes, const std::vector<std::shared_ptr<Model>>& models, const Surface* const surface )
   {
-    BottomLevelASInfo bottomLevelASInfo{ };
-    bottomLevelASInfo.flags = vk::BuildAccelerationStructureFlagBitsKHR::ePreferFastTrace;
-    bottomLevelASInfo.queue = m_info.queue;
-
     // Create all bottom level acceleration structures at once.
-    initBottomLevelAS_(bottomLevelASInfo, models, m_blas);
+    initBottomLevelAS_( vk::BuildAccelerationStructureFlagBitsKHR::ePreferFastTrace, models, m_blas );
 
-    TopLevelASInfo topLevelASInfo{ };
-    topLevelASInfo.nodes = nodes;
-    topLevelASInfo.flags = vk::BuildAccelerationStructureFlagBitsKHR::ePreferFastTrace;
-    
     // Create a single bottom level acceleration structure.
-    m_tlas.init(topLevelASInfo);
+    m_tlas.init( nodes, vk::BuildAccelerationStructureFlagBitsKHR::ePreferFastTrace );
 
     // Buffers
-    std::vector<Buffer> buffers(nodes.size());
-    
+    std::vector<Buffer> buffers( nodes.size( ) );
+
     struct RaytraceInstanceData
     {
       RaytracingInstance instance;
       glm::mat4 worldTransform;
-    };
-
-    BufferInfo info{
-      .physicalDevice = g_physicalDevice,
-      .device = g_device,
-      .pNextBuffer = nullptr,
-      .bufferFlags = { },
-      .size = sizeof(RaytraceInstanceData),
-      .usage = vk::BufferUsageFlagBits::eRayTracingKHR,
-      .sharingMode = vk::SharingMode::eExclusive,
-      .queueFamilyIndices = { },
-      .commandPool = nullptr,
-      .queue = nullptr,
-      .memoryProperties = vk::MemoryPropertyFlagBits::eHostVisible | vk::MemoryPropertyFlagBits::eHostCoherent,
-      .pNextMemory = nullptr,
-      .memoryOffset = 0
     };
 
     vk::AccelerationStructureMemoryRequirementsInfoKHR memReqInfo{
@@ -85,51 +55,41 @@ namespace RX
 
     vk::DeviceSize blasTotalMemorySize = 0;
 
-    for (size_t i = 0; i < buffers.size(); ++i)
+    for ( size_t i = 0; i < buffers.size( ); ++i )
     {
-      buffers[i].init(info);
+      buffers[i].init( sizeof( RaytraceInstanceData ),
+                       vk::BufferUsageFlagBits::eRayTracingKHR,
+                       { },
+                       vk::MemoryPropertyFlagBits::eHostVisible | vk::MemoryPropertyFlagBits::eHostCoherent );
 
       RaytraceInstanceData data{
         .instance = nodes[i]->m_rtInstance,
         .worldTransform = nodes[i]->m_worldTransform
       };
 
-      buffers[i].fill(&data);
+      buffers[i].fill( &data );
 
-      memReqInfo.accelerationStructure = m_blas[i].get();
+      memReqInfo.accelerationStructure = m_blas[i].get( );
 
 
-      vk::MemoryRequirements2 memReqBlas = g_device.getAccelerationStructureMemoryRequirementsKHR(memReqInfo, *g_dispatchLoaderDynamic);
+      vk::MemoryRequirements2 memReqBlas = g_device.getAccelerationStructureMemoryRequirementsKHR( memReqInfo, *g_dispatchLoaderDynamic );
 
       blasTotalMemorySize += memReqBlas.memoryRequirements.size;
     }
 
-    vk::MemoryRequirements2 memReqTlas = g_device.getAccelerationStructureMemoryRequirementsKHR(memReqInfo, *g_dispatchLoaderDynamic);
-    const vk::DeviceSize scratchBufferSize = std::max(blasTotalMemorySize, memReqTlas.memoryRequirements.size);
+    vk::MemoryRequirements2 memReqTlas = g_device.getAccelerationStructureMemoryRequirementsKHR( memReqInfo, *g_dispatchLoaderDynamic );
+    const vk::DeviceSize scratchBufferSize = std::max( blasTotalMemorySize, memReqTlas.memoryRequirements.size );
 
-    BufferInfo scratchBufferInfo{
-      .physicalDevice = g_physicalDevice,
-      .device = g_device,
-      .pNextBuffer = nullptr,
-      .bufferFlags = { },
-      .size = scratchBufferSize,
-      .usage = vk::BufferUsageFlagBits::eRayTracingKHR,
-      .sharingMode = vk::SharingMode::eExclusive,
-      .queueFamilyIndices = { },
-      .commandPool = nullptr,
-      .queue = nullptr,
-      .memoryProperties = vk::MemoryPropertyFlagBits::eDeviceLocal,
-      .pNextMemory = nullptr,
-      .memoryOffset = 0
-    };
-
-    Buffer scratchBuffer(scratchBufferInfo);
+    Buffer scratchBuffer( scratchBufferSize,
+                          vk::BufferUsageFlagBits::eRayTracingKHR,
+                          { },
+                          vk::MemoryPropertyFlagBits::eDeviceLocal );
 
     // Create descriptor set.
-    initDescriptorSet();
+    initDescriptorSet( surface );
   }
 
-  void RaytraceBuilder::initDescriptorSet()
+  void RaytraceBuilder::initDescriptorSet( const Surface* const surface )
   {
     std::vector<vk::DescriptorPoolSize> poolSizes =
     {
@@ -139,33 +99,19 @@ namespace RX
       { vk::DescriptorType::eStorageBuffer, 2 }
     };
 
-    // Init descriptor pool.
-    m_descriptorPool.init({
-      .device = g_device,
-      .poolSizes = poolSizes,
-      .maxSets = 1,
-      .flags = vk::DescriptorPoolCreateFlagBits::eFreeDescriptorSet
-      }
-    );
+    static bool firstRun = true;
+    if ( firstRun )
+    {
+      // Init descriptor pool.
+      m_descriptorPool = vk::Initializer::createDescriptorPoolUnique( poolSizes, 1, vk::DescriptorPoolCreateFlagBits::eFreeDescriptorSet );
+
+      firstRun = false;
+    }
 
     // Create raytracing shaders.
-    m_rayGen.init({
-        .fullPath = RX_SHADER_PATH "raygen.rgen",
-        .device = g_device
-      }
-    );
-
-    m_miss.init({
-        .fullPath = RX_SHADER_PATH "miss.rmiss",
-        .device = g_device
-      }
-    );
-
-    m_closestHit.init({
-        .fullPath = RX_SHADER_PATH "closesthit.rchit",
-        .device = g_device
-      }
-    );
+    m_rayGen = vk::Initializer::createShaderModuleUnique( RX_SHADER_PATH "raygen.rgen" );
+    m_miss = vk::Initializer::createShaderModuleUnique( RX_SHADER_PATH "miss.rmiss" );
+    m_closestHit = vk::Initializer::createShaderModuleUnique( RX_SHADER_PATH "closesthit.rchit" );
 
     // Init descriptor set layout.
     vk::DescriptorSetLayoutBinding asLayoutBinding{
@@ -184,41 +130,24 @@ namespace RX
       nullptr                               // pImmutableSamplers
     };
 
-    m_descriptorSetLayout.addBinding(asLayoutBinding);
-    m_descriptorSetLayout.addBinding(storageImageLayoutBinding);
+    m_descriptorSetLayout.addBinding( asLayoutBinding );
+    m_descriptorSetLayout.addBinding( storageImageLayoutBinding );
 
-    m_descriptorSetLayout.init({ g_device });
+    m_descriptorSetLayout.init( );
 
     // Create the descriptor set.
-    m_descriptorSet.init({
-        .device = g_device,
-        .pool = m_descriptorPool.get(),
-        .setCount = 1,
-        .layouts = { m_descriptorSetLayout.get() }
-      }
-    );
+    m_descriptorSet.init( m_descriptorPool.get( ), 1, { m_descriptorSetLayout.get( ) } );
 
     // Create the storage image.
-    auto imageCreateInfo = Initializers::getImageCreateInfo(vk::Extent3D(m_info.surface->getCapabilities().currentExtent, 1));
-    imageCreateInfo.format = m_info.surface->getFormat();
+    auto imageCreateInfo = vk::Helper::getImageCreateInfo( vk::Extent3D( surface->getCapabilities( ).currentExtent, 1 ) );
+    imageCreateInfo.format = surface->getFormat( );
     imageCreateInfo.usage = vk::ImageUsageFlagBits::eStorage;
 
-    m_storageImage.init(imageCreateInfo);
+    m_storageImage.init( imageCreateInfo );
 
-    ImageViewInfo imageViewInfo{
-      .device = g_device,
-      .image = m_storageImage.get(),
-      .format = m_storageImage.getFormat()
-    };
-
-    m_storageImageView.init(imageViewInfo);
+    m_storageImageView = vk::Initializer::createImageViewUnique( m_storageImage.get( ), m_storageImage.getFormat( ) );
 
     // Update descriptor set.
-    UpdateRaytracingDescriptorSetInfo updateInfo{
-      .tlas = m_tlas.get(),
-      .storageImageView = m_storageImageView.get()
-    };
-
-    m_descriptorSet.update(updateInfo);
+    m_descriptorSet.update( m_tlas.get( ), m_storageImageView.get( ) );
   }
 }

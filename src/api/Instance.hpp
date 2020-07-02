@@ -3,7 +3,7 @@
 
 #include "WindowBase.hpp"
 
-namespace RX
+namespace rx
 {
   class Instance
   {

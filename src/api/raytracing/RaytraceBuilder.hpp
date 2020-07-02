@@ -2,40 +2,28 @@
 #define RAYTRACE_BUILDER_HPP
 
 #include "pch/stdafx.hpp"
-#include "Queue.hpp"
-#include "DebugUtility.hpp"
-#include "DescriptorPool.hpp"
 #include "DescriptorSet.hpp"
 #include "DescriptorSetLayout.hpp"
 #include "TopLevelAS.hpp"
 #include "BottomLevelAS.hpp"
 #include "Surface.hpp"
 
-namespace RX
+namespace rx
 {
-  struct RaytraceBuilderInfo
-  {
-    Surface* surface;
-    std::shared_ptr<Queue> queue;
-    vk::CommandPool commandPool;
-  };
-
   class RaytraceBuilder
   {
   public:
-    inline Shader& getRayGenShader() { return m_rayGen; }
-    inline Shader& getMissShader() { return m_miss; }
-    inline Shader& getClosestHitShader() { return m_closestHit; }
+    inline vk::ShaderModule getRayGenShader( ) { return m_rayGen.get( ); }
+    inline vk::ShaderModule getMissShader( ) { return m_miss.get( ); }
+    inline vk::ShaderModule getClosestHitShader( ) { return m_closestHit.get( ); }
 
-    void init(RaytraceBuilderInfo& info);
-    void destroy();
+    void init( );
+    void destroy( );
 
-    void initAccelerationStructures(const std::vector<std::shared_ptr<GeometryNodeBase>>& nodes, const std::vector<std::shared_ptr<Model>>& models);
-    
+    void initAccelerationStructures( const std::vector<std::shared_ptr<GeometryNodeBase>>& nodes, const std::vector<std::shared_ptr<Model>>& models, const Surface* const surface );
+
   private:
-    void initDescriptorSet();
-
-    RaytraceBuilderInfo m_info;
+    void initDescriptorSet( const Surface* const surface );
 
     vk::PhysicalDeviceRayTracingPropertiesKHR m_rayTracingProperties;
 
@@ -43,15 +31,15 @@ namespace RX
     TopLevelAS m_tlas;
 
     Image m_storageImage;
-    ImageView m_storageImageView;
+    vk::UniqueImageView m_storageImageView;
 
-    DescriptorPool m_descriptorPool;
+    vk::UniqueDescriptorPool m_descriptorPool;
     DescriptorSetLayout m_descriptorSetLayout;
     DescriptorSet m_descriptorSet;
 
-    Shader m_rayGen;
-    Shader m_miss;
-    Shader m_closestHit;
+    vk::UniqueShaderModule m_rayGen;
+    vk::UniqueShaderModule m_miss;
+    vk::UniqueShaderModule m_closestHit;
   };
 }
 

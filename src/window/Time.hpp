@@ -4,7 +4,7 @@
 #include "Core.hpp"
 #include <vector>
 
-namespace RX
+namespace rx
 {
   class Time
   {

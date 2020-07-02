@@ -2,8 +2,7 @@
 #define STDAFX_HPP
 
 #include "Core.hpp"
-#include "window/Time.hpp"
-#include "utils/Utility.hpp"
+#include "Time.hpp"
 
 #define GLM_FORCE_DEPTH_ZERO_TO_ONE
 #include <glm/glm.hpp>
@@ -14,8 +13,9 @@
 #include <imgui_impl_sdl.h>
 #include <imgui_impl_vulkan.h>
 
+#include <sstream>
+#include <iomanip>
 #include <vector>
-#include <iostream>
 #include <cstdint>
 #include <cstdlib>
 #include <cstdint>

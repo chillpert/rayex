@@ -4,28 +4,22 @@
 #include "Model.hpp"
 #include "NodeBase.hpp"
 
-namespace RX
+namespace rx
 {
-  struct TopLevelASInfo
-  {
-    std::vector<std::shared_ptr<GeometryNodeBase>> nodes;
-    vk::BuildAccelerationStructureFlagsKHR flags;
-  };
-
   class TopLevelAS
   {
   public:
-    ~TopLevelAS();
-    void destroy();
+    TopLevelAS( ) = default;
+    TopLevelAS( std::vector<std::shared_ptr<GeometryNodeBase>> nodes, vk::BuildAccelerationStructureFlagsKHR flags, bool initialize = true );
+    ~TopLevelAS( );
 
-    inline vk::AccelerationStructureKHR& get() { return m_as; }
+    inline const vk::AccelerationStructureKHR get( ) const { return m_as; }
 
     // Creates top level AS for all given models.
-    void init(TopLevelASInfo& info);
+    void init( std::vector<std::shared_ptr<GeometryNodeBase>> nodes, vk::BuildAccelerationStructureFlagsKHR flags );
+    void destroy( );
 
   private:
-    TopLevelASInfo m_info;
-
     vk::AccelerationStructureKHR m_as;
     vk::DeviceMemory m_memory;
     uint64_t m_handle;

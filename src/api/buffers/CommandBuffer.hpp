@@ -3,54 +3,32 @@
 
 #include "pch/stdafx.hpp"
 
-namespace RX
+namespace rx
 {
-  struct CmdBufferInfo
-  {
-    vk::Device device;
-    vk::CommandPool commandPool;
-    vk::Queue queue;
-
-    size_t commandBufferCount = 1; // Amount of command buffers that will be created.
-    vk::CommandBufferLevel level = vk::CommandBufferLevel::ePrimary;
-    vk::CommandBufferUsageFlags usageFlags = vk::CommandBufferUsageFlagBits::eOneTimeSubmit;
-    vk::CommandBufferResetFlags resetFlags = vk::CommandBufferResetFlagBits::eReleaseResources;
-  };
-
-  class CmdBuffer
+  class CommandBuffer
   {
   public:
-    CmdBuffer() = default;
-    CmdBuffer(CmdBufferInfo& info); 
-    CmdBuffer(CmdBufferInfo&& info);
+    CommandBuffer( ) = default;
+    CommandBuffer( vk::CommandPool commandPool, uint32_t count = 1, vk::CommandBufferUsageFlags usageFlags = vk::CommandBufferUsageFlagBits::eOneTimeSubmit, bool initialize = true );
 
-    inline std::vector<vk::CommandBuffer>& get() { return m_commandBuffers; }
-    inline vk::CommandBuffer get(size_t index) { return m_commandBuffers[index]; }
-    inline vk::CommandBuffer getFront() { return m_commandBuffers[0]; }
+    void init( vk::CommandPool commandPool, uint32_t count = 1, vk::CommandBufferUsageFlags usageFlags = vk::CommandBufferUsageFlagBits::eOneTimeSubmit );
 
-    void init(CmdBufferInfo& info);
-    void init(CmdBufferInfo&& info);
+    inline const std::vector<vk::CommandBuffer> get( ) const { return m_commandBuffers; }
+    inline const vk::CommandBuffer get( size_t index ) const { return m_commandBuffers[index]; }
 
-    void free();
-    // Can only be used explicitly if the command pool's used to create the command buffer(s) 
-    // from was created with resetFlags equal to VK_COMMAND_BUFFER_RESET_RELEASE_RESOURCES_BIT.
-    void reset();
+    void free( );
+    void reset( );
 
-    void begin(size_t index = 0);
-    void end(size_t index = 0);
+    void begin( size_t index = 0 );
+    void end( size_t index = 0 );
 
-    void submitToQueue(const vk::Queue queue) const;
-
-    void setSubmitInfo(const vk::SubmitInfo& submitInfo);
+    void submitToQueue( vk::Queue queue, const std::vector<vk::Semaphore>& waitSemaphores = { }, const std::vector<vk::Semaphore>& signalSemaphores = { }, vk::PipelineStageFlags* waitDstStageMask = { } );
 
   private:
     std::vector<vk::CommandBuffer> m_commandBuffers;
-
-    CmdBufferInfo m_info;
+    
+    vk::CommandPool m_commandPool;
     vk::CommandBufferBeginInfo m_beginInfo;
-    vk::SubmitInfo m_submitInfo;
-
-    bool m_allocated = false;
   };
 }
 

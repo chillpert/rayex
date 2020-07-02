@@ -3,36 +3,24 @@
 
 #include "pch/stdafx.hpp"
 
-namespace RX
+namespace rx
 {
-  struct DescriptorSetLayoutInfo
-  {
-    vk::Device device;
-  };
-
   class DescriptorSetLayout
   {
   public:
-    DescriptorSetLayout() = default;
-    DescriptorSetLayout(DescriptorSetLayoutInfo& info);
-    DescriptorSetLayout(DescriptorSetLayoutInfo&& info);
+    ~DescriptorSetLayout( );
 
-    ~DescriptorSetLayout();
+    inline const vk::DescriptorSetLayout get( ) const { return m_layout; }
 
-    inline vk::DescriptorSetLayout get() { return m_layout; }
+    void addBinding( const vk::DescriptorSetLayoutBinding& binding );
+    void clearBindings( );
 
-    void addBinding(const vk::DescriptorSetLayoutBinding& binding);
-    void clearBindings();
+    void init( );
 
-    // Creates the layout of the descriptor set.
-    void init(DescriptorSetLayoutInfo& info);
-    void init(DescriptorSetLayoutInfo&& info);
-
-    void destroy();
+    void destroy( );
 
   private:
     vk::DescriptorSetLayout m_layout;
-    DescriptorSetLayoutInfo m_info;
 
     std::vector<vk::DescriptorSetLayoutBinding> m_bindings;
   };

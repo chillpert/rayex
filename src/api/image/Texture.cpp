@@ -1,72 +1,51 @@
 #include "Texture.hpp"
 #include "Buffer.hpp"
+#include "Helpers.hpp"
 #include "Initializers.hpp"
 
 #define STB_IMAGE_IMPLEMENTATION
 #include <stb_image.h>
 
-namespace RX
+namespace rx
 {
-  Texture::Texture(TextureInfo& info)
+  Texture::Texture( const std::string& path, bool initialize )
   {
-    init(info);
+    if ( initialize )
+      init( path );
   }
 
-  Texture::Texture(TextureInfo&& info)
+  void Texture::init( const std::string& path )
   {
-    init(info);
-  }
-
-  Texture::~Texture()
-  {
-    destroy();
-  }
-
-  void Texture::init(TextureInfo& info)
-  {
-    m_info = info;
+    m_path = path;
 
     int width, height, channels;
-    stbi_uc* pixels = stbi_load(m_info.path.c_str(), &width, &height, &channels, STBI_rgb_alpha);
+    stbi_uc* pixels = stbi_load( path.c_str( ), &width, &height, &channels, STBI_rgb_alpha );
 
-    if (!pixels)
-      RX_ERROR("Failed to load texture");
+    if ( !pixels )
+      RX_ERROR( "Failed to load texture" );
+
+    vk::DeviceSize size = width * height * 4;
 
     // Set up the staging buffer.
-    BufferInfo stagingInfo{ };
-    stagingInfo.physicalDevice = m_info.physicalDevice;
-    stagingInfo.device = m_info.device;
-    stagingInfo.size = width * height * 4;
-    stagingInfo.usage = vk::BufferUsageFlagBits::eTransferSrc;
-    stagingInfo.sharingMode = vk::SharingMode::eConcurrent;
-    stagingInfo.memoryProperties = vk::MemoryPropertyFlagBits::eHostVisible | vk::MemoryPropertyFlagBits::eHostCoherent;
-    stagingInfo.queue = m_info.queue;
-    stagingInfo.commandPool = m_info.commandPool;
-    stagingInfo.queueFamilyIndices = m_info.queueIndices;
+    Buffer stagingBuffer( size,
+                          vk::BufferUsageFlagBits::eTransferSrc,
+                          { g_graphicsFamilyIndex },
+                          vk::MemoryPropertyFlagBits::eHostVisible | vk::MemoryPropertyFlagBits::eHostCoherent );
 
-    Buffer stagingBuffer(stagingInfo);
-    stagingBuffer.fill<stbi_uc>(pixels);
+    stagingBuffer.fill<stbi_uc>( pixels );
 
-    stbi_image_free(pixels);
+    stbi_image_free( pixels );
 
-    auto imageCreateInfo = Initializers::getImageCreateInfo(vk::Extent3D{ static_cast<uint32_t>(width), static_cast<uint32_t>(height), 1 });
-    m_image.init(imageCreateInfo);
+    auto imageCreateInfo = vk::Helper::getImageCreateInfo( vk::Extent3D { static_cast<uint32_t>( width ), static_cast<uint32_t>( height ), 1 } );
+    m_image.init( imageCreateInfo );
 
-    m_image.transitionToLayout(vk::ImageLayout::eTransferDstOptimal, m_info.commandPool, m_info.queue);
-    stagingBuffer.copyToImage(m_image);
-    m_image.transitionToLayout(vk::ImageLayout::eShaderReadOnlyOptimal, m_info.commandPool, m_info.queue);
+    m_image.transitionToLayout( vk::ImageLayout::eTransferDstOptimal );
+    stagingBuffer.copyToImage( m_image );
+    m_image.transitionToLayout( vk::ImageLayout::eShaderReadOnlyOptimal );
 
-    m_imageView.init({ m_info.device, m_image.get(), m_image.getFormat() });
-    m_sampler.init();
-  }
+    m_imageView = vk::Initializer::createImageViewUnique( m_image.get( ), m_image.getFormat( ) );
 
-  void Texture::init(TextureInfo&& info)
-  {
-    init(info);
-  }
-
-  void Texture::destroy()
-  {
-
+    auto samplerCreateInfo = vk::Helper::getSamplerCreateInfo( );
+    m_sampler = vk::Initializer::createSamplerUnique( samplerCreateInfo );
   }
 }

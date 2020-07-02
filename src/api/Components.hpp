@@ -3,19 +3,22 @@
 
 #include "WindowBase.hpp"
 
-namespace RX
+namespace rx
 {
-  // Unique
   extern std::shared_ptr<WindowBase> g_window;
   extern vk::Instance g_instance;
   extern vk::PhysicalDevice g_physicalDevice;
   extern vk::Device g_device;
   extern vk::SurfaceKHR g_surface;
   extern std::unique_ptr<vk::DispatchLoaderDynamic> g_dispatchLoaderDynamic;
+  extern vk::SwapchainKHR g_swapchain;
 
-  // Not unique
   extern vk::CommandPool g_graphicsCmdPool;
   extern vk::CommandPool g_transferCmdPool;
+  extern vk::Queue g_graphicsQueue;
+  extern vk::Queue g_transferQueue;
+  extern uint32_t g_graphicsFamilyIndex;
+  extern uint32_t g_transferFamilyIndex;
 }
 
 #endif // COMPONENTS_HPP

@@ -1,256 +1,189 @@
 #include "GuiBase.hpp"
 #include "CommandBuffer.hpp"
+#include "Initializers.hpp"
+#include "Destructors.hpp"
 
-namespace RX
+namespace rx
 {
-  GuiBase::GuiBase(GuiInfo& info)
+  GuiBase::GuiBase( const Surface* const surface, const Swapchain* const swapchain, const std::vector<vk::ImageView>& swapchainImageViews, bool initialize )
   {
-    init(info);
+    if ( initialize )
+      init( surface, swapchain, swapchainImageViews );
   }
 
-  GuiBase::GuiBase(GuiInfo&& info)
+  void GuiBase::configure( )
   {
-    init(info);
+    IMGUI_CHECKVERSION( );
+    ImGui::CreateContext( );
+    ImGuiIO& io = ImGui::GetIO( ); (void) io;
   }
 
-  GuiBase::~GuiBase()
+  void GuiBase::init( const Surface* const surface, const Swapchain* const swapchain, const std::vector<vk::ImageView>& swapchainImageViews )
   {
-    if (m_created)
-      destroy();
-  }
+    m_swapchain = swapchain;
 
-  void GuiBase::configure()
-  {
-    IMGUI_CHECKVERSION();
-    ImGui::CreateContext();
-    ImGuiIO& io = ImGui::GetIO(); (void)io;
-  }
+    configure( );
 
-  void GuiBase::init(GuiInfo& info)
-  {
-    m_info = info;
+    ImGui_ImplSDL2_InitForVulkan( g_window->get( ) );
+    initDescriptorPool( );
 
-    configure();
-
-    ImGui_ImplSDL2_InitForVulkan(info.window);
-    
-    ImGui_ImplVulkan_InitInfo init_info{ };
-    init_info.Instance = info.instance;
-    init_info.PhysicalDevice = info.physicalDevice;
-    init_info.Device = info.device;
-    init_info.QueueFamily = info.queueFamilyIndex;
-    init_info.Queue = info.queue;
-    init_info.PipelineCache = info.pipelineCache;
-    initDescriptorPool(); 
-    init_info.DescriptorPool = m_descriptorPool.get();
+    ImGui_ImplVulkan_InitInfo init_info { };
+    init_info.Instance = g_instance;
+    init_info.PhysicalDevice = g_physicalDevice;
+    init_info.Device = g_device;
+    init_info.QueueFamily = g_graphicsFamilyIndex;
+    init_info.Queue = g_graphicsQueue;
+    init_info.PipelineCache = nullptr;
+    init_info.DescriptorPool = m_descriptorPool.get( );
     init_info.Allocator = nullptr;
-    init_info.MinImageCount = info.minImageCount;
-    init_info.ImageCount = info.imageCount;
+    init_info.MinImageCount = surface->getCapabilities( ).minImageCount + 1;
+    init_info.ImageCount = static_cast<uint32_t>( swapchain->getImages( ).size( ) );
 
-    initRenderPass();
-    ImGui_ImplVulkan_Init(&init_info, m_renderPass.get());
-
-    initCommandPool();
-    initFonts();
-    initCommandBuffers();
-    initFramebuffers();
-
-    // Initialize render pass begin info.
-    vk::ClearValue clearValue;
-    clearValue.color = std::array<float, 4>{ 0.5f, 0.5, 0.5f, 1.0f };
-
-    RenderPassBeginInfo beginInfo{ };
-    beginInfo.renderArea.extent = m_info.swapchainImageExtent;
-    beginInfo.clearValues = { clearValue };
-    beginInfo.commandBuffers = m_commandBuffers.get();
-
-    for (Framebuffer& framebuffer : m_framebuffers)
-      beginInfo.framebuffers.push_back(framebuffer.get());
-
-    m_renderPass.setBeginInfo(beginInfo);
-
-    m_created = true;
+    initRenderPass( surface );
+    ImGui_ImplVulkan_Init( &init_info, m_renderPass.get( ) );
+    initCommandPool( );
+    initFonts( );
+    initCommandBuffers( );
+    initFramebuffers( swapchainImageViews );
   }
 
-  void GuiBase::init(GuiInfo&& info)
+  void GuiBase::recreate( const Swapchain* const swapchain, const std::vector<vk::ImageView>& swapchainImageViews )
   {
-    init(info);
+    m_swapchain = swapchain;
+    initFramebuffers( swapchainImageViews );
   }
 
-  void GuiBase::beginRender()
+  void GuiBase::beginRender( )
   {
-    ImGui_ImplVulkan_NewFrame();
-    ImGui_ImplSDL2_NewFrame(m_info.window);
-    ImGui::NewFrame();
+    ImGui_ImplVulkan_NewFrame( );
+    ImGui_ImplSDL2_NewFrame( g_window->get( ) );
+    ImGui::NewFrame( );
   }
 
-  void GuiBase::render()
+  void GuiBase::render( )
   {
-    ImGui::ShowDemoWindow();
+    ImGui::ShowDemoWindow( );
   }
 
-  void GuiBase::endRender()
+  void GuiBase::endRender( )
   {
-    ImGui::Render();
+    ImGui::Render( );
   }
 
-  void GuiBase::beginRenderPass(int index)
+  void GuiBase::beginRenderPass( uint32_t index )
   {
-    m_commandBuffers.begin(index);
-    m_renderPass.begin(index);
+    m_commandBuffers.begin( index );
+    m_renderPass.begin( m_framebuffers[index].get( ), m_commandBuffers.get( index ), { 0, m_swapchain->getExtent( ) }, { { std::array < float,4> { 0.5f, 0.5, 0.5f, 1.0f } } } );
   }
 
-  void GuiBase::endRenderPass(int index)
+  void GuiBase::endRenderPass( uint32_t index )
   {
-    ImGui_ImplVulkan_RenderDrawData(ImGui::GetDrawData(), m_commandBuffers.get()[index]);
+    ImGui_ImplVulkan_RenderDrawData( ImGui::GetDrawData( ), m_commandBuffers.get( )[index] );
 
-    m_renderPass.end(index);
-    m_commandBuffers.end(index);
+    m_renderPass.end( m_commandBuffers.get( index ) );
+    m_commandBuffers.end( index );
   }
 
-  void GuiBase::recreate(GuiRecreateInfo& info)
+  void GuiBase::destroy( )
   {
-    m_info.minImageCount = info.minImageCount;
-    m_info.imageCount = info.imageCount;
-    m_info.swapchainImageFormat = info.swapchainImageFormat;
-    m_info.swapchainImageExtent = info.swapchainImageExtent;
-    m_info.swapchainImageViews = info.swapchainImageViews;
+    m_commandBuffers.free( );
 
-    destroy();
-
-    // Re-initialize
-    init(m_info);
+    ImGui_ImplVulkan_Shutdown( );
+    ImGui_ImplSDL2_Shutdown( );
+    ImGui::DestroyContext( );
   }
 
-  void GuiBase::destroy()
+  void GuiBase::initCommandPool( )
   {
-    // Clean up
-    m_commandBuffers.free();
-    m_commandPool.destroy(); // TODO unncessary
-
-    for (Framebuffer& framebuffer : m_framebuffers)
-      framebuffer.destroy();
-
-    m_descriptorPool.destroy();
-
-    m_renderPass.destroy();
-
-    ImGui_ImplVulkan_Shutdown();
-    ImGui_ImplSDL2_Shutdown();
-    ImGui::DestroyContext();
-
-    m_created = false;
+    m_commandPool = vk::Initializer::createCommandPoolUnique( g_graphicsFamilyIndex, vk::CommandPoolCreateFlagBits::eResetCommandBuffer );
   }
 
-  void GuiBase::initCommandPool()
+  void GuiBase::initDescriptorPool( )
   {
-    m_commandPool.init(m_info.queueFamilyIndex, vk::CommandPoolCreateFlagBits::eResetCommandBuffer, { });
-  }
-
-  void GuiBase::initDescriptorPool()
-  {
-    m_descriptorPool.init({
-      .device = m_info.device,
-      .poolSizes = {
-          { vk::DescriptorType::eSampler, 1000 },
-          { vk::DescriptorType::eCombinedImageSampler, 1000 },
-          { vk::DescriptorType::eSampledImage, 1000 },
-          { vk::DescriptorType::eStorageImage, 1000 },
-          { vk::DescriptorType::eUniformTexelBuffer, 1000 },
-          { vk::DescriptorType::eStorageTexelBuffer, 1000 },
-          { vk::DescriptorType::eUniformBuffer, 1000 },
-          { vk::DescriptorType::eStorageBuffer, 1000 },
-          { vk::DescriptorType::eUniformBufferDynamic, 1000 },
-          { vk::DescriptorType::eStorageBufferDynamic, 1000 },
-          { vk::DescriptorType::eInputAttachment, 1000 }
-        },
-      .maxSets = m_info.imageCount
-      }
-    );
-  }
-
-  void GuiBase::initRenderPass()
-  {
-    vk::AttachmentDescription attachment;
-    attachment.format = m_info.swapchainImageFormat;
-    attachment.samples = vk::SampleCountFlagBits::e1;
-    attachment.loadOp = vk::AttachmentLoadOp::eLoad;
-    attachment.storeOp = vk::AttachmentStoreOp::eStore;
-    attachment.stencilLoadOp = vk::AttachmentLoadOp::eDontCare;
-    attachment.stencilStoreOp = vk::AttachmentStoreOp::eDontCare;
-    attachment.initialLayout = vk::ImageLayout::eColorAttachmentOptimal;
-    attachment.finalLayout = vk::ImageLayout::ePresentSrcKHR;
-
-    vk::AttachmentReference color_attachment;
-    color_attachment.attachment = 0;
-    color_attachment.layout = vk::ImageLayout::eColorAttachmentOptimal;
-
-    vk::SubpassDescription subpass;
-    subpass.pipelineBindPoint = vk::PipelineBindPoint::eGraphics;
-    subpass.colorAttachmentCount = 1;
-    subpass.pColorAttachments = &color_attachment;
-
-    vk::SubpassDependency dependency;
-    dependency.srcSubpass = VK_SUBPASS_EXTERNAL;
-    dependency.dstSubpass = 0;
-    dependency.srcStageMask = vk::PipelineStageFlagBits::eColorAttachmentOutput;
-    dependency.dstStageMask = vk::PipelineStageFlagBits::eColorAttachmentOutput;
-    dependency.srcAccessMask = vk::AccessFlagBits::eColorAttachmentWrite; // or 0
-    dependency.dstAccessMask = vk::AccessFlagBits::eColorAttachmentWrite;
-
-    vk::RenderPassCreateInfo info;
-    info.attachmentCount = 1;
-    info.pAttachments = &attachment;
-    info.subpassCount = 1;
-    info.pSubpasses = &subpass;
-    info.dependencyCount = 1;
-    info.pDependencies = &dependency;
-
-    RenderPassInfo renderPassInfo{ };
-    renderPassInfo.physicalDevice = m_info.physicalDevice;
-    renderPassInfo.device = m_info.device;
-    renderPassInfo.attachments = { attachment };
-    renderPassInfo.subpasses = { subpass };
-    renderPassInfo.dependencies = { dependency };
-
-    m_renderPass.init(renderPassInfo);
-  }
-
-  void GuiBase::initFonts()
-  {
-    CmdBuffer commandBuffer({ m_info.device, m_commandPool.get() });
-    commandBuffer.begin();
-      ImGui_ImplVulkan_CreateFontsTexture(commandBuffer.getFront());
-    commandBuffer.end();
-    commandBuffer.submitToQueue(m_info.queue);
-  }
-
-  void GuiBase::initCommandBuffers()
-  {
-    // Create command buffers for each image in the swapchain.
-    CmdBufferInfo commandBufferInfo{ };
-    commandBufferInfo.device = m_info.device;
-    commandBufferInfo.commandPool = m_commandPool.get();
-    commandBufferInfo.commandBufferCount = m_info.imageCount;
-    commandBufferInfo.level = vk::CommandBufferLevel::ePrimary;
-    commandBufferInfo.usageFlags = vk::CommandBufferUsageFlagBits::eRenderPassContinue;
-
-    m_commandBuffers.init(commandBufferInfo);
-  }
-
-  void GuiBase::initFramebuffers()
-  {
-    FramebufferInfo framebufferInfo{
-      .device = m_info.device,
-      .renderPass = m_renderPass.get(),
-      .extent = m_info.swapchainImageExtent
+    std::vector<vk::DescriptorPoolSize> poolSizes =
+    {
+      { vk::DescriptorType::eSampler, 1000 },
+      { vk::DescriptorType::eCombinedImageSampler, 1000 },
+      { vk::DescriptorType::eSampledImage, 1000 },
+      { vk::DescriptorType::eStorageImage, 1000 },
+      { vk::DescriptorType::eUniformTexelBuffer, 1000 },
+      { vk::DescriptorType::eStorageTexelBuffer, 1000 },
+      { vk::DescriptorType::eUniformBuffer, 1000 },
+      { vk::DescriptorType::eStorageBuffer, 1000 },
+      { vk::DescriptorType::eUniformBufferDynamic, 1000 },
+      { vk::DescriptorType::eStorageBufferDynamic, 1000 },
+      { vk::DescriptorType::eInputAttachment, 1000 }
     };
 
-    m_framebuffers.resize(m_info.imageCount);
-    for (size_t i = 0; i < m_framebuffers.size(); ++i)
+    m_descriptorPool = vk::Initializer::createDescriptorPoolUnique( poolSizes, static_cast<uint32_t>( m_swapchain->getImages( ).size( ) ) );
+  }
+
+  void GuiBase::initRenderPass( const Surface* const surface )
+  {
+    vk::AttachmentDescription attachment( { },                                      // flags
+                                          surface->getFormat( ),                    // format
+                                          vk::SampleCountFlagBits::e1,              // samples
+                                          vk::AttachmentLoadOp::eLoad,              // loadOp
+                                          vk::AttachmentStoreOp::eStore,            // storeOp
+                                          vk::AttachmentLoadOp::eDontCare,          // stencilLoadOp
+                                          vk::AttachmentStoreOp::eDontCare,         // stencilStoreOp
+                                          vk::ImageLayout::eColorAttachmentOptimal, // initialLayout
+                                          vk::ImageLayout::ePresentSrcKHR );        // finalLayout          
+
+    vk::AttachmentReference colorAttachment( 0,                                          // attachment
+                                             vk::ImageLayout::eColorAttachmentOptimal ); // layout
+
+    vk::SubpassDescription subpass( { },                              // flags
+                                    vk::PipelineBindPoint::eGraphics, // pipelineBindPoint
+                                    0,                                // inputAttachmentsCount
+                                    nullptr,                          // pInputAttachments
+                                    1,                                // colorAttachmentsCount
+                                    &colorAttachment,                 // pColorAttachments
+                                    nullptr,                          // pResolveAttachments
+                                    nullptr,                          // pDepthStencilAttachment
+                                    0,                                // preserveAttachemntCount
+                                    nullptr );                        // pPreserveAttachments
+
+    vk::SubpassDependency dependency( VK_SUBPASS_EXTERNAL,                                // srcSubpass
+                                      0,                                                  // dstSubpass
+                                      vk::PipelineStageFlagBits::eColorAttachmentOutput,  // srcStageMask
+                                      vk::PipelineStageFlagBits::eColorAttachmentOutput,  // dstStageMask
+                                      vk::AccessFlagBits::eColorAttachmentWrite,          // srcAccessMask
+                                      vk::AccessFlagBits::eColorAttachmentWrite,          // dstAccessMask
+                                      { } );                                              // dependencyFlags
+
+    vk::RenderPassCreateInfo info( { },          // flags
+                                   1,            // attachmentCount
+                                   &attachment,  // pAttachments
+                                   1,            // subpassCount
+                                   &subpass,     // pSubpasses
+                                   1,            // dependencyCount
+                                   &dependency); // pDependencies
+
+    m_renderPass.init( { attachment }, { subpass }, { dependency } );
+  }
+
+  void GuiBase::initFonts( )
+  {
+    CommandBuffer commandBuffer( m_commandPool.get( ) );
+    commandBuffer.begin( );
+    ImGui_ImplVulkan_CreateFontsTexture( commandBuffer.get( 0 ) );
+    commandBuffer.end( );
+    commandBuffer.submitToQueue( g_graphicsQueue );
+  }
+
+  void GuiBase::initCommandBuffers( )
+  {
+    // Create command buffers for each image in the swapchain.
+    m_commandBuffers.init( m_commandPool.get( ), static_cast<uint32_t>( m_swapchain->getImages( ).size( ) ), vk::CommandBufferUsageFlagBits::eRenderPassContinue );
+  }
+
+  void GuiBase::initFramebuffers( const std::vector<vk::ImageView>& swapchainImageViews )
+  {
+    m_framebuffers.resize( static_cast<uint32_t>( m_swapchain->getImages( ).size( ) ) );
+    for ( size_t i = 0; i < m_framebuffers.size( ); ++i )
     {
-      framebufferInfo.imageView = m_info.swapchainImageViews[i];
-      m_framebuffers[i].init(framebufferInfo);
+      m_framebuffers[i] = vk::Initializer::createFramebufferUnique( { swapchainImageViews[i] }, m_renderPass.get( ), m_swapchain->getExtent( ) );
     }
   }
 }

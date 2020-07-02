@@ -7,9 +7,8 @@
 #include "IndexBuffer.hpp"
 #include "UniformBuffer.hpp"
 #include "DescriptorSet.hpp"
-#include "Shader.hpp" // TODO: this is probably not needed here.
 
-namespace RX
+namespace rx
 {
   class Material
   {
@@ -93,9 +92,9 @@ namespace RX
 
 namespace std
 {
-  template<> struct hash<RX::Model>
+  template<> struct hash<rx::Model>
   {
-    size_t operator()(const std::shared_ptr<RX::Model> model) const { return hash<std::string>()(model->m_path); }
+    size_t operator()(const std::shared_ptr<rx::Model> model) const { return hash<std::string>()(model->m_path); }
   };
 }
 

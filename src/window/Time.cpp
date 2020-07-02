@@ -1,7 +1,7 @@
 #include "window/Time.hpp"
 #include "pch/stdafx.hpp"
 
-namespace RX
+namespace rx
 {
   float Time::m_time;
   float Time::m_deltaTime;

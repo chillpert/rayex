@@ -1,84 +1,54 @@
 #ifndef GUI_HPP
 #define GUI_HPP
 
-#include "DescriptorPool.hpp"
-#include "CommandPool.hpp"
 #include "CommandBuffer.hpp"
-#include "Framebuffer.hpp"
 #include "RenderPass.hpp"
+#include "Swapchain.hpp"
+#include "Surface.hpp"
 
 #include <imgui.h>
 #include <imgui_impl_vulkan.h>
 
-namespace RX
+namespace rx
 {
-  struct GuiInfo
-  {
-    SDL_Window* window;
-    vk::Instance instance;
-    vk::PhysicalDevice physicalDevice;
-    vk::Device device;
-    uint32_t queueFamilyIndex; // Note: is actually used for the command pools.
-    vk::Queue queue;  // TODO: In total there are 3 queues involved in the initialization process. This might need to be split up.
-    vk::PipelineCache pipelineCache = nullptr;
-    uint32_t minImageCount; // Note: is a pseudo value
-    uint32_t imageCount;
-    vk::Format swapchainImageFormat;
-    vk::Extent2D swapchainImageExtent;
-    std::vector<vk::ImageView> swapchainImageViews;
-  };
-
-  struct GuiRecreateInfo
-  {
-    uint32_t minImageCount;
-    uint32_t imageCount;
-    vk::Format swapchainImageFormat;
-    vk::Extent2D swapchainImageExtent;
-    std::vector<vk::ImageView> swapchainImageViews;
-  };
-
   class GuiBase
   {
   public:
-    GuiBase() = default;
-    GuiBase(GuiInfo& info);
-    GuiBase(GuiInfo&& info);
-    RX_API virtual ~GuiBase();
+    GuiBase( ) = default;
+    GuiBase( const Surface* const surface, const Swapchain* const swapchain, const std::vector<vk::ImageView>& swapchainImageViews, bool initialize = true );
+    RX_API virtual ~GuiBase( ) = default;
+    
+    inline const vk::CommandBuffer getCommandBuffer( uint32_t index ) const { return m_commandBuffers.get( index ); }
 
-    inline CmdBuffer& getCommandBuffer() { return m_commandBuffers; }
+    RX_API virtual void configure( );
+    RX_API virtual void render( );
 
-    RX_API virtual void configure();
-    RX_API virtual void render();
+    void init( const Surface* const surface, const Swapchain* const swapchain, const std::vector<vk::ImageView>& swapchainImageViews );
+    void recreate( const Swapchain* const swapchain, const std::vector<vk::ImageView>& swapchainImageViews );
 
-    void init(GuiInfo& info);
-    void init(GuiInfo&& info);
+    void beginRender( );
+    void endRender( );
+    void beginRenderPass( uint32_t index );
+    void endRenderPass( uint32_t index );
 
-    void beginRender();
-    void endRender();
-    void beginRenderPass(int index);
-    void endRenderPass(int index);
-
-    RX_API void destroy();
-    void recreate(GuiRecreateInfo& info);
+    RX_API void destroy( );
 
   private:
-    void initDescriptorPool();
-    void initRenderPass();
-    void initCommandPool();
-    void initFonts();
-    void initCommandBuffers();
-    void initFramebuffers();
+    void initDescriptorPool( );
+    void initRenderPass( const Surface* const surface );
+    void initCommandPool( );
+    void initFonts( );
+    void initCommandBuffers( );
+    void initFramebuffers( const std::vector<vk::ImageView>& swapchainImageViews );
 
   private:
-    GuiInfo m_info;
-
-    DescriptorPool m_descriptorPool;
-    CommandPool m_commandPool;
-    CmdBuffer m_commandBuffers;
+    vk::UniqueDescriptorPool m_descriptorPool;
+    vk::UniqueCommandPool m_commandPool;
+    CommandBuffer m_commandBuffers;
     RenderPass m_renderPass;
-    std::vector<Framebuffer> m_framebuffers;
+    std::vector<vk::UniqueFramebuffer> m_framebuffers;
 
-    bool m_created = false;
+    const Swapchain* m_swapchain;
   };
 }
 

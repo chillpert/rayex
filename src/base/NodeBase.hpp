@@ -3,7 +3,7 @@
 
 #include "Model.hpp"
 
-namespace RX
+namespace rx
 {
   class TransformNodeBase
   {

@@ -1,9 +1,15 @@
 #include "TopLevelAS.hpp"
-#include "Memory.hpp"
+#include "Helpers.hpp"
 #include "Components.hpp"
 
-namespace RX
+namespace rx
 {
+  TopLevelAS::TopLevelAS( std::vector<std::shared_ptr<GeometryNodeBase>> nodes, vk::BuildAccelerationStructureFlagsKHR flags, bool initialize )
+  {
+    if ( initialize )
+      init( nodes, flags );
+  }
+
   TopLevelAS::~TopLevelAS()
   {
     destroy();
@@ -22,15 +28,13 @@ namespace RX
     m_memory = nullptr;
   }
 
-  void TopLevelAS::init(TopLevelASInfo& info)
+  void TopLevelAS::init( std::vector<std::shared_ptr<GeometryNodeBase>> nodes, vk::BuildAccelerationStructureFlagsKHR flags )
   {
-    m_info = info;
-
     // Create top level acceleration structure.
     vk::AccelerationStructureCreateGeometryTypeInfoKHR typeInfo;
     typeInfo.pNext = nullptr;
     typeInfo.geometryType = vk::GeometryTypeKHR::eInstances;
-    typeInfo.maxPrimitiveCount = static_cast<uint32_t>(m_info.nodes.size());
+    typeInfo.maxPrimitiveCount = static_cast<uint32_t>(nodes.size());
     typeInfo.indexType = vk::IndexType::eNoneKHR;
     typeInfo.maxVertexCount = 0;
     typeInfo.vertexFormat = vk::Format::eUndefined;
@@ -40,7 +44,7 @@ namespace RX
     createInfo.pNext = nullptr;
     createInfo.compactedSize = 0; // TODO: Use compaction to improve performance.
     createInfo.type = vk::AccelerationStructureTypeKHR::eTopLevel;
-    createInfo.flags = info.flags;
+    createInfo.flags = flags;
     createInfo.maxGeometryCount = 1;
     createInfo.pGeometryInfos = &typeInfo;
     createInfo.deviceAddress = 0; // Only required if CaptureReplay feature is being used.
@@ -62,7 +66,7 @@ namespace RX
     vk::MemoryAllocateInfo memAllocInfo;
     memAllocInfo.pNext = nullptr;
     memAllocInfo.allocationSize = memReq2.memoryRequirements.size;
-    memAllocInfo.memoryTypeIndex = Memory::findType(g_physicalDevice, memReq2.memoryRequirements.memoryTypeBits, vk::MemoryPropertyFlagBits::eDeviceLocal);
+    memAllocInfo.memoryTypeIndex = vk::Helper::findType(g_physicalDevice, memReq2.memoryRequirements.memoryTypeBits, vk::MemoryPropertyFlagBits::eDeviceLocal);
 
     m_memory = g_device.allocateMemory(memAllocInfo);
     if (!m_memory)

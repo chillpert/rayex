@@ -1,7 +1,7 @@
 #include "Instance.hpp"
 #include "Components.hpp"
 
-namespace RX
+namespace rx
 {
   Instance::Instance(const std::vector<const char*>& layers, std::vector<const char*>& extensions, bool initialize)
   {

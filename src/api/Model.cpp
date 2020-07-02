@@ -3,7 +3,7 @@
 #define TINYOBJLOADER_IMPLEMENTATION
 #include <tiny_obj_loader.h>
 
-namespace RX
+namespace rx
 {
   Model::Model(const std::string& path) :
     m_path(path)

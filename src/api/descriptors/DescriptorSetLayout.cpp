@@ -1,60 +1,46 @@
 #include "DescriptorSet.hpp"
+#include "Components.hpp"
 
-namespace RX
+namespace rx
 {
-  DescriptorSetLayout::DescriptorSetLayout(DescriptorSetLayoutInfo& info)
+  DescriptorSetLayout::~DescriptorSetLayout( )
   {
-    init(info);
+    if ( m_layout )
+      destroy( );
   }
 
-  DescriptorSetLayout::DescriptorSetLayout(DescriptorSetLayoutInfo&& info)
+  void DescriptorSetLayout::addBinding( const vk::DescriptorSetLayoutBinding& binding )
   {
-    init(info);
+    if ( m_layout )
+      RX_ERROR( "Failed to add binding because the descriptor set layout was already initialized." );
+
+    m_bindings.push_back( binding );
   }
 
-  DescriptorSetLayout::~DescriptorSetLayout()
+  void DescriptorSetLayout::clearBindings( )
   {
-    if (m_layout)
-      destroy();
+    m_bindings.clear( );
   }
 
-  void DescriptorSetLayout::addBinding(const vk::DescriptorSetLayoutBinding& binding)
+  void DescriptorSetLayout::init( )
   {
-    if (m_layout)
-      RX_ERROR("Failed to add binding because the descriptor set layout was already initialized.");
-
-    m_bindings.push_back(binding);
+    vk::DescriptorSetLayoutCreateInfo createInfo( { },                                            // flags
+                                                  static_cast< uint32_t >( m_bindings.size( ) ) , // bindingCount
+                                                  m_bindings.data( ) );                           // pBindings
+ 
+    m_layout = g_device.createDescriptorSetLayout( createInfo );
+    if ( !m_layout )
+      RX_ERROR( "Failed to create descriptor set layout." );
   }
 
-  void DescriptorSetLayout::clearBindings()
+  void DescriptorSetLayout::destroy( )
   {
-    m_bindings.clear();
-  }
+    if ( m_layout )
+    {
+      g_device.destroyDescriptorSetLayout( m_layout );
+      m_layout = nullptr;
+    }
 
-  void DescriptorSetLayout::init(DescriptorSetLayoutInfo& info)
-  {
-    m_info = info;
-
-    vk::DescriptorSetLayoutCreateInfo createInfo;
-    createInfo.bindingCount = static_cast<uint32_t>(m_bindings.size());
-    createInfo.pBindings = m_bindings.data();
-    //createInfo.flags = m_info.flags;
-
-    m_layout = m_info.device.createDescriptorSetLayout(createInfo);
-    if (!m_layout)
-      RX_ERROR("Failed to create descriptor set layout.");
-  }
-
-  void DescriptorSetLayout::init(DescriptorSetLayoutInfo&& info)
-  {
-    init(info);
-  }
-
-  void DescriptorSetLayout::destroy()
-  {
-    m_info.device.destroyDescriptorSetLayout(m_layout);
-    m_layout = nullptr;
-
-    m_bindings.clear();
+    m_bindings.clear( );
   }
 }

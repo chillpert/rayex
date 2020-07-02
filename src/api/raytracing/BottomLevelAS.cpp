@@ -1,11 +1,9 @@
 #include "BottomLevelAS.hpp"
-#include "QueryPool.hpp"
-#include "CommandPool.hpp"
 #include "CommandBuffer.hpp"
-#include "Memory.hpp"
 #include "Components.hpp"
+#include "Helpers.hpp"
 
-namespace RX
+namespace rx
 {
   vk::AccelerationStructureCreateGeometryTypeInfoKHR getGeometryTypeInfo(const std::shared_ptr<Model> model)
   {
@@ -58,7 +56,7 @@ namespace RX
     m_memory = nullptr;
   }
 
-  void initBottomLevelAS_(BottomLevelASInfo& info, const std::vector<std::shared_ptr<Model>>& models, std::vector<BottomLevelAS>& blas_)
+  void initBottomLevelAS_( vk::BuildAccelerationStructureFlagsKHR flags, const std::vector<std::shared_ptr<Model>>& models, std::vector<BottomLevelAS>& blas_)
   {
     blas_.resize(models.size());
 
@@ -68,15 +66,13 @@ namespace RX
     createInfo.pNext = nullptr;
     createInfo.compactedSize = 0; // TODO: Use compaction to improve performance.
     createInfo.type = vk::AccelerationStructureTypeKHR::eBottomLevel;
-    createInfo.flags = info.flags;
+    createInfo.flags = flags;
     createInfo.maxGeometryCount = static_cast<uint32_t>(geometryInfos.size());
     createInfo.pGeometryInfos = geometryInfos.data();
     createInfo.deviceAddress = 0; // Only required if CaptureReplay feature is being used.
 
     for (auto& blas : blas_)
     {
-      blas.m_info = info;
-
       // Create the acceleration structure.
       blas.m_as = g_device.createAccelerationStructureKHR(createInfo, nullptr, *g_dispatchLoaderDynamic);
       if (!blas.m_as)
@@ -95,7 +91,7 @@ namespace RX
       vk::MemoryAllocateInfo memAllocInfo;
       memAllocInfo.pNext = nullptr;
       memAllocInfo.allocationSize = memReq2.memoryRequirements.size;
-      memAllocInfo.memoryTypeIndex = Memory::findType(g_physicalDevice, memReq2.memoryRequirements.memoryTypeBits, vk::MemoryPropertyFlagBits::eDeviceLocal);
+      memAllocInfo.memoryTypeIndex = vk::Helper::findType(g_physicalDevice, memReq2.memoryRequirements.memoryTypeBits, vk::MemoryPropertyFlagBits::eDeviceLocal);
 
       blas.m_memory = g_device.allocateMemory(memAllocInfo);
       if (!blas.m_memory)
@@ -123,7 +119,7 @@ namespace RX
     }
   }
 
-  void buildBottomLevelAS_(BottomLevelASInfo& info, const std::vector<std::shared_ptr<Model>>& models, std::vector<BottomLevelAS>& blas_)
+  void buildBottomLevelAS_( vk::BuildAccelerationStructureFlagsKHR flags, const std::vector<std::shared_ptr<Model>>& models, std::vector<BottomLevelAS>& blas_)
   {
     std::vector<vk::AccelerationStructureCreateGeometryTypeInfoKHR> geometryInfos = getGeometryTypeInfos(models);
 
@@ -138,30 +134,19 @@ namespace RX
       geometryInfos.data(),                           // pGeometryInfos
       0                                               // deviceAddress
     };
+    
+    /*
+    CommandBuffer CommandBuffer( g_graphicsCmdPool, info.queue->get() );
 
-    CmdBuffer cmdBuffer({
-      .device = g_device,
-      .commandPool = g_graphicsCmdPool,
-      .queue = info.queue->get()
-      }
-    );
-
-    cmdBuffer.begin();
+    CommandBuffer.begin();
     {
-      /*
-      cmdBuffer.getFront().buildAccelerationStructureKHR(
+      CommandBuffer.getFront().buildAccelerationStructureKHR(
         1,
         &buildInfo,
         
       );
-      */
     }
-    cmdBuffer.end();
-  }
-
-  void BottomLevelAS::init(BottomLevelASInfo& info, const std::shared_ptr<Model> model, std::vector<BottomLevelAS>& blasCopy)
-  {
-    // TODO
-    RX_ASSERT(false, "not implemented yet");
+    CommandBuffer.end();
+    */
   }
 }

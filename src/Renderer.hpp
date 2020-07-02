@@ -9,7 +9,7 @@
   Only include this file in your application.
 */
 
-namespace RX
+namespace rx
 {
   class Renderer
   {
@@ -18,9 +18,6 @@ namespace RX
     RX_API Renderer(std::shared_ptr<CameraBase> camera);
     RX_API Renderer(std::shared_ptr<WindowBase> window);
     RX_API Renderer(std::shared_ptr<WindowBase> window, std::shared_ptr<CameraBase> camera);
-    RX_API Renderer(std::shared_ptr<WindowBase> window, std::shared_ptr<GuiBase> gui);
-    RX_API Renderer(std::shared_ptr<WindowBase> window, std::shared_ptr<GuiBase> gui, std::shared_ptr<CameraBase> camera);
-    RX_API ~Renderer() = default;
 
     RX_API void init();
     RX_API void update();
@@ -34,6 +31,12 @@ namespace RX
 
     RX_API void pushNode(const std::shared_ptr<GeometryNodeBase> node);
     RX_API void setNodes(const std::vector<std::shared_ptr<GeometryNodeBase>>& nodes);
+
+
+    RX_API void setGui( std::shared_ptr<GuiBase> gui )
+    {
+      m_api.m_gui = gui;
+    }
 
   private:
     std::shared_ptr<WindowBase> m_window;

@@ -3,55 +3,70 @@
 
 #include "WindowBase.hpp"
 #include "Swapchain.hpp"
-#include "Shader.hpp"
 
-namespace RX
+namespace rx
 {
-  struct PipelineInfo
-  {
-    vk::Device device;
-    vk::RenderPass renderPass;
-    vk::Viewport viewport;
-    vk::Rect2D scissor;
-  };
-
-  struct RasterizationPipelineInfo : public PipelineInfo
-  {
-    vk::ShaderModule vertexShader;
-    vk::ShaderModule fragmentShader;
-    vk::DescriptorSetLayout descriptorSetLayout;
-    vk::PrimitiveTopology topology = vk::PrimitiveTopology::eTriangleList;
-  };
-
-  struct RaytracingPipelineInfo : public PipelineInfo
-  {
-    uint32_t maxRecursion = 4;
-    std::vector<vk::DescriptorSetLayout> layouts; // Note: Needs to include the layouts for raytracing shaders as well as uniform, index and vertex buffers.
-    Shader* rayGen;
-    Shader* miss;
-    Shader* closestHit;
-    vk::DispatchLoaderDynamic dispatchLoaderDynamic;
-  };
-
   class Pipeline
   {
   public:
-    ~Pipeline();
+    virtual ~Pipeline( ) = default;
 
-    inline vk::Pipeline get() { return m_pipeline; }
-    inline vk::PipelineLayout getLayout() { return m_layout; }
-    inline vk::Rect2D getScissor() const { return m_info.scissor; }
-    inline vk::Viewport getViewport() const { return m_info.viewport; }
+    inline const vk::Pipeline get( ) const { return m_pipeline.get( ); }
+    inline const vk::PipelineLayout getLayout( ) const { return m_layout.get( ); }
+    inline const vk::Rect2D getScissor( ) const { return m_scissor; }
+    inline const vk::Viewport getViewport( ) const { return m_viewport; }
 
-    void init(RasterizationPipelineInfo& info);
-    void init(RaytracingPipelineInfo& info);
-    void destroy();
+  protected:
+    vk::UniquePipeline m_pipeline;
+    vk::UniquePipelineLayout m_layout;
+    vk::Viewport m_viewport;
+    vk::Rect2D m_scissor;
+  };
 
-  private:
-    vk::Pipeline m_pipeline;
-    vk::PipelineLayout m_layout;
+  class RasterizationPipeline : public Pipeline
+  {
+  public:
+    RasterizationPipeline( ) = default;
+    RasterizationPipeline( vk::RenderPass renderPass,
+                           vk::Viewport viewport,
+                           vk::Rect2D scissor,
+                           vk::ShaderModule vertexShader,
+                           vk::ShaderModule fragmentShader,
+                           vk::DescriptorSetLayout descriptorSetLayout,
+                           vk::PrimitiveTopology topology = vk::PrimitiveTopology::eTriangleList,
+                           bool initialize = true );
 
-    PipelineInfo m_info;
+    void init( vk::RenderPass renderPass,
+               vk::Viewport viewport,
+               vk::Rect2D scissor,
+               vk::ShaderModule vertexShader,
+               vk::ShaderModule fragmentShader,
+               vk::DescriptorSetLayout descriptorSetLayout,
+               vk::PrimitiveTopology topology = vk::PrimitiveTopology::eTriangleList );
+  };
+
+  class RaytracingPipeline : public Pipeline
+  {
+  public:
+    RaytracingPipeline( ) = default;
+    RaytracingPipeline( vk::RenderPass renderPass,
+                        vk::Viewport viewport,
+                        vk::Rect2D scissor,
+                        const std::vector<vk::DescriptorSetLayout>& descriptorSetLayouts,
+                        vk::ShaderModule rayGen,
+                        vk::ShaderModule miss,
+                        vk::ShaderModule closestHit,
+                        uint32_t maxRecursion = 4,
+                        bool initialize = true );
+
+    void init( vk::RenderPass renderPass,
+               vk::Viewport viewport,
+               vk::Rect2D scissor,
+               const std::vector<vk::DescriptorSetLayout>& descriptorSetLayouts,
+               vk::ShaderModule rayGen,
+               vk::ShaderModule miss,
+               vk::ShaderModule closestHit,
+               uint32_t maxRecursion = 4 );
   };
 }
 

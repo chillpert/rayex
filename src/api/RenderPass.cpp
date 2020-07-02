@@ -1,71 +1,52 @@
 #include "RenderPass.hpp"
+#include "Components.hpp"
 
-namespace RX
+namespace rx
 {
-  RenderPass::RenderPass(RenderPassInfo& info)
+  RenderPass::RenderPass( const std::vector<vk::AttachmentDescription>& attachments, const std::vector<vk::SubpassDescription>& subpasses, const std::vector<vk::SubpassDependency>& dependencies, bool initialize )
   {
-    init(info);
+    if ( initialize )
+      init( attachments, subpasses, dependencies );
   }
 
-  RenderPass::RenderPass(RenderPassInfo&& info)
+  RenderPass::~RenderPass( )
   {
-    init(info);
+    destroy( );
   }
 
-  RenderPass::~RenderPass()
+  void RenderPass::init( const std::vector<vk::AttachmentDescription>& attachments, const std::vector<vk::SubpassDescription>& subpasses, const std::vector<vk::SubpassDependency>& dependencies )
   {
-    if (m_renderPass)
-      destroy();
+    vk::RenderPassCreateInfo createInfo( { },                                             // flags
+                                         static_cast< uint32_t >( attachments.size( ) ),  // attachmentCount
+                                         attachments.data( ),                             // pAttachments
+                                         static_cast< uint32_t >( subpasses.size( ) ),    // subpassCount
+                                         subpasses.data( ),                               // pSubpasses
+                                         static_cast< uint32_t >( dependencies.size( ) ), // dependencyCount
+                                         dependencies.data( ) );                          // pDependencies
+    
+    m_renderPass = g_device.createRenderPassUnique( createInfo );
+    RX_ASSERT( m_renderPass, "Failed to create render pass." );
   }
 
-  void RenderPass::init(RenderPassInfo& info)
+  void RenderPass::destroy( )
   {
-    m_info = info;
-
-    vk::RenderPassCreateInfo createInfo;
-    createInfo.attachmentCount = static_cast<uint32_t>(m_info.attachments.size());
-    createInfo.pAttachments = m_info.attachments.data();
-    createInfo.subpassCount = static_cast<uint32_t>(m_info.subpasses.size());
-    createInfo.pSubpasses = m_info.subpasses.data();
-    createInfo.dependencyCount = static_cast<uint32_t>(m_info.dependencies.size());
-    createInfo.pDependencies = m_info.dependencies.data();
-
-    m_renderPass = m_info.device.createRenderPass(createInfo);
+    //if ( m_renderPass )
+    //  g_device.destroyRenderPass( m_renderPass );
   }
 
-  void RenderPass::init(RenderPassInfo&& info)
+  void RenderPass::begin( vk::Framebuffer framebuffer, vk::CommandBuffer CommandBuffer, vk::Rect2D renderArea, const std::vector<vk::ClearValue>& clearValues ) const
   {
-    init(info);
+    vk::RenderPassBeginInfo beginInfo( m_renderPass.get( ),                             // renderPass
+                                       framebuffer,                                     // framebuffer
+                                       renderArea,                                      // renderArea
+                                       static_cast< uint32_t >( clearValues.size( ) ),  // clearValueCount
+                                       clearValues.data( ) );                           // pClearValues
+
+    CommandBuffer.beginRenderPass( beginInfo, vk::SubpassContents::eInline ); // CMD
   }
 
-  void RenderPass::destroy()
+  void RenderPass::end( vk::CommandBuffer CommandBuffer ) const
   {
-    m_info.device.destroyRenderPass(m_renderPass);
-    m_renderPass = nullptr;
-  }
-
-  void RenderPass::setBeginInfo(RenderPassBeginInfo& beginInfo)
-  {
-    m_beginInfo = beginInfo;
-  }
-
-  void RenderPass::begin(size_t index)
-  {
-    vk::RenderPassBeginInfo renderPassInfo;
-    renderPassInfo.renderPass = m_renderPass;
-    renderPassInfo.framebuffer = m_beginInfo.framebuffers[index];
-    renderPassInfo.renderArea = m_beginInfo.renderArea;
-    renderPassInfo.clearValueCount = static_cast<uint32_t>(m_beginInfo.clearValues.size());
-
-    m_beginInfo.clearValues[0].color.float32;
-
-    renderPassInfo.pClearValues = m_beginInfo.clearValues.data();
-
-    m_beginInfo.commandBuffers[index].beginRenderPass(renderPassInfo, vk::SubpassContents::eInline); // CMD
-  }
-
-  void RenderPass::end(size_t index)
-  {
-    m_beginInfo.commandBuffers[index].endRenderPass(); // CMD
+    CommandBuffer.endRenderPass( ); // CMD
   }
 }

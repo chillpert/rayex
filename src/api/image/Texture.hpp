@@ -2,52 +2,36 @@
 #define TEXTURE_HPP
 
 #include "Image.hpp"
-#include "ImageView.hpp"
-#include "Sampler.hpp"
 
-namespace RX
+namespace rx
 {
-  struct TextureInfo
-  {
-    vk::PhysicalDevice physicalDevice;
-    vk::Device device;
-    vk::CommandPool commandPool;
-    vk::Queue queue;
-    std::string path;
-    std::vector<uint32_t> queueIndices;
-  };
-
   class Texture
   {
   public:
-    RX_API Texture() = default;
-    RX_API Texture(TextureInfo& info);
-    RX_API Texture(TextureInfo&& info);
-    RX_API ~Texture();
+    Texture( ) = default;
+    Texture( const std::string& path, bool initialize = true );
 
-    inline vk::Image getImage() { return m_image.get(); }
-    inline vk::ImageView getImageView() { return m_imageView.get(); }
-    inline vk::Sampler getSampler() { return m_sampler.get(); }
-    inline const std::string& getPath() const { return m_info.path; }
+    inline const vk::Image getImage( ) const { return m_image.get( ); }
+    inline const vk::ImageView getImageView( ) const { return m_imageView.get( ); }
+    inline const vk::Sampler getSampler( ) const { return m_sampler.get( ); }
+    inline const std::string& getPath( ) const { return m_path; }
 
-    void init(TextureInfo& info);
-    void init(TextureInfo&& info);
+    void init( const std::string& path );
 
-    void destroy();
-  
   private:
     Image m_image;
-    ImageView m_imageView;
-    Sampler m_sampler;
-    TextureInfo m_info;
+    std::string m_path;
+
+    vk::UniqueImageView m_imageView;
+    vk::UniqueSampler m_sampler;
   };
 }
 
 namespace std
 {
-  template<> struct hash<RX::Texture>
+  template<> struct hash<rx::Texture>
   {
-    size_t operator()(const std::shared_ptr<RX::Texture> texture) const { return hash<std::string>()(texture->getPath()); }
+    size_t operator()( const std::shared_ptr<rx::Texture> texture ) const { return hash<std::string>( )( texture->getPath( ) ); }
   };
 }
 

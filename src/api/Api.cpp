@@ -1,356 +1,325 @@
 #include "Api.hpp"
 #include "Components.hpp"
 #include "Initializers.hpp"
+#include "Helpers.hpp"
+#include "Destructors.hpp"
 
-namespace RX
+namespace rx
 {
   const size_t maxNodes = 4096;
 
   // Defines the maximum amount of frames that will be processed concurrently.
   const size_t maxFramesInFlight = 2;
 
-  Api::Api(std::shared_ptr<WindowBase> window, std::shared_ptr<CameraBase> camera) :
-    m_window(window),
-    m_camera(camera),
-    m_gui(nullptr) { }
+  Api::Api( std::shared_ptr<WindowBase> window, std::shared_ptr<CameraBase> camera ) :
+    m_window( window ),
+    m_camera( camera ),
+    m_gui( nullptr ) { }
 
-  Api::Api(std::shared_ptr<WindowBase> window, std::shared_ptr<GuiBase> gui, std::shared_ptr<CameraBase> camera) :
-    m_window(window),
-    m_camera(camera),
-    m_gui(gui) { }
+  Api::Api( std::shared_ptr<WindowBase> window, std::shared_ptr<GuiBase> gui, std::shared_ptr<CameraBase> camera ) :
+    m_window( window ),
+    m_camera( camera ),
+    m_gui( gui ) { }
 
-  Api::~Api()
+  Api::~Api( )
   {
-    clean();
+    clean( );
 
     // Gui needs to be destroyed manually, as RAII destruction will not be possible.
-    if (m_gui != nullptr)
-      m_gui->destroy();
+    if ( m_gui != nullptr )
+      m_gui->destroy( );
   }
 
-  void Api::init()
+  void Api::init( )
   {
     g_window = m_window;
 
-    m_nodes.reserve(maxNodes);
-    m_textures.reserve(maxNodes);
-
-    initInstance();
-    initDebugMessenger();
-    initSurface();
-    initPhysicalDevice();
-    initQueues();
-    initDevice();
-    initRenderPass();
-    initSwapchain();
-    initSwapchainImageViews();
-    initPipeline();
-    initgraphicsCmdPool();
-    inittransferCmdPool();
-    initDepthBuffering();
-    initSwapchainFramebuffers();
-    initDescriptorPool();
-    initRayTracing();
+    m_nodes.reserve( maxNodes );
+    m_textures.reserve( maxNodes );
+    
+    initInstance( );
+    initDebugMessenger( );
+    initSurface( );
+    initPhysicalDevice( );
+    initQueues( );
+    initDevice( );
+    initRenderPass( );
+    initSwapchain( );
+    initSwapchainImageViews( );
+    initPipeline( );
+    initGraphicsCommandPool( );
+    initTransferCommandPool( );
+    initDepthBuffering( );
+    initSwapchainFramebuffers( );
+    initDescriptorPool( );
+    initRayTracing( );
     //initModels();
-    initSwapchainCmdBuffers();
-    initGui();
-    recordSwapchainCommandBuffers();
+    initSwapchainCommandBuffers( );
+    initGui( );
+    recordSwapchainCommandBuffers( );
 
     // Synchronization
-    m_imageAvailableSemaphores.resize(maxFramesInFlight);
-    m_finishedRenderSemaphores.resize(maxFramesInFlight);
-    m_inFlightFences.resize(maxFramesInFlight);
-    m_imagesInFlight.resize(m_swapchain.getImages().size(), nullptr);
+    m_imageAvailableSemaphores.resize( maxFramesInFlight );
+    m_finishedRenderSemaphores.resize( maxFramesInFlight );
+    m_inFlightFences.resize( maxFramesInFlight );
+    m_imagesInFlight.resize( m_swapchain.getImages( ).size( ), nullptr );
 
-    for (size_t i = 0; i < maxFramesInFlight; ++i)
+    for ( size_t i = 0; i < maxFramesInFlight; ++i )
     {
-      m_imageAvailableSemaphores[i].init({ g_device });
-      m_finishedRenderSemaphores[i].init({ g_device });
-      m_inFlightFences[i].init({ g_device });
+      m_imageAvailableSemaphores[i] = vk::Initializer::createSemaphoreUnique( );
+      m_finishedRenderSemaphores[i] = vk::Initializer::createSemaphoreUnique( );
+      m_inFlightFences[i] = vk::Initializer::createFenceUnique( );
     }
 
-    RX_LOG("Finished API initialization.");
+    RX_LOG( "Finished API initialization." );
   }
 
-  bool Api::update()
+  bool Api::update( )
   {
     return true;
   }
 
-  bool Api::render()
+  bool Api::render( )
   {
-    if (m_gui != nullptr)
+    if ( m_gui != nullptr )
     {
-      m_gui->beginRender();
-      m_gui->render();
-      m_gui->endRender();
+      m_gui->beginRender( );
+      m_gui->render( );
+      m_gui->endRender( );
     }
 
     static size_t currentFrame = 0;
 
     // Wait for the current frame's fences.
-    g_device.waitForFences(1, &m_inFlightFences[currentFrame].get(), VK_TRUE, UINT64_MAX);
+    g_device.waitForFences( 1, &m_inFlightFences[currentFrame].get( ), VK_TRUE, UINT64_MAX );
 
     // If the window is minimized then simply do not render anything anymore.
-    if (m_window->minimized())
+    if ( m_window->minimized( ) )
       return true;
 
     // If the window size has changed the swapchain has to be recreated.
-    if (m_window->changed() || m_recreateSwapchain)
+    if ( m_window->changed( ) || m_recreateSwapchain )
     {
       m_recreateSwapchain = false;
-      recreateSwapchain();
+      recreateSwapchain( );
       return true;
     }
 
     uint32_t imageIndex;
-    m_swapchain.acquireNextImage(m_imageAvailableSemaphores[currentFrame].get(), nullptr, &imageIndex);
+    m_swapchain.acquireNextImage( m_imageAvailableSemaphores[currentFrame].get( ), nullptr, &imageIndex );
 
     // TODO: Temporary
-    for (std::shared_ptr<GeometryNodeBase> node : m_nodes)
+    for ( std::shared_ptr<GeometryNodeBase> node : m_nodes )
     {
-      if (node->m_modelPath.empty())
+      if ( node->m_modelPath.empty( ) )
         continue;
 
       UniformBufferObject ubo
       {
         node->m_worldTransform,
-        m_camera->getViewMatrix(),
-        m_camera->getProjectionMatrix(),
-        m_camera->getPosition()
+        m_camera->getViewMatrix( ),
+        m_camera->getProjectionMatrix( ),
+        m_camera->getPosition( )
       };
-      
-      node->m_uniformBuffers.upload(imageIndex, ubo);
+
+      node->m_uniformBuffers.upload( imageIndex, ubo );
     }
 
     // Check if a previous frame is using the current image.
-    if (static_cast<void*>(m_imagesInFlight[imageIndex]) != nullptr)
-      g_device.waitForFences(1, &m_imagesInFlight[currentFrame], VK_TRUE, UINT64_MAX);
+    if ( static_cast< void* >( m_imagesInFlight[imageIndex] ) != nullptr )
+      g_device.waitForFences( 1, &m_imagesInFlight[currentFrame], VK_TRUE, UINT64_MAX );
 
     // This will mark the current image to be in use by this frame.
-    m_imagesInFlight[imageIndex] = m_inFlightFences[currentFrame].get();
+    m_imagesInFlight[imageIndex] = m_inFlightFences[currentFrame].get( );
 
-    std::vector<vk::CommandBuffer> commandBuffers = { m_swapchainCmdBuffers.get()[imageIndex] };
-    if (m_gui != nullptr)
-      commandBuffers.push_back(m_gui->getCommandBuffer().get()[imageIndex]);
+    std::vector<vk::CommandBuffer> commandBuffers = { m_swapchainCommandBuffers.get( )[imageIndex] };
+    if ( m_gui != nullptr )
+      commandBuffers.push_back( m_gui->getCommandBuffer( imageIndex ) );
 
     vk::SubmitInfo submitInfo{
       1,                                                                                                  // waitSemaphoreCount
-      &m_imageAvailableSemaphores[currentFrame].get(),                                                    // pWaitSemaphores
-      std::array<vk::PipelineStageFlags, 1>{ vk::PipelineStageFlagBits::eColorAttachmentOutput }.data(),  // pWaitDstStageMask
-      static_cast<uint32_t>(commandBuffers.size()),                                                       // commandBufferCount
-      commandBuffers.data(),                                                                              // pCommandBuffers
+      &m_imageAvailableSemaphores[currentFrame].get( ),                                                    // pWaitSemaphores
+      std::array<vk::PipelineStageFlags, 1>{ vk::PipelineStageFlagBits::eColorAttachmentOutput }.data( ),  // pWaitDstStageMask
+      static_cast< uint32_t >( commandBuffers.size( ) ),                                                       // commandBufferCount
+      commandBuffers.data( ),                                                                              // pCommandBuffers
       1,                                                                                                  // signalSemaphoreCount
-      &m_finishedRenderSemaphores[currentFrame].get()                                                     // pSignalSemaphores
+      &m_finishedRenderSemaphores[currentFrame].get( )                                                     // pSignalSemaphores
     };
 
     // Reset the signaled state of the current frame's fence to the unsignaled one.
-    g_device.resetFences(1, &m_inFlightFences[currentFrame].get());
+    g_device.resetFences( 1, &m_inFlightFences[currentFrame].get( ) );
 
-    if (m_gui != nullptr)
+    if ( m_gui != nullptr )
     {
-      m_gui->beginRenderPass(imageIndex);
-      m_gui->endRenderPass(imageIndex);
+      m_gui->beginRenderPass( imageIndex );
+      m_gui->endRenderPass( imageIndex );
     }
 
     // Submits / executes the current image's / framebuffer's command buffer.
-    m_queueManager.submit(submitInfo, m_inFlightFences[currentFrame].get());
+    g_graphicsQueue.submit( submitInfo, m_inFlightFences[currentFrame].get( ) );
 
     vk::PresentInfoKHR presentInfo{
       1,                                                // waitSemaphoreCount
-      &m_finishedRenderSemaphores[currentFrame].get(),  // pWaitSemaphores
+      &m_finishedRenderSemaphores[currentFrame].get( ),  // pWaitSemaphores
       1,                                                // swapchainCount
-      &m_swapchain.get(),                               // pSwapchains
+      &g_swapchain,                                     // pSwapchains
       &imageIndex,                                      // pImageIndices
       nullptr,                                          // pResults
     };
 
     // Tell the presentation engine that the current image is ready.
-    m_queueManager.present(presentInfo);
+    g_graphicsQueue.presentKHR( presentInfo );
 
-    currentFrame = (currentFrame + 1) % maxFramesInFlight;
+    currentFrame = ( currentFrame + 1 ) % maxFramesInFlight;
 
     return true;
   }
-  
-  void Api::pushNode(const std::shared_ptr<GeometryNodeBase> node, bool record)
+
+  void Api::pushNode( const std::shared_ptr<GeometryNodeBase> node, bool record )
   {
     bool isNew = false;
 
-    auto it = m_models.find(node->m_modelPath);
-    if (it == m_models.end())
+    auto it = m_models.find( node->m_modelPath );
+    if ( it == m_models.end( ) )
     {
-      m_models.insert({ node->m_modelPath, std::make_shared<Model>(node->m_modelPath) });
+      m_models.insert( { node->m_modelPath, std::make_shared<Model>( node->m_modelPath ) } );
       isNew = true;
     }
 
-    m_nodes.push_back(node);
+    m_nodes.push_back( node );
 
     // Handle the node's texture.
-    auto texturePaths = node->m_material.getTextures();
+    auto texturePaths = node->m_material.getTextures( );
 
-    TextureInfo textureInfo{
-      .physicalDevice = g_physicalDevice,
-      .device = g_device,
-      .commandPool = m_graphicsCmdPool.get(),
-      .queue = m_queueManager.getQueue(GRAPHICS)->get()
-    };
-
-    for (const auto& texturePath : texturePaths)
+    for ( const auto& texturePath : texturePaths )
     {
-      auto it = m_textures.find(texturePath);
+      auto it = m_textures.find( texturePath );
       // Texture does not exist already. It will be created.
-      if (it == m_textures.end())
+      if ( it == m_textures.end( ) )
       {
-        textureInfo.path = texturePath;
-        m_textures.insert({ texturePath, std::make_shared<Texture>(textureInfo) });
+        m_textures.insert( { texturePath, std::make_shared<Texture>( texturePath ) } );
       }
     }
 
-    if (record)
+    if ( record )
     {
-      initModel(node);
-      m_swapchainCmdBuffers.reset();
-      recordSwapchainCommandBuffers();
+      initModel( node );
+      m_swapchainCommandBuffers.reset( );
+      recordSwapchainCommandBuffers( );
     }
 
-    if (record && isNew)
+    if ( record && isNew )
     {
 
     }
   }
 
-  void Api::setNodes(const std::vector<std::shared_ptr<GeometryNodeBase>>& nodes)
+  void Api::setNodes( const std::vector<std::shared_ptr<GeometryNodeBase>>& nodes )
   {
     //m_nodes.erase(m_nodes.begin(), m_nodes.end());
-    m_nodes.clear();
-    m_nodes.reserve(maxNodes);
+    m_nodes.clear( );
+    m_nodes.reserve( maxNodes );
 
-    for (const auto& node : nodes)
-      pushNode(node, false);
+    for ( const auto& node : nodes )
+      pushNode( node, false );
 
-    initModels(true);
-    m_swapchainCmdBuffers.reset();
-    recordSwapchainCommandBuffers();
+    initModels( true );
+    m_swapchainCommandBuffers.reset( );
+    recordSwapchainCommandBuffers( );
   }
 
-  void Api::clean()
+  void Api::clean( )
   {
-    g_device.waitIdle();
+    g_device.waitIdle( );
   }
 
-  void Api::recreateSwapchain()
+  void Api::recreateSwapchain( )
   {
-    RX_LOG("Recreating swapchain.");
+    RX_LOG( "Recreating swapchain." );
 
-    g_device.waitIdle();
+    g_device.waitIdle( );
 
     // Clean up existing swapchain and dependencies.
     {
-      m_raytraceBuilder.destroy();
-      m_depthImageView.destroy();
-      //m_depthImage.destroy();
-      destroy(m_swapchainFramebuffers);
-      m_swapchainCmdBuffers.free();
-      destroy(m_swapchainImageViews);
-      m_swapchain.destroy();
+      m_raytraceBuilder.destroy( );
+      //vk::Destructor::destroyImageView( m_depthImageView );
+      //m_depthImage.destroy( );
+      // vk::Destructor::destroyFramebuffers( m_swapchainFramebuffers );
+      m_swapchainCommandBuffers.free( );
+      //vk::Destructor::destroyImageViews( m_swapchainImageViews );
+      m_swapchain.destroy( );
     }
 
     // Recreating the swapchain.
     {
-      initSwapchain();
-      initSwapchainImageViews();
-      initDepthBuffering();
-      initSwapchainFramebuffers();
-      initModels(false);
-      initSwapchainCmdBuffers();
-      recordSwapchainCommandBuffers();
+      initSwapchain( );
+      initSwapchainImageViews( );
+      initDepthBuffering( );
+      initSwapchainFramebuffers( );
+      initModels( false );
+      initSwapchainCommandBuffers( );
+      recordSwapchainCommandBuffers( );
 
       // TODO: Clean up (will be possible as soon as swapchain is a global
-      if (m_gui != nullptr)
+      if ( m_gui != nullptr )
       {
-        GuiRecreateInfo guiRecreateInfo{ };
-        guiRecreateInfo.minImageCount = m_surface.getCapabilities().minImageCount + 1;
-        guiRecreateInfo.imageCount = static_cast<uint32_t>(m_swapchain.getImages().size());
-        guiRecreateInfo.swapchainImageFormat = m_surface.getFormat();
-        guiRecreateInfo.swapchainImageExtent = m_swapchain.getExtent();
+        //m_gui->destroy( );
+        //m_gui->init( &m_surface, &m_swapchain, vk::Helper::unpack( m_swapchainImageViews ) );
 
-        std::vector<vk::ImageView> temp(m_swapchainImageViews.size());
-
-        for (size_t i = 0; i < m_swapchainImageViews.size(); ++i)
-          temp[i] = m_swapchainImageViews[i].get();
-
-        guiRecreateInfo.swapchainImageViews = temp;
-        m_gui->recreate(guiRecreateInfo);
+        m_gui->recreate( &m_swapchain, vk::Helper::unpack( m_swapchainImageViews ) );
       }
 
       // Update the camera screen size to avoid image stretching.
-      auto screenSize = m_swapchain.getExtent();
-      int screenWidth = static_cast<int>(screenSize.width);
-      int screenHeight = static_cast<int>(screenSize.height);
+      auto screenSize = m_swapchain.getExtent( );
+      int screenWidth = static_cast< int >( screenSize.width );
+      int screenHeight = static_cast< int >( screenSize.height );
 
-      m_camera->setScreenSize(glm::ivec2{ screenWidth, screenHeight });
+      m_camera->setScreenSize( glm::ivec2{ screenWidth, screenHeight } );
     }
-    RX_LOG("Finished swapchain recreation.");
+    RX_LOG( "Finished swapchain recreation." );
   }
 
-  void Api::initRayTracing()
+  void Api::initRayTracing( )
   {
-    RaytraceBuilderInfo info{
-      .surface = &m_surface,
-      .queue = m_queueManager.getQueue(GRAPHICS),
-      .commandPool = m_graphicsCmdPool.get()
-    };
-
-    m_raytraceBuilder.init(info);
+    m_raytraceBuilder.init( );
   }
 
-  void Api::initInstance()
+  void Api::initInstance( )
   {
     std::vector<const char*> layers = { "VK_LAYER_KHRONOS_validation" };
-#ifdef RX_DEBUG
+  #ifdef RX_DEBUG
     std::vector<const char*> extensions = { "VK_KHR_get_physical_device_properties2", "VK_EXT_debug_utils" };
-#elif
+  #elif
     std::vector<const char*> extensions = { "VK_KHR_get_physical_device_properties2" };
-#endif
-    m_instance.init(layers, extensions);
+  #endif
+    m_instance.init( layers, extensions );
   }
 
-  void Api::initDebugMessenger()
+  void Api::initDebugMessenger( )
   {
-    m_debugMessenger.init(
-      VK_DEBUG_UTILS_MESSAGE_SEVERITY_VERBOSE_BIT_EXT | VK_DEBUG_UTILS_MESSAGE_SEVERITY_WARNING_BIT_EXT | VK_DEBUG_UTILS_MESSAGE_SEVERITY_ERROR_BIT_EXT, 
-      VK_DEBUG_UTILS_MESSAGE_TYPE_GENERAL_BIT_EXT | VK_DEBUG_UTILS_MESSAGE_TYPE_PERFORMANCE_BIT_EXT | VK_DEBUG_UTILS_MESSAGE_TYPE_VALIDATION_BIT_EXT
-    );
+    m_debugMessenger.init( VK_DEBUG_UTILS_MESSAGE_SEVERITY_VERBOSE_BIT_EXT | VK_DEBUG_UTILS_MESSAGE_SEVERITY_WARNING_BIT_EXT | VK_DEBUG_UTILS_MESSAGE_SEVERITY_ERROR_BIT_EXT,
+                           VK_DEBUG_UTILS_MESSAGE_TYPE_PERFORMANCE_BIT_EXT | VK_DEBUG_UTILS_MESSAGE_TYPE_VALIDATION_BIT_EXT );
   }
 
-  void Api::initSurface()
+  void Api::initSurface( )
   {
-    m_surface.init();
+    m_surface.init( );
   }
 
-  void Api::initPhysicalDevice()
+  void Api::initPhysicalDevice( )
   {
-    m_physicalDevice.init();
+    m_physicalDevice.init( );
 
     // Reassess the support of the preferred surface settings.
-    m_surface.checkSettingSupport();
+    m_surface.checkSettingSupport( );
   }
 
-  void Api::initQueues()
+  void Api::initQueues( )
   {
-    QueuesInfo queuesInfo{
-      .physicalDevice = g_physicalDevice,
-      .surface = g_surface
-    };
-
-    m_queueManager.init(queuesInfo);
-#ifdef RX_DEBUG
-    m_queueManager.print();
-#endif
+    m_queues.init( );
   }
 
-  void Api::initDevice()
+  void Api::initDevice( )
   {
     std::vector<const char*> deviceExtensions =
     {
@@ -363,122 +332,87 @@ namespace RX
       VK_KHR_RAY_TRACING_EXTENSION_NAME
     };
 
-    m_device.init(m_queueManager.getQueueFamilies(), deviceExtensions);
+    m_device.init( deviceExtensions );
 
     // Retrieve all queue handles.
-    m_queueManager.retrieveAllHandles(g_device);
+    m_queues.retrieveHandles( );
   }
 
-  void Api::initRenderPass()
+  void Api::initRenderPass( )
   {
-    vk::AttachmentDescription colorAttachmentDescription{
-      { },                                                                                            // flags
-      m_surface.getFormat(),                                                                          // format
-      vk::SampleCountFlagBits::e1,                                                                    // samples
-      vk::AttachmentLoadOp::eClear,                                                                   // loadOp
-      vk::AttachmentStoreOp::eStore,                                                                  // storeOp
-      vk::AttachmentLoadOp::eDontCare,                                                                // stencilLoadOp
-      vk::AttachmentStoreOp::eDontCare,                                                               // stencilStoreOp
-      vk::ImageLayout::eUndefined,                                                                    // initialLayout
-      m_gui != nullptr ? vk::ImageLayout::eColorAttachmentOptimal : vk::ImageLayout::ePresentSrcKHR   // finalLayout
-    };
+    vk::AttachmentDescription colorAttachmentDescription( { },                                                                                              // flags
+                                                          m_surface.getFormat( ),                                                                           // format
+                                                          vk::SampleCountFlagBits::e1,                                                                      // samples
+                                                          vk::AttachmentLoadOp::eClear,                                                                     // loadOp
+                                                          vk::AttachmentStoreOp::eStore,                                                                    // storeOp
+                                                          vk::AttachmentLoadOp::eDontCare,                                                                  // stencilLoadOp
+                                                          vk::AttachmentStoreOp::eDontCare,                                                                 // stencilStoreOp
+                                                          vk::ImageLayout::eUndefined,                                                                      // initialLayout
+                                                          m_gui != nullptr ? vk::ImageLayout::eColorAttachmentOptimal : vk::ImageLayout::ePresentSrcKHR );  // finalLayout    
 
-    vk::AttachmentReference colorAttachmentReference{
-      0,                                        // attachment
-      vk::ImageLayout::eColorAttachmentOptimal  // layout
-    };
+    vk::AttachmentReference colorAttachmentReference( 0,                                          // attachment
+                                                      vk::ImageLayout::eColorAttachmentOptimal ); // layout
 
-    vk::AttachmentDescription depthAttachmentDescription{
-      { },                                             // flags
-      getSupportedDepthFormat(g_physicalDevice), // format
-      vk::SampleCountFlagBits::e1,                     // samples
-      vk::AttachmentLoadOp::eClear,                    // loadOp
-      vk::AttachmentStoreOp::eDontCare,                // storeOp
-      vk::AttachmentLoadOp::eDontCare,                 // stencilLoadOp
-      vk::AttachmentStoreOp::eDontCare,                // stencilStoreOp
-      vk::ImageLayout::eUndefined,                     // initialLayout
-      vk::ImageLayout::eDepthStencilAttachmentOptimal, // finalLayout
-    };
+    vk::AttachmentDescription depthAttachmentDescription( { },                                                // flags
+                                                          getSupportedDepthFormat( g_physicalDevice ),        // format
+                                                          vk::SampleCountFlagBits::e1,                        // samples
+                                                          vk::AttachmentLoadOp::eClear,                       // loadOp
+                                                          vk::AttachmentStoreOp::eDontCare,                   // storeOp
+                                                          vk::AttachmentLoadOp::eDontCare,                    // stencilLoadOp
+                                                          vk::AttachmentStoreOp::eDontCare,                   // stencilStoreOp
+                                                          vk::ImageLayout::eUndefined,                        // initialLayout
+                                                          vk::ImageLayout::eDepthStencilAttachmentOptimal );  // finalLayout    
 
-    vk::AttachmentReference depthAttachmentRef{
-      1,                                              // attachment
-      vk::ImageLayout::eDepthStencilAttachmentOptimal // layout
-    };
+    vk::AttachmentReference depthAttachmentRef( 1,                                                 // attachment
+                                                vk::ImageLayout::eDepthStencilAttachmentOptimal ); // layout
 
-    vk::SubpassDescription subpassDescription{
-      { },                              // flags
-      vk::PipelineBindPoint::eGraphics, // pipelineBindPoint
-      0,                                // inputAttachmentCount
-      nullptr,                          // pInputAttachments
-      1,                                // colorAttachmentCount
-      &colorAttachmentReference,        // pColorAttachments
-      nullptr,                          // pResolveAttachments
-      &depthAttachmentRef,              // pDepthStencilAttachment
-      0,                                // preserveAttachmentCount
-      nullptr                           // pPreserveAttachments
-    };
+    vk::SubpassDescription subpassDescription( { },                              // flags
+                                               vk::PipelineBindPoint::eGraphics, // pipelineBindPoint
+                                               0,                                // inputAttachmentsCount
+                                               nullptr,                          // pInputAttachments
+                                               1,                                // colorAttachmentsCount
+                                               & colorAttachmentReference,       // pColorAttachments
+                                               nullptr,                          // pResolveAttachments
+                                               & depthAttachmentRef,             // pDepthStencilAttachment
+                                               0,                                // preserveAttachemntCount
+                                               nullptr );                        // pPreserveAttachments
 
-    vk::SubpassDependency subpassDependency{
-      VK_SUBPASS_EXTERNAL,                                // srcSubpass
-      0,                                                  // dstSubpass
-      vk::PipelineStageFlagBits::eColorAttachmentOutput,  // srcStageMask
-      vk::PipelineStageFlagBits::eColorAttachmentOutput,  // dstStageMask
-      {},                                                 // srcAccessMask
-      vk::AccessFlagBits::eColorAttachmentWrite,          // dstAccessMask 
-      {}                                                  // dependencyFlags
-    };
+    vk::SubpassDependency subpassDependency( VK_SUBPASS_EXTERNAL,                                // srcSubpass
+                                             0,                                                  // dstSubpass
+                                             vk::PipelineStageFlagBits::eColorAttachmentOutput,  // srcStageMask
+                                             vk::PipelineStageFlagBits::eColorAttachmentOutput,  // dstStageMask
+                                             { },                                                // srcAccessMask
+                                             vk::AccessFlagBits::eColorAttachmentWrite,          // dstAccessMask
+                                             { } );                                              // dependencyFlags
 
-    m_renderPass.init({
-        .physicalDevice = g_physicalDevice,
-        .device = g_device,
-        .attachments = { colorAttachmentDescription, depthAttachmentDescription },
-        .subpasses = { subpassDescription },
-        .dependencies = { subpassDependency }
-      }
-    );
+
+    m_renderPass.init( { colorAttachmentDescription, depthAttachmentDescription }, { subpassDescription }, { subpassDependency } );
   }
 
-  void Api::initSwapchain()
+  void Api::initSwapchain( )
   {
-    m_surface.checkSettingSupport();
+    m_surface.checkSettingSupport( );
 
-    m_swapchain.init(&m_surface, m_queueManager.getQueueFamilyIndicesForSwapchainAccess());
-    m_swapchain.setImageAspect(vk::ImageAspectFlagBits::eColor);
+    m_swapchain.init( &m_surface );
+    m_swapchain.setImageAspect( vk::ImageAspectFlagBits::eColor );
   }
 
-  void Api::initSwapchainImageViews()
+  void Api::initSwapchainImageViews( )
   {
-    m_swapchainImageViews.resize(m_swapchain.getImages().size());
-    for (size_t i = 0; i < m_swapchainImageViews.size(); ++i)
+    m_swapchainImageViews.resize( m_swapchain.getImages( ).size( ) );
+    for ( size_t i = 0; i < m_swapchainImageViews.size( ); ++i )
     {
-      ImageViewInfo imageViewInfo{
-        .device = g_device,
-        .image = m_swapchain.getImage(i),
-        .format = m_surface.getFormat(),
-      };
-
-      imageViewInfo.subresourceRange.aspectMask = m_swapchain.getImageAspect();
-
-      m_swapchainImageViews[i].init(imageViewInfo);
+      m_swapchainImageViews[i] = vk::Initializer::createImageViewUnique( m_swapchain.getImage( i ), m_surface.getFormat( ), m_swapchain.getImageAspect( ) );
     }
   }
 
-  void Api::initPipeline(bool firstRun)
+  void Api::initPipeline( bool firstRun )
   {
     // Create shaders.
-    Shader vs({
-        .fullPath = RX_SHADER_PATH "simple3D.vert",
-        .device = g_device
-      }
-    );
+    auto vs = vk::Initializer::createShaderModuleUnique( RX_SHADER_PATH "simple3D.vert" );
+    auto fs = vk::Initializer::createShaderModuleUnique( RX_SHADER_PATH "simple3D.frag" );
 
-    Shader fs({
-        .fullPath = RX_SHADER_PATH "simple3D.frag",
-        .device = g_device
-      }
-    );
-
-    if (firstRun)
+    if ( firstRun )
     {
       vk::DescriptorSetLayoutBinding vertexBinding{
         0,                                  // binding
@@ -496,399 +430,245 @@ namespace RX
         nullptr
       };
 
-      m_descriptorSetLayout.addBinding(vertexBinding);
-      m_descriptorSetLayout.addBinding(fragmentBinding);
+      m_descriptorSetLayout.addBinding( vertexBinding );
+      m_descriptorSetLayout.addBinding( fragmentBinding );
 
       // Descriptor Set Layout
-      m_descriptorSetLayout.init({
-          .device = g_device
-        }
-      );
+      m_descriptorSetLayout.init( );
     }
 
     // Graphics pipeline
-    RasterizationPipelineInfo pipelineInfo{
-      .vertexShader = vs.get(),
-      .fragmentShader = fs.get(),
-      .descriptorSetLayout = m_descriptorSetLayout.get(),
-      .topology = vk::PrimitiveTopology::eTriangleList,
-    };
+    glm::fvec2 extent = { static_cast< float >( m_swapchain.getExtent( ).width ), static_cast< float >( m_swapchain.getExtent( ).height ) };
 
-    pipelineInfo.device = g_device;
-    pipelineInfo.renderPass = m_renderPass.get();
-    pipelineInfo.viewport = vk::Viewport{ 0.0f, 0.0f, static_cast<float>(m_swapchain.getExtent().width), static_cast<float>(m_swapchain.getExtent().height), 0.0f, 1.0f };
-    pipelineInfo.scissor = { 0, 0, m_swapchain.getExtent().width, m_swapchain.getExtent().height };
-
-    m_pipeline.init(pipelineInfo);
+    m_pipeline.init( m_renderPass.get( ),
+                     vk::Viewport{ 0.0f, 0.0f, extent.x, extent.y, 0.0f, 1.0f },
+                     { 0, { m_swapchain.getExtent( ).width, m_swapchain.getExtent( ).height } },
+                     vs.get( ),
+                     fs.get( ),
+                     m_descriptorSetLayout.get( ) );
   }
 
-  void Api::initgraphicsCmdPool()
+  void Api::initGraphicsCommandPool( )
   {
-    m_graphicsCmdPool.init(m_queueManager.getGraphicsFamilyIndex(), vk::CommandPoolCreateFlagBits::eResetCommandBuffer, { });
-    g_graphicsCmdPool = m_graphicsCmdPool.get();
+    m_graphicsCmdPool = vk::Initializer::createCommandPoolUnique( g_graphicsFamilyIndex, vk::CommandPoolCreateFlagBits::eResetCommandBuffer );
+    g_graphicsCmdPool = m_graphicsCmdPool.get( );
   }
 
-  void Api::inittransferCmdPool()
+  void Api::initTransferCommandPool( )
   {
-    // With the given parameters the function will return two different queue family indices. 
-    // This means that the transfer queue family index will be a different one than the graphics queue family index.
-    // However, this will only be the case if the queue family indices on this device allow it.
-    static auto indices = m_queueManager.getUniqueQueueIndices({ GRAPHICS, TRANSFER }); 
-    m_transferCmdPool.init(indices.size() > 1 ? indices[1] : m_queueManager.getTransferFamilyIndex(), { }, { });
+    m_transferCmdPool = vk::Initializer::createCommandPoolUnique( g_transferFamilyIndex, { } );
+    g_transferCmdPool = m_transferCmdPool.get( );
   }
 
-  void Api::initDepthBuffering()
+  void Api::initDepthBuffering( )
   {
     // Depth image for depth buffering
-    vk::Format depthFormat = getSupportedDepthFormat(g_physicalDevice);
+    vk::Format depthFormat = getSupportedDepthFormat( g_physicalDevice );
 
-    auto imageCreateInfo = Initializers::getImageCreateInfo(vk::Extent3D(m_swapchain.getExtent().width, m_swapchain.getExtent().height, 1));
+    auto imageCreateInfo = vk::Helper::getImageCreateInfo( vk::Extent3D( m_swapchain.getExtent( ).width, m_swapchain.getExtent( ).height, 1 ) );
     imageCreateInfo.format = depthFormat;
     imageCreateInfo.usage = vk::ImageUsageFlagBits::eDepthStencilAttachment;
 
-    m_depthImage.init(imageCreateInfo);
+    m_depthImage.init( imageCreateInfo );
 
     // Image view for depth image
-    ImageViewInfo depthImageViewInfo{
-      .device = g_device,
-      .image = m_depthImage.get(),
-      .format = depthFormat,
-    };
-
-    depthImageViewInfo.subresourceRange.aspectMask = vk::ImageAspectFlagBits::eDepth;
-
-    m_depthImageView.init(depthImageViewInfo);
+    m_depthImageView = vk::Initializer::createImageViewUnique( m_depthImage.get( ), depthFormat, vk::ImageAspectFlagBits::eDepth );
   }
 
-  void Api::initSwapchainFramebuffers()
+  void Api::initSwapchainFramebuffers( )
   {
-    FramebufferInfo framebufferInfo{
-      .device = g_device,
-      .renderPass = m_renderPass.get(),
-      .extent = m_swapchain.getExtent(),
-      .depthImageView = m_depthImageView.get()
-    };
-
-    m_swapchainFramebuffers.resize(m_swapchainImageViews.size());
-    for (size_t i = 0; i < m_swapchainFramebuffers.size(); ++i)
+    m_swapchainFramebuffers.resize( m_swapchainImageViews.size( ) );
+    for ( size_t i = 0; i < m_swapchainFramebuffers.size( ); ++i )
     {
-      framebufferInfo.imageView = m_swapchainImageViews[i].get();
-      m_swapchainFramebuffers[i].init(framebufferInfo);
+      m_swapchainFramebuffers[i] = vk::Initializer::createFramebufferUnique( { m_swapchainImageViews[i].get( ), m_depthImageView.get( ) }, m_renderPass.get( ), m_swapchain.getExtent( ) );
     }
   }
 
-  void Api::initDescriptorPool()
+  void Api::initDescriptorPool( )
   {
-    uint32_t swapchainImagesCount = m_swapchain.getImages().size();
+    uint32_t swapchainImagesCount = m_swapchain.getImages( ).size( );
 
-    m_descriptorPool.init({
-      .device = g_device,
-      .poolSizes = { { vk::DescriptorType::eUniformBuffer, swapchainImagesCount }, { vk::DescriptorType::eCombinedImageSampler, swapchainImagesCount } },
-      .maxSets = maxNodes * swapchainImagesCount
-      }
-    );
+    std::vector<vk::DescriptorPoolSize> poolSizes =
+    {
+      { vk::DescriptorType::eUniformBuffer, swapchainImagesCount },
+      { vk::DescriptorType::eCombinedImageSampler, swapchainImagesCount }
+    };
+
+    m_descriptorPool = vk::Initializer::createDescriptorPoolUnique( poolSizes, maxNodes * swapchainImagesCount );
   }
 
-  void Api::initModel(const std::shared_ptr<GeometryNodeBase> node)
+  void Api::initModel( const std::shared_ptr<GeometryNodeBase> node )
   {
-    if (node->m_modelPath.empty())
+    if ( node->m_modelPath.empty( ) )
       return;
 
-    auto it = m_models.find(node->m_modelPath);
-    RX_ASSERT((it != m_models.end()), "Can not upload uniform buffer because node does not have a (valid) model.");
+    auto it = m_models.find( node->m_modelPath );
+    RX_ASSERT( ( it != m_models.end( ) ), "Can not upload uniform buffer because node does not have a (valid) model." );
 
     auto model = it->second;
-
-    static auto queueIndices = m_queueManager.getUniqueQueueIndices({ GRAPHICS, TRANSFER });
-    static auto queue = queueIndices.size() > 1 ? m_queueManager.getQueue(TRANSFER, queueIndices[1])->get() : m_queueManager.getQueue(GRAPHICS)->get();
-
-    VertexBufferInfo vertexBufferInfo{
-      .physicalDevice = g_physicalDevice,
-      .device = g_device,
-      .commandPool = m_transferCmdPool.get(),
-      .queue = queue,
-      .queueIndices = queueIndices.size() > 1 ? queueIndices : std::vector<uint32_t>()
-    };
-
-    IndexBufferInfo<uint32_t> indexBufferInfo{
-      .physicalDevice = g_physicalDevice,
-      .device = g_device,
-      .commandPool = m_transferCmdPool.get(),
-      .queue = queue,
-      .queueIndices = queueIndices.size() > 1 ? queueIndices : std::vector<uint32_t>(),
-    };
-
-    if (!model->m_initialized)
+    if ( !model->m_initialized )
     {
-      vertexBufferInfo.vertices = model->m_vertices;
-      model->m_vertexBuffer.init(vertexBufferInfo);
+      model->m_vertexBuffer.init( model->m_vertices );
+      model->m_indexBuffer.init( model->m_indices );
 
-      indexBufferInfo.indices = model->m_indices;
-      model->m_indexBuffer.init(indexBufferInfo);
-      
       model->m_initialized = true;
     }
 
-    node->m_uniformBuffers.init({
-        .physicalDevice = g_physicalDevice,
-        .device = g_device,
-        .swapchainImagesCount = m_swapchain.getImages().size()
-      }
-    );
-
-    SwapchainUpdateDescriptorSetInfo descriptorSetUpdateInfo{
-      .descriptorPool = m_descriptorPool.get(),
-      .uniformBuffers = node->m_uniformBuffers.getRaw()
-    };
-
-    // TODO: add support for multiple textures.
-    auto diffuseIter = m_textures.find(node->m_material.m_diffuseTexture);
-    if (diffuseIter != m_textures.end())
-    {
-      descriptorSetUpdateInfo.textureSampler = diffuseIter->second->getSampler();
-      descriptorSetUpdateInfo.textureImageView = diffuseIter->second->getImageView();
-    }
+    node->m_uniformBuffers.init( m_swapchain.getImages( ).size( ) );
 
     // Create the descriptor set.
-    model->m_descriptorSets.init({
-        .device = g_device,
-        .pool = m_descriptorPool.get(),
-        .setCount = static_cast<uint32_t>(m_swapchain.getImages().size()),
-        .layouts = std::vector<vk::DescriptorSetLayout>(m_swapchain.getImages().size(), m_descriptorSetLayout.get()) // Create as many identical layouts as swapchain images exist.
-      }
-    );
-    model->m_descriptorSets.update(descriptorSetUpdateInfo);
+    model->m_descriptorSets.init( m_descriptorPool.get( ),
+                                  static_cast< uint32_t >( m_swapchain.getImages( ).size( ) ),
+                                  std::vector<vk::DescriptorSetLayout>( m_swapchain.getImages( ).size( ), m_descriptorSetLayout.get( ) ) );
+
+    // TODO: add support for multiple textures.
+    auto diffuseIter = m_textures.find( node->m_material.m_diffuseTexture );
+    if ( diffuseIter != m_textures.end( ) )
+    {
+      model->m_descriptorSets.update( node->m_uniformBuffers.getRaw( ),
+                                      diffuseIter->second->getImageView( ),
+                                      diffuseIter->second->getSampler( ) );
+    }
   }
 
-  void Api::initModels(bool isNew)
+  void Api::initModels( bool isNew )
   {
-    static auto queueIndices = m_queueManager.getUniqueQueueIndices({ GRAPHICS, TRANSFER });
-    static auto queue = queueIndices.size() > 1 ? m_queueManager.getQueue(TRANSFER, queueIndices[1])->get() : m_queueManager.getQueue(GRAPHICS)->get();
-
-    VertexBufferInfo vertexBufferInfo{
-      .physicalDevice = g_physicalDevice,
-      .device = g_device,
-      .commandPool = m_transferCmdPool.get(),
-      .queue = queue,
-      .queueIndices = queueIndices.size() > 1 ? queueIndices : std::vector<uint32_t>()
-    };
-
-    IndexBufferInfo<uint32_t> indexBufferInfo{
-      .physicalDevice = g_physicalDevice,
-      .device = g_device,
-      .commandPool = m_transferCmdPool.get(),
-      .queue = queue,
-      .queueIndices = queueIndices.size() > 1 ? queueIndices : std::vector<uint32_t>()
-    };
-
-    UniformBufferInfo uniformBufferInfo{
-      .physicalDevice = g_physicalDevice,
-      .device = g_device,
-      .swapchainImagesCount = m_swapchain.getImages().size()
-    };
-
-    for (const auto& node : m_nodes)
+    for ( const auto& node : m_nodes )
     {
-      if (node->m_modelPath.empty())
+      if ( node->m_modelPath.empty( ) )
         continue;
 
-      auto it = m_models.find(node->m_modelPath);
-      RX_ASSERT((it != m_models.end()), "Can not upload uniform buffer because node does not have a (valid) model.");
+      auto it = m_models.find( node->m_modelPath );
+      RX_ASSERT( ( it != m_models.end( ) ), "Can not upload uniform buffer because node does not have a (valid) model." );
 
       auto model = it->second;
 
-      if (model->m_initialized)
+      if ( model->m_initialized )
         continue;
 
-      if (isNew)
+      if ( isNew )
       {
-        vertexBufferInfo.vertices = model->m_vertices;
-        model->m_vertexBuffer.init(vertexBufferInfo);
+        model->m_vertexBuffer.init( model->m_vertices );
+        model->m_indexBuffer.init( model->m_indices );
 
-        indexBufferInfo.indices = model->m_indices;
-        model->m_indexBuffer.init(indexBufferInfo);
+        // Create the descriptor set.
+        model->m_descriptorSets.init( m_descriptorPool.get( ),
+                                      static_cast< uint32_t >( m_swapchain.getImages( ).size( ) ),
+                                      std::vector<vk::DescriptorSetLayout>( m_swapchain.getImages( ).size( ), m_descriptorSetLayout.get( ) ) );
+
       }
 
-      node->m_uniformBuffers.init(uniformBufferInfo);
-
-      SwapchainUpdateDescriptorSetInfo descriptorSetUpdateInfo{
-        .descriptorPool = m_descriptorPool.get(),
-        .uniformBuffers = node->m_uniformBuffers.getRaw()
-      };
+      node->m_uniformBuffers.init( m_swapchain.getImages( ).size( ) );
 
       // TODO: add support for multiple textures.
-      auto diffuseIter = m_textures.find(node->m_material.m_diffuseTexture);
-      if (diffuseIter != m_textures.end())
-      {
-        descriptorSetUpdateInfo.textureSampler = diffuseIter->second->getSampler();
-        descriptorSetUpdateInfo.textureImageView = diffuseIter->second->getImageView();
+      auto diffuseIter = m_textures.find( node->m_material.m_diffuseTexture );
+      if ( diffuseIter != m_textures.end( ) )
+      { 
+        model->m_descriptorSets.update( node->m_uniformBuffers.getRaw( ),
+                                        diffuseIter->second->getImageView( ),
+                                        diffuseIter->second->getSampler( ) );
       }
-
-      // Create the descriptor set.
-      model->m_descriptorSets.init({
-          .device = g_device,
-          .pool = m_descriptorPool.get(),
-          .setCount = static_cast<uint32_t>(m_swapchain.getImages().size()),
-          .layouts = std::vector<vk::DescriptorSetLayout>(m_swapchain.getImages().size(), m_descriptorSetLayout.get())
-        }
-      );
-      model->m_descriptorSets.update(descriptorSetUpdateInfo);
 
       model->m_initialized = true;
     }
 
     std::vector<std::shared_ptr<Model>> models;
-    models.reserve(m_models.size());
+    models.reserve( m_models.size( ) );
 
-    for (const auto& model : m_models)
-      models.push_back(model.second);    
+    for ( const auto& model : m_models )
+      models.push_back( model.second );
 
-    m_raytraceBuilder.initAccelerationStructures(m_nodes, models);
+    m_raytraceBuilder.initAccelerationStructures( m_nodes, models, &m_surface );
   }
 
-  void Api::initSwapchainCmdBuffers()
+  void Api::initSwapchainCommandBuffers( )
   {
-    CmdBufferInfo commandBufferInfo{
-      .device = g_device,
-      .commandPool = m_graphicsCmdPool.get(),
-      .commandBufferCount = m_swapchainFramebuffers.size(),
-      .usageFlags = vk::CommandBufferUsageFlagBits::eRenderPassContinue
-    };
-
-    m_swapchainCmdBuffers.init(commandBufferInfo);
+    m_swapchainCommandBuffers.init( m_graphicsCmdPool.get( ), m_swapchainFramebuffers.size( ), vk::CommandBufferUsageFlagBits::eRenderPassContinue );
   }
 
-  void Api::initGui()
+  void Api::initGui( )
   {
-    GuiInfo guiInfo{ };
-    guiInfo.window = m_window->get();
-    guiInfo.instance = g_instance;
-    guiInfo.physicalDevice = g_physicalDevice;
-    guiInfo.device = g_device;
-    guiInfo.queueFamilyIndex = m_queueManager.getGraphicsFamilyIndex(); 
-    guiInfo.queue = m_queueManager.getQueue(GRAPHICS)->get();
-    guiInfo.minImageCount = m_surface.getCapabilities().minImageCount + 1;
-    guiInfo.imageCount = static_cast<uint32_t>(m_swapchain.getImages().size());
-    guiInfo.swapchainImageFormat = m_surface.getFormat();
-    guiInfo.swapchainImageExtent = m_swapchain.getExtent();
-
-    std::vector<vk::ImageView> temp(m_swapchainImageViews.size());
-    
-    for (size_t i = 0; i < m_swapchainImageViews.size(); ++i)
-      temp[i] = m_swapchainImageViews[i].get();
-
-    guiInfo.swapchainImageViews = temp;
-
-    if (m_gui != nullptr)
-      m_gui->init(guiInfo);
+    if ( m_gui != nullptr )
+      m_gui->init( &m_surface, &m_swapchain, vk::Helper::unpack( m_swapchainImageViews ) );
   }
 
-  void Api::recordSwapchainCommandBuffers()
+  void Api::recordSwapchainCommandBuffers( )
   {
-    RX_LOG("Started recording.");
-
-    /*
-    std::unordered_map<std::string, uint32_t> models;
-    for (const auto& node : m_nodes)
-    {
-      auto res = models.insert({ node->m_modelPath, 1 });
-      if (!res.second)
-      {
-        auto it = models.find(node->m_modelPath);
-        ++(it->second);
-      }
-    }
-    */
+    RX_LOG( "Started swapchain command buffer recording." );
 
     // Set up render pass begin info
-    RenderPassBeginInfo renderPassBeginInfo{ };
-    renderPassBeginInfo.renderArea = { 0, 0, m_swapchain.getExtent() };
-
-    vk::ClearValue clearValues[2];
+    std::array<vk::ClearValue, 2> clearValues;
     clearValues[0].color = { std::array<float, 4>{ 0.5f, 0.5f, 0.5f, 1.0f } };
     clearValues[1].depthStencil = vk::ClearDepthStencilValue{ 1.0f, 0 };
 
-    renderPassBeginInfo.clearValues = { clearValues[0], clearValues[1] };
-    renderPassBeginInfo.commandBuffers = m_swapchainCmdBuffers.get();
-
-    for (Framebuffer& framebuffer : m_swapchainFramebuffers)
-      renderPassBeginInfo.framebuffers.push_back(framebuffer.get());
-
-    m_renderPass.setBeginInfo(renderPassBeginInfo);
-
     // Start recording the swapchain framebuffers
-    for (size_t imageIndex = 0; imageIndex < m_swapchainCmdBuffers.get().size(); ++imageIndex)
+    for ( size_t imageIndex = 0; imageIndex < m_swapchainCommandBuffers.get( ).size( ); ++imageIndex )
     {
-      m_swapchainCmdBuffers.begin(imageIndex);
-      m_renderPass.begin(imageIndex);
+      m_swapchainCommandBuffers.begin( imageIndex );
 
-      m_swapchainCmdBuffers.get(imageIndex).bindPipeline(vk::PipelineBindPoint::eGraphics, m_pipeline.get()); // CMD
+      m_renderPass.begin( m_swapchainFramebuffers[imageIndex].get( ),
+                          m_swapchainCommandBuffers.get( imageIndex ),
+                          { 0, m_swapchain.getExtent( ) },
+                          { clearValues[0], clearValues[1] } );
+
+      m_swapchainCommandBuffers.get( imageIndex ).bindPipeline( vk::PipelineBindPoint::eGraphics, m_pipeline.get( ) ); // CMD
 
       // Dynamic states
-      vk::Viewport viewport = m_pipeline.getViewport();
-      viewport.width = m_window->getProperties().getWidth();
-      viewport.height = m_window->getProperties().getHeight();
+      vk::Viewport viewport = m_pipeline.getViewport( );
+      viewport.width = m_window->getProperties( ).getWidth( );
+      viewport.height = m_window->getProperties( ).getHeight( );
 
-      m_swapchainCmdBuffers.get(imageIndex).setViewport(0, 1, &viewport); // CMD
+      m_swapchainCommandBuffers.get( imageIndex ).setViewport( 0, 1, &viewport ); // CMD
 
-      vk::Rect2D scissor = m_pipeline.getScissor();
-      scissor.extent = m_window->getExtent();
+      vk::Rect2D scissor = m_pipeline.getScissor( );
+      scissor.extent = m_window->getExtent( );
 
-      m_swapchainCmdBuffers.get(imageIndex).setScissor(0, 1, &scissor); // CMD
+      m_swapchainCommandBuffers.get( imageIndex ).setScissor( 0, 1, &scissor ); // CMD
 
       // Draw models
-      for (const auto& node : m_nodes)
+      for ( const auto& node : m_nodes )
       {
-        if (node->m_modelPath.empty())
+        if ( node->m_modelPath.empty( ) )
           continue;
 
-        auto it = m_models.find(node->m_modelPath);
-        RX_ASSERT((it != m_models.end()), "Can not draw model because it was not found.");
+        auto it = m_models.find( node->m_modelPath );
+        RX_ASSERT( ( it != m_models.end( ) ), "Can not draw model because it was not found." );
 
         auto model = it->second;
 
-        //auto it2 = models.find(model->m_path);
-        //RX_ASSERT((it2 != models.end()), "Can not draw model because it was not found.");
-
-        vk::Buffer vertexBuffers[] = { model->m_vertexBuffer.get() };
+        vk::Buffer vertexBuffers[] = { model->m_vertexBuffer.get( ) };
         vk::DeviceSize offsets[] = { 0 };
 
-        m_swapchainCmdBuffers.get(imageIndex).bindVertexBuffers(
-          0, // first binding
-          1, // binding count
-          vertexBuffers,
-          offsets
-        ); // CMD
+        m_swapchainCommandBuffers.get( imageIndex ).bindVertexBuffers( 0,               // first binding
+                                                                       1,               // binding count
+                                                                       vertexBuffers,
+                                                                       offsets );
 
-        m_swapchainCmdBuffers.get(imageIndex).bindIndexBuffer(
-          model->m_indexBuffer.get(),
-          0, // offset
-          model->m_indexBuffer.getType()
-        ); // CMD
 
-        m_swapchainCmdBuffers.get(imageIndex).bindDescriptorSets(
-          vk::PipelineBindPoint::eGraphics, 
-          m_pipeline.getLayout(),
-          0, // first set
-          1, // descriptor set count
-          &model->m_descriptorSets.get()[imageIndex], // descriptor sets
-          0, // dynamic offset count
-          nullptr // dynamic offsets
-        ); // CMD
+        m_swapchainCommandBuffers.get( imageIndex ).bindIndexBuffer( model->m_indexBuffer.get( ),
+                                                                     0,                                 // offset
+                                                                     model->m_indexBuffer.getType( ) );
 
-        //std::cout << it2->first << ": " << it2->second << std::endl;
 
-        m_swapchainCmdBuffers.get(imageIndex).drawIndexed(
-          model->m_indexBuffer.getCount(), // index count
-          1, //it2->second, // instance count
-          0, // first index
-          0, // vertex offset
-          0 // first instance
-        ); // CMD
+        m_swapchainCommandBuffers.get( imageIndex ).bindDescriptorSets( vk::PipelineBindPoint::eGraphics,
+                                                                        m_pipeline.getLayout( ),
+                                                                        0,                                           // first set
+                                                                        1,                                           // descriptor set count
+                                                                        &model->m_descriptorSets.get( )[imageIndex], // descriptor sets
+                                                                        0,                                           // dynamic offset count
+                                                                        nullptr );                                   // dynamic offsets 
+
+
+        m_swapchainCommandBuffers.get( imageIndex ).drawIndexed( model->m_indexBuffer.getCount( ), // index count
+                                                                 1,                                // instance count
+                                                                 0,                                // first index
+                                                                 0,                                // vertex offset
+                                                                 0 );                              // first instance
+
       }
 
-      m_renderPass.end(imageIndex);
-      m_swapchainCmdBuffers.end(imageIndex);
+      m_renderPass.end( m_swapchainCommandBuffers.get( imageIndex ) );
+      m_swapchainCommandBuffers.end( imageIndex );
     }
   }
 }

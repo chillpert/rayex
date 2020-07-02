@@ -8,13 +8,14 @@ namespace rx
   class TransformNodeBase
   {
   public:
-    TransformNodeBase() :
-      m_worldTransform(glm::mat4(1.0f)),
-      m_localTransform(glm::mat4(1.0f)),
-      m_inverseWorldTransform(glm::mat4(1.0f)),
-      m_inverseLocalTransform(glm::mat4(1.0f)) { }
+    TransformNodeBase( ) :
+      m_worldTransform( glm::mat4( 1.0f ) ),
+      m_localTransform( glm::mat4( 1.0f ) ),
+      m_inverseWorldTransform( glm::mat4( 1.0f ) ),
+      m_inverseLocalTransform( glm::mat4( 1.0f ) )
+    { }
 
-    virtual ~TransformNodeBase() = default;
+    virtual ~TransformNodeBase( ) = default;
 
     glm::mat4 m_worldTransform;
     glm::mat4 m_localTransform;
@@ -35,17 +36,18 @@ namespace rx
   class GeometryNodeBase : public TransformNodeBase
   {
   public:
-    GeometryNodeBase() = default;
-    GeometryNodeBase(const std::string& modelPath, const Material& material) :
-      m_modelPath(modelPath), m_material(material) { }
+    GeometryNodeBase( ) = default;
+    GeometryNodeBase( const std::string& modelPath, const Material& material ) :
+      m_modelPath( modelPath ), m_material( material )
+    { }
 
-    virtual ~GeometryNodeBase() = default;
+    virtual ~GeometryNodeBase( ) = default;
 
     std::string m_modelPath;
     Material m_material;
 
     UniformBuffer m_uniformBuffers;
-    
+
     // Ray tracing geometry instance data.
     RaytracingInstance m_rtInstance;
   };

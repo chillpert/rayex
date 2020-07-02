@@ -17,27 +17,27 @@ namespace rx
     WINDOW_INPUT_GRABBED = 0x00000100,
     WINDOW_INPUT_FOCUS = 0x00000200,
     WINDOW_MOUSE_FOCUS = 0x00000400,
-    WINDOW_FULLSCREEN_DESKTOP = (WINDOW_FULLSCREEN | 0x00001000),
+    WINDOW_FULLSCREEN_DESKTOP = ( WINDOW_FULLSCREEN | 0x00001000 ),
     WINDOW_MOUSE_CAPTURE = 0x00004000
   } WindowFlags;
 
   class WindowProperties
   {
   public:
-    RX_API WindowProperties(int width = 600, int height = 400, const char* title = "My Application", uint32_t flags = 0);
+    RX_API WindowProperties( int width = 600, int height = 400, const char* title = "My Application", uint32_t flags = 0 );
 
-    RX_API inline int getWidth() const { return m_width; } 
-    RX_API inline int getHeight() const { return m_height; }
+    RX_API inline int getWidth( ) const { return m_width; }
+    RX_API inline int getHeight( ) const { return m_height; }
 
-    RX_API inline const char* getTitle() const { return m_title; }
-    inline const char* getEngineTitle() const { return m_engineTitle; }
+    RX_API inline const char* getTitle( ) const { return m_title; }
+    inline const char* getEngineTitle( ) const { return m_engineTitle; }
 
-    RX_API inline uint32_t getFlags() const { return m_flags; }
-   
-    void resize(int width, int height);
-    void resizeFramebuffer(int width, int height);
-    void setTitle(const char* title);
-    void setEngineTitle(const char* title);
+    RX_API inline uint32_t getFlags( ) const { return m_flags; }
+
+    void resize( int width, int height );
+    void resizeFramebuffer( int width, int height );
+    void setTitle( const char* title );
+    void setEngineTitle( const char* title );
 
   private:
     int m_width;

@@ -9,12 +9,12 @@ namespace rx
   class Time
   {
   public:
-    RX_API ~Time();
+    RX_API ~Time( );
 
-    RX_API static float getTime();
-    RX_API static float getDeltaTime();
+    RX_API static float getTime( );
+    RX_API static float getDeltaTime( );
 
-    void update();
+    void update( );
 
   private:
     static float m_time;

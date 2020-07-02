@@ -29,41 +29,41 @@ namespace rx
   public:
     Api( std::shared_ptr<WindowBase> window, std::shared_ptr<CameraBase> camera );
     Api( std::shared_ptr<WindowBase> window, std::shared_ptr<GuiBase> gui, std::shared_ptr<CameraBase> camera );
-    RX_API ~Api();
+    RX_API ~Api( );
 
-    void init();
-    bool update();
-    bool render();
+    void init( );
+    bool update( );
+    bool render( );
 
     void pushNode( const std::shared_ptr<GeometryNodeBase> nodes, bool record = true );
     void setNodes( const std::vector<std::shared_ptr<GeometryNodeBase>>& nodes );
 
   private:
-    void initInstance();
-    void initDebugMessenger();
-    void initSurface();
-    void initPhysicalDevice();
-    void initQueues();
-    void initDevice();
-    void initRenderPass();
-    void initSwapchain();
-    void initSwapchainImageViews();
+    void initInstance( );
+    void initDebugMessenger( );
+    void initSurface( );
+    void initPhysicalDevice( );
+    void initQueues( );
+    void initDevice( );
+    void initRenderPass( );
+    void initSwapchain( );
+    void initSwapchainImageViews( );
     void initPipeline( bool firstRun = true );
-    void initGraphicsCommandPool();
-    void initTransferCommandPool();
-    void initDepthBuffering();
-    void initSwapchainFramebuffers();
-    void initDescriptorPool();
+    void initGraphicsCommandPool( );
+    void initTransferCommandPool( );
+    void initDepthBuffering( );
+    void initSwapchainFramebuffers( );
+    void initDescriptorPool( );
     void initModels( bool isNew );
     void initModel( const std::shared_ptr<GeometryNodeBase> node );
-    void initSwapchainCommandBuffers();
-    void initGui();
-    void recordSwapchainCommandBuffers();
+    void initSwapchainCommandBuffers( );
+    void initGui( );
+    void recordSwapchainCommandBuffers( );
 
-    void clean();
-    void recreateSwapchain();
+    void clean( );
+    void recreateSwapchain( );
 
-    void initRayTracing();
+    void initRayTracing( );
 
     std::shared_ptr<WindowBase> m_window;
     std::shared_ptr<CameraBase> m_camera;

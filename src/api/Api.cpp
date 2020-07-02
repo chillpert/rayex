@@ -14,12 +14,14 @@ namespace rx
   Api::Api( std::shared_ptr<WindowBase> window, std::shared_ptr<CameraBase> camera ) :
     m_window( window ),
     m_camera( camera ),
-    m_gui( nullptr ) { }
+    m_gui( nullptr )
+  { }
 
   Api::Api( std::shared_ptr<WindowBase> window, std::shared_ptr<GuiBase> gui, std::shared_ptr<CameraBase> camera ) :
     m_window( window ),
     m_camera( camera ),
-    m_gui( gui ) { }
+    m_gui( gui )
+  { }
 
   Api::~Api( )
   {
@@ -36,7 +38,7 @@ namespace rx
 
     m_nodes.reserve( maxNodes );
     m_textures.reserve( maxNodes );
-    
+
     initInstance( );
     initDebugMessenger( );
     initSurface( );
@@ -126,7 +128,7 @@ namespace rx
     }
 
     // Check if a previous frame is using the current image.
-    if ( static_cast< void* >( m_imagesInFlight[imageIndex] ) != nullptr )
+    if ( static_cast<void*>( m_imagesInFlight[imageIndex] ) != nullptr )
       g_device.waitForFences( 1, &m_imagesInFlight[currentFrame], VK_TRUE, UINT64_MAX );
 
     // This will mark the current image to be in use by this frame.
@@ -136,11 +138,11 @@ namespace rx
     if ( m_gui != nullptr )
       commandBuffers.push_back( m_gui->getCommandBuffer( imageIndex ) );
 
-    vk::SubmitInfo submitInfo{
+    vk::SubmitInfo submitInfo {
       1,                                                                                                  // waitSemaphoreCount
       &m_imageAvailableSemaphores[currentFrame].get( ),                                                    // pWaitSemaphores
       std::array<vk::PipelineStageFlags, 1>{ vk::PipelineStageFlagBits::eColorAttachmentOutput }.data( ),  // pWaitDstStageMask
-      static_cast< uint32_t >( commandBuffers.size( ) ),                                                       // commandBufferCount
+      static_cast<uint32_t>( commandBuffers.size( ) ),                                                       // commandBufferCount
       commandBuffers.data( ),                                                                              // pCommandBuffers
       1,                                                                                                  // signalSemaphoreCount
       &m_finishedRenderSemaphores[currentFrame].get( )                                                     // pSignalSemaphores
@@ -158,14 +160,13 @@ namespace rx
     // Submits / executes the current image's / framebuffer's command buffer.
     g_graphicsQueue.submit( submitInfo, m_inFlightFences[currentFrame].get( ) );
 
-    vk::PresentInfoKHR presentInfo{
-      1,                                                // waitSemaphoreCount
-      &m_finishedRenderSemaphores[currentFrame].get( ),  // pWaitSemaphores
-      1,                                                // swapchainCount
-      &g_swapchain,                                     // pSwapchains
-      &imageIndex,                                      // pImageIndices
-      nullptr,                                          // pResults
-    };
+    vk::PresentInfoKHR presentInfo( 1,                                                // waitSemaphoreCount
+                                    &m_finishedRenderSemaphores[currentFrame].get( ), // pWaitSemaphores
+                                    1,                                                // swapchainCount
+                                    &g_swapchain,                                     // pSwapchains
+                                    &imageIndex,                                      // pImageIndices
+                                    nullptr );                                        // pResults
+
 
     // Tell the presentation engine that the current image is ready.
     g_graphicsQueue.presentKHR( presentInfo );
@@ -271,10 +272,10 @@ namespace rx
 
       // Update the camera screen size to avoid image stretching.
       auto screenSize = m_swapchain.getExtent( );
-      int screenWidth = static_cast< int >( screenSize.width );
-      int screenHeight = static_cast< int >( screenSize.height );
+      int screenWidth = static_cast<int>( screenSize.width );
+      int screenHeight = static_cast<int>( screenSize.height );
 
-      m_camera->setScreenSize( glm::ivec2{ screenWidth, screenHeight } );
+      m_camera->setScreenSize( glm::ivec2 { screenWidth, screenHeight } );
     }
     RX_LOG( "Finished swapchain recreation." );
   }
@@ -371,9 +372,9 @@ namespace rx
                                                0,                                // inputAttachmentsCount
                                                nullptr,                          // pInputAttachments
                                                1,                                // colorAttachmentsCount
-                                               & colorAttachmentReference,       // pColorAttachments
+                                               &colorAttachmentReference,       // pColorAttachments
                                                nullptr,                          // pResolveAttachments
-                                               & depthAttachmentRef,             // pDepthStencilAttachment
+                                               &depthAttachmentRef,             // pDepthStencilAttachment
                                                0,                                // preserveAttachemntCount
                                                nullptr );                        // pPreserveAttachments
 
@@ -414,21 +415,18 @@ namespace rx
 
     if ( firstRun )
     {
-      vk::DescriptorSetLayoutBinding vertexBinding{
-        0,                                  // binding
-        vk::DescriptorType::eUniformBuffer, // descriptorType
-        1,                                  // descriptorCount
-        vk::ShaderStageFlagBits::eVertex,   // stageFlags
-        nullptr
-      };
+      vk::DescriptorSetLayoutBinding vertexBinding( 0,                                  // binding
+                                                    vk::DescriptorType::eUniformBuffer, // descriptorType
+                                                    1,                                  // descriptorCount
+                                                    vk::ShaderStageFlagBits::eVertex,   // stageFlags
+                                                    nullptr );                          // pImmutableSamplers
 
-      vk::DescriptorSetLayoutBinding fragmentBinding{
-        1,                                          // binding
-        vk::DescriptorType::eCombinedImageSampler,  // descriptorType
-        1,                                          // descriptorCount
-        vk::ShaderStageFlagBits::eFragment,         // stageFlags
-        nullptr
-      };
+
+      vk::DescriptorSetLayoutBinding fragmentBinding( 1,                                          // binding
+                                                      vk::DescriptorType::eCombinedImageSampler,  // descriptorType
+                                                      1,                                          // descriptorCount
+                                                      vk::ShaderStageFlagBits::eFragment,         // stageFlags
+                                                      nullptr );                                  // pImmutableSamplers
 
       m_descriptorSetLayout.addBinding( vertexBinding );
       m_descriptorSetLayout.addBinding( fragmentBinding );
@@ -438,10 +436,10 @@ namespace rx
     }
 
     // Graphics pipeline
-    glm::fvec2 extent = { static_cast< float >( m_swapchain.getExtent( ).width ), static_cast< float >( m_swapchain.getExtent( ).height ) };
+    glm::fvec2 extent = { static_cast<float>( m_swapchain.getExtent( ).width ), static_cast<float>( m_swapchain.getExtent( ).height ) };
 
     m_pipeline.init( m_renderPass.get( ),
-                     vk::Viewport{ 0.0f, 0.0f, extent.x, extent.y, 0.0f, 1.0f },
+                     vk::Viewport { 0.0f, 0.0f, extent.x, extent.y, 0.0f, 1.0f },
                      { 0, { m_swapchain.getExtent( ).width, m_swapchain.getExtent( ).height } },
                      vs.get( ),
                      fs.get( ),
@@ -518,7 +516,7 @@ namespace rx
 
     // Create the descriptor set.
     model->m_descriptorSets.init( m_descriptorPool.get( ),
-                                  static_cast< uint32_t >( m_swapchain.getImages( ).size( ) ),
+                                  static_cast<uint32_t>( m_swapchain.getImages( ).size( ) ),
                                   std::vector<vk::DescriptorSetLayout>( m_swapchain.getImages( ).size( ), m_descriptorSetLayout.get( ) ) );
 
     // TODO: add support for multiple textures.
@@ -553,7 +551,7 @@ namespace rx
 
         // Create the descriptor set.
         model->m_descriptorSets.init( m_descriptorPool.get( ),
-                                      static_cast< uint32_t >( m_swapchain.getImages( ).size( ) ),
+                                      static_cast<uint32_t>( m_swapchain.getImages( ).size( ) ),
                                       std::vector<vk::DescriptorSetLayout>( m_swapchain.getImages( ).size( ), m_descriptorSetLayout.get( ) ) );
 
       }
@@ -563,7 +561,7 @@ namespace rx
       // TODO: add support for multiple textures.
       auto diffuseIter = m_textures.find( node->m_material.m_diffuseTexture );
       if ( diffuseIter != m_textures.end( ) )
-      { 
+      {
         model->m_descriptorSets.update( node->m_uniformBuffers.getRaw( ),
                                         diffuseIter->second->getImageView( ),
                                         diffuseIter->second->getSampler( ) );
@@ -599,7 +597,7 @@ namespace rx
     // Set up render pass begin info
     std::array<vk::ClearValue, 2> clearValues;
     clearValues[0].color = { std::array<float, 4>{ 0.5f, 0.5f, 0.5f, 1.0f } };
-    clearValues[1].depthStencil = vk::ClearDepthStencilValue{ 1.0f, 0 };
+    clearValues[1].depthStencil = vk::ClearDepthStencilValue { 1.0f, 0 };
 
     // Start recording the swapchain framebuffers
     for ( size_t imageIndex = 0; imageIndex < m_swapchainCommandBuffers.get( ).size( ); ++imageIndex )

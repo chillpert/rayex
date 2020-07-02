@@ -4,9 +4,9 @@
 
 namespace rx
 {
-  void PhysicalDevice::init()
+  void PhysicalDevice::init( )
   {
-    auto physicalDevices = g_instance.enumeratePhysicalDevices();
+    auto physicalDevices = g_instance.enumeratePhysicalDevices( );
 
     std::vector<std::pair<unsigned int, std::string>> results;
 
@@ -38,18 +38,18 @@ namespace rx
     std::cout << std::endl << std::endl;
 
     // Print information about the GPU that was selected.
-    m_properties = m_physicalDevice.getProperties();
-    m_properties2 = m_physicalDevice.getProperties2();
+    m_properties = m_physicalDevice.getProperties( );
+    m_properties2 = m_physicalDevice.getProperties2( );
 
-    m_features = m_physicalDevice.getFeatures();
-    m_features2 = m_physicalDevice.getFeatures2();
+    m_features = m_physicalDevice.getFeatures( );
+    m_features2 = m_physicalDevice.getFeatures2( );
 
     RX_LOG( "Selected GPU: " << m_properties.deviceName );
 
     g_physicalDevice = m_physicalDevice;
   }
 
-  const vk::PhysicalDeviceProperties PhysicalDevice::getProperties() const
+  const vk::PhysicalDeviceProperties PhysicalDevice::getProperties( ) const
   {
     if ( !m_physicalDevice )
       RX_ERROR( "Initialize the physical device before calling PhysicalDevice::getProperties()" );
@@ -57,7 +57,7 @@ namespace rx
     return m_properties;
   }
 
-  const vk::PhysicalDeviceProperties2 PhysicalDevice::getProperties2() const
+  const vk::PhysicalDeviceProperties2 PhysicalDevice::getProperties2( ) const
   {
     if ( !m_physicalDevice )
       RX_ERROR( "Initialize the physical device before calling PhysicalDevice::getProperties()" );
@@ -65,7 +65,7 @@ namespace rx
     return m_properties2;
   }
 
-  const vk::PhysicalDeviceFeatures PhysicalDevice::getFeatures() const
+  const vk::PhysicalDeviceFeatures PhysicalDevice::getFeatures( ) const
   {
     if ( !m_physicalDevice )
       RX_ERROR( "Initialize the physical device before calling PhysicalDevice::getProperties()" );
@@ -73,7 +73,7 @@ namespace rx
     return m_features;
   }
 
-  const vk::PhysicalDeviceFeatures2 PhysicalDevice::getFeatures2() const
+  const vk::PhysicalDeviceFeatures2 PhysicalDevice::getFeatures2( ) const
   {
     if ( !m_physicalDevice )
       RX_ERROR( "Initialize the physical device before calling PhysicalDevice::getProperties()" );
@@ -86,8 +86,8 @@ namespace rx
     unsigned int score = 0u;
 
     // Check the device's features and properties.
-    auto props = physicalDevice.getProperties();
-    auto feats = physicalDevice.getFeatures();
+    auto props = physicalDevice.getProperties( );
+    auto feats = physicalDevice.getFeatures( );
     auto rayTracingFeats = getRayTracingFeatures( physicalDevice );
 
     std::string deviceName = props.deviceName;
@@ -100,15 +100,15 @@ namespace rx
     else
       return { 0u, deviceName };
 
-#ifdef VK_API_VERSION_1_1
+  #ifdef VK_API_VERSION_1_1
     if ( props.apiVersion >= VK_API_VERSION_1_1 )
       score += 10u;
-#endif
+  #endif
 
-#ifdef VK_API_VERSION_1_2
+  #ifdef VK_API_VERSION_1_2
     if ( props.apiVersion >= VK_API_VERSION_1_2 )
       score += 10u;
-#endif
+  #endif
 
     if ( deviceName.find( "RTX" ) != std::string::npos )
       score += 100u;

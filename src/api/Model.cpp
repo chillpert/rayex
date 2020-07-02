@@ -5,29 +5,29 @@
 
 namespace rx
 {
-  Model::Model(const std::string& path) :
-    m_path(path)
+  Model::Model( const std::string& path ) :
+    m_path( path )
   {
-    load();
+    load( );
   }
 
-  void Model::load()
+  void Model::load( )
   {
     tinyobj::attrib_t attrib;
     std::vector<tinyobj::shape_t> shapes;
     std::vector<tinyobj::material_t> materials;
     std::string warn, err;
 
-    if (!tinyobj::LoadObj(&attrib, &shapes, &materials, &warn, &err, m_path.c_str()))
-      RX_ERROR(warn + err);
+    if ( !tinyobj::LoadObj( &attrib, &shapes, &materials, &warn, &err, m_path.c_str( ) ) )
+      RX_ERROR( warn + err );
 
     std::unordered_map<Vertex, uint32_t> uniqueVertices;
 
-    for (const auto& shape : shapes)
+    for ( const auto& shape : shapes )
     {
-      for (const auto& index : shape.mesh.indices)
+      for ( const auto& index : shape.mesh.indices )
       {
-        Vertex vertex{ };
+        Vertex vertex { };
 
         vertex.pos =
         {
@@ -51,20 +51,20 @@ namespace rx
 
         vertex.color = { 1.0f, 1.0f, 1.0f };
 
-        if (uniqueVertices.count(vertex) == 0)
+        if ( uniqueVertices.count( vertex ) == 0 )
         {
-          uniqueVertices[vertex] = static_cast<uint32_t>(m_vertices.size());
-          m_vertices.push_back(vertex);
+          uniqueVertices[vertex] = static_cast<uint32_t>( m_vertices.size( ) );
+          m_vertices.push_back( vertex );
         }
 
-        m_indices.push_back(uniqueVertices[vertex]);
+        m_indices.push_back( uniqueVertices[vertex] );
       }
     }
   }
 
-  bool Model::isLoaded()
+  bool Model::isLoaded( )
   {
-    if (m_vertices.size() > 0)
+    if ( m_vertices.size( ) > 0 )
       return true;
 
     return false;

@@ -12,11 +12,9 @@ namespace rx
     Swapchain( ) = default;
     Swapchain( Surface* surface, bool initialize = true );
 
-    /*
-      Creates the swapchain.
-      @param surface - Pointer to an rx::Surface object.
-      @param queueFamilyIndices - All queue family indices which shall be accessed by the swapchain.
-    */
+    // Creates the swapchain.
+    // @param surface - Pointer to an rx::Surface object.
+    // @param queueFamilyIndices - All queue family indices which shall be accessed by the swapchain.
     void init( Surface* surface );
     void destroy( );
 

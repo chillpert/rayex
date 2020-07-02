@@ -47,15 +47,13 @@ namespace rx
     CommandBuffer commandBuffer( g_graphicsCmdPool );
     commandBuffer.begin( );
     {
-      vk::BufferImageCopy region{
-        0,                                            // bufferOffset
-        0,                                            // bufferRowLength
-        0,                                            // bufferImageHeight
-        { vk::ImageAspectFlagBits::eColor, 0, 0, 1 }, // imageSubresource (aspectMask, mipLevel, baseArrayLayer, layerCount)
-        vk::Offset3D{ 0, 0, 0 },                      // imageOffset
-        image.getExtent( )                             // imageExtent
-      };
-
+      vk::BufferImageCopy region( 0,                                            // bufferOffset 
+                                  0,                                            // bufferRowLength
+                                  0,                                            // bufferImageHeight
+                                  { vk::ImageAspectFlagBits::eColor, 0, 0, 1 }, // imageSubresource (aspectMask, mipLevel, baseArrayLayer, layerCount)
+                                  vk::Offset3D{ 0, 0, 0 },                      // imageOffset
+                                  image.getExtent( ) );                         // imageExtent
+      
       commandBuffer.get( 0 ).copyBufferToImage( m_buffer.get( ), image.get( ), vk::ImageLayout::eTransferDstOptimal, 1, &region ); // CMD
     }
     commandBuffer.end( );

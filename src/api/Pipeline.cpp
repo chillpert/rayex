@@ -33,104 +33,121 @@ namespace rx
     auto bindingDescription = Vertex::getBindingDescriptions( );
     auto attributeDescriptions = Vertex::getAttributeDescriptions( );
 
-    vk::PipelineVertexInputStateCreateInfo vertexInputInfo;
-    vertexInputInfo.vertexBindingDescriptionCount = static_cast< uint32_t >( bindingDescription.size( ) );
-    vertexInputInfo.vertexAttributeDescriptionCount = static_cast< uint32_t >( attributeDescriptions.size( ) );
-    vertexInputInfo.pVertexBindingDescriptions = bindingDescription.data( );
-    vertexInputInfo.pVertexAttributeDescriptions = attributeDescriptions.data( );
+    vk::PipelineVertexInputStateCreateInfo vertexInputInfo( { },                                                    // flags
+                                                            static_cast<uint32_t>( bindingDescription.size( ) ),    // vertexBindingDescriptionCount
+                                                            bindingDescription.data( ),                             // pVertexBindingDescriptions
+                                                            static_cast<uint32_t>( attributeDescriptions.size( ) ), // vertexAttributeDescriptionCount
+                                                            attributeDescriptions.data( ) );                        // pVertexAttributeDescriptions
 
-    vk::PipelineInputAssemblyStateCreateInfo inputAssembly;
-    inputAssembly.topology = topology;
-    inputAssembly.primitiveRestartEnable = VK_FALSE;
+    vk::PipelineInputAssemblyStateCreateInfo inputAssembly( { },        // flags
+                                                            topology,   // topology
+                                                            VK_FALSE ); // primitiveRestartEnable
 
-    vk::PipelineViewportStateCreateInfo viewportState;
-    viewportState.viewportCount = 1;
-    viewportState.pViewports = &viewport; // TODO: spec states if the viewport is dynamic this is ignored.
-    viewportState.scissorCount = 1;
-    viewportState.pScissors = &scissor;
+    vk::PipelineViewportStateCreateInfo viewportState( { },        // flags 
+                                                       1,          // viewportCount
+                                                       &viewport,  // pViewports
+                                                       1,          // scissorCount
+                                                       &scissor ); // pScissors
 
-    vk::PipelineRasterizationStateCreateInfo rasterizer;
-    rasterizer.depthClampEnable = VK_FALSE;
-    rasterizer.rasterizerDiscardEnable = VK_FALSE;
-    rasterizer.polygonMode = vk::PolygonMode::eFill;
-    rasterizer.lineWidth = 1.0f;
-    rasterizer.cullMode = vk::CullModeFlagBits::eBack;
-    rasterizer.frontFace = vk::FrontFace::eCounterClockwise;
-    rasterizer.depthBiasEnable = VK_FALSE;
+    vk::PipelineRasterizationStateCreateInfo rasterizer( { },                              // flags
+                                                         VK_FALSE,                         // depthClampEnable
+                                                         VK_FALSE,                         // rasterizerDiscardEnable
+                                                         vk::PolygonMode::eFill,           // polygonMode
+                                                         vk::CullModeFlagBits::eBack,      // cullMode
+                                                         vk::FrontFace::eCounterClockwise, // frontFace
+                                                         VK_FALSE,                         // depthBiasEnable
+                                                         0.0f,                             // depthBiasConstantFactor
+                                                         0.0f,                             // depthBiasClamp
+                                                         0.0f,                             // depthBiasSlopeFactor
+                                                         1.0f );                           // lineWidth
 
-    vk::PipelineMultisampleStateCreateInfo multisampling;
-    multisampling.sampleShadingEnable = VK_FALSE;
-    multisampling.rasterizationSamples = vk::SampleCountFlagBits::e1;
+    vk::PipelineMultisampleStateCreateInfo multisampling( { },                         // flags
+                                                          vk::SampleCountFlagBits::e1, // rasterizationSamples
+                                                          VK_FALSE,                    // sampleShadingEnable
+                                                          0.0f,                        // minSampleShading
+                                                          nullptr,                     // pSampleMask
+                                                          VK_FALSE,                    // alphaToCoverageEnable
+                                                          VK_FALSE );                  // alphaToOneEnable
 
-    vk::PipelineDepthStencilStateCreateInfo depthStencil;
-    depthStencil.depthTestEnable = VK_TRUE;
-    depthStencil.depthWriteEnable = VK_TRUE;
-    depthStencil.depthCompareOp = vk::CompareOp::eLess;
-    depthStencil.depthBoundsTestEnable = VK_FALSE;
-    depthStencil.stencilTestEnable = VK_FALSE;
+    vk::PipelineDepthStencilStateCreateInfo depthStencil( { },                  // flags
+                                                          VK_TRUE,              // depthTestEnable
+                                                          VK_TRUE,              // depthWriteEnable
+                                                          vk::CompareOp::eLess, // depthCompareOp
+                                                          VK_FALSE,             // depthBoundsTestEnable
+                                                          VK_FALSE,             // stencilTestEnable
+                                                          { },                  // front
+                                                          { },                  // back
+                                                          0.0f,                 // minDepthBounds
+                                                          0.0f );               // maxDepthBounds
 
-    vk::PipelineColorBlendAttachmentState colorBlendAttachment;
-    colorBlendAttachment.colorWriteMask = vk::ColorComponentFlagBits::eR | vk::ColorComponentFlagBits::eG | vk::ColorComponentFlagBits::eB | vk::ColorComponentFlagBits::eA;
-    colorBlendAttachment.blendEnable = VK_FALSE;
+    vk::PipelineColorBlendAttachmentState colorBlendAttachment( VK_FALSE,                                                                                                                            // blendEnable
+                                                                { },                                                                                                                                 // srcColorBlendFactor
+                                                                { },                                                                                                                                 // dstColorBlendFactor
+                                                                { },                                                                                                                                 // colorBlendOp
+                                                                { },                                                                                                                                 // srcAlphaBlendFactor
+                                                                { },                                                                                                                                 // dstAlphaBlendFactor
+                                                                { },                                                                                                                                 // alphaBlendOp
+                                                                vk::ColorComponentFlagBits::eR | vk::ColorComponentFlagBits::eG | vk::ColorComponentFlagBits::eB | vk::ColorComponentFlagBits::eA ); // colorWriteMask
+                                                                
+    vk::PipelineColorBlendStateCreateInfo colorBlending( { },                          // flags
+                                                         VK_FALSE,                     // logicOpEnable
+                                                         vk::LogicOp::eCopy,           // logicOp)
+                                                         1,                            // attachmentCount
+                                                         &colorBlendAttachment,        // pAttachments
+                                                         { 0.0f, 0.0f, 0.0f, 0.0f } ); // blendConstants
 
-    vk::PipelineColorBlendStateCreateInfo colorBlending;
-    colorBlending.logicOpEnable = VK_FALSE;
-    colorBlending.logicOp = vk::LogicOp::eCopy;
-    colorBlending.attachmentCount = 1;
-    colorBlending.pAttachments = &colorBlendAttachment;
-    colorBlending.blendConstants[0] = 0.0f;
-    colorBlending.blendConstants[1] = 0.0f;
-    colorBlending.blendConstants[2] = 0.0f;
-    colorBlending.blendConstants[3] = 0.0f;
+    std::array<vk::DynamicState, 2> dynamicStates { vk::DynamicState::eViewport, vk::DynamicState::eScissor };
 
-    std::array<vk::DynamicState, 2> dynamicStates{ vk::DynamicState::eViewport, vk::DynamicState::eScissor };
+    vk::PipelineDynamicStateCreateInfo dynamicStateInfo( { },                                            // flags
+                                                         static_cast<uint32_t>( dynamicStates.size( ) ), // dynamicStateCount
+                                                         dynamicStates.data( ) );                        // pDynamicStates
 
-    vk::PipelineDynamicStateCreateInfo dynamicStateInfo;
-    dynamicStateInfo.dynamicStateCount = static_cast< uint32_t >( dynamicStates.size( ) );
-    dynamicStateInfo.pDynamicStates = dynamicStates.data( );
+    vk::PushConstantRange pushConstantRange( vk::ShaderStageFlagBits::eFragment, // stageFlags
+                                             0,                                  // offset
+                                             sizeof( glm::vec3 ) );              // size
 
-    vk::PushConstantRange pushConstantRange;
-    pushConstantRange.stageFlags = vk::ShaderStageFlagBits::eFragment;
-    pushConstantRange.offset = 0;
-    pushConstantRange.size = sizeof( glm::vec3 );
-
-    vk::PipelineLayoutCreateInfo pipelineLayoutInfo;
-    pipelineLayoutInfo.setLayoutCount = 1;
-    pipelineLayoutInfo.pSetLayouts = &descriptorSetLayout;
-    pipelineLayoutInfo.pPushConstantRanges = &pushConstantRange;
+    vk::PipelineLayoutCreateInfo pipelineLayoutInfo( { },                  // flags
+                                                     1,                    // setLayoutCount
+                                                     &descriptorSetLayout, // pSetLayouts
+                                                     1,                    // pushConstantRangeCount
+                                                     &pushConstantRange ); // pPushConstantRanges
 
     m_layout = g_device.createPipelineLayoutUnique( pipelineLayoutInfo );
     if ( !m_layout )
       RX_ERROR( "Failed to create pipeline layout." );
 
-    vk::PipelineShaderStageCreateInfo vertShaderStageInfo;
-    vertShaderStageInfo.stage = vk::ShaderStageFlagBits::eVertex;
-    vertShaderStageInfo.module = vertexShader;
-    vertShaderStageInfo.pName = "main";
+    vk::PipelineShaderStageCreateInfo vertShaderStageInfo( { },                              // flags
+                                                           vk::ShaderStageFlagBits::eVertex, // stage
+                                                           vertexShader,                     // module
+                                                           "main",                           // pName
+                                                           nullptr );                        // pSpecializationInfo
 
-    vk::PipelineShaderStageCreateInfo fragShaderStageInfo;
-    fragShaderStageInfo.stage = vk::ShaderStageFlagBits::eFragment;
-    fragShaderStageInfo.module = fragmentShader;
-    fragShaderStageInfo.pName = "main";
+    vk::PipelineShaderStageCreateInfo fragShaderStageInfo( { },                                // flags
+                                                           vk::ShaderStageFlagBits::eFragment, // stage
+                                                           fragmentShader,                     // module
+                                                           "main",                             // pName
+                                                           nullptr );                          // pSpecializationInfo
 
     std::vector<vk::PipelineShaderStageCreateInfo> shaderStages = { vertShaderStageInfo, fragShaderStageInfo };
 
-    vk::GraphicsPipelineCreateInfo createInfo;
-    createInfo.stageCount = static_cast< uint32_t >( shaderStages.size( ) );
-    createInfo.pStages = shaderStages.data( );
-    createInfo.pVertexInputState = &vertexInputInfo;
-    createInfo.pInputAssemblyState = &inputAssembly;
-    createInfo.pViewportState = &viewportState;
-    createInfo.pRasterizationState = &rasterizer;
-    createInfo.pMultisampleState = &multisampling;
-    createInfo.pDepthStencilState = &depthStencil;
-    createInfo.pColorBlendState = &colorBlending;
-    createInfo.layout = m_layout.get( );
-    createInfo.renderPass = renderPass;
-    createInfo.subpass = 0;
-    createInfo.basePipelineHandle = nullptr;
-    createInfo.pDynamicState = &dynamicStateInfo;
-
+    vk::GraphicsPipelineCreateInfo createInfo( { },                                            // flags
+                                               static_cast<uint32_t>( shaderStages.size( ) ) , // stageCount
+                                               shaderStages.data( ),                           // pStages
+                                               &vertexInputInfo,                               // pVertexInputState
+                                               &inputAssembly,                                 // pInputAssemblyState
+                                               nullptr,                                        // pTessellationState
+                                               &viewportState,                                 // pViewportStage
+                                               &rasterizer,                                    // pRasterizationState
+                                               &multisampling,                                 // pMultisampleState
+                                               &depthStencil,                                  // pDepthStencilState
+                                               &colorBlending,                                 // pColorBlendState
+                                               &dynamicStateInfo,                              // pDynamicState
+                                               m_layout.get( ),                                // layout
+                                               renderPass,                                     // renderPass
+                                               0,                                              // subpass
+                                               nullptr,                                        // basePipelineHandle
+                                               0 );                                            // basePipelineIndex
+  
     m_pipeline = g_device.createGraphicsPipelineUnique( nullptr, createInfo, nullptr );
     if ( !m_pipeline )
       RX_ERROR( "Failed to create graphics pipeline." );
@@ -159,33 +176,25 @@ namespace rx
                                  vk::ShaderModule closestHit,
                                  uint32_t maxRecursion )
   {
-    vk::PipelineLayoutCreateInfo layoutInfo
-    {
-      { },                                                // flags
-      static_cast< uint32_t >( descriptorSetLayouts.size( ) ), // setLayoutCount
-      descriptorSetLayouts.data( ),                        // pSetLayouts
-      0,                                                  // pushConstantRangeCount
-      nullptr                                             // pPushConstantRanges
-    };
+    vk::PipelineLayoutCreateInfo layoutInfo( { },                                                   // flags
+                                             static_cast<uint32_t>( descriptorSetLayouts.size( ) ), // setLayoutCount
+                                             descriptorSetLayouts.data( ),                          // pSetLayouts
+                                             0,                                                     // pushConstantRangeCount
+                                             nullptr );                                             // pPushConstantRanges
 
     m_layout = g_device.createPipelineLayoutUnique( layoutInfo );
     if ( !m_layout )
       RX_ERROR( "Failed to create pipeline layout." );
 
-    vk::SpecializationMapEntry specializationMapEntry
-    {
-      0,                // constantID
-      0,                // offset
-      sizeof( uint32_t )  // size
-    };
+    vk::SpecializationMapEntry specializationMapEntry( 0,                    // constantID
+                                                       0,                    // offset
+                                                       sizeof( uint32_t ) ); // size
 
-    vk::SpecializationInfo specializationInfo
-    {
-       1,                         // mapEntryCount
-       &specializationMapEntry,   // pMapEntries
-       sizeof( maxRecursion ),      // dataSize
-       &maxRecursion              // pData
-    };
+    vk::SpecializationInfo specializationInfo( 1,                       // mapEntryCount
+                                               &specializationMapEntry, // pMapEntries
+                                               sizeof( maxRecursion ),  // dataSize
+                                               &maxRecursion );         // pData
+ 
 
     std::array<vk::PipelineShaderStageCreateInfo, 3> shaderStages;
     shaderStages[0] = vk::Helper::getPipelineShaderStageCreateInfo( vk::ShaderStageFlagBits::eRaygenKHR, rayGen );
@@ -201,20 +210,18 @@ namespace rx
 
     groups[2].closestHitShader = 2;
 
-    vk::RayTracingPipelineCreateInfoKHR createInfo{
-      { },                                        // flags
-      static_cast< uint32_t >( shaderStages.size( ) ), // stageCount
-      shaderStages.data( ),                        // pStages
-      static_cast< uint32_t >( groups.size( ) ),       // groupCount
-      groups.data( ),                              // pGroups
-      maxRecursion,                               // maxRecursionDepth
-      0,                                          // libraries
-      nullptr,                                    // pLibraryInterface
-      m_layout.get( ),                             // layout
-      nullptr,                                    // basePipelineHandle
-      0                                           // basePipelineIndex
-    };
-
+    vk::RayTracingPipelineCreateInfoKHR createInfo( { },                                           // flags
+                                                    static_cast<uint32_t>( shaderStages.size( ) ), // stageCount
+                                                    shaderStages.data( ),                          // pStages
+                                                    static_cast<uint32_t>( groups.size( ) ),       // groupCount
+                                                    groups.data( ),                                // pGroups
+                                                    maxRecursion,                                  // maxRecursionDepth
+                                                    0,                                             // libraries
+                                                    nullptr,                                       // pLibraryInterface
+                                                    m_layout.get( ),                               // layout
+                                                    nullptr,                                       // basePipelineHandle
+                                                    0 );                                           // basePipelineIndex
+    
     auto result = g_device.createRayTracingPipelineKHR( nullptr, createInfo, nullptr, *g_dispatchLoaderDynamic );
 
     if ( result.result != vk::Result::eSuccess )

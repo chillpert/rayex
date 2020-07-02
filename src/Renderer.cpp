@@ -2,82 +2,86 @@
 
 namespace rx
 {
-  Renderer::Renderer() :
-    m_window(std::make_shared<WindowBase>()),
-    m_camera(std::make_shared<CameraBase>(m_window->getSize())),
-    m_api(m_window, m_camera),
-    m_initialized(false),
-    m_running(true) { }
+  Renderer::Renderer( ) :
+    m_window( std::make_shared<WindowBase>( ) ),
+    m_camera( std::make_shared<CameraBase>( m_window->getSize( ) ) ),
+    m_api( m_window, m_camera ),
+    m_initialized( false ),
+    m_running( true )
+  { }
 
-  Renderer::Renderer(std::shared_ptr<CameraBase> camera) :
-    m_window(std::make_shared<WindowBase>()),
-    m_camera(camera),
-    m_api(m_window, m_camera),
-    m_initialized(false),
-    m_running(true) { }
+  Renderer::Renderer( std::shared_ptr<CameraBase> camera ) :
+    m_window( std::make_shared<WindowBase>( ) ),
+    m_camera( camera ),
+    m_api( m_window, m_camera ),
+    m_initialized( false ),
+    m_running( true )
+  { }
 
-  Renderer::Renderer(std::shared_ptr<WindowBase> window) :
-    m_window(window),
-    m_camera(std::make_shared<CameraBase>(m_window->getSize())),
-    m_api(window, m_camera),
-    m_initialized(false),
-    m_running(true) { }
+  Renderer::Renderer( std::shared_ptr<WindowBase> window ) :
+    m_window( window ),
+    m_camera( std::make_shared<CameraBase>( m_window->getSize( ) ) ),
+    m_api( window, m_camera ),
+    m_initialized( false ),
+    m_running( true )
+  { }
 
-  Renderer::Renderer(std::shared_ptr<WindowBase> window, std::shared_ptr<CameraBase> camera) :
-    m_window(window),
-    m_camera(camera),
-    m_api(m_window, m_camera),
-    m_initialized(false),
-    m_running(true) { }
+  Renderer::Renderer( std::shared_ptr<WindowBase> window, std::shared_ptr<CameraBase> camera ) :
+    m_window( window ),
+    m_camera( camera ),
+    m_api( m_window, m_camera ),
+    m_initialized( false ),
+    m_running( true )
+  { }
 
-  void Renderer::init()
+  void Renderer::init( )
   {
-    if (m_initialized)
+    if ( m_initialized )
       return;
 
-    m_window->init();
-    m_api.init();
+    m_window->init( );
+    m_api.init( );
 
     m_initialized = true;
   }
 
-  void Renderer::update()
+  void Renderer::update( )
   {
-    if (!m_running || !m_initialized)
+    if ( !m_running || !m_initialized )
       return;
 
-    m_running = m_window->update();
-    m_camera->update();
-    m_api.update();
+    m_running = m_window->update( );
+    m_camera->update( );
+    m_api.update( );
   }
 
-  void Renderer::render()
+  void Renderer::render( )
   {
-    if (!m_running || !m_initialized)
+    if ( !m_running || !m_initialized )
       return;
 
-    m_running = m_window->render();
-    m_api.render();
+    m_running = m_window->render( );
+    m_api.render( );
   }
 
-  void Renderer::start()
+  void Renderer::start( )
   {
-    init();
+    init( );
 
-    while (m_running)
+    while ( m_running )
     {
-      update();
-      render();
+      update( );
+      render( );
     }
   }
 
-  void Renderer::pushNode(const std::shared_ptr<GeometryNodeBase> node)
+  void Renderer::pushNode( const std::shared_ptr<GeometryNodeBase> node )
   {
-    m_api.pushNode(node);
+    m_api.pushNode( node );
   }
 
-  void Renderer::setNodes(const std::vector<std::shared_ptr<GeometryNodeBase>>& nodes)
+  void Renderer::setNodes( const std::vector<std::shared_ptr<GeometryNodeBase>>& nodes )
   {
-    m_api.setNodes(nodes);
+    m_api.setNodes( nodes );
   }
 }

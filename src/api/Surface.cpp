@@ -3,47 +3,48 @@
 
 namespace rx
 {
-  Surface::Surface() :
-    m_format(vk::Format::eB8G8R8A8Unorm),
-    m_colorSpace(vk::ColorSpaceKHR::eSrgbNonlinear),
-    m_presentMode(vk::PresentModeKHR::eMailbox),
-    m_capabilities(0) { }
+  Surface::Surface( ) :
+    m_format( vk::Format::eB8G8R8A8Unorm ),
+    m_colorSpace( vk::ColorSpaceKHR::eSrgbNonlinear ),
+    m_presentMode( vk::PresentModeKHR::eMailbox ),
+    m_capabilities( 0 )
+  { }
 
-  Surface::Surface(vk::Format format, vk::ColorSpaceKHR colorSpace, vk::PresentModeKHR presentMode, bool initialize) :
-    m_format(vk::Format::eB8G8R8A8Unorm),
-    m_colorSpace(vk::ColorSpaceKHR::eSrgbNonlinear),
-    m_presentMode(vk::PresentModeKHR::eMailbox),
-    m_capabilities(0)
+  Surface::Surface( vk::Format format, vk::ColorSpaceKHR colorSpace, vk::PresentModeKHR presentMode, bool initialize ) :
+    m_format( vk::Format::eB8G8R8A8Unorm ),
+    m_colorSpace( vk::ColorSpaceKHR::eSrgbNonlinear ),
+    m_presentMode( vk::PresentModeKHR::eMailbox ),
+    m_capabilities( 0 )
   {
-    if (initialize)
-      init();
+    if ( initialize )
+      init( );
   }
 
-  Surface::~Surface()
+  Surface::~Surface( )
   {
-    destroy();
+    destroy( );
   }
 
-  void Surface::init()
+  void Surface::init( )
   {
-    m_surface = g_window->createSurface(g_instance);
+    m_surface = g_window->createSurface( g_instance );
     g_surface = m_surface;
 
-    if (!m_surface)
-      RX_ERROR("Failed to create surface.");
+    if ( !m_surface )
+      RX_ERROR( "Failed to create surface." );
   }
 
-  void Surface::checkSettingSupport()
+  void Surface::checkSettingSupport( )
   {
     // Get all surface capabilities.
-    m_capabilities = g_physicalDevice.getSurfaceCapabilitiesKHR(m_surface);
+    m_capabilities = g_physicalDevice.getSurfaceCapabilitiesKHR( m_surface );
 
     // Check a present mode.
-    std::vector<vk::PresentModeKHR> presentModes = g_physicalDevice.getSurfacePresentModesKHR(m_surface);
+    std::vector<vk::PresentModeKHR> presentModes = g_physicalDevice.getSurfacePresentModesKHR( m_surface );
 
-    for (const auto& mode : presentModes)
+    for ( const auto& mode : presentModes )
     {
-      if (mode == vk::PresentModeKHR::eMailbox)
+      if ( mode == vk::PresentModeKHR::eMailbox )
       {
         m_presentMode = vk::PresentModeKHR::eMailbox;
         return;
@@ -54,12 +55,12 @@ namespace rx
     m_presentMode = vk::PresentModeKHR::eFifo;
 
     // Check format and color space.
-    auto formatProperties = g_physicalDevice.getFormatProperties(m_format); // TODO: not used.
-    auto surfaceFormats = g_physicalDevice.getSurfaceFormatsKHR(m_surface);
+    auto formatProperties = g_physicalDevice.getFormatProperties( m_format ); // TODO: not used.
+    auto surfaceFormats = g_physicalDevice.getSurfaceFormatsKHR( m_surface );
 
-    for (const auto& iter : surfaceFormats)
+    for ( const auto& iter : surfaceFormats )
     {
-      if (iter.format == m_format && iter.colorSpace == m_colorSpace)
+      if ( iter.format == m_format && iter.colorSpace == m_colorSpace )
         return;
     }
 
@@ -68,11 +69,11 @@ namespace rx
     m_colorSpace = surfaceFormats[0].colorSpace;
   }
 
-  void Surface::destroy()
+  void Surface::destroy( )
   {
-    if (m_surface)
+    if ( m_surface )
     {
-      g_instance.destroySurfaceKHR(m_surface);
+      g_instance.destroySurfaceKHR( m_surface );
       m_surface = nullptr;
     }
   }

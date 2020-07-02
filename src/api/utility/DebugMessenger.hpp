@@ -9,22 +9,22 @@ namespace rx
   class DebugMessenger
   {
   public:
-    DebugMessenger() = default;
-    DebugMessenger(VkDebugUtilsMessageSeverityFlagsEXT messageSeverity, VkDebugUtilsMessageTypeFlagsEXT messageType, bool initialize = true);
+    DebugMessenger( ) = default;
+    DebugMessenger( VkDebugUtilsMessageSeverityFlagsEXT messageSeverity, VkDebugUtilsMessageTypeFlagsEXT messageType, bool initialize = true );
 
     // Scope-bound destruction.
-    ~DebugMessenger();
+    ~DebugMessenger( );
 
     /*
       Creates the debug messenger with the given properties.
       @param messageSeverity - Only messages that match the provided flag bits will be printed to the console.
       @param messageType - Only messages that match the provided flag bits will be printed to the console.
     */
-    void init(VkDebugUtilsMessageSeverityFlagsEXT messageSeverity, VkDebugUtilsMessageTypeFlagsEXT messageType);
+    void init( VkDebugUtilsMessageSeverityFlagsEXT messageSeverity, VkDebugUtilsMessageTypeFlagsEXT messageType );
 
   private:
-    void destroy();
-    
+    void destroy( );
+
     PFN_vkCreateDebugUtilsMessengerEXT m_createDebugUtilsMessengerEXT;
     PFN_vkDestroyDebugUtilsMessengerEXT m_destroyDebugUtilsMessengerEXT;
 

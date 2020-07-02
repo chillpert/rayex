@@ -13,9 +13,9 @@ namespace rx
   class RaytraceBuilder
   {
   public:
-    inline vk::ShaderModule getRayGenShader( ) { return m_rayGen.get( ); }
-    inline vk::ShaderModule getMissShader( ) { return m_miss.get( ); }
-    inline vk::ShaderModule getClosestHitShader( ) { return m_closestHit.get( ); }
+    inline const vk::ShaderModule getRayGenShader( ) const { return m_rayGen.get( ); }
+    inline const vk::ShaderModule getMissShader( ) const { return m_miss.get( ); }
+    inline const vk::ShaderModule getClosestHitShader( ) const { return m_closestHit.get( ); }
 
     void init( );
     void destroy( );

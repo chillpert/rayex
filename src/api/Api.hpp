@@ -20,7 +20,7 @@
 #include "UniformBuffer.hpp"
 #include "GuiBase.hpp"
 #include "Base.hpp"
-#include "RaytraceBuilder.hpp"
+#include "RayTracingBuilder.hpp"
 
 namespace rx
 {
@@ -59,6 +59,7 @@ namespace rx
     void initSwapchainCommandBuffers( );
     void initGui( );
     void recordSwapchainCommandBuffers( );
+    void initSyncObjects( );
 
     void clean( );
     void recreateSwapchain( );
@@ -100,13 +101,14 @@ namespace rx
 
   public:
     std::shared_ptr<GuiBase> m_gui;
+
   private:
     // No destruction necessary for following members:
     PhysicalDevice m_physicalDevice;
     Queues m_queues;
     std::vector<vk::Fence> m_imagesInFlight;
 
-    RaytraceBuilder m_raytraceBuilder;
+    RayTracingBuilder m_rayTracingBuilder;
 
     bool m_recreateSwapchain = false;
   };

@@ -156,6 +156,17 @@ set_target_properties(renderer
   RUNTIME_OUTPUT_DIRECTORY_RELWITHDEBINFO "${PROJECT_SOURCE_DIR}/build/bin/relwithbebinfo"
 )
 
+# set build paths
+if(${CMAKE_BUILD_TYPE} STREQUAL "Debug")
+  set(BUILD_PATH debug)
+elseif(${CMAKE_BUILD_TYPE} STREQUAL "Release")
+  set(BUILD_PATH release)
+elseif(${CMAKE_BUILD_TYPE} STREQUAL "RelWithDebInfo")
+  set(BUILD_PATH relWithDebInfo) 
+elseif(${CMAKE_BUILD_TYPE} STREQUAL "MinSizeRel")
+  set(BUILD_PATH minSizeRel)
+endif()
+
 # EXAMPLE
 if(BUILD_EXAMPLES)
   include_directories(${PROJECT_SOURCE_DIR}/src/example)
@@ -192,17 +203,6 @@ if(BUILD_EXAMPLES)
     RUNTIME_OUTPUT_DIRECTORY_RELWITHDEBINFO "${PROJECT_SOURCE_DIR}/build/bin/relwithbebinfo"
   )
 
-  # set build paths
-  if(${CMAKE_BUILD_TYPE} STREQUAL "Debug")
-    set(BUILD_PATH debug)
-  elseif(${CMAKE_BUILD_TYPE} STREQUAL "Release")
-    set(BUILD_PATH release)
-  elseif(${CMAKE_BUILD_TYPE} STREQUAL "RelWithDebInfo")
-    set(BUILD_PATH relWithDebInfo) 
-  elseif(${CMAKE_BUILD_TYPE} STREQUAL "MinSizeRel")
-    set(BUILD_PATH minSizeRel)
-  endif()
-
   # copy dlls to binary location in post build
   if(${OS} STREQUAL "Windows")
     add_custom_command(
@@ -215,3 +215,5 @@ if(BUILD_EXAMPLES)
       )
   endif()
 endif()
+
+add_compile_definitions(RX_PATH_TO_LIBRARY="${PROJECT_SOURCE_DIR}/build/bin/${BUILD_PATH}/")

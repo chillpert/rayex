@@ -38,47 +38,10 @@ namespace rx
     std::cout << std::endl << std::endl;
 
     // Print information about the GPU that was selected.
-    m_properties = m_physicalDevice.getProperties( );
-    m_properties2 = m_physicalDevice.getProperties2( );
-
-    m_features = m_physicalDevice.getFeatures( );
-    m_features2 = m_physicalDevice.getFeatures2( );
-
-    RX_LOG( "Selected GPU: " << m_properties.deviceName );
+    auto properties = m_physicalDevice.getProperties( );
+    RX_LOG( "Selected GPU: " << properties.deviceName );
 
     g_physicalDevice = m_physicalDevice;
-  }
-
-  const vk::PhysicalDeviceProperties PhysicalDevice::getProperties( ) const
-  {
-    if ( !m_physicalDevice )
-      RX_ERROR( "Initialize the physical device before calling PhysicalDevice::getProperties()" );
-
-    return m_properties;
-  }
-
-  const vk::PhysicalDeviceProperties2 PhysicalDevice::getProperties2( ) const
-  {
-    if ( !m_physicalDevice )
-      RX_ERROR( "Initialize the physical device before calling PhysicalDevice::getProperties()" );
-
-    return m_properties2;
-  }
-
-  const vk::PhysicalDeviceFeatures PhysicalDevice::getFeatures( ) const
-  {
-    if ( !m_physicalDevice )
-      RX_ERROR( "Initialize the physical device before calling PhysicalDevice::getProperties()" );
-
-    return m_features;
-  }
-
-  const vk::PhysicalDeviceFeatures2 PhysicalDevice::getFeatures2( ) const
-  {
-    if ( !m_physicalDevice )
-      RX_ERROR( "Initialize the physical device before calling PhysicalDevice::getProperties()" );
-
-    return m_features2;
   }
 
   std::pair<unsigned int, std::string> PhysicalDevice::evaluate( vk::PhysicalDevice physicalDevice ) const

@@ -142,12 +142,39 @@ namespace vk
       return memory;;
     }
 
+    void allocateMemory( rx::AccelerationStructure& as )
+    {
+      AccelerationStructureMemoryRequirementsInfoKHR memInfo( AccelerationStructureMemoryRequirementsTypeKHR::eObject, // type
+                                                              AccelerationStructureBuildTypeKHR::eDevice,              // buildType
+                                                              as.as );                                               // accelerationStructure
+
+      MemoryRequirements2 memoryRequirements = rx::g_device.getAccelerationStructureMemoryRequirementsKHR( memInfo, *rx::g_dispatchLoaderDynamic );
+      
+      MemoryAllocateFlagsInfo allocateFlags( MemoryAllocateFlagBits::eDeviceAddress, // flags
+                                                 { } );                                      // deviceMask
+
+      MemoryAllocateInfo allocateInfo( memoryRequirements.memoryRequirements.size,                                                                                             // allocationSize
+                                       Helper::findType( rx::g_physicalDevice, memoryRequirements.memoryRequirements.memoryTypeBits, MemoryPropertyFlagBits::eDeviceLocal ) ); // memoryTypeIndex
+
+      as.memory = rx::g_device.allocateMemory( allocateInfo );
+      RX_ASSERT( as.memory, "Failed to create memory for acceleration structure." );
+
+      BindAccelerationStructureMemoryInfoKHR bindInfo( as.as,     // accelerationStructure
+                                                       as.memory, // memory
+                                                       0,         // memoryOffset
+                                                       0,         // deviceIndexCount
+                                                       nullptr ); // pDeviceIndices
+
+      if ( rx::g_device.bindAccelerationStructureMemoryKHR( 1, &bindInfo, *rx::g_dispatchLoaderDynamic ) != Result::eSuccess )
+        RX_ERROR( "Failed to bind acceleration structure memory." );
+    }
+
     DeviceMemory allocateMemory( Buffer buffer, MemoryPropertyFlags propertyFlags, void* pNext )
     {
       auto memoryRequirements = rx::g_device.getBufferMemoryRequirements( buffer );
 
-      vk::MemoryAllocateInfo allocateInfo( memoryRequirements.size,                                                                       // allocationSize 
-                                           Helper::findType( rx::g_physicalDevice, memoryRequirements.memoryTypeBits, propertyFlags ) );  // memoryTypeIndex
+      MemoryAllocateInfo allocateInfo( memoryRequirements.size,                                                                       // allocationSize 
+                                       Helper::findType( rx::g_physicalDevice, memoryRequirements.memoryTypeBits, propertyFlags ) );  // memoryTypeIndex
 
       allocateInfo.pNext = pNext;
 
@@ -163,10 +190,10 @@ namespace vk
     {
       ComponentMapping components =
       {
-        vk::ComponentSwizzle::eIdentity,
-        vk::ComponentSwizzle::eIdentity,
-        vk::ComponentSwizzle::eIdentity,
-        vk::ComponentSwizzle::eIdentity
+        ComponentSwizzle::eIdentity,
+        ComponentSwizzle::eIdentity,
+        ComponentSwizzle::eIdentity,
+        ComponentSwizzle::eIdentity
       };
 
       ImageSubresourceRange subresourceRange =
@@ -323,6 +350,16 @@ namespace vk
       RX_ASSERT( shaderModule, "Failed to create shader module." );
 
       return shaderModule;
+    }
+
+    rx::AccelerationStructure createAccelerationStructure( const vk::AccelerationStructureCreateInfoKHR& asCreateInfo )
+    {
+      rx::AccelerationStructure resultAs;
+      resultAs.as = rx::g_device.createAccelerationStructureKHR( asCreateInfo, nullptr, *rx::g_dispatchLoaderDynamic ); // TODO: this is gonna cuase errors.
+
+      allocateMemory( resultAs );
+
+      return resultAs;
     }
   }
 }

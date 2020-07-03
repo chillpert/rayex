@@ -58,19 +58,7 @@ namespace rx
     initSwapchainCommandBuffers( );
     initGui( );
     recordSwapchainCommandBuffers( );
-
-    // Synchronization
-    m_imageAvailableSemaphores.resize( maxFramesInFlight );
-    m_finishedRenderSemaphores.resize( maxFramesInFlight );
-    m_inFlightFences.resize( maxFramesInFlight );
-    m_imagesInFlight.resize( m_swapchain.getImages( ).size( ), nullptr );
-
-    for ( size_t i = 0; i < maxFramesInFlight; ++i )
-    {
-      m_imageAvailableSemaphores[i] = vk::Initializer::createSemaphoreUnique( );
-      m_finishedRenderSemaphores[i] = vk::Initializer::createSemaphoreUnique( );
-      m_inFlightFences[i] = vk::Initializer::createFenceUnique( );
-    }
+    initSyncObjects( );
 
     RX_LOG( "Finished API initialization." );
   }
@@ -229,7 +217,7 @@ namespace rx
 
     // Clean up existing swapchain and dependencies.
     {
-      m_raytraceBuilder.destroy( );
+      //m_rayTracingBuilder.destroy( );
       //vk::Destructor::destroyImageView( m_depthImageView );
       //m_depthImage.destroy( );
       // vk::Destructor::destroyFramebuffers( m_swapchainFramebuffers );
@@ -269,7 +257,7 @@ namespace rx
 
   void Api::initRayTracing( )
   {
-    m_raytraceBuilder.init( );
+    m_rayTracingBuilder.init( );
   }
 
   void Api::initInstance( )
@@ -373,7 +361,6 @@ namespace rx
                                              vk::AccessFlagBits::eColorAttachmentWrite,          // dstAccessMask
                                              { } );                                              // dependencyFlags
 
-
     m_renderPass.init( { colorAttachmentDescription, depthAttachmentDescription }, { subpassDescription }, { subpassDependency } );
   }
 
@@ -397,8 +384,8 @@ namespace rx
   void Api::initPipeline( bool firstRun )
   {
     // Create shaders.
-    auto vs = vk::Initializer::createShaderModuleUnique( RX_SHADER_PATH "simple3D.vert" );
-    auto fs = vk::Initializer::createShaderModuleUnique( RX_SHADER_PATH "simple3D.frag" );
+    auto vs = vk::Initializer::createShaderModuleUnique( "shaders/simple3D.vert" );
+    auto fs = vk::Initializer::createShaderModuleUnique( "shaders/simple3D.frag" );
 
     if ( firstRun )
     {
@@ -557,13 +544,7 @@ namespace rx
       model->m_initialized = true;
     }
 
-    std::vector<std::shared_ptr<Model>> models;
-    models.reserve( m_models.size( ) );
-
-    for ( const auto& model : m_models )
-      models.push_back( model.second );
-
-    m_raytraceBuilder.initAccelerationStructures( m_nodes, models, &m_surface );
+    m_rayTracingBuilder.createBottomLevelAS( vk::Helper::unpack(m_models) );
   }
 
   void Api::initSwapchainCommandBuffers( )
@@ -654,6 +635,22 @@ namespace rx
 
       m_renderPass.end( m_swapchainCommandBuffers.get( imageIndex ) );
       m_swapchainCommandBuffers.end( imageIndex );
+    }
+  }
+
+  void Api::initSyncObjects( )
+  { 
+    // Synchronization
+    m_imageAvailableSemaphores.resize( maxFramesInFlight );
+    m_finishedRenderSemaphores.resize( maxFramesInFlight );
+    m_inFlightFences.resize( maxFramesInFlight );
+    m_imagesInFlight.resize( m_swapchain.getImages( ).size( ), nullptr );
+
+    for ( size_t i = 0; i < maxFramesInFlight; ++i )
+    {
+      m_imageAvailableSemaphores[i] = vk::Initializer::createSemaphoreUnique( );
+      m_finishedRenderSemaphores[i] = vk::Initializer::createSemaphoreUnique( );
+      m_inFlightFences[i] = vk::Initializer::createFenceUnique( );
     }
   }
 }

@@ -1,7 +1,8 @@
 #ifndef HELPERS_HPP
 #define HELPERS_HPP
 
-#include "stdafx.hpp"
+#include "AccelerationStructure.hpp"
+#include "Model.hpp"
 
 namespace vk
 {
@@ -18,6 +19,10 @@ namespace vk
     std::vector<char> parseShader( const std::string& path );
 
     std::vector<vk::ImageView> unpack( const std::vector<vk::UniqueImageView>& uinqueImageViews );
+
+    std::vector<std::shared_ptr<rx::Model>> unpack( const std::unordered_map<std::string, std::shared_ptr<rx::Model>>& models );
+
+    rx::Blas objectToVkGeometryKHR( const std::shared_ptr<rx::Model> model );
   }
 }
 

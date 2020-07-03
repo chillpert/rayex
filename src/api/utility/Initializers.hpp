@@ -2,6 +2,7 @@
 #define INITIALIZERS_HPP
 
 #include "Components.hpp"
+#include "AccelerationStructure.hpp"
 
 namespace vk
 {
@@ -71,6 +72,10 @@ namespace vk
     // @return - Returns the memory.
     UniqueDeviceMemory allocateMemoryUnique( Buffer buffer, MemoryPropertyFlags propertyFlags = MemoryPropertyFlagBits::eDeviceLocal, void * pNext = nullptr );
 
+    // Allocates and binds unique memory for an acceleration structure object.
+    // @param as - The rx::AccelerationStructure object the memory will be allocated for.
+    void allocateMemory( rx::AccelerationStructure& as );
+
     // Allocates and binds memory for a buffer.
     // @param image - The image to allocate memory for.
     // @param pNext - The pNext chain of the Vulkan allocation info.
@@ -136,6 +141,11 @@ namespace vk
     // @param path - The full path to the GLSL shader file.
     // @return - Returns the shader module.
     ShaderModule createShaderModule( const std::string& path );
+
+    // Creates the acceleration structure and allocates and binds memory for it.
+    // @param asCreateInfo - The Vulkan create info for the acceleration structure.
+    // @return - Returns an rx::AccelerationStructure object that contains the AS itself as well as the memory for it.
+    rx::AccelerationStructure createAccelerationStructure( const vk::AccelerationStructureCreateInfoKHR& asCreateInfo );
   }
 }
 

@@ -1,4 +1,5 @@
 #include "Renderer.hpp"
+#include <filesystem>
 
 namespace rx
 {
@@ -38,6 +39,12 @@ namespace rx
   {
     if ( m_initialized )
       return;
+
+  #ifdef RX_DEBUG
+    std::filesystem::copy( RX_RESOURCES_PATH "shaders", RX_PATH_TO_LIBRARY "shaders", std::filesystem::copy_options::overwrite_existing | std::filesystem::copy_options::recursive );
+    std::filesystem::copy( RX_RESOURCES_PATH "models", RX_PATH_TO_LIBRARY "models", std::filesystem::copy_options::overwrite_existing | std::filesystem::copy_options::recursive );
+    std::filesystem::copy( RX_RESOURCES_PATH "textures", RX_PATH_TO_LIBRARY "textures", std::filesystem::copy_options::overwrite_existing | std::filesystem::copy_options::recursive );
+  #endif
 
     m_window->init( );
     m_api.init( );

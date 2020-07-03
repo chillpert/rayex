@@ -14,22 +14,6 @@ namespace rx
     // Note: SLI, Crossfire and similar is NOT supported.
     void init( );
 
-    // Returns the device's properties.
-    // Note: Must be called after PhysicalDevice::init().
-    const vk::PhysicalDeviceProperties getProperties( ) const;
-
-    // Returns the device's second properties.
-    // Note: Must be called after PhysicalDevice::init().
-    const vk::PhysicalDeviceProperties2 getProperties2( ) const;
-
-    // Returns the device's features.
-    // Note: Must be called after PhysicalDevice::init().
-    const vk::PhysicalDeviceFeatures getFeatures( ) const;
-
-    // Returns the device's second features.
-    // Note: Must be called after PhysicalDevice::init().
-    const vk::PhysicalDeviceFeatures2 getFeatures2( ) const;
-
   private:
     // Scores a given physical device (GPU).
     // @param physicalDevice - The physical device to score.
@@ -38,11 +22,6 @@ namespace rx
     std::pair<unsigned int, std::string> evaluate( vk::PhysicalDevice physicalDevice ) const;
 
     vk::PhysicalDevice m_physicalDevice;
-
-    vk::PhysicalDeviceProperties m_properties;
-    vk::PhysicalDeviceProperties2 m_properties2;
-    vk::PhysicalDeviceFeatures m_features;
-    vk::PhysicalDeviceFeatures2 m_features2;
   };
 
   // This function is used to check if a device is suitable for the application's task.

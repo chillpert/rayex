@@ -15,6 +15,8 @@ namespace rx
     glm::vec2 texCoord;
     glm::vec3 normal;
 
+    inline static vk::Format getVertexFormat( ) { return vk::Format::eR32G32B32Sfloat; }
+
     static std::array<vk::VertexInputBindingDescription, 1> getBindingDescriptions( )
     {
       std::array<vk::VertexInputBindingDescription, 1> bindindDescriptions { };

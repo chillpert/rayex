@@ -130,5 +130,53 @@ namespace vk
 
       return result;
     }
+
+    std::vector<std::shared_ptr<rx::Model>> unpack( const std::unordered_map<std::string, std::shared_ptr<rx::Model>>& models )
+    {
+      std::vector<std::shared_ptr<rx::Model>> result;
+      result.reserve( models.size( ) );
+
+      for ( const auto& model : models )
+        result.push_back( model.second );
+
+      return result;
+    }
+    
+    rx::Blas objectToVkGeometryKHR( const std::shared_ptr<rx::Model> model )
+    {
+      vk::AccelerationStructureCreateGeometryTypeInfoKHR asCreate( vk::GeometryTypeKHR::eTriangles,       // geometryType
+                                                                   model->m_indexBuffer.getCount( ) / 3,  // maxPrimitiveCount
+                                                                   model->m_indexBuffer.getType( ),       // indexType
+                                                                   model->m_vertexBuffer.getCount( ),     // maxVertexCount
+                                                                   rx::Vertex::getVertexFormat( ),        // vertexFormat
+                                                                   VK_FALSE );                            // allowsTransforms
+
+      vk::DeviceAddress vertexAddress = rx::g_device.getBufferAddress( { model->m_vertexBuffer.get( ) } );
+      vk::DeviceAddress indexAddress = rx::g_device.getBufferAddress( { model->m_indexBuffer.get( ) } );
+
+      vk::AccelerationStructureGeometryTrianglesDataKHR triangles( asCreate.vertexFormat, // vertexFormat
+                                                                   vertexAddress,         // vertexData
+                                                                   sizeof( rx::Vertex ),  // vertexStride
+                                                                   asCreate.indexType,    // indexType
+                                                                   indexAddress,          // indexData
+                                                                   { } );                 // transformData
+
+      vk::AccelerationStructureGeometryKHR asGeom( asCreate.geometryType,              // geometryType
+                                                   triangles,                          // geometry
+                                                   vk::GeometryFlagBitsKHR::eOpaque ); // flags
+
+      vk::AccelerationStructureBuildOffsetInfoKHR offset( asCreate.maxPrimitiveCount, // primitiveCount
+                                                          0,                          // primitiveOffset
+                                                          0,                          // firstVertex
+                                                          0 );                        // transformOffset
+
+      rx::Blas blas;
+      blas.asGeometry.push_back( asGeom );
+      blas.asCreateGeometryInfo.push_back( asCreate );
+      blas.asBuildOffsetInfo.push_back( offset );
+
+      return blas;
+    }
+    
   }
 }

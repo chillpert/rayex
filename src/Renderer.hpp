@@ -33,6 +33,8 @@ namespace rx
 
     RX_API void setGui( std::shared_ptr<GuiBase> gui )
     {
+      RX_ASSERT( !m_initialized, "Gui needs to be set before initializing the renderer." );
+
       m_api.m_gui = gui;
     }
 

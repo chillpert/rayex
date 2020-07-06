@@ -26,11 +26,8 @@ namespace rx
 
   struct RaytracingInstance
   {
-    uint32_t m_instanceId;
-    uint32_t m_mask;
-    uint32_t m_instanceOffset;
-    uint32_t m_flags;
-    uint64_t m_asHandle;
+    uint32_t m_objIndex = 0;  // Reference to the `m_objModel`
+    uint32_t m_txtOffset = 0; // Offset in `m_textures`
   };
 
   class GeometryNodeBase : public TransformNodeBase

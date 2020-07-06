@@ -3,6 +3,8 @@
 
 #include "AccelerationStructure.hpp"
 #include "Model.hpp"
+#include "NodeBase.hpp"
+#include "Buffer.hpp"
 
 namespace rx
 {
@@ -14,13 +16,22 @@ namespace rx
     void init( );
     void destroy( );
 
+    Blas objectToVkGeometryKHR( const std::shared_ptr<Model> model ) const;
+    vk::AccelerationStructureInstanceKHR instanceToVkGeometryInstanceKHR( const BlasInstance& instance ) const;
+
     void createBottomLevelAS( const std::vector<std::shared_ptr<Model>>& models );
     void buildBlas( const std::vector<Blas>& blas_, vk::BuildAccelerationStructureFlagsKHR flags = vk::BuildAccelerationStructureFlagBitsKHR::ePreferFastTrace );
+
+    void createTopLevelAS( const std::vector<std::shared_ptr<GeometryNodeBase>>& nodes );
+    void buildTlas( const std::vector<BlasInstance>& instances, vk::BuildAccelerationStructureFlagsKHR flags = vk::BuildAccelerationStructureFlagBitsKHR::ePreferFastTrace );
 
   private:
     vk::PhysicalDeviceRayTracingPropertiesKHR m_rtProperties;
 
     std::vector<Blas> m_blas_;
+    Tlas m_tlas;
+
+    Buffer m_instBuffer;
   };
 }
 

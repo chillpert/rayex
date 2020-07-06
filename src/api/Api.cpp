@@ -545,6 +545,7 @@ namespace rx
     }
 
     m_rayTracingBuilder.createBottomLevelAS( vk::Helper::unpack(m_models) );
+    m_rayTracingBuilder.createTopLevelAS( m_nodes );
   }
 
   void Api::initSwapchainCommandBuffers( )

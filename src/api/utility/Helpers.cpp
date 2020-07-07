@@ -141,5 +141,22 @@ namespace vk
 
       return result;
     }
+
+
+    std::vector<DescriptorPoolSize> getPoolSizes( const std::vector<DescriptorSetLayoutBinding>& layoutBindings )
+    {
+      std::vector<DescriptorPoolSize> result;
+      result.reserve( layoutBindings.size( ) );
+
+      for ( const auto& layoutBinding : layoutBindings )
+      {
+        DescriptorPoolSize poolSize( layoutBinding.descriptorType,    // type
+                                     layoutBinding.descriptorCount ); // count
+
+        result.push_back( poolSize );
+      }
+
+      return result;
+    }
   }
 }

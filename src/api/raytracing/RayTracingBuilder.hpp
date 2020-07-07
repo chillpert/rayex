@@ -25,6 +25,8 @@ namespace rx
     void createTopLevelAS( const std::vector<std::shared_ptr<GeometryNodeBase>>& nodes );
     void buildTlas( const std::vector<BlasInstance>& instances, vk::BuildAccelerationStructureFlagsKHR flags = vk::BuildAccelerationStructureFlagBitsKHR::ePreferFastTrace );
 
+    void createDescriptorSet( );
+
   private:
     vk::PhysicalDeviceRayTracingPropertiesKHR m_rtProperties;
 
@@ -32,6 +34,11 @@ namespace rx
     Tlas m_tlas;
 
     Buffer m_instBuffer;
+  
+    // Descriptors
+    vk::UniqueDescriptorPool m_descriptorPool;
+    DescriptorSet m_descriptorSets;
+    DescriptorSetLayout m_descriptorSetLayout;
   };
 }
 

@@ -100,6 +100,8 @@ namespace rx
     m_images = g_device.getSwapchainImagesKHR( m_swapchain.get( ) );
     if ( m_images.size( ) < minImageCount )
       RX_ERROR( "Failed to get swapchain images." );
+
+    g_swapchainImageCount = static_cast<uint32_t>( m_images.size( ) );
   }
 
   void Swapchain::destroy( )

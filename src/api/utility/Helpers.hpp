@@ -18,9 +18,11 @@ namespace vk
 
     std::vector<char> parseShader( const std::string& path );
 
-    std::vector<vk::ImageView> unpack( const std::vector<vk::UniqueImageView>& uinqueImageViews );
+    std::vector<ImageView> unpack( const std::vector<vk::UniqueImageView>& uinqueImageViews );
 
     std::vector<std::shared_ptr<rx::Model>> unpack( const std::unordered_map<std::string, std::shared_ptr<rx::Model>>& models );
+
+    std::vector<DescriptorPoolSize> getPoolSizes( const std::vector<DescriptorSetLayoutBinding>& layoutBindings );
   }
 }
 

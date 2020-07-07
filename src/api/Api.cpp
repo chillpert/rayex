@@ -395,7 +395,6 @@ namespace rx
                                                     vk::ShaderStageFlagBits::eVertex,   // stageFlags
                                                     nullptr );                          // pImmutableSamplers
 
-
       vk::DescriptorSetLayoutBinding fragmentBinding( 1,                                          // binding
                                                       vk::DescriptorType::eCombinedImageSampler,  // descriptorType
                                                       1,                                          // descriptorCount
@@ -546,6 +545,7 @@ namespace rx
 
     m_rayTracingBuilder.createBottomLevelAS( vk::Helper::unpack(m_models) );
     m_rayTracingBuilder.createTopLevelAS( m_nodes );
+    m_rayTracingBuilder.createDescriptorSet( );
   }
 
   void Api::initSwapchainCommandBuffers( )

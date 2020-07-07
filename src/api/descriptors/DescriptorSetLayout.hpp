@@ -16,7 +16,6 @@ namespace rx
     void clearBindings( );
 
     void init( );
-
     void destroy( );
 
   private:

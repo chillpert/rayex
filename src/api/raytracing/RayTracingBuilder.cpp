@@ -359,4 +359,33 @@ namespace rx
     cmdBuf.end( 0 );
     cmdBuf.submitToQueue( g_graphicsQueue );
   }
+
+  void RayTracingBuilder::createDescriptorSet( )
+  {
+    // TLAS.
+    vk::DescriptorSetLayoutBinding tlasBinding( 0,                                                                             // binding
+                                                vk::DescriptorType::eAccelerationStructureKHR,                                 // descriptorType
+                                                1,                                                                             // descriptorCount
+                                                vk::ShaderStageFlagBits::eRaygenKHR | vk::ShaderStageFlagBits::eClosestHitKHR, // stageFlags
+                                                nullptr );                                                                     // pImmutableSamplers
+
+    // Output image.
+    vk::DescriptorSetLayoutBinding outputImageBinding( 1,                                   // binding
+                                                       vk::DescriptorType::eStorageImage,   // descriptorType
+                                                       1,                                   // descriptorCount
+                                                       vk::ShaderStageFlagBits::eRaygenKHR, // stageFlags
+                                                       nullptr );                           // pImmutableSamplers
+
+    m_descriptorSetLayout.addBinding( tlasBinding );
+    m_descriptorSetLayout.addBinding( outputImageBinding );
+
+    m_descriptorSetLayout.init( );
+
+    m_descriptorPool = vk::Initializer::createDescriptorPoolUnique( vk::Helper::getPoolSizes( { tlasBinding, outputImageBinding } ), // poolSizes
+                                                                    g_swapchainImageCount );                                         // maxSets
+
+    m_descriptorSets.init( m_descriptorPool.get( ), g_swapchainImageCount, std::vector<vk::DescriptorSetLayout>( g_swapchainImageCount, m_descriptorSetLayout.get( ) ) );
+
+    vk::WriteDescriptorSetAccelerationStructureKHR descAsInfo;
+  }
 }

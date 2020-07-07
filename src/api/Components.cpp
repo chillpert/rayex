@@ -9,6 +9,7 @@ namespace rx
   vk::SurfaceKHR g_surface = nullptr;
   std::unique_ptr<vk::DispatchLoaderDynamic> g_dispatchLoaderDynamic = nullptr;
   vk::SwapchainKHR g_swapchain = nullptr;
+  uint32_t g_swapchainImageCount = 0;
 
   vk::CommandPool g_graphicsCmdPool = nullptr;
   vk::CommandPool g_transferCmdPool = nullptr;

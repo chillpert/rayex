@@ -60,30 +60,9 @@ namespace rx
 
   void DescriptorSet::update( vk::AccelerationStructureKHR tlas, vk::ImageView storageImageView )
   {
-    vk::WriteDescriptorSetAccelerationStructureKHR descriptorInfoAS;
-    descriptorInfoAS.pNext = nullptr;
-    descriptorInfoAS.accelerationStructureCount = 1;
-    descriptorInfoAS.pAccelerationStructures = &tlas;
-
-    vk::DescriptorImageInfo storageImageInfo;
-    storageImageInfo.imageView = storageImageView;
-    storageImageInfo.imageLayout = vk::ImageLayout::eGeneral;
-
-    // TODO: a lot of this information is already stored in the bindings which are part of DescriptorSetLayout. Re-use this here.
-    std::array<vk::WriteDescriptorSet, 2> descriptorWrites;
-    descriptorWrites[0].pNext = &descriptorInfoAS;
-    descriptorWrites[0].dstSet = m_sets[0];
-    descriptorWrites[0].dstBinding = 0;
-    descriptorWrites[0].descriptorCount = 1;
-    descriptorWrites[0].descriptorType = vk::DescriptorType::eAccelerationStructureKHR;
-
-    descriptorWrites[1].dstSet = m_sets[0];
-    descriptorWrites[1].descriptorType = vk::DescriptorType::eStorageImage;
-    descriptorWrites[1].dstBinding = 1;
-    descriptorWrites[1].pImageInfo = &storageImageInfo;
-    descriptorWrites[1].descriptorCount = 1;
-
-    g_device.updateDescriptorSets(descriptorWrites, 0);
+    vk::WriteDescriptorSetAccelerationStructureKHR descriptorInfoAS( { }, // accelerationStructureCount
+                                                                     { } ); // pAccelerationStructures 
+    
   }
 
   void DescriptorSet::free( )

@@ -67,6 +67,8 @@ namespace rx
     // If the prefered format and color space are not available, fall back.
     m_format = surfaceFormats[0].format;
     m_colorSpace = surfaceFormats[0].colorSpace;
+
+    g_surfaceFormat = m_format;
   }
 
   void Surface::destroy( )

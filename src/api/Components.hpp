@@ -13,6 +13,7 @@ namespace rx
   extern std::unique_ptr<vk::DispatchLoaderDynamic> g_dispatchLoaderDynamic;
   extern vk::SwapchainKHR g_swapchain;
   extern uint32_t g_swapchainImageCount;
+  extern vk::Format g_surfaceFormat;
 
   extern vk::CommandPool g_graphicsCmdPool;
   extern vk::CommandPool g_transferCmdPool;

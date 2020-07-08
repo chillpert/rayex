@@ -60,9 +60,30 @@ namespace rx
 
   void DescriptorSet::update( vk::AccelerationStructureKHR tlas, vk::ImageView storageImageView )
   {
-    vk::WriteDescriptorSetAccelerationStructureKHR descriptorInfoAS( { }, // accelerationStructureCount
-                                                                     { } ); // pAccelerationStructures 
-    
+    for ( size_t i = 0; i < m_layouts.size( ); ++i )
+    {
+      vk::WriteDescriptorSetAccelerationStructureKHR descriptorInfoAS( 1,       // accelerationStructureCount
+                                                                       &tlas ); // pAccelerationStructures 
+
+      vk::DescriptorImageInfo imageInfo( { },                         // sampler
+                                         storageImageView,            // imageView
+                                         vk::ImageLayout::eGeneral ); // imageLayout
+
+      std::array<vk::WriteDescriptorSet, 2> descriptorWrites;
+      descriptorWrites[0].dstSet = m_sets[i];
+      descriptorWrites[0].dstBinding = 0;
+      descriptorWrites[0].dstArrayElement = 0;
+      descriptorWrites[0].descriptorType = vk::DescriptorType::eAccelerationStructureKHR;
+      descriptorWrites[0].descriptorCount = 1;
+      descriptorWrites[0].pNext = &descriptorInfoAS;
+
+      descriptorWrites[1].dstSet = m_sets[i];
+      descriptorWrites[1].dstBinding = 1;
+      descriptorWrites[1].dstArrayElement = 0;
+      descriptorWrites[1].descriptorType = vk::DescriptorType::eStorageImage;
+      descriptorWrites[1].descriptorCount = 1;
+      descriptorWrites[1].pImageInfo = &imageInfo;
+    }
   }
 
   void DescriptorSet::free( )

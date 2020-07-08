@@ -5,6 +5,7 @@
 #include "Model.hpp"
 #include "NodeBase.hpp"
 #include "Buffer.hpp"
+#include "Swapchain.hpp"
 
 namespace rx
 {
@@ -25,7 +26,7 @@ namespace rx
     void createTopLevelAS( const std::vector<std::shared_ptr<GeometryNodeBase>>& nodes );
     void buildTlas( const std::vector<BlasInstance>& instances, vk::BuildAccelerationStructureFlagsKHR flags = vk::BuildAccelerationStructureFlagBitsKHR::ePreferFastTrace );
 
-    void createDescriptorSet( );
+    void createDescriptorSet( const Swapchain& swapchain );
 
   private:
     vk::PhysicalDeviceRayTracingPropertiesKHR m_rtProperties;
@@ -39,6 +40,10 @@ namespace rx
     vk::UniqueDescriptorPool m_descriptorPool;
     DescriptorSet m_descriptorSets;
     DescriptorSetLayout m_descriptorSetLayout;
+
+    // Storage image.
+    Image m_storageImage;
+    vk::UniqueImageView m_storageImageView;
   };
 }
 

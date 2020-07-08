@@ -360,7 +360,7 @@ namespace rx
     cmdBuf.submitToQueue( g_graphicsQueue );
   }
 
-  void RayTracingBuilder::createDescriptorSet( )
+  void RayTracingBuilder::createDescriptorSet( const Swapchain& swapchain )
   {
     // TLAS.
     vk::DescriptorSetLayoutBinding tlasBinding( 0,                                                                             // binding
@@ -381,11 +381,16 @@ namespace rx
 
     m_descriptorSetLayout.init( );
 
+    uint32_t swapchainImageCount = static_cast<uint32_t>( swapchain.getImages( ).size( ) );
+
     m_descriptorPool = vk::Initializer::createDescriptorPoolUnique( vk::Helper::getPoolSizes( { tlasBinding, outputImageBinding } ), // poolSizes
-                                                                    g_swapchainImageCount );                                         // maxSets
+                                                                    swapchainImageCount );                                           // maxSets
 
-    m_descriptorSets.init( m_descriptorPool.get( ), g_swapchainImageCount, std::vector<vk::DescriptorSetLayout>( g_swapchainImageCount, m_descriptorSetLayout.get( ) ) );
+    m_descriptorSets.init( m_descriptorPool.get( ), g_swapchainImageCount, std::vector<vk::DescriptorSetLayout>( swapchainImageCount, m_descriptorSetLayout.get( ) ) );
 
-    vk::WriteDescriptorSetAccelerationStructureKHR descAsInfo;
+    m_storageImage.init( vk::Helper::getImageCreateInfo( vk::Extent3D( swapchain.getExtent( ).width, swapchain.getExtent( ).height, 1 ) ) );
+    m_storageImageView = vk::Initializer::createImageViewUnique( m_storageImage.get( ), m_storageImage.getFormat( ) );
+
+    m_descriptorSets.update( m_tlas.as.as, m_storageImageView.get( ) );
   }
 }

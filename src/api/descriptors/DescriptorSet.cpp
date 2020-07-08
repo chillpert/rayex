@@ -40,19 +40,8 @@ namespace rx
 
       // TODO: a lot of this information is already stored in the bindings which are part of DescriptorSetLayout. Re-use this here.
       std::array<vk::WriteDescriptorSet, 2> descriptorWrites{ };
-      descriptorWrites[0].dstSet = m_sets[i];
-      descriptorWrites[0].dstBinding = 0;
-      descriptorWrites[0].dstArrayElement = 0;
-      descriptorWrites[0].descriptorType = vk::DescriptorType::eUniformBuffer;
-      descriptorWrites[0].descriptorCount = 1;
-      descriptorWrites[0].pBufferInfo = &bufferInfo;
-
-      descriptorWrites[1].dstSet = m_sets[i];
-      descriptorWrites[1].dstBinding = 1;
-      descriptorWrites[1].dstArrayElement = 0;
-      descriptorWrites[1].descriptorType = vk::DescriptorType::eCombinedImageSampler;
-      descriptorWrites[1].descriptorCount = 1;
-      descriptorWrites[1].pImageInfo = &imageInfo;
+      descriptorWrites[0] = writeUniformBuffer( m_sets[i], 0, bufferInfo );
+      descriptorWrites[1] = writeCombinedImageSampler( m_sets[i], 1, imageInfo );
 
       g_device.updateDescriptorSets(descriptorWrites, 0);    
     }
@@ -70,24 +59,70 @@ namespace rx
                                          vk::ImageLayout::eGeneral ); // imageLayout
 
       std::array<vk::WriteDescriptorSet, 2> descriptorWrites;
-      descriptorWrites[0].dstSet = m_sets[i];
-      descriptorWrites[0].dstBinding = 0;
-      descriptorWrites[0].dstArrayElement = 0;
-      descriptorWrites[0].descriptorType = vk::DescriptorType::eAccelerationStructureKHR;
-      descriptorWrites[0].descriptorCount = 1;
-      descriptorWrites[0].pNext = &descriptorInfoAS;
-
-      descriptorWrites[1].dstSet = m_sets[i];
-      descriptorWrites[1].dstBinding = 1;
-      descriptorWrites[1].dstArrayElement = 0;
-      descriptorWrites[1].descriptorType = vk::DescriptorType::eStorageImage;
-      descriptorWrites[1].descriptorCount = 1;
-      descriptorWrites[1].pImageInfo = &imageInfo;
+      descriptorWrites[0] = writeAccelerationStructure( m_sets[i], 0, &descriptorInfoAS );
+      descriptorWrites[1] = writeStorageImage( m_sets[i], 1, imageInfo );
     }
   }
 
   void DescriptorSet::free( )
   {
     g_device.freeDescriptorSets( m_descriptorPool, m_sets );
+  }
+
+  vk::WriteDescriptorSet DescriptorSet::writeUniformBuffer( vk::DescriptorSet descriptorSet, uint32_t binding, const vk::DescriptorBufferInfo& bufferInfo )
+  {
+    vk::WriteDescriptorSet result( descriptorSet,                      // dstSet
+                                   binding,                            // dstBinding
+                                   0,                                  // dstArrayElement
+                                   1,                                  // descriptorCount
+                                   vk::DescriptorType::eUniformBuffer, // descriptorType
+                                   nullptr,                            // pImageInfo
+                                   &bufferInfo,                        // pBufferInfo
+                                   nullptr );                          // pTextelBufferView
+
+    return result;
+  }
+
+  vk::WriteDescriptorSet DescriptorSet::writeStorageImage( vk::DescriptorSet descriptorSet, uint32_t binding, const vk::DescriptorImageInfo& imageInfo )
+  {
+    vk::WriteDescriptorSet result( descriptorSet,                     // dstSet
+                                   binding,                           // dstBinding
+                                   0,                                 // dstArrayElement
+                                   1,                                 // descriptorCount
+                                   vk::DescriptorType::eStorageImage, // descriptorType
+                                   &imageInfo,                        // pImageInfo
+                                   nullptr,                           // pBufferInfo
+                                   nullptr );                         // pTextelBufferView
+
+    return result;
+  }
+
+  vk::WriteDescriptorSet DescriptorSet::writeCombinedImageSampler( vk::DescriptorSet descriptorSet, uint32_t binding, const vk::DescriptorImageInfo& imageInfo )
+  {
+    vk::WriteDescriptorSet result( descriptorSet,                             // dstSet
+                                   binding,                                   // dstBinding
+                                   0,                                         // dstArrayElement
+                                   1,                                         // descriptorCount
+                                   vk::DescriptorType::eCombinedImageSampler, // descriptorType
+                                   &imageInfo,                                // pImageInfo
+                                   nullptr,                                   // pBufferInfo
+                                   nullptr );                                 // pTextelBufferView
+
+    return result;
+  }
+
+  vk::WriteDescriptorSet DescriptorSet::writeAccelerationStructure( vk::DescriptorSet descriptorSet, uint32_t binding, void* pNext )
+  {
+    vk::WriteDescriptorSet result( descriptorSet,                                 // dstSet
+                                   binding,                                       // dstBinding
+                                   0,                                             // dstArrayElement
+                                   1,                                             // descriptorCount
+                                   vk::DescriptorType::eAccelerationStructureKHR, // descriptorType
+                                   nullptr,                                       // pImageInfo
+                                   nullptr,                                       // pBufferInfo
+                                   nullptr );                                     // pTextelBufferView
+    result.pNext = pNext;
+
+    return result;
   }
 }

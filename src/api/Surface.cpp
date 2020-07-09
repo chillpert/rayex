@@ -47,7 +47,7 @@ namespace rx
       if ( mode == vk::PresentModeKHR::eMailbox )
       {
         m_presentMode = vk::PresentModeKHR::eMailbox;
-        return;
+        break;
       }
     }
 
@@ -58,16 +58,23 @@ namespace rx
     auto formatProperties = g_physicalDevice.getFormatProperties( m_format ); // TODO: not used.
     auto surfaceFormats = g_physicalDevice.getSurfaceFormatsKHR( m_surface );
 
+    bool accepted = false;
     for ( const auto& iter : surfaceFormats )
     {
       if ( iter.format == m_format && iter.colorSpace == m_colorSpace )
-        return;
+      {
+        accepted = true;
+        break;
+      }
     }
 
     // If the prefered format and color space are not available, fall back.
-    m_format = surfaceFormats[0].format;
-    m_colorSpace = surfaceFormats[0].colorSpace;
-
+    if ( !accepted )
+    {
+      m_format = surfaceFormats[0].format;
+      m_colorSpace = surfaceFormats[0].colorSpace;
+    }
+    
     g_surfaceFormat = m_format;
   }
 

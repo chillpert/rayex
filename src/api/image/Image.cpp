@@ -50,7 +50,6 @@ namespace rx
 
       if ( m_layout == vk::ImageLayout::eUndefined && layout == vk::ImageLayout::eTransferDstOptimal )
       {
-        //barrier.srcAccessMask = 0;
         barrier.dstAccessMask = vk::AccessFlagBits::eTransferWrite;
 
         sourceStage = vk::PipelineStageFlagBits::eTopOfPipe;
@@ -64,13 +63,18 @@ namespace rx
         sourceStage = vk::PipelineStageFlagBits::eTransfer;
         destinationStage = vk::PipelineStageFlagBits::eFragmentShader;
       }
+      else if ( m_layout == vk::ImageLayout::eUndefined && layout == vk::ImageLayout::eGeneral )
+      {
+        sourceStage = vk::PipelineStageFlagBits::eAllCommands;
+        destinationStage = vk::PipelineStageFlagBits::eAllCommands;
+      }
       else
-        RX_ERROR( "Failed to transition image layout." );
+        RX_ERROR( "Image layout transition not supported." );
 
       commandBuffer.get( 0 ).pipelineBarrier(
         sourceStage,
         destinationStage,
-        vk::DependencyFlagBits::eByRegion, // TODO: might be cause of an error
+        vk::DependencyFlagBits::eByRegion,
         0,
         nullptr,
         0,

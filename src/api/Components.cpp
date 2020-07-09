@@ -11,6 +11,7 @@ namespace rx
   vk::SwapchainKHR g_swapchain = nullptr;
   uint32_t g_swapchainImageCount = 0;
   vk::Format g_surfaceFormat;
+  std::vector<vk::UniqueImageView> g_swapchainImageViews;
 
   vk::CommandPool g_graphicsCmdPool = nullptr;
   vk::CommandPool g_transferCmdPool = nullptr;

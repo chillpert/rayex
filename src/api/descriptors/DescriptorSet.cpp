@@ -61,6 +61,8 @@ namespace rx
       std::array<vk::WriteDescriptorSet, 2> descriptorWrites;
       descriptorWrites[0] = writeAccelerationStructure( m_sets[i], 0, &descriptorInfoAS );
       descriptorWrites[1] = writeStorageImage( m_sets[i], 1, imageInfo );
+
+      g_device.updateDescriptorSets( descriptorWrites, 0 );
     }
   }
 

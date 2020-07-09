@@ -14,6 +14,7 @@ namespace rx
   extern vk::SwapchainKHR g_swapchain;
   extern uint32_t g_swapchainImageCount;
   extern vk::Format g_surfaceFormat;
+  extern std::vector<vk::UniqueImageView> g_swapchainImageViews;
 
   extern vk::CommandPool g_graphicsCmdPool;
   extern vk::CommandPool g_transferCmdPool;

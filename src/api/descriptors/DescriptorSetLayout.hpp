@@ -11,11 +11,14 @@ namespace rx
     ~DescriptorSetLayout( );
 
     inline const vk::DescriptorSetLayout get( ) const { return m_layout; }
+    inline const std::vector<vk::DescriptorSetLayoutBinding>& getBindings( ) const { return m_bindings; }
 
     void addBinding( const vk::DescriptorSetLayoutBinding& binding );
+    void setBindings( const std::vector<vk::DescriptorSetLayoutBinding>& bindings );
     void clearBindings( );
 
     void init( );
+    void init( const std::vector<vk::DescriptorSetLayoutBinding> bindings );
     void destroy( );
 
   private:

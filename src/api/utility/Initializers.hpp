@@ -45,7 +45,7 @@ namespace vk
     // @param maxSets - The maximum amount of descriptor sets that can be allocated from this descriptor pool.
     // @param flags - The flags used for creating the descriptor pool.
     // @return - Returns the descriptor pool.  
-    UniqueDescriptorPool createDescriptorPoolUnique( const std::vector<DescriptorPoolSize>& poolSizes, uint32_t maxSets, DescriptorPoolCreateFlags flags = { } );
+    UniqueDescriptorPool createDescriptorPoolUnique( const std::vector<DescriptorPoolSize>& poolSizes, uint32_t maxSets = 1, DescriptorPoolCreateFlags flags = { } );
 
     // Creates a descriptor pool.
     // @param poolSizes - All descriptor types for descriptor sets that can be allocated from this descriptor pool.

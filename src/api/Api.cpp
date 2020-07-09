@@ -366,7 +366,7 @@ namespace rx
 
   void Api::initSwapchain( )
   {
-    m_surface.checkSettingSupport( );
+    //m_surface.checkSettingSupport( );
 
     m_swapchain.init( &m_surface );
     m_swapchain.setImageAspect( vk::ImageAspectFlagBits::eColor );

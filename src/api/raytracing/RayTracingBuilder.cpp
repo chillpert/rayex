@@ -376,20 +376,18 @@ namespace rx
                                                        vk::ShaderStageFlagBits::eRaygenKHR, // stageFlags
                                                        nullptr );                           // pImmutableSamplers
 
-    m_descriptorSetLayout.addBinding( tlasBinding );
-    m_descriptorSetLayout.addBinding( outputImageBinding );
+    m_descriptorPool = vk::Initializer::createDescriptorPoolUnique( vk::Helper::getPoolSizes( { tlasBinding, outputImageBinding } ) );
+    m_descriptorSetLayout.init( { tlasBinding, outputImageBinding } );
+    m_descriptorSets.init( m_descriptorPool.get( ), 1, { m_descriptorSetLayout.get( ) } );
 
-    m_descriptorSetLayout.init( );
+    auto storageImageInfo = vk::Helper::getImageCreateInfo( vk::Extent3D( swapchain.getExtent( ).width, swapchain.getExtent( ).height, 1 ) );
+    storageImageInfo.usage = vk::ImageUsageFlagBits::eTransferSrc | vk::ImageUsageFlagBits::eStorage;
+    storageImageInfo.format = g_surfaceFormat;
 
-    uint32_t swapchainImageCount = static_cast<uint32_t>( swapchain.getImages( ).size( ) );
-
-    m_descriptorPool = vk::Initializer::createDescriptorPoolUnique( vk::Helper::getPoolSizes( { tlasBinding, outputImageBinding } ), // poolSizes
-                                                                    swapchainImageCount );                                           // maxSets
-
-    m_descriptorSets.init( m_descriptorPool.get( ), g_swapchainImageCount, std::vector<vk::DescriptorSetLayout>( swapchainImageCount, m_descriptorSetLayout.get( ) ) );
-
-    m_storageImage.init( vk::Helper::getImageCreateInfo( vk::Extent3D( swapchain.getExtent( ).width, swapchain.getExtent( ).height, 1 ) ) );
+    m_storageImage.init( storageImageInfo );
     m_storageImageView = vk::Initializer::createImageViewUnique( m_storageImage.get( ), m_storageImage.getFormat( ) );
+
+    m_storageImage.transitionToLayout( vk::ImageLayout::eGeneral );
 
     m_descriptorSets.update( m_tlas.as.as, m_storageImageView.get( ) );
   }

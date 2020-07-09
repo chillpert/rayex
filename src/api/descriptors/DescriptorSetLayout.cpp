@@ -17,6 +17,14 @@ namespace rx
     m_bindings.push_back( binding );
   }
 
+  void DescriptorSetLayout::setBindings( const std::vector<vk::DescriptorSetLayoutBinding>& bindings )
+  {
+    if ( m_layout )
+      RX_ERROR( "Failed to add binding because the descriptor set layout was already initialized." );
+
+    m_bindings = bindings;
+  }
+
   void DescriptorSetLayout::clearBindings( )
   {
     m_bindings.clear( );
@@ -31,6 +39,13 @@ namespace rx
     m_layout = g_device.createDescriptorSetLayout( createInfo );
     if ( !m_layout )
       RX_ERROR( "Failed to create descriptor set layout." );
+  }
+
+  void DescriptorSetLayout::init( const std::vector<vk::DescriptorSetLayoutBinding> bindings )
+  {
+    setBindings( bindings );
+
+    init( );
   }
 
   void DescriptorSetLayout::destroy( )

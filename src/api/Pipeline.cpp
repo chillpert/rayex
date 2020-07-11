@@ -202,8 +202,13 @@ namespace rx
     }
 
     groups[0].generalShader = RX_SHADER_GROUP_INDEX_RGEN;
+    groups[0].type = vk::RayTracingShaderGroupTypeKHR::eGeneral;
+
     groups[1].generalShader = RX_SHADER_GROUP_INDEX_MISS;
+    groups[1].type = vk::RayTracingShaderGroupTypeKHR::eGeneral;
+
     groups[2].closestHitShader = RX_SHADER_GROUP_INDEX_CHIT;
+    groups[2].type = vk::RayTracingShaderGroupTypeKHR::eTrianglesHitGroup;
 
     g_shaderGroups = static_cast<uint32_t>( groups.size( ) );
 
@@ -218,12 +223,14 @@ namespace rx
                                                     m_layout.get( ),                               // layout
                                                     nullptr,                                       // basePipelineHandle
                                                     0 );                                           // basePipelineIndex
-    
-    auto result = g_device.createRayTracingPipelineKHR( nullptr, createInfo, nullptr, *g_dispatchLoaderDynamic );
+  
+    auto result = g_device.createRayTracingPipelineKHRUnique( nullptr, createInfo, nullptr, *g_dispatchLoaderDynamic );
 
     if ( result.result != vk::Result::eSuccess )
       RX_ERROR( "Failed to create ray tracing pipeline." );
 
-    m_pipeline.get( ) = result.value;
+    // TODO fix assignment
+    auto pointer = result.value.release( );
+    m_pipeline.reset( pointer );
   }
 }

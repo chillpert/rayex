@@ -418,7 +418,6 @@ namespace rx
                      fs.get( ),
                      m_descriptorSetLayout.get( ) );
 
-    /*
     auto rgen = vk::Initializer::createShaderModuleUnique( "shaders/raytrace.rgen" );
     auto miss = vk::Initializer::createShaderModuleUnique( "shaders/raytrace.rmiss" );
     auto chit = vk::Initializer::createShaderModuleUnique( "shaders/raytrace.rchit" );
@@ -433,7 +432,6 @@ namespace rx
                        miss.get( ),
                        chit.get( ),
                        8 );
-    */
   }
 
   void Api::initGraphicsCommandPool( )

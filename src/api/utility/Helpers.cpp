@@ -7,11 +7,11 @@ namespace vk
   {
     PipelineShaderStageCreateInfo getPipelineShaderStageCreateInfo( ShaderStageFlagBits stage, ShaderModule module, const char* name, SpecializationInfo* specializationInfo )
     {
-      PipelineShaderStageCreateInfo createInfo( { },                              // flags
-                                                ShaderStageFlagBits::eRaygenKHR,  // stage
-                                                module,                           // module
-                                                "main",                           // pName
-                                                specializationInfo );             // pSpecializationInfo
+      PipelineShaderStageCreateInfo createInfo( { },                  // flags
+                                                stage,                // stage
+                                                module,               // module
+                                                "main",               // pName
+                                                specializationInfo ); // pSpecializationInfo
 
       return createInfo;
     }

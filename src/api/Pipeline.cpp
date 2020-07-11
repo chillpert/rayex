@@ -116,19 +116,9 @@ namespace rx
     if ( !m_layout )
       RX_ERROR( "Failed to create pipeline layout." );
 
-    vk::PipelineShaderStageCreateInfo vertShaderStageInfo( { },                              // flags
-                                                           vk::ShaderStageFlagBits::eVertex, // stage
-                                                           vertexShader,                     // module
-                                                           "main",                           // pName
-                                                           nullptr );                        // pSpecializationInfo
-
-    vk::PipelineShaderStageCreateInfo fragShaderStageInfo( { },                                // flags
-                                                           vk::ShaderStageFlagBits::eFragment, // stage
-                                                           fragmentShader,                     // module
-                                                           "main",                             // pName
-                                                           nullptr );                          // pSpecializationInfo
-
-    std::vector<vk::PipelineShaderStageCreateInfo> shaderStages = { vertShaderStageInfo, fragShaderStageInfo };
+    std::array<vk::PipelineShaderStageCreateInfo, 2> shaderStages;
+    shaderStages[0] = vk::Helper::getPipelineShaderStageCreateInfo( vk::ShaderStageFlagBits::eVertex, vertexShader );
+    shaderStages[1] = vk::Helper::getPipelineShaderStageCreateInfo( vk::ShaderStageFlagBits::eFragment, fragmentShader );
 
     vk::GraphicsPipelineCreateInfo createInfo( { },                                            // flags
                                                static_cast<uint32_t>( shaderStages.size( ) ) , // stageCount
@@ -153,7 +143,7 @@ namespace rx
       RX_ERROR( "Failed to create graphics pipeline." );
   }
 
-  RaytracingPipeline::RaytracingPipeline( vk::RenderPass renderPass,
+  RayTracingPipeline::RayTracingPipeline( vk::RenderPass renderPass,
                                           vk::Viewport viewport,
                                           vk::Rect2D scissor,
                                           const std::vector<vk::DescriptorSetLayout>& descriptorSetLayouts,
@@ -167,7 +157,7 @@ namespace rx
       init( renderPass, viewport, scissor, descriptorSetLayouts, rayGen, miss, closestHit, maxRecursion );
   }
 
-  void RaytracingPipeline::init( vk::RenderPass renderPass,
+  void RayTracingPipeline::init( vk::RenderPass renderPass,
                                  vk::Viewport viewport,
                                  vk::Rect2D scissor,
                                  const std::vector<vk::DescriptorSetLayout>& descriptorSetLayouts,
@@ -203,11 +193,19 @@ namespace rx
     // Set up raytracing shader groups.
     std::array<vk::RayTracingShaderGroupCreateInfoKHR, 3> groups;
 
-    groups[0].generalShader = 0;
+    for ( auto& group : groups )
+    {
+      group.generalShader = VK_SHADER_UNUSED_KHR;
+      group.closestHitShader = VK_SHADER_UNUSED_KHR;
+      group.anyHitShader = VK_SHADER_UNUSED_KHR;
+      group.intersectionShader = VK_SHADER_UNUSED_KHR;
+    }
 
-    groups[1].generalShader = 1;
+    groups[0].generalShader = RX_SHADER_GROUP_INDEX_RGEN;
+    groups[1].generalShader = RX_SHADER_GROUP_INDEX_MISS;
+    groups[2].closestHitShader = RX_SHADER_GROUP_INDEX_CHIT;
 
-    groups[2].closestHitShader = 2;
+    g_shaderGroups = static_cast<uint32_t>( groups.size( ) );
 
     vk::RayTracingPipelineCreateInfoKHR createInfo( { },                                           // flags
                                                     static_cast<uint32_t>( shaderStages.size( ) ), // stageCount

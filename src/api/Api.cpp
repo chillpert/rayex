@@ -417,6 +417,23 @@ namespace rx
                      vs.get( ),
                      fs.get( ),
                      m_descriptorSetLayout.get( ) );
+
+    /*
+    auto rgen = vk::Initializer::createShaderModuleUnique( "shaders/raytrace.rgen" );
+    auto miss = vk::Initializer::createShaderModuleUnique( "shaders/raytrace.rmiss" );
+    auto chit = vk::Initializer::createShaderModuleUnique( "shaders/raytrace.rchit" );
+
+    m_rayTracingBuilder.createDescriptorSetLayout( m_swapchain, maxNodes );
+    // Ray tracing pipeline.
+    m_rtPipeline.init( m_renderPass.get( ),
+                       vk::Viewport { 0.0f, 0.0f, extent.x, extent.y, 0.0f, 1.0f },
+                       { 0, { m_swapchain.getExtent( ).width, m_swapchain.getExtent( ).height } },
+                       { m_rayTracingBuilder.getDescriptorSetLayout( ) },
+                       rgen.get( ),
+                       miss.get( ),
+                       chit.get( ),
+                       8 );
+    */
   }
 
   void Api::initGraphicsCommandPool( )
@@ -545,7 +562,7 @@ namespace rx
 
     m_rayTracingBuilder.createBottomLevelAS( vk::Helper::unpack( m_models ) );
     m_rayTracingBuilder.createTopLevelAS( m_nodes );
-    m_rayTracingBuilder.createDescriptorSet( m_swapchain, m_nodes );
+    //m_rayTracingBuilder.createDescriptorSet( m_swapchain );
   }
 
   void Api::initSwapchainCommandBuffers( )
@@ -617,6 +634,7 @@ namespace rx
                                                                      model->m_indexBuffer.getType( ) );
 
 
+        // TODO: Also bind ray tracing descriptor set.
         m_swapchainCommandBuffers.get( imageIndex ).bindDescriptorSets( vk::PipelineBindPoint::eGraphics,
                                                                         m_pipeline.getLayout( ),
                                                                         0,                                           // first set

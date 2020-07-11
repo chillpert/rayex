@@ -45,11 +45,11 @@ namespace rx
                vk::PrimitiveTopology topology = vk::PrimitiveTopology::eTriangleList );
   };
 
-  class RaytracingPipeline : public Pipeline
+  class RayTracingPipeline : public Pipeline
   {
   public:
-    RaytracingPipeline( ) = default;
-    RaytracingPipeline( vk::RenderPass renderPass,
+    RayTracingPipeline( ) = default;
+    RayTracingPipeline( vk::RenderPass renderPass,
                         vk::Viewport viewport,
                         vk::Rect2D scissor,
                         const std::vector<vk::DescriptorSetLayout>& descriptorSetLayouts,

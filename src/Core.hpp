@@ -7,6 +7,10 @@
 #include <vulkan/vulkan.hpp>
 #include <iostream>
 
+#define RX_SHADER_GROUP_INDEX_RGEN 0
+#define RX_SHADER_GROUP_INDEX_MISS 1
+#define RX_SHADER_GROUP_INDEX_CHIT 2
+
 //#define NO_UTILS
 
 #ifndef NO_UTILS

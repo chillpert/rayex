@@ -94,6 +94,7 @@ namespace rx
     std::vector<vk::UniqueImageView> m_swapchainImageViews;
     RenderPass m_renderPass;
     RasterizationPipeline m_pipeline;
+    RayTracingPipeline m_rtPipeline;
     CommandBuffer m_swapchainCommandBuffers;
     std::vector<vk::UniqueFramebuffer> m_swapchainFramebuffers;
     Image m_depthImage;

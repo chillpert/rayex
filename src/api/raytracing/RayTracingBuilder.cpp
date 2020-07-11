@@ -360,7 +360,7 @@ namespace rx
     cmdBuf.submitToQueue( g_graphicsQueue );
   }
 
-  void RayTracingBuilder::createDescriptorSet( const Swapchain& swapchain, const std::vector<std::shared_ptr<GeometryNodeBase>>& nodes )
+  void RayTracingBuilder::createDescriptorSetLayout( const Swapchain& swapchain, uint32_t nodes )
   {
     // TLAS.
     vk::DescriptorSetLayoutBinding tlasBinding( 0,                                             // binding
@@ -378,8 +378,12 @@ namespace rx
 
     std::vector<vk::DescriptorSetLayoutBinding> bindings = { tlasBinding, outputImageBinding };
 
-    m_descriptorPool = vk::Initializer::createDescriptorPoolUnique( vk::Helper::getPoolSizes( bindings ), static_cast<uint32_t>( nodes.size( ) * swapchain.getImages( ).size( ) ) );
+    m_descriptorPool = vk::Initializer::createDescriptorPoolUnique( vk::Helper::getPoolSizes( bindings ), nodes * static_cast<uint32_t>( swapchain.getImages( ).size( ) ) );
     m_descriptorSetLayout.init( bindings );
+  }
+
+  void RayTracingBuilder::createDescriptorSet( const Swapchain& swapchain)
+  {
     m_descriptorSets.init( m_descriptorPool.get( ), static_cast<uint32_t>( swapchain.getImages( ).size( ) ), std::vector<vk::DescriptorSetLayout>{ swapchain.getImages( ).size( ), m_descriptorSetLayout.get( ) } );
 
     auto storageImageInfo = vk::Helper::getImageCreateInfo( vk::Extent3D( swapchain.getExtent( ).width, swapchain.getExtent( ).height, 1 ) );
@@ -391,5 +395,30 @@ namespace rx
 
     m_storageImageView = vk::Initializer::createImageViewUnique( m_storageImage.get( ), m_storageImage.getFormat( ) );
     m_descriptorSets.update( m_tlas.as.as, m_storageImageView.get( ) );
+  }
+
+  void RayTracingBuilder::createShaderBindingTable( vk::Pipeline rtPipeline )
+  {
+    const uint32_t tableSize = m_rtProperties.shaderGroupHandleSize * g_shaderGroups;
+    const uint32_t shaderGroupHandleSize = m_rtProperties.shaderGroupHandleSize;
+
+    Buffer buffer( tableSize, vk::BufferUsageFlagBits::eRayTracingKHR, { g_graphicsFamilyIndex }, vk::MemoryPropertyFlagBits::eHostVisible );
+    
+    auto shaderHandleStorage = new uint8_t[tableSize]; // TODO: Delete
+
+    void* actualData;
+    uint8_t* data = static_cast<uint8_t*>( actualData );
+    RX_ASSERT( ( g_device.mapMemory( buffer.getMemory( ), 0, buffer.getSize( ), { }, &actualData ) == vk::Result::eSuccess ), "Failed to map memory." );
+    RX_ASSERT( ( g_device.getRayTracingShaderGroupHandlesKHR( rtPipeline, 0, g_shaderGroups, tableSize, shaderHandleStorage, *g_dispatchLoaderDynamic ) == vk::Result::eSuccess ), "Failed to get ray tracing shader group handles." );
+
+    memcpy( data, shaderHandleStorage + RX_SHADER_GROUP_INDEX_RGEN * shaderGroupHandleSize, shaderGroupHandleSize );
+    data += shaderGroupHandleSize;
+    memcpy( data, shaderHandleStorage + RX_SHADER_GROUP_INDEX_MISS * shaderGroupHandleSize, shaderGroupHandleSize );
+    data += shaderGroupHandleSize;
+    memcpy( data, shaderHandleStorage + RX_SHADER_GROUP_INDEX_CHIT * shaderGroupHandleSize, shaderGroupHandleSize );
+    data += shaderGroupHandleSize;
+
+    g_device.unmapMemory( buffer.getMemory( ) );
+
   }
 }

@@ -3,7 +3,7 @@
 #extension GL_ARB_separate_shader_objects : enable
 
 // IN
-layout(binding = 1) uniform sampler2D texSampler;
+layout(binding = 1, set = 0) uniform sampler2D texSampler;
 
 layout(location = 0) in vec3 fragPos;
 layout(location = 1) in vec3 fragNormal;

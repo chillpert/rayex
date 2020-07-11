@@ -17,6 +17,9 @@ namespace rx
     void init( );
     void destroy( );
 
+    inline const Tlas& getTlas( ) const { return m_tlas; }
+    inline const vk::DescriptorSetLayout getDescriptorSetLayout( ) const { return m_descriptorSetLayout.get( ); }
+
     Blas objectToVkGeometryKHR( const std::shared_ptr<Model> model ) const;
     vk::AccelerationStructureInstanceKHR instanceToVkGeometryInstanceKHR( const BlasInstance& instance ) const;
 
@@ -26,7 +29,10 @@ namespace rx
     void createTopLevelAS( const std::vector<std::shared_ptr<GeometryNodeBase>>& nodes );
     void buildTlas( const std::vector<BlasInstance>& instances, vk::BuildAccelerationStructureFlagsKHR flags = vk::BuildAccelerationStructureFlagBitsKHR::ePreferFastTrace );
 
-    void createDescriptorSet( const Swapchain& swapchain, const std::vector<std::shared_ptr<GeometryNodeBase>>& nodes );
+    void createDescriptorSetLayout( const Swapchain& swapchain, uint32_t nodes );
+    void createDescriptorSet( const Swapchain& swapchain );
+
+    void createShaderBindingTable( vk::Pipeline rtPipeline );
 
   private:
     vk::PhysicalDeviceRayTracingPropertiesKHR m_rtProperties;

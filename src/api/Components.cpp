@@ -12,6 +12,7 @@ namespace rx
   uint32_t g_swapchainImageCount = 0;
   vk::Format g_surfaceFormat;
   std::vector<vk::UniqueImageView> g_swapchainImageViews;
+  uint32_t g_shaderGroups = 0;
 
   vk::CommandPool g_graphicsCmdPool = nullptr;
   vk::CommandPool g_transferCmdPool = nullptr;

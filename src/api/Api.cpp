@@ -389,17 +389,17 @@ namespace rx
 
     if ( firstRun )
     {
-      vk::DescriptorSetLayoutBinding vertexBinding( 0,                                  // binding
-                                                    vk::DescriptorType::eUniformBuffer, // descriptorType
-                                                    1,                                  // descriptorCount
-                                                    vk::ShaderStageFlagBits::eVertex,   // stageFlags
-                                                    nullptr );                          // pImmutableSamplers
+      vk::DescriptorSetLayoutBinding vertexBinding( 0,                                                                      // binding
+                                                    vk::DescriptorType::eUniformBuffer,                                     // descriptorType
+                                                    1,                                                                      // descriptorCount
+                                                    vk::ShaderStageFlagBits::eVertex | vk::ShaderStageFlagBits::eRaygenKHR, // stageFlags
+                                                    nullptr );                                                              // pImmutableSamplers
 
-      vk::DescriptorSetLayoutBinding fragmentBinding( 1,                                          // binding
-                                                      vk::DescriptorType::eCombinedImageSampler,  // descriptorType
-                                                      1,                                          // descriptorCount
-                                                      vk::ShaderStageFlagBits::eFragment,         // stageFlags
-                                                      nullptr );                                  // pImmutableSamplers
+      vk::DescriptorSetLayoutBinding fragmentBinding( 1,                                                                            // binding
+                                                      vk::DescriptorType::eCombinedImageSampler,                                    // descriptorType
+                                                      1,                                                                            // descriptorCount
+                                                      vk::ShaderStageFlagBits::eFragment | vk::ShaderStageFlagBits::eClosestHitKHR, // stageFlags
+                                                      nullptr );                                                                    // pImmutableSamplers
 
       m_descriptorSetLayout.addBinding( vertexBinding );
       m_descriptorSetLayout.addBinding( fragmentBinding );
@@ -543,9 +543,9 @@ namespace rx
       model->m_initialized = true;
     }
 
-    m_rayTracingBuilder.createBottomLevelAS( vk::Helper::unpack(m_models) );
+    m_rayTracingBuilder.createBottomLevelAS( vk::Helper::unpack( m_models ) );
     m_rayTracingBuilder.createTopLevelAS( m_nodes );
-    m_rayTracingBuilder.createDescriptorSet( m_swapchain );
+    m_rayTracingBuilder.createDescriptorSet( m_swapchain, m_nodes );
   }
 
   void Api::initSwapchainCommandBuffers( )

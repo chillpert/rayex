@@ -360,14 +360,14 @@ namespace rx
     cmdBuf.submitToQueue( g_graphicsQueue );
   }
 
-  void RayTracingBuilder::createDescriptorSet( const Swapchain& swapchain )
+  void RayTracingBuilder::createDescriptorSet( const Swapchain& swapchain, const std::vector<std::shared_ptr<GeometryNodeBase>>& nodes )
   {
     // TLAS.
-    vk::DescriptorSetLayoutBinding tlasBinding( 0,                                                                             // binding
-                                                vk::DescriptorType::eAccelerationStructureKHR,                                 // descriptorType
-                                                1,                                                                             // descriptorCount
-                                                vk::ShaderStageFlagBits::eRaygenKHR | vk::ShaderStageFlagBits::eClosestHitKHR, // stageFlags
-                                                nullptr );                                                                     // pImmutableSamplers
+    vk::DescriptorSetLayoutBinding tlasBinding( 0,                                             // binding
+                                                vk::DescriptorType::eAccelerationStructureKHR, // descriptorType
+                                                1,                                             // descriptorCount
+                                                vk::ShaderStageFlagBits::eRaygenKHR,           // stageFlags
+                                                nullptr );                                     // pImmutableSamplers
 
     // Output image.
     vk::DescriptorSetLayoutBinding outputImageBinding( 1,                                   // binding
@@ -376,19 +376,20 @@ namespace rx
                                                        vk::ShaderStageFlagBits::eRaygenKHR, // stageFlags
                                                        nullptr );                           // pImmutableSamplers
 
-    m_descriptorPool = vk::Initializer::createDescriptorPoolUnique( vk::Helper::getPoolSizes( { tlasBinding, outputImageBinding } ) );
-    m_descriptorSetLayout.init( { tlasBinding, outputImageBinding } );
-    m_descriptorSets.init( m_descriptorPool.get( ), 1, { m_descriptorSetLayout.get( ) } );
+    std::vector<vk::DescriptorSetLayoutBinding> bindings = { tlasBinding, outputImageBinding };
+
+    m_descriptorPool = vk::Initializer::createDescriptorPoolUnique( vk::Helper::getPoolSizes( bindings ), static_cast<uint32_t>( nodes.size( ) * swapchain.getImages( ).size( ) ) );
+    m_descriptorSetLayout.init( bindings );
+    m_descriptorSets.init( m_descriptorPool.get( ), static_cast<uint32_t>( swapchain.getImages( ).size( ) ), std::vector<vk::DescriptorSetLayout>{ swapchain.getImages( ).size( ), m_descriptorSetLayout.get( ) } );
 
     auto storageImageInfo = vk::Helper::getImageCreateInfo( vk::Extent3D( swapchain.getExtent( ).width, swapchain.getExtent( ).height, 1 ) );
     storageImageInfo.usage = vk::ImageUsageFlagBits::eTransferSrc | vk::ImageUsageFlagBits::eStorage;
-    storageImageInfo.format = g_surfaceFormat;
+    storageImageInfo.format = vk::Format::eR8G8B8A8Unorm;
 
     m_storageImage.init( storageImageInfo );
-    m_storageImageView = vk::Initializer::createImageViewUnique( m_storageImage.get( ), m_storageImage.getFormat( ) );
-
     m_storageImage.transitionToLayout( vk::ImageLayout::eGeneral );
 
+    m_storageImageView = vk::Initializer::createImageViewUnique( m_storageImage.get( ), m_storageImage.getFormat( ) );
     m_descriptorSets.update( m_tlas.as.as, m_storageImageView.get( ) );
   }
 }

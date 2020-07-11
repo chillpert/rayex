@@ -19,13 +19,13 @@ namespace rx
 
     static std::array<vk::VertexInputBindingDescription, 1> getBindingDescriptions( )
     {
-      std::array<vk::VertexInputBindingDescription, 1> bindindDescriptions { };
+      std::array<vk::VertexInputBindingDescription, 1> bindingDescriptions { };
 
-      bindindDescriptions[0].binding = 0;
-      bindindDescriptions[0].stride = sizeof( Vertex );
-      bindindDescriptions[0].inputRate = vk::VertexInputRate::eVertex;
+      bindingDescriptions[0].binding = 0;
+      bindingDescriptions[0].stride = sizeof( Vertex );
+      bindingDescriptions[0].inputRate = vk::VertexInputRate::eVertex;
 
-      return bindindDescriptions;
+      return bindingDescriptions;
     }
 
     static std::array<vk::VertexInputAttributeDescription, 4> getAttributeDescriptions( )

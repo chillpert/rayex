@@ -26,7 +26,7 @@ namespace rx
     void createTopLevelAS( const std::vector<std::shared_ptr<GeometryNodeBase>>& nodes );
     void buildTlas( const std::vector<BlasInstance>& instances, vk::BuildAccelerationStructureFlagsKHR flags = vk::BuildAccelerationStructureFlagBitsKHR::ePreferFastTrace );
 
-    void createDescriptorSet( const Swapchain& swapchain );
+    void createDescriptorSet( const Swapchain& swapchain, const std::vector<std::shared_ptr<GeometryNodeBase>>& nodes );
 
   private:
     vk::PhysicalDeviceRayTracingPropertiesKHR m_rtProperties;

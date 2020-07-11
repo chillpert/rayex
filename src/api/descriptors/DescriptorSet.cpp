@@ -28,15 +28,13 @@ namespace rx
   {
     for (size_t i = 0; i < m_layouts.size(); ++i)
     {
-      vk::DescriptorBufferInfo bufferInfo;
-      bufferInfo.buffer = uniformBuffers[i];
-      bufferInfo.offset = 0;
-      bufferInfo.range = sizeof(UniformBufferObject);
+      vk::DescriptorBufferInfo bufferInfo( uniformBuffers[i],               // buffer
+                                           0,                               // offset
+                                           sizeof( UniformBufferObject ) ); // range
 
-      vk::DescriptorImageInfo imageInfo;
-      imageInfo.imageLayout = vk::ImageLayout::eShaderReadOnlyOptimal;
-      imageInfo.imageView = textureImageView;
-      imageInfo.sampler = textureSampler;
+      vk::DescriptorImageInfo imageInfo( textureSampler,                            // sampler
+                                         textureImageView,                          // imageView
+                                         vk::ImageLayout::eShaderReadOnlyOptimal ); // imageLayout
 
       // TODO: a lot of this information is already stored in the bindings which are part of DescriptorSetLayout. Re-use this here.
       std::array<vk::WriteDescriptorSet, 2> descriptorWrites{ };

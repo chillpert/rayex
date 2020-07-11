@@ -194,7 +194,6 @@ namespace rx
                                                &specializationMapEntry, // pMapEntries
                                                sizeof( maxRecursion ),  // dataSize
                                                &maxRecursion );         // pData
- 
 
     std::array<vk::PipelineShaderStageCreateInfo, 3> shaderStages;
     shaderStages[0] = vk::Helper::getPipelineShaderStageCreateInfo( vk::ShaderStageFlagBits::eRaygenKHR, rayGen );

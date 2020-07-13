@@ -38,9 +38,6 @@ namespace rx
                                        static_cast<uint32_t>( extensions.size( ) ), // enabledExtensionCount
                                        extensions.data( ) );                        // ppEnabledExtensionNames
 
-
-
-
     m_instance = vk::createInstanceUnique( createInfo );
     g_instance = m_instance.get( );
 

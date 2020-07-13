@@ -8,7 +8,6 @@ namespace rx
   class Image
   {
   public:
-    Image( ) = default;
     Image( const vk::ImageCreateInfo& createInfo, bool initialize = true );
 
     inline const vk::Image get( ) const { return m_image.get( ); }

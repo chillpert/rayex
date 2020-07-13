@@ -24,9 +24,9 @@ namespace rx
     glm::vec3 m_transmittance = glm::vec3( 0.0f );
     glm::vec3 m_emission = glm::vec3( 0.0f );
 
-    float m_shininess;
-    float m_reflectionIndex;
-    float m_opacity;
+    float m_shininess = 1.0f;
+    float m_reflectionIndex = 1.0f;
+    float m_opacity = 1.0f;
 
     std::string m_ambientTexture;
     std::string m_diffuseTexture;

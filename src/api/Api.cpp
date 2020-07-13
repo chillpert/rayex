@@ -45,12 +45,6 @@ namespace rx
     initPhysicalDevice( );
     initQueues( );
     initDevice( );
-
-    //g_dispatchLoaderDynamic = std::make_unique<vk::DispatchLoaderDynamic>( g_instance, vkGetInstanceProcAddr, g_device, vkGetDeviceProcAddr );
-
-    
-    
-
     initRenderPass( );
     initSwapchain( );
     initSwapchainImageViews( );

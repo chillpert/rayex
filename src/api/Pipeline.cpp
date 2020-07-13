@@ -224,8 +224,6 @@ namespace rx
                                                     nullptr,                                       // basePipelineHandle
                                                     0 );                                           // basePipelineIndex
   
-    g_device.createRayTracingPipelineKHRUnique( nullptr, createInfo );
-
-    
+    m_pipeline = g_device.createRayTracingPipelineKHRUnique( nullptr, createInfo );
   }
 }

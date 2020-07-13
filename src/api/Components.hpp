@@ -10,7 +10,6 @@ namespace rx
   extern vk::PhysicalDevice g_physicalDevice;
   extern vk::Device g_device;
   extern vk::SurfaceKHR g_surface;
-  //extern std::unique_ptr<vk::DispatchLoaderDynamic> g_dispatchLoaderDynamic;
   extern vk::SwapchainKHR g_swapchain;
   extern uint32_t g_swapchainImageCount;
   extern vk::Format g_surfaceFormat;

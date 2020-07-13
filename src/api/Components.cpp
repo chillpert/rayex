@@ -7,7 +7,6 @@ namespace rx
   vk::PhysicalDevice g_physicalDevice = nullptr;
   vk::Device g_device = nullptr;
   vk::SurfaceKHR g_surface = nullptr;
-  //std::unique_ptr<vk::DispatchLoaderDynamic> g_dispatchLoaderDynamic = nullptr;
   vk::SwapchainKHR g_swapchain = nullptr;
   uint32_t g_swapchainImageCount = 0;
   vk::Format g_surfaceFormat;

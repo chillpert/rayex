@@ -66,7 +66,7 @@ namespace rx
 
   vk::AccelerationStructureInstanceKHR RayTracingBuilder::instanceToVkGeometryInstanceKHR( const BlasInstance& instance ) const
   {
-    vk::DeviceAddress blasAddress = g_device.getAccelerationStructureAddressKHR( { m_blas_[instance.blasId].as.as }, *g_dispatchLoaderDynamic );
+    vk::DeviceAddress blasAddress = g_device.getAccelerationStructureAddressKHR( { m_blas_[instance.blasId].as.as } );
 
     glm::mat4 transpose = glm::transpose( instance.transform );
 
@@ -132,13 +132,13 @@ namespace rx
                                                                   vk::AccelerationStructureBuildTypeKHR::eDevice,              // buildType
                                                                   blas.as.as );                                                // accelerationStructure
 
-      vk::MemoryRequirements2 memoryRequirements = rx::g_device.getAccelerationStructureMemoryRequirementsKHR( memInfo, *rx::g_dispatchLoaderDynamic );
+      vk::MemoryRequirements2 memoryRequirements = rx::g_device.getAccelerationStructureMemoryRequirementsKHR( memInfo );
       vk::DeviceSize scratchSize = memoryRequirements.memoryRequirements.size;
 
       maxScratch = std::max( maxScratch, scratchSize );
 
       memInfo.type = vk::AccelerationStructureMemoryRequirementsTypeKHR::eObject;
-      memoryRequirements = rx::g_device.getAccelerationStructureMemoryRequirementsKHR( memInfo, *rx::g_dispatchLoaderDynamic );
+      memoryRequirements = rx::g_device.getAccelerationStructureMemoryRequirementsKHR( memInfo );
 
       originalSizes[index] = memoryRequirements.memoryRequirements.size;
     }
@@ -186,7 +186,7 @@ namespace rx
       cmdBuf.begin( index );
 
       // Building the AS.
-      cmdBuf.get( index ).buildAccelerationStructureKHR( 1, &bottomAsInfo, pBuildOffset.data( ), *g_dispatchLoaderDynamic );
+      cmdBuf.get( index ).buildAccelerationStructureKHR( 1, &bottomAsInfo, pBuildOffset.data( ) );
 
 
       // Since the scratch buffer is reused across builds, we need a barrier to ensure one build is finished before starting the next one.
@@ -210,8 +210,8 @@ namespace rx
                                                                       &blas.as.as,                                           // pAccelerationStructures
                                                                       vk::QueryType::eAccelerationStructureCompactedSizeKHR, // queryType
                                                                       queryPool.get( ),                                      // queryPool
-                                                                      ctr++,                                                 // firstQuery
-                                                                      *g_dispatchLoaderDynamic );                            // dispatch
+                                                                      ctr++ );                                               // firstQuery
+                                                                      
       }
 
       cmdBuf.end( index );
@@ -269,7 +269,7 @@ namespace rx
                                                                                vk::AccelerationStructureBuildTypeKHR::eDevice,                    // buildType
                                                                                m_tlas.as.as );                                                    // accelerationStructure
 
-    vk::MemoryRequirements2 reqMem = g_device.getAccelerationStructureMemoryRequirementsKHR( memoryRequirementsInfo, *g_dispatchLoaderDynamic );
+    vk::MemoryRequirements2 reqMem = g_device.getAccelerationStructureMemoryRequirementsKHR( memoryRequirementsInfo );
     vk::DeviceSize scratchSize = reqMem.memoryRequirements.size;
 
     // Allocate the scratch buffers holding the temporary data of the acceleration structure builder.
@@ -354,7 +354,7 @@ namespace rx
     const vk::AccelerationStructureBuildOffsetInfoKHR* pBuildOffsetInfo = &buildOffsetInfo;
 
     // Build the TLAS.
-    cmdBuf.get( 0 ).buildAccelerationStructureKHR( 1, &topAsInfo, &pBuildOffsetInfo, *g_dispatchLoaderDynamic );
+    cmdBuf.get( 0 ).buildAccelerationStructureKHR( 1, &topAsInfo, &pBuildOffsetInfo );
 
     cmdBuf.end( 0 );
     cmdBuf.submitToQueue( g_graphicsQueue );
@@ -409,7 +409,7 @@ namespace rx
     void* actualData;
     uint8_t* data = static_cast<uint8_t*>( actualData );
     RX_ASSERT( ( g_device.mapMemory( buffer.getMemory( ), 0, buffer.getSize( ), { }, &actualData ) == vk::Result::eSuccess ), "Failed to map memory." );
-    RX_ASSERT( ( g_device.getRayTracingShaderGroupHandlesKHR( rtPipeline, 0, g_shaderGroups, tableSize, shaderHandleStorage, *g_dispatchLoaderDynamic ) == vk::Result::eSuccess ), "Failed to get ray tracing shader group handles." );
+    RX_ASSERT( ( g_device.getRayTracingShaderGroupHandlesKHR( rtPipeline, 0, g_shaderGroups, tableSize, shaderHandleStorage ) == vk::Result::eSuccess ), "Failed to get ray tracing shader group handles." );
 
     memcpy( data, shaderHandleStorage + RX_SHADER_GROUP_INDEX_RGEN * shaderGroupHandleSize, shaderGroupHandleSize );
     data += shaderGroupHandleSize;

@@ -148,7 +148,7 @@ namespace vk
                                                               AccelerationStructureBuildTypeKHR::eDevice,              // buildType
                                                               as.as );                                               // accelerationStructure
 
-      MemoryRequirements2 memoryRequirements = rx::g_device.getAccelerationStructureMemoryRequirementsKHR( memInfo, *rx::g_dispatchLoaderDynamic );
+      MemoryRequirements2 memoryRequirements = rx::g_device.getAccelerationStructureMemoryRequirementsKHR( memInfo );
       
       MemoryAllocateFlagsInfo allocateFlags( MemoryAllocateFlagBits::eDeviceAddress, // flags
                                                  { } );                                      // deviceMask
@@ -165,7 +165,7 @@ namespace vk
                                                        0,         // deviceIndexCount
                                                        nullptr ); // pDeviceIndices
 
-      if ( rx::g_device.bindAccelerationStructureMemoryKHR( 1, &bindInfo, *rx::g_dispatchLoaderDynamic ) != Result::eSuccess )
+      if ( rx::g_device.bindAccelerationStructureMemoryKHR( 1, &bindInfo ) != Result::eSuccess )
         RX_ERROR( "Failed to bind acceleration structure memory." );
     }
 
@@ -355,7 +355,7 @@ namespace vk
     rx::AccelerationStructure createAccelerationStructure( const vk::AccelerationStructureCreateInfoKHR& asCreateInfo )
     {
       rx::AccelerationStructure resultAs;
-      resultAs.as = rx::g_device.createAccelerationStructureKHR( asCreateInfo, nullptr, *rx::g_dispatchLoaderDynamic ); // TODO: this is gonna cuase errors.
+      resultAs.as = rx::g_device.createAccelerationStructureKHR( asCreateInfo, nullptr ); // TODO: this is gonna cuase errors.
 
       allocateMemory( resultAs );
 

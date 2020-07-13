@@ -25,7 +25,7 @@ namespace rx
                                                      debugMessengerCallback,
                                                      nullptr );
 
-    m_debugMessenger = g_instance.createDebugUtilsMessengerEXT( createInfo, nullptr, *g_dispatchLoaderDynamic );
+    m_debugMessenger = g_instance.createDebugUtilsMessengerEXT( createInfo );
     RX_ASSERT( m_debugMessenger, "Failed to create debug messenger." );
   #endif
   }
@@ -35,7 +35,7 @@ namespace rx
   #ifdef RX_DEBUG
     if ( m_debugMessenger )
     {
-      g_instance.destroyDebugUtilsMessengerEXT( m_debugMessenger, nullptr, *g_dispatchLoaderDynamic );
+      g_instance.destroyDebugUtilsMessengerEXT( m_debugMessenger );
       m_debugMessenger = nullptr;
     }
   #endif

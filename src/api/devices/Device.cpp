@@ -68,6 +68,8 @@ namespace rx
 
     if ( !m_device )
       RX_ERROR( "Failed to create logical device." );
+
+    VULKAN_HPP_DEFAULT_DISPATCHER.init( m_device.get( ) );
   }
 
   void Device::checkExtensionSupport( const std::vector<const char*>& extensions ) const

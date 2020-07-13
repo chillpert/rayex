@@ -224,13 +224,8 @@ namespace rx
                                                     nullptr,                                       // basePipelineHandle
                                                     0 );                                           // basePipelineIndex
   
-    auto result = g_device.createRayTracingPipelineKHRUnique( nullptr, createInfo, nullptr, *g_dispatchLoaderDynamic );
+    g_device.createRayTracingPipelineKHRUnique( nullptr, createInfo );
 
-    if ( result.result != vk::Result::eSuccess )
-      RX_ERROR( "Failed to create ray tracing pipeline." );
-
-    // TODO fix assignment
-    auto pointer = result.value.release( );
-    m_pipeline.reset( pointer );
+    
   }
 }

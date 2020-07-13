@@ -1,6 +1,10 @@
 #include "Instance.hpp"
 #include "Components.hpp"
 
+#define VULKAN_HPP_STORAGE_SHARED
+#define VULKAN_HPP_STORAGE_SHARED_EXPORT
+VULKAN_HPP_DEFAULT_DISPATCH_LOADER_DYNAMIC_STORAGE
+
 namespace rx
 {
   Instance::Instance( const std::vector<const char*>& layers, std::vector<const char*>& extensions, bool initialize )
@@ -11,6 +15,10 @@ namespace rx
 
   void Instance::init( const std::vector<const char*>& layers, std::vector<const char*>& extensions )
   {
+    vk::DynamicLoader dl;
+    PFN_vkGetInstanceProcAddr vkGetInstanceProcAddr = dl.getProcAddress<PFN_vkGetInstanceProcAddr>( "vkGetInstanceProcAddr" );
+    VULKAN_HPP_DEFAULT_DISPATCHER.init( vkGetInstanceProcAddr );
+
     // Retrieve all extensions needed by SDL2.
     std::vector<const char*> windowExtensions = g_window->getInstanceExtensions( );
     extensions.insert( extensions.end( ), windowExtensions.begin( ), windowExtensions.end( ) );
@@ -31,13 +39,15 @@ namespace rx
                                        extensions.data( ) );                        // ppEnabledExtensionNames
 
 
+
+
     m_instance = vk::createInstanceUnique( createInfo );
     g_instance = m_instance.get( );
 
     if ( !m_instance )
       RX_ERROR( "Failed to create instance." );
 
-    g_dispatchLoaderDynamic = std::make_unique<vk::DispatchLoaderDynamic>( g_instance, vkGetInstanceProcAddr );
+    VULKAN_HPP_DEFAULT_DISPATCHER.init( m_instance.get( ) );
   }
 
   void Instance::checkLayersSupport( const std::vector<const char*>& layers )

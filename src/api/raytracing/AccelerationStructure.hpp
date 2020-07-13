@@ -14,7 +14,7 @@ namespace rx
     void destroy( )
     {
       if ( as )
-        g_device.destroyAccelerationStructureKHR( as, nullptr, *g_dispatchLoaderDynamic );
+        g_device.destroyAccelerationStructureKHR( as );
 
       if ( memory )
         g_device.freeMemory( memory );

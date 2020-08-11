@@ -65,6 +65,7 @@ namespace rx
     void recreateSwapchain( );
 
     void initRayTracing( );
+    void rayTrace( );
 
     std::shared_ptr<WindowBase> m_window;
     std::shared_ptr<CameraBase> m_camera;

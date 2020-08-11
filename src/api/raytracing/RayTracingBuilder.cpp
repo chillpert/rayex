@@ -399,6 +399,43 @@ namespace rx
 
   void RayTracingBuilder::createShaderBindingTable( vk::Pipeline rtPipeline )
   {
+    // new
+    uint32_t baseAlignment = m_rtProperties.shaderGroupBaseAlignment;  // Size of shader alignment
+    uint32_t groupHandleSize = m_rtProperties.shaderGroupHandleSize;  // Size of a program identifier
+
+    // Fetch all the shader handles used in the pipeline, so that they can be written in the SBT
+    uint32_t sbtSize = g_shaderGroups * baseAlignment;
+
+    std::vector<uint8_t> shaderHandleStorage( sbtSize );
+    g_device.getRayTracingShaderGroupHandlesKHR( rtPipeline, 
+                                                 0, 
+                                                 g_shaderGroups, 
+                                                 sbtSize, 
+                                                 shaderHandleStorage.data( ) );
+
+    // Write the handles in the SBT
+    Buffer sbtBuffer( sbtSize, 
+                      vk::BufferUsageFlagBits::eTransferSrc, 
+                      { g_graphicsFamilyIndex }, 
+                      vk::MemoryPropertyFlagBits::eHostVisible | vk::MemoryPropertyFlagBits::eHostCoherent );
+
+    // Write the handles in the SBT
+    void* actualData = nullptr;
+    uint8_t* pData = static_cast<uint8_t*>( actualData );
+    g_device.mapMemory( sbtBuffer.getMemory( ), 0, sbtBuffer.getSize( ), { }, &actualData );
+
+    for ( uint32_t i = 0; i < g_shaderGroups; ++i )
+    {
+      memcpy( pData, shaderHandleStorage.data( ) + i * groupHandleSize, groupHandleSize );  // raygen
+      pData += baseAlignment;
+    }
+    
+    g_device.unmapMemory( sbtBuffer.getMemory( ) );
+
+
+    // old
+
+    /*
     const uint32_t tableSize = m_rtProperties.shaderGroupHandleSize * g_shaderGroups;
     const uint32_t shaderGroupHandleSize = m_rtProperties.shaderGroupHandleSize;
 
@@ -419,6 +456,7 @@ namespace rx
     data += shaderGroupHandleSize;
 
     g_device.unmapMemory( buffer.getMemory( ) );
+    */
 
   }
 }

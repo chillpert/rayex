@@ -423,6 +423,7 @@ namespace rx
     auto chit = vk::Initializer::createShaderModuleUnique( "shaders/raytrace.rchit" );
 
     m_rayTracingBuilder.createDescriptorSetLayout( m_swapchain, maxNodes );
+
     // Ray tracing pipeline.
     m_rtPipeline.init( m_renderPass.get( ),
                        vk::Viewport { 0.0f, 0.0f, extent.x, extent.y, 0.0f, 1.0f },
@@ -507,6 +508,11 @@ namespace rx
                                   static_cast<uint32_t>( m_swapchain.getImages( ).size( ) ),
                                   std::vector<vk::DescriptorSetLayout>( m_swapchain.getImages( ).size( ), m_descriptorSetLayout.get( ) ) );
 
+    // Create the ray tracing descriptor sets.
+    model->m_rtDescriptorSets.init( m_descriptorPool.get( ),
+                                  static_cast<uint32_t>( m_swapchain.getImages( ).size( ) ),
+                                  std::vector<vk::DescriptorSetLayout>( m_swapchain.getImages( ).size( ), m_descriptorSetLayout.get( ) ) );
+
     // TODO: add support for multiple textures.
     auto diffuseIter = m_textures.find( node->m_material.m_diffuseTexture );
     if ( diffuseIter != m_textures.end( ) )
@@ -514,6 +520,10 @@ namespace rx
       model->m_descriptorSets.update( node->m_uniformBuffers.getRaw( ),
                                       diffuseIter->second->getImageView( ),
                                       diffuseIter->second->getSampler( ) );
+
+      model->m_rtDescriptorSets.update( node->m_uniformBuffers.getRaw( ),
+                                        diffuseIter->second->getImageView( ),
+                                        diffuseIter->second->getSampler( ) );
     }
   }
 
@@ -542,6 +552,10 @@ namespace rx
                                       static_cast<uint32_t>( m_swapchain.getImages( ).size( ) ),
                                       std::vector<vk::DescriptorSetLayout>( m_swapchain.getImages( ).size( ), m_descriptorSetLayout.get( ) ) );
 
+        // Create the ray tracing descriptor sets.
+        model->m_rtDescriptorSets.init( m_descriptorPool.get( ),
+                                        static_cast<uint32_t>( m_swapchain.getImages( ).size( ) ),
+                                        std::vector<vk::DescriptorSetLayout>( m_swapchain.getImages( ).size( ), m_descriptorSetLayout.get( ) ) );
       }
 
       node->m_uniformBuffers.init( m_swapchain.getImages( ).size( ) );
@@ -553,14 +567,19 @@ namespace rx
         model->m_descriptorSets.update( node->m_uniformBuffers.getRaw( ),
                                         diffuseIter->second->getImageView( ),
                                         diffuseIter->second->getSampler( ) );
-      }
 
+        model->m_rtDescriptorSets.update( node->m_uniformBuffers.getRaw( ),
+                                          diffuseIter->second->getImageView( ),
+                                          diffuseIter->second->getSampler( ) );
+      }
+      
       model->m_initialized = true;
     }
 
     m_rayTracingBuilder.createBottomLevelAS( vk::Helper::unpack( m_models ) );
     m_rayTracingBuilder.createTopLevelAS( m_nodes );
-    //m_rayTracingBuilder.createDescriptorSet( m_swapchain );
+    m_rayTracingBuilder.createDescriptorSet( m_swapchain );
+    m_rayTracingBuilder.createShaderBindingTable( m_rtPipeline.get( ) );
   }
 
   void Api::initSwapchainCommandBuffers( )
@@ -593,7 +612,7 @@ namespace rx
                           { 0, m_swapchain.getExtent( ) },
                           { clearValues[0], clearValues[1] } );
 
-      m_swapchainCommandBuffers.get( imageIndex ).bindPipeline( vk::PipelineBindPoint::eGraphics, m_pipeline.get( ) ); // CMD
+      m_pipeline.bind( m_swapchainCommandBuffers.get( imageIndex ) ); // CMD
 
       // Dynamic states
       vk::Viewport viewport = m_pipeline.getViewport( );
@@ -641,6 +660,15 @@ namespace rx
                                                                         0,                                           // dynamic offset count
                                                                         nullptr );                                   // dynamic offsets 
 
+        std::vector<vk::DescriptorSet> temp = { &model->m_rtDescriptorSets.get( )[imageIndex], &model->m_descriptorSets.get( )[imageIndex] };
+
+        m_swapchainCommandBuffers.get( imageIndex ).bindDescriptorSets( vk::PipelineBindPoint::eRayTracingKHR,
+                                                                        m_rtPipeline.getLayout( ),
+                                                                        0,                                           // first set
+                                                                        1,                                           // descriptor set count
+                                                                        temp.data( ),                                // descriptor sets
+                                                                        0,                                           // dynamic offset count
+                                                                        nullptr );                                   // dynamic offsets 
 
         m_swapchainCommandBuffers.get( imageIndex ).drawIndexed( model->m_indexBuffer.getCount( ), // index count
                                                                  1,                                // instance count

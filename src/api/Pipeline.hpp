@@ -16,6 +16,8 @@ namespace rx
     inline const vk::Rect2D getScissor( ) const { return m_scissor; }
     inline const vk::Viewport getViewport( ) const { return m_viewport; }
 
+    virtual void bind( vk::CommandBuffer commandBuffer ) const = 0;
+
   protected:
     vk::UniquePipeline m_pipeline;
     vk::UniquePipelineLayout m_layout;
@@ -43,6 +45,8 @@ namespace rx
                vk::ShaderModule fragmentShader,
                vk::DescriptorSetLayout descriptorSetLayout,
                vk::PrimitiveTopology topology = vk::PrimitiveTopology::eTriangleList );
+
+    void bind( vk::CommandBuffer commandBuffer ) const;
   };
 
   class RayTracingPipeline : public Pipeline
@@ -67,6 +71,8 @@ namespace rx
                vk::ShaderModule miss,
                vk::ShaderModule closestHit,
                uint32_t maxRecursion = 4 );
+
+    void bind( vk::CommandBuffer commandBuffer ) const;
   };
 }
 

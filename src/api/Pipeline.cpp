@@ -143,6 +143,11 @@ namespace rx
       RX_ERROR( "Failed to create graphics pipeline." );
   }
 
+  void RasterizationPipeline::bind( vk::CommandBuffer commandBuffer ) const
+  {
+    commandBuffer.bindPipeline( vk::PipelineBindPoint::eGraphics, m_pipeline.get( ) );
+  }
+
   RayTracingPipeline::RayTracingPipeline( vk::RenderPass renderPass,
                                           vk::Viewport viewport,
                                           vk::Rect2D scissor,
@@ -225,5 +230,10 @@ namespace rx
                                                     0 );                                           // basePipelineIndex
   
     m_pipeline = g_device.createRayTracingPipelineKHRUnique( nullptr, createInfo );
+  }
+
+  void RayTracingPipeline::bind( vk::CommandBuffer commandBuffer ) const
+  {
+    commandBuffer.bindPipeline( vk::PipelineBindPoint::eRayTracingKHR, m_pipeline.get( ) );
   }
 }

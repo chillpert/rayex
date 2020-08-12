@@ -10,16 +10,22 @@ layout(location = 1) in vec3 fragNormal;
 layout(location = 2) in vec2 fragTexCoord;
 layout(location = 3) in vec3 cameraPos;
 
+layout(push_constant) uniform DirectionalLightProperties
+{
+  vec3 direction;
+  float ambientStrength;
+} dirLightProps;
+
 // OUT
 layout(location = 0) out vec4 outColor;
 
 vec3 calcDirLight(vec3 normal, vec3 fragPos, vec3 viewDir)
 {
   // ambient
-  vec3 ambient = 0.5 * vec3(texture(texSampler, fragTexCoord));
+  vec3 ambient = dirLightProps.ambientStrength * vec3(texture(texSampler, fragTexCoord));
 
   // diffuse
-  vec3 lightDir = normalize(-vec3(0.0, -10.0, -10.0));
+  vec3 lightDir = normalize(dirLightProps.direction);
   float diff = max(dot(lightDir, normal), 0.0);
   vec3 diffuse = diff * vec3(texture(texSampler, fragTexCoord));
 

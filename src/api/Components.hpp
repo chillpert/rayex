@@ -23,6 +23,8 @@ namespace rx
   extern vk::Queue g_transferQueue;
   extern uint32_t g_graphicsFamilyIndex;
   extern uint32_t g_transferFamilyIndex;
+
+  extern vk::PhysicalDeviceLimits g_physicalDeviceLimits;
 }
 
 #endif // COMPONENTS_HPP

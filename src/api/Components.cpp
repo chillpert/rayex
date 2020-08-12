@@ -20,4 +20,6 @@ namespace rx
   vk::Queue g_transferQueue = nullptr;
   uint32_t g_graphicsFamilyIndex;
   uint32_t g_transferFamilyIndex;
+
+  vk::PhysicalDeviceLimits g_physicalDeviceLimits;
 }

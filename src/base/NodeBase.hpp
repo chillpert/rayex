@@ -48,6 +48,26 @@ namespace rx
     // Ray tracing geometry instance data.
     RaytracingInstance m_rtInstance;
   };
+
+  class LightNodeBase : public TransformNodeBase
+  {
+  public:
+    virtual ~LightNodeBase( ) = default;
+
+    glm::vec3 m_ambient = { 0.2f, 0.2f, 0.2f };
+    glm::vec3 m_diffuse = { 0.8f, 0.8f, 0.8f };
+    glm::vec3 m_specular = { 1.0f, 1.0f, 1.0f };
+
+    float m_ambientStrength = 0.7f;
+  };
+
+  class DirectionalLightNodeBase : public LightNodeBase
+  {
+  public:
+    virtual ~DirectionalLightNodeBase( ) = default;
+
+    glm::vec3 m_direction = { 1.0f, -1.0f, 1.0f };
+  };
 }
 
 #endif // NODE_HPP

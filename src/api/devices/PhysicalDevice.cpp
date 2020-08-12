@@ -41,6 +41,7 @@ namespace rx
     auto properties = m_physicalDevice.getProperties( );
     RX_LOG( "Selected GPU: " << properties.deviceName );
 
+    g_physicalDeviceLimits = properties.limits;
     g_physicalDevice = m_physicalDevice;
   }
 

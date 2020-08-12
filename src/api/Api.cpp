@@ -54,7 +54,7 @@ namespace rx
     initDepthBuffering( );
     initSwapchainFramebuffers( );
     initDescriptorPool( );
-    initRayTracing( );
+    //initRayTracing( );
     initSwapchainCommandBuffers( );
     initGui( );
     recordSwapchainCommandBuffers( );
@@ -260,6 +260,9 @@ namespace rx
     m_rayTracingBuilder.init( );
   }
 
+  void Api::rayTrace( )
+  { }
+
   void Api::initInstance( )
   {
     std::vector<const char*> layers = { "VK_LAYER_KHRONOS_validation" };
@@ -387,6 +390,7 @@ namespace rx
     auto vs = vk::Initializer::createShaderModuleUnique( "shaders/simple3D.vert" );
     auto fs = vk::Initializer::createShaderModuleUnique( "shaders/simple3D.frag" );
 
+    // TODO: Unnecessary check.
     if ( firstRun )
     {
       vk::DescriptorSetLayoutBinding vertexBinding( 0,                                                                      // binding
@@ -417,7 +421,7 @@ namespace rx
                      vs.get( ),
                      fs.get( ),
                      m_descriptorSetLayout.get( ) );
-
+    /*
     auto rgen = vk::Initializer::createShaderModuleUnique( "shaders/raytrace.rgen" );
     auto miss = vk::Initializer::createShaderModuleUnique( "shaders/raytrace.rmiss" );
     auto chit = vk::Initializer::createShaderModuleUnique( "shaders/raytrace.rchit" );
@@ -433,6 +437,7 @@ namespace rx
                        miss.get( ),
                        chit.get( ),
                        8 );
+    */
   }
 
   void Api::initGraphicsCommandPool( )
@@ -576,10 +581,13 @@ namespace rx
       model->m_initialized = true;
     }
 
+    // TODO: move this out of the function and merge initModel and initModels
+    /*
     m_rayTracingBuilder.createBottomLevelAS( vk::Helper::unpack( m_models ) );
     m_rayTracingBuilder.createTopLevelAS( m_nodes );
     m_rayTracingBuilder.createDescriptorSet( m_swapchain );
     m_rayTracingBuilder.createShaderBindingTable( m_rtPipeline.get( ) );
+    */
   }
 
   void Api::initSwapchainCommandBuffers( )
@@ -611,6 +619,22 @@ namespace rx
                           m_swapchainCommandBuffers.get( imageIndex ),
                           { 0, m_swapchain.getExtent( ) },
                           { clearValues[0], clearValues[1] } );
+
+      struct DirectionLightPushConstant
+      {
+        glm::vec3 direction;
+        float trick;
+      };
+
+      DirectionLightPushConstant pc { { 0.0f, 10.0f, 10.0f }, 0.5f };
+
+      // TODO: avoid repetition of values.
+      // Push constants
+      m_swapchainCommandBuffers.get( imageIndex ).pushConstants( m_pipeline.getLayout( ),               // layout
+                                                                 vk::ShaderStageFlagBits::eFragment,    // stageFlags
+                                                                 0,                                     // offset
+                                                                 sizeof( DirectionLightPushConstant ), // size 
+                                                                 &pc );                     // pValues
 
       m_pipeline.bind( m_swapchainCommandBuffers.get( imageIndex ) ); // CMD
 
@@ -659,7 +683,7 @@ namespace rx
                                                                         &model->m_descriptorSets.get( )[imageIndex], // descriptor sets
                                                                         0,                                           // dynamic offset count
                                                                         nullptr );                                   // dynamic offsets 
-
+        /*
         std::vector<vk::DescriptorSet> temp = { &model->m_rtDescriptorSets.get( )[imageIndex], &model->m_descriptorSets.get( )[imageIndex] };
 
         m_swapchainCommandBuffers.get( imageIndex ).bindDescriptorSets( vk::PipelineBindPoint::eRayTracingKHR,
@@ -669,6 +693,7 @@ namespace rx
                                                                         temp.data( ),                                // descriptor sets
                                                                         0,                                           // dynamic offset count
                                                                         nullptr );                                   // dynamic offsets 
+        */
 
         m_swapchainCommandBuffers.get( imageIndex ).drawIndexed( model->m_indexBuffer.getCount( ), // index count
                                                                  1,                                // instance count

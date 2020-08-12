@@ -102,9 +102,13 @@ namespace rx
                                                          static_cast<uint32_t>( dynamicStates.size( ) ), // dynamicStateCount
                                                          dynamicStates.data( ) );                        // pDynamicStates
 
+    
+    uint32_t pushConstantSize = sizeof( float ) + sizeof( glm::vec3 );
+    RX_ASSERT( g_physicalDeviceLimits.maxPushConstantsSize >= pushConstantSize, "Push constant size is exceeding supported size." );
+
     vk::PushConstantRange pushConstantRange( vk::ShaderStageFlagBits::eFragment, // stageFlags
                                              0,                                  // offset
-                                             sizeof( glm::vec3 ) );              // size
+                                             pushConstantSize );                 // size
 
     vk::PipelineLayoutCreateInfo pipelineLayoutInfo( { },                  // flags
                                                      1,                    // setLayoutCount

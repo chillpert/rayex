@@ -419,10 +419,9 @@ namespace rx
                       { g_graphicsFamilyIndex }, 
                       vk::MemoryPropertyFlagBits::eHostVisible | vk::MemoryPropertyFlagBits::eHostCoherent );
 
-    // Write the handles in the SBT
-    void* actualData = nullptr;
-    uint8_t* pData = static_cast<uint8_t*>( actualData );
+    void* actualData = NULL;
     g_device.mapMemory( sbtBuffer.getMemory( ), 0, sbtBuffer.getSize( ), { }, &actualData );
+    uint8_t* pData = static_cast<uint8_t*>( actualData );
 
     for ( uint32_t i = 0; i < g_shaderGroups; ++i )
     {
@@ -431,32 +430,5 @@ namespace rx
     }
     
     g_device.unmapMemory( sbtBuffer.getMemory( ) );
-
-
-    // old
-
-    /*
-    const uint32_t tableSize = m_rtProperties.shaderGroupHandleSize * g_shaderGroups;
-    const uint32_t shaderGroupHandleSize = m_rtProperties.shaderGroupHandleSize;
-
-    Buffer buffer( tableSize, vk::BufferUsageFlagBits::eRayTracingKHR, { g_graphicsFamilyIndex }, vk::MemoryPropertyFlagBits::eHostVisible );
-    
-    auto shaderHandleStorage = new uint8_t[tableSize]; // TODO: Delete
-
-    void* actualData;
-    uint8_t* data = static_cast<uint8_t*>( actualData );
-    RX_ASSERT( ( g_device.mapMemory( buffer.getMemory( ), 0, buffer.getSize( ), { }, &actualData ) == vk::Result::eSuccess ), "Failed to map memory." );
-    RX_ASSERT( ( g_device.getRayTracingShaderGroupHandlesKHR( rtPipeline, 0, g_shaderGroups, tableSize, shaderHandleStorage ) == vk::Result::eSuccess ), "Failed to get ray tracing shader group handles." );
-
-    memcpy( data, shaderHandleStorage + RX_SHADER_GROUP_INDEX_RGEN * shaderGroupHandleSize, shaderGroupHandleSize );
-    data += shaderGroupHandleSize;
-    memcpy( data, shaderHandleStorage + RX_SHADER_GROUP_INDEX_MISS * shaderGroupHandleSize, shaderGroupHandleSize );
-    data += shaderGroupHandleSize;
-    memcpy( data, shaderHandleStorage + RX_SHADER_GROUP_INDEX_CHIT * shaderGroupHandleSize, shaderGroupHandleSize );
-    data += shaderGroupHandleSize;
-
-    g_device.unmapMemory( buffer.getMemory( ) );
-    */
-
   }
 }

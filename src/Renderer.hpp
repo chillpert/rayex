@@ -27,8 +27,8 @@ namespace rx
 
     RX_API inline const std::shared_ptr<WindowBase> getWindow( ) const { return m_window; }
 
-    RX_API void pushNode( const std::shared_ptr<GeometryNodeBase> node );
-    RX_API void setNodes( const std::vector<std::shared_ptr<GeometryNodeBase>>& nodes );
+    RX_API void pushNode( const std::shared_ptr<NodeBase> node );
+    RX_API void setNodes( const std::vector<std::shared_ptr<NodeBase>>& nodes );
 
 
     RX_API void setGui( std::shared_ptr<GuiBase> gui )

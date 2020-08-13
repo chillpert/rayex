@@ -5,7 +5,20 @@
 
 namespace rx
 {
-  class TransformNodeBase
+  // Easiest way of assigning each node a unique id.
+  static size_t nodeCounter = 0;
+
+  class NodeBase
+  {
+  public:
+    NodeBase( ) :
+      m_id( ++nodeCounter ) { }
+    virtual ~NodeBase( ) = default;
+
+    size_t m_id;
+  };
+
+  class TransformNodeBase : public NodeBase
   {
   public:
     TransformNodeBase( ) :
@@ -49,7 +62,7 @@ namespace rx
     RaytracingInstance m_rtInstance;
   };
 
-  class LightNodeBase : public TransformNodeBase
+  class LightNodeBase : public NodeBase
   {
   public:
     virtual ~LightNodeBase( ) = default;
@@ -63,8 +76,17 @@ namespace rx
 
   class DirectionalLightNodeBase : public LightNodeBase
   {
+  private:
+    struct PushConstant
+    {
+      glm::vec3 direction;
+      float ambientStrength;
+    };
+
   public:
     virtual ~DirectionalLightNodeBase( ) = default;
+
+    PushConstant toPushConstant( ) { return { m_direction, m_ambientStrength }; }
 
     glm::vec3 m_direction = { 1.0f, -1.0f, 1.0f };
   };

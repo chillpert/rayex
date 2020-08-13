@@ -6,7 +6,10 @@
 
 namespace rx
 {
-  const size_t maxNodes = 4096;
+  // Note: Vulkan default allocation limit = 4069
+  const size_t maxGeometryNodes = 2000;
+  const size_t maxTextures = 2000;
+  const size_t maxLightNodes = 25;
 
   // Defines the maximum amount of frames that will be processed concurrently.
   const size_t maxFramesInFlight = 2;
@@ -36,8 +39,9 @@ namespace rx
   {
     g_window = m_window;
 
-    m_nodes.reserve( maxNodes );
-    m_textures.reserve( maxNodes );
+    m_geometryNodes.reserve( maxGeometryNodes );
+    m_textures.reserve( maxTextures );
+    m_lightNodes.reserve( maxLightNodes );
 
     initInstance( );
     initDebugMessenger( );
@@ -98,7 +102,7 @@ namespace rx
     m_swapchain.acquireNextImage( m_imageAvailableSemaphores[currentFrame].get( ), nullptr, &imageIndex );
 
     // TODO: Temporary
-    for ( std::shared_ptr<GeometryNodeBase> node : m_nodes )
+    for ( std::shared_ptr<GeometryNodeBase> node : m_geometryNodes )
     {
       if ( node->m_modelPath.empty( ) )
         continue;
@@ -161,40 +165,52 @@ namespace rx
     return true;
   }
 
-  void Api::pushNode( const std::shared_ptr<GeometryNodeBase> node, bool record )
+  void Api::pushNode( const std::shared_ptr<NodeBase> node, bool record )
   {
-    auto it = m_models.find( node->m_modelPath );
-    if ( it == m_models.end( ) )
-      m_models.insert( { node->m_modelPath, std::make_shared<Model>( node->m_modelPath ) } );
-
-    m_nodes.push_back( node );
-
-    // Handle the node's texture.
-    auto texturePaths = node->m_material.getTextures( );
-
-    for ( const auto& texturePath : texturePaths )
+    if ( dynamic_cast<GeometryNodeBase*>( node.get( ) ) )
     {
-      auto it = m_textures.find( texturePath );
-      // Texture does not exist already. It will be created.
-      if ( it == m_textures.end( ) )
+      auto ptr = std::dynamic_pointer_cast<GeometryNodeBase>( node );
+
+      auto it = m_models.find( ptr->m_modelPath );
+      if ( it == m_models.end( ) )
+        m_models.insert( { ptr->m_modelPath, std::make_shared<Model>( ptr->m_modelPath ) } );
+
+      m_geometryNodes.push_back( ptr );
+
+      // Handle the node's texture.
+      auto texturePaths = ptr->m_material.getTextures( );
+
+      for ( const auto& texturePath : texturePaths )
       {
-        m_textures.insert( { texturePath, std::make_shared<Texture>( texturePath ) } );
+        auto it = m_textures.find( texturePath );
+        // Texture does not exist already. It will be created.
+        if ( it == m_textures.end( ) )
+        {
+          m_textures.insert( { texturePath, std::make_shared<Texture>( texturePath ) } );
+        }
       }
+
+      if ( record )
+        initModel( ptr );
+    }
+    else if ( dynamic_cast<LightNodeBase*>( node.get( ) ) )
+    {
+      auto lightNodebasePtr = std::dynamic_pointer_cast<LightNodeBase>( node );
+
+      m_lightNodes.push_back( lightNodebasePtr );
     }
 
     if ( record )
     {
-      initModel( node );
       m_swapchainCommandBuffers.reset( );
       recordSwapchainCommandBuffers( );
     }
   }
 
-  void Api::setNodes( const std::vector<std::shared_ptr<GeometryNodeBase>>& nodes )
+  void Api::setNodes( const std::vector<std::shared_ptr<NodeBase>>& nodes )
   {
-    //m_nodes.erase(m_nodes.begin(), m_nodes.end());
-    m_nodes.clear( );
-    m_nodes.reserve( maxNodes );
+    m_geometryNodes.clear( );
+    m_geometryNodes.reserve( maxGeometryNodes );
 
     for ( const auto& node : nodes )
       pushNode( node, false );
@@ -261,7 +277,9 @@ namespace rx
   }
 
   void Api::rayTrace( )
-  { }
+  {
+
+  }
 
   void Api::initInstance( )
   {
@@ -486,7 +504,7 @@ namespace rx
       { vk::DescriptorType::eCombinedImageSampler, swapchainImagesCount }
     };
 
-    m_descriptorPool = vk::Initializer::createDescriptorPoolUnique( poolSizes, maxNodes * swapchainImagesCount );
+    m_descriptorPool = vk::Initializer::createDescriptorPoolUnique( poolSizes, maxGeometryNodes * swapchainImagesCount );
   }
 
   void Api::initModel( const std::shared_ptr<GeometryNodeBase> node )
@@ -534,7 +552,7 @@ namespace rx
 
   void Api::initModels( bool isNew )
   {
-    for ( const auto& node : m_nodes )
+    for ( const auto& node : m_geometryNodes )
     {
       if ( node->m_modelPath.empty( ) )
         continue;
@@ -620,21 +638,22 @@ namespace rx
                           { 0, m_swapchain.getExtent( ) },
                           { clearValues[0], clearValues[1] } );
 
-      struct DirectionLightPushConstant
+      for ( const auto& lightNode : m_lightNodes )
       {
-        glm::vec3 direction;
-        float trick;
-      };
+        if ( dynamic_cast<DirectionalLightNodeBase*>( lightNode.get( ) ) )
+        {
+          auto ptr = std::dynamic_pointer_cast<DirectionalLightNodeBase>( lightNode );
 
-      DirectionLightPushConstant pc { { 0.0f, 10.0f, 10.0f }, 0.5f };
+          auto pc = ptr->toPushConstant( );
 
-      // TODO: avoid repetition of values.
-      // Push constants
-      m_swapchainCommandBuffers.get( imageIndex ).pushConstants( m_pipeline.getLayout( ),               // layout
-                                                                 vk::ShaderStageFlagBits::eFragment,    // stageFlags
-                                                                 0,                                     // offset
-                                                                 sizeof( DirectionLightPushConstant ), // size 
-                                                                 &pc );                     // pValues
+          // TODO: avoid repetition of values.
+          m_swapchainCommandBuffers.get( imageIndex ).pushConstants( m_pipeline.getLayout( ),            // layout
+                                                                     vk::ShaderStageFlagBits::eFragment, // stageFlags
+                                                                     0,                                  // offset
+                                                                     sizeof( pc ),                       // size 
+                                                                     &pc );                              // pValues
+        }
+      }
 
       m_pipeline.bind( m_swapchainCommandBuffers.get( imageIndex ) ); // CMD
 
@@ -651,7 +670,7 @@ namespace rx
       m_swapchainCommandBuffers.get( imageIndex ).setScissor( 0, 1, &scissor ); // CMD
 
       // Draw models
-      for ( const auto& node : m_nodes )
+      for ( const auto& node : m_geometryNodes )
       {
         if ( node->m_modelPath.empty( ) )
           continue;

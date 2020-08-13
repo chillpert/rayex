@@ -35,8 +35,8 @@ namespace rx
     bool update( );
     bool render( );
 
-    void pushNode( const std::shared_ptr<GeometryNodeBase> nodes, bool record = true );
-    void setNodes( const std::vector<std::shared_ptr<GeometryNodeBase>>& nodes );
+    void pushNode( const std::shared_ptr<NodeBase> nodes, bool record = true );
+    void setNodes( const std::vector<std::shared_ptr<NodeBase>>& nodes );
 
   private:
     void initInstance( );
@@ -84,7 +84,8 @@ namespace rx
     DescriptorSetLayout m_descriptorSetLayout;
 
     // Nodes to render.
-    std::vector<std::shared_ptr<GeometryNodeBase>> m_nodes;
+    std::vector<std::shared_ptr<GeometryNodeBase>> m_geometryNodes;
+    std::vector<std::shared_ptr<LightNodeBase>> m_lightNodes;
     // Models
     std::unordered_map<std::string, std::shared_ptr<Model>> m_models;
     // Textures

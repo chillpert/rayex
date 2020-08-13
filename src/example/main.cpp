@@ -328,8 +328,12 @@ int main( int argc, char* argv[] )
   mars->m_worldTransform = glm::rotate( mars->m_worldTransform, glm::radians( 90.0f ), glm::vec3( 0.0f, 1.0f, 0.0f ) );
   mars->m_worldTransform = glm::translate( mars->m_worldTransform, glm::vec3( 0.0f, -2.0f, 0.0f ) );
 
+  auto dirLight = std::make_shared<DirectionalLightNodeBase>( );
+  dirLight->m_ambientStrength = 0.5f;
+  dirLight->m_direction = { 0.0f, 10.0f, 10.0f };
+
   // Add the model to the renderer. This way they will be queued for rendering.
-  renderer.setNodes( { dragonLore, mars } );
+  renderer.setNodes( { dragonLore, mars, dirLight } );
 
   while ( renderer.isRunning( ) )
   { 

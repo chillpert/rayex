@@ -58,7 +58,7 @@ namespace rx
     initDepthBuffering( );
     initSwapchainFramebuffers( );
     initDescriptorPool( );
-    //initRayTracing( );
+    initRayTracing( );
     initSwapchainCommandBuffers( );
     initGui( );
     recordSwapchainCommandBuffers( );
@@ -135,7 +135,7 @@ namespace rx
                                static_cast<uint32_t>( commandBuffers.size( ) ),                                                    // commandBufferCount
                                commandBuffers.data( ),                                                                             // pCommandBuffers
                                1,                                                                                                  // signalSemaphoreCount
-                               & m_finishedRenderSemaphores[currentFrame].get( ) );                                                // pSignalSemaphores
+                               &m_finishedRenderSemaphores[currentFrame].get( ) );                                                 // pSignalSemaphores
 
     // Reset the signaled state of the current frame's fence to the unsignaled one.
     g_device.resetFences( 1, &m_inFlightFences[currentFrame].get( ) );
@@ -155,7 +155,6 @@ namespace rx
                                     &g_swapchain,                                     // pSwapchains
                                     &imageIndex,                                      // pImageIndices
                                     nullptr );                                        // pResults
-
 
     // Tell the presentation engine that the current image is ready.
     g_graphicsQueue.presentKHR( presentInfo );
@@ -213,9 +212,8 @@ namespace rx
     m_geometryNodes.reserve( maxGeometryNodes );
 
     for ( const auto& node : nodes )
-      pushNode( node, false );
+      pushNode( node );
 
-    initModels( true );
     m_swapchainCommandBuffers.reset( );
     recordSwapchainCommandBuffers( );
   }
@@ -232,42 +230,24 @@ namespace rx
     g_device.waitIdle( );
 
     // Clean up existing swapchain and dependencies.
-    {
-      //m_rayTracingBuilder.destroy( );
-      //vk::Destructor::destroyImageView( m_depthImageView );
-      //m_depthImage.destroy( );
-      // vk::Destructor::destroyFramebuffers( m_swapchainFramebuffers );
-      m_swapchainCommandBuffers.free( );
-      //vk::Destructor::destroyImageViews( m_swapchainImageViews );
-      m_swapchain.destroy( );
-    }
+    m_swapchainCommandBuffers.free( );
+    m_swapchain.destroy( );
 
     // Recreating the swapchain.
-    {
-      initSwapchain( );
-      initSwapchainImageViews( );
-      initDepthBuffering( );
-      initSwapchainFramebuffers( );
-      initModels( false );
-      initSwapchainCommandBuffers( );
-      recordSwapchainCommandBuffers( );
+    initSwapchain( );
+    initSwapchainImageViews( );
+    initDepthBuffering( );
+    initSwapchainFramebuffers( );
+    initSwapchainCommandBuffers( );
+    recordSwapchainCommandBuffers( );
 
-      // TODO: Clean up (will be possible as soon as swapchain is a global
-      if ( m_gui != nullptr )
-      {
-        //m_gui->destroy( );
-        //m_gui->init( &m_surface, &m_swapchain, vk::Helper::unpack( m_swapchainImageViews ) );
+    if ( m_gui != nullptr )
+      m_gui->recreate( &m_swapchain, vk::Helper::unpack( m_swapchainImageViews ) );
 
-        m_gui->recreate( &m_swapchain, vk::Helper::unpack( m_swapchainImageViews ) );
-      }
-
-      // Update the camera screen size to avoid image stretching.
-      auto screenSize = m_swapchain.getExtent( );
-      int screenWidth = static_cast<int>( screenSize.width );
-      int screenHeight = static_cast<int>( screenSize.height );
-
-      m_camera->setScreenSize( glm::ivec2 { screenWidth, screenHeight } );
-    }
+    // Update the camera screen size to avoid image stretching.
+    auto screenSize = m_swapchain.getExtent( );
+    m_camera->setScreenSize( glm::ivec2 { static_cast<int>( screenSize.width ), static_cast<int>( screenSize.height ) } );
+    
     RX_LOG( "Finished swapchain recreation." );
   }
 
@@ -441,12 +421,11 @@ namespace rx
                      vs.get( ),
                      fs.get( ),
                      m_descriptorSetLayout.get( ) );
-    /*
     auto rgen = vk::Initializer::createShaderModuleUnique( "shaders/raytrace.rgen" );
     auto miss = vk::Initializer::createShaderModuleUnique( "shaders/raytrace.rmiss" );
     auto chit = vk::Initializer::createShaderModuleUnique( "shaders/raytrace.rchit" );
 
-    m_rayTracingBuilder.createDescriptorSetLayout( m_swapchain, maxNodes );
+    m_rayTracingBuilder.createDescriptorSetLayout( m_swapchain, maxGeometryNodes );
 
     // Ray tracing pipeline.
     m_rtPipeline.init( m_renderPass.get( ),
@@ -457,7 +436,6 @@ namespace rx
                        miss.get( ),
                        chit.get( ),
                        8 );
-    */
   }
 
   void Api::initGraphicsCommandPool( )
@@ -512,10 +490,13 @@ namespace rx
   void Api::initModel( const std::shared_ptr<GeometryNodeBase> node )
   {
     if ( node->m_modelPath.empty( ) )
+    {
+      RX_LOG( "Path to model is missing." );
       return;
+    }
 
     auto it = m_models.find( node->m_modelPath );
-    RX_ASSERT( ( it != m_models.end( ) ), "Can not upload uniform buffer because node does not have a (valid) model." );
+    RX_ASSERT( ( it != m_models.end( ) ), "Model was not initialized previously." );
 
     auto model = it->second;
     if ( !model->m_initialized )
@@ -550,64 +531,12 @@ namespace rx
                                         diffuseIter->second->getImageView( ),
                                         diffuseIter->second->getSampler( ) );
     }
-  }
 
-  void Api::initModels( bool isNew )
-  {
-    for ( const auto& node : m_geometryNodes )
-    {
-      if ( node->m_modelPath.empty( ) )
-        continue;
-
-      auto it = m_models.find( node->m_modelPath );
-      RX_ASSERT( ( it != m_models.end( ) ), "Can not upload uniform buffer because node does not have a (valid) model." );
-
-      auto model = it->second;
-
-      if ( model->m_initialized )
-        continue;
-
-      if ( isNew )
-      {
-        model->m_vertexBuffer.init( model->m_vertices );
-        model->m_indexBuffer.init( model->m_indices );
-
-        // Create the descriptor set.
-        model->m_descriptorSets.init( m_descriptorPool.get( ),
-                                      static_cast<uint32_t>( m_swapchain.getImages( ).size( ) ),
-                                      std::vector<vk::DescriptorSetLayout>( m_swapchain.getImages( ).size( ), m_descriptorSetLayout.get( ) ) );
-
-        // Create the ray tracing descriptor sets.
-        model->m_rtDescriptorSets.init( m_descriptorPool.get( ),
-                                        static_cast<uint32_t>( m_swapchain.getImages( ).size( ) ),
-                                        std::vector<vk::DescriptorSetLayout>( m_swapchain.getImages( ).size( ), m_descriptorSetLayout.get( ) ) );
-      }
-
-      node->m_uniformBuffers.init( m_swapchain.getImages( ).size( ) );
-
-      // TODO: add support for multiple textures.
-      auto diffuseIter = m_textures.find( node->m_material.m_diffuseTexture );
-      if ( diffuseIter != m_textures.end( ) )
-      {
-        model->m_descriptorSets.update( node->m_uniformBuffers.getRaw( ),
-                                        diffuseIter->second->getImageView( ),
-                                        diffuseIter->second->getSampler( ) );
-
-        model->m_rtDescriptorSets.update( node->m_uniformBuffers.getRaw( ),
-                                          diffuseIter->second->getImageView( ),
-                                          diffuseIter->second->getSampler( ) );
-      }
-      
-      model->m_initialized = true;
-    }
-
-    // TODO: move this out of the function and merge initModel and initModels
-    /*
+    // TODO: Try to call this as few as possible
     m_rayTracingBuilder.createBottomLevelAS( vk::Helper::unpack( m_models ) );
-    m_rayTracingBuilder.createTopLevelAS( m_nodes );
+    m_rayTracingBuilder.createTopLevelAS( m_geometryNodes );
     m_rayTracingBuilder.createDescriptorSet( m_swapchain );
     m_rayTracingBuilder.createShaderBindingTable( m_rtPipeline.get( ) );
-    */
   }
 
   void Api::initSwapchainCommandBuffers( )
@@ -618,7 +547,10 @@ namespace rx
   void Api::initGui( )
   {
     if ( m_gui != nullptr )
+    {
+      initRenderPass( );
       m_gui->init( &m_surface, &m_swapchain, vk::Helper::unpack( m_swapchainImageViews ) );
+    }
   }
 
   void Api::recordSwapchainCommandBuffers( )

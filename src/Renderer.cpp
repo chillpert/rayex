@@ -91,4 +91,10 @@ namespace rx
   {
     m_api.setNodes( nodes );
   }
+  
+  void Renderer::setGui( std::shared_ptr<GuiBase> gui )
+  {
+    m_api.m_gui = gui;
+    m_api.initGui( );
+  }
 }

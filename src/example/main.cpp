@@ -306,14 +306,14 @@ int main( int argc, char* argv[] )
   auto myWindow = std::make_shared<CustomWindow>( props );
   // Create instance of your custom camera class.
   auto myCam = std::make_shared<CustomCamera>( glm::ivec2{ width, height }, glm::vec3{ 0.0f, 0.0f, 3.0f } );
-  // Create the renderer object. This will automatically initialize it and all its components.
+  // Create the renderer object ...
   Renderer renderer( myWindow, myCam );
+  // ... and initialize it.
+  renderer.init( );
 
   // Setup your own ImGui based Gui.
   auto myGui = std::make_shared<CustomGui>();
   renderer.setGui( myGui );
-
-  renderer.init( );
 
   myWindow->m_camera = myCam;
   myGui->m_renderer = &renderer;

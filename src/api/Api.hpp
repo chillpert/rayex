@@ -37,6 +37,7 @@ namespace rx
 
     void pushNode( const std::shared_ptr<NodeBase> nodes, bool record = true );
     void setNodes( const std::vector<std::shared_ptr<NodeBase>>& nodes );
+    RX_API void initGui( );
 
   private:
     void initInstance( );
@@ -54,10 +55,8 @@ namespace rx
     void initDepthBuffering( );
     void initSwapchainFramebuffers( );
     void initDescriptorPool( );
-    void initModels( bool isNew );
     void initModel( const std::shared_ptr<GeometryNodeBase> node );
     void initSwapchainCommandBuffers( );
-    void initGui( );
     void recordSwapchainCommandBuffers( );
     void initSyncObjects( );
 

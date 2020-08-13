@@ -30,13 +30,7 @@ namespace rx
     RX_API void pushNode( const std::shared_ptr<NodeBase> node );
     RX_API void setNodes( const std::vector<std::shared_ptr<NodeBase>>& nodes );
 
-
-    RX_API void setGui( std::shared_ptr<GuiBase> gui )
-    {
-      RX_ASSERT( !m_initialized, "Gui needs to be set before initializing the renderer." );
-
-      m_api.m_gui = gui;
-    }
+    RX_API void setGui( std::shared_ptr<GuiBase> gui );
 
   private:
     std::shared_ptr<WindowBase> m_window;

@@ -387,7 +387,9 @@ namespace rx
 
   void Api::initSwapchain( )
   {
-    //m_surface.checkSettingSupport( );
+    // Reassess surface settings. 
+    // TODO: This should be solved more elegantly. And change naming.
+    m_surface.checkSettingSupport( );
 
     m_swapchain.init( &m_surface );
     m_swapchain.setImageAspect( vk::ImageAspectFlagBits::eColor );
@@ -638,6 +640,7 @@ namespace rx
                           { 0, m_swapchain.getExtent( ) },
                           { clearValues[0], clearValues[1] } );
 
+      // TODO: Do push constants even make sense when you have got multiple light sources? Well, at least this is a working example.
       for ( const auto& lightNode : m_lightNodes )
       {
         if ( dynamic_cast<DirectionalLightNodeBase*>( lightNode.get( ) ) )

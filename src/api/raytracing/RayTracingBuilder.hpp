@@ -26,7 +26,7 @@ namespace rx
     void createBottomLevelAS( const std::vector<std::shared_ptr<Model>>& models );
     void buildBlas( const std::vector<Blas>& blas_, vk::BuildAccelerationStructureFlagsKHR flags = vk::BuildAccelerationStructureFlagBitsKHR::ePreferFastTrace );
 
-    void createTopLevelAS( const std::vector<std::shared_ptr<GeometryNodeBase>>& nodes );
+    void createTopLevelAS( const std::vector<std::shared_ptr<GeometryNode>>& nodes );
     void buildTlas( const std::vector<BlasInstance>& instances, vk::BuildAccelerationStructureFlagsKHR flags = vk::BuildAccelerationStructureFlagBitsKHR::ePreferFastTrace );
 
     void createDescriptorSetLayout( const Swapchain& swapchain, uint32_t nodes );

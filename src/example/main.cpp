@@ -278,14 +278,14 @@ public:
         srand( time( NULL ) );
         int finalNum = rand( ) % ( max - min + 1 ) + min;
 
-        auto box = std::make_shared<GeometryNodeBase>( "models/cube.obj", Material( "textures/container.png" ) );
+        auto box = std::make_shared<GeometryNode>( "models/cube.obj", Material( "textures/container.png" ) );
         box->m_worldTransform = glm::translate( box->m_worldTransform, glm::vec3( finalNum, 0.0f, 0.0f ) );
         m_renderer->pushNode( box );
       }
 
       if ( ImGui::Button( "Add Sphere" ) )
       {
-        auto sphere = std::make_shared<GeometryNodeBase>( "models/sphere.obj", Material( "textures/metal.png" ) );
+        auto sphere = std::make_shared<GeometryNode>( "models/sphere.obj", Material( "textures/metal.png" ) );
         m_renderer->pushNode( sphere );
       }
     }
@@ -319,16 +319,16 @@ int main( int argc, char* argv[] )
   myGui->m_renderer = &renderer;
 
   // Setup the scene.
-  auto dragonLore = std::make_shared<GeometryNodeBase>( "models/awpdlore/awpdlore.obj", Material( "textures/awpdlore.png" ) );
+  auto dragonLore = std::make_shared<GeometryNode>( "models/awpdlore/awpdlore.obj", Material( "textures/awpdlore.png" ) );
   dragonLore->m_worldTransform = glm::scale( dragonLore->m_worldTransform, glm::vec3( 0.25f ) );
   dragonLore->m_worldTransform = glm::rotate( dragonLore->m_worldTransform, glm::radians( 90.0f ), glm::vec3( 0.0f, 1.0f, 0.0f ) );
 
-  auto mars = std::make_shared<GeometryNodeBase>( "models/sphere.obj", Material( "textures/mars.jpg" ) );
+  auto mars = std::make_shared<GeometryNode>( "models/sphere.obj", Material( "textures/mars.jpg" ) );
   mars->m_worldTransform = glm::scale( mars->m_worldTransform, glm::vec3( 0.25f ) );
   mars->m_worldTransform = glm::rotate( mars->m_worldTransform, glm::radians( 90.0f ), glm::vec3( 0.0f, 1.0f, 0.0f ) );
   mars->m_worldTransform = glm::translate( mars->m_worldTransform, glm::vec3( 0.0f, -2.0f, 0.0f ) );
 
-  auto dirLight = std::make_shared<DirectionalLightNodeBase>( );
+  auto dirLight = std::make_shared<DirectionalLightNode>( );
   dirLight->m_ambientStrength = 0.5f;
   dirLight->m_direction = { 0.0f, 10.0f, 10.0f };
 

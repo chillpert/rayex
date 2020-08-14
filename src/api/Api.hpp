@@ -35,8 +35,8 @@ namespace rx
     bool update( );
     bool render( );
 
-    void pushNode( const std::shared_ptr<NodeBase> nodes, bool record = true );
-    void setNodes( const std::vector<std::shared_ptr<NodeBase>>& nodes );
+    void pushNode( const std::shared_ptr<Node> nodes, bool record = true );
+    void setNodes( const std::vector<std::shared_ptr<Node>>& nodes );
     RX_API void initGui( );
 
   private:
@@ -55,7 +55,7 @@ namespace rx
     void initDepthBuffering( );
     void initSwapchainFramebuffers( );
     void initDescriptorPool( );
-    void initModel( const std::shared_ptr<GeometryNodeBase> node );
+    void initModel( const std::shared_ptr<GeometryNode> node );
     void initSwapchainCommandBuffers( );
     void recordSwapchainCommandBuffers( );
     void initSyncObjects( );
@@ -83,8 +83,8 @@ namespace rx
     DescriptorSetLayout m_descriptorSetLayout;
 
     // Nodes to render.
-    std::vector<std::shared_ptr<GeometryNodeBase>> m_geometryNodes;
-    std::vector<std::shared_ptr<LightNodeBase>> m_lightNodes;
+    std::vector<std::shared_ptr<GeometryNode>> m_geometryNodes;
+    std::vector<std::shared_ptr<LightNode>> m_lightNodes;
     // Models
     std::unordered_map<std::string, std::shared_ptr<Model>> m_models;
     // Textures

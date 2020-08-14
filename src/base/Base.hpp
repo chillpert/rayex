@@ -7,8 +7,8 @@
 //
 // The following APIs exist:
 //   - CameraBase
-//   - TransformNodeBase
-//   - GeometryNodeBase
+//   - TransformNode
+//   - GeometryNode
 //   - GuiBase
 //   - WindowBase
 //

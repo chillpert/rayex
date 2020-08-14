@@ -1,5 +1,5 @@
-#ifndef NODE_HPP
-#define NODE_HPP
+#ifndef NODEBASE_HPP
+#define NODEBASE_HPP
 
 #include "Model.hpp"
 
@@ -8,27 +8,27 @@ namespace rx
   // Easiest way of assigning each node a unique id.
   static size_t nodeCounter = 0;
 
-  class NodeBase
+  class Node
   {
   public:
-    NodeBase( ) :
+    Node( ) :
       m_id( ++nodeCounter ) { }
-    virtual ~NodeBase( ) = default;
+    virtual ~Node( ) = default;
 
     size_t m_id;
   };
 
-  class TransformNodeBase : public NodeBase
+  class TransformNode : public Node
   {
   public:
-    TransformNodeBase( ) :
+    TransformNode( ) :
       m_worldTransform( glm::mat4( 1.0f ) ),
       m_localTransform( glm::mat4( 1.0f ) ),
       m_inverseWorldTransform( glm::mat4( 1.0f ) ),
       m_inverseLocalTransform( glm::mat4( 1.0f ) )
     { }
 
-    virtual ~TransformNodeBase( ) = default;
+    virtual ~TransformNode( ) = default;
 
     glm::mat4 m_worldTransform;
     glm::mat4 m_localTransform;
@@ -43,15 +43,15 @@ namespace rx
     uint32_t m_txtOffset = 0; // Offset in `m_textures`
   };
 
-  class GeometryNodeBase : public TransformNodeBase
+  class GeometryNode : public TransformNode
   {
   public:
-    GeometryNodeBase( ) = default;
-    GeometryNodeBase( const std::string& modelPath, const Material& material ) :
+    GeometryNode( ) = default;
+    GeometryNode( const std::string& modelPath, const Material& material ) :
       m_modelPath( modelPath ), m_material( material )
     { }
 
-    virtual ~GeometryNodeBase( ) = default;
+    virtual ~GeometryNode( ) = default;
 
     std::string m_modelPath;
     Material m_material;
@@ -62,10 +62,10 @@ namespace rx
     RaytracingInstance m_rtInstance;
   };
 
-  class LightNodeBase : public NodeBase
+  class LightNode : public Node
   {
   public:
-    virtual ~LightNodeBase( ) = default;
+    virtual ~LightNode( ) = default;
 
     glm::vec3 m_ambient = { 0.2f, 0.2f, 0.2f };
     glm::vec3 m_diffuse = { 0.8f, 0.8f, 0.8f };
@@ -74,7 +74,7 @@ namespace rx
     float m_ambientStrength = 0.7f;
   };
 
-  class DirectionalLightNodeBase : public LightNodeBase
+  class DirectionalLightNode : public LightNode
   {
   private:
     struct PushConstant
@@ -84,7 +84,7 @@ namespace rx
     };
 
   public:
-    virtual ~DirectionalLightNodeBase( ) = default;
+    virtual ~DirectionalLightNode( ) = default;
 
     PushConstant toPushConstant( ) { return { m_direction, m_ambientStrength }; }
 
@@ -92,4 +92,4 @@ namespace rx
   };
 }
 
-#endif // NODE_HPP
+#endif // NODEBASE_HPP

@@ -82,12 +82,12 @@ namespace rx
     }
   }
 
-  void Renderer::pushNode( const std::shared_ptr<NodeBase> node )
+  void Renderer::pushNode( const std::shared_ptr<Node> node )
   {
     m_api.pushNode( node );
   }
 
-  void Renderer::setNodes( const std::vector<std::shared_ptr<NodeBase>>& nodes )
+  void Renderer::setNodes( const std::vector<std::shared_ptr<Node>>& nodes )
   {
     m_api.setNodes( nodes );
   }

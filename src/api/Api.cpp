@@ -102,7 +102,7 @@ namespace rx
     m_swapchain.acquireNextImage( m_imageAvailableSemaphores[currentFrame].get( ), nullptr, &imageIndex );
 
     // TODO: Temporary
-    for ( std::shared_ptr<GeometryNodeBase> node : m_geometryNodes )
+    for ( std::shared_ptr<GeometryNode> node : m_geometryNodes )
     {
       if ( node->m_modelPath.empty( ) )
         continue;
@@ -164,11 +164,11 @@ namespace rx
     return true;
   }
 
-  void Api::pushNode( const std::shared_ptr<NodeBase> node, bool record )
+  void Api::pushNode( const std::shared_ptr<Node> node, bool record )
   {
-    if ( dynamic_cast<GeometryNodeBase*>( node.get( ) ) )
+    if ( dynamic_cast<GeometryNode*>( node.get( ) ) )
     {
-      auto ptr = std::dynamic_pointer_cast<GeometryNodeBase>( node );
+      auto ptr = std::dynamic_pointer_cast<GeometryNode>( node );
 
       auto it = m_models.find( ptr->m_modelPath );
       if ( it == m_models.end( ) )
@@ -192,11 +192,11 @@ namespace rx
       if ( record )
         initModel( ptr );
     }
-    else if ( dynamic_cast<LightNodeBase*>( node.get( ) ) )
+    else if ( dynamic_cast<LightNode*>( node.get( ) ) )
     {
-      auto lightNodebasePtr = std::dynamic_pointer_cast<LightNodeBase>( node );
+      auto lightNodePtr = std::dynamic_pointer_cast<LightNode>( node );
 
-      m_lightNodes.push_back( lightNodebasePtr );
+      m_lightNodes.push_back( lightNodePtr );
     }
 
     if ( record )
@@ -206,7 +206,7 @@ namespace rx
     }
   }
 
-  void Api::setNodes( const std::vector<std::shared_ptr<NodeBase>>& nodes )
+  void Api::setNodes( const std::vector<std::shared_ptr<Node>>& nodes )
   {
     m_geometryNodes.clear( );
     m_geometryNodes.reserve( maxGeometryNodes );
@@ -487,7 +487,7 @@ namespace rx
     m_descriptorPool = vk::Initializer::createDescriptorPoolUnique( poolSizes, maxGeometryNodes * swapchainImagesCount );
   }
 
-  void Api::initModel( const std::shared_ptr<GeometryNodeBase> node )
+  void Api::initModel( const std::shared_ptr<GeometryNode> node )
   {
     if ( node->m_modelPath.empty( ) )
     {
@@ -532,7 +532,7 @@ namespace rx
                                         diffuseIter->second->getSampler( ) );
     }
 
-    // TODO: Try to call this as few as possible
+    // TODO: Try to call this as few times as possible
     m_rayTracingBuilder.createBottomLevelAS( vk::Helper::unpack( m_models ) );
     m_rayTracingBuilder.createTopLevelAS( m_geometryNodes );
     m_rayTracingBuilder.createDescriptorSet( m_swapchain );
@@ -575,9 +575,9 @@ namespace rx
       // TODO: Do push constants even make sense when you have got multiple light sources? Well, at least this is a working example.
       for ( const auto& lightNode : m_lightNodes )
       {
-        if ( dynamic_cast<DirectionalLightNodeBase*>( lightNode.get( ) ) )
+        if ( dynamic_cast<DirectionalLightNode*>( lightNode.get( ) ) )
         {
-          auto ptr = std::dynamic_pointer_cast<DirectionalLightNodeBase>( lightNode );
+          auto ptr = std::dynamic_pointer_cast<DirectionalLightNode>( lightNode );
 
           auto pc = ptr->toPushConstant( );
 

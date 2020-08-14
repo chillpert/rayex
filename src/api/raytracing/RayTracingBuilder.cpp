@@ -224,7 +224,7 @@ namespace rx
     // TODO: compaction. See: https://nvpro-samples.github.io/vk_raytracing_tutorial_KHR/  CTRL + F for: "The following is when compation flag is enabled. This part, which is optional, will ... "
   }
 
-  void RayTracingBuilder::createTopLevelAS( const std::vector<std::shared_ptr<GeometryNodeBase>>& nodes )
+  void RayTracingBuilder::createTopLevelAS( const std::vector<std::shared_ptr<GeometryNode>>& nodes )
   {
     std::vector<BlasInstance> instances;
     instances.reserve( nodes.size( ) );

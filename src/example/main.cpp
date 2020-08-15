@@ -312,17 +312,18 @@ int main( int argc, char* argv[] )
   renderer.init( );
 
   // Setup your own ImGui based Gui.
-  auto myGui = std::make_shared<CustomGui>();
-  renderer.setGui( myGui );
+  //auto myGui = std::make_shared<CustomGui>();
+  //renderer.setGui( myGui );
 
   myWindow->m_camera = myCam;
-  myGui->m_renderer = &renderer;
+  //myGui->m_renderer = &renderer;
 
   // Setup the scene.
   auto dragonLore = std::make_shared<GeometryNode>( "models/awpdlore/awpdlore.obj", Material( "textures/awpdlore.png" ) );
   dragonLore->m_worldTransform = glm::scale( dragonLore->m_worldTransform, glm::vec3( 0.25f ) );
   dragonLore->m_worldTransform = glm::rotate( dragonLore->m_worldTransform, glm::radians( 90.0f ), glm::vec3( 0.0f, 1.0f, 0.0f ) );
 
+  /*
   auto mars = std::make_shared<GeometryNode>( "models/sphere.obj", Material( "textures/mars.jpg" ) );
   mars->m_worldTransform = glm::scale( mars->m_worldTransform, glm::vec3( 0.25f ) );
   mars->m_worldTransform = glm::rotate( mars->m_worldTransform, glm::radians( 90.0f ), glm::vec3( 0.0f, 1.0f, 0.0f ) );
@@ -331,14 +332,15 @@ int main( int argc, char* argv[] )
   auto dirLight = std::make_shared<DirectionalLightNode>( );
   dirLight->m_ambientStrength = 0.5f;
   dirLight->m_direction = { 0.0f, 10.0f, 10.0f };
+  */
 
   // Add the model to the renderer. This way they will be queued for rendering.
-  renderer.setNodes( { dragonLore, mars, dirLight } );
+  renderer.setNodes( { dragonLore } );//, mars, dirLight } );
 
   while ( renderer.isRunning( ) )
   { 
     dragonLore->m_worldTransform = glm::rotate( dragonLore->m_worldTransform, glm::radians( 90.0f ) * Time::getDeltaTime( ) * speed, glm::vec3( 0.0f, 1.0f, 0.0f ) );
-    mars->m_worldTransform = glm::rotate( mars->m_worldTransform, glm::radians( 90.0f ) * Time::getDeltaTime( ) * -speed, glm::vec3( 0.0f, 1.0f, 0.0f ) );
+    //mars->m_worldTransform = glm::rotate( mars->m_worldTransform, glm::radians( 90.0f ) * Time::getDeltaTime( ) * -speed, glm::vec3( 0.0f, 1.0f, 0.0f ) );
 
     // Call udpate and render for the renderer to work properly.
     // This will also call your custom classes.

@@ -74,10 +74,7 @@ namespace rx
     createInfo.imageArrayLayers = 1;
     createInfo.imageUsage = vk::ImageUsageFlagBits::eColorAttachment;
 
-    std::vector<uint32_t> queueFamilyIndices =
-    {
-      g_graphicsFamilyIndex
-    };
+    std::vector<uint32_t> queueFamilyIndices = { g_graphicsFamilyIndex };
 
     if ( queueFamilyIndices.size( ) > 1 )
     {

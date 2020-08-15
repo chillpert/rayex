@@ -6,6 +6,8 @@
 
 namespace rx
 {
+  bool rayTrace = true;
+
   // Note: Vulkan default allocation limit = 4069
   const size_t maxGeometryNodes = 2000;
   const size_t maxTextures = 2000;
@@ -107,14 +109,7 @@ namespace rx
       if ( node->m_modelPath.empty( ) )
         continue;
 
-      UniformBufferObject ubo
-      {
-        node->m_worldTransform,
-        m_camera->getViewMatrix( ),
-        m_camera->getProjectionMatrix( ),
-        m_camera->getPosition( )
-      };
-
+      UniformBufferObject ubo { node->m_worldTransform, m_camera->getViewMatrix( ), m_camera->getProjectionMatrix( ), m_camera->getPosition( ) };
       node->m_uniformBuffers.upload( imageIndex, ubo );
     }
 
@@ -258,7 +253,7 @@ namespace rx
 
   void Api::rayTrace( )
   {
-
+    
   }
 
   void Api::initInstance( )
@@ -334,8 +329,8 @@ namespace rx
                                                           getSupportedDepthFormat( g_physicalDevice ),        // format
                                                           vk::SampleCountFlagBits::e1,                        // samples
                                                           vk::AttachmentLoadOp::eClear,                       // loadOp
-                                                          vk::AttachmentStoreOp::eDontCare,                   // storeOp
-                                                          vk::AttachmentLoadOp::eDontCare,                    // stencilLoadOp
+                                                          vk::AttachmentStoreOp::eStore,                      // storeOp
+                                                          vk::AttachmentLoadOp::eClear,                       // stencilLoadOp
                                                           vk::AttachmentStoreOp::eDontCare,                   // stencilStoreOp
                                                           vk::ImageLayout::eUndefined,                        // initialLayout
                                                           vk::ImageLayout::eDepthStencilAttachmentOptimal );  // finalLayout    
@@ -348,21 +343,31 @@ namespace rx
                                                0,                                // inputAttachmentsCount
                                                nullptr,                          // pInputAttachments
                                                1,                                // colorAttachmentsCount
-                                               &colorAttachmentReference,       // pColorAttachments
+                                               &colorAttachmentReference,        // pColorAttachments
                                                nullptr,                          // pResolveAttachments
-                                               &depthAttachmentRef,             // pDepthStencilAttachment
+                                               &depthAttachmentRef,              // pDepthStencilAttachment
                                                0,                                // preserveAttachemntCount
                                                nullptr );                        // pPreserveAttachments
 
-    vk::SubpassDependency subpassDependency( VK_SUBPASS_EXTERNAL,                                // srcSubpass
-                                             0,                                                  // dstSubpass
-                                             vk::PipelineStageFlagBits::eColorAttachmentOutput,  // srcStageMask
-                                             vk::PipelineStageFlagBits::eColorAttachmentOutput,  // dstStageMask
-                                             { },                                                // srcAccessMask
-                                             vk::AccessFlagBits::eColorAttachmentWrite,          // dstAccessMask
-                                             { } );                                              // dependencyFlags
+    std::vector<vk::SubpassDependency> subpassDependencies( 2 );
 
-    m_renderPass.init( { colorAttachmentDescription, depthAttachmentDescription }, { subpassDescription }, { subpassDependency } );
+    subpassDependencies[0] = { VK_SUBPASS_EXTERNAL,                                                                  // srcSubpass
+                               0,                                                                                    // dstSubpass
+                               vk::PipelineStageFlagBits::eBottomOfPipe,                                             // srcStageMask
+                               vk::PipelineStageFlagBits::eColorAttachmentOutput,                                    // dstStageMask
+                               vk::AccessFlagBits::eMemoryRead,                                                      // srcAccessMask
+                               vk::AccessFlagBits::eColorAttachmentRead | vk::AccessFlagBits::eColorAttachmentWrite, // dstAccessMask
+                               vk::DependencyFlagBits::eByRegion };                                                  // dependencyFlags
+
+    subpassDependencies[1] = { 0,                                                                                    // srcSubpass
+                               VK_SUBPASS_EXTERNAL,                                                                  // dstSubpass
+                               vk::PipelineStageFlagBits::eColorAttachmentOutput,                                    // srcStageMask
+                               vk::PipelineStageFlagBits::eBottomOfPipe,                                             // dstStageMask
+                               vk::AccessFlagBits::eColorAttachmentRead | vk::AccessFlagBits::eColorAttachmentWrite, // srcAccessMask
+                               vk::AccessFlagBits::eMemoryRead,                                                      // dstAccessMask
+                               vk::DependencyFlagBits::eByRegion };                                                  // dependencyFlags
+
+    m_renderPass.init( { colorAttachmentDescription, depthAttachmentDescription }, { subpassDescription }, subpassDependencies );
   }
 
   void Api::initSwapchain( )
@@ -412,22 +417,23 @@ namespace rx
       m_descriptorSetLayout.init( );
     }
 
-    // Graphics pipeline
     glm::fvec2 extent = { static_cast<float>( m_swapchain.getExtent( ).width ), static_cast<float>( m_swapchain.getExtent( ).height ) };
-
+    
+    // Graphics pipeline
     m_pipeline.init( m_renderPass.get( ),
                      vk::Viewport { 0.0f, 0.0f, extent.x, extent.y, 0.0f, 1.0f },
                      { 0, { m_swapchain.getExtent( ).width, m_swapchain.getExtent( ).height } },
                      vs.get( ),
                      fs.get( ),
                      m_descriptorSetLayout.get( ) );
+
+    // Ray tracing pipeline.
     auto rgen = vk::Initializer::createShaderModuleUnique( "shaders/raytrace.rgen" );
     auto miss = vk::Initializer::createShaderModuleUnique( "shaders/raytrace.rmiss" );
     auto chit = vk::Initializer::createShaderModuleUnique( "shaders/raytrace.rchit" );
 
     m_rayTracingBuilder.createDescriptorSetLayout( m_swapchain, maxGeometryNodes );
 
-    // Ray tracing pipeline.
     m_rtPipeline.init( m_renderPass.get( ),
                        vk::Viewport { 0.0f, 0.0f, extent.x, extent.y, 0.0f, 1.0f },
                        { 0, { m_swapchain.getExtent( ).width, m_swapchain.getExtent( ).height } },
@@ -505,17 +511,13 @@ namespace rx
       model->m_indexBuffer.init( model->m_indices );
 
       model->m_initialized = true;
+      model->m_initialized = true;
     }
 
     node->m_uniformBuffers.init( m_swapchain.getImages( ).size( ) );
 
     // Create the descriptor set.
     model->m_descriptorSets.init( m_descriptorPool.get( ),
-                                  static_cast<uint32_t>( m_swapchain.getImages( ).size( ) ),
-                                  std::vector<vk::DescriptorSetLayout>( m_swapchain.getImages( ).size( ), m_descriptorSetLayout.get( ) ) );
-
-    // Create the ray tracing descriptor sets.
-    model->m_rtDescriptorSets.init( m_descriptorPool.get( ),
                                   static_cast<uint32_t>( m_swapchain.getImages( ).size( ) ),
                                   std::vector<vk::DescriptorSetLayout>( m_swapchain.getImages( ).size( ), m_descriptorSetLayout.get( ) ) );
 
@@ -526,10 +528,6 @@ namespace rx
       model->m_descriptorSets.update( node->m_uniformBuffers.getRaw( ),
                                       diffuseIter->second->getImageView( ),
                                       diffuseIter->second->getSampler( ) );
-
-      model->m_rtDescriptorSets.update( node->m_uniformBuffers.getRaw( ),
-                                        diffuseIter->second->getImageView( ),
-                                        diffuseIter->second->getSampler( ) );
     }
 
     // TODO: Try to call this as few times as possible
@@ -623,13 +621,10 @@ namespace rx
                                                                        vertexBuffers,
                                                                        offsets );
 
-
         m_swapchainCommandBuffers.get( imageIndex ).bindIndexBuffer( model->m_indexBuffer.get( ),
                                                                      0,                                 // offset
                                                                      model->m_indexBuffer.getType( ) );
-
-
-        // TODO: Also bind ray tracing descriptor set.
+        
         m_swapchainCommandBuffers.get( imageIndex ).bindDescriptorSets( vk::PipelineBindPoint::eGraphics,
                                                                         m_pipeline.getLayout( ),
                                                                         0,                                           // first set
@@ -637,24 +632,12 @@ namespace rx
                                                                         &model->m_descriptorSets.get( )[imageIndex], // descriptor sets
                                                                         0,                                           // dynamic offset count
                                                                         nullptr );                                   // dynamic offsets 
-        /*
-        std::vector<vk::DescriptorSet> temp = { &model->m_rtDescriptorSets.get( )[imageIndex], &model->m_descriptorSets.get( )[imageIndex] };
-
-        m_swapchainCommandBuffers.get( imageIndex ).bindDescriptorSets( vk::PipelineBindPoint::eRayTracingKHR,
-                                                                        m_rtPipeline.getLayout( ),
-                                                                        0,                                           // first set
-                                                                        1,                                           // descriptor set count
-                                                                        temp.data( ),                                // descriptor sets
-                                                                        0,                                           // dynamic offset count
-                                                                        nullptr );                                   // dynamic offsets 
-        */
 
         m_swapchainCommandBuffers.get( imageIndex ).drawIndexed( model->m_indexBuffer.getCount( ), // index count
                                                                  1,                                // instance count
                                                                  0,                                // first index
                                                                  0,                                // vertex offset
                                                                  0 );                              // first instance
-
       }
 
       m_renderPass.end( m_swapchainCommandBuffers.get( imageIndex ) );
@@ -663,7 +646,7 @@ namespace rx
   }
 
   void Api::initSyncObjects( )
-  { 
+  {
     // Synchronization
     m_imageAvailableSemaphores.resize( maxFramesInFlight );
     m_finishedRenderSemaphores.resize( maxFramesInFlight );

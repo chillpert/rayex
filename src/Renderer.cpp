@@ -94,6 +94,9 @@ namespace rx
   
   void Renderer::setGui( std::shared_ptr<GuiBase> gui )
   {
+    if ( !m_initialized )
+      RX_ERROR( "Gui must be set after the Renderer was initialized." );
+
     m_api.m_gui = gui;
     m_api.initGui( );
   }

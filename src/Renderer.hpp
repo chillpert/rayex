@@ -1,7 +1,7 @@
 #ifndef RENDERER_HPP
 #define RENDERER_HPP
 
-#include "api/Api.hpp"
+#include "Api.hpp"
 #include "Base.hpp"
 
 // This is the core of the renderer.

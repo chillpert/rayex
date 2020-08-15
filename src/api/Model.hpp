@@ -86,7 +86,6 @@ namespace rx
 
     // No destruction necessary
     DescriptorSet m_descriptorSets;
-    DescriptorSet m_rtDescriptorSets;
 
     bool m_initialized = false;
   };

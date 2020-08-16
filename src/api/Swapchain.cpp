@@ -72,7 +72,7 @@ namespace rx
       RX_ERROR( "The surface does not support a single array layer." );
 
     createInfo.imageArrayLayers = 1;
-    createInfo.imageUsage = vk::ImageUsageFlagBits::eColorAttachment;
+    createInfo.imageUsage = vk::ImageUsageFlagBits::eColorAttachment | vk::ImageUsageFlagBits::eTransferDst;
 
     std::vector<uint32_t> queueFamilyIndices = { g_graphicsFamilyIndex };
 

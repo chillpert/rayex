@@ -25,6 +25,11 @@ namespace rx
   extern uint32_t g_transferFamilyIndex;
 
   extern vk::PhysicalDeviceLimits g_physicalDeviceLimits;
+
+  // Note: Vulkan default allocation limit = 4069
+  const size_t g_maxGeometryNodes = 2000;
+  const size_t g_maxTextures = 2000;
+  const size_t g_maxLightNodes = 25;
 }
 
 #endif // COMPONENTS_HPP

@@ -45,7 +45,7 @@ namespace rx
     }
   }
 
-  void DescriptorSet::update( vk::AccelerationStructureKHR tlas, vk::ImageView storageImageView )
+  void DescriptorSet::update( const std::vector<vk::Buffer>& uniformBuffers, vk::AccelerationStructureKHR tlas, vk::ImageView storageImageView )
   {
     for ( size_t i = 0; i < m_layouts.size( ); ++i )
     {
@@ -56,9 +56,14 @@ namespace rx
                                          storageImageView,            // imageView
                                          vk::ImageLayout::eGeneral ); // imageLayout
 
-      std::array<vk::WriteDescriptorSet, 2> descriptorWrites;
+      vk::DescriptorBufferInfo bufferInfo( uniformBuffers[i],               // buffer
+                                           0,                               // offset
+                                           sizeof( UniformBufferObject ) ); // range
+
+      std::array<vk::WriteDescriptorSet, 3> descriptorWrites;
       descriptorWrites[0] = writeAccelerationStructure( m_sets[i], 0, &descriptorInfoAS );
       descriptorWrites[1] = writeStorageImage( m_sets[i], 1, imageInfo );
+      descriptorWrites[2] = writeUniformBuffer( m_sets[i], 2, bufferInfo );
 
       g_device.updateDescriptorSets( descriptorWrites, 0 );
     }

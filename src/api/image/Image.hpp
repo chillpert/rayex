@@ -14,10 +14,11 @@ namespace rx
     inline const vk::Image get( ) const { return m_image.get( ); }
     inline const vk::Extent3D getExtent( ) const { return m_extent; }
     inline const vk::Format getFormat( ) const { return m_format; }
+    inline const vk::ImageLayout getLayout( ) const { return m_layout; }
 
     void init( const vk::ImageCreateInfo& createInfo );
 
-    void transitionToLayout( const vk::ImageLayout& layout );
+    void transitionToLayout( vk::ImageLayout layout );
 
     static vk::Format findSupportedFormat( vk::PhysicalDevice physicalDevice, const std::vector<vk::Format>& formatsToTest, vk::FormatFeatureFlagBits features, vk::ImageTiling tiling );
 

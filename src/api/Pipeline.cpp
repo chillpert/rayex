@@ -175,6 +175,7 @@ namespace rx
                                  vk::ShaderModule closestHit,
                                  uint32_t maxRecursion )
   {
+    // TODO: Insert push constants here.
     vk::PipelineLayoutCreateInfo layoutInfo( { },                                                   // flags
                                              static_cast<uint32_t>( descriptorSetLayouts.size( ) ), // setLayoutCount
                                              descriptorSetLayouts.data( ),                          // pSetLayouts
@@ -184,15 +185,6 @@ namespace rx
     m_layout = g_device.createPipelineLayoutUnique( layoutInfo );
     if ( !m_layout )
       RX_ERROR( "Failed to create pipeline layout." );
-
-    vk::SpecializationMapEntry specializationMapEntry( 0,                    // constantID
-                                                       0,                    // offset
-                                                       sizeof( uint32_t ) ); // size
-
-    vk::SpecializationInfo specializationInfo( 1,                       // mapEntryCount
-                                               &specializationMapEntry, // pMapEntries
-                                               sizeof( maxRecursion ),  // dataSize
-                                               &maxRecursion );         // pData
 
     std::array<vk::PipelineShaderStageCreateInfo, 3> shaderStages;
     shaderStages[0] = vk::Helper::getPipelineShaderStageCreateInfo( vk::ShaderStageFlagBits::eRaygenKHR, rayGen );

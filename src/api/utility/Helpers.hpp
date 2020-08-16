@@ -23,6 +23,8 @@ namespace vk
     std::vector<std::shared_ptr<rx::Model>> unpack( const std::unordered_map<std::string, std::shared_ptr<rx::Model>>& models );
 
     std::vector<DescriptorPoolSize> getPoolSizes( const std::vector<DescriptorSetLayoutBinding>& layoutBindings );
+
+    void transitionImageLayout( Image image, ImageLayout oldLayout, ImageLayout newLayout );
   }
 }
 

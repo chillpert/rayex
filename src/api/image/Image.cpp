@@ -26,7 +26,7 @@ namespace rx
     m_memory = vk::Initializer::allocateMemoryUnique( m_image.get( ) );
   }
 
-  void Image::transitionToLayout( const vk::ImageLayout& layout )
+  void Image::transitionToLayout( vk::ImageLayout layout )
   {
     CommandBuffer commandBuffer;
     commandBuffer.init( g_graphicsCmdPool );
@@ -45,8 +45,8 @@ namespace rx
       barrier.subresourceRange.baseArrayLayer = 0;
       barrier.subresourceRange.layerCount = 1;
 
-      vk::PipelineStageFlags sourceStage;
-      vk::PipelineStageFlags destinationStage;
+      vk::PipelineStageFlags sourceStage = vk::PipelineStageFlagBits::eAllCommands;
+      vk::PipelineStageFlags destinationStage = vk::PipelineStageFlagBits::eAllCommands;
 
       if ( m_layout == vk::ImageLayout::eUndefined && layout == vk::ImageLayout::eTransferDstOptimal )
       {
@@ -68,20 +68,29 @@ namespace rx
         sourceStage = vk::PipelineStageFlagBits::eAllCommands;
         destinationStage = vk::PipelineStageFlagBits::eAllCommands;
       }
+      else if ( m_layout == vk::ImageLayout::eGeneral && layout == vk::ImageLayout::eTransferSrcOptimal )
+      {
+        sourceStage = vk::PipelineStageFlagBits::eTransfer;
+        destinationStage = vk::PipelineStageFlagBits::eAllCommands; // TODO: Probably wrong.
+
+        barrier.dstAccessMask = vk::AccessFlagBits::eTransferRead;
+      }
+      else if ( m_layout == vk::ImageLayout::eTransferSrcOptimal && layout == vk::ImageLayout::eGeneral )
+      {
+        barrier.srcAccessMask = vk::AccessFlagBits::eTransferRead;
+      }
       else
         RX_ERROR( "Image layout transition not supported." );
 
-      commandBuffer.get( 0 ).pipelineBarrier(
-        sourceStage,
-        destinationStage,
-        vk::DependencyFlagBits::eByRegion,
-        0,
-        nullptr,
-        0,
-        nullptr,
-        1,
-        &barrier
-      );
+      commandBuffer.get( 0 ).pipelineBarrier( sourceStage,
+                                              destinationStage,
+                                              vk::DependencyFlagBits::eByRegion,
+                                              0,
+                                              nullptr,
+                                              0,
+                                              nullptr,
+                                              1,
+                                              &barrier );
     }
     commandBuffer.end( );
     commandBuffer.submitToQueue( g_graphicsQueue );

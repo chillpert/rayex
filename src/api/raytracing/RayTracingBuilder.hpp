@@ -19,6 +19,7 @@ namespace rx
 
     inline const Tlas& getTlas( ) const { return m_tlas; }
     inline const vk::DescriptorSetLayout getDescriptorSetLayout( ) const { return m_descriptorSetLayout.get( ); }
+    inline const DescriptorSet& getDescriptorSets( ) const { return m_descriptorSets; }
 
     Blas objectToVkGeometryKHR( const std::shared_ptr<Model> model ) const;
     vk::AccelerationStructureInstanceKHR instanceToVkGeometryInstanceKHR( const BlasInstance& instance ) const;
@@ -29,10 +30,16 @@ namespace rx
     void createTopLevelAS( const std::vector<std::shared_ptr<GeometryNode>>& nodes );
     void buildTlas( const std::vector<BlasInstance>& instances, vk::BuildAccelerationStructureFlagsKHR flags = vk::BuildAccelerationStructureFlagBitsKHR::ePreferFastTrace );
 
+    void createDescriptorPool( uint32_t swapchainImagesCount );
     void createDescriptorSetLayout( const Swapchain& swapchain, uint32_t nodes );
-    void createDescriptorSet( const Swapchain& swapchain );
+    void createDescriptorSets( uint32_t swapchainImagesCount );
+    void updateDescriptorSets( const std::vector<vk::Buffer>& uniformBuffers );
+
+    void createStorageImage( vk::Extent2D swapchainExtent );
 
     void createShaderBindingTable( vk::Pipeline rtPipeline );
+
+    void rayTrace( vk::CommandBuffer swapchaincommandBuffer, vk::Image swapchainImage, vk::Extent2D extent );
 
   private:
     vk::PhysicalDeviceRayTracingPropertiesKHR m_rtProperties;
@@ -42,8 +49,11 @@ namespace rx
 
     Buffer m_instBuffer;
   
+    Buffer m_sbtBuffer;
+
     // Descriptors
     vk::UniqueDescriptorPool m_descriptorPool;
+    std::vector<vk::DescriptorSetLayoutBinding> m_bindings;
     DescriptorSet m_descriptorSets;
     DescriptorSetLayout m_descriptorSetLayout;
 

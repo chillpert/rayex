@@ -6,12 +6,7 @@
 
 namespace rx
 {
-  bool rayTrace = true;
-
-  // Note: Vulkan default allocation limit = 4069
-  const size_t maxGeometryNodes = 2000;
-  const size_t maxTextures = 2000;
-  const size_t maxLightNodes = 25;
+  bool rayTraceOn = true;
 
   // Defines the maximum amount of frames that will be processed concurrently.
   const size_t maxFramesInFlight = 2;
@@ -41,9 +36,9 @@ namespace rx
   {
     g_window = m_window;
 
-    m_geometryNodes.reserve( maxGeometryNodes );
-    m_textures.reserve( maxTextures );
-    m_lightNodes.reserve( maxLightNodes );
+    m_geometryNodes.reserve( g_maxGeometryNodes );
+    m_textures.reserve( g_maxTextures );
+    m_lightNodes.reserve( g_maxLightNodes );
 
     initInstance( );
     initDebugMessenger( );
@@ -204,7 +199,7 @@ namespace rx
   void Api::setNodes( const std::vector<std::shared_ptr<Node>>& nodes )
   {
     m_geometryNodes.clear( );
-    m_geometryNodes.reserve( maxGeometryNodes );
+    m_geometryNodes.reserve( g_maxGeometryNodes );
 
     for ( const auto& node : nodes )
       pushNode( node );
@@ -249,11 +244,8 @@ namespace rx
   void Api::initRayTracing( )
   {
     m_rayTracingBuilder.init( );
-  }
 
-  void Api::rayTrace( )
-  {
-    
+    m_rayTracingBuilder.createStorageImage( m_swapchain.getExtent( ) );
   }
 
   void Api::initInstance( )
@@ -391,6 +383,27 @@ namespace rx
 
   void Api::initPipeline( bool firstRun )
   {
+    glm::fvec2 extent = { static_cast<float>( m_swapchain.getExtent( ).width ), static_cast<float>( m_swapchain.getExtent( ).height ) };
+
+    // Initialize the ray tracing pipeline.
+    auto rgen = vk::Initializer::createShaderModuleUnique( "shaders/raytrace.rgen" );
+    auto miss = vk::Initializer::createShaderModuleUnique( "shaders/raytrace.rmiss" );
+    auto chit = vk::Initializer::createShaderModuleUnique( "shaders/raytrace.rchit" );
+
+    // Also creates the bindings.
+    m_rayTracingBuilder.createDescriptorSetLayout( m_swapchain, g_maxGeometryNodes );
+
+    m_rtPipeline.init( m_renderPass.get( ),
+                        vk::Viewport { 0.0f, 0.0f, extent.x, extent.y, 0.0f, 1.0f },
+                        { 0, { m_swapchain.getExtent( ).width, m_swapchain.getExtent( ).height } },
+                        { m_rayTracingBuilder.getDescriptorSetLayout( ) },
+                        rgen.get( ),
+                        miss.get( ),
+                        chit.get( ),
+                        8 );
+
+    // Initialize the rasterization pipeline.
+
     // Create shaders.
     auto vs = vk::Initializer::createShaderModuleUnique( "shaders/simple3D.vert" );
     auto fs = vk::Initializer::createShaderModuleUnique( "shaders/simple3D.frag" );
@@ -417,31 +430,13 @@ namespace rx
       m_descriptorSetLayout.init( );
     }
 
-    glm::fvec2 extent = { static_cast<float>( m_swapchain.getExtent( ).width ), static_cast<float>( m_swapchain.getExtent( ).height ) };
-    
     // Graphics pipeline
     m_pipeline.init( m_renderPass.get( ),
-                     vk::Viewport { 0.0f, 0.0f, extent.x, extent.y, 0.0f, 1.0f },
-                     { 0, { m_swapchain.getExtent( ).width, m_swapchain.getExtent( ).height } },
-                     vs.get( ),
-                     fs.get( ),
-                     m_descriptorSetLayout.get( ) );
-
-    // Ray tracing pipeline.
-    auto rgen = vk::Initializer::createShaderModuleUnique( "shaders/raytrace.rgen" );
-    auto miss = vk::Initializer::createShaderModuleUnique( "shaders/raytrace.rmiss" );
-    auto chit = vk::Initializer::createShaderModuleUnique( "shaders/raytrace.rchit" );
-
-    m_rayTracingBuilder.createDescriptorSetLayout( m_swapchain, maxGeometryNodes );
-
-    m_rtPipeline.init( m_renderPass.get( ),
-                       vk::Viewport { 0.0f, 0.0f, extent.x, extent.y, 0.0f, 1.0f },
-                       { 0, { m_swapchain.getExtent( ).width, m_swapchain.getExtent( ).height } },
-                       { m_rayTracingBuilder.getDescriptorSetLayout( ) },
-                       rgen.get( ),
-                       miss.get( ),
-                       chit.get( ),
-                       8 );
+                      vk::Viewport { 0.0f, 0.0f, extent.x, extent.y, 0.0f, 1.0f },
+                      { 0, { m_swapchain.getExtent( ).width, m_swapchain.getExtent( ).height } },
+                      vs.get( ),
+                      fs.get( ),
+                      m_descriptorSetLayout.get( ) );    
   }
 
   void Api::initGraphicsCommandPool( )
@@ -482,6 +477,7 @@ namespace rx
 
   void Api::initDescriptorPool( )
   {
+    // Descriptor pool for rasterization descriptors.
     uint32_t swapchainImagesCount = m_swapchain.getImages( ).size( );
 
     std::vector<vk::DescriptorPoolSize> poolSizes =
@@ -490,7 +486,7 @@ namespace rx
       { vk::DescriptorType::eCombinedImageSampler, swapchainImagesCount }
     };
 
-    m_descriptorPool = vk::Initializer::createDescriptorPoolUnique( poolSizes, maxGeometryNodes * swapchainImagesCount );
+    m_descriptorPool = vk::Initializer::createDescriptorPoolUnique( poolSizes, g_maxGeometryNodes * swapchainImagesCount );
   }
 
   void Api::initModel( const std::shared_ptr<GeometryNode> node )
@@ -514,12 +510,22 @@ namespace rx
       model->m_initialized = true;
     }
 
+    // TODO: Try to call this as few times as possible
+    m_rayTracingBuilder.createBottomLevelAS( vk::Helper::unpack( m_models ) );
+    m_rayTracingBuilder.createTopLevelAS( m_geometryNodes );
+    m_rayTracingBuilder.createShaderBindingTable( m_rtPipeline.get( ) );
+
     node->m_uniformBuffers.init( m_swapchain.getImages( ).size( ) );
 
-    // Create the descriptor set.
+    // Create the rasterization descriptor sets.
     model->m_descriptorSets.init( m_descriptorPool.get( ),
                                   static_cast<uint32_t>( m_swapchain.getImages( ).size( ) ),
                                   std::vector<vk::DescriptorSetLayout>( m_swapchain.getImages( ).size( ), m_descriptorSetLayout.get( ) ) );
+
+    // Create the ray tracing descriptor sets.
+    uint32_t swapchainImagesCount = static_cast<uint32_t>( m_swapchain.getImages( ).size( ) );
+    m_rayTracingBuilder.createDescriptorPool( swapchainImagesCount );
+    m_rayTracingBuilder.createDescriptorSets( swapchainImagesCount );
 
     // TODO: add support for multiple textures.
     auto diffuseIter = m_textures.find( node->m_material.m_diffuseTexture );
@@ -530,11 +536,7 @@ namespace rx
                                       diffuseIter->second->getSampler( ) );
     }
 
-    // TODO: Try to call this as few times as possible
-    m_rayTracingBuilder.createBottomLevelAS( vk::Helper::unpack( m_models ) );
-    m_rayTracingBuilder.createTopLevelAS( m_geometryNodes );
-    m_rayTracingBuilder.createDescriptorSet( m_swapchain );
-    m_rayTracingBuilder.createShaderBindingTable( m_rtPipeline.get( ) );
+    m_rayTracingBuilder.updateDescriptorSets( node->m_uniformBuffers.getRaw( ) );
   }
 
   void Api::initSwapchainCommandBuffers( )
@@ -555,93 +557,124 @@ namespace rx
   {
     RX_LOG( "Started swapchain command buffer recording." );
 
-    // Set up render pass begin info
-    std::array<vk::ClearValue, 2> clearValues;
-    clearValues[0].color = { std::array<float, 4>{ 0.5f, 0.5f, 0.5f, 1.0f } };
-    clearValues[1].depthStencil = vk::ClearDepthStencilValue { 1.0f, 0 };
-
-    // Start recording the swapchain framebuffers
-    for ( size_t imageIndex = 0; imageIndex < m_swapchainCommandBuffers.get( ).size( ); ++imageIndex )
+    // Recording for ray tracing.
+    if ( rayTraceOn )
     {
-      m_swapchainCommandBuffers.begin( imageIndex );
-
-      m_renderPass.begin( m_swapchainFramebuffers[imageIndex].get( ),
-                          m_swapchainCommandBuffers.get( imageIndex ),
-                          { 0, m_swapchain.getExtent( ) },
-                          { clearValues[0], clearValues[1] } );
-
-      // TODO: Do push constants even make sense when you have got multiple light sources? Well, at least this is a working example.
-      for ( const auto& lightNode : m_lightNodes )
+      // Start recording the swapchain framebuffers
+      for ( size_t imageIndex = 0; imageIndex < m_swapchainCommandBuffers.get( ).size( ); ++imageIndex )
       {
-        if ( dynamic_cast<DirectionalLightNode*>( lightNode.get( ) ) )
-        {
-          auto ptr = std::dynamic_pointer_cast<DirectionalLightNode>( lightNode );
+        m_swapchainCommandBuffers.begin( imageIndex );
 
-          auto pc = ptr->toPushConstant( );
-
-          // TODO: avoid repetition of values.
-          m_swapchainCommandBuffers.get( imageIndex ).pushConstants( m_pipeline.getLayout( ),            // layout
-                                                                     vk::ShaderStageFlagBits::eFragment, // stageFlags
-                                                                     0,                                  // offset
-                                                                     sizeof( pc ),                       // size 
-                                                                     &pc );                              // pValues
-        }
-      }
-
-      m_pipeline.bind( m_swapchainCommandBuffers.get( imageIndex ) ); // CMD
-
-      // Dynamic states
-      vk::Viewport viewport = m_pipeline.getViewport( );
-      viewport.width = m_window->getProperties( ).getWidth( );
-      viewport.height = m_window->getProperties( ).getHeight( );
-
-      m_swapchainCommandBuffers.get( imageIndex ).setViewport( 0, 1, &viewport ); // CMD
-
-      vk::Rect2D scissor = m_pipeline.getScissor( );
-      scissor.extent = m_window->getExtent( );
-
-      m_swapchainCommandBuffers.get( imageIndex ).setScissor( 0, 1, &scissor ); // CMD
-
-      // Draw models
-      for ( const auto& node : m_geometryNodes )
-      {
-        if ( node->m_modelPath.empty( ) )
-          continue;
-
-        auto it = m_models.find( node->m_modelPath );
-        RX_ASSERT( ( it != m_models.end( ) ), "Can not draw model because it was not found." );
-
-        auto model = it->second;
-
-        vk::Buffer vertexBuffers[] = { model->m_vertexBuffer.get( ) };
-        vk::DeviceSize offsets[] = { 0 };
-
-        m_swapchainCommandBuffers.get( imageIndex ).bindVertexBuffers( 0,               // first binding
-                                                                       1,               // binding count
-                                                                       vertexBuffers,
-                                                                       offsets );
-
-        m_swapchainCommandBuffers.get( imageIndex ).bindIndexBuffer( model->m_indexBuffer.get( ),
-                                                                     0,                                 // offset
-                                                                     model->m_indexBuffer.getType( ) );
+        m_rtPipeline.bind( m_swapchainCommandBuffers.get( imageIndex ) );
         
-        m_swapchainCommandBuffers.get( imageIndex ).bindDescriptorSets( vk::PipelineBindPoint::eGraphics,
-                                                                        m_pipeline.getLayout( ),
-                                                                        0,                                           // first set
-                                                                        1,                                           // descriptor set count
-                                                                        &model->m_descriptorSets.get( )[imageIndex], // descriptor sets
-                                                                        0,                                           // dynamic offset count
-                                                                        nullptr );                                   // dynamic offsets 
+        for ( const auto& node : m_geometryNodes )
+        {
 
-        m_swapchainCommandBuffers.get( imageIndex ).drawIndexed( model->m_indexBuffer.getCount( ), // index count
-                                                                 1,                                // instance count
-                                                                 0,                                // first index
-                                                                 0,                                // vertex offset
-                                                                 0 );                              // first instance
+          m_swapchainCommandBuffers.get( imageIndex ).bindDescriptorSets( vk::PipelineBindPoint::eRayTracingKHR,
+                                                                          m_rtPipeline.getLayout( ),
+                                                                          0,                                                           // first set
+                                                                          1,                                                           // descriptor set count
+                                                                          &m_rayTracingBuilder.getDescriptorSets( ).get( imageIndex ), // descriptor sets
+                                                                          0,                                                           // dynamic offset count
+                                                                          nullptr );                                                   // dynamic offsets 
+
+          m_rayTracingBuilder.rayTrace( m_swapchainCommandBuffers.get( imageIndex ), m_swapchain.getImage( imageIndex ), m_window->getExtent( ) );
+        }
+
+        m_swapchainCommandBuffers.end( imageIndex );
       }
+    }
+    // Recording for rasterization.
+    else
+    {
+      // Set up render pass begin info
+      std::array<vk::ClearValue, 2> clearValues;
+      clearValues[0].color = { std::array<float, 4>{ 0.5f, 0.5f, 0.5f, 1.0f } };
+      clearValues[1].depthStencil = vk::ClearDepthStencilValue { 1.0f, 0 };
 
-      m_renderPass.end( m_swapchainCommandBuffers.get( imageIndex ) );
-      m_swapchainCommandBuffers.end( imageIndex );
+      // Start recording the swapchain framebuffers
+      for ( size_t imageIndex = 0; imageIndex < m_swapchainCommandBuffers.get( ).size( ); ++imageIndex )
+      {
+        m_swapchainCommandBuffers.begin( imageIndex );
+
+        m_renderPass.begin( m_swapchainFramebuffers[imageIndex].get( ),
+                            m_swapchainCommandBuffers.get( imageIndex ),
+                            { 0, m_swapchain.getExtent( ) },
+                            { clearValues[0], clearValues[1] } );
+
+        // TODO: Do push constants even make sense when you have got multiple light sources? Well, at least this is a working example.
+        for ( const auto& lightNode : m_lightNodes )
+        {
+          if ( dynamic_cast<DirectionalLightNode*>( lightNode.get( ) ) )
+          {
+            auto ptr = std::dynamic_pointer_cast<DirectionalLightNode>( lightNode );
+
+            auto pc = ptr->toPushConstant( );
+
+            // TODO: avoid repetition of values.
+            m_swapchainCommandBuffers.get( imageIndex ).pushConstants( m_pipeline.getLayout( ),            // layout
+                                                                       vk::ShaderStageFlagBits::eFragment, // stageFlags
+                                                                       0,                                  // offset
+                                                                       sizeof( pc ),                       // size 
+                                                                       &pc );                              // pValues
+          }
+        }
+
+        m_pipeline.bind( m_swapchainCommandBuffers.get( imageIndex ) ); // CMD
+
+        // Dynamic states
+        vk::Viewport viewport = m_pipeline.getViewport( );
+        viewport.width = m_window->getProperties( ).getWidth( );
+        viewport.height = m_window->getProperties( ).getHeight( );
+
+        m_swapchainCommandBuffers.get( imageIndex ).setViewport( 0, 1, &viewport ); // CMD
+
+        vk::Rect2D scissor = m_pipeline.getScissor( );
+        scissor.extent = m_window->getExtent( );
+
+        m_swapchainCommandBuffers.get( imageIndex ).setScissor( 0, 1, &scissor ); // CMD
+
+        // Draw models
+        for ( const auto& node : m_geometryNodes )
+        {
+          if ( node->m_modelPath.empty( ) )
+            continue;
+
+          auto it = m_models.find( node->m_modelPath );
+          RX_ASSERT( ( it != m_models.end( ) ), "Can not draw model because it was not found." );
+
+          auto model = it->second;
+
+          vk::Buffer vertexBuffers[] = { model->m_vertexBuffer.get( ) };
+          vk::DeviceSize offsets[] = { 0 };
+
+          m_swapchainCommandBuffers.get( imageIndex ).bindVertexBuffers( 0,               // first binding
+                                                                         1,               // binding count
+                                                                         vertexBuffers,
+                                                                         offsets );
+
+          m_swapchainCommandBuffers.get( imageIndex ).bindIndexBuffer( model->m_indexBuffer.get( ),
+                                                                       0,                                 // offset
+                                                                       model->m_indexBuffer.getType( ) );
+        
+          m_swapchainCommandBuffers.get( imageIndex ).bindDescriptorSets( vk::PipelineBindPoint::eGraphics,
+                                                                          m_pipeline.getLayout( ),
+                                                                          0,                                           // first set
+                                                                          1,                                           // descriptor set count
+                                                                          &model->m_descriptorSets.get( )[imageIndex], // descriptor sets
+                                                                          0,                                           // dynamic offset count
+                                                                          nullptr );                                   // dynamic offsets 
+
+          m_swapchainCommandBuffers.get( imageIndex ).drawIndexed( model->m_indexBuffer.getCount( ), // index count
+                                                                   1,                                // instance count
+                                                                   0,                                // first index
+                                                                   0,                                // vertex offset
+                                                                   0 );                              // first instance
+        }
+
+        m_renderPass.end( m_swapchainCommandBuffers.get( imageIndex ) );
+        m_swapchainCommandBuffers.end( imageIndex );
+      }
     }
   }
 

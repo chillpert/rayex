@@ -25,6 +25,9 @@ namespace vk
     std::vector<DescriptorPoolSize> getPoolSizes( const std::vector<DescriptorSetLayoutBinding>& layoutBindings );
 
     void transitionImageLayout( Image image, ImageLayout oldLayout, ImageLayout newLayout );
+    void transitionImageLayout( Image image, ImageLayout oldLayout, ImageLayout newLayout, vk::CommandBuffer commandBuffer );
+
+    std::tuple<vk::ImageMemoryBarrier, vk::PipelineStageFlags, vk::PipelineStageFlags> getImageMemoryBarrierInfo( vk::Image image, vk::ImageLayout oldLayout, vk::ImageLayout newLayout );
   }
 }
 

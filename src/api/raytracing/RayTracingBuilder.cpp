@@ -407,7 +407,7 @@ namespace rx
   {
     auto storageImageInfo = vk::Helper::getImageCreateInfo( vk::Extent3D( swapchainExtent.width, swapchainExtent.height, 1 ) );
     storageImageInfo.usage = vk::ImageUsageFlagBits::eTransferSrc | vk::ImageUsageFlagBits::eStorage;
-    storageImageInfo.format = vk::Format::eR8G8B8A8Unorm;
+    storageImageInfo.format = vk::Format::eB8G8R8A8Unorm; // TODO: make this the surface format, and not hard-coded
 
     m_storageImage.init( storageImageInfo );
     m_storageImage.transitionToLayout( vk::ImageLayout::eGeneral );
@@ -449,7 +449,7 @@ namespace rx
     g_device.unmapMemory( m_sbtBuffer.getMemory( ) );
   }
 
-  void RayTracingBuilder::rayTrace( vk::CommandBuffer swapchaincommandBuffer, vk::Image swapchainImage, vk::Extent2D extent )
+  void RayTracingBuilder::rayTrace( vk::CommandBuffer swapchainCommandBuffer, vk::Image swapchainImage, vk::Extent2D extent )
   {
     // Dispatch the ray tracing commands.
     //vk::DeviceSize bindingOffsetRayGenShader = m_rtProperties.shaderGroupHandleSize * RX_SHADER_GROUP_INDEX_RGEN;
@@ -484,7 +484,7 @@ namespace rx
 
     vk::StridedBufferRegionKHR callableShaderBindingTable;
 
-    swapchaincommandBuffer.traceRaysKHR( &bufferRegionRayGen, // pRaygenShaderBindingTable
+    swapchainCommandBuffer.traceRaysKHR( &bufferRegionRayGen, // pRaygenShaderBindingTable
                                          &bufferRegionMiss,   // pMissShaderBindingTable
                                          &bufferRegionChit,   // pHitShaderBindingTable
                                          &callableShaderBindingTable,             // pCallableShaderBindingTable
@@ -493,8 +493,8 @@ namespace rx
                                          1 );                 // depth
 
     // Image layout transitions for copying.
-    vk::Helper::transitionImageLayout( swapchainImage, vk::ImageLayout::eUndefined, vk::ImageLayout::eTransferDstOptimal );
-    m_storageImage.transitionToLayout( vk::ImageLayout::eTransferSrcOptimal );
+    vk::Helper::transitionImageLayout( swapchainImage, vk::ImageLayout::eUndefined, vk::ImageLayout::eTransferDstOptimal, swapchainCommandBuffer );
+    m_storageImage.transitionToLayout( vk::ImageLayout::eTransferSrcOptimal, swapchainCommandBuffer );
 
     // Copy ray tracing output (storage image) to swapchain image.
     vk::ImageCopy copyRegion( { vk::ImageAspectFlagBits::eColor, 0, 0, 1 }, // srcSubresource
@@ -503,15 +503,15 @@ namespace rx
                               { 0, 0, 0 },                                  // dstOffset
                               { extent.width, extent.height, 1 } );         // extent
 
-    swapchaincommandBuffer.copyImage( m_storageImage.get( ),                // srcImage 
-                                      vk::ImageLayout::eTransferSrcOptimal, // srcImageLayout
+    swapchainCommandBuffer.copyImage( m_storageImage.get( ),                // srcImage 
+                                      vk::ImageLayout::eTransferSrcOptimal, // srcImageLayout 
                                       swapchainImage,                       // dstImage
                                       vk::ImageLayout::eTransferDstOptimal, // dstImageLayout
                                       1,                                    // regionCount
                                       &copyRegion );                        // pRegions
-    
+
     // Undo image layout transitions.
-    vk::Helper::transitionImageLayout( swapchainImage, vk::ImageLayout::eTransferDstOptimal, vk::ImageLayout::ePresentSrcKHR ); // TODO: Check, might cause crash when GUI is activated.
-    m_storageImage.transitionToLayout( vk::ImageLayout::eGeneral );
+    vk::Helper::transitionImageLayout( swapchainImage, vk::ImageLayout::eTransferDstOptimal, vk::ImageLayout::ePresentSrcKHR, swapchainCommandBuffer ); // TODO: Check, might cause crash when GUI is activated.
+    m_storageImage.transitionToLayout( vk::ImageLayout::eGeneral, swapchainCommandBuffer );
   }
 }

@@ -160,67 +160,98 @@ namespace vk
       return result;
     }
 
+
     void transitionImageLayout( Image image, ImageLayout oldLayout, ImageLayout newLayout )
     {
+      auto barrierInfo = getImageMemoryBarrierInfo( image, oldLayout, newLayout );
+
       rx::CommandBuffer commandBuffer;
       commandBuffer.init( rx::g_graphicsCmdPool );
-
       commandBuffer.begin( );
-      {
-        vk::ImageMemoryBarrier barrier;
-        barrier.oldLayout = oldLayout;
-        barrier.newLayout = newLayout;
-        barrier.srcQueueFamilyIndex = VK_QUEUE_FAMILY_IGNORED;
-        barrier.dstQueueFamilyIndex = VK_QUEUE_FAMILY_IGNORED;
-        barrier.image = image;
-        barrier.subresourceRange.aspectMask = vk::ImageAspectFlagBits::eColor;
-        barrier.subresourceRange.baseMipLevel = 0;
-        barrier.subresourceRange.levelCount = 1;
-        barrier.subresourceRange.baseArrayLayer = 0;
-        barrier.subresourceRange.layerCount = 1;
 
-        vk::PipelineStageFlags sourceStage;
-        vk::PipelineStageFlags destinationStage;
+      commandBuffer.get( 0 ).pipelineBarrier( std::get<1>( barrierInfo ),        // srcStageMask
+                                              std::get<2>( barrierInfo ),        // dstStageMask
+                                              vk::DependencyFlagBits::eByRegion,
+                                              0,
+                                              nullptr,
+                                              0,
+                                              nullptr,
+                                              1,
+                                              &std::get<0>( barrierInfo ) );     // barrier
 
-        if ( oldLayout == vk::ImageLayout::eUndefined && newLayout == vk::ImageLayout::eTransferDstOptimal )
-        {
-          barrier.dstAccessMask = vk::AccessFlagBits::eTransferWrite;
-
-          sourceStage = vk::PipelineStageFlagBits::eTopOfPipe;
-          destinationStage = vk::PipelineStageFlagBits::eTransfer;
-        }
-        else if ( oldLayout == vk::ImageLayout::eTransferDstOptimal && newLayout == vk::ImageLayout::eShaderReadOnlyOptimal )
-        {
-          barrier.srcAccessMask = vk::AccessFlagBits::eTransferWrite;
-          barrier.dstAccessMask = vk::AccessFlagBits::eShaderRead;
-
-          sourceStage = vk::PipelineStageFlagBits::eTransfer;
-          destinationStage = vk::PipelineStageFlagBits::eFragmentShader;
-        }
-        else if ( oldLayout == vk::ImageLayout::eUndefined && newLayout == vk::ImageLayout::eGeneral )
-        {
-          sourceStage = vk::PipelineStageFlagBits::eAllCommands;
-          destinationStage = vk::PipelineStageFlagBits::eAllCommands;
-        }
-        else if ( oldLayout == vk::ImageLayout::eTransferDstOptimal && newLayout == vk::ImageLayout::ePresentSrcKHR )
-        {
-          barrier.srcAccessMask = vk::AccessFlagBits::eTransferWrite;
-        }
-        else
-          RX_ERROR( "Image layout transition not supported." );
-
-        commandBuffer.get( 0 ).pipelineBarrier( sourceStage,
-                                                destinationStage,
-                                                vk::DependencyFlagBits::eByRegion,
-                                                0,
-                                                nullptr,
-                                                0,
-                                                nullptr,
-                                                1,
-                                                &barrier );
-      }
       commandBuffer.end( );
       commandBuffer.submitToQueue( rx::g_graphicsQueue );
+    }
+
+    void transitionImageLayout( Image image, ImageLayout oldLayout, ImageLayout newLayout, vk::CommandBuffer commandBuffer )
+    {
+      auto barrierInfo = getImageMemoryBarrierInfo( image, oldLayout, newLayout );
+
+      commandBuffer.pipelineBarrier( std::get<1>( barrierInfo ),        // srcStageMask
+                                       std::get<2>( barrierInfo ),        // dstStageMask
+                                       vk::DependencyFlagBits::eByRegion,
+                                       0,
+                                       nullptr,
+                                       0,
+                                       nullptr,
+                                       1,
+                                       &std::get<0>( barrierInfo ) );     // barrier
+    }
+
+    std::tuple<vk::ImageMemoryBarrier, vk::PipelineStageFlags, vk::PipelineStageFlags> getImageMemoryBarrierInfo( vk::Image image, vk::ImageLayout oldLayout, vk::ImageLayout newLayout )
+    {
+      // TODO: not style conform.
+      vk::ImageMemoryBarrier barrier;
+      barrier.oldLayout = oldLayout;
+      barrier.newLayout = newLayout;
+      barrier.srcQueueFamilyIndex = VK_QUEUE_FAMILY_IGNORED;
+      barrier.dstQueueFamilyIndex = VK_QUEUE_FAMILY_IGNORED;
+      barrier.image = image;
+      barrier.subresourceRange.aspectMask = vk::ImageAspectFlagBits::eColor;
+      barrier.subresourceRange.baseMipLevel = 0;
+      barrier.subresourceRange.levelCount = 1;
+      barrier.subresourceRange.baseArrayLayer = 0;
+      barrier.subresourceRange.layerCount = 1;
+
+      vk::PipelineStageFlags srcStageMask = vk::PipelineStageFlagBits::eAllCommands;
+      vk::PipelineStageFlags dstStageMask = vk::PipelineStageFlagBits::eAllCommands;
+
+      if ( oldLayout == vk::ImageLayout::eUndefined && newLayout == vk::ImageLayout::eTransferDstOptimal )
+      {
+        barrier.srcAccessMask = { };
+        barrier.dstAccessMask = vk::AccessFlagBits::eTransferWrite;
+
+        srcStageMask = vk::PipelineStageFlagBits::eTopOfPipe;
+        dstStageMask = vk::PipelineStageFlagBits::eTransfer;
+      }
+      else if ( oldLayout == vk::ImageLayout::eTransferDstOptimal && newLayout == vk::ImageLayout::eShaderReadOnlyOptimal )
+      {
+        barrier.srcAccessMask = vk::AccessFlagBits::eTransferWrite;
+        barrier.dstAccessMask = vk::AccessFlagBits::eShaderRead;
+
+        srcStageMask = vk::PipelineStageFlagBits::eTransfer;
+        dstStageMask = vk::PipelineStageFlagBits::eFragmentShader;
+      }
+      else if ( oldLayout == vk::ImageLayout::eUndefined && newLayout == vk::ImageLayout::eGeneral ) 
+      {
+        // nothing to do.
+      }
+      else if ( oldLayout == vk::ImageLayout::eGeneral && newLayout == vk::ImageLayout::eTransferSrcOptimal )
+      {
+        barrier.dstAccessMask = vk::AccessFlagBits::eTransferRead;
+      }
+      else if ( oldLayout == vk::ImageLayout::eTransferSrcOptimal && newLayout == vk::ImageLayout::eGeneral )
+      {
+        barrier.srcAccessMask = vk::AccessFlagBits::eTransferRead;
+      }
+      else if ( oldLayout == vk::ImageLayout::eTransferDstOptimal && newLayout == vk::ImageLayout::ePresentSrcKHR )
+      {
+        barrier.srcAccessMask = vk::AccessFlagBits::eTransferWrite;
+      }
+      else
+        RX_ERROR( "Image layout transition not supported." );
+
+      return { barrier, srcStageMask, dstStageMask };
     }
   }
 }

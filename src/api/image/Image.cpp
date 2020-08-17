@@ -4,6 +4,7 @@
 #include "Components.hpp"
 #include "Initializers.hpp"
 #include "Destructors.hpp"
+#include "Helpers.hpp"
 
 namespace rx
 {
@@ -28,72 +29,41 @@ namespace rx
 
   void Image::transitionToLayout( vk::ImageLayout layout )
   {
+    auto barrierInfo = vk::Helper::getImageMemoryBarrierInfo( m_image.get( ), m_layout, layout );
+
     CommandBuffer commandBuffer;
     commandBuffer.init( g_graphicsCmdPool );
-
     commandBuffer.begin( );
-    {
-      vk::ImageMemoryBarrier barrier;
-      barrier.oldLayout = m_layout;
-      barrier.newLayout = layout;
-      barrier.srcQueueFamilyIndex = VK_QUEUE_FAMILY_IGNORED;
-      barrier.dstQueueFamilyIndex = VK_QUEUE_FAMILY_IGNORED;
-      barrier.image = m_image.get( );
-      barrier.subresourceRange.aspectMask = vk::ImageAspectFlagBits::eColor;
-      barrier.subresourceRange.baseMipLevel = 0;
-      barrier.subresourceRange.levelCount = 1;
-      barrier.subresourceRange.baseArrayLayer = 0;
-      barrier.subresourceRange.layerCount = 1;
 
-      vk::PipelineStageFlags sourceStage = vk::PipelineStageFlagBits::eAllCommands;
-      vk::PipelineStageFlags destinationStage = vk::PipelineStageFlagBits::eAllCommands;
+    commandBuffer.get( 0 ).pipelineBarrier( std::get<1>( barrierInfo ),        // srcStageMask
+                                            std::get<2>( barrierInfo ),        // dstStageMask
+                                            vk::DependencyFlagBits::eByRegion,
+                                            0,
+                                            nullptr,
+                                            0,
+                                            nullptr,
+                                            1,
+                                            &std::get<0>( barrierInfo ) );     // barrier
 
-      if ( m_layout == vk::ImageLayout::eUndefined && layout == vk::ImageLayout::eTransferDstOptimal )
-      {
-        barrier.dstAccessMask = vk::AccessFlagBits::eTransferWrite;
-
-        sourceStage = vk::PipelineStageFlagBits::eTopOfPipe;
-        destinationStage = vk::PipelineStageFlagBits::eTransfer;
-      }
-      else if ( m_layout == vk::ImageLayout::eTransferDstOptimal && layout == vk::ImageLayout::eShaderReadOnlyOptimal )
-      {
-        barrier.srcAccessMask = vk::AccessFlagBits::eTransferWrite;
-        barrier.dstAccessMask = vk::AccessFlagBits::eShaderRead;
-
-        sourceStage = vk::PipelineStageFlagBits::eTransfer;
-        destinationStage = vk::PipelineStageFlagBits::eFragmentShader;
-      }
-      else if ( m_layout == vk::ImageLayout::eUndefined && layout == vk::ImageLayout::eGeneral )
-      {
-        sourceStage = vk::PipelineStageFlagBits::eAllCommands;
-        destinationStage = vk::PipelineStageFlagBits::eAllCommands;
-      }
-      else if ( m_layout == vk::ImageLayout::eGeneral && layout == vk::ImageLayout::eTransferSrcOptimal )
-      {
-        sourceStage = vk::PipelineStageFlagBits::eTransfer;
-        destinationStage = vk::PipelineStageFlagBits::eAllCommands; // TODO: Probably wrong.
-
-        barrier.dstAccessMask = vk::AccessFlagBits::eTransferRead;
-      }
-      else if ( m_layout == vk::ImageLayout::eTransferSrcOptimal && layout == vk::ImageLayout::eGeneral )
-      {
-        barrier.srcAccessMask = vk::AccessFlagBits::eTransferRead;
-      }
-      else
-        RX_ERROR( "Image layout transition not supported." );
-
-      commandBuffer.get( 0 ).pipelineBarrier( sourceStage,
-                                              destinationStage,
-                                              vk::DependencyFlagBits::eByRegion,
-                                              0,
-                                              nullptr,
-                                              0,
-                                              nullptr,
-                                              1,
-                                              &barrier );
-    }
     commandBuffer.end( );
     commandBuffer.submitToQueue( g_graphicsQueue );
+
+    m_layout = layout;
+  }
+
+  void Image::transitionToLayout( vk::ImageLayout layout, vk::CommandBuffer commandBuffer )
+  {
+    auto barrierInfo = vk::Helper::getImageMemoryBarrierInfo( m_image.get( ), m_layout, layout );
+
+    commandBuffer.pipelineBarrier( std::get<1>( barrierInfo ),        // srcStageMask
+                                     std::get<2>( barrierInfo ),        // dstStageMask
+                                     vk::DependencyFlagBits::eByRegion,
+                                     0,
+                                     nullptr,
+                                     0,
+                                     nullptr,
+                                     1,
+                                     &std::get<0>( barrierInfo ) );     // barrier
 
     m_layout = layout;
   }

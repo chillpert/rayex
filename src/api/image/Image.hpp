@@ -19,7 +19,8 @@ namespace rx
     void init( const vk::ImageCreateInfo& createInfo );
 
     void transitionToLayout( vk::ImageLayout layout );
-
+    void transitionToLayout( vk::ImageLayout layout, vk::CommandBuffer commandBuffer );
+ 
     static vk::Format findSupportedFormat( vk::PhysicalDevice physicalDevice, const std::vector<vk::Format>& formatsToTest, vk::FormatFeatureFlagBits features, vk::ImageTiling tiling );
 
   protected:

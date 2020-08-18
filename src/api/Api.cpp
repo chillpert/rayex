@@ -61,6 +61,12 @@ namespace rx
     recordSwapchainCommandBuffers( );
     initSyncObjects( );
 
+    // Temporary: Make sure swapchain images are presentable.
+    for ( const vk::Image& image : m_swapchain.getImages( ) )
+    {
+      vk::Helper::transitionImageLayout( image, vk::ImageLayout::eUndefined, vk::ImageLayout::ePresentSrcKHR );
+    }
+
     RX_LOG( "Finished API initialization." );
   }
 
@@ -150,6 +156,39 @@ namespace rx
     g_graphicsQueue.presentKHR( presentInfo );
 
     currentFrame = ( currentFrame + 1 ) % maxFramesInFlight;
+
+    return true;
+  }
+
+  bool Api::render2( )
+  {
+    static size_t currentFrame = 0;
+
+    uint32_t imageIndex;
+    m_swapchain.acquireNextImage( m_imageAvailableSemaphores[0].get( ), nullptr, &imageIndex );
+
+    std::vector<vk::CommandBuffer> commandBuffers = { m_swapchainCommandBuffers.get( )[imageIndex] };
+    vk::SubmitInfo submitInfo( 1,                                                                                                  // waitSemaphoreCount
+                               &m_imageAvailableSemaphores[currentFrame].get( ),                                                   // pWaitSemaphores
+                               std::array<vk::PipelineStageFlags, 1>{ vk::PipelineStageFlagBits::eColorAttachmentOutput }.data( ), // pWaitDstStageMask
+                               static_cast<uint32_t>( commandBuffers.size( ) ),                                                    // commandBufferCount
+                               commandBuffers.data( ),                                                                             // pCommandBuffers
+                               1,                                                                                                  // signalSemaphoreCount
+                               & m_finishedRenderSemaphores[currentFrame].get( ) );                                                // pSignalSemaphores
+
+    g_graphicsQueue.submit( 1, &submitInfo, nullptr );
+
+    vk::PresentInfoKHR presentInfo( 1,                                                // waitSemaphoreCount
+                                    &m_finishedRenderSemaphores[currentFrame].get( ), // pWaitSemaphores
+                                    1,                                                // swapchainCount
+                                    &g_swapchain,                                     // pSwapchains
+                                    &imageIndex,                                      // pImageIndices
+                                    nullptr );                                        // pResults
+
+    // Tell the presentation engine that the current image is ready.
+    g_graphicsQueue.presentKHR( presentInfo );
+
+    g_graphicsQueue.waitIdle( );
 
     return true;
   }
@@ -569,7 +608,6 @@ namespace rx
         
         for ( const auto& node : m_geometryNodes )
         {
-
           m_swapchainCommandBuffers.get( imageIndex ).bindDescriptorSets( vk::PipelineBindPoint::eRayTracingKHR,
                                                                           m_rtPipeline.getLayout( ),
                                                                           0,                                                           // first set

@@ -1,5 +1,6 @@
 #include "Swapchain.hpp"
 #include "Components.hpp"
+#include "Helpers.hpp"
 
 namespace rx
 {

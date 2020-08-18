@@ -34,6 +34,7 @@ namespace rx
     void init( );
     bool update( );
     bool render( );
+    bool render2( );
 
     void pushNode( const std::shared_ptr<Node> nodes, bool record = true );
     void setNodes( const std::vector<std::shared_ptr<Node>>& nodes );

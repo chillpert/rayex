@@ -248,6 +248,10 @@ namespace vk
       {
         barrier.srcAccessMask = vk::AccessFlagBits::eTransferWrite;
       }
+      else if ( oldLayout == vk::ImageLayout::eUndefined && newLayout == vk::ImageLayout::ePresentSrcKHR )
+      {
+        barrier.srcAccessMask = { };
+      }
       else
         RX_ERROR( "Image layout transition not supported." );
 

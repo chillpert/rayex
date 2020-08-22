@@ -252,6 +252,24 @@ namespace vk
       {
         barrier.srcAccessMask = { };
       }
+      else if ( oldLayout == vk::ImageLayout::ePresentSrcKHR && newLayout == vk::ImageLayout::eColorAttachmentOptimal )
+      {
+        barrier.dstAccessMask = vk::AccessFlagBits::eColorAttachmentWrite;
+      }
+      else if ( oldLayout == vk::ImageLayout::eColorAttachmentOptimal && newLayout == vk::ImageLayout::ePresentSrcKHR )
+      {
+        barrier.srcAccessMask = vk::AccessFlagBits::eColorAttachmentWrite;
+      }
+      else if ( oldLayout == vk::ImageLayout::eUndefined && newLayout == vk::ImageLayout::eColorAttachmentOptimal )
+      {
+        barrier.srcAccessMask = { };
+        barrier.dstAccessMask = vk::AccessFlagBits::eColorAttachmentWrite;
+      }
+      else if ( oldLayout == vk::ImageLayout::eTransferDstOptimal && newLayout == vk::ImageLayout::eColorAttachmentOptimal )
+      {
+        barrier.srcAccessMask = vk::AccessFlagBits::eTransferWrite;
+        barrier.dstAccessMask = vk::AccessFlagBits::eColorAttachmentWrite;
+      }
       else
         RX_ERROR( "Image layout transition not supported." );
 

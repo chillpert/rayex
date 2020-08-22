@@ -32,6 +32,10 @@ namespace rx
 
     virtual inline glm::mat4 getViewMatrix( ) const { return m_view; }
     virtual inline glm::mat4 getProjectionMatrix( ) const { return m_projection; }
+    
+    // TODO: call this as a few times as possible.
+    virtual inline glm::mat4 getViewInverseMatrix( ) const { return m_viewInverse; }
+    virtual inline glm::mat4 getProjectionInverseMatrix( ) const { return glm::inverse( m_projection ); }
 
   protected:
     glm::ivec2 m_screenSize;
@@ -39,6 +43,10 @@ namespace rx
 
     glm::mat4 m_view;
     glm::mat4 m_projection;
+    glm::mat4 m_viewInverse;
+
+    // For ray tracing
+    glm::mat4 m_projectionInverse;
   };
 }
 

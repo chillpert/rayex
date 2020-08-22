@@ -366,7 +366,7 @@ namespace rx
     vk::DescriptorSetLayoutBinding tlasBinding( 0,                                             // binding
                                                 vk::DescriptorType::eAccelerationStructureKHR, // descriptorType
                                                 1,                                             // descriptorCount
-                                                vk::ShaderStageFlagBits::eRaygenKHR,           // stageFlags
+                                                vk::ShaderStageFlagBits::eRaygenKHR | vk::ShaderStageFlagBits::eClosestHitKHR, // stageFlags
                                                 nullptr );                                     // pImmutableSamplers
 
     // Output image.
@@ -380,7 +380,7 @@ namespace rx
     vk::DescriptorSetLayoutBinding uniformBufferBinding( 2,                                   // binding
                                                          vk::DescriptorType::eUniformBuffer,  // descriptorType
                                                          1,                                   // descriptorCount
-                                                         vk::ShaderStageFlagBits::eRaygenKHR, // stageFlags
+                                                         vk::ShaderStageFlagBits::eVertex | vk::ShaderStageFlagBits::eRaygenKHR, // stageFlags
                                                          nullptr );                           // pImmutableSamplers
 
     m_bindings = { tlasBinding, outputImageBinding, uniformBufferBinding };
@@ -417,6 +417,7 @@ namespace rx
 
   void RayTracingBuilder::createShaderBindingTable( vk::Pipeline rtPipeline )
   {
+    /*
     const uint32_t shaderGroupHandleSize = m_rtProperties.shaderGroupHandleSize;
 
     // Fetch all the shader handles used in the pipeline, so that they can be written in the SBT
@@ -447,6 +448,37 @@ namespace rx
     }
     
     g_device.unmapMemory( m_sbtBuffer.getMemory( ) );
+    */
+
+    uint32_t groupCount = g_shaderGroups;
+    uint32_t groupHandleSize = m_rtProperties.shaderGroupHandleSize;
+    uint32_t baseAlignment = m_rtProperties.shaderGroupBaseAlignment;
+
+    uint32_t sbtSize = groupCount * baseAlignment;
+
+    m_sbtBuffer.init( sbtSize,
+                      vk::BufferUsageFlagBits::eTransferSrc,
+                      { g_graphicsFamilyIndex },
+                      vk::MemoryPropertyFlagBits::eHostVisible );
+
+    std::vector<uint8_t> shaderHandleStorage( sbtSize );
+    g_device.getRayTracingShaderGroupHandlesKHR( rtPipeline,
+                                                 0,
+                                                 groupCount,
+                                                 sbtSize,
+                                                 shaderHandleStorage.data( ) );
+
+    void* mapped = NULL;
+    g_device.mapMemory( m_sbtBuffer.getMemory( ), 0, m_sbtBuffer.getSize( ), { }, &mapped );
+
+    auto* pData = reinterpret_cast<uint8_t*>( mapped );
+    for ( uint32_t i = 0; i < g_shaderGroups; ++i )
+    {
+      memcpy( pData, shaderHandleStorage.data( ) + i * groupHandleSize, groupHandleSize );  // raygen
+      pData += baseAlignment;
+    }
+
+    g_device.unmapMemory( m_sbtBuffer.getMemory( ) );
   }
 
   void RayTracingBuilder::rayTrace( vk::CommandBuffer swapchainCommandBuffer, vk::Image swapchainImage, vk::Extent2D extent )
@@ -459,7 +491,7 @@ namespace rx
     //vk::DeviceSize bindingStride = m_rtProperties.shaderGroupHandleSize;
 
     vk::DeviceSize progSize = m_rtProperties.shaderGroupBaseAlignment;
-    vk::DeviceSize sbtSize = progSize * g_shaderGroups;
+    vk::DeviceSize sbtSize = progSize * static_cast<vk::DeviceSize>( g_shaderGroups );
 
     vk::DeviceSize rayGenOffset = RX_SHADER_GROUP_INDEX_RGEN * progSize;  // Start at the beginning of m_sbtBuffer
     vk::DeviceSize missOffset = RX_SHADER_GROUP_INDEX_MISS * progSize;  // Jump over raygen
@@ -467,31 +499,31 @@ namespace rx
     vk::DeviceSize chitGroupOffset = RX_SHADER_GROUP_INDEX_CHIT * progSize;  // Jump over the previous shaders
     vk::DeviceSize chitGroupStride = progSize;
 
-    vk::StridedBufferRegionKHR bufferRegionRayGen( m_sbtBuffer.get( ),        // buffer
-                                                   rayGenOffset, // offset
-                                                   progSize,             // stride
-                                                   sbtSize );                       // size
+    vk::StridedBufferRegionKHR bufferRegionRayGen( m_sbtBuffer.get( ), // buffer
+                                                   rayGenOffset,       // offset
+                                                   progSize,           // stride
+                                                   sbtSize );          // size
 
-    vk::StridedBufferRegionKHR bufferRegionMiss( m_sbtBuffer.get( ),      // buffer
-                                                 missOffset, // offset
+    vk::StridedBufferRegionKHR bufferRegionMiss( m_sbtBuffer.get( ), // buffer
+                                                 missOffset,         // offset
                                                  progSize,           // stride
-                                                 sbtSize );                     // size
+                                                 sbtSize );          // size
 
-    vk::StridedBufferRegionKHR bufferRegionChit( m_sbtBuffer.get( ),      // buffer
-                                                 chitGroupOffset, // offset
+    vk::StridedBufferRegionKHR bufferRegionChit( m_sbtBuffer.get( ), // buffer
+                                                 chitGroupOffset,    // offset
                                                  progSize,           // stride
-                                                 sbtSize );                     // size           
+                                                 sbtSize );          // size           
 
     vk::StridedBufferRegionKHR callableShaderBindingTable;
 
-    swapchainCommandBuffer.traceRaysKHR( &bufferRegionRayGen, // pRaygenShaderBindingTable
-                                         &bufferRegionMiss,   // pMissShaderBindingTable
-                                         &bufferRegionChit,   // pHitShaderBindingTable
-                                         &callableShaderBindingTable,             // pCallableShaderBindingTable
-                                         extent.width,        // width
-                                         extent.height,       // height
-                                         1 );                 // depth
-
+    swapchainCommandBuffer.traceRaysKHR( &bufferRegionRayGen,         // pRaygenShaderBindingTable
+                                         &bufferRegionMiss,           // pMissShaderBindingTable
+                                         &bufferRegionChit,           // pHitShaderBindingTable
+                                         &callableShaderBindingTable, // pCallableShaderBindingTable
+                                         extent.width,                // width
+                                         extent.height,               // height
+                                         1 );                         // depth
+ 
     // Image layout transitions for copying.
     vk::Helper::transitionImageLayout( swapchainImage, vk::ImageLayout::eUndefined, vk::ImageLayout::eTransferDstOptimal, swapchainCommandBuffer );
     m_storageImage.transitionToLayout( vk::ImageLayout::eTransferSrcOptimal, swapchainCommandBuffer );

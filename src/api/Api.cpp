@@ -79,9 +79,23 @@ namespace rx
   {
     if ( m_gui != nullptr )
     {
+      /*
+      for ( const vk::Image& image : m_swapchain.getImages( ) )
+      {
+        vk::Helper::transitionImageLayout( image, vk::ImageLayout::ePresentSrcKHR, vk::ImageLayout::eColorAttachmentOptimal );
+      }
+      */
+
       m_gui->beginRender( );
       m_gui->render( );
       m_gui->endRender( );
+
+      /*
+      for ( const vk::Image& image : m_swapchain.getImages( ) )
+      {
+        vk::Helper::transitionImageLayout( image, vk::ImageLayout::eColorAttachmentOptimal, vk::ImageLayout::ePresentSrcKHR );
+      }
+      */
     }
 
     static size_t currentFrame = 0;
@@ -110,7 +124,7 @@ namespace rx
       if ( node->m_modelPath.empty( ) )
         continue;
 
-      UniformBufferObject ubo { node->m_worldTransform, m_camera->getViewMatrix( ), m_camera->getProjectionMatrix( ), m_camera->getPosition( ) };
+      UniformBufferObject ubo { node->m_worldTransform, m_camera->getViewMatrix( ), m_camera->getProjectionMatrix( ), m_camera->getViewInverseMatrix( ), m_camera->getProjectionInverseMatrix( ), m_camera->getPosition( ) };
       node->m_uniformBuffers.upload( imageIndex, ubo );
     }
 
@@ -138,9 +152,30 @@ namespace rx
 
     if ( m_gui != nullptr )
     {
+      /*
+      for ( const vk::Image& image : m_swapchain.getImages( ) )
+      {
+        vk::Helper::transitionImageLayout( image, vk::ImageLayout::ePresentSrcKHR, vk::ImageLayout::eColorAttachmentOptimal );
+      }
+      */
+
       m_gui->beginRenderPass( imageIndex );
       m_gui->endRenderPass( imageIndex );
+
+      /*
+      for ( const vk::Image& image : m_swapchain.getImages( ) )
+      {
+        vk::Helper::transitionImageLayout( image, vk::ImageLayout::eColorAttachmentOptimal, vk::ImageLayout::ePresentSrcKHR );
+      }
+      */
     }
+
+    /*
+    for ( const vk::Image& image : m_swapchain.getImages( ) )
+    {
+      vk::Helper::transitionImageLayout( image, vk::ImageLayout::eColorAttachmentOptimal, vk::ImageLayout::ePresentSrcKHR );
+    }
+    */
 
     // Submits / executes the current image's / framebuffer's command buffer.
     g_graphicsQueue.submit( submitInfo, m_inFlightFences[currentFrame].get( ) );
@@ -155,6 +190,13 @@ namespace rx
     // Tell the presentation engine that the current image is ready.
     g_graphicsQueue.presentKHR( presentInfo );
 
+    /*
+    for ( const vk::Image& image : m_swapchain.getImages( ) )
+    {
+      vk::Helper::transitionImageLayout( image, vk::ImageLayout::ePresentSrcKHR, vk::ImageLayout::eColorAttachmentOptimal );
+    }
+    */
+
     currentFrame = ( currentFrame + 1 ) % maxFramesInFlight;
 
     return true;
@@ -164,8 +206,8 @@ namespace rx
   {
     static size_t currentFrame = 0;
 
-    uint32_t imageIndex;
-    m_swapchain.acquireNextImage( m_imageAvailableSemaphores[0].get( ), nullptr, &imageIndex );
+    static uint32_t imageIndex;
+    m_swapchain.acquireNextImage( m_imageAvailableSemaphores[currentFrame].get( ), nullptr, &imageIndex );
 
     std::vector<vk::CommandBuffer> commandBuffers = { m_swapchainCommandBuffers.get( )[imageIndex] };
     vk::SubmitInfo submitInfo( 1,                                                                                                  // waitSemaphoreCount
@@ -176,7 +218,8 @@ namespace rx
                                1,                                                                                                  // signalSemaphoreCount
                                & m_finishedRenderSemaphores[currentFrame].get( ) );                                                // pSignalSemaphores
 
-    g_graphicsQueue.submit( 1, &submitInfo, nullptr );
+    if ( g_graphicsQueue.submit( 1, &submitInfo, nullptr ) != vk::Result::eSuccess )
+      RX_ERROR( "Failed to submit." );
 
     vk::PresentInfoKHR presentInfo( 1,                                                // waitSemaphoreCount
                                     &m_finishedRenderSemaphores[currentFrame].get( ), // pWaitSemaphores
@@ -186,7 +229,8 @@ namespace rx
                                     nullptr );                                        // pResults
 
     // Tell the presentation engine that the current image is ready.
-    g_graphicsQueue.presentKHR( presentInfo );
+    if ( g_graphicsQueue.presentKHR( presentInfo ) != vk::Result::eSuccess )
+      RX_ERROR( "Failed to present." );
 
     g_graphicsQueue.waitIdle( );
 
@@ -615,6 +659,16 @@ namespace rx
                                                                           &m_rayTracingBuilder.getDescriptorSets( ).get( imageIndex ), // descriptor sets
                                                                           0,                                                           // dynamic offset count
                                                                           nullptr );                                                   // dynamic offsets 
+
+          m_rayTracingBuilder.m_rtPushConstants.clearColor = { 1.0f, 0.0f, 0.0f, 1.0f };
+          m_rayTracingBuilder.m_rtPushConstants.lightPosition = { 10.0f, 10.0f, 0.0f };
+          m_rayTracingBuilder.m_rtPushConstants.lightIntensity = 2.5f;
+          m_rayTracingBuilder.m_rtPushConstants.lightType = 1;
+
+          m_swapchainCommandBuffers.get( imageIndex ).pushConstants<RayTracingBuilder::PushConstant>( m_rtPipeline.getLayout( ), 
+                                                                                                      vk::ShaderStageFlagBits::eRaygenKHR | vk::ShaderStageFlagBits::eClosestHitKHR | vk::ShaderStageFlagBits::eMissKHR, 
+                                                                                                      0,
+                                                                                                      m_rayTracingBuilder.m_rtPushConstants );
 
           m_rayTracingBuilder.rayTrace( m_swapchainCommandBuffers.get( imageIndex ), m_swapchain.getImage( imageIndex ), m_window->getExtent( ) );
         }

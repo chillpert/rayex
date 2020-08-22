@@ -2,6 +2,7 @@
 #include "Vertex.hpp"
 #include "Helpers.hpp"
 #include "Components.hpp"
+#include "RayTracingBuilder.hpp"
 
 namespace rx
 {
@@ -175,12 +176,15 @@ namespace rx
                                  vk::ShaderModule closestHit,
                                  uint32_t maxRecursion )
   {
-    // TODO: Insert push constants here.
+    vk::PushConstantRange pushConstantRange( vk::ShaderStageFlagBits::eRaygenKHR | vk::ShaderStageFlagBits::eClosestHitKHR | vk::ShaderStageFlagBits::eMissKHR, // stageFlags
+                                             0,                                                                                                                 // offset
+                                             sizeof( RayTracingBuilder::PushConstant ) );                                                                       // size
+
     vk::PipelineLayoutCreateInfo layoutInfo( { },                                                   // flags
                                              static_cast<uint32_t>( descriptorSetLayouts.size( ) ), // setLayoutCount
                                              descriptorSetLayouts.data( ),                          // pSetLayouts
-                                             0,                                                     // pushConstantRangeCount
-                                             nullptr );                                             // pPushConstantRanges
+                                             1,                                                     // pushConstantRangeCount
+                                             &pushConstantRange );                                  // pPushConstantRanges
 
     m_layout = g_device.createPipelineLayoutUnique( layoutInfo );
     if ( !m_layout )

@@ -312,11 +312,11 @@ int main( int argc, char* argv[] )
   renderer.init( );
 
   // Setup your own ImGui based Gui.
-  //auto myGui = std::make_shared<CustomGui>();
-  //renderer.setGui( myGui );
+  auto myGui = std::make_shared<CustomGui>();
+  renderer.setGui( myGui );
 
   myWindow->m_camera = myCam;
-  //myGui->m_renderer = &renderer;
+  myGui->m_renderer = &renderer;
 
   // Setup the scene.
   auto dragonLore = std::make_shared<GeometryNode>( "models/awpdlore/awpdlore.obj", Material( "textures/awpdlore.png" ) );
@@ -339,7 +339,7 @@ int main( int argc, char* argv[] )
 
   while ( renderer.isRunning( ) )
   { 
-    //dragonLore->m_worldTransform = glm::rotate( dragonLore->m_worldTransform, glm::radians( 90.0f ) * Time::getDeltaTime( ) * speed, glm::vec3( 0.0f, 1.0f, 0.0f ) );
+    dragonLore->m_worldTransform = glm::rotate( dragonLore->m_worldTransform, glm::radians( 90.0f ) * Time::getDeltaTime( ) * speed, glm::vec3( 0.0f, 1.0f, 0.0f ) );
     //mars->m_worldTransform = glm::rotate( mars->m_worldTransform, glm::radians( 90.0f ) * Time::getDeltaTime( ) * -speed, glm::vec3( 0.0f, 1.0f, 0.0f ) );
 
     // Call udpate and render for the renderer to work properly.

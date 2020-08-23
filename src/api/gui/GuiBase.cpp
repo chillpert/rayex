@@ -127,7 +127,7 @@ namespace rx
                                           vk::AttachmentStoreOp::eStore,            // storeOp
                                           vk::AttachmentLoadOp::eDontCare,          // stencilLoadOp
                                           vk::AttachmentStoreOp::eDontCare,         // stencilStoreOp
-                                          vk::ImageLayout::eColorAttachmentOptimal, // initialLayout
+                                          vk::ImageLayout::ePresentSrcKHR,          // initialLayout
                                           vk::ImageLayout::ePresentSrcKHR );        // finalLayout          
 
     vk::AttachmentReference colorAttachment( 0,                                          // attachment

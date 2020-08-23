@@ -14,6 +14,7 @@ layout(binding = 1, set = 0, rgba32f) uniform image2D image;
 //layout(location = 0) rayPayloadEXT hitPayload prd;
 layout(location = 0) rayPayloadNV hitPayload prd;
 
+// TODO: we only need camera data in here, but nothing else. The model needs to go to rchit.
 layout(binding = 2, set = 0) uniform UniformBufferObject
 {
   mat4 model;

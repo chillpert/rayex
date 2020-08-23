@@ -7,6 +7,8 @@ layout(binding = 0, set = 0) uniform UniformBufferObject
   mat4 model;
   mat4 view;
   mat4 proj; // TODO: combine view and projection on application side
+  mat4 viewInverse;
+  mat4 projInverse;
 
   vec3 cameraPos;
 } ubo;

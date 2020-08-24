@@ -381,8 +381,7 @@ namespace rx
                        { m_rayTracingBuilder.getDescriptorSetLayout( ) },// m_rayTracingBuilder.getSceneDescriptorSetLayout( ) },
                        rgen.get( ),
                        miss.get( ),
-                       chit.get( ),
-                       8 ); // TODO: this should be exposed to client in some config data structure.
+                       chit.get( ) ); // TODO: this should be exposed to client in some config data structure.
   }
 
   void Api::initGraphicsCommandPool( )

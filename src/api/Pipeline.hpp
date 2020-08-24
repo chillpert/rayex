@@ -16,7 +16,6 @@ namespace rx
               vk::ShaderModule rayGen,
               vk::ShaderModule miss,
               vk::ShaderModule closestHit,
-              uint32_t maxRecursion = 4,
               bool initialize = true );
 
     void init( vk::Viewport viewport,
@@ -24,13 +23,12 @@ namespace rx
                const std::vector<vk::DescriptorSetLayout> & descriptorSetLayouts,
                vk::ShaderModule rayGen,
                vk::ShaderModule miss,
-               vk::ShaderModule closestHit,
-               uint32_t maxRecursion = 4 );
+               vk::ShaderModule closestHit );
 
     inline const vk::Pipeline get( ) const { return m_pipeline.get( ); }
     inline const vk::PipelineLayout getLayout( ) const { return m_layout.get( ); }
-    inline const vk::Rect2D getScissor( ) const { return m_scissor; }
     inline const vk::Viewport getViewport( ) const { return m_viewport; }
+    inline const vk::Rect2D getScissor( ) const { return m_scissor; }
 
     void bind( vk::CommandBuffer commandBuffer ) const;
 

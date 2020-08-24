@@ -3,6 +3,7 @@
 #include "Helpers.hpp"
 #include "Components.hpp"
 #include "RayTracingBuilder.hpp"
+#include "Settings.hpp"
 
 namespace rx
 {
@@ -12,11 +13,10 @@ namespace rx
                                           vk::ShaderModule rayGen,
                                           vk::ShaderModule miss,
                                           vk::ShaderModule closestHit,
-                                          uint32_t maxRecursion,
                                           bool initialize )
   {
     if ( initialize )
-      init( viewport, scissor, descriptorSetLayouts, rayGen, miss, closestHit, maxRecursion );
+      init( viewport, scissor, descriptorSetLayouts, rayGen, miss, closestHit );
   }
 
   void Pipeline::init( vk::Viewport viewport,
@@ -24,8 +24,7 @@ namespace rx
                                  const std::vector<vk::DescriptorSetLayout>& descriptorSetLayouts,
                                  vk::ShaderModule rayGen,
                                  vk::ShaderModule miss,
-                                 vk::ShaderModule closestHit,
-                                 uint32_t maxRecursion )
+                                 vk::ShaderModule closestHit )
   {
     vk::PushConstantRange pushConstantRange( vk::ShaderStageFlagBits::eRaygenKHR | vk::ShaderStageFlagBits::eClosestHitKHR | vk::ShaderStageFlagBits::eMissKHR, // stageFlags
                                              0,                                                                                                                 // offset
@@ -73,7 +72,7 @@ namespace rx
                                                     shaderStages.data( ),                          // pStages
                                                     static_cast<uint32_t>( groups.size( ) ),       // groupCount
                                                     groups.data( ),                                // pGroups
-                                                    maxRecursion,                                  // maxRecursionDepth
+                                                    Settings::maxRecursionDepth,                   // maxRecursionDepth
                                                     0,                                             // libraries
                                                     nullptr,                                       // pLibraryInterface
                                                     m_layout.get( ),                               // layout

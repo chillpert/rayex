@@ -84,9 +84,8 @@ namespace rx
     std::unordered_map<std::string, std::shared_ptr<Texture>> m_textures;
 
     Swapchain m_swapchain;
-    
     RenderPass m_renderPass;
-    RayTracingPipeline m_rtPipeline;
+    Pipeline m_rtPipeline;
     CommandBuffer m_swapchainCommandBuffers;
     
   public:

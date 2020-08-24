@@ -5,9 +5,17 @@
 
 namespace rx
 {
-  struct RX_API Settings
+  class RX_API Settings
   {
-    static uint32_t maxRecursionDepth;
+  public:
+    static void setMaxRecursionDepth( uint32_t maxRecursionDepth );
+    inline static uint32_t getMaxRecursionDepth( ) { return m_maxRecursionDepth; }
+
+    static bool refresh( ) { return m_refresh; }
+
+  private:
+    static uint32_t m_maxRecursionDepth;
+    static bool m_refresh;
   };
 }
 

@@ -72,7 +72,7 @@ namespace rx
                                                     shaderStages.data( ),                          // pStages
                                                     static_cast<uint32_t>( groups.size( ) ),       // groupCount
                                                     groups.data( ),                                // pGroups
-                                                    Settings::maxRecursionDepth,                   // maxRecursionDepth
+                                                    Settings::getMaxRecursionDepth( ),             // maxRecursionDepth
                                                     0,                                             // libraries
                                                     nullptr,                                       // pLibraryInterface
                                                     m_layout.get( ),                               // layout

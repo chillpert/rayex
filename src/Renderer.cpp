@@ -37,6 +37,8 @@ namespace rx
 
   void Renderer::init( )
   {
+    g_window = m_window;
+
     if ( m_initialized )
       return;
 
@@ -94,10 +96,9 @@ namespace rx
   
   void Renderer::setGui( std::shared_ptr<GuiBase> gui )
   {
-    if ( !m_initialized )
-      RX_ERROR( "Gui must be set after the Renderer was initialized." );
-
     m_api.m_gui = gui;
-    m_api.initGui( );
+    
+    if ( m_initialized )
+      m_api.initGui( );
   }
 }

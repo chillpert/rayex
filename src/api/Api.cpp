@@ -3,10 +3,11 @@
 #include "Initializers.hpp"
 #include "Helpers.hpp"
 #include "Destructors.hpp"
+#include "Settings.hpp"
 
 namespace rx
 {
-  bool rayTraceOn = true;
+  size_t currentFrame = 0;
 
   // Defines the maximum amount of frames that will be processed concurrently.
   const size_t maxFramesInFlight = 2;
@@ -34,8 +35,6 @@ namespace rx
 
   void Api::init( )
   {
-    g_window = m_window;
-
     m_geometryNodes.reserve( g_maxGeometryNodes );
     m_textures.reserve( g_maxTextures );
     m_lightNodes.reserve( g_maxLightNodes );
@@ -65,20 +64,16 @@ namespace rx
 
   bool Api::update( )
   {
+    if ( Settings::refresh( ) )
+    {
+      // Trigger swapchain / pipeline recreation
+    }
+
     return true;
   }
 
-  bool Api::render( )
+  bool Api::prepareFrame( )
   {
-    if ( m_gui != nullptr )
-    {
-      m_gui->beginRender( );
-      m_gui->render( );
-      m_gui->endRender( );
-    }
-
-    static size_t currentFrame = 0;
-
     // Wait for the current frame's fences.
     g_device.waitForFences( 1, &m_inFlightFences[currentFrame].get( ), VK_TRUE, UINT64_MAX );
 
@@ -94,8 +89,12 @@ namespace rx
       return true;
     }
 
-    uint32_t imageIndex;
-    m_swapchain.acquireNextImage( m_imageAvailableSemaphores[currentFrame].get( ), nullptr, &imageIndex );
+    m_swapchain.acquireNextImage( m_imageAvailableSemaphores[currentFrame].get( ), nullptr );
+  }
+
+  bool Api::submitFrame( )
+  {
+    uint32_t imageIndex = m_swapchain.getCurrentImageIndex( );
 
     // TODO: This should only be called if the camera was changed. 
     for ( std::shared_ptr<GeometryNode> node : m_geometryNodes )
@@ -124,16 +123,10 @@ namespace rx
                                static_cast<uint32_t>( commandBuffers.size( ) ),                                                    // commandBufferCount
                                commandBuffers.data( ),                                                                             // pCommandBuffers
                                1,                                                                                                  // signalSemaphoreCount
-                               &m_finishedRenderSemaphores[currentFrame].get( ) );                                                 // pSignalSemaphores
+                               & m_finishedRenderSemaphores[currentFrame].get( ) );                                                 // pSignalSemaphores
 
     // Reset the signaled state of the current frame's fence to the unsignaled one.
     g_device.resetFences( 1, &m_inFlightFences[currentFrame].get( ) );
-
-    if ( m_gui != nullptr )
-    {
-      m_gui->beginRenderPass( imageIndex );
-      m_gui->endRenderPass( imageIndex );
-    }
 
     // Submits / executes the current image's / framebuffer's command buffer.
     g_graphicsQueue.submit( submitInfo, m_inFlightFences[currentFrame].get( ) );
@@ -149,6 +142,31 @@ namespace rx
     g_graphicsQueue.presentKHR( presentInfo );
 
     currentFrame = ( currentFrame + 1 ) % maxFramesInFlight;
+
+    return true;
+  }
+
+  bool Api::render( )
+  {
+    if ( m_gui != nullptr )
+    {
+      m_gui->beginRender( );
+      m_gui->render( );
+      m_gui->endRender( );
+    }
+
+    if ( prepareFrame( ) )
+      return true;
+
+    if ( m_gui != nullptr )
+    {
+      uint32_t imageIndex = m_swapchain.getCurrentImageIndex( );
+      m_gui->beginRenderPass( imageIndex );
+      m_gui->endRenderPass( imageIndex );
+    }
+
+    if ( submitFrame( ) )
+      return true;
 
     return true;
   }

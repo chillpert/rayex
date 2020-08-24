@@ -123,9 +123,9 @@ namespace rx
     }
   }
 
-  void Swapchain::acquireNextImage( vk::Semaphore semaphore, vk::Fence fence, uint32_t* imageIndex )
+  void Swapchain::acquireNextImage( vk::Semaphore semaphore, vk::Fence fence )
   {
-    g_device.acquireNextImageKHR( m_swapchain.get( ), UINT64_MAX, semaphore, fence, imageIndex );
+    g_device.acquireNextImageKHR( m_swapchain.get( ), UINT64_MAX, semaphore, fence, &m_currentImageIndex );
   }
 
   void Swapchain::initImages( uint32_t minImageCount, vk::Format surfaceFormat )

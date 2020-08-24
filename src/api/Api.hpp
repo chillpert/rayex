@@ -61,6 +61,9 @@ namespace rx
 
     void initRayTracing( );
 
+    bool prepareFrame( );
+    bool submitFrame( );
+
     std::shared_ptr<WindowBase> m_window;
     std::shared_ptr<CameraBase> m_camera;
 

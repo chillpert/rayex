@@ -18,6 +18,8 @@ namespace rx
     void init( Surface* surface, vk::RenderPass renderPass );
     void destroy( );
 
+    inline uint32_t getCurrentImageIndex( ) const { return m_currentImageIndex; }
+
     inline const vk::Extent2D getExtent( ) const { return m_extent; }
     inline const vk::ImageAspectFlags getImageAspect( ) const { return m_imageAspect; }
 
@@ -29,7 +31,7 @@ namespace rx
     void setImageAspect( vk::ImageAspectFlags flags );
     void setImageLayout( vk::ImageLayout oldLayout, vk::ImageLayout newLayout );
 
-    void acquireNextImage( vk::Semaphore semaphore, vk::Fence fence, uint32_t* imageIndex );
+    void acquireNextImage( vk::Semaphore semaphore, vk::Fence fence );
 
   private:
     void initImages( uint32_t minImageCount, vk::Format surfaceFormat );
@@ -48,6 +50,8 @@ namespace rx
 
     Image m_depthImage;
     vk::UniqueImageView m_depthImageView;
+
+    uint32_t m_currentImageIndex;
   };
 
   vk::Format getSupportedDepthFormat( vk::PhysicalDevice physicalDevice );

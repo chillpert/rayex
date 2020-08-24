@@ -360,7 +360,7 @@ namespace rx
     cmdBuf.submitToQueue( g_graphicsQueue );
   }
 
-  void RayTracingBuilder::createDescriptorSetLayout( const Swapchain& swapchain, uint32_t nodes )
+  void RayTracingBuilder::createDescriptorSetLayout( )
   {
     // TLAS.
     vk::DescriptorSetLayoutBinding tlasBinding( 0,                                             // binding
@@ -375,17 +375,87 @@ namespace rx
                                                        1,                                   // descriptorCount
                                                        vk::ShaderStageFlagBits::eRaygenKHR, // stageFlags
                                                        nullptr );                           // pImmutableSamplers
-
     // Uniform buffer.
     vk::DescriptorSetLayoutBinding uniformBufferBinding( 2,                                   // binding
                                                          vk::DescriptorType::eUniformBuffer,  // descriptorType
                                                          1,                                   // descriptorCount
                                                          vk::ShaderStageFlagBits::eVertex | vk::ShaderStageFlagBits::eRaygenKHR, // stageFlags
                                                          nullptr );                           // pImmutableSamplers
-
     m_bindings = { tlasBinding, outputImageBinding, uniformBufferBinding };
 
     m_descriptorSetLayout.init( m_bindings );
+  }
+
+  void RayTracingBuilder::createSceneDescriptorSetLayout( )
+  {
+    /*
+    // Camera matrices
+    vk::DescriptorSetLayoutBinding cameraBinding( 0,                                                                      // binding
+                                                  vk::DescriptorType::eUniformBuffer,                                     // descriptorType
+                                                  1,                                                                      // descriptorCount
+                                                  vk::ShaderStageFlagBits::eVertex | vk::ShaderStageFlagBits::eRaygenKHR, // stageFlags
+                                                  nullptr );                                                              // pImmutableSamplers
+
+    // Materials
+    vk::DescriptorSetLayoutBinding materialBinding( 1,                                                                                                               // binding
+                                                    vk::DescriptorType::eStorageBuffer,                                                                              // descriptorType
+                                                    g_maxGeometryNodes,                                                                                              // descriptorCount
+                                                    vk::ShaderStageFlagBits::eVertex | vk::ShaderStageFlagBits::eFragment | vk::ShaderStageFlagBits::eClosestHitKHR, // stageFlags
+                                                    nullptr );                                                                                                       // pImmutableSamplers
+
+    // Scene description
+    vk::DescriptorSetLayoutBinding sceneDescriptionBinding( 2,                                                                                                               // binding
+                                                            vk::DescriptorType::eStorageBuffer,                                                                              // descriptorType
+                                                            1,                                                                                                               // descriptorCount
+                                                            vk::ShaderStageFlagBits::eVertex | vk::ShaderStageFlagBits::eFragment | vk::ShaderStageFlagBits::eClosestHitKHR, // stageFlags
+                                                            nullptr );                                                                                                       // pImmutableSamplers
+
+    // Textures
+    vk::DescriptorSetLayoutBinding texturesBinding( 3,                                                                            // binding
+                                                    vk::DescriptorType::eCombinedImageSampler,                                    // descriptorType
+                                                    g_maxTextures,                                                                // descriptorCount
+                                                    vk::ShaderStageFlagBits::eFragment | vk::ShaderStageFlagBits::eClosestHitKHR, // stageFlags
+                                                    nullptr );                                                                    // pImmutableSamplers
+
+    // Materials
+    vk::DescriptorSetLayoutBinding material2Binding( 4,                                                                            // binding
+                                                     vk::DescriptorType::eStorageBuffer,                                           // descriptorType
+                                                     g_maxGeometryNodes,                                                           // descriptorCount
+                                                     vk::ShaderStageFlagBits::eFragment | vk::ShaderStageFlagBits::eClosestHitKHR, // stageFlags
+                                                     nullptr );                                                                    // pImmutableSamplers
+
+    // Vertices
+    vk::DescriptorSetLayoutBinding vertexBinding( 5,                                       // binding
+                                                  vk::DescriptorType::eStorageBuffer,      // descriptorType
+                                                  g_maxGeometryNodes,                      // descriptorCount
+                                                  vk::ShaderStageFlagBits::eClosestHitKHR, // stageFlags
+                                                  nullptr );                               // pImmutableSamplers
+
+    // Indices
+    vk::DescriptorSetLayoutBinding indexBinding( 6,                                       // binding
+                                                 vk::DescriptorType::eStorageBuffer,      // descriptorType
+                                                 g_maxGeometryNodes,                      // descriptorCount
+                                                 vk::ShaderStageFlagBits::eClosestHitKHR, // stageFlags
+                                                 nullptr );                               // pImmutableSamplers
+  
+    m_sceneDescriptorSetLayout.init( { cameraBinding, materialBinding, sceneDescriptionBinding, texturesBinding, material2Binding, vertexBinding, indexBinding } );
+
+    // Vertices
+    vk::DescriptorSetLayoutBinding vertexBinding( 0,                                       // binding
+                                                  vk::DescriptorType::eStorageBuffer,      // descriptorType
+                                                  g_maxGeometryNodes,                      // descriptorCount
+                                                  vk::ShaderStageFlagBits::eClosestHitKHR, // stageFlags
+                                                  nullptr );                               // pImmutableSamplers
+
+    // Indices
+    vk::DescriptorSetLayoutBinding indexBinding( 1,                                       // binding
+                                                 vk::DescriptorType::eStorageBuffer,      // descriptorType
+                                                 g_maxGeometryNodes,                      // descriptorCount
+                                                 vk::ShaderStageFlagBits::eClosestHitKHR, // stageFlags
+                                                 nullptr );                               // pImmutableSamplers
+
+    m_sceneDescriptorSetLayout.init( { vertexBinding, indexBinding } );
+    */
   }
 
   void RayTracingBuilder::createDescriptorPool( uint32_t swapchainImagesCount )
@@ -396,11 +466,13 @@ namespace rx
   void RayTracingBuilder::createDescriptorSets( uint32_t swapchainImagesCount )
   {
     m_descriptorSets.init( m_descriptorPool.get( ), swapchainImagesCount, std::vector<vk::DescriptorSetLayout>{ swapchainImagesCount, m_descriptorSetLayout.get( ) } );
+    //m_sceneDescriptorSets.init( m_descriptorPool.get( ), swapchainImagesCount, std::vector<vk::DescriptorSetLayout>{ swapchainImagesCount, m_descriptorSetLayout.get( ) } );
   }
 
-  void RayTracingBuilder::updateDescriptorSets( const std::vector<vk::Buffer>& uniformBuffers )
+  void RayTracingBuilder::updateDescriptorSets( std::vector<vk::Buffer> uniformBuffer, vk::Buffer vertexBuffer, vk::Buffer indexBuffer )
   {
-    m_descriptorSets.update( uniformBuffers, m_tlas.as.as, m_storageImageView.get( ) );
+    m_descriptorSets.update( uniformBuffer, m_tlas.as.as, m_storageImageView.get( ) );
+    //m_sceneDescriptorSets.update( vertexBuffer, indexBuffer );
   }
 
   void RayTracingBuilder::createStorageImage( vk::Extent2D swapchainExtent )
@@ -483,13 +555,6 @@ namespace rx
 
   void RayTracingBuilder::rayTrace( vk::CommandBuffer swapchainCommandBuffer, vk::Image swapchainImage, vk::Extent2D extent )
   {
-    // Dispatch the ray tracing commands.
-    //vk::DeviceSize bindingOffsetRayGenShader = m_rtProperties.shaderGroupHandleSize * RX_SHADER_GROUP_INDEX_RGEN;
-    //vk::DeviceSize bindingOffsetMissShader = m_rtProperties.shaderGroupHandleSize * RX_SHADER_GROUP_INDEX_MISS;
-    //vk::DeviceSize bindingOffsetChitShader = m_rtProperties.shaderGroupHandleSize * RX_SHADER_GROUP_INDEX_CHIT;
-
-    //vk::DeviceSize bindingStride = m_rtProperties.shaderGroupHandleSize;
-
     vk::DeviceSize progSize = m_rtProperties.shaderGroupBaseAlignment;
     vk::DeviceSize sbtSize = progSize * static_cast<vk::DeviceSize>( g_shaderGroups );
 

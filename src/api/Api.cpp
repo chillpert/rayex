@@ -48,13 +48,9 @@ namespace rx
     initDevice( );
     initRenderPass( );
     initSwapchain( );
-    initSwapchainImageViews( );
     initPipeline( );
     initGraphicsCommandPool( );
     initTransferCommandPool( );
-    initDepthBuffering( );
-    initSwapchainFramebuffers( );
-    initDescriptorPool( );
     initRayTracing( );
     initSwapchainCommandBuffers( );
     initGui( );
@@ -62,10 +58,7 @@ namespace rx
     initSyncObjects( );
 
     // Temporary: Make sure swapchain images are presentable.
-    for ( const vk::Image& image : m_swapchain.getImages( ) )
-    {
-      vk::Helper::transitionImageLayout( image, vk::ImageLayout::eUndefined, vk::ImageLayout::ePresentSrcKHR );
-    }
+    m_swapchain.setImageLayout( vk::ImageLayout::eUndefined, vk::ImageLayout::ePresentSrcKHR );
 
     RX_LOG( "Finished API initialization." );
   }
@@ -79,23 +72,9 @@ namespace rx
   {
     if ( m_gui != nullptr )
     {
-      /*
-      for ( const vk::Image& image : m_swapchain.getImages( ) )
-      {
-        vk::Helper::transitionImageLayout( image, vk::ImageLayout::ePresentSrcKHR, vk::ImageLayout::eColorAttachmentOptimal );
-      }
-      */
-
       m_gui->beginRender( );
       m_gui->render( );
       m_gui->endRender( );
-
-      /*
-      for ( const vk::Image& image : m_swapchain.getImages( ) )
-      {
-        vk::Helper::transitionImageLayout( image, vk::ImageLayout::eColorAttachmentOptimal, vk::ImageLayout::ePresentSrcKHR );
-      }
-      */
     }
 
     static size_t currentFrame = 0;
@@ -118,7 +97,7 @@ namespace rx
     uint32_t imageIndex;
     m_swapchain.acquireNextImage( m_imageAvailableSemaphores[currentFrame].get( ), nullptr, &imageIndex );
 
-    // TODO: Temporary
+    // TODO: This should only be called if the camera was changed. 
     for ( std::shared_ptr<GeometryNode> node : m_geometryNodes )
     {
       if ( node->m_modelPath.empty( ) )
@@ -152,30 +131,9 @@ namespace rx
 
     if ( m_gui != nullptr )
     {
-      /*
-      for ( const vk::Image& image : m_swapchain.getImages( ) )
-      {
-        vk::Helper::transitionImageLayout( image, vk::ImageLayout::ePresentSrcKHR, vk::ImageLayout::eColorAttachmentOptimal );
-      }
-      */
-
       m_gui->beginRenderPass( imageIndex );
       m_gui->endRenderPass( imageIndex );
-
-      /*
-      for ( const vk::Image& image : m_swapchain.getImages( ) )
-      {
-        vk::Helper::transitionImageLayout( image, vk::ImageLayout::eColorAttachmentOptimal, vk::ImageLayout::ePresentSrcKHR );
-      }
-      */
     }
-
-    /*
-    for ( const vk::Image& image : m_swapchain.getImages( ) )
-    {
-      vk::Helper::transitionImageLayout( image, vk::ImageLayout::eColorAttachmentOptimal, vk::ImageLayout::ePresentSrcKHR );
-    }
-    */
 
     // Submits / executes the current image's / framebuffer's command buffer.
     g_graphicsQueue.submit( submitInfo, m_inFlightFences[currentFrame].get( ) );
@@ -190,49 +148,7 @@ namespace rx
     // Tell the presentation engine that the current image is ready.
     g_graphicsQueue.presentKHR( presentInfo );
 
-    /*
-    for ( const vk::Image& image : m_swapchain.getImages( ) )
-    {
-      vk::Helper::transitionImageLayout( image, vk::ImageLayout::ePresentSrcKHR, vk::ImageLayout::eColorAttachmentOptimal );
-    }
-    */
-
     currentFrame = ( currentFrame + 1 ) % maxFramesInFlight;
-
-    return true;
-  }
-
-  bool Api::render2( )
-  {
-    static size_t currentFrame = 0;
-
-    static uint32_t imageIndex;
-    m_swapchain.acquireNextImage( m_imageAvailableSemaphores[currentFrame].get( ), nullptr, &imageIndex );
-
-    std::vector<vk::CommandBuffer> commandBuffers = { m_swapchainCommandBuffers.get( )[imageIndex] };
-    vk::SubmitInfo submitInfo( 1,                                                                                                  // waitSemaphoreCount
-                               &m_imageAvailableSemaphores[currentFrame].get( ),                                                   // pWaitSemaphores
-                               std::array<vk::PipelineStageFlags, 1>{ vk::PipelineStageFlagBits::eColorAttachmentOutput }.data( ), // pWaitDstStageMask
-                               static_cast<uint32_t>( commandBuffers.size( ) ),                                                    // commandBufferCount
-                               commandBuffers.data( ),                                                                             // pCommandBuffers
-                               1,                                                                                                  // signalSemaphoreCount
-                               & m_finishedRenderSemaphores[currentFrame].get( ) );                                                // pSignalSemaphores
-
-    if ( g_graphicsQueue.submit( 1, &submitInfo, nullptr ) != vk::Result::eSuccess )
-      RX_ERROR( "Failed to submit." );
-
-    vk::PresentInfoKHR presentInfo( 1,                                                // waitSemaphoreCount
-                                    &m_finishedRenderSemaphores[currentFrame].get( ), // pWaitSemaphores
-                                    1,                                                // swapchainCount
-                                    &g_swapchain,                                     // pSwapchains
-                                    &imageIndex,                                      // pImageIndices
-                                    nullptr );                                        // pResults
-
-    // Tell the presentation engine that the current image is ready.
-    if ( g_graphicsQueue.presentKHR( presentInfo ) != vk::Result::eSuccess )
-      RX_ERROR( "Failed to present." );
-
-    g_graphicsQueue.waitIdle( );
 
     return true;
   }
@@ -308,14 +224,11 @@ namespace rx
 
     // Recreating the swapchain.
     initSwapchain( );
-    initSwapchainImageViews( );
-    initDepthBuffering( );
-    initSwapchainFramebuffers( );
     initSwapchainCommandBuffers( );
     recordSwapchainCommandBuffers( );
 
     if ( m_gui != nullptr )
-      m_gui->recreate( &m_swapchain, vk::Helper::unpack( m_swapchainImageViews ) );
+      m_gui->recreate( m_swapchain.getExtent( ), m_swapchain.getImageViews( ) );
 
     // Update the camera screen size to avoid image stretching.
     auto screenSize = m_swapchain.getExtent( );
@@ -370,8 +283,8 @@ namespace rx
   {
     std::vector<const char*> deviceExtensions =
     {
-      "VK_KHR_get_memory_requirements2",
-      "VK_EXT_descriptor_indexing",
+      VK_KHR_GET_MEMORY_REQUIREMENTS_2_EXTENSION_NAME,
+      VK_EXT_DESCRIPTOR_INDEXING_EXTENSION_NAME,
       VK_KHR_BUFFER_DEVICE_ADDRESS_EXTENSION_NAME,
       VK_KHR_DEFERRED_HOST_OPERATIONS_EXTENSION_NAME,
       VK_KHR_PIPELINE_LIBRARY_EXTENSION_NAME,
@@ -447,21 +360,7 @@ namespace rx
 
   void Api::initSwapchain( )
   {
-    // Reassess surface settings. 
-    // TODO: This should be solved more elegantly. And change naming.
-    m_surface.checkSettingSupport( );
-
-    m_swapchain.init( &m_surface );
-    m_swapchain.setImageAspect( vk::ImageAspectFlagBits::eColor );
-  }
-
-  void Api::initSwapchainImageViews( )
-  {
-    m_swapchainImageViews.resize( m_swapchain.getImages( ).size( ) );
-    for ( size_t i = 0; i < m_swapchainImageViews.size( ); ++i )
-    {
-      m_swapchainImageViews[i] = vk::Initializer::createImageViewUnique( m_swapchain.getImage( i ), m_surface.getFormat( ), m_swapchain.getImageAspect( ) );
-    }
+    m_swapchain.init( &m_surface, m_renderPass.get( ) );
   }
 
   void Api::initPipeline( bool firstRun )
@@ -474,52 +373,16 @@ namespace rx
     auto chit = vk::Initializer::createShaderModuleUnique( "shaders/raytrace.rchit" );
 
     // Also creates the bindings.
-    m_rayTracingBuilder.createDescriptorSetLayout( m_swapchain, g_maxGeometryNodes );
+    m_rayTracingBuilder.createDescriptorSetLayout( );
+    //m_rayTracingBuilder.createSceneDescriptorSetLayout( );
 
-    m_rtPipeline.init( m_renderPass.get( ),
-                        vk::Viewport { 0.0f, 0.0f, extent.x, extent.y, 0.0f, 1.0f },
-                        { 0, { m_swapchain.getExtent( ).width, m_swapchain.getExtent( ).height } },
-                        { m_rayTracingBuilder.getDescriptorSetLayout( ) },
-                        rgen.get( ),
-                        miss.get( ),
-                        chit.get( ),
-                        8 );
-
-    // Initialize the rasterization pipeline.
-
-    // Create shaders.
-    auto vs = vk::Initializer::createShaderModuleUnique( "shaders/simple3D.vert" );
-    auto fs = vk::Initializer::createShaderModuleUnique( "shaders/simple3D.frag" );
-
-    // TODO: Unnecessary check.
-    if ( firstRun )
-    {
-      vk::DescriptorSetLayoutBinding vertexBinding( 0,                                                                      // binding
-                                                    vk::DescriptorType::eUniformBuffer,                                     // descriptorType
-                                                    1,                                                                      // descriptorCount
-                                                    vk::ShaderStageFlagBits::eVertex | vk::ShaderStageFlagBits::eRaygenKHR, // stageFlags
-                                                    nullptr );                                                              // pImmutableSamplers
-
-      vk::DescriptorSetLayoutBinding fragmentBinding( 1,                                                                            // binding
-                                                      vk::DescriptorType::eCombinedImageSampler,                                    // descriptorType
-                                                      1,                                                                            // descriptorCount
-                                                      vk::ShaderStageFlagBits::eFragment | vk::ShaderStageFlagBits::eClosestHitKHR, // stageFlags
-                                                      nullptr );                                                                    // pImmutableSamplers
-
-      m_descriptorSetLayout.addBinding( vertexBinding );
-      m_descriptorSetLayout.addBinding( fragmentBinding );
-
-      // Descriptor Set Layout
-      m_descriptorSetLayout.init( );
-    }
-
-    // Graphics pipeline
-    m_pipeline.init( m_renderPass.get( ),
-                      vk::Viewport { 0.0f, 0.0f, extent.x, extent.y, 0.0f, 1.0f },
-                      { 0, { m_swapchain.getExtent( ).width, m_swapchain.getExtent( ).height } },
-                      vs.get( ),
-                      fs.get( ),
-                      m_descriptorSetLayout.get( ) );    
+    m_rtPipeline.init( vk::Viewport { 0.0f, 0.0f, extent.x, extent.y, 0.0f, 1.0f },
+                       { 0, { m_swapchain.getExtent( ).width, m_swapchain.getExtent( ).height } },
+                       { m_rayTracingBuilder.getDescriptorSetLayout( ) },// m_rayTracingBuilder.getSceneDescriptorSetLayout( ) },
+                       rgen.get( ),
+                       miss.get( ),
+                       chit.get( ),
+                       8 ); // TODO: this should be exposed to client in some config data structure.
   }
 
   void Api::initGraphicsCommandPool( )
@@ -534,62 +397,15 @@ namespace rx
     g_transferCmdPool = m_transferCmdPool.get( );
   }
 
-  void Api::initDepthBuffering( )
-  {
-    // Depth image for depth buffering
-    vk::Format depthFormat = getSupportedDepthFormat( g_physicalDevice );
-
-    auto imageCreateInfo = vk::Helper::getImageCreateInfo( vk::Extent3D( m_swapchain.getExtent( ).width, m_swapchain.getExtent( ).height, 1 ) );
-    imageCreateInfo.format = depthFormat;
-    imageCreateInfo.usage = vk::ImageUsageFlagBits::eDepthStencilAttachment;
-
-    m_depthImage.init( imageCreateInfo );
-
-    // Image view for depth image
-    m_depthImageView = vk::Initializer::createImageViewUnique( m_depthImage.get( ), depthFormat, vk::ImageAspectFlagBits::eDepth );
-  }
-
-  void Api::initSwapchainFramebuffers( )
-  {
-    m_swapchainFramebuffers.resize( m_swapchainImageViews.size( ) );
-    for ( size_t i = 0; i < m_swapchainFramebuffers.size( ); ++i )
-    {
-      m_swapchainFramebuffers[i] = vk::Initializer::createFramebufferUnique( { m_swapchainImageViews[i].get( ), m_depthImageView.get( ) }, m_renderPass.get( ), m_swapchain.getExtent( ) );
-    }
-  }
-
-  void Api::initDescriptorPool( )
-  {
-    // Descriptor pool for rasterization descriptors.
-    uint32_t swapchainImagesCount = m_swapchain.getImages( ).size( );
-
-    std::vector<vk::DescriptorPoolSize> poolSizes =
-    {
-      { vk::DescriptorType::eUniformBuffer, swapchainImagesCount },
-      { vk::DescriptorType::eCombinedImageSampler, swapchainImagesCount }
-    };
-
-    m_descriptorPool = vk::Initializer::createDescriptorPoolUnique( poolSizes, g_maxGeometryNodes * swapchainImagesCount );
-  }
-
   void Api::initModel( const std::shared_ptr<GeometryNode> node )
   {
-    if ( node->m_modelPath.empty( ) )
-    {
-      RX_LOG( "Path to model is missing." );
-      return;
-    }
-
     auto it = m_models.find( node->m_modelPath );
-    RX_ASSERT( ( it != m_models.end( ) ), "Model was not initialized previously." );
-
     auto model = it->second;
     if ( !model->m_initialized )
     {
       model->m_vertexBuffer.init( model->m_vertices );
       model->m_indexBuffer.init( model->m_indices );
 
-      model->m_initialized = true;
       model->m_initialized = true;
     }
 
@@ -598,33 +414,21 @@ namespace rx
     m_rayTracingBuilder.createTopLevelAS( m_geometryNodes );
     m_rayTracingBuilder.createShaderBindingTable( m_rtPipeline.get( ) );
 
-    node->m_uniformBuffers.init( m_swapchain.getImages( ).size( ) );
-
-    // Create the rasterization descriptor sets.
-    model->m_descriptorSets.init( m_descriptorPool.get( ),
-                                  static_cast<uint32_t>( m_swapchain.getImages( ).size( ) ),
-                                  std::vector<vk::DescriptorSetLayout>( m_swapchain.getImages( ).size( ), m_descriptorSetLayout.get( ) ) );
+    node->m_uniformBuffers.init( g_swapchainImageCount );
 
     // Create the ray tracing descriptor sets.
-    uint32_t swapchainImagesCount = static_cast<uint32_t>( m_swapchain.getImages( ).size( ) );
+    uint32_t swapchainImagesCount = static_cast<uint32_t>( g_swapchainImageCount );
     m_rayTracingBuilder.createDescriptorPool( swapchainImagesCount );
     m_rayTracingBuilder.createDescriptorSets( swapchainImagesCount );
 
-    // TODO: add support for multiple textures.
-    auto diffuseIter = m_textures.find( node->m_material.m_diffuseTexture );
-    if ( diffuseIter != m_textures.end( ) )
-    {
-      model->m_descriptorSets.update( node->m_uniformBuffers.getRaw( ),
-                                      diffuseIter->second->getImageView( ),
-                                      diffuseIter->second->getSampler( ) );
-    }
-
-    m_rayTracingBuilder.updateDescriptorSets( node->m_uniformBuffers.getRaw( ) );
+    m_rayTracingBuilder.updateDescriptorSets( node->m_uniformBuffers.getRaw( ), model->m_vertexBuffer.get( ), model->m_indexBuffer.get( ) );
   }
 
   void Api::initSwapchainCommandBuffers( )
   {
-    m_swapchainCommandBuffers.init( m_graphicsCmdPool.get( ), m_swapchainFramebuffers.size( ), vk::CommandBufferUsageFlagBits::eRenderPassContinue );
+    m_swapchainCommandBuffers.init( m_graphicsCmdPool.get( ), 
+                                    g_swapchainImageCount, 
+                                    vk::CommandBufferUsageFlagBits::eRenderPassContinue );
   }
 
   void Api::initGui( )
@@ -632,7 +436,7 @@ namespace rx
     if ( m_gui != nullptr )
     {
       initRenderPass( );
-      m_gui->init( &m_surface, &m_swapchain, vk::Helper::unpack( m_swapchainImageViews ) );
+      m_gui->init( &m_surface, m_swapchain.getExtent( ), m_swapchain.getImageViews( ) );
     }
   }
 
@@ -640,133 +444,39 @@ namespace rx
   {
     RX_LOG( "Started swapchain command buffer recording." );
 
-    // Recording for ray tracing.
-    if ( rayTraceOn )
+    // Start recording the swapchain framebuffers
+    for ( size_t imageIndex = 0; imageIndex < m_swapchainCommandBuffers.get( ).size( ); ++imageIndex )
     {
-      // Start recording the swapchain framebuffers
-      for ( size_t imageIndex = 0; imageIndex < m_swapchainCommandBuffers.get( ).size( ); ++imageIndex )
-      {
-        m_swapchainCommandBuffers.begin( imageIndex );
+      m_swapchainCommandBuffers.begin( imageIndex );
 
-        m_rtPipeline.bind( m_swapchainCommandBuffers.get( imageIndex ) );
+      m_rtPipeline.bind( m_swapchainCommandBuffers.get( imageIndex ) );
         
-        for ( const auto& node : m_geometryNodes )
-        {
-          m_swapchainCommandBuffers.get( imageIndex ).bindDescriptorSets( vk::PipelineBindPoint::eRayTracingKHR,
-                                                                          m_rtPipeline.getLayout( ),
-                                                                          0,                                                           // first set
-                                                                          1,                                                           // descriptor set count
-                                                                          &m_rayTracingBuilder.getDescriptorSets( ).get( imageIndex ), // descriptor sets
-                                                                          0,                                                           // dynamic offset count
-                                                                          nullptr );                                                   // dynamic offsets 
-
-          m_rayTracingBuilder.m_rtPushConstants.clearColor = { 1.0f, 0.0f, 0.0f, 1.0f };
-          m_rayTracingBuilder.m_rtPushConstants.lightPosition = { 10.0f, 10.0f, 0.0f };
-          m_rayTracingBuilder.m_rtPushConstants.lightIntensity = 2.5f;
-          m_rayTracingBuilder.m_rtPushConstants.lightType = 1;
-
-          m_swapchainCommandBuffers.get( imageIndex ).pushConstants<RayTracingBuilder::PushConstant>( m_rtPipeline.getLayout( ), 
-                                                                                                      vk::ShaderStageFlagBits::eRaygenKHR | vk::ShaderStageFlagBits::eClosestHitKHR | vk::ShaderStageFlagBits::eMissKHR, 
-                                                                                                      0,
-                                                                                                      m_rayTracingBuilder.m_rtPushConstants );
-
-          m_rayTracingBuilder.rayTrace( m_swapchainCommandBuffers.get( imageIndex ), m_swapchain.getImage( imageIndex ), m_window->getExtent( ) );
-        }
-
-        m_swapchainCommandBuffers.end( imageIndex );
-      }
-    }
-    // Recording for rasterization.
-    else
-    {
-      // Set up render pass begin info
-      std::array<vk::ClearValue, 2> clearValues;
-      clearValues[0].color = { std::array<float, 4>{ 0.5f, 0.5f, 0.5f, 1.0f } };
-      clearValues[1].depthStencil = vk::ClearDepthStencilValue { 1.0f, 0 };
-
-      // Start recording the swapchain framebuffers
-      for ( size_t imageIndex = 0; imageIndex < m_swapchainCommandBuffers.get( ).size( ); ++imageIndex )
+      for ( const auto& node : m_geometryNodes )
       {
-        m_swapchainCommandBuffers.begin( imageIndex );
+        std::vector<vk::DescriptorSet> descriptorSets = { m_rayTracingBuilder.getDescriptorSets( ).get( imageIndex ) }; // , m_rayTracingBuilder.getSceneDescriptorSets( ).get( imageIndex ) };
 
-        m_renderPass.begin( m_swapchainFramebuffers[imageIndex].get( ),
-                            m_swapchainCommandBuffers.get( imageIndex ),
-                            { 0, m_swapchain.getExtent( ) },
-                            { clearValues[0], clearValues[1] } );
+        m_swapchainCommandBuffers.get( imageIndex ).bindDescriptorSets( vk::PipelineBindPoint::eRayTracingKHR,
+                                                                        m_rtPipeline.getLayout( ),
+                                                                        0,                                                           // first set
+                                                                        static_cast<uint32_t>( descriptorSets.size( ) ),             // descriptor set count
+                                                                        descriptorSets.data( ),                                      // descriptor sets
+                                                                        0,                                                           // dynamic offset count
+                                                                        nullptr );                                                   // dynamic offsets 
 
-        // TODO: Do push constants even make sense when you have got multiple light sources? Well, at least this is a working example.
-        for ( const auto& lightNode : m_lightNodes )
-        {
-          if ( dynamic_cast<DirectionalLightNode*>( lightNode.get( ) ) )
-          {
-            auto ptr = std::dynamic_pointer_cast<DirectionalLightNode>( lightNode );
+        m_rayTracingBuilder.m_rtPushConstants.clearColor = { 1.0f, 0.0f, 0.0f, 1.0f };
+        m_rayTracingBuilder.m_rtPushConstants.lightPosition = { 10.0f, 10.0f, 0.0f };
+        m_rayTracingBuilder.m_rtPushConstants.lightIntensity = 2.5f;
+        m_rayTracingBuilder.m_rtPushConstants.lightType = 1;
 
-            auto pc = ptr->toPushConstant( );
+        m_swapchainCommandBuffers.get( imageIndex ).pushConstants<RayTracingBuilder::PushConstant>( m_rtPipeline.getLayout( ), 
+                                                                                                    vk::ShaderStageFlagBits::eRaygenKHR | vk::ShaderStageFlagBits::eClosestHitKHR | vk::ShaderStageFlagBits::eMissKHR, 
+                                                                                                    0,
+                                                                                                    m_rayTracingBuilder.m_rtPushConstants );
 
-            // TODO: avoid repetition of values.
-            m_swapchainCommandBuffers.get( imageIndex ).pushConstants( m_pipeline.getLayout( ),            // layout
-                                                                       vk::ShaderStageFlagBits::eFragment, // stageFlags
-                                                                       0,                                  // offset
-                                                                       sizeof( pc ),                       // size 
-                                                                       &pc );                              // pValues
-          }
-        }
-
-        m_pipeline.bind( m_swapchainCommandBuffers.get( imageIndex ) ); // CMD
-
-        // Dynamic states
-        vk::Viewport viewport = m_pipeline.getViewport( );
-        viewport.width = m_window->getProperties( ).getWidth( );
-        viewport.height = m_window->getProperties( ).getHeight( );
-
-        m_swapchainCommandBuffers.get( imageIndex ).setViewport( 0, 1, &viewport ); // CMD
-
-        vk::Rect2D scissor = m_pipeline.getScissor( );
-        scissor.extent = m_window->getExtent( );
-
-        m_swapchainCommandBuffers.get( imageIndex ).setScissor( 0, 1, &scissor ); // CMD
-
-        // Draw models
-        for ( const auto& node : m_geometryNodes )
-        {
-          if ( node->m_modelPath.empty( ) )
-            continue;
-
-          auto it = m_models.find( node->m_modelPath );
-          RX_ASSERT( ( it != m_models.end( ) ), "Can not draw model because it was not found." );
-
-          auto model = it->second;
-
-          vk::Buffer vertexBuffers[] = { model->m_vertexBuffer.get( ) };
-          vk::DeviceSize offsets[] = { 0 };
-
-          m_swapchainCommandBuffers.get( imageIndex ).bindVertexBuffers( 0,               // first binding
-                                                                         1,               // binding count
-                                                                         vertexBuffers,
-                                                                         offsets );
-
-          m_swapchainCommandBuffers.get( imageIndex ).bindIndexBuffer( model->m_indexBuffer.get( ),
-                                                                       0,                                 // offset
-                                                                       model->m_indexBuffer.getType( ) );
-        
-          m_swapchainCommandBuffers.get( imageIndex ).bindDescriptorSets( vk::PipelineBindPoint::eGraphics,
-                                                                          m_pipeline.getLayout( ),
-                                                                          0,                                           // first set
-                                                                          1,                                           // descriptor set count
-                                                                          &model->m_descriptorSets.get( )[imageIndex], // descriptor sets
-                                                                          0,                                           // dynamic offset count
-                                                                          nullptr );                                   // dynamic offsets 
-
-          m_swapchainCommandBuffers.get( imageIndex ).drawIndexed( model->m_indexBuffer.getCount( ), // index count
-                                                                   1,                                // instance count
-                                                                   0,                                // first index
-                                                                   0,                                // vertex offset
-                                                                   0 );                              // first instance
-        }
-
-        m_renderPass.end( m_swapchainCommandBuffers.get( imageIndex ) );
-        m_swapchainCommandBuffers.end( imageIndex );
+        m_rayTracingBuilder.rayTrace( m_swapchainCommandBuffers.get( imageIndex ), m_swapchain.getImage( imageIndex ), m_window->getExtent( ) );
       }
+
+      m_swapchainCommandBuffers.end( imageIndex );
     }
   }
 
@@ -776,7 +486,7 @@ namespace rx
     m_imageAvailableSemaphores.resize( maxFramesInFlight );
     m_finishedRenderSemaphores.resize( maxFramesInFlight );
     m_inFlightFences.resize( maxFramesInFlight );
-    m_imagesInFlight.resize( m_swapchain.getImages( ).size( ), nullptr );
+    m_imagesInFlight.resize( g_swapchainImageCount, nullptr );
 
     for ( size_t i = 0; i < maxFramesInFlight; ++i )
     {

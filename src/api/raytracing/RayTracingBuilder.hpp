@@ -19,7 +19,9 @@ namespace rx
 
     inline const Tlas& getTlas( ) const { return m_tlas; }
     inline const vk::DescriptorSetLayout getDescriptorSetLayout( ) const { return m_descriptorSetLayout.get( ); }
+    inline const vk::DescriptorSetLayout getSceneDescriptorSetLayout( ) const { return m_sceneDescriptorSetLayout.get( ); }
     inline const DescriptorSet& getDescriptorSets( ) const { return m_descriptorSets; }
+    inline const DescriptorSet& getSceneDescriptorSets( ) const { return m_sceneDescriptorSets; }
 
     Blas objectToVkGeometryKHR( const std::shared_ptr<Model> model ) const;
     vk::AccelerationStructureInstanceKHR instanceToVkGeometryInstanceKHR( const BlasInstance& instance ) const;
@@ -31,9 +33,11 @@ namespace rx
     void buildTlas( const std::vector<BlasInstance>& instances, vk::BuildAccelerationStructureFlagsKHR flags = vk::BuildAccelerationStructureFlagBitsKHR::ePreferFastTrace );
 
     void createDescriptorPool( uint32_t swapchainImagesCount );
-    void createDescriptorSetLayout( const Swapchain& swapchain, uint32_t nodes );
+    void createDescriptorSetLayout( );
+    void createSceneDescriptorSetLayout( );
     void createDescriptorSets( uint32_t swapchainImagesCount );
-    void updateDescriptorSets( const std::vector<vk::Buffer>& uniformBuffers );
+    
+    void updateDescriptorSets( std::vector<vk::Buffer> uniformBuffer, vk::Buffer vertexBuffer, vk::Buffer indexBuffer );
 
     void createStorageImage( vk::Extent2D swapchainExtent );
 
@@ -63,7 +67,11 @@ namespace rx
     vk::UniqueDescriptorPool m_descriptorPool;
     std::vector<vk::DescriptorSetLayoutBinding> m_bindings;
     DescriptorSet m_descriptorSets;
+    DescriptorSetLayout m_sceneDescriptorSetLayout;
+    
+    DescriptorSet m_sceneDescriptorSets;
     DescriptorSetLayout m_descriptorSetLayout;
+
 
     // Storage image.
     Image m_storageImage;

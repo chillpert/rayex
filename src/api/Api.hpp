@@ -34,7 +34,6 @@ namespace rx
     void init( );
     bool update( );
     bool render( );
-    bool render2( );
 
     void pushNode( const std::shared_ptr<Node> nodes, bool record = true );
     void setNodes( const std::vector<std::shared_ptr<Node>>& nodes );
@@ -49,13 +48,9 @@ namespace rx
     void initDevice( );
     void initRenderPass( );
     void initSwapchain( );
-    void initSwapchainImageViews( );
     void initPipeline( bool firstRun = true );
     void initGraphicsCommandPool( );
     void initTransferCommandPool( );
-    void initDepthBuffering( );
-    void initSwapchainFramebuffers( );
-    void initDescriptorPool( );
     void initModel( const std::shared_ptr<GeometryNode> node );
     void initSwapchainCommandBuffers( );
     void recordSwapchainCommandBuffers( );
@@ -80,8 +75,6 @@ namespace rx
     std::vector<vk::UniqueSemaphore> m_imageAvailableSemaphores;
     std::vector<vk::UniqueSemaphore> m_finishedRenderSemaphores;
 
-    DescriptorSetLayout m_descriptorSetLayout;
-
     // Nodes to render.
     std::vector<std::shared_ptr<GeometryNode>> m_geometryNodes;
     std::vector<std::shared_ptr<LightNode>> m_lightNodes;
@@ -90,17 +83,12 @@ namespace rx
     // Textures
     std::unordered_map<std::string, std::shared_ptr<Texture>> m_textures;
 
-    vk::UniqueDescriptorPool m_descriptorPool;
     Swapchain m_swapchain;
-    std::vector<vk::UniqueImageView> m_swapchainImageViews;
+    
     RenderPass m_renderPass;
-    RasterizationPipeline m_pipeline;
     RayTracingPipeline m_rtPipeline;
     CommandBuffer m_swapchainCommandBuffers;
-    std::vector<vk::UniqueFramebuffer> m_swapchainFramebuffers;
-    Image m_depthImage;
-    vk::UniqueImageView m_depthImageView;
-
+    
   public:
     std::shared_ptr<GuiBase> m_gui;
 

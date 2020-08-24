@@ -69,6 +69,26 @@ namespace rx
     }
   }
 
+  void DescriptorSet::update( vk::Buffer vertexBuffer, vk::Buffer indexBuffer )
+  {
+    for ( size_t i = 0; i < m_layouts.size( ); ++i )
+    {
+      vk::DescriptorBufferInfo vertbufferInfo( vertexBuffer,         // buffer
+                                           0,                        // offset
+                                           sizeof( vertexBuffer ) ); // range
+
+      vk::DescriptorBufferInfo indexbufferInfo( indexBuffer,         // buffer
+                                           0,                        // offset
+                                           sizeof( indexBuffer ) );  // range
+
+      std::array<vk::WriteDescriptorSet, 2> descriptorWrites;
+      descriptorWrites[0] = writeStorageBuffer( m_sets[i], 0, vertbufferInfo );
+      descriptorWrites[1] = writeStorageBuffer( m_sets[i], 1, indexbufferInfo );
+
+      g_device.updateDescriptorSets( descriptorWrites, 0 );
+    }
+  }
+
   void DescriptorSet::free( )
   {
     g_device.freeDescriptorSets( m_descriptorPool, m_sets );
@@ -81,6 +101,20 @@ namespace rx
                                    0,                                  // dstArrayElement
                                    1,                                  // descriptorCount
                                    vk::DescriptorType::eUniformBuffer, // descriptorType
+                                   nullptr,                            // pImageInfo
+                                   &bufferInfo,                        // pBufferInfo
+                                   nullptr );                          // pTextelBufferView
+
+    return result;
+  }
+
+  vk::WriteDescriptorSet DescriptorSet::writeStorageBuffer( vk::DescriptorSet descriptorSet, uint32_t binding, const vk::DescriptorBufferInfo& bufferInfo )
+  {
+    vk::WriteDescriptorSet result( descriptorSet,                      // dstSet
+                                   binding,                            // dstBinding
+                                   0,                                  // dstArrayElement
+                                   1,                                  // descriptorCount
+                                   vk::DescriptorType::eStorageBuffer, // descriptorType
                                    nullptr,                            // pImageInfo
                                    &bufferInfo,                        // pBufferInfo
                                    nullptr );                          // pTextelBufferView

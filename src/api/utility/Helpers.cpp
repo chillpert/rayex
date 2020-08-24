@@ -123,12 +123,22 @@ namespace vk
       return buffer;
     }
 
-    std::vector<vk::ImageView> unpack( const std::vector<vk::UniqueImageView>& uinqueImageViews )
+    std::vector<ImageView> unpack( const std::vector<UniqueImageView>& uniqueImageViews )
     {
-      std::vector<vk::ImageView> result( uinqueImageViews.size( ) );
+      std::vector<ImageView> result( uniqueImageViews.size( ) );
 
       for ( size_t i = 0; i < result.size( ); ++i )
-        result[i] = uinqueImageViews[i].get( );
+        result[i] = uniqueImageViews[i].get( );
+
+      return result;
+    }
+
+    std::vector<Framebuffer> unpack( const std::vector<UniqueFramebuffer>& uniqueFramebuffers )
+    {
+      std::vector<Framebuffer> result( uniqueFramebuffers.size( ) );
+
+      for ( size_t i = 0; i < result.size( ); ++i )
+        result[i] = uniqueFramebuffers[i].get( );
 
       return result;
     }
@@ -171,7 +181,7 @@ namespace vk
 
       commandBuffer.get( 0 ).pipelineBarrier( std::get<1>( barrierInfo ),        // srcStageMask
                                               std::get<2>( barrierInfo ),        // dstStageMask
-                                              vk::DependencyFlagBits::eByRegion,
+                                              DependencyFlagBits::eByRegion,
                                               0,
                                               nullptr,
                                               0,
@@ -183,13 +193,13 @@ namespace vk
       commandBuffer.submitToQueue( rx::g_graphicsQueue );
     }
 
-    void transitionImageLayout( Image image, ImageLayout oldLayout, ImageLayout newLayout, vk::CommandBuffer commandBuffer )
+    void transitionImageLayout( Image image, ImageLayout oldLayout, ImageLayout newLayout, CommandBuffer commandBuffer )
     {
       auto barrierInfo = getImageMemoryBarrierInfo( image, oldLayout, newLayout );
 
       commandBuffer.pipelineBarrier( std::get<1>( barrierInfo ),        // srcStageMask
                                        std::get<2>( barrierInfo ),        // dstStageMask
-                                       vk::DependencyFlagBits::eByRegion,
+                                       DependencyFlagBits::eByRegion,
                                        0,
                                        nullptr,
                                        0,
@@ -198,77 +208,77 @@ namespace vk
                                        &std::get<0>( barrierInfo ) );     // barrier
     }
 
-    std::tuple<vk::ImageMemoryBarrier, vk::PipelineStageFlags, vk::PipelineStageFlags> getImageMemoryBarrierInfo( vk::Image image, vk::ImageLayout oldLayout, vk::ImageLayout newLayout )
+    std::tuple<ImageMemoryBarrier, PipelineStageFlags, PipelineStageFlags> getImageMemoryBarrierInfo( Image image, ImageLayout oldLayout, ImageLayout newLayout )
     {
       // TODO: not style conform.
-      vk::ImageMemoryBarrier barrier;
+      ImageMemoryBarrier barrier;
       barrier.oldLayout = oldLayout;
       barrier.newLayout = newLayout;
       barrier.srcQueueFamilyIndex = VK_QUEUE_FAMILY_IGNORED;
       barrier.dstQueueFamilyIndex = VK_QUEUE_FAMILY_IGNORED;
       barrier.image = image;
-      barrier.subresourceRange.aspectMask = vk::ImageAspectFlagBits::eColor;
+      barrier.subresourceRange.aspectMask = ImageAspectFlagBits::eColor;
       barrier.subresourceRange.baseMipLevel = 0;
       barrier.subresourceRange.levelCount = 1;
       barrier.subresourceRange.baseArrayLayer = 0;
       barrier.subresourceRange.layerCount = 1;
 
-      vk::PipelineStageFlags srcStageMask = vk::PipelineStageFlagBits::eAllCommands;
-      vk::PipelineStageFlags dstStageMask = vk::PipelineStageFlagBits::eAllCommands;
+      PipelineStageFlags srcStageMask = PipelineStageFlagBits::eAllCommands;
+      PipelineStageFlags dstStageMask = PipelineStageFlagBits::eAllCommands;
 
-      if ( oldLayout == vk::ImageLayout::eUndefined && newLayout == vk::ImageLayout::eTransferDstOptimal )
+      if ( oldLayout == ImageLayout::eUndefined && newLayout == ImageLayout::eTransferDstOptimal )
       {
         barrier.srcAccessMask = { };
-        barrier.dstAccessMask = vk::AccessFlagBits::eTransferWrite;
+        barrier.dstAccessMask = AccessFlagBits::eTransferWrite;
 
-        srcStageMask = vk::PipelineStageFlagBits::eTopOfPipe;
-        dstStageMask = vk::PipelineStageFlagBits::eTransfer;
+        srcStageMask = PipelineStageFlagBits::eTopOfPipe;
+        dstStageMask = PipelineStageFlagBits::eTransfer;
       }
-      else if ( oldLayout == vk::ImageLayout::eTransferDstOptimal && newLayout == vk::ImageLayout::eShaderReadOnlyOptimal )
+      else if ( oldLayout == ImageLayout::eTransferDstOptimal && newLayout == ImageLayout::eShaderReadOnlyOptimal )
       {
-        barrier.srcAccessMask = vk::AccessFlagBits::eTransferWrite;
-        barrier.dstAccessMask = vk::AccessFlagBits::eShaderRead;
+        barrier.srcAccessMask = AccessFlagBits::eTransferWrite;
+        barrier.dstAccessMask = AccessFlagBits::eShaderRead;
 
-        srcStageMask = vk::PipelineStageFlagBits::eTransfer;
-        dstStageMask = vk::PipelineStageFlagBits::eFragmentShader;
+        srcStageMask = PipelineStageFlagBits::eTransfer;
+        dstStageMask = PipelineStageFlagBits::eFragmentShader;
       }
-      else if ( oldLayout == vk::ImageLayout::eUndefined && newLayout == vk::ImageLayout::eGeneral ) 
+      else if ( oldLayout == ImageLayout::eUndefined && newLayout == ImageLayout::eGeneral ) 
       {
         // nothing to do.
       }
-      else if ( oldLayout == vk::ImageLayout::eGeneral && newLayout == vk::ImageLayout::eTransferSrcOptimal )
+      else if ( oldLayout == ImageLayout::eGeneral && newLayout == ImageLayout::eTransferSrcOptimal )
       {
-        barrier.dstAccessMask = vk::AccessFlagBits::eTransferRead;
+        barrier.dstAccessMask = AccessFlagBits::eTransferRead;
       }
-      else if ( oldLayout == vk::ImageLayout::eTransferSrcOptimal && newLayout == vk::ImageLayout::eGeneral )
+      else if ( oldLayout == ImageLayout::eTransferSrcOptimal && newLayout == ImageLayout::eGeneral )
       {
-        barrier.srcAccessMask = vk::AccessFlagBits::eTransferRead;
+        barrier.srcAccessMask = AccessFlagBits::eTransferRead;
       }
-      else if ( oldLayout == vk::ImageLayout::eTransferDstOptimal && newLayout == vk::ImageLayout::ePresentSrcKHR )
+      else if ( oldLayout == ImageLayout::eTransferDstOptimal && newLayout == ImageLayout::ePresentSrcKHR )
       {
-        barrier.srcAccessMask = vk::AccessFlagBits::eTransferWrite;
+        barrier.srcAccessMask = AccessFlagBits::eTransferWrite;
       }
-      else if ( oldLayout == vk::ImageLayout::eUndefined && newLayout == vk::ImageLayout::ePresentSrcKHR )
+      else if ( oldLayout == ImageLayout::eUndefined && newLayout == ImageLayout::ePresentSrcKHR )
       {
         barrier.srcAccessMask = { };
       }
-      else if ( oldLayout == vk::ImageLayout::ePresentSrcKHR && newLayout == vk::ImageLayout::eColorAttachmentOptimal )
+      else if ( oldLayout == ImageLayout::ePresentSrcKHR && newLayout == ImageLayout::eColorAttachmentOptimal )
       {
-        barrier.dstAccessMask = vk::AccessFlagBits::eColorAttachmentWrite;
+        barrier.dstAccessMask = AccessFlagBits::eColorAttachmentWrite;
       }
-      else if ( oldLayout == vk::ImageLayout::eColorAttachmentOptimal && newLayout == vk::ImageLayout::ePresentSrcKHR )
+      else if ( oldLayout == ImageLayout::eColorAttachmentOptimal && newLayout == ImageLayout::ePresentSrcKHR )
       {
-        barrier.srcAccessMask = vk::AccessFlagBits::eColorAttachmentWrite;
+        barrier.srcAccessMask = AccessFlagBits::eColorAttachmentWrite;
       }
-      else if ( oldLayout == vk::ImageLayout::eUndefined && newLayout == vk::ImageLayout::eColorAttachmentOptimal )
+      else if ( oldLayout == ImageLayout::eUndefined && newLayout == ImageLayout::eColorAttachmentOptimal )
       {
         barrier.srcAccessMask = { };
-        barrier.dstAccessMask = vk::AccessFlagBits::eColorAttachmentWrite;
+        barrier.dstAccessMask = AccessFlagBits::eColorAttachmentWrite;
       }
-      else if ( oldLayout == vk::ImageLayout::eTransferDstOptimal && newLayout == vk::ImageLayout::eColorAttachmentOptimal )
+      else if ( oldLayout == ImageLayout::eTransferDstOptimal && newLayout == ImageLayout::eColorAttachmentOptimal )
       {
-        barrier.srcAccessMask = vk::AccessFlagBits::eTransferWrite;
-        barrier.dstAccessMask = vk::AccessFlagBits::eColorAttachmentWrite;
+        barrier.srcAccessMask = AccessFlagBits::eTransferWrite;
+        barrier.dstAccessMask = AccessFlagBits::eColorAttachmentWrite;
       }
       else
         RX_ERROR( "Image layout transition not supported." );

@@ -21,11 +21,13 @@ namespace rx
 
     void update( const std::vector<vk::Buffer>& uniformBuffers, vk::ImageView textureImageView, vk::Sampler textureSampler );
     void update( const std::vector<vk::Buffer>& uniformBuffers, vk::AccelerationStructureKHR tlas, vk::ImageView storageImageView );
+    void update( vk::Buffer vertexBuffer, vk::Buffer indexBuffer );
 
     void free( );
 
   private:
     vk::WriteDescriptorSet writeUniformBuffer( vk::DescriptorSet descriptorSet, uint32_t binding, const vk::DescriptorBufferInfo& bufferInfo );
+    vk::WriteDescriptorSet writeStorageBuffer( vk::DescriptorSet descriptorSet, uint32_t binding, const vk::DescriptorBufferInfo& bufferInfo );
     vk::WriteDescriptorSet writeStorageImage( vk::DescriptorSet descriptorSet, uint32_t binding, const vk::DescriptorImageInfo& imageInfo );
     vk::WriteDescriptorSet writeCombinedImageSampler( vk::DescriptorSet descriptorSet, uint32_t binding, const vk::DescriptorImageInfo& imageInfo );
     vk::WriteDescriptorSet writeAccelerationStructure( vk::DescriptorSet descriptorSet, uint32_t binding, void* pNext );

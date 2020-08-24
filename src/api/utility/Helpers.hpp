@@ -18,7 +18,22 @@ namespace vk
 
     std::vector<char> parseShader( const std::string& path );
 
-    std::vector<ImageView> unpack( const std::vector<vk::UniqueImageView>& uinqueImageViews );
+    /*
+    template <typename Out, typename In>
+    std::vector<Out> unpack( const std::vector<In>& data )
+    {
+      std::vector<Out> result( data.size( ) );
+
+      for ( size_t i = 0; i < result.size( ); ++i )
+        result[i] = data[i].get( );
+
+      return result;
+    }
+    */
+
+    std::vector<ImageView> unpack( const std::vector<UniqueImageView>& uniqueImageViews );
+
+    std::vector<Framebuffer> unpack( const std::vector<UniqueFramebuffer>& uniqueFramebuffers );
 
     std::vector<std::shared_ptr<rx::Model>> unpack( const std::unordered_map<std::string, std::shared_ptr<rx::Model>>& models );
 

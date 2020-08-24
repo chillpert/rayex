@@ -53,8 +53,7 @@ namespace rx
   {
   public:
     RayTracingPipeline( ) = default;
-    RayTracingPipeline( vk::RenderPass renderPass,
-                        vk::Viewport viewport,
+    RayTracingPipeline( vk::Viewport viewport,
                         vk::Rect2D scissor,
                         const std::vector<vk::DescriptorSetLayout>& descriptorSetLayouts,
                         vk::ShaderModule rayGen,
@@ -63,8 +62,7 @@ namespace rx
                         uint32_t maxRecursion = 4,
                         bool initialize = true );
 
-    void init( vk::RenderPass renderPass,
-               vk::Viewport viewport,
+    void init( vk::Viewport viewport,
                vk::Rect2D scissor,
                const std::vector<vk::DescriptorSetLayout>& descriptorSetLayouts,
                vk::ShaderModule rayGen,

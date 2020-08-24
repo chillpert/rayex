@@ -1,17 +1,19 @@
 #include "Swapchain.hpp"
 #include "Components.hpp"
-#include "Helpers.hpp"
+#include "Initializers.hpp"
 
 namespace rx
 {
-  Swapchain::Swapchain( Surface* surface, bool initialize )
+  Swapchain::Swapchain( Surface* surface, vk::RenderPass renderPass, bool initialize )
   {
     if ( initialize )
-      init( surface );
+      init( surface, renderPass );
   }
 
-  void Swapchain::init( Surface* surface )
+  void Swapchain::init( Surface* surface, vk::RenderPass renderPass )
   {
+    surface->checkSettingSupport( );
+
     auto surfaceCapabilities = surface->getCapabilities( );
 
     vk::SwapchainCreateInfoKHR createInfo;
@@ -94,12 +96,9 @@ namespace rx
 
     g_swapchain = m_swapchain.get( );
 
-    // Get swapchain images.
-    m_images = g_device.getSwapchainImagesKHR( m_swapchain.get( ) );
-    if ( m_images.size( ) < minImageCount )
-      RX_ERROR( "Failed to get swapchain images." );
-
-    g_swapchainImageCount = static_cast<uint32_t>( m_images.size( ) );
+    initImages( minImageCount, surface->getFormat( ) );
+    initDepthImage( );
+    initFramebuffers( renderPass );
   }
 
   void Swapchain::destroy( )
@@ -116,9 +115,57 @@ namespace rx
     m_imageAspect = flags;
   }
 
+  void Swapchain::setImageLayout( vk::ImageLayout oldLayout, vk::ImageLayout newLayout )
+  {
+    for ( const auto& image : m_images )
+    {
+      vk::Helper::transitionImageLayout( image, oldLayout, newLayout );
+    }
+  }
+
   void Swapchain::acquireNextImage( vk::Semaphore semaphore, vk::Fence fence, uint32_t* imageIndex )
   {
     g_device.acquireNextImageKHR( m_swapchain.get( ), UINT64_MAX, semaphore, fence, imageIndex );
+  }
+
+  void Swapchain::initImages( uint32_t minImageCount, vk::Format surfaceFormat )
+  {
+    // Retrieve the actual swapchain images. This sets them up automatically.
+    m_images = g_device.getSwapchainImagesKHR( m_swapchain.get( ) );
+    RX_ASSERT( m_images.size( ) >= minImageCount, "Failed to get swapchain images." );
+
+    g_swapchainImageCount = static_cast<uint32_t>( m_images.size( ) );
+
+    // Create image views for swapchain images.
+    m_imageViews.resize( m_images.size( ) );
+    for ( size_t i = 0; i < m_imageViews.size( ); ++i )
+    {
+      m_imageViews[i] = vk::Initializer::createImageViewUnique( m_images[i], surfaceFormat, m_imageAspect );
+    }
+  }
+
+  void Swapchain::initDepthImage( )
+  {
+    // Depth image for depth buffering
+    vk::Format depthFormat = getSupportedDepthFormat( g_physicalDevice );
+
+    auto imageCreateInfo = vk::Helper::getImageCreateInfo( vk::Extent3D( m_extent.width, m_extent.height, 1 ) );
+    imageCreateInfo.format = depthFormat;
+    imageCreateInfo.usage = vk::ImageUsageFlagBits::eDepthStencilAttachment;
+
+    m_depthImage.init( imageCreateInfo );
+
+    // Image view for depth image
+    m_depthImageView = vk::Initializer::createImageViewUnique( m_depthImage.get( ), depthFormat, vk::ImageAspectFlagBits::eDepth );
+  }
+
+  void Swapchain::initFramebuffers( vk::RenderPass renderPass )
+  {
+    m_framebuffers.resize( m_imageViews.size( ) );
+    for ( size_t i = 0; i < m_framebuffers.size( ); ++i )
+    {
+      m_framebuffers[i] = vk::Initializer::createFramebufferUnique( { m_imageViews[i].get( ), m_depthImageView.get( ) }, renderPass, m_extent );
+    }
   }
 
   vk::Format getSupportedDepthFormat( vk::PhysicalDevice physicalDevice )

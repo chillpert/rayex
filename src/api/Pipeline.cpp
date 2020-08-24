@@ -153,8 +153,7 @@ namespace rx
     commandBuffer.bindPipeline( vk::PipelineBindPoint::eGraphics, m_pipeline.get( ) );
   }
 
-  RayTracingPipeline::RayTracingPipeline( vk::RenderPass renderPass,
-                                          vk::Viewport viewport,
+  RayTracingPipeline::RayTracingPipeline( vk::Viewport viewport,
                                           vk::Rect2D scissor,
                                           const std::vector<vk::DescriptorSetLayout>& descriptorSetLayouts,
                                           vk::ShaderModule rayGen,
@@ -164,11 +163,10 @@ namespace rx
                                           bool initialize )
   {
     if ( initialize )
-      init( renderPass, viewport, scissor, descriptorSetLayouts, rayGen, miss, closestHit, maxRecursion );
+      init( viewport, scissor, descriptorSetLayouts, rayGen, miss, closestHit, maxRecursion );
   }
 
-  void RayTracingPipeline::init( vk::RenderPass renderPass,
-                                 vk::Viewport viewport,
+  void RayTracingPipeline::init( vk::Viewport viewport,
                                  vk::Rect2D scissor,
                                  const std::vector<vk::DescriptorSetLayout>& descriptorSetLayouts,
                                  vk::ShaderModule rayGen,

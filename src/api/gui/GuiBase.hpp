@@ -15,7 +15,7 @@ namespace rx
   {
   public:
     GuiBase( ) = default;
-    GuiBase( const Surface* const surface, const Swapchain* const swapchain, const std::vector<vk::ImageView>& swapchainImageViews, bool initialize = true );
+    GuiBase( const Surface* const surface, vk::Extent2D swapchainImageExtent, const std::vector<vk::ImageView>& swapchainImageViews, bool initialize = true );
     RX_API virtual ~GuiBase( ) = default;
     
     inline const vk::CommandBuffer getCommandBuffer( uint32_t index ) const { return m_commandBuffers.get( index ); }
@@ -23,8 +23,8 @@ namespace rx
     RX_API virtual void configure( );
     RX_API virtual void render( );
 
-    void init( const Surface* const surface, const Swapchain* const swapchain, const std::vector<vk::ImageView>& swapchainImageViews );
-    void recreate( const Swapchain* const swapchain, const std::vector<vk::ImageView>& swapchainImageViews );
+    void init( const Surface* const surface, vk::Extent2D swapchainImageExtent, const std::vector<vk::ImageView>& swapchainImageViews );
+    void recreate( vk::Extent2D swapchainImageExtent, const std::vector<vk::ImageView>& swapchainImageViews );
 
     void beginRender( );
     void endRender( );
@@ -48,7 +48,7 @@ namespace rx
     RenderPass m_renderPass;
     std::vector<vk::UniqueFramebuffer> m_framebuffers;
 
-    const Swapchain* m_swapchain;
+    vk::Extent2D m_swapchainImageExtent;
   };
 }
 

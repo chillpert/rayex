@@ -14,6 +14,10 @@ namespace vk
 
     SamplerCreateInfo getSamplerCreateInfo( );
 
+    SubmitInfo getSubmitInfo( const Semaphore& waitSemaphore, const Semaphore& signalSemaphore, const std::vector<CommandBuffer>& commandBuffers, const PipelineStageFlags& pWaitDstStageMask );
+
+    PresentInfoKHR getPresentInfoKHR( const Semaphore& waitSemaphore, uint32_t& imageIndex );
+
     uint32_t findType( PhysicalDevice physicalDevice, uint32_t typeFilter, MemoryPropertyFlags properties );
 
     std::vector<char> parseShader( const std::string& path );

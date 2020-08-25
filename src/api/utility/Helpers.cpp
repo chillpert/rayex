@@ -52,9 +52,30 @@ namespace vk
                                     CompareOp::eAlways,             // compareOp
                                     { },                            // minLod
                                     { },                            // maxLod
-                                    BorderColor::eIntOpaqueBlack,  // borderColor
+                                    BorderColor::eIntOpaqueBlack,   // borderColor
                                     VK_FALSE );                     // unnormalizedCoordinates
       return createInfo;
+    }
+
+    SubmitInfo getSubmitInfo( const Semaphore& waitSemaphore, const Semaphore& signalSemaphore, const std::vector<CommandBuffer>& commandBuffers, const PipelineStageFlags& pWaitDstStageMask )
+    {
+      return SubmitInfo( 1,                                               // waitSemaphoreCount
+                         &waitSemaphore,                                  // pWaitSemaphores
+                         &pWaitDstStageMask,                              // pWaitDstStageMask
+                         static_cast<uint32_t>( commandBuffers.size( ) ), // commandBufferCount
+                         commandBuffers.data( ),                          // pCommandBuffers
+                         1,                                               // signalSemaphoreCount
+                         &signalSemaphore );                              // pSignalSemaphores
+    }
+
+    PresentInfoKHR getPresentInfoKHR( const Semaphore& waitSemaphore, uint32_t& imageIndex )
+    {
+      return PresentInfoKHR( 1,                // waitSemaphoreCount
+                             &waitSemaphore,   // pWaitSemaphores
+                             1,                // swapchainCount
+                             &rx::g_swapchain, // pSwapchains
+                             &imageIndex,      // pImageIndices
+                             nullptr );        // pResults
     }
 
     uint32_t findType( PhysicalDevice physicalDevice, uint32_t typeFilter, MemoryPropertyFlags properties )

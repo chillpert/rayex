@@ -96,49 +96,41 @@ namespace rx
   {
     uint32_t imageIndex = m_swapchain.getCurrentImageIndex( );
 
-    // TODO: This should only be called if the camera was changed. 
-    for ( std::shared_ptr<GeometryNode> node : m_geometryNodes )
     {
-      if ( node->m_modelPath.empty( ) )
-        continue;
+      // TODO: This should only be called if the camera was changed. 
+      // TODO: This should be moved to update function.
+      for ( std::shared_ptr<GeometryNode> node : m_geometryNodes )
+      {
+        if ( node->m_modelPath.empty( ) )
+          continue;
 
-      UniformBufferObject ubo { node->m_worldTransform, m_camera->getViewMatrix( ), m_camera->getProjectionMatrix( ), m_camera->getViewInverseMatrix( ), m_camera->getProjectionInverseMatrix( ), m_camera->getPosition( ) };
-      node->m_uniformBuffers.upload( imageIndex, ubo );
+        UniformBufferObject ubo { node->m_worldTransform, m_camera->getViewMatrix( ), m_camera->getProjectionMatrix( ), m_camera->getViewInverseMatrix( ), m_camera->getProjectionInverseMatrix( ), m_camera->getPosition( ) };
+        node->m_uniformBuffers.upload( imageIndex, ubo );
+      }
     }
 
     // Check if a previous frame is using the current image.
-    if ( static_cast<void*>( m_imagesInFlight[imageIndex] ) != nullptr )
+    if ( m_imagesInFlight[imageIndex] )
       g_device.waitForFences( 1, &m_imagesInFlight[currentFrame], VK_TRUE, UINT64_MAX );
 
     // This will mark the current image to be in use by this frame.
     m_imagesInFlight[imageIndex] = m_inFlightFences[currentFrame].get( );
 
+    // Add GUI command buffer to swapchain command buffer if GUI is enabled.
     std::vector<vk::CommandBuffer> commandBuffers = { m_swapchainCommandBuffers.get( )[imageIndex] };
     if ( m_gui != nullptr )
       commandBuffers.push_back( m_gui->getCommandBuffer( imageIndex ) );
-
-    vk::SubmitInfo submitInfo( 1,                                                                                                  // waitSemaphoreCount
-                               &m_imageAvailableSemaphores[currentFrame].get( ),                                                   // pWaitSemaphores
-                               std::array<vk::PipelineStageFlags, 1>{ vk::PipelineStageFlagBits::eColorAttachmentOutput }.data( ), // pWaitDstStageMask
-                               static_cast<uint32_t>( commandBuffers.size( ) ),                                                    // commandBufferCount
-                               commandBuffers.data( ),                                                                             // pCommandBuffers
-                               1,                                                                                                  // signalSemaphoreCount
-                               & m_finishedRenderSemaphores[currentFrame].get( ) );                                                 // pSignalSemaphores
 
     // Reset the signaled state of the current frame's fence to the unsignaled one.
     g_device.resetFences( 1, &m_inFlightFences[currentFrame].get( ) );
 
     // Submits / executes the current image's / framebuffer's command buffer.
+    auto pWaitDstStageMask = vk::PipelineStageFlagBits::eColorAttachmentOutput;
+    auto submitInfo = vk::Helper::getSubmitInfo( m_imageAvailableSemaphores[currentFrame].get( ), m_finishedRenderSemaphores[currentFrame].get( ), commandBuffers, pWaitDstStageMask );
     g_graphicsQueue.submit( submitInfo, m_inFlightFences[currentFrame].get( ) );
 
-    vk::PresentInfoKHR presentInfo( 1,                                                // waitSemaphoreCount
-                                    &m_finishedRenderSemaphores[currentFrame].get( ), // pWaitSemaphores
-                                    1,                                                // swapchainCount
-                                    &g_swapchain,                                     // pSwapchains
-                                    &imageIndex,                                      // pImageIndices
-                                    nullptr );                                        // pResults
-
     // Tell the presentation engine that the current image is ready.
+    auto presentInfo = vk::Helper::getPresentInfoKHR( m_finishedRenderSemaphores[currentFrame].get( ), imageIndex );
     g_graphicsQueue.presentKHR( presentInfo );
 
     currentFrame = ( currentFrame + 1 ) % maxFramesInFlight;

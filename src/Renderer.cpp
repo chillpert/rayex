@@ -54,34 +54,20 @@ namespace rx
     m_initialized = true;
   }
 
-  void Renderer::update( )
+  void Renderer::run( )
   {
     if ( !m_running || !m_initialized )
       return;
 
     m_running = m_window->update( );
     m_camera->update( );
-    m_api.update( );
-  }
 
-  void Renderer::render( )
-  {
     if ( !m_running || !m_initialized )
       return;
 
     m_running = m_window->render( );
     m_api.render( );
-  }
-
-  void Renderer::start( )
-  {
-    init( );
-
-    while ( m_running )
-    {
-      update( );
-      render( );
-    }
+    m_api.update( );
   }
 
   void Renderer::pushNode( const std::shared_ptr<Node> node )
@@ -93,10 +79,15 @@ namespace rx
   {
     m_api.setNodes( nodes );
   }
+
+  void Renderer::setCamera( std::shared_ptr<CameraBase> camera )
+  {
+    m_camera = camera;
+  }
   
   void Renderer::setGui( std::shared_ptr<GuiBase> gui )
   {
-    m_api.m_gui = gui;
+    m_api.setGui( gui );
     
     if ( m_initialized )
       m_api.initGui( );

@@ -31,6 +31,8 @@ namespace rx
     Api( std::shared_ptr<WindowBase> window, std::shared_ptr<GuiBase> gui, std::shared_ptr<CameraBase> camera );
     RX_API ~Api( );
 
+    RX_API void setGui( const std::shared_ptr<GuiBase> gui );
+
     void init( );
     bool update( );
     bool render( );
@@ -45,6 +47,8 @@ namespace rx
 
     void recordSwapchainCommandBuffers( );
     void initSyncObjects( );
+
+    void initDescriptorSetLayouts( );
 
     void clean( );
     void recreateSwapchain( );
@@ -66,6 +70,15 @@ namespace rx
     std::vector<vk::UniqueSemaphore> m_imageAvailableSemaphores;
     std::vector<vk::UniqueSemaphore> m_finishedRenderSemaphores;
 
+    DescriptorSetLayout m_rtDescriptorSetLayout;
+    vk::UniqueDescriptorPool m_rtDescriptorPool;
+    DescriptorSet m_rtDescriptorSets;
+
+    DescriptorSetLayout m_descriptorSetLayout;
+    vk::UniqueDescriptorPool m_descriptorPool;
+
+    UniformBuffer m_cameraUniformBuffer;
+
     // Nodes to render.
     std::vector<std::shared_ptr<GeometryNode>> m_geometryNodes;
     std::vector<std::shared_ptr<LightNode>> m_lightNodes;
@@ -79,10 +92,8 @@ namespace rx
     Pipeline m_rtPipeline;
     CommandBuffer m_swapchainCommandBuffers;
     
-  public:
     std::shared_ptr<GuiBase> m_gui;
 
-  private:
     // No destruction necessary for following members:
     PhysicalDevice m_physicalDevice;
     Queues m_queues;

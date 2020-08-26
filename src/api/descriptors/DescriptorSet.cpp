@@ -24,28 +24,7 @@ namespace rx
       RX_ASSERT( set, "Failed to create descriptor sets." );
   }
 
-  void DescriptorSet::update( const std::vector<vk::Buffer>& uniformBuffers, vk::ImageView textureImageView, vk::Sampler textureSampler )
-  {
-    for (size_t i = 0; i < m_layouts.size(); ++i)
-    {
-      vk::DescriptorBufferInfo bufferInfo( uniformBuffers[i],               // buffer
-                                           0,                               // offset
-                                           sizeof( UniformBufferObject ) ); // range
-
-      vk::DescriptorImageInfo imageInfo( textureSampler,                            // sampler
-                                         textureImageView,                          // imageView
-                                         vk::ImageLayout::eShaderReadOnlyOptimal ); // imageLayout
-
-      // TODO: a lot of this information is already stored in the bindings which are part of DescriptorSetLayout. Re-use this here.
-      std::array<vk::WriteDescriptorSet, 2> descriptorWrites{ };
-      descriptorWrites[0] = writeUniformBuffer( m_sets[i], 0, bufferInfo );
-      descriptorWrites[1] = writeCombinedImageSampler( m_sets[i], 1, imageInfo );
-
-      g_device.updateDescriptorSets(descriptorWrites, 0);    
-    }
-  }
-
-  void DescriptorSet::update( const std::vector<vk::Buffer>& uniformBuffers, vk::AccelerationStructureKHR tlas, vk::ImageView storageImageView )
+  void DescriptorSet::update( vk::AccelerationStructureKHR tlas, vk::ImageView storageImageView, const std::vector<vk::Buffer>& uniformBuffers )
   {
     for ( size_t i = 0; i < m_layouts.size( ); ++i )
     {
@@ -56,16 +35,28 @@ namespace rx
                                          storageImageView,            // imageView
                                          vk::ImageLayout::eGeneral ); // imageLayout
 
-      vk::DescriptorBufferInfo bufferInfo( uniformBuffers[i],               // buffer
-                                           0,                               // offset
-                                           sizeof( UniformBufferObject ) ); // range
+      vk::DescriptorBufferInfo cameraBufferInfo( uniformBuffers[i],      // buffer
+                                                 0,                      // offset
+                                                 sizeof( CameraUbo ) );  // range
 
       std::array<vk::WriteDescriptorSet, 3> descriptorWrites;
       descriptorWrites[0] = writeAccelerationStructure( m_sets[i], 0, &descriptorInfoAS );
       descriptorWrites[1] = writeStorageImage( m_sets[i], 1, imageInfo );
-      descriptorWrites[2] = writeUniformBuffer( m_sets[i], 2, bufferInfo );
+      descriptorWrites[2] = writeUniformBuffer( m_sets[i], 2, cameraBufferInfo );
 
       g_device.updateDescriptorSets( descriptorWrites, 0 );
+    }
+  }
+
+  void DescriptorSet::update( vk::ImageView textureImageView, vk::Sampler textureSampler )
+  {
+    for ( size_t i = 0; i < m_layouts.size( ); ++i )
+    {
+      vk::DescriptorImageInfo textureInfo( textureSampler,                            // sampler
+                                           textureImageView,                          // imageView
+                                           vk::ImageLayout::eShaderReadOnlyOptimal ); // imageLayout
+
+      g_device.updateDescriptorSets( writeCombinedImageSampler( m_sets[i], 0, textureInfo ), 0 );
     }
   }
 

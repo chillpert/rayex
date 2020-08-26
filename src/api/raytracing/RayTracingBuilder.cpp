@@ -360,32 +360,6 @@ namespace rx
     cmdBuf.submitToQueue( g_graphicsQueue );
   }
 
-  void RayTracingBuilder::createDescriptorSetLayout( )
-  {
-    // TLAS.
-    vk::DescriptorSetLayoutBinding tlasBinding( 0,                                             // binding
-                                                vk::DescriptorType::eAccelerationStructureKHR, // descriptorType
-                                                1,                                             // descriptorCount
-                                                vk::ShaderStageFlagBits::eRaygenKHR | vk::ShaderStageFlagBits::eClosestHitKHR, // stageFlags
-                                                nullptr );                                     // pImmutableSamplers
-
-    // Output image.
-    vk::DescriptorSetLayoutBinding outputImageBinding( 1,                                   // binding
-                                                       vk::DescriptorType::eStorageImage,   // descriptorType
-                                                       1,                                   // descriptorCount
-                                                       vk::ShaderStageFlagBits::eRaygenKHR, // stageFlags
-                                                       nullptr );                           // pImmutableSamplers
-    // Uniform buffer.
-    vk::DescriptorSetLayoutBinding uniformBufferBinding( 2,                                   // binding
-                                                         vk::DescriptorType::eUniformBuffer,  // descriptorType
-                                                         1,                                   // descriptorCount
-                                                         vk::ShaderStageFlagBits::eVertex | vk::ShaderStageFlagBits::eRaygenKHR, // stageFlags
-                                                         nullptr );                           // pImmutableSamplers
-    m_bindings = { tlasBinding, outputImageBinding, uniformBufferBinding };
-
-    m_descriptorSetLayout.init( m_bindings );
-  }
-
   void RayTracingBuilder::createSceneDescriptorSetLayout( )
   {
     /*
@@ -456,23 +430,6 @@ namespace rx
 
     m_sceneDescriptorSetLayout.init( { vertexBinding, indexBinding } );
     */
-  }
-
-  void RayTracingBuilder::createDescriptorPool( uint32_t swapchainImagesCount )
-  {
-    m_descriptorPool = vk::Initializer::createDescriptorPoolUnique( vk::Helper::getPoolSizes( m_bindings ), static_cast<uint32_t>( g_maxGeometryNodes ) * swapchainImagesCount );
-  }
-
-  void RayTracingBuilder::createDescriptorSets( uint32_t swapchainImagesCount )
-  {
-    m_descriptorSets.init( m_descriptorPool.get( ), swapchainImagesCount, std::vector<vk::DescriptorSetLayout>{ swapchainImagesCount, m_descriptorSetLayout.get( ) } );
-    //m_sceneDescriptorSets.init( m_descriptorPool.get( ), swapchainImagesCount, std::vector<vk::DescriptorSetLayout>{ swapchainImagesCount, m_descriptorSetLayout.get( ) } );
-  }
-
-  void RayTracingBuilder::updateDescriptorSets( std::vector<vk::Buffer> uniformBuffer, vk::Buffer vertexBuffer, vk::Buffer indexBuffer )
-  {
-    m_descriptorSets.update( uniformBuffer, m_tlas.as.as, m_storageImageView.get( ) );
-    //m_sceneDescriptorSets.update( vertexBuffer, indexBuffer );
   }
 
   void RayTracingBuilder::createStorageImage( vk::Extent2D swapchainExtent )

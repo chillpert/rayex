@@ -51,6 +51,11 @@ namespace rx
       m_gui->destroy( );
   }
 
+  void Api::setGui( const std::shared_ptr<GuiBase> gui )
+  {
+    m_gui = gui;
+  }
+
   void Api::init( )
   {
     m_geometryNodes.reserve( g_maxGeometryNodes );
@@ -88,12 +93,24 @@ namespace rx
     // Swapchain
     m_swapchain.init( &m_surface, m_renderPass.get( ) );
 
-    // Descriptor set layout
-    m_rayTracingBuilder.createDescriptorSetLayout( );
+    // Descriptor set layouts
+    initDescriptorSetLayouts( );
+
+    // Descriptor pool
+    m_descriptorPool = vk::Initializer::createDescriptorPoolUnique( vk::Helper::getPoolSizes( m_descriptorSetLayout.getBindings( ) ), static_cast<uint32_t>( g_maxGeometryNodes ) * g_swapchainImageCount );
+
+    // Ray tracing descriptor pool
+    m_rtDescriptorPool = vk::Initializer::createDescriptorPoolUnique( vk::Helper::getPoolSizes( m_rtDescriptorSetLayout.getBindings( ) ), static_cast<uint32_t>( g_maxGeometryNodes ) * g_swapchainImageCount );
     
+    // Ray tracing descriptor set
+    m_rtDescriptorSets.init( m_rtDescriptorPool.get( ), g_swapchainImageCount, std::vector<vk::DescriptorSetLayout>{ g_swapchainImageCount, m_rtDescriptorSetLayout.get( ) } );
+
+    // Uniform buffer for camera
+    m_cameraUniformBuffer.init<CameraUbo>( g_swapchainImageCount );
+
     // Pipeline
     m_rtPipeline.init( vk::Rect2D( 0, { m_swapchain.getExtent( ).width, m_swapchain.getExtent( ).height } ), // scissor
-                       { m_rayTracingBuilder.getDescriptorSetLayout( ) } );                                  // descriptorSetLayouts
+                       { m_rtDescriptorSetLayout.get( ), m_descriptorSetLayout.get( ) } );                                                   // descriptorSetLayouts
 
     // Command pools
     m_graphicsCmdPool = vk::Initializer::createCommandPoolUnique( g_graphicsFamilyIndex, vk::CommandPoolCreateFlagBits::eResetCommandBuffer );
@@ -131,6 +148,13 @@ namespace rx
       // Trigger swapchain / pipeline recreation
     }
 
+    uint32_t imageIndex = m_swapchain.getCurrentImageIndex( );
+
+    // Update camera
+    // TODO: only update when necessary.
+    CameraUbo camUbo { m_camera->getViewInverseMatrix( ), m_camera->getProjectionInverseMatrix( ) };
+    m_cameraUniformBuffer.upload<CameraUbo>( imageIndex, camUbo );
+
     return true;
   }
 
@@ -158,19 +182,15 @@ namespace rx
   {
     uint32_t imageIndex = m_swapchain.getCurrentImageIndex( );
 
+    // TODO: This should only be called if the camera was changed. 
+    // TODO: This should be moved to update function.
+    for ( std::shared_ptr<GeometryNode> node : m_geometryNodes )
     {
-      // TODO: This should only be called if the camera was changed. 
-      // TODO: This should be moved to update function.
-      for ( std::shared_ptr<GeometryNode> node : m_geometryNodes )
-      {
-        if ( node->m_modelPath.empty( ) )
-          continue;
+      if ( node->m_modelPath.empty( ) )
+        continue;
 
-        UniformBufferObject ubo { node->m_worldTransform, m_camera->getViewMatrix( ), m_camera->getProjectionMatrix( ), m_camera->getViewInverseMatrix( ), m_camera->getProjectionInverseMatrix( ), m_camera->getPosition( ) };
-        node->m_uniformBuffers.upload( imageIndex, ubo );
-      }
     }
-
+      
     // Check if a previous frame is using the current image.
     if ( m_imagesInFlight[imageIndex] )
       g_device.waitForFences( 1, &m_imagesInFlight[currentFrame], VK_TRUE, UINT64_MAX );
@@ -353,12 +373,15 @@ namespace rx
 
   void Api::initModel( const std::shared_ptr<GeometryNode> node )
   {
+    // TODO: add handling for missing textures, models etc.
+
     auto it = m_models.find( node->m_modelPath );
     auto model = it->second;
     if ( !model->m_initialized )
     {
       model->m_vertexBuffer.init( model->m_vertices );
       model->m_indexBuffer.init( model->m_indices );
+      model->m_descriptorSets.init( m_descriptorPool.get( ), g_swapchainImageCount, std::vector<vk::DescriptorSetLayout>{ g_swapchainImageCount, m_descriptorSetLayout.get( ) } );
 
       model->m_initialized = true;
     }
@@ -368,13 +391,11 @@ namespace rx
     m_rayTracingBuilder.createTopLevelAS( m_geometryNodes );
     m_rayTracingBuilder.createShaderBindingTable( m_rtPipeline.get( ) );
 
-    node->m_uniformBuffers.init( g_swapchainImageCount );
+    // Update ray tracing descriptor set
+    m_rtDescriptorSets.update( m_rayTracingBuilder.getTlas( ).as.as, m_rayTracingBuilder.getStorageImageView( ), m_cameraUniformBuffer.getRaw( ) );
 
-    // Create the ray tracing descriptor sets.
-    m_rayTracingBuilder.createDescriptorPool( g_swapchainImageCount );
-    m_rayTracingBuilder.createDescriptorSets( g_swapchainImageCount );
-
-    m_rayTracingBuilder.updateDescriptorSets( node->m_uniformBuffers.getRaw( ), model->m_vertexBuffer.get( ), model->m_indexBuffer.get( ) );
+    auto diffuseIter = m_textures.find( node->m_material.m_diffuseTexture );
+    model->m_descriptorSets.update( diffuseIter->second->getImageView( ), diffuseIter->second->getSampler( ) );
   }
 
   void Api::initGui( )
@@ -399,7 +420,10 @@ namespace rx
         
       for ( const auto& node : m_geometryNodes )
       {
-        std::vector<vk::DescriptorSet> descriptorSets = { m_rayTracingBuilder.getDescriptorSets( ).get( imageIndex ) }; // , m_rayTracingBuilder.getSceneDescriptorSets( ).get( imageIndex ) };
+        auto iter = m_models.find( node->m_modelPath );
+        RX_ASSERT( ( iter->second != nullptr ), "Can not find model" );
+
+        std::vector<vk::DescriptorSet> descriptorSets = { m_rtDescriptorSets.get( imageIndex ), iter->second->m_descriptorSets.get( imageIndex ) };
 
         m_swapchainCommandBuffers.get( imageIndex ).bindDescriptorSets( vk::PipelineBindPoint::eRayTracingKHR,
                                                                         m_rtPipeline.getLayout( ),
@@ -409,6 +433,7 @@ namespace rx
                                                                         0,                                                           // dynamic offset count
                                                                         nullptr );                                                   // dynamic offsets 
 
+        /*
         m_rayTracingBuilder.m_rtPushConstants.clearColor = { 1.0f, 0.0f, 0.0f, 1.0f };
         m_rayTracingBuilder.m_rtPushConstants.lightPosition = { 10.0f, 10.0f, 0.0f };
         m_rayTracingBuilder.m_rtPushConstants.lightIntensity = 2.5f;
@@ -418,6 +443,7 @@ namespace rx
                                                                                                     vk::ShaderStageFlagBits::eRaygenKHR | vk::ShaderStageFlagBits::eClosestHitKHR | vk::ShaderStageFlagBits::eMissKHR, 
                                                                                                     0,
                                                                                                     m_rayTracingBuilder.m_rtPushConstants );
+        */
 
         m_rayTracingBuilder.rayTrace( m_swapchainCommandBuffers.get( imageIndex ), m_swapchain.getImage( imageIndex ), m_window->getExtent( ) );
       }
@@ -428,7 +454,6 @@ namespace rx
 
   void Api::initSyncObjects( )
   {
-    // Synchronization
     m_imageAvailableSemaphores.resize( maxFramesInFlight );
     m_finishedRenderSemaphores.resize( maxFramesInFlight );
     m_inFlightFences.resize( maxFramesInFlight );
@@ -440,5 +465,48 @@ namespace rx
       m_finishedRenderSemaphores[i] = vk::Initializer::createSemaphoreUnique( );
       m_inFlightFences[i] = vk::Initializer::createFenceUnique( );
     }
+  }
+
+  void Api::initDescriptorSetLayouts( )
+  {
+    // Create the ray tracing descriptor set layout
+
+    // TLAS
+    vk::DescriptorSetLayoutBinding tlasBinding( 0,                                                                             // binding
+                                                vk::DescriptorType::eAccelerationStructureKHR,                                 // descriptorType
+                                                1,                                                                             // descriptorCount
+                                                vk::ShaderStageFlagBits::eRaygenKHR | vk::ShaderStageFlagBits::eClosestHitKHR, // stageFlags
+                                                nullptr );                                                                     // pImmutableSamplers
+
+    // Output imagey
+    vk::DescriptorSetLayoutBinding outputImageBinding( 1,                                   // binding
+                                                       vk::DescriptorType::eStorageImage,   // descriptorType
+                                                       1,                                   // descriptorCount
+                                                       vk::ShaderStageFlagBits::eRaygenKHR, // stageFlags
+                                                       nullptr );                           // pImmutableSamplers
+    // Uniform buffer
+    vk::DescriptorSetLayoutBinding cameraUniformBufferBinding( 2,                                                                      // binding
+                                                               vk::DescriptorType::eUniformBuffer,                                     // descriptorType
+                                                               1,                                                                      // descriptorCount
+                                                               vk::ShaderStageFlagBits::eVertex | vk::ShaderStageFlagBits::eRaygenKHR, // stageFlags
+                                                               nullptr );                                                              // pImmutableSamplers
+
+
+
+    std::vector<vk::DescriptorSetLayoutBinding> rtBindings = { tlasBinding, outputImageBinding, cameraUniformBufferBinding };
+    m_rtDescriptorSetLayout.init( rtBindings );
+
+    // Create the descriptor set layout for models
+
+    // Texture image
+    vk::DescriptorSetLayoutBinding textureBinding( 0,                                                                            // binding
+                                                   vk::DescriptorType::eCombinedImageSampler,                                    // descriptorType
+                                                   1,                                                                            // descriptorCount
+                                                   vk::ShaderStageFlagBits::eFragment | vk::ShaderStageFlagBits::eClosestHitKHR, // stageFlags
+                                                   nullptr );                                                                    // pImmutableSamplers
+
+
+    std::vector<vk::DescriptorSetLayoutBinding> bindings = { textureBinding };
+    m_descriptorSetLayout.init( bindings );
   }
 }

@@ -18,10 +18,7 @@ namespace rx
     RX_API Renderer( std::shared_ptr<WindowBase> window, std::shared_ptr<CameraBase> camera );
 
     RX_API void init( );
-    RX_API void update( );
-    RX_API void render( );
-
-    RX_API void start( );
+    RX_API void run( );
 
     RX_API bool isRunning( ) { return m_running; }
 
@@ -30,6 +27,7 @@ namespace rx
     RX_API void pushNode( const std::shared_ptr<Node> node );
     RX_API void setNodes( const std::vector<std::shared_ptr<Node>>& nodes );
 
+    RX_API void setCamera( std::shared_ptr<CameraBase> camera );
     RX_API void setGui( std::shared_ptr<GuiBase> gui );
 
   private:

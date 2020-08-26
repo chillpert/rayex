@@ -20,6 +20,7 @@ namespace rx
     auto miss = vk::Initializer::createShaderModuleUnique( "shaders/raytrace.rmiss" );
     auto chit = vk::Initializer::createShaderModuleUnique( "shaders/raytrace.rchit" );
 
+    /*
     vk::PushConstantRange pushConstantRange( vk::ShaderStageFlagBits::eRaygenKHR | vk::ShaderStageFlagBits::eClosestHitKHR | vk::ShaderStageFlagBits::eMissKHR, // stageFlags
                                              0,                                                                                                                 // offset
                                              sizeof( RayTracingBuilder::PushConstant ) );                                                                       // size
@@ -29,6 +30,13 @@ namespace rx
                                              descriptorSetLayouts.data( ),                          // pSetLayouts
                                              1,                                                     // pushConstantRangeCount
                                              &pushConstantRange );                                  // pPushConstantRanges
+    */
+
+    vk::PipelineLayoutCreateInfo layoutInfo( { },                                                   // flags
+                                             static_cast<uint32_t>( descriptorSetLayouts.size( ) ), // setLayoutCount
+                                             descriptorSetLayouts.data( ),                          // pSetLayouts
+                                             0,                                                     // pushConstantRangeCount
+                                             nullptr );                                             // pPushConstantRanges
 
     m_layout = g_device.createPipelineLayoutUnique( layoutInfo );
     if ( !m_layout )

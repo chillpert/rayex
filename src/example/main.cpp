@@ -302,12 +302,16 @@ int main( int argc, char* argv[] )
 
   // Define the window's properties according to your preferences.
   WindowProperties props( width, height, "Example", WINDOW_RESIZABLE | WINDOW_VISIBLE );
+
   // Now create the actual window using the window properties from above.
   auto myWindow = std::make_shared<CustomWindow>( props );
+
   // Create instance of your custom camera class.
   auto myCam = std::make_shared<CustomCamera>( glm::ivec2{ width, height }, glm::vec3{ 0.0f, 0.0f, 3.0f } );
+
   // Create the renderer object ...
   Renderer renderer( myWindow, myCam );
+
   // ... and initialize it.
   renderer.init( );
 
@@ -339,13 +343,10 @@ int main( int argc, char* argv[] )
 
   while ( renderer.isRunning( ) )
   { 
-    dragonLore->m_worldTransform = glm::rotate( dragonLore->m_worldTransform, glm::radians( 90.0f ) * Time::getDeltaTime( ) * speed, glm::vec3( 0.0f, 1.0f, 0.0f ) );
+    //dragonLore->m_worldTransform = glm::rotate( dragonLore->m_worldTransform, glm::radians( 90.0f ) * Time::getDeltaTime( ) * speed, glm::vec3( 0.0f, 1.0f, 0.0f ) );
     //mars->m_worldTransform = glm::rotate( mars->m_worldTransform, glm::radians( 90.0f ) * Time::getDeltaTime( ) * -speed, glm::vec3( 0.0f, 1.0f, 0.0f ) );
 
-    // Call udpate and render for the renderer to work properly.
-    // This will also call your custom classes.
-    renderer.update( );
-    renderer.render( );
+    renderer.run( );
   }
 
   return 0;

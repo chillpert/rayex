@@ -219,14 +219,14 @@ namespace vk
       auto barrierInfo = getImageMemoryBarrierInfo( image, oldLayout, newLayout );
 
       commandBuffer.pipelineBarrier( std::get<1>( barrierInfo ),        // srcStageMask
-                                       std::get<2>( barrierInfo ),        // dstStageMask
-                                       DependencyFlagBits::eByRegion,
-                                       0,
-                                       nullptr,
-                                       0,
-                                       nullptr,
-                                       1,
-                                       &std::get<0>( barrierInfo ) );     // barrier
+                                     std::get<2>( barrierInfo ),        // dstStageMask
+                                     DependencyFlagBits::eByRegion,
+                                     0,
+                                     nullptr,
+                                     0,
+                                     nullptr,
+                                     1,
+                                     &std::get<0>( barrierInfo ) );     // barrier
     }
 
     std::tuple<ImageMemoryBarrier, PipelineStageFlags, PipelineStageFlags> getImageMemoryBarrierInfo( Image image, ImageLayout oldLayout, ImageLayout newLayout )
@@ -305,6 +305,32 @@ namespace vk
         RX_ERROR( "Image layout transition not supported." );
 
       return { barrier, srcStageMask, dstStageMask };
+    }
+
+    AttachmentDescription getAttachmentDescription( Format surfaceFormat, bool guiEnabled )
+    {
+      return vk::AttachmentDescription( { },                                                                               // flags
+                                        surfaceFormat,                                                                     // format
+                                        SampleCountFlagBits::e1,                                                           // samples
+                                        AttachmentLoadOp::eClear,                                                          // loadOp
+                                        AttachmentStoreOp::eStore,                                                         // storeOp
+                                        AttachmentLoadOp::eDontCare,                                                       // stencilLoadOp
+                                        AttachmentStoreOp::eDontCare,                                                      // stencilStoreOp
+                                        ImageLayout::eUndefined,                                                           // initialLayout
+                                        guiEnabled ? ImageLayout::eColorAttachmentOptimal : ImageLayout::ePresentSrcKHR ); // finalLayout  
+    }
+
+    AttachmentDescription getDepthAttachmentDescription( Format depthFormat )
+    {
+      return AttachmentDescription( { },                                           // flags
+                                    depthFormat,                                   // format
+                                    SampleCountFlagBits::e1,                       // samples
+                                    AttachmentLoadOp::eClear,                      // loadOp
+                                    AttachmentStoreOp::eStore,                     // storeOp
+                                    AttachmentLoadOp::eClear,                      // stencilLoadOp
+                                    AttachmentStoreOp::eDontCare,                  // stencilStoreOp
+                                    ImageLayout::eUndefined,                       // initialLayout
+                                    ImageLayout::eDepthStencilAttachmentOptimal ); // finalLayout    
     }
   }
 }

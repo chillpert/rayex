@@ -54,7 +54,7 @@ namespace rx
     initFramebuffers( swapchainImageViews );
   }
 
-  void GuiBase::beginRender( )
+  void GuiBase::newFrame( )
   {
     ImGui_ImplVulkan_NewFrame( );
     ImGui_ImplSDL2_NewFrame( g_window->get( ) );
@@ -71,18 +71,15 @@ namespace rx
     ImGui::Render( );
   }
 
-  void GuiBase::beginRenderPass( uint32_t index )
+  void GuiBase::renderDrawData( uint32_t imageIndex )
   {
-    m_commandBuffers.begin( index );
-    m_renderPass.begin( m_framebuffers[index].get( ), m_commandBuffers.get( index ), { 0, m_swapchainImageExtent }, { { std::array < float,4> { 0.5f, 0.5, 0.5f, 1.0f } } } );
-  }
+    m_commandBuffers.begin( imageIndex );
+    m_renderPass.begin( m_framebuffers[imageIndex].get( ), m_commandBuffers.get( imageIndex ), { 0, m_swapchainImageExtent }, { { std::array < float,4> { 0.5f, 0.5, 0.5f, 1.0f } } } );
 
-  void GuiBase::endRenderPass( uint32_t index )
-  {
-    ImGui_ImplVulkan_RenderDrawData( ImGui::GetDrawData( ), m_commandBuffers.get( )[index] );
+    ImGui_ImplVulkan_RenderDrawData( ImGui::GetDrawData( ), m_commandBuffers.get( )[imageIndex] );
 
-    m_renderPass.end( m_commandBuffers.get( index ) );
-    m_commandBuffers.end( index );
+    m_renderPass.end( m_commandBuffers.get( imageIndex ) );
+    m_commandBuffers.end( imageIndex );
   }
 
   void GuiBase::destroy( )

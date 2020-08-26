@@ -10,20 +10,9 @@ namespace rx
   {
   public:
     Pipeline( ) = default;
-    Pipeline( vk::Viewport viewport,
-              vk::Rect2D scissor,
-              const std::vector<vk::DescriptorSetLayout> & descriptorSetLayouts,
-              vk::ShaderModule rayGen,
-              vk::ShaderModule miss,
-              vk::ShaderModule closestHit,
-              bool initialize = true );
+    Pipeline( vk::Rect2D scissor, const std::vector<vk::DescriptorSetLayout>& descriptorSetLayouts, bool initialize = true );
 
-    void init( vk::Viewport viewport,
-               vk::Rect2D scissor,
-               const std::vector<vk::DescriptorSetLayout> & descriptorSetLayouts,
-               vk::ShaderModule rayGen,
-               vk::ShaderModule miss,
-               vk::ShaderModule closestHit );
+    void init( vk::Rect2D scissor, const std::vector<vk::DescriptorSetLayout> & descriptorSetLayouts );
 
     inline const vk::Pipeline get( ) const { return m_pipeline.get( ); }
     inline const vk::PipelineLayout getLayout( ) const { return m_layout.get( ); }

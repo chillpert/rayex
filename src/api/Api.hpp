@@ -40,21 +40,14 @@ namespace rx
     RX_API void initGui( );
 
   private:
-    void initDevice( );
     void initRenderPass( );
-    void initSwapchain( );
-    void initPipeline( bool firstRun = true );
-    void initGraphicsCommandPool( );
-    void initTransferCommandPool( );
     void initModel( const std::shared_ptr<GeometryNode> node );
-    void initSwapchainCommandBuffers( );
+
     void recordSwapchainCommandBuffers( );
     void initSyncObjects( );
 
     void clean( );
     void recreateSwapchain( );
-
-    void initRayTracing( );
 
     bool prepareFrame( );
     bool submitFrame( );

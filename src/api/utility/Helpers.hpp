@@ -87,14 +87,25 @@ namespace vk
     // @param oldLayout - The current image layout of the given vulkan image.
     // @param newLayout - The target image layout.
     // @param commandBuffer - The command buffer that will be used. It must be in the recording stage.
-    void transitionImageLayout( Image image, ImageLayout oldLayout, ImageLayout newLayout, vk::CommandBuffer commandBuffer );
+    void transitionImageLayout( Image image, ImageLayout oldLayout, ImageLayout newLayout, CommandBuffer commandBuffer );
 
     // Simplifies the process of setting up an image memory barrier info.
     // @param image - The vulkan image.
     // @param oldLayout - The current image layout of the given vulkan image.
     // @param newLayout - The target image layout.
     // @return - Returns a tuple containing the actual image memory barrier as well as the source stage mask and the destination stage mask. 
-    std::tuple<vk::ImageMemoryBarrier, vk::PipelineStageFlags, vk::PipelineStageFlags> getImageMemoryBarrierInfo( vk::Image image, vk::ImageLayout oldLayout, vk::ImageLayout newLayout );
+    std::tuple<ImageMemoryBarrier, PipelineStageFlags, PipelineStageFlags> getImageMemoryBarrierInfo( Image image, ImageLayout oldLayout, ImageLayout newLayout );
+
+    // Simplifies the process of setting up an attachment description for a render pass.
+    // @param surfaceFormat - The surface's format.
+    // @param guiEnabled - If the GUI is enabled the final layout will be changed.
+    // @return - Returns the completed attachment description.
+    AttachmentDescription getAttachmentDescription( Format surfaceFormat, bool guiEnabled );
+
+    // Simplifies the process of setting up a depth attachment description for a render pass.
+    // @param depthFormat - The depth format.
+    // @return - Returns the completed depth attachment description.
+    AttachmentDescription getDepthAttachmentDescription( Format depthFormat );
   }
 }
 

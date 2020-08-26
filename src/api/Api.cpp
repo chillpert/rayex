@@ -81,18 +81,44 @@ namespace rx
 
     // Retrieve all queue handles.
     m_queues.retrieveHandles( );
+
+    // Render pass
     initRenderPass( );
-    initSwapchain( );
-    initPipeline( );
-    initGraphicsCommandPool( );
-    initTransferCommandPool( );
-    initRayTracing( );
-    initSwapchainCommandBuffers( );
+
+    // Swapchain
+    m_swapchain.init( &m_surface, m_renderPass.get( ) );
+
+    // Descriptor set layout
+    m_rayTracingBuilder.createDescriptorSetLayout( );
+    
+    // Pipeline
+    m_rtPipeline.init( vk::Rect2D( 0, { m_swapchain.getExtent( ).width, m_swapchain.getExtent( ).height } ), // scissor
+                       { m_rayTracingBuilder.getDescriptorSetLayout( ) } );                                  // descriptorSetLayouts
+
+    // Command pools
+    m_graphicsCmdPool = vk::Initializer::createCommandPoolUnique( g_graphicsFamilyIndex, vk::CommandPoolCreateFlagBits::eResetCommandBuffer );
+    g_graphicsCmdPool = m_graphicsCmdPool.get( );
+
+    m_transferCmdPool = vk::Initializer::createCommandPoolUnique( g_transferFamilyIndex, { } );
+    g_transferCmdPool = m_transferCmdPool.get( );
+
+    // Ray tracing
+    m_rayTracingBuilder.init( );
+    m_rayTracingBuilder.createStorageImage( m_swapchain.getExtent( ) ); // TODO: this should be done inside RayTracingBuilder::init.
+    
+    // Swapchain command buffers
+    m_swapchainCommandBuffers.init( m_graphicsCmdPool.get( ), g_swapchainImageCount, vk::CommandBufferUsageFlagBits::eRenderPassContinue );
+
+    // GUI
     initGui( );
+
+    // Record swapchain command buffers.
     recordSwapchainCommandBuffers( );
+
+    // Create fences and semaphores.
     initSyncObjects( );
 
-    // Temporary: Make sure swapchain images are presentable.
+    // Make sure swapchain images are presentable in case they were not transitioned automatically.
     m_swapchain.setImageLayout( vk::ImageLayout::eUndefined, vk::ImageLayout::ePresentSrcKHR );
 
     RX_LOG( "Finished API initialization." );
@@ -178,7 +204,7 @@ namespace rx
   {
     if ( m_gui != nullptr )
     {
-      m_gui->beginRender( );
+      m_gui->newFrame( );
       m_gui->render( );
       m_gui->endRender( );
     }
@@ -187,11 +213,7 @@ namespace rx
       return true;
 
     if ( m_gui != nullptr )
-    {
-      uint32_t imageIndex = m_swapchain.getCurrentImageIndex( );
-      m_gui->beginRenderPass( imageIndex );
-      m_gui->endRenderPass( imageIndex );
-    }
+      m_gui->renderDrawData( m_swapchain.getCurrentImageIndex( ) );
 
     if ( submitFrame( ) )
       return true;
@@ -269,8 +291,10 @@ namespace rx
     m_swapchain.destroy( );
 
     // Recreating the swapchain.
-    initSwapchain( );
-    initSwapchainCommandBuffers( );
+    m_swapchain.init( &m_surface, m_renderPass.get( ) );
+
+    // Swapchain command buffers
+    m_swapchainCommandBuffers.init( m_graphicsCmdPool.get( ), g_swapchainImageCount, vk::CommandBufferUsageFlagBits::eRenderPassContinue );
     recordSwapchainCommandBuffers( );
 
     if ( m_gui != nullptr )
@@ -283,37 +307,14 @@ namespace rx
     RX_LOG( "Finished swapchain recreation." );
   }
 
-  void Api::initRayTracing( )
-  {
-    m_rayTracingBuilder.init( );
-
-    m_rayTracingBuilder.createStorageImage( m_swapchain.getExtent( ) );
-  }
-
   void Api::initRenderPass( )
   {
-    vk::AttachmentDescription colorAttachmentDescription( { },                                                                                              // flags
-                                                          m_surface.getFormat( ),                                                                           // format
-                                                          vk::SampleCountFlagBits::e1,                                                                      // samples
-                                                          vk::AttachmentLoadOp::eClear,                                                                     // loadOp
-                                                          vk::AttachmentStoreOp::eStore,                                                                    // storeOp
-                                                          vk::AttachmentLoadOp::eDontCare,                                                                  // stencilLoadOp
-                                                          vk::AttachmentStoreOp::eDontCare,                                                                 // stencilStoreOp
-                                                          vk::ImageLayout::eUndefined,                                                                      // initialLayout
-                                                          m_gui != nullptr ? vk::ImageLayout::eColorAttachmentOptimal : vk::ImageLayout::ePresentSrcKHR );  // finalLayout    
+    auto colorAttachmentDescription = vk::Helper::getAttachmentDescription( m_surface.getFormat( ), m_gui != nullptr );
 
     vk::AttachmentReference colorAttachmentReference( 0,                                          // attachment
                                                       vk::ImageLayout::eColorAttachmentOptimal ); // layout
 
-    vk::AttachmentDescription depthAttachmentDescription( { },                                                // flags
-                                                          getSupportedDepthFormat( g_physicalDevice ),        // format
-                                                          vk::SampleCountFlagBits::e1,                        // samples
-                                                          vk::AttachmentLoadOp::eClear,                       // loadOp
-                                                          vk::AttachmentStoreOp::eStore,                      // storeOp
-                                                          vk::AttachmentLoadOp::eClear,                       // stencilLoadOp
-                                                          vk::AttachmentStoreOp::eDontCare,                   // stencilStoreOp
-                                                          vk::ImageLayout::eUndefined,                        // initialLayout
-                                                          vk::ImageLayout::eDepthStencilAttachmentOptimal );  // finalLayout    
+    auto depthAttachmentDescription = vk::Helper::getDepthAttachmentDescription( getSupportedDepthFormat( g_physicalDevice ) );
 
     vk::AttachmentReference depthAttachmentRef( 1,                                                 // attachment
                                                 vk::ImageLayout::eDepthStencilAttachmentOptimal ); // layout
@@ -350,44 +351,6 @@ namespace rx
     m_renderPass.init( { colorAttachmentDescription, depthAttachmentDescription }, { subpassDescription }, subpassDependencies );
   }
 
-  void Api::initSwapchain( )
-  {
-    m_swapchain.init( &m_surface, m_renderPass.get( ) );
-  }
-
-  void Api::initPipeline( bool firstRun )
-  {
-    glm::fvec2 extent = { static_cast<float>( m_swapchain.getExtent( ).width ), static_cast<float>( m_swapchain.getExtent( ).height ) };
-
-    // Initialize the ray tracing pipeline.
-    auto rgen = vk::Initializer::createShaderModuleUnique( "shaders/raytrace.rgen" );
-    auto miss = vk::Initializer::createShaderModuleUnique( "shaders/raytrace.rmiss" );
-    auto chit = vk::Initializer::createShaderModuleUnique( "shaders/raytrace.rchit" );
-
-    // Also creates the bindings.
-    m_rayTracingBuilder.createDescriptorSetLayout( );
-    //m_rayTracingBuilder.createSceneDescriptorSetLayout( );
-
-    m_rtPipeline.init( vk::Viewport { 0.0f, 0.0f, extent.x, extent.y, 0.0f, 1.0f },
-                       { 0, { m_swapchain.getExtent( ).width, m_swapchain.getExtent( ).height } },
-                       { m_rayTracingBuilder.getDescriptorSetLayout( ) },// m_rayTracingBuilder.getSceneDescriptorSetLayout( ) },
-                       rgen.get( ),
-                       miss.get( ),
-                       chit.get( ) ); // TODO: this should be exposed to client in some config data structure.
-  }
-
-  void Api::initGraphicsCommandPool( )
-  {
-    m_graphicsCmdPool = vk::Initializer::createCommandPoolUnique( g_graphicsFamilyIndex, vk::CommandPoolCreateFlagBits::eResetCommandBuffer );
-    g_graphicsCmdPool = m_graphicsCmdPool.get( );
-  }
-
-  void Api::initTransferCommandPool( )
-  {
-    m_transferCmdPool = vk::Initializer::createCommandPoolUnique( g_transferFamilyIndex, { } );
-    g_transferCmdPool = m_transferCmdPool.get( );
-  }
-
   void Api::initModel( const std::shared_ptr<GeometryNode> node )
   {
     auto it = m_models.find( node->m_modelPath );
@@ -408,18 +371,10 @@ namespace rx
     node->m_uniformBuffers.init( g_swapchainImageCount );
 
     // Create the ray tracing descriptor sets.
-    uint32_t swapchainImagesCount = static_cast<uint32_t>( g_swapchainImageCount );
-    m_rayTracingBuilder.createDescriptorPool( swapchainImagesCount );
-    m_rayTracingBuilder.createDescriptorSets( swapchainImagesCount );
+    m_rayTracingBuilder.createDescriptorPool( g_swapchainImageCount );
+    m_rayTracingBuilder.createDescriptorSets( g_swapchainImageCount );
 
     m_rayTracingBuilder.updateDescriptorSets( node->m_uniformBuffers.getRaw( ), model->m_vertexBuffer.get( ), model->m_indexBuffer.get( ) );
-  }
-
-  void Api::initSwapchainCommandBuffers( )
-  {
-    m_swapchainCommandBuffers.init( m_graphicsCmdPool.get( ), 
-                                    g_swapchainImageCount, 
-                                    vk::CommandBufferUsageFlagBits::eRenderPassContinue );
   }
 
   void Api::initGui( )

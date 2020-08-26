@@ -26,10 +26,9 @@ namespace rx
     void init( const Surface* const surface, vk::Extent2D swapchainImageExtent, const std::vector<vk::ImageView>& swapchainImageViews );
     void recreate( vk::Extent2D swapchainImageExtent, const std::vector<vk::ImageView>& swapchainImageViews );
 
-    void beginRender( );
+    void newFrame( );
     void endRender( );
-    void beginRenderPass( uint32_t index );
-    void endRenderPass( uint32_t index );
+    void renderDrawData( uint32_t imageIndex );
 
     RX_API void destroy( );
 

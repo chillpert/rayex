@@ -4,28 +4,22 @@
 #include "Components.hpp"
 #include "RayTracingBuilder.hpp"
 #include "Settings.hpp"
+#include "Initializers.hpp"
 
 namespace rx
 {
-  Pipeline::Pipeline( vk::Viewport viewport,
-                                          vk::Rect2D scissor,
-                                          const std::vector<vk::DescriptorSetLayout>& descriptorSetLayouts,
-                                          vk::ShaderModule rayGen,
-                                          vk::ShaderModule miss,
-                                          vk::ShaderModule closestHit,
-                                          bool initialize )
+  Pipeline::Pipeline( vk::Rect2D scissor, const std::vector<vk::DescriptorSetLayout>& descriptorSetLayouts, bool initialize )
   {
     if ( initialize )
-      init( viewport, scissor, descriptorSetLayouts, rayGen, miss, closestHit );
+      init( scissor, descriptorSetLayouts );
   }
 
-  void Pipeline::init( vk::Viewport viewport,
-                                 vk::Rect2D scissor,
-                                 const std::vector<vk::DescriptorSetLayout>& descriptorSetLayouts,
-                                 vk::ShaderModule rayGen,
-                                 vk::ShaderModule miss,
-                                 vk::ShaderModule closestHit )
+  void Pipeline::init( vk::Rect2D scissor, const std::vector<vk::DescriptorSetLayout>& descriptorSetLayouts )
   {
+    auto rgen = vk::Initializer::createShaderModuleUnique( "shaders/raytrace.rgen" );
+    auto miss = vk::Initializer::createShaderModuleUnique( "shaders/raytrace.rmiss" );
+    auto chit = vk::Initializer::createShaderModuleUnique( "shaders/raytrace.rchit" );
+
     vk::PushConstantRange pushConstantRange( vk::ShaderStageFlagBits::eRaygenKHR | vk::ShaderStageFlagBits::eClosestHitKHR | vk::ShaderStageFlagBits::eMissKHR, // stageFlags
                                              0,                                                                                                                 // offset
                                              sizeof( RayTracingBuilder::PushConstant ) );                                                                       // size
@@ -41,9 +35,9 @@ namespace rx
       RX_ERROR( "Failed to create pipeline layout." );
 
     std::array<vk::PipelineShaderStageCreateInfo, 3> shaderStages;
-    shaderStages[0] = vk::Helper::getPipelineShaderStageCreateInfo( vk::ShaderStageFlagBits::eRaygenKHR, rayGen );
-    shaderStages[1] = vk::Helper::getPipelineShaderStageCreateInfo( vk::ShaderStageFlagBits::eMissKHR, miss );
-    shaderStages[2] = vk::Helper::getPipelineShaderStageCreateInfo( vk::ShaderStageFlagBits::eClosestHitKHR, closestHit );
+    shaderStages[0] = vk::Helper::getPipelineShaderStageCreateInfo( vk::ShaderStageFlagBits::eRaygenKHR, rgen.get( ) );
+    shaderStages[1] = vk::Helper::getPipelineShaderStageCreateInfo( vk::ShaderStageFlagBits::eMissKHR, miss.get( ) );
+    shaderStages[2] = vk::Helper::getPipelineShaderStageCreateInfo( vk::ShaderStageFlagBits::eClosestHitKHR, chit.get( ) );
 
     // Set up raytracing shader groups.
     std::array<vk::RayTracingShaderGroupCreateInfoKHR, 3> groups;

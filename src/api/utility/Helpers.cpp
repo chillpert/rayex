@@ -78,7 +78,7 @@ namespace vk
                              nullptr );        // pResults
     }
 
-    uint32_t findType( PhysicalDevice physicalDevice, uint32_t typeFilter, MemoryPropertyFlags properties )
+    uint32_t findMemoryType( PhysicalDevice physicalDevice, uint32_t typeFilter, MemoryPropertyFlags properties )
     {
       static PhysicalDeviceMemoryProperties memoryProperties = physicalDevice.getMemoryProperties( );
 

@@ -95,8 +95,8 @@ namespace vk
     {
       auto memoryRequirements = rx::g_device.getImageMemoryRequirements( image );
 
-      vk::MemoryAllocateInfo allocateInfo( memoryRequirements.size,                                                                       // allocationSize 
-                                           Helper::findType( rx::g_physicalDevice, memoryRequirements.memoryTypeBits, propertyFlags ) );  // memoryTypeIndex
+      vk::MemoryAllocateInfo allocateInfo( memoryRequirements.size,                                                                             // allocationSize 
+                                           Helper::findMemoryType( rx::g_physicalDevice, memoryRequirements.memoryTypeBits, propertyFlags ) );  // memoryTypeIndex
 
       allocateInfo.pNext = pNext;
 
@@ -112,8 +112,8 @@ namespace vk
     {
       auto memoryRequirements = rx::g_device.getImageMemoryRequirements( image );
 
-      vk::MemoryAllocateInfo allocateInfo( memoryRequirements.size,                                                                       // allocationSize 
-                                           Helper::findType( rx::g_physicalDevice, memoryRequirements.memoryTypeBits, propertyFlags ) );  // memoryTypeIndex
+      vk::MemoryAllocateInfo allocateInfo( memoryRequirements.size,                                                                             // allocationSize 
+                                           Helper::findMemoryType( rx::g_physicalDevice, memoryRequirements.memoryTypeBits, propertyFlags ) );  // memoryTypeIndex
 
       allocateInfo.pNext = pNext;
 
@@ -129,8 +129,8 @@ namespace vk
     {
       auto memoryRequirements = rx::g_device.getBufferMemoryRequirements( buffer );
 
-      vk::MemoryAllocateInfo allocateInfo( memoryRequirements.size,                                                                       // allocationSize 
-                                           Helper::findType( rx::g_physicalDevice, memoryRequirements.memoryTypeBits, propertyFlags ) );  // memoryTypeIndex
+      vk::MemoryAllocateInfo allocateInfo( memoryRequirements.size,                                                                             // allocationSize 
+                                           Helper::findMemoryType( rx::g_physicalDevice, memoryRequirements.memoryTypeBits, propertyFlags ) );  // memoryTypeIndex
 
       allocateInfo.pNext = pNext;
 
@@ -146,15 +146,15 @@ namespace vk
     {
       AccelerationStructureMemoryRequirementsInfoKHR memInfo( AccelerationStructureMemoryRequirementsTypeKHR::eObject, // type
                                                               AccelerationStructureBuildTypeKHR::eDevice,              // buildType
-                                                              as.as );                                               // accelerationStructure
+                                                              as.as );                                                 // accelerationStructure
 
       MemoryRequirements2 memoryRequirements = rx::g_device.getAccelerationStructureMemoryRequirementsKHR( memInfo );
       
       MemoryAllocateFlagsInfo allocateFlags( MemoryAllocateFlagBits::eDeviceAddress, // flags
-                                                 { } );                                      // deviceMask
+                                                 { } );                              // deviceMask
 
-      MemoryAllocateInfo allocateInfo( memoryRequirements.memoryRequirements.size,                                                                                             // allocationSize
-                                       Helper::findType( rx::g_physicalDevice, memoryRequirements.memoryRequirements.memoryTypeBits, MemoryPropertyFlagBits::eDeviceLocal ) ); // memoryTypeIndex
+      MemoryAllocateInfo allocateInfo( memoryRequirements.memoryRequirements.size,                                                                                                   // allocationSize
+                                       Helper::findMemoryType( rx::g_physicalDevice, memoryRequirements.memoryRequirements.memoryTypeBits, MemoryPropertyFlagBits::eDeviceLocal ) ); // memoryTypeIndex
 
       as.memory = rx::g_device.allocateMemory( allocateInfo );
       RX_ASSERT( as.memory, "Failed to create memory for acceleration structure." );
@@ -173,8 +173,8 @@ namespace vk
     {
       auto memoryRequirements = rx::g_device.getBufferMemoryRequirements( buffer );
 
-      MemoryAllocateInfo allocateInfo( memoryRequirements.size,                                                                       // allocationSize 
-                                       Helper::findType( rx::g_physicalDevice, memoryRequirements.memoryTypeBits, propertyFlags ) );  // memoryTypeIndex
+      MemoryAllocateInfo allocateInfo( memoryRequirements.size,                                                                             // allocationSize 
+                                       Helper::findMemoryType( rx::g_physicalDevice, memoryRequirements.memoryTypeBits, propertyFlags ) );  // memoryTypeIndex
 
       allocateInfo.pNext = pNext;
 

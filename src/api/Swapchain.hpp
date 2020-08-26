@@ -26,7 +26,7 @@ namespace rx
     inline const vk::Image getImage( size_t index ) const { return m_images[index]; }
 
     inline const std::vector<vk::Image>& getImages( ) const { return m_images; }
-    inline const std::vector<vk::ImageView> getImageViews( ) const { return vk::Helper::unpack( m_imageViews ); } // Returning by reference will result in size 0.
+    inline const std::vector<vk::ImageView> getImageViews( ) const { return vk::Helper::unpack<vk::ImageView>( m_imageViews ); } // Returning by reference will result in size 0.
 
     void setImageAspect( vk::ImageAspectFlags flags );
     void setImageLayout( vk::ImageLayout oldLayout, vk::ImageLayout newLayout );

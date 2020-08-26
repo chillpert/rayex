@@ -7,6 +7,24 @@
 
 namespace rx
 {
+  const std::vector<const char*> layers = { "VK_LAYER_KHRONOS_validation" };
+#ifdef RX_DEBUG
+  std::vector<const char*> extensions = { "VK_KHR_get_physical_device_properties2", "VK_EXT_debug_utils" };
+#elif
+  std::vector<const char*> extensions = { "VK_KHR_get_physical_device_properties2" };
+#endif
+
+  std::vector<const char*> deviceExtensions =
+  {
+    VK_KHR_GET_MEMORY_REQUIREMENTS_2_EXTENSION_NAME,
+    VK_EXT_DESCRIPTOR_INDEXING_EXTENSION_NAME,
+    VK_KHR_BUFFER_DEVICE_ADDRESS_EXTENSION_NAME,
+    VK_KHR_DEFERRED_HOST_OPERATIONS_EXTENSION_NAME,
+    VK_KHR_PIPELINE_LIBRARY_EXTENSION_NAME,
+    VK_KHR_MAINTENANCE3_EXTENSION_NAME,
+    VK_KHR_RAY_TRACING_EXTENSION_NAME
+  };
+
   size_t currentFrame = 0;
 
   // Defines the maximum amount of frames that will be processed concurrently.
@@ -39,12 +57,30 @@ namespace rx
     m_textures.reserve( g_maxTextures );
     m_lightNodes.reserve( g_maxLightNodes );
 
-    initInstance( );
-    initDebugMessenger( );
-    initSurface( );
-    initPhysicalDevice( );
-    initQueues( );
-    initDevice( );
+    // Instance
+    m_instance.init( layers, extensions );
+
+    // Debug messenger.
+    m_debugMessenger.init( vk::DebugUtilsMessageSeverityFlagBitsEXT::eVerbose | vk::DebugUtilsMessageSeverityFlagBitsEXT::eWarning | vk::DebugUtilsMessageSeverityFlagBitsEXT::eError,
+                           vk::DebugUtilsMessageTypeFlagBitsEXT::ePerformance | vk::DebugUtilsMessageTypeFlagBitsEXT::eValidation );
+    
+    // Surface
+    m_surface.init( );
+
+    // Physical device
+    m_physicalDevice.init( );
+
+    // Reassess the support of the preferred surface settings.
+    m_surface.checkSettingSupport( );
+
+    // Queues
+    m_queues.init( );
+
+    // Logical device
+    m_device.init( deviceExtensions );
+
+    // Retrieve all queue handles.
+    m_queues.retrieveHandles( );
     initRenderPass( );
     initSwapchain( );
     initPipeline( );
@@ -252,60 +288,6 @@ namespace rx
     m_rayTracingBuilder.init( );
 
     m_rayTracingBuilder.createStorageImage( m_swapchain.getExtent( ) );
-  }
-
-  void Api::initInstance( )
-  {
-    std::vector<const char*> layers = { "VK_LAYER_KHRONOS_validation" };
-  #ifdef RX_DEBUG
-    std::vector<const char*> extensions = { "VK_KHR_get_physical_device_properties2", "VK_EXT_debug_utils" };
-  #elif
-    std::vector<const char*> extensions = { "VK_KHR_get_physical_device_properties2" };
-  #endif
-    m_instance.init( layers, extensions );
-  }
-
-  void Api::initDebugMessenger( )
-  {
-    m_debugMessenger.init( vk::DebugUtilsMessageSeverityFlagBitsEXT::eVerbose | vk::DebugUtilsMessageSeverityFlagBitsEXT::eWarning | vk::DebugUtilsMessageSeverityFlagBitsEXT::eError,
-                           vk::DebugUtilsMessageTypeFlagBitsEXT::ePerformance | vk::DebugUtilsMessageTypeFlagBitsEXT::eValidation );
-  }
-
-  void Api::initSurface( )
-  {
-    m_surface.init( );
-  }
-
-  void Api::initPhysicalDevice( )
-  {
-    m_physicalDevice.init( );
-
-    // Reassess the support of the preferred surface settings.
-    m_surface.checkSettingSupport( );
-  }
-
-  void Api::initQueues( )
-  {
-    m_queues.init( );
-  }
-
-  void Api::initDevice( )
-  {
-    std::vector<const char*> deviceExtensions =
-    {
-      VK_KHR_GET_MEMORY_REQUIREMENTS_2_EXTENSION_NAME,
-      VK_EXT_DESCRIPTOR_INDEXING_EXTENSION_NAME,
-      VK_KHR_BUFFER_DEVICE_ADDRESS_EXTENSION_NAME,
-      VK_KHR_DEFERRED_HOST_OPERATIONS_EXTENSION_NAME,
-      VK_KHR_PIPELINE_LIBRARY_EXTENSION_NAME,
-      VK_KHR_MAINTENANCE3_EXTENSION_NAME,
-      VK_KHR_RAY_TRACING_EXTENSION_NAME
-    };
-
-    m_device.init( deviceExtensions );
-
-    // Retrieve all queue handles.
-    m_queues.retrieveHandles( );
   }
 
   void Api::initRenderPass( )

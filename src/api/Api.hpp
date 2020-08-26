@@ -40,11 +40,6 @@ namespace rx
     RX_API void initGui( );
 
   private:
-    void initInstance( );
-    void initDebugMessenger( );
-    void initSurface( );
-    void initPhysicalDevice( );
-    void initQueues( );
     void initDevice( );
     void initRenderPass( );
     void initSwapchain( );

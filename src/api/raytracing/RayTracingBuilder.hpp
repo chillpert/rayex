@@ -29,8 +29,6 @@ namespace rx
     void createTopLevelAS( const std::vector<std::shared_ptr<GeometryNode>>& nodes );
     void buildTlas( const std::vector<BlasInstance>& instances, vk::BuildAccelerationStructureFlagsKHR flags = vk::BuildAccelerationStructureFlagBitsKHR::ePreferFastTrace );
 
-    void createSceneDescriptorSetLayout( );
-
     void createStorageImage( vk::Extent2D swapchainExtent );
     void createShaderBindingTable( vk::Pipeline rtPipeline );
 

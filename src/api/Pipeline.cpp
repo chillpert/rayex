@@ -20,18 +20,6 @@ namespace rx
     auto miss = vk::Initializer::createShaderModuleUnique( "shaders/raytrace.rmiss" );
     auto chit = vk::Initializer::createShaderModuleUnique( "shaders/raytrace.rchit" );
 
-    /*
-    vk::PushConstantRange pushConstantRange( vk::ShaderStageFlagBits::eRaygenKHR | vk::ShaderStageFlagBits::eClosestHitKHR | vk::ShaderStageFlagBits::eMissKHR, // stageFlags
-                                             0,                                                                                                                 // offset
-                                             sizeof( RayTracingBuilder::PushConstant ) );                                                                       // size
-
-    vk::PipelineLayoutCreateInfo layoutInfo( { },                                                   // flags
-                                             static_cast<uint32_t>( descriptorSetLayouts.size( ) ), // setLayoutCount
-                                             descriptorSetLayouts.data( ),                          // pSetLayouts
-                                             1,                                                     // pushConstantRangeCount
-                                             &pushConstantRange );                                  // pPushConstantRanges
-    */
-
     vk::PipelineLayoutCreateInfo layoutInfo( { },                                                   // flags
                                              static_cast<uint32_t>( descriptorSetLayouts.size( ) ), // setLayoutCount
                                              descriptorSetLayouts.data( ),                          // pSetLayouts

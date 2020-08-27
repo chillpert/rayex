@@ -35,7 +35,7 @@ namespace rx
                                                                  model->m_indexBuffer.getType( ),       // indexType
                                                                  model->m_vertexBuffer.getCount( ),     // maxVertexCount
                                                                  Vertex::getVertexFormat( ),            // vertexFormat
-                                                                 VK_FALSE );                            // allowsTransforms
+                                                                 VK_TRUE );                             // allowsTransforms
 
     vk::DeviceAddress vertexAddress = g_device.getBufferAddress( { model->m_vertexBuffer.get( ) } );
     vk::DeviceAddress indexAddress = g_device.getBufferAddress( { model->m_indexBuffer.get( ) } );
@@ -360,78 +360,6 @@ namespace rx
     cmdBuf.submitToQueue( g_graphicsQueue );
   }
 
-  void RayTracingBuilder::createSceneDescriptorSetLayout( )
-  {
-    /*
-    // Camera matrices
-    vk::DescriptorSetLayoutBinding cameraBinding( 0,                                                                      // binding
-                                                  vk::DescriptorType::eUniformBuffer,                                     // descriptorType
-                                                  1,                                                                      // descriptorCount
-                                                  vk::ShaderStageFlagBits::eVertex | vk::ShaderStageFlagBits::eRaygenKHR, // stageFlags
-                                                  nullptr );                                                              // pImmutableSamplers
-
-    // Materials
-    vk::DescriptorSetLayoutBinding materialBinding( 1,                                                                                                               // binding
-                                                    vk::DescriptorType::eStorageBuffer,                                                                              // descriptorType
-                                                    g_maxGeometryNodes,                                                                                              // descriptorCount
-                                                    vk::ShaderStageFlagBits::eVertex | vk::ShaderStageFlagBits::eFragment | vk::ShaderStageFlagBits::eClosestHitKHR, // stageFlags
-                                                    nullptr );                                                                                                       // pImmutableSamplers
-
-    // Scene description
-    vk::DescriptorSetLayoutBinding sceneDescriptionBinding( 2,                                                                                                               // binding
-                                                            vk::DescriptorType::eStorageBuffer,                                                                              // descriptorType
-                                                            1,                                                                                                               // descriptorCount
-                                                            vk::ShaderStageFlagBits::eVertex | vk::ShaderStageFlagBits::eFragment | vk::ShaderStageFlagBits::eClosestHitKHR, // stageFlags
-                                                            nullptr );                                                                                                       // pImmutableSamplers
-
-    // Textures
-    vk::DescriptorSetLayoutBinding texturesBinding( 3,                                                                            // binding
-                                                    vk::DescriptorType::eCombinedImageSampler,                                    // descriptorType
-                                                    g_maxTextures,                                                                // descriptorCount
-                                                    vk::ShaderStageFlagBits::eFragment | vk::ShaderStageFlagBits::eClosestHitKHR, // stageFlags
-                                                    nullptr );                                                                    // pImmutableSamplers
-
-    // Materials
-    vk::DescriptorSetLayoutBinding material2Binding( 4,                                                                            // binding
-                                                     vk::DescriptorType::eStorageBuffer,                                           // descriptorType
-                                                     g_maxGeometryNodes,                                                           // descriptorCount
-                                                     vk::ShaderStageFlagBits::eFragment | vk::ShaderStageFlagBits::eClosestHitKHR, // stageFlags
-                                                     nullptr );                                                                    // pImmutableSamplers
-
-    // Vertices
-    vk::DescriptorSetLayoutBinding vertexBinding( 5,                                       // binding
-                                                  vk::DescriptorType::eStorageBuffer,      // descriptorType
-                                                  g_maxGeometryNodes,                      // descriptorCount
-                                                  vk::ShaderStageFlagBits::eClosestHitKHR, // stageFlags
-                                                  nullptr );                               // pImmutableSamplers
-
-    // Indices
-    vk::DescriptorSetLayoutBinding indexBinding( 6,                                       // binding
-                                                 vk::DescriptorType::eStorageBuffer,      // descriptorType
-                                                 g_maxGeometryNodes,                      // descriptorCount
-                                                 vk::ShaderStageFlagBits::eClosestHitKHR, // stageFlags
-                                                 nullptr );                               // pImmutableSamplers
-  
-    m_sceneDescriptorSetLayout.init( { cameraBinding, materialBinding, sceneDescriptionBinding, texturesBinding, material2Binding, vertexBinding, indexBinding } );
-
-    // Vertices
-    vk::DescriptorSetLayoutBinding vertexBinding( 0,                                       // binding
-                                                  vk::DescriptorType::eStorageBuffer,      // descriptorType
-                                                  g_maxGeometryNodes,                      // descriptorCount
-                                                  vk::ShaderStageFlagBits::eClosestHitKHR, // stageFlags
-                                                  nullptr );                               // pImmutableSamplers
-
-    // Indices
-    vk::DescriptorSetLayoutBinding indexBinding( 1,                                       // binding
-                                                 vk::DescriptorType::eStorageBuffer,      // descriptorType
-                                                 g_maxGeometryNodes,                      // descriptorCount
-                                                 vk::ShaderStageFlagBits::eClosestHitKHR, // stageFlags
-                                                 nullptr );                               // pImmutableSamplers
-
-    m_sceneDescriptorSetLayout.init( { vertexBinding, indexBinding } );
-    */
-  }
-
   void RayTracingBuilder::createStorageImage( vk::Extent2D swapchainExtent )
   {
     auto storageImageInfo = vk::Helper::getImageCreateInfo( vk::Extent3D( swapchainExtent.width, swapchainExtent.height, 1 ) );
@@ -446,39 +374,6 @@ namespace rx
 
   void RayTracingBuilder::createShaderBindingTable( vk::Pipeline rtPipeline )
   {
-    /*
-    const uint32_t shaderGroupHandleSize = m_rtProperties.shaderGroupHandleSize;
-
-    // Fetch all the shader handles used in the pipeline, so that they can be written in the SBT
-    uint32_t sbtSize = g_shaderGroups * shaderGroupHandleSize;
-
-    // Write the handles in the SBT
-    m_sbtBuffer.init( sbtSize,
-                      vk::BufferUsageFlagBits::eRayTracingKHR,
-                      { g_graphicsFamilyIndex },
-                      vk::MemoryPropertyFlagBits::eHostVisible );
-
-    void* actualData = NULL;
-    g_device.mapMemory( m_sbtBuffer.getMemory( ), 0, m_sbtBuffer.getSize( ), { }, &actualData );
-
-    auto shaderHandleStorage = new uint8_t[sbtSize];
-
-    g_device.getRayTracingShaderGroupHandlesKHR( rtPipeline, 
-                                                 0, 
-                                                 g_shaderGroups, 
-                                                 sbtSize, 
-                                                 shaderHandleStorage );
-
-    auto* pData = static_cast<uint8_t*>( actualData );
-
-    for ( uint32_t i = 0; i < g_shaderGroups; ++i )
-    {
-      memcpy( pData, shaderHandleStorage + i * shaderGroupHandleSize, shaderGroupHandleSize );  // raygen
-    }
-    
-    g_device.unmapMemory( m_sbtBuffer.getMemory( ) );
-    */
-
     uint32_t groupCount = g_shaderGroups;
     uint32_t groupHandleSize = m_rtProperties.shaderGroupHandleSize;
     uint32_t baseAlignment = m_rtProperties.shaderGroupBaseAlignment;

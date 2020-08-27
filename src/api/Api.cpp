@@ -110,7 +110,7 @@ namespace rx
 
     // Pipeline
     m_rtPipeline.init( vk::Rect2D( 0, { m_swapchain.getExtent( ).width, m_swapchain.getExtent( ).height } ), // scissor
-                       { m_rtDescriptorSetLayout.get( ), m_descriptorSetLayout.get( ) } );                                                   // descriptorSetLayouts
+                       { m_rtDescriptorSetLayout.get( ), m_descriptorSetLayout.get( ) } );                   // descriptorSetLayouts
 
     // Command pools
     m_graphicsCmdPool = vk::Initializer::createCommandPoolUnique( g_graphicsFamilyIndex, vk::CommandPoolCreateFlagBits::eResetCommandBuffer );
@@ -121,7 +121,7 @@ namespace rx
 
     // Ray tracing
     m_rayTracingBuilder.init( );
-    m_rayTracingBuilder.createStorageImage( m_swapchain.getExtent( ) ); // TODO: this should be done inside RayTracingBuilder::init.
+    m_rayTracingBuilder.createStorageImage( m_swapchain.getExtent( ) );
     
     // Swapchain command buffers
     m_swapchainCommandBuffers.init( m_graphicsCmdPool.get( ), g_swapchainImageCount, vk::CommandBufferUsageFlagBits::eRenderPassContinue );
@@ -181,15 +181,6 @@ namespace rx
   bool Api::submitFrame( )
   {
     uint32_t imageIndex = m_swapchain.getCurrentImageIndex( );
-
-    // TODO: This should only be called if the camera was changed. 
-    // TODO: This should be moved to update function.
-    for ( std::shared_ptr<GeometryNode> node : m_geometryNodes )
-    {
-      if ( node->m_modelPath.empty( ) )
-        continue;
-
-    }
       
     // Check if a previous frame is using the current image.
     if ( m_imagesInFlight[imageIndex] )
@@ -313,6 +304,10 @@ namespace rx
     // Recreating the swapchain.
     m_swapchain.init( &m_surface, m_renderPass.get( ) );
 
+    // Recreate storage image with the new swapchain image size and update the ray tracing descriptor set to use the new storage image view.
+    m_rayTracingBuilder.createStorageImage( m_swapchain.getExtent( ) );
+    m_rtDescriptorSets.update( m_rayTracingBuilder.getTlas( ).as.as, m_rayTracingBuilder.getStorageImageView( ), m_cameraUniformBuffer.getRaw( ) );
+
     // Swapchain command buffers
     m_swapchainCommandBuffers.init( m_graphicsCmdPool.get( ), g_swapchainImageCount, vk::CommandBufferUsageFlagBits::eRenderPassContinue );
     recordSwapchainCommandBuffers( );
@@ -433,18 +428,6 @@ namespace rx
                                                                         0,                                                           // dynamic offset count
                                                                         nullptr );                                                   // dynamic offsets 
 
-        /*
-        m_rayTracingBuilder.m_rtPushConstants.clearColor = { 1.0f, 0.0f, 0.0f, 1.0f };
-        m_rayTracingBuilder.m_rtPushConstants.lightPosition = { 10.0f, 10.0f, 0.0f };
-        m_rayTracingBuilder.m_rtPushConstants.lightIntensity = 2.5f;
-        m_rayTracingBuilder.m_rtPushConstants.lightType = 1;
-
-        m_swapchainCommandBuffers.get( imageIndex ).pushConstants<RayTracingBuilder::PushConstant>( m_rtPipeline.getLayout( ), 
-                                                                                                    vk::ShaderStageFlagBits::eRaygenKHR | vk::ShaderStageFlagBits::eClosestHitKHR | vk::ShaderStageFlagBits::eMissKHR, 
-                                                                                                    0,
-                                                                                                    m_rayTracingBuilder.m_rtPushConstants );
-        */
-
         m_rayTracingBuilder.rayTrace( m_swapchainCommandBuffers.get( imageIndex ), m_swapchain.getImage( imageIndex ), m_window->getExtent( ) );
       }
 
@@ -490,8 +473,6 @@ namespace rx
                                                                1,                                                                      // descriptorCount
                                                                vk::ShaderStageFlagBits::eVertex | vk::ShaderStageFlagBits::eRaygenKHR, // stageFlags
                                                                nullptr );                                                              // pImmutableSamplers
-
-
 
     std::vector<vk::DescriptorSetLayoutBinding> rtBindings = { tlasBinding, outputImageBinding, cameraUniformBufferBinding };
     m_rtDescriptorSetLayout.init( rtBindings );

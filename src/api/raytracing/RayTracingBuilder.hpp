@@ -34,14 +34,6 @@ namespace rx
 
     void rayTrace( vk::CommandBuffer swapchaincommandBuffer, vk::Image swapchainImage, vk::Extent2D extent );
 
-    struct PushConstant
-    {
-      glm::vec4 clearColor;
-      glm::vec3 lightPosition;
-      float lightIntensity;
-      int lightType;
-    } m_rtPushConstants;
-
   private:
     vk::PhysicalDeviceRayTracingPropertiesKHR m_rtProperties;
 

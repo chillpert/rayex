@@ -152,7 +152,7 @@ namespace rx
 
     // Update camera
     // TODO: only update when necessary.
-    CameraUbo camUbo { m_camera->getViewInverseMatrix( ), m_camera->getProjectionInverseMatrix( ) };
+    CameraUbo camUbo { m_camera->getProjectionMatrix( ), m_camera->getViewMatrix( ), m_camera->getViewInverseMatrix( ), m_camera->getProjectionInverseMatrix( ) };
     m_cameraUniformBuffer.upload<CameraUbo>( imageIndex, camUbo );
 
     return true;
@@ -485,7 +485,6 @@ namespace rx
                                                    1,                                                                            // descriptorCount
                                                    vk::ShaderStageFlagBits::eFragment | vk::ShaderStageFlagBits::eClosestHitKHR, // stageFlags
                                                    nullptr );                                                                    // pImmutableSamplers
-
 
     std::vector<vk::DescriptorSetLayoutBinding> bindings = { textureBinding };
     m_descriptorSetLayout.init( bindings );

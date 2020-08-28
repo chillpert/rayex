@@ -1,15 +1,16 @@
 #version 460
-#extension GL_NV_ray_tracing : require
+#extension GL_EXT_ray_tracing : require
 #extension GL_EXT_nonuniform_qualifier : enable
 
-layout(location = 0) rayPayloadInNV vec3 hitValue;
-hitAttributeNV vec3 attribs;
+struct hitPayload
+{
+  vec3 hitValue;
+};
 
-// Texture
-layout(binding = 3, set = 1) uniform sampler2D texSampler;
+layout(location = 0) rayPayloadInEXT vec3 hitValue;
+hitAttributeEXT vec3 attribs;
 
 void main()
 {
-  const vec3 barycentricCoords = vec3(1.0f - attribs.x - attribs.y, attribs.x, attribs.y);
-  hitValue = barycentricCoords;
+  hitValue = vec3(0.2, 0.5, 0.5);
 }

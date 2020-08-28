@@ -124,7 +124,7 @@ namespace vk
 
       // Calls glslc to compile the glsl file into spir-v.
       std::stringstream command;
-      command << "cd " << pathToFile << " && " << RX_GLSLC_PATH << " " << fileName << " -o " << fileNameOut;
+      command << "cd " << pathToFile << " && " << RX_GLSLC_PATH << " " << fileName << " -o " << fileNameOut << " --target-env=vulkan1.2";
       std::system( command.str( ).c_str( ) );
 
       // Read the file and retrieve the source.

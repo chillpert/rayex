@@ -22,11 +22,11 @@ namespace rx
                           vk::MemoryPropertyFlagBits::eHostVisible | vk::MemoryPropertyFlagBits::eHostCoherent,   // memoryPropertyFlags
                           &allocateFlags );                                                                       // pNext of memory
 
-    m_buffer.init( size,                                                                                                                            // size
-                   vk::BufferUsageFlagBits::eTransferDst | vk::BufferUsageFlagBits::eVertexBuffer | vk::BufferUsageFlagBits::eShaderDeviceAddress,  // usage
-                   { g_transferFamilyIndex },                                                                                                       // queueFamilyIndices
-                   vk::MemoryPropertyFlagBits::eHostVisible | vk::MemoryPropertyFlagBits::eHostCoherent,                                            // memoryPropertyFlags
-                   &allocateFlags );                                                                                                                // pNext of memory
+    m_buffer.init( size,                                                                                                                                                                      // size
+                   vk::BufferUsageFlagBits::eTransferDst | vk::BufferUsageFlagBits::eVertexBuffer | vk::BufferUsageFlagBits::eShaderDeviceAddress | vk::BufferUsageFlagBits::eStorageBuffer,  // usage
+                   { g_transferFamilyIndex },                                                                                                                                                 // queueFamilyIndices
+                   vk::MemoryPropertyFlagBits::eHostVisible | vk::MemoryPropertyFlagBits::eHostCoherent,                                                                                      // memoryPropertyFlags
+                   &allocateFlags );                                                                                                                                                          // pNext of memory
 
     stagingBuffer.fill<Vertex>( vertices.data( ) );
 

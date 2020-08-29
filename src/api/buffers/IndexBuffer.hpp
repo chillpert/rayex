@@ -63,7 +63,7 @@ namespace rx
 
     // Set up the actual index buffer.
     m_buffer.init( size,
-                   vk::BufferUsageFlagBits::eTransferDst | vk::BufferUsageFlagBits::eIndexBuffer | vk::BufferUsageFlagBits::eShaderDeviceAddress,
+                   vk::BufferUsageFlagBits::eStorageBuffer | vk::BufferUsageFlagBits::eTransferDst | vk::BufferUsageFlagBits::eIndexBuffer | vk::BufferUsageFlagBits::eShaderDeviceAddress,
                    { g_transferFamilyIndex },
                    vk::MemoryPropertyFlagBits::eDeviceLocal,
                    &allocateFlags );

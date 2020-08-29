@@ -28,14 +28,14 @@ namespace rx
     m_blas_.clear( );
   }
 
-  Blas RayTracingBuilder::objectToVkGeometryKHR( const std::shared_ptr<Model> model ) const
+  Blas RayTracingBuilder::modelToBlas( const std::shared_ptr<Model> model ) const
   {
     vk::AccelerationStructureCreateGeometryTypeInfoKHR asCreate( vk::GeometryTypeKHR::eTriangles,       // geometryType
                                                                  model->m_indexBuffer.getCount( ) / 3,  // maxPrimitiveCount
                                                                  model->m_indexBuffer.getType( ),       // indexType
                                                                  model->m_vertexBuffer.getCount( ),     // maxVertexCount
                                                                  Vertex::getVertexFormat( ),            // vertexFormat
-                                                                 VK_TRUE );                             // allowsTransforms
+                                                                 VK_FALSE );                            // allowsTransforms
 
     vk::DeviceAddress vertexAddress = g_device.getBufferAddress( { model->m_vertexBuffer.get( ) } );
     vk::DeviceAddress indexAddress = g_device.getBufferAddress( { model->m_indexBuffer.get( ) } );
@@ -93,7 +93,7 @@ namespace rx
 
     for ( const auto& obj : models )
     {
-      Blas blas = objectToVkGeometryKHR( obj );
+      Blas blas = modelToBlas( obj );
 
       // We could add more geometry in each BLAS, but we add only one for now.
       allBlas.emplace_back( blas );
@@ -106,10 +106,12 @@ namespace rx
   {
     m_blas_ = blas_;
 
-    vk::DeviceSize maxScratch( 0 );
+    vk::DeviceSize maxScratch = 0;
 
     // Is compaction requested?
     bool doCompaction = ( flags & vk::BuildAccelerationStructureFlagBitsKHR::eAllowCompaction ) == vk::BuildAccelerationStructureFlagBitsKHR::eAllowCompaction;
+
+    RX_ASSERT( !doCompaction, "Compaction is not supported yet." );
 
     std::vector<vk::DeviceSize> originalSizes;
     originalSizes.resize( m_blas_.size( ) );
@@ -128,7 +130,7 @@ namespace rx
       blas.as = vk::Initializer::createAccelerationStructure( asCreateInfo );
       blas.flags = flags;
 
-      vk::AccelerationStructureMemoryRequirementsInfoKHR memInfo( vk::AccelerationStructureMemoryRequirementsTypeKHR::eObject, // type
+      vk::AccelerationStructureMemoryRequirementsInfoKHR memInfo( vk::AccelerationStructureMemoryRequirementsTypeKHR::eBuildScratch, // type
                                                                   vk::AccelerationStructureBuildTypeKHR::eDevice,              // buildType
                                                                   blas.as.as );                                                // accelerationStructure
 
@@ -141,6 +143,7 @@ namespace rx
       memoryRequirements = rx::g_device.getAccelerationStructureMemoryRequirementsKHR( memInfo );
 
       originalSizes[index] = memoryRequirements.memoryRequirements.size;
+      index++;
     }
 
     // Allocate the scratch buffers holding the temporary data of the acceleration structure builder.
@@ -152,7 +155,8 @@ namespace rx
                           vk::MemoryPropertyFlagBits::eDeviceLocal,                                                // memoryPropertyFlags
                           &allocateFlags );                                                                        // pNextMemory
 
-    vk::DeviceAddress scratchAddress = g_device.getBufferAddress( { scratchBuffer.get( ) } );
+    vk::BufferDeviceAddressInfo bufferInfo( scratchBuffer.get( ) );
+    vk::DeviceAddress scratchAddress = g_device.getBufferAddress( bufferInfo );
 
     // Query size of compact BLAS.
     vk::UniqueQueryPool queryPool = vk::Initializer::createQueryPoolUnique( static_cast<uint32_t>( m_blas_.size( ) ), vk::QueryType::eAccelerationStructureCompactedSizeKHR );
@@ -194,15 +198,15 @@ namespace rx
                                  vk::AccessFlagBits::eAccelerationStructureReadKHR ); // dstAccessMask
       
 
-      cmdBuf.get( index ).pipelineBarrier( vk::PipelineStageFlagBits::eAccelerationStructureBuildKHR,   // srcStageMask
-                                       vk::PipelineStageFlagBits::eAccelerationStructureBuildKHR,       // dstStageMask
-                                       { },                                                             // dependencyFlags
-                                       1,                                                               // memoryBarrierCount
-                                       &barrier,                                                        // pMemoryBarriers
-                                       0,                                                               // bufferMemoryBarrierCount
-                                       nullptr,                                                         // pBufferMemoryBarriers
-                                       0,                                                               // imageMemoryBarrierCount 
-                                       nullptr );                                                       // pImageMemoryBarriers
+      cmdBuf.get( index ).pipelineBarrier( vk::PipelineStageFlagBits::eAccelerationStructureBuildKHR, // srcStageMask
+                                           vk::PipelineStageFlagBits::eAccelerationStructureBuildKHR, // dstStageMask
+                                           { },                                                       // dependencyFlags
+                                           1,                                                         // memoryBarrierCount
+                                           &barrier,                                                  // pMemoryBarriers
+                                           0,                                                         // bufferMemoryBarrierCount
+                                           nullptr,                                                   // pBufferMemoryBarriers
+                                           0,                                                         // imageMemoryBarrierCount 
+                                           nullptr );                                                 // pImageMemoryBarriers
 
       if ( doCompaction )
       {
@@ -302,9 +306,10 @@ namespace rx
     m_instBuffer.init( instanceDescsSizeInBytes,                                                                // size
                        vk::BufferUsageFlagBits::eRayTracingKHR | vk::BufferUsageFlagBits::eShaderDeviceAddress, // usage
                        { g_graphicsFamilyIndex },                                                               // queueFamilyIndices
-                       vk::MemoryPropertyFlagBits::eDeviceLocal,                                                // memoryPropertyFlags
+                       vk::MemoryPropertyFlagBits::eDeviceLocal | vk::MemoryPropertyFlagBits::eHostVisible,     // memoryPropertyFlags
                        &allocateFlags );                                                                        // pNextMemory
 
+    m_instBuffer.fill<vk::AccelerationStructureInstanceKHR>( geometryInstances.data( ) );
 
     vk::DeviceAddress instanceAddress = g_device.getBufferAddress( { m_instBuffer.get( ) } );
 
@@ -335,7 +340,7 @@ namespace rx
   
     const vk::AccelerationStructureGeometryKHR* pGeometry = &topAsGeometry;
 
-    vk::AccelerationStructureBuildGeometryInfoKHR topAsInfo( vk::AccelerationStructureTypeKHR::eTopLevel,      // type
+    vk::AccelerationStructureBuildGeometryInfoKHR topAsInfo( { },                                              // type
                                                              flags,                                            // flags
                                                              VK_FALSE,                                         // update
                                                              nullptr,                                          // srcAccelerationStructure

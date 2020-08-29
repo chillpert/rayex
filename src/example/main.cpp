@@ -36,9 +36,9 @@ public:
     processKeyboard( );
   }
 
-  glm::mat4 getViewMatrix( ) const override { return glm::lookAt( m_position, m_position + m_front, m_worldUp ); }
+  const glm::mat4& getViewMatrix( ) const override { return glm::lookAt( m_position, m_position + m_front, m_worldUp ); }
 
-  glm::mat4 getProjectionMatrix( ) const override
+  const glm::mat4& getProjectionMatrix( ) const override
   {
     auto res = glm::perspective( glm::radians( m_fov ), static_cast< float >( m_screenSize.x ) / static_cast< float >( m_screenSize.y ), 0.1f, 100.0f );
     res[1, 1] *= -1;
@@ -323,10 +323,14 @@ int main( int argc, char* argv[] )
   myGui->m_renderer = &renderer;
 
   // Setup the scene.
+  
   auto dragonLore = std::make_shared<GeometryNode>( "models/awpdlore/awpdlore.obj", Material( "textures/awpdlore.png" ) );
   dragonLore->m_worldTransform = glm::scale( dragonLore->m_worldTransform, glm::vec3( 0.25f ) );
   dragonLore->m_worldTransform = glm::rotate( dragonLore->m_worldTransform, glm::radians( 90.0f ), glm::vec3( 0.0f, 1.0f, 0.0f ) );
   
+  
+  //auto cube = std::make_shared<GeometryNode>( "models/cube.obj", Material( "textures/awpdlore.png" ) );
+
   /*
   auto mars = std::make_shared<GeometryNode>( "models/sphere.obj", Material( "textures/mars.jpg" ) );
   mars->m_worldTransform = glm::scale( mars->m_worldTransform, glm::vec3( 0.25f ) );
@@ -340,6 +344,7 @@ int main( int argc, char* argv[] )
 
   // Add the model to the renderer. This way they will be queued for rendering.
   renderer.setNodes( { dragonLore } );//, mars, dirLight } );
+  //renderer.setNodes( { cube }  );
 
   while ( renderer.isRunning( ) )
   { 

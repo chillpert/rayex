@@ -31,12 +31,12 @@ namespace rx
       m_screenSize = screenSize;
     }
 
-    virtual inline glm::mat4 getViewMatrix( ) const { return m_view; }
-    virtual inline glm::mat4 getProjectionMatrix( ) const { return m_projection; }
+    virtual inline const glm::mat4& getViewMatrix( ) const { return m_view; }
+    virtual inline const glm::mat4& getProjectionMatrix( ) const { return m_projection; }
     
     // TODO: call this as a few times as possible.
-    virtual inline glm::mat4 getViewInverseMatrix( ) const { return m_viewInverse; }
-    virtual inline glm::mat4 getProjectionInverseMatrix( ) const { return glm::inverse( m_projection ); }
+    virtual inline const glm::mat4& getViewInverseMatrix( ) const { return glm::inverse( m_viewInverse ); }
+    virtual inline const glm::mat4& getProjectionInverseMatrix( ) const { return glm::inverse( m_projection ); }
 
   private:
     //UniformBuffer m_uniformBuffer;

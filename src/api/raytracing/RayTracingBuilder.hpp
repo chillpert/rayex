@@ -20,7 +20,7 @@ namespace rx
     inline const Tlas& getTlas( ) const { return m_tlas; }
     inline const vk::ImageView getStorageImageView( ) const { return m_storageImageView.get( ); }
 
-    Blas objectToVkGeometryKHR( const std::shared_ptr<Model> model ) const;
+    Blas modelToBlas( const std::shared_ptr<Model> model ) const;
     vk::AccelerationStructureInstanceKHR instanceToVkGeometryInstanceKHR( const BlasInstance& instance ) const;
 
     void createBottomLevelAS( const std::vector<std::shared_ptr<Model>>& models );

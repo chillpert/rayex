@@ -24,7 +24,7 @@ namespace rx
       RX_ASSERT( set, "Failed to create descriptor sets." );
   }
 
-  void DescriptorSet::update( vk::AccelerationStructureKHR tlas, vk::ImageView storageImageView, const std::vector<vk::Buffer>& uniformBuffers )
+  void DescriptorSet::update( const vk::AccelerationStructureKHR& tlas, vk::ImageView storageImageView, const std::vector<vk::Buffer>& uniformBuffers )
   {
     for ( size_t i = 0; i < m_layouts.size( ); ++i )
     {
@@ -48,7 +48,7 @@ namespace rx
     }
   }
 
-  void DescriptorSet::update( vk::ImageView textureImageView, vk::Sampler textureSampler )
+  void DescriptorSet::update( vk::ImageView textureImageView, vk::Sampler textureSampler, vk::Buffer vertexBuffer, vk::Buffer indexBuffer )
   {
     for ( size_t i = 0; i < m_layouts.size( ); ++i )
     {
@@ -56,7 +56,20 @@ namespace rx
                                            textureImageView,                          // imageView
                                            vk::ImageLayout::eShaderReadOnlyOptimal ); // imageLayout
 
-      g_device.updateDescriptorSets( writeCombinedImageSampler( m_sets[i], 0, textureInfo ), 0 );
+      vk::DescriptorBufferInfo vertbufferInfo( vertexBuffer,             // buffer
+                                               0,                        // offset
+                                               sizeof( vertexBuffer ) ); // range
+
+      vk::DescriptorBufferInfo indexbufferInfo( indexBuffer,              // buffer
+                                                0,                        // offset
+                                                sizeof( indexBuffer ) );  // range
+
+      std::array<vk::WriteDescriptorSet, 3> descriptorWrites;
+      descriptorWrites[0] = writeCombinedImageSampler( m_sets[i], 0, textureInfo );
+      descriptorWrites[1] = writeStorageBuffer( m_sets[i], 1, vertbufferInfo );
+      descriptorWrites[2] = writeStorageBuffer( m_sets[i], 2, indexbufferInfo );
+
+      g_device.updateDescriptorSets( descriptorWrites, 0 );
     }
   }
 

@@ -19,8 +19,8 @@ namespace rx
 
     void init( vk::DescriptorPool descriptorPool, uint32_t count, const std::vector<vk::DescriptorSetLayout>& layouts );
 
-    void update( vk::AccelerationStructureKHR tlas, vk::ImageView storageImageView, const std::vector<vk::Buffer>& uniformBuffers );
-    void update( vk::ImageView textureImageView, vk::Sampler textureSampler );
+    void update( const vk::AccelerationStructureKHR& tlas, vk::ImageView storageImageView, const std::vector<vk::Buffer>& uniformBuffers );
+    void update( vk::ImageView textureImageView, vk::Sampler textureSampler, vk::Buffer vertexBuffer, vk::Buffer indexBuffer );
     void update( vk::Buffer vertexBuffer, vk::Buffer indexBuffer );
 
     void free( );

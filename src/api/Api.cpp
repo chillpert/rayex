@@ -122,6 +122,7 @@ namespace rx
     // Ray tracing
     m_rayTracingBuilder.init( );
     m_rayTracingBuilder.createStorageImage( m_swapchain.getExtent( ) );
+    m_rayTracingBuilder.createShaderBindingTable( m_rtPipeline.get( ) );
     
     // Swapchain command buffers
     m_swapchainCommandBuffers.init( m_graphicsCmdPool.get( ), g_swapchainImageCount, vk::CommandBufferUsageFlagBits::eRenderPassContinue );
@@ -306,7 +307,9 @@ namespace rx
 
     // Recreate storage image with the new swapchain image size and update the ray tracing descriptor set to use the new storage image view.
     m_rayTracingBuilder.createStorageImage( m_swapchain.getExtent( ) );
-    m_rtDescriptorSets.update( m_rayTracingBuilder.getTlas( ).as.as, m_rayTracingBuilder.getStorageImageView( ), m_cameraUniformBuffer.getRaw( ) );
+    m_rtDescriptorSets.update( m_rayTracingBuilder.getTlas( ).as.as, 
+                               m_rayTracingBuilder.getStorageImageView( ), 
+                               m_cameraUniformBuffer.getRaw( ) );
 
     // Swapchain command buffers
     m_swapchainCommandBuffers.init( m_graphicsCmdPool.get( ), g_swapchainImageCount, vk::CommandBufferUsageFlagBits::eRenderPassContinue );
@@ -381,16 +384,16 @@ namespace rx
       model->m_initialized = true;
     }
 
-    // TODO: Try to call this as few times as possible
+    // TODO: Try to call this as few times as possible.   
     m_rayTracingBuilder.createBottomLevelAS( vk::Helper::unpack( m_models ) );
     m_rayTracingBuilder.createTopLevelAS( m_geometryNodes );
-    m_rayTracingBuilder.createShaderBindingTable( m_rtPipeline.get( ) );
 
-    // Update ray tracing descriptor set
+    // Update ray tracing descriptor set.
     m_rtDescriptorSets.update( m_rayTracingBuilder.getTlas( ).as.as, m_rayTracingBuilder.getStorageImageView( ), m_cameraUniformBuffer.getRaw( ) );
 
+    // Update second descriptor set.
     auto diffuseIter = m_textures.find( node->m_material.m_diffuseTexture );
-    model->m_descriptorSets.update( diffuseIter->second->getImageView( ), diffuseIter->second->getSampler( ) );
+    model->m_descriptorSets.update( diffuseIter->second->getImageView( ), diffuseIter->second->getSampler( ), model->m_vertexBuffer.get( ), model->m_indexBuffer.get( ) );
   }
 
   void Api::initGui( )
@@ -486,7 +489,21 @@ namespace rx
                                                    vk::ShaderStageFlagBits::eFragment | vk::ShaderStageFlagBits::eClosestHitKHR, // stageFlags
                                                    nullptr );                                                                    // pImmutableSamplers
 
-    std::vector<vk::DescriptorSetLayoutBinding> bindings = { textureBinding };
+    // Vertex buffer
+    vk::DescriptorSetLayoutBinding vertexBufferBinding( 1,                                       // binding
+                                                        vk::DescriptorType::eStorageBuffer,      // descriptorType
+                                                        1,                                       // descriptorCount
+                                                        vk::ShaderStageFlagBits::eClosestHitKHR, // stageFlags
+                                                        nullptr );                               // pImmutableSamplers
+
+    // Index buffer
+    vk::DescriptorSetLayoutBinding indexBufferBinding( 2,                                       // binding
+                                                       vk::DescriptorType::eStorageBuffer,      // descriptorType
+                                                       1,                                       // descriptorCount
+                                                       vk::ShaderStageFlagBits::eClosestHitKHR, // stageFlags
+                                                       nullptr );                               // pImmutableSamplers
+
+    std::vector<vk::DescriptorSetLayoutBinding> bindings = { textureBinding, vertexBufferBinding, indexBufferBinding };
     m_descriptorSetLayout.init( bindings );
   }
 }

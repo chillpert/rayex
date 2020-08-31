@@ -24,7 +24,6 @@ namespace rx
       g_transferFamilyIndex
     };
 
-    // Note: This process takes about 1.5 seconds on a Ryzen 5 3600x + RTX 2070. Maybe it's not worth creating all available queues.
     uint32_t index = 0;
     for ( const auto& queueFamilyIndex : queueFamilyIndices )
     {

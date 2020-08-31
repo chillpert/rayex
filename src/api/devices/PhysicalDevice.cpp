@@ -56,7 +56,7 @@ namespace rx
 
     std::string deviceName = props.deviceName;
 
-    if ( rayTracingFeats.rayTracing == VK_FALSE )
+    if ( rayTracingFeats.rayTracing == VK_FALSE || rayTracingFeats.rayQuery == VK_FALSE )
       return { 0u, deviceName };
 
     if ( props.deviceType == vk::PhysicalDeviceType::eDiscreteGpu )

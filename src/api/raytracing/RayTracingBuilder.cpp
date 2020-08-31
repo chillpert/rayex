@@ -64,9 +64,12 @@ namespace rx
     return blas;
   }
 
-  vk::AccelerationStructureInstanceKHR RayTracingBuilder::instanceToVkGeometryInstanceKHR( const BlasInstance& instance ) const
+  vk::AccelerationStructureInstanceKHR RayTracingBuilder::instanceToVkGeometryInstanceKHR( const BlasInstance& instance )
   {
-    vk::DeviceAddress blasAddress = g_device.getAccelerationStructureAddressKHR( { m_blas_[instance.blasId].as.as } );
+    Blas& blas { m_blas_[instance.blasId] };
+
+    vk::AccelerationStructureDeviceAddressInfoKHR addressInfo( blas.as.as );
+    vk::DeviceAddress blasAddress = g_device.getAccelerationStructureAddressKHR( addressInfo );
 
     glm::mat4 transpose = glm::transpose( instance.transform );
 
@@ -99,7 +102,7 @@ namespace rx
       allBlas.emplace_back( blas );
     }
 
-    buildBlas( allBlas );
+    buildBlas( allBlas, vk::BuildAccelerationStructureFlagBitsKHR::eAllowUpdate | vk::BuildAccelerationStructureFlagBitsKHR::ePreferFastBuild );
   }
 
   void RayTracingBuilder::buildBlas( const std::vector<Blas>& blas_, vk::BuildAccelerationStructureFlagsKHR flags )
@@ -131,8 +134,8 @@ namespace rx
       blas.flags = flags;
 
       vk::AccelerationStructureMemoryRequirementsInfoKHR memInfo( vk::AccelerationStructureMemoryRequirementsTypeKHR::eBuildScratch, // type
-                                                                  vk::AccelerationStructureBuildTypeKHR::eDevice,              // buildType
-                                                                  blas.as.as );                                                // accelerationStructure
+                                                                  vk::AccelerationStructureBuildTypeKHR::eDevice,                    // buildType
+                                                                  blas.as.as );                                                      // accelerationStructure
 
       vk::MemoryRequirements2 memoryRequirements = rx::g_device.getAccelerationStructureMemoryRequirementsKHR( memInfo );
       vk::DeviceSize scratchSize = memoryRequirements.memoryRequirements.size;
@@ -143,7 +146,8 @@ namespace rx
       memoryRequirements = rx::g_device.getAccelerationStructureMemoryRequirementsKHR( memInfo );
 
       originalSizes[index] = memoryRequirements.memoryRequirements.size;
-      index++;
+      
+      ++index;
     }
 
     // Allocate the scratch buffers holding the temporary data of the acceleration structure builder.
@@ -192,11 +196,9 @@ namespace rx
       // Building the AS.
       cmdBuf.get( index ).buildAccelerationStructureKHR( 1, &bottomAsInfo, pBuildOffset.data( ) );
 
-
       // Since the scratch buffer is reused across builds, we need a barrier to ensure one build is finished before starting the next one.
       vk::MemoryBarrier barrier( vk::AccessFlagBits::eAccelerationStructureWriteKHR,  // srcAccessMask
                                  vk::AccessFlagBits::eAccelerationStructureReadKHR ); // dstAccessMask
-      
 
       cmdBuf.get( index ).pipelineBarrier( vk::PipelineStageFlagBits::eAccelerationStructureBuildKHR, // srcStageMask
                                            vk::PipelineStageFlagBits::eAccelerationStructureBuildKHR, // dstStageMask
@@ -245,7 +247,7 @@ namespace rx
       instances.push_back( rayInst );
     }
     
-    buildTlas( instances, vk::BuildAccelerationStructureFlagBitsKHR::ePreferFastTrace );
+    buildTlas( instances, vk::BuildAccelerationStructureFlagBitsKHR::ePreferFastTrace | vk::BuildAccelerationStructureFlagBitsKHR::eAllowUpdate );
   }
 
   void RayTracingBuilder::buildTlas( const std::vector<BlasInstance>& instances, vk::BuildAccelerationStructureFlagsKHR flags )
@@ -306,7 +308,7 @@ namespace rx
     m_instBuffer.init( instanceDescsSizeInBytes,                                                                // size
                        vk::BufferUsageFlagBits::eRayTracingKHR | vk::BufferUsageFlagBits::eShaderDeviceAddress, // usage
                        { g_graphicsFamilyIndex },                                                               // queueFamilyIndices
-                       vk::MemoryPropertyFlagBits::eDeviceLocal | vk::MemoryPropertyFlagBits::eHostVisible,     // memoryPropertyFlags
+                       vk::MemoryPropertyFlagBits::eHostVisible,                                                // memoryPropertyFlags
                        &allocateFlags );                                                                        // pNextMemory
 
     m_instBuffer.fill<vk::AccelerationStructureInstanceKHR>( geometryInstances.data( ) );
@@ -340,7 +342,7 @@ namespace rx
   
     const vk::AccelerationStructureGeometryKHR* pGeometry = &topAsGeometry;
 
-    vk::AccelerationStructureBuildGeometryInfoKHR topAsInfo( { },                                              // type
+    vk::AccelerationStructureBuildGeometryInfoKHR topAsInfo( vk::AccelerationStructureTypeKHR::eTopLevel,      // type
                                                              flags,                                            // flags
                                                              VK_FALSE,                                         // update
                                                              nullptr,                                          // srcAccelerationStructure

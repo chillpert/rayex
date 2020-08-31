@@ -1,5 +1,6 @@
 #include "Initializers.hpp"
 #include "Helpers.hpp"
+#include "CommandBuffer.hpp"
 
 namespace vk
 {
@@ -355,7 +356,7 @@ namespace vk
     rx::AccelerationStructure createAccelerationStructure( const vk::AccelerationStructureCreateInfoKHR& asCreateInfo )
     {
       rx::AccelerationStructure resultAs;
-      resultAs.as = rx::g_device.createAccelerationStructureKHR( asCreateInfo, nullptr ); // TODO: this is gonna cuase errors.
+      resultAs.as = rx::g_device.createAccelerationStructureKHR( asCreateInfo, nullptr );
 
       allocateMemory( resultAs );
 

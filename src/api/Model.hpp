@@ -87,6 +87,8 @@ namespace rx
     // No destruction necessary
     DescriptorSet m_descriptorSets;
 
+    uint32_t m_index = 0;
+
     bool m_initialized = false;
   };
 }

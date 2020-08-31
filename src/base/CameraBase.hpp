@@ -19,7 +19,6 @@ namespace rx
     virtual void update( ) { };
 
     inline const glm::vec3& getPosition( ) const { return m_position; }
-    //inline UniformBuffer& getUniformBuffer( ) { return m_uniformBuffer; }
 
     void setPosition( const glm::vec3& position )
     {
@@ -34,23 +33,12 @@ namespace rx
     virtual inline const glm::mat4& getViewMatrix( ) const { return m_view; }
     virtual inline const glm::mat4& getProjectionMatrix( ) const { return m_projection; }
     
-    // TODO: call this as a few times as possible.
-    virtual inline const glm::mat4& getViewInverseMatrix( ) const { return glm::inverse( m_viewInverse ); }
-    virtual inline const glm::mat4& getProjectionInverseMatrix( ) const { return glm::inverse( m_projection ); }
-
-  private:
-    //UniformBuffer m_uniformBuffer;
-
   protected:
     glm::ivec2 m_screenSize;
     glm::vec3 m_position;
 
     glm::mat4 m_view;
     glm::mat4 m_projection;
-    glm::mat4 m_viewInverse;
-
-    // For ray tracing
-    glm::mat4 m_projectionInverse;
   };
 }
 

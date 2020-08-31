@@ -323,11 +323,9 @@ int main( int argc, char* argv[] )
   myGui->m_renderer = &renderer;
 
   // Setup the scene.
-  
   auto dragonLore = std::make_shared<GeometryNode>( "models/awpdlore/awpdlore.obj", Material( "textures/awpdlore.png" ) );
-  dragonLore->m_worldTransform = glm::scale( dragonLore->m_worldTransform, glm::vec3( 0.25f ) );
-  dragonLore->m_worldTransform = glm::rotate( dragonLore->m_worldTransform, glm::radians( 90.0f ), glm::vec3( 0.0f, 1.0f, 0.0f ) );
-  
+  //dragonLore->m_worldTransform = glm::scale( dragonLore->m_worldTransform, glm::vec3( 0.25f ) );
+  //dragonLore->m_worldTransform = glm::rotate( dragonLore->m_worldTransform, glm::radians( 90.0f ), glm::vec3( 0.0f, 1.0f, 0.0f ) );
   
   //auto cube = std::make_shared<GeometryNode>( "models/cube.obj", Material( "textures/awpdlore.png" ) );
 
@@ -343,8 +341,9 @@ int main( int argc, char* argv[] )
   */
 
   // Add the model to the renderer. This way they will be queued for rendering.
-  renderer.setNodes( { dragonLore } );//, mars, dirLight } );
+  //renderer.setNodes( { dragonLore } );//, mars, dirLight } );
   //renderer.setNodes( { cube }  );
+  renderer.pushNode( dragonLore );
 
   while ( renderer.isRunning( ) )
   { 

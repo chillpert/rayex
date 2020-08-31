@@ -139,6 +139,7 @@ namespace rx
     // Make sure swapchain images are presentable in case they were not transitioned automatically.
     m_swapchain.setImageLayout( vk::ImageLayout::eUndefined, vk::ImageLayout::ePresentSrcKHR );
 
+
     RX_LOG( "Finished API initialization." );
   }
 
@@ -153,7 +154,13 @@ namespace rx
 
     // Update camera
     // TODO: only update when necessary.
-    CameraUbo camUbo { m_camera->getProjectionMatrix( ), m_camera->getViewMatrix( ), m_camera->getViewInverseMatrix( ), m_camera->getProjectionInverseMatrix( ) };
+    glm::mat4 view = m_camera->getViewMatrix( );
+    glm::mat4 viewInverse = glm::inverse( view );
+
+    glm::mat4 proj = m_camera->getProjectionMatrix( );
+    glm::mat4 projInverse = glm::inverse( proj );
+
+    CameraUbo camUbo { view, proj, viewInverse, projInverse };
     m_cameraUniformBuffer.upload<CameraUbo>( imageIndex, camUbo );
 
     return true;
@@ -384,6 +391,8 @@ namespace rx
       model->m_initialized = true;
     }
 
+    node->m_rtInstance.m_objIndex = model->m_index;
+
     // TODO: Try to call this as few times as possible.   
     m_rayTracingBuilder.createBottomLevelAS( vk::Helper::unpack( m_models ) );
     m_rayTracingBuilder.createTopLevelAS( m_geometryNodes );
@@ -471,11 +480,11 @@ namespace rx
                                                        vk::ShaderStageFlagBits::eRaygenKHR, // stageFlags
                                                        nullptr );                           // pImmutableSamplers
     // Uniform buffer
-    vk::DescriptorSetLayoutBinding cameraUniformBufferBinding( 2,                                                                      // binding
-                                                               vk::DescriptorType::eUniformBuffer,                                     // descriptorType
-                                                               1,                                                                      // descriptorCount
-                                                               vk::ShaderStageFlagBits::eVertex | vk::ShaderStageFlagBits::eRaygenKHR, // stageFlags
-                                                               nullptr );                                                              // pImmutableSamplers
+    vk::DescriptorSetLayoutBinding cameraUniformBufferBinding( 2,                                   // binding
+                                                               vk::DescriptorType::eUniformBuffer,  // descriptorType
+                                                               1,                                   // descriptorCount
+                                                               vk::ShaderStageFlagBits::eRaygenKHR, // stageFlags
+                                                               nullptr );                           // pImmutableSamplers
 
     std::vector<vk::DescriptorSetLayoutBinding> rtBindings = { tlasBinding, outputImageBinding, cameraUniformBufferBinding };
     m_rtDescriptorSetLayout.init( rtBindings );

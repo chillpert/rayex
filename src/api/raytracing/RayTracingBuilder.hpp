@@ -21,7 +21,7 @@ namespace rx
     inline const vk::ImageView getStorageImageView( ) const { return m_storageImageView.get( ); }
 
     Blas modelToBlas( const std::shared_ptr<Model> model ) const;
-    vk::AccelerationStructureInstanceKHR instanceToVkGeometryInstanceKHR( const BlasInstance& instance ) const;
+    vk::AccelerationStructureInstanceKHR instanceToVkGeometryInstanceKHR( const BlasInstance& instance );
 
     void createBottomLevelAS( const std::vector<std::shared_ptr<Model>>& models );
     void buildBlas( const std::vector<Blas>& blas_, vk::BuildAccelerationStructureFlagsKHR flags = vk::BuildAccelerationStructureFlagBitsKHR::ePreferFastTrace );

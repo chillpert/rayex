@@ -116,6 +116,7 @@ file(GLOB FILES_LIB
   "${PROJECT_SOURCE_DIR}/src/events/*.cpp"
   "${PROJECT_SOURCE_DIR}/src/utils/*.cpp"
   "${PROJECT_SOURCE_DIR}/src/*.cpp"
+  "${PROJECT_SOURCE_DIR}/src/base/*.cpp"
 
   # ImGui files
   "${PROJECT_SOURCE_DIR}/external/ImGui/*.cpp"

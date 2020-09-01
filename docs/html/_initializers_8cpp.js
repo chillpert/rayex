@@ -1,0 +1,27 @@
+var _initializers_8cpp =
+[
+    [ "allocateMemory", "_initializers_8cpp.html#a290eb6b8bc181fdc84971e44a95dee71", null ],
+    [ "allocateMemory", "_initializers_8cpp.html#ac45c9a57ebad6f7ad93e067ed9522482", null ],
+    [ "allocateMemory", "_initializers_8cpp.html#adaf1f319c431560033d2007d80f318ab", null ],
+    [ "allocateMemoryUnique", "_initializers_8cpp.html#a076de0b6ac74c2db0e6a7521f812ea31", null ],
+    [ "allocateMemoryUnique", "_initializers_8cpp.html#aaf971d37968849d18a9c8bc51b7214d9", null ],
+    [ "createAccelerationStructure", "_initializers_8cpp.html#aeef3a8fde04c8d29eb1a6ecd4bb5fb87", null ],
+    [ "createCommandPool", "_initializers_8cpp.html#ad180894bda2fb11ef4396cabbbe95f42", null ],
+    [ "createCommandPoolUnique", "_initializers_8cpp.html#a4a0507cd0310e5c91a8f22342c82a5bd", null ],
+    [ "createDescriptorPool", "_initializers_8cpp.html#acd5a201a5576ff74bd68adfb6856d9d6", null ],
+    [ "createDescriptorPoolUnique", "_initializers_8cpp.html#a96c7f4f958b01d7cad46d2c5ebaa94f2", null ],
+    [ "createFence", "_initializers_8cpp.html#a75e39e91b0bee720788508f1ceda0f25", null ],
+    [ "createFenceUnique", "_initializers_8cpp.html#a5c41b4c6ef81ecf1f45fdb226048a318", null ],
+    [ "createFramebuffer", "_initializers_8cpp.html#af86e353fda1ebfcdfd3e60fd1891a203", null ],
+    [ "createFramebufferUnique", "_initializers_8cpp.html#a27157ac87ba69ecc219184443b7279f3", null ],
+    [ "createImageView", "_initializers_8cpp.html#a68e7faff8839638ac038c12d728ce6d4", null ],
+    [ "createImageViewUnique", "_initializers_8cpp.html#a962e46155dc58c46245cc58a65ececbf", null ],
+    [ "createQueryPool", "_initializers_8cpp.html#a6e9de22a304ba6c271e7063b765ea684", null ],
+    [ "createQueryPoolUnique", "_initializers_8cpp.html#ae1aa45605bbbeff34170dda70f380363", null ],
+    [ "createSampler", "_initializers_8cpp.html#a2e3e8160b81f2f24e4754906355f1ee2", null ],
+    [ "createSamplerUnique", "_initializers_8cpp.html#af7fafdadf4b47aff7936fce8782d1311", null ],
+    [ "createSemaphore", "_initializers_8cpp.html#afc36459f8f5bc3b231aae43d8a89ceb3", null ],
+    [ "createSemaphoreUnique", "_initializers_8cpp.html#a553b320a0bd8df5a53b5cde1ebe632ab", null ],
+    [ "createShaderModule", "_initializers_8cpp.html#acfa78e54318d113b7632d028f12c9f6f", null ],
+    [ "createShaderModuleUnique", "_initializers_8cpp.html#ade34b50ac5ead941b7d2b20c828864d2", null ]
+];

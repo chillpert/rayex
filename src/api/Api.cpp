@@ -327,7 +327,7 @@ namespace rx
 
     // Update the camera screen size to avoid image stretching.
     auto screenSize = m_swapchain.getExtent( );
-    m_camera->setScreenSize( glm::ivec2 { static_cast<int>( screenSize.width ), static_cast<int>( screenSize.height ) } );
+    m_camera->setSize( screenSize.width, screenSize.height );
     
     RX_LOG( "Finished swapchain recreation." );
   }

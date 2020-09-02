@@ -2,12 +2,12 @@
 
 namespace rx
 {
-  uint32_t Settings::m_maxRecursionDepth = 8;
-  bool Settings::m_refresh = false;
+  uint32_t Settings::s_maxRecursionDepth = 8;
+  bool Settings::s_refresh = false;
 
   void Settings::setMaxRecursionDepth( uint32_t maxRecursionDepth )
   {
-    m_maxRecursionDepth = maxRecursionDepth;
-    m_refresh = true;
+    s_maxRecursionDepth = maxRecursionDepth;
+    s_refresh = true;
   }
 }

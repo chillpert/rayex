@@ -27,7 +27,7 @@ var namespacerx =
     [ "Pipeline", "classrx_1_1_pipeline.html", "classrx_1_1_pipeline" ],
     [ "Queues", "classrx_1_1_queues.html", "classrx_1_1_queues" ],
     [ "RayTracingBuilder", "classrx_1_1_ray_tracing_builder.html", "classrx_1_1_ray_tracing_builder" ],
-    [ "RaytracingInstance", "structrx_1_1_raytracing_instance.html", "structrx_1_1_raytracing_instance" ],
+    [ "RayTracingInstance", "structrx_1_1_ray_tracing_instance.html", "structrx_1_1_ray_tracing_instance" ],
     [ "Renderer", "classrx_1_1_renderer.html", "classrx_1_1_renderer" ],
     [ "RenderPass", "classrx_1_1_render_pass.html", "classrx_1_1_render_pass" ],
     [ "Settings", "classrx_1_1_settings.html", null ],
@@ -40,6 +40,5 @@ var namespacerx =
     [ "UniformBuffer", "classrx_1_1_uniform_buffer.html", "classrx_1_1_uniform_buffer" ],
     [ "Vertex", "structrx_1_1_vertex.html", "structrx_1_1_vertex" ],
     [ "VertexBuffer", "classrx_1_1_vertex_buffer.html", "classrx_1_1_vertex_buffer" ],
-    [ "WindowBase", "classrx_1_1_window_base.html", "classrx_1_1_window_base" ],
-    [ "WindowProperties", "classrx_1_1_window_properties.html", "classrx_1_1_window_properties" ]
+    [ "WindowBase", "classrx_1_1_window_base.html", "classrx_1_1_window_base" ]
 ];

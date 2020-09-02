@@ -2,10 +2,15 @@
 
 namespace rx
 {
-  WindowBase::WindowBase( WindowProperties windowProperties ) :
+  WindowBase::WindowBase( int width, int height, const char* title, uint32_t flags ) :
     m_window( nullptr ),
-    m_properties { windowProperties },
-    m_time { } { }
+    m_width( width ),
+    m_height( height ),
+    m_title( title ),
+    m_flags( flags )
+  {
+    m_flags |= SDL_WINDOW_VULKAN;
+  }
 
   WindowBase::~WindowBase( )
   {
@@ -19,34 +24,22 @@ namespace rx
     if ( SDL_Init( SDL_INIT_VIDEO ) < 0 )
       RX_ERROR( SDL_GetError( ) );
 
-    m_window = SDL_CreateWindow(
-      m_properties.getTitle( ),
-      SDL_WINDOWPOS_CENTERED,
-      SDL_WINDOWPOS_CENTERED,
-      m_properties.getWidth( ),
-      m_properties.getHeight( ),
-      m_properties.getFlags( )
-    );
+    m_window = SDL_CreateWindow( m_title, SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, m_width, m_height, m_flags );
 
     if ( m_window == nullptr )
-      RX_ERROR( "Failed to create window." );
+      RX_ERROR( "Failed to create window." ); 
   }
 
   bool WindowBase::update( )
   {
-    // Update local timer bound to this window.
+    // Updates local timer bound to this window.
     m_time.update( );
 
     // Fetch the latest window dimensions.
     int width, height;
     SDL_GetWindowSize( m_window, &width, &height );
-    m_properties.resize( width, height );
+    resize( width, height );
 
-    return true;
-  }
-
-  bool WindowBase::render( )
-  {
     return true;
   }
 
@@ -60,8 +53,9 @@ namespace rx
 
   void WindowBase::resize( int width, int height )
   {
-    m_properties.resize( width, height );
-    SDL_SetWindowSize( m_window, m_properties.getWidth( ), m_properties.getHeight( ) );
+    m_width = width;
+    m_height = height;
+    SDL_SetWindowSize( m_window, m_width, m_height );
   }
 
   std::vector<const char*> WindowBase::getInstanceExtensions( )
@@ -79,6 +73,7 @@ namespace rx
       RX_ERROR( "Failed to get extensions required by SDL." );
 
     std::vector<const char*> extensions;
+    extensions.reserve( sdlExtensionsCount );
 
     for ( size_t i = 0; i < sdlExtensionsCount; ++i )
       extensions.push_back( sdlExtensionsNames[i] );
@@ -97,22 +92,7 @@ namespace rx
     return surface;
   }
 
-  void WindowBase::processGuiEvent( SDL_Event& event )
-  {
-    ImGui_ImplSDL2_ProcessEvent( &event );
-  }
-
-  void WindowBase::setTitle( const char* title )
-  {
-    m_properties.setTitle( title );
-  }
-
-  void WindowBase::getSize( int* width, int* height )
-  {
-    SDL_GetWindowSize( m_window, width, height );
-  }
-
-  vk::Extent2D WindowBase::getExtent( )
+  vk::Extent2D WindowBase::getExtent( ) const
   {
     int width, height;
     SDL_GetWindowSize( m_window, &width, &height );
@@ -122,18 +102,13 @@ namespace rx
 
   bool WindowBase::changed( )
   {
-    static int prevWidth = m_properties.getWidth( );
-    static int prevHeight = m_properties.getHeight( );
+    static int prevWidth = m_width;
+    static int prevHeight = m_height;
 
-    int width = m_properties.getWidth( );
-    int height = m_properties.getHeight( );
-
-    if ( width != prevWidth || height != prevHeight )
+    if ( m_width != prevWidth || m_height != prevHeight )
     {
-      prevWidth = width;
-      prevHeight = height;
-
-      RX_LOG( "Window refresh event" );
+      prevWidth = m_width;
+      prevHeight = m_height;
       return true;
     }
 

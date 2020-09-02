@@ -2,8 +2,6 @@
 
 using namespace rx;
 
-float speed = 0.0f;
-
 namespace Key
 {
   bool eW;
@@ -52,16 +50,12 @@ public:
   }
 };
 
-// Create your own custom window class, to propagate events to your own event system.
 class CustomWindow : public WindowBase
 {
 public:
-  CustomWindow( WindowProperties windowProps ) :
-    WindowBase( windowProps )
+  CustomWindow( int width, int height, const char* title, uint32_t flags ) :
+    WindowBase( width, height, title, flags )
   { }
-
-  std::shared_ptr<CustomCamera> m_camera;
-  bool m_mouseVisible = true;
 
   void init( ) override
   {
@@ -72,10 +66,9 @@ public:
 
   bool update( ) override
   {
-    // Updates the timer bound to the window as well as the window size.
     WindowBase::update( );
 
-    m_camera->setSize( m_properties.getWidth( ), m_properties.getHeight( ) );
+    m_camera->setSize( m_width, m_height );
 
     // Add your custom event polling and integrate your event system.
     SDL_Event event;
@@ -187,24 +180,33 @@ public:
     }
     return true;
   }
+
+  void setCamera( const std::shared_ptr<CameraBase> camera )
+  {
+    m_camera = camera;
+  }
+
+private:
+  std::shared_ptr<CameraBase> m_camera;
+  bool m_mouseVisible = true;
 };
 
 class CustomGui : public GuiBase
 {
 public:
-  Renderer* m_renderer;
-
   void configure( ) override
   {
     GuiBase::configure( );
     ImGui::StyleColorsDark( );
   }
 
+  float m_animationSpeed = 0.0f;
+
   void render( ) override
   {
     if ( ImGui::Begin( "Settings" ) )
     {
-      ImGui::SliderFloat( "Speed", &speed, 0.0f, 2.0f );
+      ImGui::SliderFloat( "Speed", &m_animationSpeed, 0.0f, 2.0f );
 
       if ( ImGui::Button( "Add Box" ) )
       {
@@ -227,6 +229,14 @@ public:
 
     ImGui::End( );
   }
+
+  void setRenderer( Renderer* renderer )
+  {
+    m_renderer = renderer;
+  }
+
+private:
+  Renderer* m_renderer;
 };
 
 int main( int argc, char* argv[] )
@@ -235,57 +245,37 @@ int main( int argc, char* argv[] )
   int width = 900;
   int height = 600;
 
-  // Define the window's properties according to your preferences.
-  WindowProperties props( width, height, "Example", WINDOW_RESIZABLE | WINDOW_VISIBLE );
-
   // Now create the actual window using the window properties from above.
-  auto myWindow = std::make_shared<CustomWindow>( props );
+  auto myWindow = std::make_shared<CustomWindow>( width, height, "Example", WINDOW_RESIZABLE | WINDOW_INPUT_FOCUS );
 
   // Create instance of your custom camera class.
-  auto myCam = std::make_shared<CustomCamera>( width, height, glm::vec3 { 0.0f, 0.0f, 3.0f } );
+  auto myCam = std::make_shared<CustomCamera>( width, height, glm::vec3( 0.0f, 0.0f, 3.0f ) );
 
   // Create the renderer object ...
-  Renderer renderer( myWindow, myCam );
+  Renderer myRenderer( myWindow, myCam );
 
   // ... and initialize it.
-  renderer.init( );
+  myRenderer.init( );
 
   // Setup your own ImGui based Gui.
   auto myGui = std::make_shared<CustomGui>( );
-  renderer.setGui( myGui );
+  myRenderer.setGui( myGui );
 
-  myWindow->m_camera = myCam;
-  myGui->m_renderer = &renderer;
+  myGui->setRenderer( &myRenderer );
+  myWindow->setCamera( myCam );
 
-  // Setup the scene.
+  // Setup the scene
   auto dragonLore = std::make_shared<GeometryNode>( "models/awpdlore/awpdlore.obj", Material( "textures/awpdlore.png" ) );
-  //dragonLore->m_worldTransform = glm::scale( dragonLore->m_worldTransform, glm::vec3( 0.25f ) );
-  //dragonLore->m_worldTransform = glm::rotate( dragonLore->m_worldTransform, glm::radians( 90.0f ), glm::vec3( 0.0f, 1.0f, 0.0f ) );
-
-  //auto cube = std::make_shared<GeometryNode>( "models/cube.obj", Material( "textures/awpdlore.png" ) );
-
-  /*
-  auto mars = std::make_shared<GeometryNode>( "models/sphere.obj", Material( "textures/mars.jpg" ) );
-  mars->m_worldTransform = glm::scale( mars->m_worldTransform, glm::vec3( 0.25f ) );
-  mars->m_worldTransform = glm::rotate( mars->m_worldTransform, glm::radians( 90.0f ), glm::vec3( 0.0f, 1.0f, 0.0f ) );
-  mars->m_worldTransform = glm::translate( mars->m_worldTransform, glm::vec3( 0.0f, -2.0f, 0.0f ) );
-
-  auto dirLight = std::make_shared<DirectionalLightNode>( );
-  dirLight->m_ambientStrength = 0.5f;
-  dirLight->m_direction = { 0.0f, 10.0f, 10.0f };
-  */
+  dragonLore->m_worldTransform = glm::scale( dragonLore->m_worldTransform, glm::vec3( 0.25f ) );
+  dragonLore->m_worldTransform = glm::rotate( dragonLore->m_worldTransform, glm::radians( 90.0f ), glm::vec3( 0.0f, 1.0f, 0.0f ) );
 
   // Add the model to the renderer. This way they will be queued for rendering.
-  //renderer.setNodes( { dragonLore } );//, mars, dirLight } );
-  //renderer.setNodes( { cube }  );
-  renderer.pushNode( dragonLore );
+  myRenderer.pushNode( dragonLore );
 
-  while ( renderer.isRunning( ) )
+  while ( myRenderer.isRunning( ) )
   {
     //dragonLore->m_worldTransform = glm::rotate( dragonLore->m_worldTransform, glm::radians( 90.0f ) * Time::getDeltaTime( ) * speed, glm::vec3( 0.0f, 1.0f, 0.0f ) );
-    //mars->m_worldTransform = glm::rotate( mars->m_worldTransform, glm::radians( 90.0f ) * Time::getDeltaTime( ) * -speed, glm::vec3( 0.0f, 1.0f, 0.0f ) );
-
-    renderer.run( );
+    myRenderer.run( );
   }
 
   return 0;

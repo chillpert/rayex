@@ -5,7 +5,7 @@ namespace rx
 {
   Renderer::Renderer( ) :
     m_window( std::make_shared<WindowBase>( ) ),
-    m_camera( std::make_shared<CameraBase>( m_window->getProperties( ).getWidth( ), m_window->getProperties( ).getHeight( ) ) ),
+    m_camera( std::make_shared<CameraBase>( m_window->getWidth( ), m_window->getHeight( ) ) ),
     m_api( m_window, m_camera ),
     m_initialized( false ),
     m_running( true )
@@ -21,7 +21,7 @@ namespace rx
 
   Renderer::Renderer( std::shared_ptr<WindowBase> window ) :
     m_window( window ),
-    m_camera( std::make_shared<CameraBase>( m_window->getProperties( ).getWidth( ), m_window->getProperties( ).getHeight( ) ) ),
+    m_camera( std::make_shared<CameraBase>( m_window->getWidth( ), m_window->getHeight( ) ) ),
     m_api( window, m_camera ),
     m_initialized( false ),
     m_running( true )
@@ -65,7 +65,6 @@ namespace rx
     if ( !m_running || !m_initialized )
       return;
 
-    m_running = m_window->render( );
     m_api.render( );
     m_api.update( );
   }

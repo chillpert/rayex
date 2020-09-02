@@ -2,6 +2,15 @@
 
 namespace rx
 {
+  CameraBase::CameraBase( int width, int height, const glm::vec3& position ) :
+    m_width( width ),
+    m_height( height ),
+    m_position( position )
+  {
+    updateVectors( );
+    updateViewMatrix( );
+  }
+
   void CameraBase::setPosition( const glm::vec3& position )
   {
     m_position = position;

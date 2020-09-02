@@ -6,14 +6,25 @@
 
 namespace rx
 {
+  /// Used to keep track of the application's timing.
   class Time
   {
   public:
+    /// Destructor of Time.
+    /// 
+    /// Prints a message containing average FPS.
+    /// @todo Average FPS are pointless. Implement minimum FPS and frametimes instead.
     RX_API ~Time( );
 
+    /// @return Returns the time passed since application start in seconds.
     RX_API static float getTime( );
+    /// @return Returns the time passed between the current and the last frame.
     RX_API static float getDeltaTime( );
 
+    /// Updates the timing.
+    /// 
+    /// Prints the current FPS every three seconds.
+    /// @note This function will be called every tick.
     void update( );
 
   private:

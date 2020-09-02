@@ -25,6 +25,8 @@
 var NAVTREE =
 [
   [ "Renderer", "index.html", [
+    [ "Todo List", "todo.html", null ],
+    [ "Modules", "modules.html", "modules" ],
     [ "Namespaces", "namespaces.html", [
       [ "Namespace List", "namespaces.html", "namespaces_dup" ],
       [ "Namespace Members", "namespacemembers.html", [
@@ -51,7 +53,6 @@ var NAVTREE =
       [ "File Members", "globals.html", [
         [ "All", "globals.html", null ],
         [ "Functions", "globals_func.html", null ],
-        [ "Variables", "globals_vars.html", null ],
         [ "Macros", "globals_defs.html", null ]
       ] ]
     ] ]
@@ -61,8 +62,8 @@ var NAVTREE =
 var NAVTREEINDEX =
 [
 "_acceleration_structure_8hpp.html",
-"_window_properties_8hpp.html#a108d586192564f598fd82c8c2483fe8aa23c63438aa90b514e7fd7269e3cbe8c1",
-"classrx_1_1_render_pass.html#ac08ed715e8dbc8bb7ef5d0b108b2e93c"
+"_window_base_8hpp.html#a108d586192564f598fd82c8c2483fe8aa7b53bf1790791de422a956078f4b984f",
+"classrx_1_1_renderer.html#a33959cfeb100569da63f19e0de62f655"
 ];
 
 var SYNCONMSG = 'click to disable panel synchronisation';

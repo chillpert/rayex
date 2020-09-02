@@ -23,6 +23,7 @@ namespace rx
     RX_API bool isRunning( ) { return m_running; }
 
     RX_API inline const std::shared_ptr<WindowBase> getWindow( ) const { return m_window; }
+    RX_API inline const std::shared_ptr<CameraBase> getCamera( ) const { return m_camera; }
 
     RX_API void pushNode( const std::shared_ptr<Node> node );
     RX_API void setNodes( const std::vector<std::shared_ptr<Node>>& nodes );

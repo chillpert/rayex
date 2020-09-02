@@ -1,6 +1,5 @@
 var classrx_1_1_transform_node =
 [
-    [ "TransformNode", "classrx_1_1_transform_node.html#a785dab8d7e3c5bc2438bf1614ecc8027", null ],
     [ "~TransformNode", "classrx_1_1_transform_node.html#a8930dc916df0f32e6682f2ba4b1ed621", null ],
     [ "m_inverseLocalTransform", "classrx_1_1_transform_node.html#a882cd9b562378ce4bfaeab36a9051f5b", null ],
     [ "m_inverseWorldTransform", "classrx_1_1_transform_node.html#a9b79a66fff1bebfd016e7033ff85d19c", null ],

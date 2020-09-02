@@ -9,6 +9,5 @@ var main_8cpp =
     [ "eD", "main_8cpp.html#a0acdef1c008be2e54ad39101539aa8aa", null ],
     [ "eS", "main_8cpp.html#a478614839cd72b47bcb8a68ffa3dc07e", null ],
     [ "eSpace", "main_8cpp.html#ad417571b64fe4dff31a75c9ca038f6b0", null ],
-    [ "eW", "main_8cpp.html#a0eea43667d7408763d1b47562cd66a47", null ],
-    [ "speed", "main_8cpp.html#a7f7e4724cf57d59513b39c5ecc81adc8", null ]
+    [ "eW", "main_8cpp.html#a0eea43667d7408763d1b47562cd66a47", null ]
 ];

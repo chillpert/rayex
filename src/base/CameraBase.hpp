@@ -16,20 +16,14 @@ namespace rx
   /// @note The client has to handle keyboard related camera changes inside update().
   /// @warning Do not forget to re-calculate the view or projection matrix if the camera or the window have changed.
   /// @see updateViewMatrix(), updateProjectionMatrix()
+  /// @ingroup Base
   class CameraBase
   {
   public:
-    /// The constructor of CameraBase.
     /// @param width The width of the viewport.
     /// @param height The height of the viewport.
-    /// @param position The position of your camera (origin if not specified).
-    CameraBase( int width, int height, const glm::vec3& position = glm::vec3( 0.0f ) ) :
-      m_width( width ),
-      m_height( height ),
-      m_position( position )
-    {
-      updateVectors( );
-    }
+    /// @param position The position of your camera.
+    RX_API CameraBase( int width, int height, const glm::vec3& position = glm::vec3( 0.0f, 0.0f, 3.0f ) );
 
     RX_API ~CameraBase( ) = default;
 
@@ -60,19 +54,15 @@ namespace rx
     /// @param sensitivity The new mouse sensitivity.
     RX_API void setSensitivity( float sensitivity );
 
-    /// Returns the camera's view matrix.
     /// @return The view matrix.
     inline const glm::mat4& getViewMatrix( ) const { return m_view; }
 
-    /// Returns the camera's projection matrix.
     /// @return The projection matrix.
     inline const glm::mat4& getProjectionMatrix( ) const { return m_projection; }
 
-    /// Returns the camera's inversed view matrix.
     /// @return The view matrix inversed.
     inline const glm::mat4& getViewInverseMatrix( ) const { return m_viewInverse; }
     
-    /// Returns the camera's inversed projection matrix.
     /// @return The projection matrix inversed.
     inline const glm::mat4& getProjectionInverseMatrix( ) const { return m_projectionInverse; }
     
@@ -82,7 +72,7 @@ namespace rx
     /// Re-calculates the camera's projection matrix as well as the inversed projection matrix.
     RX_API void updateProjectionMatrix( );
 
-    /// Processes mouse input.
+    /// Processes mouse input (default implementation).
     /// @param xOffset The difference of the offset on the x-axis and the previous offset.
     /// @param yOffset The difference of the offset on the y-axis and the previous offset.
     RX_API virtual void processMouse( float xOffset, float yOffset );

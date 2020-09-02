@@ -99,7 +99,7 @@ $(document).ready(function(){initNavTree('classrx_1_1_camera_base.html',''); ini
 <a href="#pro-attribs">Protected Attributes</a> &#124;
 <a href="classrx_1_1_camera_base-members.html">List of all members</a>  </div>
   <div class="headertitle">
-<div class="title">rx::CameraBase Class Reference</div>  </div>
+<div class="title">rx::CameraBase Class Reference<div class="ingroups"><a class="el" href="group___base.html">Interfaces</a></div></div>  </div>
 </div><!--header-->
 <div class="contents">
 
@@ -119,9 +119,8 @@ Inheritance diagram for rx::CameraBase:</div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:aba1accadc57d1ce22f9c64f6cf629aa4"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classrx_1_1_camera_base.html#aba1accadc57d1ce22f9c64f6cf629aa4">CameraBase</a> (int width, int height, const glm::vec3 &amp;position=glm::vec3(0.0f))</td></tr>
-<tr class="memdesc:aba1accadc57d1ce22f9c64f6cf629aa4"><td class="mdescLeft">&#160;</td><td class="mdescRight">The constructor of <a class="el" href="classrx_1_1_camera_base.html" title="A minimal camera implementation.">CameraBase</a>.  <a href="classrx_1_1_camera_base.html#aba1accadc57d1ce22f9c64f6cf629aa4">More...</a><br /></td></tr>
-<tr class="separator:aba1accadc57d1ce22f9c64f6cf629aa4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a15137ba4a98b1c6705a0873d64c82ba3"><td class="memItemLeft" align="right" valign="top">RX_API&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classrx_1_1_camera_base.html#a15137ba4a98b1c6705a0873d64c82ba3">CameraBase</a> (int width, int height, const glm::vec3 &amp;position=glm::vec3(0.0f, 0.0f, 3.0f))</td></tr>
+<tr class="separator:a15137ba4a98b1c6705a0873d64c82ba3"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aa409b048e207d82f595cb2f4a379a72a"><td class="memItemLeft" align="right" valign="top">RX_API&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classrx_1_1_camera_base.html#aa409b048e207d82f595cb2f4a379a72a">~CameraBase</a> ()=default</td></tr>
 <tr class="separator:aa409b048e207d82f595cb2f4a379a72a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a9fc9ce55c122c04ac14851c956be0384"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classrx_1_1_camera_base.html#a9fc9ce55c122c04ac14851c956be0384">update</a> ()</td></tr>
@@ -143,16 +142,12 @@ Public Member Functions</h2></td></tr>
 <tr class="memdesc:a0004c71206e7d392d8c815e053a8c397"><td class="mdescLeft">&#160;</td><td class="mdescRight">Is used to set the mouse sensitivity.  <a href="classrx_1_1_camera_base.html#a0004c71206e7d392d8c815e053a8c397">More...</a><br /></td></tr>
 <tr class="separator:a0004c71206e7d392d8c815e053a8c397"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ae9f3091659e2687377b5a23ab7e4c54c"><td class="memItemLeft" align="right" valign="top">const glm::mat4 &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classrx_1_1_camera_base.html#ae9f3091659e2687377b5a23ab7e4c54c">getViewMatrix</a> () const</td></tr>
-<tr class="memdesc:ae9f3091659e2687377b5a23ab7e4c54c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the camera's view matrix.  <a href="classrx_1_1_camera_base.html#ae9f3091659e2687377b5a23ab7e4c54c">More...</a><br /></td></tr>
 <tr class="separator:ae9f3091659e2687377b5a23ab7e4c54c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a76f6c010fe4a56652776ce8ceeaa625e"><td class="memItemLeft" align="right" valign="top">const glm::mat4 &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classrx_1_1_camera_base.html#a76f6c010fe4a56652776ce8ceeaa625e">getProjectionMatrix</a> () const</td></tr>
-<tr class="memdesc:a76f6c010fe4a56652776ce8ceeaa625e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the camera's projection matrix.  <a href="classrx_1_1_camera_base.html#a76f6c010fe4a56652776ce8ceeaa625e">More...</a><br /></td></tr>
 <tr class="separator:a76f6c010fe4a56652776ce8ceeaa625e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a03ee38e01e1ec2cecef8fe34cc4fef6a"><td class="memItemLeft" align="right" valign="top">const glm::mat4 &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classrx_1_1_camera_base.html#a03ee38e01e1ec2cecef8fe34cc4fef6a">getViewInverseMatrix</a> () const</td></tr>
-<tr class="memdesc:a03ee38e01e1ec2cecef8fe34cc4fef6a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the camera's inversed view matrix.  <a href="classrx_1_1_camera_base.html#a03ee38e01e1ec2cecef8fe34cc4fef6a">More...</a><br /></td></tr>
 <tr class="separator:a03ee38e01e1ec2cecef8fe34cc4fef6a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a77571ae5c0604173a1b8a3cd502d394c"><td class="memItemLeft" align="right" valign="top">const glm::mat4 &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classrx_1_1_camera_base.html#a77571ae5c0604173a1b8a3cd502d394c">getProjectionInverseMatrix</a> () const</td></tr>
-<tr class="memdesc:a77571ae5c0604173a1b8a3cd502d394c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the camera's inversed projection matrix.  <a href="classrx_1_1_camera_base.html#a77571ae5c0604173a1b8a3cd502d394c">More...</a><br /></td></tr>
 <tr class="separator:a77571ae5c0604173a1b8a3cd502d394c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a0ec3d2409530bf8e3068bed69d05d5bf"><td class="memItemLeft" align="right" valign="top">RX_API void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classrx_1_1_camera_base.html#a0ec3d2409530bf8e3068bed69d05d5bf">updateViewMatrix</a> ()</td></tr>
 <tr class="memdesc:a0ec3d2409530bf8e3068bed69d05d5bf"><td class="mdescLeft">&#160;</td><td class="mdescRight">Re-calculates the camera's view matrix as well as the inversed view matrix.  <a href="classrx_1_1_camera_base.html#a0ec3d2409530bf8e3068bed69d05d5bf">More...</a><br /></td></tr>
@@ -161,7 +156,7 @@ Public Member Functions</h2></td></tr>
 <tr class="memdesc:a21627f1b60732c3dc566a52116c548c9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Re-calculates the camera's projection matrix as well as the inversed projection matrix.  <a href="classrx_1_1_camera_base.html#a21627f1b60732c3dc566a52116c548c9">More...</a><br /></td></tr>
 <tr class="separator:a21627f1b60732c3dc566a52116c548c9"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ae4aaf998c208f3755045bcd7fe350d1d"><td class="memItemLeft" align="right" valign="top">virtual RX_API void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classrx_1_1_camera_base.html#ae4aaf998c208f3755045bcd7fe350d1d">processMouse</a> (float xOffset, float yOffset)</td></tr>
-<tr class="memdesc:ae4aaf998c208f3755045bcd7fe350d1d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Processes mouse input.  <a href="classrx_1_1_camera_base.html#ae4aaf998c208f3755045bcd7fe350d1d">More...</a><br /></td></tr>
+<tr class="memdesc:ae4aaf998c208f3755045bcd7fe350d1d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Processes mouse input (default implementation).  <a href="classrx_1_1_camera_base.html#ae4aaf998c208f3755045bcd7fe350d1d">More...</a><br /></td></tr>
 <tr class="separator:ae4aaf998c208f3755045bcd7fe350d1d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pro-methods"></a>
@@ -229,14 +224,11 @@ Example</h3>
 <dl class="section warning"><dt>Warning</dt><dd>Do not forget to re-calculate the view or projection matrix if the camera or the window have changed. </dd></dl>
 <dl class="section see"><dt>See also</dt><dd><a class="el" href="classrx_1_1_camera_base.html#a0ec3d2409530bf8e3068bed69d05d5bf" title="Re-calculates the camera&#39;s view matrix as well as the inversed view matrix.">updateViewMatrix()</a>, <a class="el" href="classrx_1_1_camera_base.html#a21627f1b60732c3dc566a52116c548c9" title="Re-calculates the camera&#39;s projection matrix as well as the inversed projection matrix.">updateProjectionMatrix()</a> </dd></dl>
 </div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
-<a id="aba1accadc57d1ce22f9c64f6cf629aa4"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aba1accadc57d1ce22f9c64f6cf629aa4">&#9670;&nbsp;</a></span>CameraBase()</h2>
+<a id="a15137ba4a98b1c6705a0873d64c82ba3"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a15137ba4a98b1c6705a0873d64c82ba3">&#9670;&nbsp;</a></span>CameraBase()</h2>
 
 <div class="memitem">
 <div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
       <table class="memname">
         <tr>
           <td class="memname">rx::CameraBase::CameraBase </td>
@@ -254,7 +246,7 @@ Example</h3>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">const glm::vec3 &amp;&#160;</td>
-          <td class="paramname"><em>position</em> = <code>glm::vec3(&#160;0.0f&#160;)</code>&#160;</td>
+          <td class="paramname"><em>position</em> = <code>glm::vec3(&#160;0.0f,&#160;0.0f,&#160;3.0f&#160;)</code>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -262,19 +254,12 @@ Example</h3>
           <td></td><td></td>
         </tr>
       </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
-  </tr>
-</table>
 </div><div class="memdoc">
-
-<p>The constructor of <a class="el" href="classrx_1_1_camera_base.html" title="A minimal camera implementation.">CameraBase</a>. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">width</td><td>The width of the viewport. </td></tr>
     <tr><td class="paramname">height</td><td>The height of the viewport. </td></tr>
-    <tr><td class="paramname">position</td><td>The position of your camera (origin if not specified). </td></tr>
+    <tr><td class="paramname">position</td><td>The position of your camera. </td></tr>
   </table>
   </dd>
 </dl>
@@ -357,8 +342,6 @@ Example</h3>
   </tr>
 </table>
 </div><div class="memdoc">
-
-<p>Returns the camera's inversed projection matrix. </p>
 <dl class="section return"><dt>Returns</dt><dd>The projection matrix inversed. </dd></dl>
 
 </div>
@@ -385,8 +368,6 @@ Example</h3>
   </tr>
 </table>
 </div><div class="memdoc">
-
-<p>Returns the camera's projection matrix. </p>
 <dl class="section return"><dt>Returns</dt><dd>The projection matrix. </dd></dl>
 
 </div>
@@ -413,8 +394,6 @@ Example</h3>
   </tr>
 </table>
 </div><div class="memdoc">
-
-<p>Returns the camera's inversed view matrix. </p>
 <dl class="section return"><dt>Returns</dt><dd>The view matrix inversed. </dd></dl>
 
 </div>
@@ -441,8 +420,6 @@ Example</h3>
   </tr>
 </table>
 </div><div class="memdoc">
-
-<p>Returns the camera's view matrix. </p>
 <dl class="section return"><dt>Returns</dt><dd>The view matrix. </dd></dl>
 
 </div>
@@ -481,7 +458,7 @@ Example</h3>
 </table>
 </div><div class="memdoc">
 
-<p>Processes mouse input. </p>
+<p>Processes mouse input (default implementation). </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">xOffset</td><td>The difference of the offset on the x-axis and the previous offset. </td></tr>

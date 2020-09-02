@@ -95,12 +95,14 @@ $(document).ready(function(){initNavTree('classrx_1_1_node.html',''); initResiza
 <div class="header">
   <div class="summary">
 <a href="#pub-methods">Public Member Functions</a> &#124;
-<a href="#pub-attribs">Public Attributes</a> &#124;
 <a href="classrx_1_1_node-members.html">List of all members</a>  </div>
   <div class="headertitle">
-<div class="title">rx::Node Class Reference</div>  </div>
+<div class="title">rx::Node Class Reference<div class="ingroups"><a class="el" href="group___base.html">Interfaces</a></div></div>  </div>
 </div><!--header-->
 <div class="contents">
+
+<p>Describes a node in the scene graph.  
+ <a href="classrx_1_1_node.html#details">More...</a></p>
 
 <p><code>#include &lt;<a class="el" href="_node_base_8hpp_source.html">NodeBase.hpp</a>&gt;</code></p>
 <div class="dynheader">
@@ -109,10 +111,10 @@ Inheritance diagram for rx::Node:</div>
  <div class="center">
   <img src="classrx_1_1_node.png" usemap="#rx::Node_map" alt=""/>
   <map id="rx::Node_map" name="rx::Node_map">
-<area href="classrx_1_1_light_node.html" alt="rx::LightNode" shape="rect" coords="0,56,147,80"/>
-<area href="classrx_1_1_transform_node.html" alt="rx::TransformNode" shape="rect" coords="157,56,304,80"/>
-<area href="classrx_1_1_directional_light_node.html" alt="rx::DirectionalLightNode" shape="rect" coords="0,112,147,136"/>
-<area href="classrx_1_1_geometry_node.html" alt="rx::GeometryNode" shape="rect" coords="157,112,304,136"/>
+<area href="classrx_1_1_transform_node.html" title="Adds transformation abilities to the Node base class." alt="rx::TransformNode" shape="rect" coords="78,56,225,80"/>
+<area href="classrx_1_1_geometry_node.html" title="Adds geometry to the TransformNode parent class." alt="rx::GeometryNode" shape="rect" coords="0,112,147,136"/>
+<area href="classrx_1_1_light_node.html" title="Adds lighting-related information to the TransformNode parent class." alt="rx::LightNode" shape="rect" coords="157,112,304,136"/>
+<area href="classrx_1_1_directional_light_node.html" title="Can be used to add directional light sources to the scene." alt="rx::DirectionalLightNode" shape="rect" coords="157,168,304,192"/>
   </map>
 </div></div>
 <table class="memberdecls">
@@ -122,13 +124,12 @@ Public Member Functions</h2></td></tr>
 <tr class="separator:adf0d15a58309c1fdb7cff60a5a4e10f5"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a11793f57afaf9c34a42ac6efc5a40049"><td class="memItemLeft" align="right" valign="top">virtual&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classrx_1_1_node.html#a11793f57afaf9c34a42ac6efc5a40049">~Node</a> ()=default</td></tr>
 <tr class="separator:a11793f57afaf9c34a42ac6efc5a40049"><td class="memSeparator" colspan="2">&#160;</td></tr>
-</table><table class="memberdecls">
-<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-attribs"></a>
-Public Attributes</h2></td></tr>
-<tr class="memitem:aa1ed31522b08e611af776de81825c239"><td class="memItemLeft" align="right" valign="top">size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classrx_1_1_node.html#aa1ed31522b08e611af776de81825c239">m_id</a></td></tr>
-<tr class="separator:aa1ed31522b08e611af776de81825c239"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a44d70a683c0103419a22aa7a816c65d2"><td class="memItemLeft" align="right" valign="top">size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classrx_1_1_node.html#a44d70a683c0103419a22aa7a816c65d2">getID</a> ()</td></tr>
+<tr class="separator:a44d70a683c0103419a22aa7a816c65d2"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
-<h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>Describes a node in the scene graph. </p>
+</div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a id="adf0d15a58309c1fdb7cff60a5a4e10f5"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#adf0d15a58309c1fdb7cff60a5a4e10f5">&#9670;&nbsp;</a></span>Node()</h2>
 
@@ -179,18 +180,30 @@ Public Attributes</h2></td></tr>
 
 </div>
 </div>
-<h2 class="groupheader">Member Data Documentation</h2>
-<a id="aa1ed31522b08e611af776de81825c239"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aa1ed31522b08e611af776de81825c239">&#9670;&nbsp;</a></span>m_id</h2>
+<h2 class="groupheader">Member Function Documentation</h2>
+<a id="a44d70a683c0103419a22aa7a816c65d2"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a44d70a683c0103419a22aa7a816c65d2">&#9670;&nbsp;</a></span>getID()</h2>
 
 <div class="memitem">
 <div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">size_t rx::Node::m_id</td>
+          <td class="memname">size_t rx::Node::getID </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
         </tr>
       </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
 </div><div class="memdoc">
+<dl class="section return"><dt>Returns</dt><dd>The node's ID. </dd></dl>
 
 </div>
 </div>

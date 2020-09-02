@@ -391,7 +391,7 @@ namespace rx
       model->m_initialized = true;
     }
 
-    node->m_rtInstance.m_objIndex = model->m_index;
+    node->m_rtInstance.m_modelIndex = model->m_index;
 
     // TODO: Try to call this as few times as possible.   
     m_rayTracingBuilder.createBottomLevelAS( vk::Helper::unpack( m_models ) );

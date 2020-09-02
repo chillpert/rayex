@@ -98,9 +98,12 @@ $(document).ready(function(){initNavTree('classrx_1_1_window_base.html',''); ini
 <a href="#pro-attribs">Protected Attributes</a> &#124;
 <a href="classrx_1_1_window_base-members.html">List of all members</a>  </div>
   <div class="headertitle">
-<div class="title">rx::WindowBase Class Reference</div>  </div>
+<div class="title">rx::WindowBase Class Reference<div class="ingroups"><a class="el" href="group___base.html">Interfaces</a></div></div>  </div>
 </div><!--header-->
 <div class="contents">
+
+<p>Implements a SDL-based window.  
+ <a href="classrx_1_1_window_base.html#details">More...</a></p>
 
 <p><code>#include &lt;<a class="el" href="_window_base_8hpp_source.html">WindowBase.hpp</a>&gt;</code></p>
 <div class="dynheader">
@@ -115,38 +118,37 @@ Inheritance diagram for rx::WindowBase:</div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:ac0b25cec2e399d8a40b80f0de114746d"><td class="memItemLeft" align="right" valign="top">RX_API&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classrx_1_1_window_base.html#ac0b25cec2e399d8a40b80f0de114746d">WindowBase</a> (<a class="el" href="classrx_1_1_window_properties.html">WindowProperties</a> windowProperties=<a class="el" href="classrx_1_1_window_properties.html">WindowProperties</a>())</td></tr>
-<tr class="separator:ac0b25cec2e399d8a40b80f0de114746d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4c75fcc5018535133aa56a897ef8d385"><td class="memItemLeft" align="right" valign="top">RX_API&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classrx_1_1_window_base.html#a4c75fcc5018535133aa56a897ef8d385">WindowBase</a> (int width=600, int height=400, const char *title=&quot;My Application&quot;, uint32_t flags=0)</td></tr>
+<tr class="separator:a4c75fcc5018535133aa56a897ef8d385"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ab2bac026a58aa4fdf3b809bfbe364014"><td class="memItemLeft" align="right" valign="top">virtual RX_API&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classrx_1_1_window_base.html#ab2bac026a58aa4fdf3b809bfbe364014">~WindowBase</a> ()</td></tr>
+<tr class="memdesc:ab2bac026a58aa4fdf3b809bfbe364014"><td class="mdescLeft">&#160;</td><td class="mdescRight">Destructor of <a class="el" href="classrx_1_1_window_base.html" title="Implements a SDL-based window.">WindowBase</a>.  <a href="classrx_1_1_window_base.html#ab2bac026a58aa4fdf3b809bfbe364014">More...</a><br /></td></tr>
 <tr class="separator:ab2bac026a58aa4fdf3b809bfbe364014"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a3383242489b5e86c58efbf3f7a653fd5"><td class="memItemLeft" align="right" valign="top">virtual RX_API void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classrx_1_1_window_base.html#a3383242489b5e86c58efbf3f7a653fd5">init</a> ()</td></tr>
+<tr class="memdesc:a3383242489b5e86c58efbf3f7a653fd5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Initializes the SDL-window.  <a href="classrx_1_1_window_base.html#a3383242489b5e86c58efbf3f7a653fd5">More...</a><br /></td></tr>
 <tr class="separator:a3383242489b5e86c58efbf3f7a653fd5"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a7d169824a215063c9574568b6e6fecba"><td class="memItemLeft" align="right" valign="top">virtual RX_API bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classrx_1_1_window_base.html#a7d169824a215063c9574568b6e6fecba">update</a> ()</td></tr>
+<tr class="memdesc:a7d169824a215063c9574568b6e6fecba"><td class="mdescLeft">&#160;</td><td class="mdescRight">Updates window-related components.  <a href="classrx_1_1_window_base.html#a7d169824a215063c9574568b6e6fecba">More...</a><br /></td></tr>
 <tr class="separator:a7d169824a215063c9574568b6e6fecba"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a32fc89698ab20d7b0e0e48981f835839"><td class="memItemLeft" align="right" valign="top">virtual RX_API bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classrx_1_1_window_base.html#a32fc89698ab20d7b0e0e48981f835839">render</a> ()</td></tr>
-<tr class="separator:a32fc89698ab20d7b0e0e48981f835839"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aa50e9ee4e58b6a36340180290d0c99d5"><td class="memItemLeft" align="right" valign="top">virtual RX_API void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classrx_1_1_window_base.html#aa50e9ee4e58b6a36340180290d0c99d5">clean</a> ()</td></tr>
+<tr class="memdesc:aa50e9ee4e58b6a36340180290d0c99d5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Destroys the window.  <a href="classrx_1_1_window_base.html#aa50e9ee4e58b6a36340180290d0c99d5">More...</a><br /></td></tr>
 <tr class="separator:aa50e9ee4e58b6a36340180290d0c99d5"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a6313eb78b5d688f3e3997c5163e9ac69"><td class="memItemLeft" align="right" valign="top">RX_API void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classrx_1_1_window_base.html#a6313eb78b5d688f3e3997c5163e9ac69">resize</a> (int width, int height)</td></tr>
+<tr class="memdesc:a6313eb78b5d688f3e3997c5163e9ac69"><td class="mdescLeft">&#160;</td><td class="mdescRight">Resizes the window.  <a href="classrx_1_1_window_base.html#a6313eb78b5d688f3e3997c5163e9ac69">More...</a><br /></td></tr>
 <tr class="separator:a6313eb78b5d688f3e3997c5163e9ac69"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a4c965865eadbec64d88bdb0de3a9fbaf"><td class="memItemLeft" align="right" valign="top">std::vector&lt; const char * &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classrx_1_1_window_base.html#a4c965865eadbec64d88bdb0de3a9fbaf">getInstanceExtensions</a> ()</td></tr>
+<tr class="memdesc:a4c965865eadbec64d88bdb0de3a9fbaf"><td class="mdescLeft">&#160;</td><td class="mdescRight">Used to retrieve all Vulkan instance extensions required by SDL.  <a href="classrx_1_1_window_base.html#a4c965865eadbec64d88bdb0de3a9fbaf">More...</a><br /></td></tr>
 <tr class="separator:a4c965865eadbec64d88bdb0de3a9fbaf"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:af058b1991691b3ef0c0bacedc0a895ed"><td class="memItemLeft" align="right" valign="top">RX_API vk::SurfaceKHR&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classrx_1_1_window_base.html#af058b1991691b3ef0c0bacedc0a895ed">createSurface</a> (vk::Instance instance)</td></tr>
+<tr class="memdesc:af058b1991691b3ef0c0bacedc0a895ed"><td class="mdescLeft">&#160;</td><td class="mdescRight">Creates a Vulkan surface.  <a href="classrx_1_1_window_base.html#af058b1991691b3ef0c0bacedc0a895ed">More...</a><br /></td></tr>
 <tr class="separator:af058b1991691b3ef0c0bacedc0a895ed"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a2a6bb39b317253fe105a912bd9de9cfa"><td class="memItemLeft" align="right" valign="top">RX_API void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classrx_1_1_window_base.html#a2a6bb39b317253fe105a912bd9de9cfa">processGuiEvent</a> (SDL_Event &amp;event)</td></tr>
-<tr class="separator:a2a6bb39b317253fe105a912bd9de9cfa"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aaf20776205682c4f62c00d712ae62b17"><td class="memItemLeft" align="right" valign="top">RX_API void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classrx_1_1_window_base.html#aaf20776205682c4f62c00d712ae62b17">setTitle</a> (const char *title)</td></tr>
-<tr class="separator:aaf20776205682c4f62c00d712ae62b17"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a98c9d4d754b8ade7a3710ac198610b3b"><td class="memItemLeft" align="right" valign="top">RX_API SDL_Window *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classrx_1_1_window_base.html#a98c9d4d754b8ade7a3710ac198610b3b">get</a> ()</td></tr>
 <tr class="separator:a98c9d4d754b8ade7a3710ac198610b3b"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a300bc32efc2ed40e10faddacb0e7180a"><td class="memItemLeft" align="right" valign="top">RX_API <a class="el" href="classrx_1_1_window_properties.html">WindowProperties</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classrx_1_1_window_base.html#a300bc32efc2ed40e10faddacb0e7180a">getProperties</a> ()</td></tr>
-<tr class="separator:a300bc32efc2ed40e10faddacb0e7180a"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a32a4007031df01c3578701681b5ae62c"><td class="memItemLeft" align="right" valign="top">RX_API void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classrx_1_1_window_base.html#a32a4007031df01c3578701681b5ae62c">getSize</a> (int *width, int *height)</td></tr>
-<tr class="separator:a32a4007031df01c3578701681b5ae62c"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a0523eded5d7eb0f754fa25e8ea5d4500"><td class="memItemLeft" align="right" valign="top">RX_API glm::ivec2&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classrx_1_1_window_base.html#a0523eded5d7eb0f754fa25e8ea5d4500">getSize</a> () const</td></tr>
-<tr class="separator:a0523eded5d7eb0f754fa25e8ea5d4500"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aca60a8eab41a0568986485b9db714e1e"><td class="memItemLeft" align="right" valign="top">RX_API vk::Extent2D&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classrx_1_1_window_base.html#aca60a8eab41a0568986485b9db714e1e">getExtent</a> ()</td></tr>
-<tr class="separator:aca60a8eab41a0568986485b9db714e1e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ada758bbb29c65ef6cb109c99afa8698d"><td class="memItemLeft" align="right" valign="top">RX_API vk::Extent2D&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classrx_1_1_window_base.html#ada758bbb29c65ef6cb109c99afa8698d">getExtent</a> () const</td></tr>
+<tr class="separator:ada758bbb29c65ef6cb109c99afa8698d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0bbec2310999df0b650eedf75080cce7"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classrx_1_1_window_base.html#a0bbec2310999df0b650eedf75080cce7">getWidth</a> () const</td></tr>
+<tr class="separator:a0bbec2310999df0b650eedf75080cce7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a65a4f319a081ec272bda60264f69a960"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classrx_1_1_window_base.html#a65a4f319a081ec272bda60264f69a960">getHeight</a> () const</td></tr>
+<tr class="separator:a65a4f319a081ec272bda60264f69a960"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a286b65f440d6ae3b2e2e49542ea2b1bc"><td class="memItemLeft" align="right" valign="top">RX_API bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classrx_1_1_window_base.html#a286b65f440d6ae3b2e2e49542ea2b1bc">changed</a> ()</td></tr>
 <tr class="separator:a286b65f440d6ae3b2e2e49542ea2b1bc"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a0daf35316a751cb18d4c8589a503a0dd"><td class="memItemLeft" align="right" valign="top">RX_API bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classrx_1_1_window_base.html#a0daf35316a751cb18d4c8589a503a0dd">minimized</a> ()</td></tr>
@@ -155,15 +157,35 @@ Public Member Functions</h2></td></tr>
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pro-attribs"></a>
 Protected Attributes</h2></td></tr>
 <tr class="memitem:a7a7808875387bf9d2b942710fb9217b5"><td class="memItemLeft" align="right" valign="top">SDL_Window *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classrx_1_1_window_base.html#a7a7808875387bf9d2b942710fb9217b5">m_window</a></td></tr>
+<tr class="memdesc:a7a7808875387bf9d2b942710fb9217b5"><td class="mdescLeft">&#160;</td><td class="mdescRight">The actual SDL_Window object.  <a href="classrx_1_1_window_base.html#a7a7808875387bf9d2b942710fb9217b5">More...</a><br /></td></tr>
 <tr class="separator:a7a7808875387bf9d2b942710fb9217b5"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a48831f0ab45421239832e071dfdb3f91"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classrx_1_1_window_properties.html">WindowProperties</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classrx_1_1_window_base.html#a48831f0ab45421239832e071dfdb3f91">m_properties</a></td></tr>
-<tr class="separator:a48831f0ab45421239832e071dfdb3f91"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a25e9c6984933a51e17c638ce3ba263de"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classrx_1_1_window_base.html#a25e9c6984933a51e17c638ce3ba263de">m_width</a></td></tr>
+<tr class="memdesc:a25e9c6984933a51e17c638ce3ba263de"><td class="mdescLeft">&#160;</td><td class="mdescRight">The window's width in pixels.  <a href="classrx_1_1_window_base.html#a25e9c6984933a51e17c638ce3ba263de">More...</a><br /></td></tr>
+<tr class="separator:a25e9c6984933a51e17c638ce3ba263de"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1fc9dd1927001604a39e73f79458c526"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classrx_1_1_window_base.html#a1fc9dd1927001604a39e73f79458c526">m_height</a></td></tr>
+<tr class="memdesc:a1fc9dd1927001604a39e73f79458c526"><td class="mdescLeft">&#160;</td><td class="mdescRight">The window's height in pixels.  <a href="classrx_1_1_window_base.html#a1fc9dd1927001604a39e73f79458c526">More...</a><br /></td></tr>
+<tr class="separator:a1fc9dd1927001604a39e73f79458c526"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a98ab6f3869a247eebc6ac3c02eee034f"><td class="memItemLeft" align="right" valign="top">const char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classrx_1_1_window_base.html#a98ab6f3869a247eebc6ac3c02eee034f">m_title</a></td></tr>
+<tr class="memdesc:a98ab6f3869a247eebc6ac3c02eee034f"><td class="mdescLeft">&#160;</td><td class="mdescRight">The window's title.  <a href="classrx_1_1_window_base.html#a98ab6f3869a247eebc6ac3c02eee034f">More...</a><br /></td></tr>
+<tr class="separator:a98ab6f3869a247eebc6ac3c02eee034f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a717f1fc684aa4c1d5773e10b66fe6f6f"><td class="memItemLeft" align="right" valign="top">uint32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classrx_1_1_window_base.html#a717f1fc684aa4c1d5773e10b66fe6f6f">m_flags</a></td></tr>
+<tr class="memdesc:a717f1fc684aa4c1d5773e10b66fe6f6f"><td class="mdescLeft">&#160;</td><td class="mdescRight">The window's flags.  <a href="classrx_1_1_window_base.html#a717f1fc684aa4c1d5773e10b66fe6f6f">More...</a><br /></td></tr>
+<tr class="separator:a717f1fc684aa4c1d5773e10b66fe6f6f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a70eb7bea377c3a7c5dbb3f5c67a51fe3"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classrx_1_1_time.html">Time</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classrx_1_1_window_base.html#a70eb7bea377c3a7c5dbb3f5c67a51fe3">m_time</a></td></tr>
+<tr class="memdesc:a70eb7bea377c3a7c5dbb3f5c67a51fe3"><td class="mdescLeft">&#160;</td><td class="mdescRight">The timer that manages the application's timing.  <a href="classrx_1_1_window_base.html#a70eb7bea377c3a7c5dbb3f5c67a51fe3">More...</a><br /></td></tr>
 <tr class="separator:a70eb7bea377c3a7c5dbb3f5c67a51fe3"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
-<h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
-<a id="ac0b25cec2e399d8a40b80f0de114746d"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ac0b25cec2e399d8a40b80f0de114746d">&#9670;&nbsp;</a></span>WindowBase()</h2>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>Implements a SDL-based window. </p>
+<p>In order to handle events the client has to create a class that inherits from <a class="el" href="classrx_1_1_window_base.html" title="Implements a SDL-based window.">WindowBase</a>. </p>
+<h3><a class="anchor" id="autotoc_md1"></a>
+Example</h3>
+<div class="fragment"><div class="line"><span class="comment">// This example requires the client to implement a custom window class that inherits from WindowBase.</span></div>
+<div class="line"><span class="keyword">auto</span> myWindow = std::make_shared&lt;CustomWindow&gt;( width, height, <span class="stringliteral">&quot;Example&quot;</span>, <a class="code" href="namespacerx.html#a108d586192564f598fd82c8c2483fe8aa7b53bf1790791de422a956078f4b984f">WINDOW_RESIZABLE</a> | <a class="code" href="namespacerx.html#a108d586192564f598fd82c8c2483fe8aafb910e9581cc84fcc2e9556e7b831274">WINDOW_INPUT_FOCUS</a> );</div>
+</div><!-- fragment --><dl class="section see"><dt>See also</dt><dd><a class="el" href="classrx_1_1_window_base.html#a7d169824a215063c9574568b6e6fecba" title="Updates window-related components.">update()</a> </dd></dl>
+</div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
+<a id="a4c75fcc5018535133aa56a897ef8d385"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4c75fcc5018535133aa56a897ef8d385">&#9670;&nbsp;</a></span>WindowBase()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -171,12 +193,43 @@ Protected Attributes</h2></td></tr>
         <tr>
           <td class="memname">rx::WindowBase::WindowBase </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="classrx_1_1_window_properties.html">WindowProperties</a>&#160;</td>
-          <td class="paramname"><em>windowProperties</em> = <code><a class="el" href="classrx_1_1_window_properties.html">WindowProperties</a>(&#160;)</code></td><td>)</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>width</em> = <code>600</code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
           <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>height</em> = <code>400</code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const char *&#160;</td>
+          <td class="paramname"><em>title</em> = <code>&quot;My&#160;Application&quot;</code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">uint32_t&#160;</td>
+          <td class="paramname"><em>flags</em> = <code>0</code>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
         </tr>
       </table>
 </div><div class="memdoc">
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">width</td><td>The width of the window in pixels. </td></tr>
+    <tr><td class="paramname">height</td><td>The height of the window in pixels. </td></tr>
+    <tr><td class="paramname">title</td><td>The title of the window shown in the title bar. </td></tr>
+    <tr><td class="paramname">flags</td><td>The window flags (no additional flags if not specified). </td></tr>
+  </table>
+  </dd>
+</dl>
 
 </div>
 </div>
@@ -203,6 +256,9 @@ Protected Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
+<p>Destructor of <a class="el" href="classrx_1_1_window_base.html" title="Implements a SDL-based window.">WindowBase</a>. </p>
+<p>Will also clean up the object's resources. </p><dl class="section see"><dt>See also</dt><dd><a class="el" href="classrx_1_1_window_base.html#aa50e9ee4e58b6a36340180290d0c99d5" title="Destroys the window.">clean()</a> </dd></dl>
+
 </div>
 </div>
 <h2 class="groupheader">Member Function Documentation</h2>
@@ -220,6 +276,7 @@ Protected Attributes</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+<dl class="section return"><dt>Returns</dt><dd>Returns true if the window size has changed. </dd></dl>
 
 </div>
 </div>
@@ -246,6 +303,8 @@ Protected Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
+<p>Destroys the window. </p>
+
 </div>
 </div>
 <a id="af058b1991691b3ef0c0bacedc0a895ed"></a>
@@ -263,6 +322,15 @@ Protected Attributes</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>Creates a Vulkan surface. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">instance</td><td>The Vulkan instance. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>Returns the Vulkan surface. </dd></dl>
 
 </div>
 </div>
@@ -288,23 +356,59 @@ Protected Attributes</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
+<dl class="section return"><dt>Returns</dt><dd>Returns the actual SDL_Window object. </dd></dl>
 
 </div>
 </div>
-<a id="aca60a8eab41a0568986485b9db714e1e"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aca60a8eab41a0568986485b9db714e1e">&#9670;&nbsp;</a></span>getExtent()</h2>
+<a id="ada758bbb29c65ef6cb109c99afa8698d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ada758bbb29c65ef6cb109c99afa8698d">&#9670;&nbsp;</a></span>getExtent()</h2>
 
 <div class="memitem">
 <div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
       <table class="memname">
         <tr>
           <td class="memname">vk::Extent2D rx::WindowBase::getExtent </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
-          <td></td>
+          <td> const</td>
         </tr>
       </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
 </div><div class="memdoc">
+<dl class="section return"><dt>Returns</dt><dd>Returns the window size as a Vulkan 2D extent. </dd></dl>
+
+</div>
+</div>
+<a id="a65a4f319a081ec272bda60264f69a960"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a65a4f319a081ec272bda60264f69a960">&#9670;&nbsp;</a></span>getHeight()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">int rx::WindowBase::getHeight </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<dl class="section return"><dt>Returns</dt><dd>Returns the window's height in pixels. </dd></dl>
 
 </div>
 </div>
@@ -323,10 +427,13 @@ Protected Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
+<p>Used to retrieve all Vulkan instance extensions required by SDL. </p>
+<dl class="section return"><dt>Returns</dt><dd>Returns a vector containing the names of the required extensions. </dd></dl>
+
 </div>
 </div>
-<a id="a300bc32efc2ed40e10faddacb0e7180a"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a300bc32efc2ed40e10faddacb0e7180a">&#9670;&nbsp;</a></span>getProperties()</h2>
+<a id="a0bbec2310999df0b650eedf75080cce7"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0bbec2310999df0b650eedf75080cce7">&#9670;&nbsp;</a></span>getWidth()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -335,32 +442,7 @@ Protected Attributes</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">RX_API <a class="el" href="classrx_1_1_window_properties.html">WindowProperties</a>&amp; rx::WindowBase::getProperties </td>
-          <td>(</td>
-          <td class="paramname"></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-</div>
-</div>
-<a id="a0523eded5d7eb0f754fa25e8ea5d4500"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a0523eded5d7eb0f754fa25e8ea5d4500">&#9670;&nbsp;</a></span>getSize() <span class="overload">[1/2]</span></h2>
-
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">RX_API glm::ivec2 rx::WindowBase::getSize </td>
+          <td class="memname">int rx::WindowBase::getWidth </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
           <td> const</td>
@@ -372,34 +454,7 @@ Protected Attributes</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
-
-</div>
-</div>
-<a id="a32a4007031df01c3578701681b5ae62c"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a32a4007031df01c3578701681b5ae62c">&#9670;&nbsp;</a></span>getSize() <span class="overload">[2/2]</span></h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void rx::WindowBase::getSize </td>
-          <td>(</td>
-          <td class="paramtype">int *&#160;</td>
-          <td class="paramname"><em>width</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">int *&#160;</td>
-          <td class="paramname"><em>height</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
+<dl class="section return"><dt>Returns</dt><dd>Returns the window's width in pixels. </dd></dl>
 
 </div>
 </div>
@@ -426,6 +481,8 @@ Protected Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
+<p>Initializes the SDL-window. </p>
+
 <p>Reimplemented in <a class="el" href="class_custom_window.html#a850b86f73d9458a0a6b98b15b2ae655b">CustomWindow</a>.</p>
 
 </div>
@@ -444,49 +501,7 @@ Protected Attributes</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-
-</div>
-</div>
-<a id="a2a6bb39b317253fe105a912bd9de9cfa"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a2a6bb39b317253fe105a912bd9de9cfa">&#9670;&nbsp;</a></span>processGuiEvent()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void rx::WindowBase::processGuiEvent </td>
-          <td>(</td>
-          <td class="paramtype">SDL_Event &amp;&#160;</td>
-          <td class="paramname"><em>event</em></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-</div>
-</div>
-<a id="a32fc89698ab20d7b0e0e48981f835839"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a32fc89698ab20d7b0e0e48981f835839">&#9670;&nbsp;</a></span>render()</h2>
-
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">bool rx::WindowBase::render </td>
-          <td>(</td>
-          <td class="paramname"></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">virtual</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
+<dl class="section return"><dt>Returns</dt><dd>Returns true if the window is minimized. </dd></dl>
 
 </div>
 </div>
@@ -516,23 +531,14 @@ Protected Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-</div>
-</div>
-<a id="aaf20776205682c4f62c00d712ae62b17"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aaf20776205682c4f62c00d712ae62b17">&#9670;&nbsp;</a></span>setTitle()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void rx::WindowBase::setTitle </td>
-          <td>(</td>
-          <td class="paramtype">const char *&#160;</td>
-          <td class="paramname"><em>title</em></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
+<p>Resizes the window. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">width</td><td>The desired width in pixels. </td></tr>
+    <tr><td class="paramname">height</td><td>The desired height in pixels. </td></tr>
+  </table>
+  </dd>
+</dl>
 
 </div>
 </div>
@@ -559,13 +565,16 @@ Protected Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
+<p>Updates window-related components. </p>
+<p>In case the client wants to handle input events, this function should be overwritten in the inherited class. </p><dl class="section warning"><dt>Warning</dt><dd>The client has to call <a class="el" href="classrx_1_1_window_base.html#a7d169824a215063c9574568b6e6fecba" title="Updates window-related components.">WindowBase::update()</a> to ensure proper functionality. </dd></dl>
+
 <p>Reimplemented in <a class="el" href="class_custom_window.html#ac0b3f3bfe1b98bf47b67a332794462e3">CustomWindow</a>.</p>
 
 </div>
 </div>
 <h2 class="groupheader">Member Data Documentation</h2>
-<a id="a48831f0ab45421239832e071dfdb3f91"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a48831f0ab45421239832e071dfdb3f91">&#9670;&nbsp;</a></span>m_properties</h2>
+<a id="a717f1fc684aa4c1d5773e10b66fe6f6f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a717f1fc684aa4c1d5773e10b66fe6f6f">&#9670;&nbsp;</a></span>m_flags</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -574,7 +583,7 @@ Protected Attributes</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="classrx_1_1_window_properties.html">WindowProperties</a> rx::WindowBase::m_properties</td>
+          <td class="memname">uint32_t rx::WindowBase::m_flags</td>
         </tr>
       </table>
   </td>
@@ -583,6 +592,32 @@ Protected Attributes</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
+
+<p>The window's flags. </p>
+
+</div>
+</div>
+<a id="a1fc9dd1927001604a39e73f79458c526"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1fc9dd1927001604a39e73f79458c526">&#9670;&nbsp;</a></span>m_height</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">int rx::WindowBase::m_height</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>The window's height in pixels. </p>
 
 </div>
 </div>
@@ -606,6 +641,56 @@ Protected Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
+<p>The timer that manages the application's timing. </p>
+
+</div>
+</div>
+<a id="a98ab6f3869a247eebc6ac3c02eee034f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a98ab6f3869a247eebc6ac3c02eee034f">&#9670;&nbsp;</a></span>m_title</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">const char* rx::WindowBase::m_title</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>The window's title. </p>
+
+</div>
+</div>
+<a id="a25e9c6984933a51e17c638ce3ba263de"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a25e9c6984933a51e17c638ce3ba263de">&#9670;&nbsp;</a></span>m_width</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">int rx::WindowBase::m_width</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>The window's width in pixels. </p>
+
 </div>
 </div>
 <a id="a7a7808875387bf9d2b942710fb9217b5"></a>
@@ -628,10 +713,14 @@ Protected Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
+<p>The actual SDL_Window object. </p>
+
 </div>
 </div>
 </div><!-- contents -->
 </div><!-- doc-content -->
+<div class="ttc" id="anamespacerx_html_a108d586192564f598fd82c8c2483fe8aafb910e9581cc84fcc2e9556e7b831274"><div class="ttname"><a href="namespacerx.html#a108d586192564f598fd82c8c2483fe8aafb910e9581cc84fcc2e9556e7b831274">rx::WINDOW_INPUT_FOCUS</a></div><div class="ttdeci">@ WINDOW_INPUT_FOCUS</div><div class="ttdoc">The window has input focus.</div><div class="ttdef"><b>Definition:</b> WindowBase.hpp:20</div></div>
+<div class="ttc" id="anamespacerx_html_a108d586192564f598fd82c8c2483fe8aa7b53bf1790791de422a956078f4b984f"><div class="ttname"><a href="namespacerx.html#a108d586192564f598fd82c8c2483fe8aa7b53bf1790791de422a956078f4b984f">rx::WINDOW_RESIZABLE</a></div><div class="ttdeci">@ WINDOW_RESIZABLE</div><div class="ttdoc">The window can be resized.</div><div class="ttdef"><b>Definition:</b> WindowBase.hpp:17</div></div>
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>

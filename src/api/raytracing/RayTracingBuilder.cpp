@@ -240,7 +240,7 @@ namespace rx
       BlasInstance rayInst;
       rayInst.transform = nodes[i]->m_worldTransform;
       rayInst.instanceId = i;
-      rayInst.blasId = nodes[i]->m_rtInstance.m_objIndex;
+      rayInst.blasId = nodes[i]->m_rtInstance.m_modelIndex;
       rayInst.hitGroupId = 0; // We will use the same hit group for all objects
       rayInst.flags = vk::GeometryInstanceFlagBitsKHR::eTriangleFacingCullDisable;
 

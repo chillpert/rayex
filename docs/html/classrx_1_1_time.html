@@ -102,13 +102,18 @@ $(document).ready(function(){initNavTree('classrx_1_1_time.html',''); initResiza
 </div><!--header-->
 <div class="contents">
 
+<p>Used to keep track of the application's timing.  
+ <a href="classrx_1_1_time.html#details">More...</a></p>
+
 <p><code>#include &lt;<a class="el" href="_time_8hpp_source.html">Time.hpp</a>&gt;</code></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
 <tr class="memitem:a69e9c1b9be56a332bddc7b3cbfdf2b56"><td class="memItemLeft" align="right" valign="top">RX_API&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classrx_1_1_time.html#a69e9c1b9be56a332bddc7b3cbfdf2b56">~Time</a> ()</td></tr>
+<tr class="memdesc:a69e9c1b9be56a332bddc7b3cbfdf2b56"><td class="mdescLeft">&#160;</td><td class="mdescRight">Destructor of <a class="el" href="classrx_1_1_time.html" title="Used to keep track of the application&#39;s timing.">Time</a>.  <a href="classrx_1_1_time.html#a69e9c1b9be56a332bddc7b3cbfdf2b56">More...</a><br /></td></tr>
 <tr class="separator:a69e9c1b9be56a332bddc7b3cbfdf2b56"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a880ebf2a4c7b73014969a3f97def442a"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classrx_1_1_time.html#a880ebf2a4c7b73014969a3f97def442a">update</a> ()</td></tr>
+<tr class="memdesc:a880ebf2a4c7b73014969a3f97def442a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Updates the timing.  <a href="classrx_1_1_time.html#a880ebf2a4c7b73014969a3f97def442a">More...</a><br /></td></tr>
 <tr class="separator:a880ebf2a4c7b73014969a3f97def442a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-static-methods"></a>
@@ -118,7 +123,9 @@ Static Public Member Functions</h2></td></tr>
 <tr class="memitem:a94c57045260c90cceea12d793f418dde"><td class="memItemLeft" align="right" valign="top">static RX_API float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classrx_1_1_time.html#a94c57045260c90cceea12d793f418dde">getDeltaTime</a> ()</td></tr>
 <tr class="separator:a94c57045260c90cceea12d793f418dde"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
-<h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>Used to keep track of the application's timing. </p>
+</div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a id="a69e9c1b9be56a332bddc7b3cbfdf2b56"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a69e9c1b9be56a332bddc7b3cbfdf2b56">&#9670;&nbsp;</a></span>~Time()</h2>
 
@@ -133,6 +140,9 @@ Static Public Member Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>Destructor of <a class="el" href="classrx_1_1_time.html" title="Used to keep track of the application&#39;s timing.">Time</a>. </p>
+<p>Prints a message containing average FPS. </p><dl class="todo"><dt><b><a class="el" href="todo.html#_todo000001">Todo:</a></b></dt><dd>Average FPS are pointless. Implement minimum FPS and frametimes instead. </dd></dl>
 
 </div>
 </div>
@@ -159,6 +169,7 @@ Static Public Member Functions</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
+<dl class="section return"><dt>Returns</dt><dd>Returns the time passed between the current and the last frame. </dd></dl>
 
 </div>
 </div>
@@ -184,6 +195,7 @@ Static Public Member Functions</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
+<dl class="section return"><dt>Returns</dt><dd>Returns the time passed since application start in seconds. </dd></dl>
 
 </div>
 </div>
@@ -201,6 +213,9 @@ Static Public Member Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>Updates the timing. </p>
+<p>Prints the current FPS every three seconds. </p><dl class="section note"><dt>Note</dt><dd>This function will be called every tick. </dd></dl>
 
 </div>
 </div>

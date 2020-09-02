@@ -28,18 +28,18 @@ var hierarchy =
     [ "rx::Model", "classrx_1_1_model.html", null ],
     [ "rx::MvpUbo", "structrx_1_1_mvp_ubo.html", null ],
     [ "rx::Node", "classrx_1_1_node.html", [
-      [ "rx::LightNode", "classrx_1_1_light_node.html", [
-        [ "rx::DirectionalLightNode", "classrx_1_1_directional_light_node.html", null ]
-      ] ],
       [ "rx::TransformNode", "classrx_1_1_transform_node.html", [
-        [ "rx::GeometryNode", "classrx_1_1_geometry_node.html", null ]
+        [ "rx::GeometryNode", "classrx_1_1_geometry_node.html", null ],
+        [ "rx::LightNode", "classrx_1_1_light_node.html", [
+          [ "rx::DirectionalLightNode", "classrx_1_1_directional_light_node.html", null ]
+        ] ]
       ] ]
     ] ],
     [ "rx::PhysicalDevice", "classrx_1_1_physical_device.html", null ],
     [ "rx::Pipeline", "classrx_1_1_pipeline.html", null ],
     [ "rx::Queues", "classrx_1_1_queues.html", null ],
     [ "rx::RayTracingBuilder", "classrx_1_1_ray_tracing_builder.html", null ],
-    [ "rx::RaytracingInstance", "structrx_1_1_raytracing_instance.html", null ],
+    [ "rx::RayTracingInstance", "structrx_1_1_ray_tracing_instance.html", null ],
     [ "rx::Renderer", "classrx_1_1_renderer.html", null ],
     [ "rx::RenderPass", "classrx_1_1_render_pass.html", null ],
     [ "rx::Settings", "classrx_1_1_settings.html", null ],
@@ -53,6 +53,5 @@ var hierarchy =
     [ "rx::VertexBuffer", "classrx_1_1_vertex_buffer.html", null ],
     [ "rx::WindowBase", "classrx_1_1_window_base.html", [
       [ "CustomWindow", "class_custom_window.html", null ]
-    ] ],
-    [ "rx::WindowProperties", "classrx_1_1_window_properties.html", null ]
+    ] ]
 ];

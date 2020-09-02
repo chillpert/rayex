@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.8.20"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>Renderer: C:/Repos/renderer/src/window/WindowProperties.hpp File Reference</title>
+<title>Renderer: Interfaces</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -74,7 +74,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </div>
 <script type="text/javascript">
 /* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
-$(document).ready(function(){initNavTree('_window_properties_8hpp.html',''); initResizable(); });
+$(document).ready(function(){initNavTree('group___base.html',''); initResizable(); });
 /* @license-end */
 </script>
 <div id="doc-content">
@@ -94,60 +94,42 @@ $(document).ready(function(){initNavTree('_window_properties_8hpp.html',''); ini
 
 <div class="header">
   <div class="summary">
-<a href="#nested-classes">Classes</a> &#124;
-<a href="#namespaces">Namespaces</a> &#124;
-<a href="#typedef-members">Typedefs</a> &#124;
-<a href="#enum-members">Enumerations</a>  </div>
+<a href="#nested-classes">Classes</a>  </div>
   <div class="headertitle">
-<div class="title">WindowProperties.hpp File Reference</div>  </div>
+<div class="title">Interfaces</div>  </div>
 </div><!--header-->
 <div class="contents">
-<div class="textblock"><code>#include &quot;<a class="el" href="stdafx_8hpp_source.html">pch/stdafx.hpp</a>&quot;</code><br />
-</div>
-<p><a href="_window_properties_8hpp_source.html">Go to the source code of this file.</a></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="nested-classes"></a>
 Classes</h2></td></tr>
-<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classrx_1_1_window_properties.html">rx::WindowProperties</a></td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classrx_1_1_camera_base.html">rx::CameraBase</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">A minimal camera implementation.  <a href="classrx_1_1_camera_base.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
-</table><table class="memberdecls">
-<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="namespaces"></a>
-Namespaces</h2></td></tr>
-<tr class="memitem:namespacerx"><td class="memItemLeft" align="right" valign="top"> &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacerx.html">rx</a></td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classrx_1_1_node.html">rx::Node</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Describes a node in the scene graph.  <a href="classrx_1_1_node.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
-</table><table class="memberdecls">
-<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="typedef-members"></a>
-Typedefs</h2></td></tr>
-<tr class="memitem:a9d44a35c45d12184bce248ddb7e68097"><td class="memItemLeft" align="right" valign="top">typedef enum <a class="el" href="namespacerx.html#a108d586192564f598fd82c8c2483fe8a">rx::WindowFlags</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacerx.html#a9d44a35c45d12184bce248ddb7e68097">rx::WindowFlags</a></td></tr>
-<tr class="separator:a9d44a35c45d12184bce248ddb7e68097"><td class="memSeparator" colspan="2">&#160;</td></tr>
-</table><table class="memberdecls">
-<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="enum-members"></a>
-Enumerations</h2></td></tr>
-<tr class="memitem:a108d586192564f598fd82c8c2483fe8a"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacerx.html#a108d586192564f598fd82c8c2483fe8a">rx::WindowFlags</a> { <br />
-&#160;&#160;<a class="el" href="namespacerx.html#a108d586192564f598fd82c8c2483fe8aa23c63438aa90b514e7fd7269e3cbe8c1">rx::WINDOW_FULLSCREEN</a> = 0x00000001, 
-<a class="el" href="namespacerx.html#a108d586192564f598fd82c8c2483fe8aa21a0da9755d6d2c59c992168d74baa0c">rx::WINDOW_VISIBLE</a> = 0x00000004, 
-<a class="el" href="namespacerx.html#a108d586192564f598fd82c8c2483fe8aaabe6c400b29668c48f0b16f41c2df049">rx::WINDOW_HIDDEN</a> = 0x00000008, 
-<a class="el" href="namespacerx.html#a108d586192564f598fd82c8c2483fe8aac1f47c62b26aaccab91f7992203fa749">rx::WINDOW_BORDERLESS</a> = 0x00000010, 
-<br />
-&#160;&#160;<a class="el" href="namespacerx.html#a108d586192564f598fd82c8c2483fe8aa7b53bf1790791de422a956078f4b984f">rx::WINDOW_RESIZABLE</a> = 0x00000020, 
-<a class="el" href="namespacerx.html#a108d586192564f598fd82c8c2483fe8aa5871005b1eb363e9d3a6e81693ff937a">rx::WINDOW_MINIMIZED</a> = 0x00000040, 
-<a class="el" href="namespacerx.html#a108d586192564f598fd82c8c2483fe8aab732e14e32851942bec0a00fa569bda4">rx::WINDOW_MAXIMIZED</a> = 0x00000080, 
-<a class="el" href="namespacerx.html#a108d586192564f598fd82c8c2483fe8aaa2c457fa34f04835d68ec1f411ac0484">rx::WINDOW_INPUT_GRABBED</a> = 0x00000100, 
-<br />
-&#160;&#160;<a class="el" href="namespacerx.html#a108d586192564f598fd82c8c2483fe8aafb910e9581cc84fcc2e9556e7b831274">rx::WINDOW_INPUT_FOCUS</a> = 0x00000200, 
-<a class="el" href="namespacerx.html#a108d586192564f598fd82c8c2483fe8aa4cc4779f4e8f8e4fd358efd74a08c487">rx::WINDOW_MOUSE_FOCUS</a> = 0x00000400, 
-<a class="el" href="namespacerx.html#a108d586192564f598fd82c8c2483fe8aa60c681c47546888248a80d2e3561840a">rx::WINDOW_FULLSCREEN_DESKTOP</a> = ( WINDOW_FULLSCREEN | 0x00001000 ), 
-<a class="el" href="namespacerx.html#a108d586192564f598fd82c8c2483fe8aa8a2df8295d56b3dd6968b0ab57eb2ef0">rx::WINDOW_MOUSE_CAPTURE</a> = 0x00004000
-<br />
- }</td></tr>
-<tr class="separator:a108d586192564f598fd82c8c2483fe8a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classrx_1_1_transform_node.html">rx::TransformNode</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Adds transformation abilities to the <a class="el" href="classrx_1_1_node.html" title="Describes a node in the scene graph.">Node</a> base class.  <a href="classrx_1_1_transform_node.html#details">More...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classrx_1_1_geometry_node.html">rx::GeometryNode</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Adds geometry to the <a class="el" href="classrx_1_1_transform_node.html" title="Adds transformation abilities to the Node base class.">TransformNode</a> parent class.  <a href="classrx_1_1_geometry_node.html#details">More...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classrx_1_1_light_node.html">rx::LightNode</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Adds lighting-related information to the <a class="el" href="classrx_1_1_transform_node.html" title="Adds transformation abilities to the Node base class.">TransformNode</a> parent class.  <a href="classrx_1_1_light_node.html#details">More...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classrx_1_1_directional_light_node.html">rx::DirectionalLightNode</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Can be used to add directional light sources to the scene.  <a href="classrx_1_1_directional_light_node.html#details">More...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classrx_1_1_window_base.html">rx::WindowBase</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Implements a SDL-based window.  <a href="classrx_1_1_window_base.html#details">More...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 </div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="navelem"><a class="el" href="dir_68267d1309a1af8e8297ef4c3efbcdba.html">src</a></li><li class="navelem"><a class="el" href="dir_c7f79d9fead0a70cab4af348b59fbdf1.html">window</a></li><li class="navelem"><a class="el" href="_window_properties_8hpp.html">WindowProperties.hpp</a></li>
     <li class="footer">Generated by <a href="http://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.8.20 </li>
   </ul>
 </div>

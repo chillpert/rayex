@@ -97,11 +97,11 @@ $(document).ready(function(){initNavTree('functions_func_g.html',''); initResiza
 
 <h3><a id="index_g"></a>- g -</h3><ul>
 <li>GeometryNode()
-: <a class="el" href="classrx_1_1_geometry_node.html#a1b07a96be84d5671ec5ffb5fee50e86d">rx::GeometryNode</a>
+: <a class="el" href="classrx_1_1_geometry_node.html#aede6f1f04687f52e37b9e625d17a1972">rx::GeometryNode</a>
 </li>
 <li>get()
 : <a class="el" href="classrx_1_1_buffer.html#a4055ed30a94888249e37f3ea46bf09e9">rx::Buffer</a>
-, <a class="el" href="classrx_1_1_command_buffer.html#aa1a716b752e737da669055a1ad21b52a">rx::CommandBuffer</a>
+, <a class="el" href="classrx_1_1_command_buffer.html#afc93f4c5731f3b18d24cefc3729f9b0a">rx::CommandBuffer</a>
 , <a class="el" href="classrx_1_1_descriptor_set.html#a3b1bb2f14fda2643e970ebaf75bf22ab">rx::DescriptorSet</a>
 , <a class="el" href="classrx_1_1_descriptor_set_layout.html#a27fc67bbfd645e2bfd33f59fab2784c3">rx::DescriptorSetLayout</a>
 , <a class="el" href="classrx_1_1_image.html#ad9aabba321dd549113e214c6fc39cc9c">rx::Image</a>
@@ -120,6 +120,9 @@ $(document).ready(function(){initNavTree('functions_func_g.html',''); initResiza
 </li>
 <li>getBindings()
 : <a class="el" href="classrx_1_1_descriptor_set_layout.html#a74cd99bfff7a1434a2925775237d6b4c">rx::DescriptorSetLayout</a>
+</li>
+<li>getCamera()
+: <a class="el" href="classrx_1_1_renderer.html#a0747eb7b94a2f068ede456da7f9c281e">rx::Renderer</a>
 </li>
 <li>getCapabilities()
 : <a class="el" href="classrx_1_1_surface.html#a31f2bf06d6901c5dade699be5d687764">rx::Surface</a>
@@ -140,23 +143,20 @@ $(document).ready(function(){initNavTree('functions_func_g.html',''); initResiza
 <li>getDeltaTime()
 : <a class="el" href="classrx_1_1_time.html#a94c57045260c90cceea12d793f418dde">rx::Time</a>
 </li>
-<li>getEngineTitle()
-: <a class="el" href="classrx_1_1_window_properties.html#ac11a5343cf969f4a2e543cb55844cd05">rx::WindowProperties</a>
-</li>
 <li>getExtent()
 : <a class="el" href="classrx_1_1_image.html#a487e1356531a1e1687e94e0df9da02e7">rx::Image</a>
 , <a class="el" href="classrx_1_1_swapchain.html#ad4e09e5811b2371e1492f0578cde4514">rx::Swapchain</a>
-, <a class="el" href="classrx_1_1_window_base.html#aca60a8eab41a0568986485b9db714e1e">rx::WindowBase</a>
-</li>
-<li>getFlags()
-: <a class="el" href="classrx_1_1_window_properties.html#a1f75fe3af8206602dad768d390626253">rx::WindowProperties</a>
+, <a class="el" href="classrx_1_1_window_base.html#ada758bbb29c65ef6cb109c99afa8698d">rx::WindowBase</a>
 </li>
 <li>getFormat()
 : <a class="el" href="classrx_1_1_image.html#aaacc879a01325075433c13152c96c016">rx::Image</a>
 , <a class="el" href="classrx_1_1_surface.html#aa43569014a536a35d9b356f18e1cf61e">rx::Surface</a>
 </li>
 <li>getHeight()
-: <a class="el" href="classrx_1_1_window_properties.html#a7dde3c446cb8a0407a77ba7eb5d12c21">rx::WindowProperties</a>
+: <a class="el" href="classrx_1_1_window_base.html#a65a4f319a081ec272bda60264f69a960">rx::WindowBase</a>
+</li>
+<li>getID()
+: <a class="el" href="classrx_1_1_node.html#a44d70a683c0103419a22aa7a816c65d2">rx::Node</a>
 </li>
 <li>getImage()
 : <a class="el" href="classrx_1_1_swapchain.html#a8a8462b98f3c32c0902e8c8a01a25cda">rx::Swapchain</a>
@@ -202,9 +202,6 @@ $(document).ready(function(){initNavTree('functions_func_g.html',''); initResiza
 <li>getProjectionMatrix()
 : <a class="el" href="classrx_1_1_camera_base.html#a76f6c010fe4a56652776ce8ceeaa625e">rx::CameraBase</a>
 </li>
-<li>getProperties()
-: <a class="el" href="classrx_1_1_window_base.html#a300bc32efc2ed40e10faddacb0e7180a">rx::WindowBase</a>
-</li>
 <li>getRaw()
 : <a class="el" href="classrx_1_1_uniform_buffer.html#a10c7ba3ffc3597322de2c859fc61b661">rx::UniformBuffer</a>
 </li>
@@ -217,7 +214,6 @@ $(document).ready(function(){initNavTree('functions_func_g.html',''); initResiza
 <li>getSize()
 : <a class="el" href="classrx_1_1_buffer.html#a9f6c8caed7b9ae15afaa30644a87fa36">rx::Buffer</a>
 , <a class="el" href="classrx_1_1_vertex_buffer.html#aed185c57f67b3649e55d18c598a2dadd">rx::VertexBuffer</a>
-, <a class="el" href="classrx_1_1_window_base.html#a0523eded5d7eb0f754fa25e8ea5d4500">rx::WindowBase</a>
 </li>
 <li>getStorageImageView()
 : <a class="el" href="classrx_1_1_ray_tracing_builder.html#a67ab59dd8f2becdf086e18beff50fa6a">rx::RayTracingBuilder</a>
@@ -227,9 +223,6 @@ $(document).ready(function(){initNavTree('functions_func_g.html',''); initResiza
 </li>
 <li>getTime()
 : <a class="el" href="classrx_1_1_time.html#adab39d71afa7e6d3faf06443ad33d3e9">rx::Time</a>
-</li>
-<li>getTitle()
-: <a class="el" href="classrx_1_1_window_properties.html#a2b0d8a40d1f1764ff422e1140e0eed2c">rx::WindowProperties</a>
 </li>
 <li>getTlas()
 : <a class="el" href="classrx_1_1_ray_tracing_builder.html#a4a2cc8163cb93d3a6c9be1c15d5cb1dd">rx::RayTracingBuilder</a>
@@ -250,7 +243,7 @@ $(document).ready(function(){initNavTree('functions_func_g.html',''); initResiza
 : <a class="el" href="classrx_1_1_pipeline.html#a40e5da9a3a5bfdd429a0fd22809d1308">rx::Pipeline</a>
 </li>
 <li>getWidth()
-: <a class="el" href="classrx_1_1_window_properties.html#af2fa27b38763947d9c684c2e7b008b24">rx::WindowProperties</a>
+: <a class="el" href="classrx_1_1_window_base.html#a0bbec2310999df0b650eedf75080cce7">rx::WindowBase</a>
 </li>
 <li>getWindow()
 : <a class="el" href="classrx_1_1_renderer.html#abc31ff32ab185dbbcc41b1324ac16ccf">rx::Renderer</a>

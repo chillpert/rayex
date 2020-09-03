@@ -13,8 +13,6 @@
 //   - GuiBase
 //   - WindowBase
 
-/// @defgroup Base Interfaces
-
 #include "CameraBase.hpp"
 #include "NodeBase.hpp"
 #include "GuiBase.hpp"

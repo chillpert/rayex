@@ -97,9 +97,12 @@ $(document).ready(function(){initNavTree('classrx_1_1_renderer.html',''); initRe
 <a href="#pub-methods">Public Member Functions</a> &#124;
 <a href="classrx_1_1_renderer-members.html">List of all members</a>  </div>
   <div class="headertitle">
-<div class="title">rx::Renderer Class Reference</div>  </div>
+<div class="title">rx::Renderer Class Reference<div class="ingroups"><a class="el" href="group___base.html">Interfaces and Base Components</a></div></div>  </div>
 </div><!--header-->
 <div class="contents">
+
+<p>The main user interface.  
+ <a href="classrx_1_1_renderer.html#details">More...</a></p>
 
 <p><code>#include &lt;<a class="el" href="_renderer_8hpp_source.html">Renderer.hpp</a>&gt;</code></p>
 <table class="memberdecls">
@@ -114,8 +117,10 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a5fea80c8c0ef353f0bf0c51d841db422"><td class="memItemLeft" align="right" valign="top">RX_API&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classrx_1_1_renderer.html#a5fea80c8c0ef353f0bf0c51d841db422">Renderer</a> (std::shared_ptr&lt; <a class="el" href="classrx_1_1_window_base.html">WindowBase</a> &gt; window, std::shared_ptr&lt; <a class="el" href="classrx_1_1_camera_base.html">CameraBase</a> &gt; camera)</td></tr>
 <tr class="separator:a5fea80c8c0ef353f0bf0c51d841db422"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a10c85a8352b5bfb12a4e89778733a5c6"><td class="memItemLeft" align="right" valign="top">RX_API void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classrx_1_1_renderer.html#a10c85a8352b5bfb12a4e89778733a5c6">init</a> ()</td></tr>
+<tr class="memdesc:a10c85a8352b5bfb12a4e89778733a5c6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Initializes the renderer.  <a href="classrx_1_1_renderer.html#a10c85a8352b5bfb12a4e89778733a5c6">More...</a><br /></td></tr>
 <tr class="separator:a10c85a8352b5bfb12a4e89778733a5c6"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ad99a218626b4a8c588d42fc772f0b1fb"><td class="memItemLeft" align="right" valign="top">RX_API void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classrx_1_1_renderer.html#ad99a218626b4a8c588d42fc772f0b1fb">run</a> ()</td></tr>
+<tr class="memdesc:ad99a218626b4a8c588d42fc772f0b1fb"><td class="mdescLeft">&#160;</td><td class="mdescRight">A single function to execute all subcomponents.  <a href="classrx_1_1_renderer.html#ad99a218626b4a8c588d42fc772f0b1fb">More...</a><br /></td></tr>
 <tr class="separator:ad99a218626b4a8c588d42fc772f0b1fb"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a7dbc4370868c44c799be054830a9453e"><td class="memItemLeft" align="right" valign="top">RX_API bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classrx_1_1_renderer.html#a7dbc4370868c44c799be054830a9453e">isRunning</a> ()</td></tr>
 <tr class="separator:a7dbc4370868c44c799be054830a9453e"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -124,15 +129,34 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a0747eb7b94a2f068ede456da7f9c281e"><td class="memItemLeft" align="right" valign="top">RX_API const std::shared_ptr&lt; <a class="el" href="classrx_1_1_camera_base.html">CameraBase</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classrx_1_1_renderer.html#a0747eb7b94a2f068ede456da7f9c281e">getCamera</a> () const</td></tr>
 <tr class="separator:a0747eb7b94a2f068ede456da7f9c281e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ae8c496ea25f33f655665e1aa9f238f37"><td class="memItemLeft" align="right" valign="top">RX_API void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classrx_1_1_renderer.html#ae8c496ea25f33f655665e1aa9f238f37">pushNode</a> (const std::shared_ptr&lt; <a class="el" href="classrx_1_1_node.html">Node</a> &gt; node)</td></tr>
+<tr class="memdesc:ae8c496ea25f33f655665e1aa9f238f37"><td class="mdescLeft">&#160;</td><td class="mdescRight">Used to add another arbitrary node to the scene.  <a href="classrx_1_1_renderer.html#ae8c496ea25f33f655665e1aa9f238f37">More...</a><br /></td></tr>
 <tr class="separator:ae8c496ea25f33f655665e1aa9f238f37"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a33959cfeb100569da63f19e0de62f655"><td class="memItemLeft" align="right" valign="top">RX_API void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classrx_1_1_renderer.html#a33959cfeb100569da63f19e0de62f655">setNodes</a> (const std::vector&lt; std::shared_ptr&lt; <a class="el" href="classrx_1_1_node.html">Node</a> &gt;&gt; &amp;nodes)</td></tr>
+<tr class="memdesc:a33959cfeb100569da63f19e0de62f655"><td class="mdescLeft">&#160;</td><td class="mdescRight">Used to overwrite the entire scene with new nodes.  <a href="classrx_1_1_renderer.html#a33959cfeb100569da63f19e0de62f655">More...</a><br /></td></tr>
 <tr class="separator:a33959cfeb100569da63f19e0de62f655"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aacd88edf019384a97ac7cf3cb884fdb4"><td class="memItemLeft" align="right" valign="top">RX_API void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classrx_1_1_renderer.html#aacd88edf019384a97ac7cf3cb884fdb4">setCamera</a> (std::shared_ptr&lt; <a class="el" href="classrx_1_1_camera_base.html">CameraBase</a> &gt; camera)</td></tr>
+<tr class="memdesc:aacd88edf019384a97ac7cf3cb884fdb4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Used to set the renderer's camera.  <a href="classrx_1_1_renderer.html#aacd88edf019384a97ac7cf3cb884fdb4">More...</a><br /></td></tr>
 <tr class="separator:aacd88edf019384a97ac7cf3cb884fdb4"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a4d8326fe73f7a45a8355b834a7edd61c"><td class="memItemLeft" align="right" valign="top">RX_API void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classrx_1_1_renderer.html#a4d8326fe73f7a45a8355b834a7edd61c">setGui</a> (std::shared_ptr&lt; <a class="el" href="classrx_1_1_gui_base.html">GuiBase</a> &gt; gui)</td></tr>
+<tr class="memdesc:a4d8326fe73f7a45a8355b834a7edd61c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Used to set the renderer's GUI.  <a href="classrx_1_1_renderer.html#a4d8326fe73f7a45a8355b834a7edd61c">More...</a><br /></td></tr>
 <tr class="separator:a4d8326fe73f7a45a8355b834a7edd61c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
-<h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>The main user interface. </p>
+<p>This class provides everything to set up a main loop and fill the scene with geometry and light sources. </p>
+<h3><a class="anchor" id="autotoc_md1"></a>
+Example</h3>
+<div class="fragment"><div class="line"><span class="comment">// The following example renders a cube in less than 10 lines of code.</span></div>
+<div class="line"><a class="code" href="classrx_1_1_renderer.html#adac272ae85ea19cc6ce17c93e4fbb5b5">Renderer</a> myRenderer;</div>
+<div class="line">myRenderer.init( );</div>
+<div class="line"> </div>
+<div class="line">myRenderer.pushNode( std::make_shared&lt;GeometryNode&gt;( <span class="stringliteral">&quot;models/cube.obj&quot;</span>, Material( <span class="stringliteral">&quot;textures/metal.png&quot;</span> ) ) );</div>
+<div class="line"> </div>
+<div class="line"><span class="keywordflow">while</span> ( myRenderer.isRunning( ) )</div>
+<div class="line">{</div>
+<div class="line">  myRenderer.run( );</div>
+<div class="line">}</div>
+</div><!-- fragment --> </div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a id="adac272ae85ea19cc6ce17c93e4fbb5b5"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#adac272ae85ea19cc6ce17c93e4fbb5b5">&#9670;&nbsp;</a></span>Renderer() <span class="overload">[1/4]</span></h2>
 
@@ -165,6 +189,12 @@ Public Member Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">camera</td><td>A pointer to a camera object specified by the client. </td></tr>
+  </table>
+  </dd>
+</dl>
 
 </div>
 </div>
@@ -183,6 +213,12 @@ Public Member Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">window</td><td>A pointer to a window object specified by the client. </td></tr>
+  </table>
+  </dd>
+</dl>
 
 </div>
 </div>
@@ -211,6 +247,13 @@ Public Member Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">window</td><td>A pointer to a window object specified by the client. </td></tr>
+    <tr><td class="paramname">camera</td><td>A pointer to a camera object specified by the client. </td></tr>
+  </table>
+  </dd>
+</dl>
 
 </div>
 </div>
@@ -237,6 +280,7 @@ Public Member Functions</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
+<dl class="section return"><dt>Returns</dt><dd>Returns a pointer to the renderer's camera. </dd></dl>
 
 </div>
 </div>
@@ -262,6 +306,7 @@ Public Member Functions</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
+<dl class="section return"><dt>Returns</dt><dd>Returns a pointer to the renderer's window. </dd></dl>
 
 </div>
 </div>
@@ -279,6 +324,9 @@ Public Member Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>Initializes the renderer. </p>
+<p>This function initializes the window subcomponent as well as the API. Furthermore, it copies all shaders, textures and models to the executables directory to avoid issues with full and relative paths. </p><dl class="todo"><dt><b><a class="el" href="todo.html#_todo000003">Todo:</a></b></dt><dd>The copying process is temporary for now and has to be changed for a release build. </dd></dl>
 
 </div>
 </div>
@@ -304,6 +352,7 @@ Public Member Functions</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
+<dl class="section return"><dt>Returns</dt><dd>Returns true if the application is still running and false if the application has stopped. </dd></dl>
 
 </div>
 </div>
@@ -323,6 +372,15 @@ Public Member Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
+<p>Used to add another arbitrary node to the scene. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">node</td><td>The node to add. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="classrx_1_1_api.html#a374a527842ba3a093e5fb6356604c766" title="Used to add another arbitrary node to the scene.">rx::Api::pushNode()</a> </dd></dl>
+
 </div>
 </div>
 <a id="ad99a218626b4a8c588d42fc772f0b1fb"></a>
@@ -339,6 +397,9 @@ Public Member Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>A single function to execute all subcomponents. </p>
+<p>This function updates the window and the camera components and calls the update and render functions of the API. </p><dl class="section see"><dt>See also</dt><dd><a class="el" href="classrx_1_1_camera_base.html#a9fc9ce55c122c04ac14851c956be0384" title="Is used to update camera vectors etc.">rx::CameraBase::update()</a>, <a class="el" href="classrx_1_1_window_base.html#a7d169824a215063c9574568b6e6fecba" title="Updates window-related components.">rx::WindowBase::update()</a>, <a class="el" href="classrx_1_1_api.html#a582e12ba6f8b26173a5ef569ee2eeeaa" title="Used to update and upload uniform buffers.">rx::Api::update()</a>, <a class="el" href="classrx_1_1_api.html#a79f83f0658f4fd2a2012b5191d8e4ee5" title="Retrieves an image from the swapchain and presents it.">rx::Api::render()</a> </dd></dl>
 
 </div>
 </div>
@@ -358,6 +419,14 @@ Public Member Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
+<p>Used to set the renderer's camera. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">camera</td><td>The camera the renderer should be using. </td></tr>
+  </table>
+  </dd>
+</dl>
+
 </div>
 </div>
 <a id="a4d8326fe73f7a45a8355b834a7edd61c"></a>
@@ -375,6 +444,14 @@ Public Member Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>Used to set the renderer's GUI. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">gui</td><td>The GUI the renderer should be using. </td></tr>
+  </table>
+  </dd>
+</dl>
 
 </div>
 </div>
@@ -394,10 +471,20 @@ Public Member Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
+<p>Used to overwrite the entire scene with new nodes. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">nodes</td><td>A vector of nodes describing the new scene. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="classrx_1_1_api.html#a2ba31a658b0b2ea24cba6ea40142e28c" title="Used to overwrite the entire scene with new nodes.">rx::Api::setNodes()</a> </dd></dl>
+
 </div>
 </div>
 </div><!-- contents -->
 </div><!-- doc-content -->
+<div class="ttc" id="aclassrx_1_1_renderer_html_adac272ae85ea19cc6ce17c93e4fbb5b5"><div class="ttname"><a href="classrx_1_1_renderer.html#adac272ae85ea19cc6ce17c93e4fbb5b5">rx::Renderer::Renderer</a></div><div class="ttdeci">RX_API Renderer()</div><div class="ttdef"><b>Definition:</b> Renderer.cpp:6</div></div>
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>

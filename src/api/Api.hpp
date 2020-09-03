@@ -25,7 +25,9 @@
 namespace rx
 {
   /// Initializes and owns all Vulkan components and displays a picture on the screen.
-  /// @note All Vulkan components and resources are freed using scope-bound destruction.
+  /// @note All API components and resources are freed using scope-bound destruction.
+  /// @warning Because of scope-bound destruction it is required to pay close attention to the order of resource allocations done by the client.
+  /// @ingroup API
   class Api
   {
   public:
@@ -40,29 +42,62 @@ namespace rx
     RX_API ~Api( );
 
     /// Used to set the GUI that will be used.
-    RX_API void setGui( const std::shared_ptr<GuiBase> gui );
+    /// 
+    /// The GUI can be changed at runtime. This enables the client to swap between different pre-built GUIs on the fly.
+    /// @param gui A pointer to a GUI object that will be rendered on top of the final image.
+    /// @param initialize If true, the GUI object will be initialized (false if not specified).
+    RX_API void setGui( const std::shared_ptr<GuiBase> gui, bool initialize = false );
 
+    /// Initializes all API components.
     void init( );
+
+    /// Used to update and upload uniform buffers.
     bool update( );
+
+    /// Retrieves an image from the swapchain and presents it.
     bool render( );
 
+    /// Used to add another arbitrary node to the scene.
+    /// @param node A pointer to node to add.
     void pushNode( const std::shared_ptr<Node> nodes, bool record = true );
+
+    /// Used to overwrite the entire scene with new nodes.
+    /// @param nodes A vector of pointers to nodes describing the new scene.
     void setNodes( const std::vector<std::shared_ptr<Node>>& nodes );
+
+    /// Re-initializes the render pass to support the GUI and initializes the GUI itself.
     RX_API void initGui( );
 
   private:
+    /// Initializes the render pass with a color and depth attachment.
     void initRenderPass( );
+
+    /// Initializes the model provided by the node.
+    /// 
+    /// The model will be added to rx::Api::m_models to make sure there are no duplicates.
+    /// Similarily, all textures required by the model will be stored individualy inside rx::Api::m_textures.
+    /// If a model or a texture are already known to the application and have been initialized, they will be re-used instead of being initialized.
+    /// @param node A pointer to a geometry node.
+    /// @todo The function currently recreates the entire TLAS and BLAS everytime a model is added, which is very inefficient.
     void initModel( const std::shared_ptr<GeometryNode> node );
 
+    /// Records commands to the swapchain command buffers that will be used for rendering.
+    /// @todo Rasterization has been removed for now. Might want to re-add rasterization support with RT-compatible shaders again.
     void recordSwapchainCommandBuffers( );
+
+    /// Creates all fences and semaphores required to sync the rendering process.
     void initSyncObjects( );
 
+    /// Creates a descriptor set layout for each the ray tracing components and the models.
     void initDescriptorSetLayouts( );
 
-    void clean( );
+    /// Recreates the swapchain and re-records the swapchain command buffers.
     void recreateSwapchain( );
 
+    /// Acquires the next image from the swapchain.
     bool prepareFrame( );
+
+    /// Submits the swapchain command buffers to a queue and presents an image on the screen.
     bool submitFrame( );
 
     std::shared_ptr<WindowBase> m_window;

@@ -101,18 +101,24 @@ $(document).ready(function(){initNavTree('classrx_1_1_settings.html',''); initRe
 </div><!--header-->
 <div class="contents">
 
+<p>Exposes all graphic settings supported by the renderer.  
+ <a href="classrx_1_1_settings.html#details">More...</a></p>
+
 <p><code>#include &lt;<a class="el" href="_settings_8hpp_source.html">Settings.hpp</a>&gt;</code></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-static-methods"></a>
 Static Public Member Functions</h2></td></tr>
 <tr class="memitem:ad9485d5c59c7b86b057e8226a0d74157"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classrx_1_1_settings.html#ad9485d5c59c7b86b057e8226a0d74157">setMaxRecursionDepth</a> (uint32_t maxRecursionDepth)</td></tr>
+<tr class="memdesc:ad9485d5c59c7b86b057e8226a0d74157"><td class="mdescLeft">&#160;</td><td class="mdescRight">Used to set the maximum recursion depth of the path tracer.  <a href="classrx_1_1_settings.html#ad9485d5c59c7b86b057e8226a0d74157">More...</a><br /></td></tr>
 <tr class="separator:ad9485d5c59c7b86b057e8226a0d74157"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a9c7103daf3544069d64ef71039a3efab"><td class="memItemLeft" align="right" valign="top">static uint32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classrx_1_1_settings.html#a9c7103daf3544069d64ef71039a3efab">getMaxRecursionDepth</a> ()</td></tr>
 <tr class="separator:a9c7103daf3544069d64ef71039a3efab"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a9e09b0dedc3a576d3a595c410df62479"><td class="memItemLeft" align="right" valign="top">static bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classrx_1_1_settings.html#a9e09b0dedc3a576d3a595c410df62479">refresh</a> ()</td></tr>
 <tr class="separator:a9e09b0dedc3a576d3a595c410df62479"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
-<h2 class="groupheader">Member Function Documentation</h2>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>Exposes all graphic settings supported by the renderer. </p>
+</div><h2 class="groupheader">Member Function Documentation</h2>
 <a id="a9c7103daf3544069d64ef71039a3efab"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a9c7103daf3544069d64ef71039a3efab">&#9670;&nbsp;</a></span>getMaxRecursionDepth()</h2>
 
@@ -135,6 +141,7 @@ Static Public Member Functions</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
+<dl class="section return"><dt>Returns</dt><dd>Returns the maximum recursion depth. </dd></dl>
 
 </div>
 </div>
@@ -160,6 +167,7 @@ Static Public Member Functions</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
+<dl class="section return"><dt>Returns</dt><dd>Returns true if the graphics pipeline needs to be re-created. </dd></dl>
 
 </div>
 </div>
@@ -186,6 +194,14 @@ Static Public Member Functions</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
+
+<p>Used to set the maximum recursion depth of the path tracer. </p>
+<p>If this function is called, it will force the renderer to recreate the graphics pipeline the next time it will be used. </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">maxRecursionDepth</td><td>The maximum recursion depth. </td></tr>
+  </table>
+  </dd>
+</dl>
 
 </div>
 </div>

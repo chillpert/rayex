@@ -1,6 +1,6 @@
 var searchData=
 [
-  ['interfaces_201',['Interfaces',['../group___base.html',1,'']]],
+  ['interfaces_20and_20base_20components_201',['Interfaces and Base Components',['../group___base.html',1,'']]],
   ['image_202',['Image',['../classrx_1_1_image.html',1,'rx::Image'],['../classrx_1_1_image.html#a2e0fc861ccaa2790d50ce2a9268d910e',1,'rx::Image::Image()=default'],['../classrx_1_1_image.html#a1b56a4595996fa4b19f91a30789e7251',1,'rx::Image::Image(const vk::ImageCreateInfo &amp;createInfo, bool initialize=true)']]],
   ['image_2ecpp_203',['Image.cpp',['../_image_8cpp.html',1,'']]],
   ['image_2ehpp_204',['Image.hpp',['../_image_8hpp.html',1,'']]],

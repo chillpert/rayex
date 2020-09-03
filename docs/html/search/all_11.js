@@ -3,7 +3,7 @@ var searchData=
   ['setbindings_344',['setBindings',['../classrx_1_1_descriptor_set_layout.html#aad7ed8887fb57add2f28e6c29376ca50',1,'rx::DescriptorSetLayout']]],
   ['setcamera_345',['setCamera',['../class_custom_window.html#a87bed33494862982588d180e5fde0e98',1,'CustomWindow::setCamera()'],['../classrx_1_1_renderer.html#aacd88edf019384a97ac7cf3cb884fdb4',1,'rx::Renderer::setCamera()']]],
   ['setfov_346',['setFov',['../classrx_1_1_camera_base.html#a8754a5bfa41b65b4388d2eb6a629cf13',1,'rx::CameraBase']]],
-  ['setgui_347',['setGui',['../classrx_1_1_api.html#ae09fd35948e72e0e5b6ef37ee3af68ca',1,'rx::Api::setGui()'],['../classrx_1_1_renderer.html#a4d8326fe73f7a45a8355b834a7edd61c',1,'rx::Renderer::setGui()']]],
+  ['setgui_347',['setGui',['../classrx_1_1_api.html#a1c214a508caee161e41241a66a465d0b',1,'rx::Api::setGui()'],['../classrx_1_1_renderer.html#a4d8326fe73f7a45a8355b834a7edd61c',1,'rx::Renderer::setGui()']]],
   ['setimageaspect_348',['setImageAspect',['../classrx_1_1_swapchain.html#a32989d45e2a0530e3c2b6d346ae62315',1,'rx::Swapchain']]],
   ['setimagelayout_349',['setImageLayout',['../classrx_1_1_swapchain.html#a7bf61cb448d0b0497ecd8fe33cbe5b44',1,'rx::Swapchain']]],
   ['setmaxrecursiondepth_350',['setMaxRecursionDepth',['../classrx_1_1_settings.html#ad9485d5c59c7b86b057e8226a0d74157',1,'rx::Settings']]],

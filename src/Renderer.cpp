@@ -86,9 +86,6 @@ namespace rx
   
   void Renderer::setGui( std::shared_ptr<GuiBase> gui )
   {
-    m_api.setGui( gui );
-    
-    if ( m_initialized )
-      m_api.initGui( );
+    m_initialized ? m_api.setGui( gui, true ) : m_api.setGui( gui );
   }
 }

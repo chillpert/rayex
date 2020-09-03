@@ -7,7 +7,7 @@ var classrx_1_1_api =
     [ "initGui", "classrx_1_1_api.html#a295c1251c0ba46952df9dd19a0f7d1f3", null ],
     [ "pushNode", "classrx_1_1_api.html#a374a527842ba3a093e5fb6356604c766", null ],
     [ "render", "classrx_1_1_api.html#a79f83f0658f4fd2a2012b5191d8e4ee5", null ],
-    [ "setGui", "classrx_1_1_api.html#ae09fd35948e72e0e5b6ef37ee3af68ca", null ],
+    [ "setGui", "classrx_1_1_api.html#a1c214a508caee161e41241a66a465d0b", null ],
     [ "setNodes", "classrx_1_1_api.html#a2ba31a658b0b2ea24cba6ea40142e28c", null ],
     [ "update", "classrx_1_1_api.html#a582e12ba6f8b26173a5ef569ee2eeeaa", null ]
 ];

@@ -10,6 +10,20 @@ namespace rx
   /// The main user interface.
   /// 
   /// This class provides everything to set up a main loop and fill the scene with geometry and light sources.
+  /// ### Example
+  /// ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~.cpp
+  /// // The following example renders a cube in less than 10 lines of code.
+  /// Renderer myRenderer;
+  /// myRenderer.init( );
+  /// 
+  /// myRenderer.pushNode( std::make_shared<GeometryNode>( "models/cube.obj", Material( "textures/metal.png" ) ) );
+  /// 
+  /// while ( myRenderer.isRunning( ) )
+  /// {
+  ///   myRenderer.run( );
+  /// }
+  /// ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+  /// @ingroup Base
   class Renderer
   {
   public:
@@ -49,10 +63,12 @@ namespace rx
 
     /// Used to add another arbitrary node to the scene.
     /// @param node The node to add.
+    /// @see rx::Api::pushNode()
     RX_API void pushNode( const std::shared_ptr<Node> node );
 
     /// Used to overwrite the entire scene with new nodes.
     /// @param nodes A vector of nodes describing the new scene.
+    /// @see rx::Api::setNodes()
     RX_API void setNodes( const std::vector<std::shared_ptr<Node>>& nodes );
 
     /// Used to set the renderer's camera.

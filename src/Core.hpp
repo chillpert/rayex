@@ -38,4 +38,7 @@
 #endif
 #endif
 
+/// @defgroup Base Interfaces and Base Components
+/// @defgroup API Vulkan
+
 #endif // CORE_HPP

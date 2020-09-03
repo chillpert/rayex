@@ -97,9 +97,12 @@ $(document).ready(function(){initNavTree('classrx_1_1_api.html',''); initResizab
 <a href="#pub-methods">Public Member Functions</a> &#124;
 <a href="classrx_1_1_api-members.html">List of all members</a>  </div>
   <div class="headertitle">
-<div class="title">rx::Api Class Reference</div>  </div>
+<div class="title">rx::Api Class Reference<div class="ingroups"><a class="el" href="group___a_p_i.html">Vulkan</a></div></div>  </div>
 </div><!--header-->
 <div class="contents">
+
+<p>Initializes and owns all Vulkan components and displays a picture on the screen.  
+ <a href="classrx_1_1_api.html#details">More...</a></p>
 
 <p><code>#include &lt;<a class="el" href="_api_8hpp_source.html">Api.hpp</a>&gt;</code></p>
 <table class="memberdecls">
@@ -111,22 +114,33 @@ Public Member Functions</h2></td></tr>
 <tr class="separator:ac6dbd699b06b0a9cfc7ccdf91a98d544"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ae7ab307628a20bf016e0eb5b030d1d9c"><td class="memItemLeft" align="right" valign="top">RX_API&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classrx_1_1_api.html#ae7ab307628a20bf016e0eb5b030d1d9c">~Api</a> ()</td></tr>
 <tr class="separator:ae7ab307628a20bf016e0eb5b030d1d9c"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ae09fd35948e72e0e5b6ef37ee3af68ca"><td class="memItemLeft" align="right" valign="top">RX_API void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classrx_1_1_api.html#ae09fd35948e72e0e5b6ef37ee3af68ca">setGui</a> (const std::shared_ptr&lt; <a class="el" href="classrx_1_1_gui_base.html">GuiBase</a> &gt; gui)</td></tr>
-<tr class="separator:ae09fd35948e72e0e5b6ef37ee3af68ca"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1c214a508caee161e41241a66a465d0b"><td class="memItemLeft" align="right" valign="top">RX_API void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classrx_1_1_api.html#a1c214a508caee161e41241a66a465d0b">setGui</a> (const std::shared_ptr&lt; <a class="el" href="classrx_1_1_gui_base.html">GuiBase</a> &gt; gui, bool initialize=false)</td></tr>
+<tr class="memdesc:a1c214a508caee161e41241a66a465d0b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Used to set the GUI that will be used.  <a href="classrx_1_1_api.html#a1c214a508caee161e41241a66a465d0b">More...</a><br /></td></tr>
+<tr class="separator:a1c214a508caee161e41241a66a465d0b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a3e0a1bb5a7c8b518225358fe4ea5ee39"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classrx_1_1_api.html#a3e0a1bb5a7c8b518225358fe4ea5ee39">init</a> ()</td></tr>
+<tr class="memdesc:a3e0a1bb5a7c8b518225358fe4ea5ee39"><td class="mdescLeft">&#160;</td><td class="mdescRight">Initializes all API components.  <a href="classrx_1_1_api.html#a3e0a1bb5a7c8b518225358fe4ea5ee39">More...</a><br /></td></tr>
 <tr class="separator:a3e0a1bb5a7c8b518225358fe4ea5ee39"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a582e12ba6f8b26173a5ef569ee2eeeaa"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classrx_1_1_api.html#a582e12ba6f8b26173a5ef569ee2eeeaa">update</a> ()</td></tr>
+<tr class="memdesc:a582e12ba6f8b26173a5ef569ee2eeeaa"><td class="mdescLeft">&#160;</td><td class="mdescRight">Used to update and upload uniform buffers.  <a href="classrx_1_1_api.html#a582e12ba6f8b26173a5ef569ee2eeeaa">More...</a><br /></td></tr>
 <tr class="separator:a582e12ba6f8b26173a5ef569ee2eeeaa"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a79f83f0658f4fd2a2012b5191d8e4ee5"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classrx_1_1_api.html#a79f83f0658f4fd2a2012b5191d8e4ee5">render</a> ()</td></tr>
+<tr class="memdesc:a79f83f0658f4fd2a2012b5191d8e4ee5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Retrieves an image from the swapchain and presents it.  <a href="classrx_1_1_api.html#a79f83f0658f4fd2a2012b5191d8e4ee5">More...</a><br /></td></tr>
 <tr class="separator:a79f83f0658f4fd2a2012b5191d8e4ee5"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a374a527842ba3a093e5fb6356604c766"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classrx_1_1_api.html#a374a527842ba3a093e5fb6356604c766">pushNode</a> (const std::shared_ptr&lt; <a class="el" href="classrx_1_1_node.html">Node</a> &gt; nodes, bool record=true)</td></tr>
+<tr class="memdesc:a374a527842ba3a093e5fb6356604c766"><td class="mdescLeft">&#160;</td><td class="mdescRight">Used to add another arbitrary node to the scene.  <a href="classrx_1_1_api.html#a374a527842ba3a093e5fb6356604c766">More...</a><br /></td></tr>
 <tr class="separator:a374a527842ba3a093e5fb6356604c766"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a2ba31a658b0b2ea24cba6ea40142e28c"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classrx_1_1_api.html#a2ba31a658b0b2ea24cba6ea40142e28c">setNodes</a> (const std::vector&lt; std::shared_ptr&lt; <a class="el" href="classrx_1_1_node.html">Node</a> &gt;&gt; &amp;nodes)</td></tr>
+<tr class="memdesc:a2ba31a658b0b2ea24cba6ea40142e28c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Used to overwrite the entire scene with new nodes.  <a href="classrx_1_1_api.html#a2ba31a658b0b2ea24cba6ea40142e28c">More...</a><br /></td></tr>
 <tr class="separator:a2ba31a658b0b2ea24cba6ea40142e28c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a295c1251c0ba46952df9dd19a0f7d1f3"><td class="memItemLeft" align="right" valign="top">RX_API void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classrx_1_1_api.html#a295c1251c0ba46952df9dd19a0f7d1f3">initGui</a> ()</td></tr>
+<tr class="memdesc:a295c1251c0ba46952df9dd19a0f7d1f3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Re-initializes the render pass to support the GUI and initializes the GUI itself.  <a href="classrx_1_1_api.html#a295c1251c0ba46952df9dd19a0f7d1f3">More...</a><br /></td></tr>
 <tr class="separator:a295c1251c0ba46952df9dd19a0f7d1f3"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
-<h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>Initializes and owns all Vulkan components and displays a picture on the screen. </p>
+<dl class="section note"><dt>Note</dt><dd>All API components and resources are freed using scope-bound destruction. </dd></dl>
+<dl class="section warning"><dt>Warning</dt><dd>Because of scope-bound destruction it is required to pay close attention to the order of resource allocations done by the client. </dd></dl>
+</div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a id="a7bad2b28bb07e9d1702b7b38b5ab1b96"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a7bad2b28bb07e9d1702b7b38b5ab1b96">&#9670;&nbsp;</a></span>Api() <span class="overload">[1/2]</span></h2>
 
@@ -152,6 +166,13 @@ Public Member Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">window</td><td>A pointer to a window object that the API will use to display an image. </td></tr>
+    <tr><td class="paramname">camera</td><td>A pointer to a camera object that will be used to "capture" the scene. </td></tr>
+  </table>
+  </dd>
+</dl>
 
 </div>
 </div>
@@ -186,6 +207,14 @@ Public Member Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">window</td><td>A pointer to a window object that the API will use to display an image. </td></tr>
+    <tr><td class="paramname">gui</td><td>A pointer to a GUI object that will be rendered on top of the final image. </td></tr>
+    <tr><td class="paramname">camera</td><td>A pointer to a camera object that will be used to "capture" the scene. </td></tr>
+  </table>
+  </dd>
+</dl>
 
 </div>
 </div>
@@ -222,6 +251,8 @@ Public Member Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
+<p>Initializes all API components. </p>
+
 </div>
 </div>
 <a id="a295c1251c0ba46952df9dd19a0f7d1f3"></a>
@@ -238,6 +269,8 @@ Public Member Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>Re-initializes the render pass to support the GUI and initializes the GUI itself. </p>
 
 </div>
 </div>
@@ -267,6 +300,14 @@ Public Member Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
+<p>Used to add another arbitrary node to the scene. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">node</td><td>A pointer to node to add. </td></tr>
+  </table>
+  </dd>
+</dl>
+
 </div>
 </div>
 <a id="a79f83f0658f4fd2a2012b5191d8e4ee5"></a>
@@ -284,10 +325,12 @@ Public Member Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
+<p>Retrieves an image from the swapchain and presents it. </p>
+
 </div>
 </div>
-<a id="ae09fd35948e72e0e5b6ef37ee3af68ca"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ae09fd35948e72e0e5b6ef37ee3af68ca">&#9670;&nbsp;</a></span>setGui()</h2>
+<a id="a1c214a508caee161e41241a66a465d0b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1c214a508caee161e41241a66a465d0b">&#9670;&nbsp;</a></span>setGui()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -296,11 +339,30 @@ Public Member Functions</h2></td></tr>
           <td class="memname">void rx::Api::setGui </td>
           <td>(</td>
           <td class="paramtype">const std::shared_ptr&lt; <a class="el" href="classrx_1_1_gui_base.html">GuiBase</a> &gt;&#160;</td>
-          <td class="paramname"><em>gui</em></td><td>)</td>
+          <td class="paramname"><em>gui</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
           <td></td>
+          <td class="paramtype">bool&#160;</td>
+          <td class="paramname"><em>initialize</em> = <code>false</code>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>Used to set the GUI that will be used. </p>
+<p>The GUI can be changed at runtime. This enables the client to swap between different pre-built GUIs on the fly. </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">gui</td><td>A pointer to a GUI object that will be rendered on top of the final image. </td></tr>
+    <tr><td class="paramname">initialize</td><td>If true, the GUI object will be initialized (false if not specified). </td></tr>
+  </table>
+  </dd>
+</dl>
 
 </div>
 </div>
@@ -320,6 +382,14 @@ Public Member Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
+<p>Used to overwrite the entire scene with new nodes. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">nodes</td><td>A vector of pointers to nodes describing the new scene. </td></tr>
+  </table>
+  </dd>
+</dl>
+
 </div>
 </div>
 <a id="a582e12ba6f8b26173a5ef569ee2eeeaa"></a>
@@ -336,6 +406,8 @@ Public Member Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>Used to update and upload uniform buffers. </p>
 
 </div>
 </div>

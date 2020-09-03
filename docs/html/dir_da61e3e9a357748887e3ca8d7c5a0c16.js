@@ -9,9 +9,7 @@ var dir_da61e3e9a357748887e3ca8d7c5a0c16 =
     [ "raytracing", "dir_1378cfa0a00f260f8ecd3d4d184aca9f.html", "dir_1378cfa0a00f260f8ecd3d4d184aca9f" ],
     [ "utility", "dir_8422b8ce86d24fde1cd6cb9ad35d12f7.html", "dir_8422b8ce86d24fde1cd6cb9ad35d12f7" ],
     [ "Api.cpp", "_api_8cpp.html", "_api_8cpp" ],
-    [ "Api.hpp", "_api_8hpp.html", [
-      [ "Api", "classrx_1_1_api.html", "classrx_1_1_api" ]
-    ] ],
+    [ "Api.hpp", "_api_8hpp.html", null ],
     [ "Components.cpp", "_components_8cpp.html", "_components_8cpp" ],
     [ "Components.hpp", "_components_8hpp.html", "_components_8hpp" ],
     [ "Instance.cpp", "_instance_8cpp.html", "_instance_8cpp" ],

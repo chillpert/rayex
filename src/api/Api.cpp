@@ -44,14 +44,14 @@ namespace rx
 
   Api::~Api( )
   {
-    clean( );
+    g_device.waitIdle( );
 
     // Gui needs to be destroyed manually, as RAII destruction will not be possible.
     if ( m_gui != nullptr )
       m_gui->destroy( );
   }
 
-  void Api::setGui( const std::shared_ptr<GuiBase> gui )
+  void Api::setGui( const std::shared_ptr<GuiBase> gui, bool initialize )
   {
     if ( m_gui != nullptr )
     {
@@ -60,6 +60,9 @@ namespace rx
     }
 
     m_gui = gui;
+
+    if ( initialize )
+      initGui( );
   }
 
   void Api::init( )
@@ -298,11 +301,6 @@ namespace rx
 
     m_swapchainCommandBuffers.reset( );
     recordSwapchainCommandBuffers( );
-  }
-
-  void Api::clean( )
-  {
-    g_device.waitIdle( );
   }
 
   void Api::recreateSwapchain( )

@@ -50,7 +50,7 @@ namespace rx
     /// 
     /// This function updates the window and the camera components and calls the update and render functions of the API.
     /// @see rx::CameraBase::update(), rx::WindowBase::update(), rx::Api::update(), rx::Api::render()
-    RX_API void run( );
+    RX_API void run( )
 
     /// @return Returns true if the application is still running and false if the application has stopped.
     RX_API bool isRunning( ) { return m_running; }
@@ -64,12 +64,20 @@ namespace rx
     /// Used to add another arbitrary node to the scene.
     /// @param node The node to add.
     /// @see rx::Api::pushNode()
-    RX_API void pushNode( const std::shared_ptr<Node> node );
+    template <typename T = Model>
+    RX_API void pushNode( const std::shared_ptr<Node> node )
+    {
+      m_api.pushNode<T>( node );
+    }
 
     /// Used to overwrite the entire scene with new nodes.
     /// @param nodes A vector of nodes describing the new scene.
     /// @see rx::Api::setNodes()
-    RX_API void setNodes( const std::vector<std::shared_ptr<Node>>& nodes );
+    template <typename T = Model>
+    RX_API void setNodes( const std::vector<std::shared_ptr<Node>>& nodes )
+    {
+      m_api.setNodes<T>( node );
+    }
 
     /// Used to set the renderer's camera.
     /// @param camera The camera the renderer should be using.

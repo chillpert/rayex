@@ -17,7 +17,7 @@ namespace rx
     inline const vk::CommandBuffer get( size_t index ) const { return m_commandBuffers[index]; }
 
     void free( );
-    void reset( );
+    RX_API void reset( );
 
     void begin( size_t index = 0 );
     void end( size_t index = 0 );

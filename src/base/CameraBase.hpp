@@ -23,7 +23,7 @@ namespace rx
     /// @param width The width of the viewport.
     /// @param height The height of the viewport.
     /// @param position The position of your camera.
-    RX_API CameraBase( int width, int height, const glm::vec3& position = glm::vec3( 0.0f, 0.0f, 3.0f ) );
+    RX_API CameraBase( int width, int height, const glm::vec3& position = { 0.0f, 0.0f, 3.0f } );
 
     RX_API ~CameraBase( ) = default;
 
@@ -93,10 +93,10 @@ namespace rx
     glm::mat4 m_viewInverse = glm::mat4( 1.0f ); ///< The view matrix inversed.
     glm::mat4 m_projectionInverse = glm::mat4( 1.0f ); ///< The projection matrix inversed.
 
-    glm::vec3 m_worldUp = glm::vec3( 0.0f, 1.0f, 0.0f ); ///< The world up vector.
-    glm::vec3 m_up = glm::vec3( 1.0f ); ///< The local up vector.
-    glm::vec3 m_right = glm::vec3( 1.0f ); ///< The local right vector.
-    glm::vec3 m_front = glm::vec3( 1.0f ); ///< The viewing direction.
+    glm::vec3 m_worldUp = { 0.0f, 1.0f, 0.0f }; ///< The world up vector.
+    glm::vec3 m_up = { }; ///< The local up vector.
+    glm::vec3 m_right = { }; ///< The local right vector.
+    glm::vec3 m_front = { }; ///< The viewing direction.
 
     float m_yaw = -90.0f; ///< The yaw (left and right).
     float m_pitch = 0.0f; ///< The pitch (down and up).

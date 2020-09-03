@@ -98,53 +98,81 @@ $(document).ready(function(){initNavTree('classrx_1_1_model.html',''); initResiz
 <a href="#pub-attribs">Public Attributes</a> &#124;
 <a href="classrx_1_1_model-members.html">List of all members</a>  </div>
   <div class="headertitle">
-<div class="title">rx::Model Class Reference</div>  </div>
+<div class="title">rx::Model Class Reference<div class="ingroups"><a class="el" href="group___base.html">Interfaces and Base Components</a> &#124; <a class="el" href="group___a_p_i.html">Vulkan</a></div></div>  </div>
 </div><!--header-->
 <div class="contents">
+
+<p>Describes a model.  
+ <a href="classrx_1_1_model.html#details">More...</a></p>
 
 <p><code>#include &lt;<a class="el" href="_model_8hpp_source.html">Model.hpp</a>&gt;</code></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:ad3fe45a153be189e03b30731a22080a6"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classrx_1_1_model.html#ad3fe45a153be189e03b30731a22080a6">Model</a> ()=default</td></tr>
-<tr class="separator:ad3fe45a153be189e03b30731a22080a6"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aa427ed49b8f2feaa64d5b3171117892b"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classrx_1_1_model.html#aa427ed49b8f2feaa64d5b3171117892b">Model</a> (const std::string &amp;path)</td></tr>
+<tr class="memitem:ad87d69c43348ffa3cc83d231bfd38f2c"><td class="memItemLeft" align="right" valign="top">RX_API&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classrx_1_1_model.html#ad87d69c43348ffa3cc83d231bfd38f2c">Model</a> ()</td></tr>
+<tr class="separator:ad87d69c43348ffa3cc83d231bfd38f2c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa427ed49b8f2feaa64d5b3171117892b"><td class="memItemLeft" align="right" valign="top">RX_API&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classrx_1_1_model.html#aa427ed49b8f2feaa64d5b3171117892b">Model</a> (const std::string &amp;path)</td></tr>
 <tr class="separator:aa427ed49b8f2feaa64d5b3171117892b"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:adaaf2d8db2312d30b8ecb24c3a5a8d41"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classrx_1_1_model.html#adaaf2d8db2312d30b8ecb24c3a5a8d41">load</a> ()</td></tr>
+<tr class="memitem:affc482a714d404a093f16f84d0c41294"><td class="memItemLeft" align="right" valign="top">virtual RX_API&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classrx_1_1_model.html#affc482a714d404a093f16f84d0c41294">~Model</a> ()=default</td></tr>
+<tr class="separator:affc482a714d404a093f16f84d0c41294"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:adaaf2d8db2312d30b8ecb24c3a5a8d41"><td class="memItemLeft" align="right" valign="top">virtual RX_API void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classrx_1_1_model.html#adaaf2d8db2312d30b8ecb24c3a5a8d41">load</a> ()</td></tr>
+<tr class="memdesc:adaaf2d8db2312d30b8ecb24c3a5a8d41"><td class="mdescLeft">&#160;</td><td class="mdescRight">Loads the model by extracting all vertices and indices.  <a href="classrx_1_1_model.html#adaaf2d8db2312d30b8ecb24c3a5a8d41">More...</a><br /></td></tr>
 <tr class="separator:adaaf2d8db2312d30b8ecb24c3a5a8d41"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a63a87310c43bf3455e8e80df561685f4"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classrx_1_1_model.html#a63a87310c43bf3455e8e80df561685f4">isLoaded</a> ()</td></tr>
 <tr class="separator:a63a87310c43bf3455e8e80df561685f4"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-attribs"></a>
 Public Attributes</h2></td></tr>
+<tr class="memitem:a2742e0d135cdbf89feffbbeacda856c9"><td class="memItemLeft" align="right" valign="top">uint32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classrx_1_1_model.html#a2742e0d135cdbf89feffbbeacda856c9">m_index</a> = 0</td></tr>
+<tr class="memdesc:a2742e0d135cdbf89feffbbeacda856c9"><td class="mdescLeft">&#160;</td><td class="mdescRight">An index that will be used by the ray tracing structures to access the correct model.  <a href="classrx_1_1_model.html#a2742e0d135cdbf89feffbbeacda856c9">More...</a><br /></td></tr>
+<tr class="separator:a2742e0d135cdbf89feffbbeacda856c9"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a5186733f536fb419ec2f72a71d38145a"><td class="memItemLeft" align="right" valign="top">std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classrx_1_1_model.html#a5186733f536fb419ec2f72a71d38145a">m_path</a></td></tr>
+<tr class="memdesc:a5186733f536fb419ec2f72a71d38145a"><td class="mdescLeft">&#160;</td><td class="mdescRight">The relative path to the model.  <a href="classrx_1_1_model.html#a5186733f536fb419ec2f72a71d38145a">More...</a><br /></td></tr>
 <tr class="separator:a5186733f536fb419ec2f72a71d38145a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a354f3f751b3dbd1d8a7d003adfb3ab1c"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classrx_1_1_material.html">Material</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classrx_1_1_model.html#a354f3f751b3dbd1d8a7d003adfb3ab1c">m_material</a></td></tr>
+<tr class="memdesc:a354f3f751b3dbd1d8a7d003adfb3ab1c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Holds all rendering information including the textures required by the model.  <a href="classrx_1_1_model.html#a354f3f751b3dbd1d8a7d003adfb3ab1c">More...</a><br /></td></tr>
 <tr class="separator:a354f3f751b3dbd1d8a7d003adfb3ab1c"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ac32ba8b29e77a4cf38940d3274da36f4"><td class="memItemLeft" align="right" valign="top">std::vector&lt; <a class="el" href="structrx_1_1_vertex.html">Vertex</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classrx_1_1_model.html#ac32ba8b29e77a4cf38940d3274da36f4">m_vertices</a></td></tr>
-<tr class="separator:ac32ba8b29e77a4cf38940d3274da36f4"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:adcd59f4d014850fed6a4de52add0e17f"><td class="memItemLeft" align="right" valign="top">std::vector&lt; uint32_t &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classrx_1_1_model.html#adcd59f4d014850fed6a4de52add0e17f">m_indices</a></td></tr>
-<tr class="separator:adcd59f4d014850fed6a4de52add0e17f"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a3cd5fdada70d2ee42f3eeade4a96dfdd"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classrx_1_1_vertex_buffer.html">VertexBuffer</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classrx_1_1_model.html#a3cd5fdada70d2ee42f3eeade4a96dfdd">m_vertexBuffer</a></td></tr>
-<tr class="separator:a3cd5fdada70d2ee42f3eeade4a96dfdd"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a8700d3046705c124e0636ae2b624d0e3"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classrx_1_1_index_buffer.html">IndexBuffer</a>&lt; uint32_t &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classrx_1_1_model.html#a8700d3046705c124e0636ae2b624d0e3">m_indexBuffer</a></td></tr>
-<tr class="separator:a8700d3046705c124e0636ae2b624d0e3"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a130d653ea3874bcdc65f55473ca88ebd"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classrx_1_1_descriptor_set.html">DescriptorSet</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classrx_1_1_model.html#a130d653ea3874bcdc65f55473ca88ebd">m_descriptorSets</a></td></tr>
-<tr class="separator:a130d653ea3874bcdc65f55473ca88ebd"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a2742e0d135cdbf89feffbbeacda856c9"><td class="memItemLeft" align="right" valign="top">uint32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classrx_1_1_model.html#a2742e0d135cdbf89feffbbeacda856c9">m_index</a> = 0</td></tr>
-<tr class="separator:a2742e0d135cdbf89feffbbeacda856c9"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:acbf968ef65bd2dd67d8f2cc5361262f4"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classrx_1_1_model.html#acbf968ef65bd2dd67d8f2cc5361262f4">m_initialized</a> = false</td></tr>
 <tr class="separator:acbf968ef65bd2dd67d8f2cc5361262f4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac32ba8b29e77a4cf38940d3274da36f4"><td class="memItemLeft" align="right" valign="top">std::vector&lt; <a class="el" href="structrx_1_1_vertex.html">Vertex</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classrx_1_1_model.html#ac32ba8b29e77a4cf38940d3274da36f4">m_vertices</a></td></tr>
+<tr class="memdesc:ac32ba8b29e77a4cf38940d3274da36f4"><td class="mdescLeft">&#160;</td><td class="mdescRight">The raw vertex data.  <a href="classrx_1_1_model.html#ac32ba8b29e77a4cf38940d3274da36f4">More...</a><br /></td></tr>
+<tr class="separator:ac32ba8b29e77a4cf38940d3274da36f4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:adcd59f4d014850fed6a4de52add0e17f"><td class="memItemLeft" align="right" valign="top">std::vector&lt; uint32_t &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classrx_1_1_model.html#adcd59f4d014850fed6a4de52add0e17f">m_indices</a></td></tr>
+<tr class="memdesc:adcd59f4d014850fed6a4de52add0e17f"><td class="mdescLeft">&#160;</td><td class="mdescRight">The raw index data.  <a href="classrx_1_1_model.html#adcd59f4d014850fed6a4de52add0e17f">More...</a><br /></td></tr>
+<tr class="separator:adcd59f4d014850fed6a4de52add0e17f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3cd5fdada70d2ee42f3eeade4a96dfdd"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classrx_1_1_vertex_buffer.html">VertexBuffer</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classrx_1_1_model.html#a3cd5fdada70d2ee42f3eeade4a96dfdd">m_vertexBuffer</a></td></tr>
+<tr class="memdesc:a3cd5fdada70d2ee42f3eeade4a96dfdd"><td class="mdescLeft">&#160;</td><td class="mdescRight">Used to buffer the raw vertex data.  <a href="classrx_1_1_model.html#a3cd5fdada70d2ee42f3eeade4a96dfdd">More...</a><br /></td></tr>
+<tr class="separator:a3cd5fdada70d2ee42f3eeade4a96dfdd"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8700d3046705c124e0636ae2b624d0e3"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classrx_1_1_index_buffer.html">IndexBuffer</a>&lt; uint32_t &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classrx_1_1_model.html#a8700d3046705c124e0636ae2b624d0e3">m_indexBuffer</a></td></tr>
+<tr class="memdesc:a8700d3046705c124e0636ae2b624d0e3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Used to buffer the raw index data.  <a href="classrx_1_1_model.html#a8700d3046705c124e0636ae2b624d0e3">More...</a><br /></td></tr>
+<tr class="separator:a8700d3046705c124e0636ae2b624d0e3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a130d653ea3874bcdc65f55473ca88ebd"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classrx_1_1_descriptor_set.html">DescriptorSet</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classrx_1_1_model.html#a130d653ea3874bcdc65f55473ca88ebd">m_descriptorSets</a></td></tr>
+<tr class="memdesc:a130d653ea3874bcdc65f55473ca88ebd"><td class="mdescLeft">&#160;</td><td class="mdescRight">Descriptor sets for the model's descriptors.  <a href="classrx_1_1_model.html#a130d653ea3874bcdc65f55473ca88ebd">More...</a><br /></td></tr>
+<tr class="separator:a130d653ea3874bcdc65f55473ca88ebd"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
-<h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
-<a id="ad3fe45a153be189e03b30731a22080a6"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ad3fe45a153be189e03b30731a22080a6">&#9670;&nbsp;</a></span>Model() <span class="overload">[1/2]</span></h2>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>Describes a model. </p>
+<p>The class extracts vertex and index data from a given wavefront file. If the client wants to parse other formats than wavefront, <a class="el" href="classrx_1_1_model.html#adaaf2d8db2312d30b8ecb24c3a5a8d41" title="Loads the model by extracting all vertices and indices.">load()</a> should be overridden and either <a class="el" href="classrx_1_1_renderer.html#afba1b500d4152f4343ed860d517a1b7c" title="Used to add another arbitrary node to the scene.">rx::Renderer::pushNode()</a> or <a class="el" href="classrx_1_1_renderer.html#a1f89f0dfe365bfaa83c62e6b3ed8324f" title="Used to overwrite the entire scene with new nodes.">rx::Renderer::setNodes()</a> templatized using the inherited class type. </p>
+<h3><a class="anchor" id="autotoc_md0"></a>
+Example</h3>
+<div class="fragment"><div class="line"><span class="keyword">class </span>CustomModel : <span class="keyword">public</span> <a class="code" href="classrx_1_1_model.html#ad87d69c43348ffa3cc83d231bfd38f2c">Model</a> </div>
+<div class="line">{</div>
+<div class="line">  <span class="keywordtype">void</span> <a class="code" href="classrx_1_1_model.html#adaaf2d8db2312d30b8ecb24c3a5a8d41">load</a>() <span class="keyword">override</span>;</div>
+<div class="line">}</div>
+<div class="line"> </div>
+<div class="line">Renderer myRenderer;</div>
+<div class="line">myRenderer.init();</div>
+<div class="line"> </div>
+<div class="line"><span class="keyword">auto</span> cube = std::make_shared&lt;GeometryNode&gt;( <span class="stringliteral">&quot;models/cube.obj&quot;</span>, Material( <span class="stringliteral">&quot;textures/metal.png&quot;</span> ) );</div>
+<div class="line"> </div>
+<div class="line">myRenderer.pushNode&lt;CustomModel&gt;( cube );</div>
+</div><!-- fragment --><p>, </p>
+</div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
+<a id="ad87d69c43348ffa3cc83d231bfd38f2c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad87d69c43348ffa3cc83d231bfd38f2c">&#9670;&nbsp;</a></span>Model() <span class="overload">[1/2]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
       <table class="memname">
         <tr>
           <td class="memname">rx::Model::Model </td>
@@ -153,11 +181,6 @@ Public Attributes</h2></td></tr>
           <td></td>
         </tr>
       </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">default</span></span>  </td>
-  </tr>
-</table>
 </div><div class="memdoc">
 
 </div>
@@ -177,6 +200,37 @@ Public Attributes</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">path</td><td>The relative path to the model's file. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="affc482a714d404a093f16f84d0c41294"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#affc482a714d404a093f16f84d0c41294">&#9670;&nbsp;</a></span>~Model()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual RX_API rx::Model::~Model </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">virtual</span><span class="mlabel">default</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
 
 </div>
 </div>
@@ -195,6 +249,7 @@ Public Attributes</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+<dl class="section return"><dt>Returns</dt><dd>Returns true if the model was already loaded. </dd></dl>
 
 </div>
 </div>
@@ -203,6 +258,9 @@ Public Attributes</h2></td></tr>
 
 <div class="memitem">
 <div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
       <table class="memname">
         <tr>
           <td class="memname">void rx::Model::load </td>
@@ -211,7 +269,14 @@ Public Attributes</h2></td></tr>
           <td></td>
         </tr>
       </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
 </div><div class="memdoc">
+
+<p>Loads the model by extracting all vertices and indices. </p>
 
 </div>
 </div>
@@ -228,6 +293,8 @@ Public Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
+<p>Descriptor sets for the model's descriptors. </p>
+
 </div>
 </div>
 <a id="a2742e0d135cdbf89feffbbeacda856c9"></a>
@@ -241,6 +308,8 @@ Public Attributes</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>An index that will be used by the ray tracing structures to access the correct model. </p>
 
 </div>
 </div>
@@ -256,6 +325,8 @@ Public Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
+<p>Used to buffer the raw index data. </p>
+
 </div>
 </div>
 <a id="adcd59f4d014850fed6a4de52add0e17f"></a>
@@ -269,6 +340,8 @@ Public Attributes</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>The raw index data. </p>
 
 </div>
 </div>
@@ -298,6 +371,8 @@ Public Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
+<p>Holds all rendering information including the textures required by the model. </p>
+
 </div>
 </div>
 <a id="a5186733f536fb419ec2f72a71d38145a"></a>
@@ -311,6 +386,8 @@ Public Attributes</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>The relative path to the model. </p>
 
 </div>
 </div>
@@ -326,6 +403,8 @@ Public Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
+<p>Used to buffer the raw vertex data. </p>
+
 </div>
 </div>
 <a id="ac32ba8b29e77a4cf38940d3274da36f4"></a>
@@ -340,10 +419,14 @@ Public Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
+<p>The raw vertex data. </p>
+
 </div>
 </div>
 </div><!-- contents -->
 </div><!-- doc-content -->
+<div class="ttc" id="aclassrx_1_1_model_html_adaaf2d8db2312d30b8ecb24c3a5a8d41"><div class="ttname"><a href="classrx_1_1_model.html#adaaf2d8db2312d30b8ecb24c3a5a8d41">rx::Model::load</a></div><div class="ttdeci">virtual RX_API void load()</div><div class="ttdoc">Loads the model by extracting all vertices and indices.</div><div class="ttdef"><b>Definition:</b> Model.cpp:19</div></div>
+<div class="ttc" id="aclassrx_1_1_model_html_ad87d69c43348ffa3cc83d231bfd38f2c"><div class="ttname"><a href="classrx_1_1_model.html#ad87d69c43348ffa3cc83d231bfd38f2c">rx::Model::Model</a></div><div class="ttdeci">RX_API Model()</div><div class="ttdef"><b>Definition:</b> Model.cpp:10</div></div>
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>

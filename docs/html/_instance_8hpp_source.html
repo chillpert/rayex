@@ -104,39 +104,34 @@ $(document).ready(function(){initNavTree('_instance_8hpp_source.html',''); initR
 <div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160; </div>
 <div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;<span class="keyword">namespace </span><a class="code" href="namespacerx.html">rx</a></div>
 <div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;{</div>
-<div class="line"><a name="l00008"></a><span class="lineno"><a class="line" href="classrx_1_1_instance.html">    8</a></span>&#160;  <span class="keyword">class </span><a class="code" href="classrx_1_1_instance.html">Instance</a></div>
-<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;  {</div>
-<div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;  <span class="keyword">public</span>:</div>
-<div class="line"><a name="l00011"></a><span class="lineno"><a class="line" href="classrx_1_1_instance.html#a4d30588f605365dacf22ef1cab83f66f">   11</a></span>&#160;    <a class="code" href="classrx_1_1_instance.html#a4d30588f605365dacf22ef1cab83f66f">Instance</a>( ) = <span class="keywordflow">default</span>;</div>
-<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;    <a class="code" href="classrx_1_1_instance.html#a4d30588f605365dacf22ef1cab83f66f">Instance</a>( <span class="keyword">const</span> std::vector&lt;const char*&gt;&amp; <a class="code" href="namespacerx.html#acfb56bba9609d86c6ba574d168328150">layers</a>, std::vector&lt;const char*&gt;&amp; extensions, <span class="keywordtype">bool</span> initialize = <span class="keyword">true</span> );</div>
-<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160; </div>
-<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;    <span class="comment">// Initializes the instance object and checks support for any given layer and extension.</span></div>
-<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;    <span class="comment">// @param layers - All validation layers that should be used.</span></div>
-<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;    <span class="comment">// @param extensions - All instance extensions that should be used.</span></div>
-<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;    <span class="comment">// Note: The given vector with the extensions will be appended by ones that are required by the window.</span></div>
-<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="classrx_1_1_instance.html#ac539c6a87bb0b46e54aaf4b9b1d09a36">init</a>( <span class="keyword">const</span> std::vector&lt;const char*&gt;&amp; <a class="code" href="namespacerx.html#acfb56bba9609d86c6ba574d168328150">layers</a>, std::vector&lt;const char*&gt;&amp; extensions );</div>
-<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160; </div>
-<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;  <span class="keyword">private</span>:</div>
-<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;    <span class="keywordtype">void</span> checkLayersSupport( <span class="keyword">const</span> std::vector&lt;const char*&gt;&amp; <a class="code" href="namespacerx.html#acfb56bba9609d86c6ba574d168328150">layers</a> );</div>
-<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;    <span class="keywordtype">void</span> checkExtensionsSupport( <span class="keyword">const</span> std::vector&lt;const char*&gt;&amp; extensions );</div>
-<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160; </div>
-<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;    <span class="comment">// Returns the version of the Vulkan SDK installed on the machine. </span></div>
-<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;    <span class="comment">// Note: It can not retrieve patch version, only major and minor version.</span></div>
-<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;    uint32_t getApiVersion( );</div>
-<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160; </div>
-<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;    vk::UniqueInstance m_instance;</div>
-<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;  };</div>
-<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;}</div>
+<div class="line"><a name="l00010"></a><span class="lineno"><a class="line" href="classrx_1_1_instance.html">   10</a></span>&#160;  <span class="keyword">class </span><a class="code" href="classrx_1_1_instance.html">Instance</a></div>
+<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;  {</div>
+<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;  <span class="keyword">public</span>:</div>
+<div class="line"><a name="l00013"></a><span class="lineno"><a class="line" href="classrx_1_1_instance.html#a4d30588f605365dacf22ef1cab83f66f">   13</a></span>&#160;    <a class="code" href="classrx_1_1_instance.html#a4d30588f605365dacf22ef1cab83f66f">Instance</a>( ) = <span class="keywordflow">default</span>;</div>
+<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;    <a class="code" href="classrx_1_1_instance.html#a4d30588f605365dacf22ef1cab83f66f">Instance</a>( <span class="keyword">const</span> std::vector&lt;const char*&gt;&amp; <a class="code" href="namespacerx.html#acfb56bba9609d86c6ba574d168328150">layers</a>, std::vector&lt;const char*&gt;&amp; extensions, <span class="keywordtype">bool</span> initialize = <span class="keyword">true</span> );</div>
+<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160; </div>
+<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="classrx_1_1_instance.html#ac539c6a87bb0b46e54aaf4b9b1d09a36">init</a>( <span class="keyword">const</span> std::vector&lt;const char*&gt;&amp; <a class="code" href="namespacerx.html#acfb56bba9609d86c6ba574d168328150">layers</a>, std::vector&lt;const char*&gt;&amp; extensions );</div>
+<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160; </div>
+<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;  <span class="keyword">private</span>:</div>
+<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;    <span class="keywordtype">void</span> checkLayersSupport( <span class="keyword">const</span> std::vector&lt;const char*&gt;&amp; <a class="code" href="namespacerx.html#acfb56bba9609d86c6ba574d168328150">layers</a> );</div>
 <div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160; </div>
-<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;<span class="preprocessor">#endif // INSTANCE_HPP</span></div>
+<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;    <span class="keywordtype">void</span> checkExtensionsSupport( <span class="keyword">const</span> std::vector&lt;const char*&gt;&amp; extensions );</div>
+<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160; </div>
+<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;    uint32_t getApiVersion( );</div>
+<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160; </div>
+<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;    vk::UniqueInstance m_instance; </div>
+<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;  };</div>
+<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;}</div>
+<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160; </div>
+<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;<span class="preprocessor">#endif // INSTANCE_HPP</span></div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->
 <div class="ttc" id="anamespacerx_html_acfb56bba9609d86c6ba574d168328150"><div class="ttname"><a href="namespacerx.html#acfb56bba9609d86c6ba574d168328150">rx::layers</a></div><div class="ttdeci">const std::vector&lt; const char * &gt; layers</div><div class="ttdef"><b>Definition:</b> Api.cpp:10</div></div>
 <div class="ttc" id="a_window_base_8hpp_html"><div class="ttname"><a href="_window_base_8hpp.html">WindowBase.hpp</a></div></div>
 <div class="ttc" id="anamespacerx_html"><div class="ttname"><a href="namespacerx.html">rx</a></div><div class="ttdoc">The rx namespace encapsulates every single component provided by the renderer.</div><div class="ttdef"><b>Definition:</b> Api.cpp:9</div></div>
-<div class="ttc" id="aclassrx_1_1_instance_html"><div class="ttname"><a href="classrx_1_1_instance.html">rx::Instance</a></div><div class="ttdef"><b>Definition:</b> Instance.hpp:9</div></div>
+<div class="ttc" id="aclassrx_1_1_instance_html"><div class="ttname"><a href="classrx_1_1_instance.html">rx::Instance</a></div><div class="ttdoc">A wrapper class for the Vulkan instance.</div><div class="ttdef"><b>Definition:</b> Instance.hpp:11</div></div>
 <div class="ttc" id="aclassrx_1_1_instance_html_a4d30588f605365dacf22ef1cab83f66f"><div class="ttname"><a href="classrx_1_1_instance.html#a4d30588f605365dacf22ef1cab83f66f">rx::Instance::Instance</a></div><div class="ttdeci">Instance()=default</div></div>
-<div class="ttc" id="aclassrx_1_1_instance_html_ac539c6a87bb0b46e54aaf4b9b1d09a36"><div class="ttname"><a href="classrx_1_1_instance.html#ac539c6a87bb0b46e54aaf4b9b1d09a36">rx::Instance::init</a></div><div class="ttdeci">void init(const std::vector&lt; const char * &gt; &amp;layers, std::vector&lt; const char * &gt; &amp;extensions)</div><div class="ttdef"><b>Definition:</b> Instance.cpp:16</div></div>
+<div class="ttc" id="aclassrx_1_1_instance_html_ac539c6a87bb0b46e54aaf4b9b1d09a36"><div class="ttname"><a href="classrx_1_1_instance.html#ac539c6a87bb0b46e54aaf4b9b1d09a36">rx::Instance::init</a></div><div class="ttdeci">void init(const std::vector&lt; const char * &gt; &amp;layers, std::vector&lt; const char * &gt; &amp;extensions)</div><div class="ttdoc">Initializes the instance object and checks support for any given layer and extension.</div><div class="ttdef"><b>Definition:</b> Instance.cpp:16</div></div>
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>

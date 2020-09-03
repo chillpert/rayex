@@ -126,12 +126,14 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a79f83f0658f4fd2a2012b5191d8e4ee5"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classrx_1_1_api.html#a79f83f0658f4fd2a2012b5191d8e4ee5">render</a> ()</td></tr>
 <tr class="memdesc:a79f83f0658f4fd2a2012b5191d8e4ee5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Retrieves an image from the swapchain and presents it.  <a href="classrx_1_1_api.html#a79f83f0658f4fd2a2012b5191d8e4ee5">More...</a><br /></td></tr>
 <tr class="separator:a79f83f0658f4fd2a2012b5191d8e4ee5"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a374a527842ba3a093e5fb6356604c766"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classrx_1_1_api.html#a374a527842ba3a093e5fb6356604c766">pushNode</a> (const std::shared_ptr&lt; <a class="el" href="classrx_1_1_node.html">Node</a> &gt; nodes, bool record=true)</td></tr>
-<tr class="memdesc:a374a527842ba3a093e5fb6356604c766"><td class="mdescLeft">&#160;</td><td class="mdescRight">Used to add another arbitrary node to the scene.  <a href="classrx_1_1_api.html#a374a527842ba3a093e5fb6356604c766">More...</a><br /></td></tr>
-<tr class="separator:a374a527842ba3a093e5fb6356604c766"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a2ba31a658b0b2ea24cba6ea40142e28c"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classrx_1_1_api.html#a2ba31a658b0b2ea24cba6ea40142e28c">setNodes</a> (const std::vector&lt; std::shared_ptr&lt; <a class="el" href="classrx_1_1_node.html">Node</a> &gt;&gt; &amp;nodes)</td></tr>
-<tr class="memdesc:a2ba31a658b0b2ea24cba6ea40142e28c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Used to overwrite the entire scene with new nodes.  <a href="classrx_1_1_api.html#a2ba31a658b0b2ea24cba6ea40142e28c">More...</a><br /></td></tr>
-<tr class="separator:a2ba31a658b0b2ea24cba6ea40142e28c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a203b4336eeb7a4afccfeb0612ef99998"><td class="memTemplParams" colspan="2">template&lt;typename T  = Model&gt; </td></tr>
+<tr class="memitem:a203b4336eeb7a4afccfeb0612ef99998"><td class="memTemplItemLeft" align="right" valign="top">RX_API void&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="classrx_1_1_api.html#a203b4336eeb7a4afccfeb0612ef99998">pushNode</a> (const std::shared_ptr&lt; <a class="el" href="classrx_1_1_node.html">Node</a> &gt; node, bool record=true)</td></tr>
+<tr class="memdesc:a203b4336eeb7a4afccfeb0612ef99998"><td class="mdescLeft">&#160;</td><td class="mdescRight">Used to add another arbitrary node to the scene.  <a href="classrx_1_1_api.html#a203b4336eeb7a4afccfeb0612ef99998">More...</a><br /></td></tr>
+<tr class="separator:a203b4336eeb7a4afccfeb0612ef99998"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a72a7ec289fe4c4cb0155cf51270a7164"><td class="memTemplParams" colspan="2">template&lt;typename T  = Model&gt; </td></tr>
+<tr class="memitem:a72a7ec289fe4c4cb0155cf51270a7164"><td class="memTemplItemLeft" align="right" valign="top">RX_API void&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="classrx_1_1_api.html#a72a7ec289fe4c4cb0155cf51270a7164">setNodes</a> (const std::vector&lt; std::shared_ptr&lt; <a class="el" href="classrx_1_1_node.html">Node</a> &gt;&gt; &amp;nodes)</td></tr>
+<tr class="memdesc:a72a7ec289fe4c4cb0155cf51270a7164"><td class="mdescLeft">&#160;</td><td class="mdescRight">Used to overwrite the entire scene with new nodes.  <a href="classrx_1_1_api.html#a72a7ec289fe4c4cb0155cf51270a7164">More...</a><br /></td></tr>
+<tr class="separator:a72a7ec289fe4c4cb0155cf51270a7164"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a295c1251c0ba46952df9dd19a0f7d1f3"><td class="memItemLeft" align="right" valign="top">RX_API void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classrx_1_1_api.html#a295c1251c0ba46952df9dd19a0f7d1f3">initGui</a> ()</td></tr>
 <tr class="memdesc:a295c1251c0ba46952df9dd19a0f7d1f3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Re-initializes the render pass to support the GUI and initializes the GUI itself.  <a href="classrx_1_1_api.html#a295c1251c0ba46952df9dd19a0f7d1f3">More...</a><br /></td></tr>
 <tr class="separator:a295c1251c0ba46952df9dd19a0f7d1f3"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -274,17 +276,22 @@ Public Member Functions</h2></td></tr>
 
 </div>
 </div>
-<a id="a374a527842ba3a093e5fb6356604c766"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a374a527842ba3a093e5fb6356604c766">&#9670;&nbsp;</a></span>pushNode()</h2>
+<a id="a203b4336eeb7a4afccfeb0612ef99998"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a203b4336eeb7a4afccfeb0612ef99998">&#9670;&nbsp;</a></span>pushNode()</h2>
 
 <div class="memitem">
 <div class="memproto">
+<div class="memtemplate">
+template&lt;typename T  = Model&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">void rx::Api::pushNode </td>
+          <td class="memname">RX_API void rx::Api::pushNode </td>
           <td>(</td>
           <td class="paramtype">const std::shared_ptr&lt; <a class="el" href="classrx_1_1_node.html">Node</a> &gt;&#160;</td>
-          <td class="paramname"><em>nodes</em>, </td>
+          <td class="paramname"><em>node</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
@@ -298,6 +305,11 @@ Public Member Functions</h2></td></tr>
           <td></td><td></td>
         </tr>
       </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
 </div><div class="memdoc">
 
 <p>Used to add another arbitrary node to the scene. </p>
@@ -366,20 +378,30 @@ Public Member Functions</h2></td></tr>
 
 </div>
 </div>
-<a id="a2ba31a658b0b2ea24cba6ea40142e28c"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a2ba31a658b0b2ea24cba6ea40142e28c">&#9670;&nbsp;</a></span>setNodes()</h2>
+<a id="a72a7ec289fe4c4cb0155cf51270a7164"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a72a7ec289fe4c4cb0155cf51270a7164">&#9670;&nbsp;</a></span>setNodes()</h2>
 
 <div class="memitem">
 <div class="memproto">
+<div class="memtemplate">
+template&lt;typename T  = Model&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">void rx::Api::setNodes </td>
+          <td class="memname">RX_API void rx::Api::setNodes </td>
           <td>(</td>
           <td class="paramtype">const std::vector&lt; std::shared_ptr&lt; <a class="el" href="classrx_1_1_node.html">Node</a> &gt;&gt; &amp;&#160;</td>
           <td class="paramname"><em>nodes</em></td><td>)</td>
           <td></td>
         </tr>
       </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
 </div><div class="memdoc">
 
 <p>Used to overwrite the entire scene with new nodes. </p>

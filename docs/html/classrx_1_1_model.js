@@ -1,7 +1,8 @@
 var classrx_1_1_model =
 [
-    [ "Model", "classrx_1_1_model.html#ad3fe45a153be189e03b30731a22080a6", null ],
+    [ "Model", "classrx_1_1_model.html#ad87d69c43348ffa3cc83d231bfd38f2c", null ],
     [ "Model", "classrx_1_1_model.html#aa427ed49b8f2feaa64d5b3171117892b", null ],
+    [ "~Model", "classrx_1_1_model.html#affc482a714d404a093f16f84d0c41294", null ],
     [ "isLoaded", "classrx_1_1_model.html#a63a87310c43bf3455e8e80df561685f4", null ],
     [ "load", "classrx_1_1_model.html#adaaf2d8db2312d30b8ecb24c3a5a8d41", null ],
     [ "m_descriptorSets", "classrx_1_1_model.html#a130d653ea3874bcdc65f55473ca88ebd", null ],

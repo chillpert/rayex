@@ -119,8 +119,8 @@ Inheritance diagram for rx::CameraBase:</div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:a15137ba4a98b1c6705a0873d64c82ba3"><td class="memItemLeft" align="right" valign="top">RX_API&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classrx_1_1_camera_base.html#a15137ba4a98b1c6705a0873d64c82ba3">CameraBase</a> (int width, int height, const glm::vec3 &amp;position=glm::vec3(0.0f, 0.0f, 3.0f))</td></tr>
-<tr class="separator:a15137ba4a98b1c6705a0873d64c82ba3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a75a962cdaaa75373223ab26b094a8b6a"><td class="memItemLeft" align="right" valign="top">RX_API&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classrx_1_1_camera_base.html#a75a962cdaaa75373223ab26b094a8b6a">CameraBase</a> (int width, int height, const glm::vec3 &amp;position={ 0.0f, 0.0f, 3.0f })</td></tr>
+<tr class="separator:a75a962cdaaa75373223ab26b094a8b6a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aa409b048e207d82f595cb2f4a379a72a"><td class="memItemLeft" align="right" valign="top">RX_API&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classrx_1_1_camera_base.html#aa409b048e207d82f595cb2f4a379a72a">~CameraBase</a> ()=default</td></tr>
 <tr class="separator:aa409b048e207d82f595cb2f4a379a72a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a9fc9ce55c122c04ac14851c956be0384"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classrx_1_1_camera_base.html#a9fc9ce55c122c04ac14851c956be0384">update</a> ()</td></tr>
@@ -188,16 +188,16 @@ Protected Attributes</h2></td></tr>
 <tr class="memitem:aa5723b73de1620490ca2fafae230fdd4"><td class="memItemLeft" align="right" valign="top">glm::mat4&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classrx_1_1_camera_base.html#aa5723b73de1620490ca2fafae230fdd4">m_projectionInverse</a> = glm::mat4( 1.0f )</td></tr>
 <tr class="memdesc:aa5723b73de1620490ca2fafae230fdd4"><td class="mdescLeft">&#160;</td><td class="mdescRight">The projection matrix inversed.  <a href="classrx_1_1_camera_base.html#aa5723b73de1620490ca2fafae230fdd4">More...</a><br /></td></tr>
 <tr class="separator:aa5723b73de1620490ca2fafae230fdd4"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ad4501972649a681c6efdd73657cef1f1"><td class="memItemLeft" align="right" valign="top">glm::vec3&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classrx_1_1_camera_base.html#ad4501972649a681c6efdd73657cef1f1">m_worldUp</a> = glm::vec3( 0.0f, 1.0f, 0.0f )</td></tr>
+<tr class="memitem:ad4501972649a681c6efdd73657cef1f1"><td class="memItemLeft" align="right" valign="top">glm::vec3&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classrx_1_1_camera_base.html#ad4501972649a681c6efdd73657cef1f1">m_worldUp</a> = { 0.0f, 1.0f, 0.0f }</td></tr>
 <tr class="memdesc:ad4501972649a681c6efdd73657cef1f1"><td class="mdescLeft">&#160;</td><td class="mdescRight">The world up vector.  <a href="classrx_1_1_camera_base.html#ad4501972649a681c6efdd73657cef1f1">More...</a><br /></td></tr>
 <tr class="separator:ad4501972649a681c6efdd73657cef1f1"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ab118b51be01f24a1fa82d7e60103d95c"><td class="memItemLeft" align="right" valign="top">glm::vec3&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classrx_1_1_camera_base.html#ab118b51be01f24a1fa82d7e60103d95c">m_up</a> = glm::vec3( 1.0f )</td></tr>
+<tr class="memitem:ab118b51be01f24a1fa82d7e60103d95c"><td class="memItemLeft" align="right" valign="top">glm::vec3&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classrx_1_1_camera_base.html#ab118b51be01f24a1fa82d7e60103d95c">m_up</a> = { }</td></tr>
 <tr class="memdesc:ab118b51be01f24a1fa82d7e60103d95c"><td class="mdescLeft">&#160;</td><td class="mdescRight">The local up vector.  <a href="classrx_1_1_camera_base.html#ab118b51be01f24a1fa82d7e60103d95c">More...</a><br /></td></tr>
 <tr class="separator:ab118b51be01f24a1fa82d7e60103d95c"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aa8265a407c671d06ec13d13c8a1a4f45"><td class="memItemLeft" align="right" valign="top">glm::vec3&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classrx_1_1_camera_base.html#aa8265a407c671d06ec13d13c8a1a4f45">m_right</a> = glm::vec3( 1.0f )</td></tr>
+<tr class="memitem:aa8265a407c671d06ec13d13c8a1a4f45"><td class="memItemLeft" align="right" valign="top">glm::vec3&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classrx_1_1_camera_base.html#aa8265a407c671d06ec13d13c8a1a4f45">m_right</a> = { }</td></tr>
 <tr class="memdesc:aa8265a407c671d06ec13d13c8a1a4f45"><td class="mdescLeft">&#160;</td><td class="mdescRight">The local right vector.  <a href="classrx_1_1_camera_base.html#aa8265a407c671d06ec13d13c8a1a4f45">More...</a><br /></td></tr>
 <tr class="separator:aa8265a407c671d06ec13d13c8a1a4f45"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aa6943d07871eabef78ad1515eea11485"><td class="memItemLeft" align="right" valign="top">glm::vec3&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classrx_1_1_camera_base.html#aa6943d07871eabef78ad1515eea11485">m_front</a> = glm::vec3( 1.0f )</td></tr>
+<tr class="memitem:aa6943d07871eabef78ad1515eea11485"><td class="memItemLeft" align="right" valign="top">glm::vec3&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classrx_1_1_camera_base.html#aa6943d07871eabef78ad1515eea11485">m_front</a> = { }</td></tr>
 <tr class="memdesc:aa6943d07871eabef78ad1515eea11485"><td class="mdescLeft">&#160;</td><td class="mdescRight">The viewing direction.  <a href="classrx_1_1_camera_base.html#aa6943d07871eabef78ad1515eea11485">More...</a><br /></td></tr>
 <tr class="separator:aa6943d07871eabef78ad1515eea11485"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a1a0753114dc3143ea5e877ceaf066f77"><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classrx_1_1_camera_base.html#a1a0753114dc3143ea5e877ceaf066f77">m_yaw</a> = -90.0f</td></tr>
@@ -216,7 +216,7 @@ Protected Attributes</h2></td></tr>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>A minimal camera implementation. </p>
 <p>This class acts like an interface for the client by providing the most important camera-related matrices as well as the camera's position, which are required by the rendering API. </p>
-<h3><a class="anchor" id="autotoc_md0"></a>
+<h3><a class="anchor" id="autotoc_md1"></a>
 Example</h3>
 <div class="fragment"><div class="line"><span class="comment">// This example requires the client to implement a custom camera class that inherits from CameraBase.</span></div>
 <div class="line"><span class="keyword">auto</span> myCam = std::make_shared&lt;CustomCamera&gt;( 600, 500, glm::vec3{ 0.0f, 0.0f, 3.0f } );</div>
@@ -224,8 +224,8 @@ Example</h3>
 <dl class="section warning"><dt>Warning</dt><dd>Do not forget to re-calculate the view or projection matrix if the camera or the window have changed. </dd></dl>
 <dl class="section see"><dt>See also</dt><dd><a class="el" href="classrx_1_1_camera_base.html#a0ec3d2409530bf8e3068bed69d05d5bf" title="Re-calculates the camera&#39;s view matrix as well as the inversed view matrix.">updateViewMatrix()</a>, <a class="el" href="classrx_1_1_camera_base.html#a21627f1b60732c3dc566a52116c548c9" title="Re-calculates the camera&#39;s projection matrix as well as the inversed projection matrix.">updateProjectionMatrix()</a> </dd></dl>
 </div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
-<a id="a15137ba4a98b1c6705a0873d64c82ba3"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a15137ba4a98b1c6705a0873d64c82ba3">&#9670;&nbsp;</a></span>CameraBase()</h2>
+<a id="a75a962cdaaa75373223ab26b094a8b6a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a75a962cdaaa75373223ab26b094a8b6a">&#9670;&nbsp;</a></span>CameraBase()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -246,7 +246,7 @@ Example</h3>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">const glm::vec3 &amp;&#160;</td>
-          <td class="paramname"><em>position</em> = <code>glm::vec3(&#160;0.0f,&#160;0.0f,&#160;3.0f&#160;)</code>&#160;</td>
+          <td class="paramname"><em>position</em> = <code>{&#160;0.0f,&#160;0.0f,&#160;3.0f&#160;}</code>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -715,7 +715,7 @@ Example</h3>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">glm::vec3 rx::CameraBase::m_front = glm::vec3( 1.0f )</td>
+          <td class="memname">glm::vec3 rx::CameraBase::m_front = { }</td>
         </tr>
       </table>
   </td>
@@ -859,7 +859,7 @@ Example</h3>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">glm::vec3 rx::CameraBase::m_right = glm::vec3( 1.0f )</td>
+          <td class="memname">glm::vec3 rx::CameraBase::m_right = { }</td>
         </tr>
       </table>
   </td>
@@ -907,7 +907,7 @@ Example</h3>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">glm::vec3 rx::CameraBase::m_up = glm::vec3( 1.0f )</td>
+          <td class="memname">glm::vec3 rx::CameraBase::m_up = { }</td>
         </tr>
       </table>
   </td>
@@ -1003,7 +1003,7 @@ Example</h3>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">glm::vec3 rx::CameraBase::m_worldUp = glm::vec3( 0.0f, 1.0f, 0.0f )</td>
+          <td class="memname">glm::vec3 rx::CameraBase::m_worldUp = { 0.0f, 1.0f, 0.0f }</td>
         </tr>
       </table>
   </td>

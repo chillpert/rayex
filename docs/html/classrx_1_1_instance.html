@@ -97,9 +97,12 @@ $(document).ready(function(){initNavTree('classrx_1_1_instance.html',''); initRe
 <a href="#pub-methods">Public Member Functions</a> &#124;
 <a href="classrx_1_1_instance-members.html">List of all members</a>  </div>
   <div class="headertitle">
-<div class="title">rx::Instance Class Reference</div>  </div>
+<div class="title">rx::Instance Class Reference<div class="ingroups"><a class="el" href="group___a_p_i.html">Vulkan</a></div></div>  </div>
 </div><!--header-->
 <div class="contents">
+
+<p>A wrapper class for the Vulkan instance.  
+ <a href="classrx_1_1_instance.html#details">More...</a></p>
 
 <p><code>#include &lt;<a class="el" href="_instance_8hpp_source.html">Instance.hpp</a>&gt;</code></p>
 <table class="memberdecls">
@@ -110,9 +113,12 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a546a229b44172922f856c7d302ca659f"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classrx_1_1_instance.html#a546a229b44172922f856c7d302ca659f">Instance</a> (const std::vector&lt; const char * &gt; &amp;<a class="el" href="namespacerx.html#acfb56bba9609d86c6ba574d168328150">layers</a>, std::vector&lt; const char * &gt; &amp;extensions, bool initialize=true)</td></tr>
 <tr class="separator:a546a229b44172922f856c7d302ca659f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ac539c6a87bb0b46e54aaf4b9b1d09a36"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classrx_1_1_instance.html#ac539c6a87bb0b46e54aaf4b9b1d09a36">init</a> (const std::vector&lt; const char * &gt; &amp;<a class="el" href="namespacerx.html#acfb56bba9609d86c6ba574d168328150">layers</a>, std::vector&lt; const char * &gt; &amp;extensions)</td></tr>
+<tr class="memdesc:ac539c6a87bb0b46e54aaf4b9b1d09a36"><td class="mdescLeft">&#160;</td><td class="mdescRight">Initializes the instance object and checks support for any given layer and extension.  <a href="classrx_1_1_instance.html#ac539c6a87bb0b46e54aaf4b9b1d09a36">More...</a><br /></td></tr>
 <tr class="separator:ac539c6a87bb0b46e54aaf4b9b1d09a36"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
-<h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>A wrapper class for the Vulkan instance. </p>
+</div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a id="a4d30588f605365dacf22ef1cab83f66f"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a4d30588f605365dacf22ef1cab83f66f">&#9670;&nbsp;</a></span>Instance() <span class="overload">[1/2]</span></h2>
 
@@ -169,6 +175,14 @@ Public Member Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">layers</td><td>All validation layers that should be activated. </td></tr>
+    <tr><td class="paramname">extensiosn</td><td>All instance extensions that should be activated. </td></tr>
+    <tr><td class="paramname">initialize</td><td>If true, the <a class="el" href="classrx_1_1_instance.html" title="A wrapper class for the Vulkan instance.">Instance</a> object will be initialized right away without an additional call to <a class="el" href="classrx_1_1_instance.html#ac539c6a87bb0b46e54aaf4b9b1d09a36" title="Initializes the instance object and checks support for any given layer and extension.">init()</a>. </td></tr>
+  </table>
+  </dd>
+</dl>
 
 </div>
 </div>
@@ -198,6 +212,16 @@ Public Member Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>Initializes the instance object and checks support for any given layer and extension. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">layers</td><td>All validation layers that should be activated. </td></tr>
+    <tr><td class="paramname">extensions</td><td>All instance extensions that should be activated. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section note"><dt>Note</dt><dd>The given vector with the extensions will be appended by ones that are required by the window. </dd></dl>
 
 </div>
 </div>

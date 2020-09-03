@@ -5,8 +5,13 @@
 
 namespace rx
 {
+  uint32_t Model::m_modelCounter = 0;
+
+  Model::Model( ) :
+    m_index( m_modelCounter++ ) { }
+
   Model::Model( const std::string& path ) :
-    m_path( path )
+    m_index( m_modelCounter++ ), m_path( path )
   {
     load( );
   }

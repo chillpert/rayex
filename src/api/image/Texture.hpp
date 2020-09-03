@@ -8,8 +8,8 @@ namespace rx
   class Texture
   {
   public:
-    Texture( ) = default;
-    Texture( const std::string& path, bool initialize = true );
+    RX_API Texture( ) = default;
+    RX_API Texture( const std::string& path, bool initialize = true );
 
     inline const vk::Image getImage( ) const { return m_image.get( ); }
     inline const vk::ImageView getImageView( ) const { return m_imageView.get( ); }

@@ -1,7 +1,23 @@
 var group___base =
 [
+    [ "Model", "classrx_1_1_model.html", [
+      [ "Model", "classrx_1_1_model.html#ad87d69c43348ffa3cc83d231bfd38f2c", null ],
+      [ "Model", "classrx_1_1_model.html#aa427ed49b8f2feaa64d5b3171117892b", null ],
+      [ "~Model", "classrx_1_1_model.html#affc482a714d404a093f16f84d0c41294", null ],
+      [ "isLoaded", "classrx_1_1_model.html#a63a87310c43bf3455e8e80df561685f4", null ],
+      [ "load", "classrx_1_1_model.html#adaaf2d8db2312d30b8ecb24c3a5a8d41", null ],
+      [ "m_descriptorSets", "classrx_1_1_model.html#a130d653ea3874bcdc65f55473ca88ebd", null ],
+      [ "m_index", "classrx_1_1_model.html#a2742e0d135cdbf89feffbbeacda856c9", null ],
+      [ "m_indexBuffer", "classrx_1_1_model.html#a8700d3046705c124e0636ae2b624d0e3", null ],
+      [ "m_indices", "classrx_1_1_model.html#adcd59f4d014850fed6a4de52add0e17f", null ],
+      [ "m_initialized", "classrx_1_1_model.html#acbf968ef65bd2dd67d8f2cc5361262f4", null ],
+      [ "m_material", "classrx_1_1_model.html#a354f3f751b3dbd1d8a7d003adfb3ab1c", null ],
+      [ "m_path", "classrx_1_1_model.html#a5186733f536fb419ec2f72a71d38145a", null ],
+      [ "m_vertexBuffer", "classrx_1_1_model.html#a3cd5fdada70d2ee42f3eeade4a96dfdd", null ],
+      [ "m_vertices", "classrx_1_1_model.html#ac32ba8b29e77a4cf38940d3274da36f4", null ]
+    ] ],
     [ "CameraBase", "classrx_1_1_camera_base.html", [
-      [ "CameraBase", "classrx_1_1_camera_base.html#a15137ba4a98b1c6705a0873d64c82ba3", null ],
+      [ "CameraBase", "classrx_1_1_camera_base.html#a75a962cdaaa75373223ab26b094a8b6a", null ],
       [ "~CameraBase", "classrx_1_1_camera_base.html#aa409b048e207d82f595cb2f4a379a72a", null ],
       [ "getPosition", "classrx_1_1_camera_base.html#a78d9c8bb9db37123d14038fbfa29be73", null ],
       [ "getProjectionInverseMatrix", "classrx_1_1_camera_base.html#a77571ae5c0604173a1b8a3cd502d394c", null ],
@@ -71,12 +87,11 @@ var group___base =
       [ "getCamera", "classrx_1_1_renderer.html#a0747eb7b94a2f068ede456da7f9c281e", null ],
       [ "getWindow", "classrx_1_1_renderer.html#abc31ff32ab185dbbcc41b1324ac16ccf", null ],
       [ "init", "classrx_1_1_renderer.html#a10c85a8352b5bfb12a4e89778733a5c6", null ],
-      [ "isRunning", "classrx_1_1_renderer.html#a7dbc4370868c44c799be054830a9453e", null ],
-      [ "pushNode", "classrx_1_1_renderer.html#ae8c496ea25f33f655665e1aa9f238f37", null ],
-      [ "run", "classrx_1_1_renderer.html#ad99a218626b4a8c588d42fc772f0b1fb", null ],
+      [ "pushNode", "classrx_1_1_renderer.html#afba1b500d4152f4343ed860d517a1b7c", null ],
+      [ "run", "classrx_1_1_renderer.html#a3506af7f99fbcc098fe1a824c8df3086", null ],
       [ "setCamera", "classrx_1_1_renderer.html#aacd88edf019384a97ac7cf3cb884fdb4", null ],
       [ "setGui", "classrx_1_1_renderer.html#a4d8326fe73f7a45a8355b834a7edd61c", null ],
-      [ "setNodes", "classrx_1_1_renderer.html#a33959cfeb100569da63f19e0de62f655", null ]
+      [ "setNodes", "classrx_1_1_renderer.html#a1f89f0dfe365bfaa83c62e6b3ed8324f", null ]
     ] ],
     [ "WindowBase", "classrx_1_1_window_base.html", [
       [ "WindowBase", "classrx_1_1_window_base.html#a4c75fcc5018535133aa56a897ef8d385", null ],

@@ -249,60 +249,6 @@ namespace rx
     return true;
   }
 
-  void Api::pushNode( const std::shared_ptr<Node> node, bool record )
-  {
-    if ( dynamic_cast<GeometryNode*>( node.get( ) ) )
-    {
-      auto ptr = std::dynamic_pointer_cast<GeometryNode>( node );
-
-      auto it = m_models.find( ptr->m_modelPath );
-      if ( it == m_models.end( ) )
-        m_models.insert( { ptr->m_modelPath, std::make_shared<Model>( ptr->m_modelPath ) } );
-
-      m_geometryNodes.push_back( ptr );
-
-      // Handle the node's texture.
-      auto texturePaths = ptr->m_material.getTextures( );
-
-      for ( const auto& texturePath : texturePaths )
-      {
-        auto it = m_textures.find( texturePath );
-        // Texture does not exist already. It will be created.
-        if ( it == m_textures.end( ) )
-        {
-          m_textures.insert( { texturePath, std::make_shared<Texture>( texturePath ) } );
-        }
-      }
-
-      if ( record )
-        initModel( ptr );
-    }
-    else if ( dynamic_cast<LightNode*>( node.get( ) ) )
-    {
-      auto lightNodePtr = std::dynamic_pointer_cast<LightNode>( node );
-
-      m_lightNodes.push_back( lightNodePtr );
-    }
-
-    if ( record )
-    {
-      m_swapchainCommandBuffers.reset( );
-      recordSwapchainCommandBuffers( );
-    }
-  }
-
-  void Api::setNodes( const std::vector<std::shared_ptr<Node>>& nodes )
-  {
-    m_geometryNodes.clear( );
-    m_geometryNodes.reserve( g_maxGeometryNodes );
-
-    for ( const auto& node : nodes )
-      pushNode( node );
-
-    m_swapchainCommandBuffers.reset( );
-    recordSwapchainCommandBuffers( );
-  }
-
   void Api::recreateSwapchain( )
   {
     RX_LOG( "Recreating swapchain." );

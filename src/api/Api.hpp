@@ -59,11 +59,63 @@ namespace rx
 
     /// Used to add another arbitrary node to the scene.
     /// @param node A pointer to node to add.
-    void pushNode( const std::shared_ptr<Node> nodes, bool record = true );
+    template <typename T = Model>
+    RX_API void pushNode( const std::shared_ptr<Node> node, bool record = true )
+    {
+      if ( dynamic_cast<GeometryNode*>( node.get( ) ) )
+      {
+        auto ptr = std::dynamic_pointer_cast<GeometryNode>( node );
+
+        auto it = m_models.find( ptr->m_modelPath );
+        if ( it == m_models.end( ) )
+          m_models.insert( { ptr->m_modelPath, std::make_shared<T>( ptr->m_modelPath ) } );
+
+        m_geometryNodes.push_back( ptr );
+
+        // Handle the node's texture.
+        auto texturePaths = ptr->m_material.getTextures( );
+
+        for ( const auto& texturePath : texturePaths )
+        {
+          auto it = m_textures.find( texturePath );
+          // Texture does not exist already. It will be created.
+          if ( it == m_textures.end( ) )
+          {
+            m_textures.insert( { texturePath, std::make_shared<Texture>( texturePath ) } );
+          }
+        }
+
+        if ( record )
+          initModel( ptr );
+      }
+      else if ( dynamic_cast<LightNode*>( node.get( ) ) )
+      {
+        auto lightNodePtr = std::dynamic_pointer_cast<LightNode>( node );
+
+        m_lightNodes.push_back( lightNodePtr );
+      }
+
+      if ( record )
+      {
+        m_swapchainCommandBuffers.reset( );
+        recordSwapchainCommandBuffers( );
+      }
+    }
 
     /// Used to overwrite the entire scene with new nodes.
     /// @param nodes A vector of pointers to nodes describing the new scene.
-    void setNodes( const std::vector<std::shared_ptr<Node>>& nodes );
+    template <typename T = Model>
+    RX_API void setNodes( const std::vector<std::shared_ptr<Node>>& nodes )
+    {
+      m_geometryNodes.clear( );
+      m_geometryNodes.reserve( g_maxGeometryNodes );
+
+      for ( const auto& node : nodes )
+        pushNode<T>( node );
+
+      m_swapchainCommandBuffers.reset( );
+      recordSwapchainCommandBuffers( );
+    }
 
     /// Re-initializes the render pass to support the GUI and initializes the GUI itself.
     RX_API void initGui( );
@@ -79,11 +131,11 @@ namespace rx
     /// If a model or a texture are already known to the application and have been initialized, they will be re-used instead of being initialized.
     /// @param node A pointer to a geometry node.
     /// @todo The function currently recreates the entire TLAS and BLAS everytime a model is added, which is very inefficient.
-    void initModel( const std::shared_ptr<GeometryNode> node );
+    RX_API void initModel( const std::shared_ptr<GeometryNode> node );
 
     /// Records commands to the swapchain command buffers that will be used for rendering.
     /// @todo Rasterization has been removed for now. Might want to re-add rasterization support with RT-compatible shaders again.
-    void recordSwapchainCommandBuffers( );
+    RX_API void recordSwapchainCommandBuffers( );
 
     /// Creates all fences and semaphores required to sync the rendering process.
     void initSyncObjects( );

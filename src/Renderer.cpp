@@ -69,16 +69,6 @@ namespace rx
     m_api.update( );
   }
 
-  void Renderer::pushNode( const std::shared_ptr<Node> node )
-  {
-    m_api.pushNode( node );
-  }
-
-  void Renderer::setNodes( const std::vector<std::shared_ptr<Node>>& nodes )
-  {
-    m_api.setNodes( nodes );
-  }
-
   void Renderer::setCamera( std::shared_ptr<CameraBase> camera )
   {
     m_camera = camera;

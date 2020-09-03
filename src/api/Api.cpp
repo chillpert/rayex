@@ -53,6 +53,12 @@ namespace rx
 
   void Api::setGui( const std::shared_ptr<GuiBase> gui )
   {
+    if ( m_gui != nullptr )
+    {
+      recreateSwapchain( );
+      m_gui->destroy( );
+    }
+
     m_gui = gui;
   }
 

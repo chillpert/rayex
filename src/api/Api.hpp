@@ -24,13 +24,22 @@
 
 namespace rx
 {
+  /// Initializes and owns all Vulkan components and displays a picture on the screen.
+  /// @note All Vulkan components and resources are freed using scope-bound destruction.
   class Api
   {
   public:
+    /// @param window A pointer to a window object that the API will use to display an image.
+    /// @param camera A pointer to a camera object that will be used to "capture" the scene.
     Api( std::shared_ptr<WindowBase> window, std::shared_ptr<CameraBase> camera );
+
+    /// @param window A pointer to a window object that the API will use to display an image.
+    /// @param gui A pointer to a GUI object that will be rendered on top of the final image.
+    /// @param camera A pointer to a camera object that will be used to "capture" the scene.
     Api( std::shared_ptr<WindowBase> window, std::shared_ptr<GuiBase> gui, std::shared_ptr<CameraBase> camera );
     RX_API ~Api( );
 
+    /// Used to set the GUI that will be used.
     RX_API void setGui( const std::shared_ptr<GuiBase> gui );
 
     void init( );

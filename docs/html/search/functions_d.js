@@ -1,9 +1,16 @@
 var searchData=
 [
-  ['parseshader_704',['parseShader',['../namespacevk_1_1_helper.html#a465ea68115626276f2e7f61c839f4f04',1,'vk::Helper']]],
-  ['physicaldevice_705',['PhysicalDevice',['../classrx_1_1_physical_device.html#ae40f1960c85c821b0cfac11a34cabfed',1,'rx::PhysicalDevice']]],
-  ['pipeline_706',['Pipeline',['../classrx_1_1_pipeline.html#abd2b08f30f9c98cfe2e13ccb6aa26571',1,'rx::Pipeline::Pipeline()=default'],['../classrx_1_1_pipeline.html#a6f1f13012b0286124c17a17f6c793642',1,'rx::Pipeline::Pipeline(vk::Rect2D scissor, const std::vector&lt; vk::DescriptorSetLayout &gt; &amp;descriptorSetLayouts, bool initialize=true)']]],
-  ['processkeyboard_707',['processKeyboard',['../class_custom_camera.html#ae09db01bfd72bc083dd427611831d413',1,'CustomCamera']]],
-  ['processmouse_708',['processMouse',['../classrx_1_1_camera_base.html#ae4aaf998c208f3755045bcd7fe350d1d',1,'rx::CameraBase']]],
-  ['pushnode_709',['pushNode',['../classrx_1_1_api.html#a203b4336eeb7a4afccfeb0612ef99998',1,'rx::Api::pushNode()'],['../classrx_1_1_renderer.html#afba1b500d4152f4343ed860d517a1b7c',1,'rx::Renderer::pushNode()']]]
+  ['raytrace_822',['rayTrace',['../classrx_1_1_ray_tracing_builder.html#a40136a2ada9c8fd67e3719e9d2812ae8',1,'rx::RayTracingBuilder']]],
+  ['recordswapchaincommandbuffers_823',['recordSwapchainCommandBuffers',['../classrx_1_1_api.html#ac001b41ebd9ab9f1da6945936a15627d',1,'rx::Api']]],
+  ['recreate_824',['recreate',['../classrx_1_1_gui_base.html#a02de12dd4e477a1b2cdb217dbf7c1ceb',1,'rx::GuiBase']]],
+  ['recreateswapchain_825',['recreateSwapchain',['../classrx_1_1_api.html#a7e75eabc479ff4a1b241622b7605d56e',1,'rx::Api']]],
+  ['refresh_826',['refresh',['../classrx_1_1_settings.html#a9e09b0dedc3a576d3a595c410df62479',1,'rx::Settings']]],
+  ['render_827',['render',['../classrx_1_1_api.html#a79f83f0658f4fd2a2012b5191d8e4ee5',1,'rx::Api::render()'],['../classrx_1_1_gui_base.html#ad2100f03fe7e64b12cc315231effae88',1,'rx::GuiBase::render()'],['../class_custom_gui.html#a6bc51a564691e7fcbef848254d6e2cf0',1,'CustomGui::render()']]],
+  ['renderdrawdata_828',['renderDrawData',['../classrx_1_1_gui_base.html#a668f00b604de4a566d6b46a469fdb62a',1,'rx::GuiBase']]],
+  ['renderer_829',['Renderer',['../classrx_1_1_renderer.html#adac272ae85ea19cc6ce17c93e4fbb5b5',1,'rx::Renderer::Renderer()'],['../classrx_1_1_renderer.html#ae7ad602d913e3a5725a067389653984f',1,'rx::Renderer::Renderer(std::shared_ptr&lt; CameraBase &gt; camera)'],['../classrx_1_1_renderer.html#a2307afebcca82a81ff1b1468e1d9b02d',1,'rx::Renderer::Renderer(std::shared_ptr&lt; WindowBase &gt; window)'],['../classrx_1_1_renderer.html#a5fea80c8c0ef353f0bf0c51d841db422',1,'rx::Renderer::Renderer(std::shared_ptr&lt; WindowBase &gt; window, std::shared_ptr&lt; CameraBase &gt; camera)']]],
+  ['renderpass_830',['RenderPass',['../classrx_1_1_render_pass.html#ae57da1d57e10f8e1499be97aa40f3cbb',1,'rx::RenderPass::RenderPass()=default'],['../classrx_1_1_render_pass.html#acec123f5c67d64cfec8e0aab9bfec87e',1,'rx::RenderPass::RenderPass(const std::vector&lt; vk::AttachmentDescription &gt; &amp;attachments, const std::vector&lt; vk::SubpassDescription &gt; &amp;subpasses, const std::vector&lt; vk::SubpassDependency &gt; &amp;dependencies, bool initialize=true)']]],
+  ['reset_831',['reset',['../classrx_1_1_command_buffer.html#ab76173ed0d4409599c99f16f8dd830d7',1,'rx::CommandBuffer']]],
+  ['resize_832',['resize',['../classrx_1_1_window_base.html#a6313eb78b5d688f3e3997c5163e9ac69',1,'rx::WindowBase']]],
+  ['retrievehandles_833',['retrieveHandles',['../classrx_1_1_queues.html#a3262a78b46dd3d20f720c256beee4c68',1,'rx::Queues']]],
+  ['run_834',['run',['../classrx_1_1_renderer.html#ad99a218626b4a8c588d42fc772f0b1fb',1,'rx::Renderer']]]
 ];

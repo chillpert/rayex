@@ -1,5 +1,4 @@
 var searchData=
 [
-  ['vertex_483',['Vertex',['../structrx_1_1_vertex.html',1,'rx']]],
-  ['vertexbuffer_484',['VertexBuffer',['../classrx_1_1_vertex_buffer.html',1,'rx']]]
+  ['windowbase_582',['WindowBase',['../classrx_1_1_window_base.html',1,'rx']]]
 ];

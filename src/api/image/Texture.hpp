@@ -29,10 +29,12 @@ namespace rx
 
 namespace std
 {
+  /// @cond INTERNAL
   template<> struct hash<rx::Texture>
   {
     size_t operator()( const std::shared_ptr<rx::Texture> texture ) const { return hash<std::string>( )( texture->getPath( ) ); }
   };
+  /// @endcond
 }
 
 #endif // TEXTURE_HPP

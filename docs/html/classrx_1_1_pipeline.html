@@ -95,6 +95,7 @@ $(document).ready(function(){initNavTree('classrx_1_1_pipeline.html',''); initRe
 <div class="header">
   <div class="summary">
 <a href="#pub-methods">Public Member Functions</a> &#124;
+<a href="#pri-attribs">Private Attributes</a> &#124;
 <a href="classrx_1_1_pipeline-members.html">List of all members</a>  </div>
   <div class="headertitle">
 <div class="title">rx::Pipeline Class Reference</div>  </div>
@@ -121,6 +122,17 @@ Public Member Functions</h2></td></tr>
 <tr class="separator:ac8ac0781469eb9a105241d95af362c5f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a0c203e8d6ab2f6803e8ff096528f4a31"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classrx_1_1_pipeline.html#a0c203e8d6ab2f6803e8ff096528f4a31">bind</a> (vk::CommandBuffer commandBuffer) const</td></tr>
 <tr class="separator:a0c203e8d6ab2f6803e8ff096528f4a31"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pri-attribs"></a>
+Private Attributes</h2></td></tr>
+<tr class="memitem:a27e97d5e69f788214708f2d6f2cab849"><td class="memItemLeft" align="right" valign="top">vk::UniquePipeline&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classrx_1_1_pipeline.html#a27e97d5e69f788214708f2d6f2cab849">m_pipeline</a></td></tr>
+<tr class="separator:a27e97d5e69f788214708f2d6f2cab849"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aab80bdfb1741bed096a957918a241503"><td class="memItemLeft" align="right" valign="top">vk::UniquePipelineLayout&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classrx_1_1_pipeline.html#aab80bdfb1741bed096a957918a241503">m_layout</a></td></tr>
+<tr class="separator:aab80bdfb1741bed096a957918a241503"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af9ff5493a91d005d4cbfe43d07f8d702"><td class="memItemLeft" align="right" valign="top">vk::Viewport&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classrx_1_1_pipeline.html#af9ff5493a91d005d4cbfe43d07f8d702">m_viewport</a></td></tr>
+<tr class="separator:af9ff5493a91d005d4cbfe43d07f8d702"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4107ddce30f33232f5b462426a3c1644"><td class="memItemLeft" align="right" valign="top">vk::Rect2D&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classrx_1_1_pipeline.html#a4107ddce30f33232f5b462426a3c1644">m_scissor</a></td></tr>
+<tr class="separator:a4107ddce30f33232f5b462426a3c1644"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a id="abd2b08f30f9c98cfe2e13ccb6aa26571"></a>
@@ -325,6 +337,95 @@ Public Member Functions</h2></td></tr>
           <td></td><td></td>
         </tr>
       </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<h2 class="groupheader">Member Data Documentation</h2>
+<a id="aab80bdfb1741bed096a957918a241503"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aab80bdfb1741bed096a957918a241503">&#9670;&nbsp;</a></span>m_layout</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">vk::UniquePipelineLayout rx::Pipeline::m_layout</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a27e97d5e69f788214708f2d6f2cab849"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a27e97d5e69f788214708f2d6f2cab849">&#9670;&nbsp;</a></span>m_pipeline</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">vk::UniquePipeline rx::Pipeline::m_pipeline</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a4107ddce30f33232f5b462426a3c1644"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4107ddce30f33232f5b462426a3c1644">&#9670;&nbsp;</a></span>m_scissor</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">vk::Rect2D rx::Pipeline::m_scissor</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="af9ff5493a91d005d4cbfe43d07f8d702"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af9ff5493a91d005d4cbfe43d07f8d702">&#9670;&nbsp;</a></span>m_viewport</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">vk::Viewport rx::Pipeline::m_viewport</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
 </div><div class="memdoc">
 
 </div>

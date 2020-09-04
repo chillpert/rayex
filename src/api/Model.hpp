@@ -118,11 +118,12 @@ namespace rx
 
 namespace std
 {
-  /// @todo Documentation.
+  /// @cond INTERNAL
   template<> struct hash<rx::Model>
   {
     size_t operator()( const std::shared_ptr<rx::Model> model ) const { return hash<std::string>( )( model->m_path ); }
   };
+  /// @endcond
 }
 
 #endif // MODEL_BASE_HPP

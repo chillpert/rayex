@@ -95,6 +95,8 @@ $(document).ready(function(){initNavTree('classrx_1_1_descriptor_set.html',''); 
 <div class="header">
   <div class="summary">
 <a href="#pub-methods">Public Member Functions</a> &#124;
+<a href="#pri-methods">Private Member Functions</a> &#124;
+<a href="#pri-attribs">Private Attributes</a> &#124;
 <a href="classrx_1_1_descriptor_set-members.html">List of all members</a>  </div>
   <div class="headertitle">
 <div class="title">rx::DescriptorSet Class Reference</div>  </div>
@@ -123,6 +125,28 @@ Public Member Functions</h2></td></tr>
 <tr class="separator:a9056fcfc622a01be0f711e682fd95db4"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aeaa8f4e2ec72e990bd2cb8bf0cc9d948"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classrx_1_1_descriptor_set.html#aeaa8f4e2ec72e990bd2cb8bf0cc9d948">free</a> ()</td></tr>
 <tr class="separator:aeaa8f4e2ec72e990bd2cb8bf0cc9d948"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pri-methods"></a>
+Private Member Functions</h2></td></tr>
+<tr class="memitem:a2cfcead9b6fc1aae26685202027f660d"><td class="memItemLeft" align="right" valign="top">vk::WriteDescriptorSet&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classrx_1_1_descriptor_set.html#a2cfcead9b6fc1aae26685202027f660d">writeUniformBuffer</a> (vk::DescriptorSet descriptorSet, uint32_t binding, const vk::DescriptorBufferInfo &amp;bufferInfo)</td></tr>
+<tr class="separator:a2cfcead9b6fc1aae26685202027f660d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac0634f327387523e6920a4d90c323029"><td class="memItemLeft" align="right" valign="top">vk::WriteDescriptorSet&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classrx_1_1_descriptor_set.html#ac0634f327387523e6920a4d90c323029">writeStorageBuffer</a> (vk::DescriptorSet descriptorSet, uint32_t binding, const vk::DescriptorBufferInfo &amp;bufferInfo)</td></tr>
+<tr class="separator:ac0634f327387523e6920a4d90c323029"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a96659fd42572f55e59e00c4114617bb4"><td class="memItemLeft" align="right" valign="top">vk::WriteDescriptorSet&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classrx_1_1_descriptor_set.html#a96659fd42572f55e59e00c4114617bb4">writeStorageImage</a> (vk::DescriptorSet descriptorSet, uint32_t binding, const vk::DescriptorImageInfo &amp;imageInfo)</td></tr>
+<tr class="separator:a96659fd42572f55e59e00c4114617bb4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5a474c638d49167ecefb0528ef8471df"><td class="memItemLeft" align="right" valign="top">vk::WriteDescriptorSet&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classrx_1_1_descriptor_set.html#a5a474c638d49167ecefb0528ef8471df">writeCombinedImageSampler</a> (vk::DescriptorSet descriptorSet, uint32_t binding, const vk::DescriptorImageInfo &amp;imageInfo)</td></tr>
+<tr class="separator:a5a474c638d49167ecefb0528ef8471df"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a562c6078e26758631275b96d86b52305"><td class="memItemLeft" align="right" valign="top">vk::WriteDescriptorSet&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classrx_1_1_descriptor_set.html#a562c6078e26758631275b96d86b52305">writeAccelerationStructure</a> (vk::DescriptorSet descriptorSet, uint32_t binding, void *pNext)</td></tr>
+<tr class="separator:a562c6078e26758631275b96d86b52305"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pri-attribs"></a>
+Private Attributes</h2></td></tr>
+<tr class="memitem:a1ca524be8e2eaa9d8fe2e87dc8cf5e98"><td class="memItemLeft" align="right" valign="top">std::vector&lt; vk::DescriptorSet &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classrx_1_1_descriptor_set.html#a1ca524be8e2eaa9d8fe2e87dc8cf5e98">m_sets</a></td></tr>
+<tr class="separator:a1ca524be8e2eaa9d8fe2e87dc8cf5e98"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a08dee8c23517b4abd1f0a9ad75d31cd9"><td class="memItemLeft" align="right" valign="top">std::vector&lt; vk::DescriptorSetLayout &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classrx_1_1_descriptor_set.html#a08dee8c23517b4abd1f0a9ad75d31cd9">m_layouts</a></td></tr>
+<tr class="separator:a08dee8c23517b4abd1f0a9ad75d31cd9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac32c3438a456d18d2ad46f38bb774ad2"><td class="memItemLeft" align="right" valign="top">vk::DescriptorPool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classrx_1_1_descriptor_set.html#ac32c3438a456d18d2ad46f38bb774ad2">m_descriptorPool</a></td></tr>
+<tr class="separator:ac32c3438a456d18d2ad46f38bb774ad2"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a id="a13c22ffa6f75fda5d9221cc23bb6c795"></a>
@@ -391,6 +415,283 @@ Public Member Functions</h2></td></tr>
           <td></td><td></td>
         </tr>
       </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a562c6078e26758631275b96d86b52305"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a562c6078e26758631275b96d86b52305">&#9670;&nbsp;</a></span>writeAccelerationStructure()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">vk::WriteDescriptorSet rx::DescriptorSet::writeAccelerationStructure </td>
+          <td>(</td>
+          <td class="paramtype">vk::DescriptorSet&#160;</td>
+          <td class="paramname"><em>descriptorSet</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">uint32_t&#160;</td>
+          <td class="paramname"><em>binding</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">void *&#160;</td>
+          <td class="paramname"><em>pNext</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a5a474c638d49167ecefb0528ef8471df"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5a474c638d49167ecefb0528ef8471df">&#9670;&nbsp;</a></span>writeCombinedImageSampler()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">vk::WriteDescriptorSet rx::DescriptorSet::writeCombinedImageSampler </td>
+          <td>(</td>
+          <td class="paramtype">vk::DescriptorSet&#160;</td>
+          <td class="paramname"><em>descriptorSet</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">uint32_t&#160;</td>
+          <td class="paramname"><em>binding</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const vk::DescriptorImageInfo &amp;&#160;</td>
+          <td class="paramname"><em>imageInfo</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="ac0634f327387523e6920a4d90c323029"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac0634f327387523e6920a4d90c323029">&#9670;&nbsp;</a></span>writeStorageBuffer()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">vk::WriteDescriptorSet rx::DescriptorSet::writeStorageBuffer </td>
+          <td>(</td>
+          <td class="paramtype">vk::DescriptorSet&#160;</td>
+          <td class="paramname"><em>descriptorSet</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">uint32_t&#160;</td>
+          <td class="paramname"><em>binding</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const vk::DescriptorBufferInfo &amp;&#160;</td>
+          <td class="paramname"><em>bufferInfo</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a96659fd42572f55e59e00c4114617bb4"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a96659fd42572f55e59e00c4114617bb4">&#9670;&nbsp;</a></span>writeStorageImage()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">vk::WriteDescriptorSet rx::DescriptorSet::writeStorageImage </td>
+          <td>(</td>
+          <td class="paramtype">vk::DescriptorSet&#160;</td>
+          <td class="paramname"><em>descriptorSet</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">uint32_t&#160;</td>
+          <td class="paramname"><em>binding</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const vk::DescriptorImageInfo &amp;&#160;</td>
+          <td class="paramname"><em>imageInfo</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a2cfcead9b6fc1aae26685202027f660d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2cfcead9b6fc1aae26685202027f660d">&#9670;&nbsp;</a></span>writeUniformBuffer()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">vk::WriteDescriptorSet rx::DescriptorSet::writeUniformBuffer </td>
+          <td>(</td>
+          <td class="paramtype">vk::DescriptorSet&#160;</td>
+          <td class="paramname"><em>descriptorSet</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">uint32_t&#160;</td>
+          <td class="paramname"><em>binding</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const vk::DescriptorBufferInfo &amp;&#160;</td>
+          <td class="paramname"><em>bufferInfo</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<h2 class="groupheader">Member Data Documentation</h2>
+<a id="ac32c3438a456d18d2ad46f38bb774ad2"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac32c3438a456d18d2ad46f38bb774ad2">&#9670;&nbsp;</a></span>m_descriptorPool</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">vk::DescriptorPool rx::DescriptorSet::m_descriptorPool</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a08dee8c23517b4abd1f0a9ad75d31cd9"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a08dee8c23517b4abd1f0a9ad75d31cd9">&#9670;&nbsp;</a></span>m_layouts</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::vector&lt;vk::DescriptorSetLayout&gt; rx::DescriptorSet::m_layouts</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a1ca524be8e2eaa9d8fe2e87dc8cf5e98"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1ca524be8e2eaa9d8fe2e87dc8cf5e98">&#9670;&nbsp;</a></span>m_sets</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::vector&lt;vk::DescriptorSet&gt; rx::DescriptorSet::m_sets</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
 </div><div class="memdoc">
 
 </div>

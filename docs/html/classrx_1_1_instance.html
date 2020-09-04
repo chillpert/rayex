@@ -95,6 +95,8 @@ $(document).ready(function(){initNavTree('classrx_1_1_instance.html',''); initRe
 <div class="header">
   <div class="summary">
 <a href="#pub-methods">Public Member Functions</a> &#124;
+<a href="#pri-methods">Private Member Functions</a> &#124;
+<a href="#pri-attribs">Private Attributes</a> &#124;
 <a href="classrx_1_1_instance-members.html">List of all members</a>  </div>
   <div class="headertitle">
 <div class="title">rx::Instance Class Reference<div class="ingroups"><a class="el" href="group___a_p_i.html">Vulkan</a></div></div>  </div>
@@ -115,6 +117,24 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:ac539c6a87bb0b46e54aaf4b9b1d09a36"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classrx_1_1_instance.html#ac539c6a87bb0b46e54aaf4b9b1d09a36">init</a> (const std::vector&lt; const char * &gt; &amp;<a class="el" href="namespacerx.html#acfb56bba9609d86c6ba574d168328150">layers</a>, std::vector&lt; const char * &gt; &amp;extensions)</td></tr>
 <tr class="memdesc:ac539c6a87bb0b46e54aaf4b9b1d09a36"><td class="mdescLeft">&#160;</td><td class="mdescRight">Initializes the instance object and checks support for any given layer and extension.  <a href="classrx_1_1_instance.html#ac539c6a87bb0b46e54aaf4b9b1d09a36">More...</a><br /></td></tr>
 <tr class="separator:ac539c6a87bb0b46e54aaf4b9b1d09a36"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pri-methods"></a>
+Private Member Functions</h2></td></tr>
+<tr class="memitem:af677553eae1707ea9f22661a38ec6e56"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classrx_1_1_instance.html#af677553eae1707ea9f22661a38ec6e56">checkLayersSupport</a> (const std::vector&lt; const char * &gt; &amp;<a class="el" href="namespacerx.html#acfb56bba9609d86c6ba574d168328150">layers</a>)</td></tr>
+<tr class="memdesc:af677553eae1707ea9f22661a38ec6e56"><td class="mdescLeft">&#160;</td><td class="mdescRight">Checks if all layers provided are supported.  <a href="classrx_1_1_instance.html#af677553eae1707ea9f22661a38ec6e56">More...</a><br /></td></tr>
+<tr class="separator:af677553eae1707ea9f22661a38ec6e56"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:acdb55a3307fe0f50f826aefd8dc9fb6d"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classrx_1_1_instance.html#acdb55a3307fe0f50f826aefd8dc9fb6d">checkExtensionsSupport</a> (const std::vector&lt; const char * &gt; &amp;extensions)</td></tr>
+<tr class="memdesc:acdb55a3307fe0f50f826aefd8dc9fb6d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Checks if all instance extensions provided are supported.  <a href="classrx_1_1_instance.html#acdb55a3307fe0f50f826aefd8dc9fb6d">More...</a><br /></td></tr>
+<tr class="separator:acdb55a3307fe0f50f826aefd8dc9fb6d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:acd96b53e4c262566676c524d871cec25"><td class="memItemLeft" align="right" valign="top">uint32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classrx_1_1_instance.html#acd96b53e4c262566676c524d871cec25">getApiVersion</a> ()</td></tr>
+<tr class="memdesc:acd96b53e4c262566676c524d871cec25"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the version of the Vulkan SDK installed on the machine.  <a href="classrx_1_1_instance.html#acd96b53e4c262566676c524d871cec25">More...</a><br /></td></tr>
+<tr class="separator:acd96b53e4c262566676c524d871cec25"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pri-attribs"></a>
+Private Attributes</h2></td></tr>
+<tr class="memitem:a7309d8b7527b2d41d9e3b6b286557966"><td class="memItemLeft" align="right" valign="top">vk::UniqueInstance&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classrx_1_1_instance.html#a7309d8b7527b2d41d9e3b6b286557966">m_instance</a></td></tr>
+<tr class="memdesc:a7309d8b7527b2d41d9e3b6b286557966"><td class="mdescLeft">&#160;</td><td class="mdescRight">The actual Vulkan instance with a unique handle.  <a href="classrx_1_1_instance.html#a7309d8b7527b2d41d9e3b6b286557966">More...</a><br /></td></tr>
+<tr class="separator:a7309d8b7527b2d41d9e3b6b286557966"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>A wrapper class for the Vulkan instance. </p>
@@ -187,6 +207,102 @@ Public Member Functions</h2></td></tr>
 </div>
 </div>
 <h2 class="groupheader">Member Function Documentation</h2>
+<a id="acdb55a3307fe0f50f826aefd8dc9fb6d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#acdb55a3307fe0f50f826aefd8dc9fb6d">&#9670;&nbsp;</a></span>checkExtensionsSupport()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void rx::Instance::checkExtensionsSupport </td>
+          <td>(</td>
+          <td class="paramtype">const std::vector&lt; const char * &gt; &amp;&#160;</td>
+          <td class="paramname"><em>extensions</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Checks if all instance extensions provided are supported. </p>
+<p>If any instance extension is not supported the application will shut dow immediately. </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">extensions</td><td>All instance extensions that should be activated. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="af677553eae1707ea9f22661a38ec6e56"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af677553eae1707ea9f22661a38ec6e56">&#9670;&nbsp;</a></span>checkLayersSupport()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void rx::Instance::checkLayersSupport </td>
+          <td>(</td>
+          <td class="paramtype">const std::vector&lt; const char * &gt; &amp;&#160;</td>
+          <td class="paramname"><em>layers</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Checks if all layers provided are supported. </p>
+<p>If any layer is not supported the application will shut down immediately. </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">layers</td><td>All validation layers that should be activated. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="acd96b53e4c262566676c524d871cec25"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#acd96b53e4c262566676c524d871cec25">&#9670;&nbsp;</a></span>getApiVersion()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint32_t rx::Instance::getApiVersion </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Returns the version of the Vulkan SDK installed on the machine. </p>
+<dl class="section note"><dt>Note</dt><dd>It can not retrieve patch version, only major and minor version. </dd></dl>
+
+</div>
+</div>
 <a id="ac539c6a87bb0b46e54aaf4b9b1d09a36"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#ac539c6a87bb0b46e54aaf4b9b1d09a36">&#9670;&nbsp;</a></span>init()</h2>
 
@@ -222,6 +338,31 @@ Public Member Functions</h2></td></tr>
   </dd>
 </dl>
 <dl class="section note"><dt>Note</dt><dd>The given vector with the extensions will be appended by ones that are required by the window. </dd></dl>
+
+</div>
+</div>
+<h2 class="groupheader">Member Data Documentation</h2>
+<a id="a7309d8b7527b2d41d9e3b6b286557966"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7309d8b7527b2d41d9e3b6b286557966">&#9670;&nbsp;</a></span>m_instance</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">vk::UniqueInstance rx::Instance::m_instance</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>The actual Vulkan instance with a unique handle. </p>
 
 </div>
 </div>

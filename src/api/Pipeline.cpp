@@ -8,13 +8,13 @@
 
 namespace rx
 {
-  Pipeline::Pipeline( vk::Rect2D scissor, const std::vector<vk::DescriptorSetLayout>& descriptorSetLayouts, bool initialize )
+  Pipeline::Pipeline( const std::vector<vk::DescriptorSetLayout>& descriptorSetLayouts, bool initialize )
   {
     if ( initialize )
-      init( scissor, descriptorSetLayouts );
+      init( descriptorSetLayouts );
   }
 
-  void Pipeline::init( vk::Rect2D scissor, const std::vector<vk::DescriptorSetLayout>& descriptorSetLayouts )
+  void Pipeline::init( const std::vector<vk::DescriptorSetLayout>& descriptorSetLayouts )
   {
     auto rgen = vk::Initializer::createShaderModuleUnique( "shaders/raytrace.rgen" );
     auto miss = vk::Initializer::createShaderModuleUnique( "shaders/raytrace.rmiss" );

@@ -17,9 +17,6 @@ var hierarchy =
     [ "rx::GuiBase", "classrx_1_1_gui_base.html", [
       [ "CustomGui", "class_custom_gui.html", null ]
     ] ],
-    [ "std::hash< rx::Model >", "structstd_1_1hash_3_01rx_1_1_model_01_4.html", null ],
-    [ "std::hash< rx::Texture >", "structstd_1_1hash_3_01rx_1_1_texture_01_4.html", null ],
-    [ "std::hash< rx::Vertex >", "structstd_1_1hash_3_01rx_1_1_vertex_01_4.html", null ],
     [ "rx::Image", "classrx_1_1_image.html", null ],
     [ "rx::IndexBuffer< T >", "classrx_1_1_index_buffer.html", null ],
     [ "rx::IndexBuffer< uint32_t >", "classrx_1_1_index_buffer.html", null ],

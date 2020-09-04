@@ -95,6 +95,7 @@ $(document).ready(function(){initNavTree('classrx_1_1_buffer.html',''); initResi
 <div class="header">
   <div class="summary">
 <a href="#pub-methods">Public Member Functions</a> &#124;
+<a href="#pri-attribs">Private Attributes</a> &#124;
 <a href="classrx_1_1_buffer-members.html">List of all members</a>  </div>
   <div class="headertitle">
 <div class="title">rx::Buffer Class Reference</div>  </div>
@@ -124,6 +125,15 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:ae67da1cda37050466a0dda5edca5f0b0"><td class="memTemplParams" colspan="2">template&lt;class T &gt; </td></tr>
 <tr class="memitem:ae67da1cda37050466a0dda5edca5f0b0"><td class="memTemplItemLeft" align="right" valign="top">void&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="classrx_1_1_buffer.html#ae67da1cda37050466a0dda5edca5f0b0">fill</a> (T *source, vk::DeviceSize offset=0)</td></tr>
 <tr class="separator:ae67da1cda37050466a0dda5edca5f0b0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pri-attribs"></a>
+Private Attributes</h2></td></tr>
+<tr class="memitem:a637f9f49535178d17698505ec0e4859a"><td class="memItemLeft" align="right" valign="top">vk::UniqueBuffer&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classrx_1_1_buffer.html#a637f9f49535178d17698505ec0e4859a">m_buffer</a></td></tr>
+<tr class="separator:a637f9f49535178d17698505ec0e4859a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6f2b7d287631e65d775cc41210c999d4"><td class="memItemLeft" align="right" valign="top">vk::UniqueDeviceMemory&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classrx_1_1_buffer.html#a6f2b7d287631e65d775cc41210c999d4">m_memory</a></td></tr>
+<tr class="separator:a6f2b7d287631e65d775cc41210c999d4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9f35cdcb2aef37647274875014597c32"><td class="memItemLeft" align="right" valign="top">vk::DeviceSize&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classrx_1_1_buffer.html#a9f35cdcb2aef37647274875014597c32">m_size</a> = 0</td></tr>
+<tr class="separator:a9f35cdcb2aef37647274875014597c32"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a id="ad549ae24d3847007a301b57a178887bd"></a>
@@ -395,6 +405,73 @@ template&lt;class T &gt; </div>
           <td></td><td></td>
         </tr>
       </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<h2 class="groupheader">Member Data Documentation</h2>
+<a id="a637f9f49535178d17698505ec0e4859a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a637f9f49535178d17698505ec0e4859a">&#9670;&nbsp;</a></span>m_buffer</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">vk::UniqueBuffer rx::Buffer::m_buffer</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a6f2b7d287631e65d775cc41210c999d4"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6f2b7d287631e65d775cc41210c999d4">&#9670;&nbsp;</a></span>m_memory</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">vk::UniqueDeviceMemory rx::Buffer::m_memory</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a9f35cdcb2aef37647274875014597c32"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9f35cdcb2aef37647274875014597c32">&#9670;&nbsp;</a></span>m_size</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">vk::DeviceSize rx::Buffer::m_size = 0</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
 </div><div class="memdoc">
 
 </div>

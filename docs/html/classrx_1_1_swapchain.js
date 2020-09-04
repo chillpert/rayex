@@ -11,6 +11,18 @@ var classrx_1_1_swapchain =
     [ "getImages", "classrx_1_1_swapchain.html#ad5c170166c5988ca7bd31ae5881cd861", null ],
     [ "getImageViews", "classrx_1_1_swapchain.html#a438473f385317e086d4deb1b8a289a9b", null ],
     [ "init", "classrx_1_1_swapchain.html#a7958b9074212f1a4ef9e81c59cf3bc9a", null ],
+    [ "initDepthImage", "classrx_1_1_swapchain.html#a17ebcf48943d29706108a63e7d60b4de", null ],
+    [ "initFramebuffers", "classrx_1_1_swapchain.html#a93c60bddf63142f4d912232c064c0ea8", null ],
+    [ "initImages", "classrx_1_1_swapchain.html#a751d2ec49fad501fb3f869961f769086", null ],
     [ "setImageAspect", "classrx_1_1_swapchain.html#a32989d45e2a0530e3c2b6d346ae62315", null ],
-    [ "setImageLayout", "classrx_1_1_swapchain.html#a7bf61cb448d0b0497ecd8fe33cbe5b44", null ]
+    [ "setImageLayout", "classrx_1_1_swapchain.html#a7bf61cb448d0b0497ecd8fe33cbe5b44", null ],
+    [ "m_currentImageIndex", "classrx_1_1_swapchain.html#a9cf8ece2d6444aecfa01e6509a52bfff", null ],
+    [ "m_depthImage", "classrx_1_1_swapchain.html#a1ed929b184733b83d9827b0cc66ea04f", null ],
+    [ "m_depthImageView", "classrx_1_1_swapchain.html#a4658b4b44ea004d78f178c7a5929b36a", null ],
+    [ "m_extent", "classrx_1_1_swapchain.html#a628354718688c98021ea271bbf5de45a", null ],
+    [ "m_framebuffers", "classrx_1_1_swapchain.html#a5c1fe63ff34236b112d299c2aba359ad", null ],
+    [ "m_imageAspect", "classrx_1_1_swapchain.html#ab8f38cd65c462378e6246e9236e5b95f", null ],
+    [ "m_images", "classrx_1_1_swapchain.html#a6128f2f4e89b5785a34e718ac70b92fd", null ],
+    [ "m_imageViews", "classrx_1_1_swapchain.html#a5ee1fd690984a68f03a6987881c4d785", null ],
+    [ "m_swapchain", "classrx_1_1_swapchain.html#a0bc6e0cbefcab83f43e0c1547a489029", null ]
 ];

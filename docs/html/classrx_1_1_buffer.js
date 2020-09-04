@@ -8,5 +8,8 @@ var classrx_1_1_buffer =
     [ "get", "classrx_1_1_buffer.html#a4055ed30a94888249e37f3ea46bf09e9", null ],
     [ "getMemory", "classrx_1_1_buffer.html#a00f743b54f4f6ac79e4dde5079de1d5c", null ],
     [ "getSize", "classrx_1_1_buffer.html#a9f6c8caed7b9ae15afaa30644a87fa36", null ],
-    [ "init", "classrx_1_1_buffer.html#a3dcb26ae5db02346a1b81cac1c97dbbd", null ]
+    [ "init", "classrx_1_1_buffer.html#a3dcb26ae5db02346a1b81cac1c97dbbd", null ],
+    [ "m_buffer", "classrx_1_1_buffer.html#a637f9f49535178d17698505ec0e4859a", null ],
+    [ "m_memory", "classrx_1_1_buffer.html#a6f2b7d287631e65d775cc41210c999d4", null ],
+    [ "m_size", "classrx_1_1_buffer.html#a9f35cdcb2aef37647274875014597c32", null ]
 ];

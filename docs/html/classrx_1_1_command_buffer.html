@@ -95,6 +95,7 @@ $(document).ready(function(){initNavTree('classrx_1_1_command_buffer.html',''); 
 <div class="header">
   <div class="summary">
 <a href="#pub-methods">Public Member Functions</a> &#124;
+<a href="#pri-attribs">Private Attributes</a> &#124;
 <a href="classrx_1_1_command_buffer-members.html">List of all members</a>  </div>
   <div class="headertitle">
 <div class="title">rx::CommandBuffer Class Reference</div>  </div>
@@ -125,6 +126,15 @@ Public Member Functions</h2></td></tr>
 <tr class="separator:a38438d77c29c276f4fa56c7f2929b1a0"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a31fe2373d5dd2af4c9b087cc0a6cfd9e"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classrx_1_1_command_buffer.html#a31fe2373d5dd2af4c9b087cc0a6cfd9e">submitToQueue</a> (vk::Queue queue, const std::vector&lt; vk::Semaphore &gt; &amp;waitSemaphores={ }, const std::vector&lt; vk::Semaphore &gt; &amp;signalSemaphores={ }, vk::PipelineStageFlags *waitDstStageMask={ })</td></tr>
 <tr class="separator:a31fe2373d5dd2af4c9b087cc0a6cfd9e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pri-attribs"></a>
+Private Attributes</h2></td></tr>
+<tr class="memitem:adc8f0e2930e34f45979c570d332a1d33"><td class="memItemLeft" align="right" valign="top">std::vector&lt; vk::CommandBuffer &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classrx_1_1_command_buffer.html#adc8f0e2930e34f45979c570d332a1d33">m_commandBuffers</a></td></tr>
+<tr class="separator:adc8f0e2930e34f45979c570d332a1d33"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac262208b5ff442138c4bdf4050da9ac9"><td class="memItemLeft" align="right" valign="top">vk::CommandPool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classrx_1_1_command_buffer.html#ac262208b5ff442138c4bdf4050da9ac9">m_commandPool</a></td></tr>
+<tr class="separator:ac262208b5ff442138c4bdf4050da9ac9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a84a763d0d812fff1c8a684e31f918a4f"><td class="memItemLeft" align="right" valign="top">vk::CommandBufferBeginInfo&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classrx_1_1_command_buffer.html#a84a763d0d812fff1c8a684e31f918a4f">m_beginInfo</a></td></tr>
+<tr class="separator:a84a763d0d812fff1c8a684e31f918a4f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a id="a257a48a9805e2173009f6a3f783acd8b"></a>
@@ -384,6 +394,73 @@ Public Member Functions</h2></td></tr>
           <td></td><td></td>
         </tr>
       </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<h2 class="groupheader">Member Data Documentation</h2>
+<a id="a84a763d0d812fff1c8a684e31f918a4f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a84a763d0d812fff1c8a684e31f918a4f">&#9670;&nbsp;</a></span>m_beginInfo</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">vk::CommandBufferBeginInfo rx::CommandBuffer::m_beginInfo</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="adc8f0e2930e34f45979c570d332a1d33"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#adc8f0e2930e34f45979c570d332a1d33">&#9670;&nbsp;</a></span>m_commandBuffers</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::vector&lt;vk::CommandBuffer&gt; rx::CommandBuffer::m_commandBuffers</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="ac262208b5ff442138c4bdf4050da9ac9"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac262208b5ff442138c4bdf4050da9ac9">&#9670;&nbsp;</a></span>m_commandPool</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">vk::CommandPool rx::CommandBuffer::m_commandPool</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
 </div><div class="memdoc">
 
 </div>

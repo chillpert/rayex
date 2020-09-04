@@ -13,5 +13,12 @@ var classrx_1_1_ray_tracing_builder =
     [ "init", "classrx_1_1_ray_tracing_builder.html#a75206e68971668a86b0051b0878605d9", null ],
     [ "instanceToVkGeometryInstanceKHR", "classrx_1_1_ray_tracing_builder.html#a80b540c07995e78feb14f9c8db5c141e", null ],
     [ "modelToBlas", "classrx_1_1_ray_tracing_builder.html#a863a77e3048449ed9fd984d4442aba95", null ],
-    [ "rayTrace", "classrx_1_1_ray_tracing_builder.html#a40136a2ada9c8fd67e3719e9d2812ae8", null ]
+    [ "rayTrace", "classrx_1_1_ray_tracing_builder.html#a40136a2ada9c8fd67e3719e9d2812ae8", null ],
+    [ "m_blas_", "classrx_1_1_ray_tracing_builder.html#abfa1699b9d95541d8d087297870466bb", null ],
+    [ "m_instBuffer", "classrx_1_1_ray_tracing_builder.html#af2c33e44577d9bc8bad80068ef63d919", null ],
+    [ "m_rtProperties", "classrx_1_1_ray_tracing_builder.html#a089761bd33580fd0b547693f28cd152a", null ],
+    [ "m_sbtBuffer", "classrx_1_1_ray_tracing_builder.html#aaf0eb85cd13a8e22ac632fa865f41a05", null ],
+    [ "m_storageImage", "classrx_1_1_ray_tracing_builder.html#aa57d55cd5027b87dfb136fbba365e35b", null ],
+    [ "m_storageImageView", "classrx_1_1_ray_tracing_builder.html#a1c63ce7012527afac2d6732c9da79271", null ],
+    [ "m_tlas", "classrx_1_1_ray_tracing_builder.html#ad134e9bf15ce4811b6c342014f3389f1", null ]
 ];

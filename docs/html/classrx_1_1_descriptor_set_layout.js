@@ -8,5 +8,7 @@ var classrx_1_1_descriptor_set_layout =
     [ "getBindings", "classrx_1_1_descriptor_set_layout.html#a74cd99bfff7a1434a2925775237d6b4c", null ],
     [ "init", "classrx_1_1_descriptor_set_layout.html#ada4e2f808dd6fffe8bfcfe6a3c321411", null ],
     [ "init", "classrx_1_1_descriptor_set_layout.html#a45dc4b1bbcbcb1959d55ec28d8d14bcf", null ],
-    [ "setBindings", "classrx_1_1_descriptor_set_layout.html#aad7ed8887fb57add2f28e6c29376ca50", null ]
+    [ "setBindings", "classrx_1_1_descriptor_set_layout.html#aad7ed8887fb57add2f28e6c29376ca50", null ],
+    [ "m_bindings", "classrx_1_1_descriptor_set_layout.html#a67f1cf642f2e1aa0202b69793ed5a1ca", null ],
+    [ "m_layout", "classrx_1_1_descriptor_set_layout.html#aae353c6b570ab3bdf97fb00a7e99cd47", null ]
 ];

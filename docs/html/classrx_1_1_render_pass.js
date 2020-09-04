@@ -7,5 +7,6 @@ var classrx_1_1_render_pass =
     [ "destroy", "classrx_1_1_render_pass.html#ae6b4829ab0fbee74a163f199c1330c98", null ],
     [ "end", "classrx_1_1_render_pass.html#af86fb3aab6bde53ca3bd64401ec27148", null ],
     [ "get", "classrx_1_1_render_pass.html#a6ddf5276429df287eb886e11133e7d32", null ],
-    [ "init", "classrx_1_1_render_pass.html#ac08ed715e8dbc8bb7ef5d0b108b2e93c", null ]
+    [ "init", "classrx_1_1_render_pass.html#ac08ed715e8dbc8bb7ef5d0b108b2e93c", null ],
+    [ "m_renderPass", "classrx_1_1_render_pass.html#a37c34c9f4cd1ca1a92d8566be1648b97", null ]
 ];

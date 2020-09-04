@@ -95,6 +95,8 @@ $(document).ready(function(){initNavTree('classrx_1_1_swapchain.html',''); initR
 <div class="header">
   <div class="summary">
 <a href="#pub-methods">Public Member Functions</a> &#124;
+<a href="#pri-methods">Private Member Functions</a> &#124;
+<a href="#pri-attribs">Private Attributes</a> &#124;
 <a href="classrx_1_1_swapchain-members.html">List of all members</a>  </div>
   <div class="headertitle">
 <div class="title">rx::Swapchain Class Reference</div>  </div>
@@ -131,6 +133,36 @@ Public Member Functions</h2></td></tr>
 <tr class="separator:a7bf61cb448d0b0497ecd8fe33cbe5b44"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ac55c393f41d950b2a857566325c8452e"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classrx_1_1_swapchain.html#ac55c393f41d950b2a857566325c8452e">acquireNextImage</a> (vk::Semaphore semaphore, vk::Fence fence)</td></tr>
 <tr class="separator:ac55c393f41d950b2a857566325c8452e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pri-methods"></a>
+Private Member Functions</h2></td></tr>
+<tr class="memitem:a751d2ec49fad501fb3f869961f769086"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classrx_1_1_swapchain.html#a751d2ec49fad501fb3f869961f769086">initImages</a> (uint32_t minImageCount, vk::Format surfaceFormat)</td></tr>
+<tr class="separator:a751d2ec49fad501fb3f869961f769086"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a17ebcf48943d29706108a63e7d60b4de"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classrx_1_1_swapchain.html#a17ebcf48943d29706108a63e7d60b4de">initDepthImage</a> ()</td></tr>
+<tr class="separator:a17ebcf48943d29706108a63e7d60b4de"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a93c60bddf63142f4d912232c064c0ea8"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classrx_1_1_swapchain.html#a93c60bddf63142f4d912232c064c0ea8">initFramebuffers</a> (vk::RenderPass renderPass)</td></tr>
+<tr class="separator:a93c60bddf63142f4d912232c064c0ea8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pri-attribs"></a>
+Private Attributes</h2></td></tr>
+<tr class="memitem:a0bc6e0cbefcab83f43e0c1547a489029"><td class="memItemLeft" align="right" valign="top">vk::UniqueSwapchainKHR&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classrx_1_1_swapchain.html#a0bc6e0cbefcab83f43e0c1547a489029">m_swapchain</a></td></tr>
+<tr class="separator:a0bc6e0cbefcab83f43e0c1547a489029"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a628354718688c98021ea271bbf5de45a"><td class="memItemLeft" align="right" valign="top">vk::Extent2D&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classrx_1_1_swapchain.html#a628354718688c98021ea271bbf5de45a">m_extent</a></td></tr>
+<tr class="separator:a628354718688c98021ea271bbf5de45a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab8f38cd65c462378e6246e9236e5b95f"><td class="memItemLeft" align="right" valign="top">vk::ImageAspectFlags&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classrx_1_1_swapchain.html#ab8f38cd65c462378e6246e9236e5b95f">m_imageAspect</a> = vk::ImageAspectFlagBits::eColor</td></tr>
+<tr class="separator:ab8f38cd65c462378e6246e9236e5b95f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6128f2f4e89b5785a34e718ac70b92fd"><td class="memItemLeft" align="right" valign="top">std::vector&lt; vk::Image &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classrx_1_1_swapchain.html#a6128f2f4e89b5785a34e718ac70b92fd">m_images</a></td></tr>
+<tr class="separator:a6128f2f4e89b5785a34e718ac70b92fd"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5ee1fd690984a68f03a6987881c4d785"><td class="memItemLeft" align="right" valign="top">std::vector&lt; vk::UniqueImageView &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classrx_1_1_swapchain.html#a5ee1fd690984a68f03a6987881c4d785">m_imageViews</a></td></tr>
+<tr class="separator:a5ee1fd690984a68f03a6987881c4d785"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5c1fe63ff34236b112d299c2aba359ad"><td class="memItemLeft" align="right" valign="top">std::vector&lt; vk::UniqueFramebuffer &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classrx_1_1_swapchain.html#a5c1fe63ff34236b112d299c2aba359ad">m_framebuffers</a></td></tr>
+<tr class="separator:a5c1fe63ff34236b112d299c2aba359ad"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1ed929b184733b83d9827b0cc66ea04f"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classrx_1_1_image.html">Image</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classrx_1_1_swapchain.html#a1ed929b184733b83d9827b0cc66ea04f">m_depthImage</a></td></tr>
+<tr class="separator:a1ed929b184733b83d9827b0cc66ea04f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4658b4b44ea004d78f178c7a5929b36a"><td class="memItemLeft" align="right" valign="top">vk::UniqueImageView&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classrx_1_1_swapchain.html#a4658b4b44ea004d78f178c7a5929b36a">m_depthImageView</a></td></tr>
+<tr class="separator:a4658b4b44ea004d78f178c7a5929b36a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9cf8ece2d6444aecfa01e6509a52bfff"><td class="memItemLeft" align="right" valign="top">uint32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classrx_1_1_swapchain.html#a9cf8ece2d6444aecfa01e6509a52bfff">m_currentImageIndex</a></td></tr>
+<tr class="separator:a9cf8ece2d6444aecfa01e6509a52bfff"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a id="a7c63bb007e1f5a8cb3b80d793c015850"></a>
@@ -417,6 +449,93 @@ Public Member Functions</h2></td></tr>
 
 </div>
 </div>
+<a id="a17ebcf48943d29706108a63e7d60b4de"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a17ebcf48943d29706108a63e7d60b4de">&#9670;&nbsp;</a></span>initDepthImage()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void rx::Swapchain::initDepthImage </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a93c60bddf63142f4d912232c064c0ea8"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a93c60bddf63142f4d912232c064c0ea8">&#9670;&nbsp;</a></span>initFramebuffers()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void rx::Swapchain::initFramebuffers </td>
+          <td>(</td>
+          <td class="paramtype">vk::RenderPass&#160;</td>
+          <td class="paramname"><em>renderPass</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a751d2ec49fad501fb3f869961f769086"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a751d2ec49fad501fb3f869961f769086">&#9670;&nbsp;</a></span>initImages()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void rx::Swapchain::initImages </td>
+          <td>(</td>
+          <td class="paramtype">uint32_t&#160;</td>
+          <td class="paramname"><em>minImageCount</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">vk::Format&#160;</td>
+          <td class="paramname"><em>surfaceFormat</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
 <a id="a32989d45e2a0530e3c2b6d346ae62315"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a32989d45e2a0530e3c2b6d346ae62315">&#9670;&nbsp;</a></span>setImageAspect()</h2>
 
@@ -459,6 +578,205 @@ Public Member Functions</h2></td></tr>
           <td></td><td></td>
         </tr>
       </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<h2 class="groupheader">Member Data Documentation</h2>
+<a id="a9cf8ece2d6444aecfa01e6509a52bfff"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9cf8ece2d6444aecfa01e6509a52bfff">&#9670;&nbsp;</a></span>m_currentImageIndex</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint32_t rx::Swapchain::m_currentImageIndex</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a1ed929b184733b83d9827b0cc66ea04f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1ed929b184733b83d9827b0cc66ea04f">&#9670;&nbsp;</a></span>m_depthImage</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classrx_1_1_image.html">Image</a> rx::Swapchain::m_depthImage</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a4658b4b44ea004d78f178c7a5929b36a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4658b4b44ea004d78f178c7a5929b36a">&#9670;&nbsp;</a></span>m_depthImageView</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">vk::UniqueImageView rx::Swapchain::m_depthImageView</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a628354718688c98021ea271bbf5de45a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a628354718688c98021ea271bbf5de45a">&#9670;&nbsp;</a></span>m_extent</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">vk::Extent2D rx::Swapchain::m_extent</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a5c1fe63ff34236b112d299c2aba359ad"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5c1fe63ff34236b112d299c2aba359ad">&#9670;&nbsp;</a></span>m_framebuffers</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::vector&lt;vk::UniqueFramebuffer&gt; rx::Swapchain::m_framebuffers</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="ab8f38cd65c462378e6246e9236e5b95f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab8f38cd65c462378e6246e9236e5b95f">&#9670;&nbsp;</a></span>m_imageAspect</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">vk::ImageAspectFlags rx::Swapchain::m_imageAspect = vk::ImageAspectFlagBits::eColor</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a6128f2f4e89b5785a34e718ac70b92fd"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6128f2f4e89b5785a34e718ac70b92fd">&#9670;&nbsp;</a></span>m_images</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::vector&lt;vk::Image&gt; rx::Swapchain::m_images</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a5ee1fd690984a68f03a6987881c4d785"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5ee1fd690984a68f03a6987881c4d785">&#9670;&nbsp;</a></span>m_imageViews</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::vector&lt;vk::UniqueImageView&gt; rx::Swapchain::m_imageViews</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a0bc6e0cbefcab83f43e0c1547a489029"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0bc6e0cbefcab83f43e0c1547a489029">&#9670;&nbsp;</a></span>m_swapchain</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">vk::UniqueSwapchainKHR rx::Swapchain::m_swapchain</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
 </div><div class="memdoc">
 
 </div>

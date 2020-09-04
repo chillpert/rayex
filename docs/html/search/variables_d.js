@@ -1,6 +1,5 @@
 var searchData=
 [
-  ['texcoord_872',['texCoord',['../structrx_1_1_vertex.html#ab789ce9a3fa04e9d18d7072e7b326426',1,'rx::Vertex']]],
-  ['timetowaitforstartingbenchmark_873',['timeToWaitForStartingBenchmark',['../namespacerx.html#a97f95f78f1329d0d328615ab400e298e',1,'rx']]],
-  ['transform_874',['transform',['../structrx_1_1_blas_instance.html#a1a0ddbfa50189ea67eb18cf74188ba12',1,'rx::BlasInstance']]]
+  ['s_5fmaxrecursiondepth_1070',['s_maxRecursionDepth',['../classrx_1_1_settings.html#a76e09d9eff3e434a1c6a1837b8b5d662',1,'rx::Settings']]],
+  ['s_5frefresh_1071',['s_refresh',['../classrx_1_1_settings.html#a9a66658488f6a6a2117479b5cb1034cf',1,'rx::Settings']]]
 ];

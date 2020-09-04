@@ -118,8 +118,7 @@ namespace rx
     m_cameraUniformBuffer.init<CameraUbo>( g_swapchainImageCount );
 
     // Pipeline
-    m_rtPipeline.init( vk::Rect2D( 0, { m_swapchain.getExtent( ).width, m_swapchain.getExtent( ).height } ), // scissor
-                       { m_rtDescriptorSetLayout.get( ), m_descriptorSetLayout.get( ) } );                   // descriptorSetLayouts
+    m_rtPipeline.init( { m_rtDescriptorSetLayout.get( ), m_descriptorSetLayout.get( ) } );
 
     // Command pools
     m_graphicsCmdPool = vk::Initializer::createCommandPoolUnique( g_graphicsFamilyIndex, vk::CommandPoolCreateFlagBits::eResetCommandBuffer );

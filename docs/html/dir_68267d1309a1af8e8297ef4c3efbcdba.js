@@ -10,6 +10,6 @@ var dir_68267d1309a1af8e8297ef4c3efbcdba =
     [ "Renderer.hpp", "_renderer_8hpp.html", null ],
     [ "Settings.cpp", "_settings_8cpp.html", null ],
     [ "Settings.hpp", "_settings_8hpp.html", [
-      [ "Settings", "classrx_1_1_settings.html", null ]
+      [ "Settings", "classrx_1_1_settings.html", "classrx_1_1_settings" ]
     ] ]
 ];

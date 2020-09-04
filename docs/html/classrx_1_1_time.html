@@ -96,6 +96,8 @@ $(document).ready(function(){initNavTree('classrx_1_1_time.html',''); initResiza
   <div class="summary">
 <a href="#pub-methods">Public Member Functions</a> &#124;
 <a href="#pub-static-methods">Static Public Member Functions</a> &#124;
+<a href="#pri-attribs">Private Attributes</a> &#124;
+<a href="#pri-static-attribs">Static Private Attributes</a> &#124;
 <a href="classrx_1_1_time-members.html">List of all members</a>  </div>
   <div class="headertitle">
 <div class="title">rx::Time Class Reference</div>  </div>
@@ -122,6 +124,24 @@ Static Public Member Functions</h2></td></tr>
 <tr class="separator:adab39d71afa7e6d3faf06443ad33d3e9"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a94c57045260c90cceea12d793f418dde"><td class="memItemLeft" align="right" valign="top">static RX_API float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classrx_1_1_time.html#a94c57045260c90cceea12d793f418dde">getDeltaTime</a> ()</td></tr>
 <tr class="separator:a94c57045260c90cceea12d793f418dde"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pri-attribs"></a>
+Private Attributes</h2></td></tr>
+<tr class="memitem:aac96e33e1ff7cf0f3134afdd8c2ddff8"><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classrx_1_1_time.html#aac96e33e1ff7cf0f3134afdd8c2ddff8">m_prevTime</a></td></tr>
+<tr class="separator:aac96e33e1ff7cf0f3134afdd8c2ddff8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad876d694cc44dd8929db0ce32c3d8777"><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classrx_1_1_time.html#ad876d694cc44dd8929db0ce32c3d8777">m_frames</a></td></tr>
+<tr class="separator:ad876d694cc44dd8929db0ce32c3d8777"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:acbeebf7a97c95421e872d075039f44f6"><td class="memItemLeft" align="right" valign="top">std::vector&lt; int &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classrx_1_1_time.html#acbeebf7a97c95421e872d075039f44f6">m_allFrames</a></td></tr>
+<tr class="separator:acbeebf7a97c95421e872d075039f44f6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2622cf59db40fbf7d22e4d9caebd947a"><td class="memItemLeft" align="right" valign="top">std::vector&lt; float &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classrx_1_1_time.html#a2622cf59db40fbf7d22e4d9caebd947a">m_allFrametimes</a></td></tr>
+<tr class="separator:a2622cf59db40fbf7d22e4d9caebd947a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pri-static-attribs"></a>
+Static Private Attributes</h2></td></tr>
+<tr class="memitem:a1487f8830679b3017d347cd63fe16527"><td class="memItemLeft" align="right" valign="top">static float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classrx_1_1_time.html#a1487f8830679b3017d347cd63fe16527">m_time</a></td></tr>
+<tr class="separator:a1487f8830679b3017d347cd63fe16527"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9a48f2e2fcbc8dc2823d8b65abbe1553"><td class="memItemLeft" align="right" valign="top">static float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classrx_1_1_time.html#a9a48f2e2fcbc8dc2823d8b65abbe1553">m_deltaTime</a></td></tr>
+<tr class="separator:a9a48f2e2fcbc8dc2823d8b65abbe1553"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Used to keep track of the application's timing. </p>
@@ -142,7 +162,7 @@ Static Public Member Functions</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Destructor of <a class="el" href="classrx_1_1_time.html" title="Used to keep track of the application&#39;s timing.">Time</a>. </p>
-<p>Prints a message containing average FPS. </p><dl class="todo"><dt><b><a class="el" href="todo.html#_todo000006">Todo:</a></b></dt><dd>Average FPS are pointless. Implement minimum FPS and frametimes instead. </dd></dl>
+<p>Prints a message containing average FPS. </p><dl class="todo"><dt><b><a class="el" href="todo.html#_todo000005">Todo:</a></b></dt><dd>Average FPS are pointless. Implement minimum FPS and frametimes instead. </dd></dl>
 
 </div>
 </div>
@@ -216,6 +236,139 @@ Static Public Member Functions</h2></td></tr>
 
 <p>Updates the timing. </p>
 <p>Prints the current FPS every three seconds. </p><dl class="section note"><dt>Note</dt><dd>This function will be called every tick. </dd></dl>
+
+</div>
+</div>
+<h2 class="groupheader">Member Data Documentation</h2>
+<a id="acbeebf7a97c95421e872d075039f44f6"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#acbeebf7a97c95421e872d075039f44f6">&#9670;&nbsp;</a></span>m_allFrames</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::vector&lt;int&gt; rx::Time::m_allFrames</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a2622cf59db40fbf7d22e4d9caebd947a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2622cf59db40fbf7d22e4d9caebd947a">&#9670;&nbsp;</a></span>m_allFrametimes</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::vector&lt;float&gt; rx::Time::m_allFrametimes</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a9a48f2e2fcbc8dc2823d8b65abbe1553"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9a48f2e2fcbc8dc2823d8b65abbe1553">&#9670;&nbsp;</a></span>m_deltaTime</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">float rx::Time::m_deltaTime</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="ad876d694cc44dd8929db0ce32c3d8777"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad876d694cc44dd8929db0ce32c3d8777">&#9670;&nbsp;</a></span>m_frames</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">float rx::Time::m_frames</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="aac96e33e1ff7cf0f3134afdd8c2ddff8"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aac96e33e1ff7cf0f3134afdd8c2ddff8">&#9670;&nbsp;</a></span>m_prevTime</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">float rx::Time::m_prevTime</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a1487f8830679b3017d347cd63fe16527"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1487f8830679b3017d347cd63fe16527">&#9670;&nbsp;</a></span>m_time</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">float rx::Time::m_time</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
 
 </div>
 </div>

@@ -95,6 +95,8 @@ $(document).ready(function(){initNavTree('classrx_1_1_surface.html',''); initRes
 <div class="header">
   <div class="summary">
 <a href="#pub-methods">Public Member Functions</a> &#124;
+<a href="#pri-methods">Private Member Functions</a> &#124;
+<a href="#pri-attribs">Private Attributes</a> &#124;
 <a href="classrx_1_1_surface-members.html">List of all members</a>  </div>
   <div class="headertitle">
 <div class="title">rx::Surface Class Reference</div>  </div>
@@ -123,6 +125,24 @@ Public Member Functions</h2></td></tr>
 <tr class="separator:a76b3c2a398b71c3455eea9f82a60ce75"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a484056000f32d20351f88b9641aa5989"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classrx_1_1_surface.html#a484056000f32d20351f88b9641aa5989">checkSettingSupport</a> ()</td></tr>
 <tr class="separator:a484056000f32d20351f88b9641aa5989"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pri-methods"></a>
+Private Member Functions</h2></td></tr>
+<tr class="memitem:a65af46388e67eab3c77bc8cd031f6cfd"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classrx_1_1_surface.html#a65af46388e67eab3c77bc8cd031f6cfd">destroy</a> ()</td></tr>
+<tr class="separator:a65af46388e67eab3c77bc8cd031f6cfd"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pri-attribs"></a>
+Private Attributes</h2></td></tr>
+<tr class="memitem:aece5ef0f396cb484a5c0f3299adef10a"><td class="memItemLeft" align="right" valign="top">vk::SurfaceKHR&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classrx_1_1_surface.html#aece5ef0f396cb484a5c0f3299adef10a">m_surface</a></td></tr>
+<tr class="separator:aece5ef0f396cb484a5c0f3299adef10a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aea11a1847efdd9d3037ee61af08c9019"><td class="memItemLeft" align="right" valign="top">vk::Format&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classrx_1_1_surface.html#aea11a1847efdd9d3037ee61af08c9019">m_format</a></td></tr>
+<tr class="separator:aea11a1847efdd9d3037ee61af08c9019"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6dc126894ee95f9b79ac81c35aaf243f"><td class="memItemLeft" align="right" valign="top">vk::ColorSpaceKHR&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classrx_1_1_surface.html#a6dc126894ee95f9b79ac81c35aaf243f">m_colorSpace</a></td></tr>
+<tr class="separator:a6dc126894ee95f9b79ac81c35aaf243f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac603398e5dc91c35b9aa555c9f1d8e60"><td class="memItemLeft" align="right" valign="top">vk::PresentModeKHR&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classrx_1_1_surface.html#ac603398e5dc91c35b9aa555c9f1d8e60">m_presentMode</a></td></tr>
+<tr class="separator:ac603398e5dc91c35b9aa555c9f1d8e60"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9153f53295c62e9ee5e3519e1a0d84b8"><td class="memItemLeft" align="right" valign="top">vk::SurfaceCapabilitiesKHR&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classrx_1_1_surface.html#a9153f53295c62e9ee5e3519e1a0d84b8">m_capabilities</a></td></tr>
+<tr class="separator:a9153f53295c62e9ee5e3519e1a0d84b8"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a id="ad86d611078859429baa02b61fa8b80e5"></a>
@@ -213,6 +233,31 @@ Public Member Functions</h2></td></tr>
           <td></td>
         </tr>
       </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a65af46388e67eab3c77bc8cd031f6cfd"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a65af46388e67eab3c77bc8cd031f6cfd">&#9670;&nbsp;</a></span>destroy()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void rx::Surface::destroy </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
 </div><div class="memdoc">
 
 </div>
@@ -330,6 +375,117 @@ Public Member Functions</h2></td></tr>
           <td></td>
         </tr>
       </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<h2 class="groupheader">Member Data Documentation</h2>
+<a id="a9153f53295c62e9ee5e3519e1a0d84b8"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9153f53295c62e9ee5e3519e1a0d84b8">&#9670;&nbsp;</a></span>m_capabilities</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">vk::SurfaceCapabilitiesKHR rx::Surface::m_capabilities</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a6dc126894ee95f9b79ac81c35aaf243f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6dc126894ee95f9b79ac81c35aaf243f">&#9670;&nbsp;</a></span>m_colorSpace</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">vk::ColorSpaceKHR rx::Surface::m_colorSpace</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="aea11a1847efdd9d3037ee61af08c9019"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aea11a1847efdd9d3037ee61af08c9019">&#9670;&nbsp;</a></span>m_format</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">vk::Format rx::Surface::m_format</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="ac603398e5dc91c35b9aa555c9f1d8e60"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac603398e5dc91c35b9aa555c9f1d8e60">&#9670;&nbsp;</a></span>m_presentMode</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">vk::PresentModeKHR rx::Surface::m_presentMode</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="aece5ef0f396cb484a5c0f3299adef10a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aece5ef0f396cb484a5c0f3299adef10a">&#9670;&nbsp;</a></span>m_surface</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">vk::SurfaceKHR rx::Surface::m_surface</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
 </div><div class="memdoc">
 
 </div>

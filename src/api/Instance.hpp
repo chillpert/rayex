@@ -39,7 +39,7 @@ namespace rx
     /// @note It can not retrieve patch version, only major and minor version.
     uint32_t getApiVersion( );
 
-    vk::UniqueInstance m_instance; ///< The actual Vulkan instance with a unique handle.
+    vk::UniqueInstance m_instance; ///< The Vulkan instance with a unique handle.
   };
 }
 

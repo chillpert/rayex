@@ -95,6 +95,7 @@ $(document).ready(function(){initNavTree('classrx_1_1_texture.html',''); initRes
 <div class="header">
   <div class="summary">
 <a href="#pub-methods">Public Member Functions</a> &#124;
+<a href="#pri-attribs">Private Attributes</a> &#124;
 <a href="classrx_1_1_texture-members.html">List of all members</a>  </div>
   <div class="headertitle">
 <div class="title">rx::Texture Class Reference</div>  </div>
@@ -119,6 +120,17 @@ Public Member Functions</h2></td></tr>
 <tr class="separator:aea7774a0bb6577b25906ef088e05ff53"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aa4e0362df0f725ec78e06582060f732b"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classrx_1_1_texture.html#aa4e0362df0f725ec78e06582060f732b">init</a> (const std::string &amp;path)</td></tr>
 <tr class="separator:aa4e0362df0f725ec78e06582060f732b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pri-attribs"></a>
+Private Attributes</h2></td></tr>
+<tr class="memitem:af91713678bfb6af4d30e71919f9fae94"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classrx_1_1_image.html">Image</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classrx_1_1_texture.html#af91713678bfb6af4d30e71919f9fae94">m_image</a></td></tr>
+<tr class="separator:af91713678bfb6af4d30e71919f9fae94"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae7d723c32ece4e9350ac569684eb0d85"><td class="memItemLeft" align="right" valign="top">std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classrx_1_1_texture.html#ae7d723c32ece4e9350ac569684eb0d85">m_path</a></td></tr>
+<tr class="separator:ae7d723c32ece4e9350ac569684eb0d85"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a91f4134cdbe8c3442d77e7532696ac50"><td class="memItemLeft" align="right" valign="top">vk::UniqueImageView&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classrx_1_1_texture.html#a91f4134cdbe8c3442d77e7532696ac50">m_imageView</a></td></tr>
+<tr class="separator:a91f4134cdbe8c3442d77e7532696ac50"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7ca66f557f65abb3517a0f006f4028d4"><td class="memItemLeft" align="right" valign="top">vk::UniqueSampler&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classrx_1_1_texture.html#a7ca66f557f65abb3517a0f006f4028d4">m_sampler</a></td></tr>
+<tr class="separator:a7ca66f557f65abb3517a0f006f4028d4"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a id="abecbe86e3163410588dde6d061f24dc1"></a>
@@ -289,6 +301,95 @@ Public Member Functions</h2></td></tr>
           <td></td>
         </tr>
       </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<h2 class="groupheader">Member Data Documentation</h2>
+<a id="af91713678bfb6af4d30e71919f9fae94"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af91713678bfb6af4d30e71919f9fae94">&#9670;&nbsp;</a></span>m_image</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classrx_1_1_image.html">Image</a> rx::Texture::m_image</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a91f4134cdbe8c3442d77e7532696ac50"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a91f4134cdbe8c3442d77e7532696ac50">&#9670;&nbsp;</a></span>m_imageView</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">vk::UniqueImageView rx::Texture::m_imageView</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="ae7d723c32ece4e9350ac569684eb0d85"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae7d723c32ece4e9350ac569684eb0d85">&#9670;&nbsp;</a></span>m_path</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::string rx::Texture::m_path</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a7ca66f557f65abb3517a0f006f4028d4"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7ca66f557f65abb3517a0f006f4028d4">&#9670;&nbsp;</a></span>m_sampler</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">vk::UniqueSampler rx::Texture::m_sampler</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
 </div><div class="memdoc">
 
 </div>

@@ -95,6 +95,7 @@ $(document).ready(function(){initNavTree('classrx_1_1_ray_tracing_builder.html',
 <div class="header">
   <div class="summary">
 <a href="#pub-methods">Public Member Functions</a> &#124;
+<a href="#pri-attribs">Private Attributes</a> &#124;
 <a href="classrx_1_1_ray_tracing_builder-members.html">List of all members</a>  </div>
   <div class="headertitle">
 <div class="title">rx::RayTracingBuilder Class Reference</div>  </div>
@@ -133,6 +134,23 @@ Public Member Functions</h2></td></tr>
 <tr class="separator:aaf99e0d4849fc6d2ac39820852894f2f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a40136a2ada9c8fd67e3719e9d2812ae8"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classrx_1_1_ray_tracing_builder.html#a40136a2ada9c8fd67e3719e9d2812ae8">rayTrace</a> (vk::CommandBuffer swapchaincommandBuffer, vk::Image swapchainImage, vk::Extent2D extent)</td></tr>
 <tr class="separator:a40136a2ada9c8fd67e3719e9d2812ae8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pri-attribs"></a>
+Private Attributes</h2></td></tr>
+<tr class="memitem:a089761bd33580fd0b547693f28cd152a"><td class="memItemLeft" align="right" valign="top">vk::PhysicalDeviceRayTracingPropertiesKHR&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classrx_1_1_ray_tracing_builder.html#a089761bd33580fd0b547693f28cd152a">m_rtProperties</a></td></tr>
+<tr class="separator:a089761bd33580fd0b547693f28cd152a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:abfa1699b9d95541d8d087297870466bb"><td class="memItemLeft" align="right" valign="top">std::vector&lt; <a class="el" href="structrx_1_1_blas.html">Blas</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classrx_1_1_ray_tracing_builder.html#abfa1699b9d95541d8d087297870466bb">m_blas_</a></td></tr>
+<tr class="separator:abfa1699b9d95541d8d087297870466bb"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad134e9bf15ce4811b6c342014f3389f1"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structrx_1_1_tlas.html">Tlas</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classrx_1_1_ray_tracing_builder.html#ad134e9bf15ce4811b6c342014f3389f1">m_tlas</a></td></tr>
+<tr class="separator:ad134e9bf15ce4811b6c342014f3389f1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af2c33e44577d9bc8bad80068ef63d919"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classrx_1_1_buffer.html">Buffer</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classrx_1_1_ray_tracing_builder.html#af2c33e44577d9bc8bad80068ef63d919">m_instBuffer</a></td></tr>
+<tr class="separator:af2c33e44577d9bc8bad80068ef63d919"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aaf0eb85cd13a8e22ac632fa865f41a05"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classrx_1_1_buffer.html">Buffer</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classrx_1_1_ray_tracing_builder.html#aaf0eb85cd13a8e22ac632fa865f41a05">m_sbtBuffer</a></td></tr>
+<tr class="separator:aaf0eb85cd13a8e22ac632fa865f41a05"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa57d55cd5027b87dfb136fbba365e35b"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classrx_1_1_image.html">Image</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classrx_1_1_ray_tracing_builder.html#aa57d55cd5027b87dfb136fbba365e35b">m_storageImage</a></td></tr>
+<tr class="separator:aa57d55cd5027b87dfb136fbba365e35b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1c63ce7012527afac2d6732c9da79271"><td class="memItemLeft" align="right" valign="top">vk::UniqueImageView&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classrx_1_1_ray_tracing_builder.html#a1c63ce7012527afac2d6732c9da79271">m_storageImageView</a></td></tr>
+<tr class="separator:a1c63ce7012527afac2d6732c9da79271"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a id="a90966fa6fb5dea2a38a2f79b80aaac4e"></a>
@@ -431,6 +449,161 @@ Public Member Functions</h2></td></tr>
           <td></td><td></td>
         </tr>
       </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<h2 class="groupheader">Member Data Documentation</h2>
+<a id="abfa1699b9d95541d8d087297870466bb"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#abfa1699b9d95541d8d087297870466bb">&#9670;&nbsp;</a></span>m_blas_</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::vector&lt;<a class="el" href="structrx_1_1_blas.html">Blas</a>&gt; rx::RayTracingBuilder::m_blas_</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="af2c33e44577d9bc8bad80068ef63d919"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af2c33e44577d9bc8bad80068ef63d919">&#9670;&nbsp;</a></span>m_instBuffer</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classrx_1_1_buffer.html">Buffer</a> rx::RayTracingBuilder::m_instBuffer</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a089761bd33580fd0b547693f28cd152a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a089761bd33580fd0b547693f28cd152a">&#9670;&nbsp;</a></span>m_rtProperties</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">vk::PhysicalDeviceRayTracingPropertiesKHR rx::RayTracingBuilder::m_rtProperties</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="aaf0eb85cd13a8e22ac632fa865f41a05"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aaf0eb85cd13a8e22ac632fa865f41a05">&#9670;&nbsp;</a></span>m_sbtBuffer</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classrx_1_1_buffer.html">Buffer</a> rx::RayTracingBuilder::m_sbtBuffer</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="aa57d55cd5027b87dfb136fbba365e35b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa57d55cd5027b87dfb136fbba365e35b">&#9670;&nbsp;</a></span>m_storageImage</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classrx_1_1_image.html">Image</a> rx::RayTracingBuilder::m_storageImage</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a1c63ce7012527afac2d6732c9da79271"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1c63ce7012527afac2d6732c9da79271">&#9670;&nbsp;</a></span>m_storageImageView</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">vk::UniqueImageView rx::RayTracingBuilder::m_storageImageView</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="ad134e9bf15ce4811b6c342014f3389f1"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad134e9bf15ce4811b6c342014f3389f1">&#9670;&nbsp;</a></span>m_tlas</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="structrx_1_1_tlas.html">Tlas</a> rx::RayTracingBuilder::m_tlas</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
 </div><div class="memdoc">
 
 </div>

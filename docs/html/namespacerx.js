@@ -30,7 +30,7 @@ var namespacerx =
     [ "RayTracingInstance", "structrx_1_1_ray_tracing_instance.html", "structrx_1_1_ray_tracing_instance" ],
     [ "Renderer", "classrx_1_1_renderer.html", "classrx_1_1_renderer" ],
     [ "RenderPass", "classrx_1_1_render_pass.html", "classrx_1_1_render_pass" ],
-    [ "Settings", "classrx_1_1_settings.html", null ],
+    [ "Settings", "classrx_1_1_settings.html", "classrx_1_1_settings" ],
     [ "Surface", "classrx_1_1_surface.html", "classrx_1_1_surface" ],
     [ "Swapchain", "classrx_1_1_swapchain.html", "classrx_1_1_swapchain" ],
     [ "Texture", "classrx_1_1_texture.html", "classrx_1_1_texture" ],

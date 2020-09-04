@@ -16,8 +16,7 @@ var dir_da61e3e9a357748887e3ca8d7c5a0c16 =
     [ "Instance.hpp", "_instance_8hpp.html", null ],
     [ "Model.cpp", "_model_8cpp.html", "_model_8cpp" ],
     [ "Model.hpp", "_model_8hpp.html", [
-      [ "Material", "classrx_1_1_material.html", "classrx_1_1_material" ],
-      [ "hash< rx::Model >", "structstd_1_1hash_3_01rx_1_1_model_01_4.html", "structstd_1_1hash_3_01rx_1_1_model_01_4" ]
+      [ "Material", "classrx_1_1_material.html", "classrx_1_1_material" ]
     ] ],
     [ "Pipeline.cpp", "_pipeline_8cpp.html", null ],
     [ "Pipeline.hpp", "_pipeline_8hpp.html", [

@@ -8,5 +8,13 @@ var classrx_1_1_descriptor_set =
     [ "init", "classrx_1_1_descriptor_set.html#ad37d599e9f1d21b1c710566786301c57", null ],
     [ "update", "classrx_1_1_descriptor_set.html#abd7416cfc465e712cf328f8d8f43f998", null ],
     [ "update", "classrx_1_1_descriptor_set.html#a9056fcfc622a01be0f711e682fd95db4", null ],
-    [ "update", "classrx_1_1_descriptor_set.html#a0546064e0b3b5a681a5d1f0e0bbf8c2e", null ]
+    [ "update", "classrx_1_1_descriptor_set.html#a0546064e0b3b5a681a5d1f0e0bbf8c2e", null ],
+    [ "writeAccelerationStructure", "classrx_1_1_descriptor_set.html#a562c6078e26758631275b96d86b52305", null ],
+    [ "writeCombinedImageSampler", "classrx_1_1_descriptor_set.html#a5a474c638d49167ecefb0528ef8471df", null ],
+    [ "writeStorageBuffer", "classrx_1_1_descriptor_set.html#ac0634f327387523e6920a4d90c323029", null ],
+    [ "writeStorageImage", "classrx_1_1_descriptor_set.html#a96659fd42572f55e59e00c4114617bb4", null ],
+    [ "writeUniformBuffer", "classrx_1_1_descriptor_set.html#a2cfcead9b6fc1aae26685202027f660d", null ],
+    [ "m_descriptorPool", "classrx_1_1_descriptor_set.html#ac32c3438a456d18d2ad46f38bb774ad2", null ],
+    [ "m_layouts", "classrx_1_1_descriptor_set.html#a08dee8c23517b4abd1f0a9ad75d31cd9", null ],
+    [ "m_sets", "classrx_1_1_descriptor_set.html#a1ca524be8e2eaa9d8fe2e87dc8cf5e98", null ]
 ];

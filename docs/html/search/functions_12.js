@@ -1,4 +1,9 @@
 var searchData=
 [
-  ['vertexbuffer_746',['VertexBuffer',['../classrx_1_1_vertex_buffer.html#a43d4bd6b4fdea79ee20a4a30cbbb7b45',1,'rx::VertexBuffer::VertexBuffer()=default'],['../classrx_1_1_vertex_buffer.html#a337011bf239a742c6a489da91cb73275',1,'rx::VertexBuffer::VertexBuffer(std::vector&lt; Vertex &gt; &amp;vertices, bool initialize=true)']]]
+  ['windowbase_862',['WindowBase',['../classrx_1_1_window_base.html#a4c75fcc5018535133aa56a897ef8d385',1,'rx::WindowBase']]],
+  ['writeaccelerationstructure_863',['writeAccelerationStructure',['../classrx_1_1_descriptor_set.html#a562c6078e26758631275b96d86b52305',1,'rx::DescriptorSet']]],
+  ['writecombinedimagesampler_864',['writeCombinedImageSampler',['../classrx_1_1_descriptor_set.html#a5a474c638d49167ecefb0528ef8471df',1,'rx::DescriptorSet']]],
+  ['writestoragebuffer_865',['writeStorageBuffer',['../classrx_1_1_descriptor_set.html#ac0634f327387523e6920a4d90c323029',1,'rx::DescriptorSet']]],
+  ['writestorageimage_866',['writeStorageImage',['../classrx_1_1_descriptor_set.html#a96659fd42572f55e59e00c4114617bb4',1,'rx::DescriptorSet']]],
+  ['writeuniformbuffer_867',['writeUniformBuffer',['../classrx_1_1_descriptor_set.html#a2cfcead9b6fc1aae26685202027f660d',1,'rx::DescriptorSet']]]
 ];

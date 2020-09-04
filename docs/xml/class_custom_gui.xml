@@ -1,0 +1,131 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.20" xml:lang="en-US">
+  <compounddef id="class_custom_gui" kind="class" language="C++" prot="public">
+    <compoundname>CustomGui</compoundname>
+    <basecompoundref refid="classrx_1_1_gui_base" prot="public" virt="non-virtual">rx::GuiBase</basecompoundref>
+      <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="class_custom_gui_1ad8a05f16fe3ba0c30aee632349690949" prot="public" static="no" mutable="no">
+        <type>float</type>
+        <definition>float CustomGui::m_animationSpeed</definition>
+        <argsstring></argsstring>
+        <name>m_animationSpeed</name>
+        <initializer>= 0.0f</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Repos/renderer/src/example/main.cpp" line="203" column="9" bodyfile="C:/Repos/renderer/src/example/main.cpp" bodystart="203" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="class_custom_gui_1ad7f4bf8f7a9395137584aefceef9cdac" prot="private" static="no" mutable="no">
+        <type><ref refid="classrx_1_1_renderer" kindref="compound">Renderer</ref> *</type>
+        <definition>Renderer* CustomGui::m_renderer</definition>
+        <argsstring></argsstring>
+        <name>m_renderer</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Repos/renderer/src/example/main.cpp" line="239" column="12" bodyfile="C:/Repos/renderer/src/example/main.cpp" bodystart="239" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="class_custom_gui_1a3378cf8adcea18d363badded928563d7" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+        <type>void</type>
+        <definition>void CustomGui::configure</definition>
+        <argsstring>() override</argsstring>
+        <name>configure</name>
+        <reimplements refid="classrx_1_1_gui_base_1aa7308bebaead5580e11853c7604d77e0">configure</reimplements>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Repos/renderer/src/example/main.cpp" line="197" column="8" bodyfile="C:/Repos/renderer/src/example/main.cpp" bodystart="197" bodyend="201"/>
+      </memberdef>
+      <memberdef kind="function" id="class_custom_gui_1a6bc51a564691e7fcbef848254d6e2cf0" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+        <type>void</type>
+        <definition>void CustomGui::render</definition>
+        <argsstring>() override</argsstring>
+        <name>render</name>
+        <reimplements refid="classrx_1_1_gui_base_1ad2100f03fe7e64b12cc315231effae88">render</reimplements>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Repos/renderer/src/example/main.cpp" line="205" column="8" bodyfile="C:/Repos/renderer/src/example/main.cpp" bodystart="205" bodyend="231"/>
+      </memberdef>
+      <memberdef kind="function" id="class_custom_gui_1af96be6eadc41d8ef60b335ce92ea70bf" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void CustomGui::setRenderer</definition>
+        <argsstring>(Renderer *renderer)</argsstring>
+        <name>setRenderer</name>
+        <param>
+          <type><ref refid="classrx_1_1_renderer" kindref="compound">Renderer</ref> *</type>
+          <declname>renderer</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Repos/renderer/src/example/main.cpp" line="233" column="8" bodyfile="C:/Repos/renderer/src/example/main.cpp" bodystart="233" bodyend="236"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="1">
+        <label>CustomGui</label>
+        <link refid="class_custom_gui"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>rx::GuiBase</label>
+        <link refid="classrx_1_1_gui_base"/>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="1">
+        <label>CustomGui</label>
+        <link refid="class_custom_gui"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>rx::GuiBase</label>
+        <link refid="classrx_1_1_gui_base"/>
+      </node>
+    </collaborationgraph>
+    <location file="C:/Repos/renderer/src/example/main.cpp" line="194" column="1" bodyfile="C:/Repos/renderer/src/example/main.cpp" bodystart="195" bodyend="240"/>
+    <listofallmembers>
+      <member refid="class_custom_gui_1a3378cf8adcea18d363badded928563d7" prot="public" virt="virtual"><scope>CustomGui</scope><name>configure</name></member>
+      <member refid="classrx_1_1_gui_base_1abc8a7c5b34053328af509a4e33c157ca" prot="public" virt="non-virtual"><scope>CustomGui</scope><name>destroy</name></member>
+      <member refid="classrx_1_1_gui_base_1aad9bf6f9fcaa10afa08cec4c1cd9d349" prot="public" virt="non-virtual"><scope>CustomGui</scope><name>endRender</name></member>
+      <member refid="classrx_1_1_gui_base_1a75dca542b071d52c0bf6c3a13ecf2d7f" prot="public" virt="non-virtual"><scope>CustomGui</scope><name>getCommandBuffer</name></member>
+      <member refid="classrx_1_1_gui_base_1a1f2bda354b004aa57bf6a6d6bcc5dbfc" prot="public" virt="non-virtual"><scope>CustomGui</scope><name>GuiBase</name></member>
+      <member refid="classrx_1_1_gui_base_1a8bcb78460378256aed6d04b7f2e8d9b1" prot="public" virt="non-virtual"><scope>CustomGui</scope><name>GuiBase</name></member>
+      <member refid="classrx_1_1_gui_base_1aca9f5d7553cc6d2ee1e0937dc1b154aa" prot="public" virt="non-virtual"><scope>CustomGui</scope><name>init</name></member>
+      <member refid="class_custom_gui_1ad8a05f16fe3ba0c30aee632349690949" prot="public" virt="non-virtual"><scope>CustomGui</scope><name>m_animationSpeed</name></member>
+      <member refid="class_custom_gui_1ad7f4bf8f7a9395137584aefceef9cdac" prot="private" virt="non-virtual"><scope>CustomGui</scope><name>m_renderer</name></member>
+      <member refid="classrx_1_1_gui_base_1a8274f2ac199371aa1af8205da57e543d" prot="public" virt="non-virtual"><scope>CustomGui</scope><name>newFrame</name></member>
+      <member refid="classrx_1_1_gui_base_1a02de12dd4e477a1b2cdb217dbf7c1ceb" prot="public" virt="non-virtual"><scope>CustomGui</scope><name>recreate</name></member>
+      <member refid="class_custom_gui_1a6bc51a564691e7fcbef848254d6e2cf0" prot="public" virt="virtual"><scope>CustomGui</scope><name>render</name></member>
+      <member refid="classrx_1_1_gui_base_1a668f00b604de4a566d6b46a469fdb62a" prot="public" virt="non-virtual"><scope>CustomGui</scope><name>renderDrawData</name></member>
+      <member refid="class_custom_gui_1af96be6eadc41d8ef60b335ce92ea70bf" prot="public" virt="non-virtual"><scope>CustomGui</scope><name>setRenderer</name></member>
+      <member refid="classrx_1_1_gui_base_1a30b904bb4115f2676d118b140e06e54f" prot="public" virt="virtual"><scope>CustomGui</scope><name>~GuiBase</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

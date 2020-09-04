@@ -1,0 +1,15 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.20" xml:lang="en-US">
+  <compounddef id="dir_f85b151042f4410f72e459bf14a2debf" kind="dir">
+    <compoundname>C:/Repos/renderer/src/api/devices</compoundname>
+    <innerfile refid="_device_8cpp">Device.cpp</innerfile>
+    <innerfile refid="_device_8hpp">Device.hpp</innerfile>
+    <innerfile refid="_physical_device_8cpp">PhysicalDevice.cpp</innerfile>
+    <innerfile refid="_physical_device_8hpp">PhysicalDevice.hpp</innerfile>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="C:/Repos/renderer/src/api/devices/"/>
+  </compounddef>
+</doxygen>

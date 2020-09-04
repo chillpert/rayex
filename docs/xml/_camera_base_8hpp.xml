@@ -1,0 +1,675 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.20" xml:lang="en-US">
+  <compounddef id="_camera_base_8hpp" kind="file" language="C++">
+    <compoundname>CameraBase.hpp</compoundname>
+    <includes refid="stdafx_8hpp" local="yes">pch/stdafx.hpp</includes>
+    <includedby refid="_base_8hpp" local="yes">C:/Repos/renderer/src/base/Base.hpp</includedby>
+    <includedby refid="_camera_base_8cpp" local="yes">C:/Repos/renderer/src/base/CameraBase.cpp</includedby>
+    <includedby refid="_window_base_8hpp" local="yes">C:/Repos/renderer/src/window/WindowBase.hpp</includedby>
+    <incdepgraph>
+      <node id="18">
+        <label>iomanip</label>
+      </node>
+      <node id="11">
+        <label>glm/ext/matrix_transform.hpp</label>
+      </node>
+      <node id="15">
+        <label>imgui_impl_sdl.h</label>
+      </node>
+      <node id="19">
+        <label>cstdint</label>
+      </node>
+      <node id="24">
+        <label>stdexcept</label>
+      </node>
+      <node id="16">
+        <label>imgui_impl_vulkan.h</label>
+      </node>
+      <node id="26">
+        <label>map</label>
+      </node>
+      <node id="31">
+        <label>unordered_set</label>
+      </node>
+      <node id="27">
+        <label>fstream</label>
+      </node>
+      <node id="13">
+        <label>glm/gtx/string_cast.hpp</label>
+      </node>
+      <node id="2">
+        <label>pch/stdafx.hpp</label>
+        <link refid="stdafx_8hpp"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="8" relation="include">
+        </childnode>
+        <childnode refid="10" relation="include">
+        </childnode>
+        <childnode refid="11" relation="include">
+        </childnode>
+        <childnode refid="12" relation="include">
+        </childnode>
+        <childnode refid="13" relation="include">
+        </childnode>
+        <childnode refid="14" relation="include">
+        </childnode>
+        <childnode refid="15" relation="include">
+        </childnode>
+        <childnode refid="16" relation="include">
+        </childnode>
+        <childnode refid="17" relation="include">
+        </childnode>
+        <childnode refid="18" relation="include">
+        </childnode>
+        <childnode refid="9" relation="include">
+        </childnode>
+        <childnode refid="19" relation="include">
+        </childnode>
+        <childnode refid="20" relation="include">
+        </childnode>
+        <childnode refid="21" relation="include">
+        </childnode>
+        <childnode refid="22" relation="include">
+        </childnode>
+        <childnode refid="23" relation="include">
+        </childnode>
+        <childnode refid="24" relation="include">
+        </childnode>
+        <childnode refid="25" relation="include">
+        </childnode>
+        <childnode refid="26" relation="include">
+        </childnode>
+        <childnode refid="27" relation="include">
+        </childnode>
+        <childnode refid="28" relation="include">
+        </childnode>
+        <childnode refid="29" relation="include">
+        </childnode>
+        <childnode refid="30" relation="include">
+        </childnode>
+        <childnode refid="31" relation="include">
+        </childnode>
+      </node>
+      <node id="4">
+        <label>SDL2/SDL.h</label>
+      </node>
+      <node id="3">
+        <label>Core.hpp</label>
+        <link refid="_core_8hpp"/>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="6" relation="include">
+        </childnode>
+        <childnode refid="7" relation="include">
+        </childnode>
+      </node>
+      <node id="22">
+        <label>optional</label>
+      </node>
+      <node id="9">
+        <label>vector</label>
+      </node>
+      <node id="1">
+        <label>C:/Repos/renderer/src/base/CameraBase.hpp</label>
+        <link refid="_camera_base_8hpp"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+      </node>
+      <node id="28">
+        <label>array</label>
+      </node>
+      <node id="17">
+        <label>sstream</label>
+      </node>
+      <node id="20">
+        <label>cstdlib</label>
+      </node>
+      <node id="14">
+        <label>imgui.h</label>
+      </node>
+      <node id="7">
+        <label>iostream</label>
+      </node>
+      <node id="30">
+        <label>unordered_map</label>
+      </node>
+      <node id="12">
+        <label>glm/ext/matrix_clip_space.hpp</label>
+      </node>
+      <node id="8">
+        <label>Time.hpp</label>
+        <link refid="_time_8hpp"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="9" relation="include">
+        </childnode>
+      </node>
+      <node id="23">
+        <label>set</label>
+      </node>
+      <node id="25">
+        <label>algorithm</label>
+      </node>
+      <node id="21">
+        <label>cstring</label>
+      </node>
+      <node id="6">
+        <label>vulkan/vulkan.hpp</label>
+      </node>
+      <node id="29">
+        <label>memory</label>
+      </node>
+      <node id="5">
+        <label>SDL2/SDL_vulkan.h</label>
+      </node>
+      <node id="10">
+        <label>glm/glm.hpp</label>
+      </node>
+    </incdepgraph>
+    <invincdepgraph>
+      <node id="43">
+        <label>C:/Repos/renderer/src/api/Queues.cpp</label>
+        <link refid="_queues_8cpp"/>
+      </node>
+      <node id="4">
+        <label>C:/Repos/renderer/src/api/Api.cpp</label>
+        <link refid="_api_8cpp"/>
+      </node>
+      <node id="32">
+        <label>C:/Repos/renderer/src/api/buffers/UniformBuffer.cpp</label>
+        <link refid="_uniform_buffer_8cpp"/>
+      </node>
+      <node id="39">
+        <label>C:/Repos/renderer/src/api/Components.cpp</label>
+        <link refid="_components_8cpp"/>
+      </node>
+      <node id="24">
+        <label>C:/Repos/renderer/src/api/gui/GuiBase.hpp</label>
+        <link refid="_gui_base_8hpp"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="25" relation="include">
+        </childnode>
+        <childnode refid="2" relation="include">
+        </childnode>
+      </node>
+      <node id="40">
+        <label>C:/Repos/renderer/src/api/devices/Device.cpp</label>
+        <link refid="_device_8cpp"/>
+      </node>
+      <node id="10">
+        <label>C:/Repos/renderer/src/window/WindowBase.hpp</label>
+        <link refid="_window_base_8hpp"/>
+        <childnode refid="11" relation="include">
+        </childnode>
+        <childnode refid="49" relation="include">
+        </childnode>
+        <childnode refid="26" relation="include">
+        </childnode>
+        <childnode refid="51" relation="include">
+        </childnode>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="52" relation="include">
+        </childnode>
+      </node>
+      <node id="14">
+        <label>C:/Repos/renderer/src/api/buffers/IndexBuffer.hpp</label>
+        <link refid="_index_buffer_8hpp"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="15" relation="include">
+        </childnode>
+      </node>
+      <node id="12">
+        <label>C:/Repos/renderer/src/api/buffers/Buffer.hpp</label>
+        <link refid="_buffer_8hpp"/>
+        <childnode refid="13" relation="include">
+        </childnode>
+        <childnode refid="14" relation="include">
+        </childnode>
+        <childnode refid="31" relation="include">
+        </childnode>
+        <childnode refid="36" relation="include">
+        </childnode>
+        <childnode refid="33" relation="include">
+        </childnode>
+        <childnode refid="21" relation="include">
+        </childnode>
+        <childnode refid="22" relation="include">
+        </childnode>
+        <childnode refid="17" relation="include">
+        </childnode>
+      </node>
+      <node id="5">
+        <label>C:/Repos/renderer/src/api/utility/DebugMessenger.cpp</label>
+        <link refid="_debug_messenger_8cpp"/>
+      </node>
+      <node id="28">
+        <label>C:/Repos/renderer/src/api/utility/Helpers.cpp</label>
+        <link refid="_helpers_8cpp"/>
+      </node>
+      <node id="19">
+        <label>C:/Repos/renderer/src/api/raytracing/RayTracingBuilder.cpp</label>
+        <link refid="_ray_tracing_builder_8cpp"/>
+      </node>
+      <node id="6">
+        <label>C:/Repos/renderer/src/Renderer.hpp</label>
+        <link refid="_renderer_8hpp"/>
+        <childnode refid="7" relation="include">
+        </childnode>
+        <childnode refid="8" relation="include">
+        </childnode>
+      </node>
+      <node id="48">
+        <label>C:/Repos/renderer/src/api/utility/Destructors.cpp</label>
+        <link refid="_destructors_8cpp"/>
+      </node>
+      <node id="33">
+        <label>C:/Repos/renderer/src/api/descriptors/DescriptorSet.hpp</label>
+        <link refid="_descriptor_set_8hpp"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="34" relation="include">
+        </childnode>
+        <childnode refid="35" relation="include">
+        </childnode>
+        <childnode refid="15" relation="include">
+        </childnode>
+      </node>
+      <node id="3">
+        <label>C:/Repos/renderer/src/api/Api.hpp</label>
+        <link refid="_api_8hpp"/>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="6" relation="include">
+        </childnode>
+      </node>
+      <node id="23">
+        <label>C:/Repos/renderer/src/api/Swapchain.hpp</label>
+        <link refid="_swapchain_8hpp"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="24" relation="include">
+        </childnode>
+        <childnode refid="26" relation="include">
+        </childnode>
+        <childnode refid="17" relation="include">
+        </childnode>
+        <childnode refid="27" relation="include">
+        </childnode>
+      </node>
+      <node id="47">
+        <label>C:/Repos/renderer/src/api/Surface.cpp</label>
+        <link refid="_surface_8cpp"/>
+      </node>
+      <node id="31">
+        <label>C:/Repos/renderer/src/api/buffers/UniformBuffer.hpp</label>
+        <link refid="_uniform_buffer_8hpp"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="32" relation="include">
+        </childnode>
+        <childnode refid="33" relation="include">
+        </childnode>
+        <childnode refid="15" relation="include">
+        </childnode>
+      </node>
+      <node id="30">
+        <label>C:/Repos/renderer/src/base/NodeBase.hpp</label>
+        <link refid="_node_base_8hpp"/>
+        <childnode refid="17" relation="include">
+        </childnode>
+        <childnode refid="2" relation="include">
+        </childnode>
+      </node>
+      <node id="25">
+        <label>C:/Repos/renderer/src/api/gui/GuiBase.cpp</label>
+        <link refid="_gui_base_8cpp"/>
+      </node>
+      <node id="22">
+        <label>C:/Repos/renderer/src/api/image/Texture.cpp</label>
+        <link refid="_texture_8cpp"/>
+      </node>
+      <node id="50">
+        <label>C:/Repos/renderer/src/api/devices/Device.hpp</label>
+        <link refid="_device_8hpp"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="40" relation="include">
+        </childnode>
+      </node>
+      <node id="44">
+        <label>C:/Repos/renderer/src/api/raytracing/AccelerationStructure.hpp</label>
+        <link refid="_acceleration_structure_8hpp"/>
+        <childnode refid="17" relation="include">
+        </childnode>
+        <childnode refid="20" relation="include">
+        </childnode>
+        <childnode refid="45" relation="include">
+        </childnode>
+      </node>
+      <node id="52">
+        <label>C:/Repos/renderer/src/window/WindowBase.cpp</label>
+        <link refid="_window_base_8cpp"/>
+      </node>
+      <node id="16">
+        <label>C:/Repos/renderer/src/api/Model.cpp</label>
+        <link refid="_model_8cpp"/>
+      </node>
+      <node id="9">
+        <label>C:/Repos/renderer/src/base/CameraBase.cpp</label>
+        <link refid="_camera_base_8cpp"/>
+      </node>
+      <node id="26">
+        <label>C:/Repos/renderer/src/api/Pipeline.hpp</label>
+        <link refid="_pipeline_8hpp"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="18" relation="include">
+        </childnode>
+      </node>
+      <node id="46">
+        <label>C:/Repos/renderer/src/api/RenderPass.cpp</label>
+        <link refid="_render_pass_8cpp"/>
+      </node>
+      <node id="7">
+        <label>C:/Repos/renderer/src/example/main.cpp</label>
+        <link refid="main_8cpp"/>
+      </node>
+      <node id="49">
+        <label>C:/Repos/renderer/src/api/Instance.hpp</label>
+        <link refid="_instance_8hpp"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="50" relation="include">
+        </childnode>
+        <childnode refid="42" relation="include">
+        </childnode>
+      </node>
+      <node id="17">
+        <label>C:/Repos/renderer/src/api/raytracing/RayTracingBuilder.hpp</label>
+        <link refid="_ray_tracing_builder_8hpp"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="18" relation="include">
+        </childnode>
+        <childnode refid="19" relation="include">
+        </childnode>
+      </node>
+      <node id="37">
+        <label>C:/Repos/renderer/src/api/buffers/VertexBuffer.cpp</label>
+        <link refid="_vertex_buffer_8cpp"/>
+      </node>
+      <node id="34">
+        <label>C:/Repos/renderer/src/api/descriptors/DescriptorSet.cpp</label>
+        <link refid="_descriptor_set_8cpp"/>
+      </node>
+      <node id="27">
+        <label>C:/Repos/renderer/src/api/Swapchain.cpp</label>
+        <link refid="_swapchain_8cpp"/>
+      </node>
+      <node id="15">
+        <label>C:/Repos/renderer/src/api/Model.hpp</label>
+        <link refid="_model_8hpp"/>
+        <childnode refid="16" relation="include">
+        </childnode>
+        <childnode refid="17" relation="include">
+        </childnode>
+        <childnode refid="20" relation="include">
+        </childnode>
+        <childnode refid="30" relation="include">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>C:/Repos/renderer/src/base/Base.hpp</label>
+        <link refid="_base_8hpp"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="6" relation="include">
+        </childnode>
+      </node>
+      <node id="1">
+        <label>C:/Repos/renderer/src/base/CameraBase.hpp</label>
+        <link refid="_camera_base_8hpp"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="9" relation="include">
+        </childnode>
+        <childnode refid="10" relation="include">
+        </childnode>
+      </node>
+      <node id="18">
+        <label>C:/Repos/renderer/src/api/Pipeline.cpp</label>
+        <link refid="_pipeline_8cpp"/>
+      </node>
+      <node id="41">
+        <label>C:/Repos/renderer/src/api/devices/PhysicalDevice.cpp</label>
+        <link refid="_physical_device_8cpp"/>
+      </node>
+      <node id="42">
+        <label>C:/Repos/renderer/src/api/Instance.cpp</label>
+        <link refid="_instance_8cpp"/>
+      </node>
+      <node id="36">
+        <label>C:/Repos/renderer/src/api/buffers/VertexBuffer.hpp</label>
+        <link refid="_vertex_buffer_8hpp"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="37" relation="include">
+        </childnode>
+        <childnode refid="15" relation="include">
+        </childnode>
+      </node>
+      <node id="29">
+        <label>C:/Repos/renderer/src/api/utility/Initializers.cpp</label>
+        <link refid="_initializers_8cpp"/>
+      </node>
+      <node id="11">
+        <label>C:/Repos/renderer/src/api/Components.hpp</label>
+        <link refid="_components_8hpp"/>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="12" relation="include">
+        </childnode>
+        <childnode refid="38" relation="include">
+        </childnode>
+        <childnode refid="32" relation="include">
+        </childnode>
+        <childnode refid="39" relation="include">
+        </childnode>
+        <childnode refid="34" relation="include">
+        </childnode>
+        <childnode refid="35" relation="include">
+        </childnode>
+        <childnode refid="40" relation="include">
+        </childnode>
+        <childnode refid="41" relation="include">
+        </childnode>
+        <childnode refid="21" relation="include">
+        </childnode>
+        <childnode refid="42" relation="include">
+        </childnode>
+        <childnode refid="18" relation="include">
+        </childnode>
+        <childnode refid="43" relation="include">
+        </childnode>
+        <childnode refid="44" relation="include">
+        </childnode>
+        <childnode refid="19" relation="include">
+        </childnode>
+        <childnode refid="46" relation="include">
+        </childnode>
+        <childnode refid="47" relation="include">
+        </childnode>
+        <childnode refid="27" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="48" relation="include">
+        </childnode>
+        <childnode refid="28" relation="include">
+        </childnode>
+        <childnode refid="45" relation="include">
+        </childnode>
+      </node>
+      <node id="13">
+        <label>C:/Repos/renderer/src/api/buffers/Buffer.cpp</label>
+        <link refid="_buffer_8cpp"/>
+      </node>
+      <node id="38">
+        <label>C:/Repos/renderer/src/api/buffers/CommandBuffer.cpp</label>
+        <link refid="_command_buffer_8cpp"/>
+      </node>
+      <node id="20">
+        <label>C:/Repos/renderer/src/api/utility/Helpers.hpp</label>
+        <link refid="_helpers_8hpp"/>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="13" relation="include">
+        </childnode>
+        <childnode refid="21" relation="include">
+        </childnode>
+        <childnode refid="22" relation="include">
+        </childnode>
+        <childnode refid="18" relation="include">
+        </childnode>
+        <childnode refid="19" relation="include">
+        </childnode>
+        <childnode refid="23" relation="include">
+        </childnode>
+        <childnode refid="28" relation="include">
+        </childnode>
+        <childnode refid="29" relation="include">
+        </childnode>
+      </node>
+      <node id="21">
+        <label>C:/Repos/renderer/src/api/image/Image.cpp</label>
+        <link refid="_image_8cpp"/>
+      </node>
+      <node id="35">
+        <label>C:/Repos/renderer/src/api/descriptors/DescriptorSetLayout.cpp</label>
+        <link refid="_descriptor_set_layout_8cpp"/>
+      </node>
+      <node id="8">
+        <label>C:/Repos/renderer/src/Renderer.cpp</label>
+        <link refid="_renderer_8cpp"/>
+      </node>
+      <node id="45">
+        <label>C:/Repos/renderer/src/api/utility/Initializers.hpp</label>
+        <link refid="_initializers_8hpp"/>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="13" relation="include">
+        </childnode>
+        <childnode refid="25" relation="include">
+        </childnode>
+        <childnode refid="21" relation="include">
+        </childnode>
+        <childnode refid="22" relation="include">
+        </childnode>
+        <childnode refid="18" relation="include">
+        </childnode>
+        <childnode refid="19" relation="include">
+        </childnode>
+        <childnode refid="27" relation="include">
+        </childnode>
+        <childnode refid="29" relation="include">
+        </childnode>
+      </node>
+      <node id="51">
+        <label>C:/Repos/renderer/src/api/Surface.hpp</label>
+        <link refid="_surface_8hpp"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="24" relation="include">
+        </childnode>
+        <childnode refid="47" relation="include">
+        </childnode>
+        <childnode refid="23" relation="include">
+        </childnode>
+      </node>
+    </invincdepgraph>
+    <innerclass refid="classrx_1_1_camera_base" prot="public">rx::CameraBase</innerclass>
+    <innernamespace refid="namespacerx">rx</innernamespace>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="preprocessor">#ifndef<sp/>CAMERA_BASE_HPP</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="2"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>CAMERA_BASE_HPP</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="3"><highlight class="normal"></highlight></codeline>
+<codeline lineno="4"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;<ref refid="stdafx_8hpp" kindref="compound">pch/stdafx.hpp</ref>&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="5"><highlight class="normal"></highlight></codeline>
+<codeline lineno="6"><highlight class="normal"></highlight><highlight class="keyword">namespace<sp/></highlight><highlight class="normal"><ref refid="namespacerx" kindref="compound">rx</ref></highlight></codeline>
+<codeline lineno="7"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="20" refid="classrx_1_1_camera_base" refkind="compound"><highlight class="normal"><sp/><sp/></highlight><highlight class="keyword">class<sp/></highlight><highlight class="normal"><ref refid="classrx_1_1_camera_base" kindref="compound">CameraBase</ref></highlight></codeline>
+<codeline lineno="21"><highlight class="normal"><sp/><sp/>{</highlight></codeline>
+<codeline lineno="22"><highlight class="normal"><sp/><sp/></highlight><highlight class="keyword">public</highlight><highlight class="normal">:</highlight></codeline>
+<codeline lineno="26"><highlight class="normal"><sp/><sp/><sp/><sp/>RX_API<sp/><ref refid="classrx_1_1_camera_base_1a75a962cdaaa75373223ab26b094a8b6a" kindref="member">CameraBase</ref>(<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>width,<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>height,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>glm::vec3&amp;<sp/>position<sp/>=<sp/>{<sp/>0.0f,<sp/>0.0f,<sp/>3.0f<sp/>}<sp/>);</highlight></codeline>
+<codeline lineno="27"><highlight class="normal"></highlight></codeline>
+<codeline lineno="28" refid="classrx_1_1_camera_base_1aa409b048e207d82f595cb2f4a379a72a" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>RX_API<sp/><ref refid="classrx_1_1_camera_base_1aa409b048e207d82f595cb2f4a379a72a" kindref="member">~CameraBase</ref>(<sp/>)<sp/>=<sp/></highlight><highlight class="keywordflow">default</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="29"><highlight class="normal"></highlight></codeline>
+<codeline lineno="34" refid="classrx_1_1_camera_base_1a9fc9ce55c122c04ac14851c956be0384" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">virtual</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="classrx_1_1_camera_base_1a9fc9ce55c122c04ac14851c956be0384" kindref="member">update</ref>(<sp/>)<sp/>{<sp/>};</highlight></codeline>
+<codeline lineno="35"><highlight class="normal"></highlight></codeline>
+<codeline lineno="38" refid="classrx_1_1_camera_base_1a78d9c8bb9db37123d14038fbfa29be73" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>RX_API<sp/></highlight><highlight class="keyword">inline</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>glm::vec3&amp;<sp/><ref refid="classrx_1_1_camera_base_1a78d9c8bb9db37123d14038fbfa29be73" kindref="member">getPosition</ref>(<sp/>)</highlight><highlight class="keyword"><sp/>const<sp/></highlight><highlight class="normal">{<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/><ref refid="classrx_1_1_camera_base_1abf958c04d4ae15345e0e4d45091cefc9" kindref="member">m_position</ref>;<sp/>}</highlight></codeline>
+<codeline lineno="39"><highlight class="normal"></highlight></codeline>
+<codeline lineno="42"><highlight class="normal"><sp/><sp/><sp/><sp/>RX_API<sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="classrx_1_1_camera_base_1a857f41e97a9ddc190292a70d474f5eac" kindref="member">setPosition</ref>(<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>glm::vec3&amp;<sp/>position<sp/>);</highlight></codeline>
+<codeline lineno="43"><highlight class="normal"></highlight></codeline>
+<codeline lineno="47"><highlight class="normal"><sp/><sp/><sp/><sp/>RX_API<sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="classrx_1_1_camera_base_1aca83d9f192c98b9cabc278a5c9cc7678" kindref="member">setSize</ref>(<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>width,<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>height<sp/>);</highlight></codeline>
+<codeline lineno="48"><highlight class="normal"></highlight></codeline>
+<codeline lineno="51"><highlight class="normal"><sp/><sp/><sp/><sp/>RX_API<sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="classrx_1_1_camera_base_1a8754a5bfa41b65b4388d2eb6a629cf13" kindref="member">setFov</ref>(<sp/></highlight><highlight class="keywordtype">float</highlight><highlight class="normal"><sp/>fov<sp/>);</highlight></codeline>
+<codeline lineno="52"><highlight class="normal"></highlight></codeline>
+<codeline lineno="55"><highlight class="normal"><sp/><sp/><sp/><sp/>RX_API<sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="classrx_1_1_camera_base_1a0004c71206e7d392d8c815e053a8c397" kindref="member">setSensitivity</ref>(<sp/></highlight><highlight class="keywordtype">float</highlight><highlight class="normal"><sp/>sensitivity<sp/>);</highlight></codeline>
+<codeline lineno="56"><highlight class="normal"></highlight></codeline>
+<codeline lineno="58" refid="classrx_1_1_camera_base_1ae9f3091659e2687377b5a23ab7e4c54c" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">inline</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>glm::mat4&amp;<sp/><ref refid="classrx_1_1_camera_base_1ae9f3091659e2687377b5a23ab7e4c54c" kindref="member">getViewMatrix</ref>(<sp/>)</highlight><highlight class="keyword"><sp/>const<sp/></highlight><highlight class="normal">{<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/><ref refid="classrx_1_1_camera_base_1aba8ec1bb4e876ea05696f309b6884867" kindref="member">m_view</ref>;<sp/>}</highlight></codeline>
+<codeline lineno="59"><highlight class="normal"></highlight></codeline>
+<codeline lineno="61" refid="classrx_1_1_camera_base_1a76f6c010fe4a56652776ce8ceeaa625e" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">inline</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>glm::mat4&amp;<sp/><ref refid="classrx_1_1_camera_base_1a76f6c010fe4a56652776ce8ceeaa625e" kindref="member">getProjectionMatrix</ref>(<sp/>)</highlight><highlight class="keyword"><sp/>const<sp/></highlight><highlight class="normal">{<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/><ref refid="classrx_1_1_camera_base_1a06e778020450261ba367a011c38f6111" kindref="member">m_projection</ref>;<sp/>}</highlight></codeline>
+<codeline lineno="62"><highlight class="normal"></highlight></codeline>
+<codeline lineno="64" refid="classrx_1_1_camera_base_1a03ee38e01e1ec2cecef8fe34cc4fef6a" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">inline</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>glm::mat4&amp;<sp/><ref refid="classrx_1_1_camera_base_1a03ee38e01e1ec2cecef8fe34cc4fef6a" kindref="member">getViewInverseMatrix</ref>(<sp/>)</highlight><highlight class="keyword"><sp/>const<sp/></highlight><highlight class="normal">{<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/><ref refid="classrx_1_1_camera_base_1a1e7e0902b700203c7a458701a86b941f" kindref="member">m_viewInverse</ref>;<sp/>}</highlight></codeline>
+<codeline lineno="65"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="67" refid="classrx_1_1_camera_base_1a77571ae5c0604173a1b8a3cd502d394c" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">inline</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>glm::mat4&amp;<sp/><ref refid="classrx_1_1_camera_base_1a77571ae5c0604173a1b8a3cd502d394c" kindref="member">getProjectionInverseMatrix</ref>(<sp/>)</highlight><highlight class="keyword"><sp/>const<sp/></highlight><highlight class="normal">{<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/><ref refid="classrx_1_1_camera_base_1aa5723b73de1620490ca2fafae230fdd4" kindref="member">m_projectionInverse</ref>;<sp/>}</highlight></codeline>
+<codeline lineno="68"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="70"><highlight class="normal"><sp/><sp/><sp/><sp/>RX_API<sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="classrx_1_1_camera_base_1a0ec3d2409530bf8e3068bed69d05d5bf" kindref="member">updateViewMatrix</ref>(<sp/>);</highlight></codeline>
+<codeline lineno="71"><highlight class="normal"></highlight></codeline>
+<codeline lineno="73"><highlight class="normal"><sp/><sp/><sp/><sp/>RX_API<sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="classrx_1_1_camera_base_1a21627f1b60732c3dc566a52116c548c9" kindref="member">updateProjectionMatrix</ref>(<sp/>);</highlight></codeline>
+<codeline lineno="74"><highlight class="normal"></highlight></codeline>
+<codeline lineno="78"><highlight class="normal"><sp/><sp/><sp/><sp/>RX_API<sp/></highlight><highlight class="keyword">virtual</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="classrx_1_1_camera_base_1ae4aaf998c208f3755045bcd7fe350d1d" kindref="member">processMouse</ref>(<sp/></highlight><highlight class="keywordtype">float</highlight><highlight class="normal"><sp/>xOffset,<sp/></highlight><highlight class="keywordtype">float</highlight><highlight class="normal"><sp/>yOffset<sp/>);</highlight></codeline>
+<codeline lineno="79"><highlight class="normal"></highlight></codeline>
+<codeline lineno="80"><highlight class="normal"><sp/><sp/></highlight><highlight class="keyword">protected</highlight><highlight class="normal">:</highlight></codeline>
+<codeline lineno="83"><highlight class="normal"><sp/><sp/><sp/><sp/>RX_API<sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="classrx_1_1_camera_base_1acd1e17feab03fafc301a0564e8cb4950" kindref="member">updateVectors</ref>(<sp/>);</highlight></codeline>
+<codeline lineno="84"><highlight class="normal"></highlight></codeline>
+<codeline lineno="85" refid="classrx_1_1_camera_base_1a925d937289189dbd2be9ab71c554ca3a" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="classrx_1_1_camera_base_1a925d937289189dbd2be9ab71c554ca3a" kindref="member">m_width</ref>;<sp/></highlight></codeline>
+<codeline lineno="86" refid="classrx_1_1_camera_base_1a7056f957a0a40a06cebe3f57454b4756" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="classrx_1_1_camera_base_1a7056f957a0a40a06cebe3f57454b4756" kindref="member">m_height</ref>;<sp/></highlight></codeline>
+<codeline lineno="87"><highlight class="normal"></highlight></codeline>
+<codeline lineno="88" refid="classrx_1_1_camera_base_1abf958c04d4ae15345e0e4d45091cefc9" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>glm::vec3<sp/><ref refid="classrx_1_1_camera_base_1abf958c04d4ae15345e0e4d45091cefc9" kindref="member">m_position</ref>;<sp/></highlight></codeline>
+<codeline lineno="89"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="90" refid="classrx_1_1_camera_base_1aba8ec1bb4e876ea05696f309b6884867" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>glm::mat4<sp/><ref refid="classrx_1_1_camera_base_1aba8ec1bb4e876ea05696f309b6884867" kindref="member">m_view</ref><sp/>=<sp/>glm::mat4(<sp/>1.0f<sp/>);<sp/></highlight></codeline>
+<codeline lineno="91" refid="classrx_1_1_camera_base_1a06e778020450261ba367a011c38f6111" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>glm::mat4<sp/><ref refid="classrx_1_1_camera_base_1a06e778020450261ba367a011c38f6111" kindref="member">m_projection</ref><sp/>=<sp/>glm::mat4(<sp/>1.0f<sp/>);<sp/></highlight></codeline>
+<codeline lineno="92"><highlight class="normal"></highlight></codeline>
+<codeline lineno="93" refid="classrx_1_1_camera_base_1a1e7e0902b700203c7a458701a86b941f" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>glm::mat4<sp/><ref refid="classrx_1_1_camera_base_1a1e7e0902b700203c7a458701a86b941f" kindref="member">m_viewInverse</ref><sp/>=<sp/>glm::mat4(<sp/>1.0f<sp/>);<sp/></highlight></codeline>
+<codeline lineno="94" refid="classrx_1_1_camera_base_1aa5723b73de1620490ca2fafae230fdd4" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>glm::mat4<sp/><ref refid="classrx_1_1_camera_base_1aa5723b73de1620490ca2fafae230fdd4" kindref="member">m_projectionInverse</ref><sp/>=<sp/>glm::mat4(<sp/>1.0f<sp/>);<sp/></highlight></codeline>
+<codeline lineno="95"><highlight class="normal"></highlight></codeline>
+<codeline lineno="96" refid="classrx_1_1_camera_base_1ad4501972649a681c6efdd73657cef1f1" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>glm::vec3<sp/><ref refid="classrx_1_1_camera_base_1ad4501972649a681c6efdd73657cef1f1" kindref="member">m_worldUp</ref><sp/>=<sp/>{<sp/>0.0f,<sp/>1.0f,<sp/>0.0f<sp/>};<sp/></highlight></codeline>
+<codeline lineno="97" refid="classrx_1_1_camera_base_1ab118b51be01f24a1fa82d7e60103d95c" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>glm::vec3<sp/><ref refid="classrx_1_1_camera_base_1ab118b51be01f24a1fa82d7e60103d95c" kindref="member">m_up</ref><sp/>=<sp/>{<sp/>};<sp/></highlight></codeline>
+<codeline lineno="98" refid="classrx_1_1_camera_base_1aa8265a407c671d06ec13d13c8a1a4f45" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>glm::vec3<sp/><ref refid="classrx_1_1_camera_base_1aa8265a407c671d06ec13d13c8a1a4f45" kindref="member">m_right</ref><sp/>=<sp/>{<sp/>};<sp/></highlight></codeline>
+<codeline lineno="99" refid="classrx_1_1_camera_base_1aa6943d07871eabef78ad1515eea11485" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>glm::vec3<sp/><ref refid="classrx_1_1_camera_base_1aa6943d07871eabef78ad1515eea11485" kindref="member">m_front</ref><sp/>=<sp/>{<sp/>};<sp/></highlight></codeline>
+<codeline lineno="100"><highlight class="normal"></highlight></codeline>
+<codeline lineno="101" refid="classrx_1_1_camera_base_1a1a0753114dc3143ea5e877ceaf066f77" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">float</highlight><highlight class="normal"><sp/><ref refid="classrx_1_1_camera_base_1a1a0753114dc3143ea5e877ceaf066f77" kindref="member">m_yaw</ref><sp/>=<sp/>-90.0f;<sp/></highlight></codeline>
+<codeline lineno="102" refid="classrx_1_1_camera_base_1aa73bd0ec1fef362569d19049b6d1e88b" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">float</highlight><highlight class="normal"><sp/><ref refid="classrx_1_1_camera_base_1aa73bd0ec1fef362569d19049b6d1e88b" kindref="member">m_pitch</ref><sp/>=<sp/>0.0f;<sp/></highlight></codeline>
+<codeline lineno="103" refid="classrx_1_1_camera_base_1a0e61267ea24b0230dfb44d41a52c7bef" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">float</highlight><highlight class="normal"><sp/><ref refid="classrx_1_1_camera_base_1a0e61267ea24b0230dfb44d41a52c7bef" kindref="member">m_sensitivity</ref><sp/>=<sp/>0.06f;<sp/></highlight></codeline>
+<codeline lineno="104" refid="classrx_1_1_camera_base_1a9d3a577b26dcdd6399b4fbb9c5346afd" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">float</highlight><highlight class="normal"><sp/><ref refid="classrx_1_1_camera_base_1a9d3a577b26dcdd6399b4fbb9c5346afd" kindref="member">m_fov</ref><sp/>=<sp/>45.0f;<sp/></highlight></codeline>
+<codeline lineno="105"><highlight class="normal"><sp/><sp/>};</highlight></codeline>
+<codeline lineno="106"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="107"><highlight class="normal"></highlight></codeline>
+<codeline lineno="108"><highlight class="normal"></highlight><highlight class="preprocessor">#endif<sp/>//<sp/>CAMERA_BASE_HPP</highlight></codeline>
+    </programlisting>
+    <location file="C:/Repos/renderer/src/base/CameraBase.hpp"/>
+  </compounddef>
+</doxygen>

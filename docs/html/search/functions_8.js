@@ -7,5 +7,6 @@ var searchData=
   ['instance_689',['Instance',['../classrx_1_1_instance.html#a4d30588f605365dacf22ef1cab83f66f',1,'rx::Instance::Instance()=default'],['../classrx_1_1_instance.html#a546a229b44172922f856c7d302ca659f',1,'rx::Instance::Instance(const std::vector&lt; const char * &gt; &amp;layers, std::vector&lt; const char * &gt; &amp;extensions, bool initialize=true)']]],
   ['instancetovkgeometryinstancekhr_690',['instanceToVkGeometryInstanceKHR',['../classrx_1_1_ray_tracing_builder.html#a80b540c07995e78feb14f9c8db5c141e',1,'rx::RayTracingBuilder']]],
   ['iscomplete_691',['isComplete',['../classrx_1_1_queues.html#a6de73934bd1ec9973de8caddfe897077',1,'rx::Queues']]],
-  ['isloaded_692',['isLoaded',['../classrx_1_1_model.html#a63a87310c43bf3455e8e80df561685f4',1,'rx::Model']]]
+  ['isloaded_692',['isLoaded',['../classrx_1_1_model.html#a63a87310c43bf3455e8e80df561685f4',1,'rx::Model']]],
+  ['isrunning_693',['isRunning',['../classrx_1_1_renderer.html#a7dbc4370868c44c799be054830a9453e',1,'rx::Renderer']]]
 ];

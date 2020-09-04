@@ -1,0 +1,674 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.20" xml:lang="en-US">
+  <compounddef id="classrx_1_1_camera_base" kind="class" language="C++" prot="public">
+    <compoundname>rx::CameraBase</compoundname>
+    <derivedcompoundref refid="class_custom_camera" prot="public" virt="non-virtual">CustomCamera</derivedcompoundref>
+    <includes refid="_camera_base_8hpp" local="no">CameraBase.hpp</includes>
+      <sectiondef kind="protected-attrib">
+      <memberdef kind="variable" id="classrx_1_1_camera_base_1a925d937289189dbd2be9ab71c554ca3a" prot="protected" static="no" mutable="no">
+        <type>int</type>
+        <definition>int rx::CameraBase::m_width</definition>
+        <argsstring></argsstring>
+        <name>m_width</name>
+        <briefdescription>
+<para>The width of the viewport. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Repos/renderer/src/base/CameraBase.hpp" line="85" column="9" bodyfile="C:/Repos/renderer/src/base/CameraBase.hpp" bodystart="85" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classrx_1_1_camera_base_1a7056f957a0a40a06cebe3f57454b4756" prot="protected" static="no" mutable="no">
+        <type>int</type>
+        <definition>int rx::CameraBase::m_height</definition>
+        <argsstring></argsstring>
+        <name>m_height</name>
+        <briefdescription>
+<para>The height of the viewport. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Repos/renderer/src/base/CameraBase.hpp" line="86" column="9" bodyfile="C:/Repos/renderer/src/base/CameraBase.hpp" bodystart="86" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classrx_1_1_camera_base_1abf958c04d4ae15345e0e4d45091cefc9" prot="protected" static="no" mutable="no">
+        <type>glm::vec3</type>
+        <definition>glm::vec3 rx::CameraBase::m_position</definition>
+        <argsstring></argsstring>
+        <name>m_position</name>
+        <briefdescription>
+<para>The camera&apos;s position. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Repos/renderer/src/base/CameraBase.hpp" line="88" column="15" bodyfile="C:/Repos/renderer/src/base/CameraBase.hpp" bodystart="88" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classrx_1_1_camera_base_1aba8ec1bb4e876ea05696f309b6884867" prot="protected" static="no" mutable="no">
+        <type>glm::mat4</type>
+        <definition>glm::mat4 rx::CameraBase::m_view</definition>
+        <argsstring></argsstring>
+        <name>m_view</name>
+        <initializer>= glm::mat4( 1.0f )</initializer>
+        <briefdescription>
+<para>The view matrix. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Repos/renderer/src/base/CameraBase.hpp" line="90" column="15" bodyfile="C:/Repos/renderer/src/base/CameraBase.hpp" bodystart="90" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classrx_1_1_camera_base_1a06e778020450261ba367a011c38f6111" prot="protected" static="no" mutable="no">
+        <type>glm::mat4</type>
+        <definition>glm::mat4 rx::CameraBase::m_projection</definition>
+        <argsstring></argsstring>
+        <name>m_projection</name>
+        <initializer>= glm::mat4( 1.0f )</initializer>
+        <briefdescription>
+<para>The projection matrix. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Repos/renderer/src/base/CameraBase.hpp" line="91" column="15" bodyfile="C:/Repos/renderer/src/base/CameraBase.hpp" bodystart="91" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classrx_1_1_camera_base_1a1e7e0902b700203c7a458701a86b941f" prot="protected" static="no" mutable="no">
+        <type>glm::mat4</type>
+        <definition>glm::mat4 rx::CameraBase::m_viewInverse</definition>
+        <argsstring></argsstring>
+        <name>m_viewInverse</name>
+        <initializer>= glm::mat4( 1.0f )</initializer>
+        <briefdescription>
+<para>The view matrix inversed. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Repos/renderer/src/base/CameraBase.hpp" line="93" column="15" bodyfile="C:/Repos/renderer/src/base/CameraBase.hpp" bodystart="93" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classrx_1_1_camera_base_1aa5723b73de1620490ca2fafae230fdd4" prot="protected" static="no" mutable="no">
+        <type>glm::mat4</type>
+        <definition>glm::mat4 rx::CameraBase::m_projectionInverse</definition>
+        <argsstring></argsstring>
+        <name>m_projectionInverse</name>
+        <initializer>= glm::mat4( 1.0f )</initializer>
+        <briefdescription>
+<para>The projection matrix inversed. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Repos/renderer/src/base/CameraBase.hpp" line="94" column="15" bodyfile="C:/Repos/renderer/src/base/CameraBase.hpp" bodystart="94" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classrx_1_1_camera_base_1ad4501972649a681c6efdd73657cef1f1" prot="protected" static="no" mutable="no">
+        <type>glm::vec3</type>
+        <definition>glm::vec3 rx::CameraBase::m_worldUp</definition>
+        <argsstring></argsstring>
+        <name>m_worldUp</name>
+        <initializer>= { 0.0f, 1.0f, 0.0f }</initializer>
+        <briefdescription>
+<para>The world up vector. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Repos/renderer/src/base/CameraBase.hpp" line="96" column="15" bodyfile="C:/Repos/renderer/src/base/CameraBase.hpp" bodystart="96" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classrx_1_1_camera_base_1ab118b51be01f24a1fa82d7e60103d95c" prot="protected" static="no" mutable="no">
+        <type>glm::vec3</type>
+        <definition>glm::vec3 rx::CameraBase::m_up</definition>
+        <argsstring></argsstring>
+        <name>m_up</name>
+        <initializer>= { }</initializer>
+        <briefdescription>
+<para>The local up vector. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Repos/renderer/src/base/CameraBase.hpp" line="97" column="15" bodyfile="C:/Repos/renderer/src/base/CameraBase.hpp" bodystart="97" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classrx_1_1_camera_base_1aa8265a407c671d06ec13d13c8a1a4f45" prot="protected" static="no" mutable="no">
+        <type>glm::vec3</type>
+        <definition>glm::vec3 rx::CameraBase::m_right</definition>
+        <argsstring></argsstring>
+        <name>m_right</name>
+        <initializer>= { }</initializer>
+        <briefdescription>
+<para>The local right vector. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Repos/renderer/src/base/CameraBase.hpp" line="98" column="15" bodyfile="C:/Repos/renderer/src/base/CameraBase.hpp" bodystart="98" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classrx_1_1_camera_base_1aa6943d07871eabef78ad1515eea11485" prot="protected" static="no" mutable="no">
+        <type>glm::vec3</type>
+        <definition>glm::vec3 rx::CameraBase::m_front</definition>
+        <argsstring></argsstring>
+        <name>m_front</name>
+        <initializer>= { }</initializer>
+        <briefdescription>
+<para>The viewing direction. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Repos/renderer/src/base/CameraBase.hpp" line="99" column="15" bodyfile="C:/Repos/renderer/src/base/CameraBase.hpp" bodystart="99" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classrx_1_1_camera_base_1a1a0753114dc3143ea5e877ceaf066f77" prot="protected" static="no" mutable="no">
+        <type>float</type>
+        <definition>float rx::CameraBase::m_yaw</definition>
+        <argsstring></argsstring>
+        <name>m_yaw</name>
+        <initializer>= -90.0f</initializer>
+        <briefdescription>
+<para>The yaw (left and right). </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Repos/renderer/src/base/CameraBase.hpp" line="101" column="11" bodyfile="C:/Repos/renderer/src/base/CameraBase.hpp" bodystart="101" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classrx_1_1_camera_base_1aa73bd0ec1fef362569d19049b6d1e88b" prot="protected" static="no" mutable="no">
+        <type>float</type>
+        <definition>float rx::CameraBase::m_pitch</definition>
+        <argsstring></argsstring>
+        <name>m_pitch</name>
+        <initializer>= 0.0f</initializer>
+        <briefdescription>
+<para>The pitch (down and up). </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Repos/renderer/src/base/CameraBase.hpp" line="102" column="11" bodyfile="C:/Repos/renderer/src/base/CameraBase.hpp" bodystart="102" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classrx_1_1_camera_base_1a0e61267ea24b0230dfb44d41a52c7bef" prot="protected" static="no" mutable="no">
+        <type>float</type>
+        <definition>float rx::CameraBase::m_sensitivity</definition>
+        <argsstring></argsstring>
+        <name>m_sensitivity</name>
+        <initializer>= 0.06f</initializer>
+        <briefdescription>
+<para>The mouse sensitivity. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Repos/renderer/src/base/CameraBase.hpp" line="103" column="11" bodyfile="C:/Repos/renderer/src/base/CameraBase.hpp" bodystart="103" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classrx_1_1_camera_base_1a9d3a577b26dcdd6399b4fbb9c5346afd" prot="protected" static="no" mutable="no">
+        <type>float</type>
+        <definition>float rx::CameraBase::m_fov</definition>
+        <argsstring></argsstring>
+        <name>m_fov</name>
+        <initializer>= 45.0f</initializer>
+        <briefdescription>
+<para>The field of view. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Repos/renderer/src/base/CameraBase.hpp" line="104" column="11" bodyfile="C:/Repos/renderer/src/base/CameraBase.hpp" bodystart="104" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="classrx_1_1_camera_base_1a75a962cdaaa75373223ab26b094a8b6a" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>RX_API</type>
+        <definition>rx::CameraBase::CameraBase</definition>
+        <argsstring>(int width, int height, const glm::vec3 &amp;position={ 0.0f, 0.0f, 3.0f })</argsstring>
+        <name>CameraBase</name>
+        <param>
+          <type>int</type>
+          <declname>width</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>height</declname>
+        </param>
+        <param>
+          <type>const glm::vec3 &amp;</type>
+          <declname>position</declname>
+          <defval>{ 0.0f, 0.0f, 3.0f }</defval>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>width</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The width of the viewport. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>height</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The height of the viewport. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>position</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The position of your camera. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Repos/renderer/src/base/CameraBase.hpp" line="26" column="12" bodyfile="C:/Repos/renderer/src/base/CameraBase.cpp" bodystart="5" bodyend="12"/>
+      </memberdef>
+      <memberdef kind="function" id="classrx_1_1_camera_base_1aa409b048e207d82f595cb2f4a379a72a" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>RX_API</type>
+        <definition>RX_API rx::CameraBase::~CameraBase</definition>
+        <argsstring>()=default</argsstring>
+        <name>~CameraBase</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Repos/renderer/src/base/CameraBase.hpp" line="28" column="12"/>
+      </memberdef>
+      <memberdef kind="function" id="classrx_1_1_camera_base_1a9fc9ce55c122c04ac14851c956be0384" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+        <type>void</type>
+        <definition>virtual void rx::CameraBase::update</definition>
+        <argsstring>()</argsstring>
+        <name>update</name>
+        <reimplementedby refid="class_custom_camera_1a3e4897f244ed296c087ca006393492ef">update</reimplementedby>
+        <briefdescription>
+<para>Is used to update camera vectors etc. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>The client has to implement this function to work like intended. <simplesect kind="note"><para>The function will be called every tick. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Repos/renderer/src/base/CameraBase.hpp" line="34" column="18" bodyfile="C:/Repos/renderer/src/base/CameraBase.hpp" bodystart="34" bodyend="34"/>
+      </memberdef>
+      <memberdef kind="function" id="classrx_1_1_camera_base_1a78d9c8bb9db37123d14038fbfa29be73" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>RX_API const glm::vec3 &amp;</type>
+        <definition>RX_API const glm::vec3&amp; rx::CameraBase::getPosition</definition>
+        <argsstring>() const</argsstring>
+        <name>getPosition</name>
+        <briefdescription>
+<para>Returns the camera&apos;s current position. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>The camera&apos;s position. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Repos/renderer/src/base/CameraBase.hpp" line="38" column="35" bodyfile="C:/Repos/renderer/src/base/CameraBase.hpp" bodystart="38" bodyend="38"/>
+      </memberdef>
+      <memberdef kind="function" id="classrx_1_1_camera_base_1a857f41e97a9ddc190292a70d474f5eac" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>RX_API void</type>
+        <definition>void rx::CameraBase::setPosition</definition>
+        <argsstring>(const glm::vec3 &amp;position)</argsstring>
+        <name>setPosition</name>
+        <param>
+          <type>const glm::vec3 &amp;</type>
+          <declname>position</declname>
+        </param>
+        <briefdescription>
+<para>Is used to set the camera&apos;s position. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>position</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The new camera position. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Repos/renderer/src/base/CameraBase.hpp" line="42" column="17" bodyfile="C:/Repos/renderer/src/base/CameraBase.cpp" bodystart="14" bodyend="19"/>
+      </memberdef>
+      <memberdef kind="function" id="classrx_1_1_camera_base_1aca83d9f192c98b9cabc278a5c9cc7678" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>RX_API void</type>
+        <definition>void rx::CameraBase::setSize</definition>
+        <argsstring>(int width, int height)</argsstring>
+        <name>setSize</name>
+        <param>
+          <type>int</type>
+          <declname>width</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>height</declname>
+        </param>
+        <briefdescription>
+<para>Is used to set a size for the camera that fits the viewport dimensions. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>width</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The width of the viewport. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>height</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The height of the viewport. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Repos/renderer/src/base/CameraBase.hpp" line="47" column="17" bodyfile="C:/Repos/renderer/src/base/CameraBase.cpp" bodystart="21" bodyend="27"/>
+      </memberdef>
+      <memberdef kind="function" id="classrx_1_1_camera_base_1a8754a5bfa41b65b4388d2eb6a629cf13" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>RX_API void</type>
+        <definition>void rx::CameraBase::setFov</definition>
+        <argsstring>(float fov)</argsstring>
+        <name>setFov</name>
+        <param>
+          <type>float</type>
+          <declname>fov</declname>
+        </param>
+        <briefdescription>
+<para>Is used to set the camera&apos;s field of view. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>fov</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The new field of view. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Repos/renderer/src/base/CameraBase.hpp" line="51" column="17" bodyfile="C:/Repos/renderer/src/base/CameraBase.cpp" bodystart="29" bodyend="34"/>
+      </memberdef>
+      <memberdef kind="function" id="classrx_1_1_camera_base_1a0004c71206e7d392d8c815e053a8c397" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>RX_API void</type>
+        <definition>void rx::CameraBase::setSensitivity</definition>
+        <argsstring>(float sensitivity)</argsstring>
+        <name>setSensitivity</name>
+        <param>
+          <type>float</type>
+          <declname>sensitivity</declname>
+        </param>
+        <briefdescription>
+<para>Is used to set the mouse sensitivity. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>sensitivity</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The new mouse sensitivity. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Repos/renderer/src/base/CameraBase.hpp" line="55" column="17" bodyfile="C:/Repos/renderer/src/base/CameraBase.cpp" bodystart="36" bodyend="39"/>
+      </memberdef>
+      <memberdef kind="function" id="classrx_1_1_camera_base_1ae9f3091659e2687377b5a23ab7e4c54c" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>const glm::mat4 &amp;</type>
+        <definition>const glm::mat4&amp; rx::CameraBase::getViewMatrix</definition>
+        <argsstring>() const</argsstring>
+        <name>getViewMatrix</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>The view matrix. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Repos/renderer/src/base/CameraBase.hpp" line="58" column="28" bodyfile="C:/Repos/renderer/src/base/CameraBase.hpp" bodystart="58" bodyend="58"/>
+      </memberdef>
+      <memberdef kind="function" id="classrx_1_1_camera_base_1a76f6c010fe4a56652776ce8ceeaa625e" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>const glm::mat4 &amp;</type>
+        <definition>const glm::mat4&amp; rx::CameraBase::getProjectionMatrix</definition>
+        <argsstring>() const</argsstring>
+        <name>getProjectionMatrix</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>The projection matrix. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Repos/renderer/src/base/CameraBase.hpp" line="61" column="28" bodyfile="C:/Repos/renderer/src/base/CameraBase.hpp" bodystart="61" bodyend="61"/>
+      </memberdef>
+      <memberdef kind="function" id="classrx_1_1_camera_base_1a03ee38e01e1ec2cecef8fe34cc4fef6a" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>const glm::mat4 &amp;</type>
+        <definition>const glm::mat4&amp; rx::CameraBase::getViewInverseMatrix</definition>
+        <argsstring>() const</argsstring>
+        <name>getViewInverseMatrix</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>The view matrix inversed. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Repos/renderer/src/base/CameraBase.hpp" line="64" column="28" bodyfile="C:/Repos/renderer/src/base/CameraBase.hpp" bodystart="64" bodyend="64"/>
+      </memberdef>
+      <memberdef kind="function" id="classrx_1_1_camera_base_1a77571ae5c0604173a1b8a3cd502d394c" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>const glm::mat4 &amp;</type>
+        <definition>const glm::mat4&amp; rx::CameraBase::getProjectionInverseMatrix</definition>
+        <argsstring>() const</argsstring>
+        <name>getProjectionInverseMatrix</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>The projection matrix inversed. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Repos/renderer/src/base/CameraBase.hpp" line="67" column="28" bodyfile="C:/Repos/renderer/src/base/CameraBase.hpp" bodystart="67" bodyend="67"/>
+      </memberdef>
+      <memberdef kind="function" id="classrx_1_1_camera_base_1a0ec3d2409530bf8e3068bed69d05d5bf" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>RX_API void</type>
+        <definition>void rx::CameraBase::updateViewMatrix</definition>
+        <argsstring>()</argsstring>
+        <name>updateViewMatrix</name>
+        <briefdescription>
+<para>Re-calculates the camera&apos;s view matrix as well as the inversed view matrix. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Repos/renderer/src/base/CameraBase.hpp" line="70" column="17" bodyfile="C:/Repos/renderer/src/base/CameraBase.cpp" bodystart="41" bodyend="46"/>
+      </memberdef>
+      <memberdef kind="function" id="classrx_1_1_camera_base_1a21627f1b60732c3dc566a52116c548c9" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>RX_API void</type>
+        <definition>void rx::CameraBase::updateProjectionMatrix</definition>
+        <argsstring>()</argsstring>
+        <name>updateProjectionMatrix</name>
+        <briefdescription>
+<para>Re-calculates the camera&apos;s projection matrix as well as the inversed projection matrix. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Repos/renderer/src/base/CameraBase.hpp" line="73" column="17" bodyfile="C:/Repos/renderer/src/base/CameraBase.cpp" bodystart="48" bodyend="54"/>
+      </memberdef>
+      <memberdef kind="function" id="classrx_1_1_camera_base_1ae4aaf998c208f3755045bcd7fe350d1d" prot="public" static="no" const="no" explicit="no" inline="no" virt="virtual">
+        <type>RX_API void</type>
+        <definition>void rx::CameraBase::processMouse</definition>
+        <argsstring>(float xOffset, float yOffset)</argsstring>
+        <name>processMouse</name>
+        <param>
+          <type>float</type>
+          <declname>xOffset</declname>
+        </param>
+        <param>
+          <type>float</type>
+          <declname>yOffset</declname>
+        </param>
+        <briefdescription>
+<para>Processes mouse input (default implementation). </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>xOffset</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The difference of the offset on the x-axis and the previous offset. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>yOffset</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The difference of the offset on the y-axis and the previous offset. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Repos/renderer/src/base/CameraBase.hpp" line="78" column="25" bodyfile="C:/Repos/renderer/src/base/CameraBase.cpp" bodystart="56" bodyend="77"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="protected-func">
+      <memberdef kind="function" id="classrx_1_1_camera_base_1acd1e17feab03fafc301a0564e8cb4950" prot="protected" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>RX_API void</type>
+        <definition>void rx::CameraBase::updateVectors</definition>
+        <argsstring>()</argsstring>
+        <name>updateVectors</name>
+        <briefdescription>
+<para>Updates the camera vectors. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="note"><para>Only needs to be called if mouse was moved. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Repos/renderer/src/base/CameraBase.hpp" line="83" column="17" bodyfile="C:/Repos/renderer/src/base/CameraBase.cpp" bodystart="79" bodyend="89"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+<para>A minimal camera implementation. </para>
+    </briefdescription>
+    <detaileddescription>
+<para>This class acts like an interface for the client by providing the most important camera-related matrices as well as the camera&apos;s position, which are required by the rendering API. </para>
+<sect3 id="classrx_1_1_camera_base_1autotoc_md1">
+<title>Example</title>
+<para><programlisting filename=".cpp"><codeline><highlight class="comment">//<sp/>This<sp/>example<sp/>requires<sp/>the<sp/>client<sp/>to<sp/>implement<sp/>a<sp/>custom<sp/>camera<sp/>class<sp/>that<sp/>inherits<sp/>from<sp/>CameraBase.</highlight><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/>myCam<sp/>=<sp/>std::make_shared&lt;CustomCamera&gt;(<sp/>600,<sp/>500,<sp/>glm::vec3{<sp/>0.0f,<sp/>0.0f,<sp/>3.0f<sp/>}<sp/>);</highlight></codeline>
+</programlisting></para>
+<para><simplesect kind="note"><para>The client has to handle keyboard related camera changes inside <ref refid="classrx_1_1_camera_base_1a9fc9ce55c122c04ac14851c956be0384" kindref="member">update()</ref>. </para>
+</simplesect>
+<simplesect kind="warning"><para>Do not forget to re-calculate the view or projection matrix if the camera or the window have changed. </para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="classrx_1_1_camera_base_1a0ec3d2409530bf8e3068bed69d05d5bf" kindref="member">updateViewMatrix()</ref>, <ref refid="classrx_1_1_camera_base_1a21627f1b60732c3dc566a52116c548c9" kindref="member">updateProjectionMatrix()</ref> </para>
+</simplesect>
+</para>
+</sect3>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="2">
+        <label>CustomCamera</label>
+        <link refid="class_custom_camera"/>
+        <childnode refid="1" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="1">
+        <label>rx::CameraBase</label>
+        <link refid="classrx_1_1_camera_base"/>
+      </node>
+    </inheritancegraph>
+    <location file="C:/Repos/renderer/src/base/CameraBase.hpp" line="20" column="3" bodyfile="C:/Repos/renderer/src/base/CameraBase.hpp" bodystart="21" bodyend="105"/>
+    <listofallmembers>
+      <member refid="classrx_1_1_camera_base_1a75a962cdaaa75373223ab26b094a8b6a" prot="public" virt="non-virtual"><scope>rx::CameraBase</scope><name>CameraBase</name></member>
+      <member refid="classrx_1_1_camera_base_1a78d9c8bb9db37123d14038fbfa29be73" prot="public" virt="non-virtual"><scope>rx::CameraBase</scope><name>getPosition</name></member>
+      <member refid="classrx_1_1_camera_base_1a77571ae5c0604173a1b8a3cd502d394c" prot="public" virt="non-virtual"><scope>rx::CameraBase</scope><name>getProjectionInverseMatrix</name></member>
+      <member refid="classrx_1_1_camera_base_1a76f6c010fe4a56652776ce8ceeaa625e" prot="public" virt="non-virtual"><scope>rx::CameraBase</scope><name>getProjectionMatrix</name></member>
+      <member refid="classrx_1_1_camera_base_1a03ee38e01e1ec2cecef8fe34cc4fef6a" prot="public" virt="non-virtual"><scope>rx::CameraBase</scope><name>getViewInverseMatrix</name></member>
+      <member refid="classrx_1_1_camera_base_1ae9f3091659e2687377b5a23ab7e4c54c" prot="public" virt="non-virtual"><scope>rx::CameraBase</scope><name>getViewMatrix</name></member>
+      <member refid="classrx_1_1_camera_base_1a9d3a577b26dcdd6399b4fbb9c5346afd" prot="protected" virt="non-virtual"><scope>rx::CameraBase</scope><name>m_fov</name></member>
+      <member refid="classrx_1_1_camera_base_1aa6943d07871eabef78ad1515eea11485" prot="protected" virt="non-virtual"><scope>rx::CameraBase</scope><name>m_front</name></member>
+      <member refid="classrx_1_1_camera_base_1a7056f957a0a40a06cebe3f57454b4756" prot="protected" virt="non-virtual"><scope>rx::CameraBase</scope><name>m_height</name></member>
+      <member refid="classrx_1_1_camera_base_1aa73bd0ec1fef362569d19049b6d1e88b" prot="protected" virt="non-virtual"><scope>rx::CameraBase</scope><name>m_pitch</name></member>
+      <member refid="classrx_1_1_camera_base_1abf958c04d4ae15345e0e4d45091cefc9" prot="protected" virt="non-virtual"><scope>rx::CameraBase</scope><name>m_position</name></member>
+      <member refid="classrx_1_1_camera_base_1a06e778020450261ba367a011c38f6111" prot="protected" virt="non-virtual"><scope>rx::CameraBase</scope><name>m_projection</name></member>
+      <member refid="classrx_1_1_camera_base_1aa5723b73de1620490ca2fafae230fdd4" prot="protected" virt="non-virtual"><scope>rx::CameraBase</scope><name>m_projectionInverse</name></member>
+      <member refid="classrx_1_1_camera_base_1aa8265a407c671d06ec13d13c8a1a4f45" prot="protected" virt="non-virtual"><scope>rx::CameraBase</scope><name>m_right</name></member>
+      <member refid="classrx_1_1_camera_base_1a0e61267ea24b0230dfb44d41a52c7bef" prot="protected" virt="non-virtual"><scope>rx::CameraBase</scope><name>m_sensitivity</name></member>
+      <member refid="classrx_1_1_camera_base_1ab118b51be01f24a1fa82d7e60103d95c" prot="protected" virt="non-virtual"><scope>rx::CameraBase</scope><name>m_up</name></member>
+      <member refid="classrx_1_1_camera_base_1aba8ec1bb4e876ea05696f309b6884867" prot="protected" virt="non-virtual"><scope>rx::CameraBase</scope><name>m_view</name></member>
+      <member refid="classrx_1_1_camera_base_1a1e7e0902b700203c7a458701a86b941f" prot="protected" virt="non-virtual"><scope>rx::CameraBase</scope><name>m_viewInverse</name></member>
+      <member refid="classrx_1_1_camera_base_1a925d937289189dbd2be9ab71c554ca3a" prot="protected" virt="non-virtual"><scope>rx::CameraBase</scope><name>m_width</name></member>
+      <member refid="classrx_1_1_camera_base_1ad4501972649a681c6efdd73657cef1f1" prot="protected" virt="non-virtual"><scope>rx::CameraBase</scope><name>m_worldUp</name></member>
+      <member refid="classrx_1_1_camera_base_1a1a0753114dc3143ea5e877ceaf066f77" prot="protected" virt="non-virtual"><scope>rx::CameraBase</scope><name>m_yaw</name></member>
+      <member refid="classrx_1_1_camera_base_1ae4aaf998c208f3755045bcd7fe350d1d" prot="public" virt="virtual"><scope>rx::CameraBase</scope><name>processMouse</name></member>
+      <member refid="classrx_1_1_camera_base_1a8754a5bfa41b65b4388d2eb6a629cf13" prot="public" virt="non-virtual"><scope>rx::CameraBase</scope><name>setFov</name></member>
+      <member refid="classrx_1_1_camera_base_1a857f41e97a9ddc190292a70d474f5eac" prot="public" virt="non-virtual"><scope>rx::CameraBase</scope><name>setPosition</name></member>
+      <member refid="classrx_1_1_camera_base_1a0004c71206e7d392d8c815e053a8c397" prot="public" virt="non-virtual"><scope>rx::CameraBase</scope><name>setSensitivity</name></member>
+      <member refid="classrx_1_1_camera_base_1aca83d9f192c98b9cabc278a5c9cc7678" prot="public" virt="non-virtual"><scope>rx::CameraBase</scope><name>setSize</name></member>
+      <member refid="classrx_1_1_camera_base_1a9fc9ce55c122c04ac14851c956be0384" prot="public" virt="virtual"><scope>rx::CameraBase</scope><name>update</name></member>
+      <member refid="classrx_1_1_camera_base_1a21627f1b60732c3dc566a52116c548c9" prot="public" virt="non-virtual"><scope>rx::CameraBase</scope><name>updateProjectionMatrix</name></member>
+      <member refid="classrx_1_1_camera_base_1acd1e17feab03fafc301a0564e8cb4950" prot="protected" virt="non-virtual"><scope>rx::CameraBase</scope><name>updateVectors</name></member>
+      <member refid="classrx_1_1_camera_base_1a0ec3d2409530bf8e3068bed69d05d5bf" prot="public" virt="non-virtual"><scope>rx::CameraBase</scope><name>updateViewMatrix</name></member>
+      <member refid="classrx_1_1_camera_base_1aa409b048e207d82f595cb2f4a379a72a" prot="public" virt="non-virtual"><scope>rx::CameraBase</scope><name>~CameraBase</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

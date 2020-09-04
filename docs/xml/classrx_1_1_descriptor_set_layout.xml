@@ -1,0 +1,184 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.20" xml:lang="en-US">
+  <compounddef id="classrx_1_1_descriptor_set_layout" kind="class" language="C++" prot="public">
+    <compoundname>rx::DescriptorSetLayout</compoundname>
+    <includes refid="_descriptor_set_layout_8hpp" local="no">DescriptorSetLayout.hpp</includes>
+      <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="classrx_1_1_descriptor_set_layout_1aae353c6b570ab3bdf97fb00a7e99cd47" prot="private" static="no" mutable="no">
+        <type>vk::DescriptorSetLayout</type>
+        <definition>vk::DescriptorSetLayout rx::DescriptorSetLayout::m_layout</definition>
+        <argsstring></argsstring>
+        <name>m_layout</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Repos/renderer/src/api/descriptors/DescriptorSetLayout.hpp" line="25" column="29" bodyfile="C:/Repos/renderer/src/api/descriptors/DescriptorSetLayout.hpp" bodystart="25" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classrx_1_1_descriptor_set_layout_1a67f1cf642f2e1aa0202b69793ed5a1ca" prot="private" static="no" mutable="no">
+        <type>std::vector&lt; vk::DescriptorSetLayoutBinding &gt;</type>
+        <definition>std::vector&lt;vk::DescriptorSetLayoutBinding&gt; rx::DescriptorSetLayout::m_bindings</definition>
+        <argsstring></argsstring>
+        <name>m_bindings</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Repos/renderer/src/api/descriptors/DescriptorSetLayout.hpp" line="27" column="17" bodyfile="C:/Repos/renderer/src/api/descriptors/DescriptorSetLayout.hpp" bodystart="27" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="classrx_1_1_descriptor_set_layout_1a96128b5f660be7e49336c4d3b8d2a8e2" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>rx::DescriptorSetLayout::~DescriptorSetLayout</definition>
+        <argsstring>()</argsstring>
+        <name>~DescriptorSetLayout</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Repos/renderer/src/api/descriptors/DescriptorSetLayout.hpp" line="11" column="5" bodyfile="C:/Repos/renderer/src/api/descriptors/DescriptorSetLayout.cpp" bodystart="6" bodyend="10"/>
+      </memberdef>
+      <memberdef kind="function" id="classrx_1_1_descriptor_set_layout_1a27fc67bbfd645e2bfd33f59fab2784c3" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>const vk::DescriptorSetLayout</type>
+        <definition>const vk::DescriptorSetLayout rx::DescriptorSetLayout::get</definition>
+        <argsstring>() const</argsstring>
+        <name>get</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Repos/renderer/src/api/descriptors/DescriptorSetLayout.hpp" line="13" column="42" bodyfile="C:/Repos/renderer/src/api/descriptors/DescriptorSetLayout.hpp" bodystart="13" bodyend="13"/>
+      </memberdef>
+      <memberdef kind="function" id="classrx_1_1_descriptor_set_layout_1a74cd99bfff7a1434a2925775237d6b4c" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>const std::vector&lt; vk::DescriptorSetLayoutBinding &gt; &amp;</type>
+        <definition>const std::vector&lt;vk::DescriptorSetLayoutBinding&gt;&amp; rx::DescriptorSetLayout::getBindings</definition>
+        <argsstring>() const</argsstring>
+        <name>getBindings</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Repos/renderer/src/api/descriptors/DescriptorSetLayout.hpp" line="14" column="30" bodyfile="C:/Repos/renderer/src/api/descriptors/DescriptorSetLayout.hpp" bodystart="14" bodyend="14"/>
+      </memberdef>
+      <memberdef kind="function" id="classrx_1_1_descriptor_set_layout_1a2233289a8bdb05e57c16c748b950225b" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void rx::DescriptorSetLayout::addBinding</definition>
+        <argsstring>(const vk::DescriptorSetLayoutBinding &amp;binding)</argsstring>
+        <name>addBinding</name>
+        <param>
+          <type>const vk::DescriptorSetLayoutBinding &amp;</type>
+          <declname>binding</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Repos/renderer/src/api/descriptors/DescriptorSetLayout.hpp" line="16" column="10" bodyfile="C:/Repos/renderer/src/api/descriptors/DescriptorSetLayout.cpp" bodystart="12" bodyend="18"/>
+      </memberdef>
+      <memberdef kind="function" id="classrx_1_1_descriptor_set_layout_1aad7ed8887fb57add2f28e6c29376ca50" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void rx::DescriptorSetLayout::setBindings</definition>
+        <argsstring>(const std::vector&lt; vk::DescriptorSetLayoutBinding &gt; &amp;bindings)</argsstring>
+        <name>setBindings</name>
+        <param>
+          <type>const std::vector&lt; vk::DescriptorSetLayoutBinding &gt; &amp;</type>
+          <declname>bindings</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Repos/renderer/src/api/descriptors/DescriptorSetLayout.hpp" line="17" column="10" bodyfile="C:/Repos/renderer/src/api/descriptors/DescriptorSetLayout.cpp" bodystart="20" bodyend="26"/>
+      </memberdef>
+      <memberdef kind="function" id="classrx_1_1_descriptor_set_layout_1a24508a0f057057cdf9eb3d94f450febe" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void rx::DescriptorSetLayout::clearBindings</definition>
+        <argsstring>()</argsstring>
+        <name>clearBindings</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Repos/renderer/src/api/descriptors/DescriptorSetLayout.hpp" line="18" column="10" bodyfile="C:/Repos/renderer/src/api/descriptors/DescriptorSetLayout.cpp" bodystart="28" bodyend="31"/>
+      </memberdef>
+      <memberdef kind="function" id="classrx_1_1_descriptor_set_layout_1ada4e2f808dd6fffe8bfcfe6a3c321411" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void rx::DescriptorSetLayout::init</definition>
+        <argsstring>()</argsstring>
+        <name>init</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Repos/renderer/src/api/descriptors/DescriptorSetLayout.hpp" line="20" column="10" bodyfile="C:/Repos/renderer/src/api/descriptors/DescriptorSetLayout.cpp" bodystart="33" bodyend="42"/>
+      </memberdef>
+      <memberdef kind="function" id="classrx_1_1_descriptor_set_layout_1a45dc4b1bbcbcb1959d55ec28d8d14bcf" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void rx::DescriptorSetLayout::init</definition>
+        <argsstring>(const std::vector&lt; vk::DescriptorSetLayoutBinding &gt; bindings)</argsstring>
+        <name>init</name>
+        <param>
+          <type>const std::vector&lt; vk::DescriptorSetLayoutBinding &gt;</type>
+          <declname>bindings</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Repos/renderer/src/api/descriptors/DescriptorSetLayout.hpp" line="21" column="10" bodyfile="C:/Repos/renderer/src/api/descriptors/DescriptorSetLayout.cpp" bodystart="44" bodyend="49"/>
+      </memberdef>
+      <memberdef kind="function" id="classrx_1_1_descriptor_set_layout_1a31199fa81a7c99f7b9a30bf0ff87fac6" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void rx::DescriptorSetLayout::destroy</definition>
+        <argsstring>()</argsstring>
+        <name>destroy</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Repos/renderer/src/api/descriptors/DescriptorSetLayout.hpp" line="22" column="10" bodyfile="C:/Repos/renderer/src/api/descriptors/DescriptorSetLayout.cpp" bodystart="51" bodyend="60"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="C:/Repos/renderer/src/api/descriptors/DescriptorSetLayout.hpp" line="8" column="3" bodyfile="C:/Repos/renderer/src/api/descriptors/DescriptorSetLayout.hpp" bodystart="9" bodyend="28"/>
+    <listofallmembers>
+      <member refid="classrx_1_1_descriptor_set_layout_1a2233289a8bdb05e57c16c748b950225b" prot="public" virt="non-virtual"><scope>rx::DescriptorSetLayout</scope><name>addBinding</name></member>
+      <member refid="classrx_1_1_descriptor_set_layout_1a24508a0f057057cdf9eb3d94f450febe" prot="public" virt="non-virtual"><scope>rx::DescriptorSetLayout</scope><name>clearBindings</name></member>
+      <member refid="classrx_1_1_descriptor_set_layout_1a31199fa81a7c99f7b9a30bf0ff87fac6" prot="public" virt="non-virtual"><scope>rx::DescriptorSetLayout</scope><name>destroy</name></member>
+      <member refid="classrx_1_1_descriptor_set_layout_1a27fc67bbfd645e2bfd33f59fab2784c3" prot="public" virt="non-virtual"><scope>rx::DescriptorSetLayout</scope><name>get</name></member>
+      <member refid="classrx_1_1_descriptor_set_layout_1a74cd99bfff7a1434a2925775237d6b4c" prot="public" virt="non-virtual"><scope>rx::DescriptorSetLayout</scope><name>getBindings</name></member>
+      <member refid="classrx_1_1_descriptor_set_layout_1ada4e2f808dd6fffe8bfcfe6a3c321411" prot="public" virt="non-virtual"><scope>rx::DescriptorSetLayout</scope><name>init</name></member>
+      <member refid="classrx_1_1_descriptor_set_layout_1a45dc4b1bbcbcb1959d55ec28d8d14bcf" prot="public" virt="non-virtual"><scope>rx::DescriptorSetLayout</scope><name>init</name></member>
+      <member refid="classrx_1_1_descriptor_set_layout_1a67f1cf642f2e1aa0202b69793ed5a1ca" prot="private" virt="non-virtual"><scope>rx::DescriptorSetLayout</scope><name>m_bindings</name></member>
+      <member refid="classrx_1_1_descriptor_set_layout_1aae353c6b570ab3bdf97fb00a7e99cd47" prot="private" virt="non-virtual"><scope>rx::DescriptorSetLayout</scope><name>m_layout</name></member>
+      <member refid="classrx_1_1_descriptor_set_layout_1aad7ed8887fb57add2f28e6c29376ca50" prot="public" virt="non-virtual"><scope>rx::DescriptorSetLayout</scope><name>setBindings</name></member>
+      <member refid="classrx_1_1_descriptor_set_layout_1a96128b5f660be7e49336c4d3b8d2a8e2" prot="public" virt="non-virtual"><scope>rx::DescriptorSetLayout</scope><name>~DescriptorSetLayout</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

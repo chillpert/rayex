@@ -1,0 +1,411 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.20" xml:lang="en-US">
+  <compounddef id="_pipeline_8hpp" kind="file" language="C++">
+    <compoundname>Pipeline.hpp</compoundname>
+    <includes refid="_window_base_8hpp" local="yes">WindowBase.hpp</includes>
+    <includes refid="_swapchain_8hpp" local="yes">Swapchain.hpp</includes>
+    <includedby refid="_api_8hpp" local="yes">C:/Repos/renderer/src/api/Api.hpp</includedby>
+    <includedby refid="_pipeline_8cpp" local="yes">C:/Repos/renderer/src/api/Pipeline.cpp</includedby>
+    <incdepgraph>
+      <node id="43">
+        <label>glm/gtx/hash.hpp</label>
+      </node>
+      <node id="41">
+        <label>Texture.hpp</label>
+        <link refid="_texture_8hpp"/>
+        <childnode refid="36" relation="include">
+        </childnode>
+      </node>
+      <node id="19">
+        <label>iomanip</label>
+      </node>
+      <node id="12">
+        <label>glm/ext/matrix_transform.hpp</label>
+      </node>
+      <node id="2">
+        <label>WindowBase.hpp</label>
+        <link refid="_window_base_8hpp"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="9" relation="include">
+        </childnode>
+        <childnode refid="33" relation="include">
+        </childnode>
+      </node>
+      <node id="46">
+        <label>IndexBuffer.hpp</label>
+        <link refid="_index_buffer_8hpp"/>
+        <childnode refid="45" relation="include">
+        </childnode>
+      </node>
+      <node id="45">
+        <label>Buffer.hpp</label>
+        <link refid="_buffer_8hpp"/>
+        <childnode refid="36" relation="include">
+        </childnode>
+        <childnode refid="39" relation="include">
+        </childnode>
+      </node>
+      <node id="16">
+        <label>imgui_impl_sdl.h</label>
+      </node>
+      <node id="20">
+        <label>cstdint</label>
+      </node>
+      <node id="36">
+        <label>Image.hpp</label>
+        <link refid="_image_8hpp"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+      </node>
+      <node id="50">
+        <label>RenderPass.hpp</label>
+        <link refid="_render_pass_8hpp"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+      </node>
+      <node id="25">
+        <label>stdexcept</label>
+      </node>
+      <node id="17">
+        <label>imgui_impl_vulkan.h</label>
+      </node>
+      <node id="48">
+        <label>DescriptorSet.hpp</label>
+        <link refid="_descriptor_set_8hpp"/>
+        <childnode refid="49" relation="include">
+        </childnode>
+        <childnode refid="45" relation="include">
+        </childnode>
+        <childnode refid="47" relation="include">
+        </childnode>
+        <childnode refid="41" relation="include">
+        </childnode>
+      </node>
+      <node id="34">
+        <label>Swapchain.hpp</label>
+        <link refid="_swapchain_8hpp"/>
+        <childnode refid="35" relation="include">
+        </childnode>
+        <childnode refid="36" relation="include">
+        </childnode>
+        <childnode refid="37" relation="include">
+        </childnode>
+      </node>
+      <node id="47">
+        <label>UniformBuffer.hpp</label>
+        <link refid="_uniform_buffer_8hpp"/>
+        <childnode refid="45" relation="include">
+        </childnode>
+      </node>
+      <node id="27">
+        <label>map</label>
+      </node>
+      <node id="38">
+        <label>AccelerationStructure.hpp</label>
+        <link refid="_acceleration_structure_8hpp"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="39" relation="include">
+        </childnode>
+      </node>
+      <node id="32">
+        <label>unordered_set</label>
+      </node>
+      <node id="28">
+        <label>fstream</label>
+      </node>
+      <node id="14">
+        <label>glm/gtx/string_cast.hpp</label>
+      </node>
+      <node id="1">
+        <label>C:/Repos/renderer/src/api/Pipeline.hpp</label>
+        <link refid="_pipeline_8hpp"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="34" relation="include">
+        </childnode>
+      </node>
+      <node id="3">
+        <label>stdafx.hpp</label>
+        <link refid="stdafx_8hpp"/>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="9" relation="include">
+        </childnode>
+        <childnode refid="11" relation="include">
+        </childnode>
+        <childnode refid="12" relation="include">
+        </childnode>
+        <childnode refid="13" relation="include">
+        </childnode>
+        <childnode refid="14" relation="include">
+        </childnode>
+        <childnode refid="15" relation="include">
+        </childnode>
+        <childnode refid="16" relation="include">
+        </childnode>
+        <childnode refid="17" relation="include">
+        </childnode>
+        <childnode refid="18" relation="include">
+        </childnode>
+        <childnode refid="19" relation="include">
+        </childnode>
+        <childnode refid="10" relation="include">
+        </childnode>
+        <childnode refid="20" relation="include">
+        </childnode>
+        <childnode refid="21" relation="include">
+        </childnode>
+        <childnode refid="22" relation="include">
+        </childnode>
+        <childnode refid="23" relation="include">
+        </childnode>
+        <childnode refid="24" relation="include">
+        </childnode>
+        <childnode refid="25" relation="include">
+        </childnode>
+        <childnode refid="26" relation="include">
+        </childnode>
+        <childnode refid="27" relation="include">
+        </childnode>
+        <childnode refid="28" relation="include">
+        </childnode>
+        <childnode refid="29" relation="include">
+        </childnode>
+        <childnode refid="30" relation="include">
+        </childnode>
+        <childnode refid="31" relation="include">
+        </childnode>
+        <childnode refid="32" relation="include">
+        </childnode>
+      </node>
+      <node id="5">
+        <label>SDL2/SDL.h</label>
+      </node>
+      <node id="4">
+        <label>Core.hpp</label>
+        <link refid="_core_8hpp"/>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="6" relation="include">
+        </childnode>
+        <childnode refid="7" relation="include">
+        </childnode>
+        <childnode refid="8" relation="include">
+        </childnode>
+      </node>
+      <node id="23">
+        <label>optional</label>
+      </node>
+      <node id="10">
+        <label>vector</label>
+      </node>
+      <node id="40">
+        <label>Model.hpp</label>
+        <link refid="_model_8hpp"/>
+        <childnode refid="41" relation="include">
+        </childnode>
+        <childnode refid="42" relation="include">
+        </childnode>
+        <childnode refid="44" relation="include">
+        </childnode>
+        <childnode refid="46" relation="include">
+        </childnode>
+        <childnode refid="47" relation="include">
+        </childnode>
+        <childnode refid="48" relation="include">
+        </childnode>
+      </node>
+      <node id="33">
+        <label>CameraBase.hpp</label>
+        <link refid="_camera_base_8hpp"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+      </node>
+      <node id="29">
+        <label>array</label>
+      </node>
+      <node id="18">
+        <label>sstream</label>
+      </node>
+      <node id="49">
+        <label>DescriptorSetLayout.hpp</label>
+        <link refid="_descriptor_set_layout_8hpp"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+      </node>
+      <node id="44">
+        <label>VertexBuffer.hpp</label>
+        <link refid="_vertex_buffer_8hpp"/>
+        <childnode refid="45" relation="include">
+        </childnode>
+        <childnode refid="42" relation="include">
+        </childnode>
+      </node>
+      <node id="21">
+        <label>cstdlib</label>
+      </node>
+      <node id="42">
+        <label>Vertex.hpp</label>
+        <link refid="_vertex_8hpp"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="43" relation="include">
+        </childnode>
+      </node>
+      <node id="15">
+        <label>imgui.h</label>
+      </node>
+      <node id="8">
+        <label>iostream</label>
+      </node>
+      <node id="31">
+        <label>unordered_map</label>
+      </node>
+      <node id="39">
+        <label>Components.hpp</label>
+        <link refid="_components_8hpp"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+      </node>
+      <node id="13">
+        <label>glm/ext/matrix_clip_space.hpp</label>
+      </node>
+      <node id="37">
+        <label>Helpers.hpp</label>
+        <link refid="_helpers_8hpp"/>
+        <childnode refid="38" relation="include">
+        </childnode>
+        <childnode refid="40" relation="include">
+        </childnode>
+        <childnode refid="50" relation="include">
+        </childnode>
+      </node>
+      <node id="9">
+        <label>Time.hpp</label>
+        <link refid="_time_8hpp"/>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="10" relation="include">
+        </childnode>
+      </node>
+      <node id="24">
+        <label>set</label>
+      </node>
+      <node id="26">
+        <label>algorithm</label>
+      </node>
+      <node id="22">
+        <label>cstring</label>
+      </node>
+      <node id="7">
+        <label>vulkan/vulkan.hpp</label>
+      </node>
+      <node id="30">
+        <label>memory</label>
+      </node>
+      <node id="6">
+        <label>SDL2/SDL_vulkan.h</label>
+      </node>
+      <node id="35">
+        <label>Surface.hpp</label>
+        <link refid="_surface_8hpp"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+      </node>
+      <node id="11">
+        <label>glm/glm.hpp</label>
+      </node>
+    </incdepgraph>
+    <invincdepgraph>
+      <node id="3">
+        <label>C:/Repos/renderer/src/api/Api.cpp</label>
+        <link refid="_api_8cpp"/>
+      </node>
+      <node id="4">
+        <label>C:/Repos/renderer/src/api/utility/DebugMessenger.cpp</label>
+        <link refid="_debug_messenger_8cpp"/>
+      </node>
+      <node id="5">
+        <label>C:/Repos/renderer/src/Renderer.hpp</label>
+        <link refid="_renderer_8hpp"/>
+        <childnode refid="6" relation="include">
+        </childnode>
+        <childnode refid="7" relation="include">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>C:/Repos/renderer/src/api/Api.hpp</label>
+        <link refid="_api_8hpp"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+      </node>
+      <node id="1">
+        <label>C:/Repos/renderer/src/api/Pipeline.hpp</label>
+        <link refid="_pipeline_8hpp"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="8" relation="include">
+        </childnode>
+      </node>
+      <node id="6">
+        <label>C:/Repos/renderer/src/example/main.cpp</label>
+        <link refid="main_8cpp"/>
+      </node>
+      <node id="8">
+        <label>C:/Repos/renderer/src/api/Pipeline.cpp</label>
+        <link refid="_pipeline_8cpp"/>
+      </node>
+      <node id="7">
+        <label>C:/Repos/renderer/src/Renderer.cpp</label>
+        <link refid="_renderer_8cpp"/>
+      </node>
+    </invincdepgraph>
+    <innerclass refid="classrx_1_1_pipeline" prot="public">rx::Pipeline</innerclass>
+    <innernamespace refid="namespacerx">rx</innernamespace>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="preprocessor">#ifndef<sp/>PIPELINE_HPP</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="2"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>PIPELINE_HPP</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="3"><highlight class="normal"></highlight></codeline>
+<codeline lineno="4"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;<ref refid="_window_base_8hpp" kindref="compound">WindowBase.hpp</ref>&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="5"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;<ref refid="_swapchain_8hpp" kindref="compound">Swapchain.hpp</ref>&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="6"><highlight class="normal"></highlight></codeline>
+<codeline lineno="7"><highlight class="normal"></highlight><highlight class="keyword">namespace<sp/></highlight><highlight class="normal"><ref refid="namespacerx" kindref="compound">rx</ref></highlight></codeline>
+<codeline lineno="8"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="9" refid="classrx_1_1_pipeline" refkind="compound"><highlight class="normal"><sp/><sp/></highlight><highlight class="keyword">class<sp/></highlight><highlight class="normal"><ref refid="classrx_1_1_pipeline" kindref="compound">Pipeline</ref></highlight></codeline>
+<codeline lineno="10"><highlight class="normal"><sp/><sp/>{</highlight></codeline>
+<codeline lineno="11"><highlight class="normal"><sp/><sp/></highlight><highlight class="keyword">public</highlight><highlight class="normal">:</highlight></codeline>
+<codeline lineno="12" refid="classrx_1_1_pipeline_1abd2b08f30f9c98cfe2e13ccb6aa26571" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="classrx_1_1_pipeline_1abd2b08f30f9c98cfe2e13ccb6aa26571" kindref="member">Pipeline</ref>(<sp/>)<sp/>=<sp/></highlight><highlight class="keywordflow">default</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="13"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="classrx_1_1_pipeline_1abd2b08f30f9c98cfe2e13ccb6aa26571" kindref="member">Pipeline</ref>(<sp/>vk::Rect2D<sp/>scissor,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>std::vector&lt;vk::DescriptorSetLayout&gt;&amp;<sp/>descriptorSetLayouts,<sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/>initialize<sp/>=<sp/></highlight><highlight class="keyword">true</highlight><highlight class="normal"><sp/>);</highlight></codeline>
+<codeline lineno="14"><highlight class="normal"></highlight></codeline>
+<codeline lineno="15"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="classrx_1_1_pipeline_1a4ac86e8769802fdfe9e584f7d4ad9c26" kindref="member">init</ref>(<sp/>vk::Rect2D<sp/>scissor,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>std::vector&lt;vk::DescriptorSetLayout&gt;<sp/>&amp;<sp/>descriptorSetLayouts<sp/>);</highlight></codeline>
+<codeline lineno="16"><highlight class="normal"></highlight></codeline>
+<codeline lineno="17" refid="classrx_1_1_pipeline_1abdbba7e67a59cf5402010c8b7b30fa91" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">inline</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>vk::Pipeline<sp/><ref refid="classrx_1_1_pipeline_1abdbba7e67a59cf5402010c8b7b30fa91" kindref="member">get</ref>(<sp/>)</highlight><highlight class="keyword"><sp/>const<sp/></highlight><highlight class="normal">{<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>m_pipeline.get(<sp/>);<sp/>}</highlight></codeline>
+<codeline lineno="18" refid="classrx_1_1_pipeline_1a4b1a477bcb2893d0875e13769c6253c5" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">inline</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>vk::PipelineLayout<sp/><ref refid="classrx_1_1_pipeline_1a4b1a477bcb2893d0875e13769c6253c5" kindref="member">getLayout</ref>(<sp/>)</highlight><highlight class="keyword"><sp/>const<sp/></highlight><highlight class="normal">{<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>m_layout.get(<sp/>);<sp/>}</highlight></codeline>
+<codeline lineno="19" refid="classrx_1_1_pipeline_1a40e5da9a3a5bfdd429a0fd22809d1308" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">inline</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>vk::Viewport<sp/><ref refid="classrx_1_1_pipeline_1a40e5da9a3a5bfdd429a0fd22809d1308" kindref="member">getViewport</ref>(<sp/>)</highlight><highlight class="keyword"><sp/>const<sp/></highlight><highlight class="normal">{<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>m_viewport;<sp/>}</highlight></codeline>
+<codeline lineno="20" refid="classrx_1_1_pipeline_1ac8ac0781469eb9a105241d95af362c5f" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">inline</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>vk::Rect2D<sp/><ref refid="classrx_1_1_pipeline_1ac8ac0781469eb9a105241d95af362c5f" kindref="member">getScissor</ref>(<sp/>)</highlight><highlight class="keyword"><sp/>const<sp/></highlight><highlight class="normal">{<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>m_scissor;<sp/>}</highlight></codeline>
+<codeline lineno="21"><highlight class="normal"></highlight></codeline>
+<codeline lineno="22"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="classrx_1_1_pipeline_1a0c203e8d6ab2f6803e8ff096528f4a31" kindref="member">bind</ref>(<sp/>vk::CommandBuffer<sp/>commandBuffer<sp/>)<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="23"><highlight class="normal"></highlight></codeline>
+<codeline lineno="24"><highlight class="normal"><sp/><sp/></highlight><highlight class="keyword">private</highlight><highlight class="normal">:</highlight></codeline>
+<codeline lineno="25"><highlight class="normal"><sp/><sp/><sp/><sp/>vk::UniquePipeline<sp/>m_pipeline;</highlight></codeline>
+<codeline lineno="26"><highlight class="normal"><sp/><sp/><sp/><sp/>vk::UniquePipelineLayout<sp/>m_layout;</highlight></codeline>
+<codeline lineno="27"><highlight class="normal"><sp/><sp/><sp/><sp/>vk::Viewport<sp/>m_viewport;</highlight></codeline>
+<codeline lineno="28"><highlight class="normal"><sp/><sp/><sp/><sp/>vk::Rect2D<sp/>m_scissor;</highlight></codeline>
+<codeline lineno="29"><highlight class="normal"><sp/><sp/>};</highlight></codeline>
+<codeline lineno="30"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="31"><highlight class="normal"></highlight></codeline>
+<codeline lineno="32"><highlight class="normal"></highlight><highlight class="preprocessor">#endif<sp/>//<sp/>PIPELINE_HPP</highlight></codeline>
+    </programlisting>
+    <location file="C:/Repos/renderer/src/api/Pipeline.hpp"/>
+  </compounddef>
+</doxygen>

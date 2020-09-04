@@ -1,0 +1,57 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.20" xml:lang="en-US">
+  <compounddef id="structrx_1_1_tlas" kind="struct" language="C++" prot="public">
+    <compoundname>rx::Tlas</compoundname>
+    <includes refid="_acceleration_structure_8hpp" local="no">AccelerationStructure.hpp</includes>
+      <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="structrx_1_1_tlas_1acca6e1cba0d8ba63e8d0a5fd09a279b0" prot="public" static="no" mutable="no">
+        <type><ref refid="structrx_1_1_acceleration_structure" kindref="compound">AccelerationStructure</ref></type>
+        <definition>AccelerationStructure rx::Tlas::as</definition>
+        <argsstring></argsstring>
+        <name>as</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Repos/renderer/src/api/raytracing/AccelerationStructure.hpp" line="26" column="27" bodyfile="C:/Repos/renderer/src/api/raytracing/AccelerationStructure.hpp" bodystart="26" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structrx_1_1_tlas_1aaa8589d85ae13827e3d2b51b0b0358d4" prot="public" static="no" mutable="no">
+        <type>vk::BuildAccelerationStructureFlagsKHR</type>
+        <definition>vk::BuildAccelerationStructureFlagsKHR rx::Tlas::flags</definition>
+        <argsstring></argsstring>
+        <name>flags</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Repos/renderer/src/api/raytracing/AccelerationStructure.hpp" line="27" column="44" bodyfile="C:/Repos/renderer/src/api/raytracing/AccelerationStructure.hpp" bodystart="27" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <collaborationgraph>
+      <node id="1">
+        <label>rx::Tlas</label>
+        <link refid="structrx_1_1_tlas"/>
+        <childnode refid="2" relation="usage">
+          <edgelabel>as</edgelabel>
+        </childnode>
+      </node>
+      <node id="2">
+        <label>rx::AccelerationStructure</label>
+        <link refid="structrx_1_1_acceleration_structure"/>
+      </node>
+    </collaborationgraph>
+    <location file="C:/Repos/renderer/src/api/raytracing/AccelerationStructure.hpp" line="24" column="3" bodyfile="C:/Repos/renderer/src/api/raytracing/AccelerationStructure.hpp" bodystart="25" bodyend="28"/>
+    <listofallmembers>
+      <member refid="structrx_1_1_tlas_1acca6e1cba0d8ba63e8d0a5fd09a279b0" prot="public" virt="non-virtual"><scope>rx::Tlas</scope><name>as</name></member>
+      <member refid="structrx_1_1_tlas_1aaa8589d85ae13827e3d2b51b0b0358d4" prot="public" virt="non-virtual"><scope>rx::Tlas</scope><name>flags</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

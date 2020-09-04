@@ -1,0 +1,675 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.20" xml:lang="en-US">
+  <compounddef id="_window_base_8hpp" kind="file" language="C++">
+    <compoundname>WindowBase.hpp</compoundname>
+    <includes refid="stdafx_8hpp" local="yes">stdafx.hpp</includes>
+    <includes refid="_time_8hpp" local="yes">Time.hpp</includes>
+    <includes refid="_camera_base_8hpp" local="yes">CameraBase.hpp</includes>
+    <includedby refid="_components_8hpp" local="yes">C:/Repos/renderer/src/api/Components.hpp</includedby>
+    <includedby refid="_instance_8hpp" local="yes">C:/Repos/renderer/src/api/Instance.hpp</includedby>
+    <includedby refid="_pipeline_8hpp" local="yes">C:/Repos/renderer/src/api/Pipeline.hpp</includedby>
+    <includedby refid="_surface_8hpp" local="yes">C:/Repos/renderer/src/api/Surface.hpp</includedby>
+    <includedby refid="_base_8hpp" local="yes">C:/Repos/renderer/src/base/Base.hpp</includedby>
+    <includedby refid="_window_base_8cpp" local="yes">C:/Repos/renderer/src/window/WindowBase.cpp</includedby>
+    <incdepgraph>
+      <node id="18">
+        <label>iomanip</label>
+      </node>
+      <node id="11">
+        <label>glm/ext/matrix_transform.hpp</label>
+      </node>
+      <node id="1">
+        <label>C:/Repos/renderer/src/window/WindowBase.hpp</label>
+        <link refid="_window_base_8hpp"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="8" relation="include">
+        </childnode>
+        <childnode refid="32" relation="include">
+        </childnode>
+      </node>
+      <node id="15">
+        <label>imgui_impl_sdl.h</label>
+      </node>
+      <node id="19">
+        <label>cstdint</label>
+      </node>
+      <node id="24">
+        <label>stdexcept</label>
+      </node>
+      <node id="16">
+        <label>imgui_impl_vulkan.h</label>
+      </node>
+      <node id="26">
+        <label>map</label>
+      </node>
+      <node id="31">
+        <label>unordered_set</label>
+      </node>
+      <node id="27">
+        <label>fstream</label>
+      </node>
+      <node id="13">
+        <label>glm/gtx/string_cast.hpp</label>
+      </node>
+      <node id="2">
+        <label>stdafx.hpp</label>
+        <link refid="stdafx_8hpp"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="8" relation="include">
+        </childnode>
+        <childnode refid="10" relation="include">
+        </childnode>
+        <childnode refid="11" relation="include">
+        </childnode>
+        <childnode refid="12" relation="include">
+        </childnode>
+        <childnode refid="13" relation="include">
+        </childnode>
+        <childnode refid="14" relation="include">
+        </childnode>
+        <childnode refid="15" relation="include">
+        </childnode>
+        <childnode refid="16" relation="include">
+        </childnode>
+        <childnode refid="17" relation="include">
+        </childnode>
+        <childnode refid="18" relation="include">
+        </childnode>
+        <childnode refid="9" relation="include">
+        </childnode>
+        <childnode refid="19" relation="include">
+        </childnode>
+        <childnode refid="20" relation="include">
+        </childnode>
+        <childnode refid="21" relation="include">
+        </childnode>
+        <childnode refid="22" relation="include">
+        </childnode>
+        <childnode refid="23" relation="include">
+        </childnode>
+        <childnode refid="24" relation="include">
+        </childnode>
+        <childnode refid="25" relation="include">
+        </childnode>
+        <childnode refid="26" relation="include">
+        </childnode>
+        <childnode refid="27" relation="include">
+        </childnode>
+        <childnode refid="28" relation="include">
+        </childnode>
+        <childnode refid="29" relation="include">
+        </childnode>
+        <childnode refid="30" relation="include">
+        </childnode>
+        <childnode refid="31" relation="include">
+        </childnode>
+      </node>
+      <node id="4">
+        <label>SDL2/SDL.h</label>
+      </node>
+      <node id="3">
+        <label>Core.hpp</label>
+        <link refid="_core_8hpp"/>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="6" relation="include">
+        </childnode>
+        <childnode refid="7" relation="include">
+        </childnode>
+      </node>
+      <node id="22">
+        <label>optional</label>
+      </node>
+      <node id="9">
+        <label>vector</label>
+      </node>
+      <node id="32">
+        <label>CameraBase.hpp</label>
+        <link refid="_camera_base_8hpp"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+      </node>
+      <node id="28">
+        <label>array</label>
+      </node>
+      <node id="17">
+        <label>sstream</label>
+      </node>
+      <node id="20">
+        <label>cstdlib</label>
+      </node>
+      <node id="14">
+        <label>imgui.h</label>
+      </node>
+      <node id="7">
+        <label>iostream</label>
+      </node>
+      <node id="30">
+        <label>unordered_map</label>
+      </node>
+      <node id="12">
+        <label>glm/ext/matrix_clip_space.hpp</label>
+      </node>
+      <node id="8">
+        <label>Time.hpp</label>
+        <link refid="_time_8hpp"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="9" relation="include">
+        </childnode>
+      </node>
+      <node id="23">
+        <label>set</label>
+      </node>
+      <node id="25">
+        <label>algorithm</label>
+      </node>
+      <node id="21">
+        <label>cstring</label>
+      </node>
+      <node id="6">
+        <label>vulkan/vulkan.hpp</label>
+      </node>
+      <node id="29">
+        <label>memory</label>
+      </node>
+      <node id="5">
+        <label>SDL2/SDL_vulkan.h</label>
+      </node>
+      <node id="10">
+        <label>glm/glm.hpp</label>
+      </node>
+    </incdepgraph>
+    <invincdepgraph>
+      <node id="41">
+        <label>C:/Repos/renderer/src/api/Queues.cpp</label>
+        <link refid="_queues_8cpp"/>
+      </node>
+      <node id="3">
+        <label>C:/Repos/renderer/src/api/Api.cpp</label>
+        <link refid="_api_8cpp"/>
+      </node>
+      <node id="30">
+        <label>C:/Repos/renderer/src/api/buffers/UniformBuffer.cpp</label>
+        <link refid="_uniform_buffer_8cpp"/>
+      </node>
+      <node id="37">
+        <label>C:/Repos/renderer/src/api/Components.cpp</label>
+        <link refid="_components_8cpp"/>
+      </node>
+      <node id="21">
+        <label>C:/Repos/renderer/src/api/gui/GuiBase.hpp</label>
+        <link refid="_gui_base_8hpp"/>
+        <childnode refid="7" relation="include">
+        </childnode>
+        <childnode refid="22" relation="include">
+        </childnode>
+        <childnode refid="23" relation="include">
+        </childnode>
+      </node>
+      <node id="38">
+        <label>C:/Repos/renderer/src/api/devices/Device.cpp</label>
+        <link refid="_device_8cpp"/>
+      </node>
+      <node id="1">
+        <label>C:/Repos/renderer/src/window/WindowBase.hpp</label>
+        <link refid="_window_base_8hpp"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="47" relation="include">
+        </childnode>
+        <childnode refid="24" relation="include">
+        </childnode>
+        <childnode refid="49" relation="include">
+        </childnode>
+        <childnode refid="23" relation="include">
+        </childnode>
+        <childnode refid="50" relation="include">
+        </childnode>
+      </node>
+      <node id="6">
+        <label>C:/Repos/renderer/src/api/buffers/IndexBuffer.hpp</label>
+        <link refid="_index_buffer_8hpp"/>
+        <childnode refid="7" relation="include">
+        </childnode>
+        <childnode refid="12" relation="include">
+        </childnode>
+      </node>
+      <node id="4">
+        <label>C:/Repos/renderer/src/api/buffers/Buffer.hpp</label>
+        <link refid="_buffer_8hpp"/>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="6" relation="include">
+        </childnode>
+        <childnode refid="29" relation="include">
+        </childnode>
+        <childnode refid="34" relation="include">
+        </childnode>
+        <childnode refid="31" relation="include">
+        </childnode>
+        <childnode refid="18" relation="include">
+        </childnode>
+        <childnode refid="19" relation="include">
+        </childnode>
+        <childnode refid="14" relation="include">
+        </childnode>
+      </node>
+      <node id="8">
+        <label>C:/Repos/renderer/src/api/utility/DebugMessenger.cpp</label>
+        <link refid="_debug_messenger_8cpp"/>
+      </node>
+      <node id="26">
+        <label>C:/Repos/renderer/src/api/utility/Helpers.cpp</label>
+        <link refid="_helpers_8cpp"/>
+      </node>
+      <node id="16">
+        <label>C:/Repos/renderer/src/api/raytracing/RayTracingBuilder.cpp</label>
+        <link refid="_ray_tracing_builder_8cpp"/>
+      </node>
+      <node id="9">
+        <label>C:/Repos/renderer/src/Renderer.hpp</label>
+        <link refid="_renderer_8hpp"/>
+        <childnode refid="10" relation="include">
+        </childnode>
+        <childnode refid="11" relation="include">
+        </childnode>
+      </node>
+      <node id="46">
+        <label>C:/Repos/renderer/src/api/utility/Destructors.cpp</label>
+        <link refid="_destructors_8cpp"/>
+      </node>
+      <node id="31">
+        <label>C:/Repos/renderer/src/api/descriptors/DescriptorSet.hpp</label>
+        <link refid="_descriptor_set_8hpp"/>
+        <childnode refid="7" relation="include">
+        </childnode>
+        <childnode refid="32" relation="include">
+        </childnode>
+        <childnode refid="33" relation="include">
+        </childnode>
+        <childnode refid="12" relation="include">
+        </childnode>
+      </node>
+      <node id="7">
+        <label>C:/Repos/renderer/src/api/Api.hpp</label>
+        <link refid="_api_8hpp"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="8" relation="include">
+        </childnode>
+        <childnode refid="9" relation="include">
+        </childnode>
+      </node>
+      <node id="20">
+        <label>C:/Repos/renderer/src/api/Swapchain.hpp</label>
+        <link refid="_swapchain_8hpp"/>
+        <childnode refid="7" relation="include">
+        </childnode>
+        <childnode refid="21" relation="include">
+        </childnode>
+        <childnode refid="24" relation="include">
+        </childnode>
+        <childnode refid="14" relation="include">
+        </childnode>
+        <childnode refid="25" relation="include">
+        </childnode>
+      </node>
+      <node id="45">
+        <label>C:/Repos/renderer/src/api/Surface.cpp</label>
+        <link refid="_surface_8cpp"/>
+      </node>
+      <node id="29">
+        <label>C:/Repos/renderer/src/api/buffers/UniformBuffer.hpp</label>
+        <link refid="_uniform_buffer_8hpp"/>
+        <childnode refid="7" relation="include">
+        </childnode>
+        <childnode refid="30" relation="include">
+        </childnode>
+        <childnode refid="31" relation="include">
+        </childnode>
+        <childnode refid="12" relation="include">
+        </childnode>
+      </node>
+      <node id="28">
+        <label>C:/Repos/renderer/src/base/NodeBase.hpp</label>
+        <link refid="_node_base_8hpp"/>
+        <childnode refid="14" relation="include">
+        </childnode>
+        <childnode refid="23" relation="include">
+        </childnode>
+      </node>
+      <node id="22">
+        <label>C:/Repos/renderer/src/api/gui/GuiBase.cpp</label>
+        <link refid="_gui_base_8cpp"/>
+      </node>
+      <node id="19">
+        <label>C:/Repos/renderer/src/api/image/Texture.cpp</label>
+        <link refid="_texture_8cpp"/>
+      </node>
+      <node id="48">
+        <label>C:/Repos/renderer/src/api/devices/Device.hpp</label>
+        <link refid="_device_8hpp"/>
+        <childnode refid="7" relation="include">
+        </childnode>
+        <childnode refid="38" relation="include">
+        </childnode>
+      </node>
+      <node id="42">
+        <label>C:/Repos/renderer/src/api/raytracing/AccelerationStructure.hpp</label>
+        <link refid="_acceleration_structure_8hpp"/>
+        <childnode refid="14" relation="include">
+        </childnode>
+        <childnode refid="17" relation="include">
+        </childnode>
+        <childnode refid="43" relation="include">
+        </childnode>
+      </node>
+      <node id="50">
+        <label>C:/Repos/renderer/src/window/WindowBase.cpp</label>
+        <link refid="_window_base_8cpp"/>
+      </node>
+      <node id="13">
+        <label>C:/Repos/renderer/src/api/Model.cpp</label>
+        <link refid="_model_8cpp"/>
+      </node>
+      <node id="24">
+        <label>C:/Repos/renderer/src/api/Pipeline.hpp</label>
+        <link refid="_pipeline_8hpp"/>
+        <childnode refid="7" relation="include">
+        </childnode>
+        <childnode refid="15" relation="include">
+        </childnode>
+      </node>
+      <node id="44">
+        <label>C:/Repos/renderer/src/api/RenderPass.cpp</label>
+        <link refid="_render_pass_8cpp"/>
+      </node>
+      <node id="10">
+        <label>C:/Repos/renderer/src/example/main.cpp</label>
+        <link refid="main_8cpp"/>
+      </node>
+      <node id="47">
+        <label>C:/Repos/renderer/src/api/Instance.hpp</label>
+        <link refid="_instance_8hpp"/>
+        <childnode refid="7" relation="include">
+        </childnode>
+        <childnode refid="48" relation="include">
+        </childnode>
+        <childnode refid="40" relation="include">
+        </childnode>
+      </node>
+      <node id="14">
+        <label>C:/Repos/renderer/src/api/raytracing/RayTracingBuilder.hpp</label>
+        <link refid="_ray_tracing_builder_8hpp"/>
+        <childnode refid="7" relation="include">
+        </childnode>
+        <childnode refid="15" relation="include">
+        </childnode>
+        <childnode refid="16" relation="include">
+        </childnode>
+      </node>
+      <node id="35">
+        <label>C:/Repos/renderer/src/api/buffers/VertexBuffer.cpp</label>
+        <link refid="_vertex_buffer_8cpp"/>
+      </node>
+      <node id="32">
+        <label>C:/Repos/renderer/src/api/descriptors/DescriptorSet.cpp</label>
+        <link refid="_descriptor_set_8cpp"/>
+      </node>
+      <node id="25">
+        <label>C:/Repos/renderer/src/api/Swapchain.cpp</label>
+        <link refid="_swapchain_8cpp"/>
+      </node>
+      <node id="12">
+        <label>C:/Repos/renderer/src/api/Model.hpp</label>
+        <link refid="_model_8hpp"/>
+        <childnode refid="13" relation="include">
+        </childnode>
+        <childnode refid="14" relation="include">
+        </childnode>
+        <childnode refid="17" relation="include">
+        </childnode>
+        <childnode refid="28" relation="include">
+        </childnode>
+      </node>
+      <node id="23">
+        <label>C:/Repos/renderer/src/base/Base.hpp</label>
+        <link refid="_base_8hpp"/>
+        <childnode refid="7" relation="include">
+        </childnode>
+        <childnode refid="9" relation="include">
+        </childnode>
+      </node>
+      <node id="15">
+        <label>C:/Repos/renderer/src/api/Pipeline.cpp</label>
+        <link refid="_pipeline_8cpp"/>
+      </node>
+      <node id="39">
+        <label>C:/Repos/renderer/src/api/devices/PhysicalDevice.cpp</label>
+        <link refid="_physical_device_8cpp"/>
+      </node>
+      <node id="40">
+        <label>C:/Repos/renderer/src/api/Instance.cpp</label>
+        <link refid="_instance_8cpp"/>
+      </node>
+      <node id="34">
+        <label>C:/Repos/renderer/src/api/buffers/VertexBuffer.hpp</label>
+        <link refid="_vertex_buffer_8hpp"/>
+        <childnode refid="7" relation="include">
+        </childnode>
+        <childnode refid="35" relation="include">
+        </childnode>
+        <childnode refid="12" relation="include">
+        </childnode>
+      </node>
+      <node id="27">
+        <label>C:/Repos/renderer/src/api/utility/Initializers.cpp</label>
+        <link refid="_initializers_8cpp"/>
+      </node>
+      <node id="2">
+        <label>C:/Repos/renderer/src/api/Components.hpp</label>
+        <link refid="_components_8hpp"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="36" relation="include">
+        </childnode>
+        <childnode refid="30" relation="include">
+        </childnode>
+        <childnode refid="37" relation="include">
+        </childnode>
+        <childnode refid="32" relation="include">
+        </childnode>
+        <childnode refid="33" relation="include">
+        </childnode>
+        <childnode refid="38" relation="include">
+        </childnode>
+        <childnode refid="39" relation="include">
+        </childnode>
+        <childnode refid="18" relation="include">
+        </childnode>
+        <childnode refid="40" relation="include">
+        </childnode>
+        <childnode refid="15" relation="include">
+        </childnode>
+        <childnode refid="41" relation="include">
+        </childnode>
+        <childnode refid="42" relation="include">
+        </childnode>
+        <childnode refid="16" relation="include">
+        </childnode>
+        <childnode refid="44" relation="include">
+        </childnode>
+        <childnode refid="45" relation="include">
+        </childnode>
+        <childnode refid="25" relation="include">
+        </childnode>
+        <childnode refid="8" relation="include">
+        </childnode>
+        <childnode refid="46" relation="include">
+        </childnode>
+        <childnode refid="26" relation="include">
+        </childnode>
+        <childnode refid="43" relation="include">
+        </childnode>
+      </node>
+      <node id="5">
+        <label>C:/Repos/renderer/src/api/buffers/Buffer.cpp</label>
+        <link refid="_buffer_8cpp"/>
+      </node>
+      <node id="36">
+        <label>C:/Repos/renderer/src/api/buffers/CommandBuffer.cpp</label>
+        <link refid="_command_buffer_8cpp"/>
+      </node>
+      <node id="17">
+        <label>C:/Repos/renderer/src/api/utility/Helpers.hpp</label>
+        <link refid="_helpers_8hpp"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="18" relation="include">
+        </childnode>
+        <childnode refid="19" relation="include">
+        </childnode>
+        <childnode refid="15" relation="include">
+        </childnode>
+        <childnode refid="16" relation="include">
+        </childnode>
+        <childnode refid="20" relation="include">
+        </childnode>
+        <childnode refid="26" relation="include">
+        </childnode>
+        <childnode refid="27" relation="include">
+        </childnode>
+      </node>
+      <node id="18">
+        <label>C:/Repos/renderer/src/api/image/Image.cpp</label>
+        <link refid="_image_8cpp"/>
+      </node>
+      <node id="33">
+        <label>C:/Repos/renderer/src/api/descriptors/DescriptorSetLayout.cpp</label>
+        <link refid="_descriptor_set_layout_8cpp"/>
+      </node>
+      <node id="11">
+        <label>C:/Repos/renderer/src/Renderer.cpp</label>
+        <link refid="_renderer_8cpp"/>
+      </node>
+      <node id="43">
+        <label>C:/Repos/renderer/src/api/utility/Initializers.hpp</label>
+        <link refid="_initializers_8hpp"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="22" relation="include">
+        </childnode>
+        <childnode refid="18" relation="include">
+        </childnode>
+        <childnode refid="19" relation="include">
+        </childnode>
+        <childnode refid="15" relation="include">
+        </childnode>
+        <childnode refid="16" relation="include">
+        </childnode>
+        <childnode refid="25" relation="include">
+        </childnode>
+        <childnode refid="27" relation="include">
+        </childnode>
+      </node>
+      <node id="49">
+        <label>C:/Repos/renderer/src/api/Surface.hpp</label>
+        <link refid="_surface_8hpp"/>
+        <childnode refid="7" relation="include">
+        </childnode>
+        <childnode refid="21" relation="include">
+        </childnode>
+        <childnode refid="45" relation="include">
+        </childnode>
+        <childnode refid="20" relation="include">
+        </childnode>
+      </node>
+    </invincdepgraph>
+    <innerclass refid="classrx_1_1_window_base" prot="public">rx::WindowBase</innerclass>
+    <innernamespace refid="namespacerx">rx</innernamespace>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="preprocessor">#ifndef<sp/>WINDOW_HPP</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="2"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>WINDOW_HPP</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="3"><highlight class="normal"></highlight></codeline>
+<codeline lineno="4"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;<ref refid="stdafx_8hpp" kindref="compound">stdafx.hpp</ref>&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="5"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;<ref refid="_time_8hpp" kindref="compound">Time.hpp</ref>&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="6"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;<ref refid="_camera_base_8hpp" kindref="compound">CameraBase.hpp</ref>&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="7"><highlight class="normal"></highlight></codeline>
+<codeline lineno="8"><highlight class="normal"></highlight><highlight class="keyword">namespace<sp/></highlight><highlight class="normal"><ref refid="namespacerx" kindref="compound">rx</ref></highlight></codeline>
+<codeline lineno="9"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="13" refid="namespacerx_1a108d586192564f598fd82c8c2483fe8a" refkind="member"><highlight class="normal"><sp/><sp/></highlight><highlight class="keyword">typedef</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">enum</highlight><highlight class="normal"><sp/><ref refid="namespacerx_1a108d586192564f598fd82c8c2483fe8a" kindref="member">WindowFlags</ref></highlight></codeline>
+<codeline lineno="14"><highlight class="normal"><sp/><sp/>{</highlight></codeline>
+<codeline lineno="15" refid="namespacerx_1a108d586192564f598fd82c8c2483fe8aa23c63438aa90b514e7fd7269e3cbe8c1" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="namespacerx_1a108d586192564f598fd82c8c2483fe8aa23c63438aa90b514e7fd7269e3cbe8c1" kindref="member">WINDOW_FULLSCREEN</ref><sp/>=<sp/>0x00000001,<sp/></highlight></codeline>
+<codeline lineno="16" refid="namespacerx_1a108d586192564f598fd82c8c2483fe8aac1f47c62b26aaccab91f7992203fa749" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="namespacerx_1a108d586192564f598fd82c8c2483fe8aac1f47c62b26aaccab91f7992203fa749" kindref="member">WINDOW_BORDERLESS</ref><sp/>=<sp/>0x00000010,<sp/></highlight></codeline>
+<codeline lineno="17" refid="namespacerx_1a108d586192564f598fd82c8c2483fe8aa7b53bf1790791de422a956078f4b984f" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="namespacerx_1a108d586192564f598fd82c8c2483fe8aa7b53bf1790791de422a956078f4b984f" kindref="member">WINDOW_RESIZABLE</ref><sp/>=<sp/>0x00000020,<sp/></highlight></codeline>
+<codeline lineno="18" refid="namespacerx_1a108d586192564f598fd82c8c2483fe8aa5871005b1eb363e9d3a6e81693ff937a" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="namespacerx_1a108d586192564f598fd82c8c2483fe8aa5871005b1eb363e9d3a6e81693ff937a" kindref="member">WINDOW_MINIMIZED</ref><sp/>=<sp/>0x00000040,<sp/></highlight></codeline>
+<codeline lineno="19" refid="namespacerx_1a108d586192564f598fd82c8c2483fe8aab732e14e32851942bec0a00fa569bda4" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="namespacerx_1a108d586192564f598fd82c8c2483fe8aab732e14e32851942bec0a00fa569bda4" kindref="member">WINDOW_MAXIMIZED</ref><sp/>=<sp/>0x00000080,<sp/></highlight></codeline>
+<codeline lineno="20" refid="namespacerx_1a108d586192564f598fd82c8c2483fe8aafb910e9581cc84fcc2e9556e7b831274" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="namespacerx_1a108d586192564f598fd82c8c2483fe8aafb910e9581cc84fcc2e9556e7b831274" kindref="member">WINDOW_INPUT_FOCUS</ref><sp/>=<sp/>0x00000200,<sp/></highlight></codeline>
+<codeline lineno="21" refid="namespacerx_1a108d586192564f598fd82c8c2483fe8aa4cc4779f4e8f8e4fd358efd74a08c487" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="namespacerx_1a108d586192564f598fd82c8c2483fe8aa4cc4779f4e8f8e4fd358efd74a08c487" kindref="member">WINDOW_MOUSE_FOCUS</ref><sp/>=<sp/>0x00000400,<sp/></highlight></codeline>
+<codeline lineno="22" refid="namespacerx_1a108d586192564f598fd82c8c2483fe8aa60c681c47546888248a80d2e3561840a" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="namespacerx_1a108d586192564f598fd82c8c2483fe8aa60c681c47546888248a80d2e3561840a" kindref="member">WINDOW_FULLSCREEN_DESKTOP</ref><sp/>=<sp/>(<sp/><ref refid="namespacerx_1a108d586192564f598fd82c8c2483fe8aa23c63438aa90b514e7fd7269e3cbe8c1" kindref="member">WINDOW_FULLSCREEN</ref><sp/>|<sp/>0x00001000<sp/>),<sp/></highlight></codeline>
+<codeline lineno="23"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="namespacerx_1a108d586192564f598fd82c8c2483fe8aa8a2df8295d56b3dd6968b0ab57eb2ef0" kindref="member">WINDOW_MOUSE_CAPTURE</ref><sp/>=<sp/>0x00004000<sp/></highlight></codeline>
+<codeline lineno="24" refid="namespacerx_1a9d44a35c45d12184bce248ddb7e68097" refkind="member"><highlight class="normal"><sp/><sp/>}<sp/><ref refid="namespacerx_1a108d586192564f598fd82c8c2483fe8a" kindref="member">WindowFlags</ref>;</highlight></codeline>
+<codeline lineno="25"><highlight class="normal"></highlight></codeline>
+<codeline lineno="36" refid="classrx_1_1_window_base" refkind="compound"><highlight class="normal"><sp/><sp/></highlight><highlight class="keyword">class<sp/></highlight><highlight class="normal"><ref refid="classrx_1_1_window_base" kindref="compound">WindowBase</ref></highlight></codeline>
+<codeline lineno="37"><highlight class="normal"><sp/><sp/>{</highlight></codeline>
+<codeline lineno="38"><highlight class="normal"><sp/><sp/></highlight><highlight class="keyword">public</highlight><highlight class="normal">:</highlight></codeline>
+<codeline lineno="43"><highlight class="normal"><sp/><sp/><sp/><sp/>RX_API<sp/><ref refid="classrx_1_1_window_base_1a4c75fcc5018535133aa56a897ef8d385" kindref="member">WindowBase</ref>(<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>width<sp/>=<sp/>600,<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>height<sp/>=<sp/>400,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal">*<sp/>title<sp/>=<sp/></highlight><highlight class="stringliteral">&quot;My<sp/>Application&quot;</highlight><highlight class="normal">,<sp/>uint32_t<sp/>flags<sp/>=<sp/>0<sp/>);</highlight></codeline>
+<codeline lineno="44"><highlight class="normal"></highlight></codeline>
+<codeline lineno="49"><highlight class="normal"><sp/><sp/><sp/><sp/>RX_API<sp/></highlight><highlight class="keyword">virtual</highlight><highlight class="normal"><sp/><ref refid="classrx_1_1_window_base_1ab2bac026a58aa4fdf3b809bfbe364014" kindref="member">~WindowBase</ref>(<sp/>);</highlight></codeline>
+<codeline lineno="50"><highlight class="normal"></highlight></codeline>
+<codeline lineno="52"><highlight class="normal"><sp/><sp/><sp/><sp/>RX_API<sp/></highlight><highlight class="keyword">virtual</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="classrx_1_1_window_base_1a3383242489b5e86c58efbf3f7a653fd5" kindref="member">init</ref>(<sp/>);</highlight></codeline>
+<codeline lineno="53"><highlight class="normal"></highlight></codeline>
+<codeline lineno="58"><highlight class="normal"><sp/><sp/><sp/><sp/>RX_API<sp/></highlight><highlight class="keyword">virtual</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/><ref refid="classrx_1_1_window_base_1a7d169824a215063c9574568b6e6fecba" kindref="member">update</ref>(<sp/>);</highlight></codeline>
+<codeline lineno="59"><highlight class="normal"></highlight></codeline>
+<codeline lineno="61"><highlight class="normal"><sp/><sp/><sp/><sp/>RX_API<sp/></highlight><highlight class="keyword">virtual</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="classrx_1_1_window_base_1aa50e9ee4e58b6a36340180290d0c99d5" kindref="member">clean</ref>(<sp/>);</highlight></codeline>
+<codeline lineno="62"><highlight class="normal"></highlight></codeline>
+<codeline lineno="66"><highlight class="normal"><sp/><sp/><sp/><sp/>RX_API<sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="classrx_1_1_window_base_1a6313eb78b5d688f3e3997c5163e9ac69" kindref="member">resize</ref>(<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>width,<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>height<sp/>);</highlight></codeline>
+<codeline lineno="67"><highlight class="normal"></highlight></codeline>
+<codeline lineno="70"><highlight class="normal"><sp/><sp/><sp/><sp/>std::vector&lt;const<sp/>char*&gt;<sp/><ref refid="classrx_1_1_window_base_1a4c965865eadbec64d88bdb0de3a9fbaf" kindref="member">getInstanceExtensions</ref>(<sp/>);</highlight></codeline>
+<codeline lineno="71"><highlight class="normal"></highlight></codeline>
+<codeline lineno="75"><highlight class="normal"><sp/><sp/><sp/><sp/>RX_API<sp/>vk::SurfaceKHR<sp/><ref refid="classrx_1_1_window_base_1af058b1991691b3ef0c0bacedc0a895ed" kindref="member">createSurface</ref>(<sp/>vk::Instance<sp/>instance<sp/>);</highlight></codeline>
+<codeline lineno="76"><highlight class="normal"></highlight></codeline>
+<codeline lineno="78" refid="classrx_1_1_window_base_1a98c9d4d754b8ade7a3710ac198610b3b" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>RX_API<sp/></highlight><highlight class="keyword">inline</highlight><highlight class="normal"><sp/>SDL_Window*<sp/><ref refid="classrx_1_1_window_base_1a98c9d4d754b8ade7a3710ac198610b3b" kindref="member">get</ref>(<sp/>)<sp/>{<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/><ref refid="classrx_1_1_window_base_1a7a7808875387bf9d2b942710fb9217b5" kindref="member">m_window</ref>;<sp/>}</highlight></codeline>
+<codeline lineno="79"><highlight class="normal"></highlight></codeline>
+<codeline lineno="81"><highlight class="normal"><sp/><sp/><sp/><sp/>RX_API<sp/></highlight><highlight class="keyword">inline</highlight><highlight class="normal"><sp/>vk::Extent2D<sp/><ref refid="classrx_1_1_window_base_1ada758bbb29c65ef6cb109c99afa8698d" kindref="member">getExtent</ref>(<sp/>)<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="82"><highlight class="normal"></highlight></codeline>
+<codeline lineno="84" refid="classrx_1_1_window_base_1a0bbec2310999df0b650eedf75080cce7" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">inline</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="classrx_1_1_window_base_1a0bbec2310999df0b650eedf75080cce7" kindref="member">getWidth</ref>(<sp/>)</highlight><highlight class="keyword"><sp/>const<sp/></highlight><highlight class="normal">{<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/><ref refid="classrx_1_1_window_base_1a25e9c6984933a51e17c638ce3ba263de" kindref="member">m_width</ref>;<sp/>}</highlight></codeline>
+<codeline lineno="85"><highlight class="normal"></highlight></codeline>
+<codeline lineno="87" refid="classrx_1_1_window_base_1a65a4f319a081ec272bda60264f69a960" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">inline</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="classrx_1_1_window_base_1a65a4f319a081ec272bda60264f69a960" kindref="member">getHeight</ref>(<sp/>)</highlight><highlight class="keyword"><sp/>const<sp/></highlight><highlight class="normal">{<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/><ref refid="classrx_1_1_window_base_1a1fc9dd1927001604a39e73f79458c526" kindref="member">m_height</ref>;<sp/>}</highlight></codeline>
+<codeline lineno="88"><highlight class="normal"></highlight></codeline>
+<codeline lineno="90"><highlight class="normal"><sp/><sp/><sp/><sp/>RX_API<sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/><ref refid="classrx_1_1_window_base_1a286b65f440d6ae3b2e2e49542ea2b1bc" kindref="member">changed</ref>(<sp/>);</highlight></codeline>
+<codeline lineno="91"><highlight class="normal"></highlight></codeline>
+<codeline lineno="93"><highlight class="normal"><sp/><sp/><sp/><sp/>RX_API<sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/><ref refid="classrx_1_1_window_base_1a0daf35316a751cb18d4c8589a503a0dd" kindref="member">minimized</ref>(<sp/>);</highlight></codeline>
+<codeline lineno="94"><highlight class="normal"></highlight></codeline>
+<codeline lineno="95"><highlight class="normal"><sp/><sp/></highlight><highlight class="keyword">protected</highlight><highlight class="normal">:</highlight></codeline>
+<codeline lineno="96" refid="classrx_1_1_window_base_1a7a7808875387bf9d2b942710fb9217b5" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>SDL_Window*<sp/><ref refid="classrx_1_1_window_base_1a7a7808875387bf9d2b942710fb9217b5" kindref="member">m_window</ref>;<sp/></highlight></codeline>
+<codeline lineno="97"><highlight class="normal"></highlight></codeline>
+<codeline lineno="98" refid="classrx_1_1_window_base_1a25e9c6984933a51e17c638ce3ba263de" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="classrx_1_1_window_base_1a25e9c6984933a51e17c638ce3ba263de" kindref="member">m_width</ref>;<sp/></highlight></codeline>
+<codeline lineno="99" refid="classrx_1_1_window_base_1a1fc9dd1927001604a39e73f79458c526" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="classrx_1_1_window_base_1a1fc9dd1927001604a39e73f79458c526" kindref="member">m_height</ref>;<sp/></highlight></codeline>
+<codeline lineno="100" refid="classrx_1_1_window_base_1a98ab6f3869a247eebc6ac3c02eee034f" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal">*<sp/><ref refid="classrx_1_1_window_base_1a98ab6f3869a247eebc6ac3c02eee034f" kindref="member">m_title</ref>;<sp/></highlight></codeline>
+<codeline lineno="101" refid="classrx_1_1_window_base_1a717f1fc684aa4c1d5773e10b66fe6f6f" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>uint32_t<sp/><ref refid="classrx_1_1_window_base_1a717f1fc684aa4c1d5773e10b66fe6f6f" kindref="member">m_flags</ref>;<sp/></highlight></codeline>
+<codeline lineno="102"><highlight class="normal"></highlight></codeline>
+<codeline lineno="103" refid="classrx_1_1_window_base_1a70eb7bea377c3a7c5dbb3f5c67a51fe3" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="classrx_1_1_time" kindref="compound">Time</ref><sp/><ref refid="classrx_1_1_window_base_1a70eb7bea377c3a7c5dbb3f5c67a51fe3" kindref="member">m_time</ref>;<sp/></highlight></codeline>
+<codeline lineno="104"><highlight class="normal"><sp/><sp/>};</highlight></codeline>
+<codeline lineno="105"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="106"><highlight class="normal"></highlight></codeline>
+<codeline lineno="107"><highlight class="normal"></highlight><highlight class="preprocessor">#endif<sp/>//<sp/>WINDOW_HPP</highlight></codeline>
+    </programlisting>
+    <location file="C:/Repos/renderer/src/window/WindowBase.hpp"/>
+  </compounddef>
+</doxygen>

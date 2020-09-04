@@ -1,0 +1,143 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.20" xml:lang="en-US">
+  <compounddef id="classrx_1_1_vertex_buffer" kind="class" language="C++" prot="public">
+    <compoundname>rx::VertexBuffer</compoundname>
+    <includes refid="_vertex_buffer_8hpp" local="no">VertexBuffer.hpp</includes>
+      <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="classrx_1_1_vertex_buffer_1ab3f0c9112365d7ad9901cbce87f3a52e" prot="private" static="no" mutable="no">
+        <type><ref refid="classrx_1_1_buffer" kindref="compound">Buffer</ref></type>
+        <definition>Buffer rx::VertexBuffer::m_buffer</definition>
+        <argsstring></argsstring>
+        <name>m_buffer</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Repos/renderer/src/api/buffers/VertexBuffer.hpp" line="22" column="12" bodyfile="C:/Repos/renderer/src/api/buffers/VertexBuffer.hpp" bodystart="22" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classrx_1_1_vertex_buffer_1ac2913b175fb006885f6fcfaa889b9f62" prot="private" static="no" mutable="no">
+        <type>uint32_t</type>
+        <definition>uint32_t rx::VertexBuffer::m_count</definition>
+        <argsstring></argsstring>
+        <name>m_count</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Repos/renderer/src/api/buffers/VertexBuffer.hpp" line="24" column="14" bodyfile="C:/Repos/renderer/src/api/buffers/VertexBuffer.hpp" bodystart="24" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="classrx_1_1_vertex_buffer_1a43d4bd6b4fdea79ee20a4a30cbbb7b45" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>rx::VertexBuffer::VertexBuffer</definition>
+        <argsstring>()=default</argsstring>
+        <name>VertexBuffer</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Repos/renderer/src/api/buffers/VertexBuffer.hpp" line="12" column="5"/>
+      </memberdef>
+      <memberdef kind="function" id="classrx_1_1_vertex_buffer_1a337011bf239a742c6a489da91cb73275" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>rx::VertexBuffer::VertexBuffer</definition>
+        <argsstring>(std::vector&lt; Vertex &gt; &amp;vertices, bool initialize=true)</argsstring>
+        <name>VertexBuffer</name>
+        <param>
+          <type>std::vector&lt; <ref refid="structrx_1_1_vertex" kindref="compound">Vertex</ref> &gt; &amp;</type>
+          <declname>vertices</declname>
+        </param>
+        <param>
+          <type>bool</type>
+          <declname>initialize</declname>
+          <defval>true</defval>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Repos/renderer/src/api/buffers/VertexBuffer.hpp" line="13" column="5" bodyfile="C:/Repos/renderer/src/api/buffers/VertexBuffer.cpp" bodystart="5" bodyend="9"/>
+      </memberdef>
+      <memberdef kind="function" id="classrx_1_1_vertex_buffer_1a89a6e67a58ab128fc3721e8e2bc0ce50" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>const vk::Buffer</type>
+        <definition>const vk::Buffer rx::VertexBuffer::get</definition>
+        <argsstring>() const</argsstring>
+        <name>get</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Repos/renderer/src/api/buffers/VertexBuffer.hpp" line="15" column="29" bodyfile="C:/Repos/renderer/src/api/buffers/VertexBuffer.hpp" bodystart="15" bodyend="15"/>
+      </memberdef>
+      <memberdef kind="function" id="classrx_1_1_vertex_buffer_1aed185c57f67b3649e55d18c598a2dadd" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>vk::DeviceSize</type>
+        <definition>vk::DeviceSize rx::VertexBuffer::getSize</definition>
+        <argsstring>() const</argsstring>
+        <name>getSize</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Repos/renderer/src/api/buffers/VertexBuffer.hpp" line="16" column="27" bodyfile="C:/Repos/renderer/src/api/buffers/VertexBuffer.hpp" bodystart="16" bodyend="16"/>
+      </memberdef>
+      <memberdef kind="function" id="classrx_1_1_vertex_buffer_1a5d75d00043dfebaf014e13e8b82c887d" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>uint32_t</type>
+        <definition>uint32_t rx::VertexBuffer::getCount</definition>
+        <argsstring>() const</argsstring>
+        <name>getCount</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Repos/renderer/src/api/buffers/VertexBuffer.hpp" line="17" column="21" bodyfile="C:/Repos/renderer/src/api/buffers/VertexBuffer.hpp" bodystart="17" bodyend="17"/>
+      </memberdef>
+      <memberdef kind="function" id="classrx_1_1_vertex_buffer_1ab3c0058ec496e2e917d50c0c5fd89174" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void rx::VertexBuffer::init</definition>
+        <argsstring>(std::vector&lt; Vertex &gt; &amp;vertices)</argsstring>
+        <name>init</name>
+        <param>
+          <type>std::vector&lt; <ref refid="structrx_1_1_vertex" kindref="compound">Vertex</ref> &gt; &amp;</type>
+          <declname>vertices</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Repos/renderer/src/api/buffers/VertexBuffer.hpp" line="19" column="10" bodyfile="C:/Repos/renderer/src/api/buffers/VertexBuffer.cpp" bodystart="11" bodyend="35"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="C:/Repos/renderer/src/api/buffers/VertexBuffer.hpp" line="9" column="3" bodyfile="C:/Repos/renderer/src/api/buffers/VertexBuffer.hpp" bodystart="10" bodyend="25"/>
+    <listofallmembers>
+      <member refid="classrx_1_1_vertex_buffer_1a89a6e67a58ab128fc3721e8e2bc0ce50" prot="public" virt="non-virtual"><scope>rx::VertexBuffer</scope><name>get</name></member>
+      <member refid="classrx_1_1_vertex_buffer_1a5d75d00043dfebaf014e13e8b82c887d" prot="public" virt="non-virtual"><scope>rx::VertexBuffer</scope><name>getCount</name></member>
+      <member refid="classrx_1_1_vertex_buffer_1aed185c57f67b3649e55d18c598a2dadd" prot="public" virt="non-virtual"><scope>rx::VertexBuffer</scope><name>getSize</name></member>
+      <member refid="classrx_1_1_vertex_buffer_1ab3c0058ec496e2e917d50c0c5fd89174" prot="public" virt="non-virtual"><scope>rx::VertexBuffer</scope><name>init</name></member>
+      <member refid="classrx_1_1_vertex_buffer_1ab3f0c9112365d7ad9901cbce87f3a52e" prot="private" virt="non-virtual"><scope>rx::VertexBuffer</scope><name>m_buffer</name></member>
+      <member refid="classrx_1_1_vertex_buffer_1ac2913b175fb006885f6fcfaa889b9f62" prot="private" virt="non-virtual"><scope>rx::VertexBuffer</scope><name>m_count</name></member>
+      <member refid="classrx_1_1_vertex_buffer_1a43d4bd6b4fdea79ee20a4a30cbbb7b45" prot="public" virt="non-virtual"><scope>rx::VertexBuffer</scope><name>VertexBuffer</name></member>
+      <member refid="classrx_1_1_vertex_buffer_1a337011bf239a742c6a489da91cb73275" prot="public" virt="non-virtual"><scope>rx::VertexBuffer</scope><name>VertexBuffer</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

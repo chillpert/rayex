@@ -1,0 +1,111 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.20" xml:lang="en-US">
+  <compounddef id="classrx_1_1_directional_light_node" kind="class" language="C++" prot="public">
+    <compoundname>rx::DirectionalLightNode</compoundname>
+    <basecompoundref refid="classrx_1_1_light_node" prot="public" virt="non-virtual">rx::LightNode</basecompoundref>
+    <includes refid="_node_base_8hpp" local="no">NodeBase.hpp</includes>
+      <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="classrx_1_1_directional_light_node_1a2858db1a7666e37dda7a27790ba3bd03" prot="public" static="no" mutable="no">
+        <type>glm::vec3</type>
+        <definition>glm::vec3 rx::DirectionalLightNode::m_direction</definition>
+        <argsstring></argsstring>
+        <name>m_direction</name>
+        <initializer>= { 1.0f, -1.0f, 1.0f }</initializer>
+        <briefdescription>
+<para>The direction the light is pointing at. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Repos/renderer/src/base/NodeBase.hpp" line="88" column="15" bodyfile="C:/Repos/renderer/src/base/NodeBase.hpp" bodystart="88" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="classrx_1_1_directional_light_node_1a9ff5fa50bb746f0af5ad9f2278af40e0" prot="public" static="no" const="no" explicit="no" inline="no" virt="virtual">
+        <type></type>
+        <definition>virtual rx::DirectionalLightNode::~DirectionalLightNode</definition>
+        <argsstring>()=default</argsstring>
+        <name>~DirectionalLightNode</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Repos/renderer/src/base/NodeBase.hpp" line="86" column="13"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+<para>Can be used to add directional light sources to the scene. </para>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="4">
+        <label>rx::Node</label>
+        <link refid="classrx_1_1_node"/>
+      </node>
+      <node id="2">
+        <label>rx::LightNode</label>
+        <link refid="classrx_1_1_light_node"/>
+        <childnode refid="3" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="3">
+        <label>rx::TransformNode</label>
+        <link refid="classrx_1_1_transform_node"/>
+        <childnode refid="4" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="1">
+        <label>rx::DirectionalLightNode</label>
+        <link refid="classrx_1_1_directional_light_node"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="4">
+        <label>rx::Node</label>
+        <link refid="classrx_1_1_node"/>
+      </node>
+      <node id="2">
+        <label>rx::LightNode</label>
+        <link refid="classrx_1_1_light_node"/>
+        <childnode refid="3" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="3">
+        <label>rx::TransformNode</label>
+        <link refid="classrx_1_1_transform_node"/>
+        <childnode refid="4" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="1">
+        <label>rx::DirectionalLightNode</label>
+        <link refid="classrx_1_1_directional_light_node"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+    </collaborationgraph>
+    <location file="C:/Repos/renderer/src/base/NodeBase.hpp" line="83" column="3" bodyfile="C:/Repos/renderer/src/base/NodeBase.hpp" bodystart="84" bodyend="89"/>
+    <listofallmembers>
+      <member refid="classrx_1_1_node_1a44d70a683c0103419a22aa7a816c65d2" prot="public" virt="non-virtual"><scope>rx::DirectionalLightNode</scope><name>getID</name></member>
+      <member refid="classrx_1_1_light_node_1a07042b78c47e31ba02baa789e96d4f73" prot="protected" virt="non-virtual"><scope>rx::DirectionalLightNode</scope><name>m_ambient</name></member>
+      <member refid="classrx_1_1_light_node_1a4136eaa229f770cf5d4a7da7ff476d4c" prot="protected" virt="non-virtual"><scope>rx::DirectionalLightNode</scope><name>m_ambientStrength</name></member>
+      <member refid="classrx_1_1_light_node_1a1a5be4d70c77a892a614dfc27dbf000f" prot="protected" virt="non-virtual"><scope>rx::DirectionalLightNode</scope><name>m_diffuse</name></member>
+      <member refid="classrx_1_1_directional_light_node_1a2858db1a7666e37dda7a27790ba3bd03" prot="public" virt="non-virtual"><scope>rx::DirectionalLightNode</scope><name>m_direction</name></member>
+      <member refid="classrx_1_1_transform_node_1a882cd9b562378ce4bfaeab36a9051f5b" prot="public" virt="non-virtual"><scope>rx::DirectionalLightNode</scope><name>m_inverseLocalTransform</name></member>
+      <member refid="classrx_1_1_transform_node_1a9b79a66fff1bebfd016e7033ff85d19c" prot="public" virt="non-virtual"><scope>rx::DirectionalLightNode</scope><name>m_inverseWorldTransform</name></member>
+      <member refid="classrx_1_1_transform_node_1a67bf8eab8e92933653f274f7b47ae28c" prot="public" virt="non-virtual"><scope>rx::DirectionalLightNode</scope><name>m_localTransform</name></member>
+      <member refid="classrx_1_1_light_node_1a915cbf8be6f243dc6150ae5307bac0de" prot="protected" virt="non-virtual"><scope>rx::DirectionalLightNode</scope><name>m_specular</name></member>
+      <member refid="classrx_1_1_transform_node_1ae9c1ddad631772665bb59950073b3d41" prot="public" virt="non-virtual"><scope>rx::DirectionalLightNode</scope><name>m_worldTransform</name></member>
+      <member refid="classrx_1_1_node_1adf0d15a58309c1fdb7cff60a5a4e10f5" prot="public" virt="non-virtual"><scope>rx::DirectionalLightNode</scope><name>Node</name></member>
+      <member refid="classrx_1_1_directional_light_node_1a9ff5fa50bb746f0af5ad9f2278af40e0" prot="public" virt="virtual"><scope>rx::DirectionalLightNode</scope><name>~DirectionalLightNode</name></member>
+      <member refid="classrx_1_1_light_node_1ab99f0c76755b70566ae9ea6677d2e613" prot="protected" virt="virtual"><scope>rx::DirectionalLightNode</scope><name>~LightNode</name></member>
+      <member refid="classrx_1_1_node_1a11793f57afaf9c34a42ac6efc5a40049" prot="public" virt="virtual"><scope>rx::DirectionalLightNode</scope><name>~Node</name></member>
+      <member refid="classrx_1_1_transform_node_1a8930dc916df0f32e6682f2ba4b1ed621" prot="public" virt="virtual"><scope>rx::DirectionalLightNode</scope><name>~TransformNode</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

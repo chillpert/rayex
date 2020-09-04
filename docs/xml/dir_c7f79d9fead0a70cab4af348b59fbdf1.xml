@@ -1,0 +1,15 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.20" xml:lang="en-US">
+  <compounddef id="dir_c7f79d9fead0a70cab4af348b59fbdf1" kind="dir">
+    <compoundname>C:/Repos/renderer/src/window</compoundname>
+    <innerfile refid="_time_8cpp">Time.cpp</innerfile>
+    <innerfile refid="_time_8hpp">Time.hpp</innerfile>
+    <innerfile refid="_window_base_8cpp">WindowBase.cpp</innerfile>
+    <innerfile refid="_window_base_8hpp">WindowBase.hpp</innerfile>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="C:/Repos/renderer/src/window/"/>
+  </compounddef>
+</doxygen>

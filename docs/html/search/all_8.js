@@ -17,5 +17,6 @@ var searchData=
   ['instanceid_215',['instanceId',['../structrx_1_1_blas_instance.html#af158d0c22affa271615dedf13527d492',1,'rx::BlasInstance']]],
   ['instancetovkgeometryinstancekhr_216',['instanceToVkGeometryInstanceKHR',['../classrx_1_1_ray_tracing_builder.html#a80b540c07995e78feb14f9c8db5c141e',1,'rx::RayTracingBuilder']]],
   ['iscomplete_217',['isComplete',['../classrx_1_1_queues.html#a6de73934bd1ec9973de8caddfe897077',1,'rx::Queues']]],
-  ['isloaded_218',['isLoaded',['../classrx_1_1_model.html#a63a87310c43bf3455e8e80df561685f4',1,'rx::Model']]]
+  ['isloaded_218',['isLoaded',['../classrx_1_1_model.html#a63a87310c43bf3455e8e80df561685f4',1,'rx::Model']]],
+  ['isrunning_219',['isRunning',['../classrx_1_1_renderer.html#a7dbc4370868c44c799be054830a9453e',1,'rx::Renderer']]]
 ];

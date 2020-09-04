@@ -10,57 +10,54 @@
 
 namespace rx
 {
-  /// @todo Documentation, once this design was proven to be working. The textures should probably be vectors or unordered_maps of strings since one model can have many diffuse textures or specular textures etc.
+  /// Contains all rendering properties and textures.
   class Material
   {
   public:
     Material( ) = default;
     Material( const std::string& diffuseTexture ) :
-      m_diffuseTexture( diffuseTexture )
+      m_diffuseTexture( { diffuseTexture }  )
     { }
 
-    glm::vec3 m_ambient = glm::vec3( 0.0f );
-    glm::vec3 m_diffuse = glm::vec3( 0.0f );
-    glm::vec3 m_specular = glm::vec3( 0.0f );
-    glm::vec3 m_transmittance = glm::vec3( 0.0f );
-    glm::vec3 m_emission = glm::vec3( 0.0f );
+    glm::vec3 m_ambient = { };
+    glm::vec3 m_diffuse = { };
+    glm::vec3 m_specular = { };
+    glm::vec3 m_transmittance = { };
+    glm::vec3 m_emission = { };
 
     float m_shininess = 1.0f;
     float m_reflectionIndex = 1.0f;
     float m_opacity = 1.0f;
 
-    std::string m_ambientTexture;
-    std::string m_diffuseTexture;
-    std::string m_specularTexture;
-    std::string m_bumpTexture;
-    std::string m_displacementTexture;
-    std::string m_alphaTexture;
-    std::string m_reflectionTexture;
+    std::vector<std::string> m_diffuseTexture;
+    std::vector<std::string> m_specularTexture;
+    std::vector<std::string> m_bumpTexture;
+    std::vector<std::string> m_displacementTexture;
+    std::vector<std::string> m_alphaTexture;
+    std::vector<std::string> m_reflectionTexture;
 
+    /// @return Returns a set of all textures this model requires.
     std::unordered_set<std::string> getTextures( )
     {
       std::unordered_set<std::string> textures;
 
-      if ( !m_ambientTexture.empty( ) )
-        textures.insert( m_ambientTexture );
-
       if ( !m_diffuseTexture.empty( ) )
-        textures.insert( m_diffuseTexture );
+        textures.insert( m_diffuseTexture.begin( ), m_diffuseTexture.end( ) );
 
       if ( !m_specularTexture.empty( ) )
-        textures.insert( m_specularTexture );
+        textures.insert( m_specularTexture.begin( ), m_specularTexture.end( ) );
 
       if ( !m_bumpTexture.empty( ) )
-        textures.insert( m_bumpTexture );
+        textures.insert( m_bumpTexture.begin( ), m_bumpTexture.end( ) );
 
       if ( !m_displacementTexture.empty( ) )
-        textures.insert( m_displacementTexture );
+        textures.insert( m_displacementTexture.begin( ), m_displacementTexture.end( ) );
 
       if ( !m_alphaTexture.empty( ) )
-        textures.insert( m_alphaTexture );
+        textures.insert( m_alphaTexture.begin( ), m_alphaTexture.end( ) );
 
       if ( !m_reflectionTexture.empty( ) )
-        textures.insert( m_reflectionTexture );
+        textures.insert( m_reflectionTexture.begin( ), m_reflectionTexture.end( ) );
 
       return textures;
     }

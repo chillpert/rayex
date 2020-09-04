@@ -1,0 +1,112 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.20" xml:lang="en-US">
+  <compounddef id="classrx_1_1_queues" kind="class" language="C++" prot="public">
+    <compoundname>rx::Queues</compoundname>
+    <includes refid="_queues_8hpp" local="no">Queues.hpp</includes>
+      <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="classrx_1_1_queues_1abb28e6f7adf086fe84182f052cfde607" prot="private" static="no" mutable="no">
+        <type>std::optional&lt; uint32_t &gt;</type>
+        <definition>std::optional&lt;uint32_t&gt; rx::Queues::m_graphicsFamilyIndex</definition>
+        <argsstring></argsstring>
+        <name>m_graphicsFamilyIndex</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Repos/renderer/src/api/Queues.hpp" line="19" column="19" bodyfile="C:/Repos/renderer/src/api/Queues.hpp" bodystart="19" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classrx_1_1_queues_1a0103aff3f4a7d50c003d5fdf3e5f6f13" prot="private" static="no" mutable="no">
+        <type>std::optional&lt; uint32_t &gt;</type>
+        <definition>std::optional&lt;uint32_t&gt; rx::Queues::m_transferFamilyIndex</definition>
+        <argsstring></argsstring>
+        <name>m_transferFamilyIndex</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Repos/renderer/src/api/Queues.hpp" line="20" column="19" bodyfile="C:/Repos/renderer/src/api/Queues.hpp" bodystart="20" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="classrx_1_1_queues_1ab003c434f6c993f2381b6b0c9dd76003" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void rx::Queues::init</definition>
+        <argsstring>()</argsstring>
+        <name>init</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Repos/renderer/src/api/Queues.hpp" line="11" column="10" bodyfile="C:/Repos/renderer/src/api/Queues.cpp" bodystart="6" bodyend="35"/>
+      </memberdef>
+      <memberdef kind="function" id="classrx_1_1_queues_1a3262a78b46dd3d20f720c256beee4c68" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void rx::Queues::retrieveHandles</definition>
+        <argsstring>()</argsstring>
+        <name>retrieveHandles</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Repos/renderer/src/api/Queues.hpp" line="13" column="10" bodyfile="C:/Repos/renderer/src/api/Queues.cpp" bodystart="37" bodyend="44"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-static-func">
+      <memberdef kind="function" id="classrx_1_1_queues_1a6de73934bd1ec9973de8caddfe897077" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool rx::Queues::isComplete</definition>
+        <argsstring>(vk::PhysicalDevice physicalDevice)</argsstring>
+        <name>isComplete</name>
+        <param>
+          <type>vk::PhysicalDevice</type>
+          <declname>physicalDevice</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Repos/renderer/src/api/Queues.hpp" line="15" column="17" bodyfile="C:/Repos/renderer/src/api/Queues.cpp" bodystart="46" bodyend="79"/>
+      </memberdef>
+      <memberdef kind="function" id="classrx_1_1_queues_1aa0e1ad87d64b7edadf67af40f98d30ce" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool rx::Queues::hasDedicatedTransferQueueFamily</definition>
+        <argsstring>(vk::PhysicalDevice physicalDevice)</argsstring>
+        <name>hasDedicatedTransferQueueFamily</name>
+        <param>
+          <type>vk::PhysicalDevice</type>
+          <declname>physicalDevice</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Repos/renderer/src/api/Queues.hpp" line="16" column="17" bodyfile="C:/Repos/renderer/src/api/Queues.cpp" bodystart="81" bodyend="92"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="C:/Repos/renderer/src/api/Queues.hpp" line="8" column="3" bodyfile="C:/Repos/renderer/src/api/Queues.hpp" bodystart="9" bodyend="21"/>
+    <listofallmembers>
+      <member refid="classrx_1_1_queues_1aa0e1ad87d64b7edadf67af40f98d30ce" prot="public" virt="non-virtual"><scope>rx::Queues</scope><name>hasDedicatedTransferQueueFamily</name></member>
+      <member refid="classrx_1_1_queues_1ab003c434f6c993f2381b6b0c9dd76003" prot="public" virt="non-virtual"><scope>rx::Queues</scope><name>init</name></member>
+      <member refid="classrx_1_1_queues_1a6de73934bd1ec9973de8caddfe897077" prot="public" virt="non-virtual"><scope>rx::Queues</scope><name>isComplete</name></member>
+      <member refid="classrx_1_1_queues_1abb28e6f7adf086fe84182f052cfde607" prot="private" virt="non-virtual"><scope>rx::Queues</scope><name>m_graphicsFamilyIndex</name></member>
+      <member refid="classrx_1_1_queues_1a0103aff3f4a7d50c003d5fdf3e5f6f13" prot="private" virt="non-virtual"><scope>rx::Queues</scope><name>m_transferFamilyIndex</name></member>
+      <member refid="classrx_1_1_queues_1a3262a78b46dd3d20f720c256beee4c68" prot="public" virt="non-virtual"><scope>rx::Queues</scope><name>retrieveHandles</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

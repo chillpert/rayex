@@ -1,0 +1,222 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.20" xml:lang="en-US">
+  <compounddef id="classrx_1_1_instance" kind="class" language="C++" prot="public">
+    <compoundname>rx::Instance</compoundname>
+    <includes refid="_instance_8hpp" local="no">Instance.hpp</includes>
+      <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="classrx_1_1_instance_1a7309d8b7527b2d41d9e3b6b286557966" prot="private" static="no" mutable="no">
+        <type>vk::UniqueInstance</type>
+        <definition>vk::UniqueInstance rx::Instance::m_instance</definition>
+        <argsstring></argsstring>
+        <name>m_instance</name>
+        <briefdescription>
+<para>The actual Vulkan instance with a unique handle. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Repos/renderer/src/api/Instance.hpp" line="42" column="24" bodyfile="C:/Repos/renderer/src/api/Instance.hpp" bodystart="42" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="classrx_1_1_instance_1a4d30588f605365dacf22ef1cab83f66f" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>rx::Instance::Instance</definition>
+        <argsstring>()=default</argsstring>
+        <name>Instance</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Repos/renderer/src/api/Instance.hpp" line="13" column="5"/>
+      </memberdef>
+      <memberdef kind="function" id="classrx_1_1_instance_1a546a229b44172922f856c7d302ca659f" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>rx::Instance::Instance</definition>
+        <argsstring>(const std::vector&lt; const char * &gt; &amp;layers, std::vector&lt; const char * &gt; &amp;extensions, bool initialize=true)</argsstring>
+        <name>Instance</name>
+        <param>
+          <type>const std::vector&lt; const char * &gt; &amp;</type>
+          <declname>layers</declname>
+        </param>
+        <param>
+          <type>std::vector&lt; const char * &gt; &amp;</type>
+          <declname>extensions</declname>
+        </param>
+        <param>
+          <type>bool</type>
+          <declname>initialize</declname>
+          <defval>true</defval>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>layers</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>All validation layers that should be activated. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>extensiosn</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>All instance extensions that should be activated. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>initialize</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>If true, the <ref refid="classrx_1_1_instance" kindref="compound">Instance</ref> object will be initialized right away without an additional call to <ref refid="classrx_1_1_instance_1ac539c6a87bb0b46e54aaf4b9b1d09a36" kindref="member">init()</ref>. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Repos/renderer/src/api/Instance.hpp" line="17" column="5" bodyfile="C:/Repos/renderer/src/api/Instance.cpp" bodystart="10" bodyend="14"/>
+      </memberdef>
+      <memberdef kind="function" id="classrx_1_1_instance_1ac539c6a87bb0b46e54aaf4b9b1d09a36" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void rx::Instance::init</definition>
+        <argsstring>(const std::vector&lt; const char * &gt; &amp;layers, std::vector&lt; const char * &gt; &amp;extensions)</argsstring>
+        <name>init</name>
+        <param>
+          <type>const std::vector&lt; const char * &gt; &amp;</type>
+          <declname>layers</declname>
+        </param>
+        <param>
+          <type>std::vector&lt; const char * &gt; &amp;</type>
+          <declname>extensions</declname>
+        </param>
+        <briefdescription>
+<para>Initializes the instance object and checks support for any given layer and extension. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>layers</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>All validation layers that should be activated. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>extensions</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>All instance extensions that should be activated. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="note"><para>The given vector with the extensions will be appended by ones that are required by the window. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Repos/renderer/src/api/Instance.hpp" line="23" column="10" bodyfile="C:/Repos/renderer/src/api/Instance.cpp" bodystart="16" bodyend="48"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="private-func">
+      <memberdef kind="function" id="classrx_1_1_instance_1af677553eae1707ea9f22661a38ec6e56" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void rx::Instance::checkLayersSupport</definition>
+        <argsstring>(const std::vector&lt; const char * &gt; &amp;layers)</argsstring>
+        <name>checkLayersSupport</name>
+        <param>
+          <type>const std::vector&lt; const char * &gt; &amp;</type>
+          <declname>layers</declname>
+        </param>
+        <briefdescription>
+<para>Checks if all layers provided are supported. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>If any layer is not supported the application will shut down immediately. <parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>layers</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>All validation layers that should be activated. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Repos/renderer/src/api/Instance.hpp" line="30" column="10" bodyfile="C:/Repos/renderer/src/api/Instance.cpp" bodystart="50" bodyend="71"/>
+      </memberdef>
+      <memberdef kind="function" id="classrx_1_1_instance_1acdb55a3307fe0f50f826aefd8dc9fb6d" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void rx::Instance::checkExtensionsSupport</definition>
+        <argsstring>(const std::vector&lt; const char * &gt; &amp;extensions)</argsstring>
+        <name>checkExtensionsSupport</name>
+        <param>
+          <type>const std::vector&lt; const char * &gt; &amp;</type>
+          <declname>extensions</declname>
+        </param>
+        <briefdescription>
+<para>Checks if all instance extensions provided are supported. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>If any instance extension is not supported the application will shut dow immediately. <parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>extensions</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>All instance extensions that should be activated. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Repos/renderer/src/api/Instance.hpp" line="36" column="10" bodyfile="C:/Repos/renderer/src/api/Instance.cpp" bodystart="73" bodyend="94"/>
+      </memberdef>
+      <memberdef kind="function" id="classrx_1_1_instance_1acd96b53e4c262566676c524d871cec25" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>uint32_t</type>
+        <definition>uint32_t rx::Instance::getApiVersion</definition>
+        <argsstring>()</argsstring>
+        <name>getApiVersion</name>
+        <briefdescription>
+<para>Returns the version of the Vulkan SDK installed on the machine. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="note"><para>It can not retrieve patch version, only major and minor version. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Repos/renderer/src/api/Instance.hpp" line="40" column="14" bodyfile="C:/Repos/renderer/src/api/Instance.cpp" bodystart="96" bodyend="119"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+<para>A wrapper class for the Vulkan instance. </para>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="C:/Repos/renderer/src/api/Instance.hpp" line="10" column="3" bodyfile="C:/Repos/renderer/src/api/Instance.hpp" bodystart="11" bodyend="43"/>
+    <listofallmembers>
+      <member refid="classrx_1_1_instance_1acdb55a3307fe0f50f826aefd8dc9fb6d" prot="private" virt="non-virtual"><scope>rx::Instance</scope><name>checkExtensionsSupport</name></member>
+      <member refid="classrx_1_1_instance_1af677553eae1707ea9f22661a38ec6e56" prot="private" virt="non-virtual"><scope>rx::Instance</scope><name>checkLayersSupport</name></member>
+      <member refid="classrx_1_1_instance_1acd96b53e4c262566676c524d871cec25" prot="private" virt="non-virtual"><scope>rx::Instance</scope><name>getApiVersion</name></member>
+      <member refid="classrx_1_1_instance_1ac539c6a87bb0b46e54aaf4b9b1d09a36" prot="public" virt="non-virtual"><scope>rx::Instance</scope><name>init</name></member>
+      <member refid="classrx_1_1_instance_1a4d30588f605365dacf22ef1cab83f66f" prot="public" virt="non-virtual"><scope>rx::Instance</scope><name>Instance</name></member>
+      <member refid="classrx_1_1_instance_1a546a229b44172922f856c7d302ca659f" prot="public" virt="non-virtual"><scope>rx::Instance</scope><name>Instance</name></member>
+      <member refid="classrx_1_1_instance_1a7309d8b7527b2d41d9e3b6b286557966" prot="private" virt="non-virtual"><scope>rx::Instance</scope><name>m_instance</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

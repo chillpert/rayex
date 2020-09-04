@@ -1,0 +1,266 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.20" xml:lang="en-US">
+  <compounddef id="classrx_1_1_command_buffer" kind="class" language="C++" prot="public">
+    <compoundname>rx::CommandBuffer</compoundname>
+    <includes refid="_command_buffer_8hpp" local="no">CommandBuffer.hpp</includes>
+      <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="classrx_1_1_command_buffer_1adc8f0e2930e34f45979c570d332a1d33" prot="private" static="no" mutable="no">
+        <type>std::vector&lt; vk::CommandBuffer &gt;</type>
+        <definition>std::vector&lt;vk::CommandBuffer&gt; rx::CommandBuffer::m_commandBuffers</definition>
+        <argsstring></argsstring>
+        <name>m_commandBuffers</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Repos/renderer/src/api/buffers/CommandBuffer.hpp" line="28" column="17" bodyfile="C:/Repos/renderer/src/api/buffers/CommandBuffer.hpp" bodystart="28" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classrx_1_1_command_buffer_1ac262208b5ff442138c4bdf4050da9ac9" prot="private" static="no" mutable="no">
+        <type>vk::CommandPool</type>
+        <definition>vk::CommandPool rx::CommandBuffer::m_commandPool</definition>
+        <argsstring></argsstring>
+        <name>m_commandPool</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Repos/renderer/src/api/buffers/CommandBuffer.hpp" line="30" column="21" bodyfile="C:/Repos/renderer/src/api/buffers/CommandBuffer.hpp" bodystart="30" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classrx_1_1_command_buffer_1a84a763d0d812fff1c8a684e31f918a4f" prot="private" static="no" mutable="no">
+        <type>vk::CommandBufferBeginInfo</type>
+        <definition>vk::CommandBufferBeginInfo rx::CommandBuffer::m_beginInfo</definition>
+        <argsstring></argsstring>
+        <name>m_beginInfo</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Repos/renderer/src/api/buffers/CommandBuffer.hpp" line="31" column="32" bodyfile="C:/Repos/renderer/src/api/buffers/CommandBuffer.hpp" bodystart="31" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="classrx_1_1_command_buffer_1a257a48a9805e2173009f6a3f783acd8b" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>rx::CommandBuffer::CommandBuffer</definition>
+        <argsstring>()=default</argsstring>
+        <name>CommandBuffer</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Repos/renderer/src/api/buffers/CommandBuffer.hpp" line="11" column="5"/>
+      </memberdef>
+      <memberdef kind="function" id="classrx_1_1_command_buffer_1a1f55df7164152ee629a1a572f35b41a4" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>rx::CommandBuffer::CommandBuffer</definition>
+        <argsstring>(vk::CommandPool commandPool, uint32_t count=1, vk::CommandBufferUsageFlags usageFlags=vk::CommandBufferUsageFlagBits::eOneTimeSubmit, bool initialize=true)</argsstring>
+        <name>CommandBuffer</name>
+        <param>
+          <type>vk::CommandPool</type>
+          <declname>commandPool</declname>
+        </param>
+        <param>
+          <type>uint32_t</type>
+          <declname>count</declname>
+          <defval>1</defval>
+        </param>
+        <param>
+          <type>vk::CommandBufferUsageFlags</type>
+          <declname>usageFlags</declname>
+          <defval>vk::CommandBufferUsageFlagBits::eOneTimeSubmit</defval>
+        </param>
+        <param>
+          <type>bool</type>
+          <declname>initialize</declname>
+          <defval>true</defval>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Repos/renderer/src/api/buffers/CommandBuffer.hpp" line="12" column="5" bodyfile="C:/Repos/renderer/src/api/buffers/CommandBuffer.cpp" bodystart="6" bodyend="10"/>
+      </memberdef>
+      <memberdef kind="function" id="classrx_1_1_command_buffer_1abc9618248a49213bb5649495d2194ea5" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void rx::CommandBuffer::init</definition>
+        <argsstring>(vk::CommandPool commandPool, uint32_t count=1, vk::CommandBufferUsageFlags usageFlags=vk::CommandBufferUsageFlagBits::eOneTimeSubmit)</argsstring>
+        <name>init</name>
+        <param>
+          <type>vk::CommandPool</type>
+          <declname>commandPool</declname>
+        </param>
+        <param>
+          <type>uint32_t</type>
+          <declname>count</declname>
+          <defval>1</defval>
+        </param>
+        <param>
+          <type>vk::CommandBufferUsageFlags</type>
+          <declname>usageFlags</declname>
+          <defval>vk::CommandBufferUsageFlagBits::eOneTimeSubmit</defval>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Repos/renderer/src/api/buffers/CommandBuffer.hpp" line="14" column="10" bodyfile="C:/Repos/renderer/src/api/buffers/CommandBuffer.cpp" bodystart="12" bodyend="28"/>
+      </memberdef>
+      <memberdef kind="function" id="classrx_1_1_command_buffer_1aa1a716b752e737da669055a1ad21b52a" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>const std::vector&lt; vk::CommandBuffer &gt;</type>
+        <definition>const std::vector&lt;vk::CommandBuffer&gt; rx::CommandBuffer::get</definition>
+        <argsstring>() const</argsstring>
+        <name>get</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Repos/renderer/src/api/buffers/CommandBuffer.hpp" line="16" column="30" bodyfile="C:/Repos/renderer/src/api/buffers/CommandBuffer.hpp" bodystart="16" bodyend="16"/>
+      </memberdef>
+      <memberdef kind="function" id="classrx_1_1_command_buffer_1afc93f4c5731f3b18d24cefc3729f9b0a" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>const vk::CommandBuffer</type>
+        <definition>const vk::CommandBuffer rx::CommandBuffer::get</definition>
+        <argsstring>(size_t index) const</argsstring>
+        <name>get</name>
+        <param>
+          <type>size_t</type>
+          <declname>index</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Repos/renderer/src/api/buffers/CommandBuffer.hpp" line="17" column="36" bodyfile="C:/Repos/renderer/src/api/buffers/CommandBuffer.hpp" bodystart="17" bodyend="17"/>
+      </memberdef>
+      <memberdef kind="function" id="classrx_1_1_command_buffer_1acaea73fae9e61b78257bf735b4235b53" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void rx::CommandBuffer::free</definition>
+        <argsstring>()</argsstring>
+        <name>free</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Repos/renderer/src/api/buffers/CommandBuffer.hpp" line="19" column="10" bodyfile="C:/Repos/renderer/src/api/buffers/CommandBuffer.cpp" bodystart="30" bodyend="33"/>
+      </memberdef>
+      <memberdef kind="function" id="classrx_1_1_command_buffer_1ab76173ed0d4409599c99f16f8dd830d7" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>RX_API void</type>
+        <definition>void rx::CommandBuffer::reset</definition>
+        <argsstring>()</argsstring>
+        <name>reset</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Repos/renderer/src/api/buffers/CommandBuffer.hpp" line="20" column="17" bodyfile="C:/Repos/renderer/src/api/buffers/CommandBuffer.cpp" bodystart="35" bodyend="39"/>
+      </memberdef>
+      <memberdef kind="function" id="classrx_1_1_command_buffer_1a47ea2cef2b275adbe351f46998dfb28d" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void rx::CommandBuffer::begin</definition>
+        <argsstring>(size_t index=0)</argsstring>
+        <name>begin</name>
+        <param>
+          <type>size_t</type>
+          <declname>index</declname>
+          <defval>0</defval>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Repos/renderer/src/api/buffers/CommandBuffer.hpp" line="22" column="10" bodyfile="C:/Repos/renderer/src/api/buffers/CommandBuffer.cpp" bodystart="41" bodyend="44"/>
+      </memberdef>
+      <memberdef kind="function" id="classrx_1_1_command_buffer_1a38438d77c29c276f4fa56c7f2929b1a0" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void rx::CommandBuffer::end</definition>
+        <argsstring>(size_t index=0)</argsstring>
+        <name>end</name>
+        <param>
+          <type>size_t</type>
+          <declname>index</declname>
+          <defval>0</defval>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Repos/renderer/src/api/buffers/CommandBuffer.hpp" line="23" column="10" bodyfile="C:/Repos/renderer/src/api/buffers/CommandBuffer.cpp" bodystart="46" bodyend="49"/>
+      </memberdef>
+      <memberdef kind="function" id="classrx_1_1_command_buffer_1a31fe2373d5dd2af4c9b087cc0a6cfd9e" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void rx::CommandBuffer::submitToQueue</definition>
+        <argsstring>(vk::Queue queue, const std::vector&lt; vk::Semaphore &gt; &amp;waitSemaphores={ }, const std::vector&lt; vk::Semaphore &gt; &amp;signalSemaphores={ }, vk::PipelineStageFlags *waitDstStageMask={ })</argsstring>
+        <name>submitToQueue</name>
+        <param>
+          <type>vk::Queue</type>
+          <declname>queue</declname>
+        </param>
+        <param>
+          <type>const std::vector&lt; vk::Semaphore &gt; &amp;</type>
+          <declname>waitSemaphores</declname>
+          <defval>{ }</defval>
+        </param>
+        <param>
+          <type>const std::vector&lt; vk::Semaphore &gt; &amp;</type>
+          <declname>signalSemaphores</declname>
+          <defval>{ }</defval>
+        </param>
+        <param>
+          <type>vk::PipelineStageFlags *</type>
+          <declname>waitDstStageMask</declname>
+          <defval>{ }</defval>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Repos/renderer/src/api/buffers/CommandBuffer.hpp" line="25" column="10" bodyfile="C:/Repos/renderer/src/api/buffers/CommandBuffer.cpp" bodystart="51" bodyend="70"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="C:/Repos/renderer/src/api/buffers/CommandBuffer.hpp" line="8" column="3" bodyfile="C:/Repos/renderer/src/api/buffers/CommandBuffer.hpp" bodystart="9" bodyend="32"/>
+    <listofallmembers>
+      <member refid="classrx_1_1_command_buffer_1a47ea2cef2b275adbe351f46998dfb28d" prot="public" virt="non-virtual"><scope>rx::CommandBuffer</scope><name>begin</name></member>
+      <member refid="classrx_1_1_command_buffer_1a257a48a9805e2173009f6a3f783acd8b" prot="public" virt="non-virtual"><scope>rx::CommandBuffer</scope><name>CommandBuffer</name></member>
+      <member refid="classrx_1_1_command_buffer_1a1f55df7164152ee629a1a572f35b41a4" prot="public" virt="non-virtual"><scope>rx::CommandBuffer</scope><name>CommandBuffer</name></member>
+      <member refid="classrx_1_1_command_buffer_1a38438d77c29c276f4fa56c7f2929b1a0" prot="public" virt="non-virtual"><scope>rx::CommandBuffer</scope><name>end</name></member>
+      <member refid="classrx_1_1_command_buffer_1acaea73fae9e61b78257bf735b4235b53" prot="public" virt="non-virtual"><scope>rx::CommandBuffer</scope><name>free</name></member>
+      <member refid="classrx_1_1_command_buffer_1aa1a716b752e737da669055a1ad21b52a" prot="public" virt="non-virtual"><scope>rx::CommandBuffer</scope><name>get</name></member>
+      <member refid="classrx_1_1_command_buffer_1afc93f4c5731f3b18d24cefc3729f9b0a" prot="public" virt="non-virtual"><scope>rx::CommandBuffer</scope><name>get</name></member>
+      <member refid="classrx_1_1_command_buffer_1abc9618248a49213bb5649495d2194ea5" prot="public" virt="non-virtual"><scope>rx::CommandBuffer</scope><name>init</name></member>
+      <member refid="classrx_1_1_command_buffer_1a84a763d0d812fff1c8a684e31f918a4f" prot="private" virt="non-virtual"><scope>rx::CommandBuffer</scope><name>m_beginInfo</name></member>
+      <member refid="classrx_1_1_command_buffer_1adc8f0e2930e34f45979c570d332a1d33" prot="private" virt="non-virtual"><scope>rx::CommandBuffer</scope><name>m_commandBuffers</name></member>
+      <member refid="classrx_1_1_command_buffer_1ac262208b5ff442138c4bdf4050da9ac9" prot="private" virt="non-virtual"><scope>rx::CommandBuffer</scope><name>m_commandPool</name></member>
+      <member refid="classrx_1_1_command_buffer_1ab76173ed0d4409599c99f16f8dd830d7" prot="public" virt="non-virtual"><scope>rx::CommandBuffer</scope><name>reset</name></member>
+      <member refid="classrx_1_1_command_buffer_1a31fe2373d5dd2af4c9b087cc0a6cfd9e" prot="public" virt="non-virtual"><scope>rx::CommandBuffer</scope><name>submitToQueue</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

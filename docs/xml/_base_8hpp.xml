@@ -1,0 +1,428 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.20" xml:lang="en-US">
+  <compounddef id="_base_8hpp" kind="file" language="C++">
+    <compoundname>Base.hpp</compoundname>
+    <includes refid="_camera_base_8hpp" local="yes">CameraBase.hpp</includes>
+    <includes refid="_node_base_8hpp" local="yes">NodeBase.hpp</includes>
+    <includes refid="_gui_base_8hpp" local="yes">GuiBase.hpp</includes>
+    <includes refid="_window_base_8hpp" local="yes">WindowBase.hpp</includes>
+    <includedby refid="_api_8hpp" local="yes">C:/Repos/renderer/src/api/Api.hpp</includedby>
+    <includedby refid="_renderer_8hpp" local="yes">C:/Repos/renderer/src/Renderer.hpp</includedby>
+    <incdepgraph>
+      <node id="38">
+        <label>glm/gtx/hash.hpp</label>
+      </node>
+      <node id="35">
+        <label>Texture.hpp</label>
+        <link refid="_texture_8hpp"/>
+        <childnode refid="36" relation="include">
+        </childnode>
+      </node>
+      <node id="19">
+        <label>iomanip</label>
+      </node>
+      <node id="12">
+        <label>glm/ext/matrix_transform.hpp</label>
+      </node>
+      <node id="47">
+        <label>GuiBase.hpp</label>
+        <link refid="_gui_base_8hpp"/>
+        <childnode refid="48" relation="include">
+        </childnode>
+        <childnode refid="49" relation="include">
+        </childnode>
+        <childnode refid="50" relation="include">
+        </childnode>
+        <childnode refid="51" relation="include">
+        </childnode>
+        <childnode refid="15" relation="include">
+        </childnode>
+        <childnode refid="17" relation="include">
+        </childnode>
+      </node>
+      <node id="42">
+        <label>WindowBase.hpp</label>
+        <link refid="_window_base_8hpp"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="9" relation="include">
+        </childnode>
+        <childnode refid="2" relation="include">
+        </childnode>
+      </node>
+      <node id="43">
+        <label>IndexBuffer.hpp</label>
+        <link refid="_index_buffer_8hpp"/>
+        <childnode refid="40" relation="include">
+        </childnode>
+      </node>
+      <node id="40">
+        <label>Buffer.hpp</label>
+        <link refid="_buffer_8hpp"/>
+        <childnode refid="36" relation="include">
+        </childnode>
+        <childnode refid="41" relation="include">
+        </childnode>
+      </node>
+      <node id="16">
+        <label>imgui_impl_sdl.h</label>
+      </node>
+      <node id="20">
+        <label>cstdint</label>
+      </node>
+      <node id="36">
+        <label>Image.hpp</label>
+        <link refid="_image_8hpp"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+      </node>
+      <node id="49">
+        <label>RenderPass.hpp</label>
+        <link refid="_render_pass_8hpp"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+      </node>
+      <node id="25">
+        <label>stdexcept</label>
+      </node>
+      <node id="17">
+        <label>imgui_impl_vulkan.h</label>
+      </node>
+      <node id="45">
+        <label>DescriptorSet.hpp</label>
+        <link refid="_descriptor_set_8hpp"/>
+        <childnode refid="46" relation="include">
+        </childnode>
+        <childnode refid="40" relation="include">
+        </childnode>
+        <childnode refid="44" relation="include">
+        </childnode>
+        <childnode refid="35" relation="include">
+        </childnode>
+      </node>
+      <node id="50">
+        <label>Swapchain.hpp</label>
+        <link refid="_swapchain_8hpp"/>
+        <childnode refid="51" relation="include">
+        </childnode>
+        <childnode refid="36" relation="include">
+        </childnode>
+        <childnode refid="52" relation="include">
+        </childnode>
+      </node>
+      <node id="44">
+        <label>UniformBuffer.hpp</label>
+        <link refid="_uniform_buffer_8hpp"/>
+        <childnode refid="40" relation="include">
+        </childnode>
+      </node>
+      <node id="33">
+        <label>NodeBase.hpp</label>
+        <link refid="_node_base_8hpp"/>
+        <childnode refid="34" relation="include">
+        </childnode>
+      </node>
+      <node id="27">
+        <label>map</label>
+      </node>
+      <node id="53">
+        <label>AccelerationStructure.hpp</label>
+        <link refid="_acceleration_structure_8hpp"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="41" relation="include">
+        </childnode>
+      </node>
+      <node id="32">
+        <label>unordered_set</label>
+      </node>
+      <node id="28">
+        <label>fstream</label>
+      </node>
+      <node id="14">
+        <label>glm/gtx/string_cast.hpp</label>
+      </node>
+      <node id="3">
+        <label>pch/stdafx.hpp</label>
+        <link refid="stdafx_8hpp"/>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="9" relation="include">
+        </childnode>
+        <childnode refid="11" relation="include">
+        </childnode>
+        <childnode refid="12" relation="include">
+        </childnode>
+        <childnode refid="13" relation="include">
+        </childnode>
+        <childnode refid="14" relation="include">
+        </childnode>
+        <childnode refid="15" relation="include">
+        </childnode>
+        <childnode refid="16" relation="include">
+        </childnode>
+        <childnode refid="17" relation="include">
+        </childnode>
+        <childnode refid="18" relation="include">
+        </childnode>
+        <childnode refid="19" relation="include">
+        </childnode>
+        <childnode refid="10" relation="include">
+        </childnode>
+        <childnode refid="20" relation="include">
+        </childnode>
+        <childnode refid="21" relation="include">
+        </childnode>
+        <childnode refid="22" relation="include">
+        </childnode>
+        <childnode refid="23" relation="include">
+        </childnode>
+        <childnode refid="24" relation="include">
+        </childnode>
+        <childnode refid="25" relation="include">
+        </childnode>
+        <childnode refid="26" relation="include">
+        </childnode>
+        <childnode refid="27" relation="include">
+        </childnode>
+        <childnode refid="28" relation="include">
+        </childnode>
+        <childnode refid="29" relation="include">
+        </childnode>
+        <childnode refid="30" relation="include">
+        </childnode>
+        <childnode refid="31" relation="include">
+        </childnode>
+        <childnode refid="32" relation="include">
+        </childnode>
+      </node>
+      <node id="5">
+        <label>SDL2/SDL.h</label>
+      </node>
+      <node id="4">
+        <label>Core.hpp</label>
+        <link refid="_core_8hpp"/>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="6" relation="include">
+        </childnode>
+        <childnode refid="7" relation="include">
+        </childnode>
+        <childnode refid="8" relation="include">
+        </childnode>
+      </node>
+      <node id="23">
+        <label>optional</label>
+      </node>
+      <node id="48">
+        <label>CommandBuffer.hpp</label>
+        <link refid="_command_buffer_8hpp"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+      </node>
+      <node id="10">
+        <label>vector</label>
+      </node>
+      <node id="34">
+        <label>Model.hpp</label>
+        <link refid="_model_8hpp"/>
+        <childnode refid="35" relation="include">
+        </childnode>
+        <childnode refid="37" relation="include">
+        </childnode>
+        <childnode refid="39" relation="include">
+        </childnode>
+        <childnode refid="43" relation="include">
+        </childnode>
+        <childnode refid="44" relation="include">
+        </childnode>
+        <childnode refid="45" relation="include">
+        </childnode>
+      </node>
+      <node id="1">
+        <label>C:/Repos/renderer/src/base/Base.hpp</label>
+        <link refid="_base_8hpp"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="33" relation="include">
+        </childnode>
+        <childnode refid="47" relation="include">
+        </childnode>
+        <childnode refid="42" relation="include">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>CameraBase.hpp</label>
+        <link refid="_camera_base_8hpp"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+      </node>
+      <node id="29">
+        <label>array</label>
+      </node>
+      <node id="18">
+        <label>sstream</label>
+      </node>
+      <node id="46">
+        <label>DescriptorSetLayout.hpp</label>
+        <link refid="_descriptor_set_layout_8hpp"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+      </node>
+      <node id="39">
+        <label>VertexBuffer.hpp</label>
+        <link refid="_vertex_buffer_8hpp"/>
+        <childnode refid="40" relation="include">
+        </childnode>
+        <childnode refid="37" relation="include">
+        </childnode>
+      </node>
+      <node id="21">
+        <label>cstdlib</label>
+      </node>
+      <node id="37">
+        <label>Vertex.hpp</label>
+        <link refid="_vertex_8hpp"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="38" relation="include">
+        </childnode>
+      </node>
+      <node id="15">
+        <label>imgui.h</label>
+      </node>
+      <node id="8">
+        <label>iostream</label>
+      </node>
+      <node id="31">
+        <label>unordered_map</label>
+      </node>
+      <node id="41">
+        <label>Components.hpp</label>
+        <link refid="_components_8hpp"/>
+        <childnode refid="42" relation="include">
+        </childnode>
+      </node>
+      <node id="13">
+        <label>glm/ext/matrix_clip_space.hpp</label>
+      </node>
+      <node id="52">
+        <label>Helpers.hpp</label>
+        <link refid="_helpers_8hpp"/>
+        <childnode refid="53" relation="include">
+        </childnode>
+        <childnode refid="34" relation="include">
+        </childnode>
+        <childnode refid="49" relation="include">
+        </childnode>
+      </node>
+      <node id="9">
+        <label>Time.hpp</label>
+        <link refid="_time_8hpp"/>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="10" relation="include">
+        </childnode>
+      </node>
+      <node id="24">
+        <label>set</label>
+      </node>
+      <node id="26">
+        <label>algorithm</label>
+      </node>
+      <node id="22">
+        <label>cstring</label>
+      </node>
+      <node id="7">
+        <label>vulkan/vulkan.hpp</label>
+      </node>
+      <node id="30">
+        <label>memory</label>
+      </node>
+      <node id="6">
+        <label>SDL2/SDL_vulkan.h</label>
+      </node>
+      <node id="51">
+        <label>Surface.hpp</label>
+        <link refid="_surface_8hpp"/>
+        <childnode refid="42" relation="include">
+        </childnode>
+      </node>
+      <node id="11">
+        <label>glm/glm.hpp</label>
+      </node>
+    </incdepgraph>
+    <invincdepgraph>
+      <node id="3">
+        <label>C:/Repos/renderer/src/api/Api.cpp</label>
+        <link refid="_api_8cpp"/>
+      </node>
+      <node id="4">
+        <label>C:/Repos/renderer/src/api/utility/DebugMessenger.cpp</label>
+        <link refid="_debug_messenger_8cpp"/>
+      </node>
+      <node id="5">
+        <label>C:/Repos/renderer/src/Renderer.hpp</label>
+        <link refid="_renderer_8hpp"/>
+        <childnode refid="6" relation="include">
+        </childnode>
+        <childnode refid="7" relation="include">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>C:/Repos/renderer/src/api/Api.hpp</label>
+        <link refid="_api_8hpp"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+      </node>
+      <node id="6">
+        <label>C:/Repos/renderer/src/example/main.cpp</label>
+        <link refid="main_8cpp"/>
+      </node>
+      <node id="1">
+        <label>C:/Repos/renderer/src/base/Base.hpp</label>
+        <link refid="_base_8hpp"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+      </node>
+      <node id="7">
+        <label>C:/Repos/renderer/src/Renderer.cpp</label>
+        <link refid="_renderer_8cpp"/>
+      </node>
+    </invincdepgraph>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="preprocessor">#ifndef<sp/>BASE_HPP</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="2"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>BASE_HPP</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="3"><highlight class="normal"></highlight></codeline>
+<codeline lineno="4"><highlight class="normal"></highlight><highlight class="comment">//<sp/>This<sp/>file<sp/>contains<sp/>all<sp/>programming<sp/>interfaces<sp/>required<sp/>by<sp/>the<sp/>library.<sp/></highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="5"><highlight class="normal"></highlight><highlight class="comment">//<sp/>All<sp/>of<sp/>the<sp/>client&apos;s<sp/>own<sp/>implementations<sp/>need<sp/>be<sp/>derived<sp/>from<sp/>these<sp/>classes.</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="6"><highlight class="normal"></highlight><highlight class="comment">//</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="7"><highlight class="normal"></highlight><highlight class="comment">//<sp/>The<sp/>following<sp/>APIs<sp/>exist:</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="8"><highlight class="normal"></highlight><highlight class="comment">//<sp/><sp/><sp/>-<sp/>CameraBase</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="9"><highlight class="normal"></highlight><highlight class="comment">//<sp/><sp/><sp/>-<sp/>TransformNode</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="10"><highlight class="normal"></highlight><highlight class="comment">//<sp/><sp/><sp/>-<sp/>GeometryNode</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="11"><highlight class="normal"></highlight><highlight class="comment">//<sp/><sp/><sp/>-<sp/>LightNode</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="12"><highlight class="normal"></highlight><highlight class="comment">//<sp/><sp/><sp/>-<sp/>DirectionalLightNode</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="13"><highlight class="normal"></highlight><highlight class="comment">//<sp/><sp/><sp/>-<sp/>GuiBase</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="14"><highlight class="normal"></highlight><highlight class="comment">//<sp/><sp/><sp/>-<sp/>WindowBase</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="15"><highlight class="normal"></highlight></codeline>
+<codeline lineno="16"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;<ref refid="_camera_base_8hpp" kindref="compound">CameraBase.hpp</ref>&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="17"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;<ref refid="_node_base_8hpp" kindref="compound">NodeBase.hpp</ref>&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="18"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;<ref refid="_gui_base_8hpp" kindref="compound">GuiBase.hpp</ref>&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="19"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;<ref refid="_window_base_8hpp" kindref="compound">WindowBase.hpp</ref>&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="20"><highlight class="normal"></highlight></codeline>
+<codeline lineno="21"><highlight class="normal"></highlight><highlight class="preprocessor">#endif<sp/>//<sp/>BASE_HPP</highlight></codeline>
+    </programlisting>
+    <location file="C:/Repos/renderer/src/base/Base.hpp"/>
+  </compounddef>
+</doxygen>

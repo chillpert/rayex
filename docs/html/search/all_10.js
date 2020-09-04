@@ -18,7 +18,7 @@ var searchData=
   ['reset_332',['reset',['../classrx_1_1_command_buffer.html#ab76173ed0d4409599c99f16f8dd830d7',1,'rx::CommandBuffer']]],
   ['resize_333',['resize',['../classrx_1_1_window_base.html#a6313eb78b5d688f3e3997c5163e9ac69',1,'rx::WindowBase']]],
   ['retrievehandles_334',['retrieveHandles',['../classrx_1_1_queues.html#a3262a78b46dd3d20f720c256beee4c68',1,'rx::Queues']]],
-  ['run_335',['run',['../classrx_1_1_renderer.html#a3506af7f99fbcc098fe1a824c8df3086',1,'rx::Renderer']]],
+  ['run_335',['run',['../classrx_1_1_renderer.html#ad99a218626b4a8c588d42fc772f0b1fb',1,'rx::Renderer']]],
   ['rx_336',['rx',['../namespacerx.html',1,'']]],
   ['rx_5fassert_337',['RX_ASSERT',['../_core_8hpp.html#a5a0923c9f3d668bc224b810b8baf099f',1,'Core.hpp']]],
   ['rx_5ferror_338',['RX_ERROR',['../_core_8hpp.html#a4491fbcb10b8b7825807ac930e072513',1,'Core.hpp']]],

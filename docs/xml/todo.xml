@@ -1,0 +1,26 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.20" xml:lang="en-US">
+  <compounddef id="todo" kind="page">
+    <compoundname>todo</compoundname>
+    <title>Todo List</title>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+<para><variablelist>
+<varlistentry><term>Class <ref refid="classrx_1_1_material" kindref="compound">rx::Material</ref>  </term></varlistentry>
+<listitem><para><anchor id="todo_1_todo000003"/>Documentation, once this design was proven to be working. The textures should probably be vectors or unordered_maps of strings since one model can have many diffuse textures or specular textures etc.  </para>
+</listitem>
+<varlistentry><term>Class <ref refid="structstd_1_1hash_3_01rx_1_1_model_01_4" kindref="compound">std::hash&lt; rx::Model &gt;</ref>  </term></varlistentry>
+<listitem><para><anchor id="todo_1_todo000004"/>Documentation.  </para>
+</listitem>
+<varlistentry><term>Member <ref refid="classrx_1_1_renderer_1a10c85a8352b5bfb12a4e89778733a5c6" kindref="member">rx::Renderer::init</ref>  ()</term></varlistentry>
+<listitem><para><anchor id="todo_1_todo000005"/>The copying process is temporary for now and has to be changed for a release build.  </para>
+</listitem>
+<varlistentry><term>Member <ref refid="classrx_1_1_time_1a69e9c1b9be56a332bddc7b3cbfdf2b56" kindref="member">rx::Time::~Time</ref>  ()</term></varlistentry>
+<listitem><para><anchor id="todo_1_todo000006"/>Average FPS are pointless. Implement minimum FPS and frametimes instead. </para>
+</listitem>
+</variablelist>
+</para>
+    </detaileddescription>
+  </compounddef>
+</doxygen>

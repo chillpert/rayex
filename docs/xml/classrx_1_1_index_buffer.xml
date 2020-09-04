@@ -1,0 +1,163 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.20" xml:lang="en-US">
+  <compounddef id="classrx_1_1_index_buffer" kind="class" language="C++" prot="public">
+    <compoundname>rx::IndexBuffer</compoundname>
+    <includes refid="_index_buffer_8hpp" local="no">IndexBuffer.hpp</includes>
+    <templateparamlist>
+      <param>
+        <type>typename T</type>
+        <defval>uint32_t</defval>
+      </param>
+    </templateparamlist>
+      <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="classrx_1_1_index_buffer_1abd3eb9b0f6d060e29442ddaec8767a40" prot="private" static="no" mutable="no">
+        <type><ref refid="classrx_1_1_buffer" kindref="compound">Buffer</ref></type>
+        <definition>Buffer rx::IndexBuffer&lt; T &gt;::m_buffer</definition>
+        <argsstring></argsstring>
+        <name>m_buffer</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Repos/renderer/src/api/buffers/IndexBuffer.hpp" line="22" column="12" bodyfile="C:/Repos/renderer/src/api/buffers/IndexBuffer.hpp" bodystart="22" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classrx_1_1_index_buffer_1a9ae9aab5034949281c18a6b6fe4cfad9" prot="private" static="no" mutable="no">
+        <type>uint32_t</type>
+        <definition>uint32_t rx::IndexBuffer&lt; T &gt;::m_count</definition>
+        <argsstring></argsstring>
+        <name>m_count</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Repos/renderer/src/api/buffers/IndexBuffer.hpp" line="24" column="14" bodyfile="C:/Repos/renderer/src/api/buffers/IndexBuffer.hpp" bodystart="24" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classrx_1_1_index_buffer_1a4e3d26c28ba0a620a155af1b92132451" prot="private" static="no" mutable="no">
+        <type>vk::IndexType</type>
+        <definition>vk::IndexType rx::IndexBuffer&lt; T &gt;::m_indexType</definition>
+        <argsstring></argsstring>
+        <name>m_indexType</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Repos/renderer/src/api/buffers/IndexBuffer.hpp" line="25" column="19" bodyfile="C:/Repos/renderer/src/api/buffers/IndexBuffer.hpp" bodystart="25" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="classrx_1_1_index_buffer_1ad106741acd8effe40a0e230b1738ce92" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>rx::IndexBuffer&lt; T &gt;::IndexBuffer</definition>
+        <argsstring>()=default</argsstring>
+        <name>IndexBuffer</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Repos/renderer/src/api/buffers/IndexBuffer.hpp" line="12" column="5"/>
+      </memberdef>
+      <memberdef kind="function" id="classrx_1_1_index_buffer_1a75ddab28f642c193e17f0f0be004dcd1" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>rx::IndexBuffer&lt; T &gt;::IndexBuffer</definition>
+        <argsstring>(const std::vector&lt; T &gt; &amp;indices, bool initialize=true)</argsstring>
+        <name>IndexBuffer</name>
+        <param>
+          <type>const std::vector&lt; T &gt; &amp;</type>
+          <declname>indices</declname>
+        </param>
+        <param>
+          <type>bool</type>
+          <declname>initialize</declname>
+          <defval>true</defval>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Repos/renderer/src/api/buffers/IndexBuffer.hpp" line="13" column="5" bodyfile="C:/Repos/renderer/src/api/buffers/IndexBuffer.hpp" bodystart="29" bodyend="33"/>
+      </memberdef>
+      <memberdef kind="function" id="classrx_1_1_index_buffer_1aa4ab087a3d30ae244927f4320cae99f1" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>const vk::Buffer</type>
+        <definition>const vk::Buffer rx::IndexBuffer&lt; T &gt;::get</definition>
+        <argsstring>() const</argsstring>
+        <name>get</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Repos/renderer/src/api/buffers/IndexBuffer.hpp" line="15" column="29" bodyfile="C:/Repos/renderer/src/api/buffers/IndexBuffer.hpp" bodystart="15" bodyend="15"/>
+      </memberdef>
+      <memberdef kind="function" id="classrx_1_1_index_buffer_1a29bd1d3a64747d7ec3e0961abd4c4373" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>uint32_t</type>
+        <definition>uint32_t rx::IndexBuffer&lt; T &gt;::getCount</definition>
+        <argsstring>() const</argsstring>
+        <name>getCount</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Repos/renderer/src/api/buffers/IndexBuffer.hpp" line="16" column="21" bodyfile="C:/Repos/renderer/src/api/buffers/IndexBuffer.hpp" bodystart="16" bodyend="16"/>
+      </memberdef>
+      <memberdef kind="function" id="classrx_1_1_index_buffer_1a498b6ec64a58846b2d81676422e73e15" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>vk::IndexType</type>
+        <definition>vk::IndexType rx::IndexBuffer&lt; T &gt;::getType</definition>
+        <argsstring>() const</argsstring>
+        <name>getType</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Repos/renderer/src/api/buffers/IndexBuffer.hpp" line="17" column="26" bodyfile="C:/Repos/renderer/src/api/buffers/IndexBuffer.hpp" bodystart="17" bodyend="17"/>
+      </memberdef>
+      <memberdef kind="function" id="classrx_1_1_index_buffer_1a850e3953992775338162be238347e7f1" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void rx::IndexBuffer&lt; T &gt;::init</definition>
+        <argsstring>(std::vector&lt; T &gt; &amp;indices)</argsstring>
+        <name>init</name>
+        <param>
+          <type>std::vector&lt; T &gt; &amp;</type>
+          <declname>indices</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Repos/renderer/src/api/buffers/IndexBuffer.hpp" line="19" column="10" bodyfile="C:/Repos/renderer/src/api/buffers/IndexBuffer.hpp" bodystart="36" bodyend="73"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="C:/Repos/renderer/src/api/buffers/IndexBuffer.hpp" line="9" column="3" bodyfile="C:/Repos/renderer/src/api/buffers/IndexBuffer.hpp" bodystart="10" bodyend="26"/>
+    <listofallmembers>
+      <member refid="classrx_1_1_index_buffer_1aa4ab087a3d30ae244927f4320cae99f1" prot="public" virt="non-virtual"><scope>rx::IndexBuffer</scope><name>get</name></member>
+      <member refid="classrx_1_1_index_buffer_1a29bd1d3a64747d7ec3e0961abd4c4373" prot="public" virt="non-virtual"><scope>rx::IndexBuffer</scope><name>getCount</name></member>
+      <member refid="classrx_1_1_index_buffer_1a498b6ec64a58846b2d81676422e73e15" prot="public" virt="non-virtual"><scope>rx::IndexBuffer</scope><name>getType</name></member>
+      <member refid="classrx_1_1_index_buffer_1ad106741acd8effe40a0e230b1738ce92" prot="public" virt="non-virtual"><scope>rx::IndexBuffer</scope><name>IndexBuffer</name></member>
+      <member refid="classrx_1_1_index_buffer_1a75ddab28f642c193e17f0f0be004dcd1" prot="public" virt="non-virtual"><scope>rx::IndexBuffer</scope><name>IndexBuffer</name></member>
+      <member refid="classrx_1_1_index_buffer_1a850e3953992775338162be238347e7f1" prot="public" virt="non-virtual"><scope>rx::IndexBuffer</scope><name>init</name></member>
+      <member refid="classrx_1_1_index_buffer_1abd3eb9b0f6d060e29442ddaec8767a40" prot="private" virt="non-virtual"><scope>rx::IndexBuffer</scope><name>m_buffer</name></member>
+      <member refid="classrx_1_1_index_buffer_1a9ae9aab5034949281c18a6b6fe4cfad9" prot="private" virt="non-virtual"><scope>rx::IndexBuffer</scope><name>m_count</name></member>
+      <member refid="classrx_1_1_index_buffer_1a4e3d26c28ba0a620a155af1b92132451" prot="private" virt="non-virtual"><scope>rx::IndexBuffer</scope><name>m_indexType</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

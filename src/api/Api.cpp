@@ -326,10 +326,9 @@ namespace rx
     m_renderPass.init( { colorAttachmentDescription, depthAttachmentDescription }, { subpassDescription }, subpassDependencies );
   }
 
+  /// @todo add handling for missing textures, models etc.
   void Api::initModel( const std::shared_ptr<GeometryNode> node )
   {
-    // TODO: add handling for missing textures, models etc.
-
     auto it = m_models.find( node->m_modelPath );
     auto model = it->second;
     if ( !model->m_initialized )
@@ -351,7 +350,7 @@ namespace rx
     m_rtDescriptorSets.update( m_rayTracingBuilder.getTlas( ).as.as, m_rayTracingBuilder.getStorageImageView( ), m_cameraUniformBuffer.getRaw( ) );
 
     // Update second descriptor set.
-    auto diffuseIter = m_textures.find( node->m_material.m_diffuseTexture );
+    auto diffuseIter = m_textures.find( node->m_material.m_diffuseTexture[0] );
     model->m_descriptorSets.update( diffuseIter->second->getImageView( ), diffuseIter->second->getSampler( ), model->m_vertexBuffer.get( ), model->m_indexBuffer.get( ) );
   }
 

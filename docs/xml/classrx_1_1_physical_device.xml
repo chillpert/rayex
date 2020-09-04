@@ -1,0 +1,80 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.20" xml:lang="en-US">
+  <compounddef id="classrx_1_1_physical_device" kind="class" language="C++" prot="public">
+    <compoundname>rx::PhysicalDevice</compoundname>
+    <includes refid="_physical_device_8hpp" local="no">PhysicalDevice.hpp</includes>
+      <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="classrx_1_1_physical_device_1a009fea2aab17e87553c99ead765b9b45" prot="private" static="no" mutable="no">
+        <type>vk::PhysicalDevice</type>
+        <definition>vk::PhysicalDevice rx::PhysicalDevice::m_physicalDevice</definition>
+        <argsstring></argsstring>
+        <name>m_physicalDevice</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Repos/renderer/src/api/devices/PhysicalDevice.hpp" line="24" column="24" bodyfile="C:/Repos/renderer/src/api/devices/PhysicalDevice.hpp" bodystart="24" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="classrx_1_1_physical_device_1ae40f1960c85c821b0cfac11a34cabfed" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>rx::PhysicalDevice::PhysicalDevice</definition>
+        <argsstring>()=default</argsstring>
+        <name>PhysicalDevice</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Repos/renderer/src/api/devices/PhysicalDevice.hpp" line="11" column="5"/>
+      </memberdef>
+      <memberdef kind="function" id="classrx_1_1_physical_device_1a849b1ffaa9fe125d5fc299e8a6e328c6" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void rx::PhysicalDevice::init</definition>
+        <argsstring>()</argsstring>
+        <name>init</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Repos/renderer/src/api/devices/PhysicalDevice.hpp" line="15" column="10" bodyfile="C:/Repos/renderer/src/api/devices/PhysicalDevice.cpp" bodystart="7" bodyend="46"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="private-func">
+      <memberdef kind="function" id="classrx_1_1_physical_device_1a556aa6ce31416b208f20edd651334f14" prot="private" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>std::pair&lt; unsigned int, std::string &gt;</type>
+        <definition>std::pair&lt; unsigned int, std::string &gt; rx::PhysicalDevice::evaluate</definition>
+        <argsstring>(vk::PhysicalDevice physicalDevice) const</argsstring>
+        <name>evaluate</name>
+        <param>
+          <type>vk::PhysicalDevice</type>
+          <declname>physicalDevice</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Repos/renderer/src/api/devices/PhysicalDevice.hpp" line="22" column="15" bodyfile="C:/Repos/renderer/src/api/devices/PhysicalDevice.cpp" bodystart="48" bodyend="92"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="C:/Repos/renderer/src/api/devices/PhysicalDevice.hpp" line="8" column="3" bodyfile="C:/Repos/renderer/src/api/devices/PhysicalDevice.hpp" bodystart="9" bodyend="25"/>
+    <listofallmembers>
+      <member refid="classrx_1_1_physical_device_1a556aa6ce31416b208f20edd651334f14" prot="private" virt="non-virtual"><scope>rx::PhysicalDevice</scope><name>evaluate</name></member>
+      <member refid="classrx_1_1_physical_device_1a849b1ffaa9fe125d5fc299e8a6e328c6" prot="public" virt="non-virtual"><scope>rx::PhysicalDevice</scope><name>init</name></member>
+      <member refid="classrx_1_1_physical_device_1a009fea2aab17e87553c99ead765b9b45" prot="private" virt="non-virtual"><scope>rx::PhysicalDevice</scope><name>m_physicalDevice</name></member>
+      <member refid="classrx_1_1_physical_device_1ae40f1960c85c821b0cfac11a34cabfed" prot="public" virt="non-virtual"><scope>rx::PhysicalDevice</scope><name>PhysicalDevice</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

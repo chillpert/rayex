@@ -1,0 +1,38 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.20" xml:lang="en-US">
+  <compounddef id="structstd_1_1hash_3_01rx_1_1_model_01_4" kind="struct" language="C++" prot="public">
+    <compoundname>std::hash&lt; rx::Model &gt;</compoundname>
+    <includes refid="_model_8hpp" local="no">Model.hpp</includes>
+    <templateparamlist>
+    </templateparamlist>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="structstd_1_1hash_3_01rx_1_1_model_01_4_1aaa7290f14c909d73e46ab33462ff54ae" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>size_t</type>
+        <definition>size_t std::hash&lt; rx::Model &gt;::operator()</definition>
+        <argsstring>(const std::shared_ptr&lt; rx::Model &gt; model) const</argsstring>
+        <name>operator()</name>
+        <param>
+          <type>const std::shared_ptr&lt; <ref refid="classrx_1_1_model" kindref="compound">rx::Model</ref> &gt;</type>
+          <declname>model</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Repos/renderer/src/api/Model.hpp" line="127" column="12" bodyfile="C:/Repos/renderer/src/api/Model.hpp" bodystart="127" bodyend="127"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+<para><xrefsect id="todo_1_todo000004"><xreftitle>Todo</xreftitle><xrefdescription><para>Documentation. </para>
+</xrefdescription></xrefsect></para>
+    </detaileddescription>
+    <location file="C:/Repos/renderer/src/api/Model.hpp" line="125" column="12" bodyfile="C:/Repos/renderer/src/api/Model.hpp" bodystart="126" bodyend="128"/>
+    <listofallmembers>
+      <member refid="structstd_1_1hash_3_01rx_1_1_model_01_4_1aaa7290f14c909d73e46ab33462ff54ae" prot="public" virt="non-virtual"><scope>std::hash&lt; rx::Model &gt;</scope><name>operator()</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

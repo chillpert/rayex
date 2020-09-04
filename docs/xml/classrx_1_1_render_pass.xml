@@ -1,0 +1,193 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.20" xml:lang="en-US">
+  <compounddef id="classrx_1_1_render_pass" kind="class" language="C++" prot="public">
+    <compoundname>rx::RenderPass</compoundname>
+    <includes refid="_render_pass_8hpp" local="no">RenderPass.hpp</includes>
+      <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="classrx_1_1_render_pass_1a37c34c9f4cd1ca1a92d8566be1648b97" prot="private" static="no" mutable="no">
+        <type>vk::UniqueRenderPass</type>
+        <definition>vk::UniqueRenderPass rx::RenderPass::m_renderPass</definition>
+        <argsstring></argsstring>
+        <name>m_renderPass</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Repos/renderer/src/api/RenderPass.hpp" line="24" column="26" bodyfile="C:/Repos/renderer/src/api/RenderPass.hpp" bodystart="24" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="classrx_1_1_render_pass_1ae57da1d57e10f8e1499be97aa40f3cbb" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>rx::RenderPass::RenderPass</definition>
+        <argsstring>()=default</argsstring>
+        <name>RenderPass</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Repos/renderer/src/api/RenderPass.hpp" line="11" column="5"/>
+      </memberdef>
+      <memberdef kind="function" id="classrx_1_1_render_pass_1acec123f5c67d64cfec8e0aab9bfec87e" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>rx::RenderPass::RenderPass</definition>
+        <argsstring>(const std::vector&lt; vk::AttachmentDescription &gt; &amp;attachments, const std::vector&lt; vk::SubpassDescription &gt; &amp;subpasses, const std::vector&lt; vk::SubpassDependency &gt; &amp;dependencies, bool initialize=true)</argsstring>
+        <name>RenderPass</name>
+        <param>
+          <type>const std::vector&lt; vk::AttachmentDescription &gt; &amp;</type>
+          <declname>attachments</declname>
+        </param>
+        <param>
+          <type>const std::vector&lt; vk::SubpassDescription &gt; &amp;</type>
+          <declname>subpasses</declname>
+        </param>
+        <param>
+          <type>const std::vector&lt; vk::SubpassDependency &gt; &amp;</type>
+          <declname>dependencies</declname>
+        </param>
+        <param>
+          <type>bool</type>
+          <declname>initialize</declname>
+          <defval>true</defval>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Repos/renderer/src/api/RenderPass.hpp" line="12" column="5" bodyfile="C:/Repos/renderer/src/api/RenderPass.cpp" bodystart="6" bodyend="10"/>
+      </memberdef>
+      <memberdef kind="function" id="classrx_1_1_render_pass_1a447188ee4e09d5529086abb2d8e07f36" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>RX_API</type>
+        <definition>rx::RenderPass::~RenderPass</definition>
+        <argsstring>()</argsstring>
+        <name>~RenderPass</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Repos/renderer/src/api/RenderPass.hpp" line="13" column="12" bodyfile="C:/Repos/renderer/src/api/RenderPass.cpp" bodystart="12" bodyend="15"/>
+      </memberdef>
+      <memberdef kind="function" id="classrx_1_1_render_pass_1a6ddf5276429df287eb886e11133e7d32" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>const vk::RenderPass</type>
+        <definition>const vk::RenderPass rx::RenderPass::get</definition>
+        <argsstring>() const</argsstring>
+        <name>get</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Repos/renderer/src/api/RenderPass.hpp" line="15" column="33" bodyfile="C:/Repos/renderer/src/api/RenderPass.hpp" bodystart="15" bodyend="15"/>
+      </memberdef>
+      <memberdef kind="function" id="classrx_1_1_render_pass_1ac08ed715e8dbc8bb7ef5d0b108b2e93c" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void rx::RenderPass::init</definition>
+        <argsstring>(const std::vector&lt; vk::AttachmentDescription &gt; &amp;attachments, const std::vector&lt; vk::SubpassDescription &gt; &amp;subpasses, const std::vector&lt; vk::SubpassDependency &gt; &amp;dependencies)</argsstring>
+        <name>init</name>
+        <param>
+          <type>const std::vector&lt; vk::AttachmentDescription &gt; &amp;</type>
+          <declname>attachments</declname>
+        </param>
+        <param>
+          <type>const std::vector&lt; vk::SubpassDescription &gt; &amp;</type>
+          <declname>subpasses</declname>
+        </param>
+        <param>
+          <type>const std::vector&lt; vk::SubpassDependency &gt; &amp;</type>
+          <declname>dependencies</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Repos/renderer/src/api/RenderPass.hpp" line="17" column="10" bodyfile="C:/Repos/renderer/src/api/RenderPass.cpp" bodystart="17" bodyend="29"/>
+      </memberdef>
+      <memberdef kind="function" id="classrx_1_1_render_pass_1ae6b4829ab0fbee74a163f199c1330c98" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void rx::RenderPass::destroy</definition>
+        <argsstring>()</argsstring>
+        <name>destroy</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Repos/renderer/src/api/RenderPass.hpp" line="18" column="10" bodyfile="C:/Repos/renderer/src/api/RenderPass.cpp" bodystart="31" bodyend="35"/>
+      </memberdef>
+      <memberdef kind="function" id="classrx_1_1_render_pass_1a8f85f95beb30066d31d7ed5f8942de46" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void rx::RenderPass::begin</definition>
+        <argsstring>(vk::Framebuffer framebuffer, vk::CommandBuffer CommandBuffer, vk::Rect2D renderArea, const std::vector&lt; vk::ClearValue &gt; &amp;clearValues) const</argsstring>
+        <name>begin</name>
+        <param>
+          <type>vk::Framebuffer</type>
+          <declname>framebuffer</declname>
+        </param>
+        <param>
+          <type>vk::CommandBuffer</type>
+          <declname>CommandBuffer</declname>
+        </param>
+        <param>
+          <type>vk::Rect2D</type>
+          <declname>renderArea</declname>
+        </param>
+        <param>
+          <type>const std::vector&lt; vk::ClearValue &gt; &amp;</type>
+          <declname>clearValues</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Repos/renderer/src/api/RenderPass.hpp" line="20" column="10" bodyfile="C:/Repos/renderer/src/api/RenderPass.cpp" bodystart="37" bodyend="46"/>
+      </memberdef>
+      <memberdef kind="function" id="classrx_1_1_render_pass_1af86fb3aab6bde53ca3bd64401ec27148" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void rx::RenderPass::end</definition>
+        <argsstring>(vk::CommandBuffer CommandBuffer) const</argsstring>
+        <name>end</name>
+        <param>
+          <type>vk::CommandBuffer</type>
+          <declname>CommandBuffer</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Repos/renderer/src/api/RenderPass.hpp" line="21" column="10" bodyfile="C:/Repos/renderer/src/api/RenderPass.cpp" bodystart="48" bodyend="51"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="C:/Repos/renderer/src/api/RenderPass.hpp" line="8" column="3" bodyfile="C:/Repos/renderer/src/api/RenderPass.hpp" bodystart="9" bodyend="25"/>
+    <listofallmembers>
+      <member refid="classrx_1_1_render_pass_1a8f85f95beb30066d31d7ed5f8942de46" prot="public" virt="non-virtual"><scope>rx::RenderPass</scope><name>begin</name></member>
+      <member refid="classrx_1_1_render_pass_1ae6b4829ab0fbee74a163f199c1330c98" prot="public" virt="non-virtual"><scope>rx::RenderPass</scope><name>destroy</name></member>
+      <member refid="classrx_1_1_render_pass_1af86fb3aab6bde53ca3bd64401ec27148" prot="public" virt="non-virtual"><scope>rx::RenderPass</scope><name>end</name></member>
+      <member refid="classrx_1_1_render_pass_1a6ddf5276429df287eb886e11133e7d32" prot="public" virt="non-virtual"><scope>rx::RenderPass</scope><name>get</name></member>
+      <member refid="classrx_1_1_render_pass_1ac08ed715e8dbc8bb7ef5d0b108b2e93c" prot="public" virt="non-virtual"><scope>rx::RenderPass</scope><name>init</name></member>
+      <member refid="classrx_1_1_render_pass_1a37c34c9f4cd1ca1a92d8566be1648b97" prot="private" virt="non-virtual"><scope>rx::RenderPass</scope><name>m_renderPass</name></member>
+      <member refid="classrx_1_1_render_pass_1ae57da1d57e10f8e1499be97aa40f3cbb" prot="public" virt="non-virtual"><scope>rx::RenderPass</scope><name>RenderPass</name></member>
+      <member refid="classrx_1_1_render_pass_1acec123f5c67d64cfec8e0aab9bfec87e" prot="public" virt="non-virtual"><scope>rx::RenderPass</scope><name>RenderPass</name></member>
+      <member refid="classrx_1_1_render_pass_1a447188ee4e09d5529086abb2d8e07f36" prot="public" virt="non-virtual"><scope>rx::RenderPass</scope><name>~RenderPass</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

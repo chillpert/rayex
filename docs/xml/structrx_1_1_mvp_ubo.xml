@@ -1,0 +1,76 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.20" xml:lang="en-US">
+  <compounddef id="structrx_1_1_mvp_ubo" kind="struct" language="C++" prot="public">
+    <compoundname>rx::MvpUbo</compoundname>
+    <includes refid="_uniform_buffer_8hpp" local="no">UniformBuffer.hpp</includes>
+      <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="structrx_1_1_mvp_ubo_1a6dcf61536d4558874e3c0c89463fa0ab" prot="public" static="no" mutable="no">
+        <type>glm::mat4</type>
+        <definition>glm::mat4 rx::MvpUbo::model</definition>
+        <argsstring></argsstring>
+        <name>model</name>
+        <initializer>= glm::mat4( 1.0f )</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Repos/renderer/src/api/buffers/UniformBuffer.hpp" line="18" column="15" bodyfile="C:/Repos/renderer/src/api/buffers/UniformBuffer.hpp" bodystart="18" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structrx_1_1_mvp_ubo_1a1743bbce71e239d041c8579f8503c2ae" prot="public" static="no" mutable="no">
+        <type>glm::mat4</type>
+        <definition>glm::mat4 rx::MvpUbo::view</definition>
+        <argsstring></argsstring>
+        <name>view</name>
+        <initializer>= glm::mat4( 1.0f )</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Repos/renderer/src/api/buffers/UniformBuffer.hpp" line="19" column="15" bodyfile="C:/Repos/renderer/src/api/buffers/UniformBuffer.hpp" bodystart="19" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structrx_1_1_mvp_ubo_1aaf2668b8fd415c88c3f06a98ee92db2b" prot="public" static="no" mutable="no">
+        <type>glm::mat4</type>
+        <definition>glm::mat4 rx::MvpUbo::projection</definition>
+        <argsstring></argsstring>
+        <name>projection</name>
+        <initializer>= glm::mat4( 1.0f )</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Repos/renderer/src/api/buffers/UniformBuffer.hpp" line="20" column="15" bodyfile="C:/Repos/renderer/src/api/buffers/UniformBuffer.hpp" bodystart="20" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structrx_1_1_mvp_ubo_1a124a3f6f6f8f892c9220ae9f05c41056" prot="public" static="no" mutable="no">
+        <type>glm::vec3</type>
+        <definition>glm::vec3 rx::MvpUbo::cameraPos</definition>
+        <argsstring></argsstring>
+        <name>cameraPos</name>
+        <initializer>= glm::vec3( 1.0f )</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Repos/renderer/src/api/buffers/UniformBuffer.hpp" line="21" column="15" bodyfile="C:/Repos/renderer/src/api/buffers/UniformBuffer.hpp" bodystart="21" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="C:/Repos/renderer/src/api/buffers/UniformBuffer.hpp" line="16" column="3" bodyfile="C:/Repos/renderer/src/api/buffers/UniformBuffer.hpp" bodystart="17" bodyend="22"/>
+    <listofallmembers>
+      <member refid="structrx_1_1_mvp_ubo_1a124a3f6f6f8f892c9220ae9f05c41056" prot="public" virt="non-virtual"><scope>rx::MvpUbo</scope><name>cameraPos</name></member>
+      <member refid="structrx_1_1_mvp_ubo_1a6dcf61536d4558874e3c0c89463fa0ab" prot="public" virt="non-virtual"><scope>rx::MvpUbo</scope><name>model</name></member>
+      <member refid="structrx_1_1_mvp_ubo_1aaf2668b8fd415c88c3f06a98ee92db2b" prot="public" virt="non-virtual"><scope>rx::MvpUbo</scope><name>projection</name></member>
+      <member refid="structrx_1_1_mvp_ubo_1a1743bbce71e239d041c8579f8503c2ae" prot="public" virt="non-virtual"><scope>rx::MvpUbo</scope><name>view</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

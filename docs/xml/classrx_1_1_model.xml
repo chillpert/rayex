@@ -1,0 +1,312 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.20" xml:lang="en-US">
+  <compounddef id="classrx_1_1_model" kind="class" language="C++" prot="public">
+    <compoundname>rx::Model</compoundname>
+    <includes refid="_model_8hpp" local="no">Model.hpp</includes>
+      <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="classrx_1_1_model_1a2742e0d135cdbf89feffbbeacda856c9" prot="public" static="no" mutable="no">
+        <type>uint32_t</type>
+        <definition>uint32_t rx::Model::m_index</definition>
+        <argsstring></argsstring>
+        <name>m_index</name>
+        <initializer>= 0</initializer>
+        <briefdescription>
+<para>An index that will be used by the ray tracing structures to access the correct model. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Repos/renderer/src/api/Model.hpp" line="102" column="14" bodyfile="C:/Repos/renderer/src/api/Model.hpp" bodystart="102" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classrx_1_1_model_1a5186733f536fb419ec2f72a71d38145a" prot="public" static="no" mutable="no">
+        <type>std::string</type>
+        <definition>std::string rx::Model::m_path</definition>
+        <argsstring></argsstring>
+        <name>m_path</name>
+        <briefdescription>
+<para>The relative path to the model. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Repos/renderer/src/api/Model.hpp" line="103" column="17" bodyfile="C:/Repos/renderer/src/api/Model.hpp" bodystart="103" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classrx_1_1_model_1a354f3f751b3dbd1d8a7d003adfb3ab1c" prot="public" static="no" mutable="no">
+        <type><ref refid="classrx_1_1_material" kindref="compound">Material</ref></type>
+        <definition>Material rx::Model::m_material</definition>
+        <argsstring></argsstring>
+        <name>m_material</name>
+        <briefdescription>
+<para>Holds all rendering information including the textures required by the model. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Repos/renderer/src/api/Model.hpp" line="104" column="14" bodyfile="C:/Repos/renderer/src/api/Model.hpp" bodystart="104" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classrx_1_1_model_1acbf968ef65bd2dd67d8f2cc5361262f4" prot="public" static="no" mutable="no">
+        <type>bool</type>
+        <definition>bool rx::Model::m_initialized</definition>
+        <argsstring></argsstring>
+        <name>m_initialized</name>
+        <initializer>= false</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Repos/renderer/src/api/Model.hpp" line="105" column="10" bodyfile="C:/Repos/renderer/src/api/Model.hpp" bodystart="105" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classrx_1_1_model_1ac32ba8b29e77a4cf38940d3274da36f4" prot="public" static="no" mutable="no">
+        <type>std::vector&lt; <ref refid="structrx_1_1_vertex" kindref="compound">Vertex</ref> &gt;</type>
+        <definition>std::vector&lt;Vertex&gt; rx::Model::m_vertices</definition>
+        <argsstring></argsstring>
+        <name>m_vertices</name>
+        <briefdescription>
+<para>The raw vertex data. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Repos/renderer/src/api/Model.hpp" line="107" column="17" bodyfile="C:/Repos/renderer/src/api/Model.hpp" bodystart="107" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classrx_1_1_model_1adcd59f4d014850fed6a4de52add0e17f" prot="public" static="no" mutable="no">
+        <type>std::vector&lt; uint32_t &gt;</type>
+        <definition>std::vector&lt;uint32_t&gt; rx::Model::m_indices</definition>
+        <argsstring></argsstring>
+        <name>m_indices</name>
+        <briefdescription>
+<para>The raw index data. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Repos/renderer/src/api/Model.hpp" line="108" column="17" bodyfile="C:/Repos/renderer/src/api/Model.hpp" bodystart="108" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classrx_1_1_model_1a3cd5fdada70d2ee42f3eeade4a96dfdd" prot="public" static="no" mutable="no">
+        <type><ref refid="classrx_1_1_vertex_buffer" kindref="compound">VertexBuffer</ref></type>
+        <definition>VertexBuffer rx::Model::m_vertexBuffer</definition>
+        <argsstring></argsstring>
+        <name>m_vertexBuffer</name>
+        <briefdescription>
+<para>Used to buffer the raw vertex data. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Repos/renderer/src/api/Model.hpp" line="111" column="18" bodyfile="C:/Repos/renderer/src/api/Model.hpp" bodystart="111" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classrx_1_1_model_1a8700d3046705c124e0636ae2b624d0e3" prot="public" static="no" mutable="no">
+        <type><ref refid="classrx_1_1_index_buffer" kindref="compound">IndexBuffer</ref>&lt; uint32_t &gt;</type>
+        <definition>IndexBuffer&lt;uint32_t&gt; rx::Model::m_indexBuffer</definition>
+        <argsstring></argsstring>
+        <name>m_indexBuffer</name>
+        <briefdescription>
+<para>Used to buffer the raw index data. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Repos/renderer/src/api/Model.hpp" line="112" column="17" bodyfile="C:/Repos/renderer/src/api/Model.hpp" bodystart="112" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classrx_1_1_model_1a130d653ea3874bcdc65f55473ca88ebd" prot="public" static="no" mutable="no">
+        <type><ref refid="classrx_1_1_descriptor_set" kindref="compound">DescriptorSet</ref></type>
+        <definition>DescriptorSet rx::Model::m_descriptorSets</definition>
+        <argsstring></argsstring>
+        <name>m_descriptorSets</name>
+        <briefdescription>
+<para>Descriptor sets for the model&apos;s descriptors. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Repos/renderer/src/api/Model.hpp" line="115" column="19" bodyfile="C:/Repos/renderer/src/api/Model.hpp" bodystart="115" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="private-static-attrib">
+      <memberdef kind="variable" id="classrx_1_1_model_1ad2a444ad6919ab7791a90ef514fb5594" prot="private" static="yes" mutable="no">
+        <type>uint32_t</type>
+        <definition>uint32_t rx::Model::m_modelCounter</definition>
+        <argsstring></argsstring>
+        <name>m_modelCounter</name>
+        <initializer>= 0</initializer>
+        <briefdescription>
+<para>Used to count the total number of models and to assign a new unique value to m_index. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Repos/renderer/src/api/Model.hpp" line="118" column="21" bodyfile="C:/Repos/renderer/src/api/Model.hpp" bodystart="118" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="classrx_1_1_model_1ad87d69c43348ffa3cc83d231bfd38f2c" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>RX_API</type>
+        <definition>rx::Model::Model</definition>
+        <argsstring>()</argsstring>
+        <name>Model</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Repos/renderer/src/api/Model.hpp" line="91" column="12" bodyfile="C:/Repos/renderer/src/api/Model.cpp" bodystart="10" bodyend="11"/>
+      </memberdef>
+      <memberdef kind="function" id="classrx_1_1_model_1aa427ed49b8f2feaa64d5b3171117892b" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>RX_API</type>
+        <definition>rx::Model::Model</definition>
+        <argsstring>(const std::string &amp;path)</argsstring>
+        <name>Model</name>
+        <param>
+          <type>const std::string &amp;</type>
+          <declname>path</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>path</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The relative path to the model&apos;s file. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Repos/renderer/src/api/Model.hpp" line="93" column="12" bodyfile="C:/Repos/renderer/src/api/Model.cpp" bodystart="13" bodyend="17"/>
+      </memberdef>
+      <memberdef kind="function" id="classrx_1_1_model_1affc482a714d404a093f16f84d0c41294" prot="public" static="no" const="no" explicit="no" inline="no" virt="virtual">
+        <type>RX_API</type>
+        <definition>virtual RX_API rx::Model::~Model</definition>
+        <argsstring>()=default</argsstring>
+        <name>~Model</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Repos/renderer/src/api/Model.hpp" line="94" column="20"/>
+      </memberdef>
+      <memberdef kind="function" id="classrx_1_1_model_1adaaf2d8db2312d30b8ecb24c3a5a8d41" prot="public" static="no" const="no" explicit="no" inline="no" virt="virtual">
+        <type>RX_API void</type>
+        <definition>void rx::Model::load</definition>
+        <argsstring>()</argsstring>
+        <name>load</name>
+        <briefdescription>
+<para>Loads the model by extracting all vertices and indices. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Repos/renderer/src/api/Model.hpp" line="97" column="25" bodyfile="C:/Repos/renderer/src/api/Model.cpp" bodystart="19" bodyend="68"/>
+      </memberdef>
+      <memberdef kind="function" id="classrx_1_1_model_1a63a87310c43bf3455e8e80df561685f4" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool rx::Model::isLoaded</definition>
+        <argsstring>()</argsstring>
+        <name>isLoaded</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>Returns true if the model was already loaded. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Repos/renderer/src/api/Model.hpp" line="100" column="10" bodyfile="C:/Repos/renderer/src/api/Model.cpp" bodystart="70" bodyend="76"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+<para>Describes a model. </para>
+    </briefdescription>
+    <detaileddescription>
+<para>The class extracts vertex and index data from a given wavefront file. If the client wants to parse other formats than wavefront, <ref refid="classrx_1_1_model_1adaaf2d8db2312d30b8ecb24c3a5a8d41" kindref="member">load()</ref> should be overridden and either <ref refid="classrx_1_1_renderer_1afba1b500d4152f4343ed860d517a1b7c" kindref="member">rx::Renderer::pushNode()</ref> or <ref refid="classrx_1_1_renderer_1a1f89f0dfe365bfaa83c62e6b3ed8324f" kindref="member">rx::Renderer::setNodes()</ref> templatized using the inherited class type. </para>
+<sect3 id="classrx_1_1_model_1autotoc_md0">
+<title>Example</title>
+<para><programlisting filename=".cpp"><codeline><highlight class="keyword">class<sp/></highlight><highlight class="normal">CustomModel<sp/>:<sp/></highlight><highlight class="keyword">public</highlight><highlight class="normal"><sp/><ref refid="classrx_1_1_model_1ad87d69c43348ffa3cc83d231bfd38f2c" kindref="member">Model</ref><sp/></highlight></codeline>
+<codeline><highlight class="normal">{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="classrx_1_1_model_1adaaf2d8db2312d30b8ecb24c3a5a8d41" kindref="member">load</ref>()<sp/></highlight><highlight class="keyword">override</highlight><highlight class="normal">;</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+<codeline><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal">Renderer<sp/>myRenderer;</highlight></codeline>
+<codeline><highlight class="normal">myRenderer.init();</highlight></codeline>
+<codeline><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/>cube<sp/>=<sp/>std::make_shared&lt;GeometryNode&gt;(<sp/></highlight><highlight class="stringliteral">&quot;models/cube.obj&quot;</highlight><highlight class="normal">,<sp/>Material(<sp/></highlight><highlight class="stringliteral">&quot;textures/metal.png&quot;</highlight><highlight class="normal"><sp/>)<sp/>);</highlight></codeline>
+<codeline><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal">myRenderer.pushNode&lt;CustomModel&gt;(<sp/>cube<sp/>);</highlight></codeline>
+</programlisting></para>
+<para>, </para>
+</sect3>
+    </detaileddescription>
+    <collaborationgraph>
+      <node id="3">
+        <label>rx::VertexBuffer</label>
+        <link refid="classrx_1_1_vertex_buffer"/>
+      </node>
+      <node id="4">
+        <label>rx::Material</label>
+        <link refid="classrx_1_1_material"/>
+      </node>
+      <node id="2">
+        <label>rx::IndexBuffer&lt; uint32_t &gt;</label>
+        <link refid="classrx_1_1_index_buffer"/>
+      </node>
+      <node id="1">
+        <label>rx::Model</label>
+        <link refid="classrx_1_1_model"/>
+        <childnode refid="2" relation="usage">
+          <edgelabel>m_indexBuffer</edgelabel>
+        </childnode>
+        <childnode refid="3" relation="usage">
+          <edgelabel>m_vertexBuffer</edgelabel>
+        </childnode>
+        <childnode refid="4" relation="usage">
+          <edgelabel>m_material</edgelabel>
+        </childnode>
+        <childnode refid="5" relation="usage">
+          <edgelabel>m_descriptorSets</edgelabel>
+        </childnode>
+      </node>
+      <node id="5">
+        <label>rx::DescriptorSet</label>
+        <link refid="classrx_1_1_descriptor_set"/>
+      </node>
+    </collaborationgraph>
+    <location file="C:/Repos/renderer/src/api/Model.hpp" line="88" column="3" bodyfile="C:/Repos/renderer/src/api/Model.hpp" bodystart="89" bodyend="119"/>
+    <listofallmembers>
+      <member refid="classrx_1_1_model_1a63a87310c43bf3455e8e80df561685f4" prot="public" virt="non-virtual"><scope>rx::Model</scope><name>isLoaded</name></member>
+      <member refid="classrx_1_1_model_1adaaf2d8db2312d30b8ecb24c3a5a8d41" prot="public" virt="virtual"><scope>rx::Model</scope><name>load</name></member>
+      <member refid="classrx_1_1_model_1a130d653ea3874bcdc65f55473ca88ebd" prot="public" virt="non-virtual"><scope>rx::Model</scope><name>m_descriptorSets</name></member>
+      <member refid="classrx_1_1_model_1a2742e0d135cdbf89feffbbeacda856c9" prot="public" virt="non-virtual"><scope>rx::Model</scope><name>m_index</name></member>
+      <member refid="classrx_1_1_model_1a8700d3046705c124e0636ae2b624d0e3" prot="public" virt="non-virtual"><scope>rx::Model</scope><name>m_indexBuffer</name></member>
+      <member refid="classrx_1_1_model_1adcd59f4d014850fed6a4de52add0e17f" prot="public" virt="non-virtual"><scope>rx::Model</scope><name>m_indices</name></member>
+      <member refid="classrx_1_1_model_1acbf968ef65bd2dd67d8f2cc5361262f4" prot="public" virt="non-virtual"><scope>rx::Model</scope><name>m_initialized</name></member>
+      <member refid="classrx_1_1_model_1a354f3f751b3dbd1d8a7d003adfb3ab1c" prot="public" virt="non-virtual"><scope>rx::Model</scope><name>m_material</name></member>
+      <member refid="classrx_1_1_model_1ad2a444ad6919ab7791a90ef514fb5594" prot="private" virt="non-virtual"><scope>rx::Model</scope><name>m_modelCounter</name></member>
+      <member refid="classrx_1_1_model_1a5186733f536fb419ec2f72a71d38145a" prot="public" virt="non-virtual"><scope>rx::Model</scope><name>m_path</name></member>
+      <member refid="classrx_1_1_model_1a3cd5fdada70d2ee42f3eeade4a96dfdd" prot="public" virt="non-virtual"><scope>rx::Model</scope><name>m_vertexBuffer</name></member>
+      <member refid="classrx_1_1_model_1ac32ba8b29e77a4cf38940d3274da36f4" prot="public" virt="non-virtual"><scope>rx::Model</scope><name>m_vertices</name></member>
+      <member refid="classrx_1_1_model_1ad87d69c43348ffa3cc83d231bfd38f2c" prot="public" virt="non-virtual"><scope>rx::Model</scope><name>Model</name></member>
+      <member refid="classrx_1_1_model_1aa427ed49b8f2feaa64d5b3171117892b" prot="public" virt="non-virtual"><scope>rx::Model</scope><name>Model</name></member>
+      <member refid="classrx_1_1_model_1affc482a714d404a093f16f84d0c41294" prot="public" virt="virtual"><scope>rx::Model</scope><name>~Model</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

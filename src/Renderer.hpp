@@ -50,7 +50,7 @@ namespace rx
     /// 
     /// This function updates the window and the camera components and calls the update and render functions of the API.
     /// @see rx::CameraBase::update(), rx::WindowBase::update(), rx::Api::update(), rx::Api::render()
-    RX_API void run( )
+    RX_API void run( );
 
     /// @return Returns true if the application is still running and false if the application has stopped.
     RX_API bool isRunning( ) { return m_running; }

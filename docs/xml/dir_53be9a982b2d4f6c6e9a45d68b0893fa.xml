@@ -1,0 +1,13 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.20" xml:lang="en-US">
+  <compounddef id="dir_53be9a982b2d4f6c6e9a45d68b0893fa" kind="dir">
+    <compoundname>C:/Repos/renderer/src/api/gui</compoundname>
+    <innerfile refid="_gui_base_8cpp">GuiBase.cpp</innerfile>
+    <innerfile refid="_gui_base_8hpp">GuiBase.hpp</innerfile>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="C:/Repos/renderer/src/api/gui/"/>
+  </compounddef>
+</doxygen>

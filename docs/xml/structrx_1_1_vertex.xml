@@ -1,0 +1,136 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.20" xml:lang="en-US">
+  <compounddef id="structrx_1_1_vertex" kind="struct" language="C++" prot="public">
+    <compoundname>rx::Vertex</compoundname>
+    <includes refid="_vertex_8hpp" local="no">Vertex.hpp</includes>
+      <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="structrx_1_1_vertex_1abf54d239c5ce0cffc2d766ad780577a7" prot="public" static="no" mutable="no">
+        <type>glm::vec3</type>
+        <definition>glm::vec3 rx::Vertex::pos</definition>
+        <argsstring></argsstring>
+        <name>pos</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Repos/renderer/src/api/misc/Vertex.hpp" line="13" column="15" bodyfile="C:/Repos/renderer/src/api/misc/Vertex.hpp" bodystart="13" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structrx_1_1_vertex_1a1a76ba9d115a62b06457ac41088cee81" prot="public" static="no" mutable="no">
+        <type>glm::vec3</type>
+        <definition>glm::vec3 rx::Vertex::color</definition>
+        <argsstring></argsstring>
+        <name>color</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Repos/renderer/src/api/misc/Vertex.hpp" line="14" column="15" bodyfile="C:/Repos/renderer/src/api/misc/Vertex.hpp" bodystart="14" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structrx_1_1_vertex_1ab789ce9a3fa04e9d18d7072e7b326426" prot="public" static="no" mutable="no">
+        <type>glm::vec2</type>
+        <definition>glm::vec2 rx::Vertex::texCoord</definition>
+        <argsstring></argsstring>
+        <name>texCoord</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Repos/renderer/src/api/misc/Vertex.hpp" line="15" column="15" bodyfile="C:/Repos/renderer/src/api/misc/Vertex.hpp" bodystart="15" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structrx_1_1_vertex_1ad0b1913ac3a23ad6a0b54fc7c2eddea5" prot="public" static="no" mutable="no">
+        <type>glm::vec3</type>
+        <definition>glm::vec3 rx::Vertex::normal</definition>
+        <argsstring></argsstring>
+        <name>normal</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Repos/renderer/src/api/misc/Vertex.hpp" line="16" column="15" bodyfile="C:/Repos/renderer/src/api/misc/Vertex.hpp" bodystart="16" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-static-func">
+      <memberdef kind="function" id="structrx_1_1_vertex_1a92cb15e06f79b0a612430c3e6d62cf5c" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>vk::Format</type>
+        <definition>static vk::Format rx::Vertex::getVertexFormat</definition>
+        <argsstring>()</argsstring>
+        <name>getVertexFormat</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Repos/renderer/src/api/misc/Vertex.hpp" line="18" column="30" bodyfile="C:/Repos/renderer/src/api/misc/Vertex.hpp" bodystart="18" bodyend="18"/>
+      </memberdef>
+      <memberdef kind="function" id="structrx_1_1_vertex_1a4082f9457ebfdbf4dad002dc881adadf" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>std::array&lt; vk::VertexInputBindingDescription, 1 &gt;</type>
+        <definition>static std::array&lt;vk::VertexInputBindingDescription, 1&gt; rx::Vertex::getBindingDescriptions</definition>
+        <argsstring>()</argsstring>
+        <name>getBindingDescriptions</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Repos/renderer/src/api/misc/Vertex.hpp" line="20" column="23" bodyfile="C:/Repos/renderer/src/api/misc/Vertex.hpp" bodystart="20" bodyend="29"/>
+      </memberdef>
+      <memberdef kind="function" id="structrx_1_1_vertex_1a5f203506f90bf3fde21961c14c88b861" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>std::array&lt; vk::VertexInputAttributeDescription, 4 &gt;</type>
+        <definition>static std::array&lt;vk::VertexInputAttributeDescription, 4&gt; rx::Vertex::getAttributeDescriptions</definition>
+        <argsstring>()</argsstring>
+        <name>getAttributeDescriptions</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Repos/renderer/src/api/misc/Vertex.hpp" line="31" column="23" bodyfile="C:/Repos/renderer/src/api/misc/Vertex.hpp" bodystart="31" bodyend="56"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="structrx_1_1_vertex_1acee916a474be4a13aa061a0a5d737523" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool rx::Vertex::operator==</definition>
+        <argsstring>(const Vertex &amp;other) const</argsstring>
+        <name>operator==</name>
+        <param>
+          <type>const <ref refid="structrx_1_1_vertex" kindref="compound">Vertex</ref> &amp;</type>
+          <declname>other</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Repos/renderer/src/api/misc/Vertex.hpp" line="58" column="10" bodyfile="C:/Repos/renderer/src/api/misc/Vertex.hpp" bodystart="58" bodyend="61"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="C:/Repos/renderer/src/api/misc/Vertex.hpp" line="11" column="3" bodyfile="C:/Repos/renderer/src/api/misc/Vertex.hpp" bodystart="12" bodyend="62"/>
+    <listofallmembers>
+      <member refid="structrx_1_1_vertex_1a1a76ba9d115a62b06457ac41088cee81" prot="public" virt="non-virtual"><scope>rx::Vertex</scope><name>color</name></member>
+      <member refid="structrx_1_1_vertex_1a5f203506f90bf3fde21961c14c88b861" prot="public" virt="non-virtual"><scope>rx::Vertex</scope><name>getAttributeDescriptions</name></member>
+      <member refid="structrx_1_1_vertex_1a4082f9457ebfdbf4dad002dc881adadf" prot="public" virt="non-virtual"><scope>rx::Vertex</scope><name>getBindingDescriptions</name></member>
+      <member refid="structrx_1_1_vertex_1a92cb15e06f79b0a612430c3e6d62cf5c" prot="public" virt="non-virtual"><scope>rx::Vertex</scope><name>getVertexFormat</name></member>
+      <member refid="structrx_1_1_vertex_1ad0b1913ac3a23ad6a0b54fc7c2eddea5" prot="public" virt="non-virtual"><scope>rx::Vertex</scope><name>normal</name></member>
+      <member refid="structrx_1_1_vertex_1acee916a474be4a13aa061a0a5d737523" prot="public" virt="non-virtual"><scope>rx::Vertex</scope><name>operator==</name></member>
+      <member refid="structrx_1_1_vertex_1abf54d239c5ce0cffc2d766ad780577a7" prot="public" virt="non-virtual"><scope>rx::Vertex</scope><name>pos</name></member>
+      <member refid="structrx_1_1_vertex_1ab789ce9a3fa04e9d18d7072e7b326426" prot="public" virt="non-virtual"><scope>rx::Vertex</scope><name>texCoord</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

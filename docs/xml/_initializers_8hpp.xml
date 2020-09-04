@@ -1,0 +1,433 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.20" xml:lang="en-US">
+  <compounddef id="_initializers_8hpp" kind="file" language="C++">
+    <compoundname>Initializers.hpp</compoundname>
+    <includes refid="_components_8hpp" local="yes">Components.hpp</includes>
+    <includes refid="_acceleration_structure_8hpp" local="yes">AccelerationStructure.hpp</includes>
+    <includedby refid="_api_8cpp" local="yes">C:/Repos/renderer/src/api/Api.cpp</includedby>
+    <includedby refid="_buffer_8cpp" local="yes">C:/Repos/renderer/src/api/buffers/Buffer.cpp</includedby>
+    <includedby refid="_gui_base_8cpp" local="yes">C:/Repos/renderer/src/api/gui/GuiBase.cpp</includedby>
+    <includedby refid="_image_8cpp" local="yes">C:/Repos/renderer/src/api/image/Image.cpp</includedby>
+    <includedby refid="_texture_8cpp" local="yes">C:/Repos/renderer/src/api/image/Texture.cpp</includedby>
+    <includedby refid="_pipeline_8cpp" local="yes">C:/Repos/renderer/src/api/Pipeline.cpp</includedby>
+    <includedby refid="_ray_tracing_builder_8cpp" local="yes">C:/Repos/renderer/src/api/raytracing/RayTracingBuilder.cpp</includedby>
+    <includedby refid="_swapchain_8cpp" local="yes">C:/Repos/renderer/src/api/Swapchain.cpp</includedby>
+    <includedby refid="_initializers_8cpp" local="yes">C:/Repos/renderer/src/api/utility/Initializers.cpp</includedby>
+    <incdepgraph>
+      <node id="20">
+        <label>iomanip</label>
+      </node>
+      <node id="13">
+        <label>glm/ext/matrix_transform.hpp</label>
+      </node>
+      <node id="3">
+        <label>WindowBase.hpp</label>
+        <link refid="_window_base_8hpp"/>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="10" relation="include">
+        </childnode>
+        <childnode refid="34" relation="include">
+        </childnode>
+      </node>
+      <node id="17">
+        <label>imgui_impl_sdl.h</label>
+      </node>
+      <node id="21">
+        <label>cstdint</label>
+      </node>
+      <node id="26">
+        <label>stdexcept</label>
+      </node>
+      <node id="18">
+        <label>imgui_impl_vulkan.h</label>
+      </node>
+      <node id="28">
+        <label>map</label>
+      </node>
+      <node id="35">
+        <label>AccelerationStructure.hpp</label>
+        <link refid="_acceleration_structure_8hpp"/>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="2" relation="include">
+        </childnode>
+      </node>
+      <node id="33">
+        <label>unordered_set</label>
+      </node>
+      <node id="29">
+        <label>fstream</label>
+      </node>
+      <node id="15">
+        <label>glm/gtx/string_cast.hpp</label>
+      </node>
+      <node id="4">
+        <label>stdafx.hpp</label>
+        <link refid="stdafx_8hpp"/>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="10" relation="include">
+        </childnode>
+        <childnode refid="12" relation="include">
+        </childnode>
+        <childnode refid="13" relation="include">
+        </childnode>
+        <childnode refid="14" relation="include">
+        </childnode>
+        <childnode refid="15" relation="include">
+        </childnode>
+        <childnode refid="16" relation="include">
+        </childnode>
+        <childnode refid="17" relation="include">
+        </childnode>
+        <childnode refid="18" relation="include">
+        </childnode>
+        <childnode refid="19" relation="include">
+        </childnode>
+        <childnode refid="20" relation="include">
+        </childnode>
+        <childnode refid="11" relation="include">
+        </childnode>
+        <childnode refid="21" relation="include">
+        </childnode>
+        <childnode refid="22" relation="include">
+        </childnode>
+        <childnode refid="23" relation="include">
+        </childnode>
+        <childnode refid="24" relation="include">
+        </childnode>
+        <childnode refid="25" relation="include">
+        </childnode>
+        <childnode refid="26" relation="include">
+        </childnode>
+        <childnode refid="27" relation="include">
+        </childnode>
+        <childnode refid="28" relation="include">
+        </childnode>
+        <childnode refid="29" relation="include">
+        </childnode>
+        <childnode refid="30" relation="include">
+        </childnode>
+        <childnode refid="31" relation="include">
+        </childnode>
+        <childnode refid="32" relation="include">
+        </childnode>
+        <childnode refid="33" relation="include">
+        </childnode>
+      </node>
+      <node id="6">
+        <label>SDL2/SDL.h</label>
+      </node>
+      <node id="5">
+        <label>Core.hpp</label>
+        <link refid="_core_8hpp"/>
+        <childnode refid="6" relation="include">
+        </childnode>
+        <childnode refid="7" relation="include">
+        </childnode>
+        <childnode refid="8" relation="include">
+        </childnode>
+        <childnode refid="9" relation="include">
+        </childnode>
+      </node>
+      <node id="24">
+        <label>optional</label>
+      </node>
+      <node id="11">
+        <label>vector</label>
+      </node>
+      <node id="34">
+        <label>CameraBase.hpp</label>
+        <link refid="_camera_base_8hpp"/>
+        <childnode refid="4" relation="include">
+        </childnode>
+      </node>
+      <node id="30">
+        <label>array</label>
+      </node>
+      <node id="19">
+        <label>sstream</label>
+      </node>
+      <node id="22">
+        <label>cstdlib</label>
+      </node>
+      <node id="16">
+        <label>imgui.h</label>
+      </node>
+      <node id="9">
+        <label>iostream</label>
+      </node>
+      <node id="32">
+        <label>unordered_map</label>
+      </node>
+      <node id="2">
+        <label>Components.hpp</label>
+        <link refid="_components_8hpp"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+      </node>
+      <node id="14">
+        <label>glm/ext/matrix_clip_space.hpp</label>
+      </node>
+      <node id="10">
+        <label>Time.hpp</label>
+        <link refid="_time_8hpp"/>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="11" relation="include">
+        </childnode>
+      </node>
+      <node id="25">
+        <label>set</label>
+      </node>
+      <node id="27">
+        <label>algorithm</label>
+      </node>
+      <node id="23">
+        <label>cstring</label>
+      </node>
+      <node id="1">
+        <label>C:/Repos/renderer/src/api/utility/Initializers.hpp</label>
+        <link refid="_initializers_8hpp"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="35" relation="include">
+        </childnode>
+      </node>
+      <node id="8">
+        <label>vulkan/vulkan.hpp</label>
+      </node>
+      <node id="31">
+        <label>memory</label>
+      </node>
+      <node id="7">
+        <label>SDL2/SDL_vulkan.h</label>
+      </node>
+      <node id="12">
+        <label>glm/glm.hpp</label>
+      </node>
+    </incdepgraph>
+    <invincdepgraph>
+      <node id="2">
+        <label>C:/Repos/renderer/src/api/Api.cpp</label>
+        <link refid="_api_8cpp"/>
+      </node>
+      <node id="8">
+        <label>C:/Repos/renderer/src/api/raytracing/RayTracingBuilder.cpp</label>
+        <link refid="_ray_tracing_builder_8cpp"/>
+      </node>
+      <node id="6">
+        <label>C:/Repos/renderer/src/api/image/Texture.cpp</label>
+        <link refid="_texture_8cpp"/>
+      </node>
+      <node id="4">
+        <label>C:/Repos/renderer/src/api/gui/GuiBase.cpp</label>
+        <link refid="_gui_base_8cpp"/>
+      </node>
+      <node id="9">
+        <label>C:/Repos/renderer/src/api/Swapchain.cpp</label>
+        <link refid="_swapchain_8cpp"/>
+      </node>
+      <node id="7">
+        <label>C:/Repos/renderer/src/api/Pipeline.cpp</label>
+        <link refid="_pipeline_8cpp"/>
+      </node>
+      <node id="10">
+        <label>C:/Repos/renderer/src/api/utility/Initializers.cpp</label>
+        <link refid="_initializers_8cpp"/>
+      </node>
+      <node id="3">
+        <label>C:/Repos/renderer/src/api/buffers/Buffer.cpp</label>
+        <link refid="_buffer_8cpp"/>
+      </node>
+      <node id="5">
+        <label>C:/Repos/renderer/src/api/image/Image.cpp</label>
+        <link refid="_image_8cpp"/>
+      </node>
+      <node id="1">
+        <label>C:/Repos/renderer/src/api/utility/Initializers.hpp</label>
+        <link refid="_initializers_8hpp"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="6" relation="include">
+        </childnode>
+        <childnode refid="7" relation="include">
+        </childnode>
+        <childnode refid="8" relation="include">
+        </childnode>
+        <childnode refid="9" relation="include">
+        </childnode>
+        <childnode refid="10" relation="include">
+        </childnode>
+      </node>
+    </invincdepgraph>
+    <innernamespace refid="namespacevk">vk</innernamespace>
+    <innernamespace refid="namespacevk_1_1_initializer">vk::Initializer</innernamespace>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="preprocessor">#ifndef<sp/>INITIALIZERS_HPP</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="2"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>INITIALIZERS_HPP</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="3"><highlight class="normal"></highlight></codeline>
+<codeline lineno="4"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;<ref refid="_components_8hpp" kindref="compound">Components.hpp</ref>&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="5"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;<ref refid="_acceleration_structure_8hpp" kindref="compound">AccelerationStructure.hpp</ref>&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="6"><highlight class="normal"></highlight></codeline>
+<codeline lineno="7"><highlight class="normal"></highlight><highlight class="keyword">namespace<sp/></highlight><highlight class="normal"><ref refid="namespacevk" kindref="compound">vk</ref></highlight></codeline>
+<codeline lineno="8"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="9"><highlight class="normal"><sp/><sp/></highlight><highlight class="keyword">namespace<sp/></highlight><highlight class="normal">Initializer</highlight></codeline>
+<codeline lineno="10"><highlight class="normal"><sp/><sp/>{</highlight></codeline>
+<codeline lineno="11"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Creates<sp/>a<sp/>fence<sp/>with<sp/>an<sp/>unique<sp/>handle.</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="12"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>@param<sp/>flags<sp/>-<sp/>The<sp/>flags<sp/>used<sp/>for<sp/>creating<sp/>the<sp/>fence.</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="13"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>@return<sp/>-<sp/>Returns<sp/>the<sp/>fence.</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="14"><highlight class="normal"><sp/><sp/><sp/><sp/>UniqueFence<sp/><ref refid="namespacevk_1_1_initializer_1a5c41b4c6ef81ecf1f45fdb226048a318" kindref="member">createFenceUnique</ref>(<sp/>FenceCreateFlags<sp/>flags<sp/>=<sp/>FenceCreateFlagBits::eSignaled<sp/>);</highlight></codeline>
+<codeline lineno="15"><highlight class="normal"></highlight></codeline>
+<codeline lineno="16"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Creates<sp/>a<sp/>fence.</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="17"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>@param<sp/>flags<sp/>-<sp/>The<sp/>flags<sp/>used<sp/>for<sp/>creating<sp/>the<sp/>fence.</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="18"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>@return<sp/>-<sp/>Returns<sp/>the<sp/>fence.</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="19"><highlight class="normal"><sp/><sp/><sp/><sp/>Fence<sp/><ref refid="namespacevk_1_1_initializer_1a75e39e91b0bee720788508f1ceda0f25" kindref="member">createFence</ref>(<sp/>FenceCreateFlags<sp/>flags<sp/>=<sp/>FenceCreateFlagBits::eSignaled<sp/>);</highlight></codeline>
+<codeline lineno="20"><highlight class="normal"></highlight></codeline>
+<codeline lineno="21"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Creates<sp/>a<sp/>semaphore<sp/>with<sp/>an<sp/>unique<sp/>handle.</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="22"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>@param<sp/>flags<sp/>-<sp/>The<sp/>flags<sp/>used<sp/>for<sp/>creating<sp/>the<sp/>semaphore.</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="23"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>@return<sp/>-<sp/>Returns<sp/>the<sp/>semaphore.</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="24"><highlight class="normal"><sp/><sp/><sp/><sp/>UniqueSemaphore<sp/><ref refid="namespacevk_1_1_initializer_1a553b320a0bd8df5a53b5cde1ebe632ab" kindref="member">createSemaphoreUnique</ref>(<sp/>SemaphoreCreateFlags<sp/>flags<sp/>=<sp/>{<sp/>}<sp/>);<sp/></highlight></codeline>
+<codeline lineno="25"><highlight class="normal"></highlight></codeline>
+<codeline lineno="26"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Creates<sp/>a<sp/>semaphore.</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="27"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>@param<sp/>flags<sp/>-<sp/>The<sp/>flags<sp/>used<sp/>for<sp/>creating<sp/>the<sp/>semaphore.</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="28"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>@return<sp/>-<sp/>Returns<sp/>the<sp/>semaphore.</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="29"><highlight class="normal"><sp/><sp/><sp/><sp/>Semaphore<sp/><ref refid="namespacevk_1_1_initializer_1afc36459f8f5bc3b231aae43d8a89ceb3" kindref="member">createSemaphore</ref>(<sp/>SemaphoreCreateFlags<sp/>flags<sp/>=<sp/>{<sp/>}<sp/>);</highlight></codeline>
+<codeline lineno="30"><highlight class="normal"></highlight></codeline>
+<codeline lineno="31"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Creates<sp/>a<sp/>command<sp/>pool<sp/>with<sp/>an<sp/>unique<sp/>handle.</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="32"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>@param<sp/>queueFamilyIndex<sp/>-<sp/>The<sp/>queue<sp/>family<sp/>from<sp/>which<sp/>the<sp/>command<sp/>pool<sp/>can<sp/>submit<sp/>to.</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="33"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>@param<sp/>flags<sp/>-<sp/>The<sp/>flags<sp/>used<sp/>for<sp/>creating<sp/>the<sp/>command<sp/>pool.</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="34"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>@return<sp/>-<sp/>Returns<sp/>the<sp/>command<sp/>pool.</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="35"><highlight class="normal"><sp/><sp/><sp/><sp/>UniqueCommandPool<sp/><ref refid="namespacevk_1_1_initializer_1a4a0507cd0310e5c91a8f22342c82a5bd" kindref="member">createCommandPoolUnique</ref>(<sp/>uint32_t<sp/>queueFamilyIndex,<sp/>CommandPoolCreateFlags<sp/>flags<sp/>=<sp/>{<sp/>}<sp/>);</highlight></codeline>
+<codeline lineno="36"><highlight class="normal"></highlight></codeline>
+<codeline lineno="37"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Creates<sp/>a<sp/>command<sp/>pool.</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="38"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>@param<sp/>queueFamilyIndex<sp/>-<sp/>The<sp/>queue<sp/>family<sp/>from<sp/>which<sp/>the<sp/>command<sp/>pool<sp/>can<sp/>submit<sp/>to.</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="39"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>@param<sp/>flags<sp/>-<sp/>The<sp/>flags<sp/>used<sp/>for<sp/>creating<sp/>the<sp/>command<sp/>pool.</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="40"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>@return<sp/>-<sp/>Returns<sp/>the<sp/>command<sp/>pool.</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="41"><highlight class="normal"><sp/><sp/><sp/><sp/>CommandPool<sp/><ref refid="namespacevk_1_1_initializer_1ad180894bda2fb11ef4396cabbbe95f42" kindref="member">createCommandPool</ref>(uint32_t<sp/>queueFamilyIndex,<sp/>CommandPoolCreateFlags<sp/>flags<sp/>=<sp/>{<sp/>}<sp/>);</highlight></codeline>
+<codeline lineno="42"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="43"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Creates<sp/>a<sp/>descriptor<sp/>pool<sp/>with<sp/>an<sp/>unique<sp/>handle.</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="44"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>@param<sp/>poolSizes<sp/>-<sp/>All<sp/>descriptor<sp/>types<sp/>for<sp/>descriptor<sp/>sets<sp/>that<sp/>can<sp/>be<sp/>allocated<sp/>from<sp/>this<sp/>descriptor<sp/>pool.</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="45"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>@param<sp/>maxSets<sp/>-<sp/>The<sp/>maximum<sp/>amount<sp/>of<sp/>descriptor<sp/>sets<sp/>that<sp/>can<sp/>be<sp/>allocated<sp/>from<sp/>this<sp/>descriptor<sp/>pool.</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="46"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>@param<sp/>flags<sp/>-<sp/>The<sp/>flags<sp/>used<sp/>for<sp/>creating<sp/>the<sp/>descriptor<sp/>pool.</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="47"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>@return<sp/>-<sp/>Returns<sp/>the<sp/>descriptor<sp/>pool.<sp/><sp/></highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="48"><highlight class="normal"><sp/><sp/><sp/><sp/>UniqueDescriptorPool<sp/><ref refid="namespacevk_1_1_initializer_1a96c7f4f958b01d7cad46d2c5ebaa94f2" kindref="member">createDescriptorPoolUnique</ref>(<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>std::vector&lt;DescriptorPoolSize&gt;&amp;<sp/>poolSizes,<sp/>uint32_t<sp/>maxSets<sp/>=<sp/>1,<sp/>DescriptorPoolCreateFlags<sp/>flags<sp/>=<sp/>{<sp/>}<sp/>);</highlight></codeline>
+<codeline lineno="49"><highlight class="normal"></highlight></codeline>
+<codeline lineno="50"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Creates<sp/>a<sp/>descriptor<sp/>pool.</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="51"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>@param<sp/>poolSizes<sp/>-<sp/>All<sp/>descriptor<sp/>types<sp/>for<sp/>descriptor<sp/>sets<sp/>that<sp/>can<sp/>be<sp/>allocated<sp/>from<sp/>this<sp/>descriptor<sp/>pool.</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="52"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>@param<sp/>maxSets<sp/>-<sp/>The<sp/>maximum<sp/>amount<sp/>of<sp/>descriptor<sp/>sets<sp/>that<sp/>can<sp/>be<sp/>allocated<sp/>from<sp/>this<sp/>descriptor<sp/>pool.</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="53"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>@param<sp/>flags<sp/>-<sp/>The<sp/>flags<sp/>used<sp/>for<sp/>creating<sp/>the<sp/>descriptor<sp/>pool.</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="54"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>@return<sp/>-<sp/>Returns<sp/>the<sp/>descriptor<sp/>pool.<sp/><sp/></highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="55"><highlight class="normal"><sp/><sp/><sp/><sp/>DescriptorPool<sp/><ref refid="namespacevk_1_1_initializer_1acd5a201a5576ff74bd68adfb6856d9d6" kindref="member">createDescriptorPool</ref>(<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>std::vector&lt;DescriptorPoolSize&gt;&amp;<sp/>poolSizes,<sp/>uint32_t<sp/>maxSets,<sp/>DescriptorPoolCreateFlags<sp/>flags<sp/>=<sp/>{<sp/>}<sp/>);</highlight></codeline>
+<codeline lineno="56"><highlight class="normal"></highlight></codeline>
+<codeline lineno="57"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Allocates<sp/>and<sp/>binds<sp/>unique<sp/>memory<sp/>for<sp/>an<sp/>image.</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="58"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>@param<sp/>image<sp/>-<sp/>The<sp/>image<sp/>to<sp/>allocate<sp/>memory<sp/>for.</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="59"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>@param<sp/>pNext<sp/>-<sp/>The<sp/>pNext<sp/>chain<sp/>of<sp/>the<sp/>Vulkan<sp/>allocation<sp/>info.</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="60"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>@return<sp/>-<sp/>Returns<sp/>the<sp/>memory.</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="61"><highlight class="normal"><sp/><sp/><sp/><sp/>UniqueDeviceMemory<sp/><ref refid="namespacevk_1_1_initializer_1aaf971d37968849d18a9c8bc51b7214d9" kindref="member">allocateMemoryUnique</ref>(<sp/>Image<sp/>image,<sp/>MemoryPropertyFlags<sp/>propertyFlags<sp/>=<sp/>MemoryPropertyFlagBits::eDeviceLocal,<sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>*<sp/>pNext<sp/>=<sp/></highlight><highlight class="keyword">nullptr</highlight><highlight class="normal"><sp/>);</highlight></codeline>
+<codeline lineno="62"><highlight class="normal"></highlight></codeline>
+<codeline lineno="63"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Allocates<sp/>and<sp/>binds<sp/>memory<sp/>for<sp/>an<sp/>image.</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="64"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>@param<sp/>image<sp/>-<sp/>The<sp/>image<sp/>to<sp/>allocate<sp/>memory<sp/>for.</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="65"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>@param<sp/>pNext<sp/>-<sp/>The<sp/>pNext<sp/>chain<sp/>of<sp/>the<sp/>Vulkan<sp/>allocation<sp/>info.</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="66"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>@return<sp/>-<sp/>Returns<sp/>the<sp/>memory.</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="67"><highlight class="normal"><sp/><sp/><sp/><sp/>DeviceMemory<sp/><ref refid="namespacevk_1_1_initializer_1ac45c9a57ebad6f7ad93e067ed9522482" kindref="member">allocateMemory</ref>(<sp/>Image<sp/>image,<sp/>MemoryPropertyFlags<sp/>propertyFlags<sp/>=<sp/>MemoryPropertyFlagBits::eDeviceLocal,<sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>*<sp/>pNext<sp/>=<sp/></highlight><highlight class="keyword">nullptr</highlight><highlight class="normal"><sp/>);</highlight></codeline>
+<codeline lineno="68"><highlight class="normal"></highlight></codeline>
+<codeline lineno="69"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Allocates<sp/>and<sp/>binds<sp/>unique<sp/>memory<sp/>for<sp/>a<sp/>buffer.</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="70"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>@param<sp/>image<sp/>-<sp/>The<sp/>image<sp/>to<sp/>allocate<sp/>memory<sp/>for.</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="71"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>@param<sp/>pNext<sp/>-<sp/>The<sp/>pNext<sp/>chain<sp/>of<sp/>the<sp/>Vulkan<sp/>allocation<sp/>info.</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="72"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>@return<sp/>-<sp/>Returns<sp/>the<sp/>memory.</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="73"><highlight class="normal"><sp/><sp/><sp/><sp/>UniqueDeviceMemory<sp/><ref refid="namespacevk_1_1_initializer_1aaf971d37968849d18a9c8bc51b7214d9" kindref="member">allocateMemoryUnique</ref>(<sp/>Buffer<sp/>buffer,<sp/>MemoryPropertyFlags<sp/>propertyFlags<sp/>=<sp/>MemoryPropertyFlagBits::eDeviceLocal,<sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>*<sp/>pNext<sp/>=<sp/></highlight><highlight class="keyword">nullptr</highlight><highlight class="normal"><sp/>);</highlight></codeline>
+<codeline lineno="74"><highlight class="normal"></highlight></codeline>
+<codeline lineno="75"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Allocates<sp/>and<sp/>binds<sp/>unique<sp/>memory<sp/>for<sp/>an<sp/>acceleration<sp/>structure<sp/>object.</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="76"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>@param<sp/>as<sp/>-<sp/>The<sp/>rx::AccelerationStructure<sp/>object<sp/>the<sp/>memory<sp/>will<sp/>be<sp/>allocated<sp/>for.</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="77"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="namespacevk_1_1_initializer_1ac45c9a57ebad6f7ad93e067ed9522482" kindref="member">allocateMemory</ref>(<sp/><ref refid="structrx_1_1_acceleration_structure" kindref="compound">rx::AccelerationStructure</ref>&amp;<sp/>as<sp/>);</highlight></codeline>
+<codeline lineno="78"><highlight class="normal"></highlight></codeline>
+<codeline lineno="79"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Allocates<sp/>and<sp/>binds<sp/>memory<sp/>for<sp/>a<sp/>buffer.</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="80"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>@param<sp/>image<sp/>-<sp/>The<sp/>image<sp/>to<sp/>allocate<sp/>memory<sp/>for.</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="81"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>@param<sp/>pNext<sp/>-<sp/>The<sp/>pNext<sp/>chain<sp/>of<sp/>the<sp/>Vulkan<sp/>allocation<sp/>info.</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="82"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>@return<sp/>-<sp/>Returns<sp/>the<sp/>memory.</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="83"><highlight class="normal"><sp/><sp/><sp/><sp/>DeviceMemory<sp/><ref refid="namespacevk_1_1_initializer_1ac45c9a57ebad6f7ad93e067ed9522482" kindref="member">allocateMemory</ref>(<sp/>Buffer<sp/>buffer,<sp/>MemoryPropertyFlags<sp/>propertyFlags<sp/>=<sp/>MemoryPropertyFlagBits::eDeviceLocal,<sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal">*<sp/>pNext<sp/>=<sp/></highlight><highlight class="keyword">nullptr</highlight><highlight class="normal"><sp/>);</highlight></codeline>
+<codeline lineno="84"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="85"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Create<sp/>an<sp/>image<sp/>view<sp/>with<sp/>an<sp/>unique<sp/>handle.</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="86"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>@param<sp/>image<sp/>-<sp/>The<sp/>image<sp/>to<sp/>create<sp/>an<sp/>image<sp/>view<sp/>for.</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="87"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>@param<sp/>format<sp/>-<sp/>The<sp/>target<sp/>format<sp/>of<sp/>the<sp/>image<sp/>view.</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="88"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>@return<sp/>-<sp/>Returns<sp/>the<sp/>image<sp/>view.</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="89"><highlight class="normal"><sp/><sp/><sp/><sp/>UniqueImageView<sp/><ref refid="namespacevk_1_1_initializer_1a962e46155dc58c46245cc58a65ececbf" kindref="member">createImageViewUnique</ref>(<sp/>Image<sp/>image,<sp/>Format<sp/>format,<sp/>ImageAspectFlags<sp/>aspectFlags<sp/>=<sp/>ImageAspectFlagBits::eColor<sp/>);</highlight></codeline>
+<codeline lineno="90"><highlight class="normal"></highlight></codeline>
+<codeline lineno="91"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Create<sp/>an<sp/>image<sp/>view.</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="92"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>@param<sp/>image<sp/>-<sp/>The<sp/>image<sp/>to<sp/>create<sp/>an<sp/>image<sp/>view<sp/>for.</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="93"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>@param<sp/>format<sp/>-<sp/>The<sp/>target<sp/>format<sp/>of<sp/>the<sp/>image<sp/>view.</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="94"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>@return<sp/>-<sp/>Returns<sp/>the<sp/>image<sp/>view.</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="95"><highlight class="normal"><sp/><sp/><sp/><sp/>ImageView<sp/><ref refid="namespacevk_1_1_initializer_1a68e7faff8839638ac038c12d728ce6d4" kindref="member">createImageView</ref>(<sp/>Image<sp/>image,<sp/>Format<sp/>format,<sp/>ImageAspectFlags<sp/>aspectFlags<sp/>=<sp/>ImageAspectFlagBits::eColor<sp/>);</highlight></codeline>
+<codeline lineno="96"><highlight class="normal"></highlight></codeline>
+<codeline lineno="97"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Create<sp/>a<sp/>sampler<sp/>with<sp/>a<sp/>unique<sp/>handle.</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="98"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>@param<sp/>createInfo<sp/>-<sp/>The<sp/>Vulkan<sp/>create<sp/>info<sp/>for<sp/>the<sp/>sampler.</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="99"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>@return<sp/>-<sp/>Returns<sp/>the<sp/>sampler.</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="100"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Note:<sp/>Use<sp/>rx::Helper::getSamplerCreateInfo<sp/>to<sp/>get<sp/>a<sp/>predefined<sp/>create<sp/>info.</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="101"><highlight class="normal"><sp/><sp/><sp/><sp/>UniqueSampler<sp/><ref refid="namespacevk_1_1_initializer_1af7fafdadf4b47aff7936fce8782d1311" kindref="member">createSamplerUnique</ref>(<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>SamplerCreateInfo&amp;<sp/>createInfo<sp/>);</highlight></codeline>
+<codeline lineno="102"><highlight class="normal"></highlight></codeline>
+<codeline lineno="103"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Create<sp/>a<sp/>sampler.</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="104"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>@param<sp/>createInfo<sp/>-<sp/>The<sp/>Vulkan<sp/>create<sp/>info<sp/>for<sp/>the<sp/>sampler.</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="105"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>@return<sp/>-<sp/>Returns<sp/>the<sp/>sampler.</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="106"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Note:<sp/>Use<sp/>rx::Helper::getSamplerCreateInfo<sp/>to<sp/>get<sp/>a<sp/>predefined<sp/>create<sp/>info.</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="107"><highlight class="normal"><sp/><sp/><sp/><sp/>Sampler<sp/><ref refid="namespacevk_1_1_initializer_1a2e3e8160b81f2f24e4754906355f1ee2" kindref="member">createSampler</ref>(<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>SamplerCreateInfo&amp;<sp/>createInfo<sp/>);</highlight></codeline>
+<codeline lineno="108"><highlight class="normal"></highlight></codeline>
+<codeline lineno="109"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Create<sp/>a<sp/>framebuffer<sp/>with<sp/>an<sp/>unique<sp/>handle.</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="110"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>@param<sp/>attachments<sp/>-<sp/>All<sp/>the<sp/>image<sp/>view<sp/>attachments<sp/>for<sp/>the<sp/>framebuffer.</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="111"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>@param<sp/>renderPass<sp/>-<sp/>The<sp/>render<sp/>pass<sp/>for<sp/>which<sp/>the<sp/>framebuffer<sp/>will<sp/>be<sp/>used.</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="112"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>@param<sp/>extent<sp/>-<sp/>The<sp/>extent<sp/>of<sp/>the<sp/>framebuffer.</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="113"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>@return<sp/>-<sp/>Returns<sp/>the<sp/>framebuffer.</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="114"><highlight class="normal"><sp/><sp/><sp/><sp/>UniqueFramebuffer<sp/><ref refid="namespacevk_1_1_initializer_1a27157ac87ba69ecc219184443b7279f3" kindref="member">createFramebufferUnique</ref>(<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>std::vector&lt;ImageView&gt;&amp;<sp/>attachments,<sp/>RenderPass<sp/>renderPass,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>Extent2D&amp;<sp/>extent<sp/>);</highlight></codeline>
+<codeline lineno="115"><highlight class="normal"></highlight></codeline>
+<codeline lineno="116"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Create<sp/>a<sp/>framebuffer.</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="117"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>@param<sp/>attachments<sp/>-<sp/>All<sp/>the<sp/>image<sp/>view<sp/>attachments<sp/>for<sp/>the<sp/>framebuffer.</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="118"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>@param<sp/>renderPass<sp/>-<sp/>The<sp/>render<sp/>pass<sp/>for<sp/>which<sp/>the<sp/>framebuffer<sp/>will<sp/>be<sp/>used.</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="119"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>@param<sp/>extent<sp/>-<sp/>The<sp/>extent<sp/>of<sp/>the<sp/>framebuffer.</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="120"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>@return<sp/>-<sp/>Returns<sp/>the<sp/>framebuffer.</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="121"><highlight class="normal"><sp/><sp/><sp/><sp/>Framebuffer<sp/><ref refid="namespacevk_1_1_initializer_1af86e353fda1ebfcdfd3e60fd1891a203" kindref="member">createFramebuffer</ref>(<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>std::vector&lt;ImageView&gt;&amp;<sp/>attachments,<sp/>RenderPass<sp/>renderPass,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>Extent2D&amp;<sp/>extent<sp/>);</highlight></codeline>
+<codeline lineno="122"><highlight class="normal"></highlight></codeline>
+<codeline lineno="123"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Create<sp/>a<sp/>query<sp/>pool<sp/>with<sp/>an<sp/>unique<sp/>handle.</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="124"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>@param<sp/>count<sp/>-<sp/>The<sp/>number<sp/>of<sp/>queries<sp/>managed<sp/>by<sp/>the<sp/>pool.</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="125"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>@param<sp/>type<sp/>-<sp/>Specifies<sp/>the<sp/>type<sp/>of<sp/>queries<sp/>managed<sp/>by<sp/>the<sp/>pool.</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="126"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>return<sp/>-<sp/>Returns<sp/>the<sp/>query<sp/>pool.</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="127"><highlight class="normal"><sp/><sp/><sp/><sp/>UniqueQueryPool<sp/><ref refid="namespacevk_1_1_initializer_1ae1aa45605bbbeff34170dda70f380363" kindref="member">createQueryPoolUnique</ref>(<sp/>uint32_t<sp/>count,<sp/>QueryType<sp/>type<sp/>);</highlight></codeline>
+<codeline lineno="128"><highlight class="normal"></highlight></codeline>
+<codeline lineno="129"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Create<sp/>a<sp/>query<sp/>pool.</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="130"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>@param<sp/>count<sp/>-<sp/>The<sp/>number<sp/>of<sp/>queries<sp/>managed<sp/>by<sp/>the<sp/>pool.</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="131"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>@param<sp/>type<sp/>-<sp/>Specifies<sp/>the<sp/>type<sp/>of<sp/>queries<sp/>managed<sp/>by<sp/>the<sp/>pool.</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="132"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>return<sp/>-<sp/>Returns<sp/>the<sp/>query<sp/>pool.</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="133"><highlight class="normal"><sp/><sp/><sp/><sp/>QueryPool<sp/><ref refid="namespacevk_1_1_initializer_1a6e9de22a304ba6c271e7063b765ea684" kindref="member">createQueryPool</ref>(<sp/>uint32_t<sp/>count,<sp/>QueryType<sp/>type<sp/>);</highlight></codeline>
+<codeline lineno="134"><highlight class="normal"></highlight></codeline>
+<codeline lineno="135"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Parses<sp/>a<sp/>given<sp/>shader<sp/>and<sp/>creates<sp/>a<sp/>shader<sp/>module<sp/>with<sp/>an<sp/>unique<sp/>handle.</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="136"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>@param<sp/>path<sp/>-<sp/>The<sp/>full<sp/>path<sp/>to<sp/>the<sp/>GLSL<sp/>shader<sp/>file.</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="137"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>@return<sp/>-<sp/>Returns<sp/>the<sp/>shader<sp/>module.</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="138"><highlight class="normal"><sp/><sp/><sp/><sp/>UniqueShaderModule<sp/><ref refid="namespacevk_1_1_initializer_1ade34b50ac5ead941b7d2b20c828864d2" kindref="member">createShaderModuleUnique</ref>(<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>std::string&amp;<sp/>path<sp/>);</highlight></codeline>
+<codeline lineno="139"><highlight class="normal"></highlight></codeline>
+<codeline lineno="140"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Parses<sp/>a<sp/>given<sp/>shader<sp/>and<sp/>creates<sp/>a<sp/>shader<sp/>module.</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="141"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>@param<sp/>path<sp/>-<sp/>The<sp/>full<sp/>path<sp/>to<sp/>the<sp/>GLSL<sp/>shader<sp/>file.</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="142"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>@return<sp/>-<sp/>Returns<sp/>the<sp/>shader<sp/>module.</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="143"><highlight class="normal"><sp/><sp/><sp/><sp/>ShaderModule<sp/><ref refid="namespacevk_1_1_initializer_1acfa78e54318d113b7632d028f12c9f6f" kindref="member">createShaderModule</ref>(<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>std::string&amp;<sp/>path<sp/>);</highlight></codeline>
+<codeline lineno="144"><highlight class="normal"></highlight></codeline>
+<codeline lineno="145"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Creates<sp/>the<sp/>acceleration<sp/>structure<sp/>and<sp/>allocates<sp/>and<sp/>binds<sp/>memory<sp/>for<sp/>it.</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="146"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>@param<sp/>asCreateInfo<sp/>-<sp/>The<sp/>Vulkan<sp/>create<sp/>info<sp/>for<sp/>the<sp/>acceleration<sp/>structure.</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="147"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>@return<sp/>-<sp/>Returns<sp/>an<sp/>rx::AccelerationStructure<sp/>object<sp/>that<sp/>contains<sp/>the<sp/>AS<sp/>itself<sp/>as<sp/>well<sp/>as<sp/>the<sp/>memory<sp/>for<sp/>it.</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="148"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="structrx_1_1_acceleration_structure" kindref="compound">rx::AccelerationStructure</ref><sp/><ref refid="namespacevk_1_1_initializer_1aeef3a8fde04c8d29eb1a6ecd4bb5fb87" kindref="member">createAccelerationStructure</ref>(<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>vk::AccelerationStructureCreateInfoKHR&amp;<sp/>asCreateInfo<sp/>);</highlight></codeline>
+<codeline lineno="149"><highlight class="normal"><sp/><sp/>}</highlight></codeline>
+<codeline lineno="150"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="151"><highlight class="normal"></highlight></codeline>
+<codeline lineno="152"><highlight class="normal"></highlight><highlight class="preprocessor">#endif<sp/>//<sp/>INITIALIZERS_HPP</highlight></codeline>
+    </programlisting>
+    <location file="C:/Repos/renderer/src/api/utility/Initializers.hpp"/>
+  </compounddef>
+</doxygen>

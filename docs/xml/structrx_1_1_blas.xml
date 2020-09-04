@@ -1,0 +1,99 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.20" xml:lang="en-US">
+  <compounddef id="structrx_1_1_blas" kind="struct" language="C++" prot="public">
+    <compoundname>rx::Blas</compoundname>
+    <includes refid="_acceleration_structure_8hpp" local="no">AccelerationStructure.hpp</includes>
+      <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="structrx_1_1_blas_1ac0c160449d5fb3b486eaab18331748a1" prot="public" static="no" mutable="no">
+        <type><ref refid="structrx_1_1_acceleration_structure" kindref="compound">AccelerationStructure</ref></type>
+        <definition>AccelerationStructure rx::Blas::as</definition>
+        <argsstring></argsstring>
+        <name>as</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Repos/renderer/src/api/raytracing/AccelerationStructure.hpp" line="32" column="27" bodyfile="C:/Repos/renderer/src/api/raytracing/AccelerationStructure.hpp" bodystart="32" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structrx_1_1_blas_1a9b1bafdc5eafbe49f3ca37f39df3a163" prot="public" static="no" mutable="no">
+        <type>vk::BuildAccelerationStructureFlagsKHR</type>
+        <definition>vk::BuildAccelerationStructureFlagsKHR rx::Blas::flags</definition>
+        <argsstring></argsstring>
+        <name>flags</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Repos/renderer/src/api/raytracing/AccelerationStructure.hpp" line="33" column="44" bodyfile="C:/Repos/renderer/src/api/raytracing/AccelerationStructure.hpp" bodystart="33" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structrx_1_1_blas_1a84d9450aa1b8726afc627fd934f6b359" prot="public" static="no" mutable="no">
+        <type>std::vector&lt; vk::AccelerationStructureCreateGeometryTypeInfoKHR &gt;</type>
+        <definition>std::vector&lt;vk::AccelerationStructureCreateGeometryTypeInfoKHR&gt; rx::Blas::asCreateGeometryInfo</definition>
+        <argsstring></argsstring>
+        <name>asCreateGeometryInfo</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Repos/renderer/src/api/raytracing/AccelerationStructure.hpp" line="35" column="17" bodyfile="C:/Repos/renderer/src/api/raytracing/AccelerationStructure.hpp" bodystart="35" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structrx_1_1_blas_1ac74daa5e54e8bd97a5ef47650665d4d0" prot="public" static="no" mutable="no">
+        <type>std::vector&lt; vk::AccelerationStructureGeometryKHR &gt;</type>
+        <definition>std::vector&lt;vk::AccelerationStructureGeometryKHR&gt; rx::Blas::asGeometry</definition>
+        <argsstring></argsstring>
+        <name>asGeometry</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Repos/renderer/src/api/raytracing/AccelerationStructure.hpp" line="36" column="17" bodyfile="C:/Repos/renderer/src/api/raytracing/AccelerationStructure.hpp" bodystart="36" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structrx_1_1_blas_1a29b12815ad6c32eabb0dc46656d91913" prot="public" static="no" mutable="no">
+        <type>std::vector&lt; vk::AccelerationStructureBuildOffsetInfoKHR &gt;</type>
+        <definition>std::vector&lt;vk::AccelerationStructureBuildOffsetInfoKHR&gt; rx::Blas::asBuildOffsetInfo</definition>
+        <argsstring></argsstring>
+        <name>asBuildOffsetInfo</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Repos/renderer/src/api/raytracing/AccelerationStructure.hpp" line="37" column="17" bodyfile="C:/Repos/renderer/src/api/raytracing/AccelerationStructure.hpp" bodystart="37" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <collaborationgraph>
+      <node id="1">
+        <label>rx::Blas</label>
+        <link refid="structrx_1_1_blas"/>
+        <childnode refid="2" relation="usage">
+          <edgelabel>as</edgelabel>
+        </childnode>
+      </node>
+      <node id="2">
+        <label>rx::AccelerationStructure</label>
+        <link refid="structrx_1_1_acceleration_structure"/>
+      </node>
+    </collaborationgraph>
+    <location file="C:/Repos/renderer/src/api/raytracing/AccelerationStructure.hpp" line="30" column="3" bodyfile="C:/Repos/renderer/src/api/raytracing/AccelerationStructure.hpp" bodystart="31" bodyend="38"/>
+    <listofallmembers>
+      <member refid="structrx_1_1_blas_1ac0c160449d5fb3b486eaab18331748a1" prot="public" virt="non-virtual"><scope>rx::Blas</scope><name>as</name></member>
+      <member refid="structrx_1_1_blas_1a29b12815ad6c32eabb0dc46656d91913" prot="public" virt="non-virtual"><scope>rx::Blas</scope><name>asBuildOffsetInfo</name></member>
+      <member refid="structrx_1_1_blas_1a84d9450aa1b8726afc627fd934f6b359" prot="public" virt="non-virtual"><scope>rx::Blas</scope><name>asCreateGeometryInfo</name></member>
+      <member refid="structrx_1_1_blas_1ac74daa5e54e8bd97a5ef47650665d4d0" prot="public" virt="non-virtual"><scope>rx::Blas</scope><name>asGeometry</name></member>
+      <member refid="structrx_1_1_blas_1a9b1bafdc5eafbe49f3ca37f39df3a163" prot="public" virt="non-virtual"><scope>rx::Blas</scope><name>flags</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

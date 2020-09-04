@@ -1,0 +1,106 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.20" xml:lang="en-US">
+  <compounddef id="structrx_1_1_blas_instance" kind="struct" language="C++" prot="public">
+    <compoundname>rx::BlasInstance</compoundname>
+    <includes refid="_acceleration_structure_8hpp" local="no">AccelerationStructure.hpp</includes>
+      <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="structrx_1_1_blas_instance_1a680d9fe954cf810a9134b52ce2c1522c" prot="public" static="no" mutable="no">
+        <type>uint32_t</type>
+        <definition>uint32_t rx::BlasInstance::blasId</definition>
+        <argsstring></argsstring>
+        <name>blasId</name>
+        <initializer>= 0</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Repos/renderer/src/api/raytracing/AccelerationStructure.hpp" line="43" column="14" bodyfile="C:/Repos/renderer/src/api/raytracing/AccelerationStructure.hpp" bodystart="43" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structrx_1_1_blas_instance_1af158d0c22affa271615dedf13527d492" prot="public" static="no" mutable="no">
+        <type>uint32_t</type>
+        <definition>uint32_t rx::BlasInstance::instanceId</definition>
+        <argsstring></argsstring>
+        <name>instanceId</name>
+        <initializer>= 0</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Repos/renderer/src/api/raytracing/AccelerationStructure.hpp" line="44" column="14" bodyfile="C:/Repos/renderer/src/api/raytracing/AccelerationStructure.hpp" bodystart="44" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structrx_1_1_blas_instance_1ab53fbcc77e066a29b807fe7a2a955ce1" prot="public" static="no" mutable="no">
+        <type>uint32_t</type>
+        <definition>uint32_t rx::BlasInstance::hitGroupId</definition>
+        <argsstring></argsstring>
+        <name>hitGroupId</name>
+        <initializer>= 0</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Repos/renderer/src/api/raytracing/AccelerationStructure.hpp" line="45" column="14" bodyfile="C:/Repos/renderer/src/api/raytracing/AccelerationStructure.hpp" bodystart="45" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structrx_1_1_blas_instance_1a5f5aef5afeb54286f487dac15c50207c" prot="public" static="no" mutable="no">
+        <type>uint32_t</type>
+        <definition>uint32_t rx::BlasInstance::mask</definition>
+        <argsstring></argsstring>
+        <name>mask</name>
+        <initializer>= 0xFF</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Repos/renderer/src/api/raytracing/AccelerationStructure.hpp" line="46" column="14" bodyfile="C:/Repos/renderer/src/api/raytracing/AccelerationStructure.hpp" bodystart="46" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structrx_1_1_blas_instance_1a043850f8920f72203973dcd8dfc6b2d0" prot="public" static="no" mutable="no">
+        <type>vk::GeometryInstanceFlagsKHR</type>
+        <definition>vk::GeometryInstanceFlagsKHR rx::BlasInstance::flags</definition>
+        <argsstring></argsstring>
+        <name>flags</name>
+        <initializer>= { vk::GeometryInstanceFlagBitsKHR::eTriangleFacingCullDisable }</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Repos/renderer/src/api/raytracing/AccelerationStructure.hpp" line="47" column="34" bodyfile="C:/Repos/renderer/src/api/raytracing/AccelerationStructure.hpp" bodystart="47" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structrx_1_1_blas_instance_1a1a0ddbfa50189ea67eb18cf74188ba12" prot="public" static="no" mutable="no">
+        <type>glm::mat4</type>
+        <definition>glm::mat4 rx::BlasInstance::transform</definition>
+        <argsstring></argsstring>
+        <name>transform</name>
+        <initializer>= glm::fmat4( 1.0f )</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Repos/renderer/src/api/raytracing/AccelerationStructure.hpp" line="48" column="15" bodyfile="C:/Repos/renderer/src/api/raytracing/AccelerationStructure.hpp" bodystart="48" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="C:/Repos/renderer/src/api/raytracing/AccelerationStructure.hpp" line="41" column="3" bodyfile="C:/Repos/renderer/src/api/raytracing/AccelerationStructure.hpp" bodystart="42" bodyend="49"/>
+    <listofallmembers>
+      <member refid="structrx_1_1_blas_instance_1a680d9fe954cf810a9134b52ce2c1522c" prot="public" virt="non-virtual"><scope>rx::BlasInstance</scope><name>blasId</name></member>
+      <member refid="structrx_1_1_blas_instance_1a043850f8920f72203973dcd8dfc6b2d0" prot="public" virt="non-virtual"><scope>rx::BlasInstance</scope><name>flags</name></member>
+      <member refid="structrx_1_1_blas_instance_1ab53fbcc77e066a29b807fe7a2a955ce1" prot="public" virt="non-virtual"><scope>rx::BlasInstance</scope><name>hitGroupId</name></member>
+      <member refid="structrx_1_1_blas_instance_1af158d0c22affa271615dedf13527d492" prot="public" virt="non-virtual"><scope>rx::BlasInstance</scope><name>instanceId</name></member>
+      <member refid="structrx_1_1_blas_instance_1a5f5aef5afeb54286f487dac15c50207c" prot="public" virt="non-virtual"><scope>rx::BlasInstance</scope><name>mask</name></member>
+      <member refid="structrx_1_1_blas_instance_1a1a0ddbfa50189ea67eb18cf74188ba12" prot="public" virt="non-virtual"><scope>rx::BlasInstance</scope><name>transform</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

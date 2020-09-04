@@ -1,0 +1,374 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.20" xml:lang="en-US">
+  <compounddef id="namespacevk_1_1_helper" kind="namespace" language="C++">
+    <compoundname>vk::Helper</compoundname>
+      <sectiondef kind="func">
+      <memberdef kind="function" id="namespacevk_1_1_helper_1a54e782f545c1cd75783c8cd1c8bc91db" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>PipelineShaderStageCreateInfo</type>
+        <definition>PipelineShaderStageCreateInfo vk::Helper::getPipelineShaderStageCreateInfo</definition>
+        <argsstring>(ShaderStageFlagBits stage, ShaderModule module, const char *name, SpecializationInfo *specializationInfo)</argsstring>
+        <name>getPipelineShaderStageCreateInfo</name>
+        <param>
+          <type>ShaderStageFlagBits</type>
+          <declname>stage</declname>
+        </param>
+        <param>
+          <type>ShaderModule</type>
+          <declname>module</declname>
+        </param>
+        <param>
+          <type>const char *</type>
+          <declname>name</declname>
+        </param>
+        <param>
+          <type>SpecializationInfo *</type>
+          <declname>specializationInfo</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Repos/renderer/src/api/utility/Helpers.cpp" line="9" column="35" bodyfile="C:/Repos/renderer/src/api/utility/Helpers.cpp" bodystart="9" bodyend="18" declfile="C:/Repos/renderer/src/api/utility/Helpers.hpp" declline="18" declcolumn="35"/>
+      </memberdef>
+      <memberdef kind="function" id="namespacevk_1_1_helper_1ae70d424ee5be2cabae1c63df035ca24a" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>ImageCreateInfo</type>
+        <definition>ImageCreateInfo vk::Helper::getImageCreateInfo</definition>
+        <argsstring>(Extent3D extent)</argsstring>
+        <name>getImageCreateInfo</name>
+        <param>
+          <type>Extent3D</type>
+          <declname>extent</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Repos/renderer/src/api/utility/Helpers.cpp" line="20" column="21" bodyfile="C:/Repos/renderer/src/api/utility/Helpers.cpp" bodystart="20" bodyend="37" declfile="C:/Repos/renderer/src/api/utility/Helpers.hpp" declline="23" declcolumn="21"/>
+      </memberdef>
+      <memberdef kind="function" id="namespacevk_1_1_helper_1a2108a04577c6121022ceec8fc8839c96" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>SamplerCreateInfo</type>
+        <definition>SamplerCreateInfo vk::Helper::getSamplerCreateInfo</definition>
+        <argsstring>()</argsstring>
+        <name>getSamplerCreateInfo</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Repos/renderer/src/api/utility/Helpers.cpp" line="39" column="23" bodyfile="C:/Repos/renderer/src/api/utility/Helpers.cpp" bodystart="39" bodyend="58" declfile="C:/Repos/renderer/src/api/utility/Helpers.hpp" declline="27" declcolumn="23"/>
+      </memberdef>
+      <memberdef kind="function" id="namespacevk_1_1_helper_1a942ce1fc8f3499700a2431614e448d6b" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>SubmitInfo</type>
+        <definition>SubmitInfo vk::Helper::getSubmitInfo</definition>
+        <argsstring>(const Semaphore &amp;waitSemaphore, const Semaphore &amp;signalSemaphore, const std::vector&lt; CommandBuffer &gt; &amp;commandBuffers, const PipelineStageFlags &amp;pWaitDstStageMask)</argsstring>
+        <name>getSubmitInfo</name>
+        <param>
+          <type>const Semaphore &amp;</type>
+          <declname>waitSemaphore</declname>
+        </param>
+        <param>
+          <type>const Semaphore &amp;</type>
+          <declname>signalSemaphore</declname>
+        </param>
+        <param>
+          <type>const std::vector&lt; CommandBuffer &gt; &amp;</type>
+          <declname>commandBuffers</declname>
+        </param>
+        <param>
+          <type>const PipelineStageFlags &amp;</type>
+          <declname>pWaitDstStageMask</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Repos/renderer/src/api/utility/Helpers.cpp" line="60" column="16" bodyfile="C:/Repos/renderer/src/api/utility/Helpers.cpp" bodystart="60" bodyend="69" declfile="C:/Repos/renderer/src/api/utility/Helpers.hpp" declline="35" declcolumn="16"/>
+      </memberdef>
+      <memberdef kind="function" id="namespacevk_1_1_helper_1a675d9fa1eb96b59eee692967a531f0df" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>PresentInfoKHR</type>
+        <definition>PresentInfoKHR vk::Helper::getPresentInfoKHR</definition>
+        <argsstring>(const Semaphore &amp;waitSemaphore, uint32_t &amp;imageIndex)</argsstring>
+        <name>getPresentInfoKHR</name>
+        <param>
+          <type>const Semaphore &amp;</type>
+          <declname>waitSemaphore</declname>
+        </param>
+        <param>
+          <type>uint32_t &amp;</type>
+          <declname>imageIndex</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Repos/renderer/src/api/utility/Helpers.cpp" line="71" column="20" bodyfile="C:/Repos/renderer/src/api/utility/Helpers.cpp" bodystart="71" bodyend="79" declfile="C:/Repos/renderer/src/api/utility/Helpers.hpp" declline="41" declcolumn="20"/>
+      </memberdef>
+      <memberdef kind="function" id="namespacevk_1_1_helper_1aaaf052c77e86fdcfc6b0a082a7096574" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>uint32_t</type>
+        <definition>uint32_t vk::Helper::findMemoryType</definition>
+        <argsstring>(PhysicalDevice physicalDevice, uint32_t typeFilter, MemoryPropertyFlags properties)</argsstring>
+        <name>findMemoryType</name>
+        <param>
+          <type>PhysicalDevice</type>
+          <declname>physicalDevice</declname>
+        </param>
+        <param>
+          <type>uint32_t</type>
+          <declname>typeFilter</declname>
+        </param>
+        <param>
+          <type>MemoryPropertyFlags</type>
+          <declname>properties</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Repos/renderer/src/api/utility/Helpers.cpp" line="81" column="14" bodyfile="C:/Repos/renderer/src/api/utility/Helpers.cpp" bodystart="81" bodyend="93" declfile="C:/Repos/renderer/src/api/utility/Helpers.hpp" declline="48" declcolumn="14"/>
+      </memberdef>
+      <memberdef kind="function" id="namespacevk_1_1_helper_1a465ea68115626276f2e7f61c839f4f04" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>std::vector&lt; char &gt;</type>
+        <definition>std::vector&lt; char &gt; vk::Helper::parseShader</definition>
+        <argsstring>(const std::string &amp;path)</argsstring>
+        <name>parseShader</name>
+        <param>
+          <type>const std::string &amp;</type>
+          <declname>path</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Repos/renderer/src/api/utility/Helpers.cpp" line="95" column="17" bodyfile="C:/Repos/renderer/src/api/utility/Helpers.cpp" bodystart="95" bodyend="145" declfile="C:/Repos/renderer/src/api/utility/Helpers.hpp" declline="53" declcolumn="17"/>
+      </memberdef>
+      <memberdef kind="function" id="namespacevk_1_1_helper_1a9532628c0080da6f96a46e3e13a0466d" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>std::vector&lt; ImageView &gt;</type>
+        <definition>std::vector&lt;ImageView&gt; vk::Helper::unpack</definition>
+        <argsstring>(const std::vector&lt; UniqueImageView &gt; &amp;uniqueImageViews)</argsstring>
+        <name>unpack</name>
+        <param>
+          <type>const std::vector&lt; UniqueImageView &gt; &amp;</type>
+          <declname>uniqueImageViews</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Repos/renderer/src/api/utility/Helpers.cpp" line="147" column="17" bodyfile="C:/Repos/renderer/src/api/utility/Helpers.cpp" bodystart="147" bodyend="155"/>
+      </memberdef>
+      <memberdef kind="function" id="namespacevk_1_1_helper_1aeda0d9f0da06955871f70a66a9900d20" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>std::vector&lt; Framebuffer &gt;</type>
+        <definition>std::vector&lt;Framebuffer&gt; vk::Helper::unpack</definition>
+        <argsstring>(const std::vector&lt; UniqueFramebuffer &gt; &amp;uniqueFramebuffers)</argsstring>
+        <name>unpack</name>
+        <param>
+          <type>const std::vector&lt; UniqueFramebuffer &gt; &amp;</type>
+          <declname>uniqueFramebuffers</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Repos/renderer/src/api/utility/Helpers.cpp" line="157" column="17" bodyfile="C:/Repos/renderer/src/api/utility/Helpers.cpp" bodystart="157" bodyend="165"/>
+      </memberdef>
+      <memberdef kind="function" id="namespacevk_1_1_helper_1aa098c024d6a95dd8242d0d87bcf54cd0" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>std::vector&lt; std::shared_ptr&lt; <ref refid="classrx_1_1_model" kindref="compound">rx::Model</ref> &gt; &gt;</type>
+        <definition>std::vector&lt; std::shared_ptr&lt; rx::Model &gt; &gt; vk::Helper::unpack</definition>
+        <argsstring>(const std::unordered_map&lt; std::string, std::shared_ptr&lt; rx::Model &gt;&gt; &amp;models)</argsstring>
+        <name>unpack</name>
+        <param>
+          <type>const std::unordered_map&lt; std::string, std::shared_ptr&lt; <ref refid="classrx_1_1_model" kindref="compound">rx::Model</ref> &gt;&gt; &amp;</type>
+          <declname>models</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Repos/renderer/src/api/utility/Helpers.cpp" line="167" column="17" bodyfile="C:/Repos/renderer/src/api/utility/Helpers.cpp" bodystart="167" bodyend="176" declfile="C:/Repos/renderer/src/api/utility/Helpers.hpp" declline="72" declcolumn="17"/>
+      </memberdef>
+      <memberdef kind="function" id="namespacevk_1_1_helper_1aa752524bb60478b5a2e5a2f2b71336de" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>std::vector&lt; DescriptorPoolSize &gt;</type>
+        <definition>std::vector&lt; DescriptorPoolSize &gt; vk::Helper::getPoolSizes</definition>
+        <argsstring>(const std::vector&lt; DescriptorSetLayoutBinding &gt; &amp;layoutBindings)</argsstring>
+        <name>getPoolSizes</name>
+        <param>
+          <type>const std::vector&lt; DescriptorSetLayoutBinding &gt; &amp;</type>
+          <declname>layoutBindings</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Repos/renderer/src/api/utility/Helpers.cpp" line="178" column="17" bodyfile="C:/Repos/renderer/src/api/utility/Helpers.cpp" bodystart="178" bodyend="192" declfile="C:/Repos/renderer/src/api/utility/Helpers.hpp" declline="77" declcolumn="17"/>
+      </memberdef>
+      <memberdef kind="function" id="namespacevk_1_1_helper_1a6e1227990cef167f6d5b6b7b1f1b52b2" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void vk::Helper::transitionImageLayout</definition>
+        <argsstring>(Image image, ImageLayout oldLayout, ImageLayout newLayout)</argsstring>
+        <name>transitionImageLayout</name>
+        <param>
+          <type>Image</type>
+          <declname>image</declname>
+        </param>
+        <param>
+          <type>ImageLayout</type>
+          <declname>oldLayout</declname>
+        </param>
+        <param>
+          <type>ImageLayout</type>
+          <declname>newLayout</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Repos/renderer/src/api/utility/Helpers.cpp" line="195" column="10" bodyfile="C:/Repos/renderer/src/api/utility/Helpers.cpp" bodystart="195" bodyend="215" declfile="C:/Repos/renderer/src/api/utility/Helpers.hpp" declline="83" declcolumn="10"/>
+      </memberdef>
+      <memberdef kind="function" id="namespacevk_1_1_helper_1a9f3fa5a78b202fb543408c03e51a7340" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void vk::Helper::transitionImageLayout</definition>
+        <argsstring>(Image image, ImageLayout oldLayout, ImageLayout newLayout, CommandBuffer commandBuffer)</argsstring>
+        <name>transitionImageLayout</name>
+        <param>
+          <type>Image</type>
+          <declname>image</declname>
+        </param>
+        <param>
+          <type>ImageLayout</type>
+          <declname>oldLayout</declname>
+        </param>
+        <param>
+          <type>ImageLayout</type>
+          <declname>newLayout</declname>
+        </param>
+        <param>
+          <type>CommandBuffer</type>
+          <declname>commandBuffer</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Repos/renderer/src/api/utility/Helpers.cpp" line="217" column="10" bodyfile="C:/Repos/renderer/src/api/utility/Helpers.cpp" bodystart="217" bodyend="230" declfile="C:/Repos/renderer/src/api/utility/Helpers.hpp" declline="90" declcolumn="10"/>
+      </memberdef>
+      <memberdef kind="function" id="namespacevk_1_1_helper_1a87f1db7d9b58617b5d9a4330fcc511e7" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>std::tuple&lt; ImageMemoryBarrier, PipelineStageFlags, PipelineStageFlags &gt;</type>
+        <definition>std::tuple&lt; ImageMemoryBarrier, PipelineStageFlags, PipelineStageFlags &gt; vk::Helper::getImageMemoryBarrierInfo</definition>
+        <argsstring>(Image image, ImageLayout oldLayout, ImageLayout newLayout)</argsstring>
+        <name>getImageMemoryBarrierInfo</name>
+        <param>
+          <type>Image</type>
+          <declname>image</declname>
+        </param>
+        <param>
+          <type>ImageLayout</type>
+          <declname>oldLayout</declname>
+        </param>
+        <param>
+          <type>ImageLayout</type>
+          <declname>newLayout</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Repos/renderer/src/api/utility/Helpers.cpp" line="232" column="16" bodyfile="C:/Repos/renderer/src/api/utility/Helpers.cpp" bodystart="232" bodyend="308" declfile="C:/Repos/renderer/src/api/utility/Helpers.hpp" declline="97" declcolumn="16"/>
+      </memberdef>
+      <memberdef kind="function" id="namespacevk_1_1_helper_1a0ab03d5521013adc8aa50f5a6b677e59" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>AttachmentDescription</type>
+        <definition>AttachmentDescription vk::Helper::getAttachmentDescription</definition>
+        <argsstring>(Format surfaceFormat, bool guiEnabled)</argsstring>
+        <name>getAttachmentDescription</name>
+        <param>
+          <type>Format</type>
+          <declname>surfaceFormat</declname>
+        </param>
+        <param>
+          <type>bool</type>
+          <declname>guiEnabled</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Repos/renderer/src/api/utility/Helpers.cpp" line="310" column="27" bodyfile="C:/Repos/renderer/src/api/utility/Helpers.cpp" bodystart="310" bodyend="321" declfile="C:/Repos/renderer/src/api/utility/Helpers.hpp" declline="103" declcolumn="27"/>
+      </memberdef>
+      <memberdef kind="function" id="namespacevk_1_1_helper_1a615817c6da7a0a9622d5b2b515f97aab" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>AttachmentDescription</type>
+        <definition>AttachmentDescription vk::Helper::getDepthAttachmentDescription</definition>
+        <argsstring>(Format depthFormat)</argsstring>
+        <name>getDepthAttachmentDescription</name>
+        <param>
+          <type>Format</type>
+          <declname>depthFormat</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Repos/renderer/src/api/utility/Helpers.cpp" line="323" column="27" bodyfile="C:/Repos/renderer/src/api/utility/Helpers.cpp" bodystart="323" bodyend="334" declfile="C:/Repos/renderer/src/api/utility/Helpers.hpp" declline="108" declcolumn="27"/>
+      </memberdef>
+      <memberdef kind="function" id="namespacevk_1_1_helper_1ad4647879ccf9b311379929d37b258b10" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>typename Out</type>
+          </param>
+          <param>
+            <type>typename In</type>
+          </param>
+        </templateparamlist>
+        <type>std::vector&lt; Out &gt;</type>
+        <definition>std::vector&lt;Out&gt; vk::Helper::unpack</definition>
+        <argsstring>(const std::vector&lt; In &gt; &amp;data)</argsstring>
+        <name>unpack</name>
+        <param>
+          <type>const std::vector&lt; In &gt; &amp;</type>
+          <declname>data</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Repos/renderer/src/api/utility/Helpers.hpp" line="59" column="17" bodyfile="C:/Repos/renderer/src/api/utility/Helpers.hpp" bodystart="59" bodyend="67"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="C:/Repos/renderer/src/api/utility/Helpers.cpp" line="7" column="3"/>
+  </compounddef>
+</doxygen>

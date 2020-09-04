@@ -63,7 +63,7 @@ var NAVTREEINDEX =
 [
 "_acceleration_structure_8hpp.html",
 "_window_base_8hpp.html#a108d586192564f598fd82c8c2483fe8aa7b53bf1790791de422a956078f4b984f",
-"classrx_1_1_ray_tracing_builder.html#a90966fa6fb5dea2a38a2f79b80aaac4e"
+"classrx_1_1_ray_tracing_builder.html#aa6f209bbaaa7a91c3b32bac97ec0c7d9"
 ];
 
 var SYNCONMSG = 'click to disable panel synchronisation';

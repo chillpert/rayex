@@ -1,0 +1,417 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.20" xml:lang="en-US">
+  <compounddef id="classrx_1_1_renderer" kind="class" language="C++" prot="public">
+    <compoundname>rx::Renderer</compoundname>
+    <includes refid="_renderer_8hpp" local="no">Renderer.hpp</includes>
+      <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="classrx_1_1_renderer_1ab2dbe97463c4a6ce16a14b6da729258e" prot="private" static="no" mutable="no">
+        <type>std::shared_ptr&lt; <ref refid="classrx_1_1_window_base" kindref="compound">WindowBase</ref> &gt;</type>
+        <definition>std::shared_ptr&lt;WindowBase&gt; rx::Renderer::m_window</definition>
+        <argsstring></argsstring>
+        <name>m_window</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Repos/renderer/src/Renderer.hpp" line="91" column="21" bodyfile="C:/Repos/renderer/src/Renderer.hpp" bodystart="91" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classrx_1_1_renderer_1a4d267a72b2273e8354e79aa97eda3342" prot="private" static="no" mutable="no">
+        <type>std::shared_ptr&lt; <ref refid="classrx_1_1_camera_base" kindref="compound">CameraBase</ref> &gt;</type>
+        <definition>std::shared_ptr&lt;CameraBase&gt; rx::Renderer::m_camera</definition>
+        <argsstring></argsstring>
+        <name>m_camera</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Repos/renderer/src/Renderer.hpp" line="92" column="21" bodyfile="C:/Repos/renderer/src/Renderer.hpp" bodystart="92" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classrx_1_1_renderer_1a16aa9703dedddf0eb0638b5f5f686b93" prot="private" static="no" mutable="no">
+        <type><ref refid="classrx_1_1_api" kindref="compound">Api</ref></type>
+        <definition>Api rx::Renderer::m_api</definition>
+        <argsstring></argsstring>
+        <name>m_api</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Repos/renderer/src/Renderer.hpp" line="93" column="9" bodyfile="C:/Repos/renderer/src/Renderer.hpp" bodystart="93" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classrx_1_1_renderer_1a0926aadb2dcba1a1d0a4582164c28fb5" prot="private" static="no" mutable="no">
+        <type>bool</type>
+        <definition>bool rx::Renderer::m_initialized</definition>
+        <argsstring></argsstring>
+        <name>m_initialized</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Repos/renderer/src/Renderer.hpp" line="95" column="10" bodyfile="C:/Repos/renderer/src/Renderer.hpp" bodystart="95" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classrx_1_1_renderer_1aceaaba9e0333bf4344aeaf911aae2322" prot="private" static="no" mutable="no">
+        <type>bool</type>
+        <definition>bool rx::Renderer::m_running</definition>
+        <argsstring></argsstring>
+        <name>m_running</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Repos/renderer/src/Renderer.hpp" line="96" column="10" bodyfile="C:/Repos/renderer/src/Renderer.hpp" bodystart="96" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="classrx_1_1_renderer_1adac272ae85ea19cc6ce17c93e4fbb5b5" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>RX_API</type>
+        <definition>rx::Renderer::Renderer</definition>
+        <argsstring>()</argsstring>
+        <name>Renderer</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Repos/renderer/src/Renderer.hpp" line="30" column="12" bodyfile="C:/Repos/renderer/src/Renderer.cpp" bodystart="6" bodyend="12"/>
+      </memberdef>
+      <memberdef kind="function" id="classrx_1_1_renderer_1ae7ad602d913e3a5725a067389653984f" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>RX_API</type>
+        <definition>rx::Renderer::Renderer</definition>
+        <argsstring>(std::shared_ptr&lt; CameraBase &gt; camera)</argsstring>
+        <name>Renderer</name>
+        <param>
+          <type>std::shared_ptr&lt; <ref refid="classrx_1_1_camera_base" kindref="compound">CameraBase</ref> &gt;</type>
+          <declname>camera</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>camera</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>A pointer to a camera object specified by the client. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Repos/renderer/src/Renderer.hpp" line="33" column="12" bodyfile="C:/Repos/renderer/src/Renderer.cpp" bodystart="14" bodyend="20"/>
+      </memberdef>
+      <memberdef kind="function" id="classrx_1_1_renderer_1a2307afebcca82a81ff1b1468e1d9b02d" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>RX_API</type>
+        <definition>rx::Renderer::Renderer</definition>
+        <argsstring>(std::shared_ptr&lt; WindowBase &gt; window)</argsstring>
+        <name>Renderer</name>
+        <param>
+          <type>std::shared_ptr&lt; <ref refid="classrx_1_1_window_base" kindref="compound">WindowBase</ref> &gt;</type>
+          <declname>window</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>window</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>A pointer to a window object specified by the client. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Repos/renderer/src/Renderer.hpp" line="36" column="12" bodyfile="C:/Repos/renderer/src/Renderer.cpp" bodystart="22" bodyend="28"/>
+      </memberdef>
+      <memberdef kind="function" id="classrx_1_1_renderer_1a5fea80c8c0ef353f0bf0c51d841db422" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>RX_API</type>
+        <definition>rx::Renderer::Renderer</definition>
+        <argsstring>(std::shared_ptr&lt; WindowBase &gt; window, std::shared_ptr&lt; CameraBase &gt; camera)</argsstring>
+        <name>Renderer</name>
+        <param>
+          <type>std::shared_ptr&lt; <ref refid="classrx_1_1_window_base" kindref="compound">WindowBase</ref> &gt;</type>
+          <declname>window</declname>
+        </param>
+        <param>
+          <type>std::shared_ptr&lt; <ref refid="classrx_1_1_camera_base" kindref="compound">CameraBase</ref> &gt;</type>
+          <declname>camera</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>window</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>A pointer to a window object specified by the client. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>camera</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>A pointer to a camera object specified by the client. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Repos/renderer/src/Renderer.hpp" line="40" column="12" bodyfile="C:/Repos/renderer/src/Renderer.cpp" bodystart="30" bodyend="36"/>
+      </memberdef>
+      <memberdef kind="function" id="classrx_1_1_renderer_1a10c85a8352b5bfb12a4e89778733a5c6" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>RX_API void</type>
+        <definition>void rx::Renderer::init</definition>
+        <argsstring>()</argsstring>
+        <name>init</name>
+        <briefdescription>
+<para>Initializes the renderer. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>This function initializes the window subcomponent as well as the API. Furthermore, it copies all shaders, textures and models to the executables directory to avoid issues with full and relative paths. <xrefsect id="todo_1_todo000005"><xreftitle>Todo</xreftitle><xrefdescription><para>The copying process is temporary for now and has to be changed for a release build. </para>
+</xrefdescription></xrefsect></para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Repos/renderer/src/Renderer.hpp" line="47" column="17" bodyfile="C:/Repos/renderer/src/Renderer.cpp" bodystart="38" bodyend="55"/>
+      </memberdef>
+      <memberdef kind="function" id="classrx_1_1_renderer_1a3506af7f99fbcc098fe1a824c8df3086" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>RX_API void</type>
+        <definition>void rx::Renderer::run</definition>
+        <argsstring>() RX_API bool isRunning()</argsstring>
+        <name>run</name>
+        <briefdescription>
+<para>A single function to execute all subcomponents. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>This function updates the window and the camera components and calls the update and render functions of the API. <simplesect kind="see"><para><ref refid="classrx_1_1_camera_base_1a9fc9ce55c122c04ac14851c956be0384" kindref="member">rx::CameraBase::update()</ref>, <ref refid="classrx_1_1_window_base_1a7d169824a215063c9574568b6e6fecba" kindref="member">rx::WindowBase::update()</ref>, <ref refid="classrx_1_1_api_1a582e12ba6f8b26173a5ef569ee2eeeaa" kindref="member">rx::Api::update()</ref>, <ref refid="classrx_1_1_api_1a79f83f0658f4fd2a2012b5191d8e4ee5" kindref="member">rx::Api::render()</ref> </para>
+</simplesect>
+<simplesect kind="return"><para>Returns true if the application is still running and false if the application has stopped. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Repos/renderer/src/Renderer.hpp" line="53" column="17" bodyfile="C:/Repos/renderer/src/Renderer.hpp" bodystart="53" bodyend="56"/>
+      </memberdef>
+      <memberdef kind="function" id="classrx_1_1_renderer_1abc31ff32ab185dbbcc41b1324ac16ccf" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>RX_API const std::shared_ptr&lt; <ref refid="classrx_1_1_window_base" kindref="compound">WindowBase</ref> &gt;</type>
+        <definition>RX_API const std::shared_ptr&lt;WindowBase&gt; rx::Renderer::getWindow</definition>
+        <argsstring>() const</argsstring>
+        <name>getWindow</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>Returns a pointer to the renderer&apos;s window. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Repos/renderer/src/Renderer.hpp" line="59" column="41" bodyfile="C:/Repos/renderer/src/Renderer.hpp" bodystart="59" bodyend="59"/>
+      </memberdef>
+      <memberdef kind="function" id="classrx_1_1_renderer_1a0747eb7b94a2f068ede456da7f9c281e" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>RX_API const std::shared_ptr&lt; <ref refid="classrx_1_1_camera_base" kindref="compound">CameraBase</ref> &gt;</type>
+        <definition>RX_API const std::shared_ptr&lt;CameraBase&gt; rx::Renderer::getCamera</definition>
+        <argsstring>() const</argsstring>
+        <name>getCamera</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>Returns a pointer to the renderer&apos;s camera. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Repos/renderer/src/Renderer.hpp" line="62" column="41" bodyfile="C:/Repos/renderer/src/Renderer.hpp" bodystart="62" bodyend="62"/>
+      </memberdef>
+      <memberdef kind="function" id="classrx_1_1_renderer_1afba1b500d4152f4343ed860d517a1b7c" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>typename T</type>
+            <defval><ref refid="classrx_1_1_model" kindref="compound">Model</ref></defval>
+          </param>
+        </templateparamlist>
+        <type>RX_API void</type>
+        <definition>RX_API void rx::Renderer::pushNode</definition>
+        <argsstring>(const std::shared_ptr&lt; Node &gt; node)</argsstring>
+        <name>pushNode</name>
+        <param>
+          <type>const std::shared_ptr&lt; <ref refid="classrx_1_1_node" kindref="compound">Node</ref> &gt;</type>
+          <declname>node</declname>
+        </param>
+        <briefdescription>
+<para>Used to add another arbitrary node to the scene. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>node</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The node to add. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="see"><para><ref refid="classrx_1_1_api_1a203b4336eeb7a4afccfeb0612ef99998" kindref="member">rx::Api::pushNode()</ref> </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Repos/renderer/src/Renderer.hpp" line="68" column="17" bodyfile="C:/Repos/renderer/src/Renderer.hpp" bodystart="68" bodyend="71"/>
+      </memberdef>
+      <memberdef kind="function" id="classrx_1_1_renderer_1a1f89f0dfe365bfaa83c62e6b3ed8324f" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>typename T</type>
+            <defval><ref refid="classrx_1_1_model" kindref="compound">Model</ref></defval>
+          </param>
+        </templateparamlist>
+        <type>RX_API void</type>
+        <definition>RX_API void rx::Renderer::setNodes</definition>
+        <argsstring>(const std::vector&lt; std::shared_ptr&lt; Node &gt;&gt; &amp;nodes)</argsstring>
+        <name>setNodes</name>
+        <param>
+          <type>const std::vector&lt; std::shared_ptr&lt; <ref refid="classrx_1_1_node" kindref="compound">Node</ref> &gt;&gt; &amp;</type>
+          <declname>nodes</declname>
+        </param>
+        <briefdescription>
+<para>Used to overwrite the entire scene with new nodes. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>nodes</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>A vector of nodes describing the new scene. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="see"><para><ref refid="classrx_1_1_api_1a72a7ec289fe4c4cb0155cf51270a7164" kindref="member">rx::Api::setNodes()</ref> </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Repos/renderer/src/Renderer.hpp" line="77" column="17" bodyfile="C:/Repos/renderer/src/Renderer.hpp" bodystart="77" bodyend="80"/>
+      </memberdef>
+      <memberdef kind="function" id="classrx_1_1_renderer_1aacd88edf019384a97ac7cf3cb884fdb4" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>RX_API void</type>
+        <definition>void rx::Renderer::setCamera</definition>
+        <argsstring>(std::shared_ptr&lt; CameraBase &gt; camera)</argsstring>
+        <name>setCamera</name>
+        <param>
+          <type>std::shared_ptr&lt; <ref refid="classrx_1_1_camera_base" kindref="compound">CameraBase</ref> &gt;</type>
+          <declname>camera</declname>
+        </param>
+        <briefdescription>
+<para>Used to set the renderer&apos;s camera. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>camera</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The camera the renderer should be using. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Repos/renderer/src/Renderer.hpp" line="84" column="17" bodyfile="C:/Repos/renderer/src/Renderer.cpp" bodystart="72" bodyend="75"/>
+      </memberdef>
+      <memberdef kind="function" id="classrx_1_1_renderer_1a4d8326fe73f7a45a8355b834a7edd61c" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>RX_API void</type>
+        <definition>void rx::Renderer::setGui</definition>
+        <argsstring>(std::shared_ptr&lt; GuiBase &gt; gui)</argsstring>
+        <name>setGui</name>
+        <param>
+          <type>std::shared_ptr&lt; <ref refid="classrx_1_1_gui_base" kindref="compound">GuiBase</ref> &gt;</type>
+          <declname>gui</declname>
+        </param>
+        <briefdescription>
+<para>Used to set the renderer&apos;s GUI. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>gui</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The GUI the renderer should be using. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Repos/renderer/src/Renderer.hpp" line="88" column="17" bodyfile="C:/Repos/renderer/src/Renderer.cpp" bodystart="77" bodyend="80"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+<para>The main user interface. </para>
+    </briefdescription>
+    <detaileddescription>
+<para>This class provides everything to set up a main loop and fill the scene with geometry and light sources. </para>
+<sect3 id="classrx_1_1_renderer_1autotoc_md2">
+<title>Example</title>
+<para><programlisting filename=".cpp"><codeline><highlight class="comment">//<sp/>The<sp/>following<sp/>example<sp/>renders<sp/>a<sp/>cube<sp/>in<sp/>less<sp/>than<sp/>10<sp/>lines<sp/>of<sp/>code.</highlight><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"><ref refid="classrx_1_1_renderer_1adac272ae85ea19cc6ce17c93e4fbb5b5" kindref="member">Renderer</ref><sp/>myRenderer;</highlight></codeline>
+<codeline><highlight class="normal">myRenderer.init(<sp/>);</highlight></codeline>
+<codeline><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal">myRenderer.pushNode(<sp/>std::make_shared&lt;GeometryNode&gt;(<sp/></highlight><highlight class="stringliteral">&quot;models/cube.obj&quot;</highlight><highlight class="normal">,<sp/>Material(<sp/></highlight><highlight class="stringliteral">&quot;textures/metal.png&quot;</highlight><highlight class="normal"><sp/>)<sp/>)<sp/>);</highlight></codeline>
+<codeline><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"></highlight><highlight class="keywordflow">while</highlight><highlight class="normal"><sp/>(<sp/>myRenderer.isRunning(<sp/>)<sp/>)</highlight></codeline>
+<codeline><highlight class="normal">{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>myRenderer.run(<sp/>);</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+</programlisting> </para>
+</sect3>
+    </detaileddescription>
+    <location file="C:/Repos/renderer/src/Renderer.hpp" line="27" column="3" bodyfile="C:/Repos/renderer/src/Renderer.hpp" bodystart="28" bodyend="97"/>
+    <listofallmembers>
+      <member refid="classrx_1_1_renderer_1a0747eb7b94a2f068ede456da7f9c281e" prot="public" virt="non-virtual"><scope>rx::Renderer</scope><name>getCamera</name></member>
+      <member refid="classrx_1_1_renderer_1abc31ff32ab185dbbcc41b1324ac16ccf" prot="public" virt="non-virtual"><scope>rx::Renderer</scope><name>getWindow</name></member>
+      <member refid="classrx_1_1_renderer_1a10c85a8352b5bfb12a4e89778733a5c6" prot="public" virt="non-virtual"><scope>rx::Renderer</scope><name>init</name></member>
+      <member refid="classrx_1_1_renderer_1a16aa9703dedddf0eb0638b5f5f686b93" prot="private" virt="non-virtual"><scope>rx::Renderer</scope><name>m_api</name></member>
+      <member refid="classrx_1_1_renderer_1a4d267a72b2273e8354e79aa97eda3342" prot="private" virt="non-virtual"><scope>rx::Renderer</scope><name>m_camera</name></member>
+      <member refid="classrx_1_1_renderer_1a0926aadb2dcba1a1d0a4582164c28fb5" prot="private" virt="non-virtual"><scope>rx::Renderer</scope><name>m_initialized</name></member>
+      <member refid="classrx_1_1_renderer_1aceaaba9e0333bf4344aeaf911aae2322" prot="private" virt="non-virtual"><scope>rx::Renderer</scope><name>m_running</name></member>
+      <member refid="classrx_1_1_renderer_1ab2dbe97463c4a6ce16a14b6da729258e" prot="private" virt="non-virtual"><scope>rx::Renderer</scope><name>m_window</name></member>
+      <member refid="classrx_1_1_renderer_1afba1b500d4152f4343ed860d517a1b7c" prot="public" virt="non-virtual"><scope>rx::Renderer</scope><name>pushNode</name></member>
+      <member refid="classrx_1_1_renderer_1adac272ae85ea19cc6ce17c93e4fbb5b5" prot="public" virt="non-virtual"><scope>rx::Renderer</scope><name>Renderer</name></member>
+      <member refid="classrx_1_1_renderer_1ae7ad602d913e3a5725a067389653984f" prot="public" virt="non-virtual"><scope>rx::Renderer</scope><name>Renderer</name></member>
+      <member refid="classrx_1_1_renderer_1a2307afebcca82a81ff1b1468e1d9b02d" prot="public" virt="non-virtual"><scope>rx::Renderer</scope><name>Renderer</name></member>
+      <member refid="classrx_1_1_renderer_1a5fea80c8c0ef353f0bf0c51d841db422" prot="public" virt="non-virtual"><scope>rx::Renderer</scope><name>Renderer</name></member>
+      <member refid="classrx_1_1_renderer_1a3506af7f99fbcc098fe1a824c8df3086" prot="public" virt="non-virtual"><scope>rx::Renderer</scope><name>run</name></member>
+      <member refid="classrx_1_1_renderer_1aacd88edf019384a97ac7cf3cb884fdb4" prot="public" virt="non-virtual"><scope>rx::Renderer</scope><name>setCamera</name></member>
+      <member refid="classrx_1_1_renderer_1a4d8326fe73f7a45a8355b834a7edd61c" prot="public" virt="non-virtual"><scope>rx::Renderer</scope><name>setGui</name></member>
+      <member refid="classrx_1_1_renderer_1a1f89f0dfe365bfaa83c62e6b3ed8324f" prot="public" virt="non-virtual"><scope>rx::Renderer</scope><name>setNodes</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

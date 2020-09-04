@@ -1,0 +1,13 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.20" xml:lang="en-US">
+  <compounddef id="dir_4352f877eacf8987ed9e54d8b8506651" kind="dir">
+    <compoundname>C:/Repos/renderer/src/pch</compoundname>
+    <innerfile refid="stdafx_8cpp">stdafx.cpp</innerfile>
+    <innerfile refid="stdafx_8hpp">stdafx.hpp</innerfile>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="C:/Repos/renderer/src/pch/"/>
+  </compounddef>
+</doxygen>

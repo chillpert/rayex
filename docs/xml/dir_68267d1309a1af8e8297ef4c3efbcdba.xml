@@ -1,0 +1,21 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.20" xml:lang="en-US">
+  <compounddef id="dir_68267d1309a1af8e8297ef4c3efbcdba" kind="dir">
+    <compoundname>C:/Repos/renderer/src</compoundname>
+    <innerdir refid="dir_da61e3e9a357748887e3ca8d7c5a0c16">C:/Repos/renderer/src/api</innerdir>
+    <innerdir refid="dir_0af1587c8378955de40f48b4bd1869f0">C:/Repos/renderer/src/base</innerdir>
+    <innerdir refid="dir_1ff95392bc4e65547c61a42698fda530">C:/Repos/renderer/src/example</innerdir>
+    <innerdir refid="dir_4352f877eacf8987ed9e54d8b8506651">C:/Repos/renderer/src/pch</innerdir>
+    <innerdir refid="dir_c7f79d9fead0a70cab4af348b59fbdf1">C:/Repos/renderer/src/window</innerdir>
+    <innerfile refid="_core_8hpp">Core.hpp</innerfile>
+    <innerfile refid="_renderer_8cpp">Renderer.cpp</innerfile>
+    <innerfile refid="_renderer_8hpp">Renderer.hpp</innerfile>
+    <innerfile refid="_settings_8cpp">Settings.cpp</innerfile>
+    <innerfile refid="_settings_8hpp">Settings.hpp</innerfile>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="C:/Repos/renderer/src/"/>
+  </compounddef>
+</doxygen>

@@ -1,0 +1,284 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.20" xml:lang="en-US">
+  <compounddef id="classrx_1_1_material" kind="class" language="C++" prot="public">
+    <compoundname>rx::Material</compoundname>
+    <includes refid="_model_8hpp" local="no">Model.hpp</includes>
+      <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="classrx_1_1_material_1a64b788421c17527f6d78491bf5b6a309" prot="public" static="no" mutable="no">
+        <type>glm::vec3</type>
+        <definition>glm::vec3 rx::Material::m_ambient</definition>
+        <argsstring></argsstring>
+        <name>m_ambient</name>
+        <initializer>= glm::vec3( 0.0f )</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Repos/renderer/src/api/Model.hpp" line="22" column="15" bodyfile="C:/Repos/renderer/src/api/Model.hpp" bodystart="22" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classrx_1_1_material_1ab0709dc5f183386aaa664bd8ed2df395" prot="public" static="no" mutable="no">
+        <type>glm::vec3</type>
+        <definition>glm::vec3 rx::Material::m_diffuse</definition>
+        <argsstring></argsstring>
+        <name>m_diffuse</name>
+        <initializer>= glm::vec3( 0.0f )</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Repos/renderer/src/api/Model.hpp" line="23" column="15" bodyfile="C:/Repos/renderer/src/api/Model.hpp" bodystart="23" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classrx_1_1_material_1a70494c7dff251b1cc03e2f06343725c9" prot="public" static="no" mutable="no">
+        <type>glm::vec3</type>
+        <definition>glm::vec3 rx::Material::m_specular</definition>
+        <argsstring></argsstring>
+        <name>m_specular</name>
+        <initializer>= glm::vec3( 0.0f )</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Repos/renderer/src/api/Model.hpp" line="24" column="15" bodyfile="C:/Repos/renderer/src/api/Model.hpp" bodystart="24" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classrx_1_1_material_1a50a4a1e3cb0ad27a5c7746426d2e0929" prot="public" static="no" mutable="no">
+        <type>glm::vec3</type>
+        <definition>glm::vec3 rx::Material::m_transmittance</definition>
+        <argsstring></argsstring>
+        <name>m_transmittance</name>
+        <initializer>= glm::vec3( 0.0f )</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Repos/renderer/src/api/Model.hpp" line="25" column="15" bodyfile="C:/Repos/renderer/src/api/Model.hpp" bodystart="25" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classrx_1_1_material_1a9a252f320cecb05134d0c997eae25c3e" prot="public" static="no" mutable="no">
+        <type>glm::vec3</type>
+        <definition>glm::vec3 rx::Material::m_emission</definition>
+        <argsstring></argsstring>
+        <name>m_emission</name>
+        <initializer>= glm::vec3( 0.0f )</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Repos/renderer/src/api/Model.hpp" line="26" column="15" bodyfile="C:/Repos/renderer/src/api/Model.hpp" bodystart="26" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classrx_1_1_material_1a4477fc3b2bb16c2ace566afdb1cd1c8d" prot="public" static="no" mutable="no">
+        <type>float</type>
+        <definition>float rx::Material::m_shininess</definition>
+        <argsstring></argsstring>
+        <name>m_shininess</name>
+        <initializer>= 1.0f</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Repos/renderer/src/api/Model.hpp" line="28" column="11" bodyfile="C:/Repos/renderer/src/api/Model.hpp" bodystart="28" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classrx_1_1_material_1a0b975393f1f906aa485b83bfff2f619c" prot="public" static="no" mutable="no">
+        <type>float</type>
+        <definition>float rx::Material::m_reflectionIndex</definition>
+        <argsstring></argsstring>
+        <name>m_reflectionIndex</name>
+        <initializer>= 1.0f</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Repos/renderer/src/api/Model.hpp" line="29" column="11" bodyfile="C:/Repos/renderer/src/api/Model.hpp" bodystart="29" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classrx_1_1_material_1a77523d02caade96f04bd69eb63652cf7" prot="public" static="no" mutable="no">
+        <type>float</type>
+        <definition>float rx::Material::m_opacity</definition>
+        <argsstring></argsstring>
+        <name>m_opacity</name>
+        <initializer>= 1.0f</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Repos/renderer/src/api/Model.hpp" line="30" column="11" bodyfile="C:/Repos/renderer/src/api/Model.hpp" bodystart="30" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classrx_1_1_material_1a3cfd6d53df632eb472ba66458cad0f10" prot="public" static="no" mutable="no">
+        <type>std::string</type>
+        <definition>std::string rx::Material::m_ambientTexture</definition>
+        <argsstring></argsstring>
+        <name>m_ambientTexture</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Repos/renderer/src/api/Model.hpp" line="32" column="17" bodyfile="C:/Repos/renderer/src/api/Model.hpp" bodystart="32" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classrx_1_1_material_1a8547f274cf8c037ba313b7e65b8a856f" prot="public" static="no" mutable="no">
+        <type>std::string</type>
+        <definition>std::string rx::Material::m_diffuseTexture</definition>
+        <argsstring></argsstring>
+        <name>m_diffuseTexture</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Repos/renderer/src/api/Model.hpp" line="33" column="17" bodyfile="C:/Repos/renderer/src/api/Model.hpp" bodystart="33" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classrx_1_1_material_1a4d0b07f90e2125368e9be9619cc64f94" prot="public" static="no" mutable="no">
+        <type>std::string</type>
+        <definition>std::string rx::Material::m_specularTexture</definition>
+        <argsstring></argsstring>
+        <name>m_specularTexture</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Repos/renderer/src/api/Model.hpp" line="34" column="17" bodyfile="C:/Repos/renderer/src/api/Model.hpp" bodystart="34" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classrx_1_1_material_1a1bb5d2a0e11bd6cadaeed0350f9045b5" prot="public" static="no" mutable="no">
+        <type>std::string</type>
+        <definition>std::string rx::Material::m_bumpTexture</definition>
+        <argsstring></argsstring>
+        <name>m_bumpTexture</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Repos/renderer/src/api/Model.hpp" line="35" column="17" bodyfile="C:/Repos/renderer/src/api/Model.hpp" bodystart="35" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classrx_1_1_material_1a34fcd66a2c75af2351f3bebe069faf36" prot="public" static="no" mutable="no">
+        <type>std::string</type>
+        <definition>std::string rx::Material::m_displacementTexture</definition>
+        <argsstring></argsstring>
+        <name>m_displacementTexture</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Repos/renderer/src/api/Model.hpp" line="36" column="17" bodyfile="C:/Repos/renderer/src/api/Model.hpp" bodystart="36" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classrx_1_1_material_1a36855318646cbd467c09539ecad88639" prot="public" static="no" mutable="no">
+        <type>std::string</type>
+        <definition>std::string rx::Material::m_alphaTexture</definition>
+        <argsstring></argsstring>
+        <name>m_alphaTexture</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Repos/renderer/src/api/Model.hpp" line="37" column="17" bodyfile="C:/Repos/renderer/src/api/Model.hpp" bodystart="37" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classrx_1_1_material_1accd66a020c13fcacdc88b21c0ca36dc1" prot="public" static="no" mutable="no">
+        <type>std::string</type>
+        <definition>std::string rx::Material::m_reflectionTexture</definition>
+        <argsstring></argsstring>
+        <name>m_reflectionTexture</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Repos/renderer/src/api/Model.hpp" line="38" column="17" bodyfile="C:/Repos/renderer/src/api/Model.hpp" bodystart="38" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="classrx_1_1_material_1a9abd2fbdebbc6e34f9c6f51c92e2f893" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>rx::Material::Material</definition>
+        <argsstring>()=default</argsstring>
+        <name>Material</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Repos/renderer/src/api/Model.hpp" line="17" column="5"/>
+      </memberdef>
+      <memberdef kind="function" id="classrx_1_1_material_1aec3ad23f4eb473e1615e56a42adbe23d" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>rx::Material::Material</definition>
+        <argsstring>(const std::string &amp;diffuseTexture)</argsstring>
+        <name>Material</name>
+        <param>
+          <type>const std::string &amp;</type>
+          <declname>diffuseTexture</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Repos/renderer/src/api/Model.hpp" line="18" column="5" bodyfile="C:/Repos/renderer/src/api/Model.hpp" bodystart="18" bodyend="20"/>
+      </memberdef>
+      <memberdef kind="function" id="classrx_1_1_material_1ae980bbd8ffac30b97c8fc7b36bf58e9d" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>std::unordered_set&lt; std::string &gt;</type>
+        <definition>std::unordered_set&lt;std::string&gt; rx::Material::getTextures</definition>
+        <argsstring>()</argsstring>
+        <name>getTextures</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Repos/renderer/src/api/Model.hpp" line="40" column="24" bodyfile="C:/Repos/renderer/src/api/Model.hpp" bodystart="40" bodyend="66"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+<para><xrefsect id="todo_1_todo000003"><xreftitle>Todo</xreftitle><xrefdescription><para>Documentation, once this design was proven to be working. The textures should probably be vectors or unordered_maps of strings since one model can have many diffuse textures or specular textures etc. </para>
+</xrefdescription></xrefsect></para>
+    </detaileddescription>
+    <location file="C:/Repos/renderer/src/api/Model.hpp" line="14" column="3" bodyfile="C:/Repos/renderer/src/api/Model.hpp" bodystart="15" bodyend="67"/>
+    <listofallmembers>
+      <member refid="classrx_1_1_material_1ae980bbd8ffac30b97c8fc7b36bf58e9d" prot="public" virt="non-virtual"><scope>rx::Material</scope><name>getTextures</name></member>
+      <member refid="classrx_1_1_material_1a36855318646cbd467c09539ecad88639" prot="public" virt="non-virtual"><scope>rx::Material</scope><name>m_alphaTexture</name></member>
+      <member refid="classrx_1_1_material_1a64b788421c17527f6d78491bf5b6a309" prot="public" virt="non-virtual"><scope>rx::Material</scope><name>m_ambient</name></member>
+      <member refid="classrx_1_1_material_1a3cfd6d53df632eb472ba66458cad0f10" prot="public" virt="non-virtual"><scope>rx::Material</scope><name>m_ambientTexture</name></member>
+      <member refid="classrx_1_1_material_1a1bb5d2a0e11bd6cadaeed0350f9045b5" prot="public" virt="non-virtual"><scope>rx::Material</scope><name>m_bumpTexture</name></member>
+      <member refid="classrx_1_1_material_1ab0709dc5f183386aaa664bd8ed2df395" prot="public" virt="non-virtual"><scope>rx::Material</scope><name>m_diffuse</name></member>
+      <member refid="classrx_1_1_material_1a8547f274cf8c037ba313b7e65b8a856f" prot="public" virt="non-virtual"><scope>rx::Material</scope><name>m_diffuseTexture</name></member>
+      <member refid="classrx_1_1_material_1a34fcd66a2c75af2351f3bebe069faf36" prot="public" virt="non-virtual"><scope>rx::Material</scope><name>m_displacementTexture</name></member>
+      <member refid="classrx_1_1_material_1a9a252f320cecb05134d0c997eae25c3e" prot="public" virt="non-virtual"><scope>rx::Material</scope><name>m_emission</name></member>
+      <member refid="classrx_1_1_material_1a77523d02caade96f04bd69eb63652cf7" prot="public" virt="non-virtual"><scope>rx::Material</scope><name>m_opacity</name></member>
+      <member refid="classrx_1_1_material_1a0b975393f1f906aa485b83bfff2f619c" prot="public" virt="non-virtual"><scope>rx::Material</scope><name>m_reflectionIndex</name></member>
+      <member refid="classrx_1_1_material_1accd66a020c13fcacdc88b21c0ca36dc1" prot="public" virt="non-virtual"><scope>rx::Material</scope><name>m_reflectionTexture</name></member>
+      <member refid="classrx_1_1_material_1a4477fc3b2bb16c2ace566afdb1cd1c8d" prot="public" virt="non-virtual"><scope>rx::Material</scope><name>m_shininess</name></member>
+      <member refid="classrx_1_1_material_1a70494c7dff251b1cc03e2f06343725c9" prot="public" virt="non-virtual"><scope>rx::Material</scope><name>m_specular</name></member>
+      <member refid="classrx_1_1_material_1a4d0b07f90e2125368e9be9619cc64f94" prot="public" virt="non-virtual"><scope>rx::Material</scope><name>m_specularTexture</name></member>
+      <member refid="classrx_1_1_material_1a50a4a1e3cb0ad27a5c7746426d2e0929" prot="public" virt="non-virtual"><scope>rx::Material</scope><name>m_transmittance</name></member>
+      <member refid="classrx_1_1_material_1a9abd2fbdebbc6e34f9c6f51c92e2f893" prot="public" virt="non-virtual"><scope>rx::Material</scope><name>Material</name></member>
+      <member refid="classrx_1_1_material_1aec3ad23f4eb473e1615e56a42adbe23d" prot="public" virt="non-virtual"><scope>rx::Material</scope><name>Material</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

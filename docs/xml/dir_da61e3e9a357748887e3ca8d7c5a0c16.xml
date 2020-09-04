@@ -1,0 +1,37 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.20" xml:lang="en-US">
+  <compounddef id="dir_da61e3e9a357748887e3ca8d7c5a0c16" kind="dir">
+    <compoundname>C:/Repos/renderer/src/api</compoundname>
+    <innerdir refid="dir_948f00e782b8c85615d95d9a903e4ec8">C:/Repos/renderer/src/api/buffers</innerdir>
+    <innerdir refid="dir_aeb48633c34338bed5c2f623c81142a8">C:/Repos/renderer/src/api/descriptors</innerdir>
+    <innerdir refid="dir_f85b151042f4410f72e459bf14a2debf">C:/Repos/renderer/src/api/devices</innerdir>
+    <innerdir refid="dir_53be9a982b2d4f6c6e9a45d68b0893fa">C:/Repos/renderer/src/api/gui</innerdir>
+    <innerdir refid="dir_5893439b233f19d4422e8cd740c17fdd">C:/Repos/renderer/src/api/image</innerdir>
+    <innerdir refid="dir_f98becc36cde933637a45ecbfd38e56d">C:/Repos/renderer/src/api/misc</innerdir>
+    <innerdir refid="dir_1378cfa0a00f260f8ecd3d4d184aca9f">C:/Repos/renderer/src/api/raytracing</innerdir>
+    <innerdir refid="dir_8422b8ce86d24fde1cd6cb9ad35d12f7">C:/Repos/renderer/src/api/utility</innerdir>
+    <innerfile refid="_api_8cpp">Api.cpp</innerfile>
+    <innerfile refid="_api_8hpp">Api.hpp</innerfile>
+    <innerfile refid="_components_8cpp">Components.cpp</innerfile>
+    <innerfile refid="_components_8hpp">Components.hpp</innerfile>
+    <innerfile refid="_instance_8cpp">Instance.cpp</innerfile>
+    <innerfile refid="_instance_8hpp">Instance.hpp</innerfile>
+    <innerfile refid="_model_8cpp">Model.cpp</innerfile>
+    <innerfile refid="_model_8hpp">Model.hpp</innerfile>
+    <innerfile refid="_pipeline_8cpp">Pipeline.cpp</innerfile>
+    <innerfile refid="_pipeline_8hpp">Pipeline.hpp</innerfile>
+    <innerfile refid="_queues_8cpp">Queues.cpp</innerfile>
+    <innerfile refid="_queues_8hpp">Queues.hpp</innerfile>
+    <innerfile refid="_render_pass_8cpp">RenderPass.cpp</innerfile>
+    <innerfile refid="_render_pass_8hpp">RenderPass.hpp</innerfile>
+    <innerfile refid="_surface_8cpp">Surface.cpp</innerfile>
+    <innerfile refid="_surface_8hpp">Surface.hpp</innerfile>
+    <innerfile refid="_swapchain_8cpp">Swapchain.cpp</innerfile>
+    <innerfile refid="_swapchain_8hpp">Swapchain.hpp</innerfile>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="C:/Repos/renderer/src/api/"/>
+  </compounddef>
+</doxygen>

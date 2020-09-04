@@ -3,17 +3,10 @@
 
 namespace rx
 {
-  Surface::Surface( ) :
-    m_format( vk::Format::eB8G8R8A8Unorm ),
-    m_colorSpace( vk::ColorSpaceKHR::eSrgbNonlinear ),
-    m_presentMode( vk::PresentModeKHR::eMailbox ),
-    m_capabilities( 0 )
-  { }
-
   Surface::Surface( vk::Format format, vk::ColorSpaceKHR colorSpace, vk::PresentModeKHR presentMode, bool initialize ) :
-    m_format( vk::Format::eB8G8R8A8Unorm ),
-    m_colorSpace( vk::ColorSpaceKHR::eSrgbNonlinear ),
-    m_presentMode( vk::PresentModeKHR::eMailbox ),
+    m_format( format ),
+    m_colorSpace( colorSpace ),
+    m_presentMode( presentMode ),
     m_capabilities( 0 )
   {
     if ( initialize )
@@ -42,34 +35,36 @@ namespace rx
     // Check a present mode.
     std::vector<vk::PresentModeKHR> presentModes = g_physicalDevice.getSurfacePresentModesKHR( m_surface );
 
+    bool presentModeSupported = false;
     for ( const auto& mode : presentModes )
     {
-      if ( mode == vk::PresentModeKHR::eMailbox )
+      if ( mode == m_presentMode )
       {
-        m_presentMode = vk::PresentModeKHR::eMailbox;
+        presentModeSupported = true;
         break;
       }
     }
 
     // Fall back, as FIFO is always supported on every device.
-    m_presentMode = vk::PresentModeKHR::eFifo;
+    if ( !presentModeSupported )
+      m_presentMode = vk::PresentModeKHR::eFifo;
 
     // Check format and color space.
-    auto formatProperties = g_physicalDevice.getFormatProperties( m_format ); // TODO: not used.
+    auto formatProperties = g_physicalDevice.getFormatProperties( m_format );
     auto surfaceFormats = g_physicalDevice.getSurfaceFormatsKHR( m_surface );
 
-    bool accepted = false;
+    bool colorSpaceAndFormatSupported = false;
     for ( const auto& iter : surfaceFormats )
     {
       if ( iter.format == m_format && iter.colorSpace == m_colorSpace )
       {
-        accepted = true;
+        colorSpaceAndFormatSupported = true;
         break;
       }
     }
 
     // If the prefered format and color space are not available, fall back.
-    if ( !accepted )
+    if ( !colorSpaceAndFormatSupported )
     {
       m_format = surfaceFormats[0].format;
       m_colorSpace = surfaceFormats[0].colorSpace;

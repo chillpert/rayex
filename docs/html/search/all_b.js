@@ -140,7 +140,7 @@ var searchData=
   ['maxframesinflight_372',['maxFramesInFlight',['../namespacerx.html#a227f0a65a526b6b4517a557cf1db9c7d',1,'rx']]],
   ['memory_373',['memory',['../structrx_1_1_acceleration_structure.html#a352b9a61fcf9c224c09faf3734a39115',1,'rx::AccelerationStructure']]],
   ['minimized_374',['minimized',['../classrx_1_1_window_base.html#a0daf35316a751cb18d4c8589a503a0dd',1,'rx::WindowBase']]],
-  ['model_375',['Model',['../classrx_1_1_model.html',1,'rx::Model'],['../structrx_1_1_mvp_ubo.html#a6dcf61536d4558874e3c0c89463fa0ab',1,'rx::MvpUbo::model()'],['../classrx_1_1_model.html#ad87d69c43348ffa3cc83d231bfd38f2c',1,'rx::Model::Model()'],['../classrx_1_1_model.html#aa427ed49b8f2feaa64d5b3171117892b',1,'rx::Model::Model(const std::string &amp;path)']]],
+  ['model_375',['Model',['../classrx_1_1_model.html',1,'rx::Model'],['../classrx_1_1_model.html#ad87d69c43348ffa3cc83d231bfd38f2c',1,'rx::Model::Model()'],['../classrx_1_1_model.html#aa427ed49b8f2feaa64d5b3171117892b',1,'rx::Model::Model(const std::string &amp;path)'],['../structrx_1_1_mvp_ubo.html#a6dcf61536d4558874e3c0c89463fa0ab',1,'rx::MvpUbo::model()']]],
   ['model_2ecpp_376',['Model.cpp',['../_model_8cpp.html',1,'']]],
   ['model_2ehpp_377',['Model.hpp',['../_model_8hpp.html',1,'']]],
   ['modeltoblas_378',['modelToBlas',['../classrx_1_1_ray_tracing_builder.html#a863a77e3048449ed9fd984d4442aba95',1,'rx::RayTracingBuilder']]],

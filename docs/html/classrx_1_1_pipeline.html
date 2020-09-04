@@ -114,7 +114,7 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:ad8083d64107facf08568318c0c9ede11"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classrx_1_1_pipeline.html#ad8083d64107facf08568318c0c9ede11">Pipeline</a> (const std::vector&lt; vk::DescriptorSetLayout &gt; &amp;descriptorSetLayouts, bool initialize=true)</td></tr>
 <tr class="separator:ad8083d64107facf08568318c0c9ede11"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a6a40c06d1db5b5e7622a8032805b2fd5"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classrx_1_1_pipeline.html#a6a40c06d1db5b5e7622a8032805b2fd5">init</a> (const std::vector&lt; vk::DescriptorSetLayout &gt; &amp;descriptorSetLayouts)</td></tr>
-<tr class="memdesc:a6a40c06d1db5b5e7622a8032805b2fd5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Initializes the pipeline and creates the pipeline layout.  <a href="classrx_1_1_pipeline.html#a6a40c06d1db5b5e7622a8032805b2fd5">More...</a><br /></td></tr>
+<tr class="memdesc:a6a40c06d1db5b5e7622a8032805b2fd5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Initializes the Vulkan pipeline and creates the Vulkan pipeline layout.  <a href="classrx_1_1_pipeline.html#a6a40c06d1db5b5e7622a8032805b2fd5">More...</a><br /></td></tr>
 <tr class="separator:a6a40c06d1db5b5e7622a8032805b2fd5"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:abdbba7e67a59cf5402010c8b7b30fa91"><td class="memItemLeft" align="right" valign="top">const vk::Pipeline&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classrx_1_1_pipeline.html#abdbba7e67a59cf5402010c8b7b30fa91">get</a> () const</td></tr>
 <tr class="separator:abdbba7e67a59cf5402010c8b7b30fa91"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -189,7 +189,7 @@ Private Attributes</h2></td></tr>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">descriptorSetLayouts</td><td>A vector of descriptor set layouts that will be included in the pipeline layout. </td></tr>
-    <tr><td class="paramname">initialize</td><td>If true, the <a class="el" href="classrx_1_1_instance.html" title="A wrapper class for the Vulkan instance.">Instance</a> object will be initialized right away without an additional call to <a class="el" href="classrx_1_1_pipeline.html#a6a40c06d1db5b5e7622a8032805b2fd5" title="Initializes the pipeline and creates the pipeline layout.">init()</a>. <br  />
+    <tr><td class="paramname">initialize</td><td>If true, the <a class="el" href="classrx_1_1_pipeline.html" title="A wrapper class for a Vulkan ray tracing graphics pipeline.">Pipeline</a> object will be initialized right away without an additional call to <a class="el" href="classrx_1_1_pipeline.html#a6a40c06d1db5b5e7622a8032805b2fd5" title="Initializes the Vulkan pipeline and creates the Vulkan pipeline layout.">init()</a>. <br  />
  </td></tr>
   </table>
   </dd>
@@ -292,7 +292,7 @@ Private Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Initializes the pipeline and creates the pipeline layout. </p>
+<p>Initializes the Vulkan pipeline and creates the Vulkan pipeline layout. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">descriptorSetLayouts</td><td>A vector of descriptor set layouts that will be included in the pipeline layout. </td></tr>

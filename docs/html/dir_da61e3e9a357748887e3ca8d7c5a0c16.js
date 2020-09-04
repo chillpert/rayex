@@ -21,17 +21,11 @@ var dir_da61e3e9a357748887e3ca8d7c5a0c16 =
     [ "Pipeline.cpp", "_pipeline_8cpp.html", null ],
     [ "Pipeline.hpp", "_pipeline_8hpp.html", null ],
     [ "Queues.cpp", "_queues_8cpp.html", null ],
-    [ "Queues.hpp", "_queues_8hpp.html", [
-      [ "Queues", "classrx_1_1_queues.html", "classrx_1_1_queues" ]
-    ] ],
+    [ "Queues.hpp", "_queues_8hpp.html", null ],
     [ "RenderPass.cpp", "_render_pass_8cpp.html", null ],
-    [ "RenderPass.hpp", "_render_pass_8hpp.html", [
-      [ "RenderPass", "classrx_1_1_render_pass.html", "classrx_1_1_render_pass" ]
-    ] ],
+    [ "RenderPass.hpp", "_render_pass_8hpp.html", null ],
     [ "Surface.cpp", "_surface_8cpp.html", null ],
-    [ "Surface.hpp", "_surface_8hpp.html", [
-      [ "Surface", "classrx_1_1_surface.html", "classrx_1_1_surface" ]
-    ] ],
+    [ "Surface.hpp", "_surface_8hpp.html", null ],
     [ "Swapchain.cpp", "_swapchain_8cpp.html", "_swapchain_8cpp" ],
     [ "Swapchain.hpp", "_swapchain_8hpp.html", "_swapchain_8hpp" ]
 ];

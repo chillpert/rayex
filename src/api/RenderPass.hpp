@@ -15,7 +15,7 @@ namespace rx
     /// @param attachments The Vulkan attachment description.
     /// @param subpasses The Vulkan subpass description.
     /// @param dependencies The Vulkan subpass dependencies.
-    /// @param initialize If true, the render pass object will be initialized right away without an additional call to init().  
+    /// @param initialize If true, the render pass object will be initialized right away without an additional call to init().
     RenderPass( const std::vector<vk::AttachmentDescription>& attachments, const std::vector<vk::SubpassDescription>& subpasses, const std::vector<vk::SubpassDependency>& dependencies, bool initialize = true );
     
     /// @return Returns the Vulkan render pass without the unique handle.

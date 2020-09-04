@@ -99,19 +99,23 @@ $(document).ready(function(){initNavTree('classrx_1_1_surface.html',''); initRes
 <a href="#pri-attribs">Private Attributes</a> &#124;
 <a href="classrx_1_1_surface-members.html">List of all members</a>  </div>
   <div class="headertitle">
-<div class="title">rx::Surface Class Reference</div>  </div>
+<div class="title">rx::Surface Class Reference<div class="ingroups"><a class="el" href="group___a_p_i.html">Vulkan</a></div></div>  </div>
 </div><!--header-->
 <div class="contents">
+
+<p>A wrapper class for a Vulkan surface.  
+ <a href="classrx_1_1_surface.html#details">More...</a></p>
 
 <p><code>#include &lt;<a class="el" href="_surface_8hpp_source.html">Surface.hpp</a>&gt;</code></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:ad86d611078859429baa02b61fa8b80e5"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classrx_1_1_surface.html#ad86d611078859429baa02b61fa8b80e5">Surface</a> ()</td></tr>
-<tr class="separator:ad86d611078859429baa02b61fa8b80e5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:affa337798c1890c91b253af4f69490d3"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classrx_1_1_surface.html#affa337798c1890c91b253af4f69490d3">Surface</a> ()=default</td></tr>
+<tr class="separator:affa337798c1890c91b253af4f69490d3"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:acd2225f3afbbe22dee2b27b6367efb9e"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classrx_1_1_surface.html#acd2225f3afbbe22dee2b27b6367efb9e">Surface</a> (vk::Format format, vk::ColorSpaceKHR colorSpace, vk::PresentModeKHR presentMode, bool initialize=true)</td></tr>
 <tr class="separator:acd2225f3afbbe22dee2b27b6367efb9e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aee862bb3e7ca8bac54d1c3e042bc09e4"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classrx_1_1_surface.html#aee862bb3e7ca8bac54d1c3e042bc09e4">~Surface</a> ()</td></tr>
+<tr class="memdesc:aee862bb3e7ca8bac54d1c3e042bc09e4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Calls <a class="el" href="classrx_1_1_surface.html#a65af46388e67eab3c77bc8cd031f6cfd" title="Destroys the surface.">destroy()</a>  <a href="classrx_1_1_surface.html#aee862bb3e7ca8bac54d1c3e042bc09e4">More...</a><br /></td></tr>
 <tr class="separator:aee862bb3e7ca8bac54d1c3e042bc09e4"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aa43569014a536a35d9b356f18e1cf61e"><td class="memItemLeft" align="right" valign="top">const vk::Format&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classrx_1_1_surface.html#aa43569014a536a35d9b356f18e1cf61e">getFormat</a> () const</td></tr>
 <tr class="separator:aa43569014a536a35d9b356f18e1cf61e"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -122,34 +126,47 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a31f2bf06d6901c5dade699be5d687764"><td class="memItemLeft" align="right" valign="top">const vk::SurfaceCapabilitiesKHR&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classrx_1_1_surface.html#a31f2bf06d6901c5dade699be5d687764">getCapabilities</a> () const</td></tr>
 <tr class="separator:a31f2bf06d6901c5dade699be5d687764"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a76b3c2a398b71c3455eea9f82a60ce75"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classrx_1_1_surface.html#a76b3c2a398b71c3455eea9f82a60ce75">init</a> ()</td></tr>
+<tr class="memdesc:a76b3c2a398b71c3455eea9f82a60ce75"><td class="mdescLeft">&#160;</td><td class="mdescRight">Initializes the Vulkan surface object.  <a href="classrx_1_1_surface.html#a76b3c2a398b71c3455eea9f82a60ce75">More...</a><br /></td></tr>
 <tr class="separator:a76b3c2a398b71c3455eea9f82a60ce75"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a484056000f32d20351f88b9641aa5989"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classrx_1_1_surface.html#a484056000f32d20351f88b9641aa5989">checkSettingSupport</a> ()</td></tr>
+<tr class="memdesc:a484056000f32d20351f88b9641aa5989"><td class="mdescLeft">&#160;</td><td class="mdescRight">Checks if the preferred settings for format, color space and present mode are available.  <a href="classrx_1_1_surface.html#a484056000f32d20351f88b9641aa5989">More...</a><br /></td></tr>
 <tr class="separator:a484056000f32d20351f88b9641aa5989"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pri-methods"></a>
 Private Member Functions</h2></td></tr>
 <tr class="memitem:a65af46388e67eab3c77bc8cd031f6cfd"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classrx_1_1_surface.html#a65af46388e67eab3c77bc8cd031f6cfd">destroy</a> ()</td></tr>
+<tr class="memdesc:a65af46388e67eab3c77bc8cd031f6cfd"><td class="mdescLeft">&#160;</td><td class="mdescRight">Destroys the surface.  <a href="classrx_1_1_surface.html#a65af46388e67eab3c77bc8cd031f6cfd">More...</a><br /></td></tr>
 <tr class="separator:a65af46388e67eab3c77bc8cd031f6cfd"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pri-attribs"></a>
 Private Attributes</h2></td></tr>
 <tr class="memitem:aece5ef0f396cb484a5c0f3299adef10a"><td class="memItemLeft" align="right" valign="top">vk::SurfaceKHR&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classrx_1_1_surface.html#aece5ef0f396cb484a5c0f3299adef10a">m_surface</a></td></tr>
+<tr class="memdesc:aece5ef0f396cb484a5c0f3299adef10a"><td class="mdescLeft">&#160;</td><td class="mdescRight">The Vulkan surface.  <a href="classrx_1_1_surface.html#aece5ef0f396cb484a5c0f3299adef10a">More...</a><br /></td></tr>
 <tr class="separator:aece5ef0f396cb484a5c0f3299adef10a"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aea11a1847efdd9d3037ee61af08c9019"><td class="memItemLeft" align="right" valign="top">vk::Format&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classrx_1_1_surface.html#aea11a1847efdd9d3037ee61af08c9019">m_format</a></td></tr>
+<tr class="memitem:aea11a1847efdd9d3037ee61af08c9019"><td class="memItemLeft" align="right" valign="top">vk::Format&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classrx_1_1_surface.html#aea11a1847efdd9d3037ee61af08c9019">m_format</a> = vk::Format::eB8G8R8A8Unorm</td></tr>
+<tr class="memdesc:aea11a1847efdd9d3037ee61af08c9019"><td class="mdescLeft">&#160;</td><td class="mdescRight">The desired surface format.  <a href="classrx_1_1_surface.html#aea11a1847efdd9d3037ee61af08c9019">More...</a><br /></td></tr>
 <tr class="separator:aea11a1847efdd9d3037ee61af08c9019"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a6dc126894ee95f9b79ac81c35aaf243f"><td class="memItemLeft" align="right" valign="top">vk::ColorSpaceKHR&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classrx_1_1_surface.html#a6dc126894ee95f9b79ac81c35aaf243f">m_colorSpace</a></td></tr>
+<tr class="memitem:a6dc126894ee95f9b79ac81c35aaf243f"><td class="memItemLeft" align="right" valign="top">vk::ColorSpaceKHR&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classrx_1_1_surface.html#a6dc126894ee95f9b79ac81c35aaf243f">m_colorSpace</a> = vk::ColorSpaceKHR::eSrgbNonlinear</td></tr>
+<tr class="memdesc:a6dc126894ee95f9b79ac81c35aaf243f"><td class="mdescLeft">&#160;</td><td class="mdescRight">The desired color space.  <a href="classrx_1_1_surface.html#a6dc126894ee95f9b79ac81c35aaf243f">More...</a><br /></td></tr>
 <tr class="separator:a6dc126894ee95f9b79ac81c35aaf243f"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ac603398e5dc91c35b9aa555c9f1d8e60"><td class="memItemLeft" align="right" valign="top">vk::PresentModeKHR&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classrx_1_1_surface.html#ac603398e5dc91c35b9aa555c9f1d8e60">m_presentMode</a></td></tr>
+<tr class="memitem:ac603398e5dc91c35b9aa555c9f1d8e60"><td class="memItemLeft" align="right" valign="top">vk::PresentModeKHR&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classrx_1_1_surface.html#ac603398e5dc91c35b9aa555c9f1d8e60">m_presentMode</a> = vk::PresentModeKHR::eMailbox</td></tr>
+<tr class="memdesc:ac603398e5dc91c35b9aa555c9f1d8e60"><td class="mdescLeft">&#160;</td><td class="mdescRight">The desired present mode.  <a href="classrx_1_1_surface.html#ac603398e5dc91c35b9aa555c9f1d8e60">More...</a><br /></td></tr>
 <tr class="separator:ac603398e5dc91c35b9aa555c9f1d8e60"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a9153f53295c62e9ee5e3519e1a0d84b8"><td class="memItemLeft" align="right" valign="top">vk::SurfaceCapabilitiesKHR&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classrx_1_1_surface.html#a9153f53295c62e9ee5e3519e1a0d84b8">m_capabilities</a></td></tr>
+<tr class="memitem:a9153f53295c62e9ee5e3519e1a0d84b8"><td class="memItemLeft" align="right" valign="top">vk::SurfaceCapabilitiesKHR&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classrx_1_1_surface.html#a9153f53295c62e9ee5e3519e1a0d84b8">m_capabilities</a> = 0</td></tr>
+<tr class="memdesc:a9153f53295c62e9ee5e3519e1a0d84b8"><td class="mdescLeft">&#160;</td><td class="mdescRight">The surface's capabilities.  <a href="classrx_1_1_surface.html#a9153f53295c62e9ee5e3519e1a0d84b8">More...</a><br /></td></tr>
 <tr class="separator:a9153f53295c62e9ee5e3519e1a0d84b8"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
-<h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
-<a id="ad86d611078859429baa02b61fa8b80e5"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ad86d611078859429baa02b61fa8b80e5">&#9670;&nbsp;</a></span>Surface() <span class="overload">[1/2]</span></h2>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>A wrapper class for a Vulkan surface. </p>
+</div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
+<a id="affa337798c1890c91b253af4f69490d3"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#affa337798c1890c91b253af4f69490d3">&#9670;&nbsp;</a></span>Surface() <span class="overload">[1/2]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
       <table class="memname">
         <tr>
           <td class="memname">rx::Surface::Surface </td>
@@ -158,6 +175,11 @@ Private Attributes</h2></td></tr>
           <td></td>
         </tr>
       </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">default</span></span>  </td>
+  </tr>
+</table>
 </div><div class="memdoc">
 
 </div>
@@ -199,6 +221,15 @@ Private Attributes</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">format</td><td>The preferred surface format. </td></tr>
+    <tr><td class="paramname">colorSpace</td><td>The preferred color space. </td></tr>
+    <tr><td class="paramname">presentMode</td><td>The preferred present mode. </td></tr>
+    <tr><td class="paramname">initialize</td><td>If true, the surface object will be initialized right away without an additional call to <a class="el" href="classrx_1_1_surface.html#a76b3c2a398b71c3455eea9f82a60ce75" title="Initializes the Vulkan surface object.">init()</a>. </td></tr>
+  </table>
+  </dd>
+</dl>
 
 </div>
 </div>
@@ -217,6 +248,8 @@ Private Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
+<p>Calls <a class="el" href="classrx_1_1_surface.html#a65af46388e67eab3c77bc8cd031f6cfd" title="Destroys the surface.">destroy()</a> </p>
+
 </div>
 </div>
 <h2 class="groupheader">Member Function Documentation</h2>
@@ -234,6 +267,9 @@ Private Attributes</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>Checks if the preferred settings for format, color space and present mode are available. </p>
+<p>If not, the function will set them to some fallback values. </p><dl class="section warning"><dt>Warning</dt><dd>Must be called right after the enumeration of the physical device. </dd></dl>
 
 </div>
 </div>
@@ -260,6 +296,8 @@ Private Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
+<p>Destroys the surface. </p>
+
 </div>
 </div>
 <a id="a31f2bf06d6901c5dade699be5d687764"></a>
@@ -284,6 +322,7 @@ Private Attributes</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
+<dl class="section return"><dt>Returns</dt><dd>Returns the surface's capabilities. </dd></dl>
 
 </div>
 </div>
@@ -309,6 +348,7 @@ Private Attributes</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
+<dl class="section return"><dt>Returns</dt><dd>Returns the surface's color space. </dd></dl>
 
 </div>
 </div>
@@ -334,6 +374,7 @@ Private Attributes</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
+<dl class="section return"><dt>Returns</dt><dd>Returns the surface format. </dd></dl>
 
 </div>
 </div>
@@ -359,6 +400,7 @@ Private Attributes</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
+<dl class="section return"><dt>Returns</dt><dd>Returns the surface's present mode. </dd></dl>
 
 </div>
 </div>
@@ -377,6 +419,9 @@ Private Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
+<p>Initializes the Vulkan surface object. </p>
+<dl class="section note"><dt>Note</dt><dd>If any of the specified format, color space and present mode are not available the function will fall back to settings that are guaranteed to be supported. </dd></dl>
+
 </div>
 </div>
 <h2 class="groupheader">Member Data Documentation</h2>
@@ -390,7 +435,7 @@ Private Attributes</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">vk::SurfaceCapabilitiesKHR rx::Surface::m_capabilities</td>
+          <td class="memname">vk::SurfaceCapabilitiesKHR rx::Surface::m_capabilities = 0</td>
         </tr>
       </table>
   </td>
@@ -399,6 +444,8 @@ Private Attributes</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
+
+<p>The surface's capabilities. </p>
 
 </div>
 </div>
@@ -412,7 +459,7 @@ Private Attributes</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">vk::ColorSpaceKHR rx::Surface::m_colorSpace</td>
+          <td class="memname">vk::ColorSpaceKHR rx::Surface::m_colorSpace = vk::ColorSpaceKHR::eSrgbNonlinear</td>
         </tr>
       </table>
   </td>
@@ -421,6 +468,8 @@ Private Attributes</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
+
+<p>The desired color space. </p>
 
 </div>
 </div>
@@ -434,7 +483,7 @@ Private Attributes</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">vk::Format rx::Surface::m_format</td>
+          <td class="memname">vk::Format rx::Surface::m_format = vk::Format::eB8G8R8A8Unorm</td>
         </tr>
       </table>
   </td>
@@ -443,6 +492,8 @@ Private Attributes</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
+
+<p>The desired surface format. </p>
 
 </div>
 </div>
@@ -456,7 +507,7 @@ Private Attributes</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">vk::PresentModeKHR rx::Surface::m_presentMode</td>
+          <td class="memname">vk::PresentModeKHR rx::Surface::m_presentMode = vk::PresentModeKHR::eMailbox</td>
         </tr>
       </table>
   </td>
@@ -465,6 +516,8 @@ Private Attributes</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
+
+<p>The desired present mode. </p>
 
 </div>
 </div>
@@ -487,6 +540,8 @@ Private Attributes</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
+
+<p>The Vulkan surface. </p>
 
 </div>
 </div>

@@ -98,9 +98,12 @@ $(document).ready(function(){initNavTree('classrx_1_1_render_pass.html',''); ini
 <a href="#pri-attribs">Private Attributes</a> &#124;
 <a href="classrx_1_1_render_pass-members.html">List of all members</a>  </div>
   <div class="headertitle">
-<div class="title">rx::RenderPass Class Reference</div>  </div>
+<div class="title">rx::RenderPass Class Reference<div class="ingroups"><a class="el" href="group___a_p_i.html">Vulkan</a></div></div>  </div>
 </div><!--header-->
 <div class="contents">
+
+<p>A wrapper class for a Vulkan render pass.  
+ <a href="classrx_1_1_render_pass.html#details">More...</a></p>
 
 <p><code>#include &lt;<a class="el" href="_render_pass_8hpp_source.html">RenderPass.hpp</a>&gt;</code></p>
 <table class="memberdecls">
@@ -110,25 +113,27 @@ Public Member Functions</h2></td></tr>
 <tr class="separator:ae57da1d57e10f8e1499be97aa40f3cbb"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:acec123f5c67d64cfec8e0aab9bfec87e"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classrx_1_1_render_pass.html#acec123f5c67d64cfec8e0aab9bfec87e">RenderPass</a> (const std::vector&lt; vk::AttachmentDescription &gt; &amp;attachments, const std::vector&lt; vk::SubpassDescription &gt; &amp;subpasses, const std::vector&lt; vk::SubpassDependency &gt; &amp;dependencies, bool initialize=true)</td></tr>
 <tr class="separator:acec123f5c67d64cfec8e0aab9bfec87e"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a447188ee4e09d5529086abb2d8e07f36"><td class="memItemLeft" align="right" valign="top">RX_API&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classrx_1_1_render_pass.html#a447188ee4e09d5529086abb2d8e07f36">~RenderPass</a> ()</td></tr>
-<tr class="separator:a447188ee4e09d5529086abb2d8e07f36"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a6ddf5276429df287eb886e11133e7d32"><td class="memItemLeft" align="right" valign="top">const vk::RenderPass&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classrx_1_1_render_pass.html#a6ddf5276429df287eb886e11133e7d32">get</a> () const</td></tr>
 <tr class="separator:a6ddf5276429df287eb886e11133e7d32"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ac08ed715e8dbc8bb7ef5d0b108b2e93c"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classrx_1_1_render_pass.html#ac08ed715e8dbc8bb7ef5d0b108b2e93c">init</a> (const std::vector&lt; vk::AttachmentDescription &gt; &amp;attachments, const std::vector&lt; vk::SubpassDescription &gt; &amp;subpasses, const std::vector&lt; vk::SubpassDependency &gt; &amp;dependencies)</td></tr>
+<tr class="memdesc:ac08ed715e8dbc8bb7ef5d0b108b2e93c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Initializes the Vulkan render pass.  <a href="classrx_1_1_render_pass.html#ac08ed715e8dbc8bb7ef5d0b108b2e93c">More...</a><br /></td></tr>
 <tr class="separator:ac08ed715e8dbc8bb7ef5d0b108b2e93c"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ae6b4829ab0fbee74a163f199c1330c98"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classrx_1_1_render_pass.html#ae6b4829ab0fbee74a163f199c1330c98">destroy</a> ()</td></tr>
-<tr class="separator:ae6b4829ab0fbee74a163f199c1330c98"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a8f85f95beb30066d31d7ed5f8942de46"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classrx_1_1_render_pass.html#a8f85f95beb30066d31d7ed5f8942de46">begin</a> (vk::Framebuffer framebuffer, vk::CommandBuffer <a class="el" href="classrx_1_1_command_buffer.html">CommandBuffer</a>, vk::Rect2D renderArea, const std::vector&lt; vk::ClearValue &gt; &amp;clearValues) const</td></tr>
-<tr class="separator:a8f85f95beb30066d31d7ed5f8942de46"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:af86fb3aab6bde53ca3bd64401ec27148"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classrx_1_1_render_pass.html#af86fb3aab6bde53ca3bd64401ec27148">end</a> (vk::CommandBuffer <a class="el" href="classrx_1_1_command_buffer.html">CommandBuffer</a>) const</td></tr>
-<tr class="separator:af86fb3aab6bde53ca3bd64401ec27148"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a18f41ca4a22576f315781ef247462bde"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classrx_1_1_render_pass.html#a18f41ca4a22576f315781ef247462bde">begin</a> (vk::Framebuffer framebuffer, vk::CommandBuffer commandBuffer, vk::Rect2D renderArea, const std::vector&lt; vk::ClearValue &gt; &amp;clearValues) const</td></tr>
+<tr class="memdesc:a18f41ca4a22576f315781ef247462bde"><td class="mdescLeft">&#160;</td><td class="mdescRight">Call to begin the render pass.  <a href="classrx_1_1_render_pass.html#a18f41ca4a22576f315781ef247462bde">More...</a><br /></td></tr>
+<tr class="separator:a18f41ca4a22576f315781ef247462bde"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0766e5869b4feafe8347b0f5ede91c19"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classrx_1_1_render_pass.html#a0766e5869b4feafe8347b0f5ede91c19">end</a> (vk::CommandBuffer commandBuffer) const</td></tr>
+<tr class="memdesc:a0766e5869b4feafe8347b0f5ede91c19"><td class="mdescLeft">&#160;</td><td class="mdescRight">Call to end the render pass.  <a href="classrx_1_1_render_pass.html#a0766e5869b4feafe8347b0f5ede91c19">More...</a><br /></td></tr>
+<tr class="separator:a0766e5869b4feafe8347b0f5ede91c19"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pri-attribs"></a>
 Private Attributes</h2></td></tr>
 <tr class="memitem:a37c34c9f4cd1ca1a92d8566be1648b97"><td class="memItemLeft" align="right" valign="top">vk::UniqueRenderPass&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classrx_1_1_render_pass.html#a37c34c9f4cd1ca1a92d8566be1648b97">m_renderPass</a></td></tr>
+<tr class="memdesc:a37c34c9f4cd1ca1a92d8566be1648b97"><td class="mdescLeft">&#160;</td><td class="mdescRight">The Vulkan render pass with a unique handle.  <a href="classrx_1_1_render_pass.html#a37c34c9f4cd1ca1a92d8566be1648b97">More...</a><br /></td></tr>
 <tr class="separator:a37c34c9f4cd1ca1a92d8566be1648b97"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
-<h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>A wrapper class for a Vulkan render pass. </p>
+</div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a id="ae57da1d57e10f8e1499be97aa40f3cbb"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#ae57da1d57e10f8e1499be97aa40f3cbb">&#9670;&nbsp;</a></span>RenderPass() <span class="overload">[1/2]</span></h2>
 
@@ -191,29 +196,21 @@ Private Attributes</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-
-</div>
-</div>
-<a id="a447188ee4e09d5529086abb2d8e07f36"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a447188ee4e09d5529086abb2d8e07f36">&#9670;&nbsp;</a></span>~RenderPass()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">rx::RenderPass::~RenderPass </td>
-          <td>(</td>
-          <td class="paramname"></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">attachments</td><td>The Vulkan attachment description. </td></tr>
+    <tr><td class="paramname">subpasses</td><td>The Vulkan subpass description. </td></tr>
+    <tr><td class="paramname">dependencies</td><td>The Vulkan subpass dependencies. </td></tr>
+    <tr><td class="paramname">initialize</td><td>If true, the render pass object will be initialized right away without an additional call to <a class="el" href="classrx_1_1_render_pass.html#ac08ed715e8dbc8bb7ef5d0b108b2e93c" title="Initializes the Vulkan render pass.">init()</a>. </td></tr>
+  </table>
+  </dd>
+</dl>
 
 </div>
 </div>
 <h2 class="groupheader">Member Function Documentation</h2>
-<a id="a8f85f95beb30066d31d7ed5f8942de46"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a8f85f95beb30066d31d7ed5f8942de46">&#9670;&nbsp;</a></span>begin()</h2>
+<a id="a18f41ca4a22576f315781ef247462bde"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a18f41ca4a22576f315781ef247462bde">&#9670;&nbsp;</a></span>begin()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -228,7 +225,7 @@ Private Attributes</h2></td></tr>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">vk::CommandBuffer&#160;</td>
-          <td class="paramname"><em>CommandBuffer</em>, </td>
+          <td class="paramname"><em>commandBuffer</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
@@ -250,27 +247,22 @@ Private Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-</div>
-</div>
-<a id="ae6b4829ab0fbee74a163f199c1330c98"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ae6b4829ab0fbee74a163f199c1330c98">&#9670;&nbsp;</a></span>destroy()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void rx::RenderPass::destroy </td>
-          <td>(</td>
-          <td class="paramname"></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
+<p>Call to begin the render pass. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">framebuffer</td><td>The swapchain framebuffer. </td></tr>
+    <tr><td class="paramname">commandBuffer</td><td>The command buffer used to begin the render pass. </td></tr>
+    <tr><td class="paramname">renderArea</td><td>Defines the size of the render area. </td></tr>
+    <tr><td class="paramname">clearValues</td><td>The clear values. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section note"><dt>Note</dt><dd><a class="el" href="classrx_1_1_command_buffer.html#a47ea2cef2b275adbe351f46998dfb28d">rx::CommandBuffer::begin()</a> or vk::CommandBuffer::begin() must have been already called prior to calling this function. </dd></dl>
 
 </div>
 </div>
-<a id="af86fb3aab6bde53ca3bd64401ec27148"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#af86fb3aab6bde53ca3bd64401ec27148">&#9670;&nbsp;</a></span>end()</h2>
+<a id="a0766e5869b4feafe8347b0f5ede91c19"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0766e5869b4feafe8347b0f5ede91c19">&#9670;&nbsp;</a></span>end()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -279,11 +271,20 @@ Private Attributes</h2></td></tr>
           <td class="memname">void rx::RenderPass::end </td>
           <td>(</td>
           <td class="paramtype">vk::CommandBuffer&#160;</td>
-          <td class="paramname"><em>CommandBuffer</em></td><td>)</td>
+          <td class="paramname"><em>commandBuffer</em></td><td>)</td>
           <td> const</td>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>Call to end the render pass. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">commandBuffer</td><td><br  />
+ </td></tr>
+  </table>
+  </dd>
+</dl>
 
 </div>
 </div>
@@ -309,6 +310,7 @@ Private Attributes</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
+<dl class="section return"><dt>Returns</dt><dd>Returns the Vulkan render pass without the unique handle. </dd></dl>
 
 </div>
 </div>
@@ -344,6 +346,18 @@ Private Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
+<p>Initializes the Vulkan render pass. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">attachments</td><td>The Vulkan attachment description. </td></tr>
+    <tr><td class="paramname">subpasses</td><td>The Vulkan subpass description. </td></tr>
+    <tr><td class="paramname">dependencies</td><td>The Vulkan subpass dependencies. </td></tr>
+    <tr><td class="paramname">initialize</td><td>If true, the render pass object will be initialized right away without an additional call to <a class="el" href="classrx_1_1_render_pass.html#ac08ed715e8dbc8bb7ef5d0b108b2e93c" title="Initializes the Vulkan render pass.">init()</a>. <br  />
+ </td></tr>
+  </table>
+  </dd>
+</dl>
+
 </div>
 </div>
 <h2 class="groupheader">Member Data Documentation</h2>
@@ -366,6 +380,8 @@ Private Attributes</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
+
+<p>The Vulkan render pass with a unique handle. </p>
 
 </div>
 </div>

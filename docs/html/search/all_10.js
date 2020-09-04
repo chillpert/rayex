@@ -23,7 +23,7 @@ var searchData=
   ['stdafx_2ehpp_451',['stdafx.hpp',['../stdafx_8hpp.html',1,'']]],
   ['submitframe_452',['submitFrame',['../classrx_1_1_api.html#a97dbaaed072413266cb7ba50c4132bbe',1,'rx::Api']]],
   ['submittoqueue_453',['submitToQueue',['../classrx_1_1_command_buffer.html#a31fe2373d5dd2af4c9b087cc0a6cfd9e',1,'rx::CommandBuffer']]],
-  ['surface_454',['Surface',['../classrx_1_1_surface.html',1,'rx::Surface'],['../classrx_1_1_surface.html#ad86d611078859429baa02b61fa8b80e5',1,'rx::Surface::Surface()'],['../classrx_1_1_surface.html#acd2225f3afbbe22dee2b27b6367efb9e',1,'rx::Surface::Surface(vk::Format format, vk::ColorSpaceKHR colorSpace, vk::PresentModeKHR presentMode, bool initialize=true)']]],
+  ['surface_454',['Surface',['../classrx_1_1_surface.html',1,'rx::Surface'],['../classrx_1_1_surface.html#affa337798c1890c91b253af4f69490d3',1,'rx::Surface::Surface()=default'],['../classrx_1_1_surface.html#acd2225f3afbbe22dee2b27b6367efb9e',1,'rx::Surface::Surface(vk::Format format, vk::ColorSpaceKHR colorSpace, vk::PresentModeKHR presentMode, bool initialize=true)']]],
   ['surface_2ecpp_455',['Surface.cpp',['../_surface_8cpp.html',1,'']]],
   ['surface_2ehpp_456',['Surface.hpp',['../_surface_8hpp.html',1,'']]],
   ['swapchain_457',['Swapchain',['../classrx_1_1_swapchain.html',1,'rx::Swapchain'],['../classrx_1_1_swapchain.html#a7c63bb007e1f5a8cb3b80d793c015850',1,'rx::Swapchain::Swapchain()=default'],['../classrx_1_1_swapchain.html#ab12cbb10f76e2004d45f7f805b3eb73e',1,'rx::Swapchain::Swapchain(Surface *surface, vk::RenderPass renderPass, bool initialize=true)']]],

@@ -95,5 +95,39 @@ var group___a_p_i =
       [ "init", "classrx_1_1_pipeline.html#a6a40c06d1db5b5e7622a8032805b2fd5", null ],
       [ "m_layout", "classrx_1_1_pipeline.html#aab80bdfb1741bed096a957918a241503", null ],
       [ "m_pipeline", "classrx_1_1_pipeline.html#a27e97d5e69f788214708f2d6f2cab849", null ]
+    ] ],
+    [ "Queues", "classrx_1_1_queues.html", [
+      [ "hasDedicatedTransferQueueFamily", "classrx_1_1_queues.html#aa0e1ad87d64b7edadf67af40f98d30ce", null ],
+      [ "init", "classrx_1_1_queues.html#ab003c434f6c993f2381b6b0c9dd76003", null ],
+      [ "isComplete", "classrx_1_1_queues.html#a6de73934bd1ec9973de8caddfe897077", null ],
+      [ "retrieveHandles", "classrx_1_1_queues.html#a3262a78b46dd3d20f720c256beee4c68", null ],
+      [ "m_graphicsFamilyIndex", "classrx_1_1_queues.html#abb28e6f7adf086fe84182f052cfde607", null ],
+      [ "m_transferFamilyIndex", "classrx_1_1_queues.html#a0103aff3f4a7d50c003d5fdf3e5f6f13", null ]
+    ] ],
+    [ "RenderPass", "classrx_1_1_render_pass.html", [
+      [ "RenderPass", "classrx_1_1_render_pass.html#ae57da1d57e10f8e1499be97aa40f3cbb", null ],
+      [ "RenderPass", "classrx_1_1_render_pass.html#acec123f5c67d64cfec8e0aab9bfec87e", null ],
+      [ "begin", "classrx_1_1_render_pass.html#a18f41ca4a22576f315781ef247462bde", null ],
+      [ "end", "classrx_1_1_render_pass.html#a0766e5869b4feafe8347b0f5ede91c19", null ],
+      [ "get", "classrx_1_1_render_pass.html#a6ddf5276429df287eb886e11133e7d32", null ],
+      [ "init", "classrx_1_1_render_pass.html#ac08ed715e8dbc8bb7ef5d0b108b2e93c", null ],
+      [ "m_renderPass", "classrx_1_1_render_pass.html#a37c34c9f4cd1ca1a92d8566be1648b97", null ]
+    ] ],
+    [ "Surface", "classrx_1_1_surface.html", [
+      [ "Surface", "classrx_1_1_surface.html#affa337798c1890c91b253af4f69490d3", null ],
+      [ "Surface", "classrx_1_1_surface.html#acd2225f3afbbe22dee2b27b6367efb9e", null ],
+      [ "~Surface", "classrx_1_1_surface.html#aee862bb3e7ca8bac54d1c3e042bc09e4", null ],
+      [ "checkSettingSupport", "classrx_1_1_surface.html#a484056000f32d20351f88b9641aa5989", null ],
+      [ "destroy", "classrx_1_1_surface.html#a65af46388e67eab3c77bc8cd031f6cfd", null ],
+      [ "getCapabilities", "classrx_1_1_surface.html#a31f2bf06d6901c5dade699be5d687764", null ],
+      [ "getColorSpace", "classrx_1_1_surface.html#a7e5228e635dd842094fe5be7559bd5be", null ],
+      [ "getFormat", "classrx_1_1_surface.html#aa43569014a536a35d9b356f18e1cf61e", null ],
+      [ "getPresentMode", "classrx_1_1_surface.html#a7366a6bee8a6783490edcf49d6402182", null ],
+      [ "init", "classrx_1_1_surface.html#a76b3c2a398b71c3455eea9f82a60ce75", null ],
+      [ "m_capabilities", "classrx_1_1_surface.html#a9153f53295c62e9ee5e3519e1a0d84b8", null ],
+      [ "m_colorSpace", "classrx_1_1_surface.html#a6dc126894ee95f9b79ac81c35aaf243f", null ],
+      [ "m_format", "classrx_1_1_surface.html#aea11a1847efdd9d3037ee61af08c9019", null ],
+      [ "m_presentMode", "classrx_1_1_surface.html#ac603398e5dc91c35b9aa555c9f1d8e60", null ],
+      [ "m_surface", "classrx_1_1_surface.html#aece5ef0f396cb484a5c0f3299adef10a", null ]
     ] ]
 ];

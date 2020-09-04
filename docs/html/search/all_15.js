@@ -11,9 +11,8 @@ var searchData=
   ['_7emodel_526',['~Model',['../classrx_1_1_model.html#affc482a714d404a093f16f84d0c41294',1,'rx::Model']]],
   ['_7enode_527',['~Node',['../classrx_1_1_node.html#a11793f57afaf9c34a42ac6efc5a40049',1,'rx::Node']]],
   ['_7eraytracingbuilder_528',['~RayTracingBuilder',['../classrx_1_1_ray_tracing_builder.html#a90966fa6fb5dea2a38a2f79b80aaac4e',1,'rx::RayTracingBuilder']]],
-  ['_7erenderpass_529',['~RenderPass',['../classrx_1_1_render_pass.html#a447188ee4e09d5529086abb2d8e07f36',1,'rx::RenderPass']]],
-  ['_7esurface_530',['~Surface',['../classrx_1_1_surface.html#aee862bb3e7ca8bac54d1c3e042bc09e4',1,'rx::Surface']]],
-  ['_7etime_531',['~Time',['../classrx_1_1_time.html#a69e9c1b9be56a332bddc7b3cbfdf2b56',1,'rx::Time']]],
-  ['_7etransformnode_532',['~TransformNode',['../classrx_1_1_transform_node.html#a8930dc916df0f32e6682f2ba4b1ed621',1,'rx::TransformNode']]],
-  ['_7ewindowbase_533',['~WindowBase',['../classrx_1_1_window_base.html#ab2bac026a58aa4fdf3b809bfbe364014',1,'rx::WindowBase']]]
+  ['_7esurface_529',['~Surface',['../classrx_1_1_surface.html#aee862bb3e7ca8bac54d1c3e042bc09e4',1,'rx::Surface']]],
+  ['_7etime_530',['~Time',['../classrx_1_1_time.html#a69e9c1b9be56a332bddc7b3cbfdf2b56',1,'rx::Time']]],
+  ['_7etransformnode_531',['~TransformNode',['../classrx_1_1_transform_node.html#a8930dc916df0f32e6682f2ba4b1ed621',1,'rx::TransformNode']]],
+  ['_7ewindowbase_532',['~WindowBase',['../classrx_1_1_window_base.html#ab2bac026a58aa4fdf3b809bfbe364014',1,'rx::WindowBase']]]
 ];

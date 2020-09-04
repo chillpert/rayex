@@ -33,7 +33,6 @@ namespace rx
   };
 
   /// @cond INTERNAL
-  // Will be called if a the validation layer was triggered.
   VKAPI_ATTR VkBool32 VKAPI_CALL debugMessengerCallback( VkDebugUtilsMessageSeverityFlagBitsEXT messageSeverity,
                                                          VkDebugUtilsMessageTypeFlagsEXT messageType,
                                                          const VkDebugUtilsMessengerCallbackDataEXT* callbackData,

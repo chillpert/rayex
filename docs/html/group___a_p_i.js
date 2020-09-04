@@ -1,5 +1,8 @@
 var group___a_p_i =
 [
+    [ "Destructor", "namespacevk_1_1_destructor.html", null ],
+    [ "Helper", "namespacevk_1_1_helper.html", null ],
+    [ "Initializer", "namespacevk_1_1_initializer.html", null ],
     [ "Api", "classrx_1_1_api.html", [
       [ "Api", "classrx_1_1_api.html#a7bad2b28bb07e9d1702b7b38b5ab1b96", null ],
       [ "Api", "classrx_1_1_api.html#ac6dbd699b06b0a9cfc7ccdf91a98d544", null ],

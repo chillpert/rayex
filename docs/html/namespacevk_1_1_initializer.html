@@ -96,64 +96,93 @@ $(document).ready(function(){initNavTree('namespacevk_1_1_initializer.html','');
   <div class="summary">
 <a href="#func-members">Functions</a>  </div>
   <div class="headertitle">
-<div class="title">vk::Initializer Namespace Reference</div>  </div>
+<div class="title">vk::Initializer Namespace Reference<div class="ingroups"><a class="el" href="group___a_p_i.html">Vulkan</a></div></div>  </div>
 </div><!--header-->
 <div class="contents">
+
+<p>A collection of functions to initialize or allocate Vulkan resources.  
+<a href="namespacevk_1_1_initializer.html#details">More...</a></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
 Functions</h2></td></tr>
-<tr class="memitem:a5c41b4c6ef81ecf1f45fdb226048a318"><td class="memItemLeft" align="right" valign="top">UniqueFence&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacevk_1_1_initializer.html#a5c41b4c6ef81ecf1f45fdb226048a318">createFenceUnique</a> (FenceCreateFlags flags)</td></tr>
-<tr class="separator:a5c41b4c6ef81ecf1f45fdb226048a318"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a75e39e91b0bee720788508f1ceda0f25"><td class="memItemLeft" align="right" valign="top">Fence&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacevk_1_1_initializer.html#a75e39e91b0bee720788508f1ceda0f25">createFence</a> (FenceCreateFlags flags)</td></tr>
-<tr class="separator:a75e39e91b0bee720788508f1ceda0f25"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a553b320a0bd8df5a53b5cde1ebe632ab"><td class="memItemLeft" align="right" valign="top">UniqueSemaphore&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacevk_1_1_initializer.html#a553b320a0bd8df5a53b5cde1ebe632ab">createSemaphoreUnique</a> (SemaphoreCreateFlags flags)</td></tr>
-<tr class="separator:a553b320a0bd8df5a53b5cde1ebe632ab"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:afc36459f8f5bc3b231aae43d8a89ceb3"><td class="memItemLeft" align="right" valign="top">Semaphore&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacevk_1_1_initializer.html#afc36459f8f5bc3b231aae43d8a89ceb3">createSemaphore</a> (SemaphoreCreateFlags flags)</td></tr>
-<tr class="separator:afc36459f8f5bc3b231aae43d8a89ceb3"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a4a0507cd0310e5c91a8f22342c82a5bd"><td class="memItemLeft" align="right" valign="top">UniqueCommandPool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacevk_1_1_initializer.html#a4a0507cd0310e5c91a8f22342c82a5bd">createCommandPoolUnique</a> (uint32_t queueFamilyIndex, CommandPoolCreateFlags flags)</td></tr>
-<tr class="separator:a4a0507cd0310e5c91a8f22342c82a5bd"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ad180894bda2fb11ef4396cabbbe95f42"><td class="memItemLeft" align="right" valign="top">CommandPool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacevk_1_1_initializer.html#ad180894bda2fb11ef4396cabbbe95f42">createCommandPool</a> (uint32_t queueFamilyIndex, CommandPoolCreateFlags flags)</td></tr>
-<tr class="separator:ad180894bda2fb11ef4396cabbbe95f42"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a96c7f4f958b01d7cad46d2c5ebaa94f2"><td class="memItemLeft" align="right" valign="top">UniqueDescriptorPool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacevk_1_1_initializer.html#a96c7f4f958b01d7cad46d2c5ebaa94f2">createDescriptorPoolUnique</a> (const std::vector&lt; DescriptorPoolSize &gt; &amp;poolSizes, uint32_t maxSets, DescriptorPoolCreateFlags flags)</td></tr>
-<tr class="separator:a96c7f4f958b01d7cad46d2c5ebaa94f2"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:acd5a201a5576ff74bd68adfb6856d9d6"><td class="memItemLeft" align="right" valign="top">DescriptorPool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacevk_1_1_initializer.html#acd5a201a5576ff74bd68adfb6856d9d6">createDescriptorPool</a> (const std::vector&lt; DescriptorPoolSize &gt; &amp;poolSizes, uint32_t maxSets, DescriptorPoolCreateFlags flags)</td></tr>
-<tr class="separator:acd5a201a5576ff74bd68adfb6856d9d6"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aaf971d37968849d18a9c8bc51b7214d9"><td class="memItemLeft" align="right" valign="top">UniqueDeviceMemory&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacevk_1_1_initializer.html#aaf971d37968849d18a9c8bc51b7214d9">allocateMemoryUnique</a> (Image image, MemoryPropertyFlags propertyFlags, void *pNext)</td></tr>
-<tr class="separator:aaf971d37968849d18a9c8bc51b7214d9"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ac45c9a57ebad6f7ad93e067ed9522482"><td class="memItemLeft" align="right" valign="top">DeviceMemory&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacevk_1_1_initializer.html#ac45c9a57ebad6f7ad93e067ed9522482">allocateMemory</a> (Image image, MemoryPropertyFlags propertyFlags, void *pNext)</td></tr>
-<tr class="separator:ac45c9a57ebad6f7ad93e067ed9522482"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a076de0b6ac74c2db0e6a7521f812ea31"><td class="memItemLeft" align="right" valign="top">UniqueDeviceMemory&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacevk_1_1_initializer.html#a076de0b6ac74c2db0e6a7521f812ea31">allocateMemoryUnique</a> (Buffer buffer, MemoryPropertyFlags propertyFlags, void *pNext)</td></tr>
-<tr class="separator:a076de0b6ac74c2db0e6a7521f812ea31"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a831c35ddd33f432d1c570eb552489388"><td class="memItemLeft" align="right" valign="top">UniqueFence&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacevk_1_1_initializer.html#a831c35ddd33f432d1c570eb552489388">createFenceUnique</a> (FenceCreateFlags flags=FenceCreateFlagBits::eSignaled)</td></tr>
+<tr class="memdesc:a831c35ddd33f432d1c570eb552489388"><td class="mdescLeft">&#160;</td><td class="mdescRight">Creates a fence with an unique handle.  <a href="namespacevk_1_1_initializer.html#a831c35ddd33f432d1c570eb552489388">More...</a><br /></td></tr>
+<tr class="separator:a831c35ddd33f432d1c570eb552489388"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2637775c781cc04b2db60b1c2f13fe39"><td class="memItemLeft" align="right" valign="top">Fence&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacevk_1_1_initializer.html#a2637775c781cc04b2db60b1c2f13fe39">createFence</a> (FenceCreateFlags flags=FenceCreateFlagBits::eSignaled)</td></tr>
+<tr class="memdesc:a2637775c781cc04b2db60b1c2f13fe39"><td class="mdescLeft">&#160;</td><td class="mdescRight">Creates a fence.  <a href="namespacevk_1_1_initializer.html#a2637775c781cc04b2db60b1c2f13fe39">More...</a><br /></td></tr>
+<tr class="separator:a2637775c781cc04b2db60b1c2f13fe39"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af2bb7cbf5cf521b1666be52d901b474b"><td class="memItemLeft" align="right" valign="top">UniqueSemaphore&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacevk_1_1_initializer.html#af2bb7cbf5cf521b1666be52d901b474b">createSemaphoreUnique</a> (SemaphoreCreateFlags flags={ })</td></tr>
+<tr class="memdesc:af2bb7cbf5cf521b1666be52d901b474b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Creates a semaphore with an unique handle.  <a href="namespacevk_1_1_initializer.html#af2bb7cbf5cf521b1666be52d901b474b">More...</a><br /></td></tr>
+<tr class="separator:af2bb7cbf5cf521b1666be52d901b474b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad66286cbc5267fb62d0f030f93b89c6f"><td class="memItemLeft" align="right" valign="top">Semaphore&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacevk_1_1_initializer.html#ad66286cbc5267fb62d0f030f93b89c6f">createSemaphore</a> (SemaphoreCreateFlags flags={ })</td></tr>
+<tr class="memdesc:ad66286cbc5267fb62d0f030f93b89c6f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Creates a semaphore.  <a href="namespacevk_1_1_initializer.html#ad66286cbc5267fb62d0f030f93b89c6f">More...</a><br /></td></tr>
+<tr class="separator:ad66286cbc5267fb62d0f030f93b89c6f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad0ad525567c618dd911babedf59a8614"><td class="memItemLeft" align="right" valign="top">UniqueCommandPool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacevk_1_1_initializer.html#ad0ad525567c618dd911babedf59a8614">createCommandPoolUnique</a> (uint32_t queueFamilyIndex, CommandPoolCreateFlags flags={ })</td></tr>
+<tr class="memdesc:ad0ad525567c618dd911babedf59a8614"><td class="mdescLeft">&#160;</td><td class="mdescRight">Creates a command pool with an unique handle.  <a href="namespacevk_1_1_initializer.html#ad0ad525567c618dd911babedf59a8614">More...</a><br /></td></tr>
+<tr class="separator:ad0ad525567c618dd911babedf59a8614"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0eba2f025e9988c8d8facd32656135c3"><td class="memItemLeft" align="right" valign="top">CommandPool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacevk_1_1_initializer.html#a0eba2f025e9988c8d8facd32656135c3">createCommandPool</a> (uint32_t queueFamilyIndex, CommandPoolCreateFlags flags={ })</td></tr>
+<tr class="memdesc:a0eba2f025e9988c8d8facd32656135c3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Creates a command pool.  <a href="namespacevk_1_1_initializer.html#a0eba2f025e9988c8d8facd32656135c3">More...</a><br /></td></tr>
+<tr class="separator:a0eba2f025e9988c8d8facd32656135c3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab62b334f4e5719bc49221e4dfea3040f"><td class="memItemLeft" align="right" valign="top">UniqueDescriptorPool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacevk_1_1_initializer.html#ab62b334f4e5719bc49221e4dfea3040f">createDescriptorPoolUnique</a> (const std::vector&lt; DescriptorPoolSize &gt; &amp;poolSizes, uint32_t maxSets=1, DescriptorPoolCreateFlags flags={ })</td></tr>
+<tr class="memdesc:ab62b334f4e5719bc49221e4dfea3040f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Creates a descriptor pool with an unique handle.  <a href="namespacevk_1_1_initializer.html#ab62b334f4e5719bc49221e4dfea3040f">More...</a><br /></td></tr>
+<tr class="separator:ab62b334f4e5719bc49221e4dfea3040f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad7ca7d52a00c5a0ebd851e83f4574ffb"><td class="memItemLeft" align="right" valign="top">DescriptorPool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacevk_1_1_initializer.html#ad7ca7d52a00c5a0ebd851e83f4574ffb">createDescriptorPool</a> (const std::vector&lt; DescriptorPoolSize &gt; &amp;poolSizes, uint32_t maxSets, DescriptorPoolCreateFlags flags={ })</td></tr>
+<tr class="memdesc:ad7ca7d52a00c5a0ebd851e83f4574ffb"><td class="mdescLeft">&#160;</td><td class="mdescRight">Creates a descriptor pool.  <a href="namespacevk_1_1_initializer.html#ad7ca7d52a00c5a0ebd851e83f4574ffb">More...</a><br /></td></tr>
+<tr class="separator:ad7ca7d52a00c5a0ebd851e83f4574ffb"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6ab135b57e647792928d71ec6f8fdb60"><td class="memItemLeft" align="right" valign="top">UniqueDeviceMemory&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacevk_1_1_initializer.html#a6ab135b57e647792928d71ec6f8fdb60">allocateMemoryUnique</a> (Image image, MemoryPropertyFlags propertyFlags=MemoryPropertyFlagBits::eDeviceLocal, void *pNext=nullptr)</td></tr>
+<tr class="memdesc:a6ab135b57e647792928d71ec6f8fdb60"><td class="mdescLeft">&#160;</td><td class="mdescRight">Allocates and binds unique memory for an image.  <a href="namespacevk_1_1_initializer.html#a6ab135b57e647792928d71ec6f8fdb60">More...</a><br /></td></tr>
+<tr class="separator:a6ab135b57e647792928d71ec6f8fdb60"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad5a5f9031f0620ac6ff34e61b1c23929"><td class="memItemLeft" align="right" valign="top">DeviceMemory&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacevk_1_1_initializer.html#ad5a5f9031f0620ac6ff34e61b1c23929">allocateMemory</a> (Image image, MemoryPropertyFlags propertyFlags=MemoryPropertyFlagBits::eDeviceLocal, void *pNext=nullptr)</td></tr>
+<tr class="memdesc:ad5a5f9031f0620ac6ff34e61b1c23929"><td class="mdescLeft">&#160;</td><td class="mdescRight">Allocates and binds memory for an image.  <a href="namespacevk_1_1_initializer.html#ad5a5f9031f0620ac6ff34e61b1c23929">More...</a><br /></td></tr>
+<tr class="separator:ad5a5f9031f0620ac6ff34e61b1c23929"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aeb31f4f06d1584c6965003d139954cf4"><td class="memItemLeft" align="right" valign="top">UniqueDeviceMemory&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacevk_1_1_initializer.html#aeb31f4f06d1584c6965003d139954cf4">allocateMemoryUnique</a> (Buffer buffer, MemoryPropertyFlags propertyFlags=MemoryPropertyFlagBits::eDeviceLocal, void *pNext=nullptr)</td></tr>
+<tr class="memdesc:aeb31f4f06d1584c6965003d139954cf4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Allocates and binds unique memory for a buffer.  <a href="namespacevk_1_1_initializer.html#aeb31f4f06d1584c6965003d139954cf4">More...</a><br /></td></tr>
+<tr class="separator:aeb31f4f06d1584c6965003d139954cf4"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:adaf1f319c431560033d2007d80f318ab"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacevk_1_1_initializer.html#adaf1f319c431560033d2007d80f318ab">allocateMemory</a> (<a class="el" href="structrx_1_1_acceleration_structure.html">rx::AccelerationStructure</a> &amp;as)</td></tr>
+<tr class="memdesc:adaf1f319c431560033d2007d80f318ab"><td class="mdescLeft">&#160;</td><td class="mdescRight">Allocates and binds unique memory for an acceleration structure object.  <a href="namespacevk_1_1_initializer.html#adaf1f319c431560033d2007d80f318ab">More...</a><br /></td></tr>
 <tr class="separator:adaf1f319c431560033d2007d80f318ab"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a290eb6b8bc181fdc84971e44a95dee71"><td class="memItemLeft" align="right" valign="top">DeviceMemory&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacevk_1_1_initializer.html#a290eb6b8bc181fdc84971e44a95dee71">allocateMemory</a> (Buffer buffer, MemoryPropertyFlags propertyFlags, void *pNext)</td></tr>
-<tr class="separator:a290eb6b8bc181fdc84971e44a95dee71"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a962e46155dc58c46245cc58a65ececbf"><td class="memItemLeft" align="right" valign="top">UniqueImageView&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacevk_1_1_initializer.html#a962e46155dc58c46245cc58a65ececbf">createImageViewUnique</a> (Image image, Format format, ImageAspectFlags aspectFlags)</td></tr>
-<tr class="separator:a962e46155dc58c46245cc58a65ececbf"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a68e7faff8839638ac038c12d728ce6d4"><td class="memItemLeft" align="right" valign="top">ImageView&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacevk_1_1_initializer.html#a68e7faff8839638ac038c12d728ce6d4">createImageView</a> (Image image, Format format, ImageAspectFlags aspectFlags)</td></tr>
-<tr class="separator:a68e7faff8839638ac038c12d728ce6d4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3dd68a847e37f715da267a235090f069"><td class="memItemLeft" align="right" valign="top">DeviceMemory&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacevk_1_1_initializer.html#a3dd68a847e37f715da267a235090f069">allocateMemory</a> (Buffer buffer, MemoryPropertyFlags propertyFlags=MemoryPropertyFlagBits::eDeviceLocal, void *pNext=nullptr)</td></tr>
+<tr class="memdesc:a3dd68a847e37f715da267a235090f069"><td class="mdescLeft">&#160;</td><td class="mdescRight">Allocates and binds memory for a buffer.  <a href="namespacevk_1_1_initializer.html#a3dd68a847e37f715da267a235090f069">More...</a><br /></td></tr>
+<tr class="separator:a3dd68a847e37f715da267a235090f069"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a150790e8897ce8290c0cc0b266c499b2"><td class="memItemLeft" align="right" valign="top">UniqueImageView&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacevk_1_1_initializer.html#a150790e8897ce8290c0cc0b266c499b2">createImageViewUnique</a> (Image image, Format format, ImageAspectFlags aspectFlags=ImageAspectFlagBits::eColor)</td></tr>
+<tr class="memdesc:a150790e8897ce8290c0cc0b266c499b2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Create an image view with an unique handle.  <a href="namespacevk_1_1_initializer.html#a150790e8897ce8290c0cc0b266c499b2">More...</a><br /></td></tr>
+<tr class="separator:a150790e8897ce8290c0cc0b266c499b2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a082d1044a30a1b654f5153a3767bd24b"><td class="memItemLeft" align="right" valign="top">ImageView&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacevk_1_1_initializer.html#a082d1044a30a1b654f5153a3767bd24b">createImageView</a> (Image image, Format format, ImageAspectFlags aspectFlags=ImageAspectFlagBits::eColor)</td></tr>
+<tr class="memdesc:a082d1044a30a1b654f5153a3767bd24b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Create an image view.  <a href="namespacevk_1_1_initializer.html#a082d1044a30a1b654f5153a3767bd24b">More...</a><br /></td></tr>
+<tr class="separator:a082d1044a30a1b654f5153a3767bd24b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:af7fafdadf4b47aff7936fce8782d1311"><td class="memItemLeft" align="right" valign="top">UniqueSampler&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacevk_1_1_initializer.html#af7fafdadf4b47aff7936fce8782d1311">createSamplerUnique</a> (const SamplerCreateInfo &amp;createInfo)</td></tr>
+<tr class="memdesc:af7fafdadf4b47aff7936fce8782d1311"><td class="mdescLeft">&#160;</td><td class="mdescRight">Create a sampler with a unique handle.  <a href="namespacevk_1_1_initializer.html#af7fafdadf4b47aff7936fce8782d1311">More...</a><br /></td></tr>
 <tr class="separator:af7fafdadf4b47aff7936fce8782d1311"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a2e3e8160b81f2f24e4754906355f1ee2"><td class="memItemLeft" align="right" valign="top">Sampler&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacevk_1_1_initializer.html#a2e3e8160b81f2f24e4754906355f1ee2">createSampler</a> (const SamplerCreateInfo &amp;createInfo)</td></tr>
+<tr class="memdesc:a2e3e8160b81f2f24e4754906355f1ee2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Create a sampler.  <a href="namespacevk_1_1_initializer.html#a2e3e8160b81f2f24e4754906355f1ee2">More...</a><br /></td></tr>
 <tr class="separator:a2e3e8160b81f2f24e4754906355f1ee2"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a27157ac87ba69ecc219184443b7279f3"><td class="memItemLeft" align="right" valign="top">UniqueFramebuffer&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacevk_1_1_initializer.html#a27157ac87ba69ecc219184443b7279f3">createFramebufferUnique</a> (const std::vector&lt; ImageView &gt; &amp;attachments, RenderPass renderPass, const Extent2D &amp;extent)</td></tr>
+<tr class="memdesc:a27157ac87ba69ecc219184443b7279f3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Create a framebuffer with an unique handle.  <a href="namespacevk_1_1_initializer.html#a27157ac87ba69ecc219184443b7279f3">More...</a><br /></td></tr>
 <tr class="separator:a27157ac87ba69ecc219184443b7279f3"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:af86e353fda1ebfcdfd3e60fd1891a203"><td class="memItemLeft" align="right" valign="top">Framebuffer&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacevk_1_1_initializer.html#af86e353fda1ebfcdfd3e60fd1891a203">createFramebuffer</a> (const std::vector&lt; ImageView &gt; &amp;attachments, RenderPass renderPass, const Extent2D &amp;extent)</td></tr>
+<tr class="memdesc:af86e353fda1ebfcdfd3e60fd1891a203"><td class="mdescLeft">&#160;</td><td class="mdescRight">Create a framebuffer.  <a href="namespacevk_1_1_initializer.html#af86e353fda1ebfcdfd3e60fd1891a203">More...</a><br /></td></tr>
 <tr class="separator:af86e353fda1ebfcdfd3e60fd1891a203"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ae1aa45605bbbeff34170dda70f380363"><td class="memItemLeft" align="right" valign="top">UniqueQueryPool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacevk_1_1_initializer.html#ae1aa45605bbbeff34170dda70f380363">createQueryPoolUnique</a> (uint32_t count, QueryType type)</td></tr>
+<tr class="memdesc:ae1aa45605bbbeff34170dda70f380363"><td class="mdescLeft">&#160;</td><td class="mdescRight">Create a query pool with an unique handle.  <a href="namespacevk_1_1_initializer.html#ae1aa45605bbbeff34170dda70f380363">More...</a><br /></td></tr>
 <tr class="separator:ae1aa45605bbbeff34170dda70f380363"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a6e9de22a304ba6c271e7063b765ea684"><td class="memItemLeft" align="right" valign="top">QueryPool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacevk_1_1_initializer.html#a6e9de22a304ba6c271e7063b765ea684">createQueryPool</a> (uint32_t count, QueryType type)</td></tr>
+<tr class="memdesc:a6e9de22a304ba6c271e7063b765ea684"><td class="mdescLeft">&#160;</td><td class="mdescRight">Create a query pool.  <a href="namespacevk_1_1_initializer.html#a6e9de22a304ba6c271e7063b765ea684">More...</a><br /></td></tr>
 <tr class="separator:a6e9de22a304ba6c271e7063b765ea684"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ade34b50ac5ead941b7d2b20c828864d2"><td class="memItemLeft" align="right" valign="top">UniqueShaderModule&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacevk_1_1_initializer.html#ade34b50ac5ead941b7d2b20c828864d2">createShaderModuleUnique</a> (const std::string &amp;path)</td></tr>
+<tr class="memdesc:ade34b50ac5ead941b7d2b20c828864d2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Parses a given shader and creates a shader module with an unique handle.  <a href="namespacevk_1_1_initializer.html#ade34b50ac5ead941b7d2b20c828864d2">More...</a><br /></td></tr>
 <tr class="separator:ade34b50ac5ead941b7d2b20c828864d2"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:acfa78e54318d113b7632d028f12c9f6f"><td class="memItemLeft" align="right" valign="top">ShaderModule&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacevk_1_1_initializer.html#acfa78e54318d113b7632d028f12c9f6f">createShaderModule</a> (const std::string &amp;path)</td></tr>
+<tr class="memdesc:acfa78e54318d113b7632d028f12c9f6f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Parses a given shader and creates a shader module.  <a href="namespacevk_1_1_initializer.html#acfa78e54318d113b7632d028f12c9f6f">More...</a><br /></td></tr>
 <tr class="separator:acfa78e54318d113b7632d028f12c9f6f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aeef3a8fde04c8d29eb1a6ecd4bb5fb87"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structrx_1_1_acceleration_structure.html">rx::AccelerationStructure</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacevk_1_1_initializer.html#aeef3a8fde04c8d29eb1a6ecd4bb5fb87">createAccelerationStructure</a> (const vk::AccelerationStructureCreateInfoKHR &amp;asCreateInfo)</td></tr>
+<tr class="memdesc:aeef3a8fde04c8d29eb1a6ecd4bb5fb87"><td class="mdescLeft">&#160;</td><td class="mdescRight">Creates the acceleration structure and allocates and binds memory for it.  <a href="namespacevk_1_1_initializer.html#aeef3a8fde04c8d29eb1a6ecd4bb5fb87">More...</a><br /></td></tr>
 <tr class="separator:aeef3a8fde04c8d29eb1a6ecd4bb5fb87"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
-<h2 class="groupheader">Function Documentation</h2>
-<a id="a290eb6b8bc181fdc84971e44a95dee71"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a290eb6b8bc181fdc84971e44a95dee71">&#9670;&nbsp;</a></span>allocateMemory() <span class="overload">[1/3]</span></h2>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>A collection of functions to initialize or allocate Vulkan resources. </p>
+</div><h2 class="groupheader">Function Documentation</h2>
+<a id="a3dd68a847e37f715da267a235090f069"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3dd68a847e37f715da267a235090f069">&#9670;&nbsp;</a></span>allocateMemory() <span class="overload">[1/3]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -168,13 +197,13 @@ Functions</h2></td></tr>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">MemoryPropertyFlags&#160;</td>
-          <td class="paramname"><em>propertyFlags</em>, </td>
+          <td class="paramname"><em>propertyFlags</em> = <code>MemoryPropertyFlagBits::eDeviceLocal</code>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">void *&#160;</td>
-          <td class="paramname"><em>pNext</em>&#160;</td>
+          <td class="paramname"><em>pNext</em> = <code>nullptr</code>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -184,10 +213,20 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
+<p>Allocates and binds memory for a buffer. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">image</td><td>The image to allocate memory for. </td></tr>
+    <tr><td class="paramname">pNext</td><td>The pNext chain of the Vulkan allocation info. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>Returns the memory. </dd></dl>
+
 </div>
 </div>
-<a id="ac45c9a57ebad6f7ad93e067ed9522482"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ac45c9a57ebad6f7ad93e067ed9522482">&#9670;&nbsp;</a></span>allocateMemory() <span class="overload">[2/3]</span></h2>
+<a id="ad5a5f9031f0620ac6ff34e61b1c23929"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad5a5f9031f0620ac6ff34e61b1c23929">&#9670;&nbsp;</a></span>allocateMemory() <span class="overload">[2/3]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -202,13 +241,13 @@ Functions</h2></td></tr>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">MemoryPropertyFlags&#160;</td>
-          <td class="paramname"><em>propertyFlags</em>, </td>
+          <td class="paramname"><em>propertyFlags</em> = <code>MemoryPropertyFlagBits::eDeviceLocal</code>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">void *&#160;</td>
-          <td class="paramname"><em>pNext</em>&#160;</td>
+          <td class="paramname"><em>pNext</em> = <code>nullptr</code>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -217,6 +256,16 @@ Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>Allocates and binds memory for an image. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">image</td><td>The image to allocate memory for. </td></tr>
+    <tr><td class="paramname">pNext</td><td>The pNext chain of the Vulkan allocation info. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>Returns the memory. </dd></dl>
 
 </div>
 </div>
@@ -236,10 +285,18 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
+<p>Allocates and binds unique memory for an acceleration structure object. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">as</td><td>The <a class="el" href="structrx_1_1_acceleration_structure.html">rx::AccelerationStructure</a> object the memory will be allocated for. </td></tr>
+  </table>
+  </dd>
+</dl>
+
 </div>
 </div>
-<a id="a076de0b6ac74c2db0e6a7521f812ea31"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a076de0b6ac74c2db0e6a7521f812ea31">&#9670;&nbsp;</a></span>allocateMemoryUnique() <span class="overload">[1/2]</span></h2>
+<a id="aeb31f4f06d1584c6965003d139954cf4"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aeb31f4f06d1584c6965003d139954cf4">&#9670;&nbsp;</a></span>allocateMemoryUnique() <span class="overload">[1/2]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -254,13 +311,13 @@ Functions</h2></td></tr>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">MemoryPropertyFlags&#160;</td>
-          <td class="paramname"><em>propertyFlags</em>, </td>
+          <td class="paramname"><em>propertyFlags</em> = <code>MemoryPropertyFlagBits::eDeviceLocal</code>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">void *&#160;</td>
-          <td class="paramname"><em>pNext</em>&#160;</td>
+          <td class="paramname"><em>pNext</em> = <code>nullptr</code>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -270,10 +327,20 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
+<p>Allocates and binds unique memory for a buffer. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">image</td><td>The image to allocate memory for. </td></tr>
+    <tr><td class="paramname">pNext</td><td>The pNext chain of the Vulkan allocation info. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>Returns the memory. </dd></dl>
+
 </div>
 </div>
-<a id="aaf971d37968849d18a9c8bc51b7214d9"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aaf971d37968849d18a9c8bc51b7214d9">&#9670;&nbsp;</a></span>allocateMemoryUnique() <span class="overload">[2/2]</span></h2>
+<a id="a6ab135b57e647792928d71ec6f8fdb60"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6ab135b57e647792928d71ec6f8fdb60">&#9670;&nbsp;</a></span>allocateMemoryUnique() <span class="overload">[2/2]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -288,13 +355,13 @@ Functions</h2></td></tr>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">MemoryPropertyFlags&#160;</td>
-          <td class="paramname"><em>propertyFlags</em>, </td>
+          <td class="paramname"><em>propertyFlags</em> = <code>MemoryPropertyFlagBits::eDeviceLocal</code>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">void *&#160;</td>
-          <td class="paramname"><em>pNext</em>&#160;</td>
+          <td class="paramname"><em>pNext</em> = <code>nullptr</code>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -303,6 +370,16 @@ Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>Allocates and binds unique memory for an image. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">image</td><td>The image to allocate memory for. </td></tr>
+    <tr><td class="paramname">pNext</td><td>The pNext chain of the Vulkan allocation info. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>Returns the memory. </dd></dl>
 
 </div>
 </div>
@@ -322,10 +399,19 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
+<p>Creates the acceleration structure and allocates and binds memory for it. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">asCreateInfo</td><td>The Vulkan create info for the acceleration structure. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>Returns an <a class="el" href="structrx_1_1_acceleration_structure.html">rx::AccelerationStructure</a> object that contains the AS itself as well as the memory for it. </dd></dl>
+
 </div>
 </div>
-<a id="ad180894bda2fb11ef4396cabbbe95f42"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ad180894bda2fb11ef4396cabbbe95f42">&#9670;&nbsp;</a></span>createCommandPool()</h2>
+<a id="a0eba2f025e9988c8d8facd32656135c3"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0eba2f025e9988c8d8facd32656135c3">&#9670;&nbsp;</a></span>createCommandPool()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -340,7 +426,7 @@ Functions</h2></td></tr>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">CommandPoolCreateFlags&#160;</td>
-          <td class="paramname"><em>flags</em>&#160;</td>
+          <td class="paramname"><em>flags</em> = <code>{&#160;}</code>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -350,10 +436,20 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
+<p>Creates a command pool. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">queueFamilyIndex</td><td>The queue family from which the command pool can submit to. </td></tr>
+    <tr><td class="paramname">flags</td><td>The flags used for creating the command pool. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>Returns the command pool. </dd></dl>
+
 </div>
 </div>
-<a id="a4a0507cd0310e5c91a8f22342c82a5bd"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a4a0507cd0310e5c91a8f22342c82a5bd">&#9670;&nbsp;</a></span>createCommandPoolUnique()</h2>
+<a id="ad0ad525567c618dd911babedf59a8614"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad0ad525567c618dd911babedf59a8614">&#9670;&nbsp;</a></span>createCommandPoolUnique()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -368,7 +464,7 @@ Functions</h2></td></tr>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">CommandPoolCreateFlags&#160;</td>
-          <td class="paramname"><em>flags</em>&#160;</td>
+          <td class="paramname"><em>flags</em> = <code>{&#160;}</code>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -378,10 +474,20 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
+<p>Creates a command pool with an unique handle. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">queueFamilyIndex</td><td>The queue family from which the command pool can submit to. </td></tr>
+    <tr><td class="paramname">flags</td><td>The flags used for creating the command pool. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>Returns the command pool. </dd></dl>
+
 </div>
 </div>
-<a id="acd5a201a5576ff74bd68adfb6856d9d6"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#acd5a201a5576ff74bd68adfb6856d9d6">&#9670;&nbsp;</a></span>createDescriptorPool()</h2>
+<a id="ad7ca7d52a00c5a0ebd851e83f4574ffb"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad7ca7d52a00c5a0ebd851e83f4574ffb">&#9670;&nbsp;</a></span>createDescriptorPool()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -402,7 +508,7 @@ Functions</h2></td></tr>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">DescriptorPoolCreateFlags&#160;</td>
-          <td class="paramname"><em>flags</em>&#160;</td>
+          <td class="paramname"><em>flags</em> = <code>{&#160;}</code>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -412,10 +518,22 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
+<p>Creates a descriptor pool. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">poolSizes</td><td>All descriptor types for descriptor sets that can be allocated from this descriptor pool. </td></tr>
+    <tr><td class="paramname">maxSets</td><td>The maximum amount of descriptor sets that can be allocated from this descriptor pool. </td></tr>
+    <tr><td class="paramname">flags</td><td>The flags used for creating the descriptor pool. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>Returns the descriptor pool. <br  />
+ </dd></dl>
+
 </div>
 </div>
-<a id="a96c7f4f958b01d7cad46d2c5ebaa94f2"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a96c7f4f958b01d7cad46d2c5ebaa94f2">&#9670;&nbsp;</a></span>createDescriptorPoolUnique()</h2>
+<a id="ab62b334f4e5719bc49221e4dfea3040f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab62b334f4e5719bc49221e4dfea3040f">&#9670;&nbsp;</a></span>createDescriptorPoolUnique()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -430,13 +548,13 @@ Functions</h2></td></tr>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">uint32_t&#160;</td>
-          <td class="paramname"><em>maxSets</em>, </td>
+          <td class="paramname"><em>maxSets</em> = <code>1</code>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">DescriptorPoolCreateFlags&#160;</td>
-          <td class="paramname"><em>flags</em>&#160;</td>
+          <td class="paramname"><em>flags</em> = <code>{&#160;}</code>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -446,10 +564,22 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
+<p>Creates a descriptor pool with an unique handle. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">poolSizes</td><td>All descriptor types for descriptor sets that can be allocated from this descriptor pool. </td></tr>
+    <tr><td class="paramname">maxSets</td><td>The maximum amount of descriptor sets that can be allocated from this descriptor pool. </td></tr>
+    <tr><td class="paramname">flags</td><td>The flags used for creating the descriptor pool. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>Returns the descriptor pool. <br  />
+ </dd></dl>
+
 </div>
 </div>
-<a id="a75e39e91b0bee720788508f1ceda0f25"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a75e39e91b0bee720788508f1ceda0f25">&#9670;&nbsp;</a></span>createFence()</h2>
+<a id="a2637775c781cc04b2db60b1c2f13fe39"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2637775c781cc04b2db60b1c2f13fe39">&#9670;&nbsp;</a></span>createFence()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -458,16 +588,25 @@ Functions</h2></td></tr>
           <td class="memname">Fence vk::Initializer::createFence </td>
           <td>(</td>
           <td class="paramtype">FenceCreateFlags&#160;</td>
-          <td class="paramname"><em>flags</em></td><td>)</td>
+          <td class="paramname"><em>flags</em> = <code>FenceCreateFlagBits::eSignaled</code></td><td>)</td>
           <td></td>
         </tr>
       </table>
 </div><div class="memdoc">
 
+<p>Creates a fence. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">flags</td><td>The flags used for creating the fence. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>Returns the fence. </dd></dl>
+
 </div>
 </div>
-<a id="a5c41b4c6ef81ecf1f45fdb226048a318"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a5c41b4c6ef81ecf1f45fdb226048a318">&#9670;&nbsp;</a></span>createFenceUnique()</h2>
+<a id="a831c35ddd33f432d1c570eb552489388"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a831c35ddd33f432d1c570eb552489388">&#9670;&nbsp;</a></span>createFenceUnique()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -476,11 +615,20 @@ Functions</h2></td></tr>
           <td class="memname">UniqueFence vk::Initializer::createFenceUnique </td>
           <td>(</td>
           <td class="paramtype">FenceCreateFlags&#160;</td>
-          <td class="paramname"><em>flags</em></td><td>)</td>
+          <td class="paramname"><em>flags</em> = <code>FenceCreateFlagBits::eSignaled</code></td><td>)</td>
           <td></td>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>Creates a fence with an unique handle. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">flags</td><td>The flags used for creating the fence. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>Returns the fence. </dd></dl>
 
 </div>
 </div>
@@ -516,6 +664,17 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
+<p>Create a framebuffer. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">attachments</td><td>All the image view attachments for the framebuffer. </td></tr>
+    <tr><td class="paramname">renderPass</td><td>The render pass for which the framebuffer will be used. </td></tr>
+    <tr><td class="paramname">extent</td><td>The extent of the framebuffer. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>Returns the framebuffer. </dd></dl>
+
 </div>
 </div>
 <a id="a27157ac87ba69ecc219184443b7279f3"></a>
@@ -550,10 +709,21 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
+<p>Create a framebuffer with an unique handle. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">attachments</td><td>All the image view attachments for the framebuffer. </td></tr>
+    <tr><td class="paramname">renderPass</td><td>The render pass for which the framebuffer will be used. </td></tr>
+    <tr><td class="paramname">extent</td><td>The extent of the framebuffer. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>Returns the framebuffer. </dd></dl>
+
 </div>
 </div>
-<a id="a68e7faff8839638ac038c12d728ce6d4"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a68e7faff8839638ac038c12d728ce6d4">&#9670;&nbsp;</a></span>createImageView()</h2>
+<a id="a082d1044a30a1b654f5153a3767bd24b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a082d1044a30a1b654f5153a3767bd24b">&#9670;&nbsp;</a></span>createImageView()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -574,7 +744,7 @@ Functions</h2></td></tr>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">ImageAspectFlags&#160;</td>
-          <td class="paramname"><em>aspectFlags</em>&#160;</td>
+          <td class="paramname"><em>aspectFlags</em> = <code>ImageAspectFlagBits::eColor</code>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -584,10 +754,20 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
+<p>Create an image view. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">image</td><td>The image to create an image view for. </td></tr>
+    <tr><td class="paramname">format</td><td>The target format of the image view. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>Returns the image view. </dd></dl>
+
 </div>
 </div>
-<a id="a962e46155dc58c46245cc58a65ececbf"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a962e46155dc58c46245cc58a65ececbf">&#9670;&nbsp;</a></span>createImageViewUnique()</h2>
+<a id="a150790e8897ce8290c0cc0b266c499b2"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a150790e8897ce8290c0cc0b266c499b2">&#9670;&nbsp;</a></span>createImageViewUnique()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -608,7 +788,7 @@ Functions</h2></td></tr>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">ImageAspectFlags&#160;</td>
-          <td class="paramname"><em>aspectFlags</em>&#160;</td>
+          <td class="paramname"><em>aspectFlags</em> = <code>ImageAspectFlagBits::eColor</code>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -617,6 +797,16 @@ Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>Create an image view with an unique handle. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">image</td><td>The image to create an image view for. </td></tr>
+    <tr><td class="paramname">format</td><td>The target format of the image view. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>Returns the image view. </dd></dl>
 
 </div>
 </div>
@@ -646,6 +836,15 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
+<p>Create a query pool. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">count</td><td>The number of queries managed by the pool. </td></tr>
+    <tr><td class="paramname">type</td><td>Specifies the type of queries managed by the pool. return Returns the query pool. </td></tr>
+  </table>
+  </dd>
+</dl>
+
 </div>
 </div>
 <a id="ae1aa45605bbbeff34170dda70f380363"></a>
@@ -674,6 +873,15 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
+<p>Create a query pool with an unique handle. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">count</td><td>The number of queries managed by the pool. </td></tr>
+    <tr><td class="paramname">type</td><td>Specifies the type of queries managed by the pool. return Returns the query pool. </td></tr>
+  </table>
+  </dd>
+</dl>
+
 </div>
 </div>
 <a id="a2e3e8160b81f2f24e4754906355f1ee2"></a>
@@ -691,6 +899,15 @@ Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>Create a sampler. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">createInfo</td><td>The Vulkan create info for the sampler. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>Returns the sampler. Note: Use rx::Helper::getSamplerCreateInfo to get a predefined create info. </dd></dl>
 
 </div>
 </div>
@@ -710,10 +927,19 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
+<p>Create a sampler with a unique handle. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">createInfo</td><td>The Vulkan create info for the sampler. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>Returns the sampler. Note: Use rx::Helper::getSamplerCreateInfo to get a predefined create info. </dd></dl>
+
 </div>
 </div>
-<a id="afc36459f8f5bc3b231aae43d8a89ceb3"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#afc36459f8f5bc3b231aae43d8a89ceb3">&#9670;&nbsp;</a></span>createSemaphore()</h2>
+<a id="ad66286cbc5267fb62d0f030f93b89c6f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad66286cbc5267fb62d0f030f93b89c6f">&#9670;&nbsp;</a></span>createSemaphore()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -722,16 +948,25 @@ Functions</h2></td></tr>
           <td class="memname">Semaphore vk::Initializer::createSemaphore </td>
           <td>(</td>
           <td class="paramtype">SemaphoreCreateFlags&#160;</td>
-          <td class="paramname"><em>flags</em></td><td>)</td>
+          <td class="paramname"><em>flags</em> = <code>{&#160;}</code></td><td>)</td>
           <td></td>
         </tr>
       </table>
 </div><div class="memdoc">
 
+<p>Creates a semaphore. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">flags</td><td>The flags used for creating the semaphore. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>Returns the semaphore. </dd></dl>
+
 </div>
 </div>
-<a id="a553b320a0bd8df5a53b5cde1ebe632ab"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a553b320a0bd8df5a53b5cde1ebe632ab">&#9670;&nbsp;</a></span>createSemaphoreUnique()</h2>
+<a id="af2bb7cbf5cf521b1666be52d901b474b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af2bb7cbf5cf521b1666be52d901b474b">&#9670;&nbsp;</a></span>createSemaphoreUnique()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -740,11 +975,20 @@ Functions</h2></td></tr>
           <td class="memname">UniqueSemaphore vk::Initializer::createSemaphoreUnique </td>
           <td>(</td>
           <td class="paramtype">SemaphoreCreateFlags&#160;</td>
-          <td class="paramname"><em>flags</em></td><td>)</td>
+          <td class="paramname"><em>flags</em> = <code>{&#160;}</code></td><td>)</td>
           <td></td>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>Creates a semaphore with an unique handle. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">flags</td><td>The flags used for creating the semaphore. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>Returns the semaphore. </dd></dl>
 
 </div>
 </div>
@@ -764,6 +1008,15 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
+<p>Parses a given shader and creates a shader module. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">path</td><td>The full path to the GLSL shader file. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>Returns the shader module. </dd></dl>
+
 </div>
 </div>
 <a id="ade34b50ac5ead941b7d2b20c828864d2"></a>
@@ -781,6 +1034,15 @@ Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>Parses a given shader and creates a shader module with an unique handle. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">path</td><td>The full path to the GLSL shader file. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>Returns the shader module. </dd></dl>
 
 </div>
 </div>

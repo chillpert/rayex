@@ -99,9 +99,12 @@ $(document).ready(function(){initNavTree('classrx_1_1_debug_messenger.html','');
 <a href="#pri-attribs">Private Attributes</a> &#124;
 <a href="classrx_1_1_debug_messenger-members.html">List of all members</a>  </div>
   <div class="headertitle">
-<div class="title">rx::DebugMessenger Class Reference</div>  </div>
+<div class="title">rx::DebugMessenger Class Reference<div class="ingroups"><a class="el" href="group___a_p_i.html">Vulkan</a></div></div>  </div>
 </div><!--header-->
 <div class="contents">
+
+<p>A wrapper class for a Vulkan debug utility messenger.  
+ <a href="classrx_1_1_debug_messenger.html#details">More...</a></p>
 
 <p><code>#include &lt;<a class="el" href="_debug_messenger_8hpp_source.html">DebugMessenger.hpp</a>&gt;</code></p>
 <table class="memberdecls">
@@ -112,13 +115,16 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:aafe30819b93057101a7af7d06258f354"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classrx_1_1_debug_messenger.html#aafe30819b93057101a7af7d06258f354">DebugMessenger</a> (vk::DebugUtilsMessageSeverityFlagsEXT messageSeverity, vk::DebugUtilsMessageTypeFlagsEXT messageType, bool initialize=true)</td></tr>
 <tr class="separator:aafe30819b93057101a7af7d06258f354"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a0095accfb2ff1d05d7651d2c7fd91f6c"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classrx_1_1_debug_messenger.html#a0095accfb2ff1d05d7651d2c7fd91f6c">~DebugMessenger</a> ()</td></tr>
+<tr class="memdesc:a0095accfb2ff1d05d7651d2c7fd91f6c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Calls <a class="el" href="classrx_1_1_debug_messenger.html#a058e396922f1daf53334dc36c08e270e" title="Destroys the debug messenger.">destroy()</a>.  <a href="classrx_1_1_debug_messenger.html#a0095accfb2ff1d05d7651d2c7fd91f6c">More...</a><br /></td></tr>
 <tr class="separator:a0095accfb2ff1d05d7651d2c7fd91f6c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a046e6a3650f7ab74520a2d749c4016c0"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classrx_1_1_debug_messenger.html#a046e6a3650f7ab74520a2d749c4016c0">init</a> (vk::DebugUtilsMessageSeverityFlagsEXT messageSeverity, vk::DebugUtilsMessageTypeFlagsEXT messageType)</td></tr>
+<tr class="memdesc:a046e6a3650f7ab74520a2d749c4016c0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Creates the debug messenger with the given properties.  <a href="classrx_1_1_debug_messenger.html#a046e6a3650f7ab74520a2d749c4016c0">More...</a><br /></td></tr>
 <tr class="separator:a046e6a3650f7ab74520a2d749c4016c0"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pri-methods"></a>
 Private Member Functions</h2></td></tr>
 <tr class="memitem:a058e396922f1daf53334dc36c08e270e"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classrx_1_1_debug_messenger.html#a058e396922f1daf53334dc36c08e270e">destroy</a> ()</td></tr>
+<tr class="memdesc:a058e396922f1daf53334dc36c08e270e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Destroys the debug messenger.  <a href="classrx_1_1_debug_messenger.html#a058e396922f1daf53334dc36c08e270e">More...</a><br /></td></tr>
 <tr class="separator:a058e396922f1daf53334dc36c08e270e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pri-attribs"></a>
@@ -126,7 +132,9 @@ Private Attributes</h2></td></tr>
 <tr class="memitem:a750afa53432b8fb5c12be8c504da0005"><td class="memItemLeft" align="right" valign="top">vk::DebugUtilsMessengerEXT&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classrx_1_1_debug_messenger.html#a750afa53432b8fb5c12be8c504da0005">m_debugMessenger</a></td></tr>
 <tr class="separator:a750afa53432b8fb5c12be8c504da0005"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
-<h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>A wrapper class for a Vulkan debug utility messenger. </p>
+</div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a id="aad9afece249a09e5d14115f22244eaaa"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#aad9afece249a09e5d14115f22244eaaa">&#9670;&nbsp;</a></span>DebugMessenger() <span class="overload">[1/2]</span></h2>
 
@@ -183,6 +191,14 @@ Private Attributes</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">messageSeverity</td><td>Specifies the type of severity of messages that will be logged. </td></tr>
+    <tr><td class="paramname">messageType</td><td>Specifies the types of messages that will be logged. </td></tr>
+    <tr><td class="paramname">initialize</td><td>If true, the debug messenger will be initialized right away without an additional call to <a class="el" href="classrx_1_1_debug_messenger.html#a046e6a3650f7ab74520a2d749c4016c0" title="Creates the debug messenger with the given properties.">init()</a>. </td></tr>
+  </table>
+  </dd>
+</dl>
 
 </div>
 </div>
@@ -200,6 +216,8 @@ Private Attributes</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>Calls <a class="el" href="classrx_1_1_debug_messenger.html#a058e396922f1daf53334dc36c08e270e" title="Destroys the debug messenger.">destroy()</a>. </p>
 
 </div>
 </div>
@@ -226,6 +244,8 @@ Private Attributes</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
+
+<p>Destroys the debug messenger. </p>
 
 </div>
 </div>
@@ -254,6 +274,15 @@ Private Attributes</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>Creates the debug messenger with the given properties. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">messageSeverity</td><td>- Specifies the type of severity of messages that will be logged. </td></tr>
+    <tr><td class="paramname">messageType</td><td>- Specifies the types of messages that will be logged. </td></tr>
+  </table>
+  </dd>
+</dl>
 
 </div>
 </div>

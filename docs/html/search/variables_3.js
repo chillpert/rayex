@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['deviceextensions_892',['deviceExtensions',['../namespacerx.html#ae1e6f0cd8aa9c6f10c6ffae2320f267d',1,'rx']]]
+  ['deviceextensions_886',['deviceExtensions',['../namespacerx.html#ae1e6f0cd8aa9c6f10c6ffae2320f267d',1,'rx']]]
 ];

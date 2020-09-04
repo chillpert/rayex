@@ -19,9 +19,7 @@ var dir_da61e3e9a357748887e3ca8d7c5a0c16 =
       [ "Material", "classrx_1_1_material.html", "classrx_1_1_material" ]
     ] ],
     [ "Pipeline.cpp", "_pipeline_8cpp.html", null ],
-    [ "Pipeline.hpp", "_pipeline_8hpp.html", [
-      [ "Pipeline", "classrx_1_1_pipeline.html", "classrx_1_1_pipeline" ]
-    ] ],
+    [ "Pipeline.hpp", "_pipeline_8hpp.html", null ],
     [ "Queues.cpp", "_queues_8cpp.html", null ],
     [ "Queues.hpp", "_queues_8hpp.html", [
       [ "Queues", "classrx_1_1_queues.html", "classrx_1_1_queues" ]

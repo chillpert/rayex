@@ -13,7 +13,7 @@ namespace rx
     Instance( ) = default;
     /// @param layers All validation layers that should be activated.
     /// @param extensiosn All instance extensions that should be activated.
-    /// @param initialize If true, the Instance object will be initialized right away without an additional call to init().
+    /// @param initialize If true, the instance object will be initialized right away without an additional call to init().
     Instance( const std::vector<const char*>& layers, std::vector<const char*>& extensions, bool initialize = true );
 
     /// Initializes the instance object and checks support for any given layer and extension.

@@ -6,6 +6,7 @@
 namespace rx
 {
   /// Manages the Vulkan queues.
+  /// @ingroup API
   class Queues
   {
   public:

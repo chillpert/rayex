@@ -5,23 +5,43 @@
 
 namespace rx
 {
+  /// A wrapper class for a Vulkan render pass.
+  /// @ingroup API
   class RenderPass
   {
   public:
     RenderPass( ) = default;
-    RenderPass( const std::vector<vk::AttachmentDescription>& attachments, const std::vector<vk::SubpassDescription>& subpasses, const std::vector<vk::SubpassDependency>& dependencies, bool initialize = true );
-    RX_API ~RenderPass( );
 
+    /// @param attachments The Vulkan attachment description.
+    /// @param subpasses The Vulkan subpass description.
+    /// @param dependencies The Vulkan subpass dependencies.
+    /// @param initialize If true, the render pass object will be initialized right away without an additional call to init().  
+    RenderPass( const std::vector<vk::AttachmentDescription>& attachments, const std::vector<vk::SubpassDescription>& subpasses, const std::vector<vk::SubpassDependency>& dependencies, bool initialize = true );
+    
+    /// @return Returns the Vulkan render pass without the unique handle.
     inline const vk::RenderPass get( ) const { return m_renderPass.get( ); }
 
+    /// Initializes the Vulkan render pass.
+    /// @param attachments The Vulkan attachment description.
+    /// @param subpasses The Vulkan subpass description.
+    /// @param dependencies The Vulkan subpass dependencies.
+    /// @param initialize If true, the render pass object will be initialized right away without an additional call to init().  
     void init( const std::vector<vk::AttachmentDescription>& attachments, const std::vector<vk::SubpassDescription>& subpasses, const std::vector<vk::SubpassDependency>& dependencies );
-    void destroy( );
 
-    void begin( vk::Framebuffer framebuffer, vk::CommandBuffer CommandBuffer, vk::Rect2D renderArea, const std::vector<vk::ClearValue>& clearValues ) const;
-    void end( vk::CommandBuffer CommandBuffer ) const;
+    /// Call to begin the render pass.
+    /// @param framebuffer The swapchain framebuffer.
+    /// @param commandBuffer The command buffer used to begin the render pass.
+    /// @param renderArea Defines the size of the render area.
+    /// @param clearValues The clear values.
+    /// @note rx::CommandBuffer::begin() or vk::CommandBuffer::begin() must have been already called prior to calling this function.
+    void begin( vk::Framebuffer framebuffer, vk::CommandBuffer commandBuffer, vk::Rect2D renderArea, const std::vector<vk::ClearValue>& clearValues ) const;
+    
+    /// Call to end the render pass.
+    /// @param commandBuffer 
+    void end( vk::CommandBuffer commandBuffer ) const;
 
   private:
-    vk::UniqueRenderPass m_renderPass;
+    vk::UniqueRenderPass m_renderPass; ///< The Vulkan render pass with a unique handle.
   };
 }
 

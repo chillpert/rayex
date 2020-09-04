@@ -14,10 +14,10 @@ namespace rx
     Pipeline( ) = default;
 
     /// @param descriptorSetLayouts A vector of descriptor set layouts that will be included in the pipeline layout.
-    /// @param initialize If true, the Instance object will be initialized right away without an additional call to init(). 
+    /// @param initialize If true, the Pipeline object will be initialized right away without an additional call to init(). 
     Pipeline( const std::vector<vk::DescriptorSetLayout>& descriptorSetLayouts, bool initialize = true );
 
-    /// Initializes the pipeline and creates the pipeline layout.
+    /// Initializes the Vulkan pipeline and creates the Vulkan pipeline layout.
     /// @param descriptorSetLayouts A vector of descriptor set layouts that will be included in the pipeline layout.
     void init( const std::vector<vk::DescriptorSetLayout> & descriptorSetLayouts );
 

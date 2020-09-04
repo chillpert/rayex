@@ -9,11 +9,6 @@ namespace rx
       init( attachments, subpasses, dependencies );
   }
 
-  RenderPass::~RenderPass( )
-  {
-    destroy( );
-  }
-
   void RenderPass::init( const std::vector<vk::AttachmentDescription>& attachments, const std::vector<vk::SubpassDescription>& subpasses, const std::vector<vk::SubpassDependency>& dependencies )
   {
     vk::RenderPassCreateInfo createInfo( { },                                             // flags
@@ -28,25 +23,19 @@ namespace rx
     RX_ASSERT( m_renderPass, "Failed to create render pass." );
   }
 
-  void RenderPass::destroy( )
+  void RenderPass::begin( vk::Framebuffer framebuffer, vk::CommandBuffer commandBuffer, vk::Rect2D renderArea, const std::vector<vk::ClearValue>& clearValues ) const
   {
-    //if ( m_renderPass )
-    //  g_device.destroyRenderPass( m_renderPass );
+    vk::RenderPassBeginInfo beginInfo( m_renderPass.get( ),                            // renderPass
+                                       framebuffer,                                    // framebuffer
+                                       renderArea,                                     // renderArea
+                                       static_cast< uint32_t >( clearValues.size( ) ), // clearValueCount
+                                       clearValues.data( ) );                          // pClearValues
+
+    commandBuffer.beginRenderPass( beginInfo, vk::SubpassContents::eInline );
   }
 
-  void RenderPass::begin( vk::Framebuffer framebuffer, vk::CommandBuffer CommandBuffer, vk::Rect2D renderArea, const std::vector<vk::ClearValue>& clearValues ) const
+  void RenderPass::end( vk::CommandBuffer commandBuffer ) const
   {
-    vk::RenderPassBeginInfo beginInfo( m_renderPass.get( ),                             // renderPass
-                                       framebuffer,                                     // framebuffer
-                                       renderArea,                                      // renderArea
-                                       static_cast< uint32_t >( clearValues.size( ) ),  // clearValueCount
-                                       clearValues.data( ) );                           // pClearValues
-
-    CommandBuffer.beginRenderPass( beginInfo, vk::SubpassContents::eInline ); // CMD
-  }
-
-  void RenderPass::end( vk::CommandBuffer CommandBuffer ) const
-  {
-    CommandBuffer.endRenderPass( ); // CMD
+    commandBuffer.endRenderPass( ); // CMD
   }
 }

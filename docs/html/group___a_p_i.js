@@ -54,6 +54,19 @@ var group___a_p_i =
       [ "m_transferCmdPool", "classrx_1_1_api.html#a1a027b2cb8890d60cbb1a5f2f8892fdc", null ],
       [ "m_window", "classrx_1_1_api.html#ad232c9c6d49d12324b53963a23183bd1", null ]
     ] ],
+    [ "Device", "classrx_1_1_device.html", [
+      [ "Device", "classrx_1_1_device.html#aed93a1e458b2ebf61bd5ba7c541d9d2c", null ],
+      [ "Device", "classrx_1_1_device.html#a8664cb4d68c7ff4028075af412327aba", null ],
+      [ "checkExtensionSupport", "classrx_1_1_device.html#a52e8f1871fad968d4f38acbc0955aa50", null ],
+      [ "init", "classrx_1_1_device.html#a602bed4925b0964faa96ecae5bc9f029", null ],
+      [ "m_device", "classrx_1_1_device.html#a4af49c00a82b135a1ff607a6e7ae2e79", null ]
+    ] ],
+    [ "PhysicalDevice", "classrx_1_1_physical_device.html", [
+      [ "PhysicalDevice", "classrx_1_1_physical_device.html#ae40f1960c85c821b0cfac11a34cabfed", null ],
+      [ "evaluate", "classrx_1_1_physical_device.html#a556aa6ce31416b208f20edd651334f14", null ],
+      [ "init", "classrx_1_1_physical_device.html#a849b1ffaa9fe125d5fc299e8a6e328c6", null ],
+      [ "m_physicalDevice", "classrx_1_1_physical_device.html#a009fea2aab17e87553c99ead765b9b45", null ]
+    ] ],
     [ "Instance", "classrx_1_1_instance.html", [
       [ "Instance", "classrx_1_1_instance.html#a4d30588f605365dacf22ef1cab83f66f", null ],
       [ "Instance", "classrx_1_1_instance.html#a546a229b44172922f856c7d302ca659f", null ],

@@ -135,6 +135,7 @@ Classes</h2></td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classrx_1_1_descriptor_set_layout.html">DescriptorSetLayout</a></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classrx_1_1_device.html">Device</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">A wrapper class for a Vulkan logical device.  <a href="classrx_1_1_device.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classrx_1_1_directional_light_node.html">DirectionalLightNode</a></td></tr>
 <tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Can be used to add directional light sources to the scene.  <a href="classrx_1_1_directional_light_node.html#details">More...</a><br /></td></tr>
@@ -166,6 +167,7 @@ Classes</h2></td></tr>
 <tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Describes a node in the scene graph.  <a href="classrx_1_1_node.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classrx_1_1_physical_device.html">PhysicalDevice</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">A wrapper class for a Vulkan physical device.  <a href="classrx_1_1_physical_device.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classrx_1_1_pipeline.html">Pipeline</a></td></tr>
 <tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">A wrapper class for a Vulkan ray tracing graphics pipeline.  <a href="classrx_1_1_pipeline.html#details">More...</a><br /></td></tr>
@@ -242,6 +244,7 @@ Enumerations</h2></td></tr>
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
 Functions</h2></td></tr>
 <tr class="memitem:aeedd24898d685be90044cb18f760dc11"><td class="memItemLeft" align="right" valign="top">const vk::PhysicalDeviceRayTracingFeaturesKHR&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacerx.html#aeedd24898d685be90044cb18f760dc11">getRayTracingFeatures</a> (vk::PhysicalDevice physicalDevice)</td></tr>
+<tr class="memdesc:aeedd24898d685be90044cb18f760dc11"><td class="mdescLeft">&#160;</td><td class="mdescRight">This function is used to check if a device is suitable for the application's task.  <a href="namespacerx.html#aeedd24898d685be90044cb18f760dc11">More...</a><br /></td></tr>
 <tr class="separator:aeedd24898d685be90044cb18f760dc11"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a06fa9d1a8abc68b8578eece02ebcd66f"><td class="memItemLeft" align="right" valign="top">vk::Format&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacerx.html#a06fa9d1a8abc68b8578eece02ebcd66f">getSupportedDepthFormat</a> (vk::PhysicalDevice physicalDevice)</td></tr>
 <tr class="memdesc:a06fa9d1a8abc68b8578eece02ebcd66f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Retrieves the depth format supported by a given physical device.  <a href="namespacerx.html#a06fa9d1a8abc68b8578eece02ebcd66f">More...</a><br /></td></tr>
@@ -445,6 +448,15 @@ Variables</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>This function is used to check if a device is suitable for the application's task. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">physicalDevice</td><td>The physical device to check. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>Returns the GPU's supported ray tracing features. </dd></dl>
 
 </div>
 </div>

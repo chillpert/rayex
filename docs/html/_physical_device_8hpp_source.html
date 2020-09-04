@@ -104,42 +104,33 @@ $(document).ready(function(){initNavTree('_physical_device_8hpp_source.html','')
 <div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160; </div>
 <div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;<span class="keyword">namespace </span><a class="code" href="namespacerx.html">rx</a></div>
 <div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;{</div>
-<div class="line"><a name="l00008"></a><span class="lineno"><a class="line" href="classrx_1_1_physical_device.html">    8</a></span>&#160;  <span class="keyword">class </span><a class="code" href="classrx_1_1_physical_device.html">PhysicalDevice</a></div>
-<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;  {</div>
-<div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;  <span class="keyword">public</span>:</div>
-<div class="line"><a name="l00011"></a><span class="lineno"><a class="line" href="classrx_1_1_physical_device.html#ae40f1960c85c821b0cfac11a34cabfed">   11</a></span>&#160;    <a class="code" href="classrx_1_1_physical_device.html#ae40f1960c85c821b0cfac11a34cabfed">PhysicalDevice</a>( ) = <span class="keywordflow">default</span>;</div>
-<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160; </div>
-<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;    <span class="comment">// Retrieves the most suited GPU on the current machine. If a device is found its properties and features will be retrieved.</span></div>
-<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;    <span class="comment">// Note: SLI, Crossfire and similar is NOT supported.</span></div>
-<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="classrx_1_1_physical_device.html#a849b1ffaa9fe125d5fc299e8a6e328c6">init</a>( );</div>
-<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160; </div>
-<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;  <span class="keyword">private</span>:</div>
-<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;    <span class="comment">// Scores a given physical device (GPU).</span></div>
-<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;    <span class="comment">// @param physicalDevice - The physical device to score.</span></div>
-<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;    <span class="comment">// @return - Returns a pair consisting out of the determined score and the name of the physical device.</span></div>
-<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;    <span class="comment">// Note: RTX hardware surpasses any other GPU.</span></div>
-<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;    std::pair&lt;unsigned int, std::string&gt; <a class="code" href="classrx_1_1_physical_device.html#a556aa6ce31416b208f20edd651334f14">evaluate</a>( vk::PhysicalDevice physicalDevice ) <span class="keyword">const</span>;</div>
-<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160; </div>
-<div class="line"><a name="l00024"></a><span class="lineno"><a class="line" href="classrx_1_1_physical_device.html#a009fea2aab17e87553c99ead765b9b45">   24</a></span>&#160;    vk::PhysicalDevice <a class="code" href="classrx_1_1_physical_device.html#a009fea2aab17e87553c99ead765b9b45">m_physicalDevice</a>;</div>
-<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;  };</div>
-<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160; </div>
-<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;  <span class="comment">// This function is used to check if a device is suitable for the application&#39;s task.</span></div>
-<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;  <span class="comment">// @param physicalDevice - The physical device to check.</span></div>
-<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;  <span class="comment">// @return - Returns the GPU&#39;s supported ray tracing features.</span></div>
-<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;  <span class="keyword">const</span> vk::PhysicalDeviceRayTracingFeaturesKHR <a class="code" href="namespacerx.html#aeedd24898d685be90044cb18f760dc11">getRayTracingFeatures</a>( vk::PhysicalDevice physicalDevice );</div>
-<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;}</div>
-<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160; </div>
-<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;<span class="preprocessor">#endif // PHYSICAL_DEVICE_HPP</span></div>
+<div class="line"><a name="l00010"></a><span class="lineno"><a class="line" href="classrx_1_1_physical_device.html">   10</a></span>&#160;  <span class="keyword">class </span><a class="code" href="classrx_1_1_physical_device.html">PhysicalDevice</a></div>
+<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;  {</div>
+<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;  <span class="keyword">public</span>:</div>
+<div class="line"><a name="l00013"></a><span class="lineno"><a class="line" href="classrx_1_1_physical_device.html#ae40f1960c85c821b0cfac11a34cabfed">   13</a></span>&#160;    <a class="code" href="classrx_1_1_physical_device.html#ae40f1960c85c821b0cfac11a34cabfed">PhysicalDevice</a>( ) = <span class="keywordflow">default</span>;</div>
+<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160; </div>
+<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="classrx_1_1_physical_device.html#a849b1ffaa9fe125d5fc299e8a6e328c6">init</a>( );</div>
+<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160; </div>
+<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;  <span class="keyword">private</span>:</div>
+<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;    std::pair&lt;unsigned int, std::string&gt; <a class="code" href="classrx_1_1_physical_device.html#a556aa6ce31416b208f20edd651334f14">evaluate</a>( vk::PhysicalDevice physicalDevice ) <span class="keyword">const</span>;</div>
+<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160; </div>
+<div class="line"><a name="l00026"></a><span class="lineno"><a class="line" href="classrx_1_1_physical_device.html#a009fea2aab17e87553c99ead765b9b45">   26</a></span>&#160;    vk::PhysicalDevice <a class="code" href="classrx_1_1_physical_device.html#a009fea2aab17e87553c99ead765b9b45">m_physicalDevice</a>; </div>
+<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;  };</div>
+<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160; </div>
+<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;  <span class="keyword">const</span> vk::PhysicalDeviceRayTracingFeaturesKHR <a class="code" href="namespacerx.html#aeedd24898d685be90044cb18f760dc11">getRayTracingFeatures</a>( vk::PhysicalDevice physicalDevice );</div>
+<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;}</div>
+<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160; </div>
+<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;<span class="preprocessor">#endif // PHYSICAL_DEVICE_HPP</span></div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->
-<div class="ttc" id="aclassrx_1_1_physical_device_html_a009fea2aab17e87553c99ead765b9b45"><div class="ttname"><a href="classrx_1_1_physical_device.html#a009fea2aab17e87553c99ead765b9b45">rx::PhysicalDevice::m_physicalDevice</a></div><div class="ttdeci">vk::PhysicalDevice m_physicalDevice</div><div class="ttdef"><b>Definition:</b> PhysicalDevice.hpp:24</div></div>
-<div class="ttc" id="aclassrx_1_1_physical_device_html_a556aa6ce31416b208f20edd651334f14"><div class="ttname"><a href="classrx_1_1_physical_device.html#a556aa6ce31416b208f20edd651334f14">rx::PhysicalDevice::evaluate</a></div><div class="ttdeci">std::pair&lt; unsigned int, std::string &gt; evaluate(vk::PhysicalDevice physicalDevice) const</div><div class="ttdef"><b>Definition:</b> PhysicalDevice.cpp:48</div></div>
-<div class="ttc" id="aclassrx_1_1_physical_device_html"><div class="ttname"><a href="classrx_1_1_physical_device.html">rx::PhysicalDevice</a></div><div class="ttdef"><b>Definition:</b> PhysicalDevice.hpp:9</div></div>
+<div class="ttc" id="aclassrx_1_1_physical_device_html_a009fea2aab17e87553c99ead765b9b45"><div class="ttname"><a href="classrx_1_1_physical_device.html#a009fea2aab17e87553c99ead765b9b45">rx::PhysicalDevice::m_physicalDevice</a></div><div class="ttdeci">vk::PhysicalDevice m_physicalDevice</div><div class="ttdoc">The Vulkan physical device.</div><div class="ttdef"><b>Definition:</b> PhysicalDevice.hpp:26</div></div>
+<div class="ttc" id="aclassrx_1_1_physical_device_html_a556aa6ce31416b208f20edd651334f14"><div class="ttname"><a href="classrx_1_1_physical_device.html#a556aa6ce31416b208f20edd651334f14">rx::PhysicalDevice::evaluate</a></div><div class="ttdeci">std::pair&lt; unsigned int, std::string &gt; evaluate(vk::PhysicalDevice physicalDevice) const</div><div class="ttdoc">Scores a given physical device (GPU).</div><div class="ttdef"><b>Definition:</b> PhysicalDevice.cpp:48</div></div>
+<div class="ttc" id="aclassrx_1_1_physical_device_html"><div class="ttname"><a href="classrx_1_1_physical_device.html">rx::PhysicalDevice</a></div><div class="ttdoc">A wrapper class for a Vulkan physical device.</div><div class="ttdef"><b>Definition:</b> PhysicalDevice.hpp:11</div></div>
 <div class="ttc" id="anamespacerx_html"><div class="ttname"><a href="namespacerx.html">rx</a></div><div class="ttdoc">The rx namespace encapsulates every single component provided by the renderer.</div><div class="ttdef"><b>Definition:</b> Api.cpp:9</div></div>
 <div class="ttc" id="aclassrx_1_1_physical_device_html_ae40f1960c85c821b0cfac11a34cabfed"><div class="ttname"><a href="classrx_1_1_physical_device.html#ae40f1960c85c821b0cfac11a34cabfed">rx::PhysicalDevice::PhysicalDevice</a></div><div class="ttdeci">PhysicalDevice()=default</div></div>
 <div class="ttc" id="astdafx_8hpp_html"><div class="ttname"><a href="stdafx_8hpp.html">stdafx.hpp</a></div></div>
-<div class="ttc" id="anamespacerx_html_aeedd24898d685be90044cb18f760dc11"><div class="ttname"><a href="namespacerx.html#aeedd24898d685be90044cb18f760dc11">rx::getRayTracingFeatures</a></div><div class="ttdeci">const vk::PhysicalDeviceRayTracingFeaturesKHR getRayTracingFeatures(vk::PhysicalDevice physicalDevice)</div><div class="ttdef"><b>Definition:</b> PhysicalDevice.cpp:94</div></div>
-<div class="ttc" id="aclassrx_1_1_physical_device_html_a849b1ffaa9fe125d5fc299e8a6e328c6"><div class="ttname"><a href="classrx_1_1_physical_device.html#a849b1ffaa9fe125d5fc299e8a6e328c6">rx::PhysicalDevice::init</a></div><div class="ttdeci">void init()</div><div class="ttdef"><b>Definition:</b> PhysicalDevice.cpp:7</div></div>
+<div class="ttc" id="anamespacerx_html_aeedd24898d685be90044cb18f760dc11"><div class="ttname"><a href="namespacerx.html#aeedd24898d685be90044cb18f760dc11">rx::getRayTracingFeatures</a></div><div class="ttdeci">const vk::PhysicalDeviceRayTracingFeaturesKHR getRayTracingFeatures(vk::PhysicalDevice physicalDevice)</div><div class="ttdoc">This function is used to check if a device is suitable for the application's task.</div><div class="ttdef"><b>Definition:</b> PhysicalDevice.cpp:94</div></div>
+<div class="ttc" id="aclassrx_1_1_physical_device_html_a849b1ffaa9fe125d5fc299e8a6e328c6"><div class="ttname"><a href="classrx_1_1_physical_device.html#a849b1ffaa9fe125d5fc299e8a6e328c6">rx::PhysicalDevice::init</a></div><div class="ttdeci">void init()</div><div class="ttdoc">Retrieves the most suited GPU on the current machine.</div><div class="ttdef"><b>Definition:</b> PhysicalDevice.cpp:7</div></div>
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>

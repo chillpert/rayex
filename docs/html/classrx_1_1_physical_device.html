@@ -99,9 +99,12 @@ $(document).ready(function(){initNavTree('classrx_1_1_physical_device.html','');
 <a href="#pri-attribs">Private Attributes</a> &#124;
 <a href="classrx_1_1_physical_device-members.html">List of all members</a>  </div>
   <div class="headertitle">
-<div class="title">rx::PhysicalDevice Class Reference</div>  </div>
+<div class="title">rx::PhysicalDevice Class Reference<div class="ingroups"><a class="el" href="group___a_p_i.html">Vulkan</a></div></div>  </div>
 </div><!--header-->
 <div class="contents">
+
+<p>A wrapper class for a Vulkan physical device.  
+ <a href="classrx_1_1_physical_device.html#details">More...</a></p>
 
 <p><code>#include &lt;<a class="el" href="_physical_device_8hpp_source.html">PhysicalDevice.hpp</a>&gt;</code></p>
 <table class="memberdecls">
@@ -110,19 +113,24 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:ae40f1960c85c821b0cfac11a34cabfed"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classrx_1_1_physical_device.html#ae40f1960c85c821b0cfac11a34cabfed">PhysicalDevice</a> ()=default</td></tr>
 <tr class="separator:ae40f1960c85c821b0cfac11a34cabfed"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a849b1ffaa9fe125d5fc299e8a6e328c6"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classrx_1_1_physical_device.html#a849b1ffaa9fe125d5fc299e8a6e328c6">init</a> ()</td></tr>
+<tr class="memdesc:a849b1ffaa9fe125d5fc299e8a6e328c6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Retrieves the most suited GPU on the current machine.  <a href="classrx_1_1_physical_device.html#a849b1ffaa9fe125d5fc299e8a6e328c6">More...</a><br /></td></tr>
 <tr class="separator:a849b1ffaa9fe125d5fc299e8a6e328c6"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pri-methods"></a>
 Private Member Functions</h2></td></tr>
 <tr class="memitem:a556aa6ce31416b208f20edd651334f14"><td class="memItemLeft" align="right" valign="top">std::pair&lt; unsigned int, std::string &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classrx_1_1_physical_device.html#a556aa6ce31416b208f20edd651334f14">evaluate</a> (vk::PhysicalDevice physicalDevice) const</td></tr>
+<tr class="memdesc:a556aa6ce31416b208f20edd651334f14"><td class="mdescLeft">&#160;</td><td class="mdescRight">Scores a given physical device (GPU).  <a href="classrx_1_1_physical_device.html#a556aa6ce31416b208f20edd651334f14">More...</a><br /></td></tr>
 <tr class="separator:a556aa6ce31416b208f20edd651334f14"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pri-attribs"></a>
 Private Attributes</h2></td></tr>
 <tr class="memitem:a009fea2aab17e87553c99ead765b9b45"><td class="memItemLeft" align="right" valign="top">vk::PhysicalDevice&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classrx_1_1_physical_device.html#a009fea2aab17e87553c99ead765b9b45">m_physicalDevice</a></td></tr>
+<tr class="memdesc:a009fea2aab17e87553c99ead765b9b45"><td class="mdescLeft">&#160;</td><td class="mdescRight">The Vulkan physical device.  <a href="classrx_1_1_physical_device.html#a009fea2aab17e87553c99ead765b9b45">More...</a><br /></td></tr>
 <tr class="separator:a009fea2aab17e87553c99ead765b9b45"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
-<h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>A wrapper class for a Vulkan physical device. </p>
+</div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a id="ae40f1960c85c821b0cfac11a34cabfed"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#ae40f1960c85c821b0cfac11a34cabfed">&#9670;&nbsp;</a></span>PhysicalDevice()</h2>
 
@@ -173,6 +181,16 @@ Private Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
+<p>Scores a given physical device (GPU). </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">physicalDevice</td><td>The physical device to score. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>Returns a pair consisting out of the determined score and the name of the physical device. </dd></dl>
+<dl class="section note"><dt>Note</dt><dd>RTX hardware surpasses any other GPU. </dd></dl>
+
 </div>
 </div>
 <a id="a849b1ffaa9fe125d5fc299e8a6e328c6"></a>
@@ -189,6 +207,9 @@ Private Attributes</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>Retrieves the most suited GPU on the current machine. </p>
+<p>If a device is found its properties and features will be retrieved. </p><dl class="section note"><dt>Note</dt><dd>SLI, Crossfire and similar is NOT supported. </dd></dl>
 
 </div>
 </div>
@@ -212,6 +233,8 @@ Private Attributes</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
+
+<p>The Vulkan physical device. </p>
 
 </div>
 </div>

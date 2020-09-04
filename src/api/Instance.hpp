@@ -11,8 +11,9 @@ namespace rx
   {
   public:
     Instance( ) = default;
+
     /// @param layers All validation layers that should be activated.
-    /// @param extensiosn All instance extensions that should be activated.
+    /// @param extensions All instance extensions that should be activated.
     /// @param initialize If true, the instance object will be initialized right away without an additional call to init().
     Instance( const std::vector<const char*>& layers, std::vector<const char*>& extensions, bool initialize = true );
 
@@ -31,7 +32,7 @@ namespace rx
 
     /// Checks if all instance extensions provided are supported.
     /// 
-    /// If any instance extension is not supported the application will shut dow immediately.
+    /// If any instance extension is not supported the application will shut down immediately.
     /// @param extensions All instance extensions that should be activated.
     void checkExtensionsSupport( const std::vector<const char*>& extensions );
 

@@ -42,6 +42,18 @@ namespace rx
     commandBuffer.submitToQueue( g_transferQueue );
   }
 
+  void Buffer::copyToBuffer( vk::Buffer buffer ) const
+  {
+    CommandBuffer commandBuffer( g_transferCmdPool );
+    commandBuffer.begin( );
+    {
+      vk::BufferCopy copyRegion( 0, 0, m_size );
+      commandBuffer.get( 0 ).copyBuffer( m_buffer.get( ), buffer, 1, &copyRegion ); // CMD
+    }
+    commandBuffer.end( );
+    commandBuffer.submitToQueue( g_transferQueue );
+  }
+
   void Buffer::copyToImage( Image& image ) const
   {
     CommandBuffer commandBuffer( g_graphicsCmdPool );

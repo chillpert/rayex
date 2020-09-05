@@ -16,7 +16,7 @@ var searchData=
   ['components_2ecpp_37',['Components.cpp',['../_components_8cpp.html',1,'']]],
   ['components_2ehpp_38',['Components.hpp',['../_components_8hpp.html',1,'']]],
   ['configure_39',['configure',['../classrx_1_1_gui_base.html#aa7308bebaead5580e11853c7604d77e0',1,'rx::GuiBase::configure()'],['../class_custom_gui.html#a3378cf8adcea18d363badded928563d7',1,'CustomGui::configure()']]],
-  ['copytobuffer_40',['copyToBuffer',['../classrx_1_1_buffer.html#a491b496f95f75b0b586d262be250a011',1,'rx::Buffer']]],
+  ['copytobuffer_40',['copyToBuffer',['../classrx_1_1_buffer.html#a491b496f95f75b0b586d262be250a011',1,'rx::Buffer::copyToBuffer(Buffer &amp;buffer) const'],['../classrx_1_1_buffer.html#a7fc84cc30e02f167aa1956e80f1bb4f6',1,'rx::Buffer::copyToBuffer(vk::Buffer buffer) const']]],
   ['copytoimage_41',['copyToImage',['../classrx_1_1_buffer.html#abc4c095d4eb6da7d00a6255074ed5d45',1,'rx::Buffer']]],
   ['core_2ehpp_42',['Core.hpp',['../_core_8hpp.html',1,'']]],
   ['createaccelerationstructure_43',['createAccelerationStructure',['../namespacevk_1_1_initializer.html#aeef3a8fde04c8d29eb1a6ecd4bb5fb87',1,'vk::Initializer']]],

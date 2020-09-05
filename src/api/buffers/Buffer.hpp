@@ -21,9 +21,13 @@ namespace rx
     /// @param initialize If true, the buffer object will be initialized right away without an additional call to init().
     Buffer( vk::DeviceSize size, vk::BufferUsageFlags usage, const std::vector<uint32_t>& queueFamilyIndices = { }, vk::MemoryPropertyFlags memoryPropertyFlags = vk::MemoryPropertyFlagBits::eDeviceLocal, void* pNextMemory = nullptr, bool initialize = true );
 
-    /// Copies the content of this buffer to another buffer.
+    /// Copies the content of this buffer to another rx::Buffer.
     /// @param buffer The target for the copy operation.
     void copyToBuffer( Buffer& buffer ) const;
+
+    /// Copies the content of this buffer to another vk::Buffer.
+    /// @param buffer The target for the copy operation.
+    void copyToBuffer( vk::Buffer buffer ) const;
 
     /// Copies the content of this buffer to an image.
     /// @param image The target for the copy operation.
@@ -61,7 +65,7 @@ namespace rx
       g_device.unmapMemory( m_memory.get( ) );
     }
 
-  private:
+  protected:
     vk::UniqueBuffer m_buffer; ///< The buffer object with a unique handle.
     vk::UniqueDeviceMemory m_memory; ///< The buffer's memory with a unique handle.
 

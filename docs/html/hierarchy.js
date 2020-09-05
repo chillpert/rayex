@@ -4,7 +4,10 @@ var hierarchy =
     [ "rx::Api", "classrx_1_1_api.html", null ],
     [ "rx::Blas", "structrx_1_1_blas.html", null ],
     [ "rx::BlasInstance", "structrx_1_1_blas_instance.html", null ],
-    [ "rx::Buffer", "classrx_1_1_buffer.html", null ],
+    [ "rx::Buffer", "classrx_1_1_buffer.html", [
+      [ "rx::IndexBuffer< uint32_t >", "classrx_1_1_index_buffer.html", null ],
+      [ "rx::IndexBuffer< T >", "classrx_1_1_index_buffer.html", null ]
+    ] ],
     [ "rx::CameraBase", "classrx_1_1_camera_base.html", [
       [ "CustomCamera", "class_custom_camera.html", null ]
     ] ],
@@ -18,8 +21,6 @@ var hierarchy =
       [ "CustomGui", "class_custom_gui.html", null ]
     ] ],
     [ "rx::Image", "classrx_1_1_image.html", null ],
-    [ "rx::IndexBuffer< T >", "classrx_1_1_index_buffer.html", null ],
-    [ "rx::IndexBuffer< uint32_t >", "classrx_1_1_index_buffer.html", null ],
     [ "rx::Instance", "classrx_1_1_instance.html", null ],
     [ "rx::Material", "classrx_1_1_material.html", null ],
     [ "rx::Model", "classrx_1_1_model.html", null ],

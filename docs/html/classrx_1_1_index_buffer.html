@@ -97,28 +97,87 @@ $(document).ready(function(){initNavTree('classrx_1_1_index_buffer.html',''); in
 <a href="#pub-methods">Public Member Functions</a> &#124;
 <a href="classrx_1_1_index_buffer-members.html">List of all members</a>  </div>
   <div class="headertitle">
-<div class="title">rx::IndexBuffer&lt; T &gt; Class Template Reference</div>  </div>
+<div class="title">rx::IndexBuffer&lt; T &gt; Class Template Reference<div class="ingroups"><a class="el" href="group___a_p_i.html">Vulkan</a></div></div>  </div>
 </div><!--header-->
 <div class="contents">
 
+<p>A specialised buffer for index data.  
+ <a href="classrx_1_1_index_buffer.html#details">More...</a></p>
+
 <p><code>#include &lt;<a class="el" href="_index_buffer_8hpp_source.html">IndexBuffer.hpp</a>&gt;</code></p>
+<div class="dynheader">
+Inheritance diagram for rx::IndexBuffer&lt; T &gt;:</div>
+<div class="dyncontent">
+ <div class="center">
+  <img src="classrx_1_1_index_buffer.png" usemap="#rx::IndexBuffer_3C_20T_20_3E_map" alt=""/>
+  <map id="rx::IndexBuffer_3C_20T_20_3E_map" name="rx::IndexBuffer_3C_20T_20_3E_map">
+<area href="classrx_1_1_buffer.html" title="A wrapper class for a Vulkan buffer." alt="rx::Buffer" shape="rect" coords="0,0,125,24"/>
+  </map>
+</div></div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
 <tr class="memitem:ad106741acd8effe40a0e230b1738ce92"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classrx_1_1_index_buffer.html#ad106741acd8effe40a0e230b1738ce92">IndexBuffer</a> ()=default</td></tr>
 <tr class="separator:ad106741acd8effe40a0e230b1738ce92"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a75ddab28f642c193e17f0f0be004dcd1"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classrx_1_1_index_buffer.html#a75ddab28f642c193e17f0f0be004dcd1">IndexBuffer</a> (const std::vector&lt; T &gt; &amp;indices, bool initialize=true)</td></tr>
-<tr class="separator:a75ddab28f642c193e17f0f0be004dcd1"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aa4ab087a3d30ae244927f4320cae99f1"><td class="memItemLeft" align="right" valign="top">const vk::Buffer&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classrx_1_1_index_buffer.html#aa4ab087a3d30ae244927f4320cae99f1">get</a> () const</td></tr>
-<tr class="separator:aa4ab087a3d30ae244927f4320cae99f1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6598fd7a45b5f65709d235438e70f068"><td class="memTemplParams" colspan="2">template&lt;typename T &gt; </td></tr>
+<tr class="memitem:a6598fd7a45b5f65709d235438e70f068"><td class="memTemplItemLeft" align="right" valign="top">&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="classrx_1_1_index_buffer.html#a6598fd7a45b5f65709d235438e70f068">IndexBuffer</a> (const std::vector&lt; T &gt; &amp;indices, bool initialize=true)</td></tr>
+<tr class="separator:a6598fd7a45b5f65709d235438e70f068"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a29bd1d3a64747d7ec3e0961abd4c4373"><td class="memItemLeft" align="right" valign="top">uint32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classrx_1_1_index_buffer.html#a29bd1d3a64747d7ec3e0961abd4c4373">getCount</a> () const</td></tr>
 <tr class="separator:a29bd1d3a64747d7ec3e0961abd4c4373"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a498b6ec64a58846b2d81676422e73e15"><td class="memItemLeft" align="right" valign="top">vk::IndexType&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classrx_1_1_index_buffer.html#a498b6ec64a58846b2d81676422e73e15">getType</a> () const</td></tr>
 <tr class="separator:a498b6ec64a58846b2d81676422e73e15"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a850e3953992775338162be238347e7f1"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classrx_1_1_index_buffer.html#a850e3953992775338162be238347e7f1">init</a> (std::vector&lt; T &gt; &amp;indices)</td></tr>
-<tr class="separator:a850e3953992775338162be238347e7f1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:afe102e8f3272f8547d9b26b4a26daad3"><td class="memTemplParams" colspan="2">template&lt;typename T &gt; </td></tr>
+<tr class="memitem:afe102e8f3272f8547d9b26b4a26daad3"><td class="memTemplItemLeft" align="right" valign="top">void&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="classrx_1_1_index_buffer.html#afe102e8f3272f8547d9b26b4a26daad3">init</a> (std::vector&lt; T &gt; &amp;indices)</td></tr>
+<tr class="memdesc:afe102e8f3272f8547d9b26b4a26daad3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Creates the buffer and allocates memory.  <a href="classrx_1_1_index_buffer.html#afe102e8f3272f8547d9b26b4a26daad3">More...</a><br /></td></tr>
+<tr class="separator:afe102e8f3272f8547d9b26b4a26daad3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="inherit_header pub_methods_classrx_1_1_buffer"><td colspan="2" onclick="javascript:toggleInherit('pub_methods_classrx_1_1_buffer')"><img src="closed.png" alt="-"/>&#160;Public Member Functions inherited from <a class="el" href="classrx_1_1_buffer.html">rx::Buffer</a></td></tr>
+<tr class="memitem:ad549ae24d3847007a301b57a178887bd inherit pub_methods_classrx_1_1_buffer"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classrx_1_1_buffer.html#ad549ae24d3847007a301b57a178887bd">Buffer</a> ()=default</td></tr>
+<tr class="separator:ad549ae24d3847007a301b57a178887bd inherit pub_methods_classrx_1_1_buffer"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1e31ae5e388c834d7ad2815f0b06ee96 inherit pub_methods_classrx_1_1_buffer"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classrx_1_1_buffer.html#a1e31ae5e388c834d7ad2815f0b06ee96">Buffer</a> (vk::DeviceSize size, vk::BufferUsageFlags usage, const std::vector&lt; uint32_t &gt; &amp;queueFamilyIndices={ }, vk::MemoryPropertyFlags memoryPropertyFlags=vk::MemoryPropertyFlagBits::eDeviceLocal, void *pNextMemory=nullptr, bool initialize=true)</td></tr>
+<tr class="separator:a1e31ae5e388c834d7ad2815f0b06ee96 inherit pub_methods_classrx_1_1_buffer"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a491b496f95f75b0b586d262be250a011 inherit pub_methods_classrx_1_1_buffer"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classrx_1_1_buffer.html#a491b496f95f75b0b586d262be250a011">copyToBuffer</a> (<a class="el" href="classrx_1_1_buffer.html">Buffer</a> &amp;buffer) const</td></tr>
+<tr class="memdesc:a491b496f95f75b0b586d262be250a011 inherit pub_methods_classrx_1_1_buffer"><td class="mdescLeft">&#160;</td><td class="mdescRight">Copies the content of this buffer to another <a class="el" href="classrx_1_1_buffer.html" title="A wrapper class for a Vulkan buffer.">rx::Buffer</a>.  <a href="classrx_1_1_buffer.html#a491b496f95f75b0b586d262be250a011">More...</a><br /></td></tr>
+<tr class="separator:a491b496f95f75b0b586d262be250a011 inherit pub_methods_classrx_1_1_buffer"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7fc84cc30e02f167aa1956e80f1bb4f6 inherit pub_methods_classrx_1_1_buffer"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classrx_1_1_buffer.html#a7fc84cc30e02f167aa1956e80f1bb4f6">copyToBuffer</a> (vk::Buffer buffer) const</td></tr>
+<tr class="memdesc:a7fc84cc30e02f167aa1956e80f1bb4f6 inherit pub_methods_classrx_1_1_buffer"><td class="mdescLeft">&#160;</td><td class="mdescRight">Copies the content of this buffer to another vk::Buffer.  <a href="classrx_1_1_buffer.html#a7fc84cc30e02f167aa1956e80f1bb4f6">More...</a><br /></td></tr>
+<tr class="separator:a7fc84cc30e02f167aa1956e80f1bb4f6 inherit pub_methods_classrx_1_1_buffer"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:abc4c095d4eb6da7d00a6255074ed5d45 inherit pub_methods_classrx_1_1_buffer"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classrx_1_1_buffer.html#abc4c095d4eb6da7d00a6255074ed5d45">copyToImage</a> (<a class="el" href="classrx_1_1_image.html">Image</a> &amp;image) const</td></tr>
+<tr class="memdesc:abc4c095d4eb6da7d00a6255074ed5d45 inherit pub_methods_classrx_1_1_buffer"><td class="mdescLeft">&#160;</td><td class="mdescRight">Copies the content of this buffer to an image.  <a href="classrx_1_1_buffer.html#abc4c095d4eb6da7d00a6255074ed5d45">More...</a><br /></td></tr>
+<tr class="separator:abc4c095d4eb6da7d00a6255074ed5d45 inherit pub_methods_classrx_1_1_buffer"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4055ed30a94888249e37f3ea46bf09e9 inherit pub_methods_classrx_1_1_buffer"><td class="memItemLeft" align="right" valign="top">const vk::Buffer&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classrx_1_1_buffer.html#a4055ed30a94888249e37f3ea46bf09e9">get</a> () const</td></tr>
+<tr class="separator:a4055ed30a94888249e37f3ea46bf09e9 inherit pub_methods_classrx_1_1_buffer"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a00f743b54f4f6ac79e4dde5079de1d5c inherit pub_methods_classrx_1_1_buffer"><td class="memItemLeft" align="right" valign="top">const vk::DeviceMemory&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classrx_1_1_buffer.html#a00f743b54f4f6ac79e4dde5079de1d5c">getMemory</a> () const</td></tr>
+<tr class="separator:a00f743b54f4f6ac79e4dde5079de1d5c inherit pub_methods_classrx_1_1_buffer"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9f6c8caed7b9ae15afaa30644a87fa36 inherit pub_methods_classrx_1_1_buffer"><td class="memItemLeft" align="right" valign="top">const vk::DeviceSize&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classrx_1_1_buffer.html#a9f6c8caed7b9ae15afaa30644a87fa36">getSize</a> () const</td></tr>
+<tr class="separator:a9f6c8caed7b9ae15afaa30644a87fa36 inherit pub_methods_classrx_1_1_buffer"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3dcb26ae5db02346a1b81cac1c97dbbd inherit pub_methods_classrx_1_1_buffer"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classrx_1_1_buffer.html#a3dcb26ae5db02346a1b81cac1c97dbbd">init</a> (vk::DeviceSize size, vk::BufferUsageFlags usage, const std::vector&lt; uint32_t &gt; &amp;queueFamilyIndices={ }, vk::MemoryPropertyFlags memoryPropertyFlags=vk::MemoryPropertyFlagBits::eDeviceLocal, void *pNextMemory=nullptr)</td></tr>
+<tr class="memdesc:a3dcb26ae5db02346a1b81cac1c97dbbd inherit pub_methods_classrx_1_1_buffer"><td class="mdescLeft">&#160;</td><td class="mdescRight">Creates the buffer and allocates memory for it.  <a href="classrx_1_1_buffer.html#a3dcb26ae5db02346a1b81cac1c97dbbd">More...</a><br /></td></tr>
+<tr class="separator:a3dcb26ae5db02346a1b81cac1c97dbbd inherit pub_methods_classrx_1_1_buffer"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae67da1cda37050466a0dda5edca5f0b0 inherit pub_methods_classrx_1_1_buffer"><td class="memTemplParams" colspan="2">template&lt;class T &gt; </td></tr>
+<tr class="memitem:ae67da1cda37050466a0dda5edca5f0b0 inherit pub_methods_classrx_1_1_buffer"><td class="memTemplItemLeft" align="right" valign="top">void&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="classrx_1_1_buffer.html#ae67da1cda37050466a0dda5edca5f0b0">fill</a> (T *source, vk::DeviceSize offset=0)</td></tr>
+<tr class="memdesc:ae67da1cda37050466a0dda5edca5f0b0 inherit pub_methods_classrx_1_1_buffer"><td class="mdescLeft">&#160;</td><td class="mdescRight">Used to fill the buffer with any kind of data.  <a href="classrx_1_1_buffer.html#ae67da1cda37050466a0dda5edca5f0b0">More...</a><br /></td></tr>
+<tr class="separator:ae67da1cda37050466a0dda5edca5f0b0 inherit pub_methods_classrx_1_1_buffer"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="inherited"></a>
+Additional Inherited Members</h2></td></tr>
+<tr class="inherit_header pro_attribs_classrx_1_1_buffer"><td colspan="2" onclick="javascript:toggleInherit('pro_attribs_classrx_1_1_buffer')"><img src="closed.png" alt="-"/>&#160;Protected Attributes inherited from <a class="el" href="classrx_1_1_buffer.html">rx::Buffer</a></td></tr>
+<tr class="memitem:a637f9f49535178d17698505ec0e4859a inherit pro_attribs_classrx_1_1_buffer"><td class="memItemLeft" align="right" valign="top">vk::UniqueBuffer&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classrx_1_1_buffer.html#a637f9f49535178d17698505ec0e4859a">m_buffer</a></td></tr>
+<tr class="memdesc:a637f9f49535178d17698505ec0e4859a inherit pro_attribs_classrx_1_1_buffer"><td class="mdescLeft">&#160;</td><td class="mdescRight">The buffer object with a unique handle.  <a href="classrx_1_1_buffer.html#a637f9f49535178d17698505ec0e4859a">More...</a><br /></td></tr>
+<tr class="separator:a637f9f49535178d17698505ec0e4859a inherit pro_attribs_classrx_1_1_buffer"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6f2b7d287631e65d775cc41210c999d4 inherit pro_attribs_classrx_1_1_buffer"><td class="memItemLeft" align="right" valign="top">vk::UniqueDeviceMemory&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classrx_1_1_buffer.html#a6f2b7d287631e65d775cc41210c999d4">m_memory</a></td></tr>
+<tr class="memdesc:a6f2b7d287631e65d775cc41210c999d4 inherit pro_attribs_classrx_1_1_buffer"><td class="mdescLeft">&#160;</td><td class="mdescRight">The buffer's memory with a unique handle.  <a href="classrx_1_1_buffer.html#a6f2b7d287631e65d775cc41210c999d4">More...</a><br /></td></tr>
+<tr class="separator:a6f2b7d287631e65d775cc41210c999d4 inherit pro_attribs_classrx_1_1_buffer"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9f35cdcb2aef37647274875014597c32 inherit pro_attribs_classrx_1_1_buffer"><td class="memItemLeft" align="right" valign="top">vk::DeviceSize&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classrx_1_1_buffer.html#a9f35cdcb2aef37647274875014597c32">m_size</a> = 0</td></tr>
+<tr class="memdesc:a9f35cdcb2aef37647274875014597c32 inherit pro_attribs_classrx_1_1_buffer"><td class="mdescLeft">&#160;</td><td class="mdescRight">The buffer's size.  <a href="classrx_1_1_buffer.html#a9f35cdcb2aef37647274875014597c32">More...</a><br /></td></tr>
+<tr class="separator:a9f35cdcb2aef37647274875014597c32 inherit pro_attribs_classrx_1_1_buffer"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
-<h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><h3>template&lt;typename T = uint32_t&gt;<br />
+class rx::IndexBuffer&lt; T &gt;</h3>
+
+<p>A specialised buffer for index data. </p>
+<dl class="section note"><dt>Note</dt><dd>If not templatized then uint32_t will be used as the data's type. </dd></dl>
+</div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a id="ad106741acd8effe40a0e230b1738ce92"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#ad106741acd8effe40a0e230b1738ce92">&#9670;&nbsp;</a></span>IndexBuffer() <span class="overload">[1/2]</span></h2>
 
@@ -146,11 +205,13 @@ template&lt;typename T  = uint32_t&gt; </div>
 
 </div>
 </div>
-<a id="a75ddab28f642c193e17f0f0be004dcd1"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a75ddab28f642c193e17f0f0be004dcd1">&#9670;&nbsp;</a></span>IndexBuffer() <span class="overload">[2/2]</span></h2>
+<a id="a6598fd7a45b5f65709d235438e70f068"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6598fd7a45b5f65709d235438e70f068">&#9670;&nbsp;</a></span>IndexBuffer() <span class="overload">[2/2]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
+<div class="memtemplate">
+template&lt;typename T  = uint32_t&gt; </div>
 <div class="memtemplate">
 template&lt;typename T &gt; </div>
 <table class="mlabels">
@@ -181,37 +242,17 @@ template&lt;typename T &gt; </div>
   </tr>
 </table>
 </div><div class="memdoc">
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">The</td><td>index data. </td></tr>
+    <tr><td class="paramname">initialize</td><td>If true, the index buffer object will be initialized right away without an additional call to <a class="el" href="classrx_1_1_index_buffer.html#afe102e8f3272f8547d9b26b4a26daad3" title="Creates the buffer and allocates memory.">init()</a>. </td></tr>
+  </table>
+  </dd>
+</dl>
 
 </div>
 </div>
 <h2 class="groupheader">Member Function Documentation</h2>
-<a id="aa4ab087a3d30ae244927f4320cae99f1"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aa4ab087a3d30ae244927f4320cae99f1">&#9670;&nbsp;</a></span>get()</h2>
-
-<div class="memitem">
-<div class="memproto">
-<div class="memtemplate">
-template&lt;typename T  = uint32_t&gt; </div>
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">const vk::Buffer <a class="el" href="classrx_1_1_index_buffer.html">rx::IndexBuffer</a>&lt; T &gt;::get </td>
-          <td>(</td>
-          <td class="paramname"></td><td>)</td>
-          <td> const</td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-</div>
-</div>
 <a id="a29bd1d3a64747d7ec3e0961abd4c4373"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a29bd1d3a64747d7ec3e0961abd4c4373">&#9670;&nbsp;</a></span>getCount()</h2>
 
@@ -236,6 +277,7 @@ template&lt;typename T  = uint32_t&gt; </div>
   </tr>
 </table>
 </div><div class="memdoc">
+<dl class="section return"><dt>Returns</dt><dd>Returns the amount of indices in the buffer. </dd></dl>
 
 </div>
 </div>
@@ -263,16 +305,23 @@ template&lt;typename T  = uint32_t&gt; </div>
   </tr>
 </table>
 </div><div class="memdoc">
+<dl class="section return"><dt>Returns</dt><dd>Returns the type of the index's data. </dd></dl>
+<dl class="section note"><dt>Note</dt><dd>Should be identical to the type that was used to templatize the class. </dd></dl>
 
 </div>
 </div>
-<a id="a850e3953992775338162be238347e7f1"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a850e3953992775338162be238347e7f1">&#9670;&nbsp;</a></span>init()</h2>
+<a id="afe102e8f3272f8547d9b26b4a26daad3"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#afe102e8f3272f8547d9b26b4a26daad3">&#9670;&nbsp;</a></span>init()</h2>
 
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
+template&lt;typename T  = uint32_t&gt; </div>
+<div class="memtemplate">
 template&lt;typename T &gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
       <table class="memname">
         <tr>
           <td class="memname">void <a class="el" href="classrx_1_1_index_buffer.html">rx::IndexBuffer</a>&lt; T &gt;::init </td>
@@ -282,7 +331,20 @@ template&lt;typename T &gt; </div>
           <td></td>
         </tr>
       </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
 </div><div class="memdoc">
+
+<p>Creates the buffer and allocates memory. </p>
+<p>To optimize the procedure a temporary staging buffer will be created. </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">indices</td><td>The index data. </td></tr>
+  </table>
+  </dd>
+</dl>
 
 </div>
 </div>

@@ -97,9 +97,12 @@ $(document).ready(function(){initNavTree('classrx_1_1_command_buffer.html',''); 
 <a href="#pub-methods">Public Member Functions</a> &#124;
 <a href="classrx_1_1_command_buffer-members.html">List of all members</a>  </div>
   <div class="headertitle">
-<div class="title">rx::CommandBuffer Class Reference</div>  </div>
+<div class="title">rx::CommandBuffer Class Reference<div class="ingroups"><a class="el" href="group___a_p_i.html">Vulkan</a></div></div>  </div>
 </div><!--header-->
 <div class="contents">
+
+<p>A wrapper class for Vulkan command buffers.  
+ <a href="classrx_1_1_command_buffer.html#details">More...</a></p>
 
 <p><code>#include &lt;<a class="el" href="_command_buffer_8hpp_source.html">CommandBuffer.hpp</a>&gt;</code></p>
 <table class="memberdecls">
@@ -110,23 +113,32 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a1f55df7164152ee629a1a572f35b41a4"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classrx_1_1_command_buffer.html#a1f55df7164152ee629a1a572f35b41a4">CommandBuffer</a> (vk::CommandPool commandPool, uint32_t count=1, vk::CommandBufferUsageFlags usageFlags=vk::CommandBufferUsageFlagBits::eOneTimeSubmit, bool initialize=true)</td></tr>
 <tr class="separator:a1f55df7164152ee629a1a572f35b41a4"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:abc9618248a49213bb5649495d2194ea5"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classrx_1_1_command_buffer.html#abc9618248a49213bb5649495d2194ea5">init</a> (vk::CommandPool commandPool, uint32_t count=1, vk::CommandBufferUsageFlags usageFlags=vk::CommandBufferUsageFlagBits::eOneTimeSubmit)</td></tr>
+<tr class="memdesc:abc9618248a49213bb5649495d2194ea5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Creates the command buffers.  <a href="classrx_1_1_command_buffer.html#abc9618248a49213bb5649495d2194ea5">More...</a><br /></td></tr>
 <tr class="separator:abc9618248a49213bb5649495d2194ea5"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aa1a716b752e737da669055a1ad21b52a"><td class="memItemLeft" align="right" valign="top">const std::vector&lt; vk::CommandBuffer &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classrx_1_1_command_buffer.html#aa1a716b752e737da669055a1ad21b52a">get</a> () const</td></tr>
 <tr class="separator:aa1a716b752e737da669055a1ad21b52a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:afc93f4c5731f3b18d24cefc3729f9b0a"><td class="memItemLeft" align="right" valign="top">const vk::CommandBuffer&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classrx_1_1_command_buffer.html#afc93f4c5731f3b18d24cefc3729f9b0a">get</a> (size_t index) const</td></tr>
+<tr class="memdesc:afc93f4c5731f3b18d24cefc3729f9b0a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the command buffer by some index.  <a href="classrx_1_1_command_buffer.html#afc93f4c5731f3b18d24cefc3729f9b0a">More...</a><br /></td></tr>
 <tr class="separator:afc93f4c5731f3b18d24cefc3729f9b0a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:acaea73fae9e61b78257bf735b4235b53"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classrx_1_1_command_buffer.html#acaea73fae9e61b78257bf735b4235b53">free</a> ()</td></tr>
+<tr class="memdesc:acaea73fae9e61b78257bf735b4235b53"><td class="mdescLeft">&#160;</td><td class="mdescRight">Frees the command buffer.  <a href="classrx_1_1_command_buffer.html#acaea73fae9e61b78257bf735b4235b53">More...</a><br /></td></tr>
 <tr class="separator:acaea73fae9e61b78257bf735b4235b53"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ab76173ed0d4409599c99f16f8dd830d7"><td class="memItemLeft" align="right" valign="top">RX_API void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classrx_1_1_command_buffer.html#ab76173ed0d4409599c99f16f8dd830d7">reset</a> ()</td></tr>
+<tr class="memdesc:ab76173ed0d4409599c99f16f8dd830d7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Resets the command buffer.  <a href="classrx_1_1_command_buffer.html#ab76173ed0d4409599c99f16f8dd830d7">More...</a><br /></td></tr>
 <tr class="separator:ab76173ed0d4409599c99f16f8dd830d7"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a47ea2cef2b275adbe351f46998dfb28d"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classrx_1_1_command_buffer.html#a47ea2cef2b275adbe351f46998dfb28d">begin</a> (size_t index=0)</td></tr>
+<tr class="memdesc:a47ea2cef2b275adbe351f46998dfb28d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Used to begin the command buffer recording.  <a href="classrx_1_1_command_buffer.html#a47ea2cef2b275adbe351f46998dfb28d">More...</a><br /></td></tr>
 <tr class="separator:a47ea2cef2b275adbe351f46998dfb28d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a38438d77c29c276f4fa56c7f2929b1a0"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classrx_1_1_command_buffer.html#a38438d77c29c276f4fa56c7f2929b1a0">end</a> (size_t index=0)</td></tr>
+<tr class="memdesc:a38438d77c29c276f4fa56c7f2929b1a0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Used to stop the command buffer recording.  <a href="classrx_1_1_command_buffer.html#a38438d77c29c276f4fa56c7f2929b1a0">More...</a><br /></td></tr>
 <tr class="separator:a38438d77c29c276f4fa56c7f2929b1a0"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a31fe2373d5dd2af4c9b087cc0a6cfd9e"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classrx_1_1_command_buffer.html#a31fe2373d5dd2af4c9b087cc0a6cfd9e">submitToQueue</a> (vk::Queue queue, const std::vector&lt; vk::Semaphore &gt; &amp;waitSemaphores={ }, const std::vector&lt; vk::Semaphore &gt; &amp;signalSemaphores={ }, vk::PipelineStageFlags *waitDstStageMask={ })</td></tr>
+<tr class="memdesc:a31fe2373d5dd2af4c9b087cc0a6cfd9e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Submits the recorded commands to a queue.  <a href="classrx_1_1_command_buffer.html#a31fe2373d5dd2af4c9b087cc0a6cfd9e">More...</a><br /></td></tr>
 <tr class="separator:a31fe2373d5dd2af4c9b087cc0a6cfd9e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
-<h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>A wrapper class for Vulkan command buffers. </p>
+</div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a id="a257a48a9805e2173009f6a3f783acd8b"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a257a48a9805e2173009f6a3f783acd8b">&#9670;&nbsp;</a></span>CommandBuffer() <span class="overload">[1/2]</span></h2>
 
@@ -189,6 +201,15 @@ Public Member Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">commandPool</td><td>The command pool from which the command buffers will be allocated from. </td></tr>
+    <tr><td class="paramname">count</td><td>The amount of Vulkan command buffers to initialize. </td></tr>
+    <tr><td class="paramname">usageFlags</td><td>Specifies what the buffer will be used for. </td></tr>
+    <tr><td class="paramname">initialize</td><td>If true, the command buffers will be initialized right away without an additional call to <a class="el" href="classrx_1_1_command_buffer.html#abc9618248a49213bb5649495d2194ea5" title="Creates the command buffers.">init()</a>. </td></tr>
+  </table>
+  </dd>
+</dl>
 
 </div>
 </div>
@@ -209,6 +230,14 @@ Public Member Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
+<p>Used to begin the command buffer recording. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">index</td><td>An index to a command buffer to record to. </td></tr>
+  </table>
+  </dd>
+</dl>
+
 </div>
 </div>
 <a id="a38438d77c29c276f4fa56c7f2929b1a0"></a>
@@ -227,6 +256,14 @@ Public Member Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
+<p>Used to stop the command buffer recording. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">index</td><td>An index to a command buffer to stop recording. </td></tr>
+  </table>
+  </dd>
+</dl>
+
 </div>
 </div>
 <a id="acaea73fae9e61b78257bf735b4235b53"></a>
@@ -243,6 +280,8 @@ Public Member Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>Frees the command buffer. </p>
 
 </div>
 </div>
@@ -268,6 +307,7 @@ Public Member Functions</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
+<dl class="section return"><dt>Returns</dt><dd>Returns the vector of command buffers. </dd></dl>
 
 </div>
 </div>
@@ -294,6 +334,15 @@ Public Member Functions</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
+
+<p>Returns the command buffer by some index. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">index</td><td>The index of the desired command buffer. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>Returns the command buffer. </dd></dl>
 
 </div>
 </div>
@@ -329,6 +378,16 @@ Public Member Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
+<p>Creates the command buffers. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">commandPool</td><td>The command pool from which the command buffers will be allocated from. </td></tr>
+    <tr><td class="paramname">count</td><td>The amount of Vulkan command buffers to initialize (the same as the amount of images in the swapchain). </td></tr>
+    <tr><td class="paramname">usageFlags</td><td>Specifies what the buffer will be used for. </td></tr>
+  </table>
+  </dd>
+</dl>
+
 </div>
 </div>
 <a id="ab76173ed0d4409599c99f16f8dd830d7"></a>
@@ -345,6 +404,8 @@ Public Member Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>Resets the command buffer. </p>
 
 </div>
 </div>
@@ -385,6 +446,16 @@ Public Member Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>Submits the recorded commands to a queue. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">queue</td><td>The queue to submit to. </td></tr>
+    <tr><td class="paramname">waitSemaphores</td><td>A vector of semaphores to wait for. </td></tr>
+    <tr><td class="paramname">signalSemaphores</td><td>A vector of semaphores to signal. @waitDstStageMask The pipeline stage where the commands will be executed. </td></tr>
+  </table>
+  </dd>
+</dl>
 
 </div>
 </div>

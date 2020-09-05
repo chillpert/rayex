@@ -56,14 +56,14 @@ namespace rx
     auto barrierInfo = vk::Helper::getImageMemoryBarrierInfo( m_image.get( ), m_layout, layout );
 
     commandBuffer.pipelineBarrier( std::get<1>( barrierInfo ),        // srcStageMask
-                                     std::get<2>( barrierInfo ),        // dstStageMask
-                                     vk::DependencyFlagBits::eByRegion,
-                                     0,
-                                     nullptr,
-                                     0,
-                                     nullptr,
-                                     1,
-                                     &std::get<0>( barrierInfo ) );     // barrier
+                                   std::get<2>( barrierInfo ),        // dstStageMask
+                                   vk::DependencyFlagBits::eByRegion,
+                                   0,
+                                   nullptr,
+                                   0,
+                                   nullptr,
+                                   1,
+                                   &std::get<0>( barrierInfo ) );     // barrier
 
     m_layout = layout;
   }

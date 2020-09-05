@@ -99,9 +99,12 @@ $(document).ready(function(){initNavTree('classrx_1_1_image.html',''); initResiz
 <a href="#pro-attribs">Protected Attributes</a> &#124;
 <a href="classrx_1_1_image-members.html">List of all members</a>  </div>
   <div class="headertitle">
-<div class="title">rx::Image Class Reference</div>  </div>
+<div class="title">rx::Image Class Reference<div class="ingroups"><a class="el" href="group___a_p_i.html">Vulkan</a></div></div>  </div>
 </div><!--header-->
 <div class="contents">
+
+<p>A wrapper class for a Vulkan image.  
+ <a href="classrx_1_1_image.html#details">More...</a></p>
 
 <p><code>#include &lt;<a class="el" href="_image_8hpp_source.html">Image.hpp</a>&gt;</code></p>
 <table class="memberdecls">
@@ -120,31 +123,42 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a367da2b20b69289c40ed608146df4aa2"><td class="memItemLeft" align="right" valign="top">const vk::ImageLayout&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classrx_1_1_image.html#a367da2b20b69289c40ed608146df4aa2">getLayout</a> () const</td></tr>
 <tr class="separator:a367da2b20b69289c40ed608146df4aa2"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aa7617f3f05ffcf09c3ab29cbdfaeb1ac"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classrx_1_1_image.html#aa7617f3f05ffcf09c3ab29cbdfaeb1ac">init</a> (const vk::ImageCreateInfo &amp;createInfo)</td></tr>
+<tr class="memdesc:aa7617f3f05ffcf09c3ab29cbdfaeb1ac"><td class="mdescLeft">&#160;</td><td class="mdescRight">Creates the image and allocates memory for it.  <a href="classrx_1_1_image.html#aa7617f3f05ffcf09c3ab29cbdfaeb1ac">More...</a><br /></td></tr>
 <tr class="separator:aa7617f3f05ffcf09c3ab29cbdfaeb1ac"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a87788d4ea1fbfa4aa012a0f983207201"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classrx_1_1_image.html#a87788d4ea1fbfa4aa012a0f983207201">transitionToLayout</a> (vk::ImageLayout layout)</td></tr>
+<tr class="memdesc:a87788d4ea1fbfa4aa012a0f983207201"><td class="mdescLeft">&#160;</td><td class="mdescRight">Used to transition this image's layout.  <a href="classrx_1_1_image.html#a87788d4ea1fbfa4aa012a0f983207201">More...</a><br /></td></tr>
 <tr class="separator:a87788d4ea1fbfa4aa012a0f983207201"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a66c9184b340dafee28be844f056e5820"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classrx_1_1_image.html#a66c9184b340dafee28be844f056e5820">transitionToLayout</a> (vk::ImageLayout layout, vk::CommandBuffer commandBuffer)</td></tr>
+<tr class="memdesc:a66c9184b340dafee28be844f056e5820"><td class="mdescLeft">&#160;</td><td class="mdescRight">Used to transition this image's layout.  <a href="classrx_1_1_image.html#a66c9184b340dafee28be844f056e5820">More...</a><br /></td></tr>
 <tr class="separator:a66c9184b340dafee28be844f056e5820"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-static-methods"></a>
 Static Public Member Functions</h2></td></tr>
 <tr class="memitem:a35aaa7533122b9dc4a59deefcb49eb6e"><td class="memItemLeft" align="right" valign="top">static vk::Format&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classrx_1_1_image.html#a35aaa7533122b9dc4a59deefcb49eb6e">findSupportedFormat</a> (vk::PhysicalDevice physicalDevice, const std::vector&lt; vk::Format &gt; &amp;formatsToTest, vk::FormatFeatureFlagBits features, vk::ImageTiling tiling)</td></tr>
+<tr class="memdesc:a35aaa7533122b9dc4a59deefcb49eb6e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Retrieves a supported image format for a given physical device.  <a href="classrx_1_1_image.html#a35aaa7533122b9dc4a59deefcb49eb6e">More...</a><br /></td></tr>
 <tr class="separator:a35aaa7533122b9dc4a59deefcb49eb6e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pro-attribs"></a>
 Protected Attributes</h2></td></tr>
 <tr class="memitem:a0c741abbecf351b15cf1d94afdd28aaa"><td class="memItemLeft" align="right" valign="top">vk::UniqueImage&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classrx_1_1_image.html#a0c741abbecf351b15cf1d94afdd28aaa">m_image</a></td></tr>
+<tr class="memdesc:a0c741abbecf351b15cf1d94afdd28aaa"><td class="mdescLeft">&#160;</td><td class="mdescRight">The Vulkan image with a unique handle.  <a href="classrx_1_1_image.html#a0c741abbecf351b15cf1d94afdd28aaa">More...</a><br /></td></tr>
 <tr class="separator:a0c741abbecf351b15cf1d94afdd28aaa"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a7f11dba5a36058776ad3a8337eca74d0"><td class="memItemLeft" align="right" valign="top">vk::UniqueDeviceMemory&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classrx_1_1_image.html#a7f11dba5a36058776ad3a8337eca74d0">m_memory</a></td></tr>
+<tr class="memdesc:a7f11dba5a36058776ad3a8337eca74d0"><td class="mdescLeft">&#160;</td><td class="mdescRight">The image's memory with a unique handle.  <a href="classrx_1_1_image.html#a7f11dba5a36058776ad3a8337eca74d0">More...</a><br /></td></tr>
 <tr class="separator:a7f11dba5a36058776ad3a8337eca74d0"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aa80182113a8af4a3d26e0c687a2f79bf"><td class="memItemLeft" align="right" valign="top">vk::Extent3D&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classrx_1_1_image.html#aa80182113a8af4a3d26e0c687a2f79bf">m_extent</a></td></tr>
+<tr class="memdesc:aa80182113a8af4a3d26e0c687a2f79bf"><td class="mdescLeft">&#160;</td><td class="mdescRight">The image's extent.  <a href="classrx_1_1_image.html#aa80182113a8af4a3d26e0c687a2f79bf">More...</a><br /></td></tr>
 <tr class="separator:aa80182113a8af4a3d26e0c687a2f79bf"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a8764d6208b25eaee127698bb6ff7cc9f"><td class="memItemLeft" align="right" valign="top">vk::Format&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classrx_1_1_image.html#a8764d6208b25eaee127698bb6ff7cc9f">m_format</a></td></tr>
+<tr class="memdesc:a8764d6208b25eaee127698bb6ff7cc9f"><td class="mdescLeft">&#160;</td><td class="mdescRight">The image's format.  <a href="classrx_1_1_image.html#a8764d6208b25eaee127698bb6ff7cc9f">More...</a><br /></td></tr>
 <tr class="separator:a8764d6208b25eaee127698bb6ff7cc9f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a64dd3247c500374e5ff87c959230548d"><td class="memItemLeft" align="right" valign="top">vk::ImageLayout&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classrx_1_1_image.html#a64dd3247c500374e5ff87c959230548d">m_layout</a></td></tr>
+<tr class="memdesc:a64dd3247c500374e5ff87c959230548d"><td class="mdescLeft">&#160;</td><td class="mdescRight">THe image's layout.  <a href="classrx_1_1_image.html#a64dd3247c500374e5ff87c959230548d">More...</a><br /></td></tr>
 <tr class="separator:a64dd3247c500374e5ff87c959230548d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
-<h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>A wrapper class for a Vulkan image. </p>
+</div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a id="a2e0fc861ccaa2790d50ce2a9268d910e"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a2e0fc861ccaa2790d50ce2a9268d910e">&#9670;&nbsp;</a></span>Image() <span class="overload">[1/2]</span></h2>
 
@@ -195,6 +209,13 @@ Protected Attributes</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">createInfo</td><td>The Vulkan image create info. </td></tr>
+    <tr><td class="paramname">If</td><td>true, the image will be initialized right away without an additional call to <a class="el" href="classrx_1_1_image.html#aa7617f3f05ffcf09c3ab29cbdfaeb1ac" title="Creates the image and allocates memory for it.">init()</a>. </td></tr>
+  </table>
+  </dd>
+</dl>
 
 </div>
 </div>
@@ -245,6 +266,17 @@ Protected Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
+<p>Retrieves a supported image format for a given physical device. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">physicalDevice</td><td>The physical device to check. </td></tr>
+    <tr><td class="paramname">formatsToTest</td><td>A vector of formats that will be checked for their support. </td></tr>
+    <tr><td class="paramname">features</td><td>The Vulkan format features. </td></tr>
+    <tr><td class="paramname">tiling</td><td>The Vulkan image tiling. </td></tr>
+  </table>
+  </dd>
+</dl>
+
 </div>
 </div>
 <a id="ad9aabba321dd549113e214c6fc39cc9c"></a>
@@ -269,6 +301,7 @@ Protected Attributes</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
+<dl class="section return"><dt>Returns</dt><dd>Returns the Vulkan image object without the unique handle. </dd></dl>
 
 </div>
 </div>
@@ -294,6 +327,7 @@ Protected Attributes</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
+<dl class="section return"><dt>Returns</dt><dd>Returns the iamge's extent. </dd></dl>
 
 </div>
 </div>
@@ -319,6 +353,7 @@ Protected Attributes</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
+<dl class="section return"><dt>Returns</dt><dd>Returns the image's format. </dd></dl>
 
 </div>
 </div>
@@ -344,6 +379,7 @@ Protected Attributes</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
+<dl class="section return"><dt>Returns</dt><dd>Returns the image's layout. </dd></dl>
 
 </div>
 </div>
@@ -363,6 +399,14 @@ Protected Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
+<p>Creates the image and allocates memory for it. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">createInfo</td><td>The Vulkan image create info. </td></tr>
+  </table>
+  </dd>
+</dl>
+
 </div>
 </div>
 <a id="a87788d4ea1fbfa4aa012a0f983207201"></a>
@@ -380,6 +424,15 @@ Protected Attributes</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>Used to transition this image's layout. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">layout</td><td>The target layout. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section note"><dt>Note</dt><dd>This function creates its own single-time usage command buffer. </dd></dl>
 
 </div>
 </div>
@@ -409,6 +462,16 @@ Protected Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
+<p>Used to transition this image's layout. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">layout</td><td>The target layout </td></tr>
+    <tr><td class="paramname">commandBuffer</td><td>The command buffer that will be used to set up a pipeline barrier. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section warning"><dt>Warning</dt><dd>It is required to call vk::CommandBuffer::begin() or <a class="el" href="classrx_1_1_command_buffer.html#a47ea2cef2b275adbe351f46998dfb28d" title="Used to begin the command buffer recording.">rx::CommandBuffer::begin()</a> before calling this function. </dd></dl>
+
 </div>
 </div>
 <h2 class="groupheader">Member Data Documentation</h2>
@@ -432,6 +495,8 @@ Protected Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
+<p>The image's extent. </p>
+
 </div>
 </div>
 <a id="a8764d6208b25eaee127698bb6ff7cc9f"></a>
@@ -453,6 +518,8 @@ Protected Attributes</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
+
+<p>The image's format. </p>
 
 </div>
 </div>
@@ -476,6 +543,8 @@ Protected Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
+<p>The Vulkan image with a unique handle. </p>
+
 </div>
 </div>
 <a id="a64dd3247c500374e5ff87c959230548d"></a>
@@ -498,6 +567,8 @@ Protected Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
+<p>THe image's layout. </p>
+
 </div>
 </div>
 <a id="a7f11dba5a36058776ad3a8337eca74d0"></a>
@@ -519,6 +590,8 @@ Protected Attributes</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
+
+<p>The image's memory with a unique handle. </p>
 
 </div>
 </div>

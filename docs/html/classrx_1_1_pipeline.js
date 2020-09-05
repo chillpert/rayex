@@ -5,7 +5,5 @@ var classrx_1_1_pipeline =
     [ "bind", "classrx_1_1_pipeline.html#a0c203e8d6ab2f6803e8ff096528f4a31", null ],
     [ "get", "classrx_1_1_pipeline.html#abdbba7e67a59cf5402010c8b7b30fa91", null ],
     [ "getLayout", "classrx_1_1_pipeline.html#a4b1a477bcb2893d0875e13769c6253c5", null ],
-    [ "init", "classrx_1_1_pipeline.html#a6a40c06d1db5b5e7622a8032805b2fd5", null ],
-    [ "m_layout", "classrx_1_1_pipeline.html#aab80bdfb1741bed096a957918a241503", null ],
-    [ "m_pipeline", "classrx_1_1_pipeline.html#a27e97d5e69f788214708f2d6f2cab849", null ]
+    [ "init", "classrx_1_1_pipeline.html#a6a40c06d1db5b5e7622a8032805b2fd5", null ]
 ];

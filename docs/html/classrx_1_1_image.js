@@ -2,7 +2,6 @@ var classrx_1_1_image =
 [
     [ "Image", "classrx_1_1_image.html#a2e0fc861ccaa2790d50ce2a9268d910e", null ],
     [ "Image", "classrx_1_1_image.html#a1b56a4595996fa4b19f91a30789e7251", null ],
-    [ "findSupportedFormat", "classrx_1_1_image.html#a35aaa7533122b9dc4a59deefcb49eb6e", null ],
     [ "get", "classrx_1_1_image.html#ad9aabba321dd549113e214c6fc39cc9c", null ],
     [ "getExtent", "classrx_1_1_image.html#a487e1356531a1e1687e94e0df9da02e7", null ],
     [ "getFormat", "classrx_1_1_image.html#aaacc879a01325075433c13152c96c016", null ],

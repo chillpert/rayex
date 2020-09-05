@@ -95,7 +95,6 @@ $(document).ready(function(){initNavTree('classrx_1_1_renderer.html',''); initRe
 <div class="header">
   <div class="summary">
 <a href="#pub-methods">Public Member Functions</a> &#124;
-<a href="#pri-attribs">Private Attributes</a> &#124;
 <a href="classrx_1_1_renderer-members.html">List of all members</a>  </div>
   <div class="headertitle">
 <div class="title">rx::Renderer Class Reference<div class="ingroups"><a class="el" href="group___base.html">Interfaces and Base Components</a></div></div>  </div>
@@ -143,19 +142,6 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a4d8326fe73f7a45a8355b834a7edd61c"><td class="memItemLeft" align="right" valign="top">RX_API void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classrx_1_1_renderer.html#a4d8326fe73f7a45a8355b834a7edd61c">setGui</a> (std::shared_ptr&lt; <a class="el" href="classrx_1_1_gui_base.html">GuiBase</a> &gt; gui)</td></tr>
 <tr class="memdesc:a4d8326fe73f7a45a8355b834a7edd61c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Used to set the renderer's GUI.  <a href="classrx_1_1_renderer.html#a4d8326fe73f7a45a8355b834a7edd61c">More...</a><br /></td></tr>
 <tr class="separator:a4d8326fe73f7a45a8355b834a7edd61c"><td class="memSeparator" colspan="2">&#160;</td></tr>
-</table><table class="memberdecls">
-<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pri-attribs"></a>
-Private Attributes</h2></td></tr>
-<tr class="memitem:ab2dbe97463c4a6ce16a14b6da729258e"><td class="memItemLeft" align="right" valign="top">std::shared_ptr&lt; <a class="el" href="classrx_1_1_window_base.html">WindowBase</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classrx_1_1_renderer.html#ab2dbe97463c4a6ce16a14b6da729258e">m_window</a></td></tr>
-<tr class="separator:ab2dbe97463c4a6ce16a14b6da729258e"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a4d267a72b2273e8354e79aa97eda3342"><td class="memItemLeft" align="right" valign="top">std::shared_ptr&lt; <a class="el" href="classrx_1_1_camera_base.html">CameraBase</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classrx_1_1_renderer.html#a4d267a72b2273e8354e79aa97eda3342">m_camera</a></td></tr>
-<tr class="separator:a4d267a72b2273e8354e79aa97eda3342"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a16aa9703dedddf0eb0638b5f5f686b93"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classrx_1_1_api.html">Api</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classrx_1_1_renderer.html#a16aa9703dedddf0eb0638b5f5f686b93">m_api</a></td></tr>
-<tr class="separator:a16aa9703dedddf0eb0638b5f5f686b93"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a0926aadb2dcba1a1d0a4582164c28fb5"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classrx_1_1_renderer.html#a0926aadb2dcba1a1d0a4582164c28fb5">m_initialized</a></td></tr>
-<tr class="separator:a0926aadb2dcba1a1d0a4582164c28fb5"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aceaaba9e0333bf4344aeaf911aae2322"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classrx_1_1_renderer.html#aceaaba9e0333bf4344aeaf911aae2322">m_running</a></td></tr>
-<tr class="separator:aceaaba9e0333bf4344aeaf911aae2322"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>The main user interface. </p>
@@ -515,117 +501,6 @@ template&lt;typename T  = Model&gt; </div>
   </dd>
 </dl>
 <dl class="section see"><dt>See also</dt><dd><a class="el" href="classrx_1_1_api.html#a72a7ec289fe4c4cb0155cf51270a7164" title="Used to overwrite the entire scene with new nodes.">rx::Api::setNodes()</a> </dd></dl>
-
-</div>
-</div>
-<h2 class="groupheader">Member Data Documentation</h2>
-<a id="a16aa9703dedddf0eb0638b5f5f686b93"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a16aa9703dedddf0eb0638b5f5f686b93">&#9670;&nbsp;</a></span>m_api</h2>
-
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname"><a class="el" href="classrx_1_1_api.html">Api</a> rx::Renderer::m_api</td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">private</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-</div>
-</div>
-<a id="a4d267a72b2273e8354e79aa97eda3342"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a4d267a72b2273e8354e79aa97eda3342">&#9670;&nbsp;</a></span>m_camera</h2>
-
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">std::shared_ptr&lt;<a class="el" href="classrx_1_1_camera_base.html">CameraBase</a>&gt; rx::Renderer::m_camera</td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">private</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-</div>
-</div>
-<a id="a0926aadb2dcba1a1d0a4582164c28fb5"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a0926aadb2dcba1a1d0a4582164c28fb5">&#9670;&nbsp;</a></span>m_initialized</h2>
-
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">bool rx::Renderer::m_initialized</td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">private</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-</div>
-</div>
-<a id="aceaaba9e0333bf4344aeaf911aae2322"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aceaaba9e0333bf4344aeaf911aae2322">&#9670;&nbsp;</a></span>m_running</h2>
-
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">bool rx::Renderer::m_running</td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">private</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-</div>
-</div>
-<a id="ab2dbe97463c4a6ce16a14b6da729258e"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ab2dbe97463c4a6ce16a14b6da729258e">&#9670;&nbsp;</a></span>m_window</h2>
-
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">std::shared_ptr&lt;<a class="el" href="classrx_1_1_window_base.html">WindowBase</a>&gt; rx::Renderer::m_window</td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">private</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
 
 </div>
 </div>

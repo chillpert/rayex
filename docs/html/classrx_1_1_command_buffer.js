@@ -9,8 +9,5 @@ var classrx_1_1_command_buffer =
     [ "get", "classrx_1_1_command_buffer.html#afc93f4c5731f3b18d24cefc3729f9b0a", null ],
     [ "init", "classrx_1_1_command_buffer.html#abc9618248a49213bb5649495d2194ea5", null ],
     [ "reset", "classrx_1_1_command_buffer.html#ab76173ed0d4409599c99f16f8dd830d7", null ],
-    [ "submitToQueue", "classrx_1_1_command_buffer.html#a31fe2373d5dd2af4c9b087cc0a6cfd9e", null ],
-    [ "m_beginInfo", "classrx_1_1_command_buffer.html#a84a763d0d812fff1c8a684e31f918a4f", null ],
-    [ "m_commandBuffers", "classrx_1_1_command_buffer.html#adc8f0e2930e34f45979c570d332a1d33", null ],
-    [ "m_commandPool", "classrx_1_1_command_buffer.html#ac262208b5ff442138c4bdf4050da9ac9", null ]
+    [ "submitToQueue", "classrx_1_1_command_buffer.html#a31fe2373d5dd2af4c9b087cc0a6cfd9e", null ]
 ];

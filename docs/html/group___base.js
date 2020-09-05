@@ -12,7 +12,6 @@ var group___base =
       [ "m_indices", "classrx_1_1_model.html#adcd59f4d014850fed6a4de52add0e17f", null ],
       [ "m_initialized", "classrx_1_1_model.html#acbf968ef65bd2dd67d8f2cc5361262f4", null ],
       [ "m_material", "classrx_1_1_model.html#a354f3f751b3dbd1d8a7d003adfb3ab1c", null ],
-      [ "m_modelCounter", "classrx_1_1_model.html#ad2a444ad6919ab7791a90ef514fb5594", null ],
       [ "m_path", "classrx_1_1_model.html#a5186733f536fb419ec2f72a71d38145a", null ],
       [ "m_vertexBuffer", "classrx_1_1_model.html#a3cd5fdada70d2ee42f3eeade4a96dfdd", null ],
       [ "m_vertices", "classrx_1_1_model.html#ac32ba8b29e77a4cf38940d3274da36f4", null ]
@@ -53,8 +52,7 @@ var group___base =
     [ "Node", "classrx_1_1_node.html", [
       [ "Node", "classrx_1_1_node.html#adf0d15a58309c1fdb7cff60a5a4e10f5", null ],
       [ "~Node", "classrx_1_1_node.html#a11793f57afaf9c34a42ac6efc5a40049", null ],
-      [ "getID", "classrx_1_1_node.html#a44d70a683c0103419a22aa7a816c65d2", null ],
-      [ "m_id", "classrx_1_1_node.html#aa1ed31522b08e611af776de81825c239", null ]
+      [ "getID", "classrx_1_1_node.html#a44d70a683c0103419a22aa7a816c65d2", null ]
     ] ],
     [ "TransformNode", "classrx_1_1_transform_node.html", [
       [ "~TransformNode", "classrx_1_1_transform_node.html#a8930dc916df0f32e6682f2ba4b1ed621", null ],
@@ -94,12 +92,7 @@ var group___base =
       [ "run", "classrx_1_1_renderer.html#ad99a218626b4a8c588d42fc772f0b1fb", null ],
       [ "setCamera", "classrx_1_1_renderer.html#aacd88edf019384a97ac7cf3cb884fdb4", null ],
       [ "setGui", "classrx_1_1_renderer.html#a4d8326fe73f7a45a8355b834a7edd61c", null ],
-      [ "setNodes", "classrx_1_1_renderer.html#a1f89f0dfe365bfaa83c62e6b3ed8324f", null ],
-      [ "m_api", "classrx_1_1_renderer.html#a16aa9703dedddf0eb0638b5f5f686b93", null ],
-      [ "m_camera", "classrx_1_1_renderer.html#a4d267a72b2273e8354e79aa97eda3342", null ],
-      [ "m_initialized", "classrx_1_1_renderer.html#a0926aadb2dcba1a1d0a4582164c28fb5", null ],
-      [ "m_running", "classrx_1_1_renderer.html#aceaaba9e0333bf4344aeaf911aae2322", null ],
-      [ "m_window", "classrx_1_1_renderer.html#ab2dbe97463c4a6ce16a14b6da729258e", null ]
+      [ "setNodes", "classrx_1_1_renderer.html#a1f89f0dfe365bfaa83c62e6b3ed8324f", null ]
     ] ],
     [ "WindowBase", "classrx_1_1_window_base.html", [
       [ "WindowBase", "classrx_1_1_window_base.html#a4c75fcc5018535133aa56a897ef8d385", null ],

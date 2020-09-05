@@ -95,12 +95,14 @@ $(document).ready(function(){initNavTree('classrx_1_1_buffer.html',''); initResi
 <div class="header">
   <div class="summary">
 <a href="#pub-methods">Public Member Functions</a> &#124;
-<a href="#pri-attribs">Private Attributes</a> &#124;
 <a href="classrx_1_1_buffer-members.html">List of all members</a>  </div>
   <div class="headertitle">
-<div class="title">rx::Buffer Class Reference</div>  </div>
+<div class="title">rx::Buffer Class Reference<div class="ingroups"><a class="el" href="group___a_p_i.html">Vulkan</a></div></div>  </div>
 </div><!--header-->
 <div class="contents">
+
+<p>A wrapper class for a Vulkan buffer.  
+ <a href="classrx_1_1_buffer.html#details">More...</a></p>
 
 <p><code>#include &lt;<a class="el" href="_buffer_8hpp_source.html">Buffer.hpp</a>&gt;</code></p>
 <table class="memberdecls">
@@ -111,8 +113,10 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a1e31ae5e388c834d7ad2815f0b06ee96"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classrx_1_1_buffer.html#a1e31ae5e388c834d7ad2815f0b06ee96">Buffer</a> (vk::DeviceSize size, vk::BufferUsageFlags usage, const std::vector&lt; uint32_t &gt; &amp;queueFamilyIndices={ }, vk::MemoryPropertyFlags memoryPropertyFlags=vk::MemoryPropertyFlagBits::eDeviceLocal, void *pNextMemory=nullptr, bool initialize=true)</td></tr>
 <tr class="separator:a1e31ae5e388c834d7ad2815f0b06ee96"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a491b496f95f75b0b586d262be250a011"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classrx_1_1_buffer.html#a491b496f95f75b0b586d262be250a011">copyToBuffer</a> (<a class="el" href="classrx_1_1_buffer.html">Buffer</a> &amp;buffer) const</td></tr>
+<tr class="memdesc:a491b496f95f75b0b586d262be250a011"><td class="mdescLeft">&#160;</td><td class="mdescRight">Copies the content of this buffer to another buffer.  <a href="classrx_1_1_buffer.html#a491b496f95f75b0b586d262be250a011">More...</a><br /></td></tr>
 <tr class="separator:a491b496f95f75b0b586d262be250a011"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:abc4c095d4eb6da7d00a6255074ed5d45"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classrx_1_1_buffer.html#abc4c095d4eb6da7d00a6255074ed5d45">copyToImage</a> (<a class="el" href="classrx_1_1_image.html">Image</a> &amp;image) const</td></tr>
+<tr class="memdesc:abc4c095d4eb6da7d00a6255074ed5d45"><td class="mdescLeft">&#160;</td><td class="mdescRight">Copies the content of this buffer to an image.  <a href="classrx_1_1_buffer.html#abc4c095d4eb6da7d00a6255074ed5d45">More...</a><br /></td></tr>
 <tr class="separator:abc4c095d4eb6da7d00a6255074ed5d45"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a4055ed30a94888249e37f3ea46bf09e9"><td class="memItemLeft" align="right" valign="top">const vk::Buffer&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classrx_1_1_buffer.html#a4055ed30a94888249e37f3ea46bf09e9">get</a> () const</td></tr>
 <tr class="separator:a4055ed30a94888249e37f3ea46bf09e9"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -121,21 +125,16 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a9f6c8caed7b9ae15afaa30644a87fa36"><td class="memItemLeft" align="right" valign="top">const vk::DeviceSize&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classrx_1_1_buffer.html#a9f6c8caed7b9ae15afaa30644a87fa36">getSize</a> () const</td></tr>
 <tr class="separator:a9f6c8caed7b9ae15afaa30644a87fa36"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a3dcb26ae5db02346a1b81cac1c97dbbd"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classrx_1_1_buffer.html#a3dcb26ae5db02346a1b81cac1c97dbbd">init</a> (vk::DeviceSize size, vk::BufferUsageFlags usage, const std::vector&lt; uint32_t &gt; &amp;queueFamilyIndices={ }, vk::MemoryPropertyFlags memoryPropertyFlags=vk::MemoryPropertyFlagBits::eDeviceLocal, void *pNextMemory=nullptr)</td></tr>
+<tr class="memdesc:a3dcb26ae5db02346a1b81cac1c97dbbd"><td class="mdescLeft">&#160;</td><td class="mdescRight">Creates the buffer and allocates memory for it.  <a href="classrx_1_1_buffer.html#a3dcb26ae5db02346a1b81cac1c97dbbd">More...</a><br /></td></tr>
 <tr class="separator:a3dcb26ae5db02346a1b81cac1c97dbbd"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ae67da1cda37050466a0dda5edca5f0b0"><td class="memTemplParams" colspan="2">template&lt;class T &gt; </td></tr>
 <tr class="memitem:ae67da1cda37050466a0dda5edca5f0b0"><td class="memTemplItemLeft" align="right" valign="top">void&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="classrx_1_1_buffer.html#ae67da1cda37050466a0dda5edca5f0b0">fill</a> (T *source, vk::DeviceSize offset=0)</td></tr>
+<tr class="memdesc:ae67da1cda37050466a0dda5edca5f0b0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Used to fill the buffer with any kind of data.  <a href="classrx_1_1_buffer.html#ae67da1cda37050466a0dda5edca5f0b0">More...</a><br /></td></tr>
 <tr class="separator:ae67da1cda37050466a0dda5edca5f0b0"><td class="memSeparator" colspan="2">&#160;</td></tr>
-</table><table class="memberdecls">
-<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pri-attribs"></a>
-Private Attributes</h2></td></tr>
-<tr class="memitem:a637f9f49535178d17698505ec0e4859a"><td class="memItemLeft" align="right" valign="top">vk::UniqueBuffer&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classrx_1_1_buffer.html#a637f9f49535178d17698505ec0e4859a">m_buffer</a></td></tr>
-<tr class="separator:a637f9f49535178d17698505ec0e4859a"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a6f2b7d287631e65d775cc41210c999d4"><td class="memItemLeft" align="right" valign="top">vk::UniqueDeviceMemory&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classrx_1_1_buffer.html#a6f2b7d287631e65d775cc41210c999d4">m_memory</a></td></tr>
-<tr class="separator:a6f2b7d287631e65d775cc41210c999d4"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a9f35cdcb2aef37647274875014597c32"><td class="memItemLeft" align="right" valign="top">vk::DeviceSize&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classrx_1_1_buffer.html#a9f35cdcb2aef37647274875014597c32">m_size</a> = 0</td></tr>
-<tr class="separator:a9f35cdcb2aef37647274875014597c32"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
-<h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>A wrapper class for a Vulkan buffer. </p>
+</div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a id="ad549ae24d3847007a301b57a178887bd"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#ad549ae24d3847007a301b57a178887bd">&#9670;&nbsp;</a></span>Buffer() <span class="overload">[1/2]</span></h2>
 
@@ -210,6 +209,17 @@ Private Attributes</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">size</td><td>The size of the buffer. </td></tr>
+    <tr><td class="paramname">usage</td><td>The buffer's usage flags. </td></tr>
+    <tr><td class="paramname">queueFamilyIndices</td><td>Specifies which queue family will access the buffer. </td></tr>
+    <tr><td class="paramname">memoryPropertyFlags</td><td>Flags for memory allocation. </td></tr>
+    <tr><td class="paramname">pNextMemory</td><td>Attachment to the memory's pNext chain. </td></tr>
+    <tr><td class="paramname">initialize</td><td>If true, the buffer object will be initialized right away without an additional call to <a class="el" href="classrx_1_1_buffer.html#a3dcb26ae5db02346a1b81cac1c97dbbd" title="Creates the buffer and allocates memory for it.">init()</a>. </td></tr>
+  </table>
+  </dd>
+</dl>
 
 </div>
 </div>
@@ -230,6 +240,14 @@ Private Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
+<p>Copies the content of this buffer to another buffer. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">buffer</td><td>The target for the copy operation. </td></tr>
+  </table>
+  </dd>
+</dl>
+
 </div>
 </div>
 <a id="abc4c095d4eb6da7d00a6255074ed5d45"></a>
@@ -247,6 +265,14 @@ Private Attributes</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>Copies the content of this buffer to an image. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">image</td><td>The target for the copy operation. </td></tr>
+  </table>
+  </dd>
+</dl>
 
 </div>
 </div>
@@ -286,6 +312,15 @@ template&lt;class T &gt; </div>
 </table>
 </div><div class="memdoc">
 
+<p>Used to fill the buffer with any kind of data. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">source</td><td>The data to fill the buffer with. </td></tr>
+    <tr><td class="paramname">offset</td><td>The data's offset within the buffer. </td></tr>
+  </table>
+  </dd>
+</dl>
+
 </div>
 </div>
 <a id="a4055ed30a94888249e37f3ea46bf09e9"></a>
@@ -310,6 +345,7 @@ template&lt;class T &gt; </div>
   </tr>
 </table>
 </div><div class="memdoc">
+<dl class="section return"><dt>Returns</dt><dd>Returns the buffer without the unique handle. </dd></dl>
 
 </div>
 </div>
@@ -335,6 +371,7 @@ template&lt;class T &gt; </div>
   </tr>
 </table>
 </div><div class="memdoc">
+<dl class="section return"><dt>Returns</dt><dd>Returns the buffer's memory without the unique handle. </dd></dl>
 
 </div>
 </div>
@@ -360,6 +397,7 @@ template&lt;class T &gt; </div>
   </tr>
 </table>
 </div><div class="memdoc">
+<dl class="section return"><dt>Returns</dt><dd>Returns the size of the buffer. </dd></dl>
 
 </div>
 </div>
@@ -407,72 +445,17 @@ template&lt;class T &gt; </div>
       </table>
 </div><div class="memdoc">
 
-</div>
-</div>
-<h2 class="groupheader">Member Data Documentation</h2>
-<a id="a637f9f49535178d17698505ec0e4859a"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a637f9f49535178d17698505ec0e4859a">&#9670;&nbsp;</a></span>m_buffer</h2>
-
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">vk::UniqueBuffer rx::Buffer::m_buffer</td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">private</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-</div>
-</div>
-<a id="a6f2b7d287631e65d775cc41210c999d4"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a6f2b7d287631e65d775cc41210c999d4">&#9670;&nbsp;</a></span>m_memory</h2>
-
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">vk::UniqueDeviceMemory rx::Buffer::m_memory</td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">private</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-</div>
-</div>
-<a id="a9f35cdcb2aef37647274875014597c32"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a9f35cdcb2aef37647274875014597c32">&#9670;&nbsp;</a></span>m_size</h2>
-
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">vk::DeviceSize rx::Buffer::m_size = 0</td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">private</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
+<p>Creates the buffer and allocates memory for it. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">size</td><td>The size of the buffer. </td></tr>
+    <tr><td class="paramname">usage</td><td>The buffer's usage flags. </td></tr>
+    <tr><td class="paramname">queueFamilyIndices</td><td>Specifies which queue family will access the buffer. </td></tr>
+    <tr><td class="paramname">memoryPropertyFlags</td><td>Flags for memory allocation. </td></tr>
+    <tr><td class="paramname">pNextMemory</td><td>Attachment to the memory's pNext chain. </td></tr>
+  </table>
+  </dd>
+</dl>
 
 </div>
 </div>

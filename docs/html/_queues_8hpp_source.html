@@ -116,8 +116,8 @@ $(document).ready(function(){initNavTree('_queues_8hpp_source.html',''); initRes
 <div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;    <span class="keyword">static</span> <span class="keywordtype">bool</span> <a class="code" href="classrx_1_1_queues.html#aa0e1ad87d64b7edadf67af40f98d30ce">hasDedicatedTransferQueueFamily</a>( vk::PhysicalDevice physicalDevice );</div>
 <div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160; </div>
 <div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;  <span class="keyword">private</span>:</div>
-<div class="line"><a name="l00031"></a><span class="lineno"><a class="line" href="classrx_1_1_queues.html#abb28e6f7adf086fe84182f052cfde607">   31</a></span>&#160;    std::optional&lt;uint32_t&gt; <a class="code" href="classrx_1_1_queues.html#abb28e6f7adf086fe84182f052cfde607">m_graphicsFamilyIndex</a>; </div>
-<div class="line"><a name="l00032"></a><span class="lineno"><a class="line" href="classrx_1_1_queues.html#a0103aff3f4a7d50c003d5fdf3e5f6f13">   32</a></span>&#160;    std::optional&lt;uint32_t&gt; <a class="code" href="classrx_1_1_queues.html#a0103aff3f4a7d50c003d5fdf3e5f6f13">m_transferFamilyIndex</a>; </div>
+<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;    std::optional&lt;uint32_t&gt; m_graphicsFamilyIndex; </div>
+<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;    std::optional&lt;uint32_t&gt; m_transferFamilyIndex; </div>
 <div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;  };</div>
 <div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;}</div>
 <div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160; </div>
@@ -131,8 +131,6 @@ $(document).ready(function(){initNavTree('_queues_8hpp_source.html',''); initRes
 <div class="ttc" id="astdafx_8hpp_html"><div class="ttname"><a href="stdafx_8hpp.html">stdafx.hpp</a></div></div>
 <div class="ttc" id="aclassrx_1_1_queues_html_ab003c434f6c993f2381b6b0c9dd76003"><div class="ttname"><a href="classrx_1_1_queues.html#ab003c434f6c993f2381b6b0c9dd76003">rx::Queues::init</a></div><div class="ttdeci">void init()</div><div class="ttdoc">Retrieves the queue family indices for both graphics and transfer queue families.</div><div class="ttdef"><b>Definition:</b> Queues.cpp:6</div></div>
 <div class="ttc" id="aclassrx_1_1_queues_html_a6de73934bd1ec9973de8caddfe897077"><div class="ttname"><a href="classrx_1_1_queues.html#a6de73934bd1ec9973de8caddfe897077">rx::Queues::isComplete</a></div><div class="ttdeci">static bool isComplete(vk::PhysicalDevice physicalDevice)</div><div class="ttdoc">Checks if a given physical device supports the queue capabilities required by the application.</div><div class="ttdef"><b>Definition:</b> Queues.cpp:46</div></div>
-<div class="ttc" id="aclassrx_1_1_queues_html_abb28e6f7adf086fe84182f052cfde607"><div class="ttname"><a href="classrx_1_1_queues.html#abb28e6f7adf086fe84182f052cfde607">rx::Queues::m_graphicsFamilyIndex</a></div><div class="ttdeci">std::optional&lt; uint32_t &gt; m_graphicsFamilyIndex</div><div class="ttdoc">The graphics queue family index.</div><div class="ttdef"><b>Definition:</b> Queues.hpp:31</div></div>
-<div class="ttc" id="aclassrx_1_1_queues_html_a0103aff3f4a7d50c003d5fdf3e5f6f13"><div class="ttname"><a href="classrx_1_1_queues.html#a0103aff3f4a7d50c003d5fdf3e5f6f13">rx::Queues::m_transferFamilyIndex</a></div><div class="ttdeci">std::optional&lt; uint32_t &gt; m_transferFamilyIndex</div><div class="ttdoc">The transfer queue family index.</div><div class="ttdef"><b>Definition:</b> Queues.hpp:32</div></div>
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>

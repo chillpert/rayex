@@ -5,8 +5,5 @@ var classrx_1_1_index_buffer =
     [ "get", "classrx_1_1_index_buffer.html#aa4ab087a3d30ae244927f4320cae99f1", null ],
     [ "getCount", "classrx_1_1_index_buffer.html#a29bd1d3a64747d7ec3e0961abd4c4373", null ],
     [ "getType", "classrx_1_1_index_buffer.html#a498b6ec64a58846b2d81676422e73e15", null ],
-    [ "init", "classrx_1_1_index_buffer.html#a850e3953992775338162be238347e7f1", null ],
-    [ "m_buffer", "classrx_1_1_index_buffer.html#abd3eb9b0f6d060e29442ddaec8767a40", null ],
-    [ "m_count", "classrx_1_1_index_buffer.html#a9ae9aab5034949281c18a6b6fe4cfad9", null ],
-    [ "m_indexType", "classrx_1_1_index_buffer.html#a4e3d26c28ba0a620a155af1b92132451", null ]
+    [ "init", "classrx_1_1_index_buffer.html#a850e3953992775338162be238347e7f1", null ]
 ];

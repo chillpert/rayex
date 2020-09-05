@@ -1,6 +1,5 @@
 var searchData=
 [
-  ['texcoord_1062',['texCoord',['../structrx_1_1_vertex.html#ab789ce9a3fa04e9d18d7072e7b326426',1,'rx::Vertex']]],
-  ['timetowaitforstartingbenchmark_1063',['timeToWaitForStartingBenchmark',['../namespacerx.html#a97f95f78f1329d0d328615ab400e298e',1,'rx']]],
-  ['transform_1064',['transform',['../structrx_1_1_blas_instance.html#a1a0ddbfa50189ea67eb18cf74188ba12',1,'rx::BlasInstance']]]
+  ['view_859',['view',['../structrx_1_1_camera_ubo.html#a99c4db5c880b8c87fdc1f3a3ae502704',1,'rx::CameraUbo::view()'],['../structrx_1_1_mvp_ubo.html#a1743bbce71e239d041c8579f8503c2ae',1,'rx::MvpUbo::view()']]],
+  ['viewinverse_860',['viewInverse',['../structrx_1_1_camera_ubo.html#a4327e65d385718122c3ea1a53c055f81',1,'rx::CameraUbo']]]
 ];

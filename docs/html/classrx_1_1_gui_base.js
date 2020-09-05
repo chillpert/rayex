@@ -8,20 +8,8 @@ var classrx_1_1_gui_base =
     [ "endRender", "classrx_1_1_gui_base.html#aad9bf6f9fcaa10afa08cec4c1cd9d349", null ],
     [ "getCommandBuffer", "classrx_1_1_gui_base.html#a75dca542b071d52c0bf6c3a13ecf2d7f", null ],
     [ "init", "classrx_1_1_gui_base.html#aca9f5d7553cc6d2ee1e0937dc1b154aa", null ],
-    [ "initCommandBuffers", "classrx_1_1_gui_base.html#a53d7c57dd7506900bcb18442d561c15f", null ],
-    [ "initCommandPool", "classrx_1_1_gui_base.html#a89b6103a79e50febfd0fd973c1442c6b", null ],
-    [ "initDescriptorPool", "classrx_1_1_gui_base.html#a71536da98faef733ca65aef816359a05", null ],
-    [ "initFonts", "classrx_1_1_gui_base.html#ae5d6ffb32b6f3a644f64e44288ab45a7", null ],
-    [ "initFramebuffers", "classrx_1_1_gui_base.html#a7bccff5170f98c534122670779ca7d85", null ],
-    [ "initRenderPass", "classrx_1_1_gui_base.html#a6fc1a255b066a83b7a8ee12a81750df5", null ],
     [ "newFrame", "classrx_1_1_gui_base.html#a8274f2ac199371aa1af8205da57e543d", null ],
     [ "recreate", "classrx_1_1_gui_base.html#a02de12dd4e477a1b2cdb217dbf7c1ceb", null ],
     [ "render", "classrx_1_1_gui_base.html#ad2100f03fe7e64b12cc315231effae88", null ],
-    [ "renderDrawData", "classrx_1_1_gui_base.html#a668f00b604de4a566d6b46a469fdb62a", null ],
-    [ "m_commandBuffers", "classrx_1_1_gui_base.html#af2c3b6eea093ea8d99568c955768c61e", null ],
-    [ "m_commandPool", "classrx_1_1_gui_base.html#a92c99866c385373f2f82e991a75b443d", null ],
-    [ "m_descriptorPool", "classrx_1_1_gui_base.html#a123a6bff4bcbeda65d70b3cc6a8f4728", null ],
-    [ "m_framebuffers", "classrx_1_1_gui_base.html#a2ec2e2ff914f46984118a4ffb34d4686", null ],
-    [ "m_renderPass", "classrx_1_1_gui_base.html#a35bcee3d0bd5507fb3c3786e82b030b9", null ],
-    [ "m_swapchainImageExtent", "classrx_1_1_gui_base.html#af271985745e4b5282fc335d86e27e5f1", null ]
+    [ "renderDrawData", "classrx_1_1_gui_base.html#a668f00b604de4a566d6b46a469fdb62a", null ]
 ];

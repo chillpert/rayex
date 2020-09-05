@@ -5,7 +5,5 @@ var classrx_1_1_vertex_buffer =
     [ "get", "classrx_1_1_vertex_buffer.html#a89a6e67a58ab128fc3721e8e2bc0ce50", null ],
     [ "getCount", "classrx_1_1_vertex_buffer.html#a5d75d00043dfebaf014e13e8b82c887d", null ],
     [ "getSize", "classrx_1_1_vertex_buffer.html#aed185c57f67b3649e55d18c598a2dadd", null ],
-    [ "init", "classrx_1_1_vertex_buffer.html#ab3c0058ec496e2e917d50c0c5fd89174", null ],
-    [ "m_buffer", "classrx_1_1_vertex_buffer.html#ab3f0c9112365d7ad9901cbce87f3a52e", null ],
-    [ "m_count", "classrx_1_1_vertex_buffer.html#ac2913b175fb006885f6fcfaa889b9f62", null ]
+    [ "init", "classrx_1_1_vertex_buffer.html#ab3c0058ec496e2e917d50c0c5fd89174", null ]
 ];

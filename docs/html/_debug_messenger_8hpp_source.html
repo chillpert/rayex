@@ -116,9 +116,9 @@ $(document).ready(function(){initNavTree('_debug_messenger_8hpp_source.html','')
 <div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="classrx_1_1_debug_messenger.html#a046e6a3650f7ab74520a2d749c4016c0">init</a>( vk::DebugUtilsMessageSeverityFlagsEXT messageSeverity, vk::DebugUtilsMessageTypeFlagsEXT messageType );</div>
 <div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160; </div>
 <div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;  <span class="keyword">private</span>:</div>
-<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="classrx_1_1_debug_messenger.html#a058e396922f1daf53334dc36c08e270e">destroy</a>( );</div>
+<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;    <span class="keywordtype">void</span> destroy( );</div>
 <div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160; </div>
-<div class="line"><a name="l00032"></a><span class="lineno"><a class="line" href="classrx_1_1_debug_messenger.html#a750afa53432b8fb5c12be8c504da0005">   32</a></span>&#160;    vk::DebugUtilsMessengerEXT <a class="code" href="classrx_1_1_debug_messenger.html#a750afa53432b8fb5c12be8c504da0005">m_debugMessenger</a>;</div>
+<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;    vk::DebugUtilsMessengerEXT m_debugMessenger;</div>
 <div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;  };</div>
 <div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160; </div>
 <div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;  VKAPI_ATTR VkBool32 VKAPI_CALL <a class="code" href="namespacerx.html#aa6682c56ae665878e5a20671c4463caa">debugMessengerCallback</a>( VkDebugUtilsMessageSeverityFlagBitsEXT messageSeverity,</div>
@@ -130,10 +130,8 @@ $(document).ready(function(){initNavTree('_debug_messenger_8hpp_source.html','')
 <div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;<span class="preprocessor">#endif // VK_DEBUG_MESSENGER_HPP</span></div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->
-<div class="ttc" id="aclassrx_1_1_debug_messenger_html_a058e396922f1daf53334dc36c08e270e"><div class="ttname"><a href="classrx_1_1_debug_messenger.html#a058e396922f1daf53334dc36c08e270e">rx::DebugMessenger::destroy</a></div><div class="ttdeci">void destroy()</div><div class="ttdoc">Destroys the debug messenger.</div><div class="ttdef"><b>Definition:</b> DebugMessenger.cpp:33</div></div>
 <div class="ttc" id="anamespacerx_html_aa6682c56ae665878e5a20671c4463caa"><div class="ttname"><a href="namespacerx.html#aa6682c56ae665878e5a20671c4463caa">rx::debugMessengerCallback</a></div><div class="ttdeci">VKAPI_ATTR VkBool32 VKAPI_CALL debugMessengerCallback(VkDebugUtilsMessageSeverityFlagBitsEXT messageSeverity, VkDebugUtilsMessageTypeFlagsEXT messageType, const VkDebugUtilsMessengerCallbackDataEXT *callbackData, void *userData)</div><div class="ttdef"><b>Definition:</b> DebugMessenger.cpp:46</div></div>
 <div class="ttc" id="aclassrx_1_1_debug_messenger_html"><div class="ttname"><a href="classrx_1_1_debug_messenger.html">rx::DebugMessenger</a></div><div class="ttdoc">A wrapper class for a Vulkan debug utility messenger.</div><div class="ttdef"><b>Definition:</b> DebugMessenger.hpp:11</div></div>
-<div class="ttc" id="aclassrx_1_1_debug_messenger_html_a750afa53432b8fb5c12be8c504da0005"><div class="ttname"><a href="classrx_1_1_debug_messenger.html#a750afa53432b8fb5c12be8c504da0005">rx::DebugMessenger::m_debugMessenger</a></div><div class="ttdeci">vk::DebugUtilsMessengerEXT m_debugMessenger</div><div class="ttdef"><b>Definition:</b> DebugMessenger.hpp:32</div></div>
 <div class="ttc" id="anamespacerx_html"><div class="ttname"><a href="namespacerx.html">rx</a></div><div class="ttdoc">The rx namespace encapsulates every single component provided by the renderer.</div><div class="ttdef"><b>Definition:</b> Api.cpp:9</div></div>
 <div class="ttc" id="aclassrx_1_1_debug_messenger_html_aad9afece249a09e5d14115f22244eaaa"><div class="ttname"><a href="classrx_1_1_debug_messenger.html#aad9afece249a09e5d14115f22244eaaa">rx::DebugMessenger::DebugMessenger</a></div><div class="ttdeci">DebugMessenger()=default</div></div>
 <div class="ttc" id="astdafx_8hpp_html"><div class="ttname"><a href="stdafx_8hpp.html">stdafx.hpp</a></div></div>

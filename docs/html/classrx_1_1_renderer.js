@@ -12,10 +12,5 @@ var classrx_1_1_renderer =
     [ "run", "classrx_1_1_renderer.html#ad99a218626b4a8c588d42fc772f0b1fb", null ],
     [ "setCamera", "classrx_1_1_renderer.html#aacd88edf019384a97ac7cf3cb884fdb4", null ],
     [ "setGui", "classrx_1_1_renderer.html#a4d8326fe73f7a45a8355b834a7edd61c", null ],
-    [ "setNodes", "classrx_1_1_renderer.html#a1f89f0dfe365bfaa83c62e6b3ed8324f", null ],
-    [ "m_api", "classrx_1_1_renderer.html#a16aa9703dedddf0eb0638b5f5f686b93", null ],
-    [ "m_camera", "classrx_1_1_renderer.html#a4d267a72b2273e8354e79aa97eda3342", null ],
-    [ "m_initialized", "classrx_1_1_renderer.html#a0926aadb2dcba1a1d0a4582164c28fb5", null ],
-    [ "m_running", "classrx_1_1_renderer.html#aceaaba9e0333bf4344aeaf911aae2322", null ],
-    [ "m_window", "classrx_1_1_renderer.html#ab2dbe97463c4a6ce16a14b6da729258e", null ]
+    [ "setNodes", "classrx_1_1_renderer.html#a1f89f0dfe365bfaa83c62e6b3ed8324f", null ]
 ];

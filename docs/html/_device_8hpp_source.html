@@ -114,17 +114,15 @@ $(document).ready(function(){initNavTree('_device_8hpp_source.html',''); initRes
 <div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="classrx_1_1_device.html#a602bed4925b0964faa96ecae5bc9f029">init</a>( std::vector&lt;const char*&gt;&amp; extensions );</div>
 <div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160; </div>
 <div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;  <span class="keyword">private</span>:</div>
-<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="classrx_1_1_device.html#a52e8f1871fad968d4f38acbc0955aa50">checkExtensionSupport</a>( <span class="keyword">const</span> std::vector&lt;const char*&gt;&amp; extensions ) <span class="keyword">const</span>;</div>
+<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;    <span class="keywordtype">void</span> checkExtensionSupport( <span class="keyword">const</span> std::vector&lt;const char*&gt;&amp; extensions ) <span class="keyword">const</span>;</div>
 <div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160; </div>
-<div class="line"><a name="l00031"></a><span class="lineno"><a class="line" href="classrx_1_1_device.html#a4af49c00a82b135a1ff607a6e7ae2e79">   31</a></span>&#160;    vk::UniqueDevice <a class="code" href="classrx_1_1_device.html#a4af49c00a82b135a1ff607a6e7ae2e79">m_device</a>; </div>
+<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;    vk::UniqueDevice m_device; </div>
 <div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;  };</div>
 <div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;}</div>
 <div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160; </div>
 <div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;<span class="preprocessor">#endif // DEVICE_HPP</span></div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->
-<div class="ttc" id="aclassrx_1_1_device_html_a4af49c00a82b135a1ff607a6e7ae2e79"><div class="ttname"><a href="classrx_1_1_device.html#a4af49c00a82b135a1ff607a6e7ae2e79">rx::Device::m_device</a></div><div class="ttdeci">vk::UniqueDevice m_device</div><div class="ttdoc">The Vulkan logical device with a unique handle.</div><div class="ttdef"><b>Definition:</b> Device.hpp:31</div></div>
-<div class="ttc" id="aclassrx_1_1_device_html_a52e8f1871fad968d4f38acbc0955aa50"><div class="ttname"><a href="classrx_1_1_device.html#a52e8f1871fad968d4f38acbc0955aa50">rx::Device::checkExtensionSupport</a></div><div class="ttdeci">void checkExtensionSupport(const std::vector&lt; const char * &gt; &amp;extensions) const</div><div class="ttdoc">Checks if all device extensions provided are supported.</div><div class="ttdef"><b>Definition:</b> Device.cpp:74</div></div>
 <div class="ttc" id="a_instance_8hpp_html"><div class="ttname"><a href="_instance_8hpp.html">Instance.hpp</a></div></div>
 <div class="ttc" id="aclassrx_1_1_device_html_a602bed4925b0964faa96ecae5bc9f029"><div class="ttname"><a href="classrx_1_1_device.html#a602bed4925b0964faa96ecae5bc9f029">rx::Device::init</a></div><div class="ttdeci">void init(std::vector&lt; const char * &gt; &amp;extensions)</div><div class="ttdoc">Creates the logical device and enables all device extensions provided if they are supported.</div><div class="ttdef"><b>Definition:</b> Device.cpp:12</div></div>
 <div class="ttc" id="aclassrx_1_1_device_html_aed93a1e458b2ebf61bd5ba7c541d9d2c"><div class="ttname"><a href="classrx_1_1_device.html#aed93a1e458b2ebf61bd5ba7c541d9d2c">rx::Device::Device</a></div><div class="ttdeci">Device()=default</div></div>

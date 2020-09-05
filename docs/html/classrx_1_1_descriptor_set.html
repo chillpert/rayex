@@ -97,9 +97,12 @@ $(document).ready(function(){initNavTree('classrx_1_1_descriptor_set.html',''); 
 <a href="#pub-methods">Public Member Functions</a> &#124;
 <a href="classrx_1_1_descriptor_set-members.html">List of all members</a>  </div>
   <div class="headertitle">
-<div class="title">rx::DescriptorSet Class Reference</div>  </div>
+<div class="title">rx::DescriptorSet Class Reference<div class="ingroups"><a class="el" href="group___a_p_i.html">Vulkan</a></div></div>  </div>
 </div><!--header-->
 <div class="contents">
+
+<p>A wrapper class for Vulkan descriptor sets.  
+ <a href="classrx_1_1_descriptor_set.html#details">More...</a></p>
 
 <p><code>#include &lt;<a class="el" href="_descriptor_set_8hpp_source.html">DescriptorSet.hpp</a>&gt;</code></p>
 <table class="memberdecls">
@@ -112,19 +115,28 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a3b1bb2f14fda2643e970ebaf75bf22ab"><td class="memItemLeft" align="right" valign="top">const std::vector&lt; vk::DescriptorSet &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classrx_1_1_descriptor_set.html#a3b1bb2f14fda2643e970ebaf75bf22ab">get</a> () const</td></tr>
 <tr class="separator:a3b1bb2f14fda2643e970ebaf75bf22ab"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aebcf7f3f839ebd932c287cc2692993d7"><td class="memItemLeft" align="right" valign="top">const vk::DescriptorSet&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classrx_1_1_descriptor_set.html#aebcf7f3f839ebd932c287cc2692993d7">get</a> (size_t index) const</td></tr>
+<tr class="memdesc:aebcf7f3f839ebd932c287cc2692993d7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the Vulkan descriptor set at a given index.  <a href="classrx_1_1_descriptor_set.html#aebcf7f3f839ebd932c287cc2692993d7">More...</a><br /></td></tr>
 <tr class="separator:aebcf7f3f839ebd932c287cc2692993d7"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ad37d599e9f1d21b1c710566786301c57"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classrx_1_1_descriptor_set.html#ad37d599e9f1d21b1c710566786301c57">init</a> (vk::DescriptorPool descriptorPool, uint32_t count, const std::vector&lt; vk::DescriptorSetLayout &gt; &amp;layouts)</td></tr>
+<tr class="memdesc:ad37d599e9f1d21b1c710566786301c57"><td class="mdescLeft">&#160;</td><td class="mdescRight">Creates the descriptor sets.  <a href="classrx_1_1_descriptor_set.html#ad37d599e9f1d21b1c710566786301c57">More...</a><br /></td></tr>
 <tr class="separator:ad37d599e9f1d21b1c710566786301c57"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:abd7416cfc465e712cf328f8d8f43f998"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classrx_1_1_descriptor_set.html#abd7416cfc465e712cf328f8d8f43f998">update</a> (const vk::AccelerationStructureKHR &amp;tlas, vk::ImageView storageImageView, const std::vector&lt; vk::Buffer &gt; &amp;uniformBuffers)</td></tr>
+<tr class="memdesc:abd7416cfc465e712cf328f8d8f43f998"><td class="mdescLeft">&#160;</td><td class="mdescRight">Used to update ray tracing related descriptors.  <a href="classrx_1_1_descriptor_set.html#abd7416cfc465e712cf328f8d8f43f998">More...</a><br /></td></tr>
 <tr class="separator:abd7416cfc465e712cf328f8d8f43f998"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a0546064e0b3b5a681a5d1f0e0bbf8c2e"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classrx_1_1_descriptor_set.html#a0546064e0b3b5a681a5d1f0e0bbf8c2e">update</a> (vk::ImageView textureImageView, vk::Sampler textureSampler, vk::Buffer vertexBuffer, vk::Buffer indexBuffer)</td></tr>
+<tr class="memdesc:a0546064e0b3b5a681a5d1f0e0bbf8c2e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Used to update model related descriptors (with textures).  <a href="classrx_1_1_descriptor_set.html#a0546064e0b3b5a681a5d1f0e0bbf8c2e">More...</a><br /></td></tr>
 <tr class="separator:a0546064e0b3b5a681a5d1f0e0bbf8c2e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a9056fcfc622a01be0f711e682fd95db4"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classrx_1_1_descriptor_set.html#a9056fcfc622a01be0f711e682fd95db4">update</a> (vk::Buffer vertexBuffer, vk::Buffer indexBuffer)</td></tr>
+<tr class="memdesc:a9056fcfc622a01be0f711e682fd95db4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Used to update model related descriptors (without textures).  <a href="classrx_1_1_descriptor_set.html#a9056fcfc622a01be0f711e682fd95db4">More...</a><br /></td></tr>
 <tr class="separator:a9056fcfc622a01be0f711e682fd95db4"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aeaa8f4e2ec72e990bd2cb8bf0cc9d948"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classrx_1_1_descriptor_set.html#aeaa8f4e2ec72e990bd2cb8bf0cc9d948">free</a> ()</td></tr>
+<tr class="memdesc:aeaa8f4e2ec72e990bd2cb8bf0cc9d948"><td class="mdescLeft">&#160;</td><td class="mdescRight">Frees the descriptor sets.  <a href="classrx_1_1_descriptor_set.html#aeaa8f4e2ec72e990bd2cb8bf0cc9d948">More...</a><br /></td></tr>
 <tr class="separator:aeaa8f4e2ec72e990bd2cb8bf0cc9d948"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
-<h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>A wrapper class for Vulkan descriptor sets. </p>
+<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000004">Todo:</a></b></dt><dd>Make the update process "smart" by using the existing information to automatically write to and update the descriptor sets.</dd></dl>
+</div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a id="a13c22ffa6f75fda5d9221cc23bb6c795"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a13c22ffa6f75fda5d9221cc23bb6c795">&#9670;&nbsp;</a></span>DescriptorSet() <span class="overload">[1/2]</span></h2>
 
@@ -187,6 +199,15 @@ Public Member Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">descriptorPool</td><td>The Vulkan descriptor pool to allocate the descriptor sets from. </td></tr>
+    <tr><td class="paramname">count</td><td>The amount of Vulkan descriptor sets to create. </td></tr>
+    <tr><td class="paramname">layouts</td><td>A vector of Vulkan descriptor set layouts. </td></tr>
+    <tr><td class="paramname">If</td><td>true, the descriptor sets will be initialized right away without an additional call to <a class="el" href="classrx_1_1_descriptor_set.html#ad37d599e9f1d21b1c710566786301c57" title="Creates the descriptor sets.">init()</a>. </td></tr>
+  </table>
+  </dd>
+</dl>
 
 </div>
 </div>
@@ -205,6 +226,8 @@ Public Member Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>Frees the descriptor sets. </p>
 
 </div>
 </div>
@@ -230,6 +253,7 @@ Public Member Functions</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
+<dl class="section return"><dt>Returns</dt><dd>Returns a vector containing the Vulkan descriptor sets. </dd></dl>
 
 </div>
 </div>
@@ -256,6 +280,15 @@ Public Member Functions</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
+
+<p>Returns the Vulkan descriptor set at a given index. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">index</td><td>The index of the descriptor set. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>Returns the Vulkan descriptor set. </dd></dl>
 
 </div>
 </div>
@@ -291,6 +324,16 @@ Public Member Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
+<p>Creates the descriptor sets. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">descriptorPool</td><td>The Vulkan descriptor pool to allocate the descriptor sets from. </td></tr>
+    <tr><td class="paramname">count</td><td>The amount of Vulkan descriptor sets to create. </td></tr>
+    <tr><td class="paramname">layouts</td><td>A vector of Vulkan descriptor set layouts. </td></tr>
+  </table>
+  </dd>
+</dl>
+
 </div>
 </div>
 <a id="abd7416cfc465e712cf328f8d8f43f998"></a>
@@ -325,6 +368,16 @@ Public Member Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
+<p>Used to update ray tracing related descriptors. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">tlas</td><td>The top level acceleration structure. </td></tr>
+    <tr><td class="paramname">storageImageView</td><td>The storage image view the ray tracing shaders will write to. </td></tr>
+    <tr><td class="paramname">uniformBuffers</td><td>A vector of uniform buffers used to upload camera data. </td></tr>
+  </table>
+  </dd>
+</dl>
+
 </div>
 </div>
 <a id="a9056fcfc622a01be0f711e682fd95db4"></a>
@@ -352,6 +405,15 @@ Public Member Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>Used to update model related descriptors (without textures). </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">vertexBuffer</td><td>A Vulkan buffer containing the vertex data of a model. </td></tr>
+    <tr><td class="paramname">indexBuffer</td><td>A Vulkan buffer containing the index data of a model. </td></tr>
+  </table>
+  </dd>
+</dl>
 
 </div>
 </div>
@@ -392,6 +454,17 @@ Public Member Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>Used to update model related descriptors (with textures). </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">textureImageView</td><td>A texture's image view. </td></tr>
+    <tr><td class="paramname">textureSampler</td><td>A texture's sampler. </td></tr>
+    <tr><td class="paramname">vertexBuffer</td><td>A Vulkan buffer containing the vertex data of a model. </td></tr>
+    <tr><td class="paramname">indexBuffer</td><td>A Vulkan buffer containing the index data of a model. </td></tr>
+  </table>
+  </dd>
+</dl>
 
 </div>
 </div>

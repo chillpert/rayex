@@ -97,34 +97,110 @@ $(document).ready(function(){initNavTree('classrx_1_1_descriptor_set_layout.html
 <a href="#pub-methods">Public Member Functions</a> &#124;
 <a href="classrx_1_1_descriptor_set_layout-members.html">List of all members</a>  </div>
   <div class="headertitle">
-<div class="title">rx::DescriptorSetLayout Class Reference</div>  </div>
+<div class="title">rx::DescriptorSetLayout Class Reference<div class="ingroups"><a class="el" href="group___a_p_i.html">Vulkan</a></div></div>  </div>
 </div><!--header-->
 <div class="contents">
+
+<p>A wrapper class for a Vulkan descriptor set layout.  
+ <a href="classrx_1_1_descriptor_set_layout.html#details">More...</a></p>
 
 <p><code>#include &lt;<a class="el" href="_descriptor_set_layout_8hpp_source.html">DescriptorSetLayout.hpp</a>&gt;</code></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
+<tr class="memitem:a366666c3258433d464fec889bc48e26d"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classrx_1_1_descriptor_set_layout.html#a366666c3258433d464fec889bc48e26d">DescriptorSetLayout</a> ()=default</td></tr>
+<tr class="separator:a366666c3258433d464fec889bc48e26d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af50fa7703ffdf39f27bffdd6faea97ee"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classrx_1_1_descriptor_set_layout.html#af50fa7703ffdf39f27bffdd6faea97ee">DescriptorSetLayout</a> (const std::vector&lt; vk::DescriptorSetLayoutBinding &gt; bindings, bool initialize=true)</td></tr>
+<tr class="separator:af50fa7703ffdf39f27bffdd6faea97ee"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a96128b5f660be7e49336c4d3b8d2a8e2"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classrx_1_1_descriptor_set_layout.html#a96128b5f660be7e49336c4d3b8d2a8e2">~DescriptorSetLayout</a> ()</td></tr>
+<tr class="memdesc:a96128b5f660be7e49336c4d3b8d2a8e2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Calls <a class="el" href="classrx_1_1_descriptor_set_layout.html#a31199fa81a7c99f7b9a30bf0ff87fac6" title="Destroys the descriptor set layout and removes all bindings.">destroy()</a>.  <a href="classrx_1_1_descriptor_set_layout.html#a96128b5f660be7e49336c4d3b8d2a8e2">More...</a><br /></td></tr>
 <tr class="separator:a96128b5f660be7e49336c4d3b8d2a8e2"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a27fc67bbfd645e2bfd33f59fab2784c3"><td class="memItemLeft" align="right" valign="top">const vk::DescriptorSetLayout&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classrx_1_1_descriptor_set_layout.html#a27fc67bbfd645e2bfd33f59fab2784c3">get</a> () const</td></tr>
 <tr class="separator:a27fc67bbfd645e2bfd33f59fab2784c3"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a74cd99bfff7a1434a2925775237d6b4c"><td class="memItemLeft" align="right" valign="top">const std::vector&lt; vk::DescriptorSetLayoutBinding &gt; &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classrx_1_1_descriptor_set_layout.html#a74cd99bfff7a1434a2925775237d6b4c">getBindings</a> () const</td></tr>
 <tr class="separator:a74cd99bfff7a1434a2925775237d6b4c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a2233289a8bdb05e57c16c748b950225b"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classrx_1_1_descriptor_set_layout.html#a2233289a8bdb05e57c16c748b950225b">addBinding</a> (const vk::DescriptorSetLayoutBinding &amp;binding)</td></tr>
+<tr class="memdesc:a2233289a8bdb05e57c16c748b950225b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Used to add a single Vulkan descriptor set layout binding.  <a href="classrx_1_1_descriptor_set_layout.html#a2233289a8bdb05e57c16c748b950225b">More...</a><br /></td></tr>
 <tr class="separator:a2233289a8bdb05e57c16c748b950225b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aad7ed8887fb57add2f28e6c29376ca50"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classrx_1_1_descriptor_set_layout.html#aad7ed8887fb57add2f28e6c29376ca50">setBindings</a> (const std::vector&lt; vk::DescriptorSetLayoutBinding &gt; &amp;bindings)</td></tr>
+<tr class="memdesc:aad7ed8887fb57add2f28e6c29376ca50"><td class="mdescLeft">&#160;</td><td class="mdescRight">Used to add multiple Vulkan descriptor set layout bindings.  <a href="classrx_1_1_descriptor_set_layout.html#aad7ed8887fb57add2f28e6c29376ca50">More...</a><br /></td></tr>
 <tr class="separator:aad7ed8887fb57add2f28e6c29376ca50"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a24508a0f057057cdf9eb3d94f450febe"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classrx_1_1_descriptor_set_layout.html#a24508a0f057057cdf9eb3d94f450febe">clearBindings</a> ()</td></tr>
+<tr class="memdesc:a24508a0f057057cdf9eb3d94f450febe"><td class="mdescLeft">&#160;</td><td class="mdescRight">Removes all existing bindings.  <a href="classrx_1_1_descriptor_set_layout.html#a24508a0f057057cdf9eb3d94f450febe">More...</a><br /></td></tr>
 <tr class="separator:a24508a0f057057cdf9eb3d94f450febe"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ada4e2f808dd6fffe8bfcfe6a3c321411"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classrx_1_1_descriptor_set_layout.html#ada4e2f808dd6fffe8bfcfe6a3c321411">init</a> ()</td></tr>
+<tr class="memdesc:ada4e2f808dd6fffe8bfcfe6a3c321411"><td class="mdescLeft">&#160;</td><td class="mdescRight">Creates the descriptor set layout.  <a href="classrx_1_1_descriptor_set_layout.html#ada4e2f808dd6fffe8bfcfe6a3c321411">More...</a><br /></td></tr>
 <tr class="separator:ada4e2f808dd6fffe8bfcfe6a3c321411"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a45dc4b1bbcbcb1959d55ec28d8d14bcf"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classrx_1_1_descriptor_set_layout.html#a45dc4b1bbcbcb1959d55ec28d8d14bcf">init</a> (const std::vector&lt; vk::DescriptorSetLayoutBinding &gt; bindings)</td></tr>
+<tr class="memdesc:a45dc4b1bbcbcb1959d55ec28d8d14bcf"><td class="mdescLeft">&#160;</td><td class="mdescRight">Creates the descriptor set layout with the provided bindings.  <a href="classrx_1_1_descriptor_set_layout.html#a45dc4b1bbcbcb1959d55ec28d8d14bcf">More...</a><br /></td></tr>
 <tr class="separator:a45dc4b1bbcbcb1959d55ec28d8d14bcf"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a31199fa81a7c99f7b9a30bf0ff87fac6"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classrx_1_1_descriptor_set_layout.html#a31199fa81a7c99f7b9a30bf0ff87fac6">destroy</a> ()</td></tr>
+<tr class="memdesc:a31199fa81a7c99f7b9a30bf0ff87fac6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Destroys the descriptor set layout and removes all bindings.  <a href="classrx_1_1_descriptor_set_layout.html#a31199fa81a7c99f7b9a30bf0ff87fac6">More...</a><br /></td></tr>
 <tr class="separator:a31199fa81a7c99f7b9a30bf0ff87fac6"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
-<h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>A wrapper class for a Vulkan descriptor set layout. </p>
+</div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
+<a id="a366666c3258433d464fec889bc48e26d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a366666c3258433d464fec889bc48e26d">&#9670;&nbsp;</a></span>DescriptorSetLayout() <span class="overload">[1/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">rx::DescriptorSetLayout::DescriptorSetLayout </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">default</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="af50fa7703ffdf39f27bffdd6faea97ee"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af50fa7703ffdf39f27bffdd6faea97ee">&#9670;&nbsp;</a></span>DescriptorSetLayout() <span class="overload">[2/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">rx::DescriptorSetLayout::DescriptorSetLayout </td>
+          <td>(</td>
+          <td class="paramtype">const std::vector&lt; vk::DescriptorSetLayoutBinding &gt;&#160;</td>
+          <td class="paramname"><em>bindings</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">bool&#160;</td>
+          <td class="paramname"><em>initialize</em> = <code>true</code>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">bindings</td><td>A vector of Vulkan descriptor set layout bindings. </td></tr>
+    <tr><td class="paramname">initialize</td><td>If true, the descriptor set layout will be initialized right away without an additional call to <a class="el" href="classrx_1_1_descriptor_set_layout.html#ada4e2f808dd6fffe8bfcfe6a3c321411" title="Creates the descriptor set layout.">init()</a>. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
 <a id="a96128b5f660be7e49336c4d3b8d2a8e2"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a96128b5f660be7e49336c4d3b8d2a8e2">&#9670;&nbsp;</a></span>~DescriptorSetLayout()</h2>
 
@@ -139,6 +215,8 @@ Public Member Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>Calls <a class="el" href="classrx_1_1_descriptor_set_layout.html#a31199fa81a7c99f7b9a30bf0ff87fac6" title="Destroys the descriptor set layout and removes all bindings.">destroy()</a>. </p>
 
 </div>
 </div>
@@ -159,6 +237,14 @@ Public Member Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
+<p>Used to add a single Vulkan descriptor set layout binding. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">binding</td><td>The binding to add. </td></tr>
+  </table>
+  </dd>
+</dl>
+
 </div>
 </div>
 <a id="a24508a0f057057cdf9eb3d94f450febe"></a>
@@ -176,6 +262,8 @@ Public Member Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
+<p>Removes all existing bindings. </p>
+
 </div>
 </div>
 <a id="a31199fa81a7c99f7b9a30bf0ff87fac6"></a>
@@ -192,6 +280,8 @@ Public Member Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>Destroys the descriptor set layout and removes all bindings. </p>
 
 </div>
 </div>
@@ -217,6 +307,7 @@ Public Member Functions</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
+<dl class="section return"><dt>Returns</dt><dd>Returns the Vulkan descriptor set layout object. </dd></dl>
 
 </div>
 </div>
@@ -242,6 +333,7 @@ Public Member Functions</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
+<dl class="section return"><dt>Returns</dt><dd>Returns a vector of all Vulkan descriptor set layout bindings. </dd></dl>
 
 </div>
 </div>
@@ -259,6 +351,8 @@ Public Member Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>Creates the descriptor set layout. </p>
 
 </div>
 </div>
@@ -278,6 +372,14 @@ Public Member Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
+<p>Creates the descriptor set layout with the provided bindings. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">bindings</td><td>A vector of bindings to add. </td></tr>
+  </table>
+  </dd>
+</dl>
+
 </div>
 </div>
 <a id="aad7ed8887fb57add2f28e6c29376ca50"></a>
@@ -295,6 +397,14 @@ Public Member Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>Used to add multiple Vulkan descriptor set layout bindings. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">bindings</td><td>A vector of bindings to add. </td></tr>
+  </table>
+  </dd>
+</dl>
 
 </div>
 </div>

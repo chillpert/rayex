@@ -8,13 +8,7 @@ var dir_948f00e782b8c85615d95d9a903e4ec8 =
     ] ],
     [ "IndexBuffer.hpp", "_index_buffer_8hpp.html", null ],
     [ "UniformBuffer.cpp", "_uniform_buffer_8cpp.html", null ],
-    [ "UniformBuffer.hpp", "_uniform_buffer_8hpp.html", [
-      [ "CameraUbo", "structrx_1_1_camera_ubo.html", "structrx_1_1_camera_ubo" ],
-      [ "MvpUbo", "structrx_1_1_mvp_ubo.html", "structrx_1_1_mvp_ubo" ],
-      [ "UniformBuffer", "classrx_1_1_uniform_buffer.html", "classrx_1_1_uniform_buffer" ]
-    ] ],
+    [ "UniformBuffer.hpp", "_uniform_buffer_8hpp.html", null ],
     [ "VertexBuffer.cpp", "_vertex_buffer_8cpp.html", null ],
-    [ "VertexBuffer.hpp", "_vertex_buffer_8hpp.html", [
-      [ "VertexBuffer", "classrx_1_1_vertex_buffer.html", "classrx_1_1_vertex_buffer" ]
-    ] ]
+    [ "VertexBuffer.hpp", "_vertex_buffer_8hpp.html", null ]
 ];

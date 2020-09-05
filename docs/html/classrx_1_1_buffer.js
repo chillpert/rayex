@@ -2,6 +2,8 @@ var classrx_1_1_buffer =
 [
     [ "Buffer", "classrx_1_1_buffer.html#ad549ae24d3847007a301b57a178887bd", null ],
     [ "Buffer", "classrx_1_1_buffer.html#a1e31ae5e388c834d7ad2815f0b06ee96", null ],
+    [ "Buffer", "classrx_1_1_buffer.html#ad7506338fd80dc87b5ef61c8212353b6", null ],
+    [ "~Buffer", "classrx_1_1_buffer.html#a482f5ff44f1fb9a8548e0050e41d6285", null ],
     [ "copyToBuffer", "classrx_1_1_buffer.html#a491b496f95f75b0b586d262be250a011", null ],
     [ "copyToBuffer", "classrx_1_1_buffer.html#a7fc84cc30e02f167aa1956e80f1bb4f6", null ],
     [ "copyToImage", "classrx_1_1_buffer.html#abc4c095d4eb6da7d00a6255074ed5d45", null ],

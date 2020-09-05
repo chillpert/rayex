@@ -11,6 +11,11 @@ namespace rx
       init( size, usage, queueFamilyIndices, memoryPropertyFlags, pNextMemory );
   }
 
+  Buffer::Buffer( Buffer& buffer )
+  {
+    copyToBuffer( buffer );
+  }
+
   void Buffer::init( vk::DeviceSize size, vk::BufferUsageFlags usage, const std::vector<uint32_t>& queueFamilyIndices, vk::MemoryPropertyFlags memoryPropertyFlags, void* pNextMemory )
   {
     m_size = size;

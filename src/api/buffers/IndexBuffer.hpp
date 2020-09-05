@@ -30,7 +30,7 @@ namespace rx
     /// @note Should be identical to the type that was used to templatize the class.
     inline vk::IndexType getType( ) const { return m_indexType; }
 
-    /// Creates the buffer and allocates memory.
+    /// Creates the buffer, allocates memory for it and fills it with the provided data.
     /// 
     /// To optimize the procedure a temporary staging buffer will be created.
     /// @param indices The index data.

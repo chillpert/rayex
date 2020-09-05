@@ -18,6 +18,8 @@ var group___a_p_i =
     [ "Buffer", "classrx_1_1_buffer.html", [
       [ "Buffer", "classrx_1_1_buffer.html#ad549ae24d3847007a301b57a178887bd", null ],
       [ "Buffer", "classrx_1_1_buffer.html#a1e31ae5e388c834d7ad2815f0b06ee96", null ],
+      [ "Buffer", "classrx_1_1_buffer.html#ad7506338fd80dc87b5ef61c8212353b6", null ],
+      [ "~Buffer", "classrx_1_1_buffer.html#a482f5ff44f1fb9a8548e0050e41d6285", null ],
       [ "copyToBuffer", "classrx_1_1_buffer.html#a491b496f95f75b0b586d262be250a011", null ],
       [ "copyToBuffer", "classrx_1_1_buffer.html#a7fc84cc30e02f167aa1956e80f1bb4f6", null ],
       [ "copyToImage", "classrx_1_1_buffer.html#abc4c095d4eb6da7d00a6255074ed5d45", null ],
@@ -36,6 +38,26 @@ var group___a_p_i =
       [ "getCount", "classrx_1_1_index_buffer.html#a29bd1d3a64747d7ec3e0961abd4c4373", null ],
       [ "getType", "classrx_1_1_index_buffer.html#a498b6ec64a58846b2d81676422e73e15", null ],
       [ "init", "classrx_1_1_index_buffer.html#afe102e8f3272f8547d9b26b4a26daad3", null ]
+    ] ],
+    [ "CameraUbo", "structrx_1_1_camera_ubo.html", [
+      [ "projection", "structrx_1_1_camera_ubo.html#aab42ce1a7abd45b47375729e194d1b52", null ],
+      [ "projectionInverse", "structrx_1_1_camera_ubo.html#a42b92c30a8557a070ba01fbd17b955e6", null ],
+      [ "view", "structrx_1_1_camera_ubo.html#a99c4db5c880b8c87fdc1f3a3ae502704", null ],
+      [ "viewInverse", "structrx_1_1_camera_ubo.html#a4327e65d385718122c3ea1a53c055f81", null ]
+    ] ],
+    [ "UniformBuffer", "classrx_1_1_uniform_buffer.html", [
+      [ "UniformBuffer", "classrx_1_1_uniform_buffer.html#a5bd1061900162cfabc9dc854ad8327a9", null ],
+      [ "UniformBuffer", "classrx_1_1_uniform_buffer.html#ae61c151786e528fba593ae6be08e4c5a", null ],
+      [ "get", "classrx_1_1_uniform_buffer.html#aec354653f066ad10493ae507a14602a9", null ],
+      [ "getRaw", "classrx_1_1_uniform_buffer.html#a10c7ba3ffc3597322de2c859fc61b661", null ],
+      [ "init", "classrx_1_1_uniform_buffer.html#a51b0236c29581a330e477dff8d017aa8", null ],
+      [ "upload", "classrx_1_1_uniform_buffer.html#a0ec699086c85f14ab70137e64e7f1d72", null ]
+    ] ],
+    [ "VertexBuffer", "classrx_1_1_vertex_buffer.html", [
+      [ "VertexBuffer", "classrx_1_1_vertex_buffer.html#a43d4bd6b4fdea79ee20a4a30cbbb7b45", null ],
+      [ "VertexBuffer", "classrx_1_1_vertex_buffer.html#a337011bf239a742c6a489da91cb73275", null ],
+      [ "getCount", "classrx_1_1_vertex_buffer.html#a5d75d00043dfebaf014e13e8b82c887d", null ],
+      [ "init", "classrx_1_1_vertex_buffer.html#ab3c0058ec496e2e917d50c0c5fd89174", null ]
     ] ],
     [ "Device", "classrx_1_1_device.html", [
       [ "Device", "classrx_1_1_device.html#aed93a1e458b2ebf61bd5ba7c541d9d2c", null ],

@@ -20,6 +20,11 @@ namespace rx
     /// @param pNextMemory Attachment to the memory's pNext chain.
     /// @param initialize If true, the buffer object will be initialized right away without an additional call to init().
     Buffer( vk::DeviceSize size, vk::BufferUsageFlags usage, const std::vector<uint32_t>& queueFamilyIndices = { }, vk::MemoryPropertyFlags memoryPropertyFlags = vk::MemoryPropertyFlagBits::eDeviceLocal, void* pNextMemory = nullptr, bool initialize = true );
+    
+    /// @param buffer The target for the copy operation.
+    Buffer( Buffer& buffer );
+    
+    RX_API virtual ~Buffer( ) = default;
 
     /// Copies the content of this buffer to another rx::Buffer.
     /// @param buffer The target for the copy operation.

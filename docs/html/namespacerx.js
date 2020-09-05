@@ -21,7 +21,6 @@ var namespacerx =
     [ "LightNode", "classrx_1_1_light_node.html", "classrx_1_1_light_node" ],
     [ "Material", "classrx_1_1_material.html", "classrx_1_1_material" ],
     [ "Model", "classrx_1_1_model.html", "classrx_1_1_model" ],
-    [ "MvpUbo", "structrx_1_1_mvp_ubo.html", "structrx_1_1_mvp_ubo" ],
     [ "Node", "classrx_1_1_node.html", "classrx_1_1_node" ],
     [ "PhysicalDevice", "classrx_1_1_physical_device.html", "classrx_1_1_physical_device" ],
     [ "Pipeline", "classrx_1_1_pipeline.html", "classrx_1_1_pipeline" ],

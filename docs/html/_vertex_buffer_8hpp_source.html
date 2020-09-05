@@ -105,40 +105,33 @@ $(document).ready(function(){initNavTree('_vertex_buffer_8hpp_source.html',''); 
 <div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160; </div>
 <div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;<span class="keyword">namespace </span><a class="code" href="namespacerx.html">rx</a></div>
 <div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;{</div>
-<div class="line"><a name="l00009"></a><span class="lineno"><a class="line" href="classrx_1_1_vertex_buffer.html">    9</a></span>&#160;  <span class="keyword">class </span><a class="code" href="classrx_1_1_vertex_buffer.html">VertexBuffer</a></div>
-<div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;  {</div>
-<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;  <span class="keyword">public</span>:</div>
-<div class="line"><a name="l00012"></a><span class="lineno"><a class="line" href="classrx_1_1_vertex_buffer.html#a43d4bd6b4fdea79ee20a4a30cbbb7b45">   12</a></span>&#160;    <a class="code" href="classrx_1_1_vertex_buffer.html#a43d4bd6b4fdea79ee20a4a30cbbb7b45">VertexBuffer</a>( ) = <span class="keywordflow">default</span>;</div>
-<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;    <a class="code" href="classrx_1_1_vertex_buffer.html#a43d4bd6b4fdea79ee20a4a30cbbb7b45">VertexBuffer</a>( std::vector&lt;Vertex&gt;&amp; vertices, <span class="keywordtype">bool</span> initialize = <span class="keyword">true</span> );</div>
-<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160; </div>
-<div class="line"><a name="l00015"></a><span class="lineno"><a class="line" href="classrx_1_1_vertex_buffer.html#a89a6e67a58ab128fc3721e8e2bc0ce50">   15</a></span>&#160;    <span class="keyword">inline</span> <span class="keyword">const</span> vk::Buffer <a class="code" href="classrx_1_1_vertex_buffer.html#a89a6e67a58ab128fc3721e8e2bc0ce50">get</a>( )<span class="keyword"> const </span>{ <span class="keywordflow">return</span> m_buffer.<a class="code" href="classrx_1_1_buffer.html#a4055ed30a94888249e37f3ea46bf09e9">get</a>( ); }</div>
-<div class="line"><a name="l00016"></a><span class="lineno"><a class="line" href="classrx_1_1_vertex_buffer.html#aed185c57f67b3649e55d18c598a2dadd">   16</a></span>&#160;    <span class="keyword">inline</span> vk::DeviceSize <a class="code" href="classrx_1_1_vertex_buffer.html#aed185c57f67b3649e55d18c598a2dadd">getSize</a>( )<span class="keyword"> const </span>{ <span class="keywordflow">return</span> m_buffer.<a class="code" href="classrx_1_1_buffer.html#a9f6c8caed7b9ae15afaa30644a87fa36">getSize</a>( ); }</div>
-<div class="line"><a name="l00017"></a><span class="lineno"><a class="line" href="classrx_1_1_vertex_buffer.html#a5d75d00043dfebaf014e13e8b82c887d">   17</a></span>&#160;    <span class="keyword">inline</span> uint32_t <a class="code" href="classrx_1_1_vertex_buffer.html#a5d75d00043dfebaf014e13e8b82c887d">getCount</a>( )<span class="keyword"> const </span>{ <span class="keywordflow">return</span> m_count; }</div>
-<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160; </div>
-<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="classrx_1_1_vertex_buffer.html#ab3c0058ec496e2e917d50c0c5fd89174">init</a>( std::vector&lt;Vertex&gt;&amp; vertices );</div>
-<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160; </div>
-<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;  <span class="keyword">private</span>:</div>
-<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;    <a class="code" href="classrx_1_1_buffer.html">Buffer</a> m_buffer;</div>
-<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160; </div>
-<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;    uint32_t m_count;</div>
-<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;  };</div>
-<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;}</div>
-<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160; </div>
-<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;<span class="preprocessor">#endif // VERTEX_BUFFER_HPP</span></div>
+<div class="line"><a name="l00011"></a><span class="lineno"><a class="line" href="classrx_1_1_vertex_buffer.html">   11</a></span>&#160;  <span class="keyword">class </span><a class="code" href="classrx_1_1_vertex_buffer.html">VertexBuffer</a> : <span class="keyword">public</span> <a class="code" href="classrx_1_1_buffer.html">Buffer</a></div>
+<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;  {</div>
+<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;  <span class="keyword">public</span>:</div>
+<div class="line"><a name="l00014"></a><span class="lineno"><a class="line" href="classrx_1_1_vertex_buffer.html#a43d4bd6b4fdea79ee20a4a30cbbb7b45">   14</a></span>&#160;    <a class="code" href="classrx_1_1_vertex_buffer.html#a43d4bd6b4fdea79ee20a4a30cbbb7b45">VertexBuffer</a>( ) = <span class="keywordflow">default</span>;</div>
+<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;    </div>
+<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;    <a class="code" href="classrx_1_1_vertex_buffer.html#a43d4bd6b4fdea79ee20a4a30cbbb7b45">VertexBuffer</a>( std::vector&lt;Vertex&gt;&amp; vertices, <span class="keywordtype">bool</span> initialize = <span class="keyword">true</span> );</div>
+<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160; </div>
+<div class="line"><a name="l00021"></a><span class="lineno"><a class="line" href="classrx_1_1_vertex_buffer.html#a5d75d00043dfebaf014e13e8b82c887d">   21</a></span>&#160;    <span class="keyword">inline</span> uint32_t <a class="code" href="classrx_1_1_vertex_buffer.html#a5d75d00043dfebaf014e13e8b82c887d">getCount</a>( )<span class="keyword"> const </span>{ <span class="keywordflow">return</span> m_count; }</div>
+<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160; </div>
+<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="classrx_1_1_vertex_buffer.html#ab3c0058ec496e2e917d50c0c5fd89174">init</a>( std::vector&lt;Vertex&gt;&amp; vertices );</div>
+<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160; </div>
+<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;  <span class="keyword">private</span>:</div>
+<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;    uint32_t m_count; </div>
+<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;  };</div>
+<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;}</div>
+<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160; </div>
+<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;<span class="preprocessor">#endif // VERTEX_BUFFER_HPP</span></div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->
-<div class="ttc" id="aclassrx_1_1_vertex_buffer_html_a89a6e67a58ab128fc3721e8e2bc0ce50"><div class="ttname"><a href="classrx_1_1_vertex_buffer.html#a89a6e67a58ab128fc3721e8e2bc0ce50">rx::VertexBuffer::get</a></div><div class="ttdeci">const vk::Buffer get() const</div><div class="ttdef"><b>Definition:</b> VertexBuffer.hpp:15</div></div>
-<div class="ttc" id="aclassrx_1_1_vertex_buffer_html_a5d75d00043dfebaf014e13e8b82c887d"><div class="ttname"><a href="classrx_1_1_vertex_buffer.html#a5d75d00043dfebaf014e13e8b82c887d">rx::VertexBuffer::getCount</a></div><div class="ttdeci">uint32_t getCount() const</div><div class="ttdef"><b>Definition:</b> VertexBuffer.hpp:17</div></div>
+<div class="ttc" id="aclassrx_1_1_vertex_buffer_html_a5d75d00043dfebaf014e13e8b82c887d"><div class="ttname"><a href="classrx_1_1_vertex_buffer.html#a5d75d00043dfebaf014e13e8b82c887d">rx::VertexBuffer::getCount</a></div><div class="ttdeci">uint32_t getCount() const</div><div class="ttdef"><b>Definition:</b> VertexBuffer.hpp:21</div></div>
 <div class="ttc" id="aclassrx_1_1_buffer_html"><div class="ttname"><a href="classrx_1_1_buffer.html">rx::Buffer</a></div><div class="ttdoc">A wrapper class for a Vulkan buffer.</div><div class="ttdef"><b>Definition:</b> Buffer.hpp:12</div></div>
-<div class="ttc" id="aclassrx_1_1_buffer_html_a4055ed30a94888249e37f3ea46bf09e9"><div class="ttname"><a href="classrx_1_1_buffer.html#a4055ed30a94888249e37f3ea46bf09e9">rx::Buffer::get</a></div><div class="ttdeci">const vk::Buffer get() const</div><div class="ttdef"><b>Definition:</b> Buffer.hpp:37</div></div>
 <div class="ttc" id="a_buffer_8hpp_html"><div class="ttname"><a href="_buffer_8hpp.html">Buffer.hpp</a></div></div>
 <div class="ttc" id="a_vertex_8hpp_html"><div class="ttname"><a href="_vertex_8hpp.html">Vertex.hpp</a></div></div>
-<div class="ttc" id="aclassrx_1_1_buffer_html_a9f6c8caed7b9ae15afaa30644a87fa36"><div class="ttname"><a href="classrx_1_1_buffer.html#a9f6c8caed7b9ae15afaa30644a87fa36">rx::Buffer::getSize</a></div><div class="ttdeci">const vk::DeviceSize getSize() const</div><div class="ttdef"><b>Definition:</b> Buffer.hpp:43</div></div>
-<div class="ttc" id="aclassrx_1_1_vertex_buffer_html_aed185c57f67b3649e55d18c598a2dadd"><div class="ttname"><a href="classrx_1_1_vertex_buffer.html#aed185c57f67b3649e55d18c598a2dadd">rx::VertexBuffer::getSize</a></div><div class="ttdeci">vk::DeviceSize getSize() const</div><div class="ttdef"><b>Definition:</b> VertexBuffer.hpp:16</div></div>
-<div class="ttc" id="aclassrx_1_1_vertex_buffer_html_ab3c0058ec496e2e917d50c0c5fd89174"><div class="ttname"><a href="classrx_1_1_vertex_buffer.html#ab3c0058ec496e2e917d50c0c5fd89174">rx::VertexBuffer::init</a></div><div class="ttdeci">void init(std::vector&lt; Vertex &gt; &amp;vertices)</div><div class="ttdef"><b>Definition:</b> VertexBuffer.cpp:11</div></div>
+<div class="ttc" id="aclassrx_1_1_vertex_buffer_html_ab3c0058ec496e2e917d50c0c5fd89174"><div class="ttname"><a href="classrx_1_1_vertex_buffer.html#ab3c0058ec496e2e917d50c0c5fd89174">rx::VertexBuffer::init</a></div><div class="ttdeci">void init(std::vector&lt; Vertex &gt; &amp;vertices)</div><div class="ttdoc">Creates the buffer, allocates memory for it and fills it with provided data.</div><div class="ttdef"><b>Definition:</b> VertexBuffer.cpp:11</div></div>
 <div class="ttc" id="anamespacerx_html"><div class="ttname"><a href="namespacerx.html">rx</a></div><div class="ttdoc">The rx namespace encapsulates every single component provided by the renderer.</div><div class="ttdef"><b>Definition:</b> Api.cpp:9</div></div>
 <div class="ttc" id="aclassrx_1_1_vertex_buffer_html_a43d4bd6b4fdea79ee20a4a30cbbb7b45"><div class="ttname"><a href="classrx_1_1_vertex_buffer.html#a43d4bd6b4fdea79ee20a4a30cbbb7b45">rx::VertexBuffer::VertexBuffer</a></div><div class="ttdeci">VertexBuffer()=default</div></div>
-<div class="ttc" id="aclassrx_1_1_vertex_buffer_html"><div class="ttname"><a href="classrx_1_1_vertex_buffer.html">rx::VertexBuffer</a></div><div class="ttdef"><b>Definition:</b> VertexBuffer.hpp:10</div></div>
+<div class="ttc" id="aclassrx_1_1_vertex_buffer_html"><div class="ttname"><a href="classrx_1_1_vertex_buffer.html">rx::VertexBuffer</a></div><div class="ttdoc">A specialised buffer for vertex data.</div><div class="ttdef"><b>Definition:</b> VertexBuffer.hpp:12</div></div>
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>

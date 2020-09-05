@@ -22,15 +22,15 @@ namespace rx
                           vk::MemoryPropertyFlagBits::eHostVisible | vk::MemoryPropertyFlagBits::eHostCoherent,   // memoryPropertyFlags
                           &allocateFlags );                                                                       // pNext of memory
 
-    m_buffer.init( size,                                                                                                                                                                      // size
-                   vk::BufferUsageFlagBits::eTransferDst | vk::BufferUsageFlagBits::eVertexBuffer | vk::BufferUsageFlagBits::eShaderDeviceAddress | vk::BufferUsageFlagBits::eStorageBuffer,  // usage
-                   { g_transferFamilyIndex },                                                                                                                                                 // queueFamilyIndices
-                   vk::MemoryPropertyFlagBits::eHostVisible | vk::MemoryPropertyFlagBits::eHostCoherent,                                                                                      // memoryPropertyFlags
-                   &allocateFlags );                                                                                                                                                          // pNext of memory
+    Buffer::init( size,                                                                                                                                                                      // size
+                  vk::BufferUsageFlagBits::eTransferDst | vk::BufferUsageFlagBits::eVertexBuffer | vk::BufferUsageFlagBits::eShaderDeviceAddress | vk::BufferUsageFlagBits::eStorageBuffer,  // usage
+                  { g_transferFamilyIndex },                                                                                                                                                 // queueFamilyIndices
+                  vk::MemoryPropertyFlagBits::eHostVisible | vk::MemoryPropertyFlagBits::eHostCoherent,                                                                                      // memoryPropertyFlags
+                  &allocateFlags );                                                                                                                                                          // pNext of memory
 
     stagingBuffer.fill<Vertex>( vertices.data( ) );
 
     // Copy staging buffer to the actual index buffer.
-    stagingBuffer.copyToBuffer( m_buffer );
+    stagingBuffer.copyToBuffer( m_buffer.get( ) );
   }
 }

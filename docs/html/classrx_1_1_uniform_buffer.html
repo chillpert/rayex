@@ -97,9 +97,12 @@ $(document).ready(function(){initNavTree('classrx_1_1_uniform_buffer.html',''); 
 <a href="#pub-methods">Public Member Functions</a> &#124;
 <a href="classrx_1_1_uniform_buffer-members.html">List of all members</a>  </div>
   <div class="headertitle">
-<div class="title">rx::UniformBuffer Class Reference</div>  </div>
+<div class="title">rx::UniformBuffer Class Reference<div class="ingroups"><a class="el" href="group___a_p_i.html">Vulkan</a></div></div>  </div>
 </div><!--header-->
 <div class="contents">
+
+<p>A specialised buffer for uniforms.  
+ <a href="classrx_1_1_uniform_buffer.html#details">More...</a></p>
 
 <p><code>#include &lt;<a class="el" href="_uniform_buffer_8hpp_source.html">UniformBuffer.hpp</a>&gt;</code></p>
 <table class="memberdecls">
@@ -116,12 +119,16 @@ Public Member Functions</h2></td></tr>
 <tr class="separator:a10c7ba3ffc3597322de2c859fc61b661"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a51b0236c29581a330e477dff8d017aa8"><td class="memTemplParams" colspan="2">template&lt;typename T &gt; </td></tr>
 <tr class="memitem:a51b0236c29581a330e477dff8d017aa8"><td class="memTemplItemLeft" align="right" valign="top">void&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="classrx_1_1_uniform_buffer.html#a51b0236c29581a330e477dff8d017aa8">init</a> (size_t swapchainImagesCount)</td></tr>
+<tr class="memdesc:a51b0236c29581a330e477dff8d017aa8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Creates the uniform buffer and allocates memory for it.  <a href="classrx_1_1_uniform_buffer.html#a51b0236c29581a330e477dff8d017aa8">More...</a><br /></td></tr>
 <tr class="separator:a51b0236c29581a330e477dff8d017aa8"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a0ec699086c85f14ab70137e64e7f1d72"><td class="memTemplParams" colspan="2">template&lt;typename T &gt; </td></tr>
 <tr class="memitem:a0ec699086c85f14ab70137e64e7f1d72"><td class="memTemplItemLeft" align="right" valign="top">void&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="classrx_1_1_uniform_buffer.html#a0ec699086c85f14ab70137e64e7f1d72">upload</a> (uint32_t imageIndex, T &amp;ubo)</td></tr>
+<tr class="memdesc:a0ec699086c85f14ab70137e64e7f1d72"><td class="mdescLeft">&#160;</td><td class="mdescRight">Used to fill an image's buffer.  <a href="classrx_1_1_uniform_buffer.html#a0ec699086c85f14ab70137e64e7f1d72">More...</a><br /></td></tr>
 <tr class="separator:a0ec699086c85f14ab70137e64e7f1d72"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
-<h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>A specialised buffer for uniforms. </p>
+</div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a id="a5bd1061900162cfabc9dc854ad8327a9"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a5bd1061900162cfabc9dc854ad8327a9">&#9670;&nbsp;</a></span>UniformBuffer() <span class="overload">[1/2]</span></h2>
 
@@ -182,6 +189,13 @@ template&lt;typename T &gt; </div>
   </tr>
 </table>
 </div><div class="memdoc">
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">swapchainImagesCount</td><td>The amount of images in the swapchain. </td></tr>
+    <tr><td class="paramname">initialize</td><td>If true, the uniform buffer will be initialized right away without an additional call to <a class="el" href="classrx_1_1_uniform_buffer.html#a51b0236c29581a330e477dff8d017aa8" title="Creates the uniform buffer and allocates memory for it.">init()</a>. </td></tr>
+  </table>
+  </dd>
+</dl>
 
 </div>
 </div>
@@ -208,6 +222,7 @@ template&lt;typename T &gt; </div>
   </tr>
 </table>
 </div><div class="memdoc">
+<dl class="section return"><dt>Returns</dt><dd>Returns the vector of uniform buffers. </dd></dl>
 
 </div>
 </div>
@@ -225,6 +240,7 @@ template&lt;typename T &gt; </div>
         </tr>
       </table>
 </div><div class="memdoc">
+<dl class="section return"><dt>Returns</dt><dd>Returns the vector of uniform buffers as raw Vulkan buffer objects. </dd></dl>
 
 </div>
 </div>
@@ -253,6 +269,14 @@ template&lt;typename T &gt; </div>
   </tr>
 </table>
 </div><div class="memdoc">
+
+<p>Creates the uniform buffer and allocates memory for it. </p>
+<p>The function will create as many uniform buffers as there are images in the swapchain. </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">swapchainImagesCount</td><td>The amount of images in the swapchain. </td></tr>
+  </table>
+  </dd>
+</dl>
 
 </div>
 </div>
@@ -291,6 +315,15 @@ template&lt;typename T &gt; </div>
   </tr>
 </table>
 </div><div class="memdoc">
+
+<p>Used to fill an image's buffer. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">imageIndex</td><td>The image's index in the swapchain. </td></tr>
+    <tr><td class="paramname">ubo</td><td>The actual uniform buffer object holding the data. </td></tr>
+  </table>
+  </dd>
+</dl>
 
 </div>
 </div>

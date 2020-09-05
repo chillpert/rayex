@@ -39,7 +39,7 @@ var searchData=
   ['getformat_147',['getFormat',['../classrx_1_1_image.html#aaacc879a01325075433c13152c96c016',1,'rx::Image::getFormat()'],['../classrx_1_1_surface.html#aa43569014a536a35d9b356f18e1cf61e',1,'rx::Surface::getFormat()']]],
   ['getheight_148',['getHeight',['../classrx_1_1_window_base.html#a65a4f319a081ec272bda60264f69a960',1,'rx::WindowBase']]],
   ['getid_149',['getID',['../classrx_1_1_node.html#a44d70a683c0103419a22aa7a816c65d2',1,'rx::Node']]],
-  ['getimage_150',['getImage',['../classrx_1_1_texture.html#a7edf5879653bb3ba80405a4fc5e13095',1,'rx::Texture::getImage()'],['../classrx_1_1_swapchain.html#a8a8462b98f3c32c0902e8c8a01a25cda',1,'rx::Swapchain::getImage()']]],
+  ['getimage_150',['getImage',['../classrx_1_1_swapchain.html#a8a8462b98f3c32c0902e8c8a01a25cda',1,'rx::Swapchain']]],
   ['getimageaspect_151',['getImageAspect',['../classrx_1_1_swapchain.html#a4fb45b0cdb4014027d29663971b51d67',1,'rx::Swapchain']]],
   ['getimagecreateinfo_152',['getImageCreateInfo',['../namespacevk_1_1_helper.html#ae70d424ee5be2cabae1c63df035ca24a',1,'vk::Helper']]],
   ['getimagememorybarrierinfo_153',['getImageMemoryBarrierInfo',['../namespacevk_1_1_helper.html#a87f1db7d9b58617b5d9a4330fcc511e7',1,'vk::Helper']]],

@@ -123,6 +123,14 @@ var group___a_p_i =
       [ "m_layout", "classrx_1_1_image.html#a64dd3247c500374e5ff87c959230548d", null ],
       [ "m_memory", "classrx_1_1_image.html#a7f11dba5a36058776ad3a8337eca74d0", null ]
     ] ],
+    [ "Texture", "classrx_1_1_texture.html", [
+      [ "Texture", "classrx_1_1_texture.html#abecbe86e3163410588dde6d061f24dc1", null ],
+      [ "Texture", "classrx_1_1_texture.html#afe50153090ffca5669b8cfa83e643b56", null ],
+      [ "getImageView", "classrx_1_1_texture.html#a307ed58a3ff36ee1a25f41d1c644f84a", null ],
+      [ "getPath", "classrx_1_1_texture.html#aea7774a0bb6577b25906ef088e05ff53", null ],
+      [ "getSampler", "classrx_1_1_texture.html#ab07d2c317500a5c4ae420e6d808076d8", null ],
+      [ "init", "classrx_1_1_texture.html#aa4e0362df0f725ec78e06582060f732b", null ]
+    ] ],
     [ "Instance", "classrx_1_1_instance.html", [
       [ "Instance", "classrx_1_1_instance.html#a4d30588f605365dacf22ef1cab83f66f", null ],
       [ "Instance", "classrx_1_1_instance.html#a546a229b44172922f856c7d302ca659f", null ],

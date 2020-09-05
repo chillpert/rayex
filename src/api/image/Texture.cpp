@@ -37,13 +37,13 @@ namespace rx
     stbi_image_free( pixels );
 
     auto imageCreateInfo = vk::Helper::getImageCreateInfo( vk::Extent3D { static_cast<uint32_t>( width ), static_cast<uint32_t>( height ), 1 } );
-    m_image.init( imageCreateInfo );
+    Image::init( imageCreateInfo );
 
-    m_image.transitionToLayout( vk::ImageLayout::eTransferDstOptimal );
-    stagingBuffer.copyToImage( m_image );
-    m_image.transitionToLayout( vk::ImageLayout::eShaderReadOnlyOptimal );
+    transitionToLayout( vk::ImageLayout::eTransferDstOptimal );
+    stagingBuffer.copyToImage( *this );
+    transitionToLayout( vk::ImageLayout::eShaderReadOnlyOptimal );
 
-    m_imageView = vk::Initializer::createImageViewUnique( m_image.get( ), m_image.getFormat( ) );
+    m_imageView = vk::Initializer::createImageViewUnique( m_image.get( ), m_format );
 
     auto samplerCreateInfo = vk::Helper::getSamplerCreateInfo( );
     m_sampler = vk::Initializer::createSamplerUnique( samplerCreateInfo );

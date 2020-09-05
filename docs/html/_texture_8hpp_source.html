@@ -104,51 +104,50 @@ $(document).ready(function(){initNavTree('_texture_8hpp_source.html',''); initRe
 <div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160; </div>
 <div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;<span class="keyword">namespace </span><a class="code" href="namespacerx.html">rx</a></div>
 <div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;{</div>
-<div class="line"><a name="l00008"></a><span class="lineno"><a class="line" href="classrx_1_1_texture.html">    8</a></span>&#160;  <span class="keyword">class </span><a class="code" href="classrx_1_1_texture.html">Texture</a></div>
-<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;  {</div>
-<div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;  <span class="keyword">public</span>:</div>
-<div class="line"><a name="l00011"></a><span class="lineno"><a class="line" href="classrx_1_1_texture.html#abecbe86e3163410588dde6d061f24dc1">   11</a></span>&#160;    RX_API <a class="code" href="classrx_1_1_texture.html#abecbe86e3163410588dde6d061f24dc1">Texture</a>( ) = <span class="keywordflow">default</span>;</div>
-<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;    RX_API <a class="code" href="classrx_1_1_texture.html#abecbe86e3163410588dde6d061f24dc1">Texture</a>( <span class="keyword">const</span> std::string&amp; path, <span class="keywordtype">bool</span> initialize = <span class="keyword">true</span> );</div>
-<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160; </div>
-<div class="line"><a name="l00014"></a><span class="lineno"><a class="line" href="classrx_1_1_texture.html#a7edf5879653bb3ba80405a4fc5e13095">   14</a></span>&#160;    <span class="keyword">inline</span> <span class="keyword">const</span> vk::Image <a class="code" href="classrx_1_1_texture.html#a7edf5879653bb3ba80405a4fc5e13095">getImage</a>( )<span class="keyword"> const </span>{ <span class="keywordflow">return</span> m_image.<a class="code" href="classrx_1_1_image.html#ad9aabba321dd549113e214c6fc39cc9c">get</a>( ); }</div>
-<div class="line"><a name="l00015"></a><span class="lineno"><a class="line" href="classrx_1_1_texture.html#a307ed58a3ff36ee1a25f41d1c644f84a">   15</a></span>&#160;    <span class="keyword">inline</span> <span class="keyword">const</span> vk::ImageView <a class="code" href="classrx_1_1_texture.html#a307ed58a3ff36ee1a25f41d1c644f84a">getImageView</a>( )<span class="keyword"> const </span>{ <span class="keywordflow">return</span> m_imageView.get( ); }</div>
-<div class="line"><a name="l00016"></a><span class="lineno"><a class="line" href="classrx_1_1_texture.html#ab07d2c317500a5c4ae420e6d808076d8">   16</a></span>&#160;    <span class="keyword">inline</span> <span class="keyword">const</span> vk::Sampler <a class="code" href="classrx_1_1_texture.html#ab07d2c317500a5c4ae420e6d808076d8">getSampler</a>( )<span class="keyword"> const </span>{ <span class="keywordflow">return</span> m_sampler.get( ); }</div>
-<div class="line"><a name="l00017"></a><span class="lineno"><a class="line" href="classrx_1_1_texture.html#aea7774a0bb6577b25906ef088e05ff53">   17</a></span>&#160;    <span class="keyword">inline</span> <span class="keyword">const</span> std::string&amp; <a class="code" href="classrx_1_1_texture.html#aea7774a0bb6577b25906ef088e05ff53">getPath</a>( )<span class="keyword"> const </span>{ <span class="keywordflow">return</span> m_path; }</div>
+<div class="line"><a name="l00010"></a><span class="lineno"><a class="line" href="classrx_1_1_texture.html">   10</a></span>&#160;  <span class="keyword">class </span><a class="code" href="classrx_1_1_texture.html">Texture</a> : <span class="keyword">public</span> <a class="code" href="classrx_1_1_image.html">Image</a></div>
+<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;  {</div>
+<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;  <span class="keyword">public</span>:</div>
+<div class="line"><a name="l00013"></a><span class="lineno"><a class="line" href="classrx_1_1_texture.html#abecbe86e3163410588dde6d061f24dc1">   13</a></span>&#160;    RX_API <a class="code" href="classrx_1_1_texture.html#abecbe86e3163410588dde6d061f24dc1">Texture</a>( ) = <span class="keywordflow">default</span>;</div>
+<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160; </div>
+<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;    RX_API <a class="code" href="classrx_1_1_texture.html#abecbe86e3163410588dde6d061f24dc1">Texture</a>( <span class="keyword">const</span> std::string&amp; path, <span class="keywordtype">bool</span> initialize = <span class="keyword">true</span> );</div>
 <div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160; </div>
-<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="classrx_1_1_texture.html#aa4e0362df0f725ec78e06582060f732b">init</a>( <span class="keyword">const</span> std::string&amp; path );</div>
-<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160; </div>
-<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;  <span class="keyword">private</span>:</div>
-<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;    <a class="code" href="classrx_1_1_image.html">Image</a> m_image;</div>
-<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;    std::string m_path;</div>
-<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160; </div>
-<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;    vk::UniqueImageView m_imageView;</div>
-<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;    vk::UniqueSampler m_sampler;</div>
-<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;  };</div>
-<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;}</div>
-<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160; </div>
-<div class="line"><a name="l00030"></a><span class="lineno"><a class="line" href="namespacestd.html">   30</a></span>&#160;<span class="keyword">namespace </span><a class="code" href="namespacestd.html">std</a></div>
-<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;{</div>
-<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;  <span class="keyword">template</span>&lt;&gt; <span class="keyword">struct </span>hash&lt;<a class="code" href="namespacerx.html">rx</a>::Texture&gt;</div>
-<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;  {</div>
-<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;    <span class="keywordtype">size_t</span> operator()( <span class="keyword">const</span> std::shared_ptr&lt;rx::Texture&gt; texture )<span class="keyword"> const </span>{ <span class="keywordflow">return</span> hash&lt;std::string&gt;( )( texture-&gt;getPath( ) ); }</div>
-<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;  };</div>
-<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;}</div>
-<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160; </div>
-<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;<span class="preprocessor">#endif // TEXTURE_HPP</span></div>
+<div class="line"><a name="l00020"></a><span class="lineno"><a class="line" href="classrx_1_1_texture.html#a307ed58a3ff36ee1a25f41d1c644f84a">   20</a></span>&#160;    <span class="keyword">inline</span> <span class="keyword">const</span> vk::ImageView <a class="code" href="classrx_1_1_texture.html#a307ed58a3ff36ee1a25f41d1c644f84a">getImageView</a>( )<span class="keyword"> const </span>{ <span class="keywordflow">return</span> m_imageView.get( ); }</div>
+<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;    </div>
+<div class="line"><a name="l00023"></a><span class="lineno"><a class="line" href="classrx_1_1_texture.html#ab07d2c317500a5c4ae420e6d808076d8">   23</a></span>&#160;    <span class="keyword">inline</span> <span class="keyword">const</span> vk::Sampler <a class="code" href="classrx_1_1_texture.html#ab07d2c317500a5c4ae420e6d808076d8">getSampler</a>( )<span class="keyword"> const </span>{ <span class="keywordflow">return</span> m_sampler.get( ); }</div>
+<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;    </div>
+<div class="line"><a name="l00026"></a><span class="lineno"><a class="line" href="classrx_1_1_texture.html#aea7774a0bb6577b25906ef088e05ff53">   26</a></span>&#160;    <span class="keyword">inline</span> <span class="keyword">const</span> std::string&amp; <a class="code" href="classrx_1_1_texture.html#aea7774a0bb6577b25906ef088e05ff53">getPath</a>( )<span class="keyword"> const </span>{ <span class="keywordflow">return</span> m_path; }</div>
+<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160; </div>
+<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="classrx_1_1_texture.html#aa4e0362df0f725ec78e06582060f732b">init</a>( <span class="keyword">const</span> std::string&amp; path );</div>
+<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160; </div>
+<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;  <span class="keyword">private</span>:</div>
+<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;    std::string m_path; </div>
+<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160; </div>
+<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;    vk::UniqueImageView m_imageView; </div>
+<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;    vk::UniqueSampler m_sampler; </div>
+<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;  };</div>
+<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;}</div>
+<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160; </div>
+<div class="line"><a name="l00041"></a><span class="lineno"><a class="line" href="namespacestd.html">   41</a></span>&#160;<span class="keyword">namespace </span><a class="code" href="namespacestd.html">std</a></div>
+<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;{</div>
+<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;  <span class="keyword">template</span>&lt;&gt; <span class="keyword">struct </span>hash&lt;<a class="code" href="namespacerx.html">rx</a>::Texture&gt;</div>
+<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;  {</div>
+<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;    <span class="keywordtype">size_t</span> operator()( <span class="keyword">const</span> std::shared_ptr&lt;rx::Texture&gt; texture )<span class="keyword"> const </span>{ <span class="keywordflow">return</span> hash&lt;std::string&gt;( )( texture-&gt;getPath( ) ); }</div>
+<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;  };</div>
+<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;}</div>
+<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160; </div>
+<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;<span class="preprocessor">#endif // TEXTURE_HPP</span></div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->
 <div class="ttc" id="aclassrx_1_1_texture_html_abecbe86e3163410588dde6d061f24dc1"><div class="ttname"><a href="classrx_1_1_texture.html#abecbe86e3163410588dde6d061f24dc1">rx::Texture::Texture</a></div><div class="ttdeci">RX_API Texture()=default</div></div>
-<div class="ttc" id="aclassrx_1_1_texture_html_a307ed58a3ff36ee1a25f41d1c644f84a"><div class="ttname"><a href="classrx_1_1_texture.html#a307ed58a3ff36ee1a25f41d1c644f84a">rx::Texture::getImageView</a></div><div class="ttdeci">const vk::ImageView getImageView() const</div><div class="ttdef"><b>Definition:</b> Texture.hpp:15</div></div>
+<div class="ttc" id="aclassrx_1_1_texture_html_a307ed58a3ff36ee1a25f41d1c644f84a"><div class="ttname"><a href="classrx_1_1_texture.html#a307ed58a3ff36ee1a25f41d1c644f84a">rx::Texture::getImageView</a></div><div class="ttdeci">const vk::ImageView getImageView() const</div><div class="ttdef"><b>Definition:</b> Texture.hpp:20</div></div>
 <div class="ttc" id="aclassrx_1_1_image_html"><div class="ttname"><a href="classrx_1_1_image.html">rx::Image</a></div><div class="ttdoc">A wrapper class for a Vulkan image.</div><div class="ttdef"><b>Definition:</b> Image.hpp:11</div></div>
-<div class="ttc" id="aclassrx_1_1_texture_html_aea7774a0bb6577b25906ef088e05ff53"><div class="ttname"><a href="classrx_1_1_texture.html#aea7774a0bb6577b25906ef088e05ff53">rx::Texture::getPath</a></div><div class="ttdeci">const std::string &amp; getPath() const</div><div class="ttdef"><b>Definition:</b> Texture.hpp:17</div></div>
-<div class="ttc" id="aclassrx_1_1_texture_html_aa4e0362df0f725ec78e06582060f732b"><div class="ttname"><a href="classrx_1_1_texture.html#aa4e0362df0f725ec78e06582060f732b">rx::Texture::init</a></div><div class="ttdeci">void init(const std::string &amp;path)</div><div class="ttdef"><b>Definition:</b> Texture.cpp:17</div></div>
-<div class="ttc" id="aclassrx_1_1_texture_html"><div class="ttname"><a href="classrx_1_1_texture.html">rx::Texture</a></div><div class="ttdef"><b>Definition:</b> Texture.hpp:9</div></div>
-<div class="ttc" id="aclassrx_1_1_texture_html_ab07d2c317500a5c4ae420e6d808076d8"><div class="ttname"><a href="classrx_1_1_texture.html#ab07d2c317500a5c4ae420e6d808076d8">rx::Texture::getSampler</a></div><div class="ttdeci">const vk::Sampler getSampler() const</div><div class="ttdef"><b>Definition:</b> Texture.hpp:16</div></div>
+<div class="ttc" id="aclassrx_1_1_texture_html_aea7774a0bb6577b25906ef088e05ff53"><div class="ttname"><a href="classrx_1_1_texture.html#aea7774a0bb6577b25906ef088e05ff53">rx::Texture::getPath</a></div><div class="ttdeci">const std::string &amp; getPath() const</div><div class="ttdef"><b>Definition:</b> Texture.hpp:26</div></div>
+<div class="ttc" id="aclassrx_1_1_texture_html_aa4e0362df0f725ec78e06582060f732b"><div class="ttname"><a href="classrx_1_1_texture.html#aa4e0362df0f725ec78e06582060f732b">rx::Texture::init</a></div><div class="ttdeci">void init(const std::string &amp;path)</div><div class="ttdoc">Creates the texture.</div><div class="ttdef"><b>Definition:</b> Texture.cpp:17</div></div>
+<div class="ttc" id="aclassrx_1_1_texture_html"><div class="ttname"><a href="classrx_1_1_texture.html">rx::Texture</a></div><div class="ttdoc">A helper class for creating ready-to-use textures.</div><div class="ttdef"><b>Definition:</b> Texture.hpp:11</div></div>
+<div class="ttc" id="aclassrx_1_1_texture_html_ab07d2c317500a5c4ae420e6d808076d8"><div class="ttname"><a href="classrx_1_1_texture.html#ab07d2c317500a5c4ae420e6d808076d8">rx::Texture::getSampler</a></div><div class="ttdeci">const vk::Sampler getSampler() const</div><div class="ttdef"><b>Definition:</b> Texture.hpp:23</div></div>
 <div class="ttc" id="a_image_8hpp_html"><div class="ttname"><a href="_image_8hpp.html">Image.hpp</a></div></div>
 <div class="ttc" id="anamespacerx_html"><div class="ttname"><a href="namespacerx.html">rx</a></div><div class="ttdoc">The rx namespace encapsulates every single component provided by the renderer.</div><div class="ttdef"><b>Definition:</b> Api.cpp:9</div></div>
-<div class="ttc" id="anamespacestd_html"><div class="ttname"><a href="namespacestd.html">std</a></div><div class="ttdef"><b>Definition:</b> Texture.hpp:31</div></div>
-<div class="ttc" id="aclassrx_1_1_texture_html_a7edf5879653bb3ba80405a4fc5e13095"><div class="ttname"><a href="classrx_1_1_texture.html#a7edf5879653bb3ba80405a4fc5e13095">rx::Texture::getImage</a></div><div class="ttdeci">const vk::Image getImage() const</div><div class="ttdef"><b>Definition:</b> Texture.hpp:14</div></div>
-<div class="ttc" id="aclassrx_1_1_image_html_ad9aabba321dd549113e214c6fc39cc9c"><div class="ttname"><a href="classrx_1_1_image.html#ad9aabba321dd549113e214c6fc39cc9c">rx::Image::get</a></div><div class="ttdeci">const vk::Image get() const</div><div class="ttdef"><b>Definition:</b> Image.hpp:20</div></div>
+<div class="ttc" id="anamespacestd_html"><div class="ttname"><a href="namespacestd.html">std</a></div><div class="ttdef"><b>Definition:</b> Texture.hpp:42</div></div>
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>

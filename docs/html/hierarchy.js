@@ -21,7 +21,9 @@ var hierarchy =
     [ "rx::GuiBase", "classrx_1_1_gui_base.html", [
       [ "CustomGui", "class_custom_gui.html", null ]
     ] ],
-    [ "rx::Image", "classrx_1_1_image.html", null ],
+    [ "rx::Image", "classrx_1_1_image.html", [
+      [ "rx::Texture", "classrx_1_1_texture.html", null ]
+    ] ],
     [ "rx::Instance", "classrx_1_1_instance.html", null ],
     [ "rx::Material", "classrx_1_1_material.html", null ],
     [ "rx::Model", "classrx_1_1_model.html", null ],
@@ -43,7 +45,6 @@ var hierarchy =
     [ "rx::Settings", "classrx_1_1_settings.html", null ],
     [ "rx::Surface", "classrx_1_1_surface.html", null ],
     [ "rx::Swapchain", "classrx_1_1_swapchain.html", null ],
-    [ "rx::Texture", "classrx_1_1_texture.html", null ],
     [ "rx::Time", "classrx_1_1_time.html", null ],
     [ "rx::Tlas", "structrx_1_1_tlas.html", null ],
     [ "rx::UniformBuffer", "classrx_1_1_uniform_buffer.html", null ],

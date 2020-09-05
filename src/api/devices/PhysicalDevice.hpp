@@ -13,7 +13,7 @@ namespace rx
     PhysicalDevice( ) = default;
 
     /// Retrieves the most suited GPU on the current machine. If a device is found its properties and features will be retrieved.
-    /// @note SLI, Crossfire and similar is NOT supported.
+    /// @note SLI, Crossfire and similar are NOT supported.
     void init( );
 
   private:

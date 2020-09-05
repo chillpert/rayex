@@ -193,7 +193,7 @@ private:
 
 class CustomGui : public GuiBase
 {
-public:
+private:
   void configure( ) override
   {
     GuiBase::configure( );
@@ -230,6 +230,7 @@ public:
     ImGui::End( );
   }
 
+public:
   void setRenderer( Renderer* renderer )
   {
     m_renderer = renderer;

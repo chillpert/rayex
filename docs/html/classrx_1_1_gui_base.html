@@ -97,9 +97,12 @@ $(document).ready(function(){initNavTree('classrx_1_1_gui_base.html',''); initRe
 <a href="#pub-methods">Public Member Functions</a> &#124;
 <a href="classrx_1_1_gui_base-members.html">List of all members</a>  </div>
   <div class="headertitle">
-<div class="title">rx::GuiBase Class Reference</div>  </div>
+<div class="title">rx::GuiBase Class Reference<div class="ingroups"><a class="el" href="group___base.html">Interfaces and Base Components</a> &#124; <a class="el" href="group___a_p_i.html">Vulkan</a></div></div>  </div>
 </div><!--header-->
 <div class="contents">
+
+<p>A cass to create an ImGui-based GUI.  
+ <a href="classrx_1_1_gui_base.html#details">More...</a></p>
 
 <p><code>#include &lt;<a class="el" href="_gui_base_8hpp_source.html">GuiBase.hpp</a>&gt;</code></p>
 <div class="dynheader">
@@ -121,25 +124,53 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a30b904bb4115f2676d118b140e06e54f"><td class="memItemLeft" align="right" valign="top">virtual RX_API&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classrx_1_1_gui_base.html#a30b904bb4115f2676d118b140e06e54f">~GuiBase</a> ()=default</td></tr>
 <tr class="separator:a30b904bb4115f2676d118b140e06e54f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a75dca542b071d52c0bf6c3a13ecf2d7f"><td class="memItemLeft" align="right" valign="top">const vk::CommandBuffer&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classrx_1_1_gui_base.html#a75dca542b071d52c0bf6c3a13ecf2d7f">getCommandBuffer</a> (uint32_t index) const</td></tr>
+<tr class="memdesc:a75dca542b071d52c0bf6c3a13ecf2d7f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the GUI's command buffer at the given index.  <a href="classrx_1_1_gui_base.html#a75dca542b071d52c0bf6c3a13ecf2d7f">More...</a><br /></td></tr>
 <tr class="separator:a75dca542b071d52c0bf6c3a13ecf2d7f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aa7308bebaead5580e11853c7604d77e0"><td class="memItemLeft" align="right" valign="top">virtual RX_API void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classrx_1_1_gui_base.html#aa7308bebaead5580e11853c7604d77e0">configure</a> ()</td></tr>
+<tr class="memdesc:aa7308bebaead5580e11853c7604d77e0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Used to configure all ImGui settings.  <a href="classrx_1_1_gui_base.html#aa7308bebaead5580e11853c7604d77e0">More...</a><br /></td></tr>
 <tr class="separator:aa7308bebaead5580e11853c7604d77e0"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ad2100f03fe7e64b12cc315231effae88"><td class="memItemLeft" align="right" valign="top">virtual RX_API void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classrx_1_1_gui_base.html#ad2100f03fe7e64b12cc315231effae88">render</a> ()</td></tr>
+<tr class="memdesc:ad2100f03fe7e64b12cc315231effae88"><td class="mdescLeft">&#160;</td><td class="mdescRight">This function is for calling the individual ImGui components, e.g.  <a href="classrx_1_1_gui_base.html#ad2100f03fe7e64b12cc315231effae88">More...</a><br /></td></tr>
 <tr class="separator:ad2100f03fe7e64b12cc315231effae88"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aca9f5d7553cc6d2ee1e0937dc1b154aa"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classrx_1_1_gui_base.html#aca9f5d7553cc6d2ee1e0937dc1b154aa">init</a> (const <a class="el" href="classrx_1_1_surface.html">Surface</a> *const surface, vk::Extent2D swapchainImageExtent, const std::vector&lt; vk::ImageView &gt; &amp;swapchainImageViews)</td></tr>
+<tr class="memdesc:aca9f5d7553cc6d2ee1e0937dc1b154aa"><td class="mdescLeft">&#160;</td><td class="mdescRight">Creates the GUI and all required Vulkan components.  <a href="classrx_1_1_gui_base.html#aca9f5d7553cc6d2ee1e0937dc1b154aa">More...</a><br /></td></tr>
 <tr class="separator:aca9f5d7553cc6d2ee1e0937dc1b154aa"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a02de12dd4e477a1b2cdb217dbf7c1ceb"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classrx_1_1_gui_base.html#a02de12dd4e477a1b2cdb217dbf7c1ceb">recreate</a> (vk::Extent2D swapchainImageExtent, const std::vector&lt; vk::ImageView &gt; &amp;swapchainImageViews)</td></tr>
+<tr class="memdesc:a02de12dd4e477a1b2cdb217dbf7c1ceb"><td class="mdescLeft">&#160;</td><td class="mdescRight">Used to recreate the GUI in case the window size was changed.  <a href="classrx_1_1_gui_base.html#a02de12dd4e477a1b2cdb217dbf7c1ceb">More...</a><br /></td></tr>
 <tr class="separator:a02de12dd4e477a1b2cdb217dbf7c1ceb"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a8274f2ac199371aa1af8205da57e543d"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classrx_1_1_gui_base.html#a8274f2ac199371aa1af8205da57e543d">newFrame</a> ()</td></tr>
+<tr class="memdesc:a8274f2ac199371aa1af8205da57e543d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Creates a new ImGui frame.  <a href="classrx_1_1_gui_base.html#a8274f2ac199371aa1af8205da57e543d">More...</a><br /></td></tr>
 <tr class="separator:a8274f2ac199371aa1af8205da57e543d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aad9bf6f9fcaa10afa08cec4c1cd9d349"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classrx_1_1_gui_base.html#aad9bf6f9fcaa10afa08cec4c1cd9d349">endRender</a> ()</td></tr>
+<tr class="memdesc:aad9bf6f9fcaa10afa08cec4c1cd9d349"><td class="mdescLeft">&#160;</td><td class="mdescRight">Calls the actual ImGui render call.  <a href="classrx_1_1_gui_base.html#aad9bf6f9fcaa10afa08cec4c1cd9d349">More...</a><br /></td></tr>
 <tr class="separator:aad9bf6f9fcaa10afa08cec4c1cd9d349"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a668f00b604de4a566d6b46a469fdb62a"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classrx_1_1_gui_base.html#a668f00b604de4a566d6b46a469fdb62a">renderDrawData</a> (uint32_t imageIndex)</td></tr>
+<tr class="memdesc:a668f00b604de4a566d6b46a469fdb62a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Records the ImGui rendering calls to the command buffer at the given image index.  <a href="classrx_1_1_gui_base.html#a668f00b604de4a566d6b46a469fdb62a">More...</a><br /></td></tr>
 <tr class="separator:a668f00b604de4a566d6b46a469fdb62a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:abc8a7c5b34053328af509a4e33c157ca"><td class="memItemLeft" align="right" valign="top">RX_API void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classrx_1_1_gui_base.html#abc8a7c5b34053328af509a4e33c157ca">destroy</a> ()</td></tr>
+<tr class="memdesc:abc8a7c5b34053328af509a4e33c157ca"><td class="mdescLeft">&#160;</td><td class="mdescRight">Destroys all ImGui resources.  <a href="classrx_1_1_gui_base.html#abc8a7c5b34053328af509a4e33c157ca">More...</a><br /></td></tr>
 <tr class="separator:abc8a7c5b34053328af509a4e33c157ca"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
-<h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>A cass to create an ImGui-based GUI. </p>
+<p>This class acts like an interface for the client to create their own GUI. It is possible to create multiple GUI objects and re-assign them to the renderer at runtime. </p><div class="fragment"><div class="line"><span class="keyword">class </span><a class="code" href="class_custom_gui.html">CustomGui</a> : <span class="keyword">public</span> <a class="code" href="classrx_1_1_gui_base.html#a1f2bda354b004aa57bf6a6d6bcc5dbfc">GuiBase</a></div>
+<div class="line">{</div>
+<div class="line"><span class="keyword">private</span>:</div>
+<div class="line">  <span class="comment">// Configure style and input of the GUI.</span></div>
+<div class="line">  <span class="keywordtype">void</span> <a class="code" href="classrx_1_1_gui_base.html#aa7308bebaead5580e11853c7604d77e0">configure</a>()<span class="keyword"> override </span>{ }</div>
+<div class="line"> </div>
+<div class="line">  <span class="comment">// Put the rendering commands in here.</span></div>
+<div class="line">  <span class="keywordtype">void</span> <a class="code" href="classrx_1_1_gui_base.html#ad2100f03fe7e64b12cc315231effae88">render</a>()<span class="keyword"> override </span>{ }</div>
+<div class="line">};</div>
+<div class="line"> </div>
+<div class="line">Renderer myRenderer;</div>
+<div class="line">myRenderer.init( );</div>
+<div class="line"> </div>
+<div class="line"><span class="comment">// Put this line after the declaration of the rx::Renderer object.</span></div>
+<div class="line"><span class="keyword">auto</span> myGui = std::make_shared&lt;CustomGui&gt;( );</div>
+<div class="line">myRenderer.setGui( myGui );</div>
+</div><!-- fragment --><dl class="section warning"><dt>Warning</dt><dd>The GUI object must be declared after the renderer to ensure the correct order for destroying and freeing resources. </dd></dl>
+</div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a id="a1f2bda354b004aa57bf6a6d6bcc5dbfc"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a1f2bda354b004aa57bf6a6d6bcc5dbfc">&#9670;&nbsp;</a></span>GuiBase() <span class="overload">[1/2]</span></h2>
 
@@ -202,6 +233,15 @@ Public Member Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">surface</td><td>A pointer to a <a class="el" href="classrx_1_1_surface.html" title="A wrapper class for a Vulkan surface.">rx::Surface</a> object. </td></tr>
+    <tr><td class="paramname">swapchainImageExtent</td><td>The extent of the swapchain images. </td></tr>
+    <tr><td class="paramname">swapchainImageViews</td><td>The swapchain images' image views. </td></tr>
+    <tr><td class="paramname">initialize</td><td>If true, the GUI will be initialized right away without an additional call to <a class="el" href="classrx_1_1_gui_base.html#aca9f5d7553cc6d2ee1e0937dc1b154aa" title="Creates the GUI and all required Vulkan components.">init()</a>. </td></tr>
+  </table>
+  </dd>
+</dl>
 
 </div>
 </div>
@@ -254,7 +294,8 @@ Public Member Functions</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>Reimplemented in <a class="el" href="class_custom_gui.html#a3378cf8adcea18d363badded928563d7">CustomGui</a>.</p>
+<p>Used to configure all ImGui settings. </p>
+<p>The client should override this function if they want to change the style or various other configuration settings. </p>
 
 </div>
 </div>
@@ -273,6 +314,8 @@ Public Member Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
+<p>Destroys all ImGui resources. </p>
+
 </div>
 </div>
 <a id="aad9bf6f9fcaa10afa08cec4c1cd9d349"></a>
@@ -289,6 +332,8 @@ Public Member Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>Calls the actual ImGui render call. </p>
 
 </div>
 </div>
@@ -315,6 +360,15 @@ Public Member Functions</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
+
+<p>Returns the GUI's command buffer at the given index. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">index</td><td>The index of the command buffer to access. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>Returns the Vulkan command buffer. </dd></dl>
 
 </div>
 </div>
@@ -350,6 +404,16 @@ Public Member Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
+<p>Creates the GUI and all required Vulkan components. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">surface</td><td>A pointer to a <a class="el" href="classrx_1_1_surface.html" title="A wrapper class for a Vulkan surface.">rx::Surface</a> object. </td></tr>
+    <tr><td class="paramname">swapchainImageExtent</td><td>The extent of the swapchain images. </td></tr>
+    <tr><td class="paramname">swapchainImageViews</td><td>The swapchain images' image views. </td></tr>
+  </table>
+  </dd>
+</dl>
+
 </div>
 </div>
 <a id="a8274f2ac199371aa1af8205da57e543d"></a>
@@ -366,6 +430,8 @@ Public Member Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>Creates a new ImGui frame. </p>
 
 </div>
 </div>
@@ -395,6 +461,15 @@ Public Member Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
+<p>Used to recreate the GUI in case the window size was changed. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">swapchainImageExtent</td><td>The extent of the swapchain images. </td></tr>
+    <tr><td class="paramname">swapchainImageViews</td><td>The swapchain images' image views. </td></tr>
+  </table>
+  </dd>
+</dl>
+
 </div>
 </div>
 <a id="ad2100f03fe7e64b12cc315231effae88"></a>
@@ -420,7 +495,9 @@ Public Member Functions</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>Reimplemented in <a class="el" href="class_custom_gui.html#a6bc51a564691e7fcbef848254d6e2cf0">CustomGui</a>.</p>
+<p>This function is for calling the individual ImGui components, e.g. </p>
+<p>widgets.</p>
+<p>The client should override this function to create their own GUI. </p>
 
 </div>
 </div>
@@ -440,10 +517,22 @@ Public Member Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
+<p>Records the ImGui rendering calls to the command buffer at the given image index. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">imageIndex</td><td>The index addressing a command buffer. </td></tr>
+  </table>
+  </dd>
+</dl>
+
 </div>
 </div>
 </div><!-- contents -->
 </div><!-- doc-content -->
+<div class="ttc" id="aclassrx_1_1_gui_base_html_aa7308bebaead5580e11853c7604d77e0"><div class="ttname"><a href="classrx_1_1_gui_base.html#aa7308bebaead5580e11853c7604d77e0">rx::GuiBase::configure</a></div><div class="ttdeci">virtual RX_API void configure()</div><div class="ttdoc">Used to configure all ImGui settings.</div><div class="ttdef"><b>Definition:</b> GuiBase.cpp:14</div></div>
+<div class="ttc" id="aclass_custom_gui_html"><div class="ttname"><a href="class_custom_gui.html">CustomGui</a></div><div class="ttdef"><b>Definition:</b> main.cpp:195</div></div>
+<div class="ttc" id="aclassrx_1_1_gui_base_html_ad2100f03fe7e64b12cc315231effae88"><div class="ttname"><a href="classrx_1_1_gui_base.html#ad2100f03fe7e64b12cc315231effae88">rx::GuiBase::render</a></div><div class="ttdeci">virtual RX_API void render()</div><div class="ttdoc">This function is for calling the individual ImGui components, e.g.</div><div class="ttdef"><b>Definition:</b> GuiBase.cpp:64</div></div>
+<div class="ttc" id="aclassrx_1_1_gui_base_html_a1f2bda354b004aa57bf6a6d6bcc5dbfc"><div class="ttname"><a href="classrx_1_1_gui_base.html#a1f2bda354b004aa57bf6a6d6bcc5dbfc">rx::GuiBase::GuiBase</a></div><div class="ttdeci">GuiBase()=default</div></div>
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>

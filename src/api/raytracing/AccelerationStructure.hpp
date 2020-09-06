@@ -7,6 +7,7 @@
 namespace rx
 {
   /// A wrapper for a Vulkan acceleration Structure.
+  /// @ingroup API
   struct AccelerationStructure
   {
     vk::AccelerationStructureKHR as; ///< The Vulkan acceleration structure.
@@ -24,6 +25,7 @@ namespace rx
   };
 
   /// A wrapper for a top level acceleration structure.
+  /// @ingroup API
   struct Tlas
   {
     AccelerationStructure as; ///< The rx::AccelerationStructure object containing the Vulkan acceleration structure.
@@ -31,6 +33,7 @@ namespace rx
   };
 
   /// A wrapper for a bottom level acceleration structure.
+  /// @ingroup API
   struct Blas
   {
     AccelerationStructure as; ///< The rx::AccelerationStructure object containing the Vulkan acceleration structure.
@@ -42,6 +45,7 @@ namespace rx
   };
 
   /// An instance of a bottom level acceleration structure.
+  /// @ingroup API
   struct BlasInstance
   {
     uint32_t blasId = 0;                      ///< The index of the bottom level acceleration structure in m_blas_.

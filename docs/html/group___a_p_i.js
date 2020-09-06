@@ -181,6 +181,46 @@ var group___a_p_i =
       [ "init", "classrx_1_1_queues.html#ab003c434f6c993f2381b6b0c9dd76003", null ],
       [ "retrieveHandles", "classrx_1_1_queues.html#a3262a78b46dd3d20f720c256beee4c68", null ]
     ] ],
+    [ "AccelerationStructure", "structrx_1_1_acceleration_structure.html", [
+      [ "destroy", "structrx_1_1_acceleration_structure.html#a25ff74d78e936ef0c0006e16da6116e6", null ],
+      [ "as", "structrx_1_1_acceleration_structure.html#a253b08f9ce83a20d8a1f984f7669de7d", null ],
+      [ "memory", "structrx_1_1_acceleration_structure.html#a352b9a61fcf9c224c09faf3734a39115", null ]
+    ] ],
+    [ "Tlas", "structrx_1_1_tlas.html", [
+      [ "as", "structrx_1_1_tlas.html#acca6e1cba0d8ba63e8d0a5fd09a279b0", null ],
+      [ "flags", "structrx_1_1_tlas.html#aaa8589d85ae13827e3d2b51b0b0358d4", null ]
+    ] ],
+    [ "Blas", "structrx_1_1_blas.html", [
+      [ "as", "structrx_1_1_blas.html#ac0c160449d5fb3b486eaab18331748a1", null ],
+      [ "asBuildOffsetInfo", "structrx_1_1_blas.html#a29b12815ad6c32eabb0dc46656d91913", null ],
+      [ "asCreateGeometryInfo", "structrx_1_1_blas.html#a84d9450aa1b8726afc627fd934f6b359", null ],
+      [ "asGeometry", "structrx_1_1_blas.html#ac74daa5e54e8bd97a5ef47650665d4d0", null ],
+      [ "flags", "structrx_1_1_blas.html#a9b1bafdc5eafbe49f3ca37f39df3a163", null ]
+    ] ],
+    [ "BlasInstance", "structrx_1_1_blas_instance.html", [
+      [ "blasId", "structrx_1_1_blas_instance.html#a680d9fe954cf810a9134b52ce2c1522c", null ],
+      [ "flags", "structrx_1_1_blas_instance.html#a043850f8920f72203973dcd8dfc6b2d0", null ],
+      [ "hitGroupId", "structrx_1_1_blas_instance.html#ab53fbcc77e066a29b807fe7a2a955ce1", null ],
+      [ "instanceId", "structrx_1_1_blas_instance.html#af158d0c22affa271615dedf13527d492", null ],
+      [ "mask", "structrx_1_1_blas_instance.html#a5f5aef5afeb54286f487dac15c50207c", null ],
+      [ "transform", "structrx_1_1_blas_instance.html#a1a0ddbfa50189ea67eb18cf74188ba12", null ]
+    ] ],
+    [ "RayTracingBuilder", "classrx_1_1_ray_tracing_builder.html", [
+      [ "~RayTracingBuilder", "classrx_1_1_ray_tracing_builder.html#a90966fa6fb5dea2a38a2f79b80aaac4e", null ],
+      [ "buildBlas", "classrx_1_1_ray_tracing_builder.html#a40bba4720e0b9b4b46e6ea2e72f2644c", null ],
+      [ "buildTlas", "classrx_1_1_ray_tracing_builder.html#aa6f209bbaaa7a91c3b32bac97ec0c7d9", null ],
+      [ "createBottomLevelAS", "classrx_1_1_ray_tracing_builder.html#a28fb2b371c344d3911a4b350927ba0b9", null ],
+      [ "createShaderBindingTable", "classrx_1_1_ray_tracing_builder.html#aaf99e0d4849fc6d2ac39820852894f2f", null ],
+      [ "createStorageImage", "classrx_1_1_ray_tracing_builder.html#a78b884b33c99f81354ea10fdeade6cf9", null ],
+      [ "createTopLevelAS", "classrx_1_1_ray_tracing_builder.html#a30bd6dc27f8ee72ff8493871467fb997", null ],
+      [ "destroy", "classrx_1_1_ray_tracing_builder.html#a34911470f1c3c2279aebc269790a4903", null ],
+      [ "getStorageImageView", "classrx_1_1_ray_tracing_builder.html#a67ab59dd8f2becdf086e18beff50fa6a", null ],
+      [ "getTlas", "classrx_1_1_ray_tracing_builder.html#a4a2cc8163cb93d3a6c9be1c15d5cb1dd", null ],
+      [ "init", "classrx_1_1_ray_tracing_builder.html#a75206e68971668a86b0051b0878605d9", null ],
+      [ "instanceToVkGeometryInstanceKHR", "classrx_1_1_ray_tracing_builder.html#a80b540c07995e78feb14f9c8db5c141e", null ],
+      [ "modelToBlas", "classrx_1_1_ray_tracing_builder.html#a863a77e3048449ed9fd984d4442aba95", null ],
+      [ "rayTrace", "classrx_1_1_ray_tracing_builder.html#a40136a2ada9c8fd67e3719e9d2812ae8", null ]
+    ] ],
     [ "RenderPass", "classrx_1_1_render_pass.html", [
       [ "RenderPass", "classrx_1_1_render_pass.html#ae57da1d57e10f8e1499be97aa40f3cbb", null ],
       [ "RenderPass", "classrx_1_1_render_pass.html#acec123f5c67d64cfec8e0aab9bfec87e", null ],

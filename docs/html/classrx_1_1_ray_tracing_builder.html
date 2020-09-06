@@ -97,44 +97,61 @@ $(document).ready(function(){initNavTree('classrx_1_1_ray_tracing_builder.html',
 <a href="#pub-methods">Public Member Functions</a> &#124;
 <a href="classrx_1_1_ray_tracing_builder-members.html">List of all members</a>  </div>
   <div class="headertitle">
-<div class="title">rx::RayTracingBuilder Class Reference</div>  </div>
+<div class="title">rx::RayTracingBuilder Class Reference<div class="ingroups"><a class="el" href="group___a_p_i.html">Vulkan</a></div></div>  </div>
 </div><!--header-->
 <div class="contents">
+
+<p>Manages the building process of the acceleration structures.  
+ <a href="classrx_1_1_ray_tracing_builder.html#details">More...</a></p>
 
 <p><code>#include &lt;<a class="el" href="_ray_tracing_builder_8hpp_source.html">RayTracingBuilder.hpp</a>&gt;</code></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
 <tr class="memitem:a90966fa6fb5dea2a38a2f79b80aaac4e"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classrx_1_1_ray_tracing_builder.html#a90966fa6fb5dea2a38a2f79b80aaac4e">~RayTracingBuilder</a> ()</td></tr>
+<tr class="memdesc:a90966fa6fb5dea2a38a2f79b80aaac4e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Calls <a class="el" href="classrx_1_1_ray_tracing_builder.html#a34911470f1c3c2279aebc269790a4903" title="Destroys all bottom and top level acceleration structures.">destroy()</a>.  <a href="classrx_1_1_ray_tracing_builder.html#a90966fa6fb5dea2a38a2f79b80aaac4e">More...</a><br /></td></tr>
 <tr class="separator:a90966fa6fb5dea2a38a2f79b80aaac4e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a75206e68971668a86b0051b0878605d9"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classrx_1_1_ray_tracing_builder.html#a75206e68971668a86b0051b0878605d9">init</a> ()</td></tr>
+<tr class="memdesc:a75206e68971668a86b0051b0878605d9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Retrieves the physical device's ray tracing capabilities.  <a href="classrx_1_1_ray_tracing_builder.html#a75206e68971668a86b0051b0878605d9">More...</a><br /></td></tr>
 <tr class="separator:a75206e68971668a86b0051b0878605d9"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a34911470f1c3c2279aebc269790a4903"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classrx_1_1_ray_tracing_builder.html#a34911470f1c3c2279aebc269790a4903">destroy</a> ()</td></tr>
+<tr class="memdesc:a34911470f1c3c2279aebc269790a4903"><td class="mdescLeft">&#160;</td><td class="mdescRight">Destroys all bottom and top level acceleration structures.  <a href="classrx_1_1_ray_tracing_builder.html#a34911470f1c3c2279aebc269790a4903">More...</a><br /></td></tr>
 <tr class="separator:a34911470f1c3c2279aebc269790a4903"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a4a2cc8163cb93d3a6c9be1c15d5cb1dd"><td class="memItemLeft" align="right" valign="top">const <a class="el" href="structrx_1_1_tlas.html">Tlas</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classrx_1_1_ray_tracing_builder.html#a4a2cc8163cb93d3a6c9be1c15d5cb1dd">getTlas</a> () const</td></tr>
 <tr class="separator:a4a2cc8163cb93d3a6c9be1c15d5cb1dd"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a67ab59dd8f2becdf086e18beff50fa6a"><td class="memItemLeft" align="right" valign="top">const vk::ImageView&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classrx_1_1_ray_tracing_builder.html#a67ab59dd8f2becdf086e18beff50fa6a">getStorageImageView</a> () const</td></tr>
 <tr class="separator:a67ab59dd8f2becdf086e18beff50fa6a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a863a77e3048449ed9fd984d4442aba95"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structrx_1_1_blas.html">Blas</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classrx_1_1_ray_tracing_builder.html#a863a77e3048449ed9fd984d4442aba95">modelToBlas</a> (const std::shared_ptr&lt; <a class="el" href="classrx_1_1_model.html">Model</a> &gt; model) const</td></tr>
+<tr class="memdesc:a863a77e3048449ed9fd984d4442aba95"><td class="mdescLeft">&#160;</td><td class="mdescRight">Used to convert wavefront models to a bottom level acceleration structure.  <a href="classrx_1_1_ray_tracing_builder.html#a863a77e3048449ed9fd984d4442aba95">More...</a><br /></td></tr>
 <tr class="separator:a863a77e3048449ed9fd984d4442aba95"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a80b540c07995e78feb14f9c8db5c141e"><td class="memItemLeft" align="right" valign="top">vk::AccelerationStructureInstanceKHR&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classrx_1_1_ray_tracing_builder.html#a80b540c07995e78feb14f9c8db5c141e">instanceToVkGeometryInstanceKHR</a> (const <a class="el" href="structrx_1_1_blas_instance.html">BlasInstance</a> &amp;instance)</td></tr>
+<tr class="memdesc:a80b540c07995e78feb14f9c8db5c141e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Used to convert a bottom level acceleration structure instance to a Vulkan geometry instance.  <a href="classrx_1_1_ray_tracing_builder.html#a80b540c07995e78feb14f9c8db5c141e">More...</a><br /></td></tr>
 <tr class="separator:a80b540c07995e78feb14f9c8db5c141e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a28fb2b371c344d3911a4b350927ba0b9"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classrx_1_1_ray_tracing_builder.html#a28fb2b371c344d3911a4b350927ba0b9">createBottomLevelAS</a> (const std::vector&lt; std::shared_ptr&lt; <a class="el" href="classrx_1_1_model.html">Model</a> &gt;&gt; &amp;models)</td></tr>
+<tr class="memdesc:a28fb2b371c344d3911a4b350927ba0b9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Used to prepare building the bottom level acceleration structures.  <a href="classrx_1_1_ray_tracing_builder.html#a28fb2b371c344d3911a4b350927ba0b9">More...</a><br /></td></tr>
 <tr class="separator:a28fb2b371c344d3911a4b350927ba0b9"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a40bba4720e0b9b4b46e6ea2e72f2644c"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classrx_1_1_ray_tracing_builder.html#a40bba4720e0b9b4b46e6ea2e72f2644c">buildBlas</a> (const std::vector&lt; <a class="el" href="structrx_1_1_blas.html">Blas</a> &gt; &amp;blas_, vk::BuildAccelerationStructureFlagsKHR flags=vk::BuildAccelerationStructureFlagBitsKHR::ePreferFastTrace)</td></tr>
+<tr class="memdesc:a40bba4720e0b9b4b46e6ea2e72f2644c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Builds all bottom level acceleration structures.  <a href="classrx_1_1_ray_tracing_builder.html#a40bba4720e0b9b4b46e6ea2e72f2644c">More...</a><br /></td></tr>
 <tr class="separator:a40bba4720e0b9b4b46e6ea2e72f2644c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a30bd6dc27f8ee72ff8493871467fb997"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classrx_1_1_ray_tracing_builder.html#a30bd6dc27f8ee72ff8493871467fb997">createTopLevelAS</a> (const std::vector&lt; std::shared_ptr&lt; <a class="el" href="classrx_1_1_geometry_node.html">GeometryNode</a> &gt;&gt; &amp;nodes)</td></tr>
+<tr class="memdesc:a30bd6dc27f8ee72ff8493871467fb997"><td class="mdescLeft">&#160;</td><td class="mdescRight">Used to prepare building the top level acceleration structure.  <a href="classrx_1_1_ray_tracing_builder.html#a30bd6dc27f8ee72ff8493871467fb997">More...</a><br /></td></tr>
 <tr class="separator:a30bd6dc27f8ee72ff8493871467fb997"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aa6f209bbaaa7a91c3b32bac97ec0c7d9"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classrx_1_1_ray_tracing_builder.html#aa6f209bbaaa7a91c3b32bac97ec0c7d9">buildTlas</a> (const std::vector&lt; <a class="el" href="structrx_1_1_blas_instance.html">BlasInstance</a> &gt; &amp;instances, vk::BuildAccelerationStructureFlagsKHR flags=vk::BuildAccelerationStructureFlagBitsKHR::ePreferFastTrace)</td></tr>
+<tr class="memdesc:aa6f209bbaaa7a91c3b32bac97ec0c7d9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Build the top level acceleration structure.  <a href="classrx_1_1_ray_tracing_builder.html#aa6f209bbaaa7a91c3b32bac97ec0c7d9">More...</a><br /></td></tr>
 <tr class="separator:aa6f209bbaaa7a91c3b32bac97ec0c7d9"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a78b884b33c99f81354ea10fdeade6cf9"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classrx_1_1_ray_tracing_builder.html#a78b884b33c99f81354ea10fdeade6cf9">createStorageImage</a> (vk::Extent2D swapchainExtent)</td></tr>
+<tr class="memdesc:a78b884b33c99f81354ea10fdeade6cf9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Creates the storage image which the ray tracing shaders will write to.  <a href="classrx_1_1_ray_tracing_builder.html#a78b884b33c99f81354ea10fdeade6cf9">More...</a><br /></td></tr>
 <tr class="separator:a78b884b33c99f81354ea10fdeade6cf9"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aaf99e0d4849fc6d2ac39820852894f2f"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classrx_1_1_ray_tracing_builder.html#aaf99e0d4849fc6d2ac39820852894f2f">createShaderBindingTable</a> (vk::Pipeline rtPipeline)</td></tr>
+<tr class="memdesc:aaf99e0d4849fc6d2ac39820852894f2f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Creates the shader binding tables.  <a href="classrx_1_1_ray_tracing_builder.html#aaf99e0d4849fc6d2ac39820852894f2f">More...</a><br /></td></tr>
 <tr class="separator:aaf99e0d4849fc6d2ac39820852894f2f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a40136a2ada9c8fd67e3719e9d2812ae8"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classrx_1_1_ray_tracing_builder.html#a40136a2ada9c8fd67e3719e9d2812ae8">rayTrace</a> (vk::CommandBuffer swapchaincommandBuffer, vk::Image swapchainImage, vk::Extent2D extent)</td></tr>
+<tr class="memdesc:a40136a2ada9c8fd67e3719e9d2812ae8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Used to record the actual ray tracing commands to a given command buffer.  <a href="classrx_1_1_ray_tracing_builder.html#a40136a2ada9c8fd67e3719e9d2812ae8">More...</a><br /></td></tr>
 <tr class="separator:a40136a2ada9c8fd67e3719e9d2812ae8"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
-<h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>Manages the building process of the acceleration structures. </p>
+</div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a id="a90966fa6fb5dea2a38a2f79b80aaac4e"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a90966fa6fb5dea2a38a2f79b80aaac4e">&#9670;&nbsp;</a></span>~RayTracingBuilder()</h2>
 
@@ -149,6 +166,8 @@ Public Member Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>Calls <a class="el" href="classrx_1_1_ray_tracing_builder.html#a34911470f1c3c2279aebc269790a4903" title="Destroys all bottom and top level acceleration structures.">destroy()</a>. </p>
 
 </div>
 </div>
@@ -179,6 +198,15 @@ Public Member Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
+<p>Builds all bottom level acceleration structures. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">blas_</td><td>A vector of <a class="el" href="structrx_1_1_blas.html" title="A wrapper for a bottom level acceleration structure.">rx::Blas</a> objects containing all bottom level acceleration structures prepared in <a class="el" href="classrx_1_1_ray_tracing_builder.html#a28fb2b371c344d3911a4b350927ba0b9" title="Used to prepare building the bottom level acceleration structures.">createBottomLevelAS()</a>. </td></tr>
+    <tr><td class="paramname">flags</td><td>The build flags. </td></tr>
+  </table>
+  </dd>
+</dl>
+
 </div>
 </div>
 <a id="aa6f209bbaaa7a91c3b32bac97ec0c7d9"></a>
@@ -207,6 +235,14 @@ Public Member Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
+<p>Build the top level acceleration structure. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">instances</td><td>A vector of bottom level acceleration structure instances. @flags The build flags. </td></tr>
+  </table>
+  </dd>
+</dl>
+
 </div>
 </div>
 <a id="a28fb2b371c344d3911a4b350927ba0b9"></a>
@@ -224,6 +260,14 @@ Public Member Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>Used to prepare building the bottom level acceleration structures. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">models</td><td>A vector of pointers to <a class="el" href="classrx_1_1_model.html" title="Describes a model.">rx::Model</a> objects. </td></tr>
+  </table>
+  </dd>
+</dl>
 
 </div>
 </div>
@@ -243,6 +287,14 @@ Public Member Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
+<p>Creates the shader binding tables. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">rtPipeline</td><td>The ray tracing graphics pipeline. </td></tr>
+  </table>
+  </dd>
+</dl>
+
 </div>
 </div>
 <a id="a78b884b33c99f81354ea10fdeade6cf9"></a>
@@ -260,6 +312,14 @@ Public Member Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>Creates the storage image which the ray tracing shaders will write to. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">swapchainExtent</td><td>The swapchain images' extent. </td></tr>
+  </table>
+  </dd>
+</dl>
 
 </div>
 </div>
@@ -279,6 +339,14 @@ Public Member Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
+<p>Used to prepare building the top level acceleration structure. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">nodes</td><td>A vector of pointers to <a class="el" href="classrx_1_1_geometry_node.html" title="Adds geometry to the TransformNode parent class.">rx::GeometryNode</a> objects. </td></tr>
+  </table>
+  </dd>
+</dl>
+
 </div>
 </div>
 <a id="a34911470f1c3c2279aebc269790a4903"></a>
@@ -295,6 +363,8 @@ Public Member Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>Destroys all bottom and top level acceleration structures. </p>
 
 </div>
 </div>
@@ -320,6 +390,7 @@ Public Member Functions</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
+<dl class="section return"><dt>Returns</dt><dd>Returns the storage image's image view. </dd></dl>
 
 </div>
 </div>
@@ -345,6 +416,7 @@ Public Member Functions</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
+<dl class="section return"><dt>Returns</dt><dd>Returns the top level acceleration structure. </dd></dl>
 
 </div>
 </div>
@@ -362,6 +434,8 @@ Public Member Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>Retrieves the physical device's ray tracing capabilities. </p>
 
 </div>
 </div>
@@ -381,6 +455,15 @@ Public Member Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
+<p>Used to convert a bottom level acceleration structure instance to a Vulkan geometry instance. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">instance</td><td>A bottom level acceleration structure instance. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>Returns the Vulkan geometry instance. </dd></dl>
+
 </div>
 </div>
 <a id="a863a77e3048449ed9fd984d4442aba95"></a>
@@ -398,6 +481,15 @@ Public Member Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>Used to convert wavefront models to a bottom level acceleration structure. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">model</td><td>A pointer to a <a class="el" href="classrx_1_1_model.html" title="Describes a model.">rx::Model</a> object. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>Returns the bottom level acceleration structure. </dd></dl>
 
 </div>
 </div>
@@ -432,6 +524,16 @@ Public Member Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>Used to record the actual ray tracing commands to a given command buffer. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">swapchainCommandBuffer</td><td>The command buffer to record to. </td></tr>
+    <tr><td class="paramname">swapchainImage</td><td>The current image in the swapchain. </td></tr>
+    <tr><td class="paramname">extent</td><td>The swapchain images' extent. </td></tr>
+  </table>
+  </dd>
+</dl>
 
 </div>
 </div>

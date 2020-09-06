@@ -388,7 +388,7 @@ namespace rx
                                                                         0,                                                           // dynamic offset count
                                                                         nullptr );                                                   // dynamic offsets 
 
-        m_rayTracingBuilder.rayTrace( m_swapchainCommandBuffers.get( imageIndex ), m_swapchain.getImage( imageIndex ), m_window->getExtent( ) );
+        m_rayTracingBuilder.rayTrace( m_swapchainCommandBuffers.get( imageIndex ), m_swapchain.getImage( imageIndex ), m_swapchain.getExtent( ) );
       }
 
       m_swapchainCommandBuffers.end( imageIndex );

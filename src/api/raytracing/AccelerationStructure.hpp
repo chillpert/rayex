@@ -6,11 +6,13 @@
 
 namespace rx
 {
+  /// A wrapper for a Vulkan acceleration Structure.
   struct AccelerationStructure
   {
-    vk::AccelerationStructureKHR as;
-    vk::DeviceMemory memory;
+    vk::AccelerationStructureKHR as; ///< The Vulkan acceleration structure.
+    vk::DeviceMemory memory; ///< The acceleration structure's memory.
 
+    /// Used to destroy the acceleration structure and free its memory.
     void destroy( )
     {
       if ( as )
@@ -21,31 +23,33 @@ namespace rx
     }
   };
 
+  /// A wrapper for a top level acceleration structure.
   struct Tlas
   {
-    AccelerationStructure as;
-    vk::BuildAccelerationStructureFlagsKHR flags;
+    AccelerationStructure as; ///< The rx::AccelerationStructure object containing the Vulkan acceleration structure.
+    vk::BuildAccelerationStructureFlagsKHR flags; ///< The top level acceleration structure's build flags.
   };
 
+  /// A wrapper for a bottom level acceleration structure.
   struct Blas
   {
-    AccelerationStructure as;
-    vk::BuildAccelerationStructureFlagsKHR flags;                                          // specifying additional parameters for acceleration structure builds
+    AccelerationStructure as; ///< The rx::AccelerationStructure object containing the Vulkan acceleration structure.
+    vk::BuildAccelerationStructureFlagsKHR flags; ///< The top level acceleration structure's build flags.
 
-    std::vector<vk::AccelerationStructureCreateGeometryTypeInfoKHR> asCreateGeometryInfo;  // specifies the shape of geometries that will be built into an acceleration structure
-    std::vector<vk::AccelerationStructureGeometryKHR> asGeometry;                          // data used to build acceleration structure geometry
-    std::vector<vk::AccelerationStructureBuildOffsetInfoKHR> asBuildOffsetInfo;
+    std::vector<vk::AccelerationStructureCreateGeometryTypeInfoKHR> asCreateGeometryInfo; ///< Specifies the shape of geometries that will be built into an acceleration structure.
+    std::vector<vk::AccelerationStructureGeometryKHR> asGeometry; ///< Data used to build acceleration structure geometry.
+    std::vector<vk::AccelerationStructureBuildOffsetInfoKHR> asBuildOffsetInfo; ///< The offset between acceleration structures when building.
   };
 
-  // This is an instance of a BLAS.
+  /// An instance of a bottom level acceleration structure.
   struct BlasInstance
   {
-    uint32_t blasId = 0;                      // Index of the BLAS in m_blas
-    uint32_t instanceId = 0;                  // Instance Index (gl_InstanceID)
-    uint32_t hitGroupId = 0;                  // Hit group index in the SBT
-    uint32_t mask = 0xFF;                     // Visibility mask, will be AND-ed with ray mask
-    vk::GeometryInstanceFlagsKHR flags = { vk::GeometryInstanceFlagBitsKHR::eTriangleFacingCullDisable };
-    glm::mat4 transform = glm::fmat4( 1.0f ); // Identity
+    uint32_t blasId = 0;                      ///< The index of the bottom level acceleration structure in m_blas_.
+    uint32_t instanceId = 0;                  ///< The instance index (gl_InstanceID).
+    uint32_t hitGroupId = 0;                  ///< The hit group index in the SBT.
+    uint32_t mask = 0xFF;                     ///< The visibility mask, will be AND-ed with ray mask.
+    vk::GeometryInstanceFlagsKHR flags = { vk::GeometryInstanceFlagBitsKHR::eTriangleFacingCullDisable }; ///< The geometry display options.
+    glm::mat4 transform = glm::fmat4( 1.0f ); ///< The world transform matrix of the bottom level acceleration structure instance.
   };
 }
 

@@ -305,15 +305,15 @@ namespace rx
     vk::DeviceSize instanceDescsSizeInBytes = instances.size( ) * sizeof( vk::AccelerationStructureInstanceKHR );
 
     // Allocate the instance buffer and copy its contents from host to device memory.
-    m_instBuffer.init( instanceDescsSizeInBytes,                                                                // size
+    m_instanceBuffer.init( instanceDescsSizeInBytes,                                                                // size
                        vk::BufferUsageFlagBits::eRayTracingKHR | vk::BufferUsageFlagBits::eShaderDeviceAddress, // usage
                        { g_graphicsFamilyIndex },                                                               // queueFamilyIndices
                        vk::MemoryPropertyFlagBits::eHostVisible,                                                // memoryPropertyFlags
                        &allocateFlags );                                                                        // pNextMemory
 
-    m_instBuffer.fill<vk::AccelerationStructureInstanceKHR>( geometryInstances.data( ) );
+    m_instanceBuffer.fill<vk::AccelerationStructureInstanceKHR>( geometryInstances.data( ) );
 
-    vk::DeviceAddress instanceAddress = g_device.getBufferAddress( { m_instBuffer.get( ) } );
+    vk::DeviceAddress instanceAddress = g_device.getBufferAddress( { m_instanceBuffer.get( ) } );
 
     // Make sure the copy of the instance buffer are copied before triggering the acceleration structure build.
     vk::MemoryBarrier barrier( vk::AccessFlagBits::eTransferWrite,                   // srcAccessMask

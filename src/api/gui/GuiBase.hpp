@@ -11,7 +11,7 @@
 
 namespace rx
 {
-  /// A cass to create an ImGui-based GUI.
+  /// A class to create an ImGui-based GUI.
   /// 
   /// This class acts like an interface for the client to create their own GUI. 
   /// It is possible to create multiple GUI objects and re-assign them to the renderer at runtime.

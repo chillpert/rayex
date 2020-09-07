@@ -21,8 +21,8 @@ namespace rx
     static bool refresh( ) { return s_refresh; }
 
   private:
-    static uint32_t s_maxRecursionDepth;
-    static bool s_refresh;
+    static uint32_t s_maxRecursionDepth; ///< The maximum recursion depth.
+    static bool s_refresh; ///< Keeps track of whether or not the graphics pipeline needs to be re-created.
   };
 }
 

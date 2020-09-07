@@ -20,6 +20,8 @@ namespace rx
 
   void RayTracingBuilder::destroy( )
   {
+    g_device.waitIdle( );
+
     for ( Blas& blas : m_blas_ )
       blas.as.destroy( );
 
@@ -249,8 +251,6 @@ namespace rx
 
       for ( int i = 0; i < m_blas_.size( ); ++i )
       {
-        RX_LOG( "Reducing " << i << ", from " << originalSizes[i] << ", " << compactSizes[i] );
-
         totalOriginalSize += static_cast<uint32_t>( originalSizes[i] );
         totalCompactSize += static_cast<uint32_t>( compactSizes[i] );
 
@@ -283,14 +283,7 @@ namespace rx
       for ( auto& as : cleanupAS )
         as.destroy( );
 
-      RX_LOG( "Total: " 
-              << totalOriginalSize
-              << " -> " 
-              << totalCompactSize 
-              << ", " 
-              << totalOriginalSize - totalCompactSize 
-              << ", " 
-              << ( totalOriginalSize - totalCompactSize ) / static_cast<float>( totalOriginalSize ) * 100.f );
+      RX_LOG( "Compaction Results: " << totalOriginalSize << " -> " << totalCompactSize << " | " << totalOriginalSize - totalCompactSize );
     }
   }
 

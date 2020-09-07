@@ -5,7 +5,7 @@
 
 namespace rx
 {
-  static size_t nodeCounter = 0; // For assigning each node a unique ID.
+  static size_t nodeCounter = 0; ///< For assigning each node a unique ID.
 
   /// Describes a node in the scene graph.
   /// @ingroup Base

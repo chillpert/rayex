@@ -102,7 +102,7 @@ namespace rx
       allBlas.emplace_back( blas );
     }
 
-    buildBlas( allBlas, vk::BuildAccelerationStructureFlagBitsKHR::eAllowUpdate | vk::BuildAccelerationStructureFlagBitsKHR::ePreferFastBuild );
+    buildBlas( allBlas, vk::BuildAccelerationStructureFlagBitsKHR::eAllowCompaction | vk::BuildAccelerationStructureFlagBitsKHR::eAllowUpdate | vk::BuildAccelerationStructureFlagBitsKHR::ePreferFastBuild );
   }
 
   void RayTracingBuilder::buildBlas( const std::vector<Blas>& blas_, vk::BuildAccelerationStructureFlagsKHR flags )
@@ -113,8 +113,6 @@ namespace rx
 
     // Is compaction requested?
     bool doCompaction = ( flags & vk::BuildAccelerationStructureFlagBitsKHR::eAllowCompaction ) == vk::BuildAccelerationStructureFlagBitsKHR::eAllowCompaction;
-
-    RX_ASSERT( !doCompaction, "Compaction is not supported yet." );
 
     std::vector<vk::DeviceSize> originalSizes;
     originalSizes.resize( m_blas_.size( ) );
@@ -226,8 +224,74 @@ namespace rx
     }
 
     cmdBuf.submitToQueue( g_graphicsQueue );
-    
-    // TODO: compaction. See: https://nvpro-samples.github.io/vk_raytracing_tutorial_KHR/  CTRL + F for: "The following is when compation flag is enabled. This part, which is optional, will ... "
+
+
+    if ( doCompaction )
+    {
+      CommandBuffer compactionCmdBuf( g_graphicsCmdPool );
+
+      std::vector<vk::DeviceSize> compactSizes( m_blas_.size( ) );
+
+      g_device.getQueryPoolResults( queryPool.get( ),                                // queryPool
+                                    0,                                               // firstQuery
+                                    static_cast<uint32_t>( compactSizes.size( ) ),   // queryCount
+                                    compactSizes.size( ) * sizeof( vk::DeviceSize ), // dataSize
+                                    compactSizes.data( ),                            // pData
+                                    sizeof( vk::DeviceSize ),                        // stride
+                                    vk::QueryResultFlagBits::eWait );                // flags
+     
+      std::vector<AccelerationStructure> cleanupAS( m_blas_.size( ) );
+
+      uint32_t totalOriginalSize = 0;
+      uint32_t totalCompactSize = 0;
+
+      compactionCmdBuf.begin( 0 );
+
+      for ( int i = 0; i < m_blas_.size( ); ++i )
+      {
+        RX_LOG( "Reducing " << i << ", from " << originalSizes[i] << ", " << compactSizes[i] );
+
+        totalOriginalSize += static_cast<uint32_t>( originalSizes[i] );
+        totalCompactSize += static_cast<uint32_t>( compactSizes[i] );
+
+        // Creating a compact version of the AS.
+        vk::AccelerationStructureCreateInfoKHR asCreateInfo( compactSizes[i],                                // compactedSize
+                                                             vk::AccelerationStructureTypeKHR::eBottomLevel, // type
+                                                             flags,                                          // flags
+                                                             { },                                            // maxGeometryCount
+                                                             { },                                            // pGeometryInfos
+                                                             { } );                                          // deviceAddress
+
+        auto as = vk::Initializer::createAccelerationStructure( asCreateInfo );
+        
+        // Copy the original BLAS to a compact version
+        vk::CopyAccelerationStructureInfoKHR copyInfo( m_blas_[i].as.as,                                 // src
+                                                       as.as,                                            // dst
+                                                       vk::CopyAccelerationStructureModeKHR::eCompact ); // mode
+        
+        compactionCmdBuf.get( 0 ).copyAccelerationStructureKHR( &copyInfo );
+
+        cleanupAS[i] = m_blas_[i].as;
+        m_blas_[i].as = as;
+
+
+      }
+
+      compactionCmdBuf.end( 0 );
+      compactionCmdBuf.submitToQueue( g_graphicsQueue );
+
+      for ( auto& as : cleanupAS )
+        as.destroy( );
+
+      RX_LOG( "Total: " 
+              << totalOriginalSize
+              << " -> " 
+              << totalCompactSize 
+              << ", " 
+              << totalOriginalSize - totalCompactSize 
+              << ", " 
+              << ( totalOriginalSize - totalCompactSize ) / static_cast<float>( totalOriginalSize ) * 100.f );
+    }
   }
 
   void RayTracingBuilder::createTopLevelAS( const std::vector<std::shared_ptr<GeometryNode>>& nodes )
@@ -467,7 +531,7 @@ namespace rx
                                       &copyRegion );                        // pRegions
 
     // Undo image layout transitions.
-    vk::Helper::transitionImageLayout( swapchainImage, vk::ImageLayout::eTransferDstOptimal, vk::ImageLayout::ePresentSrcKHR, swapchainCommandBuffer ); // TODO: Check, might cause crash when GUI is activated.
+    vk::Helper::transitionImageLayout( swapchainImage, vk::ImageLayout::eTransferDstOptimal, vk::ImageLayout::ePresentSrcKHR, swapchainCommandBuffer );
     m_storageImage.transitionToLayout( vk::ImageLayout::eGeneral, swapchainCommandBuffer );
   }
 }

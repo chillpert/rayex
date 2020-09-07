@@ -3,17 +3,17 @@
 
 namespace rx
 {
-    DescriptorSetLayout::DescriptorSetLayout( const std::vector<vk::DescriptorSetLayoutBinding> bindings, bool initialize )
-    {
-      if ( initialize )
-        init( bindings );
-    }
+  DescriptorSetLayout::DescriptorSetLayout( const std::vector<vk::DescriptorSetLayoutBinding> bindings, bool initialize )
+  {
+    if ( initialize )
+      init( bindings );
+  }
 
-    DescriptorSetLayout::~DescriptorSetLayout( )
-    {
-      if ( m_layout )
-        destroy( );
-    }
+  DescriptorSetLayout::~DescriptorSetLayout( )
+  {
+    if ( m_layout )
+      destroy( );
+  }
 
   void DescriptorSetLayout::addBinding( const vk::DescriptorSetLayoutBinding& binding )
   {

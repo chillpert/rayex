@@ -88,12 +88,12 @@ namespace rx
     RX_API void setGui( std::shared_ptr<GuiBase> gui );
 
   private:
-    std::shared_ptr<WindowBase> m_window;
-    std::shared_ptr<CameraBase> m_camera;
-    Api m_api;
+    std::shared_ptr<WindowBase> m_window; ///< A pointer to a rx::WindowBase object.
+    std::shared_ptr<CameraBase> m_camera; ///< A pointer to a rx::CameraBase object.
+    Api m_api; ///< Contains all Vulkan related components.
 
-    bool m_initialized;
-    bool m_running;
+    bool m_initialized; ///< Keeps track of the initialization status.
+    bool m_running; ///< Keeps track of whether or not the main loop should still be continued.
   };
 }
 

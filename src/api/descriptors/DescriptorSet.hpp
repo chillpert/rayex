@@ -92,6 +92,9 @@ namespace rx
     std::vector<vk::DescriptorSetLayout> m_layouts; ///< A vector of Vulkan descriptor set layouts.
 
     vk::DescriptorPool m_descriptorPool; ///< A Vulkan descriptor pool.
+
+
+    std::vector<const DescriptorSetLayout*> m_descriptorSetLayouts;
   };
 }
 

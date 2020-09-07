@@ -38,6 +38,7 @@
 #endif
 #endif
 
+// Doxygen groups
 /// @defgroup Base Interfaces and Base Components
 /// @defgroup API Vulkan
 

@@ -7,13 +7,13 @@
 namespace rx
 {
   /// Used to keep track of the application's timing.
+  /// @todo Average FPS are pointless. Implement minimum FPS and frametimes instead.
   class Time
   {
   public:
     /// Destructor of Time.
     /// 
     /// Prints a message containing average FPS.
-    /// @todo Average FPS are pointless. Implement minimum FPS and frametimes instead.
     RX_API ~Time( );
 
     /// @return Returns the time passed since application start in seconds.
@@ -28,14 +28,13 @@ namespace rx
     void update( );
 
   private:
-    static float m_time;
-    static float m_deltaTime;
+    static float m_time; ///< The time passed since application start in seconds.
+    static float m_deltaTime; ///< The time passed between the current and the last frame.
 
-    float m_prevTime;
-    float m_frames;
+    float m_prevTime; ///< Stores the prev time in intervals of one second.
+    float m_frames; ///< The frame counter; Gets reset after each second.
 
-    std::vector<int> m_allFrames;
-    std::vector<float> m_allFrametimes;
+    std::vector<int> m_allFrames; ///< Stores all frame rate values measured in intervals of one second.
   };
 }
 

@@ -32,6 +32,9 @@ namespace rx
 
     g_graphicsFamilyIndex = m_graphicsFamilyIndex.value( );
     g_transferFamilyIndex = m_transferFamilyIndex.value( );
+
+    if ( !m_graphicsFamilyIndex.has_value( ) || !m_transferFamilyIndex.has_value( ) )
+      RX_ERROR( "Failed to retrieve queue family indices." );
   }
 
   void Queues::retrieveHandles( )

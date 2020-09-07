@@ -48,10 +48,10 @@ namespace rx
   /// @ingroup API
   struct BlasInstance
   {
-    uint32_t blasId = 0;                      ///< The index of the bottom level acceleration structure in m_blas_.
-    uint32_t instanceId = 0;                  ///< The instance index (gl_InstanceID).
-    uint32_t hitGroupId = 0;                  ///< The hit group index in the SBT.
-    uint32_t mask = 0xFF;                     ///< The visibility mask, will be AND-ed with ray mask.
+    uint32_t blasId = 0; ///< The index of the bottom level acceleration structure in m_blas_.
+    uint32_t instanceId = 0; ///< The instance index (gl_InstanceID).
+    uint32_t hitGroupId = 0; ///< The hit group index in the shader binding table.
+    uint32_t mask = 0xFF; ///< The visibility mask, will be AND-ed with the ray mask.
     vk::GeometryInstanceFlagsKHR flags = { vk::GeometryInstanceFlagBitsKHR::eTriangleFacingCullDisable }; ///< The geometry display options.
     glm::mat4 transform = glm::fmat4( 1.0f ); ///< The world transform matrix of the bottom level acceleration structure instance.
   };

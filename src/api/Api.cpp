@@ -88,13 +88,14 @@ namespace rx
     m_surface.checkSettingSupport( );
 
     // Queues
-    m_queues.init( );
+    Queues queues;
+    queues.init( );
 
     // Logical device
     m_device.init( deviceExtensions );
 
     // Retrieve all queue handles.
-    m_queues.retrieveHandles( );
+    queues.retrieveHandles( );
 
     // Render pass
     initRenderPass( );

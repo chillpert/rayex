@@ -192,7 +192,6 @@ namespace rx
 
     // No destruction necessary for following members:
     PhysicalDevice m_physicalDevice;
-    Queues m_queues;
     std::vector<vk::Fence> m_imagesInFlight;
 
     RayTracingBuilder m_rayTracingBuilder;

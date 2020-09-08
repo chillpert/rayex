@@ -69,7 +69,8 @@ namespace rx
   {
     m_geometryNodes.reserve( g_maxGeometryNodes );
     m_textures.reserve( g_maxTextures );
-    m_lightNodes.reserve( g_maxLightNodes );
+    m_dirLightNodes.reserve( g_maxLightNodes );
+    m_pointLightNodes.reserve( g_maxLightNodes );
 
     // Instance
     m_instance.init( layers, extensions );
@@ -105,21 +106,28 @@ namespace rx
 
     // Descriptor set layouts
     initDescriptorSetLayouts( );
-
-    // Descriptor pool
-    m_descriptorPool = vk::Initializer::createDescriptorPoolUnique( vk::Helper::getPoolSizes( m_descriptorSetLayout.getBindings( ) ), static_cast<uint32_t>( g_maxGeometryNodes ) * g_swapchainImageCount );
-
+    
     // Ray tracing descriptor pool
     m_rtDescriptorPool = vk::Initializer::createDescriptorPoolUnique( vk::Helper::getPoolSizes( m_rtDescriptorSetLayout.getBindings( ) ), static_cast<uint32_t>( g_maxGeometryNodes ) * g_swapchainImageCount );
-    
-    // Ray tracing descriptor set
+
+    // Scene descriptor pool
+    m_sceneDescriptorPool = vk::Initializer::createDescriptorPoolUnique( vk::Helper::getPoolSizes( m_sceneDescriptorSetLayout.getBindings( ) ), static_cast<uint32_t>( g_maxGeometryNodes ) * g_swapchainImageCount );
+
+    // Ray tracing descriptor sets
     m_rtDescriptorSets.init( m_rtDescriptorPool.get( ), g_swapchainImageCount, std::vector<vk::DescriptorSetLayout>{ g_swapchainImageCount, m_rtDescriptorSetLayout.get( ) } );
+
+    // Scene descriptor sets
+    m_sceneDescriptorSets.init( m_sceneDescriptorPool.get( ), g_swapchainImageCount, std::vector<vk::DescriptorSetLayout>{ g_swapchainImageCount, m_sceneDescriptorSetLayout.get( ) } );
 
     // Uniform buffer for camera
     m_cameraUniformBuffer.init<CameraUbo>( g_swapchainImageCount );
 
+    // Uniform buffers for light nodes
+    m_staticDirLightsUniformBuffer.init<DirectionalLightNodeUbos>( g_swapchainImageCount );
+    m_staticPointLightsUniformBuffer.init<PointLightNodeUbos>( g_swapchainImageCount );
+
     // Pipeline
-    m_rtPipeline.init( { m_rtDescriptorSetLayout.get( ), m_descriptorSetLayout.get( ) } );
+    m_rtPipeline.init( { m_rtDescriptorSetLayout.get( ), m_modelDescriptorSetLayout.get( ), m_sceneDescriptorSetLayout.get( ) } );
 
     // Command pools
     m_graphicsCmdPool = vk::Initializer::createCommandPoolUnique( g_graphicsFamilyIndex, vk::CommandPoolCreateFlagBits::eResetCommandBuffer );
@@ -335,7 +343,7 @@ namespace rx
     {
       model->m_vertexBuffer.init( model->m_vertices );
       model->m_indexBuffer.init( model->m_indices );
-      model->m_descriptorSets.init( m_descriptorPool.get( ), g_swapchainImageCount, std::vector<vk::DescriptorSetLayout>{ g_swapchainImageCount, m_descriptorSetLayout.get( ) } );
+      model->m_descriptorSets.init( m_modelDescriptorPool.get( ), g_swapchainImageCount, std::vector<vk::DescriptorSetLayout>{ g_swapchainImageCount, m_modelDescriptorSetLayout.get( ) } );
 
       model->m_initialized = true;
     }
@@ -379,7 +387,7 @@ namespace rx
         auto iter = m_models.find( node->m_modelPath );
         RX_ASSERT( ( iter->second != nullptr ), "Can not find model" );
 
-        std::vector<vk::DescriptorSet> descriptorSets = { m_rtDescriptorSets.get( imageIndex ), iter->second->m_descriptorSets.get( imageIndex ) };
+        std::vector<vk::DescriptorSet> descriptorSets = { m_rtDescriptorSets.get( imageIndex ), iter->second->m_descriptorSets.get( imageIndex ), m_sceneDescriptorSets.get( imageIndex ) };
 
         m_swapchainCommandBuffers.get( imageIndex ).bindDescriptorSets( vk::PipelineBindPoint::eRayTracingKHR,
                                                                         m_rtPipeline.getLayout( ),
@@ -414,54 +422,80 @@ namespace rx
   void Api::initDescriptorSetLayouts( )
   {
     // Create the ray tracing descriptor set layout
+    {
+      // TLAS
+      vk::DescriptorSetLayoutBinding tlasBinding( 0,                                                                             // binding
+                                                  vk::DescriptorType::eAccelerationStructureKHR,                                 // descriptorType
+                                                  1,                                                                             // descriptorCount
+                                                  vk::ShaderStageFlagBits::eRaygenKHR | vk::ShaderStageFlagBits::eClosestHitKHR, // stageFlags
+                                                  nullptr );                                                                     // pImmutableSamplers
 
-    // TLAS
-    vk::DescriptorSetLayoutBinding tlasBinding( 0,                                                                             // binding
-                                                vk::DescriptorType::eAccelerationStructureKHR,                                 // descriptorType
-                                                1,                                                                             // descriptorCount
-                                                vk::ShaderStageFlagBits::eRaygenKHR | vk::ShaderStageFlagBits::eClosestHitKHR, // stageFlags
-                                                nullptr );                                                                     // pImmutableSamplers
+      // Output image
+      vk::DescriptorSetLayoutBinding outputImageBinding( 1,                                   // binding
+                                                         vk::DescriptorType::eStorageImage,   // descriptorType
+                                                         1,                                   // descriptorCount
+                                                         vk::ShaderStageFlagBits::eRaygenKHR, // stageFlags
+                                                         nullptr );                           // pImmutableSamplers
+      // Camera uniform buffer
+      vk::DescriptorSetLayoutBinding cameraUniformBufferBinding( 2,                                   // binding
+                                                                 vk::DescriptorType::eUniformBuffer,  // descriptorType
+                                                                 1,                                   // descriptorCount
+                                                                 vk::ShaderStageFlagBits::eRaygenKHR, // stageFlags
+                                                                 nullptr );                           // pImmutableSamplers
 
-    // Output imagey
-    vk::DescriptorSetLayoutBinding outputImageBinding( 1,                                   // binding
-                                                       vk::DescriptorType::eStorageImage,   // descriptorType
-                                                       1,                                   // descriptorCount
-                                                       vk::ShaderStageFlagBits::eRaygenKHR, // stageFlags
-                                                       nullptr );                           // pImmutableSamplers
-    // Uniform buffer
-    vk::DescriptorSetLayoutBinding cameraUniformBufferBinding( 2,                                   // binding
-                                                               vk::DescriptorType::eUniformBuffer,  // descriptorType
-                                                               1,                                   // descriptorCount
-                                                               vk::ShaderStageFlagBits::eRaygenKHR, // stageFlags
-                                                               nullptr );                           // pImmutableSamplers
-
-    std::vector<vk::DescriptorSetLayoutBinding> rtBindings = { tlasBinding, outputImageBinding, cameraUniformBufferBinding };
-    m_rtDescriptorSetLayout.init( rtBindings );
+      std::vector<vk::DescriptorSetLayoutBinding> rtBindings = { tlasBinding, outputImageBinding, cameraUniformBufferBinding };
+      m_rtDescriptorSetLayout.init( rtBindings );
+    }
 
     // Create the descriptor set layout for models
+    {
+      // Texture image
+      vk::DescriptorSetLayoutBinding textureBinding( 0,                                                                            // binding
+                                                     vk::DescriptorType::eCombinedImageSampler,                                    // descriptorType
+                                                     1,                                                                            // descriptorCount
+                                                     vk::ShaderStageFlagBits::eFragment | vk::ShaderStageFlagBits::eClosestHitKHR, // stageFlags
+                                                     nullptr );                                                                    // pImmutableSamplers
 
-    // Texture image
-    vk::DescriptorSetLayoutBinding textureBinding( 0,                                                                            // binding
-                                                   vk::DescriptorType::eCombinedImageSampler,                                    // descriptorType
-                                                   1,                                                                            // descriptorCount
-                                                   vk::ShaderStageFlagBits::eFragment | vk::ShaderStageFlagBits::eClosestHitKHR, // stageFlags
-                                                   nullptr );                                                                    // pImmutableSamplers
+      // Vertex buffer
+      vk::DescriptorSetLayoutBinding vertexBufferBinding( 1,                                       // binding
+                                                          vk::DescriptorType::eStorageBuffer,      // descriptorType
+                                                          1,                                       // descriptorCount
+                                                          vk::ShaderStageFlagBits::eClosestHitKHR, // stageFlags
+                                                          nullptr );                               // pImmutableSamplers
 
-    // Vertex buffer
-    vk::DescriptorSetLayoutBinding vertexBufferBinding( 1,                                       // binding
-                                                        vk::DescriptorType::eStorageBuffer,      // descriptorType
-                                                        1,                                       // descriptorCount
-                                                        vk::ShaderStageFlagBits::eClosestHitKHR, // stageFlags
-                                                        nullptr );                               // pImmutableSamplers
+      // Index buffer
+      vk::DescriptorSetLayoutBinding indexBufferBinding( 2,                                       // binding
+                                                         vk::DescriptorType::eStorageBuffer,      // descriptorType
+                                                         1,                                       // descriptorCount
+                                                         vk::ShaderStageFlagBits::eClosestHitKHR, // stageFlags
+                                                         nullptr );                               // pImmutableSamplers
 
-    // Index buffer
-    vk::DescriptorSetLayoutBinding indexBufferBinding( 2,                                       // binding
-                                                       vk::DescriptorType::eStorageBuffer,      // descriptorType
-                                                       1,                                       // descriptorCount
-                                                       vk::ShaderStageFlagBits::eClosestHitKHR, // stageFlags
-                                                       nullptr );                               // pImmutableSamplers
+      std::vector<vk::DescriptorSetLayoutBinding> bindings = { textureBinding, vertexBufferBinding, indexBufferBinding };
+      m_modelDescriptorSetLayout.init( bindings );
 
-    std::vector<vk::DescriptorSetLayoutBinding> bindings = { textureBinding, vertexBufferBinding, indexBufferBinding };
-    m_descriptorSetLayout.init( bindings );
+      // Descriptor pool
+      m_modelDescriptorPool = vk::Initializer::createDescriptorPoolUnique( vk::Helper::getPoolSizes( m_modelDescriptorSetLayout.getBindings( ) ), static_cast<uint32_t>( g_maxGeometryNodes ) * g_swapchainImageCount );
+
+    }
+    
+    // Scene descriptor set layout.
+    {
+      // Directional light nodes uniform buffer
+      vk::DescriptorSetLayoutBinding dirLightNodeUniformBuffer( 0,                                       // binding
+                                                                vk::DescriptorType::eUniformBuffer,      // descriptorType
+                                                                1,                                       // descriptorCount
+                                                                vk::ShaderStageFlagBits::eClosestHitKHR, // stageFlags
+                                                                nullptr );                               // pImmutableSamplers
+
+      // Point light nodes uniform buffer
+      vk::DescriptorSetLayoutBinding pointLightNodeUniformBuffer( 1,                                       // binding
+                                                                  vk::DescriptorType::eUniformBuffer,      // descriptorType
+                                                                  1,                                       // descriptorCount
+                                                                  vk::ShaderStageFlagBits::eClosestHitKHR, // stageFlags
+                                                                  nullptr );                               // pImmutableSamplers
+
+      std::vector<vk::DescriptorSetLayoutBinding> bindings = { dirLightNodeUniformBuffer, pointLightNodeUniformBuffer };
+      m_sceneDescriptorSetLayout.init( bindings );
+    }
   }
 }

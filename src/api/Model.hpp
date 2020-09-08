@@ -104,7 +104,7 @@ namespace rx
     std::vector<Vertex> m_vertices; ///< The raw vertex data.
     std::vector<uint32_t> m_indices; ///< The raw index data.
 
-    // Destruction through RAII
+    // Destruction via RAII.
     VertexBuffer m_vertexBuffer; ///< Used to buffer the raw vertex data.
     IndexBuffer<uint32_t> m_indexBuffer; ///< Used to buffer the raw index data.
 

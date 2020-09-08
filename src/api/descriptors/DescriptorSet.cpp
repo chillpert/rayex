@@ -73,21 +73,21 @@ namespace rx
     }
   }
 
-  void DescriptorSet::update( vk::Buffer vertexBuffer, vk::Buffer indexBuffer )
+  void DescriptorSet::update( vk::Buffer uniformBuffer1, vk::Buffer uniformBuffer2 )
   {
     for ( size_t i = 0; i < m_layouts.size( ); ++i )
     {
-      vk::DescriptorBufferInfo vertbufferInfo( vertexBuffer,         // buffer
-                                           0,                        // offset
-                                           sizeof( vertexBuffer ) ); // range
+      vk::DescriptorBufferInfo uniformBufferInfo1( uniformBuffer1,             // buffer
+                                                   0,                          // offset
+                                                   sizeof( uniformBuffer1 ) ); // range
 
-      vk::DescriptorBufferInfo indexbufferInfo( indexBuffer,         // buffer
-                                           0,                        // offset
-                                           sizeof( indexBuffer ) );  // range
+      vk::DescriptorBufferInfo uniformBufferInfo2( uniformBuffer2,             // buffer
+                                                   0,                          // offset
+                                                   sizeof( uniformBuffer2 ) ); // range
 
       std::array<vk::WriteDescriptorSet, 2> descriptorWrites;
-      descriptorWrites[0] = writeStorageBuffer( m_sets[i], 0, vertbufferInfo );
-      descriptorWrites[1] = writeStorageBuffer( m_sets[i], 1, indexbufferInfo );
+      descriptorWrites[0] = writeStorageBuffer( m_sets[i], 0, uniformBufferInfo1 );
+      descriptorWrites[1] = writeStorageBuffer( m_sets[i], 1, uniformBufferInfo2 );
 
       g_device.updateDescriptorSets( descriptorWrites, 0 );
     }

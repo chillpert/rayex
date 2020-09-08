@@ -68,7 +68,7 @@ namespace rx
   /// @ingroup Base
   class LightNode : public TransformNode
   {
-  protected:
+  public:
     virtual ~LightNode( ) = default;
 
     glm::vec3 m_ambient = { 0.2f, 0.2f, 0.2f }; ///< The ambient color.
@@ -85,6 +85,16 @@ namespace rx
   public:
     virtual ~DirectionalLightNode( ) = default;
 
+    void addToUbos( DirectionalLightNodeUbos& ubos )
+    {
+      ubos.m_ambient.push_back( m_ambient );
+      ubos.m_diffuse.push_back( m_diffuse );
+      ubos.m_specular.push_back( m_specular );
+      ubos.m_ambientStrength.push_back( m_ambientStrength );
+
+      ubos.m_direction.push_back( m_direction );
+    }
+
     glm::vec3 m_direction = { 1.0f, -1.0f, 1.0f }; ///< The direction the light is pointing at.
   };
 
@@ -94,6 +104,20 @@ namespace rx
   {
   public:
     virtual ~PointLightNode( ) = default;
+
+    void addToUbos( PointLightNodeUbos& ubos )
+    {
+      ubos.m_ambient.push_back( m_ambient );
+      ubos.m_diffuse.push_back( m_diffuse );
+      ubos.m_specular.push_back( m_specular );
+      ubos.m_ambientStrength.push_back( m_ambientStrength );
+
+      ubos.m_position.push_back( m_position );
+      ubos.m_constant.push_back( m_constant );
+      ubos.m_linear.push_back( m_linear );
+      ubos.m_quadratic.push_back( m_quadratic );
+    }
+
 
     glm::vec3 m_position = glm::vec3( 0.0f ); ///< The position of the light.
 

@@ -15,12 +15,27 @@ namespace rx
     glm::mat4 m_projectionInverse = glm::mat4( 1.0f );
   };
 
-  struct LightingUbo
-  {
-    std::vector<int> m_type;
-    std::vector<float> m_intensity;
-    std::vector<glm::vec3> m_position;
+  const int maxLights = 10;
 
+  struct LightNodeUbos
+  {
+    std::vector<glm::vec3> m_ambient;
+    std::vector<glm::vec3> m_diffuse;
+    std::vector<glm::vec3> m_specular;
+    std::vector<float> m_ambientStrength;
+  };
+
+  struct DirectionalLightNodeUbos : LightNodeUbos
+  {
+    std::vector<glm::vec3> m_direction;
+  };
+
+  struct PointLightNodeUbos : public LightNodeUbos
+  {
+    std::vector<glm::vec3> m_position;
+    std::vector<float> m_constant;
+    std::vector<float> m_linear;
+    std::vector<float> m_quadratic;
   };
 
   /// A specialised buffer for uniforms.

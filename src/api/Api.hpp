@@ -90,9 +90,16 @@ namespace rx
       }
       else if ( dynamic_cast<LightNode*>( node.get( ) ) )
       {
-        auto lightNodePtr = std::dynamic_pointer_cast<LightNode>( node );
-
-        m_lightNodes.push_back( lightNodePtr );
+        if ( dynamic_cast<DirectionalLightNode*>( node.get( ) ) )
+        {
+          auto dirLightNodePtr = std::dynamic_pointer_cast<DirectionalLightNode>( node );
+          m_dirLightNodes.push_back( dirLightNodePtr );
+        }
+        else if ( dynamic_cast<PointLightNode*>( node.get( ) ) )
+        {
+          auto pointLightNodePtr = std::dynamic_pointer_cast<PointLightNode>( node );
+          m_pointLightNodes.push_back( pointLightNodePtr );
+        }
       }
 
       if ( record )
@@ -166,18 +173,28 @@ namespace rx
     std::vector<vk::UniqueSemaphore> m_imageAvailableSemaphores;
     std::vector<vk::UniqueSemaphore> m_finishedRenderSemaphores;
 
+    // Descriptors for ray-tracing-related data.
     DescriptorSetLayout m_rtDescriptorSetLayout;
     vk::UniqueDescriptorPool m_rtDescriptorPool;
     DescriptorSet m_rtDescriptorSets;
 
-    DescriptorSetLayout m_descriptorSetLayout;
-    vk::UniqueDescriptorPool m_descriptorPool;
+    // Descriptors for model-related data.
+    DescriptorSetLayout m_modelDescriptorSetLayout; ///< @note Each rx::Model has its own descriptor set.
+    vk::UniqueDescriptorPool m_modelDescriptorPool;
+
+    // Descriptors for scene-related data.
+    DescriptorSetLayout m_sceneDescriptorSetLayout;
+    vk::UniqueDescriptorPool m_sceneDescriptorPool;
+    DescriptorSet m_sceneDescriptorSets;
 
     UniformBuffer m_cameraUniformBuffer;
+    UniformBuffer m_staticDirLightsUniformBuffer;
+    UniformBuffer m_staticPointLightsUniformBuffer;
 
     // Nodes to render.
     std::vector<std::shared_ptr<GeometryNode>> m_geometryNodes;
-    std::vector<std::shared_ptr<LightNode>> m_lightNodes;
+    std::vector<std::shared_ptr<DirectionalLightNode>> m_dirLightNodes;
+    std::vector<std::shared_ptr<PointLightNode>> m_pointLightNodes;
     // Models
     std::unordered_map<std::string, std::shared_ptr<Model>> m_models;
     // Textures

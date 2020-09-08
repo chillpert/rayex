@@ -2,6 +2,8 @@
 
 using namespace rx;
 
+float animationSpeed = 0.0f;
+
 namespace Key
 {
   bool eW;
@@ -200,13 +202,11 @@ private:
     ImGui::StyleColorsDark( );
   }
 
-  float m_animationSpeed = 0.0f;
-
   void render( ) override
   {
     if ( ImGui::Begin( "Settings" ) )
     {
-      ImGui::SliderFloat( "Speed", &m_animationSpeed, 0.0f, 2.0f );
+      ImGui::SliderFloat( "Speed", &animationSpeed, 0.0f, 2.0f );
 
       if ( ImGui::Button( "Add Box" ) )
       {
@@ -275,7 +275,7 @@ int main( int argc, char* argv[] )
 
   while ( myRenderer.isRunning( ) )
   {
-    //dragonLore->m_worldTransform = glm::rotate( dragonLore->m_worldTransform, glm::radians( 90.0f ) * Time::getDeltaTime( ) * speed, glm::vec3( 0.0f, 1.0f, 0.0f ) );
+    dragonLore->m_worldTransform = glm::rotate( dragonLore->m_worldTransform, glm::radians( 90.0f ) * Time::getDeltaTime( ) * animationSpeed, glm::vec3( 0.0f, 1.0f, 0.0f ) );
     myRenderer.run( );
   }
 

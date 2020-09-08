@@ -9,10 +9,18 @@ namespace rx
   /// @ingroup API
   struct CameraUbo
   {
-    glm::mat4 view = glm::mat4( 1.0f );
-    glm::mat4 projection = glm::mat4( 1.0f );
-    glm::mat4 viewInverse = glm::mat4( 1.0f );
-    glm::mat4 projectionInverse = glm::mat4( 1.0f );
+    glm::mat4 m_view = glm::mat4( 1.0f );
+    glm::mat4 m_projection = glm::mat4( 1.0f );
+    glm::mat4 m_viewInverse = glm::mat4( 1.0f );
+    glm::mat4 m_projectionInverse = glm::mat4( 1.0f );
+  };
+
+  struct LightingUbo
+  {
+    std::vector<int> m_type;
+    std::vector<float> m_intensity;
+    std::vector<glm::vec3> m_position;
+
   };
 
   /// A specialised buffer for uniforms.

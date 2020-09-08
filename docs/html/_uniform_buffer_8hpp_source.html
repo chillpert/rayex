@@ -106,72 +106,84 @@ $(document).ready(function(){initNavTree('_uniform_buffer_8hpp_source.html','');
 <div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;{</div>
 <div class="line"><a name="l00010"></a><span class="lineno"><a class="line" href="structrx_1_1_camera_ubo.html">   10</a></span>&#160;  <span class="keyword">struct </span><a class="code" href="structrx_1_1_camera_ubo.html">CameraUbo</a></div>
 <div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;  {</div>
-<div class="line"><a name="l00012"></a><span class="lineno"><a class="line" href="structrx_1_1_camera_ubo.html#a99c4db5c880b8c87fdc1f3a3ae502704">   12</a></span>&#160;    glm::mat4 <a class="code" href="structrx_1_1_camera_ubo.html#a99c4db5c880b8c87fdc1f3a3ae502704">view</a> = glm::mat4( 1.0f );</div>
-<div class="line"><a name="l00013"></a><span class="lineno"><a class="line" href="structrx_1_1_camera_ubo.html#aab42ce1a7abd45b47375729e194d1b52">   13</a></span>&#160;    glm::mat4 <a class="code" href="structrx_1_1_camera_ubo.html#aab42ce1a7abd45b47375729e194d1b52">projection</a> = glm::mat4( 1.0f );</div>
-<div class="line"><a name="l00014"></a><span class="lineno"><a class="line" href="structrx_1_1_camera_ubo.html#a4327e65d385718122c3ea1a53c055f81">   14</a></span>&#160;    glm::mat4 <a class="code" href="structrx_1_1_camera_ubo.html#a4327e65d385718122c3ea1a53c055f81">viewInverse</a> = glm::mat4( 1.0f );</div>
-<div class="line"><a name="l00015"></a><span class="lineno"><a class="line" href="structrx_1_1_camera_ubo.html#a42b92c30a8557a070ba01fbd17b955e6">   15</a></span>&#160;    glm::mat4 <a class="code" href="structrx_1_1_camera_ubo.html#a42b92c30a8557a070ba01fbd17b955e6">projectionInverse</a> = glm::mat4( 1.0f );</div>
+<div class="line"><a name="l00012"></a><span class="lineno"><a class="line" href="structrx_1_1_camera_ubo.html#a21fc9f616f25f3323dda0c6222c835d5">   12</a></span>&#160;    glm::mat4 <a class="code" href="structrx_1_1_camera_ubo.html#a21fc9f616f25f3323dda0c6222c835d5">m_view</a> = glm::mat4( 1.0f );</div>
+<div class="line"><a name="l00013"></a><span class="lineno"><a class="line" href="structrx_1_1_camera_ubo.html#aee753c7caffeee39f74882ac0efabd36">   13</a></span>&#160;    glm::mat4 <a class="code" href="structrx_1_1_camera_ubo.html#aee753c7caffeee39f74882ac0efabd36">m_projection</a> = glm::mat4( 1.0f );</div>
+<div class="line"><a name="l00014"></a><span class="lineno"><a class="line" href="structrx_1_1_camera_ubo.html#ab1aec705f8a6ec1a2ea12772f561c52d">   14</a></span>&#160;    glm::mat4 <a class="code" href="structrx_1_1_camera_ubo.html#ab1aec705f8a6ec1a2ea12772f561c52d">m_viewInverse</a> = glm::mat4( 1.0f );</div>
+<div class="line"><a name="l00015"></a><span class="lineno"><a class="line" href="structrx_1_1_camera_ubo.html#a9baf3056ebfa633c7fa9297a4e54820b">   15</a></span>&#160;    glm::mat4 <a class="code" href="structrx_1_1_camera_ubo.html#a9baf3056ebfa633c7fa9297a4e54820b">m_projectionInverse</a> = glm::mat4( 1.0f );</div>
 <div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;  };</div>
 <div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160; </div>
-<div class="line"><a name="l00020"></a><span class="lineno"><a class="line" href="classrx_1_1_uniform_buffer.html">   20</a></span>&#160;  <span class="keyword">class </span><a class="code" href="classrx_1_1_uniform_buffer.html">UniformBuffer</a></div>
-<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;  {</div>
-<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;  <span class="keyword">public</span>:</div>
-<div class="line"><a name="l00023"></a><span class="lineno"><a class="line" href="classrx_1_1_uniform_buffer.html#a5bd1061900162cfabc9dc854ad8327a9">   23</a></span>&#160;    <a class="code" href="classrx_1_1_uniform_buffer.html#a5bd1061900162cfabc9dc854ad8327a9">UniformBuffer</a>( ) = <span class="keywordflow">default</span>;</div>
-<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;    </div>
-<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;    <span class="keyword">template</span> &lt;<span class="keyword">typename</span> T&gt;</div>
-<div class="line"><a name="l00028"></a><span class="lineno"><a class="line" href="classrx_1_1_uniform_buffer.html#ae61c151786e528fba593ae6be08e4c5a">   28</a></span>&#160;    <a class="code" href="classrx_1_1_uniform_buffer.html#ae61c151786e528fba593ae6be08e4c5a">UniformBuffer</a>( <span class="keywordtype">size_t</span> swapchainImagesCount, <span class="keywordtype">bool</span> initialize = <span class="keyword">true</span> )</div>
-<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;    {</div>
-<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;      <span class="keywordflow">if</span> ( initialize )</div>
-<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;        <a class="code" href="classrx_1_1_uniform_buffer.html#a51b0236c29581a330e477dff8d017aa8">init</a>( swapchainImagesCount );</div>
-<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;    }</div>
-<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160; </div>
-<div class="line"><a name="l00035"></a><span class="lineno"><a class="line" href="classrx_1_1_uniform_buffer.html#aec354653f066ad10493ae507a14602a9">   35</a></span>&#160;    <span class="keyword">inline</span> <span class="keyword">const</span> std::vector&lt;Buffer&gt;&amp; <a class="code" href="classrx_1_1_uniform_buffer.html#aec354653f066ad10493ae507a14602a9">get</a>( )<span class="keyword"> const </span>{ <span class="keywordflow">return</span> m_buffers; }</div>
-<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160; </div>
-<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;    <span class="keyword">const</span> std::vector&lt;vk::Buffer&gt; <a class="code" href="classrx_1_1_uniform_buffer.html#a10c7ba3ffc3597322de2c859fc61b661">getRaw</a>( ) <span class="keyword">const</span>;</div>
-<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160; </div>
-<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;    <span class="keyword">template</span> &lt;<span class="keyword">typename</span> T&gt;</div>
-<div class="line"><a name="l00045"></a><span class="lineno"><a class="line" href="classrx_1_1_uniform_buffer.html#a51b0236c29581a330e477dff8d017aa8">   45</a></span>&#160;    <span class="keywordtype">void</span> <a class="code" href="classrx_1_1_uniform_buffer.html#a51b0236c29581a330e477dff8d017aa8">init</a>( <span class="keywordtype">size_t</span> swapchainImagesCount )</div>
-<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;    {</div>
-<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;      m_buffers.resize( swapchainImagesCount );</div>
-<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160; </div>
-<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;      <span class="keywordflow">for</span> ( <a class="code" href="classrx_1_1_buffer.html">Buffer</a>&amp; buffer : m_buffers )</div>
-<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;      {</div>
-<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;        buffer.init( <span class="keyword">sizeof</span>( T ),</div>
-<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;                     vk::BufferUsageFlagBits::eUniformBuffer,</div>
-<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;                     { },</div>
-<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;                     vk::MemoryPropertyFlagBits::eHostVisible | vk::MemoryPropertyFlagBits::eHostCoherent );</div>
-<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;      }</div>
-<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;    }</div>
-<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160; </div>
-<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;    <span class="keyword">template</span> &lt;<span class="keyword">typename</span> T&gt;</div>
-<div class="line"><a name="l00062"></a><span class="lineno"><a class="line" href="classrx_1_1_uniform_buffer.html#a0ec699086c85f14ab70137e64e7f1d72">   62</a></span>&#160;    <span class="keywordtype">void</span> <a class="code" href="classrx_1_1_uniform_buffer.html#a0ec699086c85f14ab70137e64e7f1d72">upload</a>( uint32_t imageIndex, T&amp; ubo )</div>
-<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;    {</div>
-<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;      m_buffers[imageIndex].fill&lt;T&gt;( &amp;ubo );</div>
-<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;    }</div>
-<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160; </div>
-<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;  <span class="keyword">private</span>:</div>
-<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;    std::vector&lt;Buffer&gt; m_buffers; </div>
-<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;  };</div>
-<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160; </div>
-<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;}</div>
-<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160; </div>
-<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;<span class="preprocessor">#endif // UNIFORM_BUFFER_HPP</span></div>
+<div class="line"><a name="l00018"></a><span class="lineno"><a class="line" href="structrx_1_1_lighting_ubo.html">   18</a></span>&#160;  <span class="keyword">struct </span><a class="code" href="structrx_1_1_lighting_ubo.html">LightingUbo</a></div>
+<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;  {</div>
+<div class="line"><a name="l00020"></a><span class="lineno"><a class="line" href="structrx_1_1_lighting_ubo.html#ad35dcdcf9cf157282a4be7fb14dbc55d">   20</a></span>&#160;    std::vector&lt;int&gt; <a class="code" href="structrx_1_1_lighting_ubo.html#ad35dcdcf9cf157282a4be7fb14dbc55d">m_type</a>;</div>
+<div class="line"><a name="l00021"></a><span class="lineno"><a class="line" href="structrx_1_1_lighting_ubo.html#a67ae53875a61a58ba321f031b3de8f2d">   21</a></span>&#160;    std::vector&lt;float&gt; <a class="code" href="structrx_1_1_lighting_ubo.html#a67ae53875a61a58ba321f031b3de8f2d">m_intensity</a>;</div>
+<div class="line"><a name="l00022"></a><span class="lineno"><a class="line" href="structrx_1_1_lighting_ubo.html#a363a9154871b92f51a42b9557b552895">   22</a></span>&#160;    std::vector&lt;glm::vec3&gt; <a class="code" href="structrx_1_1_lighting_ubo.html#a363a9154871b92f51a42b9557b552895">m_position</a>;</div>
+<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160; </div>
+<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;  };</div>
+<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160; </div>
+<div class="line"><a name="l00028"></a><span class="lineno"><a class="line" href="classrx_1_1_uniform_buffer.html">   28</a></span>&#160;  <span class="keyword">class </span><a class="code" href="classrx_1_1_uniform_buffer.html">UniformBuffer</a></div>
+<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;  {</div>
+<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;  <span class="keyword">public</span>:</div>
+<div class="line"><a name="l00031"></a><span class="lineno"><a class="line" href="classrx_1_1_uniform_buffer.html#a5bd1061900162cfabc9dc854ad8327a9">   31</a></span>&#160;    <a class="code" href="classrx_1_1_uniform_buffer.html#a5bd1061900162cfabc9dc854ad8327a9">UniformBuffer</a>( ) = <span class="keywordflow">default</span>;</div>
+<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;    </div>
+<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;    <span class="keyword">template</span> &lt;<span class="keyword">typename</span> T&gt;</div>
+<div class="line"><a name="l00036"></a><span class="lineno"><a class="line" href="classrx_1_1_uniform_buffer.html#ae61c151786e528fba593ae6be08e4c5a">   36</a></span>&#160;    <a class="code" href="classrx_1_1_uniform_buffer.html#ae61c151786e528fba593ae6be08e4c5a">UniformBuffer</a>( <span class="keywordtype">size_t</span> swapchainImagesCount, <span class="keywordtype">bool</span> initialize = <span class="keyword">true</span> )</div>
+<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;    {</div>
+<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;      <span class="keywordflow">if</span> ( initialize )</div>
+<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;        <a class="code" href="classrx_1_1_uniform_buffer.html#a51b0236c29581a330e477dff8d017aa8">init</a>( swapchainImagesCount );</div>
+<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;    }</div>
+<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160; </div>
+<div class="line"><a name="l00043"></a><span class="lineno"><a class="line" href="classrx_1_1_uniform_buffer.html#aec354653f066ad10493ae507a14602a9">   43</a></span>&#160;    <span class="keyword">inline</span> <span class="keyword">const</span> std::vector&lt;Buffer&gt;&amp; <a class="code" href="classrx_1_1_uniform_buffer.html#aec354653f066ad10493ae507a14602a9">get</a>( )<span class="keyword"> const </span>{ <span class="keywordflow">return</span> m_buffers; }</div>
+<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160; </div>
+<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;    <span class="keyword">const</span> std::vector&lt;vk::Buffer&gt; <a class="code" href="classrx_1_1_uniform_buffer.html#a10c7ba3ffc3597322de2c859fc61b661">getRaw</a>( ) <span class="keyword">const</span>;</div>
+<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160; </div>
+<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;    <span class="keyword">template</span> &lt;<span class="keyword">typename</span> T&gt;</div>
+<div class="line"><a name="l00053"></a><span class="lineno"><a class="line" href="classrx_1_1_uniform_buffer.html#a51b0236c29581a330e477dff8d017aa8">   53</a></span>&#160;    <span class="keywordtype">void</span> <a class="code" href="classrx_1_1_uniform_buffer.html#a51b0236c29581a330e477dff8d017aa8">init</a>( <span class="keywordtype">size_t</span> swapchainImagesCount )</div>
+<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;    {</div>
+<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;      m_buffers.resize( swapchainImagesCount );</div>
+<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160; </div>
+<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;      <span class="keywordflow">for</span> ( <a class="code" href="classrx_1_1_buffer.html">Buffer</a>&amp; buffer : m_buffers )</div>
+<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;      {</div>
+<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;        buffer.init( <span class="keyword">sizeof</span>( T ),</div>
+<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;                     vk::BufferUsageFlagBits::eUniformBuffer,</div>
+<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;                     { },</div>
+<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;                     vk::MemoryPropertyFlagBits::eHostVisible | vk::MemoryPropertyFlagBits::eHostCoherent );</div>
+<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;      }</div>
+<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;    }</div>
+<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160; </div>
+<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;    <span class="keyword">template</span> &lt;<span class="keyword">typename</span> T&gt;</div>
+<div class="line"><a name="l00070"></a><span class="lineno"><a class="line" href="classrx_1_1_uniform_buffer.html#a0ec699086c85f14ab70137e64e7f1d72">   70</a></span>&#160;    <span class="keywordtype">void</span> <a class="code" href="classrx_1_1_uniform_buffer.html#a0ec699086c85f14ab70137e64e7f1d72">upload</a>( uint32_t imageIndex, T&amp; ubo )</div>
+<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;    {</div>
+<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;      m_buffers[imageIndex].fill&lt;T&gt;( &amp;ubo );</div>
+<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;    }</div>
+<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160; </div>
+<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;  <span class="keyword">private</span>:</div>
+<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;    std::vector&lt;Buffer&gt; m_buffers; </div>
+<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;  };</div>
+<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160; </div>
+<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;}</div>
+<div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160; </div>
+<div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;<span class="preprocessor">#endif // UNIFORM_BUFFER_HPP</span></div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->
-<div class="ttc" id="astructrx_1_1_camera_ubo_html_a42b92c30a8557a070ba01fbd17b955e6"><div class="ttname"><a href="structrx_1_1_camera_ubo.html#a42b92c30a8557a070ba01fbd17b955e6">rx::CameraUbo::projectionInverse</a></div><div class="ttdeci">glm::mat4 projectionInverse</div><div class="ttdef"><b>Definition:</b> UniformBuffer.hpp:15</div></div>
+<div class="ttc" id="astructrx_1_1_lighting_ubo_html_ad35dcdcf9cf157282a4be7fb14dbc55d"><div class="ttname"><a href="structrx_1_1_lighting_ubo.html#ad35dcdcf9cf157282a4be7fb14dbc55d">rx::LightingUbo::m_type</a></div><div class="ttdeci">std::vector&lt; int &gt; m_type</div><div class="ttdef"><b>Definition:</b> UniformBuffer.hpp:20</div></div>
 <div class="ttc" id="aclassrx_1_1_buffer_html"><div class="ttname"><a href="classrx_1_1_buffer.html">rx::Buffer</a></div><div class="ttdoc">A wrapper class for a Vulkan buffer.</div><div class="ttdef"><b>Definition:</b> Buffer.hpp:12</div></div>
 <div class="ttc" id="a_buffer_8hpp_html"><div class="ttname"><a href="_buffer_8hpp.html">Buffer.hpp</a></div></div>
-<div class="ttc" id="aclassrx_1_1_uniform_buffer_html_aec354653f066ad10493ae507a14602a9"><div class="ttname"><a href="classrx_1_1_uniform_buffer.html#aec354653f066ad10493ae507a14602a9">rx::UniformBuffer::get</a></div><div class="ttdeci">const std::vector&lt; Buffer &gt; &amp; get() const</div><div class="ttdef"><b>Definition:</b> UniformBuffer.hpp:35</div></div>
+<div class="ttc" id="aclassrx_1_1_uniform_buffer_html_aec354653f066ad10493ae507a14602a9"><div class="ttname"><a href="classrx_1_1_uniform_buffer.html#aec354653f066ad10493ae507a14602a9">rx::UniformBuffer::get</a></div><div class="ttdeci">const std::vector&lt; Buffer &gt; &amp; get() const</div><div class="ttdef"><b>Definition:</b> UniformBuffer.hpp:43</div></div>
+<div class="ttc" id="astructrx_1_1_camera_ubo_html_a9baf3056ebfa633c7fa9297a4e54820b"><div class="ttname"><a href="structrx_1_1_camera_ubo.html#a9baf3056ebfa633c7fa9297a4e54820b">rx::CameraUbo::m_projectionInverse</a></div><div class="ttdeci">glm::mat4 m_projectionInverse</div><div class="ttdef"><b>Definition:</b> UniformBuffer.hpp:15</div></div>
 <div class="ttc" id="aclassrx_1_1_uniform_buffer_html_a10c7ba3ffc3597322de2c859fc61b661"><div class="ttname"><a href="classrx_1_1_uniform_buffer.html#a10c7ba3ffc3597322de2c859fc61b661">rx::UniformBuffer::getRaw</a></div><div class="ttdeci">const std::vector&lt; vk::Buffer &gt; getRaw() const</div><div class="ttdef"><b>Definition:</b> UniformBuffer.cpp:6</div></div>
-<div class="ttc" id="astructrx_1_1_camera_ubo_html_a4327e65d385718122c3ea1a53c055f81"><div class="ttname"><a href="structrx_1_1_camera_ubo.html#a4327e65d385718122c3ea1a53c055f81">rx::CameraUbo::viewInverse</a></div><div class="ttdeci">glm::mat4 viewInverse</div><div class="ttdef"><b>Definition:</b> UniformBuffer.hpp:14</div></div>
-<div class="ttc" id="astructrx_1_1_camera_ubo_html_a99c4db5c880b8c87fdc1f3a3ae502704"><div class="ttname"><a href="structrx_1_1_camera_ubo.html#a99c4db5c880b8c87fdc1f3a3ae502704">rx::CameraUbo::view</a></div><div class="ttdeci">glm::mat4 view</div><div class="ttdef"><b>Definition:</b> UniformBuffer.hpp:12</div></div>
+<div class="ttc" id="astructrx_1_1_lighting_ubo_html_a67ae53875a61a58ba321f031b3de8f2d"><div class="ttname"><a href="structrx_1_1_lighting_ubo.html#a67ae53875a61a58ba321f031b3de8f2d">rx::LightingUbo::m_intensity</a></div><div class="ttdeci">std::vector&lt; float &gt; m_intensity</div><div class="ttdef"><b>Definition:</b> UniformBuffer.hpp:21</div></div>
+<div class="ttc" id="astructrx_1_1_lighting_ubo_html_a363a9154871b92f51a42b9557b552895"><div class="ttname"><a href="structrx_1_1_lighting_ubo.html#a363a9154871b92f51a42b9557b552895">rx::LightingUbo::m_position</a></div><div class="ttdeci">std::vector&lt; glm::vec3 &gt; m_position</div><div class="ttdef"><b>Definition:</b> UniformBuffer.hpp:22</div></div>
+<div class="ttc" id="astructrx_1_1_camera_ubo_html_aee753c7caffeee39f74882ac0efabd36"><div class="ttname"><a href="structrx_1_1_camera_ubo.html#aee753c7caffeee39f74882ac0efabd36">rx::CameraUbo::m_projection</a></div><div class="ttdeci">glm::mat4 m_projection</div><div class="ttdef"><b>Definition:</b> UniformBuffer.hpp:13</div></div>
 <div class="ttc" id="anamespacerx_html"><div class="ttname"><a href="namespacerx.html">rx</a></div><div class="ttdoc">The rx namespace encapsulates every single component provided by the renderer.</div><div class="ttdef"><b>Definition:</b> Api.cpp:9</div></div>
-<div class="ttc" id="aclassrx_1_1_uniform_buffer_html_a0ec699086c85f14ab70137e64e7f1d72"><div class="ttname"><a href="classrx_1_1_uniform_buffer.html#a0ec699086c85f14ab70137e64e7f1d72">rx::UniformBuffer::upload</a></div><div class="ttdeci">void upload(uint32_t imageIndex, T &amp;ubo)</div><div class="ttdoc">Used to fill an image's buffer.</div><div class="ttdef"><b>Definition:</b> UniformBuffer.hpp:62</div></div>
+<div class="ttc" id="aclassrx_1_1_uniform_buffer_html_a0ec699086c85f14ab70137e64e7f1d72"><div class="ttname"><a href="classrx_1_1_uniform_buffer.html#a0ec699086c85f14ab70137e64e7f1d72">rx::UniformBuffer::upload</a></div><div class="ttdeci">void upload(uint32_t imageIndex, T &amp;ubo)</div><div class="ttdoc">Used to fill an image's buffer.</div><div class="ttdef"><b>Definition:</b> UniformBuffer.hpp:70</div></div>
 <div class="ttc" id="astructrx_1_1_camera_ubo_html"><div class="ttname"><a href="structrx_1_1_camera_ubo.html">rx::CameraUbo</a></div><div class="ttdoc">A uniform buffer object for camera data.</div><div class="ttdef"><b>Definition:</b> UniformBuffer.hpp:11</div></div>
-<div class="ttc" id="aclassrx_1_1_uniform_buffer_html_a51b0236c29581a330e477dff8d017aa8"><div class="ttname"><a href="classrx_1_1_uniform_buffer.html#a51b0236c29581a330e477dff8d017aa8">rx::UniformBuffer::init</a></div><div class="ttdeci">void init(size_t swapchainImagesCount)</div><div class="ttdoc">Creates the uniform buffer and allocates memory for it.</div><div class="ttdef"><b>Definition:</b> UniformBuffer.hpp:45</div></div>
-<div class="ttc" id="aclassrx_1_1_uniform_buffer_html"><div class="ttname"><a href="classrx_1_1_uniform_buffer.html">rx::UniformBuffer</a></div><div class="ttdoc">A specialised buffer for uniforms.</div><div class="ttdef"><b>Definition:</b> UniformBuffer.hpp:21</div></div>
-<div class="ttc" id="astructrx_1_1_camera_ubo_html_aab42ce1a7abd45b47375729e194d1b52"><div class="ttname"><a href="structrx_1_1_camera_ubo.html#aab42ce1a7abd45b47375729e194d1b52">rx::CameraUbo::projection</a></div><div class="ttdeci">glm::mat4 projection</div><div class="ttdef"><b>Definition:</b> UniformBuffer.hpp:13</div></div>
-<div class="ttc" id="aclassrx_1_1_uniform_buffer_html_ae61c151786e528fba593ae6be08e4c5a"><div class="ttname"><a href="classrx_1_1_uniform_buffer.html#ae61c151786e528fba593ae6be08e4c5a">rx::UniformBuffer::UniformBuffer</a></div><div class="ttdeci">UniformBuffer(size_t swapchainImagesCount, bool initialize=true)</div><div class="ttdef"><b>Definition:</b> UniformBuffer.hpp:28</div></div>
+<div class="ttc" id="aclassrx_1_1_uniform_buffer_html_a51b0236c29581a330e477dff8d017aa8"><div class="ttname"><a href="classrx_1_1_uniform_buffer.html#a51b0236c29581a330e477dff8d017aa8">rx::UniformBuffer::init</a></div><div class="ttdeci">void init(size_t swapchainImagesCount)</div><div class="ttdoc">Creates the uniform buffer and allocates memory for it.</div><div class="ttdef"><b>Definition:</b> UniformBuffer.hpp:53</div></div>
+<div class="ttc" id="astructrx_1_1_camera_ubo_html_a21fc9f616f25f3323dda0c6222c835d5"><div class="ttname"><a href="structrx_1_1_camera_ubo.html#a21fc9f616f25f3323dda0c6222c835d5">rx::CameraUbo::m_view</a></div><div class="ttdeci">glm::mat4 m_view</div><div class="ttdef"><b>Definition:</b> UniformBuffer.hpp:12</div></div>
+<div class="ttc" id="astructrx_1_1_lighting_ubo_html"><div class="ttname"><a href="structrx_1_1_lighting_ubo.html">rx::LightingUbo</a></div><div class="ttdef"><b>Definition:</b> UniformBuffer.hpp:19</div></div>
+<div class="ttc" id="aclassrx_1_1_uniform_buffer_html"><div class="ttname"><a href="classrx_1_1_uniform_buffer.html">rx::UniformBuffer</a></div><div class="ttdoc">A specialised buffer for uniforms.</div><div class="ttdef"><b>Definition:</b> UniformBuffer.hpp:29</div></div>
+<div class="ttc" id="aclassrx_1_1_uniform_buffer_html_ae61c151786e528fba593ae6be08e4c5a"><div class="ttname"><a href="classrx_1_1_uniform_buffer.html#ae61c151786e528fba593ae6be08e4c5a">rx::UniformBuffer::UniformBuffer</a></div><div class="ttdeci">UniformBuffer(size_t swapchainImagesCount, bool initialize=true)</div><div class="ttdef"><b>Definition:</b> UniformBuffer.hpp:36</div></div>
 <div class="ttc" id="aclassrx_1_1_uniform_buffer_html_a5bd1061900162cfabc9dc854ad8327a9"><div class="ttname"><a href="classrx_1_1_uniform_buffer.html#a5bd1061900162cfabc9dc854ad8327a9">rx::UniformBuffer::UniformBuffer</a></div><div class="ttdeci">UniformBuffer()=default</div></div>
+<div class="ttc" id="astructrx_1_1_camera_ubo_html_ab1aec705f8a6ec1a2ea12772f561c52d"><div class="ttname"><a href="structrx_1_1_camera_ubo.html#ab1aec705f8a6ec1a2ea12772f561c52d">rx::CameraUbo::m_viewInverse</a></div><div class="ttdeci">glm::mat4 m_viewInverse</div><div class="ttdef"><b>Definition:</b> UniformBuffer.hpp:14</div></div>
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>

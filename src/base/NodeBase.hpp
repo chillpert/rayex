@@ -87,6 +87,20 @@ namespace rx
 
     glm::vec3 m_direction = { 1.0f, -1.0f, 1.0f }; ///< The direction the light is pointing at.
   };
+
+  /// Can be used to add point light sources to the scene.
+  /// @ingroup Base
+  class PointLightNode : public LightNode
+  {
+  public:
+    virtual ~PointLightNode( ) = default;
+
+    glm::vec3 m_position = glm::vec3( 0.0f ); ///< The position of the light.
+
+    float m_constant = 1.0f; ///< The constant factor of the light's abbreviation.
+    float m_linear = 0.09f; ///< The linear factor of the light's abbreviation.
+    float m_quadratic = 0.032f; ///< The quadratic factor of the light's abbreviation.
+  };
 }
 
 #endif // NODEBASE_HPP

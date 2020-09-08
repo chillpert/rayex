@@ -25,13 +25,15 @@ var hierarchy =
       [ "rx::Texture", "classrx_1_1_texture.html", null ]
     ] ],
     [ "rx::Instance", "classrx_1_1_instance.html", null ],
+    [ "rx::LightingUbo", "structrx_1_1_lighting_ubo.html", null ],
     [ "rx::Material", "classrx_1_1_material.html", null ],
     [ "rx::Model", "classrx_1_1_model.html", null ],
     [ "rx::Node", "classrx_1_1_node.html", [
       [ "rx::TransformNode", "classrx_1_1_transform_node.html", [
         [ "rx::GeometryNode", "classrx_1_1_geometry_node.html", null ],
         [ "rx::LightNode", "classrx_1_1_light_node.html", [
-          [ "rx::DirectionalLightNode", "classrx_1_1_directional_light_node.html", null ]
+          [ "rx::DirectionalLightNode", "classrx_1_1_directional_light_node.html", null ],
+          [ "rx::PointLightNode", "classrx_1_1_point_light_node.html", null ]
         ] ]
       ] ]
     ] ],

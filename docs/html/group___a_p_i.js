@@ -52,10 +52,10 @@ var group___a_p_i =
       [ "init", "classrx_1_1_index_buffer.html#afe102e8f3272f8547d9b26b4a26daad3", null ]
     ] ],
     [ "CameraUbo", "structrx_1_1_camera_ubo.html", [
-      [ "projection", "structrx_1_1_camera_ubo.html#aab42ce1a7abd45b47375729e194d1b52", null ],
-      [ "projectionInverse", "structrx_1_1_camera_ubo.html#a42b92c30a8557a070ba01fbd17b955e6", null ],
-      [ "view", "structrx_1_1_camera_ubo.html#a99c4db5c880b8c87fdc1f3a3ae502704", null ],
-      [ "viewInverse", "structrx_1_1_camera_ubo.html#a4327e65d385718122c3ea1a53c055f81", null ]
+      [ "m_projection", "structrx_1_1_camera_ubo.html#aee753c7caffeee39f74882ac0efabd36", null ],
+      [ "m_projectionInverse", "structrx_1_1_camera_ubo.html#a9baf3056ebfa633c7fa9297a4e54820b", null ],
+      [ "m_view", "structrx_1_1_camera_ubo.html#a21fc9f616f25f3323dda0c6222c835d5", null ],
+      [ "m_viewInverse", "structrx_1_1_camera_ubo.html#ab1aec705f8a6ec1a2ea12772f561c52d", null ]
     ] ],
     [ "UniformBuffer", "classrx_1_1_uniform_buffer.html", [
       [ "UniformBuffer", "classrx_1_1_uniform_buffer.html#a5bd1061900162cfabc9dc854ad8327a9", null ],

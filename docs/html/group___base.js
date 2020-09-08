@@ -93,6 +93,13 @@ var group___base =
       [ "~DirectionalLightNode", "classrx_1_1_directional_light_node.html#a9ff5fa50bb746f0af5ad9f2278af40e0", null ],
       [ "m_direction", "classrx_1_1_directional_light_node.html#a2858db1a7666e37dda7a27790ba3bd03", null ]
     ] ],
+    [ "PointLightNode", "classrx_1_1_point_light_node.html", [
+      [ "~PointLightNode", "classrx_1_1_point_light_node.html#a05cf7b3ebc14649ca2a9e66220e64fcc", null ],
+      [ "m_constant", "classrx_1_1_point_light_node.html#a8abdc0b49cd9ef1f4ba8a0838624874d", null ],
+      [ "m_linear", "classrx_1_1_point_light_node.html#a613d0e39b4384721df3974d71f8566d1", null ],
+      [ "m_position", "classrx_1_1_point_light_node.html#a48f380f7bc69f6c5be05b9ed39ec8ed4", null ],
+      [ "m_quadratic", "classrx_1_1_point_light_node.html#a7c91407d1945e17c4a3152cd76920128", null ]
+    ] ],
     [ "Renderer", "classrx_1_1_renderer.html", [
       [ "Renderer", "classrx_1_1_renderer.html#adac272ae85ea19cc6ce17c93e4fbb5b5", null ],
       [ "Renderer", "classrx_1_1_renderer.html#ae7ad602d913e3a5725a067389653984f", null ],

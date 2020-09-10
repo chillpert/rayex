@@ -123,8 +123,8 @@ namespace rx
     m_cameraUniformBuffer.init<CameraUbo>( g_swapchainImageCount );
 
     // Uniform buffers for light nodes
-    m_staticDirLightsUniformBuffer.init<DirectionalLightNodeUbos>( g_swapchainImageCount );
-    m_staticPointLightsUniformBuffer.init<PointLightNodeUbos>( g_swapchainImageCount );
+    //m_staticDirLightsUniformBuffer.init<DirectionalLightNodeUbos>( g_swapchainImageCount );
+    //m_staticPointLightsUniformBuffer.init<PointLightNodeUbos>( g_swapchainImageCount );
 
     // Pipeline
     m_rtPipeline.init( { m_rtDescriptorSetLayout.get( ), m_modelDescriptorSetLayout.get( ), m_sceneDescriptorSetLayout.get( ) } );

@@ -2,6 +2,7 @@
 #define UNIFORM_BUFFER_HPP
 
 #include "Buffer.hpp"
+#include "LightNodeBase.hpp"
 
 namespace rx
 {
@@ -15,27 +16,10 @@ namespace rx
     glm::mat4 m_projectionInverse = glm::mat4( 1.0f );
   };
 
-  const int maxLights = 10;
-
   struct LightNodeUbos
   {
-    std::vector<glm::vec3> m_ambient;
-    std::vector<glm::vec3> m_diffuse;
-    std::vector<glm::vec3> m_specular;
-    std::vector<float> m_ambientStrength;
-  };
-
-  struct DirectionalLightNodeUbos : LightNodeUbos
-  {
-    std::vector<glm::vec3> m_direction;
-  };
-
-  struct PointLightNodeUbos : public LightNodeUbos
-  {
-    std::vector<glm::vec3> m_position;
-    std::vector<float> m_constant;
-    std::vector<float> m_linear;
-    std::vector<float> m_quadratic;
+    std::vector<DirectionalLightNode> m_directionalLightNodes;
+    std::vector<PointLightNode> m_pointLightNodes;
   };
 
   /// A specialised buffer for uniforms.

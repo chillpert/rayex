@@ -2,7 +2,6 @@
 #define TIME_HPP
 
 #include "Core.hpp"
-#include <vector>
 
 namespace rx
 {

@@ -15,6 +15,8 @@
 
 #include "CameraBase.hpp"
 #include "NodeBase.hpp"
+#include "LightNodeBase.hpp"
+#include "GeometryNodeBase.hpp"
 #include "GuiBase.hpp"
 #include "WindowBase.hpp"
 

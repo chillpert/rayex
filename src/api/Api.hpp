@@ -90,15 +90,17 @@ namespace rx
       }
       else if ( dynamic_cast<LightNode*>( node.get( ) ) )
       {
+        auto lightNodePtr = std::dynamic_pointer_cast<LightNode>( node );
+
         if ( dynamic_cast<DirectionalLightNode*>( node.get( ) ) )
         {
           auto dirLightNodePtr = std::dynamic_pointer_cast<DirectionalLightNode>( node );
-          m_dirLightNodes.push_back( dirLightNodePtr );
+
         }
         else if ( dynamic_cast<PointLightNode*>( node.get( ) ) )
         {
           auto pointLightNodePtr = std::dynamic_pointer_cast<PointLightNode>( node );
-          m_pointLightNodes.push_back( pointLightNodePtr );
+          
         }
       }
 
@@ -188,8 +190,7 @@ namespace rx
     DescriptorSet m_sceneDescriptorSets;
 
     UniformBuffer m_cameraUniformBuffer;
-    UniformBuffer m_staticDirLightsUniformBuffer;
-    UniformBuffer m_staticPointLightsUniformBuffer;
+    UniformBuffer m_lightNodes;
 
     // Nodes to render.
     std::vector<std::shared_ptr<GeometryNode>> m_geometryNodes;

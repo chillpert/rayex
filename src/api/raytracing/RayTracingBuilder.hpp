@@ -3,9 +3,9 @@
 
 #include "AccelerationStructure.hpp"
 #include "Model.hpp"
-#include "NodeBase.hpp"
 #include "Buffer.hpp"
 #include "Swapchain.hpp"
+#include "GeometryNodeBase.hpp"
 
 namespace rx
 {

@@ -16,13 +16,12 @@ namespace rx
 
     /// @param The index data.
     /// @param initialize If true, the index buffer object will be initialized right away without an additional call to init().
-    template<typename T>
     IndexBuffer( const std::vector<T>& indices, bool initialize = true )
     {
       if ( initialize )
-        init( indices, queueIndices );
+        init( indices );
     }
-
+    
     /// @return Returns the amount of indices in the buffer.
     inline uint32_t getCount( ) const { return m_count; }
 
@@ -34,7 +33,6 @@ namespace rx
     /// 
     /// To optimize the procedure a temporary staging buffer will be created.
     /// @param indices The index data.
-    template <typename T>
     void init( std::vector<T>& indices )
     {
       m_count = static_cast<uint32_t>( indices.size( ) );

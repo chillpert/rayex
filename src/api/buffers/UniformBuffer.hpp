@@ -35,7 +35,7 @@ namespace rx
     UniformBuffer( size_t swapchainImagesCount, bool initialize = true )
     {
       if ( initialize )
-        init( swapchainImagesCount );
+        init<T>( swapchainImagesCount );
     }
 
     /// @return Returns the vector of uniform buffers.

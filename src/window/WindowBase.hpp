@@ -78,7 +78,7 @@ namespace rx
     RX_API inline SDL_Window* get( ) { return m_window; }
 
     /// @return Returns the window size as a Vulkan 2D extent.
-    RX_API inline vk::Extent2D getExtent( ) const;
+    RX_API vk::Extent2D getExtent( ) const;
 
     /// @return Returns the window's width in pixels.
     inline int getWidth( ) const { return m_width; }

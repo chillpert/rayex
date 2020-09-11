@@ -76,7 +76,7 @@ namespace rx
     template <typename T = Model>
     RX_API void setNodes( const std::vector<std::shared_ptr<Node>>& nodes )
     {
-      m_api.setNodes<T>( node );
+      m_api.setNodes<T>( nodes );
     }
 
     /// Used to set the renderer's camera.

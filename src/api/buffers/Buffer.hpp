@@ -23,6 +23,8 @@ namespace rx
     
     /// @param buffer The target for the copy operation.
     Buffer( Buffer& buffer );
+    Buffer& operator=( Buffer& buffer) = default;
+    Buffer( Buffer&& buffer ) = default;
     
     RX_API virtual ~Buffer( ) = default;
 

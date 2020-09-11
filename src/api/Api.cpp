@@ -120,7 +120,7 @@ namespace rx
     m_sceneDescriptorSets.init( m_sceneDescriptorPool.get( ), g_swapchainImageCount, std::vector<vk::DescriptorSetLayout>{ g_swapchainImageCount, m_sceneDescriptorSetLayout.get( ) } );
 
     // Uniform buffer for camera
-    m_cameraUniformBuffer.init<CameraUbo>( g_swapchainImageCount );
+    m_cameraUniformBuffer.init<CameraUbo>( static_cast<uint32_t>( g_swapchainImageCount ) );
 
     // Uniform buffers for light nodes
     //m_staticDirLightsUniformBuffer.init<DirectionalLightNodeUbos>( g_swapchainImageCount );

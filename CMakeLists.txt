@@ -1,4 +1,4 @@
-cmake_minimum_required(VERSION 3.17.2)
+cmake_minimum_required(VERSION 3.16.2)
 project(Renderer VERSION 0.0.1)
 
 message("Using compiler: " + ${CMAKE_CXX_COMPILER_ID})

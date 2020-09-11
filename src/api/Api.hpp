@@ -190,7 +190,7 @@ namespace rx
     DescriptorSet m_sceneDescriptorSets;
 
     UniformBuffer m_cameraUniformBuffer;
-    UniformBuffer m_lightNodes;
+    UniformBuffer m_lightsUniformBuffer;
 
     // Nodes to render.
     std::vector<std::shared_ptr<GeometryNode>> m_geometryNodes;

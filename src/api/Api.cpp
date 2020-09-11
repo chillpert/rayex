@@ -123,8 +123,7 @@ namespace rx
     m_cameraUniformBuffer.init<CameraUbo>( static_cast<uint32_t>( g_swapchainImageCount ) );
 
     // Uniform buffers for light nodes
-    //m_staticDirLightsUniformBuffer.init<DirectionalLightNodeUbos>( g_swapchainImageCount );
-    //m_staticPointLightsUniformBuffer.init<PointLightNodeUbos>( g_swapchainImageCount );
+    m_lightsUniformBuffer.init<LightNodeUbos>( static_cast<uint32_t>( g_swapchainImageCount ) );
 
     // Pipeline
     m_rtPipeline.init( { m_rtDescriptorSetLayout.get( ), m_modelDescriptorSetLayout.get( ), m_sceneDescriptorSetLayout.get( ) } );
@@ -487,14 +486,7 @@ namespace rx
                                                                 vk::ShaderStageFlagBits::eClosestHitKHR, // stageFlags
                                                                 nullptr );                               // pImmutableSamplers
 
-      // Point light nodes uniform buffer
-      vk::DescriptorSetLayoutBinding pointLightNodeUniformBuffer( 1,                                       // binding
-                                                                  vk::DescriptorType::eUniformBuffer,      // descriptorType
-                                                                  1,                                       // descriptorCount
-                                                                  vk::ShaderStageFlagBits::eClosestHitKHR, // stageFlags
-                                                                  nullptr );                               // pImmutableSamplers
-
-      std::vector<vk::DescriptorSetLayoutBinding> bindings = { dirLightNodeUniformBuffer, pointLightNodeUniformBuffer };
+      std::vector<vk::DescriptorSetLayoutBinding> bindings = { dirLightNodeUniformBuffer };
       m_sceneDescriptorSetLayout.init( bindings );
     }
   }

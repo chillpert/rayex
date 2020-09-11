@@ -73,21 +73,36 @@ namespace rx
     }
   }
 
-  void DescriptorSet::update( vk::Buffer uniformBuffer1, vk::Buffer uniformBuffer2 )
+  void DescriptorSet::update( vk::Buffer vertexBuffer, vk::Buffer indexBuffer )
   {
     for ( size_t i = 0; i < m_layouts.size( ); ++i )
     {
-      vk::DescriptorBufferInfo uniformBufferInfo1( uniformBuffer1,             // buffer
-                                                   0,                          // offset
-                                                   sizeof( uniformBuffer1 ) ); // range
+      vk::DescriptorBufferInfo vertexBufferInfo( vertexBuffer,             // buffer
+                                                 0,                        // offset
+                                                 sizeof( vertexBuffer ) ); // range
 
-      vk::DescriptorBufferInfo uniformBufferInfo2( uniformBuffer2,             // buffer
-                                                   0,                          // offset
-                                                   sizeof( uniformBuffer2 ) ); // range
+      vk::DescriptorBufferInfo indexBufferInfo( indexBuffer,             // buffer
+                                                0,                       // offset
+                                                sizeof( indexBuffer ) ); // range
 
       std::array<vk::WriteDescriptorSet, 2> descriptorWrites;
-      descriptorWrites[0] = writeStorageBuffer( m_sets[i], 0, uniformBufferInfo1 );
-      descriptorWrites[1] = writeStorageBuffer( m_sets[i], 1, uniformBufferInfo2 );
+      descriptorWrites[0] = writeStorageBuffer( m_sets[i], 0, vertexBufferInfo );
+      descriptorWrites[1] = writeStorageBuffer( m_sets[i], 1, indexBufferInfo );
+
+      g_device.updateDescriptorSets( descriptorWrites, 0 );
+    }
+  }
+
+  void DescriptorSet::update( vk::Buffer lightSources )
+  {
+    for ( size_t i = 0; i < m_layouts.size( ); ++i )
+    {
+      vk::DescriptorBufferInfo directionalLightBufferInfo( lightSources,             // buffer
+                                                           0,                        // offset
+                                                           sizeof( lightSources ) ); // range
+
+      std::array<vk::WriteDescriptorSet, 1> descriptorWrites;
+      descriptorWrites[0] = writeStorageBuffer( m_sets[i], 0, lightSources );
 
       g_device.updateDescriptorSets( descriptorWrites, 0 );
     }

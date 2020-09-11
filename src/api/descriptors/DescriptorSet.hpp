@@ -52,8 +52,11 @@ namespace rx
     /// Used to update model related descriptors (without textures).
     /// @param vertexBuffer A Vulkan buffer containing the vertex data of a model.
     /// @param indexBuffer A Vulkan buffer containing the index data of a model.
-    /// @todo update documentation
-    void update( vk::Buffer uniformBuffer1, vk::Buffer uniformBuffer2 );
+    void update( vk::Buffer vertexBuffer, vk::Buffer indexBuffer );
+
+    /// Used to update lighting related descriptors.
+    /// @param lightSources A Vulkan buffer containing data for all light sources.
+    void update( vk::Buffer lightSources );
 
     /// Frees the descriptor sets.
     void free( );

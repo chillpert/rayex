@@ -18,8 +18,11 @@ namespace rx
 
   struct LightNodeUbos
   {
-    std::vector<DirectionalLightNode> m_directionalLightNodes;
-    std::vector<PointLightNode> m_pointLightNodes;
+    std::vector<std::shared_ptr<DirectionalLightNode>> m_directionalLightNodes;
+    std::vector<std::shared_ptr<PointLightNode>> m_pointLightNodes;
+
+    // void add( std::shared_ptr<DirectionalLightNode> directionalLightNodes ) { }
+    // void add( std::shared_ptr<PointLightNode> pointLightNodes ) { }
   };
 
   /// A specialised buffer for uniforms.
@@ -42,7 +45,7 @@ namespace rx
     inline const std::vector<Buffer>& get( ) const { return m_buffers; }
 
     /// @return Returns the vector of uniform buffers as raw Vulkan buffer objects.
-    const std::vector<vk::Buffer> getRaw( ) const;
+    RX_API const std::vector<vk::Buffer> getRaw( ) const;
 
     /// Creates the uniform buffer and allocates memory for it.
     /// 

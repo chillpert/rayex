@@ -28,6 +28,8 @@ namespace rx
     virtual ~DirectionalLightNode( ) = default;
 
     glm::vec3 m_direction = { 1.0f, -1.0f, 1.0f }; ///< The direction the light is pointing at.
+
+    float m_exists = 1.0f;
   };
 
   /// Can be used to add point light sources to the scene.

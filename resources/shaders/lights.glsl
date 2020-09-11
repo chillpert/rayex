@@ -1,21 +1,22 @@
 struct DirectionalLight
 {
-  vec3 direction;
-
   vec3 ambient;
   vec3 diffuse;
   vec3 specular;
   float ambientStrength;
+
+  vec3 direction;
+  float exists;
 };
 
 struct PointLight
 {
-  vec3 position;
-
   vec3 ambient;
   vec3 diffuse;
   vec3 specular;
   float ambientStrength;
+
+  vec3 position;
 
   float constant;
   float linear;

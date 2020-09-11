@@ -270,8 +270,11 @@ int main( int argc, char* argv[] )
   dragonLore->m_worldTransform = glm::scale( dragonLore->m_worldTransform, glm::vec3( 0.25f ) );
   dragonLore->m_worldTransform = glm::rotate( dragonLore->m_worldTransform, glm::radians( 90.0f ), glm::vec3( 0.0f, 1.0f, 0.0f ) );
 
+  auto directionalLight = std::make_shared<DirectionalLightNode>( );
+ 
   // Add the model to the renderer. This way they will be queued for rendering.
   myRenderer.pushNode( dragonLore );
+  myRenderer.pushNode( directionalLight );
 
   while ( myRenderer.isRunning( ) )
   {

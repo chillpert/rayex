@@ -56,7 +56,7 @@ namespace rx
 
     /// Used to update lighting related descriptors.
     /// @param lightSources A Vulkan buffer containing data for all light sources.
-    void update( vk::Buffer lightSources );
+    RX_API void update( const std::vector<vk::Buffer>& lightSources );
 
     /// Frees the descriptor sets.
     void free( );

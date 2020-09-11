@@ -123,7 +123,8 @@ namespace rx
     m_cameraUniformBuffer.init<CameraUbo>( static_cast<uint32_t>( g_swapchainImageCount ) );
 
     // Uniform buffers for light nodes
-    m_lightsUniformBuffer.init<LightNodeUbos>( static_cast<uint32_t>( g_swapchainImageCount ) );
+    m_lightsUniformBuffer.init<LightUbos>( static_cast<uint32_t>( g_swapchainImageCount ) );
+    m_sceneDescriptorSets.update( m_lightsUniformBuffer.getRaw( ) );
 
     // Pipeline
     m_rtPipeline.init( { m_rtDescriptorSetLayout.get( ), m_modelDescriptorSetLayout.get( ), m_sceneDescriptorSetLayout.get( ) } );
@@ -178,6 +179,9 @@ namespace rx
 
     CameraUbo camUbo { view, proj, viewInverse, projInverse };
     m_cameraUniformBuffer.upload<CameraUbo>( imageIndex, camUbo );
+
+    LightUbos lightNodeUbos { m_dirLightNodes, m_pointLightNodes };
+    m_lightsUniformBuffer.upload<LightUbos>( imageIndex, lightNodeUbos );
 
     return true;
   }

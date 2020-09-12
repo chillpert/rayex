@@ -203,7 +203,8 @@ namespace rx
   bool Api::prepareFrame( )
   {
     // Wait for the current frame's fences.
-    g_device.waitForFences( 1, &m_inFlightFences[currentFrame].get( ), VK_TRUE, UINT64_MAX );
+    vk::Result result = g_device.waitForFences( 1, &m_inFlightFences[currentFrame].get( ), VK_TRUE, UINT64_MAX );
+    RX_ASSERT( ( result == vk::Result::eSuccess ), "Failed to wait for fences." );
 
     // If the window is minimized then simply do not render anything anymore.
     if ( m_window->minimized( ) )
@@ -218,15 +219,20 @@ namespace rx
     }
 
     m_swapchain.acquireNextImage( m_imageAvailableSemaphores[currentFrame].get( ), nullptr );
+
+    return false;
   }
 
   bool Api::submitFrame( )
   {
     uint32_t imageIndex = m_swapchain.getCurrentImageIndex( );
-      
+  
     // Check if a previous frame is using the current image.
     if ( m_imagesInFlight[imageIndex] )
-      g_device.waitForFences( 1, &m_imagesInFlight[currentFrame], VK_TRUE, UINT64_MAX );
+    {
+      vk::Result result = g_device.waitForFences( 1, &m_imagesInFlight[currentFrame], VK_TRUE, UINT64_MAX );
+      RX_ASSERT( ( result == vk::Result::eSuccess ), "Failed to wait for fences." );
+    }
 
     // This will mark the current image to be in use by this frame.
     m_imagesInFlight[imageIndex] = m_inFlightFences[currentFrame].get( );
@@ -246,11 +252,16 @@ namespace rx
 
     // Tell the presentation engine that the current image is ready.
     auto presentInfo = vk::Helper::getPresentInfoKHR( m_finishedRenderSemaphores[currentFrame].get( ), imageIndex );
-    g_graphicsQueue.presentKHR( presentInfo );
+
+    vk::Result result = g_graphicsQueue.presentKHR( presentInfo );
+    if ( result == vk::Result::eErrorOutOfDateKHR || result == vk::Result::eSuboptimalKHR )
+    {
+      m_recreateSwapchain = true;
+      RX_LOG( "Swapchain out of data or suboptimal.");
+    }
 
     currentFrame = ( currentFrame + 1 ) % maxFramesInFlight;
-
-    return true;
+    return false;
   }
 
   bool Api::render( )

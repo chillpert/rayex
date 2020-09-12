@@ -125,7 +125,8 @@ namespace rx
 
   void Swapchain::acquireNextImage( vk::Semaphore semaphore, vk::Fence fence )
   {
-    g_device.acquireNextImageKHR( m_swapchain.get( ), UINT64_MAX, semaphore, fence, &m_currentImageIndex );
+    vk::Result result = g_device.acquireNextImageKHR( m_swapchain.get( ), UINT64_MAX, semaphore, fence, &m_currentImageIndex );
+    RX_ASSERT( ( result == vk::Result::eSuccess ), "Failed to acquire next swapchain image." );
   }
 
   void Swapchain::initImages( uint32_t minImageCount, vk::Format surfaceFormat )

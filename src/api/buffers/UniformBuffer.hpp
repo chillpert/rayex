@@ -16,10 +16,10 @@ namespace rx
     glm::mat4 m_projectionInverse = glm::mat4( 1.0f );
   };
 
-  struct LightNodeUbos
+  struct LightsUbo
   {
-    std::vector<std::shared_ptr<DirectionalLightNode>> m_directionalLightNodes;
-    std::vector<std::shared_ptr<PointLightNode>> m_pointLightNodes;
+    std::vector<DirectionalLightNode::Ubo> m_directionalLightNodes;
+    std::vector<PointLightNode::Ubo> m_pointLightNodes;
 
     // void add( std::shared_ptr<DirectionalLightNode> directionalLightNodes ) { }
     // void add( std::shared_ptr<PointLightNode> pointLightNodes ) { }

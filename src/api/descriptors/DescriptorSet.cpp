@@ -99,7 +99,7 @@ namespace rx
     {
       vk::DescriptorBufferInfo directionalLightBufferInfo( lightSources[i],           // buffer
                                                            0,                         // offset
-                                                           sizeof( LightNodeUbos ) ); // range
+                                                           sizeof( LightsUbo ) ); // range
 
       std::array<vk::WriteDescriptorSet, 1> descriptorWrites;
       descriptorWrites[0] = writeUniformBuffer( m_sets[i], 0, directionalLightBufferInfo );

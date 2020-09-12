@@ -123,7 +123,7 @@ namespace rx
     m_cameraUniformBuffer.init<CameraUbo>( static_cast<uint32_t>( g_swapchainImageCount ) );
 
     // Uniform buffers for light nodes
-    m_lightsUniformBuffer.init<LightUbos>( static_cast<uint32_t>( g_swapchainImageCount ) );
+    m_lightsUniformBuffer.init<LightsUbo>( static_cast<uint32_t>( g_swapchainImageCount ) );
     m_sceneDescriptorSets.update( m_lightsUniformBuffer.getRaw( ) );
 
     // Pipeline
@@ -180,8 +180,22 @@ namespace rx
     CameraUbo camUbo { view, proj, viewInverse, projInverse };
     m_cameraUniformBuffer.upload<CameraUbo>( imageIndex, camUbo );
 
-    LightUbos lightNodeUbos { m_dirLightNodes, m_pointLightNodes };
-    m_lightsUniformBuffer.upload<LightUbos>( imageIndex, lightNodeUbos );
+    std::vector<DirectionalLightNode::Ubo> dirLightNodeUbos;
+    dirLightNodeUbos.reserve( m_dirLightNodes.size( ) );
+    for ( const auto& dirLightNode : m_dirLightNodes )
+    {
+      dirLightNodeUbos.push_back( dirLightNode->toUbo( ) );
+    }
+
+    std::vector<PointLightNode::Ubo> pointLightNodeUbos;
+    pointLightNodeUbos.reserve( m_pointLightNodes.size( ) );
+    for ( const auto& pointLightNode : m_pointLightNodes )
+    {
+      pointLightNodeUbos.push_back( pointLightNode->toUbo( ) );
+    }
+
+    LightsUbo lightNodeUbos { dirLightNodeUbos, pointLightNodeUbos };
+    m_lightsUniformBuffer.upload<LightsUbo>( imageIndex, lightNodeUbos );
 
     return true;
   }

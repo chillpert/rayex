@@ -32,7 +32,7 @@ namespace rx
 
     for ( const auto& result : results )
     {
-      std::cout << std::left << std::setw( 32 ) << std::setfill( ' ' ) << result.second << std::left << std::setw( 32 ) << std::setfill( ' ' ) << result.first;
+      std::cout << std::left << std::setw( 32 ) << std::setfill( ' ' ) << result.second << std::left << std::setw( 32 ) << std::setfill( ' ' ) << result.first << std::endl;
     }
 
     std::cout << std::endl << std::endl;

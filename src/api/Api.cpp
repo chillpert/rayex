@@ -110,6 +110,9 @@ namespace rx
     // Ray tracing descriptor pool
     m_rtDescriptorPool = vk::Initializer::createDescriptorPoolUnique( vk::Helper::getPoolSizes( m_rtDescriptorSetLayout.getBindings( ) ), static_cast<uint32_t>( g_maxGeometryNodes ) * g_swapchainImageCount );
 
+    // Model descriptor pool
+    m_modelDescriptorPool = vk::Initializer::createDescriptorPoolUnique( vk::Helper::getPoolSizes( m_modelDescriptorSetLayout.getBindings( ) ), static_cast<uint32_t>( g_maxGeometryNodes ) * g_swapchainImageCount );
+
     // Scene descriptor pool
     m_sceneDescriptorPool = vk::Initializer::createDescriptorPoolUnique( vk::Helper::getPoolSizes( m_sceneDescriptorSetLayout.getBindings( ) ), static_cast<uint32_t>( g_maxGeometryNodes ) * g_swapchainImageCount );
 
@@ -472,6 +475,7 @@ namespace rx
                                                          1,                                   // descriptorCount
                                                          vk::ShaderStageFlagBits::eRaygenKHR, // stageFlags
                                                          nullptr );                           // pImmutableSamplers
+
       // Camera uniform buffer
       vk::DescriptorSetLayoutBinding cameraUniformBufferBinding( 2,                                   // binding
                                                                  vk::DescriptorType::eUniformBuffer,  // descriptorType
@@ -508,10 +512,6 @@ namespace rx
 
       std::vector<vk::DescriptorSetLayoutBinding> bindings = { textureBinding, vertexBufferBinding, indexBufferBinding };
       m_modelDescriptorSetLayout.init( bindings );
-
-      // Descriptor pool
-      m_modelDescriptorPool = vk::Initializer::createDescriptorPoolUnique( vk::Helper::getPoolSizes( m_modelDescriptorSetLayout.getBindings( ) ), static_cast<uint32_t>( g_maxGeometryNodes ) * g_swapchainImageCount );
-
     }
     
     // Scene descriptor set layout.

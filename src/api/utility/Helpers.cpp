@@ -129,7 +129,7 @@ namespace vk
 
       // Read the file and retrieve the source.
       std::ifstream file( pathToFile + fileNameOut, std::ios::ate | std::ios::binary );
-
+      
       if ( !file.is_open( ) )
         RX_ERROR( "Failed to open shader source file." );
 

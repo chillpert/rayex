@@ -165,6 +165,7 @@ namespace rx
     if ( Settings::refresh( ) )
     {
       // Trigger swapchain / pipeline recreation
+      RX_LOG( "Refresh event." );
     }
 
     uint32_t imageIndex = m_swapchain.getCurrentImageIndex( );
@@ -253,11 +254,18 @@ namespace rx
     // Tell the presentation engine that the current image is ready.
     auto presentInfo = vk::Helper::getPresentInfoKHR( m_finishedRenderSemaphores[currentFrame].get( ), imageIndex );
 
-    vk::Result result = g_graphicsQueue.presentKHR( presentInfo );
-    if ( result == vk::Result::eErrorOutOfDateKHR || result == vk::Result::eSuboptimalKHR )
+    try
+    {
+      vk::Result result = g_graphicsQueue.presentKHR( presentInfo );
+      if ( result == vk::Result::eErrorOutOfDateKHR || result == vk::Result::eSuboptimalKHR )
+      {
+        m_recreateSwapchain = true;
+        RX_LOG( "Swapchain out of data or suboptimal.");
+      }
+    }
+    catch ( ... )
     {
       m_recreateSwapchain = true;
-      RX_LOG( "Swapchain out of data or suboptimal.");
     }
 
     currentFrame = ( currentFrame + 1 ) % maxFramesInFlight;

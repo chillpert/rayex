@@ -97,12 +97,12 @@ namespace rx
   {
     for ( size_t i = 0; i < m_layouts.size( ); ++i )
     {
-      vk::DescriptorBufferInfo directionalLightBufferInfo( lightSources[i],           // buffer
-                                                           0,                         // offset
-                                                           sizeof( LightsUbo ) ); // range
+      vk::DescriptorBufferInfo lightSourcesBufferInfo( lightSources[i],       // buffer
+                                                       0,                     // offset
+                                                       sizeof( LightsUbo ) ); // range
 
       std::array<vk::WriteDescriptorSet, 1> descriptorWrites;
-      descriptorWrites[0] = writeUniformBuffer( m_sets[i], 0, directionalLightBufferInfo );
+      descriptorWrites[0] = writeUniformBuffer( m_sets[i], 0, lightSourcesBufferInfo );
 
       g_device.updateDescriptorSets( descriptorWrites, 0 );
     }

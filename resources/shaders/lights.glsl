@@ -1,42 +1,21 @@
 struct DirectionalLight
 {
-  vec3 ambient;
-  vec3 diffuse;
-  vec3 specular;
-  float ambientStrength;
+  vec4 ambient; // vec3 for color + vec1 for intensity
+  vec4 diffuse; // vec3 for color + vec1 for intensity
+  vec4 specular; // vec3 for color + vec1 for intensity
 
-  vec3 direction;
-  float exists;
+  vec4 direction; // vec3 for position + vec1 for bool exists
 };
 
 struct PointLight
 {
-  vec3 ambient;
-  vec3 diffuse;
-  vec3 specular;
-  float ambientStrength;
+  vec4 ambient; // vec3 for color + vec1 for intensity
+  vec4 diffuse; // vec3 for color + vec1 for intensity
+  vec4 specular; // vec3 for color + vec1 for intensity
 
-  vec3 position;
+  vec4 position; // vec3 for position + vec1 for bool exists
 
-  float constant;
-  float linear;
-  float quadratic;
-};
-
-struct SpotLight
-{
-  vec3 position;
-  vec3 direction;
-
-  float cutOff;
-  float outerCutOff;
-
-  vec3 ambient;
-  vec3 diffuse;
-  vec3 specular;
-  float ambientStrength;
-
-  float constant;
+  float constant; 
   float linear;
   float quadratic;
 };

@@ -12,17 +12,17 @@ layout(binding = 0, set = 1) uniform sampler2D texSampler;
 
 layout(binding = 0, set = 2) uniform LightSources
 {
-  DirectionalLight[10] directionalLights;
-  PointLight[10] pointLights;
+  DirectionalLight directionalLights[10];
+  PointLight pointLights[10];
 } lightSources;
 
 void main()
 {
-  if ( lightSources.directionalLights[0].exists == 1.0f )
+  if ( lightSources.directionalLights[1].direction.w == 1.0f )
   {
     hitValue = vec3(1.0, 0.0, 0.0);
   }
-  else if ( lightSources.directionalLights[0].exists != 1.0f )
+  else if ( lightSources.directionalLights[1].direction.w != 1.0f )
   {
     hitValue = vec3(0.0, 1.0, 0.0);
   }

@@ -5,6 +5,8 @@
 
 namespace rx
 {
+  glm::vec4 combine( const glm::vec3& vec3, float value );
+
   /// Adds lighting-related information to the TransformNode parent class.
   /// @note This node only provides common data for its inherited classes and cannot be instantiated.
   /// @ingroup Base
@@ -32,16 +34,23 @@ namespace rx
 
     struct Ubo
     {
-      glm::vec3 m_ambient;
-      glm::vec3 m_diffuse;
-      glm::vec3 m_specular;
-      float m_ambientStrength;
+      glm::vec4 m_ambient;
+      glm::vec4 m_diffuse;
+      glm::vec4 m_specular;
 
-      glm::vec3 m_direction;
-      float m_exists;
+      glm::vec4 m_direction;
     };
 
-    Ubo toUbo( ) { return { m_ambient, m_diffuse, m_specular, m_ambientStrength, m_direction, m_exists }; }
+    Ubo toUbo( ) 
+    {
+      Ubo ubo;
+      ubo.m_ambient = combine( m_ambient, m_ambientStrength );
+      ubo.m_diffuse = combine( m_diffuse, 1.0f );
+      ubo.m_specular = combine( m_specular, 1.0f );
+      ubo.m_direction = combine( m_direction, m_exists );
+
+      return ubo;
+    }
   };
 
   /// Can be used to add point light sources to the scene.
@@ -52,6 +61,7 @@ namespace rx
     virtual ~PointLightNode( ) = default;
 
     glm::vec3 m_position = glm::vec3( 0.0f ); ///< The position of the light.
+    float m_exists = 1.0f;
 
     float m_constant = 1.0f; ///< The constant factor of the light's abbreviation.
     float m_linear = 0.09f; ///< The linear factor of the light's abbreviation.
@@ -59,19 +69,31 @@ namespace rx
 
     struct Ubo
     {
-      glm::vec3 m_ambient;
-      glm::vec3 m_diffuse;
-      glm::vec3 m_specular;
-      float m_ambientStrength;
+      glm::vec4 m_ambient;
+      glm::vec4 m_diffuse;
+      glm::vec4 m_specular;
 
-      glm::vec3 m_position;
+      glm::vec4 m_position;
 
       float m_constant;
       float m_linear;
       float m_quadratic;
     };
 
-    Ubo toUbo( ) { return { m_ambient, m_diffuse, m_specular, m_ambientStrength, m_position, m_constant, m_linear, m_quadratic }; }
+    Ubo toUbo( )
+    {
+      Ubo ubo;
+      ubo.m_ambient = combine( m_ambient, m_ambientStrength );
+      ubo.m_diffuse = combine( m_diffuse, 1.0f );
+      ubo.m_specular = combine( m_specular, 1.0f );
+      ubo.m_position = combine( m_position, m_exists );
+
+      ubo.m_constant = m_constant;
+      ubo.m_linear = m_linear;
+      ubo.m_quadratic = m_quadratic;
+
+      return ubo;
+    }
   };
 }
 

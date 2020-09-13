@@ -184,21 +184,20 @@ namespace rx
     CameraUbo camUbo { view, proj, viewInverse, projInverse };
     m_cameraUniformBuffer.upload<CameraUbo>( imageIndex, camUbo );
 
-    std::vector<DirectionalLightNode::Ubo> dirLightNodeUbos;
-    dirLightNodeUbos.reserve( m_dirLightNodes.size( ) );
-    for ( const auto& dirLightNode : m_dirLightNodes )
+    LightsUbo lightNodeUbos;
+
+    DirectionalLightNode::Ubo dirLightNodeUbos[10];
+    for ( size_t i = 0; i < m_dirLightNodes.size( ); ++i )
     {
-      dirLightNodeUbos.push_back( dirLightNode->toUbo( ) );
+      lightNodeUbos.m_directionalLightNodes[i] = m_dirLightNodes[i]->toUbo( );
     }
 
-    std::vector<PointLightNode::Ubo> pointLightNodeUbos;
-    pointLightNodeUbos.reserve( m_pointLightNodes.size( ) );
-    for ( const auto& pointLightNode : m_pointLightNodes )
+    PointLightNode::Ubo pointLightNodeUbos[10];
+    for ( size_t i = 0; i < m_pointLightNodes.size( ); ++i )
     {
-      pointLightNodeUbos.push_back( pointLightNode->toUbo( ) );
+      lightNodeUbos.m_pointLightNodes[i] = m_pointLightNodes[i]->toUbo( );
     }
 
-    LightsUbo lightNodeUbos { dirLightNodeUbos, pointLightNodeUbos };
     m_lightsUniformBuffer.upload<LightsUbo>( imageIndex, lightNodeUbos );
 
     return true;

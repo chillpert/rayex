@@ -18,8 +18,8 @@ namespace rx
 
   struct LightsUbo
   {
-    std::vector<DirectionalLightNode::Ubo> m_directionalLightNodes;
-    std::vector<PointLightNode::Ubo> m_pointLightNodes;
+    DirectionalLightNode::Ubo m_directionalLightNodes[10];
+    PointLightNode::Ubo m_pointLightNodes[10];
 
     // void add( std::shared_ptr<DirectionalLightNode> directionalLightNodes ) { }
     // void add( std::shared_ptr<PointLightNode> pointLightNodes ) { }

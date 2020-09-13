@@ -163,10 +163,11 @@ Classes</h2></td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classrx_1_1_instance.html">Instance</a></td></tr>
 <tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">A wrapper class for the Vulkan instance.  <a href="classrx_1_1_instance.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structrx_1_1_lighting_ubo.html">LightingUbo</a></td></tr>
-<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classrx_1_1_light_node.html">LightNode</a></td></tr>
 <tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Adds lighting-related information to the <a class="el" href="classrx_1_1_transform_node.html" title="Adds transformation abilities to the Node base class.">TransformNode</a> parent class.  <a href="classrx_1_1_light_node.html#details">More...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structrx_1_1_lights_ubo.html">LightsUbo</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">A uniform buffer object for different light types.  <a href="structrx_1_1_lights_ubo.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classrx_1_1_material.html">Material</a></td></tr>
 <tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Contains all rendering properties and textures.  <a href="classrx_1_1_material.html#details">More...</a><br /></td></tr>
@@ -270,6 +271,9 @@ Functions</h2></td></tr>
 <tr class="separator:a06fa9d1a8abc68b8578eece02ebcd66f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aa6682c56ae665878e5a20671c4463caa"><td class="memItemLeft" align="right" valign="top">VKAPI_ATTR VkBool32 VKAPI_CALL&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacerx.html#aa6682c56ae665878e5a20671c4463caa">debugMessengerCallback</a> (VkDebugUtilsMessageSeverityFlagBitsEXT messageSeverity, VkDebugUtilsMessageTypeFlagsEXT messageType, const VkDebugUtilsMessengerCallbackDataEXT *callbackData, void *userData)</td></tr>
 <tr class="separator:aa6682c56ae665878e5a20671c4463caa"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7490fe87a8ae5366a07f3f4205497947"><td class="memItemLeft" align="right" valign="top">glm::vec4&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacerx.html#a7490fe87a8ae5366a07f3f4205497947">combine</a> (const glm::vec3 &amp;vec3, float value)</td></tr>
+<tr class="memdesc:a7490fe87a8ae5366a07f3f4205497947"><td class="mdescLeft">&#160;</td><td class="mdescRight">Used to combine a 3D vector with a float to a vec4 to keep uniform member alignment in shaders.  <a href="namespacerx.html#a7490fe87a8ae5366a07f3f4205497947">More...</a><br /></td></tr>
+<tr class="separator:a7490fe87a8ae5366a07f3f4205497947"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="var-members"></a>
 Variables</h2></td></tr>
@@ -410,6 +414,44 @@ Variables</h2></td></tr>
 </div>
 </div>
 <h2 class="groupheader">Function Documentation</h2>
+<a id="a7490fe87a8ae5366a07f3f4205497947"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7490fe87a8ae5366a07f3f4205497947">&#9670;&nbsp;</a></span>combine()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">glm::vec4 rx::combine </td>
+          <td>(</td>
+          <td class="paramtype">const glm::vec3 &amp;&#160;</td>
+          <td class="paramname"><em>vec3</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">float&#160;</td>
+          <td class="paramname"><em>value</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Used to combine a 3D vector with a float to a vec4 to keep uniform member alignment in shaders. </p>
+<p>The float will be placed inside the fourth component of the resulting 4D vector. </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">vec3</td><td>The 3D vector to combine with a float. </td></tr>
+    <tr><td class="paramname">value</td><td>The float to combine with a 3D vector. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>Returns the combination in a 4D vector.. </dd></dl>
+
+</div>
+</div>
 <a id="aa6682c56ae665878e5a20671c4463caa"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#aa6682c56ae665878e5a20671c4463caa">&#9670;&nbsp;</a></span>debugMessengerCallback()</h2>
 

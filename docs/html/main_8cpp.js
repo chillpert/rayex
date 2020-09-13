@@ -4,6 +4,7 @@ var main_8cpp =
     [ "CustomWindow", "class_custom_window.html", "class_custom_window" ],
     [ "CustomGui", "class_custom_gui.html", "class_custom_gui" ],
     [ "main", "main_8cpp.html#a0ddf1224851353fc92bfbff6f499fa97", null ],
+    [ "animationSpeed", "main_8cpp.html#a5b68360a66199e508b85785a0871029a", null ],
     [ "eA", "main_8cpp.html#a63e67b01a7e15c51154d6b47b5005586", null ],
     [ "eC", "main_8cpp.html#a47367c58f81a9a68f3e1e3fa1b02c773", null ],
     [ "eD", "main_8cpp.html#a0acdef1c008be2e54ad39101539aa8aa", null ],

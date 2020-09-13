@@ -1,18 +1,14 @@
 var searchData=
 [
-  ['setbindings_712',['setBindings',['../classrx_1_1_descriptor_set_layout.html#aad7ed8887fb57add2f28e6c29376ca50',1,'rx::DescriptorSetLayout']]],
-  ['setcamera_713',['setCamera',['../class_custom_window.html#a87bed33494862982588d180e5fde0e98',1,'CustomWindow::setCamera()'],['../classrx_1_1_renderer.html#aacd88edf019384a97ac7cf3cb884fdb4',1,'rx::Renderer::setCamera()']]],
-  ['setfov_714',['setFov',['../classrx_1_1_camera_base.html#a8754a5bfa41b65b4388d2eb6a629cf13',1,'rx::CameraBase']]],
-  ['setgui_715',['setGui',['../classrx_1_1_api.html#a1c214a508caee161e41241a66a465d0b',1,'rx::Api::setGui()'],['../classrx_1_1_renderer.html#a4d8326fe73f7a45a8355b834a7edd61c',1,'rx::Renderer::setGui()']]],
-  ['setimageaspect_716',['setImageAspect',['../classrx_1_1_swapchain.html#a32989d45e2a0530e3c2b6d346ae62315',1,'rx::Swapchain']]],
-  ['setimagelayout_717',['setImageLayout',['../classrx_1_1_swapchain.html#a7bf61cb448d0b0497ecd8fe33cbe5b44',1,'rx::Swapchain']]],
-  ['setmaxrecursiondepth_718',['setMaxRecursionDepth',['../classrx_1_1_settings.html#ad9485d5c59c7b86b057e8226a0d74157',1,'rx::Settings']]],
-  ['setnodes_719',['setNodes',['../classrx_1_1_api.html#a72a7ec289fe4c4cb0155cf51270a7164',1,'rx::Api::setNodes()'],['../classrx_1_1_renderer.html#a1f89f0dfe365bfaa83c62e6b3ed8324f',1,'rx::Renderer::setNodes()']]],
-  ['setposition_720',['setPosition',['../classrx_1_1_camera_base.html#a857f41e97a9ddc190292a70d474f5eac',1,'rx::CameraBase']]],
-  ['setrenderer_721',['setRenderer',['../class_custom_gui.html#af96be6eadc41d8ef60b335ce92ea70bf',1,'CustomGui']]],
-  ['setsensitivity_722',['setSensitivity',['../classrx_1_1_camera_base.html#a0004c71206e7d392d8c815e053a8c397',1,'rx::CameraBase']]],
-  ['setsize_723',['setSize',['../classrx_1_1_camera_base.html#aca83d9f192c98b9cabc278a5c9cc7678',1,'rx::CameraBase']]],
-  ['submittoqueue_724',['submitToQueue',['../classrx_1_1_command_buffer.html#a31fe2373d5dd2af4c9b087cc0a6cfd9e',1,'rx::CommandBuffer']]],
-  ['surface_725',['Surface',['../classrx_1_1_surface.html#affa337798c1890c91b253af4f69490d3',1,'rx::Surface::Surface()=default'],['../classrx_1_1_surface.html#acd2225f3afbbe22dee2b27b6367efb9e',1,'rx::Surface::Surface(vk::Format format, vk::ColorSpaceKHR colorSpace, vk::PresentModeKHR presentMode, bool initialize=true)']]],
-  ['swapchain_726',['Swapchain',['../classrx_1_1_swapchain.html#a7c63bb007e1f5a8cb3b80d793c015850',1,'rx::Swapchain::Swapchain()=default'],['../classrx_1_1_swapchain.html#ab12cbb10f76e2004d45f7f805b3eb73e',1,'rx::Swapchain::Swapchain(Surface *surface, vk::RenderPass renderPass, bool initialize=true)']]]
+  ['raytrace_722',['rayTrace',['../classrx_1_1_ray_tracing_builder.html#a40136a2ada9c8fd67e3719e9d2812ae8',1,'rx::RayTracingBuilder']]],
+  ['recreate_723',['recreate',['../classrx_1_1_gui_base.html#a02de12dd4e477a1b2cdb217dbf7c1ceb',1,'rx::GuiBase']]],
+  ['refresh_724',['refresh',['../classrx_1_1_settings.html#a9e09b0dedc3a576d3a595c410df62479',1,'rx::Settings']]],
+  ['render_725',['render',['../classrx_1_1_api.html#a79f83f0658f4fd2a2012b5191d8e4ee5',1,'rx::Api::render()'],['../classrx_1_1_gui_base.html#ad2100f03fe7e64b12cc315231effae88',1,'rx::GuiBase::render()']]],
+  ['renderdrawdata_726',['renderDrawData',['../classrx_1_1_gui_base.html#a668f00b604de4a566d6b46a469fdb62a',1,'rx::GuiBase']]],
+  ['renderer_727',['Renderer',['../classrx_1_1_renderer.html#adac272ae85ea19cc6ce17c93e4fbb5b5',1,'rx::Renderer::Renderer()'],['../classrx_1_1_renderer.html#ae7ad602d913e3a5725a067389653984f',1,'rx::Renderer::Renderer(std::shared_ptr&lt; CameraBase &gt; camera)'],['../classrx_1_1_renderer.html#a2307afebcca82a81ff1b1468e1d9b02d',1,'rx::Renderer::Renderer(std::shared_ptr&lt; WindowBase &gt; window)'],['../classrx_1_1_renderer.html#a5fea80c8c0ef353f0bf0c51d841db422',1,'rx::Renderer::Renderer(std::shared_ptr&lt; WindowBase &gt; window, std::shared_ptr&lt; CameraBase &gt; camera)']]],
+  ['renderpass_728',['RenderPass',['../classrx_1_1_render_pass.html#ae57da1d57e10f8e1499be97aa40f3cbb',1,'rx::RenderPass::RenderPass()=default'],['../classrx_1_1_render_pass.html#acec123f5c67d64cfec8e0aab9bfec87e',1,'rx::RenderPass::RenderPass(const std::vector&lt; vk::AttachmentDescription &gt; &amp;attachments, const std::vector&lt; vk::SubpassDescription &gt; &amp;subpasses, const std::vector&lt; vk::SubpassDependency &gt; &amp;dependencies, bool initialize=true)']]],
+  ['reset_729',['reset',['../classrx_1_1_command_buffer.html#ab76173ed0d4409599c99f16f8dd830d7',1,'rx::CommandBuffer']]],
+  ['resize_730',['resize',['../classrx_1_1_window_base.html#a6313eb78b5d688f3e3997c5163e9ac69',1,'rx::WindowBase']]],
+  ['retrievehandles_731',['retrieveHandles',['../classrx_1_1_queues.html#a3262a78b46dd3d20f720c256beee4c68',1,'rx::Queues']]],
+  ['run_732',['run',['../classrx_1_1_renderer.html#ad99a218626b4a8c588d42fc772f0b1fb',1,'rx::Renderer']]]
 ];

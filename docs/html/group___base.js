@@ -57,11 +57,58 @@ var group___base =
       [ "m_right", "classrx_1_1_camera_base.html#aa8265a407c671d06ec13d13c8a1a4f45", null ],
       [ "m_sensitivity", "classrx_1_1_camera_base.html#a0e61267ea24b0230dfb44d41a52c7bef", null ],
       [ "m_up", "classrx_1_1_camera_base.html#ab118b51be01f24a1fa82d7e60103d95c", null ],
+      [ "m_updateProj", "classrx_1_1_camera_base.html#a7e735d06073e1531b822f9ca639ccda5", null ],
+      [ "m_updateView", "classrx_1_1_camera_base.html#a7f4cebd8e2b8abbe39d4e84a0aac0933", null ],
       [ "m_view", "classrx_1_1_camera_base.html#aba8ec1bb4e876ea05696f309b6884867", null ],
       [ "m_viewInverse", "classrx_1_1_camera_base.html#a1e7e0902b700203c7a458701a86b941f", null ],
       [ "m_width", "classrx_1_1_camera_base.html#a925d937289189dbd2be9ab71c554ca3a", null ],
       [ "m_worldUp", "classrx_1_1_camera_base.html#ad4501972649a681c6efdd73657cef1f1", null ],
       [ "m_yaw", "classrx_1_1_camera_base.html#a1a0753114dc3143ea5e877ceaf066f77", null ]
+    ] ],
+    [ "GeometryNode", "classrx_1_1_geometry_node.html", [
+      [ "GeometryNode", "classrx_1_1_geometry_node.html#aede6f1f04687f52e37b9e625d17a1972", null ],
+      [ "~GeometryNode", "classrx_1_1_geometry_node.html#a57f4652ce3179f1c100d653ef38cad63", null ],
+      [ "m_material", "classrx_1_1_geometry_node.html#acc342f0a3e84eb860cbe99ed95201a68", null ],
+      [ "m_modelPath", "classrx_1_1_geometry_node.html#a6ea269b762c2ed8c4db34eac664320f9", null ],
+      [ "m_rtInstance", "classrx_1_1_geometry_node.html#a02b22b5f609b971471f3fda13dc08689", null ]
+    ] ],
+    [ "LightNode", "classrx_1_1_light_node.html", [
+      [ "~LightNode", "classrx_1_1_light_node.html#ab99f0c76755b70566ae9ea6677d2e613", null ],
+      [ "m_ambient", "classrx_1_1_light_node.html#a07042b78c47e31ba02baa789e96d4f73", null ],
+      [ "m_ambientIntensity", "classrx_1_1_light_node.html#aa28f9ddd3cb3450a40fb7a0f4eb0afa4", null ],
+      [ "m_diffuse", "classrx_1_1_light_node.html#a1a5be4d70c77a892a614dfc27dbf000f", null ],
+      [ "m_diffuseIntensity", "classrx_1_1_light_node.html#a89195b9b348bf59aa88ea679b05606cd", null ],
+      [ "m_exists", "classrx_1_1_light_node.html#a4c69e0692b6f500ba7e814794ea7108c", null ],
+      [ "m_specular", "classrx_1_1_light_node.html#a915cbf8be6f243dc6150ae5307bac0de", null ],
+      [ "m_specularIntensity", "classrx_1_1_light_node.html#a462faca08e27756d278ce934c3b92e86", null ]
+    ] ],
+    [ "DirectionalLightNode", "classrx_1_1_directional_light_node.html", [
+      [ "Ubo", "structrx_1_1_directional_light_node_1_1_ubo.html", [
+        [ "m_ambient", "structrx_1_1_directional_light_node_1_1_ubo.html#a0a58156258d333466f999608b2e22a7e", null ],
+        [ "m_diffuse", "structrx_1_1_directional_light_node_1_1_ubo.html#a8bf4620e09d9c39636094bc24569a6ca", null ],
+        [ "m_direction", "structrx_1_1_directional_light_node_1_1_ubo.html#a1cfdf419d634090203c5be11c5d6b361", null ],
+        [ "m_specular", "structrx_1_1_directional_light_node_1_1_ubo.html#acf6f110c158403d5b8c7be3ae9e801ff", null ]
+      ] ],
+      [ "~DirectionalLightNode", "classrx_1_1_directional_light_node.html#a9ff5fa50bb746f0af5ad9f2278af40e0", null ],
+      [ "toUbo", "classrx_1_1_directional_light_node.html#ae522c2d6d4abbd1b96003d500100400b", null ],
+      [ "m_direction", "classrx_1_1_directional_light_node.html#a2858db1a7666e37dda7a27790ba3bd03", null ]
+    ] ],
+    [ "PointLightNode", "classrx_1_1_point_light_node.html", [
+      [ "Ubo", "structrx_1_1_point_light_node_1_1_ubo.html", [
+        [ "m_ambient", "structrx_1_1_point_light_node_1_1_ubo.html#a4e6f1424bdbba910eef6f53af6350cca", null ],
+        [ "m_constant", "structrx_1_1_point_light_node_1_1_ubo.html#ad3b9c716606b2ec68b0872ba376d5b4a", null ],
+        [ "m_diffuse", "structrx_1_1_point_light_node_1_1_ubo.html#a60fb614f44c9cbd09cc54ee9a7810554", null ],
+        [ "m_linear", "structrx_1_1_point_light_node_1_1_ubo.html#a4de7307b5506625869696bb603a202fb", null ],
+        [ "m_position", "structrx_1_1_point_light_node_1_1_ubo.html#ab800f79021718c3ce8e9f91fb421432a", null ],
+        [ "m_quadratic", "structrx_1_1_point_light_node_1_1_ubo.html#abc079cca86d4f938628c91b84b344e42", null ],
+        [ "m_specular", "structrx_1_1_point_light_node_1_1_ubo.html#a2d8f9d3c7880eb561c554e9cb4a802f7", null ]
+      ] ],
+      [ "~PointLightNode", "classrx_1_1_point_light_node.html#a05cf7b3ebc14649ca2a9e66220e64fcc", null ],
+      [ "toUbo", "classrx_1_1_point_light_node.html#ab432ef961bd228f48e6f75c642224408", null ],
+      [ "m_constant", "classrx_1_1_point_light_node.html#a8abdc0b49cd9ef1f4ba8a0838624874d", null ],
+      [ "m_linear", "classrx_1_1_point_light_node.html#a613d0e39b4384721df3974d71f8566d1", null ],
+      [ "m_position", "classrx_1_1_point_light_node.html#a48f380f7bc69f6c5be05b9ed39ec8ed4", null ],
+      [ "m_quadratic", "classrx_1_1_point_light_node.html#a7c91407d1945e17c4a3152cd76920128", null ]
     ] ],
     [ "Node", "classrx_1_1_node.html", [
       [ "Node", "classrx_1_1_node.html#adf0d15a58309c1fdb7cff60a5a4e10f5", null ],
@@ -74,31 +121,6 @@ var group___base =
       [ "m_inverseWorldTransform", "classrx_1_1_transform_node.html#a9b79a66fff1bebfd016e7033ff85d19c", null ],
       [ "m_localTransform", "classrx_1_1_transform_node.html#a67bf8eab8e92933653f274f7b47ae28c", null ],
       [ "m_worldTransform", "classrx_1_1_transform_node.html#ae9c1ddad631772665bb59950073b3d41", null ]
-    ] ],
-    [ "GeometryNode", "classrx_1_1_geometry_node.html", [
-      [ "GeometryNode", "classrx_1_1_geometry_node.html#aede6f1f04687f52e37b9e625d17a1972", null ],
-      [ "~GeometryNode", "classrx_1_1_geometry_node.html#a57f4652ce3179f1c100d653ef38cad63", null ],
-      [ "m_material", "classrx_1_1_geometry_node.html#acc342f0a3e84eb860cbe99ed95201a68", null ],
-      [ "m_modelPath", "classrx_1_1_geometry_node.html#a6ea269b762c2ed8c4db34eac664320f9", null ],
-      [ "m_rtInstance", "classrx_1_1_geometry_node.html#a02b22b5f609b971471f3fda13dc08689", null ]
-    ] ],
-    [ "LightNode", "classrx_1_1_light_node.html", [
-      [ "~LightNode", "classrx_1_1_light_node.html#ab99f0c76755b70566ae9ea6677d2e613", null ],
-      [ "m_ambient", "classrx_1_1_light_node.html#a07042b78c47e31ba02baa789e96d4f73", null ],
-      [ "m_ambientStrength", "classrx_1_1_light_node.html#a4136eaa229f770cf5d4a7da7ff476d4c", null ],
-      [ "m_diffuse", "classrx_1_1_light_node.html#a1a5be4d70c77a892a614dfc27dbf000f", null ],
-      [ "m_specular", "classrx_1_1_light_node.html#a915cbf8be6f243dc6150ae5307bac0de", null ]
-    ] ],
-    [ "DirectionalLightNode", "classrx_1_1_directional_light_node.html", [
-      [ "~DirectionalLightNode", "classrx_1_1_directional_light_node.html#a9ff5fa50bb746f0af5ad9f2278af40e0", null ],
-      [ "m_direction", "classrx_1_1_directional_light_node.html#a2858db1a7666e37dda7a27790ba3bd03", null ]
-    ] ],
-    [ "PointLightNode", "classrx_1_1_point_light_node.html", [
-      [ "~PointLightNode", "classrx_1_1_point_light_node.html#a05cf7b3ebc14649ca2a9e66220e64fcc", null ],
-      [ "m_constant", "classrx_1_1_point_light_node.html#a8abdc0b49cd9ef1f4ba8a0838624874d", null ],
-      [ "m_linear", "classrx_1_1_point_light_node.html#a613d0e39b4384721df3974d71f8566d1", null ],
-      [ "m_position", "classrx_1_1_point_light_node.html#a48f380f7bc69f6c5be05b9ed39ec8ed4", null ],
-      [ "m_quadratic", "classrx_1_1_point_light_node.html#a7c91407d1945e17c4a3152cd76920128", null ]
     ] ],
     [ "Renderer", "classrx_1_1_renderer.html", [
       [ "Renderer", "classrx_1_1_renderer.html#adac272ae85ea19cc6ce17c93e4fbb5b5", null ],

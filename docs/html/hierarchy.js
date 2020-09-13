@@ -25,7 +25,7 @@ var hierarchy =
       [ "rx::Texture", "classrx_1_1_texture.html", null ]
     ] ],
     [ "rx::Instance", "classrx_1_1_instance.html", null ],
-    [ "rx::LightingUbo", "structrx_1_1_lighting_ubo.html", null ],
+    [ "rx::LightsUbo", "structrx_1_1_lights_ubo.html", null ],
     [ "rx::Material", "classrx_1_1_material.html", null ],
     [ "rx::Model", "classrx_1_1_model.html", null ],
     [ "rx::Node", "classrx_1_1_node.html", [
@@ -49,6 +49,8 @@ var hierarchy =
     [ "rx::Swapchain", "classrx_1_1_swapchain.html", null ],
     [ "rx::Time", "classrx_1_1_time.html", null ],
     [ "rx::Tlas", "structrx_1_1_tlas.html", null ],
+    [ "rx::PointLightNode::Ubo", "structrx_1_1_point_light_node_1_1_ubo.html", null ],
+    [ "rx::DirectionalLightNode::Ubo", "structrx_1_1_directional_light_node_1_1_ubo.html", null ],
     [ "rx::UniformBuffer", "classrx_1_1_uniform_buffer.html", null ],
     [ "rx::Vertex", "structrx_1_1_vertex.html", null ],
     [ "rx::WindowBase", "classrx_1_1_window_base.html", [

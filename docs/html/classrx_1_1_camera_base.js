@@ -26,6 +26,8 @@ var classrx_1_1_camera_base =
     [ "m_right", "classrx_1_1_camera_base.html#aa8265a407c671d06ec13d13c8a1a4f45", null ],
     [ "m_sensitivity", "classrx_1_1_camera_base.html#a0e61267ea24b0230dfb44d41a52c7bef", null ],
     [ "m_up", "classrx_1_1_camera_base.html#ab118b51be01f24a1fa82d7e60103d95c", null ],
+    [ "m_updateProj", "classrx_1_1_camera_base.html#a7e735d06073e1531b822f9ca639ccda5", null ],
+    [ "m_updateView", "classrx_1_1_camera_base.html#a7f4cebd8e2b8abbe39d4e84a0aac0933", null ],
     [ "m_view", "classrx_1_1_camera_base.html#aba8ec1bb4e876ea05696f309b6884867", null ],
     [ "m_viewInverse", "classrx_1_1_camera_base.html#a1e7e0902b700203c7a458701a86b941f", null ],
     [ "m_width", "classrx_1_1_camera_base.html#a925d937289189dbd2be9ab71c554ca3a", null ],

@@ -16,13 +16,12 @@ namespace rx
     glm::mat4 m_projectionInverse = glm::mat4( 1.0f );
   };
 
+  /// A uniform buffer object for different light types.
+  /// @ingroup API
   struct LightsUbo
   {
     DirectionalLightNode::Ubo m_directionalLightNodes[10];
     PointLightNode::Ubo m_pointLightNodes[10];
-
-    // void add( std::shared_ptr<DirectionalLightNode> directionalLightNodes ) { }
-    // void add( std::shared_ptr<PointLightNode> pointLightNodes ) { }
   };
 
   /// A specialised buffer for uniforms.

@@ -94,18 +94,19 @@ $(document).ready(function(){initNavTree('classrx_1_1_point_light_node.html','')
 
 <div class="header">
   <div class="summary">
+<a href="#nested-classes">Classes</a> &#124;
 <a href="#pub-methods">Public Member Functions</a> &#124;
 <a href="#pub-attribs">Public Attributes</a> &#124;
 <a href="classrx_1_1_point_light_node-members.html">List of all members</a>  </div>
   <div class="headertitle">
-<div class="title">rx::PointLightNode Class Reference<div class="ingroups"><a class="el" href="group___base.html">Interfaces and Base Components</a></div></div>  </div>
+<div class="title">rx::PointLightNode Class Reference<div class="ingroups"><a class="el" href="group___base.html">Interfaces</a></div></div>  </div>
 </div><!--header-->
 <div class="contents">
 
 <p>Can be used to add point light sources to the scene.  
  <a href="classrx_1_1_point_light_node.html#details">More...</a></p>
 
-<p><code>#include &lt;<a class="el" href="_node_base_8hpp_source.html">NodeBase.hpp</a>&gt;</code></p>
+<p><code>#include &lt;<a class="el" href="_light_node_base_8hpp_source.html">LightNodeBase.hpp</a>&gt;</code></p>
 <div class="dynheader">
 Inheritance diagram for rx::PointLightNode:</div>
 <div class="dyncontent">
@@ -118,10 +119,21 @@ Inheritance diagram for rx::PointLightNode:</div>
   </map>
 </div></div>
 <table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="nested-classes"></a>
+Classes</h2></td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structrx_1_1_point_light_node_1_1_ubo.html">Ubo</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Used to combine members of <a class="el" href="classrx_1_1_point_light_node.html" title="Can be used to add point light sources to the scene.">PointLightNode</a> to data types that will not cause uniform member alignment issues in shaders.  <a href="structrx_1_1_point_light_node_1_1_ubo.html#details">More...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
 <tr class="memitem:a05cf7b3ebc14649ca2a9e66220e64fcc"><td class="memItemLeft" align="right" valign="top">virtual&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classrx_1_1_point_light_node.html#a05cf7b3ebc14649ca2a9e66220e64fcc">~PointLightNode</a> ()=default</td></tr>
 <tr class="separator:a05cf7b3ebc14649ca2a9e66220e64fcc"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab432ef961bd228f48e6f75c642224408"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structrx_1_1_point_light_node_1_1_ubo.html">Ubo</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classrx_1_1_point_light_node.html#ab432ef961bd228f48e6f75c642224408">toUbo</a> ()</td></tr>
+<tr class="separator:ab432ef961bd228f48e6f75c642224408"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="inherit_header pub_methods_classrx_1_1_light_node"><td colspan="2" onclick="javascript:toggleInherit('pub_methods_classrx_1_1_light_node')"><img src="closed.png" alt="-"/>&#160;Public Member Functions inherited from <a class="el" href="classrx_1_1_light_node.html">rx::LightNode</a></td></tr>
+<tr class="memitem:ab99f0c76755b70566ae9ea6677d2e613 inherit pub_methods_classrx_1_1_light_node"><td class="memItemLeft" align="right" valign="top">virtual&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classrx_1_1_light_node.html#ab99f0c76755b70566ae9ea6677d2e613">~LightNode</a> ()=default</td></tr>
+<tr class="separator:ab99f0c76755b70566ae9ea6677d2e613 inherit pub_methods_classrx_1_1_light_node"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="inherit_header pub_methods_classrx_1_1_transform_node"><td colspan="2" onclick="javascript:toggleInherit('pub_methods_classrx_1_1_transform_node')"><img src="closed.png" alt="-"/>&#160;Public Member Functions inherited from <a class="el" href="classrx_1_1_transform_node.html">rx::TransformNode</a></td></tr>
 <tr class="memitem:a8930dc916df0f32e6682f2ba4b1ed621 inherit pub_methods_classrx_1_1_transform_node"><td class="memItemLeft" align="right" valign="top">virtual&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classrx_1_1_transform_node.html#a8930dc916df0f32e6682f2ba4b1ed621">~TransformNode</a> ()=default</td></tr>
 <tr class="separator:a8930dc916df0f32e6682f2ba4b1ed621 inherit pub_methods_classrx_1_1_transform_node"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -147,6 +159,27 @@ Public Attributes</h2></td></tr>
 <tr class="memitem:a7c91407d1945e17c4a3152cd76920128"><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classrx_1_1_point_light_node.html#a7c91407d1945e17c4a3152cd76920128">m_quadratic</a> = 0.032f</td></tr>
 <tr class="memdesc:a7c91407d1945e17c4a3152cd76920128"><td class="mdescLeft">&#160;</td><td class="mdescRight">The quadratic factor of the light's abbreviation.  <a href="classrx_1_1_point_light_node.html#a7c91407d1945e17c4a3152cd76920128">More...</a><br /></td></tr>
 <tr class="separator:a7c91407d1945e17c4a3152cd76920128"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="inherit_header pub_attribs_classrx_1_1_light_node"><td colspan="2" onclick="javascript:toggleInherit('pub_attribs_classrx_1_1_light_node')"><img src="closed.png" alt="-"/>&#160;Public Attributes inherited from <a class="el" href="classrx_1_1_light_node.html">rx::LightNode</a></td></tr>
+<tr class="memitem:a07042b78c47e31ba02baa789e96d4f73 inherit pub_attribs_classrx_1_1_light_node"><td class="memItemLeft" align="right" valign="top">glm::vec3&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classrx_1_1_light_node.html#a07042b78c47e31ba02baa789e96d4f73">m_ambient</a> = { 0.2f, 0.2f, 0.2f }</td></tr>
+<tr class="memdesc:a07042b78c47e31ba02baa789e96d4f73 inherit pub_attribs_classrx_1_1_light_node"><td class="mdescLeft">&#160;</td><td class="mdescRight">The ambient color.  <a href="classrx_1_1_light_node.html#a07042b78c47e31ba02baa789e96d4f73">More...</a><br /></td></tr>
+<tr class="separator:a07042b78c47e31ba02baa789e96d4f73 inherit pub_attribs_classrx_1_1_light_node"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1a5be4d70c77a892a614dfc27dbf000f inherit pub_attribs_classrx_1_1_light_node"><td class="memItemLeft" align="right" valign="top">glm::vec3&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classrx_1_1_light_node.html#a1a5be4d70c77a892a614dfc27dbf000f">m_diffuse</a> = { 0.8f, 0.8f, 0.8f }</td></tr>
+<tr class="memdesc:a1a5be4d70c77a892a614dfc27dbf000f inherit pub_attribs_classrx_1_1_light_node"><td class="mdescLeft">&#160;</td><td class="mdescRight">The diffuse color.  <a href="classrx_1_1_light_node.html#a1a5be4d70c77a892a614dfc27dbf000f">More...</a><br /></td></tr>
+<tr class="separator:a1a5be4d70c77a892a614dfc27dbf000f inherit pub_attribs_classrx_1_1_light_node"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a915cbf8be6f243dc6150ae5307bac0de inherit pub_attribs_classrx_1_1_light_node"><td class="memItemLeft" align="right" valign="top">glm::vec3&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classrx_1_1_light_node.html#a915cbf8be6f243dc6150ae5307bac0de">m_specular</a> = { 1.0f, 1.0f, 1.0f }</td></tr>
+<tr class="memdesc:a915cbf8be6f243dc6150ae5307bac0de inherit pub_attribs_classrx_1_1_light_node"><td class="mdescLeft">&#160;</td><td class="mdescRight">The specular highlight's color.  <a href="classrx_1_1_light_node.html#a915cbf8be6f243dc6150ae5307bac0de">More...</a><br /></td></tr>
+<tr class="separator:a915cbf8be6f243dc6150ae5307bac0de inherit pub_attribs_classrx_1_1_light_node"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa28f9ddd3cb3450a40fb7a0f4eb0afa4 inherit pub_attribs_classrx_1_1_light_node"><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classrx_1_1_light_node.html#aa28f9ddd3cb3450a40fb7a0f4eb0afa4">m_ambientIntensity</a> = 0.7f</td></tr>
+<tr class="memdesc:aa28f9ddd3cb3450a40fb7a0f4eb0afa4 inherit pub_attribs_classrx_1_1_light_node"><td class="mdescLeft">&#160;</td><td class="mdescRight">The ambient intensity.  <a href="classrx_1_1_light_node.html#aa28f9ddd3cb3450a40fb7a0f4eb0afa4">More...</a><br /></td></tr>
+<tr class="separator:aa28f9ddd3cb3450a40fb7a0f4eb0afa4 inherit pub_attribs_classrx_1_1_light_node"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a89195b9b348bf59aa88ea679b05606cd inherit pub_attribs_classrx_1_1_light_node"><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classrx_1_1_light_node.html#a89195b9b348bf59aa88ea679b05606cd">m_diffuseIntensity</a> = 1.0f</td></tr>
+<tr class="memdesc:a89195b9b348bf59aa88ea679b05606cd inherit pub_attribs_classrx_1_1_light_node"><td class="mdescLeft">&#160;</td><td class="mdescRight">The diffuse intensity.  <a href="classrx_1_1_light_node.html#a89195b9b348bf59aa88ea679b05606cd">More...</a><br /></td></tr>
+<tr class="separator:a89195b9b348bf59aa88ea679b05606cd inherit pub_attribs_classrx_1_1_light_node"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a462faca08e27756d278ce934c3b92e86 inherit pub_attribs_classrx_1_1_light_node"><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classrx_1_1_light_node.html#a462faca08e27756d278ce934c3b92e86">m_specularIntensity</a> = 1.0f</td></tr>
+<tr class="memdesc:a462faca08e27756d278ce934c3b92e86 inherit pub_attribs_classrx_1_1_light_node"><td class="mdescLeft">&#160;</td><td class="mdescRight">The specular intensity.  <a href="classrx_1_1_light_node.html#a462faca08e27756d278ce934c3b92e86">More...</a><br /></td></tr>
+<tr class="separator:a462faca08e27756d278ce934c3b92e86 inherit pub_attribs_classrx_1_1_light_node"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4c69e0692b6f500ba7e814794ea7108c inherit pub_attribs_classrx_1_1_light_node"><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classrx_1_1_light_node.html#a4c69e0692b6f500ba7e814794ea7108c">m_exists</a> = 1.0f</td></tr>
+<tr class="separator:a4c69e0692b6f500ba7e814794ea7108c inherit pub_attribs_classrx_1_1_light_node"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="inherit_header pub_attribs_classrx_1_1_transform_node"><td colspan="2" onclick="javascript:toggleInherit('pub_attribs_classrx_1_1_transform_node')"><img src="closed.png" alt="-"/>&#160;Public Attributes inherited from <a class="el" href="classrx_1_1_transform_node.html">rx::TransformNode</a></td></tr>
 <tr class="memitem:ae9c1ddad631772665bb59950073b3d41 inherit pub_attribs_classrx_1_1_transform_node"><td class="memItemLeft" align="right" valign="top">glm::mat4&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classrx_1_1_transform_node.html#ae9c1ddad631772665bb59950073b3d41">m_worldTransform</a> = glm::mat4( 1.0f )</td></tr>
 <tr class="memdesc:ae9c1ddad631772665bb59950073b3d41 inherit pub_attribs_classrx_1_1_transform_node"><td class="mdescLeft">&#160;</td><td class="mdescRight">The world space transformation matrix.  <a href="classrx_1_1_transform_node.html#ae9c1ddad631772665bb59950073b3d41">More...</a><br /></td></tr>
@@ -160,25 +193,6 @@ Public Attributes</h2></td></tr>
 <tr class="memitem:a882cd9b562378ce4bfaeab36a9051f5b inherit pub_attribs_classrx_1_1_transform_node"><td class="memItemLeft" align="right" valign="top">glm::mat4&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classrx_1_1_transform_node.html#a882cd9b562378ce4bfaeab36a9051f5b">m_inverseLocalTransform</a> = glm::mat4( 1.0f )</td></tr>
 <tr class="memdesc:a882cd9b562378ce4bfaeab36a9051f5b inherit pub_attribs_classrx_1_1_transform_node"><td class="mdescLeft">&#160;</td><td class="mdescRight">The local space transformation matrix inversed.  <a href="classrx_1_1_transform_node.html#a882cd9b562378ce4bfaeab36a9051f5b">More...</a><br /></td></tr>
 <tr class="separator:a882cd9b562378ce4bfaeab36a9051f5b inherit pub_attribs_classrx_1_1_transform_node"><td class="memSeparator" colspan="2">&#160;</td></tr>
-</table><table class="memberdecls">
-<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="inherited"></a>
-Additional Inherited Members</h2></td></tr>
-<tr class="inherit_header pro_methods_classrx_1_1_light_node"><td colspan="2" onclick="javascript:toggleInherit('pro_methods_classrx_1_1_light_node')"><img src="closed.png" alt="-"/>&#160;Protected Member Functions inherited from <a class="el" href="classrx_1_1_light_node.html">rx::LightNode</a></td></tr>
-<tr class="memitem:ab99f0c76755b70566ae9ea6677d2e613 inherit pro_methods_classrx_1_1_light_node"><td class="memItemLeft" align="right" valign="top">virtual&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classrx_1_1_light_node.html#ab99f0c76755b70566ae9ea6677d2e613">~LightNode</a> ()=default</td></tr>
-<tr class="separator:ab99f0c76755b70566ae9ea6677d2e613 inherit pro_methods_classrx_1_1_light_node"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="inherit_header pro_attribs_classrx_1_1_light_node"><td colspan="2" onclick="javascript:toggleInherit('pro_attribs_classrx_1_1_light_node')"><img src="closed.png" alt="-"/>&#160;Protected Attributes inherited from <a class="el" href="classrx_1_1_light_node.html">rx::LightNode</a></td></tr>
-<tr class="memitem:a07042b78c47e31ba02baa789e96d4f73 inherit pro_attribs_classrx_1_1_light_node"><td class="memItemLeft" align="right" valign="top">glm::vec3&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classrx_1_1_light_node.html#a07042b78c47e31ba02baa789e96d4f73">m_ambient</a> = { 0.2f, 0.2f, 0.2f }</td></tr>
-<tr class="memdesc:a07042b78c47e31ba02baa789e96d4f73 inherit pro_attribs_classrx_1_1_light_node"><td class="mdescLeft">&#160;</td><td class="mdescRight">The ambient color.  <a href="classrx_1_1_light_node.html#a07042b78c47e31ba02baa789e96d4f73">More...</a><br /></td></tr>
-<tr class="separator:a07042b78c47e31ba02baa789e96d4f73 inherit pro_attribs_classrx_1_1_light_node"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a1a5be4d70c77a892a614dfc27dbf000f inherit pro_attribs_classrx_1_1_light_node"><td class="memItemLeft" align="right" valign="top">glm::vec3&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classrx_1_1_light_node.html#a1a5be4d70c77a892a614dfc27dbf000f">m_diffuse</a> = { 0.8f, 0.8f, 0.8f }</td></tr>
-<tr class="memdesc:a1a5be4d70c77a892a614dfc27dbf000f inherit pro_attribs_classrx_1_1_light_node"><td class="mdescLeft">&#160;</td><td class="mdescRight">The diffuse color.  <a href="classrx_1_1_light_node.html#a1a5be4d70c77a892a614dfc27dbf000f">More...</a><br /></td></tr>
-<tr class="separator:a1a5be4d70c77a892a614dfc27dbf000f inherit pro_attribs_classrx_1_1_light_node"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a915cbf8be6f243dc6150ae5307bac0de inherit pro_attribs_classrx_1_1_light_node"><td class="memItemLeft" align="right" valign="top">glm::vec3&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classrx_1_1_light_node.html#a915cbf8be6f243dc6150ae5307bac0de">m_specular</a> = { 1.0f, 1.0f, 1.0f }</td></tr>
-<tr class="memdesc:a915cbf8be6f243dc6150ae5307bac0de inherit pro_attribs_classrx_1_1_light_node"><td class="mdescLeft">&#160;</td><td class="mdescRight">The specular highlight's color.  <a href="classrx_1_1_light_node.html#a915cbf8be6f243dc6150ae5307bac0de">More...</a><br /></td></tr>
-<tr class="separator:a915cbf8be6f243dc6150ae5307bac0de inherit pro_attribs_classrx_1_1_light_node"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a4136eaa229f770cf5d4a7da7ff476d4c inherit pro_attribs_classrx_1_1_light_node"><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classrx_1_1_light_node.html#a4136eaa229f770cf5d4a7da7ff476d4c">m_ambientStrength</a> = 0.7f</td></tr>
-<tr class="memdesc:a4136eaa229f770cf5d4a7da7ff476d4c inherit pro_attribs_classrx_1_1_light_node"><td class="mdescLeft">&#160;</td><td class="mdescRight">The ambient intensity.  <a href="classrx_1_1_light_node.html#a4136eaa229f770cf5d4a7da7ff476d4c">More...</a><br /></td></tr>
-<tr class="separator:a4136eaa229f770cf5d4a7da7ff476d4c inherit pro_attribs_classrx_1_1_light_node"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Can be used to add point light sources to the scene. </p>
@@ -204,6 +218,24 @@ Additional Inherited Members</h2></td></tr>
 <span class="mlabels"><span class="mlabel">virtual</span><span class="mlabel">default</span></span>  </td>
   </tr>
 </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<h2 class="groupheader">Member Function Documentation</h2>
+<a id="ab432ef961bd228f48e6f75c642224408"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab432ef961bd228f48e6f75c642224408">&#9670;&nbsp;</a></span>toUbo()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="structrx_1_1_point_light_node_1_1_ubo.html">PointLightNode::Ubo</a> rx::PointLightNode::toUbo </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
 </div><div class="memdoc">
 
 </div>

@@ -129,6 +129,9 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a9056fcfc622a01be0f711e682fd95db4"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classrx_1_1_descriptor_set.html#a9056fcfc622a01be0f711e682fd95db4">update</a> (vk::Buffer vertexBuffer, vk::Buffer indexBuffer)</td></tr>
 <tr class="memdesc:a9056fcfc622a01be0f711e682fd95db4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Used to update model related descriptors (without textures).  <a href="classrx_1_1_descriptor_set.html#a9056fcfc622a01be0f711e682fd95db4">More...</a><br /></td></tr>
 <tr class="separator:a9056fcfc622a01be0f711e682fd95db4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a56d8a5de66baa0f93b5f942f99d0f601"><td class="memItemLeft" align="right" valign="top">RX_API void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classrx_1_1_descriptor_set.html#a56d8a5de66baa0f93b5f942f99d0f601">update</a> (const std::vector&lt; vk::Buffer &gt; &amp;lightSources)</td></tr>
+<tr class="memdesc:a56d8a5de66baa0f93b5f942f99d0f601"><td class="mdescLeft">&#160;</td><td class="mdescRight">Used to update lighting related descriptors.  <a href="classrx_1_1_descriptor_set.html#a56d8a5de66baa0f93b5f942f99d0f601">More...</a><br /></td></tr>
+<tr class="separator:a56d8a5de66baa0f93b5f942f99d0f601"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aeaa8f4e2ec72e990bd2cb8bf0cc9d948"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classrx_1_1_descriptor_set.html#aeaa8f4e2ec72e990bd2cb8bf0cc9d948">free</a> ()</td></tr>
 <tr class="memdesc:aeaa8f4e2ec72e990bd2cb8bf0cc9d948"><td class="mdescLeft">&#160;</td><td class="mdescRight">Frees the descriptor sets.  <a href="classrx_1_1_descriptor_set.html#aeaa8f4e2ec72e990bd2cb8bf0cc9d948">More...</a><br /></td></tr>
 <tr class="separator:aeaa8f4e2ec72e990bd2cb8bf0cc9d948"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -336,8 +339,34 @@ Public Member Functions</h2></td></tr>
 
 </div>
 </div>
+<a id="a56d8a5de66baa0f93b5f942f99d0f601"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a56d8a5de66baa0f93b5f942f99d0f601">&#9670;&nbsp;</a></span>update() <span class="overload">[1/4]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void rx::DescriptorSet::update </td>
+          <td>(</td>
+          <td class="paramtype">const std::vector&lt; vk::Buffer &gt; &amp;&#160;</td>
+          <td class="paramname"><em>lightSources</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Used to update lighting related descriptors. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">lightSources</td><td>A Vulkan buffer containing data for all light sources. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
 <a id="abd7416cfc465e712cf328f8d8f43f998"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#abd7416cfc465e712cf328f8d8f43f998">&#9670;&nbsp;</a></span>update() <span class="overload">[1/3]</span></h2>
+<h2 class="memtitle"><span class="permalink"><a href="#abd7416cfc465e712cf328f8d8f43f998">&#9670;&nbsp;</a></span>update() <span class="overload">[2/4]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -381,7 +410,7 @@ Public Member Functions</h2></td></tr>
 </div>
 </div>
 <a id="a9056fcfc622a01be0f711e682fd95db4"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a9056fcfc622a01be0f711e682fd95db4">&#9670;&nbsp;</a></span>update() <span class="overload">[2/3]</span></h2>
+<h2 class="memtitle"><span class="permalink"><a href="#a9056fcfc622a01be0f711e682fd95db4">&#9670;&nbsp;</a></span>update() <span class="overload">[3/4]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -418,7 +447,7 @@ Public Member Functions</h2></td></tr>
 </div>
 </div>
 <a id="a0546064e0b3b5a681a5d1f0e0bbf8c2e"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a0546064e0b3b5a681a5d1f0e0bbf8c2e">&#9670;&nbsp;</a></span>update() <span class="overload">[3/3]</span></h2>
+<h2 class="memtitle"><span class="permalink"><a href="#a0546064e0b3b5a681a5d1f0e0bbf8c2e">&#9670;&nbsp;</a></span>update() <span class="overload">[4/4]</span></h2>
 
 <div class="memitem">
 <div class="memproto">

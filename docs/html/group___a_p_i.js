@@ -19,6 +19,7 @@ var group___a_p_i =
       [ "Buffer", "classrx_1_1_buffer.html#ad549ae24d3847007a301b57a178887bd", null ],
       [ "Buffer", "classrx_1_1_buffer.html#a1e31ae5e388c834d7ad2815f0b06ee96", null ],
       [ "Buffer", "classrx_1_1_buffer.html#ad7506338fd80dc87b5ef61c8212353b6", null ],
+      [ "Buffer", "classrx_1_1_buffer.html#a83f166d9046c4ad0591fb77b7292acfa", null ],
       [ "~Buffer", "classrx_1_1_buffer.html#a482f5ff44f1fb9a8548e0050e41d6285", null ],
       [ "copyToBuffer", "classrx_1_1_buffer.html#a491b496f95f75b0b586d262be250a011", null ],
       [ "copyToBuffer", "classrx_1_1_buffer.html#a7fc84cc30e02f167aa1956e80f1bb4f6", null ],
@@ -28,6 +29,7 @@ var group___a_p_i =
       [ "getMemory", "classrx_1_1_buffer.html#a00f743b54f4f6ac79e4dde5079de1d5c", null ],
       [ "getSize", "classrx_1_1_buffer.html#a9f6c8caed7b9ae15afaa30644a87fa36", null ],
       [ "init", "classrx_1_1_buffer.html#a3dcb26ae5db02346a1b81cac1c97dbbd", null ],
+      [ "operator=", "classrx_1_1_buffer.html#ad55990eb4cd9475fa6136a3e3a37e545", null ],
       [ "m_buffer", "classrx_1_1_buffer.html#a637f9f49535178d17698505ec0e4859a", null ],
       [ "m_memory", "classrx_1_1_buffer.html#a6f2b7d287631e65d775cc41210c999d4", null ],
       [ "m_size", "classrx_1_1_buffer.html#a9f35cdcb2aef37647274875014597c32", null ]
@@ -46,16 +48,20 @@ var group___a_p_i =
     ] ],
     [ "IndexBuffer", "classrx_1_1_index_buffer.html", [
       [ "IndexBuffer", "classrx_1_1_index_buffer.html#ad106741acd8effe40a0e230b1738ce92", null ],
-      [ "IndexBuffer", "classrx_1_1_index_buffer.html#a6598fd7a45b5f65709d235438e70f068", null ],
+      [ "IndexBuffer", "classrx_1_1_index_buffer.html#a75ddab28f642c193e17f0f0be004dcd1", null ],
       [ "getCount", "classrx_1_1_index_buffer.html#a29bd1d3a64747d7ec3e0961abd4c4373", null ],
       [ "getType", "classrx_1_1_index_buffer.html#a498b6ec64a58846b2d81676422e73e15", null ],
-      [ "init", "classrx_1_1_index_buffer.html#afe102e8f3272f8547d9b26b4a26daad3", null ]
+      [ "init", "classrx_1_1_index_buffer.html#a850e3953992775338162be238347e7f1", null ]
     ] ],
     [ "CameraUbo", "structrx_1_1_camera_ubo.html", [
       [ "m_projection", "structrx_1_1_camera_ubo.html#aee753c7caffeee39f74882ac0efabd36", null ],
       [ "m_projectionInverse", "structrx_1_1_camera_ubo.html#a9baf3056ebfa633c7fa9297a4e54820b", null ],
       [ "m_view", "structrx_1_1_camera_ubo.html#a21fc9f616f25f3323dda0c6222c835d5", null ],
       [ "m_viewInverse", "structrx_1_1_camera_ubo.html#ab1aec705f8a6ec1a2ea12772f561c52d", null ]
+    ] ],
+    [ "LightsUbo", "structrx_1_1_lights_ubo.html", [
+      [ "m_directionalLightNodes", "structrx_1_1_lights_ubo.html#af7c6448fe111703a5bb955446c2ff6c2", null ],
+      [ "m_pointLightNodes", "structrx_1_1_lights_ubo.html#a02fa8c3cb7f7765f7c4d21b3a6f812ec", null ]
     ] ],
     [ "UniformBuffer", "classrx_1_1_uniform_buffer.html", [
       [ "UniformBuffer", "classrx_1_1_uniform_buffer.html#a5bd1061900162cfabc9dc854ad8327a9", null ],
@@ -78,6 +84,7 @@ var group___a_p_i =
       [ "get", "classrx_1_1_descriptor_set.html#a3b1bb2f14fda2643e970ebaf75bf22ab", null ],
       [ "get", "classrx_1_1_descriptor_set.html#aebcf7f3f839ebd932c287cc2692993d7", null ],
       [ "init", "classrx_1_1_descriptor_set.html#ad37d599e9f1d21b1c710566786301c57", null ],
+      [ "update", "classrx_1_1_descriptor_set.html#a56d8a5de66baa0f93b5f942f99d0f601", null ],
       [ "update", "classrx_1_1_descriptor_set.html#abd7416cfc465e712cf328f8d8f43f998", null ],
       [ "update", "classrx_1_1_descriptor_set.html#a9056fcfc622a01be0f711e682fd95db4", null ],
       [ "update", "classrx_1_1_descriptor_set.html#a0546064e0b3b5a681a5d1f0e0bbf8c2e", null ]

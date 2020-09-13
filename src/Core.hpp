@@ -39,7 +39,7 @@
 #endif
 
 // Doxygen groups
-/// @defgroup Base Interfaces and Base Components
+/// @defgroup Base Interfaces
 /// @defgroup API Vulkan
 
 #endif // CORE_HPP

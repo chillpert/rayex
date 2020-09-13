@@ -100,11 +100,13 @@ $(document).ready(function(){initNavTree('functions_m.html',''); initResizable()
 : <a class="el" href="classrx_1_1_material.html#a52dd006d35378f6d05a31e7cbcefe710">rx::Material</a>
 </li>
 <li>m_ambient
-: <a class="el" href="classrx_1_1_light_node.html#a07042b78c47e31ba02baa789e96d4f73">rx::LightNode</a>
+: <a class="el" href="structrx_1_1_directional_light_node_1_1_ubo.html#a0a58156258d333466f999608b2e22a7e">rx::DirectionalLightNode::Ubo</a>
+, <a class="el" href="classrx_1_1_light_node.html#a07042b78c47e31ba02baa789e96d4f73">rx::LightNode</a>
 , <a class="el" href="classrx_1_1_material.html#a64b788421c17527f6d78491bf5b6a309">rx::Material</a>
+, <a class="el" href="structrx_1_1_point_light_node_1_1_ubo.html#a4e6f1424bdbba910eef6f53af6350cca">rx::PointLightNode::Ubo</a>
 </li>
-<li>m_ambientStrength
-: <a class="el" href="classrx_1_1_light_node.html#a4136eaa229f770cf5d4a7da7ff476d4c">rx::LightNode</a>
+<li>m_ambientIntensity
+: <a class="el" href="classrx_1_1_light_node.html#aa28f9ddd3cb3450a40fb7a0f4eb0afa4">rx::LightNode</a>
 </li>
 <li>m_buffer
 : <a class="el" href="classrx_1_1_buffer.html#a637f9f49535178d17698505ec0e4859a">rx::Buffer</a>
@@ -114,25 +116,38 @@ $(document).ready(function(){initNavTree('functions_m.html',''); initResizable()
 </li>
 <li>m_constant
 : <a class="el" href="classrx_1_1_point_light_node.html#a8abdc0b49cd9ef1f4ba8a0838624874d">rx::PointLightNode</a>
+, <a class="el" href="structrx_1_1_point_light_node_1_1_ubo.html#ad3b9c716606b2ec68b0872ba376d5b4a">rx::PointLightNode::Ubo</a>
 </li>
 <li>m_descriptorSets
 : <a class="el" href="classrx_1_1_model.html#a130d653ea3874bcdc65f55473ca88ebd">rx::Model</a>
 </li>
 <li>m_diffuse
-: <a class="el" href="classrx_1_1_light_node.html#a1a5be4d70c77a892a614dfc27dbf000f">rx::LightNode</a>
+: <a class="el" href="structrx_1_1_directional_light_node_1_1_ubo.html#a8bf4620e09d9c39636094bc24569a6ca">rx::DirectionalLightNode::Ubo</a>
+, <a class="el" href="classrx_1_1_light_node.html#a1a5be4d70c77a892a614dfc27dbf000f">rx::LightNode</a>
 , <a class="el" href="classrx_1_1_material.html#ab0709dc5f183386aaa664bd8ed2df395">rx::Material</a>
+, <a class="el" href="structrx_1_1_point_light_node_1_1_ubo.html#a60fb614f44c9cbd09cc54ee9a7810554">rx::PointLightNode::Ubo</a>
+</li>
+<li>m_diffuseIntensity
+: <a class="el" href="classrx_1_1_light_node.html#a89195b9b348bf59aa88ea679b05606cd">rx::LightNode</a>
 </li>
 <li>m_diffuseTexture
 : <a class="el" href="classrx_1_1_material.html#aa4622366560efcb73ce269c4ab0442e4">rx::Material</a>
 </li>
 <li>m_direction
 : <a class="el" href="classrx_1_1_directional_light_node.html#a2858db1a7666e37dda7a27790ba3bd03">rx::DirectionalLightNode</a>
+, <a class="el" href="structrx_1_1_directional_light_node_1_1_ubo.html#a1cfdf419d634090203c5be11c5d6b361">rx::DirectionalLightNode::Ubo</a>
+</li>
+<li>m_directionalLightNodes
+: <a class="el" href="structrx_1_1_lights_ubo.html#af7c6448fe111703a5bb955446c2ff6c2">rx::LightsUbo</a>
 </li>
 <li>m_displacementTexture
 : <a class="el" href="classrx_1_1_material.html#a87e59feebe45b4e701d42187dcdf6672">rx::Material</a>
 </li>
 <li>m_emission
 : <a class="el" href="classrx_1_1_material.html#a9a252f320cecb05134d0c997eae25c3e">rx::Material</a>
+</li>
+<li>m_exists
+: <a class="el" href="classrx_1_1_light_node.html#a4c69e0692b6f500ba7e814794ea7108c">rx::LightNode</a>
 </li>
 <li>m_extent
 : <a class="el" href="classrx_1_1_image.html#aa80182113a8af4a3d26e0c687a2f79bf">rx::Image</a>
@@ -168,9 +183,6 @@ $(document).ready(function(){initNavTree('functions_m.html',''); initResizable()
 <li>m_initialized
 : <a class="el" href="classrx_1_1_model.html#acbf968ef65bd2dd67d8f2cc5361262f4">rx::Model</a>
 </li>
-<li>m_intensity
-: <a class="el" href="structrx_1_1_lighting_ubo.html#a67ae53875a61a58ba321f031b3de8f2d">rx::LightingUbo</a>
-</li>
 <li>m_inverseLocalTransform
 : <a class="el" href="classrx_1_1_transform_node.html#a882cd9b562378ce4bfaeab36a9051f5b">rx::TransformNode</a>
 </li>
@@ -182,6 +194,7 @@ $(document).ready(function(){initNavTree('functions_m.html',''); initResizable()
 </li>
 <li>m_linear
 : <a class="el" href="classrx_1_1_point_light_node.html#a613d0e39b4384721df3974d71f8566d1">rx::PointLightNode</a>
+, <a class="el" href="structrx_1_1_point_light_node_1_1_ubo.html#a4de7307b5506625869696bb603a202fb">rx::PointLightNode::Ubo</a>
 </li>
 <li>m_localTransform
 : <a class="el" href="classrx_1_1_transform_node.html#a67bf8eab8e92933653f274f7b47ae28c">rx::TransformNode</a>
@@ -209,10 +222,13 @@ $(document).ready(function(){initNavTree('functions_m.html',''); initResizable()
 <li>m_pitch
 : <a class="el" href="classrx_1_1_camera_base.html#aa73bd0ec1fef362569d19049b6d1e88b">rx::CameraBase</a>
 </li>
+<li>m_pointLightNodes
+: <a class="el" href="structrx_1_1_lights_ubo.html#a02fa8c3cb7f7765f7c4d21b3a6f812ec">rx::LightsUbo</a>
+</li>
 <li>m_position
 : <a class="el" href="classrx_1_1_camera_base.html#abf958c04d4ae15345e0e4d45091cefc9">rx::CameraBase</a>
-, <a class="el" href="structrx_1_1_lighting_ubo.html#a363a9154871b92f51a42b9557b552895">rx::LightingUbo</a>
 , <a class="el" href="classrx_1_1_point_light_node.html#a48f380f7bc69f6c5be05b9ed39ec8ed4">rx::PointLightNode</a>
+, <a class="el" href="structrx_1_1_point_light_node_1_1_ubo.html#ab800f79021718c3ce8e9f91fb421432a">rx::PointLightNode::Ubo</a>
 </li>
 <li>m_projection
 : <a class="el" href="classrx_1_1_camera_base.html#a06e778020450261ba367a011c38f6111">rx::CameraBase</a>
@@ -224,6 +240,7 @@ $(document).ready(function(){initNavTree('functions_m.html',''); initResizable()
 </li>
 <li>m_quadratic
 : <a class="el" href="classrx_1_1_point_light_node.html#a7c91407d1945e17c4a3152cd76920128">rx::PointLightNode</a>
+, <a class="el" href="structrx_1_1_point_light_node_1_1_ubo.html#abc079cca86d4f938628c91b84b344e42">rx::PointLightNode::Ubo</a>
 </li>
 <li>m_reflectionIndex
 : <a class="el" href="classrx_1_1_material.html#a0b975393f1f906aa485b83bfff2f619c">rx::Material</a>
@@ -247,8 +264,13 @@ $(document).ready(function(){initNavTree('functions_m.html',''); initResizable()
 : <a class="el" href="classrx_1_1_buffer.html#a9f35cdcb2aef37647274875014597c32">rx::Buffer</a>
 </li>
 <li>m_specular
-: <a class="el" href="classrx_1_1_light_node.html#a915cbf8be6f243dc6150ae5307bac0de">rx::LightNode</a>
+: <a class="el" href="structrx_1_1_directional_light_node_1_1_ubo.html#acf6f110c158403d5b8c7be3ae9e801ff">rx::DirectionalLightNode::Ubo</a>
+, <a class="el" href="classrx_1_1_light_node.html#a915cbf8be6f243dc6150ae5307bac0de">rx::LightNode</a>
 , <a class="el" href="classrx_1_1_material.html#a70494c7dff251b1cc03e2f06343725c9">rx::Material</a>
+, <a class="el" href="structrx_1_1_point_light_node_1_1_ubo.html#a2d8f9d3c7880eb561c554e9cb4a802f7">rx::PointLightNode::Ubo</a>
+</li>
+<li>m_specularIntensity
+: <a class="el" href="classrx_1_1_light_node.html#a462faca08e27756d278ce934c3b92e86">rx::LightNode</a>
 </li>
 <li>m_specularTexture
 : <a class="el" href="classrx_1_1_material.html#a472b16e86e1a0f3e8ee317569786a08d">rx::Material</a>
@@ -265,11 +287,14 @@ $(document).ready(function(){initNavTree('functions_m.html',''); initResizable()
 <li>m_transmittance
 : <a class="el" href="classrx_1_1_material.html#a50a4a1e3cb0ad27a5c7746426d2e0929">rx::Material</a>
 </li>
-<li>m_type
-: <a class="el" href="structrx_1_1_lighting_ubo.html#ad35dcdcf9cf157282a4be7fb14dbc55d">rx::LightingUbo</a>
-</li>
 <li>m_up
 : <a class="el" href="classrx_1_1_camera_base.html#ab118b51be01f24a1fa82d7e60103d95c">rx::CameraBase</a>
+</li>
+<li>m_updateProj
+: <a class="el" href="classrx_1_1_camera_base.html#a7e735d06073e1531b822f9ca639ccda5">rx::CameraBase</a>
+</li>
+<li>m_updateView
+: <a class="el" href="classrx_1_1_camera_base.html#a7f4cebd8e2b8abbe39d4e84a0aac0933">rx::CameraBase</a>
 </li>
 <li>m_vertexBuffer
 : <a class="el" href="classrx_1_1_model.html#a3cd5fdada70d2ee42f3eeade4a96dfdd">rx::Model</a>

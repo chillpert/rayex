@@ -14,10 +14,11 @@ var dir_da61e3e9a357748887e3ca8d7c5a0c16 =
     [ "Components.hpp", "_components_8hpp.html", "_components_8hpp" ],
     [ "Instance.cpp", "_instance_8cpp.html", "_instance_8cpp" ],
     [ "Instance.hpp", "_instance_8hpp.html", null ],
-    [ "Model.cpp", "_model_8cpp.html", "_model_8cpp" ],
-    [ "Model.hpp", "_model_8hpp.html", [
+    [ "Material.hpp", "_material_8hpp.html", [
       [ "Material", "classrx_1_1_material.html", "classrx_1_1_material" ]
     ] ],
+    [ "Model.cpp", "_model_8cpp.html", "_model_8cpp" ],
+    [ "Model.hpp", "_model_8hpp.html", null ],
     [ "Pipeline.cpp", "_pipeline_8cpp.html", null ],
     [ "Pipeline.hpp", "_pipeline_8hpp.html", null ],
     [ "Queues.cpp", "_queues_8cpp.html", null ],

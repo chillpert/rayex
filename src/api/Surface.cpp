@@ -47,7 +47,10 @@ namespace rx
 
     // Fall back, as FIFO is always supported on every device.
     if ( !presentModeSupported )
+    {
       m_presentMode = vk::PresentModeKHR::eFifo;
+      RX_LOG( "Preferred present mode not available. Falling back to FIFO." );
+    }
 
     // Check format and color space.
     auto formatProperties = g_physicalDevice.getFormatProperties( m_format );
@@ -68,6 +71,7 @@ namespace rx
     {
       m_format = surfaceFormats[0].format;
       m_colorSpace = surfaceFormats[0].colorSpace;
+      RX_LOG( "Preferred format and colorspace not supported. Falling back to the first option of each." )
     }
     
     g_surfaceFormat = m_format;

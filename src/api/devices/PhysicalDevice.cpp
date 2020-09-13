@@ -31,11 +31,7 @@ namespace rx
     std::cout << "Physical device report: " << "\n" << separator << "\n" << "Device name" << "\t\t\t" << "Score" << std::endl << separator << "\n";
 
     for ( const auto& result : results )
-    {
       std::cout << std::left << std::setw( 32 ) << std::setfill( ' ' ) << result.second << std::left << std::setw( 32 ) << std::setfill( ' ' ) << result.first << std::endl;
-    }
-
-    std::cout << std::endl << std::endl;
 
     // Print information about the GPU that was selected.
     auto properties = m_physicalDevice.getProperties( );

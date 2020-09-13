@@ -79,6 +79,7 @@ namespace rx
     m_debugMessenger.init( vk::DebugUtilsMessageSeverityFlagBitsEXT::eVerbose | vk::DebugUtilsMessageSeverityFlagBitsEXT::eWarning | vk::DebugUtilsMessageSeverityFlagBitsEXT::eError,
                            vk::DebugUtilsMessageTypeFlagBitsEXT::ePerformance | vk::DebugUtilsMessageTypeFlagBitsEXT::eValidation );
     
+
     // Surface
     m_surface.init( );
 
@@ -172,7 +173,7 @@ namespace rx
     }
 
     uint32_t imageIndex = m_swapchain.getCurrentImageIndex( );
-
+    
     // Update camera
     if ( m_camera->m_updateView )
     {
@@ -189,7 +190,7 @@ namespace rx
     
       m_camera->m_updateProj = false;
     }
-    
+
     m_cameraUniformBuffer.upload<CameraUbo>( imageIndex, m_cameraUbo );
 
     LightsUbo lightNodeUbos;

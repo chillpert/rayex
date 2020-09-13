@@ -160,12 +160,16 @@ set_target_properties(renderer
 # set build paths
 if(${CMAKE_BUILD_TYPE} STREQUAL "Debug")
   set(BUILD_PATH debug)
+  add_compile_definitions(RX_OUTPUT_PATH="${PROJECT_SOURCE_DIR}/build/bin/debug/")
 elseif(${CMAKE_BUILD_TYPE} STREQUAL "Release")
   set(BUILD_PATH release)
+  add_compile_definitions(RX_OUTPUT_PATH="${PROJECT_SOURCE_DIR}/build/bin/release")
 elseif(${CMAKE_BUILD_TYPE} STREQUAL "RelWithDebInfo")
   set(BUILD_PATH relWithDebInfo) 
+  add_compile_definitions(RX_OUTPUT_PATH="${PROJECT_SOURCE_DIR}/build/bin/relwithbebinfo")
 elseif(${CMAKE_BUILD_TYPE} STREQUAL "MinSizeRel")
   set(BUILD_PATH minSizeRel)
+  add_compile_definitions(RX_OUTPUT_PATH="${PROJECT_SOURCE_DIR}/build/bin/minsizerel")
 endif()
 
 # EXAMPLE

@@ -23,7 +23,9 @@ namespace rx
     std::vector<tinyobj::material_t> materials;
     std::string warn, err;
 
-    if ( !tinyobj::LoadObj( &attrib, &shapes, &materials, &warn, &err, m_path.c_str( ) ) )
+    std::string fullPath = RX_OUTPUT_PATH + m_path;
+
+    if ( !tinyobj::LoadObj( &attrib, &shapes, &materials, &warn, &err, fullPath.c_str( ) ) )
       RX_ERROR( warn + err );
 
     std::unordered_map<Vertex, uint32_t> uniqueVertices;

@@ -18,8 +18,10 @@ namespace rx
   {
     m_path = path;
 
+    std::string fullPath = RX_OUTPUT_PATH + path;
+
     int width, height, channels;
-    stbi_uc* pixels = stbi_load( path.c_str( ), &width, &height, &channels, STBI_rgb_alpha );
+    stbi_uc* pixels = stbi_load( fullPath.c_str( ), &width, &height, &channels, STBI_rgb_alpha );
 
     if ( !pixels )
       RX_ERROR( "Failed to load texture" );

@@ -55,7 +55,10 @@ namespace rx
   {
     m_width = width;
     m_height = height;
+
+#ifndef RX_PLATFORM_UNIX_X64
     SDL_SetWindowSize( m_window, m_width, m_height );
+#endif
   }
 
   std::vector<const char*> WindowBase::getInstanceExtensions( )

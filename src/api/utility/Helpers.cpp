@@ -124,12 +124,14 @@ namespace vk
 
       // Calls glslc to compile the glsl file into spir-v.
       std::stringstream command;
-      command << "cd " << pathToFile << " && " << RX_GLSLC_PATH << " " << fileName << " -o " << fileNameOut << " --target-env=vulkan1.2";
+      //command << "cd " << pathToFile << " && " << RX_GLSLC_PATH << " " << fileName << " -o " << fileNameOut << " --target-env=vulkan1.2";
+      command << RX_GLSLC_PATH << " " << RX_OUTPUT_PATH << "shaders/" << fileName << " -o " << RX_OUTPUT_PATH << "shaders/" << fileNameOut << " --target-env=vulkan1.2";
+
       std::system( command.str( ).c_str( ) );
 
       // Read the file and retrieve the source.
-      std::ifstream file( pathToFile + fileNameOut, std::ios::ate | std::ios::binary );
-      
+      std::ifstream file( RX_OUTPUT_PATH + pathToFile + fileNameOut, std::ios::ate | std::ios::binary );
+
       if ( !file.is_open( ) )
         RX_ERROR( "Failed to open shader source file." );
 

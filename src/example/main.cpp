@@ -265,7 +265,7 @@ int main( int argc, char* argv[] )
   int height = 600;
 
   // Now create the actual window using the window properties from above.
-  auto myWindow = std::make_shared<CustomWindow>( width, height, "Example", WINDOW_RESIZABLE | WINDOW_INPUT_FOCUS );
+  auto myWindow = std::make_shared<CustomWindow>( width, height, "Example", WINDOW_RESIZABLE );
 
   // Create instance of your custom camera class.
   auto myCam = std::make_shared<CustomCamera>( width, height, glm::vec3( 0.0f, 0.0f, 3.0f ) );

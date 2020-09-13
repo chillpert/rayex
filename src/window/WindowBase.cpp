@@ -34,7 +34,7 @@ namespace rx
   {
     // Updates local timer bound to this window.
     m_time.update( );
-
+    
     // Fetch the latest window dimensions.
     int width, height;
     SDL_GetWindowSize( m_window, &width, &height );

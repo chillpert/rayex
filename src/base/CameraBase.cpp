@@ -55,6 +55,8 @@ namespace rx
 
   void CameraBase::processMouse( float xOffset, float yOffset )
   {
+    m_updateView = true;
+
     xOffset *= m_sensitivity;
     yOffset *= m_sensitivity;
 

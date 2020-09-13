@@ -18,11 +18,11 @@ layout(binding = 0, set = 2) uniform LightSources
 
 void main()
 {
-  if ( lightSources.directionalLights[1].direction.w == 1.0f )
+  if ( lightSources.directionalLights[0].direction.w == 1.0f )
   {
     hitValue = vec3(1.0, 0.0, 0.0);
   }
-  else if ( lightSources.directionalLights[1].direction.w != 1.0f )
+  else if ( lightSources.directionalLights[0].direction.w != 1.0f )
   {
     hitValue = vec3(0.0, 1.0, 0.0);
   }

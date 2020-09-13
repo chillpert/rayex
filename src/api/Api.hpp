@@ -187,6 +187,7 @@ namespace rx
     vk::UniqueDescriptorPool m_sceneDescriptorPool;
     DescriptorSet m_sceneDescriptorSets;
 
+    CameraUbo m_cameraUbo;
     UniformBuffer m_cameraUniformBuffer;
     UniformBuffer m_lightsUniformBuffer;
 

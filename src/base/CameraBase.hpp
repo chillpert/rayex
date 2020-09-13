@@ -77,6 +77,9 @@ namespace rx
     /// @param yOffset The difference of the offset on the y-axis and the previous offset.
     RX_API virtual void processMouse( float xOffset, float yOffset );
 
+    bool m_updateView = true;
+    bool m_updateProj = true;
+
   protected:
     /// Updates the camera vectors.
     /// @note Only needs to be called if mouse was moved.

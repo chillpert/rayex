@@ -174,29 +174,31 @@ namespace rx
     uint32_t imageIndex = m_swapchain.getCurrentImageIndex( );
 
     // Update camera
-    // TODO: only update when necessary.
-    glm::mat4 view = m_camera->getViewMatrix( );
-    glm::mat4 viewInverse = glm::inverse( view );
+    if ( m_camera->m_updateView )
+    {
+      m_cameraUbo.m_view = m_camera->getViewMatrix( );
+      m_cameraUbo.m_viewInverse = m_camera->getViewInverseMatrix( );
+      
+      m_camera->m_updateView = false;
+    }
 
-    glm::mat4 proj = m_camera->getProjectionMatrix( );
-    glm::mat4 projInverse = glm::inverse( proj );
-
-    CameraUbo camUbo { view, proj, viewInverse, projInverse };
-    m_cameraUniformBuffer.upload<CameraUbo>( imageIndex, camUbo );
+    if ( m_camera->m_updateProj )
+    {
+      m_cameraUbo.m_projection = m_camera->getProjectionMatrix( );
+      m_cameraUbo.m_projectionInverse = m_camera->getProjectionInverseMatrix( );
+    
+      m_camera->m_updateProj = false;
+    }
+    
+    m_cameraUniformBuffer.upload<CameraUbo>( imageIndex, m_cameraUbo );
 
     LightsUbo lightNodeUbos;
 
-    DirectionalLightNode::Ubo dirLightNodeUbos[10];
     for ( size_t i = 0; i < m_dirLightNodes.size( ); ++i )
-    {
       lightNodeUbos.m_directionalLightNodes[i] = m_dirLightNodes[i]->toUbo( );
-    }
 
-    PointLightNode::Ubo pointLightNodeUbos[10];
     for ( size_t i = 0; i < m_pointLightNodes.size( ); ++i )
-    {
       lightNodeUbos.m_pointLightNodes[i] = m_pointLightNodes[i]->toUbo( );
-    }
 
     m_lightsUniformBuffer.upload<LightsUbo>( imageIndex, lightNodeUbos );
 
@@ -216,6 +218,8 @@ namespace rx
     // If the window size has changed the swapchain has to be recreated.
     if ( m_window->changed( ) || m_recreateSwapchain )
     {
+      m_camera->m_updateProj = true;
+
       m_recreateSwapchain = false;
       recreateSwapchain( );
       return true;

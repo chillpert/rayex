@@ -31,23 +31,41 @@ public:
     float finalSpeed = speed * Time::getDeltaTime( );
 
     if ( Key::eW )
+    {
       m_position += m_front * finalSpeed;
+      m_updateView = true;
+    }
 
     if ( Key::eS )
+    {
       m_position -= m_front * finalSpeed;
-
+      m_updateView = true;
+    }
+    
     if ( Key::eA )
+    {
       m_position -= m_right * finalSpeed;
-
+      m_updateView = true;
+    }
+    
     if ( Key::eD )
+    {
       m_position += m_right * finalSpeed;
-
+      m_updateView = true;
+    }
+    
     if ( Key::eC )
+    {
       m_position.y -= finalSpeed / 2.0f;
-
+      m_updateView = true;
+    }
+    
     if ( Key::eSpace )
+    {
       m_position.y += finalSpeed / 2.0f;
-
+      m_updateView = true;
+    }
+    
     updateViewMatrix( );
   }
 };

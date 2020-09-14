@@ -17,7 +17,7 @@ namespace RENDERER_NAMESPACE
   /// If the client wants to parse other formats than wavefront, load() should be overridden and either rx::Renderer::pushNode() or rx::Renderer::setNodes() templatized using the inherited class type.
   /// ### Example
   /// ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~.cpp
-  /// class CustomModel : public Model 
+  /// class CustomModel : public Model
   /// {
   ///   void load() override;
   /// }
@@ -30,6 +30,7 @@ namespace RENDERER_NAMESPACE
   /// myRenderer.pushNode<CustomModel>( cube );
   /// ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
   /// @ingroup Base, API
+  /// @todo m_modelCounter is being incremented always, even if it is not a new model. This class should actually look inside Api::m_models or sth to assign the correct index.
   class Model
   {
   public:

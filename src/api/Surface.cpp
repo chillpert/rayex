@@ -1,5 +1,6 @@
 #include "Surface.hpp"
 #include "Components.hpp"
+#include "Helpers.hpp"
 
 namespace RENDERER_NAMESPACE
 {
@@ -35,25 +36,38 @@ namespace RENDERER_NAMESPACE
     // Check a present mode.
     std::vector<vk::PresentModeKHR> presentModes = g_physicalDevice.getSurfacePresentModesKHR( m_surface );
 
-    bool presentModeSupported = false;
-    for ( const auto& mode : presentModes )
+    if ( !util::find<vk::PresentModeKHR>( m_presentMode, presentModes ) )
     {
-      if ( mode == m_presentMode )
-      {
-        presentModeSupported = true;
-        break;
-      }
-    }
-
-    // Fall back, as FIFO is always supported on every device.
-    if ( !presentModeSupported )
-    {
+      util::find<vk::PresentModeKHR>( vk::PresentModeKHR::eMailbox, presentModes ) ? m_presentMode = vk::PresentModeKHR::eMailbox :
+      util::find<vk::PresentModeKHR>( vk::PresentModeKHR::eImmediate, presentModes ) ? m_presentMode = vk::PresentModeKHR::eImmediate :
+      util::find<vk::PresentModeKHR>( vk::PresentModeKHR::eFifoRelaxed, presentModes ) ? m_presentMode = vk::PresentModeKHR::eFifoRelaxed :
       m_presentMode = vk::PresentModeKHR::eFifo;
-      RX_WARN( "Preferred present mode not available. Falling back to FIFO." );
+
+      std::string fallbackPresentMode;
+      switch ( m_presentMode )
+      {
+        case vk::PresentModeKHR::eMailbox:
+          fallbackPresentMode = "mailbox";
+          break;
+
+        case vk::PresentModeKHR::eImmediate:
+          fallbackPresentMode = "immediate";
+          break;
+
+        case vk::PresentModeKHR::eFifoRelaxed:
+          fallbackPresentMode = "fifo relaxed";
+          break;
+
+        case vk::PresentModeKHR::eFifo:
+          fallbackPresentMode = "fifo";
+          break;
+      }
+
+      // Fall back, as FIFO is always supported on every device.
+      RX_WARN( "Preferred present mode not available. Falling back to ", fallbackPresentMode, " present mode." );
     }
 
     // Check format and color space.
-    auto formatProperties = g_physicalDevice.getFormatProperties( m_format );
     auto surfaceFormats = g_physicalDevice.getSurfaceFormatsKHR( m_surface );
 
     bool colorSpaceAndFormatSupported = false;

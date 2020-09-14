@@ -49,11 +49,6 @@ namespace vk
     /// @return Returns the memory type matching the function input.
     uint32_t findMemoryType( PhysicalDevice physicalDevice, uint32_t typeFilter, MemoryPropertyFlags properties );
 
-    /// Parses a given shader file.
-    /// @param path The full path to shader file.
-    /// @return Returns a vector of chars that contains the shader in SPIR-V format.
-    std::vector<char> parseShader( const std::string& path );
-
     /// A template function for unwrapping data structures with a unique handle.
     /// @param data A vector of any data structure with a unique handle.
     /// @return Returns a vector of the given data type but without the unique handles.
@@ -108,6 +103,33 @@ namespace vk
     /// @param depthFormat The depth format.
     /// @return Returns the completed depth attachment description.
     AttachmentDescription getDepthAttachmentDescription( Format depthFormat );
+  }
+}
+
+namespace RENDERER_NAMESPACE
+{
+  namespace util
+  {
+    /// Parses a given shader file.
+    /// @param path The full path to shader file.
+    /// @return Returns a vector of chars that contains the shader in SPIR-V format.
+    std::vector<char> parseShader( const std::string& path );
+
+    /// Used to find any given element inside a STL container.
+    /// @param value The value to search for.
+    /// @param values The STL container of the same type as value.
+    /// @return Returns true, if value was found in values.
+    template <typename T, typename Container>
+    bool find( T value, const Container& values )
+    {
+      for ( const auto& it : values )
+      {
+        if ( it == value )
+          return true;
+      }
+
+      return false;
+    }
   }
 }
 

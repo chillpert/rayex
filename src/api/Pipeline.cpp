@@ -20,15 +20,21 @@ namespace RENDERER_NAMESPACE
     auto miss = vk::Initializer::createShaderModuleUnique( "shaders/raytrace.rmiss" );
     auto chit = vk::Initializer::createShaderModuleUnique( "shaders/raytrace.rchit" );
 
-    vk::PushConstantRange pushConstantRange( vk::ShaderStageFlagBits::eMissKHR, // stageFlags
-                                             0,                                 // offset
-                                             sizeof( glm::vec4 ) );             // size
+    vk::PushConstantRange pushConstantRangeMissKHR( vk::ShaderStageFlagBits::eMissKHR, // stageFlags
+                                                    0,                                 // offset
+                                                    sizeof( glm::vec4 ) );             // size
+
+    vk::PushConstantRange pushConstantRangeClosestHitKHR( vk::ShaderStageFlagBits::eClosestHitKHR, // stageFlags
+                                                          sizeof( glm::vec4 ),                     // offset
+                                                          sizeof( glm::vec4 ) );                   // size
+
+    std::array<vk::PushConstantRange, 2> pushConstantRanges = { pushConstantRangeMissKHR, pushConstantRangeClosestHitKHR };
 
     vk::PipelineLayoutCreateInfo layoutInfo( { },                                                   // flags
                                              static_cast<uint32_t>( descriptorSetLayouts.size( ) ), // setLayoutCount
                                              descriptorSetLayouts.data( ),                          // pSetLayouts
-                                             1,                                                     // pushConstantRangeCount
-                                             &pushConstantRange );                                  // pPushConstantRanges
+                                             static_cast<uint32_t>( pushConstantRanges.size( ) ),   // pushConstantRangeCount
+                                             pushConstantRanges.data( ) );                          // pPushConstantRanges
 
     m_layout = g_device.createPipelineLayoutUnique( layoutInfo );
     if ( !m_layout )

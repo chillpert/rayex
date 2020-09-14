@@ -327,7 +327,7 @@ namespace vk
 
     UniqueShaderModule createShaderModuleUnique( const std::string& path )
     {
-      std::vector<char> source = Helper::parseShader( path );
+      std::vector<char> source = rx::util::parseShader( path );
 
       vk::ShaderModuleCreateInfo createInfo( { },                                                     // flags
                                              source.size( ),                                          // codeSize
@@ -341,7 +341,7 @@ namespace vk
 
     ShaderModule createShaderModule( const std::string& path )
     {
-      std::vector<char> source = Helper::parseShader( path );
+      std::vector<char> source = rx::util::parseShader( path );
 
       vk::ShaderModuleCreateInfo createInfo( { },                                                     // flags
                                              source.size( ),                                          // codeSize

@@ -7,10 +7,11 @@ namespace RENDERER_NAMESPACE
 {
   /// A helper class for creating ready-to-use textures.
   /// @ingroup API
+  /// @todo m_textureCounter is being incremented always, even if it is not a new texture. This class should actually look inside Api::m_textures or sth to assign the correct index.
   class Texture : public Image
   {
   public:
-    RX_API Texture( ) = default;
+    RX_API Texture( );
 
     /// @param path The relative path to the texture file.
     /// @param initialize If true, the texture will be initialized right away without an additional call to init().
@@ -30,11 +31,15 @@ namespace RENDERER_NAMESPACE
     /// @todo Latest changes to this class might be causing errors once texture are working again.
     void init( const std::string& path );
 
+    uint32_t m_offset;
+
   private:
     std::string m_path; ///< The relative path to the texture file.
 
     vk::UniqueImageView m_imageView; ///< The texture's Vulkan image view with a unique handle.
     vk::UniqueSampler m_sampler; ///< The texture's Vulkan sampler with a unique handle.
+  
+    static uint32_t m_textureCounter;
   };
 }
 

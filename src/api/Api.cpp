@@ -79,7 +79,6 @@ namespace RENDERER_NAMESPACE
     m_debugMessenger.init( vk::DebugUtilsMessageSeverityFlagBitsEXT::eVerbose | vk::DebugUtilsMessageSeverityFlagBitsEXT::eWarning | vk::DebugUtilsMessageSeverityFlagBitsEXT::eError,
                            vk::DebugUtilsMessageTypeFlagBitsEXT::ePerformance | vk::DebugUtilsMessageTypeFlagBitsEXT::eValidation );
     
-
     // Surface
     m_surface.init( );
 
@@ -426,11 +425,17 @@ namespace RENDERER_NAMESPACE
     {
       m_swapchainCommandBuffers.begin( imageIndex );
 
-      m_swapchainCommandBuffers.get( imageIndex ).pushConstants( m_rtPipeline.getLayout( ), // layout
+      m_swapchainCommandBuffers.get( imageIndex ).pushConstants( m_rtPipeline.getLayout( ),         // layout
                                                                  vk::ShaderStageFlagBits::eMissKHR, // stageFlags
-                                                                 0, // offset
-                                                                 sizeof( glm::vec4 ), // size
-                                                                 &Settings::s_clearColor ); // pValues
+                                                                 0,                                 // offset
+                                                                 sizeof( glm::vec4 ),               // size
+                                                                 &Settings::s_clearColor );         // pValues
+
+      m_swapchainCommandBuffers.get( imageIndex ).pushConstants( m_rtPipeline.getLayout( ),               // layout
+                                                                 vk::ShaderStageFlagBits::eClosestHitKHR, // stageFlags
+                                                                 sizeof( glm::vec4 ),                     // offset
+                                                                 sizeof( glm::vec4 ),                     // size
+                                                                 &Settings::s_clearColor );               // pValues
 
       m_rtPipeline.bind( m_swapchainCommandBuffers.get( imageIndex ) );
         

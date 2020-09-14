@@ -8,7 +8,13 @@
 
 namespace RENDERER_NAMESPACE
 {
-  Texture::Texture( const std::string& path, bool initialize )
+  uint32_t Texture::m_textureCounter = 0;
+
+  Texture::Texture( ) :
+    m_offset( m_textureCounter++ ) { }
+
+  Texture::Texture( const std::string& path, bool initialize ) :
+    m_offset( m_textureCounter++ )
   {
     if ( initialize )
       init( path );

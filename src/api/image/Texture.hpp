@@ -3,7 +3,7 @@
 
 #include "Image.hpp"
 
-namespace rx
+namespace RENDERER_NAMESPACE
 {
   /// A helper class for creating ready-to-use textures.
   /// @ingroup API

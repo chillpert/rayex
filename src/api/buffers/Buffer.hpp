@@ -4,7 +4,7 @@
 #include "Image.hpp"
 #include "Components.hpp"
 
-namespace rx
+namespace RENDERER_NAMESPACE
 {
   /// A wrapper class for a Vulkan buffer.
   /// @ingroup API

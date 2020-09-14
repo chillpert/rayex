@@ -1,7 +1,7 @@
 #include "RenderPass.hpp"
 #include "Components.hpp"
 
-namespace rx
+namespace RENDERER_NAMESPACE
 {
   RenderPass::RenderPass( const std::vector<vk::AttachmentDescription>& attachments, const std::vector<vk::SubpassDescription>& subpasses, const std::vector<vk::SubpassDependency>& dependencies, bool initialize )
   {

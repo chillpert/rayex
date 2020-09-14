@@ -4,7 +4,7 @@
 #include "Buffer.hpp"
 #include "LightNodeBase.hpp"
 
-namespace rx
+namespace RENDERER_NAMESPACE
 {
   /// A uniform buffer object for camera data.
   /// @ingroup API

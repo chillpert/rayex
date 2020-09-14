@@ -3,7 +3,7 @@
 #include "Helpers.hpp"
 #include "Initializers.hpp"
 
-namespace rx
+namespace RENDERER_NAMESPACE
 {
   Buffer::Buffer( vk::DeviceSize size, vk::BufferUsageFlags usage, const std::vector<uint32_t>& queueFamilyIndices, vk::MemoryPropertyFlags memoryPropertyFlags, void* pNextMemory, bool initialize )
   {

@@ -3,7 +3,7 @@
 
 #include "Instance.hpp"
 
-namespace rx
+namespace RENDERER_NAMESPACE
 {
   /// A wrapper class for a Vulkan logical device.
   /// @ingroup API

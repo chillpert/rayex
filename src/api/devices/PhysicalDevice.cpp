@@ -2,7 +2,7 @@
 #include "Components.hpp"
 #include "Queues.hpp"
 
-namespace rx
+namespace RENDERER_NAMESPACE
 {
   void PhysicalDevice::init( )
   {
@@ -26,7 +26,7 @@ namespace rx
     const std::string separator = "===================================================================";
 
     if ( !m_physicalDevice )
-      RX_ERROR( "No suitable device was found" );
+      RX_FATAL( "No suitable device was found" );
 
     std::cout << "Physical device report: " << "\n" << separator << "\n" << "Device name" << "\t\t\t" << "Score" << std::endl << separator << "\n";
 
@@ -35,7 +35,7 @@ namespace rx
 
     // Print information about the GPU that was selected.
     auto properties = m_physicalDevice.getProperties( );
-    RX_LOG( "Selected GPU: " << properties.deviceName );
+    RX_SUCCESS( "Selected GPU: ", properties.deviceName );
 
     g_physicalDeviceLimits = properties.limits;
     g_physicalDevice = m_physicalDevice;

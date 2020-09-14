@@ -3,7 +3,7 @@
 
 #include "stdafx.hpp"
 
-namespace rx
+namespace RENDERER_NAMESPACE
 {
   static size_t nodeCounter = 0; ///< For assigning each node a unique ID.
 

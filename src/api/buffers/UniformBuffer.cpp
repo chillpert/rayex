@@ -1,7 +1,7 @@
 #include "UniformBuffer.hpp"
 #include "Components.hpp"
 
-namespace rx
+namespace RENDERER_NAMESPACE
 {
   const std::vector<vk::Buffer> UniformBuffer::getRaw( ) const
   {

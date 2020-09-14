@@ -1,6 +1,6 @@
 #include "CameraBase.hpp"
 
-namespace rx
+namespace RENDERER_NAMESPACE
 {
   CameraBase::CameraBase( int width, int height, const glm::vec3& position ) :
     m_width( width ),

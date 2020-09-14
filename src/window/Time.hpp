@@ -3,7 +3,7 @@
 
 #include "Core.hpp"
 
-namespace rx
+namespace RENDERER_NAMESPACE
 {
   /// Used to keep track of the application's timing.
   /// @todo Average FPS are pointless. Implement minimum FPS and frametimes instead.

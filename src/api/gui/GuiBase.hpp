@@ -9,7 +9,7 @@
 #include <imgui.h>
 #include <imgui_impl_vulkan.h>
 
-namespace rx
+namespace RENDERER_NAMESPACE
 {
   /// A class to create an ImGui-based GUI.
   /// 

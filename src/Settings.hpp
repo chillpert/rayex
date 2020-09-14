@@ -3,7 +3,7 @@
 
 #include "stdafx.hpp"
 
-namespace rx
+namespace RENDERER_NAMESPACE
 {
   /// Exposes all graphic settings supported by the renderer.
   class RX_API Settings

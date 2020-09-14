@@ -1,7 +1,7 @@
 #include "Surface.hpp"
 #include "Components.hpp"
 
-namespace rx
+namespace RENDERER_NAMESPACE
 {
   Surface::Surface( vk::Format format, vk::ColorSpaceKHR colorSpace, vk::PresentModeKHR presentMode, bool initialize ) :
     m_format( format ),
@@ -49,7 +49,7 @@ namespace rx
     if ( !presentModeSupported )
     {
       m_presentMode = vk::PresentModeKHR::eFifo;
-      RX_LOG( "Preferred present mode not available. Falling back to FIFO." );
+      RX_WARN( "Preferred present mode not available. Falling back to FIFO." );
     }
 
     // Check format and color space.
@@ -71,7 +71,7 @@ namespace rx
     {
       m_format = surfaceFormats[0].format;
       m_colorSpace = surfaceFormats[0].colorSpace;
-      RX_LOG( "Preferred format and colorspace not supported. Falling back to the first option of each." )
+      RX_WARN( "Preferred format and colorspace not supported. Falling back to the first option of each." );
     }
     
     g_surfaceFormat = m_format;

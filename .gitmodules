@@ -1,0 +1,3 @@
+[submodule "external/tinyLogger"]
+	path = external/tinyLogger
+	url = https://github.com/chillpert/tinyLogger

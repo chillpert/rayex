@@ -5,7 +5,7 @@
 #include "Time.hpp"
 #include "CameraBase.hpp"
 
-namespace rx
+namespace RENDERER_NAMESPACE
 {
   /// Flags for the window creation.
   /// 

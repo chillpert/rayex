@@ -1,7 +1,7 @@
 #include "window/Time.hpp"
 #include "pch/stdafx.hpp"
 
-namespace rx
+namespace RENDERER_NAMESPACE
 {
   float Time::m_time;
   float Time::m_deltaTime;

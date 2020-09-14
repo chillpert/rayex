@@ -9,7 +9,7 @@
 #include "DescriptorSet.hpp"
 #include "Material.hpp"
 
-namespace rx
+namespace RENDERER_NAMESPACE
 {
   /// Describes a model.
   /// 

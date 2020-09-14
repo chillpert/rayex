@@ -81,6 +81,7 @@ include_directories(${PROJECT_SOURCE_DIR}/external/glm/include)
 include_directories(${PROJECT_SOURCE_DIR}/external/STB)
 include_directories(${PROJECT_SOURCE_DIR}/external/ModelLoading)
 include_directories(${PROJECT_SOURCE_DIR}/external/ImGui)
+include_directories(${PROJECT_SOURCE_DIR}/external/tinyLogger)
 
 include_directories(${PROJECT_SOURCE_DIR}/src)
 include_directories(${PROJECT_SOURCE_DIR}/src/base)
@@ -120,6 +121,7 @@ file(GLOB FILES_LIB
 
   # ImGui files
   "${PROJECT_SOURCE_DIR}/external/ImGui/*.cpp"
+  "${PROJECT_SOURCE_DIR}/external/tinyLogger/*.cpp"
 )
 
 # LIBRARY

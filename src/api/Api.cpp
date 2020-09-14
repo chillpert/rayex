@@ -5,7 +5,7 @@
 #include "Destructors.hpp"
 #include "Settings.hpp"
 
-namespace rx
+namespace RENDERER_NAMESPACE
 {
   const std::vector<const char*> layers = { "VK_LAYER_KHRONOS_validation" };
 #ifdef RX_DEBUG
@@ -160,8 +160,7 @@ namespace rx
     // Make sure swapchain images are presentable in case they were not transitioned automatically.
     m_swapchain.setImageLayout( vk::ImageLayout::eUndefined, vk::ImageLayout::ePresentSrcKHR );
 
-
-    RX_LOG( "Finished API initialization." );
+    RX_SUCCESS( "Finished Vulkan initialization.");
   }
 
   bool Api::update( )
@@ -169,7 +168,7 @@ namespace rx
     if ( Settings::refresh( ) )
     {
       // Trigger swapchain / pipeline recreation
-      RX_LOG( "Refresh event." );
+      RX_WARN( "Settings were changed. Pipeline re-creation necessary." );
     }
 
     uint32_t imageIndex = m_swapchain.getCurrentImageIndex( );
@@ -267,7 +266,7 @@ namespace rx
       if ( result == vk::Result::eErrorOutOfDateKHR || result == vk::Result::eSuboptimalKHR )
       {
         m_recreateSwapchain = true;
-        RX_LOG( "Swapchain out of data or suboptimal.");
+        RX_WARN( "Swapchain out of data or suboptimal." );
       }
     }
     catch ( ... )
@@ -302,7 +301,7 @@ namespace rx
 
   void Api::recreateSwapchain( )
   {
-    RX_LOG( "Recreating swapchain." );
+    RX_INFO( "Recreating swapchain." );
 
     g_device.waitIdle( );
 
@@ -330,7 +329,7 @@ namespace rx
     auto screenSize = m_swapchain.getExtent( );
     m_camera->setSize( screenSize.width, screenSize.height );
     
-    RX_LOG( "Finished swapchain recreation." );
+    RX_SUCCESS( "Finished swapchain re-creation." );
   }
 
   void Api::initRenderPass( )
@@ -416,7 +415,7 @@ namespace rx
 
   void Api::recordSwapchainCommandBuffers( )
   {
-    RX_LOG( "Started swapchain command buffer recording." );
+    RX_INFO( "Started swapchain command buffers recording." );
 
     // Start recording the swapchain framebuffers
     for ( size_t imageIndex = 0; imageIndex < m_swapchainCommandBuffers.get( ).size( ); ++imageIndex )

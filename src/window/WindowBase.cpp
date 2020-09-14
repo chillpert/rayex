@@ -1,6 +1,6 @@
 #include "WindowBase.hpp"
 
-namespace rx
+namespace RENDERER_NAMESPACE
 {
   WindowBase::WindowBase( int width, int height, const char* title, uint32_t flags ) :
     m_window( nullptr ),
@@ -22,12 +22,12 @@ namespace rx
     SDL_SetHint( SDL_HINT_FRAMEBUFFER_ACCELERATION, "1" );
 
     if ( SDL_Init( SDL_INIT_VIDEO ) < 0 )
-      RX_ERROR( SDL_GetError( ) );
+      RX_FATAL( SDL_GetError( ) );
 
     m_window = SDL_CreateWindow( m_title, SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, m_width, m_height, m_flags );
 
     if ( m_window == nullptr )
-      RX_ERROR( "Failed to create window." ); 
+      RX_FATAL( "Failed to create window." ); 
   }
 
   bool WindowBase::update( )

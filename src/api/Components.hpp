@@ -3,7 +3,7 @@
 
 #include "WindowBase.hpp"
 
-namespace rx
+namespace RENDERER_NAMESPACE
 {
   extern std::shared_ptr<WindowBase> g_window; ///< Global reference to the window.
   extern vk::Instance g_instance; ///< Global reference to the Vulkan instance.

@@ -22,7 +22,7 @@
 #include "Base.hpp"
 #include "RayTracingBuilder.hpp"
 
-namespace rx
+namespace RENDERER_NAMESPACE
 {
   /// Initializes and owns all Vulkan components and displays a picture on the screen.
   /// @note All API components and resources are freed using scope-bound destruction.

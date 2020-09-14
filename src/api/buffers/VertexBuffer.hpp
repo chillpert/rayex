@@ -4,7 +4,7 @@
 #include "Buffer.hpp"
 #include "Vertex.hpp"
 
-namespace rx
+namespace RENDERER_NAMESPACE
 {
   /// A specialised buffer for vertex data.
   /// @ingroup API

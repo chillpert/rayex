@@ -4,7 +4,7 @@
 #include "NodeBase.hpp"
 #include "Material.hpp"
 
-namespace rx
+namespace RENDERER_NAMESPACE
 {
   /// Contains all instance related ray tracing information.
   struct RayTracingInstance

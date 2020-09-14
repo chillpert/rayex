@@ -5,7 +5,7 @@
 #include "Image.hpp"
 #include "Helpers.hpp"
 
-namespace rx
+namespace RENDERER_NAMESPACE
 {
   /// A wrapper class for a Vulkan swapchain.
   /// @ingroup API

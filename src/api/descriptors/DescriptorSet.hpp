@@ -6,7 +6,7 @@
 #include "UniformBuffer.hpp"
 #include "Texture.hpp"
 
-namespace rx
+namespace RENDERER_NAMESPACE
 {
   /// A wrapper class for Vulkan descriptor sets.
   /// @todo Make the update process "smart" by using the existing information to automatically write to and update the descriptor sets.

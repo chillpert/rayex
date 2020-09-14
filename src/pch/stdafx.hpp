@@ -14,7 +14,6 @@
 #include <imgui_impl_sdl.h>
 #include <imgui_impl_vulkan.h>
 
-#include <sstream>
 #include <iomanip>
 #include <vector>
 #include <cstdint>

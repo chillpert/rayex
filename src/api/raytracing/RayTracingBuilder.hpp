@@ -7,7 +7,7 @@
 #include "Swapchain.hpp"
 #include "GeometryNodeBase.hpp"
 
-namespace rx
+namespace RENDERER_NAMESPACE
 {
   /// Manages the building process of the acceleration structures.
   /// @ingroup API

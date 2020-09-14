@@ -1,7 +1,7 @@
 #include "Destructors.hpp"
 #include "Components.hpp"
 
-using namespace rx;
+using namespace RENDERER_NAMESPACE;
 
 namespace vk
 {

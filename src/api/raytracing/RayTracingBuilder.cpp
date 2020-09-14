@@ -5,7 +5,7 @@
 #include "Destructors.hpp"
 #include "CommandBuffer.hpp"
 
-namespace rx
+namespace RENDERER_NAMESPACE
 {
   RayTracingBuilder::~RayTracingBuilder( )
   {
@@ -283,7 +283,7 @@ namespace rx
       for ( auto& as : cleanupAS )
         as.destroy( );
 
-      RX_LOG( "Compaction Results: " << totalOriginalSize << " -> " << totalCompactSize << " | " << totalOriginalSize - totalCompactSize );
+      RX_INFO( "Compaction Results: ", totalOriginalSize, " -> ", totalCompactSize, " | ", totalOriginalSize - totalCompactSize );
     }
   }
 

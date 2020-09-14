@@ -1,7 +1,7 @@
 #include "DescriptorSet.hpp"
 #include "Components.hpp"
 
-namespace rx
+namespace RENDERER_NAMESPACE
 {
   DescriptorSetLayout::DescriptorSetLayout( const std::vector<vk::DescriptorSetLayoutBinding> bindings, bool initialize )
   {

@@ -6,7 +6,7 @@
 #include "Settings.hpp"
 #include "Initializers.hpp"
 
-namespace rx
+namespace RENDERER_NAMESPACE
 {
   Pipeline::Pipeline( const std::vector<vk::DescriptorSetLayout>& descriptorSetLayouts, bool initialize )
   {

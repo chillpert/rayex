@@ -4,7 +4,7 @@
 #include "WindowBase.hpp"
 #include "Swapchain.hpp"
 
-namespace rx
+namespace RENDERER_NAMESPACE
 {
   /// A wrapper class for a Vulkan ray tracing graphics pipeline.
   /// @ingroup API

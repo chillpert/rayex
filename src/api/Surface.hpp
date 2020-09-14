@@ -3,7 +3,7 @@
 
 #include "WindowBase.hpp"
 
-namespace rx
+namespace RENDERER_NAMESPACE
 {
   /// A wrapper class for a Vulkan surface.
   /// @ingroup API

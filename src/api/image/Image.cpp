@@ -6,7 +6,7 @@
 #include "Destructors.hpp"
 #include "Helpers.hpp"
 
-namespace rx
+namespace RENDERER_NAMESPACE
 {
   Image::Image( const vk::ImageCreateInfo& createInfo, bool initialize )
   {

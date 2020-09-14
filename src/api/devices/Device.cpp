@@ -1,7 +1,7 @@
 #include "Device.hpp"
 #include "Components.hpp"
 
-namespace rx
+namespace RENDERER_NAMESPACE
 {
   Device::Device( std::vector<const char*>& extensions, bool initialize )
   {
@@ -95,9 +95,9 @@ namespace rx
     for ( const auto& requiredphysicalDeviceExtension : requiredExtensions )
     {
       if ( !requiredphysicalDeviceExtension.second )
-        RX_ERROR( "Missing physical device extension: " + requiredphysicalDeviceExtension.first + ". Have you tried installing the NVIDIA Beta drivers?" );
+        RX_ERROR( "Missing physical device extension: ", requiredphysicalDeviceExtension.first, ". Have you tried installing the NVIDIA Beta drivers?" );
       else
-        RX_LOG( "Added device extension: " << requiredphysicalDeviceExtension.first );
+        RX_SUCCESS( "Added device extension: ", requiredphysicalDeviceExtension.first );
     }
   }
 }

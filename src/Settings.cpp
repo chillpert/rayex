@@ -1,6 +1,6 @@
 #include "Settings.hpp"
 
-namespace rx
+namespace RENDERER_NAMESPACE
 {
   uint32_t Settings::s_maxRecursionDepth = 8;
   bool Settings::s_refresh = false;

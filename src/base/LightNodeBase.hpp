@@ -3,7 +3,7 @@
 
 #include "NodeBase.hpp"
 
-namespace rx
+namespace RENDERER_NAMESPACE
 {
   /// Used to combine a 3D vector with a float to a vec4 to keep uniform member alignment in shaders.
   /// 

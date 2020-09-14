@@ -1,7 +1,7 @@
 #include "Renderer.hpp"
 #include <filesystem>
 
-namespace rx
+namespace RENDERER_NAMESPACE
 {
   Renderer::Renderer( ) :
     m_window( std::make_shared<WindowBase>( ) ),

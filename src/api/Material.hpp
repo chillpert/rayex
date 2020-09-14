@@ -3,7 +3,7 @@
 
 #include "stdafx.hpp"
 
-namespace rx
+namespace RENDERER_NAMESPACE
 {
   /// Contains all rendering properties and textures.
   class Material

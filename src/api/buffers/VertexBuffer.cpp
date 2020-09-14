@@ -1,6 +1,6 @@
 #include "VertexBuffer.hpp"
 
-namespace rx
+namespace RENDERER_NAMESPACE
 {
   VertexBuffer::VertexBuffer( std::vector<Vertex>& vertices, bool initialize )
   {

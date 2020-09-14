@@ -3,7 +3,7 @@
 
 #include "stdafx.hpp"
 
-namespace rx
+namespace RENDERER_NAMESPACE
 {
   /// Manages the Vulkan queues.
   /// @ingroup API

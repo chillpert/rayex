@@ -4,7 +4,7 @@
 #include "stdafx.hpp"
 #include "Components.hpp"
 
-namespace rx
+namespace RENDERER_NAMESPACE
 {
   /// A wrapper for a Vulkan acceleration Structure.
   /// @ingroup API

@@ -3,7 +3,7 @@
 #include "Initializers.hpp"
 #include "Destructors.hpp"
 
-namespace rx
+namespace RENDERER_NAMESPACE
 {
   GuiBase::GuiBase( const Surface* const surface, vk::Extent2D swapchainImageExtent, const std::vector<vk::ImageView>& swapchainImageViews, bool initialize )
   {

@@ -6,7 +6,7 @@
 #define GLM_ENABLE_EXPERIMENTAL
 #include <glm/gtx/hash.hpp>
 
-namespace rx
+namespace RENDERER_NAMESPACE
 {
   /// Describes a vertex and its data.
   /// @ingroup API

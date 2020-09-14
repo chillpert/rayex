@@ -3,7 +3,7 @@
 
 #include "pch/stdafx.hpp"
 
-namespace rx
+namespace RENDERER_NAMESPACE
 {
   /// A minimal camera implementation.
   /// 

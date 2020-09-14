@@ -1,6 +1,6 @@
 #include "Components.hpp"
 
-namespace rx
+namespace RENDERER_NAMESPACE
 {
   std::shared_ptr<WindowBase> g_window = nullptr;
   vk::Instance g_instance = nullptr;

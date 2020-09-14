@@ -5,7 +5,7 @@
 #define VULKAN_HPP_STORAGE_SHARED_EXPORT
 VULKAN_HPP_DEFAULT_DISPATCH_LOADER_DYNAMIC_STORAGE
 
-namespace rx
+namespace RENDERER_NAMESPACE
 {
   Instance::Instance( const std::vector<const char*>& layers, std::vector<const char*>& extensions, bool initialize )
   {
@@ -42,7 +42,7 @@ namespace rx
     g_instance = m_instance.get( );
 
     if ( !m_instance )
-      RX_ERROR( "Failed to create instance." );
+      RX_FATAL( "Failed to create instance." );
 
     VULKAN_HPP_DEFAULT_DISPATCHER.init( m_instance.get( ) );
   }
@@ -64,9 +64,9 @@ namespace rx
       }
 
       if ( !found )
-        RX_ERROR( "Validation layer " + name + " is not available on this device" );
+        RX_ERROR( "Validation layer ", name, " is not available on this device" );
 
-      RX_LOG( "Added layer: " << name );
+      RX_SUCCESS( "Added layer: ", name );
     }
   }
 
@@ -87,9 +87,9 @@ namespace rx
       }
 
       if ( !found )
-        RX_ERROR( "Instance extensions " + name + " is not available on this device" );
+        RX_ERROR( "Instance extensions ", name, " is not available on this device" );
 
-      RX_LOG( "Added extension: " << name );
+      RX_SUCCESS( "Added extension: ", name );
     }
   }
 
@@ -100,7 +100,7 @@ namespace rx
   #ifdef VK_API_VERSION_1_2
     if ( apiVersion >= VK_API_VERSION_1_2 )
     {
-      RX_LOG( "Found Vulkan SDK API Version 1.2.x" );
+      RX_SUCCESS( "Found Vulkan SDK API version 1.2" );
       return VK_API_VERSION_1_2;
     }
   #endif
@@ -108,12 +108,12 @@ namespace rx
   #ifdef VK_API_VERSION_1_1
     if ( apiVersion >= VK_API_VERSION_1_1 )
     {
-      RX_LOG( "Found Vulkan SDK API Version 1.1.x" );
+      RX_SUCCESS( "Found Vulkan SDK API version 1.1" );
       return VK_API_VERSION_1_1;
     }
   #endif
 
-    RX_ERROR( "This application requires Vulkan SDK API Version 1.1 or higher." );
+    RX_FATAL( "This application requires Vulkan SDK API Version 1.1 or higher." );
 
     return 0;
   }

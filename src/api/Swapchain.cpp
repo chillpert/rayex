@@ -2,7 +2,7 @@
 #include "Components.hpp"
 #include "Initializers.hpp"
 
-namespace rx
+namespace RENDERER_NAMESPACE
 {
   Swapchain::Swapchain( Surface* surface, vk::RenderPass renderPass, bool initialize )
   {

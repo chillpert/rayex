@@ -1,7 +1,7 @@
 #include "Queues.hpp"
 #include "Components.hpp"
 
-namespace rx
+namespace RENDERER_NAMESPACE
 {
   void Queues::init( )
   {

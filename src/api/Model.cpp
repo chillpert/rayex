@@ -3,7 +3,7 @@
 #define TINYOBJLOADER_IMPLEMENTATION
 #include <tiny_obj_loader.h>
 
-namespace rx
+namespace RENDERER_NAMESPACE
 {
   uint32_t Model::m_modelCounter = 0;
 

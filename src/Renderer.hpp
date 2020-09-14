@@ -5,7 +5,7 @@
 #include "Base.hpp"
 
 /// The rx namespace encapsulates every single component provided by the renderer.
-namespace rx
+namespace RENDERER_NAMESPACE
 {
   /// The main user interface.
   /// 

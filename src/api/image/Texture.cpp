@@ -6,7 +6,7 @@
 #define STB_IMAGE_IMPLEMENTATION
 #include <stb_image.h>
 
-namespace rx
+namespace RENDERER_NAMESPACE
 {
   Texture::Texture( const std::string& path, bool initialize )
   {

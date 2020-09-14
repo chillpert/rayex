@@ -1,4 +1,4 @@
-# A Vulkan-based path Tracing Renderer
+# A Vulkan-based Path Tracing Renderer
 
 Runs on both Linux (x64) and Windows (x64).
 

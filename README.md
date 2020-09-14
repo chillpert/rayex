@@ -10,3 +10,4 @@ $ cmake ..
 $ make all
 $ ./bin/debug/example
 ```
+Documentation can be found [here](http://christianhilpert.com/renderer)

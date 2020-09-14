@@ -165,10 +165,14 @@ namespace RENDERER_NAMESPACE
 
   bool Api::update( )
   {
-    if ( Settings::refresh( ) )
+    if ( Settings::s_refresh )
     {
+      Settings::s_refresh = false;
+
       // Trigger swapchain / pipeline recreation
       RX_WARN( "Settings were changed. Pipeline re-creation necessary." );
+
+      recreateSwapchain( );
     }
 
     uint32_t imageIndex = m_swapchain.getCurrentImageIndex( );
@@ -421,6 +425,12 @@ namespace RENDERER_NAMESPACE
     for ( size_t imageIndex = 0; imageIndex < m_swapchainCommandBuffers.get( ).size( ); ++imageIndex )
     {
       m_swapchainCommandBuffers.begin( imageIndex );
+
+      m_swapchainCommandBuffers.get( imageIndex ).pushConstants( m_rtPipeline.getLayout( ), // layout
+                                                                 vk::ShaderStageFlagBits::eMissKHR, // stageFlags
+                                                                 0, // offset
+                                                                 sizeof( glm::vec4 ), // size
+                                                                 &Settings::s_clearColor ); // pValues
 
       m_rtPipeline.bind( m_swapchainCommandBuffers.get( imageIndex ) );
         

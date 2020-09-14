@@ -20,11 +20,15 @@ namespace RENDERER_NAMESPACE
     auto miss = vk::Initializer::createShaderModuleUnique( "shaders/raytrace.rmiss" );
     auto chit = vk::Initializer::createShaderModuleUnique( "shaders/raytrace.rchit" );
 
+    vk::PushConstantRange pushConstantRange( vk::ShaderStageFlagBits::eMissKHR, // stageFlags
+                                             0,                                 // offset
+                                             sizeof( glm::vec4 ) );             // size
+
     vk::PipelineLayoutCreateInfo layoutInfo( { },                                                   // flags
                                              static_cast<uint32_t>( descriptorSetLayouts.size( ) ), // setLayoutCount
                                              descriptorSetLayouts.data( ),                          // pSetLayouts
-                                             0,                                                     // pushConstantRangeCount
-                                             nullptr );                                             // pPushConstantRanges
+                                             1,                                                     // pushConstantRangeCount
+                                             &pushConstantRange );                                  // pPushConstantRanges
 
     m_layout = g_device.createPipelineLayoutUnique( layoutInfo );
     if ( !m_layout )
@@ -62,7 +66,7 @@ namespace RENDERER_NAMESPACE
                                                     shaderStages.data( ),                          // pStages
                                                     static_cast<uint32_t>( groups.size( ) ),       // groupCount
                                                     groups.data( ),                                // pGroups
-                                                    Settings::getMaxRecursionDepth( ),             // maxRecursionDepth
+                                                    Settings::s_maxRecursionDepth,                 // maxRecursionDepth
                                                     0,                                             // libraries
                                                     nullptr,                                       // pLibraryInterface
                                                     m_layout.get( ),                               // layout

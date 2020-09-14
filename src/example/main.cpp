@@ -243,6 +243,9 @@ private:
         auto sphere = std::make_shared<GeometryNode>( "models/sphere.obj", Material( "textures/metal.png" ) );
         m_renderer->pushNode( sphere );
       }
+
+      if ( ImGui::ColorEdit4("##AmbientColor", &Settings::s_clearColor[0]) )
+        Settings::s_refresh = true;
     }
 
     ImGui::End( );

@@ -19,5 +19,6 @@
 #include "GeometryNodeBase.hpp"
 #include "GuiBase.hpp"
 #include "WindowBase.hpp"
+#include "Settings.hpp"
 
 #endif // BASE_HPP

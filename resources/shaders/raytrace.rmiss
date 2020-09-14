@@ -5,7 +5,12 @@
 
 layout(location = 0) rayPayloadInEXT vec3 hitValue;
 
+layout(push_constant) uniform Constants
+{
+  vec4 clearColor;
+};
+
 void main()
 {
-  hitValue = vec3(0.45, 0.45, 0.45);
+  hitValue = clearColor.xyz * clearColor.w;
 }

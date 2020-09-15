@@ -1,7 +1,7 @@
 #ifndef VERTEX_HPP
 #define VERTEX_HPP
 
-#include "pch/stdafx.hpp"
+#include "stdafx.hpp"
 
 #define GLM_ENABLE_EXPERIMENTAL
 #include <glm/gtx/hash.hpp>

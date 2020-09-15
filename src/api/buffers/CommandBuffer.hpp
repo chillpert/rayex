@@ -1,7 +1,7 @@
 #ifndef COMMAND_BUFFER_HPP
 #define COMMAND_BUFFER_HPP
 
-#include "pch/stdafx.hpp"
+#include "stdafx.hpp"
 
 namespace RENDERER_NAMESPACE
 {

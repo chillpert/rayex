@@ -1,7 +1,7 @@
 #ifndef PHYSICAL_DEVICE_HPP
 #define PHYSICAL_DEVICE_HPP
 
-#include "pch/stdafx.hpp"
+#include "stdafx.hpp"
 
 namespace RENDERER_NAMESPACE
 {

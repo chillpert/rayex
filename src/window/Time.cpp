@@ -1,5 +1,5 @@
 #include "window/Time.hpp"
-#include "pch/stdafx.hpp"
+#include "stdafx.hpp"
 
 namespace RENDERER_NAMESPACE
 {

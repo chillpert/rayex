@@ -16,6 +16,7 @@ endif(NOT CMAKE_BUILD_TYPE)
 message(${CMAKE_BUILD_TYPE})
 
 add_compile_definitions(RX_BUILD_DLL)
+add_compile_definitions(RX_COPY_RESOURCES)
 
 if(WIN32 OR MSVC)
   set(OS ${OS} "Windows")

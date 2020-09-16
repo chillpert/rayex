@@ -1,6 +1,7 @@
 #include "api/utility/Helpers.hpp"
 #include "api/misc/Components.hpp"
 #include "api/buffers/CommandBuffer.hpp"
+#include "Settings.hpp"
 
 namespace vk
 {
@@ -320,15 +321,16 @@ namespace RENDERER_NAMESPACE
       // Calls glslc to compile the glsl file into spir-v.
       std::stringstream command;
       //command << "cd " << pathToFile << " && " << RX_GLSLC_PATH << " " << fileName << " -o " << fileNameOut << " --target-env=vulkan1.2";
-      command << RX_GLSLC_PATH << " " << RX_OUTPUT_PATH << "shaders/" << fileName << " -o " << RX_OUTPUT_PATH << "shaders/" << fileNameOut << " --target-env=vulkan1.2";
+      command << RX_GLSLC_PATH << " " << Settings::getResourcePath( ) << "shaders/" << fileName << " -o " << Settings::getResourcePath( ) << "shaders/" << fileNameOut << " --target-env=vulkan1.2";
 
       std::system( command.str( ).c_str( ) );
 
       // Read the file and retrieve the source.
-      std::ifstream file( RX_OUTPUT_PATH + pathToFile + fileNameOut, std::ios::ate | std::ios::binary );
+      std::string pathToShaderSourceFile = Settings::getResourcePath( ) + pathToFile + fileNameOut;
+      std::ifstream file( pathToShaderSourceFile, std::ios::ate | std::ios::binary );
 
       if ( !file.is_open( ) )
-        RX_ERROR( "Failed to open shader source file." );
+        RX_ERROR( "Failed to open shader source file ", pathToShaderSourceFile );
 
       size_t fileSize = static_cast< size_t >( file.tellg( ) );
       std::vector<char> buffer( fileSize );

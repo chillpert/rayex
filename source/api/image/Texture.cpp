@@ -2,6 +2,7 @@
 #include "api/buffers/Buffer.hpp"
 #include "api/utility/Helpers.hpp"
 #include "api/utility/Initializers.hpp"
+#include "Settings.hpp"
 
 #define STB_IMAGE_IMPLEMENTATION
 #include <stb_image.h>
@@ -24,7 +25,7 @@ namespace RENDERER_NAMESPACE
   {
     m_path = path;
 
-    std::string fullPath = RX_OUTPUT_PATH + path;
+    std::string fullPath = Settings::getResourcePath( ) + path;
 
     int width, height, channels;
     stbi_uc* pixels = stbi_load( fullPath.c_str( ), &width, &height, &channels, STBI_rgb_alpha );

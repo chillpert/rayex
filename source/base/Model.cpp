@@ -1,4 +1,5 @@
 #include "base/Model.hpp"
+#include "Settings.hpp"
 
 #define TINYOBJLOADER_IMPLEMENTATION
 #include <tiny_obj_loader.h>
@@ -23,7 +24,7 @@ namespace RENDERER_NAMESPACE
     std::vector<tinyobj::material_t> materials;
     std::string warn, err;
 
-    std::string fullPath = RX_OUTPUT_PATH + m_path;
+    std::string fullPath = Settings::getResourcePath( ) + m_path;
 
     if ( !tinyobj::LoadObj( &attrib, &shapes, &materials, &warn, &err, fullPath.c_str( ) ) )
       RX_ERROR( warn + err );

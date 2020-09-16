@@ -15,7 +15,6 @@ endif(NOT CMAKE_BUILD_TYPE)
 message(${CMAKE_BUILD_TYPE})
 
 add_compile_definitions(RX_BUILD_DLL)
-add_compile_definitions(RX_COPY_RESOURCES)
 
 if(WIN32 OR MSVC)
   set(OS ${OS} "Windows")
@@ -108,34 +107,18 @@ set_target_properties(renderer
 # set build paths
 if(${CMAKE_BUILD_TYPE} STREQUAL "Debug")
   set(BUILD_PATH debug)
-  add_compile_definitions(RX_OUTPUT_PATH="${PROJECT_SOURCE_DIR}/build/bin/debug/")
 elseif(${CMAKE_BUILD_TYPE} STREQUAL "Release")
   set(BUILD_PATH release)
-  add_compile_definitions(RX_OUTPUT_PATH="${PROJECT_SOURCE_DIR}/build/bin/release")
 elseif(${CMAKE_BUILD_TYPE} STREQUAL "RelWithDebInfo")
   set(BUILD_PATH relWithDebInfo) 
-  add_compile_definitions(RX_OUTPUT_PATH="${PROJECT_SOURCE_DIR}/build/bin/relwithbebinfo")
 elseif(${CMAKE_BUILD_TYPE} STREQUAL "MinSizeRel")
   set(BUILD_PATH minSizeRel)
-  add_compile_definitions(RX_OUTPUT_PATH="${PROJECT_SOURCE_DIR}/build/bin/minsizerel")
-endif()
-
-if(BUILD_EXAMPLES)
-  if(${CMAKE_BUILD_TYPE} STREQUAL "Debug")
-    add_compile_definitions(RX_OUTPUT_PATH="${PROJECT_SOURCE_DIR}/build/bin/debug/")
-  elseif(${CMAKE_BUILD_TYPE} STREQUAL "Release")
-    add_compile_definitions(RX_OUTPUT_PATH="${PROJECT_SOURCE_DIR}/build/bin/release")
-  elseif(${CMAKE_BUILD_TYPE} STREQUAL "RelWithDebInfo")
-    add_compile_definitions(RX_OUTPUT_PATH="${PROJECT_SOURCE_DIR}/build/bin/relwithbebinfo")
-  elseif(${CMAKE_BUILD_TYPE} STREQUAL "MinSizeRel")
-    add_compile_definitions(RX_OUTPUT_PATH="${PROJECT_SOURCE_DIR}/build/bin/minsizerel")
-endif()
-else()
-  add_compile_definitions(RX_OUTPUT_PATH)
 endif()
 
 # EXAMPLE
 if(BUILD_EXAMPLES)
+  add_compile_definitions(RX_COPY_RESOURCES)
+
   include_directories(${PROJECT_SOURCE_DIR}/example)
 
   file(GLOB FILES_EXAMPLE

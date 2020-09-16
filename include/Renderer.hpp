@@ -93,8 +93,8 @@ namespace RENDERER_NAMESPACE
     std::shared_ptr<CameraBase> m_camera; ///< A pointer to a rx::CameraBase object.
     Api m_api; ///< Contains all Vulkan related components.
 
-    bool m_initialized; ///< Keeps track of the initialization status.
-    bool m_running; ///< Keeps track of whether or not the main loop should still be continued.
+    bool m_initialized = false; ///< Keeps track of the initialization status.
+    bool m_running = true; ///< Keeps track of whether or not the main loop should still be continued.
   };
 }
 

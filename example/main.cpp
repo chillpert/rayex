@@ -263,6 +263,8 @@ private:
 
 int main( int argc, char* argv[] )
 {
+  Settings::setResourcePath( argc, argv );
+
   // Window dimensions.
   int width = 900;
   int height = 600;

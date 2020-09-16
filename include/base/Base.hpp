@@ -14,7 +14,7 @@
 //   - WindowBase
 
 #include "base/CameraBase.hpp"
-#include "NodeBase.hpp"
+#include "base/NodeBase.hpp"
 #include "base/LightNodeBase.hpp"
 #include "base/GeometryNodeBase.hpp"
 #include "base/GuiBase.hpp"

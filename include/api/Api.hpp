@@ -18,7 +18,7 @@
 #include "api/descriptors/DescriptorSet.hpp"
 #include "api/descriptors/DescriptorSetLayout.hpp"
 #include "api/buffers/UniformBuffer.hpp"
-#include "api/gui/GuiBase.hpp"
+#include "base/GuiBase.hpp"
 #include "base/Base.hpp"
 #include "api/raytracing/RayTracingBuilder.hpp"
 

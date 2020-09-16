@@ -1,4 +1,4 @@
-#include "api/gui/GuiBase.hpp"
+#include "base/GuiBase.hpp"
 #include "api/buffers/CommandBuffer.hpp"
 #include "api/utility/Initializers.hpp"
 #include "api/utility/Destructors.hpp"

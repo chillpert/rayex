@@ -1,7 +1,7 @@
 #include "api/Pipeline.hpp"
 #include "api/misc/Vertex.hpp"
 #include "api/utility/Helpers.hpp"
-#include "api/Components.hpp"
+#include "api/misc/Components.hpp"
 #include "api/raytracing/RayTracingBuilder.hpp"
 #include "Settings.hpp"
 #include "api/utility/Initializers.hpp"

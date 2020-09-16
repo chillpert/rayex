@@ -1,5 +1,5 @@
 #include "api/Swapchain.hpp"
-#include "api/Components.hpp"
+#include "api/misc/Components.hpp"
 #include "api/utility/Initializers.hpp"
 
 namespace RENDERER_NAMESPACE

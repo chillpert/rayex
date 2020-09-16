@@ -1,5 +1,5 @@
 #include "api/raytracing/RayTracingBuilder.hpp"
-#include "api/Components.hpp"
+#include "api/misc/Components.hpp"
 #include "api/utility/Initializers.hpp"
 #include "api/utility/Helpers.hpp"
 #include "api/utility/Destructors.hpp"

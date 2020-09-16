@@ -1,5 +1,5 @@
 #include "api/utility/Destructors.hpp"
-#include "api/Components.hpp"
+#include "api/misc/Components.hpp"
 
 using namespace RENDERER_NAMESPACE;
 

@@ -6,10 +6,8 @@ file(GLOB FILES_LIB
   "${PROJECT_SOURCE_DIR}/source/api/buffers/*.cpp"
   "${PROJECT_SOURCE_DIR}/source/api/descriptors/*.cpp"
   "${PROJECT_SOURCE_DIR}/source/api/devices/*.cpp"
-  "${PROJECT_SOURCE_DIR}/source/api/gui/*.cpp"
   "${PROJECT_SOURCE_DIR}/source/api/image/*.cpp"
   "${PROJECT_SOURCE_DIR}/source/api/misc/*.cpp"
-  "${PROJECT_SOURCE_DIR}/source/api/model/*.cpp"
   "${PROJECT_SOURCE_DIR}/source/api/raytracing/*.cpp"
   "${PROJECT_SOURCE_DIR}/source/api/utility/*.cpp"
 

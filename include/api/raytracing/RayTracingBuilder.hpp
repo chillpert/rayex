@@ -2,7 +2,7 @@
 #define RAYTRACING_BUILDER_HPP
 
 #include "api/raytracing/AccelerationStructure.hpp"
-#include "api/Model.hpp"
+#include "base/Model.hpp"
 #include "api/buffers/Buffer.hpp"
 #include "api/Swapchain.hpp"
 #include "base/GeometryNodeBase.hpp"

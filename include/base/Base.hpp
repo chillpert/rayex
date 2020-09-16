@@ -17,7 +17,7 @@
 #include "NodeBase.hpp"
 #include "base/LightNodeBase.hpp"
 #include "base/GeometryNodeBase.hpp"
-#include "api/gui/GuiBase.hpp"
+#include "base/GuiBase.hpp"
 #include "window/WindowBase.hpp"
 #include "Settings.hpp"
 

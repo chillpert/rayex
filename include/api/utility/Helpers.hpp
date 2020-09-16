@@ -2,7 +2,7 @@
 #define HELPERS_HPP
 
 #include "api/raytracing/AccelerationStructure.hpp"
-#include "api/Model.hpp"
+#include "base/Model.hpp"
 #include "api/RenderPass.hpp"
 
 namespace vk

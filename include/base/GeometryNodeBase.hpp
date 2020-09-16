@@ -2,7 +2,7 @@
 #define GEOMETRY_NODE_BASE_HPP
 
 #include "NodeBase.hpp"
-#include "api/Material.hpp"
+#include "base/Material.hpp"
 
 namespace RENDERER_NAMESPACE
 {

@@ -1,5 +1,5 @@
 #include "api/Surface.hpp"
-#include "api/Components.hpp"
+#include "api/misc/Components.hpp"
 #include "api/utility/Helpers.hpp"
 
 namespace RENDERER_NAMESPACE

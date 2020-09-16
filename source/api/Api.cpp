@@ -212,7 +212,7 @@ namespace RENDERER_NAMESPACE
   {
     // Wait for the current frame's fences.
     vk::Result result = g_device.waitForFences( 1, &m_inFlightFences[currentFrame].get( ), VK_TRUE, UINT64_MAX );
-    RX_ASSERT( ( result == vk::Result::eSuccess ), "Failed to wait for fences." );
+    RX_ASSERT( result == vk::Result::eSuccess, "Failed to wait for fences." );
 
     // If the window is minimized then simply do not render anything anymore.
     if ( m_window->minimized( ) )

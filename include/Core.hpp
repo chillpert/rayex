@@ -14,14 +14,6 @@
 #define RX_SHADER_GROUP_INDEX_MISS 1
 #define RX_SHADER_GROUP_INDEX_CHIT 2
 
-//#define NO_UTILS
-
-#ifndef NO_UTILS
-#define RX_ASSERT(statement, message) if (!statement) throw std::runtime_error(std::string("rx: ") + message)
-#else
-#define RX_ASSERT(statement, message) statement
-#endif
-
 #if defined( _WIN32 ) || defined( _WIN64 )
 #ifdef RX_BUILD_DLL
 #define RX_API __declspec(dllexport)
@@ -49,6 +41,7 @@
 #define RX_WARN( ... )    LOGGER_NAMESPACE::warning( RENDERER_NAMESPACE_STRINGIFIED, ": ", __VA_ARGS__ )
 #define RX_ERROR( ... )   LOGGER_NAMESPACE::error( RENDERER_NAMESPACE_STRINGIFIED, ": ", __VA_ARGS__ )
 #define RX_FATAL( ... )   LOGGER_NAMESPACE::fatal( RENDERER_NAMESPACE_STRINGIFIED, ": ", __VA_ARGS__ )
+#define RX_ASSERT( statement, ... ) LOGGER_NAMESPACE::assert2( statement ? true : false, RENDERER_NAMESPACE_STRINGIFIED, ": ", __VA_ARGS__ )
 
 // Doxygen groups
 /// @defgroup Base Interfaces

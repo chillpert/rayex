@@ -33,6 +33,7 @@ namespace RENDERER_NAMESPACE
   /// ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
   /// @see update()
   /// @ingroup Base
+  /// @todo To avoid the client having to link to SDL themselves requires to write a complete SDL2 wrapper.
   class WindowBase
   {
   public:

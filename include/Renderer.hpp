@@ -24,6 +24,7 @@ namespace RENDERER_NAMESPACE
   /// }
   /// ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
   /// @ingroup Base
+  /// @todo Not calling init will cause a segmentation fault as the application still tries to call device.waitIdle on a device that was not init.
   class Renderer
   {
   public:

@@ -528,7 +528,14 @@ namespace RENDERER_NAMESPACE
                                                          vk::ShaderStageFlagBits::eClosestHitKHR, // stageFlags
                                                          nullptr );                               // pImmutableSamplers
 
-      std::vector<vk::DescriptorSetLayoutBinding> bindings = { textureBinding, vertexBufferBinding, indexBufferBinding };
+      // Scene buffer
+      vk::DescriptorSetLayoutBinding sceneDescriptionBinding( 3,                                       // binding
+                                                              vk::DescriptorType::eUniformBuffer,      // descriptorType
+                                                              1,                                       // descriptorCount
+                                                              vk::ShaderStageFlagBits::eClosestHitKHR, // stageFlags
+                                                              nullptr );                               // pImmutableSamplers                                                  
+
+      std::vector<vk::DescriptorSetLayoutBinding> bindings = { textureBinding, vertexBufferBinding, indexBufferBinding, sceneDescriptionBinding };
       m_modelDescriptorSetLayout.init( bindings );
     }
     

@@ -205,7 +205,7 @@ namespace RENDERER_NAMESPACE
     Pipeline m_rtPipeline;
     CommandBuffer m_swapchainCommandBuffers;
     
-    std::shared_ptr<GuiBase> m_gui;
+    std::shared_ptr<GuiBase> m_gui = nullptr;
 
     // No destruction necessary for following members:
     PhysicalDevice m_physicalDevice;

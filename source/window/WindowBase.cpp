@@ -56,7 +56,7 @@ namespace RENDERER_NAMESPACE
     m_width = width;
     m_height = height;
 
-#ifndef RX_PLATFORM_UNIX_X64
+#if defined( _WIN32 ) || defined( _WIN64 )
     SDL_SetWindowSize( m_window, m_width, m_height );
 #endif
   }

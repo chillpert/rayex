@@ -20,11 +20,9 @@ add_compile_definitions(RX_COPY_RESOURCES)
 
 if(WIN32 OR MSVC)
   set(OS ${OS} "Windows")
-  add_compile_definitions(RX_PLATFORM_WINDOWS_X64)
   message("Renderer: Target platform Windows (x64)")
 elseif(UNIX)
   set(OS ${OS} "Linux")
-  add_compile_definitions(RX_PLATFORM_UNIX_X64)
   message("Renderer: Target platform Linux (x64)")
 else()
   message(FATAL_ERROR "Renderer: Target platform is not supported")
@@ -77,53 +75,11 @@ else()
   message(FATAL_ERROR, "Target platform not supported")
 endif()
 
-# HEADER PROJECT FILES
-include_directories(${PROJECT_SOURCE_DIR}/external/glm/include)
 include_directories(${PROJECT_SOURCE_DIR}/external/STB)
 include_directories(${PROJECT_SOURCE_DIR}/external/ModelLoading)
-include_directories(${PROJECT_SOURCE_DIR}/external/ImGui)
-include_directories(${PROJECT_SOURCE_DIR}/external/tinyLogger)
 
-include_directories(${PROJECT_SOURCE_DIR}/src)
-include_directories(${PROJECT_SOURCE_DIR}/src/base)
-include_directories(${PROJECT_SOURCE_DIR}/src/pch)
-include_directories(${PROJECT_SOURCE_DIR}/src/window)
-include_directories(${PROJECT_SOURCE_DIR}/src/utils)
-include_directories(${PROJECT_SOURCE_DIR}/src/api)
-include_directories(${PROJECT_SOURCE_DIR}/src/api/buffers)
-include_directories(${PROJECT_SOURCE_DIR}/src/api/descriptors)
-include_directories(${PROJECT_SOURCE_DIR}/src/api/devices)
-include_directories(${PROJECT_SOURCE_DIR}/src/api/gui)
-include_directories(${PROJECT_SOURCE_DIR}/src/api/image)
-include_directories(${PROJECT_SOURCE_DIR}/src/api/misc)
-include_directories(${PROJECT_SOURCE_DIR}/src/api/raytracing)
-include_directories(${PROJECT_SOURCE_DIR}/src/api/raytracing)
-include_directories(${PROJECT_SOURCE_DIR}/src/api/utility)
-
-# SOURCE PROJECT FILES
-file(GLOB FILES_LIB
-  "${PROJECT_SOURCE_DIR}/src/api/*.cpp"
-  "${PROJECT_SOURCE_DIR}/src/api/buffers/*.cpp"
-  "${PROJECT_SOURCE_DIR}/src/api/descriptors/*.cpp"
-  "${PROJECT_SOURCE_DIR}/src/api/devices/*.cpp"
-  "${PROJECT_SOURCE_DIR}/src/api/gui/*.cpp"
-  "${PROJECT_SOURCE_DIR}/src/api/image/*.cpp"
-  "${PROJECT_SOURCE_DIR}/src/api/misc/*.cpp"
-  "${PROJECT_SOURCE_DIR}/src/api/model/*.cpp"
-  "${PROJECT_SOURCE_DIR}/src/api/raytracing/*.cpp"
-  "${PROJECT_SOURCE_DIR}/src/api/utility/*.cpp"
-
-  "${PROJECT_SOURCE_DIR}/src/window/*.cpp"
-  "${PROJECT_SOURCE_DIR}/src/pch/*.cpp"
-  "${PROJECT_SOURCE_DIR}/src/events/*.cpp"
-  "${PROJECT_SOURCE_DIR}/src/utils/*.cpp"
-  "${PROJECT_SOURCE_DIR}/src/*.cpp"
-  "${PROJECT_SOURCE_DIR}/src/base/*.cpp"
-
-  # ImGui files
-  "${PROJECT_SOURCE_DIR}/external/ImGui/*.cpp"
-  "${PROJECT_SOURCE_DIR}/external/tinyLogger/*.cpp"
-)
+include(${PROJECT_SOURCE_DIR}/include/CMakeLists.txt)
+include(${PROJECT_SOURCE_DIR}/source/CMakeLists.txt)
 
 # LIBRARY
 add_library(renderer SHARED ${FILES_LIB})
@@ -134,7 +90,7 @@ target_link_libraries(renderer
 )
 
 target_precompile_headers(renderer
-  PUBLIC "${PROJECT_SOURCE_DIR}/src/pch/stdafx.hpp"
+  PUBLIC "${PROJECT_SOURCE_DIR}/include/pch/stdafx.hpp"
 )
 
 set_target_properties(renderer PROPERTIES
@@ -177,13 +133,13 @@ endif()
 
 # EXAMPLE
 if(BUILD_EXAMPLES)
-  include_directories(${PROJECT_SOURCE_DIR}/src/example)
+  include_directories(${PROJECT_SOURCE_DIR}/example)
 
   file(GLOB FILES_EXAMPLE
-    "${PROJECT_SOURCE_DIR}/src/example/*.cpp"
+    "${PROJECT_SOURCE_DIR}/example/*.cpp"
   )
 
-  add_executable(example ${PROJECT_SOURCE_DIR}/src/example/main.cpp ${FILES_EXAMPLE})
+  add_executable(example ${PROJECT_SOURCE_DIR}/example/main.cpp ${FILES_EXAMPLE})
 
   link_directories(${PROJECT_SOURCE_DIR}/build/bin/renderer/debug)
 

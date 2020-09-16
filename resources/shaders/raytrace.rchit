@@ -6,11 +6,6 @@
 #include "raycommon.glsl"
 #include "lights.glsl"
 
-layout(location = 0) rayPayloadInEXT vec3 hitValue;
-hitAttributeEXT vec3 attribs;
-
-layout(binding = 0, set = 1) uniform sampler2D texSampler;
-
 struct Vertex
 {
   vec3 pos;
@@ -26,6 +21,11 @@ struct SceneDescription
   mat4 transfo;
   mat4 transfoIT;
 };
+
+layout(location = 0) rayPayloadInEXT vec3 hitValue;
+hitAttributeEXT vec3 attribs;
+
+layout(binding = 0, set = 1) uniform sampler2D texSampler;
 
 layout(binding = 1, set = 1) buffer Vertices
 {

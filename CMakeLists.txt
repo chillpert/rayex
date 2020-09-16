@@ -4,7 +4,6 @@ project(Renderer VERSION 0.0.1)
 message("Using compiler: " + ${CMAKE_CXX_COMPILER_ID})
 
 option(BUILD_EXAMPLES "Build examples" ON)
-option(TEST_BUILD "Test build" OFF)
 
 if(NOT CMAKE_BUILD_TYPE)
   message("MX: Build type not set. Continuing with: Debug")
@@ -34,20 +33,10 @@ if(CMAKE_BUILD_TYPE STREQUAL "Debug")
   add_compile_definitions(RX_DEBUG)
 endif()
 
-# RESOURCES
-add_compile_definitions(RX_PROJECT_PATH="${PROJECT_SOURCE_DIR}/")
-
-if(TEST_BUILD)
-  add_compile_definitions(RX_TEST_BUILD)
-  add_compile_definitions(RX_RESOURCES_PATH="")
-  add_compile_definitions(RX_SHADER_PATH="resources/shaders/")
-  add_compile_definitions(RX_TEXTURE_PATH="resources/textures/")
-  add_compile_definitions(RX_MODEL_PATH="resources/models/")
-else()
+if(BUILD_EXAMPLES)
   add_compile_definitions(RX_RESOURCES_PATH="${PROJECT_SOURCE_DIR}/resources/")
-  add_compile_definitions(RX_SHADER_PATH="${PROJECT_SOURCE_DIR}/resources/shaders/")
-  add_compile_definitions(RX_TEXTURE_PATH="${PROJECT_SOURCE_DIR}/resources/textures/")
-  add_compile_definitions(RX_MODEL_PATH="${PROJECT_SOURCE_DIR}/resources/models/")
+else()
+  add_compile_definitions(RX_RESOURCES_PATH="")
 endif()
 
 # VULKAN
@@ -57,7 +46,7 @@ include_directories(${Vulkan_INCLUDE_DIRS})
 if(${OS} STREQUAL "Windows")
   add_compile_definitions(RX_GLSLC_PATH="${Vulkan_INCLUDE_DIRS}/../Bin/glslc.exe")
 elseif(${OS} STREQUAL "Linux")
-  add_compile_definitions(RX_GLSLC_PATH="${PROJECT_SOURCE_DIR}/external/Vulkan/glslc")
+  add_compile_definitions(RX_GLSLC_PATH="/usr/bin/glslc")
 endif()
 
 # SDL
@@ -131,6 +120,20 @@ elseif(${CMAKE_BUILD_TYPE} STREQUAL "MinSizeRel")
   add_compile_definitions(RX_OUTPUT_PATH="${PROJECT_SOURCE_DIR}/build/bin/minsizerel")
 endif()
 
+if(BUILD_EXAMPLES)
+  if(${CMAKE_BUILD_TYPE} STREQUAL "Debug")
+    add_compile_definitions(RX_OUTPUT_PATH="${PROJECT_SOURCE_DIR}/build/bin/debug/")
+  elseif(${CMAKE_BUILD_TYPE} STREQUAL "Release")
+    add_compile_definitions(RX_OUTPUT_PATH="${PROJECT_SOURCE_DIR}/build/bin/release")
+  elseif(${CMAKE_BUILD_TYPE} STREQUAL "RelWithDebInfo")
+    add_compile_definitions(RX_OUTPUT_PATH="${PROJECT_SOURCE_DIR}/build/bin/relwithbebinfo")
+  elseif(${CMAKE_BUILD_TYPE} STREQUAL "MinSizeRel")
+    add_compile_definitions(RX_OUTPUT_PATH="${PROJECT_SOURCE_DIR}/build/bin/minsizerel")
+endif()
+else()
+  add_compile_definitions(RX_OUTPUT_PATH)
+endif()
+
 # EXAMPLE
 if(BUILD_EXAMPLES)
   include_directories(${PROJECT_SOURCE_DIR}/example)
@@ -140,8 +143,6 @@ if(BUILD_EXAMPLES)
   )
 
   add_executable(example ${PROJECT_SOURCE_DIR}/example/main.cpp ${FILES_EXAMPLE})
-
-  link_directories(${PROJECT_SOURCE_DIR}/build/bin/renderer/debug)
 
   target_link_libraries(example
     renderer

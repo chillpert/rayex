@@ -1,9 +1,9 @@
 #ifndef SWAPCHAIN_HPP
 #define SWAPCHAIN_HPP
 
-#include "Surface.hpp"
-#include "Image.hpp"
-#include "Helpers.hpp"
+#include "api/Surface.hpp"
+#include "api/image/Image.hpp"
+#include "api/utility/Helpers.hpp"
 
 namespace RENDERER_NAMESPACE
 {

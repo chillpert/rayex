@@ -1,8 +1,8 @@
-#include "Api.hpp"
-#include "Components.hpp"
-#include "Initializers.hpp"
-#include "Helpers.hpp"
-#include "Destructors.hpp"
+#include "api/Api.hpp"
+#include "api/Components.hpp"
+#include "api/utility/Initializers.hpp"
+#include "api/utility/Helpers.hpp"
+#include "api/utility/Destructors.hpp"
 #include "Settings.hpp"
 
 namespace RENDERER_NAMESPACE

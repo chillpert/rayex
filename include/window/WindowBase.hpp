@@ -1,9 +1,9 @@
 #ifndef WINDOW_HPP
 #define WINDOW_HPP
 
-#include "stdafx.hpp"
-#include "Time.hpp"
-#include "CameraBase.hpp"
+#include "pch/stdafx.hpp"
+#include "window/Time.hpp"
+#include "base/CameraBase.hpp"
 
 namespace RENDERER_NAMESPACE
 {

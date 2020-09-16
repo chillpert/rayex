@@ -1,5 +1,5 @@
-#include "UniformBuffer.hpp"
-#include "Components.hpp"
+#include "api/buffers/UniformBuffer.hpp"
+#include "api/Components.hpp"
 
 namespace RENDERER_NAMESPACE
 {

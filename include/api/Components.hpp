@@ -1,7 +1,7 @@
 #ifndef COMPONENTS_HPP
 #define COMPONENTS_HPP
 
-#include "WindowBase.hpp"
+#include "window/WindowBase.hpp"
 
 namespace RENDERER_NAMESPACE
 {

@@ -1,7 +1,7 @@
 #ifndef VK_DEBUG_MESSENGER_HPP
 #define VK_DEBUG_MESSENGER_HPP
 
-#include "stdafx.hpp"
+#include "pch/stdafx.hpp"
 
 namespace RENDERER_NAMESPACE
 {

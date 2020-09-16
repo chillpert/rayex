@@ -1,7 +1,7 @@
 #ifndef SETTINGS_HPP
 #define SETTINGS_HPP
 
-#include "stdafx.hpp"
+#include "pch/stdafx.hpp"
 
 namespace RENDERER_NAMESPACE
 {

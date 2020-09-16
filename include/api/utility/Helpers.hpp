@@ -1,9 +1,9 @@
 #ifndef HELPERS_HPP
 #define HELPERS_HPP
 
-#include "AccelerationStructure.hpp"
-#include "Model.hpp"
-#include "RenderPass.hpp"
+#include "api/raytracing/AccelerationStructure.hpp"
+#include "api/Model.hpp"
+#include "api/RenderPass.hpp"
 
 namespace vk
 {

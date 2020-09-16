@@ -1,6 +1,6 @@
-#include "PhysicalDevice.hpp"
-#include "Components.hpp"
-#include "Queues.hpp"
+#include "api/devices/PhysicalDevice.hpp"
+#include "api/Components.hpp"
+#include "api/Queues.hpp"
 
 namespace RENDERER_NAMESPACE
 {

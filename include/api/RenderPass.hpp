@@ -1,7 +1,7 @@
 #ifndef RENDER_PASS_HPP
 #define RENDER_PASS_HPP
 
-#include "stdafx.hpp"
+#include "pch/stdafx.hpp"
 
 namespace RENDERER_NAMESPACE
 {

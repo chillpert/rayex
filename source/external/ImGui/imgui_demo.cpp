@@ -66,7 +66,7 @@ Index of this file:
 #define _CRT_SECURE_NO_WARNINGS
 #endif
 
-#include "ImGui/imgui.h"
+#include "external/ImGui/imgui.h"
 #ifndef IMGUI_DISABLE
 
 #include <ctype.h>          // toupper

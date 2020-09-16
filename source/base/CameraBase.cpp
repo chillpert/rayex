@@ -1,4 +1,4 @@
-#include "CameraBase.hpp"
+#include "base/CameraBase.hpp"
 
 namespace RENDERER_NAMESPACE
 {

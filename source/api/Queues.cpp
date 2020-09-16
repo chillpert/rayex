@@ -1,5 +1,5 @@
-#include "Queues.hpp"
-#include "Components.hpp"
+#include "api/Queues.hpp"
+#include "api/Components.hpp"
 
 namespace RENDERER_NAMESPACE
 {

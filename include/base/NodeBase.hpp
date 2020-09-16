@@ -1,7 +1,7 @@
 #ifndef NODEBASE_HPP
 #define NODEBASE_HPP
 
-#include "stdafx.hpp"
+#include "pch/stdafx.hpp"
 
 namespace RENDERER_NAMESPACE
 {

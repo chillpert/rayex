@@ -1,5 +1,5 @@
-#include "Instance.hpp"
-#include "Components.hpp"
+#include "api/Instance.hpp"
+#include "api/Components.hpp"
 
 #define VULKAN_HPP_STORAGE_SHARED
 #define VULKAN_HPP_STORAGE_SHARED_EXPORT

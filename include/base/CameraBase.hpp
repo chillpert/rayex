@@ -1,7 +1,7 @@
 #ifndef CAMERA_BASE_HPP
 #define CAMERA_BASE_HPP
 
-#include "stdafx.hpp"
+#include "pch/stdafx.hpp"
 
 namespace RENDERER_NAMESPACE
 {

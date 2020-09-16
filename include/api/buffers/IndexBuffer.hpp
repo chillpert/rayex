@@ -1,7 +1,7 @@
 #ifndef INDEX_BUFFER_HPP
 #define INDEX_BUFFER_HPP
 
-#include "Buffer.hpp"
+#include "api/buffers/Buffer.hpp"
 
 namespace RENDERER_NAMESPACE
 {

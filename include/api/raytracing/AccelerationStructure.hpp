@@ -1,8 +1,8 @@
 #ifndef ACCELERATION_STRUCTURE_HPP
 #define ACCELERATION_STRUCTURE_HPP
 
-#include "stdafx.hpp"
-#include "Components.hpp"
+#include "pch/stdafx.hpp"
+#include "api/Components.hpp"
 
 namespace RENDERER_NAMESPACE
 {

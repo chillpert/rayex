@@ -2,17 +2,16 @@
 #define STDAFX_HPP
 
 #include "Core.hpp"
-#include "Time.hpp"
+#include "window/Time.hpp"
+#include "external/ImGui/imgui.h"
+#include "external/ImGui/imgui_impl_sdl.h"
+#include "external/ImGui/imgui_impl_vulkan.h"
 
 #define GLM_FORCE_DEPTH_ZERO_TO_ONE
-#include <glm/glm.hpp>
-#include <glm/ext/matrix_transform.hpp>
-#include <glm/ext/matrix_clip_space.hpp>
-#include <glm/gtx/string_cast.hpp>
-
-#include "ImGui/imgui.h"
-#include "ImGui/imgui_impl_sdl.h"
-#include "ImGui/imgui_impl_vulkan.h"
+#include <external/glm/glm.hpp>
+#include <external/glm/ext/matrix_transform.hpp>
+#include <external/glm/ext/matrix_clip_space.hpp>
+#include <external/glm/gtx/string_cast.hpp>
 
 #include <iomanip>
 #include <vector>

@@ -1,7 +1,7 @@
-#include "GuiBase.hpp"
-#include "CommandBuffer.hpp"
-#include "Initializers.hpp"
-#include "Destructors.hpp"
+#include "api/gui/GuiBase.hpp"
+#include "api/buffers/CommandBuffer.hpp"
+#include "api/utility/Initializers.hpp"
+#include "api/utility/Destructors.hpp"
 
 namespace RENDERER_NAMESPACE
 {

@@ -1,8 +1,8 @@
 #ifndef UNIFORM_BUFFER_HPP
 #define UNIFORM_BUFFER_HPP
 
-#include "Buffer.hpp"
-#include "LightNodeBase.hpp"
+#include "api/buffers/Buffer.hpp"
+#include "base/LightNodeBase.hpp"
 
 namespace RENDERER_NAMESPACE
 {

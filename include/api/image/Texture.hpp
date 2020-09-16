@@ -1,7 +1,7 @@
 #ifndef TEXTURE_HPP
 #define TEXTURE_HPP
 
-#include "Image.hpp"
+#include "api/image/Image.hpp"
 
 namespace RENDERER_NAMESPACE
 {

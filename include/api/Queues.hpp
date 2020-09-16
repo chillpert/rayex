@@ -1,7 +1,7 @@
 #ifndef QUEUES_HPP
 #define QUEUES_HPP
 
-#include "stdafx.hpp"
+#include "pch/stdafx.hpp"
 
 namespace RENDERER_NAMESPACE
 {

@@ -13,12 +13,12 @@
 //   - GuiBase
 //   - WindowBase
 
-#include "CameraBase.hpp"
+#include "base/CameraBase.hpp"
 #include "NodeBase.hpp"
-#include "LightNodeBase.hpp"
-#include "GeometryNodeBase.hpp"
-#include "GuiBase.hpp"
-#include "WindowBase.hpp"
+#include "base/LightNodeBase.hpp"
+#include "base/GeometryNodeBase.hpp"
+#include "api/gui/GuiBase.hpp"
+#include "window/WindowBase.hpp"
 #include "Settings.hpp"
 
 #endif // BASE_HPP

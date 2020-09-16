@@ -1,4 +1,4 @@
-#include "WindowBase.hpp"
+#include "window/WindowBase.hpp"
 
 namespace RENDERER_NAMESPACE
 {

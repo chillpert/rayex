@@ -1,7 +1,7 @@
 #ifndef DESTRUCTORS_HPP
 #define DESTRUCTORS_HPP
 
-#include "stdafx.hpp"
+#include "pch/stdafx.hpp"
 
 namespace vk
 {

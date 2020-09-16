@@ -1,6 +1,6 @@
-#include "DebugMessenger.hpp"
-#include "Api.hpp"
-#include "Components.hpp"
+#include "api/utility/DebugMessenger.hpp"
+#include "api/Api.hpp"
+#include "api/Components.hpp"
 
 namespace RENDERER_NAMESPACE
 {

@@ -1,8 +1,8 @@
 #ifndef PIPELINE_HPP
 #define PIPELINE_HPP
 
-#include "WindowBase.hpp"
-#include "Swapchain.hpp"
+#include "window/WindowBase.hpp"
+#include "api/Swapchain.hpp"
 
 namespace RENDERER_NAMESPACE
 {

@@ -1,4 +1,4 @@
-#include "LightNodeBase.hpp"
+#include "base/LightNodeBase.hpp"
 
 namespace RENDERER_NAMESPACE
 {

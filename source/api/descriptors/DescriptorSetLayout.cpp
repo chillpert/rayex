@@ -1,5 +1,5 @@
-#include "DescriptorSet.hpp"
-#include "Components.hpp"
+#include "api/descriptors/DescriptorSet.hpp"
+#include "api/Components.hpp"
 
 namespace RENDERER_NAMESPACE
 {

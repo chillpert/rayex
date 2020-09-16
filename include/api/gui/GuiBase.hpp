@@ -1,13 +1,13 @@
 #ifndef GUI_HPP
 #define GUI_HPP
 
-#include "CommandBuffer.hpp"
-#include "RenderPass.hpp"
-#include "Swapchain.hpp"
-#include "Surface.hpp"
+#include "api/buffers/CommandBuffer.hpp"
+#include "api/RenderPass.hpp"
+#include "api/Swapchain.hpp"
+#include "api/Surface.hpp"
 
-#include "ImGui/imgui.h"
-#include "ImGui/imgui_impl_vulkan.h"
+#include "external/ImGui/imgui.h"
+#include "external/ImGui/imgui_impl_vulkan.h"
 
 namespace RENDERER_NAMESPACE
 {

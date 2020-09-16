@@ -1,8 +1,8 @@
 #ifndef VERTEX_BUFFER_HPP
 #define VERTEX_BUFFER_HPP
 
-#include "Buffer.hpp"
-#include "Vertex.hpp"
+#include "api/buffers/Buffer.hpp"
+#include "api/misc/Vertex.hpp"
 
 namespace RENDERER_NAMESPACE
 {

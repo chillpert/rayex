@@ -1,10 +1,10 @@
 #ifndef VERTEX_HPP
 #define VERTEX_HPP
 
-#include "stdafx.hpp"
+#include "pch/stdafx.hpp"
 
 #define GLM_ENABLE_EXPERIMENTAL
-#include <glm/gtx/hash.hpp>
+#include "external/glm/gtx/hash.hpp"
 
 namespace RENDERER_NAMESPACE
 {

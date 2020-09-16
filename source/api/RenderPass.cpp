@@ -1,5 +1,5 @@
-#include "RenderPass.hpp"
-#include "Components.hpp"
+#include "api/RenderPass.hpp"
+#include "api/Components.hpp"
 
 namespace RENDERER_NAMESPACE
 {

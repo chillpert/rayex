@@ -1,5 +1,5 @@
-#include "CommandBuffer.hpp"
-#include "Components.hpp"
+#include "api/buffers/CommandBuffer.hpp"
+#include "api/Components.hpp"
 
 namespace RENDERER_NAMESPACE
 {

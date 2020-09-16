@@ -1,9 +1,9 @@
-#include "RayTracingBuilder.hpp"
-#include "Components.hpp"
-#include "Initializers.hpp"
-#include "Helpers.hpp"
-#include "Destructors.hpp"
-#include "CommandBuffer.hpp"
+#include "api/raytracing/RayTracingBuilder.hpp"
+#include "api/Components.hpp"
+#include "api/utility/Initializers.hpp"
+#include "api/utility/Helpers.hpp"
+#include "api/utility/Destructors.hpp"
+#include "api/buffers/CommandBuffer.hpp"
 
 namespace RENDERER_NAMESPACE
 {

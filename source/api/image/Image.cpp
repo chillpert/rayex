@@ -1,10 +1,10 @@
-#include "Texture.hpp"
-#include "Buffer.hpp"
-#include "CommandBuffer.hpp"
-#include "Components.hpp"
-#include "Initializers.hpp"
-#include "Destructors.hpp"
-#include "Helpers.hpp"
+#include "api/image/Texture.hpp"
+#include "api/buffers/Buffer.hpp"
+#include "api/buffers/CommandBuffer.hpp"
+#include "api/Components.hpp"
+#include "api/utility/Initializers.hpp"
+#include "api/utility/Destructors.hpp"
+#include "api/utility/Helpers.hpp"
 
 namespace RENDERER_NAMESPACE
 {

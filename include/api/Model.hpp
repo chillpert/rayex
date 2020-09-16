@@ -1,13 +1,13 @@
 #ifndef MODEL_BASE_HPP
 #define MODEL_BASE_HPP
 
-#include "Texture.hpp"
-#include "Vertex.hpp"
-#include "VertexBuffer.hpp"
-#include "IndexBuffer.hpp"
-#include "UniformBuffer.hpp"
-#include "DescriptorSet.hpp"
-#include "Material.hpp"
+#include "api/image/Texture.hpp"
+#include "api/misc/Vertex.hpp"
+#include "api/buffers/VertexBuffer.hpp"
+#include "api/buffers/IndexBuffer.hpp"
+#include "api/buffers/UniformBuffer.hpp"
+#include "api/descriptors/DescriptorSet.hpp"
+#include "api/Material.hpp"
 
 namespace RENDERER_NAMESPACE
 {

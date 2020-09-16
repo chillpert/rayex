@@ -1,6 +1,6 @@
-#include "Helpers.hpp"
-#include "Components.hpp"
-#include "CommandBuffer.hpp"
+#include "api/utility/Helpers.hpp"
+#include "api/Components.hpp"
+#include "api/buffers/CommandBuffer.hpp"
 
 namespace vk
 {

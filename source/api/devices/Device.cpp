@@ -1,5 +1,5 @@
-#include "Device.hpp"
-#include "Components.hpp"
+#include "api/devices/Device.hpp"
+#include "api/Components.hpp"
 
 namespace RENDERER_NAMESPACE
 {
@@ -18,11 +18,7 @@ namespace RENDERER_NAMESPACE
 
     const float queuePriority = 1.0f;
 
-    std::vector<uint32_t> queueFamilyIndices =
-    {
-      g_graphicsFamilyIndex,
-      g_transferFamilyIndex
-    };
+    std::vector<uint32_t> queueFamilyIndices = { g_graphicsFamilyIndex, g_transferFamilyIndex };
 
     uint32_t index = 0;
     for ( const auto& queueFamilyIndex : queueFamilyIndices )

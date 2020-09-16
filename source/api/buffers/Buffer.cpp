@@ -1,7 +1,7 @@
-#include "Buffer.hpp"
-#include "CommandBuffer.hpp"
-#include "Helpers.hpp"
-#include "Initializers.hpp"
+#include "api/buffers/Buffer.hpp"
+#include "api/buffers/CommandBuffer.hpp"
+#include "api/utility/Helpers.hpp"
+#include "api/utility/Initializers.hpp"
 
 namespace RENDERER_NAMESPACE
 {

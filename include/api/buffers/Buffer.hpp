@@ -1,8 +1,8 @@
 #ifndef BUFFER_HPP
 #define BUFFER_HPP
 
-#include "Image.hpp"
-#include "Components.hpp"
+#include "api/image/Image.hpp"
+#include "api/Components.hpp"
 
 namespace RENDERER_NAMESPACE
 {

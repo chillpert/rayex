@@ -1,7 +1,7 @@
-#include "Texture.hpp"
-#include "Buffer.hpp"
-#include "Helpers.hpp"
-#include "Initializers.hpp"
+#include "api/image/Texture.hpp"
+#include "api/buffers/Buffer.hpp"
+#include "api/utility/Helpers.hpp"
+#include "api/utility/Initializers.hpp"
 
 #define STB_IMAGE_IMPLEMENTATION
 #include <stb_image.h>

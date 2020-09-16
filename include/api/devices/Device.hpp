@@ -1,7 +1,7 @@
 #ifndef DEVICE_HPP
 #define DEVICE_HPP
 
-#include "Instance.hpp"
+#include "api/Instance.hpp"
 
 namespace RENDERER_NAMESPACE
 {

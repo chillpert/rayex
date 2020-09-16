@@ -1,11 +1,11 @@
 #ifndef RAYTRACING_BUILDER_HPP
 #define RAYTRACING_BUILDER_HPP
 
-#include "AccelerationStructure.hpp"
-#include "Model.hpp"
-#include "Buffer.hpp"
-#include "Swapchain.hpp"
-#include "GeometryNodeBase.hpp"
+#include "api/raytracing/AccelerationStructure.hpp"
+#include "api/Model.hpp"
+#include "api/buffers/Buffer.hpp"
+#include "api/Swapchain.hpp"
+#include "base/GeometryNodeBase.hpp"
 
 namespace RENDERER_NAMESPACE
 {

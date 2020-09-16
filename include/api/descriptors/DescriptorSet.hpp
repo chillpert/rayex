@@ -1,10 +1,10 @@
 #ifndef DESCRIPTOR_SET_HPP
 #define DESCRIPTOR_SET_HPP
 
-#include "DescriptorSetLayout.hpp"
-#include "Buffer.hpp"
-#include "UniformBuffer.hpp"
-#include "Texture.hpp"
+#include "api/descriptors/DescriptorSetLayout.hpp"
+#include "api/buffers/Buffer.hpp"
+#include "api/buffers/UniformBuffer.hpp"
+#include "api/image/Texture.hpp"
 
 namespace RENDERER_NAMESPACE
 {

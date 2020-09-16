@@ -1,4 +1,4 @@
-#include "VertexBuffer.hpp"
+#include "api/buffers/VertexBuffer.hpp"
 
 namespace RENDERER_NAMESPACE
 {

@@ -28,25 +28,25 @@ namespace RENDERER_NAMESPACE
     void destroy( );
 
     /// @return Returns the current swapchain image index.
-    inline uint32_t getCurrentImageIndex( ) const { return m_currentImageIndex; }
+    inline uint32_t getCurrentImageIndex( ) const { return currentImageIndex; }
 
     /// @return Returns the swapchain images' extent.
-    inline const vk::Extent2D getExtent( ) const { return m_extent; }
+    inline const vk::Extent2D getExtent( ) const { return extent; }
 
     /// @return Returns the swapchain images' image aspect.
-    inline const vk::ImageAspectFlags getImageAspect( ) const { return m_imageAspect; }
+    inline const vk::ImageAspectFlags getImageAspect( ) const { return imageAspect; }
 
     /// Returns the swapchain image at a given index.
     /// @param index The index of the swapchain image.
     /// @return The swapchain image.
-    inline const vk::Image getImage( size_t index ) const { return m_images[index]; }
+    inline const vk::Image getImage( size_t index ) const { return images[index]; }
 
     /// @return Returns a vector containing all swapchain images.
-    inline const std::vector<vk::Image>& getImages( ) const { return m_images; }
+    inline const std::vector<vk::Image>& getImages( ) const { return images; }
 
     /// @return Returns a vector containing all swapchain image views.
     /// @todo Returning by reference will result in size 0.
-    inline const std::vector<vk::ImageView> getImageViews( ) const { return vk::Helper::unpack<vk::ImageView>( m_imageViews ); } 
+    inline const std::vector<vk::ImageView> getImageViews( ) const { return vk::Helper::unpack<vk::ImageView>( imageViews ); } 
 
     /// Used to set the desired image aspect flags.
     void setImageAspect( vk::ImageAspectFlags flags );
@@ -74,20 +74,20 @@ namespace RENDERER_NAMESPACE
     /// @param renderPass The render pass to create the framebuffers.
     void initFramebuffers( vk::RenderPass renderPass );
 
-    vk::UniqueSwapchainKHR m_swapchain; ///< The Vulkan swapchain object with a unique handle.
+    vk::UniqueSwapchainKHR swapchain; ///< The Vulkan swapchain object with a unique handle.
 
-    vk::Extent2D m_extent; ///< The swapchain images' extent.
-    vk::ImageAspectFlags m_imageAspect = vk::ImageAspectFlagBits::eColor; ///< The swapchain image's image aspect.
+    vk::Extent2D extent; ///< The swapchain images' extent.
+    vk::ImageAspectFlags imageAspect = vk::ImageAspectFlagBits::eColor; ///< The swapchain image's image aspect.
 
-    std::vector<vk::Image> m_images; ///< The swapchain images.
-    std::vector<vk::UniqueImageView> m_imageViews; ///< The swapchain images' image views with a unique handle.
+    std::vector<vk::Image> images; ///< The swapchain images.
+    std::vector<vk::UniqueImageView> imageViews; ///< The swapchain images' image views with a unique handle.
 
-    std::vector<vk::UniqueFramebuffer> m_framebuffers; ///< The swapchain images' framebuffers with a unique handle.
+    std::vector<vk::UniqueFramebuffer> framebuffers; ///< The swapchain images' framebuffers with a unique handle.
 
-    Image m_depthImage; ///< The depth image.
-    vk::UniqueImageView m_depthImageView; ///< The depth image's image views with a unique handle. 
+    Image depthImage; ///< The depth image.
+    vk::UniqueImageView depthImageView; ///< The depth image's image views with a unique handle. 
 
-    uint32_t m_currentImageIndex; ///< The current swapchain image index.
+    uint32_t currentImageIndex; ///< The current swapchain image index.
   };
 
   /// Retrieves the depth format supported by a given physical device.

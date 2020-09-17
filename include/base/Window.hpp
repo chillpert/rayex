@@ -60,16 +60,16 @@ namespace RENDERER_NAMESPACE
     vk::SurfaceKHR createSurface( vk::Instance instance );
 
     /// @return Returns the actual SDL_Window object.
-    RX_API inline SDL_Window* get( ) { return m_window; }
+    RX_API inline SDL_Window* get( ) { return window; }
 
     /// @return Returns the window size as a Vulkan 2D extent.
     RX_API vk::Extent2D getExtent( ) const;
 
     /// @return Returns the window's width in pixels.
-    inline int getWidth( ) const { return m_width; }
+    inline int getWidth( ) const { return width; }
 
     /// @return Returns the window's height in pixels.
-    inline int getHeight( ) const { return m_height; }
+    inline int getHeight( ) const { return height; }
 
     /// @return Returns true if the window size has changed.
     RX_API bool changed( );
@@ -78,14 +78,14 @@ namespace RENDERER_NAMESPACE
     RX_API bool minimized( );
 
   protected:
-    SDL_Window* m_window; ///< The actual SDL_Window object.
+    SDL_Window* window; ///< The actual SDL_Window object.
 
-    int m_width; ///< The window's width in pixels.
-    int m_height; ///< The window's height in pixels.
-    const char* m_title; ///< The window's title.
-    uint32_t m_flags; ///< The window's flags.
+    int width; ///< The window's width in pixels.
+    int height; ///< The window's height in pixels.
+    const char* title; ///< The window's title.
+    uint32_t flags; ///< The window's flags.
 
-    Time m_time; ///< The timer that manages the application's timing.
+    Time time; ///< The timer that manages the application's timing.
   };
 }
 

@@ -15,32 +15,32 @@ namespace RENDERER_NAMESPACE
   void RayTracingBuilder::init( )
   {
     auto properties = g_physicalDevice.getProperties2<vk::PhysicalDeviceProperties2, vk::PhysicalDeviceRayTracingPropertiesKHR>( );
-    m_rtProperties = properties.get<vk::PhysicalDeviceRayTracingPropertiesKHR>( );
+    this->rtProperties = properties.get<vk::PhysicalDeviceRayTracingPropertiesKHR>( );
   }
 
   void RayTracingBuilder::destroy( )
   {
     g_device.waitIdle( );
 
-    for ( Blas& blas : m_blas_ )
+    for ( Blas& blas : this->blas_ )
       blas.as.destroy( );
 
-    m_tlas.as.destroy( );
+    this->tlas.as.destroy( );
 
-    m_blas_.clear( );
+    this->blas_.clear( );
   }
 
   Blas RayTracingBuilder::modelToBlas( const std::shared_ptr<Model> model ) const
   {
     vk::AccelerationStructureCreateGeometryTypeInfoKHR asCreate( vk::GeometryTypeKHR::eTriangles,       // geometryType
-                                                                 model->m_indexBuffer.getCount( ) / 3,  // maxPrimitiveCount
-                                                                 model->m_indexBuffer.getType( ),       // indexType
-                                                                 model->m_vertexBuffer.getCount( ),     // maxVertexCount
+                                                                 model->indexBuffer.getCount( ) / 3,  // maxPrimitiveCount
+                                                                 model->indexBuffer.getType( ),       // indexType
+                                                                 model->vertexBuffer.getCount( ),     // maxVertexCount
                                                                  Vertex::getVertexFormat( ),            // vertexFormat
                                                                  VK_FALSE );                            // allowsTransforms
 
-    vk::DeviceAddress vertexAddress = g_device.getBufferAddress( { model->m_vertexBuffer.get( ) } );
-    vk::DeviceAddress indexAddress = g_device.getBufferAddress( { model->m_indexBuffer.get( ) } );
+    vk::DeviceAddress vertexAddress = g_device.getBufferAddress( { model->vertexBuffer.get( ) } );
+    vk::DeviceAddress indexAddress = g_device.getBufferAddress( { model->indexBuffer.get( ) } );
 
     vk::AccelerationStructureGeometryTrianglesDataKHR triangles( asCreate.vertexFormat, // vertexFormat
                                                                  vertexAddress,         // vertexData
@@ -68,7 +68,7 @@ namespace RENDERER_NAMESPACE
 
   vk::AccelerationStructureInstanceKHR RayTracingBuilder::instanceToVkGeometryInstanceKHR( const BlasInstance& instance )
   {
-    Blas& blas { m_blas_[instance.blasId] };
+    Blas& blas { this->blas_[instance.blasId] };
 
     vk::AccelerationStructureDeviceAddressInfoKHR addressInfo( blas.as.as );
     vk::DeviceAddress blasAddress = g_device.getAccelerationStructureAddressKHR( addressInfo );
@@ -109,7 +109,7 @@ namespace RENDERER_NAMESPACE
 
   void RayTracingBuilder::buildBlas( const std::vector<Blas>& blas_, vk::BuildAccelerationStructureFlagsKHR flags )
   {
-    m_blas_ = blas_;
+    this->blas_ = blas_;
 
     vk::DeviceSize maxScratch = 0;
 
@@ -117,11 +117,11 @@ namespace RENDERER_NAMESPACE
     bool doCompaction = ( flags & vk::BuildAccelerationStructureFlagBitsKHR::eAllowCompaction ) == vk::BuildAccelerationStructureFlagBitsKHR::eAllowCompaction;
 
     std::vector<vk::DeviceSize> originalSizes;
-    originalSizes.resize( m_blas_.size( ) );
+    originalSizes.resize( this->blas_.size( ) );
 
     // Iterate over the groups of geometries, creating one BLAS for each group
     int index = 0;
-    for ( Blas& blas : m_blas_ )
+    for ( Blas& blas : this->blas_ )
     {
       vk::AccelerationStructureCreateInfoKHR asCreateInfo( { },                                                        // compactedSize
                                                            vk::AccelerationStructureTypeKHR::eBottomLevel,             // type
@@ -163,16 +163,16 @@ namespace RENDERER_NAMESPACE
     vk::DeviceAddress scratchAddress = g_device.getBufferAddress( bufferInfo );
 
     // Query size of compact BLAS.
-    vk::UniqueQueryPool queryPool = vk::Initializer::createQueryPoolUnique( static_cast<uint32_t>( m_blas_.size( ) ), vk::QueryType::eAccelerationStructureCompactedSizeKHR );
+    vk::UniqueQueryPool queryPool = vk::Initializer::createQueryPoolUnique( static_cast<uint32_t>( this->blas_.size( ) ), vk::QueryType::eAccelerationStructureCompactedSizeKHR );
 
     // Create a command buffer containing all the BLAS builds.
     vk::UniqueCommandPool commandPool = vk::Initializer::createCommandPoolUnique( { g_graphicsFamilyIndex } );
     int ctr = 0;
 
-    CommandBuffer cmdBuf( commandPool.get( ), static_cast<uint32_t>( m_blas_.size( ) ) );
+    CommandBuffer cmdBuf( commandPool.get( ), static_cast<uint32_t>( this->blas_.size( ) ) );
 
     index = 0;
-    for ( Blas& blas : m_blas_ )
+    for ( Blas& blas : this->blas_ )
     {
       const vk::AccelerationStructureGeometryKHR* pGeometry = blas.asGeometry.data( );
 
@@ -232,7 +232,7 @@ namespace RENDERER_NAMESPACE
     {
       CommandBuffer compactionCmdBuf( g_graphicsCmdPool );
 
-      std::vector<vk::DeviceSize> compactSizes( m_blas_.size( ) );
+      std::vector<vk::DeviceSize> compactSizes( this->blas_.size( ) );
 
       g_device.getQueryPoolResults( queryPool.get( ),                                // queryPool
                                     0,                                               // firstQuery
@@ -242,14 +242,14 @@ namespace RENDERER_NAMESPACE
                                     sizeof( vk::DeviceSize ),                        // stride
                                     vk::QueryResultFlagBits::eWait );                // flags
      
-      std::vector<AccelerationStructure> cleanupAS( m_blas_.size( ) );
+      std::vector<AccelerationStructure> cleanupAS( this->blas_.size( ) );
 
       uint32_t totalOriginalSize = 0;
       uint32_t totalCompactSize = 0;
 
       compactionCmdBuf.begin( 0 );
 
-      for ( int i = 0; i < m_blas_.size( ); ++i )
+      for ( int i = 0; i < this->blas_.size( ); ++i )
       {
         totalOriginalSize += static_cast<uint32_t>( originalSizes[i] );
         totalCompactSize += static_cast<uint32_t>( compactSizes[i] );
@@ -265,14 +265,14 @@ namespace RENDERER_NAMESPACE
         auto as = vk::Initializer::createAccelerationStructure( asCreateInfo );
         
         // Copy the original BLAS to a compact version
-        vk::CopyAccelerationStructureInfoKHR copyInfo( m_blas_[i].as.as,                                 // src
+        vk::CopyAccelerationStructureInfoKHR copyInfo( this->blas_[i].as.as,                                 // src
                                                        as.as,                                            // dst
                                                        vk::CopyAccelerationStructureModeKHR::eCompact ); // mode
         
         compactionCmdBuf.get( 0 ).copyAccelerationStructureKHR( &copyInfo );
 
-        cleanupAS[i] = m_blas_[i].as;
-        m_blas_[i].as = as;
+        cleanupAS[i] = this->blas_[i].as;
+        this->blas_[i].as = as;
 
 
       }
@@ -295,9 +295,9 @@ namespace RENDERER_NAMESPACE
     for ( uint32_t i = 0; i < static_cast<uint32_t>( nodes.size( ) ); ++i )
     {
       BlasInstance rayInst;
-      rayInst.transform = nodes[i]->m_worldTransform;
+      rayInst.transform = nodes[i]->worldTransform;
       rayInst.instanceId = i;
-      rayInst.blasId = nodes[i]->m_rtInstance.m_modelIndex;
+      rayInst.blasId = nodes[i]->rtInstance.modelIndex;
       rayInst.hitGroupId = 0; // We will use the same hit group for all objects
       rayInst.flags = vk::GeometryInstanceFlagBitsKHR::eTriangleFacingCullDisable;
 
@@ -309,7 +309,7 @@ namespace RENDERER_NAMESPACE
 
   void RayTracingBuilder::buildTlas( const std::vector<BlasInstance>& instances, vk::BuildAccelerationStructureFlagsKHR flags )
   {
-    m_tlas.flags = flags;
+    this->tlas.flags = flags;
 
     vk::AccelerationStructureCreateGeometryTypeInfoKHR geometryCreate( vk::GeometryTypeKHR::eInstances,             // geometryType
                                                                        static_cast<uint32_t>( instances.size( ) ),  // maxPrimitiveCount
@@ -325,12 +325,12 @@ namespace RENDERER_NAMESPACE
                                                          &geometryCreate,                             // pGeometryInfos
                                                          { } );                                       // deviceAddress
 
-    m_tlas.as = vk::Initializer::createAccelerationStructure( asCreateInfo );
+    this->tlas.as = vk::Initializer::createAccelerationStructure( asCreateInfo );
 
     // TODO: Just like the BLAS creation we need a scratch buffer. We could save one allocation by re-using the BLAS scratch buffer.
     vk::AccelerationStructureMemoryRequirementsInfoKHR memoryRequirementsInfo( vk::AccelerationStructureMemoryRequirementsTypeKHR::eBuildScratch, // type
                                                                                vk::AccelerationStructureBuildTypeKHR::eDevice,                    // buildType
-                                                                               m_tlas.as.as );                                                    // accelerationStructure
+                                                                               this->tlas.as.as );                                                    // accelerationStructure
 
     vk::MemoryRequirements2 reqMem = g_device.getAccelerationStructureMemoryRequirementsKHR( memoryRequirementsInfo );
     vk::DeviceSize scratchSize = reqMem.memoryRequirements.size;
@@ -362,15 +362,15 @@ namespace RENDERER_NAMESPACE
     vk::DeviceSize instanceDescsSizeInBytes = instances.size( ) * sizeof( vk::AccelerationStructureInstanceKHR );
 
     // Allocate the instance buffer and copy its contents from host to device memory.
-    m_instanceBuffer.init( instanceDescsSizeInBytes,                                                                // size
+    this->instanceBuffer.init( instanceDescsSizeInBytes,                                                                // size
                        vk::BufferUsageFlagBits::eRayTracingKHR | vk::BufferUsageFlagBits::eShaderDeviceAddress, // usage
                        { g_graphicsFamilyIndex },                                                               // queueFamilyIndices
                        vk::MemoryPropertyFlagBits::eHostVisible,                                                // memoryPropertyFlags
                        &allocateFlags );                                                                        // pNextMemory
 
-    m_instanceBuffer.fill<vk::AccelerationStructureInstanceKHR>( geometryInstances.data( ) );
+    this->instanceBuffer.fill<vk::AccelerationStructureInstanceKHR>( geometryInstances.data( ) );
 
-    vk::DeviceAddress instanceAddress = g_device.getBufferAddress( { m_instanceBuffer.get( ) } );
+    vk::DeviceAddress instanceAddress = g_device.getBufferAddress( { this->instanceBuffer.get( ) } );
 
     // Make sure the copy of the instance buffer are copied before triggering the acceleration structure build.
     vk::MemoryBarrier barrier( vk::AccessFlagBits::eTransferWrite,                   // srcAccessMask
@@ -403,7 +403,7 @@ namespace RENDERER_NAMESPACE
                                                              flags,                                            // flags
                                                              VK_FALSE,                                         // update
                                                              nullptr,                                          // srcAccelerationStructure
-                                                             m_tlas.as.as,                                     // dstAccelerationStructure
+                                                             this->tlas.as.as,                                     // dstAccelerationStructure
                                                              VK_FALSE,                                         // geometryArrayOfPointers
                                                              1,                                                // geometryCount
                                                              &pGeometry,                                       // ppGeometries
@@ -430,21 +430,21 @@ namespace RENDERER_NAMESPACE
     storageImageInfo.usage = vk::ImageUsageFlagBits::eTransferSrc | vk::ImageUsageFlagBits::eStorage;
     storageImageInfo.format = vk::Format::eB8G8R8A8Unorm; // TODO: make this the surface format, and not hard-coded
 
-    m_storageImage.init( storageImageInfo );
-    m_storageImage.transitionToLayout( vk::ImageLayout::eGeneral );
+    this->storageImage.init( storageImageInfo );
+    this->storageImage.transitionToLayout( vk::ImageLayout::eGeneral );
 
-    m_storageImageView = vk::Initializer::createImageViewUnique( m_storageImage.get( ), m_storageImage.getFormat( ) );
+    this->storageImageView = vk::Initializer::createImageViewUnique( this->storageImage.get( ), this->storageImage.getFormat( ) );
   }
 
   void RayTracingBuilder::createShaderBindingTable( vk::Pipeline rtPipeline )
   {
     uint32_t groupCount = g_shaderGroups;
-    uint32_t groupHandleSize = m_rtProperties.shaderGroupHandleSize;
-    uint32_t baseAlignment = m_rtProperties.shaderGroupBaseAlignment;
+    uint32_t groupHandleSize = this->rtProperties.shaderGroupHandleSize;
+    uint32_t baseAlignment = this->rtProperties.shaderGroupBaseAlignment;
 
     uint32_t sbtSize = groupCount * baseAlignment;
 
-    m_sbtBuffer.init( sbtSize,
+    this->sbtBuffer.init( sbtSize,
                       vk::BufferUsageFlagBits::eTransferSrc,
                       { g_graphicsFamilyIndex },
                       vk::MemoryPropertyFlagBits::eHostVisible );
@@ -457,7 +457,7 @@ namespace RENDERER_NAMESPACE
                                                  shaderHandleStorage.data( ) );
 
     void* mapped = NULL;
-    g_device.mapMemory( m_sbtBuffer.getMemory( ), 0, m_sbtBuffer.getSize( ), { }, &mapped );
+    g_device.mapMemory( this->sbtBuffer.getMemory( ), 0, this->sbtBuffer.getSize( ), { }, &mapped );
 
     auto* pData = reinterpret_cast<uint8_t*>( mapped );
     for ( uint32_t i = 0; i < g_shaderGroups; ++i )
@@ -466,31 +466,31 @@ namespace RENDERER_NAMESPACE
       pData += baseAlignment;
     }
 
-    g_device.unmapMemory( m_sbtBuffer.getMemory( ) );
+    g_device.unmapMemory( this->sbtBuffer.getMemory( ) );
   }
 
   void RayTracingBuilder::rayTrace( vk::CommandBuffer swapchainCommandBuffer, vk::Image swapchainImage, vk::Extent2D extent )
   {
-    vk::DeviceSize progSize = m_rtProperties.shaderGroupBaseAlignment;
+    vk::DeviceSize progSize = this->rtProperties.shaderGroupBaseAlignment;
     vk::DeviceSize sbtSize = progSize * static_cast<vk::DeviceSize>( g_shaderGroups );
 
-    vk::DeviceSize rayGenOffset = RX_SHADER_GROUP_INDEX_RGEN * progSize;  // Start at the beginning of m_sbtBuffer
+    vk::DeviceSize rayGenOffset = RX_SHADER_GROUP_INDEX_RGEN * progSize;  // Start at the beginning of this->sbtBuffer
     vk::DeviceSize missOffset = RX_SHADER_GROUP_INDEX_MISS * progSize;  // Jump over raygen
     vk::DeviceSize missStride = progSize;
     vk::DeviceSize chitGroupOffset = RX_SHADER_GROUP_INDEX_CHIT * progSize;  // Jump over the previous shaders
     vk::DeviceSize chitGroupStride = progSize;
 
-    vk::StridedBufferRegionKHR bufferRegionRayGen( m_sbtBuffer.get( ), // buffer
+    vk::StridedBufferRegionKHR bufferRegionRayGen( this->sbtBuffer.get( ), // buffer
                                                    rayGenOffset,       // offset
                                                    progSize,           // stride
                                                    sbtSize );          // size
 
-    vk::StridedBufferRegionKHR bufferRegionMiss( m_sbtBuffer.get( ), // buffer
+    vk::StridedBufferRegionKHR bufferRegionMiss( this->sbtBuffer.get( ), // buffer
                                                  missOffset,         // offset
                                                  progSize,           // stride
                                                  sbtSize );          // size
 
-    vk::StridedBufferRegionKHR bufferRegionChit( m_sbtBuffer.get( ), // buffer
+    vk::StridedBufferRegionKHR bufferRegionChit( this->sbtBuffer.get( ), // buffer
                                                  chitGroupOffset,    // offset
                                                  progSize,           // stride
                                                  sbtSize );          // size           
@@ -507,7 +507,7 @@ namespace RENDERER_NAMESPACE
  
     // Image layout transitions for copying.
     vk::Helper::transitionImageLayout( swapchainImage, vk::ImageLayout::eUndefined, vk::ImageLayout::eTransferDstOptimal, swapchainCommandBuffer );
-    m_storageImage.transitionToLayout( vk::ImageLayout::eTransferSrcOptimal, swapchainCommandBuffer );
+    this->storageImage.transitionToLayout( vk::ImageLayout::eTransferSrcOptimal, swapchainCommandBuffer );
 
     // Copy ray tracing output (storage image) to swapchain image.
     vk::ImageCopy copyRegion( { vk::ImageAspectFlagBits::eColor, 0, 0, 1 }, // srcSubresource
@@ -516,7 +516,7 @@ namespace RENDERER_NAMESPACE
                               { 0, 0, 0 },                                  // dstOffset
                               { extent.width, extent.height, 1 } );         // extent
 
-    swapchainCommandBuffer.copyImage( m_storageImage.get( ),                // srcImage 
+    swapchainCommandBuffer.copyImage( this->storageImage.get( ),                // srcImage 
                                       vk::ImageLayout::eTransferSrcOptimal, // srcImageLayout 
                                       swapchainImage,                       // dstImage
                                       vk::ImageLayout::eTransferDstOptimal, // dstImageLayout
@@ -525,6 +525,6 @@ namespace RENDERER_NAMESPACE
 
     // Undo image layout transitions.
     vk::Helper::transitionImageLayout( swapchainImage, vk::ImageLayout::eTransferDstOptimal, vk::ImageLayout::ePresentSrcKHR, swapchainCommandBuffer );
-    m_storageImage.transitionToLayout( vk::ImageLayout::eGeneral, swapchainCommandBuffer );
+    this->storageImage.transitionToLayout( vk::ImageLayout::eGeneral, swapchainCommandBuffer );
   }
 }

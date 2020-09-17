@@ -10,7 +10,7 @@ namespace RENDERER_NAMESPACE
 
   void VertexBuffer::init( std::vector<Vertex>& vertices )
   {
-    m_count = static_cast< uint32_t >( vertices.size( ) );
+    this->count = static_cast< uint32_t >( vertices.size( ) );
 
     vk::DeviceSize size = sizeof( vertices[0] ) * vertices.size( );
     vk::MemoryAllocateFlagsInfo allocateFlags( vk::MemoryAllocateFlagBitsKHR::eDeviceAddress );
@@ -31,6 +31,6 @@ namespace RENDERER_NAMESPACE
     stagingBuffer.fill<Vertex>( vertices.data( ) );
 
     // Copy staging buffer to the actual index buffer.
-    stagingBuffer.copyToBuffer( m_buffer.get( ) );
+    stagingBuffer.copyToBuffer( this->buffer.get( ) );
   }
 }

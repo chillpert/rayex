@@ -18,7 +18,7 @@ namespace RENDERER_NAMESPACE
 
   void Buffer::init( vk::DeviceSize size, vk::BufferUsageFlags usage, const std::vector<uint32_t>& queueFamilyIndices, vk::MemoryPropertyFlags memoryPropertyFlags, void* pNextMemory )
   {
-    m_size = size;
+    this->size = size;
 
     vk::SharingMode sharingMode = queueFamilyIndices.size( ) > 1 ? vk::SharingMode::eConcurrent : vk::SharingMode::eExclusive;
 
@@ -29,10 +29,10 @@ namespace RENDERER_NAMESPACE
                                      static_cast< uint32_t >( queueFamilyIndices.size( ) ), // queueFamilyIndexCount
                                      queueFamilyIndices.data( ) );                          // pQueueFamilyIndices
 
-    m_buffer = g_device.createBufferUnique( createInfo );
-    RX_ASSERT( m_buffer, "Failed to create buffer." );
+    this->buffer = g_device.createBufferUnique( createInfo );
+    RX_ASSERT( this->buffer, "Failed to create buffer." );
 
-    m_memory = vk::Initializer::allocateMemoryUnique( m_buffer.get( ), memoryPropertyFlags, pNextMemory );
+    this->memory = vk::Initializer::allocateMemoryUnique( this->buffer.get( ), memoryPropertyFlags, pNextMemory );
   }
 
   void Buffer::copyToBuffer( Buffer& buffer ) const
@@ -40,8 +40,8 @@ namespace RENDERER_NAMESPACE
     CommandBuffer commandBuffer( g_transferCmdPool );
     commandBuffer.begin( );
     {
-      vk::BufferCopy copyRegion( 0, 0, m_size );
-      commandBuffer.get( 0 ).copyBuffer( m_buffer.get( ), buffer.get( ), 1, &copyRegion ); // CMD
+      vk::BufferCopy copyRegion( 0, 0, this->size );
+      commandBuffer.get( 0 ).copyBuffer( this->buffer.get( ), buffer.get( ), 1, &copyRegion ); // CMD
     }
     commandBuffer.end( );
     commandBuffer.submitToQueue( g_transferQueue );
@@ -52,8 +52,8 @@ namespace RENDERER_NAMESPACE
     CommandBuffer commandBuffer( g_transferCmdPool );
     commandBuffer.begin( );
     {
-      vk::BufferCopy copyRegion( 0, 0, m_size );
-      commandBuffer.get( 0 ).copyBuffer( m_buffer.get( ), buffer, 1, &copyRegion ); // CMD
+      vk::BufferCopy copyRegion( 0, 0, this->size );
+      commandBuffer.get( 0 ).copyBuffer( this->buffer.get( ), buffer, 1, &copyRegion ); // CMD
     }
     commandBuffer.end( );
     commandBuffer.submitToQueue( g_transferQueue );
@@ -71,7 +71,7 @@ namespace RENDERER_NAMESPACE
                                   vk::Offset3D{ 0, 0, 0 },                      // imageOffset
                                   image.getExtent( ) );                         // imageExtent
       
-      commandBuffer.get( 0 ).copyBufferToImage( m_buffer.get( ), image.get( ), vk::ImageLayout::eTransferDstOptimal, 1, &region ); // CMD
+      commandBuffer.get( 0 ).copyBufferToImage( this->buffer.get( ), image.get( ), vk::ImageLayout::eTransferDstOptimal, 1, &region ); // CMD
     }
     commandBuffer.end( );
     commandBuffer.submitToQueue( g_graphicsQueue );

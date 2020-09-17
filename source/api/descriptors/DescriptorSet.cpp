@@ -11,22 +11,22 @@ namespace RENDERER_NAMESPACE
 
   void DescriptorSet::init( vk::DescriptorPool descriptorPool, uint32_t count, const std::vector<vk::DescriptorSetLayout>& layouts )
   {
-    m_descriptorPool = descriptorPool;
-    m_layouts = layouts;
+    this->descriptorPool = descriptorPool;
+    this->layouts = layouts;
 
     vk::DescriptorSetAllocateInfo allocInfo( descriptorPool,
                                              count,
                                              layouts.data() );
 
-    m_sets = g_device.allocateDescriptorSets(allocInfo);
+    this->sets = g_device.allocateDescriptorSets(allocInfo);
 
-    for ( const vk::DescriptorSet& set : m_sets )
+    for ( const vk::DescriptorSet& set : this->sets )
       RX_ASSERT( set, "Failed to create descriptor sets." );
   }
 
   void DescriptorSet::update( const vk::AccelerationStructureKHR& tlas, vk::ImageView storageImageView, const std::vector<vk::Buffer>& uniformBuffers )
   {
-    for ( size_t i = 0; i < m_layouts.size( ); ++i )
+    for ( size_t i = 0; i < this->layouts.size( ); ++i )
     {
       vk::WriteDescriptorSetAccelerationStructureKHR descriptorInfoAS( 1,       // accelerationStructureCount
                                                                        &tlas ); // pAccelerationStructures 
@@ -40,9 +40,9 @@ namespace RENDERER_NAMESPACE
                                                  sizeof( CameraUbo ) );  // range
 
       std::array<vk::WriteDescriptorSet, 3> descriptorWrites;
-      descriptorWrites[0] = writeAccelerationStructure( m_sets[i], 0, &descriptorInfoAS );
-      descriptorWrites[1] = writeStorageImage( m_sets[i], 1, imageInfo );
-      descriptorWrites[2] = writeUniformBuffer( m_sets[i], 2, cameraBufferInfo );
+      descriptorWrites[0] = writeAccelerationStructure( this->sets[i], 0, &descriptorInfoAS );
+      descriptorWrites[1] = writeStorageImage( this->sets[i], 1, imageInfo );
+      descriptorWrites[2] = writeUniformBuffer( this->sets[i], 2, cameraBufferInfo );
 
       g_device.updateDescriptorSets( descriptorWrites, 0 );
     }
@@ -50,7 +50,7 @@ namespace RENDERER_NAMESPACE
 
   void DescriptorSet::update( vk::ImageView textureImageView, vk::Sampler textureSampler, vk::Buffer vertexBuffer, vk::Buffer indexBuffer )
   {
-    for ( size_t i = 0; i < m_layouts.size( ); ++i )
+    for ( size_t i = 0; i < this->layouts.size( ); ++i )
     {
       vk::DescriptorImageInfo textureInfo( textureSampler,                            // sampler
                                            textureImageView,                          // imageView
@@ -65,9 +65,9 @@ namespace RENDERER_NAMESPACE
                                                 sizeof( indexBuffer ) );  // range
 
       std::array<vk::WriteDescriptorSet, 3> descriptorWrites;
-      descriptorWrites[0] = writeCombinedImageSampler( m_sets[i], 0, textureInfo );
-      descriptorWrites[1] = writeStorageBuffer( m_sets[i], 1, vertbufferInfo );
-      descriptorWrites[2] = writeStorageBuffer( m_sets[i], 2, indexbufferInfo );
+      descriptorWrites[0] = writeCombinedImageSampler( this->sets[i], 0, textureInfo );
+      descriptorWrites[1] = writeStorageBuffer( this->sets[i], 1, vertbufferInfo );
+      descriptorWrites[2] = writeStorageBuffer( this->sets[i], 2, indexbufferInfo );
 
       g_device.updateDescriptorSets( descriptorWrites, 0 );
     }
@@ -75,7 +75,7 @@ namespace RENDERER_NAMESPACE
 
   void DescriptorSet::update( vk::Buffer vertexBuffer, vk::Buffer indexBuffer )
   {
-    for ( size_t i = 0; i < m_layouts.size( ); ++i )
+    for ( size_t i = 0; i < this->layouts.size( ); ++i )
     {
       vk::DescriptorBufferInfo vertexBufferInfo( vertexBuffer,             // buffer
                                                  0,                        // offset
@@ -86,8 +86,8 @@ namespace RENDERER_NAMESPACE
                                                 sizeof( indexBuffer ) ); // range
 
       std::array<vk::WriteDescriptorSet, 2> descriptorWrites;
-      descriptorWrites[0] = writeStorageBuffer( m_sets[i], 0, vertexBufferInfo );
-      descriptorWrites[1] = writeStorageBuffer( m_sets[i], 1, indexBufferInfo );
+      descriptorWrites[0] = writeStorageBuffer( this->sets[i], 0, vertexBufferInfo );
+      descriptorWrites[1] = writeStorageBuffer( this->sets[i], 1, indexBufferInfo );
 
       g_device.updateDescriptorSets( descriptorWrites, 0 );
     }
@@ -95,14 +95,14 @@ namespace RENDERER_NAMESPACE
 
   void DescriptorSet::update( const std::vector<vk::Buffer>& lightSources )
   {
-    for ( size_t i = 0; i < m_layouts.size( ); ++i )
+    for ( size_t i = 0; i < this->layouts.size( ); ++i )
     {
       vk::DescriptorBufferInfo lightSourcesBufferInfo( lightSources[i],       // buffer
                                                        0,                     // offset
                                                        sizeof( LightsUbo ) ); // range
 
       std::array<vk::WriteDescriptorSet, 1> descriptorWrites;
-      descriptorWrites[0] = writeUniformBuffer( m_sets[i], 0, lightSourcesBufferInfo );
+      descriptorWrites[0] = writeUniformBuffer( this->sets[i], 0, lightSourcesBufferInfo );
 
       g_device.updateDescriptorSets( descriptorWrites, 0 );
     }
@@ -110,7 +110,7 @@ namespace RENDERER_NAMESPACE
 
   void DescriptorSet::free( )
   {
-    g_device.freeDescriptorSets( m_descriptorPool, m_sets );
+    g_device.freeDescriptorSets( this->descriptorPool, this->sets );
   }
 
   vk::WriteDescriptorSet DescriptorSet::writeUniformBuffer( vk::DescriptorSet descriptorSet, uint32_t binding, const vk::DescriptorBufferInfo& bufferInfo )

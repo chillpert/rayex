@@ -21,14 +21,14 @@ namespace RENDERER_NAMESPACE
   public:
     virtual ~LightNode( ) = default;
 
-    glm::vec3 m_ambient = { 0.2f, 0.2f, 0.2f }; ///< The ambient color.
-    glm::vec3 m_diffuse = { 0.8f, 0.8f, 0.8f }; ///< The diffuse color.
-    glm::vec3 m_specular = { 1.0f, 1.0f, 1.0f }; ///< The specular highlight's color.
+    glm::vec3 ambient = { 0.2f, 0.2f, 0.2f }; ///< The ambient color.
+    glm::vec3 diffuse = { 0.8f, 0.8f, 0.8f }; ///< The diffuse color.
+    glm::vec3 specular = { 1.0f, 1.0f, 1.0f }; ///< The specular highlight's color.
 
-    float m_ambientIntensity = 0.7f; ///< The ambient intensity.
-    float m_diffuseIntensity = 1.0f; ///< The diffuse intensity.
-    float m_specularIntensity = 1.0f; ///< The specular intensity.
-    float m_exists = 1.0f;
+    float ambientIntensity = 0.7f; ///< The ambient intensity.
+    float diffuseIntensity = 1.0f; ///< The diffuse intensity.
+    float specularIntensity = 1.0f; ///< The specular intensity.
+    float exists = 1.0f;
   };
 
   /// Can be used to add directional light sources to the scene.
@@ -38,16 +38,16 @@ namespace RENDERER_NAMESPACE
   public:
     virtual ~DirectionalLightNode( ) = default;
 
-    glm::vec3 m_direction = { 1.0f, -1.0f, 1.0f }; ///< The direction the light is pointing at.    
+    glm::vec3 direction = { 1.0f, -1.0f, 1.0f }; ///< The direction the light is pointing at.    
 
     /// Used to combine members of DirectionalLightNode to data types that will not cause uniform member alignment issues in shaders.
     struct Ubo
     {
-      glm::vec4 m_ambient; ///< Encodes the ambient color in the first three entries and its intensity in the fourth entry.
-      glm::vec4 m_diffuse; ///< Encodes the diffuse color in the first three entries and its intensity in the fourth entry.
-      glm::vec4 m_specular; ///< Encodes the specular color in the first three entries and its intensity in the fourth entry.
+      glm::vec4 ambient; ///< Encodes the ambient color in the first three entries and its intensity in the fourth entry.
+      glm::vec4 diffuse; ///< Encodes the diffuse color in the first three entries and its intensity in the fourth entry.
+      glm::vec4 specular; ///< Encodes the specular color in the first three entries and its intensity in the fourth entry.
 
-      glm::vec4 m_direction; ///< Encodes the light's direction in the first three entires and whether or not it is activated in the fourth entry.
+      glm::vec4 direction; ///< Encodes the light's direction in the first three entires and whether or not it is activated in the fourth entry.
     };
 
     Ubo toUbo( );
@@ -60,24 +60,24 @@ namespace RENDERER_NAMESPACE
   public:
     virtual ~PointLightNode( ) = default;
 
-    glm::vec3 m_position = glm::vec3( 0.0f ); ///< The position of the light.
+    glm::vec3 position = glm::vec3( 0.0f ); ///< The position of the light.
 
-    float m_constant = 1.0f; ///< The constant factor of the light's abbreviation.
-    float m_linear = 0.09f; ///< The linear factor of the light's abbreviation.
-    float m_quadratic = 0.032f; ///< The quadratic factor of the light's abbreviation.
+    float constant = 1.0f; ///< The constant factor of the light's abbreviation.
+    float linear = 0.09f; ///< The linear factor of the light's abbreviation.
+    float quadratic = 0.032f; ///< The quadratic factor of the light's abbreviation.
 
     /// Used to combine members of PointLightNode to data types that will not cause uniform member alignment issues in shaders.
     struct Ubo
     {
-      glm::vec4 m_ambient; ///< Encodes the ambient color in the first three entries and its intensity in the fourth entry.
-      glm::vec4 m_diffuse; ///< Encodes the diffuse color in the first three entries and its intensity in the fourth entry.
-      glm::vec4 m_specular; ///< Encodes the specular color in the first three entries and its intensity in the fourth entry.
+      glm::vec4 ambient; ///< Encodes the ambient color in the first three entries and its intensity in the fourth entry.
+      glm::vec4 diffuse; ///< Encodes the diffuse color in the first three entries and its intensity in the fourth entry.
+      glm::vec4 specular; ///< Encodes the specular color in the first three entries and its intensity in the fourth entry.
 
-      glm::vec4 m_position; ///< Encodes the light's position in the first three entires and whether or not it is activated in the fourth entry.
+      glm::vec4 position; ///< Encodes the light's position in the first three entires and whether or not it is activated in the fourth entry.
 
-      float m_constant;
-      float m_linear;
-      float m_quadratic;
+      float constant;
+      float linear;
+      float quadratic;
     };
 
     Ubo toUbo( );

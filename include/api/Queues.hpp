@@ -28,8 +28,8 @@ namespace RENDERER_NAMESPACE
     static bool hasDedicatedTransferQueueFamily( vk::PhysicalDevice physicalDevice );
 
   private:
-    std::optional<uint32_t> m_graphicsFamilyIndex; ///< The graphics queue family index.
-    std::optional<uint32_t> m_transferFamilyIndex; ///< The transfer queue family index.
+    std::optional<uint32_t> graphicsFamilyIndex; ///< The graphics queue family index.
+    std::optional<uint32_t> transferFamilyIndex; ///< The transfer queue family index.
   };
 }
 

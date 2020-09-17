@@ -9,8 +9,8 @@ namespace RENDERER_NAMESPACE
   /// Contains all instance related ray tracing information.
   struct RayTracingInstance
   {
-    uint32_t m_modelIndex = 0;  ///< Reference to rx::Api::m_models
-    uint32_t m_textureOffset = 0; ///< Offset in rx::Api::m_textures
+    uint32_t modelIndex = 0;  ///< Reference to rx::Api::models
+    uint32_t textureOffset = 0; ///< Offset in rx::Api::textures
   };
 
   /// Adds geometry to the TransformNode parent class.
@@ -18,18 +18,18 @@ namespace RENDERER_NAMESPACE
   class GeometryNode : public TransformNode
   {
   public:
-    /// @param modelPath @see m_modelPath
-    /// @param material @see m_material
+    /// @param modelPath @see modelPath
+    /// @param material @see material
     GeometryNode( const std::string& modelPath, const Material& material ) :
-      m_modelPath( modelPath ), m_material( material )
+      modelPath( modelPath ), material( material )
     { }
 
     virtual ~GeometryNode( ) = default;
 
-    std::string m_modelPath; ///< The relative path to the model file.
-    Material m_material; ///< The material defining rendering properties.
+    std::string modelPath; ///< The relative path to the model file.
+    Material material; ///< The material defining rendering properties.
 
-    RayTracingInstance m_rtInstance; ///< @see RayTracingInstance
+    RayTracingInstance rtInstance; ///< @see RayTracingInstance
   };
 }
 

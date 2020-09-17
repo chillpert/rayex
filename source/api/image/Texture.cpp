@@ -9,13 +9,13 @@
 
 namespace RENDERER_NAMESPACE
 {
-  uint32_t Texture::m_textureCounter = 0;
+  uint32_t Texture::textureCounter = 0;
 
   Texture::Texture( ) :
-    m_offset( m_textureCounter++ ) { }
+    offset( this->textureCounter++ ) { }
 
   Texture::Texture( const std::string& path, bool initialize ) :
-    m_offset( m_textureCounter++ )
+    offset( this->textureCounter++ )
   {
     if ( initialize )
       init( path );
@@ -23,7 +23,7 @@ namespace RENDERER_NAMESPACE
 
   void Texture::init( const std::string& path )
   {
-    m_path = path;
+    this->path = path;
 
     std::string fullPath = g_resourcePath + path;
 
@@ -52,9 +52,9 @@ namespace RENDERER_NAMESPACE
     stagingBuffer.copyToImage( *this );
     transitionToLayout( vk::ImageLayout::eShaderReadOnlyOptimal );
 
-    m_imageView = vk::Initializer::createImageViewUnique( m_image.get( ), m_format );
+    this->imageView = vk::Initializer::createImageViewUnique( this->image.get( ), this->format );
 
     auto samplerCreateInfo = vk::Helper::getSamplerCreateInfo( );
-    m_sampler = vk::Initializer::createSamplerUnique( samplerCreateInfo );
+    this->sampler = vk::Initializer::createSamplerUnique( samplerCreateInfo );
   }
 }

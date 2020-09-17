@@ -6,13 +6,13 @@
 
 namespace RENDERER_NAMESPACE
 {
-  uint32_t Model::m_modelCounter = 0;
+  uint32_t Model::modelCounter = 0;
 
   Model::Model( ) :
-    m_index( m_modelCounter++ ) { }
+    index( this->modelCounter++ ) { }
 
   Model::Model( const std::string& path ) :
-    m_index( m_modelCounter++ ), m_path( path )
+    index( this->modelCounter++ ), path( path )
   {
     load( );
   }
@@ -24,7 +24,7 @@ namespace RENDERER_NAMESPACE
     std::vector<tinyobj::material_t> materials;
     std::string warn, err;
 
-    std::string fullPath = g_resourcePath + m_path;
+    std::string fullPath = g_resourcePath + this->path;
 
     if ( !tinyobj::LoadObj( &attrib, &shapes, &materials, &warn, &err, fullPath.c_str( ) ) )
       RX_ERROR( warn + err );
@@ -61,18 +61,18 @@ namespace RENDERER_NAMESPACE
 
         if ( uniqueVertices.count( vertex ) == 0 )
         {
-          uniqueVertices[vertex] = static_cast<uint32_t>( m_vertices.size( ) );
-          m_vertices.push_back( vertex );
+          uniqueVertices[vertex] = static_cast<uint32_t>( this->vertices.size( ) );
+          this->vertices.push_back( vertex );
         }
 
-        m_indices.push_back( uniqueVertices[vertex] );
+        this->indices.push_back( uniqueVertices[vertex] );
       }
     }
   }
 
   bool Model::isLoaded( )
   {
-    if ( m_vertices.size( ) > 0 )
+    if ( this->vertices.size( ) > 0 )
       return true;
 
     return false;

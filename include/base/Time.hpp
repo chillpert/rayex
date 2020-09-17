@@ -27,13 +27,13 @@ namespace RENDERER_NAMESPACE
     void update( );
 
   private:
-    static float m_time; ///< The time passed since application start in seconds.
-    static float m_deltaTime; ///< The time passed between the current and the last frame.
+    static float time; ///< The time passed since application start in seconds.
+    static float deltaTime; ///< The time passed between the current and the last frame.
 
-    float m_prevTime; ///< Stores the prev time in intervals of one second.
-    float m_frames; ///< The frame counter; Gets reset after each second.
+    float prevTime; ///< Stores the prev time in intervals of one second.
+    float frames; ///< The frame counter; Gets reset after each second.
 
-    std::vector<int> m_allFrames; ///< Stores all frame rate values measured in intervals of one second.
+    std::vector<int> allFrames; ///< Stores all frame rate values measured in intervals of one second.
   };
 }
 

@@ -17,16 +17,16 @@ namespace RENDERER_NAMESPACE
     Image( const vk::ImageCreateInfo& createInfo, bool initialize = true );
 
     /// @return Returns the Vulkan image object without the unique handle.
-    inline const vk::Image get( ) const { return m_image.get( ); }
+    inline const vk::Image get( ) const { return image.get( ); }
 
     /// @return Returns the iamge's extent.
-    inline const vk::Extent3D getExtent( ) const { return m_extent; }
+    inline const vk::Extent3D getExtent( ) const { return extent; }
 
     /// @return Returns the image's format.
-    inline const vk::Format getFormat( ) const { return m_format; }
+    inline const vk::Format getFormat( ) const { return format; }
     
     /// @return Returns the image's layout.
-    inline const vk::ImageLayout getLayout( ) const { return m_layout; }
+    inline const vk::ImageLayout getLayout( ) const { return layout; }
 
     /// Creates the image and allocates memory for it.
     /// @param createInfo The Vulkan image create info.
@@ -51,12 +51,12 @@ namespace RENDERER_NAMESPACE
     static vk::Format findSupportedFormat( vk::PhysicalDevice physicalDevice, const std::vector<vk::Format>& formatsToTest, vk::FormatFeatureFlagBits features, vk::ImageTiling tiling );
 
   protected:
-    vk::UniqueImage m_image; ///< The Vulkan image with a unique handle.
-    vk::UniqueDeviceMemory m_memory; ///< The image's memory with a unique handle.
+    vk::UniqueImage image; ///< The Vulkan image with a unique handle.
+    vk::UniqueDeviceMemory memory; ///< The image's memory with a unique handle.
 
-    vk::Extent3D m_extent; ///< The image's extent.
-    vk::Format m_format; ///< The image's format.
-    vk::ImageLayout m_layout; ///< THe image's layout.
+    vk::Extent3D extent; ///< The image's extent.
+    vk::Format format; ///< The image's format.
+    vk::ImageLayout layout; ///< THe image's layout.
   };
 }
 

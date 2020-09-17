@@ -20,7 +20,7 @@ namespace RENDERER_NAMESPACE
 
   void Gui::init( const Surface* const surface, vk::Extent2D swapchainImageExtent, const std::vector<vk::ImageView>& swapchainImageViews )
   {
-    m_swapchainImageExtent = swapchainImageExtent;
+    this->swapchainImageExtent = swapchainImageExtent;
 
     configure( );
 
@@ -34,13 +34,13 @@ namespace RENDERER_NAMESPACE
     init_info.QueueFamily = g_graphicsFamilyIndex;
     init_info.Queue = g_graphicsQueue;
     init_info.PipelineCache = nullptr;
-    init_info.DescriptorPool = m_descriptorPool.get( );
+    init_info.DescriptorPool = this->descriptorPool.get( );
     init_info.Allocator = nullptr;
     init_info.MinImageCount = surface->getCapabilities( ).minImageCount + 1;
     init_info.ImageCount = static_cast<uint32_t>( g_swapchainImageCount );
 
     initRenderPass( surface );
-    ImGui_ImplVulkan_Init( &init_info, m_renderPass.get( ) );
+    ImGui_ImplVulkan_Init( &init_info, this->renderPass.get( ) );
     initCommandPool( );
     initFonts( );
     initCommandBuffers( );
@@ -49,7 +49,7 @@ namespace RENDERER_NAMESPACE
 
   void Gui::recreate( vk::Extent2D swapchainImageExtent, const std::vector<vk::ImageView>& swapchainImageViews )
   {
-    m_swapchainImageExtent = swapchainImageExtent;
+    this->swapchainImageExtent = swapchainImageExtent;
 
     initFramebuffers( swapchainImageViews );
   }
@@ -73,18 +73,18 @@ namespace RENDERER_NAMESPACE
 
   void Gui::renderDrawData( uint32_t imageIndex )
   {
-    m_commandBuffers.begin( imageIndex );
-    m_renderPass.begin( m_framebuffers[imageIndex].get( ), m_commandBuffers.get( imageIndex ), { 0, m_swapchainImageExtent }, { { std::array < float,4> { 0.5f, 0.5, 0.5f, 1.0f } } } );
+    this->commandBuffers.begin( imageIndex );
+    this->renderPass.begin( this->framebuffers[imageIndex].get( ), this->commandBuffers.get( imageIndex ), { 0, this->swapchainImageExtent }, { { std::array < float,4> { 0.5f, 0.5, 0.5f, 1.0f } } } );
 
-    ImGui_ImplVulkan_RenderDrawData( ImGui::GetDrawData( ), m_commandBuffers.get( )[imageIndex] );
+    ImGui_ImplVulkan_RenderDrawData( ImGui::GetDrawData( ), this->commandBuffers.get( )[imageIndex] );
 
-    m_renderPass.end( m_commandBuffers.get( imageIndex ) );
-    m_commandBuffers.end( imageIndex );
+    this->renderPass.end( this->commandBuffers.get( imageIndex ) );
+    this->commandBuffers.end( imageIndex );
   }
 
   void Gui::destroy( )
   {
-    m_commandBuffers.free( );
+    this->commandBuffers.free( );
 
     ImGui_ImplVulkan_Shutdown( );
     ImGui_ImplSDL2_Shutdown( );
@@ -93,7 +93,7 @@ namespace RENDERER_NAMESPACE
 
   void Gui::initCommandPool( )
   {
-    m_commandPool = vk::Initializer::createCommandPoolUnique( g_graphicsFamilyIndex, vk::CommandPoolCreateFlagBits::eResetCommandBuffer );
+    this->commandPool = vk::Initializer::createCommandPoolUnique( g_graphicsFamilyIndex, vk::CommandPoolCreateFlagBits::eResetCommandBuffer );
   }
 
   void Gui::initDescriptorPool( )
@@ -113,7 +113,7 @@ namespace RENDERER_NAMESPACE
       { vk::DescriptorType::eInputAttachment, 1000 }
     };
 
-    m_descriptorPool = vk::Initializer::createDescriptorPoolUnique( poolSizes, g_swapchainImageCount );
+    this->descriptorPool = vk::Initializer::createDescriptorPoolUnique( poolSizes, g_swapchainImageCount );
   }
 
   void Gui::initRenderPass( const Surface* const surface )
@@ -158,12 +158,12 @@ namespace RENDERER_NAMESPACE
                                    1,            // dependencyCount
                                    &dependency); // pDependencies
 
-    m_renderPass.init( { attachment }, { subpass }, { dependency } );
+    this->renderPass.init( { attachment }, { subpass }, { dependency } );
   }
 
   void Gui::initFonts( )
   {
-    CommandBuffer commandBuffer( m_commandPool.get( ) );
+    CommandBuffer commandBuffer( this->commandPool.get( ) );
     commandBuffer.begin( );
     ImGui_ImplVulkan_CreateFontsTexture( commandBuffer.get( 0 ) );
     commandBuffer.end( );
@@ -173,17 +173,17 @@ namespace RENDERER_NAMESPACE
   void Gui::initCommandBuffers( )
   {
     // Create command buffers for each image in the swapchain.
-    m_commandBuffers.init( m_commandPool.get( ), 
+    this->commandBuffers.init( this->commandPool.get( ), 
                            g_swapchainImageCount, 
                            vk::CommandBufferUsageFlagBits::eRenderPassContinue );
   }
 
   void Gui::initFramebuffers( const std::vector<vk::ImageView>& swapchainImageViews )
   {
-    m_framebuffers.resize( static_cast<uint32_t>( swapchainImageViews.size( ) ) );
-    for ( size_t i = 0; i < m_framebuffers.size( ); ++i )
+    this->framebuffers.resize( static_cast<uint32_t>( swapchainImageViews.size( ) ) );
+    for ( size_t i = 0; i < this->framebuffers.size( ); ++i )
     {
-      m_framebuffers[i] = vk::Initializer::createFramebufferUnique( { swapchainImageViews[i] }, m_renderPass.get( ), m_swapchainImageExtent );
+      this->framebuffers[i] = vk::Initializer::createFramebufferUnique( { swapchainImageViews[i] }, this->renderPass.get( ), this->swapchainImageExtent );
     }
   }
 }

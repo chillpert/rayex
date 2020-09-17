@@ -28,7 +28,7 @@ namespace RENDERER_NAMESPACE
     /// @param extensions All device extensions that should be activated.
     void checkExtensionSupport( const std::vector<const char*>& extensions ) const;
 
-    vk::UniqueDevice m_device; ///< The Vulkan logical device with a unique handle.
+    vk::UniqueDevice device; ///< The Vulkan logical device with a unique handle.
   };
 }
 

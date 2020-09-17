@@ -11,52 +11,52 @@ namespace RENDERER_NAMESPACE
 
   void CommandBuffer::init( vk::CommandPool commandPool, uint32_t count, vk::CommandBufferUsageFlags usageFlags )
   {
-    m_commandPool = commandPool;
+    this->commandPool = commandPool;
 
-    m_commandBuffers.resize( count );
+    this->commandBuffers.resize( count );
 
     vk::CommandBufferAllocateInfo allocateInfo( commandPool,                      // commandPool
                                                 vk::CommandBufferLevel::ePrimary, // level
                                                 count );                          // commandBufferCount
 
-    m_commandBuffers = g_device.allocateCommandBuffers( allocateInfo );
-    for ( const vk::CommandBuffer& commandBuffer : m_commandBuffers )
+    this->commandBuffers = g_device.allocateCommandBuffers( allocateInfo );
+    for ( const vk::CommandBuffer& commandBuffer : this->commandBuffers )
       RX_ASSERT( commandBuffer, "Failed to create command buffer." );
 
     // Set up begin info.
-    m_beginInfo.flags = usageFlags;
+    this->beginInfo.flags = usageFlags;
   }
 
   void CommandBuffer::free( )
   {
-    g_device.freeCommandBuffers( m_commandPool, static_cast< uint32_t >( m_commandBuffers.size( ) ), m_commandBuffers.data( ) );
+    g_device.freeCommandBuffers( this->commandPool, static_cast< uint32_t >( this->commandBuffers.size( ) ), this->commandBuffers.data( ) );
   }
 
   void CommandBuffer::reset( )
   {
-    for ( vk::CommandBuffer& buffer : m_commandBuffers )
+    for ( vk::CommandBuffer& buffer : this->commandBuffers )
       buffer.reset( vk::CommandBufferResetFlagBits::eReleaseResources );
   }
 
   void CommandBuffer::begin( size_t index )
   {
-    m_commandBuffers[index].begin( m_beginInfo );
+    this->commandBuffers[index].begin( this->beginInfo );
   }
 
   void CommandBuffer::end( size_t index )
   {
-    m_commandBuffers[index].end( );
+    this->commandBuffers[index].end( );
   }
 
   void CommandBuffer::submitToQueue( vk::Queue queue, const std::vector<vk::Semaphore>& waitSemaphores, const std::vector<vk::Semaphore>& signalSemaphores, vk::PipelineStageFlags* waitDstStageMask )
   {
-    if ( m_beginInfo.flags & vk::CommandBufferUsageFlagBits::eOneTimeSubmit )
+    if ( this->beginInfo.flags & vk::CommandBufferUsageFlagBits::eOneTimeSubmit )
     {
       vk::SubmitInfo submitInfo( static_cast< uint32_t >( waitSemaphores.size( ) ),   // waitSemaphoreCount
                                  waitSemaphores.data( ),                              // pWaitSemaphores
                                  waitDstStageMask,                                    // pWaitDstStageMask
-                                 static_cast< uint32_t >( m_commandBuffers.size( ) ), // commandBufferCount
-                                 m_commandBuffers.data( ),                            // pCommandBuffers
+                                 static_cast< uint32_t >( this->commandBuffers.size( ) ), // commandBufferCount
+                                 this->commandBuffers.data( ),                            // pCommandBuffers
                                  static_cast< uint32_t >( signalSemaphores.size( ) ), // signalSemaphoreCount
                                  signalSemaphores.data( ) );                          // pSignalSemaphores
 

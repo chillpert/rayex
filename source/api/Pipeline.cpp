@@ -36,8 +36,8 @@ namespace RENDERER_NAMESPACE
                                              static_cast<uint32_t>( pushConstantRanges.size( ) ),   // pushConstantRangeCount
                                              pushConstantRanges.data( ) );                          // pPushConstantRanges
 
-    m_layout = g_device.createPipelineLayoutUnique( layoutInfo );
-    if ( !m_layout )
+    this->layout = g_device.createPipelineLayoutUnique( layoutInfo );
+    if ( !this->layout )
       RX_ERROR( "Failed to create pipeline layout." );
 
     std::array<vk::PipelineShaderStageCreateInfo, 3> shaderStages;
@@ -75,15 +75,15 @@ namespace RENDERER_NAMESPACE
                                                     maxRecursionDepth,                             // maxRecursionDepth
                                                     0,                                             // libraries
                                                     nullptr,                                       // pLibraryInterface
-                                                    m_layout.get( ),                               // layout
+                                                    this->layout.get( ),                               // layout
                                                     nullptr,                                       // basePipelineHandle
                                                     0 );                                           // basePipelineIndex
   
-    m_pipeline = g_device.createRayTracingPipelineKHRUnique( nullptr, createInfo );
+    this->pipeline = g_device.createRayTracingPipelineKHRUnique( nullptr, createInfo );
   }
 
   void Pipeline::bind( vk::CommandBuffer commandBuffer ) const
   {
-    commandBuffer.bindPipeline( vk::PipelineBindPoint::eRayTracingKHR, m_pipeline.get( ) );
+    commandBuffer.bindPipeline( vk::PipelineBindPoint::eRayTracingKHR, this->pipeline.get( ) );
   }
 }

@@ -38,13 +38,13 @@ namespace RENDERER_NAMESPACE
                                        static_cast<uint32_t>( extensions.size( ) ), // enabledExtensionCount
                                        extensions.data( ) );                        // ppEnabledExtensionNames
 
-    m_instance = vk::createInstanceUnique( createInfo );
-    g_instance = m_instance.get( );
+    this->instance = vk::createInstanceUnique( createInfo );
+    g_instance = this->instance.get( );
 
-    if ( !m_instance )
+    if ( !this->instance )
       RX_FATAL( "Failed to create instance." );
 
-    VULKAN_HPP_DEFAULT_DISPATCHER.init( m_instance.get( ) );
+    VULKAN_HPP_DEFAULT_DISPATCHER.init( this->instance.get( ) );
   }
 
   void Instance::checkLayersSupport( const std::vector<const char*>& layers )

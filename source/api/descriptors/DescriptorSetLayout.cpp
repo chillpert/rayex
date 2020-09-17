@@ -11,39 +11,39 @@ namespace RENDERER_NAMESPACE
 
   DescriptorSetLayout::~DescriptorSetLayout( )
   {
-    if ( m_layout )
+    if ( this->layout )
       destroy( );
   }
 
   void DescriptorSetLayout::addBinding( const vk::DescriptorSetLayoutBinding& binding )
   {
-    if ( m_layout )
+    if ( this->layout )
       RX_ERROR( "Failed to add binding because the descriptor set layout was already initialized." );
 
-    m_bindings.push_back( binding );
+    this->bindings.push_back( binding );
   }
 
   void DescriptorSetLayout::setBindings( const std::vector<vk::DescriptorSetLayoutBinding>& bindings )
   {
-    if ( m_layout )
+    if ( this->layout )
       RX_ERROR( "Failed to add binding because the descriptor set layout was already initialized." );
 
-    m_bindings = bindings;
+    this->bindings = bindings;
   }
 
   void DescriptorSetLayout::clearBindings( )
   {
-    m_bindings.clear( );
+    this->bindings.clear( );
   }
 
   void DescriptorSetLayout::init( )
   {
     vk::DescriptorSetLayoutCreateInfo createInfo( { },                                            // flags
-                                                  static_cast< uint32_t >( m_bindings.size( ) ) , // bindingCount
-                                                  m_bindings.data( ) );                           // pBindings
+                                                  static_cast< uint32_t >( this->bindings.size( ) ) , // bindingCount
+                                                  this->bindings.data( ) );                           // pBindings
  
-    m_layout = g_device.createDescriptorSetLayout( createInfo );
-    if ( !m_layout )
+    this->layout = g_device.createDescriptorSetLayout( createInfo );
+    if ( !this->layout )
       RX_ERROR( "Failed to create descriptor set layout." );
   }
 
@@ -56,12 +56,12 @@ namespace RENDERER_NAMESPACE
 
   void DescriptorSetLayout::destroy( )
   {
-    if ( m_layout )
+    if ( this->layout )
     {
-      g_device.destroyDescriptorSetLayout( m_layout );
-      m_layout = nullptr;
+      g_device.destroyDescriptorSetLayout( this->layout );
+      this->layout = nullptr;
     }
 
-    m_bindings.clear( );
+    this->bindings.clear( );
   }
 }

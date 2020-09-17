@@ -18,14 +18,14 @@ namespace RENDERER_NAMESPACE
     VertexBuffer( std::vector<Vertex>& vertices, bool initialize = true );
 
     /// @return Returns the amount of vertices in the buffer.
-    inline uint32_t getCount( ) const { return m_count; }
+    inline uint32_t getCount( ) const { return count; }
 
     /// Creates the buffer, allocates memory for it and fills it with provided data.
     /// @param vertices The vertex data.
     void init( std::vector<Vertex>& vertices );
 
   private:
-    uint32_t m_count; ///< The amount of vertices in the buffer.
+    uint32_t count; ///< The amount of vertices in the buffer.
   };
 }
 

@@ -51,7 +51,7 @@ namespace RENDERER_NAMESPACE
     /// Returns the GUI's command buffer at the given index.
     /// @param index The index of the command buffer to access.
     /// @return Returns the Vulkan command buffer.
-    inline const vk::CommandBuffer getCommandBuffer( uint32_t index ) const { return m_commandBuffers.get( index ); }
+    inline const vk::CommandBuffer getCommandBuffer( uint32_t index ) const { return commandBuffers.get( index ); }
 
     /// Used to configure all ImGui settings.
     /// 
@@ -109,13 +109,13 @@ namespace RENDERER_NAMESPACE
     void initFramebuffers( const std::vector<vk::ImageView>& swapchainImageViews );
 
   private:
-    vk::UniqueDescriptorPool m_descriptorPool; ///< A Vulkan descriptor pool with a unique handle.
-    vk::UniqueCommandPool m_commandPool; ///< A Vulkan command pool with a unique handle.
-    CommandBuffer m_commandBuffers; ///< A rx::CommandBuffer.
-    RenderPass m_renderPass; ///< A Vulkan render pass.
-    std::vector<vk::UniqueFramebuffer> m_framebuffers; ///< A vector of Vulkan framebuffers with unique handles.
+    vk::UniqueDescriptorPool descriptorPool; ///< A Vulkan descriptor pool with a unique handle.
+    vk::UniqueCommandPool commandPool; ///< A Vulkan command pool with a unique handle.
+    CommandBuffer commandBuffers; ///< A rx::CommandBuffer.
+    RenderPass renderPass; ///< A Vulkan render pass.
+    std::vector<vk::UniqueFramebuffer> framebuffers; ///< A vector of Vulkan framebuffers with unique handles.
 
-    vk::Extent2D m_swapchainImageExtent; ///< The swapchain images' image extent.
+    vk::Extent2D swapchainImageExtent; ///< The swapchain images' image extent.
   };
 }
 

@@ -3,7 +3,7 @@
 
 #include "pch/stdafx.hpp"
 
-#define GLM_ENABLE_EXPERIMENTAL
+#define GLENABLE_EXPERIMENTAL
 #include "external/glm/gtx/hash.hpp"
 
 namespace RENDERER_NAMESPACE

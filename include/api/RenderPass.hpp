@@ -19,7 +19,7 @@ namespace RENDERER_NAMESPACE
     RenderPass( const std::vector<vk::AttachmentDescription>& attachments, const std::vector<vk::SubpassDescription>& subpasses, const std::vector<vk::SubpassDependency>& dependencies, bool initialize = true );
     
     /// @return Returns the Vulkan render pass without the unique handle.
-    inline const vk::RenderPass get( ) const { return m_renderPass.get( ); }
+    inline const vk::RenderPass get( ) const { return renderPass.get( ); }
 
     /// Initializes the Vulkan render pass.
     /// @param attachments The Vulkan attachment description.
@@ -41,7 +41,7 @@ namespace RENDERER_NAMESPACE
     void end( vk::CommandBuffer commandBuffer ) const;
 
   private:
-    vk::UniqueRenderPass m_renderPass; ///< The Vulkan render pass with a unique handle.
+    vk::UniqueRenderPass renderPass; ///< The Vulkan render pass with a unique handle.
   };
 }
 

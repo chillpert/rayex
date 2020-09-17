@@ -22,18 +22,18 @@ namespace RENDERER_NAMESPACE
     void init( const std::vector<vk::DescriptorSetLayout> & descriptorSetLayouts, uint32_t maxRecursionDepth );
 
     /// @return Returns the Vulkan pipeline object without the unique handle.
-    inline const vk::Pipeline get( ) const { return m_pipeline.get( ); }
+    inline const vk::Pipeline get( ) const { return pipeline.get( ); }
 
     /// @return Returns the Vulkan pipeline layout object without the unique handle.
-    inline const vk::PipelineLayout getLayout( ) const { return m_layout.get( ); }
+    inline const vk::PipelineLayout getLayout( ) const { return layout.get( ); }
 
     /// Binds the pipeline for usage.
     /// @param commandBuffer The Vulkan command buffer that will bind the pipeline.
     void bind( vk::CommandBuffer commandBuffer ) const;
 
   private:
-    vk::UniquePipeline m_pipeline; ///< The Vulkan pipeline with a unique handle.
-    vk::UniquePipelineLayout m_layout; ///< The Vulkan pipeline layout with a unique handle.
+    vk::UniquePipeline pipeline; ///< The Vulkan pipeline with a unique handle.
+    vk::UniquePipelineLayout layout; ///< The Vulkan pipeline layout with a unique handle.
   };
 }
 

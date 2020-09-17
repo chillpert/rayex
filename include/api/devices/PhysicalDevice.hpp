@@ -23,7 +23,7 @@ namespace RENDERER_NAMESPACE
     /// @note RTX hardware surpasses any other GPU.
     std::pair<unsigned int, std::string> evaluate( vk::PhysicalDevice physicalDevice ) const;
 
-    vk::PhysicalDevice m_physicalDevice; ///< The Vulkan physical device.
+    vk::PhysicalDevice physicalDevice; ///< The Vulkan physical device.
   };
 
   /// This function is used to check if a device is suitable for the application's task.

@@ -24,10 +24,10 @@ namespace RENDERER_NAMESPACE
     void destroy( );
 
     /// @return Returns the top level acceleration structure.
-    inline const Tlas& getTlas( ) const { return m_tlas; }
+    inline const Tlas& getTlas( ) const { return tlas; }
 
     /// @return Returns the storage image's image view.
-    inline const vk::ImageView getStorageImageView( ) const { return m_storageImageView.get( ); }
+    inline const vk::ImageView getStorageImageView( ) const { return storageImageView.get( ); }
 
     /// Used to convert wavefront models to a bottom level acceleration structure.
     /// @param model A pointer to a rx::Model object.
@@ -72,17 +72,17 @@ namespace RENDERER_NAMESPACE
     void rayTrace( vk::CommandBuffer swapchaincommandBuffer, vk::Image swapchainImage, vk::Extent2D extent );
 
   private:
-    vk::PhysicalDeviceRayTracingPropertiesKHR m_rtProperties; ///< The physical device's ray tracing capabilities.
+    vk::PhysicalDeviceRayTracingPropertiesKHR rtProperties; ///< The physical device's ray tracing capabilities.
 
-    std::vector<Blas> m_blas_; ///< A vector containing all bottom level acceleration structures.
-    Tlas m_tlas; ///< The top level acceleration structure.
+    std::vector<Blas> blas_; ///< A vector containing all bottom level acceleration structures.
+    Tlas tlas; ///< The top level acceleration structure.
 
-    Buffer m_instanceBuffer; ///< The instance buffer.
+    Buffer instanceBuffer; ///< The instance buffer.
   
-    Buffer m_sbtBuffer; ///< The shader binding table buffer.
+    Buffer sbtBuffer; ///< The shader binding table buffer.
 
-    Image m_storageImage; ///< The storage image.
-    vk::UniqueImageView m_storageImageView; ///< The storage image's image view.
+    Image storageImage; ///< The storage image.
+    vk::UniqueImageView storageImageView; ///< The storage image's image view.
   };
 }
 

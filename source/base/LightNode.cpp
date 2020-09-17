@@ -10,10 +10,10 @@ namespace RENDERER_NAMESPACE
   DirectionalLightNode::Ubo DirectionalLightNode::toUbo( )
   {
     Ubo ubo;
-    ubo.m_ambient = combine( m_ambient, m_ambientIntensity );
-    ubo.m_diffuse = combine( m_diffuse, m_diffuseIntensity );
-    ubo.m_specular = combine( m_specular, m_specularIntensity );
-    ubo.m_direction = combine( m_direction, m_exists );
+    ubo.ambient = combine( this->ambient, this->ambientIntensity );
+    ubo.diffuse = combine( this->diffuse, this->diffuseIntensity );
+    ubo.specular = combine( this->specular, this->specularIntensity );
+    ubo.direction = combine( this->direction, this->exists );
 
     return ubo;
   }
@@ -21,14 +21,14 @@ namespace RENDERER_NAMESPACE
   PointLightNode::Ubo PointLightNode::toUbo( )
   {
     Ubo ubo;
-    ubo.m_ambient = combine( m_ambient, m_ambientIntensity );
-    ubo.m_diffuse = combine( m_diffuse, m_diffuseIntensity );
-    ubo.m_specular = combine( m_specular, m_specularIntensity );
-    ubo.m_position = combine( m_position, m_exists );
+    ubo.ambient = combine( this->ambient, this->ambientIntensity );
+    ubo.diffuse = combine( this->diffuse, this->diffuseIntensity );
+    ubo.specular = combine( this->specular, this->specularIntensity );
+    ubo.position = combine( this->position, this->exists );
 
-    ubo.m_constant = m_constant;
-    ubo.m_linear = m_linear;
-    ubo.m_quadratic = m_quadratic;
+    ubo.constant = this->constant;
+    ubo.linear = this->linear;
+    ubo.quadratic = this->quadratic;
 
     return ubo;
   }

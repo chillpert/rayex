@@ -20,10 +20,10 @@ namespace RENDERER_NAMESPACE
     ~DescriptorSetLayout( );
 
     /// @return Returns the Vulkan descriptor set layout object.
-    inline const vk::DescriptorSetLayout get( ) const { return m_layout; }
+    inline const vk::DescriptorSetLayout get( ) const { return layout; }
 
     /// @return Returns a vector of all Vulkan descriptor set layout bindings.
-    inline const std::vector<vk::DescriptorSetLayoutBinding>& getBindings( ) const { return m_bindings; }
+    inline const std::vector<vk::DescriptorSetLayoutBinding>& getBindings( ) const { return bindings; }
 
     /// Used to add a single Vulkan descriptor set layout binding.
     /// @param binding The binding to add.
@@ -47,8 +47,8 @@ namespace RENDERER_NAMESPACE
     void destroy( );
 
   private:
-    vk::DescriptorSetLayout m_layout; ///< The Vulkan descriptor set layout.
-    std::vector<vk::DescriptorSetLayoutBinding> m_bindings; ///< A vector containing all Vulkan descriptor set layout bindings for this descriptor set layout.
+    vk::DescriptorSetLayout layout; ///< The Vulkan descriptor set layout.
+    std::vector<vk::DescriptorSetLayoutBinding> bindings; ///< A vector containing all Vulkan descriptor set layout bindings for this descriptor set layout.
   };
 }
 

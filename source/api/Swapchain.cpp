@@ -45,31 +45,31 @@ namespace RENDERER_NAMESPACE
     if ( surfaceCapabilities.currentExtent.width != UINT32_MAX )
     {
       // The surface size will be determined by the extent of a swapchain targeting the surface.
-      m_extent = surfaceCapabilities.currentExtent;
+      this->extent = surfaceCapabilities.currentExtent;
     }
     else
     {
       // Clamp width and height.
-      m_extent = g_window->getExtent( );
+      this->extent = g_window->getExtent( );
 
-      uint32_t width_t = m_extent.width;
-      if ( surfaceCapabilities.maxImageExtent.width < m_extent.width )
+      uint32_t width_t = this->extent.width;
+      if ( surfaceCapabilities.maxImageExtent.width < this->extent.width )
         width_t = surfaceCapabilities.maxImageExtent.width;
 
-      uint32_t height_t = m_extent.height;
-      if ( surfaceCapabilities.maxImageExtent.height < m_extent.height )
+      uint32_t height_t = this->extent.height;
+      if ( surfaceCapabilities.maxImageExtent.height < this->extent.height )
         height_t = surfaceCapabilities.maxImageExtent.height;
 
-      m_extent.width = width_t;
+      this->extent.width = width_t;
       if ( surfaceCapabilities.minImageExtent.width > width_t )
-        m_extent.width = surfaceCapabilities.minImageExtent.width;
+        this->extent.width = surfaceCapabilities.minImageExtent.width;
 
-      m_extent.height = height_t;
+      this->extent.height = height_t;
       if ( surfaceCapabilities.minImageExtent.height > height_t )
-        m_extent.height = surfaceCapabilities.minImageExtent.height;
+        this->extent.height = surfaceCapabilities.minImageExtent.height;
     }
 
-    createInfo.imageExtent = m_extent;
+    createInfo.imageExtent = this->extent;
 
     if ( surfaceCapabilities.maxImageArrayLayers < 1 )
       RX_ERROR( "The surface does not support a single array layer." );
@@ -90,11 +90,11 @@ namespace RENDERER_NAMESPACE
 
     createInfo.presentMode = surface->getPresentMode( );
 
-    m_swapchain = g_device.createSwapchainKHRUnique( createInfo );
-    if ( !m_swapchain )
+    this->swapchain = g_device.createSwapchainKHRUnique( createInfo );
+    if ( !this->swapchain )
       RX_ERROR( "Failed to create swapchain." );
 
-    g_swapchain = m_swapchain.get( );
+    g_swapchain = this->swapchain.get( );
 
     initImages( minImageCount, surface->getFormat( ) );
     initDepthImage( );
@@ -103,21 +103,21 @@ namespace RENDERER_NAMESPACE
 
   void Swapchain::destroy( )
   {
-    if ( m_swapchain )
+    if ( this->swapchain )
     {
-      g_device.destroySwapchainKHR( m_swapchain.get( ) );
-      m_swapchain.get( ) = nullptr;
+      g_device.destroySwapchainKHR( this->swapchain.get( ) );
+      this->swapchain.get( ) = nullptr;
     }
   }
 
   void Swapchain::setImageAspect( vk::ImageAspectFlags flags )
   {
-    m_imageAspect = flags;
+    this->imageAspect = flags;
   }
 
   void Swapchain::setImageLayout( vk::ImageLayout oldLayout, vk::ImageLayout newLayout )
   {
-    for ( const auto& image : m_images )
+    for ( const auto& image : this->images )
     {
       vk::Helper::transitionImageLayout( image, oldLayout, newLayout );
     }
@@ -125,23 +125,23 @@ namespace RENDERER_NAMESPACE
 
   void Swapchain::acquireNextImage( vk::Semaphore semaphore, vk::Fence fence )
   {
-    vk::Result result = g_device.acquireNextImageKHR( m_swapchain.get( ), UINT64_MAX, semaphore, fence, &m_currentImageIndex );
+    vk::Result result = g_device.acquireNextImageKHR( this->swapchain.get( ), UINT64_MAX, semaphore, fence, &this->currentImageIndex );
     RX_ASSERT( ( result == vk::Result::eSuccess ), "Failed to acquire next swapchain image." );
   }
 
   void Swapchain::initImages( uint32_t minImageCount, vk::Format surfaceFormat )
   {
     // Retrieve the actual swapchain images. This sets them up automatically.
-    m_images = g_device.getSwapchainImagesKHR( m_swapchain.get( ) );
-    RX_ASSERT( m_images.size( ) >= minImageCount, "Failed to get swapchain images." );
+    this->images = g_device.getSwapchainImagesKHR( this->swapchain.get( ) );
+    RX_ASSERT( this->images.size( ) >= minImageCount, "Failed to get swapchain images." );
 
-    g_swapchainImageCount = static_cast<uint32_t>( m_images.size( ) );
+    g_swapchainImageCount = static_cast<uint32_t>( this->images.size( ) );
 
     // Create image views for swapchain images.
-    m_imageViews.resize( m_images.size( ) );
-    for ( size_t i = 0; i < m_imageViews.size( ); ++i )
+    this->imageViews.resize( this->images.size( ) );
+    for ( size_t i = 0; i < this->imageViews.size( ); ++i )
     {
-      m_imageViews[i] = vk::Initializer::createImageViewUnique( m_images[i], surfaceFormat, m_imageAspect );
+      this->imageViews[i] = vk::Initializer::createImageViewUnique( this->images[i], surfaceFormat, this->imageAspect );
     }
   }
 
@@ -150,22 +150,22 @@ namespace RENDERER_NAMESPACE
     // Depth image for depth buffering
     vk::Format depthFormat = getSupportedDepthFormat( g_physicalDevice );
 
-    auto imageCreateInfo = vk::Helper::getImageCreateInfo( vk::Extent3D( m_extent.width, m_extent.height, 1 ) );
+    auto imageCreateInfo = vk::Helper::getImageCreateInfo( vk::Extent3D( this->extent.width, this->extent.height, 1 ) );
     imageCreateInfo.format = depthFormat;
     imageCreateInfo.usage = vk::ImageUsageFlagBits::eDepthStencilAttachment;
 
-    m_depthImage.init( imageCreateInfo );
+    this->depthImage.init( imageCreateInfo );
 
     // Image view for depth image
-    m_depthImageView = vk::Initializer::createImageViewUnique( m_depthImage.get( ), depthFormat, vk::ImageAspectFlagBits::eDepth );
+    this->depthImageView = vk::Initializer::createImageViewUnique( this->depthImage.get( ), depthFormat, vk::ImageAspectFlagBits::eDepth );
   }
 
   void Swapchain::initFramebuffers( vk::RenderPass renderPass )
   {
-    m_framebuffers.resize( m_imageViews.size( ) );
-    for ( size_t i = 0; i < m_framebuffers.size( ); ++i )
+    this->framebuffers.resize( this->imageViews.size( ) );
+    for ( size_t i = 0; i < this->framebuffers.size( ); ++i )
     {
-      m_framebuffers[i] = vk::Initializer::createFramebufferUnique( { m_imageViews[i].get( ), m_depthImageView.get( ) }, renderPass, m_extent );
+      this->framebuffers[i] = vk::Initializer::createFramebufferUnique( { this->imageViews[i].get( ), this->depthImageView.get( ) }, renderPass, this->extent );
     }
   }
 

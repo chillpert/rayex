@@ -18,14 +18,14 @@ namespace RENDERER_NAMESPACE
 
       if ( temp.first > score )
       {
-        m_physicalDevice = it;
+        this->physicalDevice = it;
         score = temp.first;
       }
     }
 
     const std::string separator = "===================================================================";
 
-    if ( !m_physicalDevice )
+    if ( !this->physicalDevice )
       RX_FATAL( "No suitable device was found" );
 
     std::cout << "Physical device report: " << "\n" << separator << "\n" << "Device name" << "\t\t\t" << "Score" << std::endl << separator << "\n";
@@ -34,11 +34,11 @@ namespace RENDERER_NAMESPACE
       std::cout << std::left << std::setw( 32 ) << std::setfill( ' ' ) << result.second << std::left << std::setw( 32 ) << std::setfill( ' ' ) << result.first << std::endl;
 
     // Print information about the GPU that was selected.
-    auto properties = m_physicalDevice.getProperties( );
+    auto properties = this->physicalDevice.getProperties( );
     RX_SUCCESS( "Selected GPU: ", properties.deviceName );
 
     g_physicalDeviceLimits = properties.limits;
-    g_physicalDevice = m_physicalDevice;
+    g_physicalDevice = this->physicalDevice;
   }
 
   std::pair<unsigned int, std::string> PhysicalDevice::evaluate( vk::PhysicalDevice physicalDevice ) const

@@ -3,8 +3,8 @@
 
 namespace RENDERER_NAMESPACE
 {
-  float Time::m_time;
-  float Time::m_deltaTime;
+  float Time::time;
+  float Time::deltaTime;
 
   int frames = 0;
   float prevTime = 0.0f;
@@ -13,51 +13,51 @@ namespace RENDERER_NAMESPACE
 
   Time::~Time( )
   {
-    m_allFrames;
+    this->allFrames;
 
     int res = 0;
-    for ( int value : m_allFrames )
+    for ( int value : this->allFrames )
       res += value;
 
-    if ( m_time >= timeToWaitForStartingBenchmark && m_allFrames.size( ) > 0 )
-      std::cout << "Average FPS: " << static_cast<float>( res ) / static_cast<float>( m_allFrames.size( ) ) << "\nBenchmark Length: " << m_time / 60.0f << " minutes." << std::endl;
+    if ( time >= timeToWaitForStartingBenchmark && this->allFrames.size( ) > 0 )
+      std::cout << "Average FPS: " << static_cast<float>( res ) / static_cast<float>( this->allFrames.size( ) ) << "\nBenchmark Length: " << time / 60.0f << " minutes." << std::endl;
   }
 
   float Time::getTime( )
   {
-    return m_time;
+    return time;
   }
 
   float Time::getDeltaTime( )
   {
-    return m_deltaTime;
+    return deltaTime;
   }
 
   void Time::update( )
   {
-    m_time = static_cast<float> ( SDL_GetTicks( ) ) / 1000.0f;
+    time = static_cast<float> ( SDL_GetTicks( ) ) / 1000.0f;
 
-    float current_time = m_time;
+    float current_time = time;
 
     frames++;
 
     if ( current_time - prevTime >= 1.0f )
     {
       // Give the application some time to start before recording the fps.
-      if ( m_time > timeToWaitForStartingBenchmark )
+      if ( time > timeToWaitForStartingBenchmark )
       {
         std::cout << "FPS: " << frames << std::endl;
-        m_allFrames.push_back( frames );
+        this->allFrames.push_back( frames );
       }
 
-      m_frames = frames;
+      this->frames = frames;
       frames = 0;
       prevTime = current_time;
     }
 
-    m_deltaTime = current_time - m_prevTime;
-    m_prevTime = current_time;
+    deltaTime = current_time - this->prevTime;
+    this->prevTime = current_time;
 
-    //std::cout << "Frametime: " << m_deltaTime << std::endl;
+    //std::cout << "Frametime: " << deltaTime << std::endl;
   }
 }

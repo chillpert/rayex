@@ -12,38 +12,38 @@ namespace RENDERER_NAMESPACE
 
     for ( uint32_t index = 0; index < static_cast< uint32_t >( queueFamilies.size( ) ); ++index )
     {
-      if ( queueFamilyProperties[index].queueFlags & vk::QueueFlagBits::eGraphics && !m_graphicsFamilyIndex.has_value( ) )
+      if ( queueFamilyProperties[index].queueFlags & vk::QueueFlagBits::eGraphics && !this->graphicsFamilyIndex.has_value( ) )
       {
         if ( g_physicalDevice.getSurfaceSupportKHR( index, g_surface ) )
-          m_graphicsFamilyIndex = index;
+          this->graphicsFamilyIndex = index;
       }
 
       if ( dedicatedTransferQueueFamily )
       {
-        if ( !( queueFamilyProperties[index].queueFlags & vk::QueueFlagBits::eGraphics ) && !m_transferFamilyIndex.has_value( ) )
-          m_transferFamilyIndex = index;
+        if ( !( queueFamilyProperties[index].queueFlags & vk::QueueFlagBits::eGraphics ) && !this->transferFamilyIndex.has_value( ) )
+          this->transferFamilyIndex = index;
       }
       else
       {
-        if ( queueFamilyProperties[index].queueFlags & vk::QueueFlagBits::eTransfer && !m_transferFamilyIndex.has_value( ) )
-          m_transferFamilyIndex = index;
+        if ( queueFamilyProperties[index].queueFlags & vk::QueueFlagBits::eTransfer && !this->transferFamilyIndex.has_value( ) )
+          this->transferFamilyIndex = index;
       }
     }
 
-    g_graphicsFamilyIndex = m_graphicsFamilyIndex.value( );
-    g_transferFamilyIndex = m_transferFamilyIndex.value( );
+    g_graphicsFamilyIndex = this->graphicsFamilyIndex.value( );
+    g_transferFamilyIndex = this->transferFamilyIndex.value( );
 
-    if ( !m_graphicsFamilyIndex.has_value( ) || !m_transferFamilyIndex.has_value( ) )
+    if ( !this->graphicsFamilyIndex.has_value( ) || !this->transferFamilyIndex.has_value( ) )
       RX_ERROR( "Failed to retrieve queue family indices." );
   }
 
   void Queues::retrieveHandles( )
   {
-    if ( !m_graphicsFamilyIndex.has_value( ) || !m_transferFamilyIndex.has_value( ) )
+    if ( !this->graphicsFamilyIndex.has_value( ) || !this->transferFamilyIndex.has_value( ) )
       RX_ERROR( "Failed to retrieve queue handles." );
 
-    g_device.getQueue( m_graphicsFamilyIndex.value( ), 0, &g_graphicsQueue );
-    g_device.getQueue( m_transferFamilyIndex.value( ), 0, &g_transferQueue );
+    g_device.getQueue( this->graphicsFamilyIndex.value( ), 0, &g_graphicsQueue );
+    g_device.getQueue( this->transferFamilyIndex.value( ), 0, &g_transferQueue );
   }
 
   bool Queues::isComplete( vk::PhysicalDevice physicalDevice )

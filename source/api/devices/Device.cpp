@@ -58,13 +58,13 @@ namespace RENDERER_NAMESPACE
 
     createInfo.pNext = &deviceFeatures2;
 
-    m_device = g_physicalDevice.createDeviceUnique( createInfo );
-    g_device = m_device.get();
+    this->device = g_physicalDevice.createDeviceUnique( createInfo );
+    g_device = this->device.get();
 
-    if ( !m_device )
+    if ( !this->device )
       RX_ERROR( "Failed to create logical device." );
 
-    VULKAN_HPP_DEFAULT_DISPATCHER.init( m_device.get( ) );
+    VULKAN_HPP_DEFAULT_DISPATCHER.init( this->device.get( ) );
   }
 
   void Device::checkExtensionSupport( const std::vector<const char*>& extensions ) const

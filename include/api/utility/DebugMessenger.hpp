@@ -1,5 +1,5 @@
-#ifndef VK_DEBUG_MESSENGER_HPP
-#define VK_DEBUG_MESSENGER_HPP
+#ifndef DEBUG_MESSENGER_HPP
+#define DEBUG_MESSENGER_HPP
 
 #include "pch/stdafx.hpp"
 
@@ -29,7 +29,7 @@ namespace RENDERER_NAMESPACE
     /// Destroys the debug messenger.
     void destroy( );
 
-    vk::DebugUtilsMessengerEXT m_debugMessenger;
+    vk::DebugUtilsMessengerEXT debugMessenger;
   };
 
   /// @cond INTERNAL
@@ -40,4 +40,4 @@ namespace RENDERER_NAMESPACE
   /// @endcond
 }
 
-#endif // VK_DEBUG_MESSENGER_HPP
+#endif // DEBUG_MESSENGER_HPP

@@ -7,9 +7,9 @@ namespace RENDERER_NAMESPACE
 {
   /// Exposes all graphic settings supported by the renderer.
   ///
-  /// If the client makes changes that require a pipeline or swapchain recreation, m_refresh must be set to true.
+  /// If the client makes changes that require a pipeline or swapchain recreation, refresh must be set to true.
   /// @warning The client has to call either setResourcePath(argc, argv) or setResourcePath(path) for the renderer to work.
-  /// @todo Split m_refresh into m_refreshPipeline and m_refreshSwapchain to avoid doing unnecessary operations.
+  /// @todo Split refresh into refreshPipeline and refreshSwapchain to avoid doing unnecessary operations.
   /// @todo Add some setting, that I don't remember anymore. 
   class RX_API Settings
   {
@@ -18,23 +18,23 @@ namespace RENDERER_NAMESPACE
     Settings( const std::string& test );
 
     /// @return Returns the maximum recursion depth.
-    inline uint32_t getMaxRecursionDepth( ) { return m_maxRecursionDepth; }
+    inline uint32_t getMaxRecursionDepth( ) { return maxRecursionDepth; }
 
     /// Used to set the maximum recursion depth.
     /// @param maxRecursionDepth The new value for the maxium recursion depth.
-    /// @param refresh If true, the pipeline and or swapchain will be re-created without having to set m_refresh to true manually.
+    /// @param refresh If true, the pipeline and or swapchain will be re-created without having to set refresh to true manually.
     void setMaxRecursionDepth( uint32_t maxRecursionDepth, bool refresh = true );
 
     /// @return Returns the clear color.
-    inline const glm::vec4& getClearColor( ) { return m_clearColor; }
+    inline const glm::vec4& getClearColor( ) { return clearColor; }
 
     /// Used to changed the clear color.
     /// @param clearColor The new value for the clear color.
-    /// @param refresh If true, the pipeline and or swapchain will be re-created without having to set m_refresh to true manually.
+    /// @param refresh If true, the pipeline and or swapchain will be re-created without having to set refresh to true manually.
     void setClearColor( const glm::vec4& clearColor, bool refresh = true );
 
     /// @return Returns the path to resources.
-    inline const std::string& getResourcePath( ) { return m_resourcePath; }
+    inline const std::string& getResourcePath( ) { return resourcePath; }
     
     /// Used to set a path to resources.
     /// @param argc The argc parameter that can be retrieved from the main-function's parameters.
@@ -45,13 +45,13 @@ namespace RENDERER_NAMESPACE
     /// @param path The path to resources.
     void setResourcePath( const std::string& path );
 
-    bool m_refresh = false; ///< Keeps track of whether or not the graphics pipeline needs to be re-created.
+    bool refresh = false; ///< Keeps track of whether or not the graphics pipeline needs to be re-created.
   
     std::string test = "yeet";
   private:
-    glm::vec4 m_clearColor = glm::vec4( 0.45f, 0.45f, 0.45f, 1.0f ); ///< Stores the clear color.
-    uint32_t m_maxRecursionDepth = 4; ///< The maximum recursion depth.
-    std::string m_resourcePath; ///< Where all resources like models, textures and shaders are stored.
+    glm::vec4 clearColor = glm::vec4( 0.45f, 0.45f, 0.45f, 1.0f ); ///< Stores the clear color.
+    uint32_t maxRecursionDepth = 4; ///< The maximum recursion depth.
+    std::string resourcePath; ///< Where all resources like models, textures and shaders are stored.
 
   };
 }

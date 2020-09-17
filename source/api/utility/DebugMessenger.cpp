@@ -12,7 +12,7 @@ namespace RENDERER_NAMESPACE
 
   DebugMessenger::~DebugMessenger( )
   {
-    if ( m_debugMessenger )
+    if ( this->debugMessenger )
       destroy( );
   }
 
@@ -25,18 +25,18 @@ namespace RENDERER_NAMESPACE
                                                      debugMessengerCallback,
                                                      nullptr );
 
-    m_debugMessenger = g_instance.createDebugUtilsMessengerEXT( createInfo );
-    RX_ASSERT( m_debugMessenger, "Failed to create debug messenger." );
+    this->debugMessenger = g_instance.createDebugUtilsMessengerEXT( createInfo );
+    RX_ASSERT( this->debugMessenger, "Failed to create debug messenger." );
   #endif
   }
 
   void DebugMessenger::destroy( )
   {
   #ifdef RX_DEBUG
-    if ( m_debugMessenger )
+    if ( this->debugMessenger )
     {
-      g_instance.destroyDebugUtilsMessengerEXT( m_debugMessenger );
-      m_debugMessenger = nullptr;
+      g_instance.destroyDebugUtilsMessengerEXT( this->debugMessenger );
+      this->debugMessenger = nullptr;
     }
   #endif
   }

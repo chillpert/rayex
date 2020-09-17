@@ -22,16 +22,16 @@ namespace RENDERER_NAMESPACE
     ~Surface( );
 
     /// @return Returns the surface format.
-    inline const vk::Format getFormat( ) const { return m_format; }
+    inline const vk::Format getFormat( ) const { return format; }
 
     /// @return Returns the surface's color space.
-    inline const vk::ColorSpaceKHR getColorSpace( ) const { return m_colorSpace; }
+    inline const vk::ColorSpaceKHR getColorSpace( ) const { return colorSpace; }
     
     /// @return Returns the surface's present mode.
-    inline const vk::PresentModeKHR getPresentMode( ) const { return m_presentMode; }
+    inline const vk::PresentModeKHR getPresentMode( ) const { return presentMode; }
     
     /// @return Returns the surface's capabilities.
-    inline const vk::SurfaceCapabilitiesKHR getCapabilities( ) const { return m_capabilities; }
+    inline const vk::SurfaceCapabilitiesKHR getCapabilities( ) const { return capabilities; }
 
     /// Initializes the Vulkan surface object.
     /// @note If any of the specified format, color space and present mode are not available the function will fall back to settings that are guaranteed to be supported.
@@ -45,12 +45,12 @@ namespace RENDERER_NAMESPACE
     /// Destroys the surface.
     void destroy( );
 
-    vk::SurfaceKHR m_surface; ///< The Vulkan surface.
+    vk::SurfaceKHR surface; ///< The Vulkan surface.
 
-    vk::Format m_format = vk::Format::eB8G8R8A8Unorm; ///< The desired surface format.
-    vk::ColorSpaceKHR m_colorSpace = vk::ColorSpaceKHR::eSrgbNonlinear; ///< The desired color space.
-    vk::PresentModeKHR m_presentMode = vk::PresentModeKHR::eMailbox; ///< The desired present mode.
-    vk::SurfaceCapabilitiesKHR m_capabilities = 0; ///< The surface's capabilities.
+    vk::Format format = vk::Format::eB8G8R8A8Unorm; ///< The desired surface format.
+    vk::ColorSpaceKHR colorSpace = vk::ColorSpaceKHR::eSrgbNonlinear; ///< The desired color space.
+    vk::PresentModeKHR presentMode = vk::PresentModeKHR::eMailbox; ///< The desired present mode.
+    vk::SurfaceCapabilitiesKHR capabilities = 0; ///< The surface's capabilities.
   };
 }
 

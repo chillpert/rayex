@@ -13,14 +13,14 @@ namespace RENDERER_NAMESPACE
   {
   public:
     Node( ) :
-      m_id( ++nodeCounter ) { }
+      id( ++nodeCounter ) { }
     virtual ~Node( ) = default;
 
     /// @return The node's ID.
-    size_t getID( ) { return m_id; }
+    size_t getID( ) { return id; }
 
   private:
-    size_t m_id; ///< The node's unique ID.
+    size_t id; ///< The node's unique ID.
   };
 
   /// Adds transformation abilities to the Node base class.
@@ -30,11 +30,11 @@ namespace RENDERER_NAMESPACE
   public:
     virtual ~TransformNode( ) = default;
 
-    glm::mat4 m_worldTransform = glm::mat4( 1.0f ); ///< The world space transformation matrix.
-    glm::mat4 m_localTransform = glm::mat4( 1.0f ); ///< The local space transformation matrix.
+    glm::mat4 worldTransform = glm::mat4( 1.0f ); ///< The world space transformation matrix.
+    glm::mat4 localTransform = glm::mat4( 1.0f ); ///< The local space transformation matrix.
 
-    glm::mat4 m_inverseWorldTransform = glm::mat4( 1.0f ); ///< The world space transformation matrix inversed.
-    glm::mat4 m_inverseLocalTransform = glm::mat4( 1.0f ); ///< The local space transformation matrix inversed.
+    glm::mat4 inverseWorldTransform = glm::mat4( 1.0f ); ///< The world space transformation matrix inversed.
+    glm::mat4 inverseLocalTransform = glm::mat4( 1.0f ); ///< The local space transformation matrix inversed.
   };
 }
 

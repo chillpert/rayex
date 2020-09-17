@@ -16,20 +16,20 @@ namespace RENDERER_NAMESPACE
 
   void Image::init( const vk::ImageCreateInfo& createInfo )
   {
-    m_extent = createInfo.extent;
-    m_format = createInfo.format;
-    m_layout = createInfo.initialLayout;
+    this->extent = createInfo.extent;
+    this->format = createInfo.format;
+    this->layout = createInfo.initialLayout;
 
-    m_image = g_device.createImageUnique( createInfo );
-    if ( !m_image )
+    this->image = g_device.createImageUnique( createInfo );
+    if ( !this->image )
       RX_ERROR( "Failed to create image." );
 
-    m_memory = vk::Initializer::allocateMemoryUnique( m_image.get( ) );
+    this->memory = vk::Initializer::allocateMemoryUnique( this->image.get( ) );
   }
 
   void Image::transitionToLayout( vk::ImageLayout layout )
   {
-    auto barrierInfo = vk::Helper::getImageMemoryBarrierInfo( m_image.get( ), m_layout, layout );
+    auto barrierInfo = vk::Helper::getImageMemoryBarrierInfo( this->image.get( ), this->layout, layout );
 
     CommandBuffer commandBuffer;
     commandBuffer.init( g_graphicsCmdPool );
@@ -48,12 +48,12 @@ namespace RENDERER_NAMESPACE
     commandBuffer.end( );
     commandBuffer.submitToQueue( g_graphicsQueue );
 
-    m_layout = layout;
+    this->layout = layout;
   }
 
   void Image::transitionToLayout( vk::ImageLayout layout, vk::CommandBuffer commandBuffer )
   {
-    auto barrierInfo = vk::Helper::getImageMemoryBarrierInfo( m_image.get( ), m_layout, layout );
+    auto barrierInfo = vk::Helper::getImageMemoryBarrierInfo( this->image.get( ), this->layout, layout );
 
     commandBuffer.pipelineBarrier( std::get<1>( barrierInfo ),        // srcStageMask
                                    std::get<2>( barrierInfo ),        // dstStageMask
@@ -65,7 +65,7 @@ namespace RENDERER_NAMESPACE
                                    1,
                                    &std::get<0>( barrierInfo ) );     // barrier
 
-    m_layout = layout;
+    this->layout = layout;
   }
 
   vk::Format Image::findSupportedFormat( vk::PhysicalDevice physicalDevice, const std::vector<vk::Format>& formatsToTest, vk::FormatFeatureFlagBits features, vk::ImageTiling tiling )

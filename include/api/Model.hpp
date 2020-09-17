@@ -30,7 +30,7 @@ namespace RENDERER_NAMESPACE
   /// myRenderer.pushNode<CustomModel>( cube );
   /// ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
   /// @ingroup Base, API
-  /// @todo m_modelCounter is being incremented always, even if it is not a new model. This class should actually look inside Api::m_models or sth to assign the correct index.
+  /// @todo modelCounter is being incremented always, even if it is not a new model. This class should actually look inside Api::models or sth to assign the correct index.
   class Model
   {
   public:
@@ -45,23 +45,23 @@ namespace RENDERER_NAMESPACE
     /// @return Returns true if the model was already loaded.
     bool isLoaded( );
 
-    uint32_t m_index = 0; ///< An index that will be used by the ray tracing structures to access the correct model.
-    std::string m_path; ///< The relative path to the model.
-    Material m_material; ///< Holds all rendering information including the textures required by the model.
-    bool m_initialized = false;
+    uint32_t index = 0; ///< An index that will be used by the ray tracing structures to access the correct model.
+    std::string path; ///< The relative path to the model.
+    Material material; ///< Holds all rendering information including the textures required by the model.
+    bool initialized = false;
 
-    std::vector<Vertex> m_vertices; ///< The raw vertex data.
-    std::vector<uint32_t> m_indices; ///< The raw index data.
+    std::vector<Vertex> vertices; ///< The raw vertex data.
+    std::vector<uint32_t> indices; ///< The raw index data.
 
     // Destruction via RAII.
-    VertexBuffer m_vertexBuffer; ///< Used to buffer the raw vertex data.
-    IndexBuffer<uint32_t> m_indexBuffer; ///< Used to buffer the raw index data.
+    VertexBuffer vertexBuffer; ///< Used to buffer the raw vertex data.
+    IndexBuffer<uint32_t> indexBuffer; ///< Used to buffer the raw index data.
 
     // No destruction necessary
-    DescriptorSet m_descriptorSets; ///< Descriptor sets for the model's descriptors.
+    DescriptorSet descriptorSets; ///< Descriptor sets for the model's descriptors.
 
   private:
-    static uint32_t m_modelCounter; ///< Used to count the total number of models and to assign a new unique value to m_index.
+    static uint32_t modelCounter; ///< Used to count the total number of models and to assign a new unique value to index.
   };
 }
 
@@ -70,7 +70,7 @@ namespace std
   /// @cond INTERNAL
   template<> struct hash<rx::Model>
   {
-    size_t operator()( const std::shared_ptr<rx::Model> model ) const { return hash<std::string>( )( model->m_path ); }
+    size_t operator()( const std::shared_ptr<rx::Model> model ) const { return hash<std::string>( )( model->path ); }
   };
   /// @endcond
 }

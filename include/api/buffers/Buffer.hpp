@@ -41,13 +41,13 @@ namespace RENDERER_NAMESPACE
     void copyToImage( Image& image ) const;
 
     /// @return Returns the buffer without the unique handle.
-    inline const vk::Buffer get( ) const { return m_buffer.get( ); }
+    inline const vk::Buffer get( ) const { return buffer.get( ); }
 
     /// @return Returns the buffer's memory without the unique handle.
-    inline const vk::DeviceMemory getMemory( ) const { return m_memory.get( ); }
+    inline const vk::DeviceMemory getMemory( ) const { return memory.get( ); }
 
     /// @return Returns the size of the buffer.
-    inline const vk::DeviceSize getSize( ) const { return m_size; }
+    inline const vk::DeviceSize getSize( ) const { return size; }
 
     /// Creates the buffer and allocates memory for it.
     /// @param size The size of the buffer.
@@ -64,19 +64,19 @@ namespace RENDERER_NAMESPACE
     void fill( T* source, vk::DeviceSize offset = 0 )
     {
       void* data;
-      if ( g_device.mapMemory( m_memory.get( ), offset, m_size, { }, &data ) != vk::Result::eSuccess )
+      if ( g_device.mapMemory( memory.get( ), offset, size, { }, &data ) != vk::Result::eSuccess )
         RX_ERROR( "Failed to map memory." );
 
-      memcpy( data, source, static_cast<uint32_t>( m_size ) );
+      memcpy( data, source, static_cast<uint32_t>( size ) );
 
-      g_device.unmapMemory( m_memory.get( ) );
+      g_device.unmapMemory( memory.get( ) );
     }
 
   protected:
-    vk::UniqueBuffer m_buffer; ///< The buffer object with a unique handle.
-    vk::UniqueDeviceMemory m_memory; ///< The buffer's memory with a unique handle.
+    vk::UniqueBuffer buffer; ///< The buffer object with a unique handle.
+    vk::UniqueDeviceMemory memory; ///< The buffer's memory with a unique handle.
 
-    vk::DeviceSize m_size = 0; ///< The buffer's size.
+    vk::DeviceSize size = 0; ///< The buffer's size.
   };
 }
 

@@ -32,38 +32,38 @@ public:
 
     if ( Key::eW )
     {
-      m_position += m_front * finalSpeed;
-      m_updateView = true;
+      this->position += this->front * finalSpeed;
+      this->updateView = true;
     }
 
     if ( Key::eS )
     {
-      m_position -= m_front * finalSpeed;
-      m_updateView = true;
+      this->position -= this->front * finalSpeed;
+      this->updateView = true;
     }
     
     if ( Key::eA )
     {
-      m_position -= m_right * finalSpeed;
-      m_updateView = true;
+      this->position -= this->right * finalSpeed;
+      this->updateView = true;
     }
     
     if ( Key::eD )
     {
-      m_position += m_right * finalSpeed;
-      m_updateView = true;
+      this->position += this->right * finalSpeed;
+      this->updateView = true;
     }
     
     if ( Key::eC )
     {
-      m_position.y -= finalSpeed / 2.0f;
-      m_updateView = true;
+      this->position.y -= finalSpeed / 2.0f;
+      this->updateView = true;
     }
     
     if ( Key::eSpace )
     {
-      m_position.y += finalSpeed / 2.0f;
-      m_updateView = true;
+      this->position.y += finalSpeed / 2.0f;
+      this->updateView = true;
     }
     
     updateViewMatrix( );
@@ -88,7 +88,7 @@ public:
   {
     Window::update( );
 
-    m_camera->setSize( m_width, m_height );
+    this->camera->setSize( this->width, this->height );
 
     // Add your custom event polling and integrate your event system.
     SDL_Event event;
@@ -145,16 +145,16 @@ public:
 
             case SDLK_SPACE:
             {
-              if ( m_mouseVisible )
+              if ( this->mouseVisible )
               {
-                m_mouseVisible = false;
+                this->mouseVisible = false;
                 SDL_SetRelativeMouseMode( SDL_TRUE );
                 SDL_GetRelativeMouseState( nullptr, nullptr ); // Magic fix!
               }
               else
               {
                 SDL_SetRelativeMouseMode( SDL_FALSE );
-                m_mouseVisible = true;
+                this->mouseVisible = true;
               }
 
               break;
@@ -188,11 +188,11 @@ public:
 
         case SDL_MOUSEMOTION:
         {
-          if ( !m_mouseVisible )
+          if ( !this->mouseVisible )
           {
             int x, y;
             SDL_GetRelativeMouseState( &x, &y );
-            m_camera->processMouse( x, -y );
+            this->camera->processMouse( x, -y );
             break;
           }
         }
@@ -203,12 +203,12 @@ public:
 
   void setCamera( const std::shared_ptr<Camera> camera )
   {
-    m_camera = camera;
+    this->camera = camera;
   }
 
 private:
-  std::shared_ptr<Camera> m_camera;
-  bool m_mouseVisible = true;
+  std::shared_ptr<Camera> camera;
+  bool mouseVisible = true;
 };
 
 class CustomGui : public Gui
@@ -234,21 +234,21 @@ private:
         int finalNum = rand( ) % ( max - min + 1 ) + min;
 
         auto box = std::make_shared<GeometryNode>( "models/cube.obj", Material( "textures/container.png" ) );
-        box->m_worldTransform = glm::translate( box->m_worldTransform, glm::vec3( finalNum, 0.0f, 0.0f ) );
-        m_renderer->pushNode( box );
+        box->worldTransform = glm::translate( box->worldTransform, glm::vec3( finalNum, 0.0f, 0.0f ) );
+        this->renderer->pushNode( box );
       }
 
       if ( ImGui::Button( "Add Sphere" ) )
       {
         auto sphere = std::make_shared<GeometryNode>( "models/sphere.obj", Material( "textures/metal.png" ) );
-        m_renderer->pushNode( sphere );
+        this->renderer->pushNode( sphere );
       }
 
       /*
-      auto clearColor = m_renderer->m_settings.getClearColor( );
+      auto clearColor = this->renderer->settings.getClearColor( );
       if ( ImGui::ColorEdit4( "##AmbientColor", &clearColor[0] ) )
       {
-        m_renderer->m_settings.setClearColor( clearColor );
+        this->renderer->settings.setClearColor( clearColor );
       }
       */
     }
@@ -259,11 +259,11 @@ private:
 public:
   void setRenderer( Renderer* renderer )
   {
-    m_renderer = renderer;
+    this->renderer = renderer;
   }
 
 private:
-  Renderer* m_renderer;
+  Renderer* renderer;
 };
 
 int main( )
@@ -293,8 +293,8 @@ int main( )
 
   // Setup the scene
   auto dragonLore = std::make_shared<GeometryNode>( "models/awpdlore/awpdlore.obj", Material( "textures/awpdlore.png" ) );
-  dragonLore->m_worldTransform = glm::scale( dragonLore->m_worldTransform, glm::vec3( 0.25f ) );
-  dragonLore->m_worldTransform = glm::rotate( dragonLore->m_worldTransform, glm::radians( 90.0f ), glm::vec3( 0.0f, 1.0f, 0.0f ) );
+  dragonLore->worldTransform = glm::scale( dragonLore->worldTransform, glm::vec3( 0.25f ) );
+  dragonLore->worldTransform = glm::rotate( dragonLore->worldTransform, glm::radians( 90.0f ), glm::vec3( 0.0f, 1.0f, 0.0f ) );
 
   auto directionalLight = std::make_shared<DirectionalLightNode>( );
  
@@ -304,7 +304,7 @@ int main( )
 
   while ( myRenderer.isRunning( ) )
   {
-    dragonLore->m_worldTransform = glm::rotate( dragonLore->m_worldTransform, glm::radians( 90.0f ) * Time::getDeltaTime( ) * animationSpeed, glm::vec3( 0.0f, 1.0f, 0.0f ) );
+    dragonLore->worldTransform = glm::rotate( dragonLore->worldTransform, glm::radians( 90.0f ) * Time::getDeltaTime( ) * animationSpeed, glm::vec3( 0.0f, 1.0f, 0.0f ) );
     myRenderer.run( );
   }
 

@@ -66,22 +66,22 @@ namespace RENDERER_NAMESPACE
       {
         auto ptr = std::dynamic_pointer_cast<GeometryNode>( node );
 
-        auto it = m_models.find( ptr->m_modelPath );
-        if ( it == m_models.end( ) )
-          m_models.insert( { ptr->m_modelPath, std::make_shared<T>( ptr->m_modelPath ) } );
+        auto it = models.find( ptr->modelPath );
+        if ( it == models.end( ) )
+          models.insert( { ptr->modelPath, std::make_shared<T>( ptr->modelPath ) } );
 
-        m_geometryNodes.push_back( ptr );
+        geometryNodes.push_back( ptr );
 
         // Handle the node's texture.
-        auto texturePaths = ptr->m_material.getTextures( );
+        auto texturePaths = ptr->material.getTextures( );
 
         for ( const auto& texturePath : texturePaths )
         {
-          auto it = m_textures.find( texturePath );
+          auto it = textures.find( texturePath );
           // Texture does not exist already. It will be created.
-          if ( it == m_textures.end( ) )
+          if ( it == textures.end( ) )
           {
-            m_textures.insert( { texturePath, std::make_shared<Texture>( texturePath ) } );
+            textures.insert( { texturePath, std::make_shared<Texture>( texturePath ) } );
           }
         }
 
@@ -93,18 +93,18 @@ namespace RENDERER_NAMESPACE
         if ( dynamic_cast<DirectionalLightNode*>( node.get( ) ) )
         {
           auto dirLightNodePtr = std::dynamic_pointer_cast<DirectionalLightNode>( node );
-          m_dirLightNodes.push_back( dirLightNodePtr );
+          dirLightNodes.push_back( dirLightNodePtr );
         }
         else if ( dynamic_cast<PointLightNode*>( node.get( ) ) )
         {
           auto pointLightNodePtr = std::dynamic_pointer_cast<PointLightNode>( node );
-          m_pointLightNodes.push_back( pointLightNodePtr );
+          pointLightNodes.push_back( pointLightNodePtr );
         }
       }
 
       if ( record )
       {
-        m_swapchainCommandBuffers.reset( );
+        swapchainCommandBuffers.reset( );
         recordSwapchainCommandBuffers( );
       }
     }
@@ -114,20 +114,20 @@ namespace RENDERER_NAMESPACE
     template <typename T = Model>
     void setNodes( const std::vector<std::shared_ptr<Node>>& nodes )
     {
-      m_geometryNodes.clear( );
-      m_geometryNodes.reserve( g_maxGeometryNodes );
+      geometryNodes.clear( );
+      geometryNodes.reserve( g_maxGeometryNodes );
 
       for ( const auto& node : nodes )
         pushNode<T>( node );
 
-      m_swapchainCommandBuffers.reset( );
+      swapchainCommandBuffers.reset( );
       recordSwapchainCommandBuffers( );
     }
 
     /// Re-initializes the render pass to support the GUI and initializes the GUI itself.
     RX_API void initGui( );
 
-    Settings* m_settings = nullptr;
+    Settings* settings = nullptr;
 
   private:
     /// Initializes the render pass with a color and depth attachment.
@@ -135,8 +135,8 @@ namespace RENDERER_NAMESPACE
 
     /// Initializes the model provided by the node.
     /// 
-    /// The model will be added to rx::Api::m_models to make sure there are no duplicates.
-    /// Similarily, all textures required by the model will be stored individualy inside rx::Api::m_textures.
+    /// The model will be added to rx::Api::models to make sure there are no duplicates.
+    /// Similarily, all textures required by the model will be stored individualy inside rx::Api::textures.
     /// If a model or a texture are already known to the application and have been initialized, they will be re-used instead of being initialized.
     /// @param node A pointer to a geometry node.
     /// @todo The function currently recreates the entire TLAS and BLAS everytime a model is added, which is very inefficient.
@@ -161,61 +161,61 @@ namespace RENDERER_NAMESPACE
     /// Submits the swapchain command buffers to a queue and presents an image on the screen.
     bool submitFrame( );
 
-    std::shared_ptr<Window> m_window;
-    std::shared_ptr<Camera> m_camera;
+    std::shared_ptr<Window> window;
+    std::shared_ptr<Camera> camera;
 
     // Destruction through RAII for following members:
-    Instance m_instance;
-    DebugMessenger m_debugMessenger;
-    Surface m_surface;
-    Device m_device;
-    vk::UniqueCommandPool m_graphicsCmdPool;
-    vk::UniqueCommandPool m_transferCmdPool;
-    std::vector<vk::UniqueFence> m_inFlightFences;
-    std::vector<vk::UniqueSemaphore> m_imageAvailableSemaphores;
-    std::vector<vk::UniqueSemaphore> m_finishedRenderSemaphores;
+    Instance instance;
+    DebugMessenger debugMessenger;
+    Surface surface;
+    Device device;
+    vk::UniqueCommandPool graphicsCmdPool;
+    vk::UniqueCommandPool transferCmdPool;
+    std::vector<vk::UniqueFence> inFlightFences;
+    std::vector<vk::UniqueSemaphore> imageAvailableSemaphores;
+    std::vector<vk::UniqueSemaphore> finishedRenderSemaphores;
 
     // Descriptors for ray-tracing-related data.
-    DescriptorSetLayout m_rtDescriptorSetLayout;
-    vk::UniqueDescriptorPool m_rtDescriptorPool;
-    DescriptorSet m_rtDescriptorSets;
+    DescriptorSetLayout rtDescriptorSetLayout;
+    vk::UniqueDescriptorPool rtDescriptorPool;
+    DescriptorSet rtDescriptorSets;
 
     // Descriptors for model-related data.
-    DescriptorSetLayout m_modelDescriptorSetLayout; ///< @note Each rx::Model has its own descriptor set.
-    vk::UniqueDescriptorPool m_modelDescriptorPool;
+    DescriptorSetLayout modelDescriptorSetLayout; ///< @note Each rx::Model has its own descriptor set.
+    vk::UniqueDescriptorPool modelDescriptorPool;
 
     // Descriptors for scene-related data.
-    DescriptorSetLayout m_sceneDescriptorSetLayout;
-    vk::UniqueDescriptorPool m_sceneDescriptorPool;
-    DescriptorSet m_sceneDescriptorSets;
+    DescriptorSetLayout sceneDescriptorSetLayout;
+    vk::UniqueDescriptorPool sceneDescriptorPool;
+    DescriptorSet sceneDescriptorSets;
 
-    CameraUbo m_cameraUbo;
-    UniformBuffer m_cameraUniformBuffer;
-    UniformBuffer m_lightsUniformBuffer;
+    CameraUbo cameraUbo;
+    UniformBuffer cameraUniformBuffer;
+    UniformBuffer lightsUniformBuffer;
 
     // Nodes to render.
-    std::vector<std::shared_ptr<GeometryNode>> m_geometryNodes;
-    std::vector<std::shared_ptr<DirectionalLightNode>> m_dirLightNodes;
-    std::vector<std::shared_ptr<PointLightNode>> m_pointLightNodes;
+    std::vector<std::shared_ptr<GeometryNode>> geometryNodes;
+    std::vector<std::shared_ptr<DirectionalLightNode>> dirLightNodes;
+    std::vector<std::shared_ptr<PointLightNode>> pointLightNodes;
     // Models
-    std::unordered_map<std::string, std::shared_ptr<Model>> m_models;
+    std::unordered_map<std::string, std::shared_ptr<Model>> models;
     // Textures
-    std::unordered_map<std::string, std::shared_ptr<Texture>> m_textures;
+    std::unordered_map<std::string, std::shared_ptr<Texture>> textures;
 
-    Swapchain m_swapchain;
-    RenderPass m_renderPass;
-    Pipeline m_rtPipeline;
-    CommandBuffer m_swapchainCommandBuffers;
+    Swapchain swapchain;
+    RenderPass renderPass;
+    Pipeline rtPipeline;
+    CommandBuffer swapchainCommandBuffers;
     
-    std::shared_ptr<Gui> m_gui = nullptr;
+    std::shared_ptr<Gui> gui = nullptr;
 
     // No destruction necessary for following members:
-    PhysicalDevice m_physicalDevice;
-    std::vector<vk::Fence> m_imagesInFlight;
+    PhysicalDevice physicalDevice;
+    std::vector<vk::Fence> imagesInFlight;
 
-    RayTracingBuilder m_rayTracingBuilder;
+    RayTracingBuilder rayTracingBuilder;
 
-    bool m_recreateSwapchain = false;
+    bool needSwapchainRecreate = false;
   };
 }
 

@@ -25,15 +25,15 @@ namespace RENDERER_NAMESPACE
     void init( vk::CommandPool commandPool, uint32_t count = 1, vk::CommandBufferUsageFlags usageFlags = vk::CommandBufferUsageFlagBits::eOneTimeSubmit );
 
     /// @return Returns the vector of command buffers.
-    inline const std::vector<vk::CommandBuffer> get( ) const { return m_commandBuffers; }
+    inline const std::vector<vk::CommandBuffer> get( ) const { return commandBuffers; }
 
     /// Returns the command buffer by some index.
     /// @param index The index of the desired command buffer.
     /// @return Returns the command buffer.
     inline const vk::CommandBuffer get( size_t index ) const
     {
-      RX_ASSERT( ( index <= m_commandBuffers.size( ) - 1 ), "Failed to get command buffer because vector is out of range." );
-      return m_commandBuffers[index];
+      RX_ASSERT( ( index <= commandBuffers.size( ) - 1 ), "Failed to get command buffer because vector is out of range." );
+      return commandBuffers[index];
     }
 
     /// Frees the command buffer.
@@ -58,10 +58,10 @@ namespace RENDERER_NAMESPACE
     void submitToQueue( vk::Queue queue, const std::vector<vk::Semaphore>& waitSemaphores = { }, const std::vector<vk::Semaphore>& signalSemaphores = { }, vk::PipelineStageFlags* waitDstStageMask = { } );
 
   private:
-    std::vector<vk::CommandBuffer> m_commandBuffers; ///< A vector of Vulkan command buffers.
+    std::vector<vk::CommandBuffer> commandBuffers; ///< A vector of Vulkan command buffers.
     
-    vk::CommandPool m_commandPool; ///< The Vulkan command pool used to allocate the command buffer from.
-    vk::CommandBufferBeginInfo m_beginInfo; ///< The Vulkan begin information of the command buffer.
+    vk::CommandPool commandPool; ///< The Vulkan command pool used to allocate the command buffer from.
+    vk::CommandBufferBeginInfo beginInfo; ///< The Vulkan begin information of the command buffer.
   };
 }
 

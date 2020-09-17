@@ -3,9 +3,9 @@
 namespace RENDERER_NAMESPACE
 {
   Camera::Camera( int width, int height, const glm::vec3& position ) :
-    m_width( width ),
-    m_height( height ),
-    m_position( position )
+    width( width ),
+    height( height ),
+    position( position )
   {
     updateVectors( );
     updateViewMatrix( );
@@ -13,67 +13,67 @@ namespace RENDERER_NAMESPACE
 
   void Camera::setPosition( const glm::vec3& position )
   {
-    m_position = position;
+    this->position = position;
 
     updateViewMatrix( );
   }
 
   void Camera::setSize( int width, int height )
   {
-    m_width = width;
-    m_height = height;
+    this->width = width;
+    this->height = height;
 
     updateProjectionMatrix( );
   }
 
   void Camera::setFov( float fov )
   {
-    m_fov = fov;
+    this->fov = fov;
 
     updateProjectionMatrix( );
   }
 
   void Camera::setSensitivity( float sensitivity )
   {
-    m_sensitivity = sensitivity;
+    this->sensitivity = sensitivity;
   }
 
   void Camera::updateViewMatrix( )
   {
-    m_view = glm::lookAt( m_position, m_position + m_front, m_worldUp );
+    this->view = glm::lookAt( this->position, this->position + this->front, this->worldUp );
 
-    m_viewInverse = glm::inverse( m_view );
+    this->viewInverse = glm::inverse( this->view );
   }
 
   void Camera::updateProjectionMatrix( )
   {
-    m_projection = glm::perspective( glm::radians( m_fov ), static_cast<float>( m_width ) / static_cast<float>( m_height ), 0.1f, 100.0f );
-    m_projection[1, 1] *= -1;
+    this->projection = glm::perspective( glm::radians( this->fov ), static_cast<float>( this->width ) / static_cast<float>( this->height ), 0.1f, 100.0f );
+    this->projection[1, 1] *= -1;
 
-    m_projectionInverse = glm::inverse( m_projection );
+    this->projectionInverse = glm::inverse( this->projection );
   }
 
   void Camera::processMouse( float xOffset, float yOffset )
   {
-    m_updateView = true;
+    this->updateView = true;
 
-    xOffset *= m_sensitivity;
-    yOffset *= m_sensitivity;
+    xOffset *= this->sensitivity;
+    yOffset *= this->sensitivity;
 
-    m_yaw += xOffset;
-    m_pitch += yOffset;
+    this->yaw += xOffset;
+    this->pitch += yOffset;
 
-    if ( m_yaw > 360.0f )
-      m_yaw = fmod( m_yaw, 360.0f );
+    if ( this->yaw > 360.0f )
+      this->yaw = fmod( this->yaw, 360.0f );
 
-    if ( m_yaw < 0.0f )
-      m_yaw = 360.0f + fmod( m_yaw, 360.0f );
+    if ( this->yaw < 0.0f )
+      this->yaw = 360.0f + fmod( this->yaw, 360.0f );
 
-    if ( m_pitch > 89.0f )
-      m_pitch = 89.0f;
+    if ( this->pitch > 89.0f )
+      this->pitch = 89.0f;
 
-    if ( m_pitch < -89.0f )
-      m_pitch = -89.0f;
+    if ( this->pitch < -89.0f )
+      this->pitch = -89.0f;
 
     updateVectors( );
   }
@@ -81,12 +81,12 @@ namespace RENDERER_NAMESPACE
   void Camera::updateVectors( )
   {
     glm::vec3 t_front;
-    t_front.x = cos( glm::radians( m_yaw ) ) * cos( glm::radians( m_pitch ) );
-    t_front.y = sin( glm::radians( m_pitch ) );
-    t_front.z = sin( glm::radians( m_yaw ) ) * cos( glm::radians( m_pitch ) );
+    t_front.x = cos( glm::radians( this->yaw ) ) * cos( glm::radians( this->pitch ) );
+    t_front.y = sin( glm::radians( this->pitch ) );
+    t_front.z = sin( glm::radians( this->yaw ) ) * cos( glm::radians( this->pitch ) );
 
-    m_front = glm::normalize( t_front );
-    m_right = glm::normalize( glm::cross( m_front, m_worldUp ) );
-    m_up = glm::normalize( glm::cross( m_right, m_front ) );
+    this->front = glm::normalize( t_front );
+    this->right = glm::normalize( glm::cross( this->front, this->worldUp ) );
+    this->up = glm::normalize( glm::cross( this->right, this->front ) );
   }
 }

@@ -23,11 +23,11 @@ namespace RENDERER_NAMESPACE
     }
     
     /// @return Returns the amount of indices in the buffer.
-    inline uint32_t getCount( ) const { return m_count; }
+    inline uint32_t getCount( ) const { return count; }
 
     /// @return Returns the type of the index's data.
     /// @note Should be identical to the type that was used to templatize the class.
-    inline vk::IndexType getType( ) const { return m_indexType; }
+    inline vk::IndexType getType( ) const { return indexType; }
 
     /// Creates the buffer, allocates memory for it and fills it with the provided data.
     /// 
@@ -35,16 +35,16 @@ namespace RENDERER_NAMESPACE
     /// @param indices The index data.
     void init( std::vector<T>& indices )
     {
-      m_count = static_cast<uint32_t>( indices.size( ) );
+      count = static_cast<uint32_t>( indices.size( ) );
 
       if ( typeid( T ) == typeid( uint8_t ) )
-        m_indexType = vk::IndexType::eUint8EXT;
+        indexType = vk::IndexType::eUint8EXT;
 
       else if ( typeid( T ) == typeid( uint16_t ) )
-        m_indexType = vk::IndexType::eUint16;
+        indexType = vk::IndexType::eUint16;
 
       else if ( typeid( T ) == typeid( uint32_t ) )
-        m_indexType = vk::IndexType::eUint32;
+        indexType = vk::IndexType::eUint32;
 
       else
         RX_ERROR( "Invalid data type for index buffer was specified." );
@@ -69,12 +69,12 @@ namespace RENDERER_NAMESPACE
                     &allocateFlags );
 
       // Copy staging buffer to the actual index buffer.
-      stagingBuffer.copyToBuffer( m_buffer.get( ) );
+      stagingBuffer.copyToBuffer( buffer.get( ) );
     }
 
   private:
-    uint32_t m_count; ///< The amount of indices in the buffer.
-    vk::IndexType m_indexType; ///< The type of the index's data
+    uint32_t count; ///< The amount of indices in the buffer.
+    vk::IndexType indexType; ///< The type of the index's data
   };
 }
 

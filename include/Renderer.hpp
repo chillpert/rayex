@@ -54,13 +54,13 @@ namespace RENDERER_NAMESPACE
     RX_API void run( );
 
     /// @return Returns true if the application is still running and false if the application has stopped.
-    RX_API bool isRunning( ) { return m_running; }
+    RX_API bool isRunning( ) { return running; }
 
     /// @return Returns a pointer to the renderer's window.
-    RX_API inline const std::shared_ptr<Window> getWindow( ) const { return m_window; }
+    RX_API inline const std::shared_ptr<Window> getWindow( ) const { return window; }
     
     /// @return Returns a pointer to the renderer's camera.
-    RX_API inline const std::shared_ptr<Camera> getCamera( ) const { return m_camera; }
+    RX_API inline const std::shared_ptr<Camera> getCamera( ) const { return camera; }
 
     /// Used to add another arbitrary node to the scene.
     /// @param node The node to add.
@@ -68,7 +68,7 @@ namespace RENDERER_NAMESPACE
     template <typename T = Model>
     void pushNode( const std::shared_ptr<Node> node )
     {
-      m_api.pushNode<T>( node );
+      api.pushNode<T>( node );
     }
 
     /// Used to overwrite the entire scene with new nodes.
@@ -77,7 +77,7 @@ namespace RENDERER_NAMESPACE
     template <typename T = Model>
     void setNodes( const std::vector<std::shared_ptr<Node>>& nodes )
     {
-      m_api.setNodes<T>( nodes );
+      api.setNodes<T>( nodes );
     }
 
     /// Used to set the renderer's camera.
@@ -88,15 +88,15 @@ namespace RENDERER_NAMESPACE
     /// @param gui The GUI the renderer should be using.
     RX_API void setGui( std::shared_ptr<Gui> gui );
 
-    Settings m_settings;
+    Settings settings;
 
   private:
-    std::shared_ptr<Window> m_window; ///< A pointer to a rx::Window object.
-    std::shared_ptr<Camera> m_camera; ///< A pointer to a rx::Camera object.
-    Api m_api; ///< Contains all Vulkan related components.
+    std::shared_ptr<Window> window; ///< A pointer to a rx::Window object.
+    std::shared_ptr<Camera> camera; ///< A pointer to a rx::Camera object.
+    Api api; ///< Contains all Vulkan related components.
 
-    bool m_initialized = false; ///< Keeps track of the initialization status.
-    bool m_running = true; ///< Keeps track of whether or not the main loop should still be continued.
+    bool initialized = false; ///< Keeps track of the initialization status.
+    bool running = true; ///< Keeps track of whether or not the main loop should still be continued.
   };
 }
 

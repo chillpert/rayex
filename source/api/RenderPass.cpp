@@ -19,13 +19,13 @@ namespace RENDERER_NAMESPACE
                                          static_cast< uint32_t >( dependencies.size( ) ), // dependencyCount
                                          dependencies.data( ) );                          // pDependencies
     
-    m_renderPass = g_device.createRenderPassUnique( createInfo );
-    RX_ASSERT( m_renderPass, "Failed to create render pass." );
+    this->renderPass = g_device.createRenderPassUnique( createInfo );
+    RX_ASSERT( this->renderPass, "Failed to create render pass." );
   }
 
   void RenderPass::begin( vk::Framebuffer framebuffer, vk::CommandBuffer commandBuffer, vk::Rect2D renderArea, const std::vector<vk::ClearValue>& clearValues ) const
   {
-    vk::RenderPassBeginInfo beginInfo( m_renderPass.get( ),                            // renderPass
+    vk::RenderPassBeginInfo beginInfo( this->renderPass.get( ),                            // renderPass
                                        framebuffer,                                    // framebuffer
                                        renderArea,                                     // renderArea
                                        static_cast< uint32_t >( clearValues.size( ) ), // clearValueCount

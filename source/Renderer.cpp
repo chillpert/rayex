@@ -3,43 +3,43 @@
 namespace RENDERER_NAMESPACE
 {
   Renderer::Renderer( ) :
-    m_window( std::make_shared<Window>( ) ),
-    m_camera( std::make_shared<Camera>( m_window->getWidth( ), m_window->getHeight( ) ) ),
-    m_api( m_window, m_camera )
+    window( std::make_shared<Window>( ) ),
+    camera( std::make_shared<Camera>( this->window->getWidth( ), this->window->getHeight( ) ) ),
+    api( this->window, this->camera )
   { }
 
   Renderer::Renderer( std::shared_ptr<Camera> camera ) :
-    m_window( std::make_shared<Window>( ) ),
-    m_camera( camera ),
-    m_api( m_window, m_camera )
+    window( std::make_shared<Window>( ) ),
+    camera( camera ),
+    api( this->window, this->camera )
   { }
 
   Renderer::Renderer( std::shared_ptr<Window> window ) :
-    m_window( window ),
-    m_camera( std::make_shared<Camera>( m_window->getWidth( ), m_window->getHeight( ) ) ),
-    m_api( window, m_camera )
+    window( window ),
+    camera( std::make_shared<Camera>( this->window->getWidth( ), this->window->getHeight( ) ) ),
+    api( window, this->camera )
   { }
 
   Renderer::Renderer( std::shared_ptr<Window> window, std::shared_ptr<Camera> camera ) :
-    m_window( window ),
-    m_camera( camera ),
-    m_api( m_window, m_camera )
+    window( window ),
+    camera( camera ),
+    api( this->window, this->camera )
   { }
 
   void Renderer::init( )
   {
-    m_api.m_settings = &m_settings;
+    this->api.settings = &this->settings;
 
-    if ( m_settings.getResourcePath( ).empty( ) )
+    if ( this->settings.getResourcePath( ).empty( ) )
     {
       RX_WARN( "Path to resources was not set. Use Settings::setResourcePath(argc, argv) or Settings::setResourcePath(path) to set it." );
-      m_running = false;
+      this->running = false;
       return;
     }
 
-    g_window = m_window;
+    g_window = this->window;
 
-    if ( m_initialized )
+    if ( this->initialized )
       return;
 
   #ifdef RX_COPY_RESOURCES
@@ -48,34 +48,34 @@ namespace RENDERER_NAMESPACE
     std::filesystem::copy( RX_RESOURCES_PATH "textures", RX_PATH_TO_LIBRARY "textures", std::filesystem::copy_options::overwrite_existing | std::filesystem::copy_options::recursive );
   #endif
 
-    m_window->init( );
-    m_api.init( );
+    this->window->init( );
+    this->api.init( );
 
-    m_initialized = true;
+    this->initialized = true;
   }
 
   void Renderer::run( )
   {
-    if ( !m_running || !m_initialized )
+    if ( !this->running || !this->initialized )
       return;
 
-    m_running = m_window->update( );
-    m_camera->update( );
+    this->running = this->window->update( );
+    this->camera->update( );
 
-    if ( !m_running || !m_initialized )
+    if ( !this->running || !this->initialized )
       return;
 
-    m_api.render( );
-    m_api.update( );
+    this->api.render( );
+    this->api.update( );
   }
 
   void Renderer::setCamera( std::shared_ptr<Camera> camera )
   {
-    m_camera = camera;
+    this->camera = camera;
   }
   
   void Renderer::setGui( std::shared_ptr<Gui> gui )
   {
-    m_initialized ? m_api.setGui( gui, true ) : m_api.setGui( gui );
+    this->initialized ? this->api.setGui( gui, true ) : this->api.setGui( gui );
   }
 }

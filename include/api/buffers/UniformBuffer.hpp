@@ -10,18 +10,18 @@ namespace RENDERER_NAMESPACE
   /// @ingroup API
   struct CameraUbo
   {
-    glm::mat4 m_view = glm::mat4( 1.0f );
-    glm::mat4 m_projection = glm::mat4( 1.0f );
-    glm::mat4 m_viewInverse = glm::mat4( 1.0f );
-    glm::mat4 m_projectionInverse = glm::mat4( 1.0f );
+    glm::mat4 view = glm::mat4( 1.0f );
+    glm::mat4 projection = glm::mat4( 1.0f );
+    glm::mat4 viewInverse = glm::mat4( 1.0f );
+    glm::mat4 projectionInverse = glm::mat4( 1.0f );
   };
 
   /// A uniform buffer object for different light types.
   /// @ingroup API
   struct LightsUbo
   {
-    DirectionalLightNode::Ubo m_directionalLightNodes[10];
-    PointLightNode::Ubo m_pointLightNodes[10];
+    DirectionalLightNode::Ubo directionalLightNodes[10];
+    PointLightNode::Ubo pointLightNodes[10];
   };
 
   /// A specialised buffer for uniforms.
@@ -41,7 +41,7 @@ namespace RENDERER_NAMESPACE
     }
 
     /// @return Returns the vector of uniform buffers.
-    inline const std::vector<Buffer>& get( ) const { return m_buffers; }
+    inline const std::vector<Buffer>& get( ) const { return buffers; }
 
     /// @return Returns the vector of uniform buffers as raw Vulkan buffer objects.
     RX_API const std::vector<vk::Buffer> getRaw( ) const;
@@ -53,9 +53,9 @@ namespace RENDERER_NAMESPACE
     template <typename T>
     void init( size_t swapchainImagesCount )
     {
-      m_buffers.resize( swapchainImagesCount );
+      buffers.resize( swapchainImagesCount );
 
-      for ( Buffer& buffer : m_buffers )
+      for ( Buffer& buffer : buffers )
       {
         buffer.init( sizeof( T ),
                      vk::BufferUsageFlagBits::eUniformBuffer,
@@ -70,11 +70,11 @@ namespace RENDERER_NAMESPACE
     template <typename T>
     void upload( uint32_t imageIndex, T& ubo )
     {
-      m_buffers[imageIndex].fill<T>( &ubo );
+      buffers[imageIndex].fill<T>( &ubo );
     }
 
   private:
-    std::vector<Buffer> m_buffers; ///< A vector of rx::Buffers for the uniform buffers.
+    std::vector<Buffer> buffers; ///< A vector of rx::Buffers for the uniform buffers.
   };
 
 }

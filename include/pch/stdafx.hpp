@@ -7,7 +7,7 @@
 #include "external/ImGui/imgui_impl_sdl.h"
 #include "external/ImGui/imgui_impl_vulkan.h"
 
-#define GLM_FORCE_DEPTH_ZERO_TO_ONE
+#define GLFORCE_DEPTH_ZERO_TO_ONE
 #include <external/glm/glm.hpp>
 #include <external/glm/ext/matrix_transform.hpp>
 #include <external/glm/ext/matrix_clip_space.hpp>

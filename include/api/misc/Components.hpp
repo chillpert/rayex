@@ -1,11 +1,11 @@
 #ifndef COMPONENTS_HPP
 #define COMPONENTS_HPP
 
-#include "window/WindowBase.hpp"
+#include "base/Window.hpp"
 
 namespace RENDERER_NAMESPACE
 {
-  extern std::shared_ptr<WindowBase> g_window; ///< Global reference to the window.
+  extern std::shared_ptr<Window> g_window; ///< Global reference to the window.
   extern vk::Instance g_instance; ///< Global reference to the Vulkan instance.
   extern vk::PhysicalDevice g_physicalDevice; ///< Global reference to the Vulkan physical device.
   extern vk::Device g_device; ///< Global reference to the Vulkan logical device.
@@ -30,6 +30,8 @@ namespace RENDERER_NAMESPACE
   const size_t g_maxGeometryNodes = 2000; ///< Global variable to store the maximum amount of geometry nodes supported by the renderer.
   const size_t g_maxTextures = 2000; ///< Global variable to store the maximum amount of textures supported by the renderer.
   const size_t g_maxLightNodes = 25; ///< Global variable to store the maximum amount of light sources supported by the renderer.
+
+  extern std::string g_resourcePath; ///< Path to where shaders, models and textures are stored.
 }
 
 #endif // COMPONENTS_HPP

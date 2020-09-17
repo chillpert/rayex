@@ -14,11 +14,11 @@ namespace Key
   bool eSpace;
 }
 
-class CustomCamera : public CameraBase
+class CustomCamera : public Camera
 {
 public:
   CustomCamera( int width, int height, const glm::vec3& position ) :
-    CameraBase( width, height, position ) { }
+    Camera( width, height, position ) { }
 
   void update( ) override
   {
@@ -70,23 +70,23 @@ public:
   }
 };
 
-class CustomWindow : public WindowBase
+class CustomWindow : public Window
 {
 public:
   CustomWindow( int width, int height, const char* title, uint32_t flags ) :
-    WindowBase( width, height, title, flags )
+    Window( width, height, title, flags )
   { }
 
   void init( ) override
   {
-    WindowBase::init( );
+    Window::init( );
 
     SDL_SetRelativeMouseMode( SDL_FALSE );
   }
 
   bool update( ) override
   {
-    WindowBase::update( );
+    Window::update( );
 
     m_camera->setSize( m_width, m_height );
 
@@ -201,22 +201,22 @@ public:
     return true;
   }
 
-  void setCamera( const std::shared_ptr<CameraBase> camera )
+  void setCamera( const std::shared_ptr<Camera> camera )
   {
     m_camera = camera;
   }
 
 private:
-  std::shared_ptr<CameraBase> m_camera;
+  std::shared_ptr<Camera> m_camera;
   bool m_mouseVisible = true;
 };
 
-class CustomGui : public GuiBase
+class CustomGui : public Gui
 {
 private:
   void configure( ) override
   {
-    GuiBase::configure( );
+    Gui::configure( );
     ImGui::StyleColorsDark( );
   }
 
@@ -244,8 +244,13 @@ private:
         m_renderer->pushNode( sphere );
       }
 
-      if ( ImGui::ColorEdit4("##AmbientColor", &Settings::s_clearColor[0]) )
-        Settings::s_refresh = true;
+      /*
+      auto clearColor = m_renderer->m_settings.getClearColor( );
+      if ( ImGui::ColorEdit4( "##AmbientColor", &clearColor[0] ) )
+      {
+        m_renderer->m_settings.setClearColor( clearColor );
+      }
+      */
     }
 
     ImGui::End( );
@@ -261,16 +266,17 @@ private:
   Renderer* m_renderer;
 };
 
-int main( int argc, char* argv[] )
+int main( )
 {
-  Settings::setResourcePath( argc, argv );
+  Settings settings( "okay" );
+  settings.test;
 
   // Window dimensions.
   int width = 900;
   int height = 600;
-
+  
   // Now create the actual window using the window properties from above.
-  auto myWindow = std::make_shared<CustomWindow>( width, height, "Example", WINDOW_RESIZABLE );
+  auto myWindow = std::make_shared<CustomWindow>( width, height, "Example", SDL_WINDOW_RESIZABLE );
 
   // Create instance of your custom camera class.
   auto myCam = std::make_shared<CustomCamera>( width, height, glm::vec3( 0.0f, 0.0f, 3.0f ) );

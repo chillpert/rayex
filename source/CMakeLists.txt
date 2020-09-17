@@ -11,7 +11,6 @@ file(GLOB FILES_LIB
   "${PROJECT_SOURCE_DIR}/source/api/raytracing/*.cpp"
   "${PROJECT_SOURCE_DIR}/source/api/utility/*.cpp"
 
-  "${PROJECT_SOURCE_DIR}/source/window/*.cpp"
   "${PROJECT_SOURCE_DIR}/source/pch/*.cpp"
   "${PROJECT_SOURCE_DIR}/source/events/*.cpp"
   "${PROJECT_SOURCE_DIR}/source/utils/*.cpp"

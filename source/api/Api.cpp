@@ -30,13 +30,13 @@ namespace RENDERER_NAMESPACE
   // Defines the maximum amount of frames that will be processed concurrently.
   const size_t maxFramesInFlight = 2;
 
-  Api::Api( std::shared_ptr<WindowBase> window, std::shared_ptr<CameraBase> camera ) :
+  Api::Api( std::shared_ptr<Window> window, std::shared_ptr<Camera> camera ) :
     m_window( window ),
     m_camera( camera ),
     m_gui( nullptr )
   { }
 
-  Api::Api( std::shared_ptr<WindowBase> window, std::shared_ptr<GuiBase> gui, std::shared_ptr<CameraBase> camera ) :
+  Api::Api( std::shared_ptr<Window> window, std::shared_ptr<Gui> gui, std::shared_ptr<Camera> camera ) :
     m_window( window ),
     m_camera( camera ),
     m_gui( gui )
@@ -51,7 +51,7 @@ namespace RENDERER_NAMESPACE
       m_gui->destroy( );
   }
 
-  void Api::setGui( const std::shared_ptr<GuiBase> gui, bool initialize )
+  void Api::setGui( const std::shared_ptr<Gui> gui, bool initialize )
   {
     if ( m_gui != nullptr )
     {
@@ -67,6 +67,8 @@ namespace RENDERER_NAMESPACE
 
   void Api::init( )
   {
+    RX_INFO( "Initializing Vulkan API ..." );
+
     m_geometryNodes.reserve( g_maxGeometryNodes );
     m_textures.reserve( g_maxTextures );
     m_dirLightNodes.reserve( g_maxLightNodes );
@@ -130,7 +132,7 @@ namespace RENDERER_NAMESPACE
     m_sceneDescriptorSets.update( m_lightsUniformBuffer.getRaw( ) );
 
     // Pipeline
-    m_rtPipeline.init( { m_rtDescriptorSetLayout.get( ), m_modelDescriptorSetLayout.get( ), m_sceneDescriptorSetLayout.get( ) } );
+    m_rtPipeline.init( { m_rtDescriptorSetLayout.get( ), m_modelDescriptorSetLayout.get( ), m_sceneDescriptorSetLayout.get( ) }, m_settings->getMaxRecursionDepth( ) );
 
     // Command pools
     m_graphicsCmdPool = vk::Initializer::createCommandPoolUnique( g_graphicsFamilyIndex, vk::CommandPoolCreateFlagBits::eResetCommandBuffer );
@@ -159,17 +161,17 @@ namespace RENDERER_NAMESPACE
     // Make sure swapchain images are presentable in case they were not transitioned automatically.
     m_swapchain.setImageLayout( vk::ImageLayout::eUndefined, vk::ImageLayout::ePresentSrcKHR );
 
-    RX_SUCCESS( "Finished Vulkan initialization.");
+    RX_SUCCESS( "Finished initializing Vulkan API.");
   }
 
   bool Api::update( )
   {
-    if ( Settings::s_refresh )
+    if ( m_settings->m_refresh )
     {
-      Settings::s_refresh = false;
+      m_settings->m_refresh = false;
 
       // Trigger swapchain / pipeline recreation
-      RX_WARN( "Settings were changed. Pipeline re-creation necessary." );
+      RX_WARN( "Settings were changed. Swapchain re-creation necessary." );
 
       recreateSwapchain( );
     }
@@ -429,13 +431,13 @@ namespace RENDERER_NAMESPACE
                                                                  vk::ShaderStageFlagBits::eMissKHR, // stageFlags
                                                                  0,                                 // offset
                                                                  sizeof( glm::vec4 ),               // size
-                                                                 &Settings::s_clearColor );         // pValues
+                                                                 &m_settings->getClearColor( ) );   // pValues
 
       m_swapchainCommandBuffers.get( imageIndex ).pushConstants( m_rtPipeline.getLayout( ),               // layout
                                                                  vk::ShaderStageFlagBits::eClosestHitKHR, // stageFlags
                                                                  sizeof( glm::vec4 ),                     // offset
                                                                  sizeof( glm::vec4 ),                     // size
-                                                                 &Settings::s_clearColor );               // pValues
+                                                                 &m_settings->getClearColor( ) );         // pValues
 
       m_rtPipeline.bind( m_swapchainCommandBuffers.get( imageIndex ) );
         

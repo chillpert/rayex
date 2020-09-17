@@ -89,7 +89,7 @@ namespace RENDERER_NAMESPACE
       if ( !found )
         RX_ERROR( "Instance extensions ", name, " is not available on this device" );
 
-      RX_SUCCESS( "Added extension: ", name );
+      RX_SUCCESS( "Added instance extension: ", name );
     }
   }
 

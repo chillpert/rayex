@@ -3,24 +3,24 @@
 namespace RENDERER_NAMESPACE
 {
   Renderer::Renderer( ) :
-    m_window( std::make_shared<WindowBase>( ) ),
-    m_camera( std::make_shared<CameraBase>( m_window->getWidth( ), m_window->getHeight( ) ) ),
+    m_window( std::make_shared<Window>( ) ),
+    m_camera( std::make_shared<Camera>( m_window->getWidth( ), m_window->getHeight( ) ) ),
     m_api( m_window, m_camera )
   { }
 
-  Renderer::Renderer( std::shared_ptr<CameraBase> camera ) :
-    m_window( std::make_shared<WindowBase>( ) ),
+  Renderer::Renderer( std::shared_ptr<Camera> camera ) :
+    m_window( std::make_shared<Window>( ) ),
     m_camera( camera ),
     m_api( m_window, m_camera )
   { }
 
-  Renderer::Renderer( std::shared_ptr<WindowBase> window ) :
+  Renderer::Renderer( std::shared_ptr<Window> window ) :
     m_window( window ),
-    m_camera( std::make_shared<CameraBase>( m_window->getWidth( ), m_window->getHeight( ) ) ),
+    m_camera( std::make_shared<Camera>( m_window->getWidth( ), m_window->getHeight( ) ) ),
     m_api( window, m_camera )
   { }
 
-  Renderer::Renderer( std::shared_ptr<WindowBase> window, std::shared_ptr<CameraBase> camera ) :
+  Renderer::Renderer( std::shared_ptr<Window> window, std::shared_ptr<Camera> camera ) :
     m_window( window ),
     m_camera( camera ),
     m_api( m_window, m_camera )
@@ -28,9 +28,11 @@ namespace RENDERER_NAMESPACE
 
   void Renderer::init( )
   {
-    if ( Settings::getResourcePath( ).empty( ) )
+    m_api.m_settings = &m_settings;
+
+    if ( m_settings.getResourcePath( ).empty( ) )
     {
-      std::cout << "Path to resources was not set. Use Settings::setResourcePath(argc, argv) or Settings::setResourcePath(path) to set it." << std::endl;
+      RX_WARN( "Path to resources was not set. Use Settings::setResourcePath(argc, argv) or Settings::setResourcePath(path) to set it." );
       m_running = false;
       return;
     }
@@ -67,12 +69,12 @@ namespace RENDERER_NAMESPACE
     m_api.update( );
   }
 
-  void Renderer::setCamera( std::shared_ptr<CameraBase> camera )
+  void Renderer::setCamera( std::shared_ptr<Camera> camera )
   {
     m_camera = camera;
   }
   
-  void Renderer::setGui( std::shared_ptr<GuiBase> gui )
+  void Renderer::setGui( std::shared_ptr<Gui> gui )
   {
     m_initialized ? m_api.setGui( gui, true ) : m_api.setGui( gui );
   }

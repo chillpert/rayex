@@ -14,8 +14,6 @@ endif(NOT CMAKE_BUILD_TYPE)
 
 message(${CMAKE_BUILD_TYPE})
 
-add_compile_definitions(RX_BUILD_DLL)
-
 if(WIN32 OR MSVC)
   set(OS ${OS} "Windows")
   message("Renderer: Target platform Windows (x64)")
@@ -72,6 +70,8 @@ include(${PROJECT_SOURCE_DIR}/source/CMakeLists.txt)
 # LIBRARY
 add_library(renderer SHARED ${FILES_LIB})
 
+set_target_properties(renderer PROPERTIES COMPILE_DEFINITIONS "RX_BUILD_DLL")
+
 target_link_libraries(renderer
   ${WINDOWING}
   ${Vulkan_LIBRARY}
@@ -104,6 +104,7 @@ set_target_properties(renderer
   RUNTIME_OUTPUT_DIRECTORY_RELWITHDEBINFO "${PROJECT_SOURCE_DIR}/build/bin/relwithbebinfo"
 )
 
+
 # set build paths
 if(${CMAKE_BUILD_TYPE} STREQUAL "Debug")
   set(BUILD_PATH debug)
@@ -128,7 +129,8 @@ if(BUILD_EXAMPLES)
   add_executable(example ${PROJECT_SOURCE_DIR}/example/main.cpp ${FILES_EXAMPLE})
 
   target_link_libraries(example
-    renderer
+    "${PROJECT_SOURCE_DIR}/build/lib/${BUILD_PATH}/renderer.lib"
+    ${WINDOWING}
   )
 
   set_target_properties(example

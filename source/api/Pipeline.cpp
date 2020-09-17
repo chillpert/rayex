@@ -8,13 +8,13 @@
 
 namespace RENDERER_NAMESPACE
 {
-  Pipeline::Pipeline( const std::vector<vk::DescriptorSetLayout>& descriptorSetLayouts, bool initialize )
+  Pipeline::Pipeline( const std::vector<vk::DescriptorSetLayout>& descriptorSetLayouts, uint32_t maxRecursionDepth, bool initialize )
   {
     if ( initialize )
-      init( descriptorSetLayouts );
+      init( descriptorSetLayouts, maxRecursionDepth );
   }
 
-  void Pipeline::init( const std::vector<vk::DescriptorSetLayout>& descriptorSetLayouts )
+  void Pipeline::init( const std::vector<vk::DescriptorSetLayout>& descriptorSetLayouts, uint32_t maxRecursionDepth )
   {
     auto rgen = vk::Initializer::createShaderModuleUnique( "shaders/raytrace.rgen" );
     auto miss = vk::Initializer::createShaderModuleUnique( "shaders/raytrace.rmiss" );
@@ -72,7 +72,7 @@ namespace RENDERER_NAMESPACE
                                                     shaderStages.data( ),                          // pStages
                                                     static_cast<uint32_t>( groups.size( ) ),       // groupCount
                                                     groups.data( ),                                // pGroups
-                                                    Settings::s_maxRecursionDepth,                 // maxRecursionDepth
+                                                    maxRecursionDepth,                             // maxRecursionDepth
                                                     0,                                             // libraries
                                                     nullptr,                                       // pLibraryInterface
                                                     m_layout.get( ),                               // layout

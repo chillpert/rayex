@@ -2,7 +2,7 @@
 #define UNIFORM_BUFFER_HPP
 
 #include "api/buffers/Buffer.hpp"
-#include "base/LightNodeBase.hpp"
+#include "base/LightNode.hpp"
 
 namespace RENDERER_NAMESPACE
 {

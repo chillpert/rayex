@@ -1,8 +1,8 @@
-#include "base/CameraBase.hpp"
+#include "base/Camera.hpp"
 
 namespace RENDERER_NAMESPACE
 {
-  CameraBase::CameraBase( int width, int height, const glm::vec3& position ) :
+  Camera::Camera( int width, int height, const glm::vec3& position ) :
     m_width( width ),
     m_height( height ),
     m_position( position )
@@ -11,14 +11,14 @@ namespace RENDERER_NAMESPACE
     updateViewMatrix( );
   }
 
-  void CameraBase::setPosition( const glm::vec3& position )
+  void Camera::setPosition( const glm::vec3& position )
   {
     m_position = position;
 
     updateViewMatrix( );
   }
 
-  void CameraBase::setSize( int width, int height )
+  void Camera::setSize( int width, int height )
   {
     m_width = width;
     m_height = height;
@@ -26,26 +26,26 @@ namespace RENDERER_NAMESPACE
     updateProjectionMatrix( );
   }
 
-  void CameraBase::setFov( float fov )
+  void Camera::setFov( float fov )
   {
     m_fov = fov;
 
     updateProjectionMatrix( );
   }
 
-  void CameraBase::setSensitivity( float sensitivity )
+  void Camera::setSensitivity( float sensitivity )
   {
     m_sensitivity = sensitivity;
   }
 
-  void CameraBase::updateViewMatrix( )
+  void Camera::updateViewMatrix( )
   {
     m_view = glm::lookAt( m_position, m_position + m_front, m_worldUp );
 
     m_viewInverse = glm::inverse( m_view );
   }
 
-  void CameraBase::updateProjectionMatrix( )
+  void Camera::updateProjectionMatrix( )
   {
     m_projection = glm::perspective( glm::radians( m_fov ), static_cast<float>( m_width ) / static_cast<float>( m_height ), 0.1f, 100.0f );
     m_projection[1, 1] *= -1;
@@ -53,7 +53,7 @@ namespace RENDERER_NAMESPACE
     m_projectionInverse = glm::inverse( m_projection );
   }
 
-  void CameraBase::processMouse( float xOffset, float yOffset )
+  void Camera::processMouse( float xOffset, float yOffset )
   {
     m_updateView = true;
 
@@ -78,7 +78,7 @@ namespace RENDERER_NAMESPACE
     updateVectors( );
   }
 
-  void CameraBase::updateVectors( )
+  void Camera::updateVectors( )
   {
     glm::vec3 t_front;
     t_front.x = cos( glm::radians( m_yaw ) ) * cos( glm::radians( m_pitch ) );

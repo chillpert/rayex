@@ -25,7 +25,7 @@ namespace RENDERER_NAMESPACE
   {
     m_path = path;
 
-    std::string fullPath = Settings::getResourcePath( ) + path;
+    std::string fullPath = g_resourcePath + path;
 
     int width, height, channels;
     stbi_uc* pixels = stbi_load( fullPath.c_str( ), &width, &height, &channels, STBI_rgb_alpha );

@@ -16,7 +16,7 @@ namespace RENDERER_NAMESPACE
   /// This class acts like an interface for the client to create their own GUI. 
   /// It is possible to create multiple GUI objects and re-assign them to the renderer at runtime.
   /// ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~.cpp
-  /// class CustomGui : public GuiBase
+  /// class CustomGui : public Gui
   /// {
   /// private:
   ///   // Configure style and input of the GUI.
@@ -35,18 +35,18 @@ namespace RENDERER_NAMESPACE
   /// ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
   /// @warning The GUI object must be declared after the renderer to ensure the correct order for destroying and freeing resources.
   /// @ingroup Base API
-  class GuiBase
+  class Gui
   {
   public:
-    GuiBase( ) = default;
+    Gui( ) = default;
 
     /// @param surface A pointer to a rx::Surface object.
     /// @param swapchainImageExtent The extent of the swapchain images.
     /// @param swapchainImageViews The swapchain images' image views.
     /// @param initialize If true, the GUI will be initialized right away without an additional call to init().
-    GuiBase( const Surface* const surface, vk::Extent2D swapchainImageExtent, const std::vector<vk::ImageView>& swapchainImageViews, bool initialize = true );
+    Gui( const Surface* const surface, vk::Extent2D swapchainImageExtent, const std::vector<vk::ImageView>& swapchainImageViews, bool initialize = true );
 
-    RX_API virtual ~GuiBase( ) = default;
+    RX_API virtual ~Gui( ) = default;
     
     /// Returns the GUI's command buffer at the given index.
     /// @param index The index of the command buffer to access.

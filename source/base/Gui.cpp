@@ -1,24 +1,24 @@
-#include "base/GuiBase.hpp"
+#include "base/Gui.hpp"
 #include "api/buffers/CommandBuffer.hpp"
 #include "api/utility/Initializers.hpp"
 #include "api/utility/Destructors.hpp"
 
 namespace RENDERER_NAMESPACE
 {
-  GuiBase::GuiBase( const Surface* const surface, vk::Extent2D swapchainImageExtent, const std::vector<vk::ImageView>& swapchainImageViews, bool initialize )
+  Gui::Gui( const Surface* const surface, vk::Extent2D swapchainImageExtent, const std::vector<vk::ImageView>& swapchainImageViews, bool initialize )
   {
     if ( initialize )
       init( surface, swapchainImageExtent, swapchainImageViews );
   }
 
-  void GuiBase::configure( )
+  void Gui::configure( )
   {
     IMGUI_CHECKVERSION( );
     ImGui::CreateContext( );
     ImGuiIO& io = ImGui::GetIO( ); (void) io;
   }
 
-  void GuiBase::init( const Surface* const surface, vk::Extent2D swapchainImageExtent, const std::vector<vk::ImageView>& swapchainImageViews )
+  void Gui::init( const Surface* const surface, vk::Extent2D swapchainImageExtent, const std::vector<vk::ImageView>& swapchainImageViews )
   {
     m_swapchainImageExtent = swapchainImageExtent;
 
@@ -47,31 +47,31 @@ namespace RENDERER_NAMESPACE
     initFramebuffers( swapchainImageViews );
   }
 
-  void GuiBase::recreate( vk::Extent2D swapchainImageExtent, const std::vector<vk::ImageView>& swapchainImageViews )
+  void Gui::recreate( vk::Extent2D swapchainImageExtent, const std::vector<vk::ImageView>& swapchainImageViews )
   {
     m_swapchainImageExtent = swapchainImageExtent;
 
     initFramebuffers( swapchainImageViews );
   }
 
-  void GuiBase::newFrame( )
+  void Gui::newFrame( )
   {
     ImGui_ImplVulkan_NewFrame( );
     ImGui_ImplSDL2_NewFrame( g_window->get( ) );
     ImGui::NewFrame( );
   }
 
-  void GuiBase::render( )
+  void Gui::render( )
   {
     ImGui::ShowDemoWindow( );
   }
 
-  void GuiBase::endRender( )
+  void Gui::endRender( )
   {
     ImGui::Render( );
   }
 
-  void GuiBase::renderDrawData( uint32_t imageIndex )
+  void Gui::renderDrawData( uint32_t imageIndex )
   {
     m_commandBuffers.begin( imageIndex );
     m_renderPass.begin( m_framebuffers[imageIndex].get( ), m_commandBuffers.get( imageIndex ), { 0, m_swapchainImageExtent }, { { std::array < float,4> { 0.5f, 0.5, 0.5f, 1.0f } } } );
@@ -82,7 +82,7 @@ namespace RENDERER_NAMESPACE
     m_commandBuffers.end( imageIndex );
   }
 
-  void GuiBase::destroy( )
+  void Gui::destroy( )
   {
     m_commandBuffers.free( );
 
@@ -91,12 +91,12 @@ namespace RENDERER_NAMESPACE
     ImGui::DestroyContext( );
   }
 
-  void GuiBase::initCommandPool( )
+  void Gui::initCommandPool( )
   {
     m_commandPool = vk::Initializer::createCommandPoolUnique( g_graphicsFamilyIndex, vk::CommandPoolCreateFlagBits::eResetCommandBuffer );
   }
 
-  void GuiBase::initDescriptorPool( )
+  void Gui::initDescriptorPool( )
   {
     std::vector<vk::DescriptorPoolSize> poolSizes =
     {
@@ -116,7 +116,7 @@ namespace RENDERER_NAMESPACE
     m_descriptorPool = vk::Initializer::createDescriptorPoolUnique( poolSizes, g_swapchainImageCount );
   }
 
-  void GuiBase::initRenderPass( const Surface* const surface )
+  void Gui::initRenderPass( const Surface* const surface )
   {
     vk::AttachmentDescription attachment( { },                                      // flags
                                           surface->getFormat( ),                    // format
@@ -161,7 +161,7 @@ namespace RENDERER_NAMESPACE
     m_renderPass.init( { attachment }, { subpass }, { dependency } );
   }
 
-  void GuiBase::initFonts( )
+  void Gui::initFonts( )
   {
     CommandBuffer commandBuffer( m_commandPool.get( ) );
     commandBuffer.begin( );
@@ -170,7 +170,7 @@ namespace RENDERER_NAMESPACE
     commandBuffer.submitToQueue( g_graphicsQueue );
   }
 
-  void GuiBase::initCommandBuffers( )
+  void Gui::initCommandBuffers( )
   {
     // Create command buffers for each image in the swapchain.
     m_commandBuffers.init( m_commandPool.get( ), 
@@ -178,7 +178,7 @@ namespace RENDERER_NAMESPACE
                            vk::CommandBufferUsageFlagBits::eRenderPassContinue );
   }
 
-  void GuiBase::initFramebuffers( const std::vector<vk::ImageView>& swapchainImageViews )
+  void Gui::initFramebuffers( const std::vector<vk::ImageView>& swapchainImageViews )
   {
     m_framebuffers.resize( static_cast<uint32_t>( swapchainImageViews.size( ) ) );
     for ( size_t i = 0; i < m_framebuffers.size( ); ++i )

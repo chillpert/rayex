@@ -1,8 +1,8 @@
-#include "window/WindowBase.hpp"
+#include "base/Window.hpp"
 
 namespace RENDERER_NAMESPACE
 {
-  WindowBase::WindowBase( int width, int height, const char* title, uint32_t flags ) :
+  Window::Window( int width, int height, const char* title, uint32_t flags ) :
     m_window( nullptr ),
     m_width( width ),
     m_height( height ),
@@ -12,12 +12,12 @@ namespace RENDERER_NAMESPACE
     m_flags |= SDL_WINDOW_VULKAN;
   }
 
-  WindowBase::~WindowBase( )
+  Window::~Window( )
   {
     clean( );
   }
 
-  void WindowBase::init( )
+  void Window::init( )
   {
     SDL_SetHint( SDL_HINT_FRAMEBUFFER_ACCELERATION, "1" );
 
@@ -30,7 +30,7 @@ namespace RENDERER_NAMESPACE
       RX_FATAL( "Failed to create window." ); 
   }
 
-  bool WindowBase::update( )
+  bool Window::update( )
   {
     // Updates local timer bound to this window.
     m_time.update( );
@@ -43,7 +43,7 @@ namespace RENDERER_NAMESPACE
     return true;
   }
 
-  void WindowBase::clean( )
+  void Window::clean( )
   {
     SDL_DestroyWindow( m_window );
     m_window = nullptr;
@@ -51,7 +51,7 @@ namespace RENDERER_NAMESPACE
     SDL_Quit( );
   }
 
-  void WindowBase::resize( int width, int height )
+  void Window::resize( int width, int height )
   {
     m_width = width;
     m_height = height;
@@ -61,7 +61,7 @@ namespace RENDERER_NAMESPACE
 #endif
   }
 
-  std::vector<const char*> WindowBase::getInstanceExtensions( )
+  std::vector<const char*> Window::getInstanceExtensions( )
   {
     uint32_t sdlExtensionsCount;
     SDL_bool result = SDL_Vulkan_GetInstanceExtensions( m_window, &sdlExtensionsCount, nullptr );
@@ -84,7 +84,7 @@ namespace RENDERER_NAMESPACE
     return extensions;
   }
 
-  vk::SurfaceKHR WindowBase::createSurface( vk::Instance instance )
+  vk::SurfaceKHR Window::createSurface( vk::Instance instance )
   {
     VkSurfaceKHR surface;
     SDL_bool result = SDL_Vulkan_CreateSurface( m_window, instance, &surface );
@@ -95,7 +95,7 @@ namespace RENDERER_NAMESPACE
     return surface;
   }
 
-  vk::Extent2D WindowBase::getExtent( ) const
+  vk::Extent2D Window::getExtent( ) const
   {
     int width, height;
     SDL_GetWindowSize( m_window, &width, &height );
@@ -103,7 +103,7 @@ namespace RENDERER_NAMESPACE
     return { static_cast<uint32_t>( width ), static_cast<uint32_t>( height ) };
   }
 
-  bool WindowBase::changed( )
+  bool Window::changed( )
   {
     static int prevWidth = m_width;
     static int prevHeight = m_height;
@@ -118,7 +118,7 @@ namespace RENDERER_NAMESPACE
     return false;
   }
 
-  bool WindowBase::minimized( )
+  bool Window::minimized( )
   {
     if ( SDL_GetWindowFlags( m_window ) & SDL_WINDOW_MINIMIZED )
       return true;

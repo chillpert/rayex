@@ -5,20 +5,20 @@
 // All of the client's own implementations need be derived from these classes.
 //
 // The following APIs exist:
-//   - CameraBase
+//   - Camera
 //   - TransformNode
 //   - GeometryNode
 //   - LightNode
 //   - DirectionalLightNode
-//   - GuiBase
-//   - WindowBase
+//   - Gui
+//   - Window
 
-#include "base/CameraBase.hpp"
-#include "base/NodeBase.hpp"
-#include "base/LightNodeBase.hpp"
-#include "base/GeometryNodeBase.hpp"
-#include "base/GuiBase.hpp"
-#include "window/WindowBase.hpp"
+#include "base/Camera.hpp"
+#include "base/Node.hpp"
+#include "base/LightNode.hpp"
+#include "base/GeometryNode.hpp"
+#include "base/Gui.hpp"
+#include "base/Window.hpp"
 #include "Settings.hpp"
 
 #endif // BASE_HPP

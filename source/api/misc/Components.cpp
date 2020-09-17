@@ -2,7 +2,7 @@
 
 namespace RENDERER_NAMESPACE
 {
-  std::shared_ptr<WindowBase> g_window = nullptr;
+  std::shared_ptr<Window> g_window = nullptr;
   vk::Instance g_instance = nullptr;
   vk::PhysicalDevice g_physicalDevice = nullptr;
   vk::Device g_device = nullptr;
@@ -22,4 +22,6 @@ namespace RENDERER_NAMESPACE
   uint32_t g_transferFamilyIndex;
 
   vk::PhysicalDeviceLimits g_physicalDeviceLimits;
+
+  std::string g_resourcePath;
 }

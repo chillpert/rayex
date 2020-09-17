@@ -1,5 +1,5 @@
-#ifndef NODEBASE_HPP
-#define NODEBASE_HPP
+#ifndef Node_HPP
+#define Node_HPP
 
 #include "pch/stdafx.hpp"
 
@@ -38,4 +38,4 @@ namespace RENDERER_NAMESPACE
   };
 }
 
-#endif // NODEBASE_HPP
+#endif // Node_HPP

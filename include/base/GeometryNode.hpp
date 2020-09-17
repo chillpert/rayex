@@ -1,7 +1,7 @@
 #ifndef GEOMETRY_NODE_BASE_HPP
 #define GEOMETRY_NODE_BASE_HPP
 
-#include "NodeBase.hpp"
+#include "Node.hpp"
 #include "base/Material.hpp"
 
 namespace RENDERER_NAMESPACE

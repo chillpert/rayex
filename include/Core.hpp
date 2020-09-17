@@ -3,6 +3,7 @@
 
 #include "external/tinyLogger/TinyLogger.hpp"
 
+#define SDL_MAIN_HANDLED
 #include <SDL2/SDL.h>
 #include <SDL2/SDL_vulkan.h>
 #define VULKAN_HPP_DISPATCH_LOADER_DYNAMIC 1
@@ -13,6 +14,10 @@
 #define RX_SHADER_GROUP_INDEX_RGEN 0
 #define RX_SHADER_GROUP_INDEX_MISS 1
 #define RX_SHADER_GROUP_INDEX_CHIT 2
+
+#ifdef RX_BUILD_EXAMPLES
+#undef RX_BUILD_DLL
+#endif
 
 #if defined( _WIN32 ) || defined( _WIN64 )
 #ifdef RX_BUILD_DLL

@@ -7,31 +7,52 @@ namespace RENDERER_NAMESPACE
 {
   /// Exposes all graphic settings supported by the renderer.
   ///
-  /// If the client makes changes that require a pipeline or swapchain recreation, s_refresh must be set to true.
+  /// If the client makes changes that require a pipeline or swapchain recreation, m_refresh must be set to true.
   /// @warning The client has to call either setResourcePath(argc, argv) or setResourcePath(path) for the renderer to work.
-  /// @todo Split s_refresh into s_refreshPipeline and s_refreshSwapchain to avoid doing unnecessary operations.
+  /// @todo Split m_refresh into m_refreshPipeline and m_refreshSwapchain to avoid doing unnecessary operations.
   /// @todo Add some setting, that I don't remember anymore. 
   class RX_API Settings
   {
   public:
+    Settings( );
+    Settings( const std::string& test );
+
+    /// @return Returns the maximum recursion depth.
+    inline uint32_t getMaxRecursionDepth( ) { return m_maxRecursionDepth; }
+
+    /// Used to set the maximum recursion depth.
+    /// @param maxRecursionDepth The new value for the maxium recursion depth.
+    /// @param refresh If true, the pipeline and or swapchain will be re-created without having to set m_refresh to true manually.
+    void setMaxRecursionDepth( uint32_t maxRecursionDepth, bool refresh = true );
+
+    /// @return Returns the clear color.
+    inline const glm::vec4& getClearColor( ) { return m_clearColor; }
+
+    /// Used to changed the clear color.
+    /// @param clearColor The new value for the clear color.
+    /// @param refresh If true, the pipeline and or swapchain will be re-created without having to set m_refresh to true manually.
+    void setClearColor( const glm::vec4& clearColor, bool refresh = true );
+
     /// @return Returns the path to resources.
-    static inline const std::string& getResourcePath( ) { return s_resourcePath; }
+    inline const std::string& getResourcePath( ) { return m_resourcePath; }
     
     /// Used to set a path to resources.
     /// @param argc The argc parameter that can be retrieved from the main-function's parameters.
     /// @param argv The argv parameter that can be retrieved from the main-function's parameters.
-    static void setResourcePath( int argc, char* argv[] ); 
+    void setResourcePath( int argc, char* argv[] ); 
 
     /// Used to set a path to resources.
     /// @param path The path to resources.
-    static void setResourcePath( const std::string& path );
+    void setResourcePath( const std::string& path );
 
-    static bool s_refresh; ///< Keeps track of whether or not the graphics pipeline needs to be re-created.
-    static uint32_t s_maxRecursionDepth; ///< The maximum recursion depth.
-    static glm::vec4 s_clearColor; ///< Stores the clear color.
+    bool m_refresh = false; ///< Keeps track of whether or not the graphics pipeline needs to be re-created.
   
+    std::string test = "yeet";
   private:
-    static std::string s_resourcePath; ///< Where all resources like models, textures and shaders are stored.
+    glm::vec4 m_clearColor = glm::vec4( 0.45f, 0.45f, 0.45f, 1.0f ); ///< Stores the clear color.
+    uint32_t m_maxRecursionDepth = 4; ///< The maximum recursion depth.
+    std::string m_resourcePath; ///< Where all resources like models, textures and shaders are stored.
+
   };
 }
 

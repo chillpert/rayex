@@ -1,27 +1,51 @@
 #include "Settings.hpp"
+#include "api/misc/Components.hpp"
 
 namespace RENDERER_NAMESPACE
 {
-  uint32_t Settings::s_maxRecursionDepth = 8;
-  bool Settings::s_refresh = false;
-  glm::vec4 Settings::s_clearColor = glm::vec4( 0.4f, 0.4f, 0.4f, 1.0f );
-  std::string Settings::s_resourcePath;
+  Settings::Settings( )
+  {
+    m_resourcePath = std::filesystem::current_path( ).string( );
+  }
+
+  Settings::Settings( const std::string& test ) :
+    test( test ) {  }
+
+  void Settings::setMaxRecursionDepth( uint32_t maxRecursionDepth, bool refresh )
+  {
+    m_maxRecursionDepth = maxRecursionDepth;
+    m_refresh = refresh;
+  }
+
+  void Settings::setClearColor( const glm::vec4& clearColor, bool refresh )
+  {
+    m_clearColor = clearColor;
+    m_refresh = refresh;
+  }
 
   void Settings::setResourcePath( int argc, char* argv[] )
   {
-    s_resourcePath = "";
+    m_resourcePath = "";
 
     for ( int i = 0; i < argc; ++i)
-      s_resourcePath += argv[i];
+      m_resourcePath += argv[i];
 
-    s_resourcePath = s_resourcePath.substr( 0, s_resourcePath.find_last_of('/') + 1 );    
+    std::replace( m_resourcePath.begin( ), m_resourcePath.end( ), '\\', '/' );
+
+    m_resourcePath = m_resourcePath.substr( 0, m_resourcePath.find_last_of('/') + 1 );    
+
+    g_resourcePath = m_resourcePath;
   }
 
   void Settings::setResourcePath( const std::string& path )
   {
-    s_resourcePath = path;
+    m_resourcePath = path;
+
+    std::replace( m_resourcePath.begin( ), m_resourcePath.end( ), '\\', '/');
 
     if ( path[ path.size( ) - 1] != '/' )
-     s_resourcePath += '/';
+      m_resourcePath += '/';
+
+    g_resourcePath = m_resourcePath;
   }
 }

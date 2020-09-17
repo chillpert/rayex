@@ -10,22 +10,22 @@ namespace RENDERER_NAMESPACE
   /// This class acts like an interface for the client by providing the most important camera-related matrices as well as the camera's position, which are required by the rendering API.
   /// ### Example
   /// ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~.cpp
-  /// // This example requires the client to implement a custom camera class that inherits from CameraBase.
+  /// // This example requires the client to implement a custom camera class that inherits from Camera.
   /// auto myCam = std::make_shared<CustomCamera>( 600, 500, glm::vec3{ 0.0f, 0.0f, 3.0f } );
   /// ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
   /// @note The client has to handle keyboard related camera changes inside update().
   /// @warning Do not forget to re-calculate the view or projection matrix if the camera or the window have changed.
   /// @see updateViewMatrix(), updateProjectionMatrix()
   /// @ingroup Base
-  class CameraBase
+  class Camera
   {
   public:
     /// @param width The width of the viewport.
     /// @param height The height of the viewport.
     /// @param position The position of your camera.
-    RX_API CameraBase( int width, int height, const glm::vec3& position = { 0.0f, 0.0f, 3.0f } );
+    RX_API Camera( int width, int height, const glm::vec3& position = { 0.0f, 0.0f, 3.0f } );
 
-    RX_API ~CameraBase( ) = default;
+    RX_API ~Camera( ) = default;
 
     /// Is used to update camera vectors etc.
     /// 

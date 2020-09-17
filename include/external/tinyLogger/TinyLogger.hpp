@@ -143,7 +143,7 @@ namespace LOGGER_NAMESPACE
   }
 
   template <typename ...Args>
-  DLL_EXPORT void assert2( bool statement, Args&& ...args )
+  void assert2( bool statement, Args&& ...args )
   {
     std::stringstream temp;
     ( temp << ... << args );

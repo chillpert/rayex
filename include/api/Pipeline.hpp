@@ -1,7 +1,7 @@
 #ifndef PIPELINE_HPP
 #define PIPELINE_HPP
 
-#include "window/WindowBase.hpp"
+#include "base/Window.hpp"
 #include "api/Swapchain.hpp"
 
 namespace RENDERER_NAMESPACE
@@ -15,11 +15,11 @@ namespace RENDERER_NAMESPACE
 
     /// @param descriptorSetLayouts A vector of descriptor set layouts that will be included in the pipeline layout.
     /// @param initialize If true, the Pipeline object will be initialized right away without an additional call to init(). 
-    Pipeline( const std::vector<vk::DescriptorSetLayout>& descriptorSetLayouts, bool initialize = true );
+    Pipeline( const std::vector<vk::DescriptorSetLayout>& descriptorSetLayouts, uint32_t maxRecursionDepth, bool initialize = true );
 
     /// Initializes the Vulkan pipeline and creates the Vulkan pipeline layout.
     /// @param descriptorSetLayouts A vector of descriptor set layouts that will be included in the pipeline layout.
-    void init( const std::vector<vk::DescriptorSetLayout> & descriptorSetLayouts );
+    void init( const std::vector<vk::DescriptorSetLayout> & descriptorSetLayouts, uint32_t maxRecursionDepth );
 
     /// @return Returns the Vulkan pipeline object without the unique handle.
     inline const vk::Pipeline get( ) const { return m_pipeline.get( ); }

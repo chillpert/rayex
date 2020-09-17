@@ -1,7 +1,7 @@
 #ifndef LIGHT_NODE_BASE_HPP
 #define LIGHT_NODE_BASE_HPP
 
-#include "NodeBase.hpp"
+#include "Node.hpp"
 
 namespace RENDERER_NAMESPACE
 {

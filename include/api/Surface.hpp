@@ -1,7 +1,7 @@
 #ifndef SURFACE_HPP
 #define SURFACE_HPP
 
-#include "window/WindowBase.hpp"
+#include "base/Window.hpp"
 
 namespace RENDERER_NAMESPACE
 {

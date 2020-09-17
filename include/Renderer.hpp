@@ -31,14 +31,14 @@ namespace RENDERER_NAMESPACE
     RX_API Renderer( );
 
     /// @param camera A pointer to a camera object specified by the client.
-    RX_API Renderer( std::shared_ptr<CameraBase> camera );
+    RX_API Renderer( std::shared_ptr<Camera> camera );
 
     /// @param window A pointer to a window object specified by the client.
-    RX_API Renderer( std::shared_ptr<WindowBase> window );
+    RX_API Renderer( std::shared_ptr<Window> window );
 
     /// @param window A pointer to a window object specified by the client.
     /// @param camera A pointer to a camera object specified by the client.
-    RX_API Renderer( std::shared_ptr<WindowBase> window, std::shared_ptr<CameraBase> camera );
+    RX_API Renderer( std::shared_ptr<Window> window, std::shared_ptr<Camera> camera );
 
     /// Initializes the renderer.
     /// 
@@ -50,23 +50,23 @@ namespace RENDERER_NAMESPACE
     /// A single function to execute all subcomponents.
     /// 
     /// This function updates the window and the camera components and calls the update and render functions of the API.
-    /// @see rx::CameraBase::update(), rx::WindowBase::update(), rx::Api::update(), rx::Api::render()
+    /// @see rx::Camera::update(), rx::Window::update(), rx::Api::update(), rx::Api::render()
     RX_API void run( );
 
     /// @return Returns true if the application is still running and false if the application has stopped.
     RX_API bool isRunning( ) { return m_running; }
 
     /// @return Returns a pointer to the renderer's window.
-    RX_API inline const std::shared_ptr<WindowBase> getWindow( ) const { return m_window; }
+    RX_API inline const std::shared_ptr<Window> getWindow( ) const { return m_window; }
     
     /// @return Returns a pointer to the renderer's camera.
-    RX_API inline const std::shared_ptr<CameraBase> getCamera( ) const { return m_camera; }
+    RX_API inline const std::shared_ptr<Camera> getCamera( ) const { return m_camera; }
 
     /// Used to add another arbitrary node to the scene.
     /// @param node The node to add.
     /// @see rx::Api::pushNode()
     template <typename T = Model>
-    RX_API void pushNode( const std::shared_ptr<Node> node )
+    void pushNode( const std::shared_ptr<Node> node )
     {
       m_api.pushNode<T>( node );
     }
@@ -75,22 +75,24 @@ namespace RENDERER_NAMESPACE
     /// @param nodes A vector of nodes describing the new scene.
     /// @see rx::Api::setNodes()
     template <typename T = Model>
-    RX_API void setNodes( const std::vector<std::shared_ptr<Node>>& nodes )
+    void setNodes( const std::vector<std::shared_ptr<Node>>& nodes )
     {
       m_api.setNodes<T>( nodes );
     }
 
     /// Used to set the renderer's camera.
     /// @param camera The camera the renderer should be using.
-    RX_API void setCamera( std::shared_ptr<CameraBase> camera );
+    RX_API void setCamera( std::shared_ptr<Camera> camera );
 
     /// Used to set the renderer's GUI.
     /// @param gui The GUI the renderer should be using.
-    RX_API void setGui( std::shared_ptr<GuiBase> gui );
+    RX_API void setGui( std::shared_ptr<Gui> gui );
+
+    Settings m_settings;
 
   private:
-    std::shared_ptr<WindowBase> m_window; ///< A pointer to a rx::WindowBase object.
-    std::shared_ptr<CameraBase> m_camera; ///< A pointer to a rx::CameraBase object.
+    std::shared_ptr<Window> m_window; ///< A pointer to a rx::Window object.
+    std::shared_ptr<Camera> m_camera; ///< A pointer to a rx::Camera object.
     Api m_api; ///< Contains all Vulkan related components.
 
     bool m_initialized = false; ///< Keeps track of the initialization status.

@@ -18,7 +18,7 @@
 #include "api/descriptors/DescriptorSet.hpp"
 #include "api/descriptors/DescriptorSetLayout.hpp"
 #include "api/buffers/UniformBuffer.hpp"
-#include "base/GuiBase.hpp"
+#include "base/Gui.hpp"
 #include "base/Base.hpp"
 #include "api/raytracing/RayTracingBuilder.hpp"
 
@@ -33,12 +33,12 @@ namespace RENDERER_NAMESPACE
   public:
     /// @param window A pointer to a window object that the API will use to display an image.
     /// @param camera A pointer to a camera object that will be used to "capture" the scene.
-    Api( std::shared_ptr<WindowBase> window, std::shared_ptr<CameraBase> camera );
+    Api( std::shared_ptr<Window> window, std::shared_ptr<Camera> camera );
 
     /// @param window A pointer to a window object that the API will use to display an image.
     /// @param gui A pointer to a GUI object that will be rendered on top of the final image.
     /// @param camera A pointer to a camera object that will be used to "capture" the scene.
-    Api( std::shared_ptr<WindowBase> window, std::shared_ptr<GuiBase> gui, std::shared_ptr<CameraBase> camera );
+    Api( std::shared_ptr<Window> window, std::shared_ptr<Gui> gui, std::shared_ptr<Camera> camera );
     RX_API ~Api( );
 
     /// Used to set the GUI that will be used.
@@ -46,7 +46,7 @@ namespace RENDERER_NAMESPACE
     /// The GUI can be changed at runtime. This enables the client to swap between different pre-built GUIs on the fly.
     /// @param gui A pointer to a GUI object that will be rendered on top of the final image.
     /// @param initialize If true, the GUI object will be initialized (false if not specified).
-    RX_API void setGui( const std::shared_ptr<GuiBase> gui, bool initialize = false );
+    RX_API void setGui( const std::shared_ptr<Gui> gui, bool initialize = false );
 
     /// Initializes all API components.
     void init( );
@@ -60,7 +60,7 @@ namespace RENDERER_NAMESPACE
     /// Used to add another arbitrary node to the scene.
     /// @param node A pointer to node to add.
     template <typename T = Model>
-    RX_API void pushNode( const std::shared_ptr<Node> node, bool record = true )
+    void pushNode( const std::shared_ptr<Node> node, bool record = true )
     {
       if ( dynamic_cast<GeometryNode*>( node.get( ) ) )
       {
@@ -112,7 +112,7 @@ namespace RENDERER_NAMESPACE
     /// Used to overwrite the entire scene with new nodes.
     /// @param nodes A vector of pointers to nodes describing the new scene.
     template <typename T = Model>
-    RX_API void setNodes( const std::vector<std::shared_ptr<Node>>& nodes )
+    void setNodes( const std::vector<std::shared_ptr<Node>>& nodes )
     {
       m_geometryNodes.clear( );
       m_geometryNodes.reserve( g_maxGeometryNodes );
@@ -126,6 +126,8 @@ namespace RENDERER_NAMESPACE
 
     /// Re-initializes the render pass to support the GUI and initializes the GUI itself.
     RX_API void initGui( );
+
+    Settings* m_settings = nullptr;
 
   private:
     /// Initializes the render pass with a color and depth attachment.
@@ -159,8 +161,8 @@ namespace RENDERER_NAMESPACE
     /// Submits the swapchain command buffers to a queue and presents an image on the screen.
     bool submitFrame( );
 
-    std::shared_ptr<WindowBase> m_window;
-    std::shared_ptr<CameraBase> m_camera;
+    std::shared_ptr<Window> m_window;
+    std::shared_ptr<Camera> m_camera;
 
     // Destruction through RAII for following members:
     Instance m_instance;
@@ -205,7 +207,7 @@ namespace RENDERER_NAMESPACE
     Pipeline m_rtPipeline;
     CommandBuffer m_swapchainCommandBuffers;
     
-    std::shared_ptr<GuiBase> m_gui = nullptr;
+    std::shared_ptr<Gui> m_gui = nullptr;
 
     // No destruction necessary for following members:
     PhysicalDevice m_physicalDevice;

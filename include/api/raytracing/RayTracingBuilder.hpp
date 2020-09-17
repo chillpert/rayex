@@ -5,7 +5,7 @@
 #include "base/Model.hpp"
 #include "api/buffers/Buffer.hpp"
 #include "api/Swapchain.hpp"
-#include "base/GeometryNodeBase.hpp"
+#include "base/GeometryNode.hpp"
 
 namespace RENDERER_NAMESPACE
 {

@@ -321,12 +321,12 @@ namespace RENDERER_NAMESPACE
       // Calls glslc to compile the glsl file into spir-v.
       std::stringstream command;
       //command << "cd " << pathToFile << " && " << RX_GLSLC_PATH << " " << fileName << " -o " << fileNameOut << " --target-env=vulkan1.2";
-      command << RX_GLSLC_PATH << " " << Settings::getResourcePath( ) << "shaders/" << fileName << " -o " << Settings::getResourcePath( ) << "shaders/" << fileNameOut << " --target-env=vulkan1.2";
+      command << RX_GLSLC_PATH << " " << g_resourcePath << "shaders/" << fileName << " -o " << g_resourcePath << "shaders/" << fileNameOut << " --target-env=vulkan1.2";
 
       std::system( command.str( ).c_str( ) );
 
       // Read the file and retrieve the source.
-      std::string pathToShaderSourceFile = Settings::getResourcePath( ) + pathToFile + fileNameOut;
+      std::string pathToShaderSourceFile = g_resourcePath + pathToFile + fileNameOut;
       std::ifstream file( pathToShaderSourceFile, std::ios::ate | std::ios::binary );
 
       if ( !file.is_open( ) )

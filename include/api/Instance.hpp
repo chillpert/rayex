@@ -1,7 +1,7 @@
 #ifndef INSTANCE_HPP
 #define INSTANCE_HPP
 
-#include "window/WindowBase.hpp"
+#include "base/Window.hpp"
 
 namespace RENDERER_NAMESPACE
 {

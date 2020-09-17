@@ -24,7 +24,7 @@ namespace RENDERER_NAMESPACE
     std::vector<tinyobj::material_t> materials;
     std::string warn, err;
 
-    std::string fullPath = Settings::getResourcePath( ) + m_path;
+    std::string fullPath = g_resourcePath + m_path;
 
     if ( !tinyobj::LoadObj( &attrib, &shapes, &materials, &warn, &err, fullPath.c_str( ) ) )
       RX_ERROR( warn + err );

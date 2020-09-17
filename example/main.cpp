@@ -268,9 +268,6 @@ private:
 
 int main( )
 {
-  Settings settings( "okay" );
-  settings.test;
-
   // Window dimensions.
   int width = 900;
   int height = 600;

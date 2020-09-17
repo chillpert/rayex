@@ -128,10 +128,17 @@ if(BUILD_EXAMPLES)
 
   add_executable(example ${PROJECT_SOURCE_DIR}/example/main.cpp ${FILES_EXAMPLE})
 
-  target_link_libraries(example
-    "${PROJECT_SOURCE_DIR}/build/lib/${BUILD_PATH}/renderer.lib"
-    ${WINDOWING}
-  )
+  if(${OS} STREQUAL "Windows")
+    target_link_libraries(example
+      "${PROJECT_SOURCE_DIR}/build/lib/${BUILD_PATH}/renderer.lib"
+      ${WINDOWING}
+    )
+  elseif(${OS} STREQUAL "Linux")
+    target_link_libraries(example
+      renderer
+      ${WINDOWING}
+    )
+  endif()
 
   set_target_properties(example
     PROPERTIES

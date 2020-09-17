@@ -244,13 +244,11 @@ private:
         this->renderer->pushNode( sphere );
       }
 
-      /*
       auto clearColor = this->renderer->settings.getClearColor( );
       if ( ImGui::ColorEdit4( "##AmbientColor", &clearColor[0] ) )
       {
         this->renderer->settings.setClearColor( clearColor );
       }
-      */
     }
 
     ImGui::End( );

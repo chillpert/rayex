@@ -33,9 +33,13 @@ namespace RENDERER_NAMESPACE
       ++index;
     }
 
+    vk::PhysicalDeviceRobustness2FeaturesEXT robustness2FeaturesEXT;
+    robustness2FeaturesEXT.nullDescriptor = VK_TRUE;
+
     vk::PhysicalDeviceRayTracingFeaturesKHR rayTracingFeatures;
     rayTracingFeatures.rayTracing = VK_TRUE;
     rayTracingFeatures.rayQuery = VK_TRUE;
+    rayTracingFeatures.pNext = &robustness2FeaturesEXT;
 
     vk::PhysicalDeviceBufferDeviceAddressFeatures bufferDeviceAddressFeatures;
     bufferDeviceAddressFeatures.bufferDeviceAddress = VK_TRUE;

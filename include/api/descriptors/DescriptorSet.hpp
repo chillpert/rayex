@@ -54,9 +54,10 @@ namespace RENDERER_NAMESPACE
     /// @param indexBuffer A Vulkan buffer containing the index data of a model.
     void update( vk::Buffer vertexBuffer, vk::Buffer indexBuffer );
 
-    /// Used to update lighting related descriptors.
-    /// @param lightSources A Vulkan buffer containing data for all light sources.
-    RX_API void update( const std::vector<vk::Buffer>& lightSources );
+    /// Used to update scene related descriptors.
+    /// @param lightSourcesBuffer A vector of Vulkan buffers containing data for all light sources.
+    /// @param sceneDescriptionBuffer A Vulkan buffer containing the scene description.
+    RX_API void update( const std::vector<vk::Buffer>& lightSourcesBuffer, vk::Buffer sceneDescriptionBuffer );
 
     /// Frees the descriptor sets.
     void free( );

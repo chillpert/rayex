@@ -1,7 +1,6 @@
 #include "api/utility/Helpers.hpp"
 #include "api/misc/Components.hpp"
 #include "api/buffers/CommandBuffer.hpp"
-#include "Settings.hpp"
 
 namespace vk
 {

@@ -3,7 +3,6 @@
 #include "api/utility/Helpers.hpp"
 #include "api/misc/Components.hpp"
 #include "api/raytracing/RayTracingBuilder.hpp"
-#include "Settings.hpp"
 #include "api/utility/Initializers.hpp"
 
 namespace RENDERER_NAMESPACE

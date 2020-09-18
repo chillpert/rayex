@@ -192,6 +192,7 @@ namespace RENDERER_NAMESPACE
     CameraUbo cameraUbo;
     UniformBuffer cameraUniformBuffer;
     UniformBuffer lightsUniformBuffer;
+    Buffer sceneDescriptionBuffer; 
 
     // Nodes to render.
     std::vector<std::shared_ptr<GeometryNode>> geometryNodes;

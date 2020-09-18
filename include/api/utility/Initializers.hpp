@@ -147,7 +147,7 @@ namespace vk
     /// Creates the acceleration structure and allocates and binds memory for it.
     /// @param asCreateInfo The Vulkan create info for the acceleration structure.
     /// @return Returns an rx::AccelerationStructure object that contains the AS itself as well as the memory for it.
-    rx::AccelerationStructure createAccelerationStructure( const vk::AccelerationStructureCreateInfoKHR& asCreateInfo );
+    rx::AccelerationStructure createAccelerationStructure( const AccelerationStructureCreateInfoKHR& asCreateInfo );
   }
 }
 

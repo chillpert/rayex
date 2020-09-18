@@ -93,16 +93,24 @@ namespace RENDERER_NAMESPACE
     }
   }
 
-  void DescriptorSet::update( const std::vector<vk::Buffer>& lightSources )
+  void DescriptorSet::update( const std::vector<vk::Buffer>& lightSourcesBuffer, vk::Buffer sceneDescriptionBuffer )
   {
     for ( size_t i = 0; i < this->layouts.size( ); ++i )
     {
-      vk::DescriptorBufferInfo lightSourcesBufferInfo( lightSources[i],       // buffer
+      vk::DescriptorBufferInfo lightSourcesBufferInfo( lightSourcesBuffer[i], // buffer
                                                        0,                     // offset
                                                        sizeof( LightsUbo ) ); // range
 
-      std::array<vk::WriteDescriptorSet, 1> descriptorWrites;
+      vk::DescriptorBufferInfo sceneDescriptionBufferInfo( sceneDescriptionBuffer,             // buffer
+                                                           0,                                  // offset
+                                                           sizeof( sceneDescriptionBuffer ) ); // range
+
+      if ( sizeof( sceneDescriptionBuffer ) == 8 )
+        sceneDescriptionBufferInfo.range = VK_WHOLE_SIZE;
+
+      std::array<vk::WriteDescriptorSet, 2> descriptorWrites;
       descriptorWrites[0] = writeUniformBuffer( this->sets[i], 0, lightSourcesBufferInfo );
+      descriptorWrites[1] = writeStorageBuffer( this->sets[i], 1, sceneDescriptionBufferInfo );
 
       g_device.updateDescriptorSets( descriptorWrites, 0 );
     }

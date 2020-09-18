@@ -1,6 +1,6 @@
 #include "Renderer.hpp"
 
-using namespace RENDERER_NAMESPACE;
+using namespace rx;
 
 float animationSpeed = 0.0f;
 

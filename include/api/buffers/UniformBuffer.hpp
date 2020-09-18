@@ -18,6 +18,7 @@ namespace RENDERER_NAMESPACE
 
   /// A uniform buffer object for different light types.
   /// @ingroup API
+  /// @todo Shouldn't this also be a storage buffer?
   struct LightsUbo
   {
     DirectionalLightNode::Ubo directionalLightNodes[10];

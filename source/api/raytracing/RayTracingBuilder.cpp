@@ -363,10 +363,10 @@ namespace RENDERER_NAMESPACE
 
     // Allocate the instance buffer and copy its contents from host to device memory.
     this->instanceBuffer.init( instanceDescsSizeInBytes,                                                                // size
-                       vk::BufferUsageFlagBits::eRayTracingKHR | vk::BufferUsageFlagBits::eShaderDeviceAddress, // usage
-                       { g_graphicsFamilyIndex },                                                               // queueFamilyIndices
-                       vk::MemoryPropertyFlagBits::eHostVisible,                                                // memoryPropertyFlags
-                       &allocateFlags );                                                                        // pNextMemory
+                               vk::BufferUsageFlagBits::eRayTracingKHR | vk::BufferUsageFlagBits::eShaderDeviceAddress, // usage
+                               { g_graphicsFamilyIndex },                                                               // queueFamilyIndices
+                               vk::MemoryPropertyFlagBits::eHostVisible,                                                // memoryPropertyFlags
+                               &allocateFlags );                                                                        // pNextMemory
 
     this->instanceBuffer.fill<vk::AccelerationStructureInstanceKHR>( geometryInstances.data( ) );
 
@@ -445,9 +445,9 @@ namespace RENDERER_NAMESPACE
     uint32_t sbtSize = groupCount * baseAlignment;
 
     this->sbtBuffer.init( sbtSize,
-                      vk::BufferUsageFlagBits::eTransferSrc,
-                      { g_graphicsFamilyIndex },
-                      vk::MemoryPropertyFlagBits::eHostVisible );
+                          vk::BufferUsageFlagBits::eTransferSrc,
+                          { g_graphicsFamilyIndex },
+                          vk::MemoryPropertyFlagBits::eHostVisible );
 
     std::vector<uint8_t> shaderHandleStorage( sbtSize );
     g_device.getRayTracingShaderGroupHandlesKHR( rtPipeline,

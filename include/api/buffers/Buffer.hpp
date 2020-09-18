@@ -78,6 +78,31 @@ namespace RENDERER_NAMESPACE
 
     vk::DeviceSize size = 0; ///< The buffer's size.
   };
+
+  template <typename T>
+  void createStorageBufferWithStaging( Buffer& buffer, std::vector<T>& data )
+  {
+    vk::DeviceSize size = sizeof( data[0] ) * data.size( );
+    vk::MemoryAllocateFlagsInfo allocateFlags( vk::MemoryAllocateFlagBitsKHR::eDeviceAddress );
+
+    // Set up the staging buffer.
+    Buffer stagingBuffer( size,                                                                                   // size
+                          vk::BufferUsageFlagBits::eTransferSrc | vk::BufferUsageFlagBits::eShaderDeviceAddress,  // usage
+                          { g_transferFamilyIndex },                                                              // queueFamilyIndices
+                          vk::MemoryPropertyFlagBits::eHostVisible | vk::MemoryPropertyFlagBits::eHostCoherent,   // memoryPropertyFlags
+                          &allocateFlags );                                                                       // pNext of memory
+
+    buffer.init( size,                                                                                                                                                                      // size
+                 vk::BufferUsageFlagBits::eTransferDst | vk::BufferUsageFlagBits::eVertexBuffer | vk::BufferUsageFlagBits::eShaderDeviceAddress | vk::BufferUsageFlagBits::eStorageBuffer,  // usage
+                 { g_transferFamilyIndex },                                                                                                                                                 // queueFamilyIndices
+                 vk::MemoryPropertyFlagBits::eHostVisible | vk::MemoryPropertyFlagBits::eHostCoherent,                                                                                      // memoryPropertyFlags
+                 &allocateFlags );                                                                                                                                                          // pNext of memory
+
+    stagingBuffer.fill<T>( data.data( ) );
+
+    // Copy staging buffer to the actual index buffer.
+    stagingBuffer.copyToBuffer( buffer.get( ) );
+  }
 }
 
 #endif // BUFFER_HPP

@@ -16,10 +16,10 @@ struct Vertex
 
 struct SceneDescription
 {
-  int  objId;
-  int  txtOffset;
-  mat4 transfo;
-  mat4 transfoIT;
+  int objId;
+  int txtOffset;
+  //mat4 transfo;
+  //mat4 transfoIT;
 };
 
 layout(location = 0) rayPayloadInEXT vec3 hitValue;
@@ -37,35 +37,47 @@ layout(binding = 2, set = 1) buffer Indices
   uint i[];
 } indices[];
 
-layout(binding = 3, set = 1) buffer SceneDescriptions
-{
-  SceneDescription i[];
-} sceneDescription;
-
 layout(binding = 0, set = 2) uniform LightSources
 {
   DirectionalLight directionalLights[10];
   PointLight pointLights[10];
 } lightSources;
 
+layout(binding = 1, set = 2) buffer SceneDescriptions
+{
+  SceneDescription i[];
+} sceneDescription;
+
 layout(push_constant) uniform Constants
 {
   vec4 clearColor;
 };
 
-
 void main()
 {
-  if ( lightSources.directionalLights[0].direction.w == 1.0f )
+  if ( sceneDescription.i[0].objId == 0 )
   {
-    hitValue = vec3(1.0, 0.0, 0.0);
-  }
-  else if ( lightSources.directionalLights[0].direction.w != 1.0f )
+    hitValue = vec3( 1.0, 0.0, 0.0 );
+  } 
+  else if ( sceneDescription.i[0].objId == 69 )
   {
-    hitValue = vec3(0.0, 1.0, 0.0);
+    hitValue = vec3( 0.0, 1.0, 0.0 );
   }
-  else 
+  else
   {
-    hitValue = vec3(0.3, 0.3, 0.3);
+    hitValue = vec3( 0.0, 0.0, 1.0 );
   }
+  
+  //if ( lightSources.directionalLights[0].direction.w == 1.0f )
+  //{
+  //  hitValue = vec3(1.0, 0.0, 0.0);
+  //}
+  //else if ( lightSources.directionalLights[0].direction.w != 1.0f )
+  //{
+  //  hitValue = vec3(0.0, 1.0, 0.0);
+  //}
+  //else 
+  //{
+  //  hitValue = vec3(0.3, 0.3, 0.3);
+  //}
 }

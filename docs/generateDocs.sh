@@ -4,7 +4,7 @@ sed -i '$d' ../README.md
 sed -i '$d' ../README.md
 
 echo '' >> ../README.md
-echo '### Download' >> ../README.md
+echo '## Download' >> ../README.md
 echo 'You can find the GitHub repository [here](https://github.com/chillpert/rayexec).' >> ../README.md
 
 doxygen DoxyFileLinux

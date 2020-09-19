@@ -36,7 +36,7 @@ $ ./bin/[buildtype]/example
 Generate a Visual Studio solution using CMake. 
 
 ### Usage
-The following shows the most minimal example possible. Nothing will be rendered. For a proper example take a look at the **documentation** or at **example/example.cpp**.
+The following cope snippet shows the most minimal example possible. Nothing will be rendered. For a proper example take a look at the **documentation** or at **example/example.cpp**.
 ```
 #include "RayExec.hpp"
 

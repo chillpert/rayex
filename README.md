@@ -7,7 +7,7 @@ It runs on both Linux (x64) and Windows (x64) using the Vulkan API. The purpose 
 NVIDIA Vulkan Beta Drivers [[Download]](https://developer.nvidia.com/vulkan-driver) 
 
 ## Deploy
-To integrate RAYEXEC to your existing C++ / CMake project follow the steps below.
+To integrate RAYEXEC in your existing C++ / CMake project, follow the steps below.
 
 1. Download the latest [release]().
 2. Place the **shared library objects** and the provided **include folder** somewhere inside your project.

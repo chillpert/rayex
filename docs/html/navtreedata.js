@@ -28,7 +28,8 @@ var NAVTREE =
     [ "Build", "index.html#autotoc_md3", [
       [ "Linux", "index.html#autotoc_md4", null ],
       [ "Windows", "index.html#autotoc_md5", null ],
-      [ "Usage", "index.html#autotoc_md6", null ]
+      [ "Usage", "index.html#autotoc_md6", null ],
+      [ "Download", "index.html#autotoc_md7", null ]
     ] ],
     [ "Todo List", "todo.html", null ],
     [ "Modules", "modules.html", "modules" ],

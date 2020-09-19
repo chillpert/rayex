@@ -164,7 +164,7 @@ Public Attributes</h2></td></tr>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Describes a model. </p>
 <p>The class extracts vertex and index data from a given wavefront file. If the client wants to parse other formats than wavefront, <a class="el" href="class_r_e_n_d_e_r_e_r___n_a_m_e_s_p_a_c_e_1_1_model.html#abe49922bb53b62378ac3afc0b800c329" title="Loads the model by extracting all vertices and indices.">load()</a> should be overridden and either rx::Renderer::pushNode() or rx::Renderer::setNodes() templatized using the inherited class type. </p>
-<h3><a class="anchor" id="autotoc_md7"></a>
+<h3><a class="anchor" id="autotoc_md8"></a>
 Example</h3>
 <div class="fragment"><div class="line"><span class="keyword">class </span>CustomModel : <span class="keyword">public</span> <a class="code" href="class_r_e_n_d_e_r_e_r___n_a_m_e_s_p_a_c_e_1_1_model.html#abf67cd5a55e887e1dbfbbe4e229d272e">Model</a></div>
 <div class="line">{</div>
@@ -179,7 +179,7 @@ Example</h3>
 <div class="line">myRenderer.pushNode&lt;CustomModel&gt;( cube );</div>
 </div><!-- fragment --><p>, </p><dl class="todo"><dt><b><a class="el" href="todo.html#_todo000007">Todo:</a></b></dt><dd>modelCounter is being incremented always, even if it is not a new model. This class should actually look inside Api::models or sth to assign the correct index. </dd></dl>
 <p>The class extracts vertex and index data from a given wavefront file. If the client wants to parse other formats than wavefront, <a class="el" href="class_r_e_n_d_e_r_e_r___n_a_m_e_s_p_a_c_e_1_1_model.html#abe49922bb53b62378ac3afc0b800c329" title="Loads the model by extracting all vertices and indices.">load()</a> should be overridden and either rx::Renderer::pushNode() or rx::Renderer::setNodes() templatized using the inherited class type. </p>
-<h3><a class="anchor" id="autotoc_md9"></a>
+<h3><a class="anchor" id="autotoc_md10"></a>
 Example</h3>
 <div class="fragment"><div class="line"><span class="keyword">class </span>CustomModel : <span class="keyword">public</span> <a class="code" href="class_r_e_n_d_e_r_e_r___n_a_m_e_s_p_a_c_e_1_1_model.html#abf67cd5a55e887e1dbfbbe4e229d272e">Model</a></div>
 <div class="line">{</div>

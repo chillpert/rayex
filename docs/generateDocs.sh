@@ -1,7 +1,7 @@
 # This shell script will generate the doxygen documentation.
 
-sed -i '/### Documentation/d' ../README.md
-sed -i '/An extensive documentation of all classes and functions can be found \[here\](https:\/\/christianhilpert.com\/rayexec)./d' ../README.md
+sed -i '$d' ../README.md
+sed -i '$d' ../README.md
 
 echo '' >> ../README.md
 echo '### Download' >> ../README.md

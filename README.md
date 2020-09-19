@@ -9,7 +9,7 @@ NVIDIA Vulkan Beta Drivers [[Download]](https://developer.nvidia.com/vulkan-driv
 ## Deploy
 To integrate RAYEXEC in your existing C++ / CMake project, follow the steps below.
 
-1. Download the latest [release]().
+1. Download the latest [release](https://github.com/chillpert/rayexec).
 2. Place the **shared library objects** and the provided **include folder** somewhere inside your project.
 3. Include the CMakeLists.txt inside the **include folder** to your CMakeLists.txt
 4. Link your target against the **shared library objects** and against SDL2 

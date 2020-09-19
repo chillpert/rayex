@@ -7,7 +7,7 @@ namespace RENDERER_NAMESPACE
   {
     this->resourcePath = std::filesystem::current_path( ).string( ) += "/";
     g_resourcePath = this->resourcePath;
-    RX_INFO( "Using default path as path to resouces: ", this->resourcePath );
+    RX_INFO( "Using default path as path to resources: ", this->resourcePath );
   }
 
   Settings::Settings( const std::string& test ) :

@@ -9,7 +9,7 @@ namespace RENDERER_NAMESPACE
   const std::vector<const char*> layers = { "VK_LAYER_KHRONOS_validation" };
 #ifdef RX_DEBUG
   std::vector<const char*> extensions = { "VK_KHR_get_physical_device_properties2", "VK_EXT_debug_utils" };
-#elif
+#else
   std::vector<const char*> extensions = { "VK_KHR_get_physical_device_properties2" };
 #endif
 

@@ -1,17 +1,8 @@
 var searchData=
 [
-  ['vulkan_404',['Vulkan',['../group___a_p_i.html',1,'']]],
-  ['destructor_405',['Destructor',['../namespacevk_1_1_destructor.html',1,'vk']]],
-  ['helper_406',['Helper',['../namespacevk_1_1_helper.html',1,'vk']]],
-  ['initializer_407',['Initializer',['../namespacevk_1_1_initializer.html',1,'vk']]],
-  ['vertex_408',['Vertex',['../structrx_1_1_vertex.html',1,'rx']]],
-  ['vertex_2ehpp_409',['Vertex.hpp',['../_vertex_8hpp.html',1,'']]],
-  ['vertexbuffer_410',['VertexBuffer',['../classrx_1_1_vertex_buffer.html',1,'rx::VertexBuffer'],['../classrx_1_1_vertex_buffer.html#a43d4bd6b4fdea79ee20a4a30cbbb7b45',1,'rx::VertexBuffer::VertexBuffer()=default'],['../classrx_1_1_vertex_buffer.html#a337011bf239a742c6a489da91cb73275',1,'rx::VertexBuffer::VertexBuffer(std::vector&lt; Vertex &gt; &amp;vertices, bool initialize=true)']]],
-  ['vertexbuffer_2ecpp_411',['VertexBuffer.cpp',['../_vertex_buffer_8cpp.html',1,'']]],
-  ['vertexbuffer_2ehpp_412',['VertexBuffer.hpp',['../_vertex_buffer_8hpp.html',1,'']]],
-  ['vk_413',['vk',['../namespacevk.html',1,'']]],
-  ['vk_5fenable_5fbeta_5fextensions_414',['VK_ENABLE_BETA_EXTENSIONS',['../_core_8hpp.html#ae0ee52a031cc79e2e1b15516ed6ca362',1,'Core.hpp']]],
-  ['vulkan_5fhpp_5fdispatch_5floader_5fdynamic_415',['VULKAN_HPP_DISPATCH_LOADER_DYNAMIC',['../_core_8hpp.html#a8a27aa48a7a8781a30ab45040cb1dea7',1,'Core.hpp']]],
-  ['vulkan_5fhpp_5fstorage_5fshared_416',['VULKAN_HPP_STORAGE_SHARED',['../_instance_8cpp.html#aca0e86bb4e33b3be1ce303dce963df4c',1,'Instance.cpp']]],
-  ['vulkan_5fhpp_5fstorage_5fshared_5fexport_417',['VULKAN_HPP_STORAGE_SHARED_EXPORT',['../_instance_8cpp.html#a8547ebd7cab2fca7c7b6ccafd763b22d',1,'Instance.cpp']]]
+  ['width_367',['width',['../class_r_e_n_d_e_r_e_r___n_a_m_e_s_p_a_c_e_1_1_camera.html#a469cd29bee9252bd0a4c801ef225255f',1,'RENDERER_NAMESPACE::Camera::width()'],['../class_r_e_n_d_e_r_e_r___n_a_m_e_s_p_a_c_e_1_1_window.html#a33955e3ff337fe71dbbe3863e1865c3f',1,'RENDERER_NAMESPACE::Window::width()']]],
+  ['window_368',['Window',['../class_r_e_n_d_e_r_e_r___n_a_m_e_s_p_a_c_e_1_1_window.html',1,'RENDERER_NAMESPACE::Window'],['../class_r_e_n_d_e_r_e_r___n_a_m_e_s_p_a_c_e_1_1_window.html#a6d7de46c050538b30c0d65e153c54694',1,'RENDERER_NAMESPACE::Window::window()'],['../class_r_e_n_d_e_r_e_r___n_a_m_e_s_p_a_c_e_1_1_window.html#aa56c72e6bcf260225ce93dde41e54ed8',1,'RENDERER_NAMESPACE::Window::Window(int width=900, int height=600, const char *title=&quot;My Application&quot;, uint32_t flags=0)']]],
+  ['window_2ehpp_369',['Window.hpp',['../_window_8hpp.html',1,'']]],
+  ['worldtransform_370',['worldTransform',['../class_r_e_n_d_e_r_e_r___n_a_m_e_s_p_a_c_e_1_1_transform_node.html#ab54332e8e5890a1a4e6b950369d4a93c',1,'RENDERER_NAMESPACE::TransformNode']]],
+  ['worldup_371',['worldUp',['../class_r_e_n_d_e_r_e_r___n_a_m_e_s_p_a_c_e_1_1_camera.html#af224f8644b9f0adfd150f58e9155d7ae',1,'RENDERER_NAMESPACE::Camera']]]
 ];

@@ -1,7 +1,7 @@
 var searchData=
 [
-  ['hasdedicatedtransferqueuefamily_194',['hasDedicatedTransferQueueFamily',['../classrx_1_1_queues.html#aa0e1ad87d64b7edadf67af40f98d30ce',1,'rx::Queues']]],
-  ['helpers_2ecpp_195',['Helpers.cpp',['../_helpers_8cpp.html',1,'']]],
-  ['helpers_2ehpp_196',['Helpers.hpp',['../_helpers_8hpp.html',1,'']]],
-  ['hitgroupid_197',['hitGroupId',['../structrx_1_1_blas_instance.html#ab53fbcc77e066a29b807fe7a2a955ce1',1,'rx::BlasInstance']]]
+  ['hasdedicatedtransferqueuefamily_192',['hasDedicatedTransferQueueFamily',['../class_r_e_n_d_e_r_e_r___n_a_m_e_s_p_a_c_e_1_1_queues.html#a291d995e5d44bcdf8248c4ad656bd750',1,'RENDERER_NAMESPACE::Queues']]],
+  ['height_193',['height',['../class_r_e_n_d_e_r_e_r___n_a_m_e_s_p_a_c_e_1_1_camera.html#a373bdaedda2613499f97a1b1385f628b',1,'RENDERER_NAMESPACE::Camera::height()'],['../class_r_e_n_d_e_r_e_r___n_a_m_e_s_p_a_c_e_1_1_window.html#a770acadaf507e7d48543ac3d14c773c6',1,'RENDERER_NAMESPACE::Window::height()']]],
+  ['helpers_2ehpp_194',['Helpers.hpp',['../_helpers_8hpp.html',1,'']]],
+  ['hitgroupid_195',['hitGroupId',['../struct_r_e_n_d_e_r_e_r___n_a_m_e_s_p_a_c_e_1_1_blas_instance.html#a5fc838b00713276a698df94d821beed6',1,'RENDERER_NAMESPACE::BlasInstance']]]
 ];

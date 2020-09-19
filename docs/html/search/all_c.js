@@ -1,7 +1,6 @@
 var searchData=
 [
-  ['newframe_305',['newFrame',['../classrx_1_1_gui_base.html#a8274f2ac199371aa1af8205da57e543d',1,'rx::GuiBase']]],
-  ['node_306',['Node',['../classrx_1_1_node.html',1,'rx::Node'],['../classrx_1_1_node.html#adf0d15a58309c1fdb7cff60a5a4e10f5',1,'rx::Node::Node()']]],
-  ['nodebase_2ehpp_307',['NodeBase.hpp',['../_node_base_8hpp.html',1,'']]],
-  ['normal_308',['normal',['../structrx_1_1_vertex.html#ad0b1913ac3a23ad6a0b54fc7c2eddea5',1,'rx::Vertex']]]
+  ['offset_238',['offset',['../class_r_e_n_d_e_r_e_r___n_a_m_e_s_p_a_c_e_1_1_texture.html#af0e6ab53e6b080b337570777b2aef86a',1,'RENDERER_NAMESPACE::Texture']]],
+  ['opacity_239',['opacity',['../class_r_e_n_d_e_r_e_r___n_a_m_e_s_p_a_c_e_1_1_material.html#a315792f88bea1cca4b85337100e4fe6c',1,'RENDERER_NAMESPACE::Material']]],
+  ['operator_3d_240',['operator=',['../class_r_e_n_d_e_r_e_r___n_a_m_e_s_p_a_c_e_1_1_buffer.html#ad319cdc8db8acb4cd9b08a3c4041bed1',1,'RENDERER_NAMESPACE::Buffer']]]
 ];

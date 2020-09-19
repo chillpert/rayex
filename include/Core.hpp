@@ -33,6 +33,7 @@
 #endif
 #endif
 
+/// A macro to easily replace the renderer's namespace name.
 #define RENDERER_NAMESPACE rx
 
 #define RENDERER_NAMESPACE_STRINGIFY_2( text ) #text

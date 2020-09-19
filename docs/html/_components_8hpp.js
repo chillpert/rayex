@@ -1,6 +1,25 @@
 var _components_8hpp =
 [
-    [ "g_maxGeometryNodes", "_components_8hpp.html#a945322f9e9dbda3bc24cd824ec62dd5a", null ],
-    [ "g_maxLightNodes", "_components_8hpp.html#a1c65888cb7e011884c3bd61fe7c68d2d", null ],
-    [ "g_maxTextures", "_components_8hpp.html#a9eed5b5e2c9146cf4e8b37ebbfdb4540", null ]
+    [ "g_device", "_components_8hpp.html#a129cef754c9c54925fcd1ae9504e8073", null ],
+    [ "g_dynamicLoader", "_components_8hpp.html#a6c569390670af652392e762cfd971949", null ],
+    [ "g_graphicsCmdPool", "_components_8hpp.html#abd43e4e1db03fe5fb61a6f9ffd6b7cfe", null ],
+    [ "g_graphicsFamilyIndex", "_components_8hpp.html#ad849a5b64f7f57bb8d886fa24356c4a2", null ],
+    [ "g_graphicsQueue", "_components_8hpp.html#ad32d375c23578bdc9d160717446470ed", null ],
+    [ "g_instance", "_components_8hpp.html#a4be5947bb574cdb060872aeaf4a3bf75", null ],
+    [ "g_maxGeometryNodes", "_components_8hpp.html#aee81ec4d513bff65da81feeda196b7f1", null ],
+    [ "g_maxLightNodes", "_components_8hpp.html#ae9ec66e4814fdca3919a3db70fa3767f", null ],
+    [ "g_maxTextures", "_components_8hpp.html#ae81d1c5e72c566b225d72c8ae3221caa", null ],
+    [ "g_physicalDevice", "_components_8hpp.html#a50b023322b532d59b7df6a1956e38b38", null ],
+    [ "g_physicalDeviceLimits", "_components_8hpp.html#a55acadf1cc42710e95333f97cadd5eef", null ],
+    [ "g_resourcePath", "_components_8hpp.html#a42ba32ba8f0b8435d707b8036d7f70c9", null ],
+    [ "g_shaderGroups", "_components_8hpp.html#a645c0e49d00df18bc762a228836541f2", null ],
+    [ "g_surface", "_components_8hpp.html#a003d5ee2cd8688e65ffcda9d5cf4c443", null ],
+    [ "g_surfaceFormat", "_components_8hpp.html#a49269439a82df6a3c0b15b40e6efba59", null ],
+    [ "g_swapchain", "_components_8hpp.html#ad1316964dd3581d03cf54451c7b64877", null ],
+    [ "g_swapchainImageCount", "_components_8hpp.html#a6ab48a896dd665c70267491da2de2f70", null ],
+    [ "g_swapchainImageViews", "_components_8hpp.html#a7409435ec67f6fa07f3be2d2ae4e9389", null ],
+    [ "g_transferCmdPool", "_components_8hpp.html#ada4937742a31380f8c8eb8648b026708", null ],
+    [ "g_transferFamilyIndex", "_components_8hpp.html#ae26470bdb2cd0cd965ae4c471f7a34da", null ],
+    [ "g_transferQueue", "_components_8hpp.html#a715b2497f0cf2ea5adeb0e379212cad6", null ],
+    [ "g_window", "_components_8hpp.html#aec3f98a87e1849bff117341863095568", null ]
 ];

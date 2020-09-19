@@ -22,7 +22,7 @@ namespace RENDERER_NAMESPACE
   ///   void load() override;
   /// }
   /// 
-  /// Renderer myRenderer;
+  /// RayExecmyRenderer;
   /// myRenderer.init();
   /// 
   /// auto cube = std::make_shared<GeometryNode>( "models/cube.obj", Material( "textures/metal.png" ) );

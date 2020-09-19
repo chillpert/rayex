@@ -1,8 +1,5 @@
 var annotated_dup =
 [
-    [ "rx", "namespacerx.html", "namespacerx" ],
-    [ "vk", "namespacevk.html", null ],
-    [ "CustomCamera", "class_custom_camera.html", "class_custom_camera" ],
-    [ "CustomGui", "class_custom_gui.html", "class_custom_gui" ],
-    [ "CustomWindow", "class_custom_window.html", "class_custom_window" ]
+    [ "RENDERER_NAMESPACE", "namespace_r_e_n_d_e_r_e_r___n_a_m_e_s_p_a_c_e.html", "namespace_r_e_n_d_e_r_e_r___n_a_m_e_s_p_a_c_e" ],
+    [ "vk", "namespacevk.html", null ]
 ];

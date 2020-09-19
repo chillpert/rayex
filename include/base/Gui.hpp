@@ -26,10 +26,10 @@ namespace RENDERER_NAMESPACE
   ///   void render() override { }
   /// };
   /// 
-  /// Renderer myRenderer;
+  /// RayExecmyRenderer;
   /// myRenderer.init( );
   /// 
-  /// // Put this line after the declaration of the rx::Renderer object.
+  /// // Put this line after the declaration of the rx::RayExecobject.
   /// auto myGui = std::make_shared<CustomGui>( );
   /// myRenderer.setGui( myGui );
   /// ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~

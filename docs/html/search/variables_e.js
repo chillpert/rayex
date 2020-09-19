@@ -1,5 +1,4 @@
 var searchData=
 [
-  ['view_859',['view',['../structrx_1_1_camera_ubo.html#a99c4db5c880b8c87fdc1f3a3ae502704',1,'rx::CameraUbo']]],
-  ['viewinverse_860',['viewInverse',['../structrx_1_1_camera_ubo.html#a4327e65d385718122c3ea1a53c055f81',1,'rx::CameraUbo']]]
+  ['quadratic_761',['quadratic',['../class_r_e_n_d_e_r_e_r___n_a_m_e_s_p_a_c_e_1_1_point_light_node.html#a5de5d96dcaa5da3db9a996a1014bd4a9',1,'RENDERER_NAMESPACE::PointLightNode::quadratic()'],['../struct_r_e_n_d_e_r_e_r___n_a_m_e_s_p_a_c_e_1_1_point_light_node_1_1_ubo.html#abb6a160cd0d697ae48ed0273bd4fd8b4',1,'RENDERER_NAMESPACE::PointLightNode::Ubo::quadratic()']]]
 ];

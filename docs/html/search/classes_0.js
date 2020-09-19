@@ -1,5 +1,5 @@
 var searchData=
 [
-  ['accelerationstructure_448',['AccelerationStructure',['../structrx_1_1_acceleration_structure.html',1,'rx']]],
-  ['api_449',['Api',['../classrx_1_1_api.html',1,'rx']]]
+  ['accelerationstructure_390',['AccelerationStructure',['../struct_r_e_n_d_e_r_e_r___n_a_m_e_s_p_a_c_e_1_1_acceleration_structure.html',1,'RENDERER_NAMESPACE']]],
+  ['api_391',['Api',['../class_r_e_n_d_e_r_e_r___n_a_m_e_s_p_a_c_e_1_1_api.html',1,'RENDERER_NAMESPACE']]]
 ];

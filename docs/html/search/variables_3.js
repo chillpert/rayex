@@ -1,4 +1,10 @@
 var searchData=
 [
-  ['deviceextensions_786',['deviceExtensions',['../namespacerx.html#ae1e6f0cd8aa9c6f10c6ffae2320f267d',1,'rx']]]
+  ['descriptorsets_697',['descriptorSets',['../class_r_e_n_d_e_r_e_r___n_a_m_e_s_p_a_c_e_1_1_model.html#a74a97fde0fecf1c2abda7c1b380f8a93',1,'RENDERER_NAMESPACE::Model']]],
+  ['diffuse_698',['diffuse',['../class_r_e_n_d_e_r_e_r___n_a_m_e_s_p_a_c_e_1_1_light_node.html#a03b3f46bb3960366a2c68f5da219ae7e',1,'RENDERER_NAMESPACE::LightNode::diffuse()'],['../struct_r_e_n_d_e_r_e_r___n_a_m_e_s_p_a_c_e_1_1_directional_light_node_1_1_ubo.html#abda88dd933bb96cb3a0c5be64952e4fa',1,'RENDERER_NAMESPACE::DirectionalLightNode::Ubo::diffuse()'],['../struct_r_e_n_d_e_r_e_r___n_a_m_e_s_p_a_c_e_1_1_point_light_node_1_1_ubo.html#a6e3bf6e543318c8837f0281b924e4a8b',1,'RENDERER_NAMESPACE::PointLightNode::Ubo::diffuse()'],['../class_r_e_n_d_e_r_e_r___n_a_m_e_s_p_a_c_e_1_1_material.html#aa8dfe844cc0eeacd3924434f5ea1ea84',1,'RENDERER_NAMESPACE::Material::diffuse()']]],
+  ['diffuseintensity_699',['diffuseIntensity',['../class_r_e_n_d_e_r_e_r___n_a_m_e_s_p_a_c_e_1_1_light_node.html#ab253dc2ecbc18fcc56e80865df67ef77',1,'RENDERER_NAMESPACE::LightNode']]],
+  ['diffusetexture_700',['diffuseTexture',['../class_r_e_n_d_e_r_e_r___n_a_m_e_s_p_a_c_e_1_1_material.html#a8a4ddf3f60447b531d6f5a682a1c018c',1,'RENDERER_NAMESPACE::Material']]],
+  ['direction_701',['direction',['../class_r_e_n_d_e_r_e_r___n_a_m_e_s_p_a_c_e_1_1_directional_light_node.html#a624a02698bc8656033a34689086a53ca',1,'RENDERER_NAMESPACE::DirectionalLightNode::direction()'],['../struct_r_e_n_d_e_r_e_r___n_a_m_e_s_p_a_c_e_1_1_directional_light_node_1_1_ubo.html#adace37e18d2319d33a088b2cc8da363f',1,'RENDERER_NAMESPACE::DirectionalLightNode::Ubo::direction()']]],
+  ['directionallightnodes_702',['directionalLightNodes',['../struct_r_e_n_d_e_r_e_r___n_a_m_e_s_p_a_c_e_1_1_lights_ubo.html#a4fd565f0dd23b14353816388ab4f8c45',1,'RENDERER_NAMESPACE::LightsUbo']]],
+  ['displacementtexture_703',['displacementTexture',['../class_r_e_n_d_e_r_e_r___n_a_m_e_s_p_a_c_e_1_1_material.html#a27f46415cb59e682bdbf4c0ad2a751bb',1,'RENDERER_NAMESPACE::Material']]]
 ];

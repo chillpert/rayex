@@ -1,8 +1,10 @@
 var searchData=
 [
-  ['animationspeed_778',['animationSpeed',['../main_8cpp.html#a5b68360a66199e508b85785a0871029a',1,'main.cpp']]],
-  ['as_779',['as',['../structrx_1_1_acceleration_structure.html#a253b08f9ce83a20d8a1f984f7669de7d',1,'rx::AccelerationStructure::as()'],['../structrx_1_1_tlas.html#acca6e1cba0d8ba63e8d0a5fd09a279b0',1,'rx::Tlas::as()'],['../structrx_1_1_blas.html#ac0c160449d5fb3b486eaab18331748a1',1,'rx::Blas::as()']]],
-  ['asbuildoffsetinfo_780',['asBuildOffsetInfo',['../structrx_1_1_blas.html#a29b12815ad6c32eabb0dc46656d91913',1,'rx::Blas']]],
-  ['ascreategeometryinfo_781',['asCreateGeometryInfo',['../structrx_1_1_blas.html#a84d9450aa1b8726afc627fd934f6b359',1,'rx::Blas']]],
-  ['asgeometry_782',['asGeometry',['../structrx_1_1_blas.html#ac74daa5e54e8bd97a5ef47650665d4d0',1,'rx::Blas']]]
+  ['alphatexture_685',['alphaTexture',['../class_r_e_n_d_e_r_e_r___n_a_m_e_s_p_a_c_e_1_1_material.html#aed20b45fd4ae5e4b0cd5334e5fa02723',1,'RENDERER_NAMESPACE::Material']]],
+  ['ambient_686',['ambient',['../class_r_e_n_d_e_r_e_r___n_a_m_e_s_p_a_c_e_1_1_light_node.html#a8d367360773195451ff365398a20dbfc',1,'RENDERER_NAMESPACE::LightNode::ambient()'],['../struct_r_e_n_d_e_r_e_r___n_a_m_e_s_p_a_c_e_1_1_directional_light_node_1_1_ubo.html#aff2adc436de51b6209df90920e4d2ab7',1,'RENDERER_NAMESPACE::DirectionalLightNode::Ubo::ambient()'],['../struct_r_e_n_d_e_r_e_r___n_a_m_e_s_p_a_c_e_1_1_point_light_node_1_1_ubo.html#acc49bcbd12c45b89f6abe351c7cc227d',1,'RENDERER_NAMESPACE::PointLightNode::Ubo::ambient()'],['../class_r_e_n_d_e_r_e_r___n_a_m_e_s_p_a_c_e_1_1_material.html#a9e7ff5c547d7c2fa3229106c3c64b33f',1,'RENDERER_NAMESPACE::Material::ambient()']]],
+  ['ambientintensity_687',['ambientIntensity',['../class_r_e_n_d_e_r_e_r___n_a_m_e_s_p_a_c_e_1_1_light_node.html#a59956be82b058f4e05cc637b8ac267d9',1,'RENDERER_NAMESPACE::LightNode']]],
+  ['as_688',['as',['../struct_r_e_n_d_e_r_e_r___n_a_m_e_s_p_a_c_e_1_1_acceleration_structure.html#aba73c71f75c035e46105de4c23d1fdb0',1,'RENDERER_NAMESPACE::AccelerationStructure::as()'],['../struct_r_e_n_d_e_r_e_r___n_a_m_e_s_p_a_c_e_1_1_tlas.html#ac719f3eb364185ebfa6184999fbaa80b',1,'RENDERER_NAMESPACE::Tlas::as()'],['../struct_r_e_n_d_e_r_e_r___n_a_m_e_s_p_a_c_e_1_1_blas.html#ae4955d550b8f1e97cd2b75b283eb8c1d',1,'RENDERER_NAMESPACE::Blas::as()']]],
+  ['asbuildoffsetinfo_689',['asBuildOffsetInfo',['../struct_r_e_n_d_e_r_e_r___n_a_m_e_s_p_a_c_e_1_1_blas.html#a6e17216a1f0dcb2470de0808ff966a79',1,'RENDERER_NAMESPACE::Blas']]],
+  ['ascreategeometryinfo_690',['asCreateGeometryInfo',['../struct_r_e_n_d_e_r_e_r___n_a_m_e_s_p_a_c_e_1_1_blas.html#a78fb5017d0cba1fd8ed4406edb9d018b',1,'RENDERER_NAMESPACE::Blas']]],
+  ['asgeometry_691',['asGeometry',['../struct_r_e_n_d_e_r_e_r___n_a_m_e_s_p_a_c_e_1_1_blas.html#a10eee5ee3ef73f9e6200394efbc7a1cf',1,'RENDERER_NAMESPACE::Blas']]]
 ];

@@ -1,4 +1,5 @@
 var searchData=
 [
-  ['tinyobjloader_5fimplementation_917',['TINYOBJLOADER_IMPLEMENTATION',['../_model_8cpp.html#af14fac7fbc250522a78849d58d5b0811',1,'Model.cpp']]]
+  ['vk_5fenable_5fbeta_5fextensions_810',['VK_ENABLE_BETA_EXTENSIONS',['../_core_8hpp.html#ae0ee52a031cc79e2e1b15516ed6ca362',1,'Core.hpp']]],
+  ['vulkan_5fhpp_5fdispatch_5floader_5fdynamic_811',['VULKAN_HPP_DISPATCH_LOADER_DYNAMIC',['../_core_8hpp.html#a8a27aa48a7a8781a30ab45040cb1dea7',1,'Core.hpp']]]
 ];

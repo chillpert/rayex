@@ -1,4 +1,4 @@
-#include "Renderer.hpp"
+#include "RayExec.hpp"
 
 using namespace rx;
 
@@ -255,13 +255,13 @@ private:
   }
 
 public:
-  void setRenderer( Renderer* renderer )
+  void setRenderer( RayExec* renderer )
   {
     this->renderer = renderer;
   }
 
 private:
-  Renderer* renderer;
+  RayExec* renderer;
 };
 
 int main( )
@@ -277,16 +277,16 @@ int main( )
   auto myCam = std::make_shared<CustomCamera>( width, height, glm::vec3( 0.0f, 0.0f, 3.0f ) );
 
   // Create the renderer object ...
-  Renderer myRenderer( myWindow, myCam );
+  RayExec renderer( myWindow, myCam );
 
   // ... and initialize it.
-  myRenderer.init( );
+  renderer.init( );
 
   // Setup your own ImGui based Gui.
   auto myGui = std::make_shared<CustomGui>( );
-  myRenderer.setGui( myGui );
+  renderer.setGui( myGui );
 
-  myGui->setRenderer( &myRenderer );
+  myGui->setRenderer( &renderer);
   myWindow->setCamera( myCam );
 
   // Setup the scene
@@ -297,13 +297,13 @@ int main( )
   auto directionalLight = std::make_shared<DirectionalLightNode>( );
  
   // Add the model to the renderer. This way they will be queued for rendering.
-  myRenderer.pushNode( dragonLore );
-  myRenderer.pushNode( directionalLight );
+  renderer.pushNode( dragonLore );
+  renderer.pushNode( directionalLight );
 
-  while ( myRenderer.isRunning( ) )
+  while ( renderer.isRunning( ) )
   {
     dragonLore->worldTransform = glm::rotate( dragonLore->worldTransform, glm::radians( 90.0f ) * Time::getDeltaTime( ) * animationSpeed, glm::vec3( 0.0f, 1.0f, 0.0f ) );
-    myRenderer.run( );
+    renderer.run( );
   }
 
   return 0;

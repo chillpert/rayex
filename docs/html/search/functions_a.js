@@ -1,8 +1,7 @@
 var searchData=
 [
-  ['main_708',['main',['../main_8cpp.html#a0ddf1224851353fc92bfbff6f499fa97',1,'main.cpp']]],
-  ['material_709',['Material',['../classrx_1_1_material.html#a9abd2fbdebbc6e34f9c6f51c92e2f893',1,'rx::Material::Material()=default'],['../classrx_1_1_material.html#aec3ad23f4eb473e1615e56a42adbe23d',1,'rx::Material::Material(const std::string &amp;diffuseTexture)']]],
-  ['minimized_710',['minimized',['../classrx_1_1_window_base.html#a0daf35316a751cb18d4c8589a503a0dd',1,'rx::WindowBase']]],
-  ['model_711',['Model',['../classrx_1_1_model.html#ad87d69c43348ffa3cc83d231bfd38f2c',1,'rx::Model::Model()'],['../classrx_1_1_model.html#aa427ed49b8f2feaa64d5b3171117892b',1,'rx::Model::Model(const std::string &amp;path)']]],
-  ['modeltoblas_712',['modelToBlas',['../classrx_1_1_ray_tracing_builder.html#a863a77e3048449ed9fd984d4442aba95',1,'rx::RayTracingBuilder']]]
+  ['material_616',['Material',['../class_r_e_n_d_e_r_e_r___n_a_m_e_s_p_a_c_e_1_1_material.html#aeb5222249b0fd78b056c8cca7ed869e3',1,'RENDERER_NAMESPACE::Material::Material()=default'],['../class_r_e_n_d_e_r_e_r___n_a_m_e_s_p_a_c_e_1_1_material.html#a96de2065664f93195e974f3243f88e4e',1,'RENDERER_NAMESPACE::Material::Material(const std::string &amp;diffuseTexture)']]],
+  ['minimized_617',['minimized',['../class_r_e_n_d_e_r_e_r___n_a_m_e_s_p_a_c_e_1_1_window.html#aed210123bc2bd9f321c952394792acc0',1,'RENDERER_NAMESPACE::Window']]],
+  ['model_618',['Model',['../class_r_e_n_d_e_r_e_r___n_a_m_e_s_p_a_c_e_1_1_model.html#abf67cd5a55e887e1dbfbbe4e229d272e',1,'RENDERER_NAMESPACE::Model::Model()'],['../class_r_e_n_d_e_r_e_r___n_a_m_e_s_p_a_c_e_1_1_model.html#a3d4d24f1398cac86283efee3517d87f4',1,'RENDERER_NAMESPACE::Model::Model(const std::string &amp;path)'],['../class_r_e_n_d_e_r_e_r___n_a_m_e_s_p_a_c_e_1_1_model.html#abf67cd5a55e887e1dbfbbe4e229d272e',1,'RENDERER_NAMESPACE::Model::Model()'],['../class_r_e_n_d_e_r_e_r___n_a_m_e_s_p_a_c_e_1_1_model.html#a3d4d24f1398cac86283efee3517d87f4',1,'RENDERER_NAMESPACE::Model::Model(const std::string &amp;path)']]],
+  ['modeltoblas_619',['modelToBlas',['../class_r_e_n_d_e_r_e_r___n_a_m_e_s_p_a_c_e_1_1_ray_tracing_builder.html#af77fef1b7c7197d755da66291d054a6a',1,'RENDERER_NAMESPACE::RayTracingBuilder']]]
 ];

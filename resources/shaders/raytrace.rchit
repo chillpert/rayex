@@ -16,8 +16,8 @@ struct Vertex
 
 struct SceneDescription
 {
-  int objId;
-  int txtOffset;
+  uint objId;
+  uint txtOffset;
   //mat4 transfo;
   //mat4 transfoIT;
 };
@@ -59,7 +59,7 @@ void main()
   {
     hitValue = vec3( 1.0, 0.0, 0.0 );
   } 
-  else if ( sceneDescription.i[0].objId == 69 )
+  else if ( sceneDescription.i[0].objId == 69 ) 
   {
     hitValue = vec3( 0.0, 1.0, 0.0 );
   }

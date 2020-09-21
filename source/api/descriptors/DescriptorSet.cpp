@@ -103,10 +103,7 @@ namespace RENDERER_NAMESPACE
 
       vk::DescriptorBufferInfo sceneDescriptionBufferInfo( sceneDescriptionBuffer,             // buffer
                                                            0,                                  // offset
-                                                           sizeof( sceneDescriptionBuffer ) ); // range
-
-      if ( sizeof( sceneDescriptionBuffer ) == 8 )
-        sceneDescriptionBufferInfo.range = VK_WHOLE_SIZE;
+                                                           VK_WHOLE_SIZE ); // range
 
       std::array<vk::WriteDescriptorSet, 2> descriptorWrites;
       descriptorWrites[0] = writeUniformBuffer( this->sets[i], 0, lightSourcesBufferInfo );

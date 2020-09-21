@@ -74,7 +74,7 @@ namespace RENDERER_NAMESPACE
                                                     maxRecursionDepth,                             // maxRecursionDepth
                                                     0,                                             // libraries
                                                     nullptr,                                       // pLibraryInterface
-                                                    this->layout.get( ),                               // layout
+                                                    this->layout.get( ),                           // layout
                                                     nullptr,                                       // basePipelineHandle
                                                     0 );                                           // basePipelineIndex
   

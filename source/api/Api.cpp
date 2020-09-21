@@ -135,8 +135,13 @@ namespace RENDERER_NAMESPACE
 
     // Uniform buffers for light nodes
     this->lightsUniformBuffer.init<LightsUbo>( static_cast<uint32_t>( g_swapchainImageCount ) );
-    
-    this->sceneDescriptorSets.update( this->lightsUniformBuffer.getRaw( ), this->sceneDescriptionBuffer.get( ) );
+
+    // SSBO for scene description
+    this->rtInstances.push_back( { } );
+    this->storageBuffer.init<RayTracingInstance>( this->rtInstances );
+    this->rtInstances.clear( );
+
+    this->sceneDescriptorSets.update( this->lightsUniformBuffer.getRaw( ), this->storageBuffer.get( ) );
 
     // Pipeline
     this->rtPipeline.init( { this->rtDescriptorSetLayout.get( ), this->modelDescriptorSetLayout.get( ), this->sceneDescriptorSetLayout.get( ) }, this->settings->getMaxRecursionDepth( ) );
@@ -209,15 +214,11 @@ namespace RENDERER_NAMESPACE
     this->lightsUniformBuffer.upload<LightsUbo>( imageIndex, lightNodeUbos );
 
     // Upload scene description
-    std::vector<RayTracingInstance> rtInstances;
-    rtInstances.reserve( this->geometryNodes.size( ) );
-
-    for ( const auto& node : this->geometryNodes )
+    if ( this->uploadSceneDescriptionData )
     {
-      rtInstances.push_back( node->rtInstance );
+      this->uploadSceneDescriptionData = false;
+      this->storageBuffer.fill<RayTracingInstance>( this->rtInstances.data( ) );
     }
-
-    createStorageBufferWithStaging<RayTracingInstance>( this->sceneDescriptionBuffer, rtInstances );
 
     return true;
   }

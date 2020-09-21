@@ -34,7 +34,7 @@ namespace RENDERER_NAMESPACE
 
     /// Copies the content of this buffer to another vk::Buffer.
     /// @param buffer The target for the copy operation.
-    void copyToBuffer( vk::Buffer buffer ) const;
+    RX_API void copyToBuffer( vk::Buffer buffer ) const;
 
     /// Copies the content of this buffer to an image.
     /// @param image The target for the copy operation.

@@ -7,6 +7,7 @@
 namespace RENDERER_NAMESPACE
 {
   /// Contains all instance related ray tracing information.
+  /// @ingroup API
   struct RayTracingInstance
   {
     uint32_t modelIndex = 0;  ///< Reference to rx::Api::models

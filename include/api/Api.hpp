@@ -15,6 +15,7 @@
 #include "api/buffers/CommandBuffer.hpp"
 #include "api/buffers/VertexBuffer.hpp"
 #include "api/buffers/IndexBuffer.hpp"
+#include "api/buffers/StorageBuffer.hpp"
 #include "api/descriptors/DescriptorSet.hpp"
 #include "api/descriptors/DescriptorSetLayout.hpp"
 #include "api/buffers/UniformBuffer.hpp"
@@ -72,6 +73,10 @@ namespace RENDERER_NAMESPACE
 
         geometryNodes.push_back( ptr );
 
+        // Fill scene description buffer.
+        this->rtInstances.push_back( ptr->rtInstance );
+        this->uploadSceneDescriptionData = true;
+        
         // Handle the node's texture.
         auto texturePaths = ptr->material.getTextures( );
 
@@ -192,7 +197,10 @@ namespace RENDERER_NAMESPACE
     CameraUbo cameraUbo;
     UniformBuffer cameraUniformBuffer;
     UniformBuffer lightsUniformBuffer;
-    Buffer sceneDescriptionBuffer; 
+    //Buffer sceneDescriptionBuffer; 
+    bool uploadSceneDescriptionData;
+    std::vector<RayTracingInstance> rtInstances;
+    StorageBuffer storageBuffer;
 
     // Nodes to render.
     std::vector<std::shared_ptr<GeometryNode>> geometryNodes;

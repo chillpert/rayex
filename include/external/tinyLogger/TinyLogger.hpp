@@ -31,33 +31,29 @@ int main( )
 #include <sstream>
 
 #define LOGGER_NAMESPACE tinyLogger
-#define LOGGER_DLL_EXPORT
-#define LOGGER_DLL_BUILD
+
 #define LOGGER_MESSAGE_TYPE_CAPS_LOCK false
 #define LOGGER_ALIGN_MESSAGES true
 #define LOGGER_INSERT_SPACE_AFTER_MESSAGE_TYPE true
 #define LOGGER_THROW_RUNTIME_ERROR_FOR_FATAL_ERROR true
 
-#ifdef LOGGER_DLL_EXPORT
-  #if defined( _WIN32 ) || defined( _WIN64 )
-    #ifdef LOGGER_DLL_BUILD
-      #define DLL_EXPORT __declspec(dllexport)
-    #else
-      #define DLL_EXPORT __declspec(dllimport)
-    #endif
-  #elif defined( unix ) || defined( __unix ) || defined( __unix__ )
-    #define DLL_EXPORT __attribute__((visibility("default")))
-  #else
-    #error "Operating system not supported by logger."
-  #endif
+#if defined( _WIN32 ) || defined( _WIN64 ) || defined( unix ) || defined( __unix ) || defined( __unix__ )
 #else
-  #if defined( _WIN32 ) || defined( _WIN64 )
-    #define DLL_EXPORT
-  #elif defined( unix ) || defined( __unix ) || defined( __unix__ )
-    #define DLL_EXPORT
-  #else
-    #error "Operating system not supported by logger."
-  #endif
+  #error "Operating system not supported by logger."
+#endif
+
+#if defined( _WIN32 ) || defined( _WIN64 )
+#ifdef RX_BUILD_DLL
+#define RX_API __declspec(dllexport)
+#else
+#define RX_API __declspec(dllimport)
+#endif
+#elif defined( unix ) || defined( __unix ) || defined( __unix__ )
+#ifdef RX_BUILD_DLL
+#define RX_API __attribute__((visibility("default")))
+#else   
+#define RX_API
+#endif
 #endif
 
 namespace LOGGER_NAMESPACE
@@ -83,10 +79,10 @@ namespace LOGGER_NAMESPACE
     eFatal
   };
 
-  void print( Color color, MessageType messageType, const std::string& message );
+  RX_API void print( Color color, MessageType messageType, const std::string& message );
 
   template <typename ...Args>
-  DLL_EXPORT void verbose( Args&& ...args )
+  void verbose( Args&& ...args )
   {
     std::stringstream temp;
     ( temp << ... << args );
@@ -95,7 +91,7 @@ namespace LOGGER_NAMESPACE
   }
 
   template <typename ...Args>
-  DLL_EXPORT void info( Args&& ...args )
+  void info( Args&& ...args )
   {
     std::stringstream temp;
     ( temp << ... << args );
@@ -104,7 +100,7 @@ namespace LOGGER_NAMESPACE
   }
 
   template <typename ...Args>
-  DLL_EXPORT void success( Args&& ...args )
+  void success( Args&& ...args )
   {
     std::stringstream temp;
     ( temp << ... << args );
@@ -113,7 +109,7 @@ namespace LOGGER_NAMESPACE
   }
 
   template <typename ...Args>
-  DLL_EXPORT void warning( Args&& ...args )
+  void warning( Args&& ...args )
   {
     std::stringstream temp;
     ( temp << ... << args );
@@ -122,7 +118,7 @@ namespace LOGGER_NAMESPACE
   }
 
   template <typename ...Args>
-  DLL_EXPORT void error( Args&& ...args )
+  void error( Args&& ...args )
   {
     std::stringstream temp;
     ( temp << ... << args );
@@ -131,7 +127,7 @@ namespace LOGGER_NAMESPACE
   }
 
   template <typename ...Args>
-  DLL_EXPORT void fatal( Args&& ...args )
+  void fatal( Args&& ...args )
   {
     std::stringstream temp;
     ( temp << ... << args );

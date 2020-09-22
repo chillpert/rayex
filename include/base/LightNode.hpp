@@ -26,7 +26,7 @@ namespace RENDERER_NAMESPACE
     glm::vec3 specular = { 1.0f, 1.0f, 1.0f }; ///< The specular highlight's color.
 
     float ambientIntensity = 0.7f; ///< The ambient intensity.
-    float diffuseIntensity = 1.0f; ///< The diffuse intensity.
+    float diffuseIntensity = 1.0; ///< The diffuse intensity.
     float specularIntensity = 1.0f; ///< The specular intensity.
     float exists = 1.0f;
   };
@@ -37,8 +37,8 @@ namespace RENDERER_NAMESPACE
   {
   public:
     virtual ~DirectionalLightNode( ) = default;
-
-    glm::vec3 direction = { 1.0f, -1.0f, 1.0f }; ///< The direction the light is pointing at.    
+    
+    glm::vec3 direction = { 5.0f, 5.0f, 2.0f }; ///< The direction the light is pointing at.    
 
     /// Used to combine members of DirectionalLightNode to data types that will not cause uniform member alignment issues in shaders.
     struct Ubo

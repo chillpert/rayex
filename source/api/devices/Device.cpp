@@ -33,8 +33,13 @@ namespace RENDERER_NAMESPACE
       ++index;
     }
 
+    vk::PhysicalDeviceDescriptorIndexingFeatures indexingFeatures;
+    indexingFeatures.runtimeDescriptorArray = VK_TRUE;
+    indexingFeatures.shaderStorageBufferArrayNonUniformIndexing = VK_TRUE;
+
     vk::PhysicalDeviceRobustness2FeaturesEXT robustness2FeaturesEXT;
     robustness2FeaturesEXT.nullDescriptor = VK_TRUE;
+    robustness2FeaturesEXT.pNext = &indexingFeatures;
 
     vk::PhysicalDeviceRayTracingFeaturesKHR rayTracingFeatures;
     rayTracingFeatures.rayTracing = VK_TRUE;

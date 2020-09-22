@@ -52,22 +52,24 @@ namespace RENDERER_NAMESPACE
   {
     for ( size_t i = 0; i < this->layouts.size( ); ++i )
     {
+      /*
       vk::DescriptorImageInfo textureInfo( textureSampler,                            // sampler
                                            textureImageView,                          // imageView
                                            vk::ImageLayout::eShaderReadOnlyOptimal ); // imageLayout
+      */
 
-      vk::DescriptorBufferInfo vertbufferInfo( vertexBuffer,             // buffer
-                                               0,                        // offset
-                                               sizeof( vertexBuffer ) ); // range
+      vk::DescriptorBufferInfo vertbufferInfo( vertexBuffer,    // buffer
+                                               0,               // offset
+                                               VK_WHOLE_SIZE ); // range
 
-      vk::DescriptorBufferInfo indexbufferInfo( indexBuffer,              // buffer
-                                                0,                        // offset
-                                                sizeof( indexBuffer ) );  // range
+      vk::DescriptorBufferInfo indexbufferInfo( indexBuffer,     // buffer
+                                                0,               // offset
+                                                VK_WHOLE_SIZE ); // range
 
-      std::array<vk::WriteDescriptorSet, 3> descriptorWrites;
-      descriptorWrites[0] = writeCombinedImageSampler( this->sets[i], 0, textureInfo );
-      descriptorWrites[1] = writeStorageBuffer( this->sets[i], 1, vertbufferInfo );
-      descriptorWrites[2] = writeStorageBuffer( this->sets[i], 2, indexbufferInfo );
+      std::array<vk::WriteDescriptorSet, 2> descriptorWrites;
+      //descriptorWrites[0] = writeCombinedImageSampler( this->sets[i], 0, textureInfo );
+      descriptorWrites[0] = writeStorageBuffer( this->sets[i], 0, vertbufferInfo );
+      descriptorWrites[1] = writeStorageBuffer( this->sets[i], 1, indexbufferInfo );
 
       g_device.updateDescriptorSets( descriptorWrites, 0 );
     }
@@ -79,11 +81,11 @@ namespace RENDERER_NAMESPACE
     {
       vk::DescriptorBufferInfo vertexBufferInfo( vertexBuffer,             // buffer
                                                  0,                        // offset
-                                                 sizeof( vertexBuffer ) ); // range
+                                                 VK_WHOLE_SIZE ); // range
 
       vk::DescriptorBufferInfo indexBufferInfo( indexBuffer,             // buffer
                                                 0,                       // offset
-                                                sizeof( indexBuffer ) ); // range
+                                                VK_WHOLE_SIZE ); // range
 
       std::array<vk::WriteDescriptorSet, 2> descriptorWrites;
       descriptorWrites[0] = writeStorageBuffer( this->sets[i], 0, vertexBufferInfo );

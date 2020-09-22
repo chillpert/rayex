@@ -74,6 +74,9 @@ namespace RENDERER_NAMESPACE
         geometryNodes.push_back( ptr );
 
         // Fill scene description buffer.
+        ptr->rtInstance.transform = ptr->worldTransform;
+        ptr->rtInstance.transformIT = glm::transpose( glm::inverse( ptr->worldTransform ) );
+        
         this->rtInstances.push_back( ptr->rtInstance );
         this->uploadSceneDescriptionData = true;
         
@@ -85,9 +88,7 @@ namespace RENDERER_NAMESPACE
           auto it = textures.find( texturePath );
           // Texture does not exist already. It will be created.
           if ( it == textures.end( ) )
-          {
             textures.insert( { texturePath, std::make_shared<Texture>( texturePath ) } );
-          }
         }
 
         if ( record )

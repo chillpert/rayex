@@ -60,14 +60,11 @@ namespace RENDERER_NAMESPACE
     else
       return { 0u, deviceName };
 
-  #ifdef VK_API_VERSION_1_1
-    if ( props.apiVersion >= VK_API_VERSION_1_1 )
-      score += 10u;
-  #endif
-
   #ifdef VK_API_VERSION_1_2
     if ( props.apiVersion >= VK_API_VERSION_1_2 )
       score += 10u;
+    else
+      return { 0u, deviceName };
   #endif
 
     if ( deviceName.find( "RTX" ) != std::string::npos )

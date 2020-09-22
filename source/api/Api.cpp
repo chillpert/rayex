@@ -184,22 +184,24 @@ namespace RENDERER_NAMESPACE
     uint32_t imageIndex = this->swapchain.getCurrentImageIndex( );
     
     // Upload camera
-    if ( this->camera->updateView )
+    if ( this->camera != nullptr )
     {
-      this->cameraUbo.view = this->camera->getViewMatrix( );
-      this->cameraUbo.viewInverse = this->camera->getViewInverseMatrix( );
+      if ( this->camera->updateView )
+      {
+        this->cameraUbo.view = this->camera->getViewMatrix( );
+        this->cameraUbo.viewInverse = this->camera->getViewInverseMatrix( );
       
-      this->camera->updateView = false;
-    }
+        this->camera->updateView = false;
+      }
 
-    if ( this->camera->updateProj )
-    {
-      this->cameraUbo.projection = this->camera->getProjectionMatrix( );
-      this->cameraUbo.projectionInverse = this->camera->getProjectionInverseMatrix( );
+      if ( this->camera->updateProj )
+      {
+        this->cameraUbo.projection = this->camera->getProjectionMatrix( );
+        this->cameraUbo.projectionInverse = this->camera->getProjectionInverseMatrix( );
     
-      this->camera->updateProj = false;
+        this->camera->updateProj = false;
+      }
     }
-
     this->cameraUniformBuffer.upload<CameraUbo>( imageIndex, this->cameraUbo );
 
     // Upload lights
@@ -499,7 +501,7 @@ namespace RENDERER_NAMESPACE
       vk::DescriptorSetLayoutBinding tlasBinding( 0,                                                                             // binding
                                                   vk::DescriptorType::eAccelerationStructureKHR,                                 // descriptorType
                                                   1,                                                                             // descriptorCount
-                                                  vk::ShaderStageFlagBits::eRaygenKHR | vk::ShaderStageFlagBits::eClosestHitKHR, // stageFlags
+                                                  vk::ShaderStageFlagBits::eRaygenKHR, // stageFlags
                                                   nullptr );                                                                     // pImmutableSamplers
 
       // Output image
@@ -522,28 +524,30 @@ namespace RENDERER_NAMESPACE
 
     // Create the descriptor set layout for models
     {
+      /*
       // Texture image
       vk::DescriptorSetLayoutBinding textureBinding( 0,                                                                            // binding
                                                      vk::DescriptorType::eCombinedImageSampler,                                    // descriptorType
                                                      1,                                                                            // descriptorCount
                                                      vk::ShaderStageFlagBits::eFragment | vk::ShaderStageFlagBits::eClosestHitKHR, // stageFlags
                                                      nullptr );                                                                    // pImmutableSamplers
+      */
 
       // Vertex buffer
-      vk::DescriptorSetLayoutBinding vertexBufferBinding( 1,                                       // binding
+      vk::DescriptorSetLayoutBinding vertexBufferBinding( 0,                                       // binding
                                                           vk::DescriptorType::eStorageBuffer,      // descriptorType
                                                           1,                                       // descriptorCount
                                                           vk::ShaderStageFlagBits::eClosestHitKHR, // stageFlags
                                                           nullptr );                               // pImmutableSamplers
 
       // Index buffer
-      vk::DescriptorSetLayoutBinding indexBufferBinding( 2,                                       // binding
+      vk::DescriptorSetLayoutBinding indexBufferBinding( 1,                                       // binding
                                                          vk::DescriptorType::eStorageBuffer,      // descriptorType
                                                          1,                                       // descriptorCount
                                                          vk::ShaderStageFlagBits::eClosestHitKHR, // stageFlags
                                                          nullptr );                               // pImmutableSamplers                                         
 
-      std::vector<vk::DescriptorSetLayoutBinding> bindings = { textureBinding, vertexBufferBinding, indexBufferBinding };
+      std::vector<vk::DescriptorSetLayoutBinding> bindings = { /*textureBinding,*/ vertexBufferBinding, indexBufferBinding };
       this->modelDescriptorSetLayout.init( bindings );
     }
     

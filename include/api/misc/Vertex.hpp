@@ -13,9 +13,17 @@ namespace RENDERER_NAMESPACE
   struct Vertex
   {
     glm::vec3 pos; ///< The vertex's position in 3D space.
+    glm::vec3 normal; ///< The vertex's normal vector.
     glm::vec3 color; ///< The vertex's color.
     glm::vec2 texCoord; ///< The vertex's texture coordinate.
-    glm::vec3 normal; ///< The vertex's normal vector.
+    /*
+    float _pad0;
+    float _pad1;
+    float _pad2;
+    float _pad3;
+    float _pad4;
+    */
+    
 
     /// @return Returns the hard-coded vertex format (eR32G32B32Sfloat).
     inline static vk::Format getVertexFormat( ) { return vk::Format::eR32G32B32Sfloat; }
@@ -35,6 +43,8 @@ namespace RENDERER_NAMESPACE
     /// @return Returns the vertex's Vulkan attribute descriptions for all four attributes.
     static std::array<vk::VertexInputAttributeDescription, 4> getAttributeDescriptions( )
     {
+      RX_FATAL( "Vertex::getAttributeDescriptions() NEEDS TO BE UPDATED." );
+
       std::array<vk::VertexInputAttributeDescription, 4> attributeDescriptions { };
 
       attributeDescriptions[0].binding = 0;

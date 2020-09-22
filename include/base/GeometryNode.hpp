@@ -12,6 +12,8 @@ namespace RENDERER_NAMESPACE
   {
     uint32_t modelIndex = 0;  ///< Reference to rx::Api::models
     uint32_t textureOffset = 0; ///< Offset in rx::Api::textures
+    glm::mat4 transform = glm::mat4( 1.0f );
+    glm::mat4 transformIT = glm::mat4( 1.0f );
   };
 
   /// Adds geometry to the TransformNode parent class.

@@ -16,6 +16,7 @@ namespace RENDERER_NAMESPACE
     glm::vec3 normal; ///< The vertex's normal vector.
     glm::vec3 color; ///< The vertex's color.
     glm::vec2 texCoord; ///< The vertex's texture coordinate.
+    float padding0;
     /*
     float _pad0;
     float _pad1;

@@ -10,10 +10,12 @@ namespace RENDERER_NAMESPACE
   /// @ingroup API
   struct RayTracingInstance
   {
-    uint32_t modelIndex = 0;  ///< Reference to rx::Api::models
-    uint32_t textureOffset = 0; ///< Offset in rx::Api::textures
     glm::mat4 transform = glm::mat4( 1.0f );
     glm::mat4 transformIT = glm::mat4( 1.0f );
+    uint32_t modelIndex = 0;  ///< Reference to rx::Api::models
+    uint32_t textureOffset = 0; ///< Offset in rx::Api::textures
+    float padding0;
+    float padding1;
   };
 
   /// Adds geometry to the TransformNode parent class.

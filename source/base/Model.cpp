@@ -36,32 +36,20 @@ namespace RENDERER_NAMESPACE
       {
         Vertex vertex { };
 
-        vertex.pos =
-        {
-          attrib.vertices[3 * index.vertex_index + 0],
-          attrib.vertices[3 * index.vertex_index + 1],
-          attrib.vertices[3 * index.vertex_index + 2]
-        };
+        vertex.pos.x = attrib.vertices[3 * index.vertex_index + 0];
+        vertex.pos.y = attrib.vertices[3 * index.vertex_index + 1];
+        vertex.pos.z = attrib.vertices[3 * index.vertex_index + 2];
 
-        vertex.normal =
-        {
-          attrib.normals[3 * index.normal_index + 0],
-          attrib.normals[3 * index.normal_index + 1],
-          attrib.normals[3 * index.normal_index + 2]
-        };
-
-        /*
-        vertex.texCoord =
-        {
-          attrib.texcoords[2 * index.texcoord_index + 0];,
-          1.0f - attrib.texcoords[2 * index.texcoord_index + 1]
-        };
-        */
+        vertex.normal.x = attrib.normals[3 * index.normal_index + 0];
+        vertex.normal.y = attrib.normals[3 * index.normal_index + 1];
+        vertex.normal.z = attrib.normals[3 * index.normal_index + 2];
 
         vertex.texCoord.x = attrib.texcoords[2 * index.texcoord_index + 0];
         vertex.texCoord.y = 1.0f - attrib.texcoords[2 * index.texcoord_index + 1];
 
-        vertex.color = { 1.0f, 1.0f, 1.0f };
+        vertex.color.x = 1.0f;
+        vertex.color.y = 1.0f;
+        vertex.color.z = 1.0f;
 
         if ( uniqueVertices.count( vertex ) == 0 )
         {

@@ -12,14 +12,19 @@ struct Vertex
   vec3 normal;
   vec3 color;
   vec2 texCoord;
+  
+  float padding0;
 };
 
-struct SceneDescription
+struct RayTracingInstance
 {
-  int modelIndex;
-  int txtOffset;
   mat4 transform;
   mat4 transformIT;
+  int modelIndex;
+  int txtOffset;
+
+  float padding0;
+  float padding1;
 };
 
 layout(location = 0) rayPayloadInEXT hitPayload prd;
@@ -27,9 +32,9 @@ hitAttributeEXT vec3 attribs;
 
 //layout(binding = 0, set = 1) uniform sampler2D texSampler;
 
-layout(binding = 0, set = 1, scalar) buffer Vertices
+layout(binding = 0, set = 1) buffer Vertices
 {
-  Vertex v[];
+  vec4 v[];
 } vertices[];
 
 layout(binding = 1, set = 1) buffer Indices
@@ -43,31 +48,45 @@ layout(binding = 0, set = 2) uniform LightSources
   PointLight pointLights[10];
 } lightSources;
 
-layout(binding = 1, set = 2, scalar) buffer SceneDescriptions
+layout(binding = 1, set = 2) buffer RayTracingInstances
 {
-  SceneDescription i[];
-} sceneDescription;
+  RayTracingInstance i[];
+} rayTracingInstances;
 
 layout(push_constant) uniform Constants
 {
   vec4 clearColor;
 };
 
+Vertex unpack(uint index, uint modelIndex)
+{
+	vec4 d0 = vertices[nonuniformEXT(modelIndex)].v[3 * index + 0];
+	vec4 d1 = vertices[nonuniformEXT(modelIndex)].v[3 * index + 1];
+	vec4 d2 = vertices[nonuniformEXT(modelIndex)].v[3 * index + 2];
+
+	Vertex v;
+	v.pos = d0.xyz;
+	v.normal = vec3(d0.w, d1.x, d1.y);
+	v.color = vec3(d1.z, d1.w, d2.x);
+  v.texCoord = vec2(d2.y, d2.z);
+	return v;
+}
+
 void main()
 {
-  uint modelIndex = sceneDescription.i[gl_InstanceID].modelIndex;
+  uint modelIndex = rayTracingInstances.i[gl_InstanceID].modelIndex;
   
   ivec3 ind = ivec3(indices[nonuniformEXT(modelIndex)].i[3 * gl_PrimitiveID + 0],   //
                     indices[nonuniformEXT(modelIndex)].i[3 * gl_PrimitiveID + 1],   //
                     indices[nonuniformEXT(modelIndex)].i[3 * gl_PrimitiveID + 2]);  //
 
-  Vertex v0 = vertices[nonuniformEXT(modelIndex)].v[ind.x];
-  Vertex v1 = vertices[nonuniformEXT(modelIndex)].v[ind.y];
-  Vertex v2 = vertices[nonuniformEXT(modelIndex)].v[ind.z];
+  Vertex v0 = unpack(ind.x, modelIndex);
+  Vertex v1 = unpack(ind.y, modelIndex);
+  Vertex v2 = unpack(ind.z, modelIndex);
 
   const vec3 barycentrics = vec3(1.0 - attribs.x - attribs.y, attribs.x, attribs.y);
   vec3 normal = v0.normal * barycentrics.x + v1.normal * barycentrics.y + v2.normal * barycentrics.z;
-  normal = normalize(vec3(sceneDescription.i[gl_InstanceID].transformIT * vec4(normal, 0.0)));
+  normal = normalize(vec3(rayTracingInstances.i[gl_InstanceID].transformIT * vec4(normal, 0.0)));
 
   // Calculate world space position (the unprecise way)
   vec3 worldPos = gl_WorldRayOriginEXT + gl_WorldRayDirectionEXT * gl_HitTEXT;

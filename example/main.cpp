@@ -249,6 +249,11 @@ private:
       {
         this->renderer->settings.setClearColor( clearColor );
       }
+
+      if ( ImGui::Checkbox( "RayTracing", &this->renderer->settings.rayTrace ) )
+      {
+        this->renderer->settings.refresh = true;
+      }
     }
 
     ImGui::End( );

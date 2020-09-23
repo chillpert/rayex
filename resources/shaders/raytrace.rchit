@@ -30,14 +30,14 @@ struct RayTracingInstance
 layout(location = 0) rayPayloadInEXT hitPayload prd;
 hitAttributeEXT vec3 attribs;
 
-//layout(binding = 0, set = 1) uniform sampler2D texSampler;
+layout(binding = 0, set = 1) uniform sampler2D texSampler;
 
-layout(binding = 0, set = 1) buffer Vertices
+layout(binding = 1, set = 1) buffer Vertices
 {
   vec4 v[];
 } vertices[];
 
-layout(binding = 1, set = 1) buffer Indices
+layout(binding = 2, set = 1) buffer Indices
 {
   uint i[];
 } indices[];

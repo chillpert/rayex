@@ -52,11 +52,9 @@ namespace RENDERER_NAMESPACE
   {
     for ( size_t i = 0; i < this->layouts.size( ); ++i )
     {
-      /*
       vk::DescriptorImageInfo textureInfo( textureSampler,                            // sampler
                                            textureImageView,                          // imageView
                                            vk::ImageLayout::eShaderReadOnlyOptimal ); // imageLayout
-      */
 
       vk::DescriptorBufferInfo vertbufferInfo( vertexBuffer,    // buffer
                                                0,               // offset
@@ -66,10 +64,30 @@ namespace RENDERER_NAMESPACE
                                                 0,               // offset
                                                 VK_WHOLE_SIZE ); // range
 
+      std::array<vk::WriteDescriptorSet, 3> descriptorWrites;
+      descriptorWrites[0] = writeCombinedImageSampler( this->sets[i], 0, textureInfo );
+      descriptorWrites[1] = writeStorageBuffer( this->sets[i], 1, vertbufferInfo );
+      descriptorWrites[2] = writeStorageBuffer( this->sets[i], 2, indexbufferInfo );
+
+      g_device.updateDescriptorSets( descriptorWrites, 0 );
+    }
+  }
+
+  void DescriptorSet::update( const std::vector<vk::Buffer>& rsUniformBuffers, vk::ImageView textureImageView, vk::Sampler textureSampler )
+  {
+    for ( size_t i = 0; i < this->layouts.size( ); ++i )
+    {
+      vk::DescriptorBufferInfo rsUniformBufferInfo( rsUniformBuffers[i],          // buffer
+                                                    0,                            // offset
+                                                    sizeof( RasterizationUbo ) ); // range
+
+      vk::DescriptorImageInfo textureInfo( textureSampler,                            // sampler
+                                           textureImageView,                          // imageView
+                                           vk::ImageLayout::eShaderReadOnlyOptimal ); // imageLayout
+
       std::array<vk::WriteDescriptorSet, 2> descriptorWrites;
-      //descriptorWrites[0] = writeCombinedImageSampler( this->sets[i], 0, textureInfo );
-      descriptorWrites[0] = writeStorageBuffer( this->sets[i], 0, vertbufferInfo );
-      descriptorWrites[1] = writeStorageBuffer( this->sets[i], 1, indexbufferInfo );
+      descriptorWrites[0] = writeUniformBuffer( this->sets[i], 0, rsUniformBufferInfo );
+      descriptorWrites[1] = writeCombinedImageSampler( this->sets[i], 1, textureInfo );
 
       g_device.updateDescriptorSets( descriptorWrites, 0 );
     }

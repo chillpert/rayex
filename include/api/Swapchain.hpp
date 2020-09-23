@@ -27,26 +27,29 @@ namespace RENDERER_NAMESPACE
     /// Destroys the swapchain.
     void destroy( );
 
+    /// @return Returns the swapchain framebuffer at a given index.
+    inline const vk::Framebuffer& getFramebuffer( uint32_t index ) const { return this->framebuffers[index].get( ); }
+
     /// @return Returns the current swapchain image index.
-    inline uint32_t getCurrentImageIndex( ) const { return currentImageIndex; }
+    inline uint32_t getCurrentImageIndex( ) const { return this->currentImageIndex; }
 
     /// @return Returns the swapchain images' extent.
-    inline const vk::Extent2D getExtent( ) const { return extent; }
+    inline const vk::Extent2D getExtent( ) const { return this->extent; }
 
     /// @return Returns the swapchain images' image aspect.
-    inline const vk::ImageAspectFlags getImageAspect( ) const { return imageAspect; }
+    inline const vk::ImageAspectFlags getImageAspect( ) const { return this->imageAspect; }
 
     /// Returns the swapchain image at a given index.
     /// @param index The index of the swapchain image.
     /// @return The swapchain image.
-    inline const vk::Image getImage( size_t index ) const { return images[index]; }
+    inline const vk::Image getImage( size_t index ) const { return this->images[index]; }
 
     /// @return Returns a vector containing all swapchain images.
-    inline const std::vector<vk::Image>& getImages( ) const { return images; }
+    inline const std::vector<vk::Image>& getImages( ) const { return this->images; }
 
     /// @return Returns a vector containing all swapchain image views.
     /// @todo Returning by reference will result in size 0.
-    inline const std::vector<vk::ImageView> getImageViews( ) const { return vk::Helper::unpack<vk::ImageView>( imageViews ); } 
+    inline const std::vector<vk::ImageView> getImageViews( ) const { return vk::Helper::unpack<vk::ImageView>( this->imageViews ); } 
 
     /// Used to set the desired image aspect flags.
     void setImageAspect( vk::ImageAspectFlags flags );

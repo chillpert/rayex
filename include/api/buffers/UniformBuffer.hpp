@@ -25,6 +25,14 @@ namespace RENDERER_NAMESPACE
     PointLightNode::Ubo pointLightNodes[10];
   };
 
+  struct RasterizationUbo
+  {
+    glm::mat4 model = glm::mat4( 1.0f );
+    glm::mat4 view = glm::mat4( 1.0f );
+    glm::mat4 projection = glm::mat4( 1.0f );
+    glm::vec3 cameraPosition = glm::vec3( 1.0f );
+  };
+
   /// A specialised buffer for uniforms.
   /// @ingroup API
   class UniformBuffer

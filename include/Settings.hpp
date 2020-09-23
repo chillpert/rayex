@@ -45,6 +45,7 @@ namespace RENDERER_NAMESPACE
     void setResourcePath( const std::string& path );
 
     bool refresh = false; ///< Keeps track of whether or not the graphics pipeline needs to be re-created.
+    bool rayTrace = true; ///< If true renderer will use ray tracing, if false it will use rasterization.
 
   private:
     glm::vec4 clearColor = glm::vec4( 0.45f, 0.45f, 0.45f, 1.0f ); ///< Stores the clear color.

@@ -58,7 +58,8 @@ namespace RENDERER_NAMESPACE
     IndexBuffer<uint32_t> indexBuffer; ///< Used to buffer the raw index data.
 
     // No destruction necessary
-    DescriptorSet descriptorSets; ///< Descriptor sets for the model's descriptors.
+    DescriptorSet rtDescriptorSets; ///< Ray tracing descriptor sets for the model's descriptors.
+    DescriptorSet rsDescriptorSets; ///< Rasterization descriptor sets for the model's descriptors.
 
   private:
     static uint32_t modelCounter; ///< Used to count the total number of models and to assign a new unique value to index.

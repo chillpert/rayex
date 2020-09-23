@@ -203,10 +203,10 @@ namespace RENDERER_NAMESPACE
     CameraUbo cameraUbo;
     UniformBuffer cameraUniformBuffer;
     UniformBuffer lightsUniformBuffer;
-    //Buffer sceneDescriptionBuffer; 
-    bool uploadSceneDescriptionData;
+    
     std::vector<RayTracingInstance> rtInstances;
-    StorageBuffer storageBuffer;
+    StorageBuffer rayTracingInstancesBuffer;
+    bool uploadSceneDescriptionData = false;
 
     // Nodes to render.
     std::vector<std::shared_ptr<GeometryNode>> geometryNodes;
@@ -222,6 +222,9 @@ namespace RENDERER_NAMESPACE
     Pipeline rsPipeline;
     Pipeline rtPipeline;
     CommandBuffer swapchainCommandBuffers;
+
+    vk::Viewport viewport;
+    vk::Rect2D scissor;
     
     std::shared_ptr<Gui> gui = nullptr;
 

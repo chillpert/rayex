@@ -24,14 +24,10 @@ namespace RENDERER_NAMESPACE
     void init( const std::vector<vk::DescriptorSetLayout>& descriptorSetLayouts, const Settings* const settings );
 
     /// @return Returns the Vulkan pipeline object without the unique handle.
-    inline const vk::Pipeline get( ) const { return pipeline.get( ); }
+    inline const vk::Pipeline get( ) const { return this->pipeline.get( ); }
 
     /// @return Returns the Vulkan pipeline layout object without the unique handle.
-    inline const vk::PipelineLayout getLayout( ) const { return layout.get( ); }
-
-    /// Binds the pipeline for usage.
-    /// @param commandBuffer The Vulkan command buffer that will bind the pipeline.
-    void bind( vk::CommandBuffer commandBuffer ) const;
+    inline const vk::PipelineLayout getLayout( ) const { return this->layout.get( ); }
 
   private:
     vk::UniquePipeline pipeline; ///< The Vulkan pipeline with a unique handle.

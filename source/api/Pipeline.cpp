@@ -86,18 +86,11 @@ namespace RENDERER_NAMESPACE
     uint32_t pushConstantSize = sizeof( float ) + sizeof( glm::vec3 );
     RX_ASSERT( g_physicalDeviceLimits.maxPushConstantsSize >= pushConstantSize, "Push constant size is exceeding supported size." );
 
-
-    vk::PushConstantRange pushConstantRange( vk::ShaderStageFlagBits::eFragment, // stageFlags
-                                             0,                                  // offset
-                                             pushConstantSize );                 // size
-
-    std::array<vk::PushConstantRange, 1> pushConstantRanges = { pushConstantRange };
-
     vk::PipelineLayoutCreateInfo pipelineLayoutInfo( { },                                                   // flags
                                                      static_cast<uint32_t>( descriptorSetLayouts.size( ) ), // setLayoutCount
                                                      descriptorSetLayouts.data( ),                          // pSetLayouts
-                                                     static_cast<uint32_t>( pushConstantRanges.size( ) ),   // pushConstantRangeCount
-                                                     pushConstantRanges.data( ) );                          // pPushConstantRanges
+                                                     0,                                                     // pushConstantRangeCount
+                                                     nullptr );                                             // pPushConstantRanges
 
     this->layout = g_device.createPipelineLayoutUnique( pipelineLayoutInfo );
     if ( !this->layout )
@@ -199,10 +192,5 @@ namespace RENDERER_NAMESPACE
                                                     0 );                                           // basePipelineIndex
   
     this->pipeline = g_device.createRayTracingPipelineKHRUnique( nullptr, createInfo );
-  }
-
-  void Pipeline::bind( vk::CommandBuffer commandBuffer ) const
-  {
-    commandBuffer.bindPipeline( vk::PipelineBindPoint::eRayTracingKHR, this->pipeline.get( ) );
   }
 }

@@ -10,12 +10,6 @@ namespace RENDERER_NAMESPACE
   class Image
   {
   public:
-    Image( ) = default;
-
-    /// @param createInfo The Vulkan image create info.
-    /// @param If true, the image will be initialized right away without an additional call to init().
-    Image( const vk::ImageCreateInfo& createInfo, bool initialize = true );
-
     /// @return Returns the Vulkan image object without the unique handle.
     inline const vk::Image get( ) const { return image.get( ); }
 
@@ -30,7 +24,7 @@ namespace RENDERER_NAMESPACE
 
     /// Creates the image and allocates memory for it.
     /// @param createInfo The Vulkan image create info.
-    void init( const vk::ImageCreateInfo& createInfo );
+    bool init( const vk::ImageCreateInfo& createInfo );
 
     /// Used to transition this image's layout.
     /// @param layout The target layout.

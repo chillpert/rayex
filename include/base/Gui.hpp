@@ -38,14 +38,6 @@ namespace RENDERER_NAMESPACE
   class Gui
   {
   public:
-    Gui( ) = default;
-
-    /// @param surface A pointer to a RENDERER_NAMESPACE::Surface object.
-    /// @param swapchainImageExtent The extent of the swapchain images.
-    /// @param swapchainImageViews The swapchain images' image views.
-    /// @param initialize If true, the GUI will be initialized right away without an additional call to init().
-    Gui( const Surface* const surface, vk::Extent2D swapchainImageExtent, const std::vector<vk::ImageView>& swapchainImageViews, bool initialize = true );
-
     RX_API virtual ~Gui( ) = default;
     
     /// Returns the GUI's command buffer at the given index.
@@ -67,7 +59,7 @@ namespace RENDERER_NAMESPACE
     /// @param surface A pointer to a RENDERER_NAMESPACE::Surface object.
     /// @param swapchainImageExtent The extent of the swapchain images.
     /// @param swapchainImageViews The swapchain images' image views.
-    void init( const Surface* const surface, vk::Extent2D swapchainImageExtent, const std::vector<vk::ImageView>& swapchainImageViews );
+    bool init( const Surface* const surface, vk::Extent2D swapchainImageExtent, const std::vector<vk::ImageView>& swapchainImageViews );
 
     /// Used to recreate the GUI in case the window size was changed.
     /// @param swapchainImageExtent The extent of the swapchain images.
@@ -89,24 +81,24 @@ namespace RENDERER_NAMESPACE
 
   private:
     /// Creates a descriptor pool.
-    void initDescriptorPool( );
+    bool initDescriptorPool( );
 
     /// Creates a render pass for the GUI.
     /// @param surface A pointer to a RENDERER_NAMESPACE::Surface object.
-    void initRenderPass( const Surface* const surface );
+    bool initRenderPass( const Surface* const surface );
 
     /// Creates a command pool for the GUI's command buffers.
-    void initCommandPool( );
+    bool initCommandPool( );
 
     /// Creates the ImGui font textures.
-    void initFonts( );
+    bool initFonts( );
 
     /// Creates the command buffers to record the ImGui rendering commands to.
-    void initCommandBuffers( );
+    bool initCommandBuffers( );
 
     /// Creates framebuffers for the render pass.
     /// @param swapchainImageViews A vector holding the swapchain images' image view.
-    void initFramebuffers( const std::vector<vk::ImageView>& swapchainImageViews );
+    bool initFramebuffers( const std::vector<vk::ImageView>& swapchainImageViews );
 
   private:
     vk::UniqueDescriptorPool descriptorPool; ///< A Vulkan descriptor pool with a unique handle.

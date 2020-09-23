@@ -10,14 +10,6 @@ namespace RENDERER_NAMESPACE
   class RenderPass
   {
   public:
-    RenderPass( ) = default;
-
-    /// @param attachments The Vulkan attachment description.
-    /// @param subpasses The Vulkan subpass description.
-    /// @param dependencies The Vulkan subpass dependencies.
-    /// @param initialize If true, the render pass object will be initialized right away without an additional call to init().
-    RenderPass( const std::vector<vk::AttachmentDescription>& attachments, const std::vector<vk::SubpassDescription>& subpasses, const std::vector<vk::SubpassDependency>& dependencies, bool initialize = true );
-    
     /// @return Returns the Vulkan render pass without the unique handle.
     inline const vk::RenderPass get( ) const { return renderPass.get( ); }
 
@@ -26,7 +18,8 @@ namespace RENDERER_NAMESPACE
     /// @param subpasses The Vulkan subpass description.
     /// @param dependencies The Vulkan subpass dependencies.
     /// @param initialize If true, the render pass object will be initialized right away without an additional call to init().  
-    void init( const std::vector<vk::AttachmentDescription>& attachments, const std::vector<vk::SubpassDescription>& subpasses, const std::vector<vk::SubpassDependency>& dependencies );
+    /// @return Returns true if initialization was successful.
+    bool init( const std::vector<vk::AttachmentDescription>& attachments, const std::vector<vk::SubpassDescription>& subpasses, const std::vector<vk::SubpassDependency>& dependencies );
 
     /// Call to begin the render pass.
     /// @param framebuffer The swapchain framebuffer.

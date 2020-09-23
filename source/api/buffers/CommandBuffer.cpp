@@ -3,13 +3,12 @@
 
 namespace RENDERER_NAMESPACE
 {
-  CommandBuffer::CommandBuffer( vk::CommandPool commandPool, uint32_t count, vk::CommandBufferUsageFlags usageFlags, bool initialize )
+  CommandBuffer::CommandBuffer( vk::CommandPool commandPool, uint32_t count, vk::CommandBufferUsageFlags usageFlags )
   {
-    if ( initialize )
-      init( commandPool, count, usageFlags );
+    init( commandPool, count, usageFlags );
   }
 
-  void CommandBuffer::init( vk::CommandPool commandPool, uint32_t count, vk::CommandBufferUsageFlags usageFlags )
+  bool CommandBuffer::init( vk::CommandPool commandPool, uint32_t count, vk::CommandBufferUsageFlags usageFlags )
   {
     this->commandPool = commandPool;
 
@@ -21,10 +20,18 @@ namespace RENDERER_NAMESPACE
 
     this->commandBuffers = g_device.allocateCommandBuffers( allocateInfo );
     for ( const vk::CommandBuffer& commandBuffer : this->commandBuffers )
-      RX_ASSERT( commandBuffer, "Failed to create command buffer." );
+    {
+      if ( !commandBuffer )
+      {
+        RX_ERROR( "Failed to create command buffers." );
+        return false;
+      }
+    }
 
     // Set up begin info.
     this->beginInfo.flags = usageFlags;
+
+    return true;
   }
 
   void CommandBuffer::free( )

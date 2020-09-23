@@ -6,6 +6,8 @@
 namespace RENDERER_NAMESPACE
 {
   /// A wrapper class for a Vulkan debug utility messenger.
+  /// 
+  /// The class features scope-bound destruction.
   /// @ingroup API
   class DebugMessenger
   {

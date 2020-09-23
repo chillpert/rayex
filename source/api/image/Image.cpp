@@ -8,13 +8,7 @@
 
 namespace RENDERER_NAMESPACE
 {
-  Image::Image( const vk::ImageCreateInfo& createInfo, bool initialize )
-  {
-    if ( initialize )
-      init( createInfo );
-  }
-
-  void Image::init( const vk::ImageCreateInfo& createInfo )
+  bool Image::init( const vk::ImageCreateInfo& createInfo )
   {
     this->extent = createInfo.extent;
     this->format = createInfo.format;
@@ -22,9 +16,13 @@ namespace RENDERER_NAMESPACE
 
     this->image = g_device.createImageUnique( createInfo );
     if ( !this->image )
+    {
       RX_ERROR( "Failed to create image." );
+      return false;
+    }
 
     this->memory = vk::Initializer::allocateMemoryUnique( this->image.get( ) );
+    return true;
   }
 
   void Image::transitionToLayout( vk::ImageLayout layout )

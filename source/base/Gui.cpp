@@ -5,12 +5,6 @@
 
 namespace RENDERER_NAMESPACE
 {
-  Gui::Gui( const Surface* const surface, vk::Extent2D swapchainImageExtent, const std::vector<vk::ImageView>& swapchainImageViews, bool initialize )
-  {
-    if ( initialize )
-      init( surface, swapchainImageExtent, swapchainImageViews );
-  }
-
   void Gui::configure( )
   {
     IMGUI_CHECKVERSION( );
@@ -18,14 +12,17 @@ namespace RENDERER_NAMESPACE
     ImGuiIO& io = ImGui::GetIO( ); (void) io;
   }
 
-  void Gui::init( const Surface* const surface, vk::Extent2D swapchainImageExtent, const std::vector<vk::ImageView>& swapchainImageViews )
+  bool Gui::init( const Surface* const surface, vk::Extent2D swapchainImageExtent, const std::vector<vk::ImageView>& swapchainImageViews )
   {
     this->swapchainImageExtent = swapchainImageExtent;
 
     configure( );
 
-    ImGui_ImplSDL2_InitForVulkan( g_window->get( ) );
-    initDescriptorPool( );
+    bool result = ImGui_ImplSDL2_InitForVulkan( g_window->get( ) );
+    RX_ASSERT_INIT( result );
+
+    result = initDescriptorPool( );
+    RX_ASSERT_INIT( result );
 
     ImGui_ImplVulkan_InitInfo init_info { };
     init_info.Instance = g_instance;
@@ -39,12 +36,22 @@ namespace RENDERER_NAMESPACE
     init_info.MinImageCount = surface->getCapabilities( ).minImageCount + 1;
     init_info.ImageCount = static_cast<uint32_t>( g_swapchainImageCount );
 
-    initRenderPass( surface );
-    ImGui_ImplVulkan_Init( &init_info, this->renderPass.get( ) );
-    initCommandPool( );
-    initFonts( );
-    initCommandBuffers( );
-    initFramebuffers( swapchainImageViews );
+    result = initRenderPass( surface );
+    RX_ASSERT_INIT( result );
+
+    result = ImGui_ImplVulkan_Init( &init_info, this->renderPass.get( ) );
+    RX_ASSERT_INIT( result );
+
+    result = initCommandPool( );
+    RX_ASSERT_INIT( result );
+
+    result = initFonts( );
+    RX_ASSERT_INIT( result );
+
+    result = initCommandBuffers( );
+    RX_ASSERT_INIT( result );
+
+    return initFramebuffers( swapchainImageViews );
   }
 
   void Gui::recreate( vk::Extent2D swapchainImageExtent, const std::vector<vk::ImageView>& swapchainImageViews )
@@ -91,12 +98,13 @@ namespace RENDERER_NAMESPACE
     ImGui::DestroyContext( );
   }
 
-  void Gui::initCommandPool( )
+  bool Gui::initCommandPool( )
   {
     this->commandPool = vk::Initializer::initCommandPoolUnique( g_graphicsFamilyIndex, vk::CommandPoolCreateFlagBits::eResetCommandBuffer );
+    return true;
   }
 
-  void Gui::initDescriptorPool( )
+  bool Gui::initDescriptorPool( )
   {
     std::vector<vk::DescriptorPoolSize> poolSizes =
     {
@@ -114,9 +122,10 @@ namespace RENDERER_NAMESPACE
     };
 
     this->descriptorPool = vk::Initializer::initDescriptorPoolUnique( poolSizes, g_swapchainImageCount );
+    return true;
   }
 
-  void Gui::initRenderPass( const Surface* const surface )
+  bool Gui::initRenderPass( const Surface* const surface )
   {
     vk::AttachmentDescription attachment( { },                                      // flags
                                           surface->getFormat( ),                    // format
@@ -158,32 +167,38 @@ namespace RENDERER_NAMESPACE
                                    1,            // dependencyCount
                                    &dependency); // pDependencies
 
-    this->renderPass.init( { attachment }, { subpass }, { dependency } );
+    return this->renderPass.init( { attachment }, { subpass }, { dependency } );
   }
 
-  void Gui::initFonts( )
+  bool Gui::initFonts( )
   {
     CommandBuffer commandBuffer( this->commandPool.get( ) );
     commandBuffer.begin( );
-    ImGui_ImplVulkan_CreateFontsTexture( commandBuffer.get( 0 ) );
+    
+    bool result = ImGui_ImplVulkan_CreateFontsTexture( commandBuffer.get( 0 ) );
+
     commandBuffer.end( );
     commandBuffer.submitToQueue( g_graphicsQueue );
+  
+    return result;
   }
 
-  void Gui::initCommandBuffers( )
+  bool Gui::initCommandBuffers( )
   {
     // Create command buffers for each image in the swapchain.
-    this->commandBuffers.init( this->commandPool.get( ), 
-                           g_swapchainImageCount, 
-                           vk::CommandBufferUsageFlagBits::eRenderPassContinue );
+    return this->commandBuffers.init( this->commandPool.get( ), 
+                                      g_swapchainImageCount, 
+                                      vk::CommandBufferUsageFlagBits::eRenderPassContinue );
   }
 
-  void Gui::initFramebuffers( const std::vector<vk::ImageView>& swapchainImageViews )
+  bool Gui::initFramebuffers( const std::vector<vk::ImageView>& swapchainImageViews )
   {
     this->framebuffers.resize( static_cast<uint32_t>( swapchainImageViews.size( ) ) );
     for ( size_t i = 0; i < this->framebuffers.size( ); ++i )
     {
       this->framebuffers[i] = vk::Initializer::initFramebufferUnique( { swapchainImageViews[i] }, this->renderPass.get( ), this->swapchainImageExtent );
     }
+
+    return true;
   }
 }

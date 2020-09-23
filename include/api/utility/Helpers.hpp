@@ -124,36 +124,27 @@ namespace vk
     /// @return Returns a pair consisting out of the determined score and the name of the physical device.
     /// @note RTX hardware surpasses any other GPU.
     std::pair<unsigned int, std::string> evaluatePhysicalDevice( PhysicalDevice physicalDevice );
+
+    /// Checks if all device extensions provided are supported.
+    /// 
+    /// If any device extension is not supported the application will shut down immediately.
+    /// @param extensions All device extensions that should be activated.
+    bool checkDeviceExtensionSupport( const std::vector<const char*>& extensions );
+
+    /// Checks if all layers provided are supported.
+    /// 
+    /// If any layer is not supported the application will shut down immediately.
+    /// @param layers All validation layers that should be activated.
+    /// @return Returns true if initialization was successful.
+    bool checkInstanceLayersSupport( Instance instance, const std::vector<const char*>& layers );
+
+    /// Checks if all instance extensions provided are supported.
+    /// 
+    /// If any instance extension is not supported the application will shut down immediately.
+    /// @param extensions All instance extensions that should be activated.
+    /// @return Returns true if initialization was successful.
+    bool checkInstanceExtensionsSupport( Instance instance, const std::vector<const char*>& extensions );
   }
-}
-
-namespace RENDERER_NAMESPACE
-{
-  namespace util
-  {
-    /// Parses a given shader file.
-    /// @param path The full path to shader file.
-    /// @return Returns a vector of chars that contains the shader in SPIR-V format.
-    std::vector<char> parseShader( const std::string& path );
-
-    /// Used to find any given element inside a STL container.
-    /// @param value The value to search for.
-    /// @param values The STL container of the same type as value.
-    /// @return Returns true, if value was found in values.
-    template <typename T, typename Container>
-    bool find( T value, const Container& values )
-    {
-      for ( const auto& it : values )
-      {
-        if ( it == value )
-          return true;
-      }
-
-      return false;
-    }
-
-    std::array<float, 4> vec4toArray( const glm::vec4& vec );
-  }
-}
+} 
 
 #endif // HELPERS_HPP

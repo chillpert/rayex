@@ -48,6 +48,7 @@
 #define RX_ERROR( ... )   LOGGER_NAMESPACE::error( RENDERER_NAMESPACE_STRINGIFIED, ": ", __VA_ARGS__ )
 #define RX_FATAL( ... )   LOGGER_NAMESPACE::fatal( RENDERER_NAMESPACE_STRINGIFIED, ": ", __VA_ARGS__ )
 #define RX_ASSERT( statement, ... ) LOGGER_NAMESPACE::assert2( statement ? true : false, RENDERER_NAMESPACE_STRINGIFIED, ": ", __VA_ARGS__ )
+#define RX_ASSERT_INIT( flag ) if ( !flag ) return false
 
 // Doxygen groups
 /// @defgroup Base Interfaces

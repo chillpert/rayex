@@ -1,12 +1,10 @@
 #ifndef API_HPP
 #define API_HPP
 
-#include "api/Instance.hpp"
 #include "api/utility/DebugMessenger.hpp"
 #include "api/Surface.hpp"
 #include "api/Pipeline.hpp"
 #include "api/RenderPass.hpp"
-#include "api/devices/Device.hpp"
 #include "api/Swapchain.hpp"
 #include "api/image/Texture.hpp"
 #include "api/misc/Vertex.hpp"
@@ -129,13 +127,13 @@ namespace RENDERER_NAMESPACE
     }
 
     /// Re-initializes the render pass to support the GUI and initializes the GUI itself.
-    RX_API void initGui( );
+    RX_API bool initGui( );
 
     Settings* settings = nullptr;
 
   private:
     /// Initializes the render pass with a color and depth attachment.
-    void initRenderPass( );
+    bool initRenderPass( );
 
     /// Initializes the model provided by the node.
     /// 
@@ -169,10 +167,10 @@ namespace RENDERER_NAMESPACE
     std::shared_ptr<Camera> camera;
 
     // Destruction through RAII for following members:
-    Instance instance;
+    vk::UniqueInstance instance;
     DebugMessenger debugMessenger;
     Surface surface;
-    Device device;
+    vk::UniqueDevice device;
     vk::UniqueCommandPool graphicsCmdPool;
     vk::UniqueCommandPool transferCmdPool;
     std::vector<vk::UniqueFence> inFlightFences;

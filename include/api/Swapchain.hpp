@@ -12,17 +12,11 @@ namespace RENDERER_NAMESPACE
   class Swapchain
   {
   public:
-    Swapchain( ) = default;
-
-    /// @param surface A pointer to a RENDERER_NAMESPACE::Surface object.
-    /// @param renderPass The render pass to create the framebuffers.
-    /// @param initialize If true, the swapchain object will be initialized right away without an additional call to init().
-    Swapchain( Surface* surface, vk::RenderPass renderPass, bool initialize = true );
-
     /// Creates the swapchain, the swapchain images and their image views as well as their framebuffers.
     /// @param surface A pointer to a RENDERER_NAMESPACE::Surface object.
     /// @param renderPass The render pass to create the framebuffers.
-    void init( Surface* surface, vk::RenderPass renderPass );
+    /// @return Returns true if initialization was successful.
+    bool init( Surface* surface, vk::RenderPass renderPass );
 
     /// Destroys the swapchain.
     void destroy( );
@@ -68,14 +62,17 @@ namespace RENDERER_NAMESPACE
     /// Initializes the swapchain images.
     /// @param minImageCount The minimum amount of images in the swapchain.
     /// @param surfaceFormat The surface's format.
-    void initImages( uint32_t minImageCount, vk::Format surfaceFormat );
+    /// @return Returns true if initialization was successful.
+    bool initImages( uint32_t minImageCount, vk::Format surfaceFormat );
     
     /// Initializes the depth image for the depth attachment.
-    void initDepthImage( );
+    /// @return Returns true if initialization was successful.
+    bool initDepthImage( );
 
     /// Initializes the swapchain framebuffers.
     /// @param renderPass The render pass to create the framebuffers.
-    void initFramebuffers( vk::RenderPass renderPass );
+    /// @return Returns true if initialization was successful.
+    bool initFramebuffers( vk::RenderPass renderPass );
 
     vk::UniqueSwapchainKHR swapchain; ///< The Vulkan swapchain object with a unique handle.
 

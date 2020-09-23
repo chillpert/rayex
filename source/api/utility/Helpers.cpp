@@ -385,71 +385,96 @@ namespace vk
 
       return { score, deviceName };
     }
-  }
-}
 
-namespace RENDERER_NAMESPACE
-{
-  namespace util
-  {
-    std::vector<char> parseShader( const std::string& path )
+    bool checkDeviceExtensionSupport( const std::vector<const char*>& extensions )
     {
-      std::string delimiter = "/";
-      std::string pathToFile = "";
-      std::string fileName = "";
-      std::string fileNameOut = "";
+      // Stores the name of the extension and a bool that tells if they were found or not.
+      std::map<const char*, bool> requiredExtensions;
 
-      size_t pos = path.find_last_of( delimiter );
-      if ( pos != std::string::npos )
+      for ( const auto& extension : extensions )
+        requiredExtensions.emplace( extension, false );
+
+      std::vector<ExtensionProperties> physicalDeviceExtensions = rx::g_physicalDevice.enumerateDeviceExtensionProperties( );
+
+      // Iterates over all enumerated physical device extensions to see if they are available.
+      for ( const auto& physicalDeviceExtension : physicalDeviceExtensions )
       {
-        pathToFile = path.substr( 0, pos + 1 ).c_str( );
-        fileName = path.substr( pos + 1 ).c_str( );
+        for ( auto& requiredphysicalDeviceExtension : requiredExtensions )
+        {
+          if ( strcmp( physicalDeviceExtension.extensionName, requiredphysicalDeviceExtension.first ) == 0 )
+            requiredphysicalDeviceExtension.second = true;
+        }
       }
-      else
-        RX_ERROR( "Can not process shader paths." );
 
-      // This is the name of the resulting shader.
-      // For example, myShader.frag will turn into myShader_frag.spv.
-      fileNameOut = fileName;
-      delimiter = ".";
-
-      pos = fileName.find_last_of( delimiter );
-      if ( pos != std::string::npos )
+      // Give feedback on the previous operations.
+      for ( const auto& requiredphysicalDeviceExtension : requiredExtensions )
       {
-        std::replace( fileNameOut.begin( ), fileNameOut.end( ), '.', '_' );
-        fileNameOut += ".spv";
+        if ( !requiredphysicalDeviceExtension.second )
+        {
+          RX_ERROR( "Missing physical device extension: ", requiredphysicalDeviceExtension.first, ". Perhaps you have not installed the NVIDIA Vulkan Beta drivers?" );
+          return false;
+        }
+        else
+          RX_SUCCESS( "Added device extension: ", requiredphysicalDeviceExtension.first );
       }
-      else
-        RX_ERROR( "Can not process shader file name." );
 
-      // Calls glslc to compile the glsl file into spir-v.
-      std::stringstream command;
-      //command << "cd " << pathToFile << " && " << RX_GLSLC_PATH << " " << fileName << " -o " << fileNameOut << " --target-env=vulkan1.2";
-      command << RX_GLSLC_PATH << " " << g_resourcePath << "shaders/" << fileName << " -o " << g_resourcePath << "shaders/" << fileNameOut << " --target-env=vulkan1.2";
-
-      std::system( command.str( ).c_str( ) );
-
-      // Read the file and retrieve the source.
-      std::string pathToShaderSourceFile = g_resourcePath + pathToFile + fileNameOut;
-      std::ifstream file( pathToShaderSourceFile, std::ios::ate | std::ios::binary );
-
-      if ( !file.is_open( ) )
-        RX_ERROR( "Failed to open shader source file ", pathToShaderSourceFile );
-
-      size_t fileSize = static_cast< size_t >( file.tellg( ) );
-      std::vector<char> buffer( fileSize );
-
-      file.seekg( 0 );
-      file.read( buffer.data( ), fileSize );
-
-      file.close( );
-
-      return buffer;
+      return true;
     }
 
-    std::array<float, 4> vec4toArray( const glm::vec4& vec )
+    bool checkInstanceLayersSupport( Instance instance, const std::vector<const char*>& layers )
     {
-      return { vec.x, vec.y, vec.z, vec.w };
+      auto properties = vk::enumerateInstanceLayerProperties( );
+
+      for ( const char* name : layers )
+      {
+        bool found = false;
+        for ( const auto& property : properties )
+        {
+          if ( strcmp( property.layerName, name ) == 0 )
+          {
+            found = true;
+            break;
+          }
+        }
+
+        if ( !found )
+        {
+          RX_ERROR( "Validation layer ", name, " is not available on this device." );
+          return false;
+        }
+
+        RX_SUCCESS( "Added layer: ", name, "." );
+      }
+
+      return true;
+    }
+
+    bool checkInstanceExtensionsSupport( Instance instance, const std::vector<const char*>& extensions )
+    {
+      auto properties = vk::enumerateInstanceExtensionProperties( );
+
+      for ( const char* name : extensions )
+      {
+        bool found = false;
+        for ( const auto& property : properties )
+        {
+          if ( strcmp( property.extensionName, name ) == 0 )
+          {
+            found = true;
+            break;
+          }
+        }
+
+        if ( !found )
+        {
+          RX_ERROR( "Instance extensions ", name, " is not available on this device." );
+          return false;
+        }
+
+        RX_SUCCESS( "Added instance extension: ", name, "." );
+      }
+
+      return true;
     }
   }
 }

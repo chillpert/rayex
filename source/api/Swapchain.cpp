@@ -4,13 +4,7 @@
 
 namespace RENDERER_NAMESPACE
 {
-  Swapchain::Swapchain( Surface* surface, vk::RenderPass renderPass, bool initialize )
-  {
-    if ( initialize )
-      init( surface, renderPass );
-  }
-
-  void Swapchain::init( Surface* surface, vk::RenderPass renderPass )
+  bool Swapchain::init( Surface* surface, vk::RenderPass renderPass )
   {
     surface->checkSettingSupport( );
 
@@ -23,7 +17,10 @@ namespace RENDERER_NAMESPACE
     uint32_t minImageCount = surfaceCapabilities.minImageCount + 1;
 
     if ( surfaceCapabilities.maxImageCount == 0 )
+    {
       RX_ERROR( "The surface does not support any images for a swap chain." );
+      return false;
+    }
 
     // If the preferred image count is exceeding the supported amount then use the maximum amount of images supported by the surface.
     if ( minImageCount > surfaceCapabilities.maxImageCount )
@@ -35,11 +32,10 @@ namespace RENDERER_NAMESPACE
     createInfo.preTransform = surfaceCapabilities.currentTransform;
 
     // Prefer opaque bit over any other composite alpha value.
-    createInfo.compositeAlpha =
-      surfaceCapabilities.supportedCompositeAlpha & vk::CompositeAlphaFlagBitsKHR::eOpaque ? vk::CompositeAlphaFlagBitsKHR::eOpaque :
-      surfaceCapabilities.supportedCompositeAlpha & vk::CompositeAlphaFlagBitsKHR::ePreMultiplied ? vk::CompositeAlphaFlagBitsKHR::ePreMultiplied :
-      surfaceCapabilities.supportedCompositeAlpha & vk::CompositeAlphaFlagBitsKHR::ePostMultiplied ? vk::CompositeAlphaFlagBitsKHR::ePostMultiplied :
-      vk::CompositeAlphaFlagBitsKHR::eInherit;
+    createInfo.compositeAlpha = surfaceCapabilities.supportedCompositeAlpha & vk::CompositeAlphaFlagBitsKHR::eOpaque ? vk::CompositeAlphaFlagBitsKHR::eOpaque :
+                                surfaceCapabilities.supportedCompositeAlpha & vk::CompositeAlphaFlagBitsKHR::ePreMultiplied ? vk::CompositeAlphaFlagBitsKHR::ePreMultiplied :
+                                surfaceCapabilities.supportedCompositeAlpha & vk::CompositeAlphaFlagBitsKHR::ePostMultiplied ? vk::CompositeAlphaFlagBitsKHR::ePostMultiplied :
+                                vk::CompositeAlphaFlagBitsKHR::eInherit;
 
     // Handle the swap chain image extent.
     if ( surfaceCapabilities.currentExtent.width != UINT32_MAX )
@@ -72,7 +68,10 @@ namespace RENDERER_NAMESPACE
     createInfo.imageExtent = this->extent;
 
     if ( surfaceCapabilities.maxImageArrayLayers < 1 )
+    {
       RX_ERROR( "The surface does not support a single array layer." );
+      return false;
+    }
 
     createInfo.imageArrayLayers = 1;
     createInfo.imageUsage = vk::ImageUsageFlagBits::eColorAttachment | vk::ImageUsageFlagBits::eTransferDst;
@@ -92,13 +91,21 @@ namespace RENDERER_NAMESPACE
 
     this->swapchain = g_device.createSwapchainKHRUnique( createInfo );
     if ( !this->swapchain )
+    {
       RX_ERROR( "Failed to create swapchain." );
+      return false;
+    }
 
     g_swapchain = this->swapchain.get( );
 
-    initImages( minImageCount, surface->getFormat( ) );
-    initDepthImage( );
-    initFramebuffers( renderPass );
+    bool result = initImages( minImageCount, surface->getFormat( ) );
+    RX_ASSERT_INIT( result );
+
+    result = initDepthImage( );
+    RX_ASSERT_INIT( result );
+    
+    result = initFramebuffers( renderPass );
+    return result;
   }
 
   void Swapchain::destroy( )
@@ -129,23 +136,27 @@ namespace RENDERER_NAMESPACE
     RX_ASSERT( ( result == vk::Result::eSuccess ), "Failed to acquire next swapchain image." );
   }
 
-  void Swapchain::initImages( uint32_t minImageCount, vk::Format surfaceFormat )
+  bool Swapchain::initImages( uint32_t minImageCount, vk::Format surfaceFormat )
   {
     // Retrieve the actual swapchain images. This sets them up automatically.
     this->images = g_device.getSwapchainImagesKHR( this->swapchain.get( ) );
-    RX_ASSERT( this->images.size( ) >= minImageCount, "Failed to get swapchain images." );
+    if ( this->images.size( ) < minImageCount )
+    {
+      RX_ERROR( "Failed to get swapchain images." );
+      return false;
+    }
 
     g_swapchainImageCount = static_cast<uint32_t>( this->images.size( ) );
 
     // Create image views for swapchain images.
     this->imageViews.resize( this->images.size( ) );
     for ( size_t i = 0; i < this->imageViews.size( ); ++i )
-    {
       this->imageViews[i] = vk::Initializer::initImageViewUnique( this->images[i], surfaceFormat, this->imageAspect );
-    }
+    
+    return true;
   }
 
-  void Swapchain::initDepthImage( )
+  bool Swapchain::initDepthImage( )
   {
     // Depth image for depth buffering
     vk::Format depthFormat = getSupportedDepthFormat( g_physicalDevice );
@@ -154,19 +165,21 @@ namespace RENDERER_NAMESPACE
     imageCreateInfo.format = depthFormat;
     imageCreateInfo.usage = vk::ImageUsageFlagBits::eDepthStencilAttachment;
 
-    this->depthImage.init( imageCreateInfo );
+    bool result = this->depthImage.init( imageCreateInfo );
+    RX_ASSERT_INIT( result );
 
     // Image view for depth image
     this->depthImageView = vk::Initializer::initImageViewUnique( this->depthImage.get( ), depthFormat, vk::ImageAspectFlagBits::eDepth );
+    return true;
   }
 
-  void Swapchain::initFramebuffers( vk::RenderPass renderPass )
+  bool Swapchain::initFramebuffers( vk::RenderPass renderPass )
   {
     this->framebuffers.resize( this->imageViews.size( ) );
     for ( size_t i = 0; i < this->framebuffers.size( ); ++i )
-    {
       this->framebuffers[i] = vk::Initializer::initFramebufferUnique( { this->imageViews[i].get( ), this->depthImageView.get( ) }, renderPass, this->extent );
-    }
+  
+    return true;
   }
 
   vk::Format getSupportedDepthFormat( vk::PhysicalDevice physicalDevice )

@@ -11,18 +11,18 @@ namespace RENDERER_NAMESPACE
   {
   public:
     CommandBuffer( ) = default;
-    
+
+    /// Creates the command buffers and calls initializes them right away.
     /// @param commandPool The command pool from which the command buffers will be allocated from.
-    /// @param count The amount of Vulkan command buffers to initialize.
+    /// @param count The amount of Vulkan command buffers to initialize (the same as the amount of images in the swapchain).
     /// @param usageFlags Specifies what the buffer will be used for.
-    /// @param initialize If true, the command buffers will be initialized right away without an additional call to init().
-    CommandBuffer( vk::CommandPool commandPool, uint32_t count = 1, vk::CommandBufferUsageFlags usageFlags = vk::CommandBufferUsageFlagBits::eOneTimeSubmit, bool initialize = true );
+    CommandBuffer( vk::CommandPool commandPool, uint32_t count = 1, vk::CommandBufferUsageFlags usageFlags = vk::CommandBufferUsageFlagBits::eOneTimeSubmit );
 
     /// Creates the command buffers.
     /// @param commandPool The command pool from which the command buffers will be allocated from.
     /// @param count The amount of Vulkan command buffers to initialize (the same as the amount of images in the swapchain).
     /// @param usageFlags Specifies what the buffer will be used for.
-    void init( vk::CommandPool commandPool, uint32_t count = 1, vk::CommandBufferUsageFlags usageFlags = vk::CommandBufferUsageFlagBits::eOneTimeSubmit );
+    bool init( vk::CommandPool commandPool, uint32_t count = 1, vk::CommandBufferUsageFlags usageFlags = vk::CommandBufferUsageFlagBits::eOneTimeSubmit );
 
     /// @return Returns the vector of command buffers.
     inline const std::vector<vk::CommandBuffer> get( ) const { return commandBuffers; }

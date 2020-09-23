@@ -3,6 +3,7 @@
 #include "api/utility/Initializers.hpp"
 #include "api/utility/Helpers.hpp"
 #include "api/utility/Destructors.hpp"
+#include "api/utility/Util.hpp"
 
 namespace RENDERER_NAMESPACE
 {
@@ -61,7 +62,13 @@ namespace RENDERER_NAMESPACE
     this->gui = gui;
 
     if ( initialize )
-      initGui( );
+    {
+      if ( !initGui( ) )
+      {
+        RX_ERROR( "Failed to initialize ImGui." );
+        return;
+      }
+    }
   }
 
   bool Api::init( )
@@ -74,36 +81,44 @@ namespace RENDERER_NAMESPACE
     bool result = true;
 
     // Instance
-    result = this->instance.init( layers, extensions );
+    result = vk::Initializer::initInstance( instance, layers, extensions );
+    RX_ASSERT_INIT( result );
     
     // Debug messenger.
     result = this->debugMessenger.init( vk::DebugUtilsMessageSeverityFlagBitsEXT::eVerbose | vk::DebugUtilsMessageSeverityFlagBitsEXT::eWarning | vk::DebugUtilsMessageSeverityFlagBitsEXT::eError,
                                         vk::DebugUtilsMessageTypeFlagBitsEXT::ePerformance | vk::DebugUtilsMessageTypeFlagBitsEXT::eValidation );
+    RX_ASSERT_INIT( result );
 
     // Surface
     result = this->surface.init( );
+    RX_ASSERT_INIT( result );
     
     // Physical device
     result = vk::Initializer::initPhysicalDevice( this->physicalDevice );
+    RX_ASSERT_INIT( result );
 
     // Reassess the support of the preferred surface settings.
     this->surface.checkSettingSupport( );
 
     // Queues
     result = vk::Initializer::initQueueFamilyIndices( );
+    RX_ASSERT_INIT( result );
 
     // Logical device
-    this->device.init( deviceExtensions );
+    result = vk::Initializer::initDevice( device, deviceExtensions );
+    RX_ASSERT_INIT( result );
 
     // Retrieve all queue handles.
     g_device.getQueue( g_graphicsFamilyIndex, 0, &g_graphicsQueue );
     g_device.getQueue( g_transferFamilyIndex, 0, &g_transferQueue );
 
     // Render pass
-    initRenderPass( );
+    result = initRenderPass( );
+    RX_ASSERT_INIT( result );
 
     // Swapchain
-    this->swapchain.init( &this->surface, this->renderPass.get( ) );
+    result = this->swapchain.init( &this->surface, this->renderPass.get( ) );
+    RX_ASSERT_INIT( result );
 
     // Command pools
     this->graphicsCmdPool = vk::Initializer::initCommandPoolUnique( g_graphicsFamilyIndex, vk::CommandPoolCreateFlagBits::eResetCommandBuffer );
@@ -123,13 +138,15 @@ namespace RENDERER_NAMESPACE
     this->sceneDescriptorSets.update( this->lightsUniformBuffer.getRaw( ), this->rayTracingInstancesBuffer.get( ) );
 
     // Ray tracing pipeline
-    this->rtPipeline.init( { this->rtDescriptorSetLayout.get( ), this->modelDescriptorSetLayout.get( ), this->sceneDescriptorSetLayout.get( ) }, this->settings );
+    result = this->rtPipeline.init( { this->rtDescriptorSetLayout.get( ), this->modelDescriptorSetLayout.get( ), this->sceneDescriptorSetLayout.get( ) }, this->settings );
+    RX_ASSERT_INIT( result );
 
     // Rasterization pipeline
     glm::vec2 extent = { static_cast<float>( this->swapchain.getExtent( ).width ), static_cast<float>( this->swapchain.getExtent( ).height ) };
     this->viewport = vk::Viewport( 0.0f, 0.0f, extent.x, extent.y, 0.0f, 1.0f );
     this->scissor = vk::Rect2D( 0, this->swapchain.getExtent( ) );
-    this->rsPipeline.init( { this->rsDescriptorSetLayout.get( ) }, this->renderPass.get( ), viewport, scissor );
+    result = this->rsPipeline.init( { this->rsDescriptorSetLayout.get( ) }, this->renderPass.get( ), viewport, scissor );
+    RX_ASSERT_INIT( result );
 
     // Ray tracing
     this->rayTracingBuilder.init( );
@@ -137,19 +154,18 @@ namespace RENDERER_NAMESPACE
     this->rayTracingBuilder.createShaderBindingTable( this->rtPipeline.get( ) );
     
     // Swapchain command buffers
-    this->swapchainCommandBuffers.init( this->graphicsCmdPool.get( ), g_swapchainImageCount, vk::CommandBufferUsageFlagBits::eRenderPassContinue );
+    result = this->swapchainCommandBuffers.init( this->graphicsCmdPool.get( ), g_swapchainImageCount, vk::CommandBufferUsageFlagBits::eRenderPassContinue );
+    RX_ASSERT_INIT( result );
 
     // GUI
-    initGui( );
+    result = initGui( );
+    RX_ASSERT_INIT( result );
 
     // Record swapchain command buffers.
     recordSwapchainCommandBuffers( );
 
     // Create fences and semaphores.
     initSyncObjects( );
-
-    // Make sure swapchain images are presentable in case they were not transitioned automatically.
-    this->swapchain.setImageLayout( vk::ImageLayout::eUndefined, vk::ImageLayout::ePresentSrcKHR );
 
     return result;
   }
@@ -356,7 +372,7 @@ namespace RENDERER_NAMESPACE
     RX_SUCCESS( "Swapchain recreation finished." );
   }
 
-  void Api::initRenderPass( )
+  bool Api::initRenderPass( )
   {
     auto colorAttachmentDescription = vk::Helper::getAttachmentDescription( this->surface.getFormat( ) );
 
@@ -397,7 +413,7 @@ namespace RENDERER_NAMESPACE
                                vk::AccessFlagBits::eMemoryRead,                                                      // dstAccessMask
                                vk::DependencyFlagBits::eByRegion };                                                  // dependencyFlags
 
-    this->renderPass.init( { colorAttachmentDescription, depthAttachmentDescription }, { subpassDescription }, subpassDependencies );
+    return this->renderPass.init( { colorAttachmentDescription, depthAttachmentDescription }, { subpassDescription }, subpassDependencies );
   }
 
   /// @todo add handling for missing textures, models etc.
@@ -433,13 +449,17 @@ namespace RENDERER_NAMESPACE
     model->rsDescriptorSets.update( node->rsUniformBuffer.getRaw( ), diffuseIter->second->getImageView( ), diffuseIter->second->getSampler( ) );
   }
 
-  void Api::initGui( )
+  bool Api::initGui( )
   {
     if ( this->gui != nullptr )
     {
-      initRenderPass( );
-      this->gui->init( &this->surface, this->swapchain.getExtent( ), this->swapchain.getImageViews( ) );
+      bool result = initRenderPass( );
+      RX_ASSERT_INIT( result );
+
+      return this->gui->init( &this->surface, this->swapchain.getExtent( ), this->swapchain.getImageViews( ) );
     }
+
+    return true;
   }
 
   void Api::recordSwapchainCommandBuffers( )

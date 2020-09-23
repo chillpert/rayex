@@ -1,7 +1,12 @@
 #include "api/utility/Initializers.hpp"
 #include "api/utility/Helpers.hpp"
+#include "api/utility/Util.hpp"
 #include "api/buffers/CommandBuffer.hpp"
 #include "api/misc/Vertex.hpp"
+
+#define VULKAN_HPP_STORAGE_SHARED
+#define VULKAN_HPP_STORAGE_SHARED_EXPORT
+VULKAN_HPP_DEFAULT_DISPATCH_LOADER_DYNAMIC_STORAGE
 
 namespace vk
 {
@@ -97,7 +102,7 @@ namespace vk
     {
       auto memoryRequirements = RENDERER_NAMESPACE::g_device.getImageMemoryRequirements( image );
 
-      vk::MemoryAllocateInfo allocateInfo( memoryRequirements.size,                                                                             // allocationSize 
+      MemoryAllocateInfo allocateInfo( memoryRequirements.size,                                                                             // allocationSize 
                                            Helper::findMemoryType( RENDERER_NAMESPACE::g_physicalDevice, memoryRequirements.memoryTypeBits, propertyFlags ) );  // memoryTypeIndex
 
       allocateInfo.pNext = pNext;
@@ -114,7 +119,7 @@ namespace vk
     {
       auto memoryRequirements = RENDERER_NAMESPACE::g_device.getImageMemoryRequirements( image );
 
-      vk::MemoryAllocateInfo allocateInfo( memoryRequirements.size,                                                                             // allocationSize 
+      MemoryAllocateInfo allocateInfo( memoryRequirements.size,                                                                             // allocationSize 
                                            Helper::findMemoryType( RENDERER_NAMESPACE::g_physicalDevice, memoryRequirements.memoryTypeBits, propertyFlags ) );  // memoryTypeIndex
 
       allocateInfo.pNext = pNext;
@@ -131,7 +136,7 @@ namespace vk
     {
       auto memoryRequirements = RENDERER_NAMESPACE::g_device.getBufferMemoryRequirements( buffer );
 
-      vk::MemoryAllocateInfo allocateInfo( memoryRequirements.size,                                                                             // allocationSize 
+      MemoryAllocateInfo allocateInfo( memoryRequirements.size,                                                                             // allocationSize 
                                            Helper::findMemoryType( RENDERER_NAMESPACE::g_physicalDevice, memoryRequirements.memoryTypeBits, propertyFlags ) );  // memoryTypeIndex
 
       allocateInfo.pNext = pNext;
@@ -224,10 +229,10 @@ namespace vk
     {
       ComponentMapping components =
       {
-        vk::ComponentSwizzle::eIdentity,
-        vk::ComponentSwizzle::eIdentity,
-        vk::ComponentSwizzle::eIdentity,
-        vk::ComponentSwizzle::eIdentity
+        ComponentSwizzle::eIdentity,
+        ComponentSwizzle::eIdentity,
+        ComponentSwizzle::eIdentity,
+        ComponentSwizzle::eIdentity
       };
 
       ImageSubresourceRange subresourceRange =
@@ -330,7 +335,7 @@ namespace vk
     {
       std::vector<char> source = RENDERER_NAMESPACE::util::parseShader( path );
 
-      vk::ShaderModuleCreateInfo createInfo( { },                                                     // flags
+      ShaderModuleCreateInfo createInfo( { },                                                     // flags
                                              source.size( ),                                          // codeSize
                                              reinterpret_cast< const uint32_t* >( source.data( ) ) ); // pCode
 
@@ -344,7 +349,7 @@ namespace vk
     {
       std::vector<char> source = RENDERER_NAMESPACE::util::parseShader( path );
 
-      vk::ShaderModuleCreateInfo createInfo( { },                                                     // flags
+      ShaderModuleCreateInfo createInfo( { },                                                     // flags
                                              source.size( ),                                          // codeSize
                                              reinterpret_cast< const uint32_t* >( source.data( ) ) ); // pCode
 
@@ -354,7 +359,7 @@ namespace vk
       return shaderModule;
     }
 
-    RENDERER_NAMESPACE::AccelerationStructure initAccelerationStructure( const vk::AccelerationStructureCreateInfoKHR& asCreateInfo )
+    RENDERER_NAMESPACE::AccelerationStructure initAccelerationStructure( const AccelerationStructureCreateInfoKHR& asCreateInfo )
     {
       RENDERER_NAMESPACE::AccelerationStructure resultAs;
       resultAs.as = RENDERER_NAMESPACE::g_device.createAccelerationStructureKHR( asCreateInfo, nullptr );
@@ -364,7 +369,7 @@ namespace vk
       return resultAs;
     }
 
-    bool initPhysicalDevice( PhysicalDevice physicalDevice )
+    bool initPhysicalDevice( PhysicalDevice& physicalDevice )
     {
       auto physicalDevices = RENDERER_NAMESPACE::g_instance.enumeratePhysicalDevices( );
 
@@ -417,7 +422,7 @@ namespace vk
 
       for ( uint32_t index = 0; index < static_cast<uint32_t>( queueFamilies.size( ) ); ++index )
       {
-        if ( queueFamilyProperties[index].queueFlags & vk::QueueFlagBits::eGraphics && !graphicsFamilyIndex.has_value( ) )
+        if ( queueFamilyProperties[index].queueFlags & QueueFlagBits::eGraphics && !graphicsFamilyIndex.has_value( ) )
         {
           if ( RENDERER_NAMESPACE::g_physicalDevice.getSurfaceSupportKHR( index, RENDERER_NAMESPACE::g_surface ) )
             graphicsFamilyIndex = index;
@@ -444,6 +449,144 @@ namespace vk
       RENDERER_NAMESPACE::g_graphicsFamilyIndex = graphicsFamilyIndex.value( );
       RENDERER_NAMESPACE::g_transferFamilyIndex = transferFamilyIndex.value( );
     
+      return true;
+    }
+
+    bool initDevice( UniqueDevice& device, std::vector<const char*>& extensions )
+    {
+      extensions.push_back( VK_KHR_SWAPCHAIN_EXTENSION_NAME );
+
+      if ( !Helper::checkDeviceExtensionSupport( extensions ) )
+        return false;
+
+      std::vector<DeviceQueueCreateInfo> queueCreateInfos;
+
+      const float queuePriority = 1.0f;
+
+      std::vector<uint32_t> queueFamilyIndices = { rx::g_graphicsFamilyIndex, rx::g_transferFamilyIndex };
+
+      uint32_t index = 0;
+      for ( const auto& queueFamilyIndex : queueFamilyIndices )
+      {
+        DeviceQueueCreateInfo queueCreateInfo( { },              // flags 
+                                                   queueFamilyIndex, // queueFamilyIndex
+                                                   1,                // queueCount
+                                                   &queuePriority ); // pQueuePriorties
+
+        queueCreateInfos.push_back( queueCreateInfo );
+
+        ++index;
+      }
+
+      PhysicalDeviceDescriptorIndexingFeatures indexingFeatures;
+      indexingFeatures.runtimeDescriptorArray = VK_TRUE;
+      indexingFeatures.shaderStorageBufferArrayNonUniformIndexing = VK_TRUE;
+
+      PhysicalDeviceRobustness2FeaturesEXT robustness2FeaturesEXT;
+      robustness2FeaturesEXT.nullDescriptor = VK_TRUE;
+      robustness2FeaturesEXT.pNext = &indexingFeatures;
+
+      PhysicalDeviceRayTracingFeaturesKHR rayTracingFeatures;
+      rayTracingFeatures.rayTracing = VK_TRUE;
+      rayTracingFeatures.rayQuery = VK_TRUE;
+      rayTracingFeatures.pNext = &robustness2FeaturesEXT;
+
+      PhysicalDeviceBufferDeviceAddressFeatures bufferDeviceAddressFeatures;
+      bufferDeviceAddressFeatures.bufferDeviceAddress = VK_TRUE;
+      bufferDeviceAddressFeatures.pNext = &rayTracingFeatures;
+
+      PhysicalDeviceFeatures deviceFeatures;
+      deviceFeatures.samplerAnisotropy = VK_TRUE;
+
+      PhysicalDeviceFeatures2 deviceFeatures2 { deviceFeatures };
+      deviceFeatures2.pNext = &bufferDeviceAddressFeatures;
+
+      DeviceCreateInfo createInfo( { },                                                   // flags
+                                       static_cast<uint32_t>( queueCreateInfos.size( ) ), // queueCreateInfoCount
+                                       queueCreateInfos.data( ),                          // pQueueCreateInfos
+                                       0,                                                 // enabledLayerCount
+                                       nullptr,                                           // ppEnabledLayerNames
+                                       static_cast<uint32_t>( extensions.size( ) ),       // enabledExtensionCount
+                                       extensions.data( ),                                // ppEnabledExtensionNames
+                                       nullptr );                                         // pEnabledFeatures - must be NULL because the VkDeviceCreateInfo::pNext chain includes VkPhysicalDeviceFeatures2.
+
+      createInfo.pNext = &deviceFeatures2;
+
+      device = rx::g_physicalDevice.createDeviceUnique( createInfo );
+      rx::g_device = device.get( );
+
+      if ( !device )
+      {
+        RX_ERROR( "Failed to create logical device." );
+        return false;
+      }
+
+      VULKAN_HPP_DEFAULT_DISPATCHER.init( device.get( ) );
+      return true;
+    }
+
+    bool initInstance( UniqueInstance& instance, const std::vector<const char*>& layers, std::vector<const char*>& extensions )
+    {
+      DynamicLoader dl;
+      PFN_vkGetInstanceProcAddr vkGetInstanceProcAddr = dl.getProcAddress<PFN_vkGetInstanceProcAddr>( "vkGetInstanceProcAddr" );
+      VULKAN_HPP_DEFAULT_DISPATCHER.init( vkGetInstanceProcAddr );
+
+      // Retrieve all extensions needed by SDL2.
+      std::vector<const char*> windowExtensions = rx::g_window->getInstanceExtensions( );
+      extensions.insert( extensions.end( ), windowExtensions.begin( ), windowExtensions.end( ) );
+
+      // Check if all extensions and layers needed are available.
+      if ( !Helper::checkInstanceLayersSupport( instance.get( ), layers ) || !Helper::checkInstanceExtensionsSupport( instance.get( ), extensions ) )
+        return false;
+
+      // Start creating the instance.
+      ApplicationInfo appInfo;
+
+      uint32_t apiVersion = vk::enumerateInstanceVersion( );
+
+    #ifdef VK_API_VERSION_1_1
+      if ( apiVersion >= VK_API_VERSION_1_1 )
+      {
+        RX_SUCCESS( "Found Vulkan SDK API version 1.1" );
+        appInfo.apiVersion = VK_API_VERSION_1_1;
+      }
+      else
+      {
+        RX_FATAL( "This application requires Vulkan SDK API Version 1.1 or higher." );
+        return false;
+      }
+    #endif
+
+    #ifdef VK_API_VERSION_1_2
+      if ( apiVersion >= VK_API_VERSION_1_2 )
+      {
+        RX_SUCCESS( "Found Vulkan SDK API version 1.2" );
+        appInfo.apiVersion = VK_API_VERSION_1_2;
+      }
+      else
+      {
+        RX_ERROR( "This application requires Vulkan SDK API Version 1.1 or higher." );
+        return false;
+      }
+    #endif
+
+      InstanceCreateInfo createInfo( { },                                         // flags
+                                     &appInfo,                                    // pApplicationInfo
+                                     static_cast<uint32_t>( layers.size( ) ),     // enabledLayerCount
+                                     layers.data( ),                              // ppEnabledLayerNames
+                                     static_cast<uint32_t>( extensions.size( ) ), // enabledExtensionCount
+                                     extensions.data( ) );                        // ppEnabledExtensionNames
+
+      instance = createInstanceUnique( createInfo );
+      rx::g_instance = instance.get( );
+
+      if ( !instance )
+      {
+        RX_ERROR( "Failed to create instance." );
+        return false;
+      }
+
+      VULKAN_HPP_DEFAULT_DISPATCHER.init( instance.get( ) );
       return true;
     }
   }

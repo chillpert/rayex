@@ -15,10 +15,9 @@ namespace RENDERER_NAMESPACE
   {
   public:
     Settings( );
-    Settings( const std::string& test );
 
     /// @return Returns the maximum recursion depth.
-    inline uint32_t getMaxRecursionDepth( ) { return maxRecursionDepth; }
+    inline uint32_t getMaxRecursionDepth( ) const { return maxRecursionDepth; }
 
     /// Used to set the maximum recursion depth.
     /// @param maxRecursionDepth The new value for the maxium recursion depth.
@@ -26,7 +25,7 @@ namespace RENDERER_NAMESPACE
     void setMaxRecursionDepth( uint32_t maxRecursionDepth, bool refresh = true );
 
     /// @return Returns the clear color.
-    inline const glm::vec4& getClearColor( ) { return clearColor; }
+    inline const glm::vec4& getClearColor( ) const { return clearColor; }
 
     /// Used to changed the clear color.
     /// @param clearColor The new value for the clear color.
@@ -34,7 +33,7 @@ namespace RENDERER_NAMESPACE
     void setClearColor( const glm::vec4& clearColor, bool refresh = true );
 
     /// @return Returns the path to resources.
-    inline const std::string& getResourcePath( ) { return resourcePath; }
+    inline const std::string& getResourcePath( ) const { return resourcePath; }
     
     /// Used to set a path to resources.
     /// @param argc The argc parameter that can be retrieved from the main-function's parameters.
@@ -46,8 +45,7 @@ namespace RENDERER_NAMESPACE
     void setResourcePath( const std::string& path );
 
     bool refresh = false; ///< Keeps track of whether or not the graphics pipeline needs to be re-created.
-  
-    std::string test = "yeet";
+
   private:
     glm::vec4 clearColor = glm::vec4( 0.45f, 0.45f, 0.45f, 1.0f ); ///< Stores the clear color.
     uint32_t maxRecursionDepth = 4; ///< The maximum recursion depth.

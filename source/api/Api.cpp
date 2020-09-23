@@ -143,8 +143,16 @@ namespace RENDERER_NAMESPACE
 
     this->sceneDescriptorSets.update( this->lightsUniformBuffer.getRaw( ), this->storageBuffer.get( ) );
 
-    // Pipeline
-    this->rtPipeline.init( { this->rtDescriptorSetLayout.get( ), this->modelDescriptorSetLayout.get( ), this->sceneDescriptorSetLayout.get( ) }, this->settings->getMaxRecursionDepth( ) );
+    // Ray tracing pipeline
+    this->rtPipeline.init( { this->rtDescriptorSetLayout.get( ), this->modelDescriptorSetLayout.get( ), this->sceneDescriptorSetLayout.get( ) }, this->settings );
+
+    // Rasterization pipeline
+    glm::vec2 extent = { static_cast<float>( this->swapchain.getExtent( ).width ), static_cast<float>( this->swapchain.getExtent( ).height ) };
+
+    this->rsPipeline.init( { this->rsDescriptorSetLayout.get( ) },
+                           this->renderPass.get( ),
+                           vk::Viewport( 0.0f, 0.0f, extent.x, extent.y, 0.0f, 1.0f ),
+                           vk::Rect2D( 0, this->swapchain.getExtent( ) ) );
     
     // Ray tracing
     this->rayTracingBuilder.init( );
@@ -498,77 +506,45 @@ namespace RENDERER_NAMESPACE
     // Create the ray tracing descriptor set layout
     {
       // TLAS
-      vk::DescriptorSetLayoutBinding tlasBinding( 0,                                                                             // binding
-                                                  vk::DescriptorType::eAccelerationStructureKHR,                                 // descriptorType
-                                                  1,                                                                             // descriptorCount
-                                                  vk::ShaderStageFlagBits::eRaygenKHR, // stageFlags
-                                                  nullptr );                                                                     // pImmutableSamplers
-
+      auto tlasBinding = vk::Helper::getDescriptorSetLayoutBinding( 0, vk::DescriptorType::eAccelerationStructureKHR, vk::ShaderStageFlagBits::eRaygenKHR );
       // Output image
-      vk::DescriptorSetLayoutBinding outputImageBinding( 1,                                   // binding
-                                                         vk::DescriptorType::eStorageImage,   // descriptorType
-                                                         1,                                   // descriptorCount
-                                                         vk::ShaderStageFlagBits::eRaygenKHR, // stageFlags
-                                                         nullptr );                           // pImmutableSamplers
-
+      auto outputImageBinding = vk::Helper::getDescriptorSetLayoutBinding( 1, vk::DescriptorType::eStorageImage, vk::ShaderStageFlagBits::eRaygenKHR );
       // Camera uniform buffer
-      vk::DescriptorSetLayoutBinding cameraUniformBufferBinding( 2,                                   // binding
-                                                                 vk::DescriptorType::eUniformBuffer,  // descriptorType
-                                                                 1,                                   // descriptorCount
-                                                                 vk::ShaderStageFlagBits::eRaygenKHR, // stageFlags
-                                                                 nullptr );                           // pImmutableSamplers
+      auto camUboBinding = vk::Helper::getDescriptorSetLayoutBinding( 2, vk::DescriptorType::eUniformBuffer, vk::ShaderStageFlagBits::eRaygenKHR );
 
-      std::vector<vk::DescriptorSetLayoutBinding> rtBindings = { tlasBinding, outputImageBinding, cameraUniformBufferBinding };
-      this->rtDescriptorSetLayout.init( rtBindings );
+      this->rtDescriptorSetLayout.init( { tlasBinding, outputImageBinding, camUboBinding } );
     }
 
     // Create the descriptor set layout for models
     {
-      /*
       // Texture image
-      vk::DescriptorSetLayoutBinding textureBinding( 0,                                                                            // binding
-                                                     vk::DescriptorType::eCombinedImageSampler,                                    // descriptorType
-                                                     1,                                                                            // descriptorCount
-                                                     vk::ShaderStageFlagBits::eFragment | vk::ShaderStageFlagBits::eClosestHitKHR, // stageFlags
-                                                     nullptr );                                                                    // pImmutableSamplers
-      */
-
+      auto textureBinding = vk::Helper::getDescriptorSetLayoutBinding( 0, vk::DescriptorType::eCombinedImageSampler, vk::ShaderStageFlagBits::eClosestHitKHR );
       // Vertex buffer
-      vk::DescriptorSetLayoutBinding vertexBufferBinding( 0,                                       // binding
-                                                          vk::DescriptorType::eStorageBuffer,      // descriptorType
-                                                          1,                                       // descriptorCount
-                                                          vk::ShaderStageFlagBits::eClosestHitKHR, // stageFlags
-                                                          nullptr );                               // pImmutableSamplers
+      auto vertexBufferBinding = vk::Helper::getDescriptorSetLayoutBinding( 0, vk::DescriptorType::eStorageBuffer, vk::ShaderStageFlagBits::eClosestHitKHR );
+      // Index buffer                                 
+      auto indexBufferBinding = vk::Helper::getDescriptorSetLayoutBinding( 1, vk::DescriptorType::eStorageBuffer, vk::ShaderStageFlagBits::eClosestHitKHR );
 
-      // Index buffer
-      vk::DescriptorSetLayoutBinding indexBufferBinding( 1,                                       // binding
-                                                         vk::DescriptorType::eStorageBuffer,      // descriptorType
-                                                         1,                                       // descriptorCount
-                                                         vk::ShaderStageFlagBits::eClosestHitKHR, // stageFlags
-                                                         nullptr );                               // pImmutableSamplers                                         
-
-      std::vector<vk::DescriptorSetLayoutBinding> bindings = { /*textureBinding,*/ vertexBufferBinding, indexBufferBinding };
-      this->modelDescriptorSetLayout.init( bindings );
+      this->modelDescriptorSetLayout.init( { /*textureBinding,*/ vertexBufferBinding, indexBufferBinding } );
     }
     
     // Scene descriptor set layout.
     {
       // Directional light nodes uniform buffer
-      vk::DescriptorSetLayoutBinding dirLightNodeUniformBuffer( 0,                                       // binding
-                                                                vk::DescriptorType::eUniformBuffer,      // descriptorType
-                                                                1,                                       // descriptorCount
-                                                                vk::ShaderStageFlagBits::eClosestHitKHR, // stageFlags
-                                                                nullptr );                               // pImmutableSamplers
-
+      auto dirLightsUboBinding = vk::Helper::getDescriptorSetLayoutBinding( 0, vk::DescriptorType::eUniformBuffer, vk::ShaderStageFlagBits::eClosestHitKHR );
       // Scene description buffer
-      vk::DescriptorSetLayoutBinding sceneDescriptionBinding( 1,                                       // binding
-                                                              vk::DescriptorType::eStorageBuffer,      // descriptorType
-                                                              1,                                       // descriptorCount
-                                                              vk::ShaderStageFlagBits::eClosestHitKHR, // stageFlags
-                                                              nullptr );                               // pImmutableSamplers        
+      auto sceneDescriptionBinding = vk::Helper::getDescriptorSetLayoutBinding( 1, vk::DescriptorType::eStorageBuffer, vk::ShaderStageFlagBits::eClosestHitKHR );
 
-      std::vector<vk::DescriptorSetLayoutBinding> bindings = { dirLightNodeUniformBuffer, sceneDescriptionBinding };
-      this->sceneDescriptorSetLayout.init( bindings );
+      this->sceneDescriptorSetLayout.init( { dirLightsUboBinding, sceneDescriptionBinding } );
+    }
+
+    // Rasterization descriptor set layout.
+    {
+      // Uniform buffer binding for the vertex shader.
+      auto uboBinding = vk::Helper::getDescriptorSetLayoutBinding( 0, vk::DescriptorType::eUniformBuffer, vk::ShaderStageFlagBits::eVertex );
+      // Texture image
+      auto textureBinding = vk::Helper::getDescriptorSetLayoutBinding( 1, vk::DescriptorType::eCombinedImageSampler, vk::ShaderStageFlagBits::eFragment );
+
+      this->rsDescriptorSetLayout.init( { uboBinding, textureBinding } );
     }
   }
 }

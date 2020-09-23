@@ -103,6 +103,13 @@ namespace vk
     /// @param depthFormat The depth format.
     /// @return Returns the completed depth attachment description.
     AttachmentDescription getDepthAttachmentDescription( Format depthFormat );
+
+    /// Simplifies the process of setting up a descriptor set layout binding.
+    /// @binding The binding in the shader.
+    /// @descriptorType The type of the descriptor.
+    /// @stageFlags The type of shader in which the descriptor can be used.
+    /// @return Returns the descriptor set layout binding.
+    DescriptorSetLayoutBinding getDescriptorSetLayoutBinding( uint32_t binding, DescriptorType descriptorType, ShaderStageFlags stageFlags );
   }
 }
 

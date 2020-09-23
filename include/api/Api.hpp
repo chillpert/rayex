@@ -195,6 +195,11 @@ namespace RENDERER_NAMESPACE
     vk::UniqueDescriptorPool sceneDescriptorPool;
     DescriptorSet sceneDescriptorSets;
 
+    // Descriptors for rasterization shaders.
+    DescriptorSetLayout rsDescriptorSetLayout;
+    vk::UniqueDescriptorPool rsDescriptorPool;
+    DescriptorSet rsDescriptorSets;
+
     CameraUbo cameraUbo;
     UniformBuffer cameraUniformBuffer;
     UniformBuffer lightsUniformBuffer;
@@ -214,6 +219,7 @@ namespace RENDERER_NAMESPACE
 
     Swapchain swapchain;
     RenderPass renderPass;
+    Pipeline rsPipeline;
     Pipeline rtPipeline;
     CommandBuffer swapchainCommandBuffers;
     

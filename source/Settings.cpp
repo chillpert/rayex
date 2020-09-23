@@ -10,9 +10,6 @@ namespace RENDERER_NAMESPACE
     RX_INFO( "Using default path as path to resources: ", this->resourcePath );
   }
 
-  Settings::Settings( const std::string& test ) :
-    test( test ) {  }
-
   void Settings::setMaxRecursionDepth( uint32_t maxRecursionDepth, bool refresh )
   {
     this->maxRecursionDepth = maxRecursionDepth;

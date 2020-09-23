@@ -32,12 +32,12 @@ namespace RENDERER_NAMESPACE
 
   Blas RayTracingBuilder::modelToBlas( const std::shared_ptr<Model> model ) const
   {
-    vk::AccelerationStructureCreateGeometryTypeInfoKHR asCreate( vk::GeometryTypeKHR::eTriangles,       // geometryType
+    vk::AccelerationStructureCreateGeometryTypeInfoKHR asCreate( vk::GeometryTypeKHR::eTriangles,     // geometryType
                                                                  model->indexBuffer.getCount( ) / 3,  // maxPrimitiveCount
                                                                  model->indexBuffer.getType( ),       // indexType
                                                                  model->vertexBuffer.getCount( ),     // maxVertexCount
-                                                                 Vertex::getVertexFormat( ),            // vertexFormat
-                                                                 VK_FALSE );                            // allowsTransforms
+                                                                 Vertex::getVertexPositionFormat( ),  // vertexFormat
+                                                                 VK_FALSE );                          // allowsTransforms
 
     vk::DeviceAddress vertexAddress = g_device.getBufferAddress( { model->vertexBuffer.get( ) } );
     vk::DeviceAddress indexAddress = g_device.getBufferAddress( { model->indexBuffer.get( ) } );

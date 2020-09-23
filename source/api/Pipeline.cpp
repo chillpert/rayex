@@ -7,13 +7,133 @@
 
 namespace RENDERER_NAMESPACE
 {
-  Pipeline::Pipeline( const std::vector<vk::DescriptorSetLayout>& descriptorSetLayouts, uint32_t maxRecursionDepth, bool initialize )
+  void Pipeline::init( const std::vector<vk::DescriptorSetLayout>& descriptorSetLayouts, vk::RenderPass renderPass, vk::Viewport viewport, vk::Rect2D scissor )
   {
-    if ( initialize )
-      init( descriptorSetLayouts, maxRecursionDepth );
+    // TODO: this has to be more adjustable.
+    auto bindingDescription = Vertex::getBindingDescriptions( );
+    auto attributeDescriptions = Vertex::getAttributeDescriptions( );
+
+    vk::PipelineVertexInputStateCreateInfo vertexInputInfo( { },                                                    // flags
+                                                            static_cast<uint32_t>( bindingDescription.size( ) ),    // vertexBindingDescriptionCount
+                                                            bindingDescription.data( ),                             // pVertexBindingDescriptions
+                                                            static_cast<uint32_t>( attributeDescriptions.size( ) ), // vertexAttributeDescriptionCount
+                                                            attributeDescriptions.data( ) );                        // pVertexAttributeDescriptions
+
+    vk::PipelineInputAssemblyStateCreateInfo inputAssembly( { },                                  // flags
+                                                            vk::PrimitiveTopology::eTriangleList, // topology
+                                                            VK_FALSE );                           // primitiveRestartEnable
+
+    vk::PipelineViewportStateCreateInfo viewportState( { },        // flags 
+                                                       1,          // viewportCount
+                                                       &viewport,  // pViewports
+                                                       1,          // scissorCount
+                                                       &scissor ); // pScissors
+
+    vk::PipelineRasterizationStateCreateInfo rasterizer( { },                              // flags
+                                                         VK_FALSE,                         // depthClampEnable
+                                                         VK_FALSE,                         // rasterizerDiscardEnable
+                                                         vk::PolygonMode::eFill,           // polygonMode
+                                                         vk::CullModeFlagBits::eBack,      // cullMode
+                                                         vk::FrontFace::eCounterClockwise, // frontFace
+                                                         VK_FALSE,                         // depthBiasEnable
+                                                         0.0f,                             // depthBiasConstantFactor
+                                                         0.0f,                             // depthBiasClamp
+                                                         0.0f,                             // depthBiasSlopeFactor
+                                                         1.0f );                           // lineWidth
+
+    vk::PipelineMultisampleStateCreateInfo multisampling( { },                         // flags
+                                                          vk::SampleCountFlagBits::e1, // rasterizationSamples
+                                                          VK_FALSE,                    // sampleShadingEnable
+                                                          0.0f,                        // minSampleShading
+                                                          nullptr,                     // pSampleMask
+                                                          VK_FALSE,                    // alphaToCoverageEnable
+                                                          VK_FALSE );                  // alphaToOneEnable
+
+    vk::PipelineDepthStencilStateCreateInfo depthStencil( { },                  // flags
+                                                          VK_TRUE,              // depthTestEnable
+                                                          VK_TRUE,              // depthWriteEnable
+                                                          vk::CompareOp::eLess, // depthCompareOp
+                                                          VK_FALSE,             // depthBoundsTestEnable
+                                                          VK_FALSE,             // stencilTestEnable
+                                                          { },                  // front
+                                                          { },                  // back
+                                                          0.0f,                 // minDepthBounds
+                                                          0.0f );               // maxDepthBounds
+
+    vk::PipelineColorBlendAttachmentState colorBlendAttachment( VK_FALSE,                                                                                                                            // blendEnable
+                                                                { },                                                                                                                                 // srcColorBlendFactor
+                                                                { },                                                                                                                                 // dstColorBlendFactor
+                                                                { },                                                                                                                                 // colorBlendOp
+                                                                { },                                                                                                                                 // srcAlphaBlendFactor
+                                                                { },                                                                                                                                 // dstAlphaBlendFactor
+                                                                { },                                                                                                                                 // alphaBlendOp
+                                                                vk::ColorComponentFlagBits::eR | vk::ColorComponentFlagBits::eG | vk::ColorComponentFlagBits::eB | vk::ColorComponentFlagBits::eA ); // colorWriteMask
+
+    vk::PipelineColorBlendStateCreateInfo colorBlending( { },                          // flags
+                                                         VK_FALSE,                     // logicOpEnable
+                                                         vk::LogicOp::eCopy,           // logicOp)
+                                                         1,                            // attachmentCount
+                                                         &colorBlendAttachment,        // pAttachments
+                                                         { 0.0f, 0.0f, 0.0f, 0.0f } ); // blendConstants
+
+    std::array<vk::DynamicState, 2> dynamicStates { vk::DynamicState::eViewport, vk::DynamicState::eScissor };
+
+    vk::PipelineDynamicStateCreateInfo dynamicStateInfo( { },                                            // flags
+                                                         static_cast<uint32_t>( dynamicStates.size( ) ), // dynamicStateCount
+                                                         dynamicStates.data( ) );                        // pDynamicStates
+
+
+    uint32_t pushConstantSize = sizeof( float ) + sizeof( glm::vec3 );
+    RX_ASSERT( g_physicalDeviceLimits.maxPushConstantsSize >= pushConstantSize, "Push constant size is exceeding supported size." );
+
+
+    vk::PushConstantRange pushConstantRange( vk::ShaderStageFlagBits::eFragment, // stageFlags
+                                             0,                                  // offset
+                                             pushConstantSize );                 // size
+
+    std::array<vk::PushConstantRange, 1> pushConstantRanges = { pushConstantRange };
+
+    vk::PipelineLayoutCreateInfo pipelineLayoutInfo( { },                                                   // flags
+                                                     static_cast<uint32_t>( descriptorSetLayouts.size( ) ), // setLayoutCount
+                                                     descriptorSetLayouts.data( ),                          // pSetLayouts
+                                                     static_cast<uint32_t>( pushConstantRanges.size( ) ),   // pushConstantRangeCount
+                                                     pushConstantRanges.data( ) );                          // pPushConstantRanges
+
+    this->layout = g_device.createPipelineLayoutUnique( pipelineLayoutInfo );
+    if ( !this->layout )
+      RX_ERROR( "Failed to create pipeline layout." );
+
+    auto vs = vk::Initializer::createShaderModuleUnique( "shaders/simple3D.vert" );
+    auto fs = vk::Initializer::createShaderModuleUnique( "shaders/simple3D.frag" );
+
+    std::array<vk::PipelineShaderStageCreateInfo, 2> shaderStages;
+    shaderStages[0] = vk::Helper::getPipelineShaderStageCreateInfo( vk::ShaderStageFlagBits::eVertex, vs.get( ) );
+    shaderStages[1] = vk::Helper::getPipelineShaderStageCreateInfo( vk::ShaderStageFlagBits::eFragment, fs.get( ) );
+
+    vk::GraphicsPipelineCreateInfo createInfo( { },                                           // flags
+                                               static_cast<uint32_t>( shaderStages.size( ) ), // stageCount
+                                               shaderStages.data( ),                          // pStages
+                                               &vertexInputInfo,                              // pVertexInputState
+                                               &inputAssembly,                                // pInputAssemblyState
+                                               nullptr,                                       // pTessellationState
+                                               &viewportState,                                // pViewportStage
+                                               &rasterizer,                                   // pRasterizationState
+                                               &multisampling,                                // pMultisampleState
+                                               &depthStencil,                                 // pDepthStencilState
+                                               &colorBlending,                                // pColorBlendState
+                                               &dynamicStateInfo,                             // pDynamicState
+                                               layout.get( ),                                 // layout
+                                               renderPass,                                    // renderPass
+                                               0,                                             // subpass
+                                               nullptr,                                       // basePipelineHandle
+                                               0 );                                           // basePipelineIndex
+
+    this->pipeline = g_device.createGraphicsPipelineUnique( nullptr, createInfo, nullptr );
+    if ( !this->pipeline )
+      RX_ERROR( "Failed to create graphics pipeline." );
   }
 
-  void Pipeline::init( const std::vector<vk::DescriptorSetLayout>& descriptorSetLayouts, uint32_t maxRecursionDepth )
+  void Pipeline::init( const std::vector<vk::DescriptorSetLayout>& descriptorSetLayouts, const Settings* const settings )
   {
     auto rgen = vk::Initializer::createShaderModuleUnique( "shaders/raytrace.rgen" );
     auto miss = vk::Initializer::createShaderModuleUnique( "shaders/raytrace.rmiss" );
@@ -71,7 +191,7 @@ namespace RENDERER_NAMESPACE
                                                     shaderStages.data( ),                          // pStages
                                                     static_cast<uint32_t>( groups.size( ) ),       // groupCount
                                                     groups.data( ),                                // pGroups
-                                                    maxRecursionDepth,                             // maxRecursionDepth
+                                                    settings->getMaxRecursionDepth( ),             // maxRecursionDepth
                                                     0,                                             // libraries
                                                     nullptr,                                       // pLibraryInterface
                                                     this->layout.get( ),                           // layout

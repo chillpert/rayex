@@ -280,6 +280,15 @@ namespace vk
                                     ImageLayout::eUndefined,                       // initialLayout
                                     ImageLayout::eDepthStencilAttachmentOptimal ); // finalLayout    
     }
+
+    DescriptorSetLayoutBinding getDescriptorSetLayoutBinding( uint32_t binding, DescriptorType descriptorType, ShaderStageFlags stageFlags )
+    {
+      return DescriptorSetLayoutBinding( binding,        // binding
+                                         descriptorType, // descriptorType
+                                         1,              // descriptorCount
+                                         stageFlags,     // stageFlags
+                                         nullptr );      // pImmutableSamplers
+    }
   }
 }
 

@@ -10,14 +10,6 @@ namespace RENDERER_NAMESPACE
   class Surface
   {
   public:
-    Surface( ) = default;
-
-    /// @param format The preferred surface format.
-    /// @param colorSpace The preferred color space.
-    /// @param presentMode The preferred present mode.
-    /// @param initialize If true, the surface object will be initialized right away without an additional call to init().
-    Surface( vk::Format format, vk::ColorSpaceKHR colorSpace, vk::PresentModeKHR presentMode, bool initialize = true );
-
     /// Calls destroy().
     ~Surface( );
 
@@ -35,7 +27,8 @@ namespace RENDERER_NAMESPACE
 
     /// Initializes the Vulkan surface object.
     /// @note If any of the specified format, color space and present mode are not available the function will fall back to settings that are guaranteed to be supported.
-    void init( );
+    /// @return Returns true if initialization was successful.
+    bool init( );
 
     /// Checks if the preferred settings for format, color space and present mode are available. If not, the function will set them to some fallback values.
     /// @warning Must be called right after the enumeration of the physical device.

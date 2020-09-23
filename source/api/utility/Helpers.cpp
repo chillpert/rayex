@@ -1,6 +1,7 @@
 #include "api/utility/Helpers.hpp"
 #include "api/misc/Components.hpp"
 #include "api/buffers/CommandBuffer.hpp"
+#include "api/Queues.hpp"
 
 namespace vk
 {
@@ -255,17 +256,17 @@ namespace vk
       return { barrier, srcStageMask, dstStageMask };
     }
 
-    AttachmentDescription getAttachmentDescription( Format surfaceFormat, bool guiEnabled )
+    AttachmentDescription getAttachmentDescription( Format surfaceFormat )
     {
-      return vk::AttachmentDescription( { },                                                                               // flags
-                                        surfaceFormat,                                                                     // format
-                                        SampleCountFlagBits::e1,                                                           // samples
-                                        AttachmentLoadOp::eClear,                                                          // loadOp
-                                        AttachmentStoreOp::eStore,                                                         // storeOp
-                                        AttachmentLoadOp::eDontCare,                                                       // stencilLoadOp
-                                        AttachmentStoreOp::eDontCare,                                                      // stencilStoreOp
-                                        ImageLayout::eUndefined,                                                           // initialLayout
-                                        guiEnabled ? ImageLayout::eColorAttachmentOptimal : ImageLayout::ePresentSrcKHR ); // finalLayout  
+      return AttachmentDescription( { },                           // flags
+                                        surfaceFormat,                 // format
+                                        SampleCountFlagBits::e1,       // samples
+                                        AttachmentLoadOp::eClear,      // loadOp
+                                        AttachmentStoreOp::eStore,     // storeOp
+                                        AttachmentLoadOp::eDontCare,   // stencilLoadOp
+                                        AttachmentStoreOp::eDontCare,  // stencilStoreOp
+                                        ImageLayout::eUndefined,       // initialLayout
+                                        ImageLayout::ePresentSrcKHR ); // finalLayout  
     }
 
     AttachmentDescription getDepthAttachmentDescription( Format depthFormat )
@@ -288,6 +289,54 @@ namespace vk
                                          1,              // descriptorCount
                                          stageFlags,     // stageFlags
                                          nullptr );      // pImmutableSamplers
+    }
+
+    std::pair<unsigned int, std::string> evaluate( PhysicalDevice physicalDevice )
+    {
+      unsigned int score = 0u;
+
+      // Check the device's features and properties.
+      auto props = physicalDevice.getProperties( );
+      auto feats = physicalDevice.getFeatures( );
+
+      PhysicalDeviceRayTracingFeaturesKHR rayTracingFeatures;
+      PhysicalDeviceFeatures2 features2;
+      features2.setPNext( &rayTracingFeatures );
+
+      physicalDevice.getFeatures2( &features2 );
+
+      std::string deviceName = props.deviceName;
+
+      if ( rayTracingFeatures.rayTracing == VK_FALSE || rayTracingFeatures.rayQuery == VK_FALSE )
+        return { 0u, deviceName };
+
+      if ( props.deviceType == PhysicalDeviceType::eDiscreteGpu )
+        score += 100u;
+      else
+        return { 0u, deviceName };
+
+    #ifdef VK_API_VERSION_1_2
+      if ( props.apiVersion >= VK_API_VERSION_1_2 )
+        score += 10u;
+      else
+        return { 0u, deviceName };
+    #endif
+
+      if ( deviceName.find( "RTX" ) != std::string::npos )
+        score += 100u;
+
+      if ( rx::Queues::isComplete( physicalDevice ) )
+        score += 100u;
+      else
+        return { 0u, deviceName };
+
+      if ( rx::Queues::hasDedicatedTransferQueueFamily( physicalDevice ) )
+        score += 25;
+
+      // TODO: add more hardware specific evaulation (those that are benefitial for path tracing)
+      // https://www.khronos.org/registry/vulkan/specs/1.2-extensions/html/vkspec.html#features
+
+      return { score, deviceName };
     }
   }
 }
@@ -349,6 +398,11 @@ namespace RENDERER_NAMESPACE
       file.close( );
 
       return buffer;
+    }
+
+    std::array<float, 4> vec4toArray( const glm::vec4& vec )
+    {
+      return { vec.x, vec.y, vec.z, vec.w };
     }
   }
 }

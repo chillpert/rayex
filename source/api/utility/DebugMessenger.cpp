@@ -4,19 +4,13 @@
 
 namespace RENDERER_NAMESPACE
 {
-  DebugMessenger::DebugMessenger( vk::DebugUtilsMessageSeverityFlagsEXT messageSeverity, vk::DebugUtilsMessageTypeFlagsEXT messageType, bool initialize )
-  {
-    if ( initialize )
-      init( messageSeverity, messageType );
-  }
-
   DebugMessenger::~DebugMessenger( )
   {
     if ( this->debugMessenger )
       destroy( );
   }
 
-  void DebugMessenger::init( vk::DebugUtilsMessageSeverityFlagsEXT messageSeverity, vk::DebugUtilsMessageTypeFlagsEXT messageType )
+  bool DebugMessenger::init( vk::DebugUtilsMessageSeverityFlagsEXT messageSeverity, vk::DebugUtilsMessageTypeFlagsEXT messageType )
   {
   #ifdef RX_DEBUG
     vk::DebugUtilsMessengerCreateInfoEXT createInfo( { },
@@ -27,7 +21,15 @@ namespace RENDERER_NAMESPACE
 
     this->debugMessenger = g_instance.createDebugUtilsMessengerEXT( createInfo );
     RX_ASSERT( this->debugMessenger, "Failed to create debug messenger." );
+
+    if ( !this->debugMessenger )
+    {
+      RX_ERROR( "Failed to create debug messenger." );
+      return false;
+    }
+
   #endif
+    return true;
   }
 
   void DebugMessenger::destroy( )

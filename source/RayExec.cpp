@@ -26,13 +26,13 @@ namespace RENDERER_NAMESPACE
     api( this->window, this->camera )
   { }
 
-  void RayExec::init( )
+  void RayExec::init(  )
   {
     this->api.settings = &this->settings;
 
     if ( this->settings.getResourcePath( ).empty( ) )
     {
-      RX_WARN( "Path to resources was not set. Use Settings::setResourcePath(argc, argv) or Settings::setResourcePath(path) to set it." );
+      RX_WARN( "Path to resources was not set. Use Settings::setResourcePath(argc, argv) or Settings::setResourcePath(path) to set it. Closing application." );
       this->running = false;
       return;
     }
@@ -50,24 +50,26 @@ namespace RENDERER_NAMESPACE
     std::filesystem::copy( RX_RESOURCES_PATH "textures", RX_PATH_TO_LIBRARY "textures", std::filesystem::copy_options::overwrite_existing | std::filesystem::copy_options::recursive );
   #endif
 
-    this->window->init( );
-    this->api.init( );
-
-    this->initialized = true;
+    this->initialized = this->window->init( );
+    this->initialized = this->api.init( );
   }
 
   void RayExec::run( )
   {
-    if ( !this->running || !this->initialized )
+    if ( !this->running || !this->initialized ) 
       return;
 
     this->running = this->window->update( );
     this->camera->update( );
 
-    if ( !this->running || !this->initialized )
+    if ( !this->running )
       return;
 
-    this->api.render( );
+    this->running = this->api.render( );
+
+    if ( !this->running ) 
+      return;
+
     this->api.update( );
   }
 

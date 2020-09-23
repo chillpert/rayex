@@ -77,16 +77,17 @@ public:
     Window( width, height, title, flags )
   { }
 
-  void init( ) override
+  bool init( ) override
   {
-    Window::init( );
+    if ( !Window::init( ) ) return false;
 
     SDL_SetRelativeMouseMode( SDL_FALSE );
+    return true;
   }
 
   bool update( ) override
   {
-    Window::update( );
+    if ( !Window::update( ) ) return false;
 
     this->camera->setSize( this->width, this->height );
 

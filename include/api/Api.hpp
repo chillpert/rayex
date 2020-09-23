@@ -7,7 +7,6 @@
 #include "api/Surface.hpp"
 #include "api/Pipeline.hpp"
 #include "api/RenderPass.hpp"
-#include "api/devices/PhysicalDevice.hpp"
 #include "api/devices/Device.hpp"
 #include "api/Swapchain.hpp"
 #include "api/image/Texture.hpp"
@@ -50,10 +49,10 @@ namespace RENDERER_NAMESPACE
     RX_API void setGui( const std::shared_ptr<Gui> gui, bool initialize = false );
 
     /// Initializes all API components.
-    void init( );
+    bool init( );
 
     /// Used to update and upload uniform buffers.
-    bool update( );
+    void update( );
 
     /// Retrieves an image from the swapchain and presents it.
     bool render( );
@@ -156,7 +155,7 @@ namespace RENDERER_NAMESPACE
     void initSyncObjects( );
 
     /// Creates a descriptor set layout for each the ray tracing components and the models.
-    void initDescriptorSetLayouts( );
+    void initDescriptorSets( );
 
     /// Recreates the swapchain and re-records the swapchain command buffers.
     void recreateSwapchain( );
@@ -229,7 +228,7 @@ namespace RENDERER_NAMESPACE
     std::shared_ptr<Gui> gui = nullptr;
 
     // No destruction necessary for following members:
-    PhysicalDevice physicalDevice;
+    vk::PhysicalDevice physicalDevice;
     std::vector<vk::Fence> imagesInFlight;
 
     RayTracingBuilder rayTracingBuilder;

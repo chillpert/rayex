@@ -4,28 +4,23 @@
 
 namespace RENDERER_NAMESPACE
 {
-  Surface::Surface( vk::Format format, vk::ColorSpaceKHR colorSpace, vk::PresentModeKHR presentMode, bool initialize ) :
-    format( format ),
-    colorSpace( colorSpace ),
-    presentMode( presentMode ),
-    capabilities( 0 )
-  {
-    if ( initialize )
-      init( );
-  }
-
   Surface::~Surface( )
   {
     destroy( );
   }
 
-  void Surface::init( )
+  bool Surface::init( )
   {
     this->surface = g_window->createSurface( g_instance );
     g_surface = this->surface;
 
     if ( !this->surface )
+    {
       RX_ERROR( "Failed to create surface." );
+      return false;
+    }
+
+    return true;
   }
 
   void Surface::checkSettingSupport( )

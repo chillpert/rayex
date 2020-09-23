@@ -7,13 +7,7 @@ VULKAN_HPP_DEFAULT_DISPATCH_LOADER_DYNAMIC_STORAGE
 
 namespace RENDERER_NAMESPACE
 {
-  Instance::Instance( const std::vector<const char*>& layers, std::vector<const char*>& extensions, bool initialize )
-  {
-    if ( initialize )
-      init( layers, extensions );
-  }
-
-  void Instance::init( const std::vector<const char*>& layers, std::vector<const char*>& extensions )
+  bool Instance::init( const std::vector<const char*>& layers, std::vector<const char*>& extensions )
   {
     vk::DynamicLoader dl;
     PFN_vkGetInstanceProcAddr vkGetInstanceProcAddr = dl.getProcAddress<PFN_vkGetInstanceProcAddr>( "vkGetInstanceProcAddr" );
@@ -42,9 +36,13 @@ namespace RENDERER_NAMESPACE
     g_instance = this->instance.get( );
 
     if ( !this->instance )
-      RX_FATAL( "Failed to create instance." );
+    {
+      RX_ERROR( "Failed to create instance." );
+      return false;
+    }
 
     VULKAN_HPP_DEFAULT_DISPATCHER.init( this->instance.get( ) );
+    return true;
   }
 
   void Instance::checkLayersSupport( const std::vector<const char*>& layers )

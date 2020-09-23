@@ -93,7 +93,7 @@ namespace RENDERER_NAMESPACE
 
   void Gui::initCommandPool( )
   {
-    this->commandPool = vk::Initializer::createCommandPoolUnique( g_graphicsFamilyIndex, vk::CommandPoolCreateFlagBits::eResetCommandBuffer );
+    this->commandPool = vk::Initializer::initCommandPoolUnique( g_graphicsFamilyIndex, vk::CommandPoolCreateFlagBits::eResetCommandBuffer );
   }
 
   void Gui::initDescriptorPool( )
@@ -113,7 +113,7 @@ namespace RENDERER_NAMESPACE
       { vk::DescriptorType::eInputAttachment, 1000 }
     };
 
-    this->descriptorPool = vk::Initializer::createDescriptorPoolUnique( poolSizes, g_swapchainImageCount );
+    this->descriptorPool = vk::Initializer::initDescriptorPoolUnique( poolSizes, g_swapchainImageCount );
   }
 
   void Gui::initRenderPass( const Surface* const surface )
@@ -183,7 +183,7 @@ namespace RENDERER_NAMESPACE
     this->framebuffers.resize( static_cast<uint32_t>( swapchainImageViews.size( ) ) );
     for ( size_t i = 0; i < this->framebuffers.size( ); ++i )
     {
-      this->framebuffers[i] = vk::Initializer::createFramebufferUnique( { swapchainImageViews[i] }, this->renderPass.get( ), this->swapchainImageExtent );
+      this->framebuffers[i] = vk::Initializer::initFramebufferUnique( { swapchainImageViews[i] }, this->renderPass.get( ), this->swapchainImageExtent );
     }
   }
 }

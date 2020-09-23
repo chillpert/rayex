@@ -12,18 +12,14 @@ namespace RENDERER_NAMESPACE
   public:
     DebugMessenger( ) = default;
     
-    /// @param messageSeverity Specifies the type of severity of messages that will be logged.
-    /// @param messageType Specifies the types of messages that will be logged.
-    /// @param initialize If true, the debug messenger will be initialized right away without an additional call to init().
-    DebugMessenger( vk::DebugUtilsMessageSeverityFlagsEXT messageSeverity, vk::DebugUtilsMessageTypeFlagsEXT messageType, bool initialize = true );
-
     /// Calls destroy().
     ~DebugMessenger( );
 
     /// Creates the debug messenger with the given properties.
     /// @param messageSeverity - Specifies the type of severity of messages that will be logged.
     /// @param messageType - Specifies the types of messages that will be logged.
-    void init( vk::DebugUtilsMessageSeverityFlagsEXT messageSeverity, vk::DebugUtilsMessageTypeFlagsEXT messageType );
+    /// @return Returns true if initialization was successful.
+    bool init( vk::DebugUtilsMessageSeverityFlagsEXT messageSeverity, vk::DebugUtilsMessageTypeFlagsEXT messageType );
 
   private:
     /// Destroys the debug messenger.

@@ -95,9 +95,8 @@ namespace vk
 
     /// Simplifies the process of setting up an attachment description for a render pass.
     /// @param surfaceFormat The surface's format.
-    /// @param guiEnabled If the GUI is enabled the final layout will be changed.
     /// @return Returns the completed attachment description.
-    AttachmentDescription getAttachmentDescription( Format surfaceFormat, bool guiEnabled );
+    AttachmentDescription getAttachmentDescription( Format surfaceFormat );
 
     /// Simplifies the process of setting up a depth attachment description for a render pass.
     /// @param depthFormat The depth format.
@@ -110,6 +109,12 @@ namespace vk
     /// @stageFlags The type of shader in which the descriptor can be used.
     /// @return Returns the descriptor set layout binding.
     DescriptorSetLayoutBinding getDescriptorSetLayoutBinding( uint32_t binding, DescriptorType descriptorType, ShaderStageFlags stageFlags );
+
+    /// Scores a given physical device (GPU).
+    /// @param physicalDevice The physical device to score.
+    /// @return Returns a pair consisting out of the determined score and the name of the physical device.
+    /// @note RTX hardware surpasses any other GPU.
+    std::pair<unsigned int, std::string> evaluate( vk::PhysicalDevice physicalDevice );
   }
 }
 
@@ -137,6 +142,8 @@ namespace RENDERER_NAMESPACE
 
       return false;
     }
+
+    std::array<float, 4> vec4toArray( const glm::vec4& vec );
   }
 }
 

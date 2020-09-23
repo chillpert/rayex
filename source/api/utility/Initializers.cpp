@@ -6,7 +6,7 @@ namespace vk
 {
   namespace Initializer
   {
-    UniqueFence createFenceUnique( FenceCreateFlags flags )
+    UniqueFence initFenceUnique( FenceCreateFlags flags )
     {
       FenceCreateInfo createInfo( flags );
 
@@ -16,7 +16,7 @@ namespace vk
       return fence;
     }
 
-    Fence createFence( FenceCreateFlags flags )
+    Fence initFence( FenceCreateFlags flags )
     {
       FenceCreateInfo createInfo( flags );
 
@@ -26,7 +26,7 @@ namespace vk
       return fence;
     }
 
-    UniqueSemaphore createSemaphoreUnique( SemaphoreCreateFlags flags )
+    UniqueSemaphore initSemaphoreUnique( SemaphoreCreateFlags flags )
     {
       SemaphoreCreateInfo createInfo( flags ); 
 
@@ -36,7 +36,7 @@ namespace vk
       return semaphore;
     }
 
-    Semaphore createSemaphore( SemaphoreCreateFlags flags )
+    Semaphore initSemaphore( SemaphoreCreateFlags flags )
     {
       SemaphoreCreateInfo createInfo( flags );
 
@@ -46,7 +46,7 @@ namespace vk
       return semaphore;
     }
 
-    UniqueCommandPool createCommandPoolUnique( uint32_t queueFamilyIndex, CommandPoolCreateFlags flags )
+    UniqueCommandPool initCommandPoolUnique( uint32_t queueFamilyIndex, CommandPoolCreateFlags flags )
     {
       CommandPoolCreateInfo createInfo( flags, queueFamilyIndex );
 
@@ -56,7 +56,7 @@ namespace vk
       return commandPool;
     }
 
-    CommandPool createCommandPool( uint32_t queueFamilyIndex, CommandPoolCreateFlags flags )
+    CommandPool initCommandPool( uint32_t queueFamilyIndex, CommandPoolCreateFlags flags )
     {
       CommandPoolCreateInfo createInfo( flags, queueFamilyIndex );
 
@@ -66,7 +66,7 @@ namespace vk
       return commandPool;
     }
 
-    UniqueDescriptorPool createDescriptorPoolUnique( const std::vector<DescriptorPoolSize>& poolSizes, uint32_t maxSets, DescriptorPoolCreateFlags flags )
+    UniqueDescriptorPool initDescriptorPoolUnique( const std::vector<DescriptorPoolSize>& poolSizes, uint32_t maxSets, DescriptorPoolCreateFlags flags )
     {
       DescriptorPoolCreateInfo createInfo( flags,                                   // flags
                                            maxSets,                                 // maxSets
@@ -79,7 +79,7 @@ namespace vk
       return descriptorPool;
     }
 
-    DescriptorPool createDescriptorPool( const std::vector<DescriptorPoolSize>& poolSizes, uint32_t maxSets, DescriptorPoolCreateFlags flags )
+    DescriptorPool initDescriptorPool( const std::vector<DescriptorPoolSize>& poolSizes, uint32_t maxSets, DescriptorPoolCreateFlags flags )
     {
       DescriptorPoolCreateInfo createInfo( flags,                                   // flags
                                            maxSets,                                 // maxSets
@@ -187,7 +187,7 @@ namespace vk
       return memory;;
     }
 
-    UniqueImageView createImageViewUnique( Image image, Format format, ImageAspectFlags aspectFlags )
+    UniqueImageView initImageViewUnique( Image image, Format format, ImageAspectFlags aspectFlags )
     {
       ComponentMapping components =
       {
@@ -219,7 +219,7 @@ namespace vk
       return imageView;
     }
 
-    ImageView createImageView( Image image, Format format, ImageAspectFlags aspectFlags )
+    ImageView initImageView( Image image, Format format, ImageAspectFlags aspectFlags )
     {
       ComponentMapping components =
       {
@@ -251,7 +251,7 @@ namespace vk
       return imageView;
     }
 
-    UniqueSampler createSamplerUnique( const SamplerCreateInfo& createInfo )
+    UniqueSampler initSamplerUnique( const SamplerCreateInfo& createInfo )
     {
       UniqueSampler sampler = rx::g_device.createSamplerUnique( createInfo );
       RX_ASSERT( sampler, "Failed to create sampler." );
@@ -259,7 +259,7 @@ namespace vk
       return sampler;
     }
 
-    Sampler createSampler( const SamplerCreateInfo& createInfo )
+    Sampler initSampler( const SamplerCreateInfo& createInfo )
     {
       Sampler sampler = rx::g_device.createSampler( createInfo );
       RX_ASSERT( sampler, "Failed to create sampler." );
@@ -267,7 +267,7 @@ namespace vk
       return sampler;
     }
 
-    UniqueFramebuffer createFramebufferUnique( const std::vector<ImageView>& attachments, RenderPass renderPass, const Extent2D& extent )
+    UniqueFramebuffer initFramebufferUnique( const std::vector<ImageView>& attachments, RenderPass renderPass, const Extent2D& extent )
     {
       FramebufferCreateInfo createInfo( { },                                            // flags
                                         renderPass,                                     // renderPass
@@ -283,7 +283,7 @@ namespace vk
       return framebuffer;
     }
 
-    Framebuffer createFramebuffer( const std::vector<ImageView>& attachments, RenderPass renderPass, const Extent2D& extent )
+    Framebuffer initFramebuffer( const std::vector<ImageView>& attachments, RenderPass renderPass, const Extent2D& extent )
     {
       FramebufferCreateInfo createInfo( { },                                        // flags
                                         renderPass,                                 // renderPass
@@ -299,7 +299,7 @@ namespace vk
       return framebuffer;
     }
 
-    UniqueQueryPool createQueryPoolUnique( uint32_t count, QueryType type )
+    UniqueQueryPool initQueryPoolUnique( uint32_t count, QueryType type )
     {
       QueryPoolCreateInfo createInfo( { },    // flags
                                       type,   // queryType
@@ -312,7 +312,7 @@ namespace vk
       return queryPool;
     }
 
-    QueryPool createQueryPool( uint32_t count, QueryType type )
+    QueryPool initQueryPool( uint32_t count, QueryType type )
     {
       QueryPoolCreateInfo createInfo( { },    // flags
                                       type,   // queryType
@@ -325,7 +325,7 @@ namespace vk
       return queryPool;
     }
 
-    UniqueShaderModule createShaderModuleUnique( const std::string& path )
+    UniqueShaderModule initShaderModuleUnique( const std::string& path )
     {
       std::vector<char> source = rx::util::parseShader( path );
 
@@ -339,7 +339,7 @@ namespace vk
       return shaderModule;
     }
 
-    ShaderModule createShaderModule( const std::string& path )
+    ShaderModule initShaderModule( const std::string& path )
     {
       std::vector<char> source = rx::util::parseShader( path );
 
@@ -353,7 +353,7 @@ namespace vk
       return shaderModule;
     }
 
-    rx::AccelerationStructure createAccelerationStructure( const vk::AccelerationStructureCreateInfoKHR& asCreateInfo )
+    rx::AccelerationStructure initAccelerationStructure( const vk::AccelerationStructureCreateInfoKHR& asCreateInfo )
     {
       rx::AccelerationStructure resultAs;
       resultAs.as = rx::g_device.createAccelerationStructureKHR( asCreateInfo, nullptr );
@@ -361,6 +361,49 @@ namespace vk
       allocateMemory( resultAs );
 
       return resultAs;
+    }
+
+    std::pair<PhysicalDevice, bool> initPhysicalDevice( )
+    {
+      PhysicalDevice physicalDevice;
+      bool result = true;
+      auto physicalDevices = rx::g_instance.enumeratePhysicalDevices( );
+
+      std::vector<std::pair<unsigned int, std::string>> results;
+
+      unsigned int score = 0;
+      for ( const auto& it : physicalDevices )
+      {
+        auto temp = Helper::evaluate( it );
+        results.push_back( temp );
+
+        if ( temp.first > score )
+        {
+          physicalDevice = it;
+          score = temp.first;
+        }
+      }
+
+      if ( !physicalDevice )
+      {
+        result = false;
+        RX_ERROR( "No suitable device was found." );
+      }
+
+      const std::string separator = "===================================================================";
+      std::cout << "Physical device report: " << "\n" << separator << "\n" << "Device name" << "\t\t\t" << "Score" << std::endl << separator << "\n";
+
+      for ( const auto& result : results )
+        std::cout << std::left << std::setw( 32 ) << std::setfill( ' ' ) << result.second << std::left << std::setw( 32 ) << std::setfill( ' ' ) << result.first << std::endl;
+
+      // Print information about the GPU that was selected.
+      auto properties = physicalDevice.getProperties( );
+      RX_SUCCESS( "Selected GPU: ", properties.deviceName );
+
+      rx::g_physicalDeviceLimits = properties.limits;
+      rx::g_physicalDevice = physicalDevice;
+
+      return { physicalDevice, result };
     }
   }
 }

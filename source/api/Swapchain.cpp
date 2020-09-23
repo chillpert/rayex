@@ -141,7 +141,7 @@ namespace RENDERER_NAMESPACE
     this->imageViews.resize( this->images.size( ) );
     for ( size_t i = 0; i < this->imageViews.size( ); ++i )
     {
-      this->imageViews[i] = vk::Initializer::createImageViewUnique( this->images[i], surfaceFormat, this->imageAspect );
+      this->imageViews[i] = vk::Initializer::initImageViewUnique( this->images[i], surfaceFormat, this->imageAspect );
     }
   }
 
@@ -157,7 +157,7 @@ namespace RENDERER_NAMESPACE
     this->depthImage.init( imageCreateInfo );
 
     // Image view for depth image
-    this->depthImageView = vk::Initializer::createImageViewUnique( this->depthImage.get( ), depthFormat, vk::ImageAspectFlagBits::eDepth );
+    this->depthImageView = vk::Initializer::initImageViewUnique( this->depthImage.get( ), depthFormat, vk::ImageAspectFlagBits::eDepth );
   }
 
   void Swapchain::initFramebuffers( vk::RenderPass renderPass )
@@ -165,7 +165,7 @@ namespace RENDERER_NAMESPACE
     this->framebuffers.resize( this->imageViews.size( ) );
     for ( size_t i = 0; i < this->framebuffers.size( ); ++i )
     {
-      this->framebuffers[i] = vk::Initializer::createFramebufferUnique( { this->imageViews[i].get( ), this->depthImageView.get( ) }, renderPass, this->extent );
+      this->framebuffers[i] = vk::Initializer::initFramebufferUnique( { this->imageViews[i].get( ), this->depthImageView.get( ) }, renderPass, this->extent );
     }
   }
 

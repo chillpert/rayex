@@ -130,7 +130,7 @@ namespace RENDERER_NAMESPACE
                                                            blas.asCreateGeometryInfo.data( ),                          // pGeometryInfos
                                                            { } );                                                      // deviceAddress
 
-      blas.as = vk::Initializer::createAccelerationStructure( asCreateInfo );
+      blas.as = vk::Initializer::initAccelerationStructure( asCreateInfo );
       blas.flags = flags;
 
       vk::AccelerationStructureMemoryRequirementsInfoKHR memInfo( vk::AccelerationStructureMemoryRequirementsTypeKHR::eBuildScratch, // type
@@ -163,10 +163,10 @@ namespace RENDERER_NAMESPACE
     vk::DeviceAddress scratchAddress = g_device.getBufferAddress( bufferInfo );
 
     // Query size of compact BLAS.
-    vk::UniqueQueryPool queryPool = vk::Initializer::createQueryPoolUnique( static_cast<uint32_t>( this->blas_.size( ) ), vk::QueryType::eAccelerationStructureCompactedSizeKHR );
+    vk::UniqueQueryPool queryPool = vk::Initializer::initQueryPoolUnique( static_cast<uint32_t>( this->blas_.size( ) ), vk::QueryType::eAccelerationStructureCompactedSizeKHR );
 
     // Create a command buffer containing all the BLAS builds.
-    vk::UniqueCommandPool commandPool = vk::Initializer::createCommandPoolUnique( { g_graphicsFamilyIndex } );
+    vk::UniqueCommandPool commandPool = vk::Initializer::initCommandPoolUnique( { g_graphicsFamilyIndex } );
     int ctr = 0;
 
     CommandBuffer cmdBuf( commandPool.get( ), static_cast<uint32_t>( this->blas_.size( ) ) );
@@ -262,10 +262,10 @@ namespace RENDERER_NAMESPACE
                                                              { },                                            // pGeometryInfos
                                                              { } );                                          // deviceAddress
 
-        auto as = vk::Initializer::createAccelerationStructure( asCreateInfo );
+        auto as = vk::Initializer::initAccelerationStructure( asCreateInfo );
         
         // Copy the original BLAS to a compact version
-        vk::CopyAccelerationStructureInfoKHR copyInfo( this->blas_[i].as.as,                                 // src
+        vk::CopyAccelerationStructureInfoKHR copyInfo( this->blas_[i].as.as,                             // src
                                                        as.as,                                            // dst
                                                        vk::CopyAccelerationStructureModeKHR::eCompact ); // mode
         
@@ -325,7 +325,7 @@ namespace RENDERER_NAMESPACE
                                                          &geometryCreate,                             // pGeometryInfos
                                                          { } );                                       // deviceAddress
 
-    this->tlas.as = vk::Initializer::createAccelerationStructure( asCreateInfo );
+    this->tlas.as = vk::Initializer::initAccelerationStructure( asCreateInfo );
 
     // TODO: Just like the BLAS creation we need a scratch buffer. We could save one allocation by re-using the BLAS scratch buffer.
     vk::AccelerationStructureMemoryRequirementsInfoKHR memoryRequirementsInfo( vk::AccelerationStructureMemoryRequirementsTypeKHR::eBuildScratch, // type
@@ -355,7 +355,7 @@ namespace RENDERER_NAMESPACE
     }
 
     // Building the TLAS.
-    vk::UniqueCommandPool commandPool = vk::Initializer::createCommandPoolUnique( g_graphicsFamilyIndex );
+    vk::UniqueCommandPool commandPool = vk::Initializer::initCommandPoolUnique( g_graphicsFamilyIndex );
     CommandBuffer cmdBuf( commandPool.get( ) );
 
     // Create a buffer holding the actual instance data for use by the AS builder.
@@ -433,7 +433,7 @@ namespace RENDERER_NAMESPACE
     this->storageImage.init( storageImageInfo );
     this->storageImage.transitionToLayout( vk::ImageLayout::eGeneral );
 
-    this->storageImageView = vk::Initializer::createImageViewUnique( this->storageImage.get( ), this->storageImage.getFormat( ) );
+    this->storageImageView = vk::Initializer::initImageViewUnique( this->storageImage.get( ), this->storageImage.getFormat( ) );
   }
 
   void RayTracingBuilder::createShaderBindingTable( vk::Pipeline rtPipeline )

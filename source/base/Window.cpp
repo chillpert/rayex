@@ -17,17 +17,25 @@ namespace RENDERER_NAMESPACE
     clean( );
   }
 
-  void Window::init( )
+  bool Window::init( )
   {
     SDL_SetHint( SDL_HINT_FRAMEBUFFER_ACCELERATION, "1" );
 
     if ( SDL_Init( SDL_INIT_VIDEO ) < 0 )
-      RX_FATAL( SDL_GetError( ) );
+    {
+      RX_ERROR( "SDL Error: ", SDL_GetError( ), "\nClosing application." );
+      return false;
+    }
 
     this->window = SDL_CreateWindow( this->title, SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, this->width, this->height, this->flags );
 
     if ( this->window == nullptr )
-      RX_FATAL( "Failed to create window." ); 
+    {
+      RX_ERROR( "Failed to create window. Closing application." ); 
+      return false;
+    }
+
+    return true;
   }
 
   bool Window::update( )

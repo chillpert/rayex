@@ -34,7 +34,7 @@ namespace RENDERER_NAMESPACE
     RX_API virtual ~Window( );
 
     /// Initializes the SDL-window.
-    RX_API virtual void init( );
+    RX_API virtual bool init( );
 
     /// Updates window-related components.
     /// 

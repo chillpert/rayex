@@ -96,8 +96,8 @@ namespace RENDERER_NAMESPACE
     if ( !this->layout )
       RX_ERROR( "Failed to create pipeline layout." );
 
-    auto vs = vk::Initializer::createShaderModuleUnique( "shaders/simple3D.vert" );
-    auto fs = vk::Initializer::createShaderModuleUnique( "shaders/simple3D.frag" );
+    auto vs = vk::Initializer::initShaderModuleUnique( "shaders/simple3D.vert" );
+    auto fs = vk::Initializer::initShaderModuleUnique( "shaders/simple3D.frag" );
 
     std::array<vk::PipelineShaderStageCreateInfo, 2> shaderStages;
     shaderStages[0] = vk::Helper::getPipelineShaderStageCreateInfo( vk::ShaderStageFlagBits::eVertex, vs.get( ) );
@@ -128,9 +128,9 @@ namespace RENDERER_NAMESPACE
 
   void Pipeline::init( const std::vector<vk::DescriptorSetLayout>& descriptorSetLayouts, const Settings* const settings )
   {
-    auto rgen = vk::Initializer::createShaderModuleUnique( "shaders/raytrace.rgen" );
-    auto miss = vk::Initializer::createShaderModuleUnique( "shaders/raytrace.rmiss" );
-    auto chit = vk::Initializer::createShaderModuleUnique( "shaders/raytrace.rchit" );
+    auto rgen = vk::Initializer::initShaderModuleUnique( "shaders/raytrace.rgen" );
+    auto miss = vk::Initializer::initShaderModuleUnique( "shaders/raytrace.rmiss" );
+    auto chit = vk::Initializer::initShaderModuleUnique( "shaders/raytrace.rchit" );
 
     vk::PushConstantRange pushConstantRangeMissKHR( vk::ShaderStageFlagBits::eMissKHR, // stageFlags
                                                     0,                                 // offset

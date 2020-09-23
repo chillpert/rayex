@@ -64,8 +64,14 @@ namespace RENDERER_NAMESPACE
       initGui( );
   }
 
-  void Api::init( )
+  bool Api::init( )
   {
+    if ( this->settings == nullptr )
+    {
+      RX_ERROR( "No rendering settings provided. Closing application." );
+      return false;
+    }
+
     RX_INFO( "Initializing Vulkan API ..." );
 
     this->geometryNodes.reserve( g_maxGeometryNodes );
@@ -73,18 +79,22 @@ namespace RENDERER_NAMESPACE
     this->dirLightNodes.reserve( g_maxLightNodes );
     this->pointLightNodes.reserve( g_maxLightNodes );
 
-    // Instance
-    this->instance.init( layers, extensions );
+    bool result = true;
 
+    // Instance
+    result = this->instance.init( layers, extensions );
+    
     // Debug messenger.
-    this->debugMessenger.init( vk::DebugUtilsMessageSeverityFlagBitsEXT::eVerbose | vk::DebugUtilsMessageSeverityFlagBitsEXT::eWarning | vk::DebugUtilsMessageSeverityFlagBitsEXT::eError,
-                           vk::DebugUtilsMessageTypeFlagBitsEXT::ePerformance | vk::DebugUtilsMessageTypeFlagBitsEXT::eValidation );
+    result = this->debugMessenger.init( vk::DebugUtilsMessageSeverityFlagBitsEXT::eVerbose | vk::DebugUtilsMessageSeverityFlagBitsEXT::eWarning | vk::DebugUtilsMessageSeverityFlagBitsEXT::eError,
+                                        vk::DebugUtilsMessageTypeFlagBitsEXT::ePerformance | vk::DebugUtilsMessageTypeFlagBitsEXT::eValidation );
 
     // Surface
-    this->surface.init( );
-
+    result = this->surface.init( );
+    
     // Physical device
-    this->physicalDevice.init( );
+    auto temp = vk::Initializer::initPhysicalDevice( );
+    this->physicalDevice = temp.first;
+    result = temp.second;
 
     // Reassess the support of the preferred surface settings.
     this->surface.checkSettingSupport( );
@@ -106,41 +116,14 @@ namespace RENDERER_NAMESPACE
     this->swapchain.init( &this->surface, this->renderPass.get( ) );
 
     // Command pools
-    this->graphicsCmdPool = vk::Initializer::createCommandPoolUnique( g_graphicsFamilyIndex, vk::CommandPoolCreateFlagBits::eResetCommandBuffer );
+    this->graphicsCmdPool = vk::Initializer::initCommandPoolUnique( g_graphicsFamilyIndex, vk::CommandPoolCreateFlagBits::eResetCommandBuffer );
     g_graphicsCmdPool = this->graphicsCmdPool.get( );
 
-    this->transferCmdPool = vk::Initializer::createCommandPoolUnique( g_transferFamilyIndex, { } );
+    this->transferCmdPool = vk::Initializer::initCommandPoolUnique( g_transferFamilyIndex, { } );
     g_transferCmdPool = this->transferCmdPool.get( );
 
-    // Descriptor set layouts
-    initDescriptorSetLayouts( );
-
-    // Ray tracing descriptor pool
-    this->rtDescriptorPool = vk::Initializer::createDescriptorPoolUnique( vk::Helper::getPoolSizes( this->rtDescriptorSetLayout.getBindings( ) ), static_cast<uint32_t>( g_maxGeometryNodes ) * g_swapchainImageCount );
-
-    // Model descriptor pool
-    this->modelDescriptorPool = vk::Initializer::createDescriptorPoolUnique( vk::Helper::getPoolSizes( this->modelDescriptorSetLayout.getBindings( ) ), static_cast<uint32_t>( g_maxGeometryNodes ) * g_swapchainImageCount );
-
-    // Scene descriptor pool
-    this->sceneDescriptorPool = vk::Initializer::createDescriptorPoolUnique( vk::Helper::getPoolSizes( this->sceneDescriptorSetLayout.getBindings( ) ), static_cast<uint32_t>( g_maxGeometryNodes ) * g_swapchainImageCount );
-
-    // Rasterization descriptor pool
-    this->rsDescriptorPool = vk::Initializer::createDescriptorPoolUnique( vk::Helper::getPoolSizes( this->rsDescriptorSetLayout.getBindings( ) ), static_cast<uint32_t>( g_maxGeometryNodes ) * g_swapchainImageCount );
-
-    // Ray tracing descriptor sets
-    this->rtDescriptorSets.init( this->rtDescriptorPool.get( ), g_swapchainImageCount, std::vector<vk::DescriptorSetLayout>{ g_swapchainImageCount, this->rtDescriptorSetLayout.get( ) } );
-
-    // Rasterization descriptor set
-    this->rsDescriptorSets.init( this->rsDescriptorPool.get( ), g_swapchainImageCount, std::vector<vk::DescriptorSetLayout>{ g_swapchainImageCount, this->rtDescriptorSetLayout.get( ) } );
-
-    // Scene descriptor sets
-    this->sceneDescriptorSets.init( this->sceneDescriptorPool.get( ), g_swapchainImageCount, std::vector<vk::DescriptorSetLayout>{ g_swapchainImageCount, this->sceneDescriptorSetLayout.get( ) } );
-
-    // Uniform buffers for camera
-    this->cameraUniformBuffer.init<CameraUbo>( static_cast<uint32_t>( g_swapchainImageCount ) );
-
-    // Uniform buffers for light nodes
-    this->lightsUniformBuffer.init<LightsUbo>( static_cast<uint32_t>( g_swapchainImageCount ) );
+    // Descriptor sets and layouts
+    initDescriptorSets( );
 
     // SSBO for scene description
     this->rtInstances.push_back( { } );
@@ -178,17 +161,17 @@ namespace RENDERER_NAMESPACE
     // Make sure swapchain images are presentable in case they were not transitioned automatically.
     this->swapchain.setImageLayout( vk::ImageLayout::eUndefined, vk::ImageLayout::ePresentSrcKHR );
 
-    RX_SUCCESS( "Finished initializing Vulkan API.");
+    return result;
   }
 
-  bool Api::update( )
+  void Api::update( )
   {
     if ( this->settings->refresh )
     {
       this->settings->refresh = false;
 
       // Trigger swapchain / pipeline recreation
-      RX_WARN( "Settings were changed. Swapchain re-creation necessary." );
+      RX_WARN( "Settings were changed. Swapchain recreation necessary." );
 
       recreateSwapchain( );
     }
@@ -254,8 +237,6 @@ namespace RENDERER_NAMESPACE
         node->rsUniformBuffer.upload( imageIndex, ubo );
       }
     }
-
-    return true;
   }
 
   bool Api::prepareFrame( )
@@ -387,8 +368,7 @@ namespace RENDERER_NAMESPACE
 
   void Api::initRenderPass( )
   {
-    //auto colorAttachmentDescription = vk::Helper::getAttachmentDescription( this->surface.getFormat( ), this->gui != nullptr ? true : false );
-    auto colorAttachmentDescription = vk::Helper::getAttachmentDescription( this->surface.getFormat( ), false );
+    auto colorAttachmentDescription = vk::Helper::getAttachmentDescription( this->surface.getFormat( ) );
 
     vk::AttachmentReference colorAttachmentReference( 0,                                          // attachment
                                                       vk::ImageLayout::eColorAttachmentOptimal ); // layout
@@ -522,7 +502,7 @@ namespace RENDERER_NAMESPACE
     {
       // Set up render pass begin info
       std::array<vk::ClearValue, 2> clearValues;
-      clearValues[0].color = { std::array<float, 4>{ 0.5f, 0.5f, 0.5f, 1.0f } };
+      clearValues[0].color = { util::vec4toArray( this->settings->getClearColor( ) ) };
       clearValues[1].depthStencil = vk::ClearDepthStencilValue { 1.0f, 0 };
 
       // Start recording the swapchain framebuffers
@@ -534,24 +514,6 @@ namespace RENDERER_NAMESPACE
                                 this->swapchainCommandBuffers.get( imageIndex ),
                                 { 0, this->swapchain.getExtent( ) },
                                 { clearValues[0], clearValues[1] } );
-
-        struct DirectionLightPushConstant
-        {
-          glm::vec3 direction;
-          float trick;
-        };
-
-        DirectionLightPushConstant pc { { 0.0f, 10.0f, 10.0f }, 0.5f };
-
-        // TODO: avoid repetition of values.
-        // Push constants
-        /*
-        this->swapchainCommandBuffers.get( imageIndex ).pushConstants( this->rsPipeline.getLayout( ),        // layout
-                                                                       vk::ShaderStageFlagBits::eFragment,   // stageFlags
-                                                                       0,                                    // offset
-                                                                       sizeof( DirectionLightPushConstant ), // size 
-                                                                       &pc );                                // pValues
-        */
 
         this->swapchainCommandBuffers.get( imageIndex ).bindPipeline( vk::PipelineBindPoint::eGraphics, this->rsPipeline.get( ) ); // CMD
 
@@ -623,13 +585,13 @@ namespace RENDERER_NAMESPACE
 
     for ( size_t i = 0; i < maxFramesInFlight; ++i )
     {
-      this->imageAvailableSemaphores[i] = vk::Initializer::createSemaphoreUnique( );
-      this->finishedRenderSemaphores[i] = vk::Initializer::createSemaphoreUnique( );
-      this->inFlightFences[i] = vk::Initializer::createFenceUnique( );
+      this->imageAvailableSemaphores[i] = vk::Initializer::initSemaphoreUnique( );
+      this->finishedRenderSemaphores[i] = vk::Initializer::initSemaphoreUnique( );
+      this->inFlightFences[i] = vk::Initializer::initFenceUnique( );
     }
   }
 
-  void Api::initDescriptorSetLayouts( )
+  void Api::initDescriptorSets( )
   {
     // Create the ray tracing descriptor set layout
     {
@@ -674,5 +636,32 @@ namespace RENDERER_NAMESPACE
 
       this->rsDescriptorSetLayout.init( { uboBinding, textureBinding } );
     }
+
+    // Ray tracing descriptor pool
+    this->rtDescriptorPool = vk::Initializer::initDescriptorPoolUnique( vk::Helper::getPoolSizes( this->rtDescriptorSetLayout.getBindings( ) ), static_cast<uint32_t>( g_maxGeometryNodes ) * g_swapchainImageCount );
+
+    // Model descriptor pool
+    this->modelDescriptorPool = vk::Initializer::initDescriptorPoolUnique( vk::Helper::getPoolSizes( this->modelDescriptorSetLayout.getBindings( ) ), static_cast<uint32_t>( g_maxGeometryNodes ) * g_swapchainImageCount );
+
+    // Scene descriptor pool
+    this->sceneDescriptorPool = vk::Initializer::initDescriptorPoolUnique( vk::Helper::getPoolSizes( this->sceneDescriptorSetLayout.getBindings( ) ), static_cast<uint32_t>( g_maxGeometryNodes ) * g_swapchainImageCount );
+
+    // Rasterization descriptor pool
+    this->rsDescriptorPool = vk::Initializer::initDescriptorPoolUnique( vk::Helper::getPoolSizes( this->rsDescriptorSetLayout.getBindings( ) ), static_cast<uint32_t>( g_maxGeometryNodes ) * g_swapchainImageCount );
+
+    // Ray tracing descriptor sets
+    this->rtDescriptorSets.init( this->rtDescriptorPool.get( ), g_swapchainImageCount, std::vector<vk::DescriptorSetLayout>{ g_swapchainImageCount, this->rtDescriptorSetLayout.get( ) } );
+
+    // Rasterization descriptor set
+    this->rsDescriptorSets.init( this->rsDescriptorPool.get( ), g_swapchainImageCount, std::vector<vk::DescriptorSetLayout>{ g_swapchainImageCount, this->rtDescriptorSetLayout.get( ) } );
+
+    // Scene descriptor sets
+    this->sceneDescriptorSets.init( this->sceneDescriptorPool.get( ), g_swapchainImageCount, std::vector<vk::DescriptorSetLayout>{ g_swapchainImageCount, this->sceneDescriptorSetLayout.get( ) } );
+
+    // Uniform buffers for camera
+    this->cameraUniformBuffer.init<CameraUbo>( static_cast<uint32_t>( g_swapchainImageCount ) );
+
+    // Uniform buffers for light nodes
+    this->lightsUniformBuffer.init<LightsUbo>( static_cast<uint32_t>( g_swapchainImageCount ) );
   }
 }

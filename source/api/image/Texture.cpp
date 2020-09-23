@@ -51,9 +51,9 @@ namespace RENDERER_NAMESPACE
     stagingBuffer.copyToImage( *this );
     transitionToLayout( vk::ImageLayout::eShaderReadOnlyOptimal );
 
-    this->imageView = vk::Initializer::createImageViewUnique( this->image.get( ), this->format );
+    this->imageView = vk::Initializer::initImageViewUnique( this->image.get( ), this->format );
 
     auto samplerCreateInfo = vk::Helper::getSamplerCreateInfo( );
-    this->sampler = vk::Initializer::createSamplerUnique( samplerCreateInfo );
+    this->sampler = vk::Initializer::initSamplerUnique( samplerCreateInfo );
   }
 }

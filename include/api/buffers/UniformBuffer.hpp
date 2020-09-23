@@ -83,7 +83,7 @@ namespace RENDERER_NAMESPACE
     }
 
   private:
-    std::vector<Buffer> buffers; ///< A vector of rx::Buffers for the uniform buffers.
+    std::vector<Buffer> buffers; ///< A vector of RENDERER_NAMESPACE::Buffers for the uniform buffers.
   };
 
 }

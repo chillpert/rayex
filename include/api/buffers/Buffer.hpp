@@ -28,7 +28,7 @@ namespace RENDERER_NAMESPACE
     
     RX_API virtual ~Buffer( ) = default;
 
-    /// Copies the content of this buffer to another rx::Buffer.
+    /// Copies the content of this buffer to another RENDERER_NAMESPACE::Buffer.
     /// @param buffer The target for the copy operation.
     void copyToBuffer( Buffer& buffer ) const;
 

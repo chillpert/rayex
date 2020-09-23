@@ -137,13 +137,13 @@ namespace RENDERER_NAMESPACE
                                                                   vk::AccelerationStructureBuildTypeKHR::eDevice,                    // buildType
                                                                   blas.as.as );                                                      // accelerationStructure
 
-      vk::MemoryRequirements2 memoryRequirements = rx::g_device.getAccelerationStructureMemoryRequirementsKHR( memInfo );
+      vk::MemoryRequirements2 memoryRequirements = RENDERER_NAMESPACE::g_device.getAccelerationStructureMemoryRequirementsKHR( memInfo );
       vk::DeviceSize scratchSize = memoryRequirements.memoryRequirements.size;
 
       maxScratch = std::max( maxScratch, scratchSize );
 
       memInfo.type = vk::AccelerationStructureMemoryRequirementsTypeKHR::eObject;
-      memoryRequirements = rx::g_device.getAccelerationStructureMemoryRequirementsKHR( memInfo );
+      memoryRequirements = RENDERER_NAMESPACE::g_device.getAccelerationStructureMemoryRequirementsKHR( memInfo );
 
       originalSizes[index] = memoryRequirements.memoryRequirements.size;
       

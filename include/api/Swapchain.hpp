@@ -14,13 +14,13 @@ namespace RENDERER_NAMESPACE
   public:
     Swapchain( ) = default;
 
-    /// @param surface A pointer to a rx::Surface object.
+    /// @param surface A pointer to a RENDERER_NAMESPACE::Surface object.
     /// @param renderPass The render pass to create the framebuffers.
     /// @param initialize If true, the swapchain object will be initialized right away without an additional call to init().
     Swapchain( Surface* surface, vk::RenderPass renderPass, bool initialize = true );
 
     /// Creates the swapchain, the swapchain images and their image views as well as their framebuffers.
-    /// @param surface A pointer to a rx::Surface object.
+    /// @param surface A pointer to a RENDERER_NAMESPACE::Surface object.
     /// @param renderPass The render pass to create the framebuffers.
     void init( Surface* surface, vk::RenderPass renderPass );
 

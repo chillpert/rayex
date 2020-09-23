@@ -298,7 +298,7 @@ int main( )
   // Setup the scene
   auto dragonLore = std::make_shared<GeometryNode>( "models/awpdlore/awpdlore.obj", Material( "textures/awpdlore.png" ) );
   dragonLore->worldTransform = glm::scale( dragonLore->worldTransform, glm::vec3( 0.25f ) );
-  dragonLore->worldTransform = glm::rotate( dragonLore->worldTransform, glm::radians( 45.0f ), glm::vec3( 0.0f, 1.0f, 0.0f ) );
+  dragonLore->worldTransform = glm::rotate( dragonLore->worldTransform, glm::radians( 90.0f ), glm::vec3( 0.0f, 1.0f, 0.0f ) );
   
   auto directionalLight = std::make_shared<DirectionalLightNode>( );
  

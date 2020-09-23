@@ -33,7 +33,7 @@ namespace RENDERER_NAMESPACE
     /// @param commandBuffer The command buffer used to begin the render pass.
     /// @param renderArea Defines the size of the render area.
     /// @param clearValues The clear values.
-    /// @note rx::CommandBuffer::begin() or vk::CommandBuffer::begin() must have been already called prior to calling this function.
+    /// @note RENDERER_NAMESPACE::CommandBuffer::begin() or vk::CommandBuffer::begin() must have been already called prior to calling this function.
     void begin( vk::Framebuffer framebuffer, vk::CommandBuffer commandBuffer, vk::Rect2D renderArea, const std::vector<vk::ClearValue>& clearValues ) const;
     
     /// Call to end the render pass.

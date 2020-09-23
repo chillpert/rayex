@@ -3,7 +3,6 @@
 
 #include "api/Instance.hpp"
 #include "api/utility/DebugMessenger.hpp"
-#include "api/Queues.hpp"
 #include "api/Surface.hpp"
 #include "api/Pipeline.hpp"
 #include "api/RenderPass.hpp"
@@ -140,8 +139,8 @@ namespace RENDERER_NAMESPACE
 
     /// Initializes the model provided by the node.
     /// 
-    /// The model will be added to rx::Api::models to make sure there are no duplicates.
-    /// Similarily, all textures required by the model will be stored individualy inside rx::Api::textures.
+    /// The model will be added to RENDERER_NAMESPACE::Api::models to make sure there are no duplicates.
+    /// Similarily, all textures required by the model will be stored individualy inside RENDERER_NAMESPACE::Api::textures.
     /// If a model or a texture are already known to the application and have been initialized, they will be re-used instead of being initialized.
     /// @param node A pointer to a geometry node.
     /// @todo The function currently recreates the entire TLAS and BLAS everytime a model is added, which is very inefficient.
@@ -186,7 +185,7 @@ namespace RENDERER_NAMESPACE
     DescriptorSet rtDescriptorSets;
 
     // Descriptors for model-related data.
-    DescriptorSetLayout modelDescriptorSetLayout; ///< @note Each rx::Model has its own descriptor set.
+    DescriptorSetLayout modelDescriptorSetLayout; ///< @note Each RENDERER_NAMESPACE::Model has its own descriptor set.
     vk::UniqueDescriptorPool modelDescriptorPool;
 
     // Descriptors for scene-related data.

@@ -66,7 +66,7 @@ namespace vk
     /// Converts a map of rx models to a vector of rx models.
     /// @param models A map of rx models with their model path as key.
     /// @return Returns a vector of the given rx models.
-    std::vector<std::shared_ptr<rx::Model>> unpack( const std::unordered_map<std::string, std::shared_ptr<rx::Model>>& models );
+    std::vector<std::shared_ptr<RENDERER_NAMESPACE::Model>> unpack( const std::unordered_map<std::string, std::shared_ptr<RENDERER_NAMESPACE::Model>>& models );
 
     /// Returns the descriptor pool sizes required by any given descriptor set layout bindings.
     /// @param layoutBinding A vector of descriptor set layout bindings that will be used to create the descriptor pool sizes.
@@ -110,11 +110,20 @@ namespace vk
     /// @return Returns the descriptor set layout binding.
     DescriptorSetLayoutBinding getDescriptorSetLayoutBinding( uint32_t binding, DescriptorType descriptorType, ShaderStageFlags stageFlags );
 
+    /// Checks if a given physical device supports the queue capabilities required by the application.
+    /// @param physicalDevice The physical device to check.
+    bool isPhysicalDeviceQueueComplete( PhysicalDevice physicalDevice );
+
+    /// Checks if a given physical device has a dedicated transfer queue family index that is not a graphics queue family index.
+    /// @param physicalDevice The physical device to check.
+    /// @return Returns true if the physical device has a dedicated transfer queue family index.
+    bool isPhysicalDeviceWithDedicatedTransferQueueFamily( PhysicalDevice physicalDevice );
+
     /// Scores a given physical device (GPU).
     /// @param physicalDevice The physical device to score.
     /// @return Returns a pair consisting out of the determined score and the name of the physical device.
     /// @note RTX hardware surpasses any other GPU.
-    std::pair<unsigned int, std::string> evaluate( vk::PhysicalDevice physicalDevice );
+    std::pair<unsigned int, std::string> evaluatePhysicalDevice( PhysicalDevice physicalDevice );
   }
 }
 

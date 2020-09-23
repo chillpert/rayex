@@ -66,14 +66,6 @@ namespace RENDERER_NAMESPACE
 
   bool Api::init( )
   {
-    if ( this->settings == nullptr )
-    {
-      RX_ERROR( "No rendering settings provided. Closing application." );
-      return false;
-    }
-
-    RX_INFO( "Initializing Vulkan API ..." );
-
     this->geometryNodes.reserve( g_maxGeometryNodes );
     this->textures.reserve( g_maxTextures );
     this->dirLightNodes.reserve( g_maxLightNodes );
@@ -92,22 +84,20 @@ namespace RENDERER_NAMESPACE
     result = this->surface.init( );
     
     // Physical device
-    auto temp = vk::Initializer::initPhysicalDevice( );
-    this->physicalDevice = temp.first;
-    result = temp.second;
+    result = vk::Initializer::initPhysicalDevice( this->physicalDevice );
 
     // Reassess the support of the preferred surface settings.
     this->surface.checkSettingSupport( );
 
     // Queues
-    Queues queues;
-    queues.init( );
+    result = vk::Initializer::initQueueFamilyIndices( );
 
     // Logical device
     this->device.init( deviceExtensions );
 
     // Retrieve all queue handles.
-    queues.retrieveHandles( );
+    g_device.getQueue( g_graphicsFamilyIndex, 0, &g_graphicsQueue );
+    g_device.getQueue( g_transferFamilyIndex, 0, &g_transferQueue );
 
     // Render pass
     initRenderPass( );
@@ -140,7 +130,7 @@ namespace RENDERER_NAMESPACE
     this->viewport = vk::Viewport( 0.0f, 0.0f, extent.x, extent.y, 0.0f, 1.0f );
     this->scissor = vk::Rect2D( 0, this->swapchain.getExtent( ) );
     this->rsPipeline.init( { this->rsDescriptorSetLayout.get( ) }, this->renderPass.get( ), viewport, scissor );
-    
+
     // Ray tracing
     this->rayTracingBuilder.init( );
     this->rayTracingBuilder.createStorageImage( this->swapchain.getExtent( ) );
@@ -335,7 +325,7 @@ namespace RENDERER_NAMESPACE
 
   void Api::recreateSwapchain( )
   {
-    RX_INFO( "Recreating swapchain." );
+    RX_INFO( "Recreating swapchain ..." );
 
     g_device.waitIdle( );
 
@@ -363,7 +353,7 @@ namespace RENDERER_NAMESPACE
     auto screenSize = this->swapchain.getExtent( );
     this->camera->setSize( screenSize.width, screenSize.height );
     
-    RX_SUCCESS( "Finished swapchain re-creation." );
+    RX_SUCCESS( "Swapchain recreation finished." );
   }
 
   void Api::initRenderPass( )

@@ -50,7 +50,7 @@ namespace RENDERER_NAMESPACE
     /// A single function to execute all subcomponents.
     /// 
     /// This function updates the window and the camera components and calls the update and render functions of the API.
-    /// @see rx::Camera::update(), rx::Window::update(), rx::Api::update(), rx::Api::render()
+    /// @see RENDERER_NAMESPACE::Camera::update(), RENDERER_NAMESPACE::Window::update(), RENDERER_NAMESPACE::Api::update(), RENDERER_NAMESPACE::Api::render()
     RX_API void run( );
 
     /// @return Returns true if the application is still running and false if the application has stopped.
@@ -64,7 +64,7 @@ namespace RENDERER_NAMESPACE
 
     /// Used to add another arbitrary node to the scene.
     /// @param node The node to add.
-    /// @see rx::Api::pushNode()
+    /// @see RENDERER_NAMESPACE::Api::pushNode()
     template <typename T = Model>
     void pushNode( const std::shared_ptr<Node> node )
     {
@@ -73,7 +73,7 @@ namespace RENDERER_NAMESPACE
 
     /// Used to overwrite the entire scene with new nodes.
     /// @param nodes A vector of nodes describing the new scene.
-    /// @see rx::Api::setNodes()
+    /// @see RENDERER_NAMESPACE::Api::setNodes()
     template <typename T = Model>
     void setNodes( const std::vector<std::shared_ptr<Node>>& nodes )
     {
@@ -91,8 +91,8 @@ namespace RENDERER_NAMESPACE
     Settings settings;
 
   private:
-    std::shared_ptr<Window> window; ///< A pointer to a rx::Window object.
-    std::shared_ptr<Camera> camera; ///< A pointer to a rx::Camera object.
+    std::shared_ptr<Window> window; ///< A pointer to a RENDERER_NAMESPACE::Window object.
+    std::shared_ptr<Camera> camera; ///< A pointer to a RENDERER_NAMESPACE::Camera object.
     Api api; ///< Contains all Vulkan related components.
 
     bool initialized = false; ///< Keeps track of the initialization status.

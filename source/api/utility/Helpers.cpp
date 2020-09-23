@@ -1,7 +1,6 @@
 #include "api/utility/Helpers.hpp"
 #include "api/misc/Components.hpp"
 #include "api/buffers/CommandBuffer.hpp"
-#include "api/Queues.hpp"
 
 namespace vk
 {
@@ -74,7 +73,7 @@ namespace vk
       return PresentInfoKHR( 1,                // waitSemaphoreCount
                              &waitSemaphore,   // pWaitSemaphores
                              1,                // swapchainCount
-                             &rx::g_swapchain, // pSwapchains
+                             &RENDERER_NAMESPACE::g_swapchain, // pSwapchains
                              &imageIndex,      // pImageIndices
                              nullptr );        // pResults
     }
@@ -113,9 +112,9 @@ namespace vk
       return result;
     }
 
-    std::vector<std::shared_ptr<rx::Model>> unpack( const std::unordered_map<std::string, std::shared_ptr<rx::Model>>& models )
+    std::vector<std::shared_ptr<RENDERER_NAMESPACE::Model>> unpack( const std::unordered_map<std::string, std::shared_ptr<RENDERER_NAMESPACE::Model>>& models )
     {
-      std::vector<std::shared_ptr<rx::Model>> result;
+      std::vector<std::shared_ptr<RENDERER_NAMESPACE::Model>> result;
       result.reserve( models.size( ) );
 
       for ( const auto& model : models )
@@ -145,8 +144,8 @@ namespace vk
     {
       auto barrierInfo = getImageMemoryBarrierInfo( image, oldLayout, newLayout );
 
-      rx::CommandBuffer commandBuffer;
-      commandBuffer.init( rx::g_graphicsCmdPool );
+      RENDERER_NAMESPACE::CommandBuffer commandBuffer;
+      commandBuffer.init( RENDERER_NAMESPACE::g_graphicsCmdPool );
       commandBuffer.begin( );
 
       commandBuffer.get( 0 ).pipelineBarrier( std::get<1>( barrierInfo ),        // srcStageMask
@@ -160,7 +159,7 @@ namespace vk
                                               &std::get<0>( barrierInfo ) );     // barrier
 
       commandBuffer.end( );
-      commandBuffer.submitToQueue( rx::g_graphicsQueue );
+      commandBuffer.submitToQueue( RENDERER_NAMESPACE::g_graphicsQueue );
     }
 
     void transitionImageLayout( Image image, ImageLayout oldLayout, ImageLayout newLayout, CommandBuffer commandBuffer )
@@ -291,7 +290,55 @@ namespace vk
                                          nullptr );      // pImmutableSamplers
     }
 
-    std::pair<unsigned int, std::string> evaluate( PhysicalDevice physicalDevice )
+    bool isPhysicalDeviceQueueComplete( PhysicalDevice physicalDevice )
+    {
+      auto queueFamilies = physicalDevice.getQueueFamilyProperties( );
+      uint32_t queueFamilyIndicesCount = static_cast<uint32_t>( queueFamilies.size( ) );
+
+      // Get all possible queue family indices with transfer support.
+      std::vector<uint32_t> graphicsQueueFamilyIndices;
+      std::vector<uint32_t> transferQueueFamilyIndices;
+      std::vector<uint32_t> computeQueueFamilyIndices;
+
+      for ( uint32_t index = 0; index < queueFamilyIndicesCount; ++index )
+      {
+        // Make sure the current queue family index contains at least one queue.
+        if ( queueFamilies[index].queueCount == 0 )
+          continue;
+
+        if ( queueFamilies[index].queueFlags & QueueFlagBits::eGraphics )
+        {
+          if ( physicalDevice.getSurfaceSupportKHR( index, RENDERER_NAMESPACE::g_surface ) )
+            graphicsQueueFamilyIndices.push_back( index );
+        }
+
+        if ( queueFamilies[index].queueFlags & QueueFlagBits::eTransfer )
+          transferQueueFamilyIndices.push_back( index );
+
+        if ( queueFamilies[index].queueFlags & QueueFlagBits::eCompute )
+          computeQueueFamilyIndices.push_back( index );
+      }
+
+      if ( graphicsQueueFamilyIndices.size( ) == 0 || computeQueueFamilyIndices.size( ) == 0 || transferQueueFamilyIndices.size( ) == 0 )
+        return false;
+
+      return true;
+    }
+
+    bool isPhysicalDeviceWithDedicatedTransferQueueFamily( PhysicalDevice physicalDevice )
+    {
+      auto queueFamilyProperties = physicalDevice.getQueueFamilyProperties( );
+
+      for ( uint32_t index = 0; index < static_cast<uint32_t>( queueFamilyProperties.size( ) ); ++index )
+      {
+        if ( !( queueFamilyProperties[index].queueFlags & QueueFlagBits::eGraphics ) )
+          return true;
+      }
+
+      return false;
+    }
+
+    std::pair<unsigned int, std::string> evaluatePhysicalDevice( PhysicalDevice physicalDevice )
     {
       unsigned int score = 0u;
 
@@ -325,12 +372,12 @@ namespace vk
       if ( deviceName.find( "RTX" ) != std::string::npos )
         score += 100u;
 
-      if ( rx::Queues::isComplete( physicalDevice ) )
+      if ( isPhysicalDeviceQueueComplete( physicalDevice ) )
         score += 100u;
       else
         return { 0u, deviceName };
 
-      if ( rx::Queues::hasDedicatedTransferQueueFamily( physicalDevice ) )
+      if ( isPhysicalDeviceWithDedicatedTransferQueueFamily( physicalDevice ) )
         score += 25;
 
       // TODO: add more hardware specific evaulation (those that are benefitial for path tracing)

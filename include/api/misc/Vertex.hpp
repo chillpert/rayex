@@ -73,9 +73,9 @@ namespace RENDERER_NAMESPACE
 namespace std
 {
   /// @cond INTERNAL
-  template<> struct hash<rx::Vertex>
+  template<> struct hash<RENDERER_NAMESPACE::Vertex>
   {
-    size_t operator()( const rx::Vertex& vertex ) const
+    size_t operator()( const RENDERER_NAMESPACE::Vertex& vertex ) const
     {
       size_t hashPos = hash<glm::vec3>( )( vertex.pos );
       size_t hashColor = hash<glm::vec3>( )( vertex.color );

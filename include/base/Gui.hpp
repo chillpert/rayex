@@ -29,7 +29,7 @@ namespace RENDERER_NAMESPACE
   /// RayExecmyRenderer;
   /// myRenderer.init( );
   /// 
-  /// // Put this line after the declaration of the rx::RayExecobject.
+  /// // Put this line after the declaration of the RENDERER_NAMESPACE::RayExecobject.
   /// auto myGui = std::make_shared<CustomGui>( );
   /// myRenderer.setGui( myGui );
   /// ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -40,7 +40,7 @@ namespace RENDERER_NAMESPACE
   public:
     Gui( ) = default;
 
-    /// @param surface A pointer to a rx::Surface object.
+    /// @param surface A pointer to a RENDERER_NAMESPACE::Surface object.
     /// @param swapchainImageExtent The extent of the swapchain images.
     /// @param swapchainImageViews The swapchain images' image views.
     /// @param initialize If true, the GUI will be initialized right away without an additional call to init().
@@ -64,7 +64,7 @@ namespace RENDERER_NAMESPACE
     RX_API virtual void render( );
 
     /// Creates the GUI and all required Vulkan components.
-    /// @param surface A pointer to a rx::Surface object.
+    /// @param surface A pointer to a RENDERER_NAMESPACE::Surface object.
     /// @param swapchainImageExtent The extent of the swapchain images.
     /// @param swapchainImageViews The swapchain images' image views.
     void init( const Surface* const surface, vk::Extent2D swapchainImageExtent, const std::vector<vk::ImageView>& swapchainImageViews );
@@ -92,7 +92,7 @@ namespace RENDERER_NAMESPACE
     void initDescriptorPool( );
 
     /// Creates a render pass for the GUI.
-    /// @param surface A pointer to a rx::Surface object.
+    /// @param surface A pointer to a RENDERER_NAMESPACE::Surface object.
     void initRenderPass( const Surface* const surface );
 
     /// Creates a command pool for the GUI's command buffers.
@@ -111,7 +111,7 @@ namespace RENDERER_NAMESPACE
   private:
     vk::UniqueDescriptorPool descriptorPool; ///< A Vulkan descriptor pool with a unique handle.
     vk::UniqueCommandPool commandPool; ///< A Vulkan command pool with a unique handle.
-    CommandBuffer commandBuffers; ///< A rx::CommandBuffer.
+    CommandBuffer commandBuffers; ///< A RENDERER_NAMESPACE::CommandBuffer.
     RenderPass renderPass; ///< A Vulkan render pass.
     std::vector<vk::UniqueFramebuffer> framebuffers; ///< A vector of Vulkan framebuffers with unique handles.
 

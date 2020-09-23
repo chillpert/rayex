@@ -6,7 +6,7 @@
 #include "api/buffers/UniformBuffer.hpp"
 #include "api/image/Texture.hpp"
 
-namespace RENDERER_NAMESPACE
+namespace RAYEXEC_NAMESPACE
 {
   /// A wrapper class for Vulkan descriptor sets.
   /// @todo Make the update process "smart" by using the existing information to automatically write to and update the descriptor sets.

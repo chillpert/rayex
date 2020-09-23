@@ -1,7 +1,7 @@
 #include "api/descriptors/DescriptorSet.hpp"
 #include "api/misc/Components.hpp"
 
-namespace RENDERER_NAMESPACE
+namespace RAYEXEC_NAMESPACE
 {
   DescriptorSetLayout::DescriptorSetLayout( const std::vector<vk::DescriptorSetLayoutBinding> bindings, bool initialize )
   {

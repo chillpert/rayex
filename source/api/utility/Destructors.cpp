@@ -1,7 +1,7 @@
 #include "api/utility/Destructors.hpp"
 #include "api/misc/Components.hpp"
 
-using namespace RENDERER_NAMESPACE;
+using namespace RAYEXEC_NAMESPACE;
 
 namespace vk
 {

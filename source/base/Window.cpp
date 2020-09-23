@@ -1,6 +1,6 @@
 #include "base/Window.hpp"
 
-namespace RENDERER_NAMESPACE
+namespace RAYEXEC_NAMESPACE
 {
   Window::Window( int width, int height, const char* title, uint32_t flags ) :
     window( nullptr ),

@@ -3,7 +3,7 @@
 
 #include "base/Window.hpp"
 
-namespace RENDERER_NAMESPACE
+namespace RAYEXEC_NAMESPACE
 {
   /// A wrapper class for a Vulkan surface.
   /// @ingroup API

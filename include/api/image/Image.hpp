@@ -3,7 +3,7 @@
 
 #include "pch/stdafx.hpp"
 
-namespace RENDERER_NAMESPACE
+namespace RAYEXEC_NAMESPACE
 {
   /// A wrapper class for a Vulkan image.
   /// @ingroup API
@@ -34,7 +34,7 @@ namespace RENDERER_NAMESPACE
     /// Used to transition this image's layout.
     /// @param layout The target layout
     /// @param commandBuffer The command buffer that will be used to set up a pipeline barrier.
-    /// @warning It is required to call vk::CommandBuffer::begin() or RENDERER_NAMESPACE::CommandBuffer::begin() before calling this function.
+    /// @warning It is required to call vk::CommandBuffer::begin() or RAYEXEC_NAMESPACE::CommandBuffer::begin() before calling this function.
     void transitionToLayout( vk::ImageLayout layout, vk::CommandBuffer commandBuffer );
  
     /// Retrieves a supported image format for a given physical device.

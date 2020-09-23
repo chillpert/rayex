@@ -5,7 +5,7 @@
 #include "api/raytracing/RayTracingBuilder.hpp"
 #include "api/utility/Initializers.hpp"
 
-namespace RENDERER_NAMESPACE
+namespace RAYEXEC_NAMESPACE
 {
   bool Pipeline::init( const std::vector<vk::DescriptorSetLayout>& descriptorSetLayouts, vk::RenderPass renderPass, vk::Viewport viewport, vk::Rect2D scissor )
   {

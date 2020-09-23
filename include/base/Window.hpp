@@ -5,7 +5,7 @@
 #include "base/Time.hpp"
 #include "base/Camera.hpp"
 
-namespace RENDERER_NAMESPACE
+namespace RAYEXEC_NAMESPACE
 {
   /// Implements a SDL-based window.
   /// 

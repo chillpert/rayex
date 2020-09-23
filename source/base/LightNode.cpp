@@ -1,6 +1,6 @@
 #include "base/LightNode.hpp"
 
-namespace RENDERER_NAMESPACE
+namespace RAYEXEC_NAMESPACE
 {
   glm::vec4 combine( const glm::vec3& vec3, float value )
   {

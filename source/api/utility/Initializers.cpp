@@ -16,7 +16,7 @@ namespace vk
     {
       FenceCreateInfo createInfo( flags );
 
-      UniqueFence fence = RENDERER_NAMESPACE::g_device.createFenceUnique( createInfo );
+      UniqueFence fence = RAYEXEC_NAMESPACE::g_device.createFenceUnique( createInfo );
       RX_ASSERT( fence, "Failed to create fence." );
 
       return fence;
@@ -26,7 +26,7 @@ namespace vk
     {
       FenceCreateInfo createInfo( flags );
 
-      Fence fence = RENDERER_NAMESPACE::g_device.createFence( createInfo );
+      Fence fence = RAYEXEC_NAMESPACE::g_device.createFence( createInfo );
       RX_ASSERT( fence, "Failed to create fence." );
 
       return fence;
@@ -36,7 +36,7 @@ namespace vk
     {
       SemaphoreCreateInfo createInfo( flags ); 
 
-      UniqueSemaphore semaphore = RENDERER_NAMESPACE::g_device.createSemaphoreUnique( createInfo );
+      UniqueSemaphore semaphore = RAYEXEC_NAMESPACE::g_device.createSemaphoreUnique( createInfo );
       RX_ASSERT( semaphore, "Failed to create semaphore." );
 
       return semaphore;
@@ -46,7 +46,7 @@ namespace vk
     {
       SemaphoreCreateInfo createInfo( flags );
 
-      Semaphore semaphore = RENDERER_NAMESPACE::g_device.createSemaphore( createInfo );
+      Semaphore semaphore = RAYEXEC_NAMESPACE::g_device.createSemaphore( createInfo );
       RX_ASSERT( semaphore, "Failed to create semaphore." );
 
       return semaphore;
@@ -56,7 +56,7 @@ namespace vk
     {
       CommandPoolCreateInfo createInfo( flags, queueFamilyIndex );
 
-      UniqueCommandPool commandPool = RENDERER_NAMESPACE::g_device.createCommandPoolUnique( createInfo );
+      UniqueCommandPool commandPool = RAYEXEC_NAMESPACE::g_device.createCommandPoolUnique( createInfo );
       RX_ASSERT( commandPool, "Failed to create command pool." );
 
       return commandPool;
@@ -66,7 +66,7 @@ namespace vk
     {
       CommandPoolCreateInfo createInfo( flags, queueFamilyIndex );
 
-      CommandPool commandPool = RENDERER_NAMESPACE::g_device.createCommandPool( createInfo );
+      CommandPool commandPool = RAYEXEC_NAMESPACE::g_device.createCommandPool( createInfo );
       RX_ASSERT( commandPool, "Failed to create command pool." );
 
       return commandPool;
@@ -79,7 +79,7 @@ namespace vk
                                            static_cast<uint32_t>(poolSizes.size()), // poolSizeCount
                                            poolSizes.data() );                      // pPoolSizes
 
-      UniqueDescriptorPool descriptorPool = RENDERER_NAMESPACE::g_device.createDescriptorPoolUnique( createInfo );
+      UniqueDescriptorPool descriptorPool = RAYEXEC_NAMESPACE::g_device.createDescriptorPoolUnique( createInfo );
       RX_ASSERT( descriptorPool, "Failed to create descriptor pool." );
 
       return descriptorPool;
@@ -92,7 +92,7 @@ namespace vk
                                            static_cast< uint32_t >( poolSizes.size( ) ), // poolSizeCount
                                            poolSizes.data( ) );                      // pPoolSizes
 
-      DescriptorPool descriptorPool = RENDERER_NAMESPACE::g_device.createDescriptorPool( createInfo );
+      DescriptorPool descriptorPool = RAYEXEC_NAMESPACE::g_device.createDescriptorPool( createInfo );
       RX_ASSERT( descriptorPool, "Failed to create descriptor pool." );
 
       return descriptorPool;
@@ -100,70 +100,70 @@ namespace vk
 
     UniqueDeviceMemory allocateMemoryUnique( Image image, MemoryPropertyFlags propertyFlags, void* pNext )
     {
-      auto memoryRequirements = RENDERER_NAMESPACE::g_device.getImageMemoryRequirements( image );
+      auto memoryRequirements = RAYEXEC_NAMESPACE::g_device.getImageMemoryRequirements( image );
 
       MemoryAllocateInfo allocateInfo( memoryRequirements.size,                                                                             // allocationSize 
-                                           Helper::findMemoryType( RENDERER_NAMESPACE::g_physicalDevice, memoryRequirements.memoryTypeBits, propertyFlags ) );  // memoryTypeIndex
+                                           Helper::findMemoryType( RAYEXEC_NAMESPACE::g_physicalDevice, memoryRequirements.memoryTypeBits, propertyFlags ) );  // memoryTypeIndex
 
       allocateInfo.pNext = pNext;
 
-      UniqueDeviceMemory memory = RENDERER_NAMESPACE::g_device.allocateMemoryUnique( allocateInfo );
+      UniqueDeviceMemory memory = RAYEXEC_NAMESPACE::g_device.allocateMemoryUnique( allocateInfo );
       RX_ASSERT( memory, "Failed to create memory for image." );
 
-      RENDERER_NAMESPACE::g_device.bindImageMemory( image, memory.get( ), 0 );
+      RAYEXEC_NAMESPACE::g_device.bindImageMemory( image, memory.get( ), 0 );
 
       return memory;
     }
 
     DeviceMemory allocateMemory( Image image, MemoryPropertyFlags propertyFlags, void* pNext )
     {
-      auto memoryRequirements = RENDERER_NAMESPACE::g_device.getImageMemoryRequirements( image );
+      auto memoryRequirements = RAYEXEC_NAMESPACE::g_device.getImageMemoryRequirements( image );
 
       MemoryAllocateInfo allocateInfo( memoryRequirements.size,                                                                             // allocationSize 
-                                           Helper::findMemoryType( RENDERER_NAMESPACE::g_physicalDevice, memoryRequirements.memoryTypeBits, propertyFlags ) );  // memoryTypeIndex
+                                           Helper::findMemoryType( RAYEXEC_NAMESPACE::g_physicalDevice, memoryRequirements.memoryTypeBits, propertyFlags ) );  // memoryTypeIndex
 
       allocateInfo.pNext = pNext;
 
-      DeviceMemory memory = RENDERER_NAMESPACE::g_device.allocateMemory( allocateInfo );
+      DeviceMemory memory = RAYEXEC_NAMESPACE::g_device.allocateMemory( allocateInfo );
       RX_ASSERT( memory, "Failed to create memory for image." );
 
-      RENDERER_NAMESPACE::g_device.bindImageMemory( image, memory, 0 );
+      RAYEXEC_NAMESPACE::g_device.bindImageMemory( image, memory, 0 );
 
       return memory;
     }
 
     UniqueDeviceMemory allocateMemoryUnique( Buffer buffer, MemoryPropertyFlags propertyFlags, void* pNext )
     {
-      auto memoryRequirements = RENDERER_NAMESPACE::g_device.getBufferMemoryRequirements( buffer );
+      auto memoryRequirements = RAYEXEC_NAMESPACE::g_device.getBufferMemoryRequirements( buffer );
 
       MemoryAllocateInfo allocateInfo( memoryRequirements.size,                                                                             // allocationSize 
-                                           Helper::findMemoryType( RENDERER_NAMESPACE::g_physicalDevice, memoryRequirements.memoryTypeBits, propertyFlags ) );  // memoryTypeIndex
+                                           Helper::findMemoryType( RAYEXEC_NAMESPACE::g_physicalDevice, memoryRequirements.memoryTypeBits, propertyFlags ) );  // memoryTypeIndex
 
       allocateInfo.pNext = pNext;
 
-      UniqueDeviceMemory memory = RENDERER_NAMESPACE::g_device.allocateMemoryUnique( allocateInfo );
+      UniqueDeviceMemory memory = RAYEXEC_NAMESPACE::g_device.allocateMemoryUnique( allocateInfo );
       RX_ASSERT( memory, "Failed to create memory for image." );
 
-      RENDERER_NAMESPACE::g_device.bindBufferMemory( buffer, memory.get( ), 0 );
+      RAYEXEC_NAMESPACE::g_device.bindBufferMemory( buffer, memory.get( ), 0 );
 
       return memory;;
     }
 
-    void allocateMemory( RENDERER_NAMESPACE::AccelerationStructure& as )
+    void allocateMemory( RAYEXEC_NAMESPACE::AccelerationStructure& as )
     {
       AccelerationStructureMemoryRequirementsInfoKHR memInfo( AccelerationStructureMemoryRequirementsTypeKHR::eObject, // type
                                                               AccelerationStructureBuildTypeKHR::eDevice,              // buildType
                                                               as.as );                                                 // accelerationStructure
 
-      MemoryRequirements2 memoryRequirements = RENDERER_NAMESPACE::g_device.getAccelerationStructureMemoryRequirementsKHR( memInfo );
+      MemoryRequirements2 memoryRequirements = RAYEXEC_NAMESPACE::g_device.getAccelerationStructureMemoryRequirementsKHR( memInfo );
       
       MemoryAllocateFlagsInfo allocateFlags( MemoryAllocateFlagBits::eDeviceAddress, // flags
                                                  { } );                              // deviceMask
 
       MemoryAllocateInfo allocateInfo( memoryRequirements.memoryRequirements.size,                                                                                                   // allocationSize
-                                       Helper::findMemoryType( RENDERER_NAMESPACE::g_physicalDevice, memoryRequirements.memoryRequirements.memoryTypeBits, MemoryPropertyFlagBits::eDeviceLocal ) ); // memoryTypeIndex
+                                       Helper::findMemoryType( RAYEXEC_NAMESPACE::g_physicalDevice, memoryRequirements.memoryRequirements.memoryTypeBits, MemoryPropertyFlagBits::eDeviceLocal ) ); // memoryTypeIndex
 
-      as.memory = RENDERER_NAMESPACE::g_device.allocateMemory( allocateInfo );
+      as.memory = RAYEXEC_NAMESPACE::g_device.allocateMemory( allocateInfo );
       RX_ASSERT( as.memory, "Failed to create memory for acceleration structure." );
 
       BindAccelerationStructureMemoryInfoKHR bindInfo( as.as,     // accelerationStructure
@@ -172,23 +172,23 @@ namespace vk
                                                        0,         // deviceIndexCount
                                                        nullptr ); // pDeviceIndices
 
-      if ( RENDERER_NAMESPACE::g_device.bindAccelerationStructureMemoryKHR( 1, &bindInfo ) != Result::eSuccess )
+      if ( RAYEXEC_NAMESPACE::g_device.bindAccelerationStructureMemoryKHR( 1, &bindInfo ) != Result::eSuccess )
         RX_ERROR( "Failed to bind acceleration structure memory." );
     }
 
     DeviceMemory allocateMemory( Buffer buffer, MemoryPropertyFlags propertyFlags, void* pNext )
     {
-      auto memoryRequirements = RENDERER_NAMESPACE::g_device.getBufferMemoryRequirements( buffer );
+      auto memoryRequirements = RAYEXEC_NAMESPACE::g_device.getBufferMemoryRequirements( buffer );
 
       MemoryAllocateInfo allocateInfo( memoryRequirements.size,                                                                             // allocationSize 
-                                       Helper::findMemoryType( RENDERER_NAMESPACE::g_physicalDevice, memoryRequirements.memoryTypeBits, propertyFlags ) );  // memoryTypeIndex
+                                       Helper::findMemoryType( RAYEXEC_NAMESPACE::g_physicalDevice, memoryRequirements.memoryTypeBits, propertyFlags ) );  // memoryTypeIndex
 
       allocateInfo.pNext = pNext;
 
-      DeviceMemory memory = RENDERER_NAMESPACE::g_device.allocateMemory( allocateInfo );
+      DeviceMemory memory = RAYEXEC_NAMESPACE::g_device.allocateMemory( allocateInfo );
       RX_ASSERT( memory, "Failed to create memory for image." );
 
-      RENDERER_NAMESPACE::g_device.bindBufferMemory( buffer, memory, 0 );
+      RAYEXEC_NAMESPACE::g_device.bindBufferMemory( buffer, memory, 0 );
 
       return memory;;
     }
@@ -219,7 +219,7 @@ namespace vk
                                       components,         // components
                                       subresourceRange ); // subresourceRange
                             
-      UniqueImageView imageView = RENDERER_NAMESPACE::g_device.createImageViewUnique( createInfo );
+      UniqueImageView imageView = RAYEXEC_NAMESPACE::g_device.createImageViewUnique( createInfo );
       RX_ASSERT( imageView, "Failed to create image view." );
 
       return imageView;
@@ -251,7 +251,7 @@ namespace vk
                                       components,         // components
                                       subresourceRange ); // subresourceRange
 
-      ImageView imageView = RENDERER_NAMESPACE::g_device.createImageView( createInfo );
+      ImageView imageView = RAYEXEC_NAMESPACE::g_device.createImageView( createInfo );
       RX_ASSERT( imageView, "Failed to create image view." );
 
       return imageView;
@@ -259,7 +259,7 @@ namespace vk
 
     UniqueSampler initSamplerUnique( const SamplerCreateInfo& createInfo )
     {
-      UniqueSampler sampler = RENDERER_NAMESPACE::g_device.createSamplerUnique( createInfo );
+      UniqueSampler sampler = RAYEXEC_NAMESPACE::g_device.createSamplerUnique( createInfo );
       RX_ASSERT( sampler, "Failed to create sampler." );
 
       return sampler;
@@ -267,7 +267,7 @@ namespace vk
 
     Sampler initSampler( const SamplerCreateInfo& createInfo )
     {
-      Sampler sampler = RENDERER_NAMESPACE::g_device.createSampler( createInfo );
+      Sampler sampler = RAYEXEC_NAMESPACE::g_device.createSampler( createInfo );
       RX_ASSERT( sampler, "Failed to create sampler." );
 
       return sampler;
@@ -283,7 +283,7 @@ namespace vk
                                         extent.height,                                  // height
                                         1u );                                           // layers
 
-      UniqueFramebuffer framebuffer = RENDERER_NAMESPACE::g_device.createFramebufferUnique( createInfo );
+      UniqueFramebuffer framebuffer = RAYEXEC_NAMESPACE::g_device.createFramebufferUnique( createInfo );
       RX_ASSERT( framebuffer, "Failed to create framebuffer." );
 
       return framebuffer;
@@ -299,7 +299,7 @@ namespace vk
                                         extent.height,                              // height
                                         1u );                                       // layers
 
-      Framebuffer framebuffer = RENDERER_NAMESPACE::g_device.createFramebuffer( createInfo );
+      Framebuffer framebuffer = RAYEXEC_NAMESPACE::g_device.createFramebuffer( createInfo );
       RX_ASSERT( framebuffer, "Failed to create framebuffer." );
 
       return framebuffer;
@@ -312,7 +312,7 @@ namespace vk
                                       count,  // queryCount
                                       { } );  // pipelineStatistics
       
-      UniqueQueryPool queryPool = RENDERER_NAMESPACE::g_device.createQueryPoolUnique( createInfo );
+      UniqueQueryPool queryPool = RAYEXEC_NAMESPACE::g_device.createQueryPoolUnique( createInfo );
       RX_ASSERT( queryPool, "Failed to create query pool." );
 
       return queryPool;
@@ -325,7 +325,7 @@ namespace vk
                                       count,  // queryCount
                                       { } );  // pipelineStatistics
 
-      QueryPool queryPool = RENDERER_NAMESPACE::g_device.createQueryPool( createInfo );
+      QueryPool queryPool = RAYEXEC_NAMESPACE::g_device.createQueryPool( createInfo );
       RX_ASSERT( queryPool, "Failed to create query pool." );
 
       return queryPool;
@@ -333,13 +333,13 @@ namespace vk
 
     UniqueShaderModule initShaderModuleUnique( const std::string& path )
     {
-      std::vector<char> source = RENDERER_NAMESPACE::util::parseShader( path );
+      std::vector<char> source = RAYEXEC_NAMESPACE::util::parseShader( path );
 
       ShaderModuleCreateInfo createInfo( { },                                                     // flags
                                              source.size( ),                                          // codeSize
                                              reinterpret_cast< const uint32_t* >( source.data( ) ) ); // pCode
 
-      UniqueShaderModule shaderModule = RENDERER_NAMESPACE::g_device.createShaderModuleUnique( createInfo );
+      UniqueShaderModule shaderModule = RAYEXEC_NAMESPACE::g_device.createShaderModuleUnique( createInfo );
       RX_ASSERT( shaderModule, "Failed to create shader module." );
 
       return shaderModule;
@@ -347,22 +347,22 @@ namespace vk
 
     ShaderModule initShaderModule( const std::string& path )
     {
-      std::vector<char> source = RENDERER_NAMESPACE::util::parseShader( path );
+      std::vector<char> source = RAYEXEC_NAMESPACE::util::parseShader( path );
 
       ShaderModuleCreateInfo createInfo( { },                                                     // flags
                                              source.size( ),                                          // codeSize
                                              reinterpret_cast< const uint32_t* >( source.data( ) ) ); // pCode
 
-      ShaderModule shaderModule = RENDERER_NAMESPACE::g_device.createShaderModule( createInfo );
+      ShaderModule shaderModule = RAYEXEC_NAMESPACE::g_device.createShaderModule( createInfo );
       RX_ASSERT( shaderModule, "Failed to create shader module." );
 
       return shaderModule;
     }
 
-    RENDERER_NAMESPACE::AccelerationStructure initAccelerationStructure( const AccelerationStructureCreateInfoKHR& asCreateInfo )
+    RAYEXEC_NAMESPACE::AccelerationStructure initAccelerationStructure( const AccelerationStructureCreateInfoKHR& asCreateInfo )
     {
-      RENDERER_NAMESPACE::AccelerationStructure resultAs;
-      resultAs.as = RENDERER_NAMESPACE::g_device.createAccelerationStructureKHR( asCreateInfo, nullptr );
+      RAYEXEC_NAMESPACE::AccelerationStructure resultAs;
+      resultAs.as = RAYEXEC_NAMESPACE::g_device.createAccelerationStructureKHR( asCreateInfo, nullptr );
 
       allocateMemory( resultAs );
 
@@ -371,7 +371,7 @@ namespace vk
 
     bool initPhysicalDevice( PhysicalDevice& physicalDevice )
     {
-      auto physicalDevices = RENDERER_NAMESPACE::g_instance.enumeratePhysicalDevices( );
+      auto physicalDevices = RAYEXEC_NAMESPACE::g_instance.enumeratePhysicalDevices( );
 
       std::vector<std::pair<unsigned int, std::string>> results;
 
@@ -404,8 +404,8 @@ namespace vk
       auto properties = physicalDevice.getProperties( );
       RX_SUCCESS( "Selected GPU: ", properties.deviceName );
 
-      RENDERER_NAMESPACE::g_physicalDeviceLimits = properties.limits;
-      RENDERER_NAMESPACE::g_physicalDevice = physicalDevice;
+      RAYEXEC_NAMESPACE::g_physicalDeviceLimits = properties.limits;
+      RAYEXEC_NAMESPACE::g_physicalDevice = physicalDevice;
 
       return true;
     }
@@ -415,16 +415,16 @@ namespace vk
       std::optional<uint32_t> graphicsFamilyIndex;
       std::optional<uint32_t> transferFamilyIndex;
 
-      auto queueFamilyProperties = RENDERER_NAMESPACE::g_physicalDevice.getQueueFamilyProperties( );
+      auto queueFamilyProperties = RAYEXEC_NAMESPACE::g_physicalDevice.getQueueFamilyProperties( );
       std::vector<uint32_t> queueFamilies( queueFamilyProperties.size( ) );
 
-      bool dedicatedTransferQueueFamily = Helper::isPhysicalDeviceWithDedicatedTransferQueueFamily( RENDERER_NAMESPACE::g_physicalDevice );
+      bool dedicatedTransferQueueFamily = Helper::isPhysicalDeviceWithDedicatedTransferQueueFamily( RAYEXEC_NAMESPACE::g_physicalDevice );
 
       for ( uint32_t index = 0; index < static_cast<uint32_t>( queueFamilies.size( ) ); ++index )
       {
         if ( queueFamilyProperties[index].queueFlags & QueueFlagBits::eGraphics && !graphicsFamilyIndex.has_value( ) )
         {
-          if ( RENDERER_NAMESPACE::g_physicalDevice.getSurfaceSupportKHR( index, RENDERER_NAMESPACE::g_surface ) )
+          if ( RAYEXEC_NAMESPACE::g_physicalDevice.getSurfaceSupportKHR( index, RAYEXEC_NAMESPACE::g_surface ) )
             graphicsFamilyIndex = index;
         }
 
@@ -446,8 +446,8 @@ namespace vk
         return false;
       }
 
-      RENDERER_NAMESPACE::g_graphicsFamilyIndex = graphicsFamilyIndex.value( );
-      RENDERER_NAMESPACE::g_transferFamilyIndex = transferFamilyIndex.value( );
+      RAYEXEC_NAMESPACE::g_graphicsFamilyIndex = graphicsFamilyIndex.value( );
+      RAYEXEC_NAMESPACE::g_transferFamilyIndex = transferFamilyIndex.value( );
     
       return true;
     }

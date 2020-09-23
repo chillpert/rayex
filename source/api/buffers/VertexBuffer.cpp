@@ -1,6 +1,6 @@
 #include "api/buffers/VertexBuffer.hpp"
 
-namespace RENDERER_NAMESPACE
+namespace RAYEXEC_NAMESPACE
 {
   VertexBuffer::VertexBuffer( std::vector<Vertex>& vertices, bool initialize )
   {

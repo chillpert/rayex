@@ -1,6 +1,6 @@
 #include "RayExec.hpp"
 
-namespace RENDERER_NAMESPACE
+namespace RAYEXEC_NAMESPACE
 {
   RayExec::RayExec( ) :
     window( std::make_shared<Window>( ) ),

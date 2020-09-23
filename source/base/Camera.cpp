@@ -1,6 +1,6 @@
 #include "base/Camera.hpp"
 
-namespace RENDERER_NAMESPACE
+namespace RAYEXEC_NAMESPACE
 {
   Camera::Camera( int width, int height, const glm::vec3& position ) :
     width( width ),

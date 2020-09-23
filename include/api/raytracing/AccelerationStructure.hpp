@@ -4,7 +4,7 @@
 #include "pch/stdafx.hpp"
 #include "api/misc/Components.hpp"
 
-namespace RENDERER_NAMESPACE
+namespace RAYEXEC_NAMESPACE
 {
   /// A wrapper for a Vulkan acceleration Structure.
   /// @ingroup API
@@ -28,7 +28,7 @@ namespace RENDERER_NAMESPACE
   /// @ingroup API
   struct Tlas
   {
-    AccelerationStructure as; ///< The RENDERER_NAMESPACE::AccelerationStructure object containing the Vulkan acceleration structure.
+    AccelerationStructure as; ///< The RAYEXEC_NAMESPACE::AccelerationStructure object containing the Vulkan acceleration structure.
     vk::BuildAccelerationStructureFlagsKHR flags; ///< The top level acceleration structure's build flags.
   };
 
@@ -36,7 +36,7 @@ namespace RENDERER_NAMESPACE
   /// @ingroup API
   struct Blas
   {
-    AccelerationStructure as; ///< The RENDERER_NAMESPACE::AccelerationStructure object containing the Vulkan acceleration structure.
+    AccelerationStructure as; ///< The RAYEXEC_NAMESPACE::AccelerationStructure object containing the Vulkan acceleration structure.
     vk::BuildAccelerationStructureFlagsKHR flags; ///< The top level acceleration structure's build flags.
 
     std::vector<vk::AccelerationStructureCreateGeometryTypeInfoKHR> asCreateGeometryInfo; ///< Specifies the shape of geometries that will be built into an acceleration structure.

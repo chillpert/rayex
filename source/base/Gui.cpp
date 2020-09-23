@@ -3,7 +3,7 @@
 #include "api/utility/Initializers.hpp"
 #include "api/utility/Destructors.hpp"
 
-namespace RENDERER_NAMESPACE
+namespace RAYEXEC_NAMESPACE
 {
   void Gui::configure( )
   {

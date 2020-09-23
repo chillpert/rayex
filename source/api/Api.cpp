@@ -5,7 +5,7 @@
 #include "api/utility/Destructors.hpp"
 #include "api/utility/Util.hpp"
 
-namespace RENDERER_NAMESPACE
+namespace RAYEXEC_NAMESPACE
 {
   const std::vector<const char*> layers = { "VK_LAYER_KHRONOS_validation" };
 #ifdef RX_DEBUG

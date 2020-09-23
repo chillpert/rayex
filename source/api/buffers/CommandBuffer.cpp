@@ -1,7 +1,7 @@
 #include "api/buffers/CommandBuffer.hpp"
 #include "api/misc/Components.hpp"
 
-namespace RENDERER_NAMESPACE
+namespace RAYEXEC_NAMESPACE
 {
   CommandBuffer::CommandBuffer( vk::CommandPool commandPool, uint32_t count, vk::CommandBufferUsageFlags usageFlags )
   {

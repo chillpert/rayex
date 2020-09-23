@@ -2,7 +2,7 @@
 #include "api/misc/Components.hpp"
 #include "api/utility/Util.hpp"
 
-namespace RENDERER_NAMESPACE
+namespace RAYEXEC_NAMESPACE
 {
   Surface::~Surface( )
   {

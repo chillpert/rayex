@@ -1,6 +1,6 @@
 #include "api/misc/Components.hpp"
 
-namespace RENDERER_NAMESPACE
+namespace RAYEXEC_NAMESPACE
 {
   std::shared_ptr<Window> g_window = nullptr;
   vk::Instance g_instance = nullptr;

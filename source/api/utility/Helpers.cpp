@@ -73,7 +73,7 @@ namespace vk
       return PresentInfoKHR( 1,                // waitSemaphoreCount
                              &waitSemaphore,   // pWaitSemaphores
                              1,                // swapchainCount
-                             &RENDERER_NAMESPACE::g_swapchain, // pSwapchains
+                             &RAYEXEC_NAMESPACE::g_swapchain, // pSwapchains
                              &imageIndex,      // pImageIndices
                              nullptr );        // pResults
     }
@@ -112,9 +112,9 @@ namespace vk
       return result;
     }
 
-    std::vector<std::shared_ptr<RENDERER_NAMESPACE::Model>> unpack( const std::unordered_map<std::string, std::shared_ptr<RENDERER_NAMESPACE::Model>>& models )
+    std::vector<std::shared_ptr<RAYEXEC_NAMESPACE::Model>> unpack( const std::unordered_map<std::string, std::shared_ptr<RAYEXEC_NAMESPACE::Model>>& models )
     {
-      std::vector<std::shared_ptr<RENDERER_NAMESPACE::Model>> result;
+      std::vector<std::shared_ptr<RAYEXEC_NAMESPACE::Model>> result;
       result.reserve( models.size( ) );
 
       for ( const auto& model : models )
@@ -144,8 +144,8 @@ namespace vk
     {
       auto barrierInfo = getImageMemoryBarrierInfo( image, oldLayout, newLayout );
 
-      RENDERER_NAMESPACE::CommandBuffer commandBuffer;
-      commandBuffer.init( RENDERER_NAMESPACE::g_graphicsCmdPool );
+      RAYEXEC_NAMESPACE::CommandBuffer commandBuffer;
+      commandBuffer.init( RAYEXEC_NAMESPACE::g_graphicsCmdPool );
       commandBuffer.begin( );
 
       commandBuffer.get( 0 ).pipelineBarrier( std::get<1>( barrierInfo ),        // srcStageMask
@@ -159,7 +159,7 @@ namespace vk
                                               &std::get<0>( barrierInfo ) );     // barrier
 
       commandBuffer.end( );
-      commandBuffer.submitToQueue( RENDERER_NAMESPACE::g_graphicsQueue );
+      commandBuffer.submitToQueue( RAYEXEC_NAMESPACE::g_graphicsQueue );
     }
 
     void transitionImageLayout( Image image, ImageLayout oldLayout, ImageLayout newLayout, CommandBuffer commandBuffer )
@@ -308,7 +308,7 @@ namespace vk
 
         if ( queueFamilies[index].queueFlags & QueueFlagBits::eGraphics )
         {
-          if ( physicalDevice.getSurfaceSupportKHR( index, RENDERER_NAMESPACE::g_surface ) )
+          if ( physicalDevice.getSurfaceSupportKHR( index, RAYEXEC_NAMESPACE::g_surface ) )
             graphicsQueueFamilyIndices.push_back( index );
         }
 

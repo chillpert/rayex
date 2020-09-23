@@ -3,7 +3,7 @@
 
 #include "base/Window.hpp"
 
-namespace RENDERER_NAMESPACE
+namespace RAYEXEC_NAMESPACE
 {
   extern std::shared_ptr<Window> g_window; ///< Global reference to the window.
   extern vk::Instance g_instance; ///< Global reference to the Vulkan instance.

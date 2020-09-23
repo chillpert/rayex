@@ -2,7 +2,7 @@
 #include "api/misc/Components.hpp"
 #include "api/utility/Initializers.hpp"
 
-namespace RENDERER_NAMESPACE
+namespace RAYEXEC_NAMESPACE
 {
   bool Swapchain::init( Surface* surface, vk::RenderPass renderPass )
   {

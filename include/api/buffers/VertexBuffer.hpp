@@ -4,7 +4,7 @@
 #include "api/buffers/Buffer.hpp"
 #include "api/misc/Vertex.hpp"
 
-namespace RENDERER_NAMESPACE
+namespace RAYEXEC_NAMESPACE
 {
   /// A specialised buffer for vertex data.
   /// @ingroup API

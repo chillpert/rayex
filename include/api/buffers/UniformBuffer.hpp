@@ -4,7 +4,7 @@
 #include "api/buffers/Buffer.hpp"
 #include "base/LightNode.hpp"
 
-namespace RENDERER_NAMESPACE
+namespace RAYEXEC_NAMESPACE
 {
   /// A uniform buffer object for camera data.
   /// @ingroup API
@@ -83,7 +83,7 @@ namespace RENDERER_NAMESPACE
     }
 
   private:
-    std::vector<Buffer> buffers; ///< A vector of RENDERER_NAMESPACE::Buffers for the uniform buffers.
+    std::vector<Buffer> buffers; ///< A vector of RAYEXEC_NAMESPACE::Buffers for the uniform buffers.
   };
 
 }

@@ -6,7 +6,7 @@
 #include "api/utility/Destructors.hpp"
 #include "api/utility/Helpers.hpp"
 
-namespace RENDERER_NAMESPACE
+namespace RAYEXEC_NAMESPACE
 {
   bool Image::init( const vk::ImageCreateInfo& createInfo )
   {

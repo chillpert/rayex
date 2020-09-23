@@ -19,7 +19,7 @@
 #include "base/Base.hpp"
 #include "api/raytracing/RayTracingBuilder.hpp"
 
-namespace RENDERER_NAMESPACE
+namespace RAYEXEC_NAMESPACE
 {
   /// Initializes and owns all Vulkan components and displays a picture on the screen.
   /// @note All API components and resources are freed using scope-bound destruction.
@@ -137,8 +137,8 @@ namespace RENDERER_NAMESPACE
 
     /// Initializes the model provided by the node.
     /// 
-    /// The model will be added to RENDERER_NAMESPACE::Api::models to make sure there are no duplicates.
-    /// Similarily, all textures required by the model will be stored individualy inside RENDERER_NAMESPACE::Api::textures.
+    /// The model will be added to RAYEXEC_NAMESPACE::Api::models to make sure there are no duplicates.
+    /// Similarily, all textures required by the model will be stored individualy inside RAYEXEC_NAMESPACE::Api::textures.
     /// If a model or a texture are already known to the application and have been initialized, they will be re-used instead of being initialized.
     /// @param node A pointer to a geometry node.
     /// @todo The function currently recreates the entire TLAS and BLAS everytime a model is added, which is very inefficient.
@@ -183,7 +183,7 @@ namespace RENDERER_NAMESPACE
     DescriptorSet rtDescriptorSets;
 
     // Descriptors for model-related data.
-    DescriptorSetLayout modelDescriptorSetLayout; ///< @note Each RENDERER_NAMESPACE::Model has its own descriptor set.
+    DescriptorSetLayout modelDescriptorSetLayout; ///< @note Each RAYEXEC_NAMESPACE::Model has its own descriptor set.
     vk::UniqueDescriptorPool modelDescriptorPool;
 
     // Descriptors for scene-related data.

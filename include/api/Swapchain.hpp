@@ -5,7 +5,7 @@
 #include "api/image/Image.hpp"
 #include "api/utility/Helpers.hpp"
 
-namespace RENDERER_NAMESPACE
+namespace RAYEXEC_NAMESPACE
 {
   /// A wrapper class for a Vulkan swapchain.
   /// @ingroup API
@@ -13,7 +13,7 @@ namespace RENDERER_NAMESPACE
   {
   public:
     /// Creates the swapchain, the swapchain images and their image views as well as their framebuffers.
-    /// @param surface A pointer to a RENDERER_NAMESPACE::Surface object.
+    /// @param surface A pointer to a RAYEXEC_NAMESPACE::Surface object.
     /// @param renderPass The render pass to create the framebuffers.
     /// @return Returns true if initialization was successful.
     bool init( Surface* surface, vk::RenderPass renderPass );

@@ -3,7 +3,7 @@
 
 #include "pch/stdafx.hpp"
 
-namespace RENDERER_NAMESPACE
+namespace RAYEXEC_NAMESPACE
 {
   /// Exposes all graphic settings supported by the renderer.
   ///

@@ -5,7 +5,7 @@
 #include "base/Base.hpp"
 
 /// The rx namespace encapsulates every single component provided by the renderer.
-namespace RENDERER_NAMESPACE
+namespace RAYEXEC_NAMESPACE
 {
   /// The main user interface.
   /// 
@@ -50,7 +50,7 @@ namespace RENDERER_NAMESPACE
     /// A single function to execute all subcomponents.
     /// 
     /// This function updates the window and the camera components and calls the update and render functions of the API.
-    /// @see RENDERER_NAMESPACE::Camera::update(), RENDERER_NAMESPACE::Window::update(), RENDERER_NAMESPACE::Api::update(), RENDERER_NAMESPACE::Api::render()
+    /// @see RAYEXEC_NAMESPACE::Camera::update(), RAYEXEC_NAMESPACE::Window::update(), RAYEXEC_NAMESPACE::Api::update(), RAYEXEC_NAMESPACE::Api::render()
     RX_API void run( );
 
     /// @return Returns true if the application is still running and false if the application has stopped.
@@ -64,7 +64,7 @@ namespace RENDERER_NAMESPACE
 
     /// Used to add another arbitrary node to the scene.
     /// @param node The node to add.
-    /// @see RENDERER_NAMESPACE::Api::pushNode()
+    /// @see RAYEXEC_NAMESPACE::Api::pushNode()
     template <typename T = Model>
     void pushNode( const std::shared_ptr<Node> node )
     {
@@ -73,7 +73,7 @@ namespace RENDERER_NAMESPACE
 
     /// Used to overwrite the entire scene with new nodes.
     /// @param nodes A vector of nodes describing the new scene.
-    /// @see RENDERER_NAMESPACE::Api::setNodes()
+    /// @see RAYEXEC_NAMESPACE::Api::setNodes()
     template <typename T = Model>
     void setNodes( const std::vector<std::shared_ptr<Node>>& nodes )
     {
@@ -91,8 +91,8 @@ namespace RENDERER_NAMESPACE
     Settings settings;
 
   private:
-    std::shared_ptr<Window> window; ///< A pointer to a RENDERER_NAMESPACE::Window object.
-    std::shared_ptr<Camera> camera; ///< A pointer to a RENDERER_NAMESPACE::Camera object.
+    std::shared_ptr<Window> window; ///< A pointer to a RAYEXEC_NAMESPACE::Window object.
+    std::shared_ptr<Camera> camera; ///< A pointer to a RAYEXEC_NAMESPACE::Camera object.
     Api api; ///< Contains all Vulkan related components.
 
     bool initialized = false; ///< Keeps track of the initialization status.

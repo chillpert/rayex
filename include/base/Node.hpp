@@ -3,7 +3,7 @@
 
 #include "pch/stdafx.hpp"
 
-namespace RENDERER_NAMESPACE
+namespace RAYEXEC_NAMESPACE
 {
   static size_t nodeCounter = 0; ///< For assigning each node a unique ID.
 

@@ -4,7 +4,7 @@
 #include "Node.hpp"
 #include "base/Material.hpp"
 
-namespace RENDERER_NAMESPACE
+namespace RAYEXEC_NAMESPACE
 {
   /// Contains all instance related ray tracing information.
   /// @ingroup API
@@ -12,8 +12,8 @@ namespace RENDERER_NAMESPACE
   {
     glm::mat4 transform = glm::mat4( 1.0f );
     glm::mat4 transformIT = glm::mat4( 1.0f );
-    uint32_t modelIndex = 0;  ///< Reference to RENDERER_NAMESPACE::Api::models
-    uint32_t textureOffset = 0; ///< Offset in RENDERER_NAMESPACE::Api::textures
+    uint32_t modelIndex = 0;  ///< Reference to RAYEXEC_NAMESPACE::Api::models
+    uint32_t textureOffset = 0; ///< Offset in RAYEXEC_NAMESPACE::Api::textures
     float padding0;
     float padding1;
   };

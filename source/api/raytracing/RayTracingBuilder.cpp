@@ -5,7 +5,7 @@
 #include "api/utility/Destructors.hpp"
 #include "api/buffers/CommandBuffer.hpp"
 
-namespace RENDERER_NAMESPACE
+namespace RAYEXEC_NAMESPACE
 {
   RayTracingBuilder::~RayTracingBuilder( )
   {
@@ -137,13 +137,13 @@ namespace RENDERER_NAMESPACE
                                                                   vk::AccelerationStructureBuildTypeKHR::eDevice,                    // buildType
                                                                   blas.as.as );                                                      // accelerationStructure
 
-      vk::MemoryRequirements2 memoryRequirements = RENDERER_NAMESPACE::g_device.getAccelerationStructureMemoryRequirementsKHR( memInfo );
+      vk::MemoryRequirements2 memoryRequirements = RAYEXEC_NAMESPACE::g_device.getAccelerationStructureMemoryRequirementsKHR( memInfo );
       vk::DeviceSize scratchSize = memoryRequirements.memoryRequirements.size;
 
       maxScratch = std::max( maxScratch, scratchSize );
 
       memInfo.type = vk::AccelerationStructureMemoryRequirementsTypeKHR::eObject;
-      memoryRequirements = RENDERER_NAMESPACE::g_device.getAccelerationStructureMemoryRequirementsKHR( memInfo );
+      memoryRequirements = RAYEXEC_NAMESPACE::g_device.getAccelerationStructureMemoryRequirementsKHR( memInfo );
 
       originalSizes[index] = memoryRequirements.memoryRequirements.size;
       

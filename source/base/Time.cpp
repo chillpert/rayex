@@ -1,7 +1,7 @@
 #include "base/Time.hpp"
 #include "pch/stdafx.hpp"
 
-namespace RENDERER_NAMESPACE
+namespace RAYEXEC_NAMESPACE
 {
   float Time::time;
   float Time::deltaTime;

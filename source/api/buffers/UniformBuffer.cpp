@@ -1,7 +1,7 @@
 #include "api/buffers/UniformBuffer.hpp"
 #include "api/misc/Components.hpp"
 
-namespace RENDERER_NAMESPACE
+namespace RAYEXEC_NAMESPACE
 {
   const std::vector<vk::Buffer> UniformBuffer::getRaw( ) const
   {

@@ -4,7 +4,7 @@
 #include "api/image/Image.hpp"
 #include "api/misc/Components.hpp"
 
-namespace RENDERER_NAMESPACE
+namespace RAYEXEC_NAMESPACE
 {
   /// A wrapper class for a Vulkan buffer.
   /// @ingroup API
@@ -28,7 +28,7 @@ namespace RENDERER_NAMESPACE
     
     RX_API virtual ~Buffer( ) = default;
 
-    /// Copies the content of this buffer to another RENDERER_NAMESPACE::Buffer.
+    /// Copies the content of this buffer to another RAYEXEC_NAMESPACE::Buffer.
     /// @param buffer The target for the copy operation.
     void copyToBuffer( Buffer& buffer ) const;
 

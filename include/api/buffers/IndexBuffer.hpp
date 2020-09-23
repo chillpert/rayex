@@ -3,7 +3,7 @@
 
 #include "api/buffers/Buffer.hpp"
 
-namespace RENDERER_NAMESPACE
+namespace RAYEXEC_NAMESPACE
 {
   /// A specialised buffer for index data.
   /// @note If not templatized then uint32_t will be used as the data's type.

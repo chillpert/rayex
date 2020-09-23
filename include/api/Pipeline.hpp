@@ -4,7 +4,7 @@
 #include "pch/stdafx.hpp"
 #include "Settings.hpp"
 
-namespace RENDERER_NAMESPACE
+namespace RAYEXEC_NAMESPACE
 {
   /// A wrapper class for a Vulkan graphics pipeline.
   /// @ingroup API

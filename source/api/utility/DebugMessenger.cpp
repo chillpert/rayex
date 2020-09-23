@@ -2,7 +2,7 @@
 #include "api/Api.hpp"
 #include "api/misc/Components.hpp"
 
-namespace RENDERER_NAMESPACE
+namespace RAYEXEC_NAMESPACE
 {
   DebugMessenger::~DebugMessenger( )
   {

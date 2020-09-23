@@ -3,7 +3,7 @@
 
 #include "api/image/Image.hpp"
 
-namespace RENDERER_NAMESPACE
+namespace RAYEXEC_NAMESPACE
 {
   /// A helper class for creating ready-to-use textures.
   /// @ingroup API
@@ -46,9 +46,9 @@ namespace RENDERER_NAMESPACE
 namespace std
 {
   /// @cond INTERNAL
-  template<> struct hash<RENDERER_NAMESPACE::Texture>
+  template<> struct hash<RAYEXEC_NAMESPACE::Texture>
   {
-    size_t operator()( const std::shared_ptr<RENDERER_NAMESPACE::Texture> texture ) const { return hash<std::string>( )( texture->getPath( ) ); }
+    size_t operator()( const std::shared_ptr<RAYEXEC_NAMESPACE::Texture> texture ) const { return hash<std::string>( )( texture->getPath( ) ); }
   };
   /// @endcond
 }

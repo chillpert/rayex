@@ -9,12 +9,12 @@
 #include "api/descriptors/DescriptorSet.hpp"
 #include "base/Material.hpp"
 
-namespace RENDERER_NAMESPACE
+namespace RAYEXEC_NAMESPACE
 {
   /// Describes a model.
   /// 
   /// The class extracts vertex and index data from a given wavefront file.
-  /// If the client wants to parse other formats than wavefront, load() should be overridden and either RENDERER_NAMESPACE::Renderer::pushNode() or RENDERER_NAMESPACE::Renderer::setNodes() templatized using the inherited class type.
+  /// If the client wants to parse other formats than wavefront, load() should be overridden and either RAYEXEC_NAMESPACE::Renderer::pushNode() or RAYEXEC_NAMESPACE::Renderer::setNodes() templatized using the inherited class type.
   /// ### Example
   /// ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~.cpp
   /// class CustomModel : public Model
@@ -69,9 +69,9 @@ namespace RENDERER_NAMESPACE
 namespace std
 {
   /// @cond INTERNAL
-  template<> struct hash<RENDERER_NAMESPACE::Model>
+  template<> struct hash<RAYEXEC_NAMESPACE::Model>
   {
-    size_t operator()( const std::shared_ptr<RENDERER_NAMESPACE::Model> model ) const { return hash<std::string>( )( model->path ); }
+    size_t operator()( const std::shared_ptr<RAYEXEC_NAMESPACE::Model> model ) const { return hash<std::string>( )( model->path ); }
   };
   /// @endcond
 }

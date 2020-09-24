@@ -23,6 +23,7 @@
 #include <memory>
 #include <unordered_map>
 #include <unordered_set>
+#include <any>
 #include <filesystem>
 
 #endif // STDAFX_HPP

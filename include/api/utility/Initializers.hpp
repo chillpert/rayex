@@ -56,6 +56,14 @@ namespace vk
     /// @return Returns the descriptor pool.  
     DescriptorPool initDescriptorPool( const std::vector<DescriptorPoolSize>& poolSizes, uint32_t maxSets, DescriptorPoolCreateFlags flags = { } );
 
+    DescriptorSetLayout initDescriptorSetLayout( const std::vector<DescriptorSetLayoutBinding> bindings );
+
+    UniqueDescriptorSetLayout initDescriptorSetLayoutUnique( const std::vector<DescriptorSetLayoutBinding> bindings );
+
+    std::vector<DescriptorSet> initDescriptorSets( DescriptorPool pool, DescriptorSetLayout layout );
+
+    std::vector<UniqueDescriptorSet> initDescriptorSetsUnique( DescriptorPool pool, DescriptorSetLayout layout );
+
     /// Allocates and binds unique memory for an image.
     /// @param image The image to allocate memory for.
     /// @param pNext The pNext chain of the Vulkan allocation info.

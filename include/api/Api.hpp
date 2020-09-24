@@ -18,6 +18,7 @@
 #include "base/Gui.hpp"
 #include "base/Base.hpp"
 #include "api/raytracing/RayTracingBuilder.hpp"
+#include "api/descriptors/Descriptor.hpp"
 
 namespace RAYEXEC_NAMESPACE
 {
@@ -191,9 +192,10 @@ namespace RAYEXEC_NAMESPACE
     vk::UniqueDescriptorPool modelDescriptorPool;
 
     // Descriptors for scene-related data.
-    DescriptorSetLayout sceneDescriptorSetLayout;
-    vk::UniqueDescriptorPool sceneDescriptorPool;
-    DescriptorSet sceneDescriptorSets;
+    //DescriptorSetLayout sceneDescriptorSetLayout;
+   // vk::UniqueDescriptorPool sceneDescriptorPool;
+    //DescriptorSet sceneDescriptorSets;
+    DescriptorManager test;
 
     // Descriptors for rasterization shaders.
     DescriptorSetLayout rsDescriptorSetLayout;

@@ -32,7 +32,7 @@ namespace RAYEXEC_NAMESPACE
 
     /// Checks if the preferred settings for format, color space and present mode are available. If not, the function will set them to some fallback values.
     /// @warning Must be called right after the enumeration of the physical device.
-    void checkSettingSupport( );
+    void assessSettings( );
 
   private:
     /// Destroys the surface.

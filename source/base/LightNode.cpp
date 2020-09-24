@@ -13,7 +13,7 @@ namespace RAYEXEC_NAMESPACE
     ubo.ambient = combine( this->ambient, this->ambientIntensity );
     ubo.diffuse = combine( this->diffuse, this->diffuseIntensity );
     ubo.specular = combine( this->specular, this->specularIntensity );
-    ubo.direction = combine( this->direction, this->exists );
+    ubo.position = combine( this->position, this->exists );
 
     return ubo;
   }

@@ -4,6 +4,7 @@
 #include "api/misc/Components.hpp"
 #include "api/raytracing/RayTracingBuilder.hpp"
 #include "api/utility/Initializers.hpp"
+#include "api/utility/Util.hpp"
 
 namespace RAYEXEC_NAMESPACE
 {
@@ -140,6 +141,8 @@ namespace RAYEXEC_NAMESPACE
 
   bool Pipeline::init( const std::vector<vk::DescriptorSetLayout>& descriptorSetLayouts, const Settings* const settings )
   {
+    Util::processShaderMacros( "shaders/raytrace.rchit", settings->anticipatedDirectionalLights, settings->anticipatedPointLights );
+
     auto rgen = vk::Initializer::initShaderModuleUnique( "shaders/raytrace.rgen" );
     auto miss = vk::Initializer::initShaderModuleUnique( "shaders/raytrace.rmiss" );
     auto chit = vk::Initializer::initShaderModuleUnique( "shaders/raytrace.rchit" );

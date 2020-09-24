@@ -13,16 +13,16 @@ namespace RAYEXEC_NAMESPACE
     RX_INFO( "Using default path as path to resources: ", this->resourcePath );
   }
 
-  void Settings::setMaxRecursionDepth( uint32_t maxRecursionDepth, bool refresh )
+  void Settings::setMaxRecursionDepth( uint32_t maxRecursionDepth )
   {
     this->maxRecursionDepth = maxRecursionDepth;
-    this->refresh = refresh;
+    this->refreshPipeline = true;
   }
 
-  void Settings::setClearColor( const glm::vec4& clearColor, bool refresh )
+  void Settings::setClearColor( const glm::vec4& clearColor )
   {
     this->clearColor = clearColor;
-    this->refresh = refresh;
+    this->refreshSwapchain = true;
   }
 
   void Settings::setResourcePath( int argc, char* argv[] )
@@ -43,11 +43,34 @@ namespace RAYEXEC_NAMESPACE
   {
     this->resourcePath = path;
 
-    std::replace( this->resourcePath.begin( ), this->resourcePath.end( ), '\\', '/');
+    std::replace( this->resourcePath.begin( ), this->resourcePath.end( ), '\\', '/' );
 
-    if ( path[ path.size( ) - 1] != '/' )
+    if ( path[path.size( ) - 1] != '/' )
       this->resourcePath += '/';
 
     g_resourcePath = this->resourcePath;
+  }
+
+  void Settings::setEnableRayTracing( bool flag )
+  {
+    this->rayTrace = flag;
+    this->refreshSwapchain = true;
+  }
+
+  void Settings::setAutomaticPipelineRefresh( bool flag )
+  {
+    this->automaticPipelineRefresh = flag;
+  }
+
+  void Settings::setAnticipatedDirectionalLights( uint32_t amount )
+  {
+    this->anticipatedDirectionalLights = amount;
+    this->refreshPipeline = true;
+  }
+
+  void Settings::setAnticipatedPointLights( uint32_t amount )
+  {
+    this->anticipatedPointLights = amount;
+    this->refreshPipeline = true;
   }
 }

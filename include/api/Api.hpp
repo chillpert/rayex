@@ -96,11 +96,15 @@ namespace RAYEXEC_NAMESPACE
         {
           auto dirLightNodePtr = std::dynamic_pointer_cast<DirectionalLightNode>( node );
           dirLightNodes.push_back( dirLightNodePtr );
+
+          ++totalDirectionalLights;
         }
         else if ( dynamic_cast<PointLightNode*>( node.get( ) ) )
         {
           auto pointLightNodePtr = std::dynamic_pointer_cast<PointLightNode>( node );
           pointLightNodes.push_back( pointLightNodePtr );
+
+          ++totalPointLights;
         }
       }
 
@@ -231,6 +235,10 @@ namespace RAYEXEC_NAMESPACE
     RayTracingBuilder rayTracingBuilder;
 
     bool needSwapchainRecreate = false;
+  
+    uint32_t totalDirectionalLights = 0;
+    uint32_t totalPointLights = 0;
+    bool reloadShader = false;
   };
 }
 

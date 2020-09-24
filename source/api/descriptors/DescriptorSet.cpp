@@ -73,7 +73,7 @@ namespace RAYEXEC_NAMESPACE
     }
   }
 
-  void DescriptorSet::update( const std::vector<vk::Buffer>& rsUniformBuffers, vk::ImageView textureImageView, vk::Sampler textureSampler )
+  void DescriptorSet::update( const std::vector<vk::Buffer>& rsUniformBuffers, vk::ImageView textureImageView, vk::Sampler textureSampler, const std::vector<vk::Buffer>& lightSourcesBuffer )
   {
     for ( size_t i = 0; i < this->layouts.size( ); ++i )
     {
@@ -85,9 +85,14 @@ namespace RAYEXEC_NAMESPACE
                                            textureImageView,                          // imageView
                                            vk::ImageLayout::eShaderReadOnlyOptimal ); // imageLayout
 
-      std::array<vk::WriteDescriptorSet, 2> descriptorWrites;
+      vk::DescriptorBufferInfo lightSourcesBufferInfo( lightSourcesBuffer[i], // buffer
+                                                       0,                     // offset
+                                                       sizeof( LightsUbo ) ); // range
+
+      std::array<vk::WriteDescriptorSet, 3> descriptorWrites;
       descriptorWrites[0] = writeUniformBuffer( this->sets[i], 0, rsUniformBufferInfo );
       descriptorWrites[1] = writeCombinedImageSampler( this->sets[i], 1, textureInfo );
+      descriptorWrites[2] = writeUniformBuffer( this->sets[i], 2, lightSourcesBufferInfo );
 
       g_device.updateDescriptorSets( descriptorWrites, 0 );
     }

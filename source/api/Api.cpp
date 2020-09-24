@@ -98,7 +98,7 @@ namespace RAYEXEC_NAMESPACE
     RX_ASSERT_INIT( result );
 
     // Reassess the support of the preferred surface settings.
-    this->surface.checkSettingSupport( );
+    this->surface.assessSettings( );
 
     // Queues
     result = vk::Initializer::initQueueFamilyIndices( );
@@ -123,9 +123,11 @@ namespace RAYEXEC_NAMESPACE
     // Command pools
     this->graphicsCmdPool = vk::Initializer::initCommandPoolUnique( g_graphicsFamilyIndex, vk::CommandPoolCreateFlagBits::eResetCommandBuffer );
     g_graphicsCmdPool = this->graphicsCmdPool.get( );
+    RX_ASSERT_INIT( this->graphicsCmdPool );
 
     this->transferCmdPool = vk::Initializer::initCommandPoolUnique( g_transferFamilyIndex, { } );
     g_transferCmdPool = this->transferCmdPool.get( );
+    RX_ASSERT_INIT( this->transferCmdPool );
 
     // Descriptor sets and layouts
     initDescriptorSets( );
@@ -172,12 +174,18 @@ namespace RAYEXEC_NAMESPACE
 
   void Api::update( )
   {
-    if ( this->settings->refresh )
+    if ( this->settings->refreshPipeline )
     {
-      this->settings->refresh = false;
+      RX_ERROR( "HEY. THIS IS NOT A THING YET. CHILL BRO." );
+      this->settings->refreshPipeline = false;
+      this->settings->refreshSwapchain = false;
 
-      // Trigger swapchain / pipeline recreation
-      RX_WARN( "Settings were changed. Swapchain recreation necessary." );
+      recreateSwapchain( );
+    }
+
+    if ( this->settings->refreshSwapchain )
+    {
+      this->settings->refreshSwapchain = false;
 
       recreateSwapchain( );
     }
@@ -446,7 +454,7 @@ namespace RAYEXEC_NAMESPACE
     // Update second descriptor set.
     auto diffuseIter = this->textures.find( node->material.diffuseTexture[0] );
     model->rtDescriptorSets.update( diffuseIter->second->getImageView( ), diffuseIter->second->getSampler( ), model->vertexBuffer.get( ), model->indexBuffer.get( ) );
-    model->rsDescriptorSets.update( node->rsUniformBuffer.getRaw( ), diffuseIter->second->getImageView( ), diffuseIter->second->getSampler( ) );
+    model->rsDescriptorSets.update( node->rsUniformBuffer.getRaw( ), diffuseIter->second->getImageView( ), diffuseIter->second->getSampler( ), this->lightsUniformBuffer.getRaw( ) );
   }
 
   bool Api::initGui( )
@@ -512,7 +520,7 @@ namespace RAYEXEC_NAMESPACE
     {
       // Set up render pass begin info
       std::array<vk::ClearValue, 2> clearValues;
-      clearValues[0].color = { util::vec4toArray( this->settings->getClearColor( ) ) };
+      clearValues[0].color = { Util::vec4toArray( this->settings->getClearColor( ) ) };
       clearValues[1].depthStencil = vk::ClearDepthStencilValue { 1.0f, 0 };
 
       // Start recording the swapchain framebuffers
@@ -629,12 +637,12 @@ namespace RAYEXEC_NAMESPACE
     
     // Scene descriptor set layout.
     {
-      // Directional light nodes uniform buffer
-      auto dirLightsUboBinding = vk::Helper::getDescriptorSetLayoutBinding( 0, vk::DescriptorType::eUniformBuffer, vk::ShaderStageFlagBits::eClosestHitKHR );
+      // Light nodes uniform buffer
+      auto lightsUboBinding = vk::Helper::getDescriptorSetLayoutBinding( 0, vk::DescriptorType::eUniformBuffer, vk::ShaderStageFlagBits::eClosestHitKHR );
       // Scene description buffer
-      auto sceneDescriptionBinding = vk::Helper::getDescriptorSetLayoutBinding( 1, vk::DescriptorType::eStorageBuffer, vk::ShaderStageFlagBits::eClosestHitKHR );
+      auto rayTracingInstancesBinding = vk::Helper::getDescriptorSetLayoutBinding( 1, vk::DescriptorType::eStorageBuffer, vk::ShaderStageFlagBits::eClosestHitKHR );
 
-      this->sceneDescriptorSetLayout.init( { dirLightsUboBinding, sceneDescriptionBinding } );
+      this->sceneDescriptorSetLayout.init( { lightsUboBinding, rayTracingInstancesBinding } );
     }
 
     // Rasterization descriptor set layout.
@@ -643,8 +651,10 @@ namespace RAYEXEC_NAMESPACE
       auto uboBinding = vk::Helper::getDescriptorSetLayoutBinding( 0, vk::DescriptorType::eUniformBuffer, vk::ShaderStageFlagBits::eVertex );
       // Texture image
       auto textureBinding = vk::Helper::getDescriptorSetLayoutBinding( 1, vk::DescriptorType::eCombinedImageSampler, vk::ShaderStageFlagBits::eFragment );
+      // Light nodes uniform buffer
+      auto lightsUboBinding = vk::Helper::getDescriptorSetLayoutBinding( 2, vk::DescriptorType::eUniformBuffer, vk::ShaderStageFlagBits::eFragment );
 
-      this->rsDescriptorSetLayout.init( { uboBinding, textureBinding } );
+      this->rsDescriptorSetLayout.init( { uboBinding, textureBinding, lightsUboBinding } );
     }
 
     // Ray tracing descriptor pool

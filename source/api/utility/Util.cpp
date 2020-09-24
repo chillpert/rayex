@@ -3,7 +3,7 @@
 
 namespace RAYEXEC_NAMESPACE
 {
-  namespace util
+  namespace Util
   {
     std::vector<char> parseShader( const std::string& path )
     {
@@ -58,6 +58,45 @@ namespace RAYEXEC_NAMESPACE
       file.close( );
 
       return buffer;
+    }
+
+    void processShaderMacros( const std::string& path, uint32_t dirLightNodes, uint32_t pointLightNodes )
+    {
+      std::string pathToFile = g_resourcePath + path;
+      std::ifstream file( pathToFile );
+
+      if ( !file.is_open( ) )
+        RX_ERROR( "Failed to open shader source file ", pathToFile );
+
+      std::string dirLightSearchTag = "#define TOTAL_DIRECTIONAL_LIGHTS";
+      std::string pointLightSearchTag = "#define TOTAL_POINT_LIGHTS";
+      
+      std::string line = "";
+      std::string processedContent;
+      while ( std::getline( file, line ) )
+      {
+        if ( line.find( dirLightSearchTag ) != std::string::npos )
+        {
+          auto pos = line.find_last_of( " " );
+          if ( pos != std::string::npos )
+            line.replace( pos + 1, line.length( ), std::to_string( dirLightNodes ) );
+        }
+
+        if ( line.find( pointLightSearchTag ) != std::string::npos )
+        {
+          auto pos = line.find_last_of( " " );
+          if ( pos != std::string::npos )
+            line.replace( pos + 1, line.length( ), std::to_string( pointLightNodes ) );
+        }
+
+        processedContent += line + "\n";
+      }
+
+      file.close( );
+
+      std::ofstream out( pathToFile );
+      out << processedContent;
+      out.close( );
     }
 
     std::array<float, 4> vec4toArray( const glm::vec4& vec )

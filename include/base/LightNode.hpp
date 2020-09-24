@@ -38,7 +38,7 @@ namespace RAYEXEC_NAMESPACE
   public:
     virtual ~DirectionalLightNode( ) = default;
     
-    glm::vec3 direction = { 5.0f, 5.0f, 2.0f }; ///< The direction the light is pointing at.    
+    glm::vec3 position = { 5.0f, 5.0f, 2.0f }; ///< The position of the light.    
 
     /// Used to combine members of DirectionalLightNode to data types that will not cause uniform member alignment issues in shaders.
     struct Ubo
@@ -47,7 +47,7 @@ namespace RAYEXEC_NAMESPACE
       glm::vec4 diffuse; ///< Encodes the diffuse color in the first three entries and its intensity in the fourth entry.
       glm::vec4 specular; ///< Encodes the specular color in the first three entries and its intensity in the fourth entry.
 
-      glm::vec4 direction; ///< Encodes the light's direction in the first three entires and whether or not it is activated in the fourth entry.
+      glm::vec4 position; ///< Encodes the light's position in the first three entries and whether or not it is activated in the fourth entry.
     };
 
     Ubo toUbo( );

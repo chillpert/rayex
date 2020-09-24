@@ -333,11 +333,11 @@ namespace vk
 
     UniqueShaderModule initShaderModuleUnique( const std::string& path )
     {
-      std::vector<char> source = RAYEXEC_NAMESPACE::util::parseShader( path );
+      std::vector<char> source = RAYEXEC_NAMESPACE::Util::parseShader( path );
 
       ShaderModuleCreateInfo createInfo( { },                                                     // flags
-                                             source.size( ),                                          // codeSize
-                                             reinterpret_cast< const uint32_t* >( source.data( ) ) ); // pCode
+                                         source.size( ),                                          // codeSize
+                                         reinterpret_cast< const uint32_t* >( source.data( ) ) ); // pCode
 
       UniqueShaderModule shaderModule = RAYEXEC_NAMESPACE::g_device.createShaderModuleUnique( createInfo );
       RX_ASSERT( shaderModule, "Failed to create shader module." );
@@ -347,11 +347,11 @@ namespace vk
 
     ShaderModule initShaderModule( const std::string& path )
     {
-      std::vector<char> source = RAYEXEC_NAMESPACE::util::parseShader( path );
+      std::vector<char> source = RAYEXEC_NAMESPACE::Util::parseShader( path );
 
       ShaderModuleCreateInfo createInfo( { },                                                     // flags
-                                             source.size( ),                                          // codeSize
-                                             reinterpret_cast< const uint32_t* >( source.data( ) ) ); // pCode
+                                         source.size( ),                                          // codeSize
+                                         reinterpret_cast< const uint32_t* >( source.data( ) ) ); // pCode
 
       ShaderModule shaderModule = RAYEXEC_NAMESPACE::g_device.createShaderModule( createInfo );
       RX_ASSERT( shaderModule, "Failed to create shader module." );

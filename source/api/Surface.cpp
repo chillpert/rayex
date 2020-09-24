@@ -23,7 +23,7 @@ namespace RAYEXEC_NAMESPACE
     return true;
   }
 
-  void Surface::checkSettingSupport( )
+  void Surface::assessSettings( )
   {
     // Get all surface capabilities.
     this->capabilities = g_physicalDevice.getSurfaceCapabilitiesKHR( this->surface );
@@ -31,11 +31,11 @@ namespace RAYEXEC_NAMESPACE
     // Check a present mode.
     std::vector<vk::PresentModeKHR> presentModes = g_physicalDevice.getSurfacePresentModesKHR( this->surface );
 
-    if ( !util::find<vk::PresentModeKHR>( this->presentMode, presentModes ) )
+    if ( !Util::find<vk::PresentModeKHR>( this->presentMode, presentModes ) )
     {
-      util::find<vk::PresentModeKHR>( vk::PresentModeKHR::eMailbox, presentModes ) ? this->presentMode = vk::PresentModeKHR::eMailbox :
-      util::find<vk::PresentModeKHR>( vk::PresentModeKHR::eImmediate, presentModes ) ? this->presentMode = vk::PresentModeKHR::eImmediate :
-      util::find<vk::PresentModeKHR>( vk::PresentModeKHR::eFifoRelaxed, presentModes ) ? this->presentMode = vk::PresentModeKHR::eFifoRelaxed :
+      Util::find<vk::PresentModeKHR>( vk::PresentModeKHR::eMailbox, presentModes ) ? this->presentMode = vk::PresentModeKHR::eMailbox :
+      Util::find<vk::PresentModeKHR>( vk::PresentModeKHR::eImmediate, presentModes ) ? this->presentMode = vk::PresentModeKHR::eImmediate :
+      Util::find<vk::PresentModeKHR>( vk::PresentModeKHR::eFifoRelaxed, presentModes ) ? this->presentMode = vk::PresentModeKHR::eFifoRelaxed :
       this->presentMode = vk::PresentModeKHR::eFifo;
 
       std::string fallbackPresentMode;

@@ -6,7 +6,7 @@ namespace RAYEXEC_NAMESPACE
 {
   bool Swapchain::init( Surface* surface, vk::RenderPass renderPass )
   {
-    surface->checkSettingSupport( );
+    surface->assessSettings( );
 
     auto surfaceCapabilities = surface->getCapabilities( );
 

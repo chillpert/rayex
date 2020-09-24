@@ -49,7 +49,7 @@ namespace RAYEXEC_NAMESPACE
     /// @param indexBuffer A Vulkan buffer containing the index data of a model.
     void update( vk::ImageView textureImageView, vk::Sampler textureSampler, vk::Buffer vertexBuffer, vk::Buffer indexBuffer );
 
-    void update( const std::vector<vk::Buffer>& rsUniformBuffers, vk::ImageView textureImageView, vk::Sampler textureSampler );
+    void update( const std::vector<vk::Buffer>& rsUniformBuffers, vk::ImageView textureImageView, vk::Sampler textureSampler, const std::vector<vk::Buffer>& lightSourcesBuffer );
 
     /// Used to update model related descriptors (without textures).
     /// @param vertexBuffer A Vulkan buffer containing the vertex data of a model.

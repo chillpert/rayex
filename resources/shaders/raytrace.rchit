@@ -6,6 +6,9 @@
 #include "raycommon.glsl"
 #include "lights.glsl"
 
+#define TOTAL_DIRECTIONAL_LIGHTS 1
+#define TOTAL_POINT_LIGHTS 1
+
 struct Vertex
 {
   vec3 pos;
@@ -44,8 +47,8 @@ layout(binding = 2, set = 1) buffer Indices
 
 layout(binding = 0, set = 2) uniform LightSources
 {
-  DirectionalLight directionalLights[10];
-  PointLight pointLights[10];
+  DirectionalLight directionalLights[TOTAL_DIRECTIONAL_LIGHTS];
+  PointLight pointLights[TOTAL_POINT_LIGHTS];
 } lightSources;
 
 layout(binding = 1, set = 2) buffer RayTracingInstances

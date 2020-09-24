@@ -245,15 +245,27 @@ private:
         this->renderer->pushNode( sphere );
       }
 
+      if ( ImGui::Button( "Add directional light" ) )
+      {
+        auto dirLight = std::make_shared<DirectionalLightNode>( );
+      
+        int max = 4;
+        int min = -4;
+        srand( time( NULL ) );
+        int finalNum = rand( ) % ( max - min + 1 ) + min;
+        dirLight->worldTransform = glm::translate( dirLight->worldTransform, glm::vec3( finalNum, 0.0f, 0.0f ) );
+      }
+
       auto clearColor = this->renderer->settings.getClearColor( );
       if ( ImGui::ColorEdit4( "##AmbientColor", &clearColor[0] ) )
       {
         this->renderer->settings.setClearColor( clearColor );
       }
 
-      if ( ImGui::Checkbox( "RayTracing", &this->renderer->settings.rayTrace ) )
+      static bool rayTrace = true;
+      if ( ImGui::Checkbox( "Ray Tracing", &rayTrace ) )
       {
-        this->renderer->settings.refresh = true;
+        this->renderer->settings.setEnableRayTracing( rayTrace );
       }
     }
 

@@ -267,6 +267,13 @@ private:
       {
         this->renderer->settings.setEnableRayTracing( rayTrace );
       }
+
+      static int depth = static_cast<int>( this->renderer->settings.getMaxRecursionDepth( ) );
+      if ( ImGui::SliderInt( "Recursion depth", &depth, 1, 100 ) )
+      {
+        this->renderer->settings.setMaxRecursionDepth( static_cast<uint32_t>( depth ) );
+      }
+    
     }
 
     ImGui::End( );

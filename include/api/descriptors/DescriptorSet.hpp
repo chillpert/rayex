@@ -8,6 +8,34 @@
 
 namespace RAYEXEC_NAMESPACE
 {
+  struct AsDesc
+  { 
+    vk::AccelerationStructureKHR accelerationStructure;
+  };
+
+  struct StorageImageDesc 
+  { 
+    vk::ImageView imageView;
+  };
+
+  struct UboDesc
+  { 
+    std::vector<vk::Buffer> uniformBuffers; 
+    vk::DeviceSize size;
+  };
+
+  struct StorageBufferDesc
+  {
+    vk::Buffer storageBuffer;
+    vk::DeviceSize size = VK_WHOLE_SIZE;
+  };
+
+  struct CombinedImageSamplerDesc
+  {
+    vk::ImageView imageView;
+    vk::Sampler sampler;
+  };
+
   /// A wrapper class for Vulkan descriptor sets.
   /// @todo Make the update process "smart" by using the existing information to automatically write to and update the descriptor sets.
   /// @ingroup API
@@ -37,29 +65,7 @@ namespace RAYEXEC_NAMESPACE
     void init( vk::DescriptorPool descriptorPool, uint32_t count, const std::vector<vk::DescriptorSetLayout>& layouts );
 
     /// Used to update ray tracing related descriptors.
-    /// @param tlas The top level acceleration structure.
-    /// @param storageImageView The storage image view the ray tracing shaders will write to.
-    /// @param uniformBuffers A vector of uniform buffers used to upload camera data.
-    void update( const vk::AccelerationStructureKHR& tlas, vk::ImageView storageImageView, const std::vector<vk::Buffer>& uniformBuffers );
-    
-    /// Used to update model related descriptors (with textures).
-    /// @param textureImageView A texture's image view.
-    /// @param textureSampler A texture's sampler.
-    /// @param vertexBuffer A Vulkan buffer containing the vertex data of a model.
-    /// @param indexBuffer A Vulkan buffer containing the index data of a model.
-    void update( vk::ImageView textureImageView, vk::Sampler textureSampler, vk::Buffer vertexBuffer, vk::Buffer indexBuffer );
-
-    void update( const std::vector<vk::Buffer>& rsUniformBuffers, vk::ImageView textureImageView, vk::Sampler textureSampler, const std::vector<vk::Buffer>& lightSourcesBuffer );
-
-    /// Used to update model related descriptors (without textures).
-    /// @param vertexBuffer A Vulkan buffer containing the vertex data of a model.
-    /// @param indexBuffer A Vulkan buffer containing the index data of a model.
-    void update( vk::Buffer vertexBuffer, vk::Buffer indexBuffer );
-
-    /// Used to update scene related descriptors.
-    /// @param lightSourcesBuffer A vector of Vulkan buffers containing data for all light sources.
-    /// @param sceneDescriptionBuffer A Vulkan buffer containing the scene description.
-    RX_API void update( const std::vector<vk::Buffer>& lightSourcesBuffer, vk::Buffer sceneDescriptionBuffer );
+    void update( const std::vector<std::any>& data );
 
     /// Frees the descriptor sets.
     void free( );
@@ -93,15 +99,13 @@ namespace RAYEXEC_NAMESPACE
     /// @param descriptorSet The Vulkan descriptor set to create the write descriptor set object for.
     /// @param binding The binding in the shader.
     /// @param pNext A pointer to the pNext chain of the write descriptor set object.
-    vk::WriteDescriptorSet writeAccelerationStructure( vk::DescriptorSet descriptorSet, uint32_t binding, void* pNext );
+    vk::WriteDescriptorSet writeAccelerationStructure( vk::DescriptorSet descriptorSet, uint32_t binding, const void* pNext );
 
     std::vector<vk::DescriptorSet> sets; ///< A vector of Vulkan descriptor sets.
     std::vector<vk::DescriptorSetLayout> layouts; ///< A vector of Vulkan descriptor set layouts.
+    std::vector<vk::DescriptorSetLayoutBinding> bindings;
 
     vk::DescriptorPool descriptorPool; ///< A Vulkan descriptor pool.
-
-
-    std::vector<const DescriptorSetLayout*> descriptorSetLayouts;
   };
 }
 

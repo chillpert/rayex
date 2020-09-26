@@ -24,120 +24,70 @@ namespace RAYEXEC_NAMESPACE
       RX_ASSERT( set, "Failed to create descriptor sets." );
   }
 
-  void DescriptorSet::update( const vk::AccelerationStructureKHR& tlas, vk::ImageView storageImageView, const std::vector<vk::Buffer>& uniformBuffers )
+  void DescriptorSet::update( const std::vector<std::any>& data )
   {
     for ( size_t i = 0; i < this->layouts.size( ); ++i )
     {
-      vk::WriteDescriptorSetAccelerationStructureKHR descriptorInfoAS( 1,       // accelerationStructureCount
-                                                                       &tlas ); // pAccelerationStructures 
+      std::vector<vk::WriteDescriptorSet> descriptorWrites( data.size( ) );
 
-      vk::DescriptorImageInfo imageInfo( { },                         // sampler
-                                         storageImageView,            // imageView
-                                         vk::ImageLayout::eGeneral ); // imageLayout
+      std::vector<std::pair<vk::WriteDescriptorSetAccelerationStructureKHR, size_t>> accelerationStructureInfos;
+      std::vector<std::pair<vk::DescriptorImageInfo, size_t>> storageImageInfos;
+      std::vector<std::pair<vk::DescriptorBufferInfo, size_t>> uniformInfos;
+      std::vector<std::pair<vk::DescriptorImageInfo, size_t>> combinedImageSamplerInfo;
+      std::vector<std::pair<vk::DescriptorBufferInfo, size_t>> bufferInfos;
 
-      vk::DescriptorBufferInfo cameraBufferInfo( uniformBuffers[i],      // buffer
-                                                 0,                      // offset
-                                                 sizeof( CameraUbo ) );  // range
+      for ( size_t j = 0; j < data.size( ); ++j )
+      {
+        if ( typeid( AsDesc ) == data[j].type( ) )
+        {
+          AsDesc temp = std::any_cast<AsDesc>( data[j] );
+          accelerationStructureInfos.push_back( { { 1, &temp.accelerationStructure }, j } );
+        }
+        else if ( typeid( StorageImageDesc ) == data[j].type( ) )
+        {
+          StorageImageDesc temp = std::any_cast<StorageImageDesc>( data[j] );
+          storageImageInfos.push_back( { { { }, temp.imageView, vk::ImageLayout::eGeneral }, j } );
+        }
+        else if ( typeid( UboDesc ) == data[j].type( ) )
+        {
+          UboDesc temp = std::any_cast<UboDesc>( data[j] );
+          uniformInfos.push_back( { { temp.uniformBuffers[i], 0, temp.size }, j } );
+        }
+        else if ( typeid( CombinedImageSamplerDesc ) == data[j].type( ) )
+        {
+          CombinedImageSamplerDesc temp = std::any_cast<CombinedImageSamplerDesc>( data[j] );
+          combinedImageSamplerInfo.push_back( { { temp.sampler, temp.imageView, vk::ImageLayout::eShaderReadOnlyOptimal }, j } );
+        }
+        else if ( typeid( StorageBufferDesc ) == data[j].type( ) )
+        {
+          StorageBufferDesc temp = std::any_cast<StorageBufferDesc>( data[j] );
+          bufferInfos.push_back( { { temp.storageBuffer, 0, temp.size }, j } );
+        }
+        else
+        {
+          RX_ERROR( "Descriptor can not be updated because its type is unvalid or not supported." );
+        }
+      }
 
-      std::array<vk::WriteDescriptorSet, 3> descriptorWrites;
-      descriptorWrites[0] = writeAccelerationStructure( this->sets[i], 0, &descriptorInfoAS );
-      descriptorWrites[1] = writeStorageImage( this->sets[i], 1, imageInfo );
-      descriptorWrites[2] = writeUniformBuffer( this->sets[i], 2, cameraBufferInfo );
+      for ( const auto& it : accelerationStructureInfos )
+        descriptorWrites[it.second] = writeAccelerationStructure( this->sets[i], it.second, &it.first );
+
+      for ( const auto& it : storageImageInfos )
+        descriptorWrites[it.second] = writeStorageImage( this->sets[i], it.second, it.first );
+
+      for ( const auto& it : uniformInfos )
+        descriptorWrites[it.second] = writeUniformBuffer( this->sets[i], it.second, it.first );
+
+      for ( const auto& it : combinedImageSamplerInfo )
+        descriptorWrites[it.second] = writeCombinedImageSampler( this->sets[i], it.second, it.first );
+      
+      for ( const auto& it : bufferInfos )
+        descriptorWrites[it.second] = writeStorageBuffer( this->sets[i], it.second, it.first );
 
       g_device.updateDescriptorSets( descriptorWrites, 0 );
     }
   }
-
-  void DescriptorSet::update( vk::ImageView textureImageView, vk::Sampler textureSampler, vk::Buffer vertexBuffer, vk::Buffer indexBuffer )
-  {
-    for ( size_t i = 0; i < this->layouts.size( ); ++i )
-    {
-      vk::DescriptorImageInfo textureInfo( textureSampler,                            // sampler
-                                           textureImageView,                          // imageView
-                                           vk::ImageLayout::eShaderReadOnlyOptimal ); // imageLayout
-
-      vk::DescriptorBufferInfo vertbufferInfo( vertexBuffer,    // buffer
-                                               0,               // offset
-                                               VK_WHOLE_SIZE ); // range
-
-      vk::DescriptorBufferInfo indexbufferInfo( indexBuffer,     // buffer
-                                                0,               // offset
-                                                VK_WHOLE_SIZE ); // range
-
-      std::array<vk::WriteDescriptorSet, 3> descriptorWrites;
-      descriptorWrites[0] = writeCombinedImageSampler( this->sets[i], 0, textureInfo );
-      descriptorWrites[1] = writeStorageBuffer( this->sets[i], 1, vertbufferInfo );
-      descriptorWrites[2] = writeStorageBuffer( this->sets[i], 2, indexbufferInfo );
-
-      g_device.updateDescriptorSets( descriptorWrites, 0 );
-    }
-  }
-
-  void DescriptorSet::update( const std::vector<vk::Buffer>& rsUniformBuffers, vk::ImageView textureImageView, vk::Sampler textureSampler, const std::vector<vk::Buffer>& lightSourcesBuffer )
-  {
-    for ( size_t i = 0; i < this->layouts.size( ); ++i )
-    {
-      vk::DescriptorBufferInfo rsUniformBufferInfo( rsUniformBuffers[i],          // buffer
-                                                    0,                            // offset
-                                                    sizeof( RasterizationUbo ) ); // range
-
-      vk::DescriptorImageInfo textureInfo( textureSampler,                            // sampler
-                                           textureImageView,                          // imageView
-                                           vk::ImageLayout::eShaderReadOnlyOptimal ); // imageLayout
-
-      vk::DescriptorBufferInfo lightSourcesBufferInfo( lightSourcesBuffer[i], // buffer
-                                                       0,                     // offset
-                                                       sizeof( LightsUbo ) ); // range
-
-      std::array<vk::WriteDescriptorSet, 3> descriptorWrites;
-      descriptorWrites[0] = writeUniformBuffer( this->sets[i], 0, rsUniformBufferInfo );
-      descriptorWrites[1] = writeCombinedImageSampler( this->sets[i], 1, textureInfo );
-      descriptorWrites[2] = writeUniformBuffer( this->sets[i], 2, lightSourcesBufferInfo );
-
-      g_device.updateDescriptorSets( descriptorWrites, 0 );
-    }
-  }
-
-  void DescriptorSet::update( vk::Buffer vertexBuffer, vk::Buffer indexBuffer )
-  {
-    for ( size_t i = 0; i < this->layouts.size( ); ++i )
-    {
-      vk::DescriptorBufferInfo vertexBufferInfo( vertexBuffer,             // buffer
-                                                 0,                        // offset
-                                                 VK_WHOLE_SIZE ); // range
-
-      vk::DescriptorBufferInfo indexBufferInfo( indexBuffer,             // buffer
-                                                0,                       // offset
-                                                VK_WHOLE_SIZE ); // range
-
-      std::array<vk::WriteDescriptorSet, 2> descriptorWrites;
-      descriptorWrites[0] = writeStorageBuffer( this->sets[i], 0, vertexBufferInfo );
-      descriptorWrites[1] = writeStorageBuffer( this->sets[i], 1, indexBufferInfo );
-
-      g_device.updateDescriptorSets( descriptorWrites, 0 );
-    }
-  }
-
-  void DescriptorSet::update( const std::vector<vk::Buffer>& lightSourcesBuffer, vk::Buffer sceneDescriptionBuffer )
-  {
-    for ( size_t i = 0; i < this->layouts.size( ); ++i )
-    {
-      vk::DescriptorBufferInfo lightSourcesBufferInfo( lightSourcesBuffer[i], // buffer
-                                                       0,                     // offset
-                                                       sizeof( LightsUbo ) ); // range
-
-      vk::DescriptorBufferInfo sceneDescriptionBufferInfo( sceneDescriptionBuffer,             // buffer
-                                                           0,                                  // offset
-                                                           VK_WHOLE_SIZE ); // range
-
-      std::array<vk::WriteDescriptorSet, 2> descriptorWrites;
-      descriptorWrites[0] = writeUniformBuffer( this->sets[i], 0, lightSourcesBufferInfo );
-      descriptorWrites[1] = writeStorageBuffer( this->sets[i], 1, sceneDescriptionBufferInfo );
-
-      g_device.updateDescriptorSets( descriptorWrites, 0 );
-    }
-  }
-
+ 
   void DescriptorSet::free( )
   {
     g_device.freeDescriptorSets( this->descriptorPool, this->sets );
@@ -199,7 +149,7 @@ namespace RAYEXEC_NAMESPACE
     return result;
   }
 
-  vk::WriteDescriptorSet DescriptorSet::writeAccelerationStructure( vk::DescriptorSet descriptorSet, uint32_t binding, void* pNext )
+  vk::WriteDescriptorSet DescriptorSet::writeAccelerationStructure( vk::DescriptorSet descriptorSet, uint32_t binding, const void* pNext )
   {
     vk::WriteDescriptorSet result( descriptorSet,                                 // dstSet
                                    binding,                                       // dstBinding

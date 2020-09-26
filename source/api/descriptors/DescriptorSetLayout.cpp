@@ -1,4 +1,4 @@
-#include "api/descriptors/DescriptorSet.hpp"
+#include "api/descriptors/DescriptorSetLayout.hpp"
 #include "api/misc/Components.hpp"
 
 namespace RAYEXEC_NAMESPACE

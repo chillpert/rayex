@@ -18,10 +18,10 @@ namespace RAYEXEC_NAMESPACE
     RX_API Texture( const std::string& path, bool initialize = true );
 
     /// @return Returns the texture's image view.
-    inline const vk::ImageView getImageView( ) const { return imageView.get( ); }
+    inline vk::ImageView getImageView( ) { return imageView.get( ); }
     
     /// @return Returns the texture's sampler.
-    inline const vk::Sampler getSampler( ) const { return sampler.get( ); }
+    inline vk::Sampler getSampler( ) { return sampler.get( ); }
     
     /// @return Returns the relative path of the texture file.
     inline const std::string& getPath( ) const { return path; }

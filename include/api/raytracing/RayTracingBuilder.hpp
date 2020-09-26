@@ -24,10 +24,12 @@ namespace RAYEXEC_NAMESPACE
     void destroy( );
 
     /// @return Returns the top level acceleration structure.
-    inline const Tlas& getTlas( ) const { return tlas; }
+    inline const Tlas& getTlas( ) const { return this->tlas; }
+
+    inline const vk::PhysicalDeviceRayTracingPropertiesKHR& getRtProperties( ) const { return this->rtProperties; }
 
     /// @return Returns the storage image's image view.
-    inline const vk::ImageView getStorageImageView( ) const { return storageImageView.get( ); }
+    inline const vk::ImageView getStorageImageView( ) const { return this->storageImageView.get( ); }
 
     /// Used to convert wavefront models to a bottom level acceleration structure.
     /// @param model A pointer to a RAYEXEC_NAMESPACE::Model object.
@@ -50,7 +52,7 @@ namespace RAYEXEC_NAMESPACE
 
     /// Used to prepare building the top level acceleration structure.
     /// @param nodes A vector of pointers to RAYEXEC_NAMESPACE::GeometryNode objects.
-    void createTopLevelAS( const std::vector<std::shared_ptr<GeometryNode>>& nodes );
+    void createTopLevelAS( const std::list<std::shared_ptr<GeometryNode>>& nodes );
 
     /// Build the top level acceleration structure.
     /// @param instances A vector of bottom level acceleration structure instances.

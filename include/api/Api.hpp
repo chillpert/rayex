@@ -116,6 +116,8 @@ namespace RAYEXEC_NAMESPACE
       }
     }
 
+    RX_API void popNode( const std::shared_ptr<Node> node );
+
     /// Used to overwrite the entire scene with new nodes.
     /// @param nodes A vector of pointers to nodes describing the new scene.
     template <typename T = Model>
@@ -198,7 +200,6 @@ namespace RAYEXEC_NAMESPACE
     vk::UniqueDescriptorPool sceneDescriptorPool;
     DescriptorSet sceneDescriptorSets;
 
-
     // Descriptors for rasterization shaders.
     DescriptorSetLayout rsDescriptorSetLayout;
     vk::UniqueDescriptorPool rsDescriptorPool;
@@ -212,10 +213,10 @@ namespace RAYEXEC_NAMESPACE
     StorageBuffer rayTracingInstancesBuffer;
     bool uploadSceneDescriptionData = false;
 
-    // Nodes to render.
-    std::vector<std::shared_ptr<GeometryNode>> geometryNodes;
-    std::vector<std::shared_ptr<DirectionalLightNode>> dirLightNodes;
-    std::vector<std::shared_ptr<PointLightNode>> pointLightNodes;
+    // Nodes to render
+    std::list<std::shared_ptr<GeometryNode>> geometryNodes;
+    std::list<std::shared_ptr<DirectionalLightNode>> dirLightNodes;
+    std::list<std::shared_ptr<PointLightNode>> pointLightNodes;
     // Models
     std::unordered_map<std::string, std::shared_ptr<Model>> models;
     // Textures

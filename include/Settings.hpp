@@ -19,12 +19,12 @@ namespace RAYEXEC_NAMESPACE
     friend class Api;
     friend class Pipeline;
 
-    /// @return Returns the maximum recursion depth.
-    inline uint32_t getMaxRecursionDepth( ) const { return this->maxRecursionDepth; }
+    /// @return Returns the current recursion depth.
+    inline uint32_t getRecursionDepth( ) const { return this->recursionDepth; }
 
-    /// Used to set the maximum recursion depth.
+    /// Used to set the current recursion depth.
     /// @param maxRecursionDepth The new value for the maxium recursion depth.
-    void setMaxRecursionDepth( uint32_t maxRecursionDepth );
+    void setRecursionDepth( uint32_t recursionDepth );
 
     /// @return Returns the clear color.
     inline const glm::vec4& getClearColor( ) const { return this->clearColor; }
@@ -68,8 +68,9 @@ namespace RAYEXEC_NAMESPACE
     /// @param amount The amount of anticipated point light nodes.
     void setAnticipatedPointLights( uint32_t amount );
 
-    bool rayTrace = true; ///< If true renderer will use ray tracing, if false it will use rasterization.
+    uint32_t maxRecursionDepth = 4; ///< The maximum recursion depth.
   private:
+    bool rayTrace = true; ///< If true renderer will use ray tracing, if false it will use rasterization.
     bool refreshPipeline = false; ///< Keeps track of whether or not the graphics pipeline needs to be recreated.
     bool refreshSwapchain = false; ///< Keeps track of whether or not the swapchain needs to be recreated.
     
@@ -77,7 +78,7 @@ namespace RAYEXEC_NAMESPACE
     uint32_t anticipatedPointLights = 5; ///< Can be set to avoid pipeline recreation everytime a point light is added.
     
     glm::vec4 clearColor = glm::vec4( 0.45f, 0.45f, 0.45f, 1.0f ); ///< Stores the clear color.
-    uint32_t maxRecursionDepth = 4; ///< The maximum recursion depth.
+    uint32_t recursionDepth = 4; ///< The current recursion depth.
     std::string resourcePath; ///< Where all resources like models, textures and shaders are stored.
 
     bool automaticPipelineRefresh = false;

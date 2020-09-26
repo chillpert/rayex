@@ -71,6 +71,8 @@ namespace RAYEXEC_NAMESPACE
       api.pushNode<T>( node );
     }
 
+    RX_API void popNode( const std::shared_ptr<Node> node );
+
     /// Used to overwrite the entire scene with new nodes.
     /// @param nodes A vector of nodes describing the new scene.
     /// @see RAYEXEC_NAMESPACE::Api::setNodes()

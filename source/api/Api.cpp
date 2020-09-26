@@ -73,10 +73,7 @@ namespace RAYEXEC_NAMESPACE
 
   bool Api::init( )
   {
-    this->geometryNodes.reserve( g_maxGeometryNodes );
     this->textures.reserve( g_maxTextures );
-    this->dirLightNodes.reserve( g_maxLightNodes );
-    this->pointLightNodes.reserve( g_maxLightNodes );
 
     bool result = true;
 
@@ -153,6 +150,8 @@ namespace RAYEXEC_NAMESPACE
     this->rayTracingBuilder.createStorageImage( this->swapchain.getExtent( ) );
     this->rayTracingBuilder.createShaderBindingTable( this->rtPipeline.get( ) );
 
+    this->settings->maxRecursionDepth = this->rayTracingBuilder.getRtProperties( ).maxRecursionDepth;
+
     // Swapchain command buffers
     result = this->swapchainCommandBuffers.init( this->graphicsCmdPool.get( ), g_swapchainImageCount, vk::CommandBufferUsageFlagBits::eRenderPassContinue );
     RX_ASSERT_INIT( result );
@@ -180,7 +179,7 @@ namespace RAYEXEC_NAMESPACE
       g_device.waitIdle( );
 
       RX_ASSERT( initPipelines( ), "Failed to initialize pipelines." );
-      RX_ASSERT( this->swapchainCommandBuffers.init( this->graphicsCmdPool.get( ), g_swapchainImageCount, vk::CommandBufferUsageFlagBits::eRenderPassContinue ), "Failed to init swapchain command buffers." );
+      RX_ASSERT( this->swapchainCommandBuffers.init( this->graphicsCmdPool.get( ), g_swapchainImageCount, vk::CommandBufferUsageFlagBits::eRenderPassContinue ), "Failed to initialize swapchain command buffers." );
 
       recreateSwapchain( );
     }
@@ -220,11 +219,19 @@ namespace RAYEXEC_NAMESPACE
       // Upload lights
       LightsUbo lightNodeUbos;
 
-      for ( size_t i = 0; i < this->dirLightNodes.size( ); ++i )
-        lightNodeUbos.directionalLightNodes[i] = this->dirLightNodes[i]->toUbo( );
+      size_t i = 0;
+      for ( auto iter = this->dirLightNodes.begin( ); iter != this->dirLightNodes.end( ); ++iter )
+      {
+        lightNodeUbos.directionalLightNodes[i] = ( *iter )->toUbo( );
+        ++i;
+      }
 
-      for ( size_t i = 0; i < this->pointLightNodes.size( ); ++i )
-        lightNodeUbos.pointLightNodes[i] = this->pointLightNodes[i]->toUbo( );
+      i = 0;
+      for ( auto iter = this->pointLightNodes.begin( ); iter != this->pointLightNodes.end( ); ++iter )
+      {
+        lightNodeUbos.pointLightNodes[i] = ( *iter )->toUbo( );
+        ++i;
+      }
 
       this->lightsUniformBuffer.upload<LightsUbo>( imageIndex, lightNodeUbos );
 
@@ -385,6 +392,37 @@ namespace RAYEXEC_NAMESPACE
     RX_SUCCESS( "Swapchain recreation finished." );
   }
 
+  void Api::popNode( const std::shared_ptr<Node> node )
+  {
+    if ( node == nullptr )
+    {
+      RX_ERROR( "Can not pop node because node is nullptr." );
+      return;
+    }
+
+    if ( dynamic_cast<GeometryNode*>( node.get( ) ) )
+    {
+      auto ptr = std::dynamic_pointer_cast<GeometryNode>( node );
+      
+      // Delete node
+      for ( const auto& it : this->geometryNodes )
+      {
+        if ( it == ptr )
+        {
+
+        }
+      }
+    }
+    else if ( dynamic_cast<LightNode*>( node.get( ) ) )
+    {
+
+    }
+    else
+    {
+      RX_ERROR( "Failed to pop node because type can not be handled." );
+    }
+  }
+
   bool Api::initPipelines( )
   {
     // Ray tracing pipeline
@@ -459,6 +497,7 @@ namespace RAYEXEC_NAMESPACE
     }
 
     node->rtInstance.modelIndex = model->index;
+    
     // TODO: Try to call this as few times as possible.
     this->rayTracingBuilder.createBottomLevelAS( vk::Helper::unpack( this->models ) );
     this->rayTracingBuilder.createTopLevelAS( this->geometryNodes );

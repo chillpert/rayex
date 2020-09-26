@@ -202,7 +202,7 @@ namespace RAYEXEC_NAMESPACE
                                                     shaderStages.data( ),                          // pStages
                                                     static_cast<uint32_t>( groups.size( ) ),       // groupCount
                                                     groups.data( ),                                // pGroups
-                                                    settings->getMaxRecursionDepth( ),             // maxRecursionDepth
+                                                    settings->getRecursionDepth( ),                // maxRecursionDepth
                                                     0,                                             // libraries
                                                     nullptr,                                       // pLibraryInterface
                                                     this->layout.get( ),                           // layout

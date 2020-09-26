@@ -268,12 +268,23 @@ private:
         this->renderer->settings.setEnableRayTracing( rayTrace );
       }
 
-      static int depth = static_cast<int>( this->renderer->settings.getMaxRecursionDepth( ) );
+      static int depth = static_cast<int>( this->renderer->settings.getRecursionDepth( ) );
       if ( ImGui::SliderInt( "Recursion depth", &depth, 0, 31 ) )
       {
-        this->renderer->settings.setMaxRecursionDepth( static_cast<uint32_t>( depth ) );
+        this->renderer->settings.setRecursionDepth( static_cast<uint32_t>( depth ) );
       }
-    
+
+      static std::list<float> frameTimes;
+
+      float dt = Time::getDeltaTime( );
+      if ( dt > 0.001f )
+        frameTimes.push_back( dt );
+
+      if ( frameTimes.size( ) > 10000 )
+        frameTimes.pop_front( );
+
+      std::vector<float> temp( frameTimes.begin( ), frameTimes.end( ) );
+      ImGui::PlotLines( "Frame Times", temp.data( ), temp.size( ), 0, "Frametime", 0.0f, 0.01f, ImVec2(0.0f, 80.0f ) );
     }
 
     ImGui::End( );
@@ -318,16 +329,22 @@ int main( )
   auto dragonLore = std::make_shared<GeometryNode>( "models/awpdlore/awpdlore.obj", Material( "textures/awpdlore.png" ) );
   dragonLore->worldTransform = glm::scale( dragonLore->worldTransform, glm::vec3( 0.25f ) );
   dragonLore->worldTransform = glm::rotate( dragonLore->worldTransform, glm::radians( 45.0f ), glm::vec3( 0.0f, 1.0f, 0.0f ) );
-  
+
+  auto dragonLore2 = std::make_shared<GeometryNode>( "models/awpdlore/awpdlore.obj", Material( "textures/awpdlore.png" ) );
+  dragonLore2->worldTransform = glm::scale( dragonLore->worldTransform, glm::vec3( 0.25f ) );
+  dragonLore2->worldTransform = glm::rotate( dragonLore->worldTransform, glm::radians( 45.0f ), glm::vec3( 0.0f, 1.0f, 0.0f ) );
+  dragonLore2->worldTransform = glm::translate( dragonLore->worldTransform,glm::vec3( 0.0f, 2.0f, 0.0f ) );
+
   auto directionalLight = std::make_shared<DirectionalLightNode>( );
  
   // Add the model to the renderer. This way they will be queued for rendering.
   renderer.pushNode( dragonLore );
+  renderer.pushNode( dragonLore2 );
   renderer.pushNode( directionalLight );
 
   while ( renderer.isRunning( ) )
   {
-    //dragonLore->worldTransform = glm::rotate( dragonLore->worldTransform, glm::radians( 90.0f ) * Time::getDeltaTime( ) * animationSpeed, glm::vec3( 0.0f, 1.0f, 0.0f ) );
+    dragonLore->worldTransform = glm::rotate( dragonLore->worldTransform, glm::radians( 90.0f ) * Time::getDeltaTime( ) * animationSpeed, glm::vec3( 0.0f, 1.0f, 0.0f ) );
     renderer.run( );
   }
 

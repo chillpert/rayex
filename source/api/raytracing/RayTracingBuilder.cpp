@@ -287,21 +287,23 @@ namespace RAYEXEC_NAMESPACE
     }
   }
 
-  void RayTracingBuilder::createTopLevelAS( const std::vector<std::shared_ptr<GeometryNode>>& nodes )
+  void RayTracingBuilder::createTopLevelAS( const std::list<std::shared_ptr<GeometryNode>>& nodes )
   {
     std::vector<BlasInstance> instances;
     instances.reserve( nodes.size( ) );
 
-    for ( uint32_t i = 0; i < static_cast<uint32_t>( nodes.size( ) ); ++i )
+    uint32_t i = 0;
+    for ( const auto& iter : nodes )
     {
       BlasInstance rayInst;
-      rayInst.transform = nodes[i]->worldTransform;
+      rayInst.transform = iter->worldTransform;
       rayInst.instanceId = i;
-      rayInst.blasId = nodes[i]->rtInstance.modelIndex;
+      rayInst.blasId = iter->rtInstance.modelIndex;
       rayInst.hitGroupId = 0; // We will use the same hit group for all objects
       rayInst.flags = vk::GeometryInstanceFlagBitsKHR::eTriangleFacingCullDisable;
 
       instances.push_back( rayInst );
+      ++i;
     }
     
     buildTlas( instances, vk::BuildAccelerationStructureFlagBitsKHR::ePreferFastTrace | vk::BuildAccelerationStructureFlagBitsKHR::eAllowUpdate );

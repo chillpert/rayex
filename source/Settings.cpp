@@ -13,9 +13,16 @@ namespace RAYEXEC_NAMESPACE
     RX_INFO( "Using default path as path to resources: ", this->resourcePath );
   }
 
-  void Settings::setMaxRecursionDepth( uint32_t maxRecursionDepth )
+  void Settings::setRecursionDepth( uint32_t recursionDepth )
   {
-    this->maxRecursionDepth = maxRecursionDepth;
+    if ( recursionDepth <= maxRecursionDepth )
+      this->recursionDepth = recursionDepth;
+    else
+    {
+      this->recursionDepth = this->maxRecursionDepth;
+      RX_WARN( "Exceeded maximum recursion depth of ", this->maxRecursionDepth, ". Using highest possible value instead." );
+    }
+
     this->refreshPipeline = true;
   }
 

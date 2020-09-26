@@ -8,29 +8,29 @@
 
 namespace RAYEXEC_NAMESPACE
 {
-  struct AsDesc
+  struct AccelerationStructureDescriptor
   { 
     vk::AccelerationStructureKHR accelerationStructure;
   };
 
-  struct StorageImageDesc 
+  struct StorageImageDescriptor 
   { 
     vk::ImageView imageView;
   };
 
-  struct UboDesc
+  struct UboDescriptor
   { 
     std::vector<vk::Buffer> uniformBuffers; 
     vk::DeviceSize size;
   };
 
-  struct StorageBufferDesc
+  struct StorageBufferDescriptor
   {
     vk::Buffer storageBuffer;
     vk::DeviceSize size = VK_WHOLE_SIZE;
   };
 
-  struct CombinedImageSamplerDesc
+  struct CombinedImageSamplerDescriptor
   {
     vk::ImageView imageView;
     vk::Sampler sampler;
@@ -71,36 +71,6 @@ namespace RAYEXEC_NAMESPACE
     void free( );
 
   private:
-    /// Creates a Vulkan write descriptor set object for uniform buffers.
-    /// @param descriptorSet The Vulkan descriptor set to create the write descriptor set object for.
-    /// @param binding The binding in the shader.
-    /// @param bufferInfo The Vulkan descriptor buffer info for the uniform buffer.
-    vk::WriteDescriptorSet writeUniformBuffer( vk::DescriptorSet descriptorSet, uint32_t binding, const vk::DescriptorBufferInfo& bufferInfo );
-    
-    /// Creates a Vulkan write descriptor set object for storage buffers.
-    /// @param descriptorSet The Vulkan descriptor set to create the write descriptor set object for.
-    /// @param binding The binding in the shader.
-    /// @param bufferInfo The Vulkan descriptor buffer info for the storage buffer.
-    vk::WriteDescriptorSet writeStorageBuffer( vk::DescriptorSet descriptorSet, uint32_t binding, const vk::DescriptorBufferInfo& bufferInfo );
-
-    /// Creates a Vulkan write descriptor set object for storage images.
-    /// @param descriptorSet The Vulkan descriptor set to create the write descriptor set object for.
-    /// @param binding The binding in the shader.
-    /// @param imageInfo The Vulkan descriptor buffer info for the storage images.
-    vk::WriteDescriptorSet writeStorageImage( vk::DescriptorSet descriptorSet, uint32_t binding, const vk::DescriptorImageInfo& imageInfo );
-
-    /// Creates a Vulkan write descriptor set object for combined image samplers.
-    /// @param descriptorSet The Vulkan descriptor set to create the write descriptor set object for.
-    /// @param binding The binding in the shader.
-    /// @param imageInfo The Vulkan descriptor buffer info for the combined image samplers.
-    vk::WriteDescriptorSet writeCombinedImageSampler( vk::DescriptorSet descriptorSet, uint32_t binding, const vk::DescriptorImageInfo& imageInfo );
-
-    /// Creates a Vulkan write descriptor set object for acceleration structures.
-    /// @param descriptorSet The Vulkan descriptor set to create the write descriptor set object for.
-    /// @param binding The binding in the shader.
-    /// @param pNext A pointer to the pNext chain of the write descriptor set object.
-    vk::WriteDescriptorSet writeAccelerationStructure( vk::DescriptorSet descriptorSet, uint32_t binding, const void* pNext );
-
     std::vector<vk::DescriptorSet> sets; ///< A vector of Vulkan descriptor sets.
     std::vector<vk::DescriptorSetLayout> layouts; ///< A vector of Vulkan descriptor set layouts.
     std::vector<vk::DescriptorSetLayoutBinding> bindings;

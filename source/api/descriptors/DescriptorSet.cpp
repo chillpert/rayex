@@ -36,31 +36,32 @@ namespace RAYEXEC_NAMESPACE
       std::vector<std::pair<vk::DescriptorImageInfo, size_t>> combinedImageSamplerInfo;
       std::vector<std::pair<vk::DescriptorBufferInfo, size_t>> bufferInfos;
 
+      // I do not know why. But for some reason I can not set the descriptor writes in one single loop. This is the weirdest bug I have ever seen.
       for ( size_t j = 0; j < data.size( ); ++j )
       {
-        if ( typeid( AsDesc ) == data[j].type( ) )
+        if ( typeid( AccelerationStructureDescriptor ) == data[j].type( ) )
         {
-          AsDesc temp = std::any_cast<AsDesc>( data[j] );
+          AccelerationStructureDescriptor temp = std::any_cast<AccelerationStructureDescriptor>( data[j] );
           accelerationStructureInfos.push_back( { { 1, &temp.accelerationStructure }, j } );
         }
-        else if ( typeid( StorageImageDesc ) == data[j].type( ) )
+        else if ( typeid( StorageImageDescriptor ) == data[j].type( ) )
         {
-          StorageImageDesc temp = std::any_cast<StorageImageDesc>( data[j] );
+          StorageImageDescriptor temp = std::any_cast<StorageImageDescriptor>( data[j] );
           storageImageInfos.push_back( { { { }, temp.imageView, vk::ImageLayout::eGeneral }, j } );
         }
-        else if ( typeid( UboDesc ) == data[j].type( ) )
+        else if ( typeid( UboDescriptor ) == data[j].type( ) )
         {
-          UboDesc temp = std::any_cast<UboDesc>( data[j] );
+          UboDescriptor temp = std::any_cast<UboDescriptor>( data[j] );
           uniformInfos.push_back( { { temp.uniformBuffers[i], 0, temp.size }, j } );
         }
-        else if ( typeid( CombinedImageSamplerDesc ) == data[j].type( ) )
+        else if ( typeid( CombinedImageSamplerDescriptor ) == data[j].type( ) )
         {
-          CombinedImageSamplerDesc temp = std::any_cast<CombinedImageSamplerDesc>( data[j] );
+          CombinedImageSamplerDescriptor temp = std::any_cast<CombinedImageSamplerDescriptor>( data[j] );
           combinedImageSamplerInfo.push_back( { { temp.sampler, temp.imageView, vk::ImageLayout::eShaderReadOnlyOptimal }, j } );
         }
-        else if ( typeid( StorageBufferDesc ) == data[j].type( ) )
+        else if ( typeid( StorageBufferDescriptor ) == data[j].type( ) )
         {
-          StorageBufferDesc temp = std::any_cast<StorageBufferDesc>( data[j] );
+          StorageBufferDescriptor temp = std::any_cast<StorageBufferDescriptor>( data[j] );
           bufferInfos.push_back( { { temp.storageBuffer, 0, temp.size }, j } );
         }
         else
@@ -70,19 +71,75 @@ namespace RAYEXEC_NAMESPACE
       }
 
       for ( const auto& it : accelerationStructureInfos )
-        descriptorWrites[it.second] = writeAccelerationStructure( this->sets[i], it.second, &it.first );
+      {
+        vk::WriteDescriptorSet write( this->sets[i],                                 // dstSet
+                                      it.second,                                     // dstBinding
+                                      0,                                             // dstArrayElement
+                                      1,                                             // descriptorCount
+                                      vk::DescriptorType::eAccelerationStructureKHR, // descriptorType
+                                      nullptr,                                       // pImageInfo
+                                      nullptr,                                       // pBufferInfo
+                                      nullptr );                                     // pTextelBufferView
+        write.pNext = &it.first;
+
+        descriptorWrites[it.second] = write;
+      }
 
       for ( const auto& it : storageImageInfos )
-        descriptorWrites[it.second] = writeStorageImage( this->sets[i], it.second, it.first );
+      {
+        vk::WriteDescriptorSet write( this->sets[i],                     // dstSet
+                                      it.second,                         // dstBinding
+                                      0,                                 // dstArrayElement
+                                      1,                                 // descriptorCount
+                                      vk::DescriptorType::eStorageImage, // descriptorType
+                                      &it.first,                         // pImageInfo
+                                      nullptr,                           // pBufferInfo
+                                      nullptr );                         // pTextelBufferView
+
+        descriptorWrites[it.second] = write;
+      }
 
       for ( const auto& it : uniformInfos )
-        descriptorWrites[it.second] = writeUniformBuffer( this->sets[i], it.second, it.first );
+      {
+        vk::WriteDescriptorSet write( this->sets[i],                      // dstSet
+                                      it.second,                          // dstBinding
+                                      0,                                  // dstArrayElement
+                                      1,                                  // descriptorCount
+                                      vk::DescriptorType::eUniformBuffer, // descriptorType
+                                      nullptr,                            // pImageInfo
+                                      &it.first,                          // pBufferInfo
+                                      nullptr );                          // pTextelBufferView
+
+        descriptorWrites[it.second] = write;
+      }
 
       for ( const auto& it : combinedImageSamplerInfo )
-        descriptorWrites[it.second] = writeCombinedImageSampler( this->sets[i], it.second, it.first );
+      {
+        vk::WriteDescriptorSet write( this->sets[i],                             // dstSet
+                                      it.second,                                 // dstBinding
+                                      0,                                         // dstArrayElement
+                                      1,                                         // descriptorCount
+                                      vk::DescriptorType::eCombinedImageSampler, // descriptorType
+                                      &it.first,                                 // pImageInfo
+                                      nullptr,                                   // pBufferInfo
+                                      nullptr );                                 // pTextelBufferView
+      
+        descriptorWrites[it.second] = write;
+      }
       
       for ( const auto& it : bufferInfos )
-        descriptorWrites[it.second] = writeStorageBuffer( this->sets[i], it.second, it.first );
+      {
+        vk::WriteDescriptorSet write( this->sets[i],                      // dstSet
+                                      it.second,                          // dstBinding
+                                      0,                                  // dstArrayElement
+                                      1,                                  // descriptorCount
+                                      vk::DescriptorType::eStorageBuffer, // descriptorType
+                                      nullptr,                            // pImageInfo
+                                      &it.first,                          // pBufferInfo
+                                      nullptr );                          // pTextelBufferView
+
+        descriptorWrites[it.second] = write;
+      }
 
       g_device.updateDescriptorSets( descriptorWrites, 0 );
     }
@@ -91,76 +148,5 @@ namespace RAYEXEC_NAMESPACE
   void DescriptorSet::free( )
   {
     g_device.freeDescriptorSets( this->descriptorPool, this->sets );
-  }
-
-  vk::WriteDescriptorSet DescriptorSet::writeUniformBuffer( vk::DescriptorSet descriptorSet, uint32_t binding, const vk::DescriptorBufferInfo& bufferInfo )
-  {
-    vk::WriteDescriptorSet result( descriptorSet,                      // dstSet
-                                   binding,                            // dstBinding
-                                   0,                                  // dstArrayElement
-                                   1,                                  // descriptorCount
-                                   vk::DescriptorType::eUniformBuffer, // descriptorType
-                                   nullptr,                            // pImageInfo
-                                   &bufferInfo,                        // pBufferInfo
-                                   nullptr );                          // pTextelBufferView
-
-    return result;
-  }
-
-  vk::WriteDescriptorSet DescriptorSet::writeStorageBuffer( vk::DescriptorSet descriptorSet, uint32_t binding, const vk::DescriptorBufferInfo& bufferInfo )
-  {
-    vk::WriteDescriptorSet result( descriptorSet,                      // dstSet
-                                   binding,                            // dstBinding
-                                   0,                                  // dstArrayElement
-                                   1,                                  // descriptorCount
-                                   vk::DescriptorType::eStorageBuffer, // descriptorType
-                                   nullptr,                            // pImageInfo
-                                   &bufferInfo,                        // pBufferInfo
-                                   nullptr );                          // pTextelBufferView
-
-    return result;
-  }
-
-  vk::WriteDescriptorSet DescriptorSet::writeStorageImage( vk::DescriptorSet descriptorSet, uint32_t binding, const vk::DescriptorImageInfo& imageInfo )
-  {
-    vk::WriteDescriptorSet result( descriptorSet,                     // dstSet
-                                   binding,                           // dstBinding
-                                   0,                                 // dstArrayElement
-                                   1,                                 // descriptorCount
-                                   vk::DescriptorType::eStorageImage, // descriptorType
-                                   &imageInfo,                        // pImageInfo
-                                   nullptr,                           // pBufferInfo
-                                   nullptr );                         // pTextelBufferView
-
-    return result;
-  }
-
-  vk::WriteDescriptorSet DescriptorSet::writeCombinedImageSampler( vk::DescriptorSet descriptorSet, uint32_t binding, const vk::DescriptorImageInfo& imageInfo )
-  {
-    vk::WriteDescriptorSet result( descriptorSet,                             // dstSet
-                                   binding,                                   // dstBinding
-                                   0,                                         // dstArrayElement
-                                   1,                                         // descriptorCount
-                                   vk::DescriptorType::eCombinedImageSampler, // descriptorType
-                                   &imageInfo,                                // pImageInfo
-                                   nullptr,                                   // pBufferInfo
-                                   nullptr );                                 // pTextelBufferView
-
-    return result;
-  }
-
-  vk::WriteDescriptorSet DescriptorSet::writeAccelerationStructure( vk::DescriptorSet descriptorSet, uint32_t binding, const void* pNext )
-  {
-    vk::WriteDescriptorSet result( descriptorSet,                                 // dstSet
-                                   binding,                                       // dstBinding
-                                   0,                                             // dstArrayElement
-                                   1,                                             // descriptorCount
-                                   vk::DescriptorType::eAccelerationStructureKHR, // descriptorType
-                                   nullptr,                                       // pImageInfo
-                                   nullptr,                                       // pBufferInfo
-                                   nullptr );                                     // pTextelBufferView
-    result.pNext = pNext;
-
-    return result;
   }
 }

@@ -38,7 +38,7 @@ namespace RAYEXEC_NAMESPACE
                                                                  model->vertexBuffer.getCount( ),     // maxVertexCount
                                                                  Vertex::getVertexPositionFormat( ),  // vertexFormat
                                                                  VK_FALSE );                          // allowsTransforms
-
+    
     vk::DeviceAddress vertexAddress = g_device.getBufferAddress( { model->vertexBuffer.get( ) } );
     vk::DeviceAddress indexAddress = g_device.getBufferAddress( { model->indexBuffer.get( ) } );
 

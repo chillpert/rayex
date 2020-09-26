@@ -269,7 +269,7 @@ private:
       }
 
       static int depth = static_cast<int>( this->renderer->settings.getMaxRecursionDepth( ) );
-      if ( ImGui::SliderInt( "Recursion depth", &depth, 1, 100 ) )
+      if ( ImGui::SliderInt( "Recursion depth", &depth, 0, 31 ) )
       {
         this->renderer->settings.setMaxRecursionDepth( static_cast<uint32_t>( depth ) );
       }

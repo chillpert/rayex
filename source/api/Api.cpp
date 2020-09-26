@@ -139,21 +139,13 @@ namespace RAYEXEC_NAMESPACE
 
     std::vector<std::any> sceneDescriptors =
     {
-      UboDesc { this->lightsUniformBuffer.getRaw( ), sizeof( LightsUbo ) },
-      StorageBufferDesc { this->rayTracingInstancesBuffer.get( ) }
+      UboDescriptor { this->lightsUniformBuffer.getRaw( ), sizeof( LightsUbo ) },
+      StorageBufferDescriptor { this->rayTracingInstancesBuffer.get( ) }
     };
 
     this->sceneDescriptorSets.update( sceneDescriptors );
 
-    // Ray tracing pipeline
-    result = this->rtPipeline.init( { this->rtDescriptorSetLayout.get( ), this->modelDescriptorSetLayout.get( ), this->sceneDescriptorSetLayout.get( ) }, this->settings );
-    RX_ASSERT_INIT( result );
-
-    // Rasterization pipeline
-    glm::vec2 extent = { static_cast<float>( this->swapchain.getExtent( ).width ), static_cast<float>( this->swapchain.getExtent( ).height ) };
-    this->viewport = vk::Viewport( 0.0f, 0.0f, extent.x, extent.y, 0.0f, 1.0f );
-    this->scissor = vk::Rect2D( 0, this->swapchain.getExtent( ) );
-    result = this->rsPipeline.init( { this->rsDescriptorSetLayout.get( ) }, this->renderPass.get( ), viewport, scissor );
+    result = initPipelines( );
     RX_ASSERT_INIT( result );
 
     // Ray tracing
@@ -182,9 +174,13 @@ namespace RAYEXEC_NAMESPACE
   {
     if ( this->settings->refreshPipeline )
     {
-      RX_ERROR( "HEY. THIS IS NOT A THING YET. CHILL BRO." );
       this->settings->refreshPipeline = false;
       this->settings->refreshSwapchain = false;
+
+      g_device.waitIdle( );
+
+      RX_ASSERT( initPipelines( ), "Failed to initialize pipelines." );
+      RX_ASSERT( this->swapchainCommandBuffers.init( this->graphicsCmdPool.get( ), g_swapchainImageCount, vk::CommandBufferUsageFlagBits::eRenderPassContinue ), "Failed to init swapchain command buffers." );
 
       recreateSwapchain( );
     }
@@ -369,14 +365,11 @@ namespace RAYEXEC_NAMESPACE
     // Recreate storage image with the new swapchain image size and update the ray tracing descriptor set to use the new storage image view.
     this->rayTracingBuilder.createStorageImage( this->swapchain.getExtent( ) );
 
-    std::vector<std::any> rtDescriptors =
-    {
-      AsDesc { this->rayTracingBuilder.getTlas( ).as.as },
-      StorageImageDesc { this->rayTracingBuilder.getStorageImageView( ) },
-      UboDesc { this->cameraUniformBuffer.getRaw( ), sizeof( CameraUbo ) }
-    };
+    AccelerationStructureDescriptor tlas { this->rayTracingBuilder.getTlas( ).as.as };
+    StorageImageDescriptor storageImage { this->rayTracingBuilder.getStorageImageView( ) };
+    UboDescriptor cameraUbo { this->cameraUniformBuffer.getRaw( ), sizeof( CameraUbo ) };
 
-    this->rtDescriptorSets.update( rtDescriptors );
+    this->rtDescriptorSets.update( { tlas, storageImage, cameraUbo } );
 
     // Swapchain command buffers
     this->swapchainCommandBuffers.init( this->graphicsCmdPool.get( ), g_swapchainImageCount, vk::CommandBufferUsageFlagBits::eRenderPassContinue );
@@ -390,6 +383,19 @@ namespace RAYEXEC_NAMESPACE
     this->camera->setSize( screenSize.width, screenSize.height );
 
     RX_SUCCESS( "Swapchain recreation finished." );
+  }
+
+  bool Api::initPipelines( )
+  {
+    // Ray tracing pipeline
+    bool result = this->rtPipeline.init( { this->rtDescriptorSetLayout.get( ), this->modelDescriptorSetLayout.get( ), this->sceneDescriptorSetLayout.get( ) }, this->settings );
+    RX_ASSERT_INIT( result );
+
+    // Rasterization pipeline
+    glm::vec2 extent = { static_cast<float>( this->swapchain.getExtent( ).width ), static_cast<float>( this->swapchain.getExtent( ).height ) };
+    this->viewport = vk::Viewport( 0.0f, 0.0f, extent.x, extent.y, 0.0f, 1.0f );
+    this->scissor = vk::Rect2D( 0, this->swapchain.getExtent( ) );
+    return this->rsPipeline.init( { this->rsDescriptorSetLayout.get( ) }, this->renderPass.get( ), viewport, scissor );
   }
 
   bool Api::initRenderPass( )
@@ -458,15 +464,29 @@ namespace RAYEXEC_NAMESPACE
     this->rayTracingBuilder.createTopLevelAS( this->geometryNodes );
 
     // Update ray tracing descriptor set.
-    this->rtDescriptorSets.update( { AsDesc { this->rayTracingBuilder.getTlas( ).as.as }, StorageImageDesc { this->rayTracingBuilder.getStorageImageView( ) }, UboDesc { this->cameraUniformBuffer.getRaw( ), sizeof( CameraUbo ) } } );
+    AccelerationStructureDescriptor tlas                   { this->rayTracingBuilder.getTlas( ).as.as };
+    StorageImageDescriptor storageImage { this->rayTracingBuilder.getStorageImageView( ) };
+    UboDescriptor camera                { this->cameraUniformBuffer.getRaw( ), sizeof( CameraUbo ) };
+
+    this->rtDescriptorSets.update( { tlas, storageImage, camera } );
 
     // Rasterization uniform buffer
     node->rsUniformBuffer.init<RasterizationUbo>( static_cast<uint32_t>( g_swapchainImageCount ) );
-    // Update second descriptor set.
+
+    // The model's rasterization descriptors.
+    StorageBufferDescriptor vertexBuffer { model->vertexBuffer.get( ) };
+    StorageBufferDescriptor indexBuffer  { model->indexBuffer.get( ) };
+
+    model->rtDescriptorSets.update( { vertexBuffer, indexBuffer } );
+    
     auto diffuseIter = this->textures.find( node->material.diffuseTexture[0] );
 
-    model->rtDescriptorSets.update( { StorageBufferDesc { model->vertexBuffer.get( ) }, StorageBufferDesc { model->indexBuffer.get( ) } } );
-    model->rsDescriptorSets.update( { UboDesc { node->rsUniformBuffer.getRaw( ), sizeof( RasterizationUbo ) }, CombinedImageSamplerDesc { diffuseIter->second->getImageView( ), diffuseIter->second->getSampler( ) }, UboDesc { this->lightsUniformBuffer.getRaw( ), sizeof( LightsUbo ) } } );
+    // The model's rasterization descriptors.
+    UboDescriptor mvpUbo                   { node->rsUniformBuffer.getRaw( ), sizeof( RasterizationUbo ) };
+    CombinedImageSamplerDescriptor texture { diffuseIter->second->getImageView( ), diffuseIter->second->getSampler( ) };
+    UboDescriptor lightsUbo                { this->lightsUniformBuffer.getRaw( ), sizeof( LightsUbo ) };
+
+    model->rsDescriptorSets.update( { mvpUbo, texture, lightsUbo } );
   }
 
   bool Api::initGui( )

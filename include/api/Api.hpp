@@ -137,6 +137,8 @@ namespace RAYEXEC_NAMESPACE
     Settings* settings = nullptr;
 
   private:
+    bool initPipelines( );
+
     /// Initializes the render pass with a color and depth attachment.
     bool initRenderPass( );
 

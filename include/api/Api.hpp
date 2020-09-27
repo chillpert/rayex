@@ -74,9 +74,11 @@ namespace RAYEXEC_NAMESPACE
         ptr->rtInstance.transform = ptr->worldTransform;
         ptr->rtInstance.transformIT = glm::transpose( glm::inverse( ptr->worldTransform ) );
         
+        std::cout << glm::to_string( ptr->rtInstance.transformIT ) << std::endl,
+
         this->rtInstances.push_back( ptr->rtInstance );
         this->uploadSceneDescriptionData = true;
-        
+
         // Handle the node's texture.
         auto texturePaths = ptr->material.getTextures( );
 
@@ -139,6 +141,8 @@ namespace RAYEXEC_NAMESPACE
     Settings* settings = nullptr;
 
   private:
+    void updateAccelerationStructure( );
+
     bool initPipelines( );
 
     /// Initializes the render pass with a color and depth attachment.
@@ -186,24 +190,24 @@ namespace RAYEXEC_NAMESPACE
     std::vector<vk::UniqueSemaphore> imageAvailableSemaphores;
     std::vector<vk::UniqueSemaphore> finishedRenderSemaphores;
 
-    // Descriptors for ray-tracing-related data.
+    // Descriptors for ray-tracing-related data ( no equivalent in rasterization shader ).
     DescriptorSetLayout rtDescriptorSetLayout;
     vk::UniqueDescriptorPool rtDescriptorPool;
     DescriptorSet rtDescriptorSets;
 
     // Descriptors for model-related data.
-    DescriptorSetLayout modelDescriptorSetLayout; ///< @note Each RAYEXEC_NAMESPACE::Model has its own descriptor set.
-    vk::UniqueDescriptorPool modelDescriptorPool;
+    DescriptorSetLayout rtModelDescriptorSetLayout; ///< @note Each RAYEXEC_NAMESPACE::Model has its own descriptor set.
+    vk::UniqueDescriptorPool rtModelDescriptorPool;
+    DescriptorSetLayout rsModelDescriptorSetLayout;
+    vk::UniqueDescriptorPool rsModelDescriptorPool;
 
     // Descriptors for scene-related data.
-    DescriptorSetLayout sceneDescriptorSetLayout;
-    vk::UniqueDescriptorPool sceneDescriptorPool;
-    DescriptorSet sceneDescriptorSets;
-
-    // Descriptors for rasterization shaders.
-    DescriptorSetLayout rsDescriptorSetLayout;
-    vk::UniqueDescriptorPool rsDescriptorPool;
-    DescriptorSet rsDescriptorSets;
+    DescriptorSetLayout rtSceneDescriptorSetLayout;
+    vk::UniqueDescriptorPool rtSceneDescriptorPool;
+    DescriptorSet rtSceneDescriptorSets;
+    DescriptorSetLayout rsSceneDescriptorSetLayout;
+    vk::UniqueDescriptorPool rsSceneDescriptorPool;
+    DescriptorSet rsSceneDescriptorSets;
 
     CameraUbo cameraUbo;
     UniformBuffer cameraUniformBuffer;

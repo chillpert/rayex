@@ -45,6 +45,9 @@ namespace RAYEXEC_NAMESPACE
     /// @param path The path to resources.
     void setResourcePath( const std::string& path );
 
+    /// @return Returns true if ray tracing is enabled and false if rasterization is enabled.
+    bool getRayTracingEnabled( ) const { return this->rayTrace; }
+
     /// Used to enable or disable ray tracing.
     void setEnableRayTracing( bool flag );
 
@@ -70,7 +73,7 @@ namespace RAYEXEC_NAMESPACE
 
     uint32_t maxRecursionDepth = 4; ///< The maximum recursion depth.
   private:
-    bool rayTrace = true; ///< If true renderer will use ray tracing, if false it will use rasterization.
+    bool rayTrace = false; ///< If true renderer will use ray tracing, if false it will use rasterization.
     bool refreshPipeline = false; ///< Keeps track of whether or not the graphics pipeline needs to be recreated.
     bool refreshSwapchain = false; ///< Keeps track of whether or not the swapchain needs to be recreated.
     

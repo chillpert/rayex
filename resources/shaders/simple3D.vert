@@ -10,6 +10,22 @@ layout(binding = 0) uniform UniformBufferObject
   vec3 cameraPos;
 } ubo;
 
+struct RayTracingInstance
+{
+  mat4 transform;
+  mat4 transformIT;
+  int modelIndex;
+  int txtOffset;
+
+  float padding0;
+  float padding1;
+};
+
+//layout(binding = 1, set = 2) buffer RayTracingInstances
+//{
+//  RayTracingInstance i[];
+//} rayTracingInstances;
+
 layout(location = 0) in vec3 inPosition;
 layout(location = 1) in vec3 inNormal;
 layout(location = 2) in vec3 inColor;

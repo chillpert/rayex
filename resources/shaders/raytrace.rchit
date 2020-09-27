@@ -89,6 +89,48 @@ void main()
   vec3 normal = v0.normal * barycentrics.x + v1.normal * barycentrics.y + v2.normal * barycentrics.z;
   normal = normalize(vec3(rayTracingInstances.i[gl_InstanceID].transformIT * vec4(normal, 0.0)));
 
+  if ( gl_InstanceID == 0 )
+  {
+    mat4 temp = rayTracingInstances.i[gl_InstanceID].transformIT;
+    vec4 c1 = temp[0];
+    vec4 c2 = temp[1];
+    vec4 c3 = temp[2];
+    vec4 c4 = temp[3];
+
+    if ( 4.0 == c2.y )
+    {
+      prd.hitValue = vec3( 1.0, 0.0, 0.0 );
+      return;
+    }
+
+    if ( 0.0 == c4.y )
+    {
+      prd.hitValue = vec3( 0.0, 1.0, 0.0 );
+      return;
+    }
+
+    prd.hitValue = vec3( 0.0, 0.0, 0.0 );
+    return;
+  }
+
+  if ( gl_InstanceID == 1 )
+  {
+    mat4 temp = rayTracingInstances.i[gl_InstanceID].transformIT;
+    vec4 c1 = temp[0];
+    vec4 c2 = temp[1];
+    vec4 c3 = temp[2];
+    vec4 c4 = temp[3];
+
+    if ( 4.0 == c3.x )
+    {
+      prd.hitValue = vec3( 0.0, 1.0, 0.0 );
+      return;
+    }
+
+    prd.hitValue = vec3( 1.0, 1.0, 1.0 );
+    return;
+  }
+
   // Calculate world space position (the unprecise way)
   vec3 worldPos = gl_WorldRayOriginEXT + gl_WorldRayDirectionEXT * gl_HitTEXT;
 

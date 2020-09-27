@@ -262,7 +262,7 @@ private:
         this->renderer->settings.setClearColor( clearColor );
       }
 
-      static bool rayTrace = true;
+      static bool rayTrace = this->renderer->settings.getRayTracingEnabled( );
       if ( ImGui::Checkbox( "Ray Tracing", &rayTrace ) )
       {
         this->renderer->settings.setEnableRayTracing( rayTrace );
@@ -331,9 +331,9 @@ int main( )
   dragonLore->worldTransform = glm::rotate( dragonLore->worldTransform, glm::radians( 45.0f ), glm::vec3( 0.0f, 1.0f, 0.0f ) );
 
   auto dragonLore2 = std::make_shared<GeometryNode>( "models/awpdlore/awpdlore.obj", Material( "textures/awpdlore.png" ) );
-  dragonLore2->worldTransform = glm::scale( dragonLore->worldTransform, glm::vec3( 0.25f ) );
-  dragonLore2->worldTransform = glm::rotate( dragonLore->worldTransform, glm::radians( 45.0f ), glm::vec3( 0.0f, 1.0f, 0.0f ) );
-  dragonLore2->worldTransform = glm::translate( dragonLore->worldTransform,glm::vec3( 0.0f, 2.0f, 0.0f ) );
+  dragonLore2->worldTransform = glm::scale( dragonLore2->worldTransform, glm::vec3( 0.25f ) );
+  dragonLore2->worldTransform = glm::rotate( dragonLore2->worldTransform, glm::radians( 90.0f ), glm::vec3( 0.0f, 1.0f, 0.0f ) );
+  dragonLore2->worldTransform = glm::translate( dragonLore2->worldTransform,glm::vec3( 1.0f, 2.0f, 0.0f ) );
 
   auto directionalLight = std::make_shared<DirectionalLightNode>( );
  

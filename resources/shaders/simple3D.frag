@@ -15,7 +15,7 @@ layout(location = 0) out vec4 outColor;
 
 layout(binding = 1, set = 0) uniform sampler2D texSampler;
 
-layout(binding = 2, set = 0) uniform LightSources
+layout(binding = 0, set = 1) uniform LightSources
 {
   DirectionalLight directionalLights[TOTAL_DIRECTIONAL_LIGHTS];
   PointLight pointLights[TOTAL_POINT_LIGHTS];

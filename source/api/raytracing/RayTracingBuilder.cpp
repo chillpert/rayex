@@ -283,7 +283,7 @@ namespace RAYEXEC_NAMESPACE
       for ( auto& as : cleanupAS )
         as.destroy( );
 
-      RX_INFO( "Compaction Results: ", totalOriginalSize, " -> ", totalCompactSize, " | ", totalOriginalSize - totalCompactSize );
+      RX_INFO( "Compaction Results: ", totalOriginalSize, " -> ", totalCompactSize, " | Total: ", totalOriginalSize - totalCompactSize );
     }
   }
 

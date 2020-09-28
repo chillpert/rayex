@@ -130,15 +130,15 @@ namespace RAYEXEC_NAMESPACE
     initDescriptorSets( );
 
     // SSBO for scene description
-    this->rtInstances.push_back( { } );
+    this->rtInstances.resize( g_maxGeometryNodes );
     this->rayTracingInstancesBuffer.init<RayTracingInstance>( this->rtInstances );
     this->rtInstances.clear( );
 
-    UboDescriptor lightsUboDescritpor               { this->lightsUniformBuffer.getRaw( ), sizeof( LightsUbo ) };
+    UboDescriptor lightsUboDescritpor             { this->lightsUniformBuffer.getRaw( ), sizeof( LightsUbo ) };
     StorageBufferDescriptor rtInstancesDescriptor { this->rayTracingInstancesBuffer.get( ) };
 
     this->rtSceneDescriptorSets.update( { lightsUboDescritpor, rtInstancesDescriptor } );
-    this->rsSceneDescriptorSets.update( { lightsUboDescritpor } );
+    this->rsSceneDescriptorSets.update( { lightsUboDescritpor, rtInstancesDescriptor } );
 
     result = initPipelines( );
     RX_ASSERT_INIT( result );
@@ -191,54 +191,28 @@ namespace RAYEXEC_NAMESPACE
 
     uint32_t imageIndex = this->swapchain.getCurrentImageIndex( );
 
-    if ( this->settings->rayTrace )
+    // Upload camera
+    if ( this->camera != nullptr )
     {
-      // Upload camera
-      if ( this->camera != nullptr )
+      if ( this->camera->updateView )
       {
-        if ( this->camera->updateView )
-        {
-          this->cameraUbo.view = this->camera->getViewMatrix( );
-          this->cameraUbo.viewInverse = this->camera->getViewInverseMatrix( );
+        this->cameraUbo.view = this->camera->getViewMatrix( );
+        this->cameraUbo.viewInverse = this->camera->getViewInverseMatrix( );
 
-          this->camera->updateView = false;
-        }
-
-        if ( this->camera->updateProj )
-        {
-          this->cameraUbo.projection = this->camera->getProjectionMatrix( );
-          this->cameraUbo.projectionInverse = this->camera->getProjectionInverseMatrix( );
-
-          this->camera->updateProj = false;
-        }
+        this->camera->updateView = false;
       }
-      this->cameraUniformBuffer.upload<CameraUbo>( imageIndex, this->cameraUbo );
 
-      // Upload scene description
-      if ( this->uploadSceneDescriptionData )
+      if ( this->camera->updateProj )
       {
-        this->uploadSceneDescriptionData = false;
-        this->rayTracingInstancesBuffer.fill<RayTracingInstance>( this->rtInstances.data( ) );
+        this->cameraUbo.projection = this->camera->getProjectionMatrix( );
+        this->cameraUbo.projectionInverse = this->camera->getProjectionInverseMatrix( );
+
+        this->camera->updateProj = false;
       }
+
+      this->cameraUbo.position = this->camera->getPosition( );
     }
-    else
-    {
-      for ( std::shared_ptr<GeometryNode> node : this->geometryNodes )
-      {
-        if ( node->modelPath.empty( ) )
-          continue;
-
-        RasterizationUbo ubo
-        {
-          node->worldTransform,
-          camera->getViewMatrix( ),
-          camera->getProjectionMatrix( ),
-          camera->getPosition( )
-        };
-
-        node->rsUniformBuffer.upload( imageIndex, ubo );
-      }
-    }
+    this->cameraUniformBuffer.upload<CameraUbo>( imageIndex, this->cameraUbo );
 
     // Upload lights
     LightsUbo lightNodeUbos;
@@ -258,6 +232,13 @@ namespace RAYEXEC_NAMESPACE
     }
 
     this->lightsUniformBuffer.upload<LightsUbo>( imageIndex, lightNodeUbos );
+
+    // Upload scene description
+    if ( this->uploadSceneDescriptionData )
+    {
+      this->uploadSceneDescriptionData = false;
+      this->rayTracingInstancesBuffer.fill<RayTracingInstance>( this->rtInstances.data( ) );
+    }
   }
 
   bool Api::prepareFrame( )
@@ -512,9 +493,6 @@ namespace RAYEXEC_NAMESPACE
 
     updateAccelerationStructure( );
     
-    // Rasterization uniform buffer
-    node->rsUniformBuffer.init<RasterizationUbo>( static_cast<uint32_t>( g_swapchainImageCount ) );
-
     // The model's rasterization descriptors.
     StorageBufferDescriptor vertexBuffer { model->vertexBuffer.get( ) };
     StorageBufferDescriptor indexBuffer  { model->indexBuffer.get( ) };
@@ -523,11 +501,10 @@ namespace RAYEXEC_NAMESPACE
     
     auto diffuseIter = this->textures.find( node->material.diffuseTexture[0] );
 
-    
-    UboDescriptor mvpUbo                   { node->rsUniformBuffer.getRaw( ), sizeof( RasterizationUbo ) };
+    UboDescriptor cameraUbo { this->cameraUniformBuffer.getRaw( ), sizeof( CameraUbo ) };
     CombinedImageSamplerDescriptor texture { diffuseIter->second->getImageView( ), diffuseIter->second->getSampler( ) };
 
-    model->rsDescriptorSets.update( { mvpUbo, texture } );
+    model->rsDescriptorSets.update( { cameraUbo, texture } );
   }
 
   bool Api::initGui( )
@@ -591,6 +568,27 @@ namespace RAYEXEC_NAMESPACE
     }
     else
     {
+      std::map<std::string, uint32_t> temp;
+      for ( const auto& model : this->models )
+      {
+        temp.emplace( model.first, 0 );
+      }
+
+      for ( const auto& node : this->geometryNodes )
+      {
+        if ( node->modelPath.empty( ) )
+          continue;
+
+        auto it = this->models.find( node->modelPath );
+        RX_ASSERT( ( it != this->models.end( ) ), "Can not draw model because it was not found." );
+
+        auto it2 = temp.find( it->first );
+        if ( it2 != temp.end( ) )
+        {
+          ++( it2->second );
+        }
+      }
+
       // Set up render pass begin info
       std::array<vk::ClearValue, 2> clearValues;
       clearValues[0].color = { Util::vec4toArray( this->settings->getClearColor( ) ) };
@@ -621,15 +619,14 @@ namespace RAYEXEC_NAMESPACE
         this->swapchainCommandBuffers.get( imageIndex ).setScissor( 0, 1, &scissor ); // CMD
 
         // Draw models
-        for ( const auto& node : this->geometryNodes )
+        for ( const auto& it : this->models )
         {
-          if ( node->modelPath.empty( ) )
-            continue;
+          auto model = it.second;
 
-          auto it = this->models.find( node->modelPath );
-          RX_ASSERT( ( it != this->models.end( ) ), "Can not draw model because it was not found." );
-
-          auto model = it->second;
+          uint32_t instanceCount = 1;
+          auto it2 = temp.find( it.first );
+          if ( it2 != temp.end( ) )
+            instanceCount = it2->second;
 
           vk::Buffer vertexBuffers[] = { model->vertexBuffer.get( ) };
           vk::DeviceSize offsets[] = { 0 };
@@ -655,7 +652,7 @@ namespace RAYEXEC_NAMESPACE
                                                                               nullptr );                                       // dynamic offsets 
 
           this->swapchainCommandBuffers.get( imageIndex ).drawIndexed( model->indexBuffer.getCount( ), // index count
-                                                                       1,                              // instance count
+                                                                       instanceCount,                  // instance count
                                                                        0,                              // first index
                                                                        0,                              // vertex offset
                                                                        0 );                            // first instance
@@ -722,17 +719,20 @@ namespace RAYEXEC_NAMESPACE
       // Light nodes uniform buffer
       auto lightsUboBinding = vk::Helper::getDescriptorSetLayoutBinding( 0, vk::DescriptorType::eUniformBuffer, vk::ShaderStageFlagBits::eFragment );
 
-      this->rsSceneDescriptorSetLayout.init( { lightsUboBinding } );
+      // Scene description buffer
+      auto rayTracingInstancesBinding = vk::Helper::getDescriptorSetLayoutBinding( 1, vk::DescriptorType::eStorageBuffer, vk::ShaderStageFlagBits::eVertex );
+
+      this->rsSceneDescriptorSetLayout.init( { lightsUboBinding, rayTracingInstancesBinding } );
     }
 
     // Rasterization descriptor set layout.
     {
       // Uniform buffer binding for the vertex shader.
-      auto uboBinding = vk::Helper::getDescriptorSetLayoutBinding( 0, vk::DescriptorType::eUniformBuffer, vk::ShaderStageFlagBits::eVertex );
+      auto mvpBinding = vk::Helper::getDescriptorSetLayoutBinding( 0, vk::DescriptorType::eUniformBuffer, vk::ShaderStageFlagBits::eVertex );
       // Texture image
       auto textureBinding = vk::Helper::getDescriptorSetLayoutBinding( 1, vk::DescriptorType::eCombinedImageSampler, vk::ShaderStageFlagBits::eFragment );
 
-      this->rsModelDescriptorSetLayout.init( { uboBinding, textureBinding } );
+      this->rsModelDescriptorSetLayout.init( { mvpBinding, textureBinding } );
     }
 
     // Ray tracing descriptor pool

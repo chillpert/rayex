@@ -19,6 +19,7 @@
 #include "base/Base.hpp"
 #include "api/raytracing/RayTracingBuilder.hpp"
 #include "api/Descriptor.hpp"
+#include "api/utility/Util.hpp"
 
 namespace RAYEXEC_NAMESPACE
 {
@@ -74,7 +75,7 @@ namespace RAYEXEC_NAMESPACE
         ptr->rtInstance.transform = ptr->worldTransform;
         ptr->rtInstance.transformIT = glm::transpose( glm::inverse( ptr->worldTransform ) );
         
-        std::cout << glm::to_string( ptr->rtInstance.transformIT ) << std::endl,
+        std::cout << glm::to_string( ptr->rtInstance.transformIT ) << std::endl;
 
         this->rtInstances.push_back( ptr->rtInstance );
         this->uploadSceneDescriptionData = true;

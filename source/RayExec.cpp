@@ -65,12 +65,12 @@ namespace RAYEXEC_NAMESPACE
     if ( !this->running )
       return;
 
-    this->api.update( );
+    this->running = this->api.render( );
 
     if ( !this->running ) 
       return;
 
-    this->running = this->api.render( );
+    this->api.update( );
   }
 
   void RayExec::setCamera( std::shared_ptr<Camera> camera )

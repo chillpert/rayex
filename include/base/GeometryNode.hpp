@@ -35,8 +35,6 @@ namespace RAYEXEC_NAMESPACE
     Material material; ///< The material defining rendering properties.
 
     RayTracingInstance rtInstance; ///< @see RayTracingInstance
-
-    UniformBuffer rsUniformBuffer;
   };
 }
 

@@ -553,6 +553,7 @@ namespace vk
 
       PhysicalDeviceFeatures deviceFeatures;
       deviceFeatures.samplerAnisotropy = VK_TRUE;
+      deviceFeatures.vertexPipelineStoresAndAtomics = VK_TRUE;
 
       PhysicalDeviceFeatures2 deviceFeatures2 { deviceFeatures };
       deviceFeatures2.pNext = &bufferDeviceAddressFeatures;

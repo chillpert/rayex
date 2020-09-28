@@ -30,6 +30,12 @@ namespace RAYEXEC_NAMESPACE
     vk::DeviceSize size = VK_WHOLE_SIZE;
   };
 
+  struct DynamicStorageBufferDescriptor
+  {
+    vk::Buffer storageBuffer;
+    vk::DeviceSize size = VK_WHOLE_SIZE;
+  };
+
   struct CombinedImageSamplerDescriptor
   {
     vk::ImageView imageView;

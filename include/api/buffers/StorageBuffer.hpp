@@ -30,9 +30,9 @@ namespace RAYEXEC_NAMESPACE
 
       stagingBuffer.fill<T>( data.data( ) );
 
-      Buffer::init( size,                                                                                  // size                                                 // size
+      Buffer::init( size,                                                                                  // size                                                
                     vk::BufferUsageFlagBits::eTransferDst | vk::BufferUsageFlagBits::eStorageBuffer,       // usage
-                    { g_transferFamilyIndex },                                                             // queueFamilyIndices                                                    // queueFamilyIndices
+                    { g_transferFamilyIndex },                                                             // queueFamilyIndices                                                  
                     vk::MemoryPropertyFlagBits::eDeviceLocal | vk::MemoryPropertyFlagBits::eHostVisible ); // memoryPropertyFlags                                                                                                                // pNext of memory
 
       // Copy staging buffer to the actual index buffer.

@@ -14,6 +14,7 @@ layout(binding = 2, set = 0) uniform CameraProperties
   mat4 proj;
   mat4 viewInverse;
   mat4 projInverse;
+  vec3 cameraPos;
 } cam;
 
 void main()

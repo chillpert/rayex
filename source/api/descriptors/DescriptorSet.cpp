@@ -34,7 +34,8 @@ namespace RAYEXEC_NAMESPACE
       std::vector<std::pair<vk::DescriptorImageInfo, size_t>> storageImageInfos;
       std::vector<std::pair<vk::DescriptorBufferInfo, size_t>> uniformInfos;
       std::vector<std::pair<vk::DescriptorImageInfo, size_t>> combinedImageSamplerInfo;
-      std::vector<std::pair<vk::DescriptorBufferInfo, size_t>> bufferInfos;
+      std::vector<std::pair<vk::DescriptorBufferInfo, size_t>> storageBufferInfos;
+      std::vector<std::pair<vk::DescriptorBufferInfo, size_t>> dynamicBufferInfos;
 
       // I do not know why. But for some reason I can not set the descriptor writes in one single loop. This is the weirdest bug I have ever seen.
       for ( size_t j = 0; j < data.size( ); ++j )
@@ -62,7 +63,12 @@ namespace RAYEXEC_NAMESPACE
         else if ( typeid( StorageBufferDescriptor ) == data[j].type( ) )
         {
           StorageBufferDescriptor temp = std::any_cast<StorageBufferDescriptor>( data[j] );
-          bufferInfos.push_back( { { temp.storageBuffer, 0, temp.size }, j } );
+          storageBufferInfos.push_back( { { temp.storageBuffer, 0, temp.size }, j } );
+        }
+        else if ( typeid( DynamicStorageBufferDescriptor ) == data[j].type( ) )
+        {
+          DynamicStorageBufferDescriptor temp = std::any_cast<DynamicStorageBufferDescriptor>( data[j] );
+          dynamicBufferInfos.push_back( { { temp.storageBuffer, 0, temp.size }, j } );
         }
         else
         {
@@ -127,7 +133,7 @@ namespace RAYEXEC_NAMESPACE
         descriptorWrites[it.second] = write;
       }
       
-      for ( const auto& it : bufferInfos )
+      for ( const auto& it : storageBufferInfos )
       {
         vk::WriteDescriptorSet write( this->sets[i],                      // dstSet
                                       it.second,                          // dstBinding
@@ -137,6 +143,20 @@ namespace RAYEXEC_NAMESPACE
                                       nullptr,                            // pImageInfo
                                       &it.first,                          // pBufferInfo
                                       nullptr );                          // pTextelBufferView
+
+        descriptorWrites[it.second] = write;
+      }
+
+      for ( const auto& it : dynamicBufferInfos )
+      {
+        vk::WriteDescriptorSet write( this->sets[i],                             // dstSet
+                                      it.second,                                 // dstBinding
+                                      0,                                         // dstArrayElement
+                                      1,                                         // descriptorCount
+                                      vk::DescriptorType::eStorageBufferDynamic, // descriptorType
+                                      nullptr,                                   // pImageInfo
+                                      &it.first,                                 // pBufferInfo
+                                      nullptr );                                 // pTextelBufferView
 
         descriptorWrites[it.second] = write;
       }

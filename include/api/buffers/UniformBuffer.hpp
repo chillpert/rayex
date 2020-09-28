@@ -14,6 +14,7 @@ namespace RAYEXEC_NAMESPACE
     glm::mat4 projection = glm::mat4( 1.0f );
     glm::mat4 viewInverse = glm::mat4( 1.0f );
     glm::mat4 projectionInverse = glm::mat4( 1.0f );
+    glm::vec3 position = glm::vec3( 1.0f );
   };
 
   /// A uniform buffer object for different light types.
@@ -23,14 +24,6 @@ namespace RAYEXEC_NAMESPACE
   {
     DirectionalLightNode::Ubo directionalLightNodes[10];
     PointLightNode::Ubo pointLightNodes[10];
-  };
-
-  struct RasterizationUbo
-  {
-    glm::mat4 model = glm::mat4( 1.0f );
-    glm::mat4 view = glm::mat4( 1.0f );
-    glm::mat4 projection = glm::mat4( 1.0f );
-    glm::vec3 cameraPosition = glm::vec3( 1.0f );
   };
 
   /// A specialised buffer for uniforms.

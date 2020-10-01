@@ -90,6 +90,8 @@ namespace RAYEXEC_NAMESPACE
     /// @param gui The GUI the renderer should be using.
     RX_API void setGui( std::shared_ptr<Gui> gui );
 
+    RX_API void setModels( const std::vector<std::string>& modelPaths );
+
     Settings settings;
 
   private:

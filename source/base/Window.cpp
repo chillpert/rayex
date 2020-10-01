@@ -20,6 +20,7 @@ namespace RAYEXEC_NAMESPACE
   bool Window::init( )
   {
     SDL_SetHint( SDL_HINT_FRAMEBUFFER_ACCELERATION, "1" );
+    //SDL_SetHint( SDL_HINT_RENDER_VSYNC, "1" );
 
     if ( SDL_Init( SDL_INIT_VIDEO ) < 0 )
     {
@@ -34,6 +35,12 @@ namespace RAYEXEC_NAMESPACE
       RX_ERROR( "Failed to create window. Closing application." ); 
       return false;
     }
+
+    //if ( SDL_GL_SetSwapInterval( 1 ) == -1 )
+    //{
+    //  RX_ERROR( "Swap interval not supported." );
+    //  return false;
+    //}
 
     return true;
   }

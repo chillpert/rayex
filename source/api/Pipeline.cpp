@@ -8,7 +8,7 @@
 
 namespace RAYEXEC_NAMESPACE
 {
-  bool Pipeline::init( const std::vector<vk::DescriptorSetLayout>& descriptorSetLayouts, vk::RenderPass renderPass, vk::Viewport viewport, vk::Rect2D scissor )
+  bool Pipeline::init( const std::vector<vk::DescriptorSetLayout>& descriptorSetLayouts, vk::RenderPass renderPass, vk::Viewport viewport, vk::Rect2D scissor, const Settings* const settings )
   {
     // TODO: this has to be more adjustable.
     auto bindingDescription = Vertex::getBindingDescriptions( );
@@ -104,6 +104,8 @@ namespace RAYEXEC_NAMESPACE
       return false;
     }
 
+    Util::processShaderMacros( "shaders/simple3D.frag", settings->anticipatedDirectionalLights, settings->anticipatedPointLights, 0 );
+
     auto vs = vk::Initializer::initShaderModuleUnique( "shaders/simple3D.vert" );
     auto fs = vk::Initializer::initShaderModuleUnique( "shaders/simple3D.frag" );
 
@@ -141,7 +143,8 @@ namespace RAYEXEC_NAMESPACE
 
   bool Pipeline::init( const std::vector<vk::DescriptorSetLayout>& descriptorSetLayouts, const Settings* const settings )
   {
-    Util::processShaderMacros( "shaders/raytrace.rchit", settings->anticipatedDirectionalLights, settings->anticipatedPointLights );
+    uint32_t anticipatedModels = settings->anticipatedModels.has_value( ) ? settings->anticipatedModels.value( ) : g_maxModels;
+    Util::processShaderMacros( "shaders/raytrace.rchit", settings->anticipatedDirectionalLights, settings->anticipatedPointLights, anticipatedModels );
 
     auto rgen = vk::Initializer::initShaderModuleUnique( "shaders/raytrace.rgen" );
     auto miss = vk::Initializer::initShaderModuleUnique( "shaders/raytrace.rmiss" );

@@ -38,10 +38,32 @@ namespace RAYEXEC_NAMESPACE
 
   void DescriptorSetLayout::init( )
   {
-    vk::DescriptorSetLayoutCreateInfo createInfo( { },                                            // flags
-                                                  static_cast< uint32_t >( this->bindings.size( ) ) , // bindingCount
-                                                  this->bindings.data( ) );                           // pBindings
- 
+    std::vector<vk::DescriptorBindingFlagsEXT> descriptorBindingFlags;
+
+    bool useVariableDescriptorCount = false;
+    for ( const auto& binding : this->bindings )
+    {
+      if ( binding.descriptorCount > 1 )
+      {
+        descriptorBindingFlags.push_back( vk::DescriptorBindingFlagBits::eVariableDescriptorCount );
+        useVariableDescriptorCount = true;
+      }
+      else
+        descriptorBindingFlags.push_back( { } );
+    }
+
+    uint32_t bindingCount = static_cast<uint32_t>( this->bindings.size( ) );
+
+    vk::DescriptorSetLayoutCreateInfo createInfo( { },                      // flags
+                                                  bindingCount,             // bindingCount
+                                                  this->bindings.data( ) ); // pBindings 
+
+    vk::DescriptorSetLayoutBindingFlagsCreateInfoEXT layoutFlags( bindingCount,                     // bindingCount 
+                                                                  descriptorBindingFlags.data( ) ); // pBindingFlags
+    
+    if ( useVariableDescriptorCount )
+      createInfo.pNext = &layoutFlags;
+
     this->layout = g_device.createDescriptorSetLayout( createInfo );
     if ( !this->layout )
       RX_ERROR( "Failed to create descriptor set layout." );

@@ -30,6 +30,7 @@ namespace RAYEXEC_NAMESPACE
   const size_t g_maxGeometryNodes = 2000; ///< Global variable to store the maximum amount of geometry nodes supported by the renderer.
   const size_t g_maxTextures = 2000; ///< Global variable to store the maximum amount of textures supported by the renderer.
   const size_t g_maxLightNodes = 25; ///< Global variable to store the maximum amount of light sources supported by the renderer.
+  const size_t g_maxModels = 3;
 
   extern std::string g_resourcePath; ///< Path to where shaders, models and textures are stored.
 }

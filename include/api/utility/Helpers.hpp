@@ -71,7 +71,7 @@ namespace vk
     /// Returns the descriptor pool sizes required by any given descriptor set layout bindings.
     /// @param layoutBinding A vector of descriptor set layout bindings that will be used to create the descriptor pool sizes.
     /// @return Returns a vector of descriptor pool sizes.
-    std::vector<DescriptorPoolSize> getPoolSizes( const std::vector<DescriptorSetLayoutBinding>& layoutBindings );
+    std::vector<DescriptorPoolSize> getPoolSizes( const std::vector<DescriptorSetLayoutBinding>& layoutBindings, uint32_t maxSets );
 
     /// Transitions the image layout of any given image. The function will generate its own command buffer.
     /// @param image The vulkan image for which you want to change the image layout.
@@ -108,7 +108,7 @@ namespace vk
     /// @descriptorType The type of the descriptor.
     /// @stageFlags The type of shader in which the descriptor can be used.
     /// @return Returns the descriptor set layout binding.
-    DescriptorSetLayoutBinding getDescriptorSetLayoutBinding( uint32_t binding, DescriptorType descriptorType, ShaderStageFlags stageFlags );
+    DescriptorSetLayoutBinding getDescriptorSetLayoutBinding( uint32_t binding, DescriptorType descriptorType, ShaderStageFlags stageFlags, uint32_t descriptorCount = 1 );
 
     /// Checks if a given physical device supports the queue capabilities required by the application.
     /// @param physicalDevice The physical device to check.

@@ -11,8 +11,6 @@ layout(location = 1) in vec3 fragNormal;
 layout(location = 2) in vec2 fragTexCoord;
 layout(location = 3) in vec3 cameraPos;
 
-layout(location = 4) in vec4 debugColor;
-
 layout(location = 0) out vec4 outColor;
 
 layout(binding = 1, set = 0) uniform sampler2D texSampler;
@@ -41,8 +39,7 @@ void main()
   vec3 L = normalize( lightSources.directionalLights[0].direction.xyz - vec3( 0 ) );
   float dotNL = max(dot(fragNormal, L), 0.2 );
 
-  //outColor = vec4( vec3( dotNL ), 1.0);
-  outColor = debugColor;
+  outColor = vec4( vec3( dotNL ), 1.0);
 
   //outColor = vec4(vec3(texture(texSampler, fragTexCoord)), 1.0);
 

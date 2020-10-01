@@ -47,6 +47,8 @@ namespace vk
     /// @param maxSets The maximum amount of descriptor sets that can be allocated from this descriptor pool.
     /// @param flags The flags used for creating the descriptor pool.
     /// @return Returns the descriptor pool.  
+    UniqueDescriptorPool initDescriptorPoolUnique( const std::vector<DescriptorSetLayoutBinding>& layoutBindings, uint32_t maxSets = 1, DescriptorPoolCreateFlags flags = { } );
+
     UniqueDescriptorPool initDescriptorPoolUnique( const std::vector<DescriptorPoolSize>& poolSizes, uint32_t maxSets = 1, DescriptorPoolCreateFlags flags = { } );
 
     /// Creates a descriptor pool.
@@ -54,7 +56,7 @@ namespace vk
     /// @param maxSets The maximum amount of descriptor sets that can be allocated from this descriptor pool.
     /// @param flags The flags used for creating the descriptor pool.
     /// @return Returns the descriptor pool.  
-    DescriptorPool initDescriptorPool( const std::vector<DescriptorPoolSize>& poolSizes, uint32_t maxSets, DescriptorPoolCreateFlags flags = { } );
+    DescriptorPool initDescriptorPool( const std::vector<DescriptorSetLayoutBinding>& layoutBindings, uint32_t maxSets, DescriptorPoolCreateFlags flags = { } );
 
     DescriptorSetLayout initDescriptorSetLayout( const std::vector<DescriptorSetLayoutBinding> bindings );
 
@@ -182,6 +184,9 @@ namespace vk
     /// @note The given vector with the extensions will be appended by ones that are required by the window.
     /// @return Returns true if initialization was successful.
     bool initInstance( UniqueInstance& instance, const std::vector<const char*>& layers, std::vector<const char*>& extensions );
+
+    bool initGraphicsPipelines( const std::vector<GraphicsPipelineCreateInfo>& createInfos );
+    bool initRayTracingPipelines( const std::vector<RayTracingPipelineCreateInfoKHR> createInfos );
   }
 }
 

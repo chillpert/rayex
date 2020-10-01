@@ -82,4 +82,9 @@ namespace RAYEXEC_NAMESPACE
   {
     this->initialized ? this->api.setGui( gui, true ) : this->api.setGui( gui );
   }
+
+  void RayExec::setModels( const std::vector<std::string>& modelPaths )
+  {
+    this->api.setModels( modelPaths );
+  }
 }

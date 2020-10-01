@@ -36,7 +36,7 @@ namespace RAYEXEC_NAMESPACE
     this->layouts = { g_swapchainImageCount, this->layout};
 
     // Init descriptor pool.
-    this->pool = vk::Initializer::initDescriptorPool( vk::Helper::getPoolSizes( this->bindings ), static_cast<uint32_t>( g_maxGeometryNodes ) * g_swapchainImageCount );
+    this->pool = vk::Initializer::initDescriptorPool( this->bindings, static_cast<uint32_t>( g_maxGeometryNodes ) * g_swapchainImageCount );
 
     // Init descriptor sets.
     this->sets = vk::Initializer::initDescriptorSets( this->pool, this->layout );

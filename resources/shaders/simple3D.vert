@@ -40,8 +40,6 @@ layout(location = 1) out vec3 fragNormal;
 layout(location = 2) out vec2 fragTexCoord;
 layout(location = 3) out vec3 cameraPos;
 
-layout(location = 4) out vec4 debugColor;
-
 void main()
 {
   mat4 model = rayTracingInstances.i[gl_InstanceIndex].transform;
@@ -50,34 +48,6 @@ void main()
   fragTexCoord = inTexCoord;
   fragNormal = normalize(mat3(transpose(inverse(model))) * inNormal);
   cameraPos = cam.cameraPos;
-
-  debugColor = vec4( 1.0, 0.0, 0.0, 1.0 );
-
-  if (rayTracingInstances.i[0].modelIndex == 0 )
-  {
-    debugColor = vec4( 0.0, 1.0, 0.0, 1.0 );
-  }
-  else if (rayTracingInstances.i[1].modelIndex == 1 )
-  {
-    debugColor = vec4( 0.0, 0.0, 1.0, 1.0 );
-  }
-  else
-  {
-    debugColor = vec4( 1.0, 1.0, 1.0, 1.0 );
-  }
-
-  //if ( gl_InstanceIndex == 0 )
-  //{
-  //  debugColor = vec4( 0.0, 1.0, 0.0, 1.0 );
-  //}
-  //else if ( gl_InstanceIndex == 1 )
-  //{
-  //  debugColor = vec4( 0.0, 0.0, 1.0, 1.0 );
-  //}
-  //else
-  //{
-  //  debugColor = vec4( 1.0, 1.0, 0.0, 1.0 );
-  //}
 
   gl_Position = cam.proj * cam.view * model * vec4(inPosition, 1.0);
 }

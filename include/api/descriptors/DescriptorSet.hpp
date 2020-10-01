@@ -42,6 +42,13 @@ namespace RAYEXEC_NAMESPACE
     vk::Sampler sampler;
   };
 
+  struct StorageBufferArrayDescriptor
+  {
+    std::vector<vk::Buffer> storageBuffers;
+    uint32_t descriptorCount;
+    vk::DeviceSize size = VK_WHOLE_SIZE;
+  };
+
   /// A wrapper class for Vulkan descriptor sets.
   /// @todo Make the update process "smart" by using the existing information to automatically write to and update the descriptor sets.
   /// @ingroup API
@@ -72,6 +79,8 @@ namespace RAYEXEC_NAMESPACE
 
     /// Used to update ray tracing related descriptors.
     void update( const std::vector<std::any>& data );
+
+    void update( const std::vector<vk::WriteDescriptorSet> writes );
 
     /// Frees the descriptor sets.
     void free( );

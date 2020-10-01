@@ -9,6 +9,8 @@
 #define TOTAL_DIRECTIONAL_LIGHTS 1
 #define TOTAL_POINT_LIGHTS 1
 
+#define TOTAL_MODELS 1
+
 struct Vertex
 {
   vec3 pos;
@@ -33,7 +35,7 @@ struct RayTracingInstance
 layout(location = 0) rayPayloadInEXT hitPayload prd;
 hitAttributeEXT vec3 attribs;
 
-layout(binding = 0, set = 1) buffer Vertices
+layout(binding = 0, set = 1, scalar) buffer Vertices
 {
   vec4 v[];
 } vertices[];
@@ -42,6 +44,16 @@ layout(binding = 1, set = 1) buffer Indices
 {
   uint i[];
 } indices[];
+
+//layout(binding = 0, set = 3, scalar) buffer Vertices
+//{
+//  vec4 v[];
+//} vertices[];
+//
+//layout(binding = 0, set = 4) buffer Indices
+//{
+//  uint i[];
+//} indices[];
 
 layout(binding = 0, set = 2) uniform LightSources
 {
@@ -76,7 +88,13 @@ Vertex unpack(uint index, uint modelIndex)
 void main()
 {
   uint modelIndex = rayTracingInstances.i[gl_InstanceID].modelIndex;
-  
+
+  if ( modelIndex != 0 )
+  {
+    prd.hitValue = vec3( 1.0, 0.0, 0.0);
+    return;
+  }
+
   ivec3 ind = ivec3(indices[nonuniformEXT(modelIndex)].i[3 * gl_PrimitiveID + 0],   //
                     indices[nonuniformEXT(modelIndex)].i[3 * gl_PrimitiveID + 1],   //
                     indices[nonuniformEXT(modelIndex)].i[3 * gl_PrimitiveID + 2]);  //

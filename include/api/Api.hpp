@@ -20,6 +20,7 @@
 #include "api/raytracing/RayTracingBuilder.hpp"
 #include "api/Descriptor.hpp"
 #include "api/utility/Util.hpp"
+#include "api/Bindings.hpp"
 
 namespace RAYEXEC_NAMESPACE
 {
@@ -56,6 +57,8 @@ namespace RAYEXEC_NAMESPACE
     /// Retrieves an image from the swapchain and presents it.
     bool render( );
 
+    void setModels( const std::vector<std::string>& modelPaths );
+
     /// Used to add another arbitrary node to the scene.
     /// @param node A pointer to node to add.
     template <typename T = Model>
@@ -67,17 +70,19 @@ namespace RAYEXEC_NAMESPACE
 
         auto it = models.find( ptr->modelPath );
         if ( it == models.end( ) )
+        {
           models.insert( { ptr->modelPath, std::make_shared<T>( ptr->modelPath ) } );
+          RX_FATAL( "NOT THIS AGAIN" );
+        }
 
         geometryNodes.push_back( ptr );
 
         // Fill scene description buffer.
+        ptr->rtInstance.modelIndex = it->second->index;
         ptr->rtInstance.transform = ptr->worldTransform;
         ptr->rtInstance.transformIT = glm::transpose( glm::inverse( ptr->worldTransform ) );
-        
-        std::cout << glm::to_string( ptr->rtInstance.transformIT ) << std::endl;
-
         this->rtInstances.push_back( ptr->rtInstance );
+
         this->uploadSceneDescriptionData = true;
 
         // Handle the node's texture.
@@ -140,7 +145,7 @@ namespace RAYEXEC_NAMESPACE
     RX_API bool initGui( );
 
     Settings* settings = nullptr;
-
+    
   private:
     void updateAccelerationStructure( );
 
@@ -168,6 +173,12 @@ namespace RAYEXEC_NAMESPACE
     /// Creates a descriptor set layout for each the ray tracing components and the models.
     void initDescriptorSets( );
 
+    void initSceneStorageBuffer( );
+
+    void updateSettings( );
+
+    void updateUniformBuffers( );
+
     /// Recreates the swapchain and re-records the swapchain command buffers.
     void recreateSwapchain( );
 
@@ -176,6 +187,9 @@ namespace RAYEXEC_NAMESPACE
 
     /// Submits the swapchain command buffers to a queue and presents an image on the screen.
     bool submitFrame( );
+
+    void rasterize( );
+    void rayTrace( );
 
     std::shared_ptr<Window> window;
     std::shared_ptr<Camera> camera;
@@ -192,13 +206,14 @@ namespace RAYEXEC_NAMESPACE
     std::vector<vk::UniqueSemaphore> finishedRenderSemaphores;
 
     // Descriptors for ray-tracing-related data ( no equivalent in rasterization shader ).
-    DescriptorSetLayout rtDescriptorSetLayout;
+    vk::UniqueDescriptorSetLayout rtDescriptorSetLayout;
     vk::UniqueDescriptorPool rtDescriptorPool;
     DescriptorSet rtDescriptorSets;
 
     // Descriptors for model-related data.
     DescriptorSetLayout rtModelDescriptorSetLayout; ///< @note Each RAYEXEC_NAMESPACE::Model has its own descriptor set.
     vk::UniqueDescriptorPool rtModelDescriptorPool;
+
     DescriptorSetLayout rsModelDescriptorSetLayout;
     vk::UniqueDescriptorPool rsModelDescriptorPool;
 
@@ -210,6 +225,12 @@ namespace RAYEXEC_NAMESPACE
     vk::UniqueDescriptorPool rsSceneDescriptorPool;
     DescriptorSet rsSceneDescriptorSets;
 
+    DescriptorSetLayout modelDataSetLayout;
+    vk::UniqueDescriptorPool modelDataDescriptorPool;
+    DescriptorSet modelDataDescriptorSets;
+
+    Bindings rtBindings;
+
     CameraUbo cameraUbo;
     UniformBuffer cameraUniformBuffer;
     UniformBuffer lightsUniformBuffer;
@@ -218,6 +239,7 @@ namespace RAYEXEC_NAMESPACE
     StorageBuffer rayTracingInstancesBuffer;
     bool uploadSceneDescriptionData = false;
 
+    std::vector<std::string> modelPaths;
     // Nodes to render
     std::list<std::shared_ptr<GeometryNode>> geometryNodes;
     std::list<std::shared_ptr<DirectionalLightNode>> dirLightNodes;

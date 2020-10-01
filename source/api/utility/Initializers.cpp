@@ -72,12 +72,14 @@ namespace vk
       return commandPool;
     }
 
-    UniqueDescriptorPool initDescriptorPoolUnique( const std::vector<DescriptorPoolSize>& poolSizes, uint32_t maxSets, DescriptorPoolCreateFlags flags )
+    UniqueDescriptorPool initDescriptorPoolUnique( const std::vector<DescriptorSetLayoutBinding>& layoutBindings, uint32_t maxSets, DescriptorPoolCreateFlags flags )
     {
-      DescriptorPoolCreateInfo createInfo( flags,                                   // flags
-                                           maxSets,                                 // maxSets
+      auto poolSizes = Helper::getPoolSizes( layoutBindings, maxSets );
+
+      DescriptorPoolCreateInfo createInfo( flags,                                      // flags
+                                           maxSets,                                    // maxSets
                                            static_cast<uint32_t>( poolSizes.size( ) ), // poolSizeCount
-                                           poolSizes.data( ) );                      // pPoolSizes
+                                           poolSizes.data( ) );                        // pPoolSizes
 
       UniqueDescriptorPool descriptorPool = RAYEXEC_NAMESPACE::g_device.createDescriptorPoolUnique( createInfo );
       RX_ASSERT( descriptorPool, "Failed to create descriptor pool." );
@@ -85,8 +87,23 @@ namespace vk
       return descriptorPool;
     }
 
-    DescriptorPool initDescriptorPool( const std::vector<DescriptorPoolSize>& poolSizes, uint32_t maxSets, DescriptorPoolCreateFlags flags )
+    UniqueDescriptorPool initDescriptorPoolUnique( const std::vector<DescriptorPoolSize>& poolSizes, uint32_t maxSets, DescriptorPoolCreateFlags flags )
     {
+      DescriptorPoolCreateInfo createInfo( flags,                                      // flags
+                                           maxSets,                                    // maxSets
+                                           static_cast<uint32_t>( poolSizes.size( ) ), // poolSizeCount
+                                           poolSizes.data( ) );                        // pPoolSizes
+
+      UniqueDescriptorPool descriptorPool = RAYEXEC_NAMESPACE::g_device.createDescriptorPoolUnique( createInfo );
+      RX_ASSERT( descriptorPool, "Failed to create descriptor pool." );
+
+      return descriptorPool;
+    }
+
+    DescriptorPool initDescriptorPool( const std::vector<DescriptorSetLayoutBinding>& layoutBindings, uint32_t maxSets, DescriptorPoolCreateFlags flags )
+    {
+      auto poolSizes = Helper::getPoolSizes( layoutBindings, maxSets );
+
       DescriptorPoolCreateInfo createInfo( flags,                                        // flags
                                            maxSets,                                      // maxSets
                                            static_cast<uint32_t>( poolSizes.size( ) ), // poolSizeCount
@@ -100,7 +117,7 @@ namespace vk
 
     DescriptorSetLayout initDescriptorSetLayout( const std::vector<DescriptorSetLayoutBinding> bindings )
     {
-      vk::DescriptorSetLayoutCreateInfo createInfo( { },                                       // flags
+      DescriptorSetLayoutCreateInfo createInfo( { },                                       // flags
                                                     static_cast<uint32_t>( bindings.size( ) ), // bindingCount
                                                     bindings.data( ) );                        // pBindings
 
@@ -112,9 +129,9 @@ namespace vk
 
     std::vector<DescriptorSet> initDescriptorSets( DescriptorPool pool, DescriptorSetLayout layout )
     {
-      std::vector<vk::DescriptorSetLayout> temp { RAYEXEC_NAMESPACE::g_swapchainImageCount, layout };
+      std::vector<DescriptorSetLayout> temp { RAYEXEC_NAMESPACE::g_swapchainImageCount, layout };
 
-      vk::DescriptorSetAllocateInfo allocInfo( pool,
+      DescriptorSetAllocateInfo allocInfo( pool,
                                                RAYEXEC_NAMESPACE::g_swapchainImageCount,
                                                temp.data( ) );
 
@@ -128,9 +145,9 @@ namespace vk
 
     std::vector<UniqueDescriptorSet> initDescriptorSetsUnique( DescriptorPool pool, DescriptorSetLayout layout )
     {
-      std::vector<vk::DescriptorSetLayout> temp { RAYEXEC_NAMESPACE::g_swapchainImageCount, layout };
+      std::vector<DescriptorSetLayout> temp { RAYEXEC_NAMESPACE::g_swapchainImageCount, layout };
 
-      vk::DescriptorSetAllocateInfo allocInfo( pool,
+      DescriptorSetAllocateInfo allocInfo( pool,
                                                RAYEXEC_NAMESPACE::g_swapchainImageCount,
                                                temp.data( ) );
 
@@ -144,7 +161,7 @@ namespace vk
 
     UniqueDescriptorSetLayout initDescriptorSetLayoutUnique( const std::vector<DescriptorSetLayoutBinding> bindings )
     {
-      vk::DescriptorSetLayoutCreateInfo createInfo( { },                                       // flags
+      DescriptorSetLayoutCreateInfo createInfo( { },                                       // flags
                                                     static_cast<uint32_t>( bindings.size( ) ), // bindingCount
                                                     bindings.data( ) );                        // pBindings
 
@@ -537,6 +554,8 @@ namespace vk
       PhysicalDeviceDescriptorIndexingFeatures indexingFeatures;
       indexingFeatures.runtimeDescriptorArray = VK_TRUE;
       indexingFeatures.shaderStorageBufferArrayNonUniformIndexing = VK_TRUE;
+      indexingFeatures.descriptorBindingVariableDescriptorCount = VK_TRUE;
+      indexingFeatures.descriptorBindingPartiallyBound = VK_TRUE;
 
       PhysicalDeviceRobustness2FeaturesEXT robustness2FeaturesEXT;
       robustness2FeaturesEXT.nullDescriptor = VK_TRUE;
@@ -599,7 +618,7 @@ namespace vk
       // Start creating the instance.
       ApplicationInfo appInfo;
 
-      uint32_t apiVersion = vk::enumerateInstanceVersion( );
+      uint32_t apiVersion = enumerateInstanceVersion( );
 
     #ifdef VK_API_VERSION_1_1
       if ( apiVersion >= VK_API_VERSION_1_1 )
@@ -644,6 +663,77 @@ namespace vk
       }
 
       VULKAN_HPP_DEFAULT_DISPATCHER.init( instance.get( ) );
+      return true;
+    }
+
+    bool initGraphicsPipelines( const std::vector<GraphicsPipelineCreateInfo>& createInfos )
+    {
+      auto pipelines = rx::g_device.createGraphicsPipelines( nullptr, createInfos );
+
+      if ( pipelines.result != Result::eSuccess )
+      {
+        RX_ERROR( "Failed to create graphics pipelines." );
+        return false;
+      }
+
+      for ( size_t i = 0; i < pipelines.value.size( ); ++i )
+      {
+        if ( !pipelines.value[i] )
+        {
+          RX_ERROR( "Failed to create graphics pipeline ", i + 1, "/", pipelines.value.size( ), "." );
+          return false;
+        }
+      }
+
+      return true;
+    }
+
+    bool initRayTracingPipelines( const std::vector<RayTracingPipelineCreateInfoKHR> createInfos )
+    {
+      auto pipelines = rx::g_device.createRayTracingPipelinesKHR( nullptr, createInfos );
+
+      if ( pipelines.result != Result::eSuccess )
+      {
+        RX_ERROR( "Failed to create graphics pipelines." );
+        return false;
+      }
+
+      for ( size_t i = 0; i < pipelines.value.size( ); ++i )
+      {
+        if ( !pipelines.value[i] )
+        {
+          RX_ERROR( "Failed to create graphics pipeline ", i + 1, "/", pipelines.value.size( ), "." );
+          return false;
+        }
+      }
+
+      return true;
+    }
+
+    bool initRayTracingPipelinesUnique( std::vector<vk::UniquePipeline>& pipelines, const std::vector<RayTracingPipelineCreateInfoKHR> createInfos )
+    {
+     //rx::g_device.createRayTracingPipelinesKHRUnique( nullptr, createInfos, nullptr );
+      //auto pipeline2( std::move( pipelines2 ) );
+
+      //auto result = rx::g_device.createRayTracingPipelinesKHRUnique( nullptr, createInfos );
+      
+      /*
+      if ( pipelines.result != Result::eSuccess )
+      {
+        RX_ERROR( "Failed to create graphics pipelines." );
+        return false;
+      }
+
+      for ( size_t i = 0; i < pipelines.value.size( ); ++i )
+      {
+        if ( !pipelines.value[i] )
+        {
+          RX_ERROR( "Failed to create graphics pipeline ", i + 1, "/", pipelines.value.size( ), "." );
+          return false;
+        }
+      }
+      */
+
       return true;
     }
   }

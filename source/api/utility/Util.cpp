@@ -60,7 +60,7 @@ namespace RAYEXEC_NAMESPACE
       return buffer;
     }
 
-    void processShaderMacros( const std::string& path, uint32_t dirLightNodes, uint32_t pointLightNodes )
+    void processShaderMacros( const std::string& path, uint32_t dirLightNodes, uint32_t pointLightNodes, uint32_t totalModels )
     {
       std::string pathToFile = g_resourcePath + path;
       std::ifstream file( pathToFile );
@@ -70,6 +70,7 @@ namespace RAYEXEC_NAMESPACE
 
       std::string dirLightSearchTag = "#define TOTAL_DIRECTIONAL_LIGHTS";
       std::string pointLightSearchTag = "#define TOTAL_POINT_LIGHTS";
+      std::string totalModelsSearchTag = "#define TOTAL_MODELS";
       
       std::string line = "";
       std::string processedContent;
@@ -87,6 +88,13 @@ namespace RAYEXEC_NAMESPACE
           auto pos = line.find_last_of( " " );
           if ( pos != std::string::npos )
             line.replace( pos + 1, line.length( ), std::to_string( pointLightNodes ) );
+        }
+
+        if ( line.find( totalModelsSearchTag ) != std::string::npos )
+        {
+          auto pos = line.find_last_of( " " );
+          if ( pos != std::string::npos )
+            line.replace( pos + 1, line.length( ), std::to_string( totalModels ) );
         }
 
         processedContent += line + "\n";

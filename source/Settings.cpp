@@ -80,4 +80,14 @@ namespace RAYEXEC_NAMESPACE
     this->anticipatedPointLights = amount;
     this->refreshPipeline = true;
   }
+
+  void Settings::setAnticipatedGeometryNodes( uint32_t amount )
+  {
+    this->anticipatedGeometryNodes = amount;
+  }
+
+  void Settings::setAnticipatedModels( uint32_t amount )
+  {
+    this->anticipatedModels = amount;
+  }
 }

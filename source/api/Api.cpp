@@ -129,16 +129,7 @@ namespace RAYEXEC_NAMESPACE
     // Descriptor sets and layouts
     initDescriptorSets( );
 
-    // SSBO for scene description
-    this->rtInstances.resize( g_maxGeometryNodes );
-    this->rayTracingInstancesBuffer.init<RayTracingInstance>( this->rtInstances );
-    this->rtInstances.clear( );
-
-    UboDescriptor lightsUboDescritpor             { this->lightsUniformBuffer.getRaw( ), sizeof( LightsUbo ) };
-    StorageBufferDescriptor rtInstancesDescriptor { this->rayTracingInstancesBuffer.get( ) };
-
-    this->rtSceneDescriptorSets.update( { lightsUboDescritpor, rtInstancesDescriptor } );
-    this->rsSceneDescriptorSets.update( { lightsUboDescritpor, rtInstancesDescriptor } );
+    initSceneStorageBuffer( );
 
     result = initPipelines( );
     RX_ASSERT_INIT( result );
@@ -169,69 +160,9 @@ namespace RAYEXEC_NAMESPACE
 
   void Api::update( )
   {
-    if ( this->settings->refreshPipeline )
-    {
-      this->settings->refreshPipeline = false;
-      this->settings->refreshSwapchain = false;
+    updateSettings( );
 
-      g_device.waitIdle( );
-
-      RX_ASSERT( initPipelines( ), "Failed to initialize pipelines." );
-      RX_ASSERT( this->swapchainCommandBuffers.init( this->graphicsCmdPool.get( ), g_swapchainImageCount, vk::CommandBufferUsageFlagBits::eRenderPassContinue ), "Failed to initialize swapchain command buffers." );
-
-      recreateSwapchain( );
-    }
-
-    if ( this->settings->refreshSwapchain )
-    {
-      this->settings->refreshSwapchain = false;
-
-      recreateSwapchain( );
-    }
-
-    uint32_t imageIndex = this->swapchain.getCurrentImageIndex( );
-
-    // Upload camera
-    if ( this->camera != nullptr )
-    {
-      if ( this->camera->updateView )
-      {
-        this->cameraUbo.view = this->camera->getViewMatrix( );
-        this->cameraUbo.viewInverse = this->camera->getViewInverseMatrix( );
-
-        this->camera->updateView = false;
-      }
-
-      if ( this->camera->updateProj )
-      {
-        this->cameraUbo.projection = this->camera->getProjectionMatrix( );
-        this->cameraUbo.projectionInverse = this->camera->getProjectionInverseMatrix( );
-
-        this->camera->updateProj = false;
-      }
-
-      this->cameraUbo.position = this->camera->getPosition( );
-    }
-    this->cameraUniformBuffer.upload<CameraUbo>( imageIndex, this->cameraUbo );
-
-    // Upload lights
-    LightsUbo lightNodeUbos;
-
-    size_t i = 0;
-    for ( auto iter = this->dirLightNodes.begin( ); iter != this->dirLightNodes.end( ); ++iter )
-    {
-      lightNodeUbos.directionalLightNodes[i] = ( *iter )->toUbo( );
-      ++i;
-    }
-
-    i = 0;
-    for ( auto iter = this->pointLightNodes.begin( ); iter != this->pointLightNodes.end( ); ++iter )
-    {
-      lightNodeUbos.pointLightNodes[i] = ( *iter )->toUbo( );
-      ++i;
-    }
-
-    this->lightsUniformBuffer.upload<LightsUbo>( imageIndex, lightNodeUbos );
+    updateUniformBuffers( );
 
     // Upload scene description
     if ( this->uploadSceneDescriptionData )
@@ -355,7 +286,26 @@ namespace RAYEXEC_NAMESPACE
     StorageImageDescriptor storageImage { this->rayTracingBuilder.getStorageImageView( ) };
     UboDescriptor cameraUbo { this->cameraUniformBuffer.getRaw( ), sizeof( CameraUbo ) };
 
-    this->rtDescriptorSets.update( { tlas, storageImage, cameraUbo } );
+    for ( size_t i = 0; i < g_swapchainImageCount; ++i )
+    {
+      vk::WriteDescriptorSetAccelerationStructureKHR tlasInfo( 1, 
+                                                                &this->rayTracingBuilder.getTlas( ).as.as );
+
+      vk::DescriptorImageInfo storageImageInfo( nullptr,
+                                                this->rayTracingBuilder.getStorageImageView( ) );
+
+      vk::DescriptorBufferInfo cameraInfo( this->cameraUniformBuffer.getRaw( )[i], 0, sizeof( CameraUbo ) );
+
+      std::vector<vk::WriteDescriptorSet> writes;
+      writes.emplace_back( this->rtBindings.writeToSet( this->rtDescriptorSets.get( i ), 0, &tlasInfo ) );
+      writes.emplace_back( this->rtBindings.writeToSet( this->rtDescriptorSets.get( i ), 1, &storageImageInfo ) );
+      writes.emplace_back( this->rtBindings.writeToSet( this->rtDescriptorSets.get( i ), 2, &cameraInfo ) );
+
+      this->rtDescriptorSets.update( writes );
+    }
+
+
+    //this->rtDescriptorSets.update( { tlas, storageImage, cameraUbo } );
 
     // Swapchain command buffers
     this->swapchainCommandBuffers.init( this->graphicsCmdPool.get( ), g_swapchainImageCount, vk::CommandBufferUsageFlagBits::eRenderPassContinue );
@@ -419,14 +369,21 @@ namespace RAYEXEC_NAMESPACE
   bool Api::initPipelines( )
   {
     // Ray tracing pipeline
-    bool result = this->rtPipeline.init( { this->rtDescriptorSetLayout.get( ), this->rtModelDescriptorSetLayout.get( ), this->rtSceneDescriptorSetLayout.get( ) }, this->settings );
+    std::vector<vk::DescriptorSetLayout> temp = { this->rtDescriptorSetLayout.get( ), this->rtModelDescriptorSetLayout.get( ), this->rtSceneDescriptorSetLayout.get( ) };
+    if ( this->modelDataSetLayout.get( ) )
+    {
+      temp.push_back( this->modelDataSetLayout.get( ) );
+      RX_WARN( "Adding model data set layout." );
+    }
+
+    bool result = this->rtPipeline.init( temp, this->settings );
     RX_ASSERT_INIT( result );
 
     // Rasterization pipeline
     glm::vec2 extent = { static_cast<float>( this->swapchain.getExtent( ).width ), static_cast<float>( this->swapchain.getExtent( ).height ) };
     this->viewport = vk::Viewport( 0.0f, 0.0f, extent.x, extent.y, 0.0f, 1.0f );
     this->scissor = vk::Rect2D( 0, this->swapchain.getExtent( ) );
-    return this->rsPipeline.init( { this->rsModelDescriptorSetLayout.get( ), this->rsSceneDescriptorSetLayout.get( ) }, this->renderPass.get( ), viewport, scissor );
+    return this->rsPipeline.init( { this->rsModelDescriptorSetLayout.get( ), this->rsSceneDescriptorSetLayout.get( ) }, this->renderPass.get( ), viewport, scissor, this->settings );
   }
 
   bool Api::initRenderPass( )
@@ -480,8 +437,22 @@ namespace RAYEXEC_NAMESPACE
     auto model = it->second;
     if ( !model->initialized )
     {
+      RX_FATAL( "THIS SHOULD NOT HAPPEN" );
+
       model->vertexBuffer.init( model->vertices );
       model->indexBuffer.init( model->indices );
+
+      //this->allVertices.insert( this->allVertices.begin( ), model->vertices.begin( ), model->vertices.end( ) );
+      //this->allIndices.insert( this->allIndices.begin( ), model->indices.begin( ), model->indices.end( ) );
+      //this->allVertices = model->vertices;
+      //this->allIndices = model->indices;
+
+      static size_t vertexCount = 0;
+      vertexCount += model->vertices.size( );
+      static size_t indexCount = 0;
+      indexCount += model->indices.size( );
+      
+      RX_WARN( vertexCount, " | ", indexCount );
 
       model->rtDescriptorSets.init( this->rtModelDescriptorPool.get( ), g_swapchainImageCount, std::vector<vk::DescriptorSetLayout>{ g_swapchainImageCount, this->rtModelDescriptorSetLayout.get( ) } );
       model->rsDescriptorSets.init( this->rsModelDescriptorPool.get( ), g_swapchainImageCount, std::vector<vk::DescriptorSetLayout>{ g_swapchainImageCount, this->rsModelDescriptorSetLayout.get( ) } );
@@ -489,7 +460,7 @@ namespace RAYEXEC_NAMESPACE
       model->initialized = true;
     }
 
-    node->rtInstance.modelIndex = model->index;
+    std::cout << model->index << ", " << model->path << std::endl;
 
     updateAccelerationStructure( );
     
@@ -526,142 +497,151 @@ namespace RAYEXEC_NAMESPACE
 
     if ( this->settings->rayTrace )
     {
-      // Start recording the swapchain framebuffers
-      for ( size_t imageIndex = 0; imageIndex < this->swapchainCommandBuffers.get( ).size( ); ++imageIndex )
-      {
-        this->swapchainCommandBuffers.begin( imageIndex );
-
-        this->swapchainCommandBuffers.get( imageIndex ).pushConstants( this->rtPipeline.getLayout( ),       // layout
-                                                                       vk::ShaderStageFlagBits::eMissKHR,   // stageFlags
-                                                                       0,                                   // offset
-                                                                       sizeof( glm::vec4 ),                 // size
-                                                                       &this->settings->getClearColor( ) ); // pValues
-
-        this->swapchainCommandBuffers.get( imageIndex ).pushConstants( this->rtPipeline.getLayout( ),           // layout
-                                                                       vk::ShaderStageFlagBits::eClosestHitKHR, // stageFlags
-                                                                       sizeof( glm::vec4 ),                     // offset
-                                                                       sizeof( glm::vec4 ),                     // size
-                                                                       &this->settings->getClearColor( ) );     // pValues
-
-        this->swapchainCommandBuffers.get( imageIndex ).bindPipeline( vk::PipelineBindPoint::eRayTracingKHR, this->rtPipeline.get( ) );
-
-        for ( const auto& node : this->geometryNodes )
-        {
-          auto iter = this->models.find( node->modelPath );
-          RX_ASSERT( ( iter->second != nullptr ), "Can not find model" );
-
-          std::vector<vk::DescriptorSet> descriptorSets = { this->rtDescriptorSets.get( imageIndex ), iter->second->rtDescriptorSets.get( imageIndex ), this->rtSceneDescriptorSets.get( imageIndex ) };
-
-          this->swapchainCommandBuffers.get( imageIndex ).bindDescriptorSets( vk::PipelineBindPoint::eRayTracingKHR,
-                                                                              this->rtPipeline.getLayout( ),
-                                                                              0,                                                           // first set
-                                                                              static_cast<uint32_t>( descriptorSets.size( ) ),             // descriptor set count
-                                                                              descriptorSets.data( ),                                      // descriptor sets
-                                                                              0,                                                           // dynamic offset count
-                                                                              nullptr );                                                   // dynamic offsets 
-
-          this->rayTracingBuilder.rayTrace( this->swapchainCommandBuffers.get( imageIndex ), this->swapchain.getImage( imageIndex ), this->swapchain.getExtent( ) );
-        }
-
-        this->swapchainCommandBuffers.end( imageIndex );
-      }
+      rayTrace( );
     }
     else
     {
-      std::map<std::string, uint32_t> temp;
-      for ( const auto& model : this->models )
+      rasterize( );
+    }
+  }
+
+  void Api::rasterize( )
+  {
+    std::map<std::string, uint32_t> temp;
+    for ( const auto& model : this->models )
+    {
+      temp.emplace( model.first, 0 );
+    }
+
+    for ( const auto& node : this->geometryNodes )
+    {
+      if ( node->modelPath.empty( ) )
+        continue;
+
+      auto it = this->models.find( node->modelPath );
+      RX_ASSERT( ( it != this->models.end( ) ), "Can not draw model because it was not found." );
+
+      auto it2 = temp.find( it->first );
+      if ( it2 != temp.end( ) )
       {
-        temp.emplace( model.first, 0 );
+        ++( it2->second );
       }
+    }
+
+    // Set up render pass begin info
+    std::array<vk::ClearValue, 2> clearValues;
+    clearValues[0].color = { Util::vec4toArray( this->settings->getClearColor( ) ) };
+    clearValues[1].depthStencil = vk::ClearDepthStencilValue { 1.0f, 0 };
+
+    // Start recording the swapchain framebuffers
+    for ( size_t imageIndex = 0; imageIndex < this->swapchainCommandBuffers.get( ).size( ); ++imageIndex )
+    {
+      this->swapchainCommandBuffers.begin( imageIndex );
+
+      this->renderPass.begin( this->swapchain.getFramebuffer( imageIndex ),
+                              this->swapchainCommandBuffers.get( imageIndex ),
+                              { 0, this->swapchain.getExtent( ) },
+                              { clearValues[0], clearValues[1] } );
+
+      this->swapchainCommandBuffers.get( imageIndex ).bindPipeline( vk::PipelineBindPoint::eGraphics, this->rsPipeline.get( ) ); // CMD
+
+      // Dynamic states
+      vk::Viewport viewport = this->viewport;
+      viewport.width = this->window->getWidth( );
+      viewport.height = this->window->getHeight( );
+
+      this->swapchainCommandBuffers.get( imageIndex ).setViewport( 0, 1, &viewport ); // CMD
+
+      vk::Rect2D scissor = this->scissor;
+      scissor.extent = this->window->getExtent( );
+
+      this->swapchainCommandBuffers.get( imageIndex ).setScissor( 0, 1, &scissor ); // CMD
+
+      // Draw models
+      for ( const auto& it : this->models )
+      {
+        auto model = it.second;
+
+        uint32_t instanceCount = 1;
+        auto it2 = temp.find( it.first );
+        if ( it2 != temp.end( ) )
+          instanceCount = it2->second;
+
+        vk::Buffer vertexBuffers[] = { model->vertexBuffer.get( ) };
+        vk::DeviceSize offsets[] = { 0 };
+
+        this->swapchainCommandBuffers.get( imageIndex ).bindVertexBuffers( 0,               // first binding
+                                                                           1,               // binding count
+                                                                           vertexBuffers,
+                                                                           offsets );
+
+        this->swapchainCommandBuffers.get( imageIndex ).bindIndexBuffer( model->indexBuffer.get( ),
+                                                                         0,                                 // offset
+                                                                         model->indexBuffer.getType( ) );
+
+        // TODO: Also bind ray tracing descriptor set.
+        std::vector<vk::DescriptorSet> descriptorSets = { model->rsDescriptorSets.get( imageIndex ), this->rsSceneDescriptorSets.get( imageIndex ) };
+
+        this->swapchainCommandBuffers.get( imageIndex ).bindDescriptorSets( vk::PipelineBindPoint::eGraphics,
+                                                                            rsPipeline.getLayout( ),
+                                                                            0,                                               // first set
+                                                                            static_cast<uint32_t>( descriptorSets.size( ) ), // descriptor set count
+                                                                            descriptorSets.data( ),                          // descriptor sets
+                                                                            0,                                               // dynamic offset count
+                                                                            nullptr );                                       // dynamic offsets 
+
+        this->swapchainCommandBuffers.get( imageIndex ).drawIndexed( model->indexBuffer.getCount( ), // index count
+                                                                     instanceCount,                  // instance count
+                                                                     0,                              // first index
+                                                                     0,                              // vertex offset
+                                                                     0 );                            // first instance
+      }
+
+      this->renderPass.end( this->swapchainCommandBuffers.get( imageIndex ) );
+      this->swapchainCommandBuffers.end( imageIndex );
+    }
+  }
+
+  void Api::rayTrace( )
+  {
+    // Start recording the swapchain framebuffers
+    for ( size_t imageIndex = 0; imageIndex < this->swapchainCommandBuffers.get( ).size( ); ++imageIndex )
+    {
+      this->swapchainCommandBuffers.begin( imageIndex );
+
+      this->swapchainCommandBuffers.get( imageIndex ).pushConstants( this->rtPipeline.getLayout( ),       // layout
+                                                                     vk::ShaderStageFlagBits::eMissKHR,   // stageFlags
+                                                                     0,                                   // offset
+                                                                     sizeof( glm::vec4 ),                 // size
+                                                                     &this->settings->getClearColor( ) ); // pValues
+
+      this->swapchainCommandBuffers.get( imageIndex ).pushConstants( this->rtPipeline.getLayout( ),           // layout
+                                                                     vk::ShaderStageFlagBits::eClosestHitKHR, // stageFlags
+                                                                     sizeof( glm::vec4 ),                     // offset
+                                                                     sizeof( glm::vec4 ),                     // size
+                                                                     &this->settings->getClearColor( ) );     // pValues
+
+      this->swapchainCommandBuffers.get( imageIndex ).bindPipeline( vk::PipelineBindPoint::eRayTracingKHR, this->rtPipeline.get( ) );
 
       for ( const auto& node : this->geometryNodes )
       {
-        if ( node->modelPath.empty( ) )
-          continue;
+        auto iter = this->models.find( node->modelPath );
+        RX_ASSERT( ( iter->second != nullptr ), "Can not find model" );
 
-        auto it = this->models.find( node->modelPath );
-        RX_ASSERT( ( it != this->models.end( ) ), "Can not draw model because it was not found." );
+        std::vector<vk::DescriptorSet> descriptorSets = { this->rtDescriptorSets.get( imageIndex ), iter->second->rtDescriptorSets.get( imageIndex ), this->rtSceneDescriptorSets.get( imageIndex ), this->modelDataDescriptorSets.get( imageIndex ) };
 
-        auto it2 = temp.find( it->first );
-        if ( it2 != temp.end( ) )
-        {
-          ++( it2->second );
-        }
+        this->swapchainCommandBuffers.get( imageIndex ).bindDescriptorSets( vk::PipelineBindPoint::eRayTracingKHR,
+                                                                            this->rtPipeline.getLayout( ),
+                                                                            0,                                                           // first set
+                                                                            static_cast<uint32_t>( descriptorSets.size( ) ),             // descriptor set count
+                                                                            descriptorSets.data( ),                                      // descriptor sets
+                                                                            0,                                                           // dynamic offset count
+                                                                            nullptr );                                                   // dynamic offsets 
+
+        this->rayTracingBuilder.rayTrace( this->swapchainCommandBuffers.get( imageIndex ), this->swapchain.getImage( imageIndex ), this->swapchain.getExtent( ) );
       }
 
-      // Set up render pass begin info
-      std::array<vk::ClearValue, 2> clearValues;
-      clearValues[0].color = { Util::vec4toArray( this->settings->getClearColor( ) ) };
-      clearValues[1].depthStencil = vk::ClearDepthStencilValue { 1.0f, 0 };
-
-      // Start recording the swapchain framebuffers
-      for ( size_t imageIndex = 0; imageIndex < this->swapchainCommandBuffers.get( ).size( ); ++imageIndex )
-      {
-        this->swapchainCommandBuffers.begin( imageIndex );
-
-        this->renderPass.begin( this->swapchain.getFramebuffer( imageIndex ),
-                                this->swapchainCommandBuffers.get( imageIndex ),
-                                { 0, this->swapchain.getExtent( ) },
-                                { clearValues[0], clearValues[1] } );
-
-        this->swapchainCommandBuffers.get( imageIndex ).bindPipeline( vk::PipelineBindPoint::eGraphics, this->rsPipeline.get( ) ); // CMD
-
-        // Dynamic states
-        vk::Viewport viewport = this->viewport;
-        viewport.width = this->window->getWidth( );
-        viewport.height = this->window->getHeight( );
-
-        this->swapchainCommandBuffers.get( imageIndex ).setViewport( 0, 1, &viewport ); // CMD
-
-        vk::Rect2D scissor = this->scissor;
-        scissor.extent = this->window->getExtent( );
-
-        this->swapchainCommandBuffers.get( imageIndex ).setScissor( 0, 1, &scissor ); // CMD
-
-        // Draw models
-        for ( const auto& it : this->models )
-        {
-          auto model = it.second;
-
-          uint32_t instanceCount = 1;
-          auto it2 = temp.find( it.first );
-          if ( it2 != temp.end( ) )
-            instanceCount = it2->second;
-
-          vk::Buffer vertexBuffers[] = { model->vertexBuffer.get( ) };
-          vk::DeviceSize offsets[] = { 0 };
-
-          this->swapchainCommandBuffers.get( imageIndex ).bindVertexBuffers( 0,               // first binding
-                                                                             1,               // binding count
-                                                                             vertexBuffers,
-                                                                             offsets );
-
-          this->swapchainCommandBuffers.get( imageIndex ).bindIndexBuffer( model->indexBuffer.get( ),
-                                                                           0,                                 // offset
-                                                                           model->indexBuffer.getType( ) );
-
-          // TODO: Also bind ray tracing descriptor set.
-          std::vector<vk::DescriptorSet> descriptorSets = { model->rsDescriptorSets.get( imageIndex ), this->rsSceneDescriptorSets.get( imageIndex ) };
-
-          this->swapchainCommandBuffers.get( imageIndex ).bindDescriptorSets( vk::PipelineBindPoint::eGraphics,
-                                                                              rsPipeline.getLayout( ),
-                                                                              0,                                               // first set
-                                                                              static_cast<uint32_t>( descriptorSets.size( ) ), // descriptor set count
-                                                                              descriptorSets.data( ),                          // descriptor sets
-                                                                              0,                                               // dynamic offset count
-                                                                              nullptr );                                       // dynamic offsets 
-
-          this->swapchainCommandBuffers.get( imageIndex ).drawIndexed( model->indexBuffer.getCount( ), // index count
-                                                                       instanceCount,                  // instance count
-                                                                       0,                              // first index
-                                                                       0,                              // vertex offset
-                                                                       0 );                            // first instance
-
-        }
-
-        this->renderPass.end( this->swapchainCommandBuffers.get( imageIndex ) );
-        this->swapchainCommandBuffers.end( imageIndex );
-      }
+      this->swapchainCommandBuffers.end( imageIndex );
     }
   }
 
@@ -684,6 +664,7 @@ namespace RAYEXEC_NAMESPACE
   {
     // Create the ray tracing descriptor set layout
     {
+      /*
       // TLAS
       auto tlasBinding = vk::Helper::getDescriptorSetLayoutBinding( 0, vk::DescriptorType::eAccelerationStructureKHR, vk::ShaderStageFlagBits::eRaygenKHR );
       // Output image
@@ -692,12 +673,21 @@ namespace RAYEXEC_NAMESPACE
       auto camUboBinding = vk::Helper::getDescriptorSetLayoutBinding( 2, vk::DescriptorType::eUniformBuffer, vk::ShaderStageFlagBits::eRaygenKHR );
 
       this->rtDescriptorSetLayout.init( { tlasBinding, outputImageBinding, camUboBinding } );
+      */
+
+      this->rtBindings.add( 0, vk::DescriptorType::eAccelerationStructureKHR, vk::ShaderStageFlagBits::eRaygenKHR );
+      this->rtBindings.add( 0, vk::DescriptorType::eStorageImage, vk::ShaderStageFlagBits::eRaygenKHR );
+      this->rtBindings.add( 0, vk::DescriptorType::eUniformBuffer, vk::ShaderStageFlagBits::eRaygenKHR );
+
+      this->rtBindings.initLayoutUnique( this->rtDescriptorSetLayout );
+      this->rtBindings.initPoolUnique( this->rtDescriptorPool, static_cast<uint32_t>( g_maxGeometryNodes ) * g_swapchainImageCount ); // g_maxGeometryNodes? Are you sure about that?
     }
 
     // Create the descriptor set layout for models
     {
       // Vertex buffer
       auto vertexBufferBinding = vk::Helper::getDescriptorSetLayoutBinding( 0, vk::DescriptorType::eStorageBuffer, vk::ShaderStageFlagBits::eClosestHitKHR );
+
       // Index buffer                                 
       auto indexBufferBinding = vk::Helper::getDescriptorSetLayoutBinding( 1, vk::DescriptorType::eStorageBuffer, vk::ShaderStageFlagBits::eClosestHitKHR );
 
@@ -728,23 +718,23 @@ namespace RAYEXEC_NAMESPACE
     // Rasterization descriptor set layout.
     {
       // Uniform buffer binding for the vertex shader.
-      auto mvpBinding = vk::Helper::getDescriptorSetLayoutBinding( 0, vk::DescriptorType::eUniformBuffer, vk::ShaderStageFlagBits::eVertex );
+      auto cameraUboBinding = vk::Helper::getDescriptorSetLayoutBinding( 0, vk::DescriptorType::eUniformBuffer, vk::ShaderStageFlagBits::eVertex );
       // Texture image
       auto textureBinding = vk::Helper::getDescriptorSetLayoutBinding( 1, vk::DescriptorType::eCombinedImageSampler, vk::ShaderStageFlagBits::eFragment );
 
-      this->rsModelDescriptorSetLayout.init( { mvpBinding, textureBinding } );
+      this->rsModelDescriptorSetLayout.init( { cameraUboBinding, textureBinding } );
     }
 
     // Ray tracing descriptor pool
-    this->rtDescriptorPool = vk::Initializer::initDescriptorPoolUnique( vk::Helper::getPoolSizes( this->rtDescriptorSetLayout.getBindings( ) ), static_cast<uint32_t>( g_maxGeometryNodes ) * g_swapchainImageCount );
+    //this->rtDescriptorPool = vk::Initializer::initDescriptorPoolUnique( this->rtDescriptorSetLayout.getBindings( ), static_cast<uint32_t>( g_maxGeometryNodes ) * g_swapchainImageCount );
 
     // Model descriptor pool
-    this->rtModelDescriptorPool = vk::Initializer::initDescriptorPoolUnique( vk::Helper::getPoolSizes( this->rtModelDescriptorSetLayout.getBindings( ) ), static_cast<uint32_t>( g_maxGeometryNodes ) * g_swapchainImageCount );
-    this->rsModelDescriptorPool = vk::Initializer::initDescriptorPoolUnique( vk::Helper::getPoolSizes( this->rsModelDescriptorSetLayout.getBindings( ) ), static_cast<uint32_t>( g_maxGeometryNodes ) * g_swapchainImageCount );
-
+    this->rtModelDescriptorPool = vk::Initializer::initDescriptorPoolUnique( this->rtModelDescriptorSetLayout.getBindings( ), static_cast<uint32_t>( g_maxGeometryNodes ) * g_swapchainImageCount );
+    this->rsModelDescriptorPool = vk::Initializer::initDescriptorPoolUnique( this->rsModelDescriptorSetLayout.getBindings( ), static_cast<uint32_t>( g_maxGeometryNodes ) * g_swapchainImageCount );
+    
     // Scene descriptor pool
-    this->rtSceneDescriptorPool = vk::Initializer::initDescriptorPoolUnique( vk::Helper::getPoolSizes( this->rtSceneDescriptorSetLayout.getBindings( ) ), static_cast<uint32_t>( g_maxGeometryNodes ) * g_swapchainImageCount );
-    this->rsSceneDescriptorPool = vk::Initializer::initDescriptorPoolUnique( vk::Helper::getPoolSizes( this->rsSceneDescriptorSetLayout.getBindings( ) ), static_cast<uint32_t>( g_maxGeometryNodes ) * g_swapchainImageCount );
+    this->rtSceneDescriptorPool = vk::Initializer::initDescriptorPoolUnique( this->rtSceneDescriptorSetLayout.getBindings( ), static_cast<uint32_t>( g_maxGeometryNodes ) * g_swapchainImageCount );
+    this->rsSceneDescriptorPool = vk::Initializer::initDescriptorPoolUnique( this->rsSceneDescriptorSetLayout.getBindings( ), static_cast<uint32_t>( g_maxGeometryNodes ) * g_swapchainImageCount );
 
     // Ray tracing descriptor sets
     this->rtDescriptorSets.init( this->rtDescriptorPool.get( ), g_swapchainImageCount, std::vector<vk::DescriptorSetLayout>{ g_swapchainImageCount, this->rtDescriptorSetLayout.get( ) } );
@@ -758,5 +748,135 @@ namespace RAYEXEC_NAMESPACE
 
     // Uniform buffers for light nodes
     this->lightsUniformBuffer.init<LightsUbo>( static_cast<uint32_t>( g_swapchainImageCount ) );
+  }
+
+  void Api::initSceneStorageBuffer( )
+  {
+    // SSBO for scene description
+    uint32_t maxInstanceCount = this->settings->anticipatedGeometryNodes.has_value( ) ? this->settings->anticipatedGeometryNodes.value( ) : g_maxGeometryNodes;
+    this->rtInstances.resize( maxInstanceCount );
+    this->rayTracingInstancesBuffer.init<RayTracingInstance>( this->rtInstances );
+    this->rtInstances.clear( );
+
+    UboDescriptor lightsUboDescritpor { this->lightsUniformBuffer.getRaw( ), sizeof( LightsUbo ) };
+    StorageBufferDescriptor rtInstancesDescriptor { this->rayTracingInstancesBuffer.get( ) };
+
+    this->rtSceneDescriptorSets.update( { lightsUboDescritpor, rtInstancesDescriptor } );
+    this->rsSceneDescriptorSets.update( { lightsUboDescritpor, rtInstancesDescriptor } );
+  }
+
+  void Api::updateSettings( )
+  {
+    if ( this->settings->refreshPipeline )
+    {
+      this->settings->refreshPipeline = false;
+      this->settings->refreshSwapchain = false;
+
+      g_device.waitIdle( );
+
+      RX_ASSERT( initPipelines( ), "Failed to initialize pipelines." );
+      RX_ASSERT( this->swapchainCommandBuffers.init( this->graphicsCmdPool.get( ), g_swapchainImageCount, vk::CommandBufferUsageFlagBits::eRenderPassContinue ), "Failed to initialize swapchain command buffers." );
+
+      recreateSwapchain( );
+    }
+
+    if ( this->settings->refreshSwapchain )
+    {
+      this->settings->refreshSwapchain = false;
+
+      recreateSwapchain( );
+    }
+  }
+
+  void Api::updateUniformBuffers( )
+  {
+    uint32_t imageIndex = this->swapchain.getCurrentImageIndex( );
+
+    // Upload camera
+    if ( this->camera != nullptr )
+    {
+      if ( this->camera->updateView )
+      {
+        this->cameraUbo.view = this->camera->getViewMatrix( );
+        this->cameraUbo.viewInverse = this->camera->getViewInverseMatrix( );
+
+        this->camera->updateView = false;
+      }
+
+      if ( this->camera->updateProj )
+      {
+        this->cameraUbo.projection = this->camera->getProjectionMatrix( );
+        this->cameraUbo.projectionInverse = this->camera->getProjectionInverseMatrix( );
+
+        this->camera->updateProj = false;
+      }
+
+      this->cameraUbo.position = this->camera->getPosition( );
+    }
+    this->cameraUniformBuffer.upload<CameraUbo>( imageIndex, this->cameraUbo );
+
+    // Upload lights
+    LightsUbo lightNodeUbos;
+
+    size_t i = 0;
+    for ( auto iter = this->dirLightNodes.begin( ); iter != this->dirLightNodes.end( ); ++iter )
+    {
+      lightNodeUbos.directionalLightNodes[i] = ( *iter )->toUbo( );
+      ++i;
+    }
+
+    i = 0;
+    for ( auto iter = this->pointLightNodes.begin( ); iter != this->pointLightNodes.end( ); ++iter )
+    {
+      lightNodeUbos.pointLightNodes[i] = ( *iter )->toUbo( );
+      ++i;
+    }
+
+    this->lightsUniformBuffer.upload<LightsUbo>( imageIndex, lightNodeUbos );
+  }
+
+  void Api::setModels( const std::vector<std::string>& modelPaths )
+  {
+    this->modelPaths = modelPaths;
+    this->models.clear( );
+
+    for ( const auto& path : modelPaths )
+    {
+      auto model = std::make_shared<Model>( path );
+      this->models.insert( { path, model } );
+
+      model->vertexBuffer.init( model->vertices );
+      model->indexBuffer.init( model->indices );
+      model->initialized = true;
+
+      model->rtDescriptorSets.init( this->rtModelDescriptorPool.get( ), g_swapchainImageCount, std::vector<vk::DescriptorSetLayout>{ g_swapchainImageCount, this->rtModelDescriptorSetLayout.get( ) } );
+      model->rsDescriptorSets.init( this->rsModelDescriptorPool.get( ), g_swapchainImageCount, std::vector<vk::DescriptorSetLayout>{ g_swapchainImageCount, this->rsModelDescriptorSetLayout.get( ) } );
+    }
+
+    // modelDataDescSet
+    uint32_t descriptorCount = static_cast<uint32_t>( this->models.size( ) );
+    auto verticesBinding = vk::Helper::getDescriptorSetLayoutBinding( 0, vk::DescriptorType::eStorageBuffer, vk::ShaderStageFlagBits::eClosestHitKHR, descriptorCount );
+    auto indicesBinding = vk::Helper::getDescriptorSetLayoutBinding( 1, vk::DescriptorType::eStorageBuffer, vk::ShaderStageFlagBits::eClosestHitKHR, descriptorCount );
+
+    this->modelDataSetLayout.init( { verticesBinding, indicesBinding } );
+    this->modelDataDescriptorPool = vk::Initializer::initDescriptorPoolUnique( this->modelDataSetLayout.getBindings( ), static_cast<uint32_t>( g_maxGeometryNodes ) * g_swapchainImageCount );
+
+    this->modelDataDescriptorSets.init( this->modelDataDescriptorPool.get( ), g_swapchainImageCount, std::vector<vk::DescriptorSetLayout>{ g_swapchainImageCount, this->modelDataSetLayout.get( ) } );
+
+    StorageBufferArrayDescriptor verticesDescriptors;
+    verticesDescriptors.storageBuffers.reserve( this->models.size( ) );
+
+    StorageBufferArrayDescriptor indicesDescriptors;
+    indicesDescriptors.storageBuffers.reserve( this->models.size( ) );
+
+    for ( const auto& model : this->models )
+    {
+      verticesDescriptors.storageBuffers.push_back( { model.second->vertexBuffer.get( ) } );
+      indicesDescriptors.storageBuffers.push_back( { model.second->indexBuffer.get( ) } );
+    }
+
+    this->modelDataDescriptorSets.update( { verticesDescriptors, indicesDescriptors } );
+
+    initPipelines( );
   }
 }

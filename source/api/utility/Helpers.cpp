@@ -123,14 +123,14 @@ namespace vk
       return result;
     }
 
-    std::vector<DescriptorPoolSize> getPoolSizes( const std::vector<DescriptorSetLayoutBinding>& layoutBindings )
+    std::vector<DescriptorPoolSize> getPoolSizes( const std::vector<DescriptorSetLayoutBinding>& layoutBindings, uint32_t maxSets )
     {
       std::vector<DescriptorPoolSize> result;
       result.reserve( layoutBindings.size( ) );
 
       for ( const auto& layoutBinding : layoutBindings )
       {
-        DescriptorPoolSize poolSize( layoutBinding.descriptorType,    // type
+        DescriptorPoolSize poolSize( layoutBinding.descriptorType,              // type
                                      layoutBinding.descriptorCount ); // count
 
         result.push_back( poolSize );
@@ -281,13 +281,13 @@ namespace vk
                                     ImageLayout::eDepthStencilAttachmentOptimal ); // finalLayout    
     }
 
-    DescriptorSetLayoutBinding getDescriptorSetLayoutBinding( uint32_t binding, DescriptorType descriptorType, ShaderStageFlags stageFlags )
+    DescriptorSetLayoutBinding getDescriptorSetLayoutBinding( uint32_t binding, DescriptorType descriptorType, ShaderStageFlags stageFlags, uint32_t descriptorCount )
     {
-      return DescriptorSetLayoutBinding( binding,        // binding
-                                         descriptorType, // descriptorType
-                                         1,              // descriptorCount
-                                         stageFlags,     // stageFlags
-                                         nullptr );      // pImmutableSamplers
+      return DescriptorSetLayoutBinding( binding,         // binding
+                                         descriptorType,  // descriptorType
+                                         descriptorCount, // descriptorCount
+                                         stageFlags,      // stageFlags
+                                         nullptr );       // pImmutableSamplers
     }
 
     bool isPhysicalDeviceQueueComplete( PhysicalDevice physicalDevice )

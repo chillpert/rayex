@@ -25,7 +25,7 @@ namespace RAYEXEC_NAMESPACE
     void init( std::vector<Vertex>& vertices );
 
   private:
-    uint32_t count; ///< The amount of vertices in the buffer.
+    uint32_t count = 0; ///< The amount of vertices in the buffer.
   };
 }
 

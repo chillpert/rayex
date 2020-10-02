@@ -32,6 +32,7 @@ namespace RAYEXEC_NAMESPACE
     }
 
     virtual ~GeometryNode( ) = default;
+    virtual NodeType getType( ) const override { return NodeType::eGeometryNode; }
 
     std::string modelPath; ///< The relative path to the model file.
     Material material;     ///< The material defining rendering properties.

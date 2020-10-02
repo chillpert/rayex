@@ -6,6 +6,8 @@
 #include "api/utility/Initializers.hpp"
 #include "api/utility/Util.hpp"
 
+#include <utility>
+
 namespace RAYEXEC_NAMESPACE
 {
   const std::vector<const char*> layers = { "VK_LAYER_KHRONOS_validation" };
@@ -32,16 +34,16 @@ namespace RAYEXEC_NAMESPACE
   const size_t maxFramesInFlight = 2;
 
   Api::Api( std::shared_ptr<Window> window, std::shared_ptr<Camera> camera ) :
-    window( window ),
-    camera( camera ),
+    window( std::move( window ) ),
+    camera( std::move( camera ) ),
     gui( nullptr )
   {
   }
 
   Api::Api( std::shared_ptr<Window> window, std::shared_ptr<Gui> gui, std::shared_ptr<Camera> camera ) :
-    window( window ),
-    camera( camera ),
-    gui( gui )
+    window( std::move( window ) ),
+    camera( std::move( camera ) ),
+    gui( std::move( gui ) )
   {
   }
 
@@ -51,10 +53,12 @@ namespace RAYEXEC_NAMESPACE
 
     // Gui needs to be destroyed manually, as RAII destruction will not be possible.
     if ( this->gui != nullptr )
+    {
       this->gui->destroy( );
+    }
   }
 
-  void Api::setGui( const std::shared_ptr<Gui> gui, bool initialize )
+  void Api::setGui( const std::shared_ptr<Gui>& gui, bool initialize )
   {
     if ( this->gui != nullptr )
     {
@@ -65,7 +69,9 @@ namespace RAYEXEC_NAMESPACE
     this->gui = gui;
 
     if ( initialize )
+    {
       initGui( );
+    }
   }
 
   void Api::init( )
@@ -150,7 +156,7 @@ namespace RAYEXEC_NAMESPACE
     }
   }
 
-  bool Api::prepareFrame( )
+  auto Api::prepareFrame( ) -> bool
   {
     // Wait for the current frame's fences.
     vk::Result result = g_device.waitForFences( 1, &this->inFlightFences[currentFrame].get( ), VK_TRUE, UINT64_MAX );
@@ -158,7 +164,9 @@ namespace RAYEXEC_NAMESPACE
 
     // If the window is minimized then simply do not render anything anymore.
     if ( this->window->minimized( ) )
+    {
       return true;
+    }
 
     // If the window size has changed the swapchain has to be recreated.
     if ( this->window->changed( ) || this->needSwapchainRecreate )
@@ -175,7 +183,7 @@ namespace RAYEXEC_NAMESPACE
     return false;
   }
 
-  bool Api::submitFrame( )
+  auto Api::submitFrame( ) -> bool
   {
     uint32_t imageIndex = this->swapchain.getCurrentImageIndex( );
 
@@ -192,7 +200,9 @@ namespace RAYEXEC_NAMESPACE
     // Add GUI command buffer to swapchain command buffer if GUI is enabled.
     std::vector<vk::CommandBuffer> commandBuffers = { this->swapchainCommandBuffers.get( )[imageIndex] };
     if ( this->gui != nullptr )
+    {
       commandBuffers.push_back( this->gui->getCommandBuffer( imageIndex ) );
+    }
 
     // Reset the signaled state of the current frame's fence to the unsignaled one.
     g_device.resetFences( 1, &this->inFlightFences[currentFrame].get( ) );
@@ -223,7 +233,7 @@ namespace RAYEXEC_NAMESPACE
     return false;
   }
 
-  bool Api::render( )
+  auto Api::render( ) -> bool
   {
     if ( this->gui != nullptr )
     {
@@ -233,13 +243,19 @@ namespace RAYEXEC_NAMESPACE
     }
 
     if ( prepareFrame( ) )
+    {
       return true;
+    }
 
     if ( this->gui != nullptr )
+    {
       this->gui->renderDrawData( this->swapchain.getCurrentImageIndex( ) );
+    }
 
     if ( submitFrame( ) )
+    {
       return true;
+    }
 
     return true;
   }
@@ -291,7 +307,9 @@ namespace RAYEXEC_NAMESPACE
     recordSwapchainCommandBuffers( );
 
     if ( this->gui != nullptr )
+    {
       this->gui->recreate( this->swapchain.getExtent( ), this->swapchain.getImageViews( ) );
+    }
 
     // Update the camera screen size to avoid image stretching.
     auto screenSize = this->swapchain.getExtent( );
@@ -300,7 +318,7 @@ namespace RAYEXEC_NAMESPACE
     RX_SUCCESS( "Swapchain recreation finished." );
   }
 
-  void Api::popNode( const std::shared_ptr<Node> node )
+  void Api::popNode( const std::shared_ptr<Node>& node )
   {
     if ( node == nullptr )
     {
@@ -308,7 +326,7 @@ namespace RAYEXEC_NAMESPACE
       return;
     }
 
-    if ( dynamic_cast<GeometryNode*>( node.get( ) ) )
+    if ( node->getType( ) == NodeType::eGeometryNode )
     {
       auto ptr = std::dynamic_pointer_cast<GeometryNode>( node );
 
@@ -320,7 +338,7 @@ namespace RAYEXEC_NAMESPACE
         }
       }
     }
-    else if ( dynamic_cast<LightNode*>( node.get( ) ) )
+    else if ( node->getType( ) == NodeType::eLightNode )
     {
     }
     else
@@ -407,7 +425,7 @@ namespace RAYEXEC_NAMESPACE
   }
 
   /// @todo add handling for missing textures, models etc.
-  void Api::initModel( const std::shared_ptr<GeometryNode> node )
+  void Api::initModel( const std::shared_ptr<GeometryNode>& node )
   {
     auto it = this->models.find( node->modelPath );
     RX_ASSERT( it != this->models.end( ), "Failed to find model." );
@@ -463,7 +481,9 @@ namespace RAYEXEC_NAMESPACE
     for ( const auto& node : this->geometryNodes )
     {
       if ( node->modelPath.empty( ) )
+      {
         continue;
+      }
 
       auto it = this->models.find( node->modelPath );
       RX_ASSERT( ( it != this->models.end( ) ), "Can not draw model because it was not found." );
@@ -512,14 +532,17 @@ namespace RAYEXEC_NAMESPACE
         uint32_t instanceCount = 1;
         auto it2               = temp.find( it.first );
         if ( it2 != temp.end( ) )
+        {
           instanceCount = it2->second;
+        }
 
-        vk::Buffer vertexBuffers[] = { model->vertexBuffer.get( ) };
-        vk::DeviceSize offsets[]   = { 0 };
+        std::array<vk::Buffer, 1> vertexBuffers { model->vertexBuffer.get( ) };
+        std::array<vk::DeviceSize, 1> offsets { 0 };
 
-        this->swapchainCommandBuffers.get( imageIndex ).bindVertexBuffers( 0, // first binding
-                                                                           1, // binding count
-                                                                           vertexBuffers, offsets );
+        this->swapchainCommandBuffers.get( imageIndex ).bindVertexBuffers( 0,                     // first binding
+                                                                           1,                     // binding count
+                                                                           vertexBuffers.data( ), // pBuffers
+                                                                           offsets.data( ) );     // pOffsets
 
         this->swapchainCommandBuffers.get( imageIndex ).bindIndexBuffer( model->indexBuffer.get( ),
                                                                          0, // offset
@@ -751,16 +774,16 @@ namespace RAYEXEC_NAMESPACE
     LightsUbo lightNodeUbos;
 
     size_t i = 0;
-    for ( auto iter = this->dirLightNodes.begin( ); iter != this->dirLightNodes.end( ); ++iter )
+    for ( auto& dirLightNode : this->dirLightNodes )
     {
-      lightNodeUbos.directionalLightNodes[i] = ( *iter )->toUbo( );
+      lightNodeUbos.directionalLightNodes[i] = dirLightNode->toUbo( );
       ++i;
     }
 
     i = 0;
-    for ( auto iter = this->pointLightNodes.begin( ); iter != this->pointLightNodes.end( ); ++iter )
+    for ( auto& pointLightNode : this->pointLightNodes )
     {
-      lightNodeUbos.pointLightNodes[i] = ( *iter )->toUbo( );
+      lightNodeUbos.pointLightNodes[i] = pointLightNode->toUbo( );
       ++i;
     }
 

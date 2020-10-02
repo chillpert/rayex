@@ -20,6 +20,7 @@ namespace RAYEXEC_NAMESPACE
   {
   public:
     virtual ~LightNode( ) = default;
+    virtual NodeType getType( ) const override { return NodeType::eLightNode; }
 
     glm::vec3 ambient  = { 0.2f, 0.2f, 0.2f }; ///< The ambient color.
     glm::vec3 diffuse  = { 0.8f, 0.8f, 0.8f }; ///< The diffuse color.
@@ -37,6 +38,7 @@ namespace RAYEXEC_NAMESPACE
   {
   public:
     virtual ~DirectionalLightNode( ) = default;
+    virtual NodeType getType( ) const override { return NodeType::eDirectionalLightNode; }
 
     glm::vec3 position = { 5.0f, 5.0f, 2.0f }; ///< The position of the light.
 
@@ -59,6 +61,7 @@ namespace RAYEXEC_NAMESPACE
   {
   public:
     virtual ~PointLightNode( ) = default;
+    virtual NodeType getType( ) const override { return NodeType::ePointLightNode; }
 
     glm::vec3 position = glm::vec3( 0.0f ); ///< The position of the light.
 

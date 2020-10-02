@@ -43,7 +43,7 @@ namespace RAYEXEC_NAMESPACE
     /// The GUI can be changed at runtime. This enables the client to swap between different pre-built GUIs on the fly.
     /// @param gui A pointer to a GUI object that will be rendered on top of the final image.
     /// @param initialize If true, the GUI object will be initialized (false if not specified).
-    RX_API void setGui( const std::shared_ptr<Gui> gui, bool initialize = false );
+    RX_API void setGui( const std::shared_ptr<Gui>& gui, bool initialize = false );
 
     /// Initializes all API components.
     void init( );
@@ -52,14 +52,14 @@ namespace RAYEXEC_NAMESPACE
     void update( );
 
     /// Retrieves an image from the swapchain and presents it.
-    bool render( );
+    auto render( ) -> bool;
 
     void setModels( const std::vector<std::string>& modelPaths );
 
     /// Used to add another arbitrary node to the scene.
     /// @param node A pointer to node to add.
     template <typename T = Model>
-    void pushNode( const std::shared_ptr<Node> node, bool record = true )
+    void pushNode( const std::shared_ptr<Node>& node, bool record = true )
     {
       if ( dynamic_cast<GeometryNode*>( node.get( ) ) )
       {
@@ -121,7 +121,7 @@ namespace RAYEXEC_NAMESPACE
       }
     }
 
-    RX_API void popNode( const std::shared_ptr<Node> node );
+    RX_API void popNode( const std::shared_ptr<Node>& node );
 
     /// Used to overwrite the entire scene with new nodes.
     /// @param nodes A vector of pointers to nodes describing the new scene.
@@ -158,7 +158,7 @@ namespace RAYEXEC_NAMESPACE
     /// If a model or a texture are already known to the application and have been initialized, they will be re-used instead of being initialized.
     /// @param node A pointer to a geometry node.
     /// @todo The function currently recreates the entire TLAS and BLAS everytime a model is added, which is very inefficient.
-    RX_API void initModel( const std::shared_ptr<GeometryNode> node );
+    RX_API void initModel( const std::shared_ptr<GeometryNode>& node );
 
     /// Records commands to the swapchain command buffers that will be used for rendering.
     /// @todo Rasterization has been removed for now. Might want to re-add rasterization support with RT-compatible shaders again.
@@ -180,10 +180,10 @@ namespace RAYEXEC_NAMESPACE
     void recreateSwapchain( );
 
     /// Acquires the next image from the swapchain.
-    bool prepareFrame( );
+    auto prepareFrame( ) -> bool;
 
     /// Submits the swapchain command buffers to a queue and presents an image on the screen.
-    bool submitFrame( );
+    auto submitFrame( ) -> bool;
 
     void rasterize( );
     void rayTrace( );

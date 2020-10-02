@@ -70,7 +70,7 @@ namespace RAYEXEC_NAMESPACE
 
       this->bufferInfos.resize( swapchainImageCount );
       for ( size_t i = 0; i < this->buffers.size( ); ++i )
-        this->bufferInfos[i] = { this->buffers[i].get( ), 0, sizeof( T ) };
+        this->bufferInfos[i] = vk::DescriptorBufferInfo( this->buffers[i].get( ), 0, sizeof( T ) );
     }
 
     /// Used to fill an image's buffer.

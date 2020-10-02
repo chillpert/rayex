@@ -124,13 +124,10 @@ namespace RAYEXEC_NAMESPACE
 
     this->settings->maxRecursionDepth = this->rayTracingBuilder.getRtProperties( ).maxRecursionDepth;
 
-    // Swapchain command buffers
-    this->swapchainCommandBuffers.init( this->graphicsCmdPool.get( ), g_swapchainImageCount, vk::CommandBufferUsageFlagBits::eRenderPassContinue );
-
     // GUI
     initGui( );
-
-    // Record swapchain command buffers.
+    
+    // Init and record swapchain command buffers.
     recordSwapchainCommandBuffers( );
 
     // Create fences and semaphores.
@@ -262,25 +259,33 @@ namespace RAYEXEC_NAMESPACE
     this->rayTracingBuilder.createStorageImage( this->swapchain.getExtent( ) );
 
     //
-    vk::WriteDescriptorSetAccelerationStructureKHR tlasInfo( 1,
-                                                             &this->rayTracingBuilder.getTlas( ).as.as );
+    {
+      vk::WriteDescriptorSetAccelerationStructureKHR tlasInfo( 1,
+                                                               &this->rayTracingBuilder.getTlas( ).as.as );
 
-    vk::DescriptorImageInfo storageImageInfo( nullptr,
-                                              this->rayTracingBuilder.getStorageImageView( ),
-                                              vk::ImageLayout::eGeneral );
+      vk::DescriptorImageInfo storageImageInfo( nullptr,
+                                                this->rayTracingBuilder.getStorageImageView( ),
+                                                vk::ImageLayout::eGeneral );
 
-    std::vector<vk::DescriptorBufferInfo> cameraUniformInfos( g_swapchainImageCount );
-    for ( size_t i = 0; i < cameraUniformInfos.size( ); ++i )
-      cameraUniformInfos[i] = { this->cameraUniformBuffer.get( )[i].get( ), 0, sizeof( CameraUbo ) };
+      this->rtBindings.write( this->rtDescriptorSets, 0, &tlasInfo );
+      this->rtBindings.write( this->rtDescriptorSets, 1, &storageImageInfo );
+      this->rtBindings.write( this->rtDescriptorSets, 2, this->cameraUniformBuffer.bufferInfos );
+      this->rtBindings.update( );
+    }
 
-    this->rtBindings.write( this->rtDescriptorSets, 0, &tlasInfo );
-    this->rtBindings.write( this->rtDescriptorSets, 1, &storageImageInfo );
-    this->rtBindings.write( this->rtDescriptorSets, 2, cameraUniformInfos );
-    this->rtBindings.update( );
+    {
+      vk::DescriptorImageInfo storageImageInfo( nullptr,
+                                                this->rayTracingBuilder.getStorageImageView( ),
+                                                vk::ImageLayout::eGeneral );
+
+      this->rtBindings.write( this->rtDescriptorSets, 1, &storageImageInfo );
+      this->rtBindings.update( );
+    }
+
+    // second run
     //
 
     // Swapchain command buffers
-    this->swapchainCommandBuffers.init( this->graphicsCmdPool.get( ), g_swapchainImageCount, vk::CommandBufferUsageFlagBits::eRenderPassContinue );
     recordSwapchainCommandBuffers( );
 
     if ( this->gui != nullptr )
@@ -338,13 +343,9 @@ namespace RAYEXEC_NAMESPACE
                                               this->rayTracingBuilder.getStorageImageView( ),
                                               vk::ImageLayout::eGeneral );
 
-    std::vector<vk::DescriptorBufferInfo> cameraUniformInfos( g_swapchainImageCount );
-    for ( size_t i = 0; i < cameraUniformInfos.size( ); ++i )
-      cameraUniformInfos[i] = { this->cameraUniformBuffer.get( )[i].get( ), 0, sizeof( CameraUbo ) };
-
     this->rtBindings.write( this->rtDescriptorSets, 0, &tlasInfo );
     this->rtBindings.write( this->rtDescriptorSets, 1, &storageImageInfo );
-    this->rtBindings.write( this->rtDescriptorSets, 2, cameraUniformInfos );
+    this->rtBindings.write( this->rtDescriptorSets, 2, this->cameraUniformBuffer.bufferInfos );
     this->rtBindings.update( );
   }
 
@@ -437,6 +438,8 @@ namespace RAYEXEC_NAMESPACE
 
   void Api::recordSwapchainCommandBuffers( )
   {
+    this->swapchainCommandBuffers.init( this->graphicsCmdPool.get( ), g_swapchainImageCount, vk::CommandBufferUsageFlagBits::eRenderPassContinue );
+    
     RX_INFO( "Started swapchain command buffers recording." );
 
     if ( this->settings->rayTrace )
@@ -665,12 +668,12 @@ namespace RAYEXEC_NAMESPACE
       this->rsModelDescriptorSetLayout = this->rsModelBindings.initLayoutUnique( );
       this->rsModelDescriptorPool = this->rsModelBindings.initPoolUnique( static_cast<uint32_t>( g_maxGeometryNodes ) * g_swapchainImageCount );
     }
-
+    
     // Uniform buffers for camera
-    this->cameraUniformBuffer.init<CameraUbo>( static_cast<uint32_t>( g_swapchainImageCount ) );
+    this->cameraUniformBuffer.init<CameraUbo>( );
 
     // Uniform buffers for light nodes
-    this->lightsUniformBuffer.init<LightsUbo>( static_cast<uint32_t>( g_swapchainImageCount ) );
+    this->lightsUniformBuffer.init<LightsUbo>( );
   }
 
   void Api::initSceneStorageBuffer( )
@@ -686,21 +689,13 @@ namespace RAYEXEC_NAMESPACE
                                               0,
                                               VK_WHOLE_SIZE );
 
-    std::vector<vk::DescriptorBufferInfo> lightsUniformInfos( g_swapchainImageCount );
-    for ( size_t i = 0; i < lightsUniformInfos.size( ); ++i )
-      lightsUniformInfos[i] = { this->lightsUniformBuffer.get( )[i].get( ), 0, sizeof( LightsUbo ) };
-
-    this->rtSceneBindings.write( this->rtSceneDescriptorSets, 0, lightsUniformInfos );
+    this->rtSceneBindings.write( this->rtSceneDescriptorSets, 0, this->lightsUniformBuffer.bufferInfos );
     this->rtSceneBindings.write( this->rtSceneDescriptorSets, 1, &rtInstancesInfo );
     this->rtSceneBindings.update( );
     
     // Update RS scene descriptor sets.
-    std::vector<vk::DescriptorBufferInfo> cameraUniformInfos( g_swapchainImageCount );
-    for ( size_t i = 0; i < cameraUniformInfos.size( ); ++i )
-      cameraUniformInfos[i] = { this->cameraUniformBuffer.get( )[i].get( ), 0, sizeof( CameraUbo ) };
-
-    this->rsSceneBindings.write( this->rsSceneDescriptorSets, 0, cameraUniformInfos );
-    this->rsSceneBindings.write( this->rsSceneDescriptorSets, 1, lightsUniformInfos );
+    this->rsSceneBindings.write( this->rsSceneDescriptorSets, 0, this->cameraUniformBuffer.bufferInfos );
+    this->rsSceneBindings.write( this->rsSceneDescriptorSets, 1, this->lightsUniformBuffer.bufferInfos );
     this->rsSceneBindings.write( this->rsSceneDescriptorSets, 2, &rtInstancesInfo );
     this->rsSceneBindings.update( );
   }
@@ -806,6 +801,6 @@ namespace RAYEXEC_NAMESPACE
       model->rsDescriptorSets = this->rsModelBindings.initSets( this->rsModelDescriptorPool, this->rsModelDescriptorSetLayout );
     }
 
-    initPipelines( );
+    //initPipelines( );
   }
 }

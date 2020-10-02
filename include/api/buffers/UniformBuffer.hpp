@@ -48,16 +48,17 @@ namespace RAYEXEC_NAMESPACE
     /// @return Returns the vector of uniform buffers as raw Vulkan buffer objects.
     RX_API const std::vector<vk::Buffer> getRaw( ) const;
 
-    std::vector<vk::DescriptorBufferInfo> getDescriptorInfos( vk::DeviceSize size );
-
     /// Creates the uniform buffer and allocates memory for it.
     /// 
     /// The function will create as many uniform buffers as there are images in the swapchain.
+    /// Additionally, it will create the descriptor buffer infos which can be later used to write to a descriptor set.
     /// @param swapchainImagesCount The amount of images in the swapchain.
     template <typename T>
-    void init( size_t swapchainImagesCount )
+    void init( )
     {
-      buffers.resize( swapchainImagesCount );
+      size_t swapchainImageCount = static_cast<size_t>( g_swapchainImageCount );
+
+      buffers.resize( swapchainImageCount );
 
       for ( Buffer& buffer : buffers )
       {
@@ -66,6 +67,10 @@ namespace RAYEXEC_NAMESPACE
                      { },
                      vk::MemoryPropertyFlagBits::eHostVisible | vk::MemoryPropertyFlagBits::eHostCoherent );
       }
+
+      this->bufferInfos.resize( swapchainImageCount );
+      for ( size_t i = 0; i < this->buffers.size( ); ++i )
+        this->bufferInfos[i] = { this->buffers[i].get( ), 0, sizeof( T ) };
     }
 
     /// Used to fill an image's buffer.
@@ -77,6 +82,7 @@ namespace RAYEXEC_NAMESPACE
       buffers[imageIndex].fill<T>( &ubo );
     }
 
+    std::vector<vk::DescriptorBufferInfo> bufferInfos;
   private:
     std::vector<Buffer> buffers; ///< A vector of RAYEXEC_NAMESPACE::Buffers for the uniform buffers.
   };

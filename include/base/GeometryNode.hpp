@@ -25,7 +25,7 @@ namespace RAYEXEC_NAMESPACE
   public:
     /// @param modelPath @see modelPath
     /// @param material @see material
-    GeometryNode( const std::string& modelPath, const Material& material ) :
+    GeometryNode( std::string_view modelPath, const Material& material ) :
       modelPath( modelPath ), material( material )
     { }
 

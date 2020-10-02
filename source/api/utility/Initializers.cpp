@@ -318,7 +318,7 @@ namespace vk
       return queryPool;
     }
 
-    UniqueShaderModule initShaderModuleUnique( const std::string& path )
+    UniqueShaderModule initShaderModuleUnique( std::string_view path )
     {
       std::vector<char> source = RAYEXEC_NAMESPACE::Util::parseShader( path );
 
@@ -332,7 +332,7 @@ namespace vk
       return shaderModule;
     }
 
-    ShaderModule initShaderModule( const std::string& path )
+    ShaderModule initShaderModule( std::string_view path )
     {
       std::vector<char> source = RAYEXEC_NAMESPACE::Util::parseShader( path );
 

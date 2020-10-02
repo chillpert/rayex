@@ -125,12 +125,12 @@ namespace vk
     /// Parses a given shader and inits a shader module with a unique handle.
     /// @param path The full path to the GLSL shader file.
     /// @return Returns the shader module.
-    UniqueShaderModule initShaderModuleUnique( const std::string& path );
+    UniqueShaderModule initShaderModuleUnique( std::string_view path );
 
     /// Parses a given shader and inits a shader module.
     /// @param path The full path to the GLSL shader file.
     /// @return Returns the shader module.
-    ShaderModule initShaderModule( const std::string& path );
+    ShaderModule initShaderModule( std::string_view path );
 
     /// Creates the acceleration structure and allocates and binds memory for it.
     /// @param asCreateInfo The Vulkan init info for the acceleration structure.

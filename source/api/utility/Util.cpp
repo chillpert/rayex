@@ -5,7 +5,7 @@ namespace RAYEXEC_NAMESPACE
 {
   namespace Util
   {
-    std::vector<char> parseShader( const std::string& path )
+    std::vector<char> parseShader( std::string_view path )
     {
       std::string delimiter = "/";
       std::string pathToFile = "";
@@ -15,8 +15,8 @@ namespace RAYEXEC_NAMESPACE
       size_t pos = path.find_last_of( delimiter );
       if ( pos != std::string::npos )
       {
-        pathToFile = path.substr( 0, pos + 1 ).c_str( );
-        fileName = path.substr( pos + 1 ).c_str( );
+        pathToFile = std::string( path.substr( 0, pos + 1 ) ).c_str( );
+        fileName = std::string( path.substr( pos + 1 ) ).c_str( );
       }
       else
         RX_ERROR( "Can not process shader paths." );
@@ -60,9 +60,9 @@ namespace RAYEXEC_NAMESPACE
       return buffer;
     }
 
-    void processShaderMacros( const std::string& path, uint32_t dirLightNodes, uint32_t pointLightNodes, uint32_t totalModels )
+    void processShaderMacros( std::string_view path, uint32_t dirLightNodes, uint32_t pointLightNodes, uint32_t totalModels )
     {
-      std::string pathToFile = g_resourcePath + path;
+      std::string pathToFile = g_resourcePath + std::string( path );
       std::ifstream file( pathToFile );
 
       if ( !file.is_open( ) )

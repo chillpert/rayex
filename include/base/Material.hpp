@@ -10,7 +10,7 @@ namespace RAYEXEC_NAMESPACE
   {
   public:
     Material( ) = default;
-    Material( const std::string& diffuseTexture ) :
+    Material( std::string diffuseTexture ) :
       diffuseTexture( { diffuseTexture } )
     { }
 

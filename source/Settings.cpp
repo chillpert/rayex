@@ -46,7 +46,7 @@ namespace RAYEXEC_NAMESPACE
     g_resourcePath = this->resourcePath;
   }
 
-  void Settings::setResourcePath( const std::string& path )
+  void Settings::setResourcePath( std::string_view path )
   {
     this->resourcePath = path;
 

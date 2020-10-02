@@ -35,7 +35,7 @@ namespace RAYEXEC_NAMESPACE
   public:
     RX_API Model( );
     /// @param path The relative path to the model's file.
-    RX_API Model( const std::string& path );
+    RX_API Model( std::string_view path );
     RX_API virtual ~Model( ) = default;
 
     /// Loads the model by extracting all vertices and indices.

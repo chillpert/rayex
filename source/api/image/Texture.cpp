@@ -13,18 +13,18 @@ namespace RAYEXEC_NAMESPACE
   Texture::Texture( ) :
     offset( this->textureCounter++ ) { }
 
-  Texture::Texture( const std::string& path, bool initialize ) :
+  Texture::Texture( std::string_view path, bool initialize ) :
     offset( this->textureCounter++ )
   {
     if ( initialize )
       init( path );
   }
 
-  void Texture::init( const std::string& path )
+  void Texture::init( std::string_view path )
   {
     this->path = path;
 
-    std::string fullPath = g_resourcePath + path;
+    std::string fullPath = g_resourcePath + std::string( path );
 
     int width, height, channels;
     stbi_uc* pixels = stbi_load( fullPath.c_str( ), &width, &height, &channels, STBI_rgb_alpha );

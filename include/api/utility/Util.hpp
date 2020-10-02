@@ -10,9 +10,9 @@ namespace RAYEXEC_NAMESPACE
     /// Parses a given shader file.
     /// @param path The full path to shader file.
     /// @return Returns a vector of chars that contains the shader in SPIR-V format.
-    std::vector<char> parseShader( const std::string& path );
+    std::vector<char> parseShader( std::string_view path );
 
-    void processShaderMacros( const std::string& path, uint32_t dirLightNodes, uint32_t pointLightNodes, uint32_t totalModels );
+    void processShaderMacros( std::string_view path, uint32_t dirLightNodes, uint32_t pointLightNodes, uint32_t totalModels );
 
     /// Used to find any given element inside a STL container.
     /// @param value The value to search for.

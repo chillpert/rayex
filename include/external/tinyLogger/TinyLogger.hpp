@@ -79,7 +79,7 @@ namespace LOGGER_NAMESPACE
     eFatal
   };
 
-  RX_API void print( Color color, MessageType messageType, const std::string& message );
+  RX_API void print( Color color, MessageType messageType, std::string_view message );
 
   template <typename ...Args>
   void verbose( Args&& ...args )

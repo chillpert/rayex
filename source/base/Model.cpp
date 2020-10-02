@@ -10,7 +10,7 @@ namespace RAYEXEC_NAMESPACE
   Model::Model( ) :
     index( this->modelCounter++ ) { }
 
-  Model::Model( const std::string& path ) :
+  Model::Model( std::string_view path ) :
     index( this->modelCounter++ ), path( path )
   {
     load( );

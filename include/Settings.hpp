@@ -34,7 +34,7 @@ namespace RAYEXEC_NAMESPACE
     void setClearColor( const glm::vec4& clearColor );
 
     /// @return Returns the path to resources.
-    inline const std::string& getResourcePath( ) const { return this->resourcePath; }
+    inline std::string_view getResourcePath( ) const { return this->resourcePath; }
     
     /// Used to set a path to resources.
     /// @param argc The argc parameter that can be retrieved from the main-function's parameters.
@@ -43,7 +43,7 @@ namespace RAYEXEC_NAMESPACE
 
     /// Used to set a path to resources.
     /// @param path The path to resources.
-    void setResourcePath( const std::string& path );
+    void setResourcePath( std::string_view path );
 
     /// @return Returns true if ray tracing is enabled and false if rasterization is enabled.
     bool getRayTracingEnabled( ) const { return this->rayTrace; }

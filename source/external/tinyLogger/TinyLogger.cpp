@@ -141,7 +141,7 @@ namespace LOGGER_NAMESPACE
     return result;
   }
 
-  void print( Color color, MessageType messageType, const std::string& message )
+  void print( Color color, MessageType messageType, std::string_view message )
   {
 #if defined( _WIN32 ) || defined( _WIN64 )
     std::stringstream res;

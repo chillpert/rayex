@@ -15,7 +15,7 @@ namespace RAYEXEC_NAMESPACE
 
     /// @param path The relative path to the texture file.
     /// @param initialize If true, the texture will be initialized right away without an additional call to init().
-    RX_API Texture( const std::string& path, bool initialize = true );
+    RX_API Texture( std::string_view path, bool initialize = true );
 
     /// @return Returns the texture's image view.
     inline vk::ImageView getImageView( ) { return imageView.get( ); }
@@ -29,7 +29,7 @@ namespace RAYEXEC_NAMESPACE
     /// Creates the texture.
     /// @param path The relative path to the texture file.
     /// @todo Latest changes to this class might be causing errors once texture are working again.
-    void init( const std::string& path );
+    void init( std::string_view path );
 
     uint32_t offset;
 

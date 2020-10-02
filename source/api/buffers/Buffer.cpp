@@ -1,4 +1,5 @@
 #include "api/buffers/Buffer.hpp"
+
 #include "api/buffers/CommandBuffer.hpp"
 #include "api/utility/Helpers.hpp"
 #include "api/utility/Initializers.hpp"
@@ -22,12 +23,12 @@ namespace RAYEXEC_NAMESPACE
 
     vk::SharingMode sharingMode = queueFamilyIndices.size( ) > 1 ? vk::SharingMode::eConcurrent : vk::SharingMode::eExclusive;
 
-    vk::BufferCreateInfo createInfo( { },                                                   // flags 
-                                     size,                                                  // size
-                                     usage,                                                 // usage
-                                     sharingMode,                                           // sharingMode
-                                     static_cast< uint32_t >( queueFamilyIndices.size( ) ), // queueFamilyIndexCount
-                                     queueFamilyIndices.data( ) );                          // pQueueFamilyIndices
+    vk::BufferCreateInfo createInfo( { },                                                 // flags
+                                     size,                                                // size
+                                     usage,                                               // usage
+                                     sharingMode,                                         // sharingMode
+                                     static_cast<uint32_t>( queueFamilyIndices.size( ) ), // queueFamilyIndexCount
+                                     queueFamilyIndices.data( ) );                        // pQueueFamilyIndices
 
     this->buffer = g_device.createBufferUnique( createInfo );
     RX_ASSERT( this->buffer, "Failed to create buffer." );
@@ -64,16 +65,16 @@ namespace RAYEXEC_NAMESPACE
     CommandBuffer commandBuffer( g_graphicsCmdPool );
     commandBuffer.begin( );
     {
-      vk::BufferImageCopy region( 0,                                            // bufferOffset 
+      vk::BufferImageCopy region( 0,                                            // bufferOffset
                                   0,                                            // bufferRowLength
                                   0,                                            // bufferImageHeight
                                   { vk::ImageAspectFlagBits::eColor, 0, 0, 1 }, // imageSubresource (aspectMask, mipLevel, baseArrayLayer, layerCount)
-                                  vk::Offset3D{ 0, 0, 0 },                      // imageOffset
+                                  vk::Offset3D { 0, 0, 0 },                     // imageOffset
                                   image.getExtent( ) );                         // imageExtent
-      
+
       commandBuffer.get( 0 ).copyBufferToImage( this->buffer.get( ), image.get( ), vk::ImageLayout::eTransferDstOptimal, 1, &region ); // CMD
     }
     commandBuffer.end( );
     commandBuffer.submitToQueue( g_graphicsQueue );
   }
-}
+} // namespace RAYEXEC_NAMESPACE

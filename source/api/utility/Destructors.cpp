@@ -1,4 +1,5 @@
 #include "api/utility/Destructors.hpp"
+
 #include "api/misc/Components.hpp"
 
 using namespace RAYEXEC_NAMESPACE;
@@ -45,7 +46,7 @@ namespace vk
 
     void destroyQueryPool( QueryPool queryPool )
     {
-      if ( queryPool ) 
+      if ( queryPool )
         g_device.destroyQueryPool( queryPool );
     }
 
@@ -60,5 +61,5 @@ namespace vk
       if ( memory )
         g_device.freeMemory( memory );
     }
-  }
-}
+  } // namespace Destructor
+} // namespace vk

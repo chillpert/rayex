@@ -23,7 +23,7 @@ namespace vk
     /// Creates a semaphore with a unique handle.
     /// @param flags The flags used for creating the semaphore.
     /// @return Returns the semaphore.
-    UniqueSemaphore initSemaphoreUnique( SemaphoreCreateFlags flags = { } ); 
+    UniqueSemaphore initSemaphoreUnique( SemaphoreCreateFlags flags = { } );
 
     /// Creates a semaphore.
     /// @param flags The flags used for creating the semaphore.
@@ -40,27 +40,27 @@ namespace vk
     /// @param queueFamilyIndex The queue family from which the command pool can submit to.
     /// @param flags The flags used for creating the command pool.
     /// @return Returns the command pool.
-    CommandPool initCommandPool(uint32_t queueFamilyIndex, CommandPoolCreateFlags flags = { } );
-    
+    CommandPool initCommandPool( uint32_t queueFamilyIndex, CommandPoolCreateFlags flags = { } );
+
     UniqueDescriptorPool initDescriptorPoolUnique( const std::vector<DescriptorPoolSize>& poolSizes, uint32_t maxSets = 1, DescriptorPoolCreateFlags flags = { } );
 
     /// Allocates and binds unique memory for an image.
     /// @param image The image to allocate memory for.
     /// @param pNext The pNext chain of the Vulkan allocation info.
     /// @return Returns the memory.
-    UniqueDeviceMemory allocateMemoryUnique( Image image, MemoryPropertyFlags propertyFlags = MemoryPropertyFlagBits::eDeviceLocal, void * pNext = nullptr );
+    UniqueDeviceMemory allocateMemoryUnique( Image image, MemoryPropertyFlags propertyFlags = MemoryPropertyFlagBits::eDeviceLocal, void* pNext = nullptr );
 
     /// Allocates and binds memory for an image.
     /// @param image The image to allocate memory for.
     /// @param pNext The pNext chain of the Vulkan allocation info.
     /// @return Returns the memory.
-    DeviceMemory allocateMemory( Image image, MemoryPropertyFlags propertyFlags = MemoryPropertyFlagBits::eDeviceLocal, void * pNext = nullptr );
+    DeviceMemory allocateMemory( Image image, MemoryPropertyFlags propertyFlags = MemoryPropertyFlagBits::eDeviceLocal, void* pNext = nullptr );
 
     /// Allocates and binds unique memory for a buffer.
     /// @param image The image to allocate memory for.
     /// @param pNext The pNext chain of the Vulkan allocation info.
     /// @return Returns the memory.
-    UniqueDeviceMemory allocateMemoryUnique( Buffer buffer, MemoryPropertyFlags propertyFlags = MemoryPropertyFlagBits::eDeviceLocal, void * pNext = nullptr );
+    UniqueDeviceMemory allocateMemoryUnique( Buffer buffer, MemoryPropertyFlags propertyFlags = MemoryPropertyFlagBits::eDeviceLocal, void* pNext = nullptr );
 
     /// Allocates and binds unique memory for an acceleration structure object.
     /// @param as The RAYEXEC_NAMESPACE::AccelerationStructure object the memory will be allocated for.
@@ -71,7 +71,7 @@ namespace vk
     /// @param pNext The pNext chain of the Vulkan allocation info.
     /// @return Returns the memory.
     DeviceMemory allocateMemory( Buffer buffer, MemoryPropertyFlags propertyFlags = MemoryPropertyFlagBits::eDeviceLocal, void* pNext = nullptr );
-    
+
     /// Create an image view with a unique handle.
     /// @param image The image to init an image view for.
     /// @param format The target format of the image view.
@@ -160,11 +160,11 @@ namespace vk
     /// @param extensions All instance extensions that should be activated.
     /// @note The given vector with the extensions will be appended by ones that are required by the window.
     /// @return Returns true if initialization was successful.
-    UniqueInstance initInstance(const std::vector<const char*>& layers, std::vector<const char*>& extensions );
+    UniqueInstance initInstance( const std::vector<const char*>& layers, std::vector<const char*>& extensions );
 
     bool initGraphicsPipelines( const std::vector<GraphicsPipelineCreateInfo>& createInfos );
     bool initRayTracingPipelines( const std::vector<RayTracingPipelineCreateInfoKHR> createInfos );
-  }
-}
+  } // namespace Initializer
+} // namespace vk
 
 #endif // INITIALIZERS_HPP

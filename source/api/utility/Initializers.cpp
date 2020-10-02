@@ -1,8 +1,9 @@
 #include "api/utility/Initializers.hpp"
-#include "api/utility/Helpers.hpp"
-#include "api/utility/Util.hpp"
+
 #include "api/buffers/CommandBuffer.hpp"
 #include "api/misc/Vertex.hpp"
+#include "api/utility/Helpers.hpp"
+#include "api/utility/Util.hpp"
 
 #define VULKAN_HPP_STORAGE_SHARED
 #define VULKAN_HPP_STORAGE_SHARED_EXPORT
@@ -89,8 +90,8 @@ namespace vk
     {
       auto memoryRequirements = RAYEXEC_NAMESPACE::g_device.getImageMemoryRequirements( image );
 
-      MemoryAllocateInfo allocateInfo( memoryRequirements.size,                                                                             // allocationSize 
-                                       Helper::findMemoryType( RAYEXEC_NAMESPACE::g_physicalDevice, memoryRequirements.memoryTypeBits, propertyFlags ) );  // memoryTypeIndex
+      MemoryAllocateInfo allocateInfo( memoryRequirements.size,                                                                                           // allocationSize
+                                       Helper::findMemoryType( RAYEXEC_NAMESPACE::g_physicalDevice, memoryRequirements.memoryTypeBits, propertyFlags ) ); // memoryTypeIndex
 
       allocateInfo.pNext = pNext;
 
@@ -106,8 +107,8 @@ namespace vk
     {
       auto memoryRequirements = RAYEXEC_NAMESPACE::g_device.getImageMemoryRequirements( image );
 
-      MemoryAllocateInfo allocateInfo( memoryRequirements.size,                                                                             // allocationSize 
-                                       Helper::findMemoryType( RAYEXEC_NAMESPACE::g_physicalDevice, memoryRequirements.memoryTypeBits, propertyFlags ) );  // memoryTypeIndex
+      MemoryAllocateInfo allocateInfo( memoryRequirements.size,                                                                                           // allocationSize
+                                       Helper::findMemoryType( RAYEXEC_NAMESPACE::g_physicalDevice, memoryRequirements.memoryTypeBits, propertyFlags ) ); // memoryTypeIndex
 
       allocateInfo.pNext = pNext;
 
@@ -123,8 +124,8 @@ namespace vk
     {
       auto memoryRequirements = RAYEXEC_NAMESPACE::g_device.getBufferMemoryRequirements( buffer );
 
-      MemoryAllocateInfo allocateInfo( memoryRequirements.size,                                                                             // allocationSize 
-                                       Helper::findMemoryType( RAYEXEC_NAMESPACE::g_physicalDevice, memoryRequirements.memoryTypeBits, propertyFlags ) );  // memoryTypeIndex
+      MemoryAllocateInfo allocateInfo( memoryRequirements.size,                                                                                           // allocationSize
+                                       Helper::findMemoryType( RAYEXEC_NAMESPACE::g_physicalDevice, memoryRequirements.memoryTypeBits, propertyFlags ) ); // memoryTypeIndex
 
       allocateInfo.pNext = pNext;
 
@@ -133,7 +134,8 @@ namespace vk
 
       RAYEXEC_NAMESPACE::g_device.bindBufferMemory( buffer, memory.get( ), 0 );
 
-      return memory;;
+      return memory;
+      ;
     }
 
     void allocateMemory( RAYEXEC_NAMESPACE::AccelerationStructure& as )
@@ -145,9 +147,9 @@ namespace vk
       MemoryRequirements2 memoryRequirements = RAYEXEC_NAMESPACE::g_device.getAccelerationStructureMemoryRequirementsKHR( memInfo );
 
       MemoryAllocateFlagsInfo allocateFlags( MemoryAllocateFlagBits::eDeviceAddress, // flags
-                                             { } );                              // deviceMask
+                                             { } );                                  // deviceMask
 
-      MemoryAllocateInfo allocateInfo( memoryRequirements.memoryRequirements.size,                                                                                                   // allocationSize
+      MemoryAllocateInfo allocateInfo( memoryRequirements.memoryRequirements.size,                                                                                                                  // allocationSize
                                        Helper::findMemoryType( RAYEXEC_NAMESPACE::g_physicalDevice, memoryRequirements.memoryRequirements.memoryTypeBits, MemoryPropertyFlagBits::eDeviceLocal ) ); // memoryTypeIndex
 
       as.memory = RAYEXEC_NAMESPACE::g_device.allocateMemory( allocateInfo );
@@ -167,8 +169,8 @@ namespace vk
     {
       auto memoryRequirements = RAYEXEC_NAMESPACE::g_device.getBufferMemoryRequirements( buffer );
 
-      MemoryAllocateInfo allocateInfo( memoryRequirements.size,                                                                             // allocationSize 
-                                       Helper::findMemoryType( RAYEXEC_NAMESPACE::g_physicalDevice, memoryRequirements.memoryTypeBits, propertyFlags ) );  // memoryTypeIndex
+      MemoryAllocateInfo allocateInfo( memoryRequirements.size,                                                                                           // allocationSize
+                                       Helper::findMemoryType( RAYEXEC_NAMESPACE::g_physicalDevice, memoryRequirements.memoryTypeBits, propertyFlags ) ); // memoryTypeIndex
 
       allocateInfo.pNext = pNext;
 
@@ -177,26 +179,25 @@ namespace vk
 
       RAYEXEC_NAMESPACE::g_device.bindBufferMemory( buffer, memory, 0 );
 
-      return memory;;
+      return memory;
+      ;
     }
 
     UniqueImageView initImageViewUnique( Image image, Format format, ImageAspectFlags aspectFlags )
     {
-      ComponentMapping components =
-      {
+      ComponentMapping components = {
         ComponentSwizzle::eIdentity,
         ComponentSwizzle::eIdentity,
         ComponentSwizzle::eIdentity,
         ComponentSwizzle::eIdentity
       };
 
-      ImageSubresourceRange subresourceRange =
-      {
-        aspectFlags,  // aspectMask
-        0u,           // baseMipLevel
-        1u,           // levelCount
-        0u,           // baseArrayLayer
-        1u            // layerCount
+      ImageSubresourceRange subresourceRange = {
+        aspectFlags, // aspectMask
+        0u,          // baseMipLevel
+        1u,          // levelCount
+        0u,          // baseArrayLayer
+        1u           // layerCount
       };
 
       ImageViewCreateInfo createInfo( { },                // flags
@@ -214,21 +215,19 @@ namespace vk
 
     ImageView initImageView( Image image, Format format, ImageAspectFlags aspectFlags )
     {
-      ComponentMapping components =
-      {
+      ComponentMapping components = {
         ComponentSwizzle::eIdentity,
         ComponentSwizzle::eIdentity,
         ComponentSwizzle::eIdentity,
         ComponentSwizzle::eIdentity
       };
 
-      ImageSubresourceRange subresourceRange =
-      {
-        aspectFlags,  // aspectMask
-        0u,           // baseMipLevel
-        1u,           // levelCount
-        0u,           // baseArrayLayer
-        1u            // layerCount
+      ImageSubresourceRange subresourceRange = {
+        aspectFlags, // aspectMask
+        0u,          // baseMipLevel
+        1u,          // levelCount
+        0u,          // baseArrayLayer
+        1u           // layerCount
       };
 
       ImageViewCreateInfo createInfo( { },                // flags
@@ -262,13 +261,13 @@ namespace vk
 
     UniqueFramebuffer initFramebufferUnique( const std::vector<ImageView>& attachments, RenderPass renderPass, const Extent2D& extent )
     {
-      FramebufferCreateInfo createInfo( { },                                            // flags
-                                        renderPass,                                     // renderPass
+      FramebufferCreateInfo createInfo( { },                                          // flags
+                                        renderPass,                                   // renderPass
                                         static_cast<uint32_t>( attachments.size( ) ), // attachmentCount
-                                        attachments.data( ),                            // pAttachments
-                                        extent.width,                                   // width
-                                        extent.height,                                  // height
-                                        1u );                                           // layers
+                                        attachments.data( ),                          // pAttachments
+                                        extent.width,                                 // width
+                                        extent.height,                                // height
+                                        1u );                                         // layers
 
       UniqueFramebuffer framebuffer = RAYEXEC_NAMESPACE::g_device.createFramebufferUnique( createInfo );
       RX_ASSERT( framebuffer, "Failed to create framebuffer." );
@@ -278,13 +277,13 @@ namespace vk
 
     Framebuffer initFramebuffer( const std::vector<ImageView>& attachments, RenderPass renderPass, const Extent2D& extent )
     {
-      FramebufferCreateInfo createInfo( { },                                        // flags
-                                        renderPass,                                 // renderPass
-                                        static_cast<uint32_t>( attachments.size( ) ),  // attachmentCount
-                                        attachments.data( ),                         // pAttachments
-                                        extent.width,                               // width
-                                        extent.height,                              // height
-                                        1u );                                       // layers
+      FramebufferCreateInfo createInfo( { },                                          // flags
+                                        renderPass,                                   // renderPass
+                                        static_cast<uint32_t>( attachments.size( ) ), // attachmentCount
+                                        attachments.data( ),                          // pAttachments
+                                        extent.width,                                 // width
+                                        extent.height,                                // height
+                                        1u );                                         // layers
 
       Framebuffer framebuffer = RAYEXEC_NAMESPACE::g_device.createFramebuffer( createInfo );
       RX_ASSERT( framebuffer, "Failed to create framebuffer." );
@@ -294,10 +293,10 @@ namespace vk
 
     UniqueQueryPool initQueryPoolUnique( uint32_t count, QueryType type )
     {
-      QueryPoolCreateInfo createInfo( { },    // flags
-                                      type,   // queryType
-                                      count,  // queryCount
-                                      { } );  // pipelineStatistics
+      QueryPoolCreateInfo createInfo( { },   // flags
+                                      type,  // queryType
+                                      count, // queryCount
+                                      { } ); // pipelineStatistics
 
       UniqueQueryPool queryPool = RAYEXEC_NAMESPACE::g_device.createQueryPoolUnique( createInfo );
       RX_ASSERT( queryPool, "Failed to create query pool." );
@@ -307,10 +306,10 @@ namespace vk
 
     QueryPool initQueryPool( uint32_t count, QueryType type )
     {
-      QueryPoolCreateInfo createInfo( { },    // flags
-                                      type,   // queryType
-                                      count,  // queryCount
-                                      { } );  // pipelineStatistics
+      QueryPoolCreateInfo createInfo( { },   // flags
+                                      type,  // queryType
+                                      count, // queryCount
+                                      { } ); // pipelineStatistics
 
       QueryPool queryPool = RAYEXEC_NAMESPACE::g_device.createQueryPool( createInfo );
       RX_ASSERT( queryPool, "Failed to create query pool." );
@@ -322,8 +321,8 @@ namespace vk
     {
       std::vector<char> source = RAYEXEC_NAMESPACE::Util::parseShader( path );
 
-      ShaderModuleCreateInfo createInfo( { },                                                     // flags
-                                         source.size( ),                                          // codeSize
+      ShaderModuleCreateInfo createInfo( { },                                                   // flags
+                                         source.size( ),                                        // codeSize
                                          reinterpret_cast<const uint32_t*>( source.data( ) ) ); // pCode
 
       UniqueShaderModule shaderModule = RAYEXEC_NAMESPACE::g_device.createShaderModuleUnique( createInfo );
@@ -336,8 +335,8 @@ namespace vk
     {
       std::vector<char> source = RAYEXEC_NAMESPACE::Util::parseShader( path );
 
-      ShaderModuleCreateInfo createInfo( { },                                                     // flags
-                                         source.size( ),                                          // codeSize
+      ShaderModuleCreateInfo createInfo( { },                                                   // flags
+                                         source.size( ),                                        // codeSize
                                          reinterpret_cast<const uint32_t*>( source.data( ) ) ); // pCode
 
       ShaderModule shaderModule = RAYEXEC_NAMESPACE::g_device.createShaderModule( createInfo );
@@ -373,25 +372,31 @@ namespace vk
         if ( temp.first > score )
         {
           physicalDevice = it;
-          score = temp.first;
+          score          = temp.first;
         }
       }
 
       // Print information about all GPUs available on the machine.
       const std::string separator = "===================================================================";
-      std::cout << "Physical device report: " << "\n" << separator << "\n" << "Device name" << "\t\t\t" << "Score" << std::endl << separator << "\n";
+      std::cout << "Physical device report: "
+                << "\n"
+                << separator << "\n"
+                << "Device name"
+                << "\t\t\t"
+                << "Score" << std::endl
+                << separator << "\n";
 
       for ( const auto& result : results )
         std::cout << std::left << std::setw( 32 ) << std::setfill( ' ' ) << result.second << std::left << std::setw( 32 ) << std::setfill( ' ' ) << result.first << std::endl;
 
       RX_ASSERT( physicalDevice, "No suitable physical device was found." );
-     
+
       // Print information about the GPU that was selected.
       auto properties = physicalDevice.getProperties( );
       RX_SUCCESS( "Selected GPU: ", properties.deviceName );
 
       RAYEXEC_NAMESPACE::g_physicalDeviceLimits = properties.limits;
-      RAYEXEC_NAMESPACE::g_physicalDevice = physicalDevice;
+      RAYEXEC_NAMESPACE::g_physicalDevice       = physicalDevice;
 
       return physicalDevice;
     }
@@ -446,7 +451,7 @@ namespace vk
       uint32_t index = 0;
       for ( const auto& queueFamilyIndex : queueFamilyIndices )
       {
-        DeviceQueueCreateInfo queueCreateInfo( { },              // flags 
+        DeviceQueueCreateInfo queueCreateInfo( { },              // flags
                                                queueFamilyIndex, // queueFamilyIndex
                                                1,                // queueCount
                                                &queuePriority ); // pQueuePriorties
@@ -457,32 +462,32 @@ namespace vk
       }
 
       PhysicalDeviceDescriptorIndexingFeatures indexingFeatures;
-      indexingFeatures.runtimeDescriptorArray = VK_TRUE;
+      indexingFeatures.runtimeDescriptorArray                     = VK_TRUE;
       indexingFeatures.shaderStorageBufferArrayNonUniformIndexing = VK_TRUE;
-      indexingFeatures.descriptorBindingVariableDescriptorCount = VK_TRUE;
-      indexingFeatures.descriptorBindingPartiallyBound = VK_TRUE;
+      indexingFeatures.descriptorBindingVariableDescriptorCount   = VK_TRUE;
+      indexingFeatures.descriptorBindingPartiallyBound            = VK_TRUE;
 
       PhysicalDeviceRobustness2FeaturesEXT robustness2FeaturesEXT;
       robustness2FeaturesEXT.nullDescriptor = VK_TRUE;
-      robustness2FeaturesEXT.pNext = &indexingFeatures;
+      robustness2FeaturesEXT.pNext          = &indexingFeatures;
 
       PhysicalDeviceRayTracingFeaturesKHR rayTracingFeatures;
       rayTracingFeatures.rayTracing = VK_TRUE;
-      rayTracingFeatures.rayQuery = VK_TRUE;
-      rayTracingFeatures.pNext = &robustness2FeaturesEXT;
+      rayTracingFeatures.rayQuery   = VK_TRUE;
+      rayTracingFeatures.pNext      = &robustness2FeaturesEXT;
 
       PhysicalDeviceBufferDeviceAddressFeatures bufferDeviceAddressFeatures;
       bufferDeviceAddressFeatures.bufferDeviceAddress = VK_TRUE;
-      bufferDeviceAddressFeatures.pNext = &rayTracingFeatures;
+      bufferDeviceAddressFeatures.pNext               = &rayTracingFeatures;
 
       PhysicalDeviceFeatures deviceFeatures;
-      deviceFeatures.samplerAnisotropy = VK_TRUE;
+      deviceFeatures.samplerAnisotropy              = VK_TRUE;
       deviceFeatures.vertexPipelineStoresAndAtomics = VK_TRUE;
 
       PhysicalDeviceFeatures2 deviceFeatures2 { deviceFeatures };
       deviceFeatures2.pNext = &bufferDeviceAddressFeatures;
 
-      DeviceCreateInfo createInfo( { },                                                   // flags
+      DeviceCreateInfo createInfo( { },                                               // flags
                                    static_cast<uint32_t>( queueCreateInfos.size( ) ), // queueCreateInfoCount
                                    queueCreateInfos.data( ),                          // pQueueCreateInfos
                                    0,                                                 // enabledLayerCount
@@ -494,10 +499,10 @@ namespace vk
       createInfo.pNext = &deviceFeatures2;
 
       UniqueDevice device = rx::g_physicalDevice.createDeviceUnique( createInfo );
-      rx::g_device = device.get( );
+      rx::g_device        = device.get( );
       RX_ASSERT( device, "Failed to create logical device." );
       VULKAN_HPP_DEFAULT_DISPATCHER.init( device.get( ) );
-      
+
       return std::move( device );
     }
 
@@ -522,7 +527,7 @@ namespace vk
 
       uint32_t apiVersion = enumerateInstanceVersion( );
 
-    #ifdef VK_API_VERSION_1_1
+#ifdef VK_API_VERSION_1_1
       if ( apiVersion >= VK_API_VERSION_1_1 )
       {
         RX_SUCCESS( "Found Vulkan SDK API version 1.1" );
@@ -530,9 +535,9 @@ namespace vk
       }
       else
         RX_FATAL( "This application requires Vulkan SDK API Version 1.1 or higher." );
-    #endif
+#endif
 
-    #ifdef VK_API_VERSION_1_2
+#ifdef VK_API_VERSION_1_2
       if ( apiVersion >= VK_API_VERSION_1_2 )
       {
         RX_SUCCESS( "Found Vulkan SDK API version 1.2" );
@@ -540,7 +545,7 @@ namespace vk
       }
       else
         RX_ERROR( "This application requires Vulkan SDK API Version 1.1 or higher." );
-    #endif
+#endif
 
       InstanceCreateInfo createInfo( { },                                         // flags
                                      &appInfo,                                    // pApplicationInfo
@@ -549,7 +554,7 @@ namespace vk
                                      static_cast<uint32_t>( extensions.size( ) ), // enabledExtensionCount
                                      extensions.data( ) );                        // ppEnabledExtensionNames
 
-      instance = createInstanceUnique( createInfo );
+      instance       = createInstanceUnique( createInfo );
       rx::g_instance = instance.get( );
       RX_ASSERT( instance, "Failed to create instance." );
       VULKAN_HPP_DEFAULT_DISPATCHER.init( instance.get( ) );
@@ -603,11 +608,11 @@ namespace vk
 
     bool initRayTracingPipelinesUnique( std::vector<vk::UniquePipeline>& pipelines, const std::vector<RayTracingPipelineCreateInfoKHR> createInfos )
     {
-     //rx::g_device.createRayTracingPipelinesKHRUnique( nullptr, createInfos, nullptr );
+      //rx::g_device.createRayTracingPipelinesKHRUnique( nullptr, createInfos, nullptr );
       //auto pipeline2( std::move( pipelines2 ) );
 
       //auto result = rx::g_device.createRayTracingPipelinesKHRUnique( nullptr, createInfos );
-      
+
       /*
       if ( pipelines.result != Result::eSuccess )
       {
@@ -627,5 +632,5 @@ namespace vk
 
       return true;
     }
-  }
-}
+  } // namespace Initializer
+} // namespace vk

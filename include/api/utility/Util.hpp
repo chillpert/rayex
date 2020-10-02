@@ -31,7 +31,7 @@ namespace RAYEXEC_NAMESPACE
     }
 
     std::array<float, 4> vec4toArray( const glm::vec4& vec );
-  }
-}
+  } // namespace Util
+} // namespace RAYEXEC_NAMESPACE
 
 #endif // UTIL_HPP

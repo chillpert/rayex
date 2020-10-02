@@ -12,7 +12,7 @@ namespace RAYEXEC_NAMESPACE
   {
   public:
     VertexBuffer( ) = default;
-    
+
     /// @param vertices The vertex data.
     /// @param initialize If true, the vertex buffer will be initialized right away without an additional call to init().
     VertexBuffer( std::vector<Vertex>& vertices, bool initialize = true );
@@ -27,6 +27,6 @@ namespace RAYEXEC_NAMESPACE
   private:
     uint32_t count = 0; ///< The amount of vertices in the buffer.
   };
-}
+} // namespace RAYEXEC_NAMESPACE
 
 #endif // VERTEX_BUFFER_HPP

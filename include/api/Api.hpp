@@ -1,23 +1,23 @@
 #ifndef API_HPP
 #define API_HPP
 
-#include "api/utility/DebugMessenger.hpp"
-#include "api/Surface.hpp"
+#include "api/Bindings.hpp"
 #include "api/Pipeline.hpp"
 #include "api/RenderPass.hpp"
+#include "api/Surface.hpp"
 #include "api/Swapchain.hpp"
-#include "api/image/Texture.hpp"
-#include "api/misc/Vertex.hpp"
 #include "api/buffers/CommandBuffer.hpp"
-#include "api/buffers/VertexBuffer.hpp"
 #include "api/buffers/IndexBuffer.hpp"
 #include "api/buffers/StorageBuffer.hpp"
 #include "api/buffers/UniformBuffer.hpp"
-#include "base/Gui.hpp"
-#include "base/Base.hpp"
+#include "api/buffers/VertexBuffer.hpp"
+#include "api/image/Texture.hpp"
+#include "api/misc/Vertex.hpp"
 #include "api/raytracing/RayTracingBuilder.hpp"
+#include "api/utility/DebugMessenger.hpp"
 #include "api/utility/Util.hpp"
-#include "api/Bindings.hpp"
+#include "base/Base.hpp"
+#include "base/Gui.hpp"
 
 namespace RAYEXEC_NAMESPACE
 {
@@ -39,7 +39,7 @@ namespace RAYEXEC_NAMESPACE
     RX_API ~Api( );
 
     /// Used to set the GUI that will be used.
-    /// 
+    ///
     /// The GUI can be changed at runtime. This enables the client to swap between different pre-built GUIs on the fly.
     /// @param gui A pointer to a GUI object that will be rendered on top of the final image.
     /// @param initialize If true, the GUI object will be initialized (false if not specified).
@@ -75,8 +75,8 @@ namespace RAYEXEC_NAMESPACE
         geometryNodes.push_back( ptr );
 
         // Fill scene description buffer.
-        ptr->rtInstance.modelIndex = it->second->index;
-        ptr->rtInstance.transform = ptr->worldTransform;
+        ptr->rtInstance.modelIndex  = it->second->index;
+        ptr->rtInstance.transform   = ptr->worldTransform;
         ptr->rtInstance.transformIT = glm::transpose( glm::inverse( ptr->worldTransform ) );
         this->rtInstances.push_back( ptr->rtInstance );
 
@@ -142,7 +142,7 @@ namespace RAYEXEC_NAMESPACE
     RX_API void initGui( );
 
     Settings* settings = nullptr;
-    
+
   private:
     void updateAccelerationStructure( );
 
@@ -152,7 +152,7 @@ namespace RAYEXEC_NAMESPACE
     void initRenderPass( );
 
     /// Initializes the model provided by the node.
-    /// 
+    ///
     /// The model will be added to RAYEXEC_NAMESPACE::Api::models to make sure there are no duplicates.
     /// Similarily, all textures required by the model will be stored individualy inside RAYEXEC_NAMESPACE::Api::textures.
     /// If a model or a texture are already known to the application and have been initialized, they will be re-used instead of being initialized.
@@ -230,7 +230,7 @@ namespace RAYEXEC_NAMESPACE
     CameraUbo cameraUbo;
     UniformBuffer cameraUniformBuffer;
     UniformBuffer lightsUniformBuffer;
-    
+
     std::vector<RayTracingInstance> rtInstances;
     StorageBuffer rayTracingInstancesBuffer;
     bool uploadSceneDescriptionData = false;
@@ -253,7 +253,7 @@ namespace RAYEXEC_NAMESPACE
 
     vk::Viewport viewport;
     vk::Rect2D scissor;
-    
+
     std::shared_ptr<Gui> gui = nullptr;
 
     // No destruction necessary for following members:
@@ -263,11 +263,11 @@ namespace RAYEXEC_NAMESPACE
     RayTracingBuilder rayTracingBuilder;
 
     bool needSwapchainRecreate = false;
-  
+
     uint32_t totalDirectionalLights = 0;
-    uint32_t totalPointLights = 0;
-    bool reloadShader = false;
+    uint32_t totalPointLights       = 0;
+    bool reloadShader               = false;
   };
-}
+} // namespace RAYEXEC_NAMESPACE
 
 #endif // API_HPP

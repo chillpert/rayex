@@ -1,4 +1,5 @@
 #include "api/Surface.hpp"
+
 #include "api/misc/Components.hpp"
 #include "api/utility/Util.hpp"
 
@@ -12,7 +13,7 @@ namespace RAYEXEC_NAMESPACE
   void Surface::init( )
   {
     this->surface = g_window->createSurface( g_instance );
-    g_surface = this->surface;
+    g_surface     = this->surface;
     RX_ASSERT( this->surface, "Failed to create surface." );
   }
 
@@ -26,10 +27,10 @@ namespace RAYEXEC_NAMESPACE
 
     if ( !Util::find<vk::PresentModeKHR>( this->presentMode, presentModes ) )
     {
-      Util::find<vk::PresentModeKHR>( vk::PresentModeKHR::eMailbox, presentModes ) ? this->presentMode = vk::PresentModeKHR::eMailbox :
-      Util::find<vk::PresentModeKHR>( vk::PresentModeKHR::eImmediate, presentModes ) ? this->presentMode = vk::PresentModeKHR::eImmediate :
-      Util::find<vk::PresentModeKHR>( vk::PresentModeKHR::eFifoRelaxed, presentModes ) ? this->presentMode = vk::PresentModeKHR::eFifoRelaxed :
-      this->presentMode = vk::PresentModeKHR::eFifo;
+      Util::find<vk::PresentModeKHR>( vk::PresentModeKHR::eMailbox, presentModes ) ? this->presentMode                                                                                                                                                                     = vk::PresentModeKHR::eMailbox :
+                                                                                     Util::find<vk::PresentModeKHR>( vk::PresentModeKHR::eImmediate, presentModes ) ? this->presentMode                                                                                    = vk::PresentModeKHR::eImmediate :
+                                                                                                                                                                      Util::find<vk::PresentModeKHR>( vk::PresentModeKHR::eFifoRelaxed, presentModes ) ? this->presentMode = vk::PresentModeKHR::eFifoRelaxed :
+                                                                                                                                                                                                                                                         this->presentMode = vk::PresentModeKHR::eFifo;
 
       std::string fallbackPresentMode;
       switch ( this->presentMode )
@@ -71,11 +72,11 @@ namespace RAYEXEC_NAMESPACE
     // If the prefered format and color space are not available, fall back.
     if ( !colorSpaceAndFormatSupported )
     {
-      this->format = surfaceFormats[0].format;
+      this->format     = surfaceFormats[0].format;
       this->colorSpace = surfaceFormats[0].colorSpace;
       RX_WARN( "Preferred format and colorspace not supported. Falling back to the first option of each." );
     }
-    
+
     g_surfaceFormat = this->format;
   }
 
@@ -87,4 +88,4 @@ namespace RAYEXEC_NAMESPACE
       this->surface = nullptr;
     }
   }
-}
+} // namespace RAYEXEC_NAMESPACE

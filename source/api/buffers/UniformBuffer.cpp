@@ -1,4 +1,5 @@
 #include "api/buffers/UniformBuffer.hpp"
+
 #include "api/misc/Components.hpp"
 
 namespace RAYEXEC_NAMESPACE
@@ -20,4 +21,4 @@ namespace RAYEXEC_NAMESPACE
 
     return res;
   }
-}
+} // namespace RAYEXEC_NAMESPACE

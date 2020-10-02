@@ -8,10 +8,11 @@ namespace RAYEXEC_NAMESPACE
   uint32_t Model::modelCounter = 0;
 
   Model::Model( ) :
-    index( this->modelCounter++ ) { }
+    index( this->modelCounter++ ) {}
 
   Model::Model( std::string_view path ) :
-    index( this->modelCounter++ ), path( path )
+    index( this->modelCounter++ ),
+    path( path )
   {
     load( );
   }
@@ -69,4 +70,4 @@ namespace RAYEXEC_NAMESPACE
 
     return false;
   }
-}
+} // namespace RAYEXEC_NAMESPACE

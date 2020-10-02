@@ -12,17 +12,18 @@ namespace RAYEXEC_NAMESPACE
     Material( ) = default;
     Material( std::string diffuseTexture ) :
       diffuseTexture( { diffuseTexture } )
-    { }
+    {
+    }
 
-    glm::vec3 ambient = { };
-    glm::vec3 diffuse = { };
-    glm::vec3 specular = { };
+    glm::vec3 ambient       = { };
+    glm::vec3 diffuse       = { };
+    glm::vec3 specular      = { };
     glm::vec3 transmittance = { };
-    glm::vec3 emission = { };
+    glm::vec3 emission      = { };
 
-    float shininess = 1.0f;
+    float shininess       = 1.0f;
     float reflectionIndex = 1.0f;
-    float opacity = 1.0f;
+    float opacity         = 1.0f;
 
     std::vector<std::string> diffuseTexture;
     std::vector<std::string> specularTexture;
@@ -57,6 +58,6 @@ namespace RAYEXEC_NAMESPACE
       return textures;
     }
   };
-}
+} // namespace RAYEXEC_NAMESPACE
 
 #endif // MAterial_HPP

@@ -13,7 +13,7 @@ namespace RAYEXEC_NAMESPACE
   {
   public:
     Node( ) :
-      id( ++nodeCounter ) { }
+      id( ++nodeCounter ) {}
     virtual ~Node( ) = default;
 
     /// @return The node's ID.
@@ -36,6 +36,6 @@ namespace RAYEXEC_NAMESPACE
     glm::mat4 inverseWorldTransform = glm::mat4( 1.0f ); ///< The world space transformation matrix inversed.
     glm::mat4 inverseLocalTransform = glm::mat4( 1.0f ); ///< The local space transformation matrix inversed.
   };
-}
+} // namespace RAYEXEC_NAMESPACE
 
 #endif // Node_HPP

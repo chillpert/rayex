@@ -1,7 +1,8 @@
 #include "base/Gui.hpp"
+
 #include "api/buffers/CommandBuffer.hpp"
-#include "api/utility/Initializers.hpp"
 #include "api/utility/Destructors.hpp"
+#include "api/utility/Initializers.hpp"
 
 namespace RAYEXEC_NAMESPACE
 {
@@ -9,7 +10,8 @@ namespace RAYEXEC_NAMESPACE
   {
     IMGUI_CHECKVERSION( );
     ImGui::CreateContext( );
-    ImGuiIO& io = ImGui::GetIO( ); (void) io;
+    ImGuiIO& io = ImGui::GetIO( );
+    (void) io;
   }
 
   void Gui::init( const Surface* const surface, vk::Extent2D swapchainImageExtent, const std::vector<vk::ImageView>& swapchainImageViews )
@@ -23,16 +25,16 @@ namespace RAYEXEC_NAMESPACE
     initDescriptorPool( );
 
     ImGui_ImplVulkan_InitInfo init_info { };
-    init_info.Instance = g_instance;
+    init_info.Instance       = g_instance;
     init_info.PhysicalDevice = g_physicalDevice;
-    init_info.Device = g_device;
-    init_info.QueueFamily = g_graphicsFamilyIndex;
-    init_info.Queue = g_graphicsQueue;
-    init_info.PipelineCache = nullptr;
+    init_info.Device         = g_device;
+    init_info.QueueFamily    = g_graphicsFamilyIndex;
+    init_info.Queue          = g_graphicsQueue;
+    init_info.PipelineCache  = nullptr;
     init_info.DescriptorPool = this->descriptorPool.get( );
-    init_info.Allocator = nullptr;
-    init_info.MinImageCount = surface->getCapabilities( ).minImageCount + 1;
-    init_info.ImageCount = static_cast<uint32_t>( g_swapchainImageCount );
+    init_info.Allocator      = nullptr;
+    init_info.MinImageCount  = surface->getCapabilities( ).minImageCount + 1;
+    init_info.ImageCount     = static_cast<uint32_t>( g_swapchainImageCount );
 
     initRenderPass( surface );
     RX_ASSERT( ImGui_ImplVulkan_Init( &init_info, this->renderPass.get( ) ), "Failed to initialize Vulkan for ImGui." );
@@ -69,7 +71,7 @@ namespace RAYEXEC_NAMESPACE
   void Gui::renderDrawData( uint32_t imageIndex )
   {
     this->commandBuffers.begin( imageIndex );
-    this->renderPass.begin( this->framebuffers[imageIndex].get( ), this->commandBuffers.get( imageIndex ), { 0, this->swapchainImageExtent }, { { std::array < float,4> { 0.5f, 0.5, 0.5f, 1.0f } } } );
+    this->renderPass.begin( this->framebuffers[imageIndex].get( ), this->commandBuffers.get( imageIndex ), { 0, this->swapchainImageExtent }, { { std::array<float, 4> { 0.5f, 0.5, 0.5f, 1.0f } } } );
 
     ImGui_ImplVulkan_RenderDrawData( ImGui::GetDrawData( ), this->commandBuffers.get( )[imageIndex] );
 
@@ -93,8 +95,7 @@ namespace RAYEXEC_NAMESPACE
 
   void Gui::initDescriptorPool( )
   {
-    std::vector<vk::DescriptorPoolSize> poolSizes =
-    {
+    std::vector<vk::DescriptorPoolSize> poolSizes = {
       { vk::DescriptorType::eSampler, 1000 },
       { vk::DescriptorType::eCombinedImageSampler, 1000 },
       { vk::DescriptorType::eSampledImage, 1000 },
@@ -113,15 +114,15 @@ namespace RAYEXEC_NAMESPACE
 
   void Gui::initRenderPass( const Surface* const surface )
   {
-    vk::AttachmentDescription attachment( { },                                      // flags
-                                          surface->getFormat( ),                    // format
-                                          vk::SampleCountFlagBits::e1,              // samples
-                                          vk::AttachmentLoadOp::eLoad,              // loadOp
-                                          vk::AttachmentStoreOp::eStore,            // storeOp
-                                          vk::AttachmentLoadOp::eDontCare,          // stencilLoadOp
-                                          vk::AttachmentStoreOp::eDontCare,         // stencilStoreOp
-                                          vk::ImageLayout::ePresentSrcKHR,          // initialLayout
-                                          vk::ImageLayout::ePresentSrcKHR );        // finalLayout          
+    vk::AttachmentDescription attachment( { },                               // flags
+                                          surface->getFormat( ),             // format
+                                          vk::SampleCountFlagBits::e1,       // samples
+                                          vk::AttachmentLoadOp::eLoad,       // loadOp
+                                          vk::AttachmentStoreOp::eStore,     // storeOp
+                                          vk::AttachmentLoadOp::eDontCare,   // stencilLoadOp
+                                          vk::AttachmentStoreOp::eDontCare,  // stencilStoreOp
+                                          vk::ImageLayout::ePresentSrcKHR,   // initialLayout
+                                          vk::ImageLayout::ePresentSrcKHR ); // finalLayout
 
     vk::AttachmentReference colorAttachment( 0,                                          // attachment
                                              vk::ImageLayout::eColorAttachmentOptimal ); // layout
@@ -137,21 +138,21 @@ namespace RAYEXEC_NAMESPACE
                                     0,                                // preserveAttachemntCount
                                     nullptr );                        // pPreserveAttachments
 
-    vk::SubpassDependency dependency( VK_SUBPASS_EXTERNAL,                                // srcSubpass
-                                      0,                                                  // dstSubpass
-                                      vk::PipelineStageFlagBits::eColorAttachmentOutput,  // srcStageMask
-                                      vk::PipelineStageFlagBits::eColorAttachmentOutput,  // dstStageMask
-                                      vk::AccessFlagBits::eColorAttachmentWrite,          // srcAccessMask
-                                      vk::AccessFlagBits::eColorAttachmentWrite,          // dstAccessMask
-                                      { } );                                              // dependencyFlags
+    vk::SubpassDependency dependency( VK_SUBPASS_EXTERNAL,                               // srcSubpass
+                                      0,                                                 // dstSubpass
+                                      vk::PipelineStageFlagBits::eColorAttachmentOutput, // srcStageMask
+                                      vk::PipelineStageFlagBits::eColorAttachmentOutput, // dstStageMask
+                                      vk::AccessFlagBits::eColorAttachmentWrite,         // srcAccessMask
+                                      vk::AccessFlagBits::eColorAttachmentWrite,         // dstAccessMask
+                                      { } );                                             // dependencyFlags
 
-    vk::RenderPassCreateInfo info( { },          // flags
-                                   1,            // attachmentCount
-                                   &attachment,  // pAttachments
-                                   1,            // subpassCount
-                                   &subpass,     // pSubpasses
-                                   1,            // dependencyCount
-                                   &dependency); // pDependencies
+    vk::RenderPassCreateInfo info( { },           // flags
+                                   1,             // attachmentCount
+                                   &attachment,   // pAttachments
+                                   1,             // subpassCount
+                                   &subpass,      // pSubpasses
+                                   1,             // dependencyCount
+                                   &dependency ); // pDependencies
 
     this->renderPass.init( { attachment }, { subpass }, { dependency } );
   }
@@ -160,7 +161,7 @@ namespace RAYEXEC_NAMESPACE
   {
     CommandBuffer commandBuffer( this->commandPool.get( ) );
     commandBuffer.begin( );
-    
+
     RX_ASSERT( ImGui_ImplVulkan_CreateFontsTexture( commandBuffer.get( 0 ) ), "Failed to create ImGui fonts texture." );
 
     commandBuffer.end( );
@@ -179,4 +180,4 @@ namespace RAYEXEC_NAMESPACE
     for ( size_t i = 0; i < this->framebuffers.size( ); ++i )
       this->framebuffers[i] = vk::Initializer::initFramebufferUnique( { swapchainImageViews[i] }, this->renderPass.get( ), this->swapchainImageExtent );
   }
-}
+} // namespace RAYEXEC_NAMESPACE

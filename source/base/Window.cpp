@@ -32,7 +32,7 @@ namespace RAYEXEC_NAMESPACE
 
     if ( this->window == nullptr )
     {
-      RX_ERROR( "Failed to create window. Closing application." ); 
+      RX_ERROR( "Failed to create window. Closing application." );
       return false;
     }
 
@@ -49,7 +49,7 @@ namespace RAYEXEC_NAMESPACE
   {
     // Updates local timer bound to this window.
     time.update( );
-    
+
     // Fetch the latest window dimensions.
     int width, height;
     SDL_GetWindowSize( this->window, &width, &height );
@@ -68,7 +68,7 @@ namespace RAYEXEC_NAMESPACE
 
   void Window::resize( int width, int height )
   {
-    this->width = width;
+    this->width  = width;
     this->height = height;
 
 #if defined( _WIN32 ) || defined( _WIN64 )
@@ -84,8 +84,8 @@ namespace RAYEXEC_NAMESPACE
     if ( result != SDL_TRUE )
       RX_ERROR( "Failed to get extensions required by SDL." );
 
-    const char** sdlExtensionsNames = new const char* [sdlExtensionsCount];
-    result = SDL_Vulkan_GetInstanceExtensions( this->window, &sdlExtensionsCount, sdlExtensionsNames );
+    const char** sdlExtensionsNames = new const char*[sdlExtensionsCount];
+    result                          = SDL_Vulkan_GetInstanceExtensions( this->window, &sdlExtensionsCount, sdlExtensionsNames );
 
     if ( result != SDL_TRUE )
       RX_ERROR( "Failed to get extensions required by SDL." );
@@ -120,12 +120,12 @@ namespace RAYEXEC_NAMESPACE
 
   bool Window::changed( )
   {
-    static int prevWidth = this->width;
+    static int prevWidth  = this->width;
     static int prevHeight = this->height;
 
     if ( this->width != prevWidth || this->height != prevHeight )
     {
-      prevWidth = this->width;
+      prevWidth  = this->width;
       prevHeight = this->height;
       return true;
     }
@@ -140,4 +140,4 @@ namespace RAYEXEC_NAMESPACE
 
     return false;
   }
-}
+} // namespace RAYEXEC_NAMESPACE

@@ -1,4 +1,5 @@
 #include "api/buffers/CommandBuffer.hpp"
+
 #include "api/misc/Components.hpp"
 
 namespace RAYEXEC_NAMESPACE
@@ -28,7 +29,7 @@ namespace RAYEXEC_NAMESPACE
 
   void CommandBuffer::free( )
   {
-    g_device.freeCommandBuffers( this->commandPool, static_cast< uint32_t >( this->commandBuffers.size( ) ), this->commandBuffers.data( ) );
+    g_device.freeCommandBuffers( this->commandPool, static_cast<uint32_t>( this->commandBuffers.size( ) ), this->commandBuffers.data( ) );
   }
 
   void CommandBuffer::reset( )
@@ -51,13 +52,13 @@ namespace RAYEXEC_NAMESPACE
   {
     if ( this->beginInfo.flags & vk::CommandBufferUsageFlagBits::eOneTimeSubmit )
     {
-      vk::SubmitInfo submitInfo( static_cast< uint32_t >( waitSemaphores.size( ) ),   // waitSemaphoreCount
-                                 waitSemaphores.data( ),                              // pWaitSemaphores
-                                 waitDstStageMask,                                    // pWaitDstStageMask
-                                 static_cast< uint32_t >( this->commandBuffers.size( ) ), // commandBufferCount
-                                 this->commandBuffers.data( ),                            // pCommandBuffers
-                                 static_cast< uint32_t >( signalSemaphores.size( ) ), // signalSemaphoreCount
-                                 signalSemaphores.data( ) );                          // pSignalSemaphores
+      vk::SubmitInfo submitInfo( static_cast<uint32_t>( waitSemaphores.size( ) ),       // waitSemaphoreCount
+                                 waitSemaphores.data( ),                                // pWaitSemaphores
+                                 waitDstStageMask,                                      // pWaitDstStageMask
+                                 static_cast<uint32_t>( this->commandBuffers.size( ) ), // commandBufferCount
+                                 this->commandBuffers.data( ),                          // pCommandBuffers
+                                 static_cast<uint32_t>( signalSemaphores.size( ) ),     // signalSemaphoreCount
+                                 signalSemaphores.data( ) );                            // pSignalSemaphores
 
       if ( queue.submit( 1, &submitInfo, nullptr ) != vk::Result::eSuccess )
         RX_ERROR( "Failed to submit" );
@@ -67,4 +68,4 @@ namespace RAYEXEC_NAMESPACE
     else
       RX_ERROR( "Only command buffers with a usage flag containing eOneTimeSubmit should be submitted automatically" );
   }
-}
+} // namespace RAYEXEC_NAMESPACE

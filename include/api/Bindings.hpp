@@ -1,8 +1,8 @@
 #ifndef BINDING_HPP
 #define BINDING_HPP
 
-#include "api/utility/Initializers.hpp"
 #include "api/utility/Helpers.hpp"
+#include "api/utility/Initializers.hpp"
 
 namespace RAYEXEC_NAMESPACE
 {
@@ -27,7 +27,7 @@ namespace RAYEXEC_NAMESPACE
     void write( const std::vector<vk::DescriptorSet>& sets, uint32_t binding, vk::WriteDescriptorSetAccelerationStructureKHR* pWriteDescriptorSetAccelerationStructureKHR );
 
     void write( const std::vector<vk::DescriptorSet>& sets, uint32_t binding, vk::DescriptorImageInfo* pImageInfo );
-    
+
     void write( const std::vector<vk::DescriptorSet>& sets, uint32_t binding, vk::DescriptorBufferInfo* pBufferInfo );
 
     void write( const std::vector<vk::DescriptorSet>& sets, uint32_t binding, const std::vector<vk::DescriptorBufferInfo>& uniformBufferInfos );
@@ -41,6 +41,6 @@ namespace RAYEXEC_NAMESPACE
 
     std::vector<std::vector<vk::WriteDescriptorSet>> writes;
   };
-}
+} // namespace RAYEXEC_NAMESPACE
 
 #endif // BINDING_HPP

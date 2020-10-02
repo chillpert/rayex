@@ -1,4 +1,5 @@
 #include "api/Swapchain.hpp"
+
 #include "api/misc/Components.hpp"
 #include "api/utility/Initializers.hpp"
 
@@ -23,16 +24,16 @@ namespace RAYEXEC_NAMESPACE
     if ( minImageCount > surfaceCapabilities.maxImageCount )
       minImageCount = surfaceCapabilities.maxImageCount;
 
-    createInfo.minImageCount = minImageCount;
-    createInfo.imageFormat = surface->getFormat( );
+    createInfo.minImageCount   = minImageCount;
+    createInfo.imageFormat     = surface->getFormat( );
     createInfo.imageColorSpace = surface->getColorSpace( );
-    createInfo.preTransform = surfaceCapabilities.currentTransform;
+    createInfo.preTransform    = surfaceCapabilities.currentTransform;
 
     // Prefer opaque bit over any other composite alpha value.
     createInfo.compositeAlpha = surfaceCapabilities.supportedCompositeAlpha & vk::CompositeAlphaFlagBitsKHR::eOpaque ? vk::CompositeAlphaFlagBitsKHR::eOpaque :
-                                surfaceCapabilities.supportedCompositeAlpha & vk::CompositeAlphaFlagBitsKHR::ePreMultiplied ? vk::CompositeAlphaFlagBitsKHR::ePreMultiplied :
-                                surfaceCapabilities.supportedCompositeAlpha & vk::CompositeAlphaFlagBitsKHR::ePostMultiplied ? vk::CompositeAlphaFlagBitsKHR::ePostMultiplied :
-                                vk::CompositeAlphaFlagBitsKHR::eInherit;
+                                                                                                                       surfaceCapabilities.supportedCompositeAlpha & vk::CompositeAlphaFlagBitsKHR::ePreMultiplied ? vk::CompositeAlphaFlagBitsKHR::ePreMultiplied :
+                                                                                                                                                                                                                     surfaceCapabilities.supportedCompositeAlpha & vk::CompositeAlphaFlagBitsKHR::ePostMultiplied ? vk::CompositeAlphaFlagBitsKHR::ePostMultiplied :
+                                                                                                                                                                                                                                                                                                                    vk::CompositeAlphaFlagBitsKHR::eInherit;
 
     // Handle the swap chain image extent.
     if ( surfaceCapabilities.currentExtent.width != UINT32_MAX )
@@ -68,15 +69,15 @@ namespace RAYEXEC_NAMESPACE
       RX_FATAL( "The surface does not support a single array layer." );
 
     createInfo.imageArrayLayers = 1;
-    createInfo.imageUsage = vk::ImageUsageFlagBits::eColorAttachment | vk::ImageUsageFlagBits::eTransferDst;
+    createInfo.imageUsage       = vk::ImageUsageFlagBits::eColorAttachment | vk::ImageUsageFlagBits::eTransferDst;
 
     std::vector<uint32_t> queueFamilyIndices = { g_graphicsFamilyIndex };
 
     if ( queueFamilyIndices.size( ) > 1 )
     {
-      createInfo.imageSharingMode = vk::SharingMode::eConcurrent;
+      createInfo.imageSharingMode      = vk::SharingMode::eConcurrent;
       createInfo.queueFamilyIndexCount = static_cast<uint32_t>( queueFamilyIndices.size( ) );
-      createInfo.pQueueFamilyIndices = queueFamilyIndices.data( );
+      createInfo.pQueueFamilyIndices   = queueFamilyIndices.data( );
     }
     else
       createInfo.imageSharingMode = vk::SharingMode::eExclusive;
@@ -88,7 +89,7 @@ namespace RAYEXEC_NAMESPACE
     g_swapchain = this->swapchain.get( );
 
     initImages( minImageCount, surface->getFormat( ) );
-    initDepthImage( );    
+    initDepthImage( );
     initFramebuffers( renderPass );
   }
 
@@ -140,9 +141,9 @@ namespace RAYEXEC_NAMESPACE
     // Depth image for depth buffering
     vk::Format depthFormat = getSupportedDepthFormat( g_physicalDevice );
 
-    auto imageCreateInfo = vk::Helper::getImageCreateInfo( vk::Extent3D( this->extent.width, this->extent.height, 1 ) );
+    auto imageCreateInfo   = vk::Helper::getImageCreateInfo( vk::Extent3D( this->extent.width, this->extent.height, 1 ) );
     imageCreateInfo.format = depthFormat;
-    imageCreateInfo.usage = vk::ImageUsageFlagBits::eDepthStencilAttachment;
+    imageCreateInfo.usage  = vk::ImageUsageFlagBits::eDepthStencilAttachment;
 
     this->depthImage.init( imageCreateInfo );
 
@@ -162,4 +163,4 @@ namespace RAYEXEC_NAMESPACE
     std::vector<vk::Format> candidates { vk::Format::eD32Sfloat, vk::Format::eD32SfloatS8Uint, vk::Format::eD24UnormS8Uint };
     return Image::findSupportedFormat( physicalDevice, candidates, vk::FormatFeatureFlagBits::eDepthStencilAttachment, vk::ImageTiling::eOptimal );
   }
-}
+} // namespace RAYEXEC_NAMESPACE

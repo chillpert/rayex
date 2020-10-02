@@ -6,7 +6,7 @@
 namespace RAYEXEC_NAMESPACE
 {
   /// A minimal camera implementation.
-  /// 
+  ///
   /// This class acts like an interface for the client by providing the most important camera-related matrices as well as the camera's position, which are required by the rendering API.
   /// ### Example
   /// ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~.cpp
@@ -28,7 +28,7 @@ namespace RAYEXEC_NAMESPACE
     RX_API ~Camera( ) = default;
 
     /// Is used to update camera vectors etc.
-    /// 
+    ///
     /// The client has to implement this function to work like intended.
     /// @note The function will be called every tick.
     virtual void update( ) { };
@@ -62,10 +62,10 @@ namespace RAYEXEC_NAMESPACE
 
     /// @return The view matrix inversed.
     inline const glm::mat4& getViewInverseMatrix( ) const { return viewInverse; }
-    
+
     /// @return The projection matrix inversed.
     inline const glm::mat4& getProjectionInverseMatrix( ) const { return projectionInverse; }
-    
+
     /// Re-calculates the camera's view matrix as well as the inversed view matrix.
     RX_API void updateViewMatrix( );
 
@@ -85,27 +85,27 @@ namespace RAYEXEC_NAMESPACE
     /// @note Only needs to be called if mouse was moved.
     RX_API void updateVectors( );
 
-    int width; ///< The width of the viewport.
+    int width;  ///< The width of the viewport.
     int height; ///< The height of the viewport.
 
     glm::vec3 position; ///< The camera's position.
-    
-    glm::mat4 view = glm::mat4( 1.0f ); ///< The view matrix.
+
+    glm::mat4 view       = glm::mat4( 1.0f ); ///< The view matrix.
     glm::mat4 projection = glm::mat4( 1.0f ); ///< The projection matrix
 
-    glm::mat4 viewInverse = glm::mat4( 1.0f ); ///< The view matrix inversed.
+    glm::mat4 viewInverse       = glm::mat4( 1.0f ); ///< The view matrix inversed.
     glm::mat4 projectionInverse = glm::mat4( 1.0f ); ///< The projection matrix inversed.
 
     glm::vec3 worldUp = { 0.0f, 1.0f, 0.0f }; ///< The world up vector.
-    glm::vec3 up = { }; ///< The local up vector.
-    glm::vec3 right = { }; ///< The local right vector.
-    glm::vec3 front = { }; ///< The viewing direction.
+    glm::vec3 up      = { };                  ///< The local up vector.
+    glm::vec3 right   = { };                  ///< The local right vector.
+    glm::vec3 front   = { };                  ///< The viewing direction.
 
-    float yaw = -90.0f; ///< The yaw (left and right).
-    float pitch = 0.0f; ///< The pitch (down and up).
-    float sensitivity = 0.06f; ///< The mouse sensitivity.
-    float fov = 45.0f; ///< The field of view.
+    float yaw         = -90.0f; ///< The yaw (left and right).
+    float pitch       = 0.0f;   ///< The pitch (down and up).
+    float sensitivity = 0.06f;  ///< The mouse sensitivity.
+    float fov         = 45.0f;  ///< The field of view.
   };
-}
+} // namespace RAYEXEC_NAMESPACE
 
 #endif // CAMERA_BASE_HPP

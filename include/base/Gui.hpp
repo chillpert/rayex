@@ -1,19 +1,18 @@
 #ifndef GUI_HPP
 #define GUI_HPP
 
-#include "api/buffers/CommandBuffer.hpp"
 #include "api/RenderPass.hpp"
-#include "api/Swapchain.hpp"
 #include "api/Surface.hpp"
-
+#include "api/Swapchain.hpp"
+#include "api/buffers/CommandBuffer.hpp"
 #include "external/ImGui/imgui.h"
 #include "external/ImGui/imgui_impl_vulkan.h"
 
 namespace RAYEXEC_NAMESPACE
 {
   /// A class to create an ImGui-based GUI.
-  /// 
-  /// This class acts like an interface for the client to create their own GUI. 
+  ///
+  /// This class acts like an interface for the client to create their own GUI.
   /// It is possible to create multiple GUI objects and re-assign them to the renderer at runtime.
   /// ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~.cpp
   /// class CustomGui : public Gui
@@ -21,14 +20,14 @@ namespace RAYEXEC_NAMESPACE
   /// private:
   ///   // Configure style and input of the GUI.
   ///   void configure() override { }
-  /// 
+  ///
   ///   // Put the rendering commands in here.
   ///   void render() override { }
   /// };
-  /// 
+  ///
   /// RayExecmyRenderer;
   /// myRenderer.init( );
-  /// 
+  ///
   /// // Put this line after the declaration of the RAYEXEC_NAMESPACE::RayExecobject.
   /// auto myGui = std::make_shared<CustomGui>( );
   /// myRenderer.setGui( myGui );
@@ -39,19 +38,19 @@ namespace RAYEXEC_NAMESPACE
   {
   public:
     RX_API virtual ~Gui( ) = default;
-    
+
     /// Returns the GUI's command buffer at the given index.
     /// @param index The index of the command buffer to access.
     /// @return Returns the Vulkan command buffer.
     inline const vk::CommandBuffer getCommandBuffer( uint32_t index ) const { return commandBuffers.get( index ); }
 
     /// Used to configure all ImGui settings.
-    /// 
+    ///
     /// The client should override this function if they want to change the style or various other configuration settings.
     RX_API virtual void configure( );
 
     /// This function is for calling the individual ImGui components, e.g. widgets.
-    /// 
+    ///
     /// The client should override this function to create their own GUI.
     RX_API virtual void render( );
 
@@ -101,14 +100,14 @@ namespace RAYEXEC_NAMESPACE
     void initFramebuffers( const std::vector<vk::ImageView>& swapchainImageViews );
 
   private:
-    vk::UniqueDescriptorPool descriptorPool; ///< A Vulkan descriptor pool with a unique handle.
-    vk::UniqueCommandPool commandPool; ///< A Vulkan command pool with a unique handle.
-    CommandBuffer commandBuffers; ///< A RAYEXEC_NAMESPACE::CommandBuffer.
-    RenderPass renderPass; ///< A Vulkan render pass.
+    vk::UniqueDescriptorPool descriptorPool;         ///< A Vulkan descriptor pool with a unique handle.
+    vk::UniqueCommandPool commandPool;               ///< A Vulkan command pool with a unique handle.
+    CommandBuffer commandBuffers;                    ///< A RAYEXEC_NAMESPACE::CommandBuffer.
+    RenderPass renderPass;                           ///< A Vulkan render pass.
     std::vector<vk::UniqueFramebuffer> framebuffers; ///< A vector of Vulkan framebuffers with unique handles.
 
     vk::Extent2D swapchainImageExtent; ///< The swapchain images' image extent.
   };
-}
+} // namespace RAYEXEC_NAMESPACE
 
 #endif // GUI_HPP

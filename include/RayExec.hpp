@@ -8,16 +8,16 @@
 namespace RAYEXEC_NAMESPACE
 {
   /// The main user interface.
-  /// 
+  ///
   /// This class provides everything to set up a main loop and fill the scene with geometry and light sources.
   /// ### Example
   /// ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~.cpp
   /// // The following example renders a cube in less than 10 lines of code.
   /// RayExecmyRenderer;
   /// myRenderer.init( );
-  /// 
+  ///
   /// myRenderer.pushNode( std::make_shared<GeometryNode>( "models/cube.obj", Material( "textures/metal.png" ) ) );
-  /// 
+  ///
   /// while ( myRenderer.isRunning( ) )
   /// {
   ///   myRenderer.run( );
@@ -41,14 +41,14 @@ namespace RAYEXEC_NAMESPACE
     RX_API RayExec( std::shared_ptr<Window> window, std::shared_ptr<Camera> camera );
 
     /// Initializes the renderer.
-    /// 
+    ///
     /// This function initializes the window subcomponent as well as the API.
     /// Furthermore, it copies all shaders, textures and models to the executables directory to avoid issues with full and relative paths.
     /// @todo The copying process is temporary for now and has to be changed for a release build.
     RX_API void init( );
 
     /// A single function to execute all subcomponents.
-    /// 
+    ///
     /// This function updates the window and the camera components and calls the update and render functions of the API.
     /// @see RAYEXEC_NAMESPACE::Camera::update(), RAYEXEC_NAMESPACE::Window::update(), RAYEXEC_NAMESPACE::Api::update(), RAYEXEC_NAMESPACE::Api::render()
     RX_API void run( );
@@ -58,7 +58,7 @@ namespace RAYEXEC_NAMESPACE
 
     /// @return Returns a pointer to the renderer's window.
     RX_API inline const std::shared_ptr<Window> getWindow( ) const { return window; }
-    
+
     /// @return Returns a pointer to the renderer's camera.
     RX_API inline const std::shared_ptr<Camera> getCamera( ) const { return camera; }
 
@@ -97,11 +97,11 @@ namespace RAYEXEC_NAMESPACE
   private:
     std::shared_ptr<Window> window; ///< A pointer to a RAYEXEC_NAMESPACE::Window object.
     std::shared_ptr<Camera> camera; ///< A pointer to a RAYEXEC_NAMESPACE::Camera object.
-    Api api; ///< Contains all Vulkan related components.
+    Api api;                        ///< Contains all Vulkan related components.
 
     bool initialized = false; ///< Keeps track of the initialization status.
-    bool running = true; ///< Keeps track of whether or not the main loop should still be continued.
+    bool running     = true;  ///< Keeps track of whether or not the main loop should still be continued.
   };
-}
+} // namespace RAYEXEC_NAMESPACE
 
 #endif // RAYEXEC_HPP

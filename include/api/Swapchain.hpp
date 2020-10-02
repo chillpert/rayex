@@ -42,7 +42,7 @@ namespace RAYEXEC_NAMESPACE
 
     /// @return Returns a vector containing all swapchain image views.
     /// @todo Returning by reference will result in size 0.
-    inline const std::vector<vk::ImageView> getImageViews( ) const { return vk::Helper::unpack<vk::ImageView>( this->imageViews ); } 
+    inline const std::vector<vk::ImageView> getImageViews( ) const { return vk::Helper::unpack<vk::ImageView>( this->imageViews ); }
 
     /// Used to set the desired image aspect flags.
     void setImageAspect( vk::ImageAspectFlags flags );
@@ -62,7 +62,7 @@ namespace RAYEXEC_NAMESPACE
     /// @param minImageCount The minimum amount of images in the swapchain.
     /// @param surfaceFormat The surface's format.
     void initImages( uint32_t minImageCount, vk::Format surfaceFormat );
-    
+
     /// Initializes the depth image for the depth attachment.
     void initDepthImage( );
 
@@ -72,16 +72,16 @@ namespace RAYEXEC_NAMESPACE
 
     vk::UniqueSwapchainKHR swapchain; ///< The Vulkan swapchain object with a unique handle.
 
-    vk::Extent2D extent; ///< The swapchain images' extent.
+    vk::Extent2D extent;                                                ///< The swapchain images' extent.
     vk::ImageAspectFlags imageAspect = vk::ImageAspectFlagBits::eColor; ///< The swapchain image's image aspect.
 
-    std::vector<vk::Image> images; ///< The swapchain images.
+    std::vector<vk::Image> images;               ///< The swapchain images.
     std::vector<vk::UniqueImageView> imageViews; ///< The swapchain images' image views with a unique handle.
 
     std::vector<vk::UniqueFramebuffer> framebuffers; ///< The swapchain images' framebuffers with a unique handle.
 
-    Image depthImage; ///< The depth image.
-    vk::UniqueImageView depthImageView; ///< The depth image's image views with a unique handle. 
+    Image depthImage;                   ///< The depth image.
+    vk::UniqueImageView depthImageView; ///< The depth image's image views with a unique handle.
 
     uint32_t currentImageIndex; ///< The current swapchain image index.
   };
@@ -90,6 +90,6 @@ namespace RAYEXEC_NAMESPACE
   /// @param physicalDevice The physical device to check.
   /// @return Returns the supported depth format.
   vk::Format getSupportedDepthFormat( vk::PhysicalDevice physicalDevice );
-}
+} // namespace RAYEXEC_NAMESPACE
 
 #endif // SWAPCHAIN_HPP

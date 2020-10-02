@@ -19,10 +19,10 @@ namespace RAYEXEC_NAMESPACE
 
     /// @return Returns the texture's image view.
     inline vk::ImageView getImageView( ) { return imageView.get( ); }
-    
+
     /// @return Returns the texture's sampler.
     inline vk::Sampler getSampler( ) { return sampler.get( ); }
-    
+
     /// @return Returns the relative path of the texture file.
     inline const std::string& getPath( ) const { return path; }
 
@@ -37,20 +37,21 @@ namespace RAYEXEC_NAMESPACE
     std::string path; ///< The relative path to the texture file.
 
     vk::UniqueImageView imageView; ///< The texture's Vulkan image view with a unique handle.
-    vk::UniqueSampler sampler; ///< The texture's Vulkan sampler with a unique handle.
-  
+    vk::UniqueSampler sampler;     ///< The texture's Vulkan sampler with a unique handle.
+
     static uint32_t textureCounter;
   };
-}
+} // namespace RAYEXEC_NAMESPACE
 
 namespace std
 {
   /// @cond INTERNAL
-  template<> struct hash<RAYEXEC_NAMESPACE::Texture>
+  template <>
+  struct hash<RAYEXEC_NAMESPACE::Texture>
   {
-    size_t operator()( const std::shared_ptr<RAYEXEC_NAMESPACE::Texture> texture ) const { return hash<std::string>( )( texture->getPath( ) ); }
+    size_t operator( )( const std::shared_ptr<RAYEXEC_NAMESPACE::Texture> texture ) const { return hash<std::string>( )( texture->getPath( ) ); }
   };
   /// @endcond
-}
+} // namespace std
 
 #endif // TEXTURE_HPP

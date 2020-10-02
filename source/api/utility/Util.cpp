@@ -1,4 +1,5 @@
 #include "api/utility/Util.hpp"
+
 #include "api/misc/Components.hpp"
 
 namespace RAYEXEC_NAMESPACE
@@ -7,16 +8,16 @@ namespace RAYEXEC_NAMESPACE
   {
     std::vector<char> parseShader( std::string_view path )
     {
-      std::string delimiter = "/";
-      std::string pathToFile = "";
-      std::string fileName = "";
+      std::string delimiter   = "/";
+      std::string pathToFile  = "";
+      std::string fileName    = "";
       std::string fileNameOut = "";
 
       size_t pos = path.find_last_of( delimiter );
       if ( pos != std::string::npos )
       {
         pathToFile = std::string( path.substr( 0, pos + 1 ) ).c_str( );
-        fileName = std::string( path.substr( pos + 1 ) ).c_str( );
+        fileName   = std::string( path.substr( pos + 1 ) ).c_str( );
       }
       else
         RX_ERROR( "Can not process shader paths." );
@@ -24,7 +25,7 @@ namespace RAYEXEC_NAMESPACE
       // This is the name of the resulting shader.
       // For example, myShader.frag will turn into myShader_frag.spv.
       fileNameOut = fileName;
-      delimiter = ".";
+      delimiter   = ".";
 
       pos = fileName.find_last_of( delimiter );
       if ( pos != std::string::npos )
@@ -68,10 +69,10 @@ namespace RAYEXEC_NAMESPACE
       if ( !file.is_open( ) )
         RX_ERROR( "Failed to open shader source file ", pathToFile );
 
-      std::string dirLightSearchTag = "#define TOTAL_DIRECTIONAL_LIGHTS";
-      std::string pointLightSearchTag = "#define TOTAL_POINT_LIGHTS";
+      std::string dirLightSearchTag    = "#define TOTAL_DIRECTIONAL_LIGHTS";
+      std::string pointLightSearchTag  = "#define TOTAL_POINT_LIGHTS";
       std::string totalModelsSearchTag = "#define TOTAL_MODELS";
-      
+
       std::string line = "";
       std::string processedContent;
       while ( std::getline( file, line ) )
@@ -111,5 +112,5 @@ namespace RAYEXEC_NAMESPACE
     {
       return { vec.x, vec.y, vec.z, vec.w };
     }
-  }
-}
+  } // namespace Util
+} // namespace RAYEXEC_NAMESPACE

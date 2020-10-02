@@ -1,4 +1,5 @@
 #include "base/Time.hpp"
+
 #include "pch/stdafx.hpp"
 
 namespace RAYEXEC_NAMESPACE
@@ -6,7 +7,7 @@ namespace RAYEXEC_NAMESPACE
   float Time::s_time;
   float Time::s_deltaTime;
 
-  int frames = 0;
+  int frames      = 0;
   float prevTime2 = 0.0f;
 
   const float timeToWaitForStartingBenchmark = 3.0f;
@@ -35,14 +36,14 @@ namespace RAYEXEC_NAMESPACE
 
   void Time::update( )
   {
-    s_time = static_cast<float> ( SDL_GetTicks( ) ) / 1000.0f;
+    s_time = static_cast<float>( SDL_GetTicks( ) ) / 1000.0f;
 
     float current_time = s_time;
 
     frames++;
 
     this->s_deltaTime = ( current_time - this->prevTime );
-    this->prevTime = current_time;
+    this->prevTime    = current_time;
 
     // Print fps every full second.
     if ( current_time - prevTime2 >= 1.0f )
@@ -55,8 +56,8 @@ namespace RAYEXEC_NAMESPACE
       }
 
       this->frames = frames;
-      frames = 0;
-      prevTime2 = current_time;
+      frames       = 0;
+      prevTime2    = current_time;
     }
   }
-}
+} // namespace RAYEXEC_NAMESPACE

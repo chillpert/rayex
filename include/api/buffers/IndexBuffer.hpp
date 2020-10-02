@@ -21,7 +21,7 @@ namespace RAYEXEC_NAMESPACE
       if ( initialize )
         init( indices );
     }
-    
+
     /// @return Returns the amount of indices in the buffer.
     inline uint32_t getCount( ) const { return count; }
 
@@ -30,7 +30,7 @@ namespace RAYEXEC_NAMESPACE
     inline vk::IndexType getType( ) const { return indexType; }
 
     /// Creates the buffer, allocates memory for it and fills it with the provided data.
-    /// 
+    ///
     /// To optimize the procedure a temporary staging buffer will be created.
     /// @param indices The index data.
     void init( std::vector<T>& indices )
@@ -73,9 +73,9 @@ namespace RAYEXEC_NAMESPACE
     }
 
   private:
-    uint32_t count; ///< The amount of indices in the buffer.
+    uint32_t count;          ///< The amount of indices in the buffer.
     vk::IndexType indexType; ///< The type of the index's data
   };
-}
+} // namespace RAYEXEC_NAMESPACE
 
 #endif // INDEX_BUFFER_HPP

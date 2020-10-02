@@ -20,7 +20,7 @@ namespace RAYEXEC_NAMESPACE
 
   void Camera::setSize( int width, int height )
   {
-    this->width = width;
+    this->width  = width;
     this->height = height;
 
     updateProjectionMatrix( );
@@ -87,6 +87,6 @@ namespace RAYEXEC_NAMESPACE
 
     this->front = glm::normalize( t_front );
     this->right = glm::normalize( glm::cross( this->front, this->worldUp ) );
-    this->up = glm::normalize( glm::cross( this->right, this->front ) );
+    this->up    = glm::normalize( glm::cross( this->right, this->front ) );
   }
-}
+} // namespace RAYEXEC_NAMESPACE

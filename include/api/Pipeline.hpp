@@ -1,8 +1,8 @@
 #ifndef PIPELINE_HPP
 #define PIPELINE_HPP
 
-#include "pch/stdafx.hpp"
 #include "Settings.hpp"
+#include "pch/stdafx.hpp"
 
 namespace RAYEXEC_NAMESPACE
 {
@@ -27,9 +27,9 @@ namespace RAYEXEC_NAMESPACE
     inline const vk::PipelineLayout getLayout( ) const { return this->layout.get( ); }
 
   private:
-    vk::UniquePipeline pipeline; ///< The Vulkan pipeline with a unique handle.
+    vk::UniquePipeline pipeline;     ///< The Vulkan pipeline with a unique handle.
     vk::UniquePipelineLayout layout; ///< The Vulkan pipeline layout with a unique handle.
   };
-}
+} // namespace RAYEXEC_NAMESPACE
 
 #endif // PIPELINE_HPP

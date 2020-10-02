@@ -38,14 +38,14 @@ namespace RAYEXEC_NAMESPACE
 
     /// Frees the command buffer.
     void free( );
-    
+
     /// Resets the command buffer.
     RX_API void reset( );
 
     /// Used to begin the command buffer recording.
     /// @param index An index to a command buffer to record to.
     void begin( size_t index = 0 );
-    
+
     /// Used to stop the command buffer recording.
     /// @param index An index to a command buffer to stop recording.
     void end( size_t index = 0 );
@@ -59,10 +59,10 @@ namespace RAYEXEC_NAMESPACE
 
   private:
     std::vector<vk::CommandBuffer> commandBuffers; ///< A vector of Vulkan command buffers.
-    
-    vk::CommandPool commandPool; ///< The Vulkan command pool used to allocate the command buffer from.
+
+    vk::CommandPool commandPool;          ///< The Vulkan command pool used to allocate the command buffer from.
     vk::CommandBufferBeginInfo beginInfo; ///< The Vulkan begin information of the command buffer.
   };
-}
+} // namespace RAYEXEC_NAMESPACE
 
 #endif // COMMAND_BUFFER_HPP

@@ -30,15 +30,15 @@ namespace RAYEXEC_NAMESPACE
 
       stagingBuffer.fill<T>( data.data( ) );
 
-      Buffer::init( size,                                                                                  // size                                                
+      Buffer::init( size,                                                                                  // size
                     vk::BufferUsageFlagBits::eTransferDst | vk::BufferUsageFlagBits::eStorageBuffer,       // usage
-                    { g_transferFamilyIndex },                                                             // queueFamilyIndices                                                  
+                    { g_transferFamilyIndex },                                                             // queueFamilyIndices
                     vk::MemoryPropertyFlagBits::eDeviceLocal | vk::MemoryPropertyFlagBits::eHostVisible ); // memoryPropertyFlags                                                                                                                // pNext of memory
 
       // Copy staging buffer to the actual index buffer.
       stagingBuffer.copyToBuffer( this->buffer.get( ) );
     }
   };
-}
+} // namespace RAYEXEC_NAMESPACE
 
 #endif // STORAGE_BUFFER_HPP

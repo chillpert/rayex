@@ -10,11 +10,11 @@ namespace RAYEXEC_NAMESPACE
   /// @ingroup API
   struct CameraUbo
   {
-    glm::mat4 view = glm::mat4( 1.0f );
-    glm::mat4 projection = glm::mat4( 1.0f );
-    glm::mat4 viewInverse = glm::mat4( 1.0f );
+    glm::mat4 view              = glm::mat4( 1.0f );
+    glm::mat4 projection        = glm::mat4( 1.0f );
+    glm::mat4 viewInverse       = glm::mat4( 1.0f );
     glm::mat4 projectionInverse = glm::mat4( 1.0f );
-    glm::vec3 position = glm::vec3( 1.0f );
+    glm::vec3 position          = glm::vec3( 1.0f );
   };
 
   /// A uniform buffer object for different light types.
@@ -32,7 +32,7 @@ namespace RAYEXEC_NAMESPACE
   {
   public:
     UniformBuffer( ) = default;
-    
+
     /// @param swapchainImagesCount The amount of images in the swapchain.
     /// @param initialize If true, the uniform buffer will be initialized right away without an additional call to init().
     template <typename T>
@@ -49,7 +49,7 @@ namespace RAYEXEC_NAMESPACE
     RX_API const std::vector<vk::Buffer> getRaw( ) const;
 
     /// Creates the uniform buffer and allocates memory for it.
-    /// 
+    ///
     /// The function will create as many uniform buffers as there are images in the swapchain.
     /// Additionally, it will create the descriptor buffer infos which can be later used to write to a descriptor set.
     /// @param swapchainImagesCount The amount of images in the swapchain.
@@ -83,10 +83,11 @@ namespace RAYEXEC_NAMESPACE
     }
 
     std::vector<vk::DescriptorBufferInfo> bufferInfos;
+
   private:
     std::vector<Buffer> buffers; ///< A vector of RAYEXEC_NAMESPACE::Buffers for the uniform buffers.
   };
 
-}
+} // namespace RAYEXEC_NAMESPACE
 
 #endif // UNIFORM_BUFFER_HPP

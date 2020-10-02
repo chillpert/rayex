@@ -1,14 +1,14 @@
 #ifndef WINDOW_HPP
 #define WINDOW_HPP
 
-#include "pch/stdafx.hpp"
-#include "base/Time.hpp"
 #include "base/Camera.hpp"
+#include "base/Time.hpp"
+#include "pch/stdafx.hpp"
 
 namespace RAYEXEC_NAMESPACE
 {
   /// Implements a SDL-based window.
-  /// 
+  ///
   /// In order to handle events the client has to create a class that inherits from Window.
   /// ### Example
   /// ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~.cpp
@@ -28,7 +28,7 @@ namespace RAYEXEC_NAMESPACE
     RX_API Window( int width = 900, int height = 600, const char* title = "My Application", uint32_t flags = 0 );
 
     /// Destructor of Window.
-    /// 
+    ///
     /// Will also clean up the object's resources.
     /// @see clean()
     RX_API virtual ~Window( );
@@ -37,7 +37,7 @@ namespace RAYEXEC_NAMESPACE
     RX_API virtual bool init( );
 
     /// Updates window-related components.
-    /// 
+    ///
     /// In case the client wants to handle input events, this function should be overwritten in the inherited class.
     /// @warning The client has to call Window::update() to ensure proper functionality.
     RX_API virtual bool update( );
@@ -80,13 +80,13 @@ namespace RAYEXEC_NAMESPACE
   protected:
     SDL_Window* window; ///< The actual SDL_Window object.
 
-    int width; ///< The window's width in pixels.
-    int height; ///< The window's height in pixels.
+    int width;         ///< The window's width in pixels.
+    int height;        ///< The window's height in pixels.
     const char* title; ///< The window's title.
-    uint32_t flags; ///< The window's flags.
+    uint32_t flags;    ///< The window's flags.
 
     Time time; ///< The timer that manages the application's timing.
   };
-}
+} // namespace RAYEXEC_NAMESPACE
 
 #endif // WINDOW_HPP

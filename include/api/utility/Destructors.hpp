@@ -44,7 +44,7 @@ namespace vk
     /// Free allocated memory.
     /// @param memory The memory that should be freed..
     void freeMemory( DeviceMemory memory );
-  }
-}
+  } // namespace Destructor
+} // namespace vk
 
 #endif // DESTRUCTORS_HPP

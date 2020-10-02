@@ -6,27 +6,31 @@ namespace RAYEXEC_NAMESPACE
     window( std::make_shared<Window>( ) ),
     camera( std::make_shared<Camera>( this->window->getWidth( ), this->window->getHeight( ) ) ),
     api( this->window, this->camera )
-  { }
+  {
+  }
 
   RayExec::RayExec( std::shared_ptr<Camera> camera ) :
     window( std::make_shared<Window>( ) ),
     camera( camera ),
     api( this->window, this->camera )
-  { }
+  {
+  }
 
   RayExec::RayExec( std::shared_ptr<Window> window ) :
     window( window ),
     camera( std::make_shared<Camera>( this->window->getWidth( ), this->window->getHeight( ) ) ),
     api( window, this->camera )
-  { }
+  {
+  }
 
   RayExec::RayExec( std::shared_ptr<Window> window, std::shared_ptr<Camera> camera ) :
     window( window ),
     camera( camera ),
     api( this->window, this->camera )
-  { }
+  {
+  }
 
-  void RayExec::init(  )
+  void RayExec::init( )
   {
     this->api.settings = &this->settings;
 
@@ -42,13 +46,13 @@ namespace RAYEXEC_NAMESPACE
     if ( this->initialized )
       return;
 
-  #ifdef RX_COPY_RESOURCES
+#ifdef RX_COPY_RESOURCES
     RX_INFO( "Copying resources to binary output directory. " );
 
     std::filesystem::copy( RX_RESOURCES_PATH "shaders", RX_PATH_TO_LIBRARY "shaders", std::filesystem::copy_options::overwrite_existing | std::filesystem::copy_options::recursive );
     std::filesystem::copy( RX_RESOURCES_PATH "models", RX_PATH_TO_LIBRARY "models", std::filesystem::copy_options::overwrite_existing | std::filesystem::copy_options::recursive );
     std::filesystem::copy( RX_RESOURCES_PATH "textures", RX_PATH_TO_LIBRARY "textures", std::filesystem::copy_options::overwrite_existing | std::filesystem::copy_options::recursive );
-  #endif
+#endif
 
     this->initialized = this->window->init( );
     this->api.init( );
@@ -56,7 +60,7 @@ namespace RAYEXEC_NAMESPACE
 
   void RayExec::run( )
   {
-    if ( !this->running || !this->initialized ) 
+    if ( !this->running || !this->initialized )
       return;
 
     this->running = this->window->update( );
@@ -67,7 +71,7 @@ namespace RAYEXEC_NAMESPACE
 
     this->running = this->api.render( );
 
-    if ( !this->running ) 
+    if ( !this->running )
       return;
 
     this->api.update( );
@@ -77,7 +81,7 @@ namespace RAYEXEC_NAMESPACE
   {
     this->camera = camera;
   }
-  
+
   void RayExec::setGui( std::shared_ptr<Gui> gui )
   {
     this->initialized ? this->api.setGui( gui, true ) : this->api.setGui( gui );
@@ -87,4 +91,4 @@ namespace RAYEXEC_NAMESPACE
   {
     this->api.setModels( modelPaths );
   }
-}
+} // namespace RAYEXEC_NAMESPACE

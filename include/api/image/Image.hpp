@@ -18,7 +18,7 @@ namespace RAYEXEC_NAMESPACE
 
     /// @return Returns the image's format.
     inline const vk::Format getFormat( ) const { return format; }
-    
+
     /// @return Returns the image's layout.
     inline const vk::ImageLayout getLayout( ) const { return layout; }
 
@@ -36,7 +36,7 @@ namespace RAYEXEC_NAMESPACE
     /// @param commandBuffer The command buffer that will be used to set up a pipeline barrier.
     /// @warning It is required to call vk::CommandBuffer::begin() or RAYEXEC_NAMESPACE::CommandBuffer::begin() before calling this function.
     void transitionToLayout( vk::ImageLayout layout, vk::CommandBuffer commandBuffer );
- 
+
     /// Retrieves a supported image format for a given physical device.
     /// @param physicalDevice The physical device to check.
     /// @param formatsToTest A vector of formats that will be checked for their support.
@@ -45,13 +45,13 @@ namespace RAYEXEC_NAMESPACE
     static vk::Format findSupportedFormat( vk::PhysicalDevice physicalDevice, const std::vector<vk::Format>& formatsToTest, vk::FormatFeatureFlagBits features, vk::ImageTiling tiling );
 
   protected:
-    vk::UniqueImage image; ///< The Vulkan image with a unique handle.
+    vk::UniqueImage image;         ///< The Vulkan image with a unique handle.
     vk::UniqueDeviceMemory memory; ///< The image's memory with a unique handle.
 
-    vk::Extent3D extent; ///< The image's extent.
-    vk::Format format; ///< The image's format.
+    vk::Extent3D extent;    ///< The image's extent.
+    vk::Format format;      ///< The image's format.
     vk::ImageLayout layout; ///< THe image's layout.
   };
-}
+} // namespace RAYEXEC_NAMESPACE
 
 #endif // IMAGE_HPP

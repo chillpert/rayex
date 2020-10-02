@@ -1,8 +1,9 @@
 #include "api/Pipeline.hpp"
-#include "api/misc/Vertex.hpp"
-#include "api/utility/Helpers.hpp"
+
 #include "api/misc/Components.hpp"
+#include "api/misc/Vertex.hpp"
 #include "api/raytracing/RayTracingBuilder.hpp"
+#include "api/utility/Helpers.hpp"
 #include "api/utility/Initializers.hpp"
 #include "api/utility/Util.hpp"
 
@@ -11,7 +12,7 @@ namespace RAYEXEC_NAMESPACE
   void Pipeline::init( const std::vector<vk::DescriptorSetLayout>& descriptorSetLayouts, vk::RenderPass renderPass, vk::Viewport viewport, vk::Rect2D scissor, const Settings* const settings )
   {
     // TODO: this has to be more adjustable.
-    auto bindingDescription = Vertex::getBindingDescriptions( );
+    auto bindingDescription    = Vertex::getBindingDescriptions( );
     auto attributeDescriptions = Vertex::getAttributeDescriptions( );
 
     vk::PipelineVertexInputStateCreateInfo vertexInputInfo( { },                                                    // flags
@@ -24,7 +25,7 @@ namespace RAYEXEC_NAMESPACE
                                                             vk::PrimitiveTopology::eTriangleList, // topology
                                                             VK_FALSE );                           // primitiveRestartEnable
 
-    vk::PipelineViewportStateCreateInfo viewportState( { },        // flags 
+    vk::PipelineViewportStateCreateInfo viewportState( { },        // flags
                                                        1,          // viewportCount
                                                        &viewport,  // pViewports
                                                        1,          // scissorCount
@@ -82,7 +83,6 @@ namespace RAYEXEC_NAMESPACE
     vk::PipelineDynamicStateCreateInfo dynamicStateInfo( { },                                            // flags
                                                          static_cast<uint32_t>( dynamicStates.size( ) ), // dynamicStateCount
                                                          dynamicStates.data( ) );                        // pDynamicStates
-
 
     uint32_t pushConstantSize = sizeof( float ) + sizeof( glm::vec3 );
     if ( g_physicalDeviceLimits.maxPushConstantsSize < pushConstantSize )
@@ -166,20 +166,20 @@ namespace RAYEXEC_NAMESPACE
 
     for ( auto& group : groups )
     {
-      group.generalShader = VK_SHADER_UNUSED_KHR;
-      group.closestHitShader = VK_SHADER_UNUSED_KHR;
-      group.anyHitShader = VK_SHADER_UNUSED_KHR;
+      group.generalShader      = VK_SHADER_UNUSED_KHR;
+      group.closestHitShader   = VK_SHADER_UNUSED_KHR;
+      group.anyHitShader       = VK_SHADER_UNUSED_KHR;
       group.intersectionShader = VK_SHADER_UNUSED_KHR;
     }
 
     groups[0].generalShader = RX_SHADER_GROUP_INDEX_RGEN;
-    groups[0].type = vk::RayTracingShaderGroupTypeKHR::eGeneral;
+    groups[0].type          = vk::RayTracingShaderGroupTypeKHR::eGeneral;
 
     groups[1].generalShader = RX_SHADER_GROUP_INDEX_MISS;
-    groups[1].type = vk::RayTracingShaderGroupTypeKHR::eGeneral;
+    groups[1].type          = vk::RayTracingShaderGroupTypeKHR::eGeneral;
 
     groups[2].closestHitShader = RX_SHADER_GROUP_INDEX_CHIT;
-    groups[2].type = vk::RayTracingShaderGroupTypeKHR::eTrianglesHitGroup;
+    groups[2].type             = vk::RayTracingShaderGroupTypeKHR::eTrianglesHitGroup;
 
     g_shaderGroups = static_cast<uint32_t>( groups.size( ) );
 
@@ -194,8 +194,8 @@ namespace RAYEXEC_NAMESPACE
                                                     this->layout.get( ),                           // layout
                                                     nullptr,                                       // basePipelineHandle
                                                     0 );                                           // basePipelineIndex
-  
+
     this->pipeline = g_device.createRayTracingPipelineKHRUnique( nullptr, createInfo );
     RX_ASSERT( this->pipeline, "Failed to create ray tracing pipeline." );
   }
-}
+} // namespace RAYEXEC_NAMESPACE

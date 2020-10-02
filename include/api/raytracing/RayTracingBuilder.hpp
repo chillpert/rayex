@@ -1,11 +1,11 @@
 #ifndef RAYTRACING_BUILDER_HPP
 #define RAYTRACING_BUILDER_HPP
 
-#include "api/raytracing/AccelerationStructure.hpp"
-#include "base/Model.hpp"
-#include "api/buffers/Buffer.hpp"
 #include "api/Swapchain.hpp"
+#include "api/buffers/Buffer.hpp"
+#include "api/raytracing/AccelerationStructure.hpp"
 #include "base/GeometryNode.hpp"
+#include "base/Model.hpp"
 
 namespace RAYEXEC_NAMESPACE
 {
@@ -19,7 +19,7 @@ namespace RAYEXEC_NAMESPACE
 
     /// Retrieves the physical device's ray tracing capabilities.
     void init( );
-    
+
     /// Destroys all bottom and top level acceleration structures.
     void destroy( );
 
@@ -77,15 +77,15 @@ namespace RAYEXEC_NAMESPACE
     vk::PhysicalDeviceRayTracingPropertiesKHR rtProperties; ///< The physical device's ray tracing capabilities.
 
     std::vector<Blas> blas_; ///< A vector containing all bottom level acceleration structures.
-    Tlas tlas; ///< The top level acceleration structure.
+    Tlas tlas;               ///< The top level acceleration structure.
 
     Buffer instanceBuffer; ///< The instance buffer.
-  
+
     Buffer sbtBuffer; ///< The shader binding table buffer.
 
-    Image storageImage; ///< The storage image.
+    Image storageImage;                   ///< The storage image.
     vk::UniqueImageView storageImageView; ///< The storage image's image view.
   };
-}
+} // namespace RAYEXEC_NAMESPACE
 
 #endif // RAYTRACING_BUILDER_HPP

@@ -1,4 +1,5 @@
 #include "api/image/Texture.hpp"
+
 #include "api/buffers/Buffer.hpp"
 #include "api/utility/Helpers.hpp"
 #include "api/utility/Initializers.hpp"
@@ -11,7 +12,7 @@ namespace RAYEXEC_NAMESPACE
   uint32_t Texture::textureCounter = 0;
 
   Texture::Texture( ) :
-    offset( this->textureCounter++ ) { }
+    offset( this->textureCounter++ ) {}
 
   Texture::Texture( std::string_view path, bool initialize ) :
     offset( this->textureCounter++ )
@@ -54,6 +55,6 @@ namespace RAYEXEC_NAMESPACE
     this->imageView = vk::Initializer::initImageViewUnique( this->image.get( ), this->format );
 
     auto samplerCreateInfo = vk::Helper::getSamplerCreateInfo( );
-    this->sampler = vk::Initializer::initSamplerUnique( samplerCreateInfo );
+    this->sampler          = vk::Initializer::initSamplerUnique( samplerCreateInfo );
   }
-}
+} // namespace RAYEXEC_NAMESPACE

@@ -1,8 +1,9 @@
 #include "api/Api.hpp"
+
 #include "api/misc/Components.hpp"
-#include "api/utility/Initializers.hpp"
-#include "api/utility/Helpers.hpp"
 #include "api/utility/Destructors.hpp"
+#include "api/utility/Helpers.hpp"
+#include "api/utility/Initializers.hpp"
 #include "api/utility/Util.hpp"
 
 namespace RAYEXEC_NAMESPACE
@@ -14,8 +15,7 @@ namespace RAYEXEC_NAMESPACE
   std::vector<const char*> extensions = { "VK_KHR_get_physical_device_properties2" };
 #endif
 
-  std::vector<const char*> deviceExtensions =
-  {
+  std::vector<const char*> deviceExtensions = {
     VK_KHR_GET_MEMORY_REQUIREMENTS_2_EXTENSION_NAME,
     VK_EXT_DESCRIPTOR_INDEXING_EXTENSION_NAME,
     VK_KHR_BUFFER_DEVICE_ADDRESS_EXTENSION_NAME,
@@ -35,13 +35,15 @@ namespace RAYEXEC_NAMESPACE
     window( window ),
     camera( camera ),
     gui( nullptr )
-  { }
+  {
+  }
 
   Api::Api( std::shared_ptr<Window> window, std::shared_ptr<Gui> gui, std::shared_ptr<Camera> camera ) :
     window( window ),
     camera( camera ),
     gui( gui )
-  { }
+  {
+  }
 
   Api::~Api( )
   {
@@ -80,7 +82,7 @@ namespace RAYEXEC_NAMESPACE
     this->surface.init( );
 
     // Physical device
-    this->physicalDevice = vk::Initializer::initPhysicalDevice(  );
+    this->physicalDevice = vk::Initializer::initPhysicalDevice( );
 
     // Reassess the support of the preferred surface settings.
     this->surface.assessSettings( );
@@ -103,10 +105,10 @@ namespace RAYEXEC_NAMESPACE
 
     // Command pools
     this->graphicsCmdPool = vk::Initializer::initCommandPoolUnique( g_graphicsFamilyIndex, vk::CommandPoolCreateFlagBits::eResetCommandBuffer );
-    g_graphicsCmdPool = this->graphicsCmdPool.get( );
+    g_graphicsCmdPool     = this->graphicsCmdPool.get( );
 
     this->transferCmdPool = vk::Initializer::initCommandPoolUnique( g_transferFamilyIndex, { } );
-    g_transferCmdPool = this->transferCmdPool.get( );
+    g_transferCmdPool     = this->transferCmdPool.get( );
 
     // Descriptor sets and layouts
     initDescriptorSets( );
@@ -126,7 +128,7 @@ namespace RAYEXEC_NAMESPACE
 
     // GUI
     initGui( );
-    
+
     // Init and record swapchain command buffers.
     recordSwapchainCommandBuffers( );
 
@@ -197,7 +199,7 @@ namespace RAYEXEC_NAMESPACE
 
     // Submits / executes the current image's / framebuffer's command buffer.
     auto pWaitDstStageMask = vk::PipelineStageFlagBits::eColorAttachmentOutput;
-    auto submitInfo = vk::Helper::getSubmitInfo( this->imageAvailableSemaphores[currentFrame].get( ), this->finishedRenderSemaphores[currentFrame].get( ), commandBuffers, pWaitDstStageMask );
+    auto submitInfo        = vk::Helper::getSubmitInfo( this->imageAvailableSemaphores[currentFrame].get( ), this->finishedRenderSemaphores[currentFrame].get( ), commandBuffers, pWaitDstStageMask );
     g_graphicsQueue.submit( submitInfo, this->inFlightFences[currentFrame].get( ) );
 
     // Tell the presentation engine that the current image is ready.
@@ -309,19 +311,17 @@ namespace RAYEXEC_NAMESPACE
     if ( dynamic_cast<GeometryNode*>( node.get( ) ) )
     {
       auto ptr = std::dynamic_pointer_cast<GeometryNode>( node );
-      
+
       // Delete node
       for ( const auto& it : this->geometryNodes )
       {
         if ( it == ptr )
         {
-
         }
       }
     }
     else if ( dynamic_cast<LightNode*>( node.get( ) ) )
     {
-
     }
     else
     {
@@ -336,7 +336,7 @@ namespace RAYEXEC_NAMESPACE
     this->rayTracingBuilder.createTopLevelAS( this->geometryNodes );
 
     // Update ray tracing descriptor set.
-    vk::WriteDescriptorSetAccelerationStructureKHR tlasInfo( 1, 
+    vk::WriteDescriptorSetAccelerationStructureKHR tlasInfo( 1,
                                                              &this->rayTracingBuilder.getTlas( ).as.as );
 
     vk::DescriptorImageInfo storageImageInfo( nullptr,
@@ -357,8 +357,8 @@ namespace RAYEXEC_NAMESPACE
 
     // Rasterization pipeline
     glm::vec2 extent = { static_cast<float>( this->swapchain.getExtent( ).width ), static_cast<float>( this->swapchain.getExtent( ).height ) };
-    this->viewport = vk::Viewport( 0.0f, 0.0f, extent.x, extent.y, 0.0f, 1.0f );
-    this->scissor = vk::Rect2D( 0, this->swapchain.getExtent( ) );
+    this->viewport   = vk::Viewport( 0.0f, 0.0f, extent.x, extent.y, 0.0f, 1.0f );
+    this->scissor    = vk::Rect2D( 0, this->swapchain.getExtent( ) );
     return this->rsPipeline.init( { this->rsSceneDescriptorSetLayout.get( ), this->rsModelDescriptorSetLayout.get( ) }, this->renderPass.get( ), viewport, scissor, this->settings );
   }
 
@@ -414,7 +414,7 @@ namespace RAYEXEC_NAMESPACE
     auto model = it->second;
 
     updateAccelerationStructure( );
-    
+
     // Model RS descriptor set update.
     // This is only here because textures are as of now only part of a Material object which each node holds. That's why this is initilized here and not in setModels( ).
     auto diffuseIter = this->textures.find( node->material.diffuseTexture[0] );
@@ -439,7 +439,7 @@ namespace RAYEXEC_NAMESPACE
   void Api::recordSwapchainCommandBuffers( )
   {
     this->swapchainCommandBuffers.init( this->graphicsCmdPool.get( ), g_swapchainImageCount, vk::CommandBufferUsageFlagBits::eRenderPassContinue );
-    
+
     RX_INFO( "Started swapchain command buffers recording." );
 
     if ( this->settings->rayTrace )
@@ -477,7 +477,7 @@ namespace RAYEXEC_NAMESPACE
 
     // Set up render pass begin info
     std::array<vk::ClearValue, 2> clearValues;
-    clearValues[0].color = { Util::vec4toArray( this->settings->getClearColor( ) ) };
+    clearValues[0].color        = { Util::vec4toArray( this->settings->getClearColor( ) ) };
     clearValues[1].depthStencil = vk::ClearDepthStencilValue { 1.0f, 0 };
 
     // Start recording the swapchain framebuffers
@@ -494,13 +494,13 @@ namespace RAYEXEC_NAMESPACE
 
       // Dynamic states
       vk::Viewport viewport = this->viewport;
-      viewport.width = this->window->getWidth( );
-      viewport.height = this->window->getHeight( );
+      viewport.width        = this->window->getWidth( );
+      viewport.height       = this->window->getHeight( );
 
       this->swapchainCommandBuffers.get( imageIndex ).setViewport( 0, 1, &viewport ); // CMD
 
       vk::Rect2D scissor = this->scissor;
-      scissor.extent = this->window->getExtent( );
+      scissor.extent     = this->window->getExtent( );
 
       this->swapchainCommandBuffers.get( imageIndex ).setScissor( 0, 1, &scissor ); // CMD
 
@@ -510,32 +510,30 @@ namespace RAYEXEC_NAMESPACE
         auto model = it.second;
 
         uint32_t instanceCount = 1;
-        auto it2 = temp.find( it.first );
+        auto it2               = temp.find( it.first );
         if ( it2 != temp.end( ) )
           instanceCount = it2->second;
 
         vk::Buffer vertexBuffers[] = { model->vertexBuffer.get( ) };
-        vk::DeviceSize offsets[] = { 0 };
+        vk::DeviceSize offsets[]   = { 0 };
 
-        this->swapchainCommandBuffers.get( imageIndex ).bindVertexBuffers( 0,               // first binding
-                                                                           1,               // binding count
-                                                                           vertexBuffers,
-                                                                           offsets );
+        this->swapchainCommandBuffers.get( imageIndex ).bindVertexBuffers( 0, // first binding
+                                                                           1, // binding count
+                                                                           vertexBuffers, offsets );
 
         this->swapchainCommandBuffers.get( imageIndex ).bindIndexBuffer( model->indexBuffer.get( ),
-                                                                         0,                                 // offset
+                                                                         0, // offset
                                                                          model->indexBuffer.getType( ) );
 
         // TODO: Also bind ray tracing descriptor set.
         std::vector<vk::DescriptorSet> descriptorSets = { this->rsSceneDescriptorSets[imageIndex], model->rsDescriptorSets[imageIndex] };
 
-        this->swapchainCommandBuffers.get( imageIndex ).bindDescriptorSets( vk::PipelineBindPoint::eGraphics,
-                                                                            rsPipeline.getLayout( ),
+        this->swapchainCommandBuffers.get( imageIndex ).bindDescriptorSets( vk::PipelineBindPoint::eGraphics, rsPipeline.getLayout( ),
                                                                             0,                                               // first set
                                                                             static_cast<uint32_t>( descriptorSets.size( ) ), // descriptor set count
                                                                             descriptorSets.data( ),                          // descriptor sets
                                                                             0,                                               // dynamic offset count
-                                                                            nullptr );                                       // dynamic offsets 
+                                                                            nullptr );                                       // dynamic offsets
 
         this->swapchainCommandBuffers.get( imageIndex ).drawIndexed( model->indexBuffer.getCount( ), // index count
                                                                      instanceCount,                  // instance count
@@ -577,13 +575,12 @@ namespace RAYEXEC_NAMESPACE
 
         std::vector<vk::DescriptorSet> descriptorSets = { this->rtDescriptorSets[imageIndex], iter->second->rtDescriptorSets[imageIndex], this->rtSceneDescriptorSets[imageIndex] };
 
-        this->swapchainCommandBuffers.get( imageIndex ).bindDescriptorSets( vk::PipelineBindPoint::eRayTracingKHR,
-                                                                            this->rtPipeline.getLayout( ),
-                                                                            0,                                                           // first set
-                                                                            static_cast<uint32_t>( descriptorSets.size( ) ),             // descriptor set count
-                                                                            descriptorSets.data( ),                                      // descriptor sets
-                                                                            0,                                                           // dynamic offset count
-                                                                            nullptr );                                                   // dynamic offsets 
+        this->swapchainCommandBuffers.get( imageIndex ).bindDescriptorSets( vk::PipelineBindPoint::eRayTracingKHR, this->rtPipeline.getLayout( ),
+                                                                            0,                                               // first set
+                                                                            static_cast<uint32_t>( descriptorSets.size( ) ), // descriptor set count
+                                                                            descriptorSets.data( ),                          // descriptor sets
+                                                                            0,                                               // dynamic offset count
+                                                                            nullptr );                                       // dynamic offsets
 
         this->rayTracingBuilder.rayTrace( this->swapchainCommandBuffers.get( imageIndex ), this->swapchain.getImage( imageIndex ), this->swapchain.getExtent( ) );
       }
@@ -603,7 +600,7 @@ namespace RAYEXEC_NAMESPACE
     {
       this->imageAvailableSemaphores[i] = vk::Initializer::initSemaphoreUnique( );
       this->finishedRenderSemaphores[i] = vk::Initializer::initSemaphoreUnique( );
-      this->inFlightFences[i] = vk::Initializer::initFenceUnique( );
+      this->inFlightFences[i]           = vk::Initializer::initFenceUnique( );
     }
   }
 
@@ -619,19 +616,19 @@ namespace RAYEXEC_NAMESPACE
       this->rtBindings.add( 2, vk::DescriptorType::eUniformBuffer, vk::ShaderStageFlagBits::eRaygenKHR );
 
       this->rtDescriptorSetLayout = this->rtBindings.initLayoutUnique( );
-      this->rtDescriptorPool = this->rtBindings.initPoolUnique( g_swapchainImageCount );
-      this->rtDescriptorSets = this->rtBindings.initSets( this->rtDescriptorPool, this->rtDescriptorSetLayout );
+      this->rtDescriptorPool      = this->rtBindings.initPoolUnique( g_swapchainImageCount );
+      this->rtDescriptorSets      = this->rtBindings.initSets( this->rtDescriptorPool, this->rtDescriptorSetLayout );
     }
 
     // Create the descriptor set layout for models
     {
       // Vertex buffer
       this->rtModelBindings.add( 0, vk::DescriptorType::eStorageBuffer, vk::ShaderStageFlagBits::eClosestHitKHR );
-      // Index buffer                                 
+      // Index buffer
       this->rtModelBindings.add( 1, vk::DescriptorType::eStorageBuffer, vk::ShaderStageFlagBits::eClosestHitKHR );
 
       this->rtModelDescriptorSetLayout = this->rtModelBindings.initLayoutUnique( );
-      this->rtModelDescriptorPool = this->rtModelBindings.initPoolUnique( static_cast<uint32_t>( g_maxGeometryNodes ) * g_swapchainImageCount );
+      this->rtModelDescriptorPool      = this->rtModelBindings.initPoolUnique( static_cast<uint32_t>( g_maxGeometryNodes ) * g_swapchainImageCount );
     }
 
     // RT Scene descriptor set layout.
@@ -640,10 +637,10 @@ namespace RAYEXEC_NAMESPACE
       this->rtSceneBindings.add( 0, vk::DescriptorType::eUniformBuffer, vk::ShaderStageFlagBits::eClosestHitKHR );
       // Scene description buffer
       this->rtSceneBindings.add( 1, vk::DescriptorType::eStorageBuffer, vk::ShaderStageFlagBits::eClosestHitKHR );
-     
+
       this->rtSceneDescriptorSetLayout = this->rtSceneBindings.initLayoutUnique( );
-      this->rtSceneDescriptorPool = this->rtSceneBindings.initPoolUnique( g_swapchainImageCount );
-      this->rtSceneDescriptorSets = this->rtSceneBindings.initSets( this->rtSceneDescriptorPool, this->rtSceneDescriptorSetLayout );
+      this->rtSceneDescriptorPool      = this->rtSceneBindings.initPoolUnique( g_swapchainImageCount );
+      this->rtSceneDescriptorSets      = this->rtSceneBindings.initSets( this->rtSceneDescriptorPool, this->rtSceneDescriptorSetLayout );
     }
 
     // RS Scene descriptor set layout.
@@ -656,8 +653,8 @@ namespace RAYEXEC_NAMESPACE
       this->rsSceneBindings.add( 2, vk::DescriptorType::eStorageBuffer, vk::ShaderStageFlagBits::eVertex );
 
       this->rsSceneDescriptorSetLayout = this->rsSceneBindings.initLayoutUnique( );
-      this->rsSceneDescriptorPool = this->rsSceneBindings.initPoolUnique( g_swapchainImageCount );
-      this->rsSceneDescriptorSets = this->rsSceneBindings.initSets( this->rsSceneDescriptorPool, this->rsSceneDescriptorSetLayout );
+      this->rsSceneDescriptorPool      = this->rsSceneBindings.initPoolUnique( g_swapchainImageCount );
+      this->rsSceneDescriptorSets      = this->rsSceneBindings.initSets( this->rsSceneDescriptorPool, this->rsSceneDescriptorSetLayout );
     }
 
     // Rasterization descriptor set layout.
@@ -666,9 +663,9 @@ namespace RAYEXEC_NAMESPACE
       this->rsModelBindings.add( 0, vk::DescriptorType::eCombinedImageSampler, vk::ShaderStageFlagBits::eFragment );
 
       this->rsModelDescriptorSetLayout = this->rsModelBindings.initLayoutUnique( );
-      this->rsModelDescriptorPool = this->rsModelBindings.initPoolUnique( static_cast<uint32_t>( g_maxGeometryNodes ) * g_swapchainImageCount );
+      this->rsModelDescriptorPool      = this->rsModelBindings.initPoolUnique( static_cast<uint32_t>( g_maxGeometryNodes ) * g_swapchainImageCount );
     }
-    
+
     // Uniform buffers for camera
     this->cameraUniformBuffer.init<CameraUbo>( );
 
@@ -692,7 +689,7 @@ namespace RAYEXEC_NAMESPACE
     this->rtSceneBindings.write( this->rtSceneDescriptorSets, 0, this->lightsUniformBuffer.bufferInfos );
     this->rtSceneBindings.write( this->rtSceneDescriptorSets, 1, &rtInstancesInfo );
     this->rtSceneBindings.update( );
-    
+
     // Update RS scene descriptor sets.
     this->rsSceneBindings.write( this->rsSceneDescriptorSets, 0, this->cameraUniformBuffer.bufferInfos );
     this->rsSceneBindings.write( this->rsSceneDescriptorSets, 1, this->lightsUniformBuffer.bufferInfos );
@@ -704,7 +701,7 @@ namespace RAYEXEC_NAMESPACE
   {
     if ( this->settings->refreshPipeline )
     {
-      this->settings->refreshPipeline = false;
+      this->settings->refreshPipeline  = false;
       this->settings->refreshSwapchain = false;
 
       g_device.waitIdle( );
@@ -732,7 +729,7 @@ namespace RAYEXEC_NAMESPACE
     {
       if ( this->camera->updateView )
       {
-        this->cameraUbo.view = this->camera->getViewMatrix( );
+        this->cameraUbo.view        = this->camera->getViewMatrix( );
         this->cameraUbo.viewInverse = this->camera->getViewInverseMatrix( );
 
         this->camera->updateView = false;
@@ -740,7 +737,7 @@ namespace RAYEXEC_NAMESPACE
 
       if ( this->camera->updateProj )
       {
-        this->cameraUbo.projection = this->camera->getProjectionMatrix( );
+        this->cameraUbo.projection        = this->camera->getProjectionMatrix( );
         this->cameraUbo.projectionInverse = this->camera->getProjectionInverseMatrix( );
 
         this->camera->updateProj = false;
@@ -803,4 +800,4 @@ namespace RAYEXEC_NAMESPACE
 
     //initPipelines( );
   }
-}
+} // namespace RAYEXEC_NAMESPACE

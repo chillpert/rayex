@@ -1,9 +1,9 @@
 #ifndef HELPERS_HPP
 #define HELPERS_HPP
 
+#include "api/RenderPass.hpp"
 #include "api/raytracing/AccelerationStructure.hpp"
 #include "base/Model.hpp"
-#include "api/RenderPass.hpp"
 
 namespace vk
 {
@@ -78,8 +78,8 @@ namespace vk
     /// @param oldLayout The current image layout of the given vulkan image.
     /// @param newLayout The target image layout.
     void transitionImageLayout( Image image, ImageLayout oldLayout, ImageLayout newLayout );
-    
-    /// Transitions the image layout of any given image using an already existing command buffer. 
+
+    /// Transitions the image layout of any given image using an already existing command buffer.
     /// @param image The vulkan image for which you want to change the image layout.
     /// @param oldLayout The current image layout of the given vulkan image.
     /// @param newLayout The target image layout.
@@ -90,7 +90,7 @@ namespace vk
     /// @param image The vulkan image.
     /// @param oldLayout The current image layout of the given vulkan image.
     /// @param newLayout The target image layout.
-    /// @return Returns a tuple containing the actual image memory barrier as well as the source stage mask and the destination stage mask. 
+    /// @return Returns a tuple containing the actual image memory barrier as well as the source stage mask and the destination stage mask.
     std::tuple<ImageMemoryBarrier, PipelineStageFlags, PipelineStageFlags> getImageMemoryBarrierInfo( Image image, ImageLayout oldLayout, ImageLayout newLayout );
 
     /// Simplifies the process of setting up an attachment description for a render pass.
@@ -119,25 +119,25 @@ namespace vk
     std::pair<unsigned int, std::string> evaluatePhysicalDevice( PhysicalDevice physicalDevice );
 
     /// Checks if all device extensions provided are supported.
-    /// 
+    ///
     /// If any device extension is not supported the application will shut down immediately.
     /// @param extensions All device extensions that should be activated.
     void checkDeviceExtensionSupport( const std::vector<const char*>& extensions );
 
     /// Checks if all layers provided are supported.
-    /// 
+    ///
     /// If any layer is not supported the application will shut down immediately.
     /// @param layers All validation layers that should be activated.
     /// @return Returns true if initialization was successful.
     void checkInstanceLayersSupport( const std::vector<const char*>& layers );
 
     /// Checks if all instance extensions provided are supported.
-    /// 
+    ///
     /// If any instance extension is not supported the application will shut down immediately.
     /// @param extensions All instance extensions that should be activated.
     /// @return Returns true if initialization was successful.
     void checkInstanceExtensionsSupport( const std::vector<const char*>& extensions );
-  }
-} 
+  } // namespace Helper
+} // namespace vk
 
 #endif // HELPERS_HPP

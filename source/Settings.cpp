@@ -1,4 +1,5 @@
 #include "Settings.hpp"
+
 #include "api/misc/Components.hpp"
 
 namespace RAYEXEC_NAMESPACE
@@ -28,7 +29,7 @@ namespace RAYEXEC_NAMESPACE
 
   void Settings::setClearColor( const glm::vec4& clearColor )
   {
-    this->clearColor = clearColor;
+    this->clearColor       = clearColor;
     this->refreshSwapchain = true;
   }
 
@@ -36,12 +37,12 @@ namespace RAYEXEC_NAMESPACE
   {
     this->resourcePath = "";
 
-    for ( int i = 0; i < argc; ++i)
+    for ( int i = 0; i < argc; ++i )
       this->resourcePath += argv[i];
 
     std::replace( this->resourcePath.begin( ), this->resourcePath.end( ), '\\', '/' );
 
-    this->resourcePath = this->resourcePath.substr( 0, this->resourcePath.find_last_of('/') + 1 );    
+    this->resourcePath = this->resourcePath.substr( 0, this->resourcePath.find_last_of( '/' ) + 1 );
 
     g_resourcePath = this->resourcePath;
   }
@@ -60,7 +61,7 @@ namespace RAYEXEC_NAMESPACE
 
   void Settings::setEnableRayTracing( bool flag )
   {
-    this->rayTrace = flag;
+    this->rayTrace         = flag;
     this->refreshSwapchain = true;
   }
 
@@ -72,13 +73,13 @@ namespace RAYEXEC_NAMESPACE
   void Settings::setAnticipatedDirectionalLights( uint32_t amount )
   {
     this->anticipatedDirectionalLights = amount;
-    this->refreshPipeline = true;
+    this->refreshPipeline              = true;
   }
 
   void Settings::setAnticipatedPointLights( uint32_t amount )
   {
     this->anticipatedPointLights = amount;
-    this->refreshPipeline = true;
+    this->refreshPipeline        = true;
   }
 
   void Settings::setAnticipatedGeometryNodes( uint32_t amount )
@@ -90,4 +91,4 @@ namespace RAYEXEC_NAMESPACE
   {
     this->anticipatedModels = amount;
   }
-}
+} // namespace RAYEXEC_NAMESPACE

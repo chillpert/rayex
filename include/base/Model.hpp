@@ -1,17 +1,17 @@
 #ifndef MODEL_BASE_HPP
 #define MODEL_BASE_HPP
 
-#include "api/image/Texture.hpp"
-#include "api/misc/Vertex.hpp"
-#include "api/buffers/VertexBuffer.hpp"
 #include "api/buffers/IndexBuffer.hpp"
 #include "api/buffers/UniformBuffer.hpp"
+#include "api/buffers/VertexBuffer.hpp"
+#include "api/image/Texture.hpp"
+#include "api/misc/Vertex.hpp"
 #include "base/Material.hpp"
 
 namespace RAYEXEC_NAMESPACE
 {
   /// Describes a model.
-  /// 
+  ///
   /// The class extracts vertex and index data from a given wavefront file.
   /// If the client wants to parse other formats than wavefront, load() should be overridden and either RAYEXEC_NAMESPACE::Renderer::pushNode() or RAYEXEC_NAMESPACE::Renderer::setNodes() templatized using the inherited class type.
   /// ### Example
@@ -20,12 +20,12 @@ namespace RAYEXEC_NAMESPACE
   /// {
   ///   void load() override;
   /// }
-  /// 
+  ///
   /// RayExecmyRenderer;
   /// myRenderer.init();
-  /// 
+  ///
   /// auto cube = std::make_shared<GeometryNode>( "models/cube.obj", Material( "textures/metal.png" ) );
-  /// 
+  ///
   /// myRenderer.pushNode<CustomModel>( cube );
   /// ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
   /// @ingroup Base, API
@@ -45,15 +45,15 @@ namespace RAYEXEC_NAMESPACE
     bool isLoaded( );
 
     uint32_t index = 0; ///< An index that will be used by the ray tracing structures to access the correct model.
-    std::string path; ///< The relative path to the model.
-    Material material; ///< Holds all rendering information including the textures required by the model.
+    std::string path;   ///< The relative path to the model.
+    Material material;  ///< Holds all rendering information including the textures required by the model.
     bool initialized = false;
 
-    std::vector<Vertex> vertices; ///< The raw vertex data.
+    std::vector<Vertex> vertices;  ///< The raw vertex data.
     std::vector<uint32_t> indices; ///< The raw index data.
 
     // Destruction via RAII.
-    VertexBuffer vertexBuffer; ///< Used to buffer the raw vertex data.
+    VertexBuffer vertexBuffer;         ///< Used to buffer the raw vertex data.
     IndexBuffer<uint32_t> indexBuffer; ///< Used to buffer the raw index data.
 
     // No destruction necessary
@@ -63,16 +63,17 @@ namespace RAYEXEC_NAMESPACE
   private:
     static uint32_t modelCounter; ///< Used to count the total number of models and to assign a new unique value to index.
   };
-}
+} // namespace RAYEXEC_NAMESPACE
 
 namespace std
 {
   /// @cond INTERNAL
-  template<> struct hash<RAYEXEC_NAMESPACE::Model>
+  template <>
+  struct hash<RAYEXEC_NAMESPACE::Model>
   {
-    size_t operator()( const std::shared_ptr<RAYEXEC_NAMESPACE::Model> model ) const { return hash<std::string>( )( model->path ); }
+    size_t operator( )( const std::shared_ptr<RAYEXEC_NAMESPACE::Model> model ) const { return hash<std::string>( )( model->path ); }
   };
   /// @endcond
-}
+} // namespace std
 
 #endif // MODEL_BASE_HPP

@@ -12,7 +12,7 @@ namespace RAYEXEC_NAMESPACE
   {
   public:
     Buffer( ) = default;
-    
+
     /// @param size The size of the buffer.
     /// @param usage The buffer's usage flags.
     /// @param queueFamilyIndices Specifies which queue family will access the buffer.
@@ -20,12 +20,12 @@ namespace RAYEXEC_NAMESPACE
     /// @param pNextMemory Attachment to the memory's pNext chain.
     /// @param initialize If true, the buffer object will be initialized right away without an additional call to init().
     Buffer( vk::DeviceSize size, vk::BufferUsageFlags usage, const std::vector<uint32_t>& queueFamilyIndices = { }, vk::MemoryPropertyFlags memoryPropertyFlags = vk::MemoryPropertyFlagBits::eDeviceLocal, void* pNextMemory = nullptr, bool initialize = true );
-    
+
     /// @param buffer The target for the copy operation.
     Buffer( Buffer& buffer );
-    Buffer& operator=( Buffer& buffer) = default;
-    Buffer( Buffer&& buffer ) = default;
-    
+    Buffer& operator=( Buffer& buffer ) = default;
+    Buffer( Buffer&& buffer )           = default;
+
     RX_API virtual ~Buffer( ) = default;
 
     /// Copies the content of this buffer to another RAYEXEC_NAMESPACE::Buffer.
@@ -73,7 +73,7 @@ namespace RAYEXEC_NAMESPACE
     }
 
   protected:
-    vk::UniqueBuffer buffer; ///< The buffer object with a unique handle.
+    vk::UniqueBuffer buffer;       ///< The buffer object with a unique handle.
     vk::UniqueDeviceMemory memory; ///< The buffer's memory with a unique handle.
 
     vk::DeviceSize size = 0; ///< The buffer's size.
@@ -86,23 +86,23 @@ namespace RAYEXEC_NAMESPACE
     vk::MemoryAllocateFlagsInfo allocateFlags( vk::MemoryAllocateFlagBitsKHR::eDeviceAddress );
 
     // Set up the staging buffer.
-    Buffer stagingBuffer( size,                                                                                   // size
-                          vk::BufferUsageFlagBits::eTransferSrc | vk::BufferUsageFlagBits::eShaderDeviceAddress,  // usage
-                          { g_transferFamilyIndex },                                                              // queueFamilyIndices
-                          vk::MemoryPropertyFlagBits::eHostVisible | vk::MemoryPropertyFlagBits::eHostCoherent,   // memoryPropertyFlags
-                          &allocateFlags );                                                                       // pNext of memory
+    Buffer stagingBuffer( size,                                                                                  // size
+                          vk::BufferUsageFlagBits::eTransferSrc | vk::BufferUsageFlagBits::eShaderDeviceAddress, // usage
+                          { g_transferFamilyIndex },                                                             // queueFamilyIndices
+                          vk::MemoryPropertyFlagBits::eHostVisible | vk::MemoryPropertyFlagBits::eHostCoherent,  // memoryPropertyFlags
+                          &allocateFlags );                                                                      // pNext of memory
 
-    buffer.init( size,                                                                                                                                                                      // size
-                 vk::BufferUsageFlagBits::eTransferDst | vk::BufferUsageFlagBits::eVertexBuffer | vk::BufferUsageFlagBits::eShaderDeviceAddress | vk::BufferUsageFlagBits::eStorageBuffer,  // usage
-                 { g_transferFamilyIndex },                                                                                                                                                 // queueFamilyIndices
-                 vk::MemoryPropertyFlagBits::eHostVisible | vk::MemoryPropertyFlagBits::eHostCoherent,                                                                                      // memoryPropertyFlags
-                 &allocateFlags );                                                                                                                                                          // pNext of memory
+    buffer.init( size,                                                                                                                                                                     // size
+                 vk::BufferUsageFlagBits::eTransferDst | vk::BufferUsageFlagBits::eVertexBuffer | vk::BufferUsageFlagBits::eShaderDeviceAddress | vk::BufferUsageFlagBits::eStorageBuffer, // usage
+                 { g_transferFamilyIndex },                                                                                                                                                // queueFamilyIndices
+                 vk::MemoryPropertyFlagBits::eHostVisible | vk::MemoryPropertyFlagBits::eHostCoherent,                                                                                     // memoryPropertyFlags
+                 &allocateFlags );                                                                                                                                                         // pNext of memory
 
     stagingBuffer.fill<T>( data.data( ) );
 
     // Copy staging buffer to the actual index buffer.
     stagingBuffer.copyToBuffer( buffer.get( ) );
   }
-}
+} // namespace RAYEXEC_NAMESPACE
 
 #endif // BUFFER_HPP

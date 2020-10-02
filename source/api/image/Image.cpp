@@ -1,10 +1,10 @@
-#include "api/image/Texture.hpp"
 #include "api/buffers/Buffer.hpp"
 #include "api/buffers/CommandBuffer.hpp"
+#include "api/image/Texture.hpp"
 #include "api/misc/Components.hpp"
-#include "api/utility/Initializers.hpp"
 #include "api/utility/Destructors.hpp"
 #include "api/utility/Helpers.hpp"
+#include "api/utility/Initializers.hpp"
 
 namespace RAYEXEC_NAMESPACE
 {
@@ -27,15 +27,15 @@ namespace RAYEXEC_NAMESPACE
     commandBuffer.init( g_graphicsCmdPool );
     commandBuffer.begin( );
 
-    commandBuffer.get( 0 ).pipelineBarrier( std::get<1>( barrierInfo ),        // srcStageMask
-                                            std::get<2>( barrierInfo ),        // dstStageMask
+    commandBuffer.get( 0 ).pipelineBarrier( std::get<1>( barrierInfo ), // srcStageMask
+                                            std::get<2>( barrierInfo ), // dstStageMask
                                             vk::DependencyFlagBits::eByRegion,
                                             0,
                                             nullptr,
                                             0,
                                             nullptr,
                                             1,
-                                            &std::get<0>( barrierInfo ) );     // barrier
+                                            &std::get<0>( barrierInfo ) ); // barrier
 
     commandBuffer.end( );
     commandBuffer.submitToQueue( g_graphicsQueue );
@@ -47,15 +47,15 @@ namespace RAYEXEC_NAMESPACE
   {
     auto barrierInfo = vk::Helper::getImageMemoryBarrierInfo( this->image.get( ), this->layout, layout );
 
-    commandBuffer.pipelineBarrier( std::get<1>( barrierInfo ),        // srcStageMask
-                                   std::get<2>( barrierInfo ),        // dstStageMask
+    commandBuffer.pipelineBarrier( std::get<1>( barrierInfo ), // srcStageMask
+                                   std::get<2>( barrierInfo ), // dstStageMask
                                    vk::DependencyFlagBits::eByRegion,
                                    0,
                                    nullptr,
                                    0,
                                    nullptr,
                                    1,
-                                   &std::get<0>( barrierInfo ) );     // barrier
+                                   &std::get<0>( barrierInfo ) ); // barrier
 
     this->layout = layout;
   }
@@ -77,4 +77,4 @@ namespace RAYEXEC_NAMESPACE
 
     return vk::Format::eUndefined;
   }
-}
+} // namespace RAYEXEC_NAMESPACE

@@ -6,14 +6,14 @@
 namespace RAYEXEC_NAMESPACE
 {
   /// A wrapper class for a Vulkan debug utility messenger.
-  /// 
+  ///
   /// The class features scope-bound destruction.
   /// @ingroup API
   class DebugMessenger
   {
   public:
     DebugMessenger( ) = default;
-    
+
     /// Calls destroy().
     ~DebugMessenger( );
 
@@ -35,6 +35,6 @@ namespace RAYEXEC_NAMESPACE
                                                          const VkDebugUtilsMessengerCallbackDataEXT* callbackData,
                                                          void* userData );
   /// @endcond
-}
+} // namespace RAYEXEC_NAMESPACE
 
 #endif // DEBUG_MESSENGER_HPP

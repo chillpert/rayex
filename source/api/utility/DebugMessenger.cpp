@@ -1,4 +1,5 @@
 #include "api/utility/DebugMessenger.hpp"
+
 #include "api/Api.hpp"
 #include "api/misc/Components.hpp"
 
@@ -12,7 +13,7 @@ namespace RAYEXEC_NAMESPACE
 
   void DebugMessenger::init( vk::DebugUtilsMessageSeverityFlagsEXT messageSeverity, vk::DebugUtilsMessageTypeFlagsEXT messageType )
   {
-  #ifdef RX_DEBUG
+#ifdef RX_DEBUG
     vk::DebugUtilsMessengerCreateInfoEXT createInfo( { },
                                                      messageSeverity,
                                                      messageType,
@@ -21,28 +22,26 @@ namespace RAYEXEC_NAMESPACE
 
     this->debugMessenger = g_instance.createDebugUtilsMessengerEXT( createInfo );
     RX_ASSERT( this->debugMessenger, "Failed to create debug messenger." );
-  #endif
+#endif
   }
 
   void DebugMessenger::destroy( )
   {
-  #ifdef RX_DEBUG
+#ifdef RX_DEBUG
     if ( this->debugMessenger )
     {
       g_instance.destroyDebugUtilsMessengerEXT( this->debugMessenger );
       this->debugMessenger = nullptr;
     }
-  #endif
+#endif
   }
 
   // The source for this function is the official LunarG tutorial.
-  VKAPI_ATTR VkBool32 VKAPI_CALL debugMessengerCallback
-  (
+  VKAPI_ATTR VkBool32 VKAPI_CALL debugMessengerCallback(
     VkDebugUtilsMessageSeverityFlagBitsEXT messageSeverity,
     VkDebugUtilsMessageTypeFlagsEXT messageType,
     const VkDebugUtilsMessengerCallbackDataEXT* callbackData,
-    void* userData
-  )
+    void* userData )
   {
     char prefix[64];
     char* message = static_cast<char*>( malloc( strlen( callbackData->pMessage ) + 500 ) );
@@ -99,4 +98,4 @@ namespace RAYEXEC_NAMESPACE
 
     return VK_FALSE;
   }
-}
+} // namespace RAYEXEC_NAMESPACE

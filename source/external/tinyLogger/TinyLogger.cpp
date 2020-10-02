@@ -1,17 +1,17 @@
 #include "external/tinyLogger/TinyLogger.hpp"
 
-#include <iostream>
 #include <chrono>
+#include <iostream>
 
 #if defined( _WIN32 ) || defined( _WIN64 )
   #include <Windows.h>
-  HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
+HANDLE hConsole = GetStdHandle( STD_OUTPUT_HANDLE );
 #endif
 
 namespace LOGGER_NAMESPACE
 {
   const bool capsLock = LOGGER_MESSAGE_TYPE_CAPS_LOCK;
-  const bool align = LOGGER_ALIGN_MESSAGES;
+  const bool align    = LOGGER_ALIGN_MESSAGES;
 
   std::string applyColorLinux( Color color )
   {
@@ -57,31 +57,31 @@ namespace LOGGER_NAMESPACE
     switch ( color )
     {
       case Color::eGray:
-        SetConsoleTextAttribute(hConsole, 8);
+        SetConsoleTextAttribute( hConsole, 8 );
         break;
 
       case Color::eWhite:
-        SetConsoleTextAttribute(hConsole, 15);
+        SetConsoleTextAttribute( hConsole, 15 );
         break;
 
       case Color::eGreen:
-        SetConsoleTextAttribute(hConsole, 10);
+        SetConsoleTextAttribute( hConsole, 10 );
         break;
 
       case Color::eYellow:
-        SetConsoleTextAttribute(hConsole, 14);
+        SetConsoleTextAttribute( hConsole, 14 );
         break;
 
       case Color::eRed:
-        SetConsoleTextAttribute(hConsole, 4);
+        SetConsoleTextAttribute( hConsole, 4 );
         break;
 
       case Color::eEmphasizedRed:
-        SetConsoleTextAttribute(hConsole, 12);
+        SetConsoleTextAttribute( hConsole, 12 );
         break;
 
       case Color::eDefault:
-        SetConsoleTextAttribute(hConsole, 15);
+        SetConsoleTextAttribute( hConsole, 15 );
         break;
     }
   }
@@ -90,8 +90,8 @@ namespace LOGGER_NAMESPACE
   std::string getTime( )
   {
     auto date = std::chrono::system_clock::now( );
-    
-    time_t tt = std::chrono::system_clock::to_time_t ( date );
+
+    time_t tt        = std::chrono::system_clock::to_time_t( date );
     std::string time = ctime( &tt );
     // Remove the line break inserted by ctime.
     time = time.substr( 0, time.size( ) - 1 );
@@ -108,29 +108,29 @@ namespace LOGGER_NAMESPACE
     switch ( messageType )
     {
       case MessageType::eVerbose:
-        capsLock ? result = "VERBOSE" : result = "Verbose"; 
-        break;      
+        capsLock ? result = "VERBOSE" : result = "Verbose";
+        break;
 
       case MessageType::eInfo:
-        capsLock ? result = "INFO" : result = "Info"; 
+        capsLock ? result = "INFO" : result = "Info";
         if ( align ) result += "   ";
         break;
 
       case MessageType::eWarn:
-        capsLock ? result = "WARNING" : result = "Warning"; 
+        capsLock ? result = "WARNING" : result = "Warning";
         break;
 
       case MessageType::eSuccess:
-        capsLock ? result = "SUCCESS" : result = "Success"; 
+        capsLock ? result = "SUCCESS" : result = "Success";
         break;
 
       case MessageType::eError:
-        capsLock ? result = "ERROR" : result = "Error"; 
+        capsLock ? result = "ERROR" : result = "Error";
         if ( align ) result += "  ";
         break;
 
-      case MessageType::eFatal:          
-        capsLock ? result = "FATAL" : result = "Fatal"; 
+      case MessageType::eFatal:
+        capsLock ? result = "FATAL" : result = "Fatal";
         if ( align ) result += "  ";
         break;
     }
@@ -145,19 +145,19 @@ namespace LOGGER_NAMESPACE
   {
 #if defined( _WIN32 ) || defined( _WIN64 )
     std::stringstream res;
-    res << formatMessageType( messageType ) 
-        << getTime( ) 
+    res << formatMessageType( messageType )
+        << getTime( )
         << message;
 
     // Apply color.
     applyColorWindows( color );
 
-    if ( messageType == MessageType::eFatal)
+    if ( messageType == MessageType::eFatal )
       std::cerr << res.str( ) << std::endl;
     else if ( messageType == MessageType::eVerbose )
       std::clog << res.str( ) << std::endl;
     else
-      std::cout << res.str( ) << std::endl;  
+      std::cout << res.str( ) << std::endl;
 
     // Reset color.
     applyColorWindows( Color::eDefault );
@@ -165,21 +165,21 @@ namespace LOGGER_NAMESPACE
 #elif defined( unix ) || defined( __unix ) || defined( __unix__ )
 
     std::stringstream res;
-    res << applyColorLinux( color ) 
-        << formatMessageType( messageType ) 
-        << getTime( ) 
-        << message 
+    res << applyColorLinux( color )
+        << formatMessageType( messageType )
+        << getTime( )
+        << message
         << applyColorLinux( Color::eDefault );
 
-    if ( messageType == MessageType::eFatal)
+    if ( messageType == MessageType::eFatal )
       std::cerr << res.str( ) << std::endl;
     else if ( messageType == MessageType::eVerbose )
       std::clog << res.str( ) << std::endl;
     else
-      std::cout << res.str( ) << std::endl;  
+      std::cout << res.str( ) << std::endl;
 
 #else
   #error "Operating system not supported by logger."
-#endif    
+#endif
   }
-}
+} // namespace LOGGER_NAMESPACE

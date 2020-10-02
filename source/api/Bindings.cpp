@@ -32,9 +32,9 @@ namespace RAYEXEC_NAMESPACE
 
     vk::DescriptorSetLayoutCreateInfo createInfo( { },                      // flags
                                                   bindingCount,             // bindingCount
-                                                  this->bindings.data( ) ); // pBindings 
+                                                  this->bindings.data( ) ); // pBindings
 
-    vk::DescriptorSetLayoutBindingFlagsCreateInfoEXT layoutFlags( bindingCount,          // bindingCount 
+    vk::DescriptorSetLayoutBindingFlagsCreateInfoEXT layoutFlags( bindingCount,          // bindingCount
                                                                   this->flags.data( ) ); // pBindingFlags
     createInfo.pNext = &layoutFlags;
 
@@ -109,9 +109,9 @@ namespace RAYEXEC_NAMESPACE
       if ( this->bindings[i].binding == binding )
       {
         result.descriptorCount = 1;
-        result.descriptorType = this->bindings[i].descriptorType;
-        result.dstBinding = binding;
-        result.dstSet = set;
+        result.descriptorType  = this->bindings[i].descriptorType;
+        result.dstBinding      = binding;
+        result.dstSet          = set;
         result.dstArrayElement = arrayElement;
 
         this->writes[writesIndex][i] = result;
@@ -127,7 +127,7 @@ namespace RAYEXEC_NAMESPACE
   {
     for ( size_t i = 0; i < sets.size( ); ++i )
     {
-      size_t j = write( sets[i], i, binding );
+      size_t j                 = write( sets[i], i, binding );
       this->writes[i][j].pNext = pWriteDescriptorSetAccelerationStructureKHR;
     }
   }
@@ -136,7 +136,7 @@ namespace RAYEXEC_NAMESPACE
   {
     for ( size_t i = 0; i < sets.size( ); ++i )
     {
-      size_t j = write( sets[i], i, binding );
+      size_t j                      = write( sets[i], i, binding );
       this->writes[i][j].pImageInfo = pImageInfo;
     }
   }
@@ -145,7 +145,7 @@ namespace RAYEXEC_NAMESPACE
   {
     for ( size_t i = 0; i < sets.size( ); ++i )
     {
-      size_t j = write( sets[i], i, binding );
+      size_t j                       = write( sets[i], i, binding );
       this->writes[i][j].pBufferInfo = pBufferInfo;
     }
   }
@@ -156,7 +156,7 @@ namespace RAYEXEC_NAMESPACE
 
     for ( size_t i = 0; i < sets.size( ); ++i )
     {
-      size_t j = write( sets[i], i, binding );
+      size_t j                       = write( sets[i], i, binding );
       this->writes[i][j].pBufferInfo = &uniformBufferInfos[i];
     }
   }
@@ -165,4 +165,4 @@ namespace RAYEXEC_NAMESPACE
   {
     this->poolSizes = poolSizes;
   }
-}
+} // namespace RAYEXEC_NAMESPACE

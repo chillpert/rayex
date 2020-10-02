@@ -18,10 +18,10 @@ namespace RAYEXEC_NAMESPACE
 
     /// @return Returns the surface's color space.
     inline const vk::ColorSpaceKHR getColorSpace( ) const { return colorSpace; }
-    
+
     /// @return Returns the surface's present mode.
     inline const vk::PresentModeKHR getPresentMode( ) const { return presentMode; }
-    
+
     /// @return Returns the surface's capabilities.
     inline const vk::SurfaceCapabilitiesKHR getCapabilities( ) const { return capabilities; }
 
@@ -39,11 +39,11 @@ namespace RAYEXEC_NAMESPACE
 
     vk::SurfaceKHR surface; ///< The Vulkan surface.
 
-    vk::Format format = vk::Format::eB8G8R8A8Unorm; ///< The desired surface format.
-    vk::ColorSpaceKHR colorSpace = vk::ColorSpaceKHR::eSrgbNonlinear; ///< The desired color space.
-    vk::PresentModeKHR presentMode = vk::PresentModeKHR::eMailbox; ///< The desired present mode.
-    vk::SurfaceCapabilitiesKHR capabilities = 0; ///< The surface's capabilities.
+    vk::Format format                       = vk::Format::eB8G8R8A8Unorm;        ///< The desired surface format.
+    vk::ColorSpaceKHR colorSpace            = vk::ColorSpaceKHR::eSrgbNonlinear; ///< The desired color space.
+    vk::PresentModeKHR presentMode          = vk::PresentModeKHR::eMailbox;      ///< The desired present mode.
+    vk::SurfaceCapabilitiesKHR capabilities = 0;                                 ///< The surface's capabilities.
   };
-}
+} // namespace RAYEXEC_NAMESPACE
 
 #endif // SURFACE_HPP

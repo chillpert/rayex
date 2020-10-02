@@ -1,7 +1,7 @@
 #ifndef BASE_HPP
 #define BASE_HPP
 
-// This file contains all programming interfaces required by the library. 
+// This file contains all programming interfaces required by the library.
 // All of the client's own implementations need be derived from these classes.
 //
 // The following APIs exist:
@@ -13,12 +13,12 @@
 //   - Gui
 //   - Window
 
+#include "Settings.hpp"
 #include "base/Camera.hpp"
-#include "base/Node.hpp"
-#include "base/LightNode.hpp"
 #include "base/GeometryNode.hpp"
 #include "base/Gui.hpp"
+#include "base/LightNode.hpp"
+#include "base/Node.hpp"
 #include "base/Window.hpp"
-#include "Settings.hpp"
 
 #endif // BASE_HPP

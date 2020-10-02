@@ -12,11 +12,11 @@ namespace RAYEXEC_NAMESPACE
   /// @ingroup API
   struct Vertex
   {
-    glm::vec3 pos; ///< The vertex's position in 3D space.
-    glm::vec3 normal; ///< The vertex's normal vector.
-    glm::vec3 color; ///< The vertex's color.
+    glm::vec3 pos;      ///< The vertex's position in 3D space.
+    glm::vec3 normal;   ///< The vertex's normal vector.
+    glm::vec3 color;    ///< The vertex's color.
     glm::vec2 texCoord; ///< The vertex's texture coordinate.
-    float padding0; ///< Vertex padding 0.    
+    float padding0;     ///< Vertex padding 0.
 
     /// @return Returns the hard-coded vertex format (eR32G32B32Sfloat).
     inline static vk::Format getVertexPositionFormat( ) { return vk::Format::eR32G32B32Sfloat; }
@@ -26,8 +26,8 @@ namespace RAYEXEC_NAMESPACE
     {
       std::array<vk::VertexInputBindingDescription, 1> bindingDescriptions { };
 
-      bindingDescriptions[0].binding = 0;
-      bindingDescriptions[0].stride = sizeof( Vertex );
+      bindingDescriptions[0].binding   = 0;
+      bindingDescriptions[0].stride    = sizeof( Vertex );
       bindingDescriptions[0].inputRate = vk::VertexInputRate::eVertex;
 
       return bindingDescriptions;
@@ -38,25 +38,25 @@ namespace RAYEXEC_NAMESPACE
     {
       std::array<vk::VertexInputAttributeDescription, 4> attributeDescriptions { };
 
-      attributeDescriptions[0].binding = 0;
+      attributeDescriptions[0].binding  = 0;
       attributeDescriptions[0].location = 0;
-      attributeDescriptions[0].format = getVertexPositionFormat( );
-      attributeDescriptions[0].offset = offsetof( Vertex, pos );
+      attributeDescriptions[0].format   = getVertexPositionFormat( );
+      attributeDescriptions[0].offset   = offsetof( Vertex, pos );
 
-      attributeDescriptions[1].binding = 0;
+      attributeDescriptions[1].binding  = 0;
       attributeDescriptions[1].location = 1;
-      attributeDescriptions[1].format = vk::Format::eR32G32B32Sfloat;
-      attributeDescriptions[1].offset = offsetof( Vertex, normal );
+      attributeDescriptions[1].format   = vk::Format::eR32G32B32Sfloat;
+      attributeDescriptions[1].offset   = offsetof( Vertex, normal );
 
-      attributeDescriptions[2].binding = 0;
+      attributeDescriptions[2].binding  = 0;
       attributeDescriptions[2].location = 2;
-      attributeDescriptions[2].format = vk::Format::eR32G32B32Sfloat;
-      attributeDescriptions[2].offset = offsetof( Vertex, color );
+      attributeDescriptions[2].format   = vk::Format::eR32G32B32Sfloat;
+      attributeDescriptions[2].offset   = offsetof( Vertex, color );
 
-      attributeDescriptions[3].binding = 0;
+      attributeDescriptions[3].binding  = 0;
       attributeDescriptions[3].location = 3;
-      attributeDescriptions[3].format = vk::Format::eR32G32Sfloat;
-      attributeDescriptions[3].offset = offsetof( Vertex, texCoord );
+      attributeDescriptions[3].format   = vk::Format::eR32G32Sfloat;
+      attributeDescriptions[3].offset   = offsetof( Vertex, texCoord );
 
       return attributeDescriptions;
     }
@@ -68,24 +68,25 @@ namespace RAYEXEC_NAMESPACE
     }
     /// @endcond
   };
-}
+} // namespace RAYEXEC_NAMESPACE
 
 namespace std
 {
   /// @cond INTERNAL
-  template<> struct hash<RAYEXEC_NAMESPACE::Vertex>
+  template <>
+  struct hash<RAYEXEC_NAMESPACE::Vertex>
   {
-    size_t operator()( const RAYEXEC_NAMESPACE::Vertex& vertex ) const
+    size_t operator( )( const RAYEXEC_NAMESPACE::Vertex& vertex ) const
     {
-      size_t hashPos = hash<glm::vec3>( )( vertex.pos );
-      size_t hashColor = hash<glm::vec3>( )( vertex.color );
+      size_t hashPos      = hash<glm::vec3>( )( vertex.pos );
+      size_t hashColor    = hash<glm::vec3>( )( vertex.color );
       size_t hashTexCoord = hash<glm::vec2>( )( vertex.texCoord );
-      size_t hashNormal = hash<glm::vec3>( )( vertex.normal );
+      size_t hashNormal   = hash<glm::vec3>( )( vertex.normal );
 
       return ( ( ( ( hashPos ^ ( hashColor << 1 ) ) >> 1 ) ^ hashTexCoord ) << 1 ) ^ hashNormal;
     }
   };
   /// @endcond
-}
+} // namespace std
 
 #endif // VERTEX_HPP

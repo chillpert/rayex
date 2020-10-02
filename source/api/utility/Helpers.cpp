@@ -1,6 +1,7 @@
 #include "api/utility/Helpers.hpp"
-#include "api/misc/Components.hpp"
+
 #include "api/buffers/CommandBuffer.hpp"
+#include "api/misc/Components.hpp"
 
 namespace vk
 {
@@ -19,41 +20,41 @@ namespace vk
 
     ImageCreateInfo getImageCreateInfo( Extent3D extent )
     {
-      ImageCreateInfo createInfo( { },                                                                  // flags
-                                  ImageType::e2D,                                                       // imageType
-                                  Format::eR8G8B8A8Srgb,                                                // format
-                                  extent,                                                               // extent
-                                  1u,                                                                   // mipLevels
-                                  1u,                                                                   // arrayLayers
-                                  SampleCountFlagBits::e1,                                              // samples
-                                  ImageTiling::eOptimal,                                                // tiling
-                                  ImageUsageFlagBits::eTransferDst | ImageUsageFlagBits::eSampled,      // usage
-                                  SharingMode::eExclusive,                                              // sharingMode
-                                  0u,                                                                   // queueFamilyIndexCount
-                                  nullptr,                                                              // pQueueFamilyIndices
-                                  ImageLayout::eUndefined );                                            // initialLayout
+      ImageCreateInfo createInfo( { },                                                             // flags
+                                  ImageType::e2D,                                                  // imageType
+                                  Format::eR8G8B8A8Srgb,                                           // format
+                                  extent,                                                          // extent
+                                  1u,                                                              // mipLevels
+                                  1u,                                                              // arrayLayers
+                                  SampleCountFlagBits::e1,                                         // samples
+                                  ImageTiling::eOptimal,                                           // tiling
+                                  ImageUsageFlagBits::eTransferDst | ImageUsageFlagBits::eSampled, // usage
+                                  SharingMode::eExclusive,                                         // sharingMode
+                                  0u,                                                              // queueFamilyIndexCount
+                                  nullptr,                                                         // pQueueFamilyIndices
+                                  ImageLayout::eUndefined );                                       // initialLayout
 
       return createInfo;
     }
 
     SamplerCreateInfo getSamplerCreateInfo( )
     {
-      SamplerCreateInfo createInfo( { },                            // flags
-                                    Filter::eLinear,                // magFilter
-                                    Filter::eLinear,                // minFilter
-                                    SamplerMipmapMode::eLinear,     // mipmapMode
-                                    SamplerAddressMode::eRepeat,    // addressModeU
-                                    SamplerAddressMode::eRepeat,    // addressModeV
-                                    SamplerAddressMode::eRepeat,    // addressModeW
-                                    { },                            // mipLodBias,
-                                    VK_TRUE,                        // anisotropyEnable
-                                    16.0f,                          // maxAnisotropy
-                                    VK_FALSE,                       // compareEnable
-                                    CompareOp::eAlways,             // compareOp
-                                    { },                            // minLod
-                                    { },                            // maxLod
-                                    BorderColor::eIntOpaqueBlack,   // borderColor
-                                    VK_FALSE );                     // unnormalizedCoordinates
+      SamplerCreateInfo createInfo( { },                          // flags
+                                    Filter::eLinear,              // magFilter
+                                    Filter::eLinear,              // minFilter
+                                    SamplerMipmapMode::eLinear,   // mipmapMode
+                                    SamplerAddressMode::eRepeat,  // addressModeU
+                                    SamplerAddressMode::eRepeat,  // addressModeV
+                                    SamplerAddressMode::eRepeat,  // addressModeW
+                                    { },                          // mipLodBias,
+                                    VK_TRUE,                      // anisotropyEnable
+                                    16.0f,                        // maxAnisotropy
+                                    VK_FALSE,                     // compareEnable
+                                    CompareOp::eAlways,           // compareOp
+                                    { },                          // minLod
+                                    { },                          // maxLod
+                                    BorderColor::eIntOpaqueBlack, // borderColor
+                                    VK_FALSE );                   // unnormalizedCoordinates
       return createInfo;
     }
 
@@ -70,12 +71,12 @@ namespace vk
 
     PresentInfoKHR getPresentInfoKHR( const Semaphore& waitSemaphore, uint32_t& imageIndex )
     {
-      return PresentInfoKHR( 1,                // waitSemaphoreCount
-                             &waitSemaphore,   // pWaitSemaphores
-                             1,                // swapchainCount
+      return PresentInfoKHR( 1,                               // waitSemaphoreCount
+                             &waitSemaphore,                  // pWaitSemaphores
+                             1,                               // swapchainCount
                              &RAYEXEC_NAMESPACE::g_swapchain, // pSwapchains
-                             &imageIndex,      // pImageIndices
-                             nullptr );        // pResults
+                             &imageIndex,                     // pImageIndices
+                             nullptr );                       // pResults
     }
 
     uint32_t findMemoryType( PhysicalDevice physicalDevice, uint32_t typeFilter, MemoryPropertyFlags properties )
@@ -130,7 +131,7 @@ namespace vk
 
       for ( const auto& layoutBinding : layoutBindings )
       {
-        DescriptorPoolSize poolSize( layoutBinding.descriptorType,              // type
+        DescriptorPoolSize poolSize( layoutBinding.descriptorType,    // type
                                      layoutBinding.descriptorCount ); // count
 
         result.push_back( poolSize );
@@ -138,7 +139,6 @@ namespace vk
 
       return result;
     }
-
 
     void transitionImageLayout( Image image, ImageLayout oldLayout, ImageLayout newLayout )
     {
@@ -148,15 +148,15 @@ namespace vk
       commandBuffer.init( RAYEXEC_NAMESPACE::g_graphicsCmdPool );
       commandBuffer.begin( );
 
-      commandBuffer.get( 0 ).pipelineBarrier( std::get<1>( barrierInfo ),        // srcStageMask
-                                              std::get<2>( barrierInfo ),        // dstStageMask
+      commandBuffer.get( 0 ).pipelineBarrier( std::get<1>( barrierInfo ), // srcStageMask
+                                              std::get<2>( barrierInfo ), // dstStageMask
                                               DependencyFlagBits::eByRegion,
                                               0,
                                               nullptr,
                                               0,
                                               nullptr,
                                               1,
-                                              &std::get<0>( barrierInfo ) );     // barrier
+                                              &std::get<0>( barrierInfo ) ); // barrier
 
       commandBuffer.end( );
       commandBuffer.submitToQueue( RAYEXEC_NAMESPACE::g_graphicsQueue );
@@ -166,31 +166,31 @@ namespace vk
     {
       auto barrierInfo = getImageMemoryBarrierInfo( image, oldLayout, newLayout );
 
-      commandBuffer.pipelineBarrier( std::get<1>( barrierInfo ),        // srcStageMask
-                                     std::get<2>( barrierInfo ),        // dstStageMask
+      commandBuffer.pipelineBarrier( std::get<1>( barrierInfo ), // srcStageMask
+                                     std::get<2>( barrierInfo ), // dstStageMask
                                      DependencyFlagBits::eByRegion,
                                      0,
                                      nullptr,
                                      0,
                                      nullptr,
                                      1,
-                                     &std::get<0>( barrierInfo ) );     // barrier
+                                     &std::get<0>( barrierInfo ) ); // barrier
     }
 
     std::tuple<ImageMemoryBarrier, PipelineStageFlags, PipelineStageFlags> getImageMemoryBarrierInfo( Image image, ImageLayout oldLayout, ImageLayout newLayout )
     {
       // TODO: not style conform.
       ImageMemoryBarrier barrier;
-      barrier.oldLayout = oldLayout;
-      barrier.newLayout = newLayout;
-      barrier.srcQueueFamilyIndex = VK_QUEUE_FAMILY_IGNORED;
-      barrier.dstQueueFamilyIndex = VK_QUEUE_FAMILY_IGNORED;
-      barrier.image = image;
-      barrier.subresourceRange.aspectMask = ImageAspectFlagBits::eColor;
-      barrier.subresourceRange.baseMipLevel = 0;
-      barrier.subresourceRange.levelCount = 1;
+      barrier.oldLayout                       = oldLayout;
+      barrier.newLayout                       = newLayout;
+      barrier.srcQueueFamilyIndex             = VK_QUEUE_FAMILY_IGNORED;
+      barrier.dstQueueFamilyIndex             = VK_QUEUE_FAMILY_IGNORED;
+      barrier.image                           = image;
+      barrier.subresourceRange.aspectMask     = ImageAspectFlagBits::eColor;
+      barrier.subresourceRange.baseMipLevel   = 0;
+      barrier.subresourceRange.levelCount     = 1;
       barrier.subresourceRange.baseArrayLayer = 0;
-      barrier.subresourceRange.layerCount = 1;
+      barrier.subresourceRange.layerCount     = 1;
 
       PipelineStageFlags srcStageMask = PipelineStageFlagBits::eAllCommands;
       PipelineStageFlags dstStageMask = PipelineStageFlagBits::eAllCommands;
@@ -211,7 +211,7 @@ namespace vk
         srcStageMask = PipelineStageFlagBits::eTransfer;
         dstStageMask = PipelineStageFlagBits::eFragmentShader;
       }
-      else if ( oldLayout == ImageLayout::eUndefined && newLayout == ImageLayout::eGeneral ) 
+      else if ( oldLayout == ImageLayout::eUndefined && newLayout == ImageLayout::eGeneral )
       {
         // nothing to do.
       }
@@ -258,14 +258,14 @@ namespace vk
     AttachmentDescription getAttachmentDescription( Format surfaceFormat )
     {
       return AttachmentDescription( { },                           // flags
-                                        surfaceFormat,                 // format
-                                        SampleCountFlagBits::e1,       // samples
-                                        AttachmentLoadOp::eClear,      // loadOp
-                                        AttachmentStoreOp::eStore,     // storeOp
-                                        AttachmentLoadOp::eDontCare,   // stencilLoadOp
-                                        AttachmentStoreOp::eDontCare,  // stencilStoreOp
-                                        ImageLayout::eUndefined,       // initialLayout
-                                        ImageLayout::ePresentSrcKHR ); // finalLayout  
+                                    surfaceFormat,                 // format
+                                    SampleCountFlagBits::e1,       // samples
+                                    AttachmentLoadOp::eClear,      // loadOp
+                                    AttachmentStoreOp::eStore,     // storeOp
+                                    AttachmentLoadOp::eDontCare,   // stencilLoadOp
+                                    AttachmentStoreOp::eDontCare,  // stencilStoreOp
+                                    ImageLayout::eUndefined,       // initialLayout
+                                    ImageLayout::ePresentSrcKHR ); // finalLayout
     }
 
     AttachmentDescription getDepthAttachmentDescription( Format depthFormat )
@@ -278,12 +278,12 @@ namespace vk
                                     AttachmentLoadOp::eClear,                      // stencilLoadOp
                                     AttachmentStoreOp::eDontCare,                  // stencilStoreOp
                                     ImageLayout::eUndefined,                       // initialLayout
-                                    ImageLayout::eDepthStencilAttachmentOptimal ); // finalLayout    
+                                    ImageLayout::eDepthStencilAttachmentOptimal ); // finalLayout
     }
 
     bool isPhysicalDeviceQueueComplete( PhysicalDevice physicalDevice )
     {
-      auto queueFamilies = physicalDevice.getQueueFamilyProperties( );
+      auto queueFamilies               = physicalDevice.getQueueFamilyProperties( );
       uint32_t queueFamilyIndicesCount = static_cast<uint32_t>( queueFamilies.size( ) );
 
       // Get all possible queue family indices with transfer support.
@@ -353,12 +353,12 @@ namespace vk
       else
         return { 0u, deviceName };
 
-    #ifdef VK_API_VERSION_1_2
+#ifdef VK_API_VERSION_1_2
       if ( props.apiVersion >= VK_API_VERSION_1_2 )
         score += 10u;
       else
         return { 0u, deviceName };
-    #endif
+#endif
 
       if ( deviceName.find( "RTX" ) != std::string::npos )
         score += 100u;
@@ -452,5 +452,5 @@ namespace vk
         RX_SUCCESS( "Added instance extension: ", name, "." );
       }
     }
-  }
-}
+  } // namespace Helper
+} // namespace vk

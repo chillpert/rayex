@@ -286,26 +286,7 @@ namespace RAYEXEC_NAMESPACE
     StorageImageDescriptor storageImage { this->rayTracingBuilder.getStorageImageView( ) };
     UboDescriptor cameraUbo { this->cameraUniformBuffer.getRaw( ), sizeof( CameraUbo ) };
 
-    for ( size_t i = 0; i < g_swapchainImageCount; ++i )
-    {
-      vk::WriteDescriptorSetAccelerationStructureKHR tlasInfo( 1, 
-                                                                &this->rayTracingBuilder.getTlas( ).as.as );
-
-      vk::DescriptorImageInfo storageImageInfo( nullptr,
-                                                this->rayTracingBuilder.getStorageImageView( ) );
-
-      vk::DescriptorBufferInfo cameraInfo( this->cameraUniformBuffer.getRaw( )[i], 0, sizeof( CameraUbo ) );
-
-      std::vector<vk::WriteDescriptorSet> writes;
-      writes.emplace_back( this->rtBindings.writeToSet( this->rtDescriptorSets.get( i ), 0, &tlasInfo ) );
-      writes.emplace_back( this->rtBindings.writeToSet( this->rtDescriptorSets.get( i ), 1, &storageImageInfo ) );
-      writes.emplace_back( this->rtBindings.writeToSet( this->rtDescriptorSets.get( i ), 2, &cameraInfo ) );
-
-      this->rtDescriptorSets.update( writes );
-    }
-
-
-    //this->rtDescriptorSets.update( { tlas, storageImage, cameraUbo } );
+    this->rtDescriptorSets.update( { tlas, storageImage, cameraUbo } );
 
     // Swapchain command buffers
     this->swapchainCommandBuffers.init( this->graphicsCmdPool.get( ), g_swapchainImageCount, vk::CommandBufferUsageFlagBits::eRenderPassContinue );
@@ -370,9 +351,9 @@ namespace RAYEXEC_NAMESPACE
   {
     // Ray tracing pipeline
     std::vector<vk::DescriptorSetLayout> temp = { this->rtDescriptorSetLayout.get( ), this->rtModelDescriptorSetLayout.get( ), this->rtSceneDescriptorSetLayout.get( ) };
-    if ( this->modelDataSetLayout.get( ) )
+    if ( this->vertexDataSetLayout.get( ) )
     {
-      temp.push_back( this->modelDataSetLayout.get( ) );
+      temp.push_back( this->vertexDataSetLayout.get( ) );
       RX_WARN( "Adding model data set layout." );
     }
 
@@ -383,7 +364,7 @@ namespace RAYEXEC_NAMESPACE
     glm::vec2 extent = { static_cast<float>( this->swapchain.getExtent( ).width ), static_cast<float>( this->swapchain.getExtent( ).height ) };
     this->viewport = vk::Viewport( 0.0f, 0.0f, extent.x, extent.y, 0.0f, 1.0f );
     this->scissor = vk::Rect2D( 0, this->swapchain.getExtent( ) );
-    return this->rsPipeline.init( { this->rsModelDescriptorSetLayout.get( ), this->rsSceneDescriptorSetLayout.get( ) }, this->renderPass.get( ), viewport, scissor, this->settings );
+    return this->rsPipeline.init( { this->rsSceneDescriptorSetLayout.get( ), this->rsModelDescriptorSetLayout.get( ) }, this->renderPass.get( ), viewport, scissor, this->settings );
   }
 
   bool Api::initRenderPass( )
@@ -472,10 +453,8 @@ namespace RAYEXEC_NAMESPACE
     
     auto diffuseIter = this->textures.find( node->material.diffuseTexture[0] );
 
-    UboDescriptor cameraUbo { this->cameraUniformBuffer.getRaw( ), sizeof( CameraUbo ) };
     CombinedImageSamplerDescriptor texture { diffuseIter->second->getImageView( ), diffuseIter->second->getSampler( ) };
-
-    model->rsDescriptorSets.update( { cameraUbo, texture } );
+    model->rsDescriptorSets.update( { texture } );
   }
 
   bool Api::initGui( )
@@ -628,7 +607,7 @@ namespace RAYEXEC_NAMESPACE
         auto iter = this->models.find( node->modelPath );
         RX_ASSERT( ( iter->second != nullptr ), "Can not find model" );
 
-        std::vector<vk::DescriptorSet> descriptorSets = { this->rtDescriptorSets.get( imageIndex ), iter->second->rtDescriptorSets.get( imageIndex ), this->rtSceneDescriptorSets.get( imageIndex ), this->modelDataDescriptorSets.get( imageIndex ) };
+        std::vector<vk::DescriptorSet> descriptorSets = { this->rtDescriptorSets.get( imageIndex ), iter->second->rtDescriptorSets.get( imageIndex ), this->rtSceneDescriptorSets.get( imageIndex ), this->vertexDataDescriptorSets.get( imageIndex ) };
 
         this->swapchainCommandBuffers.get( imageIndex ).bindDescriptorSets( vk::PipelineBindPoint::eRayTracingKHR,
                                                                             this->rtPipeline.getLayout( ),
@@ -664,7 +643,6 @@ namespace RAYEXEC_NAMESPACE
   {
     // Create the ray tracing descriptor set layout
     {
-      /*
       // TLAS
       auto tlasBinding = vk::Helper::getDescriptorSetLayoutBinding( 0, vk::DescriptorType::eAccelerationStructureKHR, vk::ShaderStageFlagBits::eRaygenKHR );
       // Output image
@@ -673,14 +651,6 @@ namespace RAYEXEC_NAMESPACE
       auto camUboBinding = vk::Helper::getDescriptorSetLayoutBinding( 2, vk::DescriptorType::eUniformBuffer, vk::ShaderStageFlagBits::eRaygenKHR );
 
       this->rtDescriptorSetLayout.init( { tlasBinding, outputImageBinding, camUboBinding } );
-      */
-
-      this->rtBindings.add( 0, vk::DescriptorType::eAccelerationStructureKHR, vk::ShaderStageFlagBits::eRaygenKHR );
-      this->rtBindings.add( 0, vk::DescriptorType::eStorageImage, vk::ShaderStageFlagBits::eRaygenKHR );
-      this->rtBindings.add( 0, vk::DescriptorType::eUniformBuffer, vk::ShaderStageFlagBits::eRaygenKHR );
-
-      this->rtBindings.initLayoutUnique( this->rtDescriptorSetLayout );
-      this->rtBindings.initPoolUnique( this->rtDescriptorPool, static_cast<uint32_t>( g_maxGeometryNodes ) * g_swapchainImageCount ); // g_maxGeometryNodes? Are you sure about that?
     }
 
     // Create the descriptor set layout for models
@@ -706,27 +676,28 @@ namespace RAYEXEC_NAMESPACE
 
     // RS Scene descriptor set layout.
     {
+      // Uniform buffer binding for the vertex shader.
+      auto cameraUboBinding = vk::Helper::getDescriptorSetLayoutBinding( 0, vk::DescriptorType::eUniformBuffer, vk::ShaderStageFlagBits::eVertex );
+
       // Light nodes uniform buffer
-      auto lightsUboBinding = vk::Helper::getDescriptorSetLayoutBinding( 0, vk::DescriptorType::eUniformBuffer, vk::ShaderStageFlagBits::eFragment );
+      auto lightsUboBinding = vk::Helper::getDescriptorSetLayoutBinding( 1, vk::DescriptorType::eUniformBuffer, vk::ShaderStageFlagBits::eFragment );
 
       // Scene description buffer
-      auto rayTracingInstancesBinding = vk::Helper::getDescriptorSetLayoutBinding( 1, vk::DescriptorType::eStorageBuffer, vk::ShaderStageFlagBits::eVertex );
+      auto rayTracingInstancesBinding = vk::Helper::getDescriptorSetLayoutBinding( 2, vk::DescriptorType::eStorageBuffer, vk::ShaderStageFlagBits::eVertex );
 
-      this->rsSceneDescriptorSetLayout.init( { lightsUboBinding, rayTracingInstancesBinding } );
+      this->rsSceneDescriptorSetLayout.init( { cameraUboBinding, lightsUboBinding, rayTracingInstancesBinding } );
     }
 
     // Rasterization descriptor set layout.
     {
-      // Uniform buffer binding for the vertex shader.
-      auto cameraUboBinding = vk::Helper::getDescriptorSetLayoutBinding( 0, vk::DescriptorType::eUniformBuffer, vk::ShaderStageFlagBits::eVertex );
       // Texture image
-      auto textureBinding = vk::Helper::getDescriptorSetLayoutBinding( 1, vk::DescriptorType::eCombinedImageSampler, vk::ShaderStageFlagBits::eFragment );
+      auto textureBinding = vk::Helper::getDescriptorSetLayoutBinding( 0, vk::DescriptorType::eCombinedImageSampler, vk::ShaderStageFlagBits::eFragment );
 
-      this->rsModelDescriptorSetLayout.init( { cameraUboBinding, textureBinding } );
+      this->rsModelDescriptorSetLayout.init( { textureBinding } );
     }
 
     // Ray tracing descriptor pool
-    //this->rtDescriptorPool = vk::Initializer::initDescriptorPoolUnique( this->rtDescriptorSetLayout.getBindings( ), static_cast<uint32_t>( g_maxGeometryNodes ) * g_swapchainImageCount );
+    this->rtDescriptorPool = vk::Initializer::initDescriptorPoolUnique( this->rtDescriptorSetLayout.getBindings( ), static_cast<uint32_t>( g_maxGeometryNodes ) * g_swapchainImageCount );
 
     // Model descriptor pool
     this->rtModelDescriptorPool = vk::Initializer::initDescriptorPoolUnique( this->rtModelDescriptorSetLayout.getBindings( ), static_cast<uint32_t>( g_maxGeometryNodes ) * g_swapchainImageCount );
@@ -758,11 +729,12 @@ namespace RAYEXEC_NAMESPACE
     this->rayTracingInstancesBuffer.init<RayTracingInstance>( this->rtInstances );
     this->rtInstances.clear( );
 
-    UboDescriptor lightsUboDescritpor { this->lightsUniformBuffer.getRaw( ), sizeof( LightsUbo ) };
+    UboDescriptor cameraUboDescriptor { this->cameraUniformBuffer.getRaw( ), sizeof( CameraUbo ) };
+    UboDescriptor lightsUboDescriptor { this->lightsUniformBuffer.getRaw( ), sizeof( LightsUbo ) };
     StorageBufferDescriptor rtInstancesDescriptor { this->rayTracingInstancesBuffer.get( ) };
 
-    this->rtSceneDescriptorSets.update( { lightsUboDescritpor, rtInstancesDescriptor } );
-    this->rsSceneDescriptorSets.update( { lightsUboDescritpor, rtInstancesDescriptor } );
+    this->rtSceneDescriptorSets.update( { lightsUboDescriptor, rtInstancesDescriptor } );
+    this->rsSceneDescriptorSets.update( { cameraUboDescriptor, lightsUboDescriptor, rtInstancesDescriptor } );
   }
 
   void Api::updateSettings( )
@@ -776,13 +748,6 @@ namespace RAYEXEC_NAMESPACE
 
       RX_ASSERT( initPipelines( ), "Failed to initialize pipelines." );
       RX_ASSERT( this->swapchainCommandBuffers.init( this->graphicsCmdPool.get( ), g_swapchainImageCount, vk::CommandBufferUsageFlagBits::eRenderPassContinue ), "Failed to initialize swapchain command buffers." );
-
-      recreateSwapchain( );
-    }
-
-    if ( this->settings->refreshSwapchain )
-    {
-      this->settings->refreshSwapchain = false;
 
       recreateSwapchain( );
     }
@@ -858,10 +823,10 @@ namespace RAYEXEC_NAMESPACE
     auto verticesBinding = vk::Helper::getDescriptorSetLayoutBinding( 0, vk::DescriptorType::eStorageBuffer, vk::ShaderStageFlagBits::eClosestHitKHR, descriptorCount );
     auto indicesBinding = vk::Helper::getDescriptorSetLayoutBinding( 1, vk::DescriptorType::eStorageBuffer, vk::ShaderStageFlagBits::eClosestHitKHR, descriptorCount );
 
-    this->modelDataSetLayout.init( { verticesBinding, indicesBinding } );
-    this->modelDataDescriptorPool = vk::Initializer::initDescriptorPoolUnique( this->modelDataSetLayout.getBindings( ), static_cast<uint32_t>( g_maxGeometryNodes ) * g_swapchainImageCount );
+    this->vertexDataSetLayout.init( { verticesBinding, indicesBinding } );
+    this->vertexDataDescriptorPool = vk::Initializer::initDescriptorPoolUnique( this->vertexDataSetLayout.getBindings( ), static_cast<uint32_t>( g_maxGeometryNodes ) * g_swapchainImageCount );
 
-    this->modelDataDescriptorSets.init( this->modelDataDescriptorPool.get( ), g_swapchainImageCount, std::vector<vk::DescriptorSetLayout>{ g_swapchainImageCount, this->modelDataSetLayout.get( ) } );
+    this->vertexDataDescriptorSets.init( this->vertexDataDescriptorPool.get( ), g_swapchainImageCount, std::vector<vk::DescriptorSetLayout>{ g_swapchainImageCount, this->vertexDataSetLayout.get( ) } );
 
     StorageBufferArrayDescriptor verticesDescriptors;
     verticesDescriptors.storageBuffers.reserve( this->models.size( ) );
@@ -875,7 +840,7 @@ namespace RAYEXEC_NAMESPACE
       indicesDescriptors.storageBuffers.push_back( { model.second->indexBuffer.get( ) } );
     }
 
-    this->modelDataDescriptorSets.update( { verticesDescriptors, indicesDescriptors } );
+    this->vertexDataDescriptorSets.update( { verticesDescriptors, indicesDescriptors } );
 
     initPipelines( );
   }

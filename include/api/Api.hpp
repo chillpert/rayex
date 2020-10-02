@@ -18,7 +18,6 @@
 #include "base/Gui.hpp"
 #include "base/Base.hpp"
 #include "api/raytracing/RayTracingBuilder.hpp"
-#include "api/Descriptor.hpp"
 #include "api/utility/Util.hpp"
 #include "api/Bindings.hpp"
 
@@ -206,7 +205,7 @@ namespace RAYEXEC_NAMESPACE
     std::vector<vk::UniqueSemaphore> finishedRenderSemaphores;
 
     // Descriptors for ray-tracing-related data ( no equivalent in rasterization shader ).
-    vk::UniqueDescriptorSetLayout rtDescriptorSetLayout;
+    DescriptorSetLayout rtDescriptorSetLayout;
     vk::UniqueDescriptorPool rtDescriptorPool;
     DescriptorSet rtDescriptorSets;
 
@@ -225,11 +224,13 @@ namespace RAYEXEC_NAMESPACE
     vk::UniqueDescriptorPool rsSceneDescriptorPool;
     DescriptorSet rsSceneDescriptorSets;
 
-    DescriptorSetLayout modelDataSetLayout;
-    vk::UniqueDescriptorPool modelDataDescriptorPool;
-    DescriptorSet modelDataDescriptorSets;
+    DescriptorSetLayout vertexDataSetLayout;
+    vk::UniqueDescriptorPool vertexDataDescriptorPool;
+    DescriptorSet vertexDataDescriptorSets;
 
-    Bindings rtBindings;
+    DescriptorSetLayout indexDataSetLayout;
+    vk::UniqueDescriptorPool indexDataDescriptorPool;
+    DescriptorSet indexDataDescriptorSets;
 
     CameraUbo cameraUbo;
     UniformBuffer cameraUniformBuffer;

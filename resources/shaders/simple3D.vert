@@ -22,7 +22,7 @@ struct RayTracingInstance
   float padding1;
 };
 
-layout(binding = 1, set = 1) buffer RayTracingInstances
+layout(binding = 2, set = 0) buffer RayTracingInstances
 {
   RayTracingInstance i[];
 } rayTracingInstances;

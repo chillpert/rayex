@@ -19,6 +19,19 @@ namespace RAYEXEC_NAMESPACE
 
       this->bindings.push_back( temp );
       this->flags.push_back( flags );
+
+
+      // Resources are created per swapchain image. This operation will only be executed once.
+      if ( this->writes.size( ) != g_swapchainImageCount )
+      {
+        this->writes.resize( g_swapchainImageCount );
+      }
+       
+      // For every new binding that is added, the size of each write in writes will get increased by one.
+      for ( auto& write : this->writes )
+      {
+        write.resize( write.size( ) + 1 );
+      }
     }
 
     bool initLayoutUnique( vk::UniqueDescriptorSetLayout& layout )
@@ -37,6 +50,7 @@ namespace RAYEXEC_NAMESPACE
       if ( !layout )
       {
         RX_ERROR( "Failed to create descriptor set layout." );
+
         return false;
       }
 
@@ -76,7 +90,15 @@ namespace RAYEXEC_NAMESPACE
       return true;
     }
 
-    vk::WriteDescriptorSet writeToSet( vk::DescriptorSet set, uint32_t binding, uint32_t arrayElement = 0 )
+    void update( )
+    {
+      for ( const auto& write : this->writes )
+      {
+        g_device.updateDescriptorSets( static_cast<uint32_t>( write.size( ) ), write.data( ), 0, nullptr );
+      }
+    }
+
+    size_t writeToSet( vk::DescriptorSet set, size_t writesIndex, uint32_t binding, uint32_t arrayElement = 0 )
     {
       vk::WriteDescriptorSet result;
 
@@ -89,33 +111,41 @@ namespace RAYEXEC_NAMESPACE
           result.dstBinding = binding;
           result.dstSet = set;
           result.dstArrayElement = arrayElement;
-          return result;
+          
+          this->writes[writesIndex][i] = result;
+          return i;
         }
       }
 
       RX_ASSERT( false, "Failed to write binding to set. Binding could not be found." );
-      return result;
+      return 0;
     }
 
-    vk::WriteDescriptorSet writeToSet( vk::DescriptorSet set, uint32_t binding, const vk::WriteDescriptorSetAccelerationStructureKHR* pWriteDescriptorSetAccelerationStructureKHR )
+    void writeToSet( const std::vector<vk::DescriptorSet>& sets, uint32_t binding, const vk::WriteDescriptorSetAccelerationStructureKHR* pWriteDescriptorSetAccelerationStructureKHR )
     {
-      vk::WriteDescriptorSet result = writeToSet( set, binding );
-      result.pNext = &pWriteDescriptorSetAccelerationStructureKHR;
-      return result;
+      for ( size_t i = 0; i < sets.size( ); ++i )
+      {
+        size_t j = writeToSet( sets[i], i, binding );
+        this->writes[i][j].pNext = &pWriteDescriptorSetAccelerationStructureKHR;
+      }
     }
 
-    vk::WriteDescriptorSet writeToSet( vk::DescriptorSet set, uint32_t binding, const vk::DescriptorImageInfo* pImageInfo )
+    void writeToSet( const std::vector<vk::DescriptorSet>& sets, uint32_t binding, const vk::DescriptorImageInfo* pImageInfo )
     {
-      vk::WriteDescriptorSet result = writeToSet( set, binding );
-      result.pImageInfo = pImageInfo;
-      return result;
+      for ( size_t i = 0; i < sets.size( ); ++i )
+      {
+        size_t j = writeToSet( sets[i], i, binding );
+        this->writes[i][j].pImageInfo = pImageInfo;
+      }
     }
 
-    vk::WriteDescriptorSet writeToSet( vk::DescriptorSet set, uint32_t binding, const vk::DescriptorBufferInfo* pBufferInfo )
+    void writeToSet( const std::vector<vk::DescriptorSet>& sets, uint32_t binding, const vk::DescriptorBufferInfo* pBufferInfo )
     {
-      vk::WriteDescriptorSet result = writeToSet( set, binding );
-      result.pBufferInfo = pBufferInfo;
-      return result;
+      for ( size_t i = 0; i < sets.size( ); ++i )
+      {
+        size_t j = writeToSet( sets[i], i, binding );
+        this->writes[i][j].pBufferInfo = pBufferInfo;
+      }
     }
 
     void setPoolSizes( const std::vector<vk::DescriptorPoolSize>& poolSizes )
@@ -127,6 +157,8 @@ namespace RAYEXEC_NAMESPACE
     std::vector<vk::DescriptorSetLayoutBinding> bindings;
     std::vector<vk::DescriptorBindingFlags> flags;
     std::optional<std::vector<vk::DescriptorPoolSize>> poolSizes;
+
+    std::vector<std::vector<vk::WriteDescriptorSet>> writes;
   };
 }
 

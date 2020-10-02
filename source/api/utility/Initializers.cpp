@@ -72,21 +72,6 @@ namespace vk
       return commandPool;
     }
 
-    UniqueDescriptorPool initDescriptorPoolUnique( const std::vector<DescriptorSetLayoutBinding>& layoutBindings, uint32_t maxSets, DescriptorPoolCreateFlags flags )
-    {
-      auto poolSizes = Helper::getPoolSizes( layoutBindings, maxSets );
-
-      DescriptorPoolCreateInfo createInfo( flags,                                      // flags
-                                           maxSets,                                    // maxSets
-                                           static_cast<uint32_t>( poolSizes.size( ) ), // poolSizeCount
-                                           poolSizes.data( ) );                        // pPoolSizes
-
-      UniqueDescriptorPool descriptorPool = RAYEXEC_NAMESPACE::g_device.createDescriptorPoolUnique( createInfo );
-      RX_ASSERT( descriptorPool, "Failed to create descriptor pool." );
-
-      return descriptorPool;
-    }
-
     UniqueDescriptorPool initDescriptorPoolUnique( const std::vector<DescriptorPoolSize>& poolSizes, uint32_t maxSets, DescriptorPoolCreateFlags flags )
     {
       DescriptorPoolCreateInfo createInfo( flags,                                      // flags
@@ -98,77 +83,6 @@ namespace vk
       RX_ASSERT( descriptorPool, "Failed to create descriptor pool." );
 
       return descriptorPool;
-    }
-
-    DescriptorPool initDescriptorPool( const std::vector<DescriptorSetLayoutBinding>& layoutBindings, uint32_t maxSets, DescriptorPoolCreateFlags flags )
-    {
-      auto poolSizes = Helper::getPoolSizes( layoutBindings, maxSets );
-
-      DescriptorPoolCreateInfo createInfo( flags,                                        // flags
-                                           maxSets,                                      // maxSets
-                                           static_cast<uint32_t>( poolSizes.size( ) ), // poolSizeCount
-                                           poolSizes.data( ) );                          // pPoolSizes
-
-      DescriptorPool descriptorPool = RAYEXEC_NAMESPACE::g_device.createDescriptorPool( createInfo );
-      RX_ASSERT( descriptorPool, "Failed to create descriptor pool." );
-
-      return descriptorPool;
-    }
-
-    DescriptorSetLayout initDescriptorSetLayout( const std::vector<DescriptorSetLayoutBinding> bindings )
-    {
-      DescriptorSetLayoutCreateInfo createInfo( { },                                       // flags
-                                                    static_cast<uint32_t>( bindings.size( ) ), // bindingCount
-                                                    bindings.data( ) );                        // pBindings
-
-      auto descriptorSetLayout = RAYEXEC_NAMESPACE::g_device.createDescriptorSetLayout( createInfo );
-      RX_ASSERT( descriptorSetLayout, "Failed to create descriptor set layout." );
-
-      return descriptorSetLayout;
-    }
-
-    std::vector<DescriptorSet> initDescriptorSets( DescriptorPool pool, DescriptorSetLayout layout )
-    {
-      std::vector<DescriptorSetLayout> temp { RAYEXEC_NAMESPACE::g_swapchainImageCount, layout };
-
-      DescriptorSetAllocateInfo allocInfo( pool,
-                                               RAYEXEC_NAMESPACE::g_swapchainImageCount,
-                                               temp.data( ) );
-
-      auto sets = RAYEXEC_NAMESPACE::g_device.allocateDescriptorSets( allocInfo );
-
-      for ( const auto& set : sets )
-        RX_ASSERT( set, "Failed to create descriptor sets." );
-
-      return sets;
-    }
-
-    std::vector<UniqueDescriptorSet> initDescriptorSetsUnique( DescriptorPool pool, DescriptorSetLayout layout )
-    {
-      std::vector<DescriptorSetLayout> temp { RAYEXEC_NAMESPACE::g_swapchainImageCount, layout };
-
-      DescriptorSetAllocateInfo allocInfo( pool,
-                                               RAYEXEC_NAMESPACE::g_swapchainImageCount,
-                                               temp.data( ) );
-
-      auto sets = RAYEXEC_NAMESPACE::g_device.allocateDescriptorSetsUnique( allocInfo );
-
-      for ( const auto& set : sets )
-        RX_ASSERT( set, "Failed to create descriptor sets." );
-
-      return sets;
-    }
-
-    UniqueDescriptorSetLayout initDescriptorSetLayoutUnique( const std::vector<DescriptorSetLayoutBinding> bindings )
-    {
-      DescriptorSetLayoutCreateInfo createInfo( { },                                       // flags
-                                                    static_cast<uint32_t>( bindings.size( ) ), // bindingCount
-                                                    bindings.data( ) );                        // pBindings
-
-      auto descriptorSetLayout = RAYEXEC_NAMESPACE::g_device.createDescriptorSetLayoutUnique( createInfo );
-      RX_ASSERT( descriptorSetLayout, "Failed to create descriptor set layout." );
-
-      return descriptorSetLayout;
     }
 
     UniqueDeviceMemory allocateMemoryUnique( Image image, MemoryPropertyFlags propertyFlags, void* pNext )

@@ -4,7 +4,6 @@ cmake_minimum_required(VERSION 3.16.2)
 file(GLOB FILES_LIB
   "${PROJECT_SOURCE_DIR}/source/api/*.cpp"
   "${PROJECT_SOURCE_DIR}/source/api/buffers/*.cpp"
-  "${PROJECT_SOURCE_DIR}/source/api/descriptors/*.cpp"
   "${PROJECT_SOURCE_DIR}/source/api/image/*.cpp"
   "${PROJECT_SOURCE_DIR}/source/api/misc/*.cpp"
   "${PROJECT_SOURCE_DIR}/source/api/raytracing/*.cpp"

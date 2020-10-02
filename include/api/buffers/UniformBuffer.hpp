@@ -48,6 +48,8 @@ namespace RAYEXEC_NAMESPACE
     /// @return Returns the vector of uniform buffers as raw Vulkan buffer objects.
     RX_API const std::vector<vk::Buffer> getRaw( ) const;
 
+    std::vector<vk::DescriptorBufferInfo> getDescriptorInfos( vk::DeviceSize size );
+
     /// Creates the uniform buffer and allocates memory for it.
     /// 
     /// The function will create as many uniform buffers as there are images in the swapchain.

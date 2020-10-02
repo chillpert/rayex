@@ -12,8 +12,6 @@
 #include "api/buffers/VertexBuffer.hpp"
 #include "api/buffers/IndexBuffer.hpp"
 #include "api/buffers/StorageBuffer.hpp"
-#include "api/descriptors/DescriptorSet.hpp"
-#include "api/descriptors/DescriptorSetLayout.hpp"
 #include "api/buffers/UniformBuffer.hpp"
 #include "base/Gui.hpp"
 #include "base/Base.hpp"
@@ -205,34 +203,29 @@ namespace RAYEXEC_NAMESPACE
     std::vector<vk::UniqueSemaphore> finishedRenderSemaphores;
 
     // Descriptors for ray-tracing-related data ( no equivalent in rasterization shader ).
-    DescriptorSetLayout rtDescriptorSetLayout;
+    vk::UniqueDescriptorSetLayout rtDescriptorSetLayout;
     vk::UniqueDescriptorPool rtDescriptorPool;
-    DescriptorSet rtDescriptorSets;
+    std::vector<vk::DescriptorSet> rtDescriptorSets;
+    Bindings rtBindings;
 
     // Descriptors for model-related data.
-    DescriptorSetLayout rtModelDescriptorSetLayout; ///< @note Each RAYEXEC_NAMESPACE::Model has its own descriptor set.
+    vk::UniqueDescriptorSetLayout rtModelDescriptorSetLayout; ///< @note Each RAYEXEC_NAMESPACE::Model has its own descriptor set.
     vk::UniqueDescriptorPool rtModelDescriptorPool;
     Bindings rtModelBindings;
 
-
-    DescriptorSetLayout rsModelDescriptorSetLayout;
+    vk::UniqueDescriptorSetLayout rsModelDescriptorSetLayout;
     vk::UniqueDescriptorPool rsModelDescriptorPool;
+    Bindings rsModelBindings;
 
     // Descriptors for scene-related data.
-    DescriptorSetLayout rtSceneDescriptorSetLayout;
+    vk::UniqueDescriptorSetLayout rtSceneDescriptorSetLayout;
     vk::UniqueDescriptorPool rtSceneDescriptorPool;
-    DescriptorSet rtSceneDescriptorSets;
-    DescriptorSetLayout rsSceneDescriptorSetLayout;
+    std::vector<vk::DescriptorSet> rtSceneDescriptorSets;
+    Bindings rtSceneBindings;
+    vk::UniqueDescriptorSetLayout rsSceneDescriptorSetLayout;
     vk::UniqueDescriptorPool rsSceneDescriptorPool;
-    DescriptorSet rsSceneDescriptorSets;
-
-    DescriptorSetLayout vertexDataSetLayout;
-    vk::UniqueDescriptorPool vertexDataDescriptorPool;
-    DescriptorSet vertexDataDescriptorSets;
-
-    DescriptorSetLayout indexDataSetLayout;
-    vk::UniqueDescriptorPool indexDataDescriptorPool;
-    DescriptorSet indexDataDescriptorSets;
+    std::vector<vk::DescriptorSet> rsSceneDescriptorSets;
+    Bindings rsSceneBindings;
 
     CameraUbo cameraUbo;
     UniformBuffer cameraUniformBuffer;

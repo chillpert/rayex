@@ -103,13 +103,6 @@ namespace vk
     /// @return Returns the completed depth attachment description.
     AttachmentDescription getDepthAttachmentDescription( Format depthFormat );
 
-    /// Simplifies the process of setting up a descriptor set layout binding.
-    /// @binding The binding in the shader.
-    /// @descriptorType The type of the descriptor.
-    /// @stageFlags The type of shader in which the descriptor can be used.
-    /// @return Returns the descriptor set layout binding.
-    DescriptorSetLayoutBinding getDescriptorSetLayoutBinding( uint32_t binding, DescriptorType descriptorType, ShaderStageFlags stageFlags, uint32_t descriptorCount = 1 );
-
     /// Checks if a given physical device supports the queue capabilities required by the application.
     /// @param physicalDevice The physical device to check.
     bool isPhysicalDeviceQueueComplete( PhysicalDevice physicalDevice );

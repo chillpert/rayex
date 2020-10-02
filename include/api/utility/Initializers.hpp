@@ -42,29 +42,7 @@ namespace vk
     /// @return Returns the command pool.
     CommandPool initCommandPool(uint32_t queueFamilyIndex, CommandPoolCreateFlags flags = { } );
     
-    /// Creates a descriptor pool with a unique handle.
-    /// @param poolSizes All descriptor types for descriptor sets that can be allocated from this descriptor pool.
-    /// @param maxSets The maximum amount of descriptor sets that can be allocated from this descriptor pool.
-    /// @param flags The flags used for creating the descriptor pool.
-    /// @return Returns the descriptor pool.  
-    UniqueDescriptorPool initDescriptorPoolUnique( const std::vector<DescriptorSetLayoutBinding>& layoutBindings, uint32_t maxSets = 1, DescriptorPoolCreateFlags flags = { } );
-
     UniqueDescriptorPool initDescriptorPoolUnique( const std::vector<DescriptorPoolSize>& poolSizes, uint32_t maxSets = 1, DescriptorPoolCreateFlags flags = { } );
-
-    /// Creates a descriptor pool.
-    /// @param poolSizes All descriptor types for descriptor sets that can be allocated from this descriptor pool.
-    /// @param maxSets The maximum amount of descriptor sets that can be allocated from this descriptor pool.
-    /// @param flags The flags used for creating the descriptor pool.
-    /// @return Returns the descriptor pool.  
-    DescriptorPool initDescriptorPool( const std::vector<DescriptorSetLayoutBinding>& layoutBindings, uint32_t maxSets, DescriptorPoolCreateFlags flags = { } );
-
-    DescriptorSetLayout initDescriptorSetLayout( const std::vector<DescriptorSetLayoutBinding> bindings );
-
-    UniqueDescriptorSetLayout initDescriptorSetLayoutUnique( const std::vector<DescriptorSetLayoutBinding> bindings );
-
-    std::vector<DescriptorSet> initDescriptorSets( DescriptorPool pool, DescriptorSetLayout layout );
-
-    std::vector<UniqueDescriptorSet> initDescriptorSetsUnique( DescriptorPool pool, DescriptorSetLayout layout );
 
     /// Allocates and binds unique memory for an image.
     /// @param image The image to allocate memory for.

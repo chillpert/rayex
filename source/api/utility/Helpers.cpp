@@ -281,15 +281,6 @@ namespace vk
                                     ImageLayout::eDepthStencilAttachmentOptimal ); // finalLayout    
     }
 
-    DescriptorSetLayoutBinding getDescriptorSetLayoutBinding( uint32_t binding, DescriptorType descriptorType, ShaderStageFlags stageFlags, uint32_t descriptorCount )
-    {
-      return DescriptorSetLayoutBinding( binding,         // binding
-                                         descriptorType,  // descriptorType
-                                         descriptorCount, // descriptorCount
-                                         stageFlags,      // stageFlags
-                                         nullptr );       // pImmutableSamplers
-    }
-
     bool isPhysicalDeviceQueueComplete( PhysicalDevice physicalDevice )
     {
       auto queueFamilies = physicalDevice.getQueueFamilyProperties( );

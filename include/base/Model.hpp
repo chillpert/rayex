@@ -6,7 +6,6 @@
 #include "api/buffers/VertexBuffer.hpp"
 #include "api/buffers/IndexBuffer.hpp"
 #include "api/buffers/UniformBuffer.hpp"
-#include "api/descriptors/DescriptorSet.hpp"
 #include "base/Material.hpp"
 
 namespace RAYEXEC_NAMESPACE
@@ -58,8 +57,8 @@ namespace RAYEXEC_NAMESPACE
     IndexBuffer<uint32_t> indexBuffer; ///< Used to buffer the raw index data.
 
     // No destruction necessary
-    DescriptorSet rtDescriptorSets; ///< Ray tracing descriptor sets for the model's descriptors.
-    DescriptorSet rsDescriptorSets; ///< Rasterization descriptor sets for the model's descriptors.
+    std::vector<vk::DescriptorSet> rtDescriptorSets; ///< Ray tracing descriptor sets for the model's descriptors.
+    std::vector<vk::DescriptorSet> rsDescriptorSets; ///< Rasterization descriptor sets for the model's descriptors.
 
   private:
     static uint32_t modelCounter; ///< Used to count the total number of models and to assign a new unique value to index.

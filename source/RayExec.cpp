@@ -51,7 +51,7 @@ namespace RAYEXEC_NAMESPACE
   #endif
 
     this->initialized = this->window->init( );
-    this->initialized = this->api.init( );
+    this->api.init( );
   }
 
   void RayExec::run( )

@@ -22,7 +22,7 @@ namespace RAYEXEC_NAMESPACE
     /// @param commandPool The command pool from which the command buffers will be allocated from.
     /// @param count The amount of Vulkan command buffers to initialize (the same as the amount of images in the swapchain).
     /// @param usageFlags Specifies what the buffer will be used for.
-    bool init( vk::CommandPool commandPool, uint32_t count = 1, vk::CommandBufferUsageFlags usageFlags = vk::CommandBufferUsageFlagBits::eOneTimeSubmit );
+    void init( vk::CommandPool commandPool, uint32_t count = 1, vk::CommandBufferUsageFlags usageFlags = vk::CommandBufferUsageFlagBits::eOneTimeSubmit );
 
     /// @return Returns the vector of command buffers.
     inline const std::vector<vk::CommandBuffer> get( ) const { return commandBuffers; }

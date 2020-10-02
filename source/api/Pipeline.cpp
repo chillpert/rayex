@@ -8,7 +8,7 @@
 
 namespace RAYEXEC_NAMESPACE
 {
-  bool Pipeline::init( const std::vector<vk::DescriptorSetLayout>& descriptorSetLayouts, vk::RenderPass renderPass, vk::Viewport viewport, vk::Rect2D scissor, const Settings* const settings )
+  void Pipeline::init( const std::vector<vk::DescriptorSetLayout>& descriptorSetLayouts, vk::RenderPass renderPass, vk::Viewport viewport, vk::Rect2D scissor, const Settings* const settings )
   {
     // TODO: this has to be more adjustable.
     auto bindingDescription = Vertex::getBindingDescriptions( );
@@ -86,10 +86,7 @@ namespace RAYEXEC_NAMESPACE
 
     uint32_t pushConstantSize = sizeof( float ) + sizeof( glm::vec3 );
     if ( g_physicalDeviceLimits.maxPushConstantsSize < pushConstantSize )
-    {
-      RX_ERROR( "Push constant size is exceeding supported size." );
-      return false;
-    }
+      RX_FATAL( "Push constant size is exceeding supported size." );
 
     vk::PipelineLayoutCreateInfo pipelineLayoutInfo( { },                                                   // flags
                                                      static_cast<uint32_t>( descriptorSetLayouts.size( ) ), // setLayoutCount
@@ -98,11 +95,7 @@ namespace RAYEXEC_NAMESPACE
                                                      nullptr );                                             // pPushConstantRanges
 
     this->layout = g_device.createPipelineLayoutUnique( pipelineLayoutInfo );
-    if ( !this->layout )
-    {
-      RX_ERROR( "Failed to create pipeline layout for rasterization pipeline." );
-      return false;
-    }
+    RX_ASSERT( this->layout, "Failed to create pipeline layout for rasterization pipeline." );
 
     Util::processShaderMacros( "shaders/simple3D.frag", settings->anticipatedDirectionalLights, settings->anticipatedPointLights, 0 );
 
@@ -132,16 +125,10 @@ namespace RAYEXEC_NAMESPACE
                                                0 );                                           // basePipelineIndex
 
     this->pipeline = g_device.createGraphicsPipelineUnique( nullptr, createInfo, nullptr );
-    if ( !this->pipeline )
-    {
-      RX_ERROR( "Failed to create rasterization pipeline." );
-      return false;
-    }
-    
-    return true;
+    RX_ASSERT( this->pipeline, "Failed to create rasterization pipeline." );
   }
 
-  bool Pipeline::init( const std::vector<vk::DescriptorSetLayout>& descriptorSetLayouts, const Settings* const settings )
+  void Pipeline::init( const std::vector<vk::DescriptorSetLayout>& descriptorSetLayouts, const Settings* const settings )
   {
     uint32_t anticipatedModels = settings->anticipatedModels.has_value( ) ? settings->anticipatedModels.value( ) : g_maxModels;
     Util::processShaderMacros( "shaders/raytrace.rchit", settings->anticipatedDirectionalLights, settings->anticipatedPointLights, anticipatedModels );
@@ -167,11 +154,7 @@ namespace RAYEXEC_NAMESPACE
                                              pushConstantRanges.data( ) );                          // pPushConstantRanges
 
     this->layout = g_device.createPipelineLayoutUnique( layoutInfo );
-    if ( !this->layout )
-    {
-      RX_ERROR( "Failed to create pipeline layout for ray tracing pipeline." );
-      return false;
-    }
+    RX_ASSERT( this->layout, "Failed to create pipeline layout for ray tracing pipeline." );
 
     std::array<vk::PipelineShaderStageCreateInfo, 3> shaderStages;
     shaderStages[0] = vk::Helper::getPipelineShaderStageCreateInfo( vk::ShaderStageFlagBits::eRaygenKHR, rgen.get( ) );
@@ -213,12 +196,6 @@ namespace RAYEXEC_NAMESPACE
                                                     0 );                                           // basePipelineIndex
   
     this->pipeline = g_device.createRayTracingPipelineKHRUnique( nullptr, createInfo );
-    if ( !this->pipeline )
-    {
-      RX_ERROR( "Failed to create ray tracing pipeline." );
-      return false;
-    }
-
-    return true;
+    RX_ASSERT( this->pipeline, "Failed to create ray tracing pipeline." );
   }
 }

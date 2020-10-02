@@ -4,7 +4,7 @@
 
 namespace RAYEXEC_NAMESPACE
 {
-  bool Swapchain::init( Surface* surface, vk::RenderPass renderPass )
+  void Swapchain::init( Surface* surface, vk::RenderPass renderPass )
   {
     surface->assessSettings( );
 
@@ -17,10 +17,7 @@ namespace RAYEXEC_NAMESPACE
     uint32_t minImageCount = surfaceCapabilities.minImageCount + 1;
 
     if ( surfaceCapabilities.maxImageCount == 0 )
-    {
-      RX_ERROR( "The surface does not support any images for a swap chain." );
-      return false;
-    }
+      RX_FATAL( "The surface does not support any images for a swap chain." );
 
     // If the preferred image count is exceeding the supported amount then use the maximum amount of images supported by the surface.
     if ( minImageCount > surfaceCapabilities.maxImageCount )
@@ -68,10 +65,7 @@ namespace RAYEXEC_NAMESPACE
     createInfo.imageExtent = this->extent;
 
     if ( surfaceCapabilities.maxImageArrayLayers < 1 )
-    {
-      RX_ERROR( "The surface does not support a single array layer." );
-      return false;
-    }
+      RX_FATAL( "The surface does not support a single array layer." );
 
     createInfo.imageArrayLayers = 1;
     createInfo.imageUsage = vk::ImageUsageFlagBits::eColorAttachment | vk::ImageUsageFlagBits::eTransferDst;
@@ -90,22 +84,12 @@ namespace RAYEXEC_NAMESPACE
     createInfo.presentMode = surface->getPresentMode( );
 
     this->swapchain = g_device.createSwapchainKHRUnique( createInfo );
-    if ( !this->swapchain )
-    {
-      RX_ERROR( "Failed to create swapchain." );
-      return false;
-    }
-
+    RX_ASSERT( this->swapchain, "Failed to create swapchain" );
     g_swapchain = this->swapchain.get( );
 
-    bool result = initImages( minImageCount, surface->getFormat( ) );
-    RX_ASSERT_INIT( result );
-
-    result = initDepthImage( );
-    RX_ASSERT_INIT( result );
-    
-    result = initFramebuffers( renderPass );
-    return result;
+    initImages( minImageCount, surface->getFormat( ) );
+    initDepthImage( );    
+    initFramebuffers( renderPass );
   }
 
   void Swapchain::destroy( )
@@ -136,15 +120,12 @@ namespace RAYEXEC_NAMESPACE
     RX_ASSERT( ( result == vk::Result::eSuccess ), "Failed to acquire next swapchain image." );
   }
 
-  bool Swapchain::initImages( uint32_t minImageCount, vk::Format surfaceFormat )
+  void Swapchain::initImages( uint32_t minImageCount, vk::Format surfaceFormat )
   {
     // Retrieve the actual swapchain images. This sets them up automatically.
     this->images = g_device.getSwapchainImagesKHR( this->swapchain.get( ) );
     if ( this->images.size( ) < minImageCount )
-    {
-      RX_ERROR( "Failed to get swapchain images." );
-      return false;
-    }
+      RX_FATAL( "Failed to get swapchain images." );
 
     g_swapchainImageCount = static_cast<uint32_t>( this->images.size( ) );
 
@@ -152,11 +133,9 @@ namespace RAYEXEC_NAMESPACE
     this->imageViews.resize( this->images.size( ) );
     for ( size_t i = 0; i < this->imageViews.size( ); ++i )
       this->imageViews[i] = vk::Initializer::initImageViewUnique( this->images[i], surfaceFormat, this->imageAspect );
-    
-    return true;
   }
 
-  bool Swapchain::initDepthImage( )
+  void Swapchain::initDepthImage( )
   {
     // Depth image for depth buffering
     vk::Format depthFormat = getSupportedDepthFormat( g_physicalDevice );
@@ -165,21 +144,17 @@ namespace RAYEXEC_NAMESPACE
     imageCreateInfo.format = depthFormat;
     imageCreateInfo.usage = vk::ImageUsageFlagBits::eDepthStencilAttachment;
 
-    bool result = this->depthImage.init( imageCreateInfo );
-    RX_ASSERT_INIT( result );
+    this->depthImage.init( imageCreateInfo );
 
     // Image view for depth image
     this->depthImageView = vk::Initializer::initImageViewUnique( this->depthImage.get( ), depthFormat, vk::ImageAspectFlagBits::eDepth );
-    return true;
   }
 
-  bool Swapchain::initFramebuffers( vk::RenderPass renderPass )
+  void Swapchain::initFramebuffers( vk::RenderPass renderPass )
   {
     this->framebuffers.resize( this->imageViews.size( ) );
     for ( size_t i = 0; i < this->framebuffers.size( ); ++i )
       this->framebuffers[i] = vk::Initializer::initFramebufferUnique( { this->imageViews[i].get( ), this->depthImageView.get( ) }, renderPass, this->extent );
-  
-    return true;
   }
 
   vk::Format getSupportedDepthFormat( vk::PhysicalDevice physicalDevice )

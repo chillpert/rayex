@@ -10,7 +10,7 @@ namespace RAYEXEC_NAMESPACE
       destroy( );
   }
 
-  bool DebugMessenger::init( vk::DebugUtilsMessageSeverityFlagsEXT messageSeverity, vk::DebugUtilsMessageTypeFlagsEXT messageType )
+  void DebugMessenger::init( vk::DebugUtilsMessageSeverityFlagsEXT messageSeverity, vk::DebugUtilsMessageTypeFlagsEXT messageType )
   {
   #ifdef RX_DEBUG
     vk::DebugUtilsMessengerCreateInfoEXT createInfo( { },
@@ -21,15 +21,7 @@ namespace RAYEXEC_NAMESPACE
 
     this->debugMessenger = g_instance.createDebugUtilsMessengerEXT( createInfo );
     RX_ASSERT( this->debugMessenger, "Failed to create debug messenger." );
-
-    if ( !this->debugMessenger )
-    {
-      RX_ERROR( "Failed to create debug messenger." );
-      return false;
-    }
-
   #endif
-    return true;
   }
 
   void DebugMessenger::destroy( )

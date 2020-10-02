@@ -164,26 +164,25 @@ namespace vk
     /// If a device is found its properties and features will be retrieved.
     /// @return Returns true if the initilization was successful.
     /// @note Multiple GPUs can not be utilized.
-    bool initPhysicalDevice( PhysicalDevice& physicalDevice );
+    PhysicalDevice initPhysicalDevice( );
 
     /// Retrieves the queue family indices for both graphics and transfer queue families.
-    /// @return Returns true if the initilization was successful.
     /// @note The function tries to find a transfer queue family index that is not the same as the graphics queue family index.
     /// @see hasDedicatedTransferQueueFamily(vk::PhysicalDevice)
-    bool initQueueFamilyIndices( );
+    void initQueueFamilyIndices( );
 
     /// Creates the logical device and enables all device extensions provided if they are supported.
     /// @param queueFamilies All queue families whose queues should be created.
     /// @param extensions All device extensions that should be enabled.
     /// @return Returns true if the initilization was successful.
-    bool initDevice( UniqueDevice& device, std::vector<const char*>& extensions );
+    UniqueDevice initDevice( std::vector<const char*>& extensions );
 
     /// Initializes the instance object and checks support for any given layer and extension.
     /// @param layers All validation layers that should be activated.
     /// @param extensions All instance extensions that should be activated.
     /// @note The given vector with the extensions will be appended by ones that are required by the window.
     /// @return Returns true if initialization was successful.
-    bool initInstance( UniqueInstance& instance, const std::vector<const char*>& layers, std::vector<const char*>& extensions );
+    UniqueInstance initInstance(const std::vector<const char*>& layers, std::vector<const char*>& extensions );
 
     bool initGraphicsPipelines( const std::vector<GraphicsPipelineCreateInfo>& createInfos );
     bool initRayTracingPipelines( const std::vector<RayTracingPipelineCreateInfoKHR> createInfos );

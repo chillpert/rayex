@@ -27,8 +27,7 @@ namespace RAYEXEC_NAMESPACE
 
     /// Initializes the Vulkan surface object.
     /// @note If any of the specified format, color space and present mode are not available the function will fall back to settings that are guaranteed to be supported.
-    /// @return Returns true if initialization was successful.
-    bool init( );
+    void init( );
 
     /// Checks if the preferred settings for format, color space and present mode are available. If not, the function will set them to some fallback values.
     /// @warning Must be called right after the enumeration of the physical device.

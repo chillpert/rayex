@@ -59,7 +59,7 @@ namespace RAYEXEC_NAMESPACE
     /// @param surface A pointer to a RAYEXEC_NAMESPACE::Surface object.
     /// @param swapchainImageExtent The extent of the swapchain images.
     /// @param swapchainImageViews The swapchain images' image views.
-    bool init( const Surface* const surface, vk::Extent2D swapchainImageExtent, const std::vector<vk::ImageView>& swapchainImageViews );
+    void init( const Surface* const surface, vk::Extent2D swapchainImageExtent, const std::vector<vk::ImageView>& swapchainImageViews );
 
     /// Used to recreate the GUI in case the window size was changed.
     /// @param swapchainImageExtent The extent of the swapchain images.
@@ -81,24 +81,24 @@ namespace RAYEXEC_NAMESPACE
 
   private:
     /// Creates a descriptor pool.
-    bool initDescriptorPool( );
+    void initDescriptorPool( );
 
     /// Creates a render pass for the GUI.
     /// @param surface A pointer to a RAYEXEC_NAMESPACE::Surface object.
-    bool initRenderPass( const Surface* const surface );
+    void initRenderPass( const Surface* const surface );
 
     /// Creates a command pool for the GUI's command buffers.
-    bool initCommandPool( );
+    void initCommandPool( );
 
     /// Creates the ImGui font textures.
-    bool initFonts( );
+    void initFonts( );
 
     /// Creates the command buffers to record the ImGui rendering commands to.
-    bool initCommandBuffers( );
+    void initCommandBuffers( );
 
     /// Creates framebuffers for the render pass.
     /// @param swapchainImageViews A vector holding the swapchain images' image view.
-    bool initFramebuffers( const std::vector<vk::ImageView>& swapchainImageViews );
+    void initFramebuffers( const std::vector<vk::ImageView>& swapchainImageViews );
 
   private:
     vk::UniqueDescriptorPool descriptorPool; ///< A Vulkan descriptor pool with a unique handle.

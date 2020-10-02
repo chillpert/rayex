@@ -8,21 +8,15 @@
 
 namespace RAYEXEC_NAMESPACE
 {
-  bool Image::init( const vk::ImageCreateInfo& createInfo )
+  void Image::init( const vk::ImageCreateInfo& createInfo )
   {
     this->extent = createInfo.extent;
     this->format = createInfo.format;
     this->layout = createInfo.initialLayout;
 
     this->image = g_device.createImageUnique( createInfo );
-    if ( !this->image )
-    {
-      RX_ERROR( "Failed to create image." );
-      return false;
-    }
-
+    RX_ASSERT( this->image, "Failed to create image" );
     this->memory = vk::Initializer::allocateMemoryUnique( this->image.get( ) );
-    return true;
   }
 
   void Image::transitionToLayout( vk::ImageLayout layout )

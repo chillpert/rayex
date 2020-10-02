@@ -129,21 +129,21 @@ namespace vk
     /// 
     /// If any device extension is not supported the application will shut down immediately.
     /// @param extensions All device extensions that should be activated.
-    bool checkDeviceExtensionSupport( const std::vector<const char*>& extensions );
+    void checkDeviceExtensionSupport( const std::vector<const char*>& extensions );
 
     /// Checks if all layers provided are supported.
     /// 
     /// If any layer is not supported the application will shut down immediately.
     /// @param layers All validation layers that should be activated.
     /// @return Returns true if initialization was successful.
-    bool checkInstanceLayersSupport( Instance instance, const std::vector<const char*>& layers );
+    void checkInstanceLayersSupport( const std::vector<const char*>& layers );
 
     /// Checks if all instance extensions provided are supported.
     /// 
     /// If any instance extension is not supported the application will shut down immediately.
     /// @param extensions All instance extensions that should be activated.
     /// @return Returns true if initialization was successful.
-    bool checkInstanceExtensionsSupport( Instance instance, const std::vector<const char*>& extensions );
+    void checkInstanceExtensionsSupport( const std::vector<const char*>& extensions );
   }
 } 
 

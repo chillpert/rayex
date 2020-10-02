@@ -15,8 +15,7 @@ namespace RAYEXEC_NAMESPACE
     /// Creates the swapchain, the swapchain images and their image views as well as their framebuffers.
     /// @param surface A pointer to a RAYEXEC_NAMESPACE::Surface object.
     /// @param renderPass The render pass to create the framebuffers.
-    /// @return Returns true if initialization was successful.
-    bool init( Surface* surface, vk::RenderPass renderPass );
+    void init( Surface* surface, vk::RenderPass renderPass );
 
     /// Destroys the swapchain.
     void destroy( );
@@ -62,17 +61,14 @@ namespace RAYEXEC_NAMESPACE
     /// Initializes the swapchain images.
     /// @param minImageCount The minimum amount of images in the swapchain.
     /// @param surfaceFormat The surface's format.
-    /// @return Returns true if initialization was successful.
-    bool initImages( uint32_t minImageCount, vk::Format surfaceFormat );
+    void initImages( uint32_t minImageCount, vk::Format surfaceFormat );
     
     /// Initializes the depth image for the depth attachment.
-    /// @return Returns true if initialization was successful.
-    bool initDepthImage( );
+    void initDepthImage( );
 
     /// Initializes the swapchain framebuffers.
     /// @param renderPass The render pass to create the framebuffers.
-    /// @return Returns true if initialization was successful.
-    bool initFramebuffers( vk::RenderPass renderPass );
+    void initFramebuffers( vk::RenderPass renderPass );
 
     vk::UniqueSwapchainKHR swapchain; ///< The Vulkan swapchain object with a unique handle.
 

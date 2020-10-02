@@ -48,7 +48,7 @@ namespace RAYEXEC_NAMESPACE
     RX_API void setGui( const std::shared_ptr<Gui> gui, bool initialize = false );
 
     /// Initializes all API components.
-    bool init( );
+    void init( );
 
     /// Used to update and upload uniform buffers.
     void update( );
@@ -141,17 +141,17 @@ namespace RAYEXEC_NAMESPACE
     }
 
     /// Re-initializes the render pass to support the GUI and initializes the GUI itself.
-    RX_API bool initGui( );
+    RX_API void initGui( );
 
     Settings* settings = nullptr;
     
   private:
     void updateAccelerationStructure( );
 
-    bool initPipelines( );
+    void initPipelines( );
 
     /// Initializes the render pass with a color and depth attachment.
-    bool initRenderPass( );
+    void initRenderPass( );
 
     /// Initializes the model provided by the node.
     /// 
@@ -212,6 +212,8 @@ namespace RAYEXEC_NAMESPACE
     // Descriptors for model-related data.
     DescriptorSetLayout rtModelDescriptorSetLayout; ///< @note Each RAYEXEC_NAMESPACE::Model has its own descriptor set.
     vk::UniqueDescriptorPool rtModelDescriptorPool;
+    Bindings rtModelBindings;
+
 
     DescriptorSetLayout rsModelDescriptorSetLayout;
     vk::UniqueDescriptorPool rsModelDescriptorPool;

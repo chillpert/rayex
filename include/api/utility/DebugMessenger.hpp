@@ -20,8 +20,7 @@ namespace RAYEXEC_NAMESPACE
     /// Creates the debug messenger with the given properties.
     /// @param messageSeverity - Specifies the type of severity of messages that will be logged.
     /// @param messageType - Specifies the types of messages that will be logged.
-    /// @return Returns true if initialization was successful.
-    bool init( vk::DebugUtilsMessageSeverityFlagsEXT messageSeverity, vk::DebugUtilsMessageTypeFlagsEXT messageType );
+    void init( vk::DebugUtilsMessageSeverityFlagsEXT messageSeverity = vk::DebugUtilsMessageSeverityFlagBitsEXT::eVerbose | vk::DebugUtilsMessageSeverityFlagBitsEXT::eWarning | vk::DebugUtilsMessageSeverityFlagBitsEXT::eError, vk::DebugUtilsMessageTypeFlagsEXT messageType = vk::DebugUtilsMessageTypeFlagBitsEXT::ePerformance | vk::DebugUtilsMessageTypeFlagBitsEXT::eValidation );
 
   private:
     /// Destroys the debug messenger.

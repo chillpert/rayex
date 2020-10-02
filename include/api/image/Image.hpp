@@ -24,7 +24,7 @@ namespace RAYEXEC_NAMESPACE
 
     /// Creates the image and allocates memory for it.
     /// @param createInfo The Vulkan image create info.
-    bool init( const vk::ImageCreateInfo& createInfo );
+    void init( const vk::ImageCreateInfo& createInfo );
 
     /// Used to transition this image's layout.
     /// @param layout The target layout.

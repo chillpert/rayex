@@ -442,8 +442,10 @@ namespace vk
       return resultAs;
     }
 
-    bool initPhysicalDevice( PhysicalDevice& physicalDevice )
+    PhysicalDevice initPhysicalDevice( )
     {
+      PhysicalDevice physicalDevice;
+
       auto physicalDevices = RAYEXEC_NAMESPACE::g_instance.enumeratePhysicalDevices( );
 
       std::vector<std::pair<unsigned int, std::string>> results;
@@ -461,18 +463,15 @@ namespace vk
         }
       }
 
-      if ( !physicalDevice )
-      {
-        RX_ERROR( "No suitable device was found." );
-        return false;
-      }
-
+      // Print information about all GPUs available on the machine.
       const std::string separator = "===================================================================";
       std::cout << "Physical device report: " << "\n" << separator << "\n" << "Device name" << "\t\t\t" << "Score" << std::endl << separator << "\n";
 
       for ( const auto& result : results )
         std::cout << std::left << std::setw( 32 ) << std::setfill( ' ' ) << result.second << std::left << std::setw( 32 ) << std::setfill( ' ' ) << result.first << std::endl;
 
+      RX_ASSERT( physicalDevice, "No suitable physical device was found." );
+     
       // Print information about the GPU that was selected.
       auto properties = physicalDevice.getProperties( );
       RX_SUCCESS( "Selected GPU: ", properties.deviceName );
@@ -480,10 +479,10 @@ namespace vk
       RAYEXEC_NAMESPACE::g_physicalDeviceLimits = properties.limits;
       RAYEXEC_NAMESPACE::g_physicalDevice = physicalDevice;
 
-      return true;
+      return physicalDevice;
     }
 
-    bool initQueueFamilyIndices( )
+    void initQueueFamilyIndices( )
     {
       std::optional<uint32_t> graphicsFamilyIndex;
       std::optional<uint32_t> transferFamilyIndex;
@@ -514,23 +513,15 @@ namespace vk
       }
 
       if ( !graphicsFamilyIndex.has_value( ) || !transferFamilyIndex.has_value( ) )
-      {
-        RX_ERROR( "Failed to retrieve queue family indices." );
-        return false;
-      }
+        RX_FATAL( "Failed to retrieve queue family indices." );
 
       RAYEXEC_NAMESPACE::g_graphicsFamilyIndex = graphicsFamilyIndex.value( );
       RAYEXEC_NAMESPACE::g_transferFamilyIndex = transferFamilyIndex.value( );
-
-      return true;
     }
 
-    bool initDevice( UniqueDevice& device, std::vector<const char*>& extensions )
+    UniqueDevice initDevice( std::vector<const char*>& extensions )
     {
-      extensions.push_back( VK_KHR_SWAPCHAIN_EXTENSION_NAME );
-
-      if ( !Helper::checkDeviceExtensionSupport( extensions ) )
-        return false;
+      Helper::checkDeviceExtensionSupport( extensions );
 
       std::vector<DeviceQueueCreateInfo> queueCreateInfos;
 
@@ -588,21 +579,18 @@ namespace vk
 
       createInfo.pNext = &deviceFeatures2;
 
-      device = rx::g_physicalDevice.createDeviceUnique( createInfo );
+      UniqueDevice device = rx::g_physicalDevice.createDeviceUnique( createInfo );
       rx::g_device = device.get( );
-
-      if ( !device )
-      {
-        RX_ERROR( "Failed to create logical device." );
-        return false;
-      }
-
+      RX_ASSERT( device, "Failed to create logical device." );
       VULKAN_HPP_DEFAULT_DISPATCHER.init( device.get( ) );
-      return true;
+      
+      return std::move( device );
     }
 
-    bool initInstance( UniqueInstance& instance, const std::vector<const char*>& layers, std::vector<const char*>& extensions )
+    UniqueInstance initInstance( const std::vector<const char*>& layers, std::vector<const char*>& extensions )
     {
+      UniqueInstance instance;
+
       DynamicLoader dl;
       PFN_vkGetInstanceProcAddr vkGetInstanceProcAddr = dl.getProcAddress<PFN_vkGetInstanceProcAddr>( "vkGetInstanceProcAddr" );
       VULKAN_HPP_DEFAULT_DISPATCHER.init( vkGetInstanceProcAddr );
@@ -612,8 +600,8 @@ namespace vk
       extensions.insert( extensions.end( ), windowExtensions.begin( ), windowExtensions.end( ) );
 
       // Check if all extensions and layers needed are available.
-      if ( !Helper::checkInstanceLayersSupport( instance.get( ), layers ) || !Helper::checkInstanceExtensionsSupport( instance.get( ), extensions ) )
-        return false;
+      Helper::checkInstanceLayersSupport( layers );
+      Helper::checkInstanceExtensionsSupport( extensions );
 
       // Start creating the instance.
       ApplicationInfo appInfo;
@@ -627,10 +615,7 @@ namespace vk
         appInfo.apiVersion = VK_API_VERSION_1_1;
       }
       else
-      {
         RX_FATAL( "This application requires Vulkan SDK API Version 1.1 or higher." );
-        return false;
-      }
     #endif
 
     #ifdef VK_API_VERSION_1_2
@@ -640,10 +625,7 @@ namespace vk
         appInfo.apiVersion = VK_API_VERSION_1_2;
       }
       else
-      {
         RX_ERROR( "This application requires Vulkan SDK API Version 1.1 or higher." );
-        return false;
-      }
     #endif
 
       InstanceCreateInfo createInfo( { },                                         // flags
@@ -655,15 +637,10 @@ namespace vk
 
       instance = createInstanceUnique( createInfo );
       rx::g_instance = instance.get( );
-
-      if ( !instance )
-      {
-        RX_ERROR( "Failed to create instance." );
-        return false;
-      }
-
+      RX_ASSERT( instance, "Failed to create instance." );
       VULKAN_HPP_DEFAULT_DISPATCHER.init( instance.get( ) );
-      return true;
+
+      return std::move( instance );
     }
 
     bool initGraphicsPipelines( const std::vector<GraphicsPipelineCreateInfo>& createInfos )

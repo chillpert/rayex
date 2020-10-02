@@ -22,7 +22,8 @@ namespace RAYEXEC_NAMESPACE
     VK_KHR_DEFERRED_HOST_OPERATIONS_EXTENSION_NAME,
     VK_KHR_PIPELINE_LIBRARY_EXTENSION_NAME,
     VK_KHR_MAINTENANCE3_EXTENSION_NAME,
-    VK_KHR_RAY_TRACING_EXTENSION_NAME
+    VK_KHR_RAY_TRACING_EXTENSION_NAME,
+    VK_KHR_SWAPCHAIN_EXTENSION_NAME
   };
 
   size_t currentFrame = 0;
@@ -62,77 +63,59 @@ namespace RAYEXEC_NAMESPACE
     this->gui = gui;
 
     if ( initialize )
-    {
-      if ( !initGui( ) )
-      {
-        RX_ERROR( "Failed to initialize ImGui." );
-        return;
-      }
-    }
+      initGui( );
   }
 
-  bool Api::init( )
+  void Api::init( )
   {
     this->textures.reserve( g_maxTextures );
 
-    bool result = true;
-
     // Instance
-    result = vk::Initializer::initInstance( instance, layers, extensions );
-    RX_ASSERT_INIT( result );
+    instance = vk::Initializer::initInstance( layers, extensions );
 
     // Debug messenger.
-    result = this->debugMessenger.init( vk::DebugUtilsMessageSeverityFlagBitsEXT::eVerbose | vk::DebugUtilsMessageSeverityFlagBitsEXT::eWarning | vk::DebugUtilsMessageSeverityFlagBitsEXT::eError,
-                                        vk::DebugUtilsMessageTypeFlagBitsEXT::ePerformance | vk::DebugUtilsMessageTypeFlagBitsEXT::eValidation );
-    RX_ASSERT_INIT( result );
+    this->debugMessenger.init( );
 
     // Surface
-    result = this->surface.init( );
-    RX_ASSERT_INIT( result );
+    this->surface.init( );
 
     // Physical device
-    result = vk::Initializer::initPhysicalDevice( this->physicalDevice );
-    RX_ASSERT_INIT( result );
+    this->physicalDevice = vk::Initializer::initPhysicalDevice(  );
 
     // Reassess the support of the preferred surface settings.
     this->surface.assessSettings( );
 
     // Queues
-    result = vk::Initializer::initQueueFamilyIndices( );
-    RX_ASSERT_INIT( result );
+    vk::Initializer::initQueueFamilyIndices( );
 
     // Logical device
-    result = vk::Initializer::initDevice( device, deviceExtensions );
-    RX_ASSERT_INIT( result );
+    device = vk::Initializer::initDevice( deviceExtensions );
 
     // Retrieve all queue handles.
     g_device.getQueue( g_graphicsFamilyIndex, 0, &g_graphicsQueue );
     g_device.getQueue( g_transferFamilyIndex, 0, &g_transferQueue );
 
     // Render pass
-    result = initRenderPass( );
-    RX_ASSERT_INIT( result );
+    initRenderPass( );
 
     // Swapchain
-    result = this->swapchain.init( &this->surface, this->renderPass.get( ) );
-    RX_ASSERT_INIT( result );
+    this->swapchain.init( &this->surface, this->renderPass.get( ) );
 
     // Command pools
     this->graphicsCmdPool = vk::Initializer::initCommandPoolUnique( g_graphicsFamilyIndex, vk::CommandPoolCreateFlagBits::eResetCommandBuffer );
     g_graphicsCmdPool = this->graphicsCmdPool.get( );
-    RX_ASSERT_INIT( this->graphicsCmdPool );
 
     this->transferCmdPool = vk::Initializer::initCommandPoolUnique( g_transferFamilyIndex, { } );
     g_transferCmdPool = this->transferCmdPool.get( );
-    RX_ASSERT_INIT( this->transferCmdPool );
 
     // Descriptor sets and layouts
     initDescriptorSets( );
 
+    // Set up buffers for the scene description data (light sources, rtInstances, camera).
     initSceneStorageBuffer( );
 
-    result = initPipelines( );
-    RX_ASSERT_INIT( result );
+    // Initialize a rasterization and raytracing pipeline.
+    initPipelines( );
 
     // Ray tracing
     this->rayTracingBuilder.init( );
@@ -142,20 +125,16 @@ namespace RAYEXEC_NAMESPACE
     this->settings->maxRecursionDepth = this->rayTracingBuilder.getRtProperties( ).maxRecursionDepth;
 
     // Swapchain command buffers
-    result = this->swapchainCommandBuffers.init( this->graphicsCmdPool.get( ), g_swapchainImageCount, vk::CommandBufferUsageFlagBits::eRenderPassContinue );
-    RX_ASSERT_INIT( result );
+    this->swapchainCommandBuffers.init( this->graphicsCmdPool.get( ), g_swapchainImageCount, vk::CommandBufferUsageFlagBits::eRenderPassContinue );
 
     // GUI
-    result = initGui( );
-    RX_ASSERT_INIT( result );
+    initGui( );
 
     // Record swapchain command buffers.
     recordSwapchainCommandBuffers( );
 
     // Create fences and semaphores.
     initSyncObjects( );
-
-    return result;
   }
 
   void Api::update( )
@@ -347,7 +326,7 @@ namespace RAYEXEC_NAMESPACE
     this->rtDescriptorSets.update( { tlas, storageImage, camera } );
   }
 
-  bool Api::initPipelines( )
+  void Api::initPipelines( )
   {
     // Ray tracing pipeline
     std::vector<vk::DescriptorSetLayout> temp = { this->rtDescriptorSetLayout.get( ), this->rtModelDescriptorSetLayout.get( ), this->rtSceneDescriptorSetLayout.get( ) };
@@ -357,8 +336,7 @@ namespace RAYEXEC_NAMESPACE
       RX_WARN( "Adding model data set layout." );
     }
 
-    bool result = this->rtPipeline.init( temp, this->settings );
-    RX_ASSERT_INIT( result );
+    this->rtPipeline.init( temp, this->settings );
 
     // Rasterization pipeline
     glm::vec2 extent = { static_cast<float>( this->swapchain.getExtent( ).width ), static_cast<float>( this->swapchain.getExtent( ).height ) };
@@ -367,7 +345,7 @@ namespace RAYEXEC_NAMESPACE
     return this->rsPipeline.init( { this->rsSceneDescriptorSetLayout.get( ), this->rsModelDescriptorSetLayout.get( ) }, this->renderPass.get( ), viewport, scissor, this->settings );
   }
 
-  bool Api::initRenderPass( )
+  void Api::initRenderPass( )
   {
     auto colorAttachmentDescription = vk::Helper::getAttachmentDescription( this->surface.getFormat( ) );
 
@@ -408,7 +386,7 @@ namespace RAYEXEC_NAMESPACE
                                vk::AccessFlagBits::eMemoryRead,                                                      // dstAccessMask
                                vk::DependencyFlagBits::eByRegion };                                                  // dependencyFlags
 
-    return this->renderPass.init( { colorAttachmentDescription, depthAttachmentDescription }, { subpassDescription }, subpassDependencies );
+    this->renderPass.init( { colorAttachmentDescription, depthAttachmentDescription }, { subpassDescription }, subpassDependencies );
   }
 
   /// @todo add handling for missing textures, models etc.
@@ -457,17 +435,13 @@ namespace RAYEXEC_NAMESPACE
     model->rsDescriptorSets.update( { texture } );
   }
 
-  bool Api::initGui( )
+  void Api::initGui( )
   {
     if ( this->gui != nullptr )
     {
-      bool result = initRenderPass( );
-      RX_ASSERT_INIT( result );
-
-      return this->gui->init( &this->surface, this->swapchain.getExtent( ), this->swapchain.getImageViews( ) );
+      initRenderPass( );
+      this->gui->init( &this->surface, this->swapchain.getExtent( ), this->swapchain.getImageViews( ) );
     }
-
-    return true;
   }
 
   void Api::recordSwapchainCommandBuffers( )
@@ -559,7 +533,7 @@ namespace RAYEXEC_NAMESPACE
                                                                          model->indexBuffer.getType( ) );
 
         // TODO: Also bind ray tracing descriptor set.
-        std::vector<vk::DescriptorSet> descriptorSets = { model->rsDescriptorSets.get( imageIndex ), this->rsSceneDescriptorSets.get( imageIndex ) };
+        std::vector<vk::DescriptorSet> descriptorSets = { this->rsSceneDescriptorSets.get( imageIndex ), model->rsDescriptorSets.get( imageIndex ) };
 
         this->swapchainCommandBuffers.get( imageIndex ).bindDescriptorSets( vk::PipelineBindPoint::eGraphics,
                                                                             rsPipeline.getLayout( ),
@@ -662,6 +636,9 @@ namespace RAYEXEC_NAMESPACE
       auto indexBufferBinding = vk::Helper::getDescriptorSetLayoutBinding( 1, vk::DescriptorType::eStorageBuffer, vk::ShaderStageFlagBits::eClosestHitKHR );
 
       this->rtModelDescriptorSetLayout.init( { vertexBufferBinding, indexBufferBinding } );
+
+      //this->rtModelBindings.add( 0, vk::DescriptorType::eStorageBuffer, vk::ShaderStageFlagBits::eClosestHitKHR );
+      //this->rtModelBindings.add( 1, vk::DescriptorType::eStorageBuffer, vk::ShaderStageFlagBits::eClosestHitKHR );
     }
 
     // RT Scene descriptor set layout.
@@ -746,8 +723,15 @@ namespace RAYEXEC_NAMESPACE
 
       g_device.waitIdle( );
 
-      RX_ASSERT( initPipelines( ), "Failed to initialize pipelines." );
-      RX_ASSERT( this->swapchainCommandBuffers.init( this->graphicsCmdPool.get( ), g_swapchainImageCount, vk::CommandBufferUsageFlagBits::eRenderPassContinue ), "Failed to initialize swapchain command buffers." );
+      initPipelines( );
+      this->swapchainCommandBuffers.init( this->graphicsCmdPool.get( ), g_swapchainImageCount, vk::CommandBufferUsageFlagBits::eRenderPassContinue );
+
+      recreateSwapchain( );
+    }
+
+    if ( this->settings->refreshSwapchain )
+    {
+      this->settings->refreshSwapchain = false;
 
       recreateSwapchain( );
     }

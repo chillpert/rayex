@@ -18,8 +18,7 @@ namespace RAYEXEC_NAMESPACE
     /// @param subpasses The Vulkan subpass description.
     /// @param dependencies The Vulkan subpass dependencies.
     /// @param initialize If true, the render pass object will be initialized right away without an additional call to init().  
-    /// @return Returns true if initialization was successful.
-    bool init( const std::vector<vk::AttachmentDescription>& attachments, const std::vector<vk::SubpassDescription>& subpasses, const std::vector<vk::SubpassDependency>& dependencies );
+    void init( const std::vector<vk::AttachmentDescription>& attachments, const std::vector<vk::SubpassDescription>& subpasses, const std::vector<vk::SubpassDependency>& dependencies );
 
     /// Call to begin the render pass.
     /// @param framebuffer The swapchain framebuffer.

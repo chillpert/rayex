@@ -8,7 +8,7 @@ namespace RAYEXEC_NAMESPACE
     init( commandPool, count, usageFlags );
   }
 
-  bool CommandBuffer::init( vk::CommandPool commandPool, uint32_t count, vk::CommandBufferUsageFlags usageFlags )
+  void CommandBuffer::init( vk::CommandPool commandPool, uint32_t count, vk::CommandBufferUsageFlags usageFlags )
   {
     this->commandPool = commandPool;
 
@@ -20,18 +20,10 @@ namespace RAYEXEC_NAMESPACE
 
     this->commandBuffers = g_device.allocateCommandBuffers( allocateInfo );
     for ( const vk::CommandBuffer& commandBuffer : this->commandBuffers )
-    {
-      if ( !commandBuffer )
-      {
-        RX_ERROR( "Failed to create command buffers." );
-        return false;
-      }
-    }
+      RX_ASSERT( commandBuffer, "Failed to create command buffers." );
 
     // Set up begin info.
     this->beginInfo.flags = usageFlags;
-
-    return true;
   }
 
   void CommandBuffer::free( )

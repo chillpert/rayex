@@ -386,7 +386,7 @@ namespace vk
       return { score, deviceName };
     }
 
-    bool checkDeviceExtensionSupport( const std::vector<const char*>& extensions )
+    void checkDeviceExtensionSupport( const std::vector<const char*>& extensions )
     {
       // Stores the name of the extension and a bool that tells if they were found or not.
       std::map<const char*, bool> requiredExtensions;
@@ -410,18 +410,13 @@ namespace vk
       for ( const auto& requiredphysicalDeviceExtension : requiredExtensions )
       {
         if ( !requiredphysicalDeviceExtension.second )
-        {
-          RX_ERROR( "Missing physical device extension: ", requiredphysicalDeviceExtension.first, ". Perhaps you have not installed the NVIDIA Vulkan Beta drivers?" );
-          return false;
-        }
+          RX_FATAL( "Missing physical device extension: ", requiredphysicalDeviceExtension.first, ". Perhaps you have not installed the NVIDIA Vulkan Beta drivers?" );
         else
           RX_SUCCESS( "Added device extension: ", requiredphysicalDeviceExtension.first );
       }
-
-      return true;
     }
 
-    bool checkInstanceLayersSupport( Instance instance, const std::vector<const char*>& layers )
+    void checkInstanceLayersSupport( const std::vector<const char*>& layers )
     {
       auto properties = vk::enumerateInstanceLayerProperties( );
 
@@ -438,18 +433,13 @@ namespace vk
         }
 
         if ( !found )
-        {
-          RX_ERROR( "Validation layer ", name, " is not available on this device." );
-          return false;
-        }
+          RX_FATAL( "Validation layer ", name, " is not available on this device." );
 
         RX_SUCCESS( "Added layer: ", name, "." );
       }
-
-      return true;
     }
 
-    bool checkInstanceExtensionsSupport( Instance instance, const std::vector<const char*>& extensions )
+    void checkInstanceExtensionsSupport( const std::vector<const char*>& extensions )
     {
       auto properties = vk::enumerateInstanceExtensionProperties( );
 
@@ -466,15 +456,10 @@ namespace vk
         }
 
         if ( !found )
-        {
-          RX_ERROR( "Instance extensions ", name, " is not available on this device." );
-          return false;
-        }
+          RX_FATAL( "Instance extensions ", name, " is not available on this device." );
 
         RX_SUCCESS( "Added instance extension: ", name, "." );
       }
-
-      return true;
     }
   }
 }

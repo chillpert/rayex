@@ -9,18 +9,11 @@ namespace RAYEXEC_NAMESPACE
     destroy( );
   }
 
-  bool Surface::init( )
+  void Surface::init( )
   {
     this->surface = g_window->createSurface( g_instance );
     g_surface = this->surface;
-
-    if ( !this->surface )
-    {
-      RX_ERROR( "Failed to create surface." );
-      return false;
-    }
-
-    return true;
+    RX_ASSERT( this->surface, "Failed to create surface." );
   }
 
   void Surface::assessSettings( )

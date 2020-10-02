@@ -14,16 +14,16 @@ namespace RAYEXEC_NAMESPACE
     ~Surface( );
 
     /// @return Returns the surface format.
-    inline const vk::Format getFormat( ) const { return format; }
+    [[nodiscard]] inline auto getFormat( ) const -> vk::Format { return format; }
 
     /// @return Returns the surface's color space.
-    inline const vk::ColorSpaceKHR getColorSpace( ) const { return colorSpace; }
+    [[nodiscard]] inline auto getColorSpace( ) const -> vk::ColorSpaceKHR { return colorSpace; }
 
     /// @return Returns the surface's present mode.
-    inline const vk::PresentModeKHR getPresentMode( ) const { return presentMode; }
+    [[nodiscard]] inline auto getPresentMode( ) const -> vk::PresentModeKHR { return presentMode; }
 
     /// @return Returns the surface's capabilities.
-    inline const vk::SurfaceCapabilitiesKHR getCapabilities( ) const { return capabilities; }
+    [[nodiscard]] inline auto getCapabilities( ) const -> vk::SurfaceCapabilitiesKHR { return capabilities; }
 
     /// Initializes the Vulkan surface object.
     /// @note If any of the specified format, color space and present mode are not available the function will fall back to settings that are guaranteed to be supported.

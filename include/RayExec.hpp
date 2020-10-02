@@ -54,13 +54,13 @@ namespace RAYEXEC_NAMESPACE
     RX_API void run( );
 
     /// @return Returns true if the application is still running and false if the application has stopped.
-    RX_API bool isRunning( ) { return running; }
+    RX_API auto isRunning( ) -> bool { return running; }
 
     /// @return Returns a pointer to the renderer's window.
-    RX_API inline const std::shared_ptr<Window> getWindow( ) const { return window; }
+    [[nodiscard]] RX_API inline auto getWindow( ) const -> std::shared_ptr<Window> { return window; }
 
     /// @return Returns a pointer to the renderer's camera.
-    RX_API inline const std::shared_ptr<Camera> getCamera( ) const { return camera; }
+    [[nodiscard]] RX_API inline auto getCamera( ) const -> std::shared_ptr<Camera> { return camera; }
 
     /// Used to add another arbitrary node to the scene.
     /// @param node The node to add.
@@ -71,7 +71,7 @@ namespace RAYEXEC_NAMESPACE
       api.pushNode<T>( node );
     }
 
-    RX_API void popNode( const std::shared_ptr<Node> node );
+    RX_API void popNode( std::shared_ptr<Node> node );
 
     /// Used to overwrite the entire scene with new nodes.
     /// @param nodes A vector of nodes describing the new scene.

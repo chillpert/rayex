@@ -17,7 +17,9 @@ namespace RAYEXEC_NAMESPACE
   void Settings::setRecursionDepth( uint32_t recursionDepth )
   {
     if ( recursionDepth <= maxRecursionDepth )
+    {
       this->recursionDepth = recursionDepth;
+    }
     else
     {
       this->recursionDepth = this->maxRecursionDepth;
@@ -38,7 +40,9 @@ namespace RAYEXEC_NAMESPACE
     this->resourcePath = "";
 
     for ( int i = 0; i < argc; ++i )
+    {
       this->resourcePath += argv[i];
+    }
 
     std::replace( this->resourcePath.begin( ), this->resourcePath.end( ), '\\', '/' );
 
@@ -54,7 +58,9 @@ namespace RAYEXEC_NAMESPACE
     std::replace( this->resourcePath.begin( ), this->resourcePath.end( ), '\\', '/' );
 
     if ( path[path.size( ) - 1] != '/' )
+    {
       this->resourcePath += '/';
+    }
 
     g_resourcePath = this->resourcePath;
   }

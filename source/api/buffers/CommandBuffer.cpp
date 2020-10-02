@@ -21,7 +21,9 @@ namespace RAYEXEC_NAMESPACE
 
     this->commandBuffers = g_device.allocateCommandBuffers( allocateInfo );
     for ( const vk::CommandBuffer& commandBuffer : this->commandBuffers )
+    {
       RX_ASSERT( commandBuffer, "Failed to create command buffers." );
+    }
 
     // Set up begin info.
     this->beginInfo.flags = usageFlags;
@@ -35,7 +37,9 @@ namespace RAYEXEC_NAMESPACE
   void CommandBuffer::reset( )
   {
     for ( vk::CommandBuffer& buffer : this->commandBuffers )
+    {
       buffer.reset( vk::CommandBufferResetFlagBits::eReleaseResources );
+    }
   }
 
   void CommandBuffer::begin( size_t index )
@@ -61,11 +65,15 @@ namespace RAYEXEC_NAMESPACE
                                  signalSemaphores.data( ) );                            // pSignalSemaphores
 
       if ( queue.submit( 1, &submitInfo, nullptr ) != vk::Result::eSuccess )
+      {
         RX_ERROR( "Failed to submit" );
+      }
 
       queue.waitIdle( );
     }
     else
+    {
       RX_ERROR( "Only command buffers with a usage flag containing eOneTimeSubmit should be submitted automatically" );
+    }
   }
 } // namespace RAYEXEC_NAMESPACE

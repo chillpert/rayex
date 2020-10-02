@@ -26,9 +26,9 @@ namespace RAYEXEC_NAMESPACE
     }
   }
 
-  vk::UniqueDescriptorSetLayout Bindings::initLayoutUnique( )
+  auto Bindings::initLayoutUnique( ) -> vk::UniqueDescriptorSetLayout
   {
-    uint32_t bindingCount = static_cast<uint32_t>( this->bindings.size( ) );
+    auto bindingCount = static_cast<uint32_t>( this->bindings.size( ) );
 
     vk::DescriptorSetLayoutCreateInfo createInfo( { },                      // flags
                                                   bindingCount,             // bindingCount
@@ -44,14 +44,18 @@ namespace RAYEXEC_NAMESPACE
     return std::move( layout );
   }
 
-  vk::UniqueDescriptorPool Bindings::initPoolUnique( uint32_t maxSets, vk::DescriptorPoolCreateFlags flags )
+  auto Bindings::initPoolUnique( uint32_t maxSets, vk::DescriptorPoolCreateFlags flags ) -> vk::UniqueDescriptorPool
   {
     std::vector<vk::DescriptorPoolSize> tPoolSizes;
 
     if ( this->poolSizes.has_value( ) )
+    {
       tPoolSizes = this->poolSizes.value( );
+    }
     else
+    {
       tPoolSizes = vk::Helper::getPoolSizes( this->bindings, maxSets );
+    }
 
     for ( auto flag : this->flags )
     {
@@ -73,25 +77,6 @@ namespace RAYEXEC_NAMESPACE
     return std::move( pool );
   }
 
-  std::vector<vk::DescriptorSet> Bindings::initSets( const vk::UniqueDescriptorPool& pool, const vk::UniqueDescriptorSetLayout& layout )
-  {
-    RX_ASSERT( g_swapchainImageCount > 0, "Failed to init descriptor sets because swapchain image count is zero." );
-
-    // Create as many sets as images in the swapchain.
-    std::vector<vk::DescriptorSetLayout> layouts( g_swapchainImageCount, layout.get( ) );
-
-    vk::DescriptorSetAllocateInfo allocInfo( pool.get( ),
-                                             g_swapchainImageCount,
-                                             layouts.data( ) );
-
-    auto sets = g_device.allocateDescriptorSets( allocInfo );
-
-    for ( const vk::DescriptorSet& set : sets )
-      RX_ASSERT( set, "Failed to create descriptor sets." );
-
-    return sets;
-  }
-
   void Bindings::update( )
   {
     for ( const auto& write : this->writes )
@@ -100,7 +85,7 @@ namespace RAYEXEC_NAMESPACE
     }
   }
 
-  size_t Bindings::write( vk::DescriptorSet set, size_t writesIndex, uint32_t binding, uint32_t arrayElement )
+  auto Bindings::write( vk::DescriptorSet set, size_t writesIndex, uint32_t binding, uint32_t arrayElement ) -> size_t
   {
     vk::WriteDescriptorSet result;
 

@@ -8,7 +8,9 @@ namespace RAYEXEC_NAMESPACE
   DebugMessenger::~DebugMessenger( )
   {
     if ( this->debugMessenger )
+    {
       destroy( );
+    }
   }
 
   void DebugMessenger::init( vk::DebugUtilsMessageSeverityFlagsEXT messageSeverity, vk::DebugUtilsMessageTypeFlagsEXT messageType )
@@ -37,52 +39,52 @@ namespace RAYEXEC_NAMESPACE
   }
 
   // The source for this function is the official LunarG tutorial.
-  VKAPI_ATTR VkBool32 VKAPI_CALL debugMessengerCallback(
+  VKAPI_ATTR auto VKAPI_CALL debugMessengerCallback(
     VkDebugUtilsMessageSeverityFlagBitsEXT messageSeverity,
     VkDebugUtilsMessageTypeFlagsEXT messageType,
     const VkDebugUtilsMessengerCallbackDataEXT* callbackData,
-    void* userData )
+    void* userData ) -> VkBool32
   {
-    char prefix[64];
+    std::array<char, 64> prefix;
     char* message = static_cast<char*>( malloc( strlen( callbackData->pMessage ) + 500 ) );
     assert( message );
 
-    if ( messageSeverity & VK_DEBUG_UTILS_MESSAGE_SEVERITY_VERBOSE_BIT_EXT )
+    if ( ( messageSeverity & VK_DEBUG_UTILS_MESSAGE_SEVERITY_VERBOSE_BIT_EXT ) != 0 )
     {
-      strcpy( prefix, "VERBOSE: " );
+      strcpy( prefix.data( ), "VERBOSE: " );
     }
-    else if ( messageSeverity & VK_DEBUG_UTILS_MESSAGE_SEVERITY_INFO_BIT_EXT )
+    else if ( ( messageSeverity & VK_DEBUG_UTILS_MESSAGE_SEVERITY_INFO_BIT_EXT ) != 0 )
     {
-      strcpy( prefix, "INFO: " );
+      strcpy( prefix.data( ), "INFO: " );
     }
-    else if ( messageSeverity & VK_DEBUG_UTILS_MESSAGE_SEVERITY_WARNING_BIT_EXT )
+    else if ( ( messageSeverity & VK_DEBUG_UTILS_MESSAGE_SEVERITY_WARNING_BIT_EXT ) != 0 )
     {
-      strcpy( prefix, "WARNING: " );
+      strcpy( prefix.data( ), "WARNING: " );
     }
-    else if ( messageSeverity & VK_DEBUG_UTILS_MESSAGE_SEVERITY_ERROR_BIT_EXT )
+    else if ( ( messageSeverity & VK_DEBUG_UTILS_MESSAGE_SEVERITY_ERROR_BIT_EXT ) != 0 )
     {
-      strcpy( prefix, "ERROR: " );
+      strcpy( prefix.data( ), "ERROR: " );
     }
 
-    if ( messageType & VK_DEBUG_UTILS_MESSAGE_TYPE_GENERAL_BIT_EXT )
+    if ( ( messageType & VK_DEBUG_UTILS_MESSAGE_TYPE_GENERAL_BIT_EXT ) != 0U )
     {
-      strcat( prefix, "GENERAL" );
+      strcat( prefix.data( ), "GENERAL" );
     }
     else
     {
-      if ( messageType & VK_DEBUG_UTILS_MESSAGE_TYPE_VALIDATION_BIT_EXT )
+      if ( ( messageType & VK_DEBUG_UTILS_MESSAGE_TYPE_VALIDATION_BIT_EXT ) != 0U )
       {
-        strcat( prefix, "VALIDATION" );
-        if ( messageType & VK_DEBUG_UTILS_MESSAGE_TYPE_PERFORMANCE_BIT_EXT )
+        strcat( prefix.data( ), "VALIDATION" );
+        if ( ( messageType & VK_DEBUG_UTILS_MESSAGE_TYPE_PERFORMANCE_BIT_EXT ) != 0U )
         {
-          strcat( prefix, " | PERFORMANCE" );
+          strcat( prefix.data( ), " | PERFORMANCE" );
         }
       }
     }
 
     sprintf( message,
              "%s \n\tID Number: %d\n\tID String: %s \n\tMessage:   %s",
-             prefix,
+             prefix.data( ),
              callbackData->messageIdNumber,
              callbackData->pMessageIdName,
              callbackData->pMessage );
@@ -91,7 +93,7 @@ namespace RAYEXEC_NAMESPACE
     fflush( stdout );
     free( message );
 
-    if ( messageSeverity & VK_DEBUG_UTILS_MESSAGE_SEVERITY_ERROR_BIT_EXT )
+    if ( ( messageSeverity & VK_DEBUG_UTILS_MESSAGE_SEVERITY_ERROR_BIT_EXT ) != 0 )
     {
       //RX_ERROR("Fatal error");
     }

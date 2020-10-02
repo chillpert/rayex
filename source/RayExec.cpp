@@ -1,5 +1,7 @@
 #include "RayExec.hpp"
 
+#include <utility>
+
 namespace RAYEXEC_NAMESPACE
 {
   RayExec::RayExec( ) :
@@ -11,7 +13,7 @@ namespace RAYEXEC_NAMESPACE
 
   RayExec::RayExec( std::shared_ptr<Camera> camera ) :
     window( std::make_shared<Window>( ) ),
-    camera( camera ),
+    camera( std::move( camera ) ),
     api( this->window, this->camera )
   {
   }
@@ -24,8 +26,8 @@ namespace RAYEXEC_NAMESPACE
   }
 
   RayExec::RayExec( std::shared_ptr<Window> window, std::shared_ptr<Camera> camera ) :
-    window( window ),
-    camera( camera ),
+    window( std::move( window ) ),
+    camera( std::move( camera ) ),
     api( this->window, this->camera )
   {
   }
@@ -44,7 +46,9 @@ namespace RAYEXEC_NAMESPACE
     g_window = this->window;
 
     if ( this->initialized )
+    {
       return;
+    }
 
 #ifdef RX_COPY_RESOURCES
     RX_INFO( "Copying resources to binary output directory. " );
@@ -61,18 +65,24 @@ namespace RAYEXEC_NAMESPACE
   void RayExec::run( )
   {
     if ( !this->running || !this->initialized )
+    {
       return;
+    }
 
     this->running = this->window->update( );
     this->camera->update( );
 
     if ( !this->running )
+    {
       return;
+    }
 
     this->running = this->api.render( );
 
     if ( !this->running )
+    {
       return;
+    }
 
     this->api.update( );
   }

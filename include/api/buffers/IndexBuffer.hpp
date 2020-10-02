@@ -23,11 +23,11 @@ namespace RAYEXEC_NAMESPACE
     }
 
     /// @return Returns the amount of indices in the buffer.
-    inline uint32_t getCount( ) const { return count; }
+    [[nodiscard]] inline auto getCount( ) const -> uint32_t { return count; }
 
     /// @return Returns the type of the index's data.
     /// @note Should be identical to the type that was used to templatize the class.
-    inline vk::IndexType getType( ) const { return indexType; }
+    [[nodiscard]] inline auto getType( ) const -> vk::IndexType { return indexType; }
 
     /// Creates the buffer, allocates memory for it and fills it with the provided data.
     ///

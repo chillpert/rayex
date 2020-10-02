@@ -4,62 +4,77 @@
 
 using namespace RAYEXEC_NAMESPACE;
 
-namespace vk
+namespace vk::Destructor
 {
-  namespace Destructor
+  void destroyImageView( ImageView imageView )
   {
-    void destroyImageView( ImageView imageView )
+    if ( imageView )
     {
-      if ( imageView )
-        g_device.destroyImageView( imageView );
+      g_device.destroyImageView( imageView );
     }
+  }
 
-    void destroyImageViews( std::vector<ImageView>& imageViews )
+  void destroyImageViews( std::vector<ImageView>& imageViews )
+  {
+    for ( ImageView& imageView : imageViews )
     {
-      for ( ImageView& imageView : imageViews )
-        destroyImageView( imageView );
+      destroyImageView( imageView );
     }
+  }
 
-    void destroyDescriptorPool( DescriptorPool descriptorPool )
+  void destroyDescriptorPool( DescriptorPool descriptorPool )
+  {
+    if ( descriptorPool )
     {
-      if ( descriptorPool )
-        g_device.destroyDescriptorPool( descriptorPool );
+      g_device.destroyDescriptorPool( descriptorPool );
     }
+  }
 
-    void destroyCommandPool( CommandPool commandPool )
+  void destroyCommandPool( CommandPool commandPool )
+  {
+    if ( commandPool )
     {
-      if ( commandPool )
-        g_device.destroyCommandPool( commandPool );
+      g_device.destroyCommandPool( commandPool );
     }
+  }
 
-    void destroyFramebuffer( Framebuffer framebuffer )
+  void destroyFramebuffer( Framebuffer framebuffer )
+  {
+    if ( framebuffer )
     {
-      if ( framebuffer )
-        g_device.destroy( framebuffer );
+      g_device.destroy( framebuffer );
     }
+  }
 
-    void destroyFramebuffers( std::vector<Framebuffer>& framebuffers )
+  void destroyFramebuffers( std::vector<Framebuffer>& framebuffers )
+  {
+    for ( Framebuffer& framebuffer : framebuffers )
     {
-      for ( Framebuffer& framebuffer : framebuffers )
-        destroyFramebuffer( framebuffer );
+      destroyFramebuffer( framebuffer );
     }
+  }
 
-    void destroyQueryPool( QueryPool queryPool )
+  void destroyQueryPool( QueryPool queryPool )
+  {
+    if ( queryPool )
     {
-      if ( queryPool )
-        g_device.destroyQueryPool( queryPool );
+      g_device.destroyQueryPool( queryPool );
     }
+  }
 
-    void destroyShaderModule( ShaderModule shaderModule )
+  void destroyShaderModule( ShaderModule shaderModule )
+  {
+    if ( shaderModule )
     {
-      if ( shaderModule )
-        g_device.destroyShaderModule( shaderModule );
+      g_device.destroyShaderModule( shaderModule );
     }
+  }
 
-    void freeMemory( DeviceMemory memory )
+  void freeMemory( DeviceMemory memory )
+  {
+    if ( memory )
     {
-      if ( memory )
-        g_device.freeMemory( memory );
+      g_device.freeMemory( memory );
     }
-  } // namespace Destructor
-} // namespace vk
+  }
+} // namespace vk::Destructor

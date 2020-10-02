@@ -34,13 +34,13 @@ namespace RAYEXEC_NAMESPACE
     RX_API virtual ~Window( );
 
     /// Initializes the SDL-window.
-    RX_API virtual bool init( );
+    RX_API virtual auto init( ) -> bool;
 
     /// Updates window-related components.
     ///
     /// In case the client wants to handle input events, this function should be overwritten in the inherited class.
     /// @warning The client has to call Window::update() to ensure proper functionality.
-    RX_API virtual bool update( );
+    RX_API virtual auto update( ) -> bool;
 
     /// Destroys the window.
     RX_API virtual void clean( );
@@ -52,33 +52,33 @@ namespace RAYEXEC_NAMESPACE
 
     /// Used to retrieve all Vulkan instance extensions required by SDL.
     /// @return Returns a vector containing the names of the required extensions.
-    std::vector<const char*> getInstanceExtensions( );
+    auto getInstanceExtensions( ) -> std::vector<const char*>;
 
     /// Creates a Vulkan surface.
     /// @param instance The Vulkan instance.
     /// @return Returns the Vulkan surface.
-    vk::SurfaceKHR createSurface( vk::Instance instance );
+    auto createSurface( vk::Instance instance ) -> vk::SurfaceKHR;
 
     /// @return Returns the actual SDL_Window object.
-    RX_API inline SDL_Window* get( ) { return window; }
+    RX_API inline auto get( ) -> SDL_Window* { return window; }
 
     /// @return Returns the window size as a Vulkan 2D extent.
-    RX_API vk::Extent2D getExtent( ) const;
+    [[nodiscard]] RX_API auto getExtent( ) const -> vk::Extent2D;
 
     /// @return Returns the window's width in pixels.
-    inline int getWidth( ) const { return width; }
+    [[nodiscard]] inline auto getWidth( ) const -> int { return width; }
 
     /// @return Returns the window's height in pixels.
-    inline int getHeight( ) const { return height; }
+    [[nodiscard]] inline auto getHeight( ) const -> int { return height; }
 
     /// @return Returns true if the window size has changed.
-    RX_API bool changed( );
+    RX_API auto changed( ) -> bool;
 
     /// @return Returns true if the window is minimized.
-    RX_API bool minimized( );
+    RX_API auto minimized( ) -> bool;
 
   protected:
-    SDL_Window* window; ///< The actual SDL_Window object.
+    SDL_Window* window { nullptr }; ///< The actual SDL_Window object.
 
     int width;         ///< The window's width in pixels.
     int height;        ///< The window's height in pixels.

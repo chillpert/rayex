@@ -12,13 +12,15 @@ namespace RAYEXEC_NAMESPACE
   uint32_t Texture::textureCounter = 0;
 
   Texture::Texture( ) :
-    offset( this->textureCounter++ ) {}
+    offset( rx::Texture::textureCounter++ ) {}
 
   Texture::Texture( std::string_view path, bool initialize ) :
-    offset( this->textureCounter++ )
+    offset( rx::Texture::textureCounter++ )
   {
     if ( initialize )
+    {
       init( path );
+    }
   }
 
   void Texture::init( std::string_view path )
@@ -27,11 +29,15 @@ namespace RAYEXEC_NAMESPACE
 
     std::string fullPath = g_resourcePath + std::string( path );
 
-    int width, height, channels;
+    int width;
+    int height;
+    int channels;
     stbi_uc* pixels = stbi_load( fullPath.c_str( ), &width, &height, &channels, STBI_rgb_alpha );
 
-    if ( !pixels )
+    if ( pixels == nullptr )
+    {
       RX_ERROR( "Failed to load texture" );
+    }
 
     vk::DeviceSize size = width * height * 4;
 

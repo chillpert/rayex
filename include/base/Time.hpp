@@ -16,9 +16,9 @@ namespace RAYEXEC_NAMESPACE
     RX_API ~Time( );
 
     /// @return Returns the time passed since application start in seconds.
-    RX_API static float getTime( );
+    RX_API static auto getTime( ) -> float;
     /// @return Returns the time passed between the current and the last frame.
-    RX_API static float getDeltaTime( );
+    RX_API static auto getDeltaTime( ) -> float;
 
     /// Updates the timing.
     ///

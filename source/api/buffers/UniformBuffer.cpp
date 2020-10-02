@@ -4,12 +4,14 @@
 
 namespace RAYEXEC_NAMESPACE
 {
-  const std::vector<vk::Buffer> UniformBuffer::getRaw( ) const
+  auto UniformBuffer::getRaw( ) const -> const std::vector<vk::Buffer>
   {
     std::vector<vk::Buffer> res( this->buffers.size( ), nullptr );
 
     for ( size_t i = 0; i < this->buffers.size( ); ++i )
+    {
       res[i] = this->buffers[i].get( );
+    }
 
     /*
     std::vector<vk::Buffer> res;

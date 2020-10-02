@@ -375,7 +375,7 @@ namespace RAYEXEC_NAMESPACE
 
     // Rasterization pipeline
     glm::vec2 extent = { static_cast<float>( this->swapchain.getExtent( ).width ), static_cast<float>( this->swapchain.getExtent( ).height ) };
-    this->viewport   = vk::Viewport( 0.0f, 0.0f, extent.x, extent.y, 0.0f, 1.0f );
+    this->viewport   = vk::Viewport( 0.0F, 0.0F, extent.x, extent.y, 0.0F, 1.0F );
     this->scissor    = vk::Rect2D( 0, this->swapchain.getExtent( ) );
     return this->rsPipeline.init( { this->rsSceneDescriptorSetLayout.get( ), this->rsModelDescriptorSetLayout.get( ) }, this->renderPass.get( ), viewport, scissor, this->settings );
   }
@@ -498,7 +498,7 @@ namespace RAYEXEC_NAMESPACE
     // Set up render pass begin info
     std::array<vk::ClearValue, 2> clearValues;
     clearValues[0].color        = { Util::vec4toArray( this->settings->getClearColor( ) ) };
-    clearValues[1].depthStencil = vk::ClearDepthStencilValue { 1.0f, 0 };
+    clearValues[1].depthStencil = vk::ClearDepthStencilValue { 1.0F, 0 };
 
     // Start recording the swapchain framebuffers
     for ( size_t imageIndex = 0; imageIndex < this->swapchainCommandBuffers.get( ).size( ); ++imageIndex )
@@ -640,7 +640,7 @@ namespace RAYEXEC_NAMESPACE
 
       this->rtDescriptorSetLayout = this->rtBindings.initLayoutUnique( );
       this->rtDescriptorPool      = this->rtBindings.initPoolUnique( g_swapchainImageCount );
-      this->rtDescriptorSets      = this->rtBindings.initSets( this->rtDescriptorPool, this->rtDescriptorSetLayout );
+      this->rtDescriptorSets      = vk::Initializer::initDescriptorSetsUnique( this->rtDescriptorPool, this->rtDescriptorSetLayout );
     }
 
     // Create the descriptor set layout for models
@@ -663,7 +663,7 @@ namespace RAYEXEC_NAMESPACE
 
       this->rtSceneDescriptorSetLayout = this->rtSceneBindings.initLayoutUnique( );
       this->rtSceneDescriptorPool      = this->rtSceneBindings.initPoolUnique( g_swapchainImageCount );
-      this->rtSceneDescriptorSets      = this->rtSceneBindings.initSets( this->rtSceneDescriptorPool, this->rtSceneDescriptorSetLayout );
+      this->rtSceneDescriptorSets      = vk::Initializer::initDescriptorSetsUnique( this->rtSceneDescriptorPool, this->rtSceneDescriptorSetLayout );
     }
 
     // RS Scene descriptor set layout.
@@ -677,7 +677,7 @@ namespace RAYEXEC_NAMESPACE
 
       this->rsSceneDescriptorSetLayout = this->rsSceneBindings.initLayoutUnique( );
       this->rsSceneDescriptorPool      = this->rsSceneBindings.initPoolUnique( g_swapchainImageCount );
-      this->rsSceneDescriptorSets      = this->rsSceneBindings.initSets( this->rsSceneDescriptorPool, this->rsSceneDescriptorSetLayout );
+      this->rsSceneDescriptorSets      = vk::Initializer::initDescriptorSetsUnique( this->rsSceneDescriptorPool, this->rsSceneDescriptorSetLayout );
     }
 
     // Rasterization descriptor set layout.
@@ -804,7 +804,7 @@ namespace RAYEXEC_NAMESPACE
       model->indexBuffer.init( model->indices );
       model->initialized = true;
 
-      model->rtDescriptorSets = this->rtModelBindings.initSets( this->rtModelDescriptorPool, this->rtModelDescriptorSetLayout );
+      model->rtDescriptorSets = vk::Initializer::initDescriptorSetsUnique( this->rtModelDescriptorPool, this->rtModelDescriptorSetLayout );
 
       vk::DescriptorBufferInfo vertexBufferInfo( model->vertexBuffer.get( ),
                                                  0,
@@ -818,7 +818,7 @@ namespace RAYEXEC_NAMESPACE
       this->rtModelBindings.write( model->rtDescriptorSets, 1, &indexBufferInfo );
       this->rtModelBindings.update( );
 
-      model->rsDescriptorSets = this->rsModelBindings.initSets( this->rsModelDescriptorPool, this->rsModelDescriptorSetLayout );
+      model->rsDescriptorSets = vk::Initializer::initDescriptorSetsUnique( this->rsModelDescriptorPool, this->rsModelDescriptorSetLayout );
     }
 
     //initPipelines( );

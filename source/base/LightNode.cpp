@@ -2,12 +2,12 @@
 
 namespace RAYEXEC_NAMESPACE
 {
-  glm::vec4 combine( const glm::vec3& vec3, float value )
+  auto combine( const glm::vec3& vec3, float value ) -> glm::vec4
   {
     return { vec3.x, vec3.y, vec3.z, value };
   }
 
-  DirectionalLightNode::Ubo DirectionalLightNode::toUbo( )
+  auto DirectionalLightNode::toUbo( ) -> DirectionalLightNode::Ubo
   {
     Ubo ubo;
     ubo.ambient  = combine( this->ambient, this->ambientIntensity );
@@ -18,7 +18,7 @@ namespace RAYEXEC_NAMESPACE
     return ubo;
   }
 
-  PointLightNode::Ubo PointLightNode::toUbo( )
+  auto PointLightNode::toUbo( ) -> PointLightNode::Ubo
   {
     Ubo ubo;
     ubo.ambient  = combine( this->ambient, this->ambientIntensity );

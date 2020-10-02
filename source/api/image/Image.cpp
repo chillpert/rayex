@@ -60,17 +60,20 @@ namespace RAYEXEC_NAMESPACE
     this->layout = layout;
   }
 
-  vk::Format Image::findSupportedFormat( vk::PhysicalDevice physicalDevice, const std::vector<vk::Format>& formatsToTest, vk::FormatFeatureFlagBits features, vk::ImageTiling tiling )
+  auto Image::findSupportedFormat( vk::PhysicalDevice physicalDevice, const std::vector<vk::Format>& formatsToTest, vk::FormatFeatureFlagBits features, vk::ImageTiling tiling ) -> vk::Format
   {
     for ( vk::Format format : formatsToTest )
     {
       auto props = physicalDevice.getFormatProperties( format );
 
       if ( tiling == vk::ImageTiling::eLinear && ( props.linearTilingFeatures & features ) == features )
+      {
         return format;
-
-      else if ( tiling == vk::ImageTiling::eOptimal && ( props.optimalTilingFeatures & features ) == features )
+      }
+      if ( tiling == vk::ImageTiling::eOptimal && ( props.optimalTilingFeatures & features ) == features )
+      {
         return format;
+      }
     }
 
     RX_ERROR( "Failed to retrieve any supported image format." );

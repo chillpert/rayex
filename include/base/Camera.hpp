@@ -23,7 +23,7 @@ namespace RAYEXEC_NAMESPACE
     /// @param width The width of the viewport.
     /// @param height The height of the viewport.
     /// @param position The position of your camera.
-    RX_API Camera( int width, int height, const glm::vec3& position = { 0.0f, 0.0f, 3.0f } );
+    RX_API Camera( int width, int height, const glm::vec3& position = { 0.0F, 0.0F, 3.0F } );
 
     RX_API ~Camera( ) = default;
 
@@ -35,7 +35,7 @@ namespace RAYEXEC_NAMESPACE
 
     /// Returns the camera's current position.
     /// @return The camera's position.
-    RX_API inline const glm::vec3& getPosition( ) const { return position; }
+    [[nodiscard]] RX_API inline auto getPosition( ) const -> const glm::vec3& { return position; }
 
     /// Is used to set the camera's position.
     /// @param position The new camera position.
@@ -55,16 +55,16 @@ namespace RAYEXEC_NAMESPACE
     RX_API void setSensitivity( float sensitivity );
 
     /// @return The view matrix.
-    inline const glm::mat4& getViewMatrix( ) const { return view; }
+    [[nodiscard]] inline auto getViewMatrix( ) const -> const glm::mat4& { return view; }
 
     /// @return The projection matrix.
-    inline const glm::mat4& getProjectionMatrix( ) const { return projection; }
+    [[nodiscard]] inline auto getProjectionMatrix( ) const -> const glm::mat4& { return projection; }
 
     /// @return The view matrix inversed.
-    inline const glm::mat4& getViewInverseMatrix( ) const { return viewInverse; }
+    [[nodiscard]] inline auto getViewInverseMatrix( ) const -> const glm::mat4& { return viewInverse; }
 
     /// @return The projection matrix inversed.
-    inline const glm::mat4& getProjectionInverseMatrix( ) const { return projectionInverse; }
+    [[nodiscard]] inline auto getProjectionInverseMatrix( ) const -> const glm::mat4& { return projectionInverse; }
 
     /// Re-calculates the camera's view matrix as well as the inversed view matrix.
     RX_API void updateViewMatrix( );
@@ -90,21 +90,21 @@ namespace RAYEXEC_NAMESPACE
 
     glm::vec3 position; ///< The camera's position.
 
-    glm::mat4 view       = glm::mat4( 1.0f ); ///< The view matrix.
-    glm::mat4 projection = glm::mat4( 1.0f ); ///< The projection matrix
+    glm::mat4 view       = glm::mat4( 1.0F ); ///< The view matrix.
+    glm::mat4 projection = glm::mat4( 1.0F ); ///< The projection matrix
 
-    glm::mat4 viewInverse       = glm::mat4( 1.0f ); ///< The view matrix inversed.
-    glm::mat4 projectionInverse = glm::mat4( 1.0f ); ///< The projection matrix inversed.
+    glm::mat4 viewInverse       = glm::mat4( 1.0F ); ///< The view matrix inversed.
+    glm::mat4 projectionInverse = glm::mat4( 1.0F ); ///< The projection matrix inversed.
 
-    glm::vec3 worldUp = { 0.0f, 1.0f, 0.0f }; ///< The world up vector.
+    glm::vec3 worldUp = { 0.0F, 1.0F, 0.0F }; ///< The world up vector.
     glm::vec3 up      = { };                  ///< The local up vector.
     glm::vec3 right   = { };                  ///< The local right vector.
     glm::vec3 front   = { };                  ///< The viewing direction.
 
-    float yaw         = -90.0f; ///< The yaw (left and right).
-    float pitch       = 0.0f;   ///< The pitch (down and up).
-    float sensitivity = 0.06f;  ///< The mouse sensitivity.
-    float fov         = 45.0f;  ///< The field of view.
+    float yaw         = -90.0F; ///< The yaw (left and right).
+    float pitch       = 0.0F;   ///< The pitch (down and up).
+    float sensitivity = 0.06F;  ///< The mouse sensitivity.
+    float fov         = 45.0F;  ///< The field of view.
   };
 } // namespace RAYEXEC_NAMESPACE
 

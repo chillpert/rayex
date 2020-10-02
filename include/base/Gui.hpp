@@ -42,7 +42,7 @@ namespace RAYEXEC_NAMESPACE
     /// Returns the GUI's command buffer at the given index.
     /// @param index The index of the command buffer to access.
     /// @return Returns the Vulkan command buffer.
-    inline const vk::CommandBuffer getCommandBuffer( uint32_t index ) const { return commandBuffers.get( index ); }
+    [[nodiscard]] inline auto getCommandBuffer( uint32_t index ) const -> vk::CommandBuffer { return commandBuffers.get( index ); }
 
     /// Used to configure all ImGui settings.
     ///
@@ -58,7 +58,7 @@ namespace RAYEXEC_NAMESPACE
     /// @param surface A pointer to a RAYEXEC_NAMESPACE::Surface object.
     /// @param swapchainImageExtent The extent of the swapchain images.
     /// @param swapchainImageViews The swapchain images' image views.
-    void init( const Surface* const surface, vk::Extent2D swapchainImageExtent, const std::vector<vk::ImageView>& swapchainImageViews );
+    void init( const Surface* surface, vk::Extent2D swapchainImageExtent, const std::vector<vk::ImageView>& swapchainImageViews );
 
     /// Used to recreate the GUI in case the window size was changed.
     /// @param swapchainImageExtent The extent of the swapchain images.
@@ -66,10 +66,10 @@ namespace RAYEXEC_NAMESPACE
     void recreate( vk::Extent2D swapchainImageExtent, const std::vector<vk::ImageView>& swapchainImageViews );
 
     /// Creates a new ImGui frame.
-    void newFrame( );
+    static void newFrame( );
 
     /// Calls the actual ImGui render call.
-    void endRender( );
+    static void endRender( );
 
     /// Records the ImGui rendering calls to the command buffer at the given image index.
     /// @param imageIndex The index addressing a command buffer.
@@ -84,7 +84,7 @@ namespace RAYEXEC_NAMESPACE
 
     /// Creates a render pass for the GUI.
     /// @param surface A pointer to a RAYEXEC_NAMESPACE::Surface object.
-    void initRenderPass( const Surface* const surface );
+    void initRenderPass( const Surface* surface );
 
     /// Creates a command pool for the GUI's command buffers.
     void initCommandPool( );

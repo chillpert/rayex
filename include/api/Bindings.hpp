@@ -14,15 +14,13 @@ namespace RAYEXEC_NAMESPACE
   public:
     void add( uint32_t binding, vk::DescriptorType type, vk::ShaderStageFlags stage, uint32_t count = 1, vk::DescriptorBindingFlags flags = { } );
 
-    vk::UniqueDescriptorSetLayout initLayoutUnique( );
+    auto initLayoutUnique( ) -> vk::UniqueDescriptorSetLayout;
 
-    vk::UniqueDescriptorPool initPoolUnique( uint32_t maxSets, vk::DescriptorPoolCreateFlags flags = { } );
-
-    std::vector<vk::DescriptorSet> initSets( const vk::UniqueDescriptorPool& pool, const vk::UniqueDescriptorSetLayout& layout );
+    auto initPoolUnique( uint32_t maxSets, vk::DescriptorPoolCreateFlags flags = { } ) -> vk::UniqueDescriptorPool;
 
     void update( );
 
-    size_t write( vk::DescriptorSet set, size_t writesIndex, uint32_t binding, uint32_t arrayElement = 0 );
+    auto write( vk::DescriptorSet set, size_t writesIndex, uint32_t binding, uint32_t arrayElement = 0 ) -> size_t;
 
     void write( const std::vector<vk::DescriptorSet>& sets, uint32_t binding, vk::WriteDescriptorSetAccelerationStructureKHR* pWriteDescriptorSetAccelerationStructureKHR );
 

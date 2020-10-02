@@ -9,7 +9,9 @@ namespace RAYEXEC_NAMESPACE
   Buffer::Buffer( vk::DeviceSize size, vk::BufferUsageFlags usage, const std::vector<uint32_t>& queueFamilyIndices, vk::MemoryPropertyFlags memoryPropertyFlags, void* pNextMemory, bool initialize )
   {
     if ( initialize )
+    {
       init( size, usage, queueFamilyIndices, memoryPropertyFlags, pNextMemory );
+    }
   }
 
   Buffer::Buffer( Buffer& buffer )

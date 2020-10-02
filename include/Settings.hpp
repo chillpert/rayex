@@ -20,21 +20,21 @@ namespace RAYEXEC_NAMESPACE
     friend class Pipeline;
 
     /// @return Returns the current recursion depth.
-    inline uint32_t getRecursionDepth( ) const { return this->recursionDepth; }
+    [[nodiscard]] inline auto getRecursionDepth( ) const -> uint32_t { return this->recursionDepth; }
 
     /// Used to set the current recursion depth.
     /// @param maxRecursionDepth The new value for the maxium recursion depth.
     void setRecursionDepth( uint32_t recursionDepth );
 
     /// @return Returns the clear color.
-    inline const glm::vec4& getClearColor( ) const { return this->clearColor; }
+    [[nodiscard]] inline auto getClearColor( ) const -> const glm::vec4& { return this->clearColor; }
 
     /// Used to changed the clear color.
     /// @param clearColor The new value for the clear color.
     void setClearColor( const glm::vec4& clearColor );
 
     /// @return Returns the path to resources.
-    inline std::string_view getResourcePath( ) const { return this->resourcePath; }
+    [[nodiscard]] inline auto getResourcePath( ) const -> std::string_view { return this->resourcePath; }
 
     /// Used to set a path to resources.
     /// @param argc The argc parameter that can be retrieved from the main-function's parameters.
@@ -46,7 +46,7 @@ namespace RAYEXEC_NAMESPACE
     void setResourcePath( std::string_view path );
 
     /// @return Returns true if ray tracing is enabled and false if rasterization is enabled.
-    bool getRayTracingEnabled( ) const { return this->rayTrace; }
+    [[nodiscard]] auto getRayTracingEnabled( ) const -> bool { return this->rayTrace; }
 
     /// Used to enable or disable ray tracing.
     void setEnableRayTracing( bool flag );
@@ -86,7 +86,7 @@ namespace RAYEXEC_NAMESPACE
     std::optional<uint32_t> anticipatedGeometryNodes;
     std::optional<uint32_t> anticipatedModels;
 
-    glm::vec4 clearColor    = glm::vec4( 0.45f, 0.45f, 0.45f, 1.0f ); ///< Stores the clear color.
+    glm::vec4 clearColor    = glm::vec4( 0.45F, 0.45F, 0.45F, 1.0F ); ///< Stores the clear color.
     uint32_t recursionDepth = 4;                                      ///< The current recursion depth.
     std::string resourcePath;                                         ///< Where all resources like models, textures and shaders are stored.
 

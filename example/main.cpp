@@ -2,7 +2,7 @@
 
 using namespace rx;
 
-float animationSpeed = 0.0f;
+float animationSpeed = 0.0F;
 
 namespace Key
 {
@@ -12,13 +12,13 @@ namespace Key
   bool eD;
   bool eC;
   bool eSpace;
-}
+} // namespace Key
 
 class CustomCamera : public Camera
 {
 public:
   CustomCamera( int width, int height, const glm::vec3& position ) :
-    Camera( width, height, position ) { }
+    Camera( width, height, position ) {}
 
   void update( ) override
   {
@@ -27,8 +27,8 @@ public:
 
   void processKeyboard( )
   {
-    static float speed = 1.0f;
-    float finalSpeed = speed * Time::getDeltaTime( );
+    static float speed = 1.0F;
+    float finalSpeed   = speed * Time::getDeltaTime( );
 
     if ( Key::eW )
     {
@@ -41,31 +41,31 @@ public:
       this->position -= this->front * finalSpeed;
       this->updateView = true;
     }
-    
+
     if ( Key::eA )
     {
       this->position -= this->right * finalSpeed;
       this->updateView = true;
     }
-    
+
     if ( Key::eD )
     {
       this->position += this->right * finalSpeed;
       this->updateView = true;
     }
-    
+
     if ( Key::eC )
     {
-      this->position.y -= finalSpeed / 2.0f;
+      this->position.y -= finalSpeed / 2.0F;
       this->updateView = true;
     }
-    
+
     if ( Key::eSpace )
     {
-      this->position.y += finalSpeed / 2.0f;
+      this->position.y += finalSpeed / 2.0F;
       this->updateView = true;
     }
-    
+
     updateViewMatrix( );
   }
 };
@@ -75,36 +75,41 @@ class CustomWindow : public Window
 public:
   CustomWindow( int width, int height, const char* title, uint32_t flags ) :
     Window( width, height, title, flags )
-  { }
-
-  bool init( ) override
   {
-    if ( !Window::init( ) ) return false;
+  }
+
+  auto init( ) -> bool override
+  {
+    if ( !Window::init( ) )
+    {
+      return false;
+    }
 
     SDL_SetRelativeMouseMode( SDL_FALSE );
     return true;
   }
 
-  bool update( ) override
+  auto update( ) -> bool override
   {
-    if ( !Window::update( ) ) return false;
+    if ( !Window::update( ) )
+    {
+      return false;
+    }
 
     this->camera->setSize( this->width, this->height );
 
     // Add your custom event polling and integrate your event system.
     SDL_Event event;
 
-    while ( SDL_PollEvent( &event ) )
+    while ( SDL_PollEvent( &event ) != 0 )
     {
       switch ( event.type )
       {
-        case SDL_QUIT:
-        {
+        case SDL_QUIT: {
           return false;
         }
 
-        case SDL_WINDOWEVENT:
-        {
+        case SDL_WINDOWEVENT: {
           switch ( event.window.event )
           {
             case SDL_WINDOWEVENT_CLOSE:
@@ -121,8 +126,7 @@ public:
           break;
         }
 
-        case SDL_KEYDOWN:
-        {
+        case SDL_KEYDOWN: {
           switch ( event.key.keysym.sym )
           {
             case SDLK_w:
@@ -144,8 +148,7 @@ public:
             case SDLK_ESCAPE:
               return false;
 
-            case SDLK_SPACE:
-            {
+            case SDLK_SPACE: {
               if ( this->mouseVisible )
               {
                 this->mouseVisible = false;
@@ -164,8 +167,7 @@ public:
           break;
         }
 
-        case SDL_KEYUP:
-        {
+        case SDL_KEYUP: {
           switch ( event.key.keysym.sym )
           {
             case SDLK_w:
@@ -187,11 +189,11 @@ public:
           break;
         }
 
-        case SDL_MOUSEMOTION:
-        {
+        case SDL_MOUSEMOTION: {
           if ( !this->mouseVisible )
           {
-            int x, y;
+            int x;
+            int y;
             SDL_GetRelativeMouseState( &x, &y );
             this->camera->processMouse( x, -y );
             break;
@@ -225,17 +227,17 @@ private:
   {
     if ( ImGui::Begin( "Settings" ) )
     {
-      ImGui::SliderFloat( "Speed", &animationSpeed, 0.0f, 2.0f );
+      ImGui::SliderFloat( "Speed", &animationSpeed, 0.0F, 2.0F );
 
       if ( ImGui::Button( "Add Box" ) )
       {
         int max = 4;
-        int min = -4; 
-        srand( time( NULL ) );
+        int min = -4;
+        srand( time( nullptr ) );
         int finalNum = rand( ) % ( max - min + 1 ) + min;
 
-        auto box = std::make_shared<GeometryNode>( "models/cube.obj", Material( "textures/container.png" ) );
-        box->worldTransform = glm::translate( box->worldTransform, glm::vec3( finalNum, 0.0f, 0.0f ) );
+        auto box            = std::make_shared<GeometryNode>( "models/cube.obj", Material( "textures/container.png" ) );
+        box->worldTransform = glm::translate( box->worldTransform, glm::vec3( finalNum, 0.0F, 0.0F ) );
         this->renderer->pushNode( box );
       }
 
@@ -248,12 +250,12 @@ private:
       if ( ImGui::Button( "Add directional light" ) )
       {
         auto dirLight = std::make_shared<DirectionalLightNode>( );
-      
+
         int max = 4;
         int min = -4;
-        srand( time( NULL ) );
-        int finalNum = rand( ) % ( max - min + 1 ) + min;
-        dirLight->worldTransform = glm::translate( dirLight->worldTransform, glm::vec3( finalNum, 0.0f, 0.0f ) );
+        srand( time( nullptr ) );
+        int finalNum             = rand( ) % ( max - min + 1 ) + min;
+        dirLight->worldTransform = glm::translate( dirLight->worldTransform, glm::vec3( finalNum, 0.0F, 0.0F ) );
       }
 
       auto clearColor = this->renderer->settings.getClearColor( );
@@ -277,14 +279,18 @@ private:
       static std::list<float> frameTimes;
 
       float dt = Time::getDeltaTime( );
-      if ( dt > 0.001f )
+      if ( dt > 0.001F )
+      {
         frameTimes.push_back( dt );
+      }
 
       if ( frameTimes.size( ) > 10000 )
+      {
         frameTimes.pop_front( );
+      }
 
       std::vector<float> temp( frameTimes.begin( ), frameTimes.end( ) );
-      ImGui::PlotLines( "Frame Times", temp.data( ), temp.size( ), 0, "Frametime", 0.0f, 0.01f, ImVec2(0.0f, 80.0f ) );
+      ImGui::PlotLines( "Frame Times", temp.data( ), temp.size( ), 0, "Frametime", 0.0F, 0.01F, ImVec2( 0.0F, 80.0F ) );
     }
 
     ImGui::End( );
@@ -300,17 +306,17 @@ private:
   RayExec* renderer;
 };
 
-int main( )
+auto main( ) -> int
 {
   // Window dimensions.
-  int width = 900;
+  int width  = 900;
   int height = 600;
-  
+
   // Now create the actual window using the window properties from above.
   auto myWindow = std::make_shared<CustomWindow>( width, height, "Example", SDL_WINDOW_RESIZABLE );
 
   // Create instance of your custom camera class.
-  auto myCam = std::make_shared<CustomCamera>( width, height, glm::vec3( 0.0f, 0.0f, 3.0f ) );
+  auto myCam = std::make_shared<CustomCamera>( width, height, glm::vec3( 0.0F, 0.0F, 3.0F ) );
 
   // Create the renderer object ...
   RayExec renderer( myWindow, myCam );
@@ -321,25 +327,25 @@ int main( )
   // Setup your own ImGui based Gui.
   auto myGui = std::make_shared<CustomGui>( );
   renderer.setGui( myGui );
-  
-  myGui->setRenderer( &renderer);
+
+  myGui->setRenderer( &renderer );
   myWindow->setCamera( myCam );
 
   renderer.setModels( { "models/awpdlore/awpdlore.obj", "models/cube.obj", "models/sphere.obj" } );
 
   // Setup the scene
-  auto dragonLore = std::make_shared<GeometryNode>( "models/awpdlore/awpdlore.obj", Material( "textures/awpdlore.png" ) );
-  dragonLore->worldTransform = glm::scale( dragonLore->worldTransform, glm::vec3( 0.25f ) );
-  dragonLore->worldTransform = glm::rotate( dragonLore->worldTransform, glm::radians( 45.0f ), glm::vec3( 0.0f, 1.0f, 0.0f ) );
-  dragonLore->worldTransform = glm::translate( dragonLore->worldTransform, glm::vec3( 0.0f, -1.0f, 0.5f ) );
+  auto dragonLore            = std::make_shared<GeometryNode>( "models/awpdlore/awpdlore.obj", Material( "textures/awpdlore.png" ) );
+  dragonLore->worldTransform = glm::scale( dragonLore->worldTransform, glm::vec3( 0.25F ) );
+  dragonLore->worldTransform = glm::rotate( dragonLore->worldTransform, glm::radians( 45.0F ), glm::vec3( 0.0F, 1.0F, 0.0F ) );
+  dragonLore->worldTransform = glm::translate( dragonLore->worldTransform, glm::vec3( 0.0F, -1.0F, 0.5F ) );
 
-  auto dragonLore2 = std::make_shared<GeometryNode>( "models/awpdlore/awpdlore.obj", Material( "textures/awpdlore.png" ) );
-  dragonLore2->worldTransform = glm::scale( dragonLore2->worldTransform, glm::vec3( 0.25f ) );
-  dragonLore2->worldTransform = glm::rotate( dragonLore2->worldTransform, glm::radians( 90.0f ), glm::vec3( 0.0f, 1.0f, 0.0f ) );
-  dragonLore2->worldTransform = glm::translate( dragonLore2->worldTransform, glm::vec3( 1.0f, 2.0f, 0.0f ) );
+  auto dragonLore2            = std::make_shared<GeometryNode>( "models/awpdlore/awpdlore.obj", Material( "textures/awpdlore.png" ) );
+  dragonLore2->worldTransform = glm::scale( dragonLore2->worldTransform, glm::vec3( 0.25F ) );
+  dragonLore2->worldTransform = glm::rotate( dragonLore2->worldTransform, glm::radians( 90.0F ), glm::vec3( 0.0F, 1.0F, 0.0F ) );
+  dragonLore2->worldTransform = glm::translate( dragonLore2->worldTransform, glm::vec3( 1.0F, 2.0F, 0.0F ) );
 
   auto directionalLight = std::make_shared<DirectionalLightNode>( );
- 
+
   // Add the model to the renderer. This way they will be queued for rendering.
   renderer.pushNode( dragonLore );
   renderer.pushNode( dragonLore2 );
@@ -347,7 +353,7 @@ int main( )
 
   while ( renderer.isRunning( ) )
   {
-    dragonLore->worldTransform = glm::rotate( dragonLore->worldTransform, glm::radians( 90.0f ) * Time::getDeltaTime( ) * animationSpeed, glm::vec3( 0.0f, 1.0f, 0.0f ) );
+    dragonLore->worldTransform = glm::rotate( dragonLore->worldTransform, glm::radians( 90.0F ) * Time::getDeltaTime( ) * animationSpeed, glm::vec3( 0.0F, 1.0F, 0.0F ) );
     renderer.run( );
   }
 

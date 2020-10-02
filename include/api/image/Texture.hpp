@@ -18,13 +18,13 @@ namespace RAYEXEC_NAMESPACE
     RX_API Texture( std::string_view path, bool initialize = true );
 
     /// @return Returns the texture's image view.
-    inline vk::ImageView getImageView( ) { return imageView.get( ); }
+    [[nodiscard]] inline auto getImageView( ) -> vk::ImageView { return imageView.get( ); }
 
     /// @return Returns the texture's sampler.
-    inline vk::Sampler getSampler( ) { return sampler.get( ); }
+    [[nodiscard]] inline auto getSampler( ) -> vk::Sampler { return sampler.get( ); }
 
     /// @return Returns the relative path of the texture file.
-    inline const std::string& getPath( ) const { return path; }
+    [[nodiscard]] inline auto getPath( ) const -> const std::string& { return path; }
 
     /// Creates the texture.
     /// @param path The relative path to the texture file.
@@ -49,7 +49,7 @@ namespace std
   template <>
   struct hash<RAYEXEC_NAMESPACE::Texture>
   {
-    size_t operator( )( const std::shared_ptr<RAYEXEC_NAMESPACE::Texture> texture ) const { return hash<std::string>( )( texture->getPath( ) ); }
+    auto operator( )( const std::shared_ptr<RAYEXEC_NAMESPACE::Texture> texture ) const -> size_t { return hash<std::string>( )( texture->getPath( ) ); }
   };
   /// @endcond
 } // namespace std

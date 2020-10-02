@@ -10,11 +10,11 @@ namespace RAYEXEC_NAMESPACE
   /// @ingroup API
   struct CameraUbo
   {
-    glm::mat4 view              = glm::mat4( 1.0f );
-    glm::mat4 projection        = glm::mat4( 1.0f );
-    glm::mat4 viewInverse       = glm::mat4( 1.0f );
-    glm::mat4 projectionInverse = glm::mat4( 1.0f );
-    glm::vec3 position          = glm::vec3( 1.0f );
+    glm::mat4 view              = glm::mat4( 1.0F );
+    glm::mat4 projection        = glm::mat4( 1.0F );
+    glm::mat4 viewInverse       = glm::mat4( 1.0F );
+    glm::mat4 projectionInverse = glm::mat4( 1.0F );
+    glm::vec3 position          = glm::vec3( 1.0F );
   };
 
   /// A uniform buffer object for different light types.
@@ -22,8 +22,8 @@ namespace RAYEXEC_NAMESPACE
   /// @todo Shouldn't this also be a storage buffer?
   struct LightsUbo
   {
-    DirectionalLightNode::Ubo directionalLightNodes[10];
-    PointLightNode::Ubo pointLightNodes[10];
+    std::array<DirectionalLightNode::Ubo, 10> directionalLightNodes;
+    std::array<PointLightNode::Ubo, 10> pointLightNodes;
   };
 
   /// A specialised buffer for uniforms.
@@ -43,10 +43,10 @@ namespace RAYEXEC_NAMESPACE
     }
 
     /// @return Returns the vector of uniform buffers.
-    inline const std::vector<Buffer>& get( ) const { return buffers; }
+    [[nodiscard]] inline auto get( ) const -> const std::vector<Buffer>& { return buffers; }
 
     /// @return Returns the vector of uniform buffers as raw Vulkan buffer objects.
-    RX_API const std::vector<vk::Buffer> getRaw( ) const;
+    [[nodiscard]] RX_API auto getRaw( ) const -> const std::vector<vk::Buffer>;
 
     /// Creates the uniform buffer and allocates memory for it.
     ///

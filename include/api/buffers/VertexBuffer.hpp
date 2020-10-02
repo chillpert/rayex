@@ -18,7 +18,7 @@ namespace RAYEXEC_NAMESPACE
     VertexBuffer( std::vector<Vertex>& vertices, bool initialize = true );
 
     /// @return Returns the amount of vertices in the buffer.
-    inline uint32_t getCount( ) const { return count; }
+    [[nodiscard]] inline auto getCount( ) const -> uint32_t { return count; }
 
     /// Creates the buffer, allocates memory for it and fills it with provided data.
     /// @param vertices The vertex data.

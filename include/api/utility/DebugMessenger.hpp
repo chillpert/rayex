@@ -30,10 +30,10 @@ namespace RAYEXEC_NAMESPACE
   };
 
   /// @cond INTERNAL
-  VKAPI_ATTR VkBool32 VKAPI_CALL debugMessengerCallback( VkDebugUtilsMessageSeverityFlagBitsEXT messageSeverity,
-                                                         VkDebugUtilsMessageTypeFlagsEXT messageType,
-                                                         const VkDebugUtilsMessengerCallbackDataEXT* callbackData,
-                                                         void* userData );
+  VKAPI_ATTR auto VKAPI_CALL debugMessengerCallback( VkDebugUtilsMessageSeverityFlagBitsEXT messageSeverity,
+                                                     VkDebugUtilsMessageTypeFlagsEXT messageType,
+                                                     const VkDebugUtilsMessengerCallbackDataEXT* callbackData,
+                                                     void* userData ) -> VkBool32;
   /// @endcond
 } // namespace RAYEXEC_NAMESPACE
 

@@ -21,28 +21,28 @@ namespace RAYEXEC_NAMESPACE
     void destroy( );
 
     /// @return Returns the swapchain framebuffer at a given index.
-    inline const vk::Framebuffer& getFramebuffer( uint32_t index ) const { return this->framebuffers[index].get( ); }
+    [[nodiscard]] inline auto getFramebuffer( uint32_t index ) const -> const vk::Framebuffer& { return this->framebuffers[index].get( ); }
 
     /// @return Returns the current swapchain image index.
-    inline uint32_t getCurrentImageIndex( ) const { return this->currentImageIndex; }
+    [[nodiscard]] inline auto getCurrentImageIndex( ) const -> uint32_t { return this->currentImageIndex; }
 
     /// @return Returns the swapchain images' extent.
-    inline const vk::Extent2D getExtent( ) const { return this->extent; }
+    [[nodiscard]] inline auto getExtent( ) const -> vk::Extent2D { return this->extent; }
 
     /// @return Returns the swapchain images' image aspect.
-    inline const vk::ImageAspectFlags getImageAspect( ) const { return this->imageAspect; }
+    [[nodiscard]] inline auto getImageAspect( ) const -> vk::ImageAspectFlags { return this->imageAspect; }
 
     /// Returns the swapchain image at a given index.
     /// @param index The index of the swapchain image.
     /// @return The swapchain image.
-    inline const vk::Image getImage( size_t index ) const { return this->images[index]; }
+    [[nodiscard]] inline auto getImage( size_t index ) const -> vk::Image { return this->images[index]; }
 
     /// @return Returns a vector containing all swapchain images.
-    inline const std::vector<vk::Image>& getImages( ) const { return this->images; }
+    [[nodiscard]] inline auto getImages( ) const -> const std::vector<vk::Image>& { return this->images; }
 
     /// @return Returns a vector containing all swapchain image views.
     /// @todo Returning by reference will result in size 0.
-    inline const std::vector<vk::ImageView> getImageViews( ) const { return vk::Helper::unpack<vk::ImageView>( this->imageViews ); }
+    [[nodiscard]] inline auto getImageViews( ) const -> std::vector<vk::ImageView> { return vk::Helper::unpack<vk::ImageView>( this->imageViews ); }
 
     /// Used to set the desired image aspect flags.
     void setImageAspect( vk::ImageAspectFlags flags );
@@ -89,7 +89,7 @@ namespace RAYEXEC_NAMESPACE
   /// Retrieves the depth format supported by a given physical device.
   /// @param physicalDevice The physical device to check.
   /// @return Returns the supported depth format.
-  vk::Format getSupportedDepthFormat( vk::PhysicalDevice physicalDevice );
+  auto getSupportedDepthFormat( vk::PhysicalDevice physicalDevice ) -> vk::Format;
 } // namespace RAYEXEC_NAMESPACE
 
 #endif // SWAPCHAIN_HPP

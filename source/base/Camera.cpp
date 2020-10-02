@@ -47,7 +47,7 @@ namespace RAYEXEC_NAMESPACE
 
   void Camera::updateProjectionMatrix( )
   {
-    this->projection = glm::perspective( glm::radians( this->fov ), static_cast<float>( this->width ) / static_cast<float>( this->height ), 0.1f, 100.0f );
+    this->projection = glm::perspective( glm::radians( this->fov ), static_cast<float>( this->width ) / static_cast<float>( this->height ), 0.1F, 100.0F );
     this->projection[1, 1] *= -1;
 
     this->projectionInverse = glm::inverse( this->projection );
@@ -63,17 +63,25 @@ namespace RAYEXEC_NAMESPACE
     this->yaw += xOffset;
     this->pitch += yOffset;
 
-    if ( this->yaw > 360.0f )
-      this->yaw = fmod( this->yaw, 360.0f );
+    if ( this->yaw > 360.0F )
+    {
+      this->yaw = fmod( this->yaw, 360.0F );
+    }
 
-    if ( this->yaw < 0.0f )
-      this->yaw = 360.0f + fmod( this->yaw, 360.0f );
+    if ( this->yaw < 0.0F )
+    {
+      this->yaw = 360.0F + fmod( this->yaw, 360.0F );
+    }
 
-    if ( this->pitch > 89.0f )
-      this->pitch = 89.0f;
+    if ( this->pitch > 89.0F )
+    {
+      this->pitch = 89.0F;
+    }
 
-    if ( this->pitch < -89.0f )
-      this->pitch = -89.0f;
+    if ( this->pitch < -89.0F )
+    {
+      this->pitch = -89.0F;
+    }
 
     updateVectors( );
   }

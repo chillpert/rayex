@@ -11,7 +11,7 @@ namespace RAYEXEC_NAMESPACE
   /// @param vec3 The 3D vector to combine with a float.
   /// @param value The float to combine with a 3D vector.
   /// @return Returns the combination in a 4D vector..
-  glm::vec4 combine( const glm::vec3& vec3, float value );
+  auto combine( const glm::vec3& vec3, float value ) -> glm::vec4;
 
   /// Adds lighting-related information to the TransformNode parent class.
   /// @note This node only provides common data for its inherited classes and cannot be instantiated.
@@ -19,17 +19,17 @@ namespace RAYEXEC_NAMESPACE
   class LightNode : public TransformNode
   {
   public:
-    virtual ~LightNode( ) = default;
-    virtual NodeType getType( ) const override { return NodeType::eLightNode; }
+    ~LightNode( ) override = default;
+    [[nodiscard]] auto getType( ) const -> NodeType override { return NodeType::eLightNode; }
 
-    glm::vec3 ambient  = { 0.2f, 0.2f, 0.2f }; ///< The ambient color.
-    glm::vec3 diffuse  = { 0.8f, 0.8f, 0.8f }; ///< The diffuse color.
-    glm::vec3 specular = { 1.0f, 1.0f, 1.0f }; ///< The specular highlight's color.
+    glm::vec3 ambient  = { 0.2F, 0.2F, 0.2F }; ///< The ambient color.
+    glm::vec3 diffuse  = { 0.8F, 0.8F, 0.8F }; ///< The diffuse color.
+    glm::vec3 specular = { 1.0F, 1.0F, 1.0F }; ///< The specular highlight's color.
 
-    float ambientIntensity  = 0.7f; ///< The ambient intensity.
+    float ambientIntensity  = 0.7F; ///< The ambient intensity.
     float diffuseIntensity  = 1.0;  ///< The diffuse intensity.
-    float specularIntensity = 1.0f; ///< The specular intensity.
-    float exists            = 1.0f;
+    float specularIntensity = 1.0F; ///< The specular intensity.
+    float exists            = 1.0F;
   };
 
   /// Can be used to add directional light sources to the scene.
@@ -37,10 +37,10 @@ namespace RAYEXEC_NAMESPACE
   class DirectionalLightNode : public LightNode
   {
   public:
-    virtual ~DirectionalLightNode( ) = default;
-    virtual NodeType getType( ) const override { return NodeType::eDirectionalLightNode; }
+    ~DirectionalLightNode( ) override = default;
+    [[nodiscard]] auto getType( ) const -> NodeType override { return NodeType::eDirectionalLightNode; }
 
-    glm::vec3 position = { 5.0f, 5.0f, 2.0f }; ///< The position of the light.
+    glm::vec3 position = { 5.0F, 5.0F, 2.0F }; ///< The position of the light.
 
     /// Used to combine members of DirectionalLightNode to data types that will not cause uniform member alignment issues in shaders.
     struct Ubo
@@ -52,7 +52,7 @@ namespace RAYEXEC_NAMESPACE
       glm::vec4 position; ///< Encodes the light's position in the first three entries and whether or not it is activated in the fourth entry.
     };
 
-    Ubo toUbo( );
+    auto toUbo( ) -> Ubo;
   };
 
   /// Can be used to add point light sources to the scene.
@@ -60,14 +60,14 @@ namespace RAYEXEC_NAMESPACE
   class PointLightNode : public LightNode
   {
   public:
-    virtual ~PointLightNode( ) = default;
-    virtual NodeType getType( ) const override { return NodeType::ePointLightNode; }
+    ~PointLightNode( ) override = default;
+    [[nodiscard]] auto getType( ) const -> NodeType override { return NodeType::ePointLightNode; }
 
-    glm::vec3 position = glm::vec3( 0.0f ); ///< The position of the light.
+    glm::vec3 position = glm::vec3( 0.0F ); ///< The position of the light.
 
-    float constant  = 1.0f;   ///< The constant factor of the light's abbreviation.
-    float linear    = 0.09f;  ///< The linear factor of the light's abbreviation.
-    float quadratic = 0.032f; ///< The quadratic factor of the light's abbreviation.
+    float constant  = 1.0F;   ///< The constant factor of the light's abbreviation.
+    float linear    = 0.09F;  ///< The linear factor of the light's abbreviation.
+    float quadratic = 0.032F; ///< The quadratic factor of the light's abbreviation.
 
     /// Used to combine members of PointLightNode to data types that will not cause uniform member alignment issues in shaders.
     struct Ubo
@@ -83,7 +83,7 @@ namespace RAYEXEC_NAMESPACE
       float quadratic;
     };
 
-    Ubo toUbo( );
+    auto toUbo( ) -> Ubo;
   };
 } // namespace RAYEXEC_NAMESPACE
 

@@ -3,7 +3,7 @@
 namespace RAYEXEC_NAMESPACE
 {
   Window::Window( int width, int height, const char* title, uint32_t flags ) :
-    window( nullptr ),
+
     width( width ),
     height( height ),
     title( title ),
@@ -17,9 +17,9 @@ namespace RAYEXEC_NAMESPACE
     clean( );
   }
 
-  bool Window::init( )
+  auto Window::init( ) -> bool
   {
-    SDL_SetHint( SDL_HINT_FRAMEBUFFER_ACCELERATION, "1" );
+    //SDL_SetHint( SDL_HINT_FRAMEBUFFER_ACCELERATION, "1" );
     //SDL_SetHint( SDL_HINT_RENDER_VSYNC, "1" );
 
     if ( SDL_Init( SDL_INIT_VIDEO ) < 0 )
@@ -45,13 +45,14 @@ namespace RAYEXEC_NAMESPACE
     return true;
   }
 
-  bool Window::update( )
+  auto Window::update( ) -> bool
   {
     // Updates local timer bound to this window.
     time.update( );
 
     // Fetch the latest window dimensions.
-    int width, height;
+    int width;
+    int height;
     SDL_GetWindowSize( this->window, &width, &height );
     resize( width, height );
 
@@ -76,49 +77,58 @@ namespace RAYEXEC_NAMESPACE
 #endif
   }
 
-  std::vector<const char*> Window::getInstanceExtensions( )
+  auto Window::getInstanceExtensions( ) -> std::vector<const char*>
   {
     uint32_t sdlExtensionsCount;
     SDL_bool result = SDL_Vulkan_GetInstanceExtensions( this->window, &sdlExtensionsCount, nullptr );
 
     if ( result != SDL_TRUE )
+    {
       RX_ERROR( "Failed to get extensions required by SDL." );
+    }
 
     const char** sdlExtensionsNames = new const char*[sdlExtensionsCount];
     result                          = SDL_Vulkan_GetInstanceExtensions( this->window, &sdlExtensionsCount, sdlExtensionsNames );
 
     if ( result != SDL_TRUE )
+    {
       RX_ERROR( "Failed to get extensions required by SDL." );
+    }
 
     std::vector<const char*> extensions;
     extensions.reserve( sdlExtensionsCount );
 
     for ( size_t i = 0; i < sdlExtensionsCount; ++i )
+    {
       extensions.push_back( sdlExtensionsNames[i] );
+    }
 
     return extensions;
   }
 
-  vk::SurfaceKHR Window::createSurface( vk::Instance instance )
+  auto Window::createSurface( vk::Instance instance ) -> vk::SurfaceKHR
   {
     VkSurfaceKHR surface;
     SDL_bool result = SDL_Vulkan_CreateSurface( this->window, instance, &surface );
 
     if ( result != SDL_TRUE )
+    {
       RX_ERROR( "Failed to create surface" );
+    }
 
     return surface;
   }
 
-  vk::Extent2D Window::getExtent( ) const
+  auto Window::getExtent( ) const -> vk::Extent2D
   {
-    int width, height;
+    int width;
+    int height;
     SDL_GetWindowSize( this->window, &width, &height );
 
     return { static_cast<uint32_t>( width ), static_cast<uint32_t>( height ) };
   }
 
-  bool Window::changed( )
+  auto Window::changed( ) -> bool
   {
     static int prevWidth  = this->width;
     static int prevHeight = this->height;
@@ -133,10 +143,12 @@ namespace RAYEXEC_NAMESPACE
     return false;
   }
 
-  bool Window::minimized( )
+  auto Window::minimized( ) -> bool
   {
-    if ( SDL_GetWindowFlags( this->window ) & SDL_WINDOW_MINIMIZED )
+    if ( ( SDL_GetWindowFlags( this->window ) & SDL_WINDOW_MINIMIZED ) != 0U )
+    {
       return true;
+    }
 
     return false;
   }

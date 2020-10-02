@@ -11,16 +11,16 @@ namespace RAYEXEC_NAMESPACE
   {
   public:
     /// @return Returns the Vulkan image object without the unique handle.
-    inline const vk::Image get( ) const { return image.get( ); }
+    [[nodiscard]] inline auto get( ) const -> vk::Image { return image.get( ); }
 
     /// @return Returns the iamge's extent.
-    inline const vk::Extent3D getExtent( ) const { return extent; }
+    [[nodiscard]] inline auto getExtent( ) const -> vk::Extent3D { return extent; }
 
     /// @return Returns the image's format.
-    inline const vk::Format getFormat( ) const { return format; }
+    [[nodiscard]] inline auto getFormat( ) const -> vk::Format { return format; }
 
     /// @return Returns the image's layout.
-    inline const vk::ImageLayout getLayout( ) const { return layout; }
+    [[nodiscard]] inline auto getLayout( ) const -> vk::ImageLayout { return layout; }
 
     /// Creates the image and allocates memory for it.
     /// @param createInfo The Vulkan image create info.
@@ -42,7 +42,7 @@ namespace RAYEXEC_NAMESPACE
     /// @param formatsToTest A vector of formats that will be checked for their support.
     /// @param features The Vulkan format features.
     /// @param tiling The Vulkan image tiling.
-    static vk::Format findSupportedFormat( vk::PhysicalDevice physicalDevice, const std::vector<vk::Format>& formatsToTest, vk::FormatFeatureFlagBits features, vk::ImageTiling tiling );
+    static auto findSupportedFormat( vk::PhysicalDevice physicalDevice, const std::vector<vk::Format>& formatsToTest, vk::FormatFeatureFlagBits features, vk::ImageTiling tiling ) -> vk::Format;
 
   protected:
     vk::UniqueImage image;         ///< The Vulkan image with a unique handle.

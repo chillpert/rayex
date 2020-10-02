@@ -71,7 +71,7 @@ namespace RAYEXEC_NAMESPACE
   void Gui::renderDrawData( uint32_t imageIndex )
   {
     this->commandBuffers.begin( imageIndex );
-    this->renderPass.begin( this->framebuffers[imageIndex].get( ), this->commandBuffers.get( imageIndex ), { 0, this->swapchainImageExtent }, { { std::array<float, 4> { 0.5f, 0.5, 0.5f, 1.0f } } } );
+    this->renderPass.begin( this->framebuffers[imageIndex].get( ), this->commandBuffers.get( imageIndex ), { 0, this->swapchainImageExtent }, { { std::array<float, 4> { 0.5F, 0.5, 0.5F, 1.0F } } } );
 
     ImGui_ImplVulkan_RenderDrawData( ImGui::GetDrawData( ), this->commandBuffers.get( )[imageIndex] );
 
@@ -178,6 +178,8 @@ namespace RAYEXEC_NAMESPACE
   {
     this->framebuffers.resize( static_cast<uint32_t>( swapchainImageViews.size( ) ) );
     for ( size_t i = 0; i < this->framebuffers.size( ); ++i )
+    {
       this->framebuffers[i] = vk::Initializer::initFramebufferUnique( { swapchainImageViews[i] }, this->renderPass.get( ), this->swapchainImageExtent );
+    }
   }
 } // namespace RAYEXEC_NAMESPACE

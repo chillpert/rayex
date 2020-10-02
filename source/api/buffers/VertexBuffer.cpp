@@ -5,7 +5,9 @@ namespace RAYEXEC_NAMESPACE
   VertexBuffer::VertexBuffer( std::vector<Vertex>& vertices, bool initialize )
   {
     if ( initialize )
+    {
       init( vertices );
+    }
   }
 
   void VertexBuffer::init( std::vector<Vertex>& vertices )

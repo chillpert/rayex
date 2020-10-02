@@ -42,7 +42,7 @@ namespace RAYEXEC_NAMESPACE
     RX_API virtual void load( );
 
     /// @return Returns true if the model was already loaded.
-    bool isLoaded( );
+    auto isLoaded( ) -> bool;
 
     uint32_t index = 0; ///< An index that will be used by the ray tracing structures to access the correct model.
     std::string path;   ///< The relative path to the model.
@@ -71,7 +71,7 @@ namespace std
   template <>
   struct hash<RAYEXEC_NAMESPACE::Model>
   {
-    size_t operator( )( const std::shared_ptr<RAYEXEC_NAMESPACE::Model> model ) const { return hash<std::string>( )( model->path ); }
+    auto operator( )( const std::shared_ptr<RAYEXEC_NAMESPACE::Model> model ) const -> size_t { return hash<std::string>( )( model->path ); }
   };
   /// @endcond
 } // namespace std

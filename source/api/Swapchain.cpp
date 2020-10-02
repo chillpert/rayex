@@ -18,11 +18,15 @@ namespace RAYEXEC_NAMESPACE
     uint32_t minImageCount = surfaceCapabilities.minImageCount + 1;
 
     if ( surfaceCapabilities.maxImageCount == 0 )
+    {
       RX_FATAL( "The surface does not support any images for a swap chain." );
+    }
 
     // If the preferred image count is exceeding the supported amount then use the maximum amount of images supported by the surface.
     if ( minImageCount > surfaceCapabilities.maxImageCount )
+    {
       minImageCount = surfaceCapabilities.maxImageCount;
+    }
 
     createInfo.minImageCount   = minImageCount;
     createInfo.imageFormat     = surface->getFormat( );
@@ -48,25 +52,35 @@ namespace RAYEXEC_NAMESPACE
 
       uint32_t width_t = this->extent.width;
       if ( surfaceCapabilities.maxImageExtent.width < this->extent.width )
+      {
         width_t = surfaceCapabilities.maxImageExtent.width;
+      }
 
       uint32_t height_t = this->extent.height;
       if ( surfaceCapabilities.maxImageExtent.height < this->extent.height )
+      {
         height_t = surfaceCapabilities.maxImageExtent.height;
+      }
 
       this->extent.width = width_t;
       if ( surfaceCapabilities.minImageExtent.width > width_t )
+      {
         this->extent.width = surfaceCapabilities.minImageExtent.width;
+      }
 
       this->extent.height = height_t;
       if ( surfaceCapabilities.minImageExtent.height > height_t )
+      {
         this->extent.height = surfaceCapabilities.minImageExtent.height;
+      }
     }
 
     createInfo.imageExtent = this->extent;
 
     if ( surfaceCapabilities.maxImageArrayLayers < 1 )
+    {
       RX_FATAL( "The surface does not support a single array layer." );
+    }
 
     createInfo.imageArrayLayers = 1;
     createInfo.imageUsage       = vk::ImageUsageFlagBits::eColorAttachment | vk::ImageUsageFlagBits::eTransferDst;
@@ -80,7 +94,9 @@ namespace RAYEXEC_NAMESPACE
       createInfo.pQueueFamilyIndices   = queueFamilyIndices.data( );
     }
     else
+    {
       createInfo.imageSharingMode = vk::SharingMode::eExclusive;
+    }
 
     createInfo.presentMode = surface->getPresentMode( );
 
@@ -126,14 +142,18 @@ namespace RAYEXEC_NAMESPACE
     // Retrieve the actual swapchain images. This sets them up automatically.
     this->images = g_device.getSwapchainImagesKHR( this->swapchain.get( ) );
     if ( this->images.size( ) < minImageCount )
+    {
       RX_FATAL( "Failed to get swapchain images." );
+    }
 
     g_swapchainImageCount = static_cast<uint32_t>( this->images.size( ) );
 
     // Create image views for swapchain images.
     this->imageViews.resize( this->images.size( ) );
     for ( size_t i = 0; i < this->imageViews.size( ); ++i )
+    {
       this->imageViews[i] = vk::Initializer::initImageViewUnique( this->images[i], surfaceFormat, this->imageAspect );
+    }
   }
 
   void Swapchain::initDepthImage( )
@@ -155,10 +175,12 @@ namespace RAYEXEC_NAMESPACE
   {
     this->framebuffers.resize( this->imageViews.size( ) );
     for ( size_t i = 0; i < this->framebuffers.size( ); ++i )
+    {
       this->framebuffers[i] = vk::Initializer::initFramebufferUnique( { this->imageViews[i].get( ), this->depthImageView.get( ) }, renderPass, this->extent );
+    }
   }
 
-  vk::Format getSupportedDepthFormat( vk::PhysicalDevice physicalDevice )
+  auto getSupportedDepthFormat( vk::PhysicalDevice physicalDevice ) -> vk::Format
   {
     std::vector<vk::Format> candidates { vk::Format::eD32Sfloat, vk::Format::eD32SfloatS8Uint, vk::Format::eD24UnormS8Uint };
     return Image::findSupportedFormat( physicalDevice, candidates, vk::FormatFeatureFlagBits::eDepthStencilAttachment, vk::ImageTiling::eOptimal );

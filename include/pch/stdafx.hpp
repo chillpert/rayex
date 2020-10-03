@@ -18,6 +18,7 @@
 #include <external/glm/glm.hpp>
 #include <external/glm/gtx/string_cast.hpp>
 #include <filesystem>
+#include <forward_list>
 #include <fstream>
 #include <list>
 #include <map>

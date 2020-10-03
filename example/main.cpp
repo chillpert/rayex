@@ -331,7 +331,7 @@ auto main( ) -> int
   myGui->setRenderer( &renderer );
   myWindow->setCamera( myCam );
 
-  renderer.setModels( { "models/awpdlore/awpdlore.obj", "models/cube.obj", "models/sphere.obj" } );
+  renderer.setModels( { "models/sphere.obj", "models/cube.obj", "models/awpdlore/awpdlore.obj" } );
 
   // Setup the scene
   auto dragonLore            = std::make_shared<GeometryNode>( "models/awpdlore/awpdlore.obj", Material( "textures/awpdlore.png" ) );

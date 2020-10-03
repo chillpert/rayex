@@ -30,6 +30,10 @@ namespace RAYEXEC_NAMESPACE
 
     void write( const std::vector<vk::DescriptorSet>& sets, uint32_t binding, const std::vector<vk::DescriptorBufferInfo>& uniformBufferInfos );
 
+    auto writeArray( vk::DescriptorSet set, size_t writesIndex, uint32_t binding ) -> size_t;
+
+    void writeArray( const std::vector<vk::DescriptorSet>& sets, uint32_t binding, vk::DescriptorBufferInfo* pBufferInfo );
+
     void setPoolSizes( const std::vector<vk::DescriptorPoolSize>& poolSizes );
 
   private:

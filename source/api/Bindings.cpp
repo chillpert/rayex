@@ -29,7 +29,7 @@ namespace RAYEXEC_NAMESPACE
   auto Bindings::initLayoutUnique( ) -> vk::UniqueDescriptorSetLayout
   {
     auto bindingCount = static_cast<uint32_t>( this->bindings.size( ) );
-  
+
     vk::DescriptorSetLayoutCreateInfo createInfo( { },                      // flags
                                                   bindingCount,             // bindingCount
                                                   this->bindings.data( ) ); // pBindings
@@ -143,6 +143,38 @@ namespace RAYEXEC_NAMESPACE
     {
       size_t j                       = write( sets[i], i, binding );
       this->writes[i][j].pBufferInfo = &uniformBufferInfos[i];
+    }
+  }
+
+  auto Bindings::writeArray( vk::DescriptorSet set, size_t writesIndex, uint32_t binding ) -> size_t
+  {
+    vk::WriteDescriptorSet result;
+
+    for ( size_t i = 0; i < this->bindings.size( ); ++i )
+    {
+      if ( this->bindings[i].binding == binding )
+      {
+        result.descriptorCount = this->bindings[i].descriptorCount;
+        result.descriptorType  = this->bindings[i].descriptorType;
+        result.dstBinding      = binding;
+        result.dstSet          = set;
+        result.dstArrayElement = 0;
+
+        this->writes[writesIndex][i] = result;
+        return i;
+      }
+    }
+
+    RX_ASSERT( false, "Failed to write binding to set. Binding could not be found." );
+    return 0;
+  }
+
+  void Bindings::writeArray( const std::vector<vk::DescriptorSet>& sets, uint32_t binding, vk::DescriptorBufferInfo* pBufferInfo )
+  {
+    for ( size_t i = 0; i < sets.size( ); ++i )
+    {
+      size_t j                       = writeArray( sets[i], i, binding );
+      this->writes[i][j].pBufferInfo = pBufferInfo;
     }
   }
 

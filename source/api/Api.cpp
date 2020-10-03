@@ -337,7 +337,7 @@ namespace RAYEXEC_NAMESPACE
   void Api::updateAccelerationStructure( )
   {
     // TODO: Try to call this as few times as possible.
-    this->rayTracingBuilder.createBottomLevelAS( vk::Helper::unpack( this->models ) );
+    this->rayTracingBuilder.createBottomLevelAS( this->models );
     this->rayTracingBuilder.createTopLevelAS( this->geometryNodes );
 
     // Update ray tracing descriptor set.
@@ -357,14 +357,22 @@ namespace RAYEXEC_NAMESPACE
   void Api::initPipelines( )
   {
     // Ray tracing pipeline
-    std::vector<vk::DescriptorSetLayout> temp = { this->rtDescriptorSetLayout.get( ), this->rtModelDescriptorSetLayout.get( ), this->rtSceneDescriptorSetLayout.get( ) };
-    this->rtPipeline.init( temp, this->settings );
+    std::vector<vk::DescriptorSetLayout> allRtDescriptorSetLayouts = { this->rtDescriptorSetLayout.get( ),
+                                                                       this->rtModelDescriptorSetLayout.get( ),
+                                                                       this->rtSceneDescriptorSetLayout.get( ),
+                                                                       this->vertexDataDescriptorSetLayout.get( ),
+                                                                       this->indexDataDescriptorSetLayout.get( ) };
+    this->rtPipeline.init( allRtDescriptorSetLayouts, this->settings );
 
     // Rasterization pipeline
     glm::vec2 extent = { static_cast<float>( this->swapchain.getExtent( ).width ), static_cast<float>( this->swapchain.getExtent( ).height ) };
     this->viewport   = vk::Viewport( 0.0F, 0.0F, extent.x, extent.y, 0.0F, 1.0F );
     this->scissor    = vk::Rect2D( 0, this->swapchain.getExtent( ) );
-    return this->rsPipeline.init( { this->rsSceneDescriptorSetLayout.get( ), this->rsModelDescriptorSetLayout.get( ) }, this->renderPass.get( ), viewport, scissor, this->settings );
+
+    std::vector<vk::DescriptorSetLayout> allRsDescriptorSetLayouts = { this->rsSceneDescriptorSetLayout.get( ),
+                                                                       this->rsModelDescriptorSetLayout.get( ) };
+
+    return this->rsPipeline.init( allRsDescriptorSetLayouts, this->renderPass.get( ), viewport, scissor, this->settings );
   }
 
   void Api::initRenderPass( )
@@ -414,9 +422,7 @@ namespace RAYEXEC_NAMESPACE
   /// @todo add handling for missing textures, models etc.
   void Api::initModel( const std::shared_ptr<GeometryNode>& node )
   {
-    auto it = this->models.find( node->modelPath );
-    RX_ASSERT( it != this->models.end( ), "Failed to find model." );
-    auto model = it->second;
+    auto model = findModel( node->modelPath );
 
     updateAccelerationStructure( );
 
@@ -460,9 +466,10 @@ namespace RAYEXEC_NAMESPACE
   void Api::rasterize( )
   {
     std::map<std::string, uint32_t> temp;
+
     for ( const auto& model : this->models )
     {
-      temp.emplace( model.first, 0 );
+      temp.emplace( model->path, 0 );
     }
 
     for ( const auto& node : this->geometryNodes )
@@ -472,10 +479,9 @@ namespace RAYEXEC_NAMESPACE
         continue;
       }
 
-      auto it = this->models.find( node->modelPath );
-      RX_ASSERT( ( it != this->models.end( ) ), "Can not draw model because it was not found." );
+      auto it = findModel( node->modelPath );
 
-      auto it2 = temp.find( it->first );
+      auto it2 = temp.find( it->path );
       if ( it2 != temp.end( ) )
       {
         ++( it2->second );
@@ -512,12 +518,10 @@ namespace RAYEXEC_NAMESPACE
       this->swapchainCommandBuffers.get( imageIndex ).setScissor( 0, 1, &scissor ); // CMD
 
       // Draw models
-      for ( const auto& it : this->models )
+      for ( const auto& model : this->models )
       {
-        auto model = it.second;
-
         uint32_t instanceCount = 1;
-        auto it2               = temp.find( it.first );
+        auto it2               = temp.find( model->path );
         if ( it2 != temp.end( ) )
         {
           instanceCount = it2->second;
@@ -580,10 +584,13 @@ namespace RAYEXEC_NAMESPACE
 
       for ( const auto& node : this->geometryNodes )
       {
-        auto iter = this->models.find( node->modelPath );
-        RX_ASSERT( ( iter->second != nullptr ), "Can not find model" );
+        auto model = findModel( node->modelPath );
 
-        std::vector<vk::DescriptorSet> descriptorSets = { this->rtDescriptorSets[imageIndex], iter->second->rtDescriptorSets[imageIndex], this->rtSceneDescriptorSets[imageIndex] };
+        std::vector<vk::DescriptorSet> descriptorSets = { this->rtDescriptorSets[imageIndex],
+                                                          model->rtDescriptorSets[imageIndex],
+                                                          this->rtSceneDescriptorSets[imageIndex],
+                                                          this->vertexDataDescriptorSets[imageIndex],
+                                                          this->indexDataDescriptorSets[imageIndex] };
 
         this->swapchainCommandBuffers.get( imageIndex ).bindDescriptorSets( vk::PipelineBindPoint::eRayTracingKHR, this->rtPipeline.getLayout( ),
                                                                             0,                                               // first set
@@ -674,6 +681,24 @@ namespace RAYEXEC_NAMESPACE
 
       this->rsModelDescriptorSetLayout = this->rsModelBindings.initLayoutUnique( );
       this->rsModelDescriptorPool      = this->rsModelBindings.initPoolUnique( static_cast<uint32_t>( g_maxGeometryNodes ) * g_swapchainImageCount );
+    }
+
+    // Vertex model data descriptor set layout.
+    {
+      this->vertexDataBindings.add( 0, vk::DescriptorType::eStorageBuffer, vk::ShaderStageFlagBits::eClosestHitKHR, 3, vk::DescriptorBindingFlagBits::eVariableDescriptorCount );
+
+      this->vertexDataDescriptorSetLayout = this->vertexDataBindings.initLayoutUnique( );
+      this->vertexDataDescriptorPool      = this->vertexDataBindings.initPoolUnique( static_cast<uint32_t>( g_maxGeometryNodes ) * g_swapchainImageCount );
+      this->vertexDataDescriptorSets      = vk::Initializer::initDescriptorSetsUnique( this->vertexDataDescriptorPool, this->vertexDataDescriptorSetLayout );
+    }
+
+    // Index model data descriptor set layout.
+    {
+      this->indexDataBindings.add( 0, vk::DescriptorType::eStorageBuffer, vk::ShaderStageFlagBits::eClosestHitKHR, 3, vk::DescriptorBindingFlagBits::eVariableDescriptorCount );
+
+      this->indexDataDescriptorSetLayout = this->indexDataBindings.initLayoutUnique( );
+      this->indexDataDescriptorPool      = this->indexDataBindings.initPoolUnique( static_cast<uint32_t>( g_maxGeometryNodes ) * g_swapchainImageCount );
+      this->indexDataDescriptorSets      = vk::Initializer::initDescriptorSetsUnique( this->indexDataDescriptorPool, this->indexDataDescriptorSetLayout );
     }
 
     // Uniform buffers for camera
@@ -782,15 +807,20 @@ namespace RAYEXEC_NAMESPACE
     this->modelPaths = modelPaths;
     this->models.clear( );
 
+    this->vertexDataBufferInfos.reserve( modelPaths.size( ) );
+    this->indexDataBufferInfos.reserve( modelPaths.size( ) );
+
     for ( const auto& path : modelPaths )
     {
       auto model = std::make_shared<Model>( path );
-      this->models.insert( { path, model } );
+      this->models.push_back( model );
 
+      // Initialize vertex and index buffers.
       model->vertexBuffer.init( model->vertices );
       model->indexBuffer.init( model->indices );
       model->initialized = true;
 
+      // Update and write vertex and index buffer descriptor set for RT.
       model->rtDescriptorSets = vk::Initializer::initDescriptorSetsUnique( this->rtModelDescriptorPool, this->rtModelDescriptorSetLayout );
 
       vk::DescriptorBufferInfo vertexBufferInfo( model->vertexBuffer.get( ),
@@ -806,8 +836,24 @@ namespace RAYEXEC_NAMESPACE
       this->rtModelBindings.update( );
 
       model->rsDescriptorSets = vk::Initializer::initDescriptorSetsUnique( this->rsModelDescriptorPool, this->rsModelDescriptorSetLayout );
+
+      // Initialize vertex storage buffer.
+      vk::DescriptorBufferInfo vertexDataBufferInfo( model->vertexBuffer.get( ),
+                                                     0,
+                                                     VK_WHOLE_SIZE );
+
+      vk::DescriptorBufferInfo indexDataBufferInfo( model->indexBuffer.get( ),
+                                                    0,
+                                                    VK_WHOLE_SIZE );
+
+      this->vertexDataBufferInfos.push_back( vertexDataBufferInfo );
+      this->indexDataBufferInfos.push_back( indexDataBufferInfo );
     }
 
-    //initPipelines( );
+    this->vertexDataBindings.writeArray( this->vertexDataDescriptorSets, 0, this->vertexDataBufferInfos.data( ) );
+    this->vertexDataBindings.update( );
+
+    this->indexDataBindings.writeArray( this->indexDataDescriptorSets, 0, this->indexDataBufferInfos.data( ) );
+    this->indexDataBindings.update( );
   }
 } // namespace RAYEXEC_NAMESPACE

@@ -38,10 +38,10 @@ namespace RAYEXEC_NAMESPACE
     Api( std::shared_ptr<Window> window, std::shared_ptr<Gui> gui, std::shared_ptr<Camera> camera );
     RX_API ~Api( );
 
-    Api( const Api& ) = delete;
-    Api& operator=( const Api& ) = delete;
-    Api( const Api&& )           = delete;
-    Api& operator=( const Api&& ) = delete;
+    Api( const Api& )  = delete;
+    Api( const Api&& ) = delete;
+    auto operator=( const Api& ) -> Api& = delete;
+    auto operator=( const Api && ) -> Api& = delete;
 
     /// Used to set the GUI that will be used.
     ///
@@ -61,6 +61,18 @@ namespace RAYEXEC_NAMESPACE
 
     void setModels( const std::vector<std::string>& modelPaths );
 
+    auto Api::findModel( std::string_view path ) const -> std::shared_ptr<Model>
+    {
+      for ( const auto& model : this->models )
+      {
+        if ( model->path == path )
+          return model;
+      }
+
+      RX_ASSERT( false, "Could not find model. Did you forget to introduce the renderer to this model using RayExec::setModels( ) after initializing the renderer?" );
+      return nullptr;
+    }
+
     /// Used to add another arbitrary node to the scene.
     /// @param node A pointer to node to add.
     template <typename T = Model>
@@ -70,17 +82,13 @@ namespace RAYEXEC_NAMESPACE
       {
         auto ptr = std::dynamic_pointer_cast<GeometryNode>( node );
 
-        auto it = this->models.find( ptr->modelPath );
-        if ( it == this->models.end( ) )
-        {
-          this->models.insert( { ptr->modelPath, std::make_shared<T>( ptr->modelPath ) } );
-          RX_FATAL( "NOT THIS AGAIN" );
-        }
-
+        auto model = findModel( ptr->modelPath );
         this->geometryNodes.push_back( ptr );
 
+        std::cout << "Adding node: " << ptr->rtInstance.modelIndex << ", " << ptr->modelPath << std::endl;
+
         // Fill scene description buffer.
-        ptr->rtInstance.modelIndex  = it->second->index;
+        ptr->rtInstance.modelIndex  = model->index;
         ptr->rtInstance.transform   = ptr->worldTransform;
         ptr->rtInstance.transformIT = glm::transpose( glm::inverse( ptr->worldTransform ) );
         this->rtInstances.push_back( ptr->rtInstance );
@@ -231,6 +239,18 @@ namespace RAYEXEC_NAMESPACE
     std::vector<vk::DescriptorSet> rsSceneDescriptorSets;
     Bindings rsSceneBindings;
 
+    vk::UniqueDescriptorSetLayout vertexDataDescriptorSetLayout;
+    vk::UniqueDescriptorPool vertexDataDescriptorPool;
+    std::vector<vk::DescriptorSet> vertexDataDescriptorSets;
+    std::vector<vk::DescriptorBufferInfo> vertexDataBufferInfos;
+    Bindings vertexDataBindings;
+
+    vk::UniqueDescriptorSetLayout indexDataDescriptorSetLayout;
+    vk::UniqueDescriptorPool indexDataDescriptorPool;
+    std::vector<vk::DescriptorSet> indexDataDescriptorSets;
+    std::vector<vk::DescriptorBufferInfo> indexDataBufferInfos;
+    Bindings indexDataBindings;
+
     CameraUbo cameraUbo;
     UniformBuffer cameraUniformBuffer;
     UniformBuffer lightsUniformBuffer;
@@ -245,7 +265,7 @@ namespace RAYEXEC_NAMESPACE
     std::list<std::shared_ptr<DirectionalLightNode>> dirLightNodes;
     std::list<std::shared_ptr<PointLightNode>> pointLightNodes;
     // Models
-    std::unordered_map<std::string, std::shared_ptr<Model>> models;
+    std::list<std::shared_ptr<Model>> models;
     // Textures
     std::unordered_map<std::string, std::shared_ptr<Texture>> textures;
 

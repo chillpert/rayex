@@ -29,7 +29,7 @@ namespace RAYEXEC_NAMESPACE
   auto Bindings::initLayoutUnique( ) -> vk::UniqueDescriptorSetLayout
   {
     auto bindingCount = static_cast<uint32_t>( this->bindings.size( ) );
-
+  
     vk::DescriptorSetLayoutCreateInfo createInfo( { },                      // flags
                                                   bindingCount,             // bindingCount
                                                   this->bindings.data( ) ); // pBindings

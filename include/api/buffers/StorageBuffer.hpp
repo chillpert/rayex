@@ -11,13 +11,6 @@ namespace RAYEXEC_NAMESPACE
     StorageBuffer( ) = default;
 
     template <typename T>
-    StorageBuffer( std::vector<T>& data, bool initialize = true )
-    {
-      if ( initialize, commandBuffer )
-        init<T>( data );
-    }
-
-    template <typename T>
     void init( std::vector<T>& data )
     {
       vk::DeviceSize size = sizeof( data[0] ) * data.size( );

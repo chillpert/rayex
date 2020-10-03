@@ -65,14 +65,14 @@ namespace RAYEXEC_NAMESPACE
       {
         auto ptr = std::dynamic_pointer_cast<GeometryNode>( node );
 
-        auto it = models.find( ptr->modelPath );
-        if ( it == models.end( ) )
+        auto it = this->models.find( ptr->modelPath );
+        if ( it == this->models.end( ) )
         {
-          models.insert( { ptr->modelPath, std::make_shared<T>( ptr->modelPath ) } );
+          this->models.insert( { ptr->modelPath, std::make_shared<T>( ptr->modelPath ) } );
           RX_FATAL( "NOT THIS AGAIN" );
         }
 
-        geometryNodes.push_back( ptr );
+        this->geometryNodes.push_back( ptr );
 
         // Fill scene description buffer.
         ptr->rtInstance.modelIndex  = it->second->index;
@@ -87,10 +87,10 @@ namespace RAYEXEC_NAMESPACE
 
         for ( const auto& texturePath : texturePaths )
         {
-          auto it = textures.find( texturePath );
+          auto it = this->textures.find( texturePath );
           // Texture does not exist already. It will be created.
-          if ( it == textures.end( ) )
-            textures.insert( { texturePath, std::make_shared<Texture>( texturePath ) } );
+          if ( it == this->textures.end( ) )
+            this->textures.insert( { texturePath, std::make_shared<Texture>( texturePath ) } );
         }
 
         if ( record )
@@ -101,22 +101,22 @@ namespace RAYEXEC_NAMESPACE
         if ( dynamic_cast<DirectionalLightNode*>( node.get( ) ) )
         {
           auto dirLightNodePtr = std::dynamic_pointer_cast<DirectionalLightNode>( node );
-          dirLightNodes.push_back( dirLightNodePtr );
+          this->dirLightNodes.push_back( dirLightNodePtr );
 
-          ++totalDirectionalLights;
+          ++this->totalDirectionalLights;
         }
         else if ( dynamic_cast<PointLightNode*>( node.get( ) ) )
         {
           auto pointLightNodePtr = std::dynamic_pointer_cast<PointLightNode>( node );
-          pointLightNodes.push_back( pointLightNodePtr );
+          this->pointLightNodes.push_back( pointLightNodePtr );
 
-          ++totalPointLights;
+          ++this->totalPointLights;
         }
       }
 
       if ( record )
       {
-        swapchainCommandBuffers.reset( );
+        this->swapchainCommandBuffers.reset( );
         recordSwapchainCommandBuffers( );
       }
     }
@@ -128,13 +128,12 @@ namespace RAYEXEC_NAMESPACE
     template <typename T = Model>
     void setNodes( const std::vector<std::shared_ptr<Node>>& nodes )
     {
-      geometryNodes.clear( );
-      geometryNodes.reserve( g_maxGeometryNodes );
+      this->geometryNodes.clear( );
 
       for ( const auto& node : nodes )
         pushNode<T>( node );
 
-      swapchainCommandBuffers.reset( );
+      this->swapchainCommandBuffers.reset( );
       recordSwapchainCommandBuffers( );
     }
 

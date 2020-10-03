@@ -290,12 +290,12 @@ namespace RAYEXEC_NAMESPACE
     instances.reserve( nodes.size( ) );
 
     uint32_t i = 0;
-    for ( const auto& iter : nodes )
+    for ( const auto& node : nodes )
     {
       BlasInstance rayInst;
-      rayInst.transform  = iter->worldTransform;
+      rayInst.transform  = node->worldTransform;
       rayInst.instanceId = i;
-      rayInst.blasId     = iter->rtInstance.modelIndex;
+      rayInst.blasId     = node->rtInstance.modelIndex;
       rayInst.hitGroupId = 0; // We will use the same hit group for all objects
       rayInst.flags      = vk::GeometryInstanceFlagBitsKHR::eTriangleFacingCullDisable;
 

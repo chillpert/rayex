@@ -50,8 +50,9 @@ namespace RAYEXEC_NAMESPACE
     /// @param initialize If true, the GUI object will be initialized (false if not specified).
     RX_API void setGui( const std::shared_ptr<Gui>& gui, bool initialize = false );
 
-    /// Initializes all API components.
-    void init( );
+    void initBase( );
+
+    void initScene( );
 
     /// Used to update and upload uniform buffers.
     void update( );
@@ -79,6 +80,7 @@ namespace RAYEXEC_NAMESPACE
         ptr->rtInstance.modelIndex  = model->index;
         ptr->rtInstance.transform   = ptr->worldTransform;
         ptr->rtInstance.transformIT = glm::transpose( glm::inverse( ptr->worldTransform ) );
+        ptr->rtInstance.id          = ptr->getID( );
         this->rtInstances.push_back( ptr->rtInstance );
 
         this->uploadSceneDescriptionData = true;
@@ -94,8 +96,10 @@ namespace RAYEXEC_NAMESPACE
             this->textures.insert( { texturePath, std::make_shared<Texture>( texturePath ) } );
         }
 
-        if ( record )
-          updateAccelerationStructure( );
+        if ( record && this->pipelinesReady )
+        {
+          updateAccelerationStructures( );
+        }
       }
       else if ( dynamic_cast<LightNode*>( node.get( ) ) )
       {
@@ -115,7 +119,7 @@ namespace RAYEXEC_NAMESPACE
         }
       }
 
-      if ( record )
+      if ( record && this->pipelinesReady )
       {
         this->swapchainCommandBuffers.reset( );
         recordSwapchainCommandBuffers( );
@@ -144,7 +148,7 @@ namespace RAYEXEC_NAMESPACE
     Settings* settings = nullptr;
 
   private:
-    RX_API void updateAccelerationStructure( );
+    RX_API void updateAccelerationStructures( );
 
     void initPipelines( );
 
@@ -170,8 +174,6 @@ namespace RAYEXEC_NAMESPACE
     /// Creates a descriptor set layout for each the ray tracing components and the models.
     void initDescriptorSets( );
 
-    void initSceneStorageBuffer( );
-
     void updateSettings( );
 
     void updateUniformBuffers( );
@@ -186,6 +188,7 @@ namespace RAYEXEC_NAMESPACE
     auto submitFrame( ) -> bool;
 
     void rasterize( );
+
     void rayTrace( );
 
     std::shared_ptr<Window> window;
@@ -270,6 +273,7 @@ namespace RAYEXEC_NAMESPACE
     uint32_t totalDirectionalLights = 0;
     uint32_t totalPointLights       = 0;
     bool reloadShader               = false;
+    bool pipelinesReady             = false;
   };
 } // namespace RAYEXEC_NAMESPACE
 

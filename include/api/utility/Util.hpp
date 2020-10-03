@@ -31,6 +31,21 @@ namespace RAYEXEC_NAMESPACE
     }
 
     auto vec4toArray( const glm::vec4& vec ) -> std::array<float, 4>;
+
+    template <typename T>
+    auto listToVec( const std::list<T>& vec ) -> std::vector<T>
+    {
+      std::vector<T> result;
+      result.reserve( vec.size( ) );
+
+      for ( const auto& it : vec )
+      {
+        result.push_back( it );
+      }
+
+      return result;
+    }
+
   } // namespace Util
 } // namespace RAYEXEC_NAMESPACE
 

@@ -101,6 +101,7 @@ namespace RAYEXEC_NAMESPACE
 
     bool initialized = false; ///< Keeps track of the initialization status.
     bool running     = true;  ///< Keeps track of whether or not the main loop should still be continued.
+    bool initScene   = true;
   };
 } // namespace RAYEXEC_NAMESPACE
 

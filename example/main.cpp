@@ -239,12 +239,16 @@ private:
         auto box            = std::make_shared<GeometryNode>( "models/cube.obj", Material( "textures/container.png" ) );
         box->worldTransform = glm::translate( box->worldTransform, glm::vec3( finalNum, 0.0F, 0.0F ) );
         this->renderer->pushNode( box );
+
+        this->geometryNodes.push_back( box );
       }
 
       if ( ImGui::Button( "Add Sphere" ) )
       {
         auto sphere = std::make_shared<GeometryNode>( "models/sphere.obj", Material( "textures/metal.png" ) );
         this->renderer->pushNode( sphere );
+
+        this->geometryNodes.push_back( sphere );
       }
 
       if ( ImGui::Button( "Add directional light" ) )
@@ -256,6 +260,14 @@ private:
         srand( time( nullptr ) );
         int finalNum             = rand( ) % ( max - min + 1 ) + min;
         dirLight->worldTransform = glm::translate( dirLight->worldTransform, glm::vec3( finalNum, 0.0F, 0.0F ) );
+      }
+
+      if ( ImGui::Button( "Clear scene" ) )
+      {
+        for ( const auto& node : this->geometryNodes )
+        {
+          this->renderer->popNode( node );
+        }
       }
 
       auto clearColor = this->renderer->settings.getClearColor( );
@@ -304,6 +316,7 @@ public:
 
 private:
   RayExec* renderer;
+  std::vector<std::shared_ptr<GeometryNode>> geometryNodes;
 };
 
 auto main( ) -> int
@@ -331,7 +344,7 @@ auto main( ) -> int
   myGui->setRenderer( &renderer );
   myWindow->setCamera( myCam );
 
-  renderer.setModels( { "models/sphere.obj", "models/cube.obj", "models/awpdlore/awpdlore.obj" } );
+  renderer.setModels( { "models/sphere.obj", "models/awpdlore/awpdlore.obj", "models/cube.obj" } );
 
   // Setup the scene
   auto dragonLore            = std::make_shared<GeometryNode>( "models/awpdlore/awpdlore.obj", Material( "textures/awpdlore.png" ) );

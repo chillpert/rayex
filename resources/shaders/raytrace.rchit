@@ -28,7 +28,7 @@ struct RayTracingInstance
   int modelIndex;
   int txtOffset;
 
-  float padding0;
+  int nodeID; // ignore
   float padding1;
 };
 

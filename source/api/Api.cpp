@@ -74,10 +74,8 @@ namespace RAYEXEC_NAMESPACE
     }
   }
 
-  void Api::init( )
+  void Api::initBase( )
   {
-    this->textures.reserve( g_maxTextures );
-
     // Instance
     instance = vk::Initializer::initInstance( layers, extensions );
 
@@ -116,11 +114,63 @@ namespace RAYEXEC_NAMESPACE
     this->transferCmdPool = vk::Initializer::initCommandPoolUnique( g_transferFamilyIndex, { } );
     g_transferCmdPool     = this->transferCmdPool.get( );
 
+    // GUI
+    initGui( );
+
+    // Create fences and semaphores.
+    initSyncObjects( );
+
+    // At this point nodes are unknown. So I just create a storage buffer with the maximum value or with the anticipated value in settings.
+    uint32_t maxInstanceCount = this->settings->anticipatedGeometryNodes.has_value( ) ? this->settings->anticipatedGeometryNodes.value( ) : g_maxGeometryNodes;
+    this->rtInstances.resize( maxInstanceCount );
+    this->rayTracingInstancesBuffer.init<RayTracingInstance>( this->rtInstances );
+    this->rtInstances.clear( );
+  }
+
+  void Api::initScene( )
+  {
     // Descriptor sets and layouts
     initDescriptorSets( );
 
     // Set up buffers for the scene description data (light sources, rtInstances, camera).
-    initSceneStorageBuffer( );
+    this->rayTracingInstancesBuffer.fill<RayTracingInstance>( this->rtInstances.data( ) );
+
+    // Update RT scene descriptor sets.
+    vk::DescriptorBufferInfo rtInstancesInfo( this->rayTracingInstancesBuffer.get( ),
+                                              0,
+                                              VK_WHOLE_SIZE );
+
+    this->rtSceneBindings.write( this->rtSceneDescriptorSets, 0, this->cameraUniformBuffer.bufferInfos );
+    this->rtSceneBindings.write( this->rtSceneDescriptorSets, 1, this->lightsUniformBuffer.bufferInfos );
+    this->rtSceneBindings.write( this->rtSceneDescriptorSets, 2, &rtInstancesInfo );
+    this->rtSceneBindings.update( );
+
+    // Update RS scene descriptor sets.
+    this->rsSceneBindings.write( this->rsSceneDescriptorSets, 0, this->cameraUniformBuffer.bufferInfos );
+    this->rsSceneBindings.write( this->rsSceneDescriptorSets, 1, this->lightsUniformBuffer.bufferInfos );
+    this->rsSceneBindings.write( this->rsSceneDescriptorSets, 2, &rtInstancesInfo );
+    this->rsSceneBindings.update( );
+
+    // Update RT model data.
+    for ( const auto& model : models )
+    {
+      vk::DescriptorBufferInfo vertexDataBufferInfo( model->vertexBuffer.get( ),
+                                                     0,
+                                                     VK_WHOLE_SIZE );
+
+      vk::DescriptorBufferInfo indexDataBufferInfo( model->indexBuffer.get( ),
+                                                    0,
+                                                    VK_WHOLE_SIZE );
+
+      this->vertexDataBufferInfos.push_back( vertexDataBufferInfo );
+      this->indexDataBufferInfos.push_back( indexDataBufferInfo );
+    }
+
+    this->vertexDataBindings.writeArray( this->vertexDataDescriptorSets, 0, this->vertexDataBufferInfos.data( ) );
+    this->vertexDataBindings.update( );
+
+    this->indexDataBindings.writeArray( this->indexDataDescriptorSets, 0, this->indexDataBufferInfos.data( ) );
+    this->indexDataBindings.update( );
 
     // Initialize a rasterization and raytracing pipeline.
     initPipelines( );
@@ -132,14 +182,11 @@ namespace RAYEXEC_NAMESPACE
 
     this->settings->maxRecursionDepth = this->rayTracingBuilder.getRtProperties( ).maxRecursionDepth;
 
-    // GUI
-    initGui( );
+    updateAccelerationStructures( );
 
     // Init and record swapchain command buffers.
+    this->swapchainCommandBuffers.reset( );
     recordSwapchainCommandBuffers( );
-
-    // Create fences and semaphores.
-    initSyncObjects( );
   }
 
   void Api::update( )
@@ -315,10 +362,30 @@ namespace RAYEXEC_NAMESPACE
       auto ptr = std::dynamic_pointer_cast<GeometryNode>( node );
 
       // Delete node
-      for ( const auto& it : this->geometryNodes )
+      for ( const auto& node : this->geometryNodes )
       {
-        if ( it == ptr )
+        if ( node == ptr )
         {
+          // Found the node inside list of all nodes. Now remove it.
+          this->geometryNodes.remove( node );
+
+          // Find the ray tracing instance and remove it.
+          bool found = false;
+          for ( auto it = this->rtInstances.begin( ); it != this->rtInstances.end( ); ++it )
+          {
+            if ( ( *it ).id == ptr->getID( ) )
+            {
+              found = true;
+              this->rtInstances.erase( it );
+              break;
+            }
+          }
+
+          RX_ASSERT( found, "Failed to retrieve ray tracing instance for deletion." );
+          this->uploadSceneDescriptionData = true;
+          updateAccelerationStructures( );
+          recordSwapchainCommandBuffers( );
+          return;
         }
       }
     }
@@ -331,7 +398,7 @@ namespace RAYEXEC_NAMESPACE
     }
   }
 
-  void Api::updateAccelerationStructure( )
+  void Api::updateAccelerationStructures( )
   {
     // TODO: Try to call this as few times as possible.
     this->rayTracingBuilder.createBottomLevelAS( this->models );
@@ -366,7 +433,9 @@ namespace RAYEXEC_NAMESPACE
 
     std::vector<vk::DescriptorSetLayout> allRsDescriptorSetLayouts = { this->rsSceneDescriptorSetLayout.get( ) };
 
-    return this->rsPipeline.init( allRsDescriptorSetLayouts, this->renderPass.get( ), viewport, scissor, this->settings );
+    this->rsPipeline.init( allRsDescriptorSetLayouts, this->renderPass.get( ), viewport, scissor, this->settings );
+
+    this->pipelinesReady = true;
   }
 
   void Api::initRenderPass( )
@@ -427,6 +496,7 @@ namespace RAYEXEC_NAMESPACE
     this->swapchainCommandBuffers.init( this->graphicsCmdPool.get( ), g_swapchainImageCount, vk::CommandBufferUsageFlagBits::eRenderPassContinue );
 
     RX_INFO( "Started swapchain command buffers recording." );
+    RX_ASSERT( this->pipelinesReady, "Can not record swapchain command buffers because the pipelines have not been initialized yet." );
 
     if ( this->settings->rayTrace )
     {
@@ -637,9 +707,10 @@ namespace RAYEXEC_NAMESPACE
       this->rsSceneDescriptorSets      = vk::Initializer::initDescriptorSetsUnique( this->rsSceneDescriptorPool, this->rsSceneDescriptorSetLayout );
     }
 
+    uint32_t modelCount = this->settings->anticipatedModels.has_value( ) ? this->settings->anticipatedModels.value( ) : static_cast<uint32_t>( modelPaths.size( ) );
     // Vertex model data descriptor set layout.
     {
-      this->vertexDataBindings.add( 0, vk::DescriptorType::eStorageBuffer, vk::ShaderStageFlagBits::eClosestHitKHR, 3, vk::DescriptorBindingFlagBits::eVariableDescriptorCount );
+      this->vertexDataBindings.add( 0, vk::DescriptorType::eStorageBuffer, vk::ShaderStageFlagBits::eClosestHitKHR, modelCount, vk::DescriptorBindingFlagBits::eVariableDescriptorCount );
 
       this->vertexDataDescriptorSetLayout = this->vertexDataBindings.initLayoutUnique( );
       this->vertexDataDescriptorPool      = this->vertexDataBindings.initPoolUnique( static_cast<uint32_t>( g_maxGeometryNodes ) * g_swapchainImageCount );
@@ -648,7 +719,7 @@ namespace RAYEXEC_NAMESPACE
 
     // Index model data descriptor set layout.
     {
-      this->indexDataBindings.add( 0, vk::DescriptorType::eStorageBuffer, vk::ShaderStageFlagBits::eClosestHitKHR, 3, vk::DescriptorBindingFlagBits::eVariableDescriptorCount );
+      this->indexDataBindings.add( 0, vk::DescriptorType::eStorageBuffer, vk::ShaderStageFlagBits::eClosestHitKHR, modelCount, vk::DescriptorBindingFlagBits::eVariableDescriptorCount );
 
       this->indexDataDescriptorSetLayout = this->indexDataBindings.initLayoutUnique( );
       this->indexDataDescriptorPool      = this->indexDataBindings.initPoolUnique( static_cast<uint32_t>( g_maxGeometryNodes ) * g_swapchainImageCount );
@@ -660,31 +731,6 @@ namespace RAYEXEC_NAMESPACE
 
     // Uniform buffers for light nodes
     this->lightsUniformBuffer.init<LightsUbo>( );
-  }
-
-  void Api::initSceneStorageBuffer( )
-  {
-    // SSBO for scene description
-    uint32_t maxInstanceCount = this->settings->anticipatedGeometryNodes.has_value( ) ? this->settings->anticipatedGeometryNodes.value( ) : g_maxGeometryNodes;
-    this->rtInstances.resize( maxInstanceCount );
-    this->rayTracingInstancesBuffer.init<RayTracingInstance>( this->rtInstances );
-    this->rtInstances.clear( );
-
-    // Update RT scene descriptor sets.
-    vk::DescriptorBufferInfo rtInstancesInfo( this->rayTracingInstancesBuffer.get( ),
-                                              0,
-                                              VK_WHOLE_SIZE );
-
-    this->rtSceneBindings.write( this->rtSceneDescriptorSets, 0, this->cameraUniformBuffer.bufferInfos );
-    this->rtSceneBindings.write( this->rtSceneDescriptorSets, 1, this->lightsUniformBuffer.bufferInfos );
-    this->rtSceneBindings.write( this->rtSceneDescriptorSets, 2, &rtInstancesInfo );
-    this->rtSceneBindings.update( );
-
-    // Update RS scene descriptor sets.
-    this->rsSceneBindings.write( this->rsSceneDescriptorSets, 0, this->cameraUniformBuffer.bufferInfos );
-    this->rsSceneBindings.write( this->rsSceneDescriptorSets, 1, this->lightsUniformBuffer.bufferInfos );
-    this->rsSceneBindings.write( this->rsSceneDescriptorSets, 2, &rtInstancesInfo );
-    this->rsSceneBindings.update( );
   }
 
   void Api::updateSettings( )
@@ -762,8 +808,12 @@ namespace RAYEXEC_NAMESPACE
     this->modelPaths = modelPaths;
     this->models.clear( );
 
-    this->vertexDataBufferInfos.reserve( modelPaths.size( ) );
-    this->indexDataBufferInfos.reserve( modelPaths.size( ) );
+    this->vertexDataBufferInfos.clear( );
+    this->indexDataBufferInfos.clear( );
+
+    size_t modelCount = this->settings->anticipatedModels.has_value( ) ? static_cast<size_t>( this->settings->anticipatedModels.value( ) ) : modelPaths.size( );
+    this->vertexDataBufferInfos.reserve( modelCount );
+    this->indexDataBufferInfos.reserve( modelCount );
 
     for ( const auto& path : modelPaths )
     {
@@ -774,25 +824,7 @@ namespace RAYEXEC_NAMESPACE
       model->vertexBuffer.init( model->vertices );
       model->indexBuffer.init( model->indices );
       model->initialized = true;
-
-      // Initialize vertex storage buffer.
-      vk::DescriptorBufferInfo vertexDataBufferInfo( model->vertexBuffer.get( ),
-                                                     0,
-                                                     VK_WHOLE_SIZE );
-
-      vk::DescriptorBufferInfo indexDataBufferInfo( model->indexBuffer.get( ),
-                                                    0,
-                                                    VK_WHOLE_SIZE );
-
-      this->vertexDataBufferInfos.push_back( vertexDataBufferInfo );
-      this->indexDataBufferInfos.push_back( indexDataBufferInfo );
     }
-
-    this->vertexDataBindings.writeArray( this->vertexDataDescriptorSets, 0, this->vertexDataBufferInfos.data( ) );
-    this->vertexDataBindings.update( );
-
-    this->indexDataBindings.writeArray( this->indexDataDescriptorSets, 0, this->indexDataBufferInfos.data( ) );
-    this->indexDataBindings.update( );
   }
 
   auto Api::findModel( std::string_view path ) const -> std::shared_ptr<Model>

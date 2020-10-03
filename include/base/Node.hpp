@@ -5,7 +5,7 @@
 
 namespace RAYEXEC_NAMESPACE
 {
-  static size_t nodeCounter = 0; ///< For assigning each node a unique ID.
+  static uint32_t nodeCounter = 0; ///< For assigning each node a unique ID.
 
   enum class NodeType
   {
@@ -29,10 +29,10 @@ namespace RAYEXEC_NAMESPACE
     [[nodiscard]] virtual auto getType( ) const -> NodeType { return NodeType::eNode; }
 
     /// @return The node's ID.
-    auto getID( ) -> size_t { return id; }
+    [[nodiscard]] auto getID( ) -> uint32_t { return id; }
 
   private:
-    size_t id; ///< The node's unique ID.
+    uint32_t id; ///< The node's unique ID.
   };
 
   /// Adds transformation abilities to the Node base class.

@@ -59,11 +59,17 @@ namespace RAYEXEC_NAMESPACE
 #endif
 
     this->initialized = this->window->init( );
-    this->api.init( );
+    this->api.initBase( );
   }
 
   void RayExec::run( )
   {
+    if ( this->initScene )
+    {
+      this->api.initScene( );
+      this->initScene = false;
+    }
+
     if ( !this->running || !this->initialized )
     {
       return;
@@ -100,5 +106,11 @@ namespace RAYEXEC_NAMESPACE
   void RayExec::setModels( const std::vector<std::string>& modelPaths )
   {
     this->api.setModels( modelPaths );
+    this->initScene = true;
+  }
+
+  void RayExec::popNode( std::shared_ptr<Node> node )
+  {
+    this->api.popNode( node );
   }
 } // namespace RAYEXEC_NAMESPACE

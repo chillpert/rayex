@@ -38,6 +38,11 @@ namespace RAYEXEC_NAMESPACE
     Api( std::shared_ptr<Window> window, std::shared_ptr<Gui> gui, std::shared_ptr<Camera> camera );
     RX_API ~Api( );
 
+    Api( const Api& ) = delete;
+    Api& operator=( const Api& ) = delete;
+    Api( const Api&& )           = delete;
+    Api& operator=( const Api&& ) = delete;
+
     /// Used to set the GUI that will be used.
     ///
     /// The GUI can be changed at runtime. This enables the client to swap between different pre-built GUIs on the fly.

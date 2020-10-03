@@ -285,7 +285,9 @@ namespace RAYEXEC_NAMESPACE
 
     this->rtBindings.write( this->rtDescriptorSets, 0, &tlasInfo );
     this->rtBindings.write( this->rtDescriptorSets, 1, &storageImageInfo );
-    this->rtBindings.write( this->rtDescriptorSets, 2, this->cameraUniformBuffer.bufferInfos );
+    // I am not updating the camera uniform binding here because it is not required.
+    // However, even though it's the same for the TLAS info, it will crash without it.
+    // Probably because it's part of the pNext chain.
     this->rtBindings.update( );
 
     // Swapchain command buffers
@@ -499,8 +501,8 @@ namespace RAYEXEC_NAMESPACE
 
       // Dynamic states
       vk::Viewport viewport = this->viewport;
-      viewport.width        = this->window->getWidth( );
-      viewport.height       = this->window->getHeight( );
+      viewport.width        = static_cast<float>( this->window->getWidth( ) );
+      viewport.height       = static_cast<float>( this->window->getHeight( ) );
 
       this->swapchainCommandBuffers.get( imageIndex ).setViewport( 0, 1, &viewport ); // CMD
 
@@ -756,19 +758,19 @@ namespace RAYEXEC_NAMESPACE
     this->cameraUniformBuffer.upload<CameraUbo>( imageIndex, this->cameraUbo );
 
     // Upload lights
-    LightsUbo lightNodeUbos;
+    LightsUbo lightNodeUbos = { };
 
-    size_t i = 0;
+    int i = 0;
     for ( auto& dirLightNode : this->dirLightNodes )
     {
-      lightNodeUbos.directionalLightNodes[i] = dirLightNode->toUbo( );
+      gsl::at( lightNodeUbos.directionalLightNodes, i ) = dirLightNode->toUbo( );
       ++i;
     }
 
     i = 0;
     for ( auto& pointLightNode : this->pointLightNodes )
     {
-      lightNodeUbos.pointLightNodes[i] = pointLightNode->toUbo( );
+      gsl::at( lightNodeUbos.pointLightNodes, i ) = pointLightNode->toUbo( );
       ++i;
     }
 

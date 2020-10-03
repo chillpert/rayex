@@ -35,36 +35,27 @@ struct RayTracingInstance
 layout(location = 0) rayPayloadInEXT hitPayload prd;
 hitAttributeEXT vec3 attribs;
 
-//layout(binding = 0, set = 1, scalar) buffer Vertices
-//{
-//  vec4 v[];
-//} vertices[];
-
-//layout(binding = 1, set = 1) buffer Indices
-//{
-//  uint i[];
-//} indices[];
-
-layout(binding = 0, set = 3, scalar) buffer Vertices
-{
-  vec4 v[];
-} vertices[];
-
-layout(binding = 0, set = 4) buffer Indices
-{
-  uint i[];
-} indices[];
-
-layout(binding = 0, set = 2) uniform LightSources
+layout(binding = 0, set = 1) uniform LightSources
 {
   DirectionalLight directionalLights[TOTAL_DIRECTIONAL_LIGHTS];
   PointLight pointLights[TOTAL_POINT_LIGHTS];
 } lightSources;
 
-layout(binding = 1, set = 2) buffer RayTracingInstances
+layout(binding = 1, set = 1) buffer RayTracingInstances
 {
   RayTracingInstance i[];
 } rayTracingInstances;
+
+layout(binding = 0, set = 2, scalar) buffer Vertices
+{
+  vec4 v[];
+} vertices[];
+
+layout(binding = 0, set = 3) buffer Indices
+{
+  uint i[];
+} indices[];
+
 
 layout(push_constant) uniform Constants
 {

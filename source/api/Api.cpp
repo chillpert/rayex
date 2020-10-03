@@ -358,7 +358,6 @@ namespace RAYEXEC_NAMESPACE
   {
     // Ray tracing pipeline
     std::vector<vk::DescriptorSetLayout> allRtDescriptorSetLayouts = { this->rtDescriptorSetLayout.get( ),
-                                                                       this->rtModelDescriptorSetLayout.get( ),
                                                                        this->rtSceneDescriptorSetLayout.get( ),
                                                                        this->vertexDataDescriptorSetLayout.get( ),
                                                                        this->indexDataDescriptorSetLayout.get( ) };
@@ -369,8 +368,7 @@ namespace RAYEXEC_NAMESPACE
     this->viewport   = vk::Viewport( 0.0F, 0.0F, extent.x, extent.y, 0.0F, 1.0F );
     this->scissor    = vk::Rect2D( 0, this->swapchain.getExtent( ) );
 
-    std::vector<vk::DescriptorSetLayout> allRsDescriptorSetLayouts = { this->rsSceneDescriptorSetLayout.get( ),
-                                                                       this->rsModelDescriptorSetLayout.get( ) };
+    std::vector<vk::DescriptorSetLayout> allRsDescriptorSetLayouts = { this->rsSceneDescriptorSetLayout.get( ) };
 
     return this->rsPipeline.init( allRsDescriptorSetLayouts, this->renderPass.get( ), viewport, scissor, this->settings );
   }
@@ -417,25 +415,6 @@ namespace RAYEXEC_NAMESPACE
                                vk::DependencyFlagBits::eByRegion };                                                  // dependencyFlags
 
     this->renderPass.init( { colorAttachmentDescription, depthAttachmentDescription }, { subpassDescription }, subpassDependencies );
-  }
-
-  /// @todo add handling for missing textures, models etc.
-  void Api::initModel( const std::shared_ptr<GeometryNode>& node )
-  {
-    auto model = findModel( node->modelPath );
-
-    updateAccelerationStructure( );
-
-    // Model RS descriptor set update.
-    // This is only here because textures are as of now only part of a Material object which each node holds. That's why this is initilized here and not in setModels( ).
-    auto diffuseIter = this->textures.find( node->material.diffuseTexture[0] );
-
-    vk::DescriptorImageInfo textureInfo( diffuseIter->second->getSampler( ),
-                                         diffuseIter->second->getImageView( ),
-                                         vk::ImageLayout::eShaderReadOnlyOptimal );
-
-    this->rsModelBindings.write( model->rsDescriptorSets, 0, &textureInfo );
-    this->rsModelBindings.update( );
   }
 
   void Api::initGui( )
@@ -540,7 +519,7 @@ namespace RAYEXEC_NAMESPACE
                                                                          model->indexBuffer.getType( ) );
 
         // TODO: Also bind ray tracing descriptor set.
-        std::vector<vk::DescriptorSet> descriptorSets = { this->rsSceneDescriptorSets[imageIndex], model->rsDescriptorSets[imageIndex] };
+        std::vector<vk::DescriptorSet> descriptorSets = { this->rsSceneDescriptorSets[imageIndex] };
 
         this->swapchainCommandBuffers.get( imageIndex ).bindDescriptorSets( vk::PipelineBindPoint::eGraphics, rsPipeline.getLayout( ),
                                                                             0,                                               // first set
@@ -587,7 +566,6 @@ namespace RAYEXEC_NAMESPACE
         auto model = findModel( node->modelPath );
 
         std::vector<vk::DescriptorSet> descriptorSets = { this->rtDescriptorSets[imageIndex],
-                                                          model->rtDescriptorSets[imageIndex],
                                                           this->rtSceneDescriptorSets[imageIndex],
                                                           this->vertexDataDescriptorSets[imageIndex],
                                                           this->indexDataDescriptorSets[imageIndex] };
@@ -637,17 +615,6 @@ namespace RAYEXEC_NAMESPACE
       this->rtDescriptorSets      = vk::Initializer::initDescriptorSetsUnique( this->rtDescriptorPool, this->rtDescriptorSetLayout );
     }
 
-    // Create the descriptor set layout for models
-    {
-      // Vertex buffer
-      this->rtModelBindings.add( 0, vk::DescriptorType::eStorageBuffer, vk::ShaderStageFlagBits::eClosestHitKHR );
-      // Index buffer
-      this->rtModelBindings.add( 1, vk::DescriptorType::eStorageBuffer, vk::ShaderStageFlagBits::eClosestHitKHR );
-
-      this->rtModelDescriptorSetLayout = this->rtModelBindings.initLayoutUnique( );
-      this->rtModelDescriptorPool      = this->rtModelBindings.initPoolUnique( static_cast<uint32_t>( g_maxGeometryNodes ) * g_swapchainImageCount );
-    }
-
     // RT Scene descriptor set layout.
     {
       // Light nodes uniform buffer
@@ -672,15 +639,6 @@ namespace RAYEXEC_NAMESPACE
       this->rsSceneDescriptorSetLayout = this->rsSceneBindings.initLayoutUnique( );
       this->rsSceneDescriptorPool      = this->rsSceneBindings.initPoolUnique( g_swapchainImageCount );
       this->rsSceneDescriptorSets      = vk::Initializer::initDescriptorSetsUnique( this->rsSceneDescriptorPool, this->rsSceneDescriptorSetLayout );
-    }
-
-    // Rasterization descriptor set layout.
-    {
-      // Texture image
-      this->rsModelBindings.add( 0, vk::DescriptorType::eCombinedImageSampler, vk::ShaderStageFlagBits::eFragment );
-
-      this->rsModelDescriptorSetLayout = this->rsModelBindings.initLayoutUnique( );
-      this->rsModelDescriptorPool      = this->rsModelBindings.initPoolUnique( static_cast<uint32_t>( g_maxGeometryNodes ) * g_swapchainImageCount );
     }
 
     // Vertex model data descriptor set layout.
@@ -820,23 +778,6 @@ namespace RAYEXEC_NAMESPACE
       model->indexBuffer.init( model->indices );
       model->initialized = true;
 
-      // Update and write vertex and index buffer descriptor set for RT.
-      model->rtDescriptorSets = vk::Initializer::initDescriptorSetsUnique( this->rtModelDescriptorPool, this->rtModelDescriptorSetLayout );
-
-      vk::DescriptorBufferInfo vertexBufferInfo( model->vertexBuffer.get( ),
-                                                 0,
-                                                 VK_WHOLE_SIZE );
-
-      vk::DescriptorBufferInfo indexBufferInfo( model->indexBuffer.get( ),
-                                                0,
-                                                VK_WHOLE_SIZE );
-
-      this->rtModelBindings.write( model->rtDescriptorSets, 0, &vertexBufferInfo );
-      this->rtModelBindings.write( model->rtDescriptorSets, 1, &indexBufferInfo );
-      this->rtModelBindings.update( );
-
-      model->rsDescriptorSets = vk::Initializer::initDescriptorSetsUnique( this->rsModelDescriptorPool, this->rsModelDescriptorSetLayout );
-
       // Initialize vertex storage buffer.
       vk::DescriptorBufferInfo vertexDataBufferInfo( model->vertexBuffer.get( ),
                                                      0,
@@ -855,5 +796,17 @@ namespace RAYEXEC_NAMESPACE
 
     this->indexDataBindings.writeArray( this->indexDataDescriptorSets, 0, this->indexDataBufferInfos.data( ) );
     this->indexDataBindings.update( );
+  }
+
+  auto Api::findModel( std::string_view path ) const -> std::shared_ptr<Model>
+  {
+    for ( const auto& model : this->models )
+    {
+      if ( model->path == path )
+        return model;
+    }
+
+    RX_ASSERT( false, "Could not find model. Did you forget to introduce the renderer to this model using RayExec::setModels( ) after initializing the renderer?" );
+    return nullptr;
   }
 } // namespace RAYEXEC_NAMESPACE

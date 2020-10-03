@@ -97,10 +97,8 @@ namespace RAYEXEC_NAMESPACE
     std::vector<Blas> allBlas;
     allBlas.reserve( models.size( ) );
 
-    std::cout << "creating blas\n";
     for ( const auto& obj : models )
     {
-      std::cout << obj->path << std::endl;
       Blas blas = modelToBlas( obj );
 
       // We could add more geometry in each BLAS, but we add only one for now.
@@ -294,8 +292,6 @@ namespace RAYEXEC_NAMESPACE
     uint32_t i = 0;
     for ( const auto& iter : nodes )
     {
-      std::cout << "TLAS update: " << iter->rtInstance.modelIndex << ", " << iter->modelPath << std::endl;
-
       BlasInstance rayInst;
       rayInst.transform  = iter->worldTransform;
       rayInst.instanceId = i;

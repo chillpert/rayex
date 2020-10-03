@@ -61,17 +61,7 @@ namespace RAYEXEC_NAMESPACE
 
     void setModels( const std::vector<std::string>& modelPaths );
 
-    auto Api::findModel( std::string_view path ) const -> std::shared_ptr<Model>
-    {
-      for ( const auto& model : this->models )
-      {
-        if ( model->path == path )
-          return model;
-      }
-
-      RX_ASSERT( false, "Could not find model. Did you forget to introduce the renderer to this model using RayExec::setModels( ) after initializing the renderer?" );
-      return nullptr;
-    }
+    RX_API auto findModel( std::string_view path ) const -> std::shared_ptr<Model>;
 
     /// Used to add another arbitrary node to the scene.
     /// @param node A pointer to node to add.
@@ -84,8 +74,6 @@ namespace RAYEXEC_NAMESPACE
 
         auto model = findModel( ptr->modelPath );
         this->geometryNodes.push_back( ptr );
-
-        std::cout << "Adding node: " << ptr->rtInstance.modelIndex << ", " << ptr->modelPath << std::endl;
 
         // Fill scene description buffer.
         ptr->rtInstance.modelIndex  = model->index;
@@ -107,7 +95,7 @@ namespace RAYEXEC_NAMESPACE
         }
 
         if ( record )
-          initModel( ptr );
+          updateAccelerationStructure( );
       }
       else if ( dynamic_cast<LightNode*>( node.get( ) ) )
       {
@@ -156,7 +144,7 @@ namespace RAYEXEC_NAMESPACE
     Settings* settings = nullptr;
 
   private:
-    void updateAccelerationStructure( );
+    RX_API void updateAccelerationStructure( );
 
     void initPipelines( );
 
@@ -219,15 +207,6 @@ namespace RAYEXEC_NAMESPACE
     vk::UniqueDescriptorPool rtDescriptorPool;
     std::vector<vk::DescriptorSet> rtDescriptorSets;
     Bindings rtBindings;
-
-    // Descriptors for model-related data.
-    vk::UniqueDescriptorSetLayout rtModelDescriptorSetLayout; ///< @note Each RAYEXEC_NAMESPACE::Model has its own descriptor set.
-    vk::UniqueDescriptorPool rtModelDescriptorPool;
-    Bindings rtModelBindings;
-
-    vk::UniqueDescriptorSetLayout rsModelDescriptorSetLayout;
-    vk::UniqueDescriptorPool rsModelDescriptorPool;
-    Bindings rsModelBindings;
 
     // Descriptors for scene-related data.
     vk::UniqueDescriptorSetLayout rtSceneDescriptorSetLayout;

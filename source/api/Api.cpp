@@ -373,7 +373,7 @@ namespace RAYEXEC_NAMESPACE
           bool found = false;
           for ( auto it = this->rtInstances.begin( ); it != this->rtInstances.end( ); ++it )
           {
-            if ( ( *it ).id == ptr->getID( ) )
+            if ( ( *it ).baseNodeId == ptr->getID( ) )
             {
               found = true;
               this->rtInstances.erase( it );
@@ -563,14 +563,27 @@ namespace RAYEXEC_NAMESPACE
       this->swapchainCommandBuffers.get( imageIndex ).setScissor( 0, 1, &scissor ); // CMD
 
       // Draw models
-      for ( const auto& model : this->models )
+      for ( const auto& node : this->geometryNodes )
       {
         uint32_t instanceCount = 1;
-        auto it2               = temp.find( model->path );
+        auto it2               = temp.find( node->modelPath );
         if ( it2 != temp.end( ) )
         {
           instanceCount = it2->second;
+
+          if ( instanceCount == 0 )
+            continue;
         }
+
+        uint32_t id = node->rtInstance.geometryNodeId;
+
+        this->swapchainCommandBuffers.get( imageIndex ).pushConstants( this->rsPipeline.getLayout( ),    // layout
+                                                                       vk::ShaderStageFlagBits::eVertex, // stageFlags
+                                                                       0,                                // offset
+                                                                       sizeof( uint32_t ),               // size
+                                                                       &id );                            // pValues
+
+        auto model = findModel( node->modelPath );
 
         std::array<vk::Buffer, 1> vertexBuffers { model->vertexBuffer.get( ) };
         std::array<vk::DeviceSize, 1> offsets { 0 };

@@ -88,11 +88,15 @@ namespace RAYEXEC_NAMESPACE
     if ( g_physicalDeviceLimits.maxPushConstantsSize < pushConstantSize )
       RX_FATAL( "Push constant size is exceeding supported size." );
 
+    vk::PushConstantRange pushConstantRangeMissKHR( vk::ShaderStageFlagBits::eVertex, // stageFlags
+                                                    0,                                // offset
+                                                    sizeof( uint32_t ) );             // size
+
     vk::PipelineLayoutCreateInfo pipelineLayoutInfo( { },                                                   // flags
                                                      static_cast<uint32_t>( descriptorSetLayouts.size( ) ), // setLayoutCount
                                                      descriptorSetLayouts.data( ),                          // pSetLayouts
-                                                     0,                                                     // pushConstantRangeCount
-                                                     nullptr );                                             // pPushConstantRanges
+                                                     1,                                                     // pushConstantRangeCount
+                                                     &pushConstantRangeMissKHR );                           // pPushConstantRanges
 
     this->layout = g_device.createPipelineLayoutUnique( pipelineLayoutInfo );
     RX_ASSERT( this->layout, "Failed to create pipeline layout for rasterization pipeline." );

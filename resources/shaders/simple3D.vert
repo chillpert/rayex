@@ -1,4 +1,4 @@
-#version 450
+#version 460
 #extension GL_ARB_separate_shader_objects : enable
 
 // IN
@@ -18,7 +18,7 @@ struct RayTracingInstance
   int modelIndex;
   int txtOffset;
 
-  float padding0;
+  int nodeId; // ignore
   float padding1;
 };
 
@@ -40,9 +40,14 @@ layout(location = 1) out vec3 fragNormal;
 layout(location = 2) out vec2 fragTexCoord;
 layout(location = 3) out vec3 cameraPos;
 
+layout(push_constant) uniform Constants
+{
+  int index;
+};
+
 void main()
 {
-  mat4 model = rayTracingInstances.i[gl_InstanceIndex].transform;
+  mat4 model = rayTracingInstances.i[index].transform;
 
   fragPos = vec3(model * vec4(inPosition, 1.0));
   fragTexCoord = inTexCoord;

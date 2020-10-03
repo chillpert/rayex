@@ -15,9 +15,12 @@ namespace RAYEXEC_NAMESPACE
     uint32_t modelIndex    = 0; ///< Reference to RAYEXEC_NAMESPACE::Api::models
     uint32_t textureOffset = 0; ///< Offset in RAYEXEC_NAMESPACE::Api::textures
 
-    uint32_t id;
-    float padding1;
+    // Also works as padding.
+    uint32_t baseNodeId;
+    uint32_t geometryNodeId;
   };
+
+  static uint32_t geometryNodeCounter = 0;
 
   /// Adds geometry to the TransformNode parent class.
   /// @ingroup Base
@@ -30,6 +33,8 @@ namespace RAYEXEC_NAMESPACE
       modelPath( modelPath ),
       material( material )
     {
+      this->rtInstance.geometryNodeId = geometryNodeCounter;
+      ++geometryNodeCounter;
     }
 
     virtual ~GeometryNode( ) = default;

@@ -12,6 +12,7 @@ namespace Key
   bool eD;
   bool eC;
   bool eSpace;
+  bool eLeftShift;
 } // namespace Key
 
 class CustomCamera : public Camera
@@ -29,6 +30,15 @@ public:
   {
     static float speed = 1.0F;
     float finalSpeed   = speed * Time::getDeltaTime( );
+
+    if ( Key::eLeftShift )
+    {
+      speed = 10.0F;
+    }
+    else
+    {
+      speed = 1.0F;
+    }
 
     if ( Key::eW )
     {
@@ -145,6 +155,10 @@ public:
               Key::eD = true;
               break;
 
+            case SDLK_LSHIFT:
+              Key::eLeftShift = true;
+              break;
+
             case SDLK_ESCAPE:
               return false;
 
@@ -184,6 +198,10 @@ public:
 
             case SDLK_d:
               Key::eD = false;
+              break;
+
+            case SDLK_LSHIFT:
+              Key::eLeftShift = false;
               break;
           }
           break;
@@ -231,13 +249,16 @@ private:
 
       if ( ImGui::Button( "Add Box" ) )
       {
-        int max = 4;
-        int min = -4;
+        int max = 10;
+        int min = -10;
         srand( time( nullptr ) );
-        int finalNum = rand( ) % ( max - min + 1 ) + min;
+        int x = rand( ) % ( max - min + 1 ) + min;
+        int y = rand( ) % ( max - min + 1 ) + min;
+        int z = rand( ) % ( max - min + 1 ) + min;
 
         auto box            = std::make_shared<GeometryNode>( "models/cube.obj", Material( "textures/container.png" ) );
-        box->worldTransform = glm::translate( box->worldTransform, glm::vec3( finalNum, 0.0F, 0.0F ) );
+        box->worldTransform = glm::translate( box->worldTransform, glm::vec3( x, y, z ) );
+        box->worldTransform = glm::scale( box->worldTransform, glm::vec3( 0.3F, 0.3F, 0.3F ) );
         this->renderer->pushNode( box );
 
         this->geometryNodes.push_back( box );
@@ -245,7 +266,16 @@ private:
 
       if ( ImGui::Button( "Add Sphere" ) )
       {
-        auto sphere = std::make_shared<GeometryNode>( "models/sphere.obj", Material( "textures/metal.png" ) );
+        int max = 10;
+        int min = -10;
+        srand( time( nullptr ) );
+        int x = rand( ) % ( max - min + 1 ) + min;
+        int y = rand( ) % ( max - min + 1 ) + min;
+        int z = rand( ) % ( max - min + 1 ) + min;
+
+        auto sphere            = std::make_shared<GeometryNode>( "models/sphere.obj", Material( "textures/metal.png" ) );
+        sphere->worldTransform = glm::translate( sphere->worldTransform, glm::vec3( x, y, z ) );
+        sphere->worldTransform = glm::scale( sphere->worldTransform, glm::vec3( 0.3F, 0.3F, 0.3F ) );
         this->renderer->pushNode( sphere );
 
         this->geometryNodes.push_back( sphere );

@@ -73,6 +73,8 @@ namespace RAYEXEC_NAMESPACE
       {
         auto ptr = std::dynamic_pointer_cast<GeometryNode>( node );
 
+        std::cout << ptr->modelPath << ", " << ptr->rtInstance.geometryNodeId << std::endl;
+
         auto model = findModel( ptr->modelPath );
         this->geometryNodes.push_back( ptr );
 
@@ -80,7 +82,7 @@ namespace RAYEXEC_NAMESPACE
         ptr->rtInstance.modelIndex  = model->index;
         ptr->rtInstance.transform   = ptr->worldTransform;
         ptr->rtInstance.transformIT = glm::transpose( glm::inverse( ptr->worldTransform ) );
-        ptr->rtInstance.id          = ptr->getID( );
+        ptr->rtInstance.baseNodeId  = ptr->getID( );
         this->rtInstances.push_back( ptr->rtInstance );
 
         this->uploadSceneDescriptionData = true;

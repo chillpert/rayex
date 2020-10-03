@@ -276,34 +276,17 @@ namespace RAYEXEC_NAMESPACE
     // Recreate storage image with the new swapchain image size and update the ray tracing descriptor set to use the new storage image view.
     this->rayTracingBuilder.createStorageImage( this->swapchain.getExtent( ) );
 
-#if defined( unix ) || defined( __unix ) || defined( __unix__ )
-    {
-      vk::WriteDescriptorSetAccelerationStructureKHR tlasInfo( 1,
-                                                               &this->rayTracingBuilder.getTlas( ).as.as );
+    vk::WriteDescriptorSetAccelerationStructureKHR tlasInfo( 1,
+                                                             &this->rayTracingBuilder.getTlas( ).as.as );
 
-      vk::DescriptorImageInfo storageImageInfo( nullptr,
-                                                this->rayTracingBuilder.getStorageImageView( ),
-                                                vk::ImageLayout::eGeneral );
+    vk::DescriptorImageInfo storageImageInfo( nullptr,
+                                              this->rayTracingBuilder.getStorageImageView( ),
+                                              vk::ImageLayout::eGeneral );
 
-      this->rtBindings.write( this->rtDescriptorSets, 0, &tlasInfo );
-      this->rtBindings.write( this->rtDescriptorSets, 1, &storageImageInfo );
-      this->rtBindings.write( this->rtDescriptorSets, 2, this->cameraUniformBuffer.bufferInfos );
-      this->rtBindings.update( );
-    }
-#elif defined( _WIN32 ) || defined( _WIN64 )
-    {
-      vk::DescriptorImageInfo storageImageInfo( nullptr,
-                                                this->rayTracingBuilder.getStorageImageView( ),
-                                                vk::ImageLayout::eGeneral );
-
-      this->rtBindings.write( this->rtDescriptorSets, 1, &storageImageInfo );
-      this->rtBindings.update( );
-    }
-#else
-    #error Failed to update bindings and descriptor set because OS is not supported.
-#endif
-    // second run
-    //
+    this->rtBindings.write( this->rtDescriptorSets, 0, &tlasInfo );
+    this->rtBindings.write( this->rtDescriptorSets, 1, &storageImageInfo );
+    this->rtBindings.write( this->rtDescriptorSets, 2, this->cameraUniformBuffer.bufferInfos );
+    this->rtBindings.update( );
 
     // Swapchain command buffers
     recordSwapchainCommandBuffers( );

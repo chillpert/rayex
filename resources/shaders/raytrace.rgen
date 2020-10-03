@@ -8,7 +8,7 @@ layout(location = 0) rayPayloadEXT hitPayload prd;
 layout(binding = 0, set = 0) uniform accelerationStructureEXT topLevelAS;
 layout(binding = 1, set = 0, rgba32f) uniform image2D image;
 
-layout(binding = 2, set = 0) uniform CameraProperties
+layout(binding = 0, set = 1) uniform CameraProperties
 {
   mat4 view;
   mat4 proj;

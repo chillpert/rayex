@@ -285,9 +285,6 @@ namespace RAYEXEC_NAMESPACE
 
     this->rtBindings.write( this->rtDescriptorSets, 0, &tlasInfo );
     this->rtBindings.write( this->rtDescriptorSets, 1, &storageImageInfo );
-    // I am not updating the camera uniform binding here because it is not required.
-    // However, even though it's the same for the TLAS info, it will crash without it.
-    // Probably because it's part of the pNext chain.
     this->rtBindings.update( );
 
     // Swapchain command buffers
@@ -350,7 +347,6 @@ namespace RAYEXEC_NAMESPACE
 
     this->rtBindings.write( this->rtDescriptorSets, 0, &tlasInfo );
     this->rtBindings.write( this->rtDescriptorSets, 1, &storageImageInfo );
-    this->rtBindings.write( this->rtDescriptorSets, 2, this->cameraUniformBuffer.bufferInfos );
     this->rtBindings.update( );
   }
 
@@ -607,8 +603,6 @@ namespace RAYEXEC_NAMESPACE
       this->rtBindings.add( 0, vk::DescriptorType::eAccelerationStructureKHR, vk::ShaderStageFlagBits::eRaygenKHR );
       // Output image
       this->rtBindings.add( 1, vk::DescriptorType::eStorageImage, vk::ShaderStageFlagBits::eRaygenKHR );
-      // Camera uniform buffer
-      this->rtBindings.add( 2, vk::DescriptorType::eUniformBuffer, vk::ShaderStageFlagBits::eRaygenKHR );
 
       this->rtDescriptorSetLayout = this->rtBindings.initLayoutUnique( );
       this->rtDescriptorPool      = this->rtBindings.initPoolUnique( g_swapchainImageCount );
@@ -617,10 +611,12 @@ namespace RAYEXEC_NAMESPACE
 
     // RT Scene descriptor set layout.
     {
+      // Camera uniform buffer
+      this->rtSceneBindings.add( 0, vk::DescriptorType::eUniformBuffer, vk::ShaderStageFlagBits::eRaygenKHR );
       // Light nodes uniform buffer
-      this->rtSceneBindings.add( 0, vk::DescriptorType::eUniformBuffer, vk::ShaderStageFlagBits::eClosestHitKHR );
+      this->rtSceneBindings.add( 1, vk::DescriptorType::eUniformBuffer, vk::ShaderStageFlagBits::eClosestHitKHR );
       // Scene description buffer
-      this->rtSceneBindings.add( 1, vk::DescriptorType::eStorageBuffer, vk::ShaderStageFlagBits::eClosestHitKHR );
+      this->rtSceneBindings.add( 2, vk::DescriptorType::eStorageBuffer, vk::ShaderStageFlagBits::eClosestHitKHR );
 
       this->rtSceneDescriptorSetLayout = this->rtSceneBindings.initLayoutUnique( );
       this->rtSceneDescriptorPool      = this->rtSceneBindings.initPoolUnique( g_swapchainImageCount );
@@ -629,7 +625,7 @@ namespace RAYEXEC_NAMESPACE
 
     // RS Scene descriptor set layout.
     {
-      // Uniform buffer binding for the vertex shader.
+      // Camera uniform buffer.
       this->rsSceneBindings.add( 0, vk::DescriptorType::eUniformBuffer, vk::ShaderStageFlagBits::eVertex );
       // Light nodes uniform buffer
       this->rsSceneBindings.add( 1, vk::DescriptorType::eUniformBuffer, vk::ShaderStageFlagBits::eFragment );
@@ -679,8 +675,9 @@ namespace RAYEXEC_NAMESPACE
                                               0,
                                               VK_WHOLE_SIZE );
 
-    this->rtSceneBindings.write( this->rtSceneDescriptorSets, 0, this->lightsUniformBuffer.bufferInfos );
-    this->rtSceneBindings.write( this->rtSceneDescriptorSets, 1, &rtInstancesInfo );
+    this->rtSceneBindings.write( this->rtSceneDescriptorSets, 0, this->cameraUniformBuffer.bufferInfos );
+    this->rtSceneBindings.write( this->rtSceneDescriptorSets, 1, this->lightsUniformBuffer.bufferInfos );
+    this->rtSceneBindings.write( this->rtSceneDescriptorSets, 2, &rtInstancesInfo );
     this->rtSceneBindings.update( );
 
     // Update RS scene descriptor sets.

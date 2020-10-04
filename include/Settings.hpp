@@ -61,7 +61,7 @@ namespace RAYEXEC_NAMESPACE
     /// amount of light nodes. However, this process requires pipeline recreation and therefore it is recommended to set
     /// the anticipated amount of directional light nodes in the scene to avoid pipeline recreation.
     /// @param amount The amount of anticipated directional light nodes.
-    void setAnticipatedDirectionalLights( uint32_t amount );
+    void setMaxDirectionalLights( uint32_t amount );
 
     /// Used to set a certain amount of point light nodes that can be used.
     ///
@@ -69,10 +69,9 @@ namespace RAYEXEC_NAMESPACE
     /// amount of light nodes. However, this process requires pipeline recreation and therefore it is recommended to set
     /// the anticipated amount of point light nodes in the scene to avoid pipeline recreation.
     /// @param amount The amount of anticipated point light nodes.
-    void setAnticipatedPointLights( uint32_t amount );
+    void setMaxPointLights( uint32_t amount );
 
-    /// @todo Requires ray tracing instances storage buffer to be recreated if another scene with less or more instances is introduced.
-    void setAnticipatedGeometryNodes( uint32_t amount );
+    void setMaxGeometryNodes( uint32_t amount );
 
     /// @return Returns the maximum recursion depth on the GPU.
     [[nodiscard]] auto getMaxRecursionDepth( ) const -> uint32_t { return this->maxRecursionDepth; }
@@ -82,9 +81,9 @@ namespace RAYEXEC_NAMESPACE
     bool refreshPipeline  = false; ///< Keeps track of whether or not the graphics pipeline needs to be recreated.
     bool refreshSwapchain = false; ///< Keeps track of whether or not the swapchain needs to be recreated.
 
-    std::optional<uint32_t> anticipatedDirectionalLights; ///< Can be set to avoid pipeline recreation everytime a directional light is added.
-    std::optional<uint32_t> anticipatedPointLights;       ///< Can be set to avoid pipeline recreation everytime a point light is added.
-    std::optional<uint32_t> anticipatedGeometryNodes;     ///< Can be set to avoid pipeline recreation everytime a geometry node is added.
+    std::optional<uint32_t> maxDirectionalLights; ///< Can be set to avoid pipeline recreation everytime a directional light is added.
+    std::optional<uint32_t> maxPointLights;       ///< Can be set to avoid pipeline recreation everytime a point light is added.
+    std::optional<uint32_t> maxGeometryNodes;     ///< Can be set to avoid pipeline recreation everytime a geometry node is added.
 
     glm::vec4 clearColor       = glm::vec4( 0.45F, 0.45F, 0.45F, 1.0F ); ///< Stores the clear color.
     uint32_t maxRecursionDepth = 4;                                      ///< The maximum recursion depth.

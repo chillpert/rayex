@@ -76,35 +76,35 @@ namespace RAYEXEC_NAMESPACE
     this->automaticPipelineRefresh = flag;
   }
 
-  void Settings::setAnticipatedDirectionalLights( uint32_t amount )
+  void Settings::setMaxDirectionalLights( uint32_t amount )
   {
     if ( amount == 0 )
     {
       ++amount;
-      RX_WARN( "Can not use value 0 for the amount of anticipated directional lights. Using 1 instead." );
+      RX_WARN( "Can not use value 0 for the amount of maximum directional lights. Using 1 instead." );
     }
-    this->anticipatedDirectionalLights = amount;
-    this->refreshPipeline              = true;
+    this->maxDirectionalLights = amount;
+    this->refreshPipeline      = true;
   }
 
-  void Settings::setAnticipatedPointLights( uint32_t amount )
+  void Settings::setMaxPointLights( uint32_t amount )
   {
     if ( amount == 0 )
     {
       ++amount;
-      RX_WARN( "Can not use value 0 for the amount of anticipated point lights. Using 1 instead." );
+      RX_WARN( "Can not use value 0 for the amount of maximum point lights. Using 1 instead." );
     }
-    this->anticipatedPointLights = amount;
-    this->refreshPipeline        = true;
+    this->maxPointLights  = amount;
+    this->refreshPipeline = true;
   }
 
-  void Settings::setAnticipatedGeometryNodes( uint32_t amount )
+  void Settings::setMaxGeometryNodes( uint32_t amount )
   {
     if ( amount == 0 )
     {
       ++amount;
-      RX_WARN( "Can not use value 0 for the amount of anticipated directional lights. Using 1 instead." );
+      RX_WARN( "Can not use value 0 for the amount of maximum directional lights. Using 1 instead." );
     }
-    this->anticipatedGeometryNodes = amount;
+    this->maxGeometryNodes = amount;
   }
 } // namespace RAYEXEC_NAMESPACE

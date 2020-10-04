@@ -62,7 +62,7 @@ namespace RAYEXEC_NAMESPACE
 
     void setModels( const std::vector<std::string>& modelPaths );
 
-    RX_API auto findModel( std::string_view path ) const -> std::shared_ptr<Model>;
+    [[nodiscard]] RX_API auto findModel( std::string_view path ) const -> std::shared_ptr<Model>;
 
     /// Used to add another arbitrary node to the scene.
     /// @param node A pointer to node to add.
@@ -71,9 +71,10 @@ namespace RAYEXEC_NAMESPACE
     {
       if ( dynamic_cast<GeometryNode*>( node.get( ) ) )
       {
-        if ( this->geometryNodes.size( ) > g_maxGeometryNodes )
+        uint32_t limit = this->settings->maxGeometryNodes.has_value( ) ? this->settings->maxGeometryNodes.value( ) : g_maxGeometryNodes;
+        if ( static_cast<uint32_t>( this->geometryNodes.size( ) ) > limit - 1 )
         {
-          RX_WARN( "You have exceeded the maximum amount of geometry. Node can not be added." );
+          RX_WARN( "Failed to push node. You have exceeded the maximum amount of geometry nodes." );
           return;
         }
 
@@ -89,16 +90,6 @@ namespace RAYEXEC_NAMESPACE
         this->rtInstances.push_back( ptr->rtInstance );
 
         this->uploadSceneDescriptionData = true;
-
-        if ( this->settings->anticipatedGeometryNodes.has_value( ) )
-        {
-          if ( static_cast<uint32_t>( this->geometryNodes.size( ) ) > this->settings->anticipatedGeometryNodes.value( ) )
-          {
-            RX_WARN( "You have exceeded the anticipated amount of geometry nodes. It is recommended to set a higher value to avoid pipeline recreations." );
-            this->exceededAnticipatedGeometryNodes = true;
-            this->uploadSceneDescriptionData       = false;
-          }
-        }
 
         // Handle the node's texture.
         auto texturePaths = ptr->material.getTextures( );
@@ -176,7 +167,6 @@ namespace RAYEXEC_NAMESPACE
     /// Similarily, all textures required by the model will be stored individualy inside RAYEXEC_NAMESPACE::Api::textures.
     /// If a model or a texture are already known to the application and have been initialized, they will be re-used instead of being initialized.
     /// @param node A pointer to a geometry node.
-    /// @todo The function currently recreates the entire TLAS and BLAS everytime a model is added, which is very inefficient.
     RX_API void initModel( const std::shared_ptr<GeometryNode>& node );
 
     /// Records commands to the swapchain command buffers that will be used for rendering.
@@ -291,11 +281,10 @@ namespace RAYEXEC_NAMESPACE
 
     bool needSwapchainRecreate = false;
 
-    uint32_t totalDirectionalLights       = 0;
-    uint32_t totalPointLights             = 0;
-    bool reloadShader                     = false;
-    bool pipelinesReady                   = false;
-    bool exceededAnticipatedGeometryNodes = false;
+    uint32_t totalDirectionalLights = 0;
+    uint32_t totalPointLights       = 0;
+    bool reloadShader               = false;
+    bool pipelinesReady             = false;
   };
 } // namespace RAYEXEC_NAMESPACE
 

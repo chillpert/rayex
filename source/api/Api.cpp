@@ -79,7 +79,7 @@ namespace RAYEXEC_NAMESPACE
     // Instance
     instance = vk::Initializer::initInstance( layers, extensions );
 
-    // Debug messenger.
+    // Debug messenger
     this->debugMessenger.init( );
 
     // Surface
@@ -161,17 +161,6 @@ namespace RAYEXEC_NAMESPACE
     updateSettings( );
 
     updateUniformBuffers( );
-
-    if ( this->exceededAnticipatedGeometryNodes )
-    {
-      this->exceededAnticipatedGeometryNodes = false;
-
-      g_device.waitIdle( );
-      initRayTracingInstancesBuffer( );
-      updateSceneDescriptors( );
-
-      recordSwapchainCommandBuffers( );
-    }
 
     // Upload scene description
     if ( this->uploadSceneDescriptionData )
@@ -552,7 +541,9 @@ namespace RAYEXEC_NAMESPACE
           instanceCount = it2->second;
 
           if ( instanceCount == 0 )
+          {
             continue;
+          }
         }
 
         uint32_t id = node->rtInstance.geometryNodeId;
@@ -828,7 +819,9 @@ namespace RAYEXEC_NAMESPACE
     for ( const auto& model : this->models )
     {
       if ( model->path == path )
+      {
         return model;
+      }
     }
 
     RX_ASSERT( false, "Could not find model. Did you forget to introduce the renderer to this model using RayExec::setModels( ) after initializing the renderer?" );
@@ -837,7 +830,7 @@ namespace RAYEXEC_NAMESPACE
 
   void Api::initRayTracingInstancesBuffer( )
   {
-    uint32_t maxInstanceCount = this->settings->anticipatedGeometryNodes.has_value( ) ? this->settings->anticipatedGeometryNodes.value( ) : g_maxGeometryNodes;
+    uint32_t maxInstanceCount = this->settings->maxGeometryNodes.has_value( ) ? this->settings->maxGeometryNodes.value( ) : g_maxGeometryNodes;
     this->rtInstances.resize( maxInstanceCount );
     this->rayTracingInstancesBuffer.init<RayTracingInstance>( this->rtInstances );
     this->rtInstances.clear( );

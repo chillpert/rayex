@@ -10,10 +10,11 @@ namespace RAYEXEC_NAMESPACE
   /// The main user interface.
   ///
   /// This class provides everything to set up a main loop and fill the scene with geometry and light sources.
+  /// Furthermore, the renderer's settings can be changed to better fit the client's purpose.
   /// ### Example
   /// ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~.cpp
   /// // The following example renders a cube in less than 10 lines of code.
-  /// RayExecmyRenderer;
+  /// RayExec myRenderer;
   /// myRenderer.init( );
   ///
   /// myRenderer.pushNode( std::make_shared<GeometryNode>( "models/cube.obj", Material( "textures/metal.png" ) ) );
@@ -29,16 +30,6 @@ namespace RAYEXEC_NAMESPACE
   {
   public:
     RX_API RayExec( );
-
-    /// @param camera A pointer to a camera object specified by the client.
-    RX_API RayExec( std::shared_ptr<Camera> camera );
-
-    /// @param window A pointer to a window object specified by the client.
-    RX_API RayExec( std::shared_ptr<Window> window );
-
-    /// @param window A pointer to a window object specified by the client.
-    /// @param camera A pointer to a camera object specified by the client.
-    RX_API RayExec( std::shared_ptr<Window> window, std::shared_ptr<Camera> camera );
 
     /// Initializes the renderer.
     ///
@@ -68,7 +59,7 @@ namespace RAYEXEC_NAMESPACE
     template <typename T = Model>
     void pushNode( const std::shared_ptr<Node> node )
     {
-      api.pushNode<T>( node );
+      api->pushNode<T>( node );
     }
 
     RX_API void popNode( std::shared_ptr<Node> node );
@@ -82,11 +73,14 @@ namespace RAYEXEC_NAMESPACE
       api.setNodes<T>( nodes );
     }
 
-    /// Used to set the renderer's camera.
+    /// Used to set a custom camera.
     /// @param camera The camera the renderer should be using.
     RX_API void setCamera( std::shared_ptr<Camera> camera );
 
-    /// Used to set the renderer's GUI.
+    /// Used to set a custom window.
+    RX_API void setWindow( std::shared_ptr<Window> window );
+
+    /// Used to set a custom GUI.
     /// @param gui The GUI the renderer should be using.
     RX_API void setGui( std::shared_ptr<Gui> gui );
 
@@ -95,9 +89,10 @@ namespace RAYEXEC_NAMESPACE
     Settings settings;
 
   private:
-    std::shared_ptr<Window> window; ///< A pointer to a RAYEXEC_NAMESPACE::Window object.
-    std::shared_ptr<Camera> camera; ///< A pointer to a RAYEXEC_NAMESPACE::Camera object.
-    Api api;                        ///< Contains all Vulkan related components.
+    std::shared_ptr<Window> window = nullptr; ///< A pointer to a RAYEXEC_NAMESPACE::Window object.
+    std::shared_ptr<Camera> camera = nullptr; ///< A pointer to a RAYEXEC_NAMESPACE::Camera object.
+    std::shared_ptr<Gui> gui       = nullptr; ///< A pointer to a RAYEXEC_NAMESPACE::Gui object.
+    std::unique_ptr<Api> api       = nullptr; ///< Contains all Vulkan related components.
 
     bool initialized = false; ///< Keeps track of the initialization status.
     bool running     = true;  ///< Keeps track of whether or not the main loop should still be continued.

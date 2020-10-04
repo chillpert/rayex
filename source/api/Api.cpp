@@ -40,13 +40,6 @@ namespace RAYEXEC_NAMESPACE
   {
   }
 
-  Api::Api( std::shared_ptr<Window> window, std::shared_ptr<Gui> gui, std::shared_ptr<Camera> camera ) :
-    window( std::move( window ) ),
-    camera( std::move( camera ) ),
-    gui( std::move( gui ) )
-  {
-  }
-
   Api::~Api( )
   {
     g_device.waitIdle( );

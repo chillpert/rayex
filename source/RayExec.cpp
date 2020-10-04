@@ -5,36 +5,26 @@
 namespace RAYEXEC_NAMESPACE
 {
   RayExec::RayExec( ) :
-    window( std::make_shared<Window>( ) ),
-    camera( std::make_shared<Camera>( this->window->getWidth( ), this->window->getHeight( ) ) ),
-    api( this->window, this->camera )
-  {
-  }
-
-  RayExec::RayExec( std::shared_ptr<Camera> camera ) :
-    window( std::make_shared<Window>( ) ),
-    camera( std::move( camera ) ),
-    api( this->window, this->camera )
-  {
-  }
-
-  RayExec::RayExec( std::shared_ptr<Window> window ) :
-    window( window ),
-    camera( std::make_shared<Camera>( this->window->getWidth( ), this->window->getHeight( ) ) ),
-    api( window, this->camera )
-  {
-  }
-
-  RayExec::RayExec( std::shared_ptr<Window> window, std::shared_ptr<Camera> camera ) :
-    window( std::move( window ) ),
-    camera( std::move( camera ) ),
-    api( this->window, this->camera )
-  {
-  }
+    api( std::make_unique<Api>( ) ) {}
 
   void RayExec::init( )
   {
-    this->api.settings = &this->settings;
+    if ( this->window == nullptr )
+    {
+      RX_VERBOSE( "No custom window implementation was provided. Using default implementation instead." );
+      this->window = std::make_shared<Window>( );
+    }
+
+    if ( this->camera == nullptr )
+    {
+      RX_VERBOSE( "No custom camera implementation was provided. Using default implementation instead." );
+      this->camera = std::make_shared<Camera>( this->window->getWidth( ), this->window->getHeight( ) );
+    }
+
+    this->api->window   = this->window;
+    this->api->camera   = this->camera;
+    this->api->settings = &this->settings;
+    g_window            = this->window;
 
     if ( this->settings.getResourcePath( ).empty( ) )
     {
@@ -42,8 +32,6 @@ namespace RAYEXEC_NAMESPACE
       this->running = false;
       return;
     }
-
-    g_window = this->window;
 
     if ( this->initialized )
     {
@@ -59,14 +47,14 @@ namespace RAYEXEC_NAMESPACE
 #endif
 
     this->initialized = this->window->init( );
-    this->api.initBase( );
+    this->api->initBase( );
   }
 
   void RayExec::run( )
   {
     if ( this->initScene )
     {
-      this->api.initScene( );
+      this->api->initScene( );
       this->initScene = false;
     }
 
@@ -83,34 +71,45 @@ namespace RAYEXEC_NAMESPACE
       return;
     }
 
-    this->running = this->api.render( );
+    this->running = this->api->render( );
 
     if ( !this->running )
     {
       return;
     }
 
-    this->api.update( );
+    this->api->update( );
   }
 
   void RayExec::setCamera( std::shared_ptr<Camera> camera )
   {
     this->camera = camera;
+
+    if ( this->api != nullptr )
+      this->api->camera = this->camera;
+  }
+
+  void RayExec::setWindow( std::shared_ptr<Window> window )
+  {
+    this->window = window;
+
+    if ( this->api != nullptr )
+      this->api->window = this->window;
   }
 
   void RayExec::setGui( std::shared_ptr<Gui> gui )
   {
-    this->initialized ? this->api.setGui( gui, true ) : this->api.setGui( gui );
+    this->initialized ? this->api->setGui( gui, true ) : this->api->setGui( gui );
   }
 
   void RayExec::setModels( const std::vector<std::string>& modelPaths )
   {
-    this->api.setModels( modelPaths );
+    this->api->setModels( modelPaths );
     this->initScene = true;
   }
 
   void RayExec::popNode( std::shared_ptr<Node> node )
   {
-    this->api.popNode( node );
+    this->api->popNode( node );
   }
 } // namespace RAYEXEC_NAMESPACE

@@ -83,7 +83,8 @@ public:
 class CustomWindow : public Window
 {
 public:
-  CustomWindow( int width, int height, const char* title, uint32_t flags ) :
+  CustomWindow( std::shared_ptr<Camera> camera, int width, int height, const char* title, uint32_t flags ) :
+    camera( std::move( camera ) ),
     Window( width, height, title, flags )
   {
   }
@@ -222,11 +223,6 @@ public:
     return true;
   }
 
-  void setCamera( const std::shared_ptr<Camera> camera )
-  {
-    this->camera = camera;
-  }
-
 private:
   std::shared_ptr<Camera> camera;
   bool mouseVisible = true;
@@ -234,6 +230,10 @@ private:
 
 class CustomGui : public Gui
 {
+public:
+  CustomGui( RayExec* renderer ) :
+    renderer( renderer ) {}
+
 private:
   void configure( ) override
   {
@@ -338,12 +338,6 @@ private:
     ImGui::End( );
   }
 
-public:
-  void setRenderer( RayExec* renderer )
-  {
-    this->renderer = renderer;
-  }
-
 private:
   RayExec* renderer;
   std::vector<std::shared_ptr<GeometryNode>> geometryNodes;
@@ -355,29 +349,25 @@ auto main( ) -> int
   int width  = 900;
   int height = 600;
 
-  // Now create the actual window using the window properties from above.
-  auto myWindow = std::make_shared<CustomWindow>( width, height, "Example", SDL_WINDOW_RESIZABLE );
-
-  // Create instance of your custom camera class.
-  auto myCam = std::make_shared<CustomCamera>( width, height, glm::vec3( 0.0F, 0.0F, 3.0F ) );
-
   // Create the renderer object ...
-  RayExec renderer( myWindow, myCam );
+  RayExec renderer;
 
-  // Use resources wisely by introducing the renderer to the anticipated amount of various entities.
+  // Custom camera
+  renderer.setCamera( std::make_shared<CustomCamera>( width, height, glm::vec3( 0.0F, 0.0F, 3.0F ) ) );
+
+  // Custom window
+  renderer.setWindow( std::make_shared<CustomWindow>( renderer.getCamera( ), width, height, "Example", SDL_WINDOW_RESIZABLE ) );
+
+  // Custom ImGui based Gui
+  renderer.setGui( std::make_shared<CustomGui>( &renderer ) );
+
+  // Use resources wisely by introducing the renderer to the anticipated total amount of various entities.
   renderer.settings.setMaxDirectionalLights( 5 );
-  renderer.settings.setMaxDirectionalLights( 0 ); // Bad input: 1 will be used instead
+  renderer.settings.setMaxPointLights( 0 ); // Bad input: 1 will be used instead
   renderer.settings.setMaxGeometryNodes( 5 );
 
-  // ... and initialize it.
+  // ... and initialize the renderer.
   renderer.init( );
-
-  // Setup your own ImGui based Gui.
-  auto myGui = std::make_shared<CustomGui>( );
-  renderer.setGui( myGui );
-
-  myGui->setRenderer( &renderer );
-  myWindow->setCamera( myCam );
 
   renderer.setModels( { "models/sphere.obj", "models/awpdlore/awpdlore.obj", "models/cube.obj" } );
 

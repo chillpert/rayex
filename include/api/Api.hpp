@@ -28,14 +28,11 @@ namespace RAYEXEC_NAMESPACE
   class Api
   {
   public:
+    Api( ) = default;
+
     /// @param window A pointer to a window object that the API will use to display an image.
     /// @param camera A pointer to a camera object that will be used to "capture" the scene.
     Api( std::shared_ptr<Window> window, std::shared_ptr<Camera> camera );
-
-    /// @param window A pointer to a window object that the API will use to display an image.
-    /// @param gui A pointer to a GUI object that will be rendered on top of the final image.
-    /// @param camera A pointer to a camera object that will be used to "capture" the scene.
-    Api( std::shared_ptr<Window> window, std::shared_ptr<Gui> gui, std::shared_ptr<Camera> camera );
     RX_API ~Api( );
 
     Api( const Api& )  = delete;
@@ -151,7 +148,9 @@ namespace RAYEXEC_NAMESPACE
     /// Re-initializes the render pass to support the GUI and initializes the GUI itself.
     RX_API void initGui( );
 
-    Settings* settings = nullptr;
+    std::shared_ptr<Window> window = nullptr;
+    std::shared_ptr<Camera> camera = nullptr;
+    Settings* settings             = nullptr;
 
   private:
     RX_API void updateAccelerationStructures( );
@@ -201,9 +200,6 @@ namespace RAYEXEC_NAMESPACE
     void rasterize( );
 
     void rayTrace( );
-
-    std::shared_ptr<Window> window;
-    std::shared_ptr<Camera> camera;
 
     // Destruction through RAII for following members:
     vk::UniqueInstance instance;

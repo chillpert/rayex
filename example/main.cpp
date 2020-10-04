@@ -364,6 +364,11 @@ auto main( ) -> int
   // Create the renderer object ...
   RayExec renderer( myWindow, myCam );
 
+  // Use resources wisely by introducing the renderer to the anticipated amount of various entities.
+  renderer.settings.setAnticipatedDirectionalLights( 5 );
+  renderer.settings.setAnticipatedDirectionalLights( 0 ); // Bad input: 1 will be used instead
+  renderer.settings.setAnticipatedGeometryNodes( 5 );
+
   // ... and initialize it.
   renderer.init( );
 

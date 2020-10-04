@@ -80,6 +80,37 @@ void main()
 {
   uint modelIndex = rayTracingInstances.i[gl_InstanceID].modelIndex;
 
+  if ( modelIndex == 0)
+  {
+	prd.hitValue = vec3( 1.0, 0.0, 0.0 );
+  }
+  else if ( modelIndex == 1)
+  {
+	prd.hitValue = vec3( 1.0, 1.0, 1.0 );
+  }
+    else if ( modelIndex == 2)
+  {
+	prd.hitValue = vec3( 1.0, 0.0, 0.0 );
+  }
+    else if ( modelIndex == 3)
+  {
+	prd.hitValue = vec3( 0.0, 1.0, 0.0 );
+  }
+    else if ( modelIndex == 4)
+  {
+	prd.hitValue = vec3( 0.0, 0.0, 1.0 );
+  }
+    else if ( modelIndex == 5)
+  {
+	prd.hitValue = vec3( 0.0, 1.0, 1.0 );
+  }
+      else if ( modelIndex == 5)
+  {
+	prd.hitValue = vec3( 1.0, 1.0, 0.0 );
+  }
+
+  return;
+
   ivec3 ind = ivec3(indices[nonuniformEXT(modelIndex)].i[3 * gl_PrimitiveID + 0],   //
                     indices[nonuniformEXT(modelIndex)].i[3 * gl_PrimitiveID + 1],   //
                     indices[nonuniformEXT(modelIndex)].i[3 * gl_PrimitiveID + 2]);  //

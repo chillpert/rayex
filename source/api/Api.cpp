@@ -106,6 +106,7 @@ namespace RAYEXEC_NAMESPACE
 
     // Swapchain
     this->swapchain.init( &this->surface, this->renderPass.get( ) );
+    this->settings->refreshSwapchain = false;
 
     // Command pools
     this->graphicsCmdPool = vk::Initializer::initCommandPoolUnique( g_graphicsFamilyIndex, vk::CommandPoolCreateFlagBits::eResetCommandBuffer );
@@ -121,10 +122,7 @@ namespace RAYEXEC_NAMESPACE
     initSyncObjects( );
 
     // At this point nodes are unknown. So I just create a storage buffer with the maximum value or with the anticipated value in settings.
-    uint32_t maxInstanceCount = this->settings->anticipatedGeometryNodes.has_value( ) ? this->settings->anticipatedGeometryNodes.value( ) : g_maxGeometryNodes;
-    this->rtInstances.resize( maxInstanceCount );
-    this->rayTracingInstancesBuffer.init<RayTracingInstance>( this->rtInstances );
-    this->rtInstances.clear( );
+    initRayTracingInstancesBuffer( );
   }
 
   void Api::initScene( )
@@ -136,20 +134,7 @@ namespace RAYEXEC_NAMESPACE
     this->rayTracingInstancesBuffer.fill<RayTracingInstance>( this->rtInstances.data( ) );
 
     // Update RT scene descriptor sets.
-    vk::DescriptorBufferInfo rtInstancesInfo( this->rayTracingInstancesBuffer.get( ),
-                                              0,
-                                              VK_WHOLE_SIZE );
-
-    this->rtSceneBindings.write( this->rtSceneDescriptorSets, 0, this->cameraUniformBuffer.bufferInfos );
-    this->rtSceneBindings.write( this->rtSceneDescriptorSets, 1, this->lightsUniformBuffer.bufferInfos );
-    this->rtSceneBindings.write( this->rtSceneDescriptorSets, 2, &rtInstancesInfo );
-    this->rtSceneBindings.update( );
-
-    // Update RS scene descriptor sets.
-    this->rsSceneBindings.write( this->rsSceneDescriptorSets, 0, this->cameraUniformBuffer.bufferInfos );
-    this->rsSceneBindings.write( this->rsSceneDescriptorSets, 1, this->lightsUniformBuffer.bufferInfos );
-    this->rsSceneBindings.write( this->rsSceneDescriptorSets, 2, &rtInstancesInfo );
-    this->rsSceneBindings.update( );
+    updateSceneDescriptors( );
 
     // Update RT model data.
     for ( const auto& model : models )
@@ -194,6 +179,17 @@ namespace RAYEXEC_NAMESPACE
     updateSettings( );
 
     updateUniformBuffers( );
+
+    if ( this->exceededAnticipatedGeometryNodes )
+    {
+      this->exceededAnticipatedGeometryNodes = false;
+
+      g_device.waitIdle( );
+      initRayTracingInstancesBuffer( );
+      updateSceneDescriptors( );
+
+      recordSwapchainCommandBuffers( );
+    }
 
     // Upload scene description
     if ( this->uploadSceneDescriptionData )
@@ -346,6 +342,7 @@ namespace RAYEXEC_NAMESPACE
     auto screenSize = this->swapchain.getExtent( );
     this->camera->setSize( screenSize.width, screenSize.height );
 
+    this->settings->refreshSwapchain = false;
     RX_SUCCESS( "Swapchain recreation finished." );
   }
 
@@ -435,7 +432,8 @@ namespace RAYEXEC_NAMESPACE
 
     this->rsPipeline.init( allRsDescriptorSetLayouts, this->renderPass.get( ), viewport, scissor, this->settings );
 
-    this->pipelinesReady = true;
+    this->pipelinesReady            = true;
+    this->settings->refreshPipeline = false;
   }
 
   void Api::initRenderPass( )
@@ -720,10 +718,9 @@ namespace RAYEXEC_NAMESPACE
       this->rsSceneDescriptorSets      = vk::Initializer::initDescriptorSetsUnique( this->rsSceneDescriptorPool, this->rsSceneDescriptorSetLayout );
     }
 
-    uint32_t modelCount = this->settings->anticipatedModels.has_value( ) ? this->settings->anticipatedModels.value( ) : static_cast<uint32_t>( modelPaths.size( ) );
     // Vertex model data descriptor set layout.
     {
-      this->vertexDataBindings.add( 0, vk::DescriptorType::eStorageBuffer, vk::ShaderStageFlagBits::eClosestHitKHR, modelCount, vk::DescriptorBindingFlagBits::eVariableDescriptorCount );
+      this->vertexDataBindings.add( 0, vk::DescriptorType::eStorageBuffer, vk::ShaderStageFlagBits::eClosestHitKHR, g_modelCount, vk::DescriptorBindingFlagBits::eVariableDescriptorCount );
 
       this->vertexDataDescriptorSetLayout = this->vertexDataBindings.initLayoutUnique( );
       this->vertexDataDescriptorPool      = this->vertexDataBindings.initPoolUnique( static_cast<uint32_t>( g_maxGeometryNodes ) * g_swapchainImageCount );
@@ -732,7 +729,7 @@ namespace RAYEXEC_NAMESPACE
 
     // Index model data descriptor set layout.
     {
-      this->indexDataBindings.add( 0, vk::DescriptorType::eStorageBuffer, vk::ShaderStageFlagBits::eClosestHitKHR, modelCount, vk::DescriptorBindingFlagBits::eVariableDescriptorCount );
+      this->indexDataBindings.add( 0, vk::DescriptorType::eStorageBuffer, vk::ShaderStageFlagBits::eClosestHitKHR, g_modelCount, vk::DescriptorBindingFlagBits::eVariableDescriptorCount );
 
       this->indexDataDescriptorSetLayout = this->indexDataBindings.initLayoutUnique( );
       this->indexDataDescriptorPool      = this->indexDataBindings.initPoolUnique( static_cast<uint32_t>( g_maxGeometryNodes ) * g_swapchainImageCount );
@@ -744,21 +741,25 @@ namespace RAYEXEC_NAMESPACE
 
     // Uniform buffers for light nodes
     this->lightsUniformBuffer.init<LightsUbo>( );
-  }
+  } // namespace RAYEXEC_NAMESPACE
 
   void Api::updateSettings( )
   {
     if ( this->settings->refreshPipeline )
     {
-      this->settings->refreshPipeline  = false;
-      this->settings->refreshSwapchain = false;
+      this->settings->refreshPipeline = false;
 
       g_device.waitIdle( );
 
-      initPipelines( );
-      this->swapchainCommandBuffers.init( this->graphicsCmdPool.get( ), g_swapchainImageCount, vk::CommandBufferUsageFlagBits::eRenderPassContinue );
+#ifdef RX_COPY_RESOURCES
+      RX_INFO( "Copying shader resources to binary output directory. " );
+      std::filesystem::copy( RX_RESOURCES_PATH "shaders", RX_PATH_TO_LIBRARY "shaders", std::filesystem::copy_options::overwrite_existing | std::filesystem::copy_options::recursive );
+#endif
 
-      recreateSwapchain( );
+      initPipelines( );
+      this->rayTracingBuilder.createShaderBindingTable( this->rtPipeline.get( ) );
+
+      recordSwapchainCommandBuffers( );
     }
 
     if ( this->settings->refreshSwapchain )
@@ -818,15 +819,15 @@ namespace RAYEXEC_NAMESPACE
 
   void Api::setModels( const std::vector<std::string>& modelPaths )
   {
+    g_modelCount     = static_cast<uint32_t>( modelPaths.size( ) );
     this->modelPaths = modelPaths;
     this->models.clear( );
 
     this->vertexDataBufferInfos.clear( );
     this->indexDataBufferInfos.clear( );
 
-    size_t modelCount = this->settings->anticipatedModels.has_value( ) ? static_cast<size_t>( this->settings->anticipatedModels.value( ) ) : modelPaths.size( );
-    this->vertexDataBufferInfos.reserve( modelCount );
-    this->indexDataBufferInfos.reserve( modelCount );
+    this->vertexDataBufferInfos.reserve( modelPaths.size( ) );
+    this->indexDataBufferInfos.reserve( modelPaths.size( ) );
 
     for ( const auto& path : modelPaths )
     {
@@ -850,5 +851,31 @@ namespace RAYEXEC_NAMESPACE
 
     RX_ASSERT( false, "Could not find model. Did you forget to introduce the renderer to this model using RayExec::setModels( ) after initializing the renderer?" );
     return nullptr;
+  }
+
+  void Api::initRayTracingInstancesBuffer( )
+  {
+    uint32_t maxInstanceCount = this->settings->anticipatedGeometryNodes.has_value( ) ? this->settings->anticipatedGeometryNodes.value( ) : g_maxGeometryNodes;
+    this->rtInstances.resize( maxInstanceCount );
+    this->rayTracingInstancesBuffer.init<RayTracingInstance>( this->rtInstances );
+    this->rtInstances.clear( );
+  }
+
+  void Api::updateSceneDescriptors( )
+  {
+    vk::DescriptorBufferInfo rtInstancesInfo( this->rayTracingInstancesBuffer.get( ),
+                                              0,
+                                              VK_WHOLE_SIZE );
+
+    this->rtSceneBindings.write( this->rtSceneDescriptorSets, 0, this->cameraUniformBuffer.bufferInfos );
+    this->rtSceneBindings.write( this->rtSceneDescriptorSets, 1, this->lightsUniformBuffer.bufferInfos );
+    this->rtSceneBindings.write( this->rtSceneDescriptorSets, 2, &rtInstancesInfo );
+    this->rtSceneBindings.update( );
+
+    // Update RS scene descriptor sets.
+    this->rsSceneBindings.write( this->rsSceneDescriptorSets, 0, this->cameraUniformBuffer.bufferInfos );
+    this->rsSceneBindings.write( this->rsSceneDescriptorSets, 1, this->lightsUniformBuffer.bufferInfos );
+    this->rsSceneBindings.write( this->rsSceneDescriptorSets, 2, &rtInstancesInfo );
+    this->rsSceneBindings.update( );
   }
 } // namespace RAYEXEC_NAMESPACE

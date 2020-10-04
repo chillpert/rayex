@@ -71,10 +71,13 @@ namespace RAYEXEC_NAMESPACE
     {
       if ( dynamic_cast<GeometryNode*>( node.get( ) ) )
       {
-        auto ptr = std::dynamic_pointer_cast<GeometryNode>( node );
+        if ( this->geometryNodes.size( ) > g_maxGeometryNodes )
+        {
+          RX_WARN( "You have exceeded the maximum amount of geometry. Node can not be added." );
+          return;
+        }
 
-        std::cout << ptr->modelPath << ", " << ptr->rtInstance.geometryNodeId << std::endl;
-
+        auto ptr   = std::dynamic_pointer_cast<GeometryNode>( node );
         auto model = findModel( ptr->modelPath );
         this->geometryNodes.push_back( ptr );
 
@@ -86,6 +89,16 @@ namespace RAYEXEC_NAMESPACE
         this->rtInstances.push_back( ptr->rtInstance );
 
         this->uploadSceneDescriptionData = true;
+
+        if ( this->settings->anticipatedGeometryNodes.has_value( ) )
+        {
+          if ( static_cast<uint32_t>( this->geometryNodes.size( ) ) > this->settings->anticipatedGeometryNodes.value( ) )
+          {
+            RX_WARN( "You have exceeded the anticipated amount of geometry nodes. It is recommended to set a higher value to avoid pipeline recreations." );
+            this->exceededAnticipatedGeometryNodes = true;
+            this->uploadSceneDescriptionData       = false;
+          }
+        }
 
         // Handle the node's texture.
         auto texturePaths = ptr->material.getTextures( );
@@ -175,6 +188,10 @@ namespace RAYEXEC_NAMESPACE
 
     /// Creates a descriptor set layout for each the ray tracing components and the models.
     void initDescriptorSets( );
+
+    void initRayTracingInstancesBuffer( );
+
+    void updateSceneDescriptors( );
 
     void updateSettings( );
 
@@ -272,10 +289,11 @@ namespace RAYEXEC_NAMESPACE
 
     bool needSwapchainRecreate = false;
 
-    uint32_t totalDirectionalLights = 0;
-    uint32_t totalPointLights       = 0;
-    bool reloadShader               = false;
-    bool pipelinesReady             = false;
+    uint32_t totalDirectionalLights       = 0;
+    uint32_t totalPointLights             = 0;
+    bool reloadShader                     = false;
+    bool pipelinesReady                   = false;
+    bool exceededAnticipatedGeometryNodes = false;
   };
 } // namespace RAYEXEC_NAMESPACE
 

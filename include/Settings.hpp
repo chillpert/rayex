@@ -73,22 +73,23 @@ namespace RAYEXEC_NAMESPACE
 
     /// @todo Requires ray tracing instances storage buffer to be recreated if another scene with less or more instances is introduced.
     void setAnticipatedGeometryNodes( uint32_t amount );
-    void setAnticipatedModels( uint32_t amount );
 
-    uint32_t maxRecursionDepth = 4; ///< The maximum recursion depth.
+    /// @return Returns the maximum recursion depth on the GPU.
+    [[nodiscard]] auto getMaxRecursionDepth( ) const -> uint32_t { return this->maxRecursionDepth; }
+
   private:
     bool rayTrace         = true;  ///< If true renderer will use ray tracing, if false it will use rasterization.
     bool refreshPipeline  = false; ///< Keeps track of whether or not the graphics pipeline needs to be recreated.
     bool refreshSwapchain = false; ///< Keeps track of whether or not the swapchain needs to be recreated.
 
-    uint32_t anticipatedDirectionalLights = 5; ///< Can be set to avoid pipeline recreation everytime a directional light is added.
-    uint32_t anticipatedPointLights       = 5; ///< Can be set to avoid pipeline recreation everytime a point light is added.
-    std::optional<uint32_t> anticipatedGeometryNodes;
-    std::optional<uint32_t> anticipatedModels;
+    std::optional<uint32_t> anticipatedDirectionalLights; ///< Can be set to avoid pipeline recreation everytime a directional light is added.
+    std::optional<uint32_t> anticipatedPointLights;       ///< Can be set to avoid pipeline recreation everytime a point light is added.
+    std::optional<uint32_t> anticipatedGeometryNodes;     ///< Can be set to avoid pipeline recreation everytime a geometry node is added.
 
-    glm::vec4 clearColor    = glm::vec4( 0.45F, 0.45F, 0.45F, 1.0F ); ///< Stores the clear color.
-    uint32_t recursionDepth = 4;                                      ///< The current recursion depth.
-    std::string resourcePath;                                         ///< Where all resources like models, textures and shaders are stored.
+    glm::vec4 clearColor       = glm::vec4( 0.45F, 0.45F, 0.45F, 1.0F ); ///< Stores the clear color.
+    uint32_t maxRecursionDepth = 4;                                      ///< The maximum recursion depth.
+    uint32_t recursionDepth    = 4;                                      ///< The current recursion depth.
+    std::string resourcePath;                                            ///< Where all resources like models, textures and shaders are stored.
 
     bool automaticPipelineRefresh  = false;
     bool automaticSwapchainRefresh = false;

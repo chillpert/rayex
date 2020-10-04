@@ -101,7 +101,9 @@ namespace RAYEXEC_NAMESPACE
     this->layout = g_device.createPipelineLayoutUnique( pipelineLayoutInfo );
     RX_ASSERT( this->layout, "Failed to create pipeline layout for rasterization pipeline." );
 
-    Util::processShaderMacros( "shaders/simple3D.frag", settings->anticipatedDirectionalLights, settings->anticipatedPointLights, 0 );
+    uint32_t anticipatedDirectionalLights = settings->anticipatedDirectionalLights.has_value( ) ? settings->anticipatedDirectionalLights.value( ) : g_maxDirectionalLightNodes;
+    uint32_t anticipatedPointLights       = settings->anticipatedPointLights.has_value( ) ? settings->anticipatedPointLights.value( ) : g_maxPointLightNodes;
+    Util::processShaderMacros( "shaders/simple3D.frag", anticipatedDirectionalLights, anticipatedPointLights, 0 );
 
     auto vs = vk::Initializer::initShaderModuleUnique( "shaders/simple3D.vert" );
     auto fs = vk::Initializer::initShaderModuleUnique( "shaders/simple3D.frag" );
@@ -134,8 +136,9 @@ namespace RAYEXEC_NAMESPACE
 
   void Pipeline::init( const std::vector<vk::DescriptorSetLayout>& descriptorSetLayouts, const Settings* const settings )
   {
-    uint32_t anticipatedModels = settings->anticipatedModels.has_value( ) ? settings->anticipatedModels.value( ) : g_maxModels;
-    Util::processShaderMacros( "shaders/raytrace.rchit", settings->anticipatedDirectionalLights, settings->anticipatedPointLights, anticipatedModels );
+    uint32_t anticipatedDirectionalLights = settings->anticipatedDirectionalLights.has_value( ) ? settings->anticipatedDirectionalLights.value( ) : g_maxDirectionalLightNodes;
+    uint32_t anticipatedPointLights       = settings->anticipatedPointLights.has_value( ) ? settings->anticipatedPointLights.value( ) : g_maxPointLightNodes;
+    Util::processShaderMacros( "shaders/raytrace.rchit", anticipatedDirectionalLights, anticipatedPointLights, g_modelCount );
 
     auto rgen = vk::Initializer::initShaderModuleUnique( "shaders/raytrace.rgen" );
     auto miss = vk::Initializer::initShaderModuleUnique( "shaders/raytrace.rmiss" );

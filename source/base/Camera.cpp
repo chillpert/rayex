@@ -9,6 +9,7 @@ namespace RAYEXEC_NAMESPACE
   {
     updateVectors( );
     updateViewMatrix( );
+    updateProjectionMatrix( );
   }
 
   void Camera::setPosition( const glm::vec3& position )

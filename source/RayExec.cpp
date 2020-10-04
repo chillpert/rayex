@@ -26,9 +26,9 @@ namespace RAYEXEC_NAMESPACE
     this->api->settings = &this->settings;
     g_window            = this->window;
 
-    if ( this->settings.getResourcePath( ).empty( ) )
+    if ( this->settings.getAssetsPath( ).empty( ) )
     {
-      RX_WARN( "Path to resources was not set. Use Settings::setResourcePath(argc, argv) or Settings::setResourcePath(path) to set it. Closing application." );
+      RX_WARN( "Path to assets was not set. Use Settings::setAssetsPath(argc, argv) or Settings::setAssetsPath(path) to set it. Closing application." );
       this->running = false;
       return;
     }
@@ -41,9 +41,9 @@ namespace RAYEXEC_NAMESPACE
 #ifdef RX_COPY_RESOURCES
     RX_INFO( "Copying resources to binary output directory. " );
 
-    std::filesystem::copy( RX_RESOURCES_PATH "shaders", RX_PATH_TO_LIBRARY "shaders", std::filesystem::copy_options::overwrite_existing | std::filesystem::copy_options::recursive );
-    std::filesystem::copy( RX_RESOURCES_PATH "models", RX_PATH_TO_LIBRARY "models", std::filesystem::copy_options::overwrite_existing | std::filesystem::copy_options::recursive );
-    std::filesystem::copy( RX_RESOURCES_PATH "textures", RX_PATH_TO_LIBRARY "textures", std::filesystem::copy_options::overwrite_existing | std::filesystem::copy_options::recursive );
+    std::filesystem::copy( RX_ASSETS_PATH "shaders", RX_PATH_TO_LIBRARY "shaders", std::filesystem::copy_options::overwrite_existing | std::filesystem::copy_options::recursive );
+    std::filesystem::copy( RX_ASSETS_PATH "models", RX_PATH_TO_LIBRARY "models", std::filesystem::copy_options::overwrite_existing | std::filesystem::copy_options::recursive );
+    std::filesystem::copy( RX_ASSETS_PATH "textures", RX_PATH_TO_LIBRARY "textures", std::filesystem::copy_options::overwrite_existing | std::filesystem::copy_options::recursive );
 #endif
 
     this->initialized = this->window->init( );

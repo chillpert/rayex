@@ -27,7 +27,7 @@ namespace RAYEXEC_NAMESPACE
   {
     this->path = path;
 
-    std::string fullPath = g_resourcePath + std::string( path );
+    std::string fullPath = g_assetsPath + std::string( path );
 
     int width;
     int height;

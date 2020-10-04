@@ -8,7 +8,7 @@ namespace RAYEXEC_NAMESPACE
   /// Exposes all graphic settings supported by the renderer.
   ///
   /// If the client makes changes that require a pipeline or swapchain recreation, refresh must be set to true.
-  /// @warning The client has to call either setResourcePath(argc, argv) or setResourcePath(path) for the renderer to work.
+  /// @warning The client has to call either setAssetsPath(argc, argv) or setAssetsPath(path) for the renderer to work.
   /// @todo Split refresh into refreshPipeline and refreshSwapchain to avoid doing unnecessary operations.
   /// @todo Add some setting, that I don't remember anymore.
   class RX_API Settings
@@ -33,17 +33,17 @@ namespace RAYEXEC_NAMESPACE
     /// @param clearColor The new value for the clear color.
     void setClearColor( const glm::vec4& clearColor );
 
-    /// @return Returns the path to resources.
-    [[nodiscard]] inline auto getResourcePath( ) const -> std::string_view { return this->resourcePath; }
+    /// @return Returns the path to assets.
+    [[nodiscard]] inline auto getAssetsPath( ) const -> std::string_view { return this->assetsPath; }
 
-    /// Used to set a path to resources.
+    /// Used to set a path to assets.
     /// @param argc The argc parameter that can be retrieved from the main-function's parameters.
     /// @param argv The argv parameter that can be retrieved from the main-function's parameters.
-    void setResourcePath( int argc, char* argv[] );
+    void setAssetsPath( int argc, char* argv[] );
 
-    /// Used to set a path to resources.
-    /// @param path The path to resources.
-    void setResourcePath( std::string_view path );
+    /// Used to set a path to assets.
+    /// @param path The path to assets.
+    void setAssetsPath( std::string_view path );
 
     /// @return Returns true if ray tracing is enabled and false if rasterization is enabled.
     [[nodiscard]] auto getRayTracingEnabled( ) const -> bool { return this->rayTrace; }
@@ -88,7 +88,7 @@ namespace RAYEXEC_NAMESPACE
     glm::vec4 clearColor       = glm::vec4( 0.45F, 0.45F, 0.45F, 1.0F ); ///< Stores the clear color.
     uint32_t maxRecursionDepth = 4;                                      ///< The maximum recursion depth.
     uint32_t recursionDepth    = 4;                                      ///< The current recursion depth.
-    std::string resourcePath;                                            ///< Where all resources like models, textures and shaders are stored.
+    std::string assetsPath;                                              ///< Where all assets like models, textures and shaders are stored.
 
     bool automaticPipelineRefresh  = false;
     bool automaticSwapchainRefresh = false;

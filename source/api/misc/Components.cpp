@@ -25,5 +25,5 @@ namespace RAYEXEC_NAMESPACE
 
   uint32_t g_modelCount;
 
-  std::string g_resourcePath;
+  std::string g_assetsPath;
 } // namespace RAYEXEC_NAMESPACE

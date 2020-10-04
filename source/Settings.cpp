@@ -6,12 +6,12 @@ namespace RAYEXEC_NAMESPACE
 {
   Settings::Settings( )
   {
-    this->resourcePath = std::filesystem::current_path( ).string( ) += "/";
+    this->assetsPath = std::filesystem::current_path( ).string( ) += "/";
 
-    std::replace( this->resourcePath.begin( ), this->resourcePath.end( ), '\\', '/' );
+    std::replace( this->assetsPath.begin( ), this->assetsPath.end( ), '\\', '/' );
 
-    g_resourcePath = this->resourcePath;
-    RX_INFO( "Using default path as path to resources: ", this->resourcePath );
+    g_assetsPath = this->assetsPath;
+    RX_INFO( "Using default path as path to resources: ", this->assetsPath );
   }
 
   void Settings::setRecursionDepth( uint32_t recursionDepth )
@@ -35,34 +35,34 @@ namespace RAYEXEC_NAMESPACE
     this->refreshSwapchain = true;
   }
 
-  void Settings::setResourcePath( int argc, char* argv[] )
+  void Settings::setAssetsPath( int argc, char* argv[] )
   {
-    this->resourcePath = "";
+    this->assetsPath = "";
 
     for ( int i = 0; i < argc; ++i )
     {
-      this->resourcePath += argv[i];
+      this->assetsPath += argv[i];
     }
 
-    std::replace( this->resourcePath.begin( ), this->resourcePath.end( ), '\\', '/' );
+    std::replace( this->assetsPath.begin( ), this->assetsPath.end( ), '\\', '/' );
 
-    this->resourcePath = this->resourcePath.substr( 0, this->resourcePath.find_last_of( '/' ) + 1 );
+    this->assetsPath = this->assetsPath.substr( 0, this->assetsPath.find_last_of( '/' ) + 1 );
 
-    g_resourcePath = this->resourcePath;
+    g_assetsPath = this->assetsPath;
   }
 
-  void Settings::setResourcePath( std::string_view path )
+  void Settings::setAssetsPath( std::string_view path )
   {
-    this->resourcePath = path;
+    this->assetsPath = path;
 
-    std::replace( this->resourcePath.begin( ), this->resourcePath.end( ), '\\', '/' );
+    std::replace( this->assetsPath.begin( ), this->assetsPath.end( ), '\\', '/' );
 
     if ( path[path.size( ) - 1] != '/' )
     {
-      this->resourcePath += '/';
+      this->assetsPath += '/';
     }
 
-    g_resourcePath = this->resourcePath;
+    g_assetsPath = this->assetsPath;
   }
 
   void Settings::setEnableRayTracing( bool flag )

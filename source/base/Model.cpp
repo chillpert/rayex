@@ -25,7 +25,7 @@ namespace RAYEXEC_NAMESPACE
     std::string warn;
     std::string err;
 
-    std::string fullPath = g_resourcePath + this->path;
+    std::string fullPath = g_assetsPath + this->path;
 
     if ( !tinyobj::LoadObj( &attrib, &shapes, &materials, &warn, &err, fullPath.c_str( ) ) )
     {

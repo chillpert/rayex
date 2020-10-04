@@ -31,9 +31,9 @@ if(CMAKE_BUILD_TYPE STREQUAL "Debug")
 endif()
 
 if(BUILD_EXAMPLES)
-  add_compile_definitions(RX_RESOURCES_PATH="${PROJECT_SOURCE_DIR}/resources/")
+  add_compile_definitions(RX_ASSETS_PATH="${PROJECT_SOURCE_DIR}/assets/")
 else()
-  add_compile_definitions(RX_RESOURCES_PATH="")
+  add_compile_definitions(RX_ASSETS_PATH="")
 endif()
 
 # VULKAN
@@ -118,7 +118,7 @@ endif()
 
 # EXAMPLE
 if(BUILD_EXAMPLES)
-  add_compile_definitions(RX_COPY_RESOURCES)
+  add_compile_definitions(RX_COPY_ASSETS)
 
   include_directories(${PROJECT_SOURCE_DIR}/example)
 

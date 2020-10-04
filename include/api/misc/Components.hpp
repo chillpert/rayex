@@ -34,7 +34,7 @@ namespace RAYEXEC_NAMESPACE
   const size_t g_maxDirectionalLightNodes = 100;  ///< Global variable to store the maximum amount of directional light sources supported by the renderer.
   const size_t g_maxPointLightNodes       = 100;  ///< Global variable to store the maximum amount of point light sources supported by the renderer.
 
-  extern std::string g_resourcePath; ///< Path to where shaders, models and textures are stored.
+  extern std::string g_assetsPath; ///< Path to where shaders, models and textures are stored.
 } // namespace RAYEXEC_NAMESPACE
 
 #endif // COMPONENTS_HPP

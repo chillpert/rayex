@@ -718,9 +718,9 @@ namespace RAYEXEC_NAMESPACE
 
       g_device.waitIdle( );
 
-#ifdef RX_COPY_RESOURCES
+#ifdef RX_COPY_ASSETS
       RX_INFO( "Copying shader resources to binary output directory. " );
-      std::filesystem::copy( RX_RESOURCES_PATH "shaders", RX_PATH_TO_LIBRARY "shaders", std::filesystem::copy_options::overwrite_existing | std::filesystem::copy_options::recursive );
+      std::filesystem::copy( RX_ASSETS_PATH "shaders", RX_PATH_TO_LIBRARY "shaders", std::filesystem::copy_options::overwrite_existing | std::filesystem::copy_options::recursive );
 #endif
 
       initPipelines( );

@@ -32,7 +32,7 @@ add_executable(example ${PROJECT_SOURCE_DIR}/example/main.cpp ${FILES_EXAMPLE})
 
 if(${OS} STREQUAL "Windows")
   target_link_libraries(example
-      "${PROJECT_SOURCE_DIR}/build/lib/${BUILD_PATH}/renderer.lib"
+      renderer
       ${WINDOWING}
   )
 elseif(${OS} STREQUAL "Linux")

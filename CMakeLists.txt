@@ -7,9 +7,7 @@ option(BUILD_EXAMPLES "Build examples" ON)
 
 if(NOT CMAKE_BUILD_TYPE)
   message("MX: Build type not set. Continuing with: Debug")
-  set(CMAKE_BUILD_TYPE "Debug" CACHE STRING
-      "No build type was set"
-      FORCE)
+  set(CMAKE_BUILD_TYPE "Debug" CACHE STRING "No build type was set" FORCE)
 endif(NOT CMAKE_BUILD_TYPE)
 
 message(${CMAKE_BUILD_TYPE})
@@ -104,7 +102,6 @@ set_target_properties(renderer
   RUNTIME_OUTPUT_DIRECTORY_RELWITHDEBINFO "${PROJECT_SOURCE_DIR}/build/bin/relwithbebinfo"
 )
 
-
 # set build paths
 if(${CMAKE_BUILD_TYPE} STREQUAL "Debug")
   set(BUILD_PATH debug)
@@ -118,59 +115,7 @@ endif()
 
 # EXAMPLE
 if(BUILD_EXAMPLES)
-  add_compile_definitions(RX_COPY_ASSETS)
-
-  include_directories(${PROJECT_SOURCE_DIR}/example)
-
-  file(GLOB FILES_EXAMPLE
-    "${PROJECT_SOURCE_DIR}/example/*.cpp"
-  )
-
-  add_executable(example ${PROJECT_SOURCE_DIR}/example/main.cpp ${FILES_EXAMPLE})
-
-  if(${OS} STREQUAL "Windows")
-    target_link_libraries(example
-      "${PROJECT_SOURCE_DIR}/build/lib/${BUILD_PATH}/renderer.lib"
-      ${WINDOWING}
-    )
-  elseif(${OS} STREQUAL "Linux")
-    target_link_libraries(example
-      renderer
-      ${WINDOWING}
-    )
-  endif()
-
-  set_target_properties(example
-    PROPERTIES
-    CXX_STANDARD 17
-    ARCHIVE_OUTPUT_DIRECTORY_DEBUG "${PROJECT_SOURCE_DIR}/build/lib/debug"
-    LIBRARY_OUTPUT_DIRECTORY_DEBUG "${PROJECT_SOURCE_DIR}/build/lib/debug"
-    RUNTIME_OUTPUT_DIRECTORY_DEBUG "${PROJECT_SOURCE_DIR}/build/bin/debug"
-
-    ARCHIVE_OUTPUT_DIRECTORY_RELEASE "${PROJECT_SOURCE_DIR}/build/lib/release"
-    LIBRARY_OUTPUT_DIRECTORY_RELEASE "${PROJECT_SOURCE_DIR}/build/lib/release"
-    RUNTIME_OUTPUT_DIRECTORY_RELEASE "${PROJECT_SOURCE_DIR}/build/bin/release"
-
-    ARCHIVE_OUTPUT_DIRECTORY_MINSIZEREL "${PROJECT_SOURCE_DIR}/build/lib/minsizerel"
-    LIBRARY_OUTPUT_DIRECTORY_MINSIZEREL "${PROJECT_SOURCE_DIR}/build/lib/minsizerel"
-    RUNTIME_OUTPUT_DIRECTORY_MINSIZEREL "${PROJECT_SOURCE_DIR}/build/bin/minsizerel"   
-
-    ARCHIVE_OUTPUT_DIRECTORY_RELWITHDEBINFO "${PROJECT_SOURCE_DIR}/build/lib/relwithbebinfo"
-    LIBRARY_OUTPUT_DIRECTORY_RELWITHDEBINFO "${PROJECT_SOURCE_DIR}/build/lib/relwithbebinfo"
-    RUNTIME_OUTPUT_DIRECTORY_RELWITHDEBINFO "${PROJECT_SOURCE_DIR}/build/bin/relwithbebinfo"
-  )
-
-  # copy dlls to binary location in post build
-  if(${OS} STREQUAL "Windows")
-    add_custom_command(
-      TARGET example
-      POST_BUILD
-      COMMAND ${CMAKE_COMMAND} -E copy
-              ${PROJECT_SOURCE_DIR}/external/SDL2/binaries/win64/SDL2.dll
-              ${PROJECT_SOURCE_DIR}/build/bin/${BUILD_PATH}/SDL2.dll
-      COMMENT "Running POST_BUILD action: Copying SDL2d.dll to binary location"
-      )
-  endif()
+  include(${PROJECT_SOURCE_DIR}/example/CMakeLists.txt)
 endif()
 
 add_compile_definitions(RX_PATH_TO_LIBRARY="${PROJECT_SOURCE_DIR}/build/bin/${BUILD_PATH}/")

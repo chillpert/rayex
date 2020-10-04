@@ -1,5 +1,5 @@
 # RAYEXEC
-RAYEXEC is a cross-platform Vulkan-based path tracing rendering library. 
+RAYEXEC is a work-in-progress cross-platform Vulkan-based path tracing rendering library. 
 
 It runs on both Linux (x64) and Windows (x64) using the Vulkan API. The purpose of this software is to provide a cross-platform renderer with path tracing capabilities that is easy to integrate into existing projects. It uses SDL2 for windowing and GLM as its maths library. RAYEXEC features native [Dear ImGui](https://github.com/ocornut/imgui) support.
 
@@ -14,7 +14,7 @@ To integrate RAYEXEC in your existing C++ / CMake project, follow the steps belo
 3. Include the CMakeLists.txt inside the **include folder** to your CMakeLists.txt
 4. Link your target against the **shared library objects** and against SDL2 
 
-Using CMake is not obligatory but it assures platform independence.
+Using CMake is not obligatory but recommended as RAYEXEC comes with its own CMakeLists.txt that will properly include all project headers. A release also comes with a fully functional example including a complete CMakeLists.txt that can be used as reference.
 
 ## Build
 ### Linux

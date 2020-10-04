@@ -70,7 +70,7 @@ namespace RAYEXEC_NAMESPACE
     template <typename T = Model>
     void setNodes( const std::vector<std::shared_ptr<Node>>& nodes )
     {
-      api.setNodes<T>( nodes );
+      api->setNodes<T>( nodes );
     }
 
     /// Used to set a custom camera.

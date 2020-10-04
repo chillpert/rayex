@@ -37,7 +37,7 @@ if(${OS} STREQUAL "Windows")
   )
 elseif(${OS} STREQUAL "Linux")
   target_link_libraries(example
-      "${PROJECT_SOURCE_DIR}/build/lib/${BUILD_PATH}/renderer"
+      renderer
       ${WINDOWING}
   )
 endif()

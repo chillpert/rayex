@@ -38,7 +38,7 @@ namespace RAYEXEC_NAMESPACE
       return;
     }
 
-#ifdef RX_COPY_RESOURCES
+#ifdef RX_COPY_ASSETS
     RX_INFO( "Copying resources to binary output directory. " );
 
     std::filesystem::copy( RX_ASSETS_PATH "shaders", RX_PATH_TO_LIBRARY "shaders", std::filesystem::copy_options::overwrite_existing | std::filesystem::copy_options::recursive );

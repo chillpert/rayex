@@ -193,6 +193,8 @@ namespace RAYEXEC_NAMESPACE
 
     void updateSceneDescriptors( );
 
+    void updateRayTracingModelData( );
+
     void updateSettings( );
 
     void updateUniformBuffers( );

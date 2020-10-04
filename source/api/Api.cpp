@@ -136,26 +136,8 @@ namespace RAYEXEC_NAMESPACE
     // Update RT scene descriptor sets.
     updateSceneDescriptors( );
 
-    // Update RT model data.
-    for ( const auto& model : models )
-    {
-      vk::DescriptorBufferInfo vertexDataBufferInfo( model->vertexBuffer.get( ),
-                                                     0,
-                                                     VK_WHOLE_SIZE );
-
-      vk::DescriptorBufferInfo indexDataBufferInfo( model->indexBuffer.get( ),
-                                                    0,
-                                                    VK_WHOLE_SIZE );
-
-      this->vertexDataBufferInfos.push_back( vertexDataBufferInfo );
-      this->indexDataBufferInfos.push_back( indexDataBufferInfo );
-    }
-
-    this->vertexDataBindings.writeArray( this->vertexDataDescriptorSets, 0, this->vertexDataBufferInfos.data( ) );
-    this->vertexDataBindings.update( );
-
-    this->indexDataBindings.writeArray( this->indexDataDescriptorSets, 0, this->indexDataBufferInfos.data( ) );
-    this->indexDataBindings.update( );
+    // Update the vertex and index SSBO descriptors for the ray tracing shaders.
+    updateRayTracingModelData( );
 
     // Initialize a rasterization and raytracing pipeline.
     initPipelines( );
@@ -877,5 +859,29 @@ namespace RAYEXEC_NAMESPACE
     this->rsSceneBindings.write( this->rsSceneDescriptorSets, 1, this->lightsUniformBuffer.bufferInfos );
     this->rsSceneBindings.write( this->rsSceneDescriptorSets, 2, &rtInstancesInfo );
     this->rsSceneBindings.update( );
+  }
+
+  void Api::updateRayTracingModelData( )
+  {
+    // Update RT model data.
+    for ( const auto& model : models )
+    {
+      vk::DescriptorBufferInfo vertexDataBufferInfo( model->vertexBuffer.get( ),
+                                                     0,
+                                                     VK_WHOLE_SIZE );
+
+      vk::DescriptorBufferInfo indexDataBufferInfo( model->indexBuffer.get( ),
+                                                    0,
+                                                    VK_WHOLE_SIZE );
+
+      this->vertexDataBufferInfos.push_back( vertexDataBufferInfo );
+      this->indexDataBufferInfos.push_back( indexDataBufferInfo );
+    }
+
+    this->vertexDataBindings.writeArray( this->vertexDataDescriptorSets, 0, this->vertexDataBufferInfos.data( ) );
+    this->vertexDataBindings.update( );
+
+    this->indexDataBindings.writeArray( this->indexDataDescriptorSets, 0, this->indexDataBufferInfos.data( ) );
+    this->indexDataBindings.update( );
   }
 } // namespace RAYEXEC_NAMESPACE

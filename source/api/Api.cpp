@@ -525,6 +525,7 @@ namespace RAYEXEC_NAMESPACE
       this->swapchainCommandBuffers.get( imageIndex ).setScissor( 0, 1, &scissor ); // CMD
 
       // Draw models
+      uint32_t id = 0;
       for ( const auto& node : this->geometryNodes )
       {
         uint32_t instanceCount = 1;
@@ -538,8 +539,6 @@ namespace RAYEXEC_NAMESPACE
             continue;
           }
         }
-
-        uint32_t id = node->rtInstance.geometryNodeId;
 
         this->swapchainCommandBuffers.get( imageIndex ).pushConstants( this->rsPipeline.getLayout( ),    // layout
                                                                        vk::ShaderStageFlagBits::eVertex, // stageFlags
@@ -576,6 +575,8 @@ namespace RAYEXEC_NAMESPACE
                                                                      0,                              // first index
                                                                      0,                              // vertex offset
                                                                      0 );                            // first instance
+
+        ++id;
       }
 
       this->renderPass.end( this->swapchainCommandBuffers.get( imageIndex ) );

@@ -83,9 +83,9 @@ public:
 class CustomWindow : public Window
 {
 public:
-  CustomWindow( std::shared_ptr<Camera> camera, int width, int height, const char* title, uint32_t flags ) :
-    camera( std::move( camera ) ),
-    Window( width, height, title, flags )
+  CustomWindow( int width, int height, const char* title, uint32_t flags, std::shared_ptr<Camera> camera ) :
+    Window( width, height, title, flags ),
+    camera( std::move( camera ) )
   {
   }
 
@@ -346,8 +346,8 @@ private:
 auto main( ) -> int
 {
   // Window dimensions.
-  int width  = 900;
-  int height = 600;
+  const int width  = 900;
+  const int height = 600;
 
   // Create the renderer object ...
   RayExec renderer;
@@ -356,7 +356,7 @@ auto main( ) -> int
   renderer.setCamera( std::make_shared<CustomCamera>( width, height, glm::vec3( 0.0F, 0.0F, 3.0F ) ) );
 
   // Custom window
-  renderer.setWindow( std::make_shared<CustomWindow>( renderer.getCamera( ), width, height, "Example", SDL_WINDOW_RESIZABLE ) );
+  renderer.setWindow( std::make_shared<CustomWindow>( width, height, "Example", SDL_WINDOW_RESIZABLE, renderer.getCamera( ) ) );
 
   // Custom ImGui based Gui
   renderer.setGui( std::make_shared<CustomGui>( &renderer ) );

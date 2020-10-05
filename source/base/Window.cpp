@@ -77,7 +77,7 @@ namespace RAYEXEC_NAMESPACE
 #endif
   }
 
-  auto Window::getInstanceExtensions( ) -> std::vector<const char*>
+  auto Window::getInstanceExtensions( ) -> gsl::span<const char*>
   {
     uint32_t sdlExtensionsCount;
     SDL_bool result = SDL_Vulkan_GetInstanceExtensions( this->window, &sdlExtensionsCount, nullptr );
@@ -87,23 +87,15 @@ namespace RAYEXEC_NAMESPACE
       RX_ERROR( "Failed to get extensions required by SDL." );
     }
 
-    const char** sdlExtensionsNames = new const char*[sdlExtensionsCount];
-    result                          = SDL_Vulkan_GetInstanceExtensions( this->window, &sdlExtensionsCount, sdlExtensionsNames );
+    gsl::owner<const char**> sdlExtensionsNames = new const char*[sdlExtensionsCount];
+    result                                      = SDL_Vulkan_GetInstanceExtensions( this->window, &sdlExtensionsCount, sdlExtensionsNames );
 
     if ( result != SDL_TRUE )
     {
       RX_ERROR( "Failed to get extensions required by SDL." );
     }
 
-    std::vector<const char*> extensions;
-    extensions.reserve( sdlExtensionsCount );
-
-    for ( size_t i = 0; i < sdlExtensionsCount; ++i )
-    {
-      extensions.push_back( sdlExtensionsNames[i] );
-    }
-
-    return extensions;
+    return gsl::span<const char*>( sdlExtensionsNames, sdlExtensionsCount );
   }
 
   auto Window::createSurface( vk::Instance instance ) -> vk::SurfaceKHR
@@ -145,11 +137,6 @@ namespace RAYEXEC_NAMESPACE
 
   auto Window::minimized( ) -> bool
   {
-    if ( ( SDL_GetWindowFlags( this->window ) & SDL_WINDOW_MINIMIZED ) != 0U )
-    {
-      return true;
-    }
-
-    return false;
+    return ( ( SDL_GetWindowFlags( this->window ) & SDL_WINDOW_MINIMIZED ) != 0U );
   }
 } // namespace RAYEXEC_NAMESPACE

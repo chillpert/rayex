@@ -546,7 +546,7 @@ namespace vk::Initializer
     VULKAN_HPP_DEFAULT_DISPATCHER.init( vkGetInstanceProcAddr );
 
     // Retrieve all extensions needed by SDL2.
-    std::vector<const char*> windowExtensions = rx::g_window->getInstanceExtensions( );
+    gsl::span<const char*> windowExtensions = rx::g_window->getInstanceExtensions( );
     extensions.insert( extensions.end( ), windowExtensions.begin( ), windowExtensions.end( ) );
 
     // Check if all extensions and layers needed are available.

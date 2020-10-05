@@ -49,8 +49,6 @@
 #define RX_FATAL( ... )   LOGGER_NAMESPACE::fatal( RAYEXEC_NAMESPACE_STRINGIFIED, ": ", __VA_ARGS__ )
 // Using redundant boolean literal in ternary expression to support vulkan object error check.
 #define RX_ASSERT( statement, ... ) LOGGER_NAMESPACE::assert2( statement ? true : false, RAYEXEC_NAMESPACE_STRINGIFIED, ": ", __VA_ARGS__ )
-#define RX_ASSERT_INIT( flag ) \
-  if ( !flag ) return false
 
 // Doxygen groups
 /// @defgroup Base Interfaces

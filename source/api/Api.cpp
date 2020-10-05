@@ -198,7 +198,7 @@ namespace RAYEXEC_NAMESPACE
     if ( this->imagesInFlight[imageIndex] )
     {
       vk::Result result = g_device.waitForFences( 1, &this->imagesInFlight[currentFrame], VK_TRUE, UINT64_MAX );
-      RX_ASSERT( ( result == vk::Result::eSuccess ), "Failed to wait for fences." );
+      RX_ASSERT( result == vk::Result::eSuccess, "Failed to wait for fences." );
     }
 
     // This will mark the current image to be in use by this frame.

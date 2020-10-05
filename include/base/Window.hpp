@@ -7,6 +7,9 @@
 
 namespace RAYEXEC_NAMESPACE
 {
+  const int defaultWidth  = 900;
+  const int defaultHeight = 600;
+
   /// Implements a SDL-based window.
   ///
   /// In order to handle events the client has to create a class that inherits from Window.
@@ -25,13 +28,16 @@ namespace RAYEXEC_NAMESPACE
     /// @param height The height of the window in pixels.
     /// @param title The title of the window shown in the title bar.
     /// @param flags The window flags (no additional flags if not specified).
-    RX_API Window( int width = 900, int height = 600, const char* title = "My Application", uint32_t flags = 0 );
+    RX_API Window( int width = defaultWidth, int height = defaultHeight, const char* title = "My Application", uint32_t flags = 0 );
 
     /// Destructor of Window.
     ///
     /// Will also clean up the object's resources.
     /// @see clean()
     RX_API virtual ~Window( );
+
+    Window( const Window& ) = default;
+    auto operator=( const Window& ) -> Window& = default;
 
     /// Initializes the SDL-window.
     RX_API virtual auto init( ) -> bool;
@@ -52,12 +58,12 @@ namespace RAYEXEC_NAMESPACE
 
     /// Used to retrieve all Vulkan instance extensions required by SDL.
     /// @return Returns a vector containing the names of the required extensions.
-    auto getInstanceExtensions( ) -> std::vector<const char*>;
+    [[nodiscard]] auto getInstanceExtensions( ) -> gsl::span<const char*>;
 
     /// Creates a Vulkan surface.
     /// @param instance The Vulkan instance.
     /// @return Returns the Vulkan surface.
-    auto createSurface( vk::Instance instance ) -> vk::SurfaceKHR;
+    [[nodiscard]] auto createSurface( vk::Instance instance ) -> vk::SurfaceKHR;
 
     /// @return Returns the actual SDL_Window object.
     RX_API inline auto get( ) -> SDL_Window* { return window; }

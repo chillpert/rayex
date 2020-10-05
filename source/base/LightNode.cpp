@@ -9,27 +9,20 @@ namespace RAYEXEC_NAMESPACE
 
   auto DirectionalLightNode::toUbo( ) -> DirectionalLightNode::Ubo
   {
-    Ubo ubo;
-    ubo.ambient  = combine( this->ambient, this->ambientIntensity );
-    ubo.diffuse  = combine( this->diffuse, this->diffuseIntensity );
-    ubo.specular = combine( this->specular, this->specularIntensity );
-    ubo.position = combine( this->position, this->exists );
-
-    return ubo;
+    return DirectionalLightNode::Ubo { combine( this->ambient, this->ambientIntensity ),
+                                       combine( this->diffuse, this->diffuseIntensity ),
+                                       combine( this->specular, this->specularIntensity ),
+                                       combine( this->position, this->exists ) };
   }
 
   auto PointLightNode::toUbo( ) -> PointLightNode::Ubo
   {
-    Ubo ubo;
-    ubo.ambient  = combine( this->ambient, this->ambientIntensity );
-    ubo.diffuse  = combine( this->diffuse, this->diffuseIntensity );
-    ubo.specular = combine( this->specular, this->specularIntensity );
-    ubo.position = combine( this->position, this->exists );
-
-    ubo.constant  = this->constant;
-    ubo.linear    = this->linear;
-    ubo.quadratic = this->quadratic;
-
-    return ubo;
+    return PointLightNode::Ubo { combine( this->ambient, this->ambientIntensity ),
+                                 combine( this->diffuse, this->diffuseIntensity ),
+                                 combine( this->specular, this->specularIntensity ),
+                                 combine( this->position, this->exists ),
+                                 this->constant,
+                                 this->linear,
+                                 this->quadratic };
   }
 } // namespace RAYEXEC_NAMESPACE

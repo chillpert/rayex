@@ -6,14 +6,10 @@
 namespace RAYEXEC_NAMESPACE
 {
   /// Contains all rendering properties and textures.
-  class Material
+  struct Material
   {
-  public:
     Material( ) = default;
-    Material( std::string diffuseTexture ) :
-      diffuseTexture( { diffuseTexture } )
-    {
-    }
+    RX_API Material( std::string_view diffuseTexture );
 
     glm::vec3 ambient       = { };
     glm::vec3 diffuse       = { };
@@ -25,38 +21,12 @@ namespace RAYEXEC_NAMESPACE
     float reflectionIndex = 1.0f;
     float opacity         = 1.0f;
 
-    std::vector<std::string> diffuseTexture;
-    std::vector<std::string> specularTexture;
-    std::vector<std::string> bumpTexture;
-    std::vector<std::string> displacementTexture;
-    std::vector<std::string> alphaTexture;
-    std::vector<std::string> reflectionTexture;
-
-    /// @return Returns a set of all textures this model requires.
-    std::unordered_set<std::string> getTextures( )
-    {
-      std::unordered_set<std::string> textures;
-
-      if ( !diffuseTexture.empty( ) )
-        textures.insert( diffuseTexture.begin( ), diffuseTexture.end( ) );
-
-      if ( !specularTexture.empty( ) )
-        textures.insert( specularTexture.begin( ), specularTexture.end( ) );
-
-      if ( !bumpTexture.empty( ) )
-        textures.insert( bumpTexture.begin( ), bumpTexture.end( ) );
-
-      if ( !displacementTexture.empty( ) )
-        textures.insert( displacementTexture.begin( ), displacementTexture.end( ) );
-
-      if ( !alphaTexture.empty( ) )
-        textures.insert( alphaTexture.begin( ), alphaTexture.end( ) );
-
-      if ( !reflectionTexture.empty( ) )
-        textures.insert( reflectionTexture.begin( ), reflectionTexture.end( ) );
-
-      return textures;
-    }
+    std::vector<std::string> diffuseTextures;
+    std::vector<std::string> specularTextures;
+    std::vector<std::string> bumpTextures;
+    std::vector<std::string> displacementTextures;
+    std::vector<std::string> alphaTextures;
+    std::vector<std::string> reflectionTextures;
   };
 } // namespace RAYEXEC_NAMESPACE
 

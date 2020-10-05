@@ -88,17 +88,6 @@ namespace RAYEXEC_NAMESPACE
 
         this->uploadSceneDescriptionData = true;
 
-        // Handle the node's texture.
-        auto texturePaths = ptr->material.getTextures( );
-
-        for ( const auto& texturePath : texturePaths )
-        {
-          auto it = this->textures.find( texturePath );
-          // Texture does not exist already. It will be created.
-          if ( it == this->textures.end( ) )
-            this->textures.insert( { texturePath, std::make_shared<Texture>( texturePath ) } );
-        }
-
         if ( record && this->pipelinesReady )
         {
           updateAccelerationStructures( );

@@ -68,7 +68,7 @@ namespace RAYEXEC_NAMESPACE
       glm::vec4 position; ///< Encodes the light's position in the first three entries and whether or not it is activated in the fourth entry.
     };
 
-    auto toUbo( ) -> Ubo;
+    [[nodiscard]] auto toUbo( ) -> Ubo;
   };
 
   /// Can be used to add point light sources to the scene.
@@ -107,7 +107,7 @@ namespace RAYEXEC_NAMESPACE
       float quadratic;
     };
 
-    auto toUbo( ) -> Ubo;
+    [[nodiscard]] auto toUbo( ) -> Ubo;
   };
 } // namespace RAYEXEC_NAMESPACE
 

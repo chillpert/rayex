@@ -27,6 +27,12 @@ namespace RAYEXEC_NAMESPACE
 
     RX_API ~Camera( ) = default;
 
+    RX_API Camera( const Camera& ) = default;
+    Camera( const Camera&& )       = delete;
+
+    RX_API auto operator=( const Camera& ) -> Camera& = default;
+    auto operator=( const Camera && ) -> Camera& = delete;
+
     /// Is used to update camera vectors etc.
     ///
     /// The client has to implement this function to work like intended.

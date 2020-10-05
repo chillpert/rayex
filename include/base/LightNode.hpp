@@ -19,7 +19,15 @@ namespace RAYEXEC_NAMESPACE
   class LightNode : public TransformNode
   {
   public:
+    LightNode( )           = default;
     ~LightNode( ) override = default;
+
+    LightNode( const LightNode& )  = delete;
+    LightNode( const LightNode&& ) = delete;
+
+    auto operator=( const LightNode& ) -> LightNode& = delete;
+    auto operator=( const LightNode && ) -> LightNode& = delete;
+
     [[nodiscard]] auto getType( ) const -> NodeType override { return NodeType::eLightNode; }
 
     glm::vec3 ambient  = { 0.2F, 0.2F, 0.2F }; ///< The ambient color.
@@ -37,7 +45,15 @@ namespace RAYEXEC_NAMESPACE
   class DirectionalLightNode : public LightNode
   {
   public:
+    DirectionalLightNode( )           = default;
     ~DirectionalLightNode( ) override = default;
+
+    DirectionalLightNode( const DirectionalLightNode& )  = delete;
+    DirectionalLightNode( const DirectionalLightNode&& ) = delete;
+
+    auto operator=( const DirectionalLightNode& ) -> DirectionalLightNode& = delete;
+    auto operator=( const DirectionalLightNode && ) -> DirectionalLightNode& = delete;
+
     [[nodiscard]] auto getType( ) const -> NodeType override { return NodeType::eDirectionalLightNode; }
 
     glm::vec3 position = { 5.0F, 5.0F, 2.0F }; ///< The position of the light.
@@ -60,7 +76,15 @@ namespace RAYEXEC_NAMESPACE
   class PointLightNode : public LightNode
   {
   public:
+    PointLightNode( )           = default;
     ~PointLightNode( ) override = default;
+
+    PointLightNode( const PointLightNode& )  = delete;
+    PointLightNode( const PointLightNode&& ) = delete;
+
+    auto operator=( const PointLightNode& ) -> PointLightNode& = delete;
+    auto operator=( const PointLightNode && ) -> PointLightNode& = delete;
+
     [[nodiscard]] auto getType( ) const -> NodeType override { return NodeType::ePointLightNode; }
 
     glm::vec3 position = glm::vec3( 0.0F ); ///< The position of the light.

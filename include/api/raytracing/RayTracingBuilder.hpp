@@ -14,8 +14,15 @@ namespace RAYEXEC_NAMESPACE
   class RayTracingBuilder
   {
   public:
+    RayTracingBuilder( ) = default;
     /// Calls destroy().
     ~RayTracingBuilder( );
+
+    RayTracingBuilder( const RayTracingBuilder& )  = delete;
+    RayTracingBuilder( const RayTracingBuilder&& ) = delete;
+
+    auto operator=( const RayTracingBuilder& ) -> RayTracingBuilder& = delete;
+    auto operator=( const RayTracingBuilder && ) -> RayTracingBuilder& = delete;
 
     /// Retrieves the physical device's ray tracing capabilities.
     void init( );

@@ -36,8 +36,10 @@ namespace RAYEXEC_NAMESPACE
     /// @see clean()
     RX_API virtual ~Window( );
 
-    Window( const Window& ) = default;
-    auto operator=( const Window& ) -> Window& = default;
+    Window( const Window& )  = delete;
+    Window( const Window&& ) = delete;
+    auto operator=( const Window& ) -> Window& = delete;
+    auto operator=( const Window && ) -> Window& = delete;
 
     /// Initializes the SDL-window.
     RX_API virtual auto init( ) -> bool;
@@ -85,12 +87,13 @@ namespace RAYEXEC_NAMESPACE
 
   protected:
     SDL_Window* window { nullptr }; ///< The actual SDL_Window object.
+    uint32_t flags;                 ///< The window's flags.
 
     int width;         ///< The window's width in pixels.
     int height;        ///< The window's height in pixels.
     const char* title; ///< The window's title.
-    uint32_t flags;    ///< The window's flags.
 
+  private:
     Time time; ///< The timer that manages the application's timing.
   };
 } // namespace RAYEXEC_NAMESPACE

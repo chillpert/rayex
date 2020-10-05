@@ -10,8 +10,15 @@ namespace RAYEXEC_NAMESPACE
   class Surface
   {
   public:
+    Surface( ) = default;
     /// Calls destroy().
     ~Surface( );
+
+    Surface( const Surface& )  = delete;
+    Surface( const Surface&& ) = delete;
+
+    auto operator=( const Surface& ) -> Surface& = delete;
+    auto operator=( const Surface && ) -> Surface& = delete;
 
     /// @return Returns the surface format.
     [[nodiscard]] inline auto getFormat( ) const -> vk::Format { return format; }

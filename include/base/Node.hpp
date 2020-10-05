@@ -26,6 +26,13 @@ namespace RAYEXEC_NAMESPACE
       id( ++nodeCounter ) {}
 
     virtual ~Node( ) = default;
+
+    Node( const Node& )  = delete;
+    Node( const Node&& ) = delete;
+
+    auto operator=( const Node& ) -> Node& = delete;
+    auto operator=( const Node && ) -> Node& = delete;
+
     [[nodiscard]] virtual auto getType( ) const -> NodeType { return NodeType::eNode; }
 
     /// @return The node's ID.
@@ -40,7 +47,15 @@ namespace RAYEXEC_NAMESPACE
   class TransformNode : public Node
   {
   public:
+    TransformNode( )           = default;
     ~TransformNode( ) override = default;
+
+    TransformNode( const TransformNode& )  = delete;
+    TransformNode( const TransformNode&& ) = delete;
+
+    auto operator=( const TransformNode& ) -> TransformNode& = delete;
+    auto operator=( const TransformNode && ) -> TransformNode& = delete;
+
     [[nodiscard]] auto getType( ) const -> NodeType override { return NodeType::eTransformNode; }
 
     glm::mat4 worldTransform = glm::mat4( 1.0F ); ///< The world space transformation matrix.

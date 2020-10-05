@@ -12,22 +12,6 @@ namespace RAYEXEC_NAMESPACE
 
   const float timeToWaitForStartingBenchmark = 3.0F;
 
-  Time::~Time( )
-  {
-    this->allFrames;
-
-    int res = 0;
-    for ( int value : this->allFrames )
-    {
-      res += value;
-    }
-
-    if ( s_time >= timeToWaitForStartingBenchmark && !this->allFrames.empty( ) )
-    {
-      std::cout << "Average FPS: " << static_cast<float>( res ) / static_cast<float>( this->allFrames.size( ) ) << "\nBenchmark Length: " << s_time / 60.0F << " minutes." << std::endl;
-    }
-  }
-
   auto Time::getTime( ) -> float
   {
     return s_time;

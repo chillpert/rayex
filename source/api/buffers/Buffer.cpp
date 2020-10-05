@@ -14,9 +14,15 @@ namespace RAYEXEC_NAMESPACE
     }
   }
 
-  Buffer::Buffer( Buffer& buffer )
+  Buffer::Buffer( const Buffer& buffer )
   {
     copyToBuffer( buffer );
+  }
+
+  auto Buffer::operator=( const Buffer& buffer ) -> Buffer&
+  {
+    buffer.copyToBuffer( *this );
+    return *this;
   }
 
   void Buffer::init( vk::DeviceSize size, vk::BufferUsageFlags usage, const std::vector<uint32_t>& queueFamilyIndices, vk::MemoryPropertyFlags memoryPropertyFlags, void* pNextMemory )
@@ -38,7 +44,7 @@ namespace RAYEXEC_NAMESPACE
     this->memory = vk::Initializer::allocateMemoryUnique( this->buffer.get( ), memoryPropertyFlags, pNextMemory );
   }
 
-  void Buffer::copyToBuffer( Buffer& buffer ) const
+  void Buffer::copyToBuffer( const Buffer& buffer ) const
   {
     CommandBuffer commandBuffer( g_transferCmdPool );
     commandBuffer.begin( );

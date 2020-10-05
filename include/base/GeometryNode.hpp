@@ -10,17 +10,15 @@ namespace RAYEXEC_NAMESPACE
   /// @ingroup API
   struct RayTracingInstance
   {
-    glm::mat4 transform    = glm::mat4( 1.0f );
-    glm::mat4 transformIT  = glm::mat4( 1.0f );
-    uint32_t modelIndex    = 0; ///< Reference to RAYEXEC_NAMESPACE::Api::models
-    uint32_t textureOffset = 0; ///< Offset in RAYEXEC_NAMESPACE::Api::textures
+    glm::mat4 transform    = glm::mat4( 1.0F ); ///< World transform matrix
+    glm::mat4 transformIT  = glm::mat4( 1.0F ); ///< Inversed transposed world transform amtrix
+    uint32_t modelIndex    = 0;                 ///< Reference to RAYEXEC_NAMESPACE::Api::models
+    uint32_t textureOffset = 0;                 ///< Offset in RAYEXEC_NAMESPACE::Api::textures
 
     // Also works as padding.
-    uint32_t baseNodeId;
-    uint32_t geometryNodeId;
+    uint32_t baseNodeId     = 0;
+    uint32_t geometryNodeId = 0;
   };
-
-  static uint32_t geometryNodeCounter = 0;
 
   /// Adds geometry to the TransformNode parent class.
   /// @ingroup Base
@@ -29,16 +27,17 @@ namespace RAYEXEC_NAMESPACE
   public:
     /// @param modelPath @see modelPath
     /// @param material @see material
-    GeometryNode( std::string_view modelPath, const Material& material ) :
-      modelPath( modelPath ),
-      material( material )
-    {
-      this->rtInstance.geometryNodeId = geometryNodeCounter;
-      ++geometryNodeCounter;
-    }
+    RX_API GeometryNode( std::string_view modelPath, const Material& material );
 
-    virtual ~GeometryNode( ) = default;
-    virtual NodeType getType( ) const override { return NodeType::eGeometryNode; }
+    ~GeometryNode( ) override = default;
+
+    GeometryNode( const GeometryNode& )  = delete;
+    GeometryNode( const GeometryNode&& ) = delete;
+
+    auto operator=( const GeometryNode& ) -> GeometryNode& = delete;
+    auto operator=( const GeometryNode && ) -> GeometryNode& = delete;
+
+    [[nodiscard]] auto getType( ) const -> NodeType override { return NodeType::eGeometryNode; }
 
     std::string modelPath; ///< The relative path to the model file.
     Material material;     ///< The material defining rendering properties.

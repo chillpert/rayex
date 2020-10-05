@@ -10,11 +10,6 @@ namespace RAYEXEC_NAMESPACE
   class Time
   {
   public:
-    /// Destructor of Time.
-    ///
-    /// Prints a message containing average FPS.
-    RX_API ~Time( );
-
     /// @return Returns the time passed since application start in seconds.
     RX_API static auto getTime( ) -> float;
     /// @return Returns the time passed between the current and the last frame.

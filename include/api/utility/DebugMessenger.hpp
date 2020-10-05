@@ -17,6 +17,12 @@ namespace RAYEXEC_NAMESPACE
     /// Calls destroy().
     ~DebugMessenger( );
 
+    DebugMessenger( const DebugMessenger& )  = delete;
+    DebugMessenger( const DebugMessenger&& ) = delete;
+
+    auto operator=( const DebugMessenger& ) -> DebugMessenger& = delete;
+    auto operator=( const DebugMessenger && ) -> DebugMessenger& = delete;
+
     /// Creates the debug messenger with the given properties.
     /// @param messageSeverity - Specifies the type of severity of messages that will be logged.
     /// @param messageType - Specifies the types of messages that will be logged.

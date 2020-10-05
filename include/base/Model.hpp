@@ -38,6 +38,12 @@ namespace RAYEXEC_NAMESPACE
     RX_API Model( std::string_view path );
     RX_API virtual ~Model( ) = default;
 
+    Model( const Model& )  = delete;
+    Model( const Model&& ) = delete;
+
+    auto operator=( const Model& ) -> Model& = delete;
+    auto operator=( const Model && ) -> Model& = delete;
+
     /// Loads the model by extracting all vertices and indices.
     RX_API virtual void load( );
 
@@ -71,7 +77,7 @@ namespace std
   template <>
   struct hash<RAYEXEC_NAMESPACE::Model>
   {
-    auto operator( )( const std::shared_ptr<RAYEXEC_NAMESPACE::Model> model ) const -> size_t { return hash<std::string>( )( model->path ); }
+    auto operator( )( const std::shared_ptr<RAYEXEC_NAMESPACE::Model>& model ) const -> size_t { return hash<std::string>( )( model->path ); }
   };
   /// @endcond
 } // namespace std

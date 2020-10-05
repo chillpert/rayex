@@ -68,11 +68,6 @@ namespace RAYEXEC_NAMESPACE
 
   auto Model::isLoaded( ) -> bool
   {
-    if ( !this->vertices.empty( ) )
-    {
-      return true;
-    }
-
-    return false;
+    return !this->vertices.empty( );
   }
 } // namespace RAYEXEC_NAMESPACE

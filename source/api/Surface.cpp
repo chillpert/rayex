@@ -27,34 +27,15 @@ namespace RAYEXEC_NAMESPACE
 
     if ( !Util::find<vk::PresentModeKHR>( this->presentMode, presentModes ) )
     {
-      Util::find<vk::PresentModeKHR>( vk::PresentModeKHR::eMailbox, presentModes ) ? this->presentMode                                                                                                                                                                     = vk::PresentModeKHR::eMailbox :
-                                                                                     Util::find<vk::PresentModeKHR>( vk::PresentModeKHR::eImmediate, presentModes ) ? this->presentMode                                                                                    = vk::PresentModeKHR::eImmediate :
-                                                                                                                                                                      Util::find<vk::PresentModeKHR>( vk::PresentModeKHR::eFifoRelaxed, presentModes ) ? this->presentMode = vk::PresentModeKHR::eFifoRelaxed :
-                                                                                                                                                                                                                                                         this->presentMode = vk::PresentModeKHR::eFifo;
-
-      std::string fallbackPresentMode;
-      switch ( this->presentMode )
-      {
-        case vk::PresentModeKHR::eMailbox:
-          fallbackPresentMode = "mailbox";
-          break;
-
-        case vk::PresentModeKHR::eImmediate:
-          fallbackPresentMode = "immediate";
-          break;
-
-        case vk::PresentModeKHR::eFifoRelaxed:
-          fallbackPresentMode = "fifo relaxed";
-          break;
-
-        case vk::PresentModeKHR::eFifo:
-          fallbackPresentMode = "fifo";
-          break;
-      }
+      Util::find<vk::PresentModeKHR>( vk::PresentModeKHR::eMailbox, presentModes ) ? this->presentMode                                                                                    = vk::PresentModeKHR::eMailbox :
+                                                                                     Util::find<vk::PresentModeKHR>( vk::PresentModeKHR::eFifoRelaxed, presentModes ) ? this->presentMode = vk::PresentModeKHR::eFifoRelaxed :
+                                                                                                                                                                        this->presentMode = vk::PresentModeKHR::eFifo;
 
       // Fall back, as FIFO is always supported on every device.
-      RX_WARN( "Preferred present mode not available. Falling back to ", fallbackPresentMode, " present mode." );
+      RX_WARN( "Preferred present mode not available. Falling back to ", vk::to_string( this->presentMode ), " present mode." );
     }
+
+    this->presentMode = vk::PresentModeKHR::eImmediate;
 
     // Check format and color space.
     auto surfaceFormats = g_physicalDevice.getSurfaceFormatsKHR( this->surface );

@@ -48,7 +48,7 @@ namespace RAYEXEC_NAMESPACE
 
     vk::Format format                       = vk::Format::eB8G8R8A8Unorm;        ///< The desired surface format.
     vk::ColorSpaceKHR colorSpace            = vk::ColorSpaceKHR::eSrgbNonlinear; ///< The desired color space.
-    vk::PresentModeKHR presentMode          = vk::PresentModeKHR::eMailbox;      ///< The desired present mode.
+    vk::PresentModeKHR presentMode          = vk::PresentModeKHR::eImmediate;    ///< The desired present mode.
     vk::SurfaceCapabilitiesKHR capabilities = 0;                                 ///< The surface's capabilities.
   };
 } // namespace RAYEXEC_NAMESPACE

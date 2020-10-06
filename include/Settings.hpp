@@ -86,8 +86,8 @@ namespace RAYEXEC_NAMESPACE
     std::optional<uint32_t> maxGeometryNodes;     ///< Can be set to avoid pipeline recreation everytime a geometry node is added.
 
     glm::vec4 clearColor       = glm::vec4( 0.45F, 0.45F, 0.45F, 1.0F ); ///< Stores the clear color.
-    uint32_t maxRecursionDepth = 4;                                      ///< The maximum recursion depth.
-    uint32_t recursionDepth    = 4;                                      ///< The current recursion depth.
+    uint32_t maxRecursionDepth = 2;                                      ///< The maximum recursion depth.
+    uint32_t recursionDepth    = 2;                                      ///< The current recursion depth.
     std::string assetsPath;                                              ///< Where all assets like models, textures and shaders are stored.
 
     bool automaticPipelineRefresh  = false;

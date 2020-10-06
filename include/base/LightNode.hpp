@@ -35,7 +35,7 @@ namespace RAYEXEC_NAMESPACE
     glm::vec3 specular = { 1.0F, 1.0F, 1.0F }; ///< The specular highlight's color.
 
     float ambientIntensity  = 0.7F; ///< The ambient intensity.
-    float diffuseIntensity  = 1.0;  ///< The diffuse intensity.
+    float diffuseIntensity  = 1.0F; ///< The diffuse intensity.
     float specularIntensity = 1.0F; ///< The specular intensity.
     float exists            = 1.0F;
   };

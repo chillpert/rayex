@@ -108,9 +108,23 @@ namespace RAYEXEC_NAMESPACE
     auto vs = vk::Initializer::initShaderModuleUnique( "shaders/simple3D.vert" );
     auto fs = vk::Initializer::initShaderModuleUnique( "shaders/simple3D.frag" );
 
+    std::array<vk::SpecializationMapEntry, 1> mapEntries;
+    mapEntries[0] = vk::SpecializationMapEntry( 0,                    // constantID
+                                                0,                    // offset
+                                                sizeof( uint32_t ) ); // size
+
+    std::array<uint32_t, 1> data;
+    data[0] = anticipatedDirectionalLights;
+
+    vk::SpecializationInfo specializationInfo( static_cast<uint32_t>( mapEntries.size( ) ),            // mapEntryCount
+                                               mapEntries.data( ),                                     // pMapEntries
+                                               sizeof( data ) * static_cast<uint32_t>( data.size( ) ), // dataSize
+                                               data.data( ) );                                         // pData
+
     std::array<vk::PipelineShaderStageCreateInfo, 2> shaderStages;
-    shaderStages[0] = vk::Helper::getPipelineShaderStageCreateInfo( vk::ShaderStageFlagBits::eVertex, vs.get( ) );
-    shaderStages[1] = vk::Helper::getPipelineShaderStageCreateInfo( vk::ShaderStageFlagBits::eFragment, fs.get( ) );
+    shaderStages[0]                     = vk::Helper::getPipelineShaderStageCreateInfo( vk::ShaderStageFlagBits::eVertex, vs.get( ) );
+    shaderStages[1]                     = vk::Helper::getPipelineShaderStageCreateInfo( vk::ShaderStageFlagBits::eFragment, fs.get( ) );
+    shaderStages[1].pSpecializationInfo = &specializationInfo;
 
     vk::GraphicsPipelineCreateInfo createInfo( { },                                           // flags
                                                static_cast<uint32_t>( shaderStages.size( ) ), // stageCount
@@ -140,9 +154,10 @@ namespace RAYEXEC_NAMESPACE
     uint32_t anticipatedPointLights       = settings->maxPointLights.has_value( ) ? settings->maxPointLights.value( ) : g_maxPointLightNodes;
     Util::processShaderMacros( "shaders/raytrace.rchit", anticipatedDirectionalLights, anticipatedPointLights, g_modelCount );
 
-    auto rgen = vk::Initializer::initShaderModuleUnique( "shaders/raytrace.rgen" );
-    auto miss = vk::Initializer::initShaderModuleUnique( "shaders/raytrace.rmiss" );
-    auto chit = vk::Initializer::initShaderModuleUnique( "shaders/raytrace.rchit" );
+    auto rgen       = vk::Initializer::initShaderModuleUnique( "shaders/raytrace.rgen" );
+    auto miss       = vk::Initializer::initShaderModuleUnique( "shaders/raytrace.rmiss" );
+    auto chit       = vk::Initializer::initShaderModuleUnique( "shaders/raytrace.rchit" );
+    auto missShadow = vk::Initializer::initShaderModuleUnique( "shaders/raytraceShadow.rmiss" );
 
     vk::PushConstantRange pushConstantRangeMissKHR( vk::ShaderStageFlagBits::eMissKHR, // stageFlags
                                                     0,                                 // offset
@@ -163,13 +178,14 @@ namespace RAYEXEC_NAMESPACE
     this->layout = g_device.createPipelineLayoutUnique( layoutInfo );
     RX_ASSERT( this->layout, "Failed to create pipeline layout for ray tracing pipeline." );
 
-    std::array<vk::PipelineShaderStageCreateInfo, 3> shaderStages;
+    std::array<vk::PipelineShaderStageCreateInfo, 4> shaderStages;
     shaderStages[0] = vk::Helper::getPipelineShaderStageCreateInfo( vk::ShaderStageFlagBits::eRaygenKHR, rgen.get( ) );
     shaderStages[1] = vk::Helper::getPipelineShaderStageCreateInfo( vk::ShaderStageFlagBits::eMissKHR, miss.get( ) );
-    shaderStages[2] = vk::Helper::getPipelineShaderStageCreateInfo( vk::ShaderStageFlagBits::eClosestHitKHR, chit.get( ) );
+    shaderStages[2] = vk::Helper::getPipelineShaderStageCreateInfo( vk::ShaderStageFlagBits::eMissKHR, missShadow.get( ) );
+    shaderStages[3] = vk::Helper::getPipelineShaderStageCreateInfo( vk::ShaderStageFlagBits::eClosestHitKHR, chit.get( ) );
 
     // Set up raytracing shader groups.
-    std::array<vk::RayTracingShaderGroupCreateInfoKHR, 3> groups;
+    std::array<vk::RayTracingShaderGroupCreateInfoKHR, 4> groups;
 
     for ( auto& group : groups )
     {
@@ -179,14 +195,17 @@ namespace RAYEXEC_NAMESPACE
       group.intersectionShader = VK_SHADER_UNUSED_KHR;
     }
 
-    groups[0].generalShader = RX_SHADER_GROUP_INDEX_RGEN;
+    groups[0].generalShader = 0;
     groups[0].type          = vk::RayTracingShaderGroupTypeKHR::eGeneral;
 
-    groups[1].generalShader = RX_SHADER_GROUP_INDEX_MISS;
+    groups[1].generalShader = 1;
     groups[1].type          = vk::RayTracingShaderGroupTypeKHR::eGeneral;
 
-    groups[2].closestHitShader = RX_SHADER_GROUP_INDEX_CHIT;
-    groups[2].type             = vk::RayTracingShaderGroupTypeKHR::eTrianglesHitGroup;
+    groups[2].generalShader = 2;
+    groups[2].type          = vk::RayTracingShaderGroupTypeKHR::eGeneral;
+
+    groups[3].closestHitShader = 3;
+    groups[3].type             = vk::RayTracingShaderGroupTypeKHR::eTrianglesHitGroup;
 
     g_shaderGroups = static_cast<uint32_t>( groups.size( ) );
 

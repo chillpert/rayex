@@ -349,7 +349,6 @@ auto main( ) -> int
   const int width  = 900;
   const int height = 600;
 
-  // Create the renderer object ...
   RayExec renderer;
 
   // Custom camera
@@ -369,7 +368,7 @@ auto main( ) -> int
   // ... and initialize the renderer.
   renderer.init( );
 
-  renderer.setModels( { "models/sphere.obj", "models/awpdlore/awpdlore.obj", "models/cube.obj" } );
+  renderer.setModels( { "models/plane.obj", "models/sphere.obj", "models/awpdlore/awpdlore.obj", "models/cube.obj" } );
 
   // Setup the scene
   auto dragonLore            = std::make_shared<GeometryNode>( "models/awpdlore/awpdlore.obj", Material( "textures/awpdlore.png" ) );
@@ -382,11 +381,14 @@ auto main( ) -> int
   dragonLore2->worldTransform = glm::rotate( dragonLore2->worldTransform, glm::radians( 90.0F ), glm::vec3( 0.0F, 1.0F, 0.0F ) );
   dragonLore2->worldTransform = glm::translate( dragonLore2->worldTransform, glm::vec3( 1.0F, 2.0F, 0.0F ) );
 
+  auto floor = std::make_shared<GeometryNode>( "models/plane.obj", Material( "textures/awpdlore.png" ) );
+
   auto directionalLight = std::make_shared<DirectionalLightNode>( );
 
   // Add the model to the renderer. This way they will be queued for rendering.
   renderer.pushNode( dragonLore );
   renderer.pushNode( dragonLore2 );
+  renderer.pushNode( floor );
   renderer.pushNode( directionalLight );
 
   while ( renderer.isRunning( ) )

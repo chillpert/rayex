@@ -13,6 +13,8 @@ layout(location = 3) in vec3 cameraPos;
 
 layout(location = 0) out vec4 outColor;
 
+layout (constant_id = 0) const int TEST_SPECIALIZATION = 10;
+
 layout(binding = 1, set = 0) uniform LightSources
 {
   DirectionalLight directionalLights[TOTAL_DIRECTIONAL_LIGHTS];

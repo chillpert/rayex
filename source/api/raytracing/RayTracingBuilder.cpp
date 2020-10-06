@@ -473,11 +473,10 @@ namespace RAYEXEC_NAMESPACE
     vk::DeviceSize progSize = this->rtProperties.shaderGroupBaseAlignment;
     vk::DeviceSize sbtSize  = progSize * static_cast<vk::DeviceSize>( g_shaderGroups );
 
-    vk::DeviceSize rayGenOffset    = RX_SHADER_GROUP_INDEX_RGEN * progSize; // Start at the beginning of this->sbtBuffer
-    vk::DeviceSize missOffset      = RX_SHADER_GROUP_INDEX_MISS * progSize; // Jump over raygen
-    vk::DeviceSize missStride      = progSize;
-    vk::DeviceSize chitGroupOffset = RX_SHADER_GROUP_INDEX_CHIT * progSize; // Jump over the previous shaders
-    vk::DeviceSize chitGroupStride = progSize;
+    vk::DeviceSize rayGenOffset        = 0U * progSize; // Start at the beginning of this->sbtBuffer
+    vk::DeviceSize missOffset          = 1U * progSize; // Jump over raygen
+    vk::DeviceSize chitGroupOffset     = 3U * progSize; // Jump over the previous two miss shaders
+    vk::DeviceSize callableGroupOffset = 4U * progSize;
 
     vk::StridedBufferRegionKHR bufferRegionRayGen( this->sbtBuffer.get( ), // buffer
                                                    rayGenOffset,           // offset
@@ -494,7 +493,10 @@ namespace RAYEXEC_NAMESPACE
                                                  progSize,               // stride
                                                  sbtSize );              // size
 
-    vk::StridedBufferRegionKHR callableShaderBindingTable;
+    vk::StridedBufferRegionKHR callableShaderBindingTable( this->sbtBuffer.get( ), // buffer
+                                                           callableGroupOffset,    // offset
+                                                           progSize,               // stride
+                                                           sbtSize );              // size
 
     swapchainCommandBuffer.traceRaysKHR( &bufferRegionRayGen,         // pRaygenShaderBindingTable
                                          &bufferRegionMiss,           // pMissShaderBindingTable

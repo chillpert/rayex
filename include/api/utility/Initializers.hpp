@@ -42,8 +42,15 @@ namespace vk
     /// @return Returns the command pool.
     auto initCommandPool( uint32_t queueFamilyIndex, CommandPoolCreateFlags flags = { } ) -> CommandPool;
 
+    /// Creates a unique descriptor pool.
+    /// @param poolSizes A vector of Vulkan descriptor pool sizes.
+    /// @param maxSets The maximum amount of descriptor sets that can be allocated from this pool.
+    /// @param flags Flags for the creation process.
     auto initDescriptorPoolUnique( const std::vector<DescriptorPoolSize>& poolSizes, uint32_t maxSets = 1, DescriptorPoolCreateFlags flags = { } ) -> UniqueDescriptorPool;
 
+    /// Creates unique Vulkan descriptor sets.
+    /// @param pool A unique Vulkan descriptor pool to allocate the sets from.
+    /// @param layout The desired unique Vulkan descriptor set layout.
     auto initDescriptorSetsUnique( const UniqueDescriptorPool& pool, const UniqueDescriptorSetLayout& layout ) -> std::vector<DescriptorSet>;
 
     /// Allocates and binds unique memory for an image.

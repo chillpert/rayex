@@ -10,7 +10,7 @@ namespace RAYEXEC_NAMESPACE
   /// The main user interface.
   ///
   /// This class provides everything to set up a main loop and fill the scene with geometry and light sources.
-  /// Furthermore, the renderer's settings can be changed to better fit the client's purpose.
+  /// Furthermore, the renderer's settings can be changed to better fit the user's purpose.
   /// ### Example
   /// ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~.cpp
   /// // The following example renders a cube in less than 10 lines of code.
@@ -25,7 +25,6 @@ namespace RAYEXEC_NAMESPACE
   /// }
   /// ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
   /// @ingroup Base
-  /// @todo Not calling init will cause a segmentation fault as the application still tries to call device.waitIdle on a device that was not init.
   class RayExec
   {
   public:
@@ -34,11 +33,9 @@ namespace RAYEXEC_NAMESPACE
     /// Initializes the renderer.
     ///
     /// This function initializes the window subcomponent as well as the API.
-    /// Furthermore, it copies all shaders, textures and models to the executables directory to avoid issues with full and relative paths.
-    /// @todo The copying process is temporary for now and has to be changed for a release build.
     RX_API void init( );
 
-    /// A single function to execute all subcomponents.
+    /// A single function to execute all subcomponents in order.
     ///
     /// This function updates the window and the camera components and calls the update and render functions of the API.
     /// @see RAYEXEC_NAMESPACE::Camera::update(), RAYEXEC_NAMESPACE::Window::update(), RAYEXEC_NAMESPACE::Api::update(), RAYEXEC_NAMESPACE::Api::render()
@@ -47,6 +44,27 @@ namespace RAYEXEC_NAMESPACE
     /// @return Returns true if the application is still running and false if the application has stopped.
     RX_API auto isRunning( ) -> bool { return running; }
 
+    /// Used to set a custom camera.
+    /// @param camera A pointer to a RAYEXEC_NAMESPACE::Camera object.
+    RX_API void setCamera( std::shared_ptr<Camera> camera );
+
+    /// Used to set a custom window.
+    /// @param window A pointer to a RAYEXEC_NAMESPACE::Window object.
+    RX_API void setWindow( std::shared_ptr<Window> window );
+
+    /// Used to set a custom GUI.
+    ///
+    /// The GUI can be changed multiple times. Even during runtime.
+    /// @param gui A pointer to a RAYEXEC_NAMESPACE::Gui object.
+    RX_API void setGui( std::shared_ptr<Gui> gui );
+
+    /// Used to set all models that can be rendered and to initialize them.
+    ///
+    /// Resources can be allocated more efficiently if all possible models are known to the renderer in advance.
+    /// @param modelPaths A vector containing paths to model files.
+    /// @warning To render any geometry the user has to call this function after init() was called.
+    RX_API void setModels( const std::vector<std::string>& modelPaths );
+
     /// @return Returns a pointer to the renderer's window.
     [[nodiscard]] RX_API inline auto getWindow( ) const -> std::shared_ptr<Window> { return window; }
 
@@ -54,37 +72,26 @@ namespace RAYEXEC_NAMESPACE
     [[nodiscard]] RX_API inline auto getCamera( ) const -> std::shared_ptr<Camera> { return camera; }
 
     /// Used to add another arbitrary node to the scene.
-    /// @param node The node to add.
-    /// @see RAYEXEC_NAMESPACE::Api::pushNode()
+    /// @param node A pointer to a RAYEXEC_NAMESPACE::Node object.
+    /// @see RAYEXEC_NAMESPACE::Api::pushNode() for implementation details.
     template <typename T = Model>
     void pushNode( const std::shared_ptr<Node> node )
     {
       api->pushNode<T>( node );
     }
 
+    /// Used to delete a node from the renderer.
+    /// @param node A pointer to a RAYEXEC_NAMESPACE::Node object.
     RX_API void popNode( std::shared_ptr<Node> node );
 
-    /// Used to overwrite the entire scene with new nodes.
-    /// @param nodes A vector of nodes describing the new scene.
+    /// Used to overwrite the entire scene with new nodes at once.
+    /// @param nodes A vector of RAYEXEC_NAMESPACE::Node objects describing the new scene.
     /// @see RAYEXEC_NAMESPACE::Api::setNodes()
     template <typename T = Model>
     void setNodes( const std::vector<std::shared_ptr<Node>>& nodes )
     {
       api->setNodes<T>( nodes );
     }
-
-    /// Used to set a custom camera.
-    /// @param camera The camera the renderer should be using.
-    RX_API void setCamera( std::shared_ptr<Camera> camera );
-
-    /// Used to set a custom window.
-    RX_API void setWindow( std::shared_ptr<Window> window );
-
-    /// Used to set a custom GUI.
-    /// @param gui The GUI the renderer should be using.
-    RX_API void setGui( std::shared_ptr<Gui> gui );
-
-    RX_API void setModels( const std::vector<std::string>& modelPaths );
 
     Settings settings;
 
@@ -96,7 +103,7 @@ namespace RAYEXEC_NAMESPACE
 
     bool initialized = false; ///< Keeps track of the initialization status.
     bool running     = true;  ///< Keeps track of whether or not the main loop should still be continued.
-    bool initScene   = true;
+    bool initScene   = true;  ///< Keeps track of whether or not to initialize the scene.
   };
 } // namespace RAYEXEC_NAMESPACE
 

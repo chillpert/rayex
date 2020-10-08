@@ -7,15 +7,14 @@ namespace RAYEXEC_NAMESPACE
 {
   /// A minimal camera implementation.
   ///
-  /// This class acts like an interface for the client by providing the most important camera-related matrices as well as the camera's position, which are required by the rendering API.
+  /// This class acts like an interface for the user by providing the most important camera-related matrices as well as the camera's position, which are required by the rendering API.
   /// ### Example
   /// ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~.cpp
-  /// // This example requires the client to implement a custom camera class that inherits from Camera.
+  /// // This example requires the user to implement a custom camera class that inherits from Camera.
   /// auto myCam = std::make_shared<CustomCamera>( 600, 500, glm::vec3{ 0.0f, 0.0f, 3.0f } );
   /// ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-  /// @note The client has to handle keyboard related camera changes inside update().
-  /// @warning Do not forget to re-calculate the view or projection matrix if the camera or the window have changed.
-  /// @see updateViewMatrix(), updateProjectionMatrix()
+  /// @note The user has to handle keyboard related camera changes inside update().
+  /// @warning Do not forget to re-calculate the view or projection matrix if the camera or the window have changed. See updateViewMatrix(), updateProjectionMatrix() or updateView and updateProj respectively.
   /// @ingroup Base
   class Camera
   {
@@ -25,7 +24,7 @@ namespace RAYEXEC_NAMESPACE
     /// @param position The position of your camera.
     RX_API Camera( int width, int height, const glm::vec3& position = { 0.0F, 0.0F, 3.0F } );
 
-    RX_API ~Camera( ) = default;
+    RX_API virtual ~Camera( ) = default;
 
     RX_API Camera( const Camera& ) = default;
     Camera( const Camera&& )       = delete;
@@ -35,15 +34,14 @@ namespace RAYEXEC_NAMESPACE
 
     /// Is used to update camera vectors etc.
     ///
-    /// The client has to implement this function to work like intended.
+    /// The user has to override this function for the camera to work like intended.
     /// @note The function will be called every tick.
     virtual void update( ) { };
 
-    /// Returns the camera's current position.
-    /// @return The camera's position.
+    /// @return Returns the camera's position.
     [[nodiscard]] RX_API inline auto getPosition( ) const -> const glm::vec3& { return position; }
 
-    /// Is used to set the camera's position.
+    /// Is used to change the camera's position.
     /// @param position The new camera position.
     RX_API void setPosition( const glm::vec3& position );
 
@@ -79,12 +77,12 @@ namespace RAYEXEC_NAMESPACE
     RX_API void updateProjectionMatrix( );
 
     /// Processes mouse input (default implementation).
-    /// @param xOffset The difference of the offset on the x-axis and the previous offset.
-    /// @param yOffset The difference of the offset on the y-axis and the previous offset.
+    /// @param xOffset The difference of the current offset on the x-axis and the previous offset.
+    /// @param yOffset The difference of the current offset on the y-axis and the previous offset.
     RX_API virtual void processMouse( float xOffset, float yOffset );
 
-    bool updateView = true;
-    bool updateProj = true;
+    bool updateView = true; ///< Keeps track of whether or not to udpate the view matrix.
+    bool updateProj = true; ///< Keeps track of whether or not to udpate the projection matrix.
 
   protected:
     /// Updates the camera vectors.

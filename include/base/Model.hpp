@@ -13,7 +13,7 @@ namespace RAYEXEC_NAMESPACE
   /// Describes a model.
   ///
   /// The class extracts vertex and index data from a given wavefront file.
-  /// If the client wants to parse other formats than wavefront, load() should be overridden and either RAYEXEC_NAMESPACE::Renderer::pushNode() or RAYEXEC_NAMESPACE::Renderer::setNodes() templatized using the inherited class type.
+  /// If the user wants to parse other formats than wavefront, load() should be overridden and either RAYEXEC_NAMESPACE::Renderer::pushNode() or RAYEXEC_NAMESPACE::Renderer::setNodes() templatized using the inherited class type.
   /// ### Example
   /// ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~.cpp
   /// class CustomModel : public Model

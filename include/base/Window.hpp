@@ -12,15 +12,15 @@ namespace RAYEXEC_NAMESPACE
 
   /// Implements a SDL-based window.
   ///
-  /// In order to handle events the client has to create a class that inherits from Window.
+  /// In order to handle events the user has to create a class that inherits from Window.
   /// ### Example
   /// ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~.cpp
-  /// // This example requires the client to implement a custom window class that inherits from Window.
+  /// // This example requires the user to implement a custom window class that inherits from Window.
   /// auto myWindow = std::make_shared<CustomWindow>( width, height, "Example", WINDOW_RESIZABLE | WINDOW_INPUT_FOCUS );
   /// ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
   /// @see update()
   /// @ingroup Base
-  /// @todo To avoid the client having to link to SDL themselves requires to write a complete SDL2 wrapper.
+  /// @todo To avoid the user having to link to SDL themselves requires to write a complete SDL2 wrapper.
   class Window
   {
   public:
@@ -46,8 +46,8 @@ namespace RAYEXEC_NAMESPACE
 
     /// Updates window-related components.
     ///
-    /// In case the client wants to handle input events, this function should be overwritten in the inherited class.
-    /// @warning The client has to call Window::update() to ensure proper functionality.
+    /// In case the user wants to handle input events, this function should be overwritten in the inherited class.
+    /// @warning The user has to call Window::update() to ensure proper functionality.
     RX_API virtual auto update( ) -> bool;
 
     /// Destroys the window.

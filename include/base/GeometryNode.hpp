@@ -16,8 +16,8 @@ namespace RAYEXEC_NAMESPACE
     uint32_t textureOffset = 0;                 ///< Offset in RAYEXEC_NAMESPACE::Api::textures
 
     // Also works as padding.
-    uint32_t baseNodeId     = 0;
-    uint32_t geometryNodeId = 0;
+    uint32_t baseNodeId     = 0; ///< A unique id assigned to any node.
+    uint32_t geometryNodeId = 0; ///< A unique id assigned only to geometry nodes.
   };
 
   /// Adds geometry to the TransformNode parent class.
@@ -25,8 +25,9 @@ namespace RAYEXEC_NAMESPACE
   class GeometryNode : public TransformNode
   {
   public:
-    /// @param modelPath @see modelPath
-    /// @param material @see material
+    /// @param modelPath
+    /// @param material
+    /// @see modelPath and material
     RX_API GeometryNode( std::string_view modelPath, const Material& material );
 
     ~GeometryNode( ) override = default;
@@ -37,12 +38,13 @@ namespace RAYEXEC_NAMESPACE
     auto operator=( const GeometryNode& ) -> GeometryNode& = delete;
     auto operator=( const GeometryNode && ) -> GeometryNode& = delete;
 
+    /// @return Returns the node's type.
     [[nodiscard]] auto getType( ) const -> NodeType override { return NodeType::eGeometryNode; }
 
     std::string modelPath; ///< The relative path to the model file.
     Material material;     ///< The material defining rendering properties.
 
-    RayTracingInstance rtInstance; ///< @see RayTracingInstance
+    RayTracingInstance rtInstance; ///< @see RAYEXEC_NAMESPACE::RayTracingInstance
   };
 } // namespace RAYEXEC_NAMESPACE
 

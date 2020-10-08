@@ -12,7 +12,7 @@ namespace RAYEXEC_NAMESPACE
 {
   /// A class to create an ImGui-based GUI.
   ///
-  /// This class acts like an interface for the client to create their own GUI.
+  /// This class acts like an interface for the user to create their own GUI.
   /// It is possible to create multiple GUI objects and re-assign them to the renderer at runtime.
   /// ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~.cpp
   /// class CustomGui : public Gui
@@ -46,12 +46,12 @@ namespace RAYEXEC_NAMESPACE
 
     /// Used to configure all ImGui settings.
     ///
-    /// The client should override this function if they want to change the style or various other configuration settings.
+    /// The user should override this function if they want to change the style or various other configuration settings.
     RX_API virtual void configure( );
 
     /// This function is for calling the individual ImGui components, e.g. widgets.
     ///
-    /// The client should override this function to create their own GUI.
+    /// The user should override this function to create their own GUI.
     RX_API virtual void render( );
 
     /// Creates the GUI and all required Vulkan components.

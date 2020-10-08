@@ -51,16 +51,28 @@ namespace RAYEXEC_NAMESPACE
 
   void RayExec::run( )
   {
+    if ( !this->running || !this->initialized )
+    {
+      return;
+    }
+
+    static bool firstRun = true;
     if ( this->initScene )
     {
       this->api->initScene( );
       this->initScene = false;
     }
-
-    if ( !this->running || !this->initialized )
+    else
     {
-      return;
+      if ( firstRun )
+      {
+        RX_ERROR( "Failed to initialize scene. Did you forget to call setModels(std::vector<std::string>)?" );
+        this->running = false;
+        return;
+      }
     }
+
+    firstRun = false;
 
     this->running = this->window->update( );
     this->camera->update( );
@@ -103,6 +115,12 @@ namespace RAYEXEC_NAMESPACE
 
   void RayExec::setModels( const std::vector<std::string>& modelPaths )
   {
+    if ( !this->initialized )
+    {
+      RX_ERROR( "Models can only be set once the renderer was initialized using init()." );
+      return;
+    }
+
     this->api->setModels( modelPaths );
     this->initScene = true;
   }

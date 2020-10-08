@@ -156,9 +156,9 @@ namespace RAYEXEC_NAMESPACE
     updateUniformBuffers( );
 
     // Upload scene description
-    if ( this->uploadSceneDescriptionData )
+    if ( this->uploadRayTracingInstancesToBuffer )
     {
-      this->uploadSceneDescriptionData = false;
+      this->uploadRayTracingInstancesToBuffer = false;
       this->rayTracingInstancesBuffer.fill<RayTracingInstance>( this->rtInstances.data( ) );
     }
   }
@@ -343,7 +343,7 @@ namespace RAYEXEC_NAMESPACE
           }
 
           RX_ASSERT( found, "Failed to retrieve ray tracing instance for deletion." );
-          this->uploadSceneDescriptionData = true;
+          this->uploadRayTracingInstancesToBuffer = true;
           updateAccelerationStructures( );
           recordSwapchainCommandBuffers( );
           return;

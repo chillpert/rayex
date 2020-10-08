@@ -4,6 +4,7 @@ project(Renderer VERSION 0.0.1)
 message("Using compiler: " + ${CMAKE_CXX_COMPILER_ID})
 
 option(BUILD_EXAMPLES "Build examples" ON)
+option(CLANG_TIDY_LINUX_DEBUG "Use clang-tidy for a Linux debug build" ON)
 
 if(NOT CMAKE_BUILD_TYPE)
   message("MX: Build type not set. Continuing with: Debug")
@@ -43,7 +44,9 @@ if(${OS} STREQUAL "Windows")
 elseif(${OS} STREQUAL "Linux")
   add_compile_definitions(RX_GLSLC_PATH="/usr/bin/glslc")
   if(CMAKE_BUILD_TYPE STREQUAL "Debug")
-    set(CMAKE_CXX_CLANG_TIDY "clang-tidy;-checks=*")
+    if(CLANG_TIDY_LINUX_DEBUG)
+      set(CMAKE_CXX_CLANG_TIDY "clang-tidy;-checks=*")
+    endif()
   endif()
 endif()
 

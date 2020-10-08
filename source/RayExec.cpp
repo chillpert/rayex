@@ -28,13 +28,12 @@ namespace RAYEXEC_NAMESPACE
 
     if ( this->settings.getAssetsPath( ).empty( ) )
     {
-      RX_WARN( "Path to assets was not set. Use Settings::setAssetsPath(argc, argv) or Settings::setAssetsPath(path) to set it. Closing application." );
-      this->running = false;
-      return;
+      this->settings.setDefaultAssetsPath( );
     }
 
     if ( this->initialized )
     {
+      RX_ERROR( "Renderer was already initialized." );
       return;
     }
 

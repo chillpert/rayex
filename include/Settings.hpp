@@ -7,76 +7,85 @@ namespace RAYEXEC_NAMESPACE
 {
   /// Exposes all graphic settings supported by the renderer.
   ///
-  /// If the client makes changes that require a pipeline or swapchain recreation, refresh must be set to true.
-  /// @warning The client has to call either setAssetsPath(argc, argv) or setAssetsPath(path) for the renderer to work.
-  /// @todo Split refresh into refreshPipeline and refreshSwapchain to avoid doing unnecessary operations.
-  /// @todo Add some setting, that I don't remember anymore.
+  /// Any necessary pipeline recreations and swapchain recreations will not be performed at the point of calling any setter but instead the next time the renderer
+  /// will be updated.
   class RX_API Settings
   {
   public:
-    Settings( );
-
     friend class Api;
+    friend class RayExec;
     friend class Pipeline;
 
-    /// @return Returns the current recursion depth.
+    /// @return Returns the recursion depth.
     [[nodiscard]] inline auto getRecursionDepth( ) const -> uint32_t { return this->recursionDepth; }
 
-    /// Used to set the current recursion depth.
-    /// @param maxRecursionDepth The new value for the maxium recursion depth.
+    /// Used to set the recursion depth.
+    ///
+    /// The function will trigger a pipeline recreation as soon as possible unless it was explicitely disabled using setAutomaticPipelineRefresh(bool).
+    /// If a value higher than the device's maximum supported value is set, it will use the maximum value instead.
+    /// @param maxRecursionDepth The new value for the recursion depth.
     void setRecursionDepth( uint32_t recursionDepth );
 
     /// @return Returns the clear color.
     [[nodiscard]] inline auto getClearColor( ) const -> const glm::vec4& { return this->clearColor; }
 
     /// Used to changed the clear color.
+    ///
+    /// The function will trigger a swapchain recreation as soon as possible unless it was explicitely disabled using setAutomaticPipelineRefresh(bool).
     /// @param clearColor The new value for the clear color.
     void setClearColor( const glm::vec4& clearColor );
 
     /// @return Returns the path to assets.
     [[nodiscard]] inline auto getAssetsPath( ) const -> std::string_view { return this->assetsPath; }
 
-    /// Used to set a path to assets.
+    /// Used to set a path to the directory containing all assets.
+    ///
+    /// This path should contain all models, textures and shaders.
     /// @param argc The argc parameter that can be retrieved from the main-function's parameters.
     /// @param argv The argv parameter that can be retrieved from the main-function's parameters.
     void setAssetsPath( int argc, char* argv[] );
 
-    /// Used to set a path to assets.
+    /// Used to set a path to the directory containing all assets.
+    ///
+    /// This path should contain all models, textures and shaders.
     /// @param path The path to assets.
     void setAssetsPath( std::string_view path );
 
     /// @return Returns true if ray tracing is enabled and false if rasterization is enabled.
+    /// @todo This function will be pointless once the new pipeline system is implemented.
     [[nodiscard]] auto getRayTracingEnabled( ) const -> bool { return this->rayTrace; }
 
     /// Used to enable or disable ray tracing.
+    ///
+    /// The function will trigger a swapchain recreation as soon as possible unless it was explicitely disabled using setAutomaticPipelineRefresh(bool).
+    /// @param flag If false, ray tracing will be disabled.
+    /// @todo This function will be pointless once the new pipeline system is implemented.
     void setEnableRayTracing( bool flag );
 
     /// Used to toggle the automatic pipeline recreation.
-    /// @flag If false, the pipelines will not be recreated until this function is called with true.
+    /// @param flag If false, the pipelines will not be recreated automatically until this function is called with true.
     void setAutomaticPipelineRefresh( bool flag );
 
-    /// Used to set a certain amount of directional light nodes that can be used.
-    ///
-    /// It is not necessary to use this function as the shaders will automatically will be updated to support any given
-    /// amount of light nodes. However, this process requires pipeline recreation and therefore it is recommended to set
-    /// the anticipated amount of directional light nodes in the scene to avoid pipeline recreation.
-    /// @param amount The amount of anticipated directional light nodes.
+    /// Used to set the maximum amount of directional light nodes that can be used.
+    /// @param amount The amount of maximum directional light nodes.
     void setMaxDirectionalLights( uint32_t amount );
 
-    /// Used to set a certain amount of point light nodes that can be used.
-    ///
-    /// It is not necessary to use this function as the shaders will automatically will be updated to support any given
-    /// amount of light nodes. However, this process requires pipeline recreation and therefore it is recommended to set
-    /// the anticipated amount of point light nodes in the scene to avoid pipeline recreation.
-    /// @param amount The amount of anticipated point light nodes.
+    /// Used to set the maximum amount of point light nodes that can be used.
+    /// @param amount The amount of maximum point light nodes.
     void setMaxPointLights( uint32_t amount );
 
+    /// Used to set the maximum amount of geometry nodes that can be used.
+    /// @param amount The amount of maximum geometry nodes.
     void setMaxGeometryNodes( uint32_t amount );
 
     /// @return Returns the maximum recursion depth on the GPU.
     [[nodiscard]] auto getMaxRecursionDepth( ) const -> uint32_t { return this->maxRecursionDepth; }
 
   private:
+    /// This function will be called by RayExec::init() in case the path was not set manually.
+    /// @warning This function might file in setting the correct path. That is why it is recommended to set it automatically using setAssetsPath(std::string).
+    void setDefaultAssetsPath( );
+
     bool rayTrace         = true;  ///< If true renderer will use ray tracing, if false it will use rasterization.
     bool refreshPipeline  = false; ///< Keeps track of whether or not the graphics pipeline needs to be recreated.
     bool refreshSwapchain = false; ///< Keeps track of whether or not the swapchain needs to be recreated.
@@ -90,8 +99,8 @@ namespace RAYEXEC_NAMESPACE
     uint32_t recursionDepth    = 2;                                      ///< The current recursion depth.
     std::string assetsPath;                                              ///< Where all assets like models, textures and shaders are stored.
 
-    bool automaticPipelineRefresh  = false;
-    bool automaticSwapchainRefresh = false;
+    bool automaticPipelineRefresh  = false; ///< Keeps track of whether or not the graphics pipelines should be recreated automatically as soon as possible.
+    bool automaticSwapchainRefresh = false; ///< Keeps track of whether or not the swapchain should be recreated automatically as soon as possible.
   };
 } // namespace RAYEXEC_NAMESPACE
 

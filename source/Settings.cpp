@@ -4,16 +4,6 @@
 
 namespace RAYEXEC_NAMESPACE
 {
-  Settings::Settings( )
-  {
-    this->assetsPath = std::filesystem::current_path( ).string( ) += "/";
-
-    std::replace( this->assetsPath.begin( ), this->assetsPath.end( ), '\\', '/' );
-
-    g_assetsPath = this->assetsPath;
-    RX_INFO( "Using default path as path to resources: ", this->assetsPath );
-  }
-
   void Settings::setRecursionDepth( uint32_t recursionDepth )
   {
     if ( recursionDepth <= maxRecursionDepth )
@@ -106,5 +96,15 @@ namespace RAYEXEC_NAMESPACE
       RX_WARN( "Can not use value 0 for the amount of maximum directional lights. Using 1 instead." );
     }
     this->maxGeometryNodes = amount;
+  }
+
+  void Settings::setDefaultAssetsPath( )
+  {
+    this->assetsPath = std::filesystem::current_path( ).string( ) += "/";
+
+    std::replace( this->assetsPath.begin( ), this->assetsPath.end( ), '\\', '/' );
+
+    g_assetsPath = this->assetsPath;
+    RX_INFO( "No path to assets specified. Using default path as path to resources: ", this->assetsPath );
   }
 } // namespace RAYEXEC_NAMESPACE

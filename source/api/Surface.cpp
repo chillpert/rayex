@@ -35,8 +35,6 @@ namespace RAYEXEC_NAMESPACE
       RX_WARN( "Preferred present mode not available. Falling back to ", vk::to_string( this->presentMode ), " present mode." );
     }
 
-    this->presentMode = vk::PresentModeKHR::eImmediate;
-
     // Check format and color space.
     auto surfaceFormats = g_physicalDevice.getSurfaceFormatsKHR( this->surface );
 

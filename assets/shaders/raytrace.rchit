@@ -120,8 +120,7 @@ void main()
     float tMax   = lightDistance;
     vec3  origin = gl_WorldRayOriginEXT + gl_WorldRayDirectionEXT * gl_HitTEXT;
     vec3  rayDir = L;
-    uint  flags  = gl_RayFlagsTerminateOnFirstHitEXT | gl_RayFlagsOpaqueEXT
-                 | gl_RayFlagsSkipClosestHitShaderEXT;
+    uint  flags  = gl_RayFlagsTerminateOnFirstHitEXT | gl_RayFlagsOpaqueEXT | gl_RayFlagsSkipClosestHitShaderEXT;
     isShadowed = true;
     traceRayEXT(topLevelAS,  // acceleration structure
                 flags,       // rayFlags

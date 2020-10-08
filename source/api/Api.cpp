@@ -6,8 +6,6 @@
 #include "api/utility/Initializers.hpp"
 #include "api/utility/Util.hpp"
 
-#include <utility>
-
 namespace RAYEXEC_NAMESPACE
 {
   const std::vector<const char*> layers = { "VK_LAYER_KHRONOS_validation" };

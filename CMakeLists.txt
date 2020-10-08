@@ -42,6 +42,9 @@ if(${OS} STREQUAL "Windows")
   add_compile_definitions(RX_GLSLC_PATH="${Vulkan_INCLUDE_DIRS}/../Bin/glslc.exe")
 elseif(${OS} STREQUAL "Linux")
   add_compile_definitions(RX_GLSLC_PATH="/usr/bin/glslc")
+  if(CMAKE_BUILD_TYPE STREQUAL "Debug")
+    set(CMAKE_CXX_CLANG_TIDY "clang-tidy;-checks=*")
+  endif()
 endif()
 
 # SDL

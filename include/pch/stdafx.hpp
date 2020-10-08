@@ -7,8 +7,6 @@
 #include "external/ImGui/imgui_impl_sdl.h"
 #include "external/ImGui/imgui_impl_vulkan.h"
 
-#include <gsl/gsl>
-
 #define GLFORCE_DEPTH_ZERO_TO_ONE
 #include <algorithm>
 #include <any>
@@ -20,6 +18,7 @@
 #include <filesystem>
 #include <forward_list>
 #include <fstream>
+#include <gsl/gsl>
 #include <list>
 #include <map>
 #include <memory>
@@ -27,6 +26,7 @@
 #include <set>
 #include <unordered_map>
 #include <unordered_set>
+#include <utility>
 #include <vector>
 
 #endif // STDAFX_HPP

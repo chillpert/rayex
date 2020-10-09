@@ -9,7 +9,7 @@
 
 namespace RAYEXEC_NAMESPACE
 {
-  void Pipeline::init( const std::vector<vk::DescriptorSetLayout>& descriptorSetLayouts, vk::RenderPass renderPass, vk::Viewport viewport, vk::Rect2D scissor, const Settings* const settings )
+  void Pipeline::init( const std::vector<vk::DescriptorSetLayout>& descriptorSetLayouts, vk::RenderPass renderPass, vk::Viewport viewport, vk::Rect2D scissor, const Settings* settings )
   {
     // TODO: this has to be more adjustable.
     auto bindingDescription    = Vertex::getBindingDescriptions( );
@@ -148,7 +148,7 @@ namespace RAYEXEC_NAMESPACE
     RX_ASSERT( this->pipeline, "Failed to create rasterization pipeline." );
   }
 
-  void Pipeline::init( const std::vector<vk::DescriptorSetLayout>& descriptorSetLayouts, const Settings* const settings )
+  void Pipeline::init( const std::vector<vk::DescriptorSetLayout>& descriptorSetLayouts, const Settings* settings )
   {
     uint32_t anticipatedDirectionalLights = settings->maxDirectionalLights.has_value( ) ? settings->maxDirectionalLights.value( ) : g_maxDirectionalLightNodes;
     uint32_t anticipatedPointLights       = settings->maxPointLights.has_value( ) ? settings->maxPointLights.value( ) : g_maxPointLightNodes;

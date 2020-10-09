@@ -172,7 +172,7 @@ namespace vk
     auto initInstance( const std::vector<const char*>& layers, std::vector<const char*>& extensions ) -> UniqueInstance;
 
     auto initGraphicsPipelines( const std::vector<GraphicsPipelineCreateInfo>& createInfos ) -> bool;
-    auto initRayTracingPipelines( std::vector<RayTracingPipelineCreateInfoKHR> createInfos ) -> bool;
+    auto initRayTracingPipelines( std::vector<RayTracingPipelineCreateInfoKHR>& createInfos ) -> bool;
   } // namespace Initializer
 } // namespace vk
 

@@ -359,7 +359,7 @@ namespace RAYEXEC_NAMESPACE
 
   void Api::updateAccelerationStructures( )
   {
-    // TODO: Try to call this as few times as possible.
+    // TODO(self): Try to call this as few times as possible.
     this->rayTracingBuilder.createBottomLevelAS( this->models );
     this->rayTracingBuilder.createTopLevelAS( this->geometryNodes );
 
@@ -558,7 +558,6 @@ namespace RAYEXEC_NAMESPACE
                                                                          0, // offset
                                                                          model->indexBuffer.getType( ) );
 
-        // TODO: Also bind ray tracing descriptor set.
         std::vector<vk::DescriptorSet> descriptorSets = { this->rsSceneDescriptorSets[imageIndex] };
 
         this->swapchainCommandBuffers.get( imageIndex ).bindDescriptorSets( vk::PipelineBindPoint::eGraphics, rsPipeline.getLayout( ),

@@ -14,17 +14,17 @@ namespace RAYEXEC_NAMESPACE
     /// Initializes a rasterization pipeline.
     /// @renderPass A Vulkan render pass.
     /// @descriptorSetLayouts A vector of descriptor set layouts that will be included in the pipeline layout.
-    void init( const std::vector<vk::DescriptorSetLayout>& descriptorSetLayouts, vk::RenderPass renderPass, vk::Viewport viewport, vk::Rect2D scissor, const Settings* const settings );
+    void init( const std::vector<vk::DescriptorSetLayout>& descriptorSetLayouts, vk::RenderPass renderPass, vk::Viewport viewport, vk::Rect2D scissor, const Settings* settings );
 
     /// Initializes a ray tracing pipeline.
     /// @param descriptorSetLayouts A vector of descriptor set layouts that will be included in the pipeline layout.
-    void init( const std::vector<vk::DescriptorSetLayout>& descriptorSetLayouts, const Settings* const settings );
+    void init( const std::vector<vk::DescriptorSetLayout>& descriptorSetLayouts, const Settings* settings );
 
     /// @return Returns the Vulkan pipeline object without the unique handle.
-    inline const vk::Pipeline get( ) const { return this->pipeline.get( ); }
+    inline vk::Pipeline get( ) const { return this->pipeline.get( ); }
 
     /// @return Returns the Vulkan pipeline layout object without the unique handle.
-    inline const vk::PipelineLayout getLayout( ) const { return this->layout.get( ); }
+    inline vk::PipelineLayout getLayout( ) const { return this->layout.get( ); }
 
   private:
     vk::UniquePipeline pipeline;     ///< The Vulkan pipeline with a unique handle.

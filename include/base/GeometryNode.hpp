@@ -45,6 +45,9 @@ namespace RAYEXEC_NAMESPACE
     Material material;     ///< The material defining rendering properties.
 
     RayTracingInstance rtInstance; ///< @see RAYEXEC_NAMESPACE::RayTracingInstance
+
+    vk::Pipeline pipeline           = nullptr;
+    vk::PipelineCache pipelineCache = nullptr;
   };
 } // namespace RAYEXEC_NAMESPACE
 

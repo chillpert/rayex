@@ -43,6 +43,14 @@ namespace RAYEXEC_NAMESPACE
 
     std::vector<std::vector<vk::WriteDescriptorSet>> writes;
   };
+
+  struct Descriptors
+  {
+    vk::UniqueDescriptorSetLayout layout;
+    vk::UniqueDescriptorPool pool;
+    Bindings bindings;
+  };
+
 } // namespace RAYEXEC_NAMESPACE
 
 #endif // BINDING_HPP

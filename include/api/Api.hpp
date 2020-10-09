@@ -148,6 +148,9 @@ namespace RAYEXEC_NAMESPACE
     std::shared_ptr<Camera> camera = nullptr; ///< A pointer to a RAYEXEC_NAMESPACE::Camera object whose matrices will be used for rendering.
     Settings* settings             = nullptr; ///< A pointer to a RAYEXEC_NAMESPACE::Settings object stored inside RAYEXEC_NAMESPACE::RayExec.
 
+    std::vector<vk::GraphicsPipelineCreateInfo> graphicsPipelineCreateInfos;
+    std::vector<vk::RayTracingPipelineCreateInfoKHR> rayTracingPipelineCreateInfos;
+
   private:
     /// Updates both top and bottom level acceleration structures as well as their descriptor bindings.
     RX_API void updateAccelerationStructures( );
@@ -218,33 +221,22 @@ namespace RAYEXEC_NAMESPACE
     std::vector<vk::UniqueSemaphore> imageAvailableSemaphores; ///< All semaphores for signaling that a particular swapchain image is available.
     std::vector<vk::UniqueSemaphore> finishedRenderSemaphores; ///< All semaphores for signaling that a render operation has finished.
 
-    // Descriptors for ray-tracing-related data ( no equivalent in rasterization shader ).
-    vk::UniqueDescriptorSetLayout rtDescriptorSetLayout; ///< A unique Vulkan descriptor set layout for ray tracing-related data.
-    vk::UniqueDescriptorPool rtDescriptorPool;           ///< A unique Vulkan descriptor pool for ray tracing-related data.
-    std::vector<vk::DescriptorSet> rtDescriptorSets;     ///< A vector of Vulkan descriptor sets for ray tracing-related data.
-    Bindings rtBindings;                                 ///< A set of bindings for ray tracing-related data.
+    Descriptors rtDescriptors;                       ///< Descriptors for ray-tracing-related data ( no equivalent in rasterization shader ).
+    std::vector<vk::DescriptorSet> rtDescriptorSets; ///< A vector of Vulkan descriptor sets for ray tracing-related data.
 
-    // Descriptors for scene-related data.
-    vk::UniqueDescriptorSetLayout rtSceneDescriptorSetLayout; ///< A unique Vulkan descriptor set layout for scene-related data in rasterization shaders.
-    vk::UniqueDescriptorPool rtSceneDescriptorPool;           ///< A unique Vulkan descriptor pool for scene-related data in rasterization shaders.
-    std::vector<vk::DescriptorSet> rtSceneDescriptorSets;     ///< A vector of Vulkan descriptor sets for scene-related data in rasterization shaders.
-    Bindings rtSceneBindings;                                 ///< A set of bindings for scene-related data in rasterization shaders.
-    vk::UniqueDescriptorSetLayout rsSceneDescriptorSetLayout; ///< A unique Vulkan descriptor set layout for scene-related data in ray tracing shaders.
-    vk::UniqueDescriptorPool rsSceneDescriptorPool;           ///< A unique Vulkan descriptor pool for scene-related data in ray tracing shaders.
-    std::vector<vk::DescriptorSet> rsSceneDescriptorSets;     ///< A vector of Vulkan descriptor sets for scene-related data in ray tracing shaders.
-    Bindings rsSceneBindings;                                 ///< A set of bindings for scene-related data in ray tracing shaders.
+    Descriptors rtSceneDescriptors;                       ///< Descriptors for scene-related data in ray tracing.
+    std::vector<vk::DescriptorSet> rtSceneDescriptorSets; ///< A vector of Vulkan descriptor sets for scene-related data in rasterization shaders.
 
-    vk::UniqueDescriptorSetLayout vertexDataDescriptorSetLayout; ///< A unique Vulkan descriptor set layout for vertex data.
-    vk::UniqueDescriptorPool vertexDataDescriptorPool;           ///< A unique Vulkan descriptor pool for vertex data.
+    Descriptors rsSceneDescriptors;                       ///< Descriptors for scene-related data in rasterization.
+    std::vector<vk::DescriptorSet> rsSceneDescriptorSets; ///< A vector of Vulkan descriptor sets for scene-related data in ray tracing shaders.
+
+    Descriptors vertexDataDescriptors;                           ///< Descriptors for vertex data.
     std::vector<vk::DescriptorSet> vertexDataDescriptorSets;     ///< A vector of Vulkan descriptor sets for vertex data.
     std::vector<vk::DescriptorBufferInfo> vertexDataBufferInfos; ///< A vector of Vulkan descriptor buffer infos for the vertex data.
-    Bindings vertexDataBindings;                                 ///< A set of bindings for vertex data.
 
-    vk::UniqueDescriptorSetLayout indexDataDescriptorSetLayout; ///< A unique Vulkan descriptor set layout for index data.
-    vk::UniqueDescriptorPool indexDataDescriptorPool;           ///< A unique Vulkan descriptor pool for index data.
+    Descriptors indexDataDescriptors;                           ///< Descriptors for index data.
     std::vector<vk::DescriptorSet> indexDataDescriptorSets;     ///< A vector of Vulkan descriptor sets for index data.
     std::vector<vk::DescriptorBufferInfo> indexDataBufferInfos; ///< A vector of Vulkan descriptor buffer infos for the index data.
-    Bindings indexDataBindings;                                 ///< A set of bindings for index data.
 
     CameraUbo cameraUbo;               ///< A uniform buffer object containing camera data.
     UniformBuffer cameraUniformBuffer; ///< A uniform buffer containing camera data.

@@ -254,10 +254,14 @@ namespace RAYEXEC_NAMESPACE
     // Models
     std::list<std::shared_ptr<Model>> models; ///< A list of all models that can be rendered.
 
-    Swapchain swapchain;                   ///< A RAYEXEC_NAMESPACE::Swapchain to manage swapchain related operations.
-    RenderPass renderPass;                 ///< A RAYEXEC_NAMESPACE::RenderPass to create, begin and end a render pass.
-    Pipeline rsPipeline;                   ///< A RAYEXEC_NAMESPACE::Pipeline for managing a rasterization pipeline.
-    Pipeline rtPipeline;                   ///< A RAYEXEC_NAMESPACE::Pipeline for managing a ray tracing pipeline.
+    Swapchain swapchain;   ///< A RAYEXEC_NAMESPACE::Swapchain to manage swapchain related operations.
+    RenderPass renderPass; ///< A RAYEXEC_NAMESPACE::RenderPass to create, begin and end a render pass.
+    Pipeline rsPipeline;   ///< A RAYEXEC_NAMESPACE::Pipeline for managing a rasterization pipeline.
+    Pipeline rtPipeline;   ///< A RAYEXEC_NAMESPACE::Pipeline for managing a ray tracing pipeline.
+
+    std::vector<vk::UniquePipeline> rsPipelines;
+    std::vector<vk::UniquePipeline> rtPipelines;
+
     CommandBuffer swapchainCommandBuffers; ///< A RAYEXEC_NAMESPACE::CommandBuffer containing as many command buffers as there are images in the swapchain.
 
     vk::Viewport viewport; ///< The application's viewport.

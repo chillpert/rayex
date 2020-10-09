@@ -171,8 +171,10 @@ namespace vk
     /// @return Returns true if initialization was successful.
     auto initInstance( const std::vector<const char*>& layers, std::vector<const char*>& extensions ) -> UniqueInstance;
 
-    auto initGraphicsPipelines( const std::vector<GraphicsPipelineCreateInfo>& createInfos ) -> bool;
-    auto initRayTracingPipelines( std::vector<RayTracingPipelineCreateInfoKHR>& createInfos ) -> bool;
+    auto initGraphicsPipelinesUnique( const std::vector<GraphicsPipelineCreateInfo>& createInfos ) -> std::vector<UniquePipeline>;
+
+    auto initRayTracingPipelinesUnique( const std::vector<RayTracingPipelineCreateInfoKHR>& createInfos ) -> std::vector<UniquePipeline>;
+
   } // namespace Initializer
 } // namespace vk
 

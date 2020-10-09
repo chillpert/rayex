@@ -597,74 +597,59 @@ namespace vk::Initializer
     return std::move( instance );
   }
 
-  auto initGraphicsPipelines( const std::vector<GraphicsPipelineCreateInfo>& createInfos ) -> bool
+  auto initGraphicsPipelinesUnique( const std::vector<GraphicsPipelineCreateInfo>& createInfos ) -> std::vector<UniquePipeline>
   {
-    auto pipelines = rx::g_device.createGraphicsPipelines( nullptr, createInfos );
+    vk::Result result;
+    std::vector<vk::Pipeline> temp;
+    std::tie( result, temp ) = rx::g_device.createGraphicsPipelines( nullptr, createInfos );
 
-    if ( pipelines.result != Result::eSuccess )
+    std::vector<vk::UniquePipeline> pipelines( temp.size( ) );
+
+    if ( result != Result::eSuccess )
     {
-      RX_ERROR( "Failed to create graphics pipelines." );
-      return false;
+      RX_FATAL( "Failed to create graphics pipelines." );
     }
 
-    for ( size_t i = 0; i < pipelines.value.size( ); ++i )
+    for ( size_t i = 0; i < temp.size( ); ++i )
     {
-      if ( !pipelines.value[i] )
+      if ( !temp[i] )
       {
-        RX_ERROR( "Failed to create graphics pipeline ", i + 1, "/", pipelines.value.size( ), "." );
-        return false;
+        RX_FATAL( "Failed to create graphics pipeline ", i + 1, "/", temp.size( ), "." );
+      }
+      else
+      {
+        pipelines[i].reset( temp[i] );
       }
     }
 
-    return true;
+    return pipelines;
   }
 
-  auto initRayTracingPipelines( const std::vector<RayTracingPipelineCreateInfoKHR> createInfos ) -> bool
+  auto initRayTracingPipelinesUnique( const std::vector<RayTracingPipelineCreateInfoKHR>& createInfos ) -> std::vector<UniquePipeline>
   {
-    auto pipelines = rx::g_device.createRayTracingPipelinesKHR( nullptr, createInfos );
+    vk::Result result;
+    std::vector<vk::Pipeline> temp;
+    std::tie( result, temp ) = rx::g_device.createRayTracingPipelinesKHR( nullptr, createInfos );
 
-    if ( pipelines.result != Result::eSuccess )
+    std::vector<vk::UniquePipeline> pipelines( temp.size( ) );
+
+    if ( result != Result::eSuccess )
     {
-      RX_ERROR( "Failed to create graphics pipelines." );
-      return false;
+      RX_FATAL( "Failed to create graphics pipelines." );
     }
 
-    for ( size_t i = 0; i < pipelines.value.size( ); ++i )
+    for ( size_t i = 0; i < temp.size( ); ++i )
     {
-      if ( !pipelines.value[i] )
+      if ( !temp[i] )
       {
-        RX_ERROR( "Failed to create graphics pipeline ", i + 1, "/", pipelines.value.size( ), "." );
-        return false;
+        RX_FATAL( "Failed to create graphics pipeline ", i + 1, "/", temp.size( ), "." );
+      }
+      else
+      {
+        pipelines[i].reset( temp[i] );
       }
     }
 
-    return true;
-  }
-
-  auto initRayTracingPipelinesUnique( std::vector<vk::UniquePipeline>& pipelines, const std::vector<RayTracingPipelineCreateInfoKHR> createInfos ) -> bool
-  {
-    //rx::g_device.createRayTracingPipelinesKHRUnique( nullptr, createInfos, nullptr );
-    //auto pipeline2( std::move( pipelines2 ) );
-
-    //auto result = rx::g_device.createRayTracingPipelinesKHRUnique( nullptr, createInfos );
-
-    /*
-      if ( pipelines.result != Result::eSuccess )
-      {
-        RX_ERROR( "Failed to create graphics pipelines." );
-        return false;
-      }
-
-      for ( size_t i = 0; i < pipelines.value.size( ); ++i )
-      {
-        if ( !pipelines.value[i] )
-        {
-          RX_ERROR( "Failed to create graphics pipeline ", i + 1, "/", pipelines.value.size( ), "." );
-          return false;
-        }
-      }
-      */
-
-    return true;
+    return pipelines;
   }
 } // namespace vk::Initializer

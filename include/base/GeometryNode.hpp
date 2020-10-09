@@ -46,8 +46,7 @@ namespace RAYEXEC_NAMESPACE
 
     RayTracingInstance rtInstance; ///< @see RAYEXEC_NAMESPACE::RayTracingInstance
 
-    vk::Pipeline pipeline           = nullptr;
-    vk::PipelineCache pipelineCache = nullptr;
+    vk::Pipeline pipeline = nullptr;
   };
 } // namespace RAYEXEC_NAMESPACE
 

@@ -2,6 +2,7 @@
 #define GEOMETRY_NODE_BASE_HPP
 
 #include "Node.hpp"
+#include "api/Pipeline.hpp"
 #include "base/Material.hpp"
 
 namespace RAYEXEC_NAMESPACE
@@ -45,8 +46,7 @@ namespace RAYEXEC_NAMESPACE
     Material material;     ///< The material defining rendering properties.
 
     RayTracingInstance rtInstance; ///< @see RAYEXEC_NAMESPACE::RayTracingInstance
-
-    vk::Pipeline pipeline = nullptr;
+    PipelineType pipelineType = PipelineType::eDefaultRayTracing;
   };
 } // namespace RAYEXEC_NAMESPACE
 

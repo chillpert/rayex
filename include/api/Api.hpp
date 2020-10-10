@@ -73,7 +73,7 @@ namespace RAYEXEC_NAMESPACE
     template <typename T = Model>
     void pushNode( const std::shared_ptr<Node>& node, bool record = true )
     {
-      if ( dynamic_cast<GeometryNode*>( node.get( ) ) )
+      if ( node->getType( ) == NodeType::eGeometryNode )
       {
         uint32_t limit = this->settings->maxGeometryNodes.has_value( ) ? this->settings->maxGeometryNodes.value( ) : g_maxGeometryNodes;
         if ( static_cast<uint32_t>( this->geometryNodes.size( ) ) > limit - 1 )
@@ -87,31 +87,31 @@ namespace RAYEXEC_NAMESPACE
         this->geometryNodes.push_back( ptr );
 
         // Fill scene description buffer.
-        ptr->rtInstance.modelIndex  = model->index;
-        ptr->rtInstance.transform   = ptr->worldTransform;
-        ptr->rtInstance.transformIT = glm::transpose( glm::inverse( ptr->worldTransform ) );
-        ptr->rtInstance.baseNodeId  = ptr->getID( );
-        this->rtInstances.push_back( ptr->rtInstance );
-
-        this->uploadRayTracingInstancesToBuffer = true;
-
-        if ( record && this->pipelinesReady )
+        if ( ptr->pipelineType == PipelineType::eDefaultRayTracing )
         {
-          updateAccelerationStructures( );
+          ptr->rtInstance.modelIndex  = model->index;
+          ptr->rtInstance.transform   = ptr->worldTransform;
+          ptr->rtInstance.transformIT = glm::transpose( glm::inverse( ptr->worldTransform ) );
+          ptr->rtInstance.baseNodeId  = ptr->getID( );
+          this->rtInstances.push_back( ptr->rtInstance );
+
+          this->uploadRayTracingInstancesToBuffer = true;
+
+          if ( record && this->pipelinesReady )
+          {
+            updateAccelerationStructures( );
+          }
         }
       }
-      else if ( dynamic_cast<LightNode*>( node.get( ) ) )
+      else if ( node->getType( ) == NodeType::eDirectionalLightNode )
       {
-        if ( dynamic_cast<DirectionalLightNode*>( node.get( ) ) )
-        {
-          auto dirLightNodePtr = std::dynamic_pointer_cast<DirectionalLightNode>( node );
-          this->dirLightNodes.push_back( dirLightNodePtr );
-        }
-        else if ( dynamic_cast<PointLightNode*>( node.get( ) ) )
-        {
-          auto pointLightNodePtr = std::dynamic_pointer_cast<PointLightNode>( node );
-          this->pointLightNodes.push_back( pointLightNodePtr );
-        }
+        auto dirLightNodePtr = std::dynamic_pointer_cast<DirectionalLightNode>( node );
+        this->dirLightNodes.push_back( dirLightNodePtr );
+      }
+      else if ( node->getType( ) == NodeType::ePointLightNode )
+      {
+        auto pointLightNodePtr = std::dynamic_pointer_cast<PointLightNode>( node );
+        this->pointLightNodes.push_back( pointLightNodePtr );
       }
 
       if ( record && this->pipelinesReady )
@@ -256,8 +256,9 @@ namespace RAYEXEC_NAMESPACE
 
     Swapchain swapchain;   ///< A RAYEXEC_NAMESPACE::Swapchain to manage swapchain related operations.
     RenderPass renderPass; ///< A RAYEXEC_NAMESPACE::RenderPass to create, begin and end a render pass.
-    Pipeline rsPipeline;   ///< A RAYEXEC_NAMESPACE::Pipeline for managing a rasterization pipeline.
-    Pipeline rtPipeline;   ///< A RAYEXEC_NAMESPACE::Pipeline for managing a ray tracing pipeline.
+
+    Pipeline rsPipeline; ///< A RAYEXEC_NAMESPACE::Pipeline for managing a rasterization pipeline.
+    Pipeline rtPipeline; ///< A RAYEXEC_NAMESPACE::Pipeline for managing a ray tracing pipeline.
 
     std::vector<vk::UniquePipeline> rsPipelines;
     std::vector<vk::UniquePipeline> rtPipelines;

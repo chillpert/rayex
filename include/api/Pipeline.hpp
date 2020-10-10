@@ -6,6 +6,12 @@
 
 namespace RAYEXEC_NAMESPACE
 {
+  enum class PipelineType
+  {
+    eDefaultRasterization,
+    eDefaultRayTracing
+  };
+
   /// A wrapper class for a Vulkan graphics pipeline.
   /// @ingroup API
   class Pipeline

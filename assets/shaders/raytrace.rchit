@@ -63,6 +63,7 @@ layout(binding = 0, set = 3) buffer Indices
 layout(push_constant) uniform Constants
 {
   vec4 clearColor;
+  uint frameCount;
 };
 
 Vertex unpack(uint index, uint modelIndex)

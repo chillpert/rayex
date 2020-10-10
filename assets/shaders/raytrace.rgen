@@ -17,6 +17,12 @@ layout(binding = 0, set = 1) uniform CameraProperties
   vec3 cameraPos;
 } cam;
 
+layout(push_constant) uniform Constants
+{
+  vec4 clearColor;
+  uint frameCount;
+};
+
 void main()
 {
   const vec2 pixelCenter = vec2(gl_LaunchIDEXT.xy) + vec2(0.5);

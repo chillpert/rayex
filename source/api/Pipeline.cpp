@@ -159,15 +159,11 @@ namespace RAYEXEC_NAMESPACE
     auto chit       = vk::Initializer::initShaderModuleUnique( "shaders/raytrace.rchit" );
     auto missShadow = vk::Initializer::initShaderModuleUnique( "shaders/raytraceShadow.rmiss" );
 
-    vk::PushConstantRange pushConstantRangeMissKHR( vk::ShaderStageFlagBits::eMissKHR, // stageFlags
-                                                    0,                                 // offset
-                                                    sizeof( glm::vec4 ) );             // size
+    vk::PushConstantRange rtPushConstant( vk::ShaderStageFlagBits::eRaygenKHR | vk::ShaderStageFlagBits::eMissKHR | vk::ShaderStageFlagBits::eClosestHitKHR, // stageFlags
+                                          0,                                                                                                                 // offset
+                                          sizeof( RayTracePushConstants ) );                                                                                 // size
 
-    vk::PushConstantRange pushConstantRangeClosestHitKHR( vk::ShaderStageFlagBits::eClosestHitKHR, // stageFlags
-                                                          sizeof( glm::vec4 ),                     // offset
-                                                          sizeof( glm::vec4 ) );                   // size
-
-    std::array<vk::PushConstantRange, 2> pushConstantRanges = { pushConstantRangeMissKHR, pushConstantRangeClosestHitKHR };
+    std::array<vk::PushConstantRange, 1> pushConstantRanges = { rtPushConstant };
 
     vk::PipelineLayoutCreateInfo layoutInfo( { },                                                   // flags
                                              static_cast<uint32_t>( descriptorSetLayouts.size( ) ), // setLayoutCount

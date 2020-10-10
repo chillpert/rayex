@@ -24,6 +24,7 @@ namespace RAYEXEC_NAMESPACE
   vk::PhysicalDeviceLimits g_physicalDeviceLimits;
 
   uint32_t g_modelCount;
+  uint32_t g_frameCount;
 
   std::string g_assetsPath;
 } // namespace RAYEXEC_NAMESPACE

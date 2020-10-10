@@ -159,6 +159,9 @@ namespace RAYEXEC_NAMESPACE
       this->uploadRayTracingInstancesToBuffer = false;
       this->rayTracingInstancesBuffer.fill<RayTracingInstance>( this->rtInstances.data( ) );
     }
+
+    // Increment frame counter for jitter cam.
+    ++g_frameCount;
   }
 
   auto Api::prepareFrame( ) -> bool
@@ -760,17 +763,12 @@ namespace RAYEXEC_NAMESPACE
     {
       this->swapchainCommandBuffers.begin( imageIndex );
 
-      this->swapchainCommandBuffers.get( imageIndex ).pushConstants( this->rtPipeline.getLayout( ),       // layout
-                                                                     vk::ShaderStageFlagBits::eMissKHR,   // stageFlags
-                                                                     0,                                   // offset
-                                                                     sizeof( glm::vec4 ),                 // size
-                                                                     &this->settings->getClearColor( ) ); // pValues
-
-      this->swapchainCommandBuffers.get( imageIndex ).pushConstants( this->rtPipeline.getLayout( ),           // layout
-                                                                     vk::ShaderStageFlagBits::eClosestHitKHR, // stageFlags
-                                                                     sizeof( glm::vec4 ),                     // offset
-                                                                     sizeof( glm::vec4 ),                     // size
-                                                                     &this->settings->getClearColor( ) );     // pValues
+      RayTracePushConstants chitPc = { this->settings->getClearColor( ), g_frameCount };
+      this->swapchainCommandBuffers.get( imageIndex ).pushConstants( this->rtPipeline.getLayout( ),                                                                                     // layout
+                                                                     vk::ShaderStageFlagBits::eRaygenKHR | vk::ShaderStageFlagBits::eMissKHR | vk::ShaderStageFlagBits::eClosestHitKHR, // stageFlags
+                                                                     0,                                                                                                                 // offset
+                                                                     sizeof( RayTracePushConstants ),                                                                                   // size
+                                                                     &chitPc );                                                                                                         // pValues
 
       this->swapchainCommandBuffers.get( imageIndex ).bindPipeline( vk::PipelineBindPoint::eRayTracingKHR, this->rtPipeline.get( ) );
 

@@ -318,21 +318,16 @@ private:
         this->renderer->settings.setRecursionDepth( static_cast<uint32_t>( depth ) );
       }
 
-      static std::list<float> frameTimes;
+      const size_t maxFrames = 10000;
+      std::array<float, maxFrames> frameTimes;
 
-      float dt = Time::getDeltaTime( );
-      if ( dt > 0.001F )
-      {
-        frameTimes.push_back( dt );
-      }
+      static size_t counter = 0;
+      counter               = counter % maxFrames;
 
-      if ( frameTimes.size( ) > 10000 )
-      {
-        frameTimes.pop_front( );
-      }
+      frameTimes[counter] = Time::getDeltaTime( );
+      ++counter;
 
-      std::vector<float> temp( frameTimes.begin( ), frameTimes.end( ) );
-      ImGui::PlotLines( "Frame Times", temp.data( ), temp.size( ), 0, "Frametime", 0.0F, 0.01F, ImVec2( 0.0F, 80.0F ) );
+      ImGui::PlotLines( "Frame Times", frameTimes.data( ), maxFrames, 0, "Frametime", 0.0F, 0.01F, ImVec2( 0.0F, 80.0F ) );
     }
 
     ImGui::End( );
@@ -358,7 +353,7 @@ auto main( ) -> int
   renderer.setWindow( std::make_shared<CustomWindow>( width, height, "Example", SDL_WINDOW_RESIZABLE, renderer.getCamera( ) ) );
 
   // Custom ImGui based Gui
-  //renderer.setGui( std::make_shared<CustomGui>( &renderer ) );
+  renderer.setGui( std::make_shared<CustomGui>( &renderer ) );
 
   // Use resources wisely by introducing the renderer to the anticipated total amount of various entities.
   renderer.settings.setMaxDirectionalLights( 5 );

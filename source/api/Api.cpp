@@ -27,6 +27,7 @@ namespace RAYEXEC_NAMESPACE
   };
 
   size_t currentFrame = 0;
+  size_t prevFrame    = 0;
 
   // Defines the maximum amount of frames that will be processed concurrently.
   const size_t maxFramesInFlight = 2;
@@ -143,7 +144,8 @@ namespace RAYEXEC_NAMESPACE
     updateAccelerationStructures( );
 
     // Init and record swapchain command buffers.
-    this->swapchainCommandBuffers.reset( );
+    //this->swapchainCommandBuffers.reset( );
+    this->swapchainCommandBuffers.init( this->graphicsCmdPool.get( ), g_swapchainImageCount, vk::CommandBufferUsageFlagBits::eRenderPassContinue );
     recordSwapchainCommandBuffers( );
   }
 
@@ -166,10 +168,6 @@ namespace RAYEXEC_NAMESPACE
 
   auto Api::prepareFrame( ) -> bool
   {
-    // Wait for the current frame's fences.
-    vk::Result result = g_device.waitForFences( 1, &this->inFlightFences[currentFrame].get( ), VK_TRUE, UINT64_MAX );
-    RX_ASSERT( result == vk::Result::eSuccess, "Failed to wait for fences." );
-
     // If the window is minimized then simply do not render anything anymore.
     if ( this->window->minimized( ) )
     {
@@ -187,6 +185,10 @@ namespace RAYEXEC_NAMESPACE
     }
 
     this->swapchain.acquireNextImage( this->imageAvailableSemaphores[currentFrame].get( ), nullptr );
+
+    // Wait for the current frame's fences.
+    vk::Result result = g_device.waitForFences( 1, &this->inFlightFences[currentFrame].get( ), VK_TRUE, UINT64_MAX );
+    RX_ASSERT( result == vk::Result::eSuccess, "Failed to wait for fences." );
 
     return false;
   }
@@ -237,6 +239,7 @@ namespace RAYEXEC_NAMESPACE
       this->needSwapchainRecreate = true;
     }
 
+    prevFrame    = currentFrame;
     currentFrame = ( currentFrame + 1 ) % maxFramesInFlight;
     return false;
   }
@@ -254,6 +257,10 @@ namespace RAYEXEC_NAMESPACE
     {
       return true;
     }
+
+    vk::Result result = g_device.waitForFences( 1, &this->inFlightFences[prevFrame].get( ), VK_TRUE, UINT64_MAX );
+    RX_ASSERT( result == vk::Result::eSuccess, "Failed to wait for fences." );
+    recordSwapchainCommandBuffers( );
 
     if ( this->gui != nullptr )
     {
@@ -296,6 +303,7 @@ namespace RAYEXEC_NAMESPACE
     this->rtDescriptors.bindings.update( );
 
     // Swapchain command buffers
+    this->swapchainCommandBuffers.init( this->graphicsCmdPool.get( ), g_swapchainImageCount, vk::CommandBufferUsageFlagBits::eRenderPassContinue );
     recordSwapchainCommandBuffers( );
 
     if ( this->gui != nullptr )
@@ -466,29 +474,7 @@ namespace RAYEXEC_NAMESPACE
 
   void Api::recordSwapchainCommandBuffers( )
   {
-    this->swapchainCommandBuffers.init( this->graphicsCmdPool.get( ), g_swapchainImageCount, vk::CommandBufferUsageFlagBits::eRenderPassContinue );
-
-    RX_INFO( "Started swapchain command buffers recording." );
     RX_ASSERT( this->pipelinesReady, "Can not record swapchain command buffers because the pipelines have not been initialized yet." );
-
-    std::vector<std::shared_ptr<GeometryNode>> rsNodes;
-    std::vector<std::shared_ptr<GeometryNode>> rtNodes;
-
-    for ( const auto& node : this->geometryNodes )
-    {
-      switch ( node->pipelineType )
-      {
-        case PipelineType::eDefaultRasterization:
-          rsNodes.push_back( node );
-          break;
-        case PipelineType::eDefaultRayTracing:
-          rtNodes.push_back( node );
-          break;
-      }
-    }
-
-    //rasterize( rsNodes );
-    //rayTrace( rtNodes );
 
     if ( this->settings->rayTrace )
     {
@@ -498,149 +484,6 @@ namespace RAYEXEC_NAMESPACE
     {
       rasterize( );
     }
-
-    /*
-    std::map<std::string, uint32_t> temp;
-
-    for ( const auto& model : this->models )
-    {
-      temp.emplace( model->path, 0 );
-    }
-
-    for ( const auto& node : rsNodes )
-    {
-      if ( node->modelPath.empty( ) )
-      {
-        continue;
-      }
-
-      auto it = findModel( node->modelPath );
-
-      auto it2 = temp.find( it->path );
-      if ( it2 != temp.end( ) )
-      {
-        ++( it2->second );
-      }
-    }
-
-    // Set up render pass begin info
-    std::array<vk::ClearValue, 2> clearValues;
-    clearValues[0].color        = { Util::vec4toArray( this->settings->getClearColor( ) ) };
-    clearValues[1].depthStencil = vk::ClearDepthStencilValue { 1.0F, 0 };
-
-    for ( size_t imageIndex = 0; imageIndex < this->swapchainCommandBuffers.get( ).size( ); ++imageIndex )
-    {
-      this->swapchainCommandBuffers.begin( imageIndex );
-
-      this->renderPass.begin( this->swapchain.getFramebuffer( imageIndex ),
-                              this->swapchainCommandBuffers.get( imageIndex ),
-                              { 0, this->swapchain.getExtent( ) },
-                              { clearValues[0], clearValues[1] } );
-
-      this->swapchainCommandBuffers.get( imageIndex ).bindPipeline( vk::PipelineBindPoint::eGraphics, this->rsPipeline.get( ) ); // CMD
-
-      // Dynamic states
-      vk::Viewport viewport = this->viewport;
-      viewport.width        = static_cast<float>( this->window->getWidth( ) );
-      viewport.height       = static_cast<float>( this->window->getHeight( ) );
-
-      this->swapchainCommandBuffers.get( imageIndex ).setViewport( 0, 1, &viewport ); // CMD
-
-      vk::Rect2D scissor = this->scissor;
-      scissor.extent     = this->window->getExtent( );
-
-      this->swapchainCommandBuffers.get( imageIndex ).setScissor( 0, 1, &scissor ); // CMD
-
-      // Draw models
-      uint32_t id = 0;
-      for ( const auto& node : rsNodes )
-      {
-        uint32_t instanceCount = 1;
-        auto it2               = temp.find( node->modelPath );
-        if ( it2 != temp.end( ) )
-        {
-          instanceCount = it2->second;
-
-          if ( instanceCount == 0 )
-          {
-            continue;
-          }
-        }
-
-        this->swapchainCommandBuffers.get( imageIndex ).pushConstants( this->rsPipeline.getLayout( ),    // layout
-                                                                       vk::ShaderStageFlagBits::eVertex, // stageFlags
-                                                                       0,                                // offset
-                                                                       sizeof( uint32_t ),               // size
-                                                                       &id );                            // pValues
-
-        auto model = findModel( node->modelPath );
-
-        std::array<vk::Buffer, 1> vertexBuffers { model->vertexBuffer.get( ) };
-        std::array<vk::DeviceSize, 1> offsets { 0 };
-
-        this->swapchainCommandBuffers.get( imageIndex ).bindVertexBuffers( 0,                     // first binding
-                                                                           1,                     // binding count
-                                                                           vertexBuffers.data( ), // pBuffers
-                                                                           offsets.data( ) );     // pOffsets
-
-        this->swapchainCommandBuffers.get( imageIndex ).bindIndexBuffer( model->indexBuffer.get( ),
-                                                                         0, // offset
-                                                                         model->indexBuffer.getType( ) );
-
-        std::vector<vk::DescriptorSet> descriptorSets = { this->rsSceneDescriptorSets[imageIndex] };
-
-        this->swapchainCommandBuffers.get( imageIndex ).bindDescriptorSets( vk::PipelineBindPoint::eGraphics,                //
-                                                                            rsPipeline.getLayout( ),                         //
-                                                                            0,                                               // first set
-                                                                            static_cast<uint32_t>( descriptorSets.size( ) ), // descriptor set count
-                                                                            descriptorSets.data( ),                          // descriptor sets
-                                                                            0,                                               // dynamic offset count
-                                                                            nullptr );                                       // dynamic offsets
-
-        this->swapchainCommandBuffers.get( imageIndex ).drawIndexed( model->indexBuffer.getCount( ), // index count
-                                                                     instanceCount,                  // instance count
-                                                                     0,                              // first index
-                                                                     0,                              // vertex offset
-                                                                     0 );                            // first instance
-
-        ++id;
-      }
-
-      this->renderPass.end( this->swapchainCommandBuffers.get( imageIndex ) );
-
-      // RT BEGIN
-      this->swapchainCommandBuffers.get( imageIndex ).pushConstants( this->rtPipeline.getLayout( ),       // layout
-                                                                     vk::ShaderStageFlagBits::eMissKHR,   // stageFlags
-                                                                     0,                                   // offset
-                                                                     sizeof( glm::vec4 ),                 // size
-                                                                     &this->settings->getClearColor( ) ); // pValues
-
-      this->swapchainCommandBuffers.get( imageIndex ).pushConstants( this->rtPipeline.getLayout( ),           // layout
-                                                                     vk::ShaderStageFlagBits::eClosestHitKHR, // stageFlags
-                                                                     sizeof( glm::vec4 ),                     // offset
-                                                                     sizeof( glm::vec4 ),                     // size
-                                                                     &this->settings->getClearColor( ) );     // pValues
-
-      this->swapchainCommandBuffers.get( imageIndex ).bindPipeline( vk::PipelineBindPoint::eRayTracingKHR, this->rtPipeline.get( ) );
-
-      std::vector<vk::DescriptorSet> descriptorSets = { this->rtDescriptorSets[imageIndex],
-                                                        this->rtSceneDescriptorSets[imageIndex],
-                                                        this->vertexDataDescriptorSets[imageIndex],
-                                                        this->indexDataDescriptorSets[imageIndex] };
-
-      this->swapchainCommandBuffers.get( imageIndex ).bindDescriptorSets( vk::PipelineBindPoint::eRayTracingKHR, this->rtPipeline.getLayout( ),
-                                                                          0,                                               // first set
-                                                                          static_cast<uint32_t>( descriptorSets.size( ) ), // descriptor set count
-                                                                          descriptorSets.data( ),                          // descriptor sets
-                                                                          0,                                               // dynamic offset count
-                                                                          nullptr );                                       // dynamic offsets
-
-      this->rayTracingBuilder.rayTrace( this->swapchainCommandBuffers.get( imageIndex ), this->swapchain.getImage( imageIndex ), this->swapchain.getExtent( ) );
-      // RT END
-
-      this->swapchainCommandBuffers.end( imageIndex );
-    }
-    */
   }
 
   void Api::rasterize( )
@@ -801,7 +644,7 @@ namespace RAYEXEC_NAMESPACE
     {
       this->imageAvailableSemaphores[i] = vk::Initializer::initSemaphoreUnique( );
       this->finishedRenderSemaphores[i] = vk::Initializer::initSemaphoreUnique( );
-      this->inFlightFences[i]           = vk::Initializer::initFenceUnique( );
+      this->inFlightFences[i]           = vk::Initializer::initFenceUnique( vk::FenceCreateFlagBits::eSignaled );
     }
   }
 

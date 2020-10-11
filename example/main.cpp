@@ -358,7 +358,7 @@ auto main( ) -> int
   renderer.setWindow( std::make_shared<CustomWindow>( width, height, "Example", SDL_WINDOW_RESIZABLE, renderer.getCamera( ) ) );
 
   // Custom ImGui based Gui
-  renderer.setGui( std::make_shared<CustomGui>( &renderer ) );
+  //renderer.setGui( std::make_shared<CustomGui>( &renderer ) );
 
   // Use resources wisely by introducing the renderer to the anticipated total amount of various entities.
   renderer.settings.setMaxDirectionalLights( 5 );

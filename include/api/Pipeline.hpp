@@ -17,9 +17,13 @@ namespace RAYEXEC_NAMESPACE
     glm::vec4 clearColor         = glm::vec4( 1.0F );
     uint32_t sampleRate          = 100;
     uint32_t sampleRatePerRayGen = 1;
-    bool jitterCamEnabled        = false;
-    uint32_t msaa                = 4;
-    bool msaaEnabled             = true;
+    uint32_t msaa                = 8;
+    uint32_t jitterCamEnabled    = 0;
+    uint32_t msaaEnabled         = 1;
+
+    float padding0 = 0.0f;
+    float padding1 = 0.0f;
+    float padding2 = 0.0f;
   };
 
   /// A wrapper class for a Vulkan graphics pipeline.

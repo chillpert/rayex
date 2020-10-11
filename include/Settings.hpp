@@ -9,6 +9,7 @@ namespace RAYEXEC_NAMESPACE
   ///
   /// Any necessary pipeline recreations and swapchain recreations will not be performed at the point of calling any setter but instead the next time the renderer
   /// will be updated.
+  /// @todo Add a setUseTotalPathsOnly( bool flag )
   class RX_API Settings
   {
   public:
@@ -87,6 +88,7 @@ namespace RAYEXEC_NAMESPACE
     /// A ray that will be cast into the scene normally starts off at the exact same position.
     /// The jitter cam will jitter or scatter the ray's starting position slightly using random values.
     /// @param flag Enable or disable the jitter cam.
+    /// @note Disables MSAA automatically.
     void setEnableJitterCam( bool flag );
 
     /// @return Returns true, if jitter cam is enabled.
@@ -109,6 +111,22 @@ namespace RAYEXEC_NAMESPACE
     /// @return Returns the jitter cam's sample rate per raygen.
     [[nodiscard]] auto getJitterCamSampleRatePerRayGen( ) const -> uint32_t { return this->jitterCamSampleRatePerRayGen; }
 
+    /// Used to toggle MSAA.
+    /// @param flag If true, MSAA will be activated.
+    /// @note Disables jitter cam automatically.
+    void setEnableMsaa( bool flag );
+
+    /// @return Returns true, if MSAA is enabled.
+    [[nodiscard]] auto getMsaaEnabled( ) const -> bool { return this->msaaEnabled; }
+
+    /// Used to set the MSAA sample rate.
+    /// @param sampleRate The desired MSAA sample rate.
+    /// @note The function will automatically choose the closest candidate if an invalid input was chosen.
+    void setMsaaSampleRate( uint32_t sampleRate );
+
+    /// @return Returns the MSAA sample rate.
+    [[nodiscard]] auto getMsaaSampleRate( ) const -> uint32_t { return this->msaaSampleRate; }
+
   private:
     /// This function will be called by RayExec::init() in case the path was not set manually.
     /// @warning This function might file in setting the correct path. That is why it is recommended to set it automatically using setAssetsPath(std::string).
@@ -127,9 +145,11 @@ namespace RAYEXEC_NAMESPACE
     glm::vec4 clearColor                  = glm::vec4( 0.45F, 0.45F, 0.45F, 1.0F ); ///< Stores the clear color.
     uint32_t maxRecursionDepth            = 2;                                      ///< The maximum recursion depth.
     uint32_t recursionDepth               = 2;                                      ///< The current recursion depth.
-    bool jitterCamEnabled                 = true;                                   ///< Keeps track of whether or not the jitter cam is enabled.
+    bool jitterCamEnabled                 = false;                                  ///< Keeps track of whether or not the jitter cam is enabled.
     uint32_t jitterCamSampleRate          = 100;                                    ///< Stores the sample rate of the jitter cam.
     uint32_t jitterCamSampleRatePerRayGen = 1;                                      ///< Stores the sample rate per raygen invocation.
+    bool msaaEnabled                      = true;                                   ///< Keeps track of whether or not MSAA is enabled.
+    uint32_t msaaSampleRate               = 8;                                      ///< Stores the amount of samples per pixel for MSAA.
 
     bool automaticPipelineRefresh  = false; ///< Keeps track of whether or not the graphics pipelines should be recreated automatically as soon as possible.
     bool automaticSwapchainRefresh = false; ///< Keeps track of whether or not the swapchain should be recreated automatically as soon as possible.

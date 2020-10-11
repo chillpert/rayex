@@ -69,7 +69,13 @@ layout( push_constant ) uniform Constants
   vec4 clearColor;
   uint frameCount;
   uint jitterCamSampleRatePerRayGen;
+  uint msaa;
   bool jitterCamEnabled;
+  bool msaaEnabled;
+
+  float padding0;
+  float padding1;
+  float padding2;
 };
 
 Vertex unpack( uint index, uint modelIndex )

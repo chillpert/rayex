@@ -24,14 +24,18 @@ layout( push_constant ) uniform Constants
   vec4 clearColor;
   uint frameCount;
   uint jitterCamSampleRatePerRayGen;
-  bool jitterCamEnabled;
   uint msaa;
+  bool jitterCamEnabled;
   bool msaaEnabled;
+
+  float padding0;
+  float padding1;
+  float padding2;
 };
 
-void rayTrace( vec2 pixelCenter )
+void rayTrace( vec2 positionWithinPixel )
 {
-  const vec2 inUV = pixelCenter / vec2( gl_LaunchSizeEXT.xy );
+  const vec2 inUV = positionWithinPixel / vec2( gl_LaunchSizeEXT.xy );
   vec2 d          = inUV * 2.0 - 1.0;
 
   vec4 origin    = cam.viewInverse * vec4( 0, 0, 0, 1 );
@@ -57,24 +61,27 @@ void rayTrace( vec2 pixelCenter )
 
 void main( )
 {
+  // Use MSAA
   if ( msaaEnabled )
   {
-    vec3 hitValues = vec3( 0.0 );
+    vec3 hitValues        = vec3( 0.0 );
+    const float msaaFloat = float( msaa );
 
-    for ( float x = 1.0; x < msaa; x += 2.0 )
+    for ( float x = 1.0; x < msaaFloat; x += 2.0 )
     {
-      for ( float y = 1.0; y < msaa; y += 2.0 )
+      for ( float y = 1.0; y < msaaFloat; y += 2.0 )
       {
-        vec2 pixelCenter = vec2( gl_LaunchIDEXT.xy ) + vec2( x / float( msaa ), y / float( msaa ) );
-        rayTrace( pixelCenter );
+        vec2 positionWithinPixel = vec2( gl_LaunchIDEXT.xy ) + vec2( x / msaaFloat, y / msaaFloat );
+        rayTrace( positionWithinPixel );
 
         hitValues += prd.hitValue;
       }
     }
 
-    prd.hitValue = hitValues / msaa;
+    prd.hitValue = hitValues / msaaFloat;
     imageStore( image, ivec2( gl_LaunchIDEXT.xy ), vec4( prd.hitValue, 1.0 ) );
   }
+  // Use jitter cam
   else if ( jitterCamEnabled )
   {
     uint seed      = tea( gl_LaunchIDEXT.y * gl_LaunchSizeEXT.x + gl_LaunchIDEXT.x, frameCount );
@@ -82,10 +89,10 @@ void main( )
 
     for ( uint i = 0; i < jitterCamSampleRatePerRayGen; ++i )
     {
-      vec2 subpixel_jitter = frameCount == 0 ? vec2( 0.5, 0.5 ) : vec2( rnd( seed ), rnd( seed ) );
+      vec2 subPixelJitter = frameCount == 0 ? vec2( 0.5, 0.5 ) : vec2( rnd( seed ), rnd( seed ) );
 
-      vec2 pixelCenter = vec2( gl_LaunchIDEXT.xy ) + subpixel_jitter;
-      rayTrace( pixelCenter );
+      vec2 positionWithinPixel = vec2( gl_LaunchIDEXT.xy ) + subPixelJitter;
+      rayTrace( positionWithinPixel );
 
       hitValues += prd.hitValue;
     }
@@ -103,10 +110,11 @@ void main( )
       imageStore( image, ivec2( gl_LaunchIDEXT.xy ), vec4( prd.hitValue, 1.0 ) );
     }
   }
+  // No anti aliasing
   else
   {
-    vec2 pixelCenter = vec2( gl_LaunchIDEXT.xy ) + vec2( 0.5 );
-    rayTrace( pixelCenter );
+    vec2 positionWithinPixel = vec2( gl_LaunchIDEXT.xy ) + vec2( 0.5 );
+    rayTrace( positionWithinPixel );
 
     imageStore( image, ivec2( gl_LaunchIDEXT.xy ), vec4( prd.hitValue, 1.0 ) );
   }

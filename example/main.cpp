@@ -345,6 +345,18 @@ private:
           this->renderer->settings.setJitterCamSampleRatePerRayGen( jitterCamSampleRatePerRayGen );
         }
 
+        bool msaaEnabled = this->renderer->settings.getMsaaEnabled( );
+        if ( ImGui::Checkbox( "Toggle MSAA", &msaaEnabled ) )
+        {
+          this->renderer->settings.setEnableMsaa( msaaEnabled );
+        }
+
+        int msaaSampleRate = static_cast<int>( this->renderer->settings.getMsaaSampleRate( ) );
+        if ( ImGui::SliderInt( "Set MSAA Sample Rate", &msaaSampleRate, 1, 64 ) )
+        {
+          this->renderer->settings.setMsaaSampleRate( msaaSampleRate );
+        }
+
         int depth = static_cast<int>( this->renderer->settings.getRecursionDepth( ) );
         if ( ImGui::SliderInt( "Recursion depth", &depth, 0, 31 ) )
         {

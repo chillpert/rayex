@@ -618,8 +618,10 @@ namespace RAYEXEC_NAMESPACE
 
       RayTracePushConstants chitPc = { this->settings->getClearColor( ),
                                        g_frameCount,
-                                       this->settings->jitterCamSampleRatePerRayGen,
-                                       this->settings->getJitterCamEnabled( ) };
+                                       this->settings->getJitterCamSampleRatePerRayGen( ),
+                                       this->settings->getMsaaSampleRate( ),
+                                       this->settings->getJitterCamEnabled( ) ? true : false,
+                                       this->settings->getMsaaEnabled( ) ? true : false };
 
       this->swapchainCommandBuffers.get( imageIndex ).pushConstants( this->rtPipeline.getLayout( ),                                                                                     // layout
                                                                      vk::ShaderStageFlagBits::eRaygenKHR | vk::ShaderStageFlagBits::eMissKHR | vk::ShaderStageFlagBits::eClosestHitKHR, // stageFlags

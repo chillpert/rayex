@@ -312,7 +312,7 @@ private:
         this->renderer->settings.setClearColor( clearColor );
       }
 
-      static bool rayTrace = this->renderer->settings.getRayTracingEnabled( );
+      bool rayTrace = this->renderer->settings.getRayTracingEnabled( );
       if ( ImGui::Checkbox( "Toggle Ray Tracing", &rayTrace ) )
       {
         this->renderer->settings.setEnableRayTracing( rayTrace );
@@ -320,32 +320,42 @@ private:
 
       ImGui::Checkbox( "Show ImGui Demo Window", &showDemoWindow );
 
-      static bool jitterCamEnabled = this->renderer->settings.getJitterCamEnabled( );
+      bool jitterCamEnabled = this->renderer->settings.getJitterCamEnabled( );
       if ( ImGui::Checkbox( "Toggle Jitter Cam", &jitterCamEnabled ) )
       {
         this->renderer->settings.setEnableJitterCam( jitterCamEnabled );
       }
 
-      static int jitterCamSampleRate = static_cast<int>( this->renderer->settings.getJitterCamSampleRate( ) );
-      if ( ImGui::SliderInt( "Set Jitter Cam Sample Rate", &jitterCamSampleRate, 1, 500 ) )
+      int jitterCamSampleRate = static_cast<int>( this->renderer->settings.getJitterCamSampleRate( ) );
+      if ( ImGui::SliderInt( "Set Jitter Cam Sample Rate", &jitterCamSampleRate, 1, 100 ) )
       {
         this->renderer->settings.setJitterCamSampleRate( jitterCamSampleRate );
       }
 
-      static int depth = static_cast<int>( this->renderer->settings.getRecursionDepth( ) );
+      int jitterCamSampleRatePerRayGen = static_cast<int>( this->renderer->settings.getJitterCamSampleRatePerRayGen( ) );
+      if ( ImGui::SliderInt( "Set Jitter Cam Sample Rate Per Ray Gen", &jitterCamSampleRatePerRayGen, 1, 10 ) )
+      {
+        this->renderer->settings.setJitterCamSampleRatePerRayGen( jitterCamSampleRatePerRayGen );
+      }
+
+      int depth = static_cast<int>( this->renderer->settings.getRecursionDepth( ) );
       if ( ImGui::SliderInt( "Recursion depth", &depth, 0, 31 ) )
       {
         this->renderer->settings.setRecursionDepth( static_cast<uint32_t>( depth ) );
       }
 
       const size_t maxFrames = 10000;
-      std::array<float, maxFrames> frameTimes;
+      static std::array<float, maxFrames> frameTimes;
 
       static size_t counter = 0;
       counter               = counter % maxFrames;
 
-      frameTimes[counter] = Time::getDeltaTime( );
-      ++counter;
+      float dt = Time::getDeltaTime( );
+      if ( dt > 0.001f )
+      {
+        frameTimes[counter] = dt;
+        ++counter;
+      }
 
       ImGui::PlotLines( "Frame Times", frameTimes.data( ), maxFrames, 0, "Frametime", 0.0F, 0.01F, ImVec2( 0.0F, 80.0F ) );
     }
@@ -375,7 +385,7 @@ auto main( ) -> int
   // Custom ImGui based Gui
   renderer.setGui( std::make_shared<CustomGui>( &renderer ) );
 
-  // Use resources wisely by introducing the renderer to the anticipated total amount of various entities.
+  // Use resources efficiently by introducing the renderer to the anticipated total amount of various entities.
   renderer.settings.setMaxDirectionalLights( 5 );
   renderer.settings.setMaxPointLights( 0 ); // Bad input: 1 will be used instead (See warning in console).
   renderer.settings.setMaxGeometryNodes( 50 );

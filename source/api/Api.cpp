@@ -164,7 +164,7 @@ namespace RAYEXEC_NAMESPACE
 
     if ( this->settings->getJitterCamEnabled( ) )
     {
-      if ( g_frameCount >= this->settings->getJitterCamSampleRate( ) )
+      if ( g_frameCount >= this->settings->jitterCamSampleRate )
         return;
 
       // Increment frame counter for jitter cam.
@@ -613,7 +613,11 @@ namespace RAYEXEC_NAMESPACE
     {
       this->swapchainCommandBuffers.begin( imageIndex );
 
-      RayTracePushConstants chitPc = { this->settings->getClearColor( ), g_frameCount, this->settings->getJitterCamEnabled( ) };
+      RayTracePushConstants chitPc = { this->settings->getClearColor( ),
+                                       g_frameCount,
+                                       this->settings->jitterCamSampleRatePerRayGen,
+                                       this->settings->getJitterCamEnabled( ) };
+
       this->swapchainCommandBuffers.get( imageIndex ).pushConstants( this->rtPipeline.getLayout( ),                                                                                     // layout
                                                                      vk::ShaderStageFlagBits::eRaygenKHR | vk::ShaderStageFlagBits::eMissKHR | vk::ShaderStageFlagBits::eClosestHitKHR, // stageFlags
                                                                      0,                                                                                                                 // offset

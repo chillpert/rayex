@@ -68,6 +68,7 @@ layout( push_constant ) uniform Constants
 {
   vec4 clearColor;
   uint frameCount;
+  uint jitterCamSampleRatePerRayGen;
   bool jitterCamEnabled;
 };
 

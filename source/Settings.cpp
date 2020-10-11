@@ -23,6 +23,8 @@ namespace RAYEXEC_NAMESPACE
   {
     this->clearColor       = clearColor;
     this->refreshSwapchain = true;
+
+    g_frameCount = 0;
   }
 
   void Settings::setAssetsPath( int argc, char* argv[] )
@@ -119,5 +121,12 @@ namespace RAYEXEC_NAMESPACE
     // Make sure the sample rate is always greater than zero.
     this->jitterCamSampleRate = sampleRate > 0 ? sampleRate : 1;
     g_frameCount              = 0;
+  }
+
+  void Settings::setJitterCamSampleRatePerRayGen( uint32_t sampleRate )
+  {
+    // Make sure the sample rate per raygen is always greater than zero.
+    this->jitterCamSampleRatePerRayGen = sampleRate > 0 ? sampleRate : 1;
+    g_frameCount                       = 0;
   }
 } // namespace RAYEXEC_NAMESPACE

@@ -95,12 +95,24 @@ namespace RAYEXEC_NAMESPACE
     /// Used to set the jitter cam's sample rate.
     ///
     /// In case the sample rate is set to 50, then the jittering or scattering of the generated rays happens 50 times. After that the jittering stops.
-    /// This value can never be smaller than one. The function will automatically make changes to unsupported inputs.
     /// @param sampleRate The jitter cam's sample rate.
+    /// @see setJitterCamSampleRatePerRayGen(uint32_t)
     void setJitterCamSampleRate( uint32_t sampleRate );
 
-    /// @return Returns the jitter cam's sample rate.
+    /// @return Returns the jitter cam's sample rate .
     [[nodiscard]] auto getJitterCamSampleRate( ) const -> uint32_t { return this->jitterCamSampleRate; }
+
+    /// Used to set the jitter cam's sample rate per raygen.
+    ///
+    /// The total amount of jitters or scatters is calculated by multiplying sampleRate by sampleRatePerRayGen.
+    /// If sampleRate is greater than sample rate, the value of sample rate will be used instead.
+    /// @param sampleRate Used to make the jitter cam faster by casting n rays directly in the raygen shader.
+    /// @note It is advised to set a higher value for sampleRatePerRayGen and lowering sampleRate instead.
+    /// @see setJitterCamSamplesRate(uint32_t)
+    void setJitterCamSampleRatePerRayGen( uint32_t sampleRate );
+
+    /// @return Returns the jitter cam's sample rate per raygen.
+    [[nodiscard]] auto getJitterCamSampleRatePerRayGen( ) const -> uint32_t { return this->jitterCamSampleRatePerRayGen; }
 
   private:
     /// This function will be called by RayExec::init() in case the path was not set manually.
@@ -119,8 +131,9 @@ namespace RAYEXEC_NAMESPACE
     uint32_t maxRecursionDepth = 2;                                      ///< The maximum recursion depth.
     uint32_t recursionDepth    = 2;                                      ///< The current recursion depth.
     std::string assetsPath;                                              ///< Where all assets like models, textures and shaders are stored.
-    bool jitterCamEnabled        = true;                                 ///< Keeps track of whether or not the jitter cam is enabled.
-    uint32_t jitterCamSampleRate = 100;                                  ///< Stores the sample rate of the jitter cam.
+    bool jitterCamEnabled                 = true;                        ///< Keeps track of whether or not the jitter cam is enabled.
+    uint32_t jitterCamSampleRate          = 100;                         ///< Stores the sample rate of the jitter cam.
+    uint32_t jitterCamSampleRatePerRayGen = 1;                           ///< Stores the sample rate per raygen invocation.
 
     bool automaticPipelineRefresh  = false; ///< Keeps track of whether or not the graphics pipelines should be recreated automatically as soon as possible.
     bool automaticSwapchainRefresh = false; ///< Keeps track of whether or not the swapchain should be recreated automatically as soon as possible.

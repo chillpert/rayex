@@ -252,7 +252,7 @@ private:
 
     if ( ImGui::Begin( "Settings" ) )
     {
-      ImGui::SliderFloat( "Speed", &animationSpeed, 0.0F, 2.0F );
+      //ImGui::SliderFloat( "Speed", &animationSpeed, 0.0F, 2.0F );
 
       if ( ImGui::Button( "Add Box" ) )
       {
@@ -271,6 +271,8 @@ private:
         this->geometryNodes.push_back( box );
       }
 
+      ImGui::SameLine( );
+
       if ( ImGui::Button( "Add Sphere" ) )
       {
         int max = 10;
@@ -288,6 +290,8 @@ private:
         this->geometryNodes.push_back( sphere );
       }
 
+      ImGui::SameLine( );
+
       if ( ImGui::Button( "Add directional light" ) )
       {
         auto dirLight = std::make_shared<DirectionalLightNode>( );
@@ -298,6 +302,8 @@ private:
         int finalNum             = rand( ) % ( max - min + 1 ) + min;
         dirLight->worldTransform = glm::translate( dirLight->worldTransform, glm::vec3( finalNum, 0.0F, 0.0F ) );
       }
+
+      ImGui::SameLine( );
 
       if ( ImGui::Button( "Clear scene" ) )
       {

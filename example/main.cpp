@@ -23,6 +23,8 @@ public:
 
   void update( ) override
   {
+    Camera::update( );
+
     processKeyboard( );
   }
 

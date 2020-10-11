@@ -1,5 +1,7 @@
 #include "base/Camera.hpp"
 
+#include "api/misc/Components.hpp"
+
 namespace RAYEXEC_NAMESPACE
 {
   Camera::Camera( int width, int height, const glm::vec3& position ) :
@@ -10,6 +12,17 @@ namespace RAYEXEC_NAMESPACE
     updateVectors( );
     updateViewMatrix( );
     updateProjectionMatrix( );
+  }
+
+  void Camera::update( )
+  {
+    // If position has changed, reset frame counter for jitter cam.
+    static glm::vec3 prevPosition = this->position;
+    if ( prevPosition != this->position )
+    {
+      g_frameCount = 0;
+      prevPosition = this->position;
+    }
   }
 
   void Camera::setPosition( const glm::vec3& position )
@@ -85,6 +98,9 @@ namespace RAYEXEC_NAMESPACE
     }
 
     updateVectors( );
+
+    // Frame counter for jitter cam needs to be reset.
+    g_frameCount = 0;
   }
 
   void Camera::updateVectors( )

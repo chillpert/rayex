@@ -1,5 +1,7 @@
 #include "base/Window.hpp"
 
+#include "api/misc/Components.hpp"
+
 namespace RAYEXEC_NAMESPACE
 {
   Window::Window( int width, int height, const char* title, uint32_t flags ) :
@@ -127,6 +129,9 @@ namespace RAYEXEC_NAMESPACE
 
     if ( this->width != prevWidth || this->height != prevHeight )
     {
+      // Frame counter for jitter cam needs to be reset.
+      g_frameCount = 0;
+
       prevWidth  = this->width;
       prevHeight = this->height;
       return true;

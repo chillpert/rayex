@@ -67,7 +67,7 @@ indices[];
 layout( push_constant ) uniform Constants
 {
   vec4 clearColor;
-  uint frameCount;
+  int frameCount;
 };
 
 Vertex unpack( uint index, uint modelIndex )

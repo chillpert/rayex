@@ -36,7 +36,7 @@ namespace RAYEXEC_NAMESPACE
     ///
     /// The user has to override this function for the camera to work like intended.
     /// @note The function will be called every tick.
-    virtual void update( ) { };
+    RX_API virtual void update( );
 
     /// @return Returns the camera's position.
     [[nodiscard]] RX_API inline auto getPosition( ) const -> const glm::vec3& { return position; }

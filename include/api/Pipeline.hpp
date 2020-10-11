@@ -14,8 +14,8 @@ namespace RAYEXEC_NAMESPACE
 
   struct RayTracePushConstants
   {
-    glm::vec4 clearColor  = glm::vec4( 1.0F );
-    uint32_t frameCounter = 0;
+    glm::vec4 clearColor = glm::vec4( 1.0F );
+    int frameCounter     = 0;
   };
 
   /// A wrapper class for a Vulkan graphics pipeline.

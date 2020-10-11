@@ -1,6 +1,7 @@
 #version 460
 #extension GL_EXT_ray_tracing : require
 
+#include "random.glsl"
 #include "raycommon.glsl"
 
 layout( location = 0 ) rayPayloadEXT hitPayload prd;
@@ -21,14 +22,28 @@ cam;
 layout( push_constant ) uniform Constants
 {
   vec4 clearColor;
-  uint frameCount;
-};
+  int frameCount;
+}
+pushC;
 
 void main( )
 {
-  const vec2 pixelCenter = vec2( gl_LaunchIDEXT.xy ) + vec2( 0.5 );
-  const vec2 inUV        = pixelCenter / vec2( gl_LaunchSizeEXT.xy );
-  vec2 d                 = inUV * 2.0 - 1.0;
+  // Initialize the random number
+  uint seed = tea( gl_LaunchIDEXT.y * gl_LaunchSizeEXT.x + gl_LaunchIDEXT.x, pushC.frameCount );
+  // Then we need two random numbers to vary the X and Y inside the pixel, except for frame 0, where we always shoot in the center.
+  float r1 = rnd( seed );
+  float r2 = rnd( seed );
+
+  // Subpixel jitter: send the ray through a different position inside the pixel
+  // each time, to provide antialiasing.
+  vec2 subpixel_jitter = pushC.frameCount == 0 ? vec2( 0.5f, 0.5f ) : vec2( r1, r2 );
+
+  //const vec2 pixelCenter = vec2( gl_LaunchIDEXT.xy ) + vec2( 0.5 );
+  // Now using jitter cam.
+  const vec2 pixelCenter = vec2( gl_LaunchIDEXT.xy ) + subpixel_jitter;
+
+  const vec2 inUV = pixelCenter / vec2( gl_LaunchSizeEXT.xy );
+  vec2 d          = inUV * 2.0 - 1.0;
 
   vec4 origin    = cam.viewInverse * vec4( 0, 0, 0, 1 );
   vec4 target    = cam.projInverse * vec4( d.x, d.y, 1, 1 );
@@ -50,5 +65,18 @@ void main( )
                tMax,          // ray max range
                0 );           // payload (location = 0)
 
-  imageStore( image, ivec2( gl_LaunchIDEXT.xy ), vec4( prd.hitValue, 1.0 ) );
+  //imageStore( image, ivec2( gl_LaunchIDEXT.xy ), vec4( prd.hitValue, 1.0 ) );
+
+  // Do accumulation over time
+  if ( pushC.frameCount > 0 )
+  {
+    float a        = 1.0f / float( pushC.frameCount + 1 );
+    vec3 old_color = imageLoad( image, ivec2( gl_LaunchIDEXT.xy ) ).xyz;
+    imageStore( image, ivec2( gl_LaunchIDEXT.xy ), vec4( mix( old_color, prd.hitValue, a ), 1.f ) );
+  }
+  else
+  {
+    // First frame, replace the value in the buffer
+    imageStore( image, ivec2( gl_LaunchIDEXT.xy ), vec4( prd.hitValue, 1.f ) );
+  }
 }

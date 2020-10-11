@@ -162,6 +162,9 @@ namespace RAYEXEC_NAMESPACE
       this->rayTracingInstancesBuffer.fill<RayTracingInstance>( this->rtInstances.data( ) );
     }
 
+    if ( g_frameCount >= 100 )
+      return;
+
     // Increment frame counter for jitter cam.
     ++g_frameCount;
   }

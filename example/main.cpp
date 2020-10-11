@@ -30,16 +30,17 @@ public:
 
   void processKeyboard( )
   {
-    static float speed = 1.0F;
-    float finalSpeed   = speed * Time::getDeltaTime( );
+    const float defaultSpeed  = 2.5F;
+    static float currentSpeed = defaultSpeed;
+    float finalSpeed          = currentSpeed * Time::getDeltaTime( );
 
     if ( Key::eLeftShift )
     {
-      speed = 10.0F;
+      currentSpeed = 10.0F;
     }
     else
     {
-      speed = 1.0F;
+      currentSpeed = defaultSpeed;
     }
 
     if ( Key::eW )

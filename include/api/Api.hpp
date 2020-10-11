@@ -12,6 +12,7 @@
 #include "api/buffers/UniformBuffer.hpp"
 #include "api/buffers/VertexBuffer.hpp"
 #include "api/image/Texture.hpp"
+#include "api/misc/Components.hpp"
 #include "api/misc/Vertex.hpp"
 #include "api/raytracing/RayTracingBuilder.hpp"
 #include "api/utility/DebugMessenger.hpp"
@@ -73,6 +74,8 @@ namespace RAYEXEC_NAMESPACE
     template <typename T = Model>
     void pushNode( const std::shared_ptr<Node>& node, bool record = true )
     {
+      g_frameCount = 0;
+
       if ( node->getType( ) == NodeType::eGeometryNode )
       {
         uint32_t limit = this->settings->maxGeometryNodes.has_value( ) ? this->settings->maxGeometryNodes.value( ) : g_maxGeometryNodes;

@@ -23,8 +23,8 @@ namespace RAYEXEC_NAMESPACE
 
   vk::PhysicalDeviceLimits g_physicalDeviceLimits;
 
-  uint32_t g_modelCount = 0;
-  uint32_t g_frameCount = 0;
+  uint32_t g_modelCount        = 0;
+  RX_API uint32_t g_frameCount = 0;
 
   std::string g_assetsPath;
 } // namespace RAYEXEC_NAMESPACE

@@ -317,32 +317,39 @@ private:
       if ( ImGui::Checkbox( "Toggle Ray Tracing", &rayTrace ) )
       {
         this->renderer->settings.setEnableRayTracing( rayTrace );
+        if ( !rayTrace )
+        {
+          this->renderer->settings.setEnableJitterCam( false );
+        }
       }
 
       ImGui::Checkbox( "Show ImGui Demo Window", &showDemoWindow );
 
-      bool jitterCamEnabled = this->renderer->settings.getJitterCamEnabled( );
-      if ( ImGui::Checkbox( "Toggle Jitter Cam", &jitterCamEnabled ) )
+      if ( rayTrace )
       {
-        this->renderer->settings.setEnableJitterCam( jitterCamEnabled );
-      }
+        bool jitterCamEnabled = this->renderer->settings.getJitterCamEnabled( );
+        if ( ImGui::Checkbox( "Toggle Jitter Cam", &jitterCamEnabled ) )
+        {
+          this->renderer->settings.setEnableJitterCam( jitterCamEnabled );
+        }
 
-      int jitterCamSampleRate = static_cast<int>( this->renderer->settings.getJitterCamSampleRate( ) );
-      if ( ImGui::SliderInt( "Set Jitter Cam Sample Rate", &jitterCamSampleRate, 1, 100 ) )
-      {
-        this->renderer->settings.setJitterCamSampleRate( jitterCamSampleRate );
-      }
+        int jitterCamSampleRate = static_cast<int>( this->renderer->settings.getJitterCamSampleRate( ) );
+        if ( ImGui::SliderInt( "Set Jitter Cam Sample Rate", &jitterCamSampleRate, 1, 100 ) )
+        {
+          this->renderer->settings.setJitterCamSampleRate( jitterCamSampleRate );
+        }
 
-      int jitterCamSampleRatePerRayGen = static_cast<int>( this->renderer->settings.getJitterCamSampleRatePerRayGen( ) );
-      if ( ImGui::SliderInt( "Set Jitter Cam Sample Rate Per Ray Gen", &jitterCamSampleRatePerRayGen, 1, 10 ) )
-      {
-        this->renderer->settings.setJitterCamSampleRatePerRayGen( jitterCamSampleRatePerRayGen );
-      }
+        int jitterCamSampleRatePerRayGen = static_cast<int>( this->renderer->settings.getJitterCamSampleRatePerRayGen( ) );
+        if ( ImGui::SliderInt( "Set Jitter Cam Sample Rate Per Ray Gen", &jitterCamSampleRatePerRayGen, 1, 10 ) )
+        {
+          this->renderer->settings.setJitterCamSampleRatePerRayGen( jitterCamSampleRatePerRayGen );
+        }
 
-      int depth = static_cast<int>( this->renderer->settings.getRecursionDepth( ) );
-      if ( ImGui::SliderInt( "Recursion depth", &depth, 0, 31 ) )
-      {
-        this->renderer->settings.setRecursionDepth( static_cast<uint32_t>( depth ) );
+        int depth = static_cast<int>( this->renderer->settings.getRecursionDepth( ) );
+        if ( ImGui::SliderInt( "Recursion depth", &depth, 0, 31 ) )
+        {
+          this->renderer->settings.setRecursionDepth( static_cast<uint32_t>( depth ) );
+        }
       }
 
       const size_t maxFrames = 10000;

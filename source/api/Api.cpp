@@ -407,6 +407,8 @@ namespace RAYEXEC_NAMESPACE
 
   void Api::initPipelines( )
   {
+    RX_INFO( "Initializing graphic pipelines." );
+
     // Ray tracing pipeline
     std::vector<vk::DescriptorSetLayout> allRtDescriptorSetLayouts = { this->rtDescriptors.layout.get( ),
                                                                        this->rtSceneDescriptors.layout.get( ),
@@ -736,8 +738,13 @@ namespace RAYEXEC_NAMESPACE
       g_device.waitIdle( );
 
 #ifdef RX_COPY_ASSETS
-      RX_INFO( "Copying shader resources to binary output directory. " );
-      std::filesystem::copy( RX_ASSETS_PATH "shaders", RX_PATH_TO_LIBRARY "shaders", std::filesystem::copy_options::overwrite_existing | std::filesystem::copy_options::recursive );
+      static bool firstRun = true;
+      if ( firstRun )
+      {
+        RX_INFO( "Copying shader resources to binary output directory. " );
+        std::filesystem::copy( RX_ASSETS_PATH "shaders", RX_PATH_TO_LIBRARY "shaders", std::filesystem::copy_options::overwrite_existing | std::filesystem::copy_options::recursive );
+        firstRun = false;
+      }
 #endif
 
       initPipelines( );

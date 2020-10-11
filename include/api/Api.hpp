@@ -113,12 +113,6 @@ namespace RAYEXEC_NAMESPACE
         auto pointLightNodePtr = std::dynamic_pointer_cast<PointLightNode>( node );
         this->pointLightNodes.push_back( pointLightNodePtr );
       }
-
-      if ( record && this->pipelinesReady )
-      {
-        this->swapchainCommandBuffers.reset( );
-        recordSwapchainCommandBuffers( );
-      }
     }
 
     /// Used to delete an arbitrary node.
@@ -136,9 +130,6 @@ namespace RAYEXEC_NAMESPACE
 
       for ( const auto& node : nodes )
         pushNode<T>( node );
-
-      this->swapchainCommandBuffers.reset( );
-      recordSwapchainCommandBuffers( );
     }
 
     /// Re-initializes the render pass to support the GUI and initializes the GUI itself.

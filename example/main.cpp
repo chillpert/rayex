@@ -358,7 +358,7 @@ auto main( ) -> int
   // Use resources wisely by introducing the renderer to the anticipated total amount of various entities.
   renderer.settings.setMaxDirectionalLights( 5 );
   renderer.settings.setMaxPointLights( 0 ); // Bad input: 1 will be used instead
-  renderer.settings.setMaxGeometryNodes( 5 );
+  renderer.settings.setMaxGeometryNodes( 50 );
 
   // ... and initialize the renderer.
   renderer.init( );

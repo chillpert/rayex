@@ -258,6 +258,7 @@ namespace RAYEXEC_NAMESPACE
       return true;
     }
 
+    // Wait for previous frame to finish command buffer execution.
     vk::Result result = g_device.waitForFences( 1, &this->inFlightFences[prevFrame].get( ), VK_TRUE, UINT64_MAX );
     RX_ASSERT( result == vk::Result::eSuccess, "Failed to wait for fences." );
     recordSwapchainCommandBuffers( );
@@ -730,8 +731,6 @@ namespace RAYEXEC_NAMESPACE
 
       initPipelines( );
       this->rayTracingBuilder.createShaderBindingTable( this->rtPipeline.get( ) );
-
-      recordSwapchainCommandBuffers( );
     }
 
     if ( this->settings->refreshSwapchain )

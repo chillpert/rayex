@@ -149,7 +149,7 @@ namespace RAYEXEC_NAMESPACE
     uint32_t jitterCamSampleRate          = 100;                                    ///< Stores the sample rate of the jitter cam.
     uint32_t jitterCamSampleRatePerRayGen = 1;                                      ///< Stores the sample rate per raygen invocation.
     bool msaaEnabled                      = true;                                   ///< Keeps track of whether or not MSAA is enabled.
-    uint32_t msaaSampleRate               = 8;                                      ///< Stores the amount of samples per pixel for MSAA.
+    uint32_t msaaSampleRate               = 4;                                      ///< Stores the amount of samples per pixel for MSAA.
 
     bool automaticPipelineRefresh  = false; ///< Keeps track of whether or not the graphics pipelines should be recreated automatically as soon as possible.
     bool automaticSwapchainRefresh = false; ///< Keeps track of whether or not the swapchain should be recreated automatically as soon as possible.

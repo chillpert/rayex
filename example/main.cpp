@@ -307,6 +307,8 @@ private:
         }
       }
 
+      ImGui::Checkbox( "Show ImGui Demo Window", &showDemoWindow );
+
       auto clearColor = this->renderer->settings.getClearColor( );
       if ( ImGui::ColorEdit4( "##AmbientColor", &clearColor[0] ) )
       {
@@ -323,8 +325,6 @@ private:
         }
       }
 
-      ImGui::Checkbox( "Show ImGui Demo Window", &showDemoWindow );
-
       if ( rayTrace )
       {
         bool jitterCamEnabled = this->renderer->settings.getJitterCamEnabled( );
@@ -333,16 +333,19 @@ private:
           this->renderer->settings.setEnableJitterCam( jitterCamEnabled );
         }
 
-        int jitterCamSampleRate = static_cast<int>( this->renderer->settings.getJitterCamSampleRate( ) );
-        if ( ImGui::SliderInt( "Set Jitter Cam Sample Rate", &jitterCamSampleRate, 1, 100 ) )
+        if ( jitterCamEnabled )
         {
-          this->renderer->settings.setJitterCamSampleRate( jitterCamSampleRate );
-        }
+          int jitterCamSampleRate = static_cast<int>( this->renderer->settings.getJitterCamSampleRate( ) );
+          if ( ImGui::SliderInt( "Set Jitter Cam Sample Rate", &jitterCamSampleRate, 1, 100 ) )
+          {
+            this->renderer->settings.setJitterCamSampleRate( jitterCamSampleRate );
+          }
 
-        int jitterCamSampleRatePerRayGen = static_cast<int>( this->renderer->settings.getJitterCamSampleRatePerRayGen( ) );
-        if ( ImGui::SliderInt( "Set Jitter Cam Sample Rate Per Ray Gen", &jitterCamSampleRatePerRayGen, 1, 10 ) )
-        {
-          this->renderer->settings.setJitterCamSampleRatePerRayGen( jitterCamSampleRatePerRayGen );
+          int jitterCamSampleRatePerRayGen = static_cast<int>( this->renderer->settings.getJitterCamSampleRatePerRayGen( ) );
+          if ( ImGui::SliderInt( "Set Jitter Cam Sample Rate Per Ray Gen", &jitterCamSampleRatePerRayGen, 1, 10 ) )
+          {
+            this->renderer->settings.setJitterCamSampleRatePerRayGen( jitterCamSampleRatePerRayGen );
+          }
         }
 
         bool msaaEnabled = this->renderer->settings.getMsaaEnabled( );
@@ -351,10 +354,34 @@ private:
           this->renderer->settings.setEnableMsaa( msaaEnabled );
         }
 
-        int msaaSampleRate = static_cast<int>( this->renderer->settings.getMsaaSampleRate( ) );
-        if ( ImGui::SliderInt( "Set MSAA Sample Rate", &msaaSampleRate, 1, 64 ) )
+        if ( msaaEnabled )
         {
-          this->renderer->settings.setMsaaSampleRate( msaaSampleRate );
+          static int msaaSampleRate = static_cast<int>( this->renderer->settings.getMsaaSampleRate( ) );
+          if ( ImGui::RadioButton( "2x", &msaaSampleRate, 2 ) )
+          {
+            this->renderer->settings.setMsaaSampleRate( 2 );
+          }
+
+          ImGui::SameLine( );
+
+          if ( ImGui::RadioButton( "4x", &msaaSampleRate, 4 ) )
+          {
+            this->renderer->settings.setMsaaSampleRate( 4 );
+          }
+
+          ImGui::SameLine( );
+
+          if ( ImGui::RadioButton( "8x", &msaaSampleRate, 8 ) )
+          {
+            this->renderer->settings.setMsaaSampleRate( 8 );
+          }
+
+          ImGui::SameLine( );
+
+          if ( ImGui::RadioButton( "16x", &msaaSampleRate, 16 ) )
+          {
+            this->renderer->settings.setMsaaSampleRate( 16 );
+          }
         }
 
         int depth = static_cast<int>( this->renderer->settings.getRecursionDepth( ) );

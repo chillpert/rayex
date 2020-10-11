@@ -141,23 +141,22 @@ namespace RAYEXEC_NAMESPACE
 
   void Settings::setMsaaSampleRate( uint32_t sampleRate )
   {
-    if ( sampleRate < 3 )
+    if ( sampleRate < 2 )
     {
-      this->msaaSampleRate = 4;
+      this->msaaSampleRate = 2;
       return;
     }
 
     double t1 = std::log2( sampleRate );
-    double t2 = std::fmod( t1, 2.0 );
-    double t3 = std::fmod( t2, 1.0 );
+    double t2 = std::fmod( t1, 1.0 );
 
-    if ( t3 == 0.0 )
+    if ( t2 == 0.0 )
     {
       this->msaaSampleRate = sampleRate;
     }
     else
     {
-      if ( t3 >= 0.5 )
+      if ( t2 >= 0.5 )
       {
         this->msaaSampleRate = static_cast<uint32_t>( std::pow( 2.0, std::ceil( t1 ) ) );
       }

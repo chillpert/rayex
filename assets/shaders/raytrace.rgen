@@ -65,7 +65,7 @@ void main( )
   if ( msaaEnabled )
   {
     vec3 hitValues        = vec3( 0.0 );
-    const float msaaFloat = float( msaa );
+    const float msaaFloat = float( msaa ) * 2.0;
 
     for ( float x = 1.0; x < msaaFloat; x += 2.0 )
     {

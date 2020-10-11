@@ -327,6 +327,8 @@ namespace RAYEXEC_NAMESPACE
 
   void Api::popNode( const std::shared_ptr<Node>& node )
   {
+    g_frameCount = 0;
+
     if ( node == nullptr )
     {
       RX_ERROR( "Can not pop node because node is nullptr." );

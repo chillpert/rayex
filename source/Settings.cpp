@@ -61,6 +61,8 @@ namespace RAYEXEC_NAMESPACE
   {
     this->rayTrace         = flag;
     this->refreshSwapchain = true;
+
+    g_frameCount = 0;
   }
 
   void Settings::setAutomaticPipelineRefresh( bool flag )

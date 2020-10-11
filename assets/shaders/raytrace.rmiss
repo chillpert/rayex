@@ -3,15 +3,15 @@
 
 #include "raycommon.glsl"
 
-layout(location = 0) rayPayloadInEXT hitPayload prd;
+layout( location = 0 ) rayPayloadInEXT hitPayload prd;
 
-layout(push_constant) uniform Constants
+layout( push_constant ) uniform Constants
 {
   vec4 clearColor;
   uint frameCount;
 };
 
-void main()
+void main( )
 {
   prd.hitValue = clearColor.xyz * clearColor.w;
 }

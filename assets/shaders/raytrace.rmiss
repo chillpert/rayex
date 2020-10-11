@@ -8,7 +8,8 @@ layout( location = 0 ) rayPayloadInEXT hitPayload prd;
 layout( push_constant ) uniform Constants
 {
   vec4 clearColor;
-  int frameCount;
+  uint frameCount;
+  bool jitterCamEnabled;
 };
 
 void main( )

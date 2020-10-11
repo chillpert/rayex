@@ -27,7 +27,7 @@ namespace RAYEXEC_NAMESPACE
   extern vk::PhysicalDeviceLimits g_physicalDeviceLimits; ///< Global variable to store the physical device's limits.
 
   extern uint32_t g_modelCount;
-  extern int g_frameCount;
+  extern uint32_t g_frameCount;
 
   /// @note Vulkan default allocation limit equals 4096 allocations.
   const size_t g_maxGeometryNodes         = 2000; ///< Global variable to store the maximum amount of geometry nodes supported by the renderer.

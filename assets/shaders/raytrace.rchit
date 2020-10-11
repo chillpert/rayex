@@ -67,7 +67,8 @@ indices[];
 layout( push_constant ) uniform Constants
 {
   vec4 clearColor;
-  int frameCount;
+  uint frameCount;
+  bool jitterCamEnabled;
 };
 
 Vertex unpack( uint index, uint modelIndex )

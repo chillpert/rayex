@@ -107,4 +107,17 @@ namespace RAYEXEC_NAMESPACE
     g_assetsPath = this->assetsPath;
     RX_INFO( "No path to assets specified. Using default path as path to resources: ", this->assetsPath );
   }
+
+  void Settings::setEnableJitterCam( bool flag )
+  {
+    this->jitterCamEnabled = flag;
+    g_frameCount           = 0;
+  }
+
+  void Settings::setJitterCamSampleRate( uint32_t sampleRate )
+  {
+    // Make sure the sample rate is always greater than zero.
+    this->jitterCamSampleRate = sampleRate > 0 ? sampleRate : 1;
+    g_frameCount              = 0;
+  }
 } // namespace RAYEXEC_NAMESPACE

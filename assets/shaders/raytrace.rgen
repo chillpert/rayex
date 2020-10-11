@@ -22,25 +22,38 @@ cam;
 layout( push_constant ) uniform Constants
 {
   vec4 clearColor;
-  int frameCount;
-}
-pushC;
+  uint frameCount;
+  bool jitterCamEnabled;
+};
 
 void main( )
 {
+  float r1 = 0;
+  float r2 = 0;
+
   // Initialize the random number
-  uint seed = tea( gl_LaunchIDEXT.y * gl_LaunchSizeEXT.x + gl_LaunchIDEXT.x, pushC.frameCount );
-  // Then we need two random numbers to vary the X and Y inside the pixel, except for frame 0, where we always shoot in the center.
-  float r1 = rnd( seed );
-  float r2 = rnd( seed );
+  if ( jitterCamEnabled )
+  {
+    uint seed = tea( gl_LaunchIDEXT.y * gl_LaunchSizeEXT.x + gl_LaunchIDEXT.x, frameCount );
+
+    // Then we need two random numbers to vary the X and Y inside the pixel, except for frame 0, where we always shoot in the center.
+    r1 = rnd( seed );
+    r2 = rnd( seed );
+  }
 
   // Subpixel jitter: send the ray through a different position inside the pixel
   // each time, to provide antialiasing.
-  vec2 subpixel_jitter = pushC.frameCount == 0 ? vec2( 0.5f, 0.5f ) : vec2( r1, r2 );
+  vec2 subpixel_jitter = frameCount == 0 ? vec2( 0.5f, 0.5f ) : vec2( r1, r2 );
 
-  //const vec2 pixelCenter = vec2( gl_LaunchIDEXT.xy ) + vec2( 0.5 );
-  // Now using jitter cam.
-  const vec2 pixelCenter = vec2( gl_LaunchIDEXT.xy ) + subpixel_jitter;
+  vec2 pixelCenter;
+  if ( jitterCamEnabled )
+  {
+    pixelCenter = vec2( gl_LaunchIDEXT.xy ) + subpixel_jitter;
+  }
+  else
+  {
+    pixelCenter = vec2( gl_LaunchIDEXT.xy ) + vec2( 0.5 );
+  }
 
   const vec2 inUV = pixelCenter / vec2( gl_LaunchSizeEXT.xy );
   vec2 d          = inUV * 2.0 - 1.0;
@@ -65,18 +78,23 @@ void main( )
                tMax,          // ray max range
                0 );           // payload (location = 0)
 
-  //imageStore( image, ivec2( gl_LaunchIDEXT.xy ), vec4( prd.hitValue, 1.0 ) );
-
-  // Do accumulation over time
-  if ( pushC.frameCount > 0 )
+  if ( jitterCamEnabled )
   {
-    float a        = 1.0f / float( pushC.frameCount + 1 );
-    vec3 old_color = imageLoad( image, ivec2( gl_LaunchIDEXT.xy ) ).xyz;
-    imageStore( image, ivec2( gl_LaunchIDEXT.xy ), vec4( mix( old_color, prd.hitValue, a ), 1.f ) );
+    // Do accumulation over time
+    if ( frameCount > 0 )
+    {
+      float a        = 1.0f / float( frameCount + 1 );
+      vec3 old_color = imageLoad( image, ivec2( gl_LaunchIDEXT.xy ) ).xyz;
+      imageStore( image, ivec2( gl_LaunchIDEXT.xy ), vec4( mix( old_color, prd.hitValue, a ), 1.f ) );
+    }
+    else
+    {
+      // First frame, replace the value in the buffer
+      imageStore( image, ivec2( gl_LaunchIDEXT.xy ), vec4( prd.hitValue, 1.f ) );
+    }
   }
   else
   {
-    // First frame, replace the value in the buffer
-    imageStore( image, ivec2( gl_LaunchIDEXT.xy ), vec4( prd.hitValue, 1.f ) );
+    imageStore( image, ivec2( gl_LaunchIDEXT.xy ), vec4( prd.hitValue, 1.0 ) );
   }
 }

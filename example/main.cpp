@@ -245,6 +245,10 @@ private:
 
   void render( ) override
   {
+    static bool showDemoWindow = false;
+    if ( showDemoWindow )
+      ImGui::ShowDemoWindow( );
+
     if ( ImGui::Begin( "Settings" ) )
     {
       ImGui::SliderFloat( "Speed", &animationSpeed, 0.0F, 2.0F );
@@ -309,9 +313,23 @@ private:
       }
 
       static bool rayTrace = this->renderer->settings.getRayTracingEnabled( );
-      if ( ImGui::Checkbox( "Ray Tracing", &rayTrace ) )
+      if ( ImGui::Checkbox( "Toggle Ray Tracing", &rayTrace ) )
       {
         this->renderer->settings.setEnableRayTracing( rayTrace );
+      }
+
+      ImGui::Checkbox( "Show ImGui Demo Window", &showDemoWindow );
+
+      static bool jitterCamEnabled = this->renderer->settings.getJitterCamEnabled( );
+      if ( ImGui::Checkbox( "Toggle Jitter Cam", &jitterCamEnabled ) )
+      {
+        this->renderer->settings.setEnableJitterCam( jitterCamEnabled );
+      }
+
+      static int jitterCamSampleRate = static_cast<int>( this->renderer->settings.getJitterCamSampleRate( ) );
+      if ( ImGui::SliderInt( "Set Jitter Cam Sample Rate", &jitterCamSampleRate, 1, 500 ) )
+      {
+        this->renderer->settings.setJitterCamSampleRate( jitterCamSampleRate );
       }
 
       static int depth = static_cast<int>( this->renderer->settings.getRecursionDepth( ) );
@@ -343,8 +361,8 @@ private:
 auto main( ) -> int
 {
   // Window dimensions.
-  const int width  = 900;
-  const int height = 600;
+  const int width  = 1400;
+  const int height = 900;
 
   RayExec renderer;
 
@@ -359,7 +377,7 @@ auto main( ) -> int
 
   // Use resources wisely by introducing the renderer to the anticipated total amount of various entities.
   renderer.settings.setMaxDirectionalLights( 5 );
-  renderer.settings.setMaxPointLights( 0 ); // Bad input: 1 will be used instead
+  renderer.settings.setMaxPointLights( 0 ); // Bad input: 1 will be used instead (See warning in console).
   renderer.settings.setMaxGeometryNodes( 50 );
 
   // ... and initialize the renderer.
@@ -390,7 +408,7 @@ auto main( ) -> int
 
   while ( renderer.isRunning( ) )
   {
-    dragonLore->worldTransform = glm::rotate( dragonLore->worldTransform, glm::radians( 90.0F ) * Time::getDeltaTime( ) * animationSpeed, glm::vec3( 0.0F, 1.0F, 0.0F ) );
+    //dragonLore->worldTransform = glm::rotate( dragonLore->worldTransform, glm::radians( 90.0F ) * Time::getDeltaTime( ) * animationSpeed, glm::vec3( 0.0F, 1.0F, 0.0F ) );
     renderer.run( );
   }
 

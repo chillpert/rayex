@@ -10,9 +10,9 @@ layout( push_constant ) uniform Constants
   vec4 clearColor;
   uint frameCount;
   uint jitterCamSampleRatePerRayGen;
-  uint msaa;
+  uint ssaa;
   bool jitterCamEnabled;
-  bool msaaEnabled;
+  bool ssaaEnabled;
 
   float padding0;
   float padding1;

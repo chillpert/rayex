@@ -354,30 +354,30 @@ private:
           }
         }
 
-        bool msaaEnabled = this->renderer->settings.getMsaaEnabled( );
-        if ( ImGui::Checkbox( "Toggle MSAA", &msaaEnabled ) )
+        bool ssaaEnabled = this->renderer->settings.getMsaaEnabled( );
+        if ( ImGui::Checkbox( "Toggle SSAA", &ssaaEnabled ) )
         {
-          this->renderer->settings.setEnableMsaa( msaaEnabled );
+          this->renderer->settings.setEnableMsaa( ssaaEnabled );
         }
 
-        if ( msaaEnabled )
+        if ( ssaaEnabled )
         {
-          static int msaaSampleRate = static_cast<int>( this->renderer->settings.getMsaaSampleRate( ) );
-          if ( ImGui::RadioButton( "2x", &msaaSampleRate, 2 ) )
+          static int ssaaSampleRate = static_cast<int>( this->renderer->settings.getMsaaSampleRate( ) );
+          if ( ImGui::RadioButton( "2x", &ssaaSampleRate, 2 ) )
           {
             this->renderer->settings.setMsaaSampleRate( 2 );
           }
 
           ImGui::SameLine( );
 
-          if ( ImGui::RadioButton( "4x", &msaaSampleRate, 4 ) )
+          if ( ImGui::RadioButton( "4x", &ssaaSampleRate, 4 ) )
           {
             this->renderer->settings.setMsaaSampleRate( 4 );
           }
 
           ImGui::SameLine( );
 
-          if ( ImGui::RadioButton( "8x", &msaaSampleRate, 8 ) )
+          if ( ImGui::RadioButton( "8x", &ssaaSampleRate, 8 ) )
           {
             this->renderer->settings.setMsaaSampleRate( 8 );
           }

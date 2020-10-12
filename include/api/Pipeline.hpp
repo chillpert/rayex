@@ -17,9 +17,9 @@ namespace RAYEXEC_NAMESPACE
     glm::vec4 clearColor         = glm::vec4( 1.0F );
     uint32_t sampleRate          = 100;
     uint32_t sampleRatePerRayGen = 1;
-    uint32_t msaa                = 8;
+    uint32_t ssaa                = 8;
     uint32_t jitterCamEnabled    = 0;
-    uint32_t msaaEnabled         = 1;
+    uint32_t ssaaEnabled         = 1;
 
     float padding0 = 0.0f;
     float padding1 = 0.0f;

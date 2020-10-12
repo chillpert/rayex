@@ -24,9 +24,9 @@ layout( push_constant ) uniform Constants
   vec4 clearColor;
   uint frameCount;
   uint jitterCamSampleRatePerRayGen;
-  uint msaa;
+  uint ssaa;
   bool jitterCamEnabled;
-  bool msaaEnabled;
+  bool ssaaEnabled;
 
   float padding0;
   float padding1;
@@ -69,13 +69,13 @@ void rayTrace( vec2 positionWithinPixel )
 
 void main( )
 {
-  // Use MSAA
-  if ( msaaEnabled )
+  // Use SSAA
+  if ( ssaaEnabled )
   {
     vec3 hitValues        = vec3( 0.0 );
-    const float msaaFloat = float( msaa );
+    const float ssaaFloat = float( ssaa );
 
-    if ( msaa == 2 )
+    if ( ssaa == 2 )
     {
       for ( float x = 0.25; x <= 0.75; x += 0.5 )
       {
@@ -85,26 +85,26 @@ void main( )
         hitValues += prd.hitValue;
       }
     }
-    else if ( msaa == 8 )
+    else if ( ssaa == 8 )
     {
-      for ( float x = 1.0; x < msaaFloat; x += 2.0 )
+      for ( float x = 1.0; x < ssaaFloat; x += 2.0 )
       {
         for ( float y = 0.25; y <= 0.75; y += 0.5 )
         {
-          vec2 positionWithinPixel = vec2( gl_LaunchIDEXT.xy ) + vec2( x / msaaFloat, y );
+          vec2 positionWithinPixel = vec2( gl_LaunchIDEXT.xy ) + vec2( x / ssaaFloat, y );
           rayTrace( positionWithinPixel );
 
           hitValues += prd.hitValue;
         }
       }
     }
-    else if ( isPow( msaa ) )
+    else if ( isPow( ssaa ) )
     {
-      for ( float x = 1.0; x < msaaFloat; x += 2.0 )
+      for ( float x = 1.0; x < ssaaFloat; x += 2.0 )
       {
-        for ( float y = 1.0; y < msaaFloat; y += 2.0 )
+        for ( float y = 1.0; y < ssaaFloat; y += 2.0 )
         {
-          vec2 positionWithinPixel = vec2( gl_LaunchIDEXT.xy ) + vec2( x / msaaFloat, y / msaaFloat );
+          vec2 positionWithinPixel = vec2( gl_LaunchIDEXT.xy ) + vec2( x / ssaaFloat, y / ssaaFloat );
           rayTrace( positionWithinPixel );
 
           hitValues += prd.hitValue;
@@ -112,7 +112,7 @@ void main( )
       }
     }
 
-    prd.hitValue = hitValues / msaaFloat;
+    prd.hitValue = hitValues / ssaaFloat;
     imageStore( image, ivec2( gl_LaunchIDEXT.xy ), vec4( prd.hitValue, 1.0 ) );
   }
   // Use jitter cam

@@ -115,7 +115,7 @@ namespace RAYEXEC_NAMESPACE
   void Settings::setEnableJitterCam( bool flag )
   {
     this->jitterCamEnabled = flag;
-    this->msaaEnabled      = false;
+    this->ssaaEnabled      = false;
     g_frameCount           = 0;
   }
 
@@ -135,7 +135,7 @@ namespace RAYEXEC_NAMESPACE
 
   void Settings::setEnableMsaa( bool flag )
   {
-    this->msaaEnabled      = flag;
+    this->ssaaEnabled      = flag;
     this->jitterCamEnabled = false;
   }
 
@@ -143,7 +143,7 @@ namespace RAYEXEC_NAMESPACE
   {
     if ( sampleRate < 2 )
     {
-      this->msaaSampleRate = 2;
+      this->ssaaSampleRate = 2;
       return;
     }
 
@@ -152,17 +152,17 @@ namespace RAYEXEC_NAMESPACE
 
     if ( t2 == 0.0 )
     {
-      this->msaaSampleRate = sampleRate;
+      this->ssaaSampleRate = sampleRate;
     }
     else
     {
       if ( t2 >= 0.5 )
       {
-        this->msaaSampleRate = static_cast<uint32_t>( std::pow( 2.0, std::ceil( t1 ) ) );
+        this->ssaaSampleRate = static_cast<uint32_t>( std::pow( 2.0, std::ceil( t1 ) ) );
       }
       else
       {
-        this->msaaSampleRate = static_cast<uint32_t>( std::pow( 2.0, std::floor( t1 ) ) );
+        this->ssaaSampleRate = static_cast<uint32_t>( std::pow( 2.0, std::floor( t1 ) ) );
       }
     }
   }

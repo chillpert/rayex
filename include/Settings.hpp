@@ -88,7 +88,7 @@ namespace RAYEXEC_NAMESPACE
     /// A ray that will be cast into the scene normally starts off at the exact same position.
     /// The jitter cam will jitter or scatter the ray's starting position slightly using random values.
     /// @param flag Enable or disable the jitter cam.
-    /// @note Disables MSAA automatically.
+    /// @note Disables SSAA automatically.
     void setEnableJitterCam( bool flag );
 
     /// @return Returns true, if jitter cam is enabled.
@@ -111,21 +111,21 @@ namespace RAYEXEC_NAMESPACE
     /// @return Returns the jitter cam's sample rate per raygen.
     [[nodiscard]] auto getJitterCamSampleRatePerRayGen( ) const -> uint32_t { return this->jitterCamSampleRatePerRayGen; }
 
-    /// Used to toggle MSAA.
-    /// @param flag If true, MSAA will be activated.
+    /// Used to toggle SSAA.
+    /// @param flag If true, SSAA will be activated.
     /// @note Disables jitter cam automatically.
     void setEnableMsaa( bool flag );
 
-    /// @return Returns true, if MSAA is enabled.
-    [[nodiscard]] auto getMsaaEnabled( ) const -> bool { return this->msaaEnabled; }
+    /// @return Returns true, if SSAA is enabled.
+    [[nodiscard]] auto getMsaaEnabled( ) const -> bool { return this->ssaaEnabled; }
 
-    /// Used to set the MSAA sample rate.
-    /// @param sampleRate The desired MSAA sample rate.
+    /// Used to set the SSAA sample rate.
+    /// @param sampleRate The desired SSAA sample rate.
     /// @note The function will automatically choose the closest candidate if an invalid input was chosen.
     void setMsaaSampleRate( uint32_t sampleRate );
 
-    /// @return Returns the MSAA sample rate.
-    [[nodiscard]] auto getMsaaSampleRate( ) const -> uint32_t { return this->msaaSampleRate; }
+    /// @return Returns the SSAA sample rate.
+    [[nodiscard]] auto getMsaaSampleRate( ) const -> uint32_t { return this->ssaaSampleRate; }
 
   private:
     /// This function will be called by RayExec::init() in case the path was not set manually.
@@ -148,8 +148,8 @@ namespace RAYEXEC_NAMESPACE
     bool jitterCamEnabled                 = false;                                  ///< Keeps track of whether or not the jitter cam is enabled.
     uint32_t jitterCamSampleRate          = 100;                                    ///< Stores the sample rate of the jitter cam.
     uint32_t jitterCamSampleRatePerRayGen = 1;                                      ///< Stores the sample rate per raygen invocation.
-    bool msaaEnabled                      = true;                                   ///< Keeps track of whether or not MSAA is enabled.
-    uint32_t msaaSampleRate               = 4;                                      ///< Stores the amount of samples per pixel for MSAA.
+    bool ssaaEnabled                      = true;                                   ///< Keeps track of whether or not SSAA is enabled.
+    uint32_t ssaaSampleRate               = 4;                                      ///< Stores the amount of samples per pixel for SSAA.
 
     bool automaticPipelineRefresh  = false; ///< Keeps track of whether or not the graphics pipelines should be recreated automatically as soon as possible.
     bool automaticSwapchainRefresh = false; ///< Keeps track of whether or not the swapchain should be recreated automatically as soon as possible.

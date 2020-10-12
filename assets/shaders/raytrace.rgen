@@ -33,14 +33,6 @@ layout( push_constant ) uniform Constants
   float padding2;
 };
 
-bool isPow( uint n )
-{
-  if ( n == 0 )
-    return false;
-
-  return ( ceil( log2( n ) ) == floor( log2( n ) ) );
-}
-
 void rayTrace( vec2 positionWithinPixel )
 {
   const vec2 inUV = positionWithinPixel / vec2( gl_LaunchSizeEXT.xy );
@@ -72,47 +64,23 @@ void main( )
   // Use SSAA
   if ( ssaaEnabled )
   {
-    vec3 hitValues        = vec3( 0.0 );
-    const float ssaaFloat = float( ssaa );
+    vec3 hitValues             = vec3( 0.0 );
+    const float ssaaFloat      = float( ssaa );
+    const float interval       = 1.0 / ssaaFloat;
+    const float subPixelCenter = interval / 2.0;
 
-    if ( ssaa == 2 )
+    for ( float x = 0.0; x < 1.0; x += interval )
     {
-      for ( float x = 0.25; x <= 0.75; x += 0.5 )
+      for ( float y = 0.0; y < 1.0; y += interval )
       {
-        vec2 positionWithinPixel = vec2( gl_LaunchIDEXT.xy ) + vec2( x / 4.0, 0.5 );
+        vec2 positionWithinPixel = vec2( gl_LaunchIDEXT.xy ) + vec2( x + subPixelCenter, y + subPixelCenter );
         rayTrace( positionWithinPixel );
 
         hitValues += prd.hitValue;
       }
     }
-    else if ( ssaa == 8 )
-    {
-      for ( float x = 1.0; x < ssaaFloat; x += 2.0 )
-      {
-        for ( float y = 0.25; y <= 0.75; y += 0.5 )
-        {
-          vec2 positionWithinPixel = vec2( gl_LaunchIDEXT.xy ) + vec2( x / ssaaFloat, y );
-          rayTrace( positionWithinPixel );
 
-          hitValues += prd.hitValue;
-        }
-      }
-    }
-    else if ( isPow( ssaa ) )
-    {
-      for ( float x = 1.0; x < ssaaFloat; x += 2.0 )
-      {
-        for ( float y = 1.0; y < ssaaFloat; y += 2.0 )
-        {
-          vec2 positionWithinPixel = vec2( gl_LaunchIDEXT.xy ) + vec2( x / ssaaFloat, y / ssaaFloat );
-          rayTrace( positionWithinPixel );
-
-          hitValues += prd.hitValue;
-        }
-      }
-    }
-
-    prd.hitValue = hitValues / ssaaFloat;
+    prd.hitValue = hitValues / ( ssaaFloat * ssaaFloat );
     imageStore( image, ivec2( gl_LaunchIDEXT.xy ), vec4( prd.hitValue, 1.0 ) );
   }
   // Use jitter cam

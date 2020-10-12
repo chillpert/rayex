@@ -8,9 +8,6 @@ namespace RAYEXEC_NAMESPACE
   /// Contains all rendering properties and textures.
   struct Material
   {
-    Material( ) = default;
-    RX_API Material( std::string_view diffuseTexture );
-
     glm::vec3 ambient       = { };
     glm::vec3 diffuse       = { };
     glm::vec3 specular      = { };
@@ -21,12 +18,12 @@ namespace RAYEXEC_NAMESPACE
     float reflectionIndex = 1.0f;
     float opacity         = 1.0f;
 
-    std::vector<std::string> diffuseTextures;
-    std::vector<std::string> specularTextures;
-    std::vector<std::string> bumpTextures;
-    std::vector<std::string> displacementTextures;
-    std::vector<std::string> alphaTextures;
-    std::vector<std::string> reflectionTextures;
+    std::vector<uint32_t> diffuseTextures;
+    std::vector<uint32_t> specularTextures;
+    std::vector<uint32_t> bumpTextures;
+    std::vector<uint32_t> displacementTextures;
+    std::vector<uint32_t> alphaTextures;
+    std::vector<uint32_t> reflectionTextures;
   };
 } // namespace RAYEXEC_NAMESPACE
 

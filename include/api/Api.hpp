@@ -4,6 +4,7 @@
 #include "api/Bindings.hpp"
 #include "api/Pipeline.hpp"
 #include "api/RenderPass.hpp"
+#include "api/Scene.hpp"
 #include "api/Surface.hpp"
 #include "api/Swapchain.hpp"
 #include "api/buffers/CommandBuffer.hpp"
@@ -79,7 +80,7 @@ namespace RAYEXEC_NAMESPACE
       if ( node->getType( ) == NodeType::eGeometryNode )
       {
         uint32_t limit = this->settings->maxGeometryNodes.has_value( ) ? this->settings->maxGeometryNodes.value( ) : g_maxGeometryNodes;
-        if ( static_cast<uint32_t>( this->geometryNodes.size( ) ) > limit - 1 )
+        if ( static_cast<uint32_t>( this->scene.geometryNodes.size( ) ) > limit - 1 )
         {
           RX_WARN( "Failed to push node. You have exceeded the maximum amount of geometry nodes." );
           return;
@@ -87,7 +88,7 @@ namespace RAYEXEC_NAMESPACE
 
         auto ptr   = std::dynamic_pointer_cast<GeometryNode>( node );
         auto model = findModel( ptr->modelPath );
-        this->geometryNodes.push_back( ptr );
+        this->scene.geometryNodes.push_back( ptr );
 
         // Fill scene description buffer.
         if ( ptr->pipelineType == PipelineType::eDefaultRayTracing )
@@ -109,12 +110,12 @@ namespace RAYEXEC_NAMESPACE
       else if ( node->getType( ) == NodeType::eDirectionalLightNode )
       {
         auto dirLightNodePtr = std::dynamic_pointer_cast<DirectionalLightNode>( node );
-        this->dirLightNodes.push_back( dirLightNodePtr );
+        this->scene.dirLightNodes.push_back( dirLightNodePtr );
       }
       else if ( node->getType( ) == NodeType::ePointLightNode )
       {
         auto pointLightNodePtr = std::dynamic_pointer_cast<PointLightNode>( node );
-        this->pointLightNodes.push_back( pointLightNodePtr );
+        this->scene.pointLightNodes.push_back( pointLightNodePtr );
       }
     }
 
@@ -127,9 +128,9 @@ namespace RAYEXEC_NAMESPACE
     template <typename T = Model>
     void setNodes( const std::vector<std::shared_ptr<Node>>& nodes )
     {
-      this->geometryNodes.clear( );
-      this->dirLightNodes.clear( );
-      this->pointLightNodes.clear( );
+      this->scene.geometryNodes.clear( );
+      this->scene.dirLightNodes.clear( );
+      this->scene.pointLightNodes.clear( );
 
       for ( const auto& node : nodes )
         pushNode<T>( node );
@@ -240,14 +241,6 @@ namespace RAYEXEC_NAMESPACE
     StorageBuffer rayTracingInstancesBuffer;        ///< A storage buffer for the ray tracing instances.
     bool uploadRayTracingInstancesToBuffer = false; ///< Keeps track of whether or not to upload the ray tracing instances to their respective buffer the next time update() is called.
 
-    std::vector<std::string> modelPaths; ///< A vector containing all models' paths.
-    // Nodes to render
-    std::list<std::shared_ptr<GeometryNode>> geometryNodes;         ///< A list of all geometry nodes to render.
-    std::list<std::shared_ptr<DirectionalLightNode>> dirLightNodes; ///< A list of all directional light nodes to render.
-    std::list<std::shared_ptr<PointLightNode>> pointLightNodes;     ///< A list of all point light nodes to render.
-    // Models
-    std::list<std::shared_ptr<Model>> models; ///< A list of all models that can be rendered.
-
     Swapchain swapchain;   ///< A RAYEXEC_NAMESPACE::Swapchain to manage swapchain related operations.
     RenderPass renderPass; ///< A RAYEXEC_NAMESPACE::RenderPass to create, begin and end a render pass.
 
@@ -256,6 +249,8 @@ namespace RAYEXEC_NAMESPACE
 
     std::vector<vk::UniquePipeline> rsPipelines;
     std::vector<vk::UniquePipeline> rtPipelines;
+
+    Scene scene;
 
     CommandBuffer swapchainCommandBuffers; ///< A RAYEXEC_NAMESPACE::CommandBuffer containing as many command buffers as there are images in the swapchain.
 

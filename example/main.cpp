@@ -263,7 +263,7 @@ private:
         int y = rand( ) % ( max - min + 1 ) + min;
         int z = rand( ) % ( max - min + 1 ) + min;
 
-        auto box            = std::make_shared<GeometryNode>( "models/cube.obj", Material( "textures/container.png" ) );
+        auto box            = std::make_shared<GeometryNode>( "models/cube.obj" );
         box->worldTransform = glm::translate( box->worldTransform, glm::vec3( x, y, z ) );
         box->worldTransform = glm::scale( box->worldTransform, glm::vec3( 0.3F, 0.3F, 0.3F ) );
         this->renderer->pushNode( box );
@@ -282,7 +282,7 @@ private:
         int y = rand( ) % ( max - min + 1 ) + min;
         int z = rand( ) % ( max - min + 1 ) + min;
 
-        auto sphere            = std::make_shared<GeometryNode>( "models/sphere.obj", Material( "textures/metal.png" ) );
+        auto sphere            = std::make_shared<GeometryNode>( "models/sphere.obj" );
         sphere->worldTransform = glm::translate( sphere->worldTransform, glm::vec3( x, y, z ) );
         sphere->worldTransform = glm::scale( sphere->worldTransform, glm::vec3( 0.3F, 0.3F, 0.3F ) );
         this->renderer->pushNode( sphere );
@@ -354,32 +354,18 @@ private:
           }
         }
 
-        bool ssaaEnabled = this->renderer->settings.getMsaaEnabled( );
+        bool ssaaEnabled = this->renderer->settings.getSsaaEnabled( );
         if ( ImGui::Checkbox( "Toggle SSAA", &ssaaEnabled ) )
         {
-          this->renderer->settings.setEnableMsaa( ssaaEnabled );
+          this->renderer->settings.setEnableSsaa( ssaaEnabled );
         }
 
         if ( ssaaEnabled )
         {
-          static int ssaaSampleRate = static_cast<int>( this->renderer->settings.getMsaaSampleRate( ) );
-          if ( ImGui::RadioButton( "2x", &ssaaSampleRate, 2 ) )
+          static int ssaaSampleRate = static_cast<int>( this->renderer->settings.getSsaaSampleRate( ) );
+          if ( ImGui::SliderInt( "Set SSAA Sample Rate", &ssaaSampleRate, 1, 4 ) )
           {
-            this->renderer->settings.setMsaaSampleRate( 2 );
-          }
-
-          ImGui::SameLine( );
-
-          if ( ImGui::RadioButton( "4x", &ssaaSampleRate, 4 ) )
-          {
-            this->renderer->settings.setMsaaSampleRate( 4 );
-          }
-
-          ImGui::SameLine( );
-
-          if ( ImGui::RadioButton( "8x", &ssaaSampleRate, 8 ) )
-          {
-            this->renderer->settings.setMsaaSampleRate( 8 );
+            this->renderer->settings.setSsaaSampleRate( ssaaSampleRate );
           }
         }
 
@@ -447,17 +433,17 @@ auto main( ) -> int
   renderer.setModels( { "models/plane.obj", "models/sphere.obj", "models/awpdlore/awpdlore.obj", "models/cube.obj" } );
 
   // Setup the scene
-  auto dragonLore            = std::make_shared<GeometryNode>( "models/awpdlore/awpdlore.obj", Material( "textures/awpdlore.png" ) );
+  auto dragonLore            = std::make_shared<GeometryNode>( "models/awpdlore/awpdlore.obj" );
   dragonLore->worldTransform = glm::scale( dragonLore->worldTransform, glm::vec3( 0.25F ) );
   dragonLore->worldTransform = glm::rotate( dragonLore->worldTransform, glm::radians( 45.0F ), glm::vec3( 0.0F, 1.0F, 0.0F ) );
   dragonLore->worldTransform = glm::translate( dragonLore->worldTransform, glm::vec3( 0.0F, -1.0F, 0.5F ) );
 
-  auto dragonLore2            = std::make_shared<GeometryNode>( "models/awpdlore/awpdlore.obj", Material( "textures/awpdlore.png" ) );
+  auto dragonLore2            = std::make_shared<GeometryNode>( "models/awpdlore/awpdlore.obj" );
   dragonLore2->worldTransform = glm::scale( dragonLore2->worldTransform, glm::vec3( 0.25F ) );
   dragonLore2->worldTransform = glm::rotate( dragonLore2->worldTransform, glm::radians( 90.0F ), glm::vec3( 0.0F, 1.0F, 0.0F ) );
   dragonLore2->worldTransform = glm::translate( dragonLore2->worldTransform, glm::vec3( 1.0F, 2.0F, 0.0F ) );
 
-  auto floor = std::make_shared<GeometryNode>( "models/plane.obj", Material( "textures/awpdlore.png" ) );
+  auto floor = std::make_shared<GeometryNode>( "models/plane.obj" );
 
   auto directionalLight = std::make_shared<DirectionalLightNode>( );
 

@@ -105,6 +105,8 @@ namespace RAYEXEC_NAMESPACE
       float constant;
       float linear;
       float quadratic;
+
+      float padding0 = 0.0F;
     };
 
     [[nodiscard]] auto toUbo( ) -> Ubo;

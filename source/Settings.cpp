@@ -133,37 +133,14 @@ namespace RAYEXEC_NAMESPACE
     g_frameCount                       = 0;
   }
 
-  void Settings::setEnableMsaa( bool flag )
+  void Settings::setEnableSsaa( bool flag )
   {
     this->ssaaEnabled      = flag;
     this->jitterCamEnabled = false;
   }
 
-  void Settings::setMsaaSampleRate( uint32_t sampleRate )
+  void Settings::setSsaaSampleRate( uint32_t sampleRate )
   {
-    if ( sampleRate < 2 )
-    {
-      this->ssaaSampleRate = 2;
-      return;
-    }
-
-    double t1 = std::log2( sampleRate );
-    double t2 = std::fmod( t1, 1.0 );
-
-    if ( t2 == 0.0 )
-    {
-      this->ssaaSampleRate = sampleRate;
-    }
-    else
-    {
-      if ( t2 >= 0.5 )
-      {
-        this->ssaaSampleRate = static_cast<uint32_t>( std::pow( 2.0, std::ceil( t1 ) ) );
-      }
-      else
-      {
-        this->ssaaSampleRate = static_cast<uint32_t>( std::pow( 2.0, std::floor( t1 ) ) );
-      }
-    }
+    this->ssaaSampleRate = sampleRate > 0 ? sampleRate : 1;
   }
 } // namespace RAYEXEC_NAMESPACE

@@ -114,18 +114,17 @@ namespace RAYEXEC_NAMESPACE
     /// Used to toggle SSAA.
     /// @param flag If true, SSAA will be activated.
     /// @note Disables jitter cam automatically.
-    void setEnableMsaa( bool flag );
+    void setEnableSsaa( bool flag );
 
     /// @return Returns true, if SSAA is enabled.
-    [[nodiscard]] auto getMsaaEnabled( ) const -> bool { return this->ssaaEnabled; }
+    [[nodiscard]] auto getSsaaEnabled( ) const -> bool { return this->ssaaEnabled; }
 
     /// Used to set the SSAA sample rate.
-    /// @param sampleRate The desired SSAA sample rate.
-    /// @note The function will automatically choose the closest candidate if an invalid input was chosen.
-    void setMsaaSampleRate( uint32_t sampleRate );
+    /// @param sampleRate The desired SSAA sample rate. If this value is zero, then the sample rate will be set to one.
+    void setSsaaSampleRate( uint32_t sampleRate );
 
     /// @return Returns the SSAA sample rate.
-    [[nodiscard]] auto getMsaaSampleRate( ) const -> uint32_t { return this->ssaaSampleRate; }
+    [[nodiscard]] auto getSsaaSampleRate( ) const -> uint32_t { return this->ssaaSampleRate; }
 
   private:
     /// This function will be called by RayExec::init() in case the path was not set manually.
@@ -149,7 +148,7 @@ namespace RAYEXEC_NAMESPACE
     uint32_t jitterCamSampleRate          = 100;                                    ///< Stores the sample rate of the jitter cam.
     uint32_t jitterCamSampleRatePerRayGen = 1;                                      ///< Stores the sample rate per raygen invocation.
     bool ssaaEnabled                      = true;                                   ///< Keeps track of whether or not SSAA is enabled.
-    uint32_t ssaaSampleRate               = 4;                                      ///< Stores the amount of samples per pixel for SSAA.
+    uint32_t ssaaSampleRate               = 2;                                      ///< Stores the amount of samples per pixel for SSAA.
 
     bool automaticPipelineRefresh  = false; ///< Keeps track of whether or not the graphics pipelines should be recreated automatically as soon as possible.
     bool automaticSwapchainRefresh = false; ///< Keeps track of whether or not the swapchain should be recreated automatically as soon as possible.

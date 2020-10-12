@@ -340,12 +340,12 @@ namespace RAYEXEC_NAMESPACE
       auto ptr = std::dynamic_pointer_cast<GeometryNode>( node );
 
       // Delete node
-      for ( const auto& node : this->geometryNodes )
+      for ( const auto& node : this->scene.geometryNodes )
       {
         if ( node == ptr )
         {
           // Found the node inside list of all nodes. Now remove it.
-          this->geometryNodes.remove( node );
+          this->scene.geometryNodes.remove( node );
 
           // Find the ray tracing instance and remove it.
           bool found = false;
@@ -379,10 +379,10 @@ namespace RAYEXEC_NAMESPACE
   void Api::updateAccelerationStructures( )
   {
     // TODO(self): Try to call this as few times as possible.
-    this->rayTracingBuilder.createBottomLevelAS( this->models );
+    this->rayTracingBuilder.createBottomLevelAS( this->scene.models );
 
     std::list<std::shared_ptr<GeometryNode>> rtNodes;
-    for ( const auto& node : this->geometryNodes )
+    for ( const auto& node : this->scene.geometryNodes )
     {
       if ( node->pipelineType == PipelineType::eDefaultRayTracing )
       {
@@ -500,12 +500,12 @@ namespace RAYEXEC_NAMESPACE
   {
     std::map<std::string, uint32_t> temp;
 
-    for ( const auto& model : this->models )
+    for ( const auto& model : this->scene.models )
     {
       temp.emplace( model->path, 0 );
     }
 
-    for ( const auto& node : this->geometryNodes )
+    for ( const auto& node : this->scene.geometryNodes )
     {
       if ( node->modelPath.empty( ) )
       {
@@ -552,7 +552,7 @@ namespace RAYEXEC_NAMESPACE
 
       // Draw models
       uint32_t id = 0;
-      for ( const auto& node : this->geometryNodes )
+      for ( const auto& node : this->scene.geometryNodes )
       {
         uint32_t instanceCount = 1;
         auto it2               = temp.find( node->modelPath );
@@ -619,9 +619,9 @@ namespace RAYEXEC_NAMESPACE
       RayTracePushConstants chitPc = { this->settings->getClearColor( ),
                                        g_frameCount,
                                        this->settings->getJitterCamSampleRatePerRayGen( ),
-                                       this->settings->getMsaaSampleRate( ),
-                                       this->settings->getJitterCamEnabled( ) ? true : false,
-                                       this->settings->getMsaaEnabled( ) ? true : false };
+                                       this->settings->getSsaaSampleRate( ),
+                                       this->settings->getJitterCamEnabled( ),
+                                       this->settings->getSsaaEnabled( ) };
 
       this->swapchainCommandBuffers.get( imageIndex ).pushConstants( this->rtPipeline.getLayout( ),                                                                                     // layout
                                                                      vk::ShaderStageFlagBits::eRaygenKHR | vk::ShaderStageFlagBits::eMissKHR | vk::ShaderStageFlagBits::eClosestHitKHR, // stageFlags
@@ -792,14 +792,14 @@ namespace RAYEXEC_NAMESPACE
     LightsUbo lightNodeUbos = { };
 
     int i = 0;
-    for ( auto& dirLightNode : this->dirLightNodes )
+    for ( auto& dirLightNode : this->scene.dirLightNodes )
     {
       gsl::at( lightNodeUbos.directionalLightNodes, i ) = dirLightNode->toUbo( );
       ++i;
     }
 
     i = 0;
-    for ( auto& pointLightNode : this->pointLightNodes )
+    for ( auto& pointLightNode : this->scene.pointLightNodes )
     {
       gsl::at( lightNodeUbos.pointLightNodes, i ) = pointLightNode->toUbo( );
       ++i;
@@ -810,9 +810,9 @@ namespace RAYEXEC_NAMESPACE
 
   void Api::setModels( const std::vector<std::string>& modelPaths )
   {
-    g_modelCount     = static_cast<uint32_t>( modelPaths.size( ) );
-    this->modelPaths = modelPaths;
-    this->models.clear( );
+    g_modelCount           = static_cast<uint32_t>( modelPaths.size( ) );
+    this->scene.modelPaths = modelPaths;
+    this->scene.models.clear( );
 
     this->vertexDataBufferInfos.clear( );
     this->indexDataBufferInfos.clear( );
@@ -823,7 +823,7 @@ namespace RAYEXEC_NAMESPACE
     for ( const auto& path : modelPaths )
     {
       auto model = std::make_shared<Model>( path );
-      this->models.push_back( model );
+      this->scene.models.push_back( model );
 
       // Initialize vertex and index buffers.
       model->vertexBuffer.init( model->vertices );
@@ -834,7 +834,7 @@ namespace RAYEXEC_NAMESPACE
 
   auto Api::findModel( std::string_view path ) const -> std::shared_ptr<Model>
   {
-    for ( const auto& model : this->models )
+    for ( const auto& model : this->scene.models )
     {
       if ( model->path == path )
       {
@@ -875,7 +875,7 @@ namespace RAYEXEC_NAMESPACE
   void Api::updateRayTracingModelData( )
   {
     // Update RT model data.
-    for ( const auto& model : models )
+    for ( const auto& model : this->scene.models )
     {
       vk::DescriptorBufferInfo vertexDataBufferInfo( model->vertexBuffer.get( ),
                                                      0,

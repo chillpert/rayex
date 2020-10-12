@@ -381,13 +381,6 @@ private:
           {
             this->renderer->settings.setMsaaSampleRate( 8 );
           }
-
-          ImGui::SameLine( );
-
-          if ( ImGui::RadioButton( "16x", &msaaSampleRate, 16 ) )
-          {
-            this->renderer->settings.setMsaaSampleRate( 16 );
-          }
         }
 
         int depth = static_cast<int>( this->renderer->settings.getRecursionDepth( ) );
@@ -406,6 +399,11 @@ private:
       float dt = Time::getDeltaTime( );
       if ( dt > 0.001f )
       {
+        if ( counter >= maxFrames - 1 )
+        {
+          std::fill( frameTimes.begin( ), frameTimes.end( ), 0.0f );
+        }
+
         frameTimes[counter] = dt;
         ++counter;
       }

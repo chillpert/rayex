@@ -33,6 +33,14 @@ layout( push_constant ) uniform Constants
   float padding2;
 };
 
+bool isPow( uint n )
+{
+  if ( n == 0 )
+    return false;
+
+  return ( ceil( log2( n ) ) == floor( log2( n ) ) );
+}
+
 void rayTrace( vec2 positionWithinPixel )
 {
   const vec2 inUV = positionWithinPixel / vec2( gl_LaunchSizeEXT.xy );
@@ -65,16 +73,42 @@ void main( )
   if ( msaaEnabled )
   {
     vec3 hitValues        = vec3( 0.0 );
-    const float msaaFloat = float( msaa ) * 2.0;
+    const float msaaFloat = float( msaa );
 
-    for ( float x = 1.0; x < msaaFloat; x += 2.0 )
+    if ( msaa == 2 )
     {
-      for ( float y = 1.0; y < msaaFloat; y += 2.0 )
+      for ( float x = 0.25; x <= 0.75; x += 0.5 )
       {
-        vec2 positionWithinPixel = vec2( gl_LaunchIDEXT.xy ) + vec2( x / msaaFloat, y / msaaFloat );
+        vec2 positionWithinPixel = vec2( gl_LaunchIDEXT.xy ) + vec2( x / 4.0, 0.5 );
         rayTrace( positionWithinPixel );
 
         hitValues += prd.hitValue;
+      }
+    }
+    else if ( msaa == 8 )
+    {
+      for ( float x = 1.0; x < msaaFloat; x += 2.0 )
+      {
+        for ( float y = 0.25; y <= 0.75; y += 0.5 )
+        {
+          vec2 positionWithinPixel = vec2( gl_LaunchIDEXT.xy ) + vec2( x / msaaFloat, y );
+          rayTrace( positionWithinPixel );
+
+          hitValues += prd.hitValue;
+        }
+      }
+    }
+    else if ( isPow( msaa ) )
+    {
+      for ( float x = 1.0; x < msaaFloat; x += 2.0 )
+      {
+        for ( float y = 1.0; y < msaaFloat; y += 2.0 )
+        {
+          vec2 positionWithinPixel = vec2( gl_LaunchIDEXT.xy ) + vec2( x / msaaFloat, y / msaaFloat );
+          rayTrace( positionWithinPixel );
+
+          hitValues += prd.hitValue;
+        }
       }
     }
 

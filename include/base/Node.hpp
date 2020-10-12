@@ -19,12 +19,10 @@ namespace RAYEXEC_NAMESPACE
 
   /// Describes a node in the scene graph.
   /// @ingroup Base
-  class Node
+  class Node : public std::enable_shared_from_this<Node>
   {
   public:
-    Node( ) :
-      id( ++nodeCounter ) {}
-
+    Node( std::string_view name );
     virtual ~Node( ) = default;
 
     Node( const Node& )  = delete;
@@ -38,8 +36,16 @@ namespace RAYEXEC_NAMESPACE
     /// @return The node's ID.
     [[nodiscard]] auto getID( ) -> uint32_t { return id; }
 
+    void setParent( std::shared_ptr<Node> newParent );
+    void addChild( std::shared_ptr<Node> newChild );
+
   private:
-    uint32_t id; ///< The node's unique ID.
+    uint32_t id;
+
+    std::list<std::shared_ptr<Node>> children;
+    std::shared_ptr<Node> parent;
+
+    static std::unordered_set<std::string> names;
   };
 
   /// Adds transformation abilities to the Node base class.
@@ -47,7 +53,7 @@ namespace RAYEXEC_NAMESPACE
   class TransformNode : public Node
   {
   public:
-    TransformNode( )           = default;
+    TransformNode( std::string_view name );
     ~TransformNode( ) override = default;
 
     TransformNode( const TransformNode& )  = delete;

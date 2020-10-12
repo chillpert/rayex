@@ -24,7 +24,7 @@ namespace RAYEXEC_NAMESPACE
   /// RayExecmyRenderer;
   /// myRenderer.init();
   ///
-  /// auto cube = std::make_shared<GeometryNode>( "models/cube.obj", Material( "textures/metal.png" ) );
+  /// auto cube = std::make_shared<GeometryNode>( "models/cube.obj" );
   ///
   /// myRenderer.pushNode<CustomModel>( cube );
   /// ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -62,10 +62,6 @@ namespace RAYEXEC_NAMESPACE
     VertexBuffer vertexBuffer;         ///< Used to buffer the raw vertex data.
     IndexBuffer<uint32_t> indexBuffer; ///< Used to buffer the raw index data.
 
-    // No destruction necessary
-    std::vector<vk::DescriptorSet> rtDescriptorSets; ///< Ray tracing descriptor sets for the model's descriptors.
-    std::vector<vk::DescriptorSet> rsDescriptorSets; ///< Rasterization descriptor sets for the model's descriptors.
-
   private:
     static uint32_t modelCounter; ///< Used to count the total number of models and to assign a new unique value to index.
   };
@@ -77,7 +73,7 @@ namespace std
   template <>
   struct hash<RAYEXEC_NAMESPACE::Model>
   {
-    auto operator( )( const std::shared_ptr<RAYEXEC_NAMESPACE::Model>& model ) const -> size_t { return hash<std::string>( )( model->path ); }
+    auto operator( )( const shared_ptr<RAYEXEC_NAMESPACE::Model>& model ) const -> size_t { return hash<string>( )( model->path ); }
   };
   /// @endcond
 } // namespace std

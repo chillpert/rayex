@@ -19,7 +19,7 @@ namespace RAYEXEC_NAMESPACE
   class LightNode : public TransformNode
   {
   public:
-    LightNode( )           = default;
+    LightNode( std::string_view name );
     ~LightNode( ) override = default;
 
     LightNode( const LightNode& )  = delete;
@@ -45,7 +45,7 @@ namespace RAYEXEC_NAMESPACE
   class DirectionalLightNode : public LightNode
   {
   public:
-    DirectionalLightNode( )           = default;
+    RX_API DirectionalLightNode( std::string_view name );
     ~DirectionalLightNode( ) override = default;
 
     DirectionalLightNode( const DirectionalLightNode& )  = delete;
@@ -76,7 +76,7 @@ namespace RAYEXEC_NAMESPACE
   class PointLightNode : public LightNode
   {
   public:
-    PointLightNode( )           = default;
+    RX_API PointLightNode( std::string_view name );
     ~PointLightNode( ) override = default;
 
     PointLightNode( const PointLightNode& )  = delete;

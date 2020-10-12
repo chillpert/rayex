@@ -11,6 +11,7 @@
 #include <algorithm>
 #include <any>
 #include <array>
+#include <charconv>
 #include <external/glm/ext/matrix_clip_space.hpp>
 #include <external/glm/ext/matrix_transform.hpp>
 #include <external/glm/glm.hpp>
@@ -23,6 +24,7 @@
 #include <map>
 #include <memory>
 #include <optional>
+#include <random>
 #include <set>
 #include <unordered_map>
 #include <unordered_set>

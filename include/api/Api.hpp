@@ -30,6 +30,8 @@ namespace RAYEXEC_NAMESPACE
   class Api
   {
   public:
+    friend RayExec;
+
     Api( ) = default;
 
     /// @param window A pointer to a window object that the API will use to display an image.
@@ -139,13 +141,6 @@ namespace RAYEXEC_NAMESPACE
     /// Re-initializes the render pass to support the GUI and initializes the GUI itself.
     RX_API void initGui( );
 
-    std::shared_ptr<Window> window = nullptr; ///< A pointer to a RAYEXEC_NAMESPACE::Window object whose surface is going to be rendered to.
-    std::shared_ptr<Camera> camera = nullptr; ///< A pointer to a RAYEXEC_NAMESPACE::Camera object whose matrices will be used for rendering.
-    Settings* settings             = nullptr; ///< A pointer to a RAYEXEC_NAMESPACE::Settings object stored inside RAYEXEC_NAMESPACE::RayExec.
-
-    std::vector<vk::GraphicsPipelineCreateInfo> graphicsPipelineCreateInfos;
-    std::vector<vk::RayTracingPipelineCreateInfoKHR> rayTracingPipelineCreateInfos;
-
   private:
     /// Updates both top and bottom level acceleration structures as well as their descriptor bindings.
     RX_API void updateAccelerationStructures( );
@@ -206,6 +201,8 @@ namespace RAYEXEC_NAMESPACE
     void rayTrace( );
 
     // Destruction through RAII for following members:
+    std::shared_ptr<Window> window = nullptr;                  ///< A pointer to a RAYEXEC_NAMESPACE::Window object whose surface is going to be rendered to.
+    std::shared_ptr<Camera> camera = nullptr;                  ///< A pointer to a RAYEXEC_NAMESPACE::Camera object whose matrices will be used for rendering.
     vk::UniqueInstance instance;                               ///< A unique Vulkan instance.
     DebugMessenger debugMessenger;                             ///< The debug messenger for logging validation messages.
     Surface surface;                                           ///< The surface containing surface parameters.
@@ -260,8 +257,11 @@ namespace RAYEXEC_NAMESPACE
     std::shared_ptr<Gui> gui = nullptr; ///< A pointer to a RAYEXEC_NAMESPACE::Gui object that will be used for rendering the GUI.
 
     // No destruction necessary for following members:
-    vk::PhysicalDevice physicalDevice;     ///< Stores the physical device (GPU).
-    std::vector<vk::Fence> imagesInFlight; ///< A vector of fences for synchronizing images that are in flight.
+    Settings* settings = nullptr;                                                   ///< A pointer to a RAYEXEC_NAMESPACE::Settings object stored inside RAYEXEC_NAMESPACE::RayExec.
+    std::vector<vk::GraphicsPipelineCreateInfo> graphicsPipelineCreateInfos;        ///<
+    std::vector<vk::RayTracingPipelineCreateInfoKHR> rayTracingPipelineCreateInfos; ///<
+    vk::PhysicalDevice physicalDevice;                                              ///< Stores the physical device (GPU).
+    std::vector<vk::Fence> imagesInFlight;                                          ///< A vector of fences for synchronizing images that are in flight.
 
     RayTracingBuilder rayTracingBuilder; ///< The RAYEXEC_NAMESPACE::RayTracingBuilder for setting up all ray tracing-related structures and the ray tracing process itself.
 

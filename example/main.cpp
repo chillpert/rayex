@@ -231,6 +231,40 @@ private:
   bool mouseVisible = true;
 };
 
+glm::vec3 getRandomUniquePosition( float min, float max )
+{
+  static std::vector<glm::vec3> positions;
+
+  static std::random_device rd;
+  static std::mt19937 mt( rd( ) );
+  static std::uniform_real_distribution<float> dist( min, max );
+
+  glm::vec3 result;
+
+  while ( true )
+  {
+    result.x = dist( mt );
+    result.y = dist( mt );
+    result.z = dist( mt );
+
+    bool accepted = true;
+    for ( const auto& position : positions )
+    {
+      if ( result == position )
+      {
+        accepted = false;
+      }
+    }
+
+    if ( accepted )
+    {
+      break;
+    }
+  };
+
+  return result;
+}
+
 class CustomGui : public Gui
 {
 public:
@@ -248,23 +282,21 @@ private:
   {
     static bool showDemoWindow = false;
     if ( showDemoWindow )
+    {
       ImGui::ShowDemoWindow( );
+    }
 
     if ( ImGui::Begin( "Settings" ) )
     {
       //ImGui::SliderFloat( "Speed", &animationSpeed, 0.0F, 2.0F );
 
+      static uint32_t spawnCounter = 0;
+      static std::array<char, 10> str;
+
       if ( ImGui::Button( "Add Box" ) )
       {
-        int max = 10;
-        int min = -10;
-        srand( time( nullptr ) );
-        int x = rand( ) % ( max - min + 1 ) + min;
-        int y = rand( ) % ( max - min + 1 ) + min;
-        int z = rand( ) % ( max - min + 1 ) + min;
-
-        auto box            = std::make_shared<GeometryNode>( "models/cube.obj" );
-        box->worldTransform = glm::translate( box->worldTransform, glm::vec3( x, y, z ) );
+        auto box            = std::make_shared<GeometryNode>( "Random Sphere " + std::to_string( spawnCounter++ ), "models/cube.obj" );
+        box->worldTransform = glm::translate( box->worldTransform, getRandomUniquePosition( -5.0F, 5.0F ) );
         box->worldTransform = glm::scale( box->worldTransform, glm::vec3( 0.3F, 0.3F, 0.3F ) );
         this->renderer->pushNode( box );
 
@@ -275,32 +307,12 @@ private:
 
       if ( ImGui::Button( "Add Sphere" ) )
       {
-        int max = 10;
-        int min = -10;
-        srand( time( nullptr ) );
-        int x = rand( ) % ( max - min + 1 ) + min;
-        int y = rand( ) % ( max - min + 1 ) + min;
-        int z = rand( ) % ( max - min + 1 ) + min;
-
-        auto sphere            = std::make_shared<GeometryNode>( "models/sphere.obj" );
-        sphere->worldTransform = glm::translate( sphere->worldTransform, glm::vec3( x, y, z ) );
+        auto sphere            = std::make_shared<GeometryNode>( "Random Sphere " + std::to_string( spawnCounter++ ), "models/sphere.obj" );
+        sphere->worldTransform = glm::translate( sphere->worldTransform, getRandomUniquePosition( -5.0F, 5.0F ) );
         sphere->worldTransform = glm::scale( sphere->worldTransform, glm::vec3( 0.3F, 0.3F, 0.3F ) );
         this->renderer->pushNode( sphere );
 
         this->geometryNodes.push_back( sphere );
-      }
-
-      ImGui::SameLine( );
-
-      if ( ImGui::Button( "Add directional light" ) )
-      {
-        auto dirLight = std::make_shared<DirectionalLightNode>( );
-
-        int max = 4;
-        int min = -4;
-        srand( time( nullptr ) );
-        int finalNum             = rand( ) % ( max - min + 1 ) + min;
-        dirLight->worldTransform = glm::translate( dirLight->worldTransform, glm::vec3( finalNum, 0.0F, 0.0F ) );
       }
 
       ImGui::SameLine( );
@@ -362,7 +374,7 @@ private:
 
         if ( ssaaEnabled )
         {
-          static int ssaaSampleRate = static_cast<int>( this->renderer->settings.getSsaaSampleRate( ) );
+          int ssaaSampleRate = static_cast<int>( this->renderer->settings.getSsaaSampleRate( ) );
           if ( ImGui::SliderInt( "Set SSAA Sample Rate", &ssaaSampleRate, 1, 4 ) )
           {
             this->renderer->settings.setSsaaSampleRate( ssaaSampleRate );
@@ -423,9 +435,9 @@ auto main( ) -> int
   renderer.setGui( std::make_shared<CustomGui>( &renderer ) );
 
   // Use resources efficiently by introducing the renderer to the anticipated total amount of various entities.
-  renderer.settings.setMaxDirectionalLights( 5 );
-  renderer.settings.setMaxPointLights( 0 ); // Bad input: 1 will be used instead (See warning in console).
-  renderer.settings.setMaxGeometryNodes( 50 );
+  renderer.settings.setMaxDirectionalLights( 2 );
+  renderer.settings.setMaxPointLights( 20 );
+  renderer.settings.setMaxGeometryNodes( 100 );
 
   // ... and initialize the renderer.
   renderer.init( );
@@ -433,19 +445,19 @@ auto main( ) -> int
   renderer.setModels( { "models/plane.obj", "models/sphere.obj", "models/awpdlore/awpdlore.obj", "models/cube.obj" } );
 
   // Setup the scene
-  auto dragonLore            = std::make_shared<GeometryNode>( "models/awpdlore/awpdlore.obj" );
+  auto dragonLore            = std::make_shared<GeometryNode>( "Dragon Lore 1", "models/awpdlore/awpdlore.obj" );
   dragonLore->worldTransform = glm::scale( dragonLore->worldTransform, glm::vec3( 0.25F ) );
   dragonLore->worldTransform = glm::rotate( dragonLore->worldTransform, glm::radians( 45.0F ), glm::vec3( 0.0F, 1.0F, 0.0F ) );
   dragonLore->worldTransform = glm::translate( dragonLore->worldTransform, glm::vec3( 0.0F, -1.0F, 0.5F ) );
 
-  auto dragonLore2            = std::make_shared<GeometryNode>( "models/awpdlore/awpdlore.obj" );
+  auto dragonLore2            = std::make_shared<GeometryNode>( "Dragon Lore 2", "models/awpdlore/awpdlore.obj" );
   dragonLore2->worldTransform = glm::scale( dragonLore2->worldTransform, glm::vec3( 0.25F ) );
   dragonLore2->worldTransform = glm::rotate( dragonLore2->worldTransform, glm::radians( 90.0F ), glm::vec3( 0.0F, 1.0F, 0.0F ) );
   dragonLore2->worldTransform = glm::translate( dragonLore2->worldTransform, glm::vec3( 1.0F, 2.0F, 0.0F ) );
 
-  auto floor = std::make_shared<GeometryNode>( "models/plane.obj" );
+  auto floor = std::make_shared<GeometryNode>( "Floor", "models/plane.obj" );
 
-  auto directionalLight = std::make_shared<DirectionalLightNode>( );
+  auto directionalLight = std::make_shared<DirectionalLightNode>( "Directional Light 1" );
 
   // Add the model to the renderer. This way they will be queued for rendering.
   renderer.pushNode( dragonLore );

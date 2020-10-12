@@ -2,6 +2,15 @@
 
 namespace RAYEXEC_NAMESPACE
 {
+  LightNode::LightNode( std::string_view name ) :
+    TransformNode( name ) {}
+
+  DirectionalLightNode::DirectionalLightNode( std::string_view name ) :
+    LightNode( name ) {}
+
+  PointLightNode::PointLightNode( std::string_view name ) :
+    LightNode( name ) {}
+
   auto combine( const glm::vec3& vec3, float value ) -> glm::vec4
   {
     return { vec3.x, vec3.y, vec3.z, value };

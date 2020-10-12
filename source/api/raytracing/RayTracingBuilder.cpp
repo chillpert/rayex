@@ -88,7 +88,7 @@ namespace RAYEXEC_NAMESPACE
     return gInst;
   }
 
-  void RayTracingBuilder::createBottomLevelAS( const std::list<std::shared_ptr<Model>>& models )
+  void RayTracingBuilder::createBottomLevelAS( const std::vector<std::shared_ptr<Model>>& models )
   {
     // Clean up previous acceleration structures and free all memory.
     destroy( );

@@ -29,7 +29,7 @@ namespace RAYEXEC_NAMESPACE
     /// @param modelPath
     /// @param material
     /// @see modelPath and material
-    RX_API GeometryNode( std::string_view modelPath, const Material& material = { } );
+    RX_API GeometryNode( std::string_view name, std::string_view modelPath );
 
     ~GeometryNode( ) override = default;
 

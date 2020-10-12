@@ -50,7 +50,7 @@ namespace RAYEXEC_NAMESPACE
 
     /// Used to prepare building the bottom level acceleration structures.
     /// @param models A vector of pointers to RAYEXEC_NAMESPACE::Model objects.
-    void createBottomLevelAS( const std::list<std::shared_ptr<Model>>& model );
+    void createBottomLevelAS( const std::vector<std::shared_ptr<Model>>& model );
 
     /// Builds all bottom level acceleration structures.
     /// @param blas_ A vector of RAYEXEC_NAMESPACE::Blas objects containing all bottom level acceleration structures prepared in createBottomLevelAS().

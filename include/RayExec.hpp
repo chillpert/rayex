@@ -71,11 +71,13 @@ namespace RAYEXEC_NAMESPACE
     /// @return Returns a pointer to the renderer's camera.
     [[nodiscard]] RX_API inline auto getCamera( ) const -> std::shared_ptr<Camera> { return camera; }
 
+    void setRoot( std::shared_ptr<Node> root );
+
     /// Used to add another arbitrary node to the scene.
     /// @param node A pointer to a RAYEXEC_NAMESPACE::Node object.
-    /// @see RAYEXEC_NAMESPACE::Api::pushNode() for implementation details.
+    /// @see rx::Api::pushNode() for implementation details.
     template <typename T = Model>
-    void pushNode( const std::shared_ptr<Node> node )
+    void pushNode( std::shared_ptr<Node> node )
     {
       api->pushNode<T>( node );
     }
@@ -85,8 +87,8 @@ namespace RAYEXEC_NAMESPACE
     RX_API void popNode( std::shared_ptr<Node> node );
 
     /// Used to overwrite the entire scene with new nodes at once.
-    /// @param nodes A vector of RAYEXEC_NAMESPACE::Node objects describing the new scene.
-    /// @see RAYEXEC_NAMESPACE::Api::setNodes()
+    /// @param nodes A vector of rx::Node objects describing the new scene.
+    /// @see rx::Api::setNodes()
     template <typename T = Model>
     void setNodes( const std::vector<std::shared_ptr<Node>>& nodes )
     {

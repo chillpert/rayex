@@ -686,6 +686,8 @@ namespace RAYEXEC_NAMESPACE
       this->rtSceneDescriptors.bindings.add( 1, vk::DescriptorType::eUniformBuffer, vk::ShaderStageFlagBits::eClosestHitKHR );
       // Scene description buffer
       this->rtSceneDescriptors.bindings.add( 2, vk::DescriptorType::eStorageBuffer, vk::ShaderStageFlagBits::eClosestHitKHR );
+      // Materials
+      this->rtSceneDescriptors.bindings.add( 3, vk::DescriptorType::eStorageBuffer, vk::ShaderStageFlagBits::eClosestHitKHR, g_modelCount, vk::DescriptorBindingFlagBits::eVariableDescriptorCount );
 
       this->rtSceneDescriptors.layout = this->rtSceneDescriptors.bindings.initLayoutUnique( );
       this->rtSceneDescriptors.pool   = this->rtSceneDescriptors.bindings.initPoolUnique( g_swapchainImageCount );
@@ -827,9 +829,11 @@ namespace RAYEXEC_NAMESPACE
 
       this->scene.models.push_back( model );
 
-      // Initialize vertex and index buffers.
+      // Initialize per-mesh data, vertex and index buffers.
       model->vertexBuffer.init( model->vertices );
       model->indexBuffer.init( model->indices );
+      model->meshDataBuffer.init( model->meshes );
+
       model->initialized = true;
     }
   }
@@ -862,9 +866,20 @@ namespace RAYEXEC_NAMESPACE
                                               0,
                                               VK_WHOLE_SIZE );
 
+    for ( const auto& model : this->scene.models )
+    {
+      vk::DescriptorBufferInfo meshDataBufferInfo( model->meshDataBuffer.get( ),
+                                                   0,
+                                                   VK_WHOLE_SIZE );
+
+      this->meshDataBufferInfos.push_back( meshDataBufferInfo );
+    }
+
     this->rtSceneDescriptors.bindings.write( this->rtSceneDescriptorSets, 0, this->cameraUniformBuffer.bufferInfos );
     this->rtSceneDescriptors.bindings.write( this->rtSceneDescriptorSets, 1, this->lightsUniformBuffer.bufferInfos );
     this->rtSceneDescriptors.bindings.write( this->rtSceneDescriptorSets, 2, &rtInstancesInfo );
+    this->rtSceneDescriptors.bindings.writeArray( this->rtSceneDescriptorSets, 3, this->meshDataBufferInfos.data( ) );
+
     this->rtSceneDescriptors.bindings.update( );
 
     // Update RS scene descriptor sets.

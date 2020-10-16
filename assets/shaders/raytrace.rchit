@@ -4,6 +4,7 @@
 #extension GL_EXT_nonuniform_qualifier : enable
 
 #include "lights.glsl"
+#include "material.glsl"
 #include "raycommon.glsl"
 
 #define TOTAL_DIRECTIONAL_LIGHTS 1
@@ -32,6 +33,16 @@ struct RayTracingInstance
   float padding1;
 };
 
+struct Mesh
+{
+  Material material;
+  uint indexOffset;
+
+  float padding0;
+  float padding1;
+  float padding2;
+};
+
 hitAttributeEXT vec3 attribs;
 
 layout( location = 0 ) rayPayloadInEXT hitPayload prd;
@@ -51,6 +62,12 @@ layout( binding = 2, set = 1 ) buffer RayTracingInstances
   RayTracingInstance i[];
 }
 rayTracingInstances;
+
+layout( binding = 3, set = 1, scalar ) buffer Meshes
+{
+  Mesh m[];
+}
+meshes[];
 
 layout( binding = 0, set = 2, scalar ) buffer Vertices
 {
@@ -152,11 +169,39 @@ void main( )
     {
       attenuation = 0.3;
     }
-    else
+  }
+
+  // The following lines access the meshes SSBO to figure out to which submesh the current face belongs and retrieve its material.
+  Material mat;
+  bool found       = false;
+  int subMeshCount = meshes[nonuniformEXT( modelIndex )].m.length( );
+
+  for ( int i = 0; i < subMeshCount; ++i )
+  {
+    uint offset     = meshes[nonuniformEXT( modelIndex )].m[i].indexOffset;
+    uint prevOffset = 0;
+
+    if ( i > 0 )
     {
+      prevOffset = meshes[nonuniformEXT( modelIndex )].m[i - 1].indexOffset;
+    }
+
+    if ( gl_PrimitiveID < offset && gl_PrimitiveID >= prevOffset )
+    {
+      mat   = meshes[nonuniformEXT( modelIndex )].m[i].material;
+      found = true;
+      break;
     }
   }
 
+  vec3 diffuse  = vec3( 1.0 );
+  vec2 texCoord = v0.texCoord * barycentrics.x + v1.texCoord * barycentrics.y + v2.texCoord * barycentrics.z;
+
+  if ( found )
+  {
+    diffuse = mat.diffuse.xyz;
+  }
+
   float dotNL  = max( dot( normal, L ), 0.2 );
-  prd.hitValue = vec3( dotNL ) * attenuation;
+  prd.hitValue = vec3( dotNL ) * diffuse * attenuation;
 }

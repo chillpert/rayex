@@ -68,13 +68,15 @@ namespace RAYEXEC_NAMESPACE
     std::unordered_map<Vertex, uint32_t> uniqueVertices;
     this->meshes.reserve( shapes.size( ) );
 
-    static float textureOffset = 0.0F;
+    bool firstRun      = true;
+    size_t prevOffsets = 0;
 
     // Loop over shapes
     for ( size_t s = 0; s < shapes.size( ); s++ )
     {
-      Mesh mesh;
-      mesh.vertexOffset = uniqueVertices.size( );
+      Mesh mesh        = { };
+      mesh.indexOffset = prevOffsets + shapes[s].mesh.num_face_vertices.size( );
+      prevOffsets += mesh.indexOffset;
 
       int materialIndex = shapes[s].mesh.material_ids[0];
       if ( materialIndex != -1 )
@@ -86,10 +88,10 @@ namespace RAYEXEC_NAMESPACE
         mat.ambient  = glm::vec4( ambient[0], ambient[1], ambient[2], getTextureIndex( materials[materialIndex].ambient_texname, textures ) );
 
         auto diffuse = materials[materialIndex].diffuse;
-        mat.diffuse  = glm::vec4( diffuse[0], diffuse[1], diffuse[2], getTextureIndex( materials[materialIndex].ambient_texname, textures ) );
+        mat.diffuse  = glm::vec4( diffuse[0], diffuse[1], diffuse[2], getTextureIndex( materials[materialIndex].diffuse_texname, textures ) );
 
         auto specular = materials[materialIndex].specular;
-        mat.specular  = glm::vec4( specular[0], specular[1], specular[2], getTextureIndex( materials[materialIndex].ambient_texname, textures ) );
+        mat.specular  = glm::vec4( specular[0], specular[1], specular[2], getTextureIndex( materials[materialIndex].specular_texname, textures ) );
 
         mesh.material = mat;
       }
@@ -147,6 +149,8 @@ namespace RAYEXEC_NAMESPACE
         index_offset += fv;
       }
     }
+
+    RX_VERBOSE( "Loaded model from ", this->path, "\nMesh count: ", this->meshes.size( ) );
   }
 
   auto Model::isLoaded( ) -> bool

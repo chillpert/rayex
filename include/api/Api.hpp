@@ -234,6 +234,8 @@ namespace RAYEXEC_NAMESPACE
     UniformBuffer cameraUniformBuffer; ///< A uniform buffer containing camera data.
     UniformBuffer lightsUniformBuffer; ///< A uniform buffer containing lights data.
 
+    std::vector<vk::DescriptorBufferInfo> meshDataBufferInfos;
+
     std::vector<RayTracingInstance> rtInstances;    ///< A vector of ray tracing instances including special indices to buffers and matrices.
     StorageBuffer rayTracingInstancesBuffer;        ///< A storage buffer for the ray tracing instances.
     bool uploadRayTracingInstancesToBuffer = false; ///< Keeps track of whether or not to upload the ray tracing instances to their respective buffer the next time update() is called.

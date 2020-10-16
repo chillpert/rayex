@@ -7,8 +7,12 @@ namespace RAYEXEC_NAMESPACE
 {
   struct Mesh
   {
-    size_t vertexOffset;
     Material material;
+    size_t indexOffset;
+
+    float padding0 = 0.0F;
+    float padding1 = 0.0F;
+    float padding2 = 0.0F;
   };
 } // namespace RAYEXEC_NAMESPACE
 

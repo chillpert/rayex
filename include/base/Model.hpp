@@ -2,6 +2,7 @@
 #define MODEL_BASE_HPP
 
 #include "api/buffers/IndexBuffer.hpp"
+#include "api/buffers/StorageBuffer.hpp"
 #include "api/buffers/UniformBuffer.hpp"
 #include "api/buffers/VertexBuffer.hpp"
 #include "api/image/Texture.hpp"
@@ -63,6 +64,7 @@ namespace RAYEXEC_NAMESPACE
     IndexBuffer indexBuffer;   ///< Used to buffer the raw index data.
 
     std::vector<Mesh> meshes;
+    StorageBuffer meshDataBuffer;
 
   private:
     static uint32_t modelCounter; ///< Used to count the total number of models and to assign a new unique value to index.

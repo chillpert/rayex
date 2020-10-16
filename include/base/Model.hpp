@@ -59,8 +59,8 @@ namespace RAYEXEC_NAMESPACE
     std::vector<uint32_t> indices; ///< The raw index data.
 
     // Destruction via RAII.
-    VertexBuffer vertexBuffer;         ///< Used to buffer the raw vertex data.
-    IndexBuffer<uint32_t> indexBuffer; ///< Used to buffer the raw index data.
+    VertexBuffer vertexBuffer; ///< Used to buffer the raw vertex data.
+    IndexBuffer indexBuffer;   ///< Used to buffer the raw index data.
 
   private:
     static uint32_t modelCounter; ///< Used to count the total number of models and to assign a new unique value to index.

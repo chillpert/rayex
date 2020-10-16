@@ -35,7 +35,7 @@ namespace RAYEXEC_NAMESPACE
   {
     vk::AccelerationStructureCreateGeometryTypeInfoKHR asCreate( vk::GeometryTypeKHR::eTriangles,    // geometryType
                                                                  model->indexBuffer.getCount( ) / 3, // maxPrimitiveCount
-                                                                 model->indexBuffer.getType( ),      // indexType
+                                                                 vk::IndexType::eUint32,             // indexType
                                                                  model->vertexBuffer.getCount( ),    // maxVertexCount
                                                                  Vertex::getVertexPositionFormat( ), // vertexFormat
                                                                  VK_FALSE );                         // allowsTransforms

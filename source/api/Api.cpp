@@ -584,7 +584,7 @@ namespace RAYEXEC_NAMESPACE
 
         this->swapchainCommandBuffers.get( imageIndex ).bindIndexBuffer( model->indexBuffer.get( ),
                                                                          0, // offset
-                                                                         model->indexBuffer.getType( ) );
+                                                                         vk::IndexType::eUint32 );
 
         std::vector<vk::DescriptorSet> descriptorSets = { this->rsSceneDescriptorSets[imageIndex] };
 

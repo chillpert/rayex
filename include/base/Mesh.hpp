@@ -7,12 +7,16 @@ namespace RAYEXEC_NAMESPACE
 {
   struct Mesh
   {
-    Material material;
-    size_t indexOffset;
+    Material material = { };
 
-    float padding0 = 0.0F;
-    float padding1 = 0.0F;
-    float padding2 = 0.0F;
+    glm::vec4 padding0 = glm::vec4( 1.0F );
+    glm::vec4 padding1 = glm::vec4( 1.0F );
+    glm::vec4 padding2 = glm::vec4( 1.0F );
+    uint32_t padding3  = 0;
+    uint32_t padding4  = 0;
+    uint32_t padding5  = 0;
+
+    uint32_t indexOffset = 0;
   };
 } // namespace RAYEXEC_NAMESPACE
 

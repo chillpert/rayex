@@ -68,14 +68,14 @@ namespace RAYEXEC_NAMESPACE
     std::unordered_map<Vertex, uint32_t> uniqueVertices;
     this->meshes.reserve( shapes.size( ) );
 
-    bool firstRun      = true;
-    size_t prevOffsets = 0;
+    bool firstRun        = true;
+    uint32_t prevOffsets = 0;
 
     // Loop over shapes
     for ( size_t s = 0; s < shapes.size( ); s++ )
     {
       Mesh mesh        = { };
-      mesh.indexOffset = prevOffsets + shapes[s].mesh.num_face_vertices.size( );
+      mesh.indexOffset = prevOffsets + static_cast<uint32_t>( shapes[s].mesh.num_face_vertices.size( ) );
       prevOffsets += mesh.indexOffset;
 
       int materialIndex = shapes[s].mesh.material_ids[0];

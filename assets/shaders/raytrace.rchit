@@ -36,11 +36,15 @@ struct RayTracingInstance
 struct Mesh
 {
   Material material;
-  uint indexOffset;
 
-  float padding0;
-  float padding1;
-  float padding2;
+  vec4 padding0;
+  vec4 padding1;
+  vec4 padding2;
+  uint padding3;
+  uint padding4;
+  uint padding5;
+
+  uint indexOffset;
 };
 
 hitAttributeEXT vec3 attribs;
@@ -63,13 +67,13 @@ layout( binding = 2, set = 1 ) buffer RayTracingInstances
 }
 rayTracingInstances;
 
-layout( binding = 3, set = 1, scalar ) buffer Meshes
+layout( binding = 3, set = 1 ) buffer Meshes
 {
   Mesh m[];
 }
 meshes[];
 
-layout( binding = 0, set = 2, scalar ) buffer Vertices
+layout( binding = 0, set = 2 ) buffer Vertices
 {
   vec4 v[];
 }

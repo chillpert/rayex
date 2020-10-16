@@ -1,6 +1,6 @@
 # Blender v2.79 (sub 0) OBJ File: 'awpdlore.blend'
 # www.blender.org
-mtllib awpdlore.mtl
+mtllib models/awpdlore/awpdlore.mtl
 o AWP
 v -0.130520 0.880781 -4.138970
 v -0.127000 1.096041 -4.132940

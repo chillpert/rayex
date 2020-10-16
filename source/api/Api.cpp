@@ -823,6 +823,8 @@ namespace RAYEXEC_NAMESPACE
     for ( const auto& path : modelPaths )
     {
       auto model = std::make_shared<Model>( path );
+      model->load( this->scene.textures );
+
       this->scene.models.push_back( model );
 
       // Initialize vertex and index buffers.

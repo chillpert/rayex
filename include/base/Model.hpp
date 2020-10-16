@@ -45,7 +45,7 @@ namespace RAYEXEC_NAMESPACE
     auto operator=( const Model && ) -> Model& = delete;
 
     /// Loads the model by extracting all vertices and indices.
-    RX_API virtual void load( );
+    RX_API virtual void load( std::vector<Texture>& textures );
 
     /// @return Returns true if the model was already loaded.
     auto isLoaded( ) -> bool;

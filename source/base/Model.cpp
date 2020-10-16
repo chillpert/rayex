@@ -12,12 +12,34 @@ namespace RAYEXEC_NAMESPACE
 
   Model::Model( std::string_view path ) :
     index( rx::Model::modelCounter++ ),
-    path( path )
+    path( path ) {}
+
+  float getTextureIndex( std::string_view texturePath, std::vector<Texture>& textures )
   {
-    load( );
+    if ( !texturePath.empty( ) )
+    {
+      // Check if texture already exists and set its index.
+      // @note For testing purposes currently disabled.
+      /*
+      for ( size_t i = 0; i < textures.size( ); ++i )
+      {
+        if ( textures[i].getPath( ) == texturePath )
+        {
+          return static_cast<float>( i );
+        }
+      }
+      */
+
+      // Create a new texture
+      textures.push_back( Texture( texturePath, true ) );
+      return static_cast<float>( textures.size( ) - 1 );
+    }
+
+    // If the material does not have a texture, return -1.0F.
+    return -1.0F;
   }
 
-  void Model::load( )
+  void Model::load( std::vector<Texture>& textures )
   {
     tinyobj::attrib_t attrib;
     std::vector<tinyobj::shape_t> shapes;
@@ -46,9 +68,34 @@ namespace RAYEXEC_NAMESPACE
     std::unordered_map<Vertex, uint32_t> uniqueVertices;
     this->meshes.reserve( shapes.size( ) );
 
+    static float textureOffset = 0.0F;
+
     // Loop over shapes
     for ( size_t s = 0; s < shapes.size( ); s++ )
     {
+      Mesh mesh;
+      mesh.vertexOffset = uniqueVertices.size( );
+
+      int materialIndex = shapes[s].mesh.material_ids[0];
+      if ( materialIndex != -1 )
+      {
+        Material mat = { };
+        float z      = -1.0F;
+
+        auto ambient = materials[materialIndex].ambient;
+        mat.ambient  = glm::vec4( ambient[0], ambient[1], ambient[2], getTextureIndex( materials[materialIndex].ambient_texname, textures ) );
+
+        auto diffuse = materials[materialIndex].diffuse;
+        mat.diffuse  = glm::vec4( diffuse[0], diffuse[1], diffuse[2], getTextureIndex( materials[materialIndex].ambient_texname, textures ) );
+
+        auto specular = materials[materialIndex].specular;
+        mat.specular  = glm::vec4( specular[0], specular[1], specular[2], getTextureIndex( materials[materialIndex].ambient_texname, textures ) );
+
+        mesh.material = mat;
+      }
+
+      this->meshes.push_back( mesh );
+
       // Loop over faces(polygon)
       size_t index_offset = 0;
       for ( size_t f = 0; f < shapes[s].mesh.num_face_vertices.size( ); f++ )
@@ -96,10 +143,8 @@ namespace RAYEXEC_NAMESPACE
 
           this->indices.push_back( uniqueVertices[vertex] );
         }
-        index_offset += fv;
 
-        // per-face material
-        //shapes[s].mesh.material_ids[f];
+        index_offset += fv;
       }
     }
   }

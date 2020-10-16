@@ -31,7 +31,7 @@ namespace RAYEXEC_NAMESPACE
     this->blas_.clear( );
   }
 
-  Blas RayTracingBuilder::modelToBlas( const std::shared_ptr<Model> model ) const
+  Blas RayTracingBuilder::modelToBlas( std::shared_ptr<Model> model ) const
   {
     vk::AccelerationStructureCreateGeometryTypeInfoKHR asCreate( vk::GeometryTypeKHR::eTriangles,    // geometryType
                                                                  model->indexBuffer.getCount( ) / 3, // maxPrimitiveCount

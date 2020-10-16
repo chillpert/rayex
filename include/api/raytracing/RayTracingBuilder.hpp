@@ -41,7 +41,7 @@ namespace RAYEXEC_NAMESPACE
     /// Used to convert wavefront models to a bottom level acceleration structure.
     /// @param model A pointer to a RAYEXEC_NAMESPACE::Model object.
     /// @return Returns the bottom level acceleration structure.
-    Blas modelToBlas( const std::shared_ptr<Model> model ) const;
+    Blas modelToBlas( std::shared_ptr<Model> model ) const;
 
     /// Used to convert a bottom level acceleration structure instance to a Vulkan geometry instance.
     /// @param instance A bottom level acceleration structure instance.

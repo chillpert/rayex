@@ -22,46 +22,84 @@ namespace RAYEXEC_NAMESPACE
     tinyobj::attrib_t attrib;
     std::vector<tinyobj::shape_t> shapes;
     std::vector<tinyobj::material_t> materials;
+
     std::string warn;
     std::string err;
 
-    std::string fullPath = g_assetsPath + this->path;
+    bool res = tinyobj::LoadObj( &attrib, &shapes, &materials, &warn, &err, this->path.c_str( ) );
 
-    if ( !tinyobj::LoadObj( &attrib, &shapes, &materials, &warn, &err, fullPath.c_str( ) ) )
+    if ( !warn.empty( ) )
     {
-      RX_ERROR( warn + err );
+      RX_WARN( warn );
+    }
+
+    if ( !err.empty( ) )
+    {
+      RX_FATAL( "Failed to load model from ", this->path, "\nERROR: ", err );
+    }
+
+    if ( !res )
+    {
+      RX_FATAL( "Failed to load model from ", this->path );
     }
 
     std::unordered_map<Vertex, uint32_t> uniqueVertices;
+    this->meshes.reserve( shapes.size( ) );
 
-    for ( const auto& shape : shapes )
+    // Loop over shapes
+    for ( size_t s = 0; s < shapes.size( ); s++ )
     {
-      for ( const auto& index : shape.mesh.indices )
+      // Loop over faces(polygon)
+      size_t index_offset = 0;
+      for ( size_t f = 0; f < shapes[s].mesh.num_face_vertices.size( ); f++ )
       {
-        Vertex vertex { };
+        int fv = shapes[s].mesh.num_face_vertices[f];
 
-        vertex.pos.x = attrib.vertices[3 * index.vertex_index + 0];
-        vertex.pos.y = attrib.vertices[3 * index.vertex_index + 1];
-        vertex.pos.z = attrib.vertices[3 * index.vertex_index + 2];
-
-        vertex.normal.x = attrib.normals[3 * index.normal_index + 0];
-        vertex.normal.y = attrib.normals[3 * index.normal_index + 1];
-        vertex.normal.z = attrib.normals[3 * index.normal_index + 2];
-
-        vertex.texCoord.x = attrib.texcoords[2 * index.texcoord_index + 0];
-        vertex.texCoord.y = 1.0F - attrib.texcoords[2 * index.texcoord_index + 1];
-
-        vertex.color.x = 1.0F;
-        vertex.color.y = 1.0F;
-        vertex.color.z = 1.0F;
-
-        if ( uniqueVertices.count( vertex ) == 0 )
+        // Loop over vertices in the face.
+        for ( size_t v = 0; v < fv; v++ )
         {
-          uniqueVertices[vertex] = static_cast<uint32_t>( this->vertices.size( ) );
-          this->vertices.push_back( vertex );
-        }
+          tinyobj::index_t idx = shapes[s].mesh.indices[index_offset + v];
 
-        this->indices.push_back( uniqueVertices[vertex] );
+          Vertex vertex = { };
+          if ( attrib.vertices.size( ) > 3 * idx.vertex_index + 0 )
+          {
+            vertex.pos.x = attrib.vertices[3 * idx.vertex_index + 0];
+            vertex.pos.y = attrib.vertices[3 * idx.vertex_index + 1];
+            vertex.pos.z = attrib.vertices[3 * idx.vertex_index + 2];
+          }
+
+          if ( attrib.normals.size( ) > 3 * idx.normal_index + 0 )
+          {
+            vertex.normal.x = attrib.normals[3 * idx.normal_index + 0];
+            vertex.normal.y = attrib.normals[3 * idx.normal_index + 1];
+            vertex.normal.z = attrib.normals[3 * idx.normal_index + 2];
+          }
+
+          if ( attrib.colors.size( ) > 2 * idx.texcoord_index + 1 )
+          {
+            vertex.texCoord.x = attrib.texcoords[2 * idx.texcoord_index + 0];
+            vertex.texCoord.y = attrib.texcoords[2 * idx.texcoord_index + 1];
+          }
+
+          if ( attrib.colors.size( ) > 3 * idx.vertex_index + 2 )
+          {
+            vertex.color.x = attrib.colors[3 * idx.vertex_index + 0];
+            vertex.color.y = attrib.colors[3 * idx.vertex_index + 1];
+            vertex.color.z = attrib.colors[3 * idx.vertex_index + 2];
+          }
+
+          if ( uniqueVertices.count( vertex ) == 0 )
+          {
+            uniqueVertices[vertex] = static_cast<uint32_t>( this->vertices.size( ) );
+            this->vertices.push_back( vertex );
+          }
+
+          this->indices.push_back( uniqueVertices[vertex] );
+        }
+        index_offset += fv;
+
+        // per-face material
+        //shapes[s].mesh.material_ids[f];
       }
     }
   }

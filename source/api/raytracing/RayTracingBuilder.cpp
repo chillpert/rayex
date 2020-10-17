@@ -31,17 +31,17 @@ namespace RAYEXEC_NAMESPACE
     this->blas_.clear( );
   }
 
-  Blas RayTracingBuilder::modelToBlas( std::shared_ptr<Model> model ) const
+  Blas RayTracingBuilder::modelToBlas( const VertexBuffer& vertexBuffer, const IndexBuffer& indexBuffer ) const
   {
     vk::AccelerationStructureCreateGeometryTypeInfoKHR asCreate( vk::GeometryTypeKHR::eTriangles,    // geometryType
-                                                                 model->indexBuffer.getCount( ) / 3, // maxPrimitiveCount
+                                                                 indexBuffer.getCount( ) / 3,        // maxPrimitiveCount
                                                                  vk::IndexType::eUint32,             // indexType
-                                                                 model->vertexBuffer.getCount( ),    // maxVertexCount
+                                                                 vertexBuffer.getCount( ),           // maxVertexCount
                                                                  Vertex::getVertexPositionFormat( ), // vertexFormat
                                                                  VK_FALSE );                         // allowsTransforms
 
-    vk::DeviceAddress vertexAddress = g_device.getBufferAddress( { model->vertexBuffer.get( ) } );
-    vk::DeviceAddress indexAddress  = g_device.getBufferAddress( { model->indexBuffer.get( ) } );
+    vk::DeviceAddress vertexAddress = g_device.getBufferAddress( { vertexBuffer.get( ) } );
+    vk::DeviceAddress indexAddress  = g_device.getBufferAddress( { indexBuffer.get( ) } );
 
     vk::AccelerationStructureGeometryTrianglesDataKHR triangles( asCreate.vertexFormat, // vertexFormat
                                                                  vertexAddress,         // vertexData
@@ -88,18 +88,18 @@ namespace RAYEXEC_NAMESPACE
     return gInst;
   }
 
-  void RayTracingBuilder::createBottomLevelAS( const std::vector<std::shared_ptr<Model>>& models )
+  void RayTracingBuilder::createBottomLevelAS( const std::vector<VertexBuffer>& vertexBuffers, const std::vector<IndexBuffer>& indexBuffers )
   {
     // Clean up previous acceleration structures and free all memory.
     destroy( );
 
     // BLAS - Storing each primitive in a geometry.
     std::vector<Blas> allBlas;
-    allBlas.reserve( models.size( ) );
+    allBlas.reserve( vertexBuffers.size( ) );
 
-    for ( const auto& obj : models )
+    for ( size_t i = 0; i < vertexBuffers.size( ); ++i )
     {
-      Blas blas = modelToBlas( obj );
+      Blas blas = modelToBlas( vertexBuffers[i], indexBuffers[i] );
 
       // We could add more geometry in each BLAS, but we add only one for now.
       allBlas.emplace_back( blas );
@@ -284,18 +284,18 @@ namespace RAYEXEC_NAMESPACE
     }
   }
 
-  void RayTracingBuilder::createTopLevelAS( const std::list<std::shared_ptr<GeometryNode>>& nodes )
+  void RayTracingBuilder::createTopLevelAS( const std::vector<GeometryInstance>& geometryInstances )
   {
     std::vector<BlasInstance> instances;
-    instances.reserve( nodes.size( ) );
+    instances.reserve( geometryInstances.size( ) );
 
     uint32_t i = 0;
-    for ( const auto& node : nodes )
+    for ( const auto& geometryInstance : geometryInstances )
     {
       BlasInstance rayInst;
-      rayInst.transform  = node->worldTransform;
+      rayInst.transform  = geometryInstance.worldTransform;
       rayInst.instanceId = i;
-      rayInst.blasId     = node->rtInstance.modelIndex;
+      rayInst.blasId     = geometryInstance.geometryIndex;
       rayInst.hitGroupId = 0; // We will use the same hit group for all objects
       rayInst.flags      = vk::GeometryInstanceFlagBitsKHR::eTriangleFacingCullDisable;
 

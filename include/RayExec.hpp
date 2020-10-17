@@ -58,6 +58,42 @@ namespace RAYEXEC_NAMESPACE
     /// @param gui A pointer to a RAYEXEC_NAMESPACE::Gui object.
     RX_API void setGui( std::shared_ptr<Gui> gui );
 
+    RX_API void submitGeometryInstance( const GeometryInstance& geometryInstance )
+    {
+      this->api->scene.geometryInstances.push_back( geometryInstance );
+      this->api->uploadRayTracingInstancesToBuffer = true;
+    }
+
+    RX_API void setGeometryInstances( const std::vector<GeometryInstance>& geometryInstances )
+    {
+      this->api->scene.geometryInstances           = geometryInstances;
+      this->api->uploadRayTracingInstancesToBuffer = true;
+    }
+
+    RX_API void submitGeometry( std::shared_ptr<Geometry> geometry )
+    {
+      this->api->scene.geometries.push_back( geometry );
+    }
+
+    RX_API void setGeometries( const std::vector<std::shared_ptr<Geometry>>& geometries )
+    {
+      this->api->scene.geometries = geometries;
+    }
+
+    std::shared_ptr<Geometry> findGeometry( std::string_view path )
+    {
+      for ( std::shared_ptr<Geometry> geometry : this->api->scene.geometries )
+      {
+        if ( geometry->path == path )
+        {
+          return geometry;
+        }
+      }
+
+      RX_INFO( "Could not find geometry in scene. Trying to create geometry instead." );
+      return loadObj( path );
+    }
+
     /// Used to set all models that can be rendered and to initialize them.
     ///
     /// Resources can be allocated more efficiently if all possible models are known to the renderer in advance.
@@ -76,23 +112,24 @@ namespace RAYEXEC_NAMESPACE
     /// Used to add another arbitrary node to the scene.
     /// @param node A pointer to a RAYEXEC_NAMESPACE::Node object.
     /// @see rx::Api::pushNode() for implementation details.
-    template <typename T = Model>
+
+    /*
     void pushNode( std::shared_ptr<Node> node )
     {
-      api->pushNode<T>( node );
+      api->pushNode( node );
     }
 
     /// Used to delete a node from the renderer.
     /// @param node A pointer to a RAYEXEC_NAMESPACE::Node object.
     RX_API void popNode( std::shared_ptr<Node> node );
+    */
 
     /// Used to overwrite the entire scene with new nodes at once.
     /// @param nodes A vector of rx::Node objects describing the new scene.
     /// @see rx::Api::setNodes()
-    template <typename T = Model>
     void setNodes( const std::vector<std::shared_ptr<Node>>& nodes )
     {
-      api->setNodes<T>( nodes );
+      api->setNodes( nodes );
     }
 
     Settings settings;

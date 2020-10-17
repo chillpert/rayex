@@ -18,7 +18,7 @@ namespace RAYEXEC_NAMESPACE
     ///
     /// To optimize the procedure a temporary staging buffer will be created.
     /// @param indices The index data.
-    void init( std::vector<uint32_t>& indices )
+    void init( const std::vector<uint32_t>& indices )
     {
       count = static_cast<uint32_t>( indices.size( ) );
 

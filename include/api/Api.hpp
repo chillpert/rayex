@@ -70,15 +70,17 @@ namespace RAYEXEC_NAMESPACE
     /// Used to find a particular model inside models.
     /// @param path The model's path.
     /// @note The path must be identical to the one used for the model in RAYEXEC_NAMESPACE::RayExec::setModels(std::vector<std::string>).
-    [[nodiscard]] RX_API auto findModel( std::string_view path ) const -> std::shared_ptr<Model>;
+    //[[nodiscard]] RX_API auto findModel( std::string_view path ) const -> std::shared_ptr<Model>;
 
-    RX_API std::shared_ptr<Model> initModel( std::string_view modelPath );
+    //RX_API std::shared_ptr<Model> initModel( std::string_view modelPath );
+
+    void initModelBuffers( );
 
     /// Used to add another arbitrary node to the scene.
     /// @param node A pointer to node to add.
-    template <typename T = Model>
     void pushNode( const std::shared_ptr<Node>& node, bool record = true )
     {
+      /*
       g_frameCount = 0;
 
       if ( node->getType( ) == NodeType::eGeometryNode )
@@ -125,6 +127,7 @@ namespace RAYEXEC_NAMESPACE
         auto pointLightNodePtr = std::dynamic_pointer_cast<PointLightNode>( node );
         this->scene.pointLightNodes.push_back( pointLightNodePtr );
       }
+      */
     }
 
     /// Used to delete an arbitrary node.
@@ -133,15 +136,14 @@ namespace RAYEXEC_NAMESPACE
 
     /// Used to overwrite the entire scene with new nodes.
     /// @param nodes A vector of pointers to nodes describing the new scene.
-    template <typename T = Model>
     void setNodes( const std::vector<std::shared_ptr<Node>>& nodes )
     {
-      this->scene.geometryNodes.clear( );
+      //this->scene.geometryNodes.clear( );
       this->scene.dirLightNodes.clear( );
       this->scene.pointLightNodes.clear( );
 
       for ( const auto& node : nodes )
-        pushNode<T>( node );
+        pushNode( node );
     }
 
     /// Re-initializes the render pass to support the GUI and initializes the GUI itself.
@@ -242,7 +244,7 @@ namespace RAYEXEC_NAMESPACE
 
     std::vector<vk::DescriptorBufferInfo> meshDataBufferInfos;
 
-    std::vector<RayTracingInstance> rtInstances;    ///< A vector of ray tracing instances including special indices to buffers and matrices.
+    //std::vector<RayTracingInstance> rtInstances;    ///< A vector of ray tracing instances including special indices to buffers and matrices.
     StorageBuffer rayTracingInstancesBuffer;        ///< A storage buffer for the ray tracing instances.
     bool uploadRayTracingInstancesToBuffer = false; ///< Keeps track of whether or not to upload the ray tracing instances to their respective buffer the next time update() is called.
 
@@ -276,6 +278,10 @@ namespace RAYEXEC_NAMESPACE
     bool pipelinesReady        = false; ///< Keeps track of whether or not the graphics pipelines are ready.
 
     Scene scene;
+
+    std::vector<VertexBuffer> vertexBuffers;
+    std::vector<IndexBuffer> indexBuffers;
+    std::vector<StorageBuffer> meshBuffers;
   };
 } // namespace RAYEXEC_NAMESPACE
 

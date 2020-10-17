@@ -117,6 +117,7 @@ namespace vk::Helper
     return result;
   }
 
+  /*
   auto unpack( const std::unordered_map<std::string, std::shared_ptr<RAYEXEC_NAMESPACE::Model>>& models ) -> std::vector<std::shared_ptr<RAYEXEC_NAMESPACE::Model>>
   {
     std::vector<std::shared_ptr<RAYEXEC_NAMESPACE::Model>> result;
@@ -129,6 +130,7 @@ namespace vk::Helper
 
     return result;
   }
+  */
 
   auto getPoolSizes( const std::vector<DescriptorSetLayoutBinding>& layoutBindings, uint32_t maxSets ) -> std::vector<DescriptorPoolSize>
   {

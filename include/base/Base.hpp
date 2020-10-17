@@ -20,5 +20,6 @@
 #include "base/LightNode.hpp"
 #include "base/Node.hpp"
 #include "base/Window.hpp"
+#include "modules/Modules.hpp"
 
 #endif // BASE_HPP

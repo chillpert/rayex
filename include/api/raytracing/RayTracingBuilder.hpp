@@ -41,7 +41,7 @@ namespace RAYEXEC_NAMESPACE
     /// Used to convert wavefront models to a bottom level acceleration structure.
     /// @param model A pointer to a RAYEXEC_NAMESPACE::Model object.
     /// @return Returns the bottom level acceleration structure.
-    Blas modelToBlas( std::shared_ptr<Model> model ) const;
+    Blas modelToBlas( const VertexBuffer& vertexBuffer, const IndexBuffer& indexBuffer ) const;
 
     /// Used to convert a bottom level acceleration structure instance to a Vulkan geometry instance.
     /// @param instance A bottom level acceleration structure instance.
@@ -50,7 +50,7 @@ namespace RAYEXEC_NAMESPACE
 
     /// Used to prepare building the bottom level acceleration structures.
     /// @param models A vector of pointers to RAYEXEC_NAMESPACE::Model objects.
-    void createBottomLevelAS( const std::vector<std::shared_ptr<Model>>& model );
+    void createBottomLevelAS( const std::vector<VertexBuffer>& vertexBuffers, const std::vector<IndexBuffer>& indexBuffers );
 
     /// Builds all bottom level acceleration structures.
     /// @param blas_ A vector of RAYEXEC_NAMESPACE::Blas objects containing all bottom level acceleration structures prepared in createBottomLevelAS().
@@ -59,7 +59,7 @@ namespace RAYEXEC_NAMESPACE
 
     /// Used to prepare building the top level acceleration structure.
     /// @param nodes A vector of pointers to RAYEXEC_NAMESPACE::GeometryNode objects.
-    void createTopLevelAS( const std::list<std::shared_ptr<GeometryNode>>& nodes );
+    void createTopLevelAS( const std::vector<GeometryInstance>& geometryInstances );
 
     /// Build the top level acceleration structure.
     /// @param instances A vector of bottom level acceleration structure instances.

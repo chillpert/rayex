@@ -13,16 +13,19 @@ namespace RAYEXEC_NAMESPACE
     std::shared_ptr<Node> root;
 
     // Nodes to render
-    std::list<std::shared_ptr<GeometryNode>> geometryNodes;         ///< A list of all geometry nodes to render.
+    //std::list<std::shared_ptr<GeometryNode>> geometryNodes;         ///< A list of all geometry nodes to render.
     std::list<std::shared_ptr<DirectionalLightNode>> dirLightNodes; ///< A list of all directional light nodes to render.
     std::list<std::shared_ptr<PointLightNode>> pointLightNodes;     ///< A list of all point light nodes to render.
 
     // Models
-    std::vector<std::shared_ptr<Model>> models; ///< A list of all models that can be rendered.
+    //std::vector<std::shared_ptr<Model>> models; ///< A list of all models that can be rendered.
     std::vector<Texture> textures;
     std::vector<Material> materials;
 
     //std::vector<std::string> modelPaths; ///< A vector containing all models' paths.
+
+    std::vector<std::shared_ptr<Geometry>> geometries;
+    std::vector<GeometryInstance> geometryInstances;
   };
 } // namespace RAYEXEC_NAMESPACE
 

@@ -295,24 +295,30 @@ private:
 
       if ( ImGui::Button( "Add Box" ) )
       {
-        auto box            = std::make_shared<GeometryNode>( "Random Sphere " + std::to_string( spawnCounter++ ), "models/cube.obj" );
-        box->worldTransform = glm::translate( box->worldTransform, getRandomUniquePosition( -5.0F, 5.0F ) );
-        box->worldTransform = glm::scale( box->worldTransform, glm::vec3( 0.3F, 0.3F, 0.3F ) );
-        this->renderer->pushNode( box );
+        auto cube = this->renderer->findGeometry( "models/cube.obj" );
+        GeometryInstance cubeInstance( cube );
+        cubeInstance.worldTransform = glm::translate( cubeInstance.worldTransform, getRandomUniquePosition( -5.0F, 5.0F ) );
+        cubeInstance.worldTransform = glm::scale( cubeInstance.worldTransform, glm::vec3( 0.3F, 0.3F, 0.3F ) );
 
-        this->geometryNodes.push_back( box );
+        this->renderer->submitGeometryInstance( cubeInstance );
+
+        //this->geometryNodes.push_back( box );
       }
 
       ImGui::SameLine( );
 
       if ( ImGui::Button( "Add Sphere" ) )
       {
-        auto sphere            = std::make_shared<GeometryNode>( "Random Sphere " + std::to_string( spawnCounter++ ), "models/sphere.obj" );
-        sphere->worldTransform = glm::translate( sphere->worldTransform, getRandomUniquePosition( -5.0F, 5.0F ) );
-        sphere->worldTransform = glm::scale( sphere->worldTransform, glm::vec3( 0.3F, 0.3F, 0.3F ) );
-        this->renderer->pushNode( sphere );
+        // "Random Sphere " + std::to_string( spawnCounter++ ),
 
-        this->geometryNodes.push_back( sphere );
+        auto sphere = this->renderer->findGeometry( "models/sphere.obj" );
+        GeometryInstance sphereInstance( sphere );
+        sphereInstance.worldTransform = glm::translate( sphereInstance.worldTransform, getRandomUniquePosition( -5.0F, 5.0F ) );
+        sphereInstance.worldTransform = glm::scale( sphereInstance.worldTransform, glm::vec3( 0.3F, 0.3F, 0.3F ) );
+
+        this->renderer->submitGeometryInstance( sphereInstance );
+
+        //this->geometryNodes.push_back( sphere );
       }
 
       ImGui::SameLine( );
@@ -321,7 +327,7 @@ private:
       {
         for ( const auto& node : this->geometryNodes )
         {
-          this->renderer->popNode( node );
+          // this->renderer->popNode( node );
         }
       }
 
@@ -442,8 +448,21 @@ auto main( ) -> int
   // ... and initialize the renderer.
   renderer.init( );
 
-  renderer.setModels( { "models/plane.obj", "models/sphere.obj", "models/awpdlore/awpdlore.obj", "models/cube.obj" } );
+  //renderer.setModels( { "models/plane.obj", "models/sphere.obj", "models/awpdlore/awpdlore.obj", "models/cube.obj" } );
 
+  auto awp    = loadObj( "models/awpdlore/awpdlore.obj" );
+  auto sphere = loadObj( "models/sphere.obj" );
+  auto plane  = loadObj( "models/plane.obj" );
+  auto cube   = loadObj( "models/cube.obj" );
+
+  renderer.setGeometries( { awp, sphere, plane, cube } );
+
+  GeometryInstance awpInstance( awp );
+  GeometryInstance planeInstance( plane );
+
+  renderer.setGeometryInstances( { awpInstance, planeInstance } );
+
+  /*
   // Setup the scene
   auto dragonLore            = std::make_shared<GeometryNode>( "Dragon Lore 1", "models/awpdlore/awpdlore.obj" );
   dragonLore->worldTransform = glm::scale( dragonLore->worldTransform, glm::vec3( 0.25F ) );
@@ -464,6 +483,7 @@ auto main( ) -> int
   renderer.pushNode( dragonLore2 );
   renderer.pushNode( floor );
   renderer.pushNode( directionalLight );
+  */
 
   while ( renderer.isRunning( ) )
   {

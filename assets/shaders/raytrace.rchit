@@ -142,10 +142,12 @@ void main( )
   float lightDistance = 100000.0;
   float attenuation   = 1;
 
-  if ( lightSources.directionalLights.length( ) > 0 )
-  {
-    L = normalize( lightSources.directionalLights[0].direction.xyz - vec3( 0 ) );
-  }
+  L = normalize( vec3( -5.0, 5.0, 2.0 ) - vec3( 0.0 ) );
+
+  //if ( lightSources.directionalLights.length( ) > 0 )
+  //{
+  //  L = normalize( lightSources.directionalLights[0].direction.xyz - vec3( 0 ) );
+  //}
 
   // Tracing shadow ray only if the light is visible from the surface
   if ( dot( normal, L ) > 0 )

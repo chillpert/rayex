@@ -125,13 +125,16 @@ namespace RAYEXEC_NAMESPACE
     this->initScene = true;
   }
 
+  /*
   void RayExec::popNode( std::shared_ptr<Node> node )
   {
     this->api->popNode( node );
   }
+  */
 
   void RayExec::setRoot( std::shared_ptr<Node> root )
   {
     this->api->scene.root = root;
   }
+
 } // namespace RAYEXEC_NAMESPACE

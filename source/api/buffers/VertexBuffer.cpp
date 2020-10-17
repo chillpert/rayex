@@ -10,7 +10,7 @@ namespace RAYEXEC_NAMESPACE
     }
   }
 
-  void VertexBuffer::init( std::vector<Vertex>& vertices )
+  void VertexBuffer::init( const std::vector<Vertex>& vertices )
   {
     this->count = static_cast<uint32_t>( vertices.size( ) );
 

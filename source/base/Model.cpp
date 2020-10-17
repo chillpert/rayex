@@ -5,42 +5,15 @@
 
 namespace RAYEXEC_NAMESPACE
 {
-  uint32_t Model::modelCounter = 0;
-
-  Model::Model( ) :
-    index( rx::Model::modelCounter++ ) {}
-
-  Model::Model( std::string_view path ) :
-    index( rx::Model::modelCounter++ ),
-    path( path ) {}
-
-  float getTextureIndex( std::string_view texturePath, std::vector<Texture>& textures )
+  std::shared_ptr<Geometry> loadObj( std::string_view path )
   {
-    if ( !texturePath.empty( ) )
-    {
-      // Check if texture already exists and set its index.
-      // @note For testing purposes currently disabled.
-      /*
-      for ( size_t i = 0; i < textures.size( ); ++i )
-      {
-        if ( textures[i].getPath( ) == texturePath )
-        {
-          return static_cast<float>( i );
-        }
-      }
-      */
+    std::shared_ptr<Geometry> geometry = std::make_shared<Geometry>( );
+    geometry->path                     = path;
 
-      // Create a new texture
-      textures.push_back( Texture( texturePath, true ) );
-      return static_cast<float>( textures.size( ) - 1 );
-    }
+    static uint32_t geometryIndex = 0;
+    geometry->geometryIndex       = geometryIndex;
+    ++geometryIndex;
 
-    // If the material does not have a texture, return -1.0F.
-    return -1.0F;
-  }
-
-  void Model::load( std::vector<Texture>& textures )
-  {
     tinyobj::attrib_t attrib;
     std::vector<tinyobj::shape_t> shapes;
     std::vector<tinyobj::material_t> materials;
@@ -48,7 +21,7 @@ namespace RAYEXEC_NAMESPACE
     std::string warn;
     std::string err;
 
-    bool res = tinyobj::LoadObj( &attrib, &shapes, &materials, &warn, &err, this->path.c_str( ) );
+    bool res = tinyobj::LoadObj( &attrib, &shapes, &materials, &warn, &err, std::string( path ).c_str( ) );
 
     if ( !warn.empty( ) )
     {
@@ -57,16 +30,16 @@ namespace RAYEXEC_NAMESPACE
 
     if ( !err.empty( ) )
     {
-      RX_FATAL( "Failed to load model from ", this->path, "\nERROR: ", err );
+      RX_FATAL( "Failed to load model from ", path, "\nERROR: ", err );
     }
 
     if ( !res )
     {
-      RX_FATAL( "Failed to load model from ", this->path );
+      RX_FATAL( "Failed to load model from ", path );
     }
 
     std::unordered_map<Vertex, uint32_t> uniqueVertices;
-    this->meshes.reserve( shapes.size( ) );
+    geometry->meshes.reserve( shapes.size( ) );
 
     bool firstRun        = true;
     uint32_t prevOffsets = 0;
@@ -85,18 +58,18 @@ namespace RAYEXEC_NAMESPACE
         float z      = -1.0F;
 
         auto ambient = materials[materialIndex].ambient;
-        mat.ambient  = glm::vec4( ambient[0], ambient[1], ambient[2], getTextureIndex( materials[materialIndex].ambient_texname, textures ) );
+        mat.ambient  = glm::vec4( ambient[0], ambient[1], ambient[2], -1.0F );
 
         auto diffuse = materials[materialIndex].diffuse;
-        mat.diffuse  = glm::vec4( diffuse[0], diffuse[1], diffuse[2], getTextureIndex( materials[materialIndex].diffuse_texname, textures ) );
+        mat.diffuse  = glm::vec4( diffuse[0], diffuse[1], diffuse[2], -1.0F );
 
         auto specular = materials[materialIndex].specular;
-        mat.specular  = glm::vec4( specular[0], specular[1], specular[2], getTextureIndex( materials[materialIndex].specular_texname, textures ) );
+        mat.specular  = glm::vec4( specular[0], specular[1], specular[2], -1.0F );
 
         mesh.material = mat;
       }
 
-      this->meshes.push_back( mesh );
+      geometry->meshes.push_back( mesh );
 
       // Loop over faces(polygon)
       size_t index_offset = 0;
@@ -139,22 +112,19 @@ namespace RAYEXEC_NAMESPACE
 
           if ( uniqueVertices.count( vertex ) == 0 )
           {
-            uniqueVertices[vertex] = static_cast<uint32_t>( this->vertices.size( ) );
-            this->vertices.push_back( vertex );
+            uniqueVertices[vertex] = static_cast<uint32_t>( geometry->vertices.size( ) );
+            geometry->vertices.push_back( vertex );
           }
 
-          this->indices.push_back( uniqueVertices[vertex] );
+          geometry->indices.push_back( uniqueVertices[vertex] );
         }
 
         index_offset += fv;
       }
     }
 
-    RX_VERBOSE( "Loaded model from ", this->path, " with mesh count: ", this->meshes.size( ) );
-  }
+    RX_VERBOSE( "Loaded model from ", path, " with mesh count: ", geometry->meshes.size( ) );
 
-  auto Model::isLoaded( ) -> bool
-  {
-    return !this->vertices.empty( );
+    return std::move( geometry );
   }
 } // namespace RAYEXEC_NAMESPACE

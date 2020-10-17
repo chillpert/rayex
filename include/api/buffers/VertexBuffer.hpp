@@ -22,7 +22,7 @@ namespace RAYEXEC_NAMESPACE
 
     /// Creates the buffer, allocates memory for it and fills it with provided data.
     /// @param vertices The vertex data.
-    void init( std::vector<Vertex>& vertices );
+    void init( const std::vector<Vertex>& vertices );
 
   private:
     uint32_t count = 0; ///< The amount of vertices in the buffer.

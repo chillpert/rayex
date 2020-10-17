@@ -63,7 +63,7 @@ namespace RAYEXEC_NAMESPACE
     /// @param source The data to fill the buffer with.
     /// @param offset The data's offset within the buffer.
     template <class T>
-    void fill( T* source, vk::DeviceSize offset = 0 )
+    void fill( const T* source, vk::DeviceSize offset = 0 )
     {
       void* data;
       if ( g_device.mapMemory( memory.get( ), offset, size, { }, &data ) != vk::Result::eSuccess )

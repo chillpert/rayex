@@ -63,10 +63,26 @@ namespace vk
       return result;
     }
 
+    /*
+    template <typename T>
+    auto dereference( const std::vector<std::shared_ptr<T>>& data ) -> std::vector<T>
+    {
+      std::vector<T> result;
+      result.reserve( data.size( ) );
+
+      for ( std::shared_ptr<T> it : data )
+      {
+        result.push_back( *it );
+      }
+
+      return result;
+    }
+    */
+
     /// Converts a map of rx models to a vector of rx models.
     /// @param models A map of rx models with their model path as key.
     /// @return Returns a vector of the given rx models.
-    auto unpack( const std::unordered_map<std::string, std::shared_ptr<RAYEXEC_NAMESPACE::Model>>& models ) -> std::vector<std::shared_ptr<RAYEXEC_NAMESPACE::Model>>;
+    //auto unpack( const std::unordered_map<std::string, std::shared_ptr<RAYEXEC_NAMESPACE::Model>>& models ) -> std::vector<std::shared_ptr<RAYEXEC_NAMESPACE::Model>>;
 
     /// Returns the descriptor pool sizes required by any given descriptor set layout bindings.
     /// @param layoutBinding A vector of descriptor set layout bindings that will be used to create the descriptor pool sizes.

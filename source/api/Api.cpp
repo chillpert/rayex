@@ -113,6 +113,7 @@ namespace RAYEXEC_NAMESPACE
     initSyncObjects( );
 
     // At this point nodes are unknown. So I just create a storage buffer with the maximum value or with the anticipated value in settings.
+    // enables the user to add more nodes later on during runtime.
     initRayTracingInstancesBuffer( );
   }
 
@@ -120,6 +121,12 @@ namespace RAYEXEC_NAMESPACE
   {
     // Descriptor sets and layouts
     initDescriptorSets( );
+
+    // Uniform buffers for camera
+    this->cameraUniformBuffer.init<CameraUbo>( );
+
+    // Uniform buffers for light nodes
+    this->lightsUniformBuffer.init<LightsUbo>( );
 
     // Set up buffers for the scene description data (light sources, rtInstances, camera).
     this->rayTracingInstancesBuffer.fill<RayTracingInstance>( this->rtInstances.data( ) );
@@ -513,6 +520,7 @@ namespace RAYEXEC_NAMESPACE
       }
 
       auto it = findModel( node->modelPath );
+      RX_ASSERT( it != nullptr, "Could not find model. Did you forget to introduce the renderer to this model using RayExec::setModels( ) after initializing the renderer?" );
 
       auto it2 = temp.find( it->path );
       if ( it2 != temp.end( ) )
@@ -573,6 +581,7 @@ namespace RAYEXEC_NAMESPACE
                                                                        &id );                            // pValues
 
         auto model = findModel( node->modelPath );
+        RX_ASSERT( model != nullptr, "Could not find model. Did you forget to introduce the renderer to this model using RayExec::setModels( ) after initializing the renderer?" );
 
         std::array<vk::Buffer, 1> vertexBuffers { model->vertexBuffer.get( ) };
         std::array<vk::DeviceSize, 1> offsets { 0 };
@@ -725,13 +734,7 @@ namespace RAYEXEC_NAMESPACE
       this->indexDataDescriptors.pool   = this->indexDataDescriptors.bindings.initPoolUnique( static_cast<uint32_t>( g_maxGeometryNodes ) * g_swapchainImageCount );
       this->indexDataDescriptorSets     = vk::Initializer::initDescriptorSetsUnique( this->indexDataDescriptors.pool, this->indexDataDescriptors.layout );
     }
-
-    // Uniform buffers for camera
-    this->cameraUniformBuffer.init<CameraUbo>( );
-
-    // Uniform buffers for light nodes
-    this->lightsUniformBuffer.init<LightsUbo>( );
-  } // namespace RAYEXEC_NAMESPACE
+  }
 
   void Api::updateSettings( )
   {
@@ -796,24 +799,44 @@ namespace RAYEXEC_NAMESPACE
     int i = 0;
     for ( auto& dirLightNode : this->scene.dirLightNodes )
     {
-      gsl::at( lightNodeUbos.directionalLightNodes, i ) = dirLightNode->toUbo( );
+      lightNodeUbos.directionalLightNodes[i] = dirLightNode->toUbo( );
       ++i;
     }
 
     i = 0;
     for ( auto& pointLightNode : this->scene.pointLightNodes )
     {
-      gsl::at( lightNodeUbos.pointLightNodes, i ) = pointLightNode->toUbo( );
+      lightNodeUbos.pointLightNodes[i] = pointLightNode->toUbo( );
       ++i;
     }
 
     this->lightsUniformBuffer.upload<LightsUbo>( imageIndex, lightNodeUbos );
   }
 
+  std::shared_ptr<Model> Api::initModel( std::string_view modelPath )
+  {
+    auto result = findModel( modelPath );
+    if ( result == nullptr )
+    {
+      auto model = std::make_shared<Model>( modelPath );
+
+      model->load( this->scene.textures );
+      model->vertexBuffer.init( model->vertices );
+      model->indexBuffer.init( model->indices );
+      model->meshDataBuffer.init( model->meshes );
+      model->initialized = true;
+
+      this->scene.models.push_back( model );
+      return model;
+    }
+
+    RX_VERBOSE( "Re-using existing model from ", result->path );
+    return result;
+  }
+
   void Api::setModels( const std::vector<std::string>& modelPaths )
   {
-    g_modelCount           = static_cast<uint32_t>( modelPaths.size( ) );
-    this->scene.modelPaths = modelPaths;
+    g_modelCount = static_cast<uint32_t>( modelPaths.size( ) );
     this->scene.models.clear( );
 
     this->vertexDataBufferInfos.clear( );
@@ -825,16 +848,14 @@ namespace RAYEXEC_NAMESPACE
     for ( const auto& path : modelPaths )
     {
       auto model = std::make_shared<Model>( path );
+
       model->load( this->scene.textures );
-
-      this->scene.models.push_back( model );
-
-      // Initialize per-mesh data, vertex and index buffers.
       model->vertexBuffer.init( model->vertices );
       model->indexBuffer.init( model->indices );
       model->meshDataBuffer.init( model->meshes );
-
       model->initialized = true;
+
+      this->scene.models.push_back( model );
     }
   }
 
@@ -848,7 +869,6 @@ namespace RAYEXEC_NAMESPACE
       }
     }
 
-    RX_ASSERT( false, "Could not find model. Did you forget to introduce the renderer to this model using RayExec::setModels( ) after initializing the renderer?" );
     return nullptr;
   }
 

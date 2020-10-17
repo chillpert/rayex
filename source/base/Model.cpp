@@ -150,7 +150,7 @@ namespace RAYEXEC_NAMESPACE
       }
     }
 
-    RX_VERBOSE( "Loaded model from ", this->path, "\nMesh count: ", this->meshes.size( ) );
+    RX_VERBOSE( "Loaded model from ", this->path, " with mesh count: ", this->meshes.size( ) );
   }
 
   auto Model::isLoaded( ) -> bool

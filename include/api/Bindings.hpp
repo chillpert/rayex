@@ -36,6 +36,8 @@ namespace RAYEXEC_NAMESPACE
 
     void setPoolSizes( const std::vector<vk::DescriptorPoolSize>& poolSizes );
 
+    void reset( );
+
   private:
     std::vector<vk::DescriptorSetLayoutBinding> bindings;
     std::vector<vk::DescriptorBindingFlags> flags;

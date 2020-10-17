@@ -22,7 +22,7 @@ namespace RAYEXEC_NAMESPACE
     std::vector<Texture> textures;
     std::vector<Material> materials;
 
-    std::vector<std::string> modelPaths; ///< A vector containing all models' paths.
+    //std::vector<std::string> modelPaths; ///< A vector containing all models' paths.
   };
 } // namespace RAYEXEC_NAMESPACE
 

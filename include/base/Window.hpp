@@ -86,8 +86,8 @@ namespace RAYEXEC_NAMESPACE
     RX_API auto minimized( ) -> bool;
 
   protected:
-    SDL_Window* window { nullptr }; ///< The actual SDL_Window object.
-    uint32_t flags;                 ///< The window's flags.
+    SDL_Window* window = nullptr; ///< The actual SDL_Window object.
+    uint32_t flags;               ///< The window's flags.
 
     int width;         ///< The window's width in pixels.
     int height;        ///< The window's height in pixels.

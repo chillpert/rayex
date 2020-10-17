@@ -72,6 +72,8 @@ namespace RAYEXEC_NAMESPACE
     /// @note The path must be identical to the one used for the model in RAYEXEC_NAMESPACE::RayExec::setModels(std::vector<std::string>).
     [[nodiscard]] RX_API auto findModel( std::string_view path ) const -> std::shared_ptr<Model>;
 
+    RX_API std::shared_ptr<Model> initModel( std::string_view modelPath );
+
     /// Used to add another arbitrary node to the scene.
     /// @param node A pointer to node to add.
     template <typename T = Model>
@@ -88,8 +90,12 @@ namespace RAYEXEC_NAMESPACE
           return;
         }
 
-        auto ptr   = std::dynamic_pointer_cast<GeometryNode>( node );
+        auto ptr = std::dynamic_pointer_cast<GeometryNode>( node );
+
+        //auto model = initModel( ptr->modelPath );
         auto model = findModel( ptr->modelPath );
+        RX_ASSERT( model != nullptr, "Could not find model. Did you forget to introduce the renderer to this model using RayExec::setModels( ) after initializing the renderer?" );
+
         this->scene.geometryNodes.push_back( ptr );
 
         // Fill scene description buffer.
@@ -249,8 +255,6 @@ namespace RAYEXEC_NAMESPACE
     std::vector<vk::UniquePipeline> rsPipelines;
     std::vector<vk::UniquePipeline> rtPipelines;
 
-    Scene scene;
-
     CommandBuffer swapchainCommandBuffers; ///< A RAYEXEC_NAMESPACE::CommandBuffer containing as many command buffers as there are images in the swapchain.
 
     vk::Viewport viewport; ///< The application's viewport.
@@ -270,6 +274,8 @@ namespace RAYEXEC_NAMESPACE
     /// @todo Should be replaced with Settings:: ...
     bool needSwapchainRecreate = false;
     bool pipelinesReady        = false; ///< Keeps track of whether or not the graphics pipelines are ready.
+
+    Scene scene;
   };
 } // namespace RAYEXEC_NAMESPACE
 

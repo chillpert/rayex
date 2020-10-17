@@ -182,4 +182,13 @@ namespace RAYEXEC_NAMESPACE
   {
     this->poolSizes = poolSizes;
   }
+
+  void Bindings::reset( )
+  {
+    this->bindings.clear( );
+    this->flags.clear( );
+    this->flags.clear( );
+    this->poolSizes.reset( );
+    this->writes.clear( );
+  };
 } // namespace RAYEXEC_NAMESPACE

@@ -19,15 +19,11 @@ namespace RAYEXEC_NAMESPACE
 
   struct GeometryInstance
   {
-    GeometryInstance( ) = default;
+    glm::mat4 transform    = glm::mat4( 1.0F );
+    glm::mat4 transformIT  = glm::mat4( 1.0F );
+    uint32_t geometryIndex = 0;
 
-    GeometryInstance( std::shared_ptr<Geometry> geometry ) :
-      geometryIndex( geometry->geometryIndex ) {}
-
-    glm::mat4 worldTransform = glm::mat4( 1.0F );
-    glm::mat4 transformIT    = glm::mat4( 1.0F );
-    uint32_t geometryIndex   = 0;
-
+  private:
     float padding0 = 0.0F;
     float padding1 = 0.0F;
     float padding2 = 0.0F;

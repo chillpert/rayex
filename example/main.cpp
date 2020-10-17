@@ -295,12 +295,11 @@ private:
 
       if ( ImGui::Button( "Add Box" ) )
       {
-        auto cube = this->renderer->findGeometry( "models/cube.obj" );
-        GeometryInstance cubeInstance( cube );
-        cubeInstance.worldTransform = glm::translate( cubeInstance.worldTransform, getRandomUniquePosition( -5.0F, 5.0F ) );
-        cubeInstance.worldTransform = glm::scale( cubeInstance.worldTransform, glm::vec3( 0.3F, 0.3F, 0.3F ) );
+        auto cube      = this->renderer->findGeometry( "models/cube.obj" );
+        auto transform = glm::translate( glm::mat4( 1.0F ), getRandomUniquePosition( -5.0F, 5.0F ) );
+        transform      = glm::scale( transform, glm::vec3( 0.3F, 0.3F, 0.3F ) );
 
-        this->renderer->submitGeometryInstance( cubeInstance );
+        this->renderer->submitGeometryInstance( instance( cube, transform ) );
 
         //this->geometryNodes.push_back( box );
       }
@@ -311,12 +310,11 @@ private:
       {
         // "Random Sphere " + std::to_string( spawnCounter++ ),
 
-        auto sphere = this->renderer->findGeometry( "models/sphere.obj" );
-        GeometryInstance sphereInstance( sphere );
-        sphereInstance.worldTransform = glm::translate( sphereInstance.worldTransform, getRandomUniquePosition( -5.0F, 5.0F ) );
-        sphereInstance.worldTransform = glm::scale( sphereInstance.worldTransform, glm::vec3( 0.3F, 0.3F, 0.3F ) );
+        auto sphere    = this->renderer->findGeometry( "models/sphere.obj" );
+        auto transform = glm::translate( glm::mat4( 1.0F ), getRandomUniquePosition( -5.0F, 5.0F ) );
+        transform      = glm::scale( transform, glm::vec3( 0.3F, 0.3F, 0.3F ) );
 
-        this->renderer->submitGeometryInstance( sphereInstance );
+        this->renderer->submitGeometryInstance( instance( sphere, transform ) );
 
         //this->geometryNodes.push_back( sphere );
       }
@@ -457,8 +455,8 @@ auto main( ) -> int
 
   renderer.setGeometries( { awp, sphere, plane, cube } );
 
-  GeometryInstance awpInstance( awp );
-  GeometryInstance planeInstance( plane );
+  GeometryInstance awpInstance   = instance( awp );
+  GeometryInstance planeInstance = instance( plane );
 
   renderer.setGeometryInstances( { awpInstance, planeInstance } );
 

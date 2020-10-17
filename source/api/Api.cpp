@@ -806,6 +806,7 @@ namespace RAYEXEC_NAMESPACE
     }
     this->cameraUniformBuffer.upload<CameraUbo>( imageIndex, this->cameraUbo );
 
+    /*
     // Upload lights
     LightsUbo lightNodeUbos = { };
 
@@ -824,6 +825,7 @@ namespace RAYEXEC_NAMESPACE
     }
 
     this->lightsUniformBuffer.upload<LightsUbo>( imageIndex, lightNodeUbos );
+    */
   }
 
   /*

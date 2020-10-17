@@ -293,7 +293,7 @@ namespace RAYEXEC_NAMESPACE
     for ( const auto& geometryInstance : geometryInstances )
     {
       BlasInstance rayInst;
-      rayInst.transform  = geometryInstance.worldTransform;
+      rayInst.transform  = geometryInstance.transform;
       rayInst.instanceId = i;
       rayInst.blasId     = geometryInstance.geometryIndex;
       rayInst.hitGroupId = 0; // We will use the same hit group for all objects

@@ -44,7 +44,7 @@ namespace RAYEXEC_NAMESPACE
     bool firstRun        = true;
     uint32_t prevOffsets = 0;
 
-    // Loop over shapes
+    // Loop over shapes.
     for ( size_t s = 0; s < shapes.size( ); s++ )
     {
       Mesh mesh        = { };
@@ -71,7 +71,7 @@ namespace RAYEXEC_NAMESPACE
 
       geometry->meshes.push_back( mesh );
 
-      // Loop over faces(polygon)
+      // Loop over faces.
       size_t index_offset = 0;
       for ( size_t f = 0; f < shapes[s].mesh.num_face_vertices.size( ); f++ )
       {
@@ -126,5 +126,17 @@ namespace RAYEXEC_NAMESPACE
     RX_VERBOSE( "Loaded model from ", path, " with mesh count: ", geometry->meshes.size( ) );
 
     return std::move( geometry );
+  }
+
+  GeometryInstance instance( std::shared_ptr<Geometry> geometry, const glm::mat4& transform )
+  {
+    RX_ASSERT( geometry != nullptr, "Invalid geometry." );
+
+    GeometryInstance result;
+    result.geometryIndex = geometry->geometryIndex;
+    result.transform     = transform;
+    result.transformIT   = glm::inverse( transform );
+
+    return result;
   }
 } // namespace RAYEXEC_NAMESPACE

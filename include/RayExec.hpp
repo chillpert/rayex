@@ -109,29 +109,6 @@ namespace RAYEXEC_NAMESPACE
 
     void setRoot( std::shared_ptr<Node> root );
 
-    /// Used to add another arbitrary node to the scene.
-    /// @param node A pointer to a RAYEXEC_NAMESPACE::Node object.
-    /// @see rx::Api::pushNode() for implementation details.
-
-    /*
-    void pushNode( std::shared_ptr<Node> node )
-    {
-      api->pushNode( node );
-    }
-
-    /// Used to delete a node from the renderer.
-    /// @param node A pointer to a RAYEXEC_NAMESPACE::Node object.
-    RX_API void popNode( std::shared_ptr<Node> node );
-    */
-
-    /// Used to overwrite the entire scene with new nodes at once.
-    /// @param nodes A vector of rx::Node objects describing the new scene.
-    /// @see rx::Api::setNodes()
-    void setNodes( const std::vector<std::shared_ptr<Node>>& nodes )
-    {
-      api->setNodes( nodes );
-    }
-
     Settings settings;
 
   private:

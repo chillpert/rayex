@@ -74,77 +74,9 @@ namespace RAYEXEC_NAMESPACE
 
     //RX_API std::shared_ptr<Model> initModel( std::string_view modelPath );
 
-    void initModelBuffers( );
-
-    /// Used to add another arbitrary node to the scene.
-    /// @param node A pointer to node to add.
-    void pushNode( const std::shared_ptr<Node>& node, bool record = true )
-    {
-      /*
-      g_frameCount = 0;
-
-      if ( node->getType( ) == NodeType::eGeometryNode )
-      {
-        uint32_t limit = this->settings->maxGeometryNodes.has_value( ) ? this->settings->maxGeometryNodes.value( ) : g_maxGeometryNodes;
-        if ( static_cast<uint32_t>( this->scene.geometryNodes.size( ) ) > limit - 1 )
-        {
-          RX_WARN( "Failed to push node. You have exceeded the maximum amount of geometry nodes." );
-          return;
-        }
-
-        auto ptr = std::dynamic_pointer_cast<GeometryNode>( node );
-
-        //auto model = initModel( ptr->modelPath );
-        auto model = findModel( ptr->modelPath );
-        RX_ASSERT( model != nullptr, "Could not find model. Did you forget to introduce the renderer to this model using RayExec::setModels( ) after initializing the renderer?" );
-
-        this->scene.geometryNodes.push_back( ptr );
-
-        // Fill scene description buffer.
-        if ( ptr->pipelineType == PipelineType::eDefaultRayTracing )
-        {
-          ptr->rtInstance.modelIndex  = model->index;
-          ptr->rtInstance.transform   = ptr->worldTransform;
-          ptr->rtInstance.transformIT = glm::transpose( glm::inverse( ptr->worldTransform ) );
-          ptr->rtInstance.baseNodeId  = ptr->getID( );
-          this->rtInstances.push_back( ptr->rtInstance );
-
-          this->uploadRayTracingInstancesToBuffer = true;
-
-          if ( record && this->pipelinesReady )
-          {
-            updateAccelerationStructures( );
-          }
-        }
-      }
-      else if ( node->getType( ) == NodeType::eDirectionalLightNode )
-      {
-        auto dirLightNodePtr = std::dynamic_pointer_cast<DirectionalLightNode>( node );
-        this->scene.dirLightNodes.push_back( dirLightNodePtr );
-      }
-      else if ( node->getType( ) == NodeType::ePointLightNode )
-      {
-        auto pointLightNodePtr = std::dynamic_pointer_cast<PointLightNode>( node );
-        this->scene.pointLightNodes.push_back( pointLightNodePtr );
-      }
-      */
-    }
-
     /// Used to delete an arbitrary node.
     /// @param node The node to delete.
     RX_API void popNode( const std::shared_ptr<Node>& node );
-
-    /// Used to overwrite the entire scene with new nodes.
-    /// @param nodes A vector of pointers to nodes describing the new scene.
-    void setNodes( const std::vector<std::shared_ptr<Node>>& nodes )
-    {
-      //this->scene.geometryNodes.clear( );
-      this->scene.dirLightNodes.clear( );
-      this->scene.pointLightNodes.clear( );
-
-      for ( const auto& node : nodes )
-        pushNode( node );
-    }
 
     /// Re-initializes the render pass to support the GUI and initializes the GUI itself.
     RX_API void initGui( );
@@ -177,6 +109,8 @@ namespace RAYEXEC_NAMESPACE
 
     /// Creates a descriptor set layout for each the ray tracing components and the models.
     void initDescriptorSets( );
+
+    void initModelBuffers( );
 
     /// Fills a buffer with the ray tracing instances.
     void initRayTracingInstancesBuffer( );

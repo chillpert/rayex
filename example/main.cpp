@@ -21,14 +21,7 @@ public:
   CustomCamera( int width, int height, const glm::vec3& position ) :
     Camera( width, height, position ) {}
 
-  void update( ) override
-  {
-    Camera::update( );
-
-    processKeyboard( );
-  }
-
-  void processKeyboard( )
+  void processKeyboard( ) override
   {
     const float defaultSpeed  = 2.5F;
     static float currentSpeed = defaultSpeed;
@@ -78,8 +71,6 @@ public:
       this->position.y += finalSpeed / 2.0F;
       this->updateView = true;
     }
-
-    updateViewMatrix( );
   }
 };
 
@@ -239,7 +230,7 @@ glm::vec3 getRandomUniquePosition( float min, float max )
   static std::mt19937 mt( rd( ) );
   static std::uniform_real_distribution<float> dist( min, max );
 
-  glm::vec3 result;
+  glm::vec3 result = glm::vec3( 0.0F );
 
   while ( true )
   {
@@ -446,46 +437,35 @@ auto main( ) -> int
   // ... and initialize the renderer.
   renderer.init( );
 
-  //renderer.setModels( { "models/plane.obj", "models/sphere.obj", "models/awpdlore/awpdlore.obj", "models/cube.obj" } );
-
+  // Load geometries.
   auto awp    = loadObj( "models/awpdlore/awpdlore.obj" );
   auto sphere = loadObj( "models/sphere.obj" );
   auto plane  = loadObj( "models/plane.obj" );
   auto cube   = loadObj( "models/cube.obj" );
 
+  // Submit geometries.
   renderer.setGeometries( { awp, sphere, plane, cube } );
 
-  GeometryInstance awpInstance   = instance( awp );
+  // Create instances of the geometries.
+  auto transform = glm::scale( glm::mat4( 1.0F ), glm::vec3( 0.25F ) );
+  transform      = glm::rotate( transform, glm::radians( 45.0F ), glm::vec3( 0.0F, 1.0F, 0.0F ) );
+  transform      = glm::translate( transform, glm::vec3( 0.0F, -1.0F, 0.5F ) );
+
+  GeometryInstance awpInstance1 = instance( awp, transform );
+
+  transform = glm::scale( glm::mat4( 1.0F ), glm::vec3( 0.25F ) );
+  transform = glm::rotate( transform, glm::radians( 90.0F ), glm::vec3( 0.0F, 1.0F, 0.0F ) );
+  transform = glm::translate( transform, glm::vec3( 1.0F, 2.0F, 0.0F ) );
+
+  GeometryInstance awpInstance2 = instance( awp, transform );
+
   GeometryInstance planeInstance = instance( plane );
 
-  renderer.setGeometryInstances( { awpInstance, planeInstance } );
-
-  /*
-  // Setup the scene
-  auto dragonLore            = std::make_shared<GeometryNode>( "Dragon Lore 1", "models/awpdlore/awpdlore.obj" );
-  dragonLore->worldTransform = glm::scale( dragonLore->worldTransform, glm::vec3( 0.25F ) );
-  dragonLore->worldTransform = glm::rotate( dragonLore->worldTransform, glm::radians( 45.0F ), glm::vec3( 0.0F, 1.0F, 0.0F ) );
-  dragonLore->worldTransform = glm::translate( dragonLore->worldTransform, glm::vec3( 0.0F, -1.0F, 0.5F ) );
-
-  auto dragonLore2            = std::make_shared<GeometryNode>( "Dragon Lore 2", "models/awpdlore/awpdlore.obj" );
-  dragonLore2->worldTransform = glm::scale( dragonLore2->worldTransform, glm::vec3( 0.25F ) );
-  dragonLore2->worldTransform = glm::rotate( dragonLore2->worldTransform, glm::radians( 90.0F ), glm::vec3( 0.0F, 1.0F, 0.0F ) );
-  dragonLore2->worldTransform = glm::translate( dragonLore2->worldTransform, glm::vec3( 1.0F, 2.0F, 0.0F ) );
-
-  auto floor = std::make_shared<GeometryNode>( "Floor", "models/plane.obj" );
-
-  auto directionalLight = std::make_shared<DirectionalLightNode>( "Directional Light 1" );
-
-  // Add the model to the renderer. This way they will be queued for rendering.
-  renderer.pushNode( dragonLore );
-  renderer.pushNode( dragonLore2 );
-  renderer.pushNode( floor );
-  renderer.pushNode( directionalLight );
-  */
+  // Submit instances for drawing.
+  renderer.setGeometryInstances( { awpInstance1, planeInstance, awpInstance2 } );
 
   while ( renderer.isRunning( ) )
   {
-    //dragonLore->worldTransform = glm::rotate( dragonLore->worldTransform, glm::radians( 90.0F ) * Time::getDeltaTime( ) * animationSpeed, glm::vec3( 0.0F, 1.0F, 0.0F ) );
     renderer.run( );
   }
 

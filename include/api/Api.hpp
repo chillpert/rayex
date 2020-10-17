@@ -33,11 +33,12 @@ namespace RAYEXEC_NAMESPACE
     friend RayExec;
 
     Api( ) = default;
+    RX_API ~Api( );
 
+  private:
     /// @param window A pointer to a window object that the API will use to display an image.
     /// @param camera A pointer to a camera object that will be used to "capture" the scene.
     Api( std::shared_ptr<Window> window, std::shared_ptr<Camera> camera );
-    RX_API ~Api( );
 
     Api( const Api& )  = delete;
     Api( const Api&& ) = delete;
@@ -63,25 +64,9 @@ namespace RAYEXEC_NAMESPACE
     /// Retrieves an image from the swapchain and presents it.
     auto render( ) -> bool;
 
-    /// Used to initialize all models.
-    /// @param modelPaths A vector containing paths to model files.
-    void setModels( const std::vector<std::string>& modelPaths );
-
-    /// Used to find a particular model inside models.
-    /// @param path The model's path.
-    /// @note The path must be identical to the one used for the model in RAYEXEC_NAMESPACE::RayExec::setModels(std::vector<std::string>).
-    //[[nodiscard]] RX_API auto findModel( std::string_view path ) const -> std::shared_ptr<Model>;
-
-    //RX_API std::shared_ptr<Model> initModel( std::string_view modelPath );
-
-    /// Used to delete an arbitrary node.
-    /// @param node The node to delete.
-    RX_API void popNode( const std::shared_ptr<Node>& node );
-
     /// Re-initializes the render pass to support the GUI and initializes the GUI itself.
     RX_API void initGui( );
 
-  private:
     /// Updates both top and bottom level acceleration structures as well as their descriptor bindings.
     RX_API void updateAccelerationStructures( );
 
@@ -91,14 +76,6 @@ namespace RAYEXEC_NAMESPACE
 
     /// Initializes the render pass with a color and depth attachment.
     void initRenderPass( );
-
-    /// Initializes the model provided by the node.
-    ///
-    /// The model will be added to RAYEXEC_NAMESPACE::Api::models to make sure there are no duplicates.
-    /// Similarily, all textures required by the model will be stored individualy inside RAYEXEC_NAMESPACE::Api::textures.
-    /// If a model or a texture are already known to the application and have been initialized, they will be re-used instead of being initialized.
-    /// @param node A pointer to a geometry node.
-    RX_API void initModel( const std::shared_ptr<GeometryNode>& node );
 
     /// Records commands to the swapchain command buffers that will be used for rendering.
     /// @todo Rasterization has been removed for now. Might want to re-add rasterization support with RT-compatible shaders again.
@@ -142,6 +119,8 @@ namespace RAYEXEC_NAMESPACE
     /// Records ray tracing calls to the swapchain command buffers.
     void rayTrace( );
 
+    RX_API std::shared_ptr<Geometry> findGeometry( uint32_t geometryIndex );
+
     // Destruction through RAII for following members:
     std::shared_ptr<Window> window = nullptr;                  ///< A pointer to a RAYEXEC_NAMESPACE::Window object whose surface is going to be rendered to.
     std::shared_ptr<Camera> camera = nullptr;                  ///< A pointer to a RAYEXEC_NAMESPACE::Camera object whose matrices will be used for rendering.
@@ -178,7 +157,6 @@ namespace RAYEXEC_NAMESPACE
 
     std::vector<vk::DescriptorBufferInfo> meshDataBufferInfos;
 
-    //std::vector<RayTracingInstance> rtInstances;    ///< A vector of ray tracing instances including special indices to buffers and matrices.
     StorageBuffer rayTracingInstancesBuffer;        ///< A storage buffer for the ray tracing instances.
     bool uploadRayTracingInstancesToBuffer = false; ///< Keeps track of whether or not to upload the ray tracing instances to their respective buffer the next time update() is called.
 

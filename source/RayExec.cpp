@@ -112,29 +112,4 @@ namespace RAYEXEC_NAMESPACE
   {
     this->initialized ? this->api->setGui( gui, true ) : this->api->setGui( gui );
   }
-
-  void RayExec::setModels( const std::vector<std::string>& modelPaths )
-  {
-    if ( !this->initialized )
-    {
-      RX_ERROR( "Models can only be set once the renderer was initialized using init()." );
-      return;
-    }
-
-    this->api->setModels( modelPaths );
-    this->initScene = true;
-  }
-
-  /*
-  void RayExec::popNode( std::shared_ptr<Node> node )
-  {
-    this->api->popNode( node );
-  }
-  */
-
-  void RayExec::setRoot( std::shared_ptr<Node> root )
-  {
-    this->api->scene.root = root;
-  }
-
 } // namespace RAYEXEC_NAMESPACE

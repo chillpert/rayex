@@ -26,11 +26,11 @@ struct RayTracingInstance
 {
   mat4 transform;
   mat4 transformIT;
-  int modelIndex;
-  int txtOffset;
+  uint modelIndex;
 
-  int nodeID; // ignore
+  float padding0;
   float padding1;
+  float padding2;
 };
 
 struct Mesh
@@ -142,7 +142,7 @@ void main( )
   float lightDistance = 100000.0;
   float attenuation   = 1;
 
-  L = normalize( vec3( -5.0, 5.0, 2.0 ) - vec3( 0.0 ) );
+  L = normalize( vec3( -4.0, 10.0, 5.0 ) - vec3( 0.0 ) );
 
   //if ( lightSources.directionalLights.length( ) > 0 )
   //{

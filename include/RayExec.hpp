@@ -80,7 +80,7 @@ namespace RAYEXEC_NAMESPACE
       this->api->scene.geometries = geometries;
     }
 
-    std::shared_ptr<Geometry> findGeometry( std::string_view path )
+    RX_API std::shared_ptr<Geometry> findGeometry( std::string_view path )
     {
       for ( std::shared_ptr<Geometry> geometry : this->api->scene.geometries )
       {
@@ -94,20 +94,11 @@ namespace RAYEXEC_NAMESPACE
       return loadObj( path );
     }
 
-    /// Used to set all models that can be rendered and to initialize them.
-    ///
-    /// Resources can be allocated more efficiently if all possible models are known to the renderer in advance.
-    /// @param modelPaths A vector containing paths to model files.
-    /// @warning To render any geometry the user has to call this function after init() was called.
-    RX_API void setModels( const std::vector<std::string>& modelPaths );
-
     /// @return Returns a pointer to the renderer's window.
     [[nodiscard]] RX_API inline auto getWindow( ) const -> std::shared_ptr<Window> { return window; }
 
     /// @return Returns a pointer to the renderer's camera.
     [[nodiscard]] RX_API inline auto getCamera( ) const -> std::shared_ptr<Camera> { return camera; }
-
-    void setRoot( std::shared_ptr<Node> root );
 
     Settings settings;
 

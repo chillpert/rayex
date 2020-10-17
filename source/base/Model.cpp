@@ -135,7 +135,7 @@ namespace RAYEXEC_NAMESPACE
     GeometryInstance result;
     result.geometryIndex = geometry->geometryIndex;
     result.transform     = transform;
-    result.transformIT   = glm::inverse( transform );
+    result.transformIT   = glm::transpose( glm::inverse( transform ) );
 
     return result;
   }

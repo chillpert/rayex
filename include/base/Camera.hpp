@@ -81,6 +81,8 @@ namespace RAYEXEC_NAMESPACE
     /// @param yOffset The difference of the current offset on the y-axis and the previous offset.
     RX_API virtual void processMouse( float xOffset, float yOffset );
 
+    RX_API virtual void processKeyboard( ) {}
+
     bool updateView = true; ///< Keeps track of whether or not to udpate the view matrix.
     bool updateProj = true; ///< Keeps track of whether or not to udpate the projection matrix.
 

@@ -335,75 +335,10 @@ namespace RAYEXEC_NAMESPACE
     RX_SUCCESS( "Swapchain recreation finished." );
   }
 
-  void Api::popNode( const std::shared_ptr<Node>& node )
-  {
-    /*
-    g_frameCount = 0;
-
-    if ( node == nullptr )
-    {
-      RX_ERROR( "Can not pop node because node is nullptr." );
-      return;
-    }
-
-    if ( node->getType( ) == NodeType::eGeometryNode )
-    {
-      auto ptr = std::dynamic_pointer_cast<GeometryNode>( node );
-
-      // Delete node
-      for ( const auto& node : this->scene.geometryNodes )
-      {
-        if ( node == ptr )
-        {
-          // Found the node inside list of all nodes. Now remove it.
-          this->scene.geometryNodes.remove( node );
-
-          // Find the ray tracing instance and remove it.
-          bool found = false;
-          for ( auto it = this->rtInstances.begin( ); it != this->rtInstances.end( ); ++it )
-          {
-            if ( ( *it ).baseNodeId == ptr->getID( ) )
-            {
-              found = true;
-              this->rtInstances.erase( it );
-              break;
-            }
-          }
-
-          RX_ASSERT( found, "Failed to retrieve ray tracing instance for deletion." );
-          this->uploadRayTracingInstancesToBuffer = true;
-          updateAccelerationStructures( );
-          recordSwapchainCommandBuffers( );
-          return;
-        }
-      }
-    }
-    else if ( node->getType( ) == NodeType::eLightNode )
-    {
-    }
-    else
-    {
-      RX_ERROR( "Failed to pop node because type can not be handled." );
-    }
-    */
-  }
-
   void Api::updateAccelerationStructures( )
   {
-    // TODO(self): Try to call this as few times as possible.
+    // @TODO Try to call this as few times as possible.
     this->rayTracingBuilder.createBottomLevelAS( this->vertexBuffers, this->indexBuffers );
-
-    /*
-    std::list<std::shared_ptr<GeometryNode>> rtNodes;
-    for ( const auto& node : this->scene.geometryNodes )
-    {
-      if ( node->pipelineType == PipelineType::eDefaultRayTracing )
-      {
-        rtNodes.push_back( node );
-      }
-    }
-    */
-
     this->rayTracingBuilder.createTopLevelAS( this->scene.geometryInstances );
 
     // Update ray tracing descriptor set.
@@ -500,9 +435,6 @@ namespace RAYEXEC_NAMESPACE
   {
     RX_ASSERT( this->pipelinesReady, "Can not record swapchain command buffers because the pipelines have not been initialized yet." );
 
-    rayTrace( );
-
-    /*
     if ( this->settings->rayTrace )
     {
       rayTrace( );
@@ -511,27 +443,20 @@ namespace RAYEXEC_NAMESPACE
     {
       rasterize( );
     }
-    */
   }
 
   void Api::rasterize( )
   {
-    /*
-    std::map<std::string, uint32_t> temp;
+    std::map<std::string_view, uint32_t> temp;
 
-    for ( const auto& model : this->scene.models )
+    for ( auto geometry : this->scene.geometries )
     {
-      temp.emplace( model->path, 0 );
+      temp.emplace( geometry->path, 0 );
     }
 
-    for ( const auto& node : this->scene.geometryNodes )
+    for ( const auto& geometryInstance : this->scene.geometryInstances )
     {
-      if ( node->modelPath.empty( ) )
-      {
-        continue;
-      }
-
-      auto it = findModel( node->modelPath );
+      std::shared_ptr<Geometry> it = findGeometry( geometryInstance.geometryIndex );
       RX_ASSERT( it != nullptr, "Could not find model. Did you forget to introduce the renderer to this model using RayExec::setModels( ) after initializing the renderer?" );
 
       auto it2 = temp.find( it->path );
@@ -572,10 +497,13 @@ namespace RAYEXEC_NAMESPACE
 
       // Draw models
       uint32_t id = 0;
-      for ( const auto& node : this->scene.geometryNodes )
+      for ( const auto& geometryInstance : this->scene.geometryInstances )
       {
+        auto geo = findGeometry( geometryInstance.geometryIndex );
+        RX_ASSERT( geo != nullptr, "Could not find model. Did you forget to introduce the renderer to this model using RayExec::setModels( ) after initializing the renderer?" );
+
         uint32_t instanceCount = 1;
-        auto it2               = temp.find( node->modelPath );
+        auto it2               = temp.find( geo->path );
         if ( it2 != temp.end( ) )
         {
           instanceCount = it2->second;
@@ -592,10 +520,7 @@ namespace RAYEXEC_NAMESPACE
                                                                        sizeof( uint32_t ),               // size
                                                                        &id );                            // pValues
 
-        auto model = findModel( node->modelPath );
-        RX_ASSERT( model != nullptr, "Could not find model. Did you forget to introduce the renderer to this model using RayExec::setModels( ) after initializing the renderer?" );
-
-        std::array<vk::Buffer, 1> vertexBuffers { model->vertexBuffer.get( ) };
+        std::array<vk::Buffer, 1> vertexBuffers { this->vertexBuffers[geometryInstance.geometryIndex].get( ) };
         std::array<vk::DeviceSize, 1> offsets { 0 };
 
         this->swapchainCommandBuffers.get( imageIndex ).bindVertexBuffers( 0,                     // first binding
@@ -603,7 +528,7 @@ namespace RAYEXEC_NAMESPACE
                                                                            vertexBuffers.data( ), // pBuffers
                                                                            offsets.data( ) );     // pOffsets
 
-        this->swapchainCommandBuffers.get( imageIndex ).bindIndexBuffer( model->indexBuffer.get( ),
+        this->swapchainCommandBuffers.get( imageIndex ).bindIndexBuffer( this->indexBuffers[geometryInstance.geometryIndex].get( ),
                                                                          0, // offset
                                                                          vk::IndexType::eUint32 );
 
@@ -616,11 +541,11 @@ namespace RAYEXEC_NAMESPACE
                                                                             0,                                               // dynamic offset count
                                                                             nullptr );                                       // dynamic offsets
 
-        this->swapchainCommandBuffers.get( imageIndex ).drawIndexed( model->indexBuffer.getCount( ), // index count
-                                                                     instanceCount,                  // instance count
-                                                                     0,                              // first index
-                                                                     0,                              // vertex offset
-                                                                     0 );                            // first instance
+        this->swapchainCommandBuffers.get( imageIndex ).drawIndexed( this->indexBuffers[geometryInstance.geometryIndex].getCount( ), // index count
+                                                                     instanceCount,                                                  // instance count
+                                                                     0,                                                              // first index
+                                                                     0,                                                              // vertex offset
+                                                                     0 );                                                            // first instance
 
         ++id;
       }
@@ -628,7 +553,6 @@ namespace RAYEXEC_NAMESPACE
       this->renderPass.end( this->swapchainCommandBuffers.get( imageIndex ) );
       this->swapchainCommandBuffers.end( imageIndex );
     }
-    */
   }
 
   void Api::rayTrace( )
@@ -828,29 +752,6 @@ namespace RAYEXEC_NAMESPACE
     */
   }
 
-  /*
-  std::shared_ptr<Model> Api::initModel( std::string_view modelPath )
-  {
-    auto result = findModel( modelPath );
-    if ( result == nullptr )
-    {
-      auto model = std::make_shared<Model>( modelPath );
-
-      model->load( this->scene.textures );
-      model->vertexBuffer.init( model->vertices );
-      model->indexBuffer.init( model->indices );
-      model->meshDataBuffer.init( model->meshes );
-      model->initialized = true;
-
-      this->scene.models.push_back( model );
-      return model;
-    }
-
-    RX_VERBOSE( "Re-using existing model from ", result->path );
-    return result;
-  }
-  */
-
   void Api::initModelBuffers( )
   {
     g_modelCount = static_cast<uint32_t>( this->scene.geometries.size( ) );
@@ -865,53 +766,6 @@ namespace RAYEXEC_NAMESPACE
       this->indexBuffers[i].init( this->scene.geometries[i]->indices );
       this->meshBuffers[i].init( this->scene.geometries[i]->meshes );
     }
-  }
-
-  void Api::setModels( const std::vector<std::string>& modelPaths )
-  {
-    RX_FATAL( "NOOOO" );
-    /*
-    g_modelCount = static_cast<uint32_t>( modelPaths.size( ) );
-    this->scene.models.clear( );
-
-    this->vertexDataBufferInfos.clear( );
-    this->indexDataBufferInfos.clear( );
-
-    this->vertexDataBufferInfos.reserve( modelPaths.size( ) );
-    this->indexDataBufferInfos.reserve( modelPaths.size( ) );
-
-    for ( const auto& path : modelPaths )
-    {
-      auto model = std::make_shared<Model>( path );
-
-      model->load( this->scene.textures );
-      model->vertexBuffer.init( model->vertices );
-      model->indexBuffer.init( model->indices );
-      model->meshDataBuffer.init( model->meshes );
-      model->initialized = true;
-
-      this->scene.models.push_back( model );
-    }
-    */
-  }
-
-  /*
-  auto Api::findModel( std::string_view path ) const -> std::shared_ptr<Model>
-  {
-    for ( const auto& model : this->scene.models )
-    {
-      if ( model->path == path )
-      {
-        return model;
-      }
-    }
-
-    return nullptr;
-  }
-  */
-
-  void Api::initRayTracingInstancesBuffer( )
-  {
   }
 
   void Api::updateSceneDescriptors( )
@@ -969,5 +823,19 @@ namespace RAYEXEC_NAMESPACE
 
     this->indexDataDescriptors.bindings.writeArray( this->indexDataDescriptorSets, 0, this->indexDataBufferInfos.data( ) );
     this->indexDataDescriptors.bindings.update( );
+  }
+
+  std::shared_ptr<Geometry> Api::findGeometry( uint32_t geometryIndex )
+  {
+    for ( std::shared_ptr<Geometry> geometry : this->scene.geometries )
+    {
+      if ( geometry->geometryIndex == geometryIndex )
+      {
+        return geometry;
+      }
+    }
+
+    RX_FATAL( "Could not find geometry in scene." );
+    return nullptr;
   }
 } // namespace RAYEXEC_NAMESPACE

@@ -23,6 +23,10 @@ namespace RAYEXEC_NAMESPACE
       g_frameCount = 0;
       prevPosition = this->position;
     }
+
+    processKeyboard( );
+
+    updateViewMatrix( );
   }
 
   void Camera::setPosition( const glm::vec3& position )

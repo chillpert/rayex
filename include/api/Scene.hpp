@@ -1,7 +1,7 @@
 #ifndef SCENE_HPP
 #define SCENE_HPP
 
-#include "base/Base.hpp"
+#include "base/Geometry.hpp"
 
 namespace RAYEXEC_NAMESPACE
 {

@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.8.17"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>RAYEXEC: /home/n30/Repos/renderer/include/api/Api.hpp Source File</title>
+<title>RAYEXEC: /home/n30/Repos/rayexec/include/api/Api.hpp Source File</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -100,245 +100,194 @@ $(document).ready(function(){initNavTree('_api_8hpp_source.html',''); initResiza
 <a href="_api_8hpp.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;<span class="preprocessor">#ifndef API_HPP</span></div>
 <div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;<span class="preprocessor">#define API_HPP</span></div>
 <div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160; </div>
-<div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="_instance_8hpp.html">api/Instance.hpp</a>&quot;</span></div>
-<div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="_debug_messenger_8hpp.html">api/utility/DebugMessenger.hpp</a>&quot;</span></div>
-<div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="_queues_8hpp.html">api/Queues.hpp</a>&quot;</span></div>
-<div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="_surface_8hpp.html">api/Surface.hpp</a>&quot;</span></div>
-<div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="_pipeline_8hpp.html">api/Pipeline.hpp</a>&quot;</span></div>
-<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="_render_pass_8hpp.html">api/RenderPass.hpp</a>&quot;</span></div>
-<div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="_physical_device_8hpp.html">api/devices/PhysicalDevice.hpp</a>&quot;</span></div>
-<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="_device_8hpp.html">api/devices/Device.hpp</a>&quot;</span></div>
-<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="_swapchain_8hpp.html">api/Swapchain.hpp</a>&quot;</span></div>
-<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="_texture_8hpp.html">api/image/Texture.hpp</a>&quot;</span></div>
-<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="_vertex_8hpp.html">api/misc/Vertex.hpp</a>&quot;</span></div>
-<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="_command_buffer_8hpp.html">api/buffers/CommandBuffer.hpp</a>&quot;</span></div>
+<div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="_bindings_8hpp.html">api/Bindings.hpp</a>&quot;</span></div>
+<div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="_components_8hpp.html">api/Components.hpp</a>&quot;</span></div>
+<div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="_pipeline_8hpp.html">api/Pipeline.hpp</a>&quot;</span></div>
+<div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="_render_pass_8hpp.html">api/RenderPass.hpp</a>&quot;</span></div>
+<div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="_scene_8hpp.html">api/Scene.hpp</a>&quot;</span></div>
+<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="_surface_8hpp.html">api/Surface.hpp</a>&quot;</span></div>
+<div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="_swapchain_8hpp.html">api/Swapchain.hpp</a>&quot;</span></div>
+<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="_vertex_8hpp.html">api/Vertex.hpp</a>&quot;</span></div>
+<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="_command_buffer_8hpp.html">api/buffers/CommandBuffer.hpp</a>&quot;</span></div>
+<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="_index_buffer_8hpp.html">api/buffers/IndexBuffer.hpp</a>&quot;</span></div>
+<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="_storage_buffer_8hpp.html">api/buffers/StorageBuffer.hpp</a>&quot;</span></div>
+<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="_uniform_buffer_8hpp.html">api/buffers/UniformBuffer.hpp</a>&quot;</span></div>
 <div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="_vertex_buffer_8hpp.html">api/buffers/VertexBuffer.hpp</a>&quot;</span></div>
-<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="_index_buffer_8hpp.html">api/buffers/IndexBuffer.hpp</a>&quot;</span></div>
-<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="_descriptor_set_8hpp.html">api/descriptors/DescriptorSet.hpp</a>&quot;</span></div>
-<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="_descriptor_set_layout_8hpp.html">api/descriptors/DescriptorSetLayout.hpp</a>&quot;</span></div>
-<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="_uniform_buffer_8hpp.html">api/buffers/UniformBuffer.hpp</a>&quot;</span></div>
+<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="_texture_8hpp.html">api/image/Texture.hpp</a>&quot;</span></div>
+<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="_ray_tracing_builder_8hpp.html">api/raytracing/RayTracingBuilder.hpp</a>&quot;</span></div>
+<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="_debug_messenger_8hpp.html">api/utility/DebugMessenger.hpp</a>&quot;</span></div>
+<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="_util_8hpp.html">api/utility/Util.hpp</a>&quot;</span></div>
 <div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="_gui_8hpp.html">base/Gui.hpp</a>&quot;</span></div>
-<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="_base_8hpp.html">base/Base.hpp</a>&quot;</span></div>
-<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="_ray_tracing_builder_8hpp.html">api/raytracing/RayTracingBuilder.hpp</a>&quot;</span></div>
-<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160; </div>
-<div class="line"><a name="l00025"></a><span class="lineno"><a class="line" href="namespace_r_e_n_d_e_r_e_r___n_a_m_e_s_p_a_c_e.html">   25</a></span>&#160;<span class="keyword">namespace </span><a class="code" href="namespace_r_e_n_d_e_r_e_r___n_a_m_e_s_p_a_c_e.html">RENDERER_NAMESPACE</a></div>
-<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;{</div>
-<div class="line"><a name="l00031"></a><span class="lineno"><a class="line" href="class_r_e_n_d_e_r_e_r___n_a_m_e_s_p_a_c_e_1_1_api.html">   31</a></span>&#160;  <span class="keyword">class </span><a class="code" href="class_r_e_n_d_e_r_e_r___n_a_m_e_s_p_a_c_e_1_1_api.html">Api</a></div>
+<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160; </div>
+<div class="line"><a name="l00023"></a><span class="lineno"><a class="line" href="namespace_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e.html">   23</a></span>&#160;<span class="keyword">namespace </span><a class="code" href="namespace_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e.html">RAYEXEC_NAMESPACE</a></div>
+<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;{</div>
+<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;  <span class="keyword">class </span><a class="code" href="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_ray_exec.html">RayExec</a>;</div>
+<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160; </div>
+<div class="line"><a name="l00031"></a><span class="lineno"><a class="line" href="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_api.html">   31</a></span>&#160;  <span class="keyword">class </span><a class="code" href="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_api.html">Api</a></div>
 <div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;  {</div>
 <div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;  <span class="keyword">public</span>:</div>
-<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;    <a class="code" href="class_r_e_n_d_e_r_e_r___n_a_m_e_s_p_a_c_e_1_1_api.html#a61c9b50d3a14b19888a0ce117a0811dd">Api</a>( std::shared_ptr&lt;Window&gt; window, std::shared_ptr&lt;Camera&gt; camera );</div>
-<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160; </div>
-<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;    <a class="code" href="class_r_e_n_d_e_r_e_r___n_a_m_e_s_p_a_c_e_1_1_api.html#a61c9b50d3a14b19888a0ce117a0811dd">Api</a>( std::shared_ptr&lt;Window&gt; window, std::shared_ptr&lt;Gui&gt; gui, std::shared_ptr&lt;Camera&gt; camera );</div>
-<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;    RX_API <a class="code" href="class_r_e_n_d_e_r_e_r___n_a_m_e_s_p_a_c_e_1_1_api.html#a82f010fbc83f3f85d36f1650f1e2c73b">~Api</a>( );</div>
+<div class="line"><a name="l00034"></a><span class="lineno"><a class="line" href="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_api.html#af862c9b962c5a27ad96ec325a12c91ae">   34</a></span>&#160;    <span class="keyword">friend</span> <a class="code" href="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_api.html#af862c9b962c5a27ad96ec325a12c91ae">RayExec</a>;</div>
+<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160; </div>
+<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;    <a class="code" href="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_api.html#a01833704b83c33dc619485119c8a9207">Api</a>( ) = <span class="keywordflow">default</span>;</div>
+<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;    RX_API <a class="code" href="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_api.html#ad9139e70bcc023ea322b0d38ed975686">~Api</a>( );</div>
+<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160; </div>
+<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;  <span class="keyword">private</span>:</div>
+<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;    <a class="code" href="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_api.html#a01833704b83c33dc619485119c8a9207">Api</a>( std::shared_ptr&lt;Window&gt; window, std::shared_ptr&lt;Camera&gt; camera );</div>
 <div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160; </div>
-<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;    RX_API <span class="keywordtype">void</span> <a class="code" href="class_r_e_n_d_e_r_e_r___n_a_m_e_s_p_a_c_e_1_1_api.html#abbd69a9989f4275256b7d4baee77aa94">setGui</a>( <span class="keyword">const</span> std::shared_ptr&lt;Gui&gt; gui, <span class="keywordtype">bool</span> initialize = <span class="keyword">false</span> );</div>
-<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160; </div>
-<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="class_r_e_n_d_e_r_e_r___n_a_m_e_s_p_a_c_e_1_1_api.html#a9cb5db0df8509f80917688a15cb87b01">init</a>( );</div>
-<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160; </div>
-<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;    <span class="keywordtype">bool</span> <a class="code" href="class_r_e_n_d_e_r_e_r___n_a_m_e_s_p_a_c_e_1_1_api.html#a1b2c4bab62339b27b77e34cb27c67f83">update</a>( );</div>
-<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160; </div>
-<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;    <span class="keywordtype">bool</span> <a class="code" href="class_r_e_n_d_e_r_e_r___n_a_m_e_s_p_a_c_e_1_1_api.html#a628858189c053a9caf74192c741df573">render</a>( );</div>
-<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160; </div>
-<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;    <span class="keyword">template</span> &lt;<span class="keyword">typename</span> T = Model&gt;</div>
-<div class="line"><a name="l00063"></a><span class="lineno"><a class="line" href="class_r_e_n_d_e_r_e_r___n_a_m_e_s_p_a_c_e_1_1_api.html#aae3aa124f6daafba073a33b1c2915bf5">   63</a></span>&#160;    <span class="keywordtype">void</span> <a class="code" href="class_r_e_n_d_e_r_e_r___n_a_m_e_s_p_a_c_e_1_1_api.html#aae3aa124f6daafba073a33b1c2915bf5">pushNode</a>( <span class="keyword">const</span> std::shared_ptr&lt;Node&gt; node, <span class="keywordtype">bool</span> record = <span class="keyword">true</span> )</div>
-<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;    {</div>
-<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;      <span class="keywordflow">if</span> ( <span class="keyword">dynamic_cast&lt;</span><a class="code" href="class_r_e_n_d_e_r_e_r___n_a_m_e_s_p_a_c_e_1_1_geometry_node.html">GeometryNode</a>*<span class="keyword">&gt;</span>( node.get( ) ) )</div>
-<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;      {</div>
-<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;        <span class="keyword">auto</span> ptr = std::dynamic_pointer_cast&lt;GeometryNode&gt;( node );</div>
-<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160; </div>
-<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;        <span class="keyword">auto</span> it = models.find( ptr-&gt;modelPath );</div>
-<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;        <span class="keywordflow">if</span> ( it == models.end( ) )</div>
-<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;          models.insert( { ptr-&gt;modelPath, std::make_shared&lt;T&gt;( ptr-&gt;modelPath ) } );</div>
-<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160; </div>
-<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;        geometryNodes.push_back( ptr );</div>
-<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160; </div>
-<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;        <span class="comment">// Handle the node&#39;s texture.</span></div>
-<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;        <span class="keyword">auto</span> texturePaths = ptr-&gt;material.getTextures( );</div>
+<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;    <a class="code" href="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_api.html#a01833704b83c33dc619485119c8a9207">Api</a>( <span class="keyword">const</span> <a class="code" href="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_api.html">Api</a>&amp; )  = <span class="keyword">delete</span>;</div>
+<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;    <a class="code" href="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_api.html#a01833704b83c33dc619485119c8a9207">Api</a>( <span class="keyword">const</span> <a class="code" href="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_api.html">Api</a>&amp;&amp; ) = <span class="keyword">delete</span>;</div>
+<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;    <span class="keyword">auto</span> operator=( <span class="keyword">const</span> <a class="code" href="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_api.html">Api</a>&amp; ) -&gt; <a class="code" href="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_api.html">Api</a>&amp; = <span class="keyword">delete</span>;</div>
+<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;    <span class="keyword">auto</span> operator=( <span class="keyword">const</span> <a class="code" href="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_api.html">Api</a> &amp;&amp; ) -&gt; <a class="code" href="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_api.html">Api</a>&amp; = <span class="keyword">delete</span>;</div>
+<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160; </div>
+<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;    <span class="keywordtype">void</span> setGui( <span class="keyword">const</span> std::shared_ptr&lt;Gui&gt;&amp; gui, <span class="keywordtype">bool</span> initialize = <span class="keyword">false</span> );</div>
+<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160; </div>
+<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;    <span class="keywordtype">void</span> initBase( );</div>
+<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160; </div>
+<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;    <span class="keywordtype">void</span> initScene( );</div>
+<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160; </div>
+<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;    <span class="keywordtype">void</span> update( );</div>
+<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160; </div>
+<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;    <span class="keyword">auto</span> render( ) -&gt; bool;</div>
+<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160; </div>
+<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;    <span class="keywordtype">void</span> initGui( );</div>
+<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160; </div>
+<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;    <span class="keywordtype">void</span> updateAccelerationStructures( );</div>
+<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160; </div>
+<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;    <span class="keywordtype">void</span> initPipelines( );</div>
 <div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160; </div>
-<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;        <span class="keywordflow">for</span> ( <span class="keyword">const</span> <span class="keyword">auto</span>&amp; texturePath : texturePaths )</div>
-<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;        {</div>
-<div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;          <span class="keyword">auto</span> it = textures.find( texturePath );</div>
-<div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;          <span class="comment">// Texture does not exist already. It will be created.</span></div>
-<div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;          <span class="keywordflow">if</span> ( it == textures.end( ) )</div>
-<div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160;          {</div>
-<div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160;            textures.insert( { texturePath, std::make_shared&lt;Texture&gt;( texturePath ) } );</div>
-<div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160;          }</div>
-<div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160;        }</div>
+<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;    <span class="keywordtype">void</span> initRenderPass( );</div>
+<div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160; </div>
+<div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160;    <span class="keywordtype">void</span> recordSwapchainCommandBuffers( );</div>
+<div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160; </div>
+<div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160;    <span class="keywordtype">void</span> initSyncObjects( );</div>
 <div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160; </div>
-<div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160;        <span class="keywordflow">if</span> ( record )</div>
-<div class="line"><a name="l00089"></a><span class="lineno">   89</span>&#160;          initModel( ptr );</div>
-<div class="line"><a name="l00090"></a><span class="lineno">   90</span>&#160;      }</div>
-<div class="line"><a name="l00091"></a><span class="lineno">   91</span>&#160;      <span class="keywordflow">else</span> <span class="keywordflow">if</span> ( <span class="keyword">dynamic_cast&lt;</span><a class="code" href="class_r_e_n_d_e_r_e_r___n_a_m_e_s_p_a_c_e_1_1_light_node.html">LightNode</a>*<span class="keyword">&gt;</span>( node.get( ) ) )</div>
-<div class="line"><a name="l00092"></a><span class="lineno">   92</span>&#160;      {</div>
-<div class="line"><a name="l00093"></a><span class="lineno">   93</span>&#160;        <span class="keywordflow">if</span> ( <span class="keyword">dynamic_cast&lt;</span><a class="code" href="class_r_e_n_d_e_r_e_r___n_a_m_e_s_p_a_c_e_1_1_directional_light_node.html">DirectionalLightNode</a>*<span class="keyword">&gt;</span>( node.get( ) ) )</div>
-<div class="line"><a name="l00094"></a><span class="lineno">   94</span>&#160;        {</div>
-<div class="line"><a name="l00095"></a><span class="lineno">   95</span>&#160;          <span class="keyword">auto</span> dirLightNodePtr = std::dynamic_pointer_cast&lt;DirectionalLightNode&gt;( node );</div>
-<div class="line"><a name="l00096"></a><span class="lineno">   96</span>&#160;          dirLightNodes.push_back( dirLightNodePtr );</div>
-<div class="line"><a name="l00097"></a><span class="lineno">   97</span>&#160;        }</div>
-<div class="line"><a name="l00098"></a><span class="lineno">   98</span>&#160;        <span class="keywordflow">else</span> <span class="keywordflow">if</span> ( <span class="keyword">dynamic_cast&lt;</span><a class="code" href="class_r_e_n_d_e_r_e_r___n_a_m_e_s_p_a_c_e_1_1_point_light_node.html">PointLightNode</a>*<span class="keyword">&gt;</span>( node.get( ) ) )</div>
-<div class="line"><a name="l00099"></a><span class="lineno">   99</span>&#160;        {</div>
-<div class="line"><a name="l00100"></a><span class="lineno">  100</span>&#160;          <span class="keyword">auto</span> pointLightNodePtr = std::dynamic_pointer_cast&lt;PointLightNode&gt;( node );</div>
-<div class="line"><a name="l00101"></a><span class="lineno">  101</span>&#160;          pointLightNodes.push_back( pointLightNodePtr );</div>
-<div class="line"><a name="l00102"></a><span class="lineno">  102</span>&#160;        }</div>
-<div class="line"><a name="l00103"></a><span class="lineno">  103</span>&#160;      }</div>
+<div class="line"><a name="l00089"></a><span class="lineno">   89</span>&#160;    <span class="keywordtype">void</span> initDescriptorSets( );</div>
+<div class="line"><a name="l00090"></a><span class="lineno">   90</span>&#160; </div>
+<div class="line"><a name="l00091"></a><span class="lineno">   91</span>&#160;    <span class="keywordtype">void</span> initModelBuffers( );</div>
+<div class="line"><a name="l00092"></a><span class="lineno">   92</span>&#160; </div>
+<div class="line"><a name="l00094"></a><span class="lineno">   94</span>&#160;    <span class="keywordtype">void</span> updateSceneDescriptors( );</div>
+<div class="line"><a name="l00095"></a><span class="lineno">   95</span>&#160; </div>
+<div class="line"><a name="l00097"></a><span class="lineno">   97</span>&#160;    <span class="keywordtype">void</span> updateRayTracingModelData( );</div>
+<div class="line"><a name="l00098"></a><span class="lineno">   98</span>&#160; </div>
+<div class="line"><a name="l00100"></a><span class="lineno">  100</span>&#160;    <span class="keywordtype">void</span> updateSettings( );</div>
+<div class="line"><a name="l00101"></a><span class="lineno">  101</span>&#160; </div>
+<div class="line"><a name="l00103"></a><span class="lineno">  103</span>&#160;    <span class="keywordtype">void</span> updateUniformBuffers( );</div>
 <div class="line"><a name="l00104"></a><span class="lineno">  104</span>&#160; </div>
-<div class="line"><a name="l00105"></a><span class="lineno">  105</span>&#160;      <span class="keywordflow">if</span> ( record )</div>
-<div class="line"><a name="l00106"></a><span class="lineno">  106</span>&#160;      {</div>
-<div class="line"><a name="l00107"></a><span class="lineno">  107</span>&#160;        swapchainCommandBuffers.<a class="code" href="class_r_e_n_d_e_r_e_r___n_a_m_e_s_p_a_c_e_1_1_command_buffer.html#ac73ed16008a969632727f0eb607dc103">reset</a>( );</div>
-<div class="line"><a name="l00108"></a><span class="lineno">  108</span>&#160;        recordSwapchainCommandBuffers( );</div>
-<div class="line"><a name="l00109"></a><span class="lineno">  109</span>&#160;      }</div>
-<div class="line"><a name="l00110"></a><span class="lineno">  110</span>&#160;    }</div>
-<div class="line"><a name="l00111"></a><span class="lineno">  111</span>&#160; </div>
-<div class="line"><a name="l00114"></a><span class="lineno">  114</span>&#160;    <span class="keyword">template</span> &lt;<span class="keyword">typename</span> T = Model&gt;</div>
-<div class="line"><a name="l00115"></a><span class="lineno"><a class="line" href="class_r_e_n_d_e_r_e_r___n_a_m_e_s_p_a_c_e_1_1_api.html#ad04f03a756191c738eb5c347c40dc244">  115</a></span>&#160;    <span class="keywordtype">void</span> <a class="code" href="class_r_e_n_d_e_r_e_r___n_a_m_e_s_p_a_c_e_1_1_api.html#ad04f03a756191c738eb5c347c40dc244">setNodes</a>( <span class="keyword">const</span> std::vector&lt;std::shared_ptr&lt;Node&gt;&gt;&amp; nodes )</div>
-<div class="line"><a name="l00116"></a><span class="lineno">  116</span>&#160;    {</div>
-<div class="line"><a name="l00117"></a><span class="lineno">  117</span>&#160;      geometryNodes.clear( );</div>
-<div class="line"><a name="l00118"></a><span class="lineno">  118</span>&#160;      geometryNodes.reserve( <a class="code" href="namespace_r_e_n_d_e_r_e_r___n_a_m_e_s_p_a_c_e.html#aee81ec4d513bff65da81feeda196b7f1">g_maxGeometryNodes</a> );</div>
+<div class="line"><a name="l00106"></a><span class="lineno">  106</span>&#160;    <span class="keywordtype">void</span> recreateSwapchain( );</div>
+<div class="line"><a name="l00107"></a><span class="lineno">  107</span>&#160; </div>
+<div class="line"><a name="l00109"></a><span class="lineno">  109</span>&#160;    <span class="keyword">auto</span> prepareFrame( ) -&gt; bool;</div>
+<div class="line"><a name="l00110"></a><span class="lineno">  110</span>&#160; </div>
+<div class="line"><a name="l00112"></a><span class="lineno">  112</span>&#160;    <span class="keyword">auto</span> submitFrame( ) -&gt; bool;</div>
+<div class="line"><a name="l00113"></a><span class="lineno">  113</span>&#160; </div>
+<div class="line"><a name="l00115"></a><span class="lineno">  115</span>&#160;    <span class="keywordtype">void</span> rasterize( );</div>
+<div class="line"><a name="l00116"></a><span class="lineno">  116</span>&#160; </div>
+<div class="line"><a name="l00118"></a><span class="lineno">  118</span>&#160;    <span class="keywordtype">void</span> rayTrace( );</div>
 <div class="line"><a name="l00119"></a><span class="lineno">  119</span>&#160; </div>
-<div class="line"><a name="l00120"></a><span class="lineno">  120</span>&#160;      <span class="keywordflow">for</span> ( <span class="keyword">const</span> <span class="keyword">auto</span>&amp; node : nodes )</div>
-<div class="line"><a name="l00121"></a><span class="lineno">  121</span>&#160;        pushNode&lt;T&gt;( node );</div>
-<div class="line"><a name="l00122"></a><span class="lineno">  122</span>&#160; </div>
-<div class="line"><a name="l00123"></a><span class="lineno">  123</span>&#160;      swapchainCommandBuffers.<a class="code" href="class_r_e_n_d_e_r_e_r___n_a_m_e_s_p_a_c_e_1_1_command_buffer.html#ac73ed16008a969632727f0eb607dc103">reset</a>( );</div>
-<div class="line"><a name="l00124"></a><span class="lineno">  124</span>&#160;      recordSwapchainCommandBuffers( );</div>
-<div class="line"><a name="l00125"></a><span class="lineno">  125</span>&#160;    }</div>
-<div class="line"><a name="l00126"></a><span class="lineno">  126</span>&#160; </div>
-<div class="line"><a name="l00128"></a><span class="lineno">  128</span>&#160;    RX_API <span class="keywordtype">void</span> <a class="code" href="class_r_e_n_d_e_r_e_r___n_a_m_e_s_p_a_c_e_1_1_api.html#a81f41f5a78ea10b1cb9a5c12d1d10c7d">initGui</a>( );</div>
-<div class="line"><a name="l00129"></a><span class="lineno">  129</span>&#160; </div>
-<div class="line"><a name="l00130"></a><span class="lineno"><a class="line" href="class_r_e_n_d_e_r_e_r___n_a_m_e_s_p_a_c_e_1_1_api.html#a98497dd9278cb5a634e3c803a3f12884">  130</a></span>&#160;    <a class="code" href="class_r_e_n_d_e_r_e_r___n_a_m_e_s_p_a_c_e_1_1_settings.html">Settings</a>* <a class="code" href="class_r_e_n_d_e_r_e_r___n_a_m_e_s_p_a_c_e_1_1_api.html#a98497dd9278cb5a634e3c803a3f12884">settings</a> = <span class="keyword">nullptr</span>;</div>
-<div class="line"><a name="l00131"></a><span class="lineno">  131</span>&#160; </div>
-<div class="line"><a name="l00132"></a><span class="lineno">  132</span>&#160;  <span class="keyword">private</span>:</div>
-<div class="line"><a name="l00134"></a><span class="lineno">  134</span>&#160;    <span class="keywordtype">void</span> initRenderPass( );</div>
+<div class="line"><a name="l00120"></a><span class="lineno">  120</span>&#160;    std::shared_ptr&lt;Geometry&gt; findGeometry( uint32_t geometryIndex );</div>
+<div class="line"><a name="l00121"></a><span class="lineno">  121</span>&#160; </div>
+<div class="line"><a name="l00122"></a><span class="lineno">  122</span>&#160;    std::shared_ptr&lt;Window&gt; window = <span class="keyword">nullptr</span>;                  </div>
+<div class="line"><a name="l00123"></a><span class="lineno">  123</span>&#160;    std::shared_ptr&lt;Camera&gt; camera = <span class="keyword">nullptr</span>;                  </div>
+<div class="line"><a name="l00124"></a><span class="lineno">  124</span>&#160;    vk::PhysicalDevice physicalDevice;                         </div>
+<div class="line"><a name="l00125"></a><span class="lineno">  125</span>&#160;    vk::UniqueInstance instance;                               </div>
+<div class="line"><a name="l00126"></a><span class="lineno">  126</span>&#160;    <a class="code" href="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_debug_messenger.html">DebugMessenger</a> debugMessenger;                             </div>
+<div class="line"><a name="l00127"></a><span class="lineno">  127</span>&#160;    <a class="code" href="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_surface.html">Surface</a> surface;                                           </div>
+<div class="line"><a name="l00128"></a><span class="lineno">  128</span>&#160;    vk::UniqueDevice device;                                   </div>
+<div class="line"><a name="l00129"></a><span class="lineno">  129</span>&#160;    vk::UniqueCommandPool graphicsCmdPool;                     </div>
+<div class="line"><a name="l00130"></a><span class="lineno">  130</span>&#160;    vk::UniqueCommandPool transferCmdPool;                     </div>
+<div class="line"><a name="l00131"></a><span class="lineno">  131</span>&#160;    std::vector&lt;vk::Fence&gt; imagesInFlight;                     </div>
+<div class="line"><a name="l00132"></a><span class="lineno">  132</span>&#160;    std::vector&lt;vk::UniqueFence&gt; inFlightFences;               </div>
+<div class="line"><a name="l00133"></a><span class="lineno">  133</span>&#160;    std::vector&lt;vk::UniqueSemaphore&gt; imageAvailableSemaphores; </div>
+<div class="line"><a name="l00134"></a><span class="lineno">  134</span>&#160;    std::vector&lt;vk::UniqueSemaphore&gt; finishedRenderSemaphores; </div>
 <div class="line"><a name="l00135"></a><span class="lineno">  135</span>&#160; </div>
-<div class="line"><a name="l00143"></a><span class="lineno">  143</span>&#160;    RX_API <span class="keywordtype">void</span> initModel( <span class="keyword">const</span> std::shared_ptr&lt;GeometryNode&gt; node );</div>
-<div class="line"><a name="l00144"></a><span class="lineno">  144</span>&#160; </div>
-<div class="line"><a name="l00147"></a><span class="lineno">  147</span>&#160;    RX_API <span class="keywordtype">void</span> recordSwapchainCommandBuffers( );</div>
-<div class="line"><a name="l00148"></a><span class="lineno">  148</span>&#160; </div>
-<div class="line"><a name="l00150"></a><span class="lineno">  150</span>&#160;    <span class="keywordtype">void</span> initSyncObjects( );</div>
+<div class="line"><a name="l00136"></a><span class="lineno">  136</span>&#160;    <a class="code" href="struct_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_descriptors.html">Descriptors</a> rtDescriptors;         </div>
+<div class="line"><a name="l00137"></a><span class="lineno">  137</span>&#160;    <a class="code" href="struct_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_descriptors.html">Descriptors</a> rtSceneDescriptors;    </div>
+<div class="line"><a name="l00138"></a><span class="lineno">  138</span>&#160;    <a class="code" href="struct_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_descriptors.html">Descriptors</a> rsSceneDescriptors;    </div>
+<div class="line"><a name="l00139"></a><span class="lineno">  139</span>&#160;    <a class="code" href="struct_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_descriptors.html">Descriptors</a> vertexDataDescriptors; </div>
+<div class="line"><a name="l00140"></a><span class="lineno">  140</span>&#160;    <a class="code" href="struct_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_descriptors.html">Descriptors</a> indexDataDescriptors;  </div>
+<div class="line"><a name="l00141"></a><span class="lineno">  141</span>&#160; </div>
+<div class="line"><a name="l00142"></a><span class="lineno">  142</span>&#160;    std::vector&lt;vk::DescriptorSet&gt; rtDescriptorSets;         </div>
+<div class="line"><a name="l00143"></a><span class="lineno">  143</span>&#160;    std::vector&lt;vk::DescriptorSet&gt; rtSceneDescriptorSets;    </div>
+<div class="line"><a name="l00144"></a><span class="lineno">  144</span>&#160;    std::vector&lt;vk::DescriptorSet&gt; rsSceneDescriptorSets;    </div>
+<div class="line"><a name="l00145"></a><span class="lineno">  145</span>&#160;    std::vector&lt;vk::DescriptorSet&gt; vertexDataDescriptorSets; </div>
+<div class="line"><a name="l00146"></a><span class="lineno">  146</span>&#160;    std::vector&lt;vk::DescriptorSet&gt; indexDataDescriptorSets;  </div>
+<div class="line"><a name="l00147"></a><span class="lineno">  147</span>&#160; </div>
+<div class="line"><a name="l00148"></a><span class="lineno">  148</span>&#160;    std::vector&lt;vk::DescriptorBufferInfo&gt; vertexDataBufferInfos; </div>
+<div class="line"><a name="l00149"></a><span class="lineno">  149</span>&#160;    std::vector&lt;vk::DescriptorBufferInfo&gt; indexDataBufferInfos;  </div>
+<div class="line"><a name="l00150"></a><span class="lineno">  150</span>&#160;    std::vector&lt;vk::DescriptorBufferInfo&gt; meshDataBufferInfos;</div>
 <div class="line"><a name="l00151"></a><span class="lineno">  151</span>&#160; </div>
-<div class="line"><a name="l00153"></a><span class="lineno">  153</span>&#160;    <span class="keywordtype">void</span> initDescriptorSetLayouts( );</div>
-<div class="line"><a name="l00154"></a><span class="lineno">  154</span>&#160; </div>
-<div class="line"><a name="l00156"></a><span class="lineno">  156</span>&#160;    <span class="keywordtype">void</span> recreateSwapchain( );</div>
-<div class="line"><a name="l00157"></a><span class="lineno">  157</span>&#160; </div>
-<div class="line"><a name="l00159"></a><span class="lineno">  159</span>&#160;    <span class="keywordtype">bool</span> prepareFrame( );</div>
+<div class="line"><a name="l00152"></a><span class="lineno">  152</span>&#160;    std::vector&lt;VertexBuffer&gt; vertexBuffers; </div>
+<div class="line"><a name="l00153"></a><span class="lineno">  153</span>&#160;    std::vector&lt;IndexBuffer&gt; indexBuffers;   </div>
+<div class="line"><a name="l00154"></a><span class="lineno">  154</span>&#160;    std::vector&lt;StorageBuffer&gt; meshBuffers;  </div>
+<div class="line"><a name="l00155"></a><span class="lineno">  155</span>&#160;    <a class="code" href="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_storage_buffer.html">StorageBuffer</a> geometryInstancesBuffer;   </div>
+<div class="line"><a name="l00156"></a><span class="lineno">  156</span>&#160; </div>
+<div class="line"><a name="l00157"></a><span class="lineno">  157</span>&#160;    <a class="code" href="struct_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_camera_ubo.html">CameraUbo</a> cameraUbo;               </div>
+<div class="line"><a name="l00158"></a><span class="lineno">  158</span>&#160;    <a class="code" href="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_uniform_buffer.html">UniformBuffer</a> cameraUniformBuffer; </div>
+<div class="line"><a name="l00159"></a><span class="lineno">  159</span>&#160;    <a class="code" href="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_uniform_buffer.html">UniformBuffer</a> lightsUniformBuffer; </div>
 <div class="line"><a name="l00160"></a><span class="lineno">  160</span>&#160; </div>
-<div class="line"><a name="l00162"></a><span class="lineno">  162</span>&#160;    <span class="keywordtype">bool</span> submitFrame( );</div>
+<div class="line"><a name="l00161"></a><span class="lineno">  161</span>&#160;    <a class="code" href="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_swapchain.html">Swapchain</a> swapchain;   </div>
+<div class="line"><a name="l00162"></a><span class="lineno">  162</span>&#160;    <a class="code" href="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_render_pass.html">RenderPass</a> renderPass; </div>
 <div class="line"><a name="l00163"></a><span class="lineno">  163</span>&#160; </div>
-<div class="line"><a name="l00164"></a><span class="lineno">  164</span>&#160;    std::shared_ptr&lt;Window&gt; window;</div>
-<div class="line"><a name="l00165"></a><span class="lineno">  165</span>&#160;    std::shared_ptr&lt;Camera&gt; camera;</div>
+<div class="line"><a name="l00164"></a><span class="lineno">  164</span>&#160;    <a class="code" href="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_pipeline.html">Pipeline</a> rsPipeline; </div>
+<div class="line"><a name="l00165"></a><span class="lineno">  165</span>&#160;    <a class="code" href="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_pipeline.html">Pipeline</a> rtPipeline; </div>
 <div class="line"><a name="l00166"></a><span class="lineno">  166</span>&#160; </div>
-<div class="line"><a name="l00167"></a><span class="lineno">  167</span>&#160;    <span class="comment">// Destruction through RAII for following members:</span></div>
-<div class="line"><a name="l00168"></a><span class="lineno">  168</span>&#160;    <a class="code" href="class_r_e_n_d_e_r_e_r___n_a_m_e_s_p_a_c_e_1_1_instance.html">Instance</a> instance;</div>
-<div class="line"><a name="l00169"></a><span class="lineno">  169</span>&#160;    <a class="code" href="class_r_e_n_d_e_r_e_r___n_a_m_e_s_p_a_c_e_1_1_debug_messenger.html">DebugMessenger</a> debugMessenger;</div>
-<div class="line"><a name="l00170"></a><span class="lineno">  170</span>&#160;    <a class="code" href="class_r_e_n_d_e_r_e_r___n_a_m_e_s_p_a_c_e_1_1_surface.html">Surface</a> surface;</div>
-<div class="line"><a name="l00171"></a><span class="lineno">  171</span>&#160;    <a class="code" href="class_r_e_n_d_e_r_e_r___n_a_m_e_s_p_a_c_e_1_1_device.html">Device</a> device;</div>
-<div class="line"><a name="l00172"></a><span class="lineno">  172</span>&#160;    vk::UniqueCommandPool graphicsCmdPool;</div>
-<div class="line"><a name="l00173"></a><span class="lineno">  173</span>&#160;    vk::UniqueCommandPool transferCmdPool;</div>
-<div class="line"><a name="l00174"></a><span class="lineno">  174</span>&#160;    std::vector&lt;vk::UniqueFence&gt; inFlightFences;</div>
-<div class="line"><a name="l00175"></a><span class="lineno">  175</span>&#160;    std::vector&lt;vk::UniqueSemaphore&gt; imageAvailableSemaphores;</div>
-<div class="line"><a name="l00176"></a><span class="lineno">  176</span>&#160;    std::vector&lt;vk::UniqueSemaphore&gt; finishedRenderSemaphores;</div>
-<div class="line"><a name="l00177"></a><span class="lineno">  177</span>&#160; </div>
-<div class="line"><a name="l00178"></a><span class="lineno">  178</span>&#160;    <span class="comment">// Descriptors for ray-tracing-related data.</span></div>
-<div class="line"><a name="l00179"></a><span class="lineno">  179</span>&#160;    <a class="code" href="class_r_e_n_d_e_r_e_r___n_a_m_e_s_p_a_c_e_1_1_descriptor_set_layout.html">DescriptorSetLayout</a> rtDescriptorSetLayout;</div>
-<div class="line"><a name="l00180"></a><span class="lineno">  180</span>&#160;    vk::UniqueDescriptorPool rtDescriptorPool;</div>
-<div class="line"><a name="l00181"></a><span class="lineno">  181</span>&#160;    <a class="code" href="class_r_e_n_d_e_r_e_r___n_a_m_e_s_p_a_c_e_1_1_descriptor_set.html">DescriptorSet</a> rtDescriptorSets;</div>
-<div class="line"><a name="l00182"></a><span class="lineno">  182</span>&#160; </div>
-<div class="line"><a name="l00183"></a><span class="lineno">  183</span>&#160;    <span class="comment">// Descriptors for model-related data.</span></div>
-<div class="line"><a name="l00184"></a><span class="lineno">  184</span>&#160;    <a class="code" href="class_r_e_n_d_e_r_e_r___n_a_m_e_s_p_a_c_e_1_1_descriptor_set_layout.html">DescriptorSetLayout</a> modelDescriptorSetLayout; </div>
-<div class="line"><a name="l00185"></a><span class="lineno">  185</span>&#160;    vk::UniqueDescriptorPool modelDescriptorPool;</div>
-<div class="line"><a name="l00186"></a><span class="lineno">  186</span>&#160; </div>
-<div class="line"><a name="l00187"></a><span class="lineno">  187</span>&#160;    <span class="comment">// Descriptors for scene-related data.</span></div>
-<div class="line"><a name="l00188"></a><span class="lineno">  188</span>&#160;    <a class="code" href="class_r_e_n_d_e_r_e_r___n_a_m_e_s_p_a_c_e_1_1_descriptor_set_layout.html">DescriptorSetLayout</a> sceneDescriptorSetLayout;</div>
-<div class="line"><a name="l00189"></a><span class="lineno">  189</span>&#160;    vk::UniqueDescriptorPool sceneDescriptorPool;</div>
-<div class="line"><a name="l00190"></a><span class="lineno">  190</span>&#160;    <a class="code" href="class_r_e_n_d_e_r_e_r___n_a_m_e_s_p_a_c_e_1_1_descriptor_set.html">DescriptorSet</a> sceneDescriptorSets;</div>
-<div class="line"><a name="l00191"></a><span class="lineno">  191</span>&#160; </div>
-<div class="line"><a name="l00192"></a><span class="lineno">  192</span>&#160;    <a class="code" href="struct_r_e_n_d_e_r_e_r___n_a_m_e_s_p_a_c_e_1_1_camera_ubo.html">CameraUbo</a> cameraUbo;</div>
-<div class="line"><a name="l00193"></a><span class="lineno">  193</span>&#160;    <a class="code" href="class_r_e_n_d_e_r_e_r___n_a_m_e_s_p_a_c_e_1_1_uniform_buffer.html">UniformBuffer</a> cameraUniformBuffer;</div>
-<div class="line"><a name="l00194"></a><span class="lineno">  194</span>&#160;    <a class="code" href="class_r_e_n_d_e_r_e_r___n_a_m_e_s_p_a_c_e_1_1_uniform_buffer.html">UniformBuffer</a> lightsUniformBuffer;</div>
-<div class="line"><a name="l00195"></a><span class="lineno">  195</span>&#160;    <a class="code" href="class_r_e_n_d_e_r_e_r___n_a_m_e_s_p_a_c_e_1_1_buffer.html">Buffer</a> sceneDescriptionBuffer; </div>
-<div class="line"><a name="l00196"></a><span class="lineno">  196</span>&#160; </div>
-<div class="line"><a name="l00197"></a><span class="lineno">  197</span>&#160;    <span class="comment">// Nodes to render.</span></div>
-<div class="line"><a name="l00198"></a><span class="lineno">  198</span>&#160;    std::vector&lt;std::shared_ptr&lt;GeometryNode&gt;&gt; geometryNodes;</div>
-<div class="line"><a name="l00199"></a><span class="lineno">  199</span>&#160;    std::vector&lt;std::shared_ptr&lt;DirectionalLightNode&gt;&gt; dirLightNodes;</div>
-<div class="line"><a name="l00200"></a><span class="lineno">  200</span>&#160;    std::vector&lt;std::shared_ptr&lt;PointLightNode&gt;&gt; pointLightNodes;</div>
-<div class="line"><a name="l00201"></a><span class="lineno">  201</span>&#160;    <span class="comment">// Models</span></div>
-<div class="line"><a name="l00202"></a><span class="lineno">  202</span>&#160;    std::unordered_map&lt;std::string, std::shared_ptr&lt;Model&gt;&gt; models;</div>
-<div class="line"><a name="l00203"></a><span class="lineno">  203</span>&#160;    <span class="comment">// Textures</span></div>
-<div class="line"><a name="l00204"></a><span class="lineno">  204</span>&#160;    std::unordered_map&lt;std::string, std::shared_ptr&lt;Texture&gt;&gt; textures;</div>
-<div class="line"><a name="l00205"></a><span class="lineno">  205</span>&#160; </div>
-<div class="line"><a name="l00206"></a><span class="lineno">  206</span>&#160;    <a class="code" href="class_r_e_n_d_e_r_e_r___n_a_m_e_s_p_a_c_e_1_1_swapchain.html">Swapchain</a> swapchain;</div>
-<div class="line"><a name="l00207"></a><span class="lineno">  207</span>&#160;    <a class="code" href="class_r_e_n_d_e_r_e_r___n_a_m_e_s_p_a_c_e_1_1_render_pass.html">RenderPass</a> renderPass;</div>
-<div class="line"><a name="l00208"></a><span class="lineno">  208</span>&#160;    <a class="code" href="class_r_e_n_d_e_r_e_r___n_a_m_e_s_p_a_c_e_1_1_pipeline.html">Pipeline</a> rtPipeline;</div>
-<div class="line"><a name="l00209"></a><span class="lineno">  209</span>&#160;    <a class="code" href="class_r_e_n_d_e_r_e_r___n_a_m_e_s_p_a_c_e_1_1_command_buffer.html">CommandBuffer</a> swapchainCommandBuffers;</div>
-<div class="line"><a name="l00210"></a><span class="lineno">  210</span>&#160;    </div>
-<div class="line"><a name="l00211"></a><span class="lineno">  211</span>&#160;    std::shared_ptr&lt;Gui&gt; gui = <span class="keyword">nullptr</span>;</div>
-<div class="line"><a name="l00212"></a><span class="lineno">  212</span>&#160; </div>
-<div class="line"><a name="l00213"></a><span class="lineno">  213</span>&#160;    <span class="comment">// No destruction necessary for following members:</span></div>
-<div class="line"><a name="l00214"></a><span class="lineno">  214</span>&#160;    <a class="code" href="class_r_e_n_d_e_r_e_r___n_a_m_e_s_p_a_c_e_1_1_physical_device.html">PhysicalDevice</a> physicalDevice;</div>
-<div class="line"><a name="l00215"></a><span class="lineno">  215</span>&#160;    std::vector&lt;vk::Fence&gt; imagesInFlight;</div>
-<div class="line"><a name="l00216"></a><span class="lineno">  216</span>&#160; </div>
-<div class="line"><a name="l00217"></a><span class="lineno">  217</span>&#160;    <a class="code" href="class_r_e_n_d_e_r_e_r___n_a_m_e_s_p_a_c_e_1_1_ray_tracing_builder.html">RayTracingBuilder</a> rayTracingBuilder;</div>
-<div class="line"><a name="l00218"></a><span class="lineno">  218</span>&#160; </div>
-<div class="line"><a name="l00219"></a><span class="lineno">  219</span>&#160;    <span class="keywordtype">bool</span> needSwapchainRecreate = <span class="keyword">false</span>;</div>
-<div class="line"><a name="l00220"></a><span class="lineno">  220</span>&#160;  };</div>
-<div class="line"><a name="l00221"></a><span class="lineno">  221</span>&#160;}</div>
-<div class="line"><a name="l00222"></a><span class="lineno">  222</span>&#160; </div>
-<div class="line"><a name="l00223"></a><span class="lineno">  223</span>&#160;<span class="preprocessor">#endif // API_HPP</span></div>
+<div class="line"><a name="l00167"></a><span class="lineno">  167</span>&#160;    <a class="code" href="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_command_buffer.html">CommandBuffer</a> swapchainCommandBuffers; </div>
+<div class="line"><a name="l00168"></a><span class="lineno">  168</span>&#160; </div>
+<div class="line"><a name="l00169"></a><span class="lineno">  169</span>&#160;    std::shared_ptr&lt;Gui&gt; gui = <span class="keyword">nullptr</span>; </div>
+<div class="line"><a name="l00170"></a><span class="lineno">  170</span>&#160; </div>
+<div class="line"><a name="l00171"></a><span class="lineno">  171</span>&#160;    <span class="comment">// No destruction necessary for following members:</span></div>
+<div class="line"><a name="l00172"></a><span class="lineno">  172</span>&#160;    <a class="code" href="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_ray_tracing_builder.html">RayTracingBuilder</a> rayTracingBuilder; </div>
+<div class="line"><a name="l00173"></a><span class="lineno">  173</span>&#160; </div>
+<div class="line"><a name="l00174"></a><span class="lineno">  174</span>&#160;    vk::Viewport viewport; </div>
+<div class="line"><a name="l00175"></a><span class="lineno">  175</span>&#160;    vk::Rect2D scissor;    </div>
+<div class="line"><a name="l00176"></a><span class="lineno">  176</span>&#160; </div>
+<div class="line"><a name="l00177"></a><span class="lineno">  177</span>&#160;    <span class="keywordtype">bool</span> needSwapchainRecreate           = <span class="keyword">false</span>;</div>
+<div class="line"><a name="l00178"></a><span class="lineno">  178</span>&#160;    <span class="keywordtype">bool</span> uploadGeometryInstancesToBuffer = <span class="keyword">false</span>;   </div>
+<div class="line"><a name="l00179"></a><span class="lineno">  179</span>&#160;    <span class="keywordtype">bool</span> pipelinesReady                  = <span class="keyword">false</span>;   </div>
+<div class="line"><a name="l00180"></a><span class="lineno">  180</span>&#160;    <a class="code" href="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_settings.html">Settings</a>* settings                   = <span class="keyword">nullptr</span>; </div>
+<div class="line"><a name="l00181"></a><span class="lineno">  181</span>&#160;    <a class="code" href="struct_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_scene.html">Scene</a> scene;</div>
+<div class="line"><a name="l00182"></a><span class="lineno">  182</span>&#160;  };</div>
+<div class="line"><a name="l00183"></a><span class="lineno">  183</span>&#160;} <span class="comment">// namespace RAYEXEC_NAMESPACE</span></div>
+<div class="line"><a name="l00184"></a><span class="lineno">  184</span>&#160; </div>
+<div class="line"><a name="l00185"></a><span class="lineno">  185</span>&#160;<span class="preprocessor">#endif // API_HPP</span></div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->
-<div class="ttc" id="aclass_r_e_n_d_e_r_e_r___n_a_m_e_s_p_a_c_e_1_1_descriptor_set_layout_html"><div class="ttname"><a href="class_r_e_n_d_e_r_e_r___n_a_m_e_s_p_a_c_e_1_1_descriptor_set_layout.html">RENDERER_NAMESPACE::DescriptorSetLayout</a></div><div class="ttdoc">A wrapper class for a Vulkan descriptor set layout.</div><div class="ttdef"><b>Definition:</b> DescriptorSetLayout.hpp:10</div></div>
-<div class="ttc" id="aclass_r_e_n_d_e_r_e_r___n_a_m_e_s_p_a_c_e_1_1_point_light_node_html"><div class="ttname"><a href="class_r_e_n_d_e_r_e_r___n_a_m_e_s_p_a_c_e_1_1_point_light_node.html">RENDERER_NAMESPACE::PointLightNode</a></div><div class="ttdoc">Can be used to add point light sources to the scene.</div><div class="ttdef"><b>Definition:</b> LightNode.hpp:58</div></div>
-<div class="ttc" id="aclass_r_e_n_d_e_r_e_r___n_a_m_e_s_p_a_c_e_1_1_api_html_a98497dd9278cb5a634e3c803a3f12884"><div class="ttname"><a href="class_r_e_n_d_e_r_e_r___n_a_m_e_s_p_a_c_e_1_1_api.html#a98497dd9278cb5a634e3c803a3f12884">RENDERER_NAMESPACE::Api::settings</a></div><div class="ttdeci">Settings * settings</div><div class="ttdef"><b>Definition:</b> Api.hpp:130</div></div>
-<div class="ttc" id="aclass_r_e_n_d_e_r_e_r___n_a_m_e_s_p_a_c_e_1_1_debug_messenger_html"><div class="ttname"><a href="class_r_e_n_d_e_r_e_r___n_a_m_e_s_p_a_c_e_1_1_debug_messenger.html">RENDERER_NAMESPACE::DebugMessenger</a></div><div class="ttdoc">A wrapper class for a Vulkan debug utility messenger.</div><div class="ttdef"><b>Definition:</b> DebugMessenger.hpp:10</div></div>
-<div class="ttc" id="aclass_r_e_n_d_e_r_e_r___n_a_m_e_s_p_a_c_e_1_1_pipeline_html"><div class="ttname"><a href="class_r_e_n_d_e_r_e_r___n_a_m_e_s_p_a_c_e_1_1_pipeline.html">RENDERER_NAMESPACE::Pipeline</a></div><div class="ttdoc">A wrapper class for a Vulkan ray tracing graphics pipeline.</div><div class="ttdef"><b>Definition:</b> Pipeline.hpp:11</div></div>
-<div class="ttc" id="aclass_r_e_n_d_e_r_e_r___n_a_m_e_s_p_a_c_e_1_1_api_html_abbd69a9989f4275256b7d4baee77aa94"><div class="ttname"><a href="class_r_e_n_d_e_r_e_r___n_a_m_e_s_p_a_c_e_1_1_api.html#abbd69a9989f4275256b7d4baee77aa94">RENDERER_NAMESPACE::Api::setGui</a></div><div class="ttdeci">RX_API void setGui(const std::shared_ptr&lt; Gui &gt; gui, bool initialize=false)</div><div class="ttdoc">Used to set the GUI that will be used.</div></div>
+<div class="ttc" id="aclass_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_api_html_a01833704b83c33dc619485119c8a9207"><div class="ttname"><a href="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_api.html#a01833704b83c33dc619485119c8a9207">RAYEXEC_NAMESPACE::Api::Api</a></div><div class="ttdeci">Api()=default</div></div>
 <div class="ttc" id="a_pipeline_8hpp_html"><div class="ttname"><a href="_pipeline_8hpp.html">Pipeline.hpp</a></div></div>
-<div class="ttc" id="aclass_r_e_n_d_e_r_e_r___n_a_m_e_s_p_a_c_e_1_1_api_html"><div class="ttname"><a href="class_r_e_n_d_e_r_e_r___n_a_m_e_s_p_a_c_e_1_1_api.html">RENDERER_NAMESPACE::Api</a></div><div class="ttdoc">Initializes and owns all Vulkan components and displays a picture on the screen.</div><div class="ttdef"><b>Definition:</b> Api.hpp:31</div></div>
-<div class="ttc" id="a_device_8hpp_html"><div class="ttname"><a href="_device_8hpp.html">Device.hpp</a></div></div>
 <div class="ttc" id="a_render_pass_8hpp_html"><div class="ttname"><a href="_render_pass_8hpp.html">RenderPass.hpp</a></div></div>
-<div class="ttc" id="a_instance_8hpp_html"><div class="ttname"><a href="_instance_8hpp.html">Instance.hpp</a></div></div>
-<div class="ttc" id="aclass_r_e_n_d_e_r_e_r___n_a_m_e_s_p_a_c_e_1_1_command_buffer_html"><div class="ttname"><a href="class_r_e_n_d_e_r_e_r___n_a_m_e_s_p_a_c_e_1_1_command_buffer.html">RENDERER_NAMESPACE::CommandBuffer</a></div><div class="ttdoc">A wrapper class for Vulkan command buffers.</div><div class="ttdef"><b>Definition:</b> CommandBuffer.hpp:10</div></div>
-<div class="ttc" id="aclass_r_e_n_d_e_r_e_r___n_a_m_e_s_p_a_c_e_1_1_directional_light_node_html"><div class="ttname"><a href="class_r_e_n_d_e_r_e_r___n_a_m_e_s_p_a_c_e_1_1_directional_light_node.html">RENDERER_NAMESPACE::DirectionalLightNode</a></div><div class="ttdoc">Can be used to add directional light sources to the scene.</div><div class="ttdef"><b>Definition:</b> LightNode.hpp:36</div></div>
-<div class="ttc" id="a_queues_8hpp_html"><div class="ttname"><a href="_queues_8hpp.html">Queues.hpp</a></div></div>
-<div class="ttc" id="aclass_r_e_n_d_e_r_e_r___n_a_m_e_s_p_a_c_e_1_1_api_html_a82f010fbc83f3f85d36f1650f1e2c73b"><div class="ttname"><a href="class_r_e_n_d_e_r_e_r___n_a_m_e_s_p_a_c_e_1_1_api.html#a82f010fbc83f3f85d36f1650f1e2c73b">RENDERER_NAMESPACE::Api::~Api</a></div><div class="ttdeci">RX_API ~Api()</div></div>
-<div class="ttc" id="aclass_r_e_n_d_e_r_e_r___n_a_m_e_s_p_a_c_e_1_1_api_html_a628858189c053a9caf74192c741df573"><div class="ttname"><a href="class_r_e_n_d_e_r_e_r___n_a_m_e_s_p_a_c_e_1_1_api.html#a628858189c053a9caf74192c741df573">RENDERER_NAMESPACE::Api::render</a></div><div class="ttdeci">bool render()</div><div class="ttdoc">Retrieves an image from the swapchain and presents it.</div></div>
-<div class="ttc" id="aclass_r_e_n_d_e_r_e_r___n_a_m_e_s_p_a_c_e_1_1_ray_tracing_builder_html"><div class="ttname"><a href="class_r_e_n_d_e_r_e_r___n_a_m_e_s_p_a_c_e_1_1_ray_tracing_builder.html">RENDERER_NAMESPACE::RayTracingBuilder</a></div><div class="ttdoc">Manages the building process of the acceleration structures.</div><div class="ttdef"><b>Definition:</b> RayTracingBuilder.hpp:14</div></div>
-<div class="ttc" id="aclass_r_e_n_d_e_r_e_r___n_a_m_e_s_p_a_c_e_1_1_physical_device_html"><div class="ttname"><a href="class_r_e_n_d_e_r_e_r___n_a_m_e_s_p_a_c_e_1_1_physical_device.html">RENDERER_NAMESPACE::PhysicalDevice</a></div><div class="ttdoc">A wrapper class for a Vulkan physical device.</div><div class="ttdef"><b>Definition:</b> PhysicalDevice.hpp:10</div></div>
-<div class="ttc" id="anamespace_r_e_n_d_e_r_e_r___n_a_m_e_s_p_a_c_e_html"><div class="ttname"><a href="namespace_r_e_n_d_e_r_e_r___n_a_m_e_s_p_a_c_e.html">RENDERER_NAMESPACE</a></div><div class="ttdoc">The rx namespace encapsulates every single component provided by the renderer.</div><div class="ttdef"><b>Definition:</b> Api.hpp:25</div></div>
-<div class="ttc" id="aclass_r_e_n_d_e_r_e_r___n_a_m_e_s_p_a_c_e_1_1_swapchain_html"><div class="ttname"><a href="class_r_e_n_d_e_r_e_r___n_a_m_e_s_p_a_c_e_1_1_swapchain.html">RENDERER_NAMESPACE::Swapchain</a></div><div class="ttdoc">A wrapper class for a Vulkan swapchain.</div><div class="ttdef"><b>Definition:</b> Swapchain.hpp:12</div></div>
-<div class="ttc" id="aclass_r_e_n_d_e_r_e_r___n_a_m_e_s_p_a_c_e_1_1_api_html_a1b2c4bab62339b27b77e34cb27c67f83"><div class="ttname"><a href="class_r_e_n_d_e_r_e_r___n_a_m_e_s_p_a_c_e_1_1_api.html#a1b2c4bab62339b27b77e34cb27c67f83">RENDERER_NAMESPACE::Api::update</a></div><div class="ttdeci">bool update()</div><div class="ttdoc">Used to update and upload uniform buffers.</div></div>
-<div class="ttc" id="aclass_r_e_n_d_e_r_e_r___n_a_m_e_s_p_a_c_e_1_1_instance_html"><div class="ttname"><a href="class_r_e_n_d_e_r_e_r___n_a_m_e_s_p_a_c_e_1_1_instance.html">RENDERER_NAMESPACE::Instance</a></div><div class="ttdoc">A wrapper class for the Vulkan instance.</div><div class="ttdef"><b>Definition:</b> Instance.hpp:10</div></div>
+<div class="ttc" id="a_bindings_8hpp_html"><div class="ttname"><a href="_bindings_8hpp.html">Bindings.hpp</a></div></div>
+<div class="ttc" id="aclass_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_api_html_af862c9b962c5a27ad96ec325a12c91ae"><div class="ttname"><a href="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_api.html#af862c9b962c5a27ad96ec325a12c91ae">RAYEXEC_NAMESPACE::Api::RayExec</a></div><div class="ttdeci">friend RayExec</div><div class="ttdef"><b>Definition:</b> Api.hpp:34</div></div>
+<div class="ttc" id="a_storage_buffer_8hpp_html"><div class="ttname"><a href="_storage_buffer_8hpp.html">StorageBuffer.hpp</a></div></div>
+<div class="ttc" id="a_scene_8hpp_html"><div class="ttname"><a href="_scene_8hpp.html">Scene.hpp</a></div></div>
+<div class="ttc" id="aclass_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_api_html"><div class="ttname"><a href="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_api.html">RAYEXEC_NAMESPACE::Api</a></div><div class="ttdoc">Initializes and owns all Vulkan components and displays a picture on the screen.</div><div class="ttdef"><b>Definition:</b> Api.hpp:31</div></div>
+<div class="ttc" id="aclass_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_ray_tracing_builder_html"><div class="ttname"><a href="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_ray_tracing_builder.html">RAYEXEC_NAMESPACE::RayTracingBuilder</a></div><div class="ttdoc">Manages the building process of the acceleration structures.</div><div class="ttdef"><b>Definition:</b> RayTracingBuilder.hpp:15</div></div>
+<div class="ttc" id="astruct_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_scene_html"><div class="ttname"><a href="struct_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_scene.html">RAYEXEC_NAMESPACE::Scene</a></div><div class="ttdef"><b>Definition:</b> Scene.hpp:8</div></div>
+<div class="ttc" id="aclass_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_uniform_buffer_html"><div class="ttname"><a href="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_uniform_buffer.html">RAYEXEC_NAMESPACE::UniformBuffer</a></div><div class="ttdoc">A specialised buffer for uniforms.</div><div class="ttdef"><b>Definition:</b> UniformBuffer.hpp:32</div></div>
+<div class="ttc" id="aclass_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_ray_exec_html"><div class="ttname"><a href="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_ray_exec.html">RAYEXEC_NAMESPACE::RayExec</a></div><div class="ttdoc">The main user interface.</div><div class="ttdef"><b>Definition:</b> RayExec.hpp:27</div></div>
 <div class="ttc" id="a_vertex_8hpp_html"><div class="ttname"><a href="_vertex_8hpp.html">Vertex.hpp</a></div></div>
 <div class="ttc" id="a_surface_8hpp_html"><div class="ttname"><a href="_surface_8hpp.html">Surface.hpp</a></div></div>
 <div class="ttc" id="a_uniform_buffer_8hpp_html"><div class="ttname"><a href="_uniform_buffer_8hpp.html">UniformBuffer.hpp</a></div></div>
 <div class="ttc" id="a_debug_messenger_8hpp_html"><div class="ttname"><a href="_debug_messenger_8hpp.html">DebugMessenger.hpp</a></div></div>
-<div class="ttc" id="anamespace_r_e_n_d_e_r_e_r___n_a_m_e_s_p_a_c_e_html_aee81ec4d513bff65da81feeda196b7f1"><div class="ttname"><a href="namespace_r_e_n_d_e_r_e_r___n_a_m_e_s_p_a_c_e.html#aee81ec4d513bff65da81feeda196b7f1">RENDERER_NAMESPACE::g_maxGeometryNodes</a></div><div class="ttdeci">const size_t g_maxGeometryNodes</div><div class="ttdoc">Global variable to store the maximum amount of geometry nodes supported by the renderer.</div><div class="ttdef"><b>Definition:</b> Components.hpp:30</div></div>
+<div class="ttc" id="aclass_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_api_html_ad9139e70bcc023ea322b0d38ed975686"><div class="ttname"><a href="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_api.html#ad9139e70bcc023ea322b0d38ed975686">RAYEXEC_NAMESPACE::Api::~Api</a></div><div class="ttdeci">RX_API ~Api()</div></div>
+<div class="ttc" id="aclass_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_pipeline_html"><div class="ttname"><a href="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_pipeline.html">RAYEXEC_NAMESPACE::Pipeline</a></div><div class="ttdoc">A wrapper class for a Vulkan graphics pipeline.</div><div class="ttdef"><b>Definition:</b> Pipeline.hpp:31</div></div>
+<div class="ttc" id="aclass_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_command_buffer_html"><div class="ttname"><a href="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_command_buffer.html">RAYEXEC_NAMESPACE::CommandBuffer</a></div><div class="ttdoc">A wrapper class for Vulkan command buffers.</div><div class="ttdef"><b>Definition:</b> CommandBuffer.hpp:10</div></div>
+<div class="ttc" id="aclass_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_surface_html"><div class="ttname"><a href="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_surface.html">RAYEXEC_NAMESPACE::Surface</a></div><div class="ttdoc">A wrapper class for a Vulkan surface.</div><div class="ttdef"><b>Definition:</b> Surface.hpp:10</div></div>
 <div class="ttc" id="a_swapchain_8hpp_html"><div class="ttname"><a href="_swapchain_8hpp.html">Swapchain.hpp</a></div></div>
-<div class="ttc" id="aclass_r_e_n_d_e_r_e_r___n_a_m_e_s_p_a_c_e_1_1_geometry_node_html"><div class="ttname"><a href="class_r_e_n_d_e_r_e_r___n_a_m_e_s_p_a_c_e_1_1_geometry_node.html">RENDERER_NAMESPACE::GeometryNode</a></div><div class="ttdoc">Adds geometry to the TransformNode parent class.</div><div class="ttdef"><b>Definition:</b> GeometryNode.hpp:18</div></div>
-<div class="ttc" id="aclass_r_e_n_d_e_r_e_r___n_a_m_e_s_p_a_c_e_1_1_settings_html"><div class="ttname"><a href="class_r_e_n_d_e_r_e_r___n_a_m_e_s_p_a_c_e_1_1_settings.html">RENDERER_NAMESPACE::Settings</a></div><div class="ttdoc">Exposes all graphic settings supported by the renderer.</div><div class="ttdef"><b>Definition:</b> Settings.hpp:14</div></div>
-<div class="ttc" id="aclass_r_e_n_d_e_r_e_r___n_a_m_e_s_p_a_c_e_1_1_render_pass_html"><div class="ttname"><a href="class_r_e_n_d_e_r_e_r___n_a_m_e_s_p_a_c_e_1_1_render_pass.html">RENDERER_NAMESPACE::RenderPass</a></div><div class="ttdoc">A wrapper class for a Vulkan render pass.</div><div class="ttdef"><b>Definition:</b> RenderPass.hpp:10</div></div>
-<div class="ttc" id="aclass_r_e_n_d_e_r_e_r___n_a_m_e_s_p_a_c_e_1_1_command_buffer_html_ac73ed16008a969632727f0eb607dc103"><div class="ttname"><a href="class_r_e_n_d_e_r_e_r___n_a_m_e_s_p_a_c_e_1_1_command_buffer.html#ac73ed16008a969632727f0eb607dc103">RENDERER_NAMESPACE::CommandBuffer::reset</a></div><div class="ttdeci">RX_API void reset()</div><div class="ttdoc">Resets the command buffer.</div></div>
-<div class="ttc" id="aclass_r_e_n_d_e_r_e_r___n_a_m_e_s_p_a_c_e_1_1_api_html_a9cb5db0df8509f80917688a15cb87b01"><div class="ttname"><a href="class_r_e_n_d_e_r_e_r___n_a_m_e_s_p_a_c_e_1_1_api.html#a9cb5db0df8509f80917688a15cb87b01">RENDERER_NAMESPACE::Api::init</a></div><div class="ttdeci">void init()</div><div class="ttdoc">Initializes all API components.</div></div>
-<div class="ttc" id="aclass_r_e_n_d_e_r_e_r___n_a_m_e_s_p_a_c_e_1_1_buffer_html"><div class="ttname"><a href="class_r_e_n_d_e_r_e_r___n_a_m_e_s_p_a_c_e_1_1_buffer.html">RENDERER_NAMESPACE::Buffer</a></div><div class="ttdoc">A wrapper class for a Vulkan buffer.</div><div class="ttdef"><b>Definition:</b> Buffer.hpp:11</div></div>
+<div class="ttc" id="astruct_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_descriptors_html"><div class="ttname"><a href="struct_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_descriptors.html">RAYEXEC_NAMESPACE::Descriptors</a></div><div class="ttdef"><b>Definition:</b> Bindings.hpp:49</div></div>
+<div class="ttc" id="astruct_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_camera_ubo_html"><div class="ttname"><a href="struct_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_camera_ubo.html">RAYEXEC_NAMESPACE::CameraUbo</a></div><div class="ttdoc">A uniform buffer object for camera data.</div><div class="ttdef"><b>Definition:</b> UniformBuffer.hpp:12</div></div>
+<div class="ttc" id="a_util_8hpp_html"><div class="ttname"><a href="_util_8hpp.html">Util.hpp</a></div></div>
+<div class="ttc" id="aclass_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_render_pass_html"><div class="ttname"><a href="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_render_pass.html">RAYEXEC_NAMESPACE::RenderPass</a></div><div class="ttdoc">A wrapper class for a Vulkan render pass.</div><div class="ttdef"><b>Definition:</b> RenderPass.hpp:10</div></div>
 <div class="ttc" id="a_vertex_buffer_8hpp_html"><div class="ttname"><a href="_vertex_buffer_8hpp.html">VertexBuffer.hpp</a></div></div>
-<div class="ttc" id="aclass_r_e_n_d_e_r_e_r___n_a_m_e_s_p_a_c_e_1_1_light_node_html"><div class="ttname"><a href="class_r_e_n_d_e_r_e_r___n_a_m_e_s_p_a_c_e_1_1_light_node.html">RENDERER_NAMESPACE::LightNode</a></div><div class="ttdoc">Adds lighting-related information to the TransformNode parent class.</div><div class="ttdef"><b>Definition:</b> LightNode.hpp:19</div></div>
-<div class="ttc" id="a_descriptor_set_8hpp_html"><div class="ttname"><a href="_descriptor_set_8hpp.html">DescriptorSet.hpp</a></div></div>
-<div class="ttc" id="aclass_r_e_n_d_e_r_e_r___n_a_m_e_s_p_a_c_e_1_1_api_html_ad04f03a756191c738eb5c347c40dc244"><div class="ttname"><a href="class_r_e_n_d_e_r_e_r___n_a_m_e_s_p_a_c_e_1_1_api.html#ad04f03a756191c738eb5c347c40dc244">RENDERER_NAMESPACE::Api::setNodes</a></div><div class="ttdeci">void setNodes(const std::vector&lt; std::shared_ptr&lt; Node &gt;&gt; &amp;nodes)</div><div class="ttdoc">Used to overwrite the entire scene with new nodes.</div><div class="ttdef"><b>Definition:</b> Api.hpp:115</div></div>
-<div class="ttc" id="a_descriptor_set_layout_8hpp_html"><div class="ttname"><a href="_descriptor_set_layout_8hpp.html">DescriptorSetLayout.hpp</a></div></div>
+<div class="ttc" id="aclass_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_settings_html"><div class="ttname"><a href="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_settings.html">RAYEXEC_NAMESPACE::Settings</a></div><div class="ttdoc">Exposes all graphic settings supported by the renderer.</div><div class="ttdef"><b>Definition:</b> Settings.hpp:13</div></div>
+<div class="ttc" id="aclass_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_debug_messenger_html"><div class="ttname"><a href="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_debug_messenger.html">RAYEXEC_NAMESPACE::DebugMessenger</a></div><div class="ttdoc">A wrapper class for a Vulkan debug utility messenger.</div><div class="ttdef"><b>Definition:</b> DebugMessenger.hpp:12</div></div>
+<div class="ttc" id="aclass_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_storage_buffer_html"><div class="ttname"><a href="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_storage_buffer.html">RAYEXEC_NAMESPACE::StorageBuffer</a></div><div class="ttdef"><b>Definition:</b> StorageBuffer.hpp:8</div></div>
 <div class="ttc" id="a_command_buffer_8hpp_html"><div class="ttname"><a href="_command_buffer_8hpp.html">CommandBuffer.hpp</a></div></div>
-<div class="ttc" id="aclass_r_e_n_d_e_r_e_r___n_a_m_e_s_p_a_c_e_1_1_device_html"><div class="ttname"><a href="class_r_e_n_d_e_r_e_r___n_a_m_e_s_p_a_c_e_1_1_device.html">RENDERER_NAMESPACE::Device</a></div><div class="ttdoc">A wrapper class for a Vulkan logical device.</div><div class="ttdef"><b>Definition:</b> Device.hpp:10</div></div>
+<div class="ttc" id="anamespace_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_html"><div class="ttname"><a href="namespace_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e.html">RAYEXEC_NAMESPACE</a></div><div class="ttdoc">The rx namespace encapsulates every single component provided by the renderer.</div><div class="ttdef"><b>Definition:</b> Api.hpp:23</div></div>
 <div class="ttc" id="a_gui_8hpp_html"><div class="ttname"><a href="_gui_8hpp.html">Gui.hpp</a></div></div>
-<div class="ttc" id="aclass_r_e_n_d_e_r_e_r___n_a_m_e_s_p_a_c_e_1_1_api_html_a81f41f5a78ea10b1cb9a5c12d1d10c7d"><div class="ttname"><a href="class_r_e_n_d_e_r_e_r___n_a_m_e_s_p_a_c_e_1_1_api.html#a81f41f5a78ea10b1cb9a5c12d1d10c7d">RENDERER_NAMESPACE::Api::initGui</a></div><div class="ttdeci">RX_API void initGui()</div><div class="ttdoc">Re-initializes the render pass to support the GUI and initializes the GUI itself.</div></div>
-<div class="ttc" id="aclass_r_e_n_d_e_r_e_r___n_a_m_e_s_p_a_c_e_1_1_api_html_aae3aa124f6daafba073a33b1c2915bf5"><div class="ttname"><a href="class_r_e_n_d_e_r_e_r___n_a_m_e_s_p_a_c_e_1_1_api.html#aae3aa124f6daafba073a33b1c2915bf5">RENDERER_NAMESPACE::Api::pushNode</a></div><div class="ttdeci">void pushNode(const std::shared_ptr&lt; Node &gt; node, bool record=true)</div><div class="ttdoc">Used to add another arbitrary node to the scene.</div><div class="ttdef"><b>Definition:</b> Api.hpp:63</div></div>
-<div class="ttc" id="a_physical_device_8hpp_html"><div class="ttname"><a href="_physical_device_8hpp.html">PhysicalDevice.hpp</a></div></div>
-<div class="ttc" id="aclass_r_e_n_d_e_r_e_r___n_a_m_e_s_p_a_c_e_1_1_api_html_a61c9b50d3a14b19888a0ce117a0811dd"><div class="ttname"><a href="class_r_e_n_d_e_r_e_r___n_a_m_e_s_p_a_c_e_1_1_api.html#a61c9b50d3a14b19888a0ce117a0811dd">RENDERER_NAMESPACE::Api::Api</a></div><div class="ttdeci">Api(std::shared_ptr&lt; Window &gt; window, std::shared_ptr&lt; Camera &gt; camera)</div></div>
 <div class="ttc" id="a_index_buffer_8hpp_html"><div class="ttname"><a href="_index_buffer_8hpp.html">IndexBuffer.hpp</a></div></div>
-<div class="ttc" id="astruct_r_e_n_d_e_r_e_r___n_a_m_e_s_p_a_c_e_1_1_camera_ubo_html"><div class="ttname"><a href="struct_r_e_n_d_e_r_e_r___n_a_m_e_s_p_a_c_e_1_1_camera_ubo.html">RENDERER_NAMESPACE::CameraUbo</a></div><div class="ttdoc">A uniform buffer object for camera data.</div><div class="ttdef"><b>Definition:</b> UniformBuffer.hpp:11</div></div>
 <div class="ttc" id="a_texture_8hpp_html"><div class="ttname"><a href="_texture_8hpp.html">Texture.hpp</a></div></div>
-<div class="ttc" id="aclass_r_e_n_d_e_r_e_r___n_a_m_e_s_p_a_c_e_1_1_uniform_buffer_html"><div class="ttname"><a href="class_r_e_n_d_e_r_e_r___n_a_m_e_s_p_a_c_e_1_1_uniform_buffer.html">RENDERER_NAMESPACE::UniformBuffer</a></div><div class="ttdoc">A specialised buffer for uniforms.</div><div class="ttdef"><b>Definition:</b> UniformBuffer.hpp:30</div></div>
-<div class="ttc" id="aclass_r_e_n_d_e_r_e_r___n_a_m_e_s_p_a_c_e_1_1_descriptor_set_html"><div class="ttname"><a href="class_r_e_n_d_e_r_e_r___n_a_m_e_s_p_a_c_e_1_1_descriptor_set.html">RENDERER_NAMESPACE::DescriptorSet</a></div><div class="ttdoc">A wrapper class for Vulkan descriptor sets.</div><div class="ttdef"><b>Definition:</b> DescriptorSet.hpp:14</div></div>
-<div class="ttc" id="a_base_8hpp_html"><div class="ttname"><a href="_base_8hpp.html">Base.hpp</a></div></div>
+<div class="ttc" id="aclass_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_swapchain_html"><div class="ttname"><a href="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_swapchain.html">RAYEXEC_NAMESPACE::Swapchain</a></div><div class="ttdoc">A wrapper class for a Vulkan swapchain.</div><div class="ttdef"><b>Definition:</b> Swapchain.hpp:12</div></div>
 <div class="ttc" id="a_ray_tracing_builder_8hpp_html"><div class="ttname"><a href="_ray_tracing_builder_8hpp.html">RayTracingBuilder.hpp</a></div></div>
-<div class="ttc" id="aclass_r_e_n_d_e_r_e_r___n_a_m_e_s_p_a_c_e_1_1_surface_html"><div class="ttname"><a href="class_r_e_n_d_e_r_e_r___n_a_m_e_s_p_a_c_e_1_1_surface.html">RENDERER_NAMESPACE::Surface</a></div><div class="ttdoc">A wrapper class for a Vulkan surface.</div><div class="ttdef"><b>Definition:</b> Surface.hpp:10</div></div>
+<div class="ttc" id="a_components_8hpp_html"><div class="ttname"><a href="_components_8hpp.html">Components.hpp</a></div></div>
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>

@@ -2,7 +2,6 @@
 
 #include "api/Components.hpp"
 #include "api/buffers/CommandBuffer.hpp"
-#include "api/utility/Destructors.hpp"
 #include "api/utility/Helpers.hpp"
 #include "api/utility/Initializers.hpp"
 
@@ -31,7 +30,7 @@ namespace RAYEXEC_NAMESPACE
     this->blas_.clear( );
   }
 
-  Blas RayTracingBuilder::modelToBlas( const VertexBuffer& vertexBuffer, const IndexBuffer& indexBuffer ) const
+  auto RayTracingBuilder::modelToBlas( const VertexBuffer& vertexBuffer, const IndexBuffer& indexBuffer ) const -> Blas
   {
     vk::AccelerationStructureCreateGeometryTypeInfoKHR asCreate( vk::GeometryTypeKHR::eTriangles,    // geometryType
                                                                  indexBuffer.getCount( ) / 3,        // maxPrimitiveCount
@@ -67,7 +66,7 @@ namespace RAYEXEC_NAMESPACE
     return blas;
   }
 
-  vk::AccelerationStructureInstanceKHR RayTracingBuilder::instanceToVkGeometryInstanceKHR( const BlasInstance& instance )
+  auto RayTracingBuilder::instanceToVkGeometryInstanceKHR( const BlasInstance& instance ) -> vk::AccelerationStructureInstanceKHR
   {
     Blas& blas { this->blas_[instance.blasId] };
 

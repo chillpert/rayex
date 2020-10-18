@@ -1,5 +1,6 @@
 var searchData=
 [
-  ['color_695',['color',['../struct_r_e_n_d_e_r_e_r___n_a_m_e_s_p_a_c_e_1_1_vertex.html#a060188bd4a5d28719d16ccea0f789f95',1,'RENDERER_NAMESPACE::Vertex']]],
-  ['constant_696',['constant',['../class_r_e_n_d_e_r_e_r___n_a_m_e_s_p_a_c_e_1_1_point_light_node.html#a41181eb417e917b1d79b4c53d03a2a53',1,'RENDERER_NAMESPACE::PointLightNode::constant()'],['../struct_r_e_n_d_e_r_e_r___n_a_m_e_s_p_a_c_e_1_1_point_light_node_1_1_ubo.html#a0b3ba098092df13cdf3292d80fb7abe5',1,'RENDERER_NAMESPACE::PointLightNode::Ubo::constant()']]]
+  ['clearcolor_674',['clearColor',['../struct_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_ray_trace_push_constants.html#ac4ef828d926eeef4f40609122b70b845',1,'RAYEXEC_NAMESPACE::RayTracePushConstants']]],
+  ['color_675',['color',['../struct_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_vertex.html#aff8b7f0bd8933579186b601fc8c48a7c',1,'RAYEXEC_NAMESPACE::Vertex']]],
+  ['constant_676',['constant',['../struct_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_point_light.html#afc90ee1a8940d623808126054c36dd6d',1,'RAYEXEC_NAMESPACE::PointLight']]]
 ];

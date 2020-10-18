@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.8.17"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>RAYEXEC: /home/n30/Repos/renderer/include/base/Base.hpp File Reference</title>
+<title>RAYEXEC: /home/n30/Repos/rayexec/include/base/Base.hpp File Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -93,19 +93,57 @@ $(document).ready(function(){initNavTree('_base_8hpp.html',''); initResizable();
 </div>
 
 <div class="header">
+  <div class="summary">
+<a href="#nested-classes">Classes</a> &#124;
+<a href="#namespaces">Namespaces</a> &#124;
+<a href="#func-members">Functions</a>  </div>
   <div class="headertitle">
 <div class="title">Base.hpp File Reference</div>  </div>
 </div><!--header-->
 <div class="contents">
-<div class="textblock"><code>#include &quot;<a class="el" href="_camera_8hpp_source.html">base/Camera.hpp</a>&quot;</code><br />
-<code>#include &quot;<a class="el" href="_node_8hpp_source.html">base/Node.hpp</a>&quot;</code><br />
-<code>#include &quot;<a class="el" href="_light_node_8hpp_source.html">base/LightNode.hpp</a>&quot;</code><br />
-<code>#include &quot;<a class="el" href="_geometry_node_8hpp_source.html">base/GeometryNode.hpp</a>&quot;</code><br />
-<code>#include &quot;<a class="el" href="_gui_8hpp_source.html">base/Gui.hpp</a>&quot;</code><br />
-<code>#include &quot;<a class="el" href="_window_8hpp_source.html">base/Window.hpp</a>&quot;</code><br />
-<code>#include &quot;<a class="el" href="_settings_8hpp_source.html">Settings.hpp</a>&quot;</code><br />
+<div class="textblock"><code>#include &quot;<a class="el" href="_vertex_8hpp_source.html">api/Vertex.hpp</a>&quot;</code><br />
 </div>
 <p><a href="_base_8hpp_source.html">Go to the source code of this file.</a></p>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="nested-classes"></a>
+Classes</h2></td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_material.html">RAYEXEC_NAMESPACE::Material</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Describes the rendering properties of a mesh.  <a href="struct_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_material.html#details">More...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_mesh.html">RAYEXEC_NAMESPACE::Mesh</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Describes a sub-mesh and its material.  <a href="struct_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_mesh.html#details">More...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_geometry.html">RAYEXEC_NAMESPACE::Geometry</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Describes a geometry <a class="el" href="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_ray_exec.html" title="The main user interface.">RayExec</a> can render.  <a href="struct_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_geometry.html#details">More...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_geometry_instance.html">RAYEXEC_NAMESPACE::GeometryInstance</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Describes an instance of some geometry.  <a href="struct_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_geometry_instance.html#details">More...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_light.html">RAYEXEC_NAMESPACE::Light</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">A common base for all light types.  <a href="struct_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_light.html#details">More...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_directional_light.html">RAYEXEC_NAMESPACE::DirectionalLight</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">A directional light.  <a href="struct_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_directional_light.html#details">More...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_point_light.html">RAYEXEC_NAMESPACE::PointLight</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">A point light.  <a href="struct_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_point_light.html#details">More...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="namespaces"></a>
+Namespaces</h2></td></tr>
+<tr class="memitem:namespace_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e"><td class="memItemLeft" align="right" valign="top"> &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespace_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e.html">RAYEXEC_NAMESPACE</a></td></tr>
+<tr class="memdesc:namespace_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e"><td class="mdescLeft">&#160;</td><td class="mdescRight">The rx namespace encapsulates every single component provided by the renderer. <br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
+Functions</h2></td></tr>
+<tr class="memitem:ga02a95a02aa5d57299c4eecb3c6bb4d3d"><td class="memItemLeft" align="right" valign="top">RX_API std::shared_ptr&lt; Geometry &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___base.html#ga02a95a02aa5d57299c4eecb3c6bb4d3d">RAYEXEC_NAMESPACE::loadObj</a> (std::string_view path)</td></tr>
+<tr class="memdesc:ga02a95a02aa5d57299c4eecb3c6bb4d3d"><td class="mdescLeft">&#160;</td><td class="mdescRight">A commodity function for loading a wavefront (.obj) model file and allocate a geometry object from it.  <a href="group___base.html#ga02a95a02aa5d57299c4eecb3c6bb4d3d">More...</a><br /></td></tr>
+<tr class="separator:ga02a95a02aa5d57299c4eecb3c6bb4d3d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gabb8acb5237813d1ac88e190a79a1bff2"><td class="memItemLeft" align="right" valign="top">RX_API std::shared_ptr&lt; GeometryInstance &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___base.html#gabb8acb5237813d1ac88e190a79a1bff2">RAYEXEC_NAMESPACE::instance</a> (std::shared_ptr&lt; Geometry &gt; geometry, const glm::mat4 &amp;transform=glm::mat4(1.0F))</td></tr>
+<tr class="memdesc:gabb8acb5237813d1ac88e190a79a1bff2"><td class="mdescLeft">&#160;</td><td class="mdescRight">A commodity function for allocating an instance from a given geometry and set its matrices.  <a href="group___base.html#gabb8acb5237813d1ac88e190a79a1bff2">More...</a><br /></td></tr>
+<tr class="separator:gabb8acb5237813d1ac88e190a79a1bff2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
 </div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->

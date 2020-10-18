@@ -2,7 +2,6 @@
 #include "api/buffers/Buffer.hpp"
 #include "api/buffers/CommandBuffer.hpp"
 #include "api/image/Texture.hpp"
-#include "api/utility/Destructors.hpp"
 #include "api/utility/Helpers.hpp"
 #include "api/utility/Initializers.hpp"
 

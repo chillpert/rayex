@@ -98,33 +98,26 @@ $(document).ready(function(){initNavTree('todo.html',''); initResizable(); });
 </div><!--header-->
 <div class="contents">
 <div class="textblock"><dl class="reflist">
-<dt>Class <a class="el" href="class_r_e_n_d_e_r_e_r___n_a_m_e_s_p_a_c_e_1_1_descriptor_set.html">RENDERER_NAMESPACE::DescriptorSet</a>  </dt>
-<dd><a class="anchor" id="_todo000004"></a>Make the update process "smart" by using the existing information to automatically write to and update the descriptor sets.  </dd>
-<dt>Class <a class="el" href="struct_r_e_n_d_e_r_e_r___n_a_m_e_s_p_a_c_e_1_1_lights_ubo.html">RENDERER_NAMESPACE::LightsUbo</a>  </dt>
-<dd><a class="anchor" id="_todo000003"></a>Shouldn't this also be a storage buffer?  </dd>
-<dt>Class <a class="el" href="class_r_e_n_d_e_r_e_r___n_a_m_e_s_p_a_c_e_1_1_model.html">RENDERER_NAMESPACE::Model</a>  </dt>
-<dd><p class="startdd"><a class="anchor" id="_todo000007"></a>modelCounter is being incremented always, even if it is not a new model. This class should actually look inside Api::models or sth to assign the correct index. </p>
-<p class="enddd"><a class="anchor" id="_todo000009"></a>modelCounter is being incremented always, even if it is not a new model. This class should actually look inside Api::models or sth to assign the correct index.  </p>
-</dd>
-<dt>Class <a class="el" href="class_r_e_n_d_e_r_e_r___n_a_m_e_s_p_a_c_e_1_1_ray_exec.html">RENDERER_NAMESPACE::RayExec</a>  </dt>
-<dd><a class="anchor" id="_todo000012"></a>Not calling init will cause a segmentation fault as the application still tries to call device.waitIdle on a device that was not init.  </dd>
-<dt>Member <a class="el" href="class_r_e_n_d_e_r_e_r___n_a_m_e_s_p_a_c_e_1_1_ray_exec.html#a2be98da612373e9f871f2c7dbf3955f4">RENDERER_NAMESPACE::RayExec::init</a>  ()</dt>
-<dd><a class="anchor" id="_todo000013"></a>The copying process is temporary for now and has to be changed for a release build.  </dd>
-<dt>Class <a class="el" href="class_r_e_n_d_e_r_e_r___n_a_m_e_s_p_a_c_e_1_1_settings.html">RENDERER_NAMESPACE::Settings</a>  </dt>
-<dd><p class="startdd"><a class="anchor" id="_todo000014"></a>Split refresh into refreshPipeline and refreshSwapchain to avoid doing unnecessary operations. </p>
-<p class="enddd">Add some setting, that I don't remember anymore. <br  />
-  </p>
-</dd>
-<dt>Member <a class="el" href="class_r_e_n_d_e_r_e_r___n_a_m_e_s_p_a_c_e_1_1_swapchain.html#a024f036d7b03655a33e1f243a394d47c">RENDERER_NAMESPACE::Swapchain::getImageViews</a>  () const</dt>
-<dd><a class="anchor" id="_todo000008"></a>Returning by reference will result in size 0.  </dd>
-<dt>Class <a class="el" href="class_r_e_n_d_e_r_e_r___n_a_m_e_s_p_a_c_e_1_1_texture.html">RENDERER_NAMESPACE::Texture</a>  </dt>
+<dt>Class <a class="el" href="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_bindings.html">RAYEXEC_NAMESPACE::Bindings</a>  </dt>
+<dd><a class="anchor" id="_todo000003"></a>Documentation  </dd>
+<dt>Class <a class="el" href="struct_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_lights_ubo.html">RAYEXEC_NAMESPACE::LightsUbo</a>  </dt>
+<dd><a class="anchor" id="_todo000004"></a>Shouldn't this also be a storage buffer?  </dd>
+<dt>Class <a class="el" href="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_settings.html">RAYEXEC_NAMESPACE::Settings</a>  </dt>
+<dd><a class="anchor" id="_todo000010"></a>Add a setUseTotalPathsOnly( bool flag )  </dd>
+<dt>Member <a class="el" href="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_settings.html#a0651cd037e843c0628458408bb06f0e7">RAYEXEC_NAMESPACE::Settings::getRayTracingEnabled</a>  () const -&gt; bool</dt>
+<dd><a class="anchor" id="_todo000011"></a>This function will be pointless once the new pipeline system is implemented.  </dd>
+<dt>Member <a class="el" href="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_settings.html#a3d13262e2f5dfade1258796d2b9f09f7">RAYEXEC_NAMESPACE::Settings::setEnableRayTracing</a>  (bool flag)</dt>
+<dd><a class="anchor" id="_todo000012"></a>This function will be pointless once the new pipeline system is implemented.  </dd>
+<dt>Member <a class="el" href="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_swapchain.html#a5e7ed9142f249264a2cb421c92c1b2d5">RAYEXEC_NAMESPACE::Swapchain::getImageViews</a>  () const -&gt; std::vector&lt; vk::ImageView &gt;</dt>
+<dd><a class="anchor" id="_todo000007"></a>Returning by reference will result in size 0.  </dd>
+<dt>Class <a class="el" href="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_texture.html">RAYEXEC_NAMESPACE::Texture</a>  </dt>
 <dd><a class="anchor" id="_todo000005"></a>textureCounter is being incremented always, even if it is not a new texture. This class should actually look inside Api::textures or sth to assign the correct index.  </dd>
-<dt>Member <a class="el" href="class_r_e_n_d_e_r_e_r___n_a_m_e_s_p_a_c_e_1_1_texture.html#af3c8281d91a53b178525936bab9aa5a2">RENDERER_NAMESPACE::Texture::init</a>  (const std::string &amp;path)</dt>
+<dt>Member <a class="el" href="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_texture.html#ada93dab9c8e12bfea2736794b12c81dd">RAYEXEC_NAMESPACE::Texture::init</a>  (std::string_view path)</dt>
 <dd><a class="anchor" id="_todo000006"></a>Latest changes to this class might be causing errors once texture are working again.  </dd>
-<dt>Class <a class="el" href="class_r_e_n_d_e_r_e_r___n_a_m_e_s_p_a_c_e_1_1_time.html">RENDERER_NAMESPACE::Time</a>  </dt>
-<dd><a class="anchor" id="_todo000010"></a>Average FPS are pointless. Implement minimum FPS and frametimes instead.  </dd>
-<dt>Class <a class="el" href="class_r_e_n_d_e_r_e_r___n_a_m_e_s_p_a_c_e_1_1_window.html">RENDERER_NAMESPACE::Window</a>  </dt>
-<dd><a class="anchor" id="_todo000011"></a>To avoid the client having to link to SDL themselves requires to write a complete SDL2 wrapper. </dd>
+<dt>Class <a class="el" href="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_time.html">RAYEXEC_NAMESPACE::Time</a>  </dt>
+<dd><a class="anchor" id="_todo000008"></a>Average FPS are pointless. Implement minimum FPS and frametimes instead.  </dd>
+<dt>Class <a class="el" href="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_window.html">RAYEXEC_NAMESPACE::Window</a>  </dt>
+<dd><a class="anchor" id="_todo000009"></a>To avoid the user having to link to SDL themselves requires to write a complete SDL2 wrapper. </dd>
 </dl>
 </div></div><!-- contents -->
 </div><!-- PageDoc -->

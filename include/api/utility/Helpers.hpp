@@ -43,7 +43,7 @@ namespace vk
 
     /// Helps finding the suitable memory type based on the function input.
     /// @param physicalDevice The GPU that you want to find the correct memory type for.
-    /// @param typeFiler Is a bitmask containing one bit set for every memory type which the specified windows handle can be imported as.
+    /// @param typeFilter Is a bitmask containing one bit set for every memory type which the specified windows handle can be imported as.
     /// @param properties The memory property flags.
     /// @return Returns the memory type matching the function input.
     auto findMemoryType( PhysicalDevice physicalDevice, uint32_t typeFilter, MemoryPropertyFlags properties ) -> uint32_t;
@@ -63,7 +63,8 @@ namespace vk
     }
 
     /// Returns the descriptor pool sizes required by any given descriptor set layout bindings.
-    /// @param layoutBinding A vector of descriptor set layout bindings that will be used to create the descriptor pool sizes.
+    /// @param layoutBindings A vector of descriptor set layout bindings that will be used to create the descriptor pool sizes.
+    /// @param maxSets The maximum number of descriptor sets.
     /// @return Returns a vector of descriptor pool sizes.
     auto getPoolSizes( const std::vector<DescriptorSetLayoutBinding>& layoutBindings, uint32_t maxSets ) -> std::vector<DescriptorPoolSize>;
 

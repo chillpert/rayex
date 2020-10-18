@@ -1,13 +1,10 @@
 var searchData=
 [
-  ['mask_224',['mask',['../struct_r_e_n_d_e_r_e_r___n_a_m_e_s_p_a_c_e_1_1_blas_instance.html#a478c69b010e1fe0672fd41198531b125',1,'RENDERER_NAMESPACE::BlasInstance']]],
-  ['material_225',['Material',['../class_r_e_n_d_e_r_e_r___n_a_m_e_s_p_a_c_e_1_1_material.html',1,'RENDERER_NAMESPACE::Material'],['../class_r_e_n_d_e_r_e_r___n_a_m_e_s_p_a_c_e_1_1_material.html#aeb5222249b0fd78b056c8cca7ed869e3',1,'RENDERER_NAMESPACE::Material::Material()=default'],['../class_r_e_n_d_e_r_e_r___n_a_m_e_s_p_a_c_e_1_1_material.html#a96de2065664f93195e974f3243f88e4e',1,'RENDERER_NAMESPACE::Material::Material(const std::string &amp;diffuseTexture)'],['../class_r_e_n_d_e_r_e_r___n_a_m_e_s_p_a_c_e_1_1_model.html#ac7d95d90767db2950b6759789a777354',1,'RENDERER_NAMESPACE::Model::material()'],['../class_r_e_n_d_e_r_e_r___n_a_m_e_s_p_a_c_e_1_1_geometry_node.html#ae64fe2f63afde64037a3315929338185',1,'RENDERER_NAMESPACE::GeometryNode::material()']]],
-  ['material_2ehpp_226',['Material.hpp',['../_material_8hpp.html',1,'']]],
-  ['memory_227',['memory',['../class_r_e_n_d_e_r_e_r___n_a_m_e_s_p_a_c_e_1_1_buffer.html#a44cacd8da01522184bb802f28182810d',1,'RENDERER_NAMESPACE::Buffer::memory()'],['../class_r_e_n_d_e_r_e_r___n_a_m_e_s_p_a_c_e_1_1_image.html#a006e841bd50082197a61ba2671446d94',1,'RENDERER_NAMESPACE::Image::memory()'],['../struct_r_e_n_d_e_r_e_r___n_a_m_e_s_p_a_c_e_1_1_acceleration_structure.html#a059e2af740d6a24070b2cc2d9e7fb5fc',1,'RENDERER_NAMESPACE::AccelerationStructure::memory()']]],
-  ['minimized_228',['minimized',['../class_r_e_n_d_e_r_e_r___n_a_m_e_s_p_a_c_e_1_1_window.html#aed210123bc2bd9f321c952394792acc0',1,'RENDERER_NAMESPACE::Window']]],
-  ['model_229',['Model',['../class_r_e_n_d_e_r_e_r___n_a_m_e_s_p_a_c_e_1_1_model.html',1,'RENDERER_NAMESPACE::Model'],['../class_r_e_n_d_e_r_e_r___n_a_m_e_s_p_a_c_e_1_1_model.html#abf67cd5a55e887e1dbfbbe4e229d272e',1,'RENDERER_NAMESPACE::Model::Model()'],['../class_r_e_n_d_e_r_e_r___n_a_m_e_s_p_a_c_e_1_1_model.html#a3d4d24f1398cac86283efee3517d87f4',1,'RENDERER_NAMESPACE::Model::Model(const std::string &amp;path)'],['../class_r_e_n_d_e_r_e_r___n_a_m_e_s_p_a_c_e_1_1_model.html#abf67cd5a55e887e1dbfbbe4e229d272e',1,'RENDERER_NAMESPACE::Model::Model()'],['../class_r_e_n_d_e_r_e_r___n_a_m_e_s_p_a_c_e_1_1_model.html#a3d4d24f1398cac86283efee3517d87f4',1,'RENDERER_NAMESPACE::Model::Model(const std::string &amp;path)']]],
-  ['model_2ehpp_230',['Model.hpp',['../api_2_model_8hpp.html',1,'(Global Namespace)'],['../base_2_model_8hpp.html',1,'(Global Namespace)']]],
-  ['modelindex_231',['modelIndex',['../struct_r_e_n_d_e_r_e_r___n_a_m_e_s_p_a_c_e_1_1_ray_tracing_instance.html#a60e2af9a72e20ecae60791930897d924',1,'RENDERER_NAMESPACE::RayTracingInstance']]],
-  ['modelpath_232',['modelPath',['../class_r_e_n_d_e_r_e_r___n_a_m_e_s_p_a_c_e_1_1_geometry_node.html#a3c7cf4d697a81deefc2fce81369a4842',1,'RENDERER_NAMESPACE::GeometryNode']]],
-  ['modeltoblas_233',['modelToBlas',['../class_r_e_n_d_e_r_e_r___n_a_m_e_s_p_a_c_e_1_1_ray_tracing_builder.html#af77fef1b7c7197d755da66291d054a6a',1,'RENDERER_NAMESPACE::RayTracingBuilder']]]
+  ['layout_215',['layout',['../struct_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_descriptors.html#a830c3a9d3cfa294032cfe09bf49a6a7c',1,'RAYEXEC_NAMESPACE::Descriptors::layout()'],['../class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_image.html#a81b85b202ca5a475953cfc076ac5958a',1,'RAYEXEC_NAMESPACE::Image::layout()']]],
+  ['light_216',['Light',['../struct_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_light.html',1,'RAYEXEC_NAMESPACE']]],
+  ['lights_2ehpp_217',['Lights.hpp',['../_lights_8hpp.html',1,'']]],
+  ['lightsubo_218',['LightsUbo',['../struct_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_lights_ubo.html',1,'RAYEXEC_NAMESPACE']]],
+  ['linear_219',['linear',['../struct_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_point_light.html#af910a6aa90b03c1d4adbdaae588ade91',1,'RAYEXEC_NAMESPACE::PointLight']]],
+  ['listtovec_220',['listToVec',['../namespace_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_util.html#afcdf9ecfb26e4931c887eb8afdbe1227',1,'RAYEXEC_NAMESPACE::Util']]],
+  ['loadobj_221',['loadObj',['../group___base.html#ga02a95a02aa5d57299c4eecb3c6bb4d3d',1,'RAYEXEC_NAMESPACE']]]
 ];

@@ -1,0 +1,43 @@
+#ifndef LIGHTS_HPP
+#define LIGHTS_HPP
+
+#include "pch/stdafx.hpp"
+
+namespace RAYEXEC_NAMESPACE
+{
+
+  /// A common base for all light types.
+  ///
+  /// Instances of this type should not be used anywhere.
+  /// @ingroup BASE
+  struct Light
+  {
+    glm::vec3 ambient  = glm::vec3( 1.0F ); ///< The ambient color.
+    glm::vec3 diffuse  = glm::vec3( 1.0F ); ///< The diffuse color.
+    glm::vec3 specular = glm::vec3( 1.0F ); ///< The specular color.
+
+    float ambientIntensity  = 0.0F; ///< The intensity of the ambient color.
+    float diffuseIntensity  = 0.0F; ///< The intensity of the diffuse color.
+    float specularIntensity = 0.0F; ///< The intensity of the specular color.
+  };
+
+  /// A directional light.
+  /// @ingroup BASE
+  struct DirectionalLight : public Light
+  {
+    glm::vec3 direction = glm::vec3( 1.0F );
+  };
+
+  /// A point light.
+  /// @ingroup BASE
+  struct PointLight : public Light
+  {
+    glm::vec3 position = glm::vec3( 1.0F );
+
+    float constant  = 0.0F;
+    float linear    = 0.0F;
+    float quadratic = 0.0F;
+  };
+}
+
+#endif // LIGHTS_HPP

@@ -1,8 +1,12 @@
 var searchData=
 [
-  ['parseshader_623',['parseShader',['../namespace_r_e_n_d_e_r_e_r___n_a_m_e_s_p_a_c_e_1_1util.html#a3dc69c3ca6cfbcec987c3d90e9853fd6',1,'RENDERER_NAMESPACE::util']]],
-  ['physicaldevice_624',['PhysicalDevice',['../class_r_e_n_d_e_r_e_r___n_a_m_e_s_p_a_c_e_1_1_physical_device.html#a7c6c26b9e061ea104c36fb49b0cbaf89',1,'RENDERER_NAMESPACE::PhysicalDevice']]],
-  ['pipeline_625',['Pipeline',['../class_r_e_n_d_e_r_e_r___n_a_m_e_s_p_a_c_e_1_1_pipeline.html#a176b9b000b40bf09a0fdc27674d09def',1,'RENDERER_NAMESPACE::Pipeline::Pipeline()=default'],['../class_r_e_n_d_e_r_e_r___n_a_m_e_s_p_a_c_e_1_1_pipeline.html#a64ea3a3733feb6c90871684f1f0e25a5',1,'RENDERER_NAMESPACE::Pipeline::Pipeline(const std::vector&lt; vk::DescriptorSetLayout &gt; &amp;descriptorSetLayouts, uint32_t maxRecursionDepth, bool initialize=true)']]],
-  ['processmouse_626',['processMouse',['../class_r_e_n_d_e_r_e_r___n_a_m_e_s_p_a_c_e_1_1_camera.html#a533e51cea5ee3baaffc3bcdfbe0c8c86',1,'RENDERER_NAMESPACE::Camera']]],
-  ['pushnode_627',['pushNode',['../class_r_e_n_d_e_r_e_r___n_a_m_e_s_p_a_c_e_1_1_api.html#aae3aa124f6daafba073a33b1c2915bf5',1,'RENDERER_NAMESPACE::Api::pushNode()'],['../class_r_e_n_d_e_r_e_r___n_a_m_e_s_p_a_c_e_1_1_ray_exec.html#aa16e703ed21f0dcb76b36d28226de402',1,'RENDERER_NAMESPACE::RayExec::pushNode()']]]
+  ['raytrace_602',['rayTrace',['../class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_ray_tracing_builder.html#a311cafb7c359cc969a32d8acea1dd08d',1,'RAYEXEC_NAMESPACE::RayTracingBuilder']]],
+  ['raytracingbuilder_603',['RayTracingBuilder',['../class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_ray_tracing_builder.html#a09f8d1d7605a67657ac7e25aa9a3412e',1,'RAYEXEC_NAMESPACE::RayTracingBuilder::RayTracingBuilder()=default'],['../class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_ray_tracing_builder.html#ae5f98a8ab4b95cb24ad4c4dd898ac8a9',1,'RAYEXEC_NAMESPACE::RayTracingBuilder::RayTracingBuilder(const RayTracingBuilder &amp;)=delete'],['../class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_ray_tracing_builder.html#aa9828b53ca4a0797b2b7fb2ec37e279b',1,'RAYEXEC_NAMESPACE::RayTracingBuilder::RayTracingBuilder(const RayTracingBuilder &amp;&amp;)=delete']]],
+  ['recreate_604',['recreate',['../class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_gui.html#a3c007475218c665bf3cefc22e8aec63a',1,'RAYEXEC_NAMESPACE::Gui']]],
+  ['removegeometryinstance_605',['removeGeometryInstance',['../class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_ray_exec.html#afc92af88a74dab31911a9b88a818dc61',1,'RAYEXEC_NAMESPACE::RayExec']]],
+  ['render_606',['render',['../class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_gui.html#a370773b570ac9e9cedf4532af673fed2',1,'RAYEXEC_NAMESPACE::Gui']]],
+  ['renderdrawdata_607',['renderDrawData',['../class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_gui.html#a786d4c8f378d6f025d8ca7caae8e66c4',1,'RAYEXEC_NAMESPACE::Gui']]],
+  ['reset_608',['reset',['../class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_bindings.html#a09e932446ea500173160e77a157764ac',1,'RAYEXEC_NAMESPACE::Bindings::reset()'],['../class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_command_buffer.html#a016d2435cc62af6bcf4160bd541baf56',1,'RAYEXEC_NAMESPACE::CommandBuffer::reset()']]],
+  ['resize_609',['resize',['../class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_window.html#ab051017a633806871575e8ec129cfd8a',1,'RAYEXEC_NAMESPACE::Window']]],
+  ['run_610',['run',['../class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_ray_exec.html#a4364aeb145d7ae3685cac2d126d1d304',1,'RAYEXEC_NAMESPACE::RayExec']]]
 ];

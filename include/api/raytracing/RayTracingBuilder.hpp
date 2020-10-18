@@ -6,7 +6,7 @@
 #include "api/buffers/IndexBuffer.hpp"
 #include "api/buffers/VertexBuffer.hpp"
 #include "api/raytracing/AccelerationStructure.hpp"
-#include "base/Base.hpp"
+#include "base/Geometry.hpp"
 
 namespace RAYEXEC_NAMESPACE
 {
@@ -16,6 +16,7 @@ namespace RAYEXEC_NAMESPACE
   {
   public:
     RayTracingBuilder( ) = default;
+
     /// Calls destroy().
     RX_API ~RayTracingBuilder( );
 
@@ -32,25 +33,28 @@ namespace RAYEXEC_NAMESPACE
     void destroy( );
 
     /// @return Returns the top level acceleration structure.
-    const Tlas& getTlas( ) const { return this->tlas; }
+    auto getTlas( ) const -> const Tlas& { return this->tlas; }
 
-    const vk::PhysicalDeviceRayTracingPropertiesKHR& getRtProperties( ) const { return this->rtProperties; }
+    /// @return Returns the physical device's ray tracing properties.
+    auto getRtProperties( ) const -> const vk::PhysicalDeviceRayTracingPropertiesKHR& { return this->rtProperties; }
 
     /// @return Returns the storage image's image view.
-    const vk::ImageView getStorageImageView( ) const { return this->storageImageView.get( ); }
+    auto getStorageImageView( ) const -> vk::ImageView { return this->storageImageView.get( ); }
 
     /// Used to convert wavefront models to a bottom level acceleration structure.
-    /// @param model A pointer to a RAYEXEC_NAMESPACE::Model object.
+    /// @param vertexBuffer A vertex buffer of some geometry.
+    /// @param indexBuffer An index buffer of some geometry.
     /// @return Returns the bottom level acceleration structure.
-    Blas modelToBlas( const VertexBuffer& vertexBuffer, const IndexBuffer& indexBuffer ) const;
+    auto modelToBlas( const VertexBuffer& vertexBuffer, const IndexBuffer& indexBuffer ) const -> Blas;
 
     /// Used to convert a bottom level acceleration structure instance to a Vulkan geometry instance.
     /// @param instance A bottom level acceleration structure instance.
     /// @return Returns the Vulkan geometry instance.
-    vk::AccelerationStructureInstanceKHR instanceToVkGeometryInstanceKHR( const BlasInstance& instance );
+    auto instanceToVkGeometryInstanceKHR( const BlasInstance& instance ) -> vk::AccelerationStructureInstanceKHR;
 
     /// Used to prepare building the bottom level acceleration structures.
-    /// @param models A vector of pointers to RAYEXEC_NAMESPACE::Model objects.
+    /// @param vertexBuffers Vertex buffers of all geometry in the scene.
+    /// @param indexBuffers Index buffers of all geometry in the scene.
     void createBottomLevelAS( const std::vector<VertexBuffer>& vertexBuffers, const std::vector<IndexBuffer>& indexBuffers );
 
     /// Builds all bottom level acceleration structures.
@@ -59,12 +63,12 @@ namespace RAYEXEC_NAMESPACE
     void buildBlas( const std::vector<Blas>& blas_, vk::BuildAccelerationStructureFlagsKHR flags = vk::BuildAccelerationStructureFlagBitsKHR::ePreferFastTrace );
 
     /// Used to prepare building the top level acceleration structure.
-    /// @param nodes A vector of pointers to RAYEXEC_NAMESPACE::GeometryNode objects.
+    /// @param geometryInstances All geometry instances in the scene.
     void createTopLevelAS( const std::vector<std::shared_ptr<GeometryInstance>>& geometryInstances );
 
     /// Build the top level acceleration structure.
     /// @param instances A vector of bottom level acceleration structure instances.
-    /// @flags The build flags.
+    /// @param flags The build flags.
     void buildTlas( const std::vector<BlasInstance>& instances, vk::BuildAccelerationStructureFlagsKHR flags = vk::BuildAccelerationStructureFlagBitsKHR::ePreferFastTrace );
 
     /// Creates the storage image which the ray tracing shaders will write to.
@@ -76,7 +80,7 @@ namespace RAYEXEC_NAMESPACE
     void createShaderBindingTable( vk::Pipeline rtPipeline );
 
     /// Used to record the actual ray tracing commands to a given command buffer.
-    /// @param swapchainCommandBuffer The command buffer to record to.
+    /// @param swapchaincommandBuffer The command buffer to record to.
     /// @param swapchainImage The current image in the swapchain.
     /// @param extent The swapchain images' extent.
     void rayTrace( vk::CommandBuffer swapchaincommandBuffer, vk::Image swapchainImage, vk::Extent2D extent );

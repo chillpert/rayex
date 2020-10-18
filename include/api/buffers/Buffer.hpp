@@ -22,7 +22,7 @@ namespace RAYEXEC_NAMESPACE
     Buffer( vk::DeviceSize size, vk::BufferUsageFlags usage, const std::vector<uint32_t>& queueFamilyIndices = { }, vk::MemoryPropertyFlags memoryPropertyFlags = vk::MemoryPropertyFlagBits::eDeviceLocal, void* pNextMemory = nullptr, bool initialize = true );
 
     /// @param buffer The target for the copy operation.
-    Buffer( const Buffer& );
+    Buffer( const Buffer& buffer );
     Buffer( const Buffer&& ) = delete;
 
     auto operator=( const Buffer& ) -> Buffer&;

@@ -1,6 +1,5 @@
 #include "api/Api.hpp"
 
-#include "api/utility/Destructors.hpp"
 #include "api/utility/Helpers.hpp"
 #include "api/utility/Initializers.hpp"
 #include "api/utility/Util.hpp"

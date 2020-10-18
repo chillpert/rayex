@@ -2,7 +2,8 @@
 #define UNIFORM_BUFFER_HPP
 
 #include "api/buffers/Buffer.hpp"
-#include "base/Base.hpp"
+#include "base/Geometry.hpp"
+#include "base/Lights.hpp"
 
 namespace RAYEXEC_NAMESPACE
 {

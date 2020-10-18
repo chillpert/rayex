@@ -614,6 +614,7 @@ namespace vk::Initializer
     return std::move( instance );
   }
 
+  /*
   auto initGraphicsPipelinesUnique( const std::vector<GraphicsPipelineCreateInfo>& createInfos ) -> std::vector<UniquePipeline>
   {
     vk::Result result;
@@ -669,4 +670,5 @@ namespace vk::Initializer
 
     return pipelines;
   }
+  */
 } // namespace vk::Initializer

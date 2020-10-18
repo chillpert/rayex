@@ -55,18 +55,21 @@ namespace vk
 
     /// Allocates and binds unique memory for an image.
     /// @param image The image to allocate memory for.
+    /// @param propertyFlags The memory property flags.
     /// @param pNext The pNext chain of the Vulkan allocation info.
     /// @return Returns the memory.
     auto allocateMemoryUnique( Image image, MemoryPropertyFlags propertyFlags = MemoryPropertyFlagBits::eDeviceLocal, void* pNext = nullptr ) -> UniqueDeviceMemory;
 
     /// Allocates and binds memory for an image.
     /// @param image The image to allocate memory for.
+    /// @param propertyFlags The memory property flags.
     /// @param pNext The pNext chain of the Vulkan allocation info.
     /// @return Returns the memory.
     auto allocateMemory( Image image, MemoryPropertyFlags propertyFlags = MemoryPropertyFlagBits::eDeviceLocal, void* pNext = nullptr ) -> DeviceMemory;
 
     /// Allocates and binds unique memory for a buffer.
-    /// @param image The image to allocate memory for.
+    /// @param buffer The buffer to allocate memory for.
+    /// @param propertyFlags The memory property flags.
     /// @param pNext The pNext chain of the Vulkan allocation info.
     /// @return Returns the memory.
     auto allocateMemoryUnique( Buffer buffer, MemoryPropertyFlags propertyFlags = MemoryPropertyFlagBits::eDeviceLocal, void* pNext = nullptr ) -> UniqueDeviceMemory;
@@ -76,33 +79,36 @@ namespace vk
     void allocateMemory( RAYEXEC_NAMESPACE::AccelerationStructure& as );
 
     /// Allocates and binds memory for a buffer.
-    /// @param image The image to allocate memory for.
+    /// @param buffer The buffer to allocate memory for.
+    /// @param propertyFlags The memory property flags.
     /// @param pNext The pNext chain of the Vulkan allocation info.
     /// @return Returns the memory.
     auto allocateMemory( Buffer buffer, MemoryPropertyFlags propertyFlags = MemoryPropertyFlagBits::eDeviceLocal, void* pNext = nullptr ) -> DeviceMemory;
 
     /// Create an image view with a unique handle.
     /// @param image The image to init an image view for.
+    /// @param aspectFlags The image's aspect flags.
     /// @param format The target format of the image view.
     /// @return Returns the image view.
     auto initImageViewUnique( Image image, Format format, ImageAspectFlags aspectFlags = ImageAspectFlagBits::eColor ) -> UniqueImageView;
 
     /// Create an image view.
     /// @param image The image to init an image view for.
+    /// @param aspectFlags The image's aspect flags.
     /// @param format The target format of the image view.
     /// @return Returns the image view.
     auto initImageView( Image image, Format format, ImageAspectFlags aspectFlags = ImageAspectFlagBits::eColor ) -> ImageView;
 
     /// Create a sampler with a unique handle.
-    /// @param initInfo The Vulkan init info for the sampler.
+    /// @param createInfo The Vulkan init info for the sampler.
     /// @return Returns the sampler.
-    /// Note: Use RAYEXEC_NAMESPACE::Helper::getSamplerCreateInfo to get a predefined init info.
+    /// @note Use RAYEXEC_NAMESPACE::Helper::getSamplerCreateInfo to get a predefined init info.
     auto initSamplerUnique( const SamplerCreateInfo& createInfo ) -> UniqueSampler;
 
     /// Create a sampler.
-    /// @param initInfo The Vulkan init info for the sampler.
+    /// @param createInfo The Vulkan init info for the sampler.
     /// @return Returns the sampler.
-    /// Note: Use RAYEXEC_NAMESPACE::Helper::getSamplerCreateInfo to get a predefined init info.
+    /// @note Use RAYEXEC_NAMESPACE::Helper::getSamplerCreateInfo to get a predefined init info.
     auto initSampler( const SamplerCreateInfo& createInfo ) -> Sampler;
 
     /// Create a framebuffer with a unique handle.
@@ -128,7 +134,7 @@ namespace vk
     /// Create a query pool.
     /// @param count The number of queries managed by the pool.
     /// @param type Specifies the type of queries managed by the pool.
-    /// return Returns the query pool.
+    /// @return Returns the query pool.
     auto initQueryPool( uint32_t count, QueryType type ) -> QueryPool;
 
     /// Parses a given shader and inits a shader module with a unique handle.
@@ -159,7 +165,6 @@ namespace vk
     void initQueueFamilyIndices( );
 
     /// Creates the logical device and enables all device extensions provided if they are supported.
-    /// @param queueFamilies All queue families whose queues should be created.
     /// @param extensions All device extensions that should be enabled.
     /// @return Returns true if the initilization was successful.
     auto initDevice( std::vector<const char*>& extensions ) -> UniqueDevice;
@@ -170,11 +175,6 @@ namespace vk
     /// @note The given vector with the extensions will be appended by ones that are required by the window.
     /// @return Returns true if initialization was successful.
     auto initInstance( const std::vector<const char*>& layers, std::vector<const char*>& extensions ) -> UniqueInstance;
-
-    auto initGraphicsPipelinesUnique( const std::vector<GraphicsPipelineCreateInfo>& createInfos ) -> std::vector<UniquePipeline>;
-
-    auto initRayTracingPipelinesUnique( const std::vector<RayTracingPipelineCreateInfoKHR>& createInfos ) -> std::vector<UniquePipeline>;
-
   } // namespace Initializer
 } // namespace vk
 

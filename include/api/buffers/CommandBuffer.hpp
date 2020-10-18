@@ -54,7 +54,7 @@ namespace RAYEXEC_NAMESPACE
     /// @param queue The queue to submit to.
     /// @param waitSemaphores A vector of semaphores to wait for.
     /// @param signalSemaphores A vector of semaphores to signal.
-    /// @waitDstStageMask The pipeline stage where the commands will be executed.
+    /// @param waitDstStageMask The pipeline stage where the commands will be executed.
     void submitToQueue( vk::Queue queue, const std::vector<vk::Semaphore>& waitSemaphores = { }, const std::vector<vk::Semaphore>& signalSemaphores = { }, vk::PipelineStageFlags* waitDstStageMask = { } );
 
   private:

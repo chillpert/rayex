@@ -24,7 +24,7 @@ namespace RAYEXEC_NAMESPACE
     ///
     /// The function will trigger a pipeline recreation as soon as possible unless it was explicitely disabled using setAutomaticPipelineRefresh(bool).
     /// If a value higher than the device's maximum supported value is set, it will use the maximum value instead.
-    /// @param maxRecursionDepth The new value for the recursion depth.
+    /// @param recursionDepth The new value for the recursion depth.
     void setRecursionDepth( uint32_t recursionDepth );
 
     /// @return Returns the clear color.

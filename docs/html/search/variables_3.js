@@ -1,10 +1,9 @@
 var searchData=
 [
-  ['descriptorsets_697',['descriptorSets',['../class_r_e_n_d_e_r_e_r___n_a_m_e_s_p_a_c_e_1_1_model.html#a74a97fde0fecf1c2abda7c1b380f8a93',1,'RENDERER_NAMESPACE::Model']]],
-  ['diffuse_698',['diffuse',['../class_r_e_n_d_e_r_e_r___n_a_m_e_s_p_a_c_e_1_1_light_node.html#a03b3f46bb3960366a2c68f5da219ae7e',1,'RENDERER_NAMESPACE::LightNode::diffuse()'],['../struct_r_e_n_d_e_r_e_r___n_a_m_e_s_p_a_c_e_1_1_directional_light_node_1_1_ubo.html#abda88dd933bb96cb3a0c5be64952e4fa',1,'RENDERER_NAMESPACE::DirectionalLightNode::Ubo::diffuse()'],['../struct_r_e_n_d_e_r_e_r___n_a_m_e_s_p_a_c_e_1_1_point_light_node_1_1_ubo.html#a6e3bf6e543318c8837f0281b924e4a8b',1,'RENDERER_NAMESPACE::PointLightNode::Ubo::diffuse()'],['../class_r_e_n_d_e_r_e_r___n_a_m_e_s_p_a_c_e_1_1_material.html#aa8dfe844cc0eeacd3924434f5ea1ea84',1,'RENDERER_NAMESPACE::Material::diffuse()']]],
-  ['diffuseintensity_699',['diffuseIntensity',['../class_r_e_n_d_e_r_e_r___n_a_m_e_s_p_a_c_e_1_1_light_node.html#ab253dc2ecbc18fcc56e80865df67ef77',1,'RENDERER_NAMESPACE::LightNode']]],
-  ['diffusetexture_700',['diffuseTexture',['../class_r_e_n_d_e_r_e_r___n_a_m_e_s_p_a_c_e_1_1_material.html#a8a4ddf3f60447b531d6f5a682a1c018c',1,'RENDERER_NAMESPACE::Material']]],
-  ['direction_701',['direction',['../class_r_e_n_d_e_r_e_r___n_a_m_e_s_p_a_c_e_1_1_directional_light_node.html#a624a02698bc8656033a34689086a53ca',1,'RENDERER_NAMESPACE::DirectionalLightNode::direction()'],['../struct_r_e_n_d_e_r_e_r___n_a_m_e_s_p_a_c_e_1_1_directional_light_node_1_1_ubo.html#adace37e18d2319d33a088b2cc8da363f',1,'RENDERER_NAMESPACE::DirectionalLightNode::Ubo::direction()']]],
-  ['directionallightnodes_702',['directionalLightNodes',['../struct_r_e_n_d_e_r_e_r___n_a_m_e_s_p_a_c_e_1_1_lights_ubo.html#a4fd565f0dd23b14353816388ab4f8c45',1,'RENDERER_NAMESPACE::LightsUbo']]],
-  ['displacementtexture_703',['displacementTexture',['../class_r_e_n_d_e_r_e_r___n_a_m_e_s_p_a_c_e_1_1_material.html#a27f46415cb59e682bdbf4c0ad2a751bb',1,'RENDERER_NAMESPACE::Material']]]
+  ['defaultheight_677',['defaultHeight',['../namespace_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e.html#a03aa31ed612ba981a14eb2265c11dad1',1,'RAYEXEC_NAMESPACE']]],
+  ['defaultwidth_678',['defaultWidth',['../namespace_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e.html#ace19d80e0bf55986b1b8e9e048e76abe',1,'RAYEXEC_NAMESPACE']]],
+  ['diffuse_679',['diffuse',['../struct_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_material.html#aff50515831c1f24beef8572e72c84de7',1,'RAYEXEC_NAMESPACE::Material::diffuse()'],['../struct_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_light.html#ab25c50aafd764f82ff11001cbc1137a7',1,'RAYEXEC_NAMESPACE::Light::diffuse()']]],
+  ['diffuseintensity_680',['diffuseIntensity',['../struct_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_light.html#adbabe95b7fd6912bc0e6343fa1223709',1,'RAYEXEC_NAMESPACE::Light']]],
+  ['direction_681',['direction',['../struct_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_directional_light.html#ab31e87664f44e791df2cf12a37d0d744',1,'RAYEXEC_NAMESPACE::DirectionalLight']]],
+  ['directionallightnodes_682',['directionalLightNodes',['../struct_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_lights_ubo.html#a88f9fe50e74d99c4e0df93b677fbe31a',1,'RAYEXEC_NAMESPACE::LightsUbo']]]
 ];

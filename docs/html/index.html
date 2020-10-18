@@ -97,7 +97,7 @@ $(document).ready(function(){initNavTree('index.html',''); initResizable(); });
 <div class="title">RAYEXEC </div>  </div>
 </div><!--header-->
 <div class="contents">
-<div class="textblock"><p>RAYEXEC is a cross-platform Vulkan-based path tracing rendering library.</p>
+<div class="textblock"><p>RAYEXEC is a work-in-progress cross-platform Vulkan-based path tracing rendering library.</p>
 <p>It runs on both Linux (x64) and Windows (x64) using the Vulkan API. The purpose of this software is to provide a cross-platform renderer with path tracing capabilities that is easy to integrate into existing projects. It uses SDL2 for windowing and GLM as its maths library. RAYEXEC features native <a href="https://github.com/ocornut/imgui">Dear ImGui</a> support.</p>
 <h1><a class="anchor" id="autotoc_md1"></a>
 Requirements</h1>
@@ -111,7 +111,7 @@ Deploy</h1>
 <li>Include the CMakeLists.txt inside the <b>include folder</b> to your CMakeLists.txt</li>
 <li>Link your target against the <b>shared library objects</b> and against SDL2</li>
 </ol>
-<p>Using CMake is not obligatory but it assures platform independence.</p>
+<p>Using CMake is not obligatory but recommended as RAYEXEC comes with its own CMakeLists.txt that will properly include all project headers. A release also comes with a fully functional example including a complete CMakeLists.txt that can be used as reference.</p>
 <h1><a class="anchor" id="autotoc_md3"></a>
 Build</h1>
 <h2><a class="anchor" id="autotoc_md4"></a>
@@ -127,7 +127,7 @@ Windows</h2>
 <p>Generate a Visual Studio solution using CMake.</p>
 <h2><a class="anchor" id="autotoc_md6"></a>
 Usage</h2>
-<p>The following shows the most minimal example possible. Nothing will be rendered. For a proper example take a look at the <b>documentation</b> or at <b>example/example.cpp</b>. </p><div class="fragment"><div class="line">#include &quot;RayExec.hpp&quot;</div>
+<p>The following cope snippet shows the most minimal example possible. Nothing will be rendered. For a proper example take a look at the <b>documentation</b> or at <b>example/example.cpp</b>. </p><div class="fragment"><div class="line">#include &quot;RayExec.hpp&quot;</div>
 <div class="line"> </div>
 <div class="line">int main( )</div>
 <div class="line">{</div>

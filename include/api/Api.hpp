@@ -22,6 +22,8 @@
 
 namespace RAYEXEC_NAMESPACE
 {
+  class RayExec;
+
   /// Initializes and owns all Vulkan components and displays a picture on the screen.
   /// @note All API components and resources are freed using scope-bound destruction.
   /// @warning Because of scope-bound destruction it is required to pay close attention to the order of resource allocations done by the user.

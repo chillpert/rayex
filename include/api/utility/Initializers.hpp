@@ -1,7 +1,7 @@
 #ifndef INITIALIZERS_HPP
 #define INITIALIZERS_HPP
 
-#include "api/misc/Components.hpp"
+#include "api/Components.hpp"
 #include "api/raytracing/AccelerationStructure.hpp"
 
 namespace vk

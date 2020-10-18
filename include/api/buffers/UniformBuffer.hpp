@@ -2,7 +2,7 @@
 #define UNIFORM_BUFFER_HPP
 
 #include "api/buffers/Buffer.hpp"
-#include "base/Interfaces.hpp"
+#include "base/Base.hpp"
 
 namespace RAYEXEC_NAMESPACE
 {
@@ -43,7 +43,7 @@ namespace RAYEXEC_NAMESPACE
     }
 
     /// @return Returns the vector of uniform buffers.
-    [[nodiscard]] inline auto get( ) const -> const std::vector<Buffer>& { return buffers; }
+    [[nodiscard]] auto get( ) const -> const std::vector<Buffer>& { return buffers; }
 
     /// @return Returns the vector of uniform buffers as raw Vulkan buffer objects.
     [[nodiscard]] RX_API auto getRaw( ) const -> const std::vector<vk::Buffer>;

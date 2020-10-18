@@ -4,48 +4,65 @@
 
 namespace RAYEXEC_NAMESPACE
 {
-  float Time::s_time;
-  float Time::s_deltaTime;
+  float deltaTime;
+  float prevTime;
+  std::vector<uint32_t> allFrames;
 
-  int frames      = 0;
+  uint32_t frames = 0;
   float prevTime2 = 0.0F;
 
   const float timeToWaitForStartingBenchmark = 3.0F;
 
+  void Time::benchmark( )
+  {
+    if ( allFrames.size( ) == 0 )
+    {
+      return;
+    }
+
+    uint32_t sum = 0.0F;
+    for ( int value : allFrames )
+    {
+      sum += value;
+    }
+
+    float average = static_cast<float>( sum ) / static_cast<float>( allFrames.size( ) );
+
+    RX_INFO( "Average fps benchmark result: ", average, " ( Time: ", getTime( ) - timeToWaitForStartingBenchmark, " s )." );
+  }
+
   auto Time::getTime( ) -> float
   {
-    return s_time;
+    return static_cast<float>( SDL_GetTicks( ) ) / 1000.0F;
   }
 
   auto Time::getDeltaTime( ) -> float
   {
-    return s_deltaTime;
+    return deltaTime;
   }
 
   void Time::update( )
   {
-    s_time = static_cast<float>( SDL_GetTicks( ) ) / 1000.0F;
-
-    float current_time = s_time;
+    float current_time = static_cast<float>( SDL_GetTicks( ) ) / 1000.0F;
 
     frames++;
 
-    rx::Time::s_deltaTime = ( current_time - this->prevTime );
-    this->prevTime        = current_time;
+    deltaTime = ( current_time - prevTime );
+    prevTime  = current_time;
 
     // Print fps every full second.
     if ( current_time - prevTime2 >= 1.0F )
     {
       // Give the application some time to start before recording the fps.
-      if ( s_time > timeToWaitForStartingBenchmark )
+      if ( current_time > timeToWaitForStartingBenchmark )
       {
         RX_VERBOSE( "FPS: ", frames );
-        this->allFrames.push_back( frames );
+        allFrames.push_back( frames );
       }
 
-      this->frames = frames;
-      frames       = 0;
-      prevTime2    = current_time;
+      frames    = frames;
+      frames    = 0;
+      prevTime2 = current_time;
     }
   }
 } // namespace RAYEXEC_NAMESPACE

@@ -20,6 +20,8 @@
 #include <forward_list>
 #include <fstream>
 #include <gsl/gsl>
+#include <iomanip>
+#include <limits>
 #include <list>
 #include <map>
 #include <memory>

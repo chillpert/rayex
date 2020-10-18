@@ -47,6 +47,12 @@
 // Using redundant boolean literal in ternary expression to support vulkan object error check.
 #define RX_ASSERT( statement, ... ) LOGGER_NAMESPACE::assert2( statement ? true : false, RAYEXEC_NAMESPACE_STRINGIFIED, ": ", __VA_ARGS__ )
 
+#define RX_LOG_TIME_START( ... )      \
+  float startTime = Time::getTime( ); \
+  LOGGER_NAMESPACE::info( RAYEXEC_NAMESPACE_STRINGIFIED, ": ", __VA_ARGS__ )
+
+#define RX_LOG_TIME_STOP( ... ) LOGGER_NAMESPACE::success( RAYEXEC_NAMESPACE_STRINGIFIED, ": ", __VA_ARGS__, " ( Time: ", std::setprecision( std::numeric_limits<float>::digits10 ), Time::getTime( ) - startTime, " ms )." )
+
 // Doxygen groups
 /// @defgroup Base Interfaces
 /// @defgroup API Vulkan

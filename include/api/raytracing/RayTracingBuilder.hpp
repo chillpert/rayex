@@ -6,7 +6,7 @@
 #include "api/buffers/IndexBuffer.hpp"
 #include "api/buffers/VertexBuffer.hpp"
 #include "api/raytracing/AccelerationStructure.hpp"
-#include "base/Interfaces.hpp"
+#include "base/Base.hpp"
 
 namespace RAYEXEC_NAMESPACE
 {
@@ -32,12 +32,12 @@ namespace RAYEXEC_NAMESPACE
     void destroy( );
 
     /// @return Returns the top level acceleration structure.
-    inline const Tlas& getTlas( ) const { return this->tlas; }
+    const Tlas& getTlas( ) const { return this->tlas; }
 
-    inline const vk::PhysicalDeviceRayTracingPropertiesKHR& getRtProperties( ) const { return this->rtProperties; }
+    const vk::PhysicalDeviceRayTracingPropertiesKHR& getRtProperties( ) const { return this->rtProperties; }
 
     /// @return Returns the storage image's image view.
-    inline const vk::ImageView getStorageImageView( ) const { return this->storageImageView.get( ); }
+    const vk::ImageView getStorageImageView( ) const { return this->storageImageView.get( ); }
 
     /// Used to convert wavefront models to a bottom level acceleration structure.
     /// @param model A pointer to a RAYEXEC_NAMESPACE::Model object.

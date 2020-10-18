@@ -39,7 +39,7 @@ namespace RAYEXEC_NAMESPACE
     RX_API virtual void update( );
 
     /// @return Returns the camera's position.
-    [[nodiscard]] RX_API inline auto getPosition( ) const -> const glm::vec3& { return position; }
+    [[nodiscard]] RX_API auto getPosition( ) const -> const glm::vec3& { return position; }
 
     /// Is used to change the camera's position.
     /// @param position The new camera position.
@@ -59,16 +59,16 @@ namespace RAYEXEC_NAMESPACE
     RX_API void setSensitivity( float sensitivity );
 
     /// @return The view matrix.
-    [[nodiscard]] inline auto getViewMatrix( ) const -> const glm::mat4& { return view; }
+    [[nodiscard]] auto getViewMatrix( ) const -> const glm::mat4& { return view; }
 
     /// @return The projection matrix.
-    [[nodiscard]] inline auto getProjectionMatrix( ) const -> const glm::mat4& { return projection; }
+    [[nodiscard]] auto getProjectionMatrix( ) const -> const glm::mat4& { return projection; }
 
     /// @return The view matrix inversed.
-    [[nodiscard]] inline auto getViewInverseMatrix( ) const -> const glm::mat4& { return viewInverse; }
+    [[nodiscard]] auto getViewInverseMatrix( ) const -> const glm::mat4& { return viewInverse; }
 
     /// @return The projection matrix inversed.
-    [[nodiscard]] inline auto getProjectionInverseMatrix( ) const -> const glm::mat4& { return projectionInverse; }
+    [[nodiscard]] auto getProjectionInverseMatrix( ) const -> const glm::mat4& { return projectionInverse; }
 
     /// Re-calculates the camera's view matrix as well as the inversed view matrix.
     RX_API void updateViewMatrix( );

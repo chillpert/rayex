@@ -18,7 +18,7 @@ namespace RAYEXEC_NAMESPACE
     friend class Pipeline;
 
     /// @return Returns the recursion depth.
-    [[nodiscard]] inline auto getRecursionDepth( ) const -> uint32_t { return this->recursionDepth; }
+    [[nodiscard]] auto getRecursionDepth( ) const -> uint32_t { return this->recursionDepth; }
 
     /// Used to set the recursion depth.
     ///
@@ -28,7 +28,7 @@ namespace RAYEXEC_NAMESPACE
     void setRecursionDepth( uint32_t recursionDepth );
 
     /// @return Returns the clear color.
-    [[nodiscard]] inline auto getClearColor( ) const -> const glm::vec4& { return this->clearColor; }
+    [[nodiscard]] auto getClearColor( ) const -> const glm::vec4& { return this->clearColor; }
 
     /// Used to changed the clear color.
     ///
@@ -37,7 +37,7 @@ namespace RAYEXEC_NAMESPACE
     void setClearColor( const glm::vec4& clearColor );
 
     /// @return Returns the path to assets.
-    [[nodiscard]] inline auto getAssetsPath( ) const -> std::string_view { return this->assetsPath; }
+    [[nodiscard]] auto getAssetsPath( ) const -> std::string_view { return this->assetsPath; }
 
     /// Used to set a path to the directory containing all assets.
     ///
@@ -67,17 +67,17 @@ namespace RAYEXEC_NAMESPACE
     /// @param flag If false, the pipelines will not be recreated automatically until this function is called with true.
     void setAutomaticPipelineRefresh( bool flag );
 
-    /// Used to set the maximum amount of directional light nodes that can be used.
-    /// @param amount The amount of maximum directional light nodes.
+    /// Used to set the maximum amount of directional lights that can be used.
+    /// @param amount The amount of maximum directional lights.
     void setMaxDirectionalLights( uint32_t amount );
 
-    /// Used to set the maximum amount of point light nodes that can be used.
-    /// @param amount The amount of maximum point light nodes.
+    /// Used to set the maximum amount of point lights that can be used.
+    /// @param amount The amount of maximum point lights.
     void setMaxPointLights( uint32_t amount );
 
-    /// Used to set the maximum amount of geometry nodes that can be used.
-    /// @param amount The amount of maximum geometry nodes.
-    void setMaxGeometryNodes( uint32_t amount );
+    /// Used to set the maximum amount of geometrys that can be used.
+    /// @param amount The amount of maximum geometrys.
+    void setMaxGeometryInstances( uint32_t amount );
 
     /// @return Returns the maximum recursion depth on the GPU.
     [[nodiscard]] auto getMaxRecursionDepth( ) const -> uint32_t { return this->maxRecursionDepth; }
@@ -137,7 +137,7 @@ namespace RAYEXEC_NAMESPACE
 
     std::optional<uint32_t> maxDirectionalLights; ///< Can be set to avoid pipeline recreation everytime a directional light is added.
     std::optional<uint32_t> maxPointLights;       ///< Can be set to avoid pipeline recreation everytime a point light is added.
-    std::optional<uint32_t> maxGeometryNodes;     ///< Can be set to avoid pipeline recreation everytime a geometry node is added.
+    std::optional<uint32_t> maxGeometryInstances; ///< Can be set to avoid pipeline recreation everytime a geometry instance is added.
 
     std::string assetsPath; ///< Where all assets like models, textures and shaders are stored.
 

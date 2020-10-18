@@ -12,10 +12,10 @@ namespace RAYEXEC_NAMESPACE
   uint32_t Texture::textureCounter = 0;
 
   Texture::Texture( ) :
-    offset( rx::Texture::textureCounter++ ) {}
+    offset( textureCounter++ ) {}
 
   Texture::Texture( std::string_view path, bool initialize ) :
-    offset( rx::Texture::textureCounter++ )
+    offset( textureCounter++ )
   {
     if ( initialize )
     {

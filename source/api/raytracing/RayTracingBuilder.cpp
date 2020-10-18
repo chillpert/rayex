@@ -1,7 +1,7 @@
 #include "api/raytracing/RayTracingBuilder.hpp"
 
+#include "api/Components.hpp"
 #include "api/buffers/CommandBuffer.hpp"
-#include "api/misc/Components.hpp"
 #include "api/utility/Destructors.hpp"
 #include "api/utility/Helpers.hpp"
 #include "api/utility/Initializers.hpp"
@@ -280,7 +280,7 @@ namespace RAYEXEC_NAMESPACE
       for ( auto& as : cleanupAS )
         as.destroy( );
 
-      RX_INFO( "Compaction Results: ", totalOriginalSize, " -> ", totalCompactSize, " | Total: ", totalOriginalSize - totalCompactSize );
+      RX_VERBOSE( "BLAS: Compaction Results: ", totalOriginalSize, " -> ", totalCompactSize, " | Total: ", totalOriginalSize - totalCompactSize );
     }
   }
 

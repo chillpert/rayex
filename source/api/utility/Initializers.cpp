@@ -1,7 +1,8 @@
 #include "api/utility/Initializers.hpp"
 
+#include "api/Components.hpp"
+#include "api/Vertex.hpp"
 #include "api/buffers/CommandBuffer.hpp"
-#include "api/misc/Vertex.hpp"
 #include "api/utility/Helpers.hpp"
 #include "api/utility/Util.hpp"
 
@@ -477,7 +478,7 @@ namespace vk::Initializer
 
     const float queuePriority = 1.0F;
 
-    std::vector<uint32_t> queueFamilyIndices = { rx::g_graphicsFamilyIndex, rx::g_transferFamilyIndex };
+    std::vector<uint32_t> queueFamilyIndices = { RAYEXEC_NAMESPACE::g_graphicsFamilyIndex, RAYEXEC_NAMESPACE::g_transferFamilyIndex };
 
     uint32_t index = 0;
     for ( const auto& queueFamilyIndex : queueFamilyIndices )
@@ -529,8 +530,8 @@ namespace vk::Initializer
 
     createInfo.pNext = &deviceFeatures2;
 
-    UniqueDevice device = rx::g_physicalDevice.createDeviceUnique( createInfo );
-    rx::g_device        = device.get( );
+    UniqueDevice device         = RAYEXEC_NAMESPACE::g_physicalDevice.createDeviceUnique( createInfo );
+    RAYEXEC_NAMESPACE::g_device = device.get( );
     RX_ASSERT( device, "Failed to create logical device." );
     VULKAN_HPP_DEFAULT_DISPATCHER.init( device.get( ) );
 
@@ -546,7 +547,23 @@ namespace vk::Initializer
     VULKAN_HPP_DEFAULT_DISPATCHER.init( vkGetInstanceProcAddr );
 
     // Retrieve all extensions needed by SDL2.
-    gsl::span<const char*> windowExtensions = rx::g_window->getInstanceExtensions( );
+    uint32_t sdlExtensionsCount;
+    SDL_bool result = SDL_Vulkan_GetInstanceExtensions( RAYEXEC_NAMESPACE::g_window->get( ), &sdlExtensionsCount, nullptr );
+
+    if ( result != SDL_TRUE )
+    {
+      RX_ERROR( "Failed to get extensions required by SDL." );
+    }
+
+    gsl::owner<const char**> sdlExtensionsNames = new const char*[sdlExtensionsCount];
+    result                                      = SDL_Vulkan_GetInstanceExtensions( RAYEXEC_NAMESPACE::g_window->get( ), &sdlExtensionsCount, sdlExtensionsNames );
+
+    if ( result != SDL_TRUE )
+    {
+      RX_ERROR( "Failed to get extensions required by SDL." );
+    }
+
+    gsl::span<const char*> windowExtensions( sdlExtensionsNames, sdlExtensionsCount );
     extensions.insert( extensions.end( ), windowExtensions.begin( ), windowExtensions.end( ) );
 
     // Check if all extensions and layers needed are available.
@@ -558,7 +575,7 @@ namespace vk::Initializer
 
     uint32_t apiVersion = enumerateInstanceVersion( );
 
-#ifdef VK_API_VERSION_1_1
+#if defined( VK_API_VERSION_1_1 ) && !defined( VK_API_VERSION_1_2 )
     if ( apiVersion >= VK_API_VERSION_1_1 )
     {
       RX_SUCCESS( "Found Vulkan SDK API version 1.1" );
@@ -570,7 +587,7 @@ namespace vk::Initializer
     }
 #endif
 
-#ifdef VK_API_VERSION_1_2
+#if defined( VK_API_VERSION_1_2 )
     if ( apiVersion >= VK_API_VERSION_1_2 )
     {
       RX_SUCCESS( "Found Vulkan SDK API version 1.2" );
@@ -589,8 +606,8 @@ namespace vk::Initializer
                                    static_cast<uint32_t>( extensions.size( ) ), // enabledExtensionCount
                                    extensions.data( ) );                        // ppEnabledExtensionNames
 
-    instance       = createInstanceUnique( createInfo );
-    rx::g_instance = instance.get( );
+    instance                      = createInstanceUnique( createInfo );
+    RAYEXEC_NAMESPACE::g_instance = instance.get( );
     RX_ASSERT( instance, "Failed to create instance." );
     VULKAN_HPP_DEFAULT_DISPATCHER.init( instance.get( ) );
 
@@ -601,7 +618,7 @@ namespace vk::Initializer
   {
     vk::Result result;
     std::vector<vk::Pipeline> temp;
-    std::tie( result, temp ) = rx::g_device.createGraphicsPipelines( nullptr, createInfos );
+    std::tie( result, temp ) = RAYEXEC_NAMESPACE::g_device.createGraphicsPipelines( nullptr, createInfos );
 
     std::vector<vk::UniquePipeline> pipelines( temp.size( ) );
 
@@ -629,7 +646,7 @@ namespace vk::Initializer
   {
     vk::Result result;
     std::vector<vk::Pipeline> temp;
-    std::tie( result, temp ) = rx::g_device.createRayTracingPipelinesKHR( nullptr, createInfos );
+    std::tie( result, temp ) = RAYEXEC_NAMESPACE::g_device.createRayTracingPipelinesKHR( nullptr, createInfos );
 
     std::vector<vk::UniquePipeline> pipelines( temp.size( ) );
 

@@ -15,7 +15,7 @@ namespace RAYEXEC_NAMESPACE
     DebugMessenger( ) = default;
 
     /// Calls destroy().
-    ~DebugMessenger( );
+    RX_API ~DebugMessenger( );
 
     DebugMessenger( const DebugMessenger& )  = delete;
     DebugMessenger( const DebugMessenger&& ) = delete;

@@ -58,26 +58,17 @@ namespace RAYEXEC_NAMESPACE
     /// @param height The desired height in pixels.
     RX_API void resize( int width, int height );
 
-    /// Used to retrieve all Vulkan instance extensions required by SDL.
-    /// @return Returns a vector containing the names of the required extensions.
-    [[nodiscard]] auto getInstanceExtensions( ) -> gsl::span<const char*>;
-
-    /// Creates a Vulkan surface.
-    /// @param instance The Vulkan instance.
-    /// @return Returns the Vulkan surface.
-    [[nodiscard]] auto createSurface( vk::Instance instance ) -> vk::SurfaceKHR;
-
     /// @return Returns the actual SDL_Window object.
-    RX_API inline auto get( ) -> SDL_Window* { return window; }
+    RX_API auto get( ) -> SDL_Window* { return window; }
 
     /// @return Returns the window size as a Vulkan 2D extent.
     [[nodiscard]] RX_API auto getExtent( ) const -> vk::Extent2D;
 
     /// @return Returns the window's width in pixels.
-    [[nodiscard]] inline auto getWidth( ) const -> int { return width; }
+    [[nodiscard]] auto getWidth( ) const -> int { return width; }
 
     /// @return Returns the window's height in pixels.
-    [[nodiscard]] inline auto getHeight( ) const -> int { return height; }
+    [[nodiscard]] auto getHeight( ) const -> int { return height; }
 
     /// @return Returns true if the window size has changed.
     RX_API auto changed( ) -> bool;
@@ -92,9 +83,6 @@ namespace RAYEXEC_NAMESPACE
     int width;         ///< The window's width in pixels.
     int height;        ///< The window's height in pixels.
     const char* title; ///< The window's title.
-
-  private:
-    Time time; ///< The timer that manages the application's timing.
   };
 } // namespace RAYEXEC_NAMESPACE
 

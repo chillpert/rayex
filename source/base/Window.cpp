@@ -1,6 +1,6 @@
 #include "base/Window.hpp"
 
-#include "api/misc/Components.hpp"
+#include "api/Components.hpp"
 
 namespace RAYEXEC_NAMESPACE
 {
@@ -50,7 +50,7 @@ namespace RAYEXEC_NAMESPACE
   auto Window::update( ) -> bool
   {
     // Updates local timer bound to this window.
-    time.update( );
+    Time::update( );
 
     // Fetch the latest window dimensions.
     int width;
@@ -77,40 +77,6 @@ namespace RAYEXEC_NAMESPACE
 #if defined( _WIN32 ) || defined( _WIN64 )
     SDL_SetWindowSize( this->window, this->width, this->height );
 #endif
-  }
-
-  auto Window::getInstanceExtensions( ) -> gsl::span<const char*>
-  {
-    uint32_t sdlExtensionsCount;
-    SDL_bool result = SDL_Vulkan_GetInstanceExtensions( this->window, &sdlExtensionsCount, nullptr );
-
-    if ( result != SDL_TRUE )
-    {
-      RX_ERROR( "Failed to get extensions required by SDL." );
-    }
-
-    gsl::owner<const char**> sdlExtensionsNames = new const char*[sdlExtensionsCount];
-    result                                      = SDL_Vulkan_GetInstanceExtensions( this->window, &sdlExtensionsCount, sdlExtensionsNames );
-
-    if ( result != SDL_TRUE )
-    {
-      RX_ERROR( "Failed to get extensions required by SDL." );
-    }
-
-    return gsl::span<const char*>( sdlExtensionsNames, sdlExtensionsCount );
-  }
-
-  auto Window::createSurface( vk::Instance instance ) -> vk::SurfaceKHR
-  {
-    VkSurfaceKHR surface;
-    SDL_bool result = SDL_Vulkan_CreateSurface( this->window, instance, &surface );
-
-    if ( result != SDL_TRUE )
-    {
-      RX_ERROR( "Failed to create surface" );
-    }
-
-    return surface;
   }
 
   auto Window::getExtent( ) const -> vk::Extent2D

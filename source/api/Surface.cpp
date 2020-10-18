@@ -1,6 +1,6 @@
 #include "api/Surface.hpp"
 
-#include "api/misc/Components.hpp"
+#include "api/Components.hpp"
 #include "api/utility/Util.hpp"
 
 namespace RAYEXEC_NAMESPACE
@@ -12,7 +12,15 @@ namespace RAYEXEC_NAMESPACE
 
   void Surface::init( )
   {
-    this->surface = g_window->createSurface( g_instance );
+    VkSurfaceKHR surface;
+    SDL_bool result = SDL_Vulkan_CreateSurface( g_window->get( ), g_instance, &surface );
+
+    if ( result != SDL_TRUE )
+    {
+      RX_ERROR( "Failed to create surface" );
+    }
+
+    this->surface = surface;
     g_surface     = this->surface;
     RX_ASSERT( this->surface, "Failed to create surface." );
   }

@@ -1,6 +1,6 @@
 #include "base/Camera.hpp"
 
-#include "api/misc/Components.hpp"
+#include "api/Components.hpp"
 
 namespace RAYEXEC_NAMESPACE
 {

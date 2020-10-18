@@ -1,7 +1,7 @@
 #include "api/utility/Helpers.hpp"
 
+#include "api/Components.hpp"
 #include "api/buffers/CommandBuffer.hpp"
-#include "api/misc/Components.hpp"
 
 namespace vk::Helper
 {
@@ -427,7 +427,7 @@ namespace vk::Helper
       requiredExtensions.emplace( extension, false );
     }
 
-    std::vector<ExtensionProperties> physicalDeviceExtensions = rx::g_physicalDevice.enumerateDeviceExtensionProperties( );
+    std::vector<ExtensionProperties> physicalDeviceExtensions = RAYEXEC_NAMESPACE::g_physicalDevice.enumerateDeviceExtensionProperties( );
 
     // Iterates over all enumerated physical device extensions to see if they are available.
     for ( const auto& physicalDeviceExtension : physicalDeviceExtensions )
@@ -450,7 +450,7 @@ namespace vk::Helper
       }
       else
       {
-        RX_SUCCESS( "Added device extension: ", requiredphysicalDeviceExtension.first );
+        RX_VERBOSE( "Added device extension: ", requiredphysicalDeviceExtension.first );
       }
     }
   }
@@ -476,7 +476,7 @@ namespace vk::Helper
         RX_FATAL( "Validation layer ", name, " is not available on this device." );
       }
 
-      RX_SUCCESS( "Added layer: ", name, "." );
+      RX_VERBOSE( "Added layer: ", name, "." );
     }
   }
 
@@ -501,7 +501,7 @@ namespace vk::Helper
         RX_FATAL( "Instance extensions ", name, " is not available on this device." );
       }
 
-      RX_SUCCESS( "Added instance extension: ", name, "." );
+      RX_VERBOSE( "Added instance extension: ", name, "." );
     }
   }
 } // namespace vk::Helper

@@ -27,8 +27,6 @@ namespace RAYEXEC_NAMESPACE
   class RayExec
   {
   public:
-    RX_API RayExec( );
-
     /// Initializes the renderer.
     ///
     /// This function initializes the window subcomponent as well as the API.
@@ -41,7 +39,7 @@ namespace RAYEXEC_NAMESPACE
     RX_API void run( );
 
     /// @return Returns true if the application is still running and false if the application has stopped.
-    RX_API auto isRunning( ) -> bool { return running; }
+    RX_API auto isRunning( ) const -> bool;
 
     /// Used to set a custom camera.
     /// @param camera A pointer to a RAYEXEC_NAMESPACE::Camera object.
@@ -57,74 +55,53 @@ namespace RAYEXEC_NAMESPACE
     /// @param gui A pointer to a RAYEXEC_NAMESPACE::Gui object.
     RX_API void setGui( std::shared_ptr<Gui> gui );
 
-    RX_API void submitGeometryInstance( std::shared_ptr<GeometryInstance> geometryInstance )
-    {
-      this->api->scene.geometryInstances.push_back( geometryInstance );
-      this->api->uploadRayTracingInstancesToBuffer = true;
-    }
+    /// Used to submit a geometry instance for rendering.
+    /// @param geometryInstance The instance to queue for rendering.
+    /// @note This function does not invoke any draw calls.
+    RX_API void submitGeometryInstance( std::shared_ptr<GeometryInstance> geometryInstance );
 
-    RX_API void setGeometryInstances( const std::vector<std::shared_ptr<GeometryInstance>>& geometryInstances )
-    {
-      this->api->scene.geometryInstances           = geometryInstances;
-      this->api->uploadRayTracingInstancesToBuffer = true;
-    }
+    /// Used to submit multiple geometry instances for rendering, replacing all existing instances.
+    /// @param geometryInstances The instances to queue for rendering.
+    /// @note This function does not invoke any draw calls.
+    RX_API void setGeometryInstances( const std::vector<std::shared_ptr<GeometryInstance>>& geometryInstances );
 
-    RX_API void removeGeometryInstance( std::shared_ptr<GeometryInstance> geometryInstance )
-    {
-      RX_ASSERT( geometryInstance != nullptr, "An invalid geometry instance can not be removed." );
+    /// Used to remove a geometry instance.
+    ///
+    /// Once a geometry instance was removed, it will no longer be rendered.
+    /// @param geometryInstance The instance to remove.
+    RX_API void removeGeometryInstance( std::shared_ptr<GeometryInstance> geometryInstance );
 
-      std::vector<std::shared_ptr<GeometryInstance>> temp( this->api->scene.geometryInstances );
-      this->api->scene.geometryInstances.clear( );
-      this->api->scene.geometryInstances.reserve( temp.size( ) );
+    /// Used to submit a geometry and set up its buffers.
+    ///
+    /// Once a geometry was submitted, geometry instances referencing this particular geometry can be drawn.
+    /// @param geometry The geometry to submit.
+    RX_API void submitGeometry( std::shared_ptr<Geometry> geometry );
 
-      for ( auto it : temp )
-      {
-        if ( it != geometryInstance )
-        {
-          this->api->scene.geometryInstances.push_back( it );
-        }
-      }
+    /// Used to submit multiple geometries and set up their buffers.
+    ///
+    /// Once a geometry was submitted, geometry instances referencing this particular geometry can be drawn.
+    /// @param geometries The geometries to submit.
+    RX_API void setGeometries( const std::vector<std::shared_ptr<Geometry>>& geometries );
 
-      this->api->uploadRayTracingInstancesToBuffer = true;
-    }
-
-    RX_API void submitGeometry( std::shared_ptr<Geometry> geometry )
-    {
-      this->api->scene.geometries.push_back( geometry );
-    }
-
-    RX_API void setGeometries( const std::vector<std::shared_ptr<Geometry>>& geometries )
-    {
-      this->api->scene.geometries = geometries;
-    }
-
-    RX_API std::shared_ptr<Geometry> findGeometry( std::string_view path )
-    {
-      for ( std::shared_ptr<Geometry> geometry : this->api->scene.geometries )
-      {
-        if ( geometry->path == path )
-        {
-          return geometry;
-        }
-      }
-
-      RX_INFO( "Could not find geometry in scene. Trying to create geometry instead." );
-      return loadObj( path );
-    }
+    /// Used to retrieve a geoemtry based on its path.
+    /// @param path The geometry's model's path, relative to the path to assets.
+    RX_API auto findGeometry( std::string_view path ) const -> std::shared_ptr<Geometry>;
 
     /// @return Returns a pointer to the renderer's window.
-    [[nodiscard]] RX_API inline auto getWindow( ) const -> std::shared_ptr<Window> { return window; }
+    [[nodiscard]] RX_API inline auto getWindow( ) const -> std::shared_ptr<Window> { return this->window; }
 
     /// @return Returns a pointer to the renderer's camera.
-    [[nodiscard]] RX_API inline auto getCamera( ) const -> std::shared_ptr<Camera> { return camera; }
+    [[nodiscard]] RX_API inline auto getCamera( ) const -> std::shared_ptr<Camera> { return this->camera; }
 
+    /// Used to modify any interal rendering settings.
+    /// @see RAYEXEC_NAMESPACE::Settings
     Settings settings;
 
   private:
-    std::shared_ptr<Window> window = nullptr; ///< A pointer to a RAYEXEC_NAMESPACE::Window object.
-    std::shared_ptr<Camera> camera = nullptr; ///< A pointer to a RAYEXEC_NAMESPACE::Camera object.
-    std::shared_ptr<Gui> gui       = nullptr; ///< A pointer to a RAYEXEC_NAMESPACE::Gui object.
-    std::unique_ptr<Api> api       = nullptr; ///< Contains all Vulkan related components.
+    std::shared_ptr<Window> window = nullptr;                  ///< The window used to create a surface from.
+    std::shared_ptr<Camera> camera = nullptr;                  ///< The camera that will be used for rendering.
+    std::shared_ptr<Gui> gui       = nullptr;                  ///< The ImGui-based GUI.
+    std::unique_ptr<Api> api       = std::make_unique<Api>( ); ///< Manages Vulkan-related tasks.
 
     bool initialized = false; ///< Keeps track of the initialization status.
     bool running     = true;  ///< Keeps track of whether or not the main loop should still be continued.

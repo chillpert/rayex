@@ -1,6 +1,6 @@
 #include "Settings.hpp"
 
-#include "api/misc/Components.hpp"
+#include "api/Components.hpp"
 
 namespace RAYEXEC_NAMESPACE
 {
@@ -92,14 +92,14 @@ namespace RAYEXEC_NAMESPACE
     this->refreshPipeline = true;
   }
 
-  void Settings::setMaxGeometryNodes( uint32_t amount )
+  void Settings::setMaxGeometryInstances( uint32_t amount )
   {
     if ( amount == 0 )
     {
       ++amount;
       RX_WARN( "Can not use value 0 for the amount of maximum directional lights. Using 1 instead." );
     }
-    this->maxGeometryNodes = amount;
+    this->maxGeometryInstances = amount;
   }
 
   void Settings::setDefaultAssetsPath( )
@@ -109,7 +109,7 @@ namespace RAYEXEC_NAMESPACE
     std::replace( this->assetsPath.begin( ), this->assetsPath.end( ), '\\', '/' );
 
     g_assetsPath = this->assetsPath;
-    RX_INFO( "No path to assets specified. Using default path as path to resources: ", this->assetsPath );
+    RX_WARN( "No path to assets specified. Using default path as path to resources: ", this->assetsPath );
   }
 
   void Settings::setEnableJitterCam( bool flag )

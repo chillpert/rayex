@@ -1,6 +1,6 @@
 #include "api/utility/Destructors.hpp"
 
-#include "api/misc/Components.hpp"
+#include "api/Components.hpp"
 
 using namespace RAYEXEC_NAMESPACE;
 

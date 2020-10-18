@@ -1,4 +1,4 @@
-#include "base/Interfaces.hpp"
+#include "base/Base.hpp"
 
 #define TINYOBJLOADER_IMPLEMENTATION
 #include <tiny_obj_loader.h>
@@ -7,6 +7,8 @@ namespace RAYEXEC_NAMESPACE
 {
   std::shared_ptr<Geometry> loadObj( std::string_view path )
   {
+    RX_LOG_TIME_START( "Loading model from ", path, "." );
+
     std::shared_ptr<Geometry> geometry = std::make_shared<Geometry>( );
     geometry->path                     = path;
 
@@ -123,7 +125,7 @@ namespace RAYEXEC_NAMESPACE
       }
     }
 
-    RX_VERBOSE( "Loaded model from ", path, " with mesh count: ", geometry->meshes.size( ) );
+    RX_LOG_TIME_STOP( "Loaded ", geometry->meshes.size( ), " sub-mesh(es)" );
 
     return std::move( geometry );
   }

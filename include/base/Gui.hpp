@@ -42,7 +42,7 @@ namespace RAYEXEC_NAMESPACE
     /// Returns the GUI's command buffer at the given index.
     /// @param index The index of the command buffer to access.
     /// @return Returns the Vulkan command buffer.
-    [[nodiscard]] inline auto getCommandBuffer( uint32_t index ) const -> vk::CommandBuffer { return commandBuffers.get( index ); }
+    [[nodiscard]] auto getCommandBuffer( uint32_t index ) const -> vk::CommandBuffer { return commandBuffers.get( index ); }
 
     /// Used to configure all ImGui settings.
     ///

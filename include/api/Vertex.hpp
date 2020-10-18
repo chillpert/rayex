@@ -19,7 +19,7 @@ namespace RAYEXEC_NAMESPACE
     float padding0;     ///< Vertex padding 0.
 
     /// @return Returns the hard-coded vertex format (eR32G32B32Sfloat).
-    inline static vk::Format getVertexPositionFormat( ) { return vk::Format::eR32G32B32Sfloat; }
+    static vk::Format getVertexPositionFormat( ) { return vk::Format::eR32G32B32Sfloat; }
 
     /// @return Returns the vertex's Vulkan binding description.
     static std::array<vk::VertexInputBindingDescription, 1> getBindingDescriptions( )

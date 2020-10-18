@@ -11,7 +11,7 @@ namespace RAYEXEC_NAMESPACE
   {
   public:
     /// @return Returns the Vulkan render pass without the unique handle.
-    inline const vk::RenderPass get( ) const { return renderPass.get( ); }
+    const vk::RenderPass get( ) const { return renderPass.get( ); }
 
     /// Initializes the Vulkan render pass.
     /// @param attachments The Vulkan attachment description.

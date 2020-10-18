@@ -1,7 +1,7 @@
 #ifndef ACCELERATION_STRUCTURE_HPP
 #define ACCELERATION_STRUCTURE_HPP
 
-#include "api/misc/Components.hpp"
+#include "api/Components.hpp"
 #include "pch/stdafx.hpp"
 
 namespace RAYEXEC_NAMESPACE

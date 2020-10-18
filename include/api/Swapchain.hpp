@@ -21,28 +21,28 @@ namespace RAYEXEC_NAMESPACE
     void destroy( );
 
     /// @return Returns the swapchain framebuffer at a given index.
-    [[nodiscard]] inline auto getFramebuffer( uint32_t index ) const -> const vk::Framebuffer& { return this->framebuffers[index].get( ); }
+    [[nodiscard]] auto getFramebuffer( uint32_t index ) const -> const vk::Framebuffer& { return this->framebuffers[index].get( ); }
 
     /// @return Returns the current swapchain image index.
-    [[nodiscard]] inline auto getCurrentImageIndex( ) const -> uint32_t { return this->currentImageIndex; }
+    [[nodiscard]] auto getCurrentImageIndex( ) const -> uint32_t { return this->currentImageIndex; }
 
     /// @return Returns the swapchain images' extent.
-    [[nodiscard]] inline auto getExtent( ) const -> vk::Extent2D { return this->extent; }
+    [[nodiscard]] auto getExtent( ) const -> vk::Extent2D { return this->extent; }
 
     /// @return Returns the swapchain images' image aspect.
-    [[nodiscard]] inline auto getImageAspect( ) const -> vk::ImageAspectFlags { return this->imageAspect; }
+    [[nodiscard]] auto getImageAspect( ) const -> vk::ImageAspectFlags { return this->imageAspect; }
 
     /// Returns the swapchain image at a given index.
     /// @param index The index of the swapchain image.
     /// @return The swapchain image.
-    [[nodiscard]] inline auto getImage( size_t index ) const -> vk::Image { return this->images[index]; }
+    [[nodiscard]] auto getImage( size_t index ) const -> vk::Image { return this->images[index]; }
 
     /// @return Returns a vector containing all swapchain images.
-    [[nodiscard]] inline auto getImages( ) const -> const std::vector<vk::Image>& { return this->images; }
+    [[nodiscard]] auto getImages( ) const -> const std::vector<vk::Image>& { return this->images; }
 
     /// @return Returns a vector containing all swapchain image views.
     /// @todo Returning by reference will result in size 0.
-    [[nodiscard]] inline auto getImageViews( ) const -> std::vector<vk::ImageView> { return vk::Helper::unpack<vk::ImageView>( this->imageViews ); }
+    [[nodiscard]] auto getImageViews( ) const -> std::vector<vk::ImageView> { return vk::Helper::unpack<vk::ImageView>( this->imageViews ); }
 
     /// Used to set the desired image aspect flags.
     void setImageAspect( vk::ImageAspectFlags flags );

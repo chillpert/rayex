@@ -28,6 +28,8 @@ namespace RAYEXEC_NAMESPACE
   size_t currentFrame = 0;
   size_t prevFrame    = 0;
 
+  std::vector<GeometryInstance> dereferencedGeometryInstances;
+
   // Defines the maximum amount of frames that will be processed concurrently.
   const size_t maxFramesInFlight = 2;
 
@@ -114,7 +116,7 @@ namespace RAYEXEC_NAMESPACE
 
     // At this point nodes are unknown. So I just create a storage buffer with the maximum value or with the anticipated value in settings.
     // enables the user to add more nodes later on during runtime.
-    uint32_t maxInstanceCount = this->settings->maxGeometryNodes.has_value( ) ? this->settings->maxGeometryNodes.value( ) : g_maxGeometryNodes;
+    uint32_t maxInstanceCount = this->settings->maxGeometryInstances.has_value( ) ? this->settings->maxGeometryInstances.value( ) : g_maxGeometryInstances;
 
     std::vector<GeometryInstance> geometryInstances( maxInstanceCount );
     this->rayTracingInstancesBuffer.init<GeometryInstance>( geometryInstances );
@@ -168,8 +170,6 @@ namespace RAYEXEC_NAMESPACE
     {
       this->uploadRayTracingInstancesToBuffer = false;
 
-      // Using static to avoid unpredictable memory mapping errors.
-      static std::vector<GeometryInstance> dereferencedGeometryInstances;
       dereferencedGeometryInstances.resize( this->scene.geometryInstances.size( ) );
       for ( size_t i = 0; i < dereferencedGeometryInstances.size( ); ++i )
       {
@@ -302,7 +302,7 @@ namespace RAYEXEC_NAMESPACE
 
   void Api::recreateSwapchain( )
   {
-    RX_INFO( "Recreating swapchain ..." );
+    RX_LOG_TIME_START( "Re-creating swapchain ..." );
 
     g_device.waitIdle( );
 
@@ -341,11 +341,14 @@ namespace RAYEXEC_NAMESPACE
     this->camera->setSize( screenSize.width, screenSize.height );
 
     this->settings->refreshSwapchain = false;
-    RX_SUCCESS( "Swapchain recreation finished." );
+
+    RX_LOG_TIME_STOP( "Finished re-creating swapchain" );
   }
 
   void Api::updateAccelerationStructures( )
   {
+    RX_LOG_TIME_START( "Updating acceleration structures ..." );
+
     // @TODO Try to call this as few times as possible.
     this->rayTracingBuilder.createBottomLevelAS( this->vertexBuffers, this->indexBuffers );
     this->rayTracingBuilder.createTopLevelAS( this->scene.geometryInstances );
@@ -361,11 +364,13 @@ namespace RAYEXEC_NAMESPACE
     this->rtDescriptors.bindings.write( this->rtDescriptorSets, 0, &tlasInfo );
     this->rtDescriptors.bindings.write( this->rtDescriptorSets, 1, &storageImageInfo );
     this->rtDescriptors.bindings.update( );
+
+    RX_LOG_TIME_STOP( "Finished updating acceleration structures" );
   }
 
   void Api::initPipelines( )
   {
-    RX_INFO( "Initializing graphic pipelines." );
+    RX_LOG_TIME_START( "Initializing graphic pipelines ..." );
 
     // Ray tracing pipeline
     std::vector<vk::DescriptorSetLayout> allRtDescriptorSetLayouts = { this->rtDescriptors.layout.get( ),
@@ -385,6 +390,8 @@ namespace RAYEXEC_NAMESPACE
 
     this->pipelinesReady            = true;
     this->settings->refreshPipeline = false;
+
+    RX_LOG_TIME_STOP( "Finished graphic pipelines initialization" );
   }
 
   void Api::initRenderPass( )
@@ -668,7 +675,7 @@ namespace RAYEXEC_NAMESPACE
       this->vertexDataDescriptors.bindings.add( 0, vk::DescriptorType::eStorageBuffer, vk::ShaderStageFlagBits::eClosestHitKHR, g_modelCount, vk::DescriptorBindingFlagBits::eVariableDescriptorCount );
 
       this->vertexDataDescriptors.layout = this->vertexDataDescriptors.bindings.initLayoutUnique( );
-      this->vertexDataDescriptors.pool   = this->vertexDataDescriptors.bindings.initPoolUnique( static_cast<uint32_t>( g_maxGeometryNodes ) * g_swapchainImageCount );
+      this->vertexDataDescriptors.pool   = this->vertexDataDescriptors.bindings.initPoolUnique( static_cast<uint32_t>( g_maxGeometryInstances ) * g_swapchainImageCount );
       this->vertexDataDescriptorSets     = vk::Initializer::initDescriptorSetsUnique( this->vertexDataDescriptors.pool, this->vertexDataDescriptors.layout );
     }
 
@@ -677,7 +684,7 @@ namespace RAYEXEC_NAMESPACE
       this->indexDataDescriptors.bindings.add( 0, vk::DescriptorType::eStorageBuffer, vk::ShaderStageFlagBits::eClosestHitKHR, g_modelCount, vk::DescriptorBindingFlagBits::eVariableDescriptorCount );
 
       this->indexDataDescriptors.layout = this->indexDataDescriptors.bindings.initLayoutUnique( );
-      this->indexDataDescriptors.pool   = this->indexDataDescriptors.bindings.initPoolUnique( static_cast<uint32_t>( g_maxGeometryNodes ) * g_swapchainImageCount );
+      this->indexDataDescriptors.pool   = this->indexDataDescriptors.bindings.initPoolUnique( static_cast<uint32_t>( g_maxGeometryInstances ) * g_swapchainImageCount );
       this->indexDataDescriptorSets     = vk::Initializer::initDescriptorSetsUnique( this->indexDataDescriptors.pool, this->indexDataDescriptors.layout );
     }
   }
@@ -691,13 +698,10 @@ namespace RAYEXEC_NAMESPACE
       g_device.waitIdle( );
 
 #ifdef RX_COPY_ASSETS
-      static bool firstRun = true;
-      if ( firstRun )
-      {
-        RX_INFO( "Copying shader resources to binary output directory. " );
-        std::filesystem::copy( RX_ASSETS_PATH "shaders", RX_PATH_TO_LIBRARY "shaders", std::filesystem::copy_options::overwrite_existing | std::filesystem::copy_options::recursive );
-        firstRun = false;
-      }
+      // Copies shader resources to binary output directory. This way a shader can be changed during runtime.
+      // Make sure only to edit the ones in /assets/shaders and not in /build/bin/debug/assets/shaders as the latter gets overridden.
+      RX_INFO( "Copying shader resources to binary output directory. " );
+      std::filesystem::copy( RX_ASSETS_PATH "shaders", RX_PATH_TO_LIBRARY "shaders", std::filesystem::copy_options::overwrite_existing | std::filesystem::copy_options::recursive );
 #endif
 
       initPipelines( );

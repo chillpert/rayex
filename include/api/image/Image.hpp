@@ -11,16 +11,16 @@ namespace RAYEXEC_NAMESPACE
   {
   public:
     /// @return Returns the Vulkan image object without the unique handle.
-    [[nodiscard]] inline auto get( ) const -> vk::Image { return image.get( ); }
+    [[nodiscard]] auto get( ) const -> vk::Image { return image.get( ); }
 
     /// @return Returns the iamge's extent.
-    [[nodiscard]] inline auto getExtent( ) const -> vk::Extent3D { return extent; }
+    [[nodiscard]] auto getExtent( ) const -> vk::Extent3D { return extent; }
 
     /// @return Returns the image's format.
-    [[nodiscard]] inline auto getFormat( ) const -> vk::Format { return format; }
+    [[nodiscard]] auto getFormat( ) const -> vk::Format { return format; }
 
     /// @return Returns the image's layout.
-    [[nodiscard]] inline auto getLayout( ) const -> vk::ImageLayout { return layout; }
+    [[nodiscard]] auto getLayout( ) const -> vk::ImageLayout { return layout; }
 
     /// Creates the image and allocates memory for it.
     /// @param createInfo The Vulkan image create info.

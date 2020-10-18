@@ -12,7 +12,7 @@ namespace RAYEXEC_NAMESPACE
   public:
     Surface( ) = default;
     /// Calls destroy().
-    ~Surface( );
+    RX_API ~Surface( );
 
     Surface( const Surface& )  = delete;
     Surface( const Surface&& ) = delete;
@@ -21,16 +21,16 @@ namespace RAYEXEC_NAMESPACE
     auto operator=( const Surface && ) -> Surface& = delete;
 
     /// @return Returns the surface format.
-    [[nodiscard]] inline auto getFormat( ) const -> vk::Format { return format; }
+    [[nodiscard]] auto getFormat( ) const -> vk::Format { return format; }
 
     /// @return Returns the surface's color space.
-    [[nodiscard]] inline auto getColorSpace( ) const -> vk::ColorSpaceKHR { return colorSpace; }
+    [[nodiscard]] auto getColorSpace( ) const -> vk::ColorSpaceKHR { return colorSpace; }
 
     /// @return Returns the surface's present mode.
-    [[nodiscard]] inline auto getPresentMode( ) const -> vk::PresentModeKHR { return presentMode; }
+    [[nodiscard]] auto getPresentMode( ) const -> vk::PresentModeKHR { return presentMode; }
 
     /// @return Returns the surface's capabilities.
-    [[nodiscard]] inline auto getCapabilities( ) const -> vk::SurfaceCapabilitiesKHR { return capabilities; }
+    [[nodiscard]] auto getCapabilities( ) const -> vk::SurfaceCapabilitiesKHR { return capabilities; }
 
     /// Initializes the Vulkan surface object.
     /// @note If any of the specified format, color space and present mode are not available the function will fall back to settings that are guaranteed to be supported.

@@ -12,7 +12,7 @@ namespace RAYEXEC_NAMESPACE
   {
   public:
     /// @return Returns the amount of indices in the buffer.
-    [[nodiscard]] inline auto getCount( ) const -> uint32_t { return count; }
+    [[nodiscard]] auto getCount( ) const -> uint32_t { return count; }
 
     /// Creates the buffer, allocates memory for it and fills it with the provided data.
     ///

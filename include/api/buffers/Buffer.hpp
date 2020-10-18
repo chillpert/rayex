@@ -1,8 +1,8 @@
 #ifndef BUFFER_HPP
 #define BUFFER_HPP
 
+#include "api/Components.hpp"
 #include "api/image/Image.hpp"
-#include "api/misc/Components.hpp"
 
 namespace RAYEXEC_NAMESPACE
 {
@@ -43,13 +43,13 @@ namespace RAYEXEC_NAMESPACE
     void copyToImage( Image& image ) const;
 
     /// @return Returns the buffer without the unique handle.
-    [[nodiscard]] inline auto get( ) const -> const vk::Buffer { return buffer.get( ); }
+    [[nodiscard]] auto get( ) const -> const vk::Buffer { return buffer.get( ); }
 
     /// @return Returns the buffer's memory without the unique handle.
-    [[nodiscard]] inline auto getMemory( ) const -> const vk::DeviceMemory { return memory.get( ); }
+    [[nodiscard]] auto getMemory( ) const -> const vk::DeviceMemory { return memory.get( ); }
 
     /// @return Returns the size of the buffer.
-    [[nodiscard]] inline auto getSize( ) const -> const vk::DeviceSize { return size; }
+    [[nodiscard]] auto getSize( ) const -> const vk::DeviceSize { return size; }
 
     /// Creates the buffer and allocates memory for it.
     /// @param size The size of the buffer.

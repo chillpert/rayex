@@ -25,12 +25,12 @@ namespace RAYEXEC_NAMESPACE
     void init( vk::CommandPool commandPool, uint32_t count = 1, vk::CommandBufferUsageFlags usageFlags = vk::CommandBufferUsageFlagBits::eOneTimeSubmit );
 
     /// @return Returns the vector of command buffers.
-    [[nodiscard]] inline auto get( ) const -> const std::vector<vk::CommandBuffer> { return commandBuffers; }
+    [[nodiscard]] auto get( ) const -> const std::vector<vk::CommandBuffer> { return commandBuffers; }
 
     /// Returns the command buffer by some index.
     /// @param index The index of the desired command buffer.
     /// @return Returns the command buffer.
-    [[nodiscard]] inline auto get( size_t index ) const -> const vk::CommandBuffer
+    [[nodiscard]] auto get( size_t index ) const -> const vk::CommandBuffer
     {
       RX_ASSERT( ( index <= commandBuffers.size( ) - 1 ), "Failed to get command buffer because vector is out of range." );
       return commandBuffers[index];

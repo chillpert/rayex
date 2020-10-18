@@ -1,7 +1,7 @@
 #include "api/utility/DebugMessenger.hpp"
 
 #include "api/Api.hpp"
-#include "api/misc/Components.hpp"
+#include "api/Components.hpp"
 
 namespace RAYEXEC_NAMESPACE
 {

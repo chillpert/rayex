@@ -41,10 +41,10 @@ namespace RAYEXEC_NAMESPACE
     void init( const std::vector<vk::DescriptorSetLayout>& descriptorSetLayouts, const Settings* settings );
 
     /// @return Returns the Vulkan pipeline object without the unique handle.
-    inline vk::Pipeline get( ) const { return this->pipeline.get( ); }
+    vk::Pipeline get( ) const { return this->pipeline.get( ); }
 
     /// @return Returns the Vulkan pipeline layout object without the unique handle.
-    inline vk::PipelineLayout getLayout( ) const { return this->layout.get( ); }
+    vk::PipelineLayout getLayout( ) const { return this->layout.get( ); }
 
   private:
     vk::UniquePipeline pipeline;     ///< The Vulkan pipeline with a unique handle.

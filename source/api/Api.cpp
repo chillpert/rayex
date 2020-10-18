@@ -119,7 +119,7 @@ namespace RAYEXEC_NAMESPACE
     uint32_t maxInstanceCount = this->settings->maxGeometryInstances.has_value( ) ? this->settings->maxGeometryInstances.value( ) : g_maxGeometryInstances;
 
     std::vector<GeometryInstance> geometryInstances( maxInstanceCount );
-    this->rayTracingInstancesBuffer.init<GeometryInstance>( geometryInstances );
+    this->geometryInstancesBuffer.init<GeometryInstance>( geometryInstances );
   }
 
   void Api::initScene( )
@@ -166,9 +166,9 @@ namespace RAYEXEC_NAMESPACE
     updateUniformBuffers( );
 
     // Upload scene description
-    if ( this->uploadRayTracingInstancesToBuffer )
+    if ( this->uploadGeometryInstancesToBuffer )
     {
-      this->uploadRayTracingInstancesToBuffer = false;
+      this->uploadGeometryInstancesToBuffer = false;
 
       dereferencedGeometryInstances.resize( this->scene.geometryInstances.size( ) );
       for ( size_t i = 0; i < dereferencedGeometryInstances.size( ); ++i )
@@ -176,7 +176,7 @@ namespace RAYEXEC_NAMESPACE
         dereferencedGeometryInstances[i] = ( *this->scene.geometryInstances[i] );
       }
 
-      this->rayTracingInstancesBuffer.fill<GeometryInstance>( dereferencedGeometryInstances.data( ) );
+      this->geometryInstancesBuffer.fill<GeometryInstance>( dereferencedGeometryInstances.data( ) );
       updateAccelerationStructures( );
     }
 
@@ -783,7 +783,7 @@ namespace RAYEXEC_NAMESPACE
 
   void Api::updateSceneDescriptors( )
   {
-    vk::DescriptorBufferInfo rtInstancesInfo( this->rayTracingInstancesBuffer.get( ),
+    vk::DescriptorBufferInfo rtInstancesInfo( this->geometryInstancesBuffer.get( ),
                                               0,
                                               VK_WHOLE_SIZE );
 

@@ -17,7 +17,7 @@ namespace RAYEXEC_NAMESPACE
   public:
     RayTracingBuilder( ) = default;
     /// Calls destroy().
-    ~RayTracingBuilder( );
+    RX_API ~RayTracingBuilder( );
 
     RayTracingBuilder( const RayTracingBuilder& )  = delete;
     RayTracingBuilder( const RayTracingBuilder&& ) = delete;

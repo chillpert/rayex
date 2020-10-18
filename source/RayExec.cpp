@@ -132,7 +132,7 @@ namespace RAYEXEC_NAMESPACE
     }
 
     this->api->scene.geometryInstances.push_back( geometryInstance );
-    this->api->uploadRayTracingInstancesToBuffer = true;
+    this->api->uploadGeometryInstancesToBuffer = true;
   }
 
   void RayExec::setGeometryInstances( const std::vector<std::shared_ptr<GeometryInstance>>& geometryInstances )
@@ -144,8 +144,8 @@ namespace RAYEXEC_NAMESPACE
       return;
     }
 
-    this->api->scene.geometryInstances           = geometryInstances;
-    this->api->uploadRayTracingInstancesToBuffer = true;
+    this->api->scene.geometryInstances         = geometryInstances;
+    this->api->uploadGeometryInstancesToBuffer = true;
   }
 
   void RayExec::removeGeometryInstance( std::shared_ptr<GeometryInstance> geometryInstance )
@@ -164,7 +164,7 @@ namespace RAYEXEC_NAMESPACE
       }
     }
 
-    this->api->uploadRayTracingInstancesToBuffer = true;
+    this->api->uploadGeometryInstancesToBuffer = true;
   }
 
   void RayExec::submitGeometry( std::shared_ptr<Geometry> geometry )

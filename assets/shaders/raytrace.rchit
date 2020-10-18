@@ -22,7 +22,7 @@ struct Vertex
   float padding0;
 };
 
-struct RayTracingInstance
+struct GeometryInstance
 {
   mat4 transform;
   mat4 transformIT;
@@ -61,11 +61,11 @@ layout( binding = 1, set = 1 ) uniform LightSources
 }
 lightSources;
 
-layout( binding = 2, set = 1 ) buffer RayTracingInstances
+layout( binding = 2, set = 1 ) buffer GeometryInstances
 {
-  RayTracingInstance i[];
+  GeometryInstance i[];
 }
-rayTracingInstances;
+geometryInstances;
 
 layout( binding = 3, set = 1 ) buffer Meshes
 {
@@ -115,7 +115,7 @@ Vertex unpack( uint index, uint modelIndex )
 
 void main( )
 {
-  uint modelIndex = rayTracingInstances.i[gl_InstanceID].modelIndex;
+  uint modelIndex = geometryInstances.i[gl_InstanceID].modelIndex;
 
   ivec3 ind = ivec3( indices[nonuniformEXT( modelIndex )].i[3 * gl_PrimitiveID + 0],   //
                      indices[nonuniformEXT( modelIndex )].i[3 * gl_PrimitiveID + 1],   //
@@ -127,7 +127,7 @@ void main( )
 
   const vec3 barycentrics = vec3( 1.0 - attribs.x - attribs.y, attribs.x, attribs.y );
   vec3 normal             = v0.normal * barycentrics.x + v1.normal * barycentrics.y + v2.normal * barycentrics.z;
-  normal                  = normalize( vec3( rayTracingInstances.i[gl_InstanceID].transformIT * vec4( normal, 0.0 ) ) );
+  normal                  = normalize( vec3( geometryInstances.i[gl_InstanceID].transformIT * vec4( normal, 0.0 ) ) );
 
   // Calculate world space position (the unprecise way)
   //vec3 worldPos = gl_WorldRayOriginEXT + gl_WorldRayDirectionEXT * gl_HitTEXT;
@@ -136,7 +136,7 @@ void main( )
   // Computing the coordinates of the hit position
   vec3 worldPos = v0.pos * barycentrics.x + v1.pos * barycentrics.y + v2.pos * barycentrics.z;
   // Transforming the position to world space
-  worldPos = vec3( rayTracingInstances.i[gl_InstanceID].transform * vec4( worldPos, 1.0 ) );
+  worldPos = vec3( geometryInstances.i[gl_InstanceID].transform * vec4( worldPos, 1.0 ) );
 
   vec3 L;
   float lightDistance = 100000.0;

@@ -279,45 +279,42 @@ private:
 
     if ( ImGui::Begin( "Settings" ) )
     {
-      //ImGui::SliderFloat( "Speed", &animationSpeed, 0.0F, 2.0F );
-
-      static uint32_t spawnCounter = 0;
-      static std::array<char, 10> str;
-
       if ( ImGui::Button( "Add Box" ) )
       {
         auto cube      = this->renderer->findGeometry( "models/cube.obj" );
         auto transform = glm::translate( glm::mat4( 1.0F ), getRandomUniquePosition( -5.0F, 5.0F ) );
         transform      = glm::scale( transform, glm::vec3( 0.3F, 0.3F, 0.3F ) );
 
-        this->renderer->submitGeometryInstance( instance( cube, transform ) );
+        auto cubeInstance = instance( cube, transform );
 
-        //this->geometryNodes.push_back( box );
+        this->renderer->submitGeometryInstance( cubeInstance );
+        this->geometryInstances.push_back( cubeInstance );
       }
 
       ImGui::SameLine( );
 
       if ( ImGui::Button( "Add Sphere" ) )
       {
-        // "Random Sphere " + std::to_string( spawnCounter++ ),
-
         auto sphere    = this->renderer->findGeometry( "models/sphere.obj" );
         auto transform = glm::translate( glm::mat4( 1.0F ), getRandomUniquePosition( -5.0F, 5.0F ) );
         transform      = glm::scale( transform, glm::vec3( 0.3F, 0.3F, 0.3F ) );
 
-        this->renderer->submitGeometryInstance( instance( sphere, transform ) );
+        auto sphereInstance = instance( sphere, transform );
+        this->renderer->submitGeometryInstance( sphereInstance );
 
-        //this->geometryNodes.push_back( sphere );
+        this->geometryInstances.push_back( sphereInstance );
       }
 
       ImGui::SameLine( );
 
       if ( ImGui::Button( "Clear scene" ) )
       {
-        for ( const auto& node : this->geometryNodes )
+        for ( auto geometryInstance : this->geometryInstances )
         {
-          // this->renderer->popNode( node );
+          this->renderer->removeGeometryInstance( geometryInstance );
         }
+
+        this->geometryInstances.clear( );
       }
 
       ImGui::Checkbox( "Show ImGui Demo Window", &showDemoWindow );
@@ -409,7 +406,7 @@ private:
 
 private:
   RayExec* renderer;
-  std::vector<std::shared_ptr<GeometryNode>> geometryNodes;
+  std::vector<std::shared_ptr<GeometryInstance>> geometryInstances;
 };
 
 auto main( ) -> int

@@ -70,6 +70,25 @@ namespace RAYEXEC_NAMESPACE
       this->api->uploadRayTracingInstancesToBuffer = true;
     }
 
+    RX_API void removeGeometryInstance( std::shared_ptr<GeometryInstance> geometryInstance )
+    {
+      RX_ASSERT( geometryInstance != nullptr, "An invalid geometry instance can not be removed." );
+
+      std::vector<std::shared_ptr<GeometryInstance>> temp( this->api->scene.geometryInstances );
+      this->api->scene.geometryInstances.clear( );
+      this->api->scene.geometryInstances.reserve( temp.size( ) );
+
+      for ( auto it : temp )
+      {
+        if ( it != geometryInstance )
+        {
+          this->api->scene.geometryInstances.push_back( it );
+        }
+      }
+
+      this->api->uploadRayTracingInstancesToBuffer = true;
+    }
+
     RX_API void submitGeometry( std::shared_ptr<Geometry> geometry )
     {
       this->api->scene.geometries.push_back( geometry );

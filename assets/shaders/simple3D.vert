@@ -1,6 +1,8 @@
 #version 460
 #extension GL_ARB_separate_shader_objects : enable
 
+#include "instance.glsl"
+
 // IN
 layout( binding = 0, set = 0 ) uniform CameraProperties
 {
@@ -12,22 +14,11 @@ layout( binding = 0, set = 0 ) uniform CameraProperties
 }
 cam;
 
-struct RayTracingInstance
+layout( binding = 2, set = 0 ) buffer GeometryInstances
 {
-  mat4 transform;
-  mat4 transformIT;
-  int modelIndex;
-  int txtOffset;
-
-  int nodeId; // ignore
-  float padding1;
-};
-
-layout( binding = 2, set = 0 ) buffer RayTracingInstances
-{
-  RayTracingInstance i[];
+  GeometryInstance i[];
 }
-rayTracingInstances;
+geometryInstances;
 
 // gl_InstanceIndex can be used just like gl_InstanceID in rchit. i guess.
 
@@ -49,7 +40,7 @@ layout( push_constant ) uniform Constants
 
 void main( )
 {
-  mat4 model = rayTracingInstances.i[index].transform;
+  mat4 model = geometryInstances.i[index].transform;
 
   fragPos      = vec3( model * vec4( inPosition, 1.0 ) );
   fragTexCoord = inTexCoord;

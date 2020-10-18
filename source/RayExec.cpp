@@ -52,6 +52,9 @@ namespace RAYEXEC_NAMESPACE
   {
     if ( !this->running )
     {
+      // Print results of the session.
+      rx::Time::benchmark( );
+
       RX_INFO( "Shutting down RayExec." );
     }
 

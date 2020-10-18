@@ -59,8 +59,5 @@ auto main( ) -> int
     renderer.run( );
   }
 
-  // Print results of the session.
-  rx::Time::benchmark( );
-
   return 0;
 }

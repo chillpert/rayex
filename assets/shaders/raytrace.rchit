@@ -3,8 +3,8 @@
 #extension GL_EXT_scalar_block_layout : enable
 #extension GL_EXT_nonuniform_qualifier : enable
 
+#include "instance.glsl"
 #include "lights.glsl"
-#include "material.glsl"
 #include "raycommon.glsl"
 
 #define TOTAL_DIRECTIONAL_LIGHTS 1
@@ -20,31 +20,6 @@ struct Vertex
   vec2 texCoord;
 
   float padding0;
-};
-
-struct GeometryInstance
-{
-  mat4 transform;
-  mat4 transformIT;
-  uint modelIndex;
-
-  float padding0;
-  float padding1;
-  float padding2;
-};
-
-struct Mesh
-{
-  Material material;
-
-  vec4 padding0;
-  vec4 padding1;
-  vec4 padding2;
-  uint padding3;
-  uint padding4;
-  uint padding5;
-
-  uint indexOffset;
 };
 
 hitAttributeEXT vec3 attribs;

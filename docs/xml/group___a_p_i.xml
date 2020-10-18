@@ -1,0 +1,37 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.17">
+  <compounddef id="group___a_p_i" kind="group">
+    <compoundname>API</compoundname>
+    <title>Vulkan</title>
+    <innerclass refid="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_api" prot="public">RAYEXEC_NAMESPACE::Api</innerclass>
+    <innerclass refid="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_bindings" prot="public">RAYEXEC_NAMESPACE::Bindings</innerclass>
+    <innerclass refid="struct_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_descriptors" prot="public">RAYEXEC_NAMESPACE::Descriptors</innerclass>
+    <innerclass refid="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_buffer" prot="public">RAYEXEC_NAMESPACE::Buffer</innerclass>
+    <innerclass refid="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_command_buffer" prot="public">RAYEXEC_NAMESPACE::CommandBuffer</innerclass>
+    <innerclass refid="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_index_buffer" prot="public">RAYEXEC_NAMESPACE::IndexBuffer</innerclass>
+    <innerclass refid="struct_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_camera_ubo" prot="public">RAYEXEC_NAMESPACE::CameraUbo</innerclass>
+    <innerclass refid="struct_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_lights_ubo" prot="public">RAYEXEC_NAMESPACE::LightsUbo</innerclass>
+    <innerclass refid="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_uniform_buffer" prot="public">RAYEXEC_NAMESPACE::UniformBuffer</innerclass>
+    <innerclass refid="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_vertex_buffer" prot="public">RAYEXEC_NAMESPACE::VertexBuffer</innerclass>
+    <innerclass refid="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_image" prot="public">RAYEXEC_NAMESPACE::Image</innerclass>
+    <innerclass refid="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_texture" prot="public">RAYEXEC_NAMESPACE::Texture</innerclass>
+    <innerclass refid="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_pipeline" prot="public">RAYEXEC_NAMESPACE::Pipeline</innerclass>
+    <innerclass refid="struct_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_acceleration_structure" prot="public">RAYEXEC_NAMESPACE::AccelerationStructure</innerclass>
+    <innerclass refid="struct_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_tlas" prot="public">RAYEXEC_NAMESPACE::Tlas</innerclass>
+    <innerclass refid="struct_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_blas" prot="public">RAYEXEC_NAMESPACE::Blas</innerclass>
+    <innerclass refid="struct_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_blas_instance" prot="public">RAYEXEC_NAMESPACE::BlasInstance</innerclass>
+    <innerclass refid="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_ray_tracing_builder" prot="public">RAYEXEC_NAMESPACE::RayTracingBuilder</innerclass>
+    <innerclass refid="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_render_pass" prot="public">RAYEXEC_NAMESPACE::RenderPass</innerclass>
+    <innerclass refid="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_surface" prot="public">RAYEXEC_NAMESPACE::Surface</innerclass>
+    <innerclass refid="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_swapchain" prot="public">RAYEXEC_NAMESPACE::Swapchain</innerclass>
+    <innerclass refid="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_debug_messenger" prot="public">RAYEXEC_NAMESPACE::DebugMessenger</innerclass>
+    <innerclass refid="struct_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_vertex" prot="public">RAYEXEC_NAMESPACE::Vertex</innerclass>
+    <innerclass refid="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_gui" prot="public">RAYEXEC_NAMESPACE::Gui</innerclass>
+    <innernamespace refid="namespacevk_1_1_helper">vk::Helper</innernamespace>
+    <innernamespace refid="namespacevk_1_1_initializer">vk::Initializer</innernamespace>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+  </compounddef>
+</doxygen>

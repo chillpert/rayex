@@ -1,0 +1,773 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.17">
+  <compounddef id="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_camera" kind="class" language="C++" prot="public">
+    <compoundname>RAYEXEC_NAMESPACE::Camera</compoundname>
+    <includes refid="_camera_8hpp" local="no">Camera.hpp</includes>
+      <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_camera_1a8c1fbe8efac8d9a473fa1bdceddf7718" prot="public" static="no" mutable="no">
+        <type>bool</type>
+        <definition>bool RAYEXEC_NAMESPACE::Camera::updateView</definition>
+        <argsstring></argsstring>
+        <name>updateView</name>
+        <initializer>= true</initializer>
+        <briefdescription>
+<para>Keeps track of whether or not to udpate the view matrix. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/n30/Repos/rayexec/include/base/Camera.hpp" line="86" column="10" bodyfile="/home/n30/Repos/rayexec/include/base/Camera.hpp" bodystart="86" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_camera_1a83156fc5a103492ffe389d3b0b4c18d3" prot="public" static="no" mutable="no">
+        <type>bool</type>
+        <definition>bool RAYEXEC_NAMESPACE::Camera::updateProj</definition>
+        <argsstring></argsstring>
+        <name>updateProj</name>
+        <initializer>= true</initializer>
+        <briefdescription>
+<para>Keeps track of whether or not to udpate the projection matrix. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/n30/Repos/rayexec/include/base/Camera.hpp" line="87" column="10" bodyfile="/home/n30/Repos/rayexec/include/base/Camera.hpp" bodystart="87" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="protected-attrib">
+      <memberdef kind="variable" id="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_camera_1ac9ff837a1fdc36a3558ed90905f6a59c" prot="protected" static="no" mutable="no">
+        <type>int</type>
+        <definition>int RAYEXEC_NAMESPACE::Camera::width</definition>
+        <argsstring></argsstring>
+        <name>width</name>
+        <briefdescription>
+<para>The width of the viewport. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/n30/Repos/rayexec/include/base/Camera.hpp" line="94" column="9" bodyfile="/home/n30/Repos/rayexec/include/base/Camera.hpp" bodystart="94" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_camera_1ad3d5ad1b1e0f703237f8e515900af570" prot="protected" static="no" mutable="no">
+        <type>int</type>
+        <definition>int RAYEXEC_NAMESPACE::Camera::height</definition>
+        <argsstring></argsstring>
+        <name>height</name>
+        <briefdescription>
+<para>The height of the viewport. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/n30/Repos/rayexec/include/base/Camera.hpp" line="95" column="9" bodyfile="/home/n30/Repos/rayexec/include/base/Camera.hpp" bodystart="95" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_camera_1af922608fc6c78b2385b9052c59904e88" prot="protected" static="no" mutable="no">
+        <type>glm::vec3</type>
+        <definition>glm::vec3 RAYEXEC_NAMESPACE::Camera::position</definition>
+        <argsstring></argsstring>
+        <name>position</name>
+        <briefdescription>
+<para>The camera&apos;s position. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/n30/Repos/rayexec/include/base/Camera.hpp" line="97" column="15" bodyfile="/home/n30/Repos/rayexec/include/base/Camera.hpp" bodystart="97" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_camera_1a3cf917a8f2a43ac25c06f8d5a4762a8e" prot="protected" static="no" mutable="no">
+        <type>glm::mat4</type>
+        <definition>glm::mat4 RAYEXEC_NAMESPACE::Camera::view</definition>
+        <argsstring></argsstring>
+        <name>view</name>
+        <initializer>= glm::mat4( 1.0F )</initializer>
+        <briefdescription>
+<para>The view matrix. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/n30/Repos/rayexec/include/base/Camera.hpp" line="99" column="15" bodyfile="/home/n30/Repos/rayexec/include/base/Camera.hpp" bodystart="99" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_camera_1a484cb7902b79ae5cfa30e3763a17712b" prot="protected" static="no" mutable="no">
+        <type>glm::mat4</type>
+        <definition>glm::mat4 RAYEXEC_NAMESPACE::Camera::projection</definition>
+        <argsstring></argsstring>
+        <name>projection</name>
+        <initializer>= glm::mat4( 1.0F )</initializer>
+        <briefdescription>
+<para>The projection matrix. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/n30/Repos/rayexec/include/base/Camera.hpp" line="100" column="15" bodyfile="/home/n30/Repos/rayexec/include/base/Camera.hpp" bodystart="100" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_camera_1a0398f31133b8ec4bfab87e28a811ab3e" prot="protected" static="no" mutable="no">
+        <type>glm::mat4</type>
+        <definition>glm::mat4 RAYEXEC_NAMESPACE::Camera::viewInverse</definition>
+        <argsstring></argsstring>
+        <name>viewInverse</name>
+        <initializer>= glm::mat4( 1.0F )</initializer>
+        <briefdescription>
+<para>The view matrix inversed. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/n30/Repos/rayexec/include/base/Camera.hpp" line="102" column="15" bodyfile="/home/n30/Repos/rayexec/include/base/Camera.hpp" bodystart="102" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_camera_1a057b681aa8001944c48c3933735b8217" prot="protected" static="no" mutable="no">
+        <type>glm::mat4</type>
+        <definition>glm::mat4 RAYEXEC_NAMESPACE::Camera::projectionInverse</definition>
+        <argsstring></argsstring>
+        <name>projectionInverse</name>
+        <initializer>= glm::mat4( 1.0F )</initializer>
+        <briefdescription>
+<para>The projection matrix inversed. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/n30/Repos/rayexec/include/base/Camera.hpp" line="103" column="15" bodyfile="/home/n30/Repos/rayexec/include/base/Camera.hpp" bodystart="103" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_camera_1a9fd112d108497d0418773a12dff2f502" prot="protected" static="no" mutable="no">
+        <type>glm::vec3</type>
+        <definition>glm::vec3 RAYEXEC_NAMESPACE::Camera::worldUp</definition>
+        <argsstring></argsstring>
+        <name>worldUp</name>
+        <initializer>= { 0.0F, 1.0F, 0.0F }</initializer>
+        <briefdescription>
+<para>The world up vector. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/n30/Repos/rayexec/include/base/Camera.hpp" line="105" column="15" bodyfile="/home/n30/Repos/rayexec/include/base/Camera.hpp" bodystart="105" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_camera_1aa6b77663fd6679700969aea393fce5db" prot="protected" static="no" mutable="no">
+        <type>glm::vec3</type>
+        <definition>glm::vec3 RAYEXEC_NAMESPACE::Camera::up</definition>
+        <argsstring></argsstring>
+        <name>up</name>
+        <initializer>= { }</initializer>
+        <briefdescription>
+<para>The local up vector. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/n30/Repos/rayexec/include/base/Camera.hpp" line="106" column="15" bodyfile="/home/n30/Repos/rayexec/include/base/Camera.hpp" bodystart="106" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_camera_1a4f91c61fbfcfa3a10dff3d5dbba0bad7" prot="protected" static="no" mutable="no">
+        <type>glm::vec3</type>
+        <definition>glm::vec3 RAYEXEC_NAMESPACE::Camera::right</definition>
+        <argsstring></argsstring>
+        <name>right</name>
+        <initializer>= { }</initializer>
+        <briefdescription>
+<para>The local right vector. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/n30/Repos/rayexec/include/base/Camera.hpp" line="107" column="15" bodyfile="/home/n30/Repos/rayexec/include/base/Camera.hpp" bodystart="107" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_camera_1ae254cca6149d934d78c888480143b24b" prot="protected" static="no" mutable="no">
+        <type>glm::vec3</type>
+        <definition>glm::vec3 RAYEXEC_NAMESPACE::Camera::front</definition>
+        <argsstring></argsstring>
+        <name>front</name>
+        <initializer>= { }</initializer>
+        <briefdescription>
+<para>The viewing direction. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/n30/Repos/rayexec/include/base/Camera.hpp" line="108" column="15" bodyfile="/home/n30/Repos/rayexec/include/base/Camera.hpp" bodystart="108" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_camera_1a2c16425a6f274ee0906e7b76f3134374" prot="protected" static="no" mutable="no">
+        <type>float</type>
+        <definition>float RAYEXEC_NAMESPACE::Camera::yaw</definition>
+        <argsstring></argsstring>
+        <name>yaw</name>
+        <initializer>= -90.0F</initializer>
+        <briefdescription>
+<para>The yaw (left and right). </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/n30/Repos/rayexec/include/base/Camera.hpp" line="110" column="11" bodyfile="/home/n30/Repos/rayexec/include/base/Camera.hpp" bodystart="110" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_camera_1afa1ddc44eda944d6117fbe85d382577f" prot="protected" static="no" mutable="no">
+        <type>float</type>
+        <definition>float RAYEXEC_NAMESPACE::Camera::pitch</definition>
+        <argsstring></argsstring>
+        <name>pitch</name>
+        <initializer>= 0.0F</initializer>
+        <briefdescription>
+<para>The pitch (down and up). </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/n30/Repos/rayexec/include/base/Camera.hpp" line="111" column="11" bodyfile="/home/n30/Repos/rayexec/include/base/Camera.hpp" bodystart="111" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_camera_1a897532a88cbd7fa33b9c090eb6ede012" prot="protected" static="no" mutable="no">
+        <type>float</type>
+        <definition>float RAYEXEC_NAMESPACE::Camera::sensitivity</definition>
+        <argsstring></argsstring>
+        <name>sensitivity</name>
+        <initializer>= 0.06F</initializer>
+        <briefdescription>
+<para>The mouse sensitivity. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/n30/Repos/rayexec/include/base/Camera.hpp" line="112" column="11" bodyfile="/home/n30/Repos/rayexec/include/base/Camera.hpp" bodystart="112" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_camera_1a45d31c4488fdeb359d36c0ee3ac7bbe2" prot="protected" static="no" mutable="no">
+        <type>float</type>
+        <definition>float RAYEXEC_NAMESPACE::Camera::fov</definition>
+        <argsstring></argsstring>
+        <name>fov</name>
+        <initializer>= 45.0F</initializer>
+        <briefdescription>
+<para>The field of view. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/n30/Repos/rayexec/include/base/Camera.hpp" line="113" column="11" bodyfile="/home/n30/Repos/rayexec/include/base/Camera.hpp" bodystart="113" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_camera_1a490dea6c59a325694231585bcea1272f" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>RX_API</type>
+        <definition>RX_API RAYEXEC_NAMESPACE::Camera::Camera</definition>
+        <argsstring>(int width, int height, const glm::vec3 &amp;position={ 0.0F, 0.0F, 3.0F })</argsstring>
+        <name>Camera</name>
+        <param>
+          <type>int</type>
+          <declname>width</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>height</declname>
+        </param>
+        <param>
+          <type>const glm::vec3 &amp;</type>
+          <declname>position</declname>
+          <defval>{ 0.0F, 0.0F, 3.0F }</defval>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>width</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The width of the viewport. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>height</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The height of the viewport. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>position</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The position of your camera. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/n30/Repos/rayexec/include/base/Camera.hpp" line="25" column="12"/>
+      </memberdef>
+      <memberdef kind="function" id="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_camera_1a52426e0d9e1e14ee22032864e08b8950" prot="public" static="no" const="no" explicit="no" inline="no" virt="virtual">
+        <type>RX_API</type>
+        <definition>virtual RX_API RAYEXEC_NAMESPACE::Camera::~Camera</definition>
+        <argsstring>()=default</argsstring>
+        <name>~Camera</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/n30/Repos/rayexec/include/base/Camera.hpp" line="27" column="20"/>
+      </memberdef>
+      <memberdef kind="function" id="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_camera_1ad20267869addb34295336598835ebb92" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>RX_API</type>
+        <definition>RX_API RAYEXEC_NAMESPACE::Camera::Camera</definition>
+        <argsstring>(const Camera &amp;)=default</argsstring>
+        <name>Camera</name>
+        <param>
+          <type>const <ref refid="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_camera" kindref="compound">Camera</ref> &amp;</type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/n30/Repos/rayexec/include/base/Camera.hpp" line="29" column="12"/>
+      </memberdef>
+      <memberdef kind="function" id="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_camera_1a467c7152a8ad13deed4fe7f46f0c2e68" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>RAYEXEC_NAMESPACE::Camera::Camera</definition>
+        <argsstring>(const Camera &amp;&amp;)=delete</argsstring>
+        <name>Camera</name>
+        <param>
+          <type>const <ref refid="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_camera" kindref="compound">Camera</ref> &amp;&amp;</type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/n30/Repos/rayexec/include/base/Camera.hpp" line="30" column="5"/>
+      </memberdef>
+      <memberdef kind="function" id="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_camera_1a11db4c76805ab39f525f7420f9d54934" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>RX_API auto</type>
+        <definition>RX_API auto RAYEXEC_NAMESPACE::Camera::operator=</definition>
+        <argsstring>(const Camera &amp;) -&gt; Camera &amp;=default</argsstring>
+        <name>operator=</name>
+        <param>
+          <type>const <ref refid="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_camera" kindref="compound">Camera</ref> &amp;</type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/n30/Repos/rayexec/include/base/Camera.hpp" line="32" column="17"/>
+      </memberdef>
+      <memberdef kind="function" id="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_camera_1a132544defa696e77a24bc2c9e272b060" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>auto</type>
+        <definition>auto RAYEXEC_NAMESPACE::Camera::operator=</definition>
+        <argsstring>(const Camera &amp;&amp;) -&gt; Camera &amp;=delete</argsstring>
+        <name>operator=</name>
+        <param>
+          <type>const <ref refid="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_camera" kindref="compound">Camera</ref> &amp;&amp;</type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/n30/Repos/rayexec/include/base/Camera.hpp" line="33" column="10"/>
+      </memberdef>
+      <memberdef kind="function" id="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_camera_1a17a52094a998d73590caa62e219064b1" prot="public" static="no" const="no" explicit="no" inline="no" virt="virtual">
+        <type>RX_API void</type>
+        <definition>virtual RX_API void RAYEXEC_NAMESPACE::Camera::update</definition>
+        <argsstring>()</argsstring>
+        <name>update</name>
+        <briefdescription>
+<para>Is used to update camera vectors etc. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>The user has to override this function for the camera to work like intended. <simplesect kind="note"><para>The function will be called every tick. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/n30/Repos/rayexec/include/base/Camera.hpp" line="39" column="25"/>
+      </memberdef>
+      <memberdef kind="function" id="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_camera_1a9e28a26cf3530e9a35e90acd80bbdc92" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>RX_API auto</type>
+        <definition>RX_API auto RAYEXEC_NAMESPACE::Camera::getPosition</definition>
+        <argsstring>() const -&gt; const glm::vec3 &amp;</argsstring>
+        <name>getPosition</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>Returns the camera&apos;s position. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/n30/Repos/rayexec/include/base/Camera.hpp" line="42" column="18" bodyfile="/home/n30/Repos/rayexec/include/base/Camera.hpp" bodystart="42" bodyend="42"/>
+      </memberdef>
+      <memberdef kind="function" id="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_camera_1a760a878e62be9e6c1703189e77cc6c9e" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>RX_API void</type>
+        <definition>RX_API void RAYEXEC_NAMESPACE::Camera::setPosition</definition>
+        <argsstring>(const glm::vec3 &amp;position)</argsstring>
+        <name>setPosition</name>
+        <param>
+          <type>const glm::vec3 &amp;</type>
+          <declname>position</declname>
+        </param>
+        <briefdescription>
+<para>Is used to change the camera&apos;s position. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>position</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The new camera position. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/n30/Repos/rayexec/include/base/Camera.hpp" line="46" column="17"/>
+      </memberdef>
+      <memberdef kind="function" id="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_camera_1a79953238e48d989a08a5a3cf6e5e341c" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>RX_API void</type>
+        <definition>RX_API void RAYEXEC_NAMESPACE::Camera::setSize</definition>
+        <argsstring>(int width, int height)</argsstring>
+        <name>setSize</name>
+        <param>
+          <type>int</type>
+          <declname>width</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>height</declname>
+        </param>
+        <briefdescription>
+<para>Is used to set a size for the camera that fits the viewport dimensions. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>width</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The width of the viewport. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>height</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The height of the viewport. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/n30/Repos/rayexec/include/base/Camera.hpp" line="51" column="17"/>
+      </memberdef>
+      <memberdef kind="function" id="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_camera_1aa2f5d457dd30aa6bc4303cb434c42de3" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>RX_API void</type>
+        <definition>RX_API void RAYEXEC_NAMESPACE::Camera::setFov</definition>
+        <argsstring>(float fov)</argsstring>
+        <name>setFov</name>
+        <param>
+          <type>float</type>
+          <declname>fov</declname>
+        </param>
+        <briefdescription>
+<para>Is used to set the camera&apos;s field of view. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>fov</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The new field of view. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/n30/Repos/rayexec/include/base/Camera.hpp" line="55" column="17"/>
+      </memberdef>
+      <memberdef kind="function" id="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_camera_1a7a5d343f5d9b1fe99ad1dbb15d45c271" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>RX_API void</type>
+        <definition>RX_API void RAYEXEC_NAMESPACE::Camera::setSensitivity</definition>
+        <argsstring>(float sensitivity)</argsstring>
+        <name>setSensitivity</name>
+        <param>
+          <type>float</type>
+          <declname>sensitivity</declname>
+        </param>
+        <briefdescription>
+<para>Is used to set the mouse sensitivity. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>sensitivity</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The new mouse sensitivity. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/n30/Repos/rayexec/include/base/Camera.hpp" line="59" column="17"/>
+      </memberdef>
+      <memberdef kind="function" id="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_camera_1a6903135d34ee41d5f3af63c3a00ad35a" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>auto</type>
+        <definition>auto RAYEXEC_NAMESPACE::Camera::getViewMatrix</definition>
+        <argsstring>() const -&gt; const glm::mat4 &amp;</argsstring>
+        <name>getViewMatrix</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>The view matrix. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/n30/Repos/rayexec/include/base/Camera.hpp" line="62" column="11" bodyfile="/home/n30/Repos/rayexec/include/base/Camera.hpp" bodystart="62" bodyend="62"/>
+      </memberdef>
+      <memberdef kind="function" id="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_camera_1a9ff0f0ef85ce403930035cea2e2ecbaf" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>auto</type>
+        <definition>auto RAYEXEC_NAMESPACE::Camera::getProjectionMatrix</definition>
+        <argsstring>() const -&gt; const glm::mat4 &amp;</argsstring>
+        <name>getProjectionMatrix</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>The projection matrix. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/n30/Repos/rayexec/include/base/Camera.hpp" line="65" column="11" bodyfile="/home/n30/Repos/rayexec/include/base/Camera.hpp" bodystart="65" bodyend="65"/>
+      </memberdef>
+      <memberdef kind="function" id="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_camera_1a730a3b81a3909dc4fd394b4faa46d1d9" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>auto</type>
+        <definition>auto RAYEXEC_NAMESPACE::Camera::getViewInverseMatrix</definition>
+        <argsstring>() const -&gt; const glm::mat4 &amp;</argsstring>
+        <name>getViewInverseMatrix</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>The view matrix inversed. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/n30/Repos/rayexec/include/base/Camera.hpp" line="68" column="11" bodyfile="/home/n30/Repos/rayexec/include/base/Camera.hpp" bodystart="68" bodyend="68"/>
+      </memberdef>
+      <memberdef kind="function" id="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_camera_1aad866a830b16be3939625667dd682550" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>auto</type>
+        <definition>auto RAYEXEC_NAMESPACE::Camera::getProjectionInverseMatrix</definition>
+        <argsstring>() const -&gt; const glm::mat4 &amp;</argsstring>
+        <name>getProjectionInverseMatrix</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>The projection matrix inversed. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/n30/Repos/rayexec/include/base/Camera.hpp" line="71" column="11" bodyfile="/home/n30/Repos/rayexec/include/base/Camera.hpp" bodystart="71" bodyend="71"/>
+      </memberdef>
+      <memberdef kind="function" id="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_camera_1ad857cce17e25f1a9dc5a14140deca385" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>RX_API void</type>
+        <definition>RX_API void RAYEXEC_NAMESPACE::Camera::updateViewMatrix</definition>
+        <argsstring>()</argsstring>
+        <name>updateViewMatrix</name>
+        <briefdescription>
+<para>Re-calculates the camera&apos;s view matrix as well as the inversed view matrix. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/n30/Repos/rayexec/include/base/Camera.hpp" line="74" column="17"/>
+      </memberdef>
+      <memberdef kind="function" id="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_camera_1a129b7201b6218d65b48b65525d37f924" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>RX_API void</type>
+        <definition>RX_API void RAYEXEC_NAMESPACE::Camera::updateProjectionMatrix</definition>
+        <argsstring>()</argsstring>
+        <name>updateProjectionMatrix</name>
+        <briefdescription>
+<para>Re-calculates the camera&apos;s projection matrix as well as the inversed projection matrix. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/n30/Repos/rayexec/include/base/Camera.hpp" line="77" column="17"/>
+      </memberdef>
+      <memberdef kind="function" id="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_camera_1a831e7eafb8336182831f82a311ecff6f" prot="public" static="no" const="no" explicit="no" inline="no" virt="virtual">
+        <type>RX_API void</type>
+        <definition>virtual RX_API void RAYEXEC_NAMESPACE::Camera::processMouse</definition>
+        <argsstring>(float xOffset, float yOffset)</argsstring>
+        <name>processMouse</name>
+        <param>
+          <type>float</type>
+          <declname>xOffset</declname>
+        </param>
+        <param>
+          <type>float</type>
+          <declname>yOffset</declname>
+        </param>
+        <briefdescription>
+<para>Processes mouse input (default implementation). </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>xOffset</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The difference of the current offset on the x-axis and the previous offset. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>yOffset</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The difference of the current offset on the y-axis and the previous offset. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/n30/Repos/rayexec/include/base/Camera.hpp" line="82" column="25"/>
+      </memberdef>
+      <memberdef kind="function" id="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_camera_1aae0b352b60daeb87a24a49a412327b31" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+        <type>RX_API void</type>
+        <definition>virtual RX_API void RAYEXEC_NAMESPACE::Camera::processKeyboard</definition>
+        <argsstring>()</argsstring>
+        <name>processKeyboard</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/n30/Repos/rayexec/include/base/Camera.hpp" line="84" column="25" bodyfile="/home/n30/Repos/rayexec/include/base/Camera.hpp" bodystart="84" bodyend="84"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="protected-func">
+      <memberdef kind="function" id="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_camera_1a118e91eafecb3bf19c9def7e55766f25" prot="protected" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>RX_API void</type>
+        <definition>RX_API void RAYEXEC_NAMESPACE::Camera::updateVectors</definition>
+        <argsstring>()</argsstring>
+        <name>updateVectors</name>
+        <briefdescription>
+<para>Updates the camera vectors. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="note"><para>Only needs to be called if mouse was moved. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/n30/Repos/rayexec/include/base/Camera.hpp" line="92" column="17"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+<para>A minimal camera implementation. </para>
+    </briefdescription>
+    <detaileddescription>
+<para>This class acts like an interface for the user by providing the most important camera-related matrices as well as the camera&apos;s position, which are required by the rendering API. </para>
+<sect3 id="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_camera_1autotoc_md8">
+<title>Example</title>
+<para><programlisting filename=".cpp"><codeline><highlight class="comment">//<sp/>This<sp/>example<sp/>requires<sp/>the<sp/>user<sp/>to<sp/>implement<sp/>a<sp/>custom<sp/>camera<sp/>class<sp/>that<sp/>inherits<sp/>from<sp/>Camera.</highlight><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/>myCam<sp/>=<sp/>std::make_shared&lt;CustomCamera&gt;(<sp/>600,<sp/>500,<sp/>glm::vec3{<sp/>0.0f,<sp/>0.0f,<sp/>3.0f<sp/>}<sp/>);</highlight></codeline>
+</programlisting></para>
+<para><simplesect kind="note"><para>The user has to handle keyboard related camera changes inside <ref refid="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_camera_1a17a52094a998d73590caa62e219064b1" kindref="member">update()</ref>. </para>
+</simplesect>
+<simplesect kind="warning"><para>Do not forget to re-calculate the view or projection matrix if the camera or the window have changed. See <ref refid="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_camera_1ad857cce17e25f1a9dc5a14140deca385" kindref="member">updateViewMatrix()</ref>, <ref refid="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_camera_1a129b7201b6218d65b48b65525d37f924" kindref="member">updateProjectionMatrix()</ref> or updateView and updateProj respectively. </para>
+</simplesect>
+</para>
+</sect3>
+    </detaileddescription>
+    <location file="/home/n30/Repos/rayexec/include/base/Camera.hpp" line="20" column="1" bodyfile="/home/n30/Repos/rayexec/include/base/Camera.hpp" bodystart="19" bodyend="114"/>
+    <listofallmembers>
+      <member refid="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_camera_1a490dea6c59a325694231585bcea1272f" prot="public" virt="non-virtual"><scope>RAYEXEC_NAMESPACE::Camera</scope><name>Camera</name></member>
+      <member refid="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_camera_1ad20267869addb34295336598835ebb92" prot="public" virt="non-virtual"><scope>RAYEXEC_NAMESPACE::Camera</scope><name>Camera</name></member>
+      <member refid="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_camera_1a467c7152a8ad13deed4fe7f46f0c2e68" prot="public" virt="non-virtual"><scope>RAYEXEC_NAMESPACE::Camera</scope><name>Camera</name></member>
+      <member refid="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_camera_1a45d31c4488fdeb359d36c0ee3ac7bbe2" prot="protected" virt="non-virtual"><scope>RAYEXEC_NAMESPACE::Camera</scope><name>fov</name></member>
+      <member refid="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_camera_1ae254cca6149d934d78c888480143b24b" prot="protected" virt="non-virtual"><scope>RAYEXEC_NAMESPACE::Camera</scope><name>front</name></member>
+      <member refid="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_camera_1a9e28a26cf3530e9a35e90acd80bbdc92" prot="public" virt="non-virtual"><scope>RAYEXEC_NAMESPACE::Camera</scope><name>getPosition</name></member>
+      <member refid="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_camera_1aad866a830b16be3939625667dd682550" prot="public" virt="non-virtual"><scope>RAYEXEC_NAMESPACE::Camera</scope><name>getProjectionInverseMatrix</name></member>
+      <member refid="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_camera_1a9ff0f0ef85ce403930035cea2e2ecbaf" prot="public" virt="non-virtual"><scope>RAYEXEC_NAMESPACE::Camera</scope><name>getProjectionMatrix</name></member>
+      <member refid="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_camera_1a730a3b81a3909dc4fd394b4faa46d1d9" prot="public" virt="non-virtual"><scope>RAYEXEC_NAMESPACE::Camera</scope><name>getViewInverseMatrix</name></member>
+      <member refid="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_camera_1a6903135d34ee41d5f3af63c3a00ad35a" prot="public" virt="non-virtual"><scope>RAYEXEC_NAMESPACE::Camera</scope><name>getViewMatrix</name></member>
+      <member refid="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_camera_1ad3d5ad1b1e0f703237f8e515900af570" prot="protected" virt="non-virtual"><scope>RAYEXEC_NAMESPACE::Camera</scope><name>height</name></member>
+      <member refid="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_camera_1a11db4c76805ab39f525f7420f9d54934" prot="public" virt="non-virtual"><scope>RAYEXEC_NAMESPACE::Camera</scope><name>operator=</name></member>
+      <member refid="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_camera_1a132544defa696e77a24bc2c9e272b060" prot="public" virt="non-virtual"><scope>RAYEXEC_NAMESPACE::Camera</scope><name>operator=</name></member>
+      <member refid="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_camera_1afa1ddc44eda944d6117fbe85d382577f" prot="protected" virt="non-virtual"><scope>RAYEXEC_NAMESPACE::Camera</scope><name>pitch</name></member>
+      <member refid="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_camera_1af922608fc6c78b2385b9052c59904e88" prot="protected" virt="non-virtual"><scope>RAYEXEC_NAMESPACE::Camera</scope><name>position</name></member>
+      <member refid="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_camera_1aae0b352b60daeb87a24a49a412327b31" prot="public" virt="virtual"><scope>RAYEXEC_NAMESPACE::Camera</scope><name>processKeyboard</name></member>
+      <member refid="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_camera_1a831e7eafb8336182831f82a311ecff6f" prot="public" virt="virtual"><scope>RAYEXEC_NAMESPACE::Camera</scope><name>processMouse</name></member>
+      <member refid="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_camera_1a484cb7902b79ae5cfa30e3763a17712b" prot="protected" virt="non-virtual"><scope>RAYEXEC_NAMESPACE::Camera</scope><name>projection</name></member>
+      <member refid="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_camera_1a057b681aa8001944c48c3933735b8217" prot="protected" virt="non-virtual"><scope>RAYEXEC_NAMESPACE::Camera</scope><name>projectionInverse</name></member>
+      <member refid="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_camera_1a4f91c61fbfcfa3a10dff3d5dbba0bad7" prot="protected" virt="non-virtual"><scope>RAYEXEC_NAMESPACE::Camera</scope><name>right</name></member>
+      <member refid="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_camera_1a897532a88cbd7fa33b9c090eb6ede012" prot="protected" virt="non-virtual"><scope>RAYEXEC_NAMESPACE::Camera</scope><name>sensitivity</name></member>
+      <member refid="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_camera_1aa2f5d457dd30aa6bc4303cb434c42de3" prot="public" virt="non-virtual"><scope>RAYEXEC_NAMESPACE::Camera</scope><name>setFov</name></member>
+      <member refid="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_camera_1a760a878e62be9e6c1703189e77cc6c9e" prot="public" virt="non-virtual"><scope>RAYEXEC_NAMESPACE::Camera</scope><name>setPosition</name></member>
+      <member refid="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_camera_1a7a5d343f5d9b1fe99ad1dbb15d45c271" prot="public" virt="non-virtual"><scope>RAYEXEC_NAMESPACE::Camera</scope><name>setSensitivity</name></member>
+      <member refid="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_camera_1a79953238e48d989a08a5a3cf6e5e341c" prot="public" virt="non-virtual"><scope>RAYEXEC_NAMESPACE::Camera</scope><name>setSize</name></member>
+      <member refid="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_camera_1aa6b77663fd6679700969aea393fce5db" prot="protected" virt="non-virtual"><scope>RAYEXEC_NAMESPACE::Camera</scope><name>up</name></member>
+      <member refid="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_camera_1a17a52094a998d73590caa62e219064b1" prot="public" virt="virtual"><scope>RAYEXEC_NAMESPACE::Camera</scope><name>update</name></member>
+      <member refid="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_camera_1a83156fc5a103492ffe389d3b0b4c18d3" prot="public" virt="non-virtual"><scope>RAYEXEC_NAMESPACE::Camera</scope><name>updateProj</name></member>
+      <member refid="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_camera_1a129b7201b6218d65b48b65525d37f924" prot="public" virt="non-virtual"><scope>RAYEXEC_NAMESPACE::Camera</scope><name>updateProjectionMatrix</name></member>
+      <member refid="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_camera_1a118e91eafecb3bf19c9def7e55766f25" prot="protected" virt="non-virtual"><scope>RAYEXEC_NAMESPACE::Camera</scope><name>updateVectors</name></member>
+      <member refid="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_camera_1a8c1fbe8efac8d9a473fa1bdceddf7718" prot="public" virt="non-virtual"><scope>RAYEXEC_NAMESPACE::Camera</scope><name>updateView</name></member>
+      <member refid="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_camera_1ad857cce17e25f1a9dc5a14140deca385" prot="public" virt="non-virtual"><scope>RAYEXEC_NAMESPACE::Camera</scope><name>updateViewMatrix</name></member>
+      <member refid="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_camera_1a3cf917a8f2a43ac25c06f8d5a4762a8e" prot="protected" virt="non-virtual"><scope>RAYEXEC_NAMESPACE::Camera</scope><name>view</name></member>
+      <member refid="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_camera_1a0398f31133b8ec4bfab87e28a811ab3e" prot="protected" virt="non-virtual"><scope>RAYEXEC_NAMESPACE::Camera</scope><name>viewInverse</name></member>
+      <member refid="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_camera_1ac9ff837a1fdc36a3558ed90905f6a59c" prot="protected" virt="non-virtual"><scope>RAYEXEC_NAMESPACE::Camera</scope><name>width</name></member>
+      <member refid="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_camera_1a9fd112d108497d0418773a12dff2f502" prot="protected" virt="non-virtual"><scope>RAYEXEC_NAMESPACE::Camera</scope><name>worldUp</name></member>
+      <member refid="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_camera_1a2c16425a6f274ee0906e7b76f3134374" prot="protected" virt="non-virtual"><scope>RAYEXEC_NAMESPACE::Camera</scope><name>yaw</name></member>
+      <member refid="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_camera_1a52426e0d9e1e14ee22032864e08b8950" prot="public" virt="virtual"><scope>RAYEXEC_NAMESPACE::Camera</scope><name>~Camera</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

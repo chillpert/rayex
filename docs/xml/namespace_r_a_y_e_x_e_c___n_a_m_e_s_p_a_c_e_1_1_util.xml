@@ -1,0 +1,161 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.17">
+  <compounddef id="namespace_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_util" kind="namespace" language="C++">
+    <compoundname>RAYEXEC_NAMESPACE::Util</compoundname>
+      <sectiondef kind="func">
+      <memberdef kind="function" id="namespace_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_util_1a2e4ae857900a2e15dafa03bd7bc49d0d" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>auto</type>
+        <definition>auto RAYEXEC_NAMESPACE::Util::parseShader</definition>
+        <argsstring>(std::string_view path) -&gt; std::vector&lt; char &gt;</argsstring>
+        <name>parseShader</name>
+        <param>
+          <type>std::string_view</type>
+          <declname>path</declname>
+        </param>
+        <briefdescription>
+<para>Parses a given shader file. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>path</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The full path to shader file. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>Returns a vector of chars that contains the shader in SPIR-V format. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/n30/Repos/rayexec/include/api/utility/Util.hpp" line="13" column="10" declfile="/home/n30/Repos/rayexec/include/api/utility/Util.hpp" declline="13" declcolumn="10"/>
+      </memberdef>
+      <memberdef kind="function" id="namespace_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_util_1ab3f89cb02ee3a4e52b7023920ef96b78" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void RAYEXEC_NAMESPACE::Util::processShaderMacros</definition>
+        <argsstring>(std::string_view path, uint32_t dirLightNodes, uint32_t pointLightNodes, uint32_t totalModels)</argsstring>
+        <name>processShaderMacros</name>
+        <param>
+          <type>std::string_view</type>
+          <declname>path</declname>
+        </param>
+        <param>
+          <type>uint32_t</type>
+          <declname>dirLightNodes</declname>
+        </param>
+        <param>
+          <type>uint32_t</type>
+          <declname>pointLightNodes</declname>
+        </param>
+        <param>
+          <type>uint32_t</type>
+          <declname>totalModels</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/n30/Repos/rayexec/include/api/utility/Util.hpp" line="15" column="10" declfile="/home/n30/Repos/rayexec/include/api/utility/Util.hpp" declline="15" declcolumn="10"/>
+      </memberdef>
+      <memberdef kind="function" id="namespace_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_util_1a53f7abf3bc513c4fd9e863178cf68017" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>typename T</type>
+          </param>
+          <param>
+            <type>typename Container</type>
+          </param>
+        </templateparamlist>
+        <type>auto</type>
+        <definition>auto RAYEXEC_NAMESPACE::Util::find</definition>
+        <argsstring>(T value, const Container &amp;values) -&gt; bool</argsstring>
+        <name>find</name>
+        <param>
+          <type>T</type>
+          <declname>value</declname>
+        </param>
+        <param>
+          <type>const Container &amp;</type>
+          <declname>values</declname>
+        </param>
+        <briefdescription>
+<para>Used to find any given element inside a STL container. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>value</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The value to search for. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>values</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The STL container of the same type as value. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>Returns true, if value was found in values. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/n30/Repos/rayexec/include/api/utility/Util.hpp" line="22" column="10" bodyfile="/home/n30/Repos/rayexec/include/api/utility/Util.hpp" bodystart="22" bodyend="31"/>
+      </memberdef>
+      <memberdef kind="function" id="namespace_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_util_1a1c059d1fe285f9a5a0a2b5a0a7292972" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>auto</type>
+        <definition>auto RAYEXEC_NAMESPACE::Util::vec4toArray</definition>
+        <argsstring>(const glm::vec4 &amp;vec) -&gt; std::array&lt; float, 4 &gt;</argsstring>
+        <name>vec4toArray</name>
+        <param>
+          <type>const glm::vec4 &amp;</type>
+          <declname>vec</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/n30/Repos/rayexec/include/api/utility/Util.hpp" line="33" column="10" declfile="/home/n30/Repos/rayexec/include/api/utility/Util.hpp" declline="33" declcolumn="10"/>
+      </memberdef>
+      <memberdef kind="function" id="namespace_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_util_1afcdf9ecfb26e4931c887eb8afdbe1227" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>typename T</type>
+          </param>
+        </templateparamlist>
+        <type>auto</type>
+        <definition>auto RAYEXEC_NAMESPACE::Util::listToVec</definition>
+        <argsstring>(const std::list&lt; T &gt; &amp;vec) -&gt; std::vector&lt; T &gt;</argsstring>
+        <name>listToVec</name>
+        <param>
+          <type>const std::list&lt; T &gt; &amp;</type>
+          <declname>vec</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/n30/Repos/rayexec/include/api/utility/Util.hpp" line="36" column="10" bodyfile="/home/n30/Repos/rayexec/include/api/utility/Util.hpp" bodystart="36" bodyend="47"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="/home/n30/Repos/rayexec/include/api/utility/Util.hpp" line="9" column="1"/>
+  </compounddef>
+</doxygen>

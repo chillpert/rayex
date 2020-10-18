@@ -85,7 +85,7 @@ namespace RAYEXEC_NAMESPACE
     }
   }
 
-  auto Bindings::write( vk::DescriptorSet set, size_t writesIndex, uint32_t binding, uint32_t arrayElement ) -> size_t
+  auto Bindings::write( vk::DescriptorSet set, size_t writeIndex, uint32_t binding ) -> size_t
   {
     vk::WriteDescriptorSet result;
 
@@ -97,14 +97,13 @@ namespace RAYEXEC_NAMESPACE
         result.descriptorType  = this->bindings[i].descriptorType;
         result.dstBinding      = binding;
         result.dstSet          = set;
-        result.dstArrayElement = arrayElement;
 
-        this->writes[writesIndex][i] = result;
+        this->writes[writeIndex][i] = result;
         return i;
       }
     }
 
-    RX_ASSERT( false, "Failed to write binding to set. Binding could not be found." );
+    RX_FATAL( "Failed to write binding to set. Binding could not be found." );
     return 0;
   }
 
@@ -146,7 +145,7 @@ namespace RAYEXEC_NAMESPACE
     }
   }
 
-  auto Bindings::writeArray( vk::DescriptorSet set, size_t writesIndex, uint32_t binding ) -> size_t
+  auto Bindings::writeArray( vk::DescriptorSet set, size_t writeIndex, uint32_t binding ) -> size_t
   {
     vk::WriteDescriptorSet result;
 
@@ -160,12 +159,12 @@ namespace RAYEXEC_NAMESPACE
         result.dstSet          = set;
         result.dstArrayElement = 0;
 
-        this->writes[writesIndex][i] = result;
+        this->writes[writeIndex][i] = result;
         return i;
       }
     }
 
-    RX_ASSERT( false, "Failed to write binding to set. Binding could not be found." );
+    RX_FATAL( "Failed to write binding to set. Binding could not be found." );
     return 0;
   }
 

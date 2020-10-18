@@ -1,0 +1,118 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.17">
+  <compounddef id="struct_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_geometry_instance" kind="struct" language="C++" prot="public">
+    <compoundname>RAYEXEC_NAMESPACE::GeometryInstance</compoundname>
+    <includes refid="_geometry_8hpp" local="no">Geometry.hpp</includes>
+      <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="struct_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_geometry_instance_1a2dc80022089dd5b7f0fdd06c1d05b33b" prot="public" static="no" mutable="no">
+        <type>glm::mat4</type>
+        <definition>glm::mat4 RAYEXEC_NAMESPACE::GeometryInstance::transform</definition>
+        <argsstring></argsstring>
+        <name>transform</name>
+        <initializer>= glm::mat4( 1.0F )</initializer>
+        <briefdescription>
+<para>The instance&apos;s world transform matrix. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/n30/Repos/rayexec/include/base/Geometry.hpp" line="55" column="15" bodyfile="/home/n30/Repos/rayexec/include/base/Geometry.hpp" bodystart="55" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="struct_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_geometry_instance_1a768f40a8f4558235b01b43c486da1973" prot="public" static="no" mutable="no">
+        <type>glm::mat4</type>
+        <definition>glm::mat4 RAYEXEC_NAMESPACE::GeometryInstance::transformIT</definition>
+        <argsstring></argsstring>
+        <name>transformIT</name>
+        <initializer>= glm::mat4( 1.0F )</initializer>
+        <briefdescription>
+<para>The inverse transpose of transform. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/n30/Repos/rayexec/include/base/Geometry.hpp" line="56" column="15" bodyfile="/home/n30/Repos/rayexec/include/base/Geometry.hpp" bodystart="56" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="struct_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_geometry_instance_1ab288a423b9a4441877eb0811dcd3bb80" prot="public" static="no" mutable="no">
+        <type>uint32_t</type>
+        <definition>uint32_t RAYEXEC_NAMESPACE::GeometryInstance::geometryIndex</definition>
+        <argsstring></argsstring>
+        <name>geometryIndex</name>
+        <initializer>= 0</initializer>
+        <briefdescription>
+<para>Used to assign this instance a model. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/n30/Repos/rayexec/include/base/Geometry.hpp" line="57" column="14" bodyfile="/home/n30/Repos/rayexec/include/base/Geometry.hpp" bodystart="57" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="struct_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_geometry_instance_1a5f4dcf7cae9a39d2c422f27789681303" prot="private" static="no" mutable="no">
+        <type>float</type>
+        <definition>float RAYEXEC_NAMESPACE::GeometryInstance::padding0</definition>
+        <argsstring></argsstring>
+        <name>padding0</name>
+        <initializer>= 0.0F</initializer>
+        <briefdescription>
+<para><ref refid="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_buffer" kindref="compound">Buffer</ref> padding (ignore). </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/n30/Repos/rayexec/include/base/Geometry.hpp" line="60" column="11" bodyfile="/home/n30/Repos/rayexec/include/base/Geometry.hpp" bodystart="60" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="struct_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_geometry_instance_1ae37ba82db4a78e6323bfa9b551ebe918" prot="private" static="no" mutable="no">
+        <type>float</type>
+        <definition>float RAYEXEC_NAMESPACE::GeometryInstance::padding1</definition>
+        <argsstring></argsstring>
+        <name>padding1</name>
+        <initializer>= 0.0F</initializer>
+        <briefdescription>
+<para><ref refid="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_buffer" kindref="compound">Buffer</ref> padding (ignore). </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/n30/Repos/rayexec/include/base/Geometry.hpp" line="61" column="11" bodyfile="/home/n30/Repos/rayexec/include/base/Geometry.hpp" bodystart="61" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="struct_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_geometry_instance_1a8ffa1692c8e4a156f1da02789e5ffba3" prot="private" static="no" mutable="no">
+        <type>float</type>
+        <definition>float RAYEXEC_NAMESPACE::GeometryInstance::padding2</definition>
+        <argsstring></argsstring>
+        <name>padding2</name>
+        <initializer>= 0.0F</initializer>
+        <briefdescription>
+<para><ref refid="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_buffer" kindref="compound">Buffer</ref> padding (ignore). </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/n30/Repos/rayexec/include/base/Geometry.hpp" line="62" column="11" bodyfile="/home/n30/Repos/rayexec/include/base/Geometry.hpp" bodystart="62" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+<para>Describes an instance of some geometry. </para>
+    </briefdescription>
+    <detaileddescription>
+<para><simplesect kind="warning"><para>To assign a specific geometry to an instance, both must have the same value for geometryIndex. </para>
+</simplesect>
+</para>
+    </detaileddescription>
+    <location file="/home/n30/Repos/rayexec/include/base/Geometry.hpp" line="54" column="1" bodyfile="/home/n30/Repos/rayexec/include/base/Geometry.hpp" bodystart="53" bodyend="63"/>
+    <listofallmembers>
+      <member refid="struct_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_geometry_instance_1ab288a423b9a4441877eb0811dcd3bb80" prot="public" virt="non-virtual"><scope>RAYEXEC_NAMESPACE::GeometryInstance</scope><name>geometryIndex</name></member>
+      <member refid="struct_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_geometry_instance_1a5f4dcf7cae9a39d2c422f27789681303" prot="private" virt="non-virtual"><scope>RAYEXEC_NAMESPACE::GeometryInstance</scope><name>padding0</name></member>
+      <member refid="struct_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_geometry_instance_1ae37ba82db4a78e6323bfa9b551ebe918" prot="private" virt="non-virtual"><scope>RAYEXEC_NAMESPACE::GeometryInstance</scope><name>padding1</name></member>
+      <member refid="struct_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_geometry_instance_1a8ffa1692c8e4a156f1da02789e5ffba3" prot="private" virt="non-virtual"><scope>RAYEXEC_NAMESPACE::GeometryInstance</scope><name>padding2</name></member>
+      <member refid="struct_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_geometry_instance_1a2dc80022089dd5b7f0fdd06c1d05b33b" prot="public" virt="non-virtual"><scope>RAYEXEC_NAMESPACE::GeometryInstance</scope><name>transform</name></member>
+      <member refid="struct_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_geometry_instance_1a768f40a8f4558235b01b43c486da1973" prot="public" virt="non-virtual"><scope>RAYEXEC_NAMESPACE::GeometryInstance</scope><name>transformIT</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

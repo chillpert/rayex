@@ -1,0 +1,126 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.17">
+  <compounddef id="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_index_buffer" kind="class" language="C++" prot="public">
+    <compoundname>RAYEXEC_NAMESPACE::IndexBuffer</compoundname>
+    <basecompoundref refid="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_buffer" prot="public" virt="non-virtual">RAYEXEC_NAMESPACE::Buffer</basecompoundref>
+    <includes refid="_index_buffer_8hpp" local="no">IndexBuffer.hpp</includes>
+      <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_index_buffer_1aa642488555b0daff5fcb426254b478d5" prot="private" static="no" mutable="no">
+        <type>uint32_t</type>
+        <definition>uint32_t RAYEXEC_NAMESPACE::IndexBuffer::count</definition>
+        <argsstring></argsstring>
+        <name>count</name>
+        <briefdescription>
+<para>The amount of indices in the buffer. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/n30/Repos/rayexec/include/api/buffers/IndexBuffer.hpp" line="49" column="14" bodyfile="/home/n30/Repos/rayexec/include/api/buffers/IndexBuffer.hpp" bodystart="49" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_index_buffer_1a986b966f8583271d0a7974a66ab6eca5" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>auto</type>
+        <definition>auto RAYEXEC_NAMESPACE::IndexBuffer::getCount</definition>
+        <argsstring>() const -&gt; uint32_t</argsstring>
+        <name>getCount</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>Returns the amount of indices in the buffer. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/n30/Repos/rayexec/include/api/buffers/IndexBuffer.hpp" line="15" column="11" bodyfile="/home/n30/Repos/rayexec/include/api/buffers/IndexBuffer.hpp" bodystart="15" bodyend="15"/>
+      </memberdef>
+      <memberdef kind="function" id="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_index_buffer_1a8f13a9c4f07b3592bb8791a0bb55691f" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void RAYEXEC_NAMESPACE::IndexBuffer::init</definition>
+        <argsstring>(const std::vector&lt; uint32_t &gt; &amp;indices)</argsstring>
+        <name>init</name>
+        <param>
+          <type>const std::vector&lt; uint32_t &gt; &amp;</type>
+          <declname>indices</declname>
+        </param>
+        <briefdescription>
+<para>Creates the buffer, allocates memory for it and fills it with the provided data. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>To optimize the procedure a temporary staging buffer will be created. <parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>indices</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The index data. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/n30/Repos/rayexec/include/api/buffers/IndexBuffer.hpp" line="21" column="10" bodyfile="/home/n30/Repos/rayexec/include/api/buffers/IndexBuffer.hpp" bodystart="21" bodyend="46"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+<para>A specialised buffer for index data. </para>
+    </briefdescription>
+    <detaileddescription>
+<para><simplesect kind="note"><para>If not templatized then uint32_t will be used as the data&apos;s type. </para>
+</simplesect>
+</para>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="2">
+        <label>RAYEXEC_NAMESPACE::Buffer</label>
+        <link refid="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_buffer"/>
+      </node>
+      <node id="1">
+        <label>RAYEXEC_NAMESPACE::IndexBuffer</label>
+        <link refid="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_index_buffer"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="2">
+        <label>RAYEXEC_NAMESPACE::Buffer</label>
+        <link refid="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_buffer"/>
+      </node>
+      <node id="1">
+        <label>RAYEXEC_NAMESPACE::IndexBuffer</label>
+        <link refid="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_index_buffer"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+    </collaborationgraph>
+    <location file="/home/n30/Repos/rayexec/include/api/buffers/IndexBuffer.hpp" line="12" column="1" bodyfile="/home/n30/Repos/rayexec/include/api/buffers/IndexBuffer.hpp" bodystart="11" bodyend="50"/>
+    <listofallmembers>
+      <member refid="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_buffer_1a3dae10b0e57aaeb528ad27336a45f46c" prot="protected" virt="non-virtual"><scope>RAYEXEC_NAMESPACE::IndexBuffer</scope><name>buffer</name></member>
+      <member refid="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_buffer_1a4286db555c7beb872ad62e5ae78f5a92" prot="public" virt="non-virtual"><scope>RAYEXEC_NAMESPACE::IndexBuffer</scope><name>Buffer</name></member>
+      <member refid="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_buffer_1a0f821dd2fb7a528f5d370c9935abb95e" prot="public" virt="non-virtual"><scope>RAYEXEC_NAMESPACE::IndexBuffer</scope><name>Buffer</name></member>
+      <member refid="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_buffer_1a6f29bd9f8dfecb05a9a40c5af01d1474" prot="public" virt="non-virtual"><scope>RAYEXEC_NAMESPACE::IndexBuffer</scope><name>Buffer</name></member>
+      <member refid="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_buffer_1af8b33d8383361d81c6a89b16bdcc642c" prot="public" virt="non-virtual"><scope>RAYEXEC_NAMESPACE::IndexBuffer</scope><name>Buffer</name></member>
+      <member refid="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_buffer_1ae9316e2a184d003b4c15102d8c73e8d3" prot="public" virt="non-virtual"><scope>RAYEXEC_NAMESPACE::IndexBuffer</scope><name>copyToBuffer</name></member>
+      <member refid="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_buffer_1a7e9ccfcec6b210f77929ae6f8e015470" prot="public" virt="non-virtual"><scope>RAYEXEC_NAMESPACE::IndexBuffer</scope><name>copyToBuffer</name></member>
+      <member refid="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_buffer_1a530b23fb6ee6affece20f959e7d12847" prot="public" virt="non-virtual"><scope>RAYEXEC_NAMESPACE::IndexBuffer</scope><name>copyToImage</name></member>
+      <member refid="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_index_buffer_1aa642488555b0daff5fcb426254b478d5" prot="private" virt="non-virtual"><scope>RAYEXEC_NAMESPACE::IndexBuffer</scope><name>count</name></member>
+      <member refid="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_buffer_1a34447d9e04323e05f3434fc290d75934" prot="public" virt="non-virtual"><scope>RAYEXEC_NAMESPACE::IndexBuffer</scope><name>fill</name></member>
+      <member refid="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_buffer_1a20b985e8be99e64c284acaf58e5b7646" prot="public" virt="non-virtual"><scope>RAYEXEC_NAMESPACE::IndexBuffer</scope><name>get</name></member>
+      <member refid="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_index_buffer_1a986b966f8583271d0a7974a66ab6eca5" prot="public" virt="non-virtual"><scope>RAYEXEC_NAMESPACE::IndexBuffer</scope><name>getCount</name></member>
+      <member refid="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_buffer_1a320d33b561ad0629b139e20cd235c102" prot="public" virt="non-virtual"><scope>RAYEXEC_NAMESPACE::IndexBuffer</scope><name>getMemory</name></member>
+      <member refid="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_buffer_1a4bb5fbab956fbcf4e362e5c2268f8e2f" prot="public" virt="non-virtual"><scope>RAYEXEC_NAMESPACE::IndexBuffer</scope><name>getSize</name></member>
+      <member refid="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_index_buffer_1a8f13a9c4f07b3592bb8791a0bb55691f" prot="public" virt="non-virtual"><scope>RAYEXEC_NAMESPACE::IndexBuffer</scope><name>init</name></member>
+      <member refid="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_buffer_1a8281cef1826a7b0f970a636e7a24703c" prot="public" virt="non-virtual" ambiguityscope="RAYEXEC_NAMESPACE::Buffer::"><scope>RAYEXEC_NAMESPACE::IndexBuffer</scope><name>init</name></member>
+      <member refid="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_buffer_1ade00c91ade501a5f85f0f157dbc87f7e" prot="protected" virt="non-virtual"><scope>RAYEXEC_NAMESPACE::IndexBuffer</scope><name>memory</name></member>
+      <member refid="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_buffer_1a112376785376333464a39d84851627bd" prot="public" virt="non-virtual"><scope>RAYEXEC_NAMESPACE::IndexBuffer</scope><name>operator=</name></member>
+      <member refid="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_buffer_1a86fa3c008ace2f907d454aeea95a5c35" prot="public" virt="non-virtual"><scope>RAYEXEC_NAMESPACE::IndexBuffer</scope><name>operator=</name></member>
+      <member refid="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_buffer_1a154a7abcbda22be170ac9cfc3076b532" prot="protected" virt="non-virtual"><scope>RAYEXEC_NAMESPACE::IndexBuffer</scope><name>size</name></member>
+      <member refid="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_buffer_1a75864b69895914855537bd47ffc767dc" prot="public" virt="virtual"><scope>RAYEXEC_NAMESPACE::IndexBuffer</scope><name>~Buffer</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

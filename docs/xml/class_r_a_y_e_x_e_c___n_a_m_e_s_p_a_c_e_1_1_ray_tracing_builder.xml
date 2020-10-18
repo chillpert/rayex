@@ -1,0 +1,641 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.17">
+  <compounddef id="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_ray_tracing_builder" kind="class" language="C++" prot="public">
+    <compoundname>RAYEXEC_NAMESPACE::RayTracingBuilder</compoundname>
+    <includes refid="_ray_tracing_builder_8hpp" local="no">RayTracingBuilder.hpp</includes>
+      <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_ray_tracing_builder_1a1e292c2db4e37ed7396f662184e9cb16" prot="private" static="no" mutable="no">
+        <type>vk::PhysicalDeviceRayTracingPropertiesKHR</type>
+        <definition>vk::PhysicalDeviceRayTracingPropertiesKHR RAYEXEC_NAMESPACE::RayTracingBuilder::rtProperties</definition>
+        <argsstring></argsstring>
+        <name>rtProperties</name>
+        <briefdescription>
+<para>The physical device&apos;s ray tracing capabilities. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/n30/Repos/rayexec/include/api/raytracing/RayTracingBuilder.hpp" line="89" column="47" bodyfile="/home/n30/Repos/rayexec/include/api/raytracing/RayTracingBuilder.hpp" bodystart="89" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_ray_tracing_builder_1aafca1eefdadc80d1c00524860104accd" prot="private" static="no" mutable="no">
+        <type>std::vector&lt; <ref refid="struct_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_blas" kindref="compound">Blas</ref> &gt;</type>
+        <definition>std::vector&lt;Blas&gt; RAYEXEC_NAMESPACE::RayTracingBuilder::blas_</definition>
+        <argsstring></argsstring>
+        <name>blas_</name>
+        <briefdescription>
+<para>A vector containing all bottom level acceleration structures. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/n30/Repos/rayexec/include/api/raytracing/RayTracingBuilder.hpp" line="91" column="17" bodyfile="/home/n30/Repos/rayexec/include/api/raytracing/RayTracingBuilder.hpp" bodystart="91" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_ray_tracing_builder_1a69c81222c503dc9ec1e2e494a0d013fa" prot="private" static="no" mutable="no">
+        <type><ref refid="struct_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_tlas" kindref="compound">Tlas</ref></type>
+        <definition>Tlas RAYEXEC_NAMESPACE::RayTracingBuilder::tlas</definition>
+        <argsstring></argsstring>
+        <name>tlas</name>
+        <briefdescription>
+<para>The top level acceleration structure. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/n30/Repos/rayexec/include/api/raytracing/RayTracingBuilder.hpp" line="92" column="10" bodyfile="/home/n30/Repos/rayexec/include/api/raytracing/RayTracingBuilder.hpp" bodystart="92" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_ray_tracing_builder_1aa582fb0cc06c1f430f6e1f4ccc6cc54c" prot="private" static="no" mutable="no">
+        <type><ref refid="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_buffer" kindref="compound">Buffer</ref></type>
+        <definition>Buffer RAYEXEC_NAMESPACE::RayTracingBuilder::instanceBuffer</definition>
+        <argsstring></argsstring>
+        <name>instanceBuffer</name>
+        <briefdescription>
+<para>The instance buffer. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/n30/Repos/rayexec/include/api/raytracing/RayTracingBuilder.hpp" line="94" column="12" bodyfile="/home/n30/Repos/rayexec/include/api/raytracing/RayTracingBuilder.hpp" bodystart="94" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_ray_tracing_builder_1a4336400e1d5e31a1e3cb4bcd3c498f23" prot="private" static="no" mutable="no">
+        <type><ref refid="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_buffer" kindref="compound">Buffer</ref></type>
+        <definition>Buffer RAYEXEC_NAMESPACE::RayTracingBuilder::sbtBuffer</definition>
+        <argsstring></argsstring>
+        <name>sbtBuffer</name>
+        <briefdescription>
+<para>The shader binding table buffer. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/n30/Repos/rayexec/include/api/raytracing/RayTracingBuilder.hpp" line="96" column="12" bodyfile="/home/n30/Repos/rayexec/include/api/raytracing/RayTracingBuilder.hpp" bodystart="96" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_ray_tracing_builder_1aec3f6384f902806f980e8196803b86d3" prot="private" static="no" mutable="no">
+        <type><ref refid="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_image" kindref="compound">Image</ref></type>
+        <definition>Image RAYEXEC_NAMESPACE::RayTracingBuilder::storageImage</definition>
+        <argsstring></argsstring>
+        <name>storageImage</name>
+        <briefdescription>
+<para>The storage image. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/n30/Repos/rayexec/include/api/raytracing/RayTracingBuilder.hpp" line="98" column="11" bodyfile="/home/n30/Repos/rayexec/include/api/raytracing/RayTracingBuilder.hpp" bodystart="98" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_ray_tracing_builder_1a9f7b3764627da3852a25f1f46a09267a" prot="private" static="no" mutable="no">
+        <type>vk::UniqueImageView</type>
+        <definition>vk::UniqueImageView RAYEXEC_NAMESPACE::RayTracingBuilder::storageImageView</definition>
+        <argsstring></argsstring>
+        <name>storageImageView</name>
+        <briefdescription>
+<para>The storage image&apos;s image view. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/n30/Repos/rayexec/include/api/raytracing/RayTracingBuilder.hpp" line="99" column="25" bodyfile="/home/n30/Repos/rayexec/include/api/raytracing/RayTracingBuilder.hpp" bodystart="99" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_ray_tracing_builder_1a09f8d1d7605a67657ac7e25aa9a3412e" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>RAYEXEC_NAMESPACE::RayTracingBuilder::RayTracingBuilder</definition>
+        <argsstring>()=default</argsstring>
+        <name>RayTracingBuilder</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/n30/Repos/rayexec/include/api/raytracing/RayTracingBuilder.hpp" line="18" column="5"/>
+      </memberdef>
+      <memberdef kind="function" id="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_ray_tracing_builder_1a2a93b0638b8cd198b90d5fb2f20626fb" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>RX_API</type>
+        <definition>RX_API RAYEXEC_NAMESPACE::RayTracingBuilder::~RayTracingBuilder</definition>
+        <argsstring>()</argsstring>
+        <name>~RayTracingBuilder</name>
+        <briefdescription>
+<para>Calls <ref refid="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_ray_tracing_builder_1abb6d7ea7882129e639bb14aacdf30294" kindref="member">destroy()</ref>. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/n30/Repos/rayexec/include/api/raytracing/RayTracingBuilder.hpp" line="21" column="12"/>
+      </memberdef>
+      <memberdef kind="function" id="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_ray_tracing_builder_1ae5f98a8ab4b95cb24ad4c4dd898ac8a9" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>RAYEXEC_NAMESPACE::RayTracingBuilder::RayTracingBuilder</definition>
+        <argsstring>(const RayTracingBuilder &amp;)=delete</argsstring>
+        <name>RayTracingBuilder</name>
+        <param>
+          <type>const <ref refid="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_ray_tracing_builder" kindref="compound">RayTracingBuilder</ref> &amp;</type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/n30/Repos/rayexec/include/api/raytracing/RayTracingBuilder.hpp" line="23" column="5"/>
+      </memberdef>
+      <memberdef kind="function" id="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_ray_tracing_builder_1aa9828b53ca4a0797b2b7fb2ec37e279b" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>RAYEXEC_NAMESPACE::RayTracingBuilder::RayTracingBuilder</definition>
+        <argsstring>(const RayTracingBuilder &amp;&amp;)=delete</argsstring>
+        <name>RayTracingBuilder</name>
+        <param>
+          <type>const <ref refid="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_ray_tracing_builder" kindref="compound">RayTracingBuilder</ref> &amp;&amp;</type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/n30/Repos/rayexec/include/api/raytracing/RayTracingBuilder.hpp" line="24" column="5"/>
+      </memberdef>
+      <memberdef kind="function" id="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_ray_tracing_builder_1a41652e5d15ed47e75a387f7450f26681" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>auto</type>
+        <definition>auto RAYEXEC_NAMESPACE::RayTracingBuilder::operator=</definition>
+        <argsstring>(const RayTracingBuilder &amp;) -&gt; RayTracingBuilder &amp;=delete</argsstring>
+        <name>operator=</name>
+        <param>
+          <type>const <ref refid="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_ray_tracing_builder" kindref="compound">RayTracingBuilder</ref> &amp;</type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/n30/Repos/rayexec/include/api/raytracing/RayTracingBuilder.hpp" line="26" column="10"/>
+      </memberdef>
+      <memberdef kind="function" id="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_ray_tracing_builder_1a4c3cc3563b344d436100bd83f8bd5a3f" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>auto</type>
+        <definition>auto RAYEXEC_NAMESPACE::RayTracingBuilder::operator=</definition>
+        <argsstring>(const RayTracingBuilder &amp;&amp;) -&gt; RayTracingBuilder &amp;=delete</argsstring>
+        <name>operator=</name>
+        <param>
+          <type>const <ref refid="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_ray_tracing_builder" kindref="compound">RayTracingBuilder</ref> &amp;&amp;</type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/n30/Repos/rayexec/include/api/raytracing/RayTracingBuilder.hpp" line="27" column="10"/>
+      </memberdef>
+      <memberdef kind="function" id="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_ray_tracing_builder_1aef2570764e775f8dd07c4255a47ccdab" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void RAYEXEC_NAMESPACE::RayTracingBuilder::init</definition>
+        <argsstring>()</argsstring>
+        <name>init</name>
+        <briefdescription>
+<para>Retrieves the physical device&apos;s ray tracing capabilities. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/n30/Repos/rayexec/include/api/raytracing/RayTracingBuilder.hpp" line="30" column="10"/>
+      </memberdef>
+      <memberdef kind="function" id="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_ray_tracing_builder_1abb6d7ea7882129e639bb14aacdf30294" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void RAYEXEC_NAMESPACE::RayTracingBuilder::destroy</definition>
+        <argsstring>()</argsstring>
+        <name>destroy</name>
+        <briefdescription>
+<para>Destroys all bottom and top level acceleration structures. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/n30/Repos/rayexec/include/api/raytracing/RayTracingBuilder.hpp" line="33" column="10"/>
+      </memberdef>
+      <memberdef kind="function" id="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_ray_tracing_builder_1a390ccddaf2bd873fe65c438319159bf6" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>auto</type>
+        <definition>auto RAYEXEC_NAMESPACE::RayTracingBuilder::getTlas</definition>
+        <argsstring>() const -&gt; const Tlas &amp;</argsstring>
+        <name>getTlas</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>Returns the top level acceleration structure. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/n30/Repos/rayexec/include/api/raytracing/RayTracingBuilder.hpp" line="36" column="10" bodyfile="/home/n30/Repos/rayexec/include/api/raytracing/RayTracingBuilder.hpp" bodystart="36" bodyend="36"/>
+      </memberdef>
+      <memberdef kind="function" id="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_ray_tracing_builder_1a99c6fb5a011da041275f54013155bc9c" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>auto</type>
+        <definition>auto RAYEXEC_NAMESPACE::RayTracingBuilder::getRtProperties</definition>
+        <argsstring>() const -&gt; const vk::PhysicalDeviceRayTracingPropertiesKHR &amp;</argsstring>
+        <name>getRtProperties</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>Returns the physical device&apos;s ray tracing properties. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/n30/Repos/rayexec/include/api/raytracing/RayTracingBuilder.hpp" line="39" column="10" bodyfile="/home/n30/Repos/rayexec/include/api/raytracing/RayTracingBuilder.hpp" bodystart="39" bodyend="39"/>
+      </memberdef>
+      <memberdef kind="function" id="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_ray_tracing_builder_1a2511786430f0bf8134a447123d421c63" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>auto</type>
+        <definition>auto RAYEXEC_NAMESPACE::RayTracingBuilder::getStorageImageView</definition>
+        <argsstring>() const -&gt; vk::ImageView</argsstring>
+        <name>getStorageImageView</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>Returns the storage image&apos;s image view. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/n30/Repos/rayexec/include/api/raytracing/RayTracingBuilder.hpp" line="42" column="10" bodyfile="/home/n30/Repos/rayexec/include/api/raytracing/RayTracingBuilder.hpp" bodystart="42" bodyend="42"/>
+      </memberdef>
+      <memberdef kind="function" id="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_ray_tracing_builder_1aed5bcefa14705b34f910e3ceb37fc8a5" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>auto</type>
+        <definition>auto RAYEXEC_NAMESPACE::RayTracingBuilder::modelToBlas</definition>
+        <argsstring>(const VertexBuffer &amp;vertexBuffer, const IndexBuffer &amp;indexBuffer) const -&gt; Blas</argsstring>
+        <name>modelToBlas</name>
+        <param>
+          <type>const <ref refid="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_vertex_buffer" kindref="compound">VertexBuffer</ref> &amp;</type>
+          <declname>vertexBuffer</declname>
+        </param>
+        <param>
+          <type>const <ref refid="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_index_buffer" kindref="compound">IndexBuffer</ref> &amp;</type>
+          <declname>indexBuffer</declname>
+        </param>
+        <briefdescription>
+<para>Used to convert wavefront models to a bottom level acceleration structure. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>vertexBuffer</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>A vertex buffer of some geometry. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>indexBuffer</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>An index buffer of some geometry. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>Returns the bottom level acceleration structure. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/n30/Repos/rayexec/include/api/raytracing/RayTracingBuilder.hpp" line="48" column="10"/>
+      </memberdef>
+      <memberdef kind="function" id="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_ray_tracing_builder_1a07f5808d1c137c8104b5bc5c213b8d2c" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>auto</type>
+        <definition>auto RAYEXEC_NAMESPACE::RayTracingBuilder::instanceToVkGeometryInstanceKHR</definition>
+        <argsstring>(const BlasInstance &amp;instance) -&gt; vk::AccelerationStructureInstanceKHR</argsstring>
+        <name>instanceToVkGeometryInstanceKHR</name>
+        <param>
+          <type>const <ref refid="struct_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_blas_instance" kindref="compound">BlasInstance</ref> &amp;</type>
+          <declname>instance</declname>
+        </param>
+        <briefdescription>
+<para>Used to convert a bottom level acceleration structure instance to a Vulkan geometry instance. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>instance</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>A bottom level acceleration structure instance. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>Returns the Vulkan geometry instance. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/n30/Repos/rayexec/include/api/raytracing/RayTracingBuilder.hpp" line="53" column="10"/>
+      </memberdef>
+      <memberdef kind="function" id="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_ray_tracing_builder_1af229b339fa26bbedc4b06a74bd3e2a4c" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void RAYEXEC_NAMESPACE::RayTracingBuilder::createBottomLevelAS</definition>
+        <argsstring>(const std::vector&lt; VertexBuffer &gt; &amp;vertexBuffers, const std::vector&lt; IndexBuffer &gt; &amp;indexBuffers)</argsstring>
+        <name>createBottomLevelAS</name>
+        <param>
+          <type>const std::vector&lt; <ref refid="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_vertex_buffer" kindref="compound">VertexBuffer</ref> &gt; &amp;</type>
+          <declname>vertexBuffers</declname>
+        </param>
+        <param>
+          <type>const std::vector&lt; <ref refid="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_index_buffer" kindref="compound">IndexBuffer</ref> &gt; &amp;</type>
+          <declname>indexBuffers</declname>
+        </param>
+        <briefdescription>
+<para>Used to prepare building the bottom level acceleration structures. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>vertexBuffers</parametername>
+</parameternamelist>
+<parameterdescription>
+<para><ref refid="struct_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_vertex" kindref="compound">Vertex</ref> buffers of all geometry in the scene. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>indexBuffers</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Index buffers of all geometry in the scene. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/n30/Repos/rayexec/include/api/raytracing/RayTracingBuilder.hpp" line="58" column="10"/>
+      </memberdef>
+      <memberdef kind="function" id="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_ray_tracing_builder_1a7317a1937164164619a0f0d1fdc0a9b1" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void RAYEXEC_NAMESPACE::RayTracingBuilder::buildBlas</definition>
+        <argsstring>(const std::vector&lt; Blas &gt; &amp;blas_, vk::BuildAccelerationStructureFlagsKHR flags=vk::BuildAccelerationStructureFlagBitsKHR::ePreferFastTrace)</argsstring>
+        <name>buildBlas</name>
+        <param>
+          <type>const std::vector&lt; <ref refid="struct_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_blas" kindref="compound">Blas</ref> &gt; &amp;</type>
+          <declname>blas_</declname>
+        </param>
+        <param>
+          <type>vk::BuildAccelerationStructureFlagsKHR</type>
+          <declname>flags</declname>
+          <defval>vk::BuildAccelerationStructureFlagBitsKHR::ePreferFastTrace</defval>
+        </param>
+        <briefdescription>
+<para>Builds all bottom level acceleration structures. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>blas_</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>A vector of <ref refid="struct_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_blas" kindref="compound">RAYEXEC_NAMESPACE::Blas</ref> objects containing all bottom level acceleration structures prepared in <ref refid="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_ray_tracing_builder_1af229b339fa26bbedc4b06a74bd3e2a4c" kindref="member">createBottomLevelAS()</ref>. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>flags</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The build flags. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/n30/Repos/rayexec/include/api/raytracing/RayTracingBuilder.hpp" line="63" column="10"/>
+      </memberdef>
+      <memberdef kind="function" id="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_ray_tracing_builder_1aeabc1211e7bf59034ee75c61c53bbaf1" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void RAYEXEC_NAMESPACE::RayTracingBuilder::createTopLevelAS</definition>
+        <argsstring>(const std::vector&lt; std::shared_ptr&lt; GeometryInstance &gt;&gt; &amp;geometryInstances)</argsstring>
+        <name>createTopLevelAS</name>
+        <param>
+          <type>const std::vector&lt; std::shared_ptr&lt; <ref refid="struct_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_geometry_instance" kindref="compound">GeometryInstance</ref> &gt;&gt; &amp;</type>
+          <declname>geometryInstances</declname>
+        </param>
+        <briefdescription>
+<para>Used to prepare building the top level acceleration structure. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>geometryInstances</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>All geometry instances in the scene. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/n30/Repos/rayexec/include/api/raytracing/RayTracingBuilder.hpp" line="67" column="10"/>
+      </memberdef>
+      <memberdef kind="function" id="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_ray_tracing_builder_1a0802140271c08f495e8c2732937196fd" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void RAYEXEC_NAMESPACE::RayTracingBuilder::buildTlas</definition>
+        <argsstring>(const std::vector&lt; BlasInstance &gt; &amp;instances, vk::BuildAccelerationStructureFlagsKHR flags=vk::BuildAccelerationStructureFlagBitsKHR::ePreferFastTrace)</argsstring>
+        <name>buildTlas</name>
+        <param>
+          <type>const std::vector&lt; <ref refid="struct_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_blas_instance" kindref="compound">BlasInstance</ref> &gt; &amp;</type>
+          <declname>instances</declname>
+        </param>
+        <param>
+          <type>vk::BuildAccelerationStructureFlagsKHR</type>
+          <declname>flags</declname>
+          <defval>vk::BuildAccelerationStructureFlagBitsKHR::ePreferFastTrace</defval>
+        </param>
+        <briefdescription>
+<para>Build the top level acceleration structure. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>instances</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>A vector of bottom level acceleration structure instances. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>flags</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The build flags. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/n30/Repos/rayexec/include/api/raytracing/RayTracingBuilder.hpp" line="72" column="10"/>
+      </memberdef>
+      <memberdef kind="function" id="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_ray_tracing_builder_1a2aff232d2fc78728d364c9eba2bcafa0" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void RAYEXEC_NAMESPACE::RayTracingBuilder::createStorageImage</definition>
+        <argsstring>(vk::Extent2D swapchainExtent)</argsstring>
+        <name>createStorageImage</name>
+        <param>
+          <type>vk::Extent2D</type>
+          <declname>swapchainExtent</declname>
+        </param>
+        <briefdescription>
+<para>Creates the storage image which the ray tracing shaders will write to. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>swapchainExtent</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The swapchain images&apos; extent. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/n30/Repos/rayexec/include/api/raytracing/RayTracingBuilder.hpp" line="76" column="10"/>
+      </memberdef>
+      <memberdef kind="function" id="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_ray_tracing_builder_1a14ae945c468cafeba09183f329c596e1" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void RAYEXEC_NAMESPACE::RayTracingBuilder::createShaderBindingTable</definition>
+        <argsstring>(vk::Pipeline rtPipeline)</argsstring>
+        <name>createShaderBindingTable</name>
+        <param>
+          <type>vk::Pipeline</type>
+          <declname>rtPipeline</declname>
+        </param>
+        <briefdescription>
+<para>Creates the shader binding tables. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>rtPipeline</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The ray tracing graphics pipeline. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/n30/Repos/rayexec/include/api/raytracing/RayTracingBuilder.hpp" line="80" column="10"/>
+      </memberdef>
+      <memberdef kind="function" id="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_ray_tracing_builder_1a311cafb7c359cc969a32d8acea1dd08d" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void RAYEXEC_NAMESPACE::RayTracingBuilder::rayTrace</definition>
+        <argsstring>(vk::CommandBuffer swapchaincommandBuffer, vk::Image swapchainImage, vk::Extent2D extent)</argsstring>
+        <name>rayTrace</name>
+        <param>
+          <type>vk::CommandBuffer</type>
+          <declname>swapchaincommandBuffer</declname>
+        </param>
+        <param>
+          <type>vk::Image</type>
+          <declname>swapchainImage</declname>
+        </param>
+        <param>
+          <type>vk::Extent2D</type>
+          <declname>extent</declname>
+        </param>
+        <briefdescription>
+<para>Used to record the actual ray tracing commands to a given command buffer. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>swapchaincommandBuffer</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The command buffer to record to. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>swapchainImage</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The current image in the swapchain. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>extent</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The swapchain images&apos; extent. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/n30/Repos/rayexec/include/api/raytracing/RayTracingBuilder.hpp" line="86" column="10"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+<para>Manages the building process of the acceleration structures. </para>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="/home/n30/Repos/rayexec/include/api/raytracing/RayTracingBuilder.hpp" line="16" column="1" bodyfile="/home/n30/Repos/rayexec/include/api/raytracing/RayTracingBuilder.hpp" bodystart="15" bodyend="100"/>
+    <listofallmembers>
+      <member refid="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_ray_tracing_builder_1aafca1eefdadc80d1c00524860104accd" prot="private" virt="non-virtual"><scope>RAYEXEC_NAMESPACE::RayTracingBuilder</scope><name>blas_</name></member>
+      <member refid="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_ray_tracing_builder_1a7317a1937164164619a0f0d1fdc0a9b1" prot="public" virt="non-virtual"><scope>RAYEXEC_NAMESPACE::RayTracingBuilder</scope><name>buildBlas</name></member>
+      <member refid="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_ray_tracing_builder_1a0802140271c08f495e8c2732937196fd" prot="public" virt="non-virtual"><scope>RAYEXEC_NAMESPACE::RayTracingBuilder</scope><name>buildTlas</name></member>
+      <member refid="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_ray_tracing_builder_1af229b339fa26bbedc4b06a74bd3e2a4c" prot="public" virt="non-virtual"><scope>RAYEXEC_NAMESPACE::RayTracingBuilder</scope><name>createBottomLevelAS</name></member>
+      <member refid="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_ray_tracing_builder_1a14ae945c468cafeba09183f329c596e1" prot="public" virt="non-virtual"><scope>RAYEXEC_NAMESPACE::RayTracingBuilder</scope><name>createShaderBindingTable</name></member>
+      <member refid="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_ray_tracing_builder_1a2aff232d2fc78728d364c9eba2bcafa0" prot="public" virt="non-virtual"><scope>RAYEXEC_NAMESPACE::RayTracingBuilder</scope><name>createStorageImage</name></member>
+      <member refid="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_ray_tracing_builder_1aeabc1211e7bf59034ee75c61c53bbaf1" prot="public" virt="non-virtual"><scope>RAYEXEC_NAMESPACE::RayTracingBuilder</scope><name>createTopLevelAS</name></member>
+      <member refid="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_ray_tracing_builder_1abb6d7ea7882129e639bb14aacdf30294" prot="public" virt="non-virtual"><scope>RAYEXEC_NAMESPACE::RayTracingBuilder</scope><name>destroy</name></member>
+      <member refid="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_ray_tracing_builder_1a99c6fb5a011da041275f54013155bc9c" prot="public" virt="non-virtual"><scope>RAYEXEC_NAMESPACE::RayTracingBuilder</scope><name>getRtProperties</name></member>
+      <member refid="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_ray_tracing_builder_1a2511786430f0bf8134a447123d421c63" prot="public" virt="non-virtual"><scope>RAYEXEC_NAMESPACE::RayTracingBuilder</scope><name>getStorageImageView</name></member>
+      <member refid="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_ray_tracing_builder_1a390ccddaf2bd873fe65c438319159bf6" prot="public" virt="non-virtual"><scope>RAYEXEC_NAMESPACE::RayTracingBuilder</scope><name>getTlas</name></member>
+      <member refid="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_ray_tracing_builder_1aef2570764e775f8dd07c4255a47ccdab" prot="public" virt="non-virtual"><scope>RAYEXEC_NAMESPACE::RayTracingBuilder</scope><name>init</name></member>
+      <member refid="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_ray_tracing_builder_1aa582fb0cc06c1f430f6e1f4ccc6cc54c" prot="private" virt="non-virtual"><scope>RAYEXEC_NAMESPACE::RayTracingBuilder</scope><name>instanceBuffer</name></member>
+      <member refid="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_ray_tracing_builder_1a07f5808d1c137c8104b5bc5c213b8d2c" prot="public" virt="non-virtual"><scope>RAYEXEC_NAMESPACE::RayTracingBuilder</scope><name>instanceToVkGeometryInstanceKHR</name></member>
+      <member refid="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_ray_tracing_builder_1aed5bcefa14705b34f910e3ceb37fc8a5" prot="public" virt="non-virtual"><scope>RAYEXEC_NAMESPACE::RayTracingBuilder</scope><name>modelToBlas</name></member>
+      <member refid="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_ray_tracing_builder_1a41652e5d15ed47e75a387f7450f26681" prot="public" virt="non-virtual"><scope>RAYEXEC_NAMESPACE::RayTracingBuilder</scope><name>operator=</name></member>
+      <member refid="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_ray_tracing_builder_1a4c3cc3563b344d436100bd83f8bd5a3f" prot="public" virt="non-virtual"><scope>RAYEXEC_NAMESPACE::RayTracingBuilder</scope><name>operator=</name></member>
+      <member refid="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_ray_tracing_builder_1a311cafb7c359cc969a32d8acea1dd08d" prot="public" virt="non-virtual"><scope>RAYEXEC_NAMESPACE::RayTracingBuilder</scope><name>rayTrace</name></member>
+      <member refid="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_ray_tracing_builder_1a09f8d1d7605a67657ac7e25aa9a3412e" prot="public" virt="non-virtual"><scope>RAYEXEC_NAMESPACE::RayTracingBuilder</scope><name>RayTracingBuilder</name></member>
+      <member refid="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_ray_tracing_builder_1ae5f98a8ab4b95cb24ad4c4dd898ac8a9" prot="public" virt="non-virtual"><scope>RAYEXEC_NAMESPACE::RayTracingBuilder</scope><name>RayTracingBuilder</name></member>
+      <member refid="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_ray_tracing_builder_1aa9828b53ca4a0797b2b7fb2ec37e279b" prot="public" virt="non-virtual"><scope>RAYEXEC_NAMESPACE::RayTracingBuilder</scope><name>RayTracingBuilder</name></member>
+      <member refid="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_ray_tracing_builder_1a1e292c2db4e37ed7396f662184e9cb16" prot="private" virt="non-virtual"><scope>RAYEXEC_NAMESPACE::RayTracingBuilder</scope><name>rtProperties</name></member>
+      <member refid="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_ray_tracing_builder_1a4336400e1d5e31a1e3cb4bcd3c498f23" prot="private" virt="non-virtual"><scope>RAYEXEC_NAMESPACE::RayTracingBuilder</scope><name>sbtBuffer</name></member>
+      <member refid="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_ray_tracing_builder_1aec3f6384f902806f980e8196803b86d3" prot="private" virt="non-virtual"><scope>RAYEXEC_NAMESPACE::RayTracingBuilder</scope><name>storageImage</name></member>
+      <member refid="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_ray_tracing_builder_1a9f7b3764627da3852a25f1f46a09267a" prot="private" virt="non-virtual"><scope>RAYEXEC_NAMESPACE::RayTracingBuilder</scope><name>storageImageView</name></member>
+      <member refid="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_ray_tracing_builder_1a69c81222c503dc9ec1e2e494a0d013fa" prot="private" virt="non-virtual"><scope>RAYEXEC_NAMESPACE::RayTracingBuilder</scope><name>tlas</name></member>
+      <member refid="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_ray_tracing_builder_1a2a93b0638b8cd198b90d5fb2f20626fb" prot="public" virt="non-virtual"><scope>RAYEXEC_NAMESPACE::RayTracingBuilder</scope><name>~RayTracingBuilder</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

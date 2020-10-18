@@ -1,0 +1,96 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.17">
+  <compounddef id="struct_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_geometry" kind="struct" language="C++" prot="public">
+    <compoundname>RAYEXEC_NAMESPACE::Geometry</compoundname>
+    <includes refid="_geometry_8hpp" local="no">Geometry.hpp</includes>
+      <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="struct_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_geometry_1a9c8a6ea09b0072f363a000e383a79451" prot="public" static="no" mutable="no">
+        <type>std::vector&lt; <ref refid="struct_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_vertex" kindref="compound">Vertex</ref> &gt;</type>
+        <definition>std::vector&lt;Vertex&gt; RAYEXEC_NAMESPACE::Geometry::vertices</definition>
+        <argsstring></argsstring>
+        <name>vertices</name>
+        <briefdescription>
+<para>Contains all vertices of the geometry. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/n30/Repos/rayexec/include/base/Geometry.hpp" line="43" column="17" bodyfile="/home/n30/Repos/rayexec/include/base/Geometry.hpp" bodystart="43" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="struct_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_geometry_1aa2bba9de381e5d1ffd028d41a2649368" prot="public" static="no" mutable="no">
+        <type>std::vector&lt; uint32_t &gt;</type>
+        <definition>std::vector&lt;uint32_t&gt; RAYEXEC_NAMESPACE::Geometry::indices</definition>
+        <argsstring></argsstring>
+        <name>indices</name>
+        <briefdescription>
+<para>Contains all indices of the geometry. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/n30/Repos/rayexec/include/base/Geometry.hpp" line="44" column="17" bodyfile="/home/n30/Repos/rayexec/include/base/Geometry.hpp" bodystart="44" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="struct_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_geometry_1a445e952a68b533af348c193650362ed4" prot="public" static="no" mutable="no">
+        <type>std::vector&lt; <ref refid="struct_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_mesh" kindref="compound">Mesh</ref> &gt;</type>
+        <definition>std::vector&lt;Mesh&gt; RAYEXEC_NAMESPACE::Geometry::meshes</definition>
+        <argsstring></argsstring>
+        <name>meshes</name>
+        <briefdescription>
+<para>Contains all sub-meshes and their respective materials. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/n30/Repos/rayexec/include/base/Geometry.hpp" line="45" column="17" bodyfile="/home/n30/Repos/rayexec/include/base/Geometry.hpp" bodystart="45" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="struct_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_geometry_1ad22d12e756c7f16bf0462bdbf600a38d" prot="public" static="no" mutable="no">
+        <type>uint32_t</type>
+        <definition>uint32_t RAYEXEC_NAMESPACE::Geometry::geometryIndex</definition>
+        <argsstring></argsstring>
+        <name>geometryIndex</name>
+        <initializer>= 0</initializer>
+        <briefdescription>
+<para>A unique index required by the acceleration structures. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/n30/Repos/rayexec/include/base/Geometry.hpp" line="46" column="14" bodyfile="/home/n30/Repos/rayexec/include/base/Geometry.hpp" bodystart="46" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="struct_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_geometry_1a43c7a0b13af3e5416dec4c6caf4a0dcb" prot="public" static="no" mutable="no">
+        <type>std::string_view</type>
+        <definition>std::string_view RAYEXEC_NAMESPACE::Geometry::path</definition>
+        <argsstring></argsstring>
+        <name>path</name>
+        <briefdescription>
+<para>The model&apos;s path, relative to the path to assets. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/n30/Repos/rayexec/include/base/Geometry.hpp" line="47" column="22" bodyfile="/home/n30/Repos/rayexec/include/base/Geometry.hpp" bodystart="47" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+<para>Describes a geometry <ref refid="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_ray_exec" kindref="compound">RayExec</ref> can render. </para>
+    </briefdescription>
+    <detaileddescription>
+<para>Even if a model consists out of multiple sub-meshes, all vertices and indices must be stored together in their respective containers. <simplesect kind="warning"><para>geometryIndex must be incremented everytime a new model is created. </para>
+</simplesect>
+</para>
+    </detaileddescription>
+    <location file="/home/n30/Repos/rayexec/include/base/Geometry.hpp" line="42" column="1" bodyfile="/home/n30/Repos/rayexec/include/base/Geometry.hpp" bodystart="41" bodyend="48"/>
+    <listofallmembers>
+      <member refid="struct_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_geometry_1ad22d12e756c7f16bf0462bdbf600a38d" prot="public" virt="non-virtual"><scope>RAYEXEC_NAMESPACE::Geometry</scope><name>geometryIndex</name></member>
+      <member refid="struct_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_geometry_1aa2bba9de381e5d1ffd028d41a2649368" prot="public" virt="non-virtual"><scope>RAYEXEC_NAMESPACE::Geometry</scope><name>indices</name></member>
+      <member refid="struct_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_geometry_1a445e952a68b533af348c193650362ed4" prot="public" virt="non-virtual"><scope>RAYEXEC_NAMESPACE::Geometry</scope><name>meshes</name></member>
+      <member refid="struct_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_geometry_1a43c7a0b13af3e5416dec4c6caf4a0dcb" prot="public" virt="non-virtual"><scope>RAYEXEC_NAMESPACE::Geometry</scope><name>path</name></member>
+      <member refid="struct_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_geometry_1a9c8a6ea09b0072f363a000e383a79451" prot="public" virt="non-virtual"><scope>RAYEXEC_NAMESPACE::Geometry</scope><name>vertices</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

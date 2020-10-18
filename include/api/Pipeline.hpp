@@ -6,12 +6,6 @@
 
 namespace RAYEXEC_NAMESPACE
 {
-  enum class PipelineType
-  {
-    eDefaultRasterization,
-    eDefaultRayTracing
-  };
-
   struct RayTracePushConstants
   {
     glm::vec4 clearColor         = glm::vec4( 1.0F );

@@ -1,0 +1,200 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.17">
+  <compounddef id="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_render_pass" kind="class" language="C++" prot="public">
+    <compoundname>RAYEXEC_NAMESPACE::RenderPass</compoundname>
+    <includes refid="_render_pass_8hpp" local="no">RenderPass.hpp</includes>
+      <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_render_pass_1a5bdfd1f3db613308552ca12919ce4402" prot="private" static="no" mutable="no">
+        <type>vk::UniqueRenderPass</type>
+        <definition>vk::UniqueRenderPass RAYEXEC_NAMESPACE::RenderPass::renderPass</definition>
+        <argsstring></argsstring>
+        <name>renderPass</name>
+        <briefdescription>
+<para>The Vulkan render pass with a unique handle. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/n30/Repos/rayexec/include/api/RenderPass.hpp" line="35" column="26" bodyfile="/home/n30/Repos/rayexec/include/api/RenderPass.hpp" bodystart="35" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_render_pass_1a8c2fe19756c46e3403500697be43bdc2" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>auto</type>
+        <definition>auto RAYEXEC_NAMESPACE::RenderPass::get</definition>
+        <argsstring>() const -&gt; vk::RenderPass</argsstring>
+        <name>get</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>Returns the Vulkan render pass without the unique handle. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/n30/Repos/rayexec/include/api/RenderPass.hpp" line="14" column="10" bodyfile="/home/n30/Repos/rayexec/include/api/RenderPass.hpp" bodystart="14" bodyend="14"/>
+      </memberdef>
+      <memberdef kind="function" id="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_render_pass_1afb29f77500194dc5e8299cb2cdce0afe" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void RAYEXEC_NAMESPACE::RenderPass::init</definition>
+        <argsstring>(const std::vector&lt; vk::AttachmentDescription &gt; &amp;attachments, const std::vector&lt; vk::SubpassDescription &gt; &amp;subpasses, const std::vector&lt; vk::SubpassDependency &gt; &amp;dependencies)</argsstring>
+        <name>init</name>
+        <param>
+          <type>const std::vector&lt; vk::AttachmentDescription &gt; &amp;</type>
+          <declname>attachments</declname>
+        </param>
+        <param>
+          <type>const std::vector&lt; vk::SubpassDescription &gt; &amp;</type>
+          <declname>subpasses</declname>
+        </param>
+        <param>
+          <type>const std::vector&lt; vk::SubpassDependency &gt; &amp;</type>
+          <declname>dependencies</declname>
+        </param>
+        <briefdescription>
+<para>Initializes the Vulkan render pass. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>attachments</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The Vulkan attachment description. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>subpasses</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The Vulkan subpass description. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>dependencies</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The Vulkan subpass dependencies. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/n30/Repos/rayexec/include/api/RenderPass.hpp" line="20" column="10"/>
+      </memberdef>
+      <memberdef kind="function" id="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_render_pass_1a6161719c747189475df47f2e3dcf25aa" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void RAYEXEC_NAMESPACE::RenderPass::begin</definition>
+        <argsstring>(vk::Framebuffer framebuffer, vk::CommandBuffer commandBuffer, vk::Rect2D renderArea, const std::vector&lt; vk::ClearValue &gt; &amp;clearValues) const</argsstring>
+        <name>begin</name>
+        <param>
+          <type>vk::Framebuffer</type>
+          <declname>framebuffer</declname>
+        </param>
+        <param>
+          <type>vk::CommandBuffer</type>
+          <declname>commandBuffer</declname>
+        </param>
+        <param>
+          <type>vk::Rect2D</type>
+          <declname>renderArea</declname>
+        </param>
+        <param>
+          <type>const std::vector&lt; vk::ClearValue &gt; &amp;</type>
+          <declname>clearValues</declname>
+        </param>
+        <briefdescription>
+<para>Call to begin the render pass. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>framebuffer</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The swapchain framebuffer. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>commandBuffer</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The command buffer used to begin the render pass. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>renderArea</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Defines the size of the render area. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>clearValues</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The clear values. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="note"><para><ref refid="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_command_buffer_1a3c7b641da4afce0c7df9a033c9a47d9a" kindref="member">RAYEXEC_NAMESPACE::CommandBuffer::begin()</ref> or vk::CommandBuffer::begin() must have been already called prior to calling this function. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/n30/Repos/rayexec/include/api/RenderPass.hpp" line="28" column="10"/>
+      </memberdef>
+      <memberdef kind="function" id="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_render_pass_1af0713427a6ebea6cb6c976cd7df69b07" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void RAYEXEC_NAMESPACE::RenderPass::end</definition>
+        <argsstring>(vk::CommandBuffer commandBuffer) const</argsstring>
+        <name>end</name>
+        <param>
+          <type>vk::CommandBuffer</type>
+          <declname>commandBuffer</declname>
+        </param>
+        <briefdescription>
+<para>Call to end the render pass. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>commandBuffer</parametername>
+</parameternamelist>
+<parameterdescription>
+<para></para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/n30/Repos/rayexec/include/api/RenderPass.hpp" line="32" column="10"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+<para>A wrapper class for a Vulkan render pass. </para>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="/home/n30/Repos/rayexec/include/api/RenderPass.hpp" line="11" column="1" bodyfile="/home/n30/Repos/rayexec/include/api/RenderPass.hpp" bodystart="10" bodyend="36"/>
+    <listofallmembers>
+      <member refid="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_render_pass_1a6161719c747189475df47f2e3dcf25aa" prot="public" virt="non-virtual"><scope>RAYEXEC_NAMESPACE::RenderPass</scope><name>begin</name></member>
+      <member refid="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_render_pass_1af0713427a6ebea6cb6c976cd7df69b07" prot="public" virt="non-virtual"><scope>RAYEXEC_NAMESPACE::RenderPass</scope><name>end</name></member>
+      <member refid="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_render_pass_1a8c2fe19756c46e3403500697be43bdc2" prot="public" virt="non-virtual"><scope>RAYEXEC_NAMESPACE::RenderPass</scope><name>get</name></member>
+      <member refid="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_render_pass_1afb29f77500194dc5e8299cb2cdce0afe" prot="public" virt="non-virtual"><scope>RAYEXEC_NAMESPACE::RenderPass</scope><name>init</name></member>
+      <member refid="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_render_pass_1a5bdfd1f3db613308552ca12919ce4402" prot="private" virt="non-virtual"><scope>RAYEXEC_NAMESPACE::RenderPass</scope><name>renderPass</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

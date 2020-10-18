@@ -18,9 +18,12 @@ var group___a_p_i =
       [ "write", "class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_bindings.html#a5ba54bd2185e5c90a750cb5b184f114a", null ],
       [ "write", "class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_bindings.html#a1148d777220928340e00f28d65815f28", null ],
       [ "write", "class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_bindings.html#a1c3d1c52ae75baff73aefd9647ec534a", null ],
-      [ "write", "class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_bindings.html#a5c847997f48a9c2c044183effb42e161", null ],
-      [ "writeArray", "class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_bindings.html#a8240677bf172ca55509ea6474dbca1c3", null ],
-      [ "writeArray", "class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_bindings.html#a0f24c9eb33f9b45e2d6fb0d732e23ba7", null ]
+      [ "writeArray", "class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_bindings.html#a8240677bf172ca55509ea6474dbca1c3", null ]
+    ] ],
+    [ "Descriptors", "struct_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_descriptors.html", [
+      [ "bindings", "struct_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_descriptors.html#ab5c2f5b3b87adf21ce9107d4b83b95b2", null ],
+      [ "layout", "struct_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_descriptors.html#a830c3a9d3cfa294032cfe09bf49a6a7c", null ],
+      [ "pool", "struct_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_descriptors.html#ae1b1a6510785f144cc6c656e7c8105a3", null ]
     ] ],
     [ "Buffer", "class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_buffer.html", [
       [ "Buffer", "class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_buffer.html#a4286db555c7beb872ad62e5ae78f5a92", null ],

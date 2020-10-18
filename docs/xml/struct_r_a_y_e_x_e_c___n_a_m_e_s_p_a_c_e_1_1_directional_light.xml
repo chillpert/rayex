@@ -1,0 +1,63 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.17">
+  <compounddef id="struct_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_directional_light" kind="struct" language="C++" prot="public">
+    <compoundname>RAYEXEC_NAMESPACE::DirectionalLight</compoundname>
+    <basecompoundref refid="struct_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_light" prot="public" virt="non-virtual">RAYEXEC_NAMESPACE::Light</basecompoundref>
+    <includes refid="_lights_8hpp" local="no">Lights.hpp</includes>
+      <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="struct_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_directional_light_1ab31e87664f44e791df2cf12a37d0d744" prot="public" static="no" mutable="no">
+        <type>glm::vec3</type>
+        <definition>glm::vec3 RAYEXEC_NAMESPACE::DirectionalLight::direction</definition>
+        <argsstring></argsstring>
+        <name>direction</name>
+        <initializer>= glm::vec3( 1.0F )</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/n30/Repos/rayexec/include/base/Lights.hpp" line="28" column="15" bodyfile="/home/n30/Repos/rayexec/include/base/Lights.hpp" bodystart="28" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+<para>A directional light. </para>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="2">
+        <label>RAYEXEC_NAMESPACE::Light</label>
+        <link refid="struct_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_light"/>
+      </node>
+      <node id="1">
+        <label>RAYEXEC_NAMESPACE::DirectionalLight</label>
+        <link refid="struct_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_directional_light"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="2">
+        <label>RAYEXEC_NAMESPACE::Light</label>
+        <link refid="struct_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_light"/>
+      </node>
+      <node id="1">
+        <label>RAYEXEC_NAMESPACE::DirectionalLight</label>
+        <link refid="struct_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_directional_light"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+    </collaborationgraph>
+    <location file="/home/n30/Repos/rayexec/include/base/Lights.hpp" line="27" column="1" bodyfile="/home/n30/Repos/rayexec/include/base/Lights.hpp" bodystart="26" bodyend="29"/>
+    <listofallmembers>
+      <member refid="struct_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_light_1ad3659f665546f7e693f4f5c358efba46" prot="public" virt="non-virtual"><scope>RAYEXEC_NAMESPACE::DirectionalLight</scope><name>ambient</name></member>
+      <member refid="struct_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_light_1a4a634a31e50bda07657e544f4edbd2ca" prot="public" virt="non-virtual"><scope>RAYEXEC_NAMESPACE::DirectionalLight</scope><name>ambientIntensity</name></member>
+      <member refid="struct_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_light_1ab25c50aafd764f82ff11001cbc1137a7" prot="public" virt="non-virtual"><scope>RAYEXEC_NAMESPACE::DirectionalLight</scope><name>diffuse</name></member>
+      <member refid="struct_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_light_1adbabe95b7fd6912bc0e6343fa1223709" prot="public" virt="non-virtual"><scope>RAYEXEC_NAMESPACE::DirectionalLight</scope><name>diffuseIntensity</name></member>
+      <member refid="struct_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_directional_light_1ab31e87664f44e791df2cf12a37d0d744" prot="public" virt="non-virtual"><scope>RAYEXEC_NAMESPACE::DirectionalLight</scope><name>direction</name></member>
+      <member refid="struct_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_light_1a83ef01ebf1d42468ce8f9cb510b041e5" prot="public" virt="non-virtual"><scope>RAYEXEC_NAMESPACE::DirectionalLight</scope><name>specular</name></member>
+      <member refid="struct_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_light_1a7593539ad35ef17d9645330edb598d91" prot="public" virt="non-virtual"><scope>RAYEXEC_NAMESPACE::DirectionalLight</scope><name>specularIntensity</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

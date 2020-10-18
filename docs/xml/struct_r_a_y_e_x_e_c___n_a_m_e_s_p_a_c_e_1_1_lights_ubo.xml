@@ -1,0 +1,47 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.17">
+  <compounddef id="struct_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_lights_ubo" kind="struct" language="C++" prot="public">
+    <compoundname>RAYEXEC_NAMESPACE::LightsUbo</compoundname>
+    <includes refid="_uniform_buffer_8hpp" local="no">UniformBuffer.hpp</includes>
+      <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="struct_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_lights_ubo_1a88f9fe50e74d99c4e0df93b677fbe31a" prot="public" static="no" mutable="no">
+        <type>std::array&lt; <ref refid="struct_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_directional_light" kindref="compound">DirectionalLight</ref>, 10 &gt;</type>
+        <definition>std::array&lt;DirectionalLight, 10&gt; RAYEXEC_NAMESPACE::LightsUbo::directionalLightNodes</definition>
+        <argsstring></argsstring>
+        <name>directionalLightNodes</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/n30/Repos/rayexec/include/api/buffers/UniformBuffer.hpp" line="26" column="16" bodyfile="/home/n30/Repos/rayexec/include/api/buffers/UniformBuffer.hpp" bodystart="26" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="struct_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_lights_ubo_1aec1ca66cc37fe542c2e05af7d777f953" prot="public" static="no" mutable="no">
+        <type>std::array&lt; <ref refid="struct_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_point_light" kindref="compound">PointLight</ref>, 10 &gt;</type>
+        <definition>std::array&lt;PointLight, 10&gt; RAYEXEC_NAMESPACE::LightsUbo::pointLightNodes</definition>
+        <argsstring></argsstring>
+        <name>pointLightNodes</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/n30/Repos/rayexec/include/api/buffers/UniformBuffer.hpp" line="27" column="16" bodyfile="/home/n30/Repos/rayexec/include/api/buffers/UniformBuffer.hpp" bodystart="27" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+<para>A uniform buffer object for different light types. </para>
+    </briefdescription>
+    <detaileddescription>
+<para><xrefsect id="todo_1_todo000003"><xreftitle>Todo</xreftitle><xrefdescription><para>Shouldn&apos;t this also be a storage buffer? </para>
+</xrefdescription></xrefsect></para>
+    </detaileddescription>
+    <location file="/home/n30/Repos/rayexec/include/api/buffers/UniformBuffer.hpp" line="25" column="1" bodyfile="/home/n30/Repos/rayexec/include/api/buffers/UniformBuffer.hpp" bodystart="24" bodyend="28"/>
+    <listofallmembers>
+      <member refid="struct_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_lights_ubo_1a88f9fe50e74d99c4e0df93b677fbe31a" prot="public" virt="non-virtual"><scope>RAYEXEC_NAMESPACE::LightsUbo</scope><name>directionalLightNodes</name></member>
+      <member refid="struct_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_lights_ubo_1aec1ca66cc37fe542c2e05af7d777f953" prot="public" virt="non-virtual"><scope>RAYEXEC_NAMESPACE::LightsUbo</scope><name>pointLightNodes</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

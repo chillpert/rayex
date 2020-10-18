@@ -96,7 +96,6 @@ $(document).ready(function(){initNavTree('namespace_r_a_y_e_x_e_c___n_a_m_e_s_p_
   <div class="summary">
 <a href="#namespaces">Namespaces</a> &#124;
 <a href="#nested-classes">Classes</a> &#124;
-<a href="#enum-members">Enumerations</a> &#124;
 <a href="#func-members">Functions</a> &#124;
 <a href="#var-members">Variables</a>  </div>
   <div class="headertitle">
@@ -145,6 +144,7 @@ Classes</h2></td></tr>
 <tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">A wrapper class for a Vulkan debug utility messenger.  <a href="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_debug_messenger.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_descriptors.html">Descriptors</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Encapsulates descriptor-related resources.  <a href="struct_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_descriptors.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_directional_light.html">DirectionalLight</a></td></tr>
 <tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">A directional light.  <a href="struct_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_directional_light.html#details">More...</a><br /></td></tr>
@@ -227,13 +227,6 @@ Classes</h2></td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_window.html">Window</a></td></tr>
 <tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Implements a SDL-based window.  <a href="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_window.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
-</table><table class="memberdecls">
-<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="enum-members"></a>
-Enumerations</h2></td></tr>
-<tr class="memitem:a53b9c213867d0476502369d576388e04"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespace_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e.html#a53b9c213867d0476502369d576388e04">PipelineType</a> { <a class="el" href="namespace_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e.html#a53b9c213867d0476502369d576388e04a359712f28c8b9c279b38db7175b198dd">PipelineType::eDefaultRasterization</a>, 
-<a class="el" href="namespace_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e.html#a53b9c213867d0476502369d576388e04ae7a2ddc5f9fdad849a8fddb30de6edea">PipelineType::eDefaultRayTracing</a>
- }</td></tr>
-<tr class="separator:a53b9c213867d0476502369d576388e04"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
 Functions</h2></td></tr>
@@ -335,34 +328,7 @@ Variables</h2></td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>The rx namespace encapsulates every single component provided by the renderer. </p>
-</div><h2 class="groupheader">Enumeration Type Documentation</h2>
-<a id="a53b9c213867d0476502369d576388e04"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a53b9c213867d0476502369d576388e04">&#9670;&nbsp;</a></span>PipelineType</h2>
-
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">enum <a class="el" href="namespace_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e.html#a53b9c213867d0476502369d576388e04">RAYEXEC_NAMESPACE::PipelineType</a></td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">strong</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-<table class="fieldtable">
-<tr><th colspan="2">Enumerator</th></tr><tr><td class="fieldname"><a id="a53b9c213867d0476502369d576388e04a359712f28c8b9c279b38db7175b198dd"></a>eDefaultRasterization&#160;</td><td class="fielddoc"></td></tr>
-<tr><td class="fieldname"><a id="a53b9c213867d0476502369d576388e04ae7a2ddc5f9fdad849a8fddb30de6edea"></a>eDefaultRayTracing&#160;</td><td class="fielddoc"></td></tr>
-</table>
-
-</div>
-</div>
-<h2 class="groupheader">Function Documentation</h2>
+</div><h2 class="groupheader">Function Documentation</h2>
 <a id="acb39626339ca64501ad497630082416e"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#acb39626339ca64501ad497630082416e">&#9670;&nbsp;</a></span>createStorageBufferWithStaging()</h2>
 

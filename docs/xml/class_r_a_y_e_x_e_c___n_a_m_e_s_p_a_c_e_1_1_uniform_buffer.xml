@@ -1,0 +1,220 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.17">
+  <compounddef id="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_uniform_buffer" kind="class" language="C++" prot="public">
+    <compoundname>RAYEXEC_NAMESPACE::UniformBuffer</compoundname>
+    <includes refid="_uniform_buffer_8hpp" local="no">UniformBuffer.hpp</includes>
+      <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_uniform_buffer_1a9a186941817e7a9f8b2c0c82ed07051e" prot="public" static="no" mutable="no">
+        <type>std::vector&lt; vk::DescriptorBufferInfo &gt;</type>
+        <definition>std::vector&lt;vk::DescriptorBufferInfo&gt; RAYEXEC_NAMESPACE::UniformBuffer::bufferInfos</definition>
+        <argsstring></argsstring>
+        <name>bufferInfos</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/n30/Repos/rayexec/include/api/buffers/UniformBuffer.hpp" line="86" column="17" bodyfile="/home/n30/Repos/rayexec/include/api/buffers/UniformBuffer.hpp" bodystart="86" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_uniform_buffer_1a6c952afc0aad620e9a109e0b14ff382d" prot="private" static="no" mutable="no">
+        <type>std::vector&lt; <ref refid="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_buffer" kindref="compound">Buffer</ref> &gt;</type>
+        <definition>std::vector&lt;Buffer&gt; RAYEXEC_NAMESPACE::UniformBuffer::buffers</definition>
+        <argsstring></argsstring>
+        <name>buffers</name>
+        <briefdescription>
+<para>A vector of RAYEXEC_NAMESPACE::Buffers for the uniform buffers. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/n30/Repos/rayexec/include/api/buffers/UniformBuffer.hpp" line="89" column="17" bodyfile="/home/n30/Repos/rayexec/include/api/buffers/UniformBuffer.hpp" bodystart="89" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_uniform_buffer_1a77802f4e17e5282d91c57377de41a349" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>RAYEXEC_NAMESPACE::UniformBuffer::UniformBuffer</definition>
+        <argsstring>()=default</argsstring>
+        <name>UniformBuffer</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/n30/Repos/rayexec/include/api/buffers/UniformBuffer.hpp" line="35" column="5"/>
+      </memberdef>
+      <memberdef kind="function" id="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_uniform_buffer_1a3d8a6b197212e4e0f5c914dab88645a1" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>typename T</type>
+          </param>
+        </templateparamlist>
+        <type></type>
+        <definition>RAYEXEC_NAMESPACE::UniformBuffer::UniformBuffer</definition>
+        <argsstring>(size_t swapchainImagesCount, bool initialize=true)</argsstring>
+        <name>UniformBuffer</name>
+        <param>
+          <type>size_t</type>
+          <declname>swapchainImagesCount</declname>
+        </param>
+        <param>
+          <type>bool</type>
+          <declname>initialize</declname>
+          <defval>true</defval>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>swapchainImagesCount</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The amount of images in the swapchain. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>initialize</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>If true, the uniform buffer will be initialized right away without an additional call to <ref refid="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_uniform_buffer_1adedc9d69558242b95599b8ffe7f8ff80" kindref="member">init()</ref>. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/n30/Repos/rayexec/include/api/buffers/UniformBuffer.hpp" line="40" column="5" bodyfile="/home/n30/Repos/rayexec/include/api/buffers/UniformBuffer.hpp" bodystart="40" bodyend="44"/>
+      </memberdef>
+      <memberdef kind="function" id="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_uniform_buffer_1adb2e28fe37c2e943e0911d9f63a77040" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>auto</type>
+        <definition>auto RAYEXEC_NAMESPACE::UniformBuffer::get</definition>
+        <argsstring>() const -&gt; const std::vector&lt; Buffer &gt; &amp;</argsstring>
+        <name>get</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>Returns the vector of uniform buffers. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/n30/Repos/rayexec/include/api/buffers/UniformBuffer.hpp" line="47" column="11" bodyfile="/home/n30/Repos/rayexec/include/api/buffers/UniformBuffer.hpp" bodystart="47" bodyend="47"/>
+      </memberdef>
+      <memberdef kind="function" id="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_uniform_buffer_1a426b9cbe9b74a83bd49503cc70577f24" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>RX_API auto</type>
+        <definition>RX_API auto RAYEXEC_NAMESPACE::UniformBuffer::getRaw</definition>
+        <argsstring>() const -&gt; const std::vector&lt; vk::Buffer &gt;</argsstring>
+        <name>getRaw</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>Returns the vector of uniform buffers as raw Vulkan buffer objects. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/n30/Repos/rayexec/include/api/buffers/UniformBuffer.hpp" line="50" column="18"/>
+      </memberdef>
+      <memberdef kind="function" id="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_uniform_buffer_1adedc9d69558242b95599b8ffe7f8ff80" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>typename T</type>
+          </param>
+        </templateparamlist>
+        <type>void</type>
+        <definition>void RAYEXEC_NAMESPACE::UniformBuffer::init</definition>
+        <argsstring>()</argsstring>
+        <name>init</name>
+        <briefdescription>
+<para>Creates the uniform buffer and allocates memory for it. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>The function will create as many uniform buffers as there are images in the swapchain. Additionally, it will create the descriptor buffer infos which can be later used to write to a descriptor set. <parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>swapchainImagesCount</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The amount of images in the swapchain. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/n30/Repos/rayexec/include/api/buffers/UniformBuffer.hpp" line="58" column="10" bodyfile="/home/n30/Repos/rayexec/include/api/buffers/UniformBuffer.hpp" bodystart="58" bodyend="75"/>
+      </memberdef>
+      <memberdef kind="function" id="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_uniform_buffer_1a93afba2d64a22f7b764836b6e88217bc" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>typename T</type>
+          </param>
+        </templateparamlist>
+        <type>void</type>
+        <definition>void RAYEXEC_NAMESPACE::UniformBuffer::upload</definition>
+        <argsstring>(uint32_t imageIndex, T &amp;ubo)</argsstring>
+        <name>upload</name>
+        <param>
+          <type>uint32_t</type>
+          <declname>imageIndex</declname>
+        </param>
+        <param>
+          <type>T &amp;</type>
+          <declname>ubo</declname>
+        </param>
+        <briefdescription>
+<para>Used to fill an image&apos;s buffer. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>imageIndex</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The image&apos;s index in the swapchain. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>ubo</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The actual uniform buffer object holding the data. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/n30/Repos/rayexec/include/api/buffers/UniformBuffer.hpp" line="81" column="10" bodyfile="/home/n30/Repos/rayexec/include/api/buffers/UniformBuffer.hpp" bodystart="81" bodyend="84"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+<para>A specialised buffer for uniforms. </para>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="/home/n30/Repos/rayexec/include/api/buffers/UniformBuffer.hpp" line="33" column="1" bodyfile="/home/n30/Repos/rayexec/include/api/buffers/UniformBuffer.hpp" bodystart="32" bodyend="90"/>
+    <listofallmembers>
+      <member refid="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_uniform_buffer_1a9a186941817e7a9f8b2c0c82ed07051e" prot="public" virt="non-virtual"><scope>RAYEXEC_NAMESPACE::UniformBuffer</scope><name>bufferInfos</name></member>
+      <member refid="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_uniform_buffer_1a6c952afc0aad620e9a109e0b14ff382d" prot="private" virt="non-virtual"><scope>RAYEXEC_NAMESPACE::UniformBuffer</scope><name>buffers</name></member>
+      <member refid="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_uniform_buffer_1adb2e28fe37c2e943e0911d9f63a77040" prot="public" virt="non-virtual"><scope>RAYEXEC_NAMESPACE::UniformBuffer</scope><name>get</name></member>
+      <member refid="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_uniform_buffer_1a426b9cbe9b74a83bd49503cc70577f24" prot="public" virt="non-virtual"><scope>RAYEXEC_NAMESPACE::UniformBuffer</scope><name>getRaw</name></member>
+      <member refid="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_uniform_buffer_1adedc9d69558242b95599b8ffe7f8ff80" prot="public" virt="non-virtual"><scope>RAYEXEC_NAMESPACE::UniformBuffer</scope><name>init</name></member>
+      <member refid="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_uniform_buffer_1a77802f4e17e5282d91c57377de41a349" prot="public" virt="non-virtual"><scope>RAYEXEC_NAMESPACE::UniformBuffer</scope><name>UniformBuffer</name></member>
+      <member refid="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_uniform_buffer_1a3d8a6b197212e4e0f5c914dab88645a1" prot="public" virt="non-virtual"><scope>RAYEXEC_NAMESPACE::UniformBuffer</scope><name>UniformBuffer</name></member>
+      <member refid="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_uniform_buffer_1a93afba2d64a22f7b764836b6e88217bc" prot="public" virt="non-virtual"><scope>RAYEXEC_NAMESPACE::UniformBuffer</scope><name>upload</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

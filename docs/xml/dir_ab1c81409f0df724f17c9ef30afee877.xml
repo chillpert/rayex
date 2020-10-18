@@ -1,0 +1,17 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.17">
+  <compounddef id="dir_ab1c81409f0df724f17c9ef30afee877" kind="dir">
+    <compoundname>/home/n30/Repos/rayexec/include/base</compoundname>
+    <innerfile refid="_camera_8hpp">Camera.hpp</innerfile>
+    <innerfile refid="_geometry_8hpp">Geometry.hpp</innerfile>
+    <innerfile refid="_gui_8hpp">Gui.hpp</innerfile>
+    <innerfile refid="_lights_8hpp">Lights.hpp</innerfile>
+    <innerfile refid="_time_8hpp">Time.hpp</innerfile>
+    <innerfile refid="_window_8hpp">Window.hpp</innerfile>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="/home/n30/Repos/rayexec/include/base/"/>
+  </compounddef>
+</doxygen>

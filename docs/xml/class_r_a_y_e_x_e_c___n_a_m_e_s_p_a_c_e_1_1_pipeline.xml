@@ -1,0 +1,201 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.17">
+  <compounddef id="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_pipeline" kind="class" language="C++" prot="public">
+    <compoundname>RAYEXEC_NAMESPACE::Pipeline</compoundname>
+    <includes refid="_pipeline_8hpp" local="no">Pipeline.hpp</includes>
+      <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_pipeline_1aa4ddbec55b1cf63f555c0af36fcd8503" prot="private" static="no" mutable="no">
+        <type>vk::UniquePipeline</type>
+        <definition>vk::UniquePipeline RAYEXEC_NAMESPACE::Pipeline::pipeline</definition>
+        <argsstring></argsstring>
+        <name>pipeline</name>
+        <briefdescription>
+<para>The Vulkan pipeline with a unique handle. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/n30/Repos/rayexec/include/api/Pipeline.hpp" line="48" column="24" bodyfile="/home/n30/Repos/rayexec/include/api/Pipeline.hpp" bodystart="48" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_pipeline_1a7b8bdabe83760ba3bbf5812c837be8fc" prot="private" static="no" mutable="no">
+        <type>vk::UniquePipelineLayout</type>
+        <definition>vk::UniquePipelineLayout RAYEXEC_NAMESPACE::Pipeline::layout</definition>
+        <argsstring></argsstring>
+        <name>layout</name>
+        <briefdescription>
+<para>The Vulkan pipeline layout with a unique handle. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/n30/Repos/rayexec/include/api/Pipeline.hpp" line="49" column="30" bodyfile="/home/n30/Repos/rayexec/include/api/Pipeline.hpp" bodystart="49" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_pipeline_1ad48c27749177fa7c015d7cdaa61ab2c7" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void RAYEXEC_NAMESPACE::Pipeline::init</definition>
+        <argsstring>(const std::vector&lt; vk::DescriptorSetLayout &gt; &amp;descriptorSetLayouts, vk::RenderPass renderPass, vk::Viewport viewport, vk::Rect2D scissor, const Settings *settings)</argsstring>
+        <name>init</name>
+        <param>
+          <type>const std::vector&lt; vk::DescriptorSetLayout &gt; &amp;</type>
+          <declname>descriptorSetLayouts</declname>
+        </param>
+        <param>
+          <type>vk::RenderPass</type>
+          <declname>renderPass</declname>
+        </param>
+        <param>
+          <type>vk::Viewport</type>
+          <declname>viewport</declname>
+        </param>
+        <param>
+          <type>vk::Rect2D</type>
+          <declname>scissor</declname>
+        </param>
+        <param>
+          <type>const <ref refid="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_settings" kindref="compound">Settings</ref> *</type>
+          <declname>settings</declname>
+        </param>
+        <briefdescription>
+<para>Initializes a rasterization pipeline. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>descriptorSetLayouts</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>A vector of descriptor set layouts that will be included in the pipeline layout. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>renderPass</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>A Vulkan render pass. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>viewport</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The desired view port. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>scissor</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The desired scissor dimensions. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>settings</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Used to retrieve information like maximum instances or lights of a specific type. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/n30/Repos/rayexec/include/api/Pipeline.hpp" line="34" column="10"/>
+      </memberdef>
+      <memberdef kind="function" id="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_pipeline_1af46ac0be1d9a01d93abfda781cfc8e55" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void RAYEXEC_NAMESPACE::Pipeline::init</definition>
+        <argsstring>(const std::vector&lt; vk::DescriptorSetLayout &gt; &amp;descriptorSetLayouts, const Settings *settings)</argsstring>
+        <name>init</name>
+        <param>
+          <type>const std::vector&lt; vk::DescriptorSetLayout &gt; &amp;</type>
+          <declname>descriptorSetLayouts</declname>
+        </param>
+        <param>
+          <type>const <ref refid="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_settings" kindref="compound">Settings</ref> *</type>
+          <declname>settings</declname>
+        </param>
+        <briefdescription>
+<para>Initializes a ray tracing pipeline. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>descriptorSetLayouts</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>A vector of descriptor set layouts that will be included in the pipeline layout. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>settings</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Used to retrieve information like maximum instances or lights of a specific type. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/n30/Repos/rayexec/include/api/Pipeline.hpp" line="39" column="10"/>
+      </memberdef>
+      <memberdef kind="function" id="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_pipeline_1aa366e6212bdf0293260cd0c00909331b" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>auto</type>
+        <definition>auto RAYEXEC_NAMESPACE::Pipeline::get</definition>
+        <argsstring>() const -&gt; vk::Pipeline</argsstring>
+        <name>get</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>Returns the Vulkan pipeline object without the unique handle. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/n30/Repos/rayexec/include/api/Pipeline.hpp" line="42" column="10" bodyfile="/home/n30/Repos/rayexec/include/api/Pipeline.hpp" bodystart="42" bodyend="42"/>
+      </memberdef>
+      <memberdef kind="function" id="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_pipeline_1ae5f69040045769e57d7d7ab8d1f91967" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>auto</type>
+        <definition>auto RAYEXEC_NAMESPACE::Pipeline::getLayout</definition>
+        <argsstring>() const -&gt; vk::PipelineLayout</argsstring>
+        <name>getLayout</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>Returns the Vulkan pipeline layout object without the unique handle. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/n30/Repos/rayexec/include/api/Pipeline.hpp" line="45" column="10" bodyfile="/home/n30/Repos/rayexec/include/api/Pipeline.hpp" bodystart="45" bodyend="45"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+<para>A wrapper class for a Vulkan graphics pipeline. </para>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="/home/n30/Repos/rayexec/include/api/Pipeline.hpp" line="26" column="1" bodyfile="/home/n30/Repos/rayexec/include/api/Pipeline.hpp" bodystart="25" bodyend="50"/>
+    <listofallmembers>
+      <member refid="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_pipeline_1aa366e6212bdf0293260cd0c00909331b" prot="public" virt="non-virtual"><scope>RAYEXEC_NAMESPACE::Pipeline</scope><name>get</name></member>
+      <member refid="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_pipeline_1ae5f69040045769e57d7d7ab8d1f91967" prot="public" virt="non-virtual"><scope>RAYEXEC_NAMESPACE::Pipeline</scope><name>getLayout</name></member>
+      <member refid="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_pipeline_1ad48c27749177fa7c015d7cdaa61ab2c7" prot="public" virt="non-virtual"><scope>RAYEXEC_NAMESPACE::Pipeline</scope><name>init</name></member>
+      <member refid="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_pipeline_1af46ac0be1d9a01d93abfda781cfc8e55" prot="public" virt="non-virtual"><scope>RAYEXEC_NAMESPACE::Pipeline</scope><name>init</name></member>
+      <member refid="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_pipeline_1a7b8bdabe83760ba3bbf5812c837be8fc" prot="private" virt="non-virtual"><scope>RAYEXEC_NAMESPACE::Pipeline</scope><name>layout</name></member>
+      <member refid="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_pipeline_1aa4ddbec55b1cf63f555c0af36fcd8503" prot="private" virt="non-virtual"><scope>RAYEXEC_NAMESPACE::Pipeline</scope><name>pipeline</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

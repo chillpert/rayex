@@ -1,0 +1,64 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.17">
+  <compounddef id="struct_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_acceleration_structure" kind="struct" language="C++" prot="public">
+    <compoundname>RAYEXEC_NAMESPACE::AccelerationStructure</compoundname>
+    <includes refid="_acceleration_structure_8hpp" local="no">AccelerationStructure.hpp</includes>
+      <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="struct_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_acceleration_structure_1a284bf5b154e56146173e4fc66f8789f1" prot="public" static="no" mutable="no">
+        <type>vk::AccelerationStructureKHR</type>
+        <definition>vk::AccelerationStructureKHR RAYEXEC_NAMESPACE::AccelerationStructure::as</definition>
+        <argsstring></argsstring>
+        <name>as</name>
+        <briefdescription>
+<para>The Vulkan acceleration structure. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/n30/Repos/rayexec/include/api/raytracing/AccelerationStructure.hpp" line="13" column="34" bodyfile="/home/n30/Repos/rayexec/include/api/raytracing/AccelerationStructure.hpp" bodystart="13" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="struct_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_acceleration_structure_1a5080bc9aac686561c16323ce886d1011" prot="public" static="no" mutable="no">
+        <type>vk::DeviceMemory</type>
+        <definition>vk::DeviceMemory RAYEXEC_NAMESPACE::AccelerationStructure::memory</definition>
+        <argsstring></argsstring>
+        <name>memory</name>
+        <briefdescription>
+<para>The acceleration structure&apos;s memory. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/n30/Repos/rayexec/include/api/raytracing/AccelerationStructure.hpp" line="14" column="22" bodyfile="/home/n30/Repos/rayexec/include/api/raytracing/AccelerationStructure.hpp" bodystart="14" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="struct_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_acceleration_structure_1aa7d536cc32d5f2c5e1c863ad0fc3e1ba" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void RAYEXEC_NAMESPACE::AccelerationStructure::destroy</definition>
+        <argsstring>()</argsstring>
+        <name>destroy</name>
+        <briefdescription>
+<para>Used to destroy the acceleration structure and free its memory. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/n30/Repos/rayexec/include/api/raytracing/AccelerationStructure.hpp" line="17" column="10" bodyfile="/home/n30/Repos/rayexec/include/api/raytracing/AccelerationStructure.hpp" bodystart="17" bodyend="24"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+<para>A wrapper for a Vulkan acceleration Structure. </para>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="/home/n30/Repos/rayexec/include/api/raytracing/AccelerationStructure.hpp" line="12" column="1" bodyfile="/home/n30/Repos/rayexec/include/api/raytracing/AccelerationStructure.hpp" bodystart="11" bodyend="25"/>
+    <listofallmembers>
+      <member refid="struct_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_acceleration_structure_1a284bf5b154e56146173e4fc66f8789f1" prot="public" virt="non-virtual"><scope>RAYEXEC_NAMESPACE::AccelerationStructure</scope><name>as</name></member>
+      <member refid="struct_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_acceleration_structure_1aa7d536cc32d5f2c5e1c863ad0fc3e1ba" prot="public" virt="non-virtual"><scope>RAYEXEC_NAMESPACE::AccelerationStructure</scope><name>destroy</name></member>
+      <member refid="struct_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_acceleration_structure_1a5080bc9aac686561c16323ce886d1011" prot="public" virt="non-virtual"><scope>RAYEXEC_NAMESPACE::AccelerationStructure</scope><name>memory</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

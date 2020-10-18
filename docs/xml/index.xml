@@ -1,0 +1,777 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygenindex xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="index.xsd" version="1.8.17">
+  <compound refid="struct_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_acceleration_structure" kind="struct"><name>RAYEXEC_NAMESPACE::AccelerationStructure</name>
+    <member refid="struct_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_acceleration_structure_1a284bf5b154e56146173e4fc66f8789f1" kind="variable"><name>as</name></member>
+    <member refid="struct_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_acceleration_structure_1a5080bc9aac686561c16323ce886d1011" kind="variable"><name>memory</name></member>
+    <member refid="struct_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_acceleration_structure_1aa7d536cc32d5f2c5e1c863ad0fc3e1ba" kind="function"><name>destroy</name></member>
+  </compound>
+  <compound refid="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_api" kind="class"><name>RAYEXEC_NAMESPACE::Api</name>
+    <member refid="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_api_1af862c9b962c5a27ad96ec325a12c91ae" kind="variable"><name>RayExec</name></member>
+    <member refid="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_api_1aae8a0f55edaa927895a15fd8a68a8e63" kind="variable"><name>window</name></member>
+    <member refid="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_api_1a07b3fc32e9b9cf4dff4c67add705e0bd" kind="variable"><name>camera</name></member>
+    <member refid="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_api_1adb745d3f7f26483aa297af007d5497d4" kind="variable"><name>physicalDevice</name></member>
+    <member refid="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_api_1a02d9c500b761f68422ae8ea393aeb194" kind="variable"><name>instance</name></member>
+    <member refid="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_api_1a0e755c3050e35b8403b903b3da46dfc9" kind="variable"><name>debugMessenger</name></member>
+    <member refid="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_api_1a480962c94d9938a3b9bb748ae15fdf43" kind="variable"><name>surface</name></member>
+    <member refid="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_api_1a6b7376d273a6c66e1a21b29b07324216" kind="variable"><name>device</name></member>
+    <member refid="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_api_1ade8f05966c335bd57c774afacaabb21b" kind="variable"><name>graphicsCmdPool</name></member>
+    <member refid="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_api_1a0035461e0a40ca937e03a859ebfe2a0c" kind="variable"><name>transferCmdPool</name></member>
+    <member refid="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_api_1ae63482bdebbe1fb3255fdbe924a0afa1" kind="variable"><name>imagesInFlight</name></member>
+    <member refid="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_api_1a0d9b609bebde6576a4718119d9c4dacc" kind="variable"><name>inFlightFences</name></member>
+    <member refid="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_api_1ac9395a9da8ae162d58204c7ff1357bab" kind="variable"><name>imageAvailableSemaphores</name></member>
+    <member refid="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_api_1a0cd9f84891f194f462240606bf6794cd" kind="variable"><name>finishedRenderSemaphores</name></member>
+    <member refid="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_api_1ac66436cd89a5cef89f78923a2ad9526f" kind="variable"><name>rtDescriptors</name></member>
+    <member refid="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_api_1add7daa1f3dc03ade8f1fba72de89e659" kind="variable"><name>rtSceneDescriptors</name></member>
+    <member refid="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_api_1a6af6fa9f2041be21fe0602a534137e01" kind="variable"><name>rsSceneDescriptors</name></member>
+    <member refid="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_api_1a992b7910cc6db119f1ef162ce85357ba" kind="variable"><name>vertexDataDescriptors</name></member>
+    <member refid="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_api_1a0cfb0149918ff6fe8acb0475ef981bb5" kind="variable"><name>indexDataDescriptors</name></member>
+    <member refid="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_api_1af5e1a5695eb9ea40c9ab5c5de39f17c7" kind="variable"><name>rtDescriptorSets</name></member>
+    <member refid="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_api_1a36687e44dbff8e7b482afb6927204228" kind="variable"><name>rtSceneDescriptorSets</name></member>
+    <member refid="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_api_1a2aabd9fb13e5b1e7dfa7660f4fd9f452" kind="variable"><name>rsSceneDescriptorSets</name></member>
+    <member refid="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_api_1ac453bed3689173b6ca8bab3ea3c182c9" kind="variable"><name>vertexDataDescriptorSets</name></member>
+    <member refid="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_api_1a420d2e5c892dced10f2fdac396be278e" kind="variable"><name>indexDataDescriptorSets</name></member>
+    <member refid="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_api_1a5924961720e684f32d77e164d8215ff3" kind="variable"><name>vertexDataBufferInfos</name></member>
+    <member refid="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_api_1a2955da4fb18fe3ba6517c83192fc7476" kind="variable"><name>indexDataBufferInfos</name></member>
+    <member refid="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_api_1a1e3dec022740df389b3989905684609b" kind="variable"><name>meshDataBufferInfos</name></member>
+    <member refid="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_api_1ad36852ac083a57c34a7b1198f790de5f" kind="variable"><name>vertexBuffers</name></member>
+    <member refid="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_api_1acf7aaec8ff6da6b71991331cd8bf2f71" kind="variable"><name>indexBuffers</name></member>
+    <member refid="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_api_1a6e904abfab1a11f0ce2de28fac982a1e" kind="variable"><name>meshBuffers</name></member>
+    <member refid="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_api_1ae23b9cefcf332e52ef69f4821c581deb" kind="variable"><name>geometryInstancesBuffer</name></member>
+    <member refid="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_api_1a311a207f3a6bb477075068f91be68533" kind="variable"><name>cameraUbo</name></member>
+    <member refid="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_api_1a5d84fe50b06f1d9d988742afa5ab5c77" kind="variable"><name>cameraUniformBuffer</name></member>
+    <member refid="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_api_1aafb5fba2144041c22580aa9ba3d6cf38" kind="variable"><name>lightsUniformBuffer</name></member>
+    <member refid="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_api_1ab324352dab5c1051041c22476e8cef06" kind="variable"><name>swapchain</name></member>
+    <member refid="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_api_1ae90d7b1c6a9fa847e04327a75102d677" kind="variable"><name>renderPass</name></member>
+    <member refid="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_api_1abd28c75b7a6aa7f090ad9c860c47d03b" kind="variable"><name>rsPipeline</name></member>
+    <member refid="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_api_1aa3ddc1f72497f7fcd341ffb04c883aec" kind="variable"><name>rtPipeline</name></member>
+    <member refid="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_api_1ac9b012c1b73ebd113c5e4de7f519ff75" kind="variable"><name>swapchainCommandBuffers</name></member>
+    <member refid="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_api_1a41363613941e93c8b510178460446946" kind="variable"><name>gui</name></member>
+    <member refid="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_api_1a44b4ef4eee346f34109e539adfb6e8e6" kind="variable"><name>rayTracingBuilder</name></member>
+    <member refid="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_api_1aec155f9797597f32e72fc0cbf26c442c" kind="variable"><name>viewport</name></member>
+    <member refid="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_api_1a579802c84c43fc975cd2035b38785c9a" kind="variable"><name>scissor</name></member>
+    <member refid="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_api_1a57a0c4b70d71de19ef7d5ef3f3a6c9d0" kind="variable"><name>needSwapchainRecreate</name></member>
+    <member refid="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_api_1a32022ac1d1f7d7a66e0676787b6ac109" kind="variable"><name>uploadGeometryInstancesToBuffer</name></member>
+    <member refid="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_api_1a2f4561fd25cd5ce3a10bb68efa1896d2" kind="variable"><name>pipelinesReady</name></member>
+    <member refid="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_api_1a5e334092b17cb15f234caeceea8eb267" kind="variable"><name>settings</name></member>
+    <member refid="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_api_1a196e78e75d593957d55599939f115d86" kind="variable"><name>scene</name></member>
+    <member refid="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_api_1a01833704b83c33dc619485119c8a9207" kind="function"><name>Api</name></member>
+    <member refid="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_api_1ad9139e70bcc023ea322b0d38ed975686" kind="function"><name>~Api</name></member>
+    <member refid="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_api_1a124907694b3d9e8100198cae68411810" kind="function"><name>Api</name></member>
+    <member refid="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_api_1ae5c5ff1f46fcd0b9d6615e66d761dff1" kind="function"><name>Api</name></member>
+    <member refid="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_api_1a6b9c0c4f5d6109d648075e32dfe93ea8" kind="function"><name>Api</name></member>
+    <member refid="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_api_1a94683edf747fd43161aa18eae6f2686a" kind="function"><name>operator=</name></member>
+    <member refid="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_api_1a68af262a8fb56790190d35b0f31d135d" kind="function"><name>operator=</name></member>
+    <member refid="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_api_1a7178199d6c7703ce62b89a1c5b801115" kind="function"><name>setGui</name></member>
+    <member refid="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_api_1a8813a3d1a722dc123e759a98124e28e1" kind="function"><name>initBase</name></member>
+    <member refid="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_api_1aea3c27587d69647d19278aee5b5d30f9" kind="function"><name>initScene</name></member>
+    <member refid="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_api_1a209230a346f4e800474537dfb7cb171b" kind="function"><name>update</name></member>
+    <member refid="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_api_1a5c2b9d0136aac9425102a87545d5b71d" kind="function"><name>render</name></member>
+    <member refid="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_api_1af3be89979790c7e109fe1ebce7c3bbfe" kind="function"><name>initGui</name></member>
+    <member refid="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_api_1afe433504f6098f523f7bcae7542bbf02" kind="function"><name>updateAccelerationStructures</name></member>
+    <member refid="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_api_1a415bb02cf691bf5ef7502005fa02d8c1" kind="function"><name>initPipelines</name></member>
+    <member refid="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_api_1a4be66ba9b9c711a4015e1ffdef1bb2f2" kind="function"><name>initRenderPass</name></member>
+    <member refid="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_api_1a79809d9ad28babbb442bbb1b1544e080" kind="function"><name>recordSwapchainCommandBuffers</name></member>
+    <member refid="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_api_1a4452611818c7aac4c65a734da5881338" kind="function"><name>initSyncObjects</name></member>
+    <member refid="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_api_1a3cb4824dd589db36541d6b174b786870" kind="function"><name>initDescriptorSets</name></member>
+    <member refid="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_api_1a4a36dfbc6d434698a4d92a758aa16326" kind="function"><name>initModelBuffers</name></member>
+    <member refid="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_api_1a28c803c146414c6298a03ebccfee808e" kind="function"><name>updateSceneDescriptors</name></member>
+    <member refid="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_api_1ab373c88a652768cfc3d976ba6a868f9e" kind="function"><name>updateRayTracingModelData</name></member>
+    <member refid="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_api_1afa3207e5b44ccb3af2470f9cd5e2823c" kind="function"><name>updateSettings</name></member>
+    <member refid="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_api_1a677b96100efcc274df6289faf3932b6e" kind="function"><name>updateUniformBuffers</name></member>
+    <member refid="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_api_1a8c441ee91ef063cd5554598006de28b5" kind="function"><name>recreateSwapchain</name></member>
+    <member refid="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_api_1a70e3ecf676b7b37e051b51c34ec882a7" kind="function"><name>prepareFrame</name></member>
+    <member refid="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_api_1a98c2fb8f4397777d7fbca93dc4c8c6ec" kind="function"><name>submitFrame</name></member>
+    <member refid="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_api_1a2ac475dabf143449c7b0dbe3f318b23b" kind="function"><name>rasterize</name></member>
+    <member refid="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_api_1acd157342ea2e9c06ed256921f03d74f6" kind="function"><name>rayTrace</name></member>
+    <member refid="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_api_1adb22f356160a4b46a647f5533f940e81" kind="function"><name>findGeometry</name></member>
+  </compound>
+  <compound refid="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_bindings" kind="class"><name>RAYEXEC_NAMESPACE::Bindings</name>
+    <member refid="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_bindings_1a9884ec204af7d63397e2a178fffc78ce" kind="variable"><name>bindings</name></member>
+    <member refid="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_bindings_1ad767b8cf96ff48a782018a0125443446" kind="variable"><name>flags</name></member>
+    <member refid="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_bindings_1a5ccb141d4fe6ee08f91c007f62b5a796" kind="variable"><name>poolSizes</name></member>
+    <member refid="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_bindings_1abd3e76ffb061f2f50e32660347ef73ce" kind="variable"><name>writes</name></member>
+    <member refid="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_bindings_1a2f10ef6e872fad7a4c306ecc95c7c1fd" kind="function"><name>add</name></member>
+    <member refid="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_bindings_1a70b09f22390a7fe839cc1da021acc6b0" kind="function"><name>initLayoutUnique</name></member>
+    <member refid="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_bindings_1a6e21f0ead6c8278daeadd2c76d3b0810" kind="function"><name>initPoolUnique</name></member>
+    <member refid="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_bindings_1ad689b3d0de08c764d41bf2b3fd6159ac" kind="function"><name>update</name></member>
+    <member refid="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_bindings_1a1c3d1c52ae75baff73aefd9647ec534a" kind="function"><name>write</name></member>
+    <member refid="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_bindings_1a1148d777220928340e00f28d65815f28" kind="function"><name>write</name></member>
+    <member refid="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_bindings_1a5ba54bd2185e5c90a750cb5b184f114a" kind="function"><name>write</name></member>
+    <member refid="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_bindings_1a1f1704821f8a085346f2f0a9d9db2498" kind="function"><name>write</name></member>
+    <member refid="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_bindings_1a8240677bf172ca55509ea6474dbca1c3" kind="function"><name>writeArray</name></member>
+    <member refid="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_bindings_1ab192b011847a8caaa75b9661302d455c" kind="function"><name>setPoolSizes</name></member>
+    <member refid="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_bindings_1a09e932446ea500173160e77a157764ac" kind="function"><name>reset</name></member>
+    <member refid="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_bindings_1adfdddc348abe5927f4d5c77221637309" kind="function"><name>write</name></member>
+    <member refid="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_bindings_1a2a7f155e4d83e91f90e3de77dace9316" kind="function"><name>writeArray</name></member>
+  </compound>
+  <compound refid="struct_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_blas" kind="struct"><name>RAYEXEC_NAMESPACE::Blas</name>
+    <member refid="struct_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_blas_1ae8ab4960986e35375952e1ba0b82d616" kind="variable"><name>as</name></member>
+    <member refid="struct_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_blas_1af0e45ff33ae348578991083cbca3c3f5" kind="variable"><name>flags</name></member>
+    <member refid="struct_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_blas_1a1fca9090c51ee4dbf978ed04c2790585" kind="variable"><name>asCreateGeometryInfo</name></member>
+    <member refid="struct_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_blas_1a7379c987048d8c67571581c03d91cc34" kind="variable"><name>asGeometry</name></member>
+    <member refid="struct_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_blas_1ad7a31d22f326b7c471166600681082e5" kind="variable"><name>asBuildOffsetInfo</name></member>
+  </compound>
+  <compound refid="struct_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_blas_instance" kind="struct"><name>RAYEXEC_NAMESPACE::BlasInstance</name>
+    <member refid="struct_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_blas_instance_1a592985051a3fdbdd39391066ba138738" kind="variable"><name>blasId</name></member>
+    <member refid="struct_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_blas_instance_1a639034ff0385d327079b92511f30288c" kind="variable"><name>instanceId</name></member>
+    <member refid="struct_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_blas_instance_1a7a43c59559277912939adff408153407" kind="variable"><name>hitGroupId</name></member>
+    <member refid="struct_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_blas_instance_1a4bcef7bf26c6b3af65dc2233fab831b1" kind="variable"><name>mask</name></member>
+    <member refid="struct_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_blas_instance_1a798ac14aa4a5fd08ce97185d33496e97" kind="variable"><name>flags</name></member>
+    <member refid="struct_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_blas_instance_1a9e4ac50642ddb0e9eef7f8cb61a481b4" kind="variable"><name>transform</name></member>
+  </compound>
+  <compound refid="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_buffer" kind="class"><name>RAYEXEC_NAMESPACE::Buffer</name>
+    <member refid="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_buffer_1a3dae10b0e57aaeb528ad27336a45f46c" kind="variable"><name>buffer</name></member>
+    <member refid="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_buffer_1ade00c91ade501a5f85f0f157dbc87f7e" kind="variable"><name>memory</name></member>
+    <member refid="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_buffer_1a154a7abcbda22be170ac9cfc3076b532" kind="variable"><name>size</name></member>
+    <member refid="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_buffer_1a4286db555c7beb872ad62e5ae78f5a92" kind="function"><name>Buffer</name></member>
+    <member refid="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_buffer_1a0f821dd2fb7a528f5d370c9935abb95e" kind="function"><name>Buffer</name></member>
+    <member refid="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_buffer_1a6f29bd9f8dfecb05a9a40c5af01d1474" kind="function"><name>Buffer</name></member>
+    <member refid="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_buffer_1af8b33d8383361d81c6a89b16bdcc642c" kind="function"><name>Buffer</name></member>
+    <member refid="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_buffer_1a112376785376333464a39d84851627bd" kind="function"><name>operator=</name></member>
+    <member refid="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_buffer_1a86fa3c008ace2f907d454aeea95a5c35" kind="function"><name>operator=</name></member>
+    <member refid="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_buffer_1a75864b69895914855537bd47ffc767dc" kind="function"><name>~Buffer</name></member>
+    <member refid="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_buffer_1ae9316e2a184d003b4c15102d8c73e8d3" kind="function"><name>copyToBuffer</name></member>
+    <member refid="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_buffer_1a7e9ccfcec6b210f77929ae6f8e015470" kind="function"><name>copyToBuffer</name></member>
+    <member refid="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_buffer_1a530b23fb6ee6affece20f959e7d12847" kind="function"><name>copyToImage</name></member>
+    <member refid="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_buffer_1a20b985e8be99e64c284acaf58e5b7646" kind="function"><name>get</name></member>
+    <member refid="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_buffer_1a320d33b561ad0629b139e20cd235c102" kind="function"><name>getMemory</name></member>
+    <member refid="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_buffer_1a4bb5fbab956fbcf4e362e5c2268f8e2f" kind="function"><name>getSize</name></member>
+    <member refid="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_buffer_1a8281cef1826a7b0f970a636e7a24703c" kind="function"><name>init</name></member>
+    <member refid="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_buffer_1a34447d9e04323e05f3434fc290d75934" kind="function"><name>fill</name></member>
+  </compound>
+  <compound refid="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_camera" kind="class"><name>RAYEXEC_NAMESPACE::Camera</name>
+    <member refid="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_camera_1a8c1fbe8efac8d9a473fa1bdceddf7718" kind="variable"><name>updateView</name></member>
+    <member refid="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_camera_1a83156fc5a103492ffe389d3b0b4c18d3" kind="variable"><name>updateProj</name></member>
+    <member refid="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_camera_1ac9ff837a1fdc36a3558ed90905f6a59c" kind="variable"><name>width</name></member>
+    <member refid="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_camera_1ad3d5ad1b1e0f703237f8e515900af570" kind="variable"><name>height</name></member>
+    <member refid="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_camera_1af922608fc6c78b2385b9052c59904e88" kind="variable"><name>position</name></member>
+    <member refid="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_camera_1a3cf917a8f2a43ac25c06f8d5a4762a8e" kind="variable"><name>view</name></member>
+    <member refid="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_camera_1a484cb7902b79ae5cfa30e3763a17712b" kind="variable"><name>projection</name></member>
+    <member refid="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_camera_1a0398f31133b8ec4bfab87e28a811ab3e" kind="variable"><name>viewInverse</name></member>
+    <member refid="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_camera_1a057b681aa8001944c48c3933735b8217" kind="variable"><name>projectionInverse</name></member>
+    <member refid="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_camera_1a9fd112d108497d0418773a12dff2f502" kind="variable"><name>worldUp</name></member>
+    <member refid="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_camera_1aa6b77663fd6679700969aea393fce5db" kind="variable"><name>up</name></member>
+    <member refid="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_camera_1a4f91c61fbfcfa3a10dff3d5dbba0bad7" kind="variable"><name>right</name></member>
+    <member refid="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_camera_1ae254cca6149d934d78c888480143b24b" kind="variable"><name>front</name></member>
+    <member refid="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_camera_1a2c16425a6f274ee0906e7b76f3134374" kind="variable"><name>yaw</name></member>
+    <member refid="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_camera_1afa1ddc44eda944d6117fbe85d382577f" kind="variable"><name>pitch</name></member>
+    <member refid="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_camera_1a897532a88cbd7fa33b9c090eb6ede012" kind="variable"><name>sensitivity</name></member>
+    <member refid="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_camera_1a45d31c4488fdeb359d36c0ee3ac7bbe2" kind="variable"><name>fov</name></member>
+    <member refid="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_camera_1a490dea6c59a325694231585bcea1272f" kind="function"><name>Camera</name></member>
+    <member refid="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_camera_1a52426e0d9e1e14ee22032864e08b8950" kind="function"><name>~Camera</name></member>
+    <member refid="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_camera_1ad20267869addb34295336598835ebb92" kind="function"><name>Camera</name></member>
+    <member refid="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_camera_1a467c7152a8ad13deed4fe7f46f0c2e68" kind="function"><name>Camera</name></member>
+    <member refid="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_camera_1a11db4c76805ab39f525f7420f9d54934" kind="function"><name>operator=</name></member>
+    <member refid="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_camera_1a132544defa696e77a24bc2c9e272b060" kind="function"><name>operator=</name></member>
+    <member refid="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_camera_1a17a52094a998d73590caa62e219064b1" kind="function"><name>update</name></member>
+    <member refid="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_camera_1a9e28a26cf3530e9a35e90acd80bbdc92" kind="function"><name>getPosition</name></member>
+    <member refid="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_camera_1a760a878e62be9e6c1703189e77cc6c9e" kind="function"><name>setPosition</name></member>
+    <member refid="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_camera_1a79953238e48d989a08a5a3cf6e5e341c" kind="function"><name>setSize</name></member>
+    <member refid="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_camera_1aa2f5d457dd30aa6bc4303cb434c42de3" kind="function"><name>setFov</name></member>
+    <member refid="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_camera_1a7a5d343f5d9b1fe99ad1dbb15d45c271" kind="function"><name>setSensitivity</name></member>
+    <member refid="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_camera_1a6903135d34ee41d5f3af63c3a00ad35a" kind="function"><name>getViewMatrix</name></member>
+    <member refid="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_camera_1a9ff0f0ef85ce403930035cea2e2ecbaf" kind="function"><name>getProjectionMatrix</name></member>
+    <member refid="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_camera_1a730a3b81a3909dc4fd394b4faa46d1d9" kind="function"><name>getViewInverseMatrix</name></member>
+    <member refid="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_camera_1aad866a830b16be3939625667dd682550" kind="function"><name>getProjectionInverseMatrix</name></member>
+    <member refid="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_camera_1ad857cce17e25f1a9dc5a14140deca385" kind="function"><name>updateViewMatrix</name></member>
+    <member refid="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_camera_1a129b7201b6218d65b48b65525d37f924" kind="function"><name>updateProjectionMatrix</name></member>
+    <member refid="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_camera_1a831e7eafb8336182831f82a311ecff6f" kind="function"><name>processMouse</name></member>
+    <member refid="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_camera_1aae0b352b60daeb87a24a49a412327b31" kind="function"><name>processKeyboard</name></member>
+    <member refid="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_camera_1a118e91eafecb3bf19c9def7e55766f25" kind="function"><name>updateVectors</name></member>
+  </compound>
+  <compound refid="struct_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_camera_ubo" kind="struct"><name>RAYEXEC_NAMESPACE::CameraUbo</name>
+    <member refid="struct_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_camera_ubo_1ab06b480c6c0bb5e2245d47e836f7bfc6" kind="variable"><name>view</name></member>
+    <member refid="struct_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_camera_ubo_1a962e6634f0be4aa481369cf52872ef32" kind="variable"><name>projection</name></member>
+    <member refid="struct_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_camera_ubo_1a7607df5aea8ba3089d72a6369d1867c3" kind="variable"><name>viewInverse</name></member>
+    <member refid="struct_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_camera_ubo_1a179b030928d0bff193c5c5ed42f505cd" kind="variable"><name>projectionInverse</name></member>
+    <member refid="struct_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_camera_ubo_1ae5078c482d2e67f80467327daacc7d39" kind="variable"><name>position</name></member>
+  </compound>
+  <compound refid="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_command_buffer" kind="class"><name>RAYEXEC_NAMESPACE::CommandBuffer</name>
+    <member refid="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_command_buffer_1ad2d0a2e7de17366c7fc8cc521418ec9b" kind="variable"><name>commandBuffers</name></member>
+    <member refid="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_command_buffer_1a0478218307f9f716e6f8017f2c5636fd" kind="variable"><name>commandPool</name></member>
+    <member refid="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_command_buffer_1a334222cf866238291ab12faa536349ac" kind="variable"><name>beginInfo</name></member>
+    <member refid="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_command_buffer_1a07aa8999ca5a653164ae9ce0a2b89bcb" kind="function"><name>CommandBuffer</name></member>
+    <member refid="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_command_buffer_1a81227115f7e6c2863d51c36834296d52" kind="function"><name>CommandBuffer</name></member>
+    <member refid="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_command_buffer_1a5e0bc2b488f0abb775d07e013b968074" kind="function"><name>init</name></member>
+    <member refid="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_command_buffer_1abcc9ff6272aba8b4a1afdf0602bcac4b" kind="function"><name>get</name></member>
+    <member refid="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_command_buffer_1a4670aafed45e4cbe1066c785cec7a1ce" kind="function"><name>get</name></member>
+    <member refid="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_command_buffer_1a8fff269edab25efc19a3ed181107c896" kind="function"><name>free</name></member>
+    <member refid="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_command_buffer_1a016d2435cc62af6bcf4160bd541baf56" kind="function"><name>reset</name></member>
+    <member refid="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_command_buffer_1a3c7b641da4afce0c7df9a033c9a47d9a" kind="function"><name>begin</name></member>
+    <member refid="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_command_buffer_1a82d40d7bb295b161b68f15a08a20fa3a" kind="function"><name>end</name></member>
+    <member refid="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_command_buffer_1acff16caf8b3bbe2ee906072fd5ef7462" kind="function"><name>submitToQueue</name></member>
+  </compound>
+  <compound refid="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_debug_messenger" kind="class"><name>RAYEXEC_NAMESPACE::DebugMessenger</name>
+    <member refid="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_debug_messenger_1a5e6c7ea68a2e6713830172bebf035701" kind="variable"><name>debugMessenger</name></member>
+    <member refid="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_debug_messenger_1a5939abe290f0346d7b1937801b524c3a" kind="function"><name>DebugMessenger</name></member>
+    <member refid="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_debug_messenger_1ab89a75010513bf52e7434347b7402980" kind="function"><name>~DebugMessenger</name></member>
+    <member refid="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_debug_messenger_1ad8cd7919dd10ef8575965f2a8a27c719" kind="function"><name>DebugMessenger</name></member>
+    <member refid="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_debug_messenger_1a03aa90e8711e3c4c52914b1f3bef719f" kind="function"><name>DebugMessenger</name></member>
+    <member refid="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_debug_messenger_1adb7fd6bce2bc01d6bf175b2b940df9f0" kind="function"><name>operator=</name></member>
+    <member refid="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_debug_messenger_1ae4372ca978336a4d7a525535806e5d47" kind="function"><name>operator=</name></member>
+    <member refid="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_debug_messenger_1a4b24b4d3b73b59e11735a7dddf6a7db2" kind="function"><name>init</name></member>
+    <member refid="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_debug_messenger_1a547df9eb170d19ff9539ebaef0c3fbd1" kind="function"><name>destroy</name></member>
+  </compound>
+  <compound refid="struct_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_descriptors" kind="struct"><name>RAYEXEC_NAMESPACE::Descriptors</name>
+    <member refid="struct_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_descriptors_1a830c3a9d3cfa294032cfe09bf49a6a7c" kind="variable"><name>layout</name></member>
+    <member refid="struct_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_descriptors_1ae1b1a6510785f144cc6c656e7c8105a3" kind="variable"><name>pool</name></member>
+    <member refid="struct_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_descriptors_1ab5c2f5b3b87adf21ce9107d4b83b95b2" kind="variable"><name>bindings</name></member>
+  </compound>
+  <compound refid="struct_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_directional_light" kind="struct"><name>RAYEXEC_NAMESPACE::DirectionalLight</name>
+    <member refid="struct_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_directional_light_1ab31e87664f44e791df2cf12a37d0d744" kind="variable"><name>direction</name></member>
+  </compound>
+  <compound refid="struct_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_geometry" kind="struct"><name>RAYEXEC_NAMESPACE::Geometry</name>
+    <member refid="struct_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_geometry_1a9c8a6ea09b0072f363a000e383a79451" kind="variable"><name>vertices</name></member>
+    <member refid="struct_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_geometry_1aa2bba9de381e5d1ffd028d41a2649368" kind="variable"><name>indices</name></member>
+    <member refid="struct_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_geometry_1a445e952a68b533af348c193650362ed4" kind="variable"><name>meshes</name></member>
+    <member refid="struct_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_geometry_1ad22d12e756c7f16bf0462bdbf600a38d" kind="variable"><name>geometryIndex</name></member>
+    <member refid="struct_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_geometry_1a43c7a0b13af3e5416dec4c6caf4a0dcb" kind="variable"><name>path</name></member>
+  </compound>
+  <compound refid="struct_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_geometry_instance" kind="struct"><name>RAYEXEC_NAMESPACE::GeometryInstance</name>
+    <member refid="struct_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_geometry_instance_1a2dc80022089dd5b7f0fdd06c1d05b33b" kind="variable"><name>transform</name></member>
+    <member refid="struct_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_geometry_instance_1a768f40a8f4558235b01b43c486da1973" kind="variable"><name>transformIT</name></member>
+    <member refid="struct_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_geometry_instance_1ab288a423b9a4441877eb0811dcd3bb80" kind="variable"><name>geometryIndex</name></member>
+    <member refid="struct_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_geometry_instance_1a5f4dcf7cae9a39d2c422f27789681303" kind="variable"><name>padding0</name></member>
+    <member refid="struct_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_geometry_instance_1ae37ba82db4a78e6323bfa9b551ebe918" kind="variable"><name>padding1</name></member>
+    <member refid="struct_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_geometry_instance_1a8ffa1692c8e4a156f1da02789e5ffba3" kind="variable"><name>padding2</name></member>
+  </compound>
+  <compound refid="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_gui" kind="class"><name>RAYEXEC_NAMESPACE::Gui</name>
+    <member refid="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_gui_1a223b79397bc765a1df905cf84e3cb18e" kind="variable"><name>descriptorPool</name></member>
+    <member refid="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_gui_1a0e9458b95b1c4b134f7f7c535015f69e" kind="variable"><name>commandPool</name></member>
+    <member refid="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_gui_1ad2e881565088a637c5d116be0906c9df" kind="variable"><name>commandBuffers</name></member>
+    <member refid="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_gui_1a829da625148f79244ff90a7693230aba" kind="variable"><name>renderPass</name></member>
+    <member refid="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_gui_1a6284bfc9826ec083e7f4d8ba07d91798" kind="variable"><name>framebuffers</name></member>
+    <member refid="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_gui_1ab7f03d42843c60694e19e263af63f177" kind="variable"><name>swapchainImageExtent</name></member>
+    <member refid="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_gui_1a40a810587318be3d9857c3b3746eda86" kind="function"><name>~Gui</name></member>
+    <member refid="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_gui_1a42ee4d92c4f67cfffde59078d8dc2ea6" kind="function"><name>getCommandBuffer</name></member>
+    <member refid="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_gui_1aeb8f2a8a40752cc3e8bac5a386ea8264" kind="function"><name>configure</name></member>
+    <member refid="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_gui_1a370773b570ac9e9cedf4532af673fed2" kind="function"><name>render</name></member>
+    <member refid="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_gui_1a53e3aef5201eb40b6253497ffa3007d9" kind="function"><name>init</name></member>
+    <member refid="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_gui_1a3c007475218c665bf3cefc22e8aec63a" kind="function"><name>recreate</name></member>
+    <member refid="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_gui_1a786d4c8f378d6f025d8ca7caae8e66c4" kind="function"><name>renderDrawData</name></member>
+    <member refid="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_gui_1a18e47c4c4175e5ba4935c7cc6949b3df" kind="function"><name>destroy</name></member>
+    <member refid="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_gui_1a7540ec605ab9247a035203511894e161" kind="function"><name>newFrame</name></member>
+    <member refid="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_gui_1ad85893ed16d1fa37d5f3ccb04710d32c" kind="function"><name>endRender</name></member>
+    <member refid="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_gui_1a1055880670ddeb1fe438e8a86b9a976c" kind="function"><name>initDescriptorPool</name></member>
+    <member refid="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_gui_1a6c14d0631839b039fcfb5308b8faffcf" kind="function"><name>initRenderPass</name></member>
+    <member refid="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_gui_1ae0c1b5c93adc040581295cb277e51306" kind="function"><name>initCommandPool</name></member>
+    <member refid="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_gui_1acd0b48ea24a6de70080e396fdd10f83c" kind="function"><name>initFonts</name></member>
+    <member refid="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_gui_1ae2cb0107a3450c621dae85768e659aa6" kind="function"><name>initCommandBuffers</name></member>
+    <member refid="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_gui_1a9370502fd300b7d3454b25dd188ce6e9" kind="function"><name>initFramebuffers</name></member>
+  </compound>
+  <compound refid="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_image" kind="class"><name>RAYEXEC_NAMESPACE::Image</name>
+    <member refid="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_image_1ae5f8fbb64f25c043b8f87aa16701e015" kind="variable"><name>image</name></member>
+    <member refid="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_image_1a55e5d566de8b86669d56baa3d2bb77a3" kind="variable"><name>memory</name></member>
+    <member refid="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_image_1a7f22222c0ef6a2ee859bb18318cc23e1" kind="variable"><name>extent</name></member>
+    <member refid="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_image_1a432098b41a183cd99a815438eb915973" kind="variable"><name>format</name></member>
+    <member refid="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_image_1a81b85b202ca5a475953cfc076ac5958a" kind="variable"><name>layout</name></member>
+    <member refid="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_image_1a80646e43d35c53446fe39ba4bbf6485a" kind="function"><name>get</name></member>
+    <member refid="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_image_1a7db97a4970afbd02a50ddf33786755df" kind="function"><name>getExtent</name></member>
+    <member refid="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_image_1ac822adab25205cb634f1c8b90b94c49f" kind="function"><name>getFormat</name></member>
+    <member refid="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_image_1aca01fc95ad936d74b2c6089e856d7527" kind="function"><name>getLayout</name></member>
+    <member refid="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_image_1a4f698705d33948624201e5a48c19c903" kind="function"><name>init</name></member>
+    <member refid="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_image_1a7a54cd7bf86b60f27ae621c226d24d87" kind="function"><name>transitionToLayout</name></member>
+    <member refid="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_image_1ae5dfddf79b629d661e5ccca8a5bb9abf" kind="function"><name>transitionToLayout</name></member>
+    <member refid="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_image_1a17a8eb7951c1ef136db1f0f23a54769f" kind="function"><name>findSupportedFormat</name></member>
+  </compound>
+  <compound refid="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_index_buffer" kind="class"><name>RAYEXEC_NAMESPACE::IndexBuffer</name>
+    <member refid="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_index_buffer_1aa642488555b0daff5fcb426254b478d5" kind="variable"><name>count</name></member>
+    <member refid="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_index_buffer_1a986b966f8583271d0a7974a66ab6eca5" kind="function"><name>getCount</name></member>
+    <member refid="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_index_buffer_1a8f13a9c4f07b3592bb8791a0bb55691f" kind="function"><name>init</name></member>
+  </compound>
+  <compound refid="struct_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_light" kind="struct"><name>RAYEXEC_NAMESPACE::Light</name>
+    <member refid="struct_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_light_1ad3659f665546f7e693f4f5c358efba46" kind="variable"><name>ambient</name></member>
+    <member refid="struct_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_light_1ab25c50aafd764f82ff11001cbc1137a7" kind="variable"><name>diffuse</name></member>
+    <member refid="struct_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_light_1a83ef01ebf1d42468ce8f9cb510b041e5" kind="variable"><name>specular</name></member>
+    <member refid="struct_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_light_1a4a634a31e50bda07657e544f4edbd2ca" kind="variable"><name>ambientIntensity</name></member>
+    <member refid="struct_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_light_1adbabe95b7fd6912bc0e6343fa1223709" kind="variable"><name>diffuseIntensity</name></member>
+    <member refid="struct_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_light_1a7593539ad35ef17d9645330edb598d91" kind="variable"><name>specularIntensity</name></member>
+  </compound>
+  <compound refid="struct_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_lights_ubo" kind="struct"><name>RAYEXEC_NAMESPACE::LightsUbo</name>
+    <member refid="struct_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_lights_ubo_1a88f9fe50e74d99c4e0df93b677fbe31a" kind="variable"><name>directionalLightNodes</name></member>
+    <member refid="struct_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_lights_ubo_1aec1ca66cc37fe542c2e05af7d777f953" kind="variable"><name>pointLightNodes</name></member>
+  </compound>
+  <compound refid="struct_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_material" kind="struct"><name>RAYEXEC_NAMESPACE::Material</name>
+    <member refid="struct_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_material_1a7471265ce8bdb979bab3c4528536e199" kind="variable"><name>ambient</name></member>
+    <member refid="struct_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_material_1aff50515831c1f24beef8572e72c84de7" kind="variable"><name>diffuse</name></member>
+    <member refid="struct_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_material_1a9f58d236deb9cad8e93cf6d8a9d74a85" kind="variable"><name>specular</name></member>
+  </compound>
+  <compound refid="struct_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_mesh" kind="struct"><name>RAYEXEC_NAMESPACE::Mesh</name>
+    <member refid="struct_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_mesh_1a79b2065d2745cf71155866a2ee66fd5f" kind="variable"><name>material</name></member>
+    <member refid="struct_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_mesh_1ae2b89db86a0ec2ad689f24a51bd40825" kind="variable"><name>indexOffset</name></member>
+    <member refid="struct_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_mesh_1a7cc05496829c3351f2046fcb7789dcca" kind="variable"><name>padding0</name></member>
+    <member refid="struct_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_mesh_1aaa227a5db456e8b022a04d8c6474a558" kind="variable"><name>padding1</name></member>
+    <member refid="struct_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_mesh_1a8c9fd3ee0ab73adc63549eaefa8f8e7b" kind="variable"><name>padding2</name></member>
+    <member refid="struct_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_mesh_1aa9f67885205918a5d65f37c1a3c1baaa" kind="variable"><name>padding3</name></member>
+    <member refid="struct_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_mesh_1a81e0b3702c9522f1aca41517ddb3b687" kind="variable"><name>padding4</name></member>
+    <member refid="struct_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_mesh_1a802d7327e89c1024bb8500875433cf9a" kind="variable"><name>padding5</name></member>
+  </compound>
+  <compound refid="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_pipeline" kind="class"><name>RAYEXEC_NAMESPACE::Pipeline</name>
+    <member refid="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_pipeline_1aa4ddbec55b1cf63f555c0af36fcd8503" kind="variable"><name>pipeline</name></member>
+    <member refid="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_pipeline_1a7b8bdabe83760ba3bbf5812c837be8fc" kind="variable"><name>layout</name></member>
+    <member refid="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_pipeline_1ad48c27749177fa7c015d7cdaa61ab2c7" kind="function"><name>init</name></member>
+    <member refid="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_pipeline_1af46ac0be1d9a01d93abfda781cfc8e55" kind="function"><name>init</name></member>
+    <member refid="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_pipeline_1aa366e6212bdf0293260cd0c00909331b" kind="function"><name>get</name></member>
+    <member refid="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_pipeline_1ae5f69040045769e57d7d7ab8d1f91967" kind="function"><name>getLayout</name></member>
+  </compound>
+  <compound refid="struct_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_point_light" kind="struct"><name>RAYEXEC_NAMESPACE::PointLight</name>
+    <member refid="struct_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_point_light_1acbe86894f2024db669f651509ea1ae6c" kind="variable"><name>position</name></member>
+    <member refid="struct_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_point_light_1afc90ee1a8940d623808126054c36dd6d" kind="variable"><name>constant</name></member>
+    <member refid="struct_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_point_light_1af910a6aa90b03c1d4adbdaae588ade91" kind="variable"><name>linear</name></member>
+    <member refid="struct_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_point_light_1a4dc4113ea89c2f964ecdc4fa1832342c" kind="variable"><name>quadratic</name></member>
+  </compound>
+  <compound refid="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_ray_exec" kind="class"><name>RAYEXEC_NAMESPACE::RayExec</name>
+    <member refid="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_ray_exec_1ab71c208dbdcdf6cc03d962c95ce3e1d4" kind="variable"><name>settings</name></member>
+    <member refid="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_ray_exec_1afe05ed9ef91fed62c9a695581da77fe5" kind="variable"><name>window</name></member>
+    <member refid="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_ray_exec_1a71064a0111e4b69fff5d34b9b37c4941" kind="variable"><name>camera</name></member>
+    <member refid="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_ray_exec_1a51bb630614b41ef72cb0fa0df68ab6cf" kind="variable"><name>gui</name></member>
+    <member refid="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_ray_exec_1a94f626512d8134f8ed862b831f2ddd87" kind="variable"><name>api</name></member>
+    <member refid="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_ray_exec_1a864b3206cd23e6090ccfe10ff479e140" kind="variable"><name>initialized</name></member>
+    <member refid="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_ray_exec_1a0e840053de151bfa031b811511496cc4" kind="variable"><name>running</name></member>
+    <member refid="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_ray_exec_1a733871910ad19f68b0084d8d81a8d177" kind="variable"><name>initScene</name></member>
+    <member refid="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_ray_exec_1a4a77cb838d74cbf29b35e41733f702a9" kind="function"><name>init</name></member>
+    <member refid="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_ray_exec_1a4364aeb145d7ae3685cac2d126d1d304" kind="function"><name>run</name></member>
+    <member refid="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_ray_exec_1af3094ea443ca1f685d3888cca6a51ff9" kind="function"><name>isRunning</name></member>
+    <member refid="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_ray_exec_1a41b6ca1d0db7fdb06806a6ce97beae84" kind="function"><name>setCamera</name></member>
+    <member refid="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_ray_exec_1ab632b1740be14c4ea543d2d58dcd7bd3" kind="function"><name>setWindow</name></member>
+    <member refid="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_ray_exec_1a42df80fe179d395b350eddcd015ddc88" kind="function"><name>setGui</name></member>
+    <member refid="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_ray_exec_1a3ef30ee07220e343ca8a9d88b7734f3c" kind="function"><name>submitGeometryInstance</name></member>
+    <member refid="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_ray_exec_1a2bff08870b1f64db618f69c737dba40f" kind="function"><name>setGeometryInstances</name></member>
+    <member refid="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_ray_exec_1afc92af88a74dab31911a9b88a818dc61" kind="function"><name>removeGeometryInstance</name></member>
+    <member refid="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_ray_exec_1ae64ec0603f573c599fbe2d4312736912" kind="function"><name>submitGeometry</name></member>
+    <member refid="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_ray_exec_1a82259ba090dbf6319e92dee23b6b5b3d" kind="function"><name>setGeometries</name></member>
+    <member refid="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_ray_exec_1a0a44717cc13a7b840c806049e7560705" kind="function"><name>findGeometry</name></member>
+    <member refid="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_ray_exec_1a8b37457e5868d51ca5183b176a9ec5dd" kind="function"><name>getWindow</name></member>
+    <member refid="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_ray_exec_1aa6f5eea39b1abc9b0c3ba0ee16dc8e13" kind="function"><name>getCamera</name></member>
+  </compound>
+  <compound refid="struct_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_ray_trace_push_constants" kind="struct"><name>RAYEXEC_NAMESPACE::RayTracePushConstants</name>
+    <member refid="struct_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_ray_trace_push_constants_1ac4ef828d926eeef4f40609122b70b845" kind="variable"><name>clearColor</name></member>
+    <member refid="struct_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_ray_trace_push_constants_1a2c0a1619abe614e6380e0a3a00376cfa" kind="variable"><name>sampleRate</name></member>
+    <member refid="struct_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_ray_trace_push_constants_1a486b9149eb3fb1b80d07ae4b53af0436" kind="variable"><name>sampleRatePerRayGen</name></member>
+    <member refid="struct_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_ray_trace_push_constants_1ac9d5f085a1766643dd1678fe8933bffc" kind="variable"><name>ssaa</name></member>
+    <member refid="struct_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_ray_trace_push_constants_1ad780d21d010a83066dc3b297cb1b7275" kind="variable"><name>jitterCamEnabled</name></member>
+    <member refid="struct_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_ray_trace_push_constants_1a3cb815deaa18fca401f850b2b9da77a3" kind="variable"><name>ssaaEnabled</name></member>
+    <member refid="struct_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_ray_trace_push_constants_1ab88005774e06b65ed81dddd703f5104e" kind="variable"><name>padding0</name></member>
+    <member refid="struct_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_ray_trace_push_constants_1a83dbd191602bdc640c83013a10a31aa2" kind="variable"><name>padding1</name></member>
+    <member refid="struct_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_ray_trace_push_constants_1a5a97a45eeefc6c9a542a2567c67335e7" kind="variable"><name>padding2</name></member>
+  </compound>
+  <compound refid="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_ray_tracing_builder" kind="class"><name>RAYEXEC_NAMESPACE::RayTracingBuilder</name>
+    <member refid="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_ray_tracing_builder_1a1e292c2db4e37ed7396f662184e9cb16" kind="variable"><name>rtProperties</name></member>
+    <member refid="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_ray_tracing_builder_1aafca1eefdadc80d1c00524860104accd" kind="variable"><name>blas_</name></member>
+    <member refid="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_ray_tracing_builder_1a69c81222c503dc9ec1e2e494a0d013fa" kind="variable"><name>tlas</name></member>
+    <member refid="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_ray_tracing_builder_1aa582fb0cc06c1f430f6e1f4ccc6cc54c" kind="variable"><name>instanceBuffer</name></member>
+    <member refid="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_ray_tracing_builder_1a4336400e1d5e31a1e3cb4bcd3c498f23" kind="variable"><name>sbtBuffer</name></member>
+    <member refid="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_ray_tracing_builder_1aec3f6384f902806f980e8196803b86d3" kind="variable"><name>storageImage</name></member>
+    <member refid="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_ray_tracing_builder_1a9f7b3764627da3852a25f1f46a09267a" kind="variable"><name>storageImageView</name></member>
+    <member refid="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_ray_tracing_builder_1a09f8d1d7605a67657ac7e25aa9a3412e" kind="function"><name>RayTracingBuilder</name></member>
+    <member refid="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_ray_tracing_builder_1a2a93b0638b8cd198b90d5fb2f20626fb" kind="function"><name>~RayTracingBuilder</name></member>
+    <member refid="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_ray_tracing_builder_1ae5f98a8ab4b95cb24ad4c4dd898ac8a9" kind="function"><name>RayTracingBuilder</name></member>
+    <member refid="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_ray_tracing_builder_1aa9828b53ca4a0797b2b7fb2ec37e279b" kind="function"><name>RayTracingBuilder</name></member>
+    <member refid="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_ray_tracing_builder_1a41652e5d15ed47e75a387f7450f26681" kind="function"><name>operator=</name></member>
+    <member refid="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_ray_tracing_builder_1a4c3cc3563b344d436100bd83f8bd5a3f" kind="function"><name>operator=</name></member>
+    <member refid="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_ray_tracing_builder_1aef2570764e775f8dd07c4255a47ccdab" kind="function"><name>init</name></member>
+    <member refid="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_ray_tracing_builder_1abb6d7ea7882129e639bb14aacdf30294" kind="function"><name>destroy</name></member>
+    <member refid="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_ray_tracing_builder_1a390ccddaf2bd873fe65c438319159bf6" kind="function"><name>getTlas</name></member>
+    <member refid="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_ray_tracing_builder_1a99c6fb5a011da041275f54013155bc9c" kind="function"><name>getRtProperties</name></member>
+    <member refid="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_ray_tracing_builder_1a2511786430f0bf8134a447123d421c63" kind="function"><name>getStorageImageView</name></member>
+    <member refid="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_ray_tracing_builder_1aed5bcefa14705b34f910e3ceb37fc8a5" kind="function"><name>modelToBlas</name></member>
+    <member refid="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_ray_tracing_builder_1a07f5808d1c137c8104b5bc5c213b8d2c" kind="function"><name>instanceToVkGeometryInstanceKHR</name></member>
+    <member refid="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_ray_tracing_builder_1af229b339fa26bbedc4b06a74bd3e2a4c" kind="function"><name>createBottomLevelAS</name></member>
+    <member refid="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_ray_tracing_builder_1a7317a1937164164619a0f0d1fdc0a9b1" kind="function"><name>buildBlas</name></member>
+    <member refid="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_ray_tracing_builder_1aeabc1211e7bf59034ee75c61c53bbaf1" kind="function"><name>createTopLevelAS</name></member>
+    <member refid="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_ray_tracing_builder_1a0802140271c08f495e8c2732937196fd" kind="function"><name>buildTlas</name></member>
+    <member refid="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_ray_tracing_builder_1a2aff232d2fc78728d364c9eba2bcafa0" kind="function"><name>createStorageImage</name></member>
+    <member refid="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_ray_tracing_builder_1a14ae945c468cafeba09183f329c596e1" kind="function"><name>createShaderBindingTable</name></member>
+    <member refid="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_ray_tracing_builder_1a311cafb7c359cc969a32d8acea1dd08d" kind="function"><name>rayTrace</name></member>
+  </compound>
+  <compound refid="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_render_pass" kind="class"><name>RAYEXEC_NAMESPACE::RenderPass</name>
+    <member refid="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_render_pass_1a5bdfd1f3db613308552ca12919ce4402" kind="variable"><name>renderPass</name></member>
+    <member refid="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_render_pass_1a8c2fe19756c46e3403500697be43bdc2" kind="function"><name>get</name></member>
+    <member refid="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_render_pass_1afb29f77500194dc5e8299cb2cdce0afe" kind="function"><name>init</name></member>
+    <member refid="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_render_pass_1a6161719c747189475df47f2e3dcf25aa" kind="function"><name>begin</name></member>
+    <member refid="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_render_pass_1af0713427a6ebea6cb6c976cd7df69b07" kind="function"><name>end</name></member>
+  </compound>
+  <compound refid="struct_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_scene" kind="struct"><name>RAYEXEC_NAMESPACE::Scene</name>
+    <member refid="struct_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_scene_1a841cd6c490be5698d84d0ff60382925f" kind="variable"><name>geometries</name></member>
+    <member refid="struct_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_scene_1a4010e406b0e7271836c660a2fb2ae8ae" kind="variable"><name>geometryInstances</name></member>
+  </compound>
+  <compound refid="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_settings" kind="class"><name>RAYEXEC_NAMESPACE::Settings</name>
+    <member refid="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_settings_1a1f45b14d517f25b1c55c57861c1ecef6" kind="friend"><name>Api</name></member>
+    <member refid="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_settings_1aa6066915fabb1af4867551774ff5466b" kind="friend"><name>RayExec</name></member>
+    <member refid="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_settings_1af9f0f1adbd5baee7830839447205af8d" kind="friend"><name>Pipeline</name></member>
+    <member refid="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_settings_1a2daec4e8c7229fa3b69e5c680c1adabd" kind="variable"><name>rayTrace</name></member>
+    <member refid="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_settings_1a6937c091d3ffebabb1a239a039a9c8db" kind="variable"><name>refreshPipeline</name></member>
+    <member refid="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_settings_1abfe77ca49fde29865389858a61eee361" kind="variable"><name>refreshSwapchain</name></member>
+    <member refid="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_settings_1ae4040e27f8e901e30b0d6b647867ad6d" kind="variable"><name>maxDirectionalLights</name></member>
+    <member refid="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_settings_1a2e04aed09cd79026391b698ce4bf8033" kind="variable"><name>maxPointLights</name></member>
+    <member refid="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_settings_1a716444334508fad50932c9d01fde325f" kind="variable"><name>maxGeometryInstances</name></member>
+    <member refid="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_settings_1a62973f21a3092a6b850dc265cb0bf704" kind="variable"><name>assetsPath</name></member>
+    <member refid="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_settings_1abc7c0075c94eeeca19b025f198de77f7" kind="variable"><name>clearColor</name></member>
+    <member refid="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_settings_1a10b250011b78f974dba9e22e1b0ce155" kind="variable"><name>maxRecursionDepth</name></member>
+    <member refid="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_settings_1aed4f0f41880d48a82907450e13b055c8" kind="variable"><name>recursionDepth</name></member>
+    <member refid="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_settings_1aaabd80028d4bb13987f4d0d1dce97a99" kind="variable"><name>jitterCamEnabled</name></member>
+    <member refid="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_settings_1a8d3b22024b2559384c17506b54fac8f3" kind="variable"><name>jitterCamSampleRate</name></member>
+    <member refid="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_settings_1ac35a964ebbb5ed5a929873d0ba4e8c63" kind="variable"><name>jitterCamSampleRatePerRayGen</name></member>
+    <member refid="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_settings_1a26b5a3fcf1e326227ea2303dd3759e81" kind="variable"><name>ssaaEnabled</name></member>
+    <member refid="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_settings_1ac02105d94089bf37bc23c99e9d9a8a3a" kind="variable"><name>ssaaSampleRate</name></member>
+    <member refid="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_settings_1a508cb6d6dc508cb27cc1bffacdc2015c" kind="variable"><name>automaticPipelineRefresh</name></member>
+    <member refid="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_settings_1a392c7b6dcaa96a4472d6b2ed6b93b8b0" kind="variable"><name>automaticSwapchainRefresh</name></member>
+    <member refid="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_settings_1a84a5fd875a0d4c12eab741ac0fd9fc95" kind="function"><name>getRecursionDepth</name></member>
+    <member refid="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_settings_1a99a540a9ab4eda6eea1faad6afa6411e" kind="function"><name>setRecursionDepth</name></member>
+    <member refid="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_settings_1a4241f14e9800c41f8377511c76b6cc90" kind="function"><name>getClearColor</name></member>
+    <member refid="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_settings_1a26e0d04a110f7c74b6714d39d6c991df" kind="function"><name>setClearColor</name></member>
+    <member refid="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_settings_1a408b99f66712b5e8851fd62357eb7373" kind="function"><name>getAssetsPath</name></member>
+    <member refid="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_settings_1a80d932f7dcb4ea400d202d5c1cb00d3d" kind="function"><name>setAssetsPath</name></member>
+    <member refid="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_settings_1a8fd4db0bd1686a9d6fe58e963e4da1fb" kind="function"><name>setAssetsPath</name></member>
+    <member refid="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_settings_1a0651cd037e843c0628458408bb06f0e7" kind="function"><name>getRayTracingEnabled</name></member>
+    <member refid="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_settings_1a3d13262e2f5dfade1258796d2b9f09f7" kind="function"><name>setEnableRayTracing</name></member>
+    <member refid="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_settings_1ae08085b82062c1ba2766f3dce01be16b" kind="function"><name>setAutomaticPipelineRefresh</name></member>
+    <member refid="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_settings_1a6e79a71a1e2b79499ebb10d564018832" kind="function"><name>setMaxDirectionalLights</name></member>
+    <member refid="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_settings_1af4d475d69e7a9fe59123da954dacdeb9" kind="function"><name>setMaxPointLights</name></member>
+    <member refid="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_settings_1ab691f6cf2ca9427c25221bba7ee57ad2" kind="function"><name>setMaxGeometryInstances</name></member>
+    <member refid="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_settings_1a0d0d9fa18a2cf2fd03f2e3c0d5ec7a64" kind="function"><name>getMaxRecursionDepth</name></member>
+    <member refid="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_settings_1af26aa3c252896030cca1705be1743d65" kind="function"><name>setEnableJitterCam</name></member>
+    <member refid="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_settings_1acadca812eecb045f46601c07692ef887" kind="function"><name>getJitterCamEnabled</name></member>
+    <member refid="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_settings_1ad7013d3ef77965f953c7d6a0fb68f74d" kind="function"><name>setJitterCamSampleRate</name></member>
+    <member refid="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_settings_1a00f4b28c99f95b7ee12ea9dc052429ed" kind="function"><name>getJitterCamSampleRate</name></member>
+    <member refid="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_settings_1a28fc6a00d975a4b71581ee518c8845fa" kind="function"><name>setJitterCamSampleRatePerRayGen</name></member>
+    <member refid="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_settings_1aedf0787cbd89dd5bc9973af018021552" kind="function"><name>getJitterCamSampleRatePerRayGen</name></member>
+    <member refid="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_settings_1aba3cd638f557954167b8435b680dfbcd" kind="function"><name>setEnableSsaa</name></member>
+    <member refid="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_settings_1a9c4baaa656914c6cd487b259829729b2" kind="function"><name>getSsaaEnabled</name></member>
+    <member refid="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_settings_1a616b2b50b082189088dcd747164b83a7" kind="function"><name>setSsaaSampleRate</name></member>
+    <member refid="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_settings_1ad4469387621fb26f1158424afee021f2" kind="function"><name>getSsaaSampleRate</name></member>
+    <member refid="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_settings_1a897c268ae3c9f2e240d2fdf532e56e14" kind="function"><name>setDefaultAssetsPath</name></member>
+  </compound>
+  <compound refid="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_storage_buffer" kind="class"><name>RAYEXEC_NAMESPACE::StorageBuffer</name>
+    <member refid="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_storage_buffer_1ab940425d2edbdc4b3db880ab91960823" kind="function"><name>StorageBuffer</name></member>
+    <member refid="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_storage_buffer_1a2c11630a97c6492d0ec0dbf7755014fc" kind="function"><name>init</name></member>
+  </compound>
+  <compound refid="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_surface" kind="class"><name>RAYEXEC_NAMESPACE::Surface</name>
+    <member refid="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_surface_1a2cb301404b2c1fa4a09218375a356768" kind="variable"><name>surface</name></member>
+    <member refid="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_surface_1a6f1fcd77ff95d8bd5e0114ba1ab2ecd4" kind="variable"><name>format</name></member>
+    <member refid="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_surface_1a27e5696c48eb6adb02eddc040adc736e" kind="variable"><name>colorSpace</name></member>
+    <member refid="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_surface_1aefe7ad00e5620fc824050b4bf90b911f" kind="variable"><name>presentMode</name></member>
+    <member refid="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_surface_1aaa6ef2f4fd9b72eb11cfca2a82399d4c" kind="variable"><name>capabilities</name></member>
+    <member refid="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_surface_1a2f6bf64e9d0db9bccc2953cf8ccee8ef" kind="function"><name>Surface</name></member>
+    <member refid="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_surface_1a66f6aa415154d2fcb8cb52c60b1ff50c" kind="function"><name>~Surface</name></member>
+    <member refid="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_surface_1ae109c3463c11f0a8618eae399eafc7a9" kind="function"><name>Surface</name></member>
+    <member refid="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_surface_1a666de7dabd145c3e485fa2d68deb631c" kind="function"><name>Surface</name></member>
+    <member refid="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_surface_1a4c3ad8eee8a52780e41dbad3a5bb7017" kind="function"><name>operator=</name></member>
+    <member refid="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_surface_1a8ec0126e1a66560bad7c8c951e110c07" kind="function"><name>operator=</name></member>
+    <member refid="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_surface_1a48a85968025216109364439c33867080" kind="function"><name>getFormat</name></member>
+    <member refid="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_surface_1a86f07a17c40ddbde618da58505188cac" kind="function"><name>getColorSpace</name></member>
+    <member refid="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_surface_1af5c6d1a091849de2f27d50313c528663" kind="function"><name>getPresentMode</name></member>
+    <member refid="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_surface_1a3e5cddc4a0865d6409f3cbc3ec445ad0" kind="function"><name>getCapabilities</name></member>
+    <member refid="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_surface_1aab66cf348fdbaf821130405764db7f97" kind="function"><name>init</name></member>
+    <member refid="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_surface_1a110994fc7096f6fd95e7b6aafee6ca1b" kind="function"><name>assessSettings</name></member>
+    <member refid="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_surface_1a9f562381f2e8b56bda408d390a93723d" kind="function"><name>destroy</name></member>
+  </compound>
+  <compound refid="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_swapchain" kind="class"><name>RAYEXEC_NAMESPACE::Swapchain</name>
+    <member refid="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_swapchain_1a1058f9c43543310c2fb74c2f3bac0c0f" kind="variable"><name>swapchain</name></member>
+    <member refid="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_swapchain_1a8b9b284de0c9df46bc13790f2fba030e" kind="variable"><name>extent</name></member>
+    <member refid="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_swapchain_1a4c3d62c9caad70e18e789d9025b08960" kind="variable"><name>imageAspect</name></member>
+    <member refid="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_swapchain_1a5df1a18bdea7a2a3693e60bfae644bdb" kind="variable"><name>images</name></member>
+    <member refid="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_swapchain_1af1b91c7122292fc94dc0f5caa40f7f8f" kind="variable"><name>imageViews</name></member>
+    <member refid="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_swapchain_1ac4087a2248ce5abf1aa096042407179a" kind="variable"><name>framebuffers</name></member>
+    <member refid="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_swapchain_1a026eb48ccadc264cb0afca33145eee3d" kind="variable"><name>depthImage</name></member>
+    <member refid="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_swapchain_1a38dc1313e025c4bb257412d98052ed25" kind="variable"><name>depthImageView</name></member>
+    <member refid="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_swapchain_1a24eff97c41de27f99b06ccae9eb21f3a" kind="variable"><name>currentImageIndex</name></member>
+    <member refid="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_swapchain_1a2d7ff0e063ea15fe578407c7c81ac7e2" kind="function"><name>init</name></member>
+    <member refid="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_swapchain_1a562180ff12b730a57e7aec3c73a534b7" kind="function"><name>destroy</name></member>
+    <member refid="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_swapchain_1a7423d7474a69ddcf6c069dd52d03c9fe" kind="function"><name>getFramebuffer</name></member>
+    <member refid="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_swapchain_1a5978067f74d9579eef8777cefed83a6c" kind="function"><name>getCurrentImageIndex</name></member>
+    <member refid="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_swapchain_1ac1a042535549e8b435a41bbcaca06759" kind="function"><name>getExtent</name></member>
+    <member refid="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_swapchain_1a514beaf04e7d7835bf4b94ee0223622c" kind="function"><name>getImageAspect</name></member>
+    <member refid="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_swapchain_1a8711129b1c04a4c09abb1a65817ac5a4" kind="function"><name>getImage</name></member>
+    <member refid="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_swapchain_1a6e0557f4d62e28dfeb9cf6e2afb06704" kind="function"><name>getImages</name></member>
+    <member refid="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_swapchain_1a5e7ed9142f249264a2cb421c92c1b2d5" kind="function"><name>getImageViews</name></member>
+    <member refid="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_swapchain_1ae727ddbc80698faab04783451ad2a250" kind="function"><name>setImageAspect</name></member>
+    <member refid="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_swapchain_1afe470847ca79c36a8a502dabc6ea81e6" kind="function"><name>setImageLayout</name></member>
+    <member refid="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_swapchain_1a2077caebb153dac7c98ccf7ea270f6e6" kind="function"><name>acquireNextImage</name></member>
+    <member refid="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_swapchain_1a112becd249a5a073032d05540ee3c62e" kind="function"><name>initImages</name></member>
+    <member refid="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_swapchain_1ac7950d39c75eb8aa8c7e22701839845a" kind="function"><name>initDepthImage</name></member>
+    <member refid="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_swapchain_1ace04bc847c25bb98626730d8a8faaae4" kind="function"><name>initFramebuffers</name></member>
+  </compound>
+  <compound refid="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_texture" kind="class"><name>RAYEXEC_NAMESPACE::Texture</name>
+    <member refid="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_texture_1a5735ddd31d42045b4da9c1574d12d8a3" kind="variable"><name>offset</name></member>
+    <member refid="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_texture_1a176677baed416f7eb89165b7863b0630" kind="variable"><name>path</name></member>
+    <member refid="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_texture_1ae78a4d181966af33e867c474ceaeb0cf" kind="variable"><name>imageView</name></member>
+    <member refid="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_texture_1a3e7e5c665de2b54b8a4974b32c1c2050" kind="variable"><name>sampler</name></member>
+    <member refid="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_texture_1ac5d70a0785d0678d1c97ec1ff04a49c4" kind="variable"><name>textureCounter</name></member>
+    <member refid="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_texture_1aebef820f5f3548dec6218d6f4270161b" kind="function"><name>Texture</name></member>
+    <member refid="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_texture_1a72e817dd85e94d49bd68a62c7d387863" kind="function"><name>Texture</name></member>
+    <member refid="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_texture_1aea60c6b434bf310053a68736d0b4ed98" kind="function"><name>getImageView</name></member>
+    <member refid="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_texture_1aa6374a028d7fc389b585b655f061cc74" kind="function"><name>getSampler</name></member>
+    <member refid="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_texture_1a20097c4db17130f19e2c0ecd326ca1f9" kind="function"><name>getPath</name></member>
+    <member refid="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_texture_1ada93dab9c8e12bfea2736794b12c81dd" kind="function"><name>init</name></member>
+  </compound>
+  <compound refid="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_time" kind="class"><name>RAYEXEC_NAMESPACE::Time</name>
+    <member refid="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_time_1adc4f4facfbe3e9b393adc7f0a6d39c45" kind="variable"><name>Window</name></member>
+    <member refid="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_time_1a19bf97e61af86738770309d9adcb55ef" kind="function"><name>benchmark</name></member>
+    <member refid="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_time_1ab4bf779100cd63d41a394a176ae0b80a" kind="function"><name>getTime</name></member>
+    <member refid="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_time_1ac6a8860c2be02303ee1a39ad63e6b52c" kind="function"><name>getDeltaTime</name></member>
+    <member refid="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_time_1ae6cad5b0d909f1c3ab981edcf2291638" kind="function"><name>update</name></member>
+  </compound>
+  <compound refid="struct_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_tlas" kind="struct"><name>RAYEXEC_NAMESPACE::Tlas</name>
+    <member refid="struct_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_tlas_1aca8cc9aa6ef9f0f386d35a49c1f30126" kind="variable"><name>as</name></member>
+    <member refid="struct_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_tlas_1a7d90d5df478fabf257b377fcfbaeb666" kind="variable"><name>flags</name></member>
+  </compound>
+  <compound refid="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_uniform_buffer" kind="class"><name>RAYEXEC_NAMESPACE::UniformBuffer</name>
+    <member refid="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_uniform_buffer_1a9a186941817e7a9f8b2c0c82ed07051e" kind="variable"><name>bufferInfos</name></member>
+    <member refid="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_uniform_buffer_1a6c952afc0aad620e9a109e0b14ff382d" kind="variable"><name>buffers</name></member>
+    <member refid="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_uniform_buffer_1a77802f4e17e5282d91c57377de41a349" kind="function"><name>UniformBuffer</name></member>
+    <member refid="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_uniform_buffer_1a3d8a6b197212e4e0f5c914dab88645a1" kind="function"><name>UniformBuffer</name></member>
+    <member refid="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_uniform_buffer_1adb2e28fe37c2e943e0911d9f63a77040" kind="function"><name>get</name></member>
+    <member refid="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_uniform_buffer_1a426b9cbe9b74a83bd49503cc70577f24" kind="function"><name>getRaw</name></member>
+    <member refid="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_uniform_buffer_1adedc9d69558242b95599b8ffe7f8ff80" kind="function"><name>init</name></member>
+    <member refid="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_uniform_buffer_1a93afba2d64a22f7b764836b6e88217bc" kind="function"><name>upload</name></member>
+  </compound>
+  <compound refid="struct_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_vertex" kind="struct"><name>RAYEXEC_NAMESPACE::Vertex</name>
+    <member refid="struct_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_vertex_1a675b93fd4c003438c84b68192b87bedc" kind="variable"><name>pos</name></member>
+    <member refid="struct_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_vertex_1a53f646753a10728ead428c9b5b6c250e" kind="variable"><name>normal</name></member>
+    <member refid="struct_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_vertex_1aff8b7f0bd8933579186b601fc8c48a7c" kind="variable"><name>color</name></member>
+    <member refid="struct_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_vertex_1a9141a1b57c5ae706ddc954bcbe5a8d6a" kind="variable"><name>texCoord</name></member>
+    <member refid="struct_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_vertex_1ad66f6c035b7f48392c2f19a0c9e1bd40" kind="variable"><name>padding0</name></member>
+    <member refid="struct_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_vertex_1a619060dadb57a1b0808c04c3126eb2dd" kind="function"><name>getVertexPositionFormat</name></member>
+    <member refid="struct_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_vertex_1a707047ee60740204ea86bbd4dbeffaf3" kind="function"><name>getBindingDescriptions</name></member>
+    <member refid="struct_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_vertex_1a470bea6d3d04ec64c29aa27ae9239fd6" kind="function"><name>getAttributeDescriptions</name></member>
+  </compound>
+  <compound refid="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_vertex_buffer" kind="class"><name>RAYEXEC_NAMESPACE::VertexBuffer</name>
+    <member refid="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_vertex_buffer_1a661cb2afdf71338c3e78a3d58e147c22" kind="variable"><name>count</name></member>
+    <member refid="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_vertex_buffer_1a2185d29248059de141e7664740cfcb15" kind="function"><name>VertexBuffer</name></member>
+    <member refid="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_vertex_buffer_1abc05422a3077de9b989e838cd936aec9" kind="function"><name>VertexBuffer</name></member>
+    <member refid="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_vertex_buffer_1a63f5142cb1832654a1acebf799b30c8c" kind="function"><name>getCount</name></member>
+    <member refid="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_vertex_buffer_1a613e5701e6cb36b44eaf3b1b59840848" kind="function"><name>init</name></member>
+  </compound>
+  <compound refid="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_window" kind="class"><name>RAYEXEC_NAMESPACE::Window</name>
+    <member refid="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_window_1a9383029971853d1c18924d71aeb0b30a" kind="variable"><name>window</name></member>
+    <member refid="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_window_1ac50c4ef112a5cb3e51147451e4451038" kind="variable"><name>flags</name></member>
+    <member refid="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_window_1a5c3593b500b23e7caa7fab8be33fc9f5" kind="variable"><name>width</name></member>
+    <member refid="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_window_1ac05ed1f5db515ce709c038130c06ae3a" kind="variable"><name>height</name></member>
+    <member refid="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_window_1ac7deb99f097cae43dfac4ba664b0b71e" kind="variable"><name>title</name></member>
+    <member refid="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_window_1a605d01de99b761411a51560f659b5ccd" kind="function"><name>Window</name></member>
+    <member refid="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_window_1a4aabfbbcd46b15e96661e5990704ed75" kind="function"><name>~Window</name></member>
+    <member refid="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_window_1a3de9e4815cc97d30787058b683f80c56" kind="function"><name>Window</name></member>
+    <member refid="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_window_1ae6072e2dfb9cb8d2738befb1bf4fcc0f" kind="function"><name>Window</name></member>
+    <member refid="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_window_1adfbf2437f3931c8b235783466ee61230" kind="function"><name>operator=</name></member>
+    <member refid="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_window_1a7f1b2cdbdec544d883be6d7f5ee02fcc" kind="function"><name>operator=</name></member>
+    <member refid="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_window_1a1465803d1631aeb85f3c304617d7f2c7" kind="function"><name>init</name></member>
+    <member refid="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_window_1aa038bb7bf14b31b0d1c3cff6daf07285" kind="function"><name>update</name></member>
+    <member refid="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_window_1a18c7d4abe800472a8e79bd4f18cfb63e" kind="function"><name>clean</name></member>
+    <member refid="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_window_1ab051017a633806871575e8ec129cfd8a" kind="function"><name>resize</name></member>
+    <member refid="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_window_1a2499009d44ee72861fccea9923a69f04" kind="function"><name>get</name></member>
+    <member refid="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_window_1af9cf0260c8125403ab94097965ef2955" kind="function"><name>getExtent</name></member>
+    <member refid="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_window_1a3493050f0c87cc92dd5367086fa4232d" kind="function"><name>getWidth</name></member>
+    <member refid="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_window_1acb5f534b676c8cd3d640f47ac4444499" kind="function"><name>getHeight</name></member>
+    <member refid="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_window_1a3bf6eadc1f1aa70f3335d505edf30ff8" kind="function"><name>changed</name></member>
+    <member refid="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_window_1a073466b019e4961a3823a50019f66776" kind="function"><name>minimized</name></member>
+  </compound>
+  <compound refid="namespace_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e" kind="namespace"><name>RAYEXEC_NAMESPACE</name>
+    <member refid="namespace_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1a0af3756d08269dbc097045e2c9306a31" kind="variable"><name>g_window</name></member>
+    <member refid="namespace_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1a6668bb7d1d91a3fd8378be527c4c1475" kind="variable"><name>g_instance</name></member>
+    <member refid="namespace_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1a5d304a259f82c7b8e2b5fb4557ea8878" kind="variable"><name>g_physicalDevice</name></member>
+    <member refid="namespace_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1a98277b651b7723b4b1421f0e9008f227" kind="variable"><name>g_device</name></member>
+    <member refid="namespace_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1a4429b1efa815c897ad62e72b18169582" kind="variable"><name>g_surface</name></member>
+    <member refid="namespace_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1a927c6383d7f851bc55967d0369642435" kind="variable"><name>g_swapchain</name></member>
+    <member refid="namespace_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1a8883ebba90bf70252f55f251ce702080" kind="variable"><name>g_swapchainImageCount</name></member>
+    <member refid="namespace_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1a8b4a635781f195e2ec8267267f9e094c" kind="variable"><name>g_surfaceFormat</name></member>
+    <member refid="namespace_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1ac2f62d01ff140e08d9f55efb09321899" kind="variable"><name>g_swapchainImageViews</name></member>
+    <member refid="namespace_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1a98efbc1bee2e50ed5f06773eaef3e872" kind="variable"><name>g_shaderGroups</name></member>
+    <member refid="namespace_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1a368f9b617292987470d62465755a854f" kind="variable"><name>g_dynamicLoader</name></member>
+    <member refid="namespace_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1a2c613fd419cb927cc28905d5eb3bee61" kind="variable"><name>g_graphicsCmdPool</name></member>
+    <member refid="namespace_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1ac302e23c1c371c97bebf0b9098f019a6" kind="variable"><name>g_transferCmdPool</name></member>
+    <member refid="namespace_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1a499fcb1b4e60440dc725cde2594eb4f7" kind="variable"><name>g_graphicsQueue</name></member>
+    <member refid="namespace_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1a45c005cbdc7660e25c4999f80ffbec06" kind="variable"><name>g_transferQueue</name></member>
+    <member refid="namespace_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1a45f1e73b31745b7b9542acdabe2d774f" kind="variable"><name>g_graphicsFamilyIndex</name></member>
+    <member refid="namespace_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1a82dd83083c6f1ca2f8d8a02e0b0240ce" kind="variable"><name>g_transferFamilyIndex</name></member>
+    <member refid="namespace_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1a2f0ab8874ad291859a46a28bcca45a90" kind="variable"><name>g_physicalDeviceLimits</name></member>
+    <member refid="namespace_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1a38b5e8f58360723b79d1af18c19b6ab9" kind="variable"><name>g_modelCount</name></member>
+    <member refid="namespace_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1a705d7cc53d5cc73bfc107d520604488d" kind="variable"><name>g_frameCount</name></member>
+    <member refid="namespace_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1af6ec17b6161018df8921bc5b0d6ee8cd" kind="variable"><name>g_maxGeometryInstances</name></member>
+    <member refid="namespace_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1a25dc0b05da2ae2876ace0f7109816b57" kind="variable"><name>g_maxTextures</name></member>
+    <member refid="namespace_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1a28d3919c4f75a00aca17bcb9e3e58bd4" kind="variable"><name>g_maxDirectionalLightNodes</name></member>
+    <member refid="namespace_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1a6576521dfdb9abdb48520140f55d33ba" kind="variable"><name>g_maxPointLightNodes</name></member>
+    <member refid="namespace_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1af4f0da7a3ffe4ff547dcf50fa7dab009" kind="variable"><name>g_maxModels</name></member>
+    <member refid="namespace_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1a400f46dad3c96402389b80d6621b3958" kind="variable"><name>g_assetsPath</name></member>
+    <member refid="namespace_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1ace19d80e0bf55986b1b8e9e048e76abe" kind="variable"><name>defaultWidth</name></member>
+    <member refid="namespace_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1a03aa31ed612ba981a14eb2265c11dad1" kind="variable"><name>defaultHeight</name></member>
+    <member refid="namespace_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1acb39626339ca64501ad497630082416e" kind="function"><name>createStorageBufferWithStaging</name></member>
+    <member refid="namespace_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1a91b559c57af0758a7f65e7909b1c4588" kind="function"><name>getSupportedDepthFormat</name></member>
+    <member refid="group___base_1ga02a95a02aa5d57299c4eecb3c6bb4d3d" kind="function"><name>loadObj</name></member>
+    <member refid="group___base_1gabb8acb5237813d1ac88e190a79a1bff2" kind="function"><name>instance</name></member>
+  </compound>
+  <compound refid="namespace_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_util" kind="namespace"><name>RAYEXEC_NAMESPACE::Util</name>
+    <member refid="namespace_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_util_1a2e4ae857900a2e15dafa03bd7bc49d0d" kind="function"><name>parseShader</name></member>
+    <member refid="namespace_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_util_1ab3f89cb02ee3a4e52b7023920ef96b78" kind="function"><name>processShaderMacros</name></member>
+    <member refid="namespace_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_util_1a53f7abf3bc513c4fd9e863178cf68017" kind="function"><name>find</name></member>
+    <member refid="namespace_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_util_1a1c059d1fe285f9a5a0a2b5a0a7292972" kind="function"><name>vec4toArray</name></member>
+    <member refid="namespace_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_util_1afcdf9ecfb26e4931c887eb8afdbe1227" kind="function"><name>listToVec</name></member>
+  </compound>
+  <compound refid="namespacestd" kind="namespace"><name>std</name>
+  </compound>
+  <compound refid="namespacevk" kind="namespace"><name>vk</name>
+  </compound>
+  <compound refid="namespacevk_1_1_helper" kind="namespace"><name>vk::Helper</name>
+    <member refid="namespacevk_1_1_helper_1ad788eee3dfd87ddde000dd9a0023bb7d" kind="function"><name>getPipelineShaderStageCreateInfo</name></member>
+    <member refid="namespacevk_1_1_helper_1a0771dfbc2ab126947ed56d5fde2878e2" kind="function"><name>getImageCreateInfo</name></member>
+    <member refid="namespacevk_1_1_helper_1af3313c26337284dc7b0f355139e32f56" kind="function"><name>getSamplerCreateInfo</name></member>
+    <member refid="namespacevk_1_1_helper_1aa8d124bdc077abc880ac2d903dc3b93a" kind="function"><name>getSubmitInfo</name></member>
+    <member refid="namespacevk_1_1_helper_1a349d77f5c07695ebbd6c6da462de44b1" kind="function"><name>getPresentInfoKHR</name></member>
+    <member refid="namespacevk_1_1_helper_1a95e71693ea2ee7e6815e5d7015128921" kind="function"><name>findMemoryType</name></member>
+    <member refid="namespacevk_1_1_helper_1ae41dfbb084fe9a3d9757550ee6887333" kind="function"><name>unpack</name></member>
+    <member refid="namespacevk_1_1_helper_1a68b67b155588fe0e64efb0e26f864618" kind="function"><name>getPoolSizes</name></member>
+    <member refid="namespacevk_1_1_helper_1a6e1227990cef167f6d5b6b7b1f1b52b2" kind="function"><name>transitionImageLayout</name></member>
+    <member refid="namespacevk_1_1_helper_1a9f3fa5a78b202fb543408c03e51a7340" kind="function"><name>transitionImageLayout</name></member>
+    <member refid="namespacevk_1_1_helper_1ab5963355a4e7a8fc54821cdb5dffcd0c" kind="function"><name>getImageMemoryBarrierInfo</name></member>
+    <member refid="namespacevk_1_1_helper_1a679da5dcd94cae0130bf240f715bf64d" kind="function"><name>getAttachmentDescription</name></member>
+    <member refid="namespacevk_1_1_helper_1a97d6ba5a488dc2acbeded001c1e65942" kind="function"><name>getDepthAttachmentDescription</name></member>
+    <member refid="namespacevk_1_1_helper_1af8b7dcb2ec2dbf6188c9772fe6f8205e" kind="function"><name>isPhysicalDeviceQueueComplete</name></member>
+    <member refid="namespacevk_1_1_helper_1a579209d8855cc201ab98946961429f4f" kind="function"><name>isPhysicalDeviceWithDedicatedTransferQueueFamily</name></member>
+    <member refid="namespacevk_1_1_helper_1a3f1c6e5a77a150f0f0da60ca7e3d8b46" kind="function"><name>evaluatePhysicalDevice</name></member>
+    <member refid="namespacevk_1_1_helper_1a9ac8571453eabef79b21edffff9c6e2c" kind="function"><name>checkDeviceExtensionSupport</name></member>
+    <member refid="namespacevk_1_1_helper_1a6c8b9879ee23a500b88b4b8ce0da5ea2" kind="function"><name>checkInstanceLayersSupport</name></member>
+    <member refid="namespacevk_1_1_helper_1acb8243a4819615e860ed10014e545f36" kind="function"><name>checkInstanceExtensionsSupport</name></member>
+  </compound>
+  <compound refid="namespacevk_1_1_initializer" kind="namespace"><name>vk::Initializer</name>
+    <member refid="namespacevk_1_1_initializer_1ae6a5303506418677ec639446ef16cc46" kind="function"><name>initFenceUnique</name></member>
+    <member refid="namespacevk_1_1_initializer_1af6bf761ce27237bb82fb5e02535617d9" kind="function"><name>initFence</name></member>
+    <member refid="namespacevk_1_1_initializer_1a375ed5917667a58eff188349cf3f9050" kind="function"><name>initSemaphoreUnique</name></member>
+    <member refid="namespacevk_1_1_initializer_1ac1ec2f4e793ae3383e4c69db03ff4fc1" kind="function"><name>initSemaphore</name></member>
+    <member refid="namespacevk_1_1_initializer_1acef14128475ec3fe6c547ff6673fd23a" kind="function"><name>initCommandPoolUnique</name></member>
+    <member refid="namespacevk_1_1_initializer_1a4f31060460247e2cec9de6164b6e0057" kind="function"><name>initCommandPool</name></member>
+    <member refid="namespacevk_1_1_initializer_1acdbf982d7f7d6c943c5d7698640eeb28" kind="function"><name>initDescriptorPoolUnique</name></member>
+    <member refid="namespacevk_1_1_initializer_1aed58fa91ff66a059c1a2aba841c62094" kind="function"><name>initDescriptorSetsUnique</name></member>
+    <member refid="namespacevk_1_1_initializer_1a493d221cb9855740252a5e69a8ca0838" kind="function"><name>allocateMemoryUnique</name></member>
+    <member refid="namespacevk_1_1_initializer_1af484445cf6e33bde051680745478e92e" kind="function"><name>allocateMemory</name></member>
+    <member refid="namespacevk_1_1_initializer_1a12c5bd8256a38e454966161b5742d75d" kind="function"><name>allocateMemoryUnique</name></member>
+    <member refid="namespacevk_1_1_initializer_1af77161879bc78a43e42f1df9f35b8f42" kind="function"><name>allocateMemory</name></member>
+    <member refid="namespacevk_1_1_initializer_1acf85382b3d1c452170cae8ebc6aa0b7d" kind="function"><name>allocateMemory</name></member>
+    <member refid="namespacevk_1_1_initializer_1a6858c4358b2619eb467a19914ed2e49a" kind="function"><name>initImageViewUnique</name></member>
+    <member refid="namespacevk_1_1_initializer_1a6969775adbf212f8403a88b86d6c3ad3" kind="function"><name>initImageView</name></member>
+    <member refid="namespacevk_1_1_initializer_1a36373e7db0323614fb7a613a25034b88" kind="function"><name>initSamplerUnique</name></member>
+    <member refid="namespacevk_1_1_initializer_1a12f3e62260a13de38ef88a420ba60728" kind="function"><name>initSampler</name></member>
+    <member refid="namespacevk_1_1_initializer_1a9e3b424e471133a3a1108d239ad3b0d5" kind="function"><name>initFramebufferUnique</name></member>
+    <member refid="namespacevk_1_1_initializer_1a8a203917e1ea8b661b32363a2498d3fb" kind="function"><name>initFramebuffer</name></member>
+    <member refid="namespacevk_1_1_initializer_1a79c8c72a6ff7bfe8023ea424950b537c" kind="function"><name>initQueryPoolUnique</name></member>
+    <member refid="namespacevk_1_1_initializer_1a948d9f0a9db128c05db21a601e5d3edb" kind="function"><name>initQueryPool</name></member>
+    <member refid="namespacevk_1_1_initializer_1ac5138790657c39af09df37198eb9fbb7" kind="function"><name>initShaderModuleUnique</name></member>
+    <member refid="namespacevk_1_1_initializer_1a5ea60eaa2fc1b0d0dce038f5d6b3720a" kind="function"><name>initShaderModule</name></member>
+    <member refid="namespacevk_1_1_initializer_1ae9059624057ddeeab8a7a1ffe403b6bd" kind="function"><name>initAccelerationStructure</name></member>
+    <member refid="namespacevk_1_1_initializer_1aa312efed5e4aa5e591b86a2759248d55" kind="function"><name>initPhysicalDevice</name></member>
+    <member refid="namespacevk_1_1_initializer_1a41bd7737bda712ebcd0c6a66d336e4ab" kind="function"><name>initQueueFamilyIndices</name></member>
+    <member refid="namespacevk_1_1_initializer_1a162632da0a356f8cc311c6c0290cfff1" kind="function"><name>initDevice</name></member>
+    <member refid="namespacevk_1_1_initializer_1a837538230a0f3327ba32f5803e174c62" kind="function"><name>initInstance</name></member>
+  </compound>
+  <compound refid="_api_8hpp" kind="file"><name>Api.hpp</name>
+  </compound>
+  <compound refid="_bindings_8hpp" kind="file"><name>Bindings.hpp</name>
+  </compound>
+  <compound refid="_buffer_8hpp" kind="file"><name>Buffer.hpp</name>
+  </compound>
+  <compound refid="_command_buffer_8hpp" kind="file"><name>CommandBuffer.hpp</name>
+  </compound>
+  <compound refid="_index_buffer_8hpp" kind="file"><name>IndexBuffer.hpp</name>
+  </compound>
+  <compound refid="_storage_buffer_8hpp" kind="file"><name>StorageBuffer.hpp</name>
+  </compound>
+  <compound refid="_uniform_buffer_8hpp" kind="file"><name>UniformBuffer.hpp</name>
+  </compound>
+  <compound refid="_vertex_buffer_8hpp" kind="file"><name>VertexBuffer.hpp</name>
+  </compound>
+  <compound refid="_components_8hpp" kind="file"><name>Components.hpp</name>
+  </compound>
+  <compound refid="_image_8hpp" kind="file"><name>Image.hpp</name>
+  </compound>
+  <compound refid="_texture_8hpp" kind="file"><name>Texture.hpp</name>
+  </compound>
+  <compound refid="_pipeline_8hpp" kind="file"><name>Pipeline.hpp</name>
+  </compound>
+  <compound refid="_acceleration_structure_8hpp" kind="file"><name>AccelerationStructure.hpp</name>
+  </compound>
+  <compound refid="_ray_tracing_builder_8hpp" kind="file"><name>RayTracingBuilder.hpp</name>
+  </compound>
+  <compound refid="_render_pass_8hpp" kind="file"><name>RenderPass.hpp</name>
+  </compound>
+  <compound refid="_scene_8hpp" kind="file"><name>Scene.hpp</name>
+  </compound>
+  <compound refid="_surface_8hpp" kind="file"><name>Surface.hpp</name>
+  </compound>
+  <compound refid="_swapchain_8hpp" kind="file"><name>Swapchain.hpp</name>
+  </compound>
+  <compound refid="_debug_messenger_8hpp" kind="file"><name>DebugMessenger.hpp</name>
+  </compound>
+  <compound refid="_helpers_8hpp" kind="file"><name>Helpers.hpp</name>
+  </compound>
+  <compound refid="_initializers_8hpp" kind="file"><name>Initializers.hpp</name>
+  </compound>
+  <compound refid="_util_8hpp" kind="file"><name>Util.hpp</name>
+  </compound>
+  <compound refid="_vertex_8hpp" kind="file"><name>Vertex.hpp</name>
+    <member refid="_vertex_8hpp_1ab7b56463f2ca50b08e1c0e1080dced5a" kind="define"><name>GLENABLE_EXPERIMENTAL</name></member>
+  </compound>
+  <compound refid="_camera_8hpp" kind="file"><name>Camera.hpp</name>
+  </compound>
+  <compound refid="_geometry_8hpp" kind="file"><name>Geometry.hpp</name>
+  </compound>
+  <compound refid="_gui_8hpp" kind="file"><name>Gui.hpp</name>
+  </compound>
+  <compound refid="_lights_8hpp" kind="file"><name>Lights.hpp</name>
+  </compound>
+  <compound refid="_time_8hpp" kind="file"><name>Time.hpp</name>
+  </compound>
+  <compound refid="_window_8hpp" kind="file"><name>Window.hpp</name>
+  </compound>
+  <compound refid="_core_8hpp" kind="file"><name>Core.hpp</name>
+    <member refid="_core_8hpp_1a51f528deaaeb973f417b46a2ec36f850" kind="define"><name>SDL_MAIN_HANDLED</name></member>
+    <member refid="_core_8hpp_1a8a27aa48a7a8781a30ab45040cb1dea7" kind="define"><name>VULKAN_HPP_DISPATCH_LOADER_DYNAMIC</name></member>
+    <member refid="_core_8hpp_1ae0ee52a031cc79e2e1b15516ed6ca362" kind="define"><name>VK_ENABLE_BETA_EXTENSIONS</name></member>
+    <member refid="_core_8hpp_1ae1466e3a3b5a75362c58d3d393a59cd7" kind="define"><name>RAYEXEC_NAMESPACE</name></member>
+    <member refid="_core_8hpp_1a71565448c6a50c61f3f57b1606128b91" kind="define"><name>RAYEXEC_NAMESPACE_STRINGIFY_2</name></member>
+    <member refid="_core_8hpp_1aa479bc0a7fce1089c976c3b66d033a38" kind="define"><name>RAYEXEC_NAMESPACE_STRINGIFY</name></member>
+    <member refid="_core_8hpp_1aaff0cd56425a31e00b059a76dfdad581" kind="define"><name>RAYEXEC_NAMESPACE_STRINGIFIED</name></member>
+    <member refid="_core_8hpp_1a76f659a3b57c3124f3d7282f44be8d5a" kind="define"><name>RX_VERBOSE</name></member>
+    <member refid="_core_8hpp_1a0f3a7d7270425707e5efd57cead64f01" kind="define"><name>RX_INFO</name></member>
+    <member refid="_core_8hpp_1a8e5f8b734af7dd8b8aaeea6ebaabb81d" kind="define"><name>RX_SUCCESS</name></member>
+    <member refid="_core_8hpp_1a80edd4639b939a0de1ebda1c0de559d6" kind="define"><name>RX_WARN</name></member>
+    <member refid="_core_8hpp_1a75bbbb13d55cc9e0680a050df5ca00e2" kind="define"><name>RX_ERROR</name></member>
+    <member refid="_core_8hpp_1ad7ab0669d483b47b41c5160a40e303ff" kind="define"><name>RX_FATAL</name></member>
+    <member refid="_core_8hpp_1a0bc3742e3b5d582081ea5ec272af5330" kind="define"><name>RX_ASSERT</name></member>
+    <member refid="_core_8hpp_1aa9d90db74b8dfc478668d1368d4339f8" kind="define"><name>RX_LOG_TIME_START</name></member>
+    <member refid="_core_8hpp_1aa8b33c26d9078af255a33ed0d838a64f" kind="define"><name>RX_LOG_TIME_STOP</name></member>
+  </compound>
+  <compound refid="stdafx_8hpp" kind="file"><name>stdafx.hpp</name>
+    <member refid="stdafx_8hpp_1afbfadc6efcb8ee2a896cebb8b30da7b3" kind="define"><name>GLFORCE_DEPTH_ZERO_TO_ONE</name></member>
+  </compound>
+  <compound refid="_ray_exec_8hpp" kind="file"><name>RayExec.hpp</name>
+  </compound>
+  <compound refid="_settings_8hpp" kind="file"><name>Settings.hpp</name>
+  </compound>
+  <compound refid="_r_e_a_d_m_e_8md" kind="file"><name>README.md</name>
+  </compound>
+  <compound refid="group___base" kind="group"><name>Base</name>
+    <member refid="group___base_1ga02a95a02aa5d57299c4eecb3c6bb4d3d" kind="function"><name>loadObj</name></member>
+    <member refid="group___base_1gabb8acb5237813d1ac88e190a79a1bff2" kind="function"><name>instance</name></member>
+  </compound>
+  <compound refid="group___a_p_i" kind="group"><name>API</name>
+  </compound>
+  <compound refid="todo" kind="page"><name>todo</name>
+  </compound>
+  <compound refid="dir_2d52abcd54c181b91d630da402923092" kind="dir"><name>/home/n30/Repos/rayexec/include/api</name>
+  </compound>
+  <compound refid="dir_ab1c81409f0df724f17c9ef30afee877" kind="dir"><name>/home/n30/Repos/rayexec/include/base</name>
+  </compound>
+  <compound refid="dir_55012dd099807ce5b030bcaa1056687d" kind="dir"><name>/home/n30/Repos/rayexec/include/api/buffers</name>
+  </compound>
+  <compound refid="dir_02523d52219860cc971c97a2c9308d19" kind="dir"><name>/home/n30/Repos/rayexec/include/api/image</name>
+  </compound>
+  <compound refid="dir_d44c64559bbebec7f509842c48db8b23" kind="dir"><name>/home/n30/Repos/rayexec/include</name>
+  </compound>
+  <compound refid="dir_1f28c29535055152f465f1747ac25e1e" kind="dir"><name>/home/n30/Repos/rayexec/include/pch</name>
+  </compound>
+  <compound refid="dir_38f24932c5cdde66964a65127fd58894" kind="dir"><name>/home/n30/Repos/rayexec/include/api/raytracing</name>
+  </compound>
+  <compound refid="dir_d95d88259bb69c813963ad097d10ad2c" kind="dir"><name>/home/n30/Repos/rayexec/include/api/utility</name>
+  </compound>
+  <compound refid="indexpage" kind="page"><name>index</name>
+  </compound>
+</doxygenindex>

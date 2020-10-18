@@ -1,0 +1,451 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.17">
+  <compounddef id="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_window" kind="class" language="C++" prot="public">
+    <compoundname>RAYEXEC_NAMESPACE::Window</compoundname>
+    <includes refid="_window_8hpp" local="no">Window.hpp</includes>
+      <sectiondef kind="protected-attrib">
+      <memberdef kind="variable" id="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_window_1a9383029971853d1c18924d71aeb0b30a" prot="protected" static="no" mutable="no">
+        <type>SDL_Window *</type>
+        <definition>SDL_Window* RAYEXEC_NAMESPACE::Window::window</definition>
+        <argsstring></argsstring>
+        <name>window</name>
+        <initializer>= nullptr</initializer>
+        <briefdescription>
+<para>The actual SDL_Window object. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/n30/Repos/rayexec/include/base/Window.hpp" line="80" column="16" bodyfile="/home/n30/Repos/rayexec/include/base/Window.hpp" bodystart="80" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_window_1ac50c4ef112a5cb3e51147451e4451038" prot="protected" static="no" mutable="no">
+        <type>uint32_t</type>
+        <definition>uint32_t RAYEXEC_NAMESPACE::Window::flags</definition>
+        <argsstring></argsstring>
+        <name>flags</name>
+        <briefdescription>
+<para>The window&apos;s flags. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/n30/Repos/rayexec/include/base/Window.hpp" line="81" column="14" bodyfile="/home/n30/Repos/rayexec/include/base/Window.hpp" bodystart="81" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_window_1a5c3593b500b23e7caa7fab8be33fc9f5" prot="protected" static="no" mutable="no">
+        <type>int</type>
+        <definition>int RAYEXEC_NAMESPACE::Window::width</definition>
+        <argsstring></argsstring>
+        <name>width</name>
+        <briefdescription>
+<para>The window&apos;s width in pixels. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/n30/Repos/rayexec/include/base/Window.hpp" line="83" column="9" bodyfile="/home/n30/Repos/rayexec/include/base/Window.hpp" bodystart="83" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_window_1ac05ed1f5db515ce709c038130c06ae3a" prot="protected" static="no" mutable="no">
+        <type>int</type>
+        <definition>int RAYEXEC_NAMESPACE::Window::height</definition>
+        <argsstring></argsstring>
+        <name>height</name>
+        <briefdescription>
+<para>The window&apos;s height in pixels. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/n30/Repos/rayexec/include/base/Window.hpp" line="84" column="9" bodyfile="/home/n30/Repos/rayexec/include/base/Window.hpp" bodystart="84" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_window_1ac7deb99f097cae43dfac4ba664b0b71e" prot="protected" static="no" mutable="no">
+        <type>const char *</type>
+        <definition>const char* RAYEXEC_NAMESPACE::Window::title</definition>
+        <argsstring></argsstring>
+        <name>title</name>
+        <briefdescription>
+<para>The window&apos;s title. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/n30/Repos/rayexec/include/base/Window.hpp" line="85" column="16" bodyfile="/home/n30/Repos/rayexec/include/base/Window.hpp" bodystart="85" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_window_1a605d01de99b761411a51560f659b5ccd" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>RX_API</type>
+        <definition>RX_API RAYEXEC_NAMESPACE::Window::Window</definition>
+        <argsstring>(int width=defaultWidth, int height=defaultHeight, const char *title=&quot;My Application&quot;, uint32_t flags=0)</argsstring>
+        <name>Window</name>
+        <param>
+          <type>int</type>
+          <declname>width</declname>
+          <defval><ref refid="namespace_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1ace19d80e0bf55986b1b8e9e048e76abe" kindref="member">defaultWidth</ref></defval>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>height</declname>
+          <defval><ref refid="namespace_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1a03aa31ed612ba981a14eb2265c11dad1" kindref="member">defaultHeight</ref></defval>
+        </param>
+        <param>
+          <type>const char *</type>
+          <declname>title</declname>
+          <defval>&quot;My Application&quot;</defval>
+        </param>
+        <param>
+          <type>uint32_t</type>
+          <declname>flags</declname>
+          <defval>0</defval>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>width</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The width of the window in pixels. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>height</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The height of the window in pixels. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>title</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The title of the window shown in the title bar. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>flags</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The window flags (no additional flags if not specified). </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/n30/Repos/rayexec/include/base/Window.hpp" line="31" column="12"/>
+      </memberdef>
+      <memberdef kind="function" id="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_window_1a4aabfbbcd46b15e96661e5990704ed75" prot="public" static="no" const="no" explicit="no" inline="no" virt="virtual">
+        <type>RX_API</type>
+        <definition>virtual RX_API RAYEXEC_NAMESPACE::Window::~Window</definition>
+        <argsstring>()</argsstring>
+        <name>~Window</name>
+        <briefdescription>
+<para>Destructor of <ref refid="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_window" kindref="compound">Window</ref>. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>Will also clean up the object&apos;s resources. <simplesect kind="see"><para><ref refid="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_window_1a18c7d4abe800472a8e79bd4f18cfb63e" kindref="member">clean()</ref> </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/n30/Repos/rayexec/include/base/Window.hpp" line="37" column="20"/>
+      </memberdef>
+      <memberdef kind="function" id="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_window_1a3de9e4815cc97d30787058b683f80c56" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>RAYEXEC_NAMESPACE::Window::Window</definition>
+        <argsstring>(const Window &amp;)=delete</argsstring>
+        <name>Window</name>
+        <param>
+          <type>const <ref refid="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_window" kindref="compound">Window</ref> &amp;</type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/n30/Repos/rayexec/include/base/Window.hpp" line="39" column="5"/>
+      </memberdef>
+      <memberdef kind="function" id="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_window_1ae6072e2dfb9cb8d2738befb1bf4fcc0f" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>RAYEXEC_NAMESPACE::Window::Window</definition>
+        <argsstring>(const Window &amp;&amp;)=delete</argsstring>
+        <name>Window</name>
+        <param>
+          <type>const <ref refid="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_window" kindref="compound">Window</ref> &amp;&amp;</type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/n30/Repos/rayexec/include/base/Window.hpp" line="40" column="5"/>
+      </memberdef>
+      <memberdef kind="function" id="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_window_1adfbf2437f3931c8b235783466ee61230" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>auto</type>
+        <definition>auto RAYEXEC_NAMESPACE::Window::operator=</definition>
+        <argsstring>(const Window &amp;) -&gt; Window &amp;=delete</argsstring>
+        <name>operator=</name>
+        <param>
+          <type>const <ref refid="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_window" kindref="compound">Window</ref> &amp;</type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/n30/Repos/rayexec/include/base/Window.hpp" line="41" column="10"/>
+      </memberdef>
+      <memberdef kind="function" id="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_window_1a7f1b2cdbdec544d883be6d7f5ee02fcc" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>auto</type>
+        <definition>auto RAYEXEC_NAMESPACE::Window::operator=</definition>
+        <argsstring>(const Window &amp;&amp;) -&gt; Window &amp;=delete</argsstring>
+        <name>operator=</name>
+        <param>
+          <type>const <ref refid="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_window" kindref="compound">Window</ref> &amp;&amp;</type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/n30/Repos/rayexec/include/base/Window.hpp" line="42" column="10"/>
+      </memberdef>
+      <memberdef kind="function" id="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_window_1a1465803d1631aeb85f3c304617d7f2c7" prot="public" static="no" const="no" explicit="no" inline="no" virt="virtual">
+        <type>RX_API auto</type>
+        <definition>virtual RX_API auto RAYEXEC_NAMESPACE::Window::init</definition>
+        <argsstring>() -&gt; bool</argsstring>
+        <name>init</name>
+        <briefdescription>
+<para>Initializes the SDL-window. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/n30/Repos/rayexec/include/base/Window.hpp" line="45" column="25"/>
+      </memberdef>
+      <memberdef kind="function" id="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_window_1aa038bb7bf14b31b0d1c3cff6daf07285" prot="public" static="no" const="no" explicit="no" inline="no" virt="virtual">
+        <type>RX_API auto</type>
+        <definition>virtual RX_API auto RAYEXEC_NAMESPACE::Window::update</definition>
+        <argsstring>() -&gt; bool</argsstring>
+        <name>update</name>
+        <briefdescription>
+<para>Updates window-related components. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>In case the user wants to handle input events, this function should be overwritten in the inherited class. <simplesect kind="warning"><para>The user has to call <ref refid="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_window_1aa038bb7bf14b31b0d1c3cff6daf07285" kindref="member">Window::update()</ref> to ensure proper functionality. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/n30/Repos/rayexec/include/base/Window.hpp" line="51" column="25"/>
+      </memberdef>
+      <memberdef kind="function" id="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_window_1a18c7d4abe800472a8e79bd4f18cfb63e" prot="public" static="no" const="no" explicit="no" inline="no" virt="virtual">
+        <type>RX_API void</type>
+        <definition>virtual RX_API void RAYEXEC_NAMESPACE::Window::clean</definition>
+        <argsstring>()</argsstring>
+        <name>clean</name>
+        <briefdescription>
+<para>Destroys the window. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/n30/Repos/rayexec/include/base/Window.hpp" line="54" column="25"/>
+      </memberdef>
+      <memberdef kind="function" id="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_window_1ab051017a633806871575e8ec129cfd8a" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>RX_API void</type>
+        <definition>RX_API void RAYEXEC_NAMESPACE::Window::resize</definition>
+        <argsstring>(int width, int height)</argsstring>
+        <name>resize</name>
+        <param>
+          <type>int</type>
+          <declname>width</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>height</declname>
+        </param>
+        <briefdescription>
+<para>Resizes the window. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>width</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The desired width in pixels. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>height</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The desired height in pixels. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/n30/Repos/rayexec/include/base/Window.hpp" line="59" column="17"/>
+      </memberdef>
+      <memberdef kind="function" id="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_window_1a2499009d44ee72861fccea9923a69f04" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>RX_API auto</type>
+        <definition>RX_API auto RAYEXEC_NAMESPACE::Window::get</definition>
+        <argsstring>() -&gt; SDL_Window *</argsstring>
+        <name>get</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>Returns the actual SDL_Window object. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/n30/Repos/rayexec/include/base/Window.hpp" line="62" column="17" bodyfile="/home/n30/Repos/rayexec/include/base/Window.hpp" bodystart="62" bodyend="62"/>
+      </memberdef>
+      <memberdef kind="function" id="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_window_1af9cf0260c8125403ab94097965ef2955" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>RX_API auto</type>
+        <definition>RX_API auto RAYEXEC_NAMESPACE::Window::getExtent</definition>
+        <argsstring>() const -&gt; vk::Extent2D</argsstring>
+        <name>getExtent</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>Returns the window size as a Vulkan 2D extent. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/n30/Repos/rayexec/include/base/Window.hpp" line="65" column="18"/>
+      </memberdef>
+      <memberdef kind="function" id="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_window_1a3493050f0c87cc92dd5367086fa4232d" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>auto</type>
+        <definition>auto RAYEXEC_NAMESPACE::Window::getWidth</definition>
+        <argsstring>() const -&gt; int</argsstring>
+        <name>getWidth</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>Returns the window&apos;s width in pixels. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/n30/Repos/rayexec/include/base/Window.hpp" line="68" column="11" bodyfile="/home/n30/Repos/rayexec/include/base/Window.hpp" bodystart="68" bodyend="68"/>
+      </memberdef>
+      <memberdef kind="function" id="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_window_1acb5f534b676c8cd3d640f47ac4444499" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>auto</type>
+        <definition>auto RAYEXEC_NAMESPACE::Window::getHeight</definition>
+        <argsstring>() const -&gt; int</argsstring>
+        <name>getHeight</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>Returns the window&apos;s height in pixels. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/n30/Repos/rayexec/include/base/Window.hpp" line="71" column="11" bodyfile="/home/n30/Repos/rayexec/include/base/Window.hpp" bodystart="71" bodyend="71"/>
+      </memberdef>
+      <memberdef kind="function" id="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_window_1a3bf6eadc1f1aa70f3335d505edf30ff8" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>RX_API auto</type>
+        <definition>RX_API auto RAYEXEC_NAMESPACE::Window::changed</definition>
+        <argsstring>() -&gt; bool</argsstring>
+        <name>changed</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>Returns true if the window size has changed. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/n30/Repos/rayexec/include/base/Window.hpp" line="74" column="17"/>
+      </memberdef>
+      <memberdef kind="function" id="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_window_1a073466b019e4961a3823a50019f66776" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>RX_API auto</type>
+        <definition>RX_API auto RAYEXEC_NAMESPACE::Window::minimized</definition>
+        <argsstring>() -&gt; bool</argsstring>
+        <name>minimized</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>Returns true if the window is minimized. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/n30/Repos/rayexec/include/base/Window.hpp" line="77" column="17"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+<para>Implements a SDL-based window. </para>
+    </briefdescription>
+    <detaileddescription>
+<para>In order to handle events the user has to create a class that inherits from <ref refid="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_window" kindref="compound">Window</ref>. </para>
+<sect3 id="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_window_1autotoc_md9">
+<title>Example</title>
+<para><programlisting filename=".cpp"><codeline><highlight class="comment">//<sp/>This<sp/>example<sp/>requires<sp/>the<sp/>user<sp/>to<sp/>implement<sp/>a<sp/>custom<sp/>window<sp/>class<sp/>that<sp/>inherits<sp/>from<sp/>Window.</highlight><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/>myWindow<sp/>=<sp/>std::make_shared&lt;CustomWindow&gt;(<sp/><ref refid="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_window_1a5c3593b500b23e7caa7fab8be33fc9f5" kindref="member">width</ref>,<sp/><ref refid="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_window_1ac05ed1f5db515ce709c038130c06ae3a" kindref="member">height</ref>,<sp/></highlight><highlight class="stringliteral">&quot;Example&quot;</highlight><highlight class="normal">,<sp/>WINDOW_RESIZABLE<sp/>|<sp/>WINDOW_INPUT_FOCUS<sp/>);</highlight></codeline>
+</programlisting></para>
+<para><simplesect kind="see"><para><ref refid="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_window_1aa038bb7bf14b31b0d1c3cff6daf07285" kindref="member">update()</ref></para>
+</simplesect>
+<xrefsect id="todo_1_todo000008"><xreftitle>Todo</xreftitle><xrefdescription><para>To avoid the user having to link to SDL themselves requires to write a complete SDL2 wrapper. </para>
+</xrefdescription></xrefsect></para>
+</sect3>
+    </detaileddescription>
+    <location file="/home/n30/Repos/rayexec/include/base/Window.hpp" line="25" column="1" bodyfile="/home/n30/Repos/rayexec/include/base/Window.hpp" bodystart="24" bodyend="86"/>
+    <listofallmembers>
+      <member refid="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_window_1a3bf6eadc1f1aa70f3335d505edf30ff8" prot="public" virt="non-virtual"><scope>RAYEXEC_NAMESPACE::Window</scope><name>changed</name></member>
+      <member refid="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_window_1a18c7d4abe800472a8e79bd4f18cfb63e" prot="public" virt="virtual"><scope>RAYEXEC_NAMESPACE::Window</scope><name>clean</name></member>
+      <member refid="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_window_1ac50c4ef112a5cb3e51147451e4451038" prot="protected" virt="non-virtual"><scope>RAYEXEC_NAMESPACE::Window</scope><name>flags</name></member>
+      <member refid="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_window_1a2499009d44ee72861fccea9923a69f04" prot="public" virt="non-virtual"><scope>RAYEXEC_NAMESPACE::Window</scope><name>get</name></member>
+      <member refid="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_window_1af9cf0260c8125403ab94097965ef2955" prot="public" virt="non-virtual"><scope>RAYEXEC_NAMESPACE::Window</scope><name>getExtent</name></member>
+      <member refid="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_window_1acb5f534b676c8cd3d640f47ac4444499" prot="public" virt="non-virtual"><scope>RAYEXEC_NAMESPACE::Window</scope><name>getHeight</name></member>
+      <member refid="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_window_1a3493050f0c87cc92dd5367086fa4232d" prot="public" virt="non-virtual"><scope>RAYEXEC_NAMESPACE::Window</scope><name>getWidth</name></member>
+      <member refid="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_window_1ac05ed1f5db515ce709c038130c06ae3a" prot="protected" virt="non-virtual"><scope>RAYEXEC_NAMESPACE::Window</scope><name>height</name></member>
+      <member refid="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_window_1a1465803d1631aeb85f3c304617d7f2c7" prot="public" virt="virtual"><scope>RAYEXEC_NAMESPACE::Window</scope><name>init</name></member>
+      <member refid="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_window_1a073466b019e4961a3823a50019f66776" prot="public" virt="non-virtual"><scope>RAYEXEC_NAMESPACE::Window</scope><name>minimized</name></member>
+      <member refid="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_window_1adfbf2437f3931c8b235783466ee61230" prot="public" virt="non-virtual"><scope>RAYEXEC_NAMESPACE::Window</scope><name>operator=</name></member>
+      <member refid="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_window_1a7f1b2cdbdec544d883be6d7f5ee02fcc" prot="public" virt="non-virtual"><scope>RAYEXEC_NAMESPACE::Window</scope><name>operator=</name></member>
+      <member refid="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_window_1ab051017a633806871575e8ec129cfd8a" prot="public" virt="non-virtual"><scope>RAYEXEC_NAMESPACE::Window</scope><name>resize</name></member>
+      <member refid="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_window_1ac7deb99f097cae43dfac4ba664b0b71e" prot="protected" virt="non-virtual"><scope>RAYEXEC_NAMESPACE::Window</scope><name>title</name></member>
+      <member refid="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_window_1aa038bb7bf14b31b0d1c3cff6daf07285" prot="public" virt="virtual"><scope>RAYEXEC_NAMESPACE::Window</scope><name>update</name></member>
+      <member refid="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_window_1a5c3593b500b23e7caa7fab8be33fc9f5" prot="protected" virt="non-virtual"><scope>RAYEXEC_NAMESPACE::Window</scope><name>width</name></member>
+      <member refid="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_window_1a9383029971853d1c18924d71aeb0b30a" prot="protected" virt="non-virtual"><scope>RAYEXEC_NAMESPACE::Window</scope><name>window</name></member>
+      <member refid="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_window_1a605d01de99b761411a51560f659b5ccd" prot="public" virt="non-virtual"><scope>RAYEXEC_NAMESPACE::Window</scope><name>Window</name></member>
+      <member refid="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_window_1a3de9e4815cc97d30787058b683f80c56" prot="public" virt="non-virtual"><scope>RAYEXEC_NAMESPACE::Window</scope><name>Window</name></member>
+      <member refid="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_window_1ae6072e2dfb9cb8d2738befb1bf4fcc0f" prot="public" virt="non-virtual"><scope>RAYEXEC_NAMESPACE::Window</scope><name>Window</name></member>
+      <member refid="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_window_1a4aabfbbcd46b15e96661e5990704ed75" prot="public" virt="virtual"><scope>RAYEXEC_NAMESPACE::Window</scope><name>~Window</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

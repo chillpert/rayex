@@ -1,0 +1,529 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.17">
+  <compounddef id="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_ray_exec" kind="class" language="C++" prot="public">
+    <compoundname>RAYEXEC_NAMESPACE::RayExec</compoundname>
+    <includes refid="_ray_exec_8hpp" local="no">RayExec.hpp</includes>
+      <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_ray_exec_1ab71c208dbdcdf6cc03d962c95ce3e1d4" prot="public" static="no" mutable="no">
+        <type><ref refid="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_settings" kindref="compound">Settings</ref></type>
+        <definition>Settings RAYEXEC_NAMESPACE::RayExec::settings</definition>
+        <argsstring></argsstring>
+        <name>settings</name>
+        <briefdescription>
+<para>Used to modify any interal rendering settings. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="see"><para><ref refid="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_settings" kindref="compound">RAYEXEC_NAMESPACE::Settings</ref> </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/n30/Repos/rayexec/include/RayExec.hpp" line="98" column="14" bodyfile="/home/n30/Repos/rayexec/include/RayExec.hpp" bodystart="98" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_ray_exec_1afe05ed9ef91fed62c9a695581da77fe5" prot="private" static="no" mutable="no">
+        <type>std::shared_ptr&lt; <ref refid="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_window" kindref="compound">Window</ref> &gt;</type>
+        <definition>std::shared_ptr&lt;Window&gt; RAYEXEC_NAMESPACE::RayExec::window</definition>
+        <argsstring></argsstring>
+        <name>window</name>
+        <initializer>= nullptr</initializer>
+        <briefdescription>
+<para>The window used to create a surface from. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/n30/Repos/rayexec/include/RayExec.hpp" line="101" column="21" bodyfile="/home/n30/Repos/rayexec/include/RayExec.hpp" bodystart="101" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_ray_exec_1a71064a0111e4b69fff5d34b9b37c4941" prot="private" static="no" mutable="no">
+        <type>std::shared_ptr&lt; <ref refid="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_camera" kindref="compound">Camera</ref> &gt;</type>
+        <definition>std::shared_ptr&lt;Camera&gt; RAYEXEC_NAMESPACE::RayExec::camera</definition>
+        <argsstring></argsstring>
+        <name>camera</name>
+        <initializer>= nullptr</initializer>
+        <briefdescription>
+<para>The camera that will be used for rendering. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/n30/Repos/rayexec/include/RayExec.hpp" line="102" column="21" bodyfile="/home/n30/Repos/rayexec/include/RayExec.hpp" bodystart="102" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_ray_exec_1a51bb630614b41ef72cb0fa0df68ab6cf" prot="private" static="no" mutable="no">
+        <type>std::shared_ptr&lt; <ref refid="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_gui" kindref="compound">Gui</ref> &gt;</type>
+        <definition>std::shared_ptr&lt;Gui&gt; RAYEXEC_NAMESPACE::RayExec::gui</definition>
+        <argsstring></argsstring>
+        <name>gui</name>
+        <initializer>= nullptr</initializer>
+        <briefdescription>
+<para>The ImGui-based GUI. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/n30/Repos/rayexec/include/RayExec.hpp" line="103" column="21" bodyfile="/home/n30/Repos/rayexec/include/RayExec.hpp" bodystart="103" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_ray_exec_1a94f626512d8134f8ed862b831f2ddd87" prot="private" static="no" mutable="no">
+        <type>std::unique_ptr&lt; <ref refid="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_api" kindref="compound">Api</ref> &gt;</type>
+        <definition>std::unique_ptr&lt;Api&gt; RAYEXEC_NAMESPACE::RayExec::api</definition>
+        <argsstring></argsstring>
+        <name>api</name>
+        <initializer>= std::make_unique&lt;<ref refid="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_api" kindref="compound">Api</ref>&gt;( )</initializer>
+        <briefdescription>
+<para>Manages Vulkan-related tasks. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/n30/Repos/rayexec/include/RayExec.hpp" line="104" column="21" bodyfile="/home/n30/Repos/rayexec/include/RayExec.hpp" bodystart="104" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_ray_exec_1a864b3206cd23e6090ccfe10ff479e140" prot="private" static="no" mutable="no">
+        <type>bool</type>
+        <definition>bool RAYEXEC_NAMESPACE::RayExec::initialized</definition>
+        <argsstring></argsstring>
+        <name>initialized</name>
+        <initializer>= false</initializer>
+        <briefdescription>
+<para>Keeps track of the initialization status. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/n30/Repos/rayexec/include/RayExec.hpp" line="106" column="10" bodyfile="/home/n30/Repos/rayexec/include/RayExec.hpp" bodystart="106" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_ray_exec_1a0e840053de151bfa031b811511496cc4" prot="private" static="no" mutable="no">
+        <type>bool</type>
+        <definition>bool RAYEXEC_NAMESPACE::RayExec::running</definition>
+        <argsstring></argsstring>
+        <name>running</name>
+        <initializer>= true</initializer>
+        <briefdescription>
+<para>Keeps track of whether or not the main loop should still be continued. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/n30/Repos/rayexec/include/RayExec.hpp" line="107" column="10" bodyfile="/home/n30/Repos/rayexec/include/RayExec.hpp" bodystart="107" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_ray_exec_1a733871910ad19f68b0084d8d81a8d177" prot="private" static="no" mutable="no">
+        <type>bool</type>
+        <definition>bool RAYEXEC_NAMESPACE::RayExec::initScene</definition>
+        <argsstring></argsstring>
+        <name>initScene</name>
+        <initializer>= true</initializer>
+        <briefdescription>
+<para>Keeps track of whether or not to initialize the scene. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/n30/Repos/rayexec/include/RayExec.hpp" line="108" column="10" bodyfile="/home/n30/Repos/rayexec/include/RayExec.hpp" bodystart="108" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_ray_exec_1a4a77cb838d74cbf29b35e41733f702a9" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>RX_API void</type>
+        <definition>RX_API void RAYEXEC_NAMESPACE::RayExec::init</definition>
+        <argsstring>()</argsstring>
+        <name>init</name>
+        <briefdescription>
+<para>Initializes the renderer. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>This function initializes the window subcomponent as well as the API. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/n30/Repos/rayexec/include/RayExec.hpp" line="33" column="17"/>
+      </memberdef>
+      <memberdef kind="function" id="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_ray_exec_1a4364aeb145d7ae3685cac2d126d1d304" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>RX_API void</type>
+        <definition>RX_API void RAYEXEC_NAMESPACE::RayExec::run</definition>
+        <argsstring>()</argsstring>
+        <name>run</name>
+        <briefdescription>
+<para>A single function to execute all subcomponents in order. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>This function updates the window and the camera components and calls the update and render functions of the API. <simplesect kind="see"><para><ref refid="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_camera_1a17a52094a998d73590caa62e219064b1" kindref="member">RAYEXEC_NAMESPACE::Camera::update()</ref>, <ref refid="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_window_1aa038bb7bf14b31b0d1c3cff6daf07285" kindref="member">RAYEXEC_NAMESPACE::Window::update()</ref>, RAYEXEC_NAMESPACE::Api::update(), RAYEXEC_NAMESPACE::Api::render() </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/n30/Repos/rayexec/include/RayExec.hpp" line="39" column="17"/>
+      </memberdef>
+      <memberdef kind="function" id="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_ray_exec_1af3094ea443ca1f685d3888cca6a51ff9" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>RX_API auto</type>
+        <definition>RX_API auto RAYEXEC_NAMESPACE::RayExec::isRunning</definition>
+        <argsstring>() const -&gt; bool</argsstring>
+        <name>isRunning</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>Returns true if the application is still running and false if the application has stopped. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/n30/Repos/rayexec/include/RayExec.hpp" line="42" column="17"/>
+      </memberdef>
+      <memberdef kind="function" id="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_ray_exec_1a41b6ca1d0db7fdb06806a6ce97beae84" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>RX_API void</type>
+        <definition>RX_API void RAYEXEC_NAMESPACE::RayExec::setCamera</definition>
+        <argsstring>(std::shared_ptr&lt; Camera &gt; camera)</argsstring>
+        <name>setCamera</name>
+        <param>
+          <type>std::shared_ptr&lt; <ref refid="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_camera" kindref="compound">Camera</ref> &gt;</type>
+          <declname>camera</declname>
+        </param>
+        <briefdescription>
+<para>Used to set a custom camera. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>camera</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>A pointer to a <ref refid="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_camera" kindref="compound">RAYEXEC_NAMESPACE::Camera</ref> object. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/n30/Repos/rayexec/include/RayExec.hpp" line="46" column="17"/>
+      </memberdef>
+      <memberdef kind="function" id="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_ray_exec_1ab632b1740be14c4ea543d2d58dcd7bd3" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>RX_API void</type>
+        <definition>RX_API void RAYEXEC_NAMESPACE::RayExec::setWindow</definition>
+        <argsstring>(std::shared_ptr&lt; Window &gt; window)</argsstring>
+        <name>setWindow</name>
+        <param>
+          <type>std::shared_ptr&lt; <ref refid="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_window" kindref="compound">Window</ref> &gt;</type>
+          <declname>window</declname>
+        </param>
+        <briefdescription>
+<para>Used to set a custom window. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>window</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>A pointer to a <ref refid="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_window" kindref="compound">RAYEXEC_NAMESPACE::Window</ref> object. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/n30/Repos/rayexec/include/RayExec.hpp" line="50" column="17"/>
+      </memberdef>
+      <memberdef kind="function" id="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_ray_exec_1a42df80fe179d395b350eddcd015ddc88" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>RX_API void</type>
+        <definition>RX_API void RAYEXEC_NAMESPACE::RayExec::setGui</definition>
+        <argsstring>(std::shared_ptr&lt; Gui &gt; gui)</argsstring>
+        <name>setGui</name>
+        <param>
+          <type>std::shared_ptr&lt; <ref refid="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_gui" kindref="compound">Gui</ref> &gt;</type>
+          <declname>gui</declname>
+        </param>
+        <briefdescription>
+<para>Used to set a custom GUI. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>The GUI can be changed multiple times. Even during runtime. <parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>gui</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>A pointer to a <ref refid="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_gui" kindref="compound">RAYEXEC_NAMESPACE::Gui</ref> object. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/n30/Repos/rayexec/include/RayExec.hpp" line="56" column="17"/>
+      </memberdef>
+      <memberdef kind="function" id="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_ray_exec_1a3ef30ee07220e343ca8a9d88b7734f3c" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>RX_API void</type>
+        <definition>RX_API void RAYEXEC_NAMESPACE::RayExec::submitGeometryInstance</definition>
+        <argsstring>(std::shared_ptr&lt; GeometryInstance &gt; geometryInstance)</argsstring>
+        <name>submitGeometryInstance</name>
+        <param>
+          <type>std::shared_ptr&lt; <ref refid="struct_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_geometry_instance" kindref="compound">GeometryInstance</ref> &gt;</type>
+          <declname>geometryInstance</declname>
+        </param>
+        <briefdescription>
+<para>Used to submit a geometry instance for rendering. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>geometryInstance</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The instance to queue for rendering. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="note"><para>This function does not invoke any draw calls. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/n30/Repos/rayexec/include/RayExec.hpp" line="61" column="17"/>
+      </memberdef>
+      <memberdef kind="function" id="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_ray_exec_1a2bff08870b1f64db618f69c737dba40f" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>RX_API void</type>
+        <definition>RX_API void RAYEXEC_NAMESPACE::RayExec::setGeometryInstances</definition>
+        <argsstring>(const std::vector&lt; std::shared_ptr&lt; GeometryInstance &gt;&gt; &amp;geometryInstances)</argsstring>
+        <name>setGeometryInstances</name>
+        <param>
+          <type>const std::vector&lt; std::shared_ptr&lt; <ref refid="struct_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_geometry_instance" kindref="compound">GeometryInstance</ref> &gt;&gt; &amp;</type>
+          <declname>geometryInstances</declname>
+        </param>
+        <briefdescription>
+<para>Used to submit multiple geometry instances for rendering, replacing all existing instances. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>geometryInstances</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The instances to queue for rendering. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="note"><para>This function does not invoke any draw calls. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/n30/Repos/rayexec/include/RayExec.hpp" line="66" column="17"/>
+      </memberdef>
+      <memberdef kind="function" id="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_ray_exec_1afc92af88a74dab31911a9b88a818dc61" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>RX_API void</type>
+        <definition>RX_API void RAYEXEC_NAMESPACE::RayExec::removeGeometryInstance</definition>
+        <argsstring>(std::shared_ptr&lt; GeometryInstance &gt; geometryInstance)</argsstring>
+        <name>removeGeometryInstance</name>
+        <param>
+          <type>std::shared_ptr&lt; <ref refid="struct_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_geometry_instance" kindref="compound">GeometryInstance</ref> &gt;</type>
+          <declname>geometryInstance</declname>
+        </param>
+        <briefdescription>
+<para>Used to remove a geometry instance. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>Once a geometry instance was removed, it will no longer be rendered. <parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>geometryInstance</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The instance to remove. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/n30/Repos/rayexec/include/RayExec.hpp" line="72" column="17"/>
+      </memberdef>
+      <memberdef kind="function" id="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_ray_exec_1ae64ec0603f573c599fbe2d4312736912" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>RX_API void</type>
+        <definition>RX_API void RAYEXEC_NAMESPACE::RayExec::submitGeometry</definition>
+        <argsstring>(std::shared_ptr&lt; Geometry &gt; geometry)</argsstring>
+        <name>submitGeometry</name>
+        <param>
+          <type>std::shared_ptr&lt; <ref refid="struct_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_geometry" kindref="compound">Geometry</ref> &gt;</type>
+          <declname>geometry</declname>
+        </param>
+        <briefdescription>
+<para>Used to submit a geometry and set up its buffers. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>Once a geometry was submitted, geometry instances referencing this particular geometry can be drawn. <parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>geometry</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The geometry to submit. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/n30/Repos/rayexec/include/RayExec.hpp" line="78" column="17"/>
+      </memberdef>
+      <memberdef kind="function" id="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_ray_exec_1a82259ba090dbf6319e92dee23b6b5b3d" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>RX_API void</type>
+        <definition>RX_API void RAYEXEC_NAMESPACE::RayExec::setGeometries</definition>
+        <argsstring>(const std::vector&lt; std::shared_ptr&lt; Geometry &gt;&gt; &amp;geometries)</argsstring>
+        <name>setGeometries</name>
+        <param>
+          <type>const std::vector&lt; std::shared_ptr&lt; <ref refid="struct_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_geometry" kindref="compound">Geometry</ref> &gt;&gt; &amp;</type>
+          <declname>geometries</declname>
+        </param>
+        <briefdescription>
+<para>Used to submit multiple geometries and set up their buffers. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>Once a geometry was submitted, geometry instances referencing this particular geometry can be drawn. <parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>geometries</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The geometries to submit. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/n30/Repos/rayexec/include/RayExec.hpp" line="84" column="17"/>
+      </memberdef>
+      <memberdef kind="function" id="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_ray_exec_1a0a44717cc13a7b840c806049e7560705" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>RX_API auto</type>
+        <definition>RX_API auto RAYEXEC_NAMESPACE::RayExec::findGeometry</definition>
+        <argsstring>(std::string_view path) const -&gt; std::shared_ptr&lt; Geometry &gt;</argsstring>
+        <name>findGeometry</name>
+        <param>
+          <type>std::string_view</type>
+          <declname>path</declname>
+        </param>
+        <briefdescription>
+<para>Used to retrieve a geoemtry based on its path. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>path</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The geometry&apos;s model&apos;s path, relative to the path to assets. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/n30/Repos/rayexec/include/RayExec.hpp" line="88" column="17"/>
+      </memberdef>
+      <memberdef kind="function" id="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_ray_exec_1a8b37457e5868d51ca5183b176a9ec5dd" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>RX_API auto</type>
+        <definition>RX_API auto RAYEXEC_NAMESPACE::RayExec::getWindow</definition>
+        <argsstring>() const -&gt; std::shared_ptr&lt; Window &gt;</argsstring>
+        <name>getWindow</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>Returns a pointer to the renderer&apos;s window. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/n30/Repos/rayexec/include/RayExec.hpp" line="91" column="25" bodyfile="/home/n30/Repos/rayexec/include/RayExec.hpp" bodystart="91" bodyend="91"/>
+      </memberdef>
+      <memberdef kind="function" id="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_ray_exec_1aa6f5eea39b1abc9b0c3ba0ee16dc8e13" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>RX_API auto</type>
+        <definition>RX_API auto RAYEXEC_NAMESPACE::RayExec::getCamera</definition>
+        <argsstring>() const -&gt; std::shared_ptr&lt; Camera &gt;</argsstring>
+        <name>getCamera</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>Returns a pointer to the renderer&apos;s camera. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/n30/Repos/rayexec/include/RayExec.hpp" line="94" column="25" bodyfile="/home/n30/Repos/rayexec/include/RayExec.hpp" bodystart="94" bodyend="94"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+<para>The main user interface. </para>
+    </briefdescription>
+    <detaileddescription>
+<para>This class provides everything to set up a main loop and fill the scene with geometry and light sources. Furthermore, the renderer&apos;s settings can be changed to better fit the user&apos;s purpose. </para>
+<sect3 id="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_ray_exec_1autotoc_md10">
+<title>Example</title>
+<para><programlisting filename=".cpp"><codeline><highlight class="comment">//<sp/>The<sp/>following<sp/>example<sp/>renders<sp/>a<sp/>cube<sp/>in<sp/>less<sp/>than<sp/>10<sp/>lines<sp/>of<sp/>code.</highlight><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal">RayExec<sp/>myRenderer;</highlight></codeline>
+<codeline><highlight class="normal">myRenderer.init(<sp/>);</highlight></codeline>
+<codeline><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal">myRenderer.pushNode(<sp/>std::make_shared&lt;GeometryNode&gt;(<sp/></highlight><highlight class="stringliteral">&quot;models/cube.obj&quot;</highlight><highlight class="normal">,<sp/>Material(<sp/></highlight><highlight class="stringliteral">&quot;textures/metal.png&quot;</highlight><highlight class="normal"><sp/>)<sp/>)<sp/>);</highlight></codeline>
+<codeline><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"></highlight><highlight class="keywordflow">while</highlight><highlight class="normal"><sp/>(<sp/>myRenderer.isRunning(<sp/>)<sp/>)</highlight></codeline>
+<codeline><highlight class="normal">{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>myRenderer.run(<sp/>);</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+</programlisting> </para>
+</sect3>
+    </detaileddescription>
+    <collaborationgraph>
+      <node id="2">
+        <label>RAYEXEC_NAMESPACE::Settings</label>
+        <link refid="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_settings"/>
+      </node>
+      <node id="1">
+        <label>RAYEXEC_NAMESPACE::RayExec</label>
+        <link refid="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_ray_exec"/>
+        <childnode refid="2" relation="usage">
+          <edgelabel>settings</edgelabel>
+        </childnode>
+      </node>
+    </collaborationgraph>
+    <location file="/home/n30/Repos/rayexec/include/RayExec.hpp" line="28" column="1" bodyfile="/home/n30/Repos/rayexec/include/RayExec.hpp" bodystart="27" bodyend="109"/>
+    <listofallmembers>
+      <member refid="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_ray_exec_1a94f626512d8134f8ed862b831f2ddd87" prot="private" virt="non-virtual"><scope>RAYEXEC_NAMESPACE::RayExec</scope><name>api</name></member>
+      <member refid="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_ray_exec_1a71064a0111e4b69fff5d34b9b37c4941" prot="private" virt="non-virtual"><scope>RAYEXEC_NAMESPACE::RayExec</scope><name>camera</name></member>
+      <member refid="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_ray_exec_1a0a44717cc13a7b840c806049e7560705" prot="public" virt="non-virtual"><scope>RAYEXEC_NAMESPACE::RayExec</scope><name>findGeometry</name></member>
+      <member refid="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_ray_exec_1aa6f5eea39b1abc9b0c3ba0ee16dc8e13" prot="public" virt="non-virtual"><scope>RAYEXEC_NAMESPACE::RayExec</scope><name>getCamera</name></member>
+      <member refid="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_ray_exec_1a8b37457e5868d51ca5183b176a9ec5dd" prot="public" virt="non-virtual"><scope>RAYEXEC_NAMESPACE::RayExec</scope><name>getWindow</name></member>
+      <member refid="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_ray_exec_1a51bb630614b41ef72cb0fa0df68ab6cf" prot="private" virt="non-virtual"><scope>RAYEXEC_NAMESPACE::RayExec</scope><name>gui</name></member>
+      <member refid="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_ray_exec_1a4a77cb838d74cbf29b35e41733f702a9" prot="public" virt="non-virtual"><scope>RAYEXEC_NAMESPACE::RayExec</scope><name>init</name></member>
+      <member refid="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_ray_exec_1a864b3206cd23e6090ccfe10ff479e140" prot="private" virt="non-virtual"><scope>RAYEXEC_NAMESPACE::RayExec</scope><name>initialized</name></member>
+      <member refid="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_ray_exec_1a733871910ad19f68b0084d8d81a8d177" prot="private" virt="non-virtual"><scope>RAYEXEC_NAMESPACE::RayExec</scope><name>initScene</name></member>
+      <member refid="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_ray_exec_1af3094ea443ca1f685d3888cca6a51ff9" prot="public" virt="non-virtual"><scope>RAYEXEC_NAMESPACE::RayExec</scope><name>isRunning</name></member>
+      <member refid="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_ray_exec_1afc92af88a74dab31911a9b88a818dc61" prot="public" virt="non-virtual"><scope>RAYEXEC_NAMESPACE::RayExec</scope><name>removeGeometryInstance</name></member>
+      <member refid="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_ray_exec_1a4364aeb145d7ae3685cac2d126d1d304" prot="public" virt="non-virtual"><scope>RAYEXEC_NAMESPACE::RayExec</scope><name>run</name></member>
+      <member refid="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_ray_exec_1a0e840053de151bfa031b811511496cc4" prot="private" virt="non-virtual"><scope>RAYEXEC_NAMESPACE::RayExec</scope><name>running</name></member>
+      <member refid="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_ray_exec_1a41b6ca1d0db7fdb06806a6ce97beae84" prot="public" virt="non-virtual"><scope>RAYEXEC_NAMESPACE::RayExec</scope><name>setCamera</name></member>
+      <member refid="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_ray_exec_1a82259ba090dbf6319e92dee23b6b5b3d" prot="public" virt="non-virtual"><scope>RAYEXEC_NAMESPACE::RayExec</scope><name>setGeometries</name></member>
+      <member refid="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_ray_exec_1a2bff08870b1f64db618f69c737dba40f" prot="public" virt="non-virtual"><scope>RAYEXEC_NAMESPACE::RayExec</scope><name>setGeometryInstances</name></member>
+      <member refid="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_ray_exec_1a42df80fe179d395b350eddcd015ddc88" prot="public" virt="non-virtual"><scope>RAYEXEC_NAMESPACE::RayExec</scope><name>setGui</name></member>
+      <member refid="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_ray_exec_1ab71c208dbdcdf6cc03d962c95ce3e1d4" prot="public" virt="non-virtual"><scope>RAYEXEC_NAMESPACE::RayExec</scope><name>settings</name></member>
+      <member refid="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_ray_exec_1ab632b1740be14c4ea543d2d58dcd7bd3" prot="public" virt="non-virtual"><scope>RAYEXEC_NAMESPACE::RayExec</scope><name>setWindow</name></member>
+      <member refid="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_ray_exec_1ae64ec0603f573c599fbe2d4312736912" prot="public" virt="non-virtual"><scope>RAYEXEC_NAMESPACE::RayExec</scope><name>submitGeometry</name></member>
+      <member refid="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_ray_exec_1a3ef30ee07220e343ca8a9d88b7734f3c" prot="public" virt="non-virtual"><scope>RAYEXEC_NAMESPACE::RayExec</scope><name>submitGeometryInstance</name></member>
+      <member refid="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_ray_exec_1afe05ed9ef91fed62c9a695581da77fe5" prot="private" virt="non-virtual"><scope>RAYEXEC_NAMESPACE::RayExec</scope><name>window</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

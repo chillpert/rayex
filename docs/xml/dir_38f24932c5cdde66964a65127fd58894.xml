@@ -1,0 +1,13 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.17">
+  <compounddef id="dir_38f24932c5cdde66964a65127fd58894" kind="dir">
+    <compoundname>/home/n30/Repos/rayexec/include/api/raytracing</compoundname>
+    <innerfile refid="_acceleration_structure_8hpp">AccelerationStructure.hpp</innerfile>
+    <innerfile refid="_ray_tracing_builder_8hpp">RayTracingBuilder.hpp</innerfile>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="/home/n30/Repos/rayexec/include/api/raytracing/"/>
+  </compounddef>
+</doxygen>

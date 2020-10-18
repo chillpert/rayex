@@ -1,0 +1,497 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.17">
+  <compounddef id="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_gui" kind="class" language="C++" prot="public">
+    <compoundname>RAYEXEC_NAMESPACE::Gui</compoundname>
+    <includes refid="_gui_8hpp" local="no">Gui.hpp</includes>
+      <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_gui_1a223b79397bc765a1df905cf84e3cb18e" prot="private" static="no" mutable="no">
+        <type>vk::UniqueDescriptorPool</type>
+        <definition>vk::UniqueDescriptorPool RAYEXEC_NAMESPACE::Gui::descriptorPool</definition>
+        <argsstring></argsstring>
+        <name>descriptorPool</name>
+        <briefdescription>
+<para>A Vulkan descriptor pool with a unique handle. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/n30/Repos/rayexec/include/base/Gui.hpp" line="103" column="30" bodyfile="/home/n30/Repos/rayexec/include/base/Gui.hpp" bodystart="103" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_gui_1a0e9458b95b1c4b134f7f7c535015f69e" prot="private" static="no" mutable="no">
+        <type>vk::UniqueCommandPool</type>
+        <definition>vk::UniqueCommandPool RAYEXEC_NAMESPACE::Gui::commandPool</definition>
+        <argsstring></argsstring>
+        <name>commandPool</name>
+        <briefdescription>
+<para>A Vulkan command pool with a unique handle. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/n30/Repos/rayexec/include/base/Gui.hpp" line="104" column="27" bodyfile="/home/n30/Repos/rayexec/include/base/Gui.hpp" bodystart="104" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_gui_1ad2e881565088a637c5d116be0906c9df" prot="private" static="no" mutable="no">
+        <type><ref refid="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_command_buffer" kindref="compound">CommandBuffer</ref></type>
+        <definition>CommandBuffer RAYEXEC_NAMESPACE::Gui::commandBuffers</definition>
+        <argsstring></argsstring>
+        <name>commandBuffers</name>
+        <briefdescription>
+<para>A <ref refid="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_command_buffer" kindref="compound">RAYEXEC_NAMESPACE::CommandBuffer</ref>. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/n30/Repos/rayexec/include/base/Gui.hpp" line="105" column="19" bodyfile="/home/n30/Repos/rayexec/include/base/Gui.hpp" bodystart="105" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_gui_1a829da625148f79244ff90a7693230aba" prot="private" static="no" mutable="no">
+        <type><ref refid="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_render_pass" kindref="compound">RenderPass</ref></type>
+        <definition>RenderPass RAYEXEC_NAMESPACE::Gui::renderPass</definition>
+        <argsstring></argsstring>
+        <name>renderPass</name>
+        <briefdescription>
+<para>A Vulkan render pass. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/n30/Repos/rayexec/include/base/Gui.hpp" line="106" column="16" bodyfile="/home/n30/Repos/rayexec/include/base/Gui.hpp" bodystart="106" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_gui_1a6284bfc9826ec083e7f4d8ba07d91798" prot="private" static="no" mutable="no">
+        <type>std::vector&lt; vk::UniqueFramebuffer &gt;</type>
+        <definition>std::vector&lt;vk::UniqueFramebuffer&gt; RAYEXEC_NAMESPACE::Gui::framebuffers</definition>
+        <argsstring></argsstring>
+        <name>framebuffers</name>
+        <briefdescription>
+<para>A vector of Vulkan framebuffers with unique handles. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/n30/Repos/rayexec/include/base/Gui.hpp" line="107" column="17" bodyfile="/home/n30/Repos/rayexec/include/base/Gui.hpp" bodystart="107" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_gui_1ab7f03d42843c60694e19e263af63f177" prot="private" static="no" mutable="no">
+        <type>vk::Extent2D</type>
+        <definition>vk::Extent2D RAYEXEC_NAMESPACE::Gui::swapchainImageExtent</definition>
+        <argsstring></argsstring>
+        <name>swapchainImageExtent</name>
+        <briefdescription>
+<para>The swapchain images&apos; image extent. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/n30/Repos/rayexec/include/base/Gui.hpp" line="109" column="18" bodyfile="/home/n30/Repos/rayexec/include/base/Gui.hpp" bodystart="109" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_gui_1a40a810587318be3d9857c3b3746eda86" prot="public" static="no" const="no" explicit="no" inline="no" virt="virtual">
+        <type>RX_API</type>
+        <definition>virtual RX_API RAYEXEC_NAMESPACE::Gui::~Gui</definition>
+        <argsstring>()=default</argsstring>
+        <name>~Gui</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/n30/Repos/rayexec/include/base/Gui.hpp" line="40" column="20"/>
+      </memberdef>
+      <memberdef kind="function" id="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_gui_1a42ee4d92c4f67cfffde59078d8dc2ea6" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>auto</type>
+        <definition>auto RAYEXEC_NAMESPACE::Gui::getCommandBuffer</definition>
+        <argsstring>(uint32_t index) const -&gt; vk::CommandBuffer</argsstring>
+        <name>getCommandBuffer</name>
+        <param>
+          <type>uint32_t</type>
+          <declname>index</declname>
+        </param>
+        <briefdescription>
+<para>Returns the GUI&apos;s command buffer at the given index. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>index</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The index of the command buffer to access. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>Returns the Vulkan command buffer. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/n30/Repos/rayexec/include/base/Gui.hpp" line="45" column="11" bodyfile="/home/n30/Repos/rayexec/include/base/Gui.hpp" bodystart="45" bodyend="45"/>
+      </memberdef>
+      <memberdef kind="function" id="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_gui_1aeb8f2a8a40752cc3e8bac5a386ea8264" prot="public" static="no" const="no" explicit="no" inline="no" virt="virtual">
+        <type>RX_API void</type>
+        <definition>virtual RX_API void RAYEXEC_NAMESPACE::Gui::configure</definition>
+        <argsstring>()</argsstring>
+        <name>configure</name>
+        <briefdescription>
+<para>Used to configure all ImGui settings. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>The user should override this function if they want to change the style or various other configuration settings. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/n30/Repos/rayexec/include/base/Gui.hpp" line="50" column="25"/>
+      </memberdef>
+      <memberdef kind="function" id="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_gui_1a370773b570ac9e9cedf4532af673fed2" prot="public" static="no" const="no" explicit="no" inline="no" virt="virtual">
+        <type>RX_API void</type>
+        <definition>virtual RX_API void RAYEXEC_NAMESPACE::Gui::render</definition>
+        <argsstring>()</argsstring>
+        <name>render</name>
+        <briefdescription>
+<para>This function is for calling the individual ImGui components, e.g. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>widgets.</para>
+<para>The user should override this function to create their own GUI. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/n30/Repos/rayexec/include/base/Gui.hpp" line="55" column="25"/>
+      </memberdef>
+      <memberdef kind="function" id="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_gui_1a53e3aef5201eb40b6253497ffa3007d9" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void RAYEXEC_NAMESPACE::Gui::init</definition>
+        <argsstring>(const Surface *surface, vk::Extent2D swapchainImageExtent, const std::vector&lt; vk::ImageView &gt; &amp;swapchainImageViews)</argsstring>
+        <name>init</name>
+        <param>
+          <type>const <ref refid="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_surface" kindref="compound">Surface</ref> *</type>
+          <declname>surface</declname>
+        </param>
+        <param>
+          <type>vk::Extent2D</type>
+          <declname>swapchainImageExtent</declname>
+        </param>
+        <param>
+          <type>const std::vector&lt; vk::ImageView &gt; &amp;</type>
+          <declname>swapchainImageViews</declname>
+        </param>
+        <briefdescription>
+<para>Creates the GUI and all required Vulkan components. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>surface</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>A pointer to a <ref refid="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_surface" kindref="compound">RAYEXEC_NAMESPACE::Surface</ref> object. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>swapchainImageExtent</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The extent of the swapchain images. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>swapchainImageViews</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The swapchain images&apos; image views. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/n30/Repos/rayexec/include/base/Gui.hpp" line="61" column="10"/>
+      </memberdef>
+      <memberdef kind="function" id="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_gui_1a3c007475218c665bf3cefc22e8aec63a" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void RAYEXEC_NAMESPACE::Gui::recreate</definition>
+        <argsstring>(vk::Extent2D swapchainImageExtent, const std::vector&lt; vk::ImageView &gt; &amp;swapchainImageViews)</argsstring>
+        <name>recreate</name>
+        <param>
+          <type>vk::Extent2D</type>
+          <declname>swapchainImageExtent</declname>
+        </param>
+        <param>
+          <type>const std::vector&lt; vk::ImageView &gt; &amp;</type>
+          <declname>swapchainImageViews</declname>
+        </param>
+        <briefdescription>
+<para>Used to recreate the GUI in case the window size was changed. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>swapchainImageExtent</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The extent of the swapchain images. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>swapchainImageViews</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The swapchain images&apos; image views. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/n30/Repos/rayexec/include/base/Gui.hpp" line="66" column="10"/>
+      </memberdef>
+      <memberdef kind="function" id="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_gui_1a786d4c8f378d6f025d8ca7caae8e66c4" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void RAYEXEC_NAMESPACE::Gui::renderDrawData</definition>
+        <argsstring>(uint32_t imageIndex)</argsstring>
+        <name>renderDrawData</name>
+        <param>
+          <type>uint32_t</type>
+          <declname>imageIndex</declname>
+        </param>
+        <briefdescription>
+<para>Records the ImGui rendering calls to the command buffer at the given image index. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>imageIndex</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The index addressing a command buffer. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/n30/Repos/rayexec/include/base/Gui.hpp" line="76" column="10"/>
+      </memberdef>
+      <memberdef kind="function" id="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_gui_1a18e47c4c4175e5ba4935c7cc6949b3df" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>RX_API void</type>
+        <definition>RX_API void RAYEXEC_NAMESPACE::Gui::destroy</definition>
+        <argsstring>()</argsstring>
+        <name>destroy</name>
+        <briefdescription>
+<para>Destroys all ImGui resources. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/n30/Repos/rayexec/include/base/Gui.hpp" line="79" column="17"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-static-func">
+      <memberdef kind="function" id="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_gui_1a7540ec605ab9247a035203511894e161" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>static void RAYEXEC_NAMESPACE::Gui::newFrame</definition>
+        <argsstring>()</argsstring>
+        <name>newFrame</name>
+        <briefdescription>
+<para>Creates a new ImGui frame. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/n30/Repos/rayexec/include/base/Gui.hpp" line="69" column="17"/>
+      </memberdef>
+      <memberdef kind="function" id="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_gui_1ad85893ed16d1fa37d5f3ccb04710d32c" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>static void RAYEXEC_NAMESPACE::Gui::endRender</definition>
+        <argsstring>()</argsstring>
+        <name>endRender</name>
+        <briefdescription>
+<para>Calls the actual ImGui render call. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/n30/Repos/rayexec/include/base/Gui.hpp" line="72" column="17"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="private-func">
+      <memberdef kind="function" id="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_gui_1a1055880670ddeb1fe438e8a86b9a976c" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void RAYEXEC_NAMESPACE::Gui::initDescriptorPool</definition>
+        <argsstring>()</argsstring>
+        <name>initDescriptorPool</name>
+        <briefdescription>
+<para>Creates a descriptor pool. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/n30/Repos/rayexec/include/base/Gui.hpp" line="83" column="10"/>
+      </memberdef>
+      <memberdef kind="function" id="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_gui_1a6c14d0631839b039fcfb5308b8faffcf" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void RAYEXEC_NAMESPACE::Gui::initRenderPass</definition>
+        <argsstring>(const Surface *surface)</argsstring>
+        <name>initRenderPass</name>
+        <param>
+          <type>const <ref refid="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_surface" kindref="compound">Surface</ref> *</type>
+          <declname>surface</declname>
+        </param>
+        <briefdescription>
+<para>Creates a render pass for the GUI. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>surface</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>A pointer to a <ref refid="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_surface" kindref="compound">RAYEXEC_NAMESPACE::Surface</ref> object. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/n30/Repos/rayexec/include/base/Gui.hpp" line="87" column="10"/>
+      </memberdef>
+      <memberdef kind="function" id="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_gui_1ae0c1b5c93adc040581295cb277e51306" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void RAYEXEC_NAMESPACE::Gui::initCommandPool</definition>
+        <argsstring>()</argsstring>
+        <name>initCommandPool</name>
+        <briefdescription>
+<para>Creates a command pool for the GUI&apos;s command buffers. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/n30/Repos/rayexec/include/base/Gui.hpp" line="90" column="10"/>
+      </memberdef>
+      <memberdef kind="function" id="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_gui_1acd0b48ea24a6de70080e396fdd10f83c" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void RAYEXEC_NAMESPACE::Gui::initFonts</definition>
+        <argsstring>()</argsstring>
+        <name>initFonts</name>
+        <briefdescription>
+<para>Creates the ImGui font textures. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/n30/Repos/rayexec/include/base/Gui.hpp" line="93" column="10"/>
+      </memberdef>
+      <memberdef kind="function" id="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_gui_1ae2cb0107a3450c621dae85768e659aa6" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void RAYEXEC_NAMESPACE::Gui::initCommandBuffers</definition>
+        <argsstring>()</argsstring>
+        <name>initCommandBuffers</name>
+        <briefdescription>
+<para>Creates the command buffers to record the ImGui rendering commands to. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/n30/Repos/rayexec/include/base/Gui.hpp" line="96" column="10"/>
+      </memberdef>
+      <memberdef kind="function" id="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_gui_1a9370502fd300b7d3454b25dd188ce6e9" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void RAYEXEC_NAMESPACE::Gui::initFramebuffers</definition>
+        <argsstring>(const std::vector&lt; vk::ImageView &gt; &amp;swapchainImageViews)</argsstring>
+        <name>initFramebuffers</name>
+        <param>
+          <type>const std::vector&lt; vk::ImageView &gt; &amp;</type>
+          <declname>swapchainImageViews</declname>
+        </param>
+        <briefdescription>
+<para>Creates framebuffers for the render pass. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>swapchainImageViews</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>A vector holding the swapchain images&apos; image view. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/n30/Repos/rayexec/include/base/Gui.hpp" line="100" column="10"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+<para>A class to create an ImGui-based GUI. </para>
+    </briefdescription>
+    <detaileddescription>
+<para>This class acts like an interface for the user to create their own GUI. It is possible to create multiple GUI objects and re-assign them to the renderer at runtime. <programlisting filename=".cpp"><codeline><highlight class="keyword">class<sp/></highlight><highlight class="normal">CustomGui<sp/>:<sp/></highlight><highlight class="keyword">public</highlight><highlight class="normal"><sp/>Gui</highlight></codeline>
+<codeline><highlight class="normal">{</highlight></codeline>
+<codeline><highlight class="normal"></highlight><highlight class="keyword">private</highlight><highlight class="normal">:</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/></highlight><highlight class="comment">//<sp/>Configure<sp/>style<sp/>and<sp/>input<sp/>of<sp/>the<sp/>GUI.</highlight><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_gui_1aeb8f2a8a40752cc3e8bac5a386ea8264" kindref="member">configure</ref>()</highlight><highlight class="keyword"><sp/>override<sp/></highlight><highlight class="normal">{<sp/>}</highlight></codeline>
+<codeline><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/></highlight><highlight class="comment">//<sp/>Put<sp/>the<sp/>rendering<sp/>commands<sp/>in<sp/>here.</highlight><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_gui_1a370773b570ac9e9cedf4532af673fed2" kindref="member">render</ref>()</highlight><highlight class="keyword"><sp/>override<sp/></highlight><highlight class="normal">{<sp/>}</highlight></codeline>
+<codeline><highlight class="normal">};</highlight></codeline>
+<codeline><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal">RayExecmyRenderer;</highlight></codeline>
+<codeline><highlight class="normal">myRenderer.init(<sp/>);</highlight></codeline>
+<codeline><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"></highlight><highlight class="comment">//<sp/>Put<sp/>this<sp/>line<sp/>after<sp/>the<sp/>declaration<sp/>of<sp/>the<sp/>RAYEXEC_NAMESPACE::RayExecobject.</highlight><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/>myGui<sp/>=<sp/>std::make_shared&lt;CustomGui&gt;(<sp/>);</highlight></codeline>
+<codeline><highlight class="normal">myRenderer.setGui(<sp/>myGui<sp/>);</highlight></codeline>
+</programlisting></para>
+<para><simplesect kind="warning"><para>The GUI object must be declared after the renderer to ensure the correct order for destroying and freeing resources. </para>
+</simplesect>
+</para>
+    </detaileddescription>
+    <location file="/home/n30/Repos/rayexec/include/base/Gui.hpp" line="38" column="1" bodyfile="/home/n30/Repos/rayexec/include/base/Gui.hpp" bodystart="37" bodyend="110"/>
+    <listofallmembers>
+      <member refid="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_gui_1ad2e881565088a637c5d116be0906c9df" prot="private" virt="non-virtual"><scope>RAYEXEC_NAMESPACE::Gui</scope><name>commandBuffers</name></member>
+      <member refid="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_gui_1a0e9458b95b1c4b134f7f7c535015f69e" prot="private" virt="non-virtual"><scope>RAYEXEC_NAMESPACE::Gui</scope><name>commandPool</name></member>
+      <member refid="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_gui_1aeb8f2a8a40752cc3e8bac5a386ea8264" prot="public" virt="virtual"><scope>RAYEXEC_NAMESPACE::Gui</scope><name>configure</name></member>
+      <member refid="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_gui_1a223b79397bc765a1df905cf84e3cb18e" prot="private" virt="non-virtual"><scope>RAYEXEC_NAMESPACE::Gui</scope><name>descriptorPool</name></member>
+      <member refid="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_gui_1a18e47c4c4175e5ba4935c7cc6949b3df" prot="public" virt="non-virtual"><scope>RAYEXEC_NAMESPACE::Gui</scope><name>destroy</name></member>
+      <member refid="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_gui_1ad85893ed16d1fa37d5f3ccb04710d32c" prot="public" virt="non-virtual"><scope>RAYEXEC_NAMESPACE::Gui</scope><name>endRender</name></member>
+      <member refid="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_gui_1a6284bfc9826ec083e7f4d8ba07d91798" prot="private" virt="non-virtual"><scope>RAYEXEC_NAMESPACE::Gui</scope><name>framebuffers</name></member>
+      <member refid="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_gui_1a42ee4d92c4f67cfffde59078d8dc2ea6" prot="public" virt="non-virtual"><scope>RAYEXEC_NAMESPACE::Gui</scope><name>getCommandBuffer</name></member>
+      <member refid="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_gui_1a53e3aef5201eb40b6253497ffa3007d9" prot="public" virt="non-virtual"><scope>RAYEXEC_NAMESPACE::Gui</scope><name>init</name></member>
+      <member refid="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_gui_1ae2cb0107a3450c621dae85768e659aa6" prot="private" virt="non-virtual"><scope>RAYEXEC_NAMESPACE::Gui</scope><name>initCommandBuffers</name></member>
+      <member refid="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_gui_1ae0c1b5c93adc040581295cb277e51306" prot="private" virt="non-virtual"><scope>RAYEXEC_NAMESPACE::Gui</scope><name>initCommandPool</name></member>
+      <member refid="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_gui_1a1055880670ddeb1fe438e8a86b9a976c" prot="private" virt="non-virtual"><scope>RAYEXEC_NAMESPACE::Gui</scope><name>initDescriptorPool</name></member>
+      <member refid="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_gui_1acd0b48ea24a6de70080e396fdd10f83c" prot="private" virt="non-virtual"><scope>RAYEXEC_NAMESPACE::Gui</scope><name>initFonts</name></member>
+      <member refid="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_gui_1a9370502fd300b7d3454b25dd188ce6e9" prot="private" virt="non-virtual"><scope>RAYEXEC_NAMESPACE::Gui</scope><name>initFramebuffers</name></member>
+      <member refid="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_gui_1a6c14d0631839b039fcfb5308b8faffcf" prot="private" virt="non-virtual"><scope>RAYEXEC_NAMESPACE::Gui</scope><name>initRenderPass</name></member>
+      <member refid="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_gui_1a7540ec605ab9247a035203511894e161" prot="public" virt="non-virtual"><scope>RAYEXEC_NAMESPACE::Gui</scope><name>newFrame</name></member>
+      <member refid="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_gui_1a3c007475218c665bf3cefc22e8aec63a" prot="public" virt="non-virtual"><scope>RAYEXEC_NAMESPACE::Gui</scope><name>recreate</name></member>
+      <member refid="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_gui_1a370773b570ac9e9cedf4532af673fed2" prot="public" virt="virtual"><scope>RAYEXEC_NAMESPACE::Gui</scope><name>render</name></member>
+      <member refid="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_gui_1a786d4c8f378d6f025d8ca7caae8e66c4" prot="public" virt="non-virtual"><scope>RAYEXEC_NAMESPACE::Gui</scope><name>renderDrawData</name></member>
+      <member refid="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_gui_1a829da625148f79244ff90a7693230aba" prot="private" virt="non-virtual"><scope>RAYEXEC_NAMESPACE::Gui</scope><name>renderPass</name></member>
+      <member refid="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_gui_1ab7f03d42843c60694e19e263af63f177" prot="private" virt="non-virtual"><scope>RAYEXEC_NAMESPACE::Gui</scope><name>swapchainImageExtent</name></member>
+      <member refid="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_gui_1a40a810587318be3d9857c3b3746eda86" prot="public" virt="virtual"><scope>RAYEXEC_NAMESPACE::Gui</scope><name>~Gui</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

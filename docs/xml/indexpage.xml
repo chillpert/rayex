@@ -1,0 +1,67 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.17">
+  <compounddef id="indexpage" kind="page">
+    <compoundname>index</compoundname>
+    <title>RAYEXEC</title>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+<para>RAYEXEC is a work-in-progress cross-platform Vulkan-based path tracing rendering library.</para>
+<para>It runs on both Linux (x64) and Windows (x64) using the Vulkan API. The purpose of this software is to provide a cross-platform renderer with path tracing capabilities that is easy to integrate into existing projects. It uses SDL2 for windowing and GLM as its maths library. RAYEXEC features native <ulink url="https://github.com/ocornut/imgui">Dear ImGui</ulink> support.</para>
+<sect1 id="index_1autotoc_md1">
+<title>Requirements</title>
+<para>NVIDIA Vulkan Beta Drivers <ulink url="https://developer.nvidia.com/vulkan-driver">[Download]</ulink></para>
+</sect1>
+<sect1 id="index_1autotoc_md2">
+<title>Deploy</title>
+<para>To integrate RAYEXEC in your existing C++ / CMake project, follow the steps below.</para>
+<para><orderedlist>
+<listitem><para>Download the latest <ulink url="https://github.com/chillpert/rayexec">release</ulink>.</para>
+</listitem><listitem><para>Place the <bold>shared library objects</bold> and the provided <bold>include folder</bold> somewhere inside your project.</para>
+</listitem><listitem><para>Include the CMakeLists.txt inside the <bold>include folder</bold> to your CMakeLists.txt</para>
+</listitem><listitem><para>Link your target against the <bold>shared library objects</bold> and against SDL2</para>
+</listitem></orderedlist>
+</para>
+<para>Using CMake is not obligatory but recommended as RAYEXEC comes with its own CMakeLists.txt that will properly include all project headers. A release also comes with a fully functional example including a complete CMakeLists.txt that can be used as reference.</para>
+</sect1>
+<sect1 id="index_1autotoc_md3">
+<title>Build</title>
+<sect2 id="index_1autotoc_md4">
+<title>Linux</title>
+<para>To build the entire library yourself follow the steps below. If you want to build the provided example, make sure to enable the RX_BUILD_EXAMPLES build option in CMake. <programlisting filename=".sh"><codeline><highlight class="normal">$<sp/>git<sp/>clone<sp/>https://github.com/chillpert/rayexec</highlight></codeline>
+<codeline><highlight class="normal">$<sp/>cd<sp/>renderer<sp/></highlight></codeline>
+<codeline><highlight class="normal">$<sp/>mkdir<sp/>build<sp/>&amp;&amp;<sp/>cd<sp/>build</highlight></codeline>
+<codeline><highlight class="normal">$<sp/>cmake<sp/>..</highlight></codeline>
+<codeline><highlight class="normal">$<sp/>make<sp/>all</highlight></codeline>
+</programlisting></para>
+<para>Execute the example. Depending on the build type you want to choose, replace [buildtype]. <programlisting filename=".sh"><codeline><highlight class="normal">$<sp/>./bin/[buildtype]/example</highlight></codeline>
+</programlisting></para>
+</sect2>
+<sect2 id="index_1autotoc_md5">
+<title>Windows</title>
+<para>Generate a Visual Studio solution using CMake.</para>
+</sect2>
+<sect2 id="index_1autotoc_md6">
+<title>Usage</title>
+<para>The following cope snippet shows the most minimal example possible. Nothing will be rendered. For a proper example take a look at the <bold>documentation</bold> or at <bold>example/example.cpp</bold>. <programlisting><codeline><highlight class="normal">#include<sp/>&quot;RayExec.hpp&quot;</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">int<sp/>main(<sp/>)</highlight></codeline>
+<codeline><highlight class="normal">{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>RayExec<sp/>renderer;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>renderer.init(<sp/>);</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>while<sp/>(<sp/>renderer.isRunning(<sp/>)<sp/>)</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>renderer.run(<sp/>);</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+</programlisting></para>
+</sect2>
+</sect1>
+<sect1 id="index_1autotoc_md7">
+<title>Download</title>
+<para>You can find the GitHub repository <ulink url="https://github.com/chillpert/rayexec">here</ulink>. </para>
+</sect1>
+    </detaileddescription>
+  </compounddef>
+</doxygen>

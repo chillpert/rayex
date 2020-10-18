@@ -1,0 +1,104 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.17">
+  <compounddef id="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_time" kind="class" language="C++" prot="public">
+    <compoundname>RAYEXEC_NAMESPACE::Time</compoundname>
+    <includes refid="_time_8hpp" local="no">Time.hpp</includes>
+      <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_time_1adc4f4facfbe3e9b393adc7f0a6d39c45" prot="public" static="no" mutable="no">
+        <type>friend</type>
+        <definition>friend RAYEXEC_NAMESPACE::Time::Window</definition>
+        <argsstring></argsstring>
+        <name>Window</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/n30/Repos/rayexec/include/base/Time.hpp" line="15" column="12" bodyfile="/home/n30/Repos/rayexec/include/base/Time.hpp" bodystart="15" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-static-func">
+      <memberdef kind="function" id="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_time_1a19bf97e61af86738770309d9adcb55ef" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>RX_API void</type>
+        <definition>static RX_API void RAYEXEC_NAMESPACE::Time::benchmark</definition>
+        <argsstring>()</argsstring>
+        <name>benchmark</name>
+        <briefdescription>
+<para>Prints the average fps as well as the time since recording. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/n30/Repos/rayexec/include/base/Time.hpp" line="18" column="24"/>
+      </memberdef>
+      <memberdef kind="function" id="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_time_1ab4bf779100cd63d41a394a176ae0b80a" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>RX_API auto</type>
+        <definition>static RX_API auto RAYEXEC_NAMESPACE::Time::getTime</definition>
+        <argsstring>() -&gt; float</argsstring>
+        <name>getTime</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>Returns the time passed since application start in seconds. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/n30/Repos/rayexec/include/base/Time.hpp" line="21" column="24"/>
+      </memberdef>
+      <memberdef kind="function" id="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_time_1ac6a8860c2be02303ee1a39ad63e6b52c" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>RX_API auto</type>
+        <definition>static RX_API auto RAYEXEC_NAMESPACE::Time::getDeltaTime</definition>
+        <argsstring>() -&gt; float</argsstring>
+        <name>getDeltaTime</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>Returns the time passed between the current and the last frame. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/n30/Repos/rayexec/include/base/Time.hpp" line="23" column="24"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="private-static-func">
+      <memberdef kind="function" id="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_time_1ae6cad5b0d909f1c3ab981edcf2291638" prot="private" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>static void RAYEXEC_NAMESPACE::Time::update</definition>
+        <argsstring>()</argsstring>
+        <name>update</name>
+        <briefdescription>
+<para>Updates the timing. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>Prints the current fps every three seconds. <simplesect kind="note"><para>This function will be called every tick. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/n30/Repos/rayexec/include/base/Time.hpp" line="30" column="17"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+<para>Used to keep track of the application&apos;s timing. </para>
+    </briefdescription>
+    <detaileddescription>
+<para><xrefsect id="todo_1_todo000007"><xreftitle>Todo</xreftitle><xrefdescription><para>Average FPS are pointless. Implement minimum FPS and frametimes instead. </para>
+</xrefdescription></xrefsect></para>
+    </detaileddescription>
+    <location file="/home/n30/Repos/rayexec/include/base/Time.hpp" line="13" column="1" bodyfile="/home/n30/Repos/rayexec/include/base/Time.hpp" bodystart="12" bodyend="31"/>
+    <listofallmembers>
+      <member refid="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_time_1a19bf97e61af86738770309d9adcb55ef" prot="public" virt="non-virtual"><scope>RAYEXEC_NAMESPACE::Time</scope><name>benchmark</name></member>
+      <member refid="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_time_1ac6a8860c2be02303ee1a39ad63e6b52c" prot="public" virt="non-virtual"><scope>RAYEXEC_NAMESPACE::Time</scope><name>getDeltaTime</name></member>
+      <member refid="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_time_1ab4bf779100cd63d41a394a176ae0b80a" prot="public" virt="non-virtual"><scope>RAYEXEC_NAMESPACE::Time</scope><name>getTime</name></member>
+      <member refid="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_time_1ae6cad5b0d909f1c3ab981edcf2291638" prot="private" virt="non-virtual"><scope>RAYEXEC_NAMESPACE::Time</scope><name>update</name></member>
+      <member refid="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_time_1adc4f4facfbe3e9b393adc7f0a6d39c45" prot="public" virt="non-virtual"><scope>RAYEXEC_NAMESPACE::Time</scope><name>Window</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

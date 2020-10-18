@@ -1,0 +1,1136 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.17">
+  <compounddef id="namespacevk_1_1_initializer" kind="namespace" language="C++">
+    <compoundname>vk::Initializer</compoundname>
+      <sectiondef kind="func">
+      <memberdef kind="function" id="namespacevk_1_1_initializer_1ae6a5303506418677ec639446ef16cc46" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>auto</type>
+        <definition>auto vk::Initializer::initFenceUnique</definition>
+        <argsstring>(FenceCreateFlags flags=FenceCreateFlagBits::eSignaled) -&gt; UniqueFence</argsstring>
+        <name>initFenceUnique</name>
+        <param>
+          <type>FenceCreateFlags</type>
+          <declname>flags</declname>
+          <defval>FenceCreateFlagBits::eSignaled</defval>
+        </param>
+        <briefdescription>
+<para>Creates a fence with a unique handle. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>flags</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The flags used for creating the fence. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>Returns the fence. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/n30/Repos/rayexec/include/api/utility/Initializers.hpp" line="16" column="10" declfile="/home/n30/Repos/rayexec/include/api/utility/Initializers.hpp" declline="16" declcolumn="10"/>
+      </memberdef>
+      <memberdef kind="function" id="namespacevk_1_1_initializer_1af6bf761ce27237bb82fb5e02535617d9" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>auto</type>
+        <definition>auto vk::Initializer::initFence</definition>
+        <argsstring>(FenceCreateFlags flags=FenceCreateFlagBits::eSignaled) -&gt; Fence</argsstring>
+        <name>initFence</name>
+        <param>
+          <type>FenceCreateFlags</type>
+          <declname>flags</declname>
+          <defval>FenceCreateFlagBits::eSignaled</defval>
+        </param>
+        <briefdescription>
+<para>Creates a fence. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>flags</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The flags used for creating the fence. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>Returns the fence. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/n30/Repos/rayexec/include/api/utility/Initializers.hpp" line="21" column="10" declfile="/home/n30/Repos/rayexec/include/api/utility/Initializers.hpp" declline="21" declcolumn="10"/>
+      </memberdef>
+      <memberdef kind="function" id="namespacevk_1_1_initializer_1a375ed5917667a58eff188349cf3f9050" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>auto</type>
+        <definition>auto vk::Initializer::initSemaphoreUnique</definition>
+        <argsstring>(SemaphoreCreateFlags flags={ }) -&gt; UniqueSemaphore</argsstring>
+        <name>initSemaphoreUnique</name>
+        <param>
+          <type>SemaphoreCreateFlags</type>
+          <declname>flags</declname>
+          <defval>{ }</defval>
+        </param>
+        <briefdescription>
+<para>Creates a semaphore with a unique handle. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>flags</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The flags used for creating the semaphore. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>Returns the semaphore. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/n30/Repos/rayexec/include/api/utility/Initializers.hpp" line="26" column="10" declfile="/home/n30/Repos/rayexec/include/api/utility/Initializers.hpp" declline="26" declcolumn="10"/>
+      </memberdef>
+      <memberdef kind="function" id="namespacevk_1_1_initializer_1ac1ec2f4e793ae3383e4c69db03ff4fc1" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>auto</type>
+        <definition>auto vk::Initializer::initSemaphore</definition>
+        <argsstring>(SemaphoreCreateFlags flags={ }) -&gt; Semaphore</argsstring>
+        <name>initSemaphore</name>
+        <param>
+          <type>SemaphoreCreateFlags</type>
+          <declname>flags</declname>
+          <defval>{ }</defval>
+        </param>
+        <briefdescription>
+<para>Creates a semaphore. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>flags</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The flags used for creating the semaphore. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>Returns the semaphore. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/n30/Repos/rayexec/include/api/utility/Initializers.hpp" line="31" column="10" declfile="/home/n30/Repos/rayexec/include/api/utility/Initializers.hpp" declline="31" declcolumn="10"/>
+      </memberdef>
+      <memberdef kind="function" id="namespacevk_1_1_initializer_1acef14128475ec3fe6c547ff6673fd23a" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>auto</type>
+        <definition>auto vk::Initializer::initCommandPoolUnique</definition>
+        <argsstring>(uint32_t queueFamilyIndex, CommandPoolCreateFlags flags={ }) -&gt; UniqueCommandPool</argsstring>
+        <name>initCommandPoolUnique</name>
+        <param>
+          <type>uint32_t</type>
+          <declname>queueFamilyIndex</declname>
+        </param>
+        <param>
+          <type>CommandPoolCreateFlags</type>
+          <declname>flags</declname>
+          <defval>{ }</defval>
+        </param>
+        <briefdescription>
+<para>Creates a command pool with a unique handle. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>queueFamilyIndex</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The queue family from which the command pool can submit to. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>flags</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The flags used for creating the command pool. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>Returns the command pool. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/n30/Repos/rayexec/include/api/utility/Initializers.hpp" line="37" column="10" declfile="/home/n30/Repos/rayexec/include/api/utility/Initializers.hpp" declline="37" declcolumn="10"/>
+      </memberdef>
+      <memberdef kind="function" id="namespacevk_1_1_initializer_1a4f31060460247e2cec9de6164b6e0057" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>auto</type>
+        <definition>auto vk::Initializer::initCommandPool</definition>
+        <argsstring>(uint32_t queueFamilyIndex, CommandPoolCreateFlags flags={ }) -&gt; CommandPool</argsstring>
+        <name>initCommandPool</name>
+        <param>
+          <type>uint32_t</type>
+          <declname>queueFamilyIndex</declname>
+        </param>
+        <param>
+          <type>CommandPoolCreateFlags</type>
+          <declname>flags</declname>
+          <defval>{ }</defval>
+        </param>
+        <briefdescription>
+<para>Creates a command pool. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>queueFamilyIndex</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The queue family from which the command pool can submit to. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>flags</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The flags used for creating the command pool. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>Returns the command pool. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/n30/Repos/rayexec/include/api/utility/Initializers.hpp" line="43" column="10" declfile="/home/n30/Repos/rayexec/include/api/utility/Initializers.hpp" declline="43" declcolumn="10"/>
+      </memberdef>
+      <memberdef kind="function" id="namespacevk_1_1_initializer_1acdbf982d7f7d6c943c5d7698640eeb28" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>auto</type>
+        <definition>auto vk::Initializer::initDescriptorPoolUnique</definition>
+        <argsstring>(const std::vector&lt; DescriptorPoolSize &gt; &amp;poolSizes, uint32_t maxSets=1, DescriptorPoolCreateFlags flags={ }) -&gt; UniqueDescriptorPool</argsstring>
+        <name>initDescriptorPoolUnique</name>
+        <param>
+          <type>const std::vector&lt; DescriptorPoolSize &gt; &amp;</type>
+          <declname>poolSizes</declname>
+        </param>
+        <param>
+          <type>uint32_t</type>
+          <declname>maxSets</declname>
+          <defval>1</defval>
+        </param>
+        <param>
+          <type>DescriptorPoolCreateFlags</type>
+          <declname>flags</declname>
+          <defval>{ }</defval>
+        </param>
+        <briefdescription>
+<para>Creates a unique descriptor pool. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>poolSizes</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>A vector of Vulkan descriptor pool sizes. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>maxSets</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The maximum amount of descriptor sets that can be allocated from this pool. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>flags</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Flags for the creation process. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/n30/Repos/rayexec/include/api/utility/Initializers.hpp" line="49" column="10" declfile="/home/n30/Repos/rayexec/include/api/utility/Initializers.hpp" declline="49" declcolumn="10"/>
+      </memberdef>
+      <memberdef kind="function" id="namespacevk_1_1_initializer_1aed58fa91ff66a059c1a2aba841c62094" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>auto</type>
+        <definition>auto vk::Initializer::initDescriptorSetsUnique</definition>
+        <argsstring>(const UniqueDescriptorPool &amp;pool, const UniqueDescriptorSetLayout &amp;layout) -&gt; std::vector&lt; DescriptorSet &gt;</argsstring>
+        <name>initDescriptorSetsUnique</name>
+        <param>
+          <type>const UniqueDescriptorPool &amp;</type>
+          <declname>pool</declname>
+        </param>
+        <param>
+          <type>const UniqueDescriptorSetLayout &amp;</type>
+          <declname>layout</declname>
+        </param>
+        <briefdescription>
+<para>Creates unique Vulkan descriptor sets. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>pool</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>A unique Vulkan descriptor pool to allocate the sets from. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>layout</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The desired unique Vulkan descriptor set layout. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/n30/Repos/rayexec/include/api/utility/Initializers.hpp" line="54" column="10" declfile="/home/n30/Repos/rayexec/include/api/utility/Initializers.hpp" declline="54" declcolumn="10"/>
+      </memberdef>
+      <memberdef kind="function" id="namespacevk_1_1_initializer_1a493d221cb9855740252a5e69a8ca0838" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>auto</type>
+        <definition>auto vk::Initializer::allocateMemoryUnique</definition>
+        <argsstring>(Image image, MemoryPropertyFlags propertyFlags=MemoryPropertyFlagBits::eDeviceLocal, void *pNext=nullptr) -&gt; UniqueDeviceMemory</argsstring>
+        <name>allocateMemoryUnique</name>
+        <param>
+          <type>Image</type>
+          <declname>image</declname>
+        </param>
+        <param>
+          <type>MemoryPropertyFlags</type>
+          <declname>propertyFlags</declname>
+          <defval>MemoryPropertyFlagBits::eDeviceLocal</defval>
+        </param>
+        <param>
+          <type>void *</type>
+          <declname>pNext</declname>
+          <defval>nullptr</defval>
+        </param>
+        <briefdescription>
+<para>Allocates and binds unique memory for an image. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>image</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The image to allocate memory for. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>propertyFlags</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The memory property flags. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>pNext</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The pNext chain of the Vulkan allocation info. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>Returns the memory. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/n30/Repos/rayexec/include/api/utility/Initializers.hpp" line="61" column="10" declfile="/home/n30/Repos/rayexec/include/api/utility/Initializers.hpp" declline="61" declcolumn="10"/>
+      </memberdef>
+      <memberdef kind="function" id="namespacevk_1_1_initializer_1af484445cf6e33bde051680745478e92e" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>auto</type>
+        <definition>auto vk::Initializer::allocateMemory</definition>
+        <argsstring>(Image image, MemoryPropertyFlags propertyFlags=MemoryPropertyFlagBits::eDeviceLocal, void *pNext=nullptr) -&gt; DeviceMemory</argsstring>
+        <name>allocateMemory</name>
+        <param>
+          <type>Image</type>
+          <declname>image</declname>
+        </param>
+        <param>
+          <type>MemoryPropertyFlags</type>
+          <declname>propertyFlags</declname>
+          <defval>MemoryPropertyFlagBits::eDeviceLocal</defval>
+        </param>
+        <param>
+          <type>void *</type>
+          <declname>pNext</declname>
+          <defval>nullptr</defval>
+        </param>
+        <briefdescription>
+<para>Allocates and binds memory for an image. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>image</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The image to allocate memory for. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>propertyFlags</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The memory property flags. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>pNext</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The pNext chain of the Vulkan allocation info. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>Returns the memory. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/n30/Repos/rayexec/include/api/utility/Initializers.hpp" line="68" column="10" declfile="/home/n30/Repos/rayexec/include/api/utility/Initializers.hpp" declline="68" declcolumn="10"/>
+      </memberdef>
+      <memberdef kind="function" id="namespacevk_1_1_initializer_1a12c5bd8256a38e454966161b5742d75d" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>auto</type>
+        <definition>auto vk::Initializer::allocateMemoryUnique</definition>
+        <argsstring>(Buffer buffer, MemoryPropertyFlags propertyFlags=MemoryPropertyFlagBits::eDeviceLocal, void *pNext=nullptr) -&gt; UniqueDeviceMemory</argsstring>
+        <name>allocateMemoryUnique</name>
+        <param>
+          <type>Buffer</type>
+          <declname>buffer</declname>
+        </param>
+        <param>
+          <type>MemoryPropertyFlags</type>
+          <declname>propertyFlags</declname>
+          <defval>MemoryPropertyFlagBits::eDeviceLocal</defval>
+        </param>
+        <param>
+          <type>void *</type>
+          <declname>pNext</declname>
+          <defval>nullptr</defval>
+        </param>
+        <briefdescription>
+<para>Allocates and binds unique memory for a buffer. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>buffer</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The buffer to allocate memory for. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>propertyFlags</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The memory property flags. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>pNext</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The pNext chain of the Vulkan allocation info. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>Returns the memory. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/n30/Repos/rayexec/include/api/utility/Initializers.hpp" line="75" column="10" declfile="/home/n30/Repos/rayexec/include/api/utility/Initializers.hpp" declline="75" declcolumn="10"/>
+      </memberdef>
+      <memberdef kind="function" id="namespacevk_1_1_initializer_1af77161879bc78a43e42f1df9f35b8f42" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void vk::Initializer::allocateMemory</definition>
+        <argsstring>(RAYEXEC_NAMESPACE::AccelerationStructure &amp;as)</argsstring>
+        <name>allocateMemory</name>
+        <param>
+          <type><ref refid="struct_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_acceleration_structure" kindref="compound">RAYEXEC_NAMESPACE::AccelerationStructure</ref> &amp;</type>
+          <declname>as</declname>
+        </param>
+        <briefdescription>
+<para>Allocates and binds unique memory for an acceleration structure object. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>as</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The <ref refid="struct_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_acceleration_structure" kindref="compound">RAYEXEC_NAMESPACE::AccelerationStructure</ref> object the memory will be allocated for. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/n30/Repos/rayexec/include/api/utility/Initializers.hpp" line="79" column="10" declfile="/home/n30/Repos/rayexec/include/api/utility/Initializers.hpp" declline="79" declcolumn="10"/>
+      </memberdef>
+      <memberdef kind="function" id="namespacevk_1_1_initializer_1acf85382b3d1c452170cae8ebc6aa0b7d" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>auto</type>
+        <definition>auto vk::Initializer::allocateMemory</definition>
+        <argsstring>(Buffer buffer, MemoryPropertyFlags propertyFlags=MemoryPropertyFlagBits::eDeviceLocal, void *pNext=nullptr) -&gt; DeviceMemory</argsstring>
+        <name>allocateMemory</name>
+        <param>
+          <type>Buffer</type>
+          <declname>buffer</declname>
+        </param>
+        <param>
+          <type>MemoryPropertyFlags</type>
+          <declname>propertyFlags</declname>
+          <defval>MemoryPropertyFlagBits::eDeviceLocal</defval>
+        </param>
+        <param>
+          <type>void *</type>
+          <declname>pNext</declname>
+          <defval>nullptr</defval>
+        </param>
+        <briefdescription>
+<para>Allocates and binds memory for a buffer. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>buffer</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The buffer to allocate memory for. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>propertyFlags</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The memory property flags. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>pNext</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The pNext chain of the Vulkan allocation info. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>Returns the memory. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/n30/Repos/rayexec/include/api/utility/Initializers.hpp" line="86" column="10" declfile="/home/n30/Repos/rayexec/include/api/utility/Initializers.hpp" declline="86" declcolumn="10"/>
+      </memberdef>
+      <memberdef kind="function" id="namespacevk_1_1_initializer_1a6858c4358b2619eb467a19914ed2e49a" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>auto</type>
+        <definition>auto vk::Initializer::initImageViewUnique</definition>
+        <argsstring>(Image image, Format format, ImageAspectFlags aspectFlags=ImageAspectFlagBits::eColor) -&gt; UniqueImageView</argsstring>
+        <name>initImageViewUnique</name>
+        <param>
+          <type>Image</type>
+          <declname>image</declname>
+        </param>
+        <param>
+          <type>Format</type>
+          <declname>format</declname>
+        </param>
+        <param>
+          <type>ImageAspectFlags</type>
+          <declname>aspectFlags</declname>
+          <defval>ImageAspectFlagBits::eColor</defval>
+        </param>
+        <briefdescription>
+<para>Create an image view with a unique handle. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>image</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The image to init an image view for. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>aspectFlags</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The image&apos;s aspect flags. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>format</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The target format of the image view. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>Returns the image view. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/n30/Repos/rayexec/include/api/utility/Initializers.hpp" line="93" column="10" declfile="/home/n30/Repos/rayexec/include/api/utility/Initializers.hpp" declline="93" declcolumn="10"/>
+      </memberdef>
+      <memberdef kind="function" id="namespacevk_1_1_initializer_1a6969775adbf212f8403a88b86d6c3ad3" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>auto</type>
+        <definition>auto vk::Initializer::initImageView</definition>
+        <argsstring>(Image image, Format format, ImageAspectFlags aspectFlags=ImageAspectFlagBits::eColor) -&gt; ImageView</argsstring>
+        <name>initImageView</name>
+        <param>
+          <type>Image</type>
+          <declname>image</declname>
+        </param>
+        <param>
+          <type>Format</type>
+          <declname>format</declname>
+        </param>
+        <param>
+          <type>ImageAspectFlags</type>
+          <declname>aspectFlags</declname>
+          <defval>ImageAspectFlagBits::eColor</defval>
+        </param>
+        <briefdescription>
+<para>Create an image view. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>image</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The image to init an image view for. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>aspectFlags</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The image&apos;s aspect flags. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>format</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The target format of the image view. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>Returns the image view. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/n30/Repos/rayexec/include/api/utility/Initializers.hpp" line="100" column="10" declfile="/home/n30/Repos/rayexec/include/api/utility/Initializers.hpp" declline="100" declcolumn="10"/>
+      </memberdef>
+      <memberdef kind="function" id="namespacevk_1_1_initializer_1a36373e7db0323614fb7a613a25034b88" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>auto</type>
+        <definition>auto vk::Initializer::initSamplerUnique</definition>
+        <argsstring>(const SamplerCreateInfo &amp;createInfo) -&gt; UniqueSampler</argsstring>
+        <name>initSamplerUnique</name>
+        <param>
+          <type>const SamplerCreateInfo &amp;</type>
+          <declname>createInfo</declname>
+        </param>
+        <briefdescription>
+<para>Create a sampler with a unique handle. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>createInfo</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The Vulkan init info for the sampler. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>Returns the sampler. </para>
+</simplesect>
+<simplesect kind="note"><para>Use RAYEXEC_NAMESPACE::Helper::getSamplerCreateInfo to get a predefined init info. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/n30/Repos/rayexec/include/api/utility/Initializers.hpp" line="106" column="10" declfile="/home/n30/Repos/rayexec/include/api/utility/Initializers.hpp" declline="106" declcolumn="10"/>
+      </memberdef>
+      <memberdef kind="function" id="namespacevk_1_1_initializer_1a12f3e62260a13de38ef88a420ba60728" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>auto</type>
+        <definition>auto vk::Initializer::initSampler</definition>
+        <argsstring>(const SamplerCreateInfo &amp;createInfo) -&gt; Sampler</argsstring>
+        <name>initSampler</name>
+        <param>
+          <type>const SamplerCreateInfo &amp;</type>
+          <declname>createInfo</declname>
+        </param>
+        <briefdescription>
+<para>Create a sampler. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>createInfo</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The Vulkan init info for the sampler. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>Returns the sampler. </para>
+</simplesect>
+<simplesect kind="note"><para>Use RAYEXEC_NAMESPACE::Helper::getSamplerCreateInfo to get a predefined init info. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/n30/Repos/rayexec/include/api/utility/Initializers.hpp" line="112" column="10" declfile="/home/n30/Repos/rayexec/include/api/utility/Initializers.hpp" declline="112" declcolumn="10"/>
+      </memberdef>
+      <memberdef kind="function" id="namespacevk_1_1_initializer_1a9e3b424e471133a3a1108d239ad3b0d5" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>auto</type>
+        <definition>auto vk::Initializer::initFramebufferUnique</definition>
+        <argsstring>(const std::vector&lt; ImageView &gt; &amp;attachments, RenderPass renderPass, const Extent2D &amp;extent) -&gt; UniqueFramebuffer</argsstring>
+        <name>initFramebufferUnique</name>
+        <param>
+          <type>const std::vector&lt; ImageView &gt; &amp;</type>
+          <declname>attachments</declname>
+        </param>
+        <param>
+          <type>RenderPass</type>
+          <declname>renderPass</declname>
+        </param>
+        <param>
+          <type>const Extent2D &amp;</type>
+          <declname>extent</declname>
+        </param>
+        <briefdescription>
+<para>Create a framebuffer with a unique handle. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>attachments</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>All the image view attachments for the framebuffer. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>renderPass</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The render pass for which the framebuffer will be used. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>extent</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The extent of the framebuffer. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>Returns the framebuffer. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/n30/Repos/rayexec/include/api/utility/Initializers.hpp" line="119" column="10" declfile="/home/n30/Repos/rayexec/include/api/utility/Initializers.hpp" declline="119" declcolumn="10"/>
+      </memberdef>
+      <memberdef kind="function" id="namespacevk_1_1_initializer_1a8a203917e1ea8b661b32363a2498d3fb" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>auto</type>
+        <definition>auto vk::Initializer::initFramebuffer</definition>
+        <argsstring>(const std::vector&lt; ImageView &gt; &amp;attachments, RenderPass renderPass, const Extent2D &amp;extent) -&gt; Framebuffer</argsstring>
+        <name>initFramebuffer</name>
+        <param>
+          <type>const std::vector&lt; ImageView &gt; &amp;</type>
+          <declname>attachments</declname>
+        </param>
+        <param>
+          <type>RenderPass</type>
+          <declname>renderPass</declname>
+        </param>
+        <param>
+          <type>const Extent2D &amp;</type>
+          <declname>extent</declname>
+        </param>
+        <briefdescription>
+<para>Create a framebuffer. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>attachments</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>All the image view attachments for the framebuffer. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>renderPass</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The render pass for which the framebuffer will be used. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>extent</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The extent of the framebuffer. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>Returns the framebuffer. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/n30/Repos/rayexec/include/api/utility/Initializers.hpp" line="126" column="10" declfile="/home/n30/Repos/rayexec/include/api/utility/Initializers.hpp" declline="126" declcolumn="10"/>
+      </memberdef>
+      <memberdef kind="function" id="namespacevk_1_1_initializer_1a79c8c72a6ff7bfe8023ea424950b537c" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>auto</type>
+        <definition>auto vk::Initializer::initQueryPoolUnique</definition>
+        <argsstring>(uint32_t count, QueryType type) -&gt; UniqueQueryPool</argsstring>
+        <name>initQueryPoolUnique</name>
+        <param>
+          <type>uint32_t</type>
+          <declname>count</declname>
+        </param>
+        <param>
+          <type>QueryType</type>
+          <declname>type</declname>
+        </param>
+        <briefdescription>
+<para>Create a query pool with a unique handle. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>count</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The number of queries managed by the pool. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>type</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Specifies the type of queries managed by the pool. return Returns the query pool. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/n30/Repos/rayexec/include/api/utility/Initializers.hpp" line="132" column="10" declfile="/home/n30/Repos/rayexec/include/api/utility/Initializers.hpp" declline="132" declcolumn="10"/>
+      </memberdef>
+      <memberdef kind="function" id="namespacevk_1_1_initializer_1a948d9f0a9db128c05db21a601e5d3edb" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>auto</type>
+        <definition>auto vk::Initializer::initQueryPool</definition>
+        <argsstring>(uint32_t count, QueryType type) -&gt; QueryPool</argsstring>
+        <name>initQueryPool</name>
+        <param>
+          <type>uint32_t</type>
+          <declname>count</declname>
+        </param>
+        <param>
+          <type>QueryType</type>
+          <declname>type</declname>
+        </param>
+        <briefdescription>
+<para>Create a query pool. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>count</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The number of queries managed by the pool. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>type</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Specifies the type of queries managed by the pool. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>Returns the query pool. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/n30/Repos/rayexec/include/api/utility/Initializers.hpp" line="138" column="10" declfile="/home/n30/Repos/rayexec/include/api/utility/Initializers.hpp" declline="138" declcolumn="10"/>
+      </memberdef>
+      <memberdef kind="function" id="namespacevk_1_1_initializer_1ac5138790657c39af09df37198eb9fbb7" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>auto</type>
+        <definition>auto vk::Initializer::initShaderModuleUnique</definition>
+        <argsstring>(std::string_view path) -&gt; UniqueShaderModule</argsstring>
+        <name>initShaderModuleUnique</name>
+        <param>
+          <type>std::string_view</type>
+          <declname>path</declname>
+        </param>
+        <briefdescription>
+<para>Parses a given shader and inits a shader module with a unique handle. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>path</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The full path to the GLSL shader file. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>Returns the shader module. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/n30/Repos/rayexec/include/api/utility/Initializers.hpp" line="143" column="10" declfile="/home/n30/Repos/rayexec/include/api/utility/Initializers.hpp" declline="143" declcolumn="10"/>
+      </memberdef>
+      <memberdef kind="function" id="namespacevk_1_1_initializer_1a5ea60eaa2fc1b0d0dce038f5d6b3720a" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>auto</type>
+        <definition>auto vk::Initializer::initShaderModule</definition>
+        <argsstring>(std::string_view path) -&gt; ShaderModule</argsstring>
+        <name>initShaderModule</name>
+        <param>
+          <type>std::string_view</type>
+          <declname>path</declname>
+        </param>
+        <briefdescription>
+<para>Parses a given shader and inits a shader module. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>path</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The full path to the GLSL shader file. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>Returns the shader module. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/n30/Repos/rayexec/include/api/utility/Initializers.hpp" line="148" column="10" declfile="/home/n30/Repos/rayexec/include/api/utility/Initializers.hpp" declline="148" declcolumn="10"/>
+      </memberdef>
+      <memberdef kind="function" id="namespacevk_1_1_initializer_1ae9059624057ddeeab8a7a1ffe403b6bd" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>auto</type>
+        <definition>auto vk::Initializer::initAccelerationStructure</definition>
+        <argsstring>(const AccelerationStructureCreateInfoKHR &amp;asCreateInfo) -&gt; RAYEXEC_NAMESPACE::AccelerationStructure</argsstring>
+        <name>initAccelerationStructure</name>
+        <param>
+          <type>const AccelerationStructureCreateInfoKHR &amp;</type>
+          <declname>asCreateInfo</declname>
+        </param>
+        <briefdescription>
+<para>Creates the acceleration structure and allocates and binds memory for it. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>asCreateInfo</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The Vulkan init info for the acceleration structure. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>Returns an <ref refid="struct_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_acceleration_structure" kindref="compound">RAYEXEC_NAMESPACE::AccelerationStructure</ref> object that contains the AS itself as well as the memory for it. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/n30/Repos/rayexec/include/api/utility/Initializers.hpp" line="153" column="10" declfile="/home/n30/Repos/rayexec/include/api/utility/Initializers.hpp" declline="153" declcolumn="10"/>
+      </memberdef>
+      <memberdef kind="function" id="namespacevk_1_1_initializer_1aa312efed5e4aa5e591b86a2759248d55" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>auto</type>
+        <definition>auto vk::Initializer::initPhysicalDevice</definition>
+        <argsstring>() -&gt; PhysicalDevice</argsstring>
+        <name>initPhysicalDevice</name>
+        <briefdescription>
+<para>Retrieves the most suited GPU on the current machine. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>If a device is found its properties and features will be retrieved. <simplesect kind="return"><para>Returns true if the initilization was successful. </para>
+</simplesect>
+<simplesect kind="note"><para>Multiple GPUs can not be utilized. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/n30/Repos/rayexec/include/api/utility/Initializers.hpp" line="160" column="10" declfile="/home/n30/Repos/rayexec/include/api/utility/Initializers.hpp" declline="160" declcolumn="10"/>
+      </memberdef>
+      <memberdef kind="function" id="namespacevk_1_1_initializer_1a41bd7737bda712ebcd0c6a66d336e4ab" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void vk::Initializer::initQueueFamilyIndices</definition>
+        <argsstring>()</argsstring>
+        <name>initQueueFamilyIndices</name>
+        <briefdescription>
+<para>Retrieves the queue family indices for both graphics and transfer queue families. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="note"><para>The function tries to find a transfer queue family index that is not the same as the graphics queue family index. </para>
+</simplesect>
+<simplesect kind="see"><para>hasDedicatedTransferQueueFamily(vk::PhysicalDevice) </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/n30/Repos/rayexec/include/api/utility/Initializers.hpp" line="165" column="10" declfile="/home/n30/Repos/rayexec/include/api/utility/Initializers.hpp" declline="165" declcolumn="10"/>
+      </memberdef>
+      <memberdef kind="function" id="namespacevk_1_1_initializer_1a162632da0a356f8cc311c6c0290cfff1" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>auto</type>
+        <definition>auto vk::Initializer::initDevice</definition>
+        <argsstring>(std::vector&lt; const char * &gt; &amp;extensions) -&gt; UniqueDevice</argsstring>
+        <name>initDevice</name>
+        <param>
+          <type>std::vector&lt; const char * &gt; &amp;</type>
+          <declname>extensions</declname>
+        </param>
+        <briefdescription>
+<para>Creates the logical device and enables all device extensions provided if they are supported. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>extensions</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>All device extensions that should be enabled. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>Returns true if the initilization was successful. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/n30/Repos/rayexec/include/api/utility/Initializers.hpp" line="170" column="10" declfile="/home/n30/Repos/rayexec/include/api/utility/Initializers.hpp" declline="170" declcolumn="10"/>
+      </memberdef>
+      <memberdef kind="function" id="namespacevk_1_1_initializer_1a837538230a0f3327ba32f5803e174c62" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>auto</type>
+        <definition>auto vk::Initializer::initInstance</definition>
+        <argsstring>(const std::vector&lt; const char * &gt; &amp;layers, std::vector&lt; const char * &gt; &amp;extensions) -&gt; UniqueInstance</argsstring>
+        <name>initInstance</name>
+        <param>
+          <type>const std::vector&lt; const char * &gt; &amp;</type>
+          <declname>layers</declname>
+        </param>
+        <param>
+          <type>std::vector&lt; const char * &gt; &amp;</type>
+          <declname>extensions</declname>
+        </param>
+        <briefdescription>
+<para>Initializes the instance object and checks support for any given layer and extension. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>layers</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>All validation layers that should be activated. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>extensions</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>All instance extensions that should be activated. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="note"><para>The given vector with the extensions will be appended by ones that are required by the window. </para>
+</simplesect>
+<simplesect kind="return"><para>Returns true if initialization was successful. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/n30/Repos/rayexec/include/api/utility/Initializers.hpp" line="177" column="10" declfile="/home/n30/Repos/rayexec/include/api/utility/Initializers.hpp" declline="177" declcolumn="10"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+<para>A collection of functions to initialize or allocate Vulkan resources. </para>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="/home/n30/Repos/rayexec/include/api/utility/Initializers.hpp" line="12" column="1"/>
+  </compounddef>
+</doxygen>

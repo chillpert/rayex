@@ -1,0 +1,105 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.17">
+  <compounddef id="struct_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_blas" kind="struct" language="C++" prot="public">
+    <compoundname>RAYEXEC_NAMESPACE::Blas</compoundname>
+    <includes refid="_acceleration_structure_8hpp" local="no">AccelerationStructure.hpp</includes>
+      <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="struct_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_blas_1ae8ab4960986e35375952e1ba0b82d616" prot="public" static="no" mutable="no">
+        <type><ref refid="struct_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_acceleration_structure" kindref="compound">AccelerationStructure</ref></type>
+        <definition>AccelerationStructure RAYEXEC_NAMESPACE::Blas::as</definition>
+        <argsstring></argsstring>
+        <name>as</name>
+        <briefdescription>
+<para>The <ref refid="struct_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_acceleration_structure" kindref="compound">RAYEXEC_NAMESPACE::AccelerationStructure</ref> object containing the Vulkan acceleration structure. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/n30/Repos/rayexec/include/api/raytracing/AccelerationStructure.hpp" line="39" column="27" bodyfile="/home/n30/Repos/rayexec/include/api/raytracing/AccelerationStructure.hpp" bodystart="39" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="struct_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_blas_1af0e45ff33ae348578991083cbca3c3f5" prot="public" static="no" mutable="no">
+        <type>vk::BuildAccelerationStructureFlagsKHR</type>
+        <definition>vk::BuildAccelerationStructureFlagsKHR RAYEXEC_NAMESPACE::Blas::flags</definition>
+        <argsstring></argsstring>
+        <name>flags</name>
+        <briefdescription>
+<para>The top level acceleration structure&apos;s build flags. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/n30/Repos/rayexec/include/api/raytracing/AccelerationStructure.hpp" line="40" column="44" bodyfile="/home/n30/Repos/rayexec/include/api/raytracing/AccelerationStructure.hpp" bodystart="40" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="struct_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_blas_1a1fca9090c51ee4dbf978ed04c2790585" prot="public" static="no" mutable="no">
+        <type>std::vector&lt; vk::AccelerationStructureCreateGeometryTypeInfoKHR &gt;</type>
+        <definition>std::vector&lt;vk::AccelerationStructureCreateGeometryTypeInfoKHR&gt; RAYEXEC_NAMESPACE::Blas::asCreateGeometryInfo</definition>
+        <argsstring></argsstring>
+        <name>asCreateGeometryInfo</name>
+        <briefdescription>
+<para>Specifies the shape of geometries that will be built into an acceleration structure. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/n30/Repos/rayexec/include/api/raytracing/AccelerationStructure.hpp" line="42" column="17" bodyfile="/home/n30/Repos/rayexec/include/api/raytracing/AccelerationStructure.hpp" bodystart="42" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="struct_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_blas_1a7379c987048d8c67571581c03d91cc34" prot="public" static="no" mutable="no">
+        <type>std::vector&lt; vk::AccelerationStructureGeometryKHR &gt;</type>
+        <definition>std::vector&lt;vk::AccelerationStructureGeometryKHR&gt; RAYEXEC_NAMESPACE::Blas::asGeometry</definition>
+        <argsstring></argsstring>
+        <name>asGeometry</name>
+        <briefdescription>
+<para>Data used to build acceleration structure geometry. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/n30/Repos/rayexec/include/api/raytracing/AccelerationStructure.hpp" line="43" column="17" bodyfile="/home/n30/Repos/rayexec/include/api/raytracing/AccelerationStructure.hpp" bodystart="43" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="struct_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_blas_1ad7a31d22f326b7c471166600681082e5" prot="public" static="no" mutable="no">
+        <type>std::vector&lt; vk::AccelerationStructureBuildOffsetInfoKHR &gt;</type>
+        <definition>std::vector&lt;vk::AccelerationStructureBuildOffsetInfoKHR&gt; RAYEXEC_NAMESPACE::Blas::asBuildOffsetInfo</definition>
+        <argsstring></argsstring>
+        <name>asBuildOffsetInfo</name>
+        <briefdescription>
+<para>The offset between acceleration structures when building. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/n30/Repos/rayexec/include/api/raytracing/AccelerationStructure.hpp" line="44" column="17" bodyfile="/home/n30/Repos/rayexec/include/api/raytracing/AccelerationStructure.hpp" bodystart="44" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+<para>A wrapper for a bottom level acceleration structure. </para>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <collaborationgraph>
+      <node id="1">
+        <label>RAYEXEC_NAMESPACE::Blas</label>
+        <link refid="struct_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_blas"/>
+        <childnode refid="2" relation="usage">
+          <edgelabel>as</edgelabel>
+        </childnode>
+      </node>
+      <node id="2">
+        <label>RAYEXEC_NAMESPACE::AccelerationStructure</label>
+        <link refid="struct_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_acceleration_structure"/>
+      </node>
+    </collaborationgraph>
+    <location file="/home/n30/Repos/rayexec/include/api/raytracing/AccelerationStructure.hpp" line="38" column="1" bodyfile="/home/n30/Repos/rayexec/include/api/raytracing/AccelerationStructure.hpp" bodystart="37" bodyend="45"/>
+    <listofallmembers>
+      <member refid="struct_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_blas_1ae8ab4960986e35375952e1ba0b82d616" prot="public" virt="non-virtual"><scope>RAYEXEC_NAMESPACE::Blas</scope><name>as</name></member>
+      <member refid="struct_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_blas_1ad7a31d22f326b7c471166600681082e5" prot="public" virt="non-virtual"><scope>RAYEXEC_NAMESPACE::Blas</scope><name>asBuildOffsetInfo</name></member>
+      <member refid="struct_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_blas_1a1fca9090c51ee4dbf978ed04c2790585" prot="public" virt="non-virtual"><scope>RAYEXEC_NAMESPACE::Blas</scope><name>asCreateGeometryInfo</name></member>
+      <member refid="struct_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_blas_1a7379c987048d8c67571581c03d91cc34" prot="public" virt="non-virtual"><scope>RAYEXEC_NAMESPACE::Blas</scope><name>asGeometry</name></member>
+      <member refid="struct_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_blas_1af0e45ff33ae348578991083cbca3c3f5" prot="public" virt="non-virtual"><scope>RAYEXEC_NAMESPACE::Blas</scope><name>flags</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

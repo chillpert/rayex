@@ -1,0 +1,580 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.17">
+  <compounddef id="namespace_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e" kind="namespace" language="C++">
+    <compoundname>RAYEXEC_NAMESPACE</compoundname>
+    <innerclass refid="struct_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_acceleration_structure" prot="public">RAYEXEC_NAMESPACE::AccelerationStructure</innerclass>
+    <innerclass refid="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_api" prot="public">RAYEXEC_NAMESPACE::Api</innerclass>
+    <innerclass refid="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_bindings" prot="public">RAYEXEC_NAMESPACE::Bindings</innerclass>
+    <innerclass refid="struct_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_blas" prot="public">RAYEXEC_NAMESPACE::Blas</innerclass>
+    <innerclass refid="struct_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_blas_instance" prot="public">RAYEXEC_NAMESPACE::BlasInstance</innerclass>
+    <innerclass refid="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_buffer" prot="public">RAYEXEC_NAMESPACE::Buffer</innerclass>
+    <innerclass refid="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_camera" prot="public">RAYEXEC_NAMESPACE::Camera</innerclass>
+    <innerclass refid="struct_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_camera_ubo" prot="public">RAYEXEC_NAMESPACE::CameraUbo</innerclass>
+    <innerclass refid="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_command_buffer" prot="public">RAYEXEC_NAMESPACE::CommandBuffer</innerclass>
+    <innerclass refid="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_debug_messenger" prot="public">RAYEXEC_NAMESPACE::DebugMessenger</innerclass>
+    <innerclass refid="struct_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_descriptors" prot="public">RAYEXEC_NAMESPACE::Descriptors</innerclass>
+    <innerclass refid="struct_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_directional_light" prot="public">RAYEXEC_NAMESPACE::DirectionalLight</innerclass>
+    <innerclass refid="struct_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_geometry" prot="public">RAYEXEC_NAMESPACE::Geometry</innerclass>
+    <innerclass refid="struct_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_geometry_instance" prot="public">RAYEXEC_NAMESPACE::GeometryInstance</innerclass>
+    <innerclass refid="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_gui" prot="public">RAYEXEC_NAMESPACE::Gui</innerclass>
+    <innerclass refid="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_image" prot="public">RAYEXEC_NAMESPACE::Image</innerclass>
+    <innerclass refid="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_index_buffer" prot="public">RAYEXEC_NAMESPACE::IndexBuffer</innerclass>
+    <innerclass refid="struct_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_light" prot="public">RAYEXEC_NAMESPACE::Light</innerclass>
+    <innerclass refid="struct_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_lights_ubo" prot="public">RAYEXEC_NAMESPACE::LightsUbo</innerclass>
+    <innerclass refid="struct_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_material" prot="public">RAYEXEC_NAMESPACE::Material</innerclass>
+    <innerclass refid="struct_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_mesh" prot="public">RAYEXEC_NAMESPACE::Mesh</innerclass>
+    <innerclass refid="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_pipeline" prot="public">RAYEXEC_NAMESPACE::Pipeline</innerclass>
+    <innerclass refid="struct_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_point_light" prot="public">RAYEXEC_NAMESPACE::PointLight</innerclass>
+    <innerclass refid="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_ray_exec" prot="public">RAYEXEC_NAMESPACE::RayExec</innerclass>
+    <innerclass refid="struct_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_ray_trace_push_constants" prot="public">RAYEXEC_NAMESPACE::RayTracePushConstants</innerclass>
+    <innerclass refid="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_ray_tracing_builder" prot="public">RAYEXEC_NAMESPACE::RayTracingBuilder</innerclass>
+    <innerclass refid="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_render_pass" prot="public">RAYEXEC_NAMESPACE::RenderPass</innerclass>
+    <innerclass refid="struct_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_scene" prot="public">RAYEXEC_NAMESPACE::Scene</innerclass>
+    <innerclass refid="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_settings" prot="public">RAYEXEC_NAMESPACE::Settings</innerclass>
+    <innerclass refid="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_storage_buffer" prot="public">RAYEXEC_NAMESPACE::StorageBuffer</innerclass>
+    <innerclass refid="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_surface" prot="public">RAYEXEC_NAMESPACE::Surface</innerclass>
+    <innerclass refid="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_swapchain" prot="public">RAYEXEC_NAMESPACE::Swapchain</innerclass>
+    <innerclass refid="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_texture" prot="public">RAYEXEC_NAMESPACE::Texture</innerclass>
+    <innerclass refid="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_time" prot="public">RAYEXEC_NAMESPACE::Time</innerclass>
+    <innerclass refid="struct_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_tlas" prot="public">RAYEXEC_NAMESPACE::Tlas</innerclass>
+    <innerclass refid="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_uniform_buffer" prot="public">RAYEXEC_NAMESPACE::UniformBuffer</innerclass>
+    <innerclass refid="struct_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_vertex" prot="public">RAYEXEC_NAMESPACE::Vertex</innerclass>
+    <innerclass refid="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_vertex_buffer" prot="public">RAYEXEC_NAMESPACE::VertexBuffer</innerclass>
+    <innerclass refid="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_window" prot="public">RAYEXEC_NAMESPACE::Window</innerclass>
+    <innernamespace refid="namespace_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_util">RAYEXEC_NAMESPACE::Util</innernamespace>
+      <sectiondef kind="var">
+      <memberdef kind="variable" id="namespace_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1a0af3756d08269dbc097045e2c9306a31" prot="public" static="no" mutable="no">
+        <type>std::shared_ptr&lt; <ref refid="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_window" kindref="compound">Window</ref> &gt;</type>
+        <definition>std::shared_ptr&lt;Window&gt; RAYEXEC_NAMESPACE::g_window</definition>
+        <argsstring></argsstring>
+        <name>g_window</name>
+        <briefdescription>
+<para>Reference to the window. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/n30/Repos/rayexec/include/api/Components.hpp" line="8" column="26" declfile="/home/n30/Repos/rayexec/include/api/Components.hpp" declline="8" declcolumn="26"/>
+      </memberdef>
+      <memberdef kind="variable" id="namespace_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1a6668bb7d1d91a3fd8378be527c4c1475" prot="public" static="no" mutable="no">
+        <type>vk::Instance</type>
+        <definition>vk::Instance RAYEXEC_NAMESPACE::g_instance</definition>
+        <argsstring></argsstring>
+        <name>g_instance</name>
+        <briefdescription>
+<para>Reference to the Vulkan instance. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/n30/Repos/rayexec/include/api/Components.hpp" line="9" column="23" declfile="/home/n30/Repos/rayexec/include/api/Components.hpp" declline="9" declcolumn="23"/>
+      </memberdef>
+      <memberdef kind="variable" id="namespace_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1a5d304a259f82c7b8e2b5fb4557ea8878" prot="public" static="no" mutable="no">
+        <type>vk::PhysicalDevice</type>
+        <definition>vk::PhysicalDevice RAYEXEC_NAMESPACE::g_physicalDevice</definition>
+        <argsstring></argsstring>
+        <name>g_physicalDevice</name>
+        <briefdescription>
+<para>Reference to the Vulkan physical device. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/n30/Repos/rayexec/include/api/Components.hpp" line="10" column="29" declfile="/home/n30/Repos/rayexec/include/api/Components.hpp" declline="10" declcolumn="29"/>
+      </memberdef>
+      <memberdef kind="variable" id="namespace_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1a98277b651b7723b4b1421f0e9008f227" prot="public" static="no" mutable="no">
+        <type>vk::Device</type>
+        <definition>vk::Device RAYEXEC_NAMESPACE::g_device</definition>
+        <argsstring></argsstring>
+        <name>g_device</name>
+        <briefdescription>
+<para>Reference to the Vulkan logical device. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/n30/Repos/rayexec/include/api/Components.hpp" line="11" column="21" declfile="/home/n30/Repos/rayexec/include/api/Components.hpp" declline="11" declcolumn="21"/>
+      </memberdef>
+      <memberdef kind="variable" id="namespace_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1a4429b1efa815c897ad62e72b18169582" prot="public" static="no" mutable="no">
+        <type>vk::SurfaceKHR</type>
+        <definition>vk::SurfaceKHR RAYEXEC_NAMESPACE::g_surface</definition>
+        <argsstring></argsstring>
+        <name>g_surface</name>
+        <briefdescription>
+<para>Reference to the Vulkan surface. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/n30/Repos/rayexec/include/api/Components.hpp" line="12" column="25" declfile="/home/n30/Repos/rayexec/include/api/Components.hpp" declline="12" declcolumn="25"/>
+      </memberdef>
+      <memberdef kind="variable" id="namespace_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1a927c6383d7f851bc55967d0369642435" prot="public" static="no" mutable="no">
+        <type>vk::SwapchainKHR</type>
+        <definition>vk::SwapchainKHR RAYEXEC_NAMESPACE::g_swapchain</definition>
+        <argsstring></argsstring>
+        <name>g_swapchain</name>
+        <briefdescription>
+<para>Reference to the Vulkan swapchain. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/n30/Repos/rayexec/include/api/Components.hpp" line="13" column="27" declfile="/home/n30/Repos/rayexec/include/api/Components.hpp" declline="13" declcolumn="27"/>
+      </memberdef>
+      <memberdef kind="variable" id="namespace_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1a8883ebba90bf70252f55f251ce702080" prot="public" static="no" mutable="no">
+        <type>uint32_t</type>
+        <definition>uint32_t RAYEXEC_NAMESPACE::g_swapchainImageCount</definition>
+        <argsstring></argsstring>
+        <name>g_swapchainImageCount</name>
+        <briefdescription>
+<para>Variable to store the Vulkan swapchain&apos;s image count. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/n30/Repos/rayexec/include/api/Components.hpp" line="14" column="19" declfile="/home/n30/Repos/rayexec/include/api/Components.hpp" declline="14" declcolumn="19"/>
+      </memberdef>
+      <memberdef kind="variable" id="namespace_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1a8b4a635781f195e2ec8267267f9e094c" prot="public" static="no" mutable="no">
+        <type>vk::Format</type>
+        <definition>vk::Format RAYEXEC_NAMESPACE::g_surfaceFormat</definition>
+        <argsstring></argsstring>
+        <name>g_surfaceFormat</name>
+        <briefdescription>
+<para>Reference to the Vulkan surface&apos;s format. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/n30/Repos/rayexec/include/api/Components.hpp" line="15" column="21" declfile="/home/n30/Repos/rayexec/include/api/Components.hpp" declline="15" declcolumn="21"/>
+      </memberdef>
+      <memberdef kind="variable" id="namespace_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1ac2f62d01ff140e08d9f55efb09321899" prot="public" static="no" mutable="no">
+        <type>std::vector&lt; vk::UniqueImageView &gt;</type>
+        <definition>std::vector&lt;vk::UniqueImageView&gt; RAYEXEC_NAMESPACE::g_swapchainImageViews</definition>
+        <argsstring></argsstring>
+        <name>g_swapchainImageViews</name>
+        <briefdescription>
+<para>Reference to the Vulkan swapchain image views. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/n30/Repos/rayexec/include/api/Components.hpp" line="16" column="22" declfile="/home/n30/Repos/rayexec/include/api/Components.hpp" declline="16" declcolumn="22"/>
+      </memberdef>
+      <memberdef kind="variable" id="namespace_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1a98efbc1bee2e50ed5f06773eaef3e872" prot="public" static="no" mutable="no">
+        <type>uint32_t</type>
+        <definition>uint32_t RAYEXEC_NAMESPACE::g_shaderGroups</definition>
+        <argsstring></argsstring>
+        <name>g_shaderGroups</name>
+        <briefdescription>
+<para>Variable to store the Vulkan shader groups. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/n30/Repos/rayexec/include/api/Components.hpp" line="17" column="19" declfile="/home/n30/Repos/rayexec/include/api/Components.hpp" declline="17" declcolumn="19"/>
+      </memberdef>
+      <memberdef kind="variable" id="namespace_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1a368f9b617292987470d62465755a854f" prot="public" static="no" mutable="no">
+        <type>vk::DynamicLoader</type>
+        <definition>vk::DynamicLoader RAYEXEC_NAMESPACE::g_dynamicLoader</definition>
+        <argsstring></argsstring>
+        <name>g_dynamicLoader</name>
+        <briefdescription>
+<para>Reference to the dynamic loader used to load function pointers provided by extensions. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/n30/Repos/rayexec/include/api/Components.hpp" line="18" column="28" declfile="/home/n30/Repos/rayexec/include/api/Components.hpp" declline="18" declcolumn="28"/>
+      </memberdef>
+      <memberdef kind="variable" id="namespace_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1a2c613fd419cb927cc28905d5eb3bee61" prot="public" static="no" mutable="no">
+        <type>vk::CommandPool</type>
+        <definition>vk::CommandPool RAYEXEC_NAMESPACE::g_graphicsCmdPool</definition>
+        <argsstring></argsstring>
+        <name>g_graphicsCmdPool</name>
+        <briefdescription>
+<para>Reference to a Vulkan graphics command pool. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/n30/Repos/rayexec/include/api/Components.hpp" line="20" column="26" declfile="/home/n30/Repos/rayexec/include/api/Components.hpp" declline="20" declcolumn="26"/>
+      </memberdef>
+      <memberdef kind="variable" id="namespace_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1ac302e23c1c371c97bebf0b9098f019a6" prot="public" static="no" mutable="no">
+        <type>vk::CommandPool</type>
+        <definition>vk::CommandPool RAYEXEC_NAMESPACE::g_transferCmdPool</definition>
+        <argsstring></argsstring>
+        <name>g_transferCmdPool</name>
+        <briefdescription>
+<para>Reference to a Vulkan transfer command pool. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/n30/Repos/rayexec/include/api/Components.hpp" line="21" column="26" declfile="/home/n30/Repos/rayexec/include/api/Components.hpp" declline="21" declcolumn="26"/>
+      </memberdef>
+      <memberdef kind="variable" id="namespace_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1a499fcb1b4e60440dc725cde2594eb4f7" prot="public" static="no" mutable="no">
+        <type>vk::Queue</type>
+        <definition>vk::Queue RAYEXEC_NAMESPACE::g_graphicsQueue</definition>
+        <argsstring></argsstring>
+        <name>g_graphicsQueue</name>
+        <briefdescription>
+<para>Reference to a Vulkan graphics queue. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/n30/Repos/rayexec/include/api/Components.hpp" line="22" column="20" declfile="/home/n30/Repos/rayexec/include/api/Components.hpp" declline="22" declcolumn="20"/>
+      </memberdef>
+      <memberdef kind="variable" id="namespace_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1a45c005cbdc7660e25c4999f80ffbec06" prot="public" static="no" mutable="no">
+        <type>vk::Queue</type>
+        <definition>vk::Queue RAYEXEC_NAMESPACE::g_transferQueue</definition>
+        <argsstring></argsstring>
+        <name>g_transferQueue</name>
+        <briefdescription>
+<para>Reference to a Vulkan transfer queue. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/n30/Repos/rayexec/include/api/Components.hpp" line="23" column="20" declfile="/home/n30/Repos/rayexec/include/api/Components.hpp" declline="23" declcolumn="20"/>
+      </memberdef>
+      <memberdef kind="variable" id="namespace_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1a45f1e73b31745b7b9542acdabe2d774f" prot="public" static="no" mutable="no">
+        <type>uint32_t</type>
+        <definition>uint32_t RAYEXEC_NAMESPACE::g_graphicsFamilyIndex</definition>
+        <argsstring></argsstring>
+        <name>g_graphicsFamilyIndex</name>
+        <briefdescription>
+<para>stores a Vulkan graphics family index. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/n30/Repos/rayexec/include/api/Components.hpp" line="24" column="19" declfile="/home/n30/Repos/rayexec/include/api/Components.hpp" declline="24" declcolumn="19"/>
+      </memberdef>
+      <memberdef kind="variable" id="namespace_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1a82dd83083c6f1ca2f8d8a02e0b0240ce" prot="public" static="no" mutable="no">
+        <type>uint32_t</type>
+        <definition>uint32_t RAYEXEC_NAMESPACE::g_transferFamilyIndex</definition>
+        <argsstring></argsstring>
+        <name>g_transferFamilyIndex</name>
+        <briefdescription>
+<para>stores a Vulkan transfer family index. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/n30/Repos/rayexec/include/api/Components.hpp" line="25" column="19" declfile="/home/n30/Repos/rayexec/include/api/Components.hpp" declline="25" declcolumn="19"/>
+      </memberdef>
+      <memberdef kind="variable" id="namespace_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1a2f0ab8874ad291859a46a28bcca45a90" prot="public" static="no" mutable="no">
+        <type>vk::PhysicalDeviceLimits</type>
+        <definition>vk::PhysicalDeviceLimits RAYEXEC_NAMESPACE::g_physicalDeviceLimits</definition>
+        <argsstring></argsstring>
+        <name>g_physicalDeviceLimits</name>
+        <briefdescription>
+<para>Global variable to store the physical device&apos;s limits. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/n30/Repos/rayexec/include/api/Components.hpp" line="27" column="35" declfile="/home/n30/Repos/rayexec/include/api/Components.hpp" declline="27" declcolumn="35"/>
+      </memberdef>
+      <memberdef kind="variable" id="namespace_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1a38b5e8f58360723b79d1af18c19b6ab9" prot="public" static="no" mutable="no">
+        <type>uint32_t</type>
+        <definition>uint32_t RAYEXEC_NAMESPACE::g_modelCount</definition>
+        <argsstring></argsstring>
+        <name>g_modelCount</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/n30/Repos/rayexec/include/api/Components.hpp" line="29" column="19" declfile="/home/n30/Repos/rayexec/include/api/Components.hpp" declline="29" declcolumn="19"/>
+      </memberdef>
+      <memberdef kind="variable" id="namespace_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1a705d7cc53d5cc73bfc107d520604488d" prot="public" static="no" mutable="no">
+        <type>RX_API uint32_t</type>
+        <definition>RX_API uint32_t RAYEXEC_NAMESPACE::g_frameCount</definition>
+        <argsstring></argsstring>
+        <name>g_frameCount</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/n30/Repos/rayexec/include/api/Components.hpp" line="30" column="26" declfile="/home/n30/Repos/rayexec/include/api/Components.hpp" declline="30" declcolumn="26"/>
+      </memberdef>
+      <memberdef kind="variable" id="namespace_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1af6ec17b6161018df8921bc5b0d6ee8cd" prot="public" static="no" mutable="no">
+        <type>const size_t</type>
+        <definition>const size_t RAYEXEC_NAMESPACE::g_maxGeometryInstances</definition>
+        <argsstring></argsstring>
+        <name>g_maxGeometryInstances</name>
+        <initializer>= 2000</initializer>
+        <briefdescription>
+<para>Stores the maximum amount of geometry nodes. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/n30/Repos/rayexec/include/api/Components.hpp" line="32" column="16" bodyfile="/home/n30/Repos/rayexec/include/api/Components.hpp" bodystart="32" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="namespace_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1a25dc0b05da2ae2876ace0f7109816b57" prot="public" static="no" mutable="no">
+        <type>const size_t</type>
+        <definition>const size_t RAYEXEC_NAMESPACE::g_maxTextures</definition>
+        <argsstring></argsstring>
+        <name>g_maxTextures</name>
+        <initializer>= 2000</initializer>
+        <briefdescription>
+<para>Stores the maximum amount of textures. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/n30/Repos/rayexec/include/api/Components.hpp" line="33" column="16" bodyfile="/home/n30/Repos/rayexec/include/api/Components.hpp" bodystart="33" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="namespace_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1a28d3919c4f75a00aca17bcb9e3e58bd4" prot="public" static="no" mutable="no">
+        <type>const size_t</type>
+        <definition>const size_t RAYEXEC_NAMESPACE::g_maxDirectionalLightNodes</definition>
+        <argsstring></argsstring>
+        <name>g_maxDirectionalLightNodes</name>
+        <initializer>= 2000</initializer>
+        <briefdescription>
+<para>Stores the maximum amount of directional light sources. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/n30/Repos/rayexec/include/api/Components.hpp" line="34" column="16" bodyfile="/home/n30/Repos/rayexec/include/api/Components.hpp" bodystart="34" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="namespace_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1a6576521dfdb9abdb48520140f55d33ba" prot="public" static="no" mutable="no">
+        <type>const size_t</type>
+        <definition>const size_t RAYEXEC_NAMESPACE::g_maxPointLightNodes</definition>
+        <argsstring></argsstring>
+        <name>g_maxPointLightNodes</name>
+        <initializer>= 2000</initializer>
+        <briefdescription>
+<para>Stores the maximum amount of point light sources supported. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/n30/Repos/rayexec/include/api/Components.hpp" line="35" column="16" bodyfile="/home/n30/Repos/rayexec/include/api/Components.hpp" bodystart="35" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="namespace_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1af4f0da7a3ffe4ff547dcf50fa7dab009" prot="public" static="no" mutable="no">
+        <type>const size_t</type>
+        <definition>const size_t RAYEXEC_NAMESPACE::g_maxModels</definition>
+        <argsstring></argsstring>
+        <name>g_maxModels</name>
+        <initializer>= 2000</initializer>
+        <briefdescription>
+<para>Stores the maximum amount of models supported. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/n30/Repos/rayexec/include/api/Components.hpp" line="36" column="16" bodyfile="/home/n30/Repos/rayexec/include/api/Components.hpp" bodystart="36" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="namespace_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1a400f46dad3c96402389b80d6621b3958" prot="public" static="no" mutable="no">
+        <type>std::string</type>
+        <definition>std::string RAYEXEC_NAMESPACE::g_assetsPath</definition>
+        <argsstring></argsstring>
+        <name>g_assetsPath</name>
+        <briefdescription>
+<para>Path to where shaders, models and textures are stored. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/n30/Repos/rayexec/include/api/Components.hpp" line="38" column="22" declfile="/home/n30/Repos/rayexec/include/api/Components.hpp" declline="38" declcolumn="22"/>
+      </memberdef>
+      <memberdef kind="variable" id="namespace_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1ace19d80e0bf55986b1b8e9e048e76abe" prot="public" static="no" mutable="no">
+        <type>const int</type>
+        <definition>const int RAYEXEC_NAMESPACE::defaultWidth</definition>
+        <argsstring></argsstring>
+        <name>defaultWidth</name>
+        <initializer>= 900</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/n30/Repos/rayexec/include/base/Window.hpp" line="10" column="13" bodyfile="/home/n30/Repos/rayexec/include/base/Window.hpp" bodystart="10" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="namespace_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1a03aa31ed612ba981a14eb2265c11dad1" prot="public" static="no" mutable="no">
+        <type>const int</type>
+        <definition>const int RAYEXEC_NAMESPACE::defaultHeight</definition>
+        <argsstring></argsstring>
+        <name>defaultHeight</name>
+        <initializer>= 600</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/n30/Repos/rayexec/include/base/Window.hpp" line="11" column="13" bodyfile="/home/n30/Repos/rayexec/include/base/Window.hpp" bodystart="11" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="func">
+      <memberdef kind="function" id="namespace_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1acb39626339ca64501ad497630082416e" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>typename T</type>
+          </param>
+        </templateparamlist>
+        <type>void</type>
+        <definition>void RAYEXEC_NAMESPACE::createStorageBufferWithStaging</definition>
+        <argsstring>(Buffer &amp;buffer, std::vector&lt; T &gt; &amp;data)</argsstring>
+        <name>createStorageBufferWithStaging</name>
+        <param>
+          <type><ref refid="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_buffer" kindref="compound">Buffer</ref> &amp;</type>
+          <declname>buffer</declname>
+        </param>
+        <param>
+          <type>std::vector&lt; T &gt; &amp;</type>
+          <declname>data</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/n30/Repos/rayexec/include/api/buffers/Buffer.hpp" line="85" column="8" bodyfile="/home/n30/Repos/rayexec/include/api/buffers/Buffer.hpp" bodystart="85" bodyend="107"/>
+      </memberdef>
+      <memberdef kind="function" id="namespace_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1a91b559c57af0758a7f65e7909b1c4588" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>auto</type>
+        <definition>auto RAYEXEC_NAMESPACE::getSupportedDepthFormat</definition>
+        <argsstring>(vk::PhysicalDevice physicalDevice) -&gt; vk::Format</argsstring>
+        <name>getSupportedDepthFormat</name>
+        <param>
+          <type>vk::PhysicalDevice</type>
+          <declname>physicalDevice</declname>
+        </param>
+        <briefdescription>
+<para>Retrieves the depth format supported by a given physical device. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>physicalDevice</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The physical device to check. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>Returns the supported depth format. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/n30/Repos/rayexec/include/api/Swapchain.hpp" line="92" column="8" declfile="/home/n30/Repos/rayexec/include/api/Swapchain.hpp" declline="92" declcolumn="8"/>
+      </memberdef>
+      <memberdef kind="function" id="group___base_1ga02a95a02aa5d57299c4eecb3c6bb4d3d" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>RX_API std::shared_ptr&lt; <ref refid="struct_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_geometry" kindref="compound">Geometry</ref> &gt;</type>
+        <definition>RX_API std::shared_ptr&lt;Geometry&gt; RAYEXEC_NAMESPACE::loadObj</definition>
+        <argsstring>(std::string_view path)</argsstring>
+        <name>loadObj</name>
+        <param>
+          <type>std::string_view</type>
+          <declname>path</declname>
+        </param>
+        <briefdescription>
+<para>A commodity function for loading a wavefront (.obj) model file and allocate a geometry object from it. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>The function will attempt to find sub-meshes in the file and retrieve all materials. A user is encouraged to create their own model loader function or classes. <parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>path</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The model&apos;s path, relative to the path to assets. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>Returns a pointer to a geometry object. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/n30/Repos/rayexec/include/base/Geometry.hpp" line="72" column="26" declfile="/home/n30/Repos/rayexec/include/base/Geometry.hpp" declline="72" declcolumn="26"/>
+      </memberdef>
+      <memberdef kind="function" id="group___base_1gabb8acb5237813d1ac88e190a79a1bff2" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>RX_API std::shared_ptr&lt; <ref refid="struct_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_geometry_instance" kindref="compound">GeometryInstance</ref> &gt;</type>
+        <definition>RX_API std::shared_ptr&lt;GeometryInstance&gt; RAYEXEC_NAMESPACE::instance</definition>
+        <argsstring>(std::shared_ptr&lt; Geometry &gt; geometry, const glm::mat4 &amp;transform=glm::mat4(1.0F))</argsstring>
+        <name>instance</name>
+        <param>
+          <type>std::shared_ptr&lt; <ref refid="struct_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_geometry" kindref="compound">Geometry</ref> &gt;</type>
+          <declname>geometry</declname>
+        </param>
+        <param>
+          <type>const glm::mat4 &amp;</type>
+          <declname>transform</declname>
+          <defval>glm::mat4(1.0F)</defval>
+        </param>
+        <briefdescription>
+<para>A commodity function for allocating an instance from a given geometry and set its matrices. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>The function will also automatically set the inverse transpose matrix. <parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>geometry</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The geometry to create the instance from. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>transform</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The world transform matrix of the instance. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>Returns a pointer to a geometry instance. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/n30/Repos/rayexec/include/base/Geometry.hpp" line="81" column="26" declfile="/home/n30/Repos/rayexec/include/base/Geometry.hpp" declline="81" declcolumn="26"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+<para>The rx namespace encapsulates every single component provided by the renderer. </para>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="/home/n30/Repos/rayexec/include/api/Api.hpp" line="24" column="1"/>
+  </compounddef>
+</doxygen>

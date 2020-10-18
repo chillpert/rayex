@@ -1,0 +1,13 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.17">
+  <compounddef id="namespacevk" kind="namespace" language="C++">
+    <compoundname>vk</compoundname>
+    <innernamespace refid="namespacevk_1_1_helper">vk::Helper</innernamespace>
+    <innernamespace refid="namespacevk_1_1_initializer">vk::Initializer</innernamespace>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="/home/n30/Repos/rayexec/include/api/utility/Helpers.hpp" line="8" column="1"/>
+  </compounddef>
+</doxygen>

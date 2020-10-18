@@ -1,0 +1,96 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.17">
+  <compounddef id="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_storage_buffer" kind="class" language="C++" prot="public">
+    <compoundname>RAYEXEC_NAMESPACE::StorageBuffer</compoundname>
+    <basecompoundref refid="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_buffer" prot="public" virt="non-virtual">RAYEXEC_NAMESPACE::Buffer</basecompoundref>
+    <includes refid="_storage_buffer_8hpp" local="no">StorageBuffer.hpp</includes>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_storage_buffer_1ab940425d2edbdc4b3db880ab91960823" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>RAYEXEC_NAMESPACE::StorageBuffer::StorageBuffer</definition>
+        <argsstring>()=default</argsstring>
+        <name>StorageBuffer</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/n30/Repos/rayexec/include/api/buffers/StorageBuffer.hpp" line="11" column="5"/>
+      </memberdef>
+      <memberdef kind="function" id="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_storage_buffer_1a2c11630a97c6492d0ec0dbf7755014fc" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>typename T</type>
+          </param>
+        </templateparamlist>
+        <type>void</type>
+        <definition>void RAYEXEC_NAMESPACE::StorageBuffer::init</definition>
+        <argsstring>(const std::vector&lt; T &gt; &amp;data)</argsstring>
+        <name>init</name>
+        <param>
+          <type>const std::vector&lt; T &gt; &amp;</type>
+          <declname>data</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/n30/Repos/rayexec/include/api/buffers/StorageBuffer.hpp" line="14" column="10" bodyfile="/home/n30/Repos/rayexec/include/api/buffers/StorageBuffer.hpp" bodystart="14" bodyend="33"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="1">
+        <label>RAYEXEC_NAMESPACE::StorageBuffer</label>
+        <link refid="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_storage_buffer"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>RAYEXEC_NAMESPACE::Buffer</label>
+        <link refid="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_buffer"/>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="1">
+        <label>RAYEXEC_NAMESPACE::StorageBuffer</label>
+        <link refid="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_storage_buffer"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>RAYEXEC_NAMESPACE::Buffer</label>
+        <link refid="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_buffer"/>
+      </node>
+    </collaborationgraph>
+    <location file="/home/n30/Repos/rayexec/include/api/buffers/StorageBuffer.hpp" line="9" column="1" bodyfile="/home/n30/Repos/rayexec/include/api/buffers/StorageBuffer.hpp" bodystart="8" bodyend="34"/>
+    <listofallmembers>
+      <member refid="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_buffer_1a3dae10b0e57aaeb528ad27336a45f46c" prot="protected" virt="non-virtual"><scope>RAYEXEC_NAMESPACE::StorageBuffer</scope><name>buffer</name></member>
+      <member refid="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_buffer_1a4286db555c7beb872ad62e5ae78f5a92" prot="public" virt="non-virtual"><scope>RAYEXEC_NAMESPACE::StorageBuffer</scope><name>Buffer</name></member>
+      <member refid="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_buffer_1a0f821dd2fb7a528f5d370c9935abb95e" prot="public" virt="non-virtual"><scope>RAYEXEC_NAMESPACE::StorageBuffer</scope><name>Buffer</name></member>
+      <member refid="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_buffer_1a6f29bd9f8dfecb05a9a40c5af01d1474" prot="public" virt="non-virtual"><scope>RAYEXEC_NAMESPACE::StorageBuffer</scope><name>Buffer</name></member>
+      <member refid="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_buffer_1af8b33d8383361d81c6a89b16bdcc642c" prot="public" virt="non-virtual"><scope>RAYEXEC_NAMESPACE::StorageBuffer</scope><name>Buffer</name></member>
+      <member refid="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_buffer_1ae9316e2a184d003b4c15102d8c73e8d3" prot="public" virt="non-virtual"><scope>RAYEXEC_NAMESPACE::StorageBuffer</scope><name>copyToBuffer</name></member>
+      <member refid="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_buffer_1a7e9ccfcec6b210f77929ae6f8e015470" prot="public" virt="non-virtual"><scope>RAYEXEC_NAMESPACE::StorageBuffer</scope><name>copyToBuffer</name></member>
+      <member refid="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_buffer_1a530b23fb6ee6affece20f959e7d12847" prot="public" virt="non-virtual"><scope>RAYEXEC_NAMESPACE::StorageBuffer</scope><name>copyToImage</name></member>
+      <member refid="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_buffer_1a34447d9e04323e05f3434fc290d75934" prot="public" virt="non-virtual"><scope>RAYEXEC_NAMESPACE::StorageBuffer</scope><name>fill</name></member>
+      <member refid="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_buffer_1a20b985e8be99e64c284acaf58e5b7646" prot="public" virt="non-virtual"><scope>RAYEXEC_NAMESPACE::StorageBuffer</scope><name>get</name></member>
+      <member refid="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_buffer_1a320d33b561ad0629b139e20cd235c102" prot="public" virt="non-virtual"><scope>RAYEXEC_NAMESPACE::StorageBuffer</scope><name>getMemory</name></member>
+      <member refid="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_buffer_1a4bb5fbab956fbcf4e362e5c2268f8e2f" prot="public" virt="non-virtual"><scope>RAYEXEC_NAMESPACE::StorageBuffer</scope><name>getSize</name></member>
+      <member refid="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_storage_buffer_1a2c11630a97c6492d0ec0dbf7755014fc" prot="public" virt="non-virtual"><scope>RAYEXEC_NAMESPACE::StorageBuffer</scope><name>init</name></member>
+      <member refid="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_buffer_1a8281cef1826a7b0f970a636e7a24703c" prot="public" virt="non-virtual" ambiguityscope="RAYEXEC_NAMESPACE::Buffer::"><scope>RAYEXEC_NAMESPACE::StorageBuffer</scope><name>init</name></member>
+      <member refid="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_buffer_1ade00c91ade501a5f85f0f157dbc87f7e" prot="protected" virt="non-virtual"><scope>RAYEXEC_NAMESPACE::StorageBuffer</scope><name>memory</name></member>
+      <member refid="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_buffer_1a112376785376333464a39d84851627bd" prot="public" virt="non-virtual"><scope>RAYEXEC_NAMESPACE::StorageBuffer</scope><name>operator=</name></member>
+      <member refid="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_buffer_1a86fa3c008ace2f907d454aeea95a5c35" prot="public" virt="non-virtual"><scope>RAYEXEC_NAMESPACE::StorageBuffer</scope><name>operator=</name></member>
+      <member refid="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_buffer_1a154a7abcbda22be170ac9cfc3076b532" prot="protected" virt="non-virtual"><scope>RAYEXEC_NAMESPACE::StorageBuffer</scope><name>size</name></member>
+      <member refid="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_storage_buffer_1ab940425d2edbdc4b3db880ab91960823" prot="public" virt="non-virtual"><scope>RAYEXEC_NAMESPACE::StorageBuffer</scope><name>StorageBuffer</name></member>
+      <member refid="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_buffer_1a75864b69895914855537bd47ffc767dc" prot="public" virt="virtual"><scope>RAYEXEC_NAMESPACE::StorageBuffer</scope><name>~Buffer</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

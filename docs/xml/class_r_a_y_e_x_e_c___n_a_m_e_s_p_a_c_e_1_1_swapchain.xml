@@ -1,0 +1,537 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.17">
+  <compounddef id="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_swapchain" kind="class" language="C++" prot="public">
+    <compoundname>RAYEXEC_NAMESPACE::Swapchain</compoundname>
+    <includes refid="_swapchain_8hpp" local="no">Swapchain.hpp</includes>
+      <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_swapchain_1a1058f9c43543310c2fb74c2f3bac0c0f" prot="private" static="no" mutable="no">
+        <type>vk::UniqueSwapchainKHR</type>
+        <definition>vk::UniqueSwapchainKHR RAYEXEC_NAMESPACE::Swapchain::swapchain</definition>
+        <argsstring></argsstring>
+        <name>swapchain</name>
+        <briefdescription>
+<para>The Vulkan swapchain object with a unique handle. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/n30/Repos/rayexec/include/api/Swapchain.hpp" line="73" column="28" bodyfile="/home/n30/Repos/rayexec/include/api/Swapchain.hpp" bodystart="73" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_swapchain_1a8b9b284de0c9df46bc13790f2fba030e" prot="private" static="no" mutable="no">
+        <type>vk::Extent2D</type>
+        <definition>vk::Extent2D RAYEXEC_NAMESPACE::Swapchain::extent</definition>
+        <argsstring></argsstring>
+        <name>extent</name>
+        <briefdescription>
+<para>The swapchain images&apos; extent. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/n30/Repos/rayexec/include/api/Swapchain.hpp" line="75" column="18" bodyfile="/home/n30/Repos/rayexec/include/api/Swapchain.hpp" bodystart="75" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_swapchain_1a4c3d62c9caad70e18e789d9025b08960" prot="private" static="no" mutable="no">
+        <type>vk::ImageAspectFlags</type>
+        <definition>vk::ImageAspectFlags RAYEXEC_NAMESPACE::Swapchain::imageAspect</definition>
+        <argsstring></argsstring>
+        <name>imageAspect</name>
+        <initializer>= vk::ImageAspectFlagBits::eColor</initializer>
+        <briefdescription>
+<para>The swapchain image&apos;s image aspect. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/n30/Repos/rayexec/include/api/Swapchain.hpp" line="76" column="26" bodyfile="/home/n30/Repos/rayexec/include/api/Swapchain.hpp" bodystart="76" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_swapchain_1a5df1a18bdea7a2a3693e60bfae644bdb" prot="private" static="no" mutable="no">
+        <type>std::vector&lt; vk::Image &gt;</type>
+        <definition>std::vector&lt;vk::Image&gt; RAYEXEC_NAMESPACE::Swapchain::images</definition>
+        <argsstring></argsstring>
+        <name>images</name>
+        <briefdescription>
+<para>The swapchain images. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/n30/Repos/rayexec/include/api/Swapchain.hpp" line="78" column="17" bodyfile="/home/n30/Repos/rayexec/include/api/Swapchain.hpp" bodystart="78" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_swapchain_1af1b91c7122292fc94dc0f5caa40f7f8f" prot="private" static="no" mutable="no">
+        <type>std::vector&lt; vk::UniqueImageView &gt;</type>
+        <definition>std::vector&lt;vk::UniqueImageView&gt; RAYEXEC_NAMESPACE::Swapchain::imageViews</definition>
+        <argsstring></argsstring>
+        <name>imageViews</name>
+        <briefdescription>
+<para>The swapchain images&apos; image views with a unique handle. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/n30/Repos/rayexec/include/api/Swapchain.hpp" line="79" column="17" bodyfile="/home/n30/Repos/rayexec/include/api/Swapchain.hpp" bodystart="79" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_swapchain_1ac4087a2248ce5abf1aa096042407179a" prot="private" static="no" mutable="no">
+        <type>std::vector&lt; vk::UniqueFramebuffer &gt;</type>
+        <definition>std::vector&lt;vk::UniqueFramebuffer&gt; RAYEXEC_NAMESPACE::Swapchain::framebuffers</definition>
+        <argsstring></argsstring>
+        <name>framebuffers</name>
+        <briefdescription>
+<para>The swapchain images&apos; framebuffers with a unique handle. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/n30/Repos/rayexec/include/api/Swapchain.hpp" line="81" column="17" bodyfile="/home/n30/Repos/rayexec/include/api/Swapchain.hpp" bodystart="81" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_swapchain_1a026eb48ccadc264cb0afca33145eee3d" prot="private" static="no" mutable="no">
+        <type><ref refid="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_image" kindref="compound">Image</ref></type>
+        <definition>Image RAYEXEC_NAMESPACE::Swapchain::depthImage</definition>
+        <argsstring></argsstring>
+        <name>depthImage</name>
+        <briefdescription>
+<para>The depth image. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/n30/Repos/rayexec/include/api/Swapchain.hpp" line="83" column="11" bodyfile="/home/n30/Repos/rayexec/include/api/Swapchain.hpp" bodystart="83" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_swapchain_1a38dc1313e025c4bb257412d98052ed25" prot="private" static="no" mutable="no">
+        <type>vk::UniqueImageView</type>
+        <definition>vk::UniqueImageView RAYEXEC_NAMESPACE::Swapchain::depthImageView</definition>
+        <argsstring></argsstring>
+        <name>depthImageView</name>
+        <briefdescription>
+<para>The depth image&apos;s image views with a unique handle. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/n30/Repos/rayexec/include/api/Swapchain.hpp" line="84" column="25" bodyfile="/home/n30/Repos/rayexec/include/api/Swapchain.hpp" bodystart="84" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_swapchain_1a24eff97c41de27f99b06ccae9eb21f3a" prot="private" static="no" mutable="no">
+        <type>uint32_t</type>
+        <definition>uint32_t RAYEXEC_NAMESPACE::Swapchain::currentImageIndex</definition>
+        <argsstring></argsstring>
+        <name>currentImageIndex</name>
+        <briefdescription>
+<para>The current swapchain image index. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/n30/Repos/rayexec/include/api/Swapchain.hpp" line="86" column="14" bodyfile="/home/n30/Repos/rayexec/include/api/Swapchain.hpp" bodystart="86" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_swapchain_1a2d7ff0e063ea15fe578407c7c81ac7e2" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void RAYEXEC_NAMESPACE::Swapchain::init</definition>
+        <argsstring>(Surface *surface, vk::RenderPass renderPass)</argsstring>
+        <name>init</name>
+        <param>
+          <type><ref refid="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_surface" kindref="compound">Surface</ref> *</type>
+          <declname>surface</declname>
+        </param>
+        <param>
+          <type>vk::RenderPass</type>
+          <declname>renderPass</declname>
+        </param>
+        <briefdescription>
+<para>Creates the swapchain, the swapchain images and their image views as well as their framebuffers. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>surface</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>A pointer to a <ref refid="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_surface" kindref="compound">RAYEXEC_NAMESPACE::Surface</ref> object. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>renderPass</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The render pass to create the framebuffers. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/n30/Repos/rayexec/include/api/Swapchain.hpp" line="18" column="10"/>
+      </memberdef>
+      <memberdef kind="function" id="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_swapchain_1a562180ff12b730a57e7aec3c73a534b7" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void RAYEXEC_NAMESPACE::Swapchain::destroy</definition>
+        <argsstring>()</argsstring>
+        <name>destroy</name>
+        <briefdescription>
+<para>Destroys the swapchain. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/n30/Repos/rayexec/include/api/Swapchain.hpp" line="21" column="10"/>
+      </memberdef>
+      <memberdef kind="function" id="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_swapchain_1a7423d7474a69ddcf6c069dd52d03c9fe" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>auto</type>
+        <definition>auto RAYEXEC_NAMESPACE::Swapchain::getFramebuffer</definition>
+        <argsstring>(uint32_t index) const -&gt; const vk::Framebuffer &amp;</argsstring>
+        <name>getFramebuffer</name>
+        <param>
+          <type>uint32_t</type>
+          <declname>index</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>Returns the swapchain framebuffer at a given index. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/n30/Repos/rayexec/include/api/Swapchain.hpp" line="24" column="11" bodyfile="/home/n30/Repos/rayexec/include/api/Swapchain.hpp" bodystart="24" bodyend="24"/>
+      </memberdef>
+      <memberdef kind="function" id="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_swapchain_1a5978067f74d9579eef8777cefed83a6c" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>auto</type>
+        <definition>auto RAYEXEC_NAMESPACE::Swapchain::getCurrentImageIndex</definition>
+        <argsstring>() const -&gt; uint32_t</argsstring>
+        <name>getCurrentImageIndex</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>Returns the current swapchain image index. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/n30/Repos/rayexec/include/api/Swapchain.hpp" line="27" column="11" bodyfile="/home/n30/Repos/rayexec/include/api/Swapchain.hpp" bodystart="27" bodyend="27"/>
+      </memberdef>
+      <memberdef kind="function" id="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_swapchain_1ac1a042535549e8b435a41bbcaca06759" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>auto</type>
+        <definition>auto RAYEXEC_NAMESPACE::Swapchain::getExtent</definition>
+        <argsstring>() const -&gt; vk::Extent2D</argsstring>
+        <name>getExtent</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>Returns the swapchain images&apos; extent. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/n30/Repos/rayexec/include/api/Swapchain.hpp" line="30" column="11" bodyfile="/home/n30/Repos/rayexec/include/api/Swapchain.hpp" bodystart="30" bodyend="30"/>
+      </memberdef>
+      <memberdef kind="function" id="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_swapchain_1a514beaf04e7d7835bf4b94ee0223622c" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>auto</type>
+        <definition>auto RAYEXEC_NAMESPACE::Swapchain::getImageAspect</definition>
+        <argsstring>() const -&gt; vk::ImageAspectFlags</argsstring>
+        <name>getImageAspect</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>Returns the swapchain images&apos; image aspect. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/n30/Repos/rayexec/include/api/Swapchain.hpp" line="33" column="11" bodyfile="/home/n30/Repos/rayexec/include/api/Swapchain.hpp" bodystart="33" bodyend="33"/>
+      </memberdef>
+      <memberdef kind="function" id="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_swapchain_1a8711129b1c04a4c09abb1a65817ac5a4" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>auto</type>
+        <definition>auto RAYEXEC_NAMESPACE::Swapchain::getImage</definition>
+        <argsstring>(size_t index) const -&gt; vk::Image</argsstring>
+        <name>getImage</name>
+        <param>
+          <type>size_t</type>
+          <declname>index</declname>
+        </param>
+        <briefdescription>
+<para>Returns the swapchain image at a given index. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>index</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The index of the swapchain image. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>The swapchain image. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/n30/Repos/rayexec/include/api/Swapchain.hpp" line="38" column="11" bodyfile="/home/n30/Repos/rayexec/include/api/Swapchain.hpp" bodystart="38" bodyend="38"/>
+      </memberdef>
+      <memberdef kind="function" id="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_swapchain_1a6e0557f4d62e28dfeb9cf6e2afb06704" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>auto</type>
+        <definition>auto RAYEXEC_NAMESPACE::Swapchain::getImages</definition>
+        <argsstring>() const -&gt; const std::vector&lt; vk::Image &gt; &amp;</argsstring>
+        <name>getImages</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>Returns a vector containing all swapchain images. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/n30/Repos/rayexec/include/api/Swapchain.hpp" line="41" column="11" bodyfile="/home/n30/Repos/rayexec/include/api/Swapchain.hpp" bodystart="41" bodyend="41"/>
+      </memberdef>
+      <memberdef kind="function" id="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_swapchain_1a5e7ed9142f249264a2cb421c92c1b2d5" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>auto</type>
+        <definition>auto RAYEXEC_NAMESPACE::Swapchain::getImageViews</definition>
+        <argsstring>() const -&gt; std::vector&lt; vk::ImageView &gt;</argsstring>
+        <name>getImageViews</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>Returns a vector containing all swapchain image views. </para>
+</simplesect>
+<xrefsect id="todo_1_todo000006"><xreftitle>Todo</xreftitle><xrefdescription><para>Returning by reference will result in size 0. </para>
+</xrefdescription></xrefsect></para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/n30/Repos/rayexec/include/api/Swapchain.hpp" line="45" column="11" bodyfile="/home/n30/Repos/rayexec/include/api/Swapchain.hpp" bodystart="45" bodyend="45"/>
+      </memberdef>
+      <memberdef kind="function" id="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_swapchain_1ae727ddbc80698faab04783451ad2a250" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void RAYEXEC_NAMESPACE::Swapchain::setImageAspect</definition>
+        <argsstring>(vk::ImageAspectFlags flags)</argsstring>
+        <name>setImageAspect</name>
+        <param>
+          <type>vk::ImageAspectFlags</type>
+          <declname>flags</declname>
+        </param>
+        <briefdescription>
+<para>Used to set the desired image aspect flags. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/n30/Repos/rayexec/include/api/Swapchain.hpp" line="48" column="10"/>
+      </memberdef>
+      <memberdef kind="function" id="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_swapchain_1afe470847ca79c36a8a502dabc6ea81e6" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void RAYEXEC_NAMESPACE::Swapchain::setImageLayout</definition>
+        <argsstring>(vk::ImageLayout oldLayout, vk::ImageLayout newLayout)</argsstring>
+        <name>setImageLayout</name>
+        <param>
+          <type>vk::ImageLayout</type>
+          <declname>oldLayout</declname>
+        </param>
+        <param>
+          <type>vk::ImageLayout</type>
+          <declname>newLayout</declname>
+        </param>
+        <briefdescription>
+<para>Used to transition from one layout to another. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>oldLayout</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The swapchain images&apos; current image layout. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>newLayout</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The target image layout. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/n30/Repos/rayexec/include/api/Swapchain.hpp" line="53" column="10"/>
+      </memberdef>
+      <memberdef kind="function" id="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_swapchain_1a2077caebb153dac7c98ccf7ea270f6e6" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void RAYEXEC_NAMESPACE::Swapchain::acquireNextImage</definition>
+        <argsstring>(vk::Semaphore semaphore, vk::Fence fence)</argsstring>
+        <name>acquireNextImage</name>
+        <param>
+          <type>vk::Semaphore</type>
+          <declname>semaphore</declname>
+        </param>
+        <param>
+          <type>vk::Fence</type>
+          <declname>fence</declname>
+        </param>
+        <briefdescription>
+<para>Retrieves the next swapchain image. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>semaphore</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>A semaphore to signal. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>fence</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>A fence to signal. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/n30/Repos/rayexec/include/api/Swapchain.hpp" line="58" column="10"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="private-func">
+      <memberdef kind="function" id="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_swapchain_1a112becd249a5a073032d05540ee3c62e" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void RAYEXEC_NAMESPACE::Swapchain::initImages</definition>
+        <argsstring>(uint32_t minImageCount, vk::Format surfaceFormat)</argsstring>
+        <name>initImages</name>
+        <param>
+          <type>uint32_t</type>
+          <declname>minImageCount</declname>
+        </param>
+        <param>
+          <type>vk::Format</type>
+          <declname>surfaceFormat</declname>
+        </param>
+        <briefdescription>
+<para>Initializes the swapchain images. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>minImageCount</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The minimum amount of images in the swapchain. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>surfaceFormat</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The surface&apos;s format. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/n30/Repos/rayexec/include/api/Swapchain.hpp" line="64" column="10"/>
+      </memberdef>
+      <memberdef kind="function" id="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_swapchain_1ac7950d39c75eb8aa8c7e22701839845a" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void RAYEXEC_NAMESPACE::Swapchain::initDepthImage</definition>
+        <argsstring>()</argsstring>
+        <name>initDepthImage</name>
+        <briefdescription>
+<para>Initializes the depth image for the depth attachment. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/n30/Repos/rayexec/include/api/Swapchain.hpp" line="67" column="10"/>
+      </memberdef>
+      <memberdef kind="function" id="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_swapchain_1ace04bc847c25bb98626730d8a8faaae4" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void RAYEXEC_NAMESPACE::Swapchain::initFramebuffers</definition>
+        <argsstring>(vk::RenderPass renderPass)</argsstring>
+        <name>initFramebuffers</name>
+        <param>
+          <type>vk::RenderPass</type>
+          <declname>renderPass</declname>
+        </param>
+        <briefdescription>
+<para>Initializes the swapchain framebuffers. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>renderPass</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The render pass to create the framebuffers. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/n30/Repos/rayexec/include/api/Swapchain.hpp" line="71" column="10"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+<para>A wrapper class for a Vulkan swapchain. </para>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="/home/n30/Repos/rayexec/include/api/Swapchain.hpp" line="13" column="1" bodyfile="/home/n30/Repos/rayexec/include/api/Swapchain.hpp" bodystart="12" bodyend="87"/>
+    <listofallmembers>
+      <member refid="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_swapchain_1a2077caebb153dac7c98ccf7ea270f6e6" prot="public" virt="non-virtual"><scope>RAYEXEC_NAMESPACE::Swapchain</scope><name>acquireNextImage</name></member>
+      <member refid="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_swapchain_1a24eff97c41de27f99b06ccae9eb21f3a" prot="private" virt="non-virtual"><scope>RAYEXEC_NAMESPACE::Swapchain</scope><name>currentImageIndex</name></member>
+      <member refid="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_swapchain_1a026eb48ccadc264cb0afca33145eee3d" prot="private" virt="non-virtual"><scope>RAYEXEC_NAMESPACE::Swapchain</scope><name>depthImage</name></member>
+      <member refid="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_swapchain_1a38dc1313e025c4bb257412d98052ed25" prot="private" virt="non-virtual"><scope>RAYEXEC_NAMESPACE::Swapchain</scope><name>depthImageView</name></member>
+      <member refid="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_swapchain_1a562180ff12b730a57e7aec3c73a534b7" prot="public" virt="non-virtual"><scope>RAYEXEC_NAMESPACE::Swapchain</scope><name>destroy</name></member>
+      <member refid="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_swapchain_1a8b9b284de0c9df46bc13790f2fba030e" prot="private" virt="non-virtual"><scope>RAYEXEC_NAMESPACE::Swapchain</scope><name>extent</name></member>
+      <member refid="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_swapchain_1ac4087a2248ce5abf1aa096042407179a" prot="private" virt="non-virtual"><scope>RAYEXEC_NAMESPACE::Swapchain</scope><name>framebuffers</name></member>
+      <member refid="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_swapchain_1a5978067f74d9579eef8777cefed83a6c" prot="public" virt="non-virtual"><scope>RAYEXEC_NAMESPACE::Swapchain</scope><name>getCurrentImageIndex</name></member>
+      <member refid="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_swapchain_1ac1a042535549e8b435a41bbcaca06759" prot="public" virt="non-virtual"><scope>RAYEXEC_NAMESPACE::Swapchain</scope><name>getExtent</name></member>
+      <member refid="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_swapchain_1a7423d7474a69ddcf6c069dd52d03c9fe" prot="public" virt="non-virtual"><scope>RAYEXEC_NAMESPACE::Swapchain</scope><name>getFramebuffer</name></member>
+      <member refid="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_swapchain_1a8711129b1c04a4c09abb1a65817ac5a4" prot="public" virt="non-virtual"><scope>RAYEXEC_NAMESPACE::Swapchain</scope><name>getImage</name></member>
+      <member refid="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_swapchain_1a514beaf04e7d7835bf4b94ee0223622c" prot="public" virt="non-virtual"><scope>RAYEXEC_NAMESPACE::Swapchain</scope><name>getImageAspect</name></member>
+      <member refid="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_swapchain_1a6e0557f4d62e28dfeb9cf6e2afb06704" prot="public" virt="non-virtual"><scope>RAYEXEC_NAMESPACE::Swapchain</scope><name>getImages</name></member>
+      <member refid="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_swapchain_1a5e7ed9142f249264a2cb421c92c1b2d5" prot="public" virt="non-virtual"><scope>RAYEXEC_NAMESPACE::Swapchain</scope><name>getImageViews</name></member>
+      <member refid="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_swapchain_1a4c3d62c9caad70e18e789d9025b08960" prot="private" virt="non-virtual"><scope>RAYEXEC_NAMESPACE::Swapchain</scope><name>imageAspect</name></member>
+      <member refid="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_swapchain_1a5df1a18bdea7a2a3693e60bfae644bdb" prot="private" virt="non-virtual"><scope>RAYEXEC_NAMESPACE::Swapchain</scope><name>images</name></member>
+      <member refid="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_swapchain_1af1b91c7122292fc94dc0f5caa40f7f8f" prot="private" virt="non-virtual"><scope>RAYEXEC_NAMESPACE::Swapchain</scope><name>imageViews</name></member>
+      <member refid="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_swapchain_1a2d7ff0e063ea15fe578407c7c81ac7e2" prot="public" virt="non-virtual"><scope>RAYEXEC_NAMESPACE::Swapchain</scope><name>init</name></member>
+      <member refid="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_swapchain_1ac7950d39c75eb8aa8c7e22701839845a" prot="private" virt="non-virtual"><scope>RAYEXEC_NAMESPACE::Swapchain</scope><name>initDepthImage</name></member>
+      <member refid="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_swapchain_1ace04bc847c25bb98626730d8a8faaae4" prot="private" virt="non-virtual"><scope>RAYEXEC_NAMESPACE::Swapchain</scope><name>initFramebuffers</name></member>
+      <member refid="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_swapchain_1a112becd249a5a073032d05540ee3c62e" prot="private" virt="non-virtual"><scope>RAYEXEC_NAMESPACE::Swapchain</scope><name>initImages</name></member>
+      <member refid="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_swapchain_1ae727ddbc80698faab04783451ad2a250" prot="public" virt="non-virtual"><scope>RAYEXEC_NAMESPACE::Swapchain</scope><name>setImageAspect</name></member>
+      <member refid="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_swapchain_1afe470847ca79c36a8a502dabc6ea81e6" prot="public" virt="non-virtual"><scope>RAYEXEC_NAMESPACE::Swapchain</scope><name>setImageLayout</name></member>
+      <member refid="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_swapchain_1a1058f9c43543310c2fb74c2f3bac0c0f" prot="private" virt="non-virtual"><scope>RAYEXEC_NAMESPACE::Swapchain</scope><name>swapchain</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

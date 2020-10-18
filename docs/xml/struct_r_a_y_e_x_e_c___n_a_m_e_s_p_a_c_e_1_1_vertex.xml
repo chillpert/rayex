@@ -1,0 +1,145 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.17">
+  <compounddef id="struct_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_vertex" kind="struct" language="C++" prot="public">
+    <compoundname>RAYEXEC_NAMESPACE::Vertex</compoundname>
+    <includes refid="_vertex_8hpp" local="no">Vertex.hpp</includes>
+      <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="struct_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_vertex_1a675b93fd4c003438c84b68192b87bedc" prot="public" static="no" mutable="no">
+        <type>glm::vec3</type>
+        <definition>glm::vec3 RAYEXEC_NAMESPACE::Vertex::pos</definition>
+        <argsstring></argsstring>
+        <name>pos</name>
+        <briefdescription>
+<para>The vertex&apos;s position in 3D space. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/n30/Repos/rayexec/include/api/Vertex.hpp" line="15" column="15" bodyfile="/home/n30/Repos/rayexec/include/api/Vertex.hpp" bodystart="15" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="struct_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_vertex_1a53f646753a10728ead428c9b5b6c250e" prot="public" static="no" mutable="no">
+        <type>glm::vec3</type>
+        <definition>glm::vec3 RAYEXEC_NAMESPACE::Vertex::normal</definition>
+        <argsstring></argsstring>
+        <name>normal</name>
+        <briefdescription>
+<para>The vertex&apos;s normal vector. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/n30/Repos/rayexec/include/api/Vertex.hpp" line="16" column="15" bodyfile="/home/n30/Repos/rayexec/include/api/Vertex.hpp" bodystart="16" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="struct_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_vertex_1aff8b7f0bd8933579186b601fc8c48a7c" prot="public" static="no" mutable="no">
+        <type>glm::vec3</type>
+        <definition>glm::vec3 RAYEXEC_NAMESPACE::Vertex::color</definition>
+        <argsstring></argsstring>
+        <name>color</name>
+        <briefdescription>
+<para>The vertex&apos;s color. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/n30/Repos/rayexec/include/api/Vertex.hpp" line="17" column="15" bodyfile="/home/n30/Repos/rayexec/include/api/Vertex.hpp" bodystart="17" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="struct_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_vertex_1a9141a1b57c5ae706ddc954bcbe5a8d6a" prot="public" static="no" mutable="no">
+        <type>glm::vec2</type>
+        <definition>glm::vec2 RAYEXEC_NAMESPACE::Vertex::texCoord</definition>
+        <argsstring></argsstring>
+        <name>texCoord</name>
+        <briefdescription>
+<para>The vertex&apos;s texture coordinate. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/n30/Repos/rayexec/include/api/Vertex.hpp" line="18" column="15" bodyfile="/home/n30/Repos/rayexec/include/api/Vertex.hpp" bodystart="18" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="struct_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_vertex_1ad66f6c035b7f48392c2f19a0c9e1bd40" prot="public" static="no" mutable="no">
+        <type>float</type>
+        <definition>float RAYEXEC_NAMESPACE::Vertex::padding0</definition>
+        <argsstring></argsstring>
+        <name>padding0</name>
+        <briefdescription>
+<para><ref refid="struct_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_vertex" kindref="compound">Vertex</ref> padding 0. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/n30/Repos/rayexec/include/api/Vertex.hpp" line="19" column="11" bodyfile="/home/n30/Repos/rayexec/include/api/Vertex.hpp" bodystart="19" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-static-func">
+      <memberdef kind="function" id="struct_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_vertex_1a619060dadb57a1b0808c04c3126eb2dd" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>vk::Format</type>
+        <definition>static vk::Format RAYEXEC_NAMESPACE::Vertex::getVertexPositionFormat</definition>
+        <argsstring>()</argsstring>
+        <name>getVertexPositionFormat</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>Returns the hard-coded vertex format (eR32G32B32Sfloat). </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/n30/Repos/rayexec/include/api/Vertex.hpp" line="22" column="23" bodyfile="/home/n30/Repos/rayexec/include/api/Vertex.hpp" bodystart="22" bodyend="22"/>
+      </memberdef>
+      <memberdef kind="function" id="struct_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_vertex_1a707047ee60740204ea86bbd4dbeffaf3" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>std::array&lt; vk::VertexInputBindingDescription, 1 &gt;</type>
+        <definition>static std::array&lt;vk::VertexInputBindingDescription, 1&gt; RAYEXEC_NAMESPACE::Vertex::getBindingDescriptions</definition>
+        <argsstring>()</argsstring>
+        <name>getBindingDescriptions</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>Returns the vertex&apos;s Vulkan binding description. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/n30/Repos/rayexec/include/api/Vertex.hpp" line="25" column="23" bodyfile="/home/n30/Repos/rayexec/include/api/Vertex.hpp" bodystart="25" bodyend="34"/>
+      </memberdef>
+      <memberdef kind="function" id="struct_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_vertex_1a470bea6d3d04ec64c29aa27ae9239fd6" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>std::array&lt; vk::VertexInputAttributeDescription, 4 &gt;</type>
+        <definition>static std::array&lt;vk::VertexInputAttributeDescription, 4&gt; RAYEXEC_NAMESPACE::Vertex::getAttributeDescriptions</definition>
+        <argsstring>()</argsstring>
+        <name>getAttributeDescriptions</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>Returns the vertex&apos;s Vulkan attribute descriptions for all four attributes. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/n30/Repos/rayexec/include/api/Vertex.hpp" line="37" column="23" bodyfile="/home/n30/Repos/rayexec/include/api/Vertex.hpp" bodystart="37" bodyend="62"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+<para>Describes a vertex and its data. </para>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="/home/n30/Repos/rayexec/include/api/Vertex.hpp" line="14" column="1" bodyfile="/home/n30/Repos/rayexec/include/api/Vertex.hpp" bodystart="13" bodyend="70"/>
+    <listofallmembers>
+      <member refid="struct_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_vertex_1aff8b7f0bd8933579186b601fc8c48a7c" prot="public" virt="non-virtual"><scope>RAYEXEC_NAMESPACE::Vertex</scope><name>color</name></member>
+      <member refid="struct_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_vertex_1a470bea6d3d04ec64c29aa27ae9239fd6" prot="public" virt="non-virtual"><scope>RAYEXEC_NAMESPACE::Vertex</scope><name>getAttributeDescriptions</name></member>
+      <member refid="struct_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_vertex_1a707047ee60740204ea86bbd4dbeffaf3" prot="public" virt="non-virtual"><scope>RAYEXEC_NAMESPACE::Vertex</scope><name>getBindingDescriptions</name></member>
+      <member refid="struct_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_vertex_1a619060dadb57a1b0808c04c3126eb2dd" prot="public" virt="non-virtual"><scope>RAYEXEC_NAMESPACE::Vertex</scope><name>getVertexPositionFormat</name></member>
+      <member refid="struct_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_vertex_1a53f646753a10728ead428c9b5b6c250e" prot="public" virt="non-virtual"><scope>RAYEXEC_NAMESPACE::Vertex</scope><name>normal</name></member>
+      <member refid="struct_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_vertex_1ad66f6c035b7f48392c2f19a0c9e1bd40" prot="public" virt="non-virtual"><scope>RAYEXEC_NAMESPACE::Vertex</scope><name>padding0</name></member>
+      <member refid="struct_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_vertex_1a675b93fd4c003438c84b68192b87bedc" prot="public" virt="non-virtual"><scope>RAYEXEC_NAMESPACE::Vertex</scope><name>pos</name></member>
+      <member refid="struct_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_vertex_1a9141a1b57c5ae706ddc954bcbe5a8d6a" prot="public" virt="non-virtual"><scope>RAYEXEC_NAMESPACE::Vertex</scope><name>texCoord</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

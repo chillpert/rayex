@@ -1,5 +1,5 @@
 # RAYEXEC
-RAYEXEC is a work-in-progress cross-platform, cross-vendor Vulkan-based path tracing library. 
+RAYEXEC is a work-in-progress cross-platform, cross-vendor, Vulkan-based, path tracing library. 
 
 It runs on both Linux (x64) and Windows (x64) using the Vulkan API. The purpose of this software is to provide a cross-platform renderer with path tracing capabilities that is easy to integrate into existing projects. Vendor independence is achieved using KHRONOS' new Vulkan ray tracing extension (first published on March 17, 2020). It uses [SDL2](https://www.libsdl.org/index.php) for windowing and [glm](https://glm.g-truc.net/0.9.9/index.html) as its math library. RAYEXEC features native [Dear ImGui](https://github.com/ocornut/imgui) support, enabling the user to create user interfaces without having to write any API-related code.
 

@@ -1,10 +1,7 @@
 #ifndef SCENE_HPP
 #define SCENE_HPP
 
-#include "api/image/Texture.hpp"
-#include "base/GeometryNode.hpp"
-#include "base/LightNode.hpp"
-#include "base/Model.hpp"
+#include "base/Interfaces.hpp"
 
 namespace RAYEXEC_NAMESPACE
 {

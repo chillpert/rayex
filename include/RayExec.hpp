@@ -2,7 +2,6 @@
 #define RAYEXEC_HPP
 
 #include "api/Api.hpp"
-#include "base/Base.hpp"
 
 /// The rx namespace encapsulates every single component provided by the renderer.
 namespace RAYEXEC_NAMESPACE

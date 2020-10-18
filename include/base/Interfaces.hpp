@@ -1,9 +1,8 @@
-#ifndef MODULES_HPP
-#define MODULES_HPP
+#ifndef INTERFACES_HPP
+#define INTERFACES_HPP
 
 #include "api/misc/Vertex.hpp"
 #include "base/Mesh.hpp"
-#include "pch/stdafx.hpp"
 
 namespace RAYEXEC_NAMESPACE
 {
@@ -54,6 +53,10 @@ namespace RAYEXEC_NAMESPACE
     float quadratic = 0.0F;
   };
 
+  RX_API std::shared_ptr<Geometry> loadObj( std::string_view path );
+
+  RX_API std::shared_ptr<GeometryInstance> instance( std::shared_ptr<Geometry> geometry, const glm::mat4& transform = glm::mat4( 1.0F ) );
+
 } // namespace RAYEXEC_NAMESPACE
 
-#endif // MODULES_HPP
+#endif // INTERFACES_HPP

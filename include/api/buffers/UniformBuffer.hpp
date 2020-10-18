@@ -2,7 +2,7 @@
 #define UNIFORM_BUFFER_HPP
 
 #include "api/buffers/Buffer.hpp"
-#include "base/LightNode.hpp"
+#include "base/Interfaces.hpp"
 
 namespace RAYEXEC_NAMESPACE
 {
@@ -22,8 +22,8 @@ namespace RAYEXEC_NAMESPACE
   /// @todo Shouldn't this also be a storage buffer?
   struct LightsUbo
   {
-    std::array<DirectionalLightNode::Ubo, 10> directionalLightNodes;
-    std::array<PointLightNode::Ubo, 10> pointLightNodes;
+    std::array<DirectionalLight, 10> directionalLightNodes;
+    std::array<PointLight, 10> pointLightNodes;
   };
 
   /// A specialised buffer for uniforms.

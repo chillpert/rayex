@@ -18,7 +18,6 @@
 #include "api/raytracing/RayTracingBuilder.hpp"
 #include "api/utility/DebugMessenger.hpp"
 #include "api/utility/Util.hpp"
-#include "base/Base.hpp"
 #include "base/Gui.hpp"
 
 namespace RAYEXEC_NAMESPACE

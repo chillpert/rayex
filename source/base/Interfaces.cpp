@@ -1,4 +1,4 @@
-#include "base/Model.hpp"
+#include "base/Interfaces.hpp"
 
 #define TINYOBJLOADER_IMPLEMENTATION
 #include <tiny_obj_loader.h>

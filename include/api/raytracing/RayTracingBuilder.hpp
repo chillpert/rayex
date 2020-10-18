@@ -3,9 +3,10 @@
 
 #include "api/Swapchain.hpp"
 #include "api/buffers/Buffer.hpp"
+#include "api/buffers/IndexBuffer.hpp"
+#include "api/buffers/VertexBuffer.hpp"
 #include "api/raytracing/AccelerationStructure.hpp"
-#include "base/GeometryNode.hpp"
-#include "base/Model.hpp"
+#include "base/Interfaces.hpp"
 
 namespace RAYEXEC_NAMESPACE
 {

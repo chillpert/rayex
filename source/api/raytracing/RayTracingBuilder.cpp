@@ -284,7 +284,7 @@ namespace RAYEXEC_NAMESPACE
     }
   }
 
-  void RayTracingBuilder::createTopLevelAS( const std::vector<GeometryInstance>& geometryInstances )
+  void RayTracingBuilder::createTopLevelAS( const std::vector<std::shared_ptr<GeometryInstance>>& geometryInstances )
   {
     std::vector<BlasInstance> instances;
     instances.reserve( geometryInstances.size( ) );
@@ -293,9 +293,9 @@ namespace RAYEXEC_NAMESPACE
     for ( const auto& geometryInstance : geometryInstances )
     {
       BlasInstance rayInst;
-      rayInst.transform  = geometryInstance.transform;
+      rayInst.transform  = geometryInstance->transform;
       rayInst.instanceId = i;
-      rayInst.blasId     = geometryInstance.geometryIndex;
+      rayInst.blasId     = geometryInstance->geometryIndex;
       rayInst.hitGroupId = 0; // We will use the same hit group for all objects
       rayInst.flags      = vk::GeometryInstanceFlagBitsKHR::eTriangleFacingCullDisable;
 

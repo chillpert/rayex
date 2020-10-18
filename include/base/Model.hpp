@@ -14,7 +14,7 @@ namespace RAYEXEC_NAMESPACE
 {
   RX_API std::shared_ptr<Geometry> loadObj( std::string_view path );
 
-  RX_API GeometryInstance instance( std::shared_ptr<Geometry> geometry, const glm::mat4& transform = glm::mat4( 1.0F ) );
+  RX_API std::shared_ptr<GeometryInstance> instance( std::shared_ptr<Geometry> geometry, const glm::mat4& transform = glm::mat4( 1.0F ) );
 
 } // namespace RAYEXEC_NAMESPACE
 

@@ -59,7 +59,7 @@ namespace RAYEXEC_NAMESPACE
 
     /// Used to prepare building the top level acceleration structure.
     /// @param nodes A vector of pointers to RAYEXEC_NAMESPACE::GeometryNode objects.
-    void createTopLevelAS( const std::vector<GeometryInstance>& geometryInstances );
+    void createTopLevelAS( const std::vector<std::shared_ptr<GeometryInstance>>& geometryInstances );
 
     /// Build the top level acceleration structure.
     /// @param instances A vector of bottom level acceleration structure instances.

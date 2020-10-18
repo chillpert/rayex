@@ -58,13 +58,13 @@ namespace RAYEXEC_NAMESPACE
     /// @param gui A pointer to a RAYEXEC_NAMESPACE::Gui object.
     RX_API void setGui( std::shared_ptr<Gui> gui );
 
-    RX_API void submitGeometryInstance( const GeometryInstance& geometryInstance )
+    RX_API void submitGeometryInstance( std::shared_ptr<GeometryInstance> geometryInstance )
     {
       this->api->scene.geometryInstances.push_back( geometryInstance );
       this->api->uploadRayTracingInstancesToBuffer = true;
     }
 
-    RX_API void setGeometryInstances( const std::vector<GeometryInstance>& geometryInstances )
+    RX_API void setGeometryInstances( const std::vector<std::shared_ptr<GeometryInstance>>& geometryInstances )
     {
       this->api->scene.geometryInstances           = geometryInstances;
       this->api->uploadRayTracingInstancesToBuffer = true;

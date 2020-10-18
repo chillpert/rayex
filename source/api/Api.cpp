@@ -115,9 +115,9 @@ namespace RAYEXEC_NAMESPACE
     // At this point nodes are unknown. So I just create a storage buffer with the maximum value or with the anticipated value in settings.
     // enables the user to add more nodes later on during runtime.
     uint32_t maxInstanceCount = this->settings->maxGeometryNodes.has_value( ) ? this->settings->maxGeometryNodes.value( ) : g_maxGeometryNodes;
-    this->scene.geometryInstances.resize( maxInstanceCount );
-    this->rayTracingInstancesBuffer.init<GeometryInstance>( this->scene.geometryInstances );
-    this->scene.geometryInstances.clear( );
+
+    std::vector<GeometryInstance> geometryInstances( maxInstanceCount );
+    this->rayTracingInstancesBuffer.init<GeometryInstance>( geometryInstances );
   }
 
   void Api::initScene( )
@@ -167,7 +167,16 @@ namespace RAYEXEC_NAMESPACE
     if ( this->uploadRayTracingInstancesToBuffer )
     {
       this->uploadRayTracingInstancesToBuffer = false;
-      this->rayTracingInstancesBuffer.fill<GeometryInstance>( this->scene.geometryInstances.data( ) );
+
+      // Using static to avoid unpredictable memory mapping errors.
+      static std::vector<GeometryInstance> dereferencedGeometryInstances;
+      dereferencedGeometryInstances.resize( this->scene.geometryInstances.size( ) );
+      for ( size_t i = 0; i < dereferencedGeometryInstances.size( ); ++i )
+      {
+        dereferencedGeometryInstances[i] = ( *this->scene.geometryInstances[i] );
+      }
+
+      this->rayTracingInstancesBuffer.fill<GeometryInstance>( dereferencedGeometryInstances.data( ) );
       updateAccelerationStructures( );
     }
 
@@ -456,7 +465,7 @@ namespace RAYEXEC_NAMESPACE
 
     for ( const auto& geometryInstance : this->scene.geometryInstances )
     {
-      std::shared_ptr<Geometry> it = findGeometry( geometryInstance.geometryIndex );
+      std::shared_ptr<Geometry> it = findGeometry( geometryInstance->geometryIndex );
       RX_ASSERT( it != nullptr, "Could not find model. Did you forget to introduce the renderer to this model using RayExec::setModels( ) after initializing the renderer?" );
 
       auto it2 = temp.find( it->path );
@@ -499,7 +508,7 @@ namespace RAYEXEC_NAMESPACE
       uint32_t id = 0;
       for ( const auto& geometryInstance : this->scene.geometryInstances )
       {
-        auto geo = findGeometry( geometryInstance.geometryIndex );
+        auto geo = findGeometry( geometryInstance->geometryIndex );
         RX_ASSERT( geo != nullptr, "Could not find model. Did you forget to introduce the renderer to this model using RayExec::setModels( ) after initializing the renderer?" );
 
         uint32_t instanceCount = 1;
@@ -520,7 +529,7 @@ namespace RAYEXEC_NAMESPACE
                                                                        sizeof( uint32_t ),               // size
                                                                        &id );                            // pValues
 
-        std::array<vk::Buffer, 1> vertexBuffers { this->vertexBuffers[geometryInstance.geometryIndex].get( ) };
+        std::array<vk::Buffer, 1> vertexBuffers { this->vertexBuffers[geometryInstance->geometryIndex].get( ) };
         std::array<vk::DeviceSize, 1> offsets { 0 };
 
         this->swapchainCommandBuffers.get( imageIndex ).bindVertexBuffers( 0,                     // first binding
@@ -528,7 +537,7 @@ namespace RAYEXEC_NAMESPACE
                                                                            vertexBuffers.data( ), // pBuffers
                                                                            offsets.data( ) );     // pOffsets
 
-        this->swapchainCommandBuffers.get( imageIndex ).bindIndexBuffer( this->indexBuffers[geometryInstance.geometryIndex].get( ),
+        this->swapchainCommandBuffers.get( imageIndex ).bindIndexBuffer( this->indexBuffers[geometryInstance->geometryIndex].get( ),
                                                                          0, // offset
                                                                          vk::IndexType::eUint32 );
 
@@ -541,11 +550,11 @@ namespace RAYEXEC_NAMESPACE
                                                                             0,                                               // dynamic offset count
                                                                             nullptr );                                       // dynamic offsets
 
-        this->swapchainCommandBuffers.get( imageIndex ).drawIndexed( this->indexBuffers[geometryInstance.geometryIndex].getCount( ), // index count
-                                                                     instanceCount,                                                  // instance count
-                                                                     0,                                                              // first index
-                                                                     0,                                                              // vertex offset
-                                                                     0 );                                                            // first instance
+        this->swapchainCommandBuffers.get( imageIndex ).drawIndexed( this->indexBuffers[geometryInstance->geometryIndex].getCount( ), // index count
+                                                                     instanceCount,                                                   // instance count
+                                                                     0,                                                               // first index
+                                                                     0,                                                               // vertex offset
+                                                                     0 );                                                             // first instance
 
         ++id;
       }

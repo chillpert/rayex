@@ -11,7 +11,7 @@ namespace RAYEXEC_NAMESPACE
   struct Scene
   {
     std::vector<std::shared_ptr<Geometry>> geometries;
-    std::vector<GeometryInstance> geometryInstances;
+    std::vector<std::shared_ptr<GeometryInstance>> geometryInstances;
   };
 } // namespace RAYEXEC_NAMESPACE
 

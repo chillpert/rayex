@@ -451,15 +451,15 @@ auto main( ) -> int
   transform      = glm::rotate( transform, glm::radians( 45.0F ), glm::vec3( 0.0F, 1.0F, 0.0F ) );
   transform      = glm::translate( transform, glm::vec3( 0.0F, -1.0F, 0.5F ) );
 
-  GeometryInstance awpInstance1 = instance( awp, transform );
+  auto awpInstance1 = instance( awp, transform );
 
   transform = glm::scale( glm::mat4( 1.0F ), glm::vec3( 0.25F ) );
   transform = glm::rotate( transform, glm::radians( 90.0F ), glm::vec3( 0.0F, 1.0F, 0.0F ) );
   transform = glm::translate( transform, glm::vec3( 1.0F, 2.0F, 0.0F ) );
 
-  GeometryInstance awpInstance2 = instance( awp, transform );
+  auto awpInstance2 = instance( awp, transform );
 
-  GeometryInstance planeInstance = instance( plane );
+  auto planeInstance = instance( plane );
 
   // Submit instances for drawing.
   renderer.setGeometryInstances( { awpInstance1, planeInstance, awpInstance2 } );

@@ -128,15 +128,15 @@ namespace RAYEXEC_NAMESPACE
     return std::move( geometry );
   }
 
-  GeometryInstance instance( std::shared_ptr<Geometry> geometry, const glm::mat4& transform )
+  std::shared_ptr<GeometryInstance> instance( std::shared_ptr<Geometry> geometry, const glm::mat4& transform )
   {
     RX_ASSERT( geometry != nullptr, "Invalid geometry." );
 
-    GeometryInstance result;
-    result.geometryIndex = geometry->geometryIndex;
-    result.transform     = transform;
-    result.transformIT   = glm::transpose( glm::inverse( transform ) );
+    std::shared_ptr<GeometryInstance> result = std::make_shared<GeometryInstance>( );
+    result->geometryIndex                    = geometry->geometryIndex;
+    result->transform                        = transform;
+    result->transformIT                      = glm::transpose( glm::inverse( transform ) );
 
-    return result;
+    return std::move( result );
   }
 } // namespace RAYEXEC_NAMESPACE

@@ -97,21 +97,21 @@ $(document).ready(function(){initNavTree('index.html',''); initResizable(); });
 <div class="title">RAYEXEC </div>  </div>
 </div><!--header-->
 <div class="contents">
-<div class="textblock"><p>RAYEXEC is a work-in-progress cross-platform Vulkan-based path tracing rendering library.</p>
-<p>It runs on both Linux (x64) and Windows (x64) using the Vulkan API. The purpose of this software is to provide a cross-platform renderer with path tracing capabilities that is easy to integrate into existing projects. It uses SDL2 for windowing and GLM as its maths library. RAYEXEC features native <a href="https://github.com/ocornut/imgui">Dear ImGui</a> support.</p>
+<div class="textblock"><p>RAYEXEC is a work-in-progress cross-platform, cross-vendor Vulkan-based path tracing library.</p>
+<p>It runs on both Linux (x64) and Windows (x64) using the Vulkan API. The purpose of this software is to provide a cross-platform renderer with path tracing capabilities that is easy to integrate into existing projects. Vendor independence is achieved using KHRONOS' new Vulkan ray tracing extension (first published on March 17, 2020). It uses <a href="https://www.libsdl.org/index.php">SDL2</a> for windowing and <a href="https://glm.g-truc.net/0.9.9/index.html">glm</a> as its math library. RAYEXEC features native <a href="https://github.com/ocornut/imgui">Dear ImGui</a> support, enabling the user to create user interfaces without having to write any API-related code.</p>
 <h1><a class="anchor" id="autotoc_md1"></a>
 Requirements</h1>
-<p>NVIDIA Vulkan Beta Drivers <a href="https://developer.nvidia.com/vulkan-driver">[Download]</a></p>
+<p>Unfortunately, KHRONOS' Vulkan ray tracing extension is not yet part of the NVIDIA main driver. Download the NVIDIA Vulkan beta drivers <a href="https://developer.nvidia.com/vulkan-driver">here</a>.</p>
 <h1><a class="anchor" id="autotoc_md2"></a>
 Deploy</h1>
 <p>To integrate RAYEXEC in your existing C++ / CMake project, follow the steps below.</p>
 <ol type="1">
-<li>Download the latest <a href="https://github.com/chillpert/rayexec">release</a>.</li>
+<li>Download the latest <a href="https://github.com/chillpert/rayexec">release</a> or build the library yourself.</li>
 <li>Place the <b>shared library objects</b> and the provided <b>include folder</b> somewhere inside your project.</li>
-<li>Include the CMakeLists.txt inside the <b>include folder</b> to your CMakeLists.txt</li>
-<li>Link your target against the <b>shared library objects</b> and against SDL2</li>
+<li>Include the CMakeLists.txt inside the <b>include folder</b> to your CMakeLists.txt.</li>
+<li>Link your target against the <b>shared library objects</b> and against SDL2.</li>
 </ol>
-<p>Using CMake is not obligatory but recommended as RAYEXEC comes with its own CMakeLists.txt that will properly include all project headers. A release also comes with a fully functional example including a complete CMakeLists.txt that can be used as reference.</p>
+<p>Using CMake is not obligatory but recommended as RAYEXEC comes with its own CMakeLists.txt that will properly include all project headers. A release also comes with a fully functional example including a complete CMakeLists.txt that can be used for reference.</p>
 <h1><a class="anchor" id="autotoc_md3"></a>
 Build</h1>
 <h2><a class="anchor" id="autotoc_md4"></a>
@@ -124,16 +124,26 @@ Linux</h2>
 </div><!-- fragment --><p>Execute the example. Depending on the build type you want to choose, replace [buildtype]. </p><div class="fragment"><div class="line">$ ./bin/[buildtype]/example</div>
 </div><!-- fragment --><h2><a class="anchor" id="autotoc_md5"></a>
 Windows</h2>
-<p>Generate a Visual Studio solution using CMake.</p>
+<p>Generate a Visual Studio 2019 solution using CMake and build it or simply open the project folder using Visual Studio 2019, confirm the prompt to generate the CMake cache and build it.</p>
 <h2><a class="anchor" id="autotoc_md6"></a>
 Usage</h2>
-<p>The following cope snippet shows the most minimal example possible. Nothing will be rendered. For a proper example take a look at the <b>documentation</b> or at <b>example/example.cpp</b>. </p><div class="fragment"><div class="line">#include &quot;RayExec.hpp&quot;</div>
+<p>The following cope snippet renders a cube. For a proper example take a look at the <b>documentation</b> or at <b>example/example.cpp</b>. </p><div class="fragment"><div class="line">#include &quot;RayExec.hpp&quot;</div>
 <div class="line"> </div>
 <div class="line">int main( )</div>
 <div class="line">{</div>
-<div class="line">    RayExec renderer;</div>
+<div class="line">    // Initialize the renderer.</div>
+<div class="line">    rx::RayExec renderer;</div>
 <div class="line">    renderer.init( );</div>
 <div class="line">    </div>
+<div class="line">    // Load some geometry and submit it to RAYEXEC.</div>
+<div class="line">    auto cube   = rx::loadObj( &quot;models/cube.obj&quot; );</div>
+<div class="line">    renderer.submitGeometry( cube );</div>
+<div class="line"> </div>
+<div class="line">    // Create an instance of the geometry from above and submit it for rendering.</div>
+<div class="line">    auto cubeInstance = rx::instance( cube );</div>
+<div class="line">    renderer.submitGeometryInstance( cubeInstance );</div>
+<div class="line"> </div>
+<div class="line">    // The main loop.</div>
 <div class="line">    while ( renderer.isRunning( ) )</div>
 <div class="line">    {</div>
 <div class="line">        renderer.run( );</div>

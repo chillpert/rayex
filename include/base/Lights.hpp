@@ -3,7 +3,7 @@
 
 #include "pch/stdafx.hpp"
 
-namespace RAYEXEC_NAMESPACE
+namespace RAYEX_NAMESPACE
 {
   /// A common base for all light types.
   ///
@@ -35,6 +35,6 @@ namespace RAYEXEC_NAMESPACE
   {
     glm::vec3 position = glm::vec3( 1.0F );
   };
-} // namespace RAYEXEC_NAMESPACE
+} // namespace RAYEX_NAMESPACE
 
 #endif // LIGHTS_HPP

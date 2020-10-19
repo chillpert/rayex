@@ -2,7 +2,7 @@
 
 #include "api/Components.hpp"
 
-namespace RAYEXEC_NAMESPACE
+namespace RAYEX_NAMESPACE
 {
   auto UniformBuffer::getRaw( ) const -> const std::vector<vk::Buffer>
   {
@@ -15,4 +15,4 @@ namespace RAYEXEC_NAMESPACE
 
     return res;
   }
-} // namespace RAYEXEC_NAMESPACE
+} // namespace RAYEX_NAMESPACE

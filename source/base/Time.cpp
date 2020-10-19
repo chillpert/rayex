@@ -2,7 +2,7 @@
 
 #include "pch/stdafx.hpp"
 
-namespace RAYEXEC_NAMESPACE
+namespace RAYEX_NAMESPACE
 {
   float deltaTime;
   float prevTime;
@@ -65,4 +65,4 @@ namespace RAYEXEC_NAMESPACE
       prevTime2 = current_time;
     }
   }
-} // namespace RAYEXEC_NAMESPACE
+} // namespace RAYEX_NAMESPACE

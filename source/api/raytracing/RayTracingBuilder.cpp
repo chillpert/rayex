@@ -5,7 +5,7 @@
 #include "api/utility/Helpers.hpp"
 #include "api/utility/Initializers.hpp"
 
-namespace RAYEXEC_NAMESPACE
+namespace RAYEX_NAMESPACE
 {
   RayTracingBuilder::~RayTracingBuilder( )
   {
@@ -137,13 +137,13 @@ namespace RAYEXEC_NAMESPACE
                                                                   vk::AccelerationStructureBuildTypeKHR::eDevice,                    // buildType
                                                                   blas.as.as );                                                      // accelerationStructure
 
-      vk::MemoryRequirements2 memoryRequirements = RAYEXEC_NAMESPACE::g_device.getAccelerationStructureMemoryRequirementsKHR( memInfo );
+      vk::MemoryRequirements2 memoryRequirements = RAYEX_NAMESPACE::g_device.getAccelerationStructureMemoryRequirementsKHR( memInfo );
       vk::DeviceSize scratchSize                 = memoryRequirements.memoryRequirements.size;
 
       maxScratch = std::max( maxScratch, scratchSize );
 
       memInfo.type       = vk::AccelerationStructureMemoryRequirementsTypeKHR::eObject;
-      memoryRequirements = RAYEXEC_NAMESPACE::g_device.getAccelerationStructureMemoryRequirementsKHR( memInfo );
+      memoryRequirements = RAYEX_NAMESPACE::g_device.getAccelerationStructureMemoryRequirementsKHR( memInfo );
 
       originalSizes[index] = memoryRequirements.memoryRequirements.size;
 
@@ -527,4 +527,4 @@ namespace RAYEXEC_NAMESPACE
     vk::Helper::transitionImageLayout( swapchainImage, vk::ImageLayout::eTransferDstOptimal, vk::ImageLayout::ePresentSrcKHR, swapchainCommandBuffer );
     this->storageImage.transitionToLayout( vk::ImageLayout::eGeneral, swapchainCommandBuffer );
   }
-} // namespace RAYEXEC_NAMESPACE
+} // namespace RAYEX_NAMESPACE

@@ -4,7 +4,7 @@
 #include "api/Components.hpp"
 #include "api/image/Image.hpp"
 
-namespace RAYEXEC_NAMESPACE
+namespace RAYEX_NAMESPACE
 {
   /// A wrapper class for a Vulkan buffer.
   /// @ingroup API
@@ -30,7 +30,7 @@ namespace RAYEXEC_NAMESPACE
 
     RX_API virtual ~Buffer( ) = default;
 
-    /// Copies the content of this buffer to another RAYEXEC_NAMESPACE::Buffer.
+    /// Copies the content of this buffer to another RAYEX_NAMESPACE::Buffer.
     /// @param buffer The target for the copy operation.
     void copyToBuffer( const Buffer& buffer ) const;
 
@@ -105,6 +105,6 @@ namespace RAYEXEC_NAMESPACE
     // Copy staging buffer to the actual index buffer.
     stagingBuffer.copyToBuffer( buffer.get( ) );
   }
-} // namespace RAYEXEC_NAMESPACE
+} // namespace RAYEX_NAMESPACE
 
 #endif // BUFFER_HPP

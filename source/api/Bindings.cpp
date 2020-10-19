@@ -1,6 +1,6 @@
 #include "api/Bindings.hpp"
 
-namespace RAYEXEC_NAMESPACE
+namespace RAYEX_NAMESPACE
 {
   void Bindings::add( uint32_t binding, vk::DescriptorType type, vk::ShaderStageFlags stage, uint32_t count, vk::DescriptorBindingFlags flags )
   {
@@ -190,4 +190,4 @@ namespace RAYEXEC_NAMESPACE
     this->poolSizes.reset( );
     this->writes.clear( );
   };
-} // namespace RAYEXEC_NAMESPACE
+} // namespace RAYEX_NAMESPACE

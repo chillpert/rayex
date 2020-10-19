@@ -2,7 +2,7 @@
 
 #include "api/Components.hpp"
 
-namespace RAYEXEC_NAMESPACE
+namespace RAYEX_NAMESPACE
 {
   void RenderPass::init( const std::vector<vk::AttachmentDescription>& attachments, const std::vector<vk::SubpassDescription>& subpasses, const std::vector<vk::SubpassDependency>& dependencies )
   {
@@ -33,4 +33,4 @@ namespace RAYEXEC_NAMESPACE
   {
     commandBuffer.endRenderPass( ); // CMD
   }
-} // namespace RAYEXEC_NAMESPACE
+} // namespace RAYEX_NAMESPACE

@@ -1,10 +1,10 @@
 #ifndef PIPELINE_HPP
 #define PIPELINE_HPP
 
-#include "Settings.hpp"
+#include "base/Settings.hpp"
 #include "pch/stdafx.hpp"
 
-namespace RAYEXEC_NAMESPACE
+namespace RAYEX_NAMESPACE
 {
   struct RayTracePushConstants
   {
@@ -48,6 +48,6 @@ namespace RAYEXEC_NAMESPACE
     vk::UniquePipeline pipeline;     ///< The Vulkan pipeline with a unique handle.
     vk::UniquePipelineLayout layout; ///< The Vulkan pipeline layout with a unique handle.
   };
-} // namespace RAYEXEC_NAMESPACE
+} // namespace RAYEX_NAMESPACE
 
 #endif // PIPELINE_HPP

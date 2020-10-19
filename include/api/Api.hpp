@@ -20,9 +20,9 @@
 #include "base/Gui.hpp"
 #include "base/Scene.hpp"
 
-namespace RAYEXEC_NAMESPACE
+namespace RAYEX_NAMESPACE
 {
-  class RayExec;
+  class Rayex;
 
   /// Initializes and owns all Vulkan components and displays a picture on the screen.
   /// @note All API components and resources are freed using scope-bound destruction.
@@ -31,7 +31,7 @@ namespace RAYEXEC_NAMESPACE
   class Api
   {
   public:
-    friend RayExec;
+    friend Rayex;
 
     Api( ) = default;
     RX_API ~Api( );
@@ -96,7 +96,7 @@ namespace RAYEXEC_NAMESPACE
     /// Updates the descriptor set with bindings to the total vertices and total indices buffers.
     void updateRayTracingModelData( );
 
-    /// Handles swapchain and pipeline recreations triggered by the user using setters provided in RAYEXEC_NAMESPACE::Settings.
+    /// Handles swapchain and pipeline recreations triggered by the user using setters provided in RAYEX_NAMESPACE::Settings.
     void updateSettings( );
 
     /// Updates all uniform buffers light light sources.
@@ -119,8 +119,8 @@ namespace RAYEXEC_NAMESPACE
 
     std::shared_ptr<Geometry> findGeometry( uint32_t geometryIndex );
 
-    std::shared_ptr<Window> window = nullptr;                  ///< A pointer to a RAYEXEC_NAMESPACE::Window object whose surface is going to be rendered to.
-    std::shared_ptr<Camera> camera = nullptr;                  ///< A pointer to a RAYEXEC_NAMESPACE::Camera object whose matrices will be used for rendering.
+    std::shared_ptr<Window> window = nullptr;                  ///< A pointer to a RAYEX_NAMESPACE::Window object whose surface is going to be rendered to.
+    std::shared_ptr<Camera> camera = nullptr;                  ///< A pointer to a RAYEX_NAMESPACE::Camera object whose matrices will be used for rendering.
     vk::PhysicalDevice physicalDevice;                         ///< Stores the physical device (GPU).
     vk::UniqueInstance instance;                               ///< A unique Vulkan instance.
     DebugMessenger debugMessenger;                             ///< The debug messenger for logging validation messages.
@@ -160,27 +160,27 @@ namespace RAYEXEC_NAMESPACE
     CameraUbo cameraUbo;               ///< UBO for camera data.
     UniformBuffer cameraUniformBuffer; ///< Uniform buffers containing camera data.
 
-    Swapchain swapchain;   ///< A RAYEXEC_NAMESPACE::Swapchain to manage swapchain related operations.
-    RenderPass renderPass; ///< A RAYEXEC_NAMESPACE::RenderPass to create, begin and end a render pass.
+    Swapchain swapchain;   ///< A RAYEX_NAMESPACE::Swapchain to manage swapchain related operations.
+    RenderPass renderPass; ///< A RAYEX_NAMESPACE::RenderPass to create, begin and end a render pass.
 
-    Pipeline rsPipeline; ///< A RAYEXEC_NAMESPACE::Pipeline for managing a rasterization pipeline.
-    Pipeline rtPipeline; ///< A RAYEXEC_NAMESPACE::Pipeline for managing a ray tracing pipeline.
+    Pipeline rsPipeline; ///< A RAYEX_NAMESPACE::Pipeline for managing a rasterization pipeline.
+    Pipeline rtPipeline; ///< A RAYEX_NAMESPACE::Pipeline for managing a ray tracing pipeline.
 
-    CommandBuffer swapchainCommandBuffers; ///< A RAYEXEC_NAMESPACE::CommandBuffer containing as many command buffers as there are images in the swapchain.
+    CommandBuffer swapchainCommandBuffers; ///< A RAYEX_NAMESPACE::CommandBuffer containing as many command buffers as there are images in the swapchain.
 
-    std::shared_ptr<Gui> gui = nullptr; ///< A pointer to a RAYEXEC_NAMESPACE::Gui object that will be used for rendering the GUI.
+    std::shared_ptr<Gui> gui = nullptr; ///< A pointer to a RAYEX_NAMESPACE::Gui object that will be used for rendering the GUI.
 
     // No destruction necessary for following members:
-    RayTracingBuilder rayTracingBuilder; ///< The RAYEXEC_NAMESPACE::RayTracingBuilder for setting up all ray tracing-related structures and the ray tracing process itself.
+    RayTracingBuilder rayTracingBuilder; ///< The RAYEX_NAMESPACE::RayTracingBuilder for setting up all ray tracing-related structures and the ray tracing process itself.
 
     vk::Viewport viewport; ///< The application's viewport.
     vk::Rect2D scissor;    ///< The application's scissor.
 
     bool needSwapchainRecreate = false;   ///< Keeps track of whether or not the swapchain needs to be re-created.
     bool pipelinesReady        = false;   ///< Keeps track of whether or not the graphics pipelines are ready.
-    Settings* settings         = nullptr; ///< Refers to the rendering settings stored in RayExec::settings.
-    Scene* scene               = nullptr; ///< Refers to the scene stored in RayExec::scene.
+    Settings* settings         = nullptr; ///< Refers to the rendering settings stored in Rayex::settings.
+    Scene* scene               = nullptr; ///< Refers to the scene stored in Rayex::scene.
   };
-} // namespace RAYEXEC_NAMESPACE
+} // namespace RAYEX_NAMESPACE
 
 #endif // API_HPP

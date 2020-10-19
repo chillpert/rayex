@@ -1,10 +1,10 @@
-#ifndef RAYEXEC_HPP
-#define RAYEXEC_HPP
+#ifndef RAYEX_HPP
+#define RAYEX_HPP
 
 #include "api/Api.hpp"
 
 /// The rx namespace encapsulates every single component provided by the renderer.
-namespace RAYEXEC_NAMESPACE
+namespace RAYEX_NAMESPACE
 {
   /// The main user interface.
   ///
@@ -13,7 +13,7 @@ namespace RAYEXEC_NAMESPACE
   /// ### Example
   /// ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~.cpp
   /// // The following example renders a cube in less than 10 lines of code.
-  /// RayExec myRenderer;
+  /// Rayex myRenderer;
   /// myRenderer.init( );
   ///
   /// myRenderer.pushNode( std::make_shared<GeometryNode>( "models/cube.obj", Material( "textures/metal.png" ) ) );
@@ -24,7 +24,7 @@ namespace RAYEXEC_NAMESPACE
   /// }
   /// ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
   /// @ingroup Base
-  class RayExec
+  class Rayex
   {
   public:
     /// Initializes the renderer.
@@ -35,24 +35,24 @@ namespace RAYEXEC_NAMESPACE
     /// A single function to execute all subcomponents in order.
     ///
     /// This function updates the window and the camera components and calls the update and render functions of the API.
-    /// @see RAYEXEC_NAMESPACE::Camera::update(), RAYEXEC_NAMESPACE::Window::update(), RAYEXEC_NAMESPACE::Api::update(), RAYEXEC_NAMESPACE::Api::render()
+    /// @see RAYEX_NAMESPACE::Camera::update(), RAYEX_NAMESPACE::Window::update(), RAYEX_NAMESPACE::Api::update(), RAYEX_NAMESPACE::Api::render()
     RX_API void run( );
 
     /// @return Returns true if the application is still running and false if the application has stopped.
     RX_API auto isRunning( ) const -> bool;
 
     /// Used to set a custom camera.
-    /// @param camera A pointer to a RAYEXEC_NAMESPACE::Camera object.
+    /// @param camera A pointer to a RAYEX_NAMESPACE::Camera object.
     RX_API void setCamera( std::shared_ptr<Camera> camera );
 
     /// Used to set a custom window.
-    /// @param window A pointer to a RAYEXEC_NAMESPACE::Window object.
+    /// @param window A pointer to a RAYEX_NAMESPACE::Window object.
     RX_API void setWindow( std::shared_ptr<Window> window );
 
     /// Used to set a custom GUI.
     ///
     /// The GUI can be changed multiple times. Even during runtime.
-    /// @param gui A pointer to a RAYEXEC_NAMESPACE::Gui object.
+    /// @param gui A pointer to a RAYEX_NAMESPACE::Gui object.
     RX_API void setGui( std::shared_ptr<Gui> gui );
 
     /// @return Returns a pointer to the renderer's window.
@@ -62,7 +62,7 @@ namespace RAYEXEC_NAMESPACE
     [[nodiscard]] RX_API inline auto getCamera( ) const -> std::shared_ptr<Camera> { return this->camera; }
 
     /// Used to modify any interal rendering settings.
-    /// @see RAYEXEC_NAMESPACE::Settings
+    /// @see RAYEX_NAMESPACE::Settings
     Settings settings;
 
     /// Contains all meshes, all mesh instances and all light sources.
@@ -79,6 +79,6 @@ namespace RAYEXEC_NAMESPACE
     bool running     = true;  ///< Keeps track of whether or not the main loop should still be continued.
     bool initScene   = true;  ///< Keeps track of whether or not to initialize the scene.
   };
-} // namespace RAYEXEC_NAMESPACE
+} // namespace RAYEX_NAMESPACE
 
-#endif // RAYEXEC_HPP
+#endif // RAYEX_HPP

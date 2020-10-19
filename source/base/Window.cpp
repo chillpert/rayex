@@ -2,7 +2,7 @@
 
 #include "api/Components.hpp"
 
-namespace RAYEXEC_NAMESPACE
+namespace RAYEX_NAMESPACE
 {
   Window::Window( int width, int height, const char* title, uint32_t flags ) :
 
@@ -110,4 +110,4 @@ namespace RAYEXEC_NAMESPACE
   {
     return ( ( SDL_GetWindowFlags( this->window ) & SDL_WINDOW_MINIMIZED ) != 0U );
   }
-} // namespace RAYEXEC_NAMESPACE
+} // namespace RAYEX_NAMESPACE

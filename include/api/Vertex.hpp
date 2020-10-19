@@ -6,7 +6,7 @@
 #define GLENABLE_EXPERIMENTAL
 #include "external/glm/gtx/hash.hpp"
 
-namespace RAYEXEC_NAMESPACE
+namespace RAYEX_NAMESPACE
 {
   /// Describes a vertex and its data.
   /// @ingroup API
@@ -68,15 +68,15 @@ namespace RAYEXEC_NAMESPACE
     }
     /// @endcond
   };
-} // namespace RAYEXEC_NAMESPACE
+} // namespace RAYEX_NAMESPACE
 
 namespace std
 {
   /// @cond INTERNAL
   template <>
-  struct hash<RAYEXEC_NAMESPACE::Vertex>
+  struct hash<RAYEX_NAMESPACE::Vertex>
   {
-    size_t operator( )( const RAYEXEC_NAMESPACE::Vertex& vertex ) const
+    size_t operator( )( const RAYEX_NAMESPACE::Vertex& vertex ) const
     {
       size_t hashPos      = hash<glm::vec3>( )( vertex.pos );
       size_t hashColor    = hash<glm::vec3>( )( vertex.color );

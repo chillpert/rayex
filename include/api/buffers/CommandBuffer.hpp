@@ -3,7 +3,7 @@
 
 #include "pch/stdafx.hpp"
 
-namespace RAYEXEC_NAMESPACE
+namespace RAYEX_NAMESPACE
 {
   /// A wrapper class for Vulkan command buffers.
   /// @ingroup API
@@ -63,6 +63,6 @@ namespace RAYEXEC_NAMESPACE
     vk::CommandPool commandPool;          ///< The Vulkan command pool used to allocate the command buffer from.
     vk::CommandBufferBeginInfo beginInfo; ///< The Vulkan begin information of the command buffer.
   };
-} // namespace RAYEXEC_NAMESPACE
+} // namespace RAYEX_NAMESPACE
 
 #endif // COMMAND_BUFFER_HPP

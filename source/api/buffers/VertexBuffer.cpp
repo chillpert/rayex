@@ -1,6 +1,6 @@
 #include "api/buffers/VertexBuffer.hpp"
 
-namespace RAYEXEC_NAMESPACE
+namespace RAYEX_NAMESPACE
 {
   VertexBuffer::VertexBuffer( std::vector<Vertex>& vertices, bool initialize )
   {
@@ -35,4 +35,4 @@ namespace RAYEXEC_NAMESPACE
     // Copy staging buffer to the actual index buffer.
     stagingBuffer.copyToBuffer( this->buffer.get( ) );
   }
-} // namespace RAYEXEC_NAMESPACE
+} // namespace RAYEX_NAMESPACE

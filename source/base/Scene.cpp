@@ -2,7 +2,7 @@
 
 #include "api/Components.hpp"
 
-namespace RAYEXEC_NAMESPACE
+namespace RAYEX_NAMESPACE
 {
   auto Scene::getGeometryInstances( ) const -> const std::vector<std::shared_ptr<GeometryInstance>>&
   {
@@ -14,7 +14,7 @@ namespace RAYEXEC_NAMESPACE
     uint32_t limit = this->settings->maxGeometryInstances.has_value( ) ? this->settings->maxGeometryInstances.value( ) : g_maxGeometryInstances;
     if ( this->geometryInstances.size( ) >= limit )
     {
-      RX_ERROR( "Failed to submit geometry instance because instance buffer size has been exceeded. To avoid this error, increase the amount of supported geometry instances using RAYEXEC_NAMESPACE::RayExec::Settings::setMaxGeometryInstances(uint32_t)." );
+      RX_ERROR( "Failed to submit geometry instance because instance buffer size has been exceeded. To avoid this error, increase the amount of supported geometry instances using RAYEX_NAMESPACE::Rayex::Settings::setMaxGeometryInstances(uint32_t)." );
       return;
     }
 
@@ -27,7 +27,7 @@ namespace RAYEXEC_NAMESPACE
     uint32_t limit = this->settings->maxGeometryInstances.has_value( ) ? this->settings->maxGeometryInstances.value( ) : g_maxGeometryInstances;
     if ( this->geometryInstances.size( ) >= limit )
     {
-      RX_ERROR( "Failed to set geometry instances because instance buffer size has been exceeded. To avoid this error, increase the amount of supported geometry instances using RAYEXEC_NAMESPACE::RayExec::Settings::setMaxGeometryInstances(uint32_t)." );
+      RX_ERROR( "Failed to set geometry instances because instance buffer size has been exceeded. To avoid this error, increase the amount of supported geometry instances using RAYEX_NAMESPACE::Rayex::Settings::setMaxGeometryInstances(uint32_t)." );
       return;
     }
 
@@ -45,7 +45,7 @@ namespace RAYEXEC_NAMESPACE
     uint32_t limit = this->settings->maxDirectionalLights.has_value( ) ? this->settings->maxDirectionalLights.value( ) : g_maxDirectionalLights;
     if ( this->directionalLights.size( ) >= limit )
     {
-      RX_ERROR( "Failed to submit directional light because buffer size has been exceeded. To avoid this error, increase the amount of supported directional lights using RAYEXEC_NAMESPACE::RayExec::Settings::setMaxDirectionalLights(uint32_t)." );
+      RX_ERROR( "Failed to submit directional light because buffer size has been exceeded. To avoid this error, increase the amount of supported directional lights using RAYEX_NAMESPACE::Rayex::Settings::setMaxDirectionalLights(uint32_t)." );
       return;
     }
 
@@ -86,7 +86,7 @@ namespace RAYEXEC_NAMESPACE
     uint32_t limit = this->settings->maxPointLights.has_value( ) ? this->settings->maxPointLights.value( ) : g_maxPointLights;
     if ( this->pointLights.size( ) >= limit )
     {
-      RX_ERROR( "Failed to submit point light because buffer size has been exceeded. To avoid this error, increase the amount of supported point lights using RAYEXEC_NAMESPACE::RayExec::Settings::setMaxPointLights(uint32_t)." );
+      RX_ERROR( "Failed to submit point light because buffer size has been exceeded. To avoid this error, increase the amount of supported point lights using RAYEX_NAMESPACE::Rayex::Settings::setMaxPointLights(uint32_t)." );
       return;
     }
 
@@ -163,4 +163,4 @@ namespace RAYEXEC_NAMESPACE
     RX_INFO( "Could not find geometry in scene. Trying to create geometry instead." );
     return loadObj( path );
   }
-} // namespace RAYEXEC_NAMESPACE
+} // namespace RAYEX_NAMESPACE

@@ -75,8 +75,8 @@ namespace vk
     auto allocateMemoryUnique( Buffer buffer, MemoryPropertyFlags propertyFlags = MemoryPropertyFlagBits::eDeviceLocal, void* pNext = nullptr ) -> UniqueDeviceMemory;
 
     /// Allocates and binds unique memory for an acceleration structure object.
-    /// @param as The RAYEXEC_NAMESPACE::AccelerationStructure object the memory will be allocated for.
-    void allocateMemory( RAYEXEC_NAMESPACE::AccelerationStructure& as );
+    /// @param as The RAYEX_NAMESPACE::AccelerationStructure object the memory will be allocated for.
+    void allocateMemory( RAYEX_NAMESPACE::AccelerationStructure& as );
 
     /// Allocates and binds memory for a buffer.
     /// @param buffer The buffer to allocate memory for.
@@ -102,13 +102,13 @@ namespace vk
     /// Create a sampler with a unique handle.
     /// @param createInfo The Vulkan init info for the sampler.
     /// @return Returns the sampler.
-    /// @note Use RAYEXEC_NAMESPACE::Helper::getSamplerCreateInfo to get a predefined init info.
+    /// @note Use RAYEX_NAMESPACE::Helper::getSamplerCreateInfo to get a predefined init info.
     auto initSamplerUnique( const SamplerCreateInfo& createInfo ) -> UniqueSampler;
 
     /// Create a sampler.
     /// @param createInfo The Vulkan init info for the sampler.
     /// @return Returns the sampler.
-    /// @note Use RAYEXEC_NAMESPACE::Helper::getSamplerCreateInfo to get a predefined init info.
+    /// @note Use RAYEX_NAMESPACE::Helper::getSamplerCreateInfo to get a predefined init info.
     auto initSampler( const SamplerCreateInfo& createInfo ) -> Sampler;
 
     /// Create a framebuffer with a unique handle.
@@ -149,8 +149,8 @@ namespace vk
 
     /// Creates the acceleration structure and allocates and binds memory for it.
     /// @param asCreateInfo The Vulkan init info for the acceleration structure.
-    /// @return Returns an RAYEXEC_NAMESPACE::AccelerationStructure object that contains the AS itself as well as the memory for it.
-    auto initAccelerationStructure( const AccelerationStructureCreateInfoKHR& asCreateInfo ) -> RAYEXEC_NAMESPACE::AccelerationStructure;
+    /// @return Returns an RAYEX_NAMESPACE::AccelerationStructure object that contains the AS itself as well as the memory for it.
+    auto initAccelerationStructure( const AccelerationStructureCreateInfoKHR& asCreateInfo ) -> RAYEX_NAMESPACE::AccelerationStructure;
 
     /// Retrieves the most suited GPU on the current machine.
     ///

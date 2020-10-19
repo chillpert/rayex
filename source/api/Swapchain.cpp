@@ -3,7 +3,7 @@
 #include "api/Components.hpp"
 #include "api/utility/Initializers.hpp"
 
-namespace RAYEXEC_NAMESPACE
+namespace RAYEX_NAMESPACE
 {
   void Swapchain::init( Surface* surface, vk::RenderPass renderPass )
   {
@@ -185,4 +185,4 @@ namespace RAYEXEC_NAMESPACE
     std::vector<vk::Format> candidates { vk::Format::eD32Sfloat, vk::Format::eD32SfloatS8Uint, vk::Format::eD24UnormS8Uint };
     return Image::findSupportedFormat( physicalDevice, candidates, vk::FormatFeatureFlagBits::eDepthStencilAttachment, vk::ImageTiling::eOptimal );
   }
-} // namespace RAYEXEC_NAMESPACE
+} // namespace RAYEX_NAMESPACE

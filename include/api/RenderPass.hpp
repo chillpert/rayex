@@ -3,7 +3,7 @@
 
 #include "pch/stdafx.hpp"
 
-namespace RAYEXEC_NAMESPACE
+namespace RAYEX_NAMESPACE
 {
   /// A wrapper class for a Vulkan render pass.
   /// @ingroup API
@@ -24,7 +24,7 @@ namespace RAYEXEC_NAMESPACE
     /// @param commandBuffer The command buffer used to begin the render pass.
     /// @param renderArea Defines the size of the render area.
     /// @param clearValues The clear values.
-    /// @note RAYEXEC_NAMESPACE::CommandBuffer::begin() or vk::CommandBuffer::begin() must have been already called prior to calling this function.
+    /// @note RAYEX_NAMESPACE::CommandBuffer::begin() or vk::CommandBuffer::begin() must have been already called prior to calling this function.
     void begin( vk::Framebuffer framebuffer, vk::CommandBuffer commandBuffer, vk::Rect2D renderArea, const std::vector<vk::ClearValue>& clearValues ) const;
 
     /// Call to end the render pass.
@@ -34,6 +34,6 @@ namespace RAYEXEC_NAMESPACE
   private:
     vk::UniqueRenderPass renderPass; ///< The Vulkan render pass with a unique handle.
   };
-} // namespace RAYEXEC_NAMESPACE
+} // namespace RAYEX_NAMESPACE
 
 #endif // RENDER_PASS_HPP

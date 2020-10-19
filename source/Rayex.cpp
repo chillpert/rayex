@@ -1,12 +1,12 @@
-#include "RayExec.hpp"
+#include "Rayex.hpp"
 
 #include <utility>
 
-namespace RAYEXEC_NAMESPACE
+namespace RAYEX_NAMESPACE
 {
-  void RayExec::init( )
+  void Rayex::init( )
   {
-    RX_INFO( "Starting RayExec." );
+    RX_INFO( "Starting Rayex." );
 
     if ( this->window == nullptr )
     {
@@ -50,20 +50,20 @@ namespace RAYEXEC_NAMESPACE
     this->api->initBase( );
   }
 
-  auto RayExec::isRunning( ) const -> bool
+  auto Rayex::isRunning( ) const -> bool
   {
     if ( !this->running )
     {
       // Print results of the session.
       rx::Time::benchmark( );
 
-      RX_INFO( "Shutting down RayExec." );
+      RX_INFO( "Shutting down Rayex." );
     }
 
     return this->running;
   }
 
-  void RayExec::run( )
+  void Rayex::run( )
   {
     if ( !this->running || !this->initialized )
     {
@@ -106,7 +106,7 @@ namespace RAYEXEC_NAMESPACE
     this->api->update( );
   }
 
-  void RayExec::setCamera( std::shared_ptr<Camera> camera )
+  void Rayex::setCamera( std::shared_ptr<Camera> camera )
   {
     this->camera = camera;
 
@@ -114,7 +114,7 @@ namespace RAYEXEC_NAMESPACE
       this->api->camera = this->camera;
   }
 
-  void RayExec::setWindow( std::shared_ptr<Window> window )
+  void Rayex::setWindow( std::shared_ptr<Window> window )
   {
     this->window = window;
 
@@ -122,8 +122,8 @@ namespace RAYEXEC_NAMESPACE
       this->api->window = this->window;
   }
 
-  void RayExec::setGui( std::shared_ptr<Gui> gui )
+  void Rayex::setGui( std::shared_ptr<Gui> gui )
   {
     this->initialized ? this->api->setGui( gui, true ) : this->api->setGui( gui );
   }
-} // namespace RAYEXEC_NAMESPACE
+} // namespace RAYEX_NAMESPACE

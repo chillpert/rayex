@@ -3,7 +3,7 @@
 #define TINYOBJLOADER_IMPLEMENTATION
 #include <tiny_obj_loader.h>
 
-namespace RAYEXEC_NAMESPACE
+namespace RAYEX_NAMESPACE
 {
   std::shared_ptr<Geometry> loadObj( std::string_view path )
   {
@@ -141,4 +141,4 @@ namespace RAYEXEC_NAMESPACE
 
     return std::move( result );
   }
-} // namespace RAYEXEC_NAMESPACE
+} // namespace RAYEX_NAMESPACE

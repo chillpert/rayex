@@ -3,7 +3,7 @@
 
 #include "base/Window.hpp"
 
-namespace RAYEXEC_NAMESPACE
+namespace RAYEX_NAMESPACE
 {
   extern std::shared_ptr<Window> g_window;                       ///< Reference to the window.
   extern vk::Instance g_instance;                                ///< Reference to the Vulkan instance.
@@ -36,6 +36,6 @@ namespace RAYEXEC_NAMESPACE
   const size_t g_maxModels            = 2000; ///< Stores the maximum amount of models supported.
 
   extern std::string g_assetsPath; ///< Path to where shaders, models and textures are stored.
-} // namespace RAYEXEC_NAMESPACE
+} // namespace RAYEX_NAMESPACE
 
 #endif // COMPONENTS_HPP

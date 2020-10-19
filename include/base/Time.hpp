@@ -3,7 +3,7 @@
 
 #include "Core.hpp"
 
-namespace RAYEXEC_NAMESPACE
+namespace RAYEX_NAMESPACE
 {
   class Window;
 
@@ -29,6 +29,6 @@ namespace RAYEXEC_NAMESPACE
     /// @note This function will be called every tick.
     static void update( );
   };
-} // namespace RAYEXEC_NAMESPACE
+} // namespace RAYEX_NAMESPACE
 
 #endif // TIME_HPP

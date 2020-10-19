@@ -3,7 +3,7 @@
 
 #include "pch/stdafx.hpp"
 
-namespace RAYEXEC_NAMESPACE
+namespace RAYEX_NAMESPACE
 {
   /// A wrapper class for a Vulkan debug utility messenger.
   ///
@@ -41,6 +41,6 @@ namespace RAYEXEC_NAMESPACE
                                                      const VkDebugUtilsMessengerCallbackDataEXT* callbackData,
                                                      void* userData ) -> VkBool32;
   /// @endcond
-} // namespace RAYEXEC_NAMESPACE
+} // namespace RAYEX_NAMESPACE
 
 #endif // DEBUG_MESSENGER_HPP

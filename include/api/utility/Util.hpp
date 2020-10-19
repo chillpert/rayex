@@ -3,7 +3,7 @@
 
 #include "pch/stdafx.hpp"
 
-namespace RAYEXEC_NAMESPACE
+namespace RAYEX_NAMESPACE
 {
   namespace Util
   {
@@ -47,6 +47,6 @@ namespace RAYEXEC_NAMESPACE
     }
 
   } // namespace Util
-} // namespace RAYEXEC_NAMESPACE
+} // namespace RAYEX_NAMESPACE
 
 #endif // UTIL_HPP

@@ -7,7 +7,7 @@
 #include "api/utility/Initializers.hpp"
 #include "api/utility/Util.hpp"
 
-namespace RAYEXEC_NAMESPACE
+namespace RAYEX_NAMESPACE
 {
   void Pipeline::init( const std::vector<vk::DescriptorSetLayout>& descriptorSetLayouts, vk::RenderPass renderPass, vk::Viewport viewport, vk::Rect2D scissor, const Settings* settings )
   {
@@ -220,4 +220,4 @@ namespace RAYEXEC_NAMESPACE
     this->pipeline = g_device.createRayTracingPipelineKHRUnique( nullptr, createInfo );
     RX_ASSERT( this->pipeline, "Failed to create ray tracing pipeline." );
   }
-} // namespace RAYEXEC_NAMESPACE
+} // namespace RAYEX_NAMESPACE

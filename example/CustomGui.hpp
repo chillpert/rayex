@@ -1,12 +1,12 @@
 #ifndef CUSTOM_GUI_HPP
 #define CUSTOM_GUI_HPP
 
-#include "RayExec.hpp"
+#include "Rayex.hpp"
 
 class CustomGui : public rx::Gui
 {
 public:
-  CustomGui( rx::RayExec* renderer ) :
+  CustomGui( rx::Rayex* renderer ) :
     renderer( renderer ) {}
 
 private:
@@ -227,7 +227,7 @@ private:
   }
 
 private:
-  rx::RayExec* renderer;
+  rx::Rayex* renderer;
 };
 
 #endif // CUSTOM_GUI_HPP

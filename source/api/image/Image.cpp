@@ -5,7 +5,7 @@
 #include "api/utility/Helpers.hpp"
 #include "api/utility/Initializers.hpp"
 
-namespace RAYEXEC_NAMESPACE
+namespace RAYEX_NAMESPACE
 {
   void Image::init( const vk::ImageCreateInfo& createInfo )
   {
@@ -79,4 +79,4 @@ namespace RAYEXEC_NAMESPACE
 
     return vk::Format::eUndefined;
   }
-} // namespace RAYEXEC_NAMESPACE
+} // namespace RAYEX_NAMESPACE

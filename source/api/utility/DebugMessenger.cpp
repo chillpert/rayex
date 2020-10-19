@@ -3,7 +3,7 @@
 #include "api/Api.hpp"
 #include "api/Components.hpp"
 
-namespace RAYEXEC_NAMESPACE
+namespace RAYEX_NAMESPACE
 {
   DebugMessenger::~DebugMessenger( )
   {
@@ -100,4 +100,4 @@ namespace RAYEXEC_NAMESPACE
 
     return VK_FALSE;
   }
-} // namespace RAYEXEC_NAMESPACE
+} // namespace RAYEX_NAMESPACE

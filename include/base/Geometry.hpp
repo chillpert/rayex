@@ -3,7 +3,7 @@
 
 #include "api/Vertex.hpp"
 
-namespace RAYEXEC_NAMESPACE
+namespace RAYEX_NAMESPACE
 {
   /// Describes the rendering properties of a mesh.
   /// @ingroup Base
@@ -33,7 +33,7 @@ namespace RAYEXEC_NAMESPACE
     uint32_t indexOffset = 0; ///< Refers to the offset of this mesh inside a Geometry::indices container.
   };
 
-  /// Describes a geometry RayExec can render.
+  /// Describes a geometry Rayex can render.
   ///
   /// Even if a model consists out of multiple sub-meshes, all vertices and indices must be stored together in their respective containers.
   /// @warning geometryIndex must be incremented everytime a new model is created.
@@ -80,6 +80,6 @@ namespace RAYEXEC_NAMESPACE
   /// @ingroup Base
   RX_API std::shared_ptr<GeometryInstance> instance( std::shared_ptr<Geometry> geometry, const glm::mat4& transform = glm::mat4( 1.0F ) );
 
-} // namespace RAYEXEC_NAMESPACE
+} // namespace RAYEX_NAMESPACE
 
 #endif // INTERFACES_HPP

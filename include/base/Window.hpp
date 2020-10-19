@@ -5,7 +5,7 @@
 #include "base/Time.hpp"
 #include "pch/stdafx.hpp"
 
-namespace RAYEXEC_NAMESPACE
+namespace RAYEX_NAMESPACE
 {
   const int defaultWidth  = 900;
   const int defaultHeight = 600;
@@ -84,6 +84,6 @@ namespace RAYEXEC_NAMESPACE
     int height;        ///< The window's height in pixels.
     const char* title; ///< The window's title.
   };
-} // namespace RAYEXEC_NAMESPACE
+} // namespace RAYEX_NAMESPACE
 
 #endif // WINDOW_HPP

@@ -4,7 +4,7 @@
 #include "api/utility/Helpers.hpp"
 #include "api/utility/Initializers.hpp"
 
-namespace RAYEXEC_NAMESPACE
+namespace RAYEX_NAMESPACE
 {
   Buffer::Buffer( vk::DeviceSize size, vk::BufferUsageFlags usage, const std::vector<uint32_t>& queueFamilyIndices, vk::MemoryPropertyFlags memoryPropertyFlags, void* pNextMemory, bool initialize )
   {
@@ -85,4 +85,4 @@ namespace RAYEXEC_NAMESPACE
     commandBuffer.end( );
     commandBuffer.submitToQueue( g_graphicsQueue );
   }
-} // namespace RAYEXEC_NAMESPACE
+} // namespace RAYEX_NAMESPACE

@@ -3,7 +3,7 @@
 #include "api/Components.hpp"
 #include "api/utility/Util.hpp"
 
-namespace RAYEXEC_NAMESPACE
+namespace RAYEX_NAMESPACE
 {
   Surface::~Surface( )
   {
@@ -75,4 +75,4 @@ namespace RAYEXEC_NAMESPACE
       this->surface = nullptr;
     }
   }
-} // namespace RAYEXEC_NAMESPACE
+} // namespace RAYEX_NAMESPACE

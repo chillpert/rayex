@@ -3,7 +3,7 @@
 
 #include "pch/stdafx.hpp"
 
-namespace RAYEXEC_NAMESPACE
+namespace RAYEX_NAMESPACE
 {
   /// A minimal camera implementation.
   ///
@@ -112,6 +112,6 @@ namespace RAYEXEC_NAMESPACE
     float sensitivity = 0.06F;  ///< The mouse sensitivity.
     float fov         = 45.0F;  ///< The field of view.
   };
-} // namespace RAYEXEC_NAMESPACE
+} // namespace RAYEX_NAMESPACE
 
 #endif // CAMERA_BASE_HPP

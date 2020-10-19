@@ -4,7 +4,7 @@
 #include "api/Vertex.hpp"
 #include "api/buffers/Buffer.hpp"
 
-namespace RAYEXEC_NAMESPACE
+namespace RAYEX_NAMESPACE
 {
   /// A specialised buffer for vertex data.
   /// @ingroup API
@@ -27,6 +27,6 @@ namespace RAYEXEC_NAMESPACE
   private:
     uint32_t count = 0; ///< The amount of vertices in the buffer.
   };
-} // namespace RAYEXEC_NAMESPACE
+} // namespace RAYEX_NAMESPACE
 
 #endif // VERTEX_BUFFER_HPP

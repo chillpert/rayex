@@ -1,6 +1,6 @@
 #include "api/Components.hpp"
 
-namespace RAYEXEC_NAMESPACE
+namespace RAYEX_NAMESPACE
 {
   std::shared_ptr<Window> g_window    = nullptr;
   vk::Instance g_instance             = nullptr;
@@ -27,4 +27,4 @@ namespace RAYEXEC_NAMESPACE
   RX_API uint32_t g_frameCount = 0;
 
   std::string g_assetsPath;
-} // namespace RAYEXEC_NAMESPACE
+} // namespace RAYEX_NAMESPACE

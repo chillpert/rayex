@@ -4,7 +4,7 @@
 #include "api/buffers/Buffer.hpp"
 #include "base/Geometry.hpp"
 
-namespace RAYEXEC_NAMESPACE
+namespace RAYEX_NAMESPACE
 {
   /// A uniform buffer object for camera data.
   /// @todo Camera position could easily be a push constant, which would make this UBO much smaller in size.
@@ -82,8 +82,8 @@ namespace RAYEXEC_NAMESPACE
     std::vector<vk::DescriptorBufferInfo> bufferInfos;
 
   private:
-    std::vector<Buffer> buffers; ///< A vector of RAYEXEC_NAMESPACE::Buffers for the uniform buffers.
+    std::vector<Buffer> buffers; ///< A vector of RAYEX_NAMESPACE::Buffers for the uniform buffers.
   };
-} // namespace RAYEXEC_NAMESPACE
+} // namespace RAYEX_NAMESPACE
 
 #endif // UNIFORM_BUFFER_HPP

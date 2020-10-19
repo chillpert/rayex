@@ -2,7 +2,7 @@
 
 #include "api/Components.hpp"
 
-namespace RAYEXEC_NAMESPACE::Util
+namespace RAYEX_NAMESPACE::Util
 {
   auto parseShader( std::string_view path ) -> std::vector<char>
   {
@@ -124,4 +124,4 @@ namespace RAYEXEC_NAMESPACE::Util
   {
     return { vec.x, vec.y, vec.z, vec.w };
   }
-} // namespace RAYEXEC_NAMESPACE::Util
+} // namespace RAYEX_NAMESPACE::Util

@@ -7,7 +7,7 @@
 #define STB_IMAGE_IMPLEMENTATION
 #include <stb_image.h>
 
-namespace RAYEXEC_NAMESPACE
+namespace RAYEX_NAMESPACE
 {
   uint32_t Texture::textureCounter = 0;
 
@@ -63,4 +63,4 @@ namespace RAYEXEC_NAMESPACE
     auto samplerCreateInfo = vk::Helper::getSamplerCreateInfo( );
     this->sampler          = vk::Initializer::initSamplerUnique( samplerCreateInfo );
   }
-} // namespace RAYEXEC_NAMESPACE
+} // namespace RAYEX_NAMESPACE

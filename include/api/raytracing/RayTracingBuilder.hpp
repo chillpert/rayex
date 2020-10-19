@@ -8,7 +8,7 @@
 #include "api/raytracing/AccelerationStructure.hpp"
 #include "base/Geometry.hpp"
 
-namespace RAYEXEC_NAMESPACE
+namespace RAYEX_NAMESPACE
 {
   /// Manages the building process of the acceleration structures.
   /// @ingroup API
@@ -58,7 +58,7 @@ namespace RAYEXEC_NAMESPACE
     void createBottomLevelAS( const std::vector<VertexBuffer>& vertexBuffers, const std::vector<IndexBuffer>& indexBuffers );
 
     /// Builds all bottom level acceleration structures.
-    /// @param blas_ A vector of RAYEXEC_NAMESPACE::Blas objects containing all bottom level acceleration structures prepared in createBottomLevelAS().
+    /// @param blas_ A vector of RAYEX_NAMESPACE::Blas objects containing all bottom level acceleration structures prepared in createBottomLevelAS().
     /// @param flags The build flags.
     void buildBlas( const std::vector<Blas>& blas_, vk::BuildAccelerationStructureFlagsKHR flags = vk::BuildAccelerationStructureFlagBitsKHR::ePreferFastTrace );
 
@@ -98,6 +98,6 @@ namespace RAYEXEC_NAMESPACE
     Image storageImage;                   ///< The storage image.
     vk::UniqueImageView storageImageView; ///< The storage image's image view.
   };
-} // namespace RAYEXEC_NAMESPACE
+} // namespace RAYEX_NAMESPACE
 
 #endif // RAYTRACING_BUILDER_HPP

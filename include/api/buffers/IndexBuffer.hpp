@@ -3,7 +3,7 @@
 
 #include "api/buffers/Buffer.hpp"
 
-namespace RAYEXEC_NAMESPACE
+namespace RAYEX_NAMESPACE
 {
   /// A specialised buffer for index data.
   /// @note If not templatized then uint32_t will be used as the data's type.
@@ -48,6 +48,6 @@ namespace RAYEXEC_NAMESPACE
   private:
     uint32_t count; ///< The amount of indices in the buffer.
   };
-} // namespace RAYEXEC_NAMESPACE
+} // namespace RAYEX_NAMESPACE
 
 #endif // INDEX_BUFFER_HPP

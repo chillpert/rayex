@@ -2,7 +2,7 @@
 
 #include "api/Components.hpp"
 
-namespace RAYEXEC_NAMESPACE
+namespace RAYEX_NAMESPACE
 {
   Camera::Camera( int width, int height, const glm::vec3& position ) :
     width( width ),
@@ -118,4 +118,4 @@ namespace RAYEXEC_NAMESPACE
     this->right = glm::normalize( glm::cross( this->front, this->worldUp ) );
     this->up    = glm::normalize( glm::cross( this->right, this->front ) );
   }
-} // namespace RAYEXEC_NAMESPACE
+} // namespace RAYEX_NAMESPACE

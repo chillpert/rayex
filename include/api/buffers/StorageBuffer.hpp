@@ -4,9 +4,9 @@
 #include "api/buffers/Buffer.hpp"
 #include "base/Lights.hpp"
 
-namespace RAYEXEC_NAMESPACE
+namespace RAYEX_NAMESPACE
 {
-  /// A wrapper for RAYEXEC_NAMESPACE::Light matching the buffer alignment requirements.
+  /// A wrapper for RAYEX_NAMESPACE::Light matching the buffer alignment requirements.
   struct LightSSBO
   {
     glm::vec4 ambient  = glm::vec4( 1.0F ); ///< Stores ambient color (vec3) and ambient intensity (float) in a vec4.
@@ -14,7 +14,7 @@ namespace RAYEXEC_NAMESPACE
     glm::vec4 specular = glm::vec4( 1.0F ); ///< Stores specular color (vec3) and specular intensity (float) in a vec4.
   };
 
-  /// A wrapper for RAYEXEC_NAMESPACE::DirectionalLight matching the buffer alignment requirements.
+  /// A wrapper for RAYEX_NAMESPACE::DirectionalLight matching the buffer alignment requirements.
   struct DirectionalLightSSBO : public LightSSBO
   {
     glm::vec4 direction = glm::vec4( 1.0F ); ///< Stores the direction (vec3).
@@ -52,6 +52,6 @@ namespace RAYEXEC_NAMESPACE
       stagingBuffer.copyToBuffer( this->buffer.get( ) );
     }
   };
-} // namespace RAYEXEC_NAMESPACE
+} // namespace RAYEX_NAMESPACE
 
 #endif // STORAGE_BUFFER_HPP

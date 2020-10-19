@@ -4,7 +4,7 @@
 #include "api/utility/Helpers.hpp"
 #include "api/utility/Initializers.hpp"
 
-namespace RAYEXEC_NAMESPACE
+namespace RAYEX_NAMESPACE
 {
   /// A utility class for managing descriptor related resources.
   /// @ingroup API
@@ -101,6 +101,6 @@ namespace RAYEXEC_NAMESPACE
     Bindings bindings;
   };
 
-} // namespace RAYEXEC_NAMESPACE
+} // namespace RAYEX_NAMESPACE
 
 #endif // BINDING_HPP

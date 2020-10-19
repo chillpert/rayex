@@ -4,7 +4,7 @@
 #include "api/utility/Initializers.hpp"
 #include "api/utility/Util.hpp"
 
-namespace RAYEXEC_NAMESPACE
+namespace RAYEX_NAMESPACE
 {
   const std::vector<const char*> layers = { "VK_LAYER_KHRONOS_validation" };
 #ifdef RX_DEBUG
@@ -539,7 +539,7 @@ namespace RAYEXEC_NAMESPACE
     for ( const auto& geometryInstance : this->scene->geometryInstances )
     {
       std::shared_ptr<Geometry> it = findGeometry( geometryInstance->geometryIndex );
-      RX_ASSERT( it != nullptr, "Could not find model. Did you forget to introduce the renderer to this model using RayExec::setModels( ) after initializing the renderer?" );
+      RX_ASSERT( it != nullptr, "Could not find model. Did you forget to introduce the renderer to this model using Rayex::setModels( ) after initializing the renderer?" );
 
       auto it2 = temp.find( it->path );
       if ( it2 != temp.end( ) )
@@ -582,7 +582,7 @@ namespace RAYEXEC_NAMESPACE
       for ( const auto& geometryInstance : this->scene->geometryInstances )
       {
         auto geo = findGeometry( geometryInstance->geometryIndex );
-        RX_ASSERT( geo != nullptr, "Could not find model. Did you forget to introduce the renderer to this model using RayExec::setModels( ) after initializing the renderer?" );
+        RX_ASSERT( geo != nullptr, "Could not find model. Did you forget to introduce the renderer to this model using Rayex::setModels( ) after initializing the renderer?" );
 
         uint32_t instanceCount = 1;
         auto it2               = temp.find( geo->path );
@@ -898,4 +898,4 @@ namespace RAYEXEC_NAMESPACE
     RX_FATAL( "Could not find geometry in scene." );
     return nullptr;
   }
-} // namespace RAYEXEC_NAMESPACE
+} // namespace RAYEX_NAMESPACE

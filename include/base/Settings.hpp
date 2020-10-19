@@ -3,7 +3,7 @@
 
 #include "pch/stdafx.hpp"
 
-namespace RAYEXEC_NAMESPACE
+namespace RAYEX_NAMESPACE
 {
   /// Exposes all graphic settings supported by the renderer.
   ///
@@ -14,7 +14,7 @@ namespace RAYEXEC_NAMESPACE
   {
   public:
     friend class Api;
-    friend class RayExec;
+    friend class Rayex;
     friend class Pipeline;
     friend class Scene;
 
@@ -128,7 +128,7 @@ namespace RAYEXEC_NAMESPACE
     [[nodiscard]] auto getSsaaSampleRate( ) const -> uint32_t { return this->ssaaSampleRate; }
 
   private:
-    /// This function will be called by RayExec::init() in case the path was not set manually.
+    /// This function will be called by Rayex::init() in case the path was not set manually.
     /// @warning This function might file in setting the correct path. That is why it is recommended to set it automatically using setAssetsPath(std::string).
     void setDefaultAssetsPath( );
 
@@ -154,6 +154,6 @@ namespace RAYEXEC_NAMESPACE
     bool automaticPipelineRefresh  = false; ///< Keeps track of whether or not the graphics pipelines should be recreated automatically as soon as possible.
     bool automaticSwapchainRefresh = false; ///< Keeps track of whether or not the swapchain should be recreated automatically as soon as possible.
   };
-} // namespace RAYEXEC_NAMESPACE
+} // namespace RAYEX_NAMESPACE
 
 #endif // SETTINGS_HPP

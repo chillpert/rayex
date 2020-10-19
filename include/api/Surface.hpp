@@ -3,7 +3,7 @@
 
 #include "base/Window.hpp"
 
-namespace RAYEXEC_NAMESPACE
+namespace RAYEX_NAMESPACE
 {
   /// A wrapper class for a Vulkan surface.
   /// @ingroup API
@@ -51,6 +51,6 @@ namespace RAYEXEC_NAMESPACE
     vk::PresentModeKHR presentMode          = vk::PresentModeKHR::eImmediate;    ///< The desired present mode.
     vk::SurfaceCapabilitiesKHR capabilities = 0;                                 ///< The surface's capabilities.
   };
-} // namespace RAYEXEC_NAMESPACE
+} // namespace RAYEX_NAMESPACE
 
 #endif // SURFACE_HPP

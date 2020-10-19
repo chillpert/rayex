@@ -8,7 +8,7 @@
 #include "external/ImGui/imgui.h"
 #include "external/ImGui/imgui_impl_vulkan.h"
 
-namespace RAYEXEC_NAMESPACE
+namespace RAYEX_NAMESPACE
 {
   /// A class to create an ImGui-based GUI.
   ///
@@ -25,10 +25,10 @@ namespace RAYEXEC_NAMESPACE
   ///   void render() override { }
   /// };
   ///
-  /// RayExecmyRenderer;
+  /// RayexmyRenderer;
   /// myRenderer.init( );
   ///
-  /// // Put this line after the declaration of the RAYEXEC_NAMESPACE::RayExecobject.
+  /// // Put this line after the declaration of the RAYEX_NAMESPACE::Rayexobject.
   /// auto myGui = std::make_shared<CustomGui>( );
   /// myRenderer.setGui( myGui );
   /// ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -55,7 +55,7 @@ namespace RAYEXEC_NAMESPACE
     RX_API virtual void render( );
 
     /// Creates the GUI and all required Vulkan components.
-    /// @param surface A pointer to a RAYEXEC_NAMESPACE::Surface object.
+    /// @param surface A pointer to a RAYEX_NAMESPACE::Surface object.
     /// @param swapchainImageExtent The extent of the swapchain images.
     /// @param swapchainImageViews The swapchain images' image views.
     void init( const Surface* surface, vk::Extent2D swapchainImageExtent, const std::vector<vk::ImageView>& swapchainImageViews );
@@ -83,7 +83,7 @@ namespace RAYEXEC_NAMESPACE
     void initDescriptorPool( );
 
     /// Creates a render pass for the GUI.
-    /// @param surface A pointer to a RAYEXEC_NAMESPACE::Surface object.
+    /// @param surface A pointer to a RAYEX_NAMESPACE::Surface object.
     void initRenderPass( const Surface* surface );
 
     /// Creates a command pool for the GUI's command buffers.
@@ -102,12 +102,12 @@ namespace RAYEXEC_NAMESPACE
   private:
     vk::UniqueDescriptorPool descriptorPool;         ///< A Vulkan descriptor pool with a unique handle.
     vk::UniqueCommandPool commandPool;               ///< A Vulkan command pool with a unique handle.
-    CommandBuffer commandBuffers;                    ///< A RAYEXEC_NAMESPACE::CommandBuffer.
+    CommandBuffer commandBuffers;                    ///< A RAYEX_NAMESPACE::CommandBuffer.
     RenderPass renderPass;                           ///< A Vulkan render pass.
     std::vector<vk::UniqueFramebuffer> framebuffers; ///< A vector of Vulkan framebuffers with unique handles.
 
     vk::Extent2D swapchainImageExtent; ///< The swapchain images' image extent.
   };
-} // namespace RAYEXEC_NAMESPACE
+} // namespace RAYEX_NAMESPACE
 
 #endif // GUI_HPP

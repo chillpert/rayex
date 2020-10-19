@@ -8,13 +8,13 @@ auto main( ) -> int
   const int width  = 1400;
   const int height = 900;
 
-  rx::RayExec renderer;
+  rx::Rayex renderer;
 
   // Custom camera
   renderer.setCamera( std::make_shared<CustomCamera>( width, height, glm::vec3( 0.0F, 0.0F, 3.0F ) ) );
 
   // Custom window
-  renderer.setWindow( std::make_shared<CustomWindow>( width, height, "RayExec Example", SDL_WINDOW_RESIZABLE, renderer.getCamera( ) ) );
+  renderer.setWindow( std::make_shared<CustomWindow>( width, height, "Rayex Example", SDL_WINDOW_RESIZABLE, renderer.getCamera( ) ) );
 
   // Custom ImGui based Gui
   renderer.setGui( std::make_shared<CustomGui>( &renderer ) );

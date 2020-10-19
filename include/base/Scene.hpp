@@ -1,20 +1,20 @@
 #ifndef SCENE_HPP
 #define SCENE_HPP
 
-#include "Settings.hpp"
 #include "base/Geometry.hpp"
 #include "base/Lights.hpp"
+#include "base/Settings.hpp"
 
-namespace RAYEXEC_NAMESPACE
+namespace RAYEX_NAMESPACE
 {
   class Api;
-  class RayExec;
+  class Rayex;
 
   class Scene
   {
   public:
     friend Api;
-    friend RayExec;
+    friend Rayex;
 
     /// @return Returns all geometry instances in the scene.
     RX_API auto getGeometryInstances( ) const -> const std::vector<std::shared_ptr<GeometryInstance>>&;
@@ -83,8 +83,8 @@ namespace RAYEXEC_NAMESPACE
     bool uploadDirectionalLightsToBuffer = false; ///< Keeps track of whether or not to upload the directional lights to their respective buffer the next time update() is called.
     bool uploadPointLightsToBuffer       = false; ///< Keeps track of whether or not to upload the point lights to their respective buffer the next time update() is called.
 
-    Settings* settings = nullptr; ///< Refers to the rendering settings stored in RayExec::settings.
+    Settings* settings = nullptr; ///< Refers to the rendering settings stored in Rayex::settings.
   };
-} // namespace RAYEXEC_NAMESPACE
+} // namespace RAYEX_NAMESPACE
 
 #endif // SCENE_HPP

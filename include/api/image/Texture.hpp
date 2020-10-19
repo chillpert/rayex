@@ -3,7 +3,7 @@
 
 #include "api/image/Image.hpp"
 
-namespace RAYEXEC_NAMESPACE
+namespace RAYEX_NAMESPACE
 {
   /// A helper class for creating ready-to-use textures.
   /// @ingroup API
@@ -41,15 +41,15 @@ namespace RAYEXEC_NAMESPACE
 
     static uint32_t textureCounter;
   };
-} // namespace RAYEXEC_NAMESPACE
+} // namespace RAYEX_NAMESPACE
 
 namespace std
 {
   /// @cond INTERNAL
   template <>
-  struct hash<RAYEXEC_NAMESPACE::Texture>
+  struct hash<RAYEX_NAMESPACE::Texture>
   {
-    auto operator( )( const std::shared_ptr<RAYEXEC_NAMESPACE::Texture> texture ) const -> size_t { return hash<std::string>( )( texture->getPath( ) ); }
+    auto operator( )( const std::shared_ptr<RAYEX_NAMESPACE::Texture> texture ) const -> size_t { return hash<std::string>( )( texture->getPath( ) ); }
   };
   /// @endcond
 } // namespace std

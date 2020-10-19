@@ -3,7 +3,7 @@
 #include "api/buffers/CommandBuffer.hpp"
 #include "api/utility/Initializers.hpp"
 
-namespace RAYEXEC_NAMESPACE
+namespace RAYEX_NAMESPACE
 {
   void Gui::configure( )
   {
@@ -181,4 +181,4 @@ namespace RAYEXEC_NAMESPACE
       this->framebuffers[i] = vk::Initializer::initFramebufferUnique( { swapchainImageViews[i] }, this->renderPass.get( ), this->swapchainImageExtent );
     }
   }
-} // namespace RAYEXEC_NAMESPACE
+} // namespace RAYEX_NAMESPACE

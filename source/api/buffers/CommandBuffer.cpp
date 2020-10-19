@@ -2,7 +2,7 @@
 
 #include "api/Components.hpp"
 
-namespace RAYEXEC_NAMESPACE
+namespace RAYEX_NAMESPACE
 {
   CommandBuffer::CommandBuffer( vk::CommandPool commandPool, uint32_t count, vk::CommandBufferUsageFlags usageFlags )
   {
@@ -76,4 +76,4 @@ namespace RAYEXEC_NAMESPACE
       RX_ERROR( "Only command buffers with a usage flag containing eOneTimeSubmit should be submitted automatically" );
     }
   }
-} // namespace RAYEXEC_NAMESPACE
+} // namespace RAYEX_NAMESPACE

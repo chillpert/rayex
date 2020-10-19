@@ -1,8 +1,8 @@
-#include "Settings.hpp"
+#include "base/Settings.hpp"
 
 #include "api/Components.hpp"
 
-namespace RAYEXEC_NAMESPACE
+namespace RAYEX_NAMESPACE
 {
   void Settings::setRecursionDepth( uint32_t recursionDepth )
   {
@@ -143,4 +143,4 @@ namespace RAYEXEC_NAMESPACE
   {
     this->ssaaSampleRate = sampleRate > 0 ? sampleRate : 1;
   }
-} // namespace RAYEXEC_NAMESPACE
+} // namespace RAYEX_NAMESPACE

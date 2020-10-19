@@ -4,7 +4,7 @@
 #include "api/Components.hpp"
 #include "pch/stdafx.hpp"
 
-namespace RAYEXEC_NAMESPACE
+namespace RAYEX_NAMESPACE
 {
   /// A wrapper for a Vulkan acceleration Structure.
   /// @ingroup API
@@ -28,7 +28,7 @@ namespace RAYEXEC_NAMESPACE
   /// @ingroup API
   struct Tlas
   {
-    AccelerationStructure as;                     ///< The RAYEXEC_NAMESPACE::AccelerationStructure object containing the Vulkan acceleration structure.
+    AccelerationStructure as;                     ///< The RAYEX_NAMESPACE::AccelerationStructure object containing the Vulkan acceleration structure.
     vk::BuildAccelerationStructureFlagsKHR flags; ///< The top level acceleration structure's build flags.
   };
 
@@ -36,7 +36,7 @@ namespace RAYEXEC_NAMESPACE
   /// @ingroup API
   struct Blas
   {
-    AccelerationStructure as;                     ///< The RAYEXEC_NAMESPACE::AccelerationStructure object containing the Vulkan acceleration structure.
+    AccelerationStructure as;                     ///< The RAYEX_NAMESPACE::AccelerationStructure object containing the Vulkan acceleration structure.
     vk::BuildAccelerationStructureFlagsKHR flags; ///< The top level acceleration structure's build flags.
 
     std::vector<vk::AccelerationStructureCreateGeometryTypeInfoKHR> asCreateGeometryInfo; ///< Specifies the shape of geometries that will be built into an acceleration structure.
@@ -55,6 +55,6 @@ namespace RAYEXEC_NAMESPACE
     vk::GeometryInstanceFlagsKHR flags = { vk::GeometryInstanceFlagBitsKHR::eTriangleFacingCullDisable }; ///< The geometry display options.
     glm::mat4 transform                = glm::fmat4( 1.0f );                                              ///< The world transform matrix of the bottom level acceleration structure instance.
   };
-} // namespace RAYEXEC_NAMESPACE
+} // namespace RAYEX_NAMESPACE
 
 #endif // ACCELERATION_STRUCTURE_HPP

@@ -31,7 +31,7 @@ private:
         auto cube      = this->renderer->scene.findGeometry( "models/cube.obj" );
         auto transform = glm::scale( glm::mat4( 1.0F ), glm::vec3( 0.3F, 0.3F, 0.3F ) );
         transform      = glm::rotate( transform, getRandomFloat( 0.0F, 360.0F ), glm::vec3( 0.0F, 1.0F, 0.0F ) );
-        transform      = glm::translate( transform, getRandomUniquePosition( -15.0F, 15.0F ) );
+        transform      = glm::translate( transform, getRandomUniquePosition( -10.0F, 10.0F ) );
 
         auto cubeInstance = rx::instance( cube, transform );
         this->renderer->scene.submitGeometryInstance( cubeInstance );
@@ -44,7 +44,7 @@ private:
         auto sphere    = this->renderer->scene.findGeometry( "models/sphere.obj" );
         auto transform = glm::scale( glm::mat4( 1.0F ), glm::vec3( 0.1F, 0.1F, 0.1F ) );
         transform      = glm::rotate( transform, getRandomFloat( 0.0F, 360.0F ), glm::vec3( 0.0F, 1.0F, 0.0F ) );
-        transform      = glm::translate( transform, getRandomUniquePosition( -15.0F, 15.0F ) );
+        transform      = glm::translate( transform, getRandomUniquePosition( -45.0F, 45.0F ) );
 
         auto sphereInstance = rx::instance( sphere, transform );
         this->renderer->scene.submitGeometryInstance( sphereInstance );
@@ -57,7 +57,7 @@ private:
         auto awp       = this->renderer->scene.findGeometry( "models/awpdlore/awpdlore.obj" );
         auto transform = glm::scale( glm::mat4( 1.0F ), glm::vec3( 0.3F, 0.3F, 0.3F ) );
         transform      = glm::rotate( transform, getRandomFloat( 0.0F, 360.0F ), glm::vec3( 0.0F, 1.0F, 0.0F ) );
-        transform      = glm::translate( transform, getRandomUniquePosition( -15.0F, 15.0F ) );
+        transform      = glm::translate( transform, getRandomUniquePosition( -30.0F, 30.0F ) );
 
         auto awpInstance = rx::instance( awp, transform );
         this->renderer->scene.submitGeometryInstance( awpInstance );
@@ -189,7 +189,7 @@ private:
 
     static std::random_device rd;
     static std::mt19937 mt( rd( ) );
-    static std::uniform_real_distribution<float> dist( min, max );
+    std::uniform_real_distribution<float> dist( min, max );
 
     glm::vec3 result = glm::vec3( 0.0F );
 
@@ -221,7 +221,7 @@ private:
   {
     static std::random_device rd;
     static std::mt19937 mt( rd( ) );
-    static std::uniform_real_distribution<float> dist( min, max );
+    std::uniform_real_distribution<float> dist( min, max );
 
     return dist( mt );
   }

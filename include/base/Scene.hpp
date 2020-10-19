@@ -7,6 +7,9 @@
 
 namespace RAYEXEC_NAMESPACE
 {
+  class Api;
+  class RayExec;
+
   class Scene
   {
   public:

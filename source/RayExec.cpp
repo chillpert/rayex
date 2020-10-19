@@ -151,21 +151,54 @@ namespace RAYEXEC_NAMESPACE
     this->api->uploadGeometryInstancesToBuffer = true;
   }
 
+  auto RayExec::getDirectionalLights( ) const -> std::vector<std::shared_ptr<DirectionalLight>>
+  {
+    return this->api->scene.directionalLights;
+  }
+
   void RayExec::submitDirectionalLight( std::shared_ptr<DirectionalLight> light )
   {
     uint32_t limit = this->settings.maxDirectionalLights.has_value( ) ? this->settings.maxDirectionalLights.value( ) : g_maxDirectionalLights;
     if ( this->api->scene.directionalLights.size( ) >= limit )
     {
-      RX_ERROR( "Failed to submit directional light because buffer size has been exceeded. To avoid this error, increase the amount of supported geometry instances using RAYEXEC_NAMESPACE::RayExec::Settings::setMaxDirectionalLights(uint32_t)." );
+      RX_ERROR( "Failed to submit directional light because buffer size has been exceeded. To avoid this error, increase the amount of supported directional lights using RAYEXEC_NAMESPACE::RayExec::Settings::setMaxDirectionalLights(uint32_t)." );
       return;
     }
 
     this->api->scene.directionalLights.push_back( light );
+    this->api->uploadDirectionalLightsToBuffer = true;
+  }
+
+  void RayExec::removeDirectionalLight( std::shared_ptr<DirectionalLight> light )
+  {
+    if ( light == nullptr )
+    {
+      RX_ERROR( "An invalid directional light can not be removed." );
+      return;
+    }
+
+    std::vector<std::shared_ptr<DirectionalLight>> temp( this->api->scene.directionalLights );
+    this->api->scene.directionalLights.clear( );
+    this->api->scene.directionalLights.reserve( temp.size( ) );
+
+    for ( auto it : temp )
+    {
+      if ( it != light )
+      {
+        this->api->scene.directionalLights.push_back( it );
+      }
+    }
+
+    this->api->uploadDirectionalLightsToBuffer = true;
   }
 
   void RayExec::removeGeometryInstance( std::shared_ptr<GeometryInstance> geometryInstance )
   {
-    RX_ASSERT( geometryInstance != nullptr, "An invalid geometry instance can not be removed." );
+    if ( geometryInstance == nullptr )
+    {
+      RX_ERROR( "An invalid geometry instance can not be removed." );
+      return;
+    }
 
     std::vector<std::shared_ptr<GeometryInstance>> temp( this->api->scene.geometryInstances );
     this->api->scene.geometryInstances.clear( );

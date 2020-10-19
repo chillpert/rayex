@@ -26,7 +26,7 @@ private:
 
     if ( ImGui::Begin( "Settings" ) )
     {
-      if ( ImGui::Button( "Add Box" ) )
+      if ( ImGui::Button( "Add box" ) )
       {
         auto cube      = this->renderer->findGeometry( "models/cube.obj" );
         auto transform = glm::translate( glm::mat4( 1.0F ), getRandomUniquePosition( -5.0F, 5.0F ) );
@@ -40,7 +40,7 @@ private:
 
       ImGui::SameLine( );
 
-      if ( ImGui::Button( "Add Sphere" ) )
+      if ( ImGui::Button( "Add sphere" ) )
       {
         auto sphere    = this->renderer->findGeometry( "models/sphere.obj" );
         auto transform = glm::translate( glm::mat4( 1.0F ), getRandomUniquePosition( -5.0F, 5.0F ) );
@@ -64,7 +64,30 @@ private:
         this->geometryInstances.clear( );
       }
 
-      ImGui::Checkbox( "Show ImGui Demo Window", &showDemoWindow );
+      if ( ImGui::Button( "Add directional light" ) )
+      {
+        auto directionalLight       = std::make_shared<rx::DirectionalLight>( );
+        directionalLight->direction = getRandomUniquePosition( 5.0F, 10.0F );
+
+        directionalLight->direction.x *= -1;
+        std::cout << glm::to_string( directionalLight->direction ) << std::endl;
+
+        this->renderer->submitDirectionalLight( directionalLight );
+      }
+
+      ImGui::SameLine( );
+
+      if ( ImGui::Button( "Remove directional lights" ) )
+      {
+        auto directionalLights = this->renderer->getDirectionalLights( );
+
+        for ( auto directionalLight : directionalLights )
+        {
+          this->renderer->removeDirectionalLight( directionalLight );
+        }
+      }
+
+      ImGui::Checkbox( "Show ImGui demo window", &showDemoWindow );
 
       auto clearColor = this->renderer->settings.getClearColor( );
       if ( ImGui::ColorEdit4( "##AmbientColor", &clearColor[0] ) )
@@ -73,7 +96,7 @@ private:
       }
 
       bool rayTrace = this->renderer->settings.getRayTracingEnabled( );
-      if ( ImGui::Checkbox( "Toggle Ray Tracing", &rayTrace ) )
+      if ( ImGui::Checkbox( "Toggle ray tracing", &rayTrace ) )
       {
         this->renderer->settings.setEnableRayTracing( rayTrace );
         if ( !rayTrace )
@@ -85,7 +108,7 @@ private:
       if ( rayTrace )
       {
         bool jitterCamEnabled = this->renderer->settings.getJitterCamEnabled( );
-        if ( ImGui::Checkbox( "Toggle Jitter Cam", &jitterCamEnabled ) )
+        if ( ImGui::Checkbox( "Toggle jitter cam", &jitterCamEnabled ) )
         {
           this->renderer->settings.setEnableJitterCam( jitterCamEnabled );
         }
@@ -93,13 +116,13 @@ private:
         if ( jitterCamEnabled )
         {
           int jitterCamSampleRate = static_cast<int>( this->renderer->settings.getJitterCamSampleRate( ) );
-          if ( ImGui::SliderInt( "Set Jitter Cam Sample Rate", &jitterCamSampleRate, 1, 100 ) )
+          if ( ImGui::SliderInt( "Set jitter cam sample rate", &jitterCamSampleRate, 1, 100 ) )
           {
             this->renderer->settings.setJitterCamSampleRate( jitterCamSampleRate );
           }
 
           int jitterCamSampleRatePerRayGen = static_cast<int>( this->renderer->settings.getJitterCamSampleRatePerRayGen( ) );
-          if ( ImGui::SliderInt( "Set Jitter Cam Sample Rate Per Ray Gen", &jitterCamSampleRatePerRayGen, 1, 10 ) )
+          if ( ImGui::SliderInt( "Set jitter cam sample rate per ray gen", &jitterCamSampleRatePerRayGen, 1, 10 ) )
           {
             this->renderer->settings.setJitterCamSampleRatePerRayGen( jitterCamSampleRatePerRayGen );
           }
@@ -114,7 +137,7 @@ private:
         if ( ssaaEnabled )
         {
           int ssaaSampleRate = static_cast<int>( this->renderer->settings.getSsaaSampleRate( ) );
-          if ( ImGui::SliderInt( "Set SSAA Sample Rate", &ssaaSampleRate, 1, 4 ) )
+          if ( ImGui::SliderInt( "Set SSAA sample rate", &ssaaSampleRate, 1, 4 ) )
           {
             this->renderer->settings.setSsaaSampleRate( ssaaSampleRate );
           }
@@ -145,7 +168,7 @@ private:
         ++counter;
       }
 
-      ImGui::PlotLines( "Frame Times", frameTimes.data( ), maxFrames, 0, "Frametime", 0.0F, 0.01F, ImVec2( 0.0F, 80.0F ) );
+      ImGui::PlotLines( "Frametimes", frameTimes.data( ), maxFrames, 0, "Frametime", 0.0F, 0.01F, ImVec2( 0.0F, 80.0F ) );
     }
 
     ImGui::End( );

@@ -152,11 +152,12 @@ namespace RAYEXEC_NAMESPACE
     std::vector<VertexBuffer> vertexBuffers; ///< Multiple buffers for vertices because of variable descriptor indexing.
     std::vector<IndexBuffer> indexBuffers;   ///< Multiple buffers for indices because of variable descriptor indexing.
     std::vector<StorageBuffer> meshBuffers;  ///< Multiple buffers for meshes because of variable descriptor indexing.
-    StorageBuffer geometryInstancesBuffer;   ///< A storage buffer for the ray tracing instances.
+
+    StorageBuffer geometryInstancesBuffer; ///< A storage buffer for the ray tracing instances.
+    StorageBuffer directionalLightsBuffer; ///< A storage buffer for directional light data.
 
     CameraUbo cameraUbo;               ///< UBO for camera data.
     UniformBuffer cameraUniformBuffer; ///< Uniform buffers containing camera data.
-    UniformBuffer lightsUniformBuffer; ///< Uniform buffers containing lights data.
 
     Swapchain swapchain;   ///< A RAYEXEC_NAMESPACE::Swapchain to manage swapchain related operations.
     RenderPass renderPass; ///< A RAYEXEC_NAMESPACE::RenderPass to create, begin and end a render pass.
@@ -176,6 +177,7 @@ namespace RAYEXEC_NAMESPACE
 
     bool needSwapchainRecreate           = false;
     bool uploadGeometryInstancesToBuffer = false;   ///< Keeps track of whether or not to upload the ray tracing instances to their respective buffer the next time update() is called.
+    bool uploadDirectionalLightsToBuffer = false;   ///< Keeps track of whether or not to upload the directional lights to their respective buffer the next time update() is called.
     bool pipelinesReady                  = false;   ///< Keeps track of whether or not the graphics pipelines are ready.
     Settings* settings                   = nullptr; ///< A pointer to a RAYEXEC_NAMESPACE::Settings object stored inside RAYEXEC_NAMESPACE::RayExec.
     Scene scene;

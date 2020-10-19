@@ -2,4 +2,4 @@
 
 namespace RAYEXEC_NAMESPACE
 {
-}
+} // namespace RAYEXEC_NAMESPACE

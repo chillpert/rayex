@@ -11,6 +11,7 @@ namespace RAYEXEC_NAMESPACE
     std::vector<std::shared_ptr<Geometry>> geometries;
     std::vector<std::shared_ptr<GeometryInstance>> geometryInstances;
     std::vector<std::shared_ptr<DirectionalLight>> directionalLights;
+    std::vector<std::shared_ptr<PointLight>> pointLights;
   };
 } // namespace RAYEXEC_NAMESPACE
 

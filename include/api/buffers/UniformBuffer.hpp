@@ -3,11 +3,11 @@
 
 #include "api/buffers/Buffer.hpp"
 #include "base/Geometry.hpp"
-#include "base/Lights.hpp"
 
 namespace RAYEXEC_NAMESPACE
 {
   /// A uniform buffer object for camera data.
+  /// @todo Camera position could easily be a push constant, which would make this UBO much smaller in size.
   /// @ingroup API
   struct CameraUbo
   {
@@ -15,30 +15,12 @@ namespace RAYEXEC_NAMESPACE
     glm::mat4 projection        = glm::mat4( 1.0F );
     glm::mat4 viewInverse       = glm::mat4( 1.0F );
     glm::mat4 projectionInverse = glm::mat4( 1.0F );
+    glm::vec4 position          = glm::vec4( 1.0F );
 
-    glm::vec3 position = glm::vec3( 1.0F );
-  };
-
-  /// A wrapper for RAYEXEC_NAMESPACE::Light matching the buffer alignment requirements.
-  struct LightUbo
-  {
-    glm::vec4 ambient  = glm::vec4( 1.0F ); ///< Stores ambient color (vec3) and ambient intensity (float) in a vec4.
-    glm::vec4 diffuse  = glm::vec4( 1.0F ); ///< Stores diffuse color (vec3) and diffuse intensity (float) in a vec4.
-    glm::vec4 specular = glm::vec4( 1.0F ); ///< Stores specular color (vec3) and specular intensity (float) in a vec4.
-  };
-
-  /// A wrapper for RAYEXEC_NAMESPACE::DirectionalLight matching the buffer alignment requirements.
-  struct DirectionalLightUbo : public LightUbo
-  {
-    glm::vec4 direction = glm::vec4( 1.0F ); ///< Stores the direction (vec3).
-  };
-
-  /// A uniform buffer object for different light types.
-  /// @ingroup API
-  /// @todo Shouldn't this also be a storage buffer?
-  struct LightsUbo
-  {
-    std::vector<DirectionalLightUbo> directionalLightNodes;
+  private:
+    glm::vec4 padding0 = glm::vec4( 1.0F );
+    glm::vec4 padding1 = glm::vec4( 1.0F );
+    glm::vec4 padding2 = glm::vec4( 1.0F );
   };
 
   /// A specialised buffer for uniforms.
@@ -102,9 +84,6 @@ namespace RAYEXEC_NAMESPACE
   private:
     std::vector<Buffer> buffers; ///< A vector of RAYEXEC_NAMESPACE::Buffers for the uniform buffers.
   };
-
-  RX_API DirectionalLightUbo directionalLightToUbo( std::shared_ptr<DirectionalLight> light );
-
 } // namespace RAYEXEC_NAMESPACE
 
 #endif // UNIFORM_BUFFER_HPP

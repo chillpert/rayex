@@ -32,7 +32,7 @@ namespace RAYEXEC_NAMESPACE
   const size_t g_maxGeometryInstances = 2000; ///< Stores the maximum amount of geometry nodes.
   const size_t g_maxTextures          = 2000; ///< Stores the maximum amount of textures.
   const size_t g_maxDirectionalLights = 2000; ///< Stores the maximum amount of directional light sources.
-  const size_t g_maxPointLightNodes   = 2000; ///< Stores the maximum amount of point light sources supported.
+  const size_t g_maxPointLights       = 2000; ///< Stores the maximum amount of point light sources supported.
   const size_t g_maxModels            = 2000; ///< Stores the maximum amount of models supported.
 
   extern std::string g_assetsPath; ///< Path to where shaders, models and textures are stored.

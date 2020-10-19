@@ -102,7 +102,7 @@ namespace RAYEXEC_NAMESPACE
     RX_ASSERT( this->layout, "Failed to create pipeline layout for rasterization pipeline." );
 
     uint32_t anticipatedDirectionalLights = settings->maxDirectionalLights.has_value( ) ? settings->maxDirectionalLights.value( ) : g_maxDirectionalLights;
-    uint32_t anticipatedPointLights       = settings->maxPointLights.has_value( ) ? settings->maxPointLights.value( ) : g_maxPointLightNodes;
+    uint32_t anticipatedPointLights       = settings->maxPointLights.has_value( ) ? settings->maxPointLights.value( ) : g_maxPointLights;
     Util::processShaderMacros( "shaders/simple3D.frag", anticipatedDirectionalLights, anticipatedPointLights, 0 );
 
     auto vs = vk::Initializer::initShaderModuleUnique( "shaders/simple3D.vert" );
@@ -151,7 +151,7 @@ namespace RAYEXEC_NAMESPACE
   void Pipeline::init( const std::vector<vk::DescriptorSetLayout>& descriptorSetLayouts, const Settings* settings )
   {
     uint32_t anticipatedDirectionalLights = settings->maxDirectionalLights.has_value( ) ? settings->maxDirectionalLights.value( ) : g_maxDirectionalLights;
-    uint32_t anticipatedPointLights       = settings->maxPointLights.has_value( ) ? settings->maxPointLights.value( ) : g_maxPointLightNodes;
+    uint32_t anticipatedPointLights       = settings->maxPointLights.has_value( ) ? settings->maxPointLights.value( ) : g_maxPointLights;
     Util::processShaderMacros( "shaders/raytrace.rchit", anticipatedDirectionalLights, anticipatedPointLights, g_modelCount );
 
     auto rgen       = vk::Initializer::initShaderModuleUnique( "shaders/raytrace.rgen" );

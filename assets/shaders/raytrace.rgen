@@ -15,7 +15,11 @@ layout( binding = 0, set = 1 ) uniform CameraProperties
   mat4 proj;
   mat4 viewInverse;
   mat4 projInverse;
-  vec3 cameraPos;
+  vec4 cameraPos;
+
+  vec4 padding0;
+  vec4 padding1;
+  vec4 padding2;
 }
 cam;
 

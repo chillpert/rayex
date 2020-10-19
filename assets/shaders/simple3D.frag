@@ -15,10 +15,15 @@ layout( location = 0 ) out vec4 outColor;
 
 layout( constant_id = 0 ) const int TEST_SPECIALIZATION = 10;
 
-layout( binding = 1, set = 0 ) uniform LightSources
+//layout( binding = 1, set = 0 ) uniform LightSources
+//{
+//  DirectionalLight directionalLights[TOTAL_DIRECTIONAL_LIGHTS];
+//}
+//lightSources;
+
+layout( binding = 1, set = 0 ) buffer LightSources
 {
-  DirectionalLight directionalLights[TOTAL_DIRECTIONAL_LIGHTS];
-  PointLight pointLights[TOTAL_POINT_LIGHTS];
+  DirectionalLight directionalLights[];
 }
 lightSources;
 

@@ -8,15 +8,15 @@ namespace RAYEXEC_NAMESPACE
 {
   struct RayTracePushConstants
   {
-    glm::vec4 clearColor         = glm::vec4( 1.0F );
-    uint32_t sampleRate          = 100;
-    uint32_t sampleRatePerRayGen = 1;
-    uint32_t ssaa                = 8;
-    uint32_t jitterCamEnabled    = 0;
-    uint32_t ssaaEnabled         = 1;
+    glm::vec4 clearColor           = glm::vec4( 1.0F );
+    uint32_t sampleRate            = 100;
+    uint32_t sampleRatePerRayGen   = 1;
+    uint32_t ssaa                  = 8;
+    uint32_t jitterCamEnabled      = 0;
+    uint32_t ssaaEnabled           = 1;
+    uint32_t directionalLightCount = 0;
+    uint32_t pointLightCount       = 0;
 
-    float padding0 = 0.0f;
-    float padding1 = 0.0f;
     float padding2 = 0.0f;
   };
 

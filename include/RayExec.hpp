@@ -65,7 +65,15 @@ namespace RAYEXEC_NAMESPACE
     /// @note This function does not invoke any draw calls.
     RX_API void setGeometryInstances( const std::vector<std::shared_ptr<GeometryInstance>>& geometryInstances );
 
+    RX_API auto getDirectionalLights( ) const -> std::vector<std::shared_ptr<DirectionalLight>>;
+
+    /// Used to submit a directional light.
+    /// @param light The directional light to submit.
     RX_API void submitDirectionalLight( std::shared_ptr<DirectionalLight> light );
+
+    /// Used to remove a directional light.
+    /// @param light The light to remove.
+    RX_API void removeDirectionalLight( std::shared_ptr<DirectionalLight> light );
 
     /// Used to remove a geometry instance.
     ///

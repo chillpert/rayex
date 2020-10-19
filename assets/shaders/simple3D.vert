@@ -10,7 +10,11 @@ layout( binding = 0, set = 0 ) uniform CameraProperties
   mat4 proj;
   mat4 viewInverse;
   mat4 projInverse;
-  vec3 cameraPos;
+  vec4 cameraPos;
+
+  vec4 padding0;
+  vec4 padding1;
+  vec4 padding2;
 }
 cam;
 
@@ -31,7 +35,7 @@ layout( location = 3 ) in vec2 inTexCoord;
 layout( location = 0 ) out vec3 fragPos;
 layout( location = 1 ) out vec3 fragNormal;
 layout( location = 2 ) out vec2 fragTexCoord;
-layout( location = 3 ) out vec3 cameraPos;
+layout( location = 3 ) out vec3 fragCameraPos;
 
 layout( push_constant ) uniform Constants
 {
@@ -42,10 +46,10 @@ void main( )
 {
   mat4 model = geometryInstances.i[index].transform;
 
-  fragPos      = vec3( model * vec4( inPosition, 1.0 ) );
-  fragTexCoord = inTexCoord;
-  fragNormal   = normalize( mat3( transpose( inverse( model ) ) ) * inNormal );
-  cameraPos    = cam.cameraPos;
+  fragPos       = vec3( model * vec4( inPosition, 1.0 ) );
+  fragTexCoord  = inTexCoord;
+  fragNormal    = normalize( mat3( transpose( inverse( model ) ) ) * inNormal );
+  fragCameraPos = cam.cameraPos.xyz;
 
   gl_Position = cam.proj * cam.view * model * vec4( inPosition, 1.0 );
 }

@@ -29,10 +29,9 @@ layout( location = 1 ) rayPayloadEXT bool isShadowed;
 
 layout( binding = 0, set = 0 ) uniform accelerationStructureEXT topLevelAS;
 
-layout( binding = 1, set = 1 ) uniform LightSources
+layout( binding = 1, set = 1 ) buffer LightSources
 {
-  DirectionalLight directionalLights[TOTAL_DIRECTIONAL_LIGHTS];
-  PointLight pointLights[TOTAL_POINT_LIGHTS];
+  DirectionalLight directionalLights[];
 }
 lightSources;
 
@@ -69,8 +68,8 @@ layout( push_constant ) uniform Constants
   bool jitterCamEnabled;
   bool ssaaEnabled;
 
-  float padding0;
-  float padding1;
+  uint directionalLightCount;
+  uint pointLightCount;
   float padding2;
 };
 
@@ -113,16 +112,19 @@ void main( )
   // Transforming the position to world space
   worldPos = vec3( geometryInstances.i[gl_InstanceID].transform * vec4( worldPos, 1.0 ) );
 
-  vec3 L;
+  vec3 L              = vec3( 0.0 );
   float lightDistance = 100000.0;
   float attenuation   = 1;
 
-  L = normalize( vec3( -4.0, 10.0, 5.0 ) - vec3( 0.0 ) );
-
-  //if ( lightSources.directionalLights.length( ) > 0 )
-  //{
-  //  L = normalize( lightSources.directionalLights[0].direction.xyz - vec3( 0 ) );
-  //}
+  if ( directionalLightCount > 0 )
+  {
+    L = normalize( lightSources.directionalLights[0].direction.xyz );
+  }
+  else
+  {
+    prd.hitValue = vec3( 0.0 );
+    return;
+  }
 
   // Tracing shadow ray only if the light is visible from the surface
   if ( dot( normal, L ) > 0 )

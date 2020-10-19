@@ -28,6 +28,7 @@ namespace RAYEXEC_NAMESPACE
   size_t prevFrame    = 0;
 
   std::vector<GeometryInstance> dereferencedGeometryInstances;
+  std::vector<DirectionalLightSSBO> dereferencedDirectionalLights;
 
   // Defines the maximum amount of frames that will be processed concurrently.
   const size_t maxFramesInFlight = 2;
@@ -119,20 +120,33 @@ namespace RAYEXEC_NAMESPACE
 
     std::vector<GeometryInstance> geometryInstances( maxInstanceCount );
     this->geometryInstancesBuffer.init<GeometryInstance>( geometryInstances );
+
+    uint32_t maxDirectionalLightCount = this->settings->maxDirectionalLights.has_value( ) ? this->settings->maxDirectionalLights.value( ) : g_maxDirectionalLights;
+    std::vector<DirectionalLightSSBO> directionalLights( maxDirectionalLightCount );
+    this->directionalLightsBuffer.init<DirectionalLightSSBO>( directionalLights );
   }
 
   void Api::initScene( )
   {
-    initModelBuffers( );
-
-    // Descriptor sets and layouts
-    initDescriptorSets( );
-
     // Uniform buffers for camera
     this->cameraUniformBuffer.init<CameraUbo>( );
 
-    // Uniform buffers for light nodes
-    this->lightsUniformBuffer.init<LightsUbo>( );
+    // Init geometry storage buffers.
+    g_modelCount = static_cast<uint32_t>( this->scene.geometries.size( ) );
+
+    this->vertexBuffers.resize( this->scene.geometries.size( ) );
+    this->indexBuffers.resize( this->scene.geometries.size( ) );
+    this->meshBuffers.resize( this->scene.geometries.size( ) );
+
+    for ( size_t i = 0; i < this->scene.geometries.size( ); ++i )
+    {
+      this->vertexBuffers[i].init( this->scene.geometries[i]->vertices );
+      this->indexBuffers[i].init( this->scene.geometries[i]->indices );
+      this->meshBuffers[i].init( this->scene.geometries[i]->meshes );
+    }
+
+    // Descriptor sets and layouts
+    initDescriptorSets( );
 
     // Update RT scene descriptor sets.
     updateSceneDescriptors( );
@@ -164,19 +178,38 @@ namespace RAYEXEC_NAMESPACE
 
     updateUniformBuffers( );
 
-    // Upload scene description
     if ( this->uploadGeometryInstancesToBuffer )
     {
       this->uploadGeometryInstancesToBuffer = false;
 
+      // Dereference pointers and store values in new vector that will be uploaded.
       dereferencedGeometryInstances.resize( this->scene.geometryInstances.size( ) );
-      for ( size_t i = 0; i < dereferencedGeometryInstances.size( ); ++i )
-      {
-        dereferencedGeometryInstances[i] = ( *this->scene.geometryInstances[i] );
-      }
+      std::transform( this->scene.geometryInstances.begin( ),
+                      this->scene.geometryInstances.end( ),
+                      dereferencedGeometryInstances.begin( ),
+                      []( std::shared_ptr<GeometryInstance> instance ) { return *instance; } );
 
       this->geometryInstancesBuffer.fill<GeometryInstance>( dereferencedGeometryInstances.data( ) );
       updateAccelerationStructures( );
+    }
+
+    if ( this->uploadDirectionalLightsToBuffer )
+    {
+      this->uploadDirectionalLightsToBuffer = false;
+
+      if ( this->scene.directionalLights.size( ) > 0 )
+      {
+        dereferencedDirectionalLights.resize( this->scene.directionalLights.size( ) );
+        std::transform( this->scene.directionalLights.begin( ),
+                        this->scene.directionalLights.end( ),
+                        dereferencedDirectionalLights.begin( ),
+                        []( std::shared_ptr<DirectionalLight> light ) { return DirectionalLightSSBO { glm::vec4( light->ambient, light->ambientIntensity ),
+                                                                                                      glm::vec4( light->diffuse, light->diffuseIntensity ),
+                                                                                                      glm::vec4( light->specular, light->specularIntensity ),
+                                                                                                      glm::vec4( light->direction, 1.0F ) }; } );
+
+        this->directionalLightsBuffer.fill<DirectionalLightSSBO>( dereferencedDirectionalLights.data( ) );
+      }
     }
 
     if ( this->settings->getJitterCamEnabled( ) )
@@ -572,6 +605,9 @@ namespace RAYEXEC_NAMESPACE
 
   void Api::rayTrace( )
   {
+    uint32_t directionalLightCount = static_cast<uint32_t>( this->scene.directionalLights.size( ) );
+    uint32_t pointLightCount       = static_cast<uint32_t>( this->scene.pointLights.size( ) );
+
     // Start recording the swapchain framebuffers
     for ( size_t imageIndex = 0; imageIndex < this->swapchainCommandBuffers.get( ).size( ); ++imageIndex )
     {
@@ -582,7 +618,9 @@ namespace RAYEXEC_NAMESPACE
                                        this->settings->getJitterCamSampleRatePerRayGen( ),
                                        this->settings->getSsaaSampleRate( ),
                                        this->settings->getJitterCamEnabled( ),
-                                       this->settings->getSsaaEnabled( ) };
+                                       this->settings->getSsaaEnabled( ),
+                                       directionalLightCount,
+                                       pointLightCount };
 
       this->swapchainCommandBuffers.get( imageIndex ).pushConstants( this->rtPipeline.getLayout( ),                                                                                     // layout
                                                                      vk::ShaderStageFlagBits::eRaygenKHR | vk::ShaderStageFlagBits::eMissKHR | vk::ShaderStageFlagBits::eClosestHitKHR, // stageFlags
@@ -643,8 +681,8 @@ namespace RAYEXEC_NAMESPACE
     {
       // Camera uniform buffer
       this->rtSceneDescriptors.bindings.add( 0, vk::DescriptorType::eUniformBuffer, vk::ShaderStageFlagBits::eRaygenKHR );
-      // Light nodes uniform buffer
-      this->rtSceneDescriptors.bindings.add( 1, vk::DescriptorType::eUniformBuffer, vk::ShaderStageFlagBits::eClosestHitKHR );
+      // Lights storage buffer
+      this->rtSceneDescriptors.bindings.add( 1, vk::DescriptorType::eStorageBuffer, vk::ShaderStageFlagBits::eClosestHitKHR );
       // Scene description buffer
       this->rtSceneDescriptors.bindings.add( 2, vk::DescriptorType::eStorageBuffer, vk::ShaderStageFlagBits::eClosestHitKHR );
       // Materials
@@ -657,10 +695,10 @@ namespace RAYEXEC_NAMESPACE
 
     // RS Scene descriptor set layout.
     {
-      // Camera uniform buffer.
+      // Camera uniform buffer
       this->rsSceneDescriptors.bindings.add( 0, vk::DescriptorType::eUniformBuffer, vk::ShaderStageFlagBits::eVertex );
-      // Light nodes uniform buffer
-      this->rsSceneDescriptors.bindings.add( 1, vk::DescriptorType::eUniformBuffer, vk::ShaderStageFlagBits::eFragment );
+      // Lights storage buffer
+      this->rsSceneDescriptors.bindings.add( 1, vk::DescriptorType::eStorageBuffer, vk::ShaderStageFlagBits::eFragment );
       // Scene description buffer
       this->rsSceneDescriptors.bindings.add( 2, vk::DescriptorType::eStorageBuffer, vk::ShaderStageFlagBits::eVertex );
 
@@ -738,35 +776,10 @@ namespace RAYEXEC_NAMESPACE
         this->camera->updateProj = false;
       }
 
-      this->cameraUbo.position = this->camera->getPosition( );
+      this->cameraUbo.position = glm::vec4( this->camera->getPosition( ), 1.0F );
     }
+
     this->cameraUniformBuffer.upload<CameraUbo>( imageIndex, this->cameraUbo );
-
-    // Upload lights.
-    LightsUbo lightNodeUbos;
-
-    for ( auto directionalLight : this->scene.directionalLights )
-    {
-      lightNodeUbos.directionalLightNodes.push_back( directionalLightToUbo( directionalLight ) );
-    }
-
-    this->lightsUniformBuffer.upload<LightsUbo>( imageIndex, lightNodeUbos );
-  }
-
-  void Api::initModelBuffers( )
-  {
-    g_modelCount = static_cast<uint32_t>( this->scene.geometries.size( ) );
-
-    this->vertexBuffers.resize( this->scene.geometries.size( ) );
-    this->indexBuffers.resize( this->scene.geometries.size( ) );
-    this->meshBuffers.resize( this->scene.geometries.size( ) );
-
-    for ( size_t i = 0; i < this->scene.geometries.size( ); ++i )
-    {
-      this->vertexBuffers[i].init( this->scene.geometries[i]->vertices );
-      this->indexBuffers[i].init( this->scene.geometries[i]->indices );
-      this->meshBuffers[i].init( this->scene.geometries[i]->meshes );
-    }
   }
 
   void Api::updateSceneDescriptors( )
@@ -774,6 +787,10 @@ namespace RAYEXEC_NAMESPACE
     vk::DescriptorBufferInfo rtInstancesInfo( this->geometryInstancesBuffer.get( ),
                                               0,
                                               VK_WHOLE_SIZE );
+
+    vk::DescriptorBufferInfo directionalLightsInfo( this->directionalLightsBuffer.get( ),
+                                                    0,
+                                                    VK_WHOLE_SIZE );
 
     for ( const auto& buffer : this->meshBuffers )
     {
@@ -785,7 +802,7 @@ namespace RAYEXEC_NAMESPACE
     }
 
     this->rtSceneDescriptors.bindings.write( this->rtSceneDescriptorSets, 0, this->cameraUniformBuffer.bufferInfos );
-    this->rtSceneDescriptors.bindings.write( this->rtSceneDescriptorSets, 1, this->lightsUniformBuffer.bufferInfos );
+    this->rtSceneDescriptors.bindings.write( this->rtSceneDescriptorSets, 1, &directionalLightsInfo );
     this->rtSceneDescriptors.bindings.write( this->rtSceneDescriptorSets, 2, &rtInstancesInfo );
     this->rtSceneDescriptors.bindings.writeArray( this->rtSceneDescriptorSets, 3, this->meshDataBufferInfos.data( ) );
 
@@ -793,7 +810,7 @@ namespace RAYEXEC_NAMESPACE
 
     // Update RS scene descriptor sets.
     this->rsSceneDescriptors.bindings.write( this->rsSceneDescriptorSets, 0, this->cameraUniformBuffer.bufferInfos );
-    this->rsSceneDescriptors.bindings.write( this->rsSceneDescriptorSets, 1, this->lightsUniformBuffer.bufferInfos );
+    this->rsSceneDescriptors.bindings.write( this->rsSceneDescriptorSets, 1, &directionalLightsInfo );
     this->rsSceneDescriptors.bindings.write( this->rsSceneDescriptorSets, 2, &rtInstancesInfo );
     this->rsSceneDescriptors.bindings.update( );
   }

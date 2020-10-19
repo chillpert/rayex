@@ -34,10 +34,6 @@ namespace RAYEXEC_NAMESPACE
   struct PointLight : public Light
   {
     glm::vec3 position = glm::vec3( 1.0F );
-
-    float constant  = 0.0F;
-    float linear    = 0.0F;
-    float quadratic = 0.0F;
   };
 } // namespace RAYEXEC_NAMESPACE
 

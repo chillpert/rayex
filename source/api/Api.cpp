@@ -182,15 +182,18 @@ namespace RAYEXEC_NAMESPACE
     {
       this->uploadGeometryInstancesToBuffer = false;
 
-      // Dereference pointers and store values in new vector that will be uploaded.
-      dereferencedGeometryInstances.resize( this->scene.geometryInstances.size( ) );
-      std::transform( this->scene.geometryInstances.begin( ),
-                      this->scene.geometryInstances.end( ),
-                      dereferencedGeometryInstances.begin( ),
-                      []( std::shared_ptr<GeometryInstance> instance ) { return *instance; } );
+      if ( this->scene.geometryInstances.size( ) > 0 )
+      {
+        // Dereference pointers and store values in new vector that will be uploaded.
+        dereferencedGeometryInstances.resize( this->scene.geometryInstances.size( ) );
+        std::transform( this->scene.geometryInstances.begin( ),
+                        this->scene.geometryInstances.end( ),
+                        dereferencedGeometryInstances.begin( ),
+                        []( std::shared_ptr<GeometryInstance> instance ) { return *instance; } );
 
-      this->geometryInstancesBuffer.fill<GeometryInstance>( dereferencedGeometryInstances.data( ) );
-      updateAccelerationStructures( );
+        this->geometryInstancesBuffer.fill<GeometryInstance>( dereferencedGeometryInstances.data( ) );
+        updateAccelerationStructures( );
+      }
     }
 
     if ( this->uploadDirectionalLightsToBuffer )

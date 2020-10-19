@@ -125,6 +125,11 @@ namespace RAYEXEC_NAMESPACE
     this->initialized ? this->api->setGui( gui, true ) : this->api->setGui( gui );
   }
 
+  auto RayExec::getGeometryInstances( ) const -> const std::vector<std::shared_ptr<GeometryInstance>>&
+  {
+    return this->api->scene.geometryInstances;
+  }
+
   void RayExec::submitGeometryInstance( std::shared_ptr<GeometryInstance> geometryInstance )
   {
     uint32_t limit = this->settings.maxGeometryInstances.has_value( ) ? this->settings.maxGeometryInstances.value( ) : g_maxGeometryInstances;
@@ -151,7 +156,7 @@ namespace RAYEXEC_NAMESPACE
     this->api->uploadGeometryInstancesToBuffer = true;
   }
 
-  auto RayExec::getDirectionalLights( ) const -> std::vector<std::shared_ptr<DirectionalLight>>
+  auto RayExec::getDirectionalLights( ) const -> const std::vector<std::shared_ptr<DirectionalLight>>&
   {
     return this->api->scene.directionalLights;
   }

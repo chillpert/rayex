@@ -29,13 +29,12 @@ private:
       if ( ImGui::Button( "Add box" ) )
       {
         auto cube      = this->renderer->findGeometry( "models/cube.obj" );
-        auto transform = glm::translate( glm::mat4( 1.0F ), getRandomUniquePosition( -5.0F, 5.0F ) );
-        transform      = glm::scale( transform, glm::vec3( 0.3F, 0.3F, 0.3F ) );
+        auto transform = glm::scale( glm::mat4( 1.0F ), glm::vec3( 0.3F, 0.3F, 0.3F ) );
+        transform      = glm::rotate( transform, getRandomFloat( 0.0F, 360.0F ), glm::vec3( 0.0F, 1.0F, 0.0F ) );
+        transform      = glm::translate( transform, getRandomUniquePosition( -15.0F, 15.0F ) );
 
         auto cubeInstance = instance( cube, transform );
-
         this->renderer->submitGeometryInstance( cubeInstance );
-        this->geometryInstances.push_back( cubeInstance );
       }
 
       ImGui::SameLine( );
@@ -43,34 +42,44 @@ private:
       if ( ImGui::Button( "Add sphere" ) )
       {
         auto sphere    = this->renderer->findGeometry( "models/sphere.obj" );
-        auto transform = glm::translate( glm::mat4( 1.0F ), getRandomUniquePosition( -5.0F, 5.0F ) );
-        transform      = glm::scale( transform, glm::vec3( 0.3F, 0.3F, 0.3F ) );
+        auto transform = glm::scale( glm::mat4( 1.0F ), glm::vec3( 0.3F, 0.3F, 0.3F ) );
+        transform      = glm::rotate( transform, getRandomFloat( 0.0F, 360.0F ), glm::vec3( 0.0F, 1.0F, 0.0F ) );
+        transform      = glm::translate( transform, getRandomUniquePosition( -15.0F, 15.0F ) );
 
         auto sphereInstance = instance( sphere, transform );
         this->renderer->submitGeometryInstance( sphereInstance );
+      }
 
-        this->geometryInstances.push_back( sphereInstance );
+      ImGui::SameLine( );
+
+      if ( ImGui::Button( "Add awp" ) )
+      {
+        auto awp       = this->renderer->findGeometry( "models/awpdlore/awpdlore.obj" );
+        auto transform = glm::scale( glm::mat4( 1.0F ), glm::vec3( 0.3F, 0.3F, 0.3F ) );
+        transform      = glm::rotate( transform, getRandomFloat( 0.0F, 360.0F ), glm::vec3( 0.0F, 1.0F, 0.0F ) );
+        transform      = glm::translate( transform, getRandomUniquePosition( -15.0F, 15.0F ) );
+
+        auto awpInstance = instance( awp, transform );
+        this->renderer->submitGeometryInstance( awpInstance );
       }
 
       ImGui::SameLine( );
 
       if ( ImGui::Button( "Clear scene" ) )
       {
-        for ( auto geometryInstance : this->geometryInstances )
+        auto geometryInstances = this->renderer->getGeometryInstances( );
+
+        for ( auto geometryInstance : geometryInstances )
         {
           this->renderer->removeGeometryInstance( geometryInstance );
         }
-
-        this->geometryInstances.clear( );
       }
 
       if ( ImGui::Button( "Add directional light" ) )
       {
         auto directionalLight       = std::make_shared<rx::DirectionalLight>( );
         directionalLight->direction = getRandomUniquePosition( 5.0F, 10.0F );
-
         directionalLight->direction.x *= -1;
-        std::cout << glm::to_string( directionalLight->direction ) << std::endl;
 
         this->renderer->submitDirectionalLight( directionalLight );
       }
@@ -208,9 +217,17 @@ private:
     return result;
   }
 
+  float getRandomFloat( float min, float max )
+  {
+    static std::random_device rd;
+    static std::mt19937 mt( rd( ) );
+    static std::uniform_real_distribution<float> dist( min, max );
+
+    return dist( mt );
+  }
+
 private:
   rx::RayExec* renderer;
-  std::vector<std::shared_ptr<rx::GeometryInstance>> geometryInstances;
 };
 
 #endif // CUSTOM_GUI_HPP

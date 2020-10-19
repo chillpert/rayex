@@ -55,6 +55,9 @@ namespace RAYEXEC_NAMESPACE
     /// @param gui A pointer to a RAYEXEC_NAMESPACE::Gui object.
     RX_API void setGui( std::shared_ptr<Gui> gui );
 
+    /// @return Returns all geometry instances in the scene.
+    RX_API auto getGeometryInstances( ) const -> const std::vector<std::shared_ptr<GeometryInstance>>&;
+
     /// Used to submit a geometry instance for rendering.
     /// @param geometryInstance The instance to queue for rendering.
     /// @note This function does not invoke any draw calls.
@@ -65,7 +68,8 @@ namespace RAYEXEC_NAMESPACE
     /// @note This function does not invoke any draw calls.
     RX_API void setGeometryInstances( const std::vector<std::shared_ptr<GeometryInstance>>& geometryInstances );
 
-    RX_API auto getDirectionalLights( ) const -> std::vector<std::shared_ptr<DirectionalLight>>;
+    /// @return Returns all directional lights in the scene.
+    RX_API auto getDirectionalLights( ) const -> const std::vector<std::shared_ptr<DirectionalLight>>&;
 
     /// Used to submit a directional light.
     /// @param light The directional light to submit.

@@ -5,7 +5,6 @@
 #include "api/Components.hpp"
 #include "api/Pipeline.hpp"
 #include "api/RenderPass.hpp"
-#include "api/Scene.hpp"
 #include "api/Surface.hpp"
 #include "api/Swapchain.hpp"
 #include "api/Vertex.hpp"
@@ -19,6 +18,7 @@
 #include "api/utility/DebugMessenger.hpp"
 #include "api/utility/Util.hpp"
 #include "base/Gui.hpp"
+#include "base/Scene.hpp"
 
 namespace RAYEXEC_NAMESPACE
 {
@@ -175,12 +175,10 @@ namespace RAYEXEC_NAMESPACE
     vk::Viewport viewport; ///< The application's viewport.
     vk::Rect2D scissor;    ///< The application's scissor.
 
-    bool needSwapchainRecreate           = false;
-    bool uploadGeometryInstancesToBuffer = false;   ///< Keeps track of whether or not to upload the ray tracing instances to their respective buffer the next time update() is called.
-    bool uploadDirectionalLightsToBuffer = false;   ///< Keeps track of whether or not to upload the directional lights to their respective buffer the next time update() is called.
-    bool pipelinesReady                  = false;   ///< Keeps track of whether or not the graphics pipelines are ready.
-    Settings* settings                   = nullptr; ///< A pointer to a RAYEXEC_NAMESPACE::Settings object stored inside RAYEXEC_NAMESPACE::RayExec.
-    Scene scene;
+    bool needSwapchainRecreate = false;   ///< Keeps track of whether or not the swapchain needs to be re-created.
+    bool pipelinesReady        = false;   ///< Keeps track of whether or not the graphics pipelines are ready.
+    Settings* settings         = nullptr; ///< Refers to the rendering settings stored in RayExec::settings.
+    Scene* scene               = nullptr; ///< Refers to the scene stored in RayExec::scene.
   };
 } // namespace RAYEXEC_NAMESPACE
 

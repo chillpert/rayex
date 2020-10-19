@@ -55,52 +55,6 @@ namespace RAYEXEC_NAMESPACE
     /// @param gui A pointer to a RAYEXEC_NAMESPACE::Gui object.
     RX_API void setGui( std::shared_ptr<Gui> gui );
 
-    /// @return Returns all geometry instances in the scene.
-    RX_API auto getGeometryInstances( ) const -> const std::vector<std::shared_ptr<GeometryInstance>>&;
-
-    /// Used to submit a geometry instance for rendering.
-    /// @param geometryInstance The instance to queue for rendering.
-    /// @note This function does not invoke any draw calls.
-    RX_API void submitGeometryInstance( std::shared_ptr<GeometryInstance> geometryInstance );
-
-    /// Used to submit multiple geometry instances for rendering, replacing all existing instances.
-    /// @param geometryInstances The instances to queue for rendering.
-    /// @note This function does not invoke any draw calls.
-    RX_API void setGeometryInstances( const std::vector<std::shared_ptr<GeometryInstance>>& geometryInstances );
-
-    /// @return Returns all directional lights in the scene.
-    RX_API auto getDirectionalLights( ) const -> const std::vector<std::shared_ptr<DirectionalLight>>&;
-
-    /// Used to submit a directional light.
-    /// @param light The directional light to submit.
-    RX_API void submitDirectionalLight( std::shared_ptr<DirectionalLight> light );
-
-    /// Used to remove a directional light.
-    /// @param light The light to remove.
-    RX_API void removeDirectionalLight( std::shared_ptr<DirectionalLight> light );
-
-    /// Used to remove a geometry instance.
-    ///
-    /// Once a geometry instance was removed, it will no longer be rendered.
-    /// @param geometryInstance The instance to remove.
-    RX_API void removeGeometryInstance( std::shared_ptr<GeometryInstance> geometryInstance );
-
-    /// Used to submit a geometry and set up its buffers.
-    ///
-    /// Once a geometry was submitted, geometry instances referencing this particular geometry can be drawn.
-    /// @param geometry The geometry to submit.
-    RX_API void submitGeometry( std::shared_ptr<Geometry> geometry );
-
-    /// Used to submit multiple geometries and set up their buffers.
-    ///
-    /// Once a geometry was submitted, geometry instances referencing this particular geometry can be drawn.
-    /// @param geometries The geometries to submit.
-    RX_API void setGeometries( const std::vector<std::shared_ptr<Geometry>>& geometries );
-
-    /// Used to retrieve a geoemtry based on its path.
-    /// @param path The geometry's model's path, relative to the path to assets.
-    RX_API auto findGeometry( std::string_view path ) const -> std::shared_ptr<Geometry>;
-
     /// @return Returns a pointer to the renderer's window.
     [[nodiscard]] RX_API inline auto getWindow( ) const -> std::shared_ptr<Window> { return this->window; }
 
@@ -110,6 +64,10 @@ namespace RAYEXEC_NAMESPACE
     /// Used to modify any interal rendering settings.
     /// @see RAYEXEC_NAMESPACE::Settings
     Settings settings;
+
+    /// Contains all meshes, all mesh instances and all light sources.
+    /// Used to access the scene directly by adding or removing elements.
+    Scene scene;
 
   private:
     std::shared_ptr<Window> window = nullptr;                  ///< The window used to create a surface from.

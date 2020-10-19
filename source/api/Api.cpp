@@ -132,17 +132,17 @@ namespace RAYEXEC_NAMESPACE
     this->cameraUniformBuffer.init<CameraUbo>( );
 
     // Init geometry storage buffers.
-    g_modelCount = static_cast<uint32_t>( this->scene.geometries.size( ) );
+    g_modelCount = static_cast<uint32_t>( this->scene->geometries.size( ) );
 
-    this->vertexBuffers.resize( this->scene.geometries.size( ) );
-    this->indexBuffers.resize( this->scene.geometries.size( ) );
-    this->meshBuffers.resize( this->scene.geometries.size( ) );
+    this->vertexBuffers.resize( this->scene->geometries.size( ) );
+    this->indexBuffers.resize( this->scene->geometries.size( ) );
+    this->meshBuffers.resize( this->scene->geometries.size( ) );
 
-    for ( size_t i = 0; i < this->scene.geometries.size( ); ++i )
+    for ( size_t i = 0; i < this->scene->geometries.size( ); ++i )
     {
-      this->vertexBuffers[i].init( this->scene.geometries[i]->vertices );
-      this->indexBuffers[i].init( this->scene.geometries[i]->indices );
-      this->meshBuffers[i].init( this->scene.geometries[i]->meshes );
+      this->vertexBuffers[i].init( this->scene->geometries[i]->vertices );
+      this->indexBuffers[i].init( this->scene->geometries[i]->indices );
+      this->meshBuffers[i].init( this->scene->geometries[i]->meshes );
     }
 
     // Descriptor sets and layouts
@@ -178,16 +178,16 @@ namespace RAYEXEC_NAMESPACE
 
     updateUniformBuffers( );
 
-    if ( this->uploadGeometryInstancesToBuffer )
+    if ( this->scene->uploadGeometryInstancesToBuffer )
     {
-      this->uploadGeometryInstancesToBuffer = false;
+      this->scene->uploadGeometryInstancesToBuffer = false;
 
-      if ( this->scene.geometryInstances.size( ) > 0 )
+      if ( this->scene->geometryInstances.size( ) > 0 )
       {
         // Dereference pointers and store values in new vector that will be uploaded.
-        dereferencedGeometryInstances.resize( this->scene.geometryInstances.size( ) );
-        std::transform( this->scene.geometryInstances.begin( ),
-                        this->scene.geometryInstances.end( ),
+        dereferencedGeometryInstances.resize( this->scene->geometryInstances.size( ) );
+        std::transform( this->scene->geometryInstances.begin( ),
+                        this->scene->geometryInstances.end( ),
                         dereferencedGeometryInstances.begin( ),
                         []( std::shared_ptr<GeometryInstance> instance ) { return *instance; } );
 
@@ -196,15 +196,15 @@ namespace RAYEXEC_NAMESPACE
       }
     }
 
-    if ( this->uploadDirectionalLightsToBuffer )
+    if ( this->scene->uploadDirectionalLightsToBuffer )
     {
-      this->uploadDirectionalLightsToBuffer = false;
+      this->scene->uploadDirectionalLightsToBuffer = false;
 
-      if ( this->scene.directionalLights.size( ) > 0 )
+      if ( this->scene->directionalLights.size( ) > 0 )
       {
-        dereferencedDirectionalLights.resize( this->scene.directionalLights.size( ) );
-        std::transform( this->scene.directionalLights.begin( ),
-                        this->scene.directionalLights.end( ),
+        dereferencedDirectionalLights.resize( this->scene->directionalLights.size( ) );
+        std::transform( this->scene->directionalLights.begin( ),
+                        this->scene->directionalLights.end( ),
                         dereferencedDirectionalLights.begin( ),
                         []( std::shared_ptr<DirectionalLight> light ) { return DirectionalLightSSBO { glm::vec4( light->ambient, light->ambientIntensity ),
                                                                                                       glm::vec4( light->diffuse, light->diffuseIntensity ),
@@ -386,7 +386,7 @@ namespace RAYEXEC_NAMESPACE
 
     // @TODO Try to call this as few times as possible.
     this->rayTracingBuilder.createBottomLevelAS( this->vertexBuffers, this->indexBuffers );
-    this->rayTracingBuilder.createTopLevelAS( this->scene.geometryInstances );
+    this->rayTracingBuilder.createTopLevelAS( this->scene->geometryInstances );
 
     // Update ray tracing descriptor set.
     vk::WriteDescriptorSetAccelerationStructureKHR tlasInfo( 1,
@@ -500,12 +500,12 @@ namespace RAYEXEC_NAMESPACE
   {
     std::map<std::string_view, uint32_t> temp;
 
-    for ( auto geometry : this->scene.geometries )
+    for ( auto geometry : this->scene->geometries )
     {
       temp.emplace( geometry->path, 0 );
     }
 
-    for ( const auto& geometryInstance : this->scene.geometryInstances )
+    for ( const auto& geometryInstance : this->scene->geometryInstances )
     {
       std::shared_ptr<Geometry> it = findGeometry( geometryInstance->geometryIndex );
       RX_ASSERT( it != nullptr, "Could not find model. Did you forget to introduce the renderer to this model using RayExec::setModels( ) after initializing the renderer?" );
@@ -548,7 +548,7 @@ namespace RAYEXEC_NAMESPACE
 
       // Draw models
       uint32_t id = 0;
-      for ( const auto& geometryInstance : this->scene.geometryInstances )
+      for ( const auto& geometryInstance : this->scene->geometryInstances )
       {
         auto geo = findGeometry( geometryInstance->geometryIndex );
         RX_ASSERT( geo != nullptr, "Could not find model. Did you forget to introduce the renderer to this model using RayExec::setModels( ) after initializing the renderer?" );
@@ -608,8 +608,8 @@ namespace RAYEXEC_NAMESPACE
 
   void Api::rayTrace( )
   {
-    uint32_t directionalLightCount = static_cast<uint32_t>( this->scene.directionalLights.size( ) );
-    uint32_t pointLightCount       = static_cast<uint32_t>( this->scene.pointLights.size( ) );
+    uint32_t directionalLightCount = static_cast<uint32_t>( this->scene->directionalLights.size( ) );
+    uint32_t pointLightCount       = static_cast<uint32_t>( this->scene->pointLights.size( ) );
 
     // Start recording the swapchain framebuffers
     for ( size_t imageIndex = 0; imageIndex < this->swapchainCommandBuffers.get( ).size( ); ++imageIndex )
@@ -848,7 +848,7 @@ namespace RAYEXEC_NAMESPACE
 
   std::shared_ptr<Geometry> Api::findGeometry( uint32_t geometryIndex )
   {
-    for ( std::shared_ptr<Geometry> geometry : this->scene.geometries )
+    for ( std::shared_ptr<Geometry> geometry : this->scene->geometries )
     {
       if ( geometry->geometryIndex == geometryIndex )
       {

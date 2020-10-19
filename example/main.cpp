@@ -34,7 +34,7 @@ auto main( ) -> int
   auto cube   = rx::loadObj( "models/cube.obj" );
 
   // Submit geometries.
-  renderer.setGeometries( { awp, sphere, plane, cube } );
+  renderer.scene.setGeometries( { awp, sphere, plane, cube } );
 
   // Create instances of the geometries.
   auto transform = glm::scale( glm::mat4( 1.0F ), glm::vec3( 0.25F ) );
@@ -55,10 +55,10 @@ auto main( ) -> int
   auto directionalLight       = std::make_shared<rx::DirectionalLight>( );
   directionalLight->direction = glm::vec3( -4.0F, 10.0F, 5.0F );
 
-  renderer.submitDirectionalLight( directionalLight );
+  renderer.scene.submitDirectionalLight( directionalLight );
 
   // Submit instances for drawing.
-  renderer.setGeometryInstances( { awpInstance1, planeInstance, awpInstance2 } );
+  renderer.scene.setGeometryInstances( { awpInstance1, planeInstance, awpInstance2 } );
 
   while ( renderer.isRunning( ) )
   {

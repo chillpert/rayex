@@ -16,6 +16,7 @@ namespace RAYEXEC_NAMESPACE
     friend class Api;
     friend class RayExec;
     friend class Pipeline;
+    friend class Scene;
 
     /// @return Returns the recursion depth.
     [[nodiscard]] auto getRecursionDepth( ) const -> uint32_t { return this->recursionDepth; }

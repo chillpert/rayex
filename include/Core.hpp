@@ -48,6 +48,7 @@
 #define RX_ASSERT( statement, ... ) LOGGER_NAMESPACE::assert2( statement ? true : false, RAYEXEC_NAMESPACE_STRINGIFIED, ": ", __VA_ARGS__ )
 
 #define RX_LOG_TIME_START( ... )      \
+  std::cout << std::endl;             \
   float startTime = Time::getTime( ); \
   LOGGER_NAMESPACE::info( RAYEXEC_NAMESPACE_STRINGIFIED, ": ", __VA_ARGS__ )
 

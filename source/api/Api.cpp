@@ -70,6 +70,8 @@ namespace RAYEXEC_NAMESPACE
 
   void Api::initBase( )
   {
+    RX_LOG_TIME_START( "Initializing Vulkan (base) ..." );
+
     // Instance
     instance = vk::Initializer::initInstance( layers, extensions );
 
@@ -128,10 +130,14 @@ namespace RAYEXEC_NAMESPACE
     uint32_t maxPointLightCount = this->settings->maxPointLights.has_value( ) ? this->settings->maxPointLights.value( ) : g_maxPointLights;
     std::vector<PointLightSSBO> pointLights( maxPointLightCount );
     this->pointLightsBuffer.init<PointLightSSBO>( pointLights );
+
+    RX_LOG_TIME_STOP( "Finished initializing Vulkan (base)" );
   }
 
   void Api::initScene( )
   {
+    RX_LOG_TIME_START( "Initializing Vulkan (scene) ..." );
+
     // Uniform buffers for camera
     this->cameraUniformBuffer.init<CameraUbo>( );
 
@@ -174,6 +180,8 @@ namespace RAYEXEC_NAMESPACE
     //this->swapchainCommandBuffers.reset( );
     this->swapchainCommandBuffers.init( this->graphicsCmdPool.get( ), g_swapchainImageCount, vk::CommandBufferUsageFlagBits::eRenderPassContinue );
     recordSwapchainCommandBuffers( );
+
+    RX_LOG_TIME_STOP( "Finished initializing Vulkan (scene)" );
   }
 
   void Api::update( )

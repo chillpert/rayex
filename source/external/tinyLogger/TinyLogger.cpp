@@ -20,7 +20,7 @@ namespace LOGGER_NAMESPACE
     switch ( color )
     {
       case Color::eGray:
-        colorCode = "\033[0;37m";
+        colorCode = "\033[0;90m";
         break;
 
       case Color::eWhite:

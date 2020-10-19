@@ -15,7 +15,22 @@ namespace RAYEXEC_NAMESPACE
     glm::mat4 projection        = glm::mat4( 1.0F );
     glm::mat4 viewInverse       = glm::mat4( 1.0F );
     glm::mat4 projectionInverse = glm::mat4( 1.0F );
-    glm::vec3 position          = glm::vec3( 1.0F );
+
+    glm::vec3 position = glm::vec3( 1.0F );
+  };
+
+  /// A wrapper for RAYEXEC_NAMESPACE::Light matching the buffer alignment requirements.
+  struct LightUbo
+  {
+    glm::vec4 ambient  = glm::vec4( 1.0F ); ///< Stores ambient color (vec3) and ambient intensity (float) in a vec4.
+    glm::vec4 diffuse  = glm::vec4( 1.0F ); ///< Stores diffuse color (vec3) and diffuse intensity (float) in a vec4.
+    glm::vec4 specular = glm::vec4( 1.0F ); ///< Stores specular color (vec3) and specular intensity (float) in a vec4.
+  };
+
+  /// A wrapper for RAYEXEC_NAMESPACE::DirectionalLight matching the buffer alignment requirements.
+  struct DirectionalLightUbo : public LightUbo
+  {
+    glm::vec4 direction = glm::vec4( 1.0F ); ///< Stores the direction (vec3).
   };
 
   /// A uniform buffer object for different light types.
@@ -23,8 +38,7 @@ namespace RAYEXEC_NAMESPACE
   /// @todo Shouldn't this also be a storage buffer?
   struct LightsUbo
   {
-    std::array<DirectionalLight, 10> directionalLightNodes;
-    std::array<PointLight, 10> pointLightNodes;
+    std::vector<DirectionalLightUbo> directionalLightNodes;
   };
 
   /// A specialised buffer for uniforms.
@@ -88,6 +102,8 @@ namespace RAYEXEC_NAMESPACE
   private:
     std::vector<Buffer> buffers; ///< A vector of RAYEXEC_NAMESPACE::Buffers for the uniform buffers.
   };
+
+  RX_API DirectionalLightUbo directionalLightToUbo( std::shared_ptr<DirectionalLight> light );
 
 } // namespace RAYEXEC_NAMESPACE
 

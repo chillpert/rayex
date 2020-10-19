@@ -719,7 +719,7 @@ namespace RAYEXEC_NAMESPACE
   {
     uint32_t imageIndex = this->swapchain.getCurrentImageIndex( );
 
-    // Upload camera
+    // Upload camera.
     if ( this->camera != nullptr )
     {
       if ( this->camera->updateView )
@@ -742,26 +742,15 @@ namespace RAYEXEC_NAMESPACE
     }
     this->cameraUniformBuffer.upload<CameraUbo>( imageIndex, this->cameraUbo );
 
-    /*
-    // Upload lights
-    LightsUbo lightNodeUbos = { };
+    // Upload lights.
+    LightsUbo lightNodeUbos;
 
-    int i = 0;
-    for ( auto& dirLightNode : this->scene.dirLightNodes )
+    for ( auto directionalLight : this->scene.directionalLights )
     {
-      lightNodeUbos.directionalLightNodes[i] = dirLightNode->toUbo( );
-      ++i;
-    }
-
-    i = 0;
-    for ( auto& pointLightNode : this->scene.pointLightNodes )
-    {
-      lightNodeUbos.pointLightNodes[i] = pointLightNode->toUbo( );
-      ++i;
+      lightNodeUbos.directionalLightNodes.push_back( directionalLightToUbo( directionalLight ) );
     }
 
     this->lightsUniformBuffer.upload<LightsUbo>( imageIndex, lightNodeUbos );
-    */
   }
 
   void Api::initModelBuffers( )

@@ -5,7 +5,6 @@
 
 namespace RAYEXEC_NAMESPACE
 {
-
   /// A common base for all light types.
   ///
   /// Instances of this type should not be used anywhere.
@@ -16,9 +15,11 @@ namespace RAYEXEC_NAMESPACE
     glm::vec3 diffuse  = glm::vec3( 1.0F ); ///< The diffuse color.
     glm::vec3 specular = glm::vec3( 1.0F ); ///< The specular color.
 
-    float ambientIntensity  = 0.0F; ///< The intensity of the ambient color.
-    float diffuseIntensity  = 0.0F; ///< The intensity of the diffuse color.
-    float specularIntensity = 0.0F; ///< The intensity of the specular color.
+    float ambientIntensity  = 1.0F; ///< The intensity of the ambient color.
+    float diffuseIntensity  = 1.0F; ///< The intensity of the diffuse color.
+    float specularIntensity = 1.0F; ///< The intensity of the specular color.
+
+    bool update = true; ///< If set to true the light will be re-uploaded to the physical device.
   };
 
   /// A directional light.
@@ -38,6 +39,6 @@ namespace RAYEXEC_NAMESPACE
     float linear    = 0.0F;
     float quadratic = 0.0F;
   };
-}
+} // namespace RAYEXEC_NAMESPACE
 
 #endif // LIGHTS_HPP

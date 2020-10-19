@@ -23,7 +23,7 @@ namespace RAYEX_NAMESPACE
   ///   myRenderer.run( );
   /// }
   /// ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-  /// @ingroup Base
+  /// @ingroup BASE
   class Rayex
   {
   public:

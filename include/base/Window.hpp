@@ -19,7 +19,7 @@ namespace RAYEX_NAMESPACE
   /// auto myWindow = std::make_shared<CustomWindow>( width, height, "Example", WINDOW_RESIZABLE | WINDOW_INPUT_FOCUS );
   /// ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
   /// @see update()
-  /// @ingroup Base
+  /// @ingroup BASE
   /// @todo To avoid the user having to link to SDL themselves requires to write a complete SDL2 wrapper.
   class Window
   {

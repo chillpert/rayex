@@ -11,5 +11,6 @@ var searchData=
   ['direction_57',['direction',['../struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_directional_light_s_s_b_o.html#a97c0fc692504df2515640a3d3bb25527',1,'RAYEX_NAMESPACE::DirectionalLightSSBO::direction()'],['../struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_directional_light.html#a292ade676ead3692bc3d2dd418a765f8',1,'RAYEX_NAMESPACE::DirectionalLight::direction()']]],
   ['directionallight_58',['DirectionalLight',['../struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_directional_light.html',1,'RAYEX_NAMESPACE']]],
   ['directionallightcount_59',['directionalLightCount',['../struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_ray_trace_push_constants.html#ad745f064a779470d7867c02705732514',1,'RAYEX_NAMESPACE::RayTracePushConstants']]],
-  ['directionallightssbo_60',['DirectionalLightSSBO',['../struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_directional_light_s_s_b_o.html',1,'RAYEX_NAMESPACE']]]
+  ['directionallightinstance_60',['directionalLightInstance',['../namespace_r_a_y_e_x___n_a_m_e_s_p_a_c_e.html#a2a069b2d151c07c55325dc008f693cb0',1,'RAYEX_NAMESPACE']]],
+  ['directionallightssbo_61',['DirectionalLightSSBO',['../struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_directional_light_s_s_b_o.html',1,'RAYEX_NAMESPACE']]]
 ];

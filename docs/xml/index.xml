@@ -622,8 +622,10 @@
     <member refid="namespace_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1aff8ee7aaab7d155f60fd777d09664159" kind="variable"><name>defaultHeight</name></member>
     <member refid="namespace_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1a38050cc881a8d3e860e8ff7ebc6adc7c" kind="function"><name>createStorageBufferWithStaging</name></member>
     <member refid="namespace_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1a12927e95ad03941844c80a5324ef0826" kind="function"><name>getSupportedDepthFormat</name></member>
-    <member refid="group___base_1gac348076d8b31be1511d1fc0532e75747" kind="function"><name>loadObj</name></member>
-    <member refid="group___base_1gad880ea304e8ff3dab6ea5258df8970cf" kind="function"><name>instance</name></member>
+    <member refid="namespace_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1ac348076d8b31be1511d1fc0532e75747" kind="function"><name>loadObj</name></member>
+    <member refid="namespace_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1ad880ea304e8ff3dab6ea5258df8970cf" kind="function"><name>instance</name></member>
+    <member refid="namespace_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1a2a069b2d151c07c55325dc008f693cb0" kind="function"><name>directionalLightInstance</name></member>
+    <member refid="namespace_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1ace95101543a8d8577781044c96795140" kind="function"><name>pointLightInstance</name></member>
   </compound>
   <compound refid="namespace_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_util" kind="namespace"><name>RAYEX_NAMESPACE::Util</name>
     <member refid="namespace_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_util_1a0688371689cb8fc05d6a7a85bad79a6a" kind="function"><name>parseShader</name></member>
@@ -774,8 +776,6 @@
   <compound refid="_r_e_a_d_m_e_8md" kind="file"><name>README.md</name>
   </compound>
   <compound refid="group___base" kind="group"><name>Base</name>
-    <member refid="group___base_1gac348076d8b31be1511d1fc0532e75747" kind="function"><name>loadObj</name></member>
-    <member refid="group___base_1gad880ea304e8ff3dab6ea5258df8970cf" kind="function"><name>instance</name></member>
   </compound>
   <compound refid="group___a_p_i" kind="group"><name>API</name>
   </compound>

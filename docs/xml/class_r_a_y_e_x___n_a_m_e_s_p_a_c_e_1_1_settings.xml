@@ -15,7 +15,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/n30/Repos/rayex/include/base/Settings.hpp" line="16" column="5" bodyfile="/home/n30/Repos/rayex/include/base/Settings.hpp" bodystart="16" bodyend="-1"/>
+        <location file="/home/n30/Repos/rayex/include/base/Settings.hpp" line="17" column="5" bodyfile="/home/n30/Repos/rayex/include/base/Settings.hpp" bodystart="17" bodyend="-1"/>
       </memberdef>
       <memberdef kind="friend" id="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_settings_1a9c4583a217a46ad12593f4255e2a6061" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>friend class</type>
@@ -28,7 +28,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/n30/Repos/rayex/include/base/Settings.hpp" line="17" column="5" bodyfile="/home/n30/Repos/rayex/include/base/Settings.hpp" bodystart="17" bodyend="-1"/>
+        <location file="/home/n30/Repos/rayex/include/base/Settings.hpp" line="18" column="5" bodyfile="/home/n30/Repos/rayex/include/base/Settings.hpp" bodystart="18" bodyend="-1"/>
       </memberdef>
       <memberdef kind="friend" id="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_settings_1af9f0f1adbd5baee7830839447205af8d" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>friend class</type>
@@ -41,7 +41,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/n30/Repos/rayex/include/base/Settings.hpp" line="18" column="5" bodyfile="/home/n30/Repos/rayex/include/base/Settings.hpp" bodystart="18" bodyend="-1"/>
+        <location file="/home/n30/Repos/rayex/include/base/Settings.hpp" line="19" column="5" bodyfile="/home/n30/Repos/rayex/include/base/Settings.hpp" bodystart="19" bodyend="-1"/>
       </memberdef>
       <memberdef kind="friend" id="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_settings_1a032858ae1fe02d2d1170981c2af2d67c" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>friend class</type>
@@ -54,7 +54,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/n30/Repos/rayex/include/base/Settings.hpp" line="19" column="5" bodyfile="/home/n30/Repos/rayex/include/base/Settings.hpp" bodystart="19" bodyend="-1"/>
+        <location file="/home/n30/Repos/rayex/include/base/Settings.hpp" line="20" column="5" bodyfile="/home/n30/Repos/rayex/include/base/Settings.hpp" bodystart="20" bodyend="-1"/>
       </memberdef>
       </sectiondef>
       <sectiondef kind="private-attrib">
@@ -71,7 +71,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/n30/Repos/rayex/include/base/Settings.hpp" line="135" column="10" bodyfile="/home/n30/Repos/rayex/include/base/Settings.hpp" bodystart="135" bodyend="-1"/>
+        <location file="/home/n30/Repos/rayex/include/base/Settings.hpp" line="136" column="10" bodyfile="/home/n30/Repos/rayex/include/base/Settings.hpp" bodystart="136" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_settings_1a47d88ad91974073a5a8da05ed5184b6f" prot="private" static="no" mutable="no">
         <type>bool</type>
@@ -86,7 +86,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/n30/Repos/rayex/include/base/Settings.hpp" line="136" column="10" bodyfile="/home/n30/Repos/rayex/include/base/Settings.hpp" bodystart="136" bodyend="-1"/>
+        <location file="/home/n30/Repos/rayex/include/base/Settings.hpp" line="137" column="10" bodyfile="/home/n30/Repos/rayex/include/base/Settings.hpp" bodystart="137" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_settings_1aea0cf65cf92d257f9b3f2c3ead2f6835" prot="private" static="no" mutable="no">
         <type>bool</type>
@@ -101,7 +101,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/n30/Repos/rayex/include/base/Settings.hpp" line="137" column="10" bodyfile="/home/n30/Repos/rayex/include/base/Settings.hpp" bodystart="137" bodyend="-1"/>
+        <location file="/home/n30/Repos/rayex/include/base/Settings.hpp" line="138" column="10" bodyfile="/home/n30/Repos/rayex/include/base/Settings.hpp" bodystart="138" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_settings_1ad127c000a99724fa0be6c915b8a85ed1" prot="private" static="no" mutable="no">
         <type>std::optional&lt; uint32_t &gt;</type>
@@ -115,7 +115,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/n30/Repos/rayex/include/base/Settings.hpp" line="139" column="19" bodyfile="/home/n30/Repos/rayex/include/base/Settings.hpp" bodystart="139" bodyend="-1"/>
+        <location file="/home/n30/Repos/rayex/include/base/Settings.hpp" line="140" column="19" bodyfile="/home/n30/Repos/rayex/include/base/Settings.hpp" bodystart="140" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_settings_1aff66d653a636870a7760412e494fcabc" prot="private" static="no" mutable="no">
         <type>std::optional&lt; uint32_t &gt;</type>
@@ -129,7 +129,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/n30/Repos/rayex/include/base/Settings.hpp" line="140" column="19" bodyfile="/home/n30/Repos/rayex/include/base/Settings.hpp" bodystart="140" bodyend="-1"/>
+        <location file="/home/n30/Repos/rayex/include/base/Settings.hpp" line="141" column="19" bodyfile="/home/n30/Repos/rayex/include/base/Settings.hpp" bodystart="141" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_settings_1a243f0b10773ea36ba9dff8768d5f2fe1" prot="private" static="no" mutable="no">
         <type>std::optional&lt; uint32_t &gt;</type>
@@ -143,7 +143,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/n30/Repos/rayex/include/base/Settings.hpp" line="141" column="19" bodyfile="/home/n30/Repos/rayex/include/base/Settings.hpp" bodystart="141" bodyend="-1"/>
+        <location file="/home/n30/Repos/rayex/include/base/Settings.hpp" line="142" column="19" bodyfile="/home/n30/Repos/rayex/include/base/Settings.hpp" bodystart="142" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_settings_1abdcc944cc3343486a4916be0f11ea17e" prot="private" static="no" mutable="no">
         <type>std::string</type>
@@ -157,7 +157,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/n30/Repos/rayex/include/base/Settings.hpp" line="143" column="17" bodyfile="/home/n30/Repos/rayex/include/base/Settings.hpp" bodystart="143" bodyend="-1"/>
+        <location file="/home/n30/Repos/rayex/include/base/Settings.hpp" line="144" column="17" bodyfile="/home/n30/Repos/rayex/include/base/Settings.hpp" bodystart="144" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_settings_1a7f869a44f0e90ae13ac974210fe73488" prot="private" static="no" mutable="no">
         <type>glm::vec4</type>
@@ -172,7 +172,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/n30/Repos/rayex/include/base/Settings.hpp" line="145" column="15" bodyfile="/home/n30/Repos/rayex/include/base/Settings.hpp" bodystart="145" bodyend="-1"/>
+        <location file="/home/n30/Repos/rayex/include/base/Settings.hpp" line="146" column="15" bodyfile="/home/n30/Repos/rayex/include/base/Settings.hpp" bodystart="146" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_settings_1a30d9337a17d5824cc195d5406c586c35" prot="private" static="no" mutable="no">
         <type>uint32_t</type>
@@ -187,7 +187,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/n30/Repos/rayex/include/base/Settings.hpp" line="146" column="14" bodyfile="/home/n30/Repos/rayex/include/base/Settings.hpp" bodystart="146" bodyend="-1"/>
+        <location file="/home/n30/Repos/rayex/include/base/Settings.hpp" line="147" column="14" bodyfile="/home/n30/Repos/rayex/include/base/Settings.hpp" bodystart="147" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_settings_1ab2c09cedccf5df6105ba8618dda6ecaf" prot="private" static="no" mutable="no">
         <type>uint32_t</type>
@@ -202,7 +202,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/n30/Repos/rayex/include/base/Settings.hpp" line="147" column="14" bodyfile="/home/n30/Repos/rayex/include/base/Settings.hpp" bodystart="147" bodyend="-1"/>
+        <location file="/home/n30/Repos/rayex/include/base/Settings.hpp" line="148" column="14" bodyfile="/home/n30/Repos/rayex/include/base/Settings.hpp" bodystart="148" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_settings_1ab9563e4cf713a2039e02f10fb7144571" prot="private" static="no" mutable="no">
         <type>bool</type>
@@ -217,7 +217,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/n30/Repos/rayex/include/base/Settings.hpp" line="148" column="10" bodyfile="/home/n30/Repos/rayex/include/base/Settings.hpp" bodystart="148" bodyend="-1"/>
+        <location file="/home/n30/Repos/rayex/include/base/Settings.hpp" line="149" column="10" bodyfile="/home/n30/Repos/rayex/include/base/Settings.hpp" bodystart="149" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_settings_1af0a01f91553ba63388a070c4a413fb8a" prot="private" static="no" mutable="no">
         <type>uint32_t</type>
@@ -232,7 +232,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/n30/Repos/rayex/include/base/Settings.hpp" line="149" column="14" bodyfile="/home/n30/Repos/rayex/include/base/Settings.hpp" bodystart="149" bodyend="-1"/>
+        <location file="/home/n30/Repos/rayex/include/base/Settings.hpp" line="150" column="14" bodyfile="/home/n30/Repos/rayex/include/base/Settings.hpp" bodystart="150" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_settings_1ad31a9a30536b83758114872cef3d5a6a" prot="private" static="no" mutable="no">
         <type>uint32_t</type>
@@ -247,7 +247,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/n30/Repos/rayex/include/base/Settings.hpp" line="150" column="14" bodyfile="/home/n30/Repos/rayex/include/base/Settings.hpp" bodystart="150" bodyend="-1"/>
+        <location file="/home/n30/Repos/rayex/include/base/Settings.hpp" line="151" column="14" bodyfile="/home/n30/Repos/rayex/include/base/Settings.hpp" bodystart="151" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_settings_1ad33382e0c2424167e0bc09c7d908ffc5" prot="private" static="no" mutable="no">
         <type>bool</type>
@@ -262,7 +262,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/n30/Repos/rayex/include/base/Settings.hpp" line="151" column="10" bodyfile="/home/n30/Repos/rayex/include/base/Settings.hpp" bodystart="151" bodyend="-1"/>
+        <location file="/home/n30/Repos/rayex/include/base/Settings.hpp" line="152" column="10" bodyfile="/home/n30/Repos/rayex/include/base/Settings.hpp" bodystart="152" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_settings_1a07f913c68f1e98017856c43858d5bd0d" prot="private" static="no" mutable="no">
         <type>uint32_t</type>
@@ -277,7 +277,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/n30/Repos/rayex/include/base/Settings.hpp" line="152" column="14" bodyfile="/home/n30/Repos/rayex/include/base/Settings.hpp" bodystart="152" bodyend="-1"/>
+        <location file="/home/n30/Repos/rayex/include/base/Settings.hpp" line="153" column="14" bodyfile="/home/n30/Repos/rayex/include/base/Settings.hpp" bodystart="153" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_settings_1a1cddfad858a9bf7de0ec0d09259b1470" prot="private" static="no" mutable="no">
         <type>bool</type>
@@ -292,7 +292,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/n30/Repos/rayex/include/base/Settings.hpp" line="154" column="10" bodyfile="/home/n30/Repos/rayex/include/base/Settings.hpp" bodystart="154" bodyend="-1"/>
+        <location file="/home/n30/Repos/rayex/include/base/Settings.hpp" line="155" column="10" bodyfile="/home/n30/Repos/rayex/include/base/Settings.hpp" bodystart="155" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_settings_1ad853431d32a51df734faab31c7b3730e" prot="private" static="no" mutable="no">
         <type>bool</type>
@@ -307,7 +307,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/n30/Repos/rayex/include/base/Settings.hpp" line="155" column="10" bodyfile="/home/n30/Repos/rayex/include/base/Settings.hpp" bodystart="155" bodyend="-1"/>
+        <location file="/home/n30/Repos/rayex/include/base/Settings.hpp" line="156" column="10" bodyfile="/home/n30/Repos/rayex/include/base/Settings.hpp" bodystart="156" bodyend="-1"/>
       </memberdef>
       </sectiondef>
       <sectiondef kind="public-func">
@@ -325,7 +325,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/n30/Repos/rayex/include/base/Settings.hpp" line="22" column="11" bodyfile="/home/n30/Repos/rayex/include/base/Settings.hpp" bodystart="22" bodyend="22"/>
+        <location file="/home/n30/Repos/rayex/include/base/Settings.hpp" line="23" column="11" bodyfile="/home/n30/Repos/rayex/include/base/Settings.hpp" bodystart="23" bodyend="23"/>
       </memberdef>
       <memberdef kind="function" id="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_settings_1a2219f20482a7eca65a8f8cd819b75d45" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -353,7 +353,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/n30/Repos/rayex/include/base/Settings.hpp" line="29" column="10"/>
+        <location file="/home/n30/Repos/rayex/include/base/Settings.hpp" line="30" column="10"/>
       </memberdef>
       <memberdef kind="function" id="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_settings_1a3fbc4ba4e79dcb84f8065d8657cd09d8" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
         <type>auto</type>
@@ -369,7 +369,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/n30/Repos/rayex/include/base/Settings.hpp" line="32" column="11" bodyfile="/home/n30/Repos/rayex/include/base/Settings.hpp" bodystart="32" bodyend="32"/>
+        <location file="/home/n30/Repos/rayex/include/base/Settings.hpp" line="33" column="11" bodyfile="/home/n30/Repos/rayex/include/base/Settings.hpp" bodystart="33" bodyend="33"/>
       </memberdef>
       <memberdef kind="function" id="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_settings_1a7c23cd33060112e22df368eeb8fc4c62" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -397,7 +397,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/n30/Repos/rayex/include/base/Settings.hpp" line="38" column="10"/>
+        <location file="/home/n30/Repos/rayex/include/base/Settings.hpp" line="39" column="10"/>
       </memberdef>
       <memberdef kind="function" id="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_settings_1a8e94a1b47ab849117f0e97bf74332bb0" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
         <type>auto</type>
@@ -413,7 +413,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/n30/Repos/rayex/include/base/Settings.hpp" line="41" column="11" bodyfile="/home/n30/Repos/rayex/include/base/Settings.hpp" bodystart="41" bodyend="41"/>
+        <location file="/home/n30/Repos/rayex/include/base/Settings.hpp" line="42" column="11" bodyfile="/home/n30/Repos/rayex/include/base/Settings.hpp" bodystart="42" bodyend="42"/>
       </memberdef>
       <memberdef kind="function" id="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_settings_1a00b2c779dbe061631b409240d99477fb" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -454,7 +454,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/n30/Repos/rayex/include/base/Settings.hpp" line="48" column="10"/>
+        <location file="/home/n30/Repos/rayex/include/base/Settings.hpp" line="49" column="10"/>
       </memberdef>
       <memberdef kind="function" id="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_settings_1a63ae460c13863b4d90fd673039ea6b11" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -482,7 +482,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/n30/Repos/rayex/include/base/Settings.hpp" line="54" column="10"/>
+        <location file="/home/n30/Repos/rayex/include/base/Settings.hpp" line="55" column="10"/>
       </memberdef>
       <memberdef kind="function" id="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_settings_1a2e953079038a847e3ed0cb77abb4e4fd" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
         <type>auto</type>
@@ -499,7 +499,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/n30/Repos/rayex/include/base/Settings.hpp" line="58" column="11" bodyfile="/home/n30/Repos/rayex/include/base/Settings.hpp" bodystart="58" bodyend="58"/>
+        <location file="/home/n30/Repos/rayex/include/base/Settings.hpp" line="59" column="11" bodyfile="/home/n30/Repos/rayex/include/base/Settings.hpp" bodystart="59" bodyend="59"/>
       </memberdef>
       <memberdef kind="function" id="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_settings_1a86e1a739d623859c7a9f49334cc21400" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -528,7 +528,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/n30/Repos/rayex/include/base/Settings.hpp" line="65" column="10"/>
+        <location file="/home/n30/Repos/rayex/include/base/Settings.hpp" line="66" column="10"/>
       </memberdef>
       <memberdef kind="function" id="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_settings_1ac444874c6f8feb0a7c4385bc17728176" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -556,7 +556,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/n30/Repos/rayex/include/base/Settings.hpp" line="69" column="10"/>
+        <location file="/home/n30/Repos/rayex/include/base/Settings.hpp" line="70" column="10"/>
       </memberdef>
       <memberdef kind="function" id="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_settings_1aae6e3c01ef0d90c89c82c97c5eafb250" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -584,7 +584,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/n30/Repos/rayex/include/base/Settings.hpp" line="73" column="10"/>
+        <location file="/home/n30/Repos/rayex/include/base/Settings.hpp" line="74" column="10"/>
       </memberdef>
       <memberdef kind="function" id="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_settings_1aa4f5d03705f7d75e752766f2136cff57" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -612,7 +612,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/n30/Repos/rayex/include/base/Settings.hpp" line="77" column="10"/>
+        <location file="/home/n30/Repos/rayex/include/base/Settings.hpp" line="78" column="10"/>
       </memberdef>
       <memberdef kind="function" id="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_settings_1ad82e2aa3d853d8b87408d808f36c72a4" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -640,7 +640,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/n30/Repos/rayex/include/base/Settings.hpp" line="81" column="10"/>
+        <location file="/home/n30/Repos/rayex/include/base/Settings.hpp" line="82" column="10"/>
       </memberdef>
       <memberdef kind="function" id="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_settings_1a272c5032d8509892f7ee876d65fcdfe2" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
         <type>auto</type>
@@ -656,7 +656,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/n30/Repos/rayex/include/base/Settings.hpp" line="84" column="11" bodyfile="/home/n30/Repos/rayex/include/base/Settings.hpp" bodystart="84" bodyend="84"/>
+        <location file="/home/n30/Repos/rayex/include/base/Settings.hpp" line="85" column="11" bodyfile="/home/n30/Repos/rayex/include/base/Settings.hpp" bodystart="85" bodyend="85"/>
       </memberdef>
       <memberdef kind="function" id="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_settings_1aafdf9b286388d388b41afc6c4707cc02" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -686,7 +686,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/n30/Repos/rayex/include/base/Settings.hpp" line="93" column="10"/>
+        <location file="/home/n30/Repos/rayex/include/base/Settings.hpp" line="94" column="10"/>
       </memberdef>
       <memberdef kind="function" id="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_settings_1a4fe503cf5a095b02606751381ea0538f" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
         <type>auto</type>
@@ -702,7 +702,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/n30/Repos/rayex/include/base/Settings.hpp" line="96" column="11" bodyfile="/home/n30/Repos/rayex/include/base/Settings.hpp" bodystart="96" bodyend="96"/>
+        <location file="/home/n30/Repos/rayex/include/base/Settings.hpp" line="97" column="11" bodyfile="/home/n30/Repos/rayex/include/base/Settings.hpp" bodystart="97" bodyend="97"/>
       </memberdef>
       <memberdef kind="function" id="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_settings_1a7c02b5affa6d65710d438a1300b369d6" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -732,7 +732,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/n30/Repos/rayex/include/base/Settings.hpp" line="101" column="10"/>
+        <location file="/home/n30/Repos/rayex/include/base/Settings.hpp" line="102" column="10"/>
       </memberdef>
       <memberdef kind="function" id="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_settings_1abaab03bdd69de36f34d224933fe422c5" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
         <type>auto</type>
@@ -748,7 +748,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/n30/Repos/rayex/include/base/Settings.hpp" line="104" column="11" bodyfile="/home/n30/Repos/rayex/include/base/Settings.hpp" bodystart="104" bodyend="104"/>
+        <location file="/home/n30/Repos/rayex/include/base/Settings.hpp" line="105" column="11" bodyfile="/home/n30/Repos/rayex/include/base/Settings.hpp" bodystart="105" bodyend="105"/>
       </memberdef>
       <memberdef kind="function" id="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_settings_1a6b646409950dbe255f929a0b8d07901a" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -780,7 +780,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/n30/Repos/rayex/include/base/Settings.hpp" line="110" column="10"/>
+        <location file="/home/n30/Repos/rayex/include/base/Settings.hpp" line="111" column="10"/>
       </memberdef>
       <memberdef kind="function" id="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_settings_1ab25392e78df5f9d79224e5006bed0f12" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
         <type>auto</type>
@@ -796,7 +796,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/n30/Repos/rayex/include/base/Settings.hpp" line="113" column="11" bodyfile="/home/n30/Repos/rayex/include/base/Settings.hpp" bodystart="113" bodyend="113"/>
+        <location file="/home/n30/Repos/rayex/include/base/Settings.hpp" line="114" column="11" bodyfile="/home/n30/Repos/rayex/include/base/Settings.hpp" bodystart="114" bodyend="114"/>
       </memberdef>
       <memberdef kind="function" id="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_settings_1ae2aa8cc8634003231583eb3627d47de4" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -826,7 +826,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/n30/Repos/rayex/include/base/Settings.hpp" line="118" column="10"/>
+        <location file="/home/n30/Repos/rayex/include/base/Settings.hpp" line="119" column="10"/>
       </memberdef>
       <memberdef kind="function" id="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_settings_1aa9344909d0bc98798245f5907e77cf96" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
         <type>auto</type>
@@ -842,7 +842,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/n30/Repos/rayex/include/base/Settings.hpp" line="121" column="11" bodyfile="/home/n30/Repos/rayex/include/base/Settings.hpp" bodystart="121" bodyend="121"/>
+        <location file="/home/n30/Repos/rayex/include/base/Settings.hpp" line="122" column="11" bodyfile="/home/n30/Repos/rayex/include/base/Settings.hpp" bodystart="122" bodyend="122"/>
       </memberdef>
       <memberdef kind="function" id="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_settings_1a2f760bb865eeb7f541ff7954809a49e0" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -870,7 +870,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/n30/Repos/rayex/include/base/Settings.hpp" line="125" column="10"/>
+        <location file="/home/n30/Repos/rayex/include/base/Settings.hpp" line="126" column="10"/>
       </memberdef>
       <memberdef kind="function" id="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_settings_1af11c9ed9a5d84a89f2642b16702deaf1" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
         <type>auto</type>
@@ -886,7 +886,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/n30/Repos/rayex/include/base/Settings.hpp" line="128" column="11" bodyfile="/home/n30/Repos/rayex/include/base/Settings.hpp" bodystart="128" bodyend="128"/>
+        <location file="/home/n30/Repos/rayex/include/base/Settings.hpp" line="129" column="11" bodyfile="/home/n30/Repos/rayex/include/base/Settings.hpp" bodystart="129" bodyend="129"/>
       </memberdef>
       </sectiondef>
       <sectiondef kind="private-func">
@@ -905,17 +905,18 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/n30/Repos/rayex/include/base/Settings.hpp" line="133" column="10"/>
+        <location file="/home/n30/Repos/rayex/include/base/Settings.hpp" line="134" column="10"/>
       </memberdef>
       </sectiondef>
     <briefdescription>
 <para>Exposes all graphic settings supported by the renderer. </para>
     </briefdescription>
     <detaileddescription>
-<para>Any necessary pipeline recreations and swapchain recreations will not be performed at the point of calling any setter but instead the next time the renderer will be updated. <xrefsect id="todo_1_todo000007"><xreftitle>Todo</xreftitle><xrefdescription><para>Add a setUseTotalPathsOnly( bool flag ) </para>
+<para>Any necessary pipeline recreations and swapchain recreations will not be performed at the point of calling any setter but instead the next time the renderer will be updated.</para>
+<para><xrefsect id="todo_1_todo000007"><xreftitle>Todo</xreftitle><xrefdescription><para>Add a setUseTotalPathsOnly( bool flag ) </para>
 </xrefdescription></xrefsect></para>
     </detaileddescription>
-    <location file="/home/n30/Repos/rayex/include/base/Settings.hpp" line="14" column="1" bodyfile="/home/n30/Repos/rayex/include/base/Settings.hpp" bodystart="13" bodyend="156"/>
+    <location file="/home/n30/Repos/rayex/include/base/Settings.hpp" line="15" column="1" bodyfile="/home/n30/Repos/rayex/include/base/Settings.hpp" bodystart="14" bodyend="157"/>
     <listofallmembers>
       <member refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_settings_1a1f45b14d517f25b1c55c57861c1ecef6" prot="public" virt="non-virtual"><scope>RAYEX_NAMESPACE::Settings</scope><name>Api</name></member>
       <member refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_settings_1abdcc944cc3343486a4916be0f11ea17e" prot="private" virt="non-virtual"><scope>RAYEX_NAMESPACE::Settings</scope><name>assetsPath</name></member>

@@ -15,7 +15,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/n30/Repos/rayex/include/base/Scene.hpp" line="16" column="12" bodyfile="/home/n30/Repos/rayex/include/base/Scene.hpp" bodystart="16" bodyend="-1"/>
+        <location file="/home/n30/Repos/rayex/include/base/Scene.hpp" line="19" column="12" bodyfile="/home/n30/Repos/rayex/include/base/Scene.hpp" bodystart="19" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_scene_1a03b7257e44db8e9af952484958a5346c" prot="public" static="no" mutable="no">
         <type>friend</type>
@@ -28,7 +28,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/n30/Repos/rayex/include/base/Scene.hpp" line="17" column="12" bodyfile="/home/n30/Repos/rayex/include/base/Scene.hpp" bodystart="17" bodyend="-1"/>
+        <location file="/home/n30/Repos/rayex/include/base/Scene.hpp" line="20" column="12" bodyfile="/home/n30/Repos/rayex/include/base/Scene.hpp" bodystart="20" bodyend="-1"/>
       </memberdef>
       </sectiondef>
       <sectiondef kind="private-attrib">
@@ -44,7 +44,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/n30/Repos/rayex/include/base/Scene.hpp" line="77" column="17" bodyfile="/home/n30/Repos/rayex/include/base/Scene.hpp" bodystart="77" bodyend="-1"/>
+        <location file="/home/n30/Repos/rayex/include/base/Scene.hpp" line="80" column="17" bodyfile="/home/n30/Repos/rayex/include/base/Scene.hpp" bodystart="80" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_scene_1a59fd42bef703847c8be55502fce601cf" prot="private" static="no" mutable="no">
         <type>std::vector&lt; std::shared_ptr&lt; <ref refid="struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_geometry_instance" kindref="compound">GeometryInstance</ref> &gt; &gt;</type>
@@ -58,7 +58,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/n30/Repos/rayex/include/base/Scene.hpp" line="78" column="17" bodyfile="/home/n30/Repos/rayex/include/base/Scene.hpp" bodystart="78" bodyend="-1"/>
+        <location file="/home/n30/Repos/rayex/include/base/Scene.hpp" line="81" column="17" bodyfile="/home/n30/Repos/rayex/include/base/Scene.hpp" bodystart="81" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_scene_1a02d41181c2a80710c6e216c40b36be48" prot="private" static="no" mutable="no">
         <type>std::vector&lt; std::shared_ptr&lt; <ref refid="struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_directional_light" kindref="compound">DirectionalLight</ref> &gt; &gt;</type>
@@ -72,7 +72,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/n30/Repos/rayex/include/base/Scene.hpp" line="79" column="17" bodyfile="/home/n30/Repos/rayex/include/base/Scene.hpp" bodystart="79" bodyend="-1"/>
+        <location file="/home/n30/Repos/rayex/include/base/Scene.hpp" line="82" column="17" bodyfile="/home/n30/Repos/rayex/include/base/Scene.hpp" bodystart="82" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_scene_1a64c281c64e3b56c3002d644efbabdd95" prot="private" static="no" mutable="no">
         <type>std::vector&lt; std::shared_ptr&lt; <ref refid="struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_point_light" kindref="compound">PointLight</ref> &gt; &gt;</type>
@@ -86,7 +86,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/n30/Repos/rayex/include/base/Scene.hpp" line="80" column="17" bodyfile="/home/n30/Repos/rayex/include/base/Scene.hpp" bodystart="80" bodyend="-1"/>
+        <location file="/home/n30/Repos/rayex/include/base/Scene.hpp" line="83" column="17" bodyfile="/home/n30/Repos/rayex/include/base/Scene.hpp" bodystart="83" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_scene_1a369ca3a48402ea4fd4087df500b88ee5" prot="private" static="no" mutable="no">
         <type>bool</type>
@@ -101,7 +101,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/n30/Repos/rayex/include/base/Scene.hpp" line="82" column="10" bodyfile="/home/n30/Repos/rayex/include/base/Scene.hpp" bodystart="82" bodyend="-1"/>
+        <location file="/home/n30/Repos/rayex/include/base/Scene.hpp" line="85" column="10" bodyfile="/home/n30/Repos/rayex/include/base/Scene.hpp" bodystart="85" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_scene_1a19f1cd5b71325a4d93ee4b93a79e6c50" prot="private" static="no" mutable="no">
         <type>bool</type>
@@ -116,7 +116,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/n30/Repos/rayex/include/base/Scene.hpp" line="83" column="10" bodyfile="/home/n30/Repos/rayex/include/base/Scene.hpp" bodystart="83" bodyend="-1"/>
+        <location file="/home/n30/Repos/rayex/include/base/Scene.hpp" line="86" column="10" bodyfile="/home/n30/Repos/rayex/include/base/Scene.hpp" bodystart="86" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_scene_1a76c16520a3fe6152f6de41ba225a5575" prot="private" static="no" mutable="no">
         <type>bool</type>
@@ -131,7 +131,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/n30/Repos/rayex/include/base/Scene.hpp" line="84" column="10" bodyfile="/home/n30/Repos/rayex/include/base/Scene.hpp" bodystart="84" bodyend="-1"/>
+        <location file="/home/n30/Repos/rayex/include/base/Scene.hpp" line="87" column="10" bodyfile="/home/n30/Repos/rayex/include/base/Scene.hpp" bodystart="87" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_scene_1a97eba2afc62a48d331a2f6a5aa23e5e2" prot="private" static="no" mutable="no">
         <type><ref refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_settings" kindref="compound">Settings</ref> *</type>
@@ -146,7 +146,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/n30/Repos/rayex/include/base/Scene.hpp" line="86" column="14" bodyfile="/home/n30/Repos/rayex/include/base/Scene.hpp" bodystart="86" bodyend="-1"/>
+        <location file="/home/n30/Repos/rayex/include/base/Scene.hpp" line="89" column="14" bodyfile="/home/n30/Repos/rayex/include/base/Scene.hpp" bodystart="89" bodyend="-1"/>
       </memberdef>
       </sectiondef>
       <sectiondef kind="public-func">
@@ -164,7 +164,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/n30/Repos/rayex/include/base/Scene.hpp" line="20" column="17"/>
+        <location file="/home/n30/Repos/rayex/include/base/Scene.hpp" line="23" column="17"/>
       </memberdef>
       <memberdef kind="function" id="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_scene_1a3b96a2de405909bcf142d06ffd01af51" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>RX_API void</type>
@@ -194,7 +194,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/n30/Repos/rayex/include/base/Scene.hpp" line="25" column="17"/>
+        <location file="/home/n30/Repos/rayex/include/base/Scene.hpp" line="28" column="17"/>
       </memberdef>
       <memberdef kind="function" id="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_scene_1ab9ea0ed7c08d009b16df99075471e46a" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>RX_API void</type>
@@ -224,7 +224,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/n30/Repos/rayex/include/base/Scene.hpp" line="30" column="17"/>
+        <location file="/home/n30/Repos/rayex/include/base/Scene.hpp" line="33" column="17"/>
       </memberdef>
       <memberdef kind="function" id="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_scene_1a4dede48ee7babbc92564f8f8e58137d7" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
         <type>RX_API auto</type>
@@ -240,7 +240,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/n30/Repos/rayex/include/base/Scene.hpp" line="33" column="17"/>
+        <location file="/home/n30/Repos/rayex/include/base/Scene.hpp" line="36" column="17"/>
       </memberdef>
       <memberdef kind="function" id="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_scene_1a2431b32e7e77f9a3a3fe1c507b0ed47e" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>RX_API void</type>
@@ -268,7 +268,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/n30/Repos/rayex/include/base/Scene.hpp" line="37" column="17"/>
+        <location file="/home/n30/Repos/rayex/include/base/Scene.hpp" line="40" column="17"/>
       </memberdef>
       <memberdef kind="function" id="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_scene_1a56343cde7839a62a148fe1ff1b02b5a2" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>RX_API void</type>
@@ -296,7 +296,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/n30/Repos/rayex/include/base/Scene.hpp" line="41" column="17"/>
+        <location file="/home/n30/Repos/rayex/include/base/Scene.hpp" line="44" column="17"/>
       </memberdef>
       <memberdef kind="function" id="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_scene_1a62830aa5d68338fa397362348d78f1ea" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
         <type>RX_API auto</type>
@@ -312,7 +312,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/n30/Repos/rayex/include/base/Scene.hpp" line="44" column="17"/>
+        <location file="/home/n30/Repos/rayex/include/base/Scene.hpp" line="47" column="17"/>
       </memberdef>
       <memberdef kind="function" id="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_scene_1a28f1b782d207d9900867d88daf9dc36f" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>RX_API void</type>
@@ -340,7 +340,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/n30/Repos/rayex/include/base/Scene.hpp" line="48" column="17"/>
+        <location file="/home/n30/Repos/rayex/include/base/Scene.hpp" line="51" column="17"/>
       </memberdef>
       <memberdef kind="function" id="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_scene_1aa1287c66b8b1ec56888839f42eb4caeb" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>RX_API void</type>
@@ -368,7 +368,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/n30/Repos/rayex/include/base/Scene.hpp" line="52" column="17"/>
+        <location file="/home/n30/Repos/rayex/include/base/Scene.hpp" line="55" column="17"/>
       </memberdef>
       <memberdef kind="function" id="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_scene_1a77d27bd137cc821c5a2f27e8a4cb08a0" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>RX_API void</type>
@@ -396,7 +396,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/n30/Repos/rayex/include/base/Scene.hpp" line="58" column="17"/>
+        <location file="/home/n30/Repos/rayex/include/base/Scene.hpp" line="61" column="17"/>
       </memberdef>
       <memberdef kind="function" id="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_scene_1af63d4e9451ca633e359a58c24558b906" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>RX_API void</type>
@@ -424,7 +424,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/n30/Repos/rayex/include/base/Scene.hpp" line="64" column="17"/>
+        <location file="/home/n30/Repos/rayex/include/base/Scene.hpp" line="67" column="17"/>
       </memberdef>
       <memberdef kind="function" id="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_scene_1acb21c780b3ef2f6f7f89903cd9f0451a" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>RX_API void</type>
@@ -452,7 +452,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/n30/Repos/rayex/include/base/Scene.hpp" line="70" column="17"/>
+        <location file="/home/n30/Repos/rayex/include/base/Scene.hpp" line="73" column="17"/>
       </memberdef>
       <memberdef kind="function" id="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_scene_1af86091cefb7ed4c6159610f3fa5bd56d" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
         <type>RX_API auto</type>
@@ -480,14 +480,16 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/n30/Repos/rayex/include/base/Scene.hpp" line="74" column="17"/>
+        <location file="/home/n30/Repos/rayex/include/base/Scene.hpp" line="77" column="17"/>
       </memberdef>
       </sectiondef>
     <briefdescription>
+<para>Stores all geoemtry, geometry instances and light sources. </para>
     </briefdescription>
     <detaileddescription>
+<para>Provides functions to change said data. </para>
     </detaileddescription>
-    <location file="/home/n30/Repos/rayex/include/base/Scene.hpp" line="14" column="1" bodyfile="/home/n30/Repos/rayex/include/base/Scene.hpp" bodystart="13" bodyend="87"/>
+    <location file="/home/n30/Repos/rayex/include/base/Scene.hpp" line="17" column="1" bodyfile="/home/n30/Repos/rayex/include/base/Scene.hpp" bodystart="16" bodyend="90"/>
     <listofallmembers>
       <member refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_scene_1ae002d16199c05b908fbeecc4f7d97733" prot="public" virt="non-virtual"><scope>RAYEX_NAMESPACE::Scene</scope><name>Api</name></member>
       <member refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_scene_1a02d41181c2a80710c6e216c40b36be48" prot="private" virt="non-virtual"><scope>RAYEX_NAMESPACE::Scene</scope><name>directionalLights</name></member>

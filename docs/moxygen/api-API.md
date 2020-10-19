@@ -760,7 +760,7 @@ Manages the building process of the acceleration structures.
 `public auto `[`instanceToVkGeometryInstanceKHR`](#class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_ray_tracing_builder_1a60388a55e372319ce0d2158c7267ad56)`(const `[`BlasInstance`](moxygen/api-API.md#struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_blas_instance)` & instance)` | Used to convert a bottom level acceleration structure instance to a Vulkan geometry instance.
 `public void `[`createBottomLevelAS`](#class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_ray_tracing_builder_1a42b8ce4dcbd3a85f5e923c21432b529e)`(const std::vector< `[`VertexBuffer`](moxygen/api-API.md#class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_vertex_buffer)` > & vertexBuffers,const std::vector< `[`IndexBuffer`](moxygen/api-API.md#class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_index_buffer)` > & indexBuffers)` | Used to prepare building the bottom level acceleration structures.
 `public void `[`buildBlas`](#class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_ray_tracing_builder_1af900141703e8b05e7840aa4473557708)`(const std::vector< `[`Blas`](moxygen/api-API.md#struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_blas)` > & blas_,vk::BuildAccelerationStructureFlagsKHR flags)` | Builds all bottom level acceleration structures.
-`public void `[`createTopLevelAS`](#class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_ray_tracing_builder_1a5c6a10e0124ce4356bc41f9848cf85e9)`(const std::vector< std::shared_ptr< `[`GeometryInstance`](moxygen/api-Base.md#struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_geometry_instance)` >> & geometryInstances)` | Used to prepare building the top level acceleration structure.
+`public void `[`createTopLevelAS`](#class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_ray_tracing_builder_1a5c6a10e0124ce4356bc41f9848cf85e9)`(const std::vector< std::shared_ptr< `[`GeometryInstance`](moxygen/api-undefined.md#struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_geometry_instance)` >> & geometryInstances)` | Used to prepare building the top level acceleration structure.
 `public void `[`buildTlas`](#class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_ray_tracing_builder_1a90a77c2884d4831c6af205c37836cc4b)`(const std::vector< `[`BlasInstance`](moxygen/api-API.md#struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_blas_instance)` > & instances,vk::BuildAccelerationStructureFlagsKHR flags)` | Build the top level acceleration structure.
 `public void `[`createStorageImage`](#class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_ray_tracing_builder_1ab224b9213162354a3a540fc7708c47b5)`(vk::Extent2D swapchainExtent)` | Creates the storage image which the ray tracing shaders will write to.
 `public void `[`createShaderBindingTable`](#class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_ray_tracing_builder_1a2dfe6cb875357e7190f0efd50106c145)`(vk::Pipeline rtPipeline)` | Creates the shader binding tables.
@@ -845,7 +845,7 @@ Builds all bottom level acceleration structures.
 
 * `flags` The build flags.
 
-#### `public void `[`createTopLevelAS`](#class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_ray_tracing_builder_1a5c6a10e0124ce4356bc41f9848cf85e9)`(const std::vector< std::shared_ptr< `[`GeometryInstance`](moxygen/api-Base.md#struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_geometry_instance)` >> & geometryInstances)` 
+#### `public void `[`createTopLevelAS`](#class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_ray_tracing_builder_1a5c6a10e0124ce4356bc41f9848cf85e9)`(const std::vector< std::shared_ptr< `[`GeometryInstance`](moxygen/api-undefined.md#struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_geometry_instance)` >> & geometryInstances)` 
 
 Used to prepare building the top level acceleration structure.
 
@@ -1273,7 +1273,7 @@ Encapsulates descriptor-related resources.
 
 A uniform buffer object for camera data.
 
-> Todo: [Camera](moxygen/api-Base.md#class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_camera) position could easily be a push constant, which would make this UBO much smaller in size.
+> Todo: [Camera](moxygen/api-undefined.md#class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_camera) position could easily be a push constant, which would make this UBO much smaller in size.
 
 ## Summary
 

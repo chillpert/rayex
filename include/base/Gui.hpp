@@ -33,7 +33,7 @@ namespace RAYEX_NAMESPACE
   /// myRenderer.setGui( myGui );
   /// ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
   /// @warning The GUI object must be declared after the renderer to ensure the correct order for destroying and freeing resources.
-  /// @ingroup Base API
+  /// @ingroup BASE API
   class Gui
   {
   public:

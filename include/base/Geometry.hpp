@@ -6,7 +6,7 @@
 namespace RAYEX_NAMESPACE
 {
   /// Describes the rendering properties of a mesh.
-  /// @ingroup Base
+  /// @ingroup BASE
   struct Material
   {
     glm::vec4 ambient  = glm::vec4( 1.0F, 1.0F, 1.0F, -1.0F ); // vec3 ambient  + vec1 texture index
@@ -16,7 +16,7 @@ namespace RAYEX_NAMESPACE
 
   /// Describes a sub-mesh and its material.
   /// @warning If indexOffset is not set correctly the mesh can not be displayed properly. Take a look at loadObj(std::string_view) for a working example.
-  /// @ingroup Base
+  /// @ingroup BASE
   struct Mesh
   {
     Material material = { }; ///< The mesh's material.
@@ -37,7 +37,7 @@ namespace RAYEX_NAMESPACE
   ///
   /// Even if a model consists out of multiple sub-meshes, all vertices and indices must be stored together in their respective containers.
   /// @warning geometryIndex must be incremented everytime a new model is created.
-  /// @ingroup Base
+  /// @ingroup BASE
   struct Geometry
   {
     std::vector<Vertex> vertices;  ///< Contains all vertices of the geometry.
@@ -49,7 +49,7 @@ namespace RAYEX_NAMESPACE
 
   /// Describes an instance of some geometry.
   /// @warning To assign a specific geometry to an instance, both must have the same value for geometryIndex.
-  /// @ingroup Base
+  /// @ingroup BASE
   struct GeometryInstance
   {
     glm::mat4 transform    = glm::mat4( 1.0F ); ///< The instance's world transform matrix.
@@ -68,7 +68,7 @@ namespace RAYEX_NAMESPACE
   /// A user is encouraged to create their own model loader function or classes.
   /// @param path The model's path, relative to the path to assets.
   /// @return Returns a pointer to a geometry object.
-  /// @ingroup Base
+  /// @ingroup BASE
   RX_API std::shared_ptr<Geometry> loadObj( std::string_view path );
 
   /// A commodity function for allocating an instance from a given geometry and set its matrices.
@@ -77,7 +77,7 @@ namespace RAYEX_NAMESPACE
   /// @param geometry The geometry to create the instance from.
   /// @param transform The world transform matrix of the instance.
   /// @return Returns a pointer to a geometry instance.
-  /// @ingroup Base
+  /// @ingroup BASE
   RX_API std::shared_ptr<GeometryInstance> instance( std::shared_ptr<Geometry> geometry, const glm::mat4& transform = glm::mat4( 1.0F ) );
 
 } // namespace RAYEX_NAMESPACE

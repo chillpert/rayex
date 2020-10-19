@@ -131,7 +131,7 @@
 <para>Describes a sub-mesh and its material. </para>
     </briefdescription>
     <detaileddescription>
-<para><simplesect kind="warning"><para>If indexOffset is not set correctly the mesh can not be displayed properly. Take a look at <ref refid="group___base_1gac348076d8b31be1511d1fc0532e75747" kindref="member">loadObj(std::string_view)</ref> for a working example. </para>
+<para><simplesect kind="warning"><para>If indexOffset is not set correctly the mesh can not be displayed properly. Take a look at <ref refid="namespace_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1ac348076d8b31be1511d1fc0532e75747" kindref="member">loadObj(std::string_view)</ref> for a working example. </para>
 </simplesect>
 </para>
     </detaileddescription>

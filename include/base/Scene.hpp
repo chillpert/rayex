@@ -10,6 +10,9 @@ namespace RAYEX_NAMESPACE
   class Api;
   class Rayex;
 
+  /// Stores all geoemtry, geometry instances and light sources.
+  /// Provides functions to change said data.
+  /// @ingroup BASE
   class Scene
   {
   public:

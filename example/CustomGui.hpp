@@ -77,8 +77,7 @@ private:
 
       if ( ImGui::Button( "Add directional light" ) )
       {
-        auto directionalLight       = std::make_shared<rx::DirectionalLight>( );
-        directionalLight->direction = getRandomUniquePosition( 5.0F, 10.0F );
+        auto directionalLight = rx::directionalLightInstance( getRandomUniquePosition( 5.0F, 10.0F ) );
         directionalLight->direction.x *= -1;
 
         this->renderer->scene.submitDirectionalLight( directionalLight );

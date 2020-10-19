@@ -126,9 +126,13 @@ $(document).ready(function(){initNavTree('_lights_8hpp_source.html',''); initRes
 <div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;  {</div>
 <div class="line"><a name="l00036"></a><span class="lineno"><a class="line" href="struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_point_light.html#a61392310ead7d93a498c26839d1f25f1">   36</a></span>&#160;    glm::vec3 <a class="code" href="struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_point_light.html#a61392310ead7d93a498c26839d1f25f1">position</a> = glm::vec3( 1.0F );</div>
 <div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;  };</div>
-<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;} <span class="comment">// namespace RAYEX_NAMESPACE</span></div>
-<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160; </div>
-<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;<span class="preprocessor">#endif // LIGHTS_HPP</span></div>
+<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160; </div>
+<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;  RX_API <span class="keyword">auto</span> <a class="code" href="namespace_r_a_y_e_x___n_a_m_e_s_p_a_c_e.html#a2a069b2d151c07c55325dc008f693cb0">directionalLightInstance</a>( <span class="keyword">const</span> glm::vec3&amp; direction ) -&gt; std::shared_ptr&lt;DirectionalLight&gt;;</div>
+<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160; </div>
+<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;  RX_API <span class="keyword">auto</span> <a class="code" href="namespace_r_a_y_e_x___n_a_m_e_s_p_a_c_e.html#ace95101543a8d8577781044c96795140">pointLightInstance</a>( <span class="keyword">const</span> glm::vec3&amp; position ) -&gt; std::shared_ptr&lt;PointLight&gt;;</div>
+<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;} <span class="comment">// namespace RAYEX_NAMESPACE</span></div>
+<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160; </div>
+<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;<span class="preprocessor">#endif // LIGHTS_HPP</span></div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->
 <div class="ttc" id="astruct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_light_html_a9099dc2317d71a5766dbacdf6003428b"><div class="ttname"><a href="struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_light.html#a9099dc2317d71a5766dbacdf6003428b">RAYEX_NAMESPACE::Light::update</a></div><div class="ttdeci">bool update</div><div class="ttdoc">If set to true the light will be re-uploaded to the physical device.</div><div class="ttdef"><b>Definition:</b> Lights.hpp:22</div></div>
@@ -145,6 +149,8 @@ $(document).ready(function(){initNavTree('_lights_8hpp_source.html',''); initRes
 <div class="ttc" id="astruct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_point_light_html_a61392310ead7d93a498c26839d1f25f1"><div class="ttname"><a href="struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_point_light.html#a61392310ead7d93a498c26839d1f25f1">RAYEX_NAMESPACE::PointLight::position</a></div><div class="ttdeci">glm::vec3 position</div><div class="ttdef"><b>Definition:</b> Lights.hpp:36</div></div>
 <div class="ttc" id="astruct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_light_html_a4159b357e9900158ab92b85ee50746d0"><div class="ttname"><a href="struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_light.html#a4159b357e9900158ab92b85ee50746d0">RAYEX_NAMESPACE::Light::diffuse</a></div><div class="ttdeci">glm::vec3 diffuse</div><div class="ttdoc">The diffuse color.</div><div class="ttdef"><b>Definition:</b> Lights.hpp:15</div></div>
 <div class="ttc" id="astruct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_light_html"><div class="ttname"><a href="struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_light.html">RAYEX_NAMESPACE::Light</a></div><div class="ttdoc">A common base for all light types.</div><div class="ttdef"><b>Definition:</b> Lights.hpp:12</div></div>
+<div class="ttc" id="anamespace_r_a_y_e_x___n_a_m_e_s_p_a_c_e_html_a2a069b2d151c07c55325dc008f693cb0"><div class="ttname"><a href="namespace_r_a_y_e_x___n_a_m_e_s_p_a_c_e.html#a2a069b2d151c07c55325dc008f693cb0">RAYEX_NAMESPACE::directionalLightInstance</a></div><div class="ttdeci">RX_API auto directionalLightInstance(const glm::vec3 &amp;direction) -&gt; std::shared_ptr&lt; DirectionalLight &gt;</div><div class="ttdoc">A commodity function for allocating a directional light instance.</div></div>
+<div class="ttc" id="anamespace_r_a_y_e_x___n_a_m_e_s_p_a_c_e_html_ace95101543a8d8577781044c96795140"><div class="ttname"><a href="namespace_r_a_y_e_x___n_a_m_e_s_p_a_c_e.html#ace95101543a8d8577781044c96795140">RAYEX_NAMESPACE::pointLightInstance</a></div><div class="ttdeci">RX_API auto pointLightInstance(const glm::vec3 &amp;position) -&gt; std::shared_ptr&lt; PointLight &gt;</div><div class="ttdoc">A commodity function for allocating a point light instance.</div></div>
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>

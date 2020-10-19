@@ -35,6 +35,18 @@ namespace RAYEX_NAMESPACE
   {
     glm::vec3 position = glm::vec3( 1.0F );
   };
+
+  /// A commodity function for allocating a directional light instance.
+  /// @param direction The directional lights' direction.
+  /// @return Returns a pointer to a directional light instance.
+  /// @ingroup BASE
+  RX_API auto directionalLightInstance( const glm::vec3& direction ) -> std::shared_ptr<DirectionalLight>;
+
+  /// A commodity function for allocating a point light instance.
+  /// @param position The point lights' position.
+  /// @return Returns a pointer to a point light instance.
+  /// @ingroup BASE
+  RX_API auto pointLightInstance( const glm::vec3& position ) -> std::shared_ptr<PointLight>;
 } // namespace RAYEX_NAMESPACE
 
 #endif // LIGHTS_HPP

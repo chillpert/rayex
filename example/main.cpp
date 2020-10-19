@@ -51,14 +51,13 @@ auto main( ) -> int
 
   auto planeInstance = rx::instance( plane );
 
-  // Submit lights.
-  auto directionalLight       = std::make_shared<rx::DirectionalLight>( );
-  directionalLight->direction = glm::vec3( -4.0F, 10.0F, 5.0F );
-
-  renderer.scene.submitDirectionalLight( directionalLight );
-
   // Submit instances for drawing.
   renderer.scene.setGeometryInstances( { awpInstance1, planeInstance, awpInstance2 } );
+
+  // Submit lights.
+  auto directionalLight = rx::directionalLightInstance( glm::vec3( -4.0F, 10.0F, 5.0F ) );
+
+  renderer.scene.submitDirectionalLight( directionalLight );
 
   while ( renderer.isRunning( ) )
   {

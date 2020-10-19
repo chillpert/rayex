@@ -314,9 +314,9 @@
 <codeline lineno="62"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">float</highlight><highlight class="normal"><sp/>padding2<sp/>=<sp/>0.0F;<sp/></highlight></codeline>
 <codeline lineno="63"><highlight class="normal"><sp/><sp/>};</highlight></codeline>
 <codeline lineno="64"><highlight class="normal"></highlight></codeline>
-<codeline lineno="72"><highlight class="normal"><sp/><sp/>RX_API<sp/>std::shared_ptr&lt;Geometry&gt;<sp/><ref refid="group___base_1gac348076d8b31be1511d1fc0532e75747" kindref="member">loadObj</ref>(<sp/>std::string_view<sp/>path<sp/>);</highlight></codeline>
+<codeline lineno="72"><highlight class="normal"><sp/><sp/>RX_API<sp/>std::shared_ptr&lt;Geometry&gt;<sp/><ref refid="namespace_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1ac348076d8b31be1511d1fc0532e75747" kindref="member">loadObj</ref>(<sp/>std::string_view<sp/>path<sp/>);</highlight></codeline>
 <codeline lineno="73"><highlight class="normal"></highlight></codeline>
-<codeline lineno="81"><highlight class="normal"><sp/><sp/>RX_API<sp/>std::shared_ptr&lt;GeometryInstance&gt;<sp/><ref refid="group___base_1gad880ea304e8ff3dab6ea5258df8970cf" kindref="member">instance</ref>(<sp/>std::shared_ptr&lt;Geometry&gt;<sp/>geometry,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>glm::mat4&amp;<sp/>transform<sp/>=<sp/>glm::mat4(<sp/>1.0F<sp/>)<sp/>);</highlight></codeline>
+<codeline lineno="81"><highlight class="normal"><sp/><sp/>RX_API<sp/>std::shared_ptr&lt;GeometryInstance&gt;<sp/><ref refid="namespace_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1ad880ea304e8ff3dab6ea5258df8970cf" kindref="member">instance</ref>(<sp/>std::shared_ptr&lt;Geometry&gt;<sp/>geometry,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>glm::mat4&amp;<sp/>transform<sp/>=<sp/>glm::mat4(<sp/>1.0F<sp/>)<sp/>);</highlight></codeline>
 <codeline lineno="82"><highlight class="normal"></highlight></codeline>
 <codeline lineno="83"><highlight class="normal">}<sp/></highlight><highlight class="comment">//<sp/>namespace<sp/>RAYEX_NAMESPACE</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="84"><highlight class="normal"></highlight></codeline>

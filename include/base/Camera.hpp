@@ -15,7 +15,7 @@ namespace RAYEX_NAMESPACE
   /// ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
   /// @note The user has to handle keyboard related camera changes inside update().
   /// @warning Do not forget to re-calculate the view or projection matrix if the camera or the window have changed. See updateViewMatrix(), updateProjectionMatrix() or updateView and updateProj respectively.
-  /// @ingroup Base
+  /// @ingroup BASE
   class Camera
   {
   public:

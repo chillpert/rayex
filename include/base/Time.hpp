@@ -8,6 +8,7 @@ namespace RAYEX_NAMESPACE
   class Window;
 
   /// Used to keep track of the application's timing.
+  /// @ingroup BASE
   /// @todo Average FPS are pointless. Implement minimum FPS and frametimes instead.
   class Time
   {

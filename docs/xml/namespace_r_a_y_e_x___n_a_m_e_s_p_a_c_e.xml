@@ -498,7 +498,7 @@
         </inbodydescription>
         <location file="/home/n30/Repos/rayex/include/api/Swapchain.hpp" line="92" column="8" declfile="/home/n30/Repos/rayex/include/api/Swapchain.hpp" declline="92" declcolumn="8"/>
       </memberdef>
-      <memberdef kind="function" id="group___base_1gac348076d8b31be1511d1fc0532e75747" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+      <memberdef kind="function" id="namespace_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1ac348076d8b31be1511d1fc0532e75747" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>RX_API std::shared_ptr&lt; <ref refid="struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_geometry" kindref="compound">Geometry</ref> &gt;</type>
         <definition>RX_API std::shared_ptr&lt;Geometry&gt; RAYEX_NAMESPACE::loadObj</definition>
         <argsstring>(std::string_view path)</argsstring>
@@ -528,7 +528,7 @@
         </inbodydescription>
         <location file="/home/n30/Repos/rayex/include/base/Geometry.hpp" line="72" column="26" declfile="/home/n30/Repos/rayex/include/base/Geometry.hpp" declline="72" declcolumn="26"/>
       </memberdef>
-      <memberdef kind="function" id="group___base_1gad880ea304e8ff3dab6ea5258df8970cf" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+      <memberdef kind="function" id="namespace_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1ad880ea304e8ff3dab6ea5258df8970cf" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>RX_API std::shared_ptr&lt; <ref refid="struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_geometry_instance" kindref="compound">GeometryInstance</ref> &gt;</type>
         <definition>RX_API std::shared_ptr&lt;GeometryInstance&gt; RAYEX_NAMESPACE::instance</definition>
         <argsstring>(std::shared_ptr&lt; Geometry &gt; geometry, const glm::mat4 &amp;transform=glm::mat4(1.0F))</argsstring>
@@ -570,6 +570,66 @@
         <inbodydescription>
         </inbodydescription>
         <location file="/home/n30/Repos/rayex/include/base/Geometry.hpp" line="81" column="26" declfile="/home/n30/Repos/rayex/include/base/Geometry.hpp" declline="81" declcolumn="26"/>
+      </memberdef>
+      <memberdef kind="function" id="namespace_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1a2a069b2d151c07c55325dc008f693cb0" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>RX_API auto</type>
+        <definition>RX_API auto RAYEX_NAMESPACE::directionalLightInstance</definition>
+        <argsstring>(const glm::vec3 &amp;direction) -&gt; std::shared_ptr&lt; DirectionalLight &gt;</argsstring>
+        <name>directionalLightInstance</name>
+        <param>
+          <type>const glm::vec3 &amp;</type>
+          <declname>direction</declname>
+        </param>
+        <briefdescription>
+<para>A commodity function for allocating a directional light instance. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>direction</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The directional lights&apos; direction. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>Returns a pointer to a directional light instance. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/n30/Repos/rayex/include/base/Lights.hpp" line="43" column="15" declfile="/home/n30/Repos/rayex/include/base/Lights.hpp" declline="43" declcolumn="15"/>
+      </memberdef>
+      <memberdef kind="function" id="namespace_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1ace95101543a8d8577781044c96795140" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>RX_API auto</type>
+        <definition>RX_API auto RAYEX_NAMESPACE::pointLightInstance</definition>
+        <argsstring>(const glm::vec3 &amp;position) -&gt; std::shared_ptr&lt; PointLight &gt;</argsstring>
+        <name>pointLightInstance</name>
+        <param>
+          <type>const glm::vec3 &amp;</type>
+          <declname>position</declname>
+        </param>
+        <briefdescription>
+<para>A commodity function for allocating a point light instance. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>position</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The point lights&apos; position. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>Returns a pointer to a point light instance. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/n30/Repos/rayex/include/base/Lights.hpp" line="49" column="15" declfile="/home/n30/Repos/rayex/include/base/Lights.hpp" declline="49" declcolumn="15"/>
       </memberdef>
       </sectiondef>
     <briefdescription>

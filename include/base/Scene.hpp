@@ -37,16 +37,16 @@ namespace RAYEXEC_NAMESPACE
     /// @param light The directional light to remove.
     RX_API void removeDirectionalLight( std::shared_ptr<DirectionalLight> light );
 
-    ///// @return Returns all point lights in the scene.
-    //RX_API auto getPointLights( ) const -> const std::vector<std::shared_ptr<PointLight>>&;
-    //
-    ///// Used to submit a point light.
-    ///// @param light The point light to submit.
-    //RX_API void submitPointLight( std::shared_ptr<PointLight> light );
-    //
-    ///// Used to remove a point light.
-    ///// @param light The point light to remove.
-    //RX_API void removePointLight( std::shared_ptr<PointLight> light );
+    /// @return Returns all point lights in the scene.
+    RX_API auto getPointLights( ) const -> const std::vector<std::shared_ptr<PointLight>>&;
+
+    /// Used to submit a point light.
+    /// @param light The point light to submit.
+    RX_API void submitPointLight( std::shared_ptr<PointLight> light );
+
+    /// Used to remove a point light.
+    /// @param light The point light to remove.
+    RX_API void removePointLight( std::shared_ptr<PointLight> light );
 
     /// Used to remove a geometry instance.
     ///
@@ -71,13 +71,14 @@ namespace RAYEXEC_NAMESPACE
     RX_API auto findGeometry( std::string_view path ) const -> std::shared_ptr<Geometry>;
 
   private:
-    std::vector<std::shared_ptr<Geometry>> geometries;
-    std::vector<std::shared_ptr<GeometryInstance>> geometryInstances;
-    std::vector<std::shared_ptr<DirectionalLight>> directionalLights;
-    std::vector<std::shared_ptr<PointLight>> pointLights;
+    std::vector<std::shared_ptr<Geometry>> geometries;                ///< Stores all geometries.
+    std::vector<std::shared_ptr<GeometryInstance>> geometryInstances; ///< Stores all geometry instances.
+    std::vector<std::shared_ptr<DirectionalLight>> directionalLights; ///< Stores all directional lights.
+    std::vector<std::shared_ptr<PointLight>> pointLights;             ///< Stores all point lights.
 
     bool uploadGeometryInstancesToBuffer = false; ///< Keeps track of whether or not to upload the ray tracing instances to their respective buffer the next time update() is called.
     bool uploadDirectionalLightsToBuffer = false; ///< Keeps track of whether or not to upload the directional lights to their respective buffer the next time update() is called.
+    bool uploadPointLightsToBuffer       = false; ///< Keeps track of whether or not to upload the point lights to their respective buffer the next time update() is called.
 
     Settings* settings = nullptr; ///< Refers to the rendering settings stored in RayExec::settings.
   };

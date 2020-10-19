@@ -155,6 +155,7 @@ namespace RAYEXEC_NAMESPACE
 
     StorageBuffer geometryInstancesBuffer; ///< A storage buffer for the ray tracing instances.
     StorageBuffer directionalLightsBuffer; ///< A storage buffer for directional light data.
+    StorageBuffer pointLightsBuffer;       ///< A storage buffer for point light data.
 
     CameraUbo cameraUbo;               ///< UBO for camera data.
     UniformBuffer cameraUniformBuffer; ///< Uniform buffers containing camera data.

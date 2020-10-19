@@ -76,6 +76,47 @@ namespace RAYEXEC_NAMESPACE
     this->uploadDirectionalLightsToBuffer = true;
   }
 
+  auto Scene::getPointLights( ) const -> const std::vector<std::shared_ptr<PointLight>>&
+  {
+    return this->pointLights;
+  }
+
+  void Scene::submitPointLight( std::shared_ptr<PointLight> light )
+  {
+    uint32_t limit = this->settings->maxPointLights.has_value( ) ? this->settings->maxPointLights.value( ) : g_maxPointLights;
+    if ( this->pointLights.size( ) >= limit )
+    {
+      RX_ERROR( "Failed to submit point light because buffer size has been exceeded. To avoid this error, increase the amount of supported point lights using RAYEXEC_NAMESPACE::RayExec::Settings::setMaxPointLights(uint32_t)." );
+      return;
+    }
+
+    this->pointLights.push_back( light );
+    this->uploadPointLightsToBuffer = true;
+  }
+
+  void Scene::removePointLight( std::shared_ptr<PointLight> light )
+  {
+    if ( light == nullptr )
+    {
+      RX_ERROR( "An invalid point light can not be removed." );
+      return;
+    }
+
+    std::vector<std::shared_ptr<PointLight>> temp( this->pointLights );
+    this->pointLights.clear( );
+    this->pointLights.reserve( temp.size( ) );
+
+    for ( auto it : temp )
+    {
+      if ( it != light )
+      {
+        this->pointLights.push_back( it );
+      }
+    }
+
+    this->uploadPointLightsToBuffer = true;
+  }
+
   void Scene::removeGeometryInstance( std::shared_ptr<GeometryInstance> geometryInstance )
   {
     if ( geometryInstance == nullptr )

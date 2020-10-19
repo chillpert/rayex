@@ -29,6 +29,7 @@ namespace RAYEXEC_NAMESPACE
 
   std::vector<GeometryInstance> dereferencedGeometryInstances;
   std::vector<DirectionalLightSSBO> dereferencedDirectionalLights;
+  std::vector<PointLightSSBO> dereferencedPointLights;
 
   // Defines the maximum amount of frames that will be processed concurrently.
   const size_t maxFramesInFlight = 2;
@@ -117,13 +118,16 @@ namespace RAYEXEC_NAMESPACE
     // At this point nodes are unknown. So I just create a storage buffer with the maximum value or with the anticipated value in settings.
     // enables the user to add more nodes later on during runtime.
     uint32_t maxInstanceCount = this->settings->maxGeometryInstances.has_value( ) ? this->settings->maxGeometryInstances.value( ) : g_maxGeometryInstances;
-
     std::vector<GeometryInstance> geometryInstances( maxInstanceCount );
     this->geometryInstancesBuffer.init<GeometryInstance>( geometryInstances );
 
     uint32_t maxDirectionalLightCount = this->settings->maxDirectionalLights.has_value( ) ? this->settings->maxDirectionalLights.value( ) : g_maxDirectionalLights;
     std::vector<DirectionalLightSSBO> directionalLights( maxDirectionalLightCount );
     this->directionalLightsBuffer.init<DirectionalLightSSBO>( directionalLights );
+
+    uint32_t maxPointLightCount = this->settings->maxPointLights.has_value( ) ? this->settings->maxPointLights.value( ) : g_maxPointLights;
+    std::vector<PointLightSSBO> pointLights( maxPointLightCount );
+    this->pointLightsBuffer.init<PointLightSSBO>( pointLights );
   }
 
   void Api::initScene( )
@@ -212,6 +216,25 @@ namespace RAYEXEC_NAMESPACE
                                                                                                       glm::vec4( light->direction, 1.0F ) }; } );
 
         this->directionalLightsBuffer.fill<DirectionalLightSSBO>( dereferencedDirectionalLights.data( ) );
+      }
+    }
+
+    if ( this->scene->uploadPointLightsToBuffer )
+    {
+      this->scene->uploadPointLightsToBuffer = false;
+
+      if ( this->scene->pointLights.size( ) > 0 )
+      {
+        dereferencedPointLights.resize( this->scene->pointLights.size( ) );
+        std::transform( this->scene->pointLights.begin( ),
+                        this->scene->pointLights.end( ),
+                        dereferencedPointLights.begin( ),
+                        []( std::shared_ptr<PointLight> light ) { return PointLightSSBO { glm::vec4( light->ambient, light->ambientIntensity ),
+                                                                                          glm::vec4( light->diffuse, light->diffuseIntensity ),
+                                                                                          glm::vec4( light->specular, light->specularIntensity ),
+                                                                                          glm::vec4( light->position, 1.0F ) }; } );
+
+        this->pointLightsBuffer.fill<PointLightSSBO>( dereferencedPointLights.data( ) );
       }
     }
 
@@ -684,12 +707,14 @@ namespace RAYEXEC_NAMESPACE
     {
       // Camera uniform buffer
       this->rtSceneDescriptors.bindings.add( 0, vk::DescriptorType::eUniformBuffer, vk::ShaderStageFlagBits::eRaygenKHR );
-      // Lights storage buffer
+      // Directional lights storage buffer
       this->rtSceneDescriptors.bindings.add( 1, vk::DescriptorType::eStorageBuffer, vk::ShaderStageFlagBits::eClosestHitKHR );
-      // Scene description buffer
+      // Point lights storage buffer
       this->rtSceneDescriptors.bindings.add( 2, vk::DescriptorType::eStorageBuffer, vk::ShaderStageFlagBits::eClosestHitKHR );
+      // Scene description buffer
+      this->rtSceneDescriptors.bindings.add( 3, vk::DescriptorType::eStorageBuffer, vk::ShaderStageFlagBits::eClosestHitKHR );
       // Materials
-      this->rtSceneDescriptors.bindings.add( 3, vk::DescriptorType::eStorageBuffer, vk::ShaderStageFlagBits::eClosestHitKHR, g_modelCount, vk::DescriptorBindingFlagBits::eVariableDescriptorCount );
+      this->rtSceneDescriptors.bindings.add( 4, vk::DescriptorType::eStorageBuffer, vk::ShaderStageFlagBits::eClosestHitKHR, g_modelCount, vk::DescriptorBindingFlagBits::eVariableDescriptorCount );
 
       this->rtSceneDescriptors.layout = this->rtSceneDescriptors.bindings.initLayoutUnique( );
       this->rtSceneDescriptors.pool   = this->rtSceneDescriptors.bindings.initPoolUnique( g_swapchainImageCount );
@@ -795,6 +820,10 @@ namespace RAYEXEC_NAMESPACE
                                                     0,
                                                     VK_WHOLE_SIZE );
 
+    vk::DescriptorBufferInfo pointLightsInfo( this->pointLightsBuffer.get( ),
+                                              0,
+                                              VK_WHOLE_SIZE );
+
     for ( const auto& buffer : this->meshBuffers )
     {
       vk::DescriptorBufferInfo meshDataBufferInfo( buffer.get( ),
@@ -804,10 +833,12 @@ namespace RAYEXEC_NAMESPACE
       this->meshDataBufferInfos.push_back( meshDataBufferInfo );
     }
 
+    // Update RT scene descriptor sets.
     this->rtSceneDescriptors.bindings.write( this->rtSceneDescriptorSets, 0, this->cameraUniformBuffer.bufferInfos );
     this->rtSceneDescriptors.bindings.write( this->rtSceneDescriptorSets, 1, &directionalLightsInfo );
-    this->rtSceneDescriptors.bindings.write( this->rtSceneDescriptorSets, 2, &rtInstancesInfo );
-    this->rtSceneDescriptors.bindings.writeArray( this->rtSceneDescriptorSets, 3, this->meshDataBufferInfos.data( ) );
+    this->rtSceneDescriptors.bindings.write( this->rtSceneDescriptorSets, 2, &pointLightsInfo );
+    this->rtSceneDescriptors.bindings.write( this->rtSceneDescriptorSets, 3, &rtInstancesInfo );
+    this->rtSceneDescriptors.bindings.writeArray( this->rtSceneDescriptorSets, 4, this->meshDataBufferInfos.data( ) );
 
     this->rtSceneDescriptors.bindings.update( );
 

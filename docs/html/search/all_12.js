@@ -1,15 +1,15 @@
 var searchData=
 [
-  ['texcoord_331',['texCoord',['../struct_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_vertex.html#a9141a1b57c5ae706ddc954bcbe5a8d6a',1,'RAYEXEC_NAMESPACE::Vertex']]],
-  ['texture_332',['Texture',['../class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_texture.html',1,'RAYEXEC_NAMESPACE::Texture'],['../class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_texture.html#aebef820f5f3548dec6218d6f4270161b',1,'RAYEXEC_NAMESPACE::Texture::Texture()'],['../class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_texture.html#a72e817dd85e94d49bd68a62c7d387863',1,'RAYEXEC_NAMESPACE::Texture::Texture(std::string_view path, bool initialize=true)']]],
-  ['texture_2ehpp_333',['Texture.hpp',['../_texture_8hpp.html',1,'']]],
-  ['time_334',['Time',['../class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_time.html',1,'RAYEXEC_NAMESPACE']]],
-  ['time_2ehpp_335',['Time.hpp',['../_time_8hpp.html',1,'']]],
-  ['title_336',['title',['../class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_window.html#ac7deb99f097cae43dfac4ba664b0b71e',1,'RAYEXEC_NAMESPACE::Window']]],
-  ['tlas_337',['Tlas',['../struct_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_tlas.html',1,'RAYEXEC_NAMESPACE']]],
-  ['todo_20list_338',['Todo List',['../todo.html',1,'']]],
-  ['transform_339',['transform',['../struct_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_blas_instance.html#a9e4ac50642ddb0e9eef7f8cb61a481b4',1,'RAYEXEC_NAMESPACE::BlasInstance::transform()'],['../struct_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_geometry_instance.html#a2dc80022089dd5b7f0fdd06c1d05b33b',1,'RAYEXEC_NAMESPACE::GeometryInstance::transform()']]],
-  ['transformit_340',['transformIT',['../struct_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_geometry_instance.html#a768f40a8f4558235b01b43c486da1973',1,'RAYEXEC_NAMESPACE::GeometryInstance']]],
-  ['transitionimagelayout_341',['transitionImageLayout',['../namespacevk_1_1_helper.html#a6e1227990cef167f6d5b6b7b1f1b52b2',1,'vk::Helper::transitionImageLayout(Image image, ImageLayout oldLayout, ImageLayout newLayout)'],['../namespacevk_1_1_helper.html#a9f3fa5a78b202fb543408c03e51a7340',1,'vk::Helper::transitionImageLayout(Image image, ImageLayout oldLayout, ImageLayout newLayout, CommandBuffer commandBuffer)']]],
-  ['transitiontolayout_342',['transitionToLayout',['../class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_image.html#a7a54cd7bf86b60f27ae621c226d24d87',1,'RAYEXEC_NAMESPACE::Image::transitionToLayout(vk::ImageLayout layout)'],['../class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_image.html#ae5dfddf79b629d661e5ccca8a5bb9abf',1,'RAYEXEC_NAMESPACE::Image::transitionToLayout(vk::ImageLayout layout, vk::CommandBuffer commandBuffer)']]]
+  ['uniformbuffer_346',['UniformBuffer',['../class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_uniform_buffer.html',1,'RAYEX_NAMESPACE::UniformBuffer'],['../class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_uniform_buffer.html#ae5ddd2f51f1cc616396347bda9092c47',1,'RAYEX_NAMESPACE::UniformBuffer::UniformBuffer()=default'],['../class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_uniform_buffer.html#a7487ed42dd2de922006db5462e05b1f1',1,'RAYEX_NAMESPACE::UniformBuffer::UniformBuffer(size_t swapchainImagesCount, bool initialize=true)']]],
+  ['uniformbuffer_2ehpp_347',['UniformBuffer.hpp',['../_uniform_buffer_8hpp.html',1,'']]],
+  ['unpack_348',['unpack',['../namespacevk_1_1_helper.html#ae41dfbb084fe9a3d9757550ee6887333',1,'vk::Helper']]],
+  ['up_349',['up',['../class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_camera.html#a6151963e691f56848a6b628b93fa3c4a',1,'RAYEX_NAMESPACE::Camera']]],
+  ['update_350',['update',['../struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_light.html#a9099dc2317d71a5766dbacdf6003428b',1,'RAYEX_NAMESPACE::Light::update()'],['../class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_bindings.html#a5c7e9adcda6c378e5a1b342d70d3acc5',1,'RAYEX_NAMESPACE::Bindings::update()'],['../class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_camera.html#ab53ec8ef049669ea018405645d0cb5ed',1,'RAYEX_NAMESPACE::Camera::update()'],['../class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_window.html#a8330a97de6371adc64b7d12419ad2a12',1,'RAYEX_NAMESPACE::Window::update()']]],
+  ['updateproj_351',['updateProj',['../class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_camera.html#aefd04f562091ba752ae641181d32d2d4',1,'RAYEX_NAMESPACE::Camera']]],
+  ['updateprojectionmatrix_352',['updateProjectionMatrix',['../class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_camera.html#ab77a53c918476b7e4e8f60cc02144c30',1,'RAYEX_NAMESPACE::Camera']]],
+  ['updatevectors_353',['updateVectors',['../class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_camera.html#a50687e95db7b89210e02610600dcb9df',1,'RAYEX_NAMESPACE::Camera']]],
+  ['updateview_354',['updateView',['../class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_camera.html#abd6bb5ccf88c173842750d7dc6ccb44a',1,'RAYEX_NAMESPACE::Camera']]],
+  ['updateviewmatrix_355',['updateViewMatrix',['../class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_camera.html#acc914ffb4d382f0a8fa381e8ec394ef6',1,'RAYEX_NAMESPACE::Camera']]],
+  ['upload_356',['upload',['../class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_uniform_buffer.html#ad511f2a02b2a4e341b5e0d9caa3f9338',1,'RAYEX_NAMESPACE::UniformBuffer']]],
+  ['util_2ehpp_357',['Util.hpp',['../_util_8hpp.html',1,'']]]
 ];

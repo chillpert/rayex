@@ -1,0 +1,556 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.17">
+  <compounddef id="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_buffer" kind="class" language="C++" prot="public">
+    <compoundname>RAYEX_NAMESPACE::Buffer</compoundname>
+    <derivedcompoundref refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_index_buffer" prot="public" virt="non-virtual">RAYEX_NAMESPACE::IndexBuffer</derivedcompoundref>
+    <derivedcompoundref refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_storage_buffer" prot="public" virt="non-virtual">RAYEX_NAMESPACE::StorageBuffer</derivedcompoundref>
+    <derivedcompoundref refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_vertex_buffer" prot="public" virt="non-virtual">RAYEX_NAMESPACE::VertexBuffer</derivedcompoundref>
+    <includes refid="_buffer_8hpp" local="no">Buffer.hpp</includes>
+      <sectiondef kind="protected-attrib">
+      <memberdef kind="variable" id="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_buffer_1a9eb5819b1d39f6686cb7d86672076a02" prot="protected" static="no" mutable="no">
+        <type>vk::UniqueBuffer</type>
+        <definition>vk::UniqueBuffer RAYEX_NAMESPACE::Buffer::buffer</definition>
+        <argsstring></argsstring>
+        <name>buffer</name>
+        <briefdescription>
+<para>The buffer object with a unique handle. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/n30/Repos/rayex/include/api/buffers/Buffer.hpp" line="78" column="22" bodyfile="/home/n30/Repos/rayex/include/api/buffers/Buffer.hpp" bodystart="78" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_buffer_1a3971260d0e6376c896a39c0e850f971d" prot="protected" static="no" mutable="no">
+        <type>vk::UniqueDeviceMemory</type>
+        <definition>vk::UniqueDeviceMemory RAYEX_NAMESPACE::Buffer::memory</definition>
+        <argsstring></argsstring>
+        <name>memory</name>
+        <briefdescription>
+<para>The buffer&apos;s memory with a unique handle. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/n30/Repos/rayex/include/api/buffers/Buffer.hpp" line="79" column="28" bodyfile="/home/n30/Repos/rayex/include/api/buffers/Buffer.hpp" bodystart="79" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_buffer_1a808b51d8eb942483c17ae0e67ac03e03" prot="protected" static="no" mutable="no">
+        <type>vk::DeviceSize</type>
+        <definition>vk::DeviceSize RAYEX_NAMESPACE::Buffer::size</definition>
+        <argsstring></argsstring>
+        <name>size</name>
+        <initializer>= 0</initializer>
+        <briefdescription>
+<para>The buffer&apos;s size. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/n30/Repos/rayex/include/api/buffers/Buffer.hpp" line="81" column="20" bodyfile="/home/n30/Repos/rayex/include/api/buffers/Buffer.hpp" bodystart="81" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_buffer_1a453a0a1cab9ce09237de96956ad5084e" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>RAYEX_NAMESPACE::Buffer::Buffer</definition>
+        <argsstring>()=default</argsstring>
+        <name>Buffer</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/n30/Repos/rayex/include/api/buffers/Buffer.hpp" line="14" column="5"/>
+      </memberdef>
+      <memberdef kind="function" id="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_buffer_1a85fc3320284c9fc86390bdd03965382f" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>RAYEX_NAMESPACE::Buffer::Buffer</definition>
+        <argsstring>(vk::DeviceSize size, vk::BufferUsageFlags usage, const std::vector&lt; uint32_t &gt; &amp;queueFamilyIndices={ }, vk::MemoryPropertyFlags memoryPropertyFlags=vk::MemoryPropertyFlagBits::eDeviceLocal, void *pNextMemory=nullptr, bool initialize=true)</argsstring>
+        <name>Buffer</name>
+        <param>
+          <type>vk::DeviceSize</type>
+          <declname>size</declname>
+        </param>
+        <param>
+          <type>vk::BufferUsageFlags</type>
+          <declname>usage</declname>
+        </param>
+        <param>
+          <type>const std::vector&lt; uint32_t &gt; &amp;</type>
+          <declname>queueFamilyIndices</declname>
+          <defval>{ }</defval>
+        </param>
+        <param>
+          <type>vk::MemoryPropertyFlags</type>
+          <declname>memoryPropertyFlags</declname>
+          <defval>vk::MemoryPropertyFlagBits::eDeviceLocal</defval>
+        </param>
+        <param>
+          <type>void *</type>
+          <declname>pNextMemory</declname>
+          <defval>nullptr</defval>
+        </param>
+        <param>
+          <type>bool</type>
+          <declname>initialize</declname>
+          <defval>true</defval>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>size</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The size of the buffer. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>usage</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The buffer&apos;s usage flags. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>queueFamilyIndices</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Specifies which queue family will access the buffer. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>memoryPropertyFlags</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Flags for memory allocation. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>pNextMemory</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Attachment to the memory&apos;s pNext chain. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>initialize</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>If true, the buffer object will be initialized right away without an additional call to <ref refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_buffer_1af4c1f7cd28ec3d75feccf91f704e67d3" kindref="member">init()</ref>. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/n30/Repos/rayex/include/api/buffers/Buffer.hpp" line="22" column="5"/>
+      </memberdef>
+      <memberdef kind="function" id="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_buffer_1a133961b9bd24490925aeed994ae1a4d4" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>RAYEX_NAMESPACE::Buffer::Buffer</definition>
+        <argsstring>(const Buffer &amp;buffer)</argsstring>
+        <name>Buffer</name>
+        <param>
+          <type>const <ref refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_buffer" kindref="compound">Buffer</ref> &amp;</type>
+          <declname>buffer</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>buffer</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The target for the copy operation. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/n30/Repos/rayex/include/api/buffers/Buffer.hpp" line="25" column="5"/>
+      </memberdef>
+      <memberdef kind="function" id="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_buffer_1a2b633d1f23ddf0ae8ee27987e9373c1a" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>RAYEX_NAMESPACE::Buffer::Buffer</definition>
+        <argsstring>(const Buffer &amp;&amp;)=delete</argsstring>
+        <name>Buffer</name>
+        <param>
+          <type>const <ref refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_buffer" kindref="compound">Buffer</ref> &amp;&amp;</type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/n30/Repos/rayex/include/api/buffers/Buffer.hpp" line="26" column="5"/>
+      </memberdef>
+      <memberdef kind="function" id="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_buffer_1adccdf72dc2b5a56496881e97c683d5ca" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>auto</type>
+        <definition>auto RAYEX_NAMESPACE::Buffer::operator=</definition>
+        <argsstring>(const Buffer &amp;) -&gt; Buffer &amp;</argsstring>
+        <name>operator=</name>
+        <param>
+          <type>const <ref refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_buffer" kindref="compound">Buffer</ref> &amp;</type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/n30/Repos/rayex/include/api/buffers/Buffer.hpp" line="28" column="10"/>
+      </memberdef>
+      <memberdef kind="function" id="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_buffer_1a53ea2ff685692af62529589df9fa18a8" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>auto</type>
+        <definition>auto RAYEX_NAMESPACE::Buffer::operator=</definition>
+        <argsstring>(const Buffer &amp;&amp;) -&gt; Buffer &amp;=delete</argsstring>
+        <name>operator=</name>
+        <param>
+          <type>const <ref refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_buffer" kindref="compound">Buffer</ref> &amp;&amp;</type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/n30/Repos/rayex/include/api/buffers/Buffer.hpp" line="29" column="10"/>
+      </memberdef>
+      <memberdef kind="function" id="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_buffer_1aa7982fb9bc67112adfb32fb2d056d464" prot="public" static="no" const="no" explicit="no" inline="no" virt="virtual">
+        <type>RX_API</type>
+        <definition>virtual RX_API RAYEX_NAMESPACE::Buffer::~Buffer</definition>
+        <argsstring>()=default</argsstring>
+        <name>~Buffer</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/n30/Repos/rayex/include/api/buffers/Buffer.hpp" line="31" column="20"/>
+      </memberdef>
+      <memberdef kind="function" id="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_buffer_1aded2e7ff036b1e5a5af09e4d1ffb4bb9" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void RAYEX_NAMESPACE::Buffer::copyToBuffer</definition>
+        <argsstring>(const Buffer &amp;buffer) const</argsstring>
+        <name>copyToBuffer</name>
+        <param>
+          <type>const <ref refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_buffer" kindref="compound">Buffer</ref> &amp;</type>
+          <declname>buffer</declname>
+        </param>
+        <briefdescription>
+<para>Copies the content of this buffer to another <ref refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_buffer" kindref="compound">RAYEX_NAMESPACE::Buffer</ref>. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>buffer</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The target for the copy operation. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/n30/Repos/rayex/include/api/buffers/Buffer.hpp" line="35" column="10"/>
+      </memberdef>
+      <memberdef kind="function" id="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_buffer_1ac40b2622012aa07995113493e8d442e9" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>RX_API void</type>
+        <definition>RX_API void RAYEX_NAMESPACE::Buffer::copyToBuffer</definition>
+        <argsstring>(vk::Buffer buffer) const</argsstring>
+        <name>copyToBuffer</name>
+        <param>
+          <type>vk::Buffer</type>
+          <declname>buffer</declname>
+        </param>
+        <briefdescription>
+<para>Copies the content of this buffer to another vk::Buffer. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>buffer</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The target for the copy operation. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/n30/Repos/rayex/include/api/buffers/Buffer.hpp" line="39" column="17"/>
+      </memberdef>
+      <memberdef kind="function" id="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_buffer_1a6afdf639e07989140bb320e15e14ddad" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void RAYEX_NAMESPACE::Buffer::copyToImage</definition>
+        <argsstring>(Image &amp;image) const</argsstring>
+        <name>copyToImage</name>
+        <param>
+          <type><ref refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_image" kindref="compound">Image</ref> &amp;</type>
+          <declname>image</declname>
+        </param>
+        <briefdescription>
+<para>Copies the content of this buffer to an image. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>image</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The target for the copy operation. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/n30/Repos/rayex/include/api/buffers/Buffer.hpp" line="43" column="10"/>
+      </memberdef>
+      <memberdef kind="function" id="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_buffer_1a6aa15487587ed4a275726dea52d9bd1f" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>auto</type>
+        <definition>auto RAYEX_NAMESPACE::Buffer::get</definition>
+        <argsstring>() const -&gt; const vk::Buffer</argsstring>
+        <name>get</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>Returns the buffer without the unique handle. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/n30/Repos/rayex/include/api/buffers/Buffer.hpp" line="46" column="11" bodyfile="/home/n30/Repos/rayex/include/api/buffers/Buffer.hpp" bodystart="46" bodyend="46"/>
+      </memberdef>
+      <memberdef kind="function" id="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_buffer_1a3e59b7d59f338fde8570cd541162cabd" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>auto</type>
+        <definition>auto RAYEX_NAMESPACE::Buffer::getMemory</definition>
+        <argsstring>() const -&gt; const vk::DeviceMemory</argsstring>
+        <name>getMemory</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>Returns the buffer&apos;s memory without the unique handle. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/n30/Repos/rayex/include/api/buffers/Buffer.hpp" line="49" column="11" bodyfile="/home/n30/Repos/rayex/include/api/buffers/Buffer.hpp" bodystart="49" bodyend="49"/>
+      </memberdef>
+      <memberdef kind="function" id="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_buffer_1aa51128ff5d6822bb2df9c2dcd25f99b6" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>auto</type>
+        <definition>auto RAYEX_NAMESPACE::Buffer::getSize</definition>
+        <argsstring>() const -&gt; const vk::DeviceSize</argsstring>
+        <name>getSize</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>Returns the size of the buffer. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/n30/Repos/rayex/include/api/buffers/Buffer.hpp" line="52" column="11" bodyfile="/home/n30/Repos/rayex/include/api/buffers/Buffer.hpp" bodystart="52" bodyend="52"/>
+      </memberdef>
+      <memberdef kind="function" id="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_buffer_1af4c1f7cd28ec3d75feccf91f704e67d3" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void RAYEX_NAMESPACE::Buffer::init</definition>
+        <argsstring>(vk::DeviceSize size, vk::BufferUsageFlags usage, const std::vector&lt; uint32_t &gt; &amp;queueFamilyIndices={ }, vk::MemoryPropertyFlags memoryPropertyFlags=vk::MemoryPropertyFlagBits::eDeviceLocal, void *pNextMemory=nullptr)</argsstring>
+        <name>init</name>
+        <param>
+          <type>vk::DeviceSize</type>
+          <declname>size</declname>
+        </param>
+        <param>
+          <type>vk::BufferUsageFlags</type>
+          <declname>usage</declname>
+        </param>
+        <param>
+          <type>const std::vector&lt; uint32_t &gt; &amp;</type>
+          <declname>queueFamilyIndices</declname>
+          <defval>{ }</defval>
+        </param>
+        <param>
+          <type>vk::MemoryPropertyFlags</type>
+          <declname>memoryPropertyFlags</declname>
+          <defval>vk::MemoryPropertyFlagBits::eDeviceLocal</defval>
+        </param>
+        <param>
+          <type>void *</type>
+          <declname>pNextMemory</declname>
+          <defval>nullptr</defval>
+        </param>
+        <briefdescription>
+<para>Creates the buffer and allocates memory for it. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>size</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The size of the buffer. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>usage</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The buffer&apos;s usage flags. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>queueFamilyIndices</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Specifies which queue family will access the buffer. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>memoryPropertyFlags</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Flags for memory allocation. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>pNextMemory</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Attachment to the memory&apos;s pNext chain. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/n30/Repos/rayex/include/api/buffers/Buffer.hpp" line="60" column="10"/>
+      </memberdef>
+      <memberdef kind="function" id="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_buffer_1aa49ff21ac773fb4268170e0b0781142f" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>class T</type>
+          </param>
+        </templateparamlist>
+        <type>void</type>
+        <definition>void RAYEX_NAMESPACE::Buffer::fill</definition>
+        <argsstring>(const T *source, vk::DeviceSize offset=0)</argsstring>
+        <name>fill</name>
+        <param>
+          <type>const T *</type>
+          <declname>source</declname>
+        </param>
+        <param>
+          <type>vk::DeviceSize</type>
+          <declname>offset</declname>
+          <defval>0</defval>
+        </param>
+        <briefdescription>
+<para>Used to fill the buffer with any kind of data. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>source</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The data to fill the buffer with. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>offset</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The data&apos;s offset within the buffer. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/n30/Repos/rayex/include/api/buffers/Buffer.hpp" line="66" column="10" bodyfile="/home/n30/Repos/rayex/include/api/buffers/Buffer.hpp" bodystart="66" bodyend="75"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+<para>A wrapper class for a Vulkan buffer. </para>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="3">
+        <label>RAYEX_NAMESPACE::StorageBuffer</label>
+        <link refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_storage_buffer"/>
+        <childnode refid="1" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="1">
+        <label>RAYEX_NAMESPACE::Buffer</label>
+        <link refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_buffer"/>
+      </node>
+      <node id="2">
+        <label>RAYEX_NAMESPACE::IndexBuffer</label>
+        <link refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_index_buffer"/>
+        <childnode refid="1" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="4">
+        <label>RAYEX_NAMESPACE::VertexBuffer</label>
+        <link refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_vertex_buffer"/>
+        <childnode refid="1" relation="public-inheritance">
+        </childnode>
+      </node>
+    </inheritancegraph>
+    <location file="/home/n30/Repos/rayex/include/api/buffers/Buffer.hpp" line="12" column="1" bodyfile="/home/n30/Repos/rayex/include/api/buffers/Buffer.hpp" bodystart="11" bodyend="82"/>
+    <listofallmembers>
+      <member refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_buffer_1a9eb5819b1d39f6686cb7d86672076a02" prot="protected" virt="non-virtual"><scope>RAYEX_NAMESPACE::Buffer</scope><name>buffer</name></member>
+      <member refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_buffer_1a453a0a1cab9ce09237de96956ad5084e" prot="public" virt="non-virtual"><scope>RAYEX_NAMESPACE::Buffer</scope><name>Buffer</name></member>
+      <member refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_buffer_1a85fc3320284c9fc86390bdd03965382f" prot="public" virt="non-virtual"><scope>RAYEX_NAMESPACE::Buffer</scope><name>Buffer</name></member>
+      <member refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_buffer_1a133961b9bd24490925aeed994ae1a4d4" prot="public" virt="non-virtual"><scope>RAYEX_NAMESPACE::Buffer</scope><name>Buffer</name></member>
+      <member refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_buffer_1a2b633d1f23ddf0ae8ee27987e9373c1a" prot="public" virt="non-virtual"><scope>RAYEX_NAMESPACE::Buffer</scope><name>Buffer</name></member>
+      <member refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_buffer_1aded2e7ff036b1e5a5af09e4d1ffb4bb9" prot="public" virt="non-virtual"><scope>RAYEX_NAMESPACE::Buffer</scope><name>copyToBuffer</name></member>
+      <member refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_buffer_1ac40b2622012aa07995113493e8d442e9" prot="public" virt="non-virtual"><scope>RAYEX_NAMESPACE::Buffer</scope><name>copyToBuffer</name></member>
+      <member refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_buffer_1a6afdf639e07989140bb320e15e14ddad" prot="public" virt="non-virtual"><scope>RAYEX_NAMESPACE::Buffer</scope><name>copyToImage</name></member>
+      <member refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_buffer_1aa49ff21ac773fb4268170e0b0781142f" prot="public" virt="non-virtual"><scope>RAYEX_NAMESPACE::Buffer</scope><name>fill</name></member>
+      <member refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_buffer_1a6aa15487587ed4a275726dea52d9bd1f" prot="public" virt="non-virtual"><scope>RAYEX_NAMESPACE::Buffer</scope><name>get</name></member>
+      <member refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_buffer_1a3e59b7d59f338fde8570cd541162cabd" prot="public" virt="non-virtual"><scope>RAYEX_NAMESPACE::Buffer</scope><name>getMemory</name></member>
+      <member refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_buffer_1aa51128ff5d6822bb2df9c2dcd25f99b6" prot="public" virt="non-virtual"><scope>RAYEX_NAMESPACE::Buffer</scope><name>getSize</name></member>
+      <member refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_buffer_1af4c1f7cd28ec3d75feccf91f704e67d3" prot="public" virt="non-virtual"><scope>RAYEX_NAMESPACE::Buffer</scope><name>init</name></member>
+      <member refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_buffer_1a3971260d0e6376c896a39c0e850f971d" prot="protected" virt="non-virtual"><scope>RAYEX_NAMESPACE::Buffer</scope><name>memory</name></member>
+      <member refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_buffer_1adccdf72dc2b5a56496881e97c683d5ca" prot="public" virt="non-virtual"><scope>RAYEX_NAMESPACE::Buffer</scope><name>operator=</name></member>
+      <member refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_buffer_1a53ea2ff685692af62529589df9fa18a8" prot="public" virt="non-virtual"><scope>RAYEX_NAMESPACE::Buffer</scope><name>operator=</name></member>
+      <member refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_buffer_1a808b51d8eb942483c17ae0e67ac03e03" prot="protected" virt="non-virtual"><scope>RAYEX_NAMESPACE::Buffer</scope><name>size</name></member>
+      <member refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_buffer_1aa7982fb9bc67112adfb32fb2d056d464" prot="public" virt="virtual"><scope>RAYEX_NAMESPACE::Buffer</scope><name>~Buffer</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

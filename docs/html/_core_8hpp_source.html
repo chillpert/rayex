@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.8.17"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>RAYEXEC: /home/n30/Repos/rayexec/include/Core.hpp Source File</title>
+<title>RAYEX: /home/n30/Repos/rayex/include/Core.hpp Source File</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -30,10 +30,10 @@
  <tbody>
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
-   <div id="projectname">RAYEXEC
-   &#160;<span id="projectnumber">0.5</span>
+   <div id="projectname">RAYEX
+   &#160;<span id="projectnumber">0.7</span>
    </div>
-   <div id="projectbrief">A cross-platform Vulkan-based path tracing rendering library.</div>
+   <div id="projectbrief">A cross-platform, cross-vendor, Vulkan-based, path tracing library.</div>
   </td>
    <td>        <div id="MSearchBox" class="MSearchBoxInactive">
         <span class="left">
@@ -129,31 +129,32 @@ $(document).ready(function(){initNavTree('_core_8hpp_source.html',''); initResiz
 <div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;<span class="preprocessor">  #endif</span></div>
 <div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;<span class="preprocessor">#endif</span></div>
 <div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160; </div>
-<div class="line"><a name="l00034"></a><span class="lineno"><a class="line" href="_core_8hpp.html#ae1466e3a3b5a75362c58d3d393a59cd7">   34</a></span>&#160;<span class="preprocessor">#define RAYEXEC_NAMESPACE rx</span></div>
+<div class="line"><a name="l00034"></a><span class="lineno"><a class="line" href="_core_8hpp.html#a4679e2fe11ad3651dcc83c15d5e54456">   34</a></span>&#160;<span class="preprocessor">#define RAYEX_NAMESPACE rx</span></div>
 <div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160; </div>
-<div class="line"><a name="l00036"></a><span class="lineno"><a class="line" href="_core_8hpp.html#a71565448c6a50c61f3f57b1606128b91">   36</a></span>&#160;<span class="preprocessor">#define RAYEXEC_NAMESPACE_STRINGIFY_2( text ) #text</span></div>
-<div class="line"><a name="l00037"></a><span class="lineno"><a class="line" href="_core_8hpp.html#aa479bc0a7fce1089c976c3b66d033a38">   37</a></span>&#160;<span class="preprocessor">#define RAYEXEC_NAMESPACE_STRINGIFY( text )   RAYEXEC_NAMESPACE_STRINGIFY_2( text )</span></div>
+<div class="line"><a name="l00036"></a><span class="lineno"><a class="line" href="_core_8hpp.html#a23448c05525b4f73861de72987ea0a30">   36</a></span>&#160;<span class="preprocessor">#define RAYEX_NAMESPACE_STRINGIFY_2( text ) #text</span></div>
+<div class="line"><a name="l00037"></a><span class="lineno"><a class="line" href="_core_8hpp.html#a0e29de8355fd7805c19990586d458f62">   37</a></span>&#160;<span class="preprocessor">#define RAYEX_NAMESPACE_STRINGIFY( text )   RAYEX_NAMESPACE_STRINGIFY_2( text )</span></div>
 <div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160; </div>
-<div class="line"><a name="l00039"></a><span class="lineno"><a class="line" href="_core_8hpp.html#aaff0cd56425a31e00b059a76dfdad581">   39</a></span>&#160;<span class="preprocessor">#define RAYEXEC_NAMESPACE_STRINGIFIED RAYEXEC_NAMESPACE_STRINGIFY( RAYEXEC_NAMESPACE )</span></div>
+<div class="line"><a name="l00039"></a><span class="lineno"><a class="line" href="_core_8hpp.html#a399610e7e5c0fb86f548931773995a0d">   39</a></span>&#160;<span class="preprocessor">#define RAYEX_NAMESPACE_STRINGIFIED RAYEX_NAMESPACE_STRINGIFY( RAYEX_NAMESPACE )</span></div>
 <div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160; </div>
-<div class="line"><a name="l00041"></a><span class="lineno"><a class="line" href="_core_8hpp.html#a76f659a3b57c3124f3d7282f44be8d5a">   41</a></span>&#160;<span class="preprocessor">#define RX_VERBOSE( ... ) LOGGER_NAMESPACE::verbose( RAYEXEC_NAMESPACE_STRINGIFIED, &quot;: &quot;, __VA_ARGS__ )</span></div>
-<div class="line"><a name="l00042"></a><span class="lineno"><a class="line" href="_core_8hpp.html#a0f3a7d7270425707e5efd57cead64f01">   42</a></span>&#160;<span class="preprocessor">#define RX_INFO( ... )    LOGGER_NAMESPACE::info( RAYEXEC_NAMESPACE_STRINGIFIED, &quot;: &quot;, __VA_ARGS__ )</span></div>
-<div class="line"><a name="l00043"></a><span class="lineno"><a class="line" href="_core_8hpp.html#a8e5f8b734af7dd8b8aaeea6ebaabb81d">   43</a></span>&#160;<span class="preprocessor">#define RX_SUCCESS( ... ) LOGGER_NAMESPACE::success( RAYEXEC_NAMESPACE_STRINGIFIED, &quot;: &quot;, __VA_ARGS__ )</span></div>
-<div class="line"><a name="l00044"></a><span class="lineno"><a class="line" href="_core_8hpp.html#a80edd4639b939a0de1ebda1c0de559d6">   44</a></span>&#160;<span class="preprocessor">#define RX_WARN( ... )    LOGGER_NAMESPACE::warning( RAYEXEC_NAMESPACE_STRINGIFIED, &quot;: &quot;, __VA_ARGS__ )</span></div>
-<div class="line"><a name="l00045"></a><span class="lineno"><a class="line" href="_core_8hpp.html#a75bbbb13d55cc9e0680a050df5ca00e2">   45</a></span>&#160;<span class="preprocessor">#define RX_ERROR( ... )   LOGGER_NAMESPACE::error( RAYEXEC_NAMESPACE_STRINGIFIED, &quot;: &quot;, __VA_ARGS__ )</span></div>
-<div class="line"><a name="l00046"></a><span class="lineno"><a class="line" href="_core_8hpp.html#ad7ab0669d483b47b41c5160a40e303ff">   46</a></span>&#160;<span class="preprocessor">#define RX_FATAL( ... )   LOGGER_NAMESPACE::fatal( RAYEXEC_NAMESPACE_STRINGIFIED, &quot;: &quot;, __VA_ARGS__ )</span></div>
+<div class="line"><a name="l00041"></a><span class="lineno"><a class="line" href="_core_8hpp.html#a76f659a3b57c3124f3d7282f44be8d5a">   41</a></span>&#160;<span class="preprocessor">#define RX_VERBOSE( ... ) LOGGER_NAMESPACE::verbose( RAYEX_NAMESPACE_STRINGIFIED, &quot;: &quot;, __VA_ARGS__ )</span></div>
+<div class="line"><a name="l00042"></a><span class="lineno"><a class="line" href="_core_8hpp.html#a0f3a7d7270425707e5efd57cead64f01">   42</a></span>&#160;<span class="preprocessor">#define RX_INFO( ... )    LOGGER_NAMESPACE::info( RAYEX_NAMESPACE_STRINGIFIED, &quot;: &quot;, __VA_ARGS__ )</span></div>
+<div class="line"><a name="l00043"></a><span class="lineno"><a class="line" href="_core_8hpp.html#a8e5f8b734af7dd8b8aaeea6ebaabb81d">   43</a></span>&#160;<span class="preprocessor">#define RX_SUCCESS( ... ) LOGGER_NAMESPACE::success( RAYEX_NAMESPACE_STRINGIFIED, &quot;: &quot;, __VA_ARGS__ )</span></div>
+<div class="line"><a name="l00044"></a><span class="lineno"><a class="line" href="_core_8hpp.html#a80edd4639b939a0de1ebda1c0de559d6">   44</a></span>&#160;<span class="preprocessor">#define RX_WARN( ... )    LOGGER_NAMESPACE::warning( RAYEX_NAMESPACE_STRINGIFIED, &quot;: &quot;, __VA_ARGS__ )</span></div>
+<div class="line"><a name="l00045"></a><span class="lineno"><a class="line" href="_core_8hpp.html#a75bbbb13d55cc9e0680a050df5ca00e2">   45</a></span>&#160;<span class="preprocessor">#define RX_ERROR( ... )   LOGGER_NAMESPACE::error( RAYEX_NAMESPACE_STRINGIFIED, &quot;: &quot;, __VA_ARGS__ )</span></div>
+<div class="line"><a name="l00046"></a><span class="lineno"><a class="line" href="_core_8hpp.html#ad7ab0669d483b47b41c5160a40e303ff">   46</a></span>&#160;<span class="preprocessor">#define RX_FATAL( ... )   LOGGER_NAMESPACE::fatal( RAYEX_NAMESPACE_STRINGIFIED, &quot;: &quot;, __VA_ARGS__ )</span></div>
 <div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;<span class="comment">// Using redundant boolean literal in ternary expression to support vulkan object error check.</span></div>
-<div class="line"><a name="l00048"></a><span class="lineno"><a class="line" href="_core_8hpp.html#a0bc3742e3b5d582081ea5ec272af5330">   48</a></span>&#160;<span class="preprocessor">#define RX_ASSERT( statement, ... ) LOGGER_NAMESPACE::assert2( statement ? true : false, RAYEXEC_NAMESPACE_STRINGIFIED, &quot;: &quot;, __VA_ARGS__ )</span></div>
+<div class="line"><a name="l00048"></a><span class="lineno"><a class="line" href="_core_8hpp.html#a0bc3742e3b5d582081ea5ec272af5330">   48</a></span>&#160;<span class="preprocessor">#define RX_ASSERT( statement, ... ) LOGGER_NAMESPACE::assert2( statement ? true : false, RAYEX_NAMESPACE_STRINGIFIED, &quot;: &quot;, __VA_ARGS__ )</span></div>
 <div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160; </div>
 <div class="line"><a name="l00050"></a><span class="lineno"><a class="line" href="_core_8hpp.html#aa9d90db74b8dfc478668d1368d4339f8">   50</a></span>&#160;<span class="preprocessor">#define RX_LOG_TIME_START( ... )      \</span></div>
-<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;<span class="preprocessor">  float startTime = Time::getTime( ); \</span></div>
-<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;<span class="preprocessor">  LOGGER_NAMESPACE::info( RAYEXEC_NAMESPACE_STRINGIFIED, &quot;: &quot;, __VA_ARGS__ )</span></div>
-<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160; </div>
-<div class="line"><a name="l00054"></a><span class="lineno"><a class="line" href="_core_8hpp.html#aa8b33c26d9078af255a33ed0d838a64f">   54</a></span>&#160;<span class="preprocessor">#define RX_LOG_TIME_STOP( ... ) LOGGER_NAMESPACE::success( RAYEXEC_NAMESPACE_STRINGIFIED, &quot;: &quot;, __VA_ARGS__, &quot; ( Time: &quot;, std::setprecision( std::numeric_limits&lt;float&gt;::digits10 ), Time::getTime( ) - startTime, &quot; ms ).&quot; )</span></div>
-<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160; </div>
-<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;<span class="comment">// Doxygen groups</span></div>
-<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;<span class="comment"></span> </div>
-<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;<span class="preprocessor">#endif // CORE_HPP</span></div>
+<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;<span class="preprocessor">  std::cout &lt;&lt; std::endl;             \</span></div>
+<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;<span class="preprocessor">  float startTime = Time::getTime( ); \</span></div>
+<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;<span class="preprocessor">  LOGGER_NAMESPACE::info( RAYEX_NAMESPACE_STRINGIFIED, &quot;: &quot;, __VA_ARGS__ )</span></div>
+<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160; </div>
+<div class="line"><a name="l00055"></a><span class="lineno"><a class="line" href="_core_8hpp.html#aa8b33c26d9078af255a33ed0d838a64f">   55</a></span>&#160;<span class="preprocessor">#define RX_LOG_TIME_STOP( ... ) LOGGER_NAMESPACE::success( RAYEX_NAMESPACE_STRINGIFIED, &quot;: &quot;, __VA_ARGS__, &quot; ( Time: &quot;, std::setprecision( std::numeric_limits&lt;float&gt;::digits10 ), Time::getTime( ) - startTime, &quot; ms ).&quot; )</span></div>
+<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160; </div>
+<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;<span class="comment">// Doxygen groups</span></div>
+<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;<span class="comment"></span> </div>
+<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;<span class="preprocessor">#endif // CORE_HPP</span></div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->

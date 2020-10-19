@@ -5,8 +5,8 @@
     <includes refid="_camera_8hpp" local="yes">base/Camera.hpp</includes>
     <includes refid="_time_8hpp" local="yes">base/Time.hpp</includes>
     <includes refid="stdafx_8hpp" local="yes">pch/stdafx.hpp</includes>
-    <includedby refid="_components_8hpp" local="yes">/home/n30/Repos/rayexec/include/api/Components.hpp</includedby>
-    <includedby refid="_surface_8hpp" local="yes">/home/n30/Repos/rayexec/include/api/Surface.hpp</includedby>
+    <includedby refid="_components_8hpp" local="yes">/home/n30/Repos/rayex/include/api/Components.hpp</includedby>
+    <includedby refid="_surface_8hpp" local="yes">/home/n30/Repos/rayex/include/api/Surface.hpp</includedby>
     <incdepgraph>
       <node id="29">
         <label>list</label>
@@ -16,6 +16,58 @@
       </node>
       <node id="20">
         <label>external/glm/ext/matrix_transform.hpp</label>
+      </node>
+      <node id="28">
+        <label>limits</label>
+      </node>
+      <node id="23">
+        <label>filesystem</label>
+      </node>
+      <node id="5">
+        <label>external/tinyLogger/TinyLogger.hpp</label>
+      </node>
+      <node id="18">
+        <label>charconv</label>
+      </node>
+      <node id="4">
+        <label>Core.hpp</label>
+        <link refid="_core_8hpp"/>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="6" relation="include">
+        </childnode>
+        <childnode refid="7" relation="include">
+        </childnode>
+        <childnode refid="8" relation="include">
+        </childnode>
+        <childnode refid="9" relation="include">
+        </childnode>
+        <childnode refid="10" relation="include">
+        </childnode>
+      </node>
+      <node id="13">
+        <label>external/ImGui/imgui_impl_sdl.h</label>
+      </node>
+      <node id="19">
+        <label>external/glm/ext/matrix_clip_space.hpp</label>
+      </node>
+      <node id="30">
+        <label>map</label>
+      </node>
+      <node id="37">
+        <label>unordered_set</label>
+      </node>
+      <node id="26">
+        <label>gsl/gsl</label>
+      </node>
+      <node id="25">
+        <label>fstream</label>
+      </node>
+      <node id="12">
+        <label>external/ImGui/imgui.h</label>
+      </node>
+      <node id="16">
+        <label>any</label>
       </node>
       <node id="3">
         <label>pch/stdafx.hpp</label>
@@ -81,48 +133,6 @@
         <childnode refid="39" relation="include">
         </childnode>
       </node>
-      <node id="28">
-        <label>limits</label>
-      </node>
-      <node id="23">
-        <label>filesystem</label>
-      </node>
-      <node id="2">
-        <label>base/Camera.hpp</label>
-        <link refid="_camera_8hpp"/>
-        <childnode refid="3" relation="include">
-        </childnode>
-      </node>
-      <node id="5">
-        <label>external/tinyLogger/TinyLogger.hpp</label>
-      </node>
-      <node id="18">
-        <label>charconv</label>
-      </node>
-      <node id="13">
-        <label>external/ImGui/imgui_impl_sdl.h</label>
-      </node>
-      <node id="19">
-        <label>external/glm/ext/matrix_clip_space.hpp</label>
-      </node>
-      <node id="30">
-        <label>map</label>
-      </node>
-      <node id="37">
-        <label>unordered_set</label>
-      </node>
-      <node id="26">
-        <label>gsl/gsl</label>
-      </node>
-      <node id="25">
-        <label>fstream</label>
-      </node>
-      <node id="12">
-        <label>external/ImGui/imgui.h</label>
-      </node>
-      <node id="16">
-        <label>any</label>
-      </node>
       <node id="7">
         <label>SDL2/SDL.h</label>
       </node>
@@ -141,6 +151,16 @@
       <node id="39">
         <label>vector</label>
       </node>
+      <node id="1">
+        <label>/home/n30/Repos/rayex/include/base/Window.hpp</label>
+        <link refid="_window_8hpp"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="11" relation="include">
+        </childnode>
+        <childnode refid="3" relation="include">
+        </childnode>
+      </node>
       <node id="38">
         <label>utility</label>
       </node>
@@ -153,27 +173,17 @@
       <node id="6">
         <label>sstream</label>
       </node>
+      <node id="2">
+        <label>base/Camera.hpp</label>
+        <link refid="_camera_8hpp"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+      </node>
       <node id="14">
         <label>external/ImGui/imgui_impl_vulkan.h</label>
       </node>
       <node id="9">
         <label>iostream</label>
-      </node>
-      <node id="4">
-        <label>Core.hpp</label>
-        <link refid="_core_8hpp"/>
-        <childnode refid="5" relation="include">
-        </childnode>
-        <childnode refid="6" relation="include">
-        </childnode>
-        <childnode refid="7" relation="include">
-        </childnode>
-        <childnode refid="8" relation="include">
-        </childnode>
-        <childnode refid="9" relation="include">
-        </childnode>
-        <childnode refid="10" relation="include">
-        </childnode>
       </node>
       <node id="36">
         <label>unordered_map</label>
@@ -181,27 +191,17 @@
       <node id="34">
         <label>set</label>
       </node>
-      <node id="24">
-        <label>forward_list</label>
-      </node>
-      <node id="15">
-        <label>algorithm</label>
-      </node>
       <node id="11">
         <label>base/Time.hpp</label>
         <link refid="_time_8hpp"/>
         <childnode refid="4" relation="include">
         </childnode>
       </node>
-      <node id="1">
-        <label>/home/n30/Repos/rayexec/include/base/Window.hpp</label>
-        <link refid="_window_8hpp"/>
-        <childnode refid="2" relation="include">
-        </childnode>
-        <childnode refid="11" relation="include">
-        </childnode>
-        <childnode refid="3" relation="include">
-        </childnode>
+      <node id="24">
+        <label>forward_list</label>
+      </node>
+      <node id="15">
+        <label>algorithm</label>
       </node>
       <node id="10">
         <label>vulkan/vulkan.hpp</label>
@@ -214,8 +214,36 @@
       </node>
     </incdepgraph>
     <invincdepgraph>
+      <node id="10">
+        <label>/home/n30/Repos/rayex/include/api/buffers/VertexBuffer.hpp</label>
+        <link refid="_vertex_buffer_8hpp"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="7" relation="include">
+        </childnode>
+      </node>
+      <node id="12">
+        <label>/home/n30/Repos/rayex/include/api/utility/Helpers.hpp</label>
+        <link refid="_helpers_8hpp"/>
+        <childnode refid="13" relation="include">
+        </childnode>
+        <childnode refid="14" relation="include">
+        </childnode>
+      </node>
+      <node id="7">
+        <label>/home/n30/Repos/rayex/include/api/raytracing/RayTracingBuilder.hpp</label>
+        <link refid="_ray_tracing_builder_8hpp"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+      </node>
+      <node id="8">
+        <label>/home/n30/Repos/rayex/include/api/buffers/StorageBuffer.hpp</label>
+        <link refid="_storage_buffer_8hpp"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+      </node>
       <node id="14">
-        <label>/home/n30/Repos/rayexec/include/api/Swapchain.hpp</label>
+        <label>/home/n30/Repos/rayex/include/api/Swapchain.hpp</label>
         <link refid="_swapchain_8hpp"/>
         <childnode refid="3" relation="include">
         </childnode>
@@ -224,100 +252,36 @@
         <childnode refid="15" relation="include">
         </childnode>
       </node>
-      <node id="9">
-        <label>/home/n30/Repos/rayexec/include/api/buffers/UniformBuffer.hpp</label>
-        <link refid="_uniform_buffer_8hpp"/>
-        <childnode refid="3" relation="include">
-        </childnode>
-      </node>
-      <node id="10">
-        <label>/home/n30/Repos/rayexec/include/api/buffers/VertexBuffer.hpp</label>
-        <link refid="_vertex_buffer_8hpp"/>
-        <childnode refid="3" relation="include">
-        </childnode>
-        <childnode refid="7" relation="include">
-        </childnode>
-      </node>
-      <node id="4">
-        <label>/home/n30/Repos/rayexec/include/RayExec.hpp</label>
-        <link refid="_ray_exec_8hpp"/>
-      </node>
-      <node id="3">
-        <label>/home/n30/Repos/rayexec/include/api/Api.hpp</label>
-        <link refid="_api_8hpp"/>
-        <childnode refid="4" relation="include">
-        </childnode>
-      </node>
-      <node id="8">
-        <label>/home/n30/Repos/rayexec/include/api/buffers/StorageBuffer.hpp</label>
-        <link refid="_storage_buffer_8hpp"/>
-        <childnode refid="3" relation="include">
-        </childnode>
-      </node>
-      <node id="11">
-        <label>/home/n30/Repos/rayexec/include/api/raytracing/AccelerationStructure.hpp</label>
-        <link refid="_acceleration_structure_8hpp"/>
-        <childnode refid="7" relation="include">
-        </childnode>
-        <childnode refid="12" relation="include">
-        </childnode>
-        <childnode refid="16" relation="include">
-        </childnode>
-      </node>
-      <node id="12">
-        <label>/home/n30/Repos/rayexec/include/api/utility/Helpers.hpp</label>
-        <link refid="_helpers_8hpp"/>
-        <childnode refid="13" relation="include">
-        </childnode>
-        <childnode refid="14" relation="include">
-        </childnode>
-      </node>
-      <node id="7">
-        <label>/home/n30/Repos/rayexec/include/api/raytracing/RayTracingBuilder.hpp</label>
-        <link refid="_ray_tracing_builder_8hpp"/>
-        <childnode refid="3" relation="include">
-        </childnode>
-      </node>
-      <node id="15">
-        <label>/home/n30/Repos/rayexec/include/base/Gui.hpp</label>
-        <link refid="_gui_8hpp"/>
-        <childnode refid="3" relation="include">
-        </childnode>
-      </node>
-      <node id="16">
-        <label>/home/n30/Repos/rayexec/include/api/utility/Initializers.hpp</label>
-        <link refid="_initializers_8hpp"/>
-        <childnode refid="13" relation="include">
-        </childnode>
-      </node>
-      <node id="2">
-        <label>/home/n30/Repos/rayexec/include/api/Components.hpp</label>
-        <link refid="_components_8hpp"/>
-        <childnode refid="3" relation="include">
-        </childnode>
-        <childnode refid="5" relation="include">
-        </childnode>
-        <childnode refid="11" relation="include">
-        </childnode>
-        <childnode refid="16" relation="include">
-        </childnode>
-      </node>
       <node id="6">
-        <label>/home/n30/Repos/rayexec/include/api/buffers/IndexBuffer.hpp</label>
+        <label>/home/n30/Repos/rayex/include/api/buffers/IndexBuffer.hpp</label>
         <link refid="_index_buffer_8hpp"/>
         <childnode refid="3" relation="include">
         </childnode>
         <childnode refid="7" relation="include">
         </childnode>
       </node>
-      <node id="13">
-        <label>/home/n30/Repos/rayexec/include/api/Bindings.hpp</label>
-        <link refid="_bindings_8hpp"/>
+      <node id="17">
+        <label>/home/n30/Repos/rayex/include/api/Surface.hpp</label>
+        <link refid="_surface_8hpp"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="14" relation="include">
+        </childnode>
+        <childnode refid="15" relation="include">
+        </childnode>
+      </node>
+      <node id="9">
+        <label>/home/n30/Repos/rayex/include/api/buffers/UniformBuffer.hpp</label>
+        <link refid="_uniform_buffer_8hpp"/>
         <childnode refid="3" relation="include">
         </childnode>
       </node>
+      <node id="4">
+        <label>/home/n30/Repos/rayex/include/Rayex.hpp</label>
+        <link refid="_rayex_8hpp"/>
+      </node>
       <node id="5">
-        <label>/home/n30/Repos/rayexec/include/api/buffers/Buffer.hpp</label>
+        <label>/home/n30/Repos/rayex/include/api/buffers/Buffer.hpp</label>
         <link refid="_buffer_8hpp"/>
         <childnode refid="6" relation="include">
         </childnode>
@@ -331,26 +295,62 @@
         </childnode>
       </node>
       <node id="1">
-        <label>/home/n30/Repos/rayexec/include/base/Window.hpp</label>
+        <label>/home/n30/Repos/rayex/include/base/Window.hpp</label>
         <link refid="_window_8hpp"/>
         <childnode refid="2" relation="include">
         </childnode>
         <childnode refid="17" relation="include">
         </childnode>
       </node>
-      <node id="17">
-        <label>/home/n30/Repos/rayexec/include/api/Surface.hpp</label>
-        <link refid="_surface_8hpp"/>
+      <node id="16">
+        <label>/home/n30/Repos/rayex/include/api/utility/Initializers.hpp</label>
+        <link refid="_initializers_8hpp"/>
+        <childnode refid="13" relation="include">
+        </childnode>
+      </node>
+      <node id="11">
+        <label>/home/n30/Repos/rayex/include/api/raytracing/AccelerationStructure.hpp</label>
+        <link refid="_acceleration_structure_8hpp"/>
+        <childnode refid="7" relation="include">
+        </childnode>
+        <childnode refid="12" relation="include">
+        </childnode>
+        <childnode refid="16" relation="include">
+        </childnode>
+      </node>
+      <node id="15">
+        <label>/home/n30/Repos/rayex/include/base/Gui.hpp</label>
+        <link refid="_gui_8hpp"/>
         <childnode refid="3" relation="include">
         </childnode>
-        <childnode refid="14" relation="include">
+      </node>
+      <node id="3">
+        <label>/home/n30/Repos/rayex/include/api/Api.hpp</label>
+        <link refid="_api_8hpp"/>
+        <childnode refid="4" relation="include">
         </childnode>
-        <childnode refid="15" relation="include">
+      </node>
+      <node id="13">
+        <label>/home/n30/Repos/rayex/include/api/Bindings.hpp</label>
+        <link refid="_bindings_8hpp"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>/home/n30/Repos/rayex/include/api/Components.hpp</label>
+        <link refid="_components_8hpp"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="11" relation="include">
+        </childnode>
+        <childnode refid="16" relation="include">
         </childnode>
       </node>
     </invincdepgraph>
-    <innerclass refid="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_window" prot="public">RAYEXEC_NAMESPACE::Window</innerclass>
-    <innernamespace refid="namespace_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e">RAYEXEC_NAMESPACE</innernamespace>
+    <innerclass refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_window" prot="public">RAYEX_NAMESPACE::Window</innerclass>
+    <innernamespace refid="namespace_r_a_y_e_x___n_a_m_e_s_p_a_c_e">RAYEX_NAMESPACE</innernamespace>
     <briefdescription>
     </briefdescription>
     <detaileddescription>
@@ -363,55 +363,55 @@
 <codeline lineno="5"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;<ref refid="_time_8hpp" kindref="compound">base/Time.hpp</ref>&quot;</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="6"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;<ref refid="stdafx_8hpp" kindref="compound">pch/stdafx.hpp</ref>&quot;</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="7"><highlight class="normal"></highlight></codeline>
-<codeline lineno="8"><highlight class="normal"></highlight><highlight class="keyword">namespace<sp/></highlight><highlight class="normal"><ref refid="namespace_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e" kindref="compound">RAYEXEC_NAMESPACE</ref></highlight></codeline>
+<codeline lineno="8"><highlight class="normal"></highlight><highlight class="keyword">namespace<sp/></highlight><highlight class="normal"><ref refid="namespace_r_a_y_e_x___n_a_m_e_s_p_a_c_e" kindref="compound">RAYEX_NAMESPACE</ref></highlight></codeline>
 <codeline lineno="9"><highlight class="normal">{</highlight></codeline>
-<codeline lineno="10" refid="namespace_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1ace19d80e0bf55986b1b8e9e048e76abe" refkind="member"><highlight class="normal"><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="namespace_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1ace19d80e0bf55986b1b8e9e048e76abe" kindref="member">defaultWidth</ref><sp/><sp/>=<sp/>900;</highlight></codeline>
-<codeline lineno="11" refid="namespace_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1a03aa31ed612ba981a14eb2265c11dad1" refkind="member"><highlight class="normal"><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="namespace_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1a03aa31ed612ba981a14eb2265c11dad1" kindref="member">defaultHeight</ref><sp/>=<sp/>600;</highlight></codeline>
+<codeline lineno="10" refid="namespace_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1a997bf023e5202653ba7b804848f245e4" refkind="member"><highlight class="normal"><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="namespace_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1a997bf023e5202653ba7b804848f245e4" kindref="member">defaultWidth</ref><sp/><sp/>=<sp/>900;</highlight></codeline>
+<codeline lineno="11" refid="namespace_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1aff8ee7aaab7d155f60fd777d09664159" refkind="member"><highlight class="normal"><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="namespace_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1aff8ee7aaab7d155f60fd777d09664159" kindref="member">defaultHeight</ref><sp/>=<sp/>600;</highlight></codeline>
 <codeline lineno="12"><highlight class="normal"></highlight></codeline>
-<codeline lineno="24" refid="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_window" refkind="compound"><highlight class="normal"><sp/><sp/></highlight><highlight class="keyword">class<sp/></highlight><highlight class="normal"><ref refid="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_window" kindref="compound">Window</ref></highlight></codeline>
+<codeline lineno="24" refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_window" refkind="compound"><highlight class="normal"><sp/><sp/></highlight><highlight class="keyword">class<sp/></highlight><highlight class="normal"><ref refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_window" kindref="compound">Window</ref></highlight></codeline>
 <codeline lineno="25"><highlight class="normal"><sp/><sp/>{</highlight></codeline>
 <codeline lineno="26"><highlight class="normal"><sp/><sp/></highlight><highlight class="keyword">public</highlight><highlight class="normal">:</highlight></codeline>
-<codeline lineno="31"><highlight class="normal"><sp/><sp/><sp/><sp/>RX_API<sp/><ref refid="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_window_1a605d01de99b761411a51560f659b5ccd" kindref="member">Window</ref>(<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_window_1a5c3593b500b23e7caa7fab8be33fc9f5" kindref="member">width</ref><sp/>=<sp/><ref refid="namespace_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1ace19d80e0bf55986b1b8e9e048e76abe" kindref="member">defaultWidth</ref>,<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_window_1ac05ed1f5db515ce709c038130c06ae3a" kindref="member">height</ref><sp/>=<sp/><ref refid="namespace_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1a03aa31ed612ba981a14eb2265c11dad1" kindref="member">defaultHeight</ref>,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal">*<sp/><ref refid="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_window_1ac7deb99f097cae43dfac4ba664b0b71e" kindref="member">title</ref><sp/>=<sp/></highlight><highlight class="stringliteral">&quot;My<sp/>Application&quot;</highlight><highlight class="normal">,<sp/>uint32_t<sp/><ref refid="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_window_1ac50c4ef112a5cb3e51147451e4451038" kindref="member">flags</ref><sp/>=<sp/>0<sp/>);</highlight></codeline>
+<codeline lineno="31"><highlight class="normal"><sp/><sp/><sp/><sp/>RX_API<sp/><ref refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_window_1a66f66ccc873712a7724fead6a0b189d6" kindref="member">Window</ref>(<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_window_1a293b96059836d62bc1f05cc374f14fca" kindref="member">width</ref><sp/>=<sp/><ref refid="namespace_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1a997bf023e5202653ba7b804848f245e4" kindref="member">defaultWidth</ref>,<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_window_1af90626b5a7995df6d22fcdb6b475ff7e" kindref="member">height</ref><sp/>=<sp/><ref refid="namespace_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1aff8ee7aaab7d155f60fd777d09664159" kindref="member">defaultHeight</ref>,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal">*<sp/><ref refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_window_1af6786684e67583f97632af87568f19d3" kindref="member">title</ref><sp/>=<sp/></highlight><highlight class="stringliteral">&quot;My<sp/>Application&quot;</highlight><highlight class="normal">,<sp/>uint32_t<sp/><ref refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_window_1a194f9d05fd4336372214025ba406ecc1" kindref="member">flags</ref><sp/>=<sp/>0<sp/>);</highlight></codeline>
 <codeline lineno="32"><highlight class="normal"></highlight></codeline>
-<codeline lineno="37"><highlight class="normal"><sp/><sp/><sp/><sp/>RX_API<sp/></highlight><highlight class="keyword">virtual</highlight><highlight class="normal"><sp/><ref refid="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_window_1a4aabfbbcd46b15e96661e5990704ed75" kindref="member">~Window</ref>(<sp/>);</highlight></codeline>
+<codeline lineno="37"><highlight class="normal"><sp/><sp/><sp/><sp/>RX_API<sp/></highlight><highlight class="keyword">virtual</highlight><highlight class="normal"><sp/><ref refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_window_1a75f43cfd4baed3056c1a1e2cda7165b9" kindref="member">~Window</ref>(<sp/>);</highlight></codeline>
 <codeline lineno="38"><highlight class="normal"></highlight></codeline>
-<codeline lineno="39"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_window_1a605d01de99b761411a51560f659b5ccd" kindref="member">Window</ref>(<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_window" kindref="compound">Window</ref>&amp;<sp/>)<sp/><sp/>=<sp/></highlight><highlight class="keyword">delete</highlight><highlight class="normal">;</highlight></codeline>
-<codeline lineno="40"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_window_1a605d01de99b761411a51560f659b5ccd" kindref="member">Window</ref>(<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_window" kindref="compound">Window</ref>&amp;&amp;<sp/>)<sp/>=<sp/></highlight><highlight class="keyword">delete</highlight><highlight class="normal">;</highlight></codeline>
-<codeline lineno="41"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/><ref refid="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_window_1adfbf2437f3931c8b235783466ee61230" kindref="member">operator=</ref>(<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_window" kindref="compound">Window</ref>&amp;<sp/>)<sp/>-&gt;<sp/><ref refid="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_window" kindref="compound">Window</ref>&amp;<sp/>=<sp/></highlight><highlight class="keyword">delete</highlight><highlight class="normal">;</highlight></codeline>
-<codeline lineno="42"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/><ref refid="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_window_1adfbf2437f3931c8b235783466ee61230" kindref="member">operator=</ref>(<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_window" kindref="compound">Window</ref><sp/>&amp;&amp;<sp/>)<sp/>-&gt;<sp/><ref refid="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_window" kindref="compound">Window</ref>&amp;<sp/>=<sp/></highlight><highlight class="keyword">delete</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="39"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_window_1a66f66ccc873712a7724fead6a0b189d6" kindref="member">Window</ref>(<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_window" kindref="compound">Window</ref>&amp;<sp/>)<sp/><sp/>=<sp/></highlight><highlight class="keyword">delete</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="40"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_window_1a66f66ccc873712a7724fead6a0b189d6" kindref="member">Window</ref>(<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_window" kindref="compound">Window</ref>&amp;&amp;<sp/>)<sp/>=<sp/></highlight><highlight class="keyword">delete</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="41"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/><ref refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_window_1a3b2477e338e063b1cfe3b1764a7f9de5" kindref="member">operator=</ref>(<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_window" kindref="compound">Window</ref>&amp;<sp/>)<sp/>-&gt;<sp/><ref refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_window" kindref="compound">Window</ref>&amp;<sp/>=<sp/></highlight><highlight class="keyword">delete</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="42"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/><ref refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_window_1a3b2477e338e063b1cfe3b1764a7f9de5" kindref="member">operator=</ref>(<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_window" kindref="compound">Window</ref><sp/>&amp;&amp;<sp/>)<sp/>-&gt;<sp/><ref refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_window" kindref="compound">Window</ref>&amp;<sp/>=<sp/></highlight><highlight class="keyword">delete</highlight><highlight class="normal">;</highlight></codeline>
 <codeline lineno="43"><highlight class="normal"></highlight></codeline>
-<codeline lineno="45"><highlight class="normal"><sp/><sp/><sp/><sp/>RX_API<sp/></highlight><highlight class="keyword">virtual</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/><ref refid="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_window_1a1465803d1631aeb85f3c304617d7f2c7" kindref="member">init</ref>(<sp/>)<sp/>-&gt;<sp/>bool;</highlight></codeline>
+<codeline lineno="45"><highlight class="normal"><sp/><sp/><sp/><sp/>RX_API<sp/></highlight><highlight class="keyword">virtual</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/><ref refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_window_1a7bb527dc03f0d8d338b5e60043f45484" kindref="member">init</ref>(<sp/>)<sp/>-&gt;<sp/>bool;</highlight></codeline>
 <codeline lineno="46"><highlight class="normal"></highlight></codeline>
-<codeline lineno="51"><highlight class="normal"><sp/><sp/><sp/><sp/>RX_API<sp/></highlight><highlight class="keyword">virtual</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/><ref refid="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_window_1aa038bb7bf14b31b0d1c3cff6daf07285" kindref="member">update</ref>(<sp/>)<sp/>-&gt;<sp/>bool;</highlight></codeline>
+<codeline lineno="51"><highlight class="normal"><sp/><sp/><sp/><sp/>RX_API<sp/></highlight><highlight class="keyword">virtual</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/><ref refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_window_1a8330a97de6371adc64b7d12419ad2a12" kindref="member">update</ref>(<sp/>)<sp/>-&gt;<sp/>bool;</highlight></codeline>
 <codeline lineno="52"><highlight class="normal"></highlight></codeline>
-<codeline lineno="54"><highlight class="normal"><sp/><sp/><sp/><sp/>RX_API<sp/></highlight><highlight class="keyword">virtual</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_window_1a18c7d4abe800472a8e79bd4f18cfb63e" kindref="member">clean</ref>(<sp/>);</highlight></codeline>
+<codeline lineno="54"><highlight class="normal"><sp/><sp/><sp/><sp/>RX_API<sp/></highlight><highlight class="keyword">virtual</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_window_1aae5d261f1dc0f4c9803636dfe9fbca2f" kindref="member">clean</ref>(<sp/>);</highlight></codeline>
 <codeline lineno="55"><highlight class="normal"></highlight></codeline>
-<codeline lineno="59"><highlight class="normal"><sp/><sp/><sp/><sp/>RX_API<sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_window_1ab051017a633806871575e8ec129cfd8a" kindref="member">resize</ref>(<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_window_1a5c3593b500b23e7caa7fab8be33fc9f5" kindref="member">width</ref>,<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_window_1ac05ed1f5db515ce709c038130c06ae3a" kindref="member">height</ref><sp/>);</highlight></codeline>
+<codeline lineno="59"><highlight class="normal"><sp/><sp/><sp/><sp/>RX_API<sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_window_1a1ef21fbb70c7f423a5329cf294ef4c56" kindref="member">resize</ref>(<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_window_1a293b96059836d62bc1f05cc374f14fca" kindref="member">width</ref>,<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_window_1af90626b5a7995df6d22fcdb6b475ff7e" kindref="member">height</ref><sp/>);</highlight></codeline>
 <codeline lineno="60"><highlight class="normal"></highlight></codeline>
-<codeline lineno="62" refid="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_window_1a2499009d44ee72861fccea9923a69f04" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>RX_API<sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/><ref refid="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_window_1a2499009d44ee72861fccea9923a69f04" kindref="member">get</ref>(<sp/>)<sp/>-&gt;<sp/>SDL_Window*<sp/>{<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/><ref refid="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_window_1a9383029971853d1c18924d71aeb0b30a" kindref="member">window</ref>;<sp/>}</highlight></codeline>
+<codeline lineno="62" refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_window_1aa66df2f85d75100246163ebc0fda1e74" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>RX_API<sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/><ref refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_window_1aa66df2f85d75100246163ebc0fda1e74" kindref="member">get</ref>(<sp/>)<sp/>-&gt;<sp/>SDL_Window*<sp/>{<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/><ref refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_window_1a9e20d9ed5a5f514233b8d7cc3f7178ae" kindref="member">window</ref>;<sp/>}</highlight></codeline>
 <codeline lineno="63"><highlight class="normal"></highlight></codeline>
-<codeline lineno="65"><highlight class="normal"><sp/><sp/><sp/><sp/>[[nodiscard]]<sp/>RX_API<sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/><ref refid="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_window_1af9cf0260c8125403ab94097965ef2955" kindref="member">getExtent</ref>(<sp/>)<sp/>const<sp/>-&gt;<sp/><ref refid="namespacevk" kindref="compound">vk</ref>::Extent2D;</highlight></codeline>
+<codeline lineno="65"><highlight class="normal"><sp/><sp/><sp/><sp/>[[nodiscard]]<sp/>RX_API<sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/><ref refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_window_1ad8e960259694ee6158077512397f4ada" kindref="member">getExtent</ref>(<sp/>)<sp/>const<sp/>-&gt;<sp/><ref refid="namespacevk" kindref="compound">vk</ref>::Extent2D;</highlight></codeline>
 <codeline lineno="66"><highlight class="normal"></highlight></codeline>
-<codeline lineno="68" refid="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_window_1a3493050f0c87cc92dd5367086fa4232d" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>[[nodiscard]]<sp/>auto<sp/><ref refid="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_window_1a3493050f0c87cc92dd5367086fa4232d" kindref="member">getWidth</ref>(<sp/>)<sp/>const<sp/>-&gt;<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>{<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/><ref refid="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_window_1a5c3593b500b23e7caa7fab8be33fc9f5" kindref="member">width</ref>;<sp/>}</highlight></codeline>
+<codeline lineno="68" refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_window_1a26db3cec4e76fe4092c4fbdac20aea33" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>[[nodiscard]]<sp/>auto<sp/><ref refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_window_1a26db3cec4e76fe4092c4fbdac20aea33" kindref="member">getWidth</ref>(<sp/>)<sp/>const<sp/>-&gt;<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>{<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/><ref refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_window_1a293b96059836d62bc1f05cc374f14fca" kindref="member">width</ref>;<sp/>}</highlight></codeline>
 <codeline lineno="69"><highlight class="normal"></highlight></codeline>
-<codeline lineno="71" refid="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_window_1acb5f534b676c8cd3d640f47ac4444499" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>[[nodiscard]]<sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/><ref refid="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_window_1acb5f534b676c8cd3d640f47ac4444499" kindref="member">getHeight</ref>(<sp/>)<sp/>const<sp/>-&gt;<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>{<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/><ref refid="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_window_1ac05ed1f5db515ce709c038130c06ae3a" kindref="member">height</ref>;<sp/>}</highlight></codeline>
+<codeline lineno="71" refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_window_1a35cf7ab1da6f4fb21dd03cd67e05715a" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>[[nodiscard]]<sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/><ref refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_window_1a35cf7ab1da6f4fb21dd03cd67e05715a" kindref="member">getHeight</ref>(<sp/>)<sp/>const<sp/>-&gt;<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>{<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/><ref refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_window_1af90626b5a7995df6d22fcdb6b475ff7e" kindref="member">height</ref>;<sp/>}</highlight></codeline>
 <codeline lineno="72"><highlight class="normal"></highlight></codeline>
-<codeline lineno="74"><highlight class="normal"><sp/><sp/><sp/><sp/>RX_API<sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/><ref refid="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_window_1a3bf6eadc1f1aa70f3335d505edf30ff8" kindref="member">changed</ref>(<sp/>)<sp/>-&gt;<sp/>bool;</highlight></codeline>
+<codeline lineno="74"><highlight class="normal"><sp/><sp/><sp/><sp/>RX_API<sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/><ref refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_window_1af7592cf50bffc8b586910b50a480c938" kindref="member">changed</ref>(<sp/>)<sp/>-&gt;<sp/>bool;</highlight></codeline>
 <codeline lineno="75"><highlight class="normal"></highlight></codeline>
-<codeline lineno="77"><highlight class="normal"><sp/><sp/><sp/><sp/>RX_API<sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/><ref refid="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_window_1a073466b019e4961a3823a50019f66776" kindref="member">minimized</ref>(<sp/>)<sp/>-&gt;<sp/>bool;</highlight></codeline>
+<codeline lineno="77"><highlight class="normal"><sp/><sp/><sp/><sp/>RX_API<sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/><ref refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_window_1aa102c21a2f54ffdef06c7485ec3c5194" kindref="member">minimized</ref>(<sp/>)<sp/>-&gt;<sp/>bool;</highlight></codeline>
 <codeline lineno="78"><highlight class="normal"></highlight></codeline>
 <codeline lineno="79"><highlight class="normal"><sp/><sp/></highlight><highlight class="keyword">protected</highlight><highlight class="normal">:</highlight></codeline>
-<codeline lineno="80" refid="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_window_1a9383029971853d1c18924d71aeb0b30a" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>SDL_Window*<sp/><ref refid="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_window_1a9383029971853d1c18924d71aeb0b30a" kindref="member">window</ref><sp/>=<sp/></highlight><highlight class="keyword">nullptr</highlight><highlight class="normal">;<sp/></highlight></codeline>
-<codeline lineno="81" refid="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_window_1ac50c4ef112a5cb3e51147451e4451038" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>uint32_t<sp/><ref refid="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_window_1ac50c4ef112a5cb3e51147451e4451038" kindref="member">flags</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="80" refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_window_1a9e20d9ed5a5f514233b8d7cc3f7178ae" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>SDL_Window*<sp/><ref refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_window_1a9e20d9ed5a5f514233b8d7cc3f7178ae" kindref="member">window</ref><sp/>=<sp/></highlight><highlight class="keyword">nullptr</highlight><highlight class="normal">;<sp/></highlight></codeline>
+<codeline lineno="81" refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_window_1a194f9d05fd4336372214025ba406ecc1" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>uint32_t<sp/><ref refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_window_1a194f9d05fd4336372214025ba406ecc1" kindref="member">flags</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
 <codeline lineno="82"><highlight class="normal"></highlight></codeline>
-<codeline lineno="83" refid="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_window_1a5c3593b500b23e7caa7fab8be33fc9f5" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_window_1a5c3593b500b23e7caa7fab8be33fc9f5" kindref="member">width</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
-<codeline lineno="84" refid="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_window_1ac05ed1f5db515ce709c038130c06ae3a" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_window_1ac05ed1f5db515ce709c038130c06ae3a" kindref="member">height</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
-<codeline lineno="85" refid="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_window_1ac7deb99f097cae43dfac4ba664b0b71e" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal">*<sp/><ref refid="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_window_1ac7deb99f097cae43dfac4ba664b0b71e" kindref="member">title</ref>;<sp/></highlight></codeline>
+<codeline lineno="83" refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_window_1a293b96059836d62bc1f05cc374f14fca" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_window_1a293b96059836d62bc1f05cc374f14fca" kindref="member">width</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="84" refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_window_1af90626b5a7995df6d22fcdb6b475ff7e" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_window_1af90626b5a7995df6d22fcdb6b475ff7e" kindref="member">height</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="85" refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_window_1af6786684e67583f97632af87568f19d3" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal">*<sp/><ref refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_window_1af6786684e67583f97632af87568f19d3" kindref="member">title</ref>;<sp/></highlight></codeline>
 <codeline lineno="86"><highlight class="normal"><sp/><sp/>};</highlight></codeline>
-<codeline lineno="87"><highlight class="normal">}<sp/></highlight><highlight class="comment">//<sp/>namespace<sp/>RAYEXEC_NAMESPACE</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="87"><highlight class="normal">}<sp/></highlight><highlight class="comment">//<sp/>namespace<sp/>RAYEX_NAMESPACE</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="88"><highlight class="normal"></highlight></codeline>
 <codeline lineno="89"><highlight class="normal"></highlight><highlight class="preprocessor">#endif<sp/>//<sp/>WINDOW_HPP</highlight></codeline>
     </programlisting>
-    <location file="/home/n30/Repos/rayexec/include/base/Window.hpp"/>
+    <location file="/home/n30/Repos/rayex/include/base/Window.hpp"/>
   </compounddef>
 </doxygen>

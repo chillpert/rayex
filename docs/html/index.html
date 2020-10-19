@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.8.17"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>RAYEXEC: RAYEXEC</title>
+<title>RAYEX: RAYEX</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -30,10 +30,10 @@
  <tbody>
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
-   <div id="projectname">RAYEXEC
-   &#160;<span id="projectnumber">0.5</span>
+   <div id="projectname">RAYEX
+   &#160;<span id="projectnumber">0.7</span>
    </div>
-   <div id="projectbrief">A cross-platform Vulkan-based path tracing rendering library.</div>
+   <div id="projectbrief">A cross-platform, cross-vendor, Vulkan-based, path tracing library.</div>
   </td>
    <td>        <div id="MSearchBox" class="MSearchBoxInactive">
         <span class="left">
@@ -94,29 +94,29 @@ $(document).ready(function(){initNavTree('index.html',''); initResizable(); });
 
 <div class="PageDoc"><div class="header">
   <div class="headertitle">
-<div class="title">RAYEXEC </div>  </div>
+<div class="title">RAYEX </div>  </div>
 </div><!--header-->
 <div class="contents">
-<div class="textblock"><p>RAYEXEC is a work-in-progress cross-platform, cross-vendor Vulkan-based path tracing library.</p>
-<p>It runs on both Linux (x64) and Windows (x64) using the Vulkan API. The purpose of this software is to provide a cross-platform renderer with path tracing capabilities that is easy to integrate into existing projects. Vendor independence is achieved using KHRONOS' new Vulkan ray tracing extension (first published on March 17, 2020). It uses <a href="https://www.libsdl.org/index.php">SDL2</a> for windowing and <a href="https://glm.g-truc.net/0.9.9/index.html">glm</a> as its math library. RAYEXEC features native <a href="https://github.com/ocornut/imgui">Dear ImGui</a> support, enabling the user to create user interfaces without having to write any API-related code.</p>
+<div class="textblock"><p>RAYEX is a work-in-progress, cross-platform, cross-vendor, Vulkan-based, path tracing library.</p>
+<p>It runs on both Linux (x64) and Windows (x64) using the Vulkan API. The purpose of this software is to provide a cross-platform, cross-vendor path tracer that is easy to integrate into existing projects. Vendor independence is achieved by using KHRONOS' new Vulkan ray tracing extension (first published on March 17, 2020). It uses <a href="https://www.libsdl.org/index.php">SDL2</a> for windowing and <a href="https://glm.g-truc.net/0.9.9/index.html">glm</a> as its math library. RAYEX features native <a href="https://github.com/ocornut/imgui">Dear ImGui</a> support, enabling the user to create user interfaces without having to write any API-related code.</p>
 <h1><a class="anchor" id="autotoc_md1"></a>
 Requirements</h1>
 <p>Unfortunately, KHRONOS' Vulkan ray tracing extension is not yet part of the NVIDIA main driver. Download the NVIDIA Vulkan beta drivers <a href="https://developer.nvidia.com/vulkan-driver">here</a>.</p>
 <h1><a class="anchor" id="autotoc_md2"></a>
 Deploy</h1>
-<p>To integrate RAYEXEC in your existing C++ / CMake project, follow the steps below.</p>
+<p>To integrate RAYEX in your existing C++ / CMake project, follow the steps below.</p>
 <ol type="1">
-<li>Download the latest <a href="https://github.com/chillpert/rayexec">release</a> or build the library yourself.</li>
+<li>Download the latest <a href="https://github.com/chillpert/rayex">release</a> or build the library yourself.</li>
 <li>Place the <b>shared library objects</b> and the provided <b>include folder</b> somewhere inside your project.</li>
 <li>Include the CMakeLists.txt inside the <b>include folder</b> to your CMakeLists.txt.</li>
 <li>Link your target against the <b>shared library objects</b> and against SDL2.</li>
 </ol>
-<p>Using CMake is not obligatory but recommended as RAYEXEC comes with its own CMakeLists.txt that will properly include all project headers. A release also comes with a fully functional example including a complete CMakeLists.txt that can be used for reference.</p>
+<p>Using CMake is not obligatory but recommended as RAYEX comes with its own CMakeLists.txt that will properly include all project headers. A release also comes with a fully functional example including a complete CMakeLists.txt that can be used for reference.</p>
 <h1><a class="anchor" id="autotoc_md3"></a>
 Build</h1>
 <h2><a class="anchor" id="autotoc_md4"></a>
 Linux</h2>
-<p>To build the entire library yourself follow the steps below. If you want to build the provided example, make sure to enable the RX_BUILD_EXAMPLES build option in CMake. </p><div class="fragment"><div class="line">$ git clone https://github.com/chillpert/rayexec</div>
+<p>To build the entire library yourself follow the steps below. If you want to build the provided example, make sure to enable the RX_BUILD_EXAMPLES build option in CMake. </p><div class="fragment"><div class="line">$ git clone https://github.com/chillpert/rayex</div>
 <div class="line">$ cd renderer </div>
 <div class="line">$ mkdir build &amp;&amp; cd build</div>
 <div class="line">$ cmake ..</div>
@@ -127,15 +127,15 @@ Windows</h2>
 <p>Generate a Visual Studio 2019 solution using CMake and build it or simply open the project folder using Visual Studio 2019, confirm the prompt to generate the CMake cache and build it.</p>
 <h2><a class="anchor" id="autotoc_md6"></a>
 Usage</h2>
-<p>The following cope snippet renders a cube. For a proper example take a look at the <b>documentation</b> or at <b>example/example.cpp</b>. </p><div class="fragment"><div class="line">#include &quot;RayExec.hpp&quot;</div>
+<p>The following cope snippet renders a cube. For a proper example take a look at the <b>documentation</b> or at <b>example/example.cpp</b>. </p><div class="fragment"><div class="line">#include &quot;Rayex.hpp&quot;</div>
 <div class="line"> </div>
 <div class="line">int main( )</div>
 <div class="line">{</div>
 <div class="line">    // Initialize the renderer.</div>
-<div class="line">    rx::RayExec renderer;</div>
+<div class="line">    rx::Rayex renderer;</div>
 <div class="line">    renderer.init( );</div>
 <div class="line">    </div>
-<div class="line">    // Load some geometry and submit it to RAYEXEC.</div>
+<div class="line">    // Load some geometry and submit it to RAYEX.</div>
 <div class="line">    auto cube   = rx::loadObj( &quot;models/cube.obj&quot; );</div>
 <div class="line">    renderer.submitGeometry( cube );</div>
 <div class="line"> </div>
@@ -151,7 +151,7 @@ Usage</h2>
 <div class="line">}</div>
 </div><!-- fragment --><h1><a class="anchor" id="autotoc_md7"></a>
 Download</h1>
-<p>You can find the GitHub repository <a href="https://github.com/chillpert/rayexec">here</a>. </p>
+<p>You can find the GitHub repository <a href="https://github.com/chillpert/rayex">here</a>. </p>
 </div></div><!-- PageDoc -->
 </div><!-- contents -->
 </div><!-- doc-content -->

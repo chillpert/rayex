@@ -22,7 +22,7 @@ for the JavaScript code in this file
 */
 var NAVTREE =
 [
-  [ "RAYEXEC", "index.html", [
+  [ "RAYEX", "index.html", [
     [ "Requirements", "index.html#autotoc_md1", null ],
     [ "Deploy", "index.html#autotoc_md2", null ],
     [ "Build", "index.html#autotoc_md3", [
@@ -65,8 +65,8 @@ var NAVTREE =
 var NAVTREEINDEX =
 [
 "_acceleration_structure_8hpp.html",
-"class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_command_buffer.html#acff16caf8b3bbe2ee906072fd5ef7462",
-"globals_defs.html"
+"class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_command_buffer.html#adede3dee0329159e687a6b7a246ae47c",
+"functions_r.html"
 ];
 
 var SYNCONMSG = 'click to disable panel synchronisation';

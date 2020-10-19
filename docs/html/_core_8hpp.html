@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.8.17"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>RAYEXEC: /home/n30/Repos/rayexec/include/Core.hpp File Reference</title>
+<title>RAYEX: /home/n30/Repos/rayex/include/Core.hpp File Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -30,10 +30,10 @@
  <tbody>
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
-   <div id="projectname">RAYEXEC
-   &#160;<span id="projectnumber">0.5</span>
+   <div id="projectname">RAYEX
+   &#160;<span id="projectnumber">0.7</span>
    </div>
-   <div id="projectbrief">A cross-platform Vulkan-based path tracing rendering library.</div>
+   <div id="projectbrief">A cross-platform, cross-vendor, Vulkan-based, path tracing library.</div>
   </td>
    <td>        <div id="MSearchBox" class="MSearchBoxInactive">
         <span class="left">
@@ -115,43 +115,43 @@ Macros</h2></td></tr>
 <tr class="separator:a8a27aa48a7a8781a30ab45040cb1dea7"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ae0ee52a031cc79e2e1b15516ed6ca362"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_core_8hpp.html#ae0ee52a031cc79e2e1b15516ed6ca362">VK_ENABLE_BETA_EXTENSIONS</a></td></tr>
 <tr class="separator:ae0ee52a031cc79e2e1b15516ed6ca362"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ae1466e3a3b5a75362c58d3d393a59cd7"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_core_8hpp.html#ae1466e3a3b5a75362c58d3d393a59cd7">RAYEXEC_NAMESPACE</a>&#160;&#160;&#160;rx</td></tr>
-<tr class="memdesc:ae1466e3a3b5a75362c58d3d393a59cd7"><td class="mdescLeft">&#160;</td><td class="mdescRight">A macro to easily replace the renderer's namespace name.  <a href="_core_8hpp.html#ae1466e3a3b5a75362c58d3d393a59cd7">More...</a><br /></td></tr>
-<tr class="separator:ae1466e3a3b5a75362c58d3d393a59cd7"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a71565448c6a50c61f3f57b1606128b91"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_core_8hpp.html#a71565448c6a50c61f3f57b1606128b91">RAYEXEC_NAMESPACE_STRINGIFY_2</a>(text)&#160;&#160;&#160;#text</td></tr>
-<tr class="separator:a71565448c6a50c61f3f57b1606128b91"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aa479bc0a7fce1089c976c3b66d033a38"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_core_8hpp.html#aa479bc0a7fce1089c976c3b66d033a38">RAYEXEC_NAMESPACE_STRINGIFY</a>(text)&#160;&#160;&#160;<a class="el" href="_core_8hpp.html#a71565448c6a50c61f3f57b1606128b91">RAYEXEC_NAMESPACE_STRINGIFY_2</a>( text )</td></tr>
-<tr class="separator:aa479bc0a7fce1089c976c3b66d033a38"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aaff0cd56425a31e00b059a76dfdad581"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_core_8hpp.html#aaff0cd56425a31e00b059a76dfdad581">RAYEXEC_NAMESPACE_STRINGIFIED</a>&#160;&#160;&#160;<a class="el" href="_core_8hpp.html#aa479bc0a7fce1089c976c3b66d033a38">RAYEXEC_NAMESPACE_STRINGIFY</a>( <a class="el" href="_core_8hpp.html#ae1466e3a3b5a75362c58d3d393a59cd7">RAYEXEC_NAMESPACE</a> )</td></tr>
-<tr class="separator:aaff0cd56425a31e00b059a76dfdad581"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a76f659a3b57c3124f3d7282f44be8d5a"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_core_8hpp.html#a76f659a3b57c3124f3d7282f44be8d5a">RX_VERBOSE</a>(...)&#160;&#160;&#160;LOGGER_NAMESPACE::verbose( <a class="el" href="_core_8hpp.html#aaff0cd56425a31e00b059a76dfdad581">RAYEXEC_NAMESPACE_STRINGIFIED</a>, &quot;: &quot;, __VA_ARGS__ )</td></tr>
+<tr class="memitem:a4679e2fe11ad3651dcc83c15d5e54456"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_core_8hpp.html#a4679e2fe11ad3651dcc83c15d5e54456">RAYEX_NAMESPACE</a>&#160;&#160;&#160;rx</td></tr>
+<tr class="memdesc:a4679e2fe11ad3651dcc83c15d5e54456"><td class="mdescLeft">&#160;</td><td class="mdescRight">A macro to easily replace the renderer's namespace name.  <a href="_core_8hpp.html#a4679e2fe11ad3651dcc83c15d5e54456">More...</a><br /></td></tr>
+<tr class="separator:a4679e2fe11ad3651dcc83c15d5e54456"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a23448c05525b4f73861de72987ea0a30"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_core_8hpp.html#a23448c05525b4f73861de72987ea0a30">RAYEX_NAMESPACE_STRINGIFY_2</a>(text)&#160;&#160;&#160;#text</td></tr>
+<tr class="separator:a23448c05525b4f73861de72987ea0a30"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0e29de8355fd7805c19990586d458f62"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_core_8hpp.html#a0e29de8355fd7805c19990586d458f62">RAYEX_NAMESPACE_STRINGIFY</a>(text)&#160;&#160;&#160;<a class="el" href="_core_8hpp.html#a23448c05525b4f73861de72987ea0a30">RAYEX_NAMESPACE_STRINGIFY_2</a>( text )</td></tr>
+<tr class="separator:a0e29de8355fd7805c19990586d458f62"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a399610e7e5c0fb86f548931773995a0d"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_core_8hpp.html#a399610e7e5c0fb86f548931773995a0d">RAYEX_NAMESPACE_STRINGIFIED</a>&#160;&#160;&#160;<a class="el" href="_core_8hpp.html#a0e29de8355fd7805c19990586d458f62">RAYEX_NAMESPACE_STRINGIFY</a>( <a class="el" href="_core_8hpp.html#a4679e2fe11ad3651dcc83c15d5e54456">RAYEX_NAMESPACE</a> )</td></tr>
+<tr class="separator:a399610e7e5c0fb86f548931773995a0d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a76f659a3b57c3124f3d7282f44be8d5a"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_core_8hpp.html#a76f659a3b57c3124f3d7282f44be8d5a">RX_VERBOSE</a>(...)&#160;&#160;&#160;LOGGER_NAMESPACE::verbose( <a class="el" href="_core_8hpp.html#a399610e7e5c0fb86f548931773995a0d">RAYEX_NAMESPACE_STRINGIFIED</a>, &quot;: &quot;, __VA_ARGS__ )</td></tr>
 <tr class="separator:a76f659a3b57c3124f3d7282f44be8d5a"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a0f3a7d7270425707e5efd57cead64f01"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_core_8hpp.html#a0f3a7d7270425707e5efd57cead64f01">RX_INFO</a>(...)&#160;&#160;&#160;LOGGER_NAMESPACE::info( <a class="el" href="_core_8hpp.html#aaff0cd56425a31e00b059a76dfdad581">RAYEXEC_NAMESPACE_STRINGIFIED</a>, &quot;: &quot;, __VA_ARGS__ )</td></tr>
+<tr class="memitem:a0f3a7d7270425707e5efd57cead64f01"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_core_8hpp.html#a0f3a7d7270425707e5efd57cead64f01">RX_INFO</a>(...)&#160;&#160;&#160;LOGGER_NAMESPACE::info( <a class="el" href="_core_8hpp.html#a399610e7e5c0fb86f548931773995a0d">RAYEX_NAMESPACE_STRINGIFIED</a>, &quot;: &quot;, __VA_ARGS__ )</td></tr>
 <tr class="separator:a0f3a7d7270425707e5efd57cead64f01"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a8e5f8b734af7dd8b8aaeea6ebaabb81d"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_core_8hpp.html#a8e5f8b734af7dd8b8aaeea6ebaabb81d">RX_SUCCESS</a>(...)&#160;&#160;&#160;LOGGER_NAMESPACE::success( <a class="el" href="_core_8hpp.html#aaff0cd56425a31e00b059a76dfdad581">RAYEXEC_NAMESPACE_STRINGIFIED</a>, &quot;: &quot;, __VA_ARGS__ )</td></tr>
+<tr class="memitem:a8e5f8b734af7dd8b8aaeea6ebaabb81d"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_core_8hpp.html#a8e5f8b734af7dd8b8aaeea6ebaabb81d">RX_SUCCESS</a>(...)&#160;&#160;&#160;LOGGER_NAMESPACE::success( <a class="el" href="_core_8hpp.html#a399610e7e5c0fb86f548931773995a0d">RAYEX_NAMESPACE_STRINGIFIED</a>, &quot;: &quot;, __VA_ARGS__ )</td></tr>
 <tr class="separator:a8e5f8b734af7dd8b8aaeea6ebaabb81d"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a80edd4639b939a0de1ebda1c0de559d6"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_core_8hpp.html#a80edd4639b939a0de1ebda1c0de559d6">RX_WARN</a>(...)&#160;&#160;&#160;LOGGER_NAMESPACE::warning( <a class="el" href="_core_8hpp.html#aaff0cd56425a31e00b059a76dfdad581">RAYEXEC_NAMESPACE_STRINGIFIED</a>, &quot;: &quot;, __VA_ARGS__ )</td></tr>
+<tr class="memitem:a80edd4639b939a0de1ebda1c0de559d6"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_core_8hpp.html#a80edd4639b939a0de1ebda1c0de559d6">RX_WARN</a>(...)&#160;&#160;&#160;LOGGER_NAMESPACE::warning( <a class="el" href="_core_8hpp.html#a399610e7e5c0fb86f548931773995a0d">RAYEX_NAMESPACE_STRINGIFIED</a>, &quot;: &quot;, __VA_ARGS__ )</td></tr>
 <tr class="separator:a80edd4639b939a0de1ebda1c0de559d6"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a75bbbb13d55cc9e0680a050df5ca00e2"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_core_8hpp.html#a75bbbb13d55cc9e0680a050df5ca00e2">RX_ERROR</a>(...)&#160;&#160;&#160;LOGGER_NAMESPACE::error( <a class="el" href="_core_8hpp.html#aaff0cd56425a31e00b059a76dfdad581">RAYEXEC_NAMESPACE_STRINGIFIED</a>, &quot;: &quot;, __VA_ARGS__ )</td></tr>
+<tr class="memitem:a75bbbb13d55cc9e0680a050df5ca00e2"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_core_8hpp.html#a75bbbb13d55cc9e0680a050df5ca00e2">RX_ERROR</a>(...)&#160;&#160;&#160;LOGGER_NAMESPACE::error( <a class="el" href="_core_8hpp.html#a399610e7e5c0fb86f548931773995a0d">RAYEX_NAMESPACE_STRINGIFIED</a>, &quot;: &quot;, __VA_ARGS__ )</td></tr>
 <tr class="separator:a75bbbb13d55cc9e0680a050df5ca00e2"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ad7ab0669d483b47b41c5160a40e303ff"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_core_8hpp.html#ad7ab0669d483b47b41c5160a40e303ff">RX_FATAL</a>(...)&#160;&#160;&#160;LOGGER_NAMESPACE::fatal( <a class="el" href="_core_8hpp.html#aaff0cd56425a31e00b059a76dfdad581">RAYEXEC_NAMESPACE_STRINGIFIED</a>, &quot;: &quot;, __VA_ARGS__ )</td></tr>
+<tr class="memitem:ad7ab0669d483b47b41c5160a40e303ff"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_core_8hpp.html#ad7ab0669d483b47b41c5160a40e303ff">RX_FATAL</a>(...)&#160;&#160;&#160;LOGGER_NAMESPACE::fatal( <a class="el" href="_core_8hpp.html#a399610e7e5c0fb86f548931773995a0d">RAYEX_NAMESPACE_STRINGIFIED</a>, &quot;: &quot;, __VA_ARGS__ )</td></tr>
 <tr class="separator:ad7ab0669d483b47b41c5160a40e303ff"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a0bc3742e3b5d582081ea5ec272af5330"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_core_8hpp.html#a0bc3742e3b5d582081ea5ec272af5330">RX_ASSERT</a>(statement, ...)&#160;&#160;&#160;LOGGER_NAMESPACE::assert2( statement ? true : false, <a class="el" href="_core_8hpp.html#aaff0cd56425a31e00b059a76dfdad581">RAYEXEC_NAMESPACE_STRINGIFIED</a>, &quot;: &quot;, __VA_ARGS__ )</td></tr>
+<tr class="memitem:a0bc3742e3b5d582081ea5ec272af5330"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_core_8hpp.html#a0bc3742e3b5d582081ea5ec272af5330">RX_ASSERT</a>(statement, ...)&#160;&#160;&#160;LOGGER_NAMESPACE::assert2( statement ? true : false, <a class="el" href="_core_8hpp.html#a399610e7e5c0fb86f548931773995a0d">RAYEX_NAMESPACE_STRINGIFIED</a>, &quot;: &quot;, __VA_ARGS__ )</td></tr>
 <tr class="separator:a0bc3742e3b5d582081ea5ec272af5330"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aa9d90db74b8dfc478668d1368d4339f8"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_core_8hpp.html#aa9d90db74b8dfc478668d1368d4339f8">RX_LOG_TIME_START</a>(...)</td></tr>
 <tr class="separator:aa9d90db74b8dfc478668d1368d4339f8"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aa8b33c26d9078af255a33ed0d838a64f"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_core_8hpp.html#aa8b33c26d9078af255a33ed0d838a64f">RX_LOG_TIME_STOP</a>(...)&#160;&#160;&#160;LOGGER_NAMESPACE::success( <a class="el" href="_core_8hpp.html#aaff0cd56425a31e00b059a76dfdad581">RAYEXEC_NAMESPACE_STRINGIFIED</a>, &quot;: &quot;, __VA_ARGS__, &quot; ( Time: &quot;, std::setprecision( std::numeric_limits&lt;float&gt;::digits10 ), Time::getTime( ) - startTime, &quot; ms ).&quot; )</td></tr>
+<tr class="memitem:aa8b33c26d9078af255a33ed0d838a64f"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_core_8hpp.html#aa8b33c26d9078af255a33ed0d838a64f">RX_LOG_TIME_STOP</a>(...)&#160;&#160;&#160;LOGGER_NAMESPACE::success( <a class="el" href="_core_8hpp.html#a399610e7e5c0fb86f548931773995a0d">RAYEX_NAMESPACE_STRINGIFIED</a>, &quot;: &quot;, __VA_ARGS__, &quot; ( Time: &quot;, std::setprecision( std::numeric_limits&lt;float&gt;::digits10 ), Time::getTime( ) - startTime, &quot; ms ).&quot; )</td></tr>
 <tr class="separator:aa8b33c26d9078af255a33ed0d838a64f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">Macro Definition Documentation</h2>
-<a id="ae1466e3a3b5a75362c58d3d393a59cd7"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ae1466e3a3b5a75362c58d3d393a59cd7">&#9670;&nbsp;</a></span>RAYEXEC_NAMESPACE</h2>
+<a id="a4679e2fe11ad3651dcc83c15d5e54456"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4679e2fe11ad3651dcc83c15d5e54456">&#9670;&nbsp;</a></span>RAYEX_NAMESPACE</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">#define RAYEXEC_NAMESPACE&#160;&#160;&#160;rx</td>
+          <td class="memname">#define RAYEX_NAMESPACE&#160;&#160;&#160;rx</td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -160,46 +160,46 @@ Macros</h2></td></tr>
 
 </div>
 </div>
-<a id="aaff0cd56425a31e00b059a76dfdad581"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aaff0cd56425a31e00b059a76dfdad581">&#9670;&nbsp;</a></span>RAYEXEC_NAMESPACE_STRINGIFIED</h2>
+<a id="a399610e7e5c0fb86f548931773995a0d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a399610e7e5c0fb86f548931773995a0d">&#9670;&nbsp;</a></span>RAYEX_NAMESPACE_STRINGIFIED</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">#define RAYEXEC_NAMESPACE_STRINGIFIED&#160;&#160;&#160;<a class="el" href="_core_8hpp.html#aa479bc0a7fce1089c976c3b66d033a38">RAYEXEC_NAMESPACE_STRINGIFY</a>( <a class="el" href="_core_8hpp.html#ae1466e3a3b5a75362c58d3d393a59cd7">RAYEXEC_NAMESPACE</a> )</td>
+          <td class="memname">#define RAYEX_NAMESPACE_STRINGIFIED&#160;&#160;&#160;<a class="el" href="_core_8hpp.html#a0e29de8355fd7805c19990586d458f62">RAYEX_NAMESPACE_STRINGIFY</a>( <a class="el" href="_core_8hpp.html#a4679e2fe11ad3651dcc83c15d5e54456">RAYEX_NAMESPACE</a> )</td>
         </tr>
       </table>
 </div><div class="memdoc">
 
 </div>
 </div>
-<a id="aa479bc0a7fce1089c976c3b66d033a38"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aa479bc0a7fce1089c976c3b66d033a38">&#9670;&nbsp;</a></span>RAYEXEC_NAMESPACE_STRINGIFY</h2>
+<a id="a0e29de8355fd7805c19990586d458f62"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0e29de8355fd7805c19990586d458f62">&#9670;&nbsp;</a></span>RAYEX_NAMESPACE_STRINGIFY</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">#define RAYEXEC_NAMESPACE_STRINGIFY</td>
+          <td class="memname">#define RAYEX_NAMESPACE_STRINGIFY</td>
           <td>(</td>
           <td class="paramtype">&#160;</td>
           <td class="paramname">text</td><td>)</td>
-          <td>&#160;&#160;&#160;<a class="el" href="_core_8hpp.html#a71565448c6a50c61f3f57b1606128b91">RAYEXEC_NAMESPACE_STRINGIFY_2</a>( text )</td>
+          <td>&#160;&#160;&#160;<a class="el" href="_core_8hpp.html#a23448c05525b4f73861de72987ea0a30">RAYEX_NAMESPACE_STRINGIFY_2</a>( text )</td>
         </tr>
       </table>
 </div><div class="memdoc">
 
 </div>
 </div>
-<a id="a71565448c6a50c61f3f57b1606128b91"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a71565448c6a50c61f3f57b1606128b91">&#9670;&nbsp;</a></span>RAYEXEC_NAMESPACE_STRINGIFY_2</h2>
+<a id="a23448c05525b4f73861de72987ea0a30"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a23448c05525b4f73861de72987ea0a30">&#9670;&nbsp;</a></span>RAYEX_NAMESPACE_STRINGIFY_2</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">#define RAYEXEC_NAMESPACE_STRINGIFY_2</td>
+          <td class="memname">#define RAYEX_NAMESPACE_STRINGIFY_2</td>
           <td>(</td>
           <td class="paramtype">&#160;</td>
           <td class="paramname">text</td><td>)</td>
@@ -231,7 +231,7 @@ Macros</h2></td></tr>
         <tr>
           <td></td>
           <td>)</td>
-          <td></td><td>&#160;&#160;&#160;LOGGER_NAMESPACE::assert2( statement ? true : false, <a class="el" href="_core_8hpp.html#aaff0cd56425a31e00b059a76dfdad581">RAYEXEC_NAMESPACE_STRINGIFIED</a>, &quot;: &quot;, __VA_ARGS__ )</td>
+          <td></td><td>&#160;&#160;&#160;LOGGER_NAMESPACE::assert2( statement ? true : false, <a class="el" href="_core_8hpp.html#a399610e7e5c0fb86f548931773995a0d">RAYEX_NAMESPACE_STRINGIFIED</a>, &quot;: &quot;, __VA_ARGS__ )</td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -249,7 +249,7 @@ Macros</h2></td></tr>
           <td>(</td>
           <td class="paramtype">&#160;</td>
           <td class="paramname"><em>...</em></td><td>)</td>
-          <td>&#160;&#160;&#160;LOGGER_NAMESPACE::error( <a class="el" href="_core_8hpp.html#aaff0cd56425a31e00b059a76dfdad581">RAYEXEC_NAMESPACE_STRINGIFIED</a>, &quot;: &quot;, __VA_ARGS__ )</td>
+          <td>&#160;&#160;&#160;LOGGER_NAMESPACE::error( <a class="el" href="_core_8hpp.html#a399610e7e5c0fb86f548931773995a0d">RAYEX_NAMESPACE_STRINGIFIED</a>, &quot;: &quot;, __VA_ARGS__ )</td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -267,7 +267,7 @@ Macros</h2></td></tr>
           <td>(</td>
           <td class="paramtype">&#160;</td>
           <td class="paramname"><em>...</em></td><td>)</td>
-          <td>&#160;&#160;&#160;LOGGER_NAMESPACE::fatal( <a class="el" href="_core_8hpp.html#aaff0cd56425a31e00b059a76dfdad581">RAYEXEC_NAMESPACE_STRINGIFIED</a>, &quot;: &quot;, __VA_ARGS__ )</td>
+          <td>&#160;&#160;&#160;LOGGER_NAMESPACE::fatal( <a class="el" href="_core_8hpp.html#a399610e7e5c0fb86f548931773995a0d">RAYEX_NAMESPACE_STRINGIFIED</a>, &quot;: &quot;, __VA_ARGS__ )</td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -285,7 +285,7 @@ Macros</h2></td></tr>
           <td>(</td>
           <td class="paramtype">&#160;</td>
           <td class="paramname"><em>...</em></td><td>)</td>
-          <td>&#160;&#160;&#160;LOGGER_NAMESPACE::info( <a class="el" href="_core_8hpp.html#aaff0cd56425a31e00b059a76dfdad581">RAYEXEC_NAMESPACE_STRINGIFIED</a>, &quot;: &quot;, __VA_ARGS__ )</td>
+          <td>&#160;&#160;&#160;LOGGER_NAMESPACE::info( <a class="el" href="_core_8hpp.html#a399610e7e5c0fb86f548931773995a0d">RAYEX_NAMESPACE_STRINGIFIED</a>, &quot;: &quot;, __VA_ARGS__ )</td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -307,8 +307,9 @@ Macros</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<b>Value:</b><div class="fragment"><div class="line">  <span class="keywordtype">float</span> startTime = Time::getTime( ); \</div>
-<div class="line">  LOGGER_NAMESPACE::info( <a class="code" href="_core_8hpp.html#aaff0cd56425a31e00b059a76dfdad581">RAYEXEC_NAMESPACE_STRINGIFIED</a>, <span class="stringliteral">&quot;: &quot;</span>, __VA_ARGS__ )</div>
+<b>Value:</b><div class="fragment"><div class="line">  std::cout &lt;&lt; std::endl;             \</div>
+<div class="line">  float startTime = Time::getTime( ); \</div>
+<div class="line">  LOGGER_NAMESPACE::info( <a class="code" href="_core_8hpp.html#a399610e7e5c0fb86f548931773995a0d">RAYEX_NAMESPACE_STRINGIFIED</a>, <span class="stringliteral">&quot;: &quot;</span>, __VA_ARGS__ )</div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -323,7 +324,7 @@ Macros</h2></td></tr>
           <td>(</td>
           <td class="paramtype">&#160;</td>
           <td class="paramname"><em>...</em></td><td>)</td>
-          <td>&#160;&#160;&#160;LOGGER_NAMESPACE::success( <a class="el" href="_core_8hpp.html#aaff0cd56425a31e00b059a76dfdad581">RAYEXEC_NAMESPACE_STRINGIFIED</a>, &quot;: &quot;, __VA_ARGS__, &quot; ( Time: &quot;, std::setprecision( std::numeric_limits&lt;float&gt;::digits10 ), Time::getTime( ) - startTime, &quot; ms ).&quot; )</td>
+          <td>&#160;&#160;&#160;LOGGER_NAMESPACE::success( <a class="el" href="_core_8hpp.html#a399610e7e5c0fb86f548931773995a0d">RAYEX_NAMESPACE_STRINGIFIED</a>, &quot;: &quot;, __VA_ARGS__, &quot; ( Time: &quot;, std::setprecision( std::numeric_limits&lt;float&gt;::digits10 ), Time::getTime( ) - startTime, &quot; ms ).&quot; )</td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -341,7 +342,7 @@ Macros</h2></td></tr>
           <td>(</td>
           <td class="paramtype">&#160;</td>
           <td class="paramname"><em>...</em></td><td>)</td>
-          <td>&#160;&#160;&#160;LOGGER_NAMESPACE::success( <a class="el" href="_core_8hpp.html#aaff0cd56425a31e00b059a76dfdad581">RAYEXEC_NAMESPACE_STRINGIFIED</a>, &quot;: &quot;, __VA_ARGS__ )</td>
+          <td>&#160;&#160;&#160;LOGGER_NAMESPACE::success( <a class="el" href="_core_8hpp.html#a399610e7e5c0fb86f548931773995a0d">RAYEX_NAMESPACE_STRINGIFIED</a>, &quot;: &quot;, __VA_ARGS__ )</td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -359,7 +360,7 @@ Macros</h2></td></tr>
           <td>(</td>
           <td class="paramtype">&#160;</td>
           <td class="paramname"><em>...</em></td><td>)</td>
-          <td>&#160;&#160;&#160;LOGGER_NAMESPACE::verbose( <a class="el" href="_core_8hpp.html#aaff0cd56425a31e00b059a76dfdad581">RAYEXEC_NAMESPACE_STRINGIFIED</a>, &quot;: &quot;, __VA_ARGS__ )</td>
+          <td>&#160;&#160;&#160;LOGGER_NAMESPACE::verbose( <a class="el" href="_core_8hpp.html#a399610e7e5c0fb86f548931773995a0d">RAYEX_NAMESPACE_STRINGIFIED</a>, &quot;: &quot;, __VA_ARGS__ )</td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -377,7 +378,7 @@ Macros</h2></td></tr>
           <td>(</td>
           <td class="paramtype">&#160;</td>
           <td class="paramname"><em>...</em></td><td>)</td>
-          <td>&#160;&#160;&#160;LOGGER_NAMESPACE::warning( <a class="el" href="_core_8hpp.html#aaff0cd56425a31e00b059a76dfdad581">RAYEXEC_NAMESPACE_STRINGIFIED</a>, &quot;: &quot;, __VA_ARGS__ )</td>
+          <td>&#160;&#160;&#160;LOGGER_NAMESPACE::warning( <a class="el" href="_core_8hpp.html#a399610e7e5c0fb86f548931773995a0d">RAYEX_NAMESPACE_STRINGIFIED</a>, &quot;: &quot;, __VA_ARGS__ )</td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -428,7 +429,7 @@ Macros</h2></td></tr>
 </div>
 </div><!-- contents -->
 </div><!-- doc-content -->
-<div class="ttc" id="a_core_8hpp_html_aaff0cd56425a31e00b059a76dfdad581"><div class="ttname"><a href="_core_8hpp.html#aaff0cd56425a31e00b059a76dfdad581">RAYEXEC_NAMESPACE_STRINGIFIED</a></div><div class="ttdeci">#define RAYEXEC_NAMESPACE_STRINGIFIED</div><div class="ttdef"><b>Definition:</b> Core.hpp:39</div></div>
+<div class="ttc" id="a_core_8hpp_html_a399610e7e5c0fb86f548931773995a0d"><div class="ttname"><a href="_core_8hpp.html#a399610e7e5c0fb86f548931773995a0d">RAYEX_NAMESPACE_STRINGIFIED</a></div><div class="ttdeci">#define RAYEX_NAMESPACE_STRINGIFIED</div><div class="ttdef"><b>Definition:</b> Core.hpp:39</div></div>
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>

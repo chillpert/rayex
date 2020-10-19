@@ -4,32 +4,31 @@
 
  Members                        | Descriptions                                
 --------------------------------|---------------------------------------------
-`class `[`RAYEXEC_NAMESPACE::Api`](#class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_api) | Initializes and owns all Vulkan components and displays a picture on the screen.
-`class `[`RAYEXEC_NAMESPACE::Bindings`](#class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_bindings) | A utility class for managing descriptor related resources.
-`class `[`RAYEXEC_NAMESPACE::Buffer`](#class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_buffer) | A wrapper class for a Vulkan buffer.
-`class `[`RAYEXEC_NAMESPACE::CommandBuffer`](#class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_command_buffer) | A wrapper class for Vulkan command buffers.
-`class `[`RAYEXEC_NAMESPACE::IndexBuffer`](#class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_index_buffer) | A specialised buffer for index data.
-`class `[`RAYEXEC_NAMESPACE::UniformBuffer`](#class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_uniform_buffer) | A specialised buffer for uniforms.
-`class `[`RAYEXEC_NAMESPACE::VertexBuffer`](#class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_vertex_buffer) | A specialised buffer for vertex data.
-`class `[`RAYEXEC_NAMESPACE::Image`](#class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_image) | A wrapper class for a Vulkan image.
-`class `[`RAYEXEC_NAMESPACE::Texture`](#class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_texture) | A helper class for creating ready-to-use textures.
-`class `[`RAYEXEC_NAMESPACE::Pipeline`](#class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_pipeline) | A wrapper class for a Vulkan graphics pipeline.
-`class `[`RAYEXEC_NAMESPACE::RayTracingBuilder`](#class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_ray_tracing_builder) | Manages the building process of the acceleration structures.
-`class `[`RAYEXEC_NAMESPACE::RenderPass`](#class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_render_pass) | A wrapper class for a Vulkan render pass.
-`class `[`RAYEXEC_NAMESPACE::Surface`](#class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_surface) | A wrapper class for a Vulkan surface.
-`class `[`RAYEXEC_NAMESPACE::Swapchain`](#class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_swapchain) | A wrapper class for a Vulkan swapchain.
-`class `[`RAYEXEC_NAMESPACE::DebugMessenger`](#class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_debug_messenger) | A wrapper class for a Vulkan debug utility messenger.
-`class `[`RAYEXEC_NAMESPACE::Gui`](#class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_gui) | A class to create an ImGui-based GUI.
-`struct `[`RAYEXEC_NAMESPACE::Descriptors`](#struct_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_descriptors) | Encapsulates descriptor-related resources.
-`struct `[`RAYEXEC_NAMESPACE::CameraUbo`](#struct_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_camera_ubo) | A uniform buffer object for camera data.
-`struct `[`RAYEXEC_NAMESPACE::LightsUbo`](#struct_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_lights_ubo) | A uniform buffer object for different light types.
-`struct `[`RAYEXEC_NAMESPACE::AccelerationStructure`](#struct_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_acceleration_structure) | A wrapper for a Vulkan acceleration Structure.
-`struct `[`RAYEXEC_NAMESPACE::Tlas`](#struct_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_tlas) | A wrapper for a top level acceleration structure.
-`struct `[`RAYEXEC_NAMESPACE::Blas`](#struct_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_blas) | A wrapper for a bottom level acceleration structure.
-`struct `[`RAYEXEC_NAMESPACE::BlasInstance`](#struct_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_blas_instance) | An instance of a bottom level acceleration structure.
-`struct `[`RAYEXEC_NAMESPACE::Vertex`](#struct_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_vertex) | Describes a vertex and its data.
+`class `[`RAYEX_NAMESPACE::Api`](#class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_api) | Initializes and owns all Vulkan components and displays a picture on the screen.
+`class `[`RAYEX_NAMESPACE::Bindings`](#class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_bindings) | A utility class for managing descriptor related resources.
+`class `[`RAYEX_NAMESPACE::Buffer`](#class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_buffer) | A wrapper class for a Vulkan buffer.
+`class `[`RAYEX_NAMESPACE::CommandBuffer`](#class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_command_buffer) | A wrapper class for Vulkan command buffers.
+`class `[`RAYEX_NAMESPACE::IndexBuffer`](#class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_index_buffer) | A specialised buffer for index data.
+`class `[`RAYEX_NAMESPACE::UniformBuffer`](#class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_uniform_buffer) | A specialised buffer for uniforms.
+`class `[`RAYEX_NAMESPACE::VertexBuffer`](#class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_vertex_buffer) | A specialised buffer for vertex data.
+`class `[`RAYEX_NAMESPACE::Image`](#class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_image) | A wrapper class for a Vulkan image.
+`class `[`RAYEX_NAMESPACE::Texture`](#class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_texture) | A helper class for creating ready-to-use textures.
+`class `[`RAYEX_NAMESPACE::Pipeline`](#class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_pipeline) | A wrapper class for a Vulkan graphics pipeline.
+`class `[`RAYEX_NAMESPACE::RayTracingBuilder`](#class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_ray_tracing_builder) | Manages the building process of the acceleration structures.
+`class `[`RAYEX_NAMESPACE::RenderPass`](#class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_render_pass) | A wrapper class for a Vulkan render pass.
+`class `[`RAYEX_NAMESPACE::Surface`](#class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_surface) | A wrapper class for a Vulkan surface.
+`class `[`RAYEX_NAMESPACE::Swapchain`](#class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_swapchain) | A wrapper class for a Vulkan swapchain.
+`class `[`RAYEX_NAMESPACE::DebugMessenger`](#class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_debug_messenger) | A wrapper class for a Vulkan debug utility messenger.
+`class `[`RAYEX_NAMESPACE::Gui`](#class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_gui) | A class to create an ImGui-based GUI.
+`struct `[`RAYEX_NAMESPACE::Descriptors`](#struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_descriptors) | Encapsulates descriptor-related resources.
+`struct `[`RAYEX_NAMESPACE::CameraUbo`](#struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_camera_ubo) | A uniform buffer object for camera data.
+`struct `[`RAYEX_NAMESPACE::AccelerationStructure`](#struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_acceleration_structure) | A wrapper for a Vulkan acceleration Structure.
+`struct `[`RAYEX_NAMESPACE::Tlas`](#struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_tlas) | A wrapper for a top level acceleration structure.
+`struct `[`RAYEX_NAMESPACE::Blas`](#struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_blas) | A wrapper for a bottom level acceleration structure.
+`struct `[`RAYEX_NAMESPACE::BlasInstance`](#struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_blas_instance) | An instance of a bottom level acceleration structure.
+`struct `[`RAYEX_NAMESPACE::Vertex`](#struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_vertex) | Describes a vertex and its data.
 
-# class `RAYEXEC_NAMESPACE::Api` 
+# class `RAYEX_NAMESPACE::Api` 
 
 Initializes and owns all Vulkan components and displays a picture on the screen.
 
@@ -41,19 +40,19 @@ Because of scope-bound destruction it is required to pay close attention to the 
 
  Members                        | Descriptions                                
 --------------------------------|---------------------------------------------
-`public friend `[`RayExec`](#class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_api_1af862c9b962c5a27ad96ec325a12c91ae) | 
-`public  `[`Api`](#class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_api_1a01833704b83c33dc619485119c8a9207)`() = default` | 
-`public RX_API `[`~Api`](#class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_api_1ad9139e70bcc023ea322b0d38ed975686)`()` | 
+`public friend `[`Rayex`](#class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_api_1a654c4ab4f46b43e1dac112eafb763aac) | 
+`public  `[`Api`](#class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_api_1a6d337866b5a344ec9f2a1c3e968f1fef)`() = default` | 
+`public RX_API `[`~Api`](#class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_api_1a00b9e277abbc01e990f044edef3ef033)`()` | 
 
 ## Members
 
-#### `public friend `[`RayExec`](#class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_api_1af862c9b962c5a27ad96ec325a12c91ae) 
+#### `public friend `[`Rayex`](#class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_api_1a654c4ab4f46b43e1dac112eafb763aac) 
 
-#### `public  `[`Api`](#class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_api_1a01833704b83c33dc619485119c8a9207)`() = default` 
+#### `public  `[`Api`](#class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_api_1a6d337866b5a344ec9f2a1c3e968f1fef)`() = default` 
 
-#### `public RX_API `[`~Api`](#class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_api_1ad9139e70bcc023ea322b0d38ed975686)`()` 
+#### `public RX_API `[`~Api`](#class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_api_1a00b9e277abbc01e990f044edef3ef033)`()` 
 
-# class `RAYEXEC_NAMESPACE::Bindings` 
+# class `RAYEX_NAMESPACE::Bindings` 
 
 A utility class for managing descriptor related resources.
 
@@ -61,21 +60,21 @@ A utility class for managing descriptor related resources.
 
  Members                        | Descriptions                                
 --------------------------------|---------------------------------------------
-`public void `[`add`](#class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_bindings_1a2f10ef6e872fad7a4c306ecc95c7c1fd)`(uint32_t binding,vk::DescriptorType type,vk::ShaderStageFlags stage,uint32_t count,vk::DescriptorBindingFlags flags)` | Used to add a binding.
-`public auto `[`initLayoutUnique`](#class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_bindings_1a70b09f22390a7fe839cc1da021acc6b0)`()` | Used to initialize a unique descriptor set layout.
-`public auto `[`initPoolUnique`](#class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_bindings_1a6e21f0ead6c8278daeadd2c76d3b0810)`(uint32_t maxSets,vk::DescriptorPoolCreateFlags flags)` | Used to initialize a descriptor pool.
-`public void `[`update`](#class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_bindings_1ad689b3d0de08c764d41bf2b3fd6159ac)`()` | Updates the descriptor set.
-`public void `[`write`](#class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_bindings_1a1c3d1c52ae75baff73aefd9647ec534a)`(const std::vector< vk::DescriptorSet > & sets,uint32_t binding,vk::WriteDescriptorSetAccelerationStructureKHR * pWriteDescriptorSetAccelerationStructureKHR)` | Used to create a descriptor write for an acceleration structure.
-`public void `[`write`](#class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_bindings_1a1148d777220928340e00f28d65815f28)`(const std::vector< vk::DescriptorSet > & sets,uint32_t binding,vk::DescriptorImageInfo * pImageInfo)` | Used to create a descriptor write for an image.
-`public void `[`write`](#class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_bindings_1a5ba54bd2185e5c90a750cb5b184f114a)`(const std::vector< vk::DescriptorSet > & sets,uint32_t binding,vk::DescriptorBufferInfo * pBufferInfo)` | Used to create a descriptor write for a buffer.
-`public void `[`write`](#class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_bindings_1a1f1704821f8a085346f2f0a9d9db2498)`(const std::vector< vk::DescriptorSet > & sets,uint32_t binding,const std::vector< vk::DescriptorBufferInfo > & uniformBufferInfos)` | Used to create a descriptor write for uniform buffers.
-`public void `[`writeArray`](#class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_bindings_1a8240677bf172ca55509ea6474dbca1c3)`(const std::vector< vk::DescriptorSet > & sets,uint32_t binding,vk::DescriptorBufferInfo * pBufferInfo)` | Used to create an array of descriptor writes for buffers.
-`public void `[`setPoolSizes`](#class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_bindings_1ab192b011847a8caaa75b9661302d455c)`(const std::vector< vk::DescriptorPoolSize > & poolSizes)` | Used to set pool sizes manually.
-`public void `[`reset`](#class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_bindings_1a09e932446ea500173160e77a157764ac)`()` | Resets all members.
+`public void `[`add`](#class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_bindings_1ae7f6782801197c7aa3d3e55949760c2b)`(uint32_t binding,vk::DescriptorType type,vk::ShaderStageFlags stage,uint32_t count,vk::DescriptorBindingFlags flags)` | Used to add a binding.
+`public auto `[`initLayoutUnique`](#class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_bindings_1a65f1f7e88d734539019ee296f3bf736a)`()` | Used to initialize a unique descriptor set layout.
+`public auto `[`initPoolUnique`](#class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_bindings_1a20edd74ad52f8a3604f7cd892f2239f6)`(uint32_t maxSets,vk::DescriptorPoolCreateFlags flags)` | Used to initialize a descriptor pool.
+`public void `[`update`](#class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_bindings_1a5c7e9adcda6c378e5a1b342d70d3acc5)`()` | Updates the descriptor set.
+`public void `[`write`](#class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_bindings_1a8ff18f3ca1c5644d8a6237eac7292928)`(const std::vector< vk::DescriptorSet > & sets,uint32_t binding,vk::WriteDescriptorSetAccelerationStructureKHR * pWriteDescriptorSetAccelerationStructureKHR)` | Used to create a descriptor write for an acceleration structure.
+`public void `[`write`](#class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_bindings_1aa33d82290e77d12e483f609fe94c7c59)`(const std::vector< vk::DescriptorSet > & sets,uint32_t binding,vk::DescriptorImageInfo * pImageInfo)` | Used to create a descriptor write for an image.
+`public void `[`write`](#class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_bindings_1a86bc166283b66986b514920652dfbdd9)`(const std::vector< vk::DescriptorSet > & sets,uint32_t binding,vk::DescriptorBufferInfo * pBufferInfo)` | Used to create a descriptor write for a buffer.
+`public void `[`write`](#class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_bindings_1a504a47e05d5db66c5545bf6402ae6b98)`(const std::vector< vk::DescriptorSet > & sets,uint32_t binding,const std::vector< vk::DescriptorBufferInfo > & uniformBufferInfos)` | Used to create a descriptor write for uniform buffers.
+`public void `[`writeArray`](#class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_bindings_1a74d4d878e189392b1ec2ff7404ce0848)`(const std::vector< vk::DescriptorSet > & sets,uint32_t binding,vk::DescriptorBufferInfo * pBufferInfo)` | Used to create an array of descriptor writes for buffers.
+`public void `[`setPoolSizes`](#class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_bindings_1adb3fefd44d2cff639f5ad5a386b40f8a)`(const std::vector< vk::DescriptorPoolSize > & poolSizes)` | Used to set pool sizes manually.
+`public void `[`reset`](#class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_bindings_1a6ce4c6073f217615f9212444578ca217)`()` | Resets all members.
 
 ## Members
 
-#### `public void `[`add`](#class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_bindings_1a2f10ef6e872fad7a4c306ecc95c7c1fd)`(uint32_t binding,vk::DescriptorType type,vk::ShaderStageFlags stage,uint32_t count,vk::DescriptorBindingFlags flags)` 
+#### `public void `[`add`](#class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_bindings_1ae7f6782801197c7aa3d3e55949760c2b)`(uint32_t binding,vk::DescriptorType type,vk::ShaderStageFlags stage,uint32_t count,vk::DescriptorBindingFlags flags)` 
 
 Used to add a binding.
 
@@ -90,14 +89,14 @@ Used to add a binding.
 
 * `flags` The binding's descriptor binding flags.
 
-#### `public auto `[`initLayoutUnique`](#class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_bindings_1a70b09f22390a7fe839cc1da021acc6b0)`()` 
+#### `public auto `[`initLayoutUnique`](#class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_bindings_1a65f1f7e88d734539019ee296f3bf736a)`()` 
 
 Used to initialize a unique descriptor set layout.
 
 #### Returns
 Returns a descriptor set layout with a unqiue handle.
 
-#### `public auto `[`initPoolUnique`](#class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_bindings_1a6e21f0ead6c8278daeadd2c76d3b0810)`(uint32_t maxSets,vk::DescriptorPoolCreateFlags flags)` 
+#### `public auto `[`initPoolUnique`](#class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_bindings_1a20edd74ad52f8a3604f7cd892f2239f6)`(uint32_t maxSets,vk::DescriptorPoolCreateFlags flags)` 
 
 Used to initialize a descriptor pool.
 
@@ -109,13 +108,13 @@ Used to initialize a descriptor pool.
 #### Returns
 Returns a descriptor pool with a unique handle.
 
-#### `public void `[`update`](#class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_bindings_1ad689b3d0de08c764d41bf2b3fd6159ac)`()` 
+#### `public void `[`update`](#class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_bindings_1a5c7e9adcda6c378e5a1b342d70d3acc5)`()` 
 
 Updates the descriptor set.
 
 There are no descriptor set handles required for this function.
 
-#### `public void `[`write`](#class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_bindings_1a1c3d1c52ae75baff73aefd9647ec534a)`(const std::vector< vk::DescriptorSet > & sets,uint32_t binding,vk::WriteDescriptorSetAccelerationStructureKHR * pWriteDescriptorSetAccelerationStructureKHR)` 
+#### `public void `[`write`](#class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_bindings_1a8ff18f3ca1c5644d8a6237eac7292928)`(const std::vector< vk::DescriptorSet > & sets,uint32_t binding,vk::WriteDescriptorSetAccelerationStructureKHR * pWriteDescriptorSetAccelerationStructureKHR)` 
 
 Used to create a descriptor write for an acceleration structure.
 
@@ -126,7 +125,7 @@ Used to create a descriptor write for an acceleration structure.
 
 * `pWriteDescriptorSetAccelerationStructureKHR` A pointer to a acceleration structure descriptor write.
 
-#### `public void `[`write`](#class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_bindings_1a1148d777220928340e00f28d65815f28)`(const std::vector< vk::DescriptorSet > & sets,uint32_t binding,vk::DescriptorImageInfo * pImageInfo)` 
+#### `public void `[`write`](#class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_bindings_1aa33d82290e77d12e483f609fe94c7c59)`(const std::vector< vk::DescriptorSet > & sets,uint32_t binding,vk::DescriptorImageInfo * pImageInfo)` 
 
 Used to create a descriptor write for an image.
 
@@ -137,7 +136,7 @@ Used to create a descriptor write for an image.
 
 * `pImageInfo` A pointer to an image descriptor write.
 
-#### `public void `[`write`](#class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_bindings_1a5ba54bd2185e5c90a750cb5b184f114a)`(const std::vector< vk::DescriptorSet > & sets,uint32_t binding,vk::DescriptorBufferInfo * pBufferInfo)` 
+#### `public void `[`write`](#class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_bindings_1a86bc166283b66986b514920652dfbdd9)`(const std::vector< vk::DescriptorSet > & sets,uint32_t binding,vk::DescriptorBufferInfo * pBufferInfo)` 
 
 Used to create a descriptor write for a buffer.
 
@@ -148,7 +147,7 @@ Used to create a descriptor write for a buffer.
 
 * `pBufferInfo` A pointer to a buffer descriptor write.
 
-#### `public void `[`write`](#class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_bindings_1a1f1704821f8a085346f2f0a9d9db2498)`(const std::vector< vk::DescriptorSet > & sets,uint32_t binding,const std::vector< vk::DescriptorBufferInfo > & uniformBufferInfos)` 
+#### `public void `[`write`](#class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_bindings_1a504a47e05d5db66c5545bf6402ae6b98)`(const std::vector< vk::DescriptorSet > & sets,uint32_t binding,const std::vector< vk::DescriptorBufferInfo > & uniformBufferInfos)` 
 
 Used to create a descriptor write for uniform buffers.
 
@@ -159,7 +158,7 @@ Used to create a descriptor write for uniform buffers.
 
 * `uniformBufferInfos` The uniform buffer's descriptor buffer infos.
 
-#### `public void `[`writeArray`](#class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_bindings_1a8240677bf172ca55509ea6474dbca1c3)`(const std::vector< vk::DescriptorSet > & sets,uint32_t binding,vk::DescriptorBufferInfo * pBufferInfo)` 
+#### `public void `[`writeArray`](#class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_bindings_1a74d4d878e189392b1ec2ff7404ce0848)`(const std::vector< vk::DescriptorSet > & sets,uint32_t binding,vk::DescriptorBufferInfo * pBufferInfo)` 
 
 Used to create an array of descriptor writes for buffers.
 
@@ -170,7 +169,7 @@ Used to create an array of descriptor writes for buffers.
 
 * `pBufferInfo` The pointer to the first element of an array of descriptor buffer infos.
 
-#### `public void `[`setPoolSizes`](#class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_bindings_1ab192b011847a8caaa75b9661302d455c)`(const std::vector< vk::DescriptorPoolSize > & poolSizes)` 
+#### `public void `[`setPoolSizes`](#class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_bindings_1adb3fefd44d2cff639f5ad5a386b40f8a)`(const std::vector< vk::DescriptorPoolSize > & poolSizes)` 
 
 Used to set pool sizes manually.
 
@@ -179,11 +178,11 @@ Used to set pool sizes manually.
 
 Must be set before initializing the descriptor pool.
 
-#### `public void `[`reset`](#class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_bindings_1a09e932446ea500173160e77a157764ac)`()` 
+#### `public void `[`reset`](#class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_bindings_1a6ce4c6073f217615f9212444578ca217)`()` 
 
 Resets all members.
 
-# class `RAYEXEC_NAMESPACE::Buffer` 
+# class `RAYEX_NAMESPACE::Buffer` 
 
 A wrapper class for a Vulkan buffer.
 
@@ -191,30 +190,30 @@ A wrapper class for a Vulkan buffer.
 
  Members                        | Descriptions                                
 --------------------------------|---------------------------------------------
-`public  `[`Buffer`](#class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_buffer_1a4286db555c7beb872ad62e5ae78f5a92)`() = default` | 
-`public  `[`Buffer`](#class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_buffer_1a0f821dd2fb7a528f5d370c9935abb95e)`(vk::DeviceSize size,vk::BufferUsageFlags usage,const std::vector< uint32_t > & queueFamilyIndices,vk::MemoryPropertyFlags memoryPropertyFlags,void * pNextMemory,bool initialize)` | #### Parameters
-`public  `[`Buffer`](#class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_buffer_1a6f29bd9f8dfecb05a9a40c5af01d1474)`(const `[`Buffer`](#class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_buffer)` & buffer)` | #### Parameters
-`public  `[`Buffer`](#class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_buffer_1af8b33d8383361d81c6a89b16bdcc642c)`(const `[`Buffer`](#class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_buffer)` &&) = delete` | 
-`public auto `[`operator=`](#class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_buffer_1a112376785376333464a39d84851627bd)`(const `[`Buffer`](#class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_buffer)` &)` | 
-`public auto `[`operator=`](#class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_buffer_1a86fa3c008ace2f907d454aeea95a5c35)`(const `[`Buffer`](#class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_buffer)` &&) = delete` | 
-`public virtual RX_API `[`~Buffer`](#class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_buffer_1a75864b69895914855537bd47ffc767dc)`() = default` | 
-`public void `[`copyToBuffer`](#class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_buffer_1ae9316e2a184d003b4c15102d8c73e8d3)`(const `[`Buffer`](#class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_buffer)` & buffer) const` | Copies the content of this buffer to another [RAYEXEC_NAMESPACE::Buffer](#class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_buffer).
-`public RX_API void `[`copyToBuffer`](#class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_buffer_1a7e9ccfcec6b210f77929ae6f8e015470)`(vk::Buffer buffer) const` | Copies the content of this buffer to another vk::Buffer.
-`public void `[`copyToImage`](#class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_buffer_1a530b23fb6ee6affece20f959e7d12847)`(`[`Image`](moxygen/api-API.md#class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_image)` & image) const` | Copies the content of this buffer to an image.
-`public inline auto `[`get`](#class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_buffer_1a20b985e8be99e64c284acaf58e5b7646)`() const` | #### Returns
-`public inline auto `[`getMemory`](#class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_buffer_1a320d33b561ad0629b139e20cd235c102)`() const` | #### Returns
-`public inline auto `[`getSize`](#class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_buffer_1a4bb5fbab956fbcf4e362e5c2268f8e2f)`() const` | #### Returns
-`public void `[`init`](#class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_buffer_1a8281cef1826a7b0f970a636e7a24703c)`(vk::DeviceSize size,vk::BufferUsageFlags usage,const std::vector< uint32_t > & queueFamilyIndices,vk::MemoryPropertyFlags memoryPropertyFlags,void * pNextMemory)` | Creates the buffer and allocates memory for it.
-`public template<>`  <br/>`inline void `[`fill`](#class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_buffer_1a34447d9e04323e05f3434fc290d75934)`(const T * source,vk::DeviceSize offset)` | Used to fill the buffer with any kind of data.
-`protected vk::UniqueBuffer `[`buffer`](#class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_buffer_1a3dae10b0e57aaeb528ad27336a45f46c) | The buffer object with a unique handle.
-`protected vk::UniqueDeviceMemory `[`memory`](#class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_buffer_1ade00c91ade501a5f85f0f157dbc87f7e) | The buffer's memory with a unique handle.
-`protected vk::DeviceSize `[`size`](#class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_buffer_1a154a7abcbda22be170ac9cfc3076b532) | The buffer's size.
+`public  `[`Buffer`](#class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_buffer_1a453a0a1cab9ce09237de96956ad5084e)`() = default` | 
+`public  `[`Buffer`](#class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_buffer_1a85fc3320284c9fc86390bdd03965382f)`(vk::DeviceSize size,vk::BufferUsageFlags usage,const std::vector< uint32_t > & queueFamilyIndices,vk::MemoryPropertyFlags memoryPropertyFlags,void * pNextMemory,bool initialize)` | #### Parameters
+`public  `[`Buffer`](#class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_buffer_1a133961b9bd24490925aeed994ae1a4d4)`(const `[`Buffer`](#class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_buffer)` & buffer)` | #### Parameters
+`public  `[`Buffer`](#class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_buffer_1a2b633d1f23ddf0ae8ee27987e9373c1a)`(const `[`Buffer`](#class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_buffer)` &&) = delete` | 
+`public auto `[`operator=`](#class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_buffer_1adccdf72dc2b5a56496881e97c683d5ca)`(const `[`Buffer`](#class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_buffer)` &)` | 
+`public auto `[`operator=`](#class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_buffer_1a53ea2ff685692af62529589df9fa18a8)`(const `[`Buffer`](#class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_buffer)` &&) = delete` | 
+`public virtual RX_API `[`~Buffer`](#class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_buffer_1aa7982fb9bc67112adfb32fb2d056d464)`() = default` | 
+`public void `[`copyToBuffer`](#class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_buffer_1aded2e7ff036b1e5a5af09e4d1ffb4bb9)`(const `[`Buffer`](#class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_buffer)` & buffer) const` | Copies the content of this buffer to another [RAYEX_NAMESPACE::Buffer](#class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_buffer).
+`public RX_API void `[`copyToBuffer`](#class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_buffer_1ac40b2622012aa07995113493e8d442e9)`(vk::Buffer buffer) const` | Copies the content of this buffer to another vk::Buffer.
+`public void `[`copyToImage`](#class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_buffer_1a6afdf639e07989140bb320e15e14ddad)`(`[`Image`](moxygen/api-API.md#class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_image)` & image) const` | Copies the content of this buffer to an image.
+`public inline auto `[`get`](#class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_buffer_1a6aa15487587ed4a275726dea52d9bd1f)`() const` | #### Returns
+`public inline auto `[`getMemory`](#class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_buffer_1a3e59b7d59f338fde8570cd541162cabd)`() const` | #### Returns
+`public inline auto `[`getSize`](#class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_buffer_1aa51128ff5d6822bb2df9c2dcd25f99b6)`() const` | #### Returns
+`public void `[`init`](#class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_buffer_1af4c1f7cd28ec3d75feccf91f704e67d3)`(vk::DeviceSize size,vk::BufferUsageFlags usage,const std::vector< uint32_t > & queueFamilyIndices,vk::MemoryPropertyFlags memoryPropertyFlags,void * pNextMemory)` | Creates the buffer and allocates memory for it.
+`public template<>`  <br/>`inline void `[`fill`](#class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_buffer_1aa49ff21ac773fb4268170e0b0781142f)`(const T * source,vk::DeviceSize offset)` | Used to fill the buffer with any kind of data.
+`protected vk::UniqueBuffer `[`buffer`](#class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_buffer_1a9eb5819b1d39f6686cb7d86672076a02) | The buffer object with a unique handle.
+`protected vk::UniqueDeviceMemory `[`memory`](#class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_buffer_1a3971260d0e6376c896a39c0e850f971d) | The buffer's memory with a unique handle.
+`protected vk::DeviceSize `[`size`](#class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_buffer_1a808b51d8eb942483c17ae0e67ac03e03) | The buffer's size.
 
 ## Members
 
-#### `public  `[`Buffer`](#class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_buffer_1a4286db555c7beb872ad62e5ae78f5a92)`() = default` 
+#### `public  `[`Buffer`](#class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_buffer_1a453a0a1cab9ce09237de96956ad5084e)`() = default` 
 
-#### `public  `[`Buffer`](#class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_buffer_1a0f821dd2fb7a528f5d370c9935abb95e)`(vk::DeviceSize size,vk::BufferUsageFlags usage,const std::vector< uint32_t > & queueFamilyIndices,vk::MemoryPropertyFlags memoryPropertyFlags,void * pNextMemory,bool initialize)` 
+#### `public  `[`Buffer`](#class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_buffer_1a85fc3320284c9fc86390bdd03965382f)`(vk::DeviceSize size,vk::BufferUsageFlags usage,const std::vector< uint32_t > & queueFamilyIndices,vk::MemoryPropertyFlags memoryPropertyFlags,void * pNextMemory,bool initialize)` 
 
 #### Parameters
 * `size` The size of the buffer. 
@@ -227,58 +226,58 @@ A wrapper class for a Vulkan buffer.
 
 * `pNextMemory` Attachment to the memory's pNext chain. 
 
-* `initialize` If true, the buffer object will be initialized right away without an additional call to [init()](moxygen/api-API.md#class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_buffer_1a8281cef1826a7b0f970a636e7a24703c).
+* `initialize` If true, the buffer object will be initialized right away without an additional call to [init()](moxygen/api-API.md#class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_buffer_1af4c1f7cd28ec3d75feccf91f704e67d3).
 
-#### `public  `[`Buffer`](#class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_buffer_1a6f29bd9f8dfecb05a9a40c5af01d1474)`(const `[`Buffer`](#class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_buffer)` & buffer)` 
-
-#### Parameters
-* `buffer` The target for the copy operation.
-
-#### `public  `[`Buffer`](#class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_buffer_1af8b33d8383361d81c6a89b16bdcc642c)`(const `[`Buffer`](#class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_buffer)` &&) = delete` 
-
-#### `public auto `[`operator=`](#class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_buffer_1a112376785376333464a39d84851627bd)`(const `[`Buffer`](#class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_buffer)` &)` 
-
-#### `public auto `[`operator=`](#class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_buffer_1a86fa3c008ace2f907d454aeea95a5c35)`(const `[`Buffer`](#class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_buffer)` &&) = delete` 
-
-#### `public virtual RX_API `[`~Buffer`](#class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_buffer_1a75864b69895914855537bd47ffc767dc)`() = default` 
-
-#### `public void `[`copyToBuffer`](#class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_buffer_1ae9316e2a184d003b4c15102d8c73e8d3)`(const `[`Buffer`](#class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_buffer)` & buffer) const` 
-
-Copies the content of this buffer to another [RAYEXEC_NAMESPACE::Buffer](#class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_buffer).
+#### `public  `[`Buffer`](#class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_buffer_1a133961b9bd24490925aeed994ae1a4d4)`(const `[`Buffer`](#class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_buffer)` & buffer)` 
 
 #### Parameters
 * `buffer` The target for the copy operation.
 
-#### `public RX_API void `[`copyToBuffer`](#class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_buffer_1a7e9ccfcec6b210f77929ae6f8e015470)`(vk::Buffer buffer) const` 
+#### `public  `[`Buffer`](#class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_buffer_1a2b633d1f23ddf0ae8ee27987e9373c1a)`(const `[`Buffer`](#class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_buffer)` &&) = delete` 
+
+#### `public auto `[`operator=`](#class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_buffer_1adccdf72dc2b5a56496881e97c683d5ca)`(const `[`Buffer`](#class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_buffer)` &)` 
+
+#### `public auto `[`operator=`](#class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_buffer_1a53ea2ff685692af62529589df9fa18a8)`(const `[`Buffer`](#class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_buffer)` &&) = delete` 
+
+#### `public virtual RX_API `[`~Buffer`](#class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_buffer_1aa7982fb9bc67112adfb32fb2d056d464)`() = default` 
+
+#### `public void `[`copyToBuffer`](#class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_buffer_1aded2e7ff036b1e5a5af09e4d1ffb4bb9)`(const `[`Buffer`](#class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_buffer)` & buffer) const` 
+
+Copies the content of this buffer to another [RAYEX_NAMESPACE::Buffer](#class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_buffer).
+
+#### Parameters
+* `buffer` The target for the copy operation.
+
+#### `public RX_API void `[`copyToBuffer`](#class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_buffer_1ac40b2622012aa07995113493e8d442e9)`(vk::Buffer buffer) const` 
 
 Copies the content of this buffer to another vk::Buffer.
 
 #### Parameters
 * `buffer` The target for the copy operation.
 
-#### `public void `[`copyToImage`](#class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_buffer_1a530b23fb6ee6affece20f959e7d12847)`(`[`Image`](moxygen/api-API.md#class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_image)` & image) const` 
+#### `public void `[`copyToImage`](#class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_buffer_1a6afdf639e07989140bb320e15e14ddad)`(`[`Image`](moxygen/api-API.md#class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_image)` & image) const` 
 
 Copies the content of this buffer to an image.
 
 #### Parameters
 * `image` The target for the copy operation.
 
-#### `public inline auto `[`get`](#class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_buffer_1a20b985e8be99e64c284acaf58e5b7646)`() const` 
+#### `public inline auto `[`get`](#class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_buffer_1a6aa15487587ed4a275726dea52d9bd1f)`() const` 
 
 #### Returns
 Returns the buffer without the unique handle.
 
-#### `public inline auto `[`getMemory`](#class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_buffer_1a320d33b561ad0629b139e20cd235c102)`() const` 
+#### `public inline auto `[`getMemory`](#class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_buffer_1a3e59b7d59f338fde8570cd541162cabd)`() const` 
 
 #### Returns
 Returns the buffer's memory without the unique handle.
 
-#### `public inline auto `[`getSize`](#class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_buffer_1a4bb5fbab956fbcf4e362e5c2268f8e2f)`() const` 
+#### `public inline auto `[`getSize`](#class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_buffer_1aa51128ff5d6822bb2df9c2dcd25f99b6)`() const` 
 
 #### Returns
 Returns the size of the buffer.
 
-#### `public void `[`init`](#class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_buffer_1a8281cef1826a7b0f970a636e7a24703c)`(vk::DeviceSize size,vk::BufferUsageFlags usage,const std::vector< uint32_t > & queueFamilyIndices,vk::MemoryPropertyFlags memoryPropertyFlags,void * pNextMemory)` 
+#### `public void `[`init`](#class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_buffer_1af4c1f7cd28ec3d75feccf91f704e67d3)`(vk::DeviceSize size,vk::BufferUsageFlags usage,const std::vector< uint32_t > & queueFamilyIndices,vk::MemoryPropertyFlags memoryPropertyFlags,void * pNextMemory)` 
 
 Creates the buffer and allocates memory for it.
 
@@ -293,7 +292,7 @@ Creates the buffer and allocates memory for it.
 
 * `pNextMemory` Attachment to the memory's pNext chain.
 
-#### `public template<>`  <br/>`inline void `[`fill`](#class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_buffer_1a34447d9e04323e05f3434fc290d75934)`(const T * source,vk::DeviceSize offset)` 
+#### `public template<>`  <br/>`inline void `[`fill`](#class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_buffer_1aa49ff21ac773fb4268170e0b0781142f)`(const T * source,vk::DeviceSize offset)` 
 
 Used to fill the buffer with any kind of data.
 
@@ -302,19 +301,19 @@ Used to fill the buffer with any kind of data.
 
 * `offset` The data's offset within the buffer.
 
-#### `protected vk::UniqueBuffer `[`buffer`](#class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_buffer_1a3dae10b0e57aaeb528ad27336a45f46c) 
+#### `protected vk::UniqueBuffer `[`buffer`](#class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_buffer_1a9eb5819b1d39f6686cb7d86672076a02) 
 
 The buffer object with a unique handle.
 
-#### `protected vk::UniqueDeviceMemory `[`memory`](#class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_buffer_1ade00c91ade501a5f85f0f157dbc87f7e) 
+#### `protected vk::UniqueDeviceMemory `[`memory`](#class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_buffer_1a3971260d0e6376c896a39c0e850f971d) 
 
 The buffer's memory with a unique handle.
 
-#### `protected vk::DeviceSize `[`size`](#class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_buffer_1a154a7abcbda22be170ac9cfc3076b532) 
+#### `protected vk::DeviceSize `[`size`](#class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_buffer_1a808b51d8eb942483c17ae0e67ac03e03) 
 
 The buffer's size.
 
-# class `RAYEXEC_NAMESPACE::CommandBuffer` 
+# class `RAYEX_NAMESPACE::CommandBuffer` 
 
 A wrapper class for Vulkan command buffers.
 
@@ -322,22 +321,22 @@ A wrapper class for Vulkan command buffers.
 
  Members                        | Descriptions                                
 --------------------------------|---------------------------------------------
-`public  `[`CommandBuffer`](#class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_command_buffer_1a07aa8999ca5a653164ae9ce0a2b89bcb)`() = default` | 
-`public  `[`CommandBuffer`](#class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_command_buffer_1a81227115f7e6c2863d51c36834296d52)`(vk::CommandPool commandPool,uint32_t count,vk::CommandBufferUsageFlags usageFlags)` | Creates the command buffers and calls initializes them right away.
-`public void `[`init`](#class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_command_buffer_1a5e0bc2b488f0abb775d07e013b968074)`(vk::CommandPool commandPool,uint32_t count,vk::CommandBufferUsageFlags usageFlags)` | Creates the command buffers.
-`public inline auto `[`get`](#class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_command_buffer_1abcc9ff6272aba8b4a1afdf0602bcac4b)`() const` | #### Returns
-`public inline auto `[`get`](#class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_command_buffer_1a4670aafed45e4cbe1066c785cec7a1ce)`(size_t index) const` | Returns the command buffer by some index.
-`public void `[`free`](#class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_command_buffer_1a8fff269edab25efc19a3ed181107c896)`()` | Frees the command buffer.
-`public RX_API void `[`reset`](#class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_command_buffer_1a016d2435cc62af6bcf4160bd541baf56)`()` | Resets the command buffer.
-`public void `[`begin`](#class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_command_buffer_1a3c7b641da4afce0c7df9a033c9a47d9a)`(size_t index)` | Used to begin the command buffer recording.
-`public void `[`end`](#class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_command_buffer_1a82d40d7bb295b161b68f15a08a20fa3a)`(size_t index)` | Used to stop the command buffer recording.
-`public void `[`submitToQueue`](#class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_command_buffer_1acff16caf8b3bbe2ee906072fd5ef7462)`(vk::Queue queue,const std::vector< vk::Semaphore > & waitSemaphores,const std::vector< vk::Semaphore > & signalSemaphores,vk::PipelineStageFlags * waitDstStageMask)` | Submits the recorded commands to a queue.
+`public  `[`CommandBuffer`](#class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_command_buffer_1abe361754230f783eb86464734b851ff8)`() = default` | 
+`public  `[`CommandBuffer`](#class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_command_buffer_1a3e8baaca6b363d0a78d30ee70c584a11)`(vk::CommandPool commandPool,uint32_t count,vk::CommandBufferUsageFlags usageFlags)` | Creates the command buffers and calls initializes them right away.
+`public void `[`init`](#class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_command_buffer_1a967443c6c46e162ed9a248f18a4dcd8a)`(vk::CommandPool commandPool,uint32_t count,vk::CommandBufferUsageFlags usageFlags)` | Creates the command buffers.
+`public inline auto `[`get`](#class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_command_buffer_1ab0537198c1bdf7fc123867ff04109aec)`() const` | #### Returns
+`public inline auto `[`get`](#class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_command_buffer_1adede3dee0329159e687a6b7a246ae47c)`(size_t index) const` | Returns the command buffer by some index.
+`public void `[`free`](#class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_command_buffer_1a650ea8a7a5d452734b8cefd118639936)`()` | Frees the command buffer.
+`public RX_API void `[`reset`](#class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_command_buffer_1a7dd7be8f5fea7ebcf338f53e472450f0)`()` | Resets the command buffer.
+`public void `[`begin`](#class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_command_buffer_1adeb8480e5423081dae4f34e7c756f5d0)`(size_t index)` | Used to begin the command buffer recording.
+`public void `[`end`](#class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_command_buffer_1ad12dd1d9c545827ad5277d596f38c2a8)`(size_t index)` | Used to stop the command buffer recording.
+`public void `[`submitToQueue`](#class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_command_buffer_1ad840dfe3ad8eb1f77a21bbb9d49985d8)`(vk::Queue queue,const std::vector< vk::Semaphore > & waitSemaphores,const std::vector< vk::Semaphore > & signalSemaphores,vk::PipelineStageFlags * waitDstStageMask)` | Submits the recorded commands to a queue.
 
 ## Members
 
-#### `public  `[`CommandBuffer`](#class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_command_buffer_1a07aa8999ca5a653164ae9ce0a2b89bcb)`() = default` 
+#### `public  `[`CommandBuffer`](#class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_command_buffer_1abe361754230f783eb86464734b851ff8)`() = default` 
 
-#### `public  `[`CommandBuffer`](#class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_command_buffer_1a81227115f7e6c2863d51c36834296d52)`(vk::CommandPool commandPool,uint32_t count,vk::CommandBufferUsageFlags usageFlags)` 
+#### `public  `[`CommandBuffer`](#class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_command_buffer_1a3e8baaca6b363d0a78d30ee70c584a11)`(vk::CommandPool commandPool,uint32_t count,vk::CommandBufferUsageFlags usageFlags)` 
 
 Creates the command buffers and calls initializes them right away.
 
@@ -348,7 +347,7 @@ Creates the command buffers and calls initializes them right away.
 
 * `usageFlags` Specifies what the buffer will be used for.
 
-#### `public void `[`init`](#class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_command_buffer_1a5e0bc2b488f0abb775d07e013b968074)`(vk::CommandPool commandPool,uint32_t count,vk::CommandBufferUsageFlags usageFlags)` 
+#### `public void `[`init`](#class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_command_buffer_1a967443c6c46e162ed9a248f18a4dcd8a)`(vk::CommandPool commandPool,uint32_t count,vk::CommandBufferUsageFlags usageFlags)` 
 
 Creates the command buffers.
 
@@ -359,12 +358,12 @@ Creates the command buffers.
 
 * `usageFlags` Specifies what the buffer will be used for.
 
-#### `public inline auto `[`get`](#class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_command_buffer_1abcc9ff6272aba8b4a1afdf0602bcac4b)`() const` 
+#### `public inline auto `[`get`](#class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_command_buffer_1ab0537198c1bdf7fc123867ff04109aec)`() const` 
 
 #### Returns
 Returns the vector of command buffers.
 
-#### `public inline auto `[`get`](#class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_command_buffer_1a4670aafed45e4cbe1066c785cec7a1ce)`(size_t index) const` 
+#### `public inline auto `[`get`](#class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_command_buffer_1adede3dee0329159e687a6b7a246ae47c)`(size_t index) const` 
 
 Returns the command buffer by some index.
 
@@ -374,29 +373,29 @@ Returns the command buffer by some index.
 #### Returns
 Returns the command buffer.
 
-#### `public void `[`free`](#class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_command_buffer_1a8fff269edab25efc19a3ed181107c896)`()` 
+#### `public void `[`free`](#class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_command_buffer_1a650ea8a7a5d452734b8cefd118639936)`()` 
 
 Frees the command buffer.
 
-#### `public RX_API void `[`reset`](#class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_command_buffer_1a016d2435cc62af6bcf4160bd541baf56)`()` 
+#### `public RX_API void `[`reset`](#class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_command_buffer_1a7dd7be8f5fea7ebcf338f53e472450f0)`()` 
 
 Resets the command buffer.
 
-#### `public void `[`begin`](#class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_command_buffer_1a3c7b641da4afce0c7df9a033c9a47d9a)`(size_t index)` 
+#### `public void `[`begin`](#class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_command_buffer_1adeb8480e5423081dae4f34e7c756f5d0)`(size_t index)` 
 
 Used to begin the command buffer recording.
 
 #### Parameters
 * `index` An index to a command buffer to record to.
 
-#### `public void `[`end`](#class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_command_buffer_1a82d40d7bb295b161b68f15a08a20fa3a)`(size_t index)` 
+#### `public void `[`end`](#class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_command_buffer_1ad12dd1d9c545827ad5277d596f38c2a8)`(size_t index)` 
 
 Used to stop the command buffer recording.
 
 #### Parameters
 * `index` An index to a command buffer to stop recording.
 
-#### `public void `[`submitToQueue`](#class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_command_buffer_1acff16caf8b3bbe2ee906072fd5ef7462)`(vk::Queue queue,const std::vector< vk::Semaphore > & waitSemaphores,const std::vector< vk::Semaphore > & signalSemaphores,vk::PipelineStageFlags * waitDstStageMask)` 
+#### `public void `[`submitToQueue`](#class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_command_buffer_1ad840dfe3ad8eb1f77a21bbb9d49985d8)`(vk::Queue queue,const std::vector< vk::Semaphore > & waitSemaphores,const std::vector< vk::Semaphore > & signalSemaphores,vk::PipelineStageFlags * waitDstStageMask)` 
 
 Submits the recorded commands to a queue.
 
@@ -409,11 +408,11 @@ Submits the recorded commands to a queue.
 
 * `waitDstStageMask` The pipeline stage where the commands will be executed.
 
-# class `RAYEXEC_NAMESPACE::IndexBuffer` 
+# class `RAYEX_NAMESPACE::IndexBuffer` 
 
 ```
-class RAYEXEC_NAMESPACE::IndexBuffer
-  : public RAYEXEC_NAMESPACE::Buffer
+class RAYEX_NAMESPACE::IndexBuffer
+  : public RAYEX_NAMESPACE::Buffer
 ```  
 
 A specialised buffer for index data.
@@ -424,17 +423,17 @@ If not templatized then uint32_t will be used as the data's type.
 
  Members                        | Descriptions                                
 --------------------------------|---------------------------------------------
-`public inline auto `[`getCount`](#class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_index_buffer_1a986b966f8583271d0a7974a66ab6eca5)`() const` | #### Returns
-`public inline void `[`init`](#class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_index_buffer_1a8f13a9c4f07b3592bb8791a0bb55691f)`(const std::vector< uint32_t > & indices)` | Creates the buffer, allocates memory for it and fills it with the provided data.
+`public inline auto `[`getCount`](#class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_index_buffer_1a0d57e869f2c4a84af697c36017229e4d)`() const` | #### Returns
+`public inline void `[`init`](#class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_index_buffer_1aefa1b16f30e7f40dea305356be995aba)`(const std::vector< uint32_t > & indices)` | Creates the buffer, allocates memory for it and fills it with the provided data.
 
 ## Members
 
-#### `public inline auto `[`getCount`](#class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_index_buffer_1a986b966f8583271d0a7974a66ab6eca5)`() const` 
+#### `public inline auto `[`getCount`](#class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_index_buffer_1a0d57e869f2c4a84af697c36017229e4d)`() const` 
 
 #### Returns
 Returns the amount of indices in the buffer.
 
-#### `public inline void `[`init`](#class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_index_buffer_1a8f13a9c4f07b3592bb8791a0bb55691f)`(const std::vector< uint32_t > & indices)` 
+#### `public inline void `[`init`](#class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_index_buffer_1aefa1b16f30e7f40dea305356be995aba)`(const std::vector< uint32_t > & indices)` 
 
 Creates the buffer, allocates memory for it and fills it with the provided data.
 
@@ -442,7 +441,7 @@ To optimize the procedure a temporary staging buffer will be created.
 #### Parameters
 * `indices` The index data.
 
-# class `RAYEXEC_NAMESPACE::UniformBuffer` 
+# class `RAYEX_NAMESPACE::UniformBuffer` 
 
 A specialised buffer for uniforms.
 
@@ -450,38 +449,38 @@ A specialised buffer for uniforms.
 
  Members                        | Descriptions                                
 --------------------------------|---------------------------------------------
-`public std::vector< vk::DescriptorBufferInfo > `[`bufferInfos`](#class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_uniform_buffer_1a9a186941817e7a9f8b2c0c82ed07051e) | 
-`public  `[`UniformBuffer`](#class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_uniform_buffer_1a77802f4e17e5282d91c57377de41a349)`() = default` | 
-`public template<>`  <br/>`inline  `[`UniformBuffer`](#class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_uniform_buffer_1a3d8a6b197212e4e0f5c914dab88645a1)`(size_t swapchainImagesCount,bool initialize)` | #### Parameters
-`public inline auto `[`get`](#class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_uniform_buffer_1adb2e28fe37c2e943e0911d9f63a77040)`() const` | #### Returns
-`public RX_API auto `[`getRaw`](#class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_uniform_buffer_1a426b9cbe9b74a83bd49503cc70577f24)`() const` | #### Returns
-`public template<>`  <br/>`inline void `[`init`](#class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_uniform_buffer_1adedc9d69558242b95599b8ffe7f8ff80)`()` | Creates the uniform buffer and allocates memory for it.
-`public template<>`  <br/>`inline void `[`upload`](#class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_uniform_buffer_1a93afba2d64a22f7b764836b6e88217bc)`(uint32_t imageIndex,T & ubo)` | Used to fill an image's buffer.
+`public std::vector< vk::DescriptorBufferInfo > `[`bufferInfos`](#class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_uniform_buffer_1a0e2225556e7e6140f92b55bb02d73e30) | 
+`public  `[`UniformBuffer`](#class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_uniform_buffer_1ae5ddd2f51f1cc616396347bda9092c47)`() = default` | 
+`public template<>`  <br/>`inline  `[`UniformBuffer`](#class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_uniform_buffer_1a7487ed42dd2de922006db5462e05b1f1)`(size_t swapchainImagesCount,bool initialize)` | #### Parameters
+`public inline auto `[`get`](#class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_uniform_buffer_1a922bda1b964d1ce9ce903107e358dcf5)`() const` | #### Returns
+`public RX_API auto `[`getRaw`](#class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_uniform_buffer_1a7b8a844ef078691e96fb27eee7d550a6)`() const` | #### Returns
+`public template<>`  <br/>`inline void `[`init`](#class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_uniform_buffer_1a98859467eee532952510437766b3da4f)`()` | Creates the uniform buffer and allocates memory for it.
+`public template<>`  <br/>`inline void `[`upload`](#class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_uniform_buffer_1ad511f2a02b2a4e341b5e0d9caa3f9338)`(uint32_t imageIndex,T & ubo)` | Used to fill an image's buffer.
 
 ## Members
 
-#### `public std::vector< vk::DescriptorBufferInfo > `[`bufferInfos`](#class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_uniform_buffer_1a9a186941817e7a9f8b2c0c82ed07051e) 
+#### `public std::vector< vk::DescriptorBufferInfo > `[`bufferInfos`](#class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_uniform_buffer_1a0e2225556e7e6140f92b55bb02d73e30) 
 
-#### `public  `[`UniformBuffer`](#class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_uniform_buffer_1a77802f4e17e5282d91c57377de41a349)`() = default` 
+#### `public  `[`UniformBuffer`](#class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_uniform_buffer_1ae5ddd2f51f1cc616396347bda9092c47)`() = default` 
 
-#### `public template<>`  <br/>`inline  `[`UniformBuffer`](#class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_uniform_buffer_1a3d8a6b197212e4e0f5c914dab88645a1)`(size_t swapchainImagesCount,bool initialize)` 
+#### `public template<>`  <br/>`inline  `[`UniformBuffer`](#class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_uniform_buffer_1a7487ed42dd2de922006db5462e05b1f1)`(size_t swapchainImagesCount,bool initialize)` 
 
 #### Parameters
 * `swapchainImagesCount` The amount of images in the swapchain. 
 
-* `initialize` If true, the uniform buffer will be initialized right away without an additional call to [init()](moxygen/api-API.md#class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_uniform_buffer_1adedc9d69558242b95599b8ffe7f8ff80).
+* `initialize` If true, the uniform buffer will be initialized right away without an additional call to [init()](moxygen/api-API.md#class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_uniform_buffer_1a98859467eee532952510437766b3da4f).
 
-#### `public inline auto `[`get`](#class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_uniform_buffer_1adb2e28fe37c2e943e0911d9f63a77040)`() const` 
+#### `public inline auto `[`get`](#class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_uniform_buffer_1a922bda1b964d1ce9ce903107e358dcf5)`() const` 
 
 #### Returns
 Returns the vector of uniform buffers.
 
-#### `public RX_API auto `[`getRaw`](#class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_uniform_buffer_1a426b9cbe9b74a83bd49503cc70577f24)`() const` 
+#### `public RX_API auto `[`getRaw`](#class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_uniform_buffer_1a7b8a844ef078691e96fb27eee7d550a6)`() const` 
 
 #### Returns
 Returns the vector of uniform buffers as raw Vulkan buffer objects.
 
-#### `public template<>`  <br/>`inline void `[`init`](#class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_uniform_buffer_1adedc9d69558242b95599b8ffe7f8ff80)`()` 
+#### `public template<>`  <br/>`inline void `[`init`](#class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_uniform_buffer_1a98859467eee532952510437766b3da4f)`()` 
 
 Creates the uniform buffer and allocates memory for it.
 
@@ -489,7 +488,7 @@ The function will create as many uniform buffers as there are images in the swap
 #### Parameters
 * `swapchainImagesCount` The amount of images in the swapchain.
 
-#### `public template<>`  <br/>`inline void `[`upload`](#class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_uniform_buffer_1a93afba2d64a22f7b764836b6e88217bc)`(uint32_t imageIndex,T & ubo)` 
+#### `public template<>`  <br/>`inline void `[`upload`](#class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_uniform_buffer_1ad511f2a02b2a4e341b5e0d9caa3f9338)`(uint32_t imageIndex,T & ubo)` 
 
 Used to fill an image's buffer.
 
@@ -498,11 +497,11 @@ Used to fill an image's buffer.
 
 * `ubo` The actual uniform buffer object holding the data.
 
-# class `RAYEXEC_NAMESPACE::VertexBuffer` 
+# class `RAYEX_NAMESPACE::VertexBuffer` 
 
 ```
-class RAYEXEC_NAMESPACE::VertexBuffer
-  : public RAYEXEC_NAMESPACE::Buffer
+class RAYEX_NAMESPACE::VertexBuffer
+  : public RAYEX_NAMESPACE::Buffer
 ```  
 
 A specialised buffer for vertex data.
@@ -511,35 +510,35 @@ A specialised buffer for vertex data.
 
  Members                        | Descriptions                                
 --------------------------------|---------------------------------------------
-`public  `[`VertexBuffer`](#class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_vertex_buffer_1a2185d29248059de141e7664740cfcb15)`() = default` | 
-`public  `[`VertexBuffer`](#class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_vertex_buffer_1abc05422a3077de9b989e838cd936aec9)`(std::vector< `[`Vertex`](moxygen/api-API.md#struct_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_vertex)` > & vertices,bool initialize)` | #### Parameters
-`public inline auto `[`getCount`](#class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_vertex_buffer_1a63f5142cb1832654a1acebf799b30c8c)`() const` | #### Returns
-`public void `[`init`](#class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_vertex_buffer_1a613e5701e6cb36b44eaf3b1b59840848)`(const std::vector< `[`Vertex`](moxygen/api-API.md#struct_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_vertex)` > & vertices)` | Creates the buffer, allocates memory for it and fills it with provided data.
+`public  `[`VertexBuffer`](#class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_vertex_buffer_1a0f50e43f64ec217b8fe9e1574341f5b5)`() = default` | 
+`public  `[`VertexBuffer`](#class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_vertex_buffer_1a60c93ee617e13f0c0c75bda1b733bd9d)`(std::vector< `[`Vertex`](moxygen/api-API.md#struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_vertex)` > & vertices,bool initialize)` | #### Parameters
+`public inline auto `[`getCount`](#class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_vertex_buffer_1aec17d0368843d5db4e34fe4d8b83b926)`() const` | #### Returns
+`public void `[`init`](#class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_vertex_buffer_1aac3ab46655bc4f4940fc1f8c4a49d046)`(const std::vector< `[`Vertex`](moxygen/api-API.md#struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_vertex)` > & vertices)` | Creates the buffer, allocates memory for it and fills it with provided data.
 
 ## Members
 
-#### `public  `[`VertexBuffer`](#class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_vertex_buffer_1a2185d29248059de141e7664740cfcb15)`() = default` 
+#### `public  `[`VertexBuffer`](#class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_vertex_buffer_1a0f50e43f64ec217b8fe9e1574341f5b5)`() = default` 
 
-#### `public  `[`VertexBuffer`](#class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_vertex_buffer_1abc05422a3077de9b989e838cd936aec9)`(std::vector< `[`Vertex`](moxygen/api-API.md#struct_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_vertex)` > & vertices,bool initialize)` 
+#### `public  `[`VertexBuffer`](#class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_vertex_buffer_1a60c93ee617e13f0c0c75bda1b733bd9d)`(std::vector< `[`Vertex`](moxygen/api-API.md#struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_vertex)` > & vertices,bool initialize)` 
 
 #### Parameters
 * `vertices` The vertex data. 
 
-* `initialize` If true, the vertex buffer will be initialized right away without an additional call to [init()](moxygen/api-API.md#class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_vertex_buffer_1a613e5701e6cb36b44eaf3b1b59840848).
+* `initialize` If true, the vertex buffer will be initialized right away without an additional call to [init()](moxygen/api-API.md#class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_vertex_buffer_1aac3ab46655bc4f4940fc1f8c4a49d046).
 
-#### `public inline auto `[`getCount`](#class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_vertex_buffer_1a63f5142cb1832654a1acebf799b30c8c)`() const` 
+#### `public inline auto `[`getCount`](#class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_vertex_buffer_1aec17d0368843d5db4e34fe4d8b83b926)`() const` 
 
 #### Returns
 Returns the amount of vertices in the buffer.
 
-#### `public void `[`init`](#class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_vertex_buffer_1a613e5701e6cb36b44eaf3b1b59840848)`(const std::vector< `[`Vertex`](moxygen/api-API.md#struct_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_vertex)` > & vertices)` 
+#### `public void `[`init`](#class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_vertex_buffer_1aac3ab46655bc4f4940fc1f8c4a49d046)`(const std::vector< `[`Vertex`](moxygen/api-API.md#struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_vertex)` > & vertices)` 
 
 Creates the buffer, allocates memory for it and fills it with provided data.
 
 #### Parameters
 * `vertices` The vertex data.
 
-# class `RAYEXEC_NAMESPACE::Image` 
+# class `RAYEX_NAMESPACE::Image` 
 
 A wrapper class for a Vulkan image.
 
@@ -547,49 +546,49 @@ A wrapper class for a Vulkan image.
 
  Members                        | Descriptions                                
 --------------------------------|---------------------------------------------
-`public inline auto `[`get`](#class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_image_1a80646e43d35c53446fe39ba4bbf6485a)`() const` | #### Returns
-`public inline auto `[`getExtent`](#class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_image_1a7db97a4970afbd02a50ddf33786755df)`() const` | #### Returns
-`public inline auto `[`getFormat`](#class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_image_1ac822adab25205cb634f1c8b90b94c49f)`() const` | #### Returns
-`public inline auto `[`getLayout`](#class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_image_1aca01fc95ad936d74b2c6089e856d7527)`() const` | #### Returns
-`public void `[`init`](#class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_image_1a4f698705d33948624201e5a48c19c903)`(const vk::ImageCreateInfo & createInfo)` | Creates the image and allocates memory for it.
-`public void `[`transitionToLayout`](#class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_image_1a7a54cd7bf86b60f27ae621c226d24d87)`(vk::ImageLayout layout)` | Used to transition this image's layout.
-`public void `[`transitionToLayout`](#class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_image_1ae5dfddf79b629d661e5ccca8a5bb9abf)`(vk::ImageLayout layout,vk::CommandBuffer commandBuffer)` | Used to transition this image's layout.
-`protected vk::UniqueImage `[`image`](#class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_image_1ae5f8fbb64f25c043b8f87aa16701e015) | The Vulkan image with a unique handle.
-`protected vk::UniqueDeviceMemory `[`memory`](#class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_image_1a55e5d566de8b86669d56baa3d2bb77a3) | The image's memory with a unique handle.
-`protected vk::Extent3D `[`extent`](#class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_image_1a7f22222c0ef6a2ee859bb18318cc23e1) | The image's extent.
-`protected vk::Format `[`format`](#class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_image_1a432098b41a183cd99a815438eb915973) | The image's format.
-`protected vk::ImageLayout `[`layout`](#class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_image_1a81b85b202ca5a475953cfc076ac5958a) | THe image's layout.
+`public inline auto `[`get`](#class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_image_1abc8b3131fd792888cd54cae0338ebc5a)`() const` | #### Returns
+`public inline auto `[`getExtent`](#class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_image_1a5a4ccd30feb5e47b653997faac3e4adb)`() const` | #### Returns
+`public inline auto `[`getFormat`](#class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_image_1a189584e4d28a640f7a91e2711aac4bb4)`() const` | #### Returns
+`public inline auto `[`getLayout`](#class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_image_1ab3f6fda72b3f94186af3bca7230195c6)`() const` | #### Returns
+`public void `[`init`](#class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_image_1a2e018b9b5ea0b1d6cb387357ad721593)`(const vk::ImageCreateInfo & createInfo)` | Creates the image and allocates memory for it.
+`public void `[`transitionToLayout`](#class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_image_1a4905385e6ab351022f1cc717dbd1cb6f)`(vk::ImageLayout layout)` | Used to transition this image's layout.
+`public void `[`transitionToLayout`](#class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_image_1abd46b661d5593c29cf4b9960e2b30681)`(vk::ImageLayout layout,vk::CommandBuffer commandBuffer)` | Used to transition this image's layout.
+`protected vk::UniqueImage `[`image`](#class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_image_1a47c6e94c0fe17fdbc1067cf3688c963e) | The Vulkan image with a unique handle.
+`protected vk::UniqueDeviceMemory `[`memory`](#class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_image_1a033a652d346b4f203e95c47494e1c1a2) | The image's memory with a unique handle.
+`protected vk::Extent3D `[`extent`](#class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_image_1a25ffa33ad08036d3643b81c3fc4ed6fa) | The image's extent.
+`protected vk::Format `[`format`](#class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_image_1a1a53e7fed5f3c017fa22b20acad8b569) | The image's format.
+`protected vk::ImageLayout `[`layout`](#class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_image_1ae59edce0a249f45da950b8c24b40b114) | THe image's layout.
 
 ## Members
 
-#### `public inline auto `[`get`](#class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_image_1a80646e43d35c53446fe39ba4bbf6485a)`() const` 
+#### `public inline auto `[`get`](#class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_image_1abc8b3131fd792888cd54cae0338ebc5a)`() const` 
 
 #### Returns
 Returns the Vulkan image object without the unique handle.
 
-#### `public inline auto `[`getExtent`](#class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_image_1a7db97a4970afbd02a50ddf33786755df)`() const` 
+#### `public inline auto `[`getExtent`](#class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_image_1a5a4ccd30feb5e47b653997faac3e4adb)`() const` 
 
 #### Returns
 Returns the iamge's extent.
 
-#### `public inline auto `[`getFormat`](#class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_image_1ac822adab25205cb634f1c8b90b94c49f)`() const` 
+#### `public inline auto `[`getFormat`](#class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_image_1a189584e4d28a640f7a91e2711aac4bb4)`() const` 
 
 #### Returns
 Returns the image's format.
 
-#### `public inline auto `[`getLayout`](#class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_image_1aca01fc95ad936d74b2c6089e856d7527)`() const` 
+#### `public inline auto `[`getLayout`](#class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_image_1ab3f6fda72b3f94186af3bca7230195c6)`() const` 
 
 #### Returns
 Returns the image's layout.
 
-#### `public void `[`init`](#class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_image_1a4f698705d33948624201e5a48c19c903)`(const vk::ImageCreateInfo & createInfo)` 
+#### `public void `[`init`](#class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_image_1a2e018b9b5ea0b1d6cb387357ad721593)`(const vk::ImageCreateInfo & createInfo)` 
 
 Creates the image and allocates memory for it.
 
 #### Parameters
 * `createInfo` The Vulkan image create info.
 
-#### `public void `[`transitionToLayout`](#class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_image_1a7a54cd7bf86b60f27ae621c226d24d87)`(vk::ImageLayout layout)` 
+#### `public void `[`transitionToLayout`](#class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_image_1a4905385e6ab351022f1cc717dbd1cb6f)`(vk::ImageLayout layout)` 
 
 Used to transition this image's layout.
 
@@ -598,7 +597,7 @@ Used to transition this image's layout.
 
 This function creates its own single-time usage command buffer.
 
-#### `public void `[`transitionToLayout`](#class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_image_1ae5dfddf79b629d661e5ccca8a5bb9abf)`(vk::ImageLayout layout,vk::CommandBuffer commandBuffer)` 
+#### `public void `[`transitionToLayout`](#class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_image_1abd46b661d5593c29cf4b9960e2b30681)`(vk::ImageLayout layout,vk::CommandBuffer commandBuffer)` 
 
 Used to transition this image's layout.
 
@@ -607,33 +606,33 @@ Used to transition this image's layout.
 
 * `commandBuffer` The command buffer that will be used to set up a pipeline barrier. 
 
-It is required to call vk::CommandBuffer::begin() or [RAYEXEC_NAMESPACE::CommandBuffer::begin()](moxygen/api-API.md#class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_command_buffer_1a3c7b641da4afce0c7df9a033c9a47d9a) before calling this function.
+It is required to call vk::CommandBuffer::begin() or [RAYEX_NAMESPACE::CommandBuffer::begin()](moxygen/api-API.md#class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_command_buffer_1adeb8480e5423081dae4f34e7c756f5d0) before calling this function.
 
-#### `protected vk::UniqueImage `[`image`](#class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_image_1ae5f8fbb64f25c043b8f87aa16701e015) 
+#### `protected vk::UniqueImage `[`image`](#class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_image_1a47c6e94c0fe17fdbc1067cf3688c963e) 
 
 The Vulkan image with a unique handle.
 
-#### `protected vk::UniqueDeviceMemory `[`memory`](#class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_image_1a55e5d566de8b86669d56baa3d2bb77a3) 
+#### `protected vk::UniqueDeviceMemory `[`memory`](#class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_image_1a033a652d346b4f203e95c47494e1c1a2) 
 
 The image's memory with a unique handle.
 
-#### `protected vk::Extent3D `[`extent`](#class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_image_1a7f22222c0ef6a2ee859bb18318cc23e1) 
+#### `protected vk::Extent3D `[`extent`](#class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_image_1a25ffa33ad08036d3643b81c3fc4ed6fa) 
 
 The image's extent.
 
-#### `protected vk::Format `[`format`](#class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_image_1a432098b41a183cd99a815438eb915973) 
+#### `protected vk::Format `[`format`](#class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_image_1a1a53e7fed5f3c017fa22b20acad8b569) 
 
 The image's format.
 
-#### `protected vk::ImageLayout `[`layout`](#class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_image_1a81b85b202ca5a475953cfc076ac5958a) 
+#### `protected vk::ImageLayout `[`layout`](#class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_image_1ae59edce0a249f45da950b8c24b40b114) 
 
 THe image's layout.
 
-# class `RAYEXEC_NAMESPACE::Texture` 
+# class `RAYEX_NAMESPACE::Texture` 
 
 ```
-class RAYEXEC_NAMESPACE::Texture
-  : public RAYEXEC_NAMESPACE::Image
+class RAYEX_NAMESPACE::Texture
+  : public RAYEX_NAMESPACE::Image
 ```  
 
 A helper class for creating ready-to-use textures.
@@ -644,43 +643,43 @@ A helper class for creating ready-to-use textures.
 
  Members                        | Descriptions                                
 --------------------------------|---------------------------------------------
-`public uint32_t `[`offset`](#class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_texture_1a5735ddd31d42045b4da9c1574d12d8a3) | 
-`public RX_API `[`Texture`](#class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_texture_1aebef820f5f3548dec6218d6f4270161b)`()` | 
-`public RX_API `[`Texture`](#class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_texture_1a72e817dd85e94d49bd68a62c7d387863)`(std::string_view path,bool initialize)` | #### Parameters
-`public inline auto `[`getImageView`](#class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_texture_1aea60c6b434bf310053a68736d0b4ed98)`()` | #### Returns
-`public inline auto `[`getSampler`](#class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_texture_1aa6374a028d7fc389b585b655f061cc74)`()` | #### Returns
-`public inline auto `[`getPath`](#class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_texture_1a20097c4db17130f19e2c0ecd326ca1f9)`() const` | #### Returns
-`public void `[`init`](#class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_texture_1ada93dab9c8e12bfea2736794b12c81dd)`(std::string_view path)` | Creates the texture.
+`public uint32_t `[`offset`](#class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_texture_1a815a31f2ad5164a9bc11dfe75a519e01) | 
+`public RX_API `[`Texture`](#class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_texture_1aa32702a974b407f7c71f7e89f76f3654)`()` | 
+`public RX_API `[`Texture`](#class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_texture_1a6e8d64b192025a1abfdb946b44fbc579)`(std::string_view path,bool initialize)` | #### Parameters
+`public inline auto `[`getImageView`](#class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_texture_1a4d12a159ea5d963015649bcedb241f84)`()` | #### Returns
+`public inline auto `[`getSampler`](#class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_texture_1a79ff0b73b423971bb92556b6722283b1)`()` | #### Returns
+`public inline auto `[`getPath`](#class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_texture_1ab60fb85070b67258d51ba665725ad92e)`() const` | #### Returns
+`public void `[`init`](#class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_texture_1acc3e7b81bbfd57b79f5bd65ff0ae674d)`(std::string_view path)` | Creates the texture.
 
 ## Members
 
-#### `public uint32_t `[`offset`](#class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_texture_1a5735ddd31d42045b4da9c1574d12d8a3) 
+#### `public uint32_t `[`offset`](#class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_texture_1a815a31f2ad5164a9bc11dfe75a519e01) 
 
-#### `public RX_API `[`Texture`](#class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_texture_1aebef820f5f3548dec6218d6f4270161b)`()` 
+#### `public RX_API `[`Texture`](#class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_texture_1aa32702a974b407f7c71f7e89f76f3654)`()` 
 
-#### `public RX_API `[`Texture`](#class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_texture_1a72e817dd85e94d49bd68a62c7d387863)`(std::string_view path,bool initialize)` 
+#### `public RX_API `[`Texture`](#class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_texture_1a6e8d64b192025a1abfdb946b44fbc579)`(std::string_view path,bool initialize)` 
 
 #### Parameters
 * `path` The relative path to the texture file. 
 
-* `initialize` If true, the texture will be initialized right away without an additional call to [init()](moxygen/api-API.md#class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_texture_1ada93dab9c8e12bfea2736794b12c81dd).
+* `initialize` If true, the texture will be initialized right away without an additional call to [init()](moxygen/api-API.md#class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_texture_1acc3e7b81bbfd57b79f5bd65ff0ae674d).
 
-#### `public inline auto `[`getImageView`](#class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_texture_1aea60c6b434bf310053a68736d0b4ed98)`()` 
+#### `public inline auto `[`getImageView`](#class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_texture_1a4d12a159ea5d963015649bcedb241f84)`()` 
 
 #### Returns
 Returns the texture's image view.
 
-#### `public inline auto `[`getSampler`](#class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_texture_1aa6374a028d7fc389b585b655f061cc74)`()` 
+#### `public inline auto `[`getSampler`](#class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_texture_1a79ff0b73b423971bb92556b6722283b1)`()` 
 
 #### Returns
 Returns the texture's sampler.
 
-#### `public inline auto `[`getPath`](#class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_texture_1a20097c4db17130f19e2c0ecd326ca1f9)`() const` 
+#### `public inline auto `[`getPath`](#class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_texture_1ab60fb85070b67258d51ba665725ad92e)`() const` 
 
 #### Returns
 Returns the relative path of the texture file.
 
-#### `public void `[`init`](#class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_texture_1ada93dab9c8e12bfea2736794b12c81dd)`(std::string_view path)` 
+#### `public void `[`init`](#class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_texture_1acc3e7b81bbfd57b79f5bd65ff0ae674d)`(std::string_view path)` 
 
 Creates the texture.
 
@@ -689,7 +688,7 @@ Creates the texture.
 
 > Todo: Latest changes to this class might be causing errors once texture are working again.
 
-# class `RAYEXEC_NAMESPACE::Pipeline` 
+# class `RAYEX_NAMESPACE::Pipeline` 
 
 A wrapper class for a Vulkan graphics pipeline.
 
@@ -697,14 +696,14 @@ A wrapper class for a Vulkan graphics pipeline.
 
  Members                        | Descriptions                                
 --------------------------------|---------------------------------------------
-`public void `[`init`](#class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_pipeline_1ad48c27749177fa7c015d7cdaa61ab2c7)`(const std::vector< vk::DescriptorSetLayout > & descriptorSetLayouts,vk::RenderPass renderPass,vk::Viewport viewport,vk::Rect2D scissor,const `[`Settings`](moxygen/api-undefined.md#class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_settings)` * settings)` | Initializes a rasterization pipeline.
-`public void `[`init`](#class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_pipeline_1af46ac0be1d9a01d93abfda781cfc8e55)`(const std::vector< vk::DescriptorSetLayout > & descriptorSetLayouts,const `[`Settings`](moxygen/api-undefined.md#class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_settings)` * settings)` | Initializes a ray tracing pipeline.
-`public inline auto `[`get`](#class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_pipeline_1aa366e6212bdf0293260cd0c00909331b)`() const` | #### Returns
-`public inline auto `[`getLayout`](#class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_pipeline_1ae5f69040045769e57d7d7ab8d1f91967)`() const` | #### Returns
+`public void `[`init`](#class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_pipeline_1a560c14e9ae27b02d347ded573a9f1ca3)`(const std::vector< vk::DescriptorSetLayout > & descriptorSetLayouts,vk::RenderPass renderPass,vk::Viewport viewport,vk::Rect2D scissor,const `[`Settings`](moxygen/api-undefined.md#class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_settings)` * settings)` | Initializes a rasterization pipeline.
+`public void `[`init`](#class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_pipeline_1ae830eea310aecda9ca5760efce3fe9f3)`(const std::vector< vk::DescriptorSetLayout > & descriptorSetLayouts,const `[`Settings`](moxygen/api-undefined.md#class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_settings)` * settings)` | Initializes a ray tracing pipeline.
+`public inline auto `[`get`](#class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_pipeline_1aceb8993023c4f274bb367bc190dc2397)`() const` | #### Returns
+`public inline auto `[`getLayout`](#class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_pipeline_1a42a996345362e5e0972ff7f7ba97b1a9)`() const` | #### Returns
 
 ## Members
 
-#### `public void `[`init`](#class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_pipeline_1ad48c27749177fa7c015d7cdaa61ab2c7)`(const std::vector< vk::DescriptorSetLayout > & descriptorSetLayouts,vk::RenderPass renderPass,vk::Viewport viewport,vk::Rect2D scissor,const `[`Settings`](moxygen/api-undefined.md#class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_settings)` * settings)` 
+#### `public void `[`init`](#class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_pipeline_1a560c14e9ae27b02d347ded573a9f1ca3)`(const std::vector< vk::DescriptorSetLayout > & descriptorSetLayouts,vk::RenderPass renderPass,vk::Viewport viewport,vk::Rect2D scissor,const `[`Settings`](moxygen/api-undefined.md#class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_settings)` * settings)` 
 
 Initializes a rasterization pipeline.
 
@@ -719,7 +718,7 @@ Initializes a rasterization pipeline.
 
 * `settings` Used to retrieve information like maximum instances or lights of a specific type.
 
-#### `public void `[`init`](#class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_pipeline_1af46ac0be1d9a01d93abfda781cfc8e55)`(const std::vector< vk::DescriptorSetLayout > & descriptorSetLayouts,const `[`Settings`](moxygen/api-undefined.md#class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_settings)` * settings)` 
+#### `public void `[`init`](#class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_pipeline_1ae830eea310aecda9ca5760efce3fe9f3)`(const std::vector< vk::DescriptorSetLayout > & descriptorSetLayouts,const `[`Settings`](moxygen/api-undefined.md#class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_settings)` * settings)` 
 
 Initializes a ray tracing pipeline.
 
@@ -728,17 +727,17 @@ Initializes a ray tracing pipeline.
 
 * `settings` Used to retrieve information like maximum instances or lights of a specific type.
 
-#### `public inline auto `[`get`](#class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_pipeline_1aa366e6212bdf0293260cd0c00909331b)`() const` 
+#### `public inline auto `[`get`](#class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_pipeline_1aceb8993023c4f274bb367bc190dc2397)`() const` 
 
 #### Returns
 Returns the Vulkan pipeline object without the unique handle.
 
-#### `public inline auto `[`getLayout`](#class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_pipeline_1ae5f69040045769e57d7d7ab8d1f91967)`() const` 
+#### `public inline auto `[`getLayout`](#class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_pipeline_1a42a996345362e5e0972ff7f7ba97b1a9)`() const` 
 
 #### Returns
 Returns the Vulkan pipeline layout object without the unique handle.
 
-# class `RAYEXEC_NAMESPACE::RayTracingBuilder` 
+# class `RAYEX_NAMESPACE::RayTracingBuilder` 
 
 Manages the building process of the acceleration structures.
 
@@ -746,67 +745,67 @@ Manages the building process of the acceleration structures.
 
  Members                        | Descriptions                                
 --------------------------------|---------------------------------------------
-`public  `[`RayTracingBuilder`](#class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_ray_tracing_builder_1a09f8d1d7605a67657ac7e25aa9a3412e)`() = default` | 
-`public RX_API `[`~RayTracingBuilder`](#class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_ray_tracing_builder_1a2a93b0638b8cd198b90d5fb2f20626fb)`()` | Calls [destroy()](moxygen/api-API.md#class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_ray_tracing_builder_1abb6d7ea7882129e639bb14aacdf30294).
-`public  `[`RayTracingBuilder`](#class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_ray_tracing_builder_1ae5f98a8ab4b95cb24ad4c4dd898ac8a9)`(const `[`RayTracingBuilder`](#class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_ray_tracing_builder)` &) = delete` | 
-`public  `[`RayTracingBuilder`](#class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_ray_tracing_builder_1aa9828b53ca4a0797b2b7fb2ec37e279b)`(const `[`RayTracingBuilder`](#class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_ray_tracing_builder)` &&) = delete` | 
-`public auto `[`operator=`](#class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_ray_tracing_builder_1a41652e5d15ed47e75a387f7450f26681)`(const `[`RayTracingBuilder`](#class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_ray_tracing_builder)` &) = delete` | 
-`public auto `[`operator=`](#class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_ray_tracing_builder_1a4c3cc3563b344d436100bd83f8bd5a3f)`(const `[`RayTracingBuilder`](#class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_ray_tracing_builder)` &&) = delete` | 
-`public void `[`init`](#class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_ray_tracing_builder_1aef2570764e775f8dd07c4255a47ccdab)`()` | Retrieves the physical device's ray tracing capabilities.
-`public void `[`destroy`](#class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_ray_tracing_builder_1abb6d7ea7882129e639bb14aacdf30294)`()` | Destroys all bottom and top level acceleration structures.
-`public inline auto `[`getTlas`](#class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_ray_tracing_builder_1a390ccddaf2bd873fe65c438319159bf6)`() const` | #### Returns
-`public inline auto `[`getRtProperties`](#class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_ray_tracing_builder_1a99c6fb5a011da041275f54013155bc9c)`() const` | #### Returns
-`public inline auto `[`getStorageImageView`](#class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_ray_tracing_builder_1a2511786430f0bf8134a447123d421c63)`() const` | #### Returns
-`public auto `[`modelToBlas`](#class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_ray_tracing_builder_1aed5bcefa14705b34f910e3ceb37fc8a5)`(const `[`VertexBuffer`](moxygen/api-API.md#class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_vertex_buffer)` & vertexBuffer,const `[`IndexBuffer`](moxygen/api-API.md#class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_index_buffer)` & indexBuffer) const` | Used to convert wavefront models to a bottom level acceleration structure.
-`public auto `[`instanceToVkGeometryInstanceKHR`](#class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_ray_tracing_builder_1a07f5808d1c137c8104b5bc5c213b8d2c)`(const `[`BlasInstance`](moxygen/api-API.md#struct_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_blas_instance)` & instance)` | Used to convert a bottom level acceleration structure instance to a Vulkan geometry instance.
-`public void `[`createBottomLevelAS`](#class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_ray_tracing_builder_1af229b339fa26bbedc4b06a74bd3e2a4c)`(const std::vector< `[`VertexBuffer`](moxygen/api-API.md#class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_vertex_buffer)` > & vertexBuffers,const std::vector< `[`IndexBuffer`](moxygen/api-API.md#class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_index_buffer)` > & indexBuffers)` | Used to prepare building the bottom level acceleration structures.
-`public void `[`buildBlas`](#class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_ray_tracing_builder_1a7317a1937164164619a0f0d1fdc0a9b1)`(const std::vector< `[`Blas`](moxygen/api-API.md#struct_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_blas)` > & blas_,vk::BuildAccelerationStructureFlagsKHR flags)` | Builds all bottom level acceleration structures.
-`public void `[`createTopLevelAS`](#class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_ray_tracing_builder_1aeabc1211e7bf59034ee75c61c53bbaf1)`(const std::vector< std::shared_ptr< `[`GeometryInstance`](moxygen/api-Base.md#struct_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_geometry_instance)` >> & geometryInstances)` | Used to prepare building the top level acceleration structure.
-`public void `[`buildTlas`](#class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_ray_tracing_builder_1a0802140271c08f495e8c2732937196fd)`(const std::vector< `[`BlasInstance`](moxygen/api-API.md#struct_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_blas_instance)` > & instances,vk::BuildAccelerationStructureFlagsKHR flags)` | Build the top level acceleration structure.
-`public void `[`createStorageImage`](#class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_ray_tracing_builder_1a2aff232d2fc78728d364c9eba2bcafa0)`(vk::Extent2D swapchainExtent)` | Creates the storage image which the ray tracing shaders will write to.
-`public void `[`createShaderBindingTable`](#class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_ray_tracing_builder_1a14ae945c468cafeba09183f329c596e1)`(vk::Pipeline rtPipeline)` | Creates the shader binding tables.
-`public void `[`rayTrace`](#class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_ray_tracing_builder_1a311cafb7c359cc969a32d8acea1dd08d)`(vk::CommandBuffer swapchaincommandBuffer,vk::Image swapchainImage,vk::Extent2D extent)` | Used to record the actual ray tracing commands to a given command buffer.
+`public  `[`RayTracingBuilder`](#class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_ray_tracing_builder_1a3550f65cf36456128e878ca1890bd7b6)`() = default` | 
+`public RX_API `[`~RayTracingBuilder`](#class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_ray_tracing_builder_1a178bbda46383db643b95fbc3209103f7)`()` | Calls [destroy()](moxygen/api-API.md#class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_ray_tracing_builder_1a3189e091b6301e38a325310edf894beb).
+`public  `[`RayTracingBuilder`](#class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_ray_tracing_builder_1a39c40e281657df8226d600b21a31acdf)`(const `[`RayTracingBuilder`](#class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_ray_tracing_builder)` &) = delete` | 
+`public  `[`RayTracingBuilder`](#class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_ray_tracing_builder_1a32e7ec906d20fbd16158e030cbfa83a5)`(const `[`RayTracingBuilder`](#class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_ray_tracing_builder)` &&) = delete` | 
+`public auto `[`operator=`](#class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_ray_tracing_builder_1ab85ed5e5008b6f83a962a768926c855a)`(const `[`RayTracingBuilder`](#class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_ray_tracing_builder)` &) = delete` | 
+`public auto `[`operator=`](#class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_ray_tracing_builder_1a5475f3045b7d1a71019d3e0169020211)`(const `[`RayTracingBuilder`](#class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_ray_tracing_builder)` &&) = delete` | 
+`public void `[`init`](#class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_ray_tracing_builder_1afdd8c600cef05e5e9bfd6dbb31182f4f)`()` | Retrieves the physical device's ray tracing capabilities.
+`public void `[`destroy`](#class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_ray_tracing_builder_1a3189e091b6301e38a325310edf894beb)`()` | Destroys all bottom and top level acceleration structures.
+`public inline auto `[`getTlas`](#class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_ray_tracing_builder_1a48aa91a99a89e50b3b6209778f04057c)`() const` | #### Returns
+`public inline auto `[`getRtProperties`](#class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_ray_tracing_builder_1a09fe2e3ccb7a99c43ee54e5a8852f779)`() const` | #### Returns
+`public inline auto `[`getStorageImageView`](#class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_ray_tracing_builder_1a768200b01d60ce411a687b95627195b5)`() const` | #### Returns
+`public auto `[`modelToBlas`](#class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_ray_tracing_builder_1a930233f3a42a6b863b177bfc93e71777)`(const `[`VertexBuffer`](moxygen/api-API.md#class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_vertex_buffer)` & vertexBuffer,const `[`IndexBuffer`](moxygen/api-API.md#class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_index_buffer)` & indexBuffer) const` | Used to convert wavefront models to a bottom level acceleration structure.
+`public auto `[`instanceToVkGeometryInstanceKHR`](#class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_ray_tracing_builder_1a60388a55e372319ce0d2158c7267ad56)`(const `[`BlasInstance`](moxygen/api-API.md#struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_blas_instance)` & instance)` | Used to convert a bottom level acceleration structure instance to a Vulkan geometry instance.
+`public void `[`createBottomLevelAS`](#class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_ray_tracing_builder_1a42b8ce4dcbd3a85f5e923c21432b529e)`(const std::vector< `[`VertexBuffer`](moxygen/api-API.md#class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_vertex_buffer)` > & vertexBuffers,const std::vector< `[`IndexBuffer`](moxygen/api-API.md#class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_index_buffer)` > & indexBuffers)` | Used to prepare building the bottom level acceleration structures.
+`public void `[`buildBlas`](#class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_ray_tracing_builder_1af900141703e8b05e7840aa4473557708)`(const std::vector< `[`Blas`](moxygen/api-API.md#struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_blas)` > & blas_,vk::BuildAccelerationStructureFlagsKHR flags)` | Builds all bottom level acceleration structures.
+`public void `[`createTopLevelAS`](#class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_ray_tracing_builder_1a5c6a10e0124ce4356bc41f9848cf85e9)`(const std::vector< std::shared_ptr< `[`GeometryInstance`](moxygen/api-Base.md#struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_geometry_instance)` >> & geometryInstances)` | Used to prepare building the top level acceleration structure.
+`public void `[`buildTlas`](#class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_ray_tracing_builder_1a90a77c2884d4831c6af205c37836cc4b)`(const std::vector< `[`BlasInstance`](moxygen/api-API.md#struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_blas_instance)` > & instances,vk::BuildAccelerationStructureFlagsKHR flags)` | Build the top level acceleration structure.
+`public void `[`createStorageImage`](#class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_ray_tracing_builder_1ab224b9213162354a3a540fc7708c47b5)`(vk::Extent2D swapchainExtent)` | Creates the storage image which the ray tracing shaders will write to.
+`public void `[`createShaderBindingTable`](#class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_ray_tracing_builder_1a2dfe6cb875357e7190f0efd50106c145)`(vk::Pipeline rtPipeline)` | Creates the shader binding tables.
+`public void `[`rayTrace`](#class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_ray_tracing_builder_1ac62d95b180821e50c060e3722c229e7a)`(vk::CommandBuffer swapchaincommandBuffer,vk::Image swapchainImage,vk::Extent2D extent)` | Used to record the actual ray tracing commands to a given command buffer.
 
 ## Members
 
-#### `public  `[`RayTracingBuilder`](#class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_ray_tracing_builder_1a09f8d1d7605a67657ac7e25aa9a3412e)`() = default` 
+#### `public  `[`RayTracingBuilder`](#class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_ray_tracing_builder_1a3550f65cf36456128e878ca1890bd7b6)`() = default` 
 
-#### `public RX_API `[`~RayTracingBuilder`](#class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_ray_tracing_builder_1a2a93b0638b8cd198b90d5fb2f20626fb)`()` 
+#### `public RX_API `[`~RayTracingBuilder`](#class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_ray_tracing_builder_1a178bbda46383db643b95fbc3209103f7)`()` 
 
-Calls [destroy()](moxygen/api-API.md#class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_ray_tracing_builder_1abb6d7ea7882129e639bb14aacdf30294).
+Calls [destroy()](moxygen/api-API.md#class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_ray_tracing_builder_1a3189e091b6301e38a325310edf894beb).
 
-#### `public  `[`RayTracingBuilder`](#class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_ray_tracing_builder_1ae5f98a8ab4b95cb24ad4c4dd898ac8a9)`(const `[`RayTracingBuilder`](#class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_ray_tracing_builder)` &) = delete` 
+#### `public  `[`RayTracingBuilder`](#class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_ray_tracing_builder_1a39c40e281657df8226d600b21a31acdf)`(const `[`RayTracingBuilder`](#class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_ray_tracing_builder)` &) = delete` 
 
-#### `public  `[`RayTracingBuilder`](#class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_ray_tracing_builder_1aa9828b53ca4a0797b2b7fb2ec37e279b)`(const `[`RayTracingBuilder`](#class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_ray_tracing_builder)` &&) = delete` 
+#### `public  `[`RayTracingBuilder`](#class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_ray_tracing_builder_1a32e7ec906d20fbd16158e030cbfa83a5)`(const `[`RayTracingBuilder`](#class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_ray_tracing_builder)` &&) = delete` 
 
-#### `public auto `[`operator=`](#class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_ray_tracing_builder_1a41652e5d15ed47e75a387f7450f26681)`(const `[`RayTracingBuilder`](#class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_ray_tracing_builder)` &) = delete` 
+#### `public auto `[`operator=`](#class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_ray_tracing_builder_1ab85ed5e5008b6f83a962a768926c855a)`(const `[`RayTracingBuilder`](#class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_ray_tracing_builder)` &) = delete` 
 
-#### `public auto `[`operator=`](#class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_ray_tracing_builder_1a4c3cc3563b344d436100bd83f8bd5a3f)`(const `[`RayTracingBuilder`](#class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_ray_tracing_builder)` &&) = delete` 
+#### `public auto `[`operator=`](#class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_ray_tracing_builder_1a5475f3045b7d1a71019d3e0169020211)`(const `[`RayTracingBuilder`](#class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_ray_tracing_builder)` &&) = delete` 
 
-#### `public void `[`init`](#class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_ray_tracing_builder_1aef2570764e775f8dd07c4255a47ccdab)`()` 
+#### `public void `[`init`](#class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_ray_tracing_builder_1afdd8c600cef05e5e9bfd6dbb31182f4f)`()` 
 
 Retrieves the physical device's ray tracing capabilities.
 
-#### `public void `[`destroy`](#class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_ray_tracing_builder_1abb6d7ea7882129e639bb14aacdf30294)`()` 
+#### `public void `[`destroy`](#class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_ray_tracing_builder_1a3189e091b6301e38a325310edf894beb)`()` 
 
 Destroys all bottom and top level acceleration structures.
 
-#### `public inline auto `[`getTlas`](#class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_ray_tracing_builder_1a390ccddaf2bd873fe65c438319159bf6)`() const` 
+#### `public inline auto `[`getTlas`](#class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_ray_tracing_builder_1a48aa91a99a89e50b3b6209778f04057c)`() const` 
 
 #### Returns
 Returns the top level acceleration structure.
 
-#### `public inline auto `[`getRtProperties`](#class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_ray_tracing_builder_1a99c6fb5a011da041275f54013155bc9c)`() const` 
+#### `public inline auto `[`getRtProperties`](#class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_ray_tracing_builder_1a09fe2e3ccb7a99c43ee54e5a8852f779)`() const` 
 
 #### Returns
 Returns the physical device's ray tracing properties.
 
-#### `public inline auto `[`getStorageImageView`](#class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_ray_tracing_builder_1a2511786430f0bf8134a447123d421c63)`() const` 
+#### `public inline auto `[`getStorageImageView`](#class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_ray_tracing_builder_1a768200b01d60ce411a687b95627195b5)`() const` 
 
 #### Returns
 Returns the storage image's image view.
 
-#### `public auto `[`modelToBlas`](#class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_ray_tracing_builder_1aed5bcefa14705b34f910e3ceb37fc8a5)`(const `[`VertexBuffer`](moxygen/api-API.md#class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_vertex_buffer)` & vertexBuffer,const `[`IndexBuffer`](moxygen/api-API.md#class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_index_buffer)` & indexBuffer) const` 
+#### `public auto `[`modelToBlas`](#class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_ray_tracing_builder_1a930233f3a42a6b863b177bfc93e71777)`(const `[`VertexBuffer`](moxygen/api-API.md#class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_vertex_buffer)` & vertexBuffer,const `[`IndexBuffer`](moxygen/api-API.md#class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_index_buffer)` & indexBuffer) const` 
 
 Used to convert wavefront models to a bottom level acceleration structure.
 
@@ -818,7 +817,7 @@ Used to convert wavefront models to a bottom level acceleration structure.
 #### Returns
 Returns the bottom level acceleration structure.
 
-#### `public auto `[`instanceToVkGeometryInstanceKHR`](#class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_ray_tracing_builder_1a07f5808d1c137c8104b5bc5c213b8d2c)`(const `[`BlasInstance`](moxygen/api-API.md#struct_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_blas_instance)` & instance)` 
+#### `public auto `[`instanceToVkGeometryInstanceKHR`](#class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_ray_tracing_builder_1a60388a55e372319ce0d2158c7267ad56)`(const `[`BlasInstance`](moxygen/api-API.md#struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_blas_instance)` & instance)` 
 
 Used to convert a bottom level acceleration structure instance to a Vulkan geometry instance.
 
@@ -828,32 +827,32 @@ Used to convert a bottom level acceleration structure instance to a Vulkan geome
 #### Returns
 Returns the Vulkan geometry instance.
 
-#### `public void `[`createBottomLevelAS`](#class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_ray_tracing_builder_1af229b339fa26bbedc4b06a74bd3e2a4c)`(const std::vector< `[`VertexBuffer`](moxygen/api-API.md#class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_vertex_buffer)` > & vertexBuffers,const std::vector< `[`IndexBuffer`](moxygen/api-API.md#class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_index_buffer)` > & indexBuffers)` 
+#### `public void `[`createBottomLevelAS`](#class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_ray_tracing_builder_1a42b8ce4dcbd3a85f5e923c21432b529e)`(const std::vector< `[`VertexBuffer`](moxygen/api-API.md#class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_vertex_buffer)` > & vertexBuffers,const std::vector< `[`IndexBuffer`](moxygen/api-API.md#class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_index_buffer)` > & indexBuffers)` 
 
 Used to prepare building the bottom level acceleration structures.
 
 #### Parameters
-* `vertexBuffers` [Vertex](moxygen/api-API.md#struct_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_vertex) buffers of all geometry in the scene. 
+* `vertexBuffers` [Vertex](moxygen/api-API.md#struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_vertex) buffers of all geometry in the scene. 
 
 * `indexBuffers` Index buffers of all geometry in the scene.
 
-#### `public void `[`buildBlas`](#class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_ray_tracing_builder_1a7317a1937164164619a0f0d1fdc0a9b1)`(const std::vector< `[`Blas`](moxygen/api-API.md#struct_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_blas)` > & blas_,vk::BuildAccelerationStructureFlagsKHR flags)` 
+#### `public void `[`buildBlas`](#class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_ray_tracing_builder_1af900141703e8b05e7840aa4473557708)`(const std::vector< `[`Blas`](moxygen/api-API.md#struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_blas)` > & blas_,vk::BuildAccelerationStructureFlagsKHR flags)` 
 
 Builds all bottom level acceleration structures.
 
 #### Parameters
-* `blas_` A vector of [RAYEXEC_NAMESPACE::Blas](moxygen/api-API.md#struct_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_blas) objects containing all bottom level acceleration structures prepared in [createBottomLevelAS()](moxygen/api-API.md#class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_ray_tracing_builder_1af229b339fa26bbedc4b06a74bd3e2a4c). 
+* `blas_` A vector of [RAYEX_NAMESPACE::Blas](moxygen/api-API.md#struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_blas) objects containing all bottom level acceleration structures prepared in [createBottomLevelAS()](moxygen/api-API.md#class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_ray_tracing_builder_1a42b8ce4dcbd3a85f5e923c21432b529e). 
 
 * `flags` The build flags.
 
-#### `public void `[`createTopLevelAS`](#class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_ray_tracing_builder_1aeabc1211e7bf59034ee75c61c53bbaf1)`(const std::vector< std::shared_ptr< `[`GeometryInstance`](moxygen/api-Base.md#struct_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_geometry_instance)` >> & geometryInstances)` 
+#### `public void `[`createTopLevelAS`](#class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_ray_tracing_builder_1a5c6a10e0124ce4356bc41f9848cf85e9)`(const std::vector< std::shared_ptr< `[`GeometryInstance`](moxygen/api-Base.md#struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_geometry_instance)` >> & geometryInstances)` 
 
 Used to prepare building the top level acceleration structure.
 
 #### Parameters
 * `geometryInstances` All geometry instances in the scene.
 
-#### `public void `[`buildTlas`](#class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_ray_tracing_builder_1a0802140271c08f495e8c2732937196fd)`(const std::vector< `[`BlasInstance`](moxygen/api-API.md#struct_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_blas_instance)` > & instances,vk::BuildAccelerationStructureFlagsKHR flags)` 
+#### `public void `[`buildTlas`](#class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_ray_tracing_builder_1a90a77c2884d4831c6af205c37836cc4b)`(const std::vector< `[`BlasInstance`](moxygen/api-API.md#struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_blas_instance)` > & instances,vk::BuildAccelerationStructureFlagsKHR flags)` 
 
 Build the top level acceleration structure.
 
@@ -862,21 +861,21 @@ Build the top level acceleration structure.
 
 * `flags` The build flags.
 
-#### `public void `[`createStorageImage`](#class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_ray_tracing_builder_1a2aff232d2fc78728d364c9eba2bcafa0)`(vk::Extent2D swapchainExtent)` 
+#### `public void `[`createStorageImage`](#class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_ray_tracing_builder_1ab224b9213162354a3a540fc7708c47b5)`(vk::Extent2D swapchainExtent)` 
 
 Creates the storage image which the ray tracing shaders will write to.
 
 #### Parameters
 * `swapchainExtent` The swapchain images' extent.
 
-#### `public void `[`createShaderBindingTable`](#class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_ray_tracing_builder_1a14ae945c468cafeba09183f329c596e1)`(vk::Pipeline rtPipeline)` 
+#### `public void `[`createShaderBindingTable`](#class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_ray_tracing_builder_1a2dfe6cb875357e7190f0efd50106c145)`(vk::Pipeline rtPipeline)` 
 
 Creates the shader binding tables.
 
 #### Parameters
 * `rtPipeline` The ray tracing graphics pipeline.
 
-#### `public void `[`rayTrace`](#class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_ray_tracing_builder_1a311cafb7c359cc969a32d8acea1dd08d)`(vk::CommandBuffer swapchaincommandBuffer,vk::Image swapchainImage,vk::Extent2D extent)` 
+#### `public void `[`rayTrace`](#class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_ray_tracing_builder_1ac62d95b180821e50c060e3722c229e7a)`(vk::CommandBuffer swapchaincommandBuffer,vk::Image swapchainImage,vk::Extent2D extent)` 
 
 Used to record the actual ray tracing commands to a given command buffer.
 
@@ -887,7 +886,7 @@ Used to record the actual ray tracing commands to a given command buffer.
 
 * `extent` The swapchain images' extent.
 
-# class `RAYEXEC_NAMESPACE::RenderPass` 
+# class `RAYEX_NAMESPACE::RenderPass` 
 
 A wrapper class for a Vulkan render pass.
 
@@ -895,19 +894,19 @@ A wrapper class for a Vulkan render pass.
 
  Members                        | Descriptions                                
 --------------------------------|---------------------------------------------
-`public inline auto `[`get`](#class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_render_pass_1a8c2fe19756c46e3403500697be43bdc2)`() const` | #### Returns
-`public void `[`init`](#class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_render_pass_1afb29f77500194dc5e8299cb2cdce0afe)`(const std::vector< vk::AttachmentDescription > & attachments,const std::vector< vk::SubpassDescription > & subpasses,const std::vector< vk::SubpassDependency > & dependencies)` | Initializes the Vulkan render pass.
-`public void `[`begin`](#class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_render_pass_1a6161719c747189475df47f2e3dcf25aa)`(vk::Framebuffer framebuffer,vk::CommandBuffer commandBuffer,vk::Rect2D renderArea,const std::vector< vk::ClearValue > & clearValues) const` | Call to begin the render pass.
-`public void `[`end`](#class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_render_pass_1af0713427a6ebea6cb6c976cd7df69b07)`(vk::CommandBuffer commandBuffer) const` | Call to end the render pass.
+`public inline auto `[`get`](#class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_render_pass_1a54b6544e81c939178fcd3204703cd795)`() const` | #### Returns
+`public void `[`init`](#class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_render_pass_1a59530fba847d5b02e6e705d5257562aa)`(const std::vector< vk::AttachmentDescription > & attachments,const std::vector< vk::SubpassDescription > & subpasses,const std::vector< vk::SubpassDependency > & dependencies)` | Initializes the Vulkan render pass.
+`public void `[`begin`](#class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_render_pass_1ae7cd1dc3852a28c45702bacd5958c533)`(vk::Framebuffer framebuffer,vk::CommandBuffer commandBuffer,vk::Rect2D renderArea,const std::vector< vk::ClearValue > & clearValues) const` | Call to begin the render pass.
+`public void `[`end`](#class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_render_pass_1a34096c7ba0418e1583a0fb255f975d02)`(vk::CommandBuffer commandBuffer) const` | Call to end the render pass.
 
 ## Members
 
-#### `public inline auto `[`get`](#class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_render_pass_1a8c2fe19756c46e3403500697be43bdc2)`() const` 
+#### `public inline auto `[`get`](#class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_render_pass_1a54b6544e81c939178fcd3204703cd795)`() const` 
 
 #### Returns
 Returns the Vulkan render pass without the unique handle.
 
-#### `public void `[`init`](#class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_render_pass_1afb29f77500194dc5e8299cb2cdce0afe)`(const std::vector< vk::AttachmentDescription > & attachments,const std::vector< vk::SubpassDescription > & subpasses,const std::vector< vk::SubpassDependency > & dependencies)` 
+#### `public void `[`init`](#class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_render_pass_1a59530fba847d5b02e6e705d5257562aa)`(const std::vector< vk::AttachmentDescription > & attachments,const std::vector< vk::SubpassDescription > & subpasses,const std::vector< vk::SubpassDependency > & dependencies)` 
 
 Initializes the Vulkan render pass.
 
@@ -918,7 +917,7 @@ Initializes the Vulkan render pass.
 
 * `dependencies` The Vulkan subpass dependencies.
 
-#### `public void `[`begin`](#class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_render_pass_1a6161719c747189475df47f2e3dcf25aa)`(vk::Framebuffer framebuffer,vk::CommandBuffer commandBuffer,vk::Rect2D renderArea,const std::vector< vk::ClearValue > & clearValues) const` 
+#### `public void `[`begin`](#class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_render_pass_1ae7cd1dc3852a28c45702bacd5958c533)`(vk::Framebuffer framebuffer,vk::CommandBuffer commandBuffer,vk::Rect2D renderArea,const std::vector< vk::ClearValue > & clearValues) const` 
 
 Call to begin the render pass.
 
@@ -931,16 +930,16 @@ Call to begin the render pass.
 
 * `clearValues` The clear values. 
 
-[RAYEXEC_NAMESPACE::CommandBuffer::begin()](moxygen/api-API.md#class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_command_buffer_1a3c7b641da4afce0c7df9a033c9a47d9a) or vk::CommandBuffer::begin() must have been already called prior to calling this function.
+[RAYEX_NAMESPACE::CommandBuffer::begin()](moxygen/api-API.md#class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_command_buffer_1adeb8480e5423081dae4f34e7c756f5d0) or vk::CommandBuffer::begin() must have been already called prior to calling this function.
 
-#### `public void `[`end`](#class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_render_pass_1af0713427a6ebea6cb6c976cd7df69b07)`(vk::CommandBuffer commandBuffer) const` 
+#### `public void `[`end`](#class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_render_pass_1a34096c7ba0418e1583a0fb255f975d02)`(vk::CommandBuffer commandBuffer) const` 
 
 Call to end the render pass.
 
 #### Parameters
 * `commandBuffer`
 
-# class `RAYEXEC_NAMESPACE::Surface` 
+# class `RAYEX_NAMESPACE::Surface` 
 
 A wrapper class for a Vulkan surface.
 
@@ -948,68 +947,68 @@ A wrapper class for a Vulkan surface.
 
  Members                        | Descriptions                                
 --------------------------------|---------------------------------------------
-`public  `[`Surface`](#class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_surface_1a2f6bf64e9d0db9bccc2953cf8ccee8ef)`() = default` | 
-`public RX_API `[`~Surface`](#class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_surface_1a66f6aa415154d2fcb8cb52c60b1ff50c)`()` | Calls destroy().
-`public  `[`Surface`](#class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_surface_1ae109c3463c11f0a8618eae399eafc7a9)`(const `[`Surface`](#class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_surface)` &) = delete` | 
-`public  `[`Surface`](#class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_surface_1a666de7dabd145c3e485fa2d68deb631c)`(const `[`Surface`](#class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_surface)` &&) = delete` | 
-`public auto `[`operator=`](#class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_surface_1a4c3ad8eee8a52780e41dbad3a5bb7017)`(const `[`Surface`](#class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_surface)` &) = delete` | 
-`public auto `[`operator=`](#class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_surface_1a8ec0126e1a66560bad7c8c951e110c07)`(const `[`Surface`](#class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_surface)` &&) = delete` | 
-`public inline auto `[`getFormat`](#class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_surface_1a48a85968025216109364439c33867080)`() const` | #### Returns
-`public inline auto `[`getColorSpace`](#class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_surface_1a86f07a17c40ddbde618da58505188cac)`() const` | #### Returns
-`public inline auto `[`getPresentMode`](#class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_surface_1af5c6d1a091849de2f27d50313c528663)`() const` | #### Returns
-`public inline auto `[`getCapabilities`](#class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_surface_1a3e5cddc4a0865d6409f3cbc3ec445ad0)`() const` | #### Returns
-`public void `[`init`](#class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_surface_1aab66cf348fdbaf821130405764db7f97)`()` | Initializes the Vulkan surface object.
-`public void `[`assessSettings`](#class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_surface_1a110994fc7096f6fd95e7b6aafee6ca1b)`()` | Checks if the preferred settings for format, color space and present mode are available.
+`public  `[`Surface`](#class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_surface_1a50507969dee14dca7f6d7caabc140f3f)`() = default` | 
+`public RX_API `[`~Surface`](#class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_surface_1ad95d5efc917135b9ffaf82f19496d520)`()` | Calls destroy().
+`public  `[`Surface`](#class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_surface_1aff20a5ec7ec7eda1408ea424e007dabd)`(const `[`Surface`](#class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_surface)` &) = delete` | 
+`public  `[`Surface`](#class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_surface_1a366763190dfacc0bd80d1ee7551928c3)`(const `[`Surface`](#class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_surface)` &&) = delete` | 
+`public auto `[`operator=`](#class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_surface_1af379c8a571dcefa5494a12d27b1c2743)`(const `[`Surface`](#class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_surface)` &) = delete` | 
+`public auto `[`operator=`](#class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_surface_1aec6dd8d9491bd12b5f5a3dae75844ac6)`(const `[`Surface`](#class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_surface)` &&) = delete` | 
+`public inline auto `[`getFormat`](#class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_surface_1a11570390ba2497255d964315e0e3afaf)`() const` | #### Returns
+`public inline auto `[`getColorSpace`](#class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_surface_1a70902541ad7dfec48032ca084f913378)`() const` | #### Returns
+`public inline auto `[`getPresentMode`](#class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_surface_1a48595aa6fcd51e7a83524e69f7498d47)`() const` | #### Returns
+`public inline auto `[`getCapabilities`](#class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_surface_1a4ce2ebf931003afa86f9a0497b4b8d06)`() const` | #### Returns
+`public void `[`init`](#class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_surface_1aaaafc9c2aa37b2b80e06cd26bd60f78e)`()` | Initializes the Vulkan surface object.
+`public void `[`assessSettings`](#class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_surface_1a75d89305da7ff2a6e62619637ff7bf37)`()` | Checks if the preferred settings for format, color space and present mode are available.
 
 ## Members
 
-#### `public  `[`Surface`](#class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_surface_1a2f6bf64e9d0db9bccc2953cf8ccee8ef)`() = default` 
+#### `public  `[`Surface`](#class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_surface_1a50507969dee14dca7f6d7caabc140f3f)`() = default` 
 
-#### `public RX_API `[`~Surface`](#class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_surface_1a66f6aa415154d2fcb8cb52c60b1ff50c)`()` 
+#### `public RX_API `[`~Surface`](#class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_surface_1ad95d5efc917135b9ffaf82f19496d520)`()` 
 
 Calls destroy().
 
-#### `public  `[`Surface`](#class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_surface_1ae109c3463c11f0a8618eae399eafc7a9)`(const `[`Surface`](#class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_surface)` &) = delete` 
+#### `public  `[`Surface`](#class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_surface_1aff20a5ec7ec7eda1408ea424e007dabd)`(const `[`Surface`](#class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_surface)` &) = delete` 
 
-#### `public  `[`Surface`](#class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_surface_1a666de7dabd145c3e485fa2d68deb631c)`(const `[`Surface`](#class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_surface)` &&) = delete` 
+#### `public  `[`Surface`](#class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_surface_1a366763190dfacc0bd80d1ee7551928c3)`(const `[`Surface`](#class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_surface)` &&) = delete` 
 
-#### `public auto `[`operator=`](#class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_surface_1a4c3ad8eee8a52780e41dbad3a5bb7017)`(const `[`Surface`](#class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_surface)` &) = delete` 
+#### `public auto `[`operator=`](#class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_surface_1af379c8a571dcefa5494a12d27b1c2743)`(const `[`Surface`](#class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_surface)` &) = delete` 
 
-#### `public auto `[`operator=`](#class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_surface_1a8ec0126e1a66560bad7c8c951e110c07)`(const `[`Surface`](#class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_surface)` &&) = delete` 
+#### `public auto `[`operator=`](#class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_surface_1aec6dd8d9491bd12b5f5a3dae75844ac6)`(const `[`Surface`](#class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_surface)` &&) = delete` 
 
-#### `public inline auto `[`getFormat`](#class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_surface_1a48a85968025216109364439c33867080)`() const` 
+#### `public inline auto `[`getFormat`](#class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_surface_1a11570390ba2497255d964315e0e3afaf)`() const` 
 
 #### Returns
 Returns the surface format.
 
-#### `public inline auto `[`getColorSpace`](#class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_surface_1a86f07a17c40ddbde618da58505188cac)`() const` 
+#### `public inline auto `[`getColorSpace`](#class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_surface_1a70902541ad7dfec48032ca084f913378)`() const` 
 
 #### Returns
 Returns the surface's color space.
 
-#### `public inline auto `[`getPresentMode`](#class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_surface_1af5c6d1a091849de2f27d50313c528663)`() const` 
+#### `public inline auto `[`getPresentMode`](#class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_surface_1a48595aa6fcd51e7a83524e69f7498d47)`() const` 
 
 #### Returns
 Returns the surface's present mode.
 
-#### `public inline auto `[`getCapabilities`](#class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_surface_1a3e5cddc4a0865d6409f3cbc3ec445ad0)`() const` 
+#### `public inline auto `[`getCapabilities`](#class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_surface_1a4ce2ebf931003afa86f9a0497b4b8d06)`() const` 
 
 #### Returns
 Returns the surface's capabilities.
 
-#### `public void `[`init`](#class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_surface_1aab66cf348fdbaf821130405764db7f97)`()` 
+#### `public void `[`init`](#class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_surface_1aaaafc9c2aa37b2b80e06cd26bd60f78e)`()` 
 
 Initializes the Vulkan surface object.
 
 If any of the specified format, color space and present mode are not available the function will fall back to settings that are guaranteed to be supported.
 
-#### `public void `[`assessSettings`](#class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_surface_1a110994fc7096f6fd95e7b6aafee6ca1b)`()` 
+#### `public void `[`assessSettings`](#class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_surface_1a75d89305da7ff2a6e62619637ff7bf37)`()` 
 
 Checks if the preferred settings for format, color space and present mode are available.
 
 If not, the function will set them to some fallback values. Must be called right after the enumeration of the physical device.
 
-# class `RAYEXEC_NAMESPACE::Swapchain` 
+# class `RAYEX_NAMESPACE::Swapchain` 
 
 A wrapper class for a Vulkan swapchain.
 
@@ -1017,55 +1016,55 @@ A wrapper class for a Vulkan swapchain.
 
  Members                        | Descriptions                                
 --------------------------------|---------------------------------------------
-`public void `[`init`](#class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_swapchain_1a2d7ff0e063ea15fe578407c7c81ac7e2)`(`[`Surface`](moxygen/api-API.md#class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_surface)` * surface,vk::RenderPass renderPass)` | Creates the swapchain, the swapchain images and their image views as well as their framebuffers.
-`public void `[`destroy`](#class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_swapchain_1a562180ff12b730a57e7aec3c73a534b7)`()` | Destroys the swapchain.
-`public inline auto `[`getFramebuffer`](#class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_swapchain_1a7423d7474a69ddcf6c069dd52d03c9fe)`(uint32_t index) const` | #### Returns
-`public inline auto `[`getCurrentImageIndex`](#class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_swapchain_1a5978067f74d9579eef8777cefed83a6c)`() const` | #### Returns
-`public inline auto `[`getExtent`](#class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_swapchain_1ac1a042535549e8b435a41bbcaca06759)`() const` | #### Returns
-`public inline auto `[`getImageAspect`](#class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_swapchain_1a514beaf04e7d7835bf4b94ee0223622c)`() const` | #### Returns
-`public inline auto `[`getImage`](#class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_swapchain_1a8711129b1c04a4c09abb1a65817ac5a4)`(size_t index) const` | Returns the swapchain image at a given index.
-`public inline auto `[`getImages`](#class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_swapchain_1a6e0557f4d62e28dfeb9cf6e2afb06704)`() const` | #### Returns
-`public inline auto `[`getImageViews`](#class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_swapchain_1a5e7ed9142f249264a2cb421c92c1b2d5)`() const` | #### Returns
-`public void `[`setImageAspect`](#class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_swapchain_1ae727ddbc80698faab04783451ad2a250)`(vk::ImageAspectFlags flags)` | Used to set the desired image aspect flags.
-`public void `[`setImageLayout`](#class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_swapchain_1afe470847ca79c36a8a502dabc6ea81e6)`(vk::ImageLayout oldLayout,vk::ImageLayout newLayout)` | Used to transition from one layout to another.
-`public void `[`acquireNextImage`](#class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_swapchain_1a2077caebb153dac7c98ccf7ea270f6e6)`(vk::Semaphore semaphore,vk::Fence fence)` | Retrieves the next swapchain image.
+`public void `[`init`](#class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_swapchain_1ad85e687e114973ff8fc6b852db078879)`(`[`Surface`](moxygen/api-API.md#class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_surface)` * surface,vk::RenderPass renderPass)` | Creates the swapchain, the swapchain images and their image views as well as their framebuffers.
+`public void `[`destroy`](#class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_swapchain_1a23485ef75854f3ffb881877e18ddd2c2)`()` | Destroys the swapchain.
+`public inline auto `[`getFramebuffer`](#class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_swapchain_1ab3315f20384b5fa3e1e4156bd1c638c7)`(uint32_t index) const` | #### Returns
+`public inline auto `[`getCurrentImageIndex`](#class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_swapchain_1ac7a765f1861061db7373460b77ddeb3e)`() const` | #### Returns
+`public inline auto `[`getExtent`](#class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_swapchain_1a9789ac0aaa93867052947d4445f2a0e2)`() const` | #### Returns
+`public inline auto `[`getImageAspect`](#class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_swapchain_1a58e9cbc1d98d0eb97ee273b15c1f4713)`() const` | #### Returns
+`public inline auto `[`getImage`](#class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_swapchain_1a190ce92331100a2db14c729d67341b9f)`(size_t index) const` | Returns the swapchain image at a given index.
+`public inline auto `[`getImages`](#class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_swapchain_1a747f3cd62d8784b05baf6e192d86002a)`() const` | #### Returns
+`public inline auto `[`getImageViews`](#class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_swapchain_1a30b4e27c52d6fa9bb634b5cb579b7b10)`() const` | #### Returns
+`public void `[`setImageAspect`](#class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_swapchain_1a50a497610d30300482aa3d2a5f05e6ff)`(vk::ImageAspectFlags flags)` | Used to set the desired image aspect flags.
+`public void `[`setImageLayout`](#class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_swapchain_1a9d4b15bff7fb5bda19cb5b7dd02783f4)`(vk::ImageLayout oldLayout,vk::ImageLayout newLayout)` | Used to transition from one layout to another.
+`public void `[`acquireNextImage`](#class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_swapchain_1a3df5993a7b2582f01bad19a397cf0afe)`(vk::Semaphore semaphore,vk::Fence fence)` | Retrieves the next swapchain image.
 
 ## Members
 
-#### `public void `[`init`](#class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_swapchain_1a2d7ff0e063ea15fe578407c7c81ac7e2)`(`[`Surface`](moxygen/api-API.md#class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_surface)` * surface,vk::RenderPass renderPass)` 
+#### `public void `[`init`](#class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_swapchain_1ad85e687e114973ff8fc6b852db078879)`(`[`Surface`](moxygen/api-API.md#class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_surface)` * surface,vk::RenderPass renderPass)` 
 
 Creates the swapchain, the swapchain images and their image views as well as their framebuffers.
 
 #### Parameters
-* `surface` A pointer to a [RAYEXEC_NAMESPACE::Surface](moxygen/api-API.md#class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_surface) object. 
+* `surface` A pointer to a [RAYEX_NAMESPACE::Surface](moxygen/api-API.md#class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_surface) object. 
 
 * `renderPass` The render pass to create the framebuffers.
 
-#### `public void `[`destroy`](#class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_swapchain_1a562180ff12b730a57e7aec3c73a534b7)`()` 
+#### `public void `[`destroy`](#class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_swapchain_1a23485ef75854f3ffb881877e18ddd2c2)`()` 
 
 Destroys the swapchain.
 
-#### `public inline auto `[`getFramebuffer`](#class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_swapchain_1a7423d7474a69ddcf6c069dd52d03c9fe)`(uint32_t index) const` 
+#### `public inline auto `[`getFramebuffer`](#class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_swapchain_1ab3315f20384b5fa3e1e4156bd1c638c7)`(uint32_t index) const` 
 
 #### Returns
 Returns the swapchain framebuffer at a given index.
 
-#### `public inline auto `[`getCurrentImageIndex`](#class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_swapchain_1a5978067f74d9579eef8777cefed83a6c)`() const` 
+#### `public inline auto `[`getCurrentImageIndex`](#class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_swapchain_1ac7a765f1861061db7373460b77ddeb3e)`() const` 
 
 #### Returns
 Returns the current swapchain image index.
 
-#### `public inline auto `[`getExtent`](#class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_swapchain_1ac1a042535549e8b435a41bbcaca06759)`() const` 
+#### `public inline auto `[`getExtent`](#class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_swapchain_1a9789ac0aaa93867052947d4445f2a0e2)`() const` 
 
 #### Returns
 Returns the swapchain images' extent.
 
-#### `public inline auto `[`getImageAspect`](#class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_swapchain_1a514beaf04e7d7835bf4b94ee0223622c)`() const` 
+#### `public inline auto `[`getImageAspect`](#class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_swapchain_1a58e9cbc1d98d0eb97ee273b15c1f4713)`() const` 
 
 #### Returns
 Returns the swapchain images' image aspect.
 
-#### `public inline auto `[`getImage`](#class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_swapchain_1a8711129b1c04a4c09abb1a65817ac5a4)`(size_t index) const` 
+#### `public inline auto `[`getImage`](#class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_swapchain_1a190ce92331100a2db14c729d67341b9f)`(size_t index) const` 
 
 Returns the swapchain image at a given index.
 
@@ -1075,23 +1074,23 @@ Returns the swapchain image at a given index.
 #### Returns
 The swapchain image.
 
-#### `public inline auto `[`getImages`](#class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_swapchain_1a6e0557f4d62e28dfeb9cf6e2afb06704)`() const` 
+#### `public inline auto `[`getImages`](#class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_swapchain_1a747f3cd62d8784b05baf6e192d86002a)`() const` 
 
 #### Returns
 Returns a vector containing all swapchain images.
 
-#### `public inline auto `[`getImageViews`](#class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_swapchain_1a5e7ed9142f249264a2cb421c92c1b2d5)`() const` 
+#### `public inline auto `[`getImageViews`](#class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_swapchain_1a30b4e27c52d6fa9bb634b5cb579b7b10)`() const` 
 
 #### Returns
 Returns a vector containing all swapchain image views. 
 
 > Todo: Returning by reference will result in size 0.
 
-#### `public void `[`setImageAspect`](#class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_swapchain_1ae727ddbc80698faab04783451ad2a250)`(vk::ImageAspectFlags flags)` 
+#### `public void `[`setImageAspect`](#class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_swapchain_1a50a497610d30300482aa3d2a5f05e6ff)`(vk::ImageAspectFlags flags)` 
 
 Used to set the desired image aspect flags.
 
-#### `public void `[`setImageLayout`](#class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_swapchain_1afe470847ca79c36a8a502dabc6ea81e6)`(vk::ImageLayout oldLayout,vk::ImageLayout newLayout)` 
+#### `public void `[`setImageLayout`](#class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_swapchain_1a9d4b15bff7fb5bda19cb5b7dd02783f4)`(vk::ImageLayout oldLayout,vk::ImageLayout newLayout)` 
 
 Used to transition from one layout to another.
 
@@ -1100,7 +1099,7 @@ Used to transition from one layout to another.
 
 * `newLayout` The target image layout.
 
-#### `public void `[`acquireNextImage`](#class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_swapchain_1a2077caebb153dac7c98ccf7ea270f6e6)`(vk::Semaphore semaphore,vk::Fence fence)` 
+#### `public void `[`acquireNextImage`](#class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_swapchain_1a3df5993a7b2582f01bad19a397cf0afe)`(vk::Semaphore semaphore,vk::Fence fence)` 
 
 Retrieves the next swapchain image.
 
@@ -1109,7 +1108,7 @@ Retrieves the next swapchain image.
 
 * `fence` A fence to signal.
 
-# class `RAYEXEC_NAMESPACE::DebugMessenger` 
+# class `RAYEX_NAMESPACE::DebugMessenger` 
 
 A wrapper class for a Vulkan debug utility messenger.
 
@@ -1119,31 +1118,31 @@ The class features scope-bound destruction.
 
  Members                        | Descriptions                                
 --------------------------------|---------------------------------------------
-`public  `[`DebugMessenger`](#class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_debug_messenger_1a5939abe290f0346d7b1937801b524c3a)`() = default` | 
-`public RX_API `[`~DebugMessenger`](#class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_debug_messenger_1ab89a75010513bf52e7434347b7402980)`()` | Calls destroy().
-`public  `[`DebugMessenger`](#class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_debug_messenger_1ad8cd7919dd10ef8575965f2a8a27c719)`(const `[`DebugMessenger`](#class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_debug_messenger)` &) = delete` | 
-`public  `[`DebugMessenger`](#class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_debug_messenger_1a03aa90e8711e3c4c52914b1f3bef719f)`(const `[`DebugMessenger`](#class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_debug_messenger)` &&) = delete` | 
-`public auto `[`operator=`](#class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_debug_messenger_1adb7fd6bce2bc01d6bf175b2b940df9f0)`(const `[`DebugMessenger`](#class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_debug_messenger)` &) = delete` | 
-`public auto `[`operator=`](#class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_debug_messenger_1ae4372ca978336a4d7a525535806e5d47)`(const `[`DebugMessenger`](#class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_debug_messenger)` &&) = delete` | 
-`public void `[`init`](#class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_debug_messenger_1a4b24b4d3b73b59e11735a7dddf6a7db2)`(vk::DebugUtilsMessageSeverityFlagsEXT messageSeverity,vk::DebugUtilsMessageTypeFlagsEXT messageType)` | Creates the debug messenger with the given properties.
+`public  `[`DebugMessenger`](#class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_debug_messenger_1a69fbeacdb2db1302c0359c274a3ad181)`() = default` | 
+`public RX_API `[`~DebugMessenger`](#class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_debug_messenger_1adccb8eef15ed60f4b90d1b61f6613858)`()` | Calls destroy().
+`public  `[`DebugMessenger`](#class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_debug_messenger_1a9301709792a38dac2faf5ed369f40bad)`(const `[`DebugMessenger`](#class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_debug_messenger)` &) = delete` | 
+`public  `[`DebugMessenger`](#class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_debug_messenger_1a02dd17d502dd32e655f8013ecdfc3c3a)`(const `[`DebugMessenger`](#class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_debug_messenger)` &&) = delete` | 
+`public auto `[`operator=`](#class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_debug_messenger_1adfe593687a69b8a15a8153f52701e9a0)`(const `[`DebugMessenger`](#class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_debug_messenger)` &) = delete` | 
+`public auto `[`operator=`](#class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_debug_messenger_1adad322d648f63748f7aba7817459015a)`(const `[`DebugMessenger`](#class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_debug_messenger)` &&) = delete` | 
+`public void `[`init`](#class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_debug_messenger_1ad85d8efe16f0ef5fd0a1b632efc100ba)`(vk::DebugUtilsMessageSeverityFlagsEXT messageSeverity,vk::DebugUtilsMessageTypeFlagsEXT messageType)` | Creates the debug messenger with the given properties.
 
 ## Members
 
-#### `public  `[`DebugMessenger`](#class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_debug_messenger_1a5939abe290f0346d7b1937801b524c3a)`() = default` 
+#### `public  `[`DebugMessenger`](#class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_debug_messenger_1a69fbeacdb2db1302c0359c274a3ad181)`() = default` 
 
-#### `public RX_API `[`~DebugMessenger`](#class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_debug_messenger_1ab89a75010513bf52e7434347b7402980)`()` 
+#### `public RX_API `[`~DebugMessenger`](#class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_debug_messenger_1adccb8eef15ed60f4b90d1b61f6613858)`()` 
 
 Calls destroy().
 
-#### `public  `[`DebugMessenger`](#class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_debug_messenger_1ad8cd7919dd10ef8575965f2a8a27c719)`(const `[`DebugMessenger`](#class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_debug_messenger)` &) = delete` 
+#### `public  `[`DebugMessenger`](#class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_debug_messenger_1a9301709792a38dac2faf5ed369f40bad)`(const `[`DebugMessenger`](#class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_debug_messenger)` &) = delete` 
 
-#### `public  `[`DebugMessenger`](#class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_debug_messenger_1a03aa90e8711e3c4c52914b1f3bef719f)`(const `[`DebugMessenger`](#class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_debug_messenger)` &&) = delete` 
+#### `public  `[`DebugMessenger`](#class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_debug_messenger_1a02dd17d502dd32e655f8013ecdfc3c3a)`(const `[`DebugMessenger`](#class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_debug_messenger)` &&) = delete` 
 
-#### `public auto `[`operator=`](#class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_debug_messenger_1adb7fd6bce2bc01d6bf175b2b940df9f0)`(const `[`DebugMessenger`](#class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_debug_messenger)` &) = delete` 
+#### `public auto `[`operator=`](#class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_debug_messenger_1adfe593687a69b8a15a8153f52701e9a0)`(const `[`DebugMessenger`](#class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_debug_messenger)` &) = delete` 
 
-#### `public auto `[`operator=`](#class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_debug_messenger_1ae4372ca978336a4d7a525535806e5d47)`(const `[`DebugMessenger`](#class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_debug_messenger)` &&) = delete` 
+#### `public auto `[`operator=`](#class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_debug_messenger_1adad322d648f63748f7aba7817459015a)`(const `[`DebugMessenger`](#class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_debug_messenger)` &&) = delete` 
 
-#### `public void `[`init`](#class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_debug_messenger_1a4b24b4d3b73b59e11735a7dddf6a7db2)`(vk::DebugUtilsMessageSeverityFlagsEXT messageSeverity,vk::DebugUtilsMessageTypeFlagsEXT messageType)` 
+#### `public void `[`init`](#class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_debug_messenger_1ad85d8efe16f0ef5fd0a1b632efc100ba)`(vk::DebugUtilsMessageSeverityFlagsEXT messageSeverity,vk::DebugUtilsMessageTypeFlagsEXT messageType)` 
 
 Creates the debug messenger with the given properties.
 
@@ -1152,7 +1151,7 @@ Creates the debug messenger with the given properties.
 
 * `messageType` - Specifies the types of messages that will be logged.
 
-# class `RAYEXEC_NAMESPACE::Gui` 
+# class `RAYEX_NAMESPACE::Gui` 
 
 A class to create an ImGui-based GUI.
 
@@ -1162,16 +1161,16 @@ class CustomGui : public Gui
 {
 private:
   // Configure style and input of the GUI.
-  void [configure](moxygen/api-API.md#class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_gui_1aeb8f2a8a40752cc3e8bac5a386ea8264)() override { }
+  void [configure](moxygen/api-API.md#class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_gui_1a7b99401be8a1bd42b501a09ca4c6b12e)() override { }
 
   // Put the rendering commands in here.
-  void [render](moxygen/api-API.md#class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_gui_1a370773b570ac9e9cedf4532af673fed2)() override { }
+  void [render](moxygen/api-API.md#class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_gui_1acd2c8c3254cf577dbf4ccbedadd2cf4d)() override { }
 };
 
-RayExecmyRenderer;
+RayexmyRenderer;
 myRenderer.init( );
 
-// Put this line after the declaration of the RAYEXEC_NAMESPACE::RayExecobject.
+// Put this line after the declaration of the RAYEX_NAMESPACE::Rayexobject.
 auto myGui = std::make_shared<CustomGui>( );
 myRenderer.setGui( myGui );
 ```
@@ -1182,20 +1181,20 @@ The GUI object must be declared after the renderer to ensure the correct order f
 
  Members                        | Descriptions                                
 --------------------------------|---------------------------------------------
-`public virtual RX_API `[`~Gui`](#class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_gui_1a40a810587318be3d9857c3b3746eda86)`() = default` | 
-`public inline auto `[`getCommandBuffer`](#class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_gui_1a42ee4d92c4f67cfffde59078d8dc2ea6)`(uint32_t index) const` | Returns the GUI's command buffer at the given index.
-`public virtual RX_API void `[`configure`](#class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_gui_1aeb8f2a8a40752cc3e8bac5a386ea8264)`()` | Used to configure all ImGui settings.
-`public virtual RX_API void `[`render`](#class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_gui_1a370773b570ac9e9cedf4532af673fed2)`()` | This function is for calling the individual ImGui components, e.g.
-`public void `[`init`](#class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_gui_1a53e3aef5201eb40b6253497ffa3007d9)`(const `[`Surface`](moxygen/api-API.md#class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_surface)` * surface,vk::Extent2D swapchainImageExtent,const std::vector< vk::ImageView > & swapchainImageViews)` | Creates the GUI and all required Vulkan components.
-`public void `[`recreate`](#class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_gui_1a3c007475218c665bf3cefc22e8aec63a)`(vk::Extent2D swapchainImageExtent,const std::vector< vk::ImageView > & swapchainImageViews)` | Used to recreate the GUI in case the window size was changed.
-`public void `[`renderDrawData`](#class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_gui_1a786d4c8f378d6f025d8ca7caae8e66c4)`(uint32_t imageIndex)` | Records the ImGui rendering calls to the command buffer at the given image index.
-`public RX_API void `[`destroy`](#class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_gui_1a18e47c4c4175e5ba4935c7cc6949b3df)`()` | Destroys all ImGui resources.
+`public virtual RX_API `[`~Gui`](#class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_gui_1a990162f98e24078b92f7d0fa71774ea5)`() = default` | 
+`public inline auto `[`getCommandBuffer`](#class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_gui_1a8e3a6b5982891d85abb8dc8613f1d249)`(uint32_t index) const` | Returns the GUI's command buffer at the given index.
+`public virtual RX_API void `[`configure`](#class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_gui_1a7b99401be8a1bd42b501a09ca4c6b12e)`()` | Used to configure all ImGui settings.
+`public virtual RX_API void `[`render`](#class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_gui_1acd2c8c3254cf577dbf4ccbedadd2cf4d)`()` | This function is for calling the individual ImGui components, e.g.
+`public void `[`init`](#class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_gui_1aa49af0a07e34a8ea5505cf9727781adf)`(const `[`Surface`](moxygen/api-API.md#class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_surface)` * surface,vk::Extent2D swapchainImageExtent,const std::vector< vk::ImageView > & swapchainImageViews)` | Creates the GUI and all required Vulkan components.
+`public void `[`recreate`](#class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_gui_1a56569780013e4a2c2bcd78ce86ee5712)`(vk::Extent2D swapchainImageExtent,const std::vector< vk::ImageView > & swapchainImageViews)` | Used to recreate the GUI in case the window size was changed.
+`public void `[`renderDrawData`](#class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_gui_1a1eef3b87927ad2b9823a70d0f8ae8c8b)`(uint32_t imageIndex)` | Records the ImGui rendering calls to the command buffer at the given image index.
+`public RX_API void `[`destroy`](#class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_gui_1ae529a5eabb168a4c5a8d2f6755f08461)`()` | Destroys all ImGui resources.
 
 ## Members
 
-#### `public virtual RX_API `[`~Gui`](#class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_gui_1a40a810587318be3d9857c3b3746eda86)`() = default` 
+#### `public virtual RX_API `[`~Gui`](#class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_gui_1a990162f98e24078b92f7d0fa71774ea5)`() = default` 
 
-#### `public inline auto `[`getCommandBuffer`](#class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_gui_1a42ee4d92c4f67cfffde59078d8dc2ea6)`(uint32_t index) const` 
+#### `public inline auto `[`getCommandBuffer`](#class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_gui_1a8e3a6b5982891d85abb8dc8613f1d249)`(uint32_t index) const` 
 
 Returns the GUI's command buffer at the given index.
 
@@ -1205,13 +1204,13 @@ Returns the GUI's command buffer at the given index.
 #### Returns
 Returns the Vulkan command buffer.
 
-#### `public virtual RX_API void `[`configure`](#class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_gui_1aeb8f2a8a40752cc3e8bac5a386ea8264)`()` 
+#### `public virtual RX_API void `[`configure`](#class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_gui_1a7b99401be8a1bd42b501a09ca4c6b12e)`()` 
 
 Used to configure all ImGui settings.
 
 The user should override this function if they want to change the style or various other configuration settings.
 
-#### `public virtual RX_API void `[`render`](#class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_gui_1a370773b570ac9e9cedf4532af673fed2)`()` 
+#### `public virtual RX_API void `[`render`](#class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_gui_1acd2c8c3254cf577dbf4ccbedadd2cf4d)`()` 
 
 This function is for calling the individual ImGui components, e.g.
 
@@ -1219,18 +1218,18 @@ widgets.
 
 The user should override this function to create their own GUI.
 
-#### `public void `[`init`](#class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_gui_1a53e3aef5201eb40b6253497ffa3007d9)`(const `[`Surface`](moxygen/api-API.md#class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_surface)` * surface,vk::Extent2D swapchainImageExtent,const std::vector< vk::ImageView > & swapchainImageViews)` 
+#### `public void `[`init`](#class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_gui_1aa49af0a07e34a8ea5505cf9727781adf)`(const `[`Surface`](moxygen/api-API.md#class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_surface)` * surface,vk::Extent2D swapchainImageExtent,const std::vector< vk::ImageView > & swapchainImageViews)` 
 
 Creates the GUI and all required Vulkan components.
 
 #### Parameters
-* `surface` A pointer to a [RAYEXEC_NAMESPACE::Surface](moxygen/api-API.md#class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_surface) object. 
+* `surface` A pointer to a [RAYEX_NAMESPACE::Surface](moxygen/api-API.md#class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_surface) object. 
 
 * `swapchainImageExtent` The extent of the swapchain images. 
 
 * `swapchainImageViews` The swapchain images' image views.
 
-#### `public void `[`recreate`](#class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_gui_1a3c007475218c665bf3cefc22e8aec63a)`(vk::Extent2D swapchainImageExtent,const std::vector< vk::ImageView > & swapchainImageViews)` 
+#### `public void `[`recreate`](#class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_gui_1a56569780013e4a2c2bcd78ce86ee5712)`(vk::Extent2D swapchainImageExtent,const std::vector< vk::ImageView > & swapchainImageViews)` 
 
 Used to recreate the GUI in case the window size was changed.
 
@@ -1239,18 +1238,18 @@ Used to recreate the GUI in case the window size was changed.
 
 * `swapchainImageViews` The swapchain images' image views.
 
-#### `public void `[`renderDrawData`](#class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_gui_1a786d4c8f378d6f025d8ca7caae8e66c4)`(uint32_t imageIndex)` 
+#### `public void `[`renderDrawData`](#class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_gui_1a1eef3b87927ad2b9823a70d0f8ae8c8b)`(uint32_t imageIndex)` 
 
 Records the ImGui rendering calls to the command buffer at the given image index.
 
 #### Parameters
 * `imageIndex` The index addressing a command buffer.
 
-#### `public RX_API void `[`destroy`](#class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_gui_1a18e47c4c4175e5ba4935c7cc6949b3df)`()` 
+#### `public RX_API void `[`destroy`](#class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_gui_1ae529a5eabb168a4c5a8d2f6755f08461)`()` 
 
 Destroys all ImGui resources.
 
-# struct `RAYEXEC_NAMESPACE::Descriptors` 
+# struct `RAYEX_NAMESPACE::Descriptors` 
 
 Encapsulates descriptor-related resources.
 
@@ -1258,64 +1257,47 @@ Encapsulates descriptor-related resources.
 
  Members                        | Descriptions                                
 --------------------------------|---------------------------------------------
-`public vk::UniqueDescriptorSetLayout `[`layout`](#struct_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_descriptors_1a830c3a9d3cfa294032cfe09bf49a6a7c) | 
-`public vk::UniqueDescriptorPool `[`pool`](#struct_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_descriptors_1ae1b1a6510785f144cc6c656e7c8105a3) | 
-`public `[`Bindings`](moxygen/api-API.md#class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_bindings)` `[`bindings`](#struct_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_descriptors_1ab5c2f5b3b87adf21ce9107d4b83b95b2) | 
+`public vk::UniqueDescriptorSetLayout `[`layout`](#struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_descriptors_1a51cfd85e56864588a7f9b5380b31cb39) | 
+`public vk::UniqueDescriptorPool `[`pool`](#struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_descriptors_1a7142e00b8b54818edec0ff40fb322671) | 
+`public `[`Bindings`](moxygen/api-API.md#class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_bindings)` `[`bindings`](#struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_descriptors_1a3563c7ff3e828a1657fc61e90501e9c5) | 
 
 ## Members
 
-#### `public vk::UniqueDescriptorSetLayout `[`layout`](#struct_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_descriptors_1a830c3a9d3cfa294032cfe09bf49a6a7c) 
+#### `public vk::UniqueDescriptorSetLayout `[`layout`](#struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_descriptors_1a51cfd85e56864588a7f9b5380b31cb39) 
 
-#### `public vk::UniqueDescriptorPool `[`pool`](#struct_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_descriptors_1ae1b1a6510785f144cc6c656e7c8105a3) 
+#### `public vk::UniqueDescriptorPool `[`pool`](#struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_descriptors_1a7142e00b8b54818edec0ff40fb322671) 
 
-#### `public `[`Bindings`](moxygen/api-API.md#class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_bindings)` `[`bindings`](#struct_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_descriptors_1ab5c2f5b3b87adf21ce9107d4b83b95b2) 
+#### `public `[`Bindings`](moxygen/api-API.md#class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_bindings)` `[`bindings`](#struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_descriptors_1a3563c7ff3e828a1657fc61e90501e9c5) 
 
-# struct `RAYEXEC_NAMESPACE::CameraUbo` 
+# struct `RAYEX_NAMESPACE::CameraUbo` 
 
 A uniform buffer object for camera data.
 
-## Summary
-
- Members                        | Descriptions                                
---------------------------------|---------------------------------------------
-`public glm::mat4 `[`view`](#struct_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_camera_ubo_1ab06b480c6c0bb5e2245d47e836f7bfc6) | 
-`public glm::mat4 `[`projection`](#struct_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_camera_ubo_1a962e6634f0be4aa481369cf52872ef32) | 
-`public glm::mat4 `[`viewInverse`](#struct_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_camera_ubo_1a7607df5aea8ba3089d72a6369d1867c3) | 
-`public glm::mat4 `[`projectionInverse`](#struct_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_camera_ubo_1a179b030928d0bff193c5c5ed42f505cd) | 
-`public glm::vec3 `[`position`](#struct_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_camera_ubo_1ae5078c482d2e67f80467327daacc7d39) | 
-
-## Members
-
-#### `public glm::mat4 `[`view`](#struct_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_camera_ubo_1ab06b480c6c0bb5e2245d47e836f7bfc6) 
-
-#### `public glm::mat4 `[`projection`](#struct_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_camera_ubo_1a962e6634f0be4aa481369cf52872ef32) 
-
-#### `public glm::mat4 `[`viewInverse`](#struct_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_camera_ubo_1a7607df5aea8ba3089d72a6369d1867c3) 
-
-#### `public glm::mat4 `[`projectionInverse`](#struct_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_camera_ubo_1a179b030928d0bff193c5c5ed42f505cd) 
-
-#### `public glm::vec3 `[`position`](#struct_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_camera_ubo_1ae5078c482d2e67f80467327daacc7d39) 
-
-# struct `RAYEXEC_NAMESPACE::LightsUbo` 
-
-A uniform buffer object for different light types.
-
-> Todo: Shouldn't this also be a storage buffer?
+> Todo: [Camera](moxygen/api-Base.md#class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_camera) position could easily be a push constant, which would make this UBO much smaller in size.
 
 ## Summary
 
  Members                        | Descriptions                                
 --------------------------------|---------------------------------------------
-`public std::array< `[`DirectionalLight`](moxygen/api-undefined.md#struct_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_directional_light)`, 10 > `[`directionalLightNodes`](#struct_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_lights_ubo_1a88f9fe50e74d99c4e0df93b677fbe31a) | 
-`public std::array< `[`PointLight`](moxygen/api-undefined.md#struct_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_point_light)`, 10 > `[`pointLightNodes`](#struct_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_lights_ubo_1aec1ca66cc37fe542c2e05af7d777f953) | 
+`public glm::mat4 `[`view`](#struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_camera_ubo_1aca2343d9611de4d2cbaaafd25c9a0d4c) | 
+`public glm::mat4 `[`projection`](#struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_camera_ubo_1a7903a2467fb163ff5716bf08e2621ad5) | 
+`public glm::mat4 `[`viewInverse`](#struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_camera_ubo_1a000d7a431db8bf2cbfe5b5d8999550d3) | 
+`public glm::mat4 `[`projectionInverse`](#struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_camera_ubo_1a84ded90503475453e221c733388e2fdf) | 
+`public glm::vec4 `[`position`](#struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_camera_ubo_1a5145cf4a6253d5788426724810bca2ae) | 
 
 ## Members
 
-#### `public std::array< `[`DirectionalLight`](moxygen/api-undefined.md#struct_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_directional_light)`, 10 > `[`directionalLightNodes`](#struct_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_lights_ubo_1a88f9fe50e74d99c4e0df93b677fbe31a) 
+#### `public glm::mat4 `[`view`](#struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_camera_ubo_1aca2343d9611de4d2cbaaafd25c9a0d4c) 
 
-#### `public std::array< `[`PointLight`](moxygen/api-undefined.md#struct_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_point_light)`, 10 > `[`pointLightNodes`](#struct_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_lights_ubo_1aec1ca66cc37fe542c2e05af7d777f953) 
+#### `public glm::mat4 `[`projection`](#struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_camera_ubo_1a7903a2467fb163ff5716bf08e2621ad5) 
 
-# struct `RAYEXEC_NAMESPACE::AccelerationStructure` 
+#### `public glm::mat4 `[`viewInverse`](#struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_camera_ubo_1a000d7a431db8bf2cbfe5b5d8999550d3) 
+
+#### `public glm::mat4 `[`projectionInverse`](#struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_camera_ubo_1a84ded90503475453e221c733388e2fdf) 
+
+#### `public glm::vec4 `[`position`](#struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_camera_ubo_1a5145cf4a6253d5788426724810bca2ae) 
+
+# struct `RAYEX_NAMESPACE::AccelerationStructure` 
 
 A wrapper for a Vulkan acceleration Structure.
 
@@ -1323,25 +1305,25 @@ A wrapper for a Vulkan acceleration Structure.
 
  Members                        | Descriptions                                
 --------------------------------|---------------------------------------------
-`public vk::AccelerationStructureKHR `[`as`](#struct_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_acceleration_structure_1a284bf5b154e56146173e4fc66f8789f1) | The Vulkan acceleration structure.
-`public vk::DeviceMemory `[`memory`](#struct_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_acceleration_structure_1a5080bc9aac686561c16323ce886d1011) | The acceleration structure's memory.
-`public inline void `[`destroy`](#struct_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_acceleration_structure_1aa7d536cc32d5f2c5e1c863ad0fc3e1ba)`()` | Used to destroy the acceleration structure and free its memory.
+`public vk::AccelerationStructureKHR `[`as`](#struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_acceleration_structure_1a310d8142a50e671e29b626943fa2b6c8) | The Vulkan acceleration structure.
+`public vk::DeviceMemory `[`memory`](#struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_acceleration_structure_1a67c749f7c097fac7a114c947b88752c0) | The acceleration structure's memory.
+`public inline void `[`destroy`](#struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_acceleration_structure_1a8e189940953cc7155465cf65a2f1d4f4)`()` | Used to destroy the acceleration structure and free its memory.
 
 ## Members
 
-#### `public vk::AccelerationStructureKHR `[`as`](#struct_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_acceleration_structure_1a284bf5b154e56146173e4fc66f8789f1) 
+#### `public vk::AccelerationStructureKHR `[`as`](#struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_acceleration_structure_1a310d8142a50e671e29b626943fa2b6c8) 
 
 The Vulkan acceleration structure.
 
-#### `public vk::DeviceMemory `[`memory`](#struct_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_acceleration_structure_1a5080bc9aac686561c16323ce886d1011) 
+#### `public vk::DeviceMemory `[`memory`](#struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_acceleration_structure_1a67c749f7c097fac7a114c947b88752c0) 
 
 The acceleration structure's memory.
 
-#### `public inline void `[`destroy`](#struct_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_acceleration_structure_1aa7d536cc32d5f2c5e1c863ad0fc3e1ba)`()` 
+#### `public inline void `[`destroy`](#struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_acceleration_structure_1a8e189940953cc7155465cf65a2f1d4f4)`()` 
 
 Used to destroy the acceleration structure and free its memory.
 
-# struct `RAYEXEC_NAMESPACE::Tlas` 
+# struct `RAYEX_NAMESPACE::Tlas` 
 
 A wrapper for a top level acceleration structure.
 
@@ -1349,20 +1331,20 @@ A wrapper for a top level acceleration structure.
 
  Members                        | Descriptions                                
 --------------------------------|---------------------------------------------
-`public `[`AccelerationStructure`](moxygen/api-API.md#struct_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_acceleration_structure)` `[`as`](#struct_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_tlas_1aca8cc9aa6ef9f0f386d35a49c1f30126) | The [RAYEXEC_NAMESPACE::AccelerationStructure](moxygen/api-API.md#struct_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_acceleration_structure) object containing the Vulkan acceleration structure.
-`public vk::BuildAccelerationStructureFlagsKHR `[`flags`](#struct_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_tlas_1a7d90d5df478fabf257b377fcfbaeb666) | The top level acceleration structure's build flags.
+`public `[`AccelerationStructure`](moxygen/api-API.md#struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_acceleration_structure)` `[`as`](#struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_tlas_1aef65925b7d115143b5e5b3b61a048566) | The [RAYEX_NAMESPACE::AccelerationStructure](moxygen/api-API.md#struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_acceleration_structure) object containing the Vulkan acceleration structure.
+`public vk::BuildAccelerationStructureFlagsKHR `[`flags`](#struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_tlas_1a45fd150956fba0341a86f8fa4e946d49) | The top level acceleration structure's build flags.
 
 ## Members
 
-#### `public `[`AccelerationStructure`](moxygen/api-API.md#struct_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_acceleration_structure)` `[`as`](#struct_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_tlas_1aca8cc9aa6ef9f0f386d35a49c1f30126) 
+#### `public `[`AccelerationStructure`](moxygen/api-API.md#struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_acceleration_structure)` `[`as`](#struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_tlas_1aef65925b7d115143b5e5b3b61a048566) 
 
-The [RAYEXEC_NAMESPACE::AccelerationStructure](moxygen/api-API.md#struct_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_acceleration_structure) object containing the Vulkan acceleration structure.
+The [RAYEX_NAMESPACE::AccelerationStructure](moxygen/api-API.md#struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_acceleration_structure) object containing the Vulkan acceleration structure.
 
-#### `public vk::BuildAccelerationStructureFlagsKHR `[`flags`](#struct_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_tlas_1a7d90d5df478fabf257b377fcfbaeb666) 
+#### `public vk::BuildAccelerationStructureFlagsKHR `[`flags`](#struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_tlas_1a45fd150956fba0341a86f8fa4e946d49) 
 
 The top level acceleration structure's build flags.
 
-# struct `RAYEXEC_NAMESPACE::Blas` 
+# struct `RAYEX_NAMESPACE::Blas` 
 
 A wrapper for a bottom level acceleration structure.
 
@@ -1370,35 +1352,35 @@ A wrapper for a bottom level acceleration structure.
 
  Members                        | Descriptions                                
 --------------------------------|---------------------------------------------
-`public `[`AccelerationStructure`](moxygen/api-API.md#struct_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_acceleration_structure)` `[`as`](#struct_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_blas_1ae8ab4960986e35375952e1ba0b82d616) | The [RAYEXEC_NAMESPACE::AccelerationStructure](moxygen/api-API.md#struct_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_acceleration_structure) object containing the Vulkan acceleration structure.
-`public vk::BuildAccelerationStructureFlagsKHR `[`flags`](#struct_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_blas_1af0e45ff33ae348578991083cbca3c3f5) | The top level acceleration structure's build flags.
-`public std::vector< vk::AccelerationStructureCreateGeometryTypeInfoKHR > `[`asCreateGeometryInfo`](#struct_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_blas_1a1fca9090c51ee4dbf978ed04c2790585) | Specifies the shape of geometries that will be built into an acceleration structure.
-`public std::vector< vk::AccelerationStructureGeometryKHR > `[`asGeometry`](#struct_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_blas_1a7379c987048d8c67571581c03d91cc34) | Data used to build acceleration structure geometry.
-`public std::vector< vk::AccelerationStructureBuildOffsetInfoKHR > `[`asBuildOffsetInfo`](#struct_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_blas_1ad7a31d22f326b7c471166600681082e5) | The offset between acceleration structures when building.
+`public `[`AccelerationStructure`](moxygen/api-API.md#struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_acceleration_structure)` `[`as`](#struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_blas_1afeefd899332ab00ffc38a7641424de2d) | The [RAYEX_NAMESPACE::AccelerationStructure](moxygen/api-API.md#struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_acceleration_structure) object containing the Vulkan acceleration structure.
+`public vk::BuildAccelerationStructureFlagsKHR `[`flags`](#struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_blas_1a5735232656e5d5b3e3284475efab22b9) | The top level acceleration structure's build flags.
+`public std::vector< vk::AccelerationStructureCreateGeometryTypeInfoKHR > `[`asCreateGeometryInfo`](#struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_blas_1a0cefbce2e06e7f94be5201129d2c9507) | Specifies the shape of geometries that will be built into an acceleration structure.
+`public std::vector< vk::AccelerationStructureGeometryKHR > `[`asGeometry`](#struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_blas_1a7a270840d9f4e6b141a6f142abda68c5) | Data used to build acceleration structure geometry.
+`public std::vector< vk::AccelerationStructureBuildOffsetInfoKHR > `[`asBuildOffsetInfo`](#struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_blas_1ae30215c68a91e95453fcdb608b89d550) | The offset between acceleration structures when building.
 
 ## Members
 
-#### `public `[`AccelerationStructure`](moxygen/api-API.md#struct_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_acceleration_structure)` `[`as`](#struct_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_blas_1ae8ab4960986e35375952e1ba0b82d616) 
+#### `public `[`AccelerationStructure`](moxygen/api-API.md#struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_acceleration_structure)` `[`as`](#struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_blas_1afeefd899332ab00ffc38a7641424de2d) 
 
-The [RAYEXEC_NAMESPACE::AccelerationStructure](moxygen/api-API.md#struct_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_acceleration_structure) object containing the Vulkan acceleration structure.
+The [RAYEX_NAMESPACE::AccelerationStructure](moxygen/api-API.md#struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_acceleration_structure) object containing the Vulkan acceleration structure.
 
-#### `public vk::BuildAccelerationStructureFlagsKHR `[`flags`](#struct_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_blas_1af0e45ff33ae348578991083cbca3c3f5) 
+#### `public vk::BuildAccelerationStructureFlagsKHR `[`flags`](#struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_blas_1a5735232656e5d5b3e3284475efab22b9) 
 
 The top level acceleration structure's build flags.
 
-#### `public std::vector< vk::AccelerationStructureCreateGeometryTypeInfoKHR > `[`asCreateGeometryInfo`](#struct_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_blas_1a1fca9090c51ee4dbf978ed04c2790585) 
+#### `public std::vector< vk::AccelerationStructureCreateGeometryTypeInfoKHR > `[`asCreateGeometryInfo`](#struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_blas_1a0cefbce2e06e7f94be5201129d2c9507) 
 
 Specifies the shape of geometries that will be built into an acceleration structure.
 
-#### `public std::vector< vk::AccelerationStructureGeometryKHR > `[`asGeometry`](#struct_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_blas_1a7379c987048d8c67571581c03d91cc34) 
+#### `public std::vector< vk::AccelerationStructureGeometryKHR > `[`asGeometry`](#struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_blas_1a7a270840d9f4e6b141a6f142abda68c5) 
 
 Data used to build acceleration structure geometry.
 
-#### `public std::vector< vk::AccelerationStructureBuildOffsetInfoKHR > `[`asBuildOffsetInfo`](#struct_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_blas_1ad7a31d22f326b7c471166600681082e5) 
+#### `public std::vector< vk::AccelerationStructureBuildOffsetInfoKHR > `[`asBuildOffsetInfo`](#struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_blas_1ae30215c68a91e95453fcdb608b89d550) 
 
 The offset between acceleration structures when building.
 
-# struct `RAYEXEC_NAMESPACE::BlasInstance` 
+# struct `RAYEX_NAMESPACE::BlasInstance` 
 
 An instance of a bottom level acceleration structure.
 
@@ -1406,40 +1388,40 @@ An instance of a bottom level acceleration structure.
 
  Members                        | Descriptions                                
 --------------------------------|---------------------------------------------
-`public uint32_t `[`blasId`](#struct_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_blas_instance_1a592985051a3fdbdd39391066ba138738) | The index of the bottom level acceleration structure in blas_.
-`public uint32_t `[`instanceId`](#struct_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_blas_instance_1a639034ff0385d327079b92511f30288c) | The instance index (gl_InstanceID).
-`public uint32_t `[`hitGroupId`](#struct_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_blas_instance_1a7a43c59559277912939adff408153407) | The hit group index in the shader binding table.
-`public uint32_t `[`mask`](#struct_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_blas_instance_1a4bcef7bf26c6b3af65dc2233fab831b1) | The visibility mask, will be AND-ed with the ray mask.
-`public vk::GeometryInstanceFlagsKHR `[`flags`](#struct_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_blas_instance_1a798ac14aa4a5fd08ce97185d33496e97) | The geometry display options.
-`public glm::mat4 `[`transform`](#struct_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_blas_instance_1a9e4ac50642ddb0e9eef7f8cb61a481b4) | The world transform matrix of the bottom level acceleration structure instance.
+`public uint32_t `[`blasId`](#struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_blas_instance_1a17e6f6e2576131a69f83902510f0e60d) | The index of the bottom level acceleration structure in blas_.
+`public uint32_t `[`instanceId`](#struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_blas_instance_1a1dd11e314a88b4daf48b5f5616d07c1c) | The instance index (gl_InstanceID).
+`public uint32_t `[`hitGroupId`](#struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_blas_instance_1abc119b6598b884820ac07b7afa30d6be) | The hit group index in the shader binding table.
+`public uint32_t `[`mask`](#struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_blas_instance_1a080061a774fa9881372198e1bf13630f) | The visibility mask, will be AND-ed with the ray mask.
+`public vk::GeometryInstanceFlagsKHR `[`flags`](#struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_blas_instance_1ac7125d67baa983ea7b466a16ec36c70b) | The geometry display options.
+`public glm::mat4 `[`transform`](#struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_blas_instance_1af521894ff0383f740d859f6fba2b8b8b) | The world transform matrix of the bottom level acceleration structure instance.
 
 ## Members
 
-#### `public uint32_t `[`blasId`](#struct_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_blas_instance_1a592985051a3fdbdd39391066ba138738) 
+#### `public uint32_t `[`blasId`](#struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_blas_instance_1a17e6f6e2576131a69f83902510f0e60d) 
 
 The index of the bottom level acceleration structure in blas_.
 
-#### `public uint32_t `[`instanceId`](#struct_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_blas_instance_1a639034ff0385d327079b92511f30288c) 
+#### `public uint32_t `[`instanceId`](#struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_blas_instance_1a1dd11e314a88b4daf48b5f5616d07c1c) 
 
 The instance index (gl_InstanceID).
 
-#### `public uint32_t `[`hitGroupId`](#struct_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_blas_instance_1a7a43c59559277912939adff408153407) 
+#### `public uint32_t `[`hitGroupId`](#struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_blas_instance_1abc119b6598b884820ac07b7afa30d6be) 
 
 The hit group index in the shader binding table.
 
-#### `public uint32_t `[`mask`](#struct_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_blas_instance_1a4bcef7bf26c6b3af65dc2233fab831b1) 
+#### `public uint32_t `[`mask`](#struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_blas_instance_1a080061a774fa9881372198e1bf13630f) 
 
 The visibility mask, will be AND-ed with the ray mask.
 
-#### `public vk::GeometryInstanceFlagsKHR `[`flags`](#struct_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_blas_instance_1a798ac14aa4a5fd08ce97185d33496e97) 
+#### `public vk::GeometryInstanceFlagsKHR `[`flags`](#struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_blas_instance_1ac7125d67baa983ea7b466a16ec36c70b) 
 
 The geometry display options.
 
-#### `public glm::mat4 `[`transform`](#struct_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_blas_instance_1a9e4ac50642ddb0e9eef7f8cb61a481b4) 
+#### `public glm::mat4 `[`transform`](#struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_blas_instance_1af521894ff0383f740d859f6fba2b8b8b) 
 
 The world transform matrix of the bottom level acceleration structure instance.
 
-# struct `RAYEXEC_NAMESPACE::Vertex` 
+# struct `RAYEX_NAMESPACE::Vertex` 
 
 Describes a vertex and its data.
 
@@ -1447,31 +1429,31 @@ Describes a vertex and its data.
 
  Members                        | Descriptions                                
 --------------------------------|---------------------------------------------
-`public glm::vec3 `[`pos`](#struct_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_vertex_1a675b93fd4c003438c84b68192b87bedc) | The vertex's position in 3D space.
-`public glm::vec3 `[`normal`](#struct_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_vertex_1a53f646753a10728ead428c9b5b6c250e) | The vertex's normal vector.
-`public glm::vec3 `[`color`](#struct_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_vertex_1aff8b7f0bd8933579186b601fc8c48a7c) | The vertex's color.
-`public glm::vec2 `[`texCoord`](#struct_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_vertex_1a9141a1b57c5ae706ddc954bcbe5a8d6a) | The vertex's texture coordinate.
-`public float `[`padding0`](#struct_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_vertex_1ad66f6c035b7f48392c2f19a0c9e1bd40) | [Vertex](#struct_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_vertex) padding 0.
+`public glm::vec3 `[`pos`](#struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_vertex_1a2939dfc92a6910299aba3f4425be1be8) | The vertex's position in 3D space.
+`public glm::vec3 `[`normal`](#struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_vertex_1a4ac28ad5e150039b65a80a67dddb3127) | The vertex's normal vector.
+`public glm::vec3 `[`color`](#struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_vertex_1a8fff4b1de2eb2f1029b85181edea46a1) | The vertex's color.
+`public glm::vec2 `[`texCoord`](#struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_vertex_1a76904c7ad13909f64ebaaa8a81f7e903) | The vertex's texture coordinate.
+`public float `[`padding0`](#struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_vertex_1a546f7f3a2fb476408b5bf8f559f1d00f) | [Vertex](#struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_vertex) padding 0.
 
 ## Members
 
-#### `public glm::vec3 `[`pos`](#struct_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_vertex_1a675b93fd4c003438c84b68192b87bedc) 
+#### `public glm::vec3 `[`pos`](#struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_vertex_1a2939dfc92a6910299aba3f4425be1be8) 
 
 The vertex's position in 3D space.
 
-#### `public glm::vec3 `[`normal`](#struct_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_vertex_1a53f646753a10728ead428c9b5b6c250e) 
+#### `public glm::vec3 `[`normal`](#struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_vertex_1a4ac28ad5e150039b65a80a67dddb3127) 
 
 The vertex's normal vector.
 
-#### `public glm::vec3 `[`color`](#struct_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_vertex_1aff8b7f0bd8933579186b601fc8c48a7c) 
+#### `public glm::vec3 `[`color`](#struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_vertex_1a8fff4b1de2eb2f1029b85181edea46a1) 
 
 The vertex's color.
 
-#### `public glm::vec2 `[`texCoord`](#struct_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_vertex_1a9141a1b57c5ae706ddc954bcbe5a8d6a) 
+#### `public glm::vec2 `[`texCoord`](#struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_vertex_1a76904c7ad13909f64ebaaa8a81f7e903) 
 
 The vertex's texture coordinate.
 
-#### `public float `[`padding0`](#struct_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_vertex_1ad66f6c035b7f48392c2f19a0c9e1bd40) 
+#### `public float `[`padding0`](#struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_vertex_1a546f7f3a2fb476408b5bf8f559f1d00f) 
 
-[Vertex](#struct_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_vertex) padding 0.
+[Vertex](#struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_vertex) padding 0.
 

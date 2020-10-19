@@ -3,18 +3,18 @@
   <compounddef id="group___base" kind="group">
     <compoundname>Base</compoundname>
     <title>Interfaces</title>
-    <innerclass refid="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_camera" prot="public">RAYEXEC_NAMESPACE::Camera</innerclass>
-    <innerclass refid="struct_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_material" prot="public">RAYEXEC_NAMESPACE::Material</innerclass>
-    <innerclass refid="struct_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_mesh" prot="public">RAYEXEC_NAMESPACE::Mesh</innerclass>
-    <innerclass refid="struct_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_geometry" prot="public">RAYEXEC_NAMESPACE::Geometry</innerclass>
-    <innerclass refid="struct_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_geometry_instance" prot="public">RAYEXEC_NAMESPACE::GeometryInstance</innerclass>
-    <innerclass refid="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_gui" prot="public">RAYEXEC_NAMESPACE::Gui</innerclass>
-    <innerclass refid="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_window" prot="public">RAYEXEC_NAMESPACE::Window</innerclass>
-    <innerclass refid="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_ray_exec" prot="public">RAYEXEC_NAMESPACE::RayExec</innerclass>
+    <innerclass refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_camera" prot="public">RAYEX_NAMESPACE::Camera</innerclass>
+    <innerclass refid="struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_material" prot="public">RAYEX_NAMESPACE::Material</innerclass>
+    <innerclass refid="struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_mesh" prot="public">RAYEX_NAMESPACE::Mesh</innerclass>
+    <innerclass refid="struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_geometry" prot="public">RAYEX_NAMESPACE::Geometry</innerclass>
+    <innerclass refid="struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_geometry_instance" prot="public">RAYEX_NAMESPACE::GeometryInstance</innerclass>
+    <innerclass refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_gui" prot="public">RAYEX_NAMESPACE::Gui</innerclass>
+    <innerclass refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_window" prot="public">RAYEX_NAMESPACE::Window</innerclass>
+    <innerclass refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_rayex" prot="public">RAYEX_NAMESPACE::Rayex</innerclass>
       <sectiondef kind="func">
-      <memberdef kind="function" id="group___base_1ga02a95a02aa5d57299c4eecb3c6bb4d3d" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+      <memberdef kind="function" id="group___base_1gac348076d8b31be1511d1fc0532e75747" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>RX_API std::shared_ptr&lt; Geometry &gt;</type>
-        <definition>RX_API std::shared_ptr&lt;Geometry&gt; RAYEXEC_NAMESPACE::loadObj</definition>
+        <definition>RX_API std::shared_ptr&lt;Geometry&gt; RAYEX_NAMESPACE::loadObj</definition>
         <argsstring>(std::string_view path)</argsstring>
         <name>loadObj</name>
         <param>
@@ -40,11 +40,11 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/n30/Repos/rayexec/include/base/Geometry.hpp" line="72" column="26" declfile="/home/n30/Repos/rayexec/include/base/Geometry.hpp" declline="72" declcolumn="26"/>
+        <location file="/home/n30/Repos/rayex/include/base/Geometry.hpp" line="72" column="26" declfile="/home/n30/Repos/rayex/include/base/Geometry.hpp" declline="72" declcolumn="26"/>
       </memberdef>
-      <memberdef kind="function" id="group___base_1gabb8acb5237813d1ac88e190a79a1bff2" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+      <memberdef kind="function" id="group___base_1gad880ea304e8ff3dab6ea5258df8970cf" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>RX_API std::shared_ptr&lt; GeometryInstance &gt;</type>
-        <definition>RX_API std::shared_ptr&lt;GeometryInstance&gt; RAYEXEC_NAMESPACE::instance</definition>
+        <definition>RX_API std::shared_ptr&lt;GeometryInstance&gt; RAYEX_NAMESPACE::instance</definition>
         <argsstring>(std::shared_ptr&lt; Geometry &gt; geometry, const glm::mat4 &amp;transform=glm::mat4(1.0F))</argsstring>
         <name>instance</name>
         <param>
@@ -83,7 +83,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/n30/Repos/rayexec/include/base/Geometry.hpp" line="81" column="26" declfile="/home/n30/Repos/rayexec/include/base/Geometry.hpp" declline="81" declcolumn="26"/>
+        <location file="/home/n30/Repos/rayex/include/base/Geometry.hpp" line="81" column="26" declfile="/home/n30/Repos/rayex/include/base/Geometry.hpp" declline="81" declcolumn="26"/>
       </memberdef>
       </sectiondef>
     <briefdescription>

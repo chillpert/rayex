@@ -1,15 +1,17 @@
 var searchData=
 [
-  ['uniformbuffer_343',['UniformBuffer',['../class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_uniform_buffer.html',1,'RAYEXEC_NAMESPACE::UniformBuffer'],['../class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_uniform_buffer.html#a77802f4e17e5282d91c57377de41a349',1,'RAYEXEC_NAMESPACE::UniformBuffer::UniformBuffer()=default'],['../class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_uniform_buffer.html#a3d8a6b197212e4e0f5c914dab88645a1',1,'RAYEXEC_NAMESPACE::UniformBuffer::UniformBuffer(size_t swapchainImagesCount, bool initialize=true)']]],
-  ['uniformbuffer_2ehpp_344',['UniformBuffer.hpp',['../_uniform_buffer_8hpp.html',1,'']]],
-  ['unpack_345',['unpack',['../namespacevk_1_1_helper.html#ae41dfbb084fe9a3d9757550ee6887333',1,'vk::Helper']]],
-  ['up_346',['up',['../class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_camera.html#aa6b77663fd6679700969aea393fce5db',1,'RAYEXEC_NAMESPACE::Camera']]],
-  ['update_347',['update',['../class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_bindings.html#ad689b3d0de08c764d41bf2b3fd6159ac',1,'RAYEXEC_NAMESPACE::Bindings::update()'],['../class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_camera.html#a17a52094a998d73590caa62e219064b1',1,'RAYEXEC_NAMESPACE::Camera::update()'],['../class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_window.html#aa038bb7bf14b31b0d1c3cff6daf07285',1,'RAYEXEC_NAMESPACE::Window::update()']]],
-  ['updateproj_348',['updateProj',['../class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_camera.html#a83156fc5a103492ffe389d3b0b4c18d3',1,'RAYEXEC_NAMESPACE::Camera']]],
-  ['updateprojectionmatrix_349',['updateProjectionMatrix',['../class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_camera.html#a129b7201b6218d65b48b65525d37f924',1,'RAYEXEC_NAMESPACE::Camera']]],
-  ['updatevectors_350',['updateVectors',['../class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_camera.html#a118e91eafecb3bf19c9def7e55766f25',1,'RAYEXEC_NAMESPACE::Camera']]],
-  ['updateview_351',['updateView',['../class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_camera.html#a8c1fbe8efac8d9a473fa1bdceddf7718',1,'RAYEXEC_NAMESPACE::Camera']]],
-  ['updateviewmatrix_352',['updateViewMatrix',['../class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_camera.html#ad857cce17e25f1a9dc5a14140deca385',1,'RAYEXEC_NAMESPACE::Camera']]],
-  ['upload_353',['upload',['../class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_uniform_buffer.html#a93afba2d64a22f7b764836b6e88217bc',1,'RAYEXEC_NAMESPACE::UniformBuffer']]],
-  ['util_2ehpp_354',['Util.hpp',['../_util_8hpp.html',1,'']]]
+  ['vulkan_358',['Vulkan',['../group___a_p_i.html',1,'']]],
+  ['helper_359',['Helper',['../namespacevk_1_1_helper.html',1,'vk']]],
+  ['initializer_360',['Initializer',['../namespacevk_1_1_initializer.html',1,'vk']]],
+  ['vec4toarray_361',['vec4toArray',['../namespace_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_util.html#a68d3d47e91753b329cd0e075f75d26fc',1,'RAYEX_NAMESPACE::Util']]],
+  ['vertex_362',['Vertex',['../struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_vertex.html',1,'RAYEX_NAMESPACE']]],
+  ['vertex_2ehpp_363',['Vertex.hpp',['../_vertex_8hpp.html',1,'']]],
+  ['vertexbuffer_364',['VertexBuffer',['../class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_vertex_buffer.html',1,'RAYEX_NAMESPACE::VertexBuffer'],['../class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_vertex_buffer.html#a0f50e43f64ec217b8fe9e1574341f5b5',1,'RAYEX_NAMESPACE::VertexBuffer::VertexBuffer()=default'],['../class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_vertex_buffer.html#a60c93ee617e13f0c0c75bda1b733bd9d',1,'RAYEX_NAMESPACE::VertexBuffer::VertexBuffer(std::vector&lt; Vertex &gt; &amp;vertices, bool initialize=true)']]],
+  ['vertexbuffer_2ehpp_365',['VertexBuffer.hpp',['../_vertex_buffer_8hpp.html',1,'']]],
+  ['vertices_366',['vertices',['../struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_geometry.html#a9b4d99a41250521028e9406ef1bf9c15',1,'RAYEX_NAMESPACE::Geometry']]],
+  ['view_367',['view',['../struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_camera_ubo.html#aca2343d9611de4d2cbaaafd25c9a0d4c',1,'RAYEX_NAMESPACE::CameraUbo::view()'],['../class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_camera.html#a5ac095603a19a2fd745250f123438dd7',1,'RAYEX_NAMESPACE::Camera::view()']]],
+  ['viewinverse_368',['viewInverse',['../struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_camera_ubo.html#a000d7a431db8bf2cbfe5b5d8999550d3',1,'RAYEX_NAMESPACE::CameraUbo::viewInverse()'],['../class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_camera.html#a7c50c7657eeba2989f54a35720120049',1,'RAYEX_NAMESPACE::Camera::viewInverse()']]],
+  ['vk_369',['vk',['../namespacevk.html',1,'']]],
+  ['vk_5fenable_5fbeta_5fextensions_370',['VK_ENABLE_BETA_EXTENSIONS',['../_core_8hpp.html#ae0ee52a031cc79e2e1b15516ed6ca362',1,'Core.hpp']]],
+  ['vulkan_5fhpp_5fdispatch_5floader_5fdynamic_371',['VULKAN_HPP_DISPATCH_LOADER_DYNAMIC',['../_core_8hpp.html#a8a27aa48a7a8781a30ab45040cb1dea7',1,'Core.hpp']]]
 ];

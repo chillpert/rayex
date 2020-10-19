@@ -1,17 +1,16 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
 <doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.17">
   <compounddef id="dir_2d52abcd54c181b91d630da402923092" kind="dir">
-    <compoundname>/home/n30/Repos/rayexec/include/api</compoundname>
-    <innerdir refid="dir_55012dd099807ce5b030bcaa1056687d">/home/n30/Repos/rayexec/include/api/buffers</innerdir>
-    <innerdir refid="dir_02523d52219860cc971c97a2c9308d19">/home/n30/Repos/rayexec/include/api/image</innerdir>
-    <innerdir refid="dir_38f24932c5cdde66964a65127fd58894">/home/n30/Repos/rayexec/include/api/raytracing</innerdir>
-    <innerdir refid="dir_d95d88259bb69c813963ad097d10ad2c">/home/n30/Repos/rayexec/include/api/utility</innerdir>
+    <compoundname>/home/n30/Repos/rayex/include/api</compoundname>
+    <innerdir refid="dir_55012dd099807ce5b030bcaa1056687d">/home/n30/Repos/rayex/include/api/buffers</innerdir>
+    <innerdir refid="dir_02523d52219860cc971c97a2c9308d19">/home/n30/Repos/rayex/include/api/image</innerdir>
+    <innerdir refid="dir_38f24932c5cdde66964a65127fd58894">/home/n30/Repos/rayex/include/api/raytracing</innerdir>
+    <innerdir refid="dir_d95d88259bb69c813963ad097d10ad2c">/home/n30/Repos/rayex/include/api/utility</innerdir>
     <innerfile refid="_api_8hpp">Api.hpp</innerfile>
     <innerfile refid="_bindings_8hpp">Bindings.hpp</innerfile>
     <innerfile refid="_components_8hpp">Components.hpp</innerfile>
     <innerfile refid="_pipeline_8hpp">Pipeline.hpp</innerfile>
     <innerfile refid="_render_pass_8hpp">RenderPass.hpp</innerfile>
-    <innerfile refid="_scene_8hpp">Scene.hpp</innerfile>
     <innerfile refid="_surface_8hpp">Surface.hpp</innerfile>
     <innerfile refid="_swapchain_8hpp">Swapchain.hpp</innerfile>
     <innerfile refid="_vertex_8hpp">Vertex.hpp</innerfile>
@@ -19,6 +18,6 @@
     </briefdescription>
     <detaileddescription>
     </detaileddescription>
-    <location file="/home/n30/Repos/rayexec/include/api/"/>
+    <location file="/home/n30/Repos/rayex/include/api/"/>
   </compounddef>
 </doxygen>

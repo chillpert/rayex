@@ -1,0 +1,517 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.17">
+  <compounddef id="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_scene" kind="class" language="C++" prot="public">
+    <compoundname>RAYEX_NAMESPACE::Scene</compoundname>
+    <includes refid="_scene_8hpp" local="no">Scene.hpp</includes>
+      <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_scene_1ae002d16199c05b908fbeecc4f7d97733" prot="public" static="no" mutable="no">
+        <type>friend</type>
+        <definition>friend RAYEX_NAMESPACE::Scene::Api</definition>
+        <argsstring></argsstring>
+        <name>Api</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/n30/Repos/rayex/include/base/Scene.hpp" line="16" column="12" bodyfile="/home/n30/Repos/rayex/include/base/Scene.hpp" bodystart="16" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_scene_1a03b7257e44db8e9af952484958a5346c" prot="public" static="no" mutable="no">
+        <type>friend</type>
+        <definition>friend RAYEX_NAMESPACE::Scene::Rayex</definition>
+        <argsstring></argsstring>
+        <name>Rayex</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/n30/Repos/rayex/include/base/Scene.hpp" line="17" column="12" bodyfile="/home/n30/Repos/rayex/include/base/Scene.hpp" bodystart="17" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_scene_1acece8da9321a52636d135c56c1e4f900" prot="private" static="no" mutable="no">
+        <type>std::vector&lt; std::shared_ptr&lt; <ref refid="struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_geometry" kindref="compound">Geometry</ref> &gt; &gt;</type>
+        <definition>std::vector&lt;std::shared_ptr&lt;Geometry&gt; &gt; RAYEX_NAMESPACE::Scene::geometries</definition>
+        <argsstring></argsstring>
+        <name>geometries</name>
+        <briefdescription>
+<para>Stores all geometries. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/n30/Repos/rayex/include/base/Scene.hpp" line="77" column="17" bodyfile="/home/n30/Repos/rayex/include/base/Scene.hpp" bodystart="77" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_scene_1a59fd42bef703847c8be55502fce601cf" prot="private" static="no" mutable="no">
+        <type>std::vector&lt; std::shared_ptr&lt; <ref refid="struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_geometry_instance" kindref="compound">GeometryInstance</ref> &gt; &gt;</type>
+        <definition>std::vector&lt;std::shared_ptr&lt;GeometryInstance&gt; &gt; RAYEX_NAMESPACE::Scene::geometryInstances</definition>
+        <argsstring></argsstring>
+        <name>geometryInstances</name>
+        <briefdescription>
+<para>Stores all geometry instances. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/n30/Repos/rayex/include/base/Scene.hpp" line="78" column="17" bodyfile="/home/n30/Repos/rayex/include/base/Scene.hpp" bodystart="78" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_scene_1a02d41181c2a80710c6e216c40b36be48" prot="private" static="no" mutable="no">
+        <type>std::vector&lt; std::shared_ptr&lt; <ref refid="struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_directional_light" kindref="compound">DirectionalLight</ref> &gt; &gt;</type>
+        <definition>std::vector&lt;std::shared_ptr&lt;DirectionalLight&gt; &gt; RAYEX_NAMESPACE::Scene::directionalLights</definition>
+        <argsstring></argsstring>
+        <name>directionalLights</name>
+        <briefdescription>
+<para>Stores all directional lights. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/n30/Repos/rayex/include/base/Scene.hpp" line="79" column="17" bodyfile="/home/n30/Repos/rayex/include/base/Scene.hpp" bodystart="79" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_scene_1a64c281c64e3b56c3002d644efbabdd95" prot="private" static="no" mutable="no">
+        <type>std::vector&lt; std::shared_ptr&lt; <ref refid="struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_point_light" kindref="compound">PointLight</ref> &gt; &gt;</type>
+        <definition>std::vector&lt;std::shared_ptr&lt;PointLight&gt; &gt; RAYEX_NAMESPACE::Scene::pointLights</definition>
+        <argsstring></argsstring>
+        <name>pointLights</name>
+        <briefdescription>
+<para>Stores all point lights. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/n30/Repos/rayex/include/base/Scene.hpp" line="80" column="17" bodyfile="/home/n30/Repos/rayex/include/base/Scene.hpp" bodystart="80" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_scene_1a369ca3a48402ea4fd4087df500b88ee5" prot="private" static="no" mutable="no">
+        <type>bool</type>
+        <definition>bool RAYEX_NAMESPACE::Scene::uploadGeometryInstancesToBuffer</definition>
+        <argsstring></argsstring>
+        <name>uploadGeometryInstancesToBuffer</name>
+        <initializer>= false</initializer>
+        <briefdescription>
+<para>Keeps track of whether or not to upload the ray tracing instances to their respective buffer the next time update() is called. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/n30/Repos/rayex/include/base/Scene.hpp" line="82" column="10" bodyfile="/home/n30/Repos/rayex/include/base/Scene.hpp" bodystart="82" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_scene_1a19f1cd5b71325a4d93ee4b93a79e6c50" prot="private" static="no" mutable="no">
+        <type>bool</type>
+        <definition>bool RAYEX_NAMESPACE::Scene::uploadDirectionalLightsToBuffer</definition>
+        <argsstring></argsstring>
+        <name>uploadDirectionalLightsToBuffer</name>
+        <initializer>= false</initializer>
+        <briefdescription>
+<para>Keeps track of whether or not to upload the directional lights to their respective buffer the next time update() is called. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/n30/Repos/rayex/include/base/Scene.hpp" line="83" column="10" bodyfile="/home/n30/Repos/rayex/include/base/Scene.hpp" bodystart="83" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_scene_1a76c16520a3fe6152f6de41ba225a5575" prot="private" static="no" mutable="no">
+        <type>bool</type>
+        <definition>bool RAYEX_NAMESPACE::Scene::uploadPointLightsToBuffer</definition>
+        <argsstring></argsstring>
+        <name>uploadPointLightsToBuffer</name>
+        <initializer>= false</initializer>
+        <briefdescription>
+<para>Keeps track of whether or not to upload the point lights to their respective buffer the next time update() is called. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/n30/Repos/rayex/include/base/Scene.hpp" line="84" column="10" bodyfile="/home/n30/Repos/rayex/include/base/Scene.hpp" bodystart="84" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_scene_1a97eba2afc62a48d331a2f6a5aa23e5e2" prot="private" static="no" mutable="no">
+        <type><ref refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_settings" kindref="compound">Settings</ref> *</type>
+        <definition>Settings* RAYEX_NAMESPACE::Scene::settings</definition>
+        <argsstring></argsstring>
+        <name>settings</name>
+        <initializer>= nullptr</initializer>
+        <briefdescription>
+<para>Refers to the rendering settings stored in <ref refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_rayex_1aeffc2a614d26af4c71880c5687cbb4d1" kindref="member">Rayex::settings</ref>. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/n30/Repos/rayex/include/base/Scene.hpp" line="86" column="14" bodyfile="/home/n30/Repos/rayex/include/base/Scene.hpp" bodystart="86" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_scene_1ae4b222234130d400176408f69fbd518d" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>RX_API auto</type>
+        <definition>RX_API auto RAYEX_NAMESPACE::Scene::getGeometryInstances</definition>
+        <argsstring>() const -&gt; const std::vector&lt; std::shared_ptr&lt; GeometryInstance &gt;&gt; &amp;</argsstring>
+        <name>getGeometryInstances</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>Returns all geometry instances in the scene. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/n30/Repos/rayex/include/base/Scene.hpp" line="20" column="17"/>
+      </memberdef>
+      <memberdef kind="function" id="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_scene_1a3b96a2de405909bcf142d06ffd01af51" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>RX_API void</type>
+        <definition>RX_API void RAYEX_NAMESPACE::Scene::submitGeometryInstance</definition>
+        <argsstring>(std::shared_ptr&lt; GeometryInstance &gt; geometryInstance)</argsstring>
+        <name>submitGeometryInstance</name>
+        <param>
+          <type>std::shared_ptr&lt; <ref refid="struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_geometry_instance" kindref="compound">GeometryInstance</ref> &gt;</type>
+          <declname>geometryInstance</declname>
+        </param>
+        <briefdescription>
+<para>Used to submit a geometry instance for rendering. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>geometryInstance</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The instance to queue for rendering. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="note"><para>This function does not invoke any draw calls. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/n30/Repos/rayex/include/base/Scene.hpp" line="25" column="17"/>
+      </memberdef>
+      <memberdef kind="function" id="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_scene_1ab9ea0ed7c08d009b16df99075471e46a" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>RX_API void</type>
+        <definition>RX_API void RAYEX_NAMESPACE::Scene::setGeometryInstances</definition>
+        <argsstring>(const std::vector&lt; std::shared_ptr&lt; GeometryInstance &gt;&gt; &amp;geometryInstances)</argsstring>
+        <name>setGeometryInstances</name>
+        <param>
+          <type>const std::vector&lt; std::shared_ptr&lt; <ref refid="struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_geometry_instance" kindref="compound">GeometryInstance</ref> &gt;&gt; &amp;</type>
+          <declname>geometryInstances</declname>
+        </param>
+        <briefdescription>
+<para>Used to submit multiple geometry instances for rendering, replacing all existing instances. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>geometryInstances</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The instances to queue for rendering. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="note"><para>This function does not invoke any draw calls. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/n30/Repos/rayex/include/base/Scene.hpp" line="30" column="17"/>
+      </memberdef>
+      <memberdef kind="function" id="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_scene_1a4dede48ee7babbc92564f8f8e58137d7" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>RX_API auto</type>
+        <definition>RX_API auto RAYEX_NAMESPACE::Scene::getDirectionalLights</definition>
+        <argsstring>() const -&gt; const std::vector&lt; std::shared_ptr&lt; DirectionalLight &gt;&gt; &amp;</argsstring>
+        <name>getDirectionalLights</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>Returns all directional lights in the scene. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/n30/Repos/rayex/include/base/Scene.hpp" line="33" column="17"/>
+      </memberdef>
+      <memberdef kind="function" id="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_scene_1a2431b32e7e77f9a3a3fe1c507b0ed47e" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>RX_API void</type>
+        <definition>RX_API void RAYEX_NAMESPACE::Scene::submitDirectionalLight</definition>
+        <argsstring>(std::shared_ptr&lt; DirectionalLight &gt; light)</argsstring>
+        <name>submitDirectionalLight</name>
+        <param>
+          <type>std::shared_ptr&lt; <ref refid="struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_directional_light" kindref="compound">DirectionalLight</ref> &gt;</type>
+          <declname>light</declname>
+        </param>
+        <briefdescription>
+<para>Used to submit a directional light. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>light</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The directional light to submit. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/n30/Repos/rayex/include/base/Scene.hpp" line="37" column="17"/>
+      </memberdef>
+      <memberdef kind="function" id="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_scene_1a56343cde7839a62a148fe1ff1b02b5a2" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>RX_API void</type>
+        <definition>RX_API void RAYEX_NAMESPACE::Scene::removeDirectionalLight</definition>
+        <argsstring>(std::shared_ptr&lt; DirectionalLight &gt; light)</argsstring>
+        <name>removeDirectionalLight</name>
+        <param>
+          <type>std::shared_ptr&lt; <ref refid="struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_directional_light" kindref="compound">DirectionalLight</ref> &gt;</type>
+          <declname>light</declname>
+        </param>
+        <briefdescription>
+<para>Used to remove a directional light. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>light</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The directional light to remove. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/n30/Repos/rayex/include/base/Scene.hpp" line="41" column="17"/>
+      </memberdef>
+      <memberdef kind="function" id="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_scene_1a62830aa5d68338fa397362348d78f1ea" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>RX_API auto</type>
+        <definition>RX_API auto RAYEX_NAMESPACE::Scene::getPointLights</definition>
+        <argsstring>() const -&gt; const std::vector&lt; std::shared_ptr&lt; PointLight &gt;&gt; &amp;</argsstring>
+        <name>getPointLights</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>Returns all point lights in the scene. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/n30/Repos/rayex/include/base/Scene.hpp" line="44" column="17"/>
+      </memberdef>
+      <memberdef kind="function" id="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_scene_1a28f1b782d207d9900867d88daf9dc36f" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>RX_API void</type>
+        <definition>RX_API void RAYEX_NAMESPACE::Scene::submitPointLight</definition>
+        <argsstring>(std::shared_ptr&lt; PointLight &gt; light)</argsstring>
+        <name>submitPointLight</name>
+        <param>
+          <type>std::shared_ptr&lt; <ref refid="struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_point_light" kindref="compound">PointLight</ref> &gt;</type>
+          <declname>light</declname>
+        </param>
+        <briefdescription>
+<para>Used to submit a point light. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>light</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The point light to submit. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/n30/Repos/rayex/include/base/Scene.hpp" line="48" column="17"/>
+      </memberdef>
+      <memberdef kind="function" id="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_scene_1aa1287c66b8b1ec56888839f42eb4caeb" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>RX_API void</type>
+        <definition>RX_API void RAYEX_NAMESPACE::Scene::removePointLight</definition>
+        <argsstring>(std::shared_ptr&lt; PointLight &gt; light)</argsstring>
+        <name>removePointLight</name>
+        <param>
+          <type>std::shared_ptr&lt; <ref refid="struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_point_light" kindref="compound">PointLight</ref> &gt;</type>
+          <declname>light</declname>
+        </param>
+        <briefdescription>
+<para>Used to remove a point light. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>light</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The point light to remove. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/n30/Repos/rayex/include/base/Scene.hpp" line="52" column="17"/>
+      </memberdef>
+      <memberdef kind="function" id="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_scene_1a77d27bd137cc821c5a2f27e8a4cb08a0" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>RX_API void</type>
+        <definition>RX_API void RAYEX_NAMESPACE::Scene::removeGeometryInstance</definition>
+        <argsstring>(std::shared_ptr&lt; GeometryInstance &gt; geometryInstance)</argsstring>
+        <name>removeGeometryInstance</name>
+        <param>
+          <type>std::shared_ptr&lt; <ref refid="struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_geometry_instance" kindref="compound">GeometryInstance</ref> &gt;</type>
+          <declname>geometryInstance</declname>
+        </param>
+        <briefdescription>
+<para>Used to remove a geometry instance. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>Once a geometry instance was removed, it will no longer be rendered. <parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>geometryInstance</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The instance to remove. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/n30/Repos/rayex/include/base/Scene.hpp" line="58" column="17"/>
+      </memberdef>
+      <memberdef kind="function" id="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_scene_1af63d4e9451ca633e359a58c24558b906" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>RX_API void</type>
+        <definition>RX_API void RAYEX_NAMESPACE::Scene::submitGeometry</definition>
+        <argsstring>(std::shared_ptr&lt; Geometry &gt; geometry)</argsstring>
+        <name>submitGeometry</name>
+        <param>
+          <type>std::shared_ptr&lt; <ref refid="struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_geometry" kindref="compound">Geometry</ref> &gt;</type>
+          <declname>geometry</declname>
+        </param>
+        <briefdescription>
+<para>Used to submit a geometry and set up its buffers. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>Once a geometry was submitted, geometry instances referencing this particular geometry can be drawn. <parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>geometry</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The geometry to submit. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/n30/Repos/rayex/include/base/Scene.hpp" line="64" column="17"/>
+      </memberdef>
+      <memberdef kind="function" id="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_scene_1acb21c780b3ef2f6f7f89903cd9f0451a" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>RX_API void</type>
+        <definition>RX_API void RAYEX_NAMESPACE::Scene::setGeometries</definition>
+        <argsstring>(const std::vector&lt; std::shared_ptr&lt; Geometry &gt;&gt; &amp;geometries)</argsstring>
+        <name>setGeometries</name>
+        <param>
+          <type>const std::vector&lt; std::shared_ptr&lt; <ref refid="struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_geometry" kindref="compound">Geometry</ref> &gt;&gt; &amp;</type>
+          <declname>geometries</declname>
+        </param>
+        <briefdescription>
+<para>Used to submit multiple geometries and set up their buffers. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>Once a geometry was submitted, geometry instances referencing this particular geometry can be drawn. <parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>geometries</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The geometries to submit. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/n30/Repos/rayex/include/base/Scene.hpp" line="70" column="17"/>
+      </memberdef>
+      <memberdef kind="function" id="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_scene_1af86091cefb7ed4c6159610f3fa5bd56d" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>RX_API auto</type>
+        <definition>RX_API auto RAYEX_NAMESPACE::Scene::findGeometry</definition>
+        <argsstring>(std::string_view path) const -&gt; std::shared_ptr&lt; Geometry &gt;</argsstring>
+        <name>findGeometry</name>
+        <param>
+          <type>std::string_view</type>
+          <declname>path</declname>
+        </param>
+        <briefdescription>
+<para>Used to retrieve a geoemtry based on its path. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>path</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The geometry&apos;s model&apos;s path, relative to the path to assets. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/n30/Repos/rayex/include/base/Scene.hpp" line="74" column="17"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="/home/n30/Repos/rayex/include/base/Scene.hpp" line="14" column="1" bodyfile="/home/n30/Repos/rayex/include/base/Scene.hpp" bodystart="13" bodyend="87"/>
+    <listofallmembers>
+      <member refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_scene_1ae002d16199c05b908fbeecc4f7d97733" prot="public" virt="non-virtual"><scope>RAYEX_NAMESPACE::Scene</scope><name>Api</name></member>
+      <member refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_scene_1a02d41181c2a80710c6e216c40b36be48" prot="private" virt="non-virtual"><scope>RAYEX_NAMESPACE::Scene</scope><name>directionalLights</name></member>
+      <member refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_scene_1af86091cefb7ed4c6159610f3fa5bd56d" prot="public" virt="non-virtual"><scope>RAYEX_NAMESPACE::Scene</scope><name>findGeometry</name></member>
+      <member refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_scene_1acece8da9321a52636d135c56c1e4f900" prot="private" virt="non-virtual"><scope>RAYEX_NAMESPACE::Scene</scope><name>geometries</name></member>
+      <member refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_scene_1a59fd42bef703847c8be55502fce601cf" prot="private" virt="non-virtual"><scope>RAYEX_NAMESPACE::Scene</scope><name>geometryInstances</name></member>
+      <member refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_scene_1a4dede48ee7babbc92564f8f8e58137d7" prot="public" virt="non-virtual"><scope>RAYEX_NAMESPACE::Scene</scope><name>getDirectionalLights</name></member>
+      <member refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_scene_1ae4b222234130d400176408f69fbd518d" prot="public" virt="non-virtual"><scope>RAYEX_NAMESPACE::Scene</scope><name>getGeometryInstances</name></member>
+      <member refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_scene_1a62830aa5d68338fa397362348d78f1ea" prot="public" virt="non-virtual"><scope>RAYEX_NAMESPACE::Scene</scope><name>getPointLights</name></member>
+      <member refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_scene_1a64c281c64e3b56c3002d644efbabdd95" prot="private" virt="non-virtual"><scope>RAYEX_NAMESPACE::Scene</scope><name>pointLights</name></member>
+      <member refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_scene_1a03b7257e44db8e9af952484958a5346c" prot="public" virt="non-virtual"><scope>RAYEX_NAMESPACE::Scene</scope><name>Rayex</name></member>
+      <member refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_scene_1a56343cde7839a62a148fe1ff1b02b5a2" prot="public" virt="non-virtual"><scope>RAYEX_NAMESPACE::Scene</scope><name>removeDirectionalLight</name></member>
+      <member refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_scene_1a77d27bd137cc821c5a2f27e8a4cb08a0" prot="public" virt="non-virtual"><scope>RAYEX_NAMESPACE::Scene</scope><name>removeGeometryInstance</name></member>
+      <member refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_scene_1aa1287c66b8b1ec56888839f42eb4caeb" prot="public" virt="non-virtual"><scope>RAYEX_NAMESPACE::Scene</scope><name>removePointLight</name></member>
+      <member refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_scene_1acb21c780b3ef2f6f7f89903cd9f0451a" prot="public" virt="non-virtual"><scope>RAYEX_NAMESPACE::Scene</scope><name>setGeometries</name></member>
+      <member refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_scene_1ab9ea0ed7c08d009b16df99075471e46a" prot="public" virt="non-virtual"><scope>RAYEX_NAMESPACE::Scene</scope><name>setGeometryInstances</name></member>
+      <member refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_scene_1a97eba2afc62a48d331a2f6a5aa23e5e2" prot="private" virt="non-virtual"><scope>RAYEX_NAMESPACE::Scene</scope><name>settings</name></member>
+      <member refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_scene_1a2431b32e7e77f9a3a3fe1c507b0ed47e" prot="public" virt="non-virtual"><scope>RAYEX_NAMESPACE::Scene</scope><name>submitDirectionalLight</name></member>
+      <member refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_scene_1af63d4e9451ca633e359a58c24558b906" prot="public" virt="non-virtual"><scope>RAYEX_NAMESPACE::Scene</scope><name>submitGeometry</name></member>
+      <member refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_scene_1a3b96a2de405909bcf142d06ffd01af51" prot="public" virt="non-virtual"><scope>RAYEX_NAMESPACE::Scene</scope><name>submitGeometryInstance</name></member>
+      <member refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_scene_1a28f1b782d207d9900867d88daf9dc36f" prot="public" virt="non-virtual"><scope>RAYEX_NAMESPACE::Scene</scope><name>submitPointLight</name></member>
+      <member refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_scene_1a19f1cd5b71325a4d93ee4b93a79e6c50" prot="private" virt="non-virtual"><scope>RAYEX_NAMESPACE::Scene</scope><name>uploadDirectionalLightsToBuffer</name></member>
+      <member refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_scene_1a369ca3a48402ea4fd4087df500b88ee5" prot="private" virt="non-virtual"><scope>RAYEX_NAMESPACE::Scene</scope><name>uploadGeometryInstancesToBuffer</name></member>
+      <member refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_scene_1a76c16520a3fe6152f6de41ba225a5575" prot="private" virt="non-virtual"><scope>RAYEX_NAMESPACE::Scene</scope><name>uploadPointLightsToBuffer</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

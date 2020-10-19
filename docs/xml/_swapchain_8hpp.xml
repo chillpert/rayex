@@ -5,15 +5,75 @@
     <includes refid="_surface_8hpp" local="yes">api/Surface.hpp</includes>
     <includes refid="_image_8hpp" local="yes">api/image/Image.hpp</includes>
     <includes refid="_helpers_8hpp" local="yes">api/utility/Helpers.hpp</includes>
-    <includedby refid="_api_8hpp" local="yes">/home/n30/Repos/rayexec/include/api/Api.hpp</includedby>
-    <includedby refid="_ray_tracing_builder_8hpp" local="yes">/home/n30/Repos/rayexec/include/api/raytracing/RayTracingBuilder.hpp</includedby>
-    <includedby refid="_gui_8hpp" local="yes">/home/n30/Repos/rayexec/include/base/Gui.hpp</includedby>
+    <includedby refid="_api_8hpp" local="yes">/home/n30/Repos/rayex/include/api/Api.hpp</includedby>
+    <includedby refid="_ray_tracing_builder_8hpp" local="yes">/home/n30/Repos/rayex/include/api/raytracing/RayTracingBuilder.hpp</includedby>
+    <includedby refid="_gui_8hpp" local="yes">/home/n30/Repos/rayex/include/base/Gui.hpp</includedby>
     <incdepgraph>
       <node id="31">
         <label>list</label>
       </node>
+      <node id="29">
+        <label>iomanip</label>
+      </node>
+      <node id="22">
+        <label>external/glm/ext/matrix_transform.hpp</label>
+      </node>
+      <node id="30">
+        <label>limits</label>
+      </node>
+      <node id="25">
+        <label>filesystem</label>
+      </node>
+      <node id="7">
+        <label>external/tinyLogger/TinyLogger.hpp</label>
+      </node>
+      <node id="20">
+        <label>charconv</label>
+      </node>
+      <node id="43">
+        <label>api/utility/Helpers.hpp</label>
+        <link refid="_helpers_8hpp"/>
+        <childnode refid="44" relation="include">
+        </childnode>
+        <childnode refid="45" relation="include">
+        </childnode>
+      </node>
+      <node id="6">
+        <label>Core.hpp</label>
+        <link refid="_core_8hpp"/>
+        <childnode refid="7" relation="include">
+        </childnode>
+        <childnode refid="8" relation="include">
+        </childnode>
+        <childnode refid="9" relation="include">
+        </childnode>
+        <childnode refid="10" relation="include">
+        </childnode>
+        <childnode refid="11" relation="include">
+        </childnode>
+        <childnode refid="12" relation="include">
+        </childnode>
+      </node>
+      <node id="15">
+        <label>external/ImGui/imgui_impl_sdl.h</label>
+      </node>
+      <node id="21">
+        <label>external/glm/ext/matrix_clip_space.hpp</label>
+      </node>
+      <node id="32">
+        <label>map</label>
+      </node>
+      <node id="42">
+        <label>api/image/Image.hpp</label>
+        <link refid="_image_8hpp"/>
+        <childnode refid="5" relation="include">
+        </childnode>
+      </node>
+      <node id="39">
+        <label>unordered_set</label>
+      </node>
       <node id="1">
-        <label>/home/n30/Repos/rayexec/include/api/Swapchain.hpp</label>
+        <label>/home/n30/Repos/rayex/include/api/Swapchain.hpp</label>
         <link refid="_swapchain_8hpp"/>
         <childnode refid="2" relation="include">
         </childnode>
@@ -22,11 +82,17 @@
         <childnode refid="43" relation="include">
         </childnode>
       </node>
-      <node id="29">
-        <label>iomanip</label>
+      <node id="28">
+        <label>gsl/gsl</label>
       </node>
-      <node id="22">
-        <label>external/glm/ext/matrix_transform.hpp</label>
+      <node id="27">
+        <label>fstream</label>
+      </node>
+      <node id="14">
+        <label>external/ImGui/imgui.h</label>
+      </node>
+      <node id="18">
+        <label>any</label>
       </node>
       <node id="5">
         <label>pch/stdafx.hpp</label>
@@ -92,64 +158,6 @@
         <childnode refid="41" relation="include">
         </childnode>
       </node>
-      <node id="30">
-        <label>limits</label>
-      </node>
-      <node id="25">
-        <label>filesystem</label>
-      </node>
-      <node id="4">
-        <label>base/Camera.hpp</label>
-        <link refid="_camera_8hpp"/>
-        <childnode refid="5" relation="include">
-        </childnode>
-      </node>
-      <node id="7">
-        <label>external/tinyLogger/TinyLogger.hpp</label>
-      </node>
-      <node id="20">
-        <label>charconv</label>
-      </node>
-      <node id="15">
-        <label>external/ImGui/imgui_impl_sdl.h</label>
-      </node>
-      <node id="21">
-        <label>external/glm/ext/matrix_clip_space.hpp</label>
-      </node>
-      <node id="32">
-        <label>map</label>
-      </node>
-      <node id="45">
-        <label>api/raytracing/AccelerationStructure.hpp</label>
-        <link refid="_acceleration_structure_8hpp"/>
-        <childnode refid="46" relation="include">
-        </childnode>
-        <childnode refid="5" relation="include">
-        </childnode>
-      </node>
-      <node id="39">
-        <label>unordered_set</label>
-      </node>
-      <node id="28">
-        <label>gsl/gsl</label>
-      </node>
-      <node id="43">
-        <label>api/utility/Helpers.hpp</label>
-        <link refid="_helpers_8hpp"/>
-        <childnode refid="44" relation="include">
-        </childnode>
-        <childnode refid="45" relation="include">
-        </childnode>
-      </node>
-      <node id="27">
-        <label>fstream</label>
-      </node>
-      <node id="14">
-        <label>external/ImGui/imgui.h</label>
-      </node>
-      <node id="18">
-        <label>any</label>
-      </node>
       <node id="9">
         <label>SDL2/SDL.h</label>
       </node>
@@ -162,9 +170,9 @@
       <node id="37">
         <label>string_view</label>
       </node>
-      <node id="46">
-        <label>api/Components.hpp</label>
-        <link refid="_components_8hpp"/>
+      <node id="2">
+        <label>api/Surface.hpp</label>
+        <link refid="_surface_8hpp"/>
         <childnode refid="3" relation="include">
         </childnode>
       </node>
@@ -173,6 +181,16 @@
       </node>
       <node id="41">
         <label>vector</label>
+      </node>
+      <node id="3">
+        <label>base/Window.hpp</label>
+        <link refid="_window_8hpp"/>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="13" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
       </node>
       <node id="40">
         <label>utility</label>
@@ -186,45 +204,20 @@
       <node id="8">
         <label>sstream</label>
       </node>
+      <node id="4">
+        <label>base/Camera.hpp</label>
+        <link refid="_camera_8hpp"/>
+        <childnode refid="5" relation="include">
+        </childnode>
+      </node>
       <node id="16">
         <label>external/ImGui/imgui_impl_vulkan.h</label>
       </node>
       <node id="11">
         <label>iostream</label>
       </node>
-      <node id="6">
-        <label>Core.hpp</label>
-        <link refid="_core_8hpp"/>
-        <childnode refid="7" relation="include">
-        </childnode>
-        <childnode refid="8" relation="include">
-        </childnode>
-        <childnode refid="9" relation="include">
-        </childnode>
-        <childnode refid="10" relation="include">
-        </childnode>
-        <childnode refid="11" relation="include">
-        </childnode>
-        <childnode refid="12" relation="include">
-        </childnode>
-      </node>
       <node id="38">
         <label>unordered_map</label>
-      </node>
-      <node id="42">
-        <label>api/image/Image.hpp</label>
-        <link refid="_image_8hpp"/>
-        <childnode refid="5" relation="include">
-        </childnode>
-      </node>
-      <node id="36">
-        <label>set</label>
-      </node>
-      <node id="26">
-        <label>forward_list</label>
-      </node>
-      <node id="17">
-        <label>algorithm</label>
       </node>
       <node id="44">
         <label>api/RenderPass.hpp</label>
@@ -232,30 +225,31 @@
         <childnode refid="5" relation="include">
         </childnode>
       </node>
+      <node id="45">
+        <label>api/raytracing/AccelerationStructure.hpp</label>
+        <link refid="_acceleration_structure_8hpp"/>
+        <childnode refid="46" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+      </node>
+      <node id="36">
+        <label>set</label>
+      </node>
       <node id="13">
         <label>base/Time.hpp</label>
         <link refid="_time_8hpp"/>
         <childnode refid="6" relation="include">
         </childnode>
       </node>
-      <node id="3">
-        <label>base/Window.hpp</label>
-        <link refid="_window_8hpp"/>
-        <childnode refid="4" relation="include">
-        </childnode>
-        <childnode refid="13" relation="include">
-        </childnode>
-        <childnode refid="5" relation="include">
-        </childnode>
+      <node id="26">
+        <label>forward_list</label>
+      </node>
+      <node id="17">
+        <label>algorithm</label>
       </node>
       <node id="12">
         <label>vulkan/vulkan.hpp</label>
-      </node>
-      <node id="2">
-        <label>api/Surface.hpp</label>
-        <link refid="_surface_8hpp"/>
-        <childnode refid="3" relation="include">
-        </childnode>
       </node>
       <node id="33">
         <label>memory</label>
@@ -263,10 +257,22 @@
       <node id="10">
         <label>SDL2/SDL_vulkan.h</label>
       </node>
+      <node id="46">
+        <label>api/Components.hpp</label>
+        <link refid="_components_8hpp"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+      </node>
     </incdepgraph>
     <invincdepgraph>
+      <node id="4">
+        <label>/home/n30/Repos/rayex/include/api/raytracing/RayTracingBuilder.hpp</label>
+        <link refid="_ray_tracing_builder_8hpp"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+      </node>
       <node id="1">
-        <label>/home/n30/Repos/rayexec/include/api/Swapchain.hpp</label>
+        <label>/home/n30/Repos/rayex/include/api/Swapchain.hpp</label>
         <link refid="_swapchain_8hpp"/>
         <childnode refid="2" relation="include">
         </childnode>
@@ -276,30 +282,24 @@
         </childnode>
       </node>
       <node id="3">
-        <label>/home/n30/Repos/rayexec/include/RayExec.hpp</label>
-        <link refid="_ray_exec_8hpp"/>
-      </node>
-      <node id="2">
-        <label>/home/n30/Repos/rayexec/include/api/Api.hpp</label>
-        <link refid="_api_8hpp"/>
-        <childnode refid="3" relation="include">
-        </childnode>
-      </node>
-      <node id="4">
-        <label>/home/n30/Repos/rayexec/include/api/raytracing/RayTracingBuilder.hpp</label>
-        <link refid="_ray_tracing_builder_8hpp"/>
-        <childnode refid="2" relation="include">
-        </childnode>
+        <label>/home/n30/Repos/rayex/include/Rayex.hpp</label>
+        <link refid="_rayex_8hpp"/>
       </node>
       <node id="5">
-        <label>/home/n30/Repos/rayexec/include/base/Gui.hpp</label>
+        <label>/home/n30/Repos/rayex/include/base/Gui.hpp</label>
         <link refid="_gui_8hpp"/>
         <childnode refid="2" relation="include">
         </childnode>
       </node>
+      <node id="2">
+        <label>/home/n30/Repos/rayex/include/api/Api.hpp</label>
+        <link refid="_api_8hpp"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+      </node>
     </invincdepgraph>
-    <innerclass refid="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_swapchain" prot="public">RAYEXEC_NAMESPACE::Swapchain</innerclass>
-    <innernamespace refid="namespace_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e">RAYEXEC_NAMESPACE</innernamespace>
+    <innerclass refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_swapchain" prot="public">RAYEX_NAMESPACE::Swapchain</innerclass>
+    <innernamespace refid="namespace_r_a_y_e_x___n_a_m_e_s_p_a_c_e">RAYEX_NAMESPACE</innernamespace>
     <briefdescription>
     </briefdescription>
     <detaileddescription>
@@ -312,34 +312,34 @@
 <codeline lineno="5"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;<ref refid="_image_8hpp" kindref="compound">api/image/Image.hpp</ref>&quot;</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="6"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;<ref refid="_helpers_8hpp" kindref="compound">api/utility/Helpers.hpp</ref>&quot;</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="7"><highlight class="normal"></highlight></codeline>
-<codeline lineno="8"><highlight class="normal"></highlight><highlight class="keyword">namespace<sp/></highlight><highlight class="normal"><ref refid="namespace_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e" kindref="compound">RAYEXEC_NAMESPACE</ref></highlight></codeline>
+<codeline lineno="8"><highlight class="normal"></highlight><highlight class="keyword">namespace<sp/></highlight><highlight class="normal"><ref refid="namespace_r_a_y_e_x___n_a_m_e_s_p_a_c_e" kindref="compound">RAYEX_NAMESPACE</ref></highlight></codeline>
 <codeline lineno="9"><highlight class="normal">{</highlight></codeline>
-<codeline lineno="12" refid="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_swapchain" refkind="compound"><highlight class="normal"><sp/><sp/></highlight><highlight class="keyword">class<sp/></highlight><highlight class="normal"><ref refid="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_swapchain" kindref="compound">Swapchain</ref></highlight></codeline>
+<codeline lineno="12" refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_swapchain" refkind="compound"><highlight class="normal"><sp/><sp/></highlight><highlight class="keyword">class<sp/></highlight><highlight class="normal"><ref refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_swapchain" kindref="compound">Swapchain</ref></highlight></codeline>
 <codeline lineno="13"><highlight class="normal"><sp/><sp/>{</highlight></codeline>
 <codeline lineno="14"><highlight class="normal"><sp/><sp/></highlight><highlight class="keyword">public</highlight><highlight class="normal">:</highlight></codeline>
-<codeline lineno="18"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_swapchain_1a2d7ff0e063ea15fe578407c7c81ac7e2" kindref="member">init</ref>(<sp/><ref refid="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_surface" kindref="compound">Surface</ref>*<sp/>surface,<sp/>vk::RenderPass<sp/>renderPass<sp/>);</highlight></codeline>
+<codeline lineno="18"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_swapchain_1ad85e687e114973ff8fc6b852db078879" kindref="member">init</ref>(<sp/><ref refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_surface" kindref="compound">Surface</ref>*<sp/>surface,<sp/>vk::RenderPass<sp/>renderPass<sp/>);</highlight></codeline>
 <codeline lineno="19"><highlight class="normal"></highlight></codeline>
-<codeline lineno="21"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_swapchain_1a562180ff12b730a57e7aec3c73a534b7" kindref="member">destroy</ref>(<sp/>);</highlight></codeline>
+<codeline lineno="21"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_swapchain_1a23485ef75854f3ffb881877e18ddd2c2" kindref="member">destroy</ref>(<sp/>);</highlight></codeline>
 <codeline lineno="22"><highlight class="normal"></highlight></codeline>
-<codeline lineno="24" refid="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_swapchain_1a7423d7474a69ddcf6c069dd52d03c9fe" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>[[nodiscard]]<sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/><ref refid="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_swapchain_1a7423d7474a69ddcf6c069dd52d03c9fe" kindref="member">getFramebuffer</ref>(<sp/>uint32_t<sp/>index<sp/>)<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>-&gt;<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>vk::Framebuffer&amp;<sp/>{<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>this-&gt;framebuffers[index].get(<sp/>);<sp/>}</highlight></codeline>
+<codeline lineno="24" refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_swapchain_1ab3315f20384b5fa3e1e4156bd1c638c7" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>[[nodiscard]]<sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/><ref refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_swapchain_1ab3315f20384b5fa3e1e4156bd1c638c7" kindref="member">getFramebuffer</ref>(<sp/>uint32_t<sp/>index<sp/>)<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>-&gt;<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>vk::Framebuffer&amp;<sp/>{<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>this-&gt;framebuffers[index].get(<sp/>);<sp/>}</highlight></codeline>
 <codeline lineno="25"><highlight class="normal"></highlight></codeline>
-<codeline lineno="27" refid="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_swapchain_1a5978067f74d9579eef8777cefed83a6c" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>[[nodiscard]]<sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/><ref refid="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_swapchain_1a5978067f74d9579eef8777cefed83a6c" kindref="member">getCurrentImageIndex</ref>(<sp/>)<sp/>const<sp/>-&gt;<sp/>uint32_t<sp/>{<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>this-&gt;currentImageIndex;<sp/>}</highlight></codeline>
+<codeline lineno="27" refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_swapchain_1ac7a765f1861061db7373460b77ddeb3e" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>[[nodiscard]]<sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/><ref refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_swapchain_1ac7a765f1861061db7373460b77ddeb3e" kindref="member">getCurrentImageIndex</ref>(<sp/>)<sp/>const<sp/>-&gt;<sp/>uint32_t<sp/>{<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>this-&gt;currentImageIndex;<sp/>}</highlight></codeline>
 <codeline lineno="28"><highlight class="normal"></highlight></codeline>
-<codeline lineno="30" refid="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_swapchain_1ac1a042535549e8b435a41bbcaca06759" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>[[nodiscard]]<sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/><ref refid="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_swapchain_1ac1a042535549e8b435a41bbcaca06759" kindref="member">getExtent</ref>(<sp/>)<sp/>const<sp/>-&gt;<sp/><ref refid="namespacevk" kindref="compound">vk</ref>::Extent2D<sp/>{<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>this-&gt;extent;<sp/>}</highlight></codeline>
+<codeline lineno="30" refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_swapchain_1a9789ac0aaa93867052947d4445f2a0e2" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>[[nodiscard]]<sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/><ref refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_swapchain_1a9789ac0aaa93867052947d4445f2a0e2" kindref="member">getExtent</ref>(<sp/>)<sp/>const<sp/>-&gt;<sp/><ref refid="namespacevk" kindref="compound">vk</ref>::Extent2D<sp/>{<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>this-&gt;extent;<sp/>}</highlight></codeline>
 <codeline lineno="31"><highlight class="normal"></highlight></codeline>
-<codeline lineno="33" refid="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_swapchain_1a514beaf04e7d7835bf4b94ee0223622c" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>[[nodiscard]]<sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/><ref refid="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_swapchain_1a514beaf04e7d7835bf4b94ee0223622c" kindref="member">getImageAspect</ref>(<sp/>)<sp/>const<sp/>-&gt;<sp/><ref refid="namespacevk" kindref="compound">vk</ref>::ImageAspectFlags<sp/>{<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>this-&gt;imageAspect;<sp/>}</highlight></codeline>
+<codeline lineno="33" refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_swapchain_1a58e9cbc1d98d0eb97ee273b15c1f4713" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>[[nodiscard]]<sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/><ref refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_swapchain_1a58e9cbc1d98d0eb97ee273b15c1f4713" kindref="member">getImageAspect</ref>(<sp/>)<sp/>const<sp/>-&gt;<sp/><ref refid="namespacevk" kindref="compound">vk</ref>::ImageAspectFlags<sp/>{<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>this-&gt;imageAspect;<sp/>}</highlight></codeline>
 <codeline lineno="34"><highlight class="normal"></highlight></codeline>
-<codeline lineno="38" refid="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_swapchain_1a8711129b1c04a4c09abb1a65817ac5a4" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>[[nodiscard]]<sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/><ref refid="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_swapchain_1a8711129b1c04a4c09abb1a65817ac5a4" kindref="member">getImage</ref>(<sp/></highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal"><sp/>index<sp/>)<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>-&gt;<sp/>vk::Image<sp/>{<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>this-&gt;images[index];<sp/>}</highlight></codeline>
+<codeline lineno="38" refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_swapchain_1a190ce92331100a2db14c729d67341b9f" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>[[nodiscard]]<sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/><ref refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_swapchain_1a190ce92331100a2db14c729d67341b9f" kindref="member">getImage</ref>(<sp/></highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal"><sp/>index<sp/>)<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>-&gt;<sp/>vk::Image<sp/>{<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>this-&gt;images[index];<sp/>}</highlight></codeline>
 <codeline lineno="39"><highlight class="normal"></highlight></codeline>
-<codeline lineno="41" refid="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_swapchain_1a6e0557f4d62e28dfeb9cf6e2afb06704" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>[[nodiscard]]<sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/><ref refid="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_swapchain_1a6e0557f4d62e28dfeb9cf6e2afb06704" kindref="member">getImages</ref>(<sp/>)<sp/>const<sp/>-&gt;<sp/>const<sp/><ref refid="namespacestd" kindref="compound">std</ref>::vector&lt;<ref refid="namespacevk" kindref="compound">vk</ref>::<ref refid="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_image" kindref="compound">Image</ref>&gt;&amp;<sp/>{<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>this-&gt;images;<sp/>}</highlight></codeline>
+<codeline lineno="41" refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_swapchain_1a747f3cd62d8784b05baf6e192d86002a" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>[[nodiscard]]<sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/><ref refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_swapchain_1a747f3cd62d8784b05baf6e192d86002a" kindref="member">getImages</ref>(<sp/>)<sp/>const<sp/>-&gt;<sp/>const<sp/><ref refid="namespacestd" kindref="compound">std</ref>::vector&lt;<ref refid="namespacevk" kindref="compound">vk</ref>::<ref refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_image" kindref="compound">Image</ref>&gt;&amp;<sp/>{<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>this-&gt;images;<sp/>}</highlight></codeline>
 <codeline lineno="42"><highlight class="normal"></highlight></codeline>
-<codeline lineno="45" refid="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_swapchain_1a5e7ed9142f249264a2cb421c92c1b2d5" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>[[nodiscard]]<sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/><ref refid="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_swapchain_1a5e7ed9142f249264a2cb421c92c1b2d5" kindref="member">getImageViews</ref>(<sp/>)<sp/>const<sp/>-&gt;<sp/><ref refid="namespacestd" kindref="compound">std</ref>::vector&lt;<ref refid="namespacevk" kindref="compound">vk</ref>::ImageView&gt;<sp/>{<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>vk::Helper::unpack&lt;vk::ImageView&gt;(<sp/>this-&gt;imageViews<sp/>);<sp/>}</highlight></codeline>
+<codeline lineno="45" refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_swapchain_1a30b4e27c52d6fa9bb634b5cb579b7b10" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>[[nodiscard]]<sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/><ref refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_swapchain_1a30b4e27c52d6fa9bb634b5cb579b7b10" kindref="member">getImageViews</ref>(<sp/>)<sp/>const<sp/>-&gt;<sp/><ref refid="namespacestd" kindref="compound">std</ref>::vector&lt;<ref refid="namespacevk" kindref="compound">vk</ref>::ImageView&gt;<sp/>{<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>vk::Helper::unpack&lt;vk::ImageView&gt;(<sp/>this-&gt;imageViews<sp/>);<sp/>}</highlight></codeline>
 <codeline lineno="46"><highlight class="normal"></highlight></codeline>
-<codeline lineno="48"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_swapchain_1ae727ddbc80698faab04783451ad2a250" kindref="member">setImageAspect</ref>(<sp/>vk::ImageAspectFlags<sp/>flags<sp/>);</highlight></codeline>
+<codeline lineno="48"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_swapchain_1a50a497610d30300482aa3d2a5f05e6ff" kindref="member">setImageAspect</ref>(<sp/>vk::ImageAspectFlags<sp/>flags<sp/>);</highlight></codeline>
 <codeline lineno="49"><highlight class="normal"></highlight></codeline>
-<codeline lineno="53"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_swapchain_1afe470847ca79c36a8a502dabc6ea81e6" kindref="member">setImageLayout</ref>(<sp/>vk::ImageLayout<sp/>oldLayout,<sp/>vk::ImageLayout<sp/>newLayout<sp/>);</highlight></codeline>
+<codeline lineno="53"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_swapchain_1a9d4b15bff7fb5bda19cb5b7dd02783f4" kindref="member">setImageLayout</ref>(<sp/>vk::ImageLayout<sp/>oldLayout,<sp/>vk::ImageLayout<sp/>newLayout<sp/>);</highlight></codeline>
 <codeline lineno="54"><highlight class="normal"></highlight></codeline>
-<codeline lineno="58"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_swapchain_1a2077caebb153dac7c98ccf7ea270f6e6" kindref="member">acquireNextImage</ref>(<sp/>vk::Semaphore<sp/>semaphore,<sp/>vk::Fence<sp/>fence<sp/>);</highlight></codeline>
+<codeline lineno="58"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_swapchain_1a3df5993a7b2582f01bad19a397cf0afe" kindref="member">acquireNextImage</ref>(<sp/>vk::Semaphore<sp/>semaphore,<sp/>vk::Fence<sp/>fence<sp/>);</highlight></codeline>
 <codeline lineno="59"><highlight class="normal"></highlight></codeline>
 <codeline lineno="60"><highlight class="normal"><sp/><sp/></highlight><highlight class="keyword">private</highlight><highlight class="normal">:</highlight></codeline>
 <codeline lineno="64"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>initImages(<sp/>uint32_t<sp/>minImageCount,<sp/>vk::Format<sp/>surfaceFormat<sp/>);</highlight></codeline>
@@ -358,17 +358,17 @@
 <codeline lineno="80"><highlight class="normal"></highlight></codeline>
 <codeline lineno="81"><highlight class="normal"><sp/><sp/><sp/><sp/>std::vector&lt;vk::UniqueFramebuffer&gt;<sp/>framebuffers;<sp/></highlight></codeline>
 <codeline lineno="82"><highlight class="normal"></highlight></codeline>
-<codeline lineno="83"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_image" kindref="compound">Image</ref><sp/>depthImage;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="83"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_image" kindref="compound">Image</ref><sp/>depthImage;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
 <codeline lineno="84"><highlight class="normal"><sp/><sp/><sp/><sp/>vk::UniqueImageView<sp/>depthImageView;<sp/></highlight></codeline>
 <codeline lineno="85"><highlight class="normal"></highlight></codeline>
 <codeline lineno="86"><highlight class="normal"><sp/><sp/><sp/><sp/>uint32_t<sp/>currentImageIndex;<sp/></highlight></codeline>
 <codeline lineno="87"><highlight class="normal"><sp/><sp/>};</highlight></codeline>
 <codeline lineno="88"><highlight class="normal"></highlight></codeline>
-<codeline lineno="92"><highlight class="normal"><sp/><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/><ref refid="namespace_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1a91b559c57af0758a7f65e7909b1c4588" kindref="member">getSupportedDepthFormat</ref>(<sp/>vk::PhysicalDevice<sp/>physicalDevice<sp/>)<sp/>-&gt;<sp/>vk::Format;</highlight></codeline>
-<codeline lineno="93"><highlight class="normal">}<sp/></highlight><highlight class="comment">//<sp/>namespace<sp/>RAYEXEC_NAMESPACE</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="92"><highlight class="normal"><sp/><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/><ref refid="namespace_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1a12927e95ad03941844c80a5324ef0826" kindref="member">getSupportedDepthFormat</ref>(<sp/>vk::PhysicalDevice<sp/>physicalDevice<sp/>)<sp/>-&gt;<sp/>vk::Format;</highlight></codeline>
+<codeline lineno="93"><highlight class="normal">}<sp/></highlight><highlight class="comment">//<sp/>namespace<sp/>RAYEX_NAMESPACE</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="94"><highlight class="normal"></highlight></codeline>
 <codeline lineno="95"><highlight class="normal"></highlight><highlight class="preprocessor">#endif<sp/>//<sp/>SWAPCHAIN_HPP</highlight></codeline>
     </programlisting>
-    <location file="/home/n30/Repos/rayexec/include/api/Swapchain.hpp"/>
+    <location file="/home/n30/Repos/rayex/include/api/Swapchain.hpp"/>
   </compounddef>
 </doxygen>

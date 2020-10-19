@@ -3,7 +3,8 @@
   <compounddef id="_lights_8hpp" kind="file" language="C++">
     <compoundname>Lights.hpp</compoundname>
     <includes refid="stdafx_8hpp" local="yes">pch/stdafx.hpp</includes>
-    <includedby refid="_uniform_buffer_8hpp" local="yes">/home/n30/Repos/rayexec/include/api/buffers/UniformBuffer.hpp</includedby>
+    <includedby refid="_storage_buffer_8hpp" local="yes">/home/n30/Repos/rayex/include/api/buffers/StorageBuffer.hpp</includedby>
+    <includedby refid="_scene_8hpp" local="yes">/home/n30/Repos/rayex/include/base/Scene.hpp</includedby>
     <incdepgraph>
       <node id="28">
         <label>list</label>
@@ -13,6 +14,58 @@
       </node>
       <node id="19">
         <label>external/glm/ext/matrix_transform.hpp</label>
+      </node>
+      <node id="27">
+        <label>limits</label>
+      </node>
+      <node id="22">
+        <label>filesystem</label>
+      </node>
+      <node id="4">
+        <label>external/tinyLogger/TinyLogger.hpp</label>
+      </node>
+      <node id="17">
+        <label>charconv</label>
+      </node>
+      <node id="3">
+        <label>Core.hpp</label>
+        <link refid="_core_8hpp"/>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="6" relation="include">
+        </childnode>
+        <childnode refid="7" relation="include">
+        </childnode>
+        <childnode refid="8" relation="include">
+        </childnode>
+        <childnode refid="9" relation="include">
+        </childnode>
+      </node>
+      <node id="12">
+        <label>external/ImGui/imgui_impl_sdl.h</label>
+      </node>
+      <node id="18">
+        <label>external/glm/ext/matrix_clip_space.hpp</label>
+      </node>
+      <node id="29">
+        <label>map</label>
+      </node>
+      <node id="36">
+        <label>unordered_set</label>
+      </node>
+      <node id="25">
+        <label>gsl/gsl</label>
+      </node>
+      <node id="24">
+        <label>fstream</label>
+      </node>
+      <node id="11">
+        <label>external/ImGui/imgui.h</label>
+      </node>
+      <node id="15">
+        <label>any</label>
       </node>
       <node id="2">
         <label>pch/stdafx.hpp</label>
@@ -78,42 +131,6 @@
         <childnode refid="38" relation="include">
         </childnode>
       </node>
-      <node id="27">
-        <label>limits</label>
-      </node>
-      <node id="22">
-        <label>filesystem</label>
-      </node>
-      <node id="4">
-        <label>external/tinyLogger/TinyLogger.hpp</label>
-      </node>
-      <node id="17">
-        <label>charconv</label>
-      </node>
-      <node id="12">
-        <label>external/ImGui/imgui_impl_sdl.h</label>
-      </node>
-      <node id="18">
-        <label>external/glm/ext/matrix_clip_space.hpp</label>
-      </node>
-      <node id="29">
-        <label>map</label>
-      </node>
-      <node id="36">
-        <label>unordered_set</label>
-      </node>
-      <node id="25">
-        <label>gsl/gsl</label>
-      </node>
-      <node id="24">
-        <label>fstream</label>
-      </node>
-      <node id="11">
-        <label>external/ImGui/imgui.h</label>
-      </node>
-      <node id="15">
-        <label>any</label>
-      </node>
       <node id="6">
         <label>SDL2/SDL.h</label>
       </node>
@@ -144,51 +161,35 @@
       <node id="5">
         <label>sstream</label>
       </node>
+      <node id="1">
+        <label>/home/n30/Repos/rayex/include/base/Lights.hpp</label>
+        <link refid="_lights_8hpp"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+      </node>
       <node id="13">
         <label>external/ImGui/imgui_impl_vulkan.h</label>
       </node>
       <node id="8">
         <label>iostream</label>
       </node>
-      <node id="3">
-        <label>Core.hpp</label>
-        <link refid="_core_8hpp"/>
-        <childnode refid="4" relation="include">
-        </childnode>
-        <childnode refid="5" relation="include">
-        </childnode>
-        <childnode refid="6" relation="include">
-        </childnode>
-        <childnode refid="7" relation="include">
-        </childnode>
-        <childnode refid="8" relation="include">
-        </childnode>
-        <childnode refid="9" relation="include">
-        </childnode>
-      </node>
       <node id="35">
         <label>unordered_map</label>
       </node>
-      <node id="1">
-        <label>/home/n30/Repos/rayexec/include/base/Lights.hpp</label>
-        <link refid="_lights_8hpp"/>
-        <childnode refid="2" relation="include">
-        </childnode>
-      </node>
       <node id="33">
         <label>set</label>
-      </node>
-      <node id="23">
-        <label>forward_list</label>
-      </node>
-      <node id="14">
-        <label>algorithm</label>
       </node>
       <node id="10">
         <label>base/Time.hpp</label>
         <link refid="_time_8hpp"/>
         <childnode refid="3" relation="include">
         </childnode>
+      </node>
+      <node id="23">
+        <label>forward_list</label>
+      </node>
+      <node id="14">
+        <label>algorithm</label>
       </node>
       <node id="9">
         <label>vulkan/vulkan.hpp</label>
@@ -202,32 +203,40 @@
     </incdepgraph>
     <invincdepgraph>
       <node id="2">
-        <label>/home/n30/Repos/rayexec/include/api/buffers/UniformBuffer.hpp</label>
-        <link refid="_uniform_buffer_8hpp"/>
+        <label>/home/n30/Repos/rayex/include/api/buffers/StorageBuffer.hpp</label>
+        <link refid="_storage_buffer_8hpp"/>
         <childnode refid="3" relation="include">
         </childnode>
       </node>
       <node id="4">
-        <label>/home/n30/Repos/rayexec/include/RayExec.hpp</label>
-        <link refid="_ray_exec_8hpp"/>
+        <label>/home/n30/Repos/rayex/include/Rayex.hpp</label>
+        <link refid="_rayex_8hpp"/>
+      </node>
+      <node id="1">
+        <label>/home/n30/Repos/rayex/include/base/Lights.hpp</label>
+        <link refid="_lights_8hpp"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+      </node>
+      <node id="5">
+        <label>/home/n30/Repos/rayex/include/base/Scene.hpp</label>
+        <link refid="_scene_8hpp"/>
+        <childnode refid="3" relation="include">
+        </childnode>
       </node>
       <node id="3">
-        <label>/home/n30/Repos/rayexec/include/api/Api.hpp</label>
+        <label>/home/n30/Repos/rayex/include/api/Api.hpp</label>
         <link refid="_api_8hpp"/>
         <childnode refid="4" relation="include">
         </childnode>
       </node>
-      <node id="1">
-        <label>/home/n30/Repos/rayexec/include/base/Lights.hpp</label>
-        <link refid="_lights_8hpp"/>
-        <childnode refid="2" relation="include">
-        </childnode>
-      </node>
     </invincdepgraph>
-    <innerclass refid="struct_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_light" prot="public">RAYEXEC_NAMESPACE::Light</innerclass>
-    <innerclass refid="struct_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_directional_light" prot="public">RAYEXEC_NAMESPACE::DirectionalLight</innerclass>
-    <innerclass refid="struct_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_point_light" prot="public">RAYEXEC_NAMESPACE::PointLight</innerclass>
-    <innernamespace refid="namespace_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e">RAYEXEC_NAMESPACE</innernamespace>
+    <innerclass refid="struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_light" prot="public">RAYEX_NAMESPACE::Light</innerclass>
+    <innerclass refid="struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_directional_light" prot="public">RAYEX_NAMESPACE::DirectionalLight</innerclass>
+    <innerclass refid="struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_point_light" prot="public">RAYEX_NAMESPACE::PointLight</innerclass>
+    <innernamespace refid="namespace_r_a_y_e_x___n_a_m_e_s_p_a_c_e">RAYEX_NAMESPACE</innernamespace>
     <briefdescription>
     </briefdescription>
     <detaileddescription>
@@ -238,37 +247,34 @@
 <codeline lineno="3"><highlight class="normal"></highlight></codeline>
 <codeline lineno="4"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;<ref refid="stdafx_8hpp" kindref="compound">pch/stdafx.hpp</ref>&quot;</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="5"><highlight class="normal"></highlight></codeline>
-<codeline lineno="6"><highlight class="normal"></highlight><highlight class="keyword">namespace<sp/></highlight><highlight class="normal"><ref refid="namespace_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e" kindref="compound">RAYEXEC_NAMESPACE</ref></highlight></codeline>
+<codeline lineno="6"><highlight class="normal"></highlight><highlight class="keyword">namespace<sp/></highlight><highlight class="normal"><ref refid="namespace_r_a_y_e_x___n_a_m_e_s_p_a_c_e" kindref="compound">RAYEX_NAMESPACE</ref></highlight></codeline>
 <codeline lineno="7"><highlight class="normal">{</highlight></codeline>
-<codeline lineno="8"><highlight class="normal"></highlight></codeline>
-<codeline lineno="13" refid="struct_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_light" refkind="compound"><highlight class="normal"><sp/><sp/></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal"><ref refid="struct_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_light" kindref="compound">Light</ref></highlight></codeline>
-<codeline lineno="14"><highlight class="normal"><sp/><sp/>{</highlight></codeline>
-<codeline lineno="15" refid="struct_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_light_1ad3659f665546f7e693f4f5c358efba46" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>glm::vec3<sp/><ref refid="struct_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_light_1ad3659f665546f7e693f4f5c358efba46" kindref="member">ambient</ref><sp/><sp/>=<sp/>glm::vec3(<sp/>1.0F<sp/>);<sp/></highlight></codeline>
-<codeline lineno="16" refid="struct_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_light_1ab25c50aafd764f82ff11001cbc1137a7" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>glm::vec3<sp/><ref refid="struct_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_light_1ab25c50aafd764f82ff11001cbc1137a7" kindref="member">diffuse</ref><sp/><sp/>=<sp/>glm::vec3(<sp/>1.0F<sp/>);<sp/></highlight></codeline>
-<codeline lineno="17" refid="struct_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_light_1a83ef01ebf1d42468ce8f9cb510b041e5" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>glm::vec3<sp/><ref refid="struct_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_light_1a83ef01ebf1d42468ce8f9cb510b041e5" kindref="member">specular</ref><sp/>=<sp/>glm::vec3(<sp/>1.0F<sp/>);<sp/></highlight></codeline>
-<codeline lineno="18"><highlight class="normal"></highlight></codeline>
-<codeline lineno="19" refid="struct_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_light_1a4a634a31e50bda07657e544f4edbd2ca" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">float</highlight><highlight class="normal"><sp/><ref refid="struct_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_light_1a4a634a31e50bda07657e544f4edbd2ca" kindref="member">ambientIntensity</ref><sp/><sp/>=<sp/>0.0F;<sp/></highlight></codeline>
-<codeline lineno="20" refid="struct_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_light_1adbabe95b7fd6912bc0e6343fa1223709" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">float</highlight><highlight class="normal"><sp/><ref refid="struct_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_light_1adbabe95b7fd6912bc0e6343fa1223709" kindref="member">diffuseIntensity</ref><sp/><sp/>=<sp/>0.0F;<sp/></highlight></codeline>
-<codeline lineno="21" refid="struct_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_light_1a7593539ad35ef17d9645330edb598d91" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">float</highlight><highlight class="normal"><sp/><ref refid="struct_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_light_1a7593539ad35ef17d9645330edb598d91" kindref="member">specularIntensity</ref><sp/>=<sp/>0.0F;<sp/></highlight></codeline>
-<codeline lineno="22"><highlight class="normal"><sp/><sp/>};</highlight></codeline>
-<codeline lineno="23"><highlight class="normal"></highlight></codeline>
-<codeline lineno="26" refid="struct_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_directional_light" refkind="compound"><highlight class="normal"><sp/><sp/></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal"><ref refid="struct_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_directional_light" kindref="compound">DirectionalLight</ref><sp/>:<sp/></highlight><highlight class="keyword">public</highlight><highlight class="normal"><sp/><ref refid="struct_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_light" kindref="compound">Light</ref></highlight></codeline>
-<codeline lineno="27"><highlight class="normal"><sp/><sp/>{</highlight></codeline>
-<codeline lineno="28" refid="struct_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_directional_light_1ab31e87664f44e791df2cf12a37d0d744" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>glm::vec3<sp/><ref refid="struct_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_directional_light_1ab31e87664f44e791df2cf12a37d0d744" kindref="member">direction</ref><sp/>=<sp/>glm::vec3(<sp/>1.0F<sp/>);</highlight></codeline>
-<codeline lineno="29"><highlight class="normal"><sp/><sp/>};</highlight></codeline>
-<codeline lineno="30"><highlight class="normal"></highlight></codeline>
-<codeline lineno="33" refid="struct_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_point_light" refkind="compound"><highlight class="normal"><sp/><sp/></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal"><ref refid="struct_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_point_light" kindref="compound">PointLight</ref><sp/>:<sp/></highlight><highlight class="keyword">public</highlight><highlight class="normal"><sp/><ref refid="struct_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_light" kindref="compound">Light</ref></highlight></codeline>
-<codeline lineno="34"><highlight class="normal"><sp/><sp/>{</highlight></codeline>
-<codeline lineno="35" refid="struct_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_point_light_1acbe86894f2024db669f651509ea1ae6c" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>glm::vec3<sp/><ref refid="struct_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_point_light_1acbe86894f2024db669f651509ea1ae6c" kindref="member">position</ref><sp/>=<sp/>glm::vec3(<sp/>1.0F<sp/>);</highlight></codeline>
-<codeline lineno="36"><highlight class="normal"></highlight></codeline>
-<codeline lineno="37" refid="struct_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_point_light_1afc90ee1a8940d623808126054c36dd6d" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">float</highlight><highlight class="normal"><sp/><ref refid="struct_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_point_light_1afc90ee1a8940d623808126054c36dd6d" kindref="member">constant</ref><sp/><sp/>=<sp/>0.0F;</highlight></codeline>
-<codeline lineno="38" refid="struct_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_point_light_1af910a6aa90b03c1d4adbdaae588ade91" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">float</highlight><highlight class="normal"><sp/><ref refid="struct_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_point_light_1af910a6aa90b03c1d4adbdaae588ade91" kindref="member">linear</ref><sp/><sp/><sp/><sp/>=<sp/>0.0F;</highlight></codeline>
-<codeline lineno="39" refid="struct_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_point_light_1a4dc4113ea89c2f964ecdc4fa1832342c" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">float</highlight><highlight class="normal"><sp/><ref refid="struct_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_point_light_1a4dc4113ea89c2f964ecdc4fa1832342c" kindref="member">quadratic</ref><sp/>=<sp/>0.0F;</highlight></codeline>
-<codeline lineno="40"><highlight class="normal"><sp/><sp/>};</highlight></codeline>
-<codeline lineno="41"><highlight class="normal">}</highlight></codeline>
-<codeline lineno="42"><highlight class="normal"></highlight></codeline>
-<codeline lineno="43"><highlight class="normal"></highlight><highlight class="preprocessor">#endif<sp/>//<sp/>LIGHTS_HPP</highlight></codeline>
+<codeline lineno="12" refid="struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_light" refkind="compound"><highlight class="normal"><sp/><sp/></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal"><ref refid="struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_light" kindref="compound">Light</ref></highlight></codeline>
+<codeline lineno="13"><highlight class="normal"><sp/><sp/>{</highlight></codeline>
+<codeline lineno="14" refid="struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_light_1a7caf60014c05f686a4ca072641d2e8db" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>glm::vec3<sp/><ref refid="struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_light_1a7caf60014c05f686a4ca072641d2e8db" kindref="member">ambient</ref><sp/><sp/>=<sp/>glm::vec3(<sp/>1.0F<sp/>);<sp/></highlight></codeline>
+<codeline lineno="15" refid="struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_light_1a4159b357e9900158ab92b85ee50746d0" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>glm::vec3<sp/><ref refid="struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_light_1a4159b357e9900158ab92b85ee50746d0" kindref="member">diffuse</ref><sp/><sp/>=<sp/>glm::vec3(<sp/>1.0F<sp/>);<sp/></highlight></codeline>
+<codeline lineno="16" refid="struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_light_1a0bc8780a2ab3d6133dc260e2538a2d45" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>glm::vec3<sp/><ref refid="struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_light_1a0bc8780a2ab3d6133dc260e2538a2d45" kindref="member">specular</ref><sp/>=<sp/>glm::vec3(<sp/>1.0F<sp/>);<sp/></highlight></codeline>
+<codeline lineno="17"><highlight class="normal"></highlight></codeline>
+<codeline lineno="18" refid="struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_light_1ab64fe09dfc039b13271159eef7a93a38" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">float</highlight><highlight class="normal"><sp/><ref refid="struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_light_1ab64fe09dfc039b13271159eef7a93a38" kindref="member">ambientIntensity</ref><sp/><sp/>=<sp/>1.0F;<sp/></highlight></codeline>
+<codeline lineno="19" refid="struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_light_1ac4c1d48c802b6b78d5acbf1d0e7fd396" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">float</highlight><highlight class="normal"><sp/><ref refid="struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_light_1ac4c1d48c802b6b78d5acbf1d0e7fd396" kindref="member">diffuseIntensity</ref><sp/><sp/>=<sp/>1.0F;<sp/></highlight></codeline>
+<codeline lineno="20" refid="struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_light_1ab133a240d8b342dccd16d34752464309" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">float</highlight><highlight class="normal"><sp/><ref refid="struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_light_1ab133a240d8b342dccd16d34752464309" kindref="member">specularIntensity</ref><sp/>=<sp/>1.0F;<sp/></highlight></codeline>
+<codeline lineno="21"><highlight class="normal"></highlight></codeline>
+<codeline lineno="22" refid="struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_light_1a9099dc2317d71a5766dbacdf6003428b" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/><ref refid="struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_light_1a9099dc2317d71a5766dbacdf6003428b" kindref="member">update</ref><sp/>=<sp/></highlight><highlight class="keyword">true</highlight><highlight class="normal">;<sp/></highlight></codeline>
+<codeline lineno="23"><highlight class="normal"><sp/><sp/>};</highlight></codeline>
+<codeline lineno="24"><highlight class="normal"></highlight></codeline>
+<codeline lineno="27" refid="struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_directional_light" refkind="compound"><highlight class="normal"><sp/><sp/></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal"><ref refid="struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_directional_light" kindref="compound">DirectionalLight</ref><sp/>:<sp/></highlight><highlight class="keyword">public</highlight><highlight class="normal"><sp/><ref refid="struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_light" kindref="compound">Light</ref></highlight></codeline>
+<codeline lineno="28"><highlight class="normal"><sp/><sp/>{</highlight></codeline>
+<codeline lineno="29" refid="struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_directional_light_1a292ade676ead3692bc3d2dd418a765f8" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>glm::vec3<sp/><ref refid="struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_directional_light_1a292ade676ead3692bc3d2dd418a765f8" kindref="member">direction</ref><sp/>=<sp/>glm::vec3(<sp/>1.0F<sp/>);</highlight></codeline>
+<codeline lineno="30"><highlight class="normal"><sp/><sp/>};</highlight></codeline>
+<codeline lineno="31"><highlight class="normal"></highlight></codeline>
+<codeline lineno="34" refid="struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_point_light" refkind="compound"><highlight class="normal"><sp/><sp/></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal"><ref refid="struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_point_light" kindref="compound">PointLight</ref><sp/>:<sp/></highlight><highlight class="keyword">public</highlight><highlight class="normal"><sp/><ref refid="struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_light" kindref="compound">Light</ref></highlight></codeline>
+<codeline lineno="35"><highlight class="normal"><sp/><sp/>{</highlight></codeline>
+<codeline lineno="36" refid="struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_point_light_1a61392310ead7d93a498c26839d1f25f1" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>glm::vec3<sp/><ref refid="struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_point_light_1a61392310ead7d93a498c26839d1f25f1" kindref="member">position</ref><sp/>=<sp/>glm::vec3(<sp/>1.0F<sp/>);</highlight></codeline>
+<codeline lineno="37"><highlight class="normal"><sp/><sp/>};</highlight></codeline>
+<codeline lineno="38"><highlight class="normal">}<sp/></highlight><highlight class="comment">//<sp/>namespace<sp/>RAYEX_NAMESPACE</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="39"><highlight class="normal"></highlight></codeline>
+<codeline lineno="40"><highlight class="normal"></highlight><highlight class="preprocessor">#endif<sp/>//<sp/>LIGHTS_HPP</highlight></codeline>
     </programlisting>
-    <location file="/home/n30/Repos/rayexec/include/base/Lights.hpp"/>
+    <location file="/home/n30/Repos/rayex/include/base/Lights.hpp"/>
   </compounddef>
 </doxygen>

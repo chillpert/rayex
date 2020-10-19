@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.8.17"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>RAYEXEC: Todo List</title>
+<title>RAYEX: Todo List</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -30,10 +30,10 @@
  <tbody>
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
-   <div id="projectname">RAYEXEC
-   &#160;<span id="projectnumber">0.5</span>
+   <div id="projectname">RAYEX
+   &#160;<span id="projectnumber">0.7</span>
    </div>
-   <div id="projectbrief">A cross-platform Vulkan-based path tracing rendering library.</div>
+   <div id="projectbrief">A cross-platform, cross-vendor, Vulkan-based, path tracing library.</div>
   </td>
    <td>        <div id="MSearchBox" class="MSearchBoxInactive">
         <span class="left">
@@ -98,24 +98,24 @@ $(document).ready(function(){initNavTree('todo.html',''); initResizable(); });
 </div><!--header-->
 <div class="contents">
 <div class="textblock"><dl class="reflist">
-<dt>Class <a class="el" href="struct_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_lights_ubo.html">RAYEXEC_NAMESPACE::LightsUbo</a>  </dt>
-<dd><a class="anchor" id="_todo000003"></a>Shouldn't this also be a storage buffer?  </dd>
-<dt>Class <a class="el" href="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_settings.html">RAYEXEC_NAMESPACE::Settings</a>  </dt>
-<dd><a class="anchor" id="_todo000009"></a>Add a setUseTotalPathsOnly( bool flag )  </dd>
-<dt>Member <a class="el" href="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_settings.html#a0651cd037e843c0628458408bb06f0e7">RAYEXEC_NAMESPACE::Settings::getRayTracingEnabled</a>  () const -&gt; bool</dt>
-<dd><a class="anchor" id="_todo000010"></a>This function will be pointless once the new pipeline system is implemented.  </dd>
-<dt>Member <a class="el" href="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_settings.html#a3d13262e2f5dfade1258796d2b9f09f7">RAYEXEC_NAMESPACE::Settings::setEnableRayTracing</a>  (bool flag)</dt>
-<dd><a class="anchor" id="_todo000011"></a>This function will be pointless once the new pipeline system is implemented.  </dd>
-<dt>Member <a class="el" href="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_swapchain.html#a5e7ed9142f249264a2cb421c92c1b2d5">RAYEXEC_NAMESPACE::Swapchain::getImageViews</a>  () const -&gt; std::vector&lt; vk::ImageView &gt;</dt>
+<dt>Class <a class="el" href="struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_camera_ubo.html">RAYEX_NAMESPACE::CameraUbo</a>  </dt>
+<dd><a class="anchor" id="_todo000003"></a><a class="el" href="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_camera.html" title="A minimal camera implementation.">Camera</a> position could easily be a push constant, which would make this UBO much smaller in size.  </dd>
+<dt>Class <a class="el" href="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_settings.html">RAYEX_NAMESPACE::Settings</a>  </dt>
+<dd><a class="anchor" id="_todo000007"></a>Add a setUseTotalPathsOnly( bool flag )  </dd>
+<dt>Member <a class="el" href="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_settings.html#a2e953079038a847e3ed0cb77abb4e4fd">RAYEX_NAMESPACE::Settings::getRayTracingEnabled</a>  () const -&gt; bool</dt>
+<dd><a class="anchor" id="_todo000008"></a>This function will be pointless once the new pipeline system is implemented.  </dd>
+<dt>Member <a class="el" href="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_settings.html#a86e1a739d623859c7a9f49334cc21400">RAYEX_NAMESPACE::Settings::setEnableRayTracing</a>  (bool flag)</dt>
+<dd><a class="anchor" id="_todo000009"></a>This function will be pointless once the new pipeline system is implemented.  </dd>
+<dt>Member <a class="el" href="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_swapchain.html#a30b4e27c52d6fa9bb634b5cb579b7b10">RAYEX_NAMESPACE::Swapchain::getImageViews</a>  () const -&gt; std::vector&lt; vk::ImageView &gt;</dt>
 <dd><a class="anchor" id="_todo000006"></a>Returning by reference will result in size 0.  </dd>
-<dt>Class <a class="el" href="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_texture.html">RAYEXEC_NAMESPACE::Texture</a>  </dt>
+<dt>Class <a class="el" href="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_texture.html">RAYEX_NAMESPACE::Texture</a>  </dt>
 <dd><a class="anchor" id="_todo000004"></a>textureCounter is being incremented always, even if it is not a new texture. This class should actually look inside Api::textures or sth to assign the correct index.  </dd>
-<dt>Member <a class="el" href="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_texture.html#ada93dab9c8e12bfea2736794b12c81dd">RAYEXEC_NAMESPACE::Texture::init</a>  (std::string_view path)</dt>
+<dt>Member <a class="el" href="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_texture.html#acc3e7b81bbfd57b79f5bd65ff0ae674d">RAYEX_NAMESPACE::Texture::init</a>  (std::string_view path)</dt>
 <dd><a class="anchor" id="_todo000005"></a>Latest changes to this class might be causing errors once texture are working again.  </dd>
-<dt>Class <a class="el" href="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_time.html">RAYEXEC_NAMESPACE::Time</a>  </dt>
-<dd><a class="anchor" id="_todo000007"></a>Average FPS are pointless. Implement minimum FPS and frametimes instead.  </dd>
-<dt>Class <a class="el" href="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_window.html">RAYEXEC_NAMESPACE::Window</a>  </dt>
-<dd><a class="anchor" id="_todo000008"></a>To avoid the user having to link to SDL themselves requires to write a complete SDL2 wrapper. </dd>
+<dt>Class <a class="el" href="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_time.html">RAYEX_NAMESPACE::Time</a>  </dt>
+<dd><a class="anchor" id="_todo000010"></a>Average FPS are pointless. Implement minimum FPS and frametimes instead.  </dd>
+<dt>Class <a class="el" href="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_window.html">RAYEX_NAMESPACE::Window</a>  </dt>
+<dd><a class="anchor" id="_todo000011"></a>To avoid the user having to link to SDL themselves requires to write a complete SDL2 wrapper. </dd>
 </dl>
 </div></div><!-- contents -->
 </div><!-- PageDoc -->

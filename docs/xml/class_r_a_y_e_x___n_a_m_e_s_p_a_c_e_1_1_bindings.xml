@@ -1,0 +1,661 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.17">
+  <compounddef id="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_bindings" kind="class" language="C++" prot="public">
+    <compoundname>RAYEX_NAMESPACE::Bindings</compoundname>
+    <includes refid="_bindings_8hpp" local="no">Bindings.hpp</includes>
+      <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_bindings_1a4b159342f025f9c81a66887321267de9" prot="private" static="no" mutable="no">
+        <type>std::vector&lt; vk::DescriptorSetLayoutBinding &gt;</type>
+        <definition>std::vector&lt;vk::DescriptorSetLayoutBinding&gt; RAYEX_NAMESPACE::Bindings::bindings</definition>
+        <argsstring></argsstring>
+        <name>bindings</name>
+        <briefdescription>
+<para>Contains the actual binding. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/n30/Repos/rayex/include/api/Bindings.hpp" line="89" column="17" bodyfile="/home/n30/Repos/rayex/include/api/Bindings.hpp" bodystart="89" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_bindings_1a010a901b5878fa43e9058fcb913e0598" prot="private" static="no" mutable="no">
+        <type>std::vector&lt; vk::DescriptorBindingFlags &gt;</type>
+        <definition>std::vector&lt;vk::DescriptorBindingFlags&gt; RAYEX_NAMESPACE::Bindings::flags</definition>
+        <argsstring></argsstring>
+        <name>flags</name>
+        <briefdescription>
+<para>Contains binding flags for each of the actual bindings. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/n30/Repos/rayex/include/api/Bindings.hpp" line="90" column="17" bodyfile="/home/n30/Repos/rayex/include/api/Bindings.hpp" bodystart="90" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_bindings_1ab610291ccd228c47cc5c87707ddebe4c" prot="private" static="no" mutable="no">
+        <type>std::optional&lt; std::vector&lt; vk::DescriptorPoolSize &gt; &gt;</type>
+        <definition>std::optional&lt;std::vector&lt;vk::DescriptorPoolSize&gt; &gt; RAYEX_NAMESPACE::Bindings::poolSizes</definition>
+        <argsstring></argsstring>
+        <name>poolSizes</name>
+        <briefdescription>
+<para>The pool sizes for allocating the descriptor pool (Only used if <ref refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_bindings_1adb3fefd44d2cff639f5ad5a386b40f8a" kindref="member">setPoolSizes(const std::vector&lt;vk::DescriptorPoolSize&gt;&amp;)</ref> is called). </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/n30/Repos/rayex/include/api/Bindings.hpp" line="91" column="19" bodyfile="/home/n30/Repos/rayex/include/api/Bindings.hpp" bodystart="91" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_bindings_1af49e279062311c7449fbd8a0814a6e75" prot="private" static="no" mutable="no">
+        <type>std::vector&lt; std::vector&lt; vk::WriteDescriptorSet &gt; &gt;</type>
+        <definition>std::vector&lt;std::vector&lt;vk::WriteDescriptorSet&gt; &gt; RAYEX_NAMESPACE::Bindings::writes</definition>
+        <argsstring></argsstring>
+        <name>writes</name>
+        <briefdescription>
+<para>Contains all descriptor writes for each binding. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/n30/Repos/rayex/include/api/Bindings.hpp" line="92" column="17" bodyfile="/home/n30/Repos/rayex/include/api/Bindings.hpp" bodystart="92" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_bindings_1ae7f6782801197c7aa3d3e55949760c2b" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void RAYEX_NAMESPACE::Bindings::add</definition>
+        <argsstring>(uint32_t binding, vk::DescriptorType type, vk::ShaderStageFlags stage, uint32_t count=1, vk::DescriptorBindingFlags flags={ })</argsstring>
+        <name>add</name>
+        <param>
+          <type>uint32_t</type>
+          <declname>binding</declname>
+        </param>
+        <param>
+          <type>vk::DescriptorType</type>
+          <declname>type</declname>
+        </param>
+        <param>
+          <type>vk::ShaderStageFlags</type>
+          <declname>stage</declname>
+        </param>
+        <param>
+          <type>uint32_t</type>
+          <declname>count</declname>
+          <defval>1</defval>
+        </param>
+        <param>
+          <type>vk::DescriptorBindingFlags</type>
+          <declname>flags</declname>
+          <defval>{ }</defval>
+        </param>
+        <briefdescription>
+<para>Used to add a binding. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>binding</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The binding&apos;s index. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>type</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The binding&apos;s descriptor type. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>stage</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The binding&apos;s shader type. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>count</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The amount of descriptors for this binding. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>flags</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The binding&apos;s descriptor binding flags. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/n30/Repos/rayex/include/api/Bindings.hpp" line="20" column="10"/>
+      </memberdef>
+      <memberdef kind="function" id="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_bindings_1a65f1f7e88d734539019ee296f3bf736a" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>auto</type>
+        <definition>auto RAYEX_NAMESPACE::Bindings::initLayoutUnique</definition>
+        <argsstring>() -&gt; vk::UniqueDescriptorSetLayout</argsstring>
+        <name>initLayoutUnique</name>
+        <briefdescription>
+<para>Used to initialize a unique descriptor set layout. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>Returns a descriptor set layout with a unqiue handle. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/n30/Repos/rayex/include/api/Bindings.hpp" line="24" column="10"/>
+      </memberdef>
+      <memberdef kind="function" id="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_bindings_1a20edd74ad52f8a3604f7cd892f2239f6" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>auto</type>
+        <definition>auto RAYEX_NAMESPACE::Bindings::initPoolUnique</definition>
+        <argsstring>(uint32_t maxSets, vk::DescriptorPoolCreateFlags flags={ }) -&gt; vk::UniqueDescriptorPool</argsstring>
+        <name>initPoolUnique</name>
+        <param>
+          <type>uint32_t</type>
+          <declname>maxSets</declname>
+        </param>
+        <param>
+          <type>vk::DescriptorPoolCreateFlags</type>
+          <declname>flags</declname>
+          <defval>{ }</defval>
+        </param>
+        <briefdescription>
+<para>Used to initialize a descriptor pool. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>maxSets</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The maximum amount of descriptor sets that can be allocated from the pool. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>flags</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The pool&apos;s create flags. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>Returns a descriptor pool with a unique handle. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/n30/Repos/rayex/include/api/Bindings.hpp" line="30" column="10"/>
+      </memberdef>
+      <memberdef kind="function" id="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_bindings_1a5c7e9adcda6c378e5a1b342d70d3acc5" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void RAYEX_NAMESPACE::Bindings::update</definition>
+        <argsstring>()</argsstring>
+        <name>update</name>
+        <briefdescription>
+<para>Updates the descriptor set. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="note"><para>There are no descriptor set handles required for this function. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/n30/Repos/rayex/include/api/Bindings.hpp" line="34" column="10"/>
+      </memberdef>
+      <memberdef kind="function" id="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_bindings_1a8ff18f3ca1c5644d8a6237eac7292928" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void RAYEX_NAMESPACE::Bindings::write</definition>
+        <argsstring>(const std::vector&lt; vk::DescriptorSet &gt; &amp;sets, uint32_t binding, vk::WriteDescriptorSetAccelerationStructureKHR *pWriteDescriptorSetAccelerationStructureKHR)</argsstring>
+        <name>write</name>
+        <param>
+          <type>const std::vector&lt; vk::DescriptorSet &gt; &amp;</type>
+          <declname>sets</declname>
+        </param>
+        <param>
+          <type>uint32_t</type>
+          <declname>binding</declname>
+        </param>
+        <param>
+          <type>vk::WriteDescriptorSetAccelerationStructureKHR *</type>
+          <declname>pWriteDescriptorSetAccelerationStructureKHR</declname>
+        </param>
+        <briefdescription>
+<para>Used to create a descriptor write for an acceleration structure. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>sets</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The descriptor set handles. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>binding</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The binding&apos;s index. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>pWriteDescriptorSetAccelerationStructureKHR</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>A pointer to a acceleration structure descriptor write. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/n30/Repos/rayex/include/api/Bindings.hpp" line="40" column="10"/>
+      </memberdef>
+      <memberdef kind="function" id="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_bindings_1aa33d82290e77d12e483f609fe94c7c59" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void RAYEX_NAMESPACE::Bindings::write</definition>
+        <argsstring>(const std::vector&lt; vk::DescriptorSet &gt; &amp;sets, uint32_t binding, vk::DescriptorImageInfo *pImageInfo)</argsstring>
+        <name>write</name>
+        <param>
+          <type>const std::vector&lt; vk::DescriptorSet &gt; &amp;</type>
+          <declname>sets</declname>
+        </param>
+        <param>
+          <type>uint32_t</type>
+          <declname>binding</declname>
+        </param>
+        <param>
+          <type>vk::DescriptorImageInfo *</type>
+          <declname>pImageInfo</declname>
+        </param>
+        <briefdescription>
+<para>Used to create a descriptor write for an image. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>sets</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The descriptor set handles. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>binding</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The binding&apos;s index. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>pImageInfo</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>A pointer to an image descriptor write. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/n30/Repos/rayex/include/api/Bindings.hpp" line="46" column="10"/>
+      </memberdef>
+      <memberdef kind="function" id="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_bindings_1a86bc166283b66986b514920652dfbdd9" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void RAYEX_NAMESPACE::Bindings::write</definition>
+        <argsstring>(const std::vector&lt; vk::DescriptorSet &gt; &amp;sets, uint32_t binding, vk::DescriptorBufferInfo *pBufferInfo)</argsstring>
+        <name>write</name>
+        <param>
+          <type>const std::vector&lt; vk::DescriptorSet &gt; &amp;</type>
+          <declname>sets</declname>
+        </param>
+        <param>
+          <type>uint32_t</type>
+          <declname>binding</declname>
+        </param>
+        <param>
+          <type>vk::DescriptorBufferInfo *</type>
+          <declname>pBufferInfo</declname>
+        </param>
+        <briefdescription>
+<para>Used to create a descriptor write for a buffer. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>sets</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The descriptor set handles. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>binding</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The binding&apos;s index. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>pBufferInfo</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>A pointer to a buffer descriptor write. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/n30/Repos/rayex/include/api/Bindings.hpp" line="52" column="10"/>
+      </memberdef>
+      <memberdef kind="function" id="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_bindings_1a504a47e05d5db66c5545bf6402ae6b98" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void RAYEX_NAMESPACE::Bindings::write</definition>
+        <argsstring>(const std::vector&lt; vk::DescriptorSet &gt; &amp;sets, uint32_t binding, const std::vector&lt; vk::DescriptorBufferInfo &gt; &amp;uniformBufferInfos)</argsstring>
+        <name>write</name>
+        <param>
+          <type>const std::vector&lt; vk::DescriptorSet &gt; &amp;</type>
+          <declname>sets</declname>
+        </param>
+        <param>
+          <type>uint32_t</type>
+          <declname>binding</declname>
+        </param>
+        <param>
+          <type>const std::vector&lt; vk::DescriptorBufferInfo &gt; &amp;</type>
+          <declname>uniformBufferInfos</declname>
+        </param>
+        <briefdescription>
+<para>Used to create a descriptor write for uniform buffers. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>sets</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The descriptor set handles. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>binding</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The binding&apos;s index. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>uniformBufferInfos</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The uniform buffer&apos;s descriptor buffer infos. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/n30/Repos/rayex/include/api/Bindings.hpp" line="58" column="10"/>
+      </memberdef>
+      <memberdef kind="function" id="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_bindings_1a74d4d878e189392b1ec2ff7404ce0848" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void RAYEX_NAMESPACE::Bindings::writeArray</definition>
+        <argsstring>(const std::vector&lt; vk::DescriptorSet &gt; &amp;sets, uint32_t binding, vk::DescriptorBufferInfo *pBufferInfo)</argsstring>
+        <name>writeArray</name>
+        <param>
+          <type>const std::vector&lt; vk::DescriptorSet &gt; &amp;</type>
+          <declname>sets</declname>
+        </param>
+        <param>
+          <type>uint32_t</type>
+          <declname>binding</declname>
+        </param>
+        <param>
+          <type>vk::DescriptorBufferInfo *</type>
+          <declname>pBufferInfo</declname>
+        </param>
+        <briefdescription>
+<para>Used to create an array of descriptor writes for buffers. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>sets</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The descriptor set handles. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>binding</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The binding&apos;s index. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>pBufferInfo</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The pointer to the first element of an array of descriptor buffer infos. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/n30/Repos/rayex/include/api/Bindings.hpp" line="64" column="10"/>
+      </memberdef>
+      <memberdef kind="function" id="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_bindings_1adb3fefd44d2cff639f5ad5a386b40f8a" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void RAYEX_NAMESPACE::Bindings::setPoolSizes</definition>
+        <argsstring>(const std::vector&lt; vk::DescriptorPoolSize &gt; &amp;poolSizes)</argsstring>
+        <name>setPoolSizes</name>
+        <param>
+          <type>const std::vector&lt; vk::DescriptorPoolSize &gt; &amp;</type>
+          <declname>poolSizes</declname>
+        </param>
+        <briefdescription>
+<para>Used to set pool sizes manually. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>poolSizes</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The pool sizes to set. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="note"><para>Must be set before initializing the descriptor pool. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/n30/Repos/rayex/include/api/Bindings.hpp" line="69" column="10"/>
+      </memberdef>
+      <memberdef kind="function" id="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_bindings_1a6ce4c6073f217615f9212444578ca217" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void RAYEX_NAMESPACE::Bindings::reset</definition>
+        <argsstring>()</argsstring>
+        <name>reset</name>
+        <briefdescription>
+<para>Resets all members. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/n30/Repos/rayex/include/api/Bindings.hpp" line="72" column="10"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="private-func">
+      <memberdef kind="function" id="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_bindings_1a50cbc7e2d9c2d31fa6bd17315371105a" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>auto</type>
+        <definition>auto RAYEX_NAMESPACE::Bindings::write</definition>
+        <argsstring>(vk::DescriptorSet set, size_t writeIndex, uint32_t binding) -&gt; size_t</argsstring>
+        <name>write</name>
+        <param>
+          <type>vk::DescriptorSet</type>
+          <declname>set</declname>
+        </param>
+        <param>
+          <type>size_t</type>
+          <declname>writeIndex</declname>
+        </param>
+        <param>
+          <type>uint32_t</type>
+          <declname>binding</declname>
+        </param>
+        <briefdescription>
+<para>Used to create a descriptor write. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>set</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The descriptor set to bind to. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>writeIndex</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The write index of the descriptor set. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>binding</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The binding&apos;s index. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>Returns the index of the matching binding. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/n30/Repos/rayex/include/api/Bindings.hpp" line="80" column="10"/>
+      </memberdef>
+      <memberdef kind="function" id="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_bindings_1a935ee3e3713b15c4509aac21d2f407bb" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>auto</type>
+        <definition>auto RAYEX_NAMESPACE::Bindings::writeArray</definition>
+        <argsstring>(vk::DescriptorSet set, size_t writeIndex, uint32_t binding) -&gt; size_t</argsstring>
+        <name>writeArray</name>
+        <param>
+          <type>vk::DescriptorSet</type>
+          <declname>set</declname>
+        </param>
+        <param>
+          <type>size_t</type>
+          <declname>writeIndex</declname>
+        </param>
+        <param>
+          <type>uint32_t</type>
+          <declname>binding</declname>
+        </param>
+        <briefdescription>
+<para>Used to create an array of descriptor writes. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>set</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The descriptor set to bind to. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>writeIndex</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The write index of the descriptor set. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>binding</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The binding&apos;s index. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>Returns the index of the matching binding. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/n30/Repos/rayex/include/api/Bindings.hpp" line="87" column="10"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+<para>A utility class for managing descriptor related resources. </para>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="/home/n30/Repos/rayex/include/api/Bindings.hpp" line="12" column="1" bodyfile="/home/n30/Repos/rayex/include/api/Bindings.hpp" bodystart="11" bodyend="93"/>
+    <listofallmembers>
+      <member refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_bindings_1ae7f6782801197c7aa3d3e55949760c2b" prot="public" virt="non-virtual"><scope>RAYEX_NAMESPACE::Bindings</scope><name>add</name></member>
+      <member refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_bindings_1a4b159342f025f9c81a66887321267de9" prot="private" virt="non-virtual"><scope>RAYEX_NAMESPACE::Bindings</scope><name>bindings</name></member>
+      <member refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_bindings_1a010a901b5878fa43e9058fcb913e0598" prot="private" virt="non-virtual"><scope>RAYEX_NAMESPACE::Bindings</scope><name>flags</name></member>
+      <member refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_bindings_1a65f1f7e88d734539019ee296f3bf736a" prot="public" virt="non-virtual"><scope>RAYEX_NAMESPACE::Bindings</scope><name>initLayoutUnique</name></member>
+      <member refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_bindings_1a20edd74ad52f8a3604f7cd892f2239f6" prot="public" virt="non-virtual"><scope>RAYEX_NAMESPACE::Bindings</scope><name>initPoolUnique</name></member>
+      <member refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_bindings_1ab610291ccd228c47cc5c87707ddebe4c" prot="private" virt="non-virtual"><scope>RAYEX_NAMESPACE::Bindings</scope><name>poolSizes</name></member>
+      <member refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_bindings_1a6ce4c6073f217615f9212444578ca217" prot="public" virt="non-virtual"><scope>RAYEX_NAMESPACE::Bindings</scope><name>reset</name></member>
+      <member refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_bindings_1adb3fefd44d2cff639f5ad5a386b40f8a" prot="public" virt="non-virtual"><scope>RAYEX_NAMESPACE::Bindings</scope><name>setPoolSizes</name></member>
+      <member refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_bindings_1a5c7e9adcda6c378e5a1b342d70d3acc5" prot="public" virt="non-virtual"><scope>RAYEX_NAMESPACE::Bindings</scope><name>update</name></member>
+      <member refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_bindings_1a8ff18f3ca1c5644d8a6237eac7292928" prot="public" virt="non-virtual"><scope>RAYEX_NAMESPACE::Bindings</scope><name>write</name></member>
+      <member refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_bindings_1aa33d82290e77d12e483f609fe94c7c59" prot="public" virt="non-virtual"><scope>RAYEX_NAMESPACE::Bindings</scope><name>write</name></member>
+      <member refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_bindings_1a86bc166283b66986b514920652dfbdd9" prot="public" virt="non-virtual"><scope>RAYEX_NAMESPACE::Bindings</scope><name>write</name></member>
+      <member refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_bindings_1a504a47e05d5db66c5545bf6402ae6b98" prot="public" virt="non-virtual"><scope>RAYEX_NAMESPACE::Bindings</scope><name>write</name></member>
+      <member refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_bindings_1a50cbc7e2d9c2d31fa6bd17315371105a" prot="private" virt="non-virtual"><scope>RAYEX_NAMESPACE::Bindings</scope><name>write</name></member>
+      <member refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_bindings_1a74d4d878e189392b1ec2ff7404ce0848" prot="public" virt="non-virtual"><scope>RAYEX_NAMESPACE::Bindings</scope><name>writeArray</name></member>
+      <member refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_bindings_1a935ee3e3713b15c4509aac21d2f407bb" prot="private" virt="non-virtual"><scope>RAYEX_NAMESPACE::Bindings</scope><name>writeArray</name></member>
+      <member refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_bindings_1af49e279062311c7449fbd8a0814a6e75" prot="private" virt="non-virtual"><scope>RAYEX_NAMESPACE::Bindings</scope><name>writes</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

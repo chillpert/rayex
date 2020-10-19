@@ -1,12 +1,14 @@
 var searchData=
 [
-  ['raytrace_599',['rayTrace',['../class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_ray_tracing_builder.html#a311cafb7c359cc969a32d8acea1dd08d',1,'RAYEXEC_NAMESPACE::RayTracingBuilder']]],
-  ['raytracingbuilder_600',['RayTracingBuilder',['../class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_ray_tracing_builder.html#a09f8d1d7605a67657ac7e25aa9a3412e',1,'RAYEXEC_NAMESPACE::RayTracingBuilder::RayTracingBuilder()=default'],['../class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_ray_tracing_builder.html#ae5f98a8ab4b95cb24ad4c4dd898ac8a9',1,'RAYEXEC_NAMESPACE::RayTracingBuilder::RayTracingBuilder(const RayTracingBuilder &amp;)=delete'],['../class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_ray_tracing_builder.html#aa9828b53ca4a0797b2b7fb2ec37e279b',1,'RAYEXEC_NAMESPACE::RayTracingBuilder::RayTracingBuilder(const RayTracingBuilder &amp;&amp;)=delete']]],
-  ['recreate_601',['recreate',['../class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_gui.html#a3c007475218c665bf3cefc22e8aec63a',1,'RAYEXEC_NAMESPACE::Gui']]],
-  ['removegeometryinstance_602',['removeGeometryInstance',['../class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_ray_exec.html#afc92af88a74dab31911a9b88a818dc61',1,'RAYEXEC_NAMESPACE::RayExec']]],
-  ['render_603',['render',['../class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_gui.html#a370773b570ac9e9cedf4532af673fed2',1,'RAYEXEC_NAMESPACE::Gui']]],
-  ['renderdrawdata_604',['renderDrawData',['../class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_gui.html#a786d4c8f378d6f025d8ca7caae8e66c4',1,'RAYEXEC_NAMESPACE::Gui']]],
-  ['reset_605',['reset',['../class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_bindings.html#a09e932446ea500173160e77a157764ac',1,'RAYEXEC_NAMESPACE::Bindings::reset()'],['../class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_command_buffer.html#a016d2435cc62af6bcf4160bd541baf56',1,'RAYEXEC_NAMESPACE::CommandBuffer::reset()']]],
-  ['resize_606',['resize',['../class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_window.html#ab051017a633806871575e8ec129cfd8a',1,'RAYEXEC_NAMESPACE::Window']]],
-  ['run_607',['run',['../class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_ray_exec.html#a4364aeb145d7ae3685cac2d126d1d304',1,'RAYEXEC_NAMESPACE::RayExec']]]
+  ['raytrace_607',['rayTrace',['../class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_ray_tracing_builder.html#ac62d95b180821e50c060e3722c229e7a',1,'RAYEX_NAMESPACE::RayTracingBuilder']]],
+  ['raytracingbuilder_608',['RayTracingBuilder',['../class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_ray_tracing_builder.html#a3550f65cf36456128e878ca1890bd7b6',1,'RAYEX_NAMESPACE::RayTracingBuilder::RayTracingBuilder()=default'],['../class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_ray_tracing_builder.html#a39c40e281657df8226d600b21a31acdf',1,'RAYEX_NAMESPACE::RayTracingBuilder::RayTracingBuilder(const RayTracingBuilder &amp;)=delete'],['../class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_ray_tracing_builder.html#a32e7ec906d20fbd16158e030cbfa83a5',1,'RAYEX_NAMESPACE::RayTracingBuilder::RayTracingBuilder(const RayTracingBuilder &amp;&amp;)=delete']]],
+  ['recreate_609',['recreate',['../class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_gui.html#a56569780013e4a2c2bcd78ce86ee5712',1,'RAYEX_NAMESPACE::Gui']]],
+  ['removedirectionallight_610',['removeDirectionalLight',['../class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_scene.html#a56343cde7839a62a148fe1ff1b02b5a2',1,'RAYEX_NAMESPACE::Scene']]],
+  ['removegeometryinstance_611',['removeGeometryInstance',['../class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_scene.html#a77d27bd137cc821c5a2f27e8a4cb08a0',1,'RAYEX_NAMESPACE::Scene']]],
+  ['removepointlight_612',['removePointLight',['../class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_scene.html#aa1287c66b8b1ec56888839f42eb4caeb',1,'RAYEX_NAMESPACE::Scene']]],
+  ['render_613',['render',['../class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_gui.html#acd2c8c3254cf577dbf4ccbedadd2cf4d',1,'RAYEX_NAMESPACE::Gui']]],
+  ['renderdrawdata_614',['renderDrawData',['../class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_gui.html#a1eef3b87927ad2b9823a70d0f8ae8c8b',1,'RAYEX_NAMESPACE::Gui']]],
+  ['reset_615',['reset',['../class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_bindings.html#a6ce4c6073f217615f9212444578ca217',1,'RAYEX_NAMESPACE::Bindings::reset()'],['../class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_command_buffer.html#a7dd7be8f5fea7ebcf338f53e472450f0',1,'RAYEX_NAMESPACE::CommandBuffer::reset()']]],
+  ['resize_616',['resize',['../class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_window.html#a1ef21fbb70c7f423a5329cf294ef4c56',1,'RAYEX_NAMESPACE::Window']]],
+  ['run_617',['run',['../class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_rayex.html#ae3073d73c91714b647d95731b0a26885',1,'RAYEX_NAMESPACE::Rayex']]]
 ];

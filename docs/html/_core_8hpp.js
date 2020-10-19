@@ -1,9 +1,9 @@
 var _core_8hpp =
 [
-    [ "RAYEXEC_NAMESPACE", "_core_8hpp.html#ae1466e3a3b5a75362c58d3d393a59cd7", null ],
-    [ "RAYEXEC_NAMESPACE_STRINGIFIED", "_core_8hpp.html#aaff0cd56425a31e00b059a76dfdad581", null ],
-    [ "RAYEXEC_NAMESPACE_STRINGIFY", "_core_8hpp.html#aa479bc0a7fce1089c976c3b66d033a38", null ],
-    [ "RAYEXEC_NAMESPACE_STRINGIFY_2", "_core_8hpp.html#a71565448c6a50c61f3f57b1606128b91", null ],
+    [ "RAYEX_NAMESPACE", "_core_8hpp.html#a4679e2fe11ad3651dcc83c15d5e54456", null ],
+    [ "RAYEX_NAMESPACE_STRINGIFIED", "_core_8hpp.html#a399610e7e5c0fb86f548931773995a0d", null ],
+    [ "RAYEX_NAMESPACE_STRINGIFY", "_core_8hpp.html#a0e29de8355fd7805c19990586d458f62", null ],
+    [ "RAYEX_NAMESPACE_STRINGIFY_2", "_core_8hpp.html#a23448c05525b4f73861de72987ea0a30", null ],
     [ "RX_ASSERT", "_core_8hpp.html#a0bc3742e3b5d582081ea5ec272af5330", null ],
     [ "RX_ERROR", "_core_8hpp.html#a75bbbb13d55cc9e0680a050df5ca00e2", null ],
     [ "RX_FATAL", "_core_8hpp.html#ad7ab0669d483b47b41c5160a40e303ff", null ],

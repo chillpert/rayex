@@ -7,32 +7,32 @@
     </briefdescription>
     <detaileddescription>
 <para><variablelist>
-<varlistentry><term>Class <ref refid="struct_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_lights_ubo" kindref="compound">RAYEXEC_NAMESPACE::LightsUbo</ref>  </term></varlistentry>
-<listitem><para><anchor id="todo_1_todo000003"/>Shouldn&apos;t this also be a storage buffer?  </para>
+<varlistentry><term>Class <ref refid="struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_camera_ubo" kindref="compound">RAYEX_NAMESPACE::CameraUbo</ref>  </term></varlistentry>
+<listitem><para><anchor id="todo_1_todo000003"/><ref refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_camera" kindref="compound">Camera</ref> position could easily be a push constant, which would make this UBO much smaller in size.  </para>
 </listitem>
-<varlistentry><term>Class <ref refid="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_settings" kindref="compound">RAYEXEC_NAMESPACE::Settings</ref>  </term></varlistentry>
-<listitem><para><anchor id="todo_1_todo000009"/>Add a setUseTotalPathsOnly( bool flag )  </para>
+<varlistentry><term>Class <ref refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_settings" kindref="compound">RAYEX_NAMESPACE::Settings</ref>  </term></varlistentry>
+<listitem><para><anchor id="todo_1_todo000007"/>Add a setUseTotalPathsOnly( bool flag )  </para>
 </listitem>
-<varlistentry><term>Member <ref refid="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_settings_1a0651cd037e843c0628458408bb06f0e7" kindref="member">RAYEXEC_NAMESPACE::Settings::getRayTracingEnabled</ref>  () const -&gt; bool</term></varlistentry>
-<listitem><para><anchor id="todo_1_todo000010"/>This function will be pointless once the new pipeline system is implemented.  </para>
+<varlistentry><term>Member <ref refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_settings_1a2e953079038a847e3ed0cb77abb4e4fd" kindref="member">RAYEX_NAMESPACE::Settings::getRayTracingEnabled</ref>  () const -&gt; bool</term></varlistentry>
+<listitem><para><anchor id="todo_1_todo000008"/>This function will be pointless once the new pipeline system is implemented.  </para>
 </listitem>
-<varlistentry><term>Member <ref refid="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_settings_1a3d13262e2f5dfade1258796d2b9f09f7" kindref="member">RAYEXEC_NAMESPACE::Settings::setEnableRayTracing</ref>  (bool flag)</term></varlistentry>
-<listitem><para><anchor id="todo_1_todo000011"/>This function will be pointless once the new pipeline system is implemented.  </para>
+<varlistentry><term>Member <ref refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_settings_1a86e1a739d623859c7a9f49334cc21400" kindref="member">RAYEX_NAMESPACE::Settings::setEnableRayTracing</ref>  (bool flag)</term></varlistentry>
+<listitem><para><anchor id="todo_1_todo000009"/>This function will be pointless once the new pipeline system is implemented.  </para>
 </listitem>
-<varlistentry><term>Member <ref refid="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_swapchain_1a5e7ed9142f249264a2cb421c92c1b2d5" kindref="member">RAYEXEC_NAMESPACE::Swapchain::getImageViews</ref>  () const -&gt; std::vector&lt; vk::ImageView &gt;</term></varlistentry>
+<varlistentry><term>Member <ref refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_swapchain_1a30b4e27c52d6fa9bb634b5cb579b7b10" kindref="member">RAYEX_NAMESPACE::Swapchain::getImageViews</ref>  () const -&gt; std::vector&lt; vk::ImageView &gt;</term></varlistentry>
 <listitem><para><anchor id="todo_1_todo000006"/>Returning by reference will result in size 0.  </para>
 </listitem>
-<varlistentry><term>Class <ref refid="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_texture" kindref="compound">RAYEXEC_NAMESPACE::Texture</ref>  </term></varlistentry>
+<varlistentry><term>Class <ref refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_texture" kindref="compound">RAYEX_NAMESPACE::Texture</ref>  </term></varlistentry>
 <listitem><para><anchor id="todo_1_todo000004"/>textureCounter is being incremented always, even if it is not a new texture. This class should actually look inside Api::textures or sth to assign the correct index.  </para>
 </listitem>
-<varlistentry><term>Member <ref refid="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_texture_1ada93dab9c8e12bfea2736794b12c81dd" kindref="member">RAYEXEC_NAMESPACE::Texture::init</ref>  (std::string_view path)</term></varlistentry>
+<varlistentry><term>Member <ref refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_texture_1acc3e7b81bbfd57b79f5bd65ff0ae674d" kindref="member">RAYEX_NAMESPACE::Texture::init</ref>  (std::string_view path)</term></varlistentry>
 <listitem><para><anchor id="todo_1_todo000005"/>Latest changes to this class might be causing errors once texture are working again.  </para>
 </listitem>
-<varlistentry><term>Class <ref refid="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_time" kindref="compound">RAYEXEC_NAMESPACE::Time</ref>  </term></varlistentry>
-<listitem><para><anchor id="todo_1_todo000007"/>Average FPS are pointless. Implement minimum FPS and frametimes instead.  </para>
+<varlistentry><term>Class <ref refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_time" kindref="compound">RAYEX_NAMESPACE::Time</ref>  </term></varlistentry>
+<listitem><para><anchor id="todo_1_todo000010"/>Average FPS are pointless. Implement minimum FPS and frametimes instead.  </para>
 </listitem>
-<varlistentry><term>Class <ref refid="class_r_a_y_e_x_e_c___n_a_m_e_s_p_a_c_e_1_1_window" kindref="compound">RAYEXEC_NAMESPACE::Window</ref>  </term></varlistentry>
-<listitem><para><anchor id="todo_1_todo000008"/>To avoid the user having to link to SDL themselves requires to write a complete SDL2 wrapper. </para>
+<varlistentry><term>Class <ref refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_window" kindref="compound">RAYEX_NAMESPACE::Window</ref>  </term></varlistentry>
+<listitem><para><anchor id="todo_1_todo000011"/>To avoid the user having to link to SDL themselves requires to write a complete SDL2 wrapper. </para>
 </listitem>
 </variablelist>
 </para>

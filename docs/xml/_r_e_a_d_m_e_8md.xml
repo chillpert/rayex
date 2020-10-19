@@ -7,30 +7,30 @@
     <detaileddescription>
     </detaileddescription>
     <programlisting>
-<codeline><highlight class="normal">#<sp/>RAYEXEC</highlight></codeline>
-<codeline><highlight class="normal">RAYEXEC<sp/>is<sp/>a<sp/>work-in-progress<sp/>cross-platform,<sp/>cross-vendor<sp/>Vulkan-based<sp/>path<sp/>tracing<sp/>library.<sp/></highlight></codeline>
+<codeline><highlight class="normal">#<sp/>RAYEX</highlight></codeline>
+<codeline><highlight class="normal">RAYEX<sp/>is<sp/>a<sp/>work-in-progress,<sp/>cross-platform,<sp/>cross-vendor,<sp/>Vulkan-based,<sp/>path<sp/>tracing<sp/>library.<sp/></highlight></codeline>
 <codeline></codeline>
-<codeline><highlight class="normal">It<sp/>runs<sp/>on<sp/>both<sp/>Linux<sp/>(x64)<sp/>and<sp/>Windows<sp/>(x64)<sp/>using<sp/>the<sp/>Vulkan<sp/>API.<sp/>The<sp/>purpose<sp/>of<sp/>this<sp/>software<sp/>is<sp/>to<sp/>provide<sp/>a<sp/>cross-platform<sp/>renderer<sp/>with<sp/>path<sp/>tracing<sp/>capabilities<sp/>that<sp/>is<sp/>easy<sp/>to<sp/>integrate<sp/>into<sp/>existing<sp/>projects.<sp/>Vendor<sp/>independence<sp/>is<sp/>achieved<sp/>using<sp/>KHRONOS&apos;<sp/>new<sp/>Vulkan<sp/>ray<sp/>tracing<sp/>extension<sp/>(first<sp/>published<sp/>on<sp/>March<sp/>17,<sp/>2020).<sp/>It<sp/>uses<sp/>[SDL2](https://www.libsdl.org/index.php)<sp/>for<sp/>windowing<sp/>and<sp/>[glm](https://glm.g-truc.net/0.9.9/index.html)<sp/>as<sp/>its<sp/>math<sp/>library.<sp/>RAYEXEC<sp/>features<sp/>native<sp/>[Dear<sp/>ImGui](https://github.com/ocornut/imgui)<sp/>support,<sp/>enabling<sp/>the<sp/>user<sp/>to<sp/>create<sp/>user<sp/>interfaces<sp/>without<sp/>having<sp/>to<sp/>write<sp/>any<sp/>API-related<sp/>code.</highlight></codeline>
+<codeline><highlight class="normal">It<sp/>runs<sp/>on<sp/>both<sp/>Linux<sp/>(x64)<sp/>and<sp/>Windows<sp/>(x64)<sp/>using<sp/>the<sp/>Vulkan<sp/>API.<sp/>The<sp/>purpose<sp/>of<sp/>this<sp/>software<sp/>is<sp/>to<sp/>provide<sp/>a<sp/>cross-platform,<sp/>cross-vendor<sp/>path<sp/>tracer<sp/>that<sp/>is<sp/>easy<sp/>to<sp/>integrate<sp/>into<sp/>existing<sp/>projects.<sp/>Vendor<sp/>independence<sp/>is<sp/>achieved<sp/>by<sp/>using<sp/>KHRONOS&apos;<sp/>new<sp/>Vulkan<sp/>ray<sp/>tracing<sp/>extension<sp/>(first<sp/>published<sp/>on<sp/>March<sp/>17,<sp/>2020).<sp/>It<sp/>uses<sp/>[SDL2](https://www.libsdl.org/index.php)<sp/>for<sp/>windowing<sp/>and<sp/>[glm](https://glm.g-truc.net/0.9.9/index.html)<sp/>as<sp/>its<sp/>math<sp/>library.<sp/>RAYEX<sp/>features<sp/>native<sp/>[Dear<sp/>ImGui](https://github.com/ocornut/imgui)<sp/>support,<sp/>enabling<sp/>the<sp/>user<sp/>to<sp/>create<sp/>user<sp/>interfaces<sp/>without<sp/>having<sp/>to<sp/>write<sp/>any<sp/>API-related<sp/>code.</highlight></codeline>
 <codeline></codeline>
 <codeline><highlight class="normal">##<sp/>Requirements</highlight></codeline>
 <codeline><highlight class="normal">Unfortunately,<sp/>KHRONOS&apos;<sp/>Vulkan<sp/>ray<sp/>tracing<sp/>extension<sp/>is<sp/>not<sp/>yet<sp/>part<sp/>of<sp/>the<sp/>NVIDIA<sp/>main<sp/>driver.<sp/>Download<sp/>the<sp/>NVIDIA<sp/>Vulkan<sp/>beta<sp/>drivers<sp/>[here](https://developer.nvidia.com/vulkan-driver).</highlight></codeline>
 <codeline></codeline>
 <codeline><highlight class="normal">##<sp/>Deploy</highlight></codeline>
-<codeline><highlight class="normal">To<sp/>integrate<sp/>RAYEXEC<sp/>in<sp/>your<sp/>existing<sp/>C++<sp/>/<sp/>CMake<sp/>project,<sp/>follow<sp/>the<sp/>steps<sp/>below.</highlight></codeline>
+<codeline><highlight class="normal">To<sp/>integrate<sp/>RAYEX<sp/>in<sp/>your<sp/>existing<sp/>C++<sp/>/<sp/>CMake<sp/>project,<sp/>follow<sp/>the<sp/>steps<sp/>below.</highlight></codeline>
 <codeline></codeline>
-<codeline><highlight class="normal">1.<sp/>Download<sp/>the<sp/>latest<sp/>[release](https://github.com/chillpert/rayexec)<sp/>or<sp/>build<sp/>the<sp/>library<sp/>yourself.</highlight></codeline>
+<codeline><highlight class="normal">1.<sp/>Download<sp/>the<sp/>latest<sp/>[release](https://github.com/chillpert/rayex)<sp/>or<sp/>build<sp/>the<sp/>library<sp/>yourself.</highlight></codeline>
 <codeline><highlight class="normal">2.<sp/>Place<sp/>the<sp/>**shared<sp/>library<sp/>objects**<sp/>and<sp/>the<sp/>provided<sp/>**include<sp/>folder**<sp/>somewhere<sp/>inside<sp/>your<sp/>project.</highlight></codeline>
 <codeline><highlight class="normal">3.<sp/>Include<sp/>the<sp/>CMakeLists.txt<sp/>inside<sp/>the<sp/>**include<sp/>folder**<sp/>to<sp/>your<sp/>CMakeLists.txt.</highlight></codeline>
 <codeline><highlight class="normal">4.<sp/>Link<sp/>your<sp/>target<sp/>against<sp/>the<sp/>**shared<sp/>library<sp/>objects**<sp/>and<sp/>against<sp/>SDL2.</highlight></codeline>
 <codeline></codeline>
-<codeline><highlight class="normal">Using<sp/>CMake<sp/>is<sp/>not<sp/>obligatory<sp/>but<sp/>recommended<sp/>as<sp/>RAYEXEC<sp/>comes<sp/>with<sp/>its<sp/>own<sp/>CMakeLists.txt<sp/>that<sp/>will<sp/>properly<sp/>include<sp/>all<sp/>project<sp/>headers.<sp/>A<sp/>release<sp/>also<sp/>comes<sp/>with<sp/>a<sp/>fully<sp/>functional<sp/>example<sp/>including<sp/>a<sp/>complete<sp/>CMakeLists.txt<sp/>that<sp/>can<sp/>be<sp/>used<sp/>for<sp/>reference.</highlight></codeline>
+<codeline><highlight class="normal">Using<sp/>CMake<sp/>is<sp/>not<sp/>obligatory<sp/>but<sp/>recommended<sp/>as<sp/>RAYEX<sp/>comes<sp/>with<sp/>its<sp/>own<sp/>CMakeLists.txt<sp/>that<sp/>will<sp/>properly<sp/>include<sp/>all<sp/>project<sp/>headers.<sp/>A<sp/>release<sp/>also<sp/>comes<sp/>with<sp/>a<sp/>fully<sp/>functional<sp/>example<sp/>including<sp/>a<sp/>complete<sp/>CMakeLists.txt<sp/>that<sp/>can<sp/>be<sp/>used<sp/>for<sp/>reference.</highlight></codeline>
 <codeline></codeline>
 <codeline><highlight class="normal">##<sp/>Build</highlight></codeline>
 <codeline><highlight class="normal">###<sp/>Linux</highlight></codeline>
 <codeline><highlight class="normal">To<sp/>build<sp/>the<sp/>entire<sp/>library<sp/>yourself<sp/>follow<sp/>the<sp/>steps<sp/>below.<sp/></highlight></codeline>
 <codeline><highlight class="normal">If<sp/>you<sp/>want<sp/>to<sp/>build<sp/>the<sp/>provided<sp/>example,<sp/>make<sp/>sure<sp/>to<sp/>enable<sp/>the<sp/>RX_BUILD_EXAMPLES<sp/>build<sp/>option<sp/>in<sp/>CMake.</highlight></codeline>
 <codeline><highlight class="normal">```sh</highlight></codeline>
-<codeline><highlight class="normal">$<sp/>git<sp/>clone<sp/>https://github.com/chillpert/rayexec</highlight></codeline>
+<codeline><highlight class="normal">$<sp/>git<sp/>clone<sp/>https://github.com/chillpert/rayex</highlight></codeline>
 <codeline><highlight class="normal">$<sp/>cd<sp/>renderer<sp/></highlight></codeline>
 <codeline><highlight class="normal">$<sp/>mkdir<sp/>build<sp/>&amp;&amp;<sp/>cd<sp/>build</highlight></codeline>
 <codeline><highlight class="normal">$<sp/>cmake<sp/>..</highlight></codeline>
@@ -47,15 +47,15 @@
 <codeline><highlight class="normal">###<sp/>Usage</highlight></codeline>
 <codeline><highlight class="normal">The<sp/>following<sp/>cope<sp/>snippet<sp/>renders<sp/>a<sp/>cube.<sp/>For<sp/>a<sp/>proper<sp/>example<sp/>take<sp/>a<sp/>look<sp/>at<sp/>the<sp/>**documentation**<sp/>or<sp/>at<sp/>**example/example.cpp**.</highlight></codeline>
 <codeline><highlight class="normal">```</highlight></codeline>
-<codeline><highlight class="normal">#include<sp/>&quot;RayExec.hpp&quot;</highlight></codeline>
+<codeline><highlight class="normal">#include<sp/>&quot;Rayex.hpp&quot;</highlight></codeline>
 <codeline></codeline>
 <codeline><highlight class="normal">int<sp/>main(<sp/>)</highlight></codeline>
 <codeline><highlight class="normal">{</highlight></codeline>
 <codeline><highlight class="normal"><sp/><sp/><sp/><sp/>//<sp/>Initialize<sp/>the<sp/>renderer.</highlight></codeline>
-<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>rx::RayExec<sp/>renderer;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>rx::Rayex<sp/>renderer;</highlight></codeline>
 <codeline><highlight class="normal"><sp/><sp/><sp/><sp/>renderer.init(<sp/>);</highlight></codeline>
 <codeline><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
-<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>//<sp/>Load<sp/>some<sp/>geometry<sp/>and<sp/>submit<sp/>it<sp/>to<sp/>RAYEXEC.</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>//<sp/>Load<sp/>some<sp/>geometry<sp/>and<sp/>submit<sp/>it<sp/>to<sp/>RAYEX.</highlight></codeline>
 <codeline><highlight class="normal"><sp/><sp/><sp/><sp/>auto<sp/>cube<sp/><sp/><sp/>=<sp/>rx::loadObj(<sp/>&quot;models/cube.obj&quot;<sp/>);</highlight></codeline>
 <codeline><highlight class="normal"><sp/><sp/><sp/><sp/>renderer.submitGeometry(<sp/>cube<sp/>);</highlight></codeline>
 <codeline></codeline>
@@ -73,8 +73,8 @@
 <codeline></codeline>
 <codeline></codeline>
 <codeline><highlight class="normal">##<sp/>Download</highlight></codeline>
-<codeline><highlight class="normal">You<sp/>can<sp/>find<sp/>the<sp/>GitHub<sp/>repository<sp/>[here](https://github.com/chillpert/rayexec).</highlight></codeline>
+<codeline><highlight class="normal">You<sp/>can<sp/>find<sp/>the<sp/>GitHub<sp/>repository<sp/>[here](https://github.com/chillpert/rayex).</highlight></codeline>
     </programlisting>
-    <location file="/home/n30/Repos/rayexec/README.md"/>
+    <location file="/home/n30/Repos/rayex/README.md"/>
   </compounddef>
 </doxygen>

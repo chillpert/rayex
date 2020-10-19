@@ -1,0 +1,141 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.17">
+  <compounddef id="struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_camera_ubo" kind="struct" language="C++" prot="public">
+    <compoundname>RAYEX_NAMESPACE::CameraUbo</compoundname>
+    <includes refid="_uniform_buffer_8hpp" local="no">UniformBuffer.hpp</includes>
+      <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_camera_ubo_1aca2343d9611de4d2cbaaafd25c9a0d4c" prot="public" static="no" mutable="no">
+        <type>glm::mat4</type>
+        <definition>glm::mat4 RAYEX_NAMESPACE::CameraUbo::view</definition>
+        <argsstring></argsstring>
+        <name>view</name>
+        <initializer>= glm::mat4( 1.0F )</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/n30/Repos/rayex/include/api/buffers/UniformBuffer.hpp" line="14" column="15" bodyfile="/home/n30/Repos/rayex/include/api/buffers/UniformBuffer.hpp" bodystart="14" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_camera_ubo_1a7903a2467fb163ff5716bf08e2621ad5" prot="public" static="no" mutable="no">
+        <type>glm::mat4</type>
+        <definition>glm::mat4 RAYEX_NAMESPACE::CameraUbo::projection</definition>
+        <argsstring></argsstring>
+        <name>projection</name>
+        <initializer>= glm::mat4( 1.0F )</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/n30/Repos/rayex/include/api/buffers/UniformBuffer.hpp" line="15" column="15" bodyfile="/home/n30/Repos/rayex/include/api/buffers/UniformBuffer.hpp" bodystart="15" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_camera_ubo_1a000d7a431db8bf2cbfe5b5d8999550d3" prot="public" static="no" mutable="no">
+        <type>glm::mat4</type>
+        <definition>glm::mat4 RAYEX_NAMESPACE::CameraUbo::viewInverse</definition>
+        <argsstring></argsstring>
+        <name>viewInverse</name>
+        <initializer>= glm::mat4( 1.0F )</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/n30/Repos/rayex/include/api/buffers/UniformBuffer.hpp" line="16" column="15" bodyfile="/home/n30/Repos/rayex/include/api/buffers/UniformBuffer.hpp" bodystart="16" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_camera_ubo_1a84ded90503475453e221c733388e2fdf" prot="public" static="no" mutable="no">
+        <type>glm::mat4</type>
+        <definition>glm::mat4 RAYEX_NAMESPACE::CameraUbo::projectionInverse</definition>
+        <argsstring></argsstring>
+        <name>projectionInverse</name>
+        <initializer>= glm::mat4( 1.0F )</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/n30/Repos/rayex/include/api/buffers/UniformBuffer.hpp" line="17" column="15" bodyfile="/home/n30/Repos/rayex/include/api/buffers/UniformBuffer.hpp" bodystart="17" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_camera_ubo_1a5145cf4a6253d5788426724810bca2ae" prot="public" static="no" mutable="no">
+        <type>glm::vec4</type>
+        <definition>glm::vec4 RAYEX_NAMESPACE::CameraUbo::position</definition>
+        <argsstring></argsstring>
+        <name>position</name>
+        <initializer>= glm::vec4( 1.0F )</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/n30/Repos/rayex/include/api/buffers/UniformBuffer.hpp" line="18" column="15" bodyfile="/home/n30/Repos/rayex/include/api/buffers/UniformBuffer.hpp" bodystart="18" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_camera_ubo_1a20ce61063baca15c19bfd06a2af8e6d8" prot="private" static="no" mutable="no">
+        <type>glm::vec4</type>
+        <definition>glm::vec4 RAYEX_NAMESPACE::CameraUbo::padding0</definition>
+        <argsstring></argsstring>
+        <name>padding0</name>
+        <initializer>= glm::vec4( 1.0F )</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/n30/Repos/rayex/include/api/buffers/UniformBuffer.hpp" line="21" column="15" bodyfile="/home/n30/Repos/rayex/include/api/buffers/UniformBuffer.hpp" bodystart="21" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_camera_ubo_1adb3b2580d900a4afefd12c8c7d30a29c" prot="private" static="no" mutable="no">
+        <type>glm::vec4</type>
+        <definition>glm::vec4 RAYEX_NAMESPACE::CameraUbo::padding1</definition>
+        <argsstring></argsstring>
+        <name>padding1</name>
+        <initializer>= glm::vec4( 1.0F )</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/n30/Repos/rayex/include/api/buffers/UniformBuffer.hpp" line="22" column="15" bodyfile="/home/n30/Repos/rayex/include/api/buffers/UniformBuffer.hpp" bodystart="22" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_camera_ubo_1aab4676a09b92925f28bd422d2f10bc43" prot="private" static="no" mutable="no">
+        <type>glm::vec4</type>
+        <definition>glm::vec4 RAYEX_NAMESPACE::CameraUbo::padding2</definition>
+        <argsstring></argsstring>
+        <name>padding2</name>
+        <initializer>= glm::vec4( 1.0F )</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/n30/Repos/rayex/include/api/buffers/UniformBuffer.hpp" line="23" column="15" bodyfile="/home/n30/Repos/rayex/include/api/buffers/UniformBuffer.hpp" bodystart="23" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+<para>A uniform buffer object for camera data. </para>
+    </briefdescription>
+    <detaileddescription>
+<para><xrefsect id="todo_1_todo000003"><xreftitle>Todo</xreftitle><xrefdescription><para><ref refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_camera" kindref="compound">Camera</ref> position could easily be a push constant, which would make this UBO much smaller in size. </para>
+</xrefdescription></xrefsect></para>
+    </detaileddescription>
+    <location file="/home/n30/Repos/rayex/include/api/buffers/UniformBuffer.hpp" line="13" column="1" bodyfile="/home/n30/Repos/rayex/include/api/buffers/UniformBuffer.hpp" bodystart="12" bodyend="24"/>
+    <listofallmembers>
+      <member refid="struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_camera_ubo_1a20ce61063baca15c19bfd06a2af8e6d8" prot="private" virt="non-virtual"><scope>RAYEX_NAMESPACE::CameraUbo</scope><name>padding0</name></member>
+      <member refid="struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_camera_ubo_1adb3b2580d900a4afefd12c8c7d30a29c" prot="private" virt="non-virtual"><scope>RAYEX_NAMESPACE::CameraUbo</scope><name>padding1</name></member>
+      <member refid="struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_camera_ubo_1aab4676a09b92925f28bd422d2f10bc43" prot="private" virt="non-virtual"><scope>RAYEX_NAMESPACE::CameraUbo</scope><name>padding2</name></member>
+      <member refid="struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_camera_ubo_1a5145cf4a6253d5788426724810bca2ae" prot="public" virt="non-virtual"><scope>RAYEX_NAMESPACE::CameraUbo</scope><name>position</name></member>
+      <member refid="struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_camera_ubo_1a7903a2467fb163ff5716bf08e2621ad5" prot="public" virt="non-virtual"><scope>RAYEX_NAMESPACE::CameraUbo</scope><name>projection</name></member>
+      <member refid="struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_camera_ubo_1a84ded90503475453e221c733388e2fdf" prot="public" virt="non-virtual"><scope>RAYEX_NAMESPACE::CameraUbo</scope><name>projectionInverse</name></member>
+      <member refid="struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_camera_ubo_1aca2343d9611de4d2cbaaafd25c9a0d4c" prot="public" virt="non-virtual"><scope>RAYEX_NAMESPACE::CameraUbo</scope><name>view</name></member>
+      <member refid="struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_camera_ubo_1a000d7a431db8bf2cbfe5b5d8999550d3" prot="public" virt="non-virtual"><scope>RAYEX_NAMESPACE::CameraUbo</scope><name>viewInverse</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

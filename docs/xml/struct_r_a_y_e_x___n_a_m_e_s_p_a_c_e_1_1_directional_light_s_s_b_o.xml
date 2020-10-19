@@ -1,0 +1,61 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.17">
+  <compounddef id="struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_directional_light_s_s_b_o" kind="struct" language="C++" prot="public">
+    <compoundname>RAYEX_NAMESPACE::DirectionalLightSSBO</compoundname>
+    <basecompoundref refid="struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_light_s_s_b_o" prot="public" virt="non-virtual">RAYEX_NAMESPACE::LightSSBO</basecompoundref>
+    <includes refid="_storage_buffer_8hpp" local="no">StorageBuffer.hpp</includes>
+      <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_directional_light_s_s_b_o_1a97c0fc692504df2515640a3d3bb25527" prot="public" static="no" mutable="no">
+        <type>glm::vec4</type>
+        <definition>glm::vec4 RAYEX_NAMESPACE::DirectionalLightSSBO::direction</definition>
+        <argsstring></argsstring>
+        <name>direction</name>
+        <initializer>= glm::vec4( 1.0F )</initializer>
+        <briefdescription>
+<para>Stores the direction (vec3). </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/n30/Repos/rayex/include/api/buffers/StorageBuffer.hpp" line="20" column="15" bodyfile="/home/n30/Repos/rayex/include/api/buffers/StorageBuffer.hpp" bodystart="20" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+<para>A wrapper for <ref refid="struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_directional_light" kindref="compound">RAYEX_NAMESPACE::DirectionalLight</ref> matching the buffer alignment requirements. </para>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="1">
+        <label>RAYEX_NAMESPACE::DirectionalLightSSBO</label>
+        <link refid="struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_directional_light_s_s_b_o"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>RAYEX_NAMESPACE::LightSSBO</label>
+        <link refid="struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_light_s_s_b_o"/>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="1">
+        <label>RAYEX_NAMESPACE::DirectionalLightSSBO</label>
+        <link refid="struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_directional_light_s_s_b_o"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>RAYEX_NAMESPACE::LightSSBO</label>
+        <link refid="struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_light_s_s_b_o"/>
+      </node>
+    </collaborationgraph>
+    <location file="/home/n30/Repos/rayex/include/api/buffers/StorageBuffer.hpp" line="19" column="1" bodyfile="/home/n30/Repos/rayex/include/api/buffers/StorageBuffer.hpp" bodystart="18" bodyend="21"/>
+    <listofallmembers>
+      <member refid="struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_light_s_s_b_o_1a8cc233d1659d752e693967ebcd2b01ca" prot="public" virt="non-virtual"><scope>RAYEX_NAMESPACE::DirectionalLightSSBO</scope><name>ambient</name></member>
+      <member refid="struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_light_s_s_b_o_1a7831fe1d3022e16da8f30672be3cad60" prot="public" virt="non-virtual"><scope>RAYEX_NAMESPACE::DirectionalLightSSBO</scope><name>diffuse</name></member>
+      <member refid="struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_directional_light_s_s_b_o_1a97c0fc692504df2515640a3d3bb25527" prot="public" virt="non-virtual"><scope>RAYEX_NAMESPACE::DirectionalLightSSBO</scope><name>direction</name></member>
+      <member refid="struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_light_s_s_b_o_1a0d43cfcb9edc9a98fd8c5d96379c3c79" prot="public" virt="non-virtual"><scope>RAYEX_NAMESPACE::DirectionalLightSSBO</scope><name>specular</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

@@ -1,0 +1,151 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.17">
+  <compounddef id="struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_ray_trace_push_constants" kind="struct" language="C++" prot="public">
+    <compoundname>RAYEX_NAMESPACE::RayTracePushConstants</compoundname>
+    <includes refid="_pipeline_8hpp" local="no">Pipeline.hpp</includes>
+      <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_ray_trace_push_constants_1af365c7f54b574d8cf21a4e17563b0ed2" prot="public" static="no" mutable="no">
+        <type>glm::vec4</type>
+        <definition>glm::vec4 RAYEX_NAMESPACE::RayTracePushConstants::clearColor</definition>
+        <argsstring></argsstring>
+        <name>clearColor</name>
+        <initializer>= glm::vec4( 1.0F )</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/n30/Repos/rayex/include/api/Pipeline.hpp" line="11" column="15" bodyfile="/home/n30/Repos/rayex/include/api/Pipeline.hpp" bodystart="11" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_ray_trace_push_constants_1a15a2f71c607b65c3cd27948bc303715c" prot="public" static="no" mutable="no">
+        <type>uint32_t</type>
+        <definition>uint32_t RAYEX_NAMESPACE::RayTracePushConstants::sampleRate</definition>
+        <argsstring></argsstring>
+        <name>sampleRate</name>
+        <initializer>= 100</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/n30/Repos/rayex/include/api/Pipeline.hpp" line="12" column="14" bodyfile="/home/n30/Repos/rayex/include/api/Pipeline.hpp" bodystart="12" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_ray_trace_push_constants_1ad9038ea5a090bbca9bd36ac864f35959" prot="public" static="no" mutable="no">
+        <type>uint32_t</type>
+        <definition>uint32_t RAYEX_NAMESPACE::RayTracePushConstants::sampleRatePerRayGen</definition>
+        <argsstring></argsstring>
+        <name>sampleRatePerRayGen</name>
+        <initializer>= 1</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/n30/Repos/rayex/include/api/Pipeline.hpp" line="13" column="14" bodyfile="/home/n30/Repos/rayex/include/api/Pipeline.hpp" bodystart="13" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_ray_trace_push_constants_1a8930d7d76a06ca1a6c6aef6b01bcc3fd" prot="public" static="no" mutable="no">
+        <type>uint32_t</type>
+        <definition>uint32_t RAYEX_NAMESPACE::RayTracePushConstants::ssaa</definition>
+        <argsstring></argsstring>
+        <name>ssaa</name>
+        <initializer>= 8</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/n30/Repos/rayex/include/api/Pipeline.hpp" line="14" column="14" bodyfile="/home/n30/Repos/rayex/include/api/Pipeline.hpp" bodystart="14" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_ray_trace_push_constants_1acd062e237d8f91d45795f8c63ff553bd" prot="public" static="no" mutable="no">
+        <type>uint32_t</type>
+        <definition>uint32_t RAYEX_NAMESPACE::RayTracePushConstants::jitterCamEnabled</definition>
+        <argsstring></argsstring>
+        <name>jitterCamEnabled</name>
+        <initializer>= 0</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/n30/Repos/rayex/include/api/Pipeline.hpp" line="15" column="14" bodyfile="/home/n30/Repos/rayex/include/api/Pipeline.hpp" bodystart="15" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_ray_trace_push_constants_1aea21696fbb00af19958680fd258fd2bb" prot="public" static="no" mutable="no">
+        <type>uint32_t</type>
+        <definition>uint32_t RAYEX_NAMESPACE::RayTracePushConstants::ssaaEnabled</definition>
+        <argsstring></argsstring>
+        <name>ssaaEnabled</name>
+        <initializer>= 1</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/n30/Repos/rayex/include/api/Pipeline.hpp" line="16" column="14" bodyfile="/home/n30/Repos/rayex/include/api/Pipeline.hpp" bodystart="16" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_ray_trace_push_constants_1ad745f064a779470d7867c02705732514" prot="public" static="no" mutable="no">
+        <type>uint32_t</type>
+        <definition>uint32_t RAYEX_NAMESPACE::RayTracePushConstants::directionalLightCount</definition>
+        <argsstring></argsstring>
+        <name>directionalLightCount</name>
+        <initializer>= 0</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/n30/Repos/rayex/include/api/Pipeline.hpp" line="17" column="14" bodyfile="/home/n30/Repos/rayex/include/api/Pipeline.hpp" bodystart="17" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_ray_trace_push_constants_1ab25bb59f1b1282d5c1bb79577afb9d93" prot="public" static="no" mutable="no">
+        <type>uint32_t</type>
+        <definition>uint32_t RAYEX_NAMESPACE::RayTracePushConstants::pointLightCount</definition>
+        <argsstring></argsstring>
+        <name>pointLightCount</name>
+        <initializer>= 0</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/n30/Repos/rayex/include/api/Pipeline.hpp" line="18" column="14" bodyfile="/home/n30/Repos/rayex/include/api/Pipeline.hpp" bodystart="18" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_ray_trace_push_constants_1a606247352a60e579c47a5547a5bb4de8" prot="public" static="no" mutable="no">
+        <type>float</type>
+        <definition>float RAYEX_NAMESPACE::RayTracePushConstants::padding2</definition>
+        <argsstring></argsstring>
+        <name>padding2</name>
+        <initializer>= 0.0f</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/n30/Repos/rayex/include/api/Pipeline.hpp" line="20" column="11" bodyfile="/home/n30/Repos/rayex/include/api/Pipeline.hpp" bodystart="20" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="/home/n30/Repos/rayex/include/api/Pipeline.hpp" line="10" column="1" bodyfile="/home/n30/Repos/rayex/include/api/Pipeline.hpp" bodystart="9" bodyend="21"/>
+    <listofallmembers>
+      <member refid="struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_ray_trace_push_constants_1af365c7f54b574d8cf21a4e17563b0ed2" prot="public" virt="non-virtual"><scope>RAYEX_NAMESPACE::RayTracePushConstants</scope><name>clearColor</name></member>
+      <member refid="struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_ray_trace_push_constants_1ad745f064a779470d7867c02705732514" prot="public" virt="non-virtual"><scope>RAYEX_NAMESPACE::RayTracePushConstants</scope><name>directionalLightCount</name></member>
+      <member refid="struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_ray_trace_push_constants_1acd062e237d8f91d45795f8c63ff553bd" prot="public" virt="non-virtual"><scope>RAYEX_NAMESPACE::RayTracePushConstants</scope><name>jitterCamEnabled</name></member>
+      <member refid="struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_ray_trace_push_constants_1a606247352a60e579c47a5547a5bb4de8" prot="public" virt="non-virtual"><scope>RAYEX_NAMESPACE::RayTracePushConstants</scope><name>padding2</name></member>
+      <member refid="struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_ray_trace_push_constants_1ab25bb59f1b1282d5c1bb79577afb9d93" prot="public" virt="non-virtual"><scope>RAYEX_NAMESPACE::RayTracePushConstants</scope><name>pointLightCount</name></member>
+      <member refid="struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_ray_trace_push_constants_1a15a2f71c607b65c3cd27948bc303715c" prot="public" virt="non-virtual"><scope>RAYEX_NAMESPACE::RayTracePushConstants</scope><name>sampleRate</name></member>
+      <member refid="struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_ray_trace_push_constants_1ad9038ea5a090bbca9bd36ac864f35959" prot="public" virt="non-virtual"><scope>RAYEX_NAMESPACE::RayTracePushConstants</scope><name>sampleRatePerRayGen</name></member>
+      <member refid="struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_ray_trace_push_constants_1a8930d7d76a06ca1a6c6aef6b01bcc3fd" prot="public" virt="non-virtual"><scope>RAYEX_NAMESPACE::RayTracePushConstants</scope><name>ssaa</name></member>
+      <member refid="struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_ray_trace_push_constants_1aea21696fbb00af19958680fd258fd2bb" prot="public" virt="non-virtual"><scope>RAYEX_NAMESPACE::RayTracePushConstants</scope><name>ssaaEnabled</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

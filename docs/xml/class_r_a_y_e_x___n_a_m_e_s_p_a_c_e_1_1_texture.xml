@@ -1,0 +1,272 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.17">
+  <compounddef id="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_texture" kind="class" language="C++" prot="public">
+    <compoundname>RAYEX_NAMESPACE::Texture</compoundname>
+    <basecompoundref refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_image" prot="public" virt="non-virtual">RAYEX_NAMESPACE::Image</basecompoundref>
+    <includes refid="_texture_8hpp" local="no">Texture.hpp</includes>
+      <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_texture_1a815a31f2ad5164a9bc11dfe75a519e01" prot="public" static="no" mutable="no">
+        <type>uint32_t</type>
+        <definition>uint32_t RAYEX_NAMESPACE::Texture::offset</definition>
+        <argsstring></argsstring>
+        <name>offset</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/n30/Repos/rayex/include/api/image/Texture.hpp" line="34" column="14" bodyfile="/home/n30/Repos/rayex/include/api/image/Texture.hpp" bodystart="34" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_texture_1a266429d19fcde7a61a166fae46c4e945" prot="private" static="no" mutable="no">
+        <type>std::string</type>
+        <definition>std::string RAYEX_NAMESPACE::Texture::path</definition>
+        <argsstring></argsstring>
+        <name>path</name>
+        <briefdescription>
+<para>The relative path to the texture file. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/n30/Repos/rayex/include/api/image/Texture.hpp" line="37" column="17" bodyfile="/home/n30/Repos/rayex/include/api/image/Texture.hpp" bodystart="37" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_texture_1a9545098b051d1349129d43bed46d76c4" prot="private" static="no" mutable="no">
+        <type>vk::UniqueImageView</type>
+        <definition>vk::UniqueImageView RAYEX_NAMESPACE::Texture::imageView</definition>
+        <argsstring></argsstring>
+        <name>imageView</name>
+        <briefdescription>
+<para>The texture&apos;s Vulkan image view with a unique handle. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/n30/Repos/rayex/include/api/image/Texture.hpp" line="39" column="25" bodyfile="/home/n30/Repos/rayex/include/api/image/Texture.hpp" bodystart="39" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_texture_1af110464f7cf14604694085856ecec775" prot="private" static="no" mutable="no">
+        <type>vk::UniqueSampler</type>
+        <definition>vk::UniqueSampler RAYEX_NAMESPACE::Texture::sampler</definition>
+        <argsstring></argsstring>
+        <name>sampler</name>
+        <briefdescription>
+<para>The texture&apos;s Vulkan sampler with a unique handle. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/n30/Repos/rayex/include/api/image/Texture.hpp" line="40" column="23" bodyfile="/home/n30/Repos/rayex/include/api/image/Texture.hpp" bodystart="40" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="private-static-attrib">
+      <memberdef kind="variable" id="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_texture_1a0cc24a8545c7af014e435d2d2434eb97" prot="private" static="yes" mutable="no">
+        <type>uint32_t</type>
+        <definition>uint32_t RAYEX_NAMESPACE::Texture::textureCounter</definition>
+        <argsstring></argsstring>
+        <name>textureCounter</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/n30/Repos/rayex/include/api/image/Texture.hpp" line="42" column="21" bodyfile="/home/n30/Repos/rayex/include/api/image/Texture.hpp" bodystart="42" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_texture_1aa32702a974b407f7c71f7e89f76f3654" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>RX_API</type>
+        <definition>RX_API RAYEX_NAMESPACE::Texture::Texture</definition>
+        <argsstring>()</argsstring>
+        <name>Texture</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/n30/Repos/rayex/include/api/image/Texture.hpp" line="14" column="12"/>
+      </memberdef>
+      <memberdef kind="function" id="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_texture_1a6e8d64b192025a1abfdb946b44fbc579" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>RX_API</type>
+        <definition>RX_API RAYEX_NAMESPACE::Texture::Texture</definition>
+        <argsstring>(std::string_view path, bool initialize=true)</argsstring>
+        <name>Texture</name>
+        <param>
+          <type>std::string_view</type>
+          <declname>path</declname>
+        </param>
+        <param>
+          <type>bool</type>
+          <declname>initialize</declname>
+          <defval>true</defval>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>path</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The relative path to the texture file. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>initialize</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>If true, the texture will be initialized right away without an additional call to <ref refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_texture_1acc3e7b81bbfd57b79f5bd65ff0ae674d" kindref="member">init()</ref>. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/n30/Repos/rayex/include/api/image/Texture.hpp" line="18" column="12"/>
+      </memberdef>
+      <memberdef kind="function" id="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_texture_1a4d12a159ea5d963015649bcedb241f84" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>auto</type>
+        <definition>auto RAYEX_NAMESPACE::Texture::getImageView</definition>
+        <argsstring>() -&gt; vk::ImageView</argsstring>
+        <name>getImageView</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>Returns the texture&apos;s image view. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/n30/Repos/rayex/include/api/image/Texture.hpp" line="21" column="11" bodyfile="/home/n30/Repos/rayex/include/api/image/Texture.hpp" bodystart="21" bodyend="21"/>
+      </memberdef>
+      <memberdef kind="function" id="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_texture_1a79ff0b73b423971bb92556b6722283b1" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>auto</type>
+        <definition>auto RAYEX_NAMESPACE::Texture::getSampler</definition>
+        <argsstring>() -&gt; vk::Sampler</argsstring>
+        <name>getSampler</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>Returns the texture&apos;s sampler. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/n30/Repos/rayex/include/api/image/Texture.hpp" line="24" column="11" bodyfile="/home/n30/Repos/rayex/include/api/image/Texture.hpp" bodystart="24" bodyend="24"/>
+      </memberdef>
+      <memberdef kind="function" id="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_texture_1ab60fb85070b67258d51ba665725ad92e" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>auto</type>
+        <definition>auto RAYEX_NAMESPACE::Texture::getPath</definition>
+        <argsstring>() const -&gt; const std::string &amp;</argsstring>
+        <name>getPath</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>Returns the relative path of the texture file. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/n30/Repos/rayex/include/api/image/Texture.hpp" line="27" column="11" bodyfile="/home/n30/Repos/rayex/include/api/image/Texture.hpp" bodystart="27" bodyend="27"/>
+      </memberdef>
+      <memberdef kind="function" id="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_texture_1acc3e7b81bbfd57b79f5bd65ff0ae674d" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void RAYEX_NAMESPACE::Texture::init</definition>
+        <argsstring>(std::string_view path)</argsstring>
+        <name>init</name>
+        <param>
+          <type>std::string_view</type>
+          <declname>path</declname>
+        </param>
+        <briefdescription>
+<para>Creates the texture. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>path</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The relative path to the texture file. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<xrefsect id="todo_1_todo000005"><xreftitle>Todo</xreftitle><xrefdescription><para>Latest changes to this class might be causing errors once texture are working again. </para>
+</xrefdescription></xrefsect></para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/n30/Repos/rayex/include/api/image/Texture.hpp" line="32" column="10"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+<para>A helper class for creating ready-to-use textures. </para>
+    </briefdescription>
+    <detaileddescription>
+<para><xrefsect id="todo_1_todo000004"><xreftitle>Todo</xreftitle><xrefdescription><para>textureCounter is being incremented always, even if it is not a new texture. This class should actually look inside Api::textures or sth to assign the correct index. </para>
+</xrefdescription></xrefsect></para>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="1">
+        <label>RAYEX_NAMESPACE::Texture</label>
+        <link refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_texture"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>RAYEX_NAMESPACE::Image</label>
+        <link refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_image"/>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="1">
+        <label>RAYEX_NAMESPACE::Texture</label>
+        <link refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_texture"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>RAYEX_NAMESPACE::Image</label>
+        <link refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_image"/>
+      </node>
+    </collaborationgraph>
+    <location file="/home/n30/Repos/rayex/include/api/image/Texture.hpp" line="12" column="1" bodyfile="/home/n30/Repos/rayex/include/api/image/Texture.hpp" bodystart="11" bodyend="43"/>
+    <listofallmembers>
+      <member refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_image_1a25ffa33ad08036d3643b81c3fc4ed6fa" prot="protected" virt="non-virtual"><scope>RAYEX_NAMESPACE::Texture</scope><name>extent</name></member>
+      <member refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_image_1a4af93786e80f597090693b5f59e3605e" prot="public" virt="non-virtual"><scope>RAYEX_NAMESPACE::Texture</scope><name>findSupportedFormat</name></member>
+      <member refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_image_1a1a53e7fed5f3c017fa22b20acad8b569" prot="protected" virt="non-virtual"><scope>RAYEX_NAMESPACE::Texture</scope><name>format</name></member>
+      <member refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_image_1abc8b3131fd792888cd54cae0338ebc5a" prot="public" virt="non-virtual"><scope>RAYEX_NAMESPACE::Texture</scope><name>get</name></member>
+      <member refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_image_1a5a4ccd30feb5e47b653997faac3e4adb" prot="public" virt="non-virtual"><scope>RAYEX_NAMESPACE::Texture</scope><name>getExtent</name></member>
+      <member refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_image_1a189584e4d28a640f7a91e2711aac4bb4" prot="public" virt="non-virtual"><scope>RAYEX_NAMESPACE::Texture</scope><name>getFormat</name></member>
+      <member refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_texture_1a4d12a159ea5d963015649bcedb241f84" prot="public" virt="non-virtual"><scope>RAYEX_NAMESPACE::Texture</scope><name>getImageView</name></member>
+      <member refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_image_1ab3f6fda72b3f94186af3bca7230195c6" prot="public" virt="non-virtual"><scope>RAYEX_NAMESPACE::Texture</scope><name>getLayout</name></member>
+      <member refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_texture_1ab60fb85070b67258d51ba665725ad92e" prot="public" virt="non-virtual"><scope>RAYEX_NAMESPACE::Texture</scope><name>getPath</name></member>
+      <member refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_texture_1a79ff0b73b423971bb92556b6722283b1" prot="public" virt="non-virtual"><scope>RAYEX_NAMESPACE::Texture</scope><name>getSampler</name></member>
+      <member refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_image_1a47c6e94c0fe17fdbc1067cf3688c963e" prot="protected" virt="non-virtual"><scope>RAYEX_NAMESPACE::Texture</scope><name>image</name></member>
+      <member refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_texture_1a9545098b051d1349129d43bed46d76c4" prot="private" virt="non-virtual"><scope>RAYEX_NAMESPACE::Texture</scope><name>imageView</name></member>
+      <member refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_texture_1acc3e7b81bbfd57b79f5bd65ff0ae674d" prot="public" virt="non-virtual"><scope>RAYEX_NAMESPACE::Texture</scope><name>init</name></member>
+      <member refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_image_1a2e018b9b5ea0b1d6cb387357ad721593" prot="public" virt="non-virtual" ambiguityscope="RAYEX_NAMESPACE::Image::"><scope>RAYEX_NAMESPACE::Texture</scope><name>init</name></member>
+      <member refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_image_1ae59edce0a249f45da950b8c24b40b114" prot="protected" virt="non-virtual"><scope>RAYEX_NAMESPACE::Texture</scope><name>layout</name></member>
+      <member refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_image_1a033a652d346b4f203e95c47494e1c1a2" prot="protected" virt="non-virtual"><scope>RAYEX_NAMESPACE::Texture</scope><name>memory</name></member>
+      <member refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_texture_1a815a31f2ad5164a9bc11dfe75a519e01" prot="public" virt="non-virtual"><scope>RAYEX_NAMESPACE::Texture</scope><name>offset</name></member>
+      <member refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_texture_1a266429d19fcde7a61a166fae46c4e945" prot="private" virt="non-virtual"><scope>RAYEX_NAMESPACE::Texture</scope><name>path</name></member>
+      <member refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_texture_1af110464f7cf14604694085856ecec775" prot="private" virt="non-virtual"><scope>RAYEX_NAMESPACE::Texture</scope><name>sampler</name></member>
+      <member refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_texture_1aa32702a974b407f7c71f7e89f76f3654" prot="public" virt="non-virtual"><scope>RAYEX_NAMESPACE::Texture</scope><name>Texture</name></member>
+      <member refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_texture_1a6e8d64b192025a1abfdb946b44fbc579" prot="public" virt="non-virtual"><scope>RAYEX_NAMESPACE::Texture</scope><name>Texture</name></member>
+      <member refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_texture_1a0cc24a8545c7af014e435d2d2434eb97" prot="private" virt="non-virtual"><scope>RAYEX_NAMESPACE::Texture</scope><name>textureCounter</name></member>
+      <member refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_image_1a4905385e6ab351022f1cc717dbd1cb6f" prot="public" virt="non-virtual"><scope>RAYEX_NAMESPACE::Texture</scope><name>transitionToLayout</name></member>
+      <member refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_image_1abd46b661d5593c29cf4b9960e2b30681" prot="public" virt="non-virtual"><scope>RAYEX_NAMESPACE::Texture</scope><name>transitionToLayout</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

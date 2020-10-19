@@ -1,0 +1,220 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.17">
+  <compounddef id="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_uniform_buffer" kind="class" language="C++" prot="public">
+    <compoundname>RAYEX_NAMESPACE::UniformBuffer</compoundname>
+    <includes refid="_uniform_buffer_8hpp" local="no">UniformBuffer.hpp</includes>
+      <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_uniform_buffer_1a0e2225556e7e6140f92b55bb02d73e30" prot="public" static="no" mutable="no">
+        <type>std::vector&lt; vk::DescriptorBufferInfo &gt;</type>
+        <definition>std::vector&lt;vk::DescriptorBufferInfo&gt; RAYEX_NAMESPACE::UniformBuffer::bufferInfos</definition>
+        <argsstring></argsstring>
+        <name>bufferInfos</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/n30/Repos/rayex/include/api/buffers/UniformBuffer.hpp" line="82" column="17" bodyfile="/home/n30/Repos/rayex/include/api/buffers/UniformBuffer.hpp" bodystart="82" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_uniform_buffer_1a3499c71b597269d61770ba361f856e35" prot="private" static="no" mutable="no">
+        <type>std::vector&lt; <ref refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_buffer" kindref="compound">Buffer</ref> &gt;</type>
+        <definition>std::vector&lt;Buffer&gt; RAYEX_NAMESPACE::UniformBuffer::buffers</definition>
+        <argsstring></argsstring>
+        <name>buffers</name>
+        <briefdescription>
+<para>A vector of RAYEX_NAMESPACE::Buffers for the uniform buffers. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/n30/Repos/rayex/include/api/buffers/UniformBuffer.hpp" line="85" column="17" bodyfile="/home/n30/Repos/rayex/include/api/buffers/UniformBuffer.hpp" bodystart="85" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_uniform_buffer_1ae5ddd2f51f1cc616396347bda9092c47" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>RAYEX_NAMESPACE::UniformBuffer::UniformBuffer</definition>
+        <argsstring>()=default</argsstring>
+        <name>UniformBuffer</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/n30/Repos/rayex/include/api/buffers/UniformBuffer.hpp" line="31" column="5"/>
+      </memberdef>
+      <memberdef kind="function" id="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_uniform_buffer_1a7487ed42dd2de922006db5462e05b1f1" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>typename T</type>
+          </param>
+        </templateparamlist>
+        <type></type>
+        <definition>RAYEX_NAMESPACE::UniformBuffer::UniformBuffer</definition>
+        <argsstring>(size_t swapchainImagesCount, bool initialize=true)</argsstring>
+        <name>UniformBuffer</name>
+        <param>
+          <type>size_t</type>
+          <declname>swapchainImagesCount</declname>
+        </param>
+        <param>
+          <type>bool</type>
+          <declname>initialize</declname>
+          <defval>true</defval>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>swapchainImagesCount</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The amount of images in the swapchain. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>initialize</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>If true, the uniform buffer will be initialized right away without an additional call to <ref refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_uniform_buffer_1a98859467eee532952510437766b3da4f" kindref="member">init()</ref>. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/n30/Repos/rayex/include/api/buffers/UniformBuffer.hpp" line="36" column="5" bodyfile="/home/n30/Repos/rayex/include/api/buffers/UniformBuffer.hpp" bodystart="36" bodyend="40"/>
+      </memberdef>
+      <memberdef kind="function" id="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_uniform_buffer_1a922bda1b964d1ce9ce903107e358dcf5" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>auto</type>
+        <definition>auto RAYEX_NAMESPACE::UniformBuffer::get</definition>
+        <argsstring>() const -&gt; const std::vector&lt; Buffer &gt; &amp;</argsstring>
+        <name>get</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>Returns the vector of uniform buffers. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/n30/Repos/rayex/include/api/buffers/UniformBuffer.hpp" line="43" column="11" bodyfile="/home/n30/Repos/rayex/include/api/buffers/UniformBuffer.hpp" bodystart="43" bodyend="43"/>
+      </memberdef>
+      <memberdef kind="function" id="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_uniform_buffer_1a7b8a844ef078691e96fb27eee7d550a6" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>RX_API auto</type>
+        <definition>RX_API auto RAYEX_NAMESPACE::UniformBuffer::getRaw</definition>
+        <argsstring>() const -&gt; const std::vector&lt; vk::Buffer &gt;</argsstring>
+        <name>getRaw</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>Returns the vector of uniform buffers as raw Vulkan buffer objects. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/n30/Repos/rayex/include/api/buffers/UniformBuffer.hpp" line="46" column="18"/>
+      </memberdef>
+      <memberdef kind="function" id="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_uniform_buffer_1a98859467eee532952510437766b3da4f" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>typename T</type>
+          </param>
+        </templateparamlist>
+        <type>void</type>
+        <definition>void RAYEX_NAMESPACE::UniformBuffer::init</definition>
+        <argsstring>()</argsstring>
+        <name>init</name>
+        <briefdescription>
+<para>Creates the uniform buffer and allocates memory for it. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>The function will create as many uniform buffers as there are images in the swapchain. Additionally, it will create the descriptor buffer infos which can be later used to write to a descriptor set. <parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>swapchainImagesCount</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The amount of images in the swapchain. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/n30/Repos/rayex/include/api/buffers/UniformBuffer.hpp" line="54" column="10" bodyfile="/home/n30/Repos/rayex/include/api/buffers/UniformBuffer.hpp" bodystart="54" bodyend="71"/>
+      </memberdef>
+      <memberdef kind="function" id="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_uniform_buffer_1ad511f2a02b2a4e341b5e0d9caa3f9338" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>typename T</type>
+          </param>
+        </templateparamlist>
+        <type>void</type>
+        <definition>void RAYEX_NAMESPACE::UniformBuffer::upload</definition>
+        <argsstring>(uint32_t imageIndex, T &amp;ubo)</argsstring>
+        <name>upload</name>
+        <param>
+          <type>uint32_t</type>
+          <declname>imageIndex</declname>
+        </param>
+        <param>
+          <type>T &amp;</type>
+          <declname>ubo</declname>
+        </param>
+        <briefdescription>
+<para>Used to fill an image&apos;s buffer. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>imageIndex</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The image&apos;s index in the swapchain. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>ubo</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The actual uniform buffer object holding the data. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/n30/Repos/rayex/include/api/buffers/UniformBuffer.hpp" line="77" column="10" bodyfile="/home/n30/Repos/rayex/include/api/buffers/UniformBuffer.hpp" bodystart="77" bodyend="80"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+<para>A specialised buffer for uniforms. </para>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="/home/n30/Repos/rayex/include/api/buffers/UniformBuffer.hpp" line="29" column="1" bodyfile="/home/n30/Repos/rayex/include/api/buffers/UniformBuffer.hpp" bodystart="28" bodyend="86"/>
+    <listofallmembers>
+      <member refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_uniform_buffer_1a0e2225556e7e6140f92b55bb02d73e30" prot="public" virt="non-virtual"><scope>RAYEX_NAMESPACE::UniformBuffer</scope><name>bufferInfos</name></member>
+      <member refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_uniform_buffer_1a3499c71b597269d61770ba361f856e35" prot="private" virt="non-virtual"><scope>RAYEX_NAMESPACE::UniformBuffer</scope><name>buffers</name></member>
+      <member refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_uniform_buffer_1a922bda1b964d1ce9ce903107e358dcf5" prot="public" virt="non-virtual"><scope>RAYEX_NAMESPACE::UniformBuffer</scope><name>get</name></member>
+      <member refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_uniform_buffer_1a7b8a844ef078691e96fb27eee7d550a6" prot="public" virt="non-virtual"><scope>RAYEX_NAMESPACE::UniformBuffer</scope><name>getRaw</name></member>
+      <member refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_uniform_buffer_1a98859467eee532952510437766b3da4f" prot="public" virt="non-virtual"><scope>RAYEX_NAMESPACE::UniformBuffer</scope><name>init</name></member>
+      <member refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_uniform_buffer_1ae5ddd2f51f1cc616396347bda9092c47" prot="public" virt="non-virtual"><scope>RAYEX_NAMESPACE::UniformBuffer</scope><name>UniformBuffer</name></member>
+      <member refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_uniform_buffer_1a7487ed42dd2de922006db5462e05b1f1" prot="public" virt="non-virtual"><scope>RAYEX_NAMESPACE::UniformBuffer</scope><name>UniformBuffer</name></member>
+      <member refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_uniform_buffer_1ad511f2a02b2a4e341b5e0d9caa3f9338" prot="public" virt="non-virtual"><scope>RAYEX_NAMESPACE::UniformBuffer</scope><name>upload</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

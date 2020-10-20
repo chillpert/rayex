@@ -87,6 +87,10 @@ public:
             case SDLK_ESCAPE:
               return false;
 
+            case SDLK_LCTRL:
+              Key::eLeftCtrl = true;
+              break;
+
             case SDLK_SPACE: {
               if ( this->mouseVisible )
               {
@@ -127,6 +131,10 @@ public:
 
             case SDLK_LSHIFT:
               Key::eLeftShift = false;
+              break;
+
+            case SDLK_LCTRL:
+              Key::eLeftCtrl = false;
               break;
           }
           break;

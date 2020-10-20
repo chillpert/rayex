@@ -20,6 +20,10 @@ public:
     {
       currentSpeed = 10.0F;
     }
+    else if ( Key::eLeftCtrl )
+    {
+      currentSpeed = 0.5F;
+    }
     else
     {
       currentSpeed = defaultSpeed;

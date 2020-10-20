@@ -101,9 +101,9 @@ namespace RAYEX_NAMESPACE
     this->layout = g_device.createPipelineLayoutUnique( pipelineLayoutInfo );
     RX_ASSERT( this->layout, "Failed to create pipeline layout for rasterization pipeline." );
 
-    uint32_t anticipatedDirectionalLights = settings->maxDirectionalLights.has_value( ) ? settings->maxDirectionalLights.value( ) : g_maxDirectionalLights;
-    uint32_t anticipatedPointLights       = settings->maxPointLights.has_value( ) ? settings->maxPointLights.value( ) : g_maxPointLights;
-    Util::processShaderMacros( "shaders/simple3D.frag", anticipatedDirectionalLights, anticipatedPointLights, 0 );
+    //uint32_t anticipatedDirectionalLights = settings->maxDirectionalLights.has_value( ) ? settings->maxDirectionalLights.value( ) : g_maxDirectionalLights;
+    //uint32_t anticipatedPointLights       = settings->maxPointLights.has_value( ) ? settings->maxPointLights.value( ) : g_maxPointLights;
+    //Util::processShaderMacros( "shaders/simple3D.frag", anticipatedDirectionalLights, anticipatedPointLights, 0 );
 
     auto vs = vk::Initializer::initShaderModuleUnique( "shaders/simple3D.vert" );
     auto fs = vk::Initializer::initShaderModuleUnique( "shaders/simple3D.frag" );
@@ -113,6 +113,7 @@ namespace RAYEX_NAMESPACE
                                                 0,                    // offset
                                                 sizeof( uint32_t ) ); // size
 
+    /*
     std::array<uint32_t, 1> data;
     data[0] = anticipatedDirectionalLights;
 
@@ -120,11 +121,12 @@ namespace RAYEX_NAMESPACE
                                                mapEntries.data( ),                                     // pMapEntries
                                                sizeof( data ) * static_cast<uint32_t>( data.size( ) ), // dataSize
                                                data.data( ) );                                         // pData
+    */
 
     std::array<vk::PipelineShaderStageCreateInfo, 2> shaderStages;
-    shaderStages[0]                     = vk::Helper::getPipelineShaderStageCreateInfo( vk::ShaderStageFlagBits::eVertex, vs.get( ) );
-    shaderStages[1]                     = vk::Helper::getPipelineShaderStageCreateInfo( vk::ShaderStageFlagBits::eFragment, fs.get( ) );
-    shaderStages[1].pSpecializationInfo = &specializationInfo;
+    shaderStages[0] = vk::Helper::getPipelineShaderStageCreateInfo( vk::ShaderStageFlagBits::eVertex, vs.get( ) );
+    shaderStages[1] = vk::Helper::getPipelineShaderStageCreateInfo( vk::ShaderStageFlagBits::eFragment, fs.get( ) );
+    //shaderStages[1].pSpecializationInfo = &specializationInfo;
 
     vk::GraphicsPipelineCreateInfo createInfo( { },                                           // flags
                                                static_cast<uint32_t>( shaderStages.size( ) ), // stageCount
@@ -150,9 +152,9 @@ namespace RAYEX_NAMESPACE
 
   void Pipeline::init( const std::vector<vk::DescriptorSetLayout>& descriptorSetLayouts, const Settings* settings )
   {
-    uint32_t anticipatedDirectionalLights = settings->maxDirectionalLights.has_value( ) ? settings->maxDirectionalLights.value( ) : g_maxDirectionalLights;
-    uint32_t anticipatedPointLights       = settings->maxPointLights.has_value( ) ? settings->maxPointLights.value( ) : g_maxPointLights;
-    Util::processShaderMacros( "shaders/raytrace.rchit", anticipatedDirectionalLights, anticipatedPointLights, g_modelCount );
+    //uint32_t anticipatedDirectionalLights = settings->maxDirectionalLights.has_value( ) ? settings->maxDirectionalLights.value( ) : g_maxDirectionalLights;
+    //uint32_t anticipatedPointLights       = settings->maxPointLights.has_value( ) ? settings->maxPointLights.value( ) : g_maxPointLights;
+    //Util::processShaderMacros( "shaders/raytrace.rchit", anticipatedDirectionalLights, anticipatedPointLights, g_modelCount );
 
     auto rgen       = vk::Initializer::initShaderModuleUnique( "shaders/raytrace.rgen" );
     auto miss       = vk::Initializer::initShaderModuleUnique( "shaders/raytrace.rmiss" );

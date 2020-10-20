@@ -85,6 +85,7 @@ namespace RAYEX_NAMESPACE
     bool uploadGeometryInstancesToBuffer = false; ///< Keeps track of whether or not to upload the ray tracing instances to their respective buffer the next time update() is called.
     bool uploadDirectionalLightsToBuffer = false; ///< Keeps track of whether or not to upload the directional lights to their respective buffer the next time update() is called.
     bool uploadPointLightsToBuffer       = false; ///< Keeps track of whether or not to upload the point lights to their respective buffer the next time update() is called.
+    bool uploadGeometries                = false;
 
     Settings* settings = nullptr; ///< Refers to the rendering settings stored in Rayex::settings.
   };

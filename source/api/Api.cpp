@@ -132,6 +132,8 @@ namespace RAYEX_NAMESPACE
     this->pointLightsBuffer.init<PointLightSSBO>( pointLights );
 
     RX_LOG_TIME_STOP( "Finished initializing Vulkan (base)" );
+
+    RX_ASSERT( g_maxGeometries % g_physicalDeviceLimits.minStorageBufferOffsetAlignment == 0, "Max geometries does not align with min storage buffer offset. If you encounter this error, please insult the developer of this application!" );
   }
 
   void Api::initScene( )
@@ -141,19 +143,22 @@ namespace RAYEX_NAMESPACE
     // Uniform buffers for camera
     this->cameraUniformBuffer.init<CameraUbo>( );
 
-    // Init geometry storage buffers.
-    g_modelCount = static_cast<uint32_t>( this->scene->geometries.size( ) );
-
     this->vertexBuffers.resize( this->scene->geometries.size( ) );
     this->indexBuffers.resize( this->scene->geometries.size( ) );
     this->meshBuffers.resize( this->scene->geometries.size( ) );
 
     for ( size_t i = 0; i < this->scene->geometries.size( ); ++i )
     {
-      this->vertexBuffers[i].init( this->scene->geometries[i]->vertices );
-      this->indexBuffers[i].init( this->scene->geometries[i]->indices );
-      this->meshBuffers[i].init( this->scene->geometries[i]->meshes );
-      this->scene->geometries[i]->initialized = true;
+      if ( this->scene->geometries[i] != nullptr )
+      {
+        if ( !this->scene->geometries[i]->initialized )
+        {
+          this->vertexBuffers[i].init( this->scene->geometries[i]->vertices );
+          this->indexBuffers[i].init( this->scene->geometries[i]->indices );
+          this->meshBuffers[i].init( this->scene->geometries[i]->meshes );
+          this->scene->geometries[i]->initialized = true;
+        }
+      }
     }
 
     // Descriptor sets and layouts
@@ -190,6 +195,12 @@ namespace RAYEX_NAMESPACE
     updateSettings( );
 
     updateUniformBuffers( );
+
+    // Init geometry storage buffers.
+    if ( this->scene->uploadGeometries )
+    {
+      this->scene->uploadGeometries = false;
+    }
 
     if ( this->scene->uploadGeometryInstancesToBuffer )
     {
@@ -725,10 +736,10 @@ namespace RAYEX_NAMESPACE
       // Scene description buffer
       this->rtSceneDescriptors.bindings.add( 3, vk::DescriptorType::eStorageBuffer, vk::ShaderStageFlagBits::eClosestHitKHR );
       // Materials
-      this->rtSceneDescriptors.bindings.add( 4, vk::DescriptorType::eStorageBuffer, vk::ShaderStageFlagBits::eClosestHitKHR, g_modelCount, vk::DescriptorBindingFlagBits::eVariableDescriptorCount );
+      this->rtSceneDescriptors.bindings.add( 4, vk::DescriptorType::eStorageBuffer, vk::ShaderStageFlagBits::eClosestHitKHR, g_maxGeometries, vk::DescriptorBindingFlagBits::eVariableDescriptorCount );
 
       this->rtSceneDescriptors.layout = this->rtSceneDescriptors.bindings.initLayoutUnique( );
-      this->rtSceneDescriptors.pool   = this->rtSceneDescriptors.bindings.initPoolUnique( g_swapchainImageCount );
+      this->rtSceneDescriptors.pool   = this->rtSceneDescriptors.bindings.initPoolUnique( static_cast<uint32_t>( g_maxGeometryInstances ) * g_swapchainImageCount, vk::DescriptorPoolCreateFlagBits::eUpdateAfterBind );
       this->rtSceneDescriptorSets     = vk::Initializer::initDescriptorSetsUnique( this->rtSceneDescriptors.pool, this->rtSceneDescriptors.layout );
     }
 
@@ -748,19 +759,19 @@ namespace RAYEX_NAMESPACE
 
     // Vertex model data descriptor set layout.
     {
-      this->vertexDataDescriptors.bindings.add( 0, vk::DescriptorType::eStorageBuffer, vk::ShaderStageFlagBits::eClosestHitKHR, g_modelCount, vk::DescriptorBindingFlagBits::eVariableDescriptorCount );
+      this->vertexDataDescriptors.bindings.add( 0, vk::DescriptorType::eStorageBuffer, vk::ShaderStageFlagBits::eClosestHitKHR, g_maxGeometries, vk::DescriptorBindingFlagBits::eVariableDescriptorCount );
 
       this->vertexDataDescriptors.layout = this->vertexDataDescriptors.bindings.initLayoutUnique( );
-      this->vertexDataDescriptors.pool   = this->vertexDataDescriptors.bindings.initPoolUnique( static_cast<uint32_t>( g_maxGeometryInstances ) * g_swapchainImageCount );
+      this->vertexDataDescriptors.pool   = this->vertexDataDescriptors.bindings.initPoolUnique( static_cast<uint32_t>( g_maxGeometryInstances ) * g_swapchainImageCount, vk::DescriptorPoolCreateFlagBits::eUpdateAfterBind );
       this->vertexDataDescriptorSets     = vk::Initializer::initDescriptorSetsUnique( this->vertexDataDescriptors.pool, this->vertexDataDescriptors.layout );
     }
 
     // Index model data descriptor set layout.
     {
-      this->indexDataDescriptors.bindings.add( 0, vk::DescriptorType::eStorageBuffer, vk::ShaderStageFlagBits::eClosestHitKHR, g_modelCount, vk::DescriptorBindingFlagBits::eVariableDescriptorCount );
+      this->indexDataDescriptors.bindings.add( 0, vk::DescriptorType::eStorageBuffer, vk::ShaderStageFlagBits::eClosestHitKHR, g_maxGeometries, vk::DescriptorBindingFlagBits::eVariableDescriptorCount );
 
       this->indexDataDescriptors.layout = this->indexDataDescriptors.bindings.initLayoutUnique( );
-      this->indexDataDescriptors.pool   = this->indexDataDescriptors.bindings.initPoolUnique( static_cast<uint32_t>( g_maxGeometryInstances ) * g_swapchainImageCount );
+      this->indexDataDescriptors.pool   = this->indexDataDescriptors.bindings.initPoolUnique( static_cast<uint32_t>( g_maxGeometryInstances ) * g_swapchainImageCount, vk::DescriptorPoolCreateFlagBits::eUpdateAfterBind );
       this->indexDataDescriptorSets     = vk::Initializer::initDescriptorSetsUnique( this->indexDataDescriptors.pool, this->indexDataDescriptors.layout );
     }
   }
@@ -835,13 +846,26 @@ namespace RAYEX_NAMESPACE
                                               0,
                                               VK_WHOLE_SIZE );
 
-    for ( const auto& buffer : this->meshBuffers )
-    {
-      vk::DescriptorBufferInfo meshDataBufferInfo( buffer.get( ),
-                                                   0,
-                                                   VK_WHOLE_SIZE );
+    RX_ASSERT( meshBuffers.size( ) < g_maxGeometries, "Can not bind more than ", g_maxGeometries, " meshes." );
 
-      this->meshDataBufferInfos.push_back( meshDataBufferInfo );
+    for ( size_t i = 0; i < g_maxGeometries; ++i )
+    {
+      if ( i < meshBuffers.size( ) )
+      {
+        vk::DescriptorBufferInfo meshDataBufferInfo( meshBuffers[i].get( ),
+                                                     0,
+                                                     VK_WHOLE_SIZE );
+
+        this->meshDataBufferInfos.push_back( meshDataBufferInfo );
+      }
+      else
+      {
+        vk::DescriptorBufferInfo meshDataBufferInfo( nullptr,
+                                                     0,
+                                                     VK_WHOLE_SIZE );
+
+        this->meshDataBufferInfos.push_back( meshDataBufferInfo );
+      }
     }
 
     // Update RT scene descriptor sets.
@@ -862,23 +886,34 @@ namespace RAYEX_NAMESPACE
 
   void Api::updateRayTracingModelData( )
   {
+    RX_ASSERT( this->scene->geometries.size( ) < g_maxGeometries, "Can not bind more than ", g_maxGeometries, " geometries." );
+
     // Update RT model data.
-    for ( const auto& buffer : this->vertexBuffers )
+    for ( size_t i = 0; i < g_maxGeometries; ++i )
     {
-      vk::DescriptorBufferInfo vertexDataBufferInfo( buffer.get( ),
-                                                     0,
-                                                     VK_WHOLE_SIZE );
+      if ( i < vertexBuffers.size( ) )
+      {
+        vk::DescriptorBufferInfo vertexDataBufferInfo( this->vertexBuffers[i].get( ),
+                                                       0,
+                                                       VK_WHOLE_SIZE );
 
-      this->vertexDataBufferInfos.push_back( vertexDataBufferInfo );
-    }
+        this->vertexDataBufferInfos.push_back( vertexDataBufferInfo );
 
-    for ( const auto& buffer : this->indexBuffers )
-    {
-      vk::DescriptorBufferInfo indexDataBufferInfo( buffer.get( ),
-                                                    0,
-                                                    VK_WHOLE_SIZE );
+        vk::DescriptorBufferInfo indexDataBufferInfo( this->indexBuffers[i].get( ),
+                                                      0,
+                                                      VK_WHOLE_SIZE );
 
-      this->indexDataBufferInfos.push_back( indexDataBufferInfo );
+        this->indexDataBufferInfos.push_back( indexDataBufferInfo );
+      }
+      else
+      {
+        vk::DescriptorBufferInfo bufferInfo( nullptr,
+                                             0,
+                                             VK_WHOLE_SIZE );
+
+        this->vertexDataBufferInfos.push_back( bufferInfo );
+        this->indexDataBufferInfos.push_back( bufferInfo );
+      }
     }
 
     this->vertexDataDescriptors.bindings.writeArray( this->vertexDataDescriptorSets, 0, this->vertexDataBufferInfos.data( ) );

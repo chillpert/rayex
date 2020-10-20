@@ -57,7 +57,7 @@ private:
         auto awp       = this->renderer->scene.findGeometry( "models/awpdlore/awpdlore.obj" );
         auto transform = glm::scale( glm::mat4( 1.0F ), glm::vec3( 0.3F, 0.3F, 0.3F ) );
         transform      = glm::rotate( transform, getRandomFloat( 0.0F, 360.0F ), glm::vec3( 0.0F, 1.0F, 0.0F ) );
-        transform      = glm::translate( transform, getRandomUniquePosition( -30.0F, 30.0F ) );
+        transform      = glm::translate( transform, getRandomUniquePosition( -10.0F, 10.0F ) );
 
         auto awpInstance = rx::instance( awp, transform );
         this->renderer->scene.submitGeometryInstance( awpInstance );

@@ -142,12 +142,26 @@ namespace RAYEX_NAMESPACE
 
   void Scene::submitGeometry( std::shared_ptr<Geometry> geometry )
   {
+    if ( this->geometries.size( ) >= g_maxGeometryInstances - 1 )
+    {
+      RX_ERROR( "Failed to add geometry. You have exceeded the maximum amount of geometry supported." );
+      return;
+    }
+
     this->geometries.push_back( geometry );
+    this->uploadGeometries = true;
   }
 
   void Scene::setGeometries( const std::vector<std::shared_ptr<Geometry>>& geometries )
   {
-    this->geometries = geometries;
+    if ( this->geometries.size( ) >= g_maxGeometryInstances )
+    {
+      RX_ERROR( "Failed to set geometries. You have exceeded the maximum amount of geometry supported." );
+      return;
+    }
+
+    this->geometries       = geometries;
+    this->uploadGeometries = true;
   }
 
   auto Scene::findGeometry( std::string_view path ) const -> std::shared_ptr<Geometry>

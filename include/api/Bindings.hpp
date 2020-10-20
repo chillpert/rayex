@@ -21,7 +21,7 @@ namespace RAYEX_NAMESPACE
 
     /// Used to initialize a unique descriptor set layout.
     /// @return Returns a descriptor set layout with a unqiue handle.
-    auto initLayoutUnique( ) -> vk::UniqueDescriptorSetLayout;
+    auto initLayoutUnique( vk::DescriptorSetLayoutCreateFlags flags = { } ) -> vk::UniqueDescriptorSetLayout;
 
     /// Used to initialize a descriptor pool.
     /// @param maxSets The maximum amount of descriptor sets that can be allocated from the pool.

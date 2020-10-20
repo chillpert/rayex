@@ -498,6 +498,8 @@ namespace vk::Initializer
     indexingFeatures.shaderStorageBufferArrayNonUniformIndexing = VK_TRUE;
     indexingFeatures.descriptorBindingVariableDescriptorCount   = VK_TRUE;
     indexingFeatures.descriptorBindingPartiallyBound            = VK_TRUE;
+    //indexingFeatures.descriptorBindingStorageBufferUpdateAfterBind = VK_TRUE;
+    //indexingFeatures.descriptorBindingStorageImageUpdateAfterBind  = VK_TRUE;
 
     PhysicalDeviceRobustness2FeaturesEXT robustness2FeaturesEXT;
     robustness2FeaturesEXT.nullDescriptor = VK_TRUE;

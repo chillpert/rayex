@@ -74,7 +74,7 @@ layout( push_constant ) uniform Constants
 
   uint directionalLightCount;
   uint pointLightCount;
-  float padding2;
+  float padding0;
 };
 
 Vertex unpack( uint index, uint modelIndex )

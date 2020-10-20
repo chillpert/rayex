@@ -32,9 +32,9 @@ layout( push_constant ) uniform Constants
   bool jitterCamEnabled;
   bool ssaaEnabled;
 
+  uint directionalLightCount;
+  uint pointLightCount;
   float padding0;
-  float padding1;
-  float padding2;
 };
 
 void rayTrace( vec2 positionWithinPixel )

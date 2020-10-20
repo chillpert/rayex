@@ -153,6 +153,7 @@ namespace RAYEX_NAMESPACE
       this->vertexBuffers[i].init( this->scene->geometries[i]->vertices );
       this->indexBuffers[i].init( this->scene->geometries[i]->indices );
       this->meshBuffers[i].init( this->scene->geometries[i]->meshes );
+      this->scene->geometries[i]->initialized = true;
     }
 
     // Descriptor sets and layouts
@@ -194,7 +195,7 @@ namespace RAYEX_NAMESPACE
     {
       this->scene->uploadGeometryInstancesToBuffer = false;
 
-      if ( this->scene->geometryInstances.size( ) > 0 )
+      if ( !this->scene->geometryInstances.empty( ) )
       {
         // Dereference pointers and store values in new vector that will be uploaded.
         dereferencedGeometryInstances.resize( this->scene->geometryInstances.size( ) );
@@ -212,7 +213,7 @@ namespace RAYEX_NAMESPACE
     {
       this->scene->uploadDirectionalLightsToBuffer = false;
 
-      if ( this->scene->directionalLights.size( ) > 0 )
+      if ( !this->scene->directionalLights.empty( ) )
       {
         dereferencedDirectionalLights.resize( this->scene->directionalLights.size( ) );
         std::transform( this->scene->directionalLights.begin( ),
@@ -231,7 +232,7 @@ namespace RAYEX_NAMESPACE
     {
       this->scene->uploadPointLightsToBuffer = false;
 
-      if ( this->scene->pointLights.size( ) > 0 )
+      if ( !this->scene->pointLights.empty( ) )
       {
         dereferencedPointLights.resize( this->scene->pointLights.size( ) );
         std::transform( this->scene->pointLights.begin( ),
@@ -249,7 +250,9 @@ namespace RAYEX_NAMESPACE
     if ( this->settings->getJitterCamEnabled( ) )
     {
       if ( g_frameCount >= this->settings->jitterCamSampleRate )
+      {
         return;
+      }
 
       // Increment frame counter for jitter cam.
       ++g_frameCount;
@@ -639,10 +642,10 @@ namespace RAYEX_NAMESPACE
 
   void Api::rayTrace( )
   {
-    uint32_t directionalLightCount = static_cast<uint32_t>( this->scene->directionalLights.size( ) );
-    uint32_t pointLightCount       = static_cast<uint32_t>( this->scene->pointLights.size( ) );
+    auto directionalLightCount = static_cast<uint32_t>( this->scene->directionalLights.size( ) );
+    auto pointLightCount       = static_cast<uint32_t>( this->scene->pointLights.size( ) );
 
-    // Start recording the swapchain framebuffers
+    // Start recording the swapchain framebuffers?
     for ( size_t imageIndex = 0; imageIndex < this->swapchainCommandBuffers.get( ).size( ); ++imageIndex )
     {
       this->swapchainCommandBuffers.begin( imageIndex );
@@ -651,8 +654,8 @@ namespace RAYEX_NAMESPACE
                                        g_frameCount,
                                        this->settings->getJitterCamSampleRatePerRayGen( ),
                                        this->settings->getSsaaSampleRate( ),
-                                       this->settings->getJitterCamEnabled( ),
-                                       this->settings->getSsaaEnabled( ),
+                                       static_cast<uint32_t>( this->settings->getJitterCamEnabled( ) ),
+                                       static_cast<uint32_t>( this->settings->getSsaaEnabled( ) ),
                                        directionalLightCount,
                                        pointLightCount };
 
@@ -885,7 +888,7 @@ namespace RAYEX_NAMESPACE
     this->indexDataDescriptors.bindings.update( );
   }
 
-  std::shared_ptr<Geometry> Api::findGeometry( uint32_t geometryIndex )
+  auto Api::findGeometry( uint32_t geometryIndex ) -> std::shared_ptr<Geometry>
   {
     for ( std::shared_ptr<Geometry> geometry : this->scene->geometries )
     {

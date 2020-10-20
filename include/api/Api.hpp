@@ -36,7 +36,6 @@ namespace RAYEX_NAMESPACE
     Api( ) = default;
     RX_API ~Api( );
 
-  private:
     /// @param window A pointer to a window object that the API will use to display an image.
     /// @param camera A pointer to a camera object that will be used to "capture" the scene.
     Api( std::shared_ptr<Window> window, std::shared_ptr<Camera> camera );
@@ -46,6 +45,7 @@ namespace RAYEX_NAMESPACE
     auto operator=( const Api& ) -> Api& = delete;
     auto operator=( const Api && ) -> Api& = delete;
 
+  private:
     /// Used to set the GUI that will be used.
     ///
     /// The GUI can be changed at runtime. This enables the user to swap between different pre-built GUIs on the fly.
@@ -88,8 +88,6 @@ namespace RAYEX_NAMESPACE
     /// Creates a descriptor set layout for each the ray tracing components and the models.
     void initDescriptorSets( );
 
-    void initModelBuffers( );
-
     /// Updates scene descriptors for camera, lights and ray tracing instances.
     void updateSceneDescriptors( );
 
@@ -117,7 +115,10 @@ namespace RAYEX_NAMESPACE
     /// Records ray tracing calls to the swapchain command buffers.
     void rayTrace( );
 
-    std::shared_ptr<Geometry> findGeometry( uint32_t geometryIndex );
+    /// Used to retrieve a geometry based on its index.
+    /// @param geometryIndex The geometry's index.
+    /// @return Returns the geometry.
+    auto findGeometry( uint32_t geometryIndex ) -> std::shared_ptr<Geometry>;
 
     std::shared_ptr<Window> window = nullptr;                  ///< A pointer to a RAYEX_NAMESPACE::Window object whose surface is going to be rendered to.
     std::shared_ptr<Camera> camera = nullptr;                  ///< A pointer to a RAYEX_NAMESPACE::Camera object whose matrices will be used for rendering.

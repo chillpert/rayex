@@ -16,5 +16,4 @@ file(GLOB FILES_LIB
 
   # ImGui files
   "${PROJECT_SOURCE_DIR}/source/external/ImGui/*.cpp"
-  "${PROJECT_SOURCE_DIR}/source/external/tinyLogger/*.cpp"
 )

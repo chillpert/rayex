@@ -45,7 +45,7 @@
 #define RX_ERROR( ... )   LOGGER_NAME::error( RAYEX_NAMESPACE_STRINGIFIED, ": ", __VA_ARGS__ )
 #define RX_FATAL( ... )   LOGGER_NAME::fatal( RAYEX_NAMESPACE_STRINGIFIED, ": ", __VA_ARGS__ )
 // Using redundant boolean literal in ternary expression to support vulkan object error check.
-#define RX_ASSERT( statement, ... ) LOGGER_NAME::assert2( statement ? true : false, RAYEX_NAMESPACE_STRINGIFIED, ": ", __VA_ARGS__ )
+#define RX_ASSERT( statement, ... ) LOGGER_NAME::assert2( statement, RAYEX_NAMESPACE_STRINGIFIED, ": ", __VA_ARGS__ )
 
 #define RX_LOG_TIME_START( ... )      \
   std::cout << std::endl;             \

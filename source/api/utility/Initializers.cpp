@@ -17,7 +17,7 @@ namespace vk::Initializer
     FenceCreateInfo createInfo( flags );
 
     UniqueFence fence = RAYEX_NAMESPACE::components::device.createFenceUnique( createInfo );
-    RX_ASSERT( fence, "Failed to create fence." );
+    RX_ASSERT( fence.get( ), "Failed to create fence." );
 
     return fence;
   }
@@ -37,7 +37,7 @@ namespace vk::Initializer
     SemaphoreCreateInfo createInfo( flags );
 
     UniqueSemaphore semaphore = RAYEX_NAMESPACE::components::device.createSemaphoreUnique( createInfo );
-    RX_ASSERT( semaphore, "Failed to create semaphore." );
+    RX_ASSERT( semaphore.get( ), "Failed to create semaphore." );
 
     return semaphore;
   }
@@ -57,7 +57,7 @@ namespace vk::Initializer
     CommandPoolCreateInfo createInfo( flags, queueFamilyIndex );
 
     UniqueCommandPool commandPool = RAYEX_NAMESPACE::components::device.createCommandPoolUnique( createInfo );
-    RX_ASSERT( commandPool, "Failed to create command pool." );
+    RX_ASSERT( commandPool.get( ), "Failed to create command pool." );
 
     return commandPool;
   }
@@ -80,7 +80,7 @@ namespace vk::Initializer
                                          poolSizes.data( ) );                        // pPoolSizes
 
     UniqueDescriptorPool descriptorPool = RAYEX_NAMESPACE::components::device.createDescriptorPoolUnique( createInfo );
-    RX_ASSERT( descriptorPool, "Failed to create descriptor pool." );
+    RX_ASSERT( descriptorPool.get( ), "Failed to create descriptor pool." );
 
     return descriptorPool;
   }
@@ -116,7 +116,7 @@ namespace vk::Initializer
     allocateInfo.pNext = pNext;
 
     UniqueDeviceMemory memory = RAYEX_NAMESPACE::components::device.allocateMemoryUnique( allocateInfo );
-    RX_ASSERT( memory, "Failed to create memory for image." );
+    RX_ASSERT( memory.get( ), "Failed to create memory for image." );
 
     RAYEX_NAMESPACE::components::device.bindImageMemory( image, memory.get( ), 0 );
 
@@ -150,7 +150,7 @@ namespace vk::Initializer
     allocateInfo.pNext = pNext;
 
     UniqueDeviceMemory memory = RAYEX_NAMESPACE::components::device.allocateMemoryUnique( allocateInfo );
-    RX_ASSERT( memory, "Failed to create memory for image." );
+    RX_ASSERT( memory.get( ), "Failed to create memory for image." );
 
     RAYEX_NAMESPACE::components::device.bindBufferMemory( buffer, memory.get( ), 0 );
 
@@ -230,7 +230,7 @@ namespace vk::Initializer
                                     subresourceRange ); // subresourceRange
 
     UniqueImageView imageView = RAYEX_NAMESPACE::components::device.createImageViewUnique( createInfo );
-    RX_ASSERT( imageView, "Failed to create image view." );
+    RX_ASSERT( imageView.get( ), "Failed to create image view." );
 
     return imageView;
   }
@@ -268,7 +268,7 @@ namespace vk::Initializer
   auto initSamplerUnique( const SamplerCreateInfo& createInfo ) -> UniqueSampler
   {
     UniqueSampler sampler = RAYEX_NAMESPACE::components::device.createSamplerUnique( createInfo );
-    RX_ASSERT( sampler, "Failed to create sampler." );
+    RX_ASSERT( sampler.get( ), "Failed to create sampler." );
 
     return sampler;
   }
@@ -292,7 +292,7 @@ namespace vk::Initializer
                                       1U );                                         // layers
 
     UniqueFramebuffer framebuffer = RAYEX_NAMESPACE::components::device.createFramebufferUnique( createInfo );
-    RX_ASSERT( framebuffer, "Failed to create framebuffer." );
+    RX_ASSERT( framebuffer.get( ), "Failed to create framebuffer." );
 
     return framebuffer;
   }
@@ -321,7 +321,7 @@ namespace vk::Initializer
                                     { } ); // pipelineStatistics
 
     UniqueQueryPool queryPool = RAYEX_NAMESPACE::components::device.createQueryPoolUnique( createInfo );
-    RX_ASSERT( queryPool, "Failed to create query pool." );
+    RX_ASSERT( queryPool.get( ), "Failed to create query pool." );
 
     return queryPool;
   }
@@ -348,7 +348,7 @@ namespace vk::Initializer
                                        reinterpret_cast<const uint32_t*>( source.data( ) ) ); // pCode
 
     UniqueShaderModule shaderModule = RAYEX_NAMESPACE::components::device.createShaderModuleUnique( createInfo );
-    RX_ASSERT( shaderModule, "Failed to create shader module." );
+    RX_ASSERT( shaderModule.get( ), "Failed to create shader module." );
 
     return shaderModule;
   }
@@ -534,7 +534,7 @@ namespace vk::Initializer
 
     UniqueDevice device                 = RAYEX_NAMESPACE::components::physicalDevice.createDeviceUnique( createInfo );
     RAYEX_NAMESPACE::components::device = device.get( );
-    RX_ASSERT( device, "Failed to create logical device." );
+    RX_ASSERT( device.get( ), "Failed to create logical device." );
     VULKAN_HPP_DEFAULT_DISPATCHER.init( device.get( ) );
 
     return std::move( device );
@@ -590,7 +590,7 @@ namespace vk::Initializer
 
     instance                              = createInstanceUnique( createInfo );
     RAYEX_NAMESPACE::components::instance = instance.get( );
-    RX_ASSERT( instance, "Failed to create instance." );
+    RX_ASSERT( instance.get( ), "Failed to create instance." );
     VULKAN_HPP_DEFAULT_DISPATCHER.init( instance.get( ) );
 
     return std::move( instance );

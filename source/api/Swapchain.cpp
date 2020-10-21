@@ -101,7 +101,7 @@ namespace RAYEX_NAMESPACE
     createInfo.presentMode = surface->getPresentMode( );
 
     _swapchain = components::device.createSwapchainKHRUnique( createInfo );
-    RX_ASSERT( _swapchain, "Failed to create swapchain" );
+    RX_ASSERT( _swapchain.get( ), "Failed to create swapchain" );
     components::swapchain = _swapchain.get( );
 
     initImages( minImageCount, surface->getFormat( ) );

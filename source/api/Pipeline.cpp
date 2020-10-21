@@ -99,7 +99,7 @@ namespace RAYEX_NAMESPACE
                                                      &pushConstantRangeMissKHR );                           // pPushConstantRanges
 
     _layout = components::device.createPipelineLayoutUnique( pipelineLayoutInfo );
-    RX_ASSERT( _layout, "Failed to create pipeline layout for rasterization pipeline." );
+    RX_ASSERT( _layout.get( ), "Failed to create pipeline layout for rasterization pipeline." );
 
     //uint32_t anticipatedDirectionalLights = settings->maxDirectionalLights.has_value( ) ? settings->maxDirectionalLights.value( ) : components::maxDirectionalLights;
     //uint32_t anticipatedPointLights       = settings->maxPointLights.has_value( ) ? settings->maxPointLights.value( ) : components::maxPointLights;
@@ -147,6 +147,6 @@ namespace RAYEX_NAMESPACE
                                                0 );                                           // basePipelineIndex
 
     _pipeline = components::device.createGraphicsPipelineUnique( nullptr, createInfo, nullptr );
-    RX_ASSERT( _pipeline, "Failed to create rasterization pipeline." );
+    RX_ASSERT( _pipeline.get( ), "Failed to create rasterization pipeline." );
   }
 } // namespace RAYEX_NAMESPACE

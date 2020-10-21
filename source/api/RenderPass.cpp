@@ -15,7 +15,7 @@ namespace RAYEX_NAMESPACE
                                          dependencies.data( ) );                        // pDependencies
 
     _renderPass = components::device.createRenderPassUnique( createInfo );
-    RX_ASSERT( _renderPass, "Failed to create render pass." );
+    RX_ASSERT( _renderPass.get( ), "Failed to create render pass." );
   }
 
   void RenderPass::begin( vk::Framebuffer framebuffer, vk::CommandBuffer commandBuffer, vk::Rect2D renderArea, const std::vector<vk::ClearValue>& clearValues ) const

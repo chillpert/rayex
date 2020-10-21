@@ -39,7 +39,7 @@ namespace RAYEX_NAMESPACE
     createInfo.pNext = &layoutFlags;
 
     auto layout = components::device.createDescriptorSetLayoutUnique( createInfo );
-    RX_ASSERT( layout, "Failed to create descriptor set layout." );
+    RX_ASSERT( layout.get( ), "Failed to create descriptor set layout." );
 
     return std::move( layout );
   }
@@ -72,7 +72,7 @@ namespace RAYEX_NAMESPACE
                                              tPoolSizes.data( ) );                        // pPoolSizes
 
     auto pool = components::device.createDescriptorPoolUnique( createInfo );
-    RX_ASSERT( pool, "Failed to create descriptor pool." );
+    RX_ASSERT( pool.get( ), "Failed to create descriptor pool." );
 
     return std::move( pool );
   }

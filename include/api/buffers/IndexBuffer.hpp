@@ -46,7 +46,7 @@ namespace RAYEX_NAMESPACE
     }
 
   private:
-    uint32_t _count; ///< The amount of indices in the buffer.
+    uint32_t _count = 0; ///< The amount of indices in the buffer.
   };
 } // namespace RAYEX_NAMESPACE
 

@@ -499,7 +499,7 @@ namespace RAYEX_NAMESPACE
                                              pushConstantRanges.data( ) );                          // pPushConstantRanges
 
     _layout = components::device.createPipelineLayoutUnique( layoutInfo );
-    RX_ASSERT( _layout, "Failed to create pipeline layout for ray tracing pipeline." );
+    RX_ASSERT( _layout.get( ), "Failed to create pipeline layout for ray tracing pipeline." );
 
     std::array<vk::PipelineShaderStageCreateInfo, 4> shaderStages;
     shaderStages[0] = vk::Helper::getPipelineShaderStageCreateInfo( vk::ShaderStageFlagBits::eRaygenKHR, rgen.get( ) );
@@ -545,7 +545,7 @@ namespace RAYEX_NAMESPACE
                                                     0 );                                           // basePipelineIndex
 
     _pipeline = components::device.createRayTracingPipelineKHRUnique( nullptr, createInfo );
-    RX_ASSERT( _pipeline, "Failed to create ray tracing pipeline." );
+    RX_ASSERT( _pipeline.get( ), "Failed to create ray tracing pipeline." );
   }
 
   void RayTracingBuilder::rayTrace( vk::CommandBuffer swapchainCommandBuffer, vk::Image swapchainImage, vk::Extent2D extent )

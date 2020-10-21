@@ -39,7 +39,7 @@ namespace RAYEX_NAMESPACE
                                      queueFamilyIndices.data( ) );                        // pQueueFamilyIndices
 
     _buffer = components::device.createBufferUnique( createInfo );
-    RX_ASSERT( _buffer, "Failed to create buffer." );
+    RX_ASSERT( _buffer.get( ), "Failed to create buffer." );
 
     _memory = vk::Initializer::allocateMemoryUnique( _buffer.get( ), memoryPropertyFlags, pNextMemory );
   }

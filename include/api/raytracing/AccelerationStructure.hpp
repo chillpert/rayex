@@ -17,10 +17,10 @@ namespace RAYEX_NAMESPACE
     void destroy( )
     {
       if ( as )
-        g_device.destroyAccelerationStructureKHR( as );
+        components::device.destroyAccelerationStructureKHR( as );
 
       if ( memory )
-        g_device.freeMemory( memory );
+        components::device.freeMemory( memory );
     }
   };
 

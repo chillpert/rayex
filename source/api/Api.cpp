@@ -43,7 +43,7 @@ namespace RAYEX_NAMESPACE
 
   Api::~Api( )
   {
-    g_device.waitIdle( );
+    components::device.waitIdle( );
 
     // Gui needs to be destroyed manually, as RAII destruction will not be possible.
     if ( _gui != nullptr )
@@ -94,8 +94,8 @@ namespace RAYEX_NAMESPACE
     _device = vk::Initializer::initDevice( deviceExtensions );
 
     // Retrieve all queue handles.
-    g_device.getQueue( g_graphicsFamilyIndex, 0, &g_graphicsQueue );
-    g_device.getQueue( g_transferFamilyIndex, 0, &g_transferQueue );
+    components::device.getQueue( components::graphicsFamilyIndex, 0, &components::graphicsQueue );
+    components::device.getQueue( components::transferFamilyIndex, 0, &components::transferQueue );
 
     // Render pass
     initRenderPass( );
@@ -105,11 +105,11 @@ namespace RAYEX_NAMESPACE
     _settings->_refreshSwapchain = false;
 
     // Command pools
-    _graphicsCmdPool  = vk::Initializer::initCommandPoolUnique( g_graphicsFamilyIndex, vk::CommandPoolCreateFlagBits::eResetCommandBuffer );
-    g_graphicsCmdPool = _graphicsCmdPool.get( );
+    _graphicsCmdPool            = vk::Initializer::initCommandPoolUnique( components::graphicsFamilyIndex, vk::CommandPoolCreateFlagBits::eResetCommandBuffer );
+    components::graphicsCmdPool = _graphicsCmdPool.get( );
 
-    _transferCmdPool  = vk::Initializer::initCommandPoolUnique( g_transferFamilyIndex, { } );
-    g_transferCmdPool = _transferCmdPool.get( );
+    _transferCmdPool            = vk::Initializer::initCommandPoolUnique( components::transferFamilyIndex, { } );
+    components::transferCmdPool = _transferCmdPool.get( );
 
     // GUI
     initGui( );
@@ -119,15 +119,15 @@ namespace RAYEX_NAMESPACE
 
     // At this point nodes are unknown. So I just create a storage buffer with the maximum value or with the anticipated value in settings.
     // enables the user to add more nodes later on during runtime.
-    uint32_t maxInstanceCount = _settings->_maxGeometryInstances.has_value( ) ? _settings->_maxGeometryInstances.value( ) : g_maxGeometryInstances;
+    uint32_t maxInstanceCount = _settings->_maxGeometryInstances.has_value( ) ? _settings->_maxGeometryInstances.value( ) : components::maxGeometryInstances;
     std::vector<GeometryInstance> geometryInstances( maxInstanceCount );
     _geometryInstancesBuffer.init<GeometryInstance>( geometryInstances );
 
-    uint32_t maxDirectionalLightCount = _settings->_maxDirectionalLights.has_value( ) ? _settings->_maxDirectionalLights.value( ) : g_maxDirectionalLights;
+    uint32_t maxDirectionalLightCount = _settings->_maxDirectionalLights.has_value( ) ? _settings->_maxDirectionalLights.value( ) : components::maxDirectionalLights;
     std::vector<DirectionalLightSSBO> directionalLights( maxDirectionalLightCount );
     _directionalLightsBuffer.init<DirectionalLightSSBO>( directionalLights );
 
-    uint32_t maxPointLightCount = _settings->_maxPointLights.has_value( ) ? _settings->_maxPointLights.value( ) : g_maxPointLights;
+    uint32_t maxPointLightCount = _settings->_maxPointLights.has_value( ) ? _settings->_maxPointLights.value( ) : components::maxPointLights;
     std::vector<PointLightSSBO> pointLights( maxPointLightCount );
     _pointLightsBuffer.init<PointLightSSBO>( pointLights );
 
@@ -141,9 +141,9 @@ namespace RAYEX_NAMESPACE
     // Uniform buffers for camera
     _cameraUniformBuffer.init<CameraUbo>( );
 
-    _vertexBuffers.resize( g_maxGeometries );
-    _indexBuffers.resize( g_maxGeometries );
-    _meshBuffers.resize( g_maxGeometries );
+    _vertexBuffers.resize( components::maxGeometries );
+    _indexBuffers.resize( components::maxGeometries );
+    _meshBuffers.resize( components::maxGeometries );
 
     for ( size_t i = 0; i < _scene->_geometries.size( ); ++i )
     {
@@ -182,7 +182,7 @@ namespace RAYEX_NAMESPACE
 
     // Init and record swapchain command buffers.
     //_swapchainCommandBuffers.reset( );
-    _swapchainCommandBuffers.init( _graphicsCmdPool.get( ), g_swapchainImageCount, vk::CommandBufferUsageFlagBits::eRenderPassContinue );
+    _swapchainCommandBuffers.init( _graphicsCmdPool.get( ), components::swapchainImageCount, vk::CommandBufferUsageFlagBits::eRenderPassContinue );
     recordSwapchainCommandBuffers( );
 
     RX_LOG_TIME_STOP( "Finished initializing Vulkan (scene)" );
@@ -258,13 +258,13 @@ namespace RAYEX_NAMESPACE
 
     if ( _settings->getJitterCamEnabled( ) )
     {
-      if ( g_frameCount >= _settings->_jitterCamSampleRate )
+      if ( components::frameCount >= _settings->_jitterCamSampleRate )
       {
         return;
       }
 
       // Increment frame counter for jitter cam.
-      ++g_frameCount;
+      ++components::frameCount;
     }
   }
 
@@ -289,7 +289,7 @@ namespace RAYEX_NAMESPACE
     _swapchain.acquireNextImage( _imageAvailableSemaphores[currentFrame].get( ), nullptr );
 
     // Wait for the current frame's fences.
-    vk::Result result = g_device.waitForFences( 1, &_inFlightFences[currentFrame].get( ), VK_TRUE, UINT64_MAX );
+    vk::Result result = components::device.waitForFences( 1, &_inFlightFences[currentFrame].get( ), VK_TRUE, UINT64_MAX );
     RX_ASSERT( result == vk::Result::eSuccess, "Failed to wait for fences." );
 
     return false;
@@ -302,7 +302,7 @@ namespace RAYEX_NAMESPACE
     // Check if a previous frame is using the current image.
     if ( _imagesInFlight[imageIndex] )
     {
-      vk::Result result = g_device.waitForFences( 1, &_imagesInFlight[currentFrame], VK_TRUE, UINT64_MAX );
+      vk::Result result = components::device.waitForFences( 1, &_imagesInFlight[currentFrame], VK_TRUE, UINT64_MAX );
       RX_ASSERT( result == vk::Result::eSuccess, "Failed to wait for fences." );
     }
 
@@ -317,19 +317,19 @@ namespace RAYEX_NAMESPACE
     }
 
     // Reset the signaled state of the current frame's fence to the unsignaled one.
-    g_device.resetFences( 1, &_inFlightFences[currentFrame].get( ) );
+    components::device.resetFences( 1, &_inFlightFences[currentFrame].get( ) );
 
     // Submits / executes the current image's / framebuffer's command buffer.
     auto pWaitDstStageMask = vk::PipelineStageFlagBits::eColorAttachmentOutput;
     auto submitInfo        = vk::Helper::getSubmitInfo( _imageAvailableSemaphores[currentFrame].get( ), _finishedRenderSemaphores[currentFrame].get( ), commandBuffers, pWaitDstStageMask );
-    g_graphicsQueue.submit( submitInfo, _inFlightFences[currentFrame].get( ) );
+    components::graphicsQueue.submit( submitInfo, _inFlightFences[currentFrame].get( ) );
 
     // Tell the presentation engine that the current image is ready.
     auto presentInfo = vk::Helper::getPresentInfoKHR( _finishedRenderSemaphores[currentFrame].get( ), imageIndex );
 
     try
     {
-      vk::Result result = g_graphicsQueue.presentKHR( presentInfo );
+      vk::Result result = components::graphicsQueue.presentKHR( presentInfo );
       if ( result == vk::Result::eErrorOutOfDateKHR || result == vk::Result::eSuboptimalKHR )
       {
         _needSwapchainRecreate = true;
@@ -361,7 +361,7 @@ namespace RAYEX_NAMESPACE
     }
 
     // Wait for previous frame to finish command buffer execution.
-    vk::Result result = g_device.waitForFences( 1, &_inFlightFences[prevFrame].get( ), VK_TRUE, UINT64_MAX );
+    vk::Result result = components::device.waitForFences( 1, &_inFlightFences[prevFrame].get( ), VK_TRUE, UINT64_MAX );
     RX_ASSERT( result == vk::Result::eSuccess, "Failed to wait for fences." );
     recordSwapchainCommandBuffers( );
 
@@ -382,7 +382,7 @@ namespace RAYEX_NAMESPACE
   {
     RX_LOG_TIME_START( "Re-creating swapchain ..." );
 
-    g_device.waitIdle( );
+    components::device.waitIdle( );
 
     // Clean up existing swapchain and dependencies.
     _swapchainCommandBuffers.free( );
@@ -406,7 +406,7 @@ namespace RAYEX_NAMESPACE
     _rtDescriptors.bindings.update( );
 
     // Swapchain command buffers
-    _swapchainCommandBuffers.init( _graphicsCmdPool.get( ), g_swapchainImageCount, vk::CommandBufferUsageFlagBits::eRenderPassContinue );
+    _swapchainCommandBuffers.init( _graphicsCmdPool.get( ), components::swapchainImageCount, vk::CommandBufferUsageFlagBits::eRenderPassContinue );
     recordSwapchainCommandBuffers( );
 
     if ( _gui != nullptr )
@@ -479,7 +479,7 @@ namespace RAYEX_NAMESPACE
     vk::AttachmentReference colorAttachmentReference( 0,                                          // attachment
                                                       vk::ImageLayout::eColorAttachmentOptimal ); // layout
 
-    auto depthAttachmentDescription = vk::Helper::getDepthAttachmentDescription( getSupportedDepthFormat( g_physicalDevice ) );
+    auto depthAttachmentDescription = vk::Helper::getDepthAttachmentDescription( getSupportedDepthFormat( components::physicalDevice ) );
 
     vk::AttachmentReference depthAttachmentRef( 1,                                                 // attachment
                                                 vk::ImageLayout::eDepthStencilAttachmentOptimal ); // layout
@@ -660,7 +660,7 @@ namespace RAYEX_NAMESPACE
       _swapchainCommandBuffers.begin( imageIndex );
 
       RayTracePushConstants chitPc = { _settings->getClearColor( ),
-                                       g_frameCount,
+                                       components::frameCount,
                                        _settings->getJitterCamSampleRatePerRayGen( ),
                                        _settings->getSsaaSampleRate( ),
                                        static_cast<uint32_t>( _settings->getJitterCamEnabled( ) ),
@@ -699,7 +699,7 @@ namespace RAYEX_NAMESPACE
     _imageAvailableSemaphores.resize( maxFramesInFlight );
     _finishedRenderSemaphores.resize( maxFramesInFlight );
     _inFlightFences.resize( maxFramesInFlight );
-    _imagesInFlight.resize( g_swapchainImageCount, nullptr );
+    _imagesInFlight.resize( components::swapchainImageCount, nullptr );
 
     for ( size_t i = 0; i < maxFramesInFlight; ++i )
     {
@@ -719,7 +719,7 @@ namespace RAYEX_NAMESPACE
       _rtDescriptors.bindings.add( 1, vk::DescriptorType::eStorageImage, vk::ShaderStageFlagBits::eRaygenKHR, 1, vk::DescriptorBindingFlagBits::ePartiallyBound );
 
       _rtDescriptors.layout = _rtDescriptors.bindings.initLayoutUnique( );
-      _rtDescriptors.pool   = _rtDescriptors.bindings.initPoolUnique( g_swapchainImageCount );
+      _rtDescriptors.pool   = _rtDescriptors.bindings.initPoolUnique( components::swapchainImageCount );
       _rtDescriptorSets     = vk::Initializer::initDescriptorSetsUnique( _rtDescriptors.pool, _rtDescriptors.layout );
     }
 
@@ -734,10 +734,10 @@ namespace RAYEX_NAMESPACE
       // Scene description buffer
       _rtSceneDescriptors.bindings.add( 3, vk::DescriptorType::eStorageBuffer, vk::ShaderStageFlagBits::eClosestHitKHR );
       // Materials
-      _rtSceneDescriptors.bindings.add( 4, vk::DescriptorType::eStorageBuffer, vk::ShaderStageFlagBits::eClosestHitKHR, g_maxGeometries, vk::DescriptorBindingFlagBits::eVariableDescriptorCount );
+      _rtSceneDescriptors.bindings.add( 4, vk::DescriptorType::eStorageBuffer, vk::ShaderStageFlagBits::eClosestHitKHR, components::maxGeometries, vk::DescriptorBindingFlagBits::eVariableDescriptorCount );
 
       _rtSceneDescriptors.layout = _rtSceneDescriptors.bindings.initLayoutUnique( );
-      _rtSceneDescriptors.pool   = _rtSceneDescriptors.bindings.initPoolUnique( static_cast<uint32_t>( g_maxGeometryInstances ) * g_swapchainImageCount, vk::DescriptorPoolCreateFlagBits::eUpdateAfterBind );
+      _rtSceneDescriptors.pool   = _rtSceneDescriptors.bindings.initPoolUnique( static_cast<uint32_t>( components::maxGeometryInstances ) * components::swapchainImageCount, vk::DescriptorPoolCreateFlagBits::eUpdateAfterBind );
       _rtSceneDescriptorSets     = vk::Initializer::initDescriptorSetsUnique( _rtSceneDescriptors.pool, _rtSceneDescriptors.layout );
     }
 
@@ -751,25 +751,25 @@ namespace RAYEX_NAMESPACE
       _rsSceneDescriptors.bindings.add( 2, vk::DescriptorType::eStorageBuffer, vk::ShaderStageFlagBits::eVertex );
 
       _rsSceneDescriptors.layout = _rsSceneDescriptors.bindings.initLayoutUnique( );
-      _rsSceneDescriptors.pool   = _rsSceneDescriptors.bindings.initPoolUnique( g_swapchainImageCount );
+      _rsSceneDescriptors.pool   = _rsSceneDescriptors.bindings.initPoolUnique( components::swapchainImageCount );
       _rsSceneDescriptorSets     = vk::Initializer::initDescriptorSetsUnique( _rsSceneDescriptors.pool, _rsSceneDescriptors.layout );
     }
 
     // Vertex model data descriptor set layout.
     {
-      _vertexDataDescriptors.bindings.add( 0, vk::DescriptorType::eStorageBuffer, vk::ShaderStageFlagBits::eClosestHitKHR, g_maxGeometries, vk::DescriptorBindingFlagBits::eVariableDescriptorCount );
+      _vertexDataDescriptors.bindings.add( 0, vk::DescriptorType::eStorageBuffer, vk::ShaderStageFlagBits::eClosestHitKHR, components::maxGeometries, vk::DescriptorBindingFlagBits::eVariableDescriptorCount );
 
       _vertexDataDescriptors.layout = _vertexDataDescriptors.bindings.initLayoutUnique( );
-      _vertexDataDescriptors.pool   = _vertexDataDescriptors.bindings.initPoolUnique( static_cast<uint32_t>( g_maxGeometryInstances ) * g_swapchainImageCount, vk::DescriptorPoolCreateFlagBits::eUpdateAfterBind );
+      _vertexDataDescriptors.pool   = _vertexDataDescriptors.bindings.initPoolUnique( static_cast<uint32_t>( components::maxGeometryInstances ) * components::swapchainImageCount, vk::DescriptorPoolCreateFlagBits::eUpdateAfterBind );
       _vertexDataDescriptorSets     = vk::Initializer::initDescriptorSetsUnique( _vertexDataDescriptors.pool, _vertexDataDescriptors.layout );
     }
 
     // Index model data descriptor set layout.
     {
-      _indexDataDescriptors.bindings.add( 0, vk::DescriptorType::eStorageBuffer, vk::ShaderStageFlagBits::eClosestHitKHR, g_maxGeometries, vk::DescriptorBindingFlagBits::eVariableDescriptorCount );
+      _indexDataDescriptors.bindings.add( 0, vk::DescriptorType::eStorageBuffer, vk::ShaderStageFlagBits::eClosestHitKHR, components::maxGeometries, vk::DescriptorBindingFlagBits::eVariableDescriptorCount );
 
       _indexDataDescriptors.layout = _indexDataDescriptors.bindings.initLayoutUnique( );
-      _indexDataDescriptors.pool   = _indexDataDescriptors.bindings.initPoolUnique( static_cast<uint32_t>( g_maxGeometryInstances ) * g_swapchainImageCount, vk::DescriptorPoolCreateFlagBits::eUpdateAfterBind );
+      _indexDataDescriptors.pool   = _indexDataDescriptors.bindings.initPoolUnique( static_cast<uint32_t>( components::maxGeometryInstances ) * components::swapchainImageCount, vk::DescriptorPoolCreateFlagBits::eUpdateAfterBind );
       _indexDataDescriptorSets     = vk::Initializer::initDescriptorSetsUnique( _indexDataDescriptors.pool, _indexDataDescriptors.layout );
     }
   }
@@ -780,7 +780,7 @@ namespace RAYEX_NAMESPACE
     {
       _settings->_refreshPipeline = false;
 
-      g_device.waitIdle( );
+      components::device.waitIdle( );
 
 #ifdef RX_COPY_ASSETS
       // Copies shader resources to binary output directory. This way a shader can be changed during runtime.
@@ -844,9 +844,9 @@ namespace RAYEX_NAMESPACE
                                               0,
                                               VK_WHOLE_SIZE );
 
-    RX_ASSERT( _meshBuffers.size( ) <= g_maxGeometries, "Can not bind more than ", g_maxGeometries, " meshes." );
+    RX_ASSERT( _meshBuffers.size( ) <= components::maxGeometries, "Can not bind more than ", components::maxGeometries, " meshes." );
 
-    for ( size_t i = 0; i < g_maxGeometries; ++i )
+    for ( size_t i = 0; i < components::maxGeometries; ++i )
     {
       if ( i < _meshBuffers.size( ) )
       {
@@ -884,10 +884,10 @@ namespace RAYEX_NAMESPACE
 
   void Api::updateRayTracingModelData( )
   {
-    RX_ASSERT( _scene->_geometries.size( ) <= g_maxGeometries, "Can not bind more than ", g_maxGeometries, " geometries." );
+    RX_ASSERT( _scene->_geometries.size( ) <= components::maxGeometries, "Can not bind more than ", components::maxGeometries, " geometries." );
 
     // Update RT model data.
-    for ( size_t i = 0; i < g_maxGeometries; ++i )
+    for ( size_t i = 0; i < components::maxGeometries; ++i )
     {
       if ( i < _vertexBuffers.size( ) )
       {

@@ -13,25 +13,25 @@ namespace RAYEX_NAMESPACE
   void Surface::init( )
   {
     VkSurfaceKHR surface;
-    SDL_bool result = SDL_Vulkan_CreateSurface( g_window->get( ), g_instance, &surface );
+    SDL_bool result = SDL_Vulkan_CreateSurface( components::window->get( ), components::instance, &surface );
 
     if ( result != SDL_TRUE )
     {
       RX_ERROR( "Failed to create surface" );
     }
 
-    _surface  = surface;
-    g_surface = _surface;
+    _surface            = surface;
+    components::surface = _surface;
     RX_ASSERT( _surface, "Failed to create surface." );
   }
 
   void Surface::assessSettings( )
   {
     // Get all surface capabilities.
-    _capabilities = g_physicalDevice.getSurfaceCapabilitiesKHR( _surface );
+    _capabilities = components::physicalDevice.getSurfaceCapabilitiesKHR( _surface );
 
     // Check a present mode.
-    std::vector<vk::PresentModeKHR> presentModes = g_physicalDevice.getSurfacePresentModesKHR( _surface );
+    std::vector<vk::PresentModeKHR> presentModes = components::physicalDevice.getSurfacePresentModesKHR( _surface );
 
     if ( !Util::find<vk::PresentModeKHR>( _presentMode, presentModes ) )
     {
@@ -44,7 +44,7 @@ namespace RAYEX_NAMESPACE
     }
 
     // Check format and color space.
-    auto surfaceFormats = g_physicalDevice.getSurfaceFormatsKHR( _surface );
+    auto surfaceFormats = components::physicalDevice.getSurfaceFormatsKHR( _surface );
 
     bool colorSpaceAndFormatSupported = false;
     for ( const auto& iter : surfaceFormats )
@@ -64,14 +64,14 @@ namespace RAYEX_NAMESPACE
       RX_WARN( "Preferred format and colorspace not supported. Falling back to the first option of each." );
     }
 
-    g_surfaceFormat = _format;
+    components::surfaceFormat = _format;
   }
 
   void Surface::destroy( )
   {
     if ( _surface )
     {
-      g_instance.destroySurfaceKHR( _surface );
+      components::instance.destroySurfaceKHR( _surface );
       _surface = nullptr;
     }
   }

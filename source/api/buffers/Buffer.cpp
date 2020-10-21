@@ -38,7 +38,7 @@ namespace RAYEX_NAMESPACE
                                      static_cast<uint32_t>( queueFamilyIndices.size( ) ), // queueFamilyIndexCount
                                      queueFamilyIndices.data( ) );                        // pQueueFamilyIndices
 
-    _buffer = g_device.createBufferUnique( createInfo );
+    _buffer = components::device.createBufferUnique( createInfo );
     RX_ASSERT( _buffer, "Failed to create buffer." );
 
     _memory = vk::Initializer::allocateMemoryUnique( _buffer.get( ), memoryPropertyFlags, pNextMemory );
@@ -46,31 +46,31 @@ namespace RAYEX_NAMESPACE
 
   void Buffer::copyToBuffer( const Buffer& buffer ) const
   {
-    CommandBuffer commandBuffer( g_transferCmdPool );
+    CommandBuffer commandBuffer( components::transferCmdPool );
     commandBuffer.begin( );
     {
       vk::BufferCopy copyRegion( 0, 0, _size );
       commandBuffer.get( 0 ).copyBuffer( _buffer.get( ), buffer.get( ), 1, &copyRegion ); // CMD
     }
     commandBuffer.end( );
-    commandBuffer.submitToQueue( g_transferQueue );
+    commandBuffer.submitToQueue( components::transferQueue );
   }
 
   void Buffer::copyToBuffer( vk::Buffer buffer ) const
   {
-    CommandBuffer commandBuffer( g_transferCmdPool );
+    CommandBuffer commandBuffer( components::transferCmdPool );
     commandBuffer.begin( );
     {
       vk::BufferCopy copyRegion( 0, 0, _size );
       commandBuffer.get( 0 ).copyBuffer( _buffer.get( ), buffer, 1, &copyRegion ); // CMD
     }
     commandBuffer.end( );
-    commandBuffer.submitToQueue( g_transferQueue );
+    commandBuffer.submitToQueue( components::transferQueue );
   }
 
   void Buffer::copyToImage( Image& image ) const
   {
-    CommandBuffer commandBuffer( g_graphicsCmdPool );
+    CommandBuffer commandBuffer( components::graphicsCmdPool );
     commandBuffer.begin( );
     {
       vk::BufferImageCopy region( 0,                                            // bufferOffset
@@ -83,6 +83,6 @@ namespace RAYEX_NAMESPACE
       commandBuffer.get( 0 ).copyBufferToImage( _buffer.get( ), image.get( ), vk::ImageLayout::eTransferDstOptimal, 1, &region ); // CMD
     }
     commandBuffer.end( );
-    commandBuffer.submitToQueue( g_graphicsQueue );
+    commandBuffer.submitToQueue( components::graphicsQueue );
   }
 } // namespace RAYEX_NAMESPACE

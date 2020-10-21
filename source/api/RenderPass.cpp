@@ -14,7 +14,7 @@ namespace RAYEX_NAMESPACE
                                          static_cast<uint32_t>( dependencies.size( ) ), // dependencyCount
                                          dependencies.data( ) );                        // pDependencies
 
-    _renderPass = g_device.createRenderPassUnique( createInfo );
+    _renderPass = components::device.createRenderPassUnique( createInfo );
     RX_ASSERT( _renderPass, "Failed to create render pass." );
   }
 

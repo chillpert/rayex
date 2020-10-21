@@ -16,7 +16,7 @@ namespace vk::Initializer
   {
     FenceCreateInfo createInfo( flags );
 
-    UniqueFence fence = RAYEX_NAMESPACE::g_device.createFenceUnique( createInfo );
+    UniqueFence fence = RAYEX_NAMESPACE::components::device.createFenceUnique( createInfo );
     RX_ASSERT( fence, "Failed to create fence." );
 
     return fence;
@@ -26,7 +26,7 @@ namespace vk::Initializer
   {
     FenceCreateInfo createInfo( flags );
 
-    Fence fence = RAYEX_NAMESPACE::g_device.createFence( createInfo );
+    Fence fence = RAYEX_NAMESPACE::components::device.createFence( createInfo );
     RX_ASSERT( fence, "Failed to create fence." );
 
     return fence;
@@ -36,7 +36,7 @@ namespace vk::Initializer
   {
     SemaphoreCreateInfo createInfo( flags );
 
-    UniqueSemaphore semaphore = RAYEX_NAMESPACE::g_device.createSemaphoreUnique( createInfo );
+    UniqueSemaphore semaphore = RAYEX_NAMESPACE::components::device.createSemaphoreUnique( createInfo );
     RX_ASSERT( semaphore, "Failed to create semaphore." );
 
     return semaphore;
@@ -46,7 +46,7 @@ namespace vk::Initializer
   {
     SemaphoreCreateInfo createInfo( flags );
 
-    Semaphore semaphore = RAYEX_NAMESPACE::g_device.createSemaphore( createInfo );
+    Semaphore semaphore = RAYEX_NAMESPACE::components::device.createSemaphore( createInfo );
     RX_ASSERT( semaphore, "Failed to create semaphore." );
 
     return semaphore;
@@ -56,7 +56,7 @@ namespace vk::Initializer
   {
     CommandPoolCreateInfo createInfo( flags, queueFamilyIndex );
 
-    UniqueCommandPool commandPool = RAYEX_NAMESPACE::g_device.createCommandPoolUnique( createInfo );
+    UniqueCommandPool commandPool = RAYEX_NAMESPACE::components::device.createCommandPoolUnique( createInfo );
     RX_ASSERT( commandPool, "Failed to create command pool." );
 
     return commandPool;
@@ -66,7 +66,7 @@ namespace vk::Initializer
   {
     CommandPoolCreateInfo createInfo( flags, queueFamilyIndex );
 
-    CommandPool commandPool = RAYEX_NAMESPACE::g_device.createCommandPool( createInfo );
+    CommandPool commandPool = RAYEX_NAMESPACE::components::device.createCommandPool( createInfo );
     RX_ASSERT( commandPool, "Failed to create command pool." );
 
     return commandPool;
@@ -79,7 +79,7 @@ namespace vk::Initializer
                                          static_cast<uint32_t>( poolSizes.size( ) ), // poolSizeCount
                                          poolSizes.data( ) );                        // pPoolSizes
 
-    UniqueDescriptorPool descriptorPool = RAYEX_NAMESPACE::g_device.createDescriptorPoolUnique( createInfo );
+    UniqueDescriptorPool descriptorPool = RAYEX_NAMESPACE::components::device.createDescriptorPoolUnique( createInfo );
     RX_ASSERT( descriptorPool, "Failed to create descriptor pool." );
 
     return descriptorPool;
@@ -87,16 +87,16 @@ namespace vk::Initializer
 
   auto initDescriptorSetsUnique( const UniqueDescriptorPool& pool, const UniqueDescriptorSetLayout& layout ) -> std::vector<DescriptorSet>
   {
-    RX_ASSERT( RAYEX_NAMESPACE::g_swapchainImageCount > 0, "Failed to init descriptor sets because swapchain image count is zero." );
+    RX_ASSERT( RAYEX_NAMESPACE::components::swapchainImageCount > 0, "Failed to init descriptor sets because swapchain image count is zero." );
 
     // Create as many sets as images in the swapchain.
-    std::vector<DescriptorSetLayout> layouts( RAYEX_NAMESPACE::g_swapchainImageCount, layout.get( ) );
+    std::vector<DescriptorSetLayout> layouts( RAYEX_NAMESPACE::components::swapchainImageCount, layout.get( ) );
 
     DescriptorSetAllocateInfo allocInfo( pool.get( ),
-                                         RAYEX_NAMESPACE::g_swapchainImageCount,
+                                         RAYEX_NAMESPACE::components::swapchainImageCount,
                                          layouts.data( ) );
 
-    auto sets = RAYEX_NAMESPACE::g_device.allocateDescriptorSets( allocInfo );
+    auto sets = RAYEX_NAMESPACE::components::device.allocateDescriptorSets( allocInfo );
 
     for ( const DescriptorSet& set : sets )
     {
@@ -108,51 +108,51 @@ namespace vk::Initializer
 
   auto allocateMemoryUnique( Image image, MemoryPropertyFlags propertyFlags, void* pNext ) -> UniqueDeviceMemory
   {
-    auto memoryRequirements = RAYEX_NAMESPACE::g_device.getImageMemoryRequirements( image );
+    auto memoryRequirements = RAYEX_NAMESPACE::components::device.getImageMemoryRequirements( image );
 
-    MemoryAllocateInfo allocateInfo( memoryRequirements.size,                                                                                         // allocationSize
-                                     Helper::findMemoryType( RAYEX_NAMESPACE::g_physicalDevice, memoryRequirements.memoryTypeBits, propertyFlags ) ); // memoryTypeIndex
+    MemoryAllocateInfo allocateInfo( memoryRequirements.size,                                                                                                   // allocationSize
+                                     Helper::findMemoryType( RAYEX_NAMESPACE::components::physicalDevice, memoryRequirements.memoryTypeBits, propertyFlags ) ); // memoryTypeIndex
 
     allocateInfo.pNext = pNext;
 
-    UniqueDeviceMemory memory = RAYEX_NAMESPACE::g_device.allocateMemoryUnique( allocateInfo );
+    UniqueDeviceMemory memory = RAYEX_NAMESPACE::components::device.allocateMemoryUnique( allocateInfo );
     RX_ASSERT( memory, "Failed to create memory for image." );
 
-    RAYEX_NAMESPACE::g_device.bindImageMemory( image, memory.get( ), 0 );
+    RAYEX_NAMESPACE::components::device.bindImageMemory( image, memory.get( ), 0 );
 
     return memory;
   }
 
   auto allocateMemory( Image image, MemoryPropertyFlags propertyFlags, void* pNext ) -> DeviceMemory
   {
-    auto memoryRequirements = RAYEX_NAMESPACE::g_device.getImageMemoryRequirements( image );
+    auto memoryRequirements = RAYEX_NAMESPACE::components::device.getImageMemoryRequirements( image );
 
-    MemoryAllocateInfo allocateInfo( memoryRequirements.size,                                                                                         // allocationSize
-                                     Helper::findMemoryType( RAYEX_NAMESPACE::g_physicalDevice, memoryRequirements.memoryTypeBits, propertyFlags ) ); // memoryTypeIndex
+    MemoryAllocateInfo allocateInfo( memoryRequirements.size,                                                                                                   // allocationSize
+                                     Helper::findMemoryType( RAYEX_NAMESPACE::components::physicalDevice, memoryRequirements.memoryTypeBits, propertyFlags ) ); // memoryTypeIndex
 
     allocateInfo.pNext = pNext;
 
-    DeviceMemory memory = RAYEX_NAMESPACE::g_device.allocateMemory( allocateInfo );
+    DeviceMemory memory = RAYEX_NAMESPACE::components::device.allocateMemory( allocateInfo );
     RX_ASSERT( memory, "Failed to create memory for image." );
 
-    RAYEX_NAMESPACE::g_device.bindImageMemory( image, memory, 0 );
+    RAYEX_NAMESPACE::components::device.bindImageMemory( image, memory, 0 );
 
     return memory;
   }
 
   auto allocateMemoryUnique( Buffer buffer, MemoryPropertyFlags propertyFlags, void* pNext ) -> UniqueDeviceMemory
   {
-    auto memoryRequirements = RAYEX_NAMESPACE::g_device.getBufferMemoryRequirements( buffer );
+    auto memoryRequirements = RAYEX_NAMESPACE::components::device.getBufferMemoryRequirements( buffer );
 
-    MemoryAllocateInfo allocateInfo( memoryRequirements.size,                                                                                         // allocationSize
-                                     Helper::findMemoryType( RAYEX_NAMESPACE::g_physicalDevice, memoryRequirements.memoryTypeBits, propertyFlags ) ); // memoryTypeIndex
+    MemoryAllocateInfo allocateInfo( memoryRequirements.size,                                                                                                   // allocationSize
+                                     Helper::findMemoryType( RAYEX_NAMESPACE::components::physicalDevice, memoryRequirements.memoryTypeBits, propertyFlags ) ); // memoryTypeIndex
 
     allocateInfo.pNext = pNext;
 
-    UniqueDeviceMemory memory = RAYEX_NAMESPACE::g_device.allocateMemoryUnique( allocateInfo );
+    UniqueDeviceMemory memory = RAYEX_NAMESPACE::components::device.allocateMemoryUnique( allocateInfo );
     RX_ASSERT( memory, "Failed to create memory for image." );
 
-    RAYEX_NAMESPACE::g_device.bindBufferMemory( buffer, memory.get( ), 0 );
+    RAYEX_NAMESPACE::components::device.bindBufferMemory( buffer, memory.get( ), 0 );
 
     return memory;
     ;
@@ -164,15 +164,15 @@ namespace vk::Initializer
                                                             AccelerationStructureBuildTypeKHR::eDevice,              // buildType
                                                             as.as );                                                 // accelerationStructure
 
-    MemoryRequirements2 memoryRequirements = RAYEX_NAMESPACE::g_device.getAccelerationStructureMemoryRequirementsKHR( memInfo );
+    MemoryRequirements2 memoryRequirements = RAYEX_NAMESPACE::components::device.getAccelerationStructureMemoryRequirementsKHR( memInfo );
 
     MemoryAllocateFlagsInfo allocateFlags( MemoryAllocateFlagBits::eDeviceAddress, // flags
                                            { } );                                  // deviceMask
 
-    MemoryAllocateInfo allocateInfo( memoryRequirements.memoryRequirements.size,                                                                                                                // allocationSize
-                                     Helper::findMemoryType( RAYEX_NAMESPACE::g_physicalDevice, memoryRequirements.memoryRequirements.memoryTypeBits, MemoryPropertyFlagBits::eDeviceLocal ) ); // memoryTypeIndex
+    MemoryAllocateInfo allocateInfo( memoryRequirements.memoryRequirements.size,                                                                                                                          // allocationSize
+                                     Helper::findMemoryType( RAYEX_NAMESPACE::components::physicalDevice, memoryRequirements.memoryRequirements.memoryTypeBits, MemoryPropertyFlagBits::eDeviceLocal ) ); // memoryTypeIndex
 
-    as.memory = RAYEX_NAMESPACE::g_device.allocateMemory( allocateInfo );
+    as.memory = RAYEX_NAMESPACE::components::device.allocateMemory( allocateInfo );
     RX_ASSERT( as.memory, "Failed to create memory for acceleration structure." );
 
     BindAccelerationStructureMemoryInfoKHR bindInfo( as.as,     // accelerationStructure
@@ -181,7 +181,7 @@ namespace vk::Initializer
                                                      0,         // deviceIndexCount
                                                      nullptr ); // pDeviceIndices
 
-    if ( RAYEX_NAMESPACE::g_device.bindAccelerationStructureMemoryKHR( 1, &bindInfo ) != Result::eSuccess )
+    if ( RAYEX_NAMESPACE::components::device.bindAccelerationStructureMemoryKHR( 1, &bindInfo ) != Result::eSuccess )
     {
       RX_ERROR( "Failed to bind acceleration structure memory." );
     }
@@ -189,17 +189,17 @@ namespace vk::Initializer
 
   auto allocateMemory( Buffer buffer, MemoryPropertyFlags propertyFlags, void* pNext ) -> DeviceMemory
   {
-    auto memoryRequirements = RAYEX_NAMESPACE::g_device.getBufferMemoryRequirements( buffer );
+    auto memoryRequirements = RAYEX_NAMESPACE::components::device.getBufferMemoryRequirements( buffer );
 
-    MemoryAllocateInfo allocateInfo( memoryRequirements.size,                                                                                         // allocationSize
-                                     Helper::findMemoryType( RAYEX_NAMESPACE::g_physicalDevice, memoryRequirements.memoryTypeBits, propertyFlags ) ); // memoryTypeIndex
+    MemoryAllocateInfo allocateInfo( memoryRequirements.size,                                                                                                   // allocationSize
+                                     Helper::findMemoryType( RAYEX_NAMESPACE::components::physicalDevice, memoryRequirements.memoryTypeBits, propertyFlags ) ); // memoryTypeIndex
 
     allocateInfo.pNext = pNext;
 
-    DeviceMemory memory = RAYEX_NAMESPACE::g_device.allocateMemory( allocateInfo );
+    DeviceMemory memory = RAYEX_NAMESPACE::components::device.allocateMemory( allocateInfo );
     RX_ASSERT( memory, "Failed to create memory for image." );
 
-    RAYEX_NAMESPACE::g_device.bindBufferMemory( buffer, memory, 0 );
+    RAYEX_NAMESPACE::components::device.bindBufferMemory( buffer, memory, 0 );
 
     return memory;
     ;
@@ -229,7 +229,7 @@ namespace vk::Initializer
                                     components,         // components
                                     subresourceRange ); // subresourceRange
 
-    UniqueImageView imageView = RAYEX_NAMESPACE::g_device.createImageViewUnique( createInfo );
+    UniqueImageView imageView = RAYEX_NAMESPACE::components::device.createImageViewUnique( createInfo );
     RX_ASSERT( imageView, "Failed to create image view." );
 
     return imageView;
@@ -259,7 +259,7 @@ namespace vk::Initializer
                                     components,         // components
                                     subresourceRange ); // subresourceRange
 
-    ImageView imageView = RAYEX_NAMESPACE::g_device.createImageView( createInfo );
+    ImageView imageView = RAYEX_NAMESPACE::components::device.createImageView( createInfo );
     RX_ASSERT( imageView, "Failed to create image view." );
 
     return imageView;
@@ -267,7 +267,7 @@ namespace vk::Initializer
 
   auto initSamplerUnique( const SamplerCreateInfo& createInfo ) -> UniqueSampler
   {
-    UniqueSampler sampler = RAYEX_NAMESPACE::g_device.createSamplerUnique( createInfo );
+    UniqueSampler sampler = RAYEX_NAMESPACE::components::device.createSamplerUnique( createInfo );
     RX_ASSERT( sampler, "Failed to create sampler." );
 
     return sampler;
@@ -275,7 +275,7 @@ namespace vk::Initializer
 
   auto initSampler( const SamplerCreateInfo& createInfo ) -> Sampler
   {
-    Sampler sampler = RAYEX_NAMESPACE::g_device.createSampler( createInfo );
+    Sampler sampler = RAYEX_NAMESPACE::components::device.createSampler( createInfo );
     RX_ASSERT( sampler, "Failed to create sampler." );
 
     return sampler;
@@ -291,7 +291,7 @@ namespace vk::Initializer
                                       extent.height,                                // height
                                       1U );                                         // layers
 
-    UniqueFramebuffer framebuffer = RAYEX_NAMESPACE::g_device.createFramebufferUnique( createInfo );
+    UniqueFramebuffer framebuffer = RAYEX_NAMESPACE::components::device.createFramebufferUnique( createInfo );
     RX_ASSERT( framebuffer, "Failed to create framebuffer." );
 
     return framebuffer;
@@ -307,7 +307,7 @@ namespace vk::Initializer
                                       extent.height,                                // height
                                       1U );                                         // layers
 
-    Framebuffer framebuffer = RAYEX_NAMESPACE::g_device.createFramebuffer( createInfo );
+    Framebuffer framebuffer = RAYEX_NAMESPACE::components::device.createFramebuffer( createInfo );
     RX_ASSERT( framebuffer, "Failed to create framebuffer." );
 
     return framebuffer;
@@ -320,7 +320,7 @@ namespace vk::Initializer
                                     count, // queryCount
                                     { } ); // pipelineStatistics
 
-    UniqueQueryPool queryPool = RAYEX_NAMESPACE::g_device.createQueryPoolUnique( createInfo );
+    UniqueQueryPool queryPool = RAYEX_NAMESPACE::components::device.createQueryPoolUnique( createInfo );
     RX_ASSERT( queryPool, "Failed to create query pool." );
 
     return queryPool;
@@ -333,7 +333,7 @@ namespace vk::Initializer
                                     count, // queryCount
                                     { } ); // pipelineStatistics
 
-    QueryPool queryPool = RAYEX_NAMESPACE::g_device.createQueryPool( createInfo );
+    QueryPool queryPool = RAYEX_NAMESPACE::components::device.createQueryPool( createInfo );
     RX_ASSERT( queryPool, "Failed to create query pool." );
 
     return queryPool;
@@ -347,7 +347,7 @@ namespace vk::Initializer
                                        source.size( ),                                        // codeSize
                                        reinterpret_cast<const uint32_t*>( source.data( ) ) ); // pCode
 
-    UniqueShaderModule shaderModule = RAYEX_NAMESPACE::g_device.createShaderModuleUnique( createInfo );
+    UniqueShaderModule shaderModule = RAYEX_NAMESPACE::components::device.createShaderModuleUnique( createInfo );
     RX_ASSERT( shaderModule, "Failed to create shader module." );
 
     return shaderModule;
@@ -361,7 +361,7 @@ namespace vk::Initializer
                                        source.size( ),                                        // codeSize
                                        reinterpret_cast<const uint32_t*>( source.data( ) ) ); // pCode
 
-    ShaderModule shaderModule = RAYEX_NAMESPACE::g_device.createShaderModule( createInfo );
+    ShaderModule shaderModule = RAYEX_NAMESPACE::components::device.createShaderModule( createInfo );
     RX_ASSERT( shaderModule, "Failed to create shader module." );
 
     return shaderModule;
@@ -370,7 +370,7 @@ namespace vk::Initializer
   auto initAccelerationStructure( const AccelerationStructureCreateInfoKHR& asCreateInfo ) -> RAYEX_NAMESPACE::AccelerationStructure
   {
     RAYEX_NAMESPACE::AccelerationStructure resultAs;
-    resultAs.as = RAYEX_NAMESPACE::g_device.createAccelerationStructureKHR( asCreateInfo, nullptr );
+    resultAs.as = RAYEX_NAMESPACE::components::device.createAccelerationStructureKHR( asCreateInfo, nullptr );
 
     allocateMemory( resultAs );
 
@@ -381,7 +381,7 @@ namespace vk::Initializer
   {
     PhysicalDevice physicalDevice;
 
-    auto physicalDevices = RAYEX_NAMESPACE::g_instance.enumeratePhysicalDevices( );
+    auto physicalDevices = RAYEX_NAMESPACE::components::instance.enumeratePhysicalDevices( );
 
     std::vector<std::pair<unsigned int, std::string>> results;
 
@@ -419,10 +419,10 @@ namespace vk::Initializer
     auto properties = physicalDevice.getProperties( );
     RX_SUCCESS( "Selected GPU: ", properties.deviceName );
 
-    RX_ASSERT( RAYEX_NAMESPACE::g_maxGeometries % properties.limits.minStorageBufferOffsetAlignment == 0, "Max geometries does not align with min storage buffer offset. If you encounter this error, please insult the developer of this application who was to lazy to check these values for other systems!" );
+    RX_ASSERT( RAYEX_NAMESPACE::components::maxGeometries % properties.limits.minStorageBufferOffsetAlignment == 0, "Max geometries does not align with min storage buffer offset. If you encounter this error, please insult the developer of this application who was to lazy to check these values for other systems!" );
 
-    RAYEX_NAMESPACE::g_physicalDeviceLimits = properties.limits;
-    RAYEX_NAMESPACE::g_physicalDevice       = physicalDevice;
+    RAYEX_NAMESPACE::components::physicalDeviceLimits = properties.limits;
+    RAYEX_NAMESPACE::components::physicalDevice       = physicalDevice;
 
     return physicalDevice;
   }
@@ -432,16 +432,16 @@ namespace vk::Initializer
     std::optional<uint32_t> graphicsFamilyIndex;
     std::optional<uint32_t> transferFamilyIndex;
 
-    auto queueFamilyProperties = RAYEX_NAMESPACE::g_physicalDevice.getQueueFamilyProperties( );
+    auto queueFamilyProperties = RAYEX_NAMESPACE::components::physicalDevice.getQueueFamilyProperties( );
     std::vector<uint32_t> queueFamilies( queueFamilyProperties.size( ) );
 
-    bool dedicatedTransferQueueFamily = Helper::isPhysicalDeviceWithDedicatedTransferQueueFamily( RAYEX_NAMESPACE::g_physicalDevice );
+    bool dedicatedTransferQueueFamily = Helper::isPhysicalDeviceWithDedicatedTransferQueueFamily( RAYEX_NAMESPACE::components::physicalDevice );
 
     for ( uint32_t index = 0; index < static_cast<uint32_t>( queueFamilies.size( ) ); ++index )
     {
       if ( queueFamilyProperties[index].queueFlags & QueueFlagBits::eGraphics && !graphicsFamilyIndex.has_value( ) )
       {
-        if ( RAYEX_NAMESPACE::g_physicalDevice.getSurfaceSupportKHR( index, RAYEX_NAMESPACE::g_surface ) )
+        if ( RAYEX_NAMESPACE::components::physicalDevice.getSurfaceSupportKHR( index, RAYEX_NAMESPACE::components::surface ) )
         {
           graphicsFamilyIndex = index;
         }
@@ -468,8 +468,8 @@ namespace vk::Initializer
       RX_FATAL( "Failed to retrieve queue family indices." );
     }
 
-    RAYEX_NAMESPACE::g_graphicsFamilyIndex = graphicsFamilyIndex.value( );
-    RAYEX_NAMESPACE::g_transferFamilyIndex = transferFamilyIndex.value( );
+    RAYEX_NAMESPACE::components::graphicsFamilyIndex = graphicsFamilyIndex.value( );
+    RAYEX_NAMESPACE::components::transferFamilyIndex = transferFamilyIndex.value( );
   }
 
   auto initDevice( std::vector<const char*>& extensions ) -> UniqueDevice
@@ -480,7 +480,7 @@ namespace vk::Initializer
 
     const float queuePriority = 1.0F;
 
-    std::vector<uint32_t> queueFamilyIndices = { RAYEX_NAMESPACE::g_graphicsFamilyIndex, RAYEX_NAMESPACE::g_transferFamilyIndex };
+    std::vector<uint32_t> queueFamilyIndices = { RAYEX_NAMESPACE::components::graphicsFamilyIndex, RAYEX_NAMESPACE::components::transferFamilyIndex };
 
     uint32_t index = 0;
     for ( const auto& queueFamilyIndex : queueFamilyIndices )
@@ -534,8 +534,8 @@ namespace vk::Initializer
 
     createInfo.pNext = &deviceFeatures2;
 
-    UniqueDevice device       = RAYEX_NAMESPACE::g_physicalDevice.createDeviceUnique( createInfo );
-    RAYEX_NAMESPACE::g_device = device.get( );
+    UniqueDevice device                 = RAYEX_NAMESPACE::components::physicalDevice.createDeviceUnique( createInfo );
+    RAYEX_NAMESPACE::components::device = device.get( );
     RX_ASSERT( device, "Failed to create logical device." );
     VULKAN_HPP_DEFAULT_DISPATCHER.init( device.get( ) );
 
@@ -552,7 +552,7 @@ namespace vk::Initializer
 
     // Retrieve all extensions needed by SDL2.
     uint32_t sdlExtensionsCount;
-    SDL_bool result = SDL_Vulkan_GetInstanceExtensions( RAYEX_NAMESPACE::g_window->get( ), &sdlExtensionsCount, nullptr );
+    SDL_bool result = SDL_Vulkan_GetInstanceExtensions( RAYEX_NAMESPACE::components::window->get( ), &sdlExtensionsCount, nullptr );
 
     if ( result != SDL_TRUE )
     {
@@ -560,7 +560,7 @@ namespace vk::Initializer
     }
 
     gsl::owner<const char**> sdlExtensionsNames = new const char*[sdlExtensionsCount];
-    result                                      = SDL_Vulkan_GetInstanceExtensions( RAYEX_NAMESPACE::g_window->get( ), &sdlExtensionsCount, sdlExtensionsNames );
+    result                                      = SDL_Vulkan_GetInstanceExtensions( RAYEX_NAMESPACE::components::window->get( ), &sdlExtensionsCount, sdlExtensionsNames );
 
     if ( result != SDL_TRUE )
     {
@@ -610,8 +610,8 @@ namespace vk::Initializer
                                    static_cast<uint32_t>( extensions.size( ) ), // enabledExtensionCount
                                    extensions.data( ) );                        // ppEnabledExtensionNames
 
-    instance                    = createInstanceUnique( createInfo );
-    RAYEX_NAMESPACE::g_instance = instance.get( );
+    instance                              = createInstanceUnique( createInfo );
+    RAYEX_NAMESPACE::components::instance = instance.get( );
     RX_ASSERT( instance, "Failed to create instance." );
     VULKAN_HPP_DEFAULT_DISPATCHER.init( instance.get( ) );
 
@@ -623,7 +623,7 @@ namespace vk::Initializer
   {
     vk::Result result;
     std::vector<vk::Pipeline> temp;
-    std::tie( result, temp ) = RAYEX_NAMESPACE::g_device.createGraphicsPipelines( nullptr, createInfos );
+    std::tie( result, temp ) = RAYEX_NAMESPACE::components::device.createGraphicsPipelines( nullptr, createInfos );
 
     std::vector<vk::UniquePipeline> pipelines( temp.size( ) );
 
@@ -651,7 +651,7 @@ namespace vk::Initializer
   {
     vk::Result result;
     std::vector<vk::Pipeline> temp;
-    std::tie( result, temp ) = RAYEX_NAMESPACE::g_device.createRayTracingPipelinesKHR( nullptr, createInfos );
+    std::tie( result, temp ) = RAYEX_NAMESPACE::components::device.createRayTracingPipelinesKHR( nullptr, createInfos );
 
     std::vector<vk::UniquePipeline> pipelines( temp.size( ) );
 

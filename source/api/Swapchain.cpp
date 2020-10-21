@@ -12,7 +12,7 @@ namespace RAYEX_NAMESPACE
     auto surfaceCapabilities = surface->getCapabilities( );
 
     vk::SwapchainCreateInfoKHR createInfo;
-    createInfo.surface = g_surface;
+    createInfo.surface = components::surface;
 
     // Add another image so that the application does not have to wait for the driver before another image can be acquired.
     uint32_t minImageCount = surfaceCapabilities.minImageCount + 1;
@@ -48,7 +48,7 @@ namespace RAYEX_NAMESPACE
     else
     {
       // Clamp width and height.
-      _extent = g_window->getExtent( );
+      _extent = components::window->getExtent( );
 
       uint32_t width_t = _extent.width;
       if ( surfaceCapabilities.maxImageExtent.width < _extent.width )
@@ -85,7 +85,7 @@ namespace RAYEX_NAMESPACE
     createInfo.imageArrayLayers = 1;
     createInfo.imageUsage       = vk::ImageUsageFlagBits::eColorAttachment | vk::ImageUsageFlagBits::eTransferDst;
 
-    std::vector<uint32_t> queueFamilyIndices = { g_graphicsFamilyIndex };
+    std::vector<uint32_t> queueFamilyIndices = { components::graphicsFamilyIndex };
 
     if ( queueFamilyIndices.size( ) > 1 )
     {
@@ -100,9 +100,9 @@ namespace RAYEX_NAMESPACE
 
     createInfo.presentMode = surface->getPresentMode( );
 
-    _swapchain = g_device.createSwapchainKHRUnique( createInfo );
+    _swapchain = components::device.createSwapchainKHRUnique( createInfo );
     RX_ASSERT( _swapchain, "Failed to create swapchain" );
-    g_swapchain = _swapchain.get( );
+    components::swapchain = _swapchain.get( );
 
     initImages( minImageCount, surface->getFormat( ) );
     initDepthImage( );
@@ -113,7 +113,7 @@ namespace RAYEX_NAMESPACE
   {
     if ( _swapchain )
     {
-      g_device.destroySwapchainKHR( _swapchain.get( ) );
+      components::device.destroySwapchainKHR( _swapchain.get( ) );
       _swapchain.get( ) = nullptr;
     }
   }
@@ -133,20 +133,20 @@ namespace RAYEX_NAMESPACE
 
   void Swapchain::acquireNextImage( vk::Semaphore semaphore, vk::Fence fence )
   {
-    vk::Result result = g_device.acquireNextImageKHR( _swapchain.get( ), UINT64_MAX, semaphore, fence, &_currentImageIndex );
+    vk::Result result = components::device.acquireNextImageKHR( _swapchain.get( ), UINT64_MAX, semaphore, fence, &_currentImageIndex );
     RX_ASSERT( ( result == vk::Result::eSuccess ), "Failed to acquire next swapchain image." );
   }
 
   void Swapchain::initImages( uint32_t minImageCount, vk::Format surfaceFormat )
   {
     // Retrieve the actual swapchain images. This sets them up automatically.
-    _images = g_device.getSwapchainImagesKHR( _swapchain.get( ) );
+    _images = components::device.getSwapchainImagesKHR( _swapchain.get( ) );
     if ( _images.size( ) < minImageCount )
     {
       RX_FATAL( "Failed to get swapchain images." );
     }
 
-    g_swapchainImageCount = static_cast<uint32_t>( _images.size( ) );
+    components::swapchainImageCount = static_cast<uint32_t>( _images.size( ) );
 
     // Create image views for swapchain images.
     _imageViews.resize( _images.size( ) );
@@ -159,7 +159,7 @@ namespace RAYEX_NAMESPACE
   void Swapchain::initDepthImage( )
   {
     // Depth image for depth buffering
-    vk::Format depthFormat = getSupportedDepthFormat( g_physicalDevice );
+    vk::Format depthFormat = getSupportedDepthFormat( components::physicalDevice );
 
     auto imageCreateInfo   = vk::Helper::getImageCreateInfo( vk::Extent3D( _extent.width, _extent.height, 1 ) );
     imageCreateInfo.format = depthFormat;

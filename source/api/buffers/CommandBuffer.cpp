@@ -19,7 +19,7 @@ namespace RAYEX_NAMESPACE
                                                 vk::CommandBufferLevel::ePrimary, // level
                                                 count );                          // commandBufferCount
 
-    _commandBuffers = g_device.allocateCommandBuffers( allocateInfo );
+    _commandBuffers = components::device.allocateCommandBuffers( allocateInfo );
     for ( const vk::CommandBuffer& commandBuffer : _commandBuffers )
     {
       RX_ASSERT( commandBuffer, "Failed to create command buffers." );
@@ -31,7 +31,7 @@ namespace RAYEX_NAMESPACE
 
   void CommandBuffer::free( )
   {
-    g_device.freeCommandBuffers( _commandPool, static_cast<uint32_t>( _commandBuffers.size( ) ), _commandBuffers.data( ) );
+    components::device.freeCommandBuffers( _commandPool, static_cast<uint32_t>( _commandBuffers.size( ) ), _commandBuffers.data( ) );
   }
 
   void CommandBuffer::reset( )

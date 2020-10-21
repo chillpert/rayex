@@ -2,28 +2,32 @@
 
 namespace RAYEX_NAMESPACE
 {
-  std::shared_ptr<Window> g_window    = nullptr;
-  vk::Instance g_instance             = nullptr;
-  vk::PhysicalDevice g_physicalDevice = nullptr;
-  vk::Device g_device                 = nullptr;
-  vk::SurfaceKHR g_surface            = nullptr;
-  vk::SwapchainKHR g_swapchain        = nullptr;
-  uint32_t g_swapchainImageCount      = 0;
-  vk::Format g_surfaceFormat;
-  std::vector<vk::UniqueImageView> g_swapchainImageViews;
-  uint32_t g_shaderGroups = 0;
-  vk::DynamicLoader g_dynamicLoader;
+  namespace components
+  {
+    std::shared_ptr<Window> window    = nullptr;
+    vk::Instance instance             = nullptr;
+    vk::PhysicalDevice physicalDevice = nullptr;
+    vk::Device device                 = nullptr;
+    vk::SurfaceKHR surface            = nullptr;
+    vk::SwapchainKHR swapchain        = nullptr;
+    uint32_t swapchainImageCount      = 0;
+    vk::Format surfaceFormat;
+    std::vector<vk::UniqueImageView> swapchainImageViews;
+    uint32_t shaderGroups = 0;
+    vk::DynamicLoader dynamicLoader;
 
-  vk::CommandPool g_graphicsCmdPool = nullptr;
-  vk::CommandPool g_transferCmdPool = nullptr;
-  vk::Queue g_graphicsQueue         = nullptr;
-  vk::Queue g_transferQueue         = nullptr;
-  uint32_t g_graphicsFamilyIndex;
-  uint32_t g_transferFamilyIndex;
+    vk::CommandPool graphicsCmdPool = nullptr;
+    vk::CommandPool transferCmdPool = nullptr;
+    vk::Queue graphicsQueue         = nullptr;
+    vk::Queue transferQueue         = nullptr;
+    uint32_t graphicsFamilyIndex;
+    uint32_t transferFamilyIndex;
 
-  vk::PhysicalDeviceLimits g_physicalDeviceLimits;
+    vk::PhysicalDeviceLimits physicalDeviceLimits;
 
-  uint32_t g_frameCount = 0;
+    uint32_t frameCount = 0;
 
-  std::string g_assetsPath;
+    std::string assetsPath;
+
+  } // namespace components
 } // namespace RAYEX_NAMESPACE

@@ -24,7 +24,7 @@ namespace RAYEX_NAMESPACE
     _clearColor       = clearColor;
     _refreshSwapchain = true;
 
-    g_frameCount = 0;
+    components::frameCount = 0;
   }
 
   void Settings::setAssetsPath( int argc, char* argv[] )
@@ -40,7 +40,7 @@ namespace RAYEX_NAMESPACE
 
     _assetsPath = _assetsPath.substr( 0, _assetsPath.find_last_of( '/' ) + 1 );
 
-    g_assetsPath = _assetsPath;
+    components::assetsPath = _assetsPath;
   }
 
   void Settings::setAssetsPath( std::string_view path )
@@ -54,7 +54,7 @@ namespace RAYEX_NAMESPACE
       _assetsPath += '/';
     }
 
-    g_assetsPath = _assetsPath;
+    components::assetsPath = _assetsPath;
   }
 
   void Settings::setEnableRayTracing( bool flag )
@@ -62,7 +62,7 @@ namespace RAYEX_NAMESPACE
     _rayTrace         = flag;
     _refreshSwapchain = true;
 
-    g_frameCount = 0;
+    components::frameCount = 0;
   }
 
   void Settings::setAutomaticPipelineRefresh( bool flag )
@@ -108,29 +108,29 @@ namespace RAYEX_NAMESPACE
 
     std::replace( _assetsPath.begin( ), _assetsPath.end( ), '\\', '/' );
 
-    g_assetsPath = _assetsPath;
+    components::assetsPath = _assetsPath;
     RX_WARN( "No path to assets specified. Using default path as path to resources: ", _assetsPath );
   }
 
   void Settings::setEnableJitterCam( bool flag )
   {
-    _jitterCamEnabled = flag;
-    _ssaaEnabled      = false;
-    g_frameCount      = 0;
+    _jitterCamEnabled      = flag;
+    _ssaaEnabled           = false;
+    components::frameCount = 0;
   }
 
   void Settings::setJitterCamSampleRate( uint32_t sampleRate )
   {
     // Make sure the sample rate is always greater than zero.
-    _jitterCamSampleRate = sampleRate > 0 ? sampleRate : 1;
-    g_frameCount         = 0;
+    _jitterCamSampleRate   = sampleRate > 0 ? sampleRate : 1;
+    components::frameCount = 0;
   }
 
   void Settings::setJitterCamSampleRatePerRayGen( uint32_t sampleRate )
   {
     // Make sure the sample rate per raygen is always greater than zero.
     _jitterCamSampleRatePerRayGen = sampleRate > 0 ? sampleRate : 1;
-    g_frameCount                  = 0;
+    components::frameCount        = 0;
   }
 
   void Settings::setEnableSsaa( bool flag )

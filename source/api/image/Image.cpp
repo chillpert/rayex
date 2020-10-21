@@ -13,7 +13,7 @@ namespace RAYEX_NAMESPACE
     _format = createInfo.format;
     _layout = createInfo.initialLayout;
 
-    _image = g_device.createImageUnique( createInfo );
+    _image = components::device.createImageUnique( createInfo );
     RX_ASSERT( _image, "Failed to create image" );
     _memory = vk::Initializer::allocateMemoryUnique( _image.get( ) );
   }
@@ -23,7 +23,7 @@ namespace RAYEX_NAMESPACE
     auto barrierInfo = vk::Helper::getImageMemoryBarrierInfo( _image.get( ), _layout, layout );
 
     CommandBuffer commandBuffer;
-    commandBuffer.init( g_graphicsCmdPool );
+    commandBuffer.init( components::graphicsCmdPool );
     commandBuffer.begin( );
 
     commandBuffer.get( 0 ).pipelineBarrier( std::get<1>( barrierInfo ), // srcStageMask
@@ -37,7 +37,7 @@ namespace RAYEX_NAMESPACE
                                             &std::get<0>( barrierInfo ) ); // barrier
 
     commandBuffer.end( );
-    commandBuffer.submitToQueue( g_graphicsQueue );
+    commandBuffer.submitToQueue( components::graphicsQueue );
 
     _layout = layout;
   }

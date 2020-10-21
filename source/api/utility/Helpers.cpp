@@ -69,12 +69,12 @@ namespace vk::Helper
 
   auto getPresentInfoKHR( const Semaphore& waitSemaphore, uint32_t& imageIndex ) -> PresentInfoKHR
   {
-    return PresentInfoKHR( 1,                             // waitSemaphoreCount
-                           &waitSemaphore,                // pWaitSemaphores
-                           1,                             // swapchainCount
-                           &RAYEX_NAMESPACE::g_swapchain, // pSwapchains
-                           &imageIndex,                   // pImageIndices
-                           nullptr );                     // pResults
+    return PresentInfoKHR( 1,                                       // waitSemaphoreCount
+                           &waitSemaphore,                          // pWaitSemaphores
+                           1,                                       // swapchainCount
+                           &RAYEX_NAMESPACE::components::swapchain, // pSwapchains
+                           &imageIndex,                             // pImageIndices
+                           nullptr );                               // pResults
   }
 
   auto findMemoryType( PhysicalDevice physicalDevice, uint32_t typeFilter, MemoryPropertyFlags properties ) -> uint32_t
@@ -153,7 +153,7 @@ namespace vk::Helper
     auto barrierInfo = getImageMemoryBarrierInfo( image, oldLayout, newLayout );
 
     RAYEX_NAMESPACE::CommandBuffer commandBuffer;
-    commandBuffer.init( RAYEX_NAMESPACE::g_graphicsCmdPool );
+    commandBuffer.init( RAYEX_NAMESPACE::components::graphicsCmdPool );
     commandBuffer.begin( );
 
     commandBuffer.get( 0 ).pipelineBarrier( std::get<1>( barrierInfo ), // srcStageMask
@@ -167,7 +167,7 @@ namespace vk::Helper
                                             &std::get<0>( barrierInfo ) ); // barrier
 
     commandBuffer.end( );
-    commandBuffer.submitToQueue( RAYEX_NAMESPACE::g_graphicsQueue );
+    commandBuffer.submitToQueue( RAYEX_NAMESPACE::components::graphicsQueue );
   }
 
   void transitionImageLayout( Image image, ImageLayout oldLayout, ImageLayout newLayout, CommandBuffer commandBuffer )
@@ -311,7 +311,7 @@ namespace vk::Helper
 
       if ( queueFamilies[index].queueFlags & QueueFlagBits::eGraphics )
       {
-        if ( physicalDevice.getSurfaceSupportKHR( index, RAYEX_NAMESPACE::g_surface ) != 0U )
+        if ( physicalDevice.getSurfaceSupportKHR( index, RAYEX_NAMESPACE::components::surface ) != 0U )
         {
           graphicsQueueFamilyIndices.push_back( index );
         }
@@ -427,7 +427,7 @@ namespace vk::Helper
       requiredExtensions.emplace( extension, false );
     }
 
-    std::vector<ExtensionProperties> physicalDeviceExtensions = RAYEX_NAMESPACE::g_physicalDevice.enumerateDeviceExtensionProperties( );
+    std::vector<ExtensionProperties> physicalDeviceExtensions = RAYEX_NAMESPACE::components::physicalDevice.enumerateDeviceExtensionProperties( );
 
     // Iterates over all enumerated physical device extensions to see if they are available.
     for ( const auto& physicalDeviceExtension : physicalDeviceExtensions )

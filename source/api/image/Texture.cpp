@@ -27,7 +27,7 @@ namespace RAYEX_NAMESPACE
   {
     _path = path;
 
-    std::string fullPath = g_assetsPath + std::string( path );
+    std::string fullPath = components::assetsPath + std::string( path );
 
     int width;
     int height;
@@ -44,7 +44,7 @@ namespace RAYEX_NAMESPACE
     // Set up the staging buffer.
     Buffer stagingBuffer( size,
                           vk::BufferUsageFlagBits::eTransferSrc,
-                          { g_graphicsFamilyIndex },
+                          { components::graphicsFamilyIndex },
                           vk::MemoryPropertyFlagBits::eHostVisible | vk::MemoryPropertyFlagBits::eHostCoherent );
 
     stagingBuffer.fill<stbi_uc>( pixels );

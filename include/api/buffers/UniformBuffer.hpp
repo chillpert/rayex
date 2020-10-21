@@ -53,7 +53,7 @@ namespace RAYEX_NAMESPACE
     template <typename T>
     void init( )
     {
-      size_t swapchainImageCount = static_cast<size_t>( g_swapchainImageCount );
+      size_t swapchainImageCount = static_cast<size_t>( components::swapchainImageCount );
 
       _buffers.resize( swapchainImageCount );
 

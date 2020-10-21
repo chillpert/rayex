@@ -66,12 +66,12 @@ namespace RAYEX_NAMESPACE
     void fill( const T* source, vk::DeviceSize offset = 0 )
     {
       void* data;
-      if ( g_device.mapMemory( _memory.get( ), offset, _size, { }, &data ) != vk::Result::eSuccess )
+      if ( components::device.mapMemory( _memory.get( ), offset, _size, { }, &data ) != vk::Result::eSuccess )
         RX_ERROR( "Failed to map memory." );
 
       memcpy( data, source, static_cast<uint32_t>( _size ) );
 
-      g_device.unmapMemory( _memory.get( ) );
+      components::device.unmapMemory( _memory.get( ) );
     }
 
   protected:
@@ -90,13 +90,13 @@ namespace RAYEX_NAMESPACE
     // Set up the staging buffer.
     Buffer stagingBuffer( size,                                                                                  // size
                           vk::BufferUsageFlagBits::eTransferSrc | vk::BufferUsageFlagBits::eShaderDeviceAddress, // usage
-                          { g_transferFamilyIndex },                                                             // queueFamilyIndices
+                          { components::transferFamilyIndex },                                                   // queueFamilyIndices
                           vk::MemoryPropertyFlagBits::eHostVisible | vk::MemoryPropertyFlagBits::eHostCoherent,  // memoryPropertyFlags
                           &allocateFlags );                                                                      // pNext of memory
 
     buffer.init( size,                                                                                                                                                                     // size
                  vk::BufferUsageFlagBits::eTransferDst | vk::BufferUsageFlagBits::eVertexBuffer | vk::BufferUsageFlagBits::eShaderDeviceAddress | vk::BufferUsageFlagBits::eStorageBuffer, // usage
-                 { g_transferFamilyIndex },                                                                                                                                                // queueFamilyIndices
+                 { components::transferFamilyIndex },                                                                                                                                      // queueFamilyIndices
                  vk::MemoryPropertyFlagBits::eHostVisible | vk::MemoryPropertyFlagBits::eHostCoherent,                                                                                     // memoryPropertyFlags
                  &allocateFlags );                                                                                                                                                         // pNext of memory
 

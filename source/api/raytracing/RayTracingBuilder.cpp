@@ -14,13 +14,13 @@ namespace RAYEX_NAMESPACE
 
   void RayTracingBuilder::init( )
   {
-    auto properties = g_physicalDevice.getProperties2<vk::PhysicalDeviceProperties2, vk::PhysicalDeviceRayTracingPropertiesKHR>( );
+    auto properties = components::physicalDevice.getProperties2<vk::PhysicalDeviceProperties2, vk::PhysicalDeviceRayTracingPropertiesKHR>( );
     _rtProperties   = properties.get<vk::PhysicalDeviceRayTracingPropertiesKHR>( );
   }
 
   void RayTracingBuilder::destroy( )
   {
-    g_device.waitIdle( );
+    components::device.waitIdle( );
 
     for ( Blas& blas : _blas_ )
       blas.as.destroy( );
@@ -39,8 +39,8 @@ namespace RAYEX_NAMESPACE
                                                                  Vertex::getVertexPositionFormat( ), // vertexFormat
                                                                  VK_FALSE );                         // allowsTransforms
 
-    vk::DeviceAddress vertexAddress = g_device.getBufferAddress( { vertexBuffer.get( ) } );
-    vk::DeviceAddress indexAddress  = g_device.getBufferAddress( { indexBuffer.get( ) } );
+    vk::DeviceAddress vertexAddress = components::device.getBufferAddress( { vertexBuffer.get( ) } );
+    vk::DeviceAddress indexAddress  = components::device.getBufferAddress( { indexBuffer.get( ) } );
 
     vk::AccelerationStructureGeometryTrianglesDataKHR triangles( asCreate.vertexFormat, // vertexFormat
                                                                  vertexAddress,         // vertexData
@@ -71,7 +71,7 @@ namespace RAYEX_NAMESPACE
     Blas& blas { _blas_[instance.blasId] };
 
     vk::AccelerationStructureDeviceAddressInfoKHR addressInfo( blas.as.as );
-    vk::DeviceAddress blasAddress = g_device.getAccelerationStructureAddressKHR( addressInfo );
+    vk::DeviceAddress blasAddress = components::device.getAccelerationStructureAddressKHR( addressInfo );
 
     glm::mat4 transpose = glm::transpose( instance.transform );
 
@@ -143,13 +143,13 @@ namespace RAYEX_NAMESPACE
                                                                   vk::AccelerationStructureBuildTypeKHR::eDevice,                    // buildType
                                                                   blas.as.as );                                                      // accelerationStructure
 
-      vk::MemoryRequirements2 memoryRequirements = RAYEX_NAMESPACE::g_device.getAccelerationStructureMemoryRequirementsKHR( memInfo );
+      vk::MemoryRequirements2 memoryRequirements = RAYEX_NAMESPACE::components::device.getAccelerationStructureMemoryRequirementsKHR( memInfo );
       vk::DeviceSize scratchSize                 = memoryRequirements.memoryRequirements.size;
 
       maxScratch = std::max( maxScratch, scratchSize );
 
       memInfo.type       = vk::AccelerationStructureMemoryRequirementsTypeKHR::eObject;
-      memoryRequirements = RAYEX_NAMESPACE::g_device.getAccelerationStructureMemoryRequirementsKHR( memInfo );
+      memoryRequirements = RAYEX_NAMESPACE::components::device.getAccelerationStructureMemoryRequirementsKHR( memInfo );
 
       originalSizes[index] = memoryRequirements.memoryRequirements.size;
 
@@ -161,18 +161,18 @@ namespace RAYEX_NAMESPACE
 
     Buffer scratchBuffer( maxScratch,                                                                              // size
                           vk::BufferUsageFlagBits::eRayTracingKHR | vk::BufferUsageFlagBits::eShaderDeviceAddress, // usage
-                          { g_graphicsFamilyIndex },                                                               // queueFamilyIndices
+                          { components::graphicsFamilyIndex },                                                     // queueFamilyIndices
                           vk::MemoryPropertyFlagBits::eDeviceLocal,                                                // memoryPropertyFlags
                           &allocateFlags );                                                                        // pNextMemory
 
     vk::BufferDeviceAddressInfo bufferInfo( scratchBuffer.get( ) );
-    vk::DeviceAddress scratchAddress = g_device.getBufferAddress( bufferInfo );
+    vk::DeviceAddress scratchAddress = components::device.getBufferAddress( bufferInfo );
 
     // Query size of compact BLAS.
     vk::UniqueQueryPool queryPool = vk::Initializer::initQueryPoolUnique( static_cast<uint32_t>( _blas_.size( ) ), vk::QueryType::eAccelerationStructureCompactedSizeKHR );
 
     // Create a command buffer containing all the BLAS builds.
-    vk::UniqueCommandPool commandPool = vk::Initializer::initCommandPoolUnique( { g_graphicsFamilyIndex } );
+    vk::UniqueCommandPool commandPool = vk::Initializer::initCommandPoolUnique( { components::graphicsFamilyIndex } );
     int ctr                           = 0;
 
     CommandBuffer cmdBuf( commandPool.get( ), static_cast<uint32_t>( _blas_.size( ) ) );
@@ -230,21 +230,21 @@ namespace RAYEX_NAMESPACE
       ++index;
     }
 
-    cmdBuf.submitToQueue( g_graphicsQueue );
+    cmdBuf.submitToQueue( components::graphicsQueue );
 
     if ( doCompaction )
     {
-      CommandBuffer compactionCmdBuf( g_graphicsCmdPool );
+      CommandBuffer compactionCmdBuf( components::graphicsCmdPool );
 
       std::vector<vk::DeviceSize> compactSizes( _blas_.size( ) );
 
-      g_device.getQueryPoolResults( queryPool.get( ),                                // queryPool
-                                    0,                                               // firstQuery
-                                    static_cast<uint32_t>( compactSizes.size( ) ),   // queryCount
-                                    compactSizes.size( ) * sizeof( vk::DeviceSize ), // dataSize
-                                    compactSizes.data( ),                            // pData
-                                    sizeof( vk::DeviceSize ),                        // stride
-                                    vk::QueryResultFlagBits::eWait );                // flags
+      components::device.getQueryPoolResults( queryPool.get( ),                                // queryPool
+                                              0,                                               // firstQuery
+                                              static_cast<uint32_t>( compactSizes.size( ) ),   // queryCount
+                                              compactSizes.size( ) * sizeof( vk::DeviceSize ), // dataSize
+                                              compactSizes.data( ),                            // pData
+                                              sizeof( vk::DeviceSize ),                        // stride
+                                              vk::QueryResultFlagBits::eWait );                // flags
 
       std::vector<AccelerationStructure> cleanupAS( _blas_.size( ) );
 
@@ -280,7 +280,7 @@ namespace RAYEX_NAMESPACE
       }
 
       compactionCmdBuf.end( 0 );
-      compactionCmdBuf.submitToQueue( g_graphicsQueue );
+      compactionCmdBuf.submitToQueue( components::graphicsQueue );
 
       for ( auto& as : cleanupAS )
         as.destroy( );
@@ -339,7 +339,7 @@ namespace RAYEX_NAMESPACE
                                                                                vk::AccelerationStructureBuildTypeKHR::eDevice,                    // buildType
                                                                                _tlas.as.as );                                                     // accelerationStructure
 
-    vk::MemoryRequirements2 reqMem = g_device.getAccelerationStructureMemoryRequirementsKHR( memoryRequirementsInfo );
+    vk::MemoryRequirements2 reqMem = components::device.getAccelerationStructureMemoryRequirementsKHR( memoryRequirementsInfo );
     vk::DeviceSize scratchSize     = reqMem.memoryRequirements.size;
 
     // Allocate the scratch buffers holding the temporary data of the acceleration structure builder.
@@ -347,11 +347,11 @@ namespace RAYEX_NAMESPACE
 
     Buffer scratchBuffer( scratchSize,                                                                             // size
                           vk::BufferUsageFlagBits::eRayTracingKHR | vk::BufferUsageFlagBits::eShaderDeviceAddress, // usage
-                          { g_graphicsFamilyIndex },                                                               // queueFamilyIndices
+                          { components::graphicsFamilyIndex },                                                     // queueFamilyIndices
                           vk::MemoryPropertyFlagBits::eDeviceLocal,                                                // memoryPropertyFlags
                           &allocateFlags );                                                                        // pNextMemory
 
-    vk::DeviceAddress scratchAddress = g_device.getBufferAddress( { scratchBuffer.get( ) } );
+    vk::DeviceAddress scratchAddress = components::device.getBufferAddress( { scratchBuffer.get( ) } );
 
     std::vector<vk::AccelerationStructureInstanceKHR> geometryInstances;
     geometryInstances.reserve( instances.size( ) );
@@ -362,7 +362,7 @@ namespace RAYEX_NAMESPACE
     }
 
     // Building the TLAS.
-    vk::UniqueCommandPool commandPool = vk::Initializer::initCommandPoolUnique( g_graphicsFamilyIndex );
+    vk::UniqueCommandPool commandPool = vk::Initializer::initCommandPoolUnique( components::graphicsFamilyIndex );
     CommandBuffer cmdBuf( commandPool.get( ) );
 
     // Create a buffer holding the actual instance data for use by the AS builder.
@@ -371,13 +371,13 @@ namespace RAYEX_NAMESPACE
     // Allocate the instance buffer and copy its contents from host to device memory.
     _instanceBuffer.init( instanceDescsSizeInBytes,                                                                // size
                           vk::BufferUsageFlagBits::eRayTracingKHR | vk::BufferUsageFlagBits::eShaderDeviceAddress, // usage
-                          { g_graphicsFamilyIndex },                                                               // queueFamilyIndices
+                          { components::graphicsFamilyIndex },                                                     // queueFamilyIndices
                           vk::MemoryPropertyFlagBits::eHostVisible,                                                // memoryPropertyFlags
                           &allocateFlags );                                                                        // pNextMemory
 
     _instanceBuffer.fill<vk::AccelerationStructureInstanceKHR>( geometryInstances.data( ) );
 
-    vk::DeviceAddress instanceAddress = g_device.getBufferAddress( { _instanceBuffer.get( ) } );
+    vk::DeviceAddress instanceAddress = components::device.getBufferAddress( { _instanceBuffer.get( ) } );
 
     // Make sure the copy of the instance buffer are copied before triggering the acceleration structure build.
     vk::MemoryBarrier barrier( vk::AccessFlagBits::eTransferWrite,                   // srcAccessMask
@@ -428,7 +428,7 @@ namespace RAYEX_NAMESPACE
     cmdBuf.get( 0 ).buildAccelerationStructureKHR( 1, &topAsInfo, &pBuildOffsetInfo );
 
     cmdBuf.end( 0 );
-    cmdBuf.submitToQueue( g_graphicsQueue );
+    cmdBuf.submitToQueue( components::graphicsQueue );
   }
 
   void RayTracingBuilder::createStorageImage( vk::Extent2D swapchainExtent )
@@ -445,7 +445,7 @@ namespace RAYEX_NAMESPACE
 
   void RayTracingBuilder::createShaderBindingTable( vk::Pipeline rtPipeline )
   {
-    uint32_t groupCount      = g_shaderGroups;
+    uint32_t groupCount      = components::shaderGroups;
     uint32_t groupHandleSize = _rtProperties.shaderGroupHandleSize;
     uint32_t baseAlignment   = _rtProperties.shaderGroupBaseAlignment;
 
@@ -453,33 +453,33 @@ namespace RAYEX_NAMESPACE
 
     _sbtBuffer.init( sbtSize,
                      vk::BufferUsageFlagBits::eTransferSrc,
-                     { g_graphicsFamilyIndex },
+                     { components::graphicsFamilyIndex },
                      vk::MemoryPropertyFlagBits::eHostVisible );
 
     std::vector<uint8_t> shaderHandleStorage( sbtSize );
-    g_device.getRayTracingShaderGroupHandlesKHR( rtPipeline,
-                                                 0,
-                                                 groupCount,
-                                                 sbtSize,
-                                                 shaderHandleStorage.data( ) );
+    components::device.getRayTracingShaderGroupHandlesKHR( rtPipeline,
+                                                           0,
+                                                           groupCount,
+                                                           sbtSize,
+                                                           shaderHandleStorage.data( ) );
 
     void* mapped = NULL;
-    g_device.mapMemory( _sbtBuffer.getMemory( ), 0, _sbtBuffer.getSize( ), { }, &mapped );
+    components::device.mapMemory( _sbtBuffer.getMemory( ), 0, _sbtBuffer.getSize( ), { }, &mapped );
 
     auto* pData = reinterpret_cast<uint8_t*>( mapped );
-    for ( uint32_t i = 0; i < g_shaderGroups; ++i )
+    for ( uint32_t i = 0; i < components::shaderGroups; ++i )
     {
       memcpy( pData, shaderHandleStorage.data( ) + i * groupHandleSize, groupHandleSize ); // raygen
       pData += baseAlignment;
     }
 
-    g_device.unmapMemory( _sbtBuffer.getMemory( ) );
+    components::device.unmapMemory( _sbtBuffer.getMemory( ) );
   }
 
   void RayTracingBuilder::rayTrace( vk::CommandBuffer swapchainCommandBuffer, vk::Image swapchainImage, vk::Extent2D extent )
   {
     vk::DeviceSize progSize = _rtProperties.shaderGroupBaseAlignment;
-    vk::DeviceSize sbtSize  = progSize * static_cast<vk::DeviceSize>( g_shaderGroups );
+    vk::DeviceSize sbtSize  = progSize * static_cast<vk::DeviceSize>( components::shaderGroups );
 
     vk::DeviceSize rayGenOffset        = 0U * progSize; // Start at the beginning of _sbtBuffer
     vk::DeviceSize missOffset          = 1U * progSize; // Jump over raygen

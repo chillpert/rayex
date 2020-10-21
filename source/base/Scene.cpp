@@ -11,7 +11,7 @@ namespace RAYEX_NAMESPACE
 
   void Scene::submitGeometryInstance( std::shared_ptr<GeometryInstance> geometryInstance )
   {
-    uint32_t limit = _settings->_maxGeometryInstances.has_value( ) ? _settings->_maxGeometryInstances.value( ) : g_maxGeometryInstances;
+    uint32_t limit = _settings->_maxGeometryInstances.has_value( ) ? _settings->_maxGeometryInstances.value( ) : components::maxGeometryInstances;
     if ( _geometryInstances.size( ) >= limit )
     {
       RX_ERROR( "Failed to submit geometry instance because instance buffer size has been exceeded. To avoid this error, increase the amount of supported geometry instances using RAYEX_NAMESPACE::Rayex::Settings::setMaxGeometryInstances(uint32_t)." );
@@ -24,7 +24,7 @@ namespace RAYEX_NAMESPACE
 
   void Scene::setGeometryInstances( const std::vector<std::shared_ptr<GeometryInstance>>& geometryInstances )
   {
-    uint32_t limit = _settings->_maxGeometryInstances.has_value( ) ? _settings->_maxGeometryInstances.value( ) : g_maxGeometryInstances;
+    uint32_t limit = _settings->_maxGeometryInstances.has_value( ) ? _settings->_maxGeometryInstances.value( ) : components::maxGeometryInstances;
     if ( _geometryInstances.size( ) >= limit )
     {
       RX_ERROR( "Failed to set geometry instances because instance buffer size has been exceeded. To avoid this error, increase the amount of supported geometry instances using RAYEX_NAMESPACE::Rayex::Settings::setMaxGeometryInstances(uint32_t)." );
@@ -42,7 +42,7 @@ namespace RAYEX_NAMESPACE
 
   void Scene::submitDirectionalLight( std::shared_ptr<DirectionalLight> light )
   {
-    uint32_t limit = _settings->_maxDirectionalLights.has_value( ) ? _settings->_maxDirectionalLights.value( ) : g_maxDirectionalLights;
+    uint32_t limit = _settings->_maxDirectionalLights.has_value( ) ? _settings->_maxDirectionalLights.value( ) : components::maxDirectionalLights;
     if ( _directionalLights.size( ) >= limit )
     {
       RX_ERROR( "Failed to submit directional light because buffer size has been exceeded. To avoid this error, increase the amount of supported directional lights using RAYEX_NAMESPACE::Rayex::Settings::setMaxDirectionalLights(uint32_t)." );
@@ -83,7 +83,7 @@ namespace RAYEX_NAMESPACE
 
   void Scene::submitPointLight( std::shared_ptr<PointLight> light )
   {
-    uint32_t limit = _settings->_maxPointLights.has_value( ) ? _settings->_maxPointLights.value( ) : g_maxPointLights;
+    uint32_t limit = _settings->_maxPointLights.has_value( ) ? _settings->_maxPointLights.value( ) : components::maxPointLights;
     if ( _pointLights.size( ) >= limit )
     {
       RX_ERROR( "Failed to submit point light because buffer size has been exceeded. To avoid this error, increase the amount of supported point lights using RAYEX_NAMESPACE::Rayex::Settings::setMaxPointLights(uint32_t)." );
@@ -142,7 +142,7 @@ namespace RAYEX_NAMESPACE
 
   void Scene::submitGeometry( std::shared_ptr<Geometry> geometry )
   {
-    if ( _geometries.size( ) >= g_maxGeometryInstances - 1 )
+    if ( _geometries.size( ) >= components::maxGeometryInstances - 1 )
     {
       RX_ERROR( "Failed to add geometry. You have exceeded the maximum amount of geometry supported." );
       return;
@@ -154,7 +154,7 @@ namespace RAYEX_NAMESPACE
 
   void Scene::setGeometries( const std::vector<std::shared_ptr<Geometry>>& geometries )
   {
-    if ( _geometries.size( ) >= g_maxGeometryInstances )
+    if ( _geometries.size( ) >= components::maxGeometryInstances )
     {
       RX_ERROR( "Failed to set geometries. You have exceeded the maximum amount of geometry supported." );
       return;

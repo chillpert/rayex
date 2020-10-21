@@ -96,7 +96,7 @@ namespace RAYEX_NAMESPACE
     if ( _width != prevWidth || _height != prevHeight )
     {
       // Frame counter for jitter cam needs to be reset.
-      g_frameCount = 0;
+      components::frameCount = 0;
 
       prevWidth  = _width;
       prevHeight = _height;

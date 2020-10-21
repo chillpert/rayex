@@ -20,8 +20,8 @@ namespace RAYEX_NAMESPACE
     static glm::vec3 prevPosition = _position;
     if ( prevPosition != _position )
     {
-      g_frameCount = 0;
-      prevPosition = _position;
+      components::frameCount = 0;
+      prevPosition           = _position;
     }
 
     processKeyboard( );
@@ -104,7 +104,7 @@ namespace RAYEX_NAMESPACE
     updateVectors( );
 
     // Frame counter for jitter cam needs to be reset.
-    g_frameCount = 0;
+    components::frameCount = 0;
   }
 
   void Camera::updateVectors( )

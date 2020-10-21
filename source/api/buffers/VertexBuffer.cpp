@@ -20,13 +20,13 @@ namespace RAYEX_NAMESPACE
     // Set up the staging buffer.
     Buffer stagingBuffer( size,                                                                                  // size
                           vk::BufferUsageFlagBits::eTransferSrc | vk::BufferUsageFlagBits::eShaderDeviceAddress, // usage
-                          { g_transferFamilyIndex },                                                             // queueFamilyIndices
+                          { components::transferFamilyIndex },                                                   // queueFamilyIndices
                           vk::MemoryPropertyFlagBits::eHostVisible | vk::MemoryPropertyFlagBits::eHostCoherent,  // memoryPropertyFlags
                           &allocateFlags );                                                                      // pNext of memory
 
     Buffer::init( size,                                                                                                                                                                     // size
                   vk::BufferUsageFlagBits::eTransferDst | vk::BufferUsageFlagBits::eVertexBuffer | vk::BufferUsageFlagBits::eShaderDeviceAddress | vk::BufferUsageFlagBits::eStorageBuffer, // usage
-                  { g_transferFamilyIndex },                                                                                                                                                // queueFamilyIndices
+                  { components::transferFamilyIndex },                                                                                                                                      // queueFamilyIndices
                   vk::MemoryPropertyFlagBits::eHostVisible | vk::MemoryPropertyFlagBits::eHostCoherent,                                                                                     // memoryPropertyFlags
                   &allocateFlags );                                                                                                                                                         // pNext of memory
 

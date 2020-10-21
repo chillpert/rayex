@@ -22,7 +22,7 @@ namespace RAYEX_NAMESPACE
                                                      debugMessengerCallback,
                                                      nullptr );
 
-    _debugMessenger = g_instance.createDebugUtilsMessengerEXT( createInfo );
+    _debugMessenger = components::instance.createDebugUtilsMessengerEXT( createInfo );
     RX_ASSERT( _debugMessenger, "Failed to create debug messenger." );
 #endif
   }
@@ -32,7 +32,7 @@ namespace RAYEX_NAMESPACE
 #ifdef RX_DEBUG
     if ( _debugMessenger )
     {
-      g_instance.destroyDebugUtilsMessengerEXT( _debugMessenger );
+      components::instance.destroyDebugUtilsMessengerEXT( _debugMessenger );
       _debugMessenger = nullptr;
     }
 #endif

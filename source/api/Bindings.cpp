@@ -14,9 +14,9 @@ namespace RAYEX_NAMESPACE
     _flags.push_back( flags );
 
     // Resources are created per swapchain image. This operation will only be executed once.
-    if ( _writes.size( ) != g_swapchainImageCount )
+    if ( _writes.size( ) != components::swapchainImageCount )
     {
-      _writes.resize( g_swapchainImageCount );
+      _writes.resize( components::swapchainImageCount );
     }
 
     // For every new binding that is added, the size of each write in writes will get increased by one.
@@ -38,7 +38,7 @@ namespace RAYEX_NAMESPACE
                                                                   _flags.data( ) ); // pBindingFlags
     createInfo.pNext = &layoutFlags;
 
-    auto layout = g_device.createDescriptorSetLayoutUnique( createInfo );
+    auto layout = components::device.createDescriptorSetLayoutUnique( createInfo );
     RX_ASSERT( layout, "Failed to create descriptor set layout." );
 
     return std::move( layout );
@@ -71,7 +71,7 @@ namespace RAYEX_NAMESPACE
                                              static_cast<uint32_t>( tPoolSizes.size( ) ), // poolSizeCount
                                              tPoolSizes.data( ) );                        // pPoolSizes
 
-    auto pool = g_device.createDescriptorPoolUnique( createInfo );
+    auto pool = components::device.createDescriptorPoolUnique( createInfo );
     RX_ASSERT( pool, "Failed to create descriptor pool." );
 
     return std::move( pool );
@@ -81,7 +81,7 @@ namespace RAYEX_NAMESPACE
   {
     for ( const auto& write : _writes )
     {
-      g_device.updateDescriptorSets( static_cast<uint32_t>( write.size( ) ), write.data( ), 0, nullptr );
+      components::device.updateDescriptorSets( static_cast<uint32_t>( write.size( ) ), write.data( ), 0, nullptr );
     }
   }
 

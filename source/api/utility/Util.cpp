@@ -41,12 +41,12 @@ namespace RAYEX_NAMESPACE::Util
     // Calls glslc to compile the glsl file into spir-v.
     std::stringstream command;
     //command << "cd " << pathToFile << " && " << RX_GLSLC_PATH << " " << fileName << " -o " << fileNameOut << " --target-env=vulkan1.2";
-    command << RX_GLSLC_PATH << " " << g_assetsPath << "shaders/" << fileName << " -o " << g_assetsPath << "shaders/" << fileNameOut << " --target-env=vulkan1.2";
+    command << RX_GLSLC_PATH << " " << components::assetsPath << "shaders/" << fileName << " -o " << components::assetsPath << "shaders/" << fileNameOut << " --target-env=vulkan1.2";
 
     std::system( command.str( ).c_str( ) );
 
     // Read the file and retrieve the source.
-    std::string pathToShaderSourceFile = g_assetsPath + pathToFile + fileNameOut;
+    std::string pathToShaderSourceFile = components::assetsPath + pathToFile + fileNameOut;
     std::ifstream file( pathToShaderSourceFile, std::ios::ate | std::ios::binary );
 
     if ( !file.is_open( ) )
@@ -67,7 +67,7 @@ namespace RAYEX_NAMESPACE::Util
 
   void processShaderMacros( std::string_view path, uint32_t dirLightNodes, uint32_t pointLightNodes, uint32_t totalModels )
   {
-    std::string pathToFile = g_assetsPath + std::string( path );
+    std::string pathToFile = components::assetsPath + std::string( path );
     std::ifstream file( pathToFile );
 
     if ( !file.is_open( ) )

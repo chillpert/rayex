@@ -85,7 +85,7 @@ namespace RAYEX_NAMESPACE
                                                          dynamicStates.data( ) );                        // pDynamicStates
 
     uint32_t pushConstantSize = sizeof( float ) + sizeof( glm::vec3 );
-    if ( g_physicalDeviceLimits.maxPushConstantsSize < pushConstantSize )
+    if ( components::physicalDeviceLimits.maxPushConstantsSize < pushConstantSize )
       RX_FATAL( "Push constant size is exceeding supported size." );
 
     vk::PushConstantRange pushConstantRangeMissKHR( vk::ShaderStageFlagBits::eVertex, // stageFlags
@@ -98,11 +98,11 @@ namespace RAYEX_NAMESPACE
                                                      1,                                                     // pushConstantRangeCount
                                                      &pushConstantRangeMissKHR );                           // pPushConstantRanges
 
-    _layout = g_device.createPipelineLayoutUnique( pipelineLayoutInfo );
+    _layout = components::device.createPipelineLayoutUnique( pipelineLayoutInfo );
     RX_ASSERT( _layout, "Failed to create pipeline layout for rasterization pipeline." );
 
-    //uint32_t anticipatedDirectionalLights = settings->maxDirectionalLights.has_value( ) ? settings->maxDirectionalLights.value( ) : g_maxDirectionalLights;
-    //uint32_t anticipatedPointLights       = settings->maxPointLights.has_value( ) ? settings->maxPointLights.value( ) : g_maxPointLights;
+    //uint32_t anticipatedDirectionalLights = settings->maxDirectionalLights.has_value( ) ? settings->maxDirectionalLights.value( ) : components::maxDirectionalLights;
+    //uint32_t anticipatedPointLights       = settings->maxPointLights.has_value( ) ? settings->maxPointLights.value( ) : components::maxPointLights;
     //Util::processShaderMacros( "shaders/simple3D.frag", anticipatedDirectionalLights, anticipatedPointLights, 0 );
 
     auto vs = vk::Initializer::initShaderModuleUnique( "shaders/simple3D.vert" );
@@ -146,15 +146,15 @@ namespace RAYEX_NAMESPACE
                                                nullptr,                                       // basePipelineHandle
                                                0 );                                           // basePipelineIndex
 
-    _pipeline = g_device.createGraphicsPipelineUnique( nullptr, createInfo, nullptr );
+    _pipeline = components::device.createGraphicsPipelineUnique( nullptr, createInfo, nullptr );
     RX_ASSERT( _pipeline, "Failed to create rasterization pipeline." );
   }
 
   void Pipeline::init( const std::vector<vk::DescriptorSetLayout>& descriptorSetLayouts, const Settings* settings )
   {
-    //uint32_t anticipatedDirectionalLights = settings->maxDirectionalLights.has_value( ) ? settings->maxDirectionalLights.value( ) : g_maxDirectionalLights;
-    //uint32_t anticipatedPointLights       = settings->maxPointLights.has_value( ) ? settings->maxPointLights.value( ) : g_maxPointLights;
-    //Util::processShaderMacros( "shaders/raytrace.rchit", anticipatedDirectionalLights, anticipatedPointLights, g_modelCount );
+    //uint32_t anticipatedDirectionalLights = settings->maxDirectionalLights.has_value( ) ? settings->maxDirectionalLights.value( ) : components::maxDirectionalLights;
+    //uint32_t anticipatedPointLights       = settings->maxPointLights.has_value( ) ? settings->maxPointLights.value( ) : components::maxPointLights;
+    //Util::processShaderMacros( "shaders/raytrace.rchit", anticipatedDirectionalLights, anticipatedPointLights, components::modelCount );
 
     auto rgen       = vk::Initializer::initShaderModuleUnique( "shaders/raytrace.rgen" );
     auto miss       = vk::Initializer::initShaderModuleUnique( "shaders/raytrace.rmiss" );
@@ -173,7 +173,7 @@ namespace RAYEX_NAMESPACE
                                              static_cast<uint32_t>( pushConstantRanges.size( ) ),   // pushConstantRangeCount
                                              pushConstantRanges.data( ) );                          // pPushConstantRanges
 
-    _layout = g_device.createPipelineLayoutUnique( layoutInfo );
+    _layout = components::device.createPipelineLayoutUnique( layoutInfo );
     RX_ASSERT( _layout, "Failed to create pipeline layout for ray tracing pipeline." );
 
     std::array<vk::PipelineShaderStageCreateInfo, 4> shaderStages;
@@ -205,7 +205,7 @@ namespace RAYEX_NAMESPACE
     groups[3].closestHitShader = 3;
     groups[3].type             = vk::RayTracingShaderGroupTypeKHR::eTrianglesHitGroup;
 
-    g_shaderGroups = static_cast<uint32_t>( groups.size( ) );
+    components::shaderGroups = static_cast<uint32_t>( groups.size( ) );
 
     vk::RayTracingPipelineCreateInfoKHR createInfo( { },                                           // flags
                                                     static_cast<uint32_t>( shaderStages.size( ) ), // stageCount
@@ -219,7 +219,7 @@ namespace RAYEX_NAMESPACE
                                                     nullptr,                                       // basePipelineHandle
                                                     0 );                                           // basePipelineIndex
 
-    _pipeline = g_device.createRayTracingPipelineKHRUnique( nullptr, createInfo );
+    _pipeline = components::device.createRayTracingPipelineKHRUnique( nullptr, createInfo );
     RX_ASSERT( _pipeline, "Failed to create ray tracing pipeline." );
   }
 } // namespace RAYEX_NAMESPACE

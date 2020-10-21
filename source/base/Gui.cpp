@@ -19,21 +19,21 @@ namespace RAYEX_NAMESPACE
 
     configure( );
 
-    RX_ASSERT( ImGui_ImplSDL2_InitForVulkan( g_window->get( ) ), "Failed to init ImGui for Vulkan" );
+    RX_ASSERT( ImGui_ImplSDL2_InitForVulkan( components::window->get( ) ), "Failed to init ImGui for Vulkan" );
 
     initDescriptorPool( );
 
     ImGui_ImplVulkan_InitInfo init_info { };
-    init_info.Instance       = g_instance;
-    init_info.PhysicalDevice = g_physicalDevice;
-    init_info.Device         = g_device;
-    init_info.QueueFamily    = g_graphicsFamilyIndex;
-    init_info.Queue          = g_graphicsQueue;
+    init_info.Instance       = components::instance;
+    init_info.PhysicalDevice = components::physicalDevice;
+    init_info.Device         = components::device;
+    init_info.QueueFamily    = components::graphicsFamilyIndex;
+    init_info.Queue          = components::graphicsQueue;
     init_info.PipelineCache  = nullptr;
     init_info.DescriptorPool = _descriptorPool.get( );
     init_info.Allocator      = nullptr;
     init_info.MinImageCount  = surface->getCapabilities( ).minImageCount + 1;
-    init_info.ImageCount     = static_cast<uint32_t>( g_swapchainImageCount );
+    init_info.ImageCount     = static_cast<uint32_t>( components::swapchainImageCount );
 
     initRenderPass( surface );
     RX_ASSERT( ImGui_ImplVulkan_Init( &init_info, _renderPass.get( ) ), "Failed to initialize Vulkan for ImGui." );
@@ -53,7 +53,7 @@ namespace RAYEX_NAMESPACE
   void Gui::newFrame( )
   {
     ImGui_ImplVulkan_NewFrame( );
-    ImGui_ImplSDL2_NewFrame( g_window->get( ) );
+    ImGui_ImplSDL2_NewFrame( components::window->get( ) );
     ImGui::NewFrame( );
   }
 
@@ -89,7 +89,7 @@ namespace RAYEX_NAMESPACE
 
   void Gui::initCommandPool( )
   {
-    _commandPool = vk::Initializer::initCommandPoolUnique( g_graphicsFamilyIndex, vk::CommandPoolCreateFlagBits::eResetCommandBuffer );
+    _commandPool = vk::Initializer::initCommandPoolUnique( components::graphicsFamilyIndex, vk::CommandPoolCreateFlagBits::eResetCommandBuffer );
   }
 
   void Gui::initDescriptorPool( )
@@ -108,7 +108,7 @@ namespace RAYEX_NAMESPACE
       { vk::DescriptorType::eInputAttachment, 1000 }
     };
 
-    _descriptorPool = vk::Initializer::initDescriptorPoolUnique( poolSizes, g_swapchainImageCount );
+    _descriptorPool = vk::Initializer::initDescriptorPoolUnique( poolSizes, components::swapchainImageCount );
   }
 
   void Gui::initRenderPass( const Surface* const surface )
@@ -164,13 +164,13 @@ namespace RAYEX_NAMESPACE
     RX_ASSERT( ImGui_ImplVulkan_CreateFontsTexture( commandBuffer.get( 0 ) ), "Failed to create ImGui fonts texture." );
 
     commandBuffer.end( );
-    commandBuffer.submitToQueue( g_graphicsQueue );
+    commandBuffer.submitToQueue( components::graphicsQueue );
   }
 
   void Gui::initCommandBuffers( )
   {
     // Create command buffers for each image in the swapchain.
-    _commandBuffers.init( _commandPool.get( ), g_swapchainImageCount, vk::CommandBufferUsageFlagBits::eRenderPassContinue );
+    _commandBuffers.init( _commandPool.get( ), components::swapchainImageCount, vk::CommandBufferUsageFlagBits::eRenderPassContinue );
   }
 
   void Gui::initFramebuffers( const std::vector<vk::ImageView>& swapchainImageViews )

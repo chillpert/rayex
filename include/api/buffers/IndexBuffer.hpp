@@ -28,7 +28,7 @@ namespace RAYEX_NAMESPACE
       // Set up the staging buffer.
       Buffer stagingBuffer( size,
                             vk::BufferUsageFlagBits::eTransferSrc | vk::BufferUsageFlagBits::eShaderDeviceAddress,
-                            { g_transferFamilyIndex },
+                            { components::transferFamilyIndex },
                             vk::MemoryPropertyFlagBits::eHostVisible | vk::MemoryPropertyFlagBits::eHostCoherent,
                             &allocateFlags );
 
@@ -37,7 +37,7 @@ namespace RAYEX_NAMESPACE
       // Set up the actual index buffer.
       Buffer::init( size,
                     vk::BufferUsageFlagBits::eStorageBuffer | vk::BufferUsageFlagBits::eTransferDst | vk::BufferUsageFlagBits::eIndexBuffer | vk::BufferUsageFlagBits::eShaderDeviceAddress,
-                    { g_transferFamilyIndex },
+                    { components::transferFamilyIndex },
                     vk::MemoryPropertyFlagBits::eDeviceLocal,
                     &allocateFlags );
 

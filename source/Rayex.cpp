@@ -25,7 +25,6 @@ namespace RAYEX_NAMESPACE
     _api->_settings         = &_settings;
     _api->_scene            = &_scene;
     _api->_scene->_settings = &_settings;
-    components::window      = _window;
 
     if ( _settings.getAssetsPath( ).empty( ) )
     {

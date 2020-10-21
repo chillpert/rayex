@@ -443,13 +443,12 @@ namespace RAYEX_NAMESPACE
     _storageImageView = vk::Initializer::initImageViewUnique( _storageImage.get( ), _storageImage.getFormat( ) );
   }
 
-  void RayTracingBuilder::createShaderBindingTable( vk::Pipeline rtPipeline )
+  void RayTracingBuilder::createShaderBindingTable( )
   {
-    uint32_t groupCount      = components::shaderGroups;
     uint32_t groupHandleSize = _rtProperties.shaderGroupHandleSize;
     uint32_t baseAlignment   = _rtProperties.shaderGroupBaseAlignment;
 
-    uint32_t sbtSize = groupCount * baseAlignment;
+    uint32_t sbtSize = _shaderGroups * baseAlignment;
 
     _sbtBuffer.init( sbtSize,
                      vk::BufferUsageFlagBits::eTransferSrc,
@@ -457,9 +456,9 @@ namespace RAYEX_NAMESPACE
                      vk::MemoryPropertyFlagBits::eHostVisible );
 
     std::vector<uint8_t> shaderHandleStorage( sbtSize );
-    components::device.getRayTracingShaderGroupHandlesKHR( rtPipeline,
+    components::device.getRayTracingShaderGroupHandlesKHR( _pipeline.get( ),
                                                            0,
-                                                           groupCount,
+                                                           _shaderGroups,
                                                            sbtSize,
                                                            shaderHandleStorage.data( ) );
 
@@ -467,7 +466,7 @@ namespace RAYEX_NAMESPACE
     components::device.mapMemory( _sbtBuffer.getMemory( ), 0, _sbtBuffer.getSize( ), { }, &mapped );
 
     auto* pData = reinterpret_cast<uint8_t*>( mapped );
-    for ( uint32_t i = 0; i < components::shaderGroups; ++i )
+    for ( uint32_t i = 0; i < _shaderGroups; ++i )
     {
       memcpy( pData, shaderHandleStorage.data( ) + i * groupHandleSize, groupHandleSize ); // raygen
       pData += baseAlignment;
@@ -476,10 +475,83 @@ namespace RAYEX_NAMESPACE
     components::device.unmapMemory( _sbtBuffer.getMemory( ) );
   }
 
+  void RayTracingBuilder::createPipeline( const std::vector<vk::DescriptorSetLayout>& descriptorSetLayouts, const Settings* settings )
+  {
+    //uint32_t anticipatedDirectionalLights = settings->maxDirectionalLights.has_value( ) ? settings->maxDirectionalLights.value( ) : components::maxDirectionalLights;
+    //uint32_t anticipatedPointLights       = settings->maxPointLights.has_value( ) ? settings->maxPointLights.value( ) : components::maxPointLights;
+    //Util::processShaderMacros( "shaders/raytrace.rchit", anticipatedDirectionalLights, anticipatedPointLights, components::modelCount );
+
+    auto rgen       = vk::Initializer::initShaderModuleUnique( "shaders/raytrace.rgen" );
+    auto miss       = vk::Initializer::initShaderModuleUnique( "shaders/raytrace.rmiss" );
+    auto chit       = vk::Initializer::initShaderModuleUnique( "shaders/raytrace.rchit" );
+    auto missShadow = vk::Initializer::initShaderModuleUnique( "shaders/raytraceShadow.rmiss" );
+
+    vk::PushConstantRange rtPushConstant( vk::ShaderStageFlagBits::eRaygenKHR | vk::ShaderStageFlagBits::eMissKHR | vk::ShaderStageFlagBits::eClosestHitKHR, // stageFlags
+                                          0,                                                                                                                 // offset
+                                          sizeof( RayTracePushConstants ) );                                                                                 // size
+
+    std::array<vk::PushConstantRange, 1> pushConstantRanges = { rtPushConstant };
+
+    vk::PipelineLayoutCreateInfo layoutInfo( { },                                                   // flags
+                                             static_cast<uint32_t>( descriptorSetLayouts.size( ) ), // setLayoutCount
+                                             descriptorSetLayouts.data( ),                          // pSetLayouts
+                                             static_cast<uint32_t>( pushConstantRanges.size( ) ),   // pushConstantRangeCount
+                                             pushConstantRanges.data( ) );                          // pPushConstantRanges
+
+    _layout = components::device.createPipelineLayoutUnique( layoutInfo );
+    RX_ASSERT( _layout, "Failed to create pipeline layout for ray tracing pipeline." );
+
+    std::array<vk::PipelineShaderStageCreateInfo, 4> shaderStages;
+    shaderStages[0] = vk::Helper::getPipelineShaderStageCreateInfo( vk::ShaderStageFlagBits::eRaygenKHR, rgen.get( ) );
+    shaderStages[1] = vk::Helper::getPipelineShaderStageCreateInfo( vk::ShaderStageFlagBits::eMissKHR, miss.get( ) );
+    shaderStages[2] = vk::Helper::getPipelineShaderStageCreateInfo( vk::ShaderStageFlagBits::eMissKHR, missShadow.get( ) );
+    shaderStages[3] = vk::Helper::getPipelineShaderStageCreateInfo( vk::ShaderStageFlagBits::eClosestHitKHR, chit.get( ) );
+
+    // Set up raytracing shader groups.
+    std::array<vk::RayTracingShaderGroupCreateInfoKHR, 4> groups;
+
+    for ( auto& group : groups )
+    {
+      group.generalShader      = VK_SHADER_UNUSED_KHR;
+      group.closestHitShader   = VK_SHADER_UNUSED_KHR;
+      group.anyHitShader       = VK_SHADER_UNUSED_KHR;
+      group.intersectionShader = VK_SHADER_UNUSED_KHR;
+    }
+
+    groups[0].generalShader = 0;
+    groups[0].type          = vk::RayTracingShaderGroupTypeKHR::eGeneral;
+
+    groups[1].generalShader = 1;
+    groups[1].type          = vk::RayTracingShaderGroupTypeKHR::eGeneral;
+
+    groups[2].generalShader = 2;
+    groups[2].type          = vk::RayTracingShaderGroupTypeKHR::eGeneral;
+
+    groups[3].closestHitShader = 3;
+    groups[3].type             = vk::RayTracingShaderGroupTypeKHR::eTrianglesHitGroup;
+
+    _shaderGroups = static_cast<uint32_t>( groups.size( ) );
+
+    vk::RayTracingPipelineCreateInfoKHR createInfo( { },                                           // flags
+                                                    static_cast<uint32_t>( shaderStages.size( ) ), // stageCount
+                                                    shaderStages.data( ),                          // pStages
+                                                    static_cast<uint32_t>( groups.size( ) ),       // groupCount
+                                                    groups.data( ),                                // pGroups
+                                                    settings->getRecursionDepth( ),                // maxRecursionDepth
+                                                    0,                                             // libraries
+                                                    nullptr,                                       // pLibraryInterface
+                                                    _layout.get( ),                                // layout
+                                                    nullptr,                                       // basePipelineHandle
+                                                    0 );                                           // basePipelineIndex
+
+    _pipeline = components::device.createRayTracingPipelineKHRUnique( nullptr, createInfo );
+    RX_ASSERT( _pipeline, "Failed to create ray tracing pipeline." );
+  }
+
   void RayTracingBuilder::rayTrace( vk::CommandBuffer swapchainCommandBuffer, vk::Image swapchainImage, vk::Extent2D extent )
   {
     vk::DeviceSize progSize = _rtProperties.shaderGroupBaseAlignment;
-    vk::DeviceSize sbtSize  = progSize * static_cast<vk::DeviceSize>( components::shaderGroups );
+    vk::DeviceSize sbtSize  = progSize * static_cast<vk::DeviceSize>( _shaderGroups );
 
     vk::DeviceSize rayGenOffset        = 0U * progSize; // Start at the beginning of _sbtBuffer
     vk::DeviceSize missOffset          = 1U * progSize; // Jump over raygen

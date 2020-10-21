@@ -165,14 +165,13 @@ namespace RAYEX_NAMESPACE
     RenderPass _renderPass; ///< A RAYEX_NAMESPACE::RenderPass to create, begin and end a render pass.
 
     Pipeline _rsPipeline; ///< A RAYEX_NAMESPACE::Pipeline for managing a rasterization pipeline.
-    Pipeline _rtPipeline; ///< A RAYEX_NAMESPACE::Pipeline for managing a ray tracing pipeline.
 
     CommandBuffer _swapchainCommandBuffers; ///< A RAYEX_NAMESPACE::CommandBuffer containing as many command buffers as there are images in the swapchain.
 
     std::shared_ptr<Gui> _gui = nullptr; ///< A pointer to a RAYEX_NAMESPACE::Gui object that will be used for rendering the GUI.
 
     // No destruction necessary for following members:
-    RayTracingBuilder _rayTracingBuilder; ///< The RAYEX_NAMESPACE::RayTracingBuilder for setting up all ray tracing-related structures and the ray tracing process itself.
+    RayTracingBuilder _rtBuilder; ///< The RAYEX_NAMESPACE::RayTracingBuilder for setting up all ray tracing-related structures and the ray tracing process itself.
 
     vk::Viewport _viewport; ///< The application's viewport.
     vk::Rect2D _scissor;    ///< The application's scissor.

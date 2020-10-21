@@ -6,20 +6,6 @@
 
 namespace RAYEX_NAMESPACE
 {
-  struct RayTracePushConstants
-  {
-    glm::vec4 clearColor           = glm::vec4( 1.0F );
-    uint32_t sampleRate            = 100;
-    uint32_t sampleRatePerRayGen   = 1;
-    uint32_t ssaa                  = 8;
-    uint32_t jitterCamEnabled      = 0;
-    uint32_t ssaaEnabled           = 1;
-    uint32_t directionalLightCount = 0;
-    uint32_t pointLightCount       = 0;
-
-    float padding2 = 0.0f;
-  };
-
   /// A wrapper class for a Vulkan graphics pipeline.
   /// @ingroup API
   class Pipeline
@@ -32,11 +18,6 @@ namespace RAYEX_NAMESPACE
     /// @param scissor The desired scissor dimensions.
     /// @param settings Used to retrieve information like maximum instances or lights of a specific type.
     void init( const std::vector<vk::DescriptorSetLayout>& descriptorSetLayouts, vk::RenderPass renderPass, vk::Viewport viewport, vk::Rect2D scissor, const Settings* settings );
-
-    /// Initializes a ray tracing pipeline.
-    /// @param descriptorSetLayouts A vector of descriptor set layouts that will be included in the pipeline layout.
-    /// @param settings Used to retrieve information like maximum instances or lights of a specific type.
-    void init( const std::vector<vk::DescriptorSetLayout>& descriptorSetLayouts, const Settings* settings );
 
     /// @return Returns the Vulkan pipeline object without the unique handle.
     auto get( ) const -> vk::Pipeline { return _pipeline.get( ); }

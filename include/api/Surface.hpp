@@ -33,9 +33,13 @@ namespace RAYEX_NAMESPACE
     /// @return Returns the surface's capabilities.
     auto getCapabilities( ) const -> vk::SurfaceCapabilitiesKHR { return _capabilities; }
 
+    /// @return Returns the surface's extent.
+    auto getExtent( ) const -> vk::Extent2D { return _extent; }
+
     /// Initializes the Vulkan surface object.
+    /// @param window A window to create a surface for.
     /// @note If any of the specified format, color space and present mode are not available the function will fall back to settings that are guaranteed to be supported.
-    void init( );
+    void init( std::shared_ptr<Window> window );
 
     /// Checks if the preferred settings for format, color space and present mode are available. If not, the function will set them to some fallback values.
     /// @warning Must be called right after the enumeration of the physical device.
@@ -45,12 +49,12 @@ namespace RAYEX_NAMESPACE
     /// Destroys the surface.
     void destroy( );
 
-    vk::SurfaceKHR _surface; ///< The Vulkan surface.
-
+    vk::SurfaceKHR _surface                  = nullptr;                           ///< The Vulkan surface.
     vk::Format _format                       = vk::Format::eB8G8R8A8Unorm;        ///< The desired surface format.
     vk::ColorSpaceKHR _colorSpace            = vk::ColorSpaceKHR::eSrgbNonlinear; ///< The desired color space.
     vk::PresentModeKHR _presentMode          = vk::PresentModeKHR::eImmediate;    ///< The desired present mode.
     vk::SurfaceCapabilitiesKHR _capabilities = 0;                                 ///< The surface's capabilities.
+    vk::Extent2D _extent                     = { };                               ///< The surface's extent.
   };
 } // namespace RAYEX_NAMESPACE
 

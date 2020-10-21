@@ -13,13 +13,14 @@ namespace RAYEX_NAMESPACE
     (void) io;
   }
 
-  void Gui::init( const Surface* const surface, vk::Extent2D swapchainImageExtent, const std::vector<vk::ImageView>& swapchainImageViews )
+  void Gui::init( SDL_Window* window, const Surface* const surface, vk::Extent2D swapchainImageExtent, const std::vector<vk::ImageView>& swapchainImageViews )
   {
+    _window               = window;
     _swapchainImageExtent = swapchainImageExtent;
 
     configure( );
 
-    RX_ASSERT( ImGui_ImplSDL2_InitForVulkan( components::window->get( ) ), "Failed to init ImGui for Vulkan" );
+    RX_ASSERT( ImGui_ImplSDL2_InitForVulkan( _window ), "Failed to init ImGui for Vulkan" );
 
     initDescriptorPool( );
 
@@ -53,7 +54,7 @@ namespace RAYEX_NAMESPACE
   void Gui::newFrame( )
   {
     ImGui_ImplVulkan_NewFrame( );
-    ImGui_ImplSDL2_NewFrame( components::window->get( ) );
+    ImGui_ImplSDL2_NewFrame( _window );
     ImGui::NewFrame( );
   }
 

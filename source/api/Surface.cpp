@@ -10,10 +10,10 @@ namespace RAYEX_NAMESPACE
     destroy( );
   }
 
-  void Surface::init( )
+  void Surface::init( std::shared_ptr<Window> window )
   {
     VkSurfaceKHR surface;
-    SDL_bool result = SDL_Vulkan_CreateSurface( components::window->get( ), components::instance, &surface );
+    SDL_bool result = SDL_Vulkan_CreateSurface( window->get( ), components::instance, &surface );
 
     if ( result != SDL_TRUE )
     {
@@ -23,6 +23,8 @@ namespace RAYEX_NAMESPACE
     _surface            = surface;
     components::surface = _surface;
     RX_ASSERT( _surface, "Failed to create surface." );
+
+    _extent = window->getExtent( );
   }
 
   void Surface::assessSettings( )
@@ -63,8 +65,6 @@ namespace RAYEX_NAMESPACE
       _colorSpace = surfaceFormats[0].colorSpace;
       RX_WARN( "Preferred format and colorspace not supported. Falling back to the first option of each." );
     }
-
-    components::surfaceFormat = _format;
   }
 
   void Surface::destroy( )

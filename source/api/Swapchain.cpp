@@ -48,7 +48,7 @@ namespace RAYEX_NAMESPACE
     else
     {
       // Clamp width and height.
-      _extent = components::window->getExtent( );
+      _extent = surface->getExtent( );
 
       uint32_t width_t = _extent.width;
       if ( surfaceCapabilities.maxImageExtent.width < _extent.width )
@@ -140,13 +140,13 @@ namespace RAYEX_NAMESPACE
   void Swapchain::initImages( uint32_t minImageCount, vk::Format surfaceFormat )
   {
     // Retrieve the actual swapchain images. This sets them up automatically.
-    _images = components::device.getSwapchainImagesKHR( _swapchain.get( ) );
+    _images                         = components::device.getSwapchainImagesKHR( _swapchain.get( ) );
+    components::swapchainImageCount = static_cast<uint32_t>( _images.size( ) );
+
     if ( _images.size( ) < minImageCount )
     {
       RX_FATAL( "Failed to get swapchain images." );
     }
-
-    components::swapchainImageCount = static_cast<uint32_t>( _images.size( ) );
 
     // Create image views for swapchain images.
     _imageViews.resize( _images.size( ) );

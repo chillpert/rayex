@@ -72,6 +72,10 @@ namespace RAYEX_NAMESPACE
   {
     RX_LOG_TIME_START( "Initializing Vulkan (base) ..." );
 
+    // Retrieve and add window extensions to other extensions.
+    auto windowExtensions = _window->getExtensions( );
+    extensions.insert( extensions.end( ), windowExtensions.begin( ), windowExtensions.end( ) );
+
     // Instance
     _instance = vk::Initializer::initInstance( layers, extensions );
 
@@ -79,7 +83,7 @@ namespace RAYEX_NAMESPACE
     _debugMessenger.init( );
 
     // Surface
-    _surface.init( );
+    _surface.init( _window );
 
     // Physical device
     _physicalDevice = vk::Initializer::initPhysicalDevice( );
@@ -119,16 +123,13 @@ namespace RAYEX_NAMESPACE
 
     // At this point nodes are unknown. So I just create a storage buffer with the maximum value or with the anticipated value in settings.
     // enables the user to add more nodes later on during runtime.
-    uint32_t maxInstanceCount = _settings->_maxGeometryInstances.has_value( ) ? _settings->_maxGeometryInstances.value( ) : components::maxGeometryInstances;
-    std::vector<GeometryInstance> geometryInstances( maxInstanceCount );
+    std::vector<GeometryInstance> geometryInstances( _settings->_maxGeometryInstances );
     _geometryInstancesBuffer.init<GeometryInstance>( geometryInstances );
 
-    uint32_t maxDirectionalLightCount = _settings->_maxDirectionalLights.has_value( ) ? _settings->_maxDirectionalLights.value( ) : components::maxDirectionalLights;
-    std::vector<DirectionalLightSSBO> directionalLights( maxDirectionalLightCount );
+    std::vector<DirectionalLightSSBO> directionalLights( _settings->_maxDirectionalLights );
     _directionalLightsBuffer.init<DirectionalLightSSBO>( directionalLights );
 
-    uint32_t maxPointLightCount = _settings->_maxPointLights.has_value( ) ? _settings->_maxPointLights.value( ) : components::maxPointLights;
-    std::vector<PointLightSSBO> pointLights( maxPointLightCount );
+    std::vector<PointLightSSBO> pointLights( _settings->_maxPointLights );
     _pointLightsBuffer.init<PointLightSSBO>( pointLights );
 
     RX_LOG_TIME_STOP( "Finished initializing Vulkan (base)" );
@@ -141,9 +142,10 @@ namespace RAYEX_NAMESPACE
     // Uniform buffers for camera
     _cameraUniformBuffer.init<CameraUbo>( );
 
-    _vertexBuffers.resize( components::maxGeometries );
-    _indexBuffers.resize( components::maxGeometries );
-    _meshBuffers.resize( components::maxGeometries );
+    // @todo is this really the right way?
+    _vertexBuffers.resize( _settings->_maxGeometry );
+    _indexBuffers.resize( _settings->_maxGeometry );
+    _meshBuffers.resize( _settings->_maxGeometry );
 
     for ( size_t i = 0; i < _scene->_geometries.size( ); ++i )
     {
@@ -172,11 +174,11 @@ namespace RAYEX_NAMESPACE
     initPipelines( );
 
     // Ray tracing
-    _rayTracingBuilder.init( );
-    _rayTracingBuilder.createStorageImage( _swapchain.getExtent( ) );
-    _rayTracingBuilder.createShaderBindingTable( _rtPipeline.get( ) );
+    _rtBuilder.init( );
+    _rtBuilder.createStorageImage( _swapchain.getExtent( ) );
+    _rtBuilder.createShaderBindingTable( );
 
-    _settings->_maxRecursionDepth = _rayTracingBuilder.getRtProperties( ).maxRecursionDepth;
+    _settings->_maxRecursionDepth = _rtBuilder.getRtProperties( ).maxRecursionDepth;
 
     updateAccelerationStructures( );
 
@@ -392,13 +394,13 @@ namespace RAYEX_NAMESPACE
     _swapchain.init( &_surface, _renderPass.get( ) );
 
     // Recreate storage image with the new swapchain image size and update the ray tracing descriptor set to use the new storage image view.
-    _rayTracingBuilder.createStorageImage( _swapchain.getExtent( ) );
+    _rtBuilder.createStorageImage( _swapchain.getExtent( ) );
 
     vk::WriteDescriptorSetAccelerationStructureKHR tlasInfo( 1,
-                                                             &_rayTracingBuilder.getTlas( ).as.as );
+                                                             &_rtBuilder.getTlas( ).as.as );
 
     vk::DescriptorImageInfo storageImageInfo( nullptr,
-                                              _rayTracingBuilder.getStorageImageView( ),
+                                              _rtBuilder.getStorageImageView( ),
                                               vk::ImageLayout::eGeneral );
 
     _rtDescriptors.bindings.write( _rtDescriptorSets, 0, &tlasInfo );
@@ -428,15 +430,15 @@ namespace RAYEX_NAMESPACE
     RX_LOG_TIME_START( "Updating acceleration structures ..." );
 
     // @TODO Try to call this as few times as possible.
-    _rayTracingBuilder.createBottomLevelAS( _vertexBuffers, _indexBuffers );
-    _rayTracingBuilder.createTopLevelAS( _scene->_geometryInstances );
+    _rtBuilder.createBottomLevelAS( _vertexBuffers, _indexBuffers );
+    _rtBuilder.createTopLevelAS( _scene->_geometryInstances );
 
     // Update ray tracing descriptor set.
     vk::WriteDescriptorSetAccelerationStructureKHR tlasInfo( 1,
-                                                             &_rayTracingBuilder.getTlas( ).as.as );
+                                                             &_rtBuilder.getTlas( ).as.as );
 
     vk::DescriptorImageInfo storageImageInfo( nullptr,
-                                              _rayTracingBuilder.getStorageImageView( ),
+                                              _rtBuilder.getStorageImageView( ),
                                               vk::ImageLayout::eGeneral );
 
     _rtDescriptors.bindings.write( _rtDescriptorSets, 0, &tlasInfo );
@@ -455,7 +457,7 @@ namespace RAYEX_NAMESPACE
                                                                        _rtSceneDescriptors.layout.get( ),
                                                                        _vertexDataDescriptors.layout.get( ),
                                                                        _indexDataDescriptors.layout.get( ) };
-    _rtPipeline.init( allRtDescriptorSetLayouts, _settings );
+    _rtBuilder.createPipeline( allRtDescriptorSetLayouts, _settings );
 
     // Rasterization pipeline
     glm::vec2 extent = { static_cast<float>( _swapchain.getExtent( ).width ), static_cast<float>( _swapchain.getExtent( ).height ) };
@@ -521,7 +523,7 @@ namespace RAYEX_NAMESPACE
     if ( _gui != nullptr )
     {
       initRenderPass( );
-      _gui->init( &_surface, _swapchain.getExtent( ), _swapchain.getImageViews( ) );
+      _gui->init( _window->get( ), &_surface, _swapchain.getExtent( ), _swapchain.getImageViews( ) );
     }
   }
 
@@ -668,27 +670,27 @@ namespace RAYEX_NAMESPACE
                                        directionalLightCount,
                                        pointLightCount };
 
-      _swapchainCommandBuffers.get( imageIndex ).pushConstants( _rtPipeline.getLayout( ),                                                                                          // layout
+      _swapchainCommandBuffers.get( imageIndex ).pushConstants( _rtBuilder.getPipelineLayout( ),                                                                                   // layout
                                                                 vk::ShaderStageFlagBits::eRaygenKHR | vk::ShaderStageFlagBits::eMissKHR | vk::ShaderStageFlagBits::eClosestHitKHR, // stageFlags
                                                                 0,                                                                                                                 // offset
                                                                 sizeof( RayTracePushConstants ),                                                                                   // size
                                                                 &chitPc );                                                                                                         // pValues
 
-      _swapchainCommandBuffers.get( imageIndex ).bindPipeline( vk::PipelineBindPoint::eRayTracingKHR, _rtPipeline.get( ) );
+      _swapchainCommandBuffers.get( imageIndex ).bindPipeline( vk::PipelineBindPoint::eRayTracingKHR, _rtBuilder.getPipeline( ) );
 
       std::vector<vk::DescriptorSet> descriptorSets = { _rtDescriptorSets[imageIndex],
                                                         _rtSceneDescriptorSets[imageIndex],
                                                         _vertexDataDescriptorSets[imageIndex],
                                                         _indexDataDescriptorSets[imageIndex] };
 
-      _swapchainCommandBuffers.get( imageIndex ).bindDescriptorSets( vk::PipelineBindPoint::eRayTracingKHR, _rtPipeline.getLayout( ),
+      _swapchainCommandBuffers.get( imageIndex ).bindDescriptorSets( vk::PipelineBindPoint::eRayTracingKHR, _rtBuilder.getPipelineLayout( ),
                                                                      0,                                               // first set
                                                                      static_cast<uint32_t>( descriptorSets.size( ) ), // descriptor set count
                                                                      descriptorSets.data( ),                          // descriptor sets
                                                                      0,                                               // dynamic offset count
                                                                      nullptr );                                       // dynamic offsets
 
-      _rayTracingBuilder.rayTrace( _swapchainCommandBuffers.get( imageIndex ), _swapchain.getImage( imageIndex ), _swapchain.getExtent( ) );
+      _rtBuilder.rayTrace( _swapchainCommandBuffers.get( imageIndex ), _swapchain.getImage( imageIndex ), _swapchain.getExtent( ) );
 
       _swapchainCommandBuffers.end( imageIndex );
     }
@@ -734,10 +736,10 @@ namespace RAYEX_NAMESPACE
       // Scene description buffer
       _rtSceneDescriptors.bindings.add( 3, vk::DescriptorType::eStorageBuffer, vk::ShaderStageFlagBits::eClosestHitKHR );
       // Materials
-      _rtSceneDescriptors.bindings.add( 4, vk::DescriptorType::eStorageBuffer, vk::ShaderStageFlagBits::eClosestHitKHR, components::maxGeometries, vk::DescriptorBindingFlagBits::eVariableDescriptorCount );
+      _rtSceneDescriptors.bindings.add( 4, vk::DescriptorType::eStorageBuffer, vk::ShaderStageFlagBits::eClosestHitKHR, _settings->_maxGeometry, vk::DescriptorBindingFlagBits::eVariableDescriptorCount );
 
       _rtSceneDescriptors.layout = _rtSceneDescriptors.bindings.initLayoutUnique( );
-      _rtSceneDescriptors.pool   = _rtSceneDescriptors.bindings.initPoolUnique( static_cast<uint32_t>( components::maxGeometryInstances ) * components::swapchainImageCount, vk::DescriptorPoolCreateFlagBits::eUpdateAfterBind );
+      _rtSceneDescriptors.pool   = _rtSceneDescriptors.bindings.initPoolUnique( static_cast<uint32_t>( _settings->_maxGeometryInstances ) * components::swapchainImageCount, vk::DescriptorPoolCreateFlagBits::eUpdateAfterBind );
       _rtSceneDescriptorSets     = vk::Initializer::initDescriptorSetsUnique( _rtSceneDescriptors.pool, _rtSceneDescriptors.layout );
     }
 
@@ -757,19 +759,19 @@ namespace RAYEX_NAMESPACE
 
     // Vertex model data descriptor set layout.
     {
-      _vertexDataDescriptors.bindings.add( 0, vk::DescriptorType::eStorageBuffer, vk::ShaderStageFlagBits::eClosestHitKHR, components::maxGeometries, vk::DescriptorBindingFlagBits::eVariableDescriptorCount );
+      _vertexDataDescriptors.bindings.add( 0, vk::DescriptorType::eStorageBuffer, vk::ShaderStageFlagBits::eClosestHitKHR, _settings->_maxGeometry, vk::DescriptorBindingFlagBits::eVariableDescriptorCount );
 
       _vertexDataDescriptors.layout = _vertexDataDescriptors.bindings.initLayoutUnique( );
-      _vertexDataDescriptors.pool   = _vertexDataDescriptors.bindings.initPoolUnique( static_cast<uint32_t>( components::maxGeometryInstances ) * components::swapchainImageCount, vk::DescriptorPoolCreateFlagBits::eUpdateAfterBind );
+      _vertexDataDescriptors.pool   = _vertexDataDescriptors.bindings.initPoolUnique( static_cast<uint32_t>( _settings->_maxGeometryInstances ) * components::swapchainImageCount, vk::DescriptorPoolCreateFlagBits::eUpdateAfterBind );
       _vertexDataDescriptorSets     = vk::Initializer::initDescriptorSetsUnique( _vertexDataDescriptors.pool, _vertexDataDescriptors.layout );
     }
 
     // Index model data descriptor set layout.
     {
-      _indexDataDescriptors.bindings.add( 0, vk::DescriptorType::eStorageBuffer, vk::ShaderStageFlagBits::eClosestHitKHR, components::maxGeometries, vk::DescriptorBindingFlagBits::eVariableDescriptorCount );
+      _indexDataDescriptors.bindings.add( 0, vk::DescriptorType::eStorageBuffer, vk::ShaderStageFlagBits::eClosestHitKHR, _settings->_maxGeometry, vk::DescriptorBindingFlagBits::eVariableDescriptorCount );
 
       _indexDataDescriptors.layout = _indexDataDescriptors.bindings.initLayoutUnique( );
-      _indexDataDescriptors.pool   = _indexDataDescriptors.bindings.initPoolUnique( static_cast<uint32_t>( components::maxGeometryInstances ) * components::swapchainImageCount, vk::DescriptorPoolCreateFlagBits::eUpdateAfterBind );
+      _indexDataDescriptors.pool   = _indexDataDescriptors.bindings.initPoolUnique( static_cast<uint32_t>( _settings->_maxGeometryInstances ) * components::swapchainImageCount, vk::DescriptorPoolCreateFlagBits::eUpdateAfterBind );
       _indexDataDescriptorSets     = vk::Initializer::initDescriptorSetsUnique( _indexDataDescriptors.pool, _indexDataDescriptors.layout );
     }
   }
@@ -790,7 +792,7 @@ namespace RAYEX_NAMESPACE
 #endif
 
       initPipelines( );
-      _rayTracingBuilder.createShaderBindingTable( _rtPipeline.get( ) );
+      _rtBuilder.createShaderBindingTable( );
     }
 
     if ( _settings->_refreshSwapchain )
@@ -844,9 +846,9 @@ namespace RAYEX_NAMESPACE
                                               0,
                                               VK_WHOLE_SIZE );
 
-    RX_ASSERT( _meshBuffers.size( ) <= components::maxGeometries, "Can not bind more than ", components::maxGeometries, " meshes." );
+    RX_ASSERT( _meshBuffers.size( ) <= _settings->_maxGeometry, "Can not bind more than ", _settings->_maxGeometry, " meshes." );
 
-    for ( size_t i = 0; i < components::maxGeometries; ++i )
+    for ( size_t i = 0; i < _settings->_maxGeometry; ++i )
     {
       if ( i < _meshBuffers.size( ) )
       {
@@ -884,10 +886,10 @@ namespace RAYEX_NAMESPACE
 
   void Api::updateRayTracingModelData( )
   {
-    RX_ASSERT( _scene->_geometries.size( ) <= components::maxGeometries, "Can not bind more than ", components::maxGeometries, " geometries." );
+    RX_ASSERT( _scene->_geometries.size( ) <= _settings->_maxGeometry, "Can not bind more than ", _settings->_maxGeometry, " geometries." );
 
     // Update RT model data.
-    for ( size_t i = 0; i < components::maxGeometries; ++i )
+    for ( size_t i = 0; i < _settings->_maxGeometry; ++i )
     {
       if ( i < _vertexBuffers.size( ) )
       {

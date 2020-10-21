@@ -137,9 +137,10 @@ namespace RAYEX_NAMESPACE
     bool _refreshPipeline  = false; ///< Keeps track of whether or not the graphics pipeline needs to be recreated.
     bool _refreshSwapchain = false; ///< Keeps track of whether or not the swapchain needs to be recreated.
 
-    std::optional<uint32_t> _maxDirectionalLights; ///< Can be set to avoid pipeline recreation everytime a directional light is added.
-    std::optional<uint32_t> _maxPointLights;       ///< Can be set to avoid pipeline recreation everytime a point light is added.
-    std::optional<uint32_t> _maxGeometryInstances; ///< Can be set to avoid pipeline recreation everytime a geometry instance is added.
+    uint32_t _maxDirectionalLights = 100;  ///< Can be set to avoid pipeline recreation everytime a directional light is added.
+    uint32_t _maxPointLights       = 100;  ///< Can be set to avoid pipeline recreation everytime a point light is added.
+    uint32_t _maxGeometryInstances = 2000; ///< Can be set to avoid pipeline recreation everytime a geometry instance is added.
+    uint32_t _maxGeometry          = 512;
 
     std::string _assetsPath; ///< Where all assets like models, textures and shaders are stored.
 

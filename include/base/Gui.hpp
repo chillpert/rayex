@@ -58,7 +58,7 @@ namespace RAYEX_NAMESPACE
     /// @param surface A pointer to a RAYEX_NAMESPACE::Surface object.
     /// @param swapchainImageExtent The extent of the swapchain images.
     /// @param swapchainImageViews The swapchain images' image views.
-    void init( const Surface* surface, vk::Extent2D swapchainImageExtent, const std::vector<vk::ImageView>& swapchainImageViews );
+    void init( SDL_Window* window, const Surface* surface, vk::Extent2D swapchainImageExtent, const std::vector<vk::ImageView>& swapchainImageViews );
 
     /// Used to recreate the GUI in case the window size was changed.
     /// @param swapchainImageExtent The extent of the swapchain images.
@@ -66,10 +66,10 @@ namespace RAYEX_NAMESPACE
     void recreate( vk::Extent2D swapchainImageExtent, const std::vector<vk::ImageView>& swapchainImageViews );
 
     /// Creates a new ImGui frame.
-    static void newFrame( );
+    void newFrame( );
 
     /// Calls the actual ImGui render call.
-    static void endRender( );
+    void endRender( );
 
     /// Records the ImGui rendering calls to the command buffer at the given image index.
     /// @param imageIndex The index addressing a command buffer.
@@ -105,8 +105,8 @@ namespace RAYEX_NAMESPACE
     CommandBuffer _commandBuffers;                    ///< A RAYEX_NAMESPACE::CommandBuffer.
     RenderPass _renderPass;                           ///< A Vulkan render pass.
     std::vector<vk::UniqueFramebuffer> _framebuffers; ///< A vector of Vulkan framebuffers with unique handles.
-
-    vk::Extent2D _swapchainImageExtent; ///< The swapchain images' image extent.
+    vk::Extent2D _swapchainImageExtent;               ///< The swapchain images' image extent.
+    SDL_Window* _window;
   };
 } // namespace RAYEX_NAMESPACE
 

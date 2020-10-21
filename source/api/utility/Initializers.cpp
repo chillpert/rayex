@@ -419,8 +419,6 @@ namespace vk::Initializer
     auto properties = physicalDevice.getProperties( );
     RX_SUCCESS( "Selected GPU: ", properties.deviceName );
 
-    RX_ASSERT( RAYEX_NAMESPACE::components::maxGeometries % properties.limits.minStorageBufferOffsetAlignment == 0, "Max geometries does not align with min storage buffer offset. If you encounter this error, please insult the developer of this application who was to lazy to check these values for other systems!" );
-
     RAYEX_NAMESPACE::components::physicalDeviceLimits = properties.limits;
     RAYEX_NAMESPACE::components::physicalDevice       = physicalDevice;
 
@@ -549,26 +547,6 @@ namespace vk::Initializer
     DynamicLoader dl;
     auto vkGetInstanceProcAddr = dl.getProcAddress<PFN_vkGetInstanceProcAddr>( "vkGetInstanceProcAddr" );
     VULKAN_HPP_DEFAULT_DISPATCHER.init( vkGetInstanceProcAddr );
-
-    // Retrieve all extensions needed by SDL2.
-    uint32_t sdlExtensionsCount;
-    SDL_bool result = SDL_Vulkan_GetInstanceExtensions( RAYEX_NAMESPACE::components::window->get( ), &sdlExtensionsCount, nullptr );
-
-    if ( result != SDL_TRUE )
-    {
-      RX_ERROR( "Failed to get extensions required by SDL." );
-    }
-
-    gsl::owner<const char**> sdlExtensionsNames = new const char*[sdlExtensionsCount];
-    result                                      = SDL_Vulkan_GetInstanceExtensions( RAYEX_NAMESPACE::components::window->get( ), &sdlExtensionsCount, sdlExtensionsNames );
-
-    if ( result != SDL_TRUE )
-    {
-      RX_ERROR( "Failed to get extensions required by SDL." );
-    }
-
-    gsl::span<const char*> windowExtensions( sdlExtensionsNames, sdlExtensionsCount );
-    extensions.insert( extensions.end( ), windowExtensions.begin( ), windowExtensions.end( ) );
 
     // Check if all extensions and layers needed are available.
     Helper::checkInstanceLayersSupport( layers );

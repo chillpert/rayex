@@ -31,6 +31,11 @@ namespace RAYEX_NAMESPACE
   std::vector<DirectionalLightSSBO> dereferencedDirectionalLights;
   std::vector<PointLightSSBO> dereferencedPointLights;
 
+  CameraUbo cameraUbo;
+
+  vk::Viewport viewport; ///< The application's viewport.
+  vk::Rect2D scissor;    ///< The application's scissor.
+
   // Defines the maximum amount of frames that will be processed concurrently.
   const size_t maxFramesInFlight = 2;
 
@@ -86,7 +91,7 @@ namespace RAYEX_NAMESPACE
     _surface.init( _window );
 
     // Physical device
-    _physicalDevice = vk::Initializer::initPhysicalDevice( );
+    components::physicalDevice = vk::Initializer::initPhysicalDevice( );
 
     // Reassess the support of the preferred surface settings.
     _surface.assessSettings( );
@@ -461,12 +466,12 @@ namespace RAYEX_NAMESPACE
 
     // Rasterization pipeline
     glm::vec2 extent = { static_cast<float>( _swapchain.getExtent( ).width ), static_cast<float>( _swapchain.getExtent( ).height ) };
-    _viewport        = vk::Viewport( 0.0F, 0.0F, extent.x, extent.y, 0.0F, 1.0F );
-    _scissor         = vk::Rect2D( 0, _swapchain.getExtent( ) );
+    viewport         = vk::Viewport( 0.0F, 0.0F, extent.x, extent.y, 0.0F, 1.0F );
+    scissor          = vk::Rect2D( 0, _swapchain.getExtent( ) );
 
     std::vector<vk::DescriptorSetLayout> allRsDescriptorSetLayouts = { _rsSceneDescriptors.layout.get( ) };
 
-    _rsPipeline.init( allRsDescriptorSetLayouts, _renderPass.get( ), _viewport, _scissor, _settings );
+    _rsPipeline.init( allRsDescriptorSetLayouts, _renderPass.get( ), viewport, scissor, _settings );
 
     _pipelinesReady             = true;
     _settings->_refreshPipeline = false;
@@ -580,14 +585,12 @@ namespace RAYEX_NAMESPACE
       _swapchainCommandBuffers.get( imageIndex ).bindPipeline( vk::PipelineBindPoint::eGraphics, _rsPipeline.get( ) ); // CMD
 
       // Dynamic states
-      vk::Viewport viewport = _viewport;
-      viewport.width        = static_cast<float>( _window->getWidth( ) );
-      viewport.height       = static_cast<float>( _window->getHeight( ) );
+      viewport.width  = static_cast<float>( _window->getWidth( ) );
+      viewport.height = static_cast<float>( _window->getHeight( ) );
 
       _swapchainCommandBuffers.get( imageIndex ).setViewport( 0, 1, &viewport ); // CMD
 
-      vk::Rect2D scissor = _scissor;
-      scissor.extent     = _window->getExtent( );
+      scissor.extent = _window->getExtent( );
 
       _swapchainCommandBuffers.get( imageIndex ).setScissor( 0, 1, &scissor ); // CMD
 
@@ -812,24 +815,24 @@ namespace RAYEX_NAMESPACE
     {
       if ( _camera->_updateView )
       {
-        _cameraUbo.view        = _camera->getViewMatrix( );
-        _cameraUbo.viewInverse = _camera->getViewInverseMatrix( );
+        cameraUbo.view        = _camera->getViewMatrix( );
+        cameraUbo.viewInverse = _camera->getViewInverseMatrix( );
 
         _camera->_updateView = false;
       }
 
       if ( _camera->_updateProj )
       {
-        _cameraUbo.projection        = _camera->getProjectionMatrix( );
-        _cameraUbo.projectionInverse = _camera->getProjectionInverseMatrix( );
+        cameraUbo.projection        = _camera->getProjectionMatrix( );
+        cameraUbo.projectionInverse = _camera->getProjectionInverseMatrix( );
 
         _camera->_updateProj = false;
       }
 
-      _cameraUbo.position = glm::vec4( _camera->getPosition( ), 1.0F );
+      cameraUbo.position = glm::vec4( _camera->getPosition( ), 1.0F );
     }
 
-    _cameraUniformBuffer.upload<CameraUbo>( imageIndex, _cameraUbo );
+    _cameraUniformBuffer.upload<CameraUbo>( imageIndex, cameraUbo );
   }
 
   void Api::updateSceneDescriptors( )

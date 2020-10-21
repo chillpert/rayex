@@ -39,14 +39,14 @@ namespace RAYEX_NAMESPACE
     void init( const std::vector<vk::DescriptorSetLayout>& descriptorSetLayouts, const Settings* settings );
 
     /// @return Returns the Vulkan pipeline object without the unique handle.
-    auto get( ) const -> vk::Pipeline { return this->pipeline.get( ); }
+    auto get( ) const -> vk::Pipeline { return _pipeline.get( ); }
 
     /// @return Returns the Vulkan pipeline layout object without the unique handle.
-    auto getLayout( ) const -> vk::PipelineLayout { return this->layout.get( ); }
+    auto getLayout( ) const -> vk::PipelineLayout { return _layout.get( ); }
 
   private:
-    vk::UniquePipeline pipeline;     ///< The Vulkan pipeline with a unique handle.
-    vk::UniquePipelineLayout layout; ///< The Vulkan pipeline layout with a unique handle.
+    vk::UniquePipeline _pipeline;     ///< The Vulkan pipeline with a unique handle.
+    vk::UniquePipelineLayout _layout; ///< The Vulkan pipeline layout with a unique handle.
   };
 } // namespace RAYEX_NAMESPACE
 

@@ -11,35 +11,35 @@ namespace RAYEX_NAMESPACE
   class Texture : public Image
   {
   public:
-    RX_API Texture( );
+    Texture( );
 
     /// @param path The relative path to the texture file.
     /// @param initialize If true, the texture will be initialized right away without an additional call to init().
-    RX_API Texture( std::string_view path, bool initialize = true );
+    Texture( std::string_view path, bool initialize = true );
 
     /// @return Returns the texture's image view.
-    [[nodiscard]] auto getImageView( ) -> vk::ImageView { return imageView.get( ); }
+    auto getImageView( ) -> vk::ImageView { return _imageView.get( ); }
 
     /// @return Returns the texture's sampler.
-    [[nodiscard]] auto getSampler( ) -> vk::Sampler { return sampler.get( ); }
+    auto getSampler( ) -> vk::Sampler { return _sampler.get( ); }
 
     /// @return Returns the relative path of the texture file.
-    [[nodiscard]] auto getPath( ) const -> const std::string& { return path; }
+    auto getPath( ) const -> const std::string& { return _path; }
 
     /// Creates the texture.
     /// @param path The relative path to the texture file.
     /// @todo Latest changes to this class might be causing errors once texture are working again.
     void init( std::string_view path );
 
-    uint32_t offset;
+    uint32_t _offset;
 
   private:
-    std::string path; ///< The relative path to the texture file.
+    std::string _path; ///< The relative path to the texture file.
 
-    vk::UniqueImageView imageView; ///< The texture's Vulkan image view with a unique handle.
-    vk::UniqueSampler sampler;     ///< The texture's Vulkan sampler with a unique handle.
+    vk::UniqueImageView _imageView; ///< The texture's Vulkan image view with a unique handle.
+    vk::UniqueSampler _sampler;     ///< The texture's Vulkan sampler with a unique handle.
 
-    static uint32_t textureCounter;
+    static uint32_t _textureCounter;
   };
 } // namespace RAYEX_NAMESPACE
 

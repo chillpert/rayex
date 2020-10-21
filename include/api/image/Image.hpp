@@ -11,16 +11,16 @@ namespace RAYEX_NAMESPACE
   {
   public:
     /// @return Returns the Vulkan image object without the unique handle.
-    [[nodiscard]] auto get( ) const -> vk::Image { return image.get( ); }
+    auto get( ) const -> vk::Image { return _image.get( ); }
 
     /// @return Returns the iamge's extent.
-    [[nodiscard]] auto getExtent( ) const -> vk::Extent3D { return extent; }
+    auto getExtent( ) const -> vk::Extent3D { return _extent; }
 
     /// @return Returns the image's format.
-    [[nodiscard]] auto getFormat( ) const -> vk::Format { return format; }
+    auto getFormat( ) const -> vk::Format { return _format; }
 
     /// @return Returns the image's layout.
-    [[nodiscard]] auto getLayout( ) const -> vk::ImageLayout { return layout; }
+    auto getLayout( ) const -> vk::ImageLayout { return _layout; }
 
     /// Creates the image and allocates memory for it.
     /// @param createInfo The Vulkan image create info.
@@ -37,20 +37,13 @@ namespace RAYEX_NAMESPACE
     /// @warning It is required to call vk::CommandBuffer::begin() or RAYEX_NAMESPACE::CommandBuffer::begin() before calling this function.
     void transitionToLayout( vk::ImageLayout layout, vk::CommandBuffer commandBuffer );
 
-    /// Retrieves a supported image format for a given physical device.
-    /// @param physicalDevice The physical device to check.
-    /// @param formatsToTest A vector of formats that will be checked for their support.
-    /// @param features The Vulkan format features.
-    /// @param tiling The Vulkan image tiling.
-    static auto findSupportedFormat( vk::PhysicalDevice physicalDevice, const std::vector<vk::Format>& formatsToTest, vk::FormatFeatureFlagBits features, vk::ImageTiling tiling ) -> vk::Format;
-
   protected:
-    vk::UniqueImage image;         ///< The Vulkan image with a unique handle.
-    vk::UniqueDeviceMemory memory; ///< The image's memory with a unique handle.
+    vk::UniqueImage _image;         ///< The Vulkan image with a unique handle.
+    vk::UniqueDeviceMemory _memory; ///< The image's memory with a unique handle.
 
-    vk::Extent3D extent;    ///< The image's extent.
-    vk::Format format;      ///< The image's format.
-    vk::ImageLayout layout; ///< THe image's layout.
+    vk::Extent3D _extent;    ///< The image's extent.
+    vk::Format _format;      ///< The image's format.
+    vk::ImageLayout _layout; ///< THe image's layout.
   };
 } // namespace RAYEX_NAMESPACE
 

@@ -25,22 +25,18 @@ namespace RAYEX_NAMESPACE
     void init( vk::CommandPool commandPool, uint32_t count = 1, vk::CommandBufferUsageFlags usageFlags = vk::CommandBufferUsageFlagBits::eOneTimeSubmit );
 
     /// @return Returns the vector of command buffers.
-    [[nodiscard]] auto get( ) const -> const std::vector<vk::CommandBuffer> { return commandBuffers; }
+    auto get( ) const -> const std::vector<vk::CommandBuffer> { return _commandBuffers; }
 
     /// Returns the command buffer by some index.
     /// @param index The index of the desired command buffer.
     /// @return Returns the command buffer.
-    [[nodiscard]] auto get( size_t index ) const -> const vk::CommandBuffer
-    {
-      RX_ASSERT( ( index <= commandBuffers.size( ) - 1 ), "Failed to get command buffer because vector is out of range." );
-      return commandBuffers[index];
-    }
+    auto get( size_t index ) const -> const vk::CommandBuffer { return _commandBuffers[index]; }
 
     /// Frees the command buffer.
     void free( );
 
     /// Resets the command buffer.
-    RX_API void reset( );
+    void reset( );
 
     /// Used to begin the command buffer recording.
     /// @param index An index to a command buffer to record to.
@@ -58,10 +54,10 @@ namespace RAYEX_NAMESPACE
     void submitToQueue( vk::Queue queue, const std::vector<vk::Semaphore>& waitSemaphores = { }, const std::vector<vk::Semaphore>& signalSemaphores = { }, vk::PipelineStageFlags* waitDstStageMask = { } );
 
   private:
-    std::vector<vk::CommandBuffer> commandBuffers; ///< A vector of Vulkan command buffers.
+    std::vector<vk::CommandBuffer> _commandBuffers; ///< A vector of Vulkan command buffers.
 
-    vk::CommandPool commandPool;          ///< The Vulkan command pool used to allocate the command buffer from.
-    vk::CommandBufferBeginInfo beginInfo; ///< The Vulkan begin information of the command buffer.
+    vk::CommandPool _commandPool;          ///< The Vulkan command pool used to allocate the command buffer from.
+    vk::CommandBufferBeginInfo _beginInfo; ///< The Vulkan begin information of the command buffer.
   };
 } // namespace RAYEX_NAMESPACE
 

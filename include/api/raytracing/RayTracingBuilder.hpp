@@ -18,7 +18,7 @@ namespace RAYEX_NAMESPACE
     RayTracingBuilder( ) = default;
 
     /// Calls destroy().
-    RX_API ~RayTracingBuilder( );
+    ~RayTracingBuilder( );
 
     RayTracingBuilder( const RayTracingBuilder& )  = delete;
     RayTracingBuilder( const RayTracingBuilder&& ) = delete;
@@ -33,13 +33,13 @@ namespace RAYEX_NAMESPACE
     void destroy( );
 
     /// @return Returns the top level acceleration structure.
-    auto getTlas( ) const -> const Tlas& { return this->tlas; }
+    auto getTlas( ) const -> const Tlas& { return _tlas; }
 
     /// @return Returns the physical device's ray tracing properties.
-    auto getRtProperties( ) const -> const vk::PhysicalDeviceRayTracingPropertiesKHR& { return this->rtProperties; }
+    auto getRtProperties( ) const -> const vk::PhysicalDeviceRayTracingPropertiesKHR& { return _rtProperties; }
 
     /// @return Returns the storage image's image view.
-    auto getStorageImageView( ) const -> vk::ImageView { return this->storageImageView.get( ); }
+    auto getStorageImageView( ) const -> vk::ImageView { return _storageImageView.get( ); }
 
     /// Used to convert wavefront models to a bottom level acceleration structure.
     /// @param vertexBuffer A vertex buffer of some geometry.
@@ -86,17 +86,17 @@ namespace RAYEX_NAMESPACE
     void rayTrace( vk::CommandBuffer swapchaincommandBuffer, vk::Image swapchainImage, vk::Extent2D extent );
 
   private:
-    vk::PhysicalDeviceRayTracingPropertiesKHR rtProperties; ///< The physical device's ray tracing capabilities.
+    vk::PhysicalDeviceRayTracingPropertiesKHR _rtProperties; ///< The physical device's ray tracing capabilities.
 
-    std::vector<Blas> blas_; ///< A vector containing all bottom level acceleration structures.
-    Tlas tlas;               ///< The top level acceleration structure.
+    std::vector<Blas> _blas_; ///< A vector containing all bottom level acceleration structures.
+    Tlas _tlas;               ///< The top level acceleration structure.
 
-    Buffer instanceBuffer; ///< The instance buffer.
+    Buffer _instanceBuffer; ///< The instance buffer.
 
-    Buffer sbtBuffer; ///< The shader binding table buffer.
+    Buffer _sbtBuffer; ///< The shader binding table buffer.
 
-    Image storageImage;                   ///< The storage image.
-    vk::UniqueImageView storageImageView; ///< The storage image's image view.
+    Image _storageImage;                   ///< The storage image.
+    vk::UniqueImageView _storageImageView; ///< The storage image's image view.
   };
 } // namespace RAYEX_NAMESPACE
 

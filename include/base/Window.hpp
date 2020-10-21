@@ -21,20 +21,20 @@ namespace RAYEX_NAMESPACE
   /// @see update()
   /// @ingroup BASE
   /// @todo To avoid the user having to link to SDL themselves requires to write a complete SDL2 wrapper.
-  class Window
+  class RX_API Window
   {
   public:
     /// @param width The width of the window in pixels.
     /// @param height The height of the window in pixels.
     /// @param title The title of the window shown in the title bar.
     /// @param flags The window flags (no additional flags if not specified).
-    RX_API Window( int width = defaultWidth, int height = defaultHeight, const char* title = "My Application", uint32_t flags = 0 );
+    Window( int width = defaultWidth, int height = defaultHeight, const char* title = "My Application", uint32_t flags = 0 );
 
     /// Destructor of Window.
     ///
     /// Will also clean up the object's resources.
     /// @see clean()
-    RX_API virtual ~Window( );
+    virtual ~Window( );
 
     Window( const Window& )  = delete;
     Window( const Window&& ) = delete;
@@ -42,47 +42,47 @@ namespace RAYEX_NAMESPACE
     auto operator=( const Window && ) -> Window& = delete;
 
     /// Initializes the SDL-window.
-    RX_API virtual auto init( ) -> bool;
+    virtual auto init( ) -> bool;
 
     /// Updates window-related components.
     ///
     /// In case the user wants to handle input events, this function should be overwritten in the inherited class.
     /// @warning The user has to call Window::update() to ensure proper functionality.
-    RX_API virtual auto update( ) -> bool;
+    virtual auto update( ) -> bool;
 
     /// Destroys the window.
-    RX_API virtual void clean( );
+    virtual void clean( );
 
     /// Resizes the window.
     /// @param width The desired width in pixels.
     /// @param height The desired height in pixels.
-    RX_API void resize( int width, int height );
+    void resize( int width, int height );
 
     /// @return Returns the actual SDL_Window object.
-    RX_API auto get( ) -> SDL_Window* { return window; }
+    auto get( ) -> SDL_Window* { return _window; }
 
     /// @return Returns the window size as a Vulkan 2D extent.
-    [[nodiscard]] RX_API auto getExtent( ) const -> vk::Extent2D;
+    auto getExtent( ) const -> vk::Extent2D;
 
     /// @return Returns the window's width in pixels.
-    [[nodiscard]] auto getWidth( ) const -> int { return width; }
+    auto getWidth( ) const -> int { return _width; }
 
     /// @return Returns the window's height in pixels.
-    [[nodiscard]] auto getHeight( ) const -> int { return height; }
+    auto getHeight( ) const -> int { return _height; }
 
     /// @return Returns true if the window size has changed.
-    RX_API auto changed( ) -> bool;
+    auto changed( ) -> bool;
 
     /// @return Returns true if the window is minimized.
-    RX_API auto minimized( ) -> bool;
+    auto minimized( ) -> bool;
 
   protected:
-    SDL_Window* window = nullptr; ///< The actual SDL_Window object.
-    uint32_t flags;               ///< The window's flags.
+    SDL_Window* _window = nullptr; ///< The actual SDL_Window object.
+    uint32_t _flags     = 0;       ///< The window's flags.
 
-    int width;         ///< The window's width in pixels.
-    int height;        ///< The window's height in pixels.
-    const char* title; ///< The window's title.
+    int _width         = 1200;      ///< The window's width in pixels.
+    int _height        = 600;       ///< The window's height in pixels.
+    const char* _title = "Example"; ///< The window's title.
   };
 } // namespace RAYEX_NAMESPACE
 

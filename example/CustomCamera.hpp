@@ -31,38 +31,38 @@ public:
 
     if ( Key::eW )
     {
-      this->position += this->front * finalSpeed;
-      this->updateView = true;
+      _position += _front * finalSpeed;
+      _updateView = true;
     }
 
     if ( Key::eS )
     {
-      this->position -= this->front * finalSpeed;
-      this->updateView = true;
+      _position -= _front * finalSpeed;
+      _updateView = true;
     }
 
     if ( Key::eA )
     {
-      this->position -= this->right * finalSpeed;
-      this->updateView = true;
+      _position -= _right * finalSpeed;
+      _updateView = true;
     }
 
     if ( Key::eD )
     {
-      this->position += this->right * finalSpeed;
-      this->updateView = true;
+      _position += _right * finalSpeed;
+      _updateView = true;
     }
 
     if ( Key::eC )
     {
-      this->position.y -= finalSpeed / 2.0F;
-      this->updateView = true;
+      _position.y -= finalSpeed / 2.0F;
+      _updateView = true;
     }
 
     if ( Key::eSpace )
     {
-      this->position.y += finalSpeed / 2.0F;
-      this->updateView = true;
+      _position.y += finalSpeed / 2.0F;
+      _updateView = true;
     }
   }
 };

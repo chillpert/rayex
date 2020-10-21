@@ -8,31 +8,31 @@ namespace RAYEX_NAMESPACE
   {
     RX_INFO( "Starting Rayex." );
 
-    if ( this->window == nullptr )
+    if ( _window == nullptr )
     {
       RX_VERBOSE( "No custom window implementation was provided. Using default implementation instead." );
-      this->window = std::make_shared<Window>( );
+      _window = std::make_shared<Window>( );
     }
 
-    if ( this->camera == nullptr )
+    if ( _camera == nullptr )
     {
       RX_VERBOSE( "No custom camera implementation was provided. Using default implementation instead." );
-      this->camera = std::make_shared<Camera>( this->window->getWidth( ), this->window->getHeight( ) );
+      _camera = std::make_shared<Camera>( _window->getWidth( ), _window->getHeight( ) );
     }
 
-    this->api->window          = this->window;
-    this->api->camera          = this->camera;
-    this->api->settings        = &this->settings;
-    this->api->scene           = &this->scene;
-    this->api->scene->settings = &this->settings;
-    g_window                   = this->window;
+    _api->_window           = _window;
+    _api->_camera           = _camera;
+    _api->_settings         = &_settings;
+    _api->_scene            = &_scene;
+    _api->_scene->_settings = &_settings;
+    g_window                = _window;
 
-    if ( this->settings.getAssetsPath( ).empty( ) )
+    if ( _settings.getAssetsPath( ).empty( ) )
     {
-      this->settings.setDefaultAssetsPath( );
+      _settings.setDefaultAssetsPath( );
     }
 
-    if ( this->initialized )
+    if ( _initialized )
     {
       RX_ERROR( "Renderer was already initialized." );
       return;
@@ -46,13 +46,13 @@ namespace RAYEX_NAMESPACE
     std::filesystem::copy( RX_ASSETS_PATH "textures", RX_PATH_TO_LIBRARY "textures", std::filesystem::copy_options::overwrite_existing | std::filesystem::copy_options::recursive );
 #endif
 
-    this->initialized = this->window->init( );
-    this->api->initBase( );
+    _initialized = _window->init( );
+    _api->initBase( );
   }
 
   auto Rayex::isRunning( ) const -> bool
   {
-    if ( !this->running )
+    if ( !_running )
     {
       // Print results of the session.
       rx::Time::benchmark( );
@@ -60,70 +60,70 @@ namespace RAYEX_NAMESPACE
       RX_INFO( "Shutting down Rayex." );
     }
 
-    return this->running;
+    return _running;
   }
 
   void Rayex::run( )
   {
-    if ( !this->running || !this->initialized )
+    if ( !_running || !_initialized )
     {
       return;
     }
 
     static bool firstRun = true;
-    if ( this->initScene )
+    if ( _initScene )
     {
-      this->api->initScene( );
-      this->initScene = false;
+      _api->initScene( );
+      _initScene = false;
     }
     else
     {
       if ( firstRun )
       {
         RX_ERROR( "Failed to initialize scene. Did you forget to call setModels(std::vector<std::string>)?" );
-        this->running = false;
+        _running = false;
         return;
       }
     }
 
     firstRun = false;
 
-    this->running = this->window->update( );
-    this->camera->update( );
+    _running = _window->update( );
+    _camera->update( );
 
-    if ( !this->running )
+    if ( !_running )
     {
       return;
     }
 
-    this->running = this->api->render( );
+    _running = _api->render( );
 
-    if ( !this->running )
+    if ( !_running )
     {
       return;
     }
 
-    this->api->update( );
+    _api->update( );
   }
 
   void Rayex::setCamera( std::shared_ptr<Camera> camera )
   {
-    this->camera = camera;
+    _camera = camera;
 
-    if ( this->api != nullptr )
-      this->api->camera = this->camera;
+    if ( _api != nullptr )
+      _api->_camera = _camera;
   }
 
   void Rayex::setWindow( std::shared_ptr<Window> window )
   {
-    this->window = window;
+    _window = window;
 
-    if ( this->api != nullptr )
-      this->api->window = this->window;
+    if ( _api != nullptr )
+      _api->_window = _window;
   }
 
   void Rayex::setGui( std::shared_ptr<Gui> gui )
   {
-    this->initialized ? this->api->setGui( gui, true ) : this->api->setGui( gui );
+    _initialized ? _api->setGui( gui, true ) : _api->setGui( gui );
   }
 } // namespace RAYEX_NAMESPACE

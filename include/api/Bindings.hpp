@@ -86,10 +86,10 @@ namespace RAYEX_NAMESPACE
     /// @return Returns the index of the matching binding.
     auto writeArray( vk::DescriptorSet set, size_t writeIndex, uint32_t binding ) -> size_t;
 
-    std::vector<vk::DescriptorSetLayoutBinding> bindings;         ///< Contains the actual binding.
-    std::vector<vk::DescriptorBindingFlags> flags;                ///< Contains binding flags for each of the actual bindings.
-    std::optional<std::vector<vk::DescriptorPoolSize>> poolSizes; ///< The pool sizes for allocating the descriptor pool (Only used if setPoolSizes(const std::vector<vk::DescriptorPoolSize>&) is called).
-    std::vector<std::vector<vk::WriteDescriptorSet>> writes;      ///< Contains all descriptor writes for each binding.
+    std::vector<vk::DescriptorSetLayoutBinding> _bindings;         ///< Contains the actual binding.
+    std::vector<vk::DescriptorBindingFlags> _flags;                ///< Contains binding flags for each of the actual bindings.
+    std::optional<std::vector<vk::DescriptorPoolSize>> _poolSizes; ///< The pool sizes for allocating the descriptor pool (Only used if setPoolSizes(const std::vector<vk::DescriptorPoolSize>&) is called).
+    std::vector<std::vector<vk::WriteDescriptorSet>> _writes;      ///< Contains all descriptor writes for each binding.
   };
 
   /// Encapsulates descriptor-related resources.

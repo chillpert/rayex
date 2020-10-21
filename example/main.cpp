@@ -20,9 +20,9 @@ auto main( ) -> int
   renderer.setGui( std::make_shared<CustomGui>( &renderer ) );
 
   // Use resources efficiently by introducing the renderer to the anticipated total amount of various entities.
-  renderer.settings.setMaxDirectionalLights( 2 );
-  renderer.settings.setMaxPointLights( 20 );
-  renderer.settings.setMaxGeometryInstances( 100 );
+  renderer.settings( ).setMaxDirectionalLights( 2 );
+  renderer.settings( ).setMaxPointLights( 20 );
+  renderer.settings( ).setMaxGeometryInstances( 100 );
 
   // ... and initialize the renderer.
   renderer.init( );
@@ -34,7 +34,7 @@ auto main( ) -> int
   auto cube   = rx::loadObj( "models/cube.obj" );
 
   // Submit geometries.
-  renderer.scene.setGeometries( { awp, sphere, plane, cube } );
+  renderer.scene( ).setGeometries( { awp, sphere, plane, cube } );
 
   // Create instances of the geometries.
   auto transform = glm::scale( glm::mat4( 1.0F ), glm::vec3( 0.25F ) );
@@ -52,11 +52,11 @@ auto main( ) -> int
   auto planeInstance = rx::instance( plane );
 
   // Submit instances for drawing.
-  renderer.scene.setGeometryInstances( { awpInstance1, planeInstance, awpInstance2 } );
+  renderer.scene( ).setGeometryInstances( { awpInstance1, planeInstance, awpInstance2 } );
   // Submit lights.
   auto directionalLight = rx::directionalLightInstance( glm::vec3( -4.0F, 10.0F, 5.0F ) );
 
-  renderer.scene.submitDirectionalLight( directionalLight );
+  renderer.scene( ).submitDirectionalLight( directionalLight );
 
   while ( renderer.isRunning( ) )
   {

@@ -6,68 +6,68 @@ namespace RAYEX_NAMESPACE
 {
   void Settings::setRecursionDepth( uint32_t recursionDepth )
   {
-    if ( recursionDepth <= maxRecursionDepth )
+    if ( recursionDepth <= _maxRecursionDepth )
     {
-      this->recursionDepth = recursionDepth;
+      _recursionDepth = recursionDepth;
     }
     else
     {
-      this->recursionDepth = this->maxRecursionDepth;
-      RX_WARN( "Exceeded maximum recursion depth of ", this->maxRecursionDepth, ". Using highest possible value instead." );
+      _recursionDepth = _maxRecursionDepth;
+      RX_WARN( "Exceeded maximum recursion depth of ", _maxRecursionDepth, ". Using highest possible value instead." );
     }
 
-    this->refreshPipeline = true;
+    _refreshPipeline = true;
   }
 
   void Settings::setClearColor( const glm::vec4& clearColor )
   {
-    this->clearColor       = clearColor;
-    this->refreshSwapchain = true;
+    _clearColor       = clearColor;
+    _refreshSwapchain = true;
 
     g_frameCount = 0;
   }
 
   void Settings::setAssetsPath( int argc, char* argv[] )
   {
-    this->assetsPath = "";
+    _assetsPath = "";
 
     for ( int i = 0; i < argc; ++i )
     {
-      this->assetsPath += argv[i];
+      _assetsPath += argv[i];
     }
 
-    std::replace( this->assetsPath.begin( ), this->assetsPath.end( ), '\\', '/' );
+    std::replace( _assetsPath.begin( ), _assetsPath.end( ), '\\', '/' );
 
-    this->assetsPath = this->assetsPath.substr( 0, this->assetsPath.find_last_of( '/' ) + 1 );
+    _assetsPath = _assetsPath.substr( 0, _assetsPath.find_last_of( '/' ) + 1 );
 
-    g_assetsPath = this->assetsPath;
+    g_assetsPath = _assetsPath;
   }
 
   void Settings::setAssetsPath( std::string_view path )
   {
-    this->assetsPath = path;
+    _assetsPath = path;
 
-    std::replace( this->assetsPath.begin( ), this->assetsPath.end( ), '\\', '/' );
+    std::replace( _assetsPath.begin( ), _assetsPath.end( ), '\\', '/' );
 
     if ( path[path.size( ) - 1] != '/' )
     {
-      this->assetsPath += '/';
+      _assetsPath += '/';
     }
 
-    g_assetsPath = this->assetsPath;
+    g_assetsPath = _assetsPath;
   }
 
   void Settings::setEnableRayTracing( bool flag )
   {
-    this->rayTrace         = flag;
-    this->refreshSwapchain = true;
+    _rayTrace         = flag;
+    _refreshSwapchain = true;
 
     g_frameCount = 0;
   }
 
   void Settings::setAutomaticPipelineRefresh( bool flag )
   {
-    this->automaticPipelineRefresh = flag;
+    _automaticPipelineRefresh = flag;
   }
 
   void Settings::setMaxDirectionalLights( uint32_t amount )
@@ -77,8 +77,8 @@ namespace RAYEX_NAMESPACE
       ++amount;
       RX_WARN( "Can not use value 0 for the amount of maximum directional lights. Using 1 instead." );
     }
-    this->maxDirectionalLights = amount;
-    this->refreshPipeline      = true;
+    _maxDirectionalLights = amount;
+    _refreshPipeline      = true;
   }
 
   void Settings::setMaxPointLights( uint32_t amount )
@@ -88,8 +88,8 @@ namespace RAYEX_NAMESPACE
       ++amount;
       RX_WARN( "Can not use value 0 for the amount of maximum point lights. Using 1 instead." );
     }
-    this->maxPointLights  = amount;
-    this->refreshPipeline = true;
+    _maxPointLights  = amount;
+    _refreshPipeline = true;
   }
 
   void Settings::setMaxGeometryInstances( uint32_t amount )
@@ -99,48 +99,48 @@ namespace RAYEX_NAMESPACE
       ++amount;
       RX_WARN( "Can not use value 0 for the amount of maximum directional lights. Using 1 instead." );
     }
-    this->maxGeometryInstances = amount;
+    _maxGeometryInstances = amount;
   }
 
   void Settings::setDefaultAssetsPath( )
   {
-    this->assetsPath = std::filesystem::current_path( ).string( ) += "/";
+    _assetsPath = std::filesystem::current_path( ).string( ) += "/";
 
-    std::replace( this->assetsPath.begin( ), this->assetsPath.end( ), '\\', '/' );
+    std::replace( _assetsPath.begin( ), _assetsPath.end( ), '\\', '/' );
 
-    g_assetsPath = this->assetsPath;
-    RX_WARN( "No path to assets specified. Using default path as path to resources: ", this->assetsPath );
+    g_assetsPath = _assetsPath;
+    RX_WARN( "No path to assets specified. Using default path as path to resources: ", _assetsPath );
   }
 
   void Settings::setEnableJitterCam( bool flag )
   {
-    this->jitterCamEnabled = flag;
-    this->ssaaEnabled      = false;
-    g_frameCount           = 0;
+    _jitterCamEnabled = flag;
+    _ssaaEnabled      = false;
+    g_frameCount      = 0;
   }
 
   void Settings::setJitterCamSampleRate( uint32_t sampleRate )
   {
     // Make sure the sample rate is always greater than zero.
-    this->jitterCamSampleRate = sampleRate > 0 ? sampleRate : 1;
-    g_frameCount              = 0;
+    _jitterCamSampleRate = sampleRate > 0 ? sampleRate : 1;
+    g_frameCount         = 0;
   }
 
   void Settings::setJitterCamSampleRatePerRayGen( uint32_t sampleRate )
   {
     // Make sure the sample rate per raygen is always greater than zero.
-    this->jitterCamSampleRatePerRayGen = sampleRate > 0 ? sampleRate : 1;
-    g_frameCount                       = 0;
+    _jitterCamSampleRatePerRayGen = sampleRate > 0 ? sampleRate : 1;
+    g_frameCount                  = 0;
   }
 
   void Settings::setEnableSsaa( bool flag )
   {
-    this->ssaaEnabled      = flag;
-    this->jitterCamEnabled = false;
+    _ssaaEnabled      = flag;
+    _jitterCamEnabled = false;
   }
 
   void Settings::setSsaaSampleRate( uint32_t sampleRate )
   {
-    this->ssaaSampleRate = sampleRate > 0 ? sampleRate : 1;
+    _ssaaSampleRate = sampleRate > 0 ? sampleRate : 1;
   }
 } // namespace RAYEX_NAMESPACE

@@ -28,7 +28,7 @@ namespace RAYEX_NAMESPACE
     auto operator=( const Buffer& ) -> Buffer&;
     auto operator=( const Buffer && ) -> Buffer& = delete;
 
-    RX_API virtual ~Buffer( ) = default;
+    virtual ~Buffer( ) = default;
 
     /// Copies the content of this buffer to another RAYEX_NAMESPACE::Buffer.
     /// @param buffer The target for the copy operation.
@@ -36,20 +36,20 @@ namespace RAYEX_NAMESPACE
 
     /// Copies the content of this buffer to another vk::Buffer.
     /// @param buffer The target for the copy operation.
-    RX_API void copyToBuffer( vk::Buffer buffer ) const;
+    void copyToBuffer( vk::Buffer buffer ) const;
 
     /// Copies the content of this buffer to an image.
     /// @param image The target for the copy operation.
     void copyToImage( Image& image ) const;
 
     /// @return Returns the buffer without the unique handle.
-    [[nodiscard]] auto get( ) const -> const vk::Buffer { return buffer.get( ); }
+    auto get( ) const -> const vk::Buffer { return _buffer.get( ); }
 
     /// @return Returns the buffer's memory without the unique handle.
-    [[nodiscard]] auto getMemory( ) const -> const vk::DeviceMemory { return memory.get( ); }
+    auto getMemory( ) const -> const vk::DeviceMemory { return _memory.get( ); }
 
     /// @return Returns the size of the buffer.
-    [[nodiscard]] auto getSize( ) const -> const vk::DeviceSize { return size; }
+    auto getSize( ) const -> const vk::DeviceSize { return _size; }
 
     /// Creates the buffer and allocates memory for it.
     /// @param size The size of the buffer.
@@ -66,19 +66,19 @@ namespace RAYEX_NAMESPACE
     void fill( const T* source, vk::DeviceSize offset = 0 )
     {
       void* data;
-      if ( g_device.mapMemory( memory.get( ), offset, size, { }, &data ) != vk::Result::eSuccess )
+      if ( g_device.mapMemory( _memory.get( ), offset, _size, { }, &data ) != vk::Result::eSuccess )
         RX_ERROR( "Failed to map memory." );
 
-      memcpy( data, source, static_cast<uint32_t>( size ) );
+      memcpy( data, source, static_cast<uint32_t>( _size ) );
 
-      g_device.unmapMemory( memory.get( ) );
+      g_device.unmapMemory( _memory.get( ) );
     }
 
   protected:
-    vk::UniqueBuffer buffer;       ///< The buffer object with a unique handle.
-    vk::UniqueDeviceMemory memory; ///< The buffer's memory with a unique handle.
+    vk::UniqueBuffer _buffer;       ///< The buffer object with a unique handle.
+    vk::UniqueDeviceMemory _memory; ///< The buffer's memory with a unique handle.
 
-    vk::DeviceSize size = 0; ///< The buffer's size.
+    vk::DeviceSize _size = 0; ///< The buffer's size.
   };
 
   template <typename T>

@@ -43,39 +43,39 @@ namespace RAYEX_NAMESPACE
     if ( surfaceCapabilities.currentExtent.width != UINT32_MAX )
     {
       // The surface size will be determined by the extent of a swapchain targeting the surface.
-      this->extent = surfaceCapabilities.currentExtent;
+      _extent = surfaceCapabilities.currentExtent;
     }
     else
     {
       // Clamp width and height.
-      this->extent = g_window->getExtent( );
+      _extent = g_window->getExtent( );
 
-      uint32_t width_t = this->extent.width;
-      if ( surfaceCapabilities.maxImageExtent.width < this->extent.width )
+      uint32_t width_t = _extent.width;
+      if ( surfaceCapabilities.maxImageExtent.width < _extent.width )
       {
         width_t = surfaceCapabilities.maxImageExtent.width;
       }
 
-      uint32_t height_t = this->extent.height;
-      if ( surfaceCapabilities.maxImageExtent.height < this->extent.height )
+      uint32_t height_t = _extent.height;
+      if ( surfaceCapabilities.maxImageExtent.height < _extent.height )
       {
         height_t = surfaceCapabilities.maxImageExtent.height;
       }
 
-      this->extent.width = width_t;
+      _extent.width = width_t;
       if ( surfaceCapabilities.minImageExtent.width > width_t )
       {
-        this->extent.width = surfaceCapabilities.minImageExtent.width;
+        _extent.width = surfaceCapabilities.minImageExtent.width;
       }
 
-      this->extent.height = height_t;
+      _extent.height = height_t;
       if ( surfaceCapabilities.minImageExtent.height > height_t )
       {
-        this->extent.height = surfaceCapabilities.minImageExtent.height;
+        _extent.height = surfaceCapabilities.minImageExtent.height;
       }
     }
 
-    createInfo.imageExtent = this->extent;
+    createInfo.imageExtent = _extent;
 
     if ( surfaceCapabilities.maxImageArrayLayers < 1 )
     {
@@ -100,9 +100,9 @@ namespace RAYEX_NAMESPACE
 
     createInfo.presentMode = surface->getPresentMode( );
 
-    this->swapchain = g_device.createSwapchainKHRUnique( createInfo );
-    RX_ASSERT( this->swapchain, "Failed to create swapchain" );
-    g_swapchain = this->swapchain.get( );
+    _swapchain = g_device.createSwapchainKHRUnique( createInfo );
+    RX_ASSERT( _swapchain, "Failed to create swapchain" );
+    g_swapchain = _swapchain.get( );
 
     initImages( minImageCount, surface->getFormat( ) );
     initDepthImage( );
@@ -111,21 +111,21 @@ namespace RAYEX_NAMESPACE
 
   void Swapchain::destroy( )
   {
-    if ( this->swapchain )
+    if ( _swapchain )
     {
-      g_device.destroySwapchainKHR( this->swapchain.get( ) );
-      this->swapchain.get( ) = nullptr;
+      g_device.destroySwapchainKHR( _swapchain.get( ) );
+      _swapchain.get( ) = nullptr;
     }
   }
 
   void Swapchain::setImageAspect( vk::ImageAspectFlags flags )
   {
-    this->imageAspect = flags;
+    _imageAspect = flags;
   }
 
   void Swapchain::setImageLayout( vk::ImageLayout oldLayout, vk::ImageLayout newLayout )
   {
-    for ( const auto& image : this->images )
+    for ( const auto& image : _images )
     {
       vk::Helper::transitionImageLayout( image, oldLayout, newLayout );
     }
@@ -133,26 +133,26 @@ namespace RAYEX_NAMESPACE
 
   void Swapchain::acquireNextImage( vk::Semaphore semaphore, vk::Fence fence )
   {
-    vk::Result result = g_device.acquireNextImageKHR( this->swapchain.get( ), UINT64_MAX, semaphore, fence, &this->currentImageIndex );
+    vk::Result result = g_device.acquireNextImageKHR( _swapchain.get( ), UINT64_MAX, semaphore, fence, &_currentImageIndex );
     RX_ASSERT( ( result == vk::Result::eSuccess ), "Failed to acquire next swapchain image." );
   }
 
   void Swapchain::initImages( uint32_t minImageCount, vk::Format surfaceFormat )
   {
     // Retrieve the actual swapchain images. This sets them up automatically.
-    this->images = g_device.getSwapchainImagesKHR( this->swapchain.get( ) );
-    if ( this->images.size( ) < minImageCount )
+    _images = g_device.getSwapchainImagesKHR( _swapchain.get( ) );
+    if ( _images.size( ) < minImageCount )
     {
       RX_FATAL( "Failed to get swapchain images." );
     }
 
-    g_swapchainImageCount = static_cast<uint32_t>( this->images.size( ) );
+    g_swapchainImageCount = static_cast<uint32_t>( _images.size( ) );
 
     // Create image views for swapchain images.
-    this->imageViews.resize( this->images.size( ) );
-    for ( size_t i = 0; i < this->imageViews.size( ); ++i )
+    _imageViews.resize( _images.size( ) );
+    for ( size_t i = 0; i < _imageViews.size( ); ++i )
     {
-      this->imageViews[i] = vk::Initializer::initImageViewUnique( this->images[i], surfaceFormat, this->imageAspect );
+      _imageViews[i] = vk::Initializer::initImageViewUnique( _images[i], surfaceFormat, _imageAspect );
     }
   }
 
@@ -161,28 +161,28 @@ namespace RAYEX_NAMESPACE
     // Depth image for depth buffering
     vk::Format depthFormat = getSupportedDepthFormat( g_physicalDevice );
 
-    auto imageCreateInfo   = vk::Helper::getImageCreateInfo( vk::Extent3D( this->extent.width, this->extent.height, 1 ) );
+    auto imageCreateInfo   = vk::Helper::getImageCreateInfo( vk::Extent3D( _extent.width, _extent.height, 1 ) );
     imageCreateInfo.format = depthFormat;
     imageCreateInfo.usage  = vk::ImageUsageFlagBits::eDepthStencilAttachment;
 
-    this->depthImage.init( imageCreateInfo );
+    _depthImage.init( imageCreateInfo );
 
     // Image view for depth image
-    this->depthImageView = vk::Initializer::initImageViewUnique( this->depthImage.get( ), depthFormat, vk::ImageAspectFlagBits::eDepth );
+    _depthImageView = vk::Initializer::initImageViewUnique( _depthImage.get( ), depthFormat, vk::ImageAspectFlagBits::eDepth );
   }
 
   void Swapchain::initFramebuffers( vk::RenderPass renderPass )
   {
-    this->framebuffers.resize( this->imageViews.size( ) );
-    for ( size_t i = 0; i < this->framebuffers.size( ); ++i )
+    _framebuffers.resize( _imageViews.size( ) );
+    for ( size_t i = 0; i < _framebuffers.size( ); ++i )
     {
-      this->framebuffers[i] = vk::Initializer::initFramebufferUnique( { this->imageViews[i].get( ), this->depthImageView.get( ) }, renderPass, this->extent );
+      _framebuffers[i] = vk::Initializer::initFramebufferUnique( { _imageViews[i].get( ), _depthImageView.get( ) }, renderPass, _extent );
     }
   }
 
   auto getSupportedDepthFormat( vk::PhysicalDevice physicalDevice ) -> vk::Format
   {
     std::vector<vk::Format> candidates { vk::Format::eD32Sfloat, vk::Format::eD32SfloatS8Uint, vk::Format::eD24UnormS8Uint };
-    return Image::findSupportedFormat( physicalDevice, candidates, vk::FormatFeatureFlagBits::eDepthStencilAttachment, vk::ImageTiling::eOptimal );
+    return vk::Helper::findSupportedImageFormat( physicalDevice, candidates, vk::FormatFeatureFlagBits::eDepthStencilAttachment, vk::ImageTiling::eOptimal );
   }
 } // namespace RAYEX_NAMESPACE

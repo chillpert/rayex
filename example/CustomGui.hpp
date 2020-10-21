@@ -7,7 +7,7 @@ class CustomGui : public rx::Gui
 {
 public:
   CustomGui( rx::Rayex* renderer ) :
-    renderer( renderer ) {}
+    _renderer( renderer ) {}
 
 private:
   void configure( ) override
@@ -28,50 +28,50 @@ private:
     {
       if ( ImGui::Button( "Add box" ) )
       {
-        auto cube      = this->renderer->scene.findGeometry( "models/cube.obj" );
+        auto cube      = _renderer->scene( ).findGeometry( "models/cube.obj" );
         auto transform = glm::scale( glm::mat4( 1.0F ), glm::vec3( 0.3F, 0.3F, 0.3F ) );
         transform      = glm::rotate( transform, getRandomFloat( 0.0F, 360.0F ), glm::vec3( 0.0F, 1.0F, 0.0F ) );
         transform      = glm::translate( transform, getRandomUniquePosition( -10.0F, 10.0F ) );
 
         auto cubeInstance = rx::instance( cube, transform );
-        this->renderer->scene.submitGeometryInstance( cubeInstance );
+        _renderer->scene( ).submitGeometryInstance( cubeInstance );
       }
 
       ImGui::SameLine( );
 
       if ( ImGui::Button( "Add sphere" ) )
       {
-        auto sphere    = this->renderer->scene.findGeometry( "models/sphere.obj" );
+        auto sphere    = _renderer->scene( ).findGeometry( "models/sphere.obj" );
         auto transform = glm::scale( glm::mat4( 1.0F ), glm::vec3( 0.1F, 0.1F, 0.1F ) );
         transform      = glm::rotate( transform, getRandomFloat( 0.0F, 360.0F ), glm::vec3( 0.0F, 1.0F, 0.0F ) );
         transform      = glm::translate( transform, getRandomUniquePosition( -45.0F, 45.0F ) );
 
         auto sphereInstance = rx::instance( sphere, transform );
-        this->renderer->scene.submitGeometryInstance( sphereInstance );
+        _renderer->scene( ).submitGeometryInstance( sphereInstance );
       }
 
       ImGui::SameLine( );
 
       if ( ImGui::Button( "Add awp" ) )
       {
-        auto awp       = this->renderer->scene.findGeometry( "models/awpdlore/awpdlore.obj" );
+        auto awp       = _renderer->scene( ).findGeometry( "models/awpdlore/awpdlore.obj" );
         auto transform = glm::scale( glm::mat4( 1.0F ), glm::vec3( 0.3F, 0.3F, 0.3F ) );
         transform      = glm::rotate( transform, getRandomFloat( 0.0F, 360.0F ), glm::vec3( 0.0F, 1.0F, 0.0F ) );
         transform      = glm::translate( transform, getRandomUniquePosition( -10.0F, 10.0F ) );
 
         auto awpInstance = rx::instance( awp, transform );
-        this->renderer->scene.submitGeometryInstance( awpInstance );
+        _renderer->scene( ).submitGeometryInstance( awpInstance );
       }
 
       ImGui::SameLine( );
 
       if ( ImGui::Button( "Clear scene" ) )
       {
-        auto geometryInstances = this->renderer->scene.getGeometryInstances( );
+        auto geometryInstances = _renderer->scene( ).getGeometryInstances( );
 
         for ( auto geometryInstance : geometryInstances )
         {
-          this->renderer->scene.removeGeometryInstance( geometryInstance );
+          _renderer->scene( ).removeGeometryInstance( geometryInstance );
         }
       }
 
@@ -80,81 +80,81 @@ private:
         auto directionalLight = rx::directionalLightInstance( getRandomUniquePosition( 5.0F, 10.0F ) );
         directionalLight->direction.x *= -1;
 
-        this->renderer->scene.submitDirectionalLight( directionalLight );
+        _renderer->scene( ).submitDirectionalLight( directionalLight );
       }
 
       ImGui::SameLine( );
 
       if ( ImGui::Button( "Remove directional lights" ) )
       {
-        auto directionalLights = this->renderer->scene.getDirectionalLights( );
+        auto directionalLights = _renderer->scene( ).getDirectionalLights( );
 
         for ( auto directionalLight : directionalLights )
         {
-          this->renderer->scene.removeDirectionalLight( directionalLight );
+          _renderer->scene( ).removeDirectionalLight( directionalLight );
         }
       }
 
       ImGui::Checkbox( "Show ImGui demo window", &showDemoWindow );
 
-      auto clearColor = this->renderer->settings.getClearColor( );
+      auto clearColor = _renderer->settings( ).getClearColor( );
       if ( ImGui::ColorEdit4( "##AmbientColor", &clearColor[0] ) )
       {
-        this->renderer->settings.setClearColor( clearColor );
+        _renderer->settings( ).setClearColor( clearColor );
       }
 
-      bool rayTrace = this->renderer->settings.getRayTracingEnabled( );
+      bool rayTrace = _renderer->settings( ).getRayTracingEnabled( );
       if ( ImGui::Checkbox( "Toggle ray tracing", &rayTrace ) )
       {
-        this->renderer->settings.setEnableRayTracing( rayTrace );
+        _renderer->settings( ).setEnableRayTracing( rayTrace );
         if ( !rayTrace )
         {
-          this->renderer->settings.setEnableJitterCam( false );
+          _renderer->settings( ).setEnableJitterCam( false );
         }
       }
 
       if ( rayTrace )
       {
-        bool jitterCamEnabled = this->renderer->settings.getJitterCamEnabled( );
+        bool jitterCamEnabled = _renderer->settings( ).getJitterCamEnabled( );
         if ( ImGui::Checkbox( "Toggle jitter cam", &jitterCamEnabled ) )
         {
-          this->renderer->settings.setEnableJitterCam( jitterCamEnabled );
+          _renderer->settings( ).setEnableJitterCam( jitterCamEnabled );
         }
 
         if ( jitterCamEnabled )
         {
-          int jitterCamSampleRate = static_cast<int>( this->renderer->settings.getJitterCamSampleRate( ) );
+          int jitterCamSampleRate = static_cast<int>( _renderer->settings( ).getJitterCamSampleRate( ) );
           if ( ImGui::SliderInt( "Set jitter cam sample rate", &jitterCamSampleRate, 1, 100 ) )
           {
-            this->renderer->settings.setJitterCamSampleRate( jitterCamSampleRate );
+            _renderer->settings( ).setJitterCamSampleRate( jitterCamSampleRate );
           }
 
-          int jitterCamSampleRatePerRayGen = static_cast<int>( this->renderer->settings.getJitterCamSampleRatePerRayGen( ) );
+          int jitterCamSampleRatePerRayGen = static_cast<int>( _renderer->settings( ).getJitterCamSampleRatePerRayGen( ) );
           if ( ImGui::SliderInt( "Set jitter cam sample rate per ray gen", &jitterCamSampleRatePerRayGen, 1, 10 ) )
           {
-            this->renderer->settings.setJitterCamSampleRatePerRayGen( jitterCamSampleRatePerRayGen );
+            _renderer->settings( ).setJitterCamSampleRatePerRayGen( jitterCamSampleRatePerRayGen );
           }
         }
 
-        bool ssaaEnabled = this->renderer->settings.getSsaaEnabled( );
+        bool ssaaEnabled = _renderer->settings( ).getSsaaEnabled( );
         if ( ImGui::Checkbox( "Toggle SSAA", &ssaaEnabled ) )
         {
-          this->renderer->settings.setEnableSsaa( ssaaEnabled );
+          _renderer->settings( ).setEnableSsaa( ssaaEnabled );
         }
 
         if ( ssaaEnabled )
         {
-          int ssaaSampleRate = static_cast<int>( this->renderer->settings.getSsaaSampleRate( ) );
+          int ssaaSampleRate = static_cast<int>( _renderer->settings( ).getSsaaSampleRate( ) );
           if ( ImGui::SliderInt( "Set SSAA sample rate", &ssaaSampleRate, 1, 4 ) )
           {
-            this->renderer->settings.setSsaaSampleRate( ssaaSampleRate );
+            _renderer->settings( ).setSsaaSampleRate( ssaaSampleRate );
           }
         }
 
-        int depth = static_cast<int>( this->renderer->settings.getRecursionDepth( ) );
+        int depth = static_cast<int>( _renderer->settings( ).getRecursionDepth( ) );
         if ( ImGui::SliderInt( "Recursion depth", &depth, 0, 31 ) )
         {
-          this->renderer->settings.setRecursionDepth( static_cast<uint32_t>( depth ) );
+          _renderer->settings( ).setRecursionDepth( static_cast<uint32_t>( depth ) );
         }
       }
 
@@ -226,7 +226,7 @@ private:
   }
 
 private:
-  rx::Rayex* renderer;
+  rx::Rayex* _renderer;
 };
 
 #endif // CUSTOM_GUI_HPP

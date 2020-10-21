@@ -35,9 +35,9 @@ namespace RAYEX_NAMESPACE
   const size_t maxFramesInFlight = 2;
 
   Api::Api( std::shared_ptr<Window> window, std::shared_ptr<Camera> camera ) :
-    window( std::move( window ) ),
-    camera( std::move( camera ) ),
-    gui( nullptr )
+    _window( std::move( window ) ),
+    _camera( std::move( camera ) ),
+    _gui( nullptr )
   {
   }
 
@@ -46,21 +46,21 @@ namespace RAYEX_NAMESPACE
     g_device.waitIdle( );
 
     // Gui needs to be destroyed manually, as RAII destruction will not be possible.
-    if ( this->gui != nullptr )
+    if ( _gui != nullptr )
     {
-      this->gui->destroy( );
+      _gui->destroy( );
     }
   }
 
   void Api::setGui( const std::shared_ptr<Gui>& gui, bool initialize )
   {
-    if ( this->gui != nullptr )
+    if ( _gui != nullptr )
     {
       recreateSwapchain( );
-      this->gui->destroy( );
+      _gui->destroy( );
     }
 
-    this->gui = gui;
+    _gui = gui;
 
     if ( initialize )
     {
@@ -73,25 +73,25 @@ namespace RAYEX_NAMESPACE
     RX_LOG_TIME_START( "Initializing Vulkan (base) ..." );
 
     // Instance
-    instance = vk::Initializer::initInstance( layers, extensions );
+    _instance = vk::Initializer::initInstance( layers, extensions );
 
     // Debug messenger
-    this->debugMessenger.init( );
+    _debugMessenger.init( );
 
     // Surface
-    this->surface.init( );
+    _surface.init( );
 
     // Physical device
-    this->physicalDevice = vk::Initializer::initPhysicalDevice( );
+    _physicalDevice = vk::Initializer::initPhysicalDevice( );
 
     // Reassess the support of the preferred surface settings.
-    this->surface.assessSettings( );
+    _surface.assessSettings( );
 
     // Queues
     vk::Initializer::initQueueFamilyIndices( );
 
     // Logical device
-    device = vk::Initializer::initDevice( deviceExtensions );
+    _device = vk::Initializer::initDevice( deviceExtensions );
 
     // Retrieve all queue handles.
     g_device.getQueue( g_graphicsFamilyIndex, 0, &g_graphicsQueue );
@@ -101,15 +101,15 @@ namespace RAYEX_NAMESPACE
     initRenderPass( );
 
     // Swapchain
-    this->swapchain.init( &this->surface, this->renderPass.get( ) );
-    this->settings->refreshSwapchain = false;
+    _swapchain.init( &_surface, _renderPass.get( ) );
+    _settings->_refreshSwapchain = false;
 
     // Command pools
-    this->graphicsCmdPool = vk::Initializer::initCommandPoolUnique( g_graphicsFamilyIndex, vk::CommandPoolCreateFlagBits::eResetCommandBuffer );
-    g_graphicsCmdPool     = this->graphicsCmdPool.get( );
+    _graphicsCmdPool  = vk::Initializer::initCommandPoolUnique( g_graphicsFamilyIndex, vk::CommandPoolCreateFlagBits::eResetCommandBuffer );
+    g_graphicsCmdPool = _graphicsCmdPool.get( );
 
-    this->transferCmdPool = vk::Initializer::initCommandPoolUnique( g_transferFamilyIndex, { } );
-    g_transferCmdPool     = this->transferCmdPool.get( );
+    _transferCmdPool  = vk::Initializer::initCommandPoolUnique( g_transferFamilyIndex, { } );
+    g_transferCmdPool = _transferCmdPool.get( );
 
     // GUI
     initGui( );
@@ -119,17 +119,17 @@ namespace RAYEX_NAMESPACE
 
     // At this point nodes are unknown. So I just create a storage buffer with the maximum value or with the anticipated value in settings.
     // enables the user to add more nodes later on during runtime.
-    uint32_t maxInstanceCount = this->settings->maxGeometryInstances.has_value( ) ? this->settings->maxGeometryInstances.value( ) : g_maxGeometryInstances;
+    uint32_t maxInstanceCount = _settings->_maxGeometryInstances.has_value( ) ? _settings->_maxGeometryInstances.value( ) : g_maxGeometryInstances;
     std::vector<GeometryInstance> geometryInstances( maxInstanceCount );
-    this->geometryInstancesBuffer.init<GeometryInstance>( geometryInstances );
+    _geometryInstancesBuffer.init<GeometryInstance>( geometryInstances );
 
-    uint32_t maxDirectionalLightCount = this->settings->maxDirectionalLights.has_value( ) ? this->settings->maxDirectionalLights.value( ) : g_maxDirectionalLights;
+    uint32_t maxDirectionalLightCount = _settings->_maxDirectionalLights.has_value( ) ? _settings->_maxDirectionalLights.value( ) : g_maxDirectionalLights;
     std::vector<DirectionalLightSSBO> directionalLights( maxDirectionalLightCount );
-    this->directionalLightsBuffer.init<DirectionalLightSSBO>( directionalLights );
+    _directionalLightsBuffer.init<DirectionalLightSSBO>( directionalLights );
 
-    uint32_t maxPointLightCount = this->settings->maxPointLights.has_value( ) ? this->settings->maxPointLights.value( ) : g_maxPointLights;
+    uint32_t maxPointLightCount = _settings->_maxPointLights.has_value( ) ? _settings->_maxPointLights.value( ) : g_maxPointLights;
     std::vector<PointLightSSBO> pointLights( maxPointLightCount );
-    this->pointLightsBuffer.init<PointLightSSBO>( pointLights );
+    _pointLightsBuffer.init<PointLightSSBO>( pointLights );
 
     RX_LOG_TIME_STOP( "Finished initializing Vulkan (base)" );
   }
@@ -139,22 +139,22 @@ namespace RAYEX_NAMESPACE
     RX_LOG_TIME_START( "Initializing Vulkan (scene) ..." );
 
     // Uniform buffers for camera
-    this->cameraUniformBuffer.init<CameraUbo>( );
+    _cameraUniformBuffer.init<CameraUbo>( );
 
-    this->vertexBuffers.resize( g_maxGeometries );
-    this->indexBuffers.resize( g_maxGeometries );
-    this->meshBuffers.resize( g_maxGeometries );
+    _vertexBuffers.resize( g_maxGeometries );
+    _indexBuffers.resize( g_maxGeometries );
+    _meshBuffers.resize( g_maxGeometries );
 
-    for ( size_t i = 0; i < this->scene->geometries.size( ); ++i )
+    for ( size_t i = 0; i < _scene->_geometries.size( ); ++i )
     {
-      if ( this->scene->geometries[i] != nullptr )
+      if ( _scene->_geometries[i] != nullptr )
       {
-        if ( !this->scene->geometries[i]->initialized )
+        if ( !_scene->_geometries[i]->initialized )
         {
-          this->vertexBuffers[i].init( this->scene->geometries[i]->vertices );
-          this->indexBuffers[i].init( this->scene->geometries[i]->indices );
-          this->meshBuffers[i].init( this->scene->geometries[i]->meshes );
-          this->scene->geometries[i]->initialized = true;
+          _vertexBuffers[i].init( _scene->_geometries[i]->vertices );
+          _indexBuffers[i].init( _scene->_geometries[i]->indices );
+          _meshBuffers[i].init( _scene->_geometries[i]->meshes );
+          _scene->_geometries[i]->initialized = true;
         }
       }
     }
@@ -172,17 +172,17 @@ namespace RAYEX_NAMESPACE
     initPipelines( );
 
     // Ray tracing
-    this->rayTracingBuilder.init( );
-    this->rayTracingBuilder.createStorageImage( this->swapchain.getExtent( ) );
-    this->rayTracingBuilder.createShaderBindingTable( this->rtPipeline.get( ) );
+    _rayTracingBuilder.init( );
+    _rayTracingBuilder.createStorageImage( _swapchain.getExtent( ) );
+    _rayTracingBuilder.createShaderBindingTable( _rtPipeline.get( ) );
 
-    this->settings->maxRecursionDepth = this->rayTracingBuilder.getRtProperties( ).maxRecursionDepth;
+    _settings->_maxRecursionDepth = _rayTracingBuilder.getRtProperties( ).maxRecursionDepth;
 
     updateAccelerationStructures( );
 
     // Init and record swapchain command buffers.
-    //this->swapchainCommandBuffers.reset( );
-    this->swapchainCommandBuffers.init( this->graphicsCmdPool.get( ), g_swapchainImageCount, vk::CommandBufferUsageFlagBits::eRenderPassContinue );
+    //_swapchainCommandBuffers.reset( );
+    _swapchainCommandBuffers.init( _graphicsCmdPool.get( ), g_swapchainImageCount, vk::CommandBufferUsageFlagBits::eRenderPassContinue );
     recordSwapchainCommandBuffers( );
 
     RX_LOG_TIME_STOP( "Finished initializing Vulkan (scene)" );
@@ -195,70 +195,70 @@ namespace RAYEX_NAMESPACE
     updateUniformBuffers( );
 
     // Init geometry storage buffers.
-    if ( this->scene->uploadGeometries )
+    if ( _scene->_uploadGeometries )
     {
-      this->scene->uploadGeometries = false;
+      _scene->_uploadGeometries = false;
     }
 
-    if ( this->scene->uploadGeometryInstancesToBuffer )
+    if ( _scene->_uploadGeometryInstancesToBuffer )
     {
-      this->scene->uploadGeometryInstancesToBuffer = false;
+      _scene->_uploadGeometryInstancesToBuffer = false;
 
-      if ( !this->scene->geometryInstances.empty( ) )
+      if ( !_scene->_geometryInstances.empty( ) )
       {
         // Dereference pointers and store values in new vector that will be uploaded.
-        dereferencedGeometryInstances.resize( this->scene->geometryInstances.size( ) );
-        std::transform( this->scene->geometryInstances.begin( ),
-                        this->scene->geometryInstances.end( ),
+        dereferencedGeometryInstances.resize( _scene->_geometryInstances.size( ) );
+        std::transform( _scene->_geometryInstances.begin( ),
+                        _scene->_geometryInstances.end( ),
                         dereferencedGeometryInstances.begin( ),
                         []( std::shared_ptr<GeometryInstance> instance ) { return *instance; } );
 
-        this->geometryInstancesBuffer.fill<GeometryInstance>( dereferencedGeometryInstances.data( ) );
+        _geometryInstancesBuffer.fill<GeometryInstance>( dereferencedGeometryInstances.data( ) );
         updateAccelerationStructures( );
       }
     }
 
-    if ( this->scene->uploadDirectionalLightsToBuffer )
+    if ( _scene->_uploadDirectionalLightsToBuffer )
     {
-      this->scene->uploadDirectionalLightsToBuffer = false;
+      _scene->_uploadDirectionalLightsToBuffer = false;
 
-      if ( !this->scene->directionalLights.empty( ) )
+      if ( !_scene->_directionalLights.empty( ) )
       {
-        dereferencedDirectionalLights.resize( this->scene->directionalLights.size( ) );
-        std::transform( this->scene->directionalLights.begin( ),
-                        this->scene->directionalLights.end( ),
+        dereferencedDirectionalLights.resize( _scene->_directionalLights.size( ) );
+        std::transform( _scene->_directionalLights.begin( ),
+                        _scene->_directionalLights.end( ),
                         dereferencedDirectionalLights.begin( ),
                         []( std::shared_ptr<DirectionalLight> light ) { return DirectionalLightSSBO { glm::vec4( light->ambient, light->ambientIntensity ),
                                                                                                       glm::vec4( light->diffuse, light->diffuseIntensity ),
                                                                                                       glm::vec4( light->specular, light->specularIntensity ),
                                                                                                       glm::vec4( light->direction, 1.0F ) }; } );
 
-        this->directionalLightsBuffer.fill<DirectionalLightSSBO>( dereferencedDirectionalLights.data( ) );
+        _directionalLightsBuffer.fill<DirectionalLightSSBO>( dereferencedDirectionalLights.data( ) );
       }
     }
 
-    if ( this->scene->uploadPointLightsToBuffer )
+    if ( _scene->_uploadPointLightsToBuffer )
     {
-      this->scene->uploadPointLightsToBuffer = false;
+      _scene->_uploadPointLightsToBuffer = false;
 
-      if ( !this->scene->pointLights.empty( ) )
+      if ( !_scene->_pointLights.empty( ) )
       {
-        dereferencedPointLights.resize( this->scene->pointLights.size( ) );
-        std::transform( this->scene->pointLights.begin( ),
-                        this->scene->pointLights.end( ),
+        dereferencedPointLights.resize( _scene->_pointLights.size( ) );
+        std::transform( _scene->_pointLights.begin( ),
+                        _scene->_pointLights.end( ),
                         dereferencedPointLights.begin( ),
                         []( std::shared_ptr<PointLight> light ) { return PointLightSSBO { glm::vec4( light->ambient, light->ambientIntensity ),
                                                                                           glm::vec4( light->diffuse, light->diffuseIntensity ),
                                                                                           glm::vec4( light->specular, light->specularIntensity ),
                                                                                           glm::vec4( light->position, 1.0F ) }; } );
 
-        this->pointLightsBuffer.fill<PointLightSSBO>( dereferencedPointLights.data( ) );
+        _pointLightsBuffer.fill<PointLightSSBO>( dereferencedPointLights.data( ) );
       }
     }
 
-    if ( this->settings->getJitterCamEnabled( ) )
+    if ( _settings->getJitterCamEnabled( ) )
     {
-      if ( g_frameCount >= this->settings->jitterCamSampleRate )
+      if ( g_frameCount >= _settings->_jitterCamSampleRate )
       {
         return;
       }
@@ -271,25 +271,25 @@ namespace RAYEX_NAMESPACE
   auto Api::prepareFrame( ) -> bool
   {
     // If the window is minimized then simply do not render anything anymore.
-    if ( this->window->minimized( ) )
+    if ( _window->minimized( ) )
     {
       return true;
     }
 
     // If the window size has changed the swapchain has to be recreated.
-    if ( this->window->changed( ) || this->needSwapchainRecreate )
+    if ( _window->changed( ) || _needSwapchainRecreate )
     {
-      this->camera->updateProj = true;
+      _camera->_updateProj = true;
 
-      this->needSwapchainRecreate = false;
+      _needSwapchainRecreate = false;
       recreateSwapchain( );
       return true;
     }
 
-    this->swapchain.acquireNextImage( this->imageAvailableSemaphores[currentFrame].get( ), nullptr );
+    _swapchain.acquireNextImage( _imageAvailableSemaphores[currentFrame].get( ), nullptr );
 
     // Wait for the current frame's fences.
-    vk::Result result = g_device.waitForFences( 1, &this->inFlightFences[currentFrame].get( ), VK_TRUE, UINT64_MAX );
+    vk::Result result = g_device.waitForFences( 1, &_inFlightFences[currentFrame].get( ), VK_TRUE, UINT64_MAX );
     RX_ASSERT( result == vk::Result::eSuccess, "Failed to wait for fences." );
 
     return false;
@@ -297,48 +297,48 @@ namespace RAYEX_NAMESPACE
 
   auto Api::submitFrame( ) -> bool
   {
-    uint32_t imageIndex = this->swapchain.getCurrentImageIndex( );
+    uint32_t imageIndex = _swapchain.getCurrentImageIndex( );
 
     // Check if a previous frame is using the current image.
-    if ( this->imagesInFlight[imageIndex] )
+    if ( _imagesInFlight[imageIndex] )
     {
-      vk::Result result = g_device.waitForFences( 1, &this->imagesInFlight[currentFrame], VK_TRUE, UINT64_MAX );
+      vk::Result result = g_device.waitForFences( 1, &_imagesInFlight[currentFrame], VK_TRUE, UINT64_MAX );
       RX_ASSERT( result == vk::Result::eSuccess, "Failed to wait for fences." );
     }
 
     // This will mark the current image to be in use by this frame.
-    this->imagesInFlight[imageIndex] = this->inFlightFences[currentFrame].get( );
+    _imagesInFlight[imageIndex] = _inFlightFences[currentFrame].get( );
 
     // Add GUI command buffer to swapchain command buffer if GUI is enabled.
-    std::vector<vk::CommandBuffer> commandBuffers = { this->swapchainCommandBuffers.get( )[imageIndex] };
-    if ( this->gui != nullptr )
+    std::vector<vk::CommandBuffer> commandBuffers = { _swapchainCommandBuffers.get( )[imageIndex] };
+    if ( _gui != nullptr )
     {
-      commandBuffers.push_back( this->gui->getCommandBuffer( imageIndex ) );
+      commandBuffers.push_back( _gui->getCommandBuffer( imageIndex ) );
     }
 
     // Reset the signaled state of the current frame's fence to the unsignaled one.
-    g_device.resetFences( 1, &this->inFlightFences[currentFrame].get( ) );
+    g_device.resetFences( 1, &_inFlightFences[currentFrame].get( ) );
 
     // Submits / executes the current image's / framebuffer's command buffer.
     auto pWaitDstStageMask = vk::PipelineStageFlagBits::eColorAttachmentOutput;
-    auto submitInfo        = vk::Helper::getSubmitInfo( this->imageAvailableSemaphores[currentFrame].get( ), this->finishedRenderSemaphores[currentFrame].get( ), commandBuffers, pWaitDstStageMask );
-    g_graphicsQueue.submit( submitInfo, this->inFlightFences[currentFrame].get( ) );
+    auto submitInfo        = vk::Helper::getSubmitInfo( _imageAvailableSemaphores[currentFrame].get( ), _finishedRenderSemaphores[currentFrame].get( ), commandBuffers, pWaitDstStageMask );
+    g_graphicsQueue.submit( submitInfo, _inFlightFences[currentFrame].get( ) );
 
     // Tell the presentation engine that the current image is ready.
-    auto presentInfo = vk::Helper::getPresentInfoKHR( this->finishedRenderSemaphores[currentFrame].get( ), imageIndex );
+    auto presentInfo = vk::Helper::getPresentInfoKHR( _finishedRenderSemaphores[currentFrame].get( ), imageIndex );
 
     try
     {
       vk::Result result = g_graphicsQueue.presentKHR( presentInfo );
       if ( result == vk::Result::eErrorOutOfDateKHR || result == vk::Result::eSuboptimalKHR )
       {
-        this->needSwapchainRecreate = true;
+        _needSwapchainRecreate = true;
         RX_WARN( "Swapchain out of data or suboptimal." );
       }
     }
     catch ( ... )
     {
-      this->needSwapchainRecreate = true;
+      _needSwapchainRecreate = true;
     }
 
     prevFrame    = currentFrame;
@@ -348,11 +348,11 @@ namespace RAYEX_NAMESPACE
 
   auto Api::render( ) -> bool
   {
-    if ( this->gui != nullptr )
+    if ( _gui != nullptr )
     {
-      this->gui->newFrame( );
-      this->gui->render( );
-      this->gui->endRender( );
+      _gui->newFrame( );
+      _gui->render( );
+      _gui->endRender( );
     }
 
     if ( prepareFrame( ) )
@@ -361,13 +361,13 @@ namespace RAYEX_NAMESPACE
     }
 
     // Wait for previous frame to finish command buffer execution.
-    vk::Result result = g_device.waitForFences( 1, &this->inFlightFences[prevFrame].get( ), VK_TRUE, UINT64_MAX );
+    vk::Result result = g_device.waitForFences( 1, &_inFlightFences[prevFrame].get( ), VK_TRUE, UINT64_MAX );
     RX_ASSERT( result == vk::Result::eSuccess, "Failed to wait for fences." );
     recordSwapchainCommandBuffers( );
 
-    if ( this->gui != nullptr )
+    if ( _gui != nullptr )
     {
-      this->gui->renderDrawData( this->swapchain.getCurrentImageIndex( ) );
+      _gui->renderDrawData( _swapchain.getCurrentImageIndex( ) );
     }
 
     if ( submitFrame( ) )
@@ -385,40 +385,40 @@ namespace RAYEX_NAMESPACE
     g_device.waitIdle( );
 
     // Clean up existing swapchain and dependencies.
-    this->swapchainCommandBuffers.free( );
-    this->swapchain.destroy( );
+    _swapchainCommandBuffers.free( );
+    _swapchain.destroy( );
 
     // Recreating the swapchain.
-    this->swapchain.init( &this->surface, this->renderPass.get( ) );
+    _swapchain.init( &_surface, _renderPass.get( ) );
 
     // Recreate storage image with the new swapchain image size and update the ray tracing descriptor set to use the new storage image view.
-    this->rayTracingBuilder.createStorageImage( this->swapchain.getExtent( ) );
+    _rayTracingBuilder.createStorageImage( _swapchain.getExtent( ) );
 
     vk::WriteDescriptorSetAccelerationStructureKHR tlasInfo( 1,
-                                                             &this->rayTracingBuilder.getTlas( ).as.as );
+                                                             &_rayTracingBuilder.getTlas( ).as.as );
 
     vk::DescriptorImageInfo storageImageInfo( nullptr,
-                                              this->rayTracingBuilder.getStorageImageView( ),
+                                              _rayTracingBuilder.getStorageImageView( ),
                                               vk::ImageLayout::eGeneral );
 
-    this->rtDescriptors.bindings.write( this->rtDescriptorSets, 0, &tlasInfo );
-    this->rtDescriptors.bindings.write( this->rtDescriptorSets, 1, &storageImageInfo );
-    this->rtDescriptors.bindings.update( );
+    _rtDescriptors.bindings.write( _rtDescriptorSets, 0, &tlasInfo );
+    _rtDescriptors.bindings.write( _rtDescriptorSets, 1, &storageImageInfo );
+    _rtDescriptors.bindings.update( );
 
     // Swapchain command buffers
-    this->swapchainCommandBuffers.init( this->graphicsCmdPool.get( ), g_swapchainImageCount, vk::CommandBufferUsageFlagBits::eRenderPassContinue );
+    _swapchainCommandBuffers.init( _graphicsCmdPool.get( ), g_swapchainImageCount, vk::CommandBufferUsageFlagBits::eRenderPassContinue );
     recordSwapchainCommandBuffers( );
 
-    if ( this->gui != nullptr )
+    if ( _gui != nullptr )
     {
-      this->gui->recreate( this->swapchain.getExtent( ), this->swapchain.getImageViews( ) );
+      _gui->recreate( _swapchain.getExtent( ), _swapchain.getImageViews( ) );
     }
 
     // Update the camera screen size to avoid image stretching.
-    auto screenSize = this->swapchain.getExtent( );
-    this->camera->setSize( screenSize.width, screenSize.height );
+    auto screenSize = _swapchain.getExtent( );
+    _camera->setSize( screenSize.width, screenSize.height );
 
-    this->settings->refreshSwapchain = false;
+    _settings->_refreshSwapchain = false;
 
     RX_LOG_TIME_STOP( "Finished re-creating swapchain" );
   }
@@ -428,20 +428,20 @@ namespace RAYEX_NAMESPACE
     RX_LOG_TIME_START( "Updating acceleration structures ..." );
 
     // @TODO Try to call this as few times as possible.
-    this->rayTracingBuilder.createBottomLevelAS( this->vertexBuffers, this->indexBuffers );
-    this->rayTracingBuilder.createTopLevelAS( this->scene->geometryInstances );
+    _rayTracingBuilder.createBottomLevelAS( _vertexBuffers, _indexBuffers );
+    _rayTracingBuilder.createTopLevelAS( _scene->_geometryInstances );
 
     // Update ray tracing descriptor set.
     vk::WriteDescriptorSetAccelerationStructureKHR tlasInfo( 1,
-                                                             &this->rayTracingBuilder.getTlas( ).as.as );
+                                                             &_rayTracingBuilder.getTlas( ).as.as );
 
     vk::DescriptorImageInfo storageImageInfo( nullptr,
-                                              this->rayTracingBuilder.getStorageImageView( ),
+                                              _rayTracingBuilder.getStorageImageView( ),
                                               vk::ImageLayout::eGeneral );
 
-    this->rtDescriptors.bindings.write( this->rtDescriptorSets, 0, &tlasInfo );
-    this->rtDescriptors.bindings.write( this->rtDescriptorSets, 1, &storageImageInfo );
-    this->rtDescriptors.bindings.update( );
+    _rtDescriptors.bindings.write( _rtDescriptorSets, 0, &tlasInfo );
+    _rtDescriptors.bindings.write( _rtDescriptorSets, 1, &storageImageInfo );
+    _rtDescriptors.bindings.update( );
 
     RX_LOG_TIME_STOP( "Finished updating acceleration structures" );
   }
@@ -451,30 +451,30 @@ namespace RAYEX_NAMESPACE
     RX_LOG_TIME_START( "Initializing graphic pipelines ..." );
 
     // Ray tracing pipeline
-    std::vector<vk::DescriptorSetLayout> allRtDescriptorSetLayouts = { this->rtDescriptors.layout.get( ),
-                                                                       this->rtSceneDescriptors.layout.get( ),
-                                                                       this->vertexDataDescriptors.layout.get( ),
-                                                                       this->indexDataDescriptors.layout.get( ) };
-    this->rtPipeline.init( allRtDescriptorSetLayouts, this->settings );
+    std::vector<vk::DescriptorSetLayout> allRtDescriptorSetLayouts = { _rtDescriptors.layout.get( ),
+                                                                       _rtSceneDescriptors.layout.get( ),
+                                                                       _vertexDataDescriptors.layout.get( ),
+                                                                       _indexDataDescriptors.layout.get( ) };
+    _rtPipeline.init( allRtDescriptorSetLayouts, _settings );
 
     // Rasterization pipeline
-    glm::vec2 extent = { static_cast<float>( this->swapchain.getExtent( ).width ), static_cast<float>( this->swapchain.getExtent( ).height ) };
-    this->viewport   = vk::Viewport( 0.0F, 0.0F, extent.x, extent.y, 0.0F, 1.0F );
-    this->scissor    = vk::Rect2D( 0, this->swapchain.getExtent( ) );
+    glm::vec2 extent = { static_cast<float>( _swapchain.getExtent( ).width ), static_cast<float>( _swapchain.getExtent( ).height ) };
+    _viewport        = vk::Viewport( 0.0F, 0.0F, extent.x, extent.y, 0.0F, 1.0F );
+    _scissor         = vk::Rect2D( 0, _swapchain.getExtent( ) );
 
-    std::vector<vk::DescriptorSetLayout> allRsDescriptorSetLayouts = { this->rsSceneDescriptors.layout.get( ) };
+    std::vector<vk::DescriptorSetLayout> allRsDescriptorSetLayouts = { _rsSceneDescriptors.layout.get( ) };
 
-    this->rsPipeline.init( allRsDescriptorSetLayouts, this->renderPass.get( ), viewport, scissor, this->settings );
+    _rsPipeline.init( allRsDescriptorSetLayouts, _renderPass.get( ), _viewport, _scissor, _settings );
 
-    this->pipelinesReady            = true;
-    this->settings->refreshPipeline = false;
+    _pipelinesReady             = true;
+    _settings->_refreshPipeline = false;
 
     RX_LOG_TIME_STOP( "Finished graphic pipelines initialization" );
   }
 
   void Api::initRenderPass( )
   {
-    auto colorAttachmentDescription = vk::Helper::getAttachmentDescription( this->surface.getFormat( ) );
+    auto colorAttachmentDescription = vk::Helper::getAttachmentDescription( _surface.getFormat( ) );
 
     vk::AttachmentReference colorAttachmentReference( 0,                                          // attachment
                                                       vk::ImageLayout::eColorAttachmentOptimal ); // layout
@@ -513,23 +513,23 @@ namespace RAYEX_NAMESPACE
                                vk::AccessFlagBits::eMemoryRead,                                                      // dstAccessMask
                                vk::DependencyFlagBits::eByRegion };                                                  // dependencyFlags
 
-    this->renderPass.init( { colorAttachmentDescription, depthAttachmentDescription }, { subpassDescription }, subpassDependencies );
+    _renderPass.init( { colorAttachmentDescription, depthAttachmentDescription }, { subpassDescription }, subpassDependencies );
   }
 
   void Api::initGui( )
   {
-    if ( this->gui != nullptr )
+    if ( _gui != nullptr )
     {
       initRenderPass( );
-      this->gui->init( &this->surface, this->swapchain.getExtent( ), this->swapchain.getImageViews( ) );
+      _gui->init( &_surface, _swapchain.getExtent( ), _swapchain.getImageViews( ) );
     }
   }
 
   void Api::recordSwapchainCommandBuffers( )
   {
-    RX_ASSERT( this->pipelinesReady, "Can not record swapchain command buffers because the pipelines have not been initialized yet." );
+    RX_ASSERT( _pipelinesReady, "Can not record swapchain command buffers because the pipelines have not been initialized yet." );
 
-    if ( this->settings->rayTrace )
+    if ( _settings->_rayTrace )
     {
       rayTrace( );
     }
@@ -543,12 +543,12 @@ namespace RAYEX_NAMESPACE
   {
     std::map<std::string_view, uint32_t> temp;
 
-    for ( auto geometry : this->scene->geometries )
+    for ( auto geometry : _scene->_geometries )
     {
       temp.emplace( geometry->path, 0 );
     }
 
-    for ( const auto& geometryInstance : this->scene->geometryInstances )
+    for ( const auto& geometryInstance : _scene->_geometryInstances )
     {
       std::shared_ptr<Geometry> it = findGeometry( geometryInstance->geometryIndex );
       RX_ASSERT( it != nullptr, "Could not find model. Did you forget to introduce the renderer to this model using Rayex::setModels( ) after initializing the renderer?" );
@@ -562,36 +562,36 @@ namespace RAYEX_NAMESPACE
 
     // Set up render pass begin info
     std::array<vk::ClearValue, 2> clearValues;
-    clearValues[0].color        = { Util::vec4toArray( this->settings->getClearColor( ) ) };
+    clearValues[0].color        = { Util::vec4toArray( _settings->getClearColor( ) ) };
     clearValues[1].depthStencil = vk::ClearDepthStencilValue { 1.0F, 0 };
 
     // Start recording the swapchain framebuffers
-    for ( size_t imageIndex = 0; imageIndex < this->swapchainCommandBuffers.get( ).size( ); ++imageIndex )
+    for ( size_t imageIndex = 0; imageIndex < _swapchainCommandBuffers.get( ).size( ); ++imageIndex )
     {
-      this->swapchainCommandBuffers.begin( imageIndex );
+      _swapchainCommandBuffers.begin( imageIndex );
 
-      this->renderPass.begin( this->swapchain.getFramebuffer( imageIndex ),
-                              this->swapchainCommandBuffers.get( imageIndex ),
-                              { 0, this->swapchain.getExtent( ) },
-                              { clearValues[0], clearValues[1] } );
+      _renderPass.begin( _swapchain.getFramebuffer( imageIndex ),
+                         _swapchainCommandBuffers.get( imageIndex ),
+                         { 0, _swapchain.getExtent( ) },
+                         { clearValues[0], clearValues[1] } );
 
-      this->swapchainCommandBuffers.get( imageIndex ).bindPipeline( vk::PipelineBindPoint::eGraphics, this->rsPipeline.get( ) ); // CMD
+      _swapchainCommandBuffers.get( imageIndex ).bindPipeline( vk::PipelineBindPoint::eGraphics, _rsPipeline.get( ) ); // CMD
 
       // Dynamic states
-      vk::Viewport viewport = this->viewport;
-      viewport.width        = static_cast<float>( this->window->getWidth( ) );
-      viewport.height       = static_cast<float>( this->window->getHeight( ) );
+      vk::Viewport viewport = _viewport;
+      viewport.width        = static_cast<float>( _window->getWidth( ) );
+      viewport.height       = static_cast<float>( _window->getHeight( ) );
 
-      this->swapchainCommandBuffers.get( imageIndex ).setViewport( 0, 1, &viewport ); // CMD
+      _swapchainCommandBuffers.get( imageIndex ).setViewport( 0, 1, &viewport ); // CMD
 
-      vk::Rect2D scissor = this->scissor;
-      scissor.extent     = this->window->getExtent( );
+      vk::Rect2D scissor = _scissor;
+      scissor.extent     = _window->getExtent( );
 
-      this->swapchainCommandBuffers.get( imageIndex ).setScissor( 0, 1, &scissor ); // CMD
+      _swapchainCommandBuffers.get( imageIndex ).setScissor( 0, 1, &scissor ); // CMD
 
       // Draw models
       uint32_t id = 0;
-      for ( const auto& geometryInstance : this->scene->geometryInstances )
+      for ( const auto& geometryInstance : _scene->_geometryInstances )
       {
         auto geo = findGeometry( geometryInstance->geometryIndex );
         RX_ASSERT( geo != nullptr, "Could not find model. Did you forget to introduce the renderer to this model using Rayex::setModels( ) after initializing the renderer?" );
@@ -608,104 +608,104 @@ namespace RAYEX_NAMESPACE
           }
         }
 
-        this->swapchainCommandBuffers.get( imageIndex ).pushConstants( this->rsPipeline.getLayout( ),    // layout
-                                                                       vk::ShaderStageFlagBits::eVertex, // stageFlags
-                                                                       0,                                // offset
-                                                                       sizeof( uint32_t ),               // size
-                                                                       &id );                            // pValues
+        _swapchainCommandBuffers.get( imageIndex ).pushConstants( _rsPipeline.getLayout( ),         // layout
+                                                                  vk::ShaderStageFlagBits::eVertex, // stageFlags
+                                                                  0,                                // offset
+                                                                  sizeof( uint32_t ),               // size
+                                                                  &id );                            // pValues
 
-        std::array<vk::Buffer, 1> vertexBuffers { this->vertexBuffers[geometryInstance->geometryIndex].get( ) };
+        std::array<vk::Buffer, 1> vertexBuffers { _vertexBuffers[geometryInstance->geometryIndex].get( ) };
         std::array<vk::DeviceSize, 1> offsets { 0 };
 
-        this->swapchainCommandBuffers.get( imageIndex ).bindVertexBuffers( 0,                     // first binding
-                                                                           1,                     // binding count
-                                                                           vertexBuffers.data( ), // pBuffers
-                                                                           offsets.data( ) );     // pOffsets
+        _swapchainCommandBuffers.get( imageIndex ).bindVertexBuffers( 0,                     // first binding
+                                                                      1,                     // binding count
+                                                                      vertexBuffers.data( ), // pBuffers
+                                                                      offsets.data( ) );     // pOffsets
 
-        this->swapchainCommandBuffers.get( imageIndex ).bindIndexBuffer( this->indexBuffers[geometryInstance->geometryIndex].get( ),
-                                                                         0, // offset
-                                                                         vk::IndexType::eUint32 );
+        _swapchainCommandBuffers.get( imageIndex ).bindIndexBuffer( _indexBuffers[geometryInstance->geometryIndex].get( ),
+                                                                    0, // offset
+                                                                    vk::IndexType::eUint32 );
 
-        std::vector<vk::DescriptorSet> descriptorSets = { this->rsSceneDescriptorSets[imageIndex] };
+        std::vector<vk::DescriptorSet> descriptorSets = { _rsSceneDescriptorSets[imageIndex] };
 
-        this->swapchainCommandBuffers.get( imageIndex ).bindDescriptorSets( vk::PipelineBindPoint::eGraphics, rsPipeline.getLayout( ),
-                                                                            0,                                               // first set
-                                                                            static_cast<uint32_t>( descriptorSets.size( ) ), // descriptor set count
-                                                                            descriptorSets.data( ),                          // descriptor sets
-                                                                            0,                                               // dynamic offset count
-                                                                            nullptr );                                       // dynamic offsets
+        _swapchainCommandBuffers.get( imageIndex ).bindDescriptorSets( vk::PipelineBindPoint::eGraphics, _rsPipeline.getLayout( ),
+                                                                       0,                                               // first set
+                                                                       static_cast<uint32_t>( descriptorSets.size( ) ), // descriptor set count
+                                                                       descriptorSets.data( ),                          // descriptor sets
+                                                                       0,                                               // dynamic offset count
+                                                                       nullptr );                                       // dynamic offsets
 
-        this->swapchainCommandBuffers.get( imageIndex ).drawIndexed( this->indexBuffers[geometryInstance->geometryIndex].getCount( ), // index count
-                                                                     instanceCount,                                                   // instance count
-                                                                     0,                                                               // first index
-                                                                     0,                                                               // vertex offset
-                                                                     0 );                                                             // first instance
+        _swapchainCommandBuffers.get( imageIndex ).drawIndexed( _indexBuffers[geometryInstance->geometryIndex].getCount( ), // index count
+                                                                instanceCount,                                              // instance count
+                                                                0,                                                          // first index
+                                                                0,                                                          // vertex offset
+                                                                0 );                                                        // first instance
 
         ++id;
       }
 
-      this->renderPass.end( this->swapchainCommandBuffers.get( imageIndex ) );
-      this->swapchainCommandBuffers.end( imageIndex );
+      _renderPass.end( _swapchainCommandBuffers.get( imageIndex ) );
+      _swapchainCommandBuffers.end( imageIndex );
     }
   }
 
   void Api::rayTrace( )
   {
-    auto directionalLightCount = static_cast<uint32_t>( this->scene->directionalLights.size( ) );
-    auto pointLightCount       = static_cast<uint32_t>( this->scene->pointLights.size( ) );
+    auto directionalLightCount = static_cast<uint32_t>( _scene->_directionalLights.size( ) );
+    auto pointLightCount       = static_cast<uint32_t>( _scene->_pointLights.size( ) );
 
     // Start recording the swapchain framebuffers?
-    for ( size_t imageIndex = 0; imageIndex < this->swapchainCommandBuffers.get( ).size( ); ++imageIndex )
+    for ( size_t imageIndex = 0; imageIndex < _swapchainCommandBuffers.get( ).size( ); ++imageIndex )
     {
-      this->swapchainCommandBuffers.begin( imageIndex );
+      _swapchainCommandBuffers.begin( imageIndex );
 
-      RayTracePushConstants chitPc = { this->settings->getClearColor( ),
+      RayTracePushConstants chitPc = { _settings->getClearColor( ),
                                        g_frameCount,
-                                       this->settings->getJitterCamSampleRatePerRayGen( ),
-                                       this->settings->getSsaaSampleRate( ),
-                                       static_cast<uint32_t>( this->settings->getJitterCamEnabled( ) ),
-                                       static_cast<uint32_t>( this->settings->getSsaaEnabled( ) ),
+                                       _settings->getJitterCamSampleRatePerRayGen( ),
+                                       _settings->getSsaaSampleRate( ),
+                                       static_cast<uint32_t>( _settings->getJitterCamEnabled( ) ),
+                                       static_cast<uint32_t>( _settings->getSsaaEnabled( ) ),
                                        directionalLightCount,
                                        pointLightCount };
 
-      this->swapchainCommandBuffers.get( imageIndex ).pushConstants( this->rtPipeline.getLayout( ),                                                                                     // layout
-                                                                     vk::ShaderStageFlagBits::eRaygenKHR | vk::ShaderStageFlagBits::eMissKHR | vk::ShaderStageFlagBits::eClosestHitKHR, // stageFlags
-                                                                     0,                                                                                                                 // offset
-                                                                     sizeof( RayTracePushConstants ),                                                                                   // size
-                                                                     &chitPc );                                                                                                         // pValues
+      _swapchainCommandBuffers.get( imageIndex ).pushConstants( _rtPipeline.getLayout( ),                                                                                          // layout
+                                                                vk::ShaderStageFlagBits::eRaygenKHR | vk::ShaderStageFlagBits::eMissKHR | vk::ShaderStageFlagBits::eClosestHitKHR, // stageFlags
+                                                                0,                                                                                                                 // offset
+                                                                sizeof( RayTracePushConstants ),                                                                                   // size
+                                                                &chitPc );                                                                                                         // pValues
 
-      this->swapchainCommandBuffers.get( imageIndex ).bindPipeline( vk::PipelineBindPoint::eRayTracingKHR, this->rtPipeline.get( ) );
+      _swapchainCommandBuffers.get( imageIndex ).bindPipeline( vk::PipelineBindPoint::eRayTracingKHR, _rtPipeline.get( ) );
 
-      std::vector<vk::DescriptorSet> descriptorSets = { this->rtDescriptorSets[imageIndex],
-                                                        this->rtSceneDescriptorSets[imageIndex],
-                                                        this->vertexDataDescriptorSets[imageIndex],
-                                                        this->indexDataDescriptorSets[imageIndex] };
+      std::vector<vk::DescriptorSet> descriptorSets = { _rtDescriptorSets[imageIndex],
+                                                        _rtSceneDescriptorSets[imageIndex],
+                                                        _vertexDataDescriptorSets[imageIndex],
+                                                        _indexDataDescriptorSets[imageIndex] };
 
-      this->swapchainCommandBuffers.get( imageIndex ).bindDescriptorSets( vk::PipelineBindPoint::eRayTracingKHR, this->rtPipeline.getLayout( ),
-                                                                          0,                                               // first set
-                                                                          static_cast<uint32_t>( descriptorSets.size( ) ), // descriptor set count
-                                                                          descriptorSets.data( ),                          // descriptor sets
-                                                                          0,                                               // dynamic offset count
-                                                                          nullptr );                                       // dynamic offsets
+      _swapchainCommandBuffers.get( imageIndex ).bindDescriptorSets( vk::PipelineBindPoint::eRayTracingKHR, _rtPipeline.getLayout( ),
+                                                                     0,                                               // first set
+                                                                     static_cast<uint32_t>( descriptorSets.size( ) ), // descriptor set count
+                                                                     descriptorSets.data( ),                          // descriptor sets
+                                                                     0,                                               // dynamic offset count
+                                                                     nullptr );                                       // dynamic offsets
 
-      this->rayTracingBuilder.rayTrace( this->swapchainCommandBuffers.get( imageIndex ), this->swapchain.getImage( imageIndex ), this->swapchain.getExtent( ) );
+      _rayTracingBuilder.rayTrace( _swapchainCommandBuffers.get( imageIndex ), _swapchain.getImage( imageIndex ), _swapchain.getExtent( ) );
 
-      this->swapchainCommandBuffers.end( imageIndex );
+      _swapchainCommandBuffers.end( imageIndex );
     }
   }
 
   void Api::initSyncObjects( )
   {
-    this->imageAvailableSemaphores.resize( maxFramesInFlight );
-    this->finishedRenderSemaphores.resize( maxFramesInFlight );
-    this->inFlightFences.resize( maxFramesInFlight );
-    this->imagesInFlight.resize( g_swapchainImageCount, nullptr );
+    _imageAvailableSemaphores.resize( maxFramesInFlight );
+    _finishedRenderSemaphores.resize( maxFramesInFlight );
+    _inFlightFences.resize( maxFramesInFlight );
+    _imagesInFlight.resize( g_swapchainImageCount, nullptr );
 
     for ( size_t i = 0; i < maxFramesInFlight; ++i )
     {
-      this->imageAvailableSemaphores[i] = vk::Initializer::initSemaphoreUnique( );
-      this->finishedRenderSemaphores[i] = vk::Initializer::initSemaphoreUnique( );
-      this->inFlightFences[i]           = vk::Initializer::initFenceUnique( vk::FenceCreateFlagBits::eSignaled );
+      _imageAvailableSemaphores[i] = vk::Initializer::initSemaphoreUnique( );
+      _finishedRenderSemaphores[i] = vk::Initializer::initSemaphoreUnique( );
+      _inFlightFences[i]           = vk::Initializer::initFenceUnique( vk::FenceCreateFlagBits::eSignaled );
     }
   }
 
@@ -714,71 +714,71 @@ namespace RAYEX_NAMESPACE
     // Create the ray tracing descriptor set layout
     {
       // TLAS
-      this->rtDescriptors.bindings.add( 0, vk::DescriptorType::eAccelerationStructureKHR, vk::ShaderStageFlagBits::eRaygenKHR | vk::ShaderStageFlagBits::eClosestHitKHR, 1, vk::DescriptorBindingFlagBits::ePartiallyBound );
+      _rtDescriptors.bindings.add( 0, vk::DescriptorType::eAccelerationStructureKHR, vk::ShaderStageFlagBits::eRaygenKHR | vk::ShaderStageFlagBits::eClosestHitKHR, 1, vk::DescriptorBindingFlagBits::ePartiallyBound );
       // Output image
-      this->rtDescriptors.bindings.add( 1, vk::DescriptorType::eStorageImage, vk::ShaderStageFlagBits::eRaygenKHR, 1, vk::DescriptorBindingFlagBits::ePartiallyBound );
+      _rtDescriptors.bindings.add( 1, vk::DescriptorType::eStorageImage, vk::ShaderStageFlagBits::eRaygenKHR, 1, vk::DescriptorBindingFlagBits::ePartiallyBound );
 
-      this->rtDescriptors.layout = this->rtDescriptors.bindings.initLayoutUnique( );
-      this->rtDescriptors.pool   = this->rtDescriptors.bindings.initPoolUnique( g_swapchainImageCount );
-      this->rtDescriptorSets     = vk::Initializer::initDescriptorSetsUnique( this->rtDescriptors.pool, this->rtDescriptors.layout );
+      _rtDescriptors.layout = _rtDescriptors.bindings.initLayoutUnique( );
+      _rtDescriptors.pool   = _rtDescriptors.bindings.initPoolUnique( g_swapchainImageCount );
+      _rtDescriptorSets     = vk::Initializer::initDescriptorSetsUnique( _rtDescriptors.pool, _rtDescriptors.layout );
     }
 
     // RT Scene descriptor set layout.
     {
       // Camera uniform buffer
-      this->rtSceneDescriptors.bindings.add( 0, vk::DescriptorType::eUniformBuffer, vk::ShaderStageFlagBits::eRaygenKHR );
+      _rtSceneDescriptors.bindings.add( 0, vk::DescriptorType::eUniformBuffer, vk::ShaderStageFlagBits::eRaygenKHR );
       // Directional lights storage buffer
-      this->rtSceneDescriptors.bindings.add( 1, vk::DescriptorType::eStorageBuffer, vk::ShaderStageFlagBits::eClosestHitKHR );
+      _rtSceneDescriptors.bindings.add( 1, vk::DescriptorType::eStorageBuffer, vk::ShaderStageFlagBits::eClosestHitKHR );
       // Point lights storage buffer
-      this->rtSceneDescriptors.bindings.add( 2, vk::DescriptorType::eStorageBuffer, vk::ShaderStageFlagBits::eClosestHitKHR );
+      _rtSceneDescriptors.bindings.add( 2, vk::DescriptorType::eStorageBuffer, vk::ShaderStageFlagBits::eClosestHitKHR );
       // Scene description buffer
-      this->rtSceneDescriptors.bindings.add( 3, vk::DescriptorType::eStorageBuffer, vk::ShaderStageFlagBits::eClosestHitKHR );
+      _rtSceneDescriptors.bindings.add( 3, vk::DescriptorType::eStorageBuffer, vk::ShaderStageFlagBits::eClosestHitKHR );
       // Materials
-      this->rtSceneDescriptors.bindings.add( 4, vk::DescriptorType::eStorageBuffer, vk::ShaderStageFlagBits::eClosestHitKHR, g_maxGeometries, vk::DescriptorBindingFlagBits::eVariableDescriptorCount );
+      _rtSceneDescriptors.bindings.add( 4, vk::DescriptorType::eStorageBuffer, vk::ShaderStageFlagBits::eClosestHitKHR, g_maxGeometries, vk::DescriptorBindingFlagBits::eVariableDescriptorCount );
 
-      this->rtSceneDescriptors.layout = this->rtSceneDescriptors.bindings.initLayoutUnique( );
-      this->rtSceneDescriptors.pool   = this->rtSceneDescriptors.bindings.initPoolUnique( static_cast<uint32_t>( g_maxGeometryInstances ) * g_swapchainImageCount, vk::DescriptorPoolCreateFlagBits::eUpdateAfterBind );
-      this->rtSceneDescriptorSets     = vk::Initializer::initDescriptorSetsUnique( this->rtSceneDescriptors.pool, this->rtSceneDescriptors.layout );
+      _rtSceneDescriptors.layout = _rtSceneDescriptors.bindings.initLayoutUnique( );
+      _rtSceneDescriptors.pool   = _rtSceneDescriptors.bindings.initPoolUnique( static_cast<uint32_t>( g_maxGeometryInstances ) * g_swapchainImageCount, vk::DescriptorPoolCreateFlagBits::eUpdateAfterBind );
+      _rtSceneDescriptorSets     = vk::Initializer::initDescriptorSetsUnique( _rtSceneDescriptors.pool, _rtSceneDescriptors.layout );
     }
 
     // RS Scene descriptor set layout.
     {
       // Camera uniform buffer
-      this->rsSceneDescriptors.bindings.add( 0, vk::DescriptorType::eUniformBuffer, vk::ShaderStageFlagBits::eVertex );
+      _rsSceneDescriptors.bindings.add( 0, vk::DescriptorType::eUniformBuffer, vk::ShaderStageFlagBits::eVertex );
       // Lights storage buffer
-      this->rsSceneDescriptors.bindings.add( 1, vk::DescriptorType::eStorageBuffer, vk::ShaderStageFlagBits::eFragment );
+      _rsSceneDescriptors.bindings.add( 1, vk::DescriptorType::eStorageBuffer, vk::ShaderStageFlagBits::eFragment );
       // Scene description buffer
-      this->rsSceneDescriptors.bindings.add( 2, vk::DescriptorType::eStorageBuffer, vk::ShaderStageFlagBits::eVertex );
+      _rsSceneDescriptors.bindings.add( 2, vk::DescriptorType::eStorageBuffer, vk::ShaderStageFlagBits::eVertex );
 
-      this->rsSceneDescriptors.layout = this->rsSceneDescriptors.bindings.initLayoutUnique( );
-      this->rsSceneDescriptors.pool   = this->rsSceneDescriptors.bindings.initPoolUnique( g_swapchainImageCount );
-      this->rsSceneDescriptorSets     = vk::Initializer::initDescriptorSetsUnique( this->rsSceneDescriptors.pool, this->rsSceneDescriptors.layout );
+      _rsSceneDescriptors.layout = _rsSceneDescriptors.bindings.initLayoutUnique( );
+      _rsSceneDescriptors.pool   = _rsSceneDescriptors.bindings.initPoolUnique( g_swapchainImageCount );
+      _rsSceneDescriptorSets     = vk::Initializer::initDescriptorSetsUnique( _rsSceneDescriptors.pool, _rsSceneDescriptors.layout );
     }
 
     // Vertex model data descriptor set layout.
     {
-      this->vertexDataDescriptors.bindings.add( 0, vk::DescriptorType::eStorageBuffer, vk::ShaderStageFlagBits::eClosestHitKHR, g_maxGeometries, vk::DescriptorBindingFlagBits::eVariableDescriptorCount );
+      _vertexDataDescriptors.bindings.add( 0, vk::DescriptorType::eStorageBuffer, vk::ShaderStageFlagBits::eClosestHitKHR, g_maxGeometries, vk::DescriptorBindingFlagBits::eVariableDescriptorCount );
 
-      this->vertexDataDescriptors.layout = this->vertexDataDescriptors.bindings.initLayoutUnique( );
-      this->vertexDataDescriptors.pool   = this->vertexDataDescriptors.bindings.initPoolUnique( static_cast<uint32_t>( g_maxGeometryInstances ) * g_swapchainImageCount, vk::DescriptorPoolCreateFlagBits::eUpdateAfterBind );
-      this->vertexDataDescriptorSets     = vk::Initializer::initDescriptorSetsUnique( this->vertexDataDescriptors.pool, this->vertexDataDescriptors.layout );
+      _vertexDataDescriptors.layout = _vertexDataDescriptors.bindings.initLayoutUnique( );
+      _vertexDataDescriptors.pool   = _vertexDataDescriptors.bindings.initPoolUnique( static_cast<uint32_t>( g_maxGeometryInstances ) * g_swapchainImageCount, vk::DescriptorPoolCreateFlagBits::eUpdateAfterBind );
+      _vertexDataDescriptorSets     = vk::Initializer::initDescriptorSetsUnique( _vertexDataDescriptors.pool, _vertexDataDescriptors.layout );
     }
 
     // Index model data descriptor set layout.
     {
-      this->indexDataDescriptors.bindings.add( 0, vk::DescriptorType::eStorageBuffer, vk::ShaderStageFlagBits::eClosestHitKHR, g_maxGeometries, vk::DescriptorBindingFlagBits::eVariableDescriptorCount );
+      _indexDataDescriptors.bindings.add( 0, vk::DescriptorType::eStorageBuffer, vk::ShaderStageFlagBits::eClosestHitKHR, g_maxGeometries, vk::DescriptorBindingFlagBits::eVariableDescriptorCount );
 
-      this->indexDataDescriptors.layout = this->indexDataDescriptors.bindings.initLayoutUnique( );
-      this->indexDataDescriptors.pool   = this->indexDataDescriptors.bindings.initPoolUnique( static_cast<uint32_t>( g_maxGeometryInstances ) * g_swapchainImageCount, vk::DescriptorPoolCreateFlagBits::eUpdateAfterBind );
-      this->indexDataDescriptorSets     = vk::Initializer::initDescriptorSetsUnique( this->indexDataDescriptors.pool, this->indexDataDescriptors.layout );
+      _indexDataDescriptors.layout = _indexDataDescriptors.bindings.initLayoutUnique( );
+      _indexDataDescriptors.pool   = _indexDataDescriptors.bindings.initPoolUnique( static_cast<uint32_t>( g_maxGeometryInstances ) * g_swapchainImageCount, vk::DescriptorPoolCreateFlagBits::eUpdateAfterBind );
+      _indexDataDescriptorSets     = vk::Initializer::initDescriptorSetsUnique( _indexDataDescriptors.pool, _indexDataDescriptors.layout );
     }
   }
 
   void Api::updateSettings( )
   {
-    if ( this->settings->refreshPipeline )
+    if ( _settings->_refreshPipeline )
     {
-      this->settings->refreshPipeline = false;
+      _settings->_refreshPipeline = false;
 
       g_device.waitIdle( );
 
@@ -790,12 +790,12 @@ namespace RAYEX_NAMESPACE
 #endif
 
       initPipelines( );
-      this->rayTracingBuilder.createShaderBindingTable( this->rtPipeline.get( ) );
+      _rayTracingBuilder.createShaderBindingTable( _rtPipeline.get( ) );
     }
 
-    if ( this->settings->refreshSwapchain )
+    if ( _settings->_refreshSwapchain )
     {
-      this->settings->refreshSwapchain = false;
+      _settings->_refreshSwapchain = false;
 
       recreateSwapchain( );
     }
@@ -803,58 +803,58 @@ namespace RAYEX_NAMESPACE
 
   void Api::updateUniformBuffers( )
   {
-    uint32_t imageIndex = this->swapchain.getCurrentImageIndex( );
+    uint32_t imageIndex = _swapchain.getCurrentImageIndex( );
 
     // Upload camera.
-    if ( this->camera != nullptr )
+    if ( _camera != nullptr )
     {
-      if ( this->camera->updateView )
+      if ( _camera->_updateView )
       {
-        this->cameraUbo.view        = this->camera->getViewMatrix( );
-        this->cameraUbo.viewInverse = this->camera->getViewInverseMatrix( );
+        _cameraUbo.view        = _camera->getViewMatrix( );
+        _cameraUbo.viewInverse = _camera->getViewInverseMatrix( );
 
-        this->camera->updateView = false;
+        _camera->_updateView = false;
       }
 
-      if ( this->camera->updateProj )
+      if ( _camera->_updateProj )
       {
-        this->cameraUbo.projection        = this->camera->getProjectionMatrix( );
-        this->cameraUbo.projectionInverse = this->camera->getProjectionInverseMatrix( );
+        _cameraUbo.projection        = _camera->getProjectionMatrix( );
+        _cameraUbo.projectionInverse = _camera->getProjectionInverseMatrix( );
 
-        this->camera->updateProj = false;
+        _camera->_updateProj = false;
       }
 
-      this->cameraUbo.position = glm::vec4( this->camera->getPosition( ), 1.0F );
+      _cameraUbo.position = glm::vec4( _camera->getPosition( ), 1.0F );
     }
 
-    this->cameraUniformBuffer.upload<CameraUbo>( imageIndex, this->cameraUbo );
+    _cameraUniformBuffer.upload<CameraUbo>( imageIndex, _cameraUbo );
   }
 
   void Api::updateSceneDescriptors( )
   {
-    vk::DescriptorBufferInfo rtInstancesInfo( this->geometryInstancesBuffer.get( ),
+    vk::DescriptorBufferInfo rtInstancesInfo( _geometryInstancesBuffer.get( ),
                                               0,
                                               VK_WHOLE_SIZE );
 
-    vk::DescriptorBufferInfo directionalLightsInfo( this->directionalLightsBuffer.get( ),
+    vk::DescriptorBufferInfo directionalLightsInfo( _directionalLightsBuffer.get( ),
                                                     0,
                                                     VK_WHOLE_SIZE );
 
-    vk::DescriptorBufferInfo pointLightsInfo( this->pointLightsBuffer.get( ),
+    vk::DescriptorBufferInfo pointLightsInfo( _pointLightsBuffer.get( ),
                                               0,
                                               VK_WHOLE_SIZE );
 
-    RX_ASSERT( meshBuffers.size( ) <= g_maxGeometries, "Can not bind more than ", g_maxGeometries, " meshes." );
+    RX_ASSERT( _meshBuffers.size( ) <= g_maxGeometries, "Can not bind more than ", g_maxGeometries, " meshes." );
 
     for ( size_t i = 0; i < g_maxGeometries; ++i )
     {
-      if ( i < meshBuffers.size( ) )
+      if ( i < _meshBuffers.size( ) )
       {
-        vk::DescriptorBufferInfo meshDataBufferInfo( meshBuffers[i].get( ),
+        vk::DescriptorBufferInfo meshDataBufferInfo( _meshBuffers[i].get( ),
                                                      0,
                                                      VK_WHOLE_SIZE );
 
-        this->meshDataBufferInfos.push_back( meshDataBufferInfo );
+        _meshDataBufferInfos.push_back( meshDataBufferInfo );
       }
       else
       {
@@ -862,46 +862,46 @@ namespace RAYEX_NAMESPACE
                                                      0,
                                                      VK_WHOLE_SIZE );
 
-        this->meshDataBufferInfos.push_back( meshDataBufferInfo );
+        _meshDataBufferInfos.push_back( meshDataBufferInfo );
       }
     }
 
     // Update RT scene descriptor sets.
-    this->rtSceneDescriptors.bindings.write( this->rtSceneDescriptorSets, 0, this->cameraUniformBuffer.bufferInfos );
-    this->rtSceneDescriptors.bindings.write( this->rtSceneDescriptorSets, 1, &directionalLightsInfo );
-    this->rtSceneDescriptors.bindings.write( this->rtSceneDescriptorSets, 2, &pointLightsInfo );
-    this->rtSceneDescriptors.bindings.write( this->rtSceneDescriptorSets, 3, &rtInstancesInfo );
-    this->rtSceneDescriptors.bindings.writeArray( this->rtSceneDescriptorSets, 4, this->meshDataBufferInfos.data( ) );
+    _rtSceneDescriptors.bindings.write( _rtSceneDescriptorSets, 0, _cameraUniformBuffer._bufferInfos );
+    _rtSceneDescriptors.bindings.write( _rtSceneDescriptorSets, 1, &directionalLightsInfo );
+    _rtSceneDescriptors.bindings.write( _rtSceneDescriptorSets, 2, &pointLightsInfo );
+    _rtSceneDescriptors.bindings.write( _rtSceneDescriptorSets, 3, &rtInstancesInfo );
+    _rtSceneDescriptors.bindings.writeArray( _rtSceneDescriptorSets, 4, _meshDataBufferInfos.data( ) );
 
-    this->rtSceneDescriptors.bindings.update( );
+    _rtSceneDescriptors.bindings.update( );
 
     // Update RS scene descriptor sets.
-    this->rsSceneDescriptors.bindings.write( this->rsSceneDescriptorSets, 0, this->cameraUniformBuffer.bufferInfos );
-    this->rsSceneDescriptors.bindings.write( this->rsSceneDescriptorSets, 1, &directionalLightsInfo );
-    this->rsSceneDescriptors.bindings.write( this->rsSceneDescriptorSets, 2, &rtInstancesInfo );
-    this->rsSceneDescriptors.bindings.update( );
+    _rsSceneDescriptors.bindings.write( _rsSceneDescriptorSets, 0, _cameraUniformBuffer._bufferInfos );
+    _rsSceneDescriptors.bindings.write( _rsSceneDescriptorSets, 1, &directionalLightsInfo );
+    _rsSceneDescriptors.bindings.write( _rsSceneDescriptorSets, 2, &rtInstancesInfo );
+    _rsSceneDescriptors.bindings.update( );
   }
 
   void Api::updateRayTracingModelData( )
   {
-    RX_ASSERT( this->scene->geometries.size( ) <= g_maxGeometries, "Can not bind more than ", g_maxGeometries, " geometries." );
+    RX_ASSERT( _scene->_geometries.size( ) <= g_maxGeometries, "Can not bind more than ", g_maxGeometries, " geometries." );
 
     // Update RT model data.
     for ( size_t i = 0; i < g_maxGeometries; ++i )
     {
-      if ( i < vertexBuffers.size( ) )
+      if ( i < _vertexBuffers.size( ) )
       {
-        vk::DescriptorBufferInfo vertexDataBufferInfo( this->vertexBuffers[i].get( ),
+        vk::DescriptorBufferInfo vertexDataBufferInfo( _vertexBuffers[i].get( ),
                                                        0,
                                                        VK_WHOLE_SIZE );
 
-        this->vertexDataBufferInfos.push_back( vertexDataBufferInfo );
+        _vertexDataBufferInfos.push_back( vertexDataBufferInfo );
 
-        vk::DescriptorBufferInfo indexDataBufferInfo( this->indexBuffers[i].get( ),
+        vk::DescriptorBufferInfo indexDataBufferInfo( _indexBuffers[i].get( ),
                                                       0,
                                                       VK_WHOLE_SIZE );
 
-        this->indexDataBufferInfos.push_back( indexDataBufferInfo );
+        _indexDataBufferInfos.push_back( indexDataBufferInfo );
       }
       else
       {
@@ -909,21 +909,21 @@ namespace RAYEX_NAMESPACE
                                              0,
                                              VK_WHOLE_SIZE );
 
-        this->vertexDataBufferInfos.push_back( bufferInfo );
-        this->indexDataBufferInfos.push_back( bufferInfo );
+        _vertexDataBufferInfos.push_back( bufferInfo );
+        _indexDataBufferInfos.push_back( bufferInfo );
       }
     }
 
-    this->vertexDataDescriptors.bindings.writeArray( this->vertexDataDescriptorSets, 0, this->vertexDataBufferInfos.data( ) );
-    this->vertexDataDescriptors.bindings.update( );
+    _vertexDataDescriptors.bindings.writeArray( _vertexDataDescriptorSets, 0, _vertexDataBufferInfos.data( ) );
+    _vertexDataDescriptors.bindings.update( );
 
-    this->indexDataDescriptors.bindings.writeArray( this->indexDataDescriptorSets, 0, this->indexDataBufferInfos.data( ) );
-    this->indexDataDescriptors.bindings.update( );
+    _indexDataDescriptors.bindings.writeArray( _indexDataDescriptorSets, 0, _indexDataBufferInfos.data( ) );
+    _indexDataDescriptors.bindings.update( );
   }
 
   auto Api::findGeometry( uint32_t geometryIndex ) -> std::shared_ptr<Geometry>
   {
-    for ( std::shared_ptr<Geometry> geometry : this->scene->geometries )
+    for ( std::shared_ptr<Geometry> geometry : _scene->_geometries )
     {
       if ( geometry->geometryIndex == geometryIndex )
       {

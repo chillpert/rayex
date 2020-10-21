@@ -25,7 +25,7 @@ namespace RAYEX_NAMESPACE
   extern uint32_t g_transferFamilyIndex;    ///< stores a Vulkan transfer family index.
 
   extern vk::PhysicalDeviceLimits g_physicalDeviceLimits; ///< Global variable to store the physical device's limits.
-  RX_API extern uint32_t g_frameCount;
+  extern uint32_t g_frameCount;
 
   const size_t g_maxGeometryInstances = 2000; ///< Stores the maximum amount of geometry nodes.
   const size_t g_maxTextures          = 2000; ///< Stores the maximum amount of textures.

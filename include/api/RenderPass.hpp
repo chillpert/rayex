@@ -11,7 +11,7 @@ namespace RAYEX_NAMESPACE
   {
   public:
     /// @return Returns the Vulkan render pass without the unique handle.
-    auto get( ) const -> vk::RenderPass { return renderPass.get( ); }
+    auto get( ) const -> vk::RenderPass { return _renderPass.get( ); }
 
     /// Initializes the Vulkan render pass.
     /// @param attachments The Vulkan attachment description.
@@ -32,7 +32,7 @@ namespace RAYEX_NAMESPACE
     void end( vk::CommandBuffer commandBuffer ) const;
 
   private:
-    vk::UniqueRenderPass renderPass; ///< The Vulkan render pass with a unique handle.
+    vk::UniqueRenderPass _renderPass; ///< The Vulkan render pass with a unique handle.
   };
 } // namespace RAYEX_NAMESPACE
 

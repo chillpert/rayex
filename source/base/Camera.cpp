@@ -5,9 +5,9 @@
 namespace RAYEX_NAMESPACE
 {
   Camera::Camera( int width, int height, const glm::vec3& position ) :
-    width( width ),
-    height( height ),
-    position( position )
+    _width( width ),
+    _height( height ),
+    _position( position )
   {
     updateVectors( );
     updateViewMatrix( );
@@ -17,11 +17,11 @@ namespace RAYEX_NAMESPACE
   void Camera::update( )
   {
     // If position has changed, reset frame counter for jitter cam.
-    static glm::vec3 prevPosition = this->position;
-    if ( prevPosition != this->position )
+    static glm::vec3 prevPosition = _position;
+    if ( prevPosition != _position )
     {
       g_frameCount = 0;
-      prevPosition = this->position;
+      prevPosition = _position;
     }
 
     processKeyboard( );
@@ -31,74 +31,74 @@ namespace RAYEX_NAMESPACE
 
   void Camera::setPosition( const glm::vec3& position )
   {
-    this->position = position;
+    _position = position;
 
     updateViewMatrix( );
   }
 
   void Camera::setSize( int width, int height )
   {
-    this->width  = width;
-    this->height = height;
+    _width  = width;
+    _height = height;
 
     updateProjectionMatrix( );
   }
 
   void Camera::setFov( float fov )
   {
-    this->fov = fov;
+    _fov = fov;
 
     updateProjectionMatrix( );
   }
 
   void Camera::setSensitivity( float sensitivity )
   {
-    this->sensitivity = sensitivity;
+    _sensitivity = sensitivity;
   }
 
   void Camera::updateViewMatrix( )
   {
-    this->view = glm::lookAt( this->position, this->position + this->front, this->worldUp );
+    _view = glm::lookAt( _position, _position + _front, _worldUp );
 
-    this->viewInverse = glm::inverse( this->view );
+    _viewInverse = glm::inverse( _view );
   }
 
   void Camera::updateProjectionMatrix( )
   {
-    this->projection = glm::perspective( glm::radians( this->fov ), static_cast<float>( this->width ) / static_cast<float>( this->height ), 0.1F, 100.0F );
-    this->projection[1, 1] *= -1;
+    _projection = glm::perspective( glm::radians( _fov ), static_cast<float>( _width ) / static_cast<float>( _height ), 0.1F, 100.0F );
+    _projection[1, 1] *= -1;
 
-    this->projectionInverse = glm::inverse( this->projection );
+    _projectionInverse = glm::inverse( _projection );
   }
 
   void Camera::processMouse( float xOffset, float yOffset )
   {
-    this->updateView = true;
+    _updateView = true;
 
-    xOffset *= this->sensitivity;
-    yOffset *= this->sensitivity;
+    xOffset *= _sensitivity;
+    yOffset *= _sensitivity;
 
-    this->yaw += xOffset;
-    this->pitch += yOffset;
+    _yaw += xOffset;
+    _pitch += yOffset;
 
-    if ( this->yaw > 360.0F )
+    if ( _yaw > 360.0F )
     {
-      this->yaw = fmod( this->yaw, 360.0F );
+      _yaw = fmod( _yaw, 360.0F );
     }
 
-    if ( this->yaw < 0.0F )
+    if ( _yaw < 0.0F )
     {
-      this->yaw = 360.0F + fmod( this->yaw, 360.0F );
+      _yaw = 360.0F + fmod( _yaw, 360.0F );
     }
 
-    if ( this->pitch > 89.0F )
+    if ( _pitch > 89.0F )
     {
-      this->pitch = 89.0F;
+      _pitch = 89.0F;
     }
 
-    if ( this->pitch < -89.0F )
+    if ( _pitch < -89.0F )
     {
-      this->pitch = -89.0F;
+      _pitch = -89.0F;
     }
 
     updateVectors( );
@@ -110,12 +110,12 @@ namespace RAYEX_NAMESPACE
   void Camera::updateVectors( )
   {
     glm::vec3 t_front;
-    t_front.x = cos( glm::radians( this->yaw ) ) * cos( glm::radians( this->pitch ) );
-    t_front.y = sin( glm::radians( this->pitch ) );
-    t_front.z = sin( glm::radians( this->yaw ) ) * cos( glm::radians( this->pitch ) );
+    t_front.x = cos( glm::radians( _yaw ) ) * cos( glm::radians( _pitch ) );
+    t_front.y = sin( glm::radians( _pitch ) );
+    t_front.z = sin( glm::radians( _yaw ) ) * cos( glm::radians( _pitch ) );
 
-    this->front = glm::normalize( t_front );
-    this->right = glm::normalize( glm::cross( this->front, this->worldUp ) );
-    this->up    = glm::normalize( glm::cross( this->right, this->front ) );
+    _front = glm::normalize( t_front );
+    _right = glm::normalize( glm::cross( _front, _worldUp ) );
+    _up    = glm::normalize( glm::cross( _right, _front ) );
   }
 } // namespace RAYEX_NAMESPACE

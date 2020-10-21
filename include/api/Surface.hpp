@@ -11,8 +11,9 @@ namespace RAYEX_NAMESPACE
   {
   public:
     Surface( ) = default;
+
     /// Calls destroy().
-    RX_API ~Surface( );
+    ~Surface( );
 
     Surface( const Surface& )  = delete;
     Surface( const Surface&& ) = delete;
@@ -21,16 +22,16 @@ namespace RAYEX_NAMESPACE
     auto operator=( const Surface && ) -> Surface& = delete;
 
     /// @return Returns the surface format.
-    [[nodiscard]] auto getFormat( ) const -> vk::Format { return format; }
+    auto getFormat( ) const -> vk::Format { return _format; }
 
     /// @return Returns the surface's color space.
-    [[nodiscard]] auto getColorSpace( ) const -> vk::ColorSpaceKHR { return colorSpace; }
+    auto getColorSpace( ) const -> vk::ColorSpaceKHR { return _colorSpace; }
 
     /// @return Returns the surface's present mode.
-    [[nodiscard]] auto getPresentMode( ) const -> vk::PresentModeKHR { return presentMode; }
+    auto getPresentMode( ) const -> vk::PresentModeKHR { return _presentMode; }
 
     /// @return Returns the surface's capabilities.
-    [[nodiscard]] auto getCapabilities( ) const -> vk::SurfaceCapabilitiesKHR { return capabilities; }
+    auto getCapabilities( ) const -> vk::SurfaceCapabilitiesKHR { return _capabilities; }
 
     /// Initializes the Vulkan surface object.
     /// @note If any of the specified format, color space and present mode are not available the function will fall back to settings that are guaranteed to be supported.
@@ -44,12 +45,12 @@ namespace RAYEX_NAMESPACE
     /// Destroys the surface.
     void destroy( );
 
-    vk::SurfaceKHR surface; ///< The Vulkan surface.
+    vk::SurfaceKHR _surface; ///< The Vulkan surface.
 
-    vk::Format format                       = vk::Format::eB8G8R8A8Unorm;        ///< The desired surface format.
-    vk::ColorSpaceKHR colorSpace            = vk::ColorSpaceKHR::eSrgbNonlinear; ///< The desired color space.
-    vk::PresentModeKHR presentMode          = vk::PresentModeKHR::eImmediate;    ///< The desired present mode.
-    vk::SurfaceCapabilitiesKHR capabilities = 0;                                 ///< The surface's capabilities.
+    vk::Format _format                       = vk::Format::eB8G8R8A8Unorm;        ///< The desired surface format.
+    vk::ColorSpaceKHR _colorSpace            = vk::ColorSpaceKHR::eSrgbNonlinear; ///< The desired color space.
+    vk::PresentModeKHR _presentMode          = vk::PresentModeKHR::eImmediate;    ///< The desired present mode.
+    vk::SurfaceCapabilitiesKHR _capabilities = 0;                                 ///< The surface's capabilities.
   };
 } // namespace RAYEX_NAMESPACE
 

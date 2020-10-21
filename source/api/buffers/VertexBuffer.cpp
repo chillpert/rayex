@@ -12,7 +12,7 @@ namespace RAYEX_NAMESPACE
 
   void VertexBuffer::init( const std::vector<Vertex>& vertices )
   {
-    this->count = static_cast<uint32_t>( vertices.size( ) );
+    _count = static_cast<uint32_t>( vertices.size( ) );
 
     vk::DeviceSize size = sizeof( vertices[0] ) * vertices.size( );
     vk::MemoryAllocateFlagsInfo allocateFlags( vk::MemoryAllocateFlagBitsKHR::eDeviceAddress );
@@ -33,6 +33,6 @@ namespace RAYEX_NAMESPACE
     stagingBuffer.fill<Vertex>( vertices.data( ) );
 
     // Copy staging buffer to the actual index buffer.
-    stagingBuffer.copyToBuffer( this->buffer.get( ) );
+    stagingBuffer.copyToBuffer( _buffer.get( ) );
   }
 } // namespace RAYEX_NAMESPACE

@@ -6,11 +6,11 @@ namespace RAYEX_NAMESPACE
 {
   auto UniformBuffer::getRaw( ) const -> const std::vector<vk::Buffer>
   {
-    std::vector<vk::Buffer> res( this->buffers.size( ), nullptr );
+    std::vector<vk::Buffer> res( _buffers.size( ), nullptr );
 
-    for ( size_t i = 0; i < this->buffers.size( ); ++i )
+    for ( size_t i = 0; i < _buffers.size( ); ++i )
     {
-      res[i] = this->buffers[i].get( );
+      res[i] = _buffers[i].get( );
     }
 
     return res;

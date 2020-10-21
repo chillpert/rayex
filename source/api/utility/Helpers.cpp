@@ -504,4 +504,25 @@ namespace vk::Helper
       RX_VERBOSE( "Added instance extension: ", name, "." );
     }
   }
+
+  auto findSupportedImageFormat( vk::PhysicalDevice physicalDevice, const std::vector<vk::Format>& formatsToTest, vk::FormatFeatureFlagBits features, vk::ImageTiling tiling ) -> vk::Format
+  {
+    for ( vk::Format format : formatsToTest )
+    {
+      auto props = physicalDevice.getFormatProperties( format );
+
+      if ( tiling == vk::ImageTiling::eLinear && ( props.linearTilingFeatures & features ) == features )
+      {
+        return format;
+      }
+      if ( tiling == vk::ImageTiling::eOptimal && ( props.optimalTilingFeatures & features ) == features )
+      {
+        return format;
+      }
+    }
+
+    RX_ERROR( "Failed to retrieve any supported image format." );
+
+    return vk::Format::eUndefined;
+  }
 } // namespace vk::Helper

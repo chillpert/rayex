@@ -98,8 +98,8 @@ namespace RAYEX_NAMESPACE
                                                      1,                                                     // pushConstantRangeCount
                                                      &pushConstantRangeMissKHR );                           // pPushConstantRanges
 
-    this->layout = g_device.createPipelineLayoutUnique( pipelineLayoutInfo );
-    RX_ASSERT( this->layout, "Failed to create pipeline layout for rasterization pipeline." );
+    _layout = g_device.createPipelineLayoutUnique( pipelineLayoutInfo );
+    RX_ASSERT( _layout, "Failed to create pipeline layout for rasterization pipeline." );
 
     //uint32_t anticipatedDirectionalLights = settings->maxDirectionalLights.has_value( ) ? settings->maxDirectionalLights.value( ) : g_maxDirectionalLights;
     //uint32_t anticipatedPointLights       = settings->maxPointLights.has_value( ) ? settings->maxPointLights.value( ) : g_maxPointLights;
@@ -140,14 +140,14 @@ namespace RAYEX_NAMESPACE
                                                &depthStencil,                                 // pDepthStencilState
                                                &colorBlending,                                // pColorBlendState
                                                &dynamicStateInfo,                             // pDynamicState
-                                               layout.get( ),                                 // layout
+                                               _layout.get( ),                                // layout
                                                renderPass,                                    // renderPass
                                                0,                                             // subpass
                                                nullptr,                                       // basePipelineHandle
                                                0 );                                           // basePipelineIndex
 
-    this->pipeline = g_device.createGraphicsPipelineUnique( nullptr, createInfo, nullptr );
-    RX_ASSERT( this->pipeline, "Failed to create rasterization pipeline." );
+    _pipeline = g_device.createGraphicsPipelineUnique( nullptr, createInfo, nullptr );
+    RX_ASSERT( _pipeline, "Failed to create rasterization pipeline." );
   }
 
   void Pipeline::init( const std::vector<vk::DescriptorSetLayout>& descriptorSetLayouts, const Settings* settings )
@@ -173,8 +173,8 @@ namespace RAYEX_NAMESPACE
                                              static_cast<uint32_t>( pushConstantRanges.size( ) ),   // pushConstantRangeCount
                                              pushConstantRanges.data( ) );                          // pPushConstantRanges
 
-    this->layout = g_device.createPipelineLayoutUnique( layoutInfo );
-    RX_ASSERT( this->layout, "Failed to create pipeline layout for ray tracing pipeline." );
+    _layout = g_device.createPipelineLayoutUnique( layoutInfo );
+    RX_ASSERT( _layout, "Failed to create pipeline layout for ray tracing pipeline." );
 
     std::array<vk::PipelineShaderStageCreateInfo, 4> shaderStages;
     shaderStages[0] = vk::Helper::getPipelineShaderStageCreateInfo( vk::ShaderStageFlagBits::eRaygenKHR, rgen.get( ) );
@@ -215,11 +215,11 @@ namespace RAYEX_NAMESPACE
                                                     settings->getRecursionDepth( ),                // maxRecursionDepth
                                                     0,                                             // libraries
                                                     nullptr,                                       // pLibraryInterface
-                                                    this->layout.get( ),                           // layout
+                                                    _layout.get( ),                                // layout
                                                     nullptr,                                       // basePipelineHandle
                                                     0 );                                           // basePipelineIndex
 
-    this->pipeline = g_device.createRayTracingPipelineKHRUnique( nullptr, createInfo );
-    RX_ASSERT( this->pipeline, "Failed to create ray tracing pipeline." );
+    _pipeline = g_device.createRayTracingPipelineKHRUnique( nullptr, createInfo );
+    RX_ASSERT( _pipeline, "Failed to create ray tracing pipeline." );
   }
 } // namespace RAYEX_NAMESPACE

@@ -9,18 +9,18 @@ namespace RAYEX_NAMESPACE
 {
   void Image::init( const vk::ImageCreateInfo& createInfo )
   {
-    this->extent = createInfo.extent;
-    this->format = createInfo.format;
-    this->layout = createInfo.initialLayout;
+    _extent = createInfo.extent;
+    _format = createInfo.format;
+    _layout = createInfo.initialLayout;
 
-    this->image = g_device.createImageUnique( createInfo );
-    RX_ASSERT( this->image, "Failed to create image" );
-    this->memory = vk::Initializer::allocateMemoryUnique( this->image.get( ) );
+    _image = g_device.createImageUnique( createInfo );
+    RX_ASSERT( _image, "Failed to create image" );
+    _memory = vk::Initializer::allocateMemoryUnique( _image.get( ) );
   }
 
   void Image::transitionToLayout( vk::ImageLayout layout )
   {
-    auto barrierInfo = vk::Helper::getImageMemoryBarrierInfo( this->image.get( ), this->layout, layout );
+    auto barrierInfo = vk::Helper::getImageMemoryBarrierInfo( _image.get( ), _layout, layout );
 
     CommandBuffer commandBuffer;
     commandBuffer.init( g_graphicsCmdPool );
@@ -39,12 +39,12 @@ namespace RAYEX_NAMESPACE
     commandBuffer.end( );
     commandBuffer.submitToQueue( g_graphicsQueue );
 
-    this->layout = layout;
+    _layout = layout;
   }
 
   void Image::transitionToLayout( vk::ImageLayout layout, vk::CommandBuffer commandBuffer )
   {
-    auto barrierInfo = vk::Helper::getImageMemoryBarrierInfo( this->image.get( ), this->layout, layout );
+    auto barrierInfo = vk::Helper::getImageMemoryBarrierInfo( _image.get( ), _layout, layout );
 
     commandBuffer.pipelineBarrier( std::get<1>( barrierInfo ), // srcStageMask
                                    std::get<2>( barrierInfo ), // dstStageMask
@@ -56,27 +56,6 @@ namespace RAYEX_NAMESPACE
                                    1,
                                    &std::get<0>( barrierInfo ) ); // barrier
 
-    this->layout = layout;
-  }
-
-  auto Image::findSupportedFormat( vk::PhysicalDevice physicalDevice, const std::vector<vk::Format>& formatsToTest, vk::FormatFeatureFlagBits features, vk::ImageTiling tiling ) -> vk::Format
-  {
-    for ( vk::Format format : formatsToTest )
-    {
-      auto props = physicalDevice.getFormatProperties( format );
-
-      if ( tiling == vk::ImageTiling::eLinear && ( props.linearTilingFeatures & features ) == features )
-      {
-        return format;
-      }
-      if ( tiling == vk::ImageTiling::eOptimal && ( props.optimalTilingFeatures & features ) == features )
-      {
-        return format;
-      }
-    }
-
-    RX_ERROR( "Failed to retrieve any supported image format." );
-
-    return vk::Format::eUndefined;
+    _layout = layout;
   }
 } // namespace RAYEX_NAMESPACE

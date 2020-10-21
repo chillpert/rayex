@@ -20,7 +20,7 @@ namespace RAYEX_NAMESPACE
     friend class Scene;
 
     /// @return Returns the recursion depth.
-    [[nodiscard]] auto getRecursionDepth( ) const -> uint32_t { return this->recursionDepth; }
+    auto getRecursionDepth( ) const -> uint32_t { return _recursionDepth; }
 
     /// Used to set the recursion depth.
     ///
@@ -30,7 +30,7 @@ namespace RAYEX_NAMESPACE
     void setRecursionDepth( uint32_t recursionDepth );
 
     /// @return Returns the clear color.
-    [[nodiscard]] auto getClearColor( ) const -> const glm::vec4& { return this->clearColor; }
+    auto getClearColor( ) const -> const glm::vec4& { return _clearColor; }
 
     /// Used to changed the clear color.
     ///
@@ -39,7 +39,7 @@ namespace RAYEX_NAMESPACE
     void setClearColor( const glm::vec4& clearColor );
 
     /// @return Returns the path to assets.
-    [[nodiscard]] auto getAssetsPath( ) const -> std::string_view { return this->assetsPath; }
+    auto getAssetsPath( ) const -> std::string_view { return _assetsPath; }
 
     /// Used to set a path to the directory containing all assets.
     ///
@@ -56,7 +56,7 @@ namespace RAYEX_NAMESPACE
 
     /// @return Returns true if ray tracing is enabled and false if rasterization is enabled.
     /// @todo This function will be pointless once the new pipeline system is implemented.
-    [[nodiscard]] auto getRayTracingEnabled( ) const -> bool { return this->rayTrace; }
+    auto getRayTracingEnabled( ) const -> bool { return _rayTrace; }
 
     /// Used to enable or disable ray tracing.
     ///
@@ -82,7 +82,7 @@ namespace RAYEX_NAMESPACE
     void setMaxGeometryInstances( uint32_t amount );
 
     /// @return Returns the maximum recursion depth on the GPU.
-    [[nodiscard]] auto getMaxRecursionDepth( ) const -> uint32_t { return this->maxRecursionDepth; }
+    auto getMaxRecursionDepth( ) const -> uint32_t { return _maxRecursionDepth; }
 
     /// Used to toggle the jitter cam.
     ///
@@ -94,7 +94,7 @@ namespace RAYEX_NAMESPACE
     void setEnableJitterCam( bool flag );
 
     /// @return Returns true, if jitter cam is enabled.
-    [[nodiscard]] auto getJitterCamEnabled( ) const -> bool { return this->jitterCamEnabled; }
+    auto getJitterCamEnabled( ) const -> bool { return _jitterCamEnabled; }
 
     /// Used to set the jitter cam's sample rate.
     /// @param sampleRate The jitter cam's sample rate.
@@ -102,7 +102,7 @@ namespace RAYEX_NAMESPACE
     void setJitterCamSampleRate( uint32_t sampleRate );
 
     /// @return Returns the jitter cam's sample rate .
-    [[nodiscard]] auto getJitterCamSampleRate( ) const -> uint32_t { return this->jitterCamSampleRate; }
+    auto getJitterCamSampleRate( ) const -> uint32_t { return _jitterCamSampleRate; }
 
     /// Used to set the jitter cam's sample rate per raygen.
     /// @param sampleRate Used to make the jitter cam faster by casting n rays directly in the raygen shader.
@@ -111,7 +111,7 @@ namespace RAYEX_NAMESPACE
     void setJitterCamSampleRatePerRayGen( uint32_t sampleRate );
 
     /// @return Returns the jitter cam's sample rate per raygen.
-    [[nodiscard]] auto getJitterCamSampleRatePerRayGen( ) const -> uint32_t { return this->jitterCamSampleRatePerRayGen; }
+    auto getJitterCamSampleRatePerRayGen( ) const -> uint32_t { return _jitterCamSampleRatePerRayGen; }
 
     /// Used to toggle SSAA.
     /// @param flag If true, SSAA will be activated.
@@ -119,41 +119,41 @@ namespace RAYEX_NAMESPACE
     void setEnableSsaa( bool flag );
 
     /// @return Returns true, if SSAA is enabled.
-    [[nodiscard]] auto getSsaaEnabled( ) const -> bool { return this->ssaaEnabled; }
+    auto getSsaaEnabled( ) const -> bool { return _ssaaEnabled; }
 
     /// Used to set the SSAA sample rate.
     /// @param sampleRate The desired SSAA sample rate. If this value is zero, then the sample rate will be set to one.
     void setSsaaSampleRate( uint32_t sampleRate );
 
     /// @return Returns the SSAA sample rate.
-    [[nodiscard]] auto getSsaaSampleRate( ) const -> uint32_t { return this->ssaaSampleRate; }
+    auto getSsaaSampleRate( ) const -> uint32_t { return _ssaaSampleRate; }
 
   private:
     /// This function will be called by Rayex::init() in case the path was not set manually.
     /// @warning This function might file in setting the correct path. That is why it is recommended to set it automatically using setAssetsPath(std::string).
     void setDefaultAssetsPath( );
 
-    bool rayTrace         = true;  ///< If true renderer will use ray tracing, if false it will use rasterization.
-    bool refreshPipeline  = false; ///< Keeps track of whether or not the graphics pipeline needs to be recreated.
-    bool refreshSwapchain = false; ///< Keeps track of whether or not the swapchain needs to be recreated.
+    bool _rayTrace         = true;  ///< If true renderer will use ray tracing, if false it will use rasterization.
+    bool _refreshPipeline  = false; ///< Keeps track of whether or not the graphics pipeline needs to be recreated.
+    bool _refreshSwapchain = false; ///< Keeps track of whether or not the swapchain needs to be recreated.
 
-    std::optional<uint32_t> maxDirectionalLights; ///< Can be set to avoid pipeline recreation everytime a directional light is added.
-    std::optional<uint32_t> maxPointLights;       ///< Can be set to avoid pipeline recreation everytime a point light is added.
-    std::optional<uint32_t> maxGeometryInstances; ///< Can be set to avoid pipeline recreation everytime a geometry instance is added.
+    std::optional<uint32_t> _maxDirectionalLights; ///< Can be set to avoid pipeline recreation everytime a directional light is added.
+    std::optional<uint32_t> _maxPointLights;       ///< Can be set to avoid pipeline recreation everytime a point light is added.
+    std::optional<uint32_t> _maxGeometryInstances; ///< Can be set to avoid pipeline recreation everytime a geometry instance is added.
 
-    std::string assetsPath; ///< Where all assets like models, textures and shaders are stored.
+    std::string _assetsPath; ///< Where all assets like models, textures and shaders are stored.
 
-    glm::vec4 clearColor                  = glm::vec4( 0.45F, 0.45F, 0.45F, 1.0F ); ///< Stores the clear color.
-    uint32_t maxRecursionDepth            = 2;                                      ///< The maximum recursion depth.
-    uint32_t recursionDepth               = 2;                                      ///< The current recursion depth.
-    bool jitterCamEnabled                 = false;                                  ///< Keeps track of whether or not the jitter cam is enabled.
-    uint32_t jitterCamSampleRate          = 100;                                    ///< Stores the sample rate of the jitter cam.
-    uint32_t jitterCamSampleRatePerRayGen = 1;                                      ///< Stores the sample rate per raygen invocation.
-    bool ssaaEnabled                      = true;                                   ///< Keeps track of whether or not SSAA is enabled.
-    uint32_t ssaaSampleRate               = 2;                                      ///< Stores the amount of samples per pixel for SSAA.
+    glm::vec4 _clearColor                  = glm::vec4( 0.45F, 0.45F, 0.45F, 1.0F ); ///< Stores the clear color.
+    uint32_t _maxRecursionDepth            = 2;                                      ///< The maximum recursion depth.
+    uint32_t _recursionDepth               = 2;                                      ///< The current recursion depth.
+    bool _jitterCamEnabled                 = false;                                  ///< Keeps track of whether or not the jitter cam is enabled.
+    uint32_t _jitterCamSampleRate          = 100;                                    ///< Stores the sample rate of the jitter cam.
+    uint32_t _jitterCamSampleRatePerRayGen = 1;                                      ///< Stores the sample rate per raygen invocation.
+    bool _ssaaEnabled                      = true;                                   ///< Keeps track of whether or not SSAA is enabled.
+    uint32_t _ssaaSampleRate               = 2;                                      ///< Stores the amount of samples per pixel for SSAA.
 
-    bool automaticPipelineRefresh  = false; ///< Keeps track of whether or not the graphics pipelines should be recreated automatically as soon as possible.
-    bool automaticSwapchainRefresh = false; ///< Keeps track of whether or not the swapchain should be recreated automatically as soon as possible.
+    bool _automaticPipelineRefresh  = false; ///< Keeps track of whether or not the graphics pipelines should be recreated automatically as soon as possible.
+    bool _automaticSwapchainRefresh = false; ///< Keeps track of whether or not the swapchain should be recreated automatically as soon as possible.
   };
 } // namespace RAYEX_NAMESPACE
 

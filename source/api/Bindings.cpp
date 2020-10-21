@@ -10,17 +10,17 @@ namespace RAYEX_NAMESPACE
                                          stage,     // stageFlags
                                          nullptr ); // pImmutableSamplers
 
-    this->bindings.push_back( temp );
-    this->flags.push_back( flags );
+    _bindings.push_back( temp );
+    _flags.push_back( flags );
 
     // Resources are created per swapchain image. This operation will only be executed once.
-    if ( this->writes.size( ) != g_swapchainImageCount )
+    if ( _writes.size( ) != g_swapchainImageCount )
     {
-      this->writes.resize( g_swapchainImageCount );
+      _writes.resize( g_swapchainImageCount );
     }
 
     // For every new binding that is added, the size of each write in writes will get increased by one.
-    for ( auto& write : this->writes )
+    for ( auto& write : _writes )
     {
       write.resize( write.size( ) + 1 );
     }
@@ -28,14 +28,14 @@ namespace RAYEX_NAMESPACE
 
   auto Bindings::initLayoutUnique( vk::DescriptorSetLayoutCreateFlags flags ) -> vk::UniqueDescriptorSetLayout
   {
-    auto bindingCount = static_cast<uint32_t>( this->bindings.size( ) );
+    auto bindingCount = static_cast<uint32_t>( _bindings.size( ) );
 
-    vk::DescriptorSetLayoutCreateInfo createInfo( flags,                    // flags
-                                                  bindingCount,             // bindingCount
-                                                  this->bindings.data( ) ); // pBindings
+    vk::DescriptorSetLayoutCreateInfo createInfo( flags,               // flags
+                                                  bindingCount,        // bindingCount
+                                                  _bindings.data( ) ); // pBindings
 
-    vk::DescriptorSetLayoutBindingFlagsCreateInfoEXT layoutFlags( bindingCount,          // bindingCount
-                                                                  this->flags.data( ) ); // pBindingFlags
+    vk::DescriptorSetLayoutBindingFlagsCreateInfoEXT layoutFlags( bindingCount,     // bindingCount
+                                                                  _flags.data( ) ); // pBindingFlags
     createInfo.pNext = &layoutFlags;
 
     auto layout = g_device.createDescriptorSetLayoutUnique( createInfo );
@@ -48,16 +48,16 @@ namespace RAYEX_NAMESPACE
   {
     std::vector<vk::DescriptorPoolSize> tPoolSizes;
 
-    if ( this->poolSizes.has_value( ) )
+    if ( _poolSizes.has_value( ) )
     {
-      tPoolSizes = this->poolSizes.value( );
+      tPoolSizes = _poolSizes.value( );
     }
     else
     {
-      tPoolSizes = vk::Helper::getPoolSizes( this->bindings, maxSets );
+      tPoolSizes = vk::Helper::getPoolSizes( _bindings, maxSets );
     }
 
-    for ( auto flag : this->flags )
+    for ( auto flag : _flags )
     {
       if ( flag == vk::DescriptorBindingFlagBits::eUpdateAfterBind )
       {
@@ -79,7 +79,7 @@ namespace RAYEX_NAMESPACE
 
   void Bindings::update( )
   {
-    for ( const auto& write : this->writes )
+    for ( const auto& write : _writes )
     {
       g_device.updateDescriptorSets( static_cast<uint32_t>( write.size( ) ), write.data( ), 0, nullptr );
     }
@@ -89,16 +89,16 @@ namespace RAYEX_NAMESPACE
   {
     vk::WriteDescriptorSet result;
 
-    for ( size_t i = 0; i < this->bindings.size( ); ++i )
+    for ( size_t i = 0; i < _bindings.size( ); ++i )
     {
-      if ( this->bindings[i].binding == binding )
+      if ( _bindings[i].binding == binding )
       {
         result.descriptorCount = 1;
-        result.descriptorType  = this->bindings[i].descriptorType;
+        result.descriptorType  = _bindings[i].descriptorType;
         result.dstBinding      = binding;
         result.dstSet          = set;
 
-        this->writes[writeIndex][i] = result;
+        _writes[writeIndex][i] = result;
         return i;
       }
     }
@@ -111,8 +111,8 @@ namespace RAYEX_NAMESPACE
   {
     for ( size_t i = 0; i < sets.size( ); ++i )
     {
-      size_t j                 = write( sets[i], i, binding );
-      this->writes[i][j].pNext = pWriteDescriptorSetAccelerationStructureKHR;
+      size_t j            = write( sets[i], i, binding );
+      _writes[i][j].pNext = pWriteDescriptorSetAccelerationStructureKHR;
     }
   }
 
@@ -120,8 +120,8 @@ namespace RAYEX_NAMESPACE
   {
     for ( size_t i = 0; i < sets.size( ); ++i )
     {
-      size_t j                      = write( sets[i], i, binding );
-      this->writes[i][j].pImageInfo = pImageInfo;
+      size_t j                 = write( sets[i], i, binding );
+      _writes[i][j].pImageInfo = pImageInfo;
     }
   }
 
@@ -129,8 +129,8 @@ namespace RAYEX_NAMESPACE
   {
     for ( size_t i = 0; i < sets.size( ); ++i )
     {
-      size_t j                       = write( sets[i], i, binding );
-      this->writes[i][j].pBufferInfo = pBufferInfo;
+      size_t j                  = write( sets[i], i, binding );
+      _writes[i][j].pBufferInfo = pBufferInfo;
     }
   }
 
@@ -140,8 +140,8 @@ namespace RAYEX_NAMESPACE
 
     for ( size_t i = 0; i < sets.size( ); ++i )
     {
-      size_t j                       = write( sets[i], i, binding );
-      this->writes[i][j].pBufferInfo = &uniformBufferInfos[i];
+      size_t j                  = write( sets[i], i, binding );
+      _writes[i][j].pBufferInfo = &uniformBufferInfos[i];
     }
   }
 
@@ -149,17 +149,17 @@ namespace RAYEX_NAMESPACE
   {
     vk::WriteDescriptorSet result;
 
-    for ( size_t i = 0; i < this->bindings.size( ); ++i )
+    for ( size_t i = 0; i < _bindings.size( ); ++i )
     {
-      if ( this->bindings[i].binding == binding )
+      if ( _bindings[i].binding == binding )
       {
-        result.descriptorCount = this->bindings[i].descriptorCount;
-        result.descriptorType  = this->bindings[i].descriptorType;
+        result.descriptorCount = _bindings[i].descriptorCount;
+        result.descriptorType  = _bindings[i].descriptorType;
         result.dstBinding      = binding;
         result.dstSet          = set;
         result.dstArrayElement = 0;
 
-        this->writes[writeIndex][i] = result;
+        _writes[writeIndex][i] = result;
         return i;
       }
     }
@@ -172,22 +172,22 @@ namespace RAYEX_NAMESPACE
   {
     for ( size_t i = 0; i < sets.size( ); ++i )
     {
-      size_t j                       = writeArray( sets[i], i, binding );
-      this->writes[i][j].pBufferInfo = pBufferInfo;
+      size_t j                  = writeArray( sets[i], i, binding );
+      _writes[i][j].pBufferInfo = pBufferInfo;
     }
   }
 
   void Bindings::setPoolSizes( const std::vector<vk::DescriptorPoolSize>& poolSizes )
   {
-    this->poolSizes = poolSizes;
+    _poolSizes = poolSizes;
   }
 
   void Bindings::reset( )
   {
-    this->bindings.clear( );
-    this->flags.clear( );
-    this->flags.clear( );
-    this->poolSizes.reset( );
-    this->writes.clear( );
+    _bindings.clear( );
+    _flags.clear( );
+    _flags.clear( );
+    _poolSizes.reset( );
+    _writes.clear( );
   };
 } // namespace RAYEX_NAMESPACE

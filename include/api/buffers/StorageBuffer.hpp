@@ -49,7 +49,7 @@ namespace RAYEX_NAMESPACE
                     vk::MemoryPropertyFlagBits::eDeviceLocal | vk::MemoryPropertyFlagBits::eHostVisible ); // memoryPropertyFlags                                                                                                                // pNext of memory
 
       // Copy staging buffer to the actual index buffer.
-      stagingBuffer.copyToBuffer( this->buffer.get( ) );
+      stagingBuffer.copyToBuffer( _buffer.get( ) );
     }
   };
 } // namespace RAYEX_NAMESPACE

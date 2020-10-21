@@ -34,25 +34,25 @@ namespace RAYEX_NAMESPACE
   /// ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
   /// @warning The GUI object must be declared after the renderer to ensure the correct order for destroying and freeing resources.
   /// @ingroup BASE API
-  class Gui
+  class RX_API Gui
   {
   public:
-    RX_API virtual ~Gui( ) = default;
+    virtual ~Gui( ) = default;
 
     /// Returns the GUI's command buffer at the given index.
     /// @param index The index of the command buffer to access.
     /// @return Returns the Vulkan command buffer.
-    [[nodiscard]] auto getCommandBuffer( uint32_t index ) const -> vk::CommandBuffer { return commandBuffers.get( index ); }
+    auto getCommandBuffer( uint32_t index ) const -> vk::CommandBuffer { return _commandBuffers.get( index ); }
 
     /// Used to configure all ImGui settings.
     ///
     /// The user should override this function if they want to change the style or various other configuration settings.
-    RX_API virtual void configure( );
+    virtual void configure( );
 
     /// This function is for calling the individual ImGui components, e.g. widgets.
     ///
     /// The user should override this function to create their own GUI.
-    RX_API virtual void render( );
+    virtual void render( );
 
     /// Creates the GUI and all required Vulkan components.
     /// @param surface A pointer to a RAYEX_NAMESPACE::Surface object.
@@ -76,7 +76,7 @@ namespace RAYEX_NAMESPACE
     void renderDrawData( uint32_t imageIndex );
 
     /// Destroys all ImGui resources.
-    RX_API void destroy( );
+    void destroy( );
 
   private:
     /// Creates a descriptor pool.
@@ -100,13 +100,13 @@ namespace RAYEX_NAMESPACE
     void initFramebuffers( const std::vector<vk::ImageView>& swapchainImageViews );
 
   private:
-    vk::UniqueDescriptorPool descriptorPool;         ///< A Vulkan descriptor pool with a unique handle.
-    vk::UniqueCommandPool commandPool;               ///< A Vulkan command pool with a unique handle.
-    CommandBuffer commandBuffers;                    ///< A RAYEX_NAMESPACE::CommandBuffer.
-    RenderPass renderPass;                           ///< A Vulkan render pass.
-    std::vector<vk::UniqueFramebuffer> framebuffers; ///< A vector of Vulkan framebuffers with unique handles.
+    vk::UniqueDescriptorPool _descriptorPool;         ///< A Vulkan descriptor pool with a unique handle.
+    vk::UniqueCommandPool _commandPool;               ///< A Vulkan command pool with a unique handle.
+    CommandBuffer _commandBuffers;                    ///< A RAYEX_NAMESPACE::CommandBuffer.
+    RenderPass _renderPass;                           ///< A Vulkan render pass.
+    std::vector<vk::UniqueFramebuffer> _framebuffers; ///< A vector of Vulkan framebuffers with unique handles.
 
-    vk::Extent2D swapchainImageExtent; ///< The swapchain images' image extent.
+    vk::Extent2D _swapchainImageExtent; ///< The swapchain images' image extent.
   };
 } // namespace RAYEX_NAMESPACE
 

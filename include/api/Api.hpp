@@ -34,7 +34,7 @@ namespace RAYEX_NAMESPACE
     friend Rayex;
 
     Api( ) = default;
-    RX_API ~Api( );
+    ~Api( );
 
     /// @param window A pointer to a window object that the API will use to display an image.
     /// @param camera A pointer to a camera object that will be used to "capture" the scene.
@@ -120,67 +120,67 @@ namespace RAYEX_NAMESPACE
     /// @return Returns the geometry.
     auto findGeometry( uint32_t geometryIndex ) -> std::shared_ptr<Geometry>;
 
-    std::shared_ptr<Window> window = nullptr;                  ///< A pointer to a RAYEX_NAMESPACE::Window object whose surface is going to be rendered to.
-    std::shared_ptr<Camera> camera = nullptr;                  ///< A pointer to a RAYEX_NAMESPACE::Camera object whose matrices will be used for rendering.
-    vk::PhysicalDevice physicalDevice;                         ///< Stores the physical device (GPU).
-    vk::UniqueInstance instance;                               ///< A unique Vulkan instance.
-    DebugMessenger debugMessenger;                             ///< The debug messenger for logging validation messages.
-    Surface surface;                                           ///< The surface containing surface parameters.
-    vk::UniqueDevice device;                                   ///< A unique Vulkan logical device for interfacing the physical device.
-    vk::UniqueCommandPool graphicsCmdPool;                     ///< A single unique Vulkan command pool for graphics queue operations.
-    vk::UniqueCommandPool transferCmdPool;                     ///< A single unique Vulkan command pool for transfer queue operations.
-    std::vector<vk::Fence> imagesInFlight;                     ///< A vector of fences for synchronizing images that are in flight.
-    std::vector<vk::UniqueFence> inFlightFences;               ///< In flight fences used for synchronization.
-    std::vector<vk::UniqueSemaphore> imageAvailableSemaphores; ///< All semaphores for signaling that a particular swapchain image is available.
-    std::vector<vk::UniqueSemaphore> finishedRenderSemaphores; ///< All semaphores for signaling that a render operation has finished.
+    std::shared_ptr<Window> _window = nullptr;                  ///< A pointer to a RAYEX_NAMESPACE::Window object whose surface is going to be rendered to.
+    std::shared_ptr<Camera> _camera = nullptr;                  ///< A pointer to a RAYEX_NAMESPACE::Camera object whose matrices will be used for rendering.
+    vk::PhysicalDevice _physicalDevice;                         ///< Stores the physical device (GPU).
+    vk::UniqueInstance _instance;                               ///< A unique Vulkan instance.
+    DebugMessenger _debugMessenger;                             ///< The debug messenger for logging validation messages.
+    Surface _surface;                                           ///< The surface containing surface parameters.
+    vk::UniqueDevice _device;                                   ///< A unique Vulkan logical device for interfacing the physical device.
+    vk::UniqueCommandPool _graphicsCmdPool;                     ///< A single unique Vulkan command pool for graphics queue operations.
+    vk::UniqueCommandPool _transferCmdPool;                     ///< A single unique Vulkan command pool for transfer queue operations.
+    std::vector<vk::Fence> _imagesInFlight;                     ///< A vector of fences for synchronizing images that are in flight.
+    std::vector<vk::UniqueFence> _inFlightFences;               ///< In flight fences used for synchronization.
+    std::vector<vk::UniqueSemaphore> _imageAvailableSemaphores; ///< All semaphores for signaling that a particular swapchain image is available.
+    std::vector<vk::UniqueSemaphore> _finishedRenderSemaphores; ///< All semaphores for signaling that a render operation has finished.
 
-    Descriptors rtDescriptors;         ///< Descriptors for ray-tracing-related data ( no equivalent in rasterization shader ).
-    Descriptors rtSceneDescriptors;    ///< Descriptors for scene-related data in ray tracing.
-    Descriptors rsSceneDescriptors;    ///< Descriptors for scene-related data in rasterization.
-    Descriptors vertexDataDescriptors; ///< Descriptors for vertex data.
-    Descriptors indexDataDescriptors;  ///< Descriptors for index data.
+    Descriptors _rtDescriptors;         ///< Descriptors for ray-tracing-related data ( no equivalent in rasterization shader ).
+    Descriptors _rtSceneDescriptors;    ///< Descriptors for scene-related data in ray tracing.
+    Descriptors _rsSceneDescriptors;    ///< Descriptors for scene-related data in rasterization.
+    Descriptors _vertexDataDescriptors; ///< Descriptors for vertex data.
+    Descriptors _indexDataDescriptors;  ///< Descriptors for index data.
 
-    std::vector<vk::DescriptorSet> rtDescriptorSets;         ///< Descriptor sets for ray tracing-related data.
-    std::vector<vk::DescriptorSet> rtSceneDescriptorSets;    ///< Descriptor sets for scene-related data in rasterization shaders.
-    std::vector<vk::DescriptorSet> rsSceneDescriptorSets;    ///< Descriptor sets for scene-related data in ray tracing shaders.
-    std::vector<vk::DescriptorSet> vertexDataDescriptorSets; ///< Descriptor sets for vertex data.
-    std::vector<vk::DescriptorSet> indexDataDescriptorSets;  ///< Descriptor sets for index data.
+    std::vector<vk::DescriptorSet> _rtDescriptorSets;         ///< Descriptor sets for ray tracing-related data.
+    std::vector<vk::DescriptorSet> _rtSceneDescriptorSets;    ///< Descriptor sets for scene-related data in rasterization shaders.
+    std::vector<vk::DescriptorSet> _rsSceneDescriptorSets;    ///< Descriptor sets for scene-related data in ray tracing shaders.
+    std::vector<vk::DescriptorSet> _vertexDataDescriptorSets; ///< Descriptor sets for vertex data.
+    std::vector<vk::DescriptorSet> _indexDataDescriptorSets;  ///< Descriptor sets for index data.
 
-    std::vector<vk::DescriptorBufferInfo> vertexDataBufferInfos; ///< Descriptor buffer infos for the vertex data.
-    std::vector<vk::DescriptorBufferInfo> indexDataBufferInfos;  ///< Descriptor buffer infos for the index data.
-    std::vector<vk::DescriptorBufferInfo> meshDataBufferInfos;
+    std::vector<vk::DescriptorBufferInfo> _vertexDataBufferInfos; ///< Descriptor buffer infos for the vertex data.
+    std::vector<vk::DescriptorBufferInfo> _indexDataBufferInfos;  ///< Descriptor buffer infos for the index data.
+    std::vector<vk::DescriptorBufferInfo> _meshDataBufferInfos;   ///< Descriptor buffer infos for the mesh data.
 
-    std::vector<VertexBuffer> vertexBuffers; ///< Multiple buffers for vertices because of variable descriptor indexing.
-    std::vector<IndexBuffer> indexBuffers;   ///< Multiple buffers for indices because of variable descriptor indexing.
-    std::vector<StorageBuffer> meshBuffers;  ///< Multiple buffers for meshes because of variable descriptor indexing.
+    std::vector<VertexBuffer> _vertexBuffers; ///< Multiple buffers for vertices because of variable descriptor indexing.
+    std::vector<IndexBuffer> _indexBuffers;   ///< Multiple buffers for indices because of variable descriptor indexing.
+    std::vector<StorageBuffer> _meshBuffers;  ///< Multiple buffers for meshes because of variable descriptor indexing.
 
-    StorageBuffer geometryInstancesBuffer; ///< A storage buffer for the ray tracing instances.
-    StorageBuffer directionalLightsBuffer; ///< A storage buffer for directional light data.
-    StorageBuffer pointLightsBuffer;       ///< A storage buffer for point light data.
+    StorageBuffer _geometryInstancesBuffer; ///< A storage buffer for the ray tracing instances.
+    StorageBuffer _directionalLightsBuffer; ///< A storage buffer for directional light data.
+    StorageBuffer _pointLightsBuffer;       ///< A storage buffer for point light data.
 
-    CameraUbo cameraUbo;               ///< UBO for camera data.
-    UniformBuffer cameraUniformBuffer; ///< Uniform buffers containing camera data.
+    CameraUbo _cameraUbo;               ///< UBO for camera data.
+    UniformBuffer _cameraUniformBuffer; ///< Uniform buffers containing camera data.
 
-    Swapchain swapchain;   ///< A RAYEX_NAMESPACE::Swapchain to manage swapchain related operations.
-    RenderPass renderPass; ///< A RAYEX_NAMESPACE::RenderPass to create, begin and end a render pass.
+    Swapchain _swapchain;   ///< A RAYEX_NAMESPACE::Swapchain to manage swapchain related operations.
+    RenderPass _renderPass; ///< A RAYEX_NAMESPACE::RenderPass to create, begin and end a render pass.
 
-    Pipeline rsPipeline; ///< A RAYEX_NAMESPACE::Pipeline for managing a rasterization pipeline.
-    Pipeline rtPipeline; ///< A RAYEX_NAMESPACE::Pipeline for managing a ray tracing pipeline.
+    Pipeline _rsPipeline; ///< A RAYEX_NAMESPACE::Pipeline for managing a rasterization pipeline.
+    Pipeline _rtPipeline; ///< A RAYEX_NAMESPACE::Pipeline for managing a ray tracing pipeline.
 
-    CommandBuffer swapchainCommandBuffers; ///< A RAYEX_NAMESPACE::CommandBuffer containing as many command buffers as there are images in the swapchain.
+    CommandBuffer _swapchainCommandBuffers; ///< A RAYEX_NAMESPACE::CommandBuffer containing as many command buffers as there are images in the swapchain.
 
-    std::shared_ptr<Gui> gui = nullptr; ///< A pointer to a RAYEX_NAMESPACE::Gui object that will be used for rendering the GUI.
+    std::shared_ptr<Gui> _gui = nullptr; ///< A pointer to a RAYEX_NAMESPACE::Gui object that will be used for rendering the GUI.
 
     // No destruction necessary for following members:
-    RayTracingBuilder rayTracingBuilder; ///< The RAYEX_NAMESPACE::RayTracingBuilder for setting up all ray tracing-related structures and the ray tracing process itself.
+    RayTracingBuilder _rayTracingBuilder; ///< The RAYEX_NAMESPACE::RayTracingBuilder for setting up all ray tracing-related structures and the ray tracing process itself.
 
-    vk::Viewport viewport; ///< The application's viewport.
-    vk::Rect2D scissor;    ///< The application's scissor.
+    vk::Viewport _viewport; ///< The application's viewport.
+    vk::Rect2D _scissor;    ///< The application's scissor.
 
-    bool needSwapchainRecreate = false;   ///< Keeps track of whether or not the swapchain needs to be re-created.
-    bool pipelinesReady        = false;   ///< Keeps track of whether or not the graphics pipelines are ready.
-    Settings* settings         = nullptr; ///< Refers to the rendering settings stored in Rayex::settings.
-    Scene* scene               = nullptr; ///< Refers to the scene stored in Rayex::scene.
+    bool _needSwapchainRecreate = false;   ///< Keeps track of whether or not the swapchain needs to be re-created.
+    bool _pipelinesReady        = false;   ///< Keeps track of whether or not the graphics pipelines are ready.
+    Settings* _settings         = nullptr; ///< Refers to the rendering settings stored in Rayex::settings.
+    Scene* _scene               = nullptr; ///< Refers to the scene stored in Rayex::scene.
   };
 } // namespace RAYEX_NAMESPACE
 

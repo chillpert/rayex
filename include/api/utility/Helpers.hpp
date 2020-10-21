@@ -132,6 +132,13 @@ namespace vk
     /// @param extensions All instance extensions that should be activated.
     /// @return Returns true if initialization was successful.
     void checkInstanceExtensionsSupport( const std::vector<const char*>& extensions );
+
+    /// Retrieves a supported image format for a given physical device.
+    /// @param physicalDevice The physical device to check.
+    /// @param formatsToTest A vector of formats that will be checked for their support.
+    /// @param features The Vulkan format features.
+    /// @param tiling The Vulkan image tiling.
+    auto findSupportedImageFormat( vk::PhysicalDevice physicalDevice, const std::vector<vk::Format>& formatsToTest, vk::FormatFeatureFlagBits features, vk::ImageTiling tiling ) -> vk::Format;
   } // namespace Helper
 } // namespace vk
 

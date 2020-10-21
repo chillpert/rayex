@@ -9,7 +9,7 @@ class CustomWindow : public rx::Window
 public:
   CustomWindow( int width, int height, const char* title, uint32_t flags, std::shared_ptr<rx::Camera> camera ) :
     rx::Window( width, height, title, flags ),
-    camera( std::move( camera ) )
+    _camera( std::move( camera ) )
   {
   }
 
@@ -31,7 +31,7 @@ public:
       return false;
     }
 
-    this->camera->setSize( this->width, this->height );
+    _camera->setSize( _width, _height );
 
     // Add your custom event polling and integrate your event system.
     SDL_Event event;
@@ -92,16 +92,16 @@ public:
               break;
 
             case SDLK_SPACE: {
-              if ( this->mouseVisible )
+              if ( _mouseVisible )
               {
-                this->mouseVisible = false;
+                _mouseVisible = false;
                 SDL_SetRelativeMouseMode( SDL_TRUE );
                 SDL_GetRelativeMouseState( nullptr, nullptr ); // Magic fix!
               }
               else
               {
                 SDL_SetRelativeMouseMode( SDL_FALSE );
-                this->mouseVisible = true;
+                _mouseVisible = true;
               }
 
               break;
@@ -141,12 +141,12 @@ public:
         }
 
         case SDL_MOUSEMOTION: {
-          if ( !this->mouseVisible )
+          if ( !_mouseVisible )
           {
             int x;
             int y;
             SDL_GetRelativeMouseState( &x, &y );
-            this->camera->processMouse( x, -y );
+            _camera->processMouse( x, -y );
             break;
           }
         }
@@ -157,8 +157,8 @@ public:
   }
 
 private:
-  std::shared_ptr<rx::Camera> camera;
-  bool mouseVisible = true;
+  std::shared_ptr<rx::Camera> _camera;
+  bool _mouseVisible = true;
 };
 
 #endif // CUSTOM_WINDOW_HPP

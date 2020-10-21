@@ -40,10 +40,10 @@ namespace RAYEX_NAMESPACE
     }
 
     /// @return Returns the vector of uniform buffers.
-    [[nodiscard]] auto get( ) const -> const std::vector<Buffer>& { return buffers; }
+    auto get( ) const -> const std::vector<Buffer>& { return _buffers; }
 
     /// @return Returns the vector of uniform buffers as raw Vulkan buffer objects.
-    [[nodiscard]] RX_API auto getRaw( ) const -> const std::vector<vk::Buffer>;
+    auto getRaw( ) const -> const std::vector<vk::Buffer>;
 
     /// Creates the uniform buffer and allocates memory for it.
     ///
@@ -55,9 +55,9 @@ namespace RAYEX_NAMESPACE
     {
       size_t swapchainImageCount = static_cast<size_t>( g_swapchainImageCount );
 
-      buffers.resize( swapchainImageCount );
+      _buffers.resize( swapchainImageCount );
 
-      for ( Buffer& buffer : buffers )
+      for ( Buffer& buffer : _buffers )
       {
         buffer.init( sizeof( T ),
                      vk::BufferUsageFlagBits::eUniformBuffer,
@@ -65,9 +65,9 @@ namespace RAYEX_NAMESPACE
                      vk::MemoryPropertyFlagBits::eHostVisible | vk::MemoryPropertyFlagBits::eHostCoherent );
       }
 
-      this->bufferInfos.resize( swapchainImageCount );
-      for ( size_t i = 0; i < this->buffers.size( ); ++i )
-        this->bufferInfos[i] = vk::DescriptorBufferInfo( this->buffers[i].get( ), 0, sizeof( T ) );
+      _bufferInfos.resize( swapchainImageCount );
+      for ( size_t i = 0; i < _buffers.size( ); ++i )
+        _bufferInfos[i] = vk::DescriptorBufferInfo( _buffers[i].get( ), 0, sizeof( T ) );
     }
 
     /// Used to fill an image's buffer.
@@ -76,13 +76,13 @@ namespace RAYEX_NAMESPACE
     template <typename T>
     void upload( uint32_t imageIndex, T& ubo )
     {
-      buffers[imageIndex].fill<T>( &ubo );
+      _buffers[imageIndex].fill<T>( &ubo );
     }
 
-    std::vector<vk::DescriptorBufferInfo> bufferInfos;
+    std::vector<vk::DescriptorBufferInfo> _bufferInfos;
 
   private:
-    std::vector<Buffer> buffers; ///< A vector of RAYEX_NAMESPACE::Buffers for the uniform buffers.
+    std::vector<Buffer> _buffers; ///< A vector of RAYEX_NAMESPACE::Buffers for the uniform buffers.
   };
 } // namespace RAYEX_NAMESPACE
 

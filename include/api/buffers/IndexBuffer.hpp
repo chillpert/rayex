@@ -12,7 +12,7 @@ namespace RAYEX_NAMESPACE
   {
   public:
     /// @return Returns the amount of indices in the buffer.
-    [[nodiscard]] auto getCount( ) const -> uint32_t { return count; }
+    auto getCount( ) const -> uint32_t { return _count; }
 
     /// Creates the buffer, allocates memory for it and fills it with the provided data.
     ///
@@ -20,7 +20,7 @@ namespace RAYEX_NAMESPACE
     /// @param indices The index data.
     void init( const std::vector<uint32_t>& indices )
     {
-      count = static_cast<uint32_t>( indices.size( ) );
+      _count = static_cast<uint32_t>( indices.size( ) );
 
       vk::DeviceSize size = sizeof( indices[0] ) * indices.size( );
       vk::MemoryAllocateFlagsInfo allocateFlags( vk::MemoryAllocateFlagBitsKHR::eDeviceAddress );
@@ -42,11 +42,11 @@ namespace RAYEX_NAMESPACE
                     &allocateFlags );
 
       // Copy staging buffer to the actual index buffer.
-      stagingBuffer.copyToBuffer( buffer.get( ) );
+      stagingBuffer.copyToBuffer( _buffer.get( ) );
     }
 
   private:
-    uint32_t count; ///< The amount of indices in the buffer.
+    uint32_t _count; ///< The amount of indices in the buffer.
   };
 } // namespace RAYEX_NAMESPACE
 

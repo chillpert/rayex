@@ -21,28 +21,28 @@ namespace RAYEX_NAMESPACE
     void destroy( );
 
     /// @return Returns the swapchain framebuffer at a given index.
-    [[nodiscard]] auto getFramebuffer( uint32_t index ) const -> const vk::Framebuffer& { return this->framebuffers[index].get( ); }
+    auto getFramebuffer( uint32_t index ) const -> const vk::Framebuffer& { return _framebuffers[index].get( ); }
 
     /// @return Returns the current swapchain image index.
-    [[nodiscard]] auto getCurrentImageIndex( ) const -> uint32_t { return this->currentImageIndex; }
+    auto getCurrentImageIndex( ) const -> uint32_t { return _currentImageIndex; }
 
     /// @return Returns the swapchain images' extent.
-    [[nodiscard]] auto getExtent( ) const -> vk::Extent2D { return this->extent; }
+    auto getExtent( ) const -> vk::Extent2D { return _extent; }
 
     /// @return Returns the swapchain images' image aspect.
-    [[nodiscard]] auto getImageAspect( ) const -> vk::ImageAspectFlags { return this->imageAspect; }
+    auto getImageAspect( ) const -> vk::ImageAspectFlags { return _imageAspect; }
 
     /// Returns the swapchain image at a given index.
     /// @param index The index of the swapchain image.
     /// @return The swapchain image.
-    [[nodiscard]] auto getImage( size_t index ) const -> vk::Image { return this->images[index]; }
+    auto getImage( size_t index ) const -> vk::Image { return _images[index]; }
 
     /// @return Returns a vector containing all swapchain images.
-    [[nodiscard]] auto getImages( ) const -> const std::vector<vk::Image>& { return this->images; }
+    auto getImages( ) const -> const std::vector<vk::Image>& { return _images; }
 
     /// @return Returns a vector containing all swapchain image views.
     /// @todo Returning by reference will result in size 0.
-    [[nodiscard]] auto getImageViews( ) const -> std::vector<vk::ImageView> { return vk::Helper::unpack<vk::ImageView>( this->imageViews ); }
+    auto getImageViews( ) const -> std::vector<vk::ImageView> { return vk::Helper::unpack<vk::ImageView>( _imageViews ); }
 
     /// Used to set the desired image aspect flags.
     void setImageAspect( vk::ImageAspectFlags flags );
@@ -70,20 +70,20 @@ namespace RAYEX_NAMESPACE
     /// @param renderPass The render pass to create the framebuffers.
     void initFramebuffers( vk::RenderPass renderPass );
 
-    vk::UniqueSwapchainKHR swapchain; ///< The Vulkan swapchain object with a unique handle.
+    vk::UniqueSwapchainKHR _swapchain; ///< The Vulkan swapchain object with a unique handle.
 
-    vk::Extent2D extent;                                                ///< The swapchain images' extent.
-    vk::ImageAspectFlags imageAspect = vk::ImageAspectFlagBits::eColor; ///< The swapchain image's image aspect.
+    vk::Extent2D _extent;                                                ///< The swapchain images' extent.
+    vk::ImageAspectFlags _imageAspect = vk::ImageAspectFlagBits::eColor; ///< The swapchain image's image aspect.
 
-    std::vector<vk::Image> images;               ///< The swapchain images.
-    std::vector<vk::UniqueImageView> imageViews; ///< The swapchain images' image views with a unique handle.
+    std::vector<vk::Image> _images;               ///< The swapchain images.
+    std::vector<vk::UniqueImageView> _imageViews; ///< The swapchain images' image views with a unique handle.
 
-    std::vector<vk::UniqueFramebuffer> framebuffers; ///< The swapchain images' framebuffers with a unique handle.
+    std::vector<vk::UniqueFramebuffer> _framebuffers; ///< The swapchain images' framebuffers with a unique handle.
 
-    Image depthImage;                   ///< The depth image.
-    vk::UniqueImageView depthImageView; ///< The depth image's image views with a unique handle.
+    Image _depthImage;                   ///< The depth image.
+    vk::UniqueImageView _depthImageView; ///< The depth image's image views with a unique handle.
 
-    uint32_t currentImageIndex; ///< The current swapchain image index.
+    uint32_t _currentImageIndex; ///< The current swapchain image index.
   };
 
   /// Retrieves the depth format supported by a given physical device.

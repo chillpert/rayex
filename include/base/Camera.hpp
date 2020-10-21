@@ -16,101 +16,104 @@ namespace RAYEX_NAMESPACE
   /// @note The user has to handle keyboard related camera changes inside update().
   /// @warning Do not forget to re-calculate the view or projection matrix if the camera or the window have changed. See updateViewMatrix(), updateProjectionMatrix() or updateView and updateProj respectively.
   /// @ingroup BASE
-  class Camera
+  class RX_API Camera
   {
   public:
     /// @param width The width of the viewport.
     /// @param height The height of the viewport.
     /// @param position The position of your camera.
-    RX_API Camera( int width, int height, const glm::vec3& position = { 0.0F, 0.0F, 3.0F } );
+    Camera( int width, int height, const glm::vec3& position = { 0.0F, 0.0F, 3.0F } );
 
-    RX_API virtual ~Camera( ) = default;
+    virtual ~Camera( ) = default;
 
-    RX_API Camera( const Camera& ) = default;
-    Camera( const Camera&& )       = delete;
+    Camera( const Camera& )  = default;
+    Camera( const Camera&& ) = delete;
 
-    RX_API auto operator=( const Camera& ) -> Camera& = default;
+    auto operator=( const Camera& ) -> Camera& = default;
     auto operator=( const Camera && ) -> Camera& = delete;
 
     /// Is used to update camera vectors etc.
     ///
     /// The user has to override this function for the camera to work like intended.
     /// @note The function will be called every tick.
-    RX_API virtual void update( );
+    virtual void update( );
 
     /// @return Returns the camera's position.
-    [[nodiscard]] RX_API auto getPosition( ) const -> const glm::vec3& { return position; }
+    auto getPosition( ) const -> const glm::vec3& { return _position; }
 
     /// Is used to change the camera's position.
     /// @param position The new camera position.
-    RX_API void setPosition( const glm::vec3& position );
+    void setPosition( const glm::vec3& position );
 
     /// Is used to set a size for the camera that fits the viewport dimensions.
     /// @param width The width of the viewport.
     /// @param height The height of the viewport.
-    RX_API void setSize( int width, int height );
+    void setSize( int width, int height );
 
     /// Is used to set the camera's field of view.
     /// @param fov The new field of view.
-    RX_API void setFov( float fov );
+    void setFov( float fov );
 
     /// Is used to set the mouse sensitivity.
     /// @param sensitivity The new mouse sensitivity.
-    RX_API void setSensitivity( float sensitivity );
+    void setSensitivity( float sensitivity );
 
     /// @return The view matrix.
-    [[nodiscard]] auto getViewMatrix( ) const -> const glm::mat4& { return view; }
+    auto getViewMatrix( ) const -> const glm::mat4& { return _view; }
 
     /// @return The projection matrix.
-    [[nodiscard]] auto getProjectionMatrix( ) const -> const glm::mat4& { return projection; }
+    auto getProjectionMatrix( ) const -> const glm::mat4& { return _projection; }
 
     /// @return The view matrix inversed.
-    [[nodiscard]] auto getViewInverseMatrix( ) const -> const glm::mat4& { return viewInverse; }
+    auto getViewInverseMatrix( ) const -> const glm::mat4& { return _viewInverse; }
 
     /// @return The projection matrix inversed.
-    [[nodiscard]] auto getProjectionInverseMatrix( ) const -> const glm::mat4& { return projectionInverse; }
+    auto getProjectionInverseMatrix( ) const -> const glm::mat4& { return _projectionInverse; }
 
     /// Re-calculates the camera's view matrix as well as the inversed view matrix.
-    RX_API void updateViewMatrix( );
+    void updateViewMatrix( );
 
     /// Re-calculates the camera's projection matrix as well as the inversed projection matrix.
-    RX_API void updateProjectionMatrix( );
+    void updateProjectionMatrix( );
 
     /// Processes mouse input (default implementation).
     /// @param xOffset The difference of the current offset on the x-axis and the previous offset.
     /// @param yOffset The difference of the current offset on the y-axis and the previous offset.
-    RX_API virtual void processMouse( float xOffset, float yOffset );
+    virtual void processMouse( float xOffset, float yOffset );
 
-    RX_API virtual void processKeyboard( ) {}
+    /// Used to handle user-defined keyboard inputs or input events.
+    /// This function is called inside update() and followed up by a call to updateViewMatrix() and does not have to be called by the user.
+    /// @note Implementation of this function should be inside a user-defined inherited class.
+    virtual void processKeyboard( ) {}
 
-    bool updateView = true; ///< Keeps track of whether or not to udpate the view matrix.
-    bool updateProj = true; ///< Keeps track of whether or not to udpate the projection matrix.
+    bool _updateView = true; ///< Keeps track of whether or not to udpate the view matrix.
+    bool _updateProj = true; ///< Keeps track of whether or not to udpate the projection matrix.
 
   protected:
     /// Updates the camera vectors.
     /// @note Only needs to be called if mouse was moved.
-    RX_API void updateVectors( );
+    void updateVectors( );
 
-    int width;  ///< The width of the viewport.
-    int height; ///< The height of the viewport.
+    int _width;  ///< The width of the viewport.
+    int _height; ///< The height of the viewport.
 
-    glm::vec3 position; ///< The camera's position.
+    glm::vec3 _position; ///< The camera's position.
 
-    glm::mat4 view       = glm::mat4( 1.0F ); ///< The view matrix.
-    glm::mat4 projection = glm::mat4( 1.0F ); ///< The projection matrix
+    glm::mat4 _view       = glm::mat4( 1.0F ); ///< The view matrix.
+    glm::mat4 _projection = glm::mat4( 1.0F ); ///< The projection matrix
 
-    glm::mat4 viewInverse       = glm::mat4( 1.0F ); ///< The view matrix inversed.
-    glm::mat4 projectionInverse = glm::mat4( 1.0F ); ///< The projection matrix inversed.
+    glm::mat4 _viewInverse       = glm::mat4( 1.0F ); ///< The view matrix inversed.
+    glm::mat4 _projectionInverse = glm::mat4( 1.0F ); ///< The projection matrix inversed.
 
-    glm::vec3 worldUp = { 0.0F, 1.0F, 0.0F }; ///< The world up vector.
-    glm::vec3 up      = { };                  ///< The local up vector.
-    glm::vec3 right   = { };                  ///< The local right vector.
-    glm::vec3 front   = { };                  ///< The viewing direction.
+    glm::vec3 _worldUp = { 0.0F, 1.0F, 0.0F }; ///< The world up vector.
+    glm::vec3 _up      = { };                  ///< The local up vector.
+    glm::vec3 _right   = { };                  ///< The local right vector.
+    glm::vec3 _front   = { };                  ///< The viewing direction.
 
-    float yaw         = -90.0F; ///< The yaw (left and right).
-    float pitch       = 0.0F;   ///< The pitch (down and up).
-    float sensitivity = 0.06F;  ///< The mouse sensitivity.
-    float fov         = 45.0F;  ///< The field of view.
+    float _yaw         = -90.0F; ///< The yaw (left and right).
+    float _pitch       = 0.0F;   ///< The pitch (down and up).
+    float _sensitivity = 0.06F;  ///< The mouse sensitivity.
+    float _fov         = 45.0F;  ///< The field of view.
   };
 } // namespace RAYEX_NAMESPACE
 

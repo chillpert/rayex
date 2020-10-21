@@ -27,7 +27,7 @@ namespace RAYEX_NAMESPACE
 
   void Buffer::init( vk::DeviceSize size, vk::BufferUsageFlags usage, const std::vector<uint32_t>& queueFamilyIndices, vk::MemoryPropertyFlags memoryPropertyFlags, void* pNextMemory )
   {
-    this->size = size;
+    _size = size;
 
     vk::SharingMode sharingMode = queueFamilyIndices.size( ) > 1 ? vk::SharingMode::eConcurrent : vk::SharingMode::eExclusive;
 
@@ -38,10 +38,10 @@ namespace RAYEX_NAMESPACE
                                      static_cast<uint32_t>( queueFamilyIndices.size( ) ), // queueFamilyIndexCount
                                      queueFamilyIndices.data( ) );                        // pQueueFamilyIndices
 
-    this->buffer = g_device.createBufferUnique( createInfo );
-    RX_ASSERT( this->buffer, "Failed to create buffer." );
+    _buffer = g_device.createBufferUnique( createInfo );
+    RX_ASSERT( _buffer, "Failed to create buffer." );
 
-    this->memory = vk::Initializer::allocateMemoryUnique( this->buffer.get( ), memoryPropertyFlags, pNextMemory );
+    _memory = vk::Initializer::allocateMemoryUnique( _buffer.get( ), memoryPropertyFlags, pNextMemory );
   }
 
   void Buffer::copyToBuffer( const Buffer& buffer ) const
@@ -49,8 +49,8 @@ namespace RAYEX_NAMESPACE
     CommandBuffer commandBuffer( g_transferCmdPool );
     commandBuffer.begin( );
     {
-      vk::BufferCopy copyRegion( 0, 0, this->size );
-      commandBuffer.get( 0 ).copyBuffer( this->buffer.get( ), buffer.get( ), 1, &copyRegion ); // CMD
+      vk::BufferCopy copyRegion( 0, 0, _size );
+      commandBuffer.get( 0 ).copyBuffer( _buffer.get( ), buffer.get( ), 1, &copyRegion ); // CMD
     }
     commandBuffer.end( );
     commandBuffer.submitToQueue( g_transferQueue );
@@ -61,8 +61,8 @@ namespace RAYEX_NAMESPACE
     CommandBuffer commandBuffer( g_transferCmdPool );
     commandBuffer.begin( );
     {
-      vk::BufferCopy copyRegion( 0, 0, this->size );
-      commandBuffer.get( 0 ).copyBuffer( this->buffer.get( ), buffer, 1, &copyRegion ); // CMD
+      vk::BufferCopy copyRegion( 0, 0, _size );
+      commandBuffer.get( 0 ).copyBuffer( _buffer.get( ), buffer, 1, &copyRegion ); // CMD
     }
     commandBuffer.end( );
     commandBuffer.submitToQueue( g_transferQueue );
@@ -80,7 +80,7 @@ namespace RAYEX_NAMESPACE
                                   vk::Offset3D { 0, 0, 0 },                     // imageOffset
                                   image.getExtent( ) );                         // imageExtent
 
-      commandBuffer.get( 0 ).copyBufferToImage( this->buffer.get( ), image.get( ), vk::ImageLayout::eTransferDstOptimal, 1, &region ); // CMD
+      commandBuffer.get( 0 ).copyBufferToImage( _buffer.get( ), image.get( ), vk::ImageLayout::eTransferDstOptimal, 1, &region ); // CMD
     }
     commandBuffer.end( );
     commandBuffer.submitToQueue( g_graphicsQueue );

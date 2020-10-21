@@ -14,13 +14,13 @@ namespace RAYEX_NAMESPACE
                                          static_cast<uint32_t>( dependencies.size( ) ), // dependencyCount
                                          dependencies.data( ) );                        // pDependencies
 
-    this->renderPass = g_device.createRenderPassUnique( createInfo );
-    RX_ASSERT( this->renderPass, "Failed to create render pass." );
+    _renderPass = g_device.createRenderPassUnique( createInfo );
+    RX_ASSERT( _renderPass, "Failed to create render pass." );
   }
 
   void RenderPass::begin( vk::Framebuffer framebuffer, vk::CommandBuffer commandBuffer, vk::Rect2D renderArea, const std::vector<vk::ClearValue>& clearValues ) const
   {
-    vk::RenderPassBeginInfo beginInfo( this->renderPass.get( ),                      // renderPass
+    vk::RenderPassBeginInfo beginInfo( _renderPass.get( ),                           // renderPass
                                        framebuffer,                                  // framebuffer
                                        renderArea,                                   // renderArea
                                        static_cast<uint32_t>( clearValues.size( ) ), // clearValueCount

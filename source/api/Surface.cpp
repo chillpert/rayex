@@ -20,36 +20,36 @@ namespace RAYEX_NAMESPACE
       RX_ERROR( "Failed to create surface" );
     }
 
-    this->surface = surface;
-    g_surface     = this->surface;
-    RX_ASSERT( this->surface, "Failed to create surface." );
+    _surface  = surface;
+    g_surface = _surface;
+    RX_ASSERT( _surface, "Failed to create surface." );
   }
 
   void Surface::assessSettings( )
   {
     // Get all surface capabilities.
-    this->capabilities = g_physicalDevice.getSurfaceCapabilitiesKHR( this->surface );
+    _capabilities = g_physicalDevice.getSurfaceCapabilitiesKHR( _surface );
 
     // Check a present mode.
-    std::vector<vk::PresentModeKHR> presentModes = g_physicalDevice.getSurfacePresentModesKHR( this->surface );
+    std::vector<vk::PresentModeKHR> presentModes = g_physicalDevice.getSurfacePresentModesKHR( _surface );
 
-    if ( !Util::find<vk::PresentModeKHR>( this->presentMode, presentModes ) )
+    if ( !Util::find<vk::PresentModeKHR>( _presentMode, presentModes ) )
     {
-      Util::find<vk::PresentModeKHR>( vk::PresentModeKHR::eMailbox, presentModes ) ? this->presentMode                                                                                    = vk::PresentModeKHR::eMailbox :
-                                                                                     Util::find<vk::PresentModeKHR>( vk::PresentModeKHR::eFifoRelaxed, presentModes ) ? this->presentMode = vk::PresentModeKHR::eFifoRelaxed :
-                                                                                                                                                                        this->presentMode = vk::PresentModeKHR::eFifo;
+      Util::find<vk::PresentModeKHR>( vk::PresentModeKHR::eMailbox, presentModes ) ? _presentMode                                                                                    = vk::PresentModeKHR::eMailbox :
+                                                                                     Util::find<vk::PresentModeKHR>( vk::PresentModeKHR::eFifoRelaxed, presentModes ) ? _presentMode = vk::PresentModeKHR::eFifoRelaxed :
+                                                                                                                                                                        _presentMode = vk::PresentModeKHR::eFifo;
 
       // Fall back, as FIFO is always supported on every device.
-      RX_WARN( "Preferred present mode not available. Falling back to ", vk::to_string( this->presentMode ), " present mode." );
+      RX_WARN( "Preferred present mode not available. Falling back to ", vk::to_string( _presentMode ), " present mode." );
     }
 
     // Check format and color space.
-    auto surfaceFormats = g_physicalDevice.getSurfaceFormatsKHR( this->surface );
+    auto surfaceFormats = g_physicalDevice.getSurfaceFormatsKHR( _surface );
 
     bool colorSpaceAndFormatSupported = false;
     for ( const auto& iter : surfaceFormats )
     {
-      if ( iter.format == this->format && iter.colorSpace == this->colorSpace )
+      if ( iter.format == _format && iter.colorSpace == _colorSpace )
       {
         colorSpaceAndFormatSupported = true;
         break;
@@ -59,20 +59,20 @@ namespace RAYEX_NAMESPACE
     // If the prefered format and color space are not available, fall back.
     if ( !colorSpaceAndFormatSupported )
     {
-      this->format     = surfaceFormats[0].format;
-      this->colorSpace = surfaceFormats[0].colorSpace;
+      _format     = surfaceFormats[0].format;
+      _colorSpace = surfaceFormats[0].colorSpace;
       RX_WARN( "Preferred format and colorspace not supported. Falling back to the first option of each." );
     }
 
-    g_surfaceFormat = this->format;
+    g_surfaceFormat = _format;
   }
 
   void Surface::destroy( )
   {
-    if ( this->surface )
+    if ( _surface )
     {
-      g_instance.destroySurfaceKHR( this->surface );
-      this->surface = nullptr;
+      g_instance.destroySurfaceKHR( _surface );
+      _surface = nullptr;
     }
   }
 } // namespace RAYEX_NAMESPACE

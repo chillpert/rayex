@@ -19,10 +19,10 @@ namespace RAYEX_NAMESPACE
     float padding0;     ///< Vertex padding 0.
 
     /// @return Returns the hard-coded vertex format (eR32G32B32Sfloat).
-    static vk::Format getVertexPositionFormat( ) { return vk::Format::eR32G32B32Sfloat; }
+    static auto getVertexPositionFormat( ) -> vk::Format { return vk::Format::eR32G32B32Sfloat; }
 
     /// @return Returns the vertex's Vulkan binding description.
-    static std::array<vk::VertexInputBindingDescription, 1> getBindingDescriptions( )
+    static auto getBindingDescriptions( ) -> std::array<vk::VertexInputBindingDescription, 1>
     {
       std::array<vk::VertexInputBindingDescription, 1> bindingDescriptions { };
 
@@ -34,7 +34,7 @@ namespace RAYEX_NAMESPACE
     }
 
     /// @return Returns the vertex's Vulkan attribute descriptions for all four attributes.
-    static std::array<vk::VertexInputAttributeDescription, 4> getAttributeDescriptions( )
+    static auto getAttributeDescriptions( ) -> std::array<vk::VertexInputAttributeDescription, 4>
     {
       std::array<vk::VertexInputAttributeDescription, 4> attributeDescriptions { };
 
@@ -62,7 +62,7 @@ namespace RAYEX_NAMESPACE
     }
 
     /// @cond INTERNAL
-    bool operator==( const Vertex& other ) const
+    auto operator==( const Vertex& other ) const -> bool
     {
       return pos == other.pos && color == other.color && texCoord == other.texCoord && normal == other.normal;
     }
@@ -76,7 +76,7 @@ namespace std
   template <>
   struct hash<RAYEX_NAMESPACE::Vertex>
   {
-    size_t operator( )( const RAYEX_NAMESPACE::Vertex& vertex ) const
+    auto operator( )( const RAYEX_NAMESPACE::Vertex& vertex ) const -> size_t
     {
       size_t hashPos      = hash<glm::vec3>( )( vertex.pos );
       size_t hashColor    = hash<glm::vec3>( )( vertex.color );

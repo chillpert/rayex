@@ -7,7 +7,7 @@ namespace RAYEX_NAMESPACE
 {
   DebugMessenger::~DebugMessenger( )
   {
-    if ( this->debugMessenger )
+    if ( _debugMessenger )
     {
       destroy( );
     }
@@ -22,18 +22,18 @@ namespace RAYEX_NAMESPACE
                                                      debugMessengerCallback,
                                                      nullptr );
 
-    this->debugMessenger = g_instance.createDebugUtilsMessengerEXT( createInfo );
-    RX_ASSERT( this->debugMessenger, "Failed to create debug messenger." );
+    _debugMessenger = g_instance.createDebugUtilsMessengerEXT( createInfo );
+    RX_ASSERT( _debugMessenger, "Failed to create debug messenger." );
 #endif
   }
 
   void DebugMessenger::destroy( )
   {
 #ifdef RX_DEBUG
-    if ( this->debugMessenger )
+    if ( _debugMessenger )
     {
-      g_instance.destroyDebugUtilsMessengerEXT( this->debugMessenger );
-      this->debugMessenger = nullptr;
+      g_instance.destroyDebugUtilsMessengerEXT( _debugMessenger );
+      _debugMessenger = nullptr;
     }
 #endif
   }

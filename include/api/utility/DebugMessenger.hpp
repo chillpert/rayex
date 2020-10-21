@@ -15,7 +15,7 @@ namespace RAYEX_NAMESPACE
     DebugMessenger( ) = default;
 
     /// Calls destroy().
-    RX_API ~DebugMessenger( );
+    ~DebugMessenger( );
 
     DebugMessenger( const DebugMessenger& )  = delete;
     DebugMessenger( const DebugMessenger&& ) = delete;
@@ -32,7 +32,7 @@ namespace RAYEX_NAMESPACE
     /// Destroys the debug messenger.
     void destroy( );
 
-    vk::DebugUtilsMessengerEXT debugMessenger;
+    vk::DebugUtilsMessengerEXT _debugMessenger;
   };
 
   /// @cond INTERNAL

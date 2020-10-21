@@ -98,13 +98,19 @@ namespace RAYEX_NAMESPACE
 
     for ( size_t i = 0; i < vertexBuffers.size( ); ++i )
     {
-      Blas blas = modelToBlas( vertexBuffers[i], indexBuffers[i] );
+      if ( vertexBuffers[i].get( ) && indexBuffers[i].get( ) )
+      {
+        Blas blas = modelToBlas( vertexBuffers[i], indexBuffers[i] );
 
-      // We could add more geometry in each BLAS, but we add only one for now.
-      allBlas.emplace_back( blas );
+        // We could add more geometry in each BLAS, but we add only one for now.
+        allBlas.emplace_back( blas );
+      }
     }
 
-    buildBlas( allBlas, vk::BuildAccelerationStructureFlagBitsKHR::eAllowCompaction | vk::BuildAccelerationStructureFlagBitsKHR::eAllowUpdate | vk::BuildAccelerationStructureFlagBitsKHR::ePreferFastBuild );
+    if ( !allBlas.empty( ) )
+    {
+      buildBlas( allBlas, vk::BuildAccelerationStructureFlagBitsKHR::eAllowCompaction | vk::BuildAccelerationStructureFlagBitsKHR::eAllowUpdate | vk::BuildAccelerationStructureFlagBitsKHR::ePreferFastBuild );
+    }
   }
 
   void RayTracingBuilder::buildBlas( const std::vector<Blas>& blas_, vk::BuildAccelerationStructureFlagsKHR flags )
@@ -302,7 +308,10 @@ namespace RAYEX_NAMESPACE
       ++i;
     }
 
-    buildTlas( instances, vk::BuildAccelerationStructureFlagBitsKHR::ePreferFastTrace | vk::BuildAccelerationStructureFlagBitsKHR::eAllowUpdate );
+    if ( !instances.empty( ) )
+    {
+      buildTlas( instances, vk::BuildAccelerationStructureFlagBitsKHR::ePreferFastTrace | vk::BuildAccelerationStructureFlagBitsKHR::eAllowUpdate );
+    }
   }
 
   void RayTracingBuilder::buildTlas( const std::vector<BlasInstance>& instances, vk::BuildAccelerationStructureFlagsKHR flags )

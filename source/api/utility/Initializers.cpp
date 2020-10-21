@@ -419,6 +419,8 @@ namespace vk::Initializer
     auto properties = physicalDevice.getProperties( );
     RX_SUCCESS( "Selected GPU: ", properties.deviceName );
 
+    RX_ASSERT( RAYEX_NAMESPACE::g_maxGeometries % properties.limits.minStorageBufferOffsetAlignment == 0, "Max geometries does not align with min storage buffer offset. If you encounter this error, please insult the developer of this application who was to lazy to check these values for other systems!" );
+
     RAYEX_NAMESPACE::g_physicalDeviceLimits = properties.limits;
     RAYEX_NAMESPACE::g_physicalDevice       = physicalDevice;
 

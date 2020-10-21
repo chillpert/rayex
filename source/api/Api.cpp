@@ -132,8 +132,6 @@ namespace RAYEX_NAMESPACE
     this->pointLightsBuffer.init<PointLightSSBO>( pointLights );
 
     RX_LOG_TIME_STOP( "Finished initializing Vulkan (base)" );
-
-    RX_ASSERT( g_maxGeometries % g_physicalDeviceLimits.minStorageBufferOffsetAlignment == 0, "Max geometries does not align with min storage buffer offset. If you encounter this error, please insult the developer of this application!" );
   }
 
   void Api::initScene( )
@@ -143,9 +141,9 @@ namespace RAYEX_NAMESPACE
     // Uniform buffers for camera
     this->cameraUniformBuffer.init<CameraUbo>( );
 
-    this->vertexBuffers.resize( this->scene->geometries.size( ) );
-    this->indexBuffers.resize( this->scene->geometries.size( ) );
-    this->meshBuffers.resize( this->scene->geometries.size( ) );
+    this->vertexBuffers.resize( g_maxGeometries );
+    this->indexBuffers.resize( g_maxGeometries );
+    this->meshBuffers.resize( g_maxGeometries );
 
     for ( size_t i = 0; i < this->scene->geometries.size( ); ++i )
     {
@@ -716,9 +714,9 @@ namespace RAYEX_NAMESPACE
     // Create the ray tracing descriptor set layout
     {
       // TLAS
-      this->rtDescriptors.bindings.add( 0, vk::DescriptorType::eAccelerationStructureKHR, vk::ShaderStageFlagBits::eRaygenKHR | vk::ShaderStageFlagBits::eClosestHitKHR );
+      this->rtDescriptors.bindings.add( 0, vk::DescriptorType::eAccelerationStructureKHR, vk::ShaderStageFlagBits::eRaygenKHR | vk::ShaderStageFlagBits::eClosestHitKHR, 1, vk::DescriptorBindingFlagBits::ePartiallyBound );
       // Output image
-      this->rtDescriptors.bindings.add( 1, vk::DescriptorType::eStorageImage, vk::ShaderStageFlagBits::eRaygenKHR );
+      this->rtDescriptors.bindings.add( 1, vk::DescriptorType::eStorageImage, vk::ShaderStageFlagBits::eRaygenKHR, 1, vk::DescriptorBindingFlagBits::ePartiallyBound );
 
       this->rtDescriptors.layout = this->rtDescriptors.bindings.initLayoutUnique( );
       this->rtDescriptors.pool   = this->rtDescriptors.bindings.initPoolUnique( g_swapchainImageCount );
@@ -846,7 +844,7 @@ namespace RAYEX_NAMESPACE
                                               0,
                                               VK_WHOLE_SIZE );
 
-    RX_ASSERT( meshBuffers.size( ) < g_maxGeometries, "Can not bind more than ", g_maxGeometries, " meshes." );
+    RX_ASSERT( meshBuffers.size( ) <= g_maxGeometries, "Can not bind more than ", g_maxGeometries, " meshes." );
 
     for ( size_t i = 0; i < g_maxGeometries; ++i )
     {
@@ -886,7 +884,7 @@ namespace RAYEX_NAMESPACE
 
   void Api::updateRayTracingModelData( )
   {
-    RX_ASSERT( this->scene->geometries.size( ) < g_maxGeometries, "Can not bind more than ", g_maxGeometries, " geometries." );
+    RX_ASSERT( this->scene->geometries.size( ) <= g_maxGeometries, "Can not bind more than ", g_maxGeometries, " geometries." );
 
     // Update RT model data.
     for ( size_t i = 0; i < g_maxGeometries; ++i )

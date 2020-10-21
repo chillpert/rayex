@@ -53,7 +53,6 @@ auto main( ) -> int
 
   // Submit instances for drawing.
   renderer.scene.setGeometryInstances( { awpInstance1, planeInstance, awpInstance2 } );
-
   // Submit lights.
   auto directionalLight = rx::directionalLightInstance( glm::vec3( -4.0F, 10.0F, 5.0F ) );
 

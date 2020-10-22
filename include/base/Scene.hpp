@@ -12,6 +12,7 @@ namespace RAYEX_NAMESPACE
 
   /// Stores all geoemtry, geometry instances and light sources.
   /// Provides functions to change said data.
+  /// @todo removeGeometry()
   /// @ingroup BASE
   class RX_API Scene
   {

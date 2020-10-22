@@ -135,17 +135,15 @@ namespace RAYEX_NAMESPACE
     std::vector<vk::UniqueSemaphore> _imageAvailableSemaphores; ///< All semaphores for signaling that a particular swapchain image is available.
     std::vector<vk::UniqueSemaphore> _finishedRenderSemaphores; ///< All semaphores for signaling that a render operation has finished.
 
-    Descriptors _rtDescriptors;         ///< Descriptors for ray-tracing-related data ( no equivalent in rasterization shader ).
-    Descriptors _rtSceneDescriptors;    ///< Descriptors for scene-related data in ray tracing.
-    Descriptors _rsSceneDescriptors;    ///< Descriptors for scene-related data in rasterization.
-    Descriptors _vertexDataDescriptors; ///< Descriptors for vertex data.
-    Descriptors _indexDataDescriptors;  ///< Descriptors for index data.
+    Descriptors _rtDescriptors;       ///< Descriptors for ray-tracing-related data ( no equivalent in rasterization shader ).
+    Descriptors _rtSceneDescriptors;  ///< Descriptors for scene-related data in ray tracing.
+    Descriptors _rsSceneDescriptors;  ///< Descriptors for scene-related data in rasterization.
+    Descriptors _geometryDescriptors; ///< Descriptors for vertex data.
 
-    std::vector<vk::DescriptorSet> _rtDescriptorSets;         ///< Descriptor sets for ray tracing-related data.
-    std::vector<vk::DescriptorSet> _rtSceneDescriptorSets;    ///< Descriptor sets for scene-related data in rasterization shaders.
-    std::vector<vk::DescriptorSet> _rsSceneDescriptorSets;    ///< Descriptor sets for scene-related data in ray tracing shaders.
-    std::vector<vk::DescriptorSet> _vertexDataDescriptorSets; ///< Descriptor sets for vertex data.
-    std::vector<vk::DescriptorSet> _indexDataDescriptorSets;  ///< Descriptor sets for index data.
+    std::vector<vk::DescriptorSet> _rtDescriptorSets;       ///< Descriptor sets for ray tracing-related data.
+    std::vector<vk::DescriptorSet> _rtSceneDescriptorSets;  ///< Descriptor sets for scene-related data in rasterization shaders.
+    std::vector<vk::DescriptorSet> _rsSceneDescriptorSets;  ///< Descriptor sets for scene-related data in ray tracing shaders.
+    std::vector<vk::DescriptorSet> _geometryDescriptorSets; ///< Descriptor sets for vertex data.
 
     std::vector<VertexBuffer> _vertexBuffers; ///< Multiple buffers for vertices because of variable descriptor indexing.
     std::vector<IndexBuffer> _indexBuffers;   ///< Multiple buffers for indices because of variable descriptor indexing.

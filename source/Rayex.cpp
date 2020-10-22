@@ -95,14 +95,13 @@ namespace RAYEX_NAMESPACE
       return;
     }
 
+    _api->update( );
     _running = _api->render( );
 
     if ( !_running )
     {
       return;
     }
-
-    _api->update( );
   }
 
   void Rayex::setCamera( std::shared_ptr<Camera> camera )

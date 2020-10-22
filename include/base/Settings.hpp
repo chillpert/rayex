@@ -9,6 +9,7 @@ namespace RAYEX_NAMESPACE
   ///
   /// Any necessary pipeline recreations and swapchain recreations will not be performed at the point of calling any setter but instead the next time the renderer
   /// will be updated.
+  /// @warning Any function that sets the maximum of a given entity needs to be called before RAYEX_NAMESPACE::Rayex::init().
   /// @ingroup BASE
   /// @todo Add a setUseTotalPathsOnly( bool flag )
   class RX_API Settings

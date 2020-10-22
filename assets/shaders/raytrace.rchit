@@ -45,23 +45,23 @@ layout( binding = 3, set = 1 ) buffer GeometryInstances
 }
 geometryInstances;
 
-layout( binding = 4, set = 1 ) buffer Meshes
-{
-  Mesh m[];
-}
-meshes[];
-
 layout( binding = 0, set = 2 ) buffer Vertices
 {
   vec4 v[];
 }
 vertices[];
 
-layout( binding = 0, set = 3 ) buffer Indices
+layout( binding = 1, set = 2 ) buffer Indices
 {
   uint i[];
 }
 indices[];
+
+layout( binding = 2, set = 2 ) buffer Meshes
+{
+  Mesh m[];
+}
+meshes[];
 
 layout( push_constant ) uniform Constants
 {

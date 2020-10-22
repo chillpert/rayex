@@ -127,8 +127,9 @@ namespace RAYEX_NAMESPACE
     // Create fences and semaphores.
     initSyncObjects( );
 
-    // At this point nodes are unknown. So I just create a storage buffer with the maximum value or with the anticipated value in settings.
-    // enables the user to add more nodes later on during runtime.
+    // Resize and initialize buffers with "dummy data".
+    // The advantage of doing this is that the buffers are all initialized right away (even though it is invalid data) and
+    // this makes it possible to call fill instead of init again, when changing any of the data below.
     std::vector<GeometryInstance> geometryInstances( _settings->_maxGeometryInstances );
     _geometryInstancesBuffer.init<GeometryInstance>( geometryInstances );
 
@@ -152,37 +153,6 @@ namespace RAYEX_NAMESPACE
     // Uniform buffers for camera
     _cameraUniformBuffer.init<CameraUbo>( );
 
-    for ( size_t i = 0; i < _scene->_geometries.size( ); ++i )
-    {
-      if ( i < _scene->_geometries.size( ) )
-      {
-        if ( _scene->_geometries[i] != nullptr )
-        {
-          if ( !_scene->_geometries[i]->initialized )
-          {
-            _vertexBuffers[i].init( _scene->_geometries[i]->vertices );
-            _indexBuffers[i].init( _scene->_geometries[i]->indices );
-
-            memAlignedMeshes.resize( _scene->_geometries[i]->meshes.size( ) );
-            std::transform( _scene->_geometries[i]->meshes.begin( ),
-                            _scene->_geometries[i]->meshes.end( ),
-                            memAlignedMeshes.begin( ),
-                            []( const Mesh& mesh ) { return MeshSSBO { glm::vec4( mesh.material.ambient, -1.0F ),
-                                                                       glm::vec4( mesh.material.diffuse, -1.0F ),
-                                                                       glm::vec4( mesh.material.specular, -1.0F ),
-                                                                       { },
-                                                                       { },
-                                                                       { },
-                                                                       mesh.indexOffset }; } );
-
-            _meshBuffers[i].init<MeshSSBO>( memAlignedMeshes );
-
-            _scene->_geometries[i]->initialized = true;
-          }
-        }
-      }
-    }
-
     // Descriptor sets and layouts
     initDescriptorSets( );
 
@@ -202,12 +172,8 @@ namespace RAYEX_NAMESPACE
 
     _settings->_maxRecursionDepth = _rtBuilder.getRtProperties( ).maxRecursionDepth;
 
-    updateAccelerationStructures( );
-
     // Init and record swapchain command buffers.
-    //_swapchainCommandBuffers.reset( );
     _swapchainCommandBuffers.init( _graphicsCmdPool.get( ), components::swapchainImageCount, vk::CommandBufferUsageFlagBits::eRenderPassContinue );
-    recordSwapchainCommandBuffers( );
 
     RX_LOG_TIME_STOP( "Finished initializing Vulkan (scene)" );
   }
@@ -253,9 +219,6 @@ namespace RAYEX_NAMESPACE
         }
       }
 
-      /// @todo Do not call wait idle.
-      components::device.waitIdle( );
-      updateSceneDescriptors( );    // Contains descriptors for meshes.
       updateRayTracingModelData( ); // Contains descriptors for vertices and indices.
     }
 
@@ -304,6 +267,9 @@ namespace RAYEX_NAMESPACE
 
       if ( !_scene->_pointLights.empty( ) )
       {
+        /// @todo Do not call wait idle.
+        components::device.waitIdle( );
+
         memAlignedPointLights.resize( _scene->_pointLights.size( ) );
         std::transform( _scene->_pointLights.begin( ),
                         _scene->_pointLights.end( ),
@@ -514,8 +480,8 @@ namespace RAYEX_NAMESPACE
     // Ray tracing pipeline
     std::vector<vk::DescriptorSetLayout> allRtDescriptorSetLayouts = { _rtDescriptors.layout.get( ),
                                                                        _rtSceneDescriptors.layout.get( ),
-                                                                       _vertexDataDescriptors.layout.get( ),
-                                                                       _indexDataDescriptors.layout.get( ) };
+                                                                       _geometryDescriptors.layout.get( ) };
+    //_indexDataDescriptors.layout.get( ) };
     _rtBuilder.createPipeline( allRtDescriptorSetLayouts, _settings );
 
     // Rasterization pipeline
@@ -737,8 +703,8 @@ namespace RAYEX_NAMESPACE
 
       std::vector<vk::DescriptorSet> descriptorSets = { _rtDescriptorSets[imageIndex],
                                                         _rtSceneDescriptorSets[imageIndex],
-                                                        _vertexDataDescriptorSets[imageIndex],
-                                                        _indexDataDescriptorSets[imageIndex] };
+                                                        _geometryDescriptorSets[imageIndex] };
+      //_indexDataDescriptorSets[imageIndex] };
 
       _swapchainCommandBuffers.get( imageIndex ).bindDescriptorSets( vk::PipelineBindPoint::eRayTracingKHR, _rtBuilder.getPipelineLayout( ),
                                                                      0,                                               // first set
@@ -773,9 +739,9 @@ namespace RAYEX_NAMESPACE
     // Create the ray tracing descriptor set layout
     {
       // TLAS
-      _rtDescriptors.bindings.add( 0, vk::DescriptorType::eAccelerationStructureKHR, vk::ShaderStageFlagBits::eRaygenKHR | vk::ShaderStageFlagBits::eClosestHitKHR, 1, vk::DescriptorBindingFlagBits::ePartiallyBound );
+      _rtDescriptors.bindings.add( 0, vk::DescriptorType::eAccelerationStructureKHR, vk::ShaderStageFlagBits::eRaygenKHR | vk::ShaderStageFlagBits::eClosestHitKHR );
       // Output image
-      _rtDescriptors.bindings.add( 1, vk::DescriptorType::eStorageImage, vk::ShaderStageFlagBits::eRaygenKHR, 1, vk::DescriptorBindingFlagBits::ePartiallyBound );
+      _rtDescriptors.bindings.add( 1, vk::DescriptorType::eStorageImage, vk::ShaderStageFlagBits::eRaygenKHR );
 
       _rtDescriptors.layout = _rtDescriptors.bindings.initLayoutUnique( );
       _rtDescriptors.pool   = _rtDescriptors.bindings.initPoolUnique( components::swapchainImageCount );
@@ -792,8 +758,6 @@ namespace RAYEX_NAMESPACE
       _rtSceneDescriptors.bindings.add( 2, vk::DescriptorType::eStorageBuffer, vk::ShaderStageFlagBits::eClosestHitKHR );
       // Scene description buffer
       _rtSceneDescriptors.bindings.add( 3, vk::DescriptorType::eStorageBuffer, vk::ShaderStageFlagBits::eClosestHitKHR );
-      // Mesh buffer
-      _rtSceneDescriptors.bindings.add( 4, vk::DescriptorType::eStorageBuffer, vk::ShaderStageFlagBits::eClosestHitKHR, _settings->_maxGeometry, vk::DescriptorBindingFlagBits::eVariableDescriptorCount );
 
       _rtSceneDescriptors.layout = _rtSceneDescriptors.bindings.initLayoutUnique( );
       _rtSceneDescriptors.pool   = _rtSceneDescriptors.bindings.initPoolUnique( static_cast<uint32_t>( _settings->_maxGeometry ) * components::swapchainImageCount );
@@ -814,22 +778,32 @@ namespace RAYEX_NAMESPACE
       _rsSceneDescriptorSets     = vk::Initializer::initDescriptorSetsUnique( _rsSceneDescriptors.pool, _rsSceneDescriptors.layout );
     }
 
-    // Vertex model data descriptor set layout.
+    // Geometry descriptor set layout.
     {
-      _vertexDataDescriptors.bindings.add( 0, vk::DescriptorType::eStorageBuffer, vk::ShaderStageFlagBits::eClosestHitKHR, _settings->_maxGeometry, vk::DescriptorBindingFlagBits::eVariableDescriptorCount );
+      // Vertex buffers
+      _geometryDescriptors.bindings.add( 0,
+                                         vk::DescriptorType::eStorageBuffer,
+                                         vk::ShaderStageFlagBits::eClosestHitKHR,
+                                         _settings->_maxGeometry,
+                                         vk::DescriptorBindingFlagBits::eUpdateAfterBind );
 
-      _vertexDataDescriptors.layout = _vertexDataDescriptors.bindings.initLayoutUnique( );
-      _vertexDataDescriptors.pool   = _vertexDataDescriptors.bindings.initPoolUnique( static_cast<uint32_t>( _settings->_maxGeometry ) * components::swapchainImageCount );
-      _vertexDataDescriptorSets     = vk::Initializer::initDescriptorSetsUnique( _vertexDataDescriptors.pool, _vertexDataDescriptors.layout );
-    }
+      // Index buffers
+      _geometryDescriptors.bindings.add( 1,
+                                         vk::DescriptorType::eStorageBuffer,
+                                         vk::ShaderStageFlagBits::eClosestHitKHR,
+                                         _settings->_maxGeometry,
+                                         vk::DescriptorBindingFlagBits::eUpdateAfterBind );
 
-    // Index model data descriptor set layout.
-    {
-      _indexDataDescriptors.bindings.add( 0, vk::DescriptorType::eStorageBuffer, vk::ShaderStageFlagBits::eClosestHitKHR, _settings->_maxGeometry, vk::DescriptorBindingFlagBits::eVariableDescriptorCount );
+      // Mesh buffers
+      _geometryDescriptors.bindings.add( 2,
+                                         vk::DescriptorType::eStorageBuffer,
+                                         vk::ShaderStageFlagBits::eClosestHitKHR,
+                                         _settings->_maxGeometry,
+                                         vk::DescriptorBindingFlagBits::eUpdateAfterBind | vk::DescriptorBindingFlagBits::eVariableDescriptorCount );
 
-      _indexDataDescriptors.layout = _indexDataDescriptors.bindings.initLayoutUnique( );
-      _indexDataDescriptors.pool   = _indexDataDescriptors.bindings.initPoolUnique( static_cast<uint32_t>( _settings->_maxGeometry ) * components::swapchainImageCount );
-      _indexDataDescriptorSets     = vk::Initializer::initDescriptorSetsUnique( _indexDataDescriptors.pool, _indexDataDescriptors.layout );
+      _geometryDescriptors.layout = _geometryDescriptors.bindings.initLayoutUnique( vk::DescriptorSetLayoutCreateFlagBits::eUpdateAfterBindPool );
+      _geometryDescriptors.pool   = _geometryDescriptors.bindings.initPoolUnique( static_cast<uint32_t>( _settings->_maxGeometry ) * components::swapchainImageCount, vk::DescriptorPoolCreateFlagBits::eUpdateAfterBind );
+      _geometryDescriptorSets     = vk::Initializer::initDescriptorSetsUnique( _geometryDescriptors.pool, _geometryDescriptors.layout );
     }
   }
 
@@ -903,25 +877,11 @@ namespace RAYEX_NAMESPACE
                                               0,
                                               VK_WHOLE_SIZE );
 
-    RX_ASSERT( _meshBuffers.size( ) <= _settings->_maxGeometry, "Can not bind more than ", _settings->_maxGeometry, " meshes." );
-
-    std::vector<vk::DescriptorBufferInfo> meshBufferInfos;
-    meshBufferInfos.reserve( _meshBuffers.size( ) );
-    for ( const auto& meshBuffer : _meshBuffers )
-    {
-      vk::DescriptorBufferInfo meshDataBufferInfo( meshBuffer.get( ),
-                                                   0,
-                                                   VK_WHOLE_SIZE );
-
-      meshBufferInfos.push_back( meshDataBufferInfo );
-    }
-
     // Update RT scene descriptor sets.
     _rtSceneDescriptors.bindings.write( _rtSceneDescriptorSets, 0, _cameraUniformBuffer._bufferInfos );
     _rtSceneDescriptors.bindings.write( _rtSceneDescriptorSets, 1, &directionalLightsInfo );
     _rtSceneDescriptors.bindings.write( _rtSceneDescriptorSets, 2, &pointLightsInfo );
     _rtSceneDescriptors.bindings.write( _rtSceneDescriptorSets, 3, &rtInstancesInfo );
-    _rtSceneDescriptors.bindings.writeArray( _rtSceneDescriptorSets, 4, meshBufferInfos.data( ) );
 
     _rtSceneDescriptors.bindings.update( );
 
@@ -935,6 +895,7 @@ namespace RAYEX_NAMESPACE
   void Api::updateRayTracingModelData( )
   {
     RX_ASSERT( _scene->_geometries.size( ) <= _settings->_maxGeometry, "Can not bind more than ", _settings->_maxGeometry, " geometries." );
+    RX_ASSERT( _meshBuffers.size( ) <= _settings->_maxGeometry, "Can not bind more than ", _settings->_maxGeometry, " meshes." );
 
     // Update RT model data.
     std::vector<vk::DescriptorBufferInfo> vertexBufferInfos;
@@ -959,11 +920,22 @@ namespace RAYEX_NAMESPACE
       indexBufferInfos.push_back( indexDataBufferInfo );
     }
 
-    _vertexDataDescriptors.bindings.writeArray( _vertexDataDescriptorSets, 0, vertexBufferInfos.data( ) );
-    _vertexDataDescriptors.bindings.update( );
+    std::vector<vk::DescriptorBufferInfo> meshBufferInfos;
+    meshBufferInfos.reserve( _meshBuffers.size( ) );
+    for ( const auto& meshBuffer : _meshBuffers )
+    {
+      vk::DescriptorBufferInfo meshDataBufferInfo( meshBuffer.get( ),
+                                                   0,
+                                                   VK_WHOLE_SIZE );
 
-    _indexDataDescriptors.bindings.writeArray( _indexDataDescriptorSets, 0, indexBufferInfos.data( ) );
-    _indexDataDescriptors.bindings.update( );
+      meshBufferInfos.push_back( meshDataBufferInfo );
+    }
+
+    _geometryDescriptors.bindings.writeArray( _geometryDescriptorSets, 0, vertexBufferInfos.data( ) );
+    _geometryDescriptors.bindings.writeArray( _geometryDescriptorSets, 1, indexBufferInfos.data( ) );
+    _geometryDescriptors.bindings.writeArray( _geometryDescriptorSets, 2, meshBufferInfos.data( ) );
+
+    _geometryDescriptors.bindings.update( );
   }
 
   auto Api::findGeometry( uint32_t geometryIndex ) -> std::shared_ptr<Geometry>

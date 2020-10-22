@@ -494,12 +494,13 @@ namespace vk::Initializer
     }
 
     PhysicalDeviceDescriptorIndexingFeatures indexingFeatures;
-    indexingFeatures.runtimeDescriptorArray                     = VK_TRUE;
-    indexingFeatures.shaderStorageBufferArrayNonUniformIndexing = VK_TRUE;
-    indexingFeatures.descriptorBindingVariableDescriptorCount   = VK_TRUE;
-    indexingFeatures.descriptorBindingPartiallyBound            = VK_TRUE;
-    //indexingFeatures.descriptorBindingStorageBufferUpdateAfterBind = VK_TRUE;
+    indexingFeatures.runtimeDescriptorArray                        = VK_TRUE;
+    indexingFeatures.shaderStorageBufferArrayNonUniformIndexing    = VK_TRUE;
+    indexingFeatures.descriptorBindingVariableDescriptorCount      = VK_TRUE;
+    indexingFeatures.descriptorBindingPartiallyBound               = VK_TRUE;
+    indexingFeatures.descriptorBindingStorageBufferUpdateAfterBind = VK_TRUE;
     //indexingFeatures.descriptorBindingStorageImageUpdateAfterBind  = VK_TRUE;
+    indexingFeatures.descriptorBindingUpdateUnusedWhilePending = VK_TRUE;
 
     PhysicalDeviceRobustness2FeaturesEXT robustness2FeaturesEXT;
     robustness2FeaturesEXT.nullDescriptor = VK_TRUE;

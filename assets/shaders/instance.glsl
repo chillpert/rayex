@@ -23,9 +23,10 @@ struct Mesh
   vec4 padding0;
   vec4 padding1;
   vec4 padding2;
+
+  uint indexOffset;
+
   uint padding3;
   uint padding4;
   uint padding5;
-
-  uint indexOffset;
 };

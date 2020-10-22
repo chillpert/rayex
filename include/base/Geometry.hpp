@@ -9,9 +9,13 @@ namespace RAYEX_NAMESPACE
   /// @ingroup BASE
   struct Material
   {
-    glm::vec4 ambient  = glm::vec4( 1.0F, 1.0F, 1.0F, -1.0F ); // vec3 ambient  + vec1 texture index
-    glm::vec4 diffuse  = glm::vec4( 0.2F, 1.0F, 1.0F, -1.0F ); // vec3 diffuse  + vec1 texture index
-    glm::vec4 specular = glm::vec4( 1.0F, 1.0F, 1.0F, -1.0F ); // vec3 specular + vec1 texture index
+    glm::vec3 ambient  = glm::vec3( 1.0F, 1.0F, 1.0F );
+    glm::vec3 diffuse  = glm::vec3( 0.2F, 1.0F, 1.0F );
+    glm::vec3 specular = glm::vec3( 1.0F, 1.0F, 1.0F );
+
+    std::string_view ambientTexPath  = "";
+    std::string_view diffuseTexPath  = "";
+    std::string_view specularTexPath = "";
   };
 
   /// Describes a sub-mesh and its material.
@@ -19,18 +23,8 @@ namespace RAYEX_NAMESPACE
   /// @ingroup BASE
   struct Mesh
   {
-    Material material = { }; ///< The mesh's material.
-
-  private:
-    glm::vec4 padding0 = glm::vec4( 1.0F ); ///< Buffer padding (ignore).
-    glm::vec4 padding1 = glm::vec4( 1.0F ); ///< Buffer padding (ignore).
-    glm::vec4 padding2 = glm::vec4( 1.0F ); ///< Buffer padding (ignore).
-    uint32_t padding3  = 0;                 ///< Buffer padding (ignore).
-    uint32_t padding4  = 0;                 ///< Buffer padding (ignore).
-    uint32_t padding5  = 0;                 ///< Buffer padding (ignore).
-
-  public:
-    uint32_t indexOffset = 0; ///< Refers to the offset of this mesh inside a Geometry::indices container.
+    Material material    = { }; ///< The mesh's material.
+    uint32_t indexOffset = 0;   ///< Refers to the offset of this mesh inside a Geometry::indices container.
   };
 
   /// Describes a geometry Rayex can render.
@@ -56,11 +50,6 @@ namespace RAYEX_NAMESPACE
     glm::mat4 transform    = glm::mat4( 1.0F ); ///< The instance's world transform matrix.
     glm::mat4 transformIT  = glm::mat4( 1.0F ); ///< The inverse transpose of transform.
     uint32_t geometryIndex = 0;                 ///< Used to assign this instance a model.
-
-  private:
-    float padding0 = 0.0F; ///< Buffer padding (ignore).
-    float padding1 = 0.0F; ///< Buffer padding (ignore).
-    float padding2 = 0.0F; ///< Buffer padding (ignore).
   };
 
   /// A commodity function for loading a wavefront (.obj) model file and allocate a geometry object from it.

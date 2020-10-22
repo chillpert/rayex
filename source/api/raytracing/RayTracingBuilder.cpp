@@ -308,7 +308,7 @@ namespace RAYEX_NAMESPACE
       ++i;
     }
 
-    if ( !instances.empty( ) )
+    if ( !instances.empty( ) && !_blas_.empty( ) )
     {
       buildTlas( instances, vk::BuildAccelerationStructureFlagBitsKHR::ePreferFastTrace | vk::BuildAccelerationStructureFlagBitsKHR::eAllowUpdate );
     }

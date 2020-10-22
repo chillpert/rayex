@@ -60,15 +60,17 @@ namespace RAYEX_NAMESPACE
         float z      = -1.0F;
 
         auto ambient = materials[materialIndex].ambient;
-        mat.ambient  = glm::vec4( ambient[0], ambient[1], ambient[2], -1.0F );
+        mat.ambient  = glm::vec3( ambient[0], ambient[1], ambient[2] );
 
         auto diffuse = materials[materialIndex].diffuse;
-        mat.diffuse  = glm::vec4( diffuse[0], diffuse[1], diffuse[2], -1.0F );
+        mat.diffuse  = glm::vec3( diffuse[0], diffuse[1], diffuse[2] );
 
         auto specular = materials[materialIndex].specular;
-        mat.specular  = glm::vec4( specular[0], specular[1], specular[2], -1.0F );
+        mat.specular  = glm::vec3( specular[0], specular[1], specular[2] );
 
         mesh.material = mat;
+
+        // @todo Add texture support.
       }
 
       geometry->meshes.push_back( mesh );

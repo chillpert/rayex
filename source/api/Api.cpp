@@ -27,9 +27,10 @@ namespace RAYEX_NAMESPACE
   size_t currentFrame = 0;
   size_t prevFrame    = 0;
 
-  std::vector<GeometryInstance> dereferencedGeometryInstances;
-  std::vector<DirectionalLightSSBO> dereferencedDirectionalLights;
-  std::vector<PointLightSSBO> dereferencedPointLights;
+  std::vector<GeometryInstanceSSBO> memAlignedGeometryInstances;
+  std::vector<MeshSSBO> memAlignedMeshes;
+  std::vector<DirectionalLightSSBO> memAlignedDirectionalLights;
+  std::vector<PointLightSSBO> memAlignedPointLights;
 
   CameraUbo cameraUbo;
 
@@ -161,7 +162,20 @@ namespace RAYEX_NAMESPACE
           {
             _vertexBuffers[i].init( _scene->_geometries[i]->vertices );
             _indexBuffers[i].init( _scene->_geometries[i]->indices );
-            _meshBuffers[i].init( _scene->_geometries[i]->meshes );
+
+            memAlignedMeshes.resize( _scene->_geometries[i]->meshes.size( ) );
+            std::transform( _scene->_geometries[i]->meshes.begin( ),
+                            _scene->_geometries[i]->meshes.end( ),
+                            memAlignedMeshes.begin( ),
+                            []( const Mesh& mesh ) { return MeshSSBO { glm::vec4( mesh.material.ambient, -1.0F ),
+                                                                       glm::vec4( mesh.material.diffuse, -1.0F ),
+                                                                       glm::vec4( mesh.material.specular, -1.0F ),
+                                                                       { },
+                                                                       { },
+                                                                       { },
+                                                                       mesh.indexOffset }; } );
+
+            _meshBuffers[i].init<MeshSSBO>( memAlignedMeshes );
 
             _scene->_geometries[i]->initialized = true;
           }
@@ -219,7 +233,19 @@ namespace RAYEX_NAMESPACE
             {
               _vertexBuffers[i].init( _scene->_geometries[i]->vertices );
               _indexBuffers[i].init( _scene->_geometries[i]->indices );
-              _meshBuffers[i].init( _scene->_geometries[i]->meshes );
+
+              memAlignedMeshes.resize( _scene->_geometries[i]->meshes.size( ) );
+              std::transform( _scene->_geometries[i]->meshes.begin( ),
+                              _scene->_geometries[i]->meshes.end( ),
+                              memAlignedMeshes.begin( ),
+                              []( const Mesh& mesh ) { return MeshSSBO { glm::vec4( mesh.material.ambient, -1.0F ),
+                                                                         glm::vec4( mesh.material.diffuse, -1.0F ),
+                                                                         glm::vec4( mesh.material.specular, -1.0F ),
+                                                                         { },
+                                                                         { },
+                                                                         { },
+                                                                         mesh.indexOffset }; } );
+              _meshBuffers[i].init<MeshSSBO>( memAlignedMeshes );
 
               _scene->_geometries[i]->initialized = true;
             }
@@ -240,13 +266,15 @@ namespace RAYEX_NAMESPACE
       if ( !_scene->_geometryInstances.empty( ) )
       {
         // Dereference pointers and store values in new vector that will be uploaded.
-        dereferencedGeometryInstances.resize( _scene->_geometryInstances.size( ) );
+        memAlignedGeometryInstances.resize( _scene->_geometryInstances.size( ) );
         std::transform( _scene->_geometryInstances.begin( ),
                         _scene->_geometryInstances.end( ),
-                        dereferencedGeometryInstances.begin( ),
-                        []( std::shared_ptr<GeometryInstance> instance ) { return *instance; } );
+                        memAlignedGeometryInstances.begin( ),
+                        []( std::shared_ptr<GeometryInstance> instance ) { return GeometryInstanceSSBO { instance->transform,
+                                                                                                         instance->transformIT,
+                                                                                                         instance->geometryIndex }; } );
 
-        _geometryInstancesBuffer.fill<GeometryInstance>( dereferencedGeometryInstances.data( ) );
+        _geometryInstancesBuffer.fill<GeometryInstanceSSBO>( memAlignedGeometryInstances.data( ) );
         updateAccelerationStructures( );
       }
     }
@@ -257,16 +285,16 @@ namespace RAYEX_NAMESPACE
 
       if ( !_scene->_directionalLights.empty( ) )
       {
-        dereferencedDirectionalLights.resize( _scene->_directionalLights.size( ) );
+        memAlignedDirectionalLights.resize( _scene->_directionalLights.size( ) );
         std::transform( _scene->_directionalLights.begin( ),
                         _scene->_directionalLights.end( ),
-                        dereferencedDirectionalLights.begin( ),
+                        memAlignedDirectionalLights.begin( ),
                         []( std::shared_ptr<DirectionalLight> light ) { return DirectionalLightSSBO { glm::vec4( light->ambient, light->ambientIntensity ),
                                                                                                       glm::vec4( light->diffuse, light->diffuseIntensity ),
                                                                                                       glm::vec4( light->specular, light->specularIntensity ),
                                                                                                       glm::vec4( light->direction, 1.0F ) }; } );
 
-        _directionalLightsBuffer.fill<DirectionalLightSSBO>( dereferencedDirectionalLights.data( ) );
+        _directionalLightsBuffer.fill<DirectionalLightSSBO>( memAlignedDirectionalLights.data( ) );
       }
     }
 
@@ -276,16 +304,16 @@ namespace RAYEX_NAMESPACE
 
       if ( !_scene->_pointLights.empty( ) )
       {
-        dereferencedPointLights.resize( _scene->_pointLights.size( ) );
+        memAlignedPointLights.resize( _scene->_pointLights.size( ) );
         std::transform( _scene->_pointLights.begin( ),
                         _scene->_pointLights.end( ),
-                        dereferencedPointLights.begin( ),
+                        memAlignedPointLights.begin( ),
                         []( std::shared_ptr<PointLight> light ) { return PointLightSSBO { glm::vec4( light->ambient, light->ambientIntensity ),
                                                                                           glm::vec4( light->diffuse, light->diffuseIntensity ),
                                                                                           glm::vec4( light->specular, light->specularIntensity ),
                                                                                           glm::vec4( light->position, 1.0F ) }; } );
 
-        _pointLightsBuffer.fill<PointLightSSBO>( dereferencedPointLights.data( ) );
+        _pointLightsBuffer.fill<PointLightSSBO>( memAlignedPointLights.data( ) );
       }
     }
 
@@ -745,9 +773,9 @@ namespace RAYEX_NAMESPACE
     // Create the ray tracing descriptor set layout
     {
       // TLAS
-      _rtDescriptors.bindings.add( 0, vk::DescriptorType::eAccelerationStructureKHR, vk::ShaderStageFlagBits::eRaygenKHR | vk::ShaderStageFlagBits::eClosestHitKHR );
+      _rtDescriptors.bindings.add( 0, vk::DescriptorType::eAccelerationStructureKHR, vk::ShaderStageFlagBits::eRaygenKHR | vk::ShaderStageFlagBits::eClosestHitKHR, 1, vk::DescriptorBindingFlagBits::ePartiallyBound );
       // Output image
-      _rtDescriptors.bindings.add( 1, vk::DescriptorType::eStorageImage, vk::ShaderStageFlagBits::eRaygenKHR );
+      _rtDescriptors.bindings.add( 1, vk::DescriptorType::eStorageImage, vk::ShaderStageFlagBits::eRaygenKHR, 1, vk::DescriptorBindingFlagBits::ePartiallyBound );
 
       _rtDescriptors.layout = _rtDescriptors.bindings.initLayoutUnique( );
       _rtDescriptors.pool   = _rtDescriptors.bindings.initPoolUnique( components::swapchainImageCount );

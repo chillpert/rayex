@@ -5,7 +5,7 @@
 auto main( ) -> int
 {
   // Window dimensions.
-  const int width  = 1400;
+  const int width  = 1600;
   const int height = 900;
 
   rx::Rayex renderer;

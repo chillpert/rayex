@@ -84,6 +84,14 @@ namespace RAYEX_NAMESPACE
     /// @return Returns the maximum recursion depth on the GPU.
     auto getMaxRecursionDepth( ) const -> uint32_t { return _maxRecursionDepth; }
 
+    /// Used to set the maximum of geometry (models).
+    /// Try to keep this as small as possible, as this affects performance.
+    /// @param amount The amount of maximum geometry.
+    void setMaxGeoemtry( uint32_t amount );
+
+    /// @return Returns the maximum amount of geometry.
+    auto getMaxGeometry( ) const -> uint32_t { return _maxGeometry; }
+
     /// Used to toggle the jitter cam.
     ///
     /// A jitter cam can be used for anti aliasing a static scene.
@@ -137,10 +145,10 @@ namespace RAYEX_NAMESPACE
     bool _refreshPipeline  = false; ///< Keeps track of whether or not the graphics pipeline needs to be recreated.
     bool _refreshSwapchain = false; ///< Keeps track of whether or not the swapchain needs to be recreated.
 
-    uint32_t _maxDirectionalLights = 100;  ///< Can be set to avoid pipeline recreation everytime a directional light is added.
-    uint32_t _maxPointLights       = 100;  ///< Can be set to avoid pipeline recreation everytime a point light is added.
-    uint32_t _maxGeometryInstances = 2000; ///< Can be set to avoid pipeline recreation everytime a geometry instance is added.
-    uint32_t _maxGeometry          = 512;
+    uint32_t _maxDirectionalLights = 100; ///< Can be set to avoid pipeline recreation everytime a directional light is added.
+    uint32_t _maxPointLights       = 100; ///< Can be set to avoid pipeline recreation everytime a point light is added.
+    uint32_t _maxGeometryInstances = 100; ///< Can be set to avoid pipeline recreation everytime a geometry instance is added.
+    uint32_t _maxGeometry          = 64;  ///< The maximum amount of geometry (Must be a multiple of minimum storage buffer alignment).
 
     std::string _assetsPath; ///< Where all assets like models, textures and shaders are stored.
 

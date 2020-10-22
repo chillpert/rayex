@@ -77,7 +77,7 @@ layout( push_constant ) uniform Constants
   float padding0;
 };
 
-Vertex unpack( uint index, uint modelIndex )
+Vertex decompressVertex( uint index, uint modelIndex )
 {
   vec4 d0 = vertices[nonuniformEXT( modelIndex )].v[3 * index + 0];
   vec4 d1 = vertices[nonuniformEXT( modelIndex )].v[3 * index + 1];
@@ -99,9 +99,9 @@ void main( )
                      indices[nonuniformEXT( modelIndex )].i[3 * gl_PrimitiveID + 1],   //
                      indices[nonuniformEXT( modelIndex )].i[3 * gl_PrimitiveID + 2] ); //
 
-  Vertex v0 = unpack( ind.x, modelIndex );
-  Vertex v1 = unpack( ind.y, modelIndex );
-  Vertex v2 = unpack( ind.z, modelIndex );
+  Vertex v0 = decompressVertex( ind.x, modelIndex );
+  Vertex v1 = decompressVertex( ind.y, modelIndex );
+  Vertex v2 = decompressVertex( ind.z, modelIndex );
 
   const vec3 barycentrics = vec3( 1.0 - attribs.x - attribs.y, attribs.x, attribs.y );
   vec3 normal             = v0.normal * barycentrics.x + v1.normal * barycentrics.y + v2.normal * barycentrics.z;

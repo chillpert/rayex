@@ -170,7 +170,7 @@ namespace RAYEX_NAMESPACE
       }
     }
 
-    RX_INFO( "Could not find geometry in scene. Trying to create geometry instead." );
-    return loadObj( path );
+    RX_INFO( "Could not find geometry in scene." );
+    return nullptr;
   }
 } // namespace RAYEX_NAMESPACE

@@ -102,6 +102,23 @@ namespace RAYEX_NAMESPACE
     _maxGeometryInstances = amount;
   }
 
+  void Settings::setMaxGeoemtry( uint32_t amount )
+  {
+    if ( amount == 0 )
+    {
+      RX_WARN( "Can not use value 0 for the amount of maximum geometry. Using 16 instead." );
+      amount = 16;
+    }
+
+    if ( amount % 4 != 0 )
+    {
+      RX_WARN( "Minimum storage buffer alignment must be a multiple of 4. Using 16 instead." );
+      amount = 16;
+    }
+
+    _maxGeometry = amount;
+  }
+
   void Settings::setDefaultAssetsPath( )
   {
     _assetsPath = std::filesystem::current_path( ).string( ) += "/";

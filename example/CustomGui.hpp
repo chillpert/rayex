@@ -28,7 +28,14 @@ private:
     {
       if ( ImGui::Button( "Add box" ) )
       {
-        auto cube      = _renderer->scene( ).findGeometry( "models/cube.obj" );
+        std::string_view path = "models/cube.obj";
+        auto cube             = _renderer->scene( ).findGeometry( path );
+        if ( cube == nullptr )
+        {
+          cube = rx::loadObj( path );
+          _renderer->scene( ).submitGeometry( cube );
+        }
+
         auto transform = glm::scale( glm::mat4( 1.0F ), glm::vec3( 0.3F, 0.3F, 0.3F ) );
         transform      = glm::rotate( transform, getRandomFloat( 0.0F, 360.0F ), glm::vec3( 0.0F, 1.0F, 0.0F ) );
         transform      = glm::translate( transform, getRandomUniquePosition( -10.0F, 10.0F ) );
@@ -41,7 +48,14 @@ private:
 
       if ( ImGui::Button( "Add sphere" ) )
       {
-        auto sphere    = _renderer->scene( ).findGeometry( "models/sphere.obj" );
+        std::string_view path = "models/sphere.obj";
+        auto sphere           = _renderer->scene( ).findGeometry( path );
+        if ( sphere == nullptr )
+        {
+          sphere = rx::loadObj( path );
+          _renderer->scene( ).submitGeometry( sphere );
+        }
+
         auto transform = glm::scale( glm::mat4( 1.0F ), glm::vec3( 0.1F, 0.1F, 0.1F ) );
         transform      = glm::rotate( transform, getRandomFloat( 0.0F, 360.0F ), glm::vec3( 0.0F, 1.0F, 0.0F ) );
         transform      = glm::translate( transform, getRandomUniquePosition( -45.0F, 45.0F ) );
@@ -54,7 +68,14 @@ private:
 
       if ( ImGui::Button( "Add awp" ) )
       {
-        auto awp       = _renderer->scene( ).findGeometry( "models/awpdlore/awpdlore.obj" );
+        std::string_view path = "models/awpdlore/awpdlore.obj";
+        auto awp              = _renderer->scene( ).findGeometry( path );
+        if ( awp == nullptr )
+        {
+          awp = rx::loadObj( path );
+          _renderer->scene( ).submitGeometry( awp );
+        }
+
         auto transform = glm::scale( glm::mat4( 1.0F ), glm::vec3( 0.3F, 0.3F, 0.3F ) );
         transform      = glm::rotate( transform, getRandomFloat( 0.0F, 360.0F ), glm::vec3( 0.0F, 1.0F, 0.0F ) );
         transform      = glm::translate( transform, getRandomUniquePosition( -10.0F, 10.0F ) );

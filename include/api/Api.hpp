@@ -147,10 +147,6 @@ namespace RAYEX_NAMESPACE
     std::vector<vk::DescriptorSet> _vertexDataDescriptorSets; ///< Descriptor sets for vertex data.
     std::vector<vk::DescriptorSet> _indexDataDescriptorSets;  ///< Descriptor sets for index data.
 
-    std::vector<vk::DescriptorBufferInfo> _vertexDataBufferInfos; ///< Descriptor buffer infos for the vertex data.
-    std::vector<vk::DescriptorBufferInfo> _indexDataBufferInfos;  ///< Descriptor buffer infos for the index data.
-    std::vector<vk::DescriptorBufferInfo> _meshDataBufferInfos;   ///< Descriptor buffer infos for the mesh data.
-
     std::vector<VertexBuffer> _vertexBuffers; ///< Multiple buffers for vertices because of variable descriptor indexing.
     std::vector<IndexBuffer> _indexBuffers;   ///< Multiple buffers for indices because of variable descriptor indexing.
     std::vector<StorageBuffer> _meshBuffers;  ///< Multiple buffers for meshes because of variable descriptor indexing.

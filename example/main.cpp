@@ -23,18 +23,17 @@ auto main( ) -> int
   renderer.settings( ).setMaxDirectionalLights( 2 );
   renderer.settings( ).setMaxPointLights( 20 );
   renderer.settings( ).setMaxGeometryInstances( 100 );
+  renderer.settings( ).setMaxGeoemtry( 8 );
 
   // ... and initialize the renderer.
   renderer.init( );
 
   // Load geometries.
-  auto awp    = rx::loadObj( "models/awpdlore/awpdlore.obj" );
-  auto sphere = rx::loadObj( "models/sphere.obj" );
-  auto plane  = rx::loadObj( "models/plane.obj" );
-  auto cube   = rx::loadObj( "models/cube.obj" );
+  auto awp   = rx::loadObj( "models/awpdlore/awpdlore.obj" );
+  auto plane = rx::loadObj( "models/plane.obj" );
 
   // Submit geometries.
-  renderer.scene( ).setGeometries( { awp, sphere, plane, cube } );
+  renderer.scene( ).setGeometries( { awp, plane } );
 
   // Create instances of the geometries.
   auto transform = glm::scale( glm::mat4( 1.0F ), glm::vec3( 0.25F ) );

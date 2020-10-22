@@ -267,9 +267,6 @@ namespace RAYEX_NAMESPACE
 
       if ( !_scene->_pointLights.empty( ) )
       {
-        /// @todo Do not call wait idle.
-        components::device.waitIdle( );
-
         memAlignedPointLights.resize( _scene->_pointLights.size( ) );
         std::transform( _scene->_pointLights.begin( ),
                         _scene->_pointLights.end( ),
@@ -739,9 +736,17 @@ namespace RAYEX_NAMESPACE
     // Create the ray tracing descriptor set layout
     {
       // TLAS
-      _rtDescriptors.bindings.add( 0, vk::DescriptorType::eAccelerationStructureKHR, vk::ShaderStageFlagBits::eRaygenKHR | vk::ShaderStageFlagBits::eClosestHitKHR );
+      _rtDescriptors.bindings.add( 0,
+                                   vk::DescriptorType::eAccelerationStructureKHR,
+                                   vk::ShaderStageFlagBits::eRaygenKHR | vk::ShaderStageFlagBits::eClosestHitKHR,
+                                   1,
+                                   vk::DescriptorBindingFlagBits::eUpdateUnusedWhilePending | vk::DescriptorBindingFlagBits::ePartiallyBound );
       // Output image
-      _rtDescriptors.bindings.add( 1, vk::DescriptorType::eStorageImage, vk::ShaderStageFlagBits::eRaygenKHR );
+      _rtDescriptors.bindings.add( 1,
+                                   vk::DescriptorType::eStorageImage,
+                                   vk::ShaderStageFlagBits::eRaygenKHR,
+                                   1,
+                                   vk::DescriptorBindingFlagBits::eUpdateUnusedWhilePending | vk::DescriptorBindingFlagBits::ePartiallyBound );
 
       _rtDescriptors.layout = _rtDescriptors.bindings.initLayoutUnique( );
       _rtDescriptors.pool   = _rtDescriptors.bindings.initPoolUnique( components::swapchainImageCount );

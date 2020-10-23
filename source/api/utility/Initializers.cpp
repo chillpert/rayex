@@ -499,8 +499,7 @@ namespace vk::Initializer
     indexingFeatures.descriptorBindingVariableDescriptorCount      = VK_TRUE;
     indexingFeatures.descriptorBindingPartiallyBound               = VK_TRUE;
     indexingFeatures.descriptorBindingStorageBufferUpdateAfterBind = VK_TRUE;
-    //indexingFeatures.descriptorBindingStorageImageUpdateAfterBind  = VK_TRUE;
-    indexingFeatures.descriptorBindingUpdateUnusedWhilePending = VK_TRUE;
+    indexingFeatures.descriptorBindingUpdateUnusedWhilePending     = VK_TRUE;
 
     PhysicalDeviceRobustness2FeaturesEXT robustness2FeaturesEXT;
     robustness2FeaturesEXT.nullDescriptor = VK_TRUE;
@@ -516,8 +515,7 @@ namespace vk::Initializer
     bufferDeviceAddressFeatures.pNext               = &rayTracingFeatures;
 
     PhysicalDeviceFeatures deviceFeatures;
-    deviceFeatures.samplerAnisotropy              = VK_TRUE;
-    deviceFeatures.vertexPipelineStoresAndAtomics = VK_TRUE;
+    deviceFeatures.samplerAnisotropy = VK_TRUE;
 
     PhysicalDeviceFeatures2 deviceFeatures2 { deviceFeatures };
     deviceFeatures2.pNext = &bufferDeviceAddressFeatures;

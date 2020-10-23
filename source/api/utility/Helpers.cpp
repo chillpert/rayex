@@ -117,21 +117,6 @@ namespace vk::Helper
     return result;
   }
 
-  /*
-  auto unpack( const std::unordered_map<std::string, std::shared_ptr<RAYEX_NAMESPACE::Model>>& models ) -> std::vector<std::shared_ptr<RAYEX_NAMESPACE::Model>>
-  {
-    std::vector<std::shared_ptr<RAYEX_NAMESPACE::Model>> result;
-    result.reserve( models.size( ) );
-
-    for ( const auto& model : models )
-    {
-      result.push_back( model.second );
-    }
-
-    return result;
-  }
-  */
-
   auto getPoolSizes( const std::vector<DescriptorSetLayoutBinding>& layoutBindings, uint32_t maxSets ) -> std::vector<DescriptorPoolSize>
   {
     std::vector<DescriptorPoolSize> result;
@@ -360,14 +345,34 @@ namespace vk::Helper
     auto feats = physicalDevice.getFeatures( );
 
     PhysicalDeviceRayTracingFeaturesKHR rayTracingFeatures;
+
+    PhysicalDeviceDescriptorIndexingFeatures indexingFeatures;
+    rayTracingFeatures.pNext = &indexingFeatures;
+
+    PhysicalDeviceBufferDeviceAddressFeatures deviceAddressFeatures;
+    indexingFeatures.pNext = &deviceAddressFeatures;
+
+    PhysicalDeviceRobustness2FeaturesEXT robustness2Features;
+    deviceAddressFeatures.pNext = &robustness2Features;
+
     PhysicalDeviceFeatures2 features2;
-    features2.setPNext( &rayTracingFeatures );
+    features2.pNext = &rayTracingFeatures;
 
     physicalDevice.getFeatures2( &features2 );
 
     std::string deviceName = props.deviceName;
 
-    if ( rayTracingFeatures.rayTracing == VK_FALSE || rayTracingFeatures.rayQuery == VK_FALSE )
+    if ( indexingFeatures.runtimeDescriptorArray == VK_FALSE ||
+         indexingFeatures.shaderStorageBufferArrayNonUniformIndexing == VK_FALSE ||
+         indexingFeatures.descriptorBindingVariableDescriptorCount == VK_FALSE ||
+         indexingFeatures.descriptorBindingPartiallyBound == VK_FALSE ||
+         indexingFeatures.descriptorBindingStorageBufferUpdateAfterBind == VK_FALSE ||
+         indexingFeatures.descriptorBindingUpdateUnusedWhilePending == VK_FALSE ||
+         rayTracingFeatures.rayTracing == VK_FALSE ||
+         rayTracingFeatures.rayQuery == VK_FALSE ||
+         feats.samplerAnisotropy == VK_FALSE ||
+         deviceAddressFeatures.bufferDeviceAddress == VK_FALSE ||
+         robustness2Features.nullDescriptor == VK_FALSE )
     {
       return { 0U, deviceName };
     }

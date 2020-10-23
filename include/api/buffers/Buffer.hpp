@@ -63,14 +63,20 @@ namespace RAYEX_NAMESPACE
     /// @param source The data to fill the buffer with.
     /// @param offset The data's offset within the buffer.
     template <class T>
-    void fill( const T* source, vk::DeviceSize offset = 0 )
+    void fill( const T* source, vk::DeviceSize offset = 0, std::optional<vk::DeviceSize> size = { } )
     {
+      vk::DeviceSize finalSize = _size;
+      if ( size.has_value( ) )
+      {
+        finalSize = size.value( );
+      }
+
       // Only call mapMemory once or everytime the buffer has been initialized again.
       if ( !_mapped )
       {
         _mapped = true;
 
-        if ( components::device.mapMemory( _memory.get( ), offset, _size, { }, &_data ) != vk::Result::eSuccess )
+        if ( components::device.mapMemory( _memory.get( ), offset, finalSize, { }, &_data ) != vk::Result::eSuccess )
         {
           RX_ERROR( "Failed to map memory." );
         }

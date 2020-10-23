@@ -85,6 +85,11 @@ namespace RAYEX_NAMESPACE
       upload<T>( data );
     }
 
+    /// Uploads data to the buffer.
+    ///
+    /// First, the data is being copied to the staging buffer which is visible to the host.
+    /// Finally, the staging buffer is copied to the actual buffer on the device.
+    /// @param data The data to upload.
     template <typename T>
     void upload( const std::vector<T>& data )
     {

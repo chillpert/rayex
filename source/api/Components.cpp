@@ -22,8 +22,8 @@ namespace RAYEX_NAMESPACE
     vk::PhysicalDeviceLimits physicalDeviceLimits;
 
     uint32_t frameCount = 0;
-
     std::string assetsPath;
+    uint32_t geometryIndex = 0;
 
   } // namespace components
 } // namespace RAYEX_NAMESPACE

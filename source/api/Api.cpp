@@ -184,6 +184,31 @@ namespace RAYEX_NAMESPACE
 
     updateUniformBuffers( );
 
+    // If the scene is empty add a dummy triangle so that a TLAS can be built successfully.
+    if ( _scene->_geometryInstances.empty( ) )
+    {
+      auto triangle = std::make_shared<Geometry>( );
+      Vertex v1;
+      v1.normal = glm::vec3( 0.0F, 1.0F, 0.0F );
+      v1.pos    = glm::vec3( -0.00001F, 0.0F, 0.00001F );
+
+      Vertex v2;
+      v2.normal = glm::vec3( 0.0F, 1.0F, 0.0F );
+      v2.pos    = glm::vec3( 0.00001F, 0.0F, 0.00001F );
+
+      Vertex v3;
+      v3.normal = glm::vec3( 0.0F, 1.0F, 0.0F );
+      v3.pos    = glm::vec3( 0.00001F, 0.0F, -0.00001F );
+
+      triangle->vertices      = { v1, v2, v3 };
+      triangle->indices       = { 0, 1, 2 };
+      triangle->geometryIndex = components::geometryIndex++;
+      triangle->meshes.push_back( { { }, 0 } );
+
+      _scene->submitGeometry( triangle );
+      _scene->submitGeometryInstance( instance( triangle ) );
+    }
+
     // Init geometry storage buffers.
     if ( _scene->_uploadGeometries )
     {

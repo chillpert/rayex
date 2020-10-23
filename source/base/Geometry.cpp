@@ -1,5 +1,7 @@
 #include "base/Geometry.hpp"
 
+#include "api/Components.hpp"
+
 #define TINYOBJLOADER_IMPLEMENTATION
 #include <tiny_obj_loader.h>
 
@@ -11,10 +13,7 @@ namespace RAYEX_NAMESPACE
 
     std::shared_ptr<Geometry> geometry = std::make_shared<Geometry>( );
     geometry->path                     = path;
-
-    static uint32_t geometryIndex = 0;
-    geometry->geometryIndex       = geometryIndex;
-    ++geometryIndex;
+    geometry->geometryIndex            = components::geometryIndex++;
 
     tinyobj::attrib_t attrib;
     std::vector<tinyobj::shape_t> shapes;

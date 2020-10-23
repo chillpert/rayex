@@ -237,7 +237,7 @@ namespace RAYEX_NAMESPACE
                                                                                                          instance->transformIT,
                                                                                                          instance->geometryIndex }; } );
 
-        _geometryInstancesBuffer.fill<GeometryInstanceSSBO>( memAlignedGeometryInstances.data( ) );
+        _geometryInstancesBuffer.upload<GeometryInstanceSSBO>( memAlignedGeometryInstances );
         updateAccelerationStructures( );
       }
     }
@@ -257,7 +257,7 @@ namespace RAYEX_NAMESPACE
                                                                                                       glm::vec4( light->specular, light->specularIntensity ),
                                                                                                       glm::vec4( light->direction, 1.0F ) }; } );
 
-        _directionalLightsBuffer.fill<DirectionalLightSSBO>( memAlignedDirectionalLights.data( ) );
+        _directionalLightsBuffer.upload<DirectionalLightSSBO>( memAlignedDirectionalLights );
       }
     }
 
@@ -276,7 +276,7 @@ namespace RAYEX_NAMESPACE
                                                                                           glm::vec4( light->specular, light->specularIntensity ),
                                                                                           glm::vec4( light->position, 1.0F ) }; } );
 
-        _pointLightsBuffer.fill<PointLightSSBO>( memAlignedPointLights.data( ) );
+        _pointLightsBuffer.upload<PointLightSSBO>( memAlignedPointLights );
       }
     }
 
@@ -685,8 +685,8 @@ namespace RAYEX_NAMESPACE
                                        components::frameCount,
                                        _settings->getJitterCamSampleRatePerRayGen( ),
                                        _settings->getSsaaSampleRate( ),
-                                       static_cast<uint32_t>( _settings->getJitterCamEnabled( ) ),
-                                       static_cast<uint32_t>( _settings->getSsaaEnabled( ) ),
+                                       static_cast<uint32_t>( _settings->getJitterCamEnabled( ) ), // BAD: bool to uint32_t cast, but bool alignment is only 1 byte
+                                       static_cast<uint32_t>( _settings->getSsaaEnabled( ) ),      // BAD: bool to uint32_t cast, but bool alignment is only 1 byte
                                        directionalLightCount,
                                        pointLightCount };
 
@@ -701,7 +701,6 @@ namespace RAYEX_NAMESPACE
       std::vector<vk::DescriptorSet> descriptorSets = { _rtDescriptorSets[imageIndex],
                                                         _rtSceneDescriptorSets[imageIndex],
                                                         _geometryDescriptorSets[imageIndex] };
-      //_indexDataDescriptorSets[imageIndex] };
 
       _swapchainCommandBuffers.get( imageIndex ).bindDescriptorSets( vk::PipelineBindPoint::eRayTracingKHR, _rtBuilder.getPipelineLayout( ),
                                                                      0,                                               // first set

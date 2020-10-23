@@ -26,7 +26,7 @@ namespace RAYEX_NAMESPACE
     Buffer( const Buffer&& ) = delete;
 
     auto operator=( const Buffer& ) -> Buffer&;
-    auto operator=( const Buffer && ) -> Buffer& = delete;
+    auto operator=( const Buffer&& ) -> Buffer& = delete;
 
     virtual ~Buffer( ) = default;
 
@@ -65,13 +65,18 @@ namespace RAYEX_NAMESPACE
     template <class T>
     void fill( const T* source, vk::DeviceSize offset = 0 )
     {
-      void* data;
-      if ( components::device.mapMemory( _memory.get( ), offset, _size, { }, &data ) != vk::Result::eSuccess )
-        RX_ERROR( "Failed to map memory." );
+      // Only call mapMemory once or everytime the buffer has been initialized again.
+      if ( !_mapped )
+      {
+        _mapped = true;
 
-      memcpy( data, source, static_cast<uint32_t>( _size ) );
+        if ( components::device.mapMemory( _memory.get( ), offset, _size, { }, &_data ) != vk::Result::eSuccess )
+        {
+          RX_ERROR( "Failed to map memory." );
+        }
+      }
 
-      components::device.unmapMemory( _memory.get( ) );
+      memcpy( _data, source, static_cast<uint32_t>( _size ) );
     }
 
   protected:
@@ -79,32 +84,10 @@ namespace RAYEX_NAMESPACE
     vk::UniqueDeviceMemory _memory; ///< The buffer's memory with a unique handle.
 
     vk::DeviceSize _size = 0; ///< The buffer's size.
+
+    void* _data  = nullptr;
+    bool _mapped = false;
   };
-
-  template <typename T>
-  void createStorageBufferWithStaging( Buffer& buffer, std::vector<T>& data )
-  {
-    vk::DeviceSize size = sizeof( data[0] ) * data.size( );
-    vk::MemoryAllocateFlagsInfo allocateFlags( vk::MemoryAllocateFlagBitsKHR::eDeviceAddress );
-
-    // Set up the staging buffer.
-    Buffer stagingBuffer( size,                                                                                  // size
-                          vk::BufferUsageFlagBits::eTransferSrc | vk::BufferUsageFlagBits::eShaderDeviceAddress, // usage
-                          { components::transferFamilyIndex },                                                   // queueFamilyIndices
-                          vk::MemoryPropertyFlagBits::eHostVisible | vk::MemoryPropertyFlagBits::eHostCoherent,  // memoryPropertyFlags
-                          &allocateFlags );                                                                      // pNext of memory
-
-    buffer.init( size,                                                                                                                                                                     // size
-                 vk::BufferUsageFlagBits::eTransferDst | vk::BufferUsageFlagBits::eVertexBuffer | vk::BufferUsageFlagBits::eShaderDeviceAddress | vk::BufferUsageFlagBits::eStorageBuffer, // usage
-                 { components::transferFamilyIndex },                                                                                                                                      // queueFamilyIndices
-                 vk::MemoryPropertyFlagBits::eHostVisible | vk::MemoryPropertyFlagBits::eHostCoherent,                                                                                     // memoryPropertyFlags
-                 &allocateFlags );                                                                                                                                                         // pNext of memory
-
-    stagingBuffer.fill<T>( data.data( ) );
-
-    // Copy staging buffer to the actual index buffer.
-    stagingBuffer.copyToBuffer( buffer.get( ) );
-  }
 } // namespace RAYEX_NAMESPACE
 
 #endif // BUFFER_HPP

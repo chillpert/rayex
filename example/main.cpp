@@ -28,7 +28,6 @@ auto main( ) -> int
   // ... and initialize the renderer.
   renderer.init( );
 
-  /*
   // Load geometries.
   auto awp   = rx::loadObj( "models/awpdlore/awpdlore.obj" );
   auto plane = rx::loadObj( "models/plane.obj" );
@@ -57,7 +56,6 @@ auto main( ) -> int
   auto directionalLight = rx::directionalLightInstance( glm::vec3( -4.0F, 10.0F, 5.0F ) );
 
   renderer.scene( ).submitDirectionalLight( directionalLight );
-  */
 
   while ( renderer.isRunning( ) )
   {

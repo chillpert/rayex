@@ -45,6 +45,8 @@ namespace RAYEX_NAMESPACE
     uint32_t padding5 = 0; ///< Buffer padding (ignore).
   };
 
+  /// A wrapper for RAYEX_NAMESPACE::GeometryInstanceSSBO matching the buffer alignment requirements.
+  /// @ingroup API
   struct GeometryInstanceSSBO
   {
     glm::mat4 transform    = glm::mat4( 1.0F ); ///< The instance's world transform matrix.
@@ -56,32 +58,41 @@ namespace RAYEX_NAMESPACE
     float padding2 = 0.0F; ///< Buffer padding (ignore).
   };
 
+  /// A shader storage buffer wrapper class.
+  /// @ingroup API
+  /// @todo documentation
   class StorageBuffer : public Buffer
   {
   public:
     StorageBuffer( ) = default;
 
     template <typename T>
-    void init( const std::vector<T>& data )
+    void init( const std::vector<T>& data, vk::DeviceSize offset = 0 )
     {
       vk::DeviceSize size = sizeof( data[0] ) * data.size( );
 
       // Set up the staging buffer.
-      Buffer stagingBuffer( size,                                                                                   // size
-                            vk::BufferUsageFlagBits::eTransferSrc,                                                  // usage
-                            { components::transferFamilyIndex },                                                    // queueFamilyIndices
-                            vk::MemoryPropertyFlagBits::eHostVisible | vk::MemoryPropertyFlagBits::eHostCoherent ); // memoryPropertyFlags
-
-      stagingBuffer.fill<T>( data.data( ) );
+      _stagingBuffer.init( size,                                                                                   // size
+                           vk::BufferUsageFlagBits::eTransferSrc,                                                  // usage
+                           { components::transferFamilyIndex },                                                    // queueFamilyIndices
+                           vk::MemoryPropertyFlagBits::eHostVisible | vk::MemoryPropertyFlagBits::eHostCoherent ); // memoryPropertyFlags
 
       Buffer::init( size,                                                                                  // size
                     vk::BufferUsageFlagBits::eTransferDst | vk::BufferUsageFlagBits::eStorageBuffer,       // usage
                     { components::transferFamilyIndex },                                                   // queueFamilyIndices
-                    vk::MemoryPropertyFlagBits::eDeviceLocal | vk::MemoryPropertyFlagBits::eHostVisible ); // memoryPropertyFlags                                                                                                                // pNext of memory
-
-      // Copy staging buffer to the actual index buffer.
-      stagingBuffer.copyToBuffer( _buffer.get( ) );
+                    vk::MemoryPropertyFlagBits::eDeviceLocal | vk::MemoryPropertyFlagBits::eHostVisible ); // memoryPropertyFlags
+                                                                                                           // pNext of memory
+      upload<T>( data );
     }
+
+    template <typename T>
+    void upload( const std::vector<T>& data )
+    {
+      _stagingBuffer.fill<T>( data.data( ) );
+      _stagingBuffer.copyToBuffer( _buffer.get( ) );
+    }
+
+    Buffer _stagingBuffer;
   };
 } // namespace RAYEX_NAMESPACE
 

@@ -37,6 +37,8 @@ namespace RAYEX_NAMESPACE
   vk::Viewport viewport; ///< The application's viewport.
   vk::Rect2D scissor;    ///< The application's scissor.
 
+  std::shared_ptr<Geometry> triangle = nullptr; ///< A dummy triangle that will be placed in the scene if it empty. This assures the AS creation.
+
   // Defines the maximum amount of frames that will be processed concurrently.
   const size_t maxFramesInFlight = 2;
 
@@ -187,7 +189,6 @@ namespace RAYEX_NAMESPACE
     // If the scene is empty add a dummy triangle so that a TLAS can be built successfully.
     if ( _scene->_geometryInstances.empty( ) )
     {
-      auto triangle = std::make_shared<Geometry>( );
       Vertex v1;
       v1.normal = glm::vec3( 0.0F, 1.0F, 0.0F );
       v1.pos    = glm::vec3( -0.00001F, 0.0F, 0.00001F );
@@ -200,6 +201,7 @@ namespace RAYEX_NAMESPACE
       v3.normal = glm::vec3( 0.0F, 1.0F, 0.0F );
       v3.pos    = glm::vec3( 0.00001F, 0.0F, -0.00001F );
 
+      triangle                = std::make_shared<Geometry>( );
       triangle->vertices      = { v1, v2, v3 };
       triangle->indices       = { 0, 1, 2 };
       triangle->geometryIndex = components::geometryIndex++;
@@ -207,6 +209,14 @@ namespace RAYEX_NAMESPACE
 
       _scene->submitGeometry( triangle );
       _scene->submitGeometryInstance( instance( triangle ) );
+    }
+    else
+    {
+      if ( triangle != nullptr )
+      {
+        _scene->removeGeometry( triangle );
+        triangle = nullptr;
+      }
     }
 
     // Init geometry storage buffers.

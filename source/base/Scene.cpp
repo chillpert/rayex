@@ -160,6 +160,32 @@ namespace RAYEX_NAMESPACE
     _uploadGeometries = true;
   }
 
+  void Scene::removeGeometry( std::shared_ptr<Geometry> geometry )
+  {
+    if ( geometry == nullptr )
+    {
+      RX_ERROR( "An invalid geometry can not be removed." );
+      return;
+    }
+
+    std::vector<std::shared_ptr<Geometry>> temp( _geometries );
+    _geometries.clear( );
+    _geometries.reserve( temp.size( ) );
+
+    uint32_t geometryIndex = 0;
+    for ( auto it : temp )
+    {
+      if ( it != geometry )
+      {
+        it->geometryIndex = geometryIndex++;
+        _geometries.push_back( it );
+      }
+    }
+
+    --components::geometryIndex;
+    _uploadGeometries = true; // @todo Might not be necessary.
+  }
+
   auto Scene::findGeometry( std::string_view path ) const -> std::shared_ptr<Geometry>
   {
     for ( std::shared_ptr<Geometry> geometry : _geometries )

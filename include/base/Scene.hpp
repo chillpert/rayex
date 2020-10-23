@@ -73,6 +73,10 @@ namespace RAYEX_NAMESPACE
     /// @param geometries The geometries to submit.
     void setGeometries( const std::vector<std::shared_ptr<Geometry>>& geometries );
 
+    /// Used to remove a geometry.
+    /// @param geometry The geometry to remove.
+    void removeGeometry( std::shared_ptr<Geometry> geometry );
+
     /// Used to retrieve a geoemtry based on its path.
     /// @param path The geometry's model's path, relative to the path to assets.
     auto findGeometry( std::string_view path ) const -> std::shared_ptr<Geometry>;

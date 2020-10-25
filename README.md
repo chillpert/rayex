@@ -48,11 +48,11 @@ int main( )
     
     // Load some geometry and submit it to RAYEX.
     auto cube   = rx::loadObj( "models/cube.obj" );
-    renderer.submitGeometry( cube );
+    renderer.scene( ).submitGeometry( cube );
 
     // Create an instance of the geometry from above and submit it for rendering.
     auto cubeInstance = rx::instance( cube );
-    renderer.submitGeometryInstance( cubeInstance );
+    renderer.scene( ).submitGeometryInstance( cubeInstance );
 
     // Add a light source.
     renderer.scene( ).submitDirectionalLight( rx::directionalLightInstance( glm::vec3( -4.0F, 10.0F, 5.0F ) ) );

@@ -14,9 +14,6 @@ namespace RAYEX_NAMESPACE
     /// @return Returns the texture's image view.
     auto getImageView( ) const -> vk::ImageView { return _imageView.get( ); }
 
-    /// @return Returns the texture's sampler.
-    auto getSampler( ) const -> vk::Sampler { return _sampler.get( ); }
-
     /// @return Returns the relative path of the texture file.
     auto getPath( ) const -> const std::string& { return _path; }
 
@@ -31,7 +28,6 @@ namespace RAYEX_NAMESPACE
     std::string _path; ///< The relative path to the texture file.
 
     vk::UniqueImageView _imageView; ///< The texture's Vulkan image view with a unique handle.
-    vk::UniqueSampler _sampler;     ///< The texture's Vulkan sampler with a unique handle.
   };
 } // namespace RAYEX_NAMESPACE
 #endif // TEXTURE_HPP

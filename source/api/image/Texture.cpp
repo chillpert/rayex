@@ -45,8 +45,5 @@ namespace RAYEX_NAMESPACE
     transitionToLayout( vk::ImageLayout::eShaderReadOnlyOptimal );
 
     _imageView = vk::Initializer::initImageViewUnique( _image.get( ), _format );
-
-    auto samplerCreateInfo = vk::Helper::getSamplerCreateInfo( );
-    _sampler               = vk::Initializer::initSamplerUnique( samplerCreateInfo );
   }
 } // namespace RAYEX_NAMESPACE

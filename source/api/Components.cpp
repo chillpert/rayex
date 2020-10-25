@@ -24,6 +24,7 @@ namespace RAYEX_NAMESPACE
     uint32_t frameCount = 0;
     std::string assetsPath;
     uint32_t geometryIndex = 0;
+    uint32_t textureIndex  = 0;
 
   } // namespace components
 } // namespace RAYEX_NAMESPACE

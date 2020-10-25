@@ -188,26 +188,15 @@ void main( )
 
   if ( found )
   {
-    if ( modelIndex == 0 )
+    // No texture assigned.
+    if ( mat.diffuse.w == -1.0F )
     {
-      diffuse = mat.diffuse.xyz + texture( textures[0], texCoord ).xyz;
+      diffuse = mat.diffuse.xyz;
     }
-    else if ( modelIndex == 2 )
-    {
-      diffuse = mat.diffuse.xyz + texture( textures[1], texCoord ).xyz;
-    }
+    // Texture assigned.
     else
     {
-      // No texture assigned.
-      if ( mat.diffuse.w == -1.0F )
-      {
-        diffuse = mat.diffuse.xyz;
-      }
-      // Texture assigned.
-      else
-      {
-        diffuse = mat.diffuse.xyz + texture( textures[nonuniformEXT( int( mat.diffuse.w ) )], texCoord ).xyz;
-      }
+      diffuse = mat.diffuse.xyz + texture( textures[nonuniformEXT( int( mat.diffuse.w ) )], texCoord ).xyz;
     }
   }
 

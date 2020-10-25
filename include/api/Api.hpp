@@ -120,8 +120,6 @@ namespace RAYEX_NAMESPACE
     /// @return Returns the geometry.
     auto findGeometry( uint32_t geometryIndex ) -> std::shared_ptr<Geometry>;
 
-    void updateTextureDescriptor( );
-
     std::shared_ptr<Window> _window = nullptr; ///< A pointer to a RAYEX_NAMESPACE::Window object whose surface is going to be rendered to.
     std::shared_ptr<Camera> _camera = nullptr; ///< A pointer to a RAYEX_NAMESPACE::Camera object whose matrices will be used for rendering.
     vk::UniqueInstance _instance;              ///< A unique Vulkan instance.

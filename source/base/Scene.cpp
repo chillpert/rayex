@@ -184,6 +184,8 @@ namespace RAYEX_NAMESPACE
 
     --components::geometryIndex;
     _uploadGeometries = true; // @todo Might not be necessary.
+
+    // @todo Remove textures of each material
   }
 
   auto Scene::findGeometry( std::string_view path ) const -> std::shared_ptr<Geometry>

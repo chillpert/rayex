@@ -13,9 +13,9 @@ namespace RAYEX_NAMESPACE
     glm::vec3 diffuse  = glm::vec3( 0.2F, 1.0F, 1.0F );
     glm::vec3 specular = glm::vec3( 1.0F, 1.0F, 1.0F );
 
-    std::string_view ambientTexPath  = "";
-    std::string_view diffuseTexPath  = "";
-    std::string_view specularTexPath = "";
+    std::string ambientTexPath  = "";
+    std::string diffuseTexPath  = "";
+    std::string specularTexPath = "";
   };
 
   /// Describes a sub-mesh and its material.
@@ -38,7 +38,7 @@ namespace RAYEX_NAMESPACE
     std::vector<uint32_t> indices;  ///< Contains all indices of the geometry.
     std::vector<Mesh> meshes;       ///< Contains all sub-meshes and their respective materials.
     uint32_t geometryIndex = 0;     ///< A unique index required by the acceleration structures.
-    std::string_view path  = "";    ///< The model's path, relative to the path to assets.
+    std::string path       = "";    ///< The model's path, relative to the path to assets.
     bool initialized       = false; ///< Keeps track of whether or not the geometry was initialized.
   };
 

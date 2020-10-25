@@ -27,6 +27,7 @@ namespace RAYEX_NAMESPACE
 
     extern std::string assetsPath; ///< Path to where shaders, models and textures are stored.
     extern uint32_t geometryIndex;
+    extern uint32_t textureIndex;
 
   } // namespace components
 } // namespace RAYEX_NAMESPACE

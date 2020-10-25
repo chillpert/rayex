@@ -369,6 +369,7 @@ namespace vk::Helper
          indexingFeatures.descriptorBindingStorageBufferUpdateAfterBind == VK_FALSE ||
          indexingFeatures.descriptorBindingUpdateUnusedWhilePending == VK_FALSE ||
          indexingFeatures.descriptorBindingSampledImageUpdateAfterBind == VK_FALSE ||
+         indexingFeatures.shaderSampledImageArrayNonUniformIndexing == VK_FALSE ||
          rayTracingFeatures.rayTracing == VK_FALSE ||
          rayTracingFeatures.rayQuery == VK_FALSE ||
          feats.samplerAnisotropy == VK_FALSE ||

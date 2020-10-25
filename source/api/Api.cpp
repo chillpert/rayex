@@ -236,17 +236,33 @@ namespace RAYEX_NAMESPACE
               _vertexBuffers[i].init( _scene->_geometries[i]->vertices );
               _indexBuffers[i].init( _scene->_geometries[i]->indices );
 
+              // Textures
+              float diffuseTexIndex = -1.0F;
+              for ( const auto& mesh : _scene->_geometries[i]->meshes )
+              {
+                RX_ASSERT( components::textureIndex < _settings->_maxTextures, "Can not have more than ", _settings->_maxTextures, " textures." );
+
+                if ( _textures[components::textureIndex] == nullptr && !mesh.material.diffuseTexPath.empty( ) )
+                {
+                  auto texture = std::make_shared<Texture>( );
+                  texture->init( mesh.material.diffuseTexPath );
+                  diffuseTexIndex                       = static_cast<float>( components::textureIndex );
+                  _textures[components::textureIndex++] = texture;
+                }
+              }
+
+              // Meshes
               memAlignedMeshes.resize( _scene->_geometries[i]->meshes.size( ) );
               std::transform( _scene->_geometries[i]->meshes.begin( ),
                               _scene->_geometries[i]->meshes.end( ),
                               memAlignedMeshes.begin( ),
-                              []( const Mesh& mesh ) { return MeshSSBO { glm::vec4( mesh.material.ambient, -1.0F ),
-                                                                         glm::vec4( mesh.material.diffuse, -1.0F ),
-                                                                         glm::vec4( mesh.material.specular, -1.0F ),
-                                                                         { },
-                                                                         { },
-                                                                         { },
-                                                                         mesh.indexOffset }; } );
+                              [diffuseTexIndex]( const Mesh& mesh ) { return MeshSSBO { glm::vec4( mesh.material.ambient, -1.0F ),
+                                                                                        glm::vec4( mesh.material.diffuse, diffuseTexIndex ),
+                                                                                        glm::vec4( mesh.material.specular, -1.0F ),
+                                                                                        { },
+                                                                                        { },
+                                                                                        { },
+                                                                                        mesh.indexOffset }; } );
               _meshBuffers[i].init<MeshSSBO>( memAlignedMeshes );
 
               _scene->_geometries[i]->initialized = true;
@@ -800,7 +816,7 @@ namespace RAYEX_NAMESPACE
       _rtSceneDescriptors.bindings.add( 3, vk::DescriptorType::eStorageBuffer, vk::ShaderStageFlagBits::eClosestHitKHR );
 
       _rtSceneDescriptors.layout = _rtSceneDescriptors.bindings.initLayoutUnique( );
-      _rtSceneDescriptors.pool   = _rtSceneDescriptors.bindings.initPoolUnique( _settings->_maxGeometry * components::swapchainImageCount );
+      _rtSceneDescriptors.pool   = _rtSceneDescriptors.bindings.initPoolUnique( components::swapchainImageCount );
       _rtSceneDescriptorSets     = vk::Initializer::initDescriptorSetsUnique( _rtSceneDescriptors.pool, _rtSceneDescriptors.layout );
     }
 
@@ -844,6 +860,7 @@ namespace RAYEX_NAMESPACE
       _immutableSamplers.reserve( _settings->_maxTextures );
       for ( uint32_t i = 0; i < _settings->_maxTextures; ++i )
       {
+        // @todo re-use the same sampler for all of these.
         auto samplerCreateInfo = vk::Helper::getSamplerCreateInfo( );
         _immutableSamplers.push_back( std::move( vk::Initializer::initSamplerUnique( samplerCreateInfo ) ) );
       }
@@ -862,7 +879,7 @@ namespace RAYEX_NAMESPACE
                                          immutableSamplers.data( ) );
 
       _geometryDescriptors.layout = _geometryDescriptors.bindings.initLayoutUnique( vk::DescriptorSetLayoutCreateFlagBits::eUpdateAfterBindPool );
-      _geometryDescriptors.pool   = _geometryDescriptors.bindings.initPoolUnique( _settings->_maxGeometry * components::swapchainImageCount, vk::DescriptorPoolCreateFlagBits::eUpdateAfterBind );
+      _geometryDescriptors.pool   = _geometryDescriptors.bindings.initPoolUnique( components::swapchainImageCount, vk::DescriptorPoolCreateFlagBits::eUpdateAfterBind );
       _geometryDescriptorSets     = vk::Initializer::initDescriptorSetsUnique( _geometryDescriptors.pool, _geometryDescriptors.layout );
     }
   }
@@ -990,6 +1007,7 @@ namespace RAYEX_NAMESPACE
       meshBufferInfos.push_back( meshDataBufferInfo );
     }
 
+    /*
     auto awpdloreTex = std::make_shared<Texture>( );
     awpdloreTex->init( "models/awpdlore/awpdlore.png" );
 
@@ -998,6 +1016,7 @@ namespace RAYEX_NAMESPACE
 
     _textures[0] = awpdloreTex;
     _textures[1] = containerTex;
+    */
 
     std::vector<vk::DescriptorImageInfo> textureInfos;
     textureInfos.reserve( _textures.size( ) );
@@ -1009,7 +1028,7 @@ namespace RAYEX_NAMESPACE
       {
         textureInfo.imageLayout = _textures[i]->getLayout( );
         textureInfo.imageView   = _textures[i]->getImageView( );
-        textureInfo.sampler     = _textures[i]->getSampler( );
+        textureInfo.sampler     = _immutableSamplers[i].get( );
       }
       else
       {

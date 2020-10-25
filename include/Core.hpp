@@ -52,7 +52,7 @@
   float startTime = Time::getTime( ); \
   LOGGER_NAME::info( RAYEX_NAMESPACE_STRINGIFIED, ": ", __VA_ARGS__ )
 
-#define RX_LOG_TIME_STOP( ... ) LOGGER_NAME::success( RAYEX_NAMESPACE_STRINGIFIED, ": ", __VA_ARGS__, " ( Time: ", std::setprecision( std::numeric_limits<float>::digits10 ), Time::getTime( ) - startTime, " ms )." )
+#define RX_LOG_TIME_STOP( ... ) LOGGER_NAME::success( RAYEX_NAMESPACE_STRINGIFIED, ": ", __VA_ARGS__, " ( Time: ", std::setprecision( std::numeric_limits<float>::digits10 ), Time::getTime( ) - startTime, " s )." )
 
 // Doxygen groups
 /// @defgroup BASE Base

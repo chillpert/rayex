@@ -70,7 +70,7 @@ namespace RAYEX_NAMESPACE
     commandBuffer.submitToQueue( components::transferQueue );
   }
 
-  void Buffer::copyToImage( Image& image ) const
+  void Buffer::copyToImage( vk::Image image, vk::Extent3D extent ) const
   {
     CommandBuffer commandBuffer( components::graphicsCmdPool );
     commandBuffer.begin( );
@@ -80,9 +80,9 @@ namespace RAYEX_NAMESPACE
                                   0,                                            // bufferImageHeight
                                   { vk::ImageAspectFlagBits::eColor, 0, 0, 1 }, // imageSubresource (aspectMask, mipLevel, baseArrayLayer, layerCount)
                                   vk::Offset3D { 0, 0, 0 },                     // imageOffset
-                                  image.getExtent( ) );                         // imageExtent
+                                  extent );                                     // imageExtent
 
-      commandBuffer.get( 0 ).copyBufferToImage( _buffer.get( ), image.get( ), vk::ImageLayout::eTransferDstOptimal, 1, &region ); // CMD
+      commandBuffer.get( 0 ).copyBufferToImage( _buffer.get( ), image, vk::ImageLayout::eTransferDstOptimal, 1, &region ); // CMD
     }
     commandBuffer.end( );
     commandBuffer.submitToQueue( components::graphicsQueue );

@@ -141,9 +141,10 @@ namespace RAYEX_NAMESPACE
     std::vector<PointLightSSBO> pointLights( _settings->_maxPointLights );
     _pointLightsBuffer.init<PointLightSSBO>( pointLights );
 
-    _vertexBuffers.resize( _settings->_maxGeometry );
-    _indexBuffers.resize( _settings->_maxGeometry );
-    _meshBuffers.resize( _settings->_maxGeometry );
+    _vertexBuffers.resize( static_cast<uint32_t>( _settings->_maxGeometry ) );
+    _indexBuffers.resize( static_cast<uint32_t>( _settings->_maxGeometry ) );
+    _meshBuffers.resize( static_cast<uint32_t>( _settings->_maxGeometry ) );
+    _textures.resize( static_cast<uint32_t>( _settings->_maxTextures ) );
 
     RX_LOG_TIME_STOP( "Finished initializing Vulkan (base)" );
   }
@@ -799,7 +800,7 @@ namespace RAYEX_NAMESPACE
       _rtSceneDescriptors.bindings.add( 3, vk::DescriptorType::eStorageBuffer, vk::ShaderStageFlagBits::eClosestHitKHR );
 
       _rtSceneDescriptors.layout = _rtSceneDescriptors.bindings.initLayoutUnique( );
-      _rtSceneDescriptors.pool   = _rtSceneDescriptors.bindings.initPoolUnique( static_cast<uint32_t>( _settings->_maxGeometry ) * components::swapchainImageCount );
+      _rtSceneDescriptors.pool   = _rtSceneDescriptors.bindings.initPoolUnique( _settings->_maxGeometry * components::swapchainImageCount );
       _rtSceneDescriptorSets     = vk::Initializer::initDescriptorSetsUnique( _rtSceneDescriptors.pool, _rtSceneDescriptors.layout );
     }
 
@@ -838,10 +839,30 @@ namespace RAYEX_NAMESPACE
                                          vk::DescriptorType::eStorageBuffer,
                                          vk::ShaderStageFlagBits::eClosestHitKHR,
                                          _settings->_maxGeometry,
-                                         vk::DescriptorBindingFlagBits::eUpdateAfterBind | vk::DescriptorBindingFlagBits::eVariableDescriptorCount );
+                                         vk::DescriptorBindingFlagBits::eUpdateAfterBind );
+
+      _immutableSamplers.reserve( _settings->_maxTextures );
+      for ( uint32_t i = 0; i < _settings->_maxTextures; ++i )
+      {
+        auto samplerCreateInfo = vk::Helper::getSamplerCreateInfo( );
+        _immutableSamplers.push_back( std::move( vk::Initializer::initSamplerUnique( samplerCreateInfo ) ) );
+      }
+
+      std::vector<vk::Sampler> immutableSamplers( _immutableSamplers.size( ) );
+      std::transform( _immutableSamplers.begin( ),
+                      _immutableSamplers.end( ),
+                      immutableSamplers.begin( ),
+                      []( const vk::UniqueSampler& sampler ) { return vk::Sampler( sampler.get( ) ); } );
+
+      _geometryDescriptors.bindings.add( 3,
+                                         vk::DescriptorType::eCombinedImageSampler,
+                                         vk::ShaderStageFlagBits::eClosestHitKHR,
+                                         _settings->_maxTextures,
+                                         vk::DescriptorBindingFlagBits::eUpdateAfterBind | vk::DescriptorBindingFlagBits::eVariableDescriptorCount,
+                                         immutableSamplers.data( ) );
 
       _geometryDescriptors.layout = _geometryDescriptors.bindings.initLayoutUnique( vk::DescriptorSetLayoutCreateFlagBits::eUpdateAfterBindPool );
-      _geometryDescriptors.pool   = _geometryDescriptors.bindings.initPoolUnique( static_cast<uint32_t>( _settings->_maxGeometry ) * components::swapchainImageCount, vk::DescriptorPoolCreateFlagBits::eUpdateAfterBind );
+      _geometryDescriptors.pool   = _geometryDescriptors.bindings.initPoolUnique( _settings->_maxGeometry * components::swapchainImageCount, vk::DescriptorPoolCreateFlagBits::eUpdateAfterBind );
       _geometryDescriptorSets     = vk::Initializer::initDescriptorSetsUnique( _geometryDescriptors.pool, _geometryDescriptors.layout );
     }
   }
@@ -921,7 +942,6 @@ namespace RAYEX_NAMESPACE
     _rtSceneDescriptors.bindings.write( _rtSceneDescriptorSets, 1, &directionalLightsInfo );
     _rtSceneDescriptors.bindings.write( _rtSceneDescriptorSets, 2, &pointLightsInfo );
     _rtSceneDescriptors.bindings.write( _rtSceneDescriptorSets, 3, &rtInstancesInfo );
-
     _rtSceneDescriptors.bindings.update( );
 
     // Update RS scene descriptor sets.
@@ -970,10 +990,40 @@ namespace RAYEX_NAMESPACE
       meshBufferInfos.push_back( meshDataBufferInfo );
     }
 
+    auto awpdloreTex = std::make_shared<Texture>( );
+    awpdloreTex->init( "models/awpdlore/awpdlore.png" );
+
+    auto containerTex = std::make_shared<Texture>( );
+    containerTex->init( "textures/container.png" );
+
+    _textures[0] = awpdloreTex;
+    _textures[1] = containerTex;
+
+    std::vector<vk::DescriptorImageInfo> textureInfos;
+    textureInfos.reserve( _textures.size( ) );
+    for ( size_t i = 0; i < _settings->_maxTextures; ++i )
+    {
+      vk::DescriptorImageInfo textureInfo = { };
+
+      if ( _textures[i] != nullptr )
+      {
+        textureInfo.imageLayout = _textures[i]->getLayout( );
+        textureInfo.imageView   = _textures[i]->getImageView( );
+        textureInfo.sampler     = _textures[i]->getSampler( );
+      }
+      else
+      {
+        textureInfo.imageLayout = { };
+        textureInfo.sampler     = _immutableSamplers[i].get( );
+      }
+
+      textureInfos.push_back( textureInfo );
+    }
+
     _geometryDescriptors.bindings.writeArray( _geometryDescriptorSets, 0, vertexBufferInfos.data( ) );
     _geometryDescriptors.bindings.writeArray( _geometryDescriptorSets, 1, indexBufferInfos.data( ) );
     _geometryDescriptors.bindings.writeArray( _geometryDescriptorSets, 2, meshBufferInfos.data( ) );
-
+    _geometryDescriptors.bindings.writeArray( _geometryDescriptorSets, 3, textureInfos.data( ) );
     _geometryDescriptors.bindings.update( );
   }
 

@@ -63,6 +63,8 @@ layout( binding = 2, set = 2 ) buffer Meshes
 }
 meshes[];
 
+layout( binding = 3, set = 2 ) uniform sampler2D textures[];
+
 layout( push_constant ) uniform Constants
 {
   vec4 clearColor;
@@ -77,7 +79,7 @@ layout( push_constant ) uniform Constants
   float padding0;
 };
 
-Vertex decompressVertex( uint index, uint modelIndex )
+Vertex unpackVertex( uint index, uint modelIndex )
 {
   vec4 d0 = vertices[nonuniformEXT( modelIndex )].v[3 * index + 0];
   vec4 d1 = vertices[nonuniformEXT( modelIndex )].v[3 * index + 1];
@@ -99,9 +101,9 @@ void main( )
                      indices[nonuniformEXT( modelIndex )].i[3 * gl_PrimitiveID + 1],   //
                      indices[nonuniformEXT( modelIndex )].i[3 * gl_PrimitiveID + 2] ); //
 
-  Vertex v0 = decompressVertex( ind.x, modelIndex );
-  Vertex v1 = decompressVertex( ind.y, modelIndex );
-  Vertex v2 = decompressVertex( ind.z, modelIndex );
+  Vertex v0 = unpackVertex( ind.x, modelIndex );
+  Vertex v1 = unpackVertex( ind.y, modelIndex );
+  Vertex v2 = unpackVertex( ind.z, modelIndex );
 
   const vec3 barycentrics = vec3( 1.0 - attribs.x - attribs.y, attribs.x, attribs.y );
   vec3 normal             = v0.normal * barycentrics.x + v1.normal * barycentrics.y + v2.normal * barycentrics.z;
@@ -186,7 +188,27 @@ void main( )
 
   if ( found )
   {
-    diffuse = mat.diffuse.xyz;
+    if ( modelIndex == 0 )
+    {
+      diffuse = mat.diffuse.xyz + texture( textures[0], texCoord ).xyz;
+    }
+    else if ( modelIndex == 2 )
+    {
+      diffuse = mat.diffuse.xyz + texture( textures[1], texCoord ).xyz;
+    }
+    else
+    {
+      // No texture assigned.
+      if ( mat.diffuse.w == -1.0F )
+      {
+        diffuse = mat.diffuse.xyz;
+      }
+      // Texture assigned.
+      else
+      {
+        diffuse = mat.diffuse.xyz + texture( textures[nonuniformEXT( int( mat.diffuse.w ) )], texCoord ).xyz;
+      }
+    }
   }
 
   float dotNL  = max( dot( normal, L ), 0.2 );

@@ -27,11 +27,13 @@ layout( binding = 1, set = 0 ) buffer LightSources
 }
 lightSources;
 
+//layout( binding = 3, set = 0 ) uniform sampler2D textures[];
+
 void main( )
 {
   //vec3 L      = normalize( lightSources.directionalLights[0].direction.xyz - vec3( 0 ) );
   vec3 L      = normalize( vec3( -4.0, 10.0, 5.0 ) - vec3( 0 ) );
   float dotNL = max( dot( fragNormal, L ), 0.2 );
 
-  outColor = vec4( vec3( dotNL ), 1.0 );
+  outColor = vec4( vec3( dotNL ), 1.0 ); //* texture( textures[0], fragTexCoord );
 }

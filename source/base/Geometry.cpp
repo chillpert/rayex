@@ -69,7 +69,8 @@ namespace RAYEX_NAMESPACE
 
         mesh.material = mat;
 
-        // @todo Add texture support.
+        // @todo Add relative path here instead of inside the .mtl file.
+        mesh.material.diffuseTexPath = materials[materialIndex].diffuse_texname;
       }
 
       geometry->meshes.push_back( mesh );
@@ -100,10 +101,10 @@ namespace RAYEX_NAMESPACE
             vertex.normal.z = attrib.normals[3 * idx.normal_index + 2];
           }
 
-          if ( attrib.colors.size( ) > 2 * idx.texcoord_index + 1 )
+          if ( attrib.texcoords.size( ) > 2 * idx.texcoord_index + 1 )
           {
             vertex.texCoord.x = attrib.texcoords[2 * idx.texcoord_index + 0];
-            vertex.texCoord.y = attrib.texcoords[2 * idx.texcoord_index + 1];
+            vertex.texCoord.y = 1.0F - attrib.texcoords[2 * idx.texcoord_index + 1];
           }
 
           if ( attrib.colors.size( ) > 3 * idx.vertex_index + 2 )

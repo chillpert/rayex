@@ -500,6 +500,8 @@ namespace vk::Initializer
     indexingFeatures.descriptorBindingPartiallyBound               = VK_TRUE;
     indexingFeatures.descriptorBindingStorageBufferUpdateAfterBind = VK_TRUE;
     indexingFeatures.descriptorBindingUpdateUnusedWhilePending     = VK_TRUE;
+    indexingFeatures.descriptorBindingSampledImageUpdateAfterBind  = VK_TRUE;
+    indexingFeatures.shaderSampledImageArrayNonUniformIndexing     = VK_TRUE;
 
     PhysicalDeviceRobustness2FeaturesEXT robustness2FeaturesEXT;
     robustness2FeaturesEXT.nullDescriptor = VK_TRUE;

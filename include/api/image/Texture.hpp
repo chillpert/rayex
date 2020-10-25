@@ -11,17 +11,11 @@ namespace RAYEX_NAMESPACE
   class Texture : public Image
   {
   public:
-    Texture( );
-
-    /// @param path The relative path to the texture file.
-    /// @param initialize If true, the texture will be initialized right away without an additional call to init().
-    Texture( std::string_view path, bool initialize = true );
-
     /// @return Returns the texture's image view.
-    auto getImageView( ) -> vk::ImageView { return _imageView.get( ); }
+    auto getImageView( ) const -> vk::ImageView { return _imageView.get( ); }
 
     /// @return Returns the texture's sampler.
-    auto getSampler( ) -> vk::Sampler { return _sampler.get( ); }
+    auto getSampler( ) const -> vk::Sampler { return _sampler.get( ); }
 
     /// @return Returns the relative path of the texture file.
     auto getPath( ) const -> const std::string& { return _path; }
@@ -38,20 +32,6 @@ namespace RAYEX_NAMESPACE
 
     vk::UniqueImageView _imageView; ///< The texture's Vulkan image view with a unique handle.
     vk::UniqueSampler _sampler;     ///< The texture's Vulkan sampler with a unique handle.
-
-    static uint32_t _textureCounter;
   };
 } // namespace RAYEX_NAMESPACE
-
-namespace std
-{
-  /// @cond INTERNAL
-  template <>
-  struct hash<RAYEX_NAMESPACE::Texture>
-  {
-    auto operator( )( const std::shared_ptr<RAYEX_NAMESPACE::Texture> texture ) const -> size_t { return hash<std::string>( )( texture->getPath( ) ); }
-  };
-  /// @endcond
-} // namespace std
-
 #endif // TEXTURE_HPP

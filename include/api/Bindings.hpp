@@ -17,7 +17,7 @@ namespace RAYEX_NAMESPACE
     /// @param stage The binding's shader type.
     /// @param count The amount of descriptors for this binding.
     /// @param flags The binding's descriptor binding flags.
-    void add( uint32_t binding, vk::DescriptorType type, vk::ShaderStageFlags stage, uint32_t count = 1, vk::DescriptorBindingFlags flags = { } );
+    void add( uint32_t binding, vk::DescriptorType type, vk::ShaderStageFlags stage, uint32_t count = 1, vk::DescriptorBindingFlags flags = { }, vk::Sampler* pImmutableSamplers = nullptr );
 
     /// Used to initialize a unique descriptor set layout.
     /// @return Returns a descriptor set layout with a unqiue handle.
@@ -62,6 +62,12 @@ namespace RAYEX_NAMESPACE
     /// @param binding The binding's index.
     /// @param pBufferInfo The pointer to the first element of an array of descriptor buffer infos.
     void writeArray( const std::vector<vk::DescriptorSet>& sets, uint32_t binding, vk::DescriptorBufferInfo* pBufferInfo );
+
+    /// Used to create an array of descriptor writes for images.
+    /// @param sets The descriptor set handles.
+    /// @param binding The binding's index.
+    /// @param pImageInfo The pointer to the first element of an array of descriptor image infos.
+    void writeArray( const std::vector<vk::DescriptorSet>& sets, uint32_t binding, vk::DescriptorImageInfo* pImageInfo );
 
     /// Used to set pool sizes manually.
     /// @param poolSizes The pool sizes to set.

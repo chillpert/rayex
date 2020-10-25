@@ -43,7 +43,7 @@ namespace RAYEX_NAMESPACE
     Api( const Api& )  = delete;
     Api( const Api&& ) = delete;
     auto operator=( const Api& ) -> Api& = delete;
-    auto operator=( const Api && ) -> Api& = delete;
+    auto operator=( const Api&& ) -> Api& = delete;
 
   private:
     /// Used to set the GUI that will be used.
@@ -120,6 +120,8 @@ namespace RAYEX_NAMESPACE
     /// @return Returns the geometry.
     auto findGeometry( uint32_t geometryIndex ) -> std::shared_ptr<Geometry>;
 
+    void updateTextureDescriptor( );
+
     std::shared_ptr<Window> _window = nullptr; ///< A pointer to a RAYEX_NAMESPACE::Window object whose surface is going to be rendered to.
     std::shared_ptr<Camera> _camera = nullptr; ///< A pointer to a RAYEX_NAMESPACE::Camera object whose matrices will be used for rendering.
     vk::UniqueInstance _instance;              ///< A unique Vulkan instance.
@@ -144,10 +146,14 @@ namespace RAYEX_NAMESPACE
     std::vector<vk::DescriptorSet> _rtSceneDescriptorSets;  ///< Descriptor sets for scene-related data in rasterization shaders.
     std::vector<vk::DescriptorSet> _rsSceneDescriptorSets;  ///< Descriptor sets for scene-related data in ray tracing shaders.
     std::vector<vk::DescriptorSet> _geometryDescriptorSets; ///< Descriptor sets for vertex data.
+    std::vector<vk::DescriptorSet> _textureDescriptorSets;  ///< Descriptor sets for texture data.
 
-    std::vector<VertexBuffer> _vertexBuffers; ///< Multiple buffers for vertices because of variable descriptor indexing.
-    std::vector<IndexBuffer> _indexBuffers;   ///< Multiple buffers for indices because of variable descriptor indexing.
-    std::vector<StorageBuffer> _meshBuffers;  ///< Multiple buffers for meshes because of variable descriptor indexing.
+    std::vector<vk::UniqueSampler> _immutableSamplers;
+
+    std::vector<VertexBuffer> _vertexBuffers;        ///< Multiple buffers for vertices because of variable descriptor indexing.
+    std::vector<IndexBuffer> _indexBuffers;          ///< Multiple buffers for indices because of variable descriptor indexing.
+    std::vector<StorageBuffer> _meshBuffers;         ///< Multiple buffers for meshes because of variable descriptor indexing.
+    std::vector<std::shared_ptr<Texture>> _textures; ///< Stores all textures.
 
     StorageBuffer _geometryInstancesBuffer; ///< A storage buffer for the ray tracing instances.
     StorageBuffer _directionalLightsBuffer; ///< A storage buffer for directional light data.

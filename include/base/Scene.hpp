@@ -1,6 +1,7 @@
 #ifndef SCENE_HPP
 #define SCENE_HPP
 
+#include "api/image/Texture.hpp"
 #include "base/Geometry.hpp"
 #include "base/Lights.hpp"
 #include "base/Settings.hpp"

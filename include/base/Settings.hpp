@@ -150,6 +150,7 @@ namespace RAYEX_NAMESPACE
     uint32_t _maxPointLights       = 100; ///< Can be set to avoid pipeline recreation everytime a point light is added.
     uint32_t _maxGeometryInstances = 100; ///< Can be set to avoid pipeline recreation everytime a geometry instance is added.
     uint32_t _maxGeometry          = 64;  ///< The maximum amount of geometry (Must be a multiple of minimum storage buffer alignment).
+    uint32_t _maxTextures          = 5;   ///< The maximum amount of textures.
 
     std::string _assetsPath; ///< Where all assets like models, textures and shaders are stored.
 

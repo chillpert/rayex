@@ -40,7 +40,8 @@ namespace RAYEX_NAMESPACE
 
     /// Copies the content of this buffer to an image.
     /// @param image The target for the copy operation.
-    void copyToImage( Image& image ) const;
+    /// @param extent The target's extent.
+    void copyToImage( vk::Image image, vk::Extent3D extent ) const;
 
     /// @return Returns the buffer without the unique handle.
     auto get( ) const -> const vk::Buffer { return _buffer.get( ); }

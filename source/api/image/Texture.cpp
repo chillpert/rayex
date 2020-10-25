@@ -9,20 +9,6 @@
 
 namespace RAYEX_NAMESPACE
 {
-  uint32_t Texture::_textureCounter = 0;
-
-  Texture::Texture( ) :
-    _offset( _textureCounter++ ) {}
-
-  Texture::Texture( std::string_view path, bool initialize ) :
-    _offset( _textureCounter++ )
-  {
-    if ( initialize )
-    {
-      init( path );
-    }
-  }
-
   void Texture::init( std::string_view path )
   {
     _path = path;
@@ -55,7 +41,7 @@ namespace RAYEX_NAMESPACE
     Image::init( imageCreateInfo );
 
     transitionToLayout( vk::ImageLayout::eTransferDstOptimal );
-    stagingBuffer.copyToImage( *this );
+    stagingBuffer.copyToImage( _image.get( ), _extent );
     transitionToLayout( vk::ImageLayout::eShaderReadOnlyOptimal );
 
     _imageView = vk::Initializer::initImageViewUnique( _image.get( ), _format );

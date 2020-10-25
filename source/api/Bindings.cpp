@@ -2,13 +2,13 @@
 
 namespace RAYEX_NAMESPACE
 {
-  void Bindings::add( uint32_t binding, vk::DescriptorType type, vk::ShaderStageFlags stage, uint32_t count, vk::DescriptorBindingFlags flags )
+  void Bindings::add( uint32_t binding, vk::DescriptorType type, vk::ShaderStageFlags stage, uint32_t count, vk::DescriptorBindingFlags flags, vk::Sampler* pImmutableSamplers )
   {
-    vk::DescriptorSetLayoutBinding temp( binding,   // binding
-                                         type,      // descriptorType
-                                         count,     // descriptorCount
-                                         stage,     // stageFlags
-                                         nullptr ); // pImmutableSamplers
+    vk::DescriptorSetLayoutBinding temp( binding,              // binding
+                                         type,                 // descriptorType
+                                         count,                // descriptorCount
+                                         stage,                // stageFlags
+                                         pImmutableSamplers ); // pImmutableSamplers
 
     _bindings.push_back( temp );
     _flags.push_back( flags );
@@ -174,6 +174,15 @@ namespace RAYEX_NAMESPACE
     {
       size_t j                  = writeArray( sets[i], i, binding );
       _writes[i][j].pBufferInfo = pBufferInfo;
+    }
+  }
+
+  void Bindings::writeArray( const std::vector<vk::DescriptorSet>& sets, uint32_t binding, vk::DescriptorImageInfo* pImageInfo )
+  {
+    for ( size_t i = 0; i < sets.size( ); ++i )
+    {
+      size_t j                 = writeArray( sets[i], i, binding );
+      _writes[i][j].pImageInfo = pImageInfo;
     }
   }
 

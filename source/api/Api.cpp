@@ -236,11 +236,16 @@ namespace RAYEX_NAMESPACE
               _vertexBuffers[i].init( _scene->_geometries[i]->vertices );
               _indexBuffers[i].init( _scene->_geometries[i]->indices );
 
+              memAlignedMeshes.resize( _scene->_geometries[i]->meshes.size( ) );
+
               // Textures
+              int j                 = 0;
               float diffuseTexIndex = -1.0F;
               for ( const auto& mesh : _scene->_geometries[i]->meshes )
               {
                 RX_ASSERT( components::textureIndex < _settings->_maxTextures, "Can not have more than ", _settings->_maxTextures, " textures." );
+
+                diffuseTexIndex = -1.0F;
 
                 if ( _textures[components::textureIndex] == nullptr && !mesh.material.diffuseTexPath.empty( ) )
                 {
@@ -249,20 +254,18 @@ namespace RAYEX_NAMESPACE
                   diffuseTexIndex                       = static_cast<float>( components::textureIndex );
                   _textures[components::textureIndex++] = texture;
                 }
+
+                memAlignedMeshes[j] = MeshSSBO { glm::vec4( mesh.material.ambient, -1.0F ),
+                                                 glm::vec4( mesh.material.diffuse, diffuseTexIndex ),
+                                                 glm::vec4( mesh.material.specular, -1.0F ),
+                                                 { },
+                                                 { },
+                                                 { },
+                                                 mesh.indexOffset };
+                ++j;
               }
 
               // Meshes
-              memAlignedMeshes.resize( _scene->_geometries[i]->meshes.size( ) );
-              std::transform( _scene->_geometries[i]->meshes.begin( ),
-                              _scene->_geometries[i]->meshes.end( ),
-                              memAlignedMeshes.begin( ),
-                              [diffuseTexIndex]( const Mesh& mesh ) { return MeshSSBO { glm::vec4( mesh.material.ambient, -1.0F ),
-                                                                                        glm::vec4( mesh.material.diffuse, diffuseTexIndex ),
-                                                                                        glm::vec4( mesh.material.specular, -1.0F ),
-                                                                                        { },
-                                                                                        { },
-                                                                                        { },
-                                                                                        mesh.indexOffset }; } );
               _meshBuffers[i].init<MeshSSBO>( memAlignedMeshes );
 
               _scene->_geometries[i]->initialized = true;
@@ -342,7 +345,7 @@ namespace RAYEX_NAMESPACE
       // Increment frame counter for jitter cam.
       ++components::frameCount;
     }
-  }
+  } // namespace RAYEX_NAMESPACE
 
   auto Api::prepareFrame( ) -> bool
   {

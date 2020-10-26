@@ -442,6 +442,9 @@ namespace RAYEX_NAMESPACE
     // Wait for previous frame to finish command buffer execution.
     vk::Result result = components::device.waitForFences( 1, &_inFlightFences[prevFrame].get( ), VK_TRUE, UINT64_MAX );
     RX_ASSERT( result == vk::Result::eSuccess, "Failed to wait for fences." );
+
+    update( );
+
     recordSwapchainCommandBuffers( );
 
     if ( _gui != nullptr )

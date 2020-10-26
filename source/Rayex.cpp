@@ -94,7 +94,7 @@ namespace RAYEX_NAMESPACE
       return;
     }
 
-    _api->update( );
+    //_api->update( );
     _running = _api->render( );
 
     if ( !_running )

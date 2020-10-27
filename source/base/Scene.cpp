@@ -11,7 +11,7 @@ namespace RAYEX_NAMESPACE
 
   void Scene::submitGeometryInstance( std::shared_ptr<GeometryInstance> geometryInstance )
   {
-    if ( _geometryInstances.size( ) >= _settings->_maxGeometryInstances )
+    if ( _geometryInstances.size( ) >= _settings->_maxGeometryInstances - 1 )
     {
       RX_ERROR( "Failed to submit geometry instance because instance buffer size has been exceeded. To avoid this error, increase the amount of supported geometry instances using RAYEX_NAMESPACE::Rayex::Settings::setMaxGeometryInstances(uint32_t)." );
       return;
@@ -23,7 +23,7 @@ namespace RAYEX_NAMESPACE
 
   void Scene::setGeometryInstances( const std::vector<std::shared_ptr<GeometryInstance>>& geometryInstances )
   {
-    if ( _geometryInstances.size( ) >= _settings->_maxGeometryInstances )
+    if ( _geometryInstances.size( ) >= _settings->_maxGeometryInstances - 1 )
     {
       RX_ERROR( "Failed to set geometry instances because instance buffer size has been exceeded. To avoid this error, increase the amount of supported geometry instances using RAYEX_NAMESPACE::Rayex::Settings::setMaxGeometryInstances(uint32_t)." );
       return;

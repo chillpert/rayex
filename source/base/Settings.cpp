@@ -99,7 +99,9 @@ namespace RAYEX_NAMESPACE
       ++amount;
       RX_WARN( "Can not use value 0 for the amount of maximum directional lights. Using 1 instead." );
     }
-    _maxGeometryInstances = amount;
+
+    // Increment by one to accommodate the triangle dummy for emtpy scenes.
+    _maxGeometryInstances = ++amount;
   }
 
   void Settings::setMaxGeoemtry( uint32_t amount )

@@ -1,7 +1,115 @@
 #ifndef CUSTOM_GUI_HPP
 #define CUSTOM_GUI_HPP
 
+#include "Keys.hpp"
 #include "Rayex.hpp"
+
+inline auto getRandomUniquePosition( float min, float max ) -> glm::vec3
+{
+  static std::vector<glm::vec3> positions;
+
+  static std::random_device rd;
+  static std::mt19937 mt( rd( ) );
+  std::uniform_real_distribution<float> dist( min, max );
+
+  glm::vec3 result = glm::vec3( 0.0F );
+
+  while ( true )
+  {
+    result.x = dist( mt );
+    result.y = dist( mt );
+    result.z = dist( mt );
+
+    bool accepted = true;
+    for ( const auto& position : positions )
+    {
+      if ( result == position )
+      {
+        accepted = false;
+      }
+    }
+
+    if ( accepted )
+    {
+      break;
+    }
+  };
+
+  return result;
+}
+
+inline auto getRandomFloat( float min, float max ) -> float
+{
+  static std::random_device rd;
+  static std::mt19937 mt( rd( ) );
+  std::uniform_real_distribution<float> dist( min, max );
+
+  return dist( mt );
+}
+
+inline void addBox( rx::Rayex* renderer )
+{
+  std::string_view path = "models/cube.obj";
+  auto cube             = renderer->scene( ).findGeometry( path );
+  if ( cube == nullptr )
+  {
+    cube = rx::loadObj( path );
+    renderer->scene( ).submitGeometry( cube );
+  }
+
+  auto transform = glm::scale( glm::mat4( 1.0F ), glm::vec3( 0.3F, 0.3F, 0.3F ) );
+  transform      = glm::rotate( transform, getRandomFloat( 0.0F, 360.0F ), glm::vec3( 0.0F, 1.0F, 0.0F ) );
+  transform      = glm::translate( transform, getRandomUniquePosition( -10.0F, 10.0F ) );
+
+  auto cubeInstance = rx::instance( cube, transform );
+  renderer->scene( ).submitGeometryInstance( cubeInstance );
+}
+
+inline void addSphere( rx::Rayex* renderer )
+{
+  std::string_view path = "models/sphere.obj";
+  auto sphere           = renderer->scene( ).findGeometry( path );
+  if ( sphere == nullptr )
+  {
+    sphere = rx::loadObj( path );
+    renderer->scene( ).submitGeometry( sphere );
+  }
+
+  auto transform = glm::scale( glm::mat4( 1.0F ), glm::vec3( 0.1F, 0.1F, 0.1F ) );
+  transform      = glm::rotate( transform, getRandomFloat( 0.0F, 360.0F ), glm::vec3( 0.0F, 1.0F, 0.0F ) );
+  transform      = glm::translate( transform, getRandomUniquePosition( -45.0F, 45.0F ) );
+
+  auto sphereInstance = rx::instance( sphere, transform );
+  renderer->scene( ).submitGeometryInstance( sphereInstance );
+}
+
+inline void addAwp( rx::Rayex* renderer )
+{
+  std::string_view path = "models/awpdlore/awpdlore.obj";
+  auto awp              = renderer->scene( ).findGeometry( path );
+  if ( awp == nullptr )
+  {
+    awp = rx::loadObj( path );
+    renderer->scene( ).submitGeometry( awp );
+  }
+
+  auto transform = glm::scale( glm::mat4( 1.0F ), glm::vec3( 0.3F, 0.3F, 0.3F ) );
+  transform      = glm::rotate( transform, getRandomFloat( 0.0F, 360.0F ), glm::vec3( 0.0F, 1.0F, 0.0F ) );
+  transform      = glm::translate( transform, getRandomUniquePosition( -10.0F, 10.0F ) );
+
+  auto awpInstance = rx::instance( awp, transform );
+  renderer->scene( ).submitGeometryInstance( awpInstance );
+}
+
+inline void clearScene( rx::Rayex* renderer )
+{
+  auto geometryInstances = renderer->scene( ).getGeometryInstances( );
+
+  for ( auto geometryInstance : geometryInstances )
+  {
+    renderer->scene( ).removeGeometryInstance( geometryInstance );
+  }
+}
 
 class CustomGui : public rx::Gui
 {
@@ -28,72 +136,28 @@ private:
     {
       if ( ImGui::Button( "Add box" ) )
       {
-        std::string_view path = "models/cube.obj";
-        auto cube             = _renderer->scene( ).findGeometry( path );
-        if ( cube == nullptr )
-        {
-          cube = rx::loadObj( path );
-          _renderer->scene( ).submitGeometry( cube );
-        }
-
-        auto transform = glm::scale( glm::mat4( 1.0F ), glm::vec3( 0.3F, 0.3F, 0.3F ) );
-        transform      = glm::rotate( transform, getRandomFloat( 0.0F, 360.0F ), glm::vec3( 0.0F, 1.0F, 0.0F ) );
-        transform      = glm::translate( transform, getRandomUniquePosition( -10.0F, 10.0F ) );
-
-        auto cubeInstance = rx::instance( cube, transform );
-        _renderer->scene( ).submitGeometryInstance( cubeInstance );
+        addBox( _renderer );
       }
 
       ImGui::SameLine( );
 
       if ( ImGui::Button( "Add sphere" ) )
       {
-        std::string_view path = "models/sphere.obj";
-        auto sphere           = _renderer->scene( ).findGeometry( path );
-        if ( sphere == nullptr )
-        {
-          sphere = rx::loadObj( path );
-          _renderer->scene( ).submitGeometry( sphere );
-        }
-
-        auto transform = glm::scale( glm::mat4( 1.0F ), glm::vec3( 0.1F, 0.1F, 0.1F ) );
-        transform      = glm::rotate( transform, getRandomFloat( 0.0F, 360.0F ), glm::vec3( 0.0F, 1.0F, 0.0F ) );
-        transform      = glm::translate( transform, getRandomUniquePosition( -45.0F, 45.0F ) );
-
-        auto sphereInstance = rx::instance( sphere, transform );
-        _renderer->scene( ).submitGeometryInstance( sphereInstance );
+        addSphere( _renderer );
       }
 
       ImGui::SameLine( );
 
       if ( ImGui::Button( "Add awp" ) )
       {
-        std::string_view path = "models/awpdlore/awpdlore.obj";
-        auto awp              = _renderer->scene( ).findGeometry( path );
-        if ( awp == nullptr )
-        {
-          awp = rx::loadObj( path );
-          _renderer->scene( ).submitGeometry( awp );
-        }
-
-        auto transform = glm::scale( glm::mat4( 1.0F ), glm::vec3( 0.3F, 0.3F, 0.3F ) );
-        transform      = glm::rotate( transform, getRandomFloat( 0.0F, 360.0F ), glm::vec3( 0.0F, 1.0F, 0.0F ) );
-        transform      = glm::translate( transform, getRandomUniquePosition( -10.0F, 10.0F ) );
-
-        auto awpInstance = rx::instance( awp, transform );
-        _renderer->scene( ).submitGeometryInstance( awpInstance );
+        addAwp( _renderer );
       }
 
       ImGui::SameLine( );
 
       if ( ImGui::Button( "Clear scene" ) )
       {
-        auto geometryInstances = _renderer->scene( ).getGeometryInstances( );
-
-        for ( auto geometryInstance : geometryInstances )
-        {
-          _renderer->scene( ).removeGeometryInstance( geometryInstance );
-        }
+        clearScene( _renderer );
       }
 
       if ( ImGui::Button( "Add directional light" ) )
@@ -201,49 +265,6 @@ private:
     }
 
     ImGui::End( );
-  }
-
-  glm::vec3 getRandomUniquePosition( float min, float max )
-  {
-    static std::vector<glm::vec3> positions;
-
-    static std::random_device rd;
-    static std::mt19937 mt( rd( ) );
-    std::uniform_real_distribution<float> dist( min, max );
-
-    glm::vec3 result = glm::vec3( 0.0F );
-
-    while ( true )
-    {
-      result.x = dist( mt );
-      result.y = dist( mt );
-      result.z = dist( mt );
-
-      bool accepted = true;
-      for ( const auto& position : positions )
-      {
-        if ( result == position )
-        {
-          accepted = false;
-        }
-      }
-
-      if ( accepted )
-      {
-        break;
-      }
-    };
-
-    return result;
-  }
-
-  float getRandomFloat( float min, float max )
-  {
-    static std::random_device rd;
-    static std::mt19937 mt( rd( ) );
-    std::uniform_real_distribution<float> dist( min, max );
-
-    return dist( mt );
   }
 
 private:

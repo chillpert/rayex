@@ -22,7 +22,7 @@ auto main( ) -> int
   // Use resources efficiently by introducing the renderer to the anticipated total amount of various entities.
   renderer.settings( ).setMaxDirectionalLights( 2 );
   renderer.settings( ).setMaxPointLights( 20 );
-  renderer.settings( ).setMaxGeometryInstances( 100 );
+  renderer.settings( ).setMaxGeometryInstances( 500 );
   renderer.settings( ).setMaxGeoemtry( 8 );
 
   // ... and initialize the renderer.
@@ -54,6 +54,7 @@ auto main( ) -> int
 
   // Submit instances for drawing.
   renderer.scene( ).setGeometryInstances( { awpInstance1, planeInstance, awpInstance2 } );
+
   // Submit lights.
   auto directionalLight = rx::directionalLightInstance( glm::vec3( -4.0F, 10.0F, 5.0F ) );
 
@@ -62,6 +63,17 @@ auto main( ) -> int
   while ( renderer.isRunning( ) )
   {
     renderer.run( );
+
+    // Extra tests for memcpy error: (hold to spawn many boxes at once)
+    if ( Key::eB )
+    {
+      addBox( &renderer );
+    }
+
+    if ( Key::eL )
+    {
+      addSphere( &renderer );
+    }
   }
 
   return 0;

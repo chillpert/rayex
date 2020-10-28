@@ -11,6 +11,8 @@ namespace Key
   bool eSpace;
   bool eLeftShift;
   bool eLeftCtrl;
+  bool eB;
+  bool eL;
 } // namespace Key
 
 #endif // KEYS_HPP

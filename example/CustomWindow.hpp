@@ -87,6 +87,18 @@ public:
             case SDLK_ESCAPE:
               return false;
 
+            case SDLK_c:
+              Key::eC = true;
+              break;
+
+            case SDLK_b:
+              Key::eB = true;
+              break;
+
+            case SDLK_l:
+              Key::eL = true;
+              break;
+
             case SDLK_LCTRL:
               Key::eLeftCtrl = true;
               break;
@@ -135,6 +147,18 @@ public:
 
             case SDLK_LCTRL:
               Key::eLeftCtrl = false;
+              break;
+
+            case SDLK_c:
+              Key::eC = false;
+              break;
+
+            case SDLK_b:
+              Key::eB = false;
+              break;
+
+            case SDLK_l:
+              Key::eL = false;
               break;
           }
           break;

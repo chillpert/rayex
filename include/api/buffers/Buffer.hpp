@@ -83,6 +83,7 @@ namespace RAYEX_NAMESPACE
         }
       }
 
+      RX_ASSERT( _data != nullptr, "Failed to copy data to storage staging buffer." );
       memcpy( _data, source, static_cast<uint32_t>( _size ) );
     }
 

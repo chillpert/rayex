@@ -61,6 +61,7 @@ namespace RAYEX_NAMESPACE
   /// A shader storage buffer wrapper class.
   /// @ingroup API
   /// @todo documentation
+  /// @todo make this class a template and not the functions inside
   class StorageBuffer : public Buffer
   {
   public:
@@ -77,11 +78,11 @@ namespace RAYEX_NAMESPACE
                            { components::transferFamilyIndex },                                                    // queueFamilyIndices
                            vk::MemoryPropertyFlagBits::eHostVisible | vk::MemoryPropertyFlagBits::eHostCoherent ); // memoryPropertyFlags
 
-      Buffer::init( size,                                                                                  // size
-                    vk::BufferUsageFlagBits::eTransferDst | vk::BufferUsageFlagBits::eStorageBuffer,       // usage
-                    { components::transferFamilyIndex },                                                   // queueFamilyIndices
-                    vk::MemoryPropertyFlagBits::eDeviceLocal | vk::MemoryPropertyFlagBits::eHostVisible ); // memoryPropertyFlags
-                                                                                                           // pNext of memory
+      Buffer::init( size,                                                                            // size
+                    vk::BufferUsageFlagBits::eTransferDst | vk::BufferUsageFlagBits::eStorageBuffer, // usage
+                    { components::transferFamilyIndex },                                             // queueFamilyIndices
+                    vk::MemoryPropertyFlagBits::eDeviceLocal );                                      // memoryPropertyFlags
+
       upload<T>( data );
     }
 

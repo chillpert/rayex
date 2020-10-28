@@ -51,25 +51,19 @@ namespace RAYEX_NAMESPACE
     initFramebuffers( swapchainImageViews );
   }
 
-  void Gui::newFrame( )
-  {
-    ImGui_ImplVulkan_NewFrame( );
-    ImGui_ImplSDL2_NewFrame( _window );
-    ImGui::NewFrame( );
-  }
-
   void Gui::render( )
   {
     ImGui::ShowDemoWindow( );
   }
 
-  void Gui::endRender( )
-  {
-    ImGui::Render( );
-  }
-
   void Gui::renderDrawData( uint32_t imageIndex )
   {
+    ImGui_ImplVulkan_NewFrame( );
+    ImGui_ImplSDL2_NewFrame( _window );
+    ImGui::NewFrame( );
+    render( );
+    ImGui::Render( );
+
     _commandBuffers.begin( imageIndex );
     _renderPass.begin( _framebuffers[imageIndex].get( ), _commandBuffers.get( imageIndex ), { 0, _swapchainImageExtent }, { { std::array<float, 4> { 0.5F, 0.5, 0.5F, 1.0F } } } );
 
@@ -81,8 +75,6 @@ namespace RAYEX_NAMESPACE
 
   void Gui::destroy( )
   {
-    _commandBuffers.free( );
-
     ImGui_ImplVulkan_Shutdown( );
     ImGui_ImplSDL2_Shutdown( );
     ImGui::DestroyContext( );

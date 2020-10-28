@@ -8,18 +8,14 @@ namespace RAYEX_NAMESPACE
 {
   const std::vector<const char*> layers = { "VK_LAYER_KHRONOS_validation" };
 #ifdef RX_DEBUG
-  std::vector<const char*> extensions = { "VK_KHR_get_physical_device_properties2", "VK_EXT_debug_utils" };
+  std::vector<const char*> extensions = { "VK_EXT_debug_utils" };
 #else
-  std::vector<const char*> extensions = { "VK_KHR_get_physical_device_properties2" };
+  std::vector<const char*> extensions;
 #endif
 
   std::vector<const char*> deviceExtensions = {
-    VK_KHR_GET_MEMORY_REQUIREMENTS_2_EXTENSION_NAME,
-    VK_EXT_DESCRIPTOR_INDEXING_EXTENSION_NAME,
-    VK_KHR_BUFFER_DEVICE_ADDRESS_EXTENSION_NAME,
     VK_KHR_DEFERRED_HOST_OPERATIONS_EXTENSION_NAME,
     VK_KHR_PIPELINE_LIBRARY_EXTENSION_NAME,
-    VK_KHR_MAINTENANCE3_EXTENSION_NAME,
     VK_KHR_RAY_TRACING_EXTENSION_NAME,
     VK_KHR_SWAPCHAIN_EXTENSION_NAME
   };
@@ -183,8 +179,6 @@ namespace RAYEX_NAMESPACE
 
   void Api::update( )
   {
-    updateSettings( );
-
     updateUniformBuffers( );
 
     // If the scene is empty add a dummy triangle so that a TLAS can be built successfully.
@@ -427,23 +421,18 @@ namespace RAYEX_NAMESPACE
 
   auto Api::render( ) -> bool
   {
-    if ( _gui != nullptr )
-    {
-      _gui->newFrame( );
-      _gui->render( );
-      _gui->endRender( );
-    }
+    updateSettings( );
 
     if ( prepareFrame( ) )
     {
       return true;
     }
 
+    update( );
+
     // Wait for previous frame to finish command buffer execution.
     vk::Result result = components::device.waitForFences( 1, &_inFlightFences[prevFrame].get( ), VK_TRUE, UINT64_MAX );
     RX_ASSERT( result == vk::Result::eSuccess, "Failed to wait for fences." );
-
-    update( );
 
     recordSwapchainCommandBuffers( );
 
@@ -467,7 +456,6 @@ namespace RAYEX_NAMESPACE
     components::device.waitIdle( );
 
     // Clean up existing swapchain and dependencies.
-    _swapchainCommandBuffers.free( );
     _swapchain.destroy( );
 
     // Recreating the swapchain.
@@ -536,7 +524,7 @@ namespace RAYEX_NAMESPACE
     std::vector<vk::DescriptorSetLayout> allRtDescriptorSetLayouts = { _rtDescriptors.layout.get( ),
                                                                        _rtSceneDescriptors.layout.get( ),
                                                                        _geometryDescriptors.layout.get( ) };
-    //_indexDataDescriptors.layout.get( ) };
+
     _rtBuilder.createPipeline( allRtDescriptorSetLayouts, _settings );
 
     // Rasterization pipeline

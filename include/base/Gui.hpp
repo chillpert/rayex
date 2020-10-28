@@ -65,12 +65,6 @@ namespace RAYEX_NAMESPACE
     /// @param swapchainImageViews The swapchain images' image views.
     void recreate( vk::Extent2D swapchainImageExtent, const std::vector<vk::ImageView>& swapchainImageViews );
 
-    /// Creates a new ImGui frame.
-    void newFrame( );
-
-    /// Calls the actual ImGui render call.
-    void endRender( );
-
     /// Records the ImGui rendering calls to the command buffer at the given image index.
     /// @param imageIndex The index addressing a command buffer.
     void renderDrawData( uint32_t imageIndex );

@@ -11,7 +11,7 @@ if(NOT CMAKE_BUILD_TYPE)
   set(CMAKE_BUILD_TYPE "Debug" CACHE STRING "No build type was set" FORCE)
 endif(NOT CMAKE_BUILD_TYPE)
 
-message(${CMAKE_BUILD_TYPE})
+message("Build type: " ${CMAKE_BUILD_TYPE})
 
 if(WIN32 OR MSVC)
   set(OS ${OS} "Windows")

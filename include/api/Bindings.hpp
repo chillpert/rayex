@@ -61,13 +61,13 @@ namespace RAYEX_NAMESPACE
     /// @param sets The descriptor set handles.
     /// @param binding The binding's index.
     /// @param pBufferInfo The pointer to the first element of an array of descriptor buffer infos.
-    void writeArray( const std::vector<vk::DescriptorSet>& sets, uint32_t binding, vk::DescriptorBufferInfo* pBufferInfo );
+    void writeArray( const std::vector<vk::DescriptorSet>& sets, uint32_t binding, const vk::DescriptorBufferInfo* pBufferInfo );
 
     /// Used to create an array of descriptor writes for images.
     /// @param sets The descriptor set handles.
     /// @param binding The binding's index.
     /// @param pImageInfo The pointer to the first element of an array of descriptor image infos.
-    void writeArray( const std::vector<vk::DescriptorSet>& sets, uint32_t binding, vk::DescriptorImageInfo* pImageInfo );
+    void writeArray( const std::vector<vk::DescriptorSet>& sets, uint32_t binding, const vk::DescriptorImageInfo* pImageInfo );
 
     /// Used to set pool sizes manually.
     /// @param poolSizes The pool sizes to set.

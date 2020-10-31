@@ -87,13 +87,11 @@ namespace vk::Initializer
 
   auto initDescriptorSetsUnique( const UniqueDescriptorPool& pool, const UniqueDescriptorSetLayout& layout ) -> std::vector<DescriptorSet>
   {
-    RX_ASSERT( RAYEX_NAMESPACE::components::swapchainImageCount > 0, "Failed to init descriptor sets because swapchain image count is zero." );
-
     // Create as many sets as images in the swapchain.
-    std::vector<DescriptorSetLayout> layouts( RAYEX_NAMESPACE::components::swapchainImageCount, layout.get( ) );
+    std::vector<DescriptorSetLayout> layouts( RAYEX_NAMESPACE::components::maxResources, layout.get( ) );
 
     DescriptorSetAllocateInfo allocInfo( pool.get( ),
-                                         RAYEX_NAMESPACE::components::swapchainImageCount,
+                                         RAYEX_NAMESPACE::components::maxResources,
                                          layouts.data( ) );
 
     auto sets = RAYEX_NAMESPACE::components::device.allocateDescriptorSets( allocInfo );

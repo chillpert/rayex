@@ -148,14 +148,14 @@ namespace RAYEX_NAMESPACE
 
     std::vector<vk::UniqueSampler> _immutableSamplers;
 
-    std::vector<VertexBuffer> _vertexBuffers;        ///< Multiple buffers for vertices because of variable descriptor indexing.
-    std::vector<IndexBuffer> _indexBuffers;          ///< Multiple buffers for indices because of variable descriptor indexing.
-    std::vector<StorageBuffer> _meshBuffers;         ///< Multiple buffers for meshes because of variable descriptor indexing.
-    std::vector<std::shared_ptr<Texture>> _textures; ///< Stores all textures.
+    std::vector<VertexBuffer> _vertexBuffers;          ///< Multiple buffers for vertices because of variable descriptor indexing.
+    std::vector<IndexBuffer> _indexBuffers;            ///< Multiple buffers for indices because of variable descriptor indexing.
+    std::vector<StorageBuffer<MeshSSBO>> _meshBuffers; ///< Multiple buffers for meshes because of variable descriptor indexing.
+    std::vector<std::shared_ptr<Texture>> _textures;   ///< Stores all textures.
 
-    StorageBuffer _geometryInstancesBuffer; ///< A storage buffer for the ray tracing instances.
-    StorageBuffer _directionalLightsBuffer; ///< A storage buffer for directional light data.
-    StorageBuffer _pointLightsBuffer;       ///< A storage buffer for point light data.
+    StorageBuffer<GeometryInstanceSSBO> _geometryInstancesBuffer; ///< A storage buffer for the ray tracing instances.
+    StorageBuffer<DirectionalLightSSBO> _directionalLightsBuffer; ///< A storage buffer for directional light data.
+    StorageBuffer<PointLightSSBO> _pointLightsBuffer;             ///< A storage buffer for point light data.
 
     UniformBuffer _cameraUniformBuffer; ///< Uniform buffers containing camera data.
 

@@ -53,9 +53,7 @@ namespace RAYEX_NAMESPACE
     template <typename T>
     void init( )
     {
-      size_t swapchainImageCount = static_cast<size_t>( components::swapchainImageCount );
-
-      _buffers.resize( swapchainImageCount );
+      _buffers.resize( components::maxResources );
 
       for ( Buffer& buffer : _buffers )
       {
@@ -65,7 +63,7 @@ namespace RAYEX_NAMESPACE
                      vk::MemoryPropertyFlagBits::eHostVisible | vk::MemoryPropertyFlagBits::eHostCoherent );
       }
 
-      _bufferInfos.resize( swapchainImageCount );
+      _bufferInfos.resize( components::maxResources );
       for ( size_t i = 0; i < _buffers.size( ); ++i )
         _bufferInfos[i] = vk::DescriptorBufferInfo( _buffers[i].get( ), 0, sizeof( T ) );
     }

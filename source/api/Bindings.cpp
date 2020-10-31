@@ -14,9 +14,9 @@ namespace RAYEX_NAMESPACE
     _flags.push_back( flags );
 
     // Resources are created per swapchain image. This operation will only be executed once.
-    if ( _writes.size( ) != components::swapchainImageCount )
+    if ( _writes.size( ) != components::maxResources )
     {
-      _writes.resize( components::swapchainImageCount );
+      _writes.resize( components::maxResources );
     }
 
     // For every new binding that is added, the size of each write in writes will get increased by one.
@@ -136,7 +136,7 @@ namespace RAYEX_NAMESPACE
 
   void Bindings::write( const std::vector<vk::DescriptorSet>& sets, uint32_t binding, const std::vector<vk::DescriptorBufferInfo>& uniformBufferInfos )
   {
-    RX_ASSERT( uniformBufferInfos.size( ) == sets.size( ), "Failed to write descriptor for uniform buffer because there are not as many uniform buffers as there are swapchain images." );
+    RX_ASSERT( uniformBufferInfos.size( ) == sets.size( ), "Failed to write descriptor for uniform buffer because there are not as many descriptor sets as uniform buffers." );
 
     for ( size_t i = 0; i < sets.size( ); ++i )
     {
@@ -168,7 +168,7 @@ namespace RAYEX_NAMESPACE
     return 0;
   }
 
-  void Bindings::writeArray( const std::vector<vk::DescriptorSet>& sets, uint32_t binding, vk::DescriptorBufferInfo* pBufferInfo )
+  void Bindings::writeArray( const std::vector<vk::DescriptorSet>& sets, uint32_t binding, const vk::DescriptorBufferInfo* pBufferInfo )
   {
     for ( size_t i = 0; i < sets.size( ); ++i )
     {
@@ -177,7 +177,7 @@ namespace RAYEX_NAMESPACE
     }
   }
 
-  void Bindings::writeArray( const std::vector<vk::DescriptorSet>& sets, uint32_t binding, vk::DescriptorImageInfo* pImageInfo )
+  void Bindings::writeArray( const std::vector<vk::DescriptorSet>& sets, uint32_t binding, const vk::DescriptorImageInfo* pImageInfo )
   {
     for ( size_t i = 0; i < sets.size( ); ++i )
     {

@@ -61,29 +61,38 @@ namespace RAYEX_NAMESPACE
   /// A shader storage buffer wrapper class.
   /// @ingroup API
   /// @todo documentation
-  /// @todo make this class a template and not the functions inside
-  class StorageBuffer : public Buffer
+  template <class T>
+  class StorageBuffer
   {
   public:
-    StorageBuffer( ) = default;
+    auto getDescriptorInfos( ) const -> const std::vector<vk::DescriptorBufferInfo>& { return _bufferInfos; }
 
-    template <typename T>
-    void init( const std::vector<T>& data, vk::DeviceSize offset = 0 )
+    void init( const std::vector<T>& data, size_t copies = 1 )
     {
       vk::DeviceSize size = sizeof( data[0] ) * data.size( );
 
-      // Set up the staging buffer.
-      _stagingBuffer.init( size,                                                                                   // size
-                           vk::BufferUsageFlagBits::eTransferSrc,                                                  // usage
-                           { components::transferFamilyIndex },                                                    // queueFamilyIndices
-                           vk::MemoryPropertyFlagBits::eHostVisible | vk::MemoryPropertyFlagBits::eHostCoherent ); // memoryPropertyFlags
+      _stagingBuffers.resize( copies );
+      _storageBuffers.resize( copies );
+      _bufferInfos.resize( copies );
 
-      Buffer::init( size,                                                                            // size
-                    vk::BufferUsageFlagBits::eTransferDst | vk::BufferUsageFlagBits::eStorageBuffer, // usage
-                    { components::transferFamilyIndex },                                             // queueFamilyIndices
-                    vk::MemoryPropertyFlagBits::eDeviceLocal );                                      // memoryPropertyFlags
+      for ( size_t i = 0; i < copies; ++i )
+      {
+        _stagingBuffers[i].init( size,                                                                                   // size
+                                 vk::BufferUsageFlagBits::eTransferSrc,                                                  // usage
+                                 { components::transferFamilyIndex },                                                    // queueFamilyIndices
+                                 vk::MemoryPropertyFlagBits::eHostVisible | vk::MemoryPropertyFlagBits::eHostCoherent ); // memoryPropertyFlags
 
-      upload<T>( data );
+        _storageBuffers[i].init( size,                                                                            // size
+                                 vk::BufferUsageFlagBits::eTransferDst | vk::BufferUsageFlagBits::eStorageBuffer, // usage
+                                 { components::transferFamilyIndex },                                             // queueFamilyIndices
+                                 vk::MemoryPropertyFlagBits::eDeviceLocal );                                      // memoryPropertyFlags
+
+        _bufferInfos[i].buffer = _storageBuffers[i].get( );
+        _bufferInfos[i].offset = 0;
+        _bufferInfos[i].range  = VK_WHOLE_SIZE;
+      }
+
+      upload( data );
     }
 
     /// Uploads data to the buffer.
@@ -91,14 +100,28 @@ namespace RAYEX_NAMESPACE
     /// First, the data is being copied to the staging buffer which is visible to the host.
     /// Finally, the staging buffer is copied to the actual buffer on the device.
     /// @param data The data to upload.
-    template <typename T>
-    void upload( const std::vector<T>& data )
+    void upload( const std::vector<T>& data, std::optional<size_t> index = { } )
     {
-      _stagingBuffer.fill<T>( data.data( ) );
-      _stagingBuffer.copyToBuffer( _buffer.get( ) );
+      if ( !index.has_value( ) )
+      {
+        for ( size_t i = 0; i < _storageBuffers.size( ); ++i )
+        {
+          _stagingBuffers[i].fill<T>( data.data( ) );
+          _stagingBuffers[i].copyToBuffer( _storageBuffers[i].get( ) );
+        }
+      }
+      else
+      {
+        _stagingBuffers[index.value( )].fill<T>( data.data( ) );
+        _stagingBuffers[index.value( )].copyToBuffer( _storageBuffers[index.value( )].get( ) );
+      }
     }
 
-    Buffer _stagingBuffer;
+  private:
+    std::vector<Buffer> _stagingBuffers;
+    std::vector<Buffer> _storageBuffers;
+
+    std::vector<vk::DescriptorBufferInfo> _bufferInfos;
   };
 } // namespace RAYEX_NAMESPACE
 

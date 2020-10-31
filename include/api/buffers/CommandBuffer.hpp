@@ -51,7 +51,7 @@ namespace RAYEX_NAMESPACE
     /// @param waitSemaphores A vector of semaphores to wait for.
     /// @param signalSemaphores A vector of semaphores to signal.
     /// @param waitDstStageMask The pipeline stage where the commands will be executed.
-    void submitToQueue( vk::Queue queue, const std::vector<vk::Semaphore>& waitSemaphores = { }, const std::vector<vk::Semaphore>& signalSemaphores = { }, vk::PipelineStageFlags* waitDstStageMask = { } );
+    void submitToQueue( vk::Queue queue, vk::Fence fence = nullptr, const std::vector<vk::Semaphore>& waitSemaphores = { }, const std::vector<vk::Semaphore>& signalSemaphores = { }, vk::PipelineStageFlags* waitDstStageMask = { } );
 
   private:
     std::vector<vk::CommandBuffer> _commandBuffers; ///< A vector of Vulkan command buffers.

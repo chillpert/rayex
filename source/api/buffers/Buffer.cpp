@@ -58,7 +58,7 @@ namespace RAYEX_NAMESPACE
     commandBuffer.submitToQueue( components::transferQueue );
   }
 
-  void Buffer::copyToBuffer( vk::Buffer buffer ) const
+  void Buffer::copyToBuffer( vk::Buffer buffer, vk::Fence fence ) const
   {
     CommandBuffer commandBuffer( components::transferCmdPool );
     commandBuffer.begin( );
@@ -67,7 +67,7 @@ namespace RAYEX_NAMESPACE
       commandBuffer.get( 0 ).copyBuffer( _buffer.get( ), buffer, 1, &copyRegion ); // CMD
     }
     commandBuffer.end( );
-    commandBuffer.submitToQueue( components::transferQueue );
+    commandBuffer.submitToQueue( components::transferQueue, fence );
   }
 
   void Buffer::copyToImage( vk::Image image, vk::Extent3D extent ) const

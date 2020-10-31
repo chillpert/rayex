@@ -36,7 +36,7 @@ namespace RAYEX_NAMESPACE
 
     /// Copies the content of this buffer to another vk::Buffer.
     /// @param buffer The target for the copy operation.
-    void copyToBuffer( vk::Buffer buffer ) const;
+    void copyToBuffer( vk::Buffer buffer, vk::Fence fence = nullptr ) const;
 
     /// Copies the content of this buffer to an image.
     /// @param image The target for the copy operation.
@@ -86,6 +86,18 @@ namespace RAYEX_NAMESPACE
       RX_ASSERT( _data != nullptr, "Failed to copy data to storage staging buffer." );
       memcpy( _data, source, static_cast<uint32_t>( _size ) );
       // @todo unmap memory in destructor
+
+      /*
+      if ( components::device.mapMemory( _memory.get( ), offset, finalSize, { }, &_data ) != vk::Result::eSuccess )
+      {
+        RX_ERROR( "Failed to map memory." );
+      }
+
+      RX_ASSERT( _data != nullptr, "Failed to copy data to storage staging buffer." );
+      memcpy( _data, source, static_cast<uint32_t>( _size ) );
+
+      components::device.unmapMemory( _memory.get( ) );
+      */
     }
 
   protected:

@@ -37,12 +37,25 @@ namespace RAYEX_NAMESPACE
 
     if ( !Util::find<vk::PresentModeKHR>( _presentMode, presentModes ) )
     {
-      Util::find<vk::PresentModeKHR>( vk::PresentModeKHR::eMailbox, presentModes ) ? _presentMode                                                                                    = vk::PresentModeKHR::eMailbox :
-                                                                                     Util::find<vk::PresentModeKHR>( vk::PresentModeKHR::eFifoRelaxed, presentModes ) ? _presentMode = vk::PresentModeKHR::eFifoRelaxed :
-                                                                                                                                                                        _presentMode = vk::PresentModeKHR::eFifo;
+      if ( Util::find<vk::PresentModeKHR>( vk::PresentModeKHR::eMailbox, presentModes ) )
+      {
+        _presentMode = vk::PresentModeKHR::eMailbox;
+      }
+      else if ( Util::find<vk::PresentModeKHR>( vk::PresentModeKHR::eFifoRelaxed, presentModes ) )
+      {
+        _presentMode = vk::PresentModeKHR::eFifoRelaxed;
+      }
+      else if ( Util::find<vk::PresentModeKHR>( vk::PresentModeKHR::eImmediate, presentModes ) )
+      {
+        _presentMode = vk::PresentModeKHR::eImmediate;
+      }
+      else
+      {
+        // Fall back, as FIFO is always supported on every device.
+        RX_WARN( "Preferred present mode not available. Falling back to ", vk::to_string( _presentMode ), " present mode." );
 
-      // Fall back, as FIFO is always supported on every device.
-      RX_WARN( "Preferred present mode not available. Falling back to ", vk::to_string( _presentMode ), " present mode." );
+        _presentMode = vk::PresentModeKHR::eFifo;
+      }
     }
 
     // Check format and color space.

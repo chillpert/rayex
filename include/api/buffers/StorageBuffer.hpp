@@ -74,6 +74,7 @@ namespace RAYEX_NAMESPACE
       _stagingBuffers.resize( copies );
       _storageBuffers.resize( copies );
       _bufferInfos.resize( copies );
+      _fences.resize( copies );
 
       for ( size_t i = 0; i < copies; ++i )
       {
@@ -90,6 +91,8 @@ namespace RAYEX_NAMESPACE
         _bufferInfos[i].buffer = _storageBuffers[i].get( );
         _bufferInfos[i].offset = 0;
         _bufferInfos[i].range  = VK_WHOLE_SIZE;
+
+        _fences[i] = vk::Initializer::initFenceUnique( vk::FenceCreateFlagBits::eSignaled );
       }
 
       upload( data );
@@ -100,20 +103,26 @@ namespace RAYEX_NAMESPACE
     /// First, the data is being copied to the staging buffer which is visible to the host.
     /// Finally, the staging buffer is copied to the actual buffer on the device.
     /// @param data The data to upload.
-    void upload( const std::vector<T>& data, std::optional<size_t> index = { } )
+    void upload( const std::vector<T>& data, std::optional<uint32_t> index = { } )
     {
       if ( !index.has_value( ) )
       {
         for ( size_t i = 0; i < _storageBuffers.size( ); ++i )
         {
+          components::device.waitForFences( 1, &_fences[i].get( ), VK_TRUE, UINT64_MAX );
+          components::device.resetFences( 1, &_fences[i].get( ) );
+
           _stagingBuffers[i].fill<T>( data.data( ) );
-          _stagingBuffers[i].copyToBuffer( _storageBuffers[i].get( ) );
+          _stagingBuffers[i].copyToBuffer( _storageBuffers[i].get( ), _fences[i].get( ) );
         }
       }
       else
       {
+        components::device.waitForFences( 1, &_fences[index.value( )].get( ), VK_TRUE, UINT64_MAX );
+        components::device.resetFences( 1, &_fences[index.value( )].get( ) );
+
         _stagingBuffers[index.value( )].fill<T>( data.data( ) );
-        _stagingBuffers[index.value( )].copyToBuffer( _storageBuffers[index.value( )].get( ) );
+        _stagingBuffers[index.value( )].copyToBuffer( _storageBuffers[index.value( )].get( ), _fences[index.value( )].get( ) );
       }
     }
 
@@ -122,6 +131,7 @@ namespace RAYEX_NAMESPACE
     std::vector<Buffer> _storageBuffers;
 
     std::vector<vk::DescriptorBufferInfo> _bufferInfos;
+    std::vector<vk::UniqueFence> _fences;
   };
 } // namespace RAYEX_NAMESPACE
 

@@ -8,6 +8,7 @@ namespace RAYEX_NAMESPACE
   void Swapchain::init( Surface* surface, vk::RenderPass renderPass )
   {
     surface->assessSettings( );
+    RX_INFO( "Present mode: ", vk::to_string( surface->getPresentMode( ) ) );
 
     auto surfaceCapabilities = surface->getCapabilities( );
 
@@ -34,10 +35,10 @@ namespace RAYEX_NAMESPACE
     createInfo.preTransform    = surfaceCapabilities.currentTransform;
 
     // Prefer opaque bit over any other composite alpha value.
-    createInfo.compositeAlpha = surfaceCapabilities.supportedCompositeAlpha & vk::CompositeAlphaFlagBitsKHR::eOpaque ? vk::CompositeAlphaFlagBitsKHR::eOpaque :
-                                                                                                                       surfaceCapabilities.supportedCompositeAlpha & vk::CompositeAlphaFlagBitsKHR::ePreMultiplied ? vk::CompositeAlphaFlagBitsKHR::ePreMultiplied :
-                                                                                                                                                                                                                     surfaceCapabilities.supportedCompositeAlpha & vk::CompositeAlphaFlagBitsKHR::ePostMultiplied ? vk::CompositeAlphaFlagBitsKHR::ePostMultiplied :
-                                                                                                                                                                                                                                                                                                                    vk::CompositeAlphaFlagBitsKHR::eInherit;
+    createInfo.compositeAlpha = surfaceCapabilities.supportedCompositeAlpha & vk::CompositeAlphaFlagBitsKHR::eOpaque         ? vk::CompositeAlphaFlagBitsKHR::eOpaque :
+                                surfaceCapabilities.supportedCompositeAlpha & vk::CompositeAlphaFlagBitsKHR::ePreMultiplied  ? vk::CompositeAlphaFlagBitsKHR::ePreMultiplied :
+                                surfaceCapabilities.supportedCompositeAlpha & vk::CompositeAlphaFlagBitsKHR::ePostMultiplied ? vk::CompositeAlphaFlagBitsKHR::ePostMultiplied :
+                                                                                                                               vk::CompositeAlphaFlagBitsKHR::eInherit;
 
     // Handle the swap chain image extent.
     if ( surfaceCapabilities.currentExtent.width != UINT32_MAX )
@@ -50,29 +51,8 @@ namespace RAYEX_NAMESPACE
       // Clamp width and height.
       _extent = surface->getExtent( );
 
-      uint32_t width_t = _extent.width;
-      if ( surfaceCapabilities.maxImageExtent.width < _extent.width )
-      {
-        width_t = surfaceCapabilities.maxImageExtent.width;
-      }
-
-      uint32_t height_t = _extent.height;
-      if ( surfaceCapabilities.maxImageExtent.height < _extent.height )
-      {
-        height_t = surfaceCapabilities.maxImageExtent.height;
-      }
-
-      _extent.width = width_t;
-      if ( surfaceCapabilities.minImageExtent.width > width_t )
-      {
-        _extent.width = surfaceCapabilities.minImageExtent.width;
-      }
-
-      _extent.height = height_t;
-      if ( surfaceCapabilities.minImageExtent.height > height_t )
-      {
-        _extent.height = surfaceCapabilities.minImageExtent.height;
-      }
+      _extent.width  = std::clamp( _extent.width, surfaceCapabilities.minImageExtent.width, surfaceCapabilities.maxImageExtent.width );
+      _extent.height = std::clamp( _extent.height, surfaceCapabilities.minImageExtent.height, surfaceCapabilities.maxImageExtent.height );
     }
 
     createInfo.imageExtent = _extent;

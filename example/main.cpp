@@ -68,6 +68,7 @@ auto main( ) -> int
     if ( Key::eB )
     {
       addBox( &renderer );
+      Key::eB = false;
     }
 
     if ( Key::eL )

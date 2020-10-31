@@ -52,7 +52,7 @@ namespace RAYEX_NAMESPACE
     _commandBuffers[index].end( );
   }
 
-  void CommandBuffer::submitToQueue( vk::Queue queue, const std::vector<vk::Semaphore>& waitSemaphores, const std::vector<vk::Semaphore>& signalSemaphores, vk::PipelineStageFlags* waitDstStageMask )
+  void CommandBuffer::submitToQueue( vk::Queue queue, vk::Fence fence, const std::vector<vk::Semaphore>& waitSemaphores, const std::vector<vk::Semaphore>& signalSemaphores, vk::PipelineStageFlags* waitDstStageMask )
   {
     if ( _beginInfo.flags & vk::CommandBufferUsageFlagBits::eOneTimeSubmit )
     {
@@ -64,7 +64,7 @@ namespace RAYEX_NAMESPACE
                                  static_cast<uint32_t>( signalSemaphores.size( ) ), // signalSemaphoreCount
                                  signalSemaphores.data( ) );                        // pSignalSemaphores
 
-      if ( queue.submit( 1, &submitInfo, nullptr ) != vk::Result::eSuccess )
+      if ( queue.submit( 1, &submitInfo, fence ) != vk::Result::eSuccess )
       {
         RX_ERROR( "Failed to submit" );
       }

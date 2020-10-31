@@ -71,6 +71,8 @@ namespace RAYEX_NAMESPACE
     /// Updates both top and bottom level acceleration structures as well as their descriptor bindings.
     void updateAccelerationStructures( );
 
+    void updateTopLevelAccelerationStructure( );
+
     /// Initilializes a rasterization as well as a graphics pipeline.
     /// @todo This function will be pointless once the new pipeline system is implemented.
     void initPipelines( );
@@ -96,9 +98,6 @@ namespace RAYEX_NAMESPACE
 
     /// Handles swapchain and pipeline recreations triggered by the user using setters provided in RAYEX_NAMESPACE::Settings.
     void updateSettings( );
-
-    /// Updates all uniform buffers light light sources.
-    void updateUniformBuffers( );
 
     /// Recreates the swapchain and re-records the swapchain command buffers.
     void recreateSwapchain( );

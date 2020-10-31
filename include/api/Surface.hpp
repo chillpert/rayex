@@ -19,7 +19,7 @@ namespace RAYEX_NAMESPACE
     Surface( const Surface&& ) = delete;
 
     auto operator=( const Surface& ) -> Surface& = delete;
-    auto operator=( const Surface && ) -> Surface& = delete;
+    auto operator=( const Surface&& ) -> Surface& = delete;
 
     /// @return Returns the surface format.
     auto getFormat( ) const -> vk::Format { return _format; }
@@ -52,7 +52,7 @@ namespace RAYEX_NAMESPACE
     vk::SurfaceKHR _surface                  = nullptr;                           ///< The Vulkan surface.
     vk::Format _format                       = vk::Format::eB8G8R8A8Unorm;        ///< The desired surface format.
     vk::ColorSpaceKHR _colorSpace            = vk::ColorSpaceKHR::eSrgbNonlinear; ///< The desired color space.
-    vk::PresentModeKHR _presentMode          = vk::PresentModeKHR::eImmediate;    ///< The desired present mode.
+    vk::PresentModeKHR _presentMode          = vk::PresentModeKHR::eFifoRelaxed;  ///< The desired present mode.
     vk::SurfaceCapabilitiesKHR _capabilities = 0;                                 ///< The surface's capabilities.
     vk::Extent2D _extent                     = { };                               ///< The surface's extent.
   };

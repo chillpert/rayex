@@ -179,7 +179,31 @@ namespace RAYEX_NAMESPACE
 
   void Api::update( )
   {
-    updateUniformBuffers( );
+    uint32_t imageIndex = _swapchain.getCurrentImageIndex( );
+
+    // Upload camera.
+    if ( _camera != nullptr )
+    {
+      if ( _camera->_updateView )
+      {
+        cameraUbo.view        = _camera->getViewMatrix( );
+        cameraUbo.viewInverse = _camera->getViewInverseMatrix( );
+
+        _camera->_updateView = false;
+      }
+
+      if ( _camera->_updateProj )
+      {
+        cameraUbo.projection        = _camera->getProjectionMatrix( );
+        cameraUbo.projectionInverse = _camera->getProjectionInverseMatrix( );
+
+        _camera->_updateProj = false;
+      }
+
+      cameraUbo.position = glm::vec4( _camera->getPosition( ), 1.0F );
+    }
+
+    _cameraUniformBuffer.upload<CameraUbo>( imageIndex % maxFramesInFlight, cameraUbo );
 
     // If the scene is empty add a dummy triangle so that a TLAS can be built successfully.
     if ( _scene->_geometryInstances.empty( ) )
@@ -273,25 +297,26 @@ namespace RAYEX_NAMESPACE
 
     if ( _scene->_uploadGeometryInstancesToBuffer )
     {
-      _scene->_uploadGeometryInstancesToBuffer = false;
-
-      if ( !_scene->_geometryInstances.empty( ) )
+      // @todo This is a temporary fix, as anytime this statement is false, something bad happens in the upload process.
+      if ( imageIndex % maxFramesInFlight == 0 )
       {
-        components::device.waitIdle( );
-        // Dereference pointers and store values in new vector that will be uploaded.
-        memAlignedGeometryInstances.resize( _scene->_geometryInstances.size( ) );
-        std::transform( _scene->_geometryInstances.begin( ),
-                        _scene->_geometryInstances.end( ),
-                        memAlignedGeometryInstances.begin( ),
-                        []( std::shared_ptr<GeometryInstance> instance ) { return GeometryInstanceSSBO { instance->transform,
-                                                                                                         instance->transformIT,
-                                                                                                         instance->geometryIndex }; } );
+        _scene->_uploadGeometryInstancesToBuffer = false;
 
-        components::device.waitIdle( );
-        _geometryInstancesBuffer.upload( memAlignedGeometryInstances );
-        components::device.waitIdle( );
-        updateAccelerationStructures( );
-        components::device.waitIdle( );
+        if ( !_scene->_geometryInstances.empty( ) )
+        {
+          // Dereference pointers and store values in new vector that will be uploaded.
+          memAlignedGeometryInstances.resize( _scene->_geometryInstances.size( ) );
+          std::transform( _scene->_geometryInstances.begin( ),
+                          _scene->_geometryInstances.end( ),
+                          memAlignedGeometryInstances.begin( ),
+                          []( std::shared_ptr<GeometryInstance> instance ) { return GeometryInstanceSSBO { instance->transform,
+                                                                                                           instance->transformIT,
+                                                                                                           instance->geometryIndex }; } );
+
+          std::cout << imageIndex % maxFramesInFlight << std::endl;
+          _geometryInstancesBuffer.upload( memAlignedGeometryInstances, imageIndex % maxFramesInFlight );
+          updateAccelerationStructures( );
+        }
       }
     }
 
@@ -310,7 +335,7 @@ namespace RAYEX_NAMESPACE
                                                                                                       glm::vec4( light->specular, light->specularIntensity ),
                                                                                                       glm::vec4( light->direction, 1.0F ) }; } );
 
-        _directionalLightsBuffer.upload( memAlignedDirectionalLights );
+        _directionalLightsBuffer.upload( memAlignedDirectionalLights, imageIndex % maxFramesInFlight );
       }
     }
 
@@ -329,7 +354,7 @@ namespace RAYEX_NAMESPACE
                                                                                           glm::vec4( light->specular, light->specularIntensity ),
                                                                                           glm::vec4( light->position, 1.0F ) }; } );
 
-        _pointLightsBuffer.upload( memAlignedPointLights );
+        _pointLightsBuffer.upload( memAlignedPointLights, imageIndex % maxFramesInFlight );
       }
     }
 
@@ -518,6 +543,28 @@ namespace RAYEX_NAMESPACE
     _rtDescriptors.bindings.update( );
 
     RX_LOG_TIME_STOP( "Finished updating acceleration structures" );
+  }
+
+  void Api::updateTopLevelAccelerationStructure( )
+  {
+    RX_LOG_TIME_START( "Updating top level acceleration structures ..." );
+
+    // @TODO Try to call this as few times as possible.
+    _rtBuilder.createTopLevelAS( _scene->_geometryInstances );
+
+    // Update ray tracing descriptor set.
+    vk::WriteDescriptorSetAccelerationStructureKHR tlasInfo( 1,
+                                                             &_rtBuilder.getTlas( ).as.as );
+
+    vk::DescriptorImageInfo storageImageInfo( nullptr,
+                                              _rtBuilder.getStorageImageView( ),
+                                              vk::ImageLayout::eGeneral );
+
+    _rtDescriptors.bindings.write( _rtDescriptorSets, 0, &tlasInfo );
+    _rtDescriptors.bindings.write( _rtDescriptorSets, 1, &storageImageInfo );
+    _rtDescriptors.bindings.update( );
+
+    RX_LOG_TIME_STOP( "Finished updating top level acceleration structures" );
   }
 
   void Api::initPipelines( )
@@ -907,35 +954,6 @@ namespace RAYEX_NAMESPACE
 
       recreateSwapchain( );
     }
-  }
-
-  void Api::updateUniformBuffers( )
-  {
-    uint32_t imageIndex = _swapchain.getCurrentImageIndex( );
-
-    // Upload camera.
-    if ( _camera != nullptr )
-    {
-      if ( _camera->_updateView )
-      {
-        cameraUbo.view        = _camera->getViewMatrix( );
-        cameraUbo.viewInverse = _camera->getViewInverseMatrix( );
-
-        _camera->_updateView = false;
-      }
-
-      if ( _camera->_updateProj )
-      {
-        cameraUbo.projection        = _camera->getProjectionMatrix( );
-        cameraUbo.projectionInverse = _camera->getProjectionInverseMatrix( );
-
-        _camera->_updateProj = false;
-      }
-
-      cameraUbo.position = glm::vec4( _camera->getPosition( ), 1.0F );
-    }
-
-    _cameraUniformBuffer.upload<CameraUbo>( imageIndex % maxFramesInFlight, cameraUbo );
   }
 
   void Api::updateSceneDescriptors( )

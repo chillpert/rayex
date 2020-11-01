@@ -159,9 +159,6 @@ namespace RAYEX_NAMESPACE
     // Update RT scene descriptor sets.
     updateSceneDescriptors( );
 
-    // Update the vertex and index SSBO descriptors for the ray tracing shaders.
-    //updateRayTracingModelData( );
-
     // Initialize a rasterization and raytracing pipeline.
     initPipelines( );
 
@@ -304,7 +301,8 @@ namespace RAYEX_NAMESPACE
 
     if ( _scene->_uploadGeometryInstancesToBuffer )
     {
-      if ( imageIndex % maxFramesInFlight == 0 )
+      //if ( imageIndex % maxFramesInFlight == 0 )
+      if ( true )
       {
         _scene->_uploadGeometryInstancesToBuffer = false;
 
@@ -752,7 +750,7 @@ namespace RAYEX_NAMESPACE
                                                                     0, // offset
                                                                     vk::IndexType::eUint32 );
 
-        std::vector<vk::DescriptorSet> descriptorSets = { _rsSceneDescriptorSets[imageIndex] };
+        std::vector<vk::DescriptorSet> descriptorSets = { _rsSceneDescriptorSets[imageIndex % maxFramesInFlight] };
 
         _swapchainCommandBuffers.get( imageIndex ).bindDescriptorSets( vk::PipelineBindPoint::eGraphics, _rsPipeline.getLayout( ),
                                                                        0,                                               // first set

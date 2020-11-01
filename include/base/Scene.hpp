@@ -62,6 +62,8 @@ namespace RAYEX_NAMESPACE
     /// @param geometryInstance The instance to remove.
     void removeGeometryInstance( std::shared_ptr<GeometryInstance> geometryInstance );
 
+    void clearGeometryInstances( );
+
     /// Used to submit a geometry and set up its buffers.
     ///
     /// Once a geometry was submitted, geometry instances referencing this particular geometry can be drawn.
@@ -77,6 +79,10 @@ namespace RAYEX_NAMESPACE
     /// Used to remove a geometry.
     /// @param geometry The geometry to remove.
     void removeGeometry( std::shared_ptr<Geometry> geometry );
+
+    void removeGeometry( uint32_t geometryIndex );
+
+    void clearGeometries( );
 
     /// Used to retrieve a geoemtry based on its path.
     /// @param path The geometry's model's path, relative to the path to assets.

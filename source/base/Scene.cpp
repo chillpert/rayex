@@ -168,6 +168,21 @@ namespace RAYEX_NAMESPACE
       return;
     }
 
+    // Removing a geometry also means removing all its instances.
+    std::vector<std::shared_ptr<GeometryInstance>> instancesToDelete;
+    for ( auto it : _geometryInstances )
+    {
+      if ( it->geometryIndex == geometry->geometryIndex )
+      {
+        instancesToDelete.push_back( it );
+      }
+    }
+
+    for ( auto it : instancesToDelete )
+    {
+      removeGeometryInstance( it );
+    }
+
     std::vector<std::shared_ptr<Geometry>> temp( _geometries );
     _geometries.clear( );
     _geometries.reserve( temp.size( ) );
@@ -185,7 +200,100 @@ namespace RAYEX_NAMESPACE
     --components::geometryIndex;
     _uploadGeometries = true; // @todo Might not be necessary.
 
+    // Update geometry indices for geometry instances.
+    std::vector<std::shared_ptr<GeometryInstance>> temp2( _geometryInstances );
+    _geometryInstances.clear( );
+    _geometries.reserve( temp2.size( ) );
+
+    geometryIndex = 0;
+    for ( auto it : temp2 )
+    {
+      if ( it->geometryIndex > geometry->geometryIndex )
+      {
+        --it->geometryIndex;
+        _geometryInstances.push_back( it );
+      }
+      else
+      {
+        _geometryInstances.push_back( it );
+      }
+    }
+
+    _uploadGeometryInstancesToBuffer = true;
+
     // @todo Remove textures of each material
+    for ( auto it : _geometries )
+    {
+      bool found                 = false;
+      std::string diffuseTexPath = "";
+
+      for ( const auto& mesh : it->meshes )
+      {
+        diffuseTexPath = mesh.material.diffuseTexPath;
+
+        for ( const auto& thisMesh : geometry->meshes )
+        {
+          if ( !mesh.material.diffuseTexPath.empty( ) && !thisMesh.material.diffuseTexPath.empty( ) )
+          {
+            if ( mesh.material.diffuseTexPath == thisMesh.material.diffuseTexPath )
+            {
+              diffuseTexPath = mesh.material.diffuseTexPath;
+              found          = true;
+              break;
+            }
+          }
+        }
+      }
+
+      if ( found )
+      {
+        RX_ERROR( diffuseTexPath, " still needed." );
+      }
+    }
+  }
+
+  void Scene::removeGeometry( uint32_t geometryIndex )
+  {
+    for ( auto it : _geometries )
+    {
+      if ( it->geometryIndex == geometryIndex )
+      {
+        removeGeometry( it );
+        break;
+      }
+    }
+  }
+
+  void Scene::clearGeometries( )
+  {
+    RX_ASSERT( false, "NOT IMPLEMENTED" );
+    // Remove all instances.
+    for ( auto geometry : _geometries )
+    {
+      std::vector<std::shared_ptr<GeometryInstance>> instancesToDelete;
+      for ( auto it : _geometryInstances )
+      {
+        if ( it->geometryIndex == geometry->geometryIndex )
+        {
+          instancesToDelete.push_back( it );
+        }
+      }
+
+      for ( auto it : instancesToDelete )
+      {
+        removeGeometryInstance( it );
+      }
+    }
+
+    _geometries.clear( );
+
+    // Reset index counter.
+    components::geometryIndex = 0;
+
+    // Reset texture counter.
+    components::textureIndex = 0;
+
+    _uploadGeometries = true;
   }
 
   auto Scene::findGeometry( std::string_view path ) const -> std::shared_ptr<Geometry>

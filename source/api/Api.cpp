@@ -33,7 +33,8 @@ namespace RAYEX_NAMESPACE
   vk::Viewport viewport; ///< The application's viewport.
   vk::Rect2D scissor;    ///< The application's scissor.
 
-  std::shared_ptr<Geometry> triangle = nullptr; ///< A dummy triangle that will be placed in the scene if it empty. This assures the AS creation.
+  std::shared_ptr<Geometry> triangle                 = nullptr; ///< A dummy triangle that will be placed in the scene if it empty. This assures the AS creation.
+  std::shared_ptr<GeometryInstance> triangleInstance = nullptr;
 
   // Defines the maximum amount of frames that will be processed concurrently.
   const size_t maxFramesInFlight = 2;
@@ -226,13 +227,19 @@ namespace RAYEX_NAMESPACE
       triangle->geometryIndex = components::geometryIndex++;
       triangle->meshes.push_back( { { }, 0 } );
 
+      triangleInstance = instance( triangle );
+
       _scene->submitGeometry( triangle );
-      _scene->submitGeometryInstance( instance( triangle ) );
+      _scene->submitGeometryInstance( triangleInstance );
+
+      RX_VERBOSE( "Scene is empty. Added dummy element." );
     }
     else
     {
-      if ( triangle != nullptr )
+      if ( triangle != nullptr && _scene->_geometryInstances.size( ) > 1 )
       {
+        RX_VERBOSE( "Removing dummy element." );
+        //_scene->removeGeometryInstance( triangleInstance );
         _scene->removeGeometry( triangle );
         triangle = nullptr;
       }
@@ -297,22 +304,26 @@ namespace RAYEX_NAMESPACE
 
     if ( _scene->_uploadGeometryInstancesToBuffer )
     {
-      _scene->_uploadGeometryInstancesToBuffer = false;
-
-      if ( !_scene->_geometryInstances.empty( ) )
+      if ( imageIndex % maxFramesInFlight == 0 )
       {
-        // Dereference pointers and store values in new vector that will be uploaded.
-        memAlignedGeometryInstances.resize( _scene->_geometryInstances.size( ) );
-        std::transform( _scene->_geometryInstances.begin( ),
-                        _scene->_geometryInstances.end( ),
-                        memAlignedGeometryInstances.begin( ),
-                        []( std::shared_ptr<GeometryInstance> instance ) { return GeometryInstanceSSBO { instance->transform,
-                                                                                                         instance->transformIT,
-                                                                                                         instance->geometryIndex }; } );
+        _scene->_uploadGeometryInstancesToBuffer = false;
 
-        std::cout << imageIndex % maxFramesInFlight << std::endl;
-        _geometryInstancesBuffer.upload( memAlignedGeometryInstances, imageIndex % maxFramesInFlight );
-        updateAccelerationStructures( );
+        if ( !_scene->_geometryInstances.empty( ) )
+        {
+          // Dereference pointers and store values in new vector that will be uploaded.
+          memAlignedGeometryInstances.resize( _scene->_geometryInstances.size( ) );
+          std::transform( _scene->_geometryInstances.begin( ),
+                          _scene->_geometryInstances.end( ),
+                          memAlignedGeometryInstances.begin( ),
+                          []( std::shared_ptr<GeometryInstance> instance ) { return GeometryInstanceSSBO { instance->transform,
+                                                                                                           instance->transformIT,
+                                                                                                           instance->geometryIndex }; } );
+
+          std::cout << "Image index: " << imageIndex % maxFramesInFlight << std::endl;
+          _geometryInstancesBuffer.upload( memAlignedGeometryInstances, imageIndex % maxFramesInFlight );
+
+          updateAccelerationStructures( );
+        }
       }
     }
 

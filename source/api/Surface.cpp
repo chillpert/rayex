@@ -41,13 +41,13 @@ namespace RAYEX_NAMESPACE
       {
         _presentMode = vk::PresentModeKHR::eMailbox;
       }
-      else if ( Util::find<vk::PresentModeKHR>( vk::PresentModeKHR::eFifoRelaxed, presentModes ) )
-      {
-        _presentMode = vk::PresentModeKHR::eFifoRelaxed;
-      }
       else if ( Util::find<vk::PresentModeKHR>( vk::PresentModeKHR::eImmediate, presentModes ) )
       {
         _presentMode = vk::PresentModeKHR::eImmediate;
+      }
+      else if ( Util::find<vk::PresentModeKHR>( vk::PresentModeKHR::eFifoRelaxed, presentModes ) )
+      {
+        _presentMode = vk::PresentModeKHR::eFifoRelaxed;
       }
       else
       {

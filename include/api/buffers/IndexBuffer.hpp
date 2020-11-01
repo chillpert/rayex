@@ -32,7 +32,7 @@ namespace RAYEX_NAMESPACE
                             vk::MemoryPropertyFlagBits::eHostVisible | vk::MemoryPropertyFlagBits::eHostCoherent,
                             &allocateFlags );
 
-      stagingBuffer.fill<uint32_t>( indices.data( ) );
+      stagingBuffer.fill<uint32_t>( indices );
 
       // Set up the actual index buffer.
       Buffer::init( size,

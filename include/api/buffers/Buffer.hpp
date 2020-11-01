@@ -64,6 +64,29 @@ namespace RAYEX_NAMESPACE
     /// @param source The data to fill the buffer with.
     /// @param offset The data's offset within the buffer.
     template <class T>
+    void fill( const std::vector<T>& data, vk::DeviceSize offset = 0, std::optional<vk::DeviceSize> size = { } )
+    {
+      vk::DeviceSize actualSize = data.size( ) * sizeof( data[0] );
+
+      // Only call mapMemory once or everytime the buffer has been initialized again.
+      if ( !_mapped )
+      {
+        _mapped = true;
+
+        RX_ASSERT( offset == 0, "DEBUG ASSERT OFFSET == 0" );
+
+        if ( components::device.mapMemory( _memory.get( ), offset, actualSize, { }, &_ptrToData ) != vk::Result::eSuccess )
+        {
+          RX_ERROR( "Failed to map memory." );
+        }
+      }
+
+      RX_ASSERT( _ptrToData != nullptr, "Failed to copy data to storage staging buffer." );
+      memcpy( _ptrToData, data.data( ), static_cast<uint32_t>( actualSize ) );
+      // @todo unmap memory in destructor
+    }
+
+    template <class T>
     void fill( const T* source, vk::DeviceSize offset = 0, std::optional<vk::DeviceSize> size = { } )
     {
       vk::DeviceSize finalSize = _size;
@@ -77,27 +100,15 @@ namespace RAYEX_NAMESPACE
       {
         _mapped = true;
 
-        if ( components::device.mapMemory( _memory.get( ), offset, finalSize, { }, &_data ) != vk::Result::eSuccess )
+        if ( components::device.mapMemory( _memory.get( ), offset, finalSize, { }, &_ptrToData ) != vk::Result::eSuccess )
         {
           RX_ERROR( "Failed to map memory." );
         }
       }
 
-      RX_ASSERT( _data != nullptr, "Failed to copy data to storage staging buffer." );
-      memcpy( _data, source, static_cast<uint32_t>( _size ) );
+      RX_ASSERT( _ptrToData != nullptr, "Failed to copy data to storage staging buffer." );
+      memcpy( _ptrToData, source, static_cast<uint32_t>( _size ) );
       // @todo unmap memory in destructor
-
-      /*
-      if ( components::device.mapMemory( _memory.get( ), offset, finalSize, { }, &_data ) != vk::Result::eSuccess )
-      {
-        RX_ERROR( "Failed to map memory." );
-      }
-
-      RX_ASSERT( _data != nullptr, "Failed to copy data to storage staging buffer." );
-      memcpy( _data, source, static_cast<uint32_t>( _size ) );
-
-      components::device.unmapMemory( _memory.get( ) );
-      */
     }
 
   protected:
@@ -106,8 +117,8 @@ namespace RAYEX_NAMESPACE
 
     vk::DeviceSize _size = 0; ///< The buffer's size.
 
-    void* _data  = nullptr;
-    bool _mapped = false;
+    void* _ptrToData = nullptr;
+    bool _mapped     = false;
   };
 } // namespace RAYEX_NAMESPACE
 

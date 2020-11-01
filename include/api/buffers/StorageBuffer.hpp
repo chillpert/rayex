@@ -69,7 +69,7 @@ namespace RAYEX_NAMESPACE
 
     void init( const std::vector<T>& data, size_t copies = 1 )
     {
-      vk::DeviceSize size = sizeof( data[0] ) * data.size( );
+      _maxSize = sizeof( data[0] ) * data.size( );
 
       _stagingBuffers.resize( copies );
       _storageBuffers.resize( copies );
@@ -78,12 +78,12 @@ namespace RAYEX_NAMESPACE
 
       for ( size_t i = 0; i < copies; ++i )
       {
-        _stagingBuffers[i].init( size,                                                                                   // size
+        _stagingBuffers[i].init( _maxSize,                                                                               // size
                                  vk::BufferUsageFlagBits::eTransferSrc,                                                  // usage
                                  { components::transferFamilyIndex },                                                    // queueFamilyIndices
                                  vk::MemoryPropertyFlagBits::eHostVisible | vk::MemoryPropertyFlagBits::eHostCoherent ); // memoryPropertyFlags
 
-        _storageBuffers[i].init( size,                                                                            // size
+        _storageBuffers[i].init( _maxSize,                                                                        // size
                                  vk::BufferUsageFlagBits::eTransferDst | vk::BufferUsageFlagBits::eStorageBuffer, // usage
                                  { components::transferFamilyIndex },                                             // queueFamilyIndices
                                  vk::MemoryPropertyFlagBits::eDeviceLocal );                                      // memoryPropertyFlags
@@ -105,24 +105,26 @@ namespace RAYEX_NAMESPACE
     /// @param data The data to upload.
     void upload( const std::vector<T>& data, std::optional<uint32_t> index = { } )
     {
+      RX_ASSERT( _maxSize >= sizeof( data[0] ) * data.size( ), "Exceeded maximum storage buffer size." );
+
       if ( !index.has_value( ) )
       {
         for ( size_t i = 0; i < _storageBuffers.size( ); ++i )
         {
-          components::device.waitForFences( 1, &_fences[i].get( ), VK_TRUE, UINT64_MAX );
-          components::device.resetFences( 1, &_fences[i].get( ) );
+          //components::device.waitForFences( 1, &_fences[i].get( ), VK_TRUE, UINT64_MAX );
+          //components::device.resetFences( 1, &_fences[i].get( ) );
 
-          _stagingBuffers[i].fill<T>( data.data( ) );
-          _stagingBuffers[i].copyToBuffer( _storageBuffers[i].get( ), _fences[i].get( ) );
+          _stagingBuffers[i].fill<T>( data );
+          _stagingBuffers[i].copyToBuffer( _storageBuffers[i].get( ) ); //, _fences[i].get( ) );
         }
       }
       else
       {
-        components::device.waitForFences( 1, &_fences[index.value( )].get( ), VK_TRUE, UINT64_MAX );
-        components::device.resetFences( 1, &_fences[index.value( )].get( ) );
+        //components::device.waitForFences( 1, &_fences[index.value( )].get( ), VK_TRUE, UINT64_MAX );
+        //components::device.resetFences( 1, &_fences[index.value( )].get( ) );
 
-        _stagingBuffers[index.value( )].fill<T>( data.data( ) );
-        _stagingBuffers[index.value( )].copyToBuffer( _storageBuffers[index.value( )].get( ), _fences[index.value( )].get( ) );
+        _stagingBuffers[index.value( )].fill<T>( data );
+        _stagingBuffers[index.value( )].copyToBuffer( _storageBuffers[index.value( )].get( ) ); //, _fences[index.value( )].get( ) );
       }
     }
 
@@ -132,6 +134,8 @@ namespace RAYEX_NAMESPACE
 
     std::vector<vk::DescriptorBufferInfo> _bufferInfos;
     std::vector<vk::UniqueFence> _fences;
+
+    vk::DeviceSize _maxSize = 0;
   };
 } // namespace RAYEX_NAMESPACE
 

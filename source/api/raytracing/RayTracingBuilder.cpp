@@ -375,7 +375,7 @@ namespace RAYEX_NAMESPACE
                           vk::MemoryPropertyFlagBits::eHostVisible,                                                // memoryPropertyFlags
                           &allocateFlags );                                                                        // pNextMemory
 
-    _instanceBuffer.fill<vk::AccelerationStructureInstanceKHR>( geometryInstances.data( ) );
+    _instanceBuffer.fill<vk::AccelerationStructureInstanceKHR>( geometryInstances );
 
     vk::DeviceAddress instanceAddress = components::device.getBufferAddress( { _instanceBuffer.get( ) } );
 

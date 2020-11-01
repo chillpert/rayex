@@ -297,26 +297,22 @@ namespace RAYEX_NAMESPACE
 
     if ( _scene->_uploadGeometryInstancesToBuffer )
     {
-      // @todo This is a temporary fix, as anytime this statement is false, something bad happens in the upload process.
-      if ( imageIndex % maxFramesInFlight == 0 )
+      _scene->_uploadGeometryInstancesToBuffer = false;
+
+      if ( !_scene->_geometryInstances.empty( ) )
       {
-        _scene->_uploadGeometryInstancesToBuffer = false;
+        // Dereference pointers and store values in new vector that will be uploaded.
+        memAlignedGeometryInstances.resize( _scene->_geometryInstances.size( ) );
+        std::transform( _scene->_geometryInstances.begin( ),
+                        _scene->_geometryInstances.end( ),
+                        memAlignedGeometryInstances.begin( ),
+                        []( std::shared_ptr<GeometryInstance> instance ) { return GeometryInstanceSSBO { instance->transform,
+                                                                                                         instance->transformIT,
+                                                                                                         instance->geometryIndex }; } );
 
-        if ( !_scene->_geometryInstances.empty( ) )
-        {
-          // Dereference pointers and store values in new vector that will be uploaded.
-          memAlignedGeometryInstances.resize( _scene->_geometryInstances.size( ) );
-          std::transform( _scene->_geometryInstances.begin( ),
-                          _scene->_geometryInstances.end( ),
-                          memAlignedGeometryInstances.begin( ),
-                          []( std::shared_ptr<GeometryInstance> instance ) { return GeometryInstanceSSBO { instance->transform,
-                                                                                                           instance->transformIT,
-                                                                                                           instance->geometryIndex }; } );
-
-          std::cout << imageIndex % maxFramesInFlight << std::endl;
-          _geometryInstancesBuffer.upload( memAlignedGeometryInstances, imageIndex % maxFramesInFlight );
-          updateAccelerationStructures( );
-        }
+        std::cout << imageIndex % maxFramesInFlight << std::endl;
+        _geometryInstancesBuffer.upload( memAlignedGeometryInstances, imageIndex % maxFramesInFlight );
+        updateAccelerationStructures( );
       }
     }
 

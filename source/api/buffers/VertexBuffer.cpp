@@ -30,7 +30,7 @@ namespace RAYEX_NAMESPACE
                   vk::MemoryPropertyFlagBits::eHostVisible | vk::MemoryPropertyFlagBits::eHostCoherent,                                                                                     // memoryPropertyFlags
                   &allocateFlags );                                                                                                                                                         // pNext of memory
 
-    stagingBuffer.fill<Vertex>( vertices.data( ) );
+    stagingBuffer.fill<Vertex>( vertices );
 
     // Copy staging buffer to the actual index buffer.
     stagingBuffer.copyToBuffer( _buffer.get( ) );

@@ -59,7 +59,7 @@ inline void addBox( rx::Rayex* renderer )
 
   auto transform = glm::scale( glm::mat4( 1.0F ), glm::vec3( 0.3F, 0.3F, 0.3F ) );
   transform      = glm::rotate( transform, getRandomFloat( 0.0F, 360.0F ), glm::vec3( 0.0F, 1.0F, 0.0F ) );
-  transform      = glm::translate( transform, getRandomUniquePosition( -10.0F, 10.0F ) );
+  transform      = glm::translate( transform, getRandomUniquePosition( -25.0F, 25.0F ) );
 
   auto cubeInstance = rx::instance( cube, transform );
   renderer->scene( ).submitGeometryInstance( cubeInstance );
@@ -77,7 +77,7 @@ inline void addSphere( rx::Rayex* renderer )
 
   auto transform = glm::scale( glm::mat4( 1.0F ), glm::vec3( 0.1F, 0.1F, 0.1F ) );
   transform      = glm::rotate( transform, getRandomFloat( 0.0F, 360.0F ), glm::vec3( 0.0F, 1.0F, 0.0F ) );
-  transform      = glm::translate( transform, getRandomUniquePosition( -45.0F, 45.0F ) );
+  transform      = glm::translate( transform, getRandomUniquePosition( -70.0F, 70.0F ) );
 
   auto sphereInstance = rx::instance( sphere, transform );
   renderer->scene( ).submitGeometryInstance( sphereInstance );

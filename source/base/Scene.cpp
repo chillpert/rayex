@@ -138,6 +138,8 @@ namespace RAYEX_NAMESPACE
 
   void Scene::clearGeometryInstances( )
   {
+    _geometryInstances.clear( );
+    _uploadGeometryInstancesToBuffer = true;
   }
 
   void Scene::submitGeometry( std::shared_ptr<Geometry> geometry )

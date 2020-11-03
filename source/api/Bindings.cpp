@@ -125,7 +125,7 @@ namespace RAYEX_NAMESPACE
     }
   }
 
-  void Bindings::write( const std::vector<vk::DescriptorSet>& sets, uint32_t binding, const vk::DescriptorBufferInfo* pBufferInfo )
+  void Bindings::write( const std::vector<vk::DescriptorSet>& sets, uint32_t binding, vk::DescriptorBufferInfo* pBufferInfo )
   {
     for ( size_t i = 0; i < sets.size( ); ++i )
     {

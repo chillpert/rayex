@@ -242,6 +242,14 @@ namespace RAYEX_NAMESPACE
       }
     }
 
+    if ( _scene->_deleteTextures )
+    {
+      _scene->_deleteTextures = false;
+
+      _textures.clear( );
+      _textures.resize( static_cast<uint32_t>( _settings->_maxTextures ) );
+    }
+
     // Init geometry storage buffers.
     if ( _scene->_uploadGeometries )
     {
@@ -301,8 +309,8 @@ namespace RAYEX_NAMESPACE
 
     if ( _scene->_uploadGeometryInstancesToBuffer )
     {
-      //if ( imageIndex % maxFramesInFlight == 0 )
-      if ( true )
+      //if ( true )
+      if ( imageIndex % maxFramesInFlight == 0 )
       {
         _scene->_uploadGeometryInstancesToBuffer = false;
 

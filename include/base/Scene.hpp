@@ -62,7 +62,13 @@ namespace RAYEX_NAMESPACE
     /// @param geometryInstance The instance to remove.
     void removeGeometryInstance( std::shared_ptr<GeometryInstance> geometryInstance );
 
+    /// Used to remove all geometry instances.
+    ///
+    /// However, geometries remain loaded and must be deleted explicitely.
     void clearGeometryInstances( );
+
+    /// Used to remove the last geoemtry instance.
+    void popGeometryInstance( );
 
     /// Used to submit a geometry and set up its buffers.
     ///
@@ -80,8 +86,14 @@ namespace RAYEX_NAMESPACE
     /// @param geometry The geometry to remove.
     void removeGeometry( std::shared_ptr<Geometry> geometry );
 
+    /// Used to remove a geometry.
+    /// @param geometryIndex The geometry's index.
     void removeGeometry( uint32_t geometryIndex );
 
+    /// Used to remove the last geometry and all its instances.
+    void popGeometry( );
+
+    /// Used to remove all geometries
     void clearGeometries( );
 
     /// Used to retrieve a geoemtry based on its path.
@@ -94,10 +106,11 @@ namespace RAYEX_NAMESPACE
     std::vector<std::shared_ptr<DirectionalLight>> _directionalLights; ///< Stores all directional lights.
     std::vector<std::shared_ptr<PointLight>> _pointLights;             ///< Stores all point lights.
 
-    bool _uploadGeometryInstancesToBuffer = false; ///< Keeps track of whether or not to upload the ray tracing instances to their respective buffer the next time update() is called.
-    bool _uploadDirectionalLightsToBuffer = false; ///< Keeps track of whether or not to upload the directional lights to their respective buffer the next time update() is called.
-    bool _uploadPointLightsToBuffer       = false; ///< Keeps track of whether or not to upload the point lights to their respective buffer the next time update() is called.
-    bool _uploadGeometries                = false;
+    bool _uploadGeometryInstancesToBuffer = false; ///< Keeps track of whether or not to upload the ray tracing instances to their respective buffer the next time RAYEX_NAMESPACE::Api::update() is called.
+    bool _uploadDirectionalLightsToBuffer = false; ///< Keeps track of whether or not to upload the directional lights to their respective buffer the next time RAYEX_NAMESPACE::Api::update() is called.
+    bool _uploadPointLightsToBuffer       = false; ///< Keeps track of whether or not to upload the point lights to their respective buffer the next time RAYEX_NAMESPACE::Api::update() is called.
+    bool _uploadGeometries                = false; ///< Keeps track of whether or not to upload the geometries to their respective buffer the next time RAYEX_NAMESPACE::Api::update() is called.
+    bool _deleteTextures                  = false;
 
     Settings* _settings = nullptr; ///< Refers to the rendering settings stored in Rayex::settings.
   };

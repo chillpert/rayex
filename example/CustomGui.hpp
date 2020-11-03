@@ -101,16 +101,6 @@ inline void addAwp( rx::Rayex* renderer )
   renderer->scene( ).submitGeometryInstance( awpInstance );
 }
 
-inline void clearScene( rx::Rayex* renderer )
-{
-  auto geometryInstances = renderer->scene( ).getGeometryInstances( );
-
-  for ( auto geometryInstance : geometryInstances )
-  {
-    renderer->scene( ).removeGeometryInstance( geometryInstance );
-  }
-}
-
 class CustomGui : public rx::Gui
 {
 public:
@@ -218,16 +208,16 @@ private:
 
       ImGui::SameLine( );
 
-      if ( ImGui::Button( "Pop" ) )
+      if ( ImGui::Button( "Clear instances" ) )
       {
-        _renderer->scene( ).getGeometryInstances( );
+        _renderer->scene( ).clearGeometryInstances( );
       }
 
       ImGui::SameLine( );
 
-      if ( ImGui::Button( "Clear scene" ) )
+      if ( ImGui::Button( "Clear geometry" ) )
       {
-        clearScene( _renderer );
+        _renderer->scene( ).clearGeometries( );
       }
 
       if ( ImGui::Button( "Add directional light" ) )

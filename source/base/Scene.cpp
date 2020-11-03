@@ -136,6 +136,10 @@ namespace RAYEX_NAMESPACE
     _uploadGeometryInstancesToBuffer = true;
   }
 
+  void Scene::clearGeometryInstances( )
+  {
+  }
+
   void Scene::submitGeometry( std::shared_ptr<Geometry> geometry )
   {
     if ( _geometries.size( ) >= _settings->_maxGeometryInstances - 1 )
@@ -266,7 +270,6 @@ namespace RAYEX_NAMESPACE
 
   void Scene::clearGeometries( )
   {
-    RX_ASSERT( false, "NOT IMPLEMENTED" );
     // Remove all instances.
     for ( auto geometry : _geometries )
     {
@@ -292,6 +295,7 @@ namespace RAYEX_NAMESPACE
 
     // Reset texture counter.
     components::textureIndex = 0;
+    _deleteTextures          = true;
 
     _uploadGeometries = true;
   }

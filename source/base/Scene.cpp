@@ -154,10 +154,6 @@ namespace RAYEX_NAMESPACE
       _geometryInstances.erase( _geometryInstances.end( ) - 1 );
       _uploadGeometryInstancesToBuffer = true;
     }
-    else
-    {
-      RX_ERROR( "Failed to pop geometry instance, because the scene is empty." );
-    }
   }
 
   void Scene::submitGeometry( std::shared_ptr<Geometry> geometry )
@@ -324,6 +320,10 @@ namespace RAYEX_NAMESPACE
 
   void Scene::popGeometry( )
   {
+    if ( !_geometries.empty( ) )
+    {
+      removeGeometry( *( _geometries.end( ) - 1 ) );
+    }
   }
 
   auto Scene::findGeometry( std::string_view path ) const -> std::shared_ptr<Geometry>

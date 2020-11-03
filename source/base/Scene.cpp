@@ -138,8 +138,26 @@ namespace RAYEX_NAMESPACE
 
   void Scene::clearGeometryInstances( )
   {
-    _geometryInstances.clear( );
-    _uploadGeometryInstancesToBuffer = true;
+    // Only allow clearing the scene if there is no dummy element.
+    if ( !_dummy )
+    {
+      _geometryInstances.clear( );
+      _uploadGeometryInstancesToBuffer = true;
+    }
+  }
+
+  void Scene::popGeometryInstance( )
+  {
+    // Only allow clearing the scene if the scene is not empty and does not contain a dummy element.
+    if ( !_geometryInstances.empty( ) && !_dummy )
+    {
+      _geometryInstances.erase( _geometryInstances.end( ) - 1 );
+      _uploadGeometryInstancesToBuffer = true;
+    }
+    else
+    {
+      RX_ERROR( "Failed to pop geometry instance, because the scene is empty." );
+    }
   }
 
   void Scene::submitGeometry( std::shared_ptr<Geometry> geometry )
@@ -302,6 +320,10 @@ namespace RAYEX_NAMESPACE
 
     _deleteTextures   = true;
     _uploadGeometries = true;
+  }
+
+  void Scene::popGeometry( )
+  {
   }
 
   auto Scene::findGeometry( std::string_view path ) const -> std::shared_ptr<Geometry>

@@ -220,6 +220,18 @@ private:
         _renderer->scene( ).clearGeometries( );
       }
 
+      if ( ImGui::Button( "Pop geometry instance" ) )
+      {
+        _renderer->scene( ).popGeometryInstance( );
+      }
+
+      ImGui::SameLine( );
+
+      if ( ImGui::Button( "Pop geometry" ) )
+      {
+        _renderer->scene( ).popGeometry( );
+      }
+
       if ( ImGui::Button( "Add directional light" ) )
       {
         auto directionalLight = rx::directionalLightInstance( getRandomUniquePosition( 5.0F, 10.0F ) );

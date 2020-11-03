@@ -206,6 +206,8 @@ namespace RAYEX_NAMESPACE
     // If the scene is empty add a dummy triangle so that a TLAS can be built successfully.
     if ( _scene->_geometryInstances.empty( ) )
     {
+      _scene->_dummy = true;
+
       vk::Result result = components::device.waitForFences( 1, &_inFlightFences[prevFrame].get( ), VK_TRUE, UINT64_MAX );
       RX_ASSERT( result == vk::Result::eSuccess, "Failed to wait for fences." );
 
@@ -238,8 +240,9 @@ namespace RAYEX_NAMESPACE
     {
       if ( triangle != nullptr && _scene->_geometryInstances.size( ) > 1 )
       {
+        _scene->_dummy = false;
+
         RX_VERBOSE( "Removing dummy element." );
-        //_scene->removeGeometryInstance( triangleInstance );
         _scene->removeGeometry( triangle );
         triangle = nullptr;
       }

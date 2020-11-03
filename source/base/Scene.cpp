@@ -272,6 +272,8 @@ namespace RAYEX_NAMESPACE
 
   void Scene::clearGeometries( )
   {
+    RX_INFO( "Clearing geoemtry." );
+
     // Remove all instances.
     for ( auto geometry : _geometries )
     {
@@ -297,8 +299,8 @@ namespace RAYEX_NAMESPACE
 
     // Reset texture counter.
     components::textureIndex = 0;
-    _deleteTextures          = true;
 
+    _deleteTextures   = true;
     _uploadGeometries = true;
   }
 

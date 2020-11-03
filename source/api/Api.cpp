@@ -206,6 +206,9 @@ namespace RAYEX_NAMESPACE
     // If the scene is empty add a dummy triangle so that a TLAS can be built successfully.
     if ( _scene->_geometryInstances.empty( ) )
     {
+      vk::Result result = components::device.waitForFences( 1, &_inFlightFences[prevFrame].get( ), VK_TRUE, UINT64_MAX );
+      RX_ASSERT( result == vk::Result::eSuccess, "Failed to wait for fences." );
+
       Vertex v1;
       v1.normal = glm::vec3( 0.0F, 1.0F, 0.0F );
       v1.pos    = glm::vec3( -0.00001F, 0.0F, 0.00001F );
@@ -299,17 +302,19 @@ namespace RAYEX_NAMESPACE
               _meshBuffers[i].init( memAlignedMeshes );
 
               _scene->_geometries[i]->initialized = true;
+              RX_SUCCESS( "Initialized Geometries." );
             }
           }
         }
       }
 
       updateRayTracingModelData( ); // Contains descriptors for vertices and indices.
+
+      RX_SUCCESS( "Uploaded Geometries." );
     }
 
     if ( _scene->_uploadGeometryInstancesToBuffer )
     {
-      //if ( true )
       if ( imageIndex % maxFramesInFlight == 0 )
       {
         _scene->_uploadGeometryInstancesToBuffer = false;
@@ -325,10 +330,11 @@ namespace RAYEX_NAMESPACE
                                                                                                            instance->transformIT,
                                                                                                            instance->geometryIndex }; } );
 
-          std::cout << "Image index: " << imageIndex % maxFramesInFlight << std::endl;
           _geometryInstancesBuffer.upload( memAlignedGeometryInstances, imageIndex % maxFramesInFlight );
 
           updateAccelerationStructures( );
+
+          RX_SUCCESS( "Uploaded geometry instances." );
         }
       }
     }

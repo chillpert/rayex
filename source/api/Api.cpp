@@ -279,16 +279,26 @@ namespace RAYEX_NAMESPACE
               float diffuseTexIndex = -1.0F;
               for ( const auto& mesh : _scene->_geometries[i]->meshes )
               {
-                RX_ASSERT( components::textureIndex < _settings->_maxTextures, "Can not have more than ", _settings->_maxTextures, " textures." );
-
                 diffuseTexIndex = -1.0F;
 
-                if ( _textures[components::textureIndex] == nullptr && !mesh.material.diffuseTexPath.empty( ) )
+                // @todo Rare bug where textureIndex would be std::numeric_limits<size_t>::max( ). Do not know how to reproduce yet.
+                size_t textureIndex = std::numeric_limits<size_t>::max( );
+                for ( size_t i = 0; i < _textures.size( ); ++i )
+                {
+                  if ( _textures[i] == nullptr )
+                  {
+                    textureIndex = i;
+                  }
+                }
+
+                RX_ASSERT( textureIndex != std::numeric_limits<size_t>::max( ), "Can not have more than ", _settings->_maxTextures, " textures." );
+
+                if ( _textures[textureIndex] == nullptr && !mesh.material.diffuseTexPath.empty( ) )
                 {
                   auto texture = std::make_shared<Texture>( );
                   texture->init( mesh.material.diffuseTexPath );
-                  diffuseTexIndex                       = static_cast<float>( components::textureIndex );
-                  _textures[components::textureIndex++] = texture;
+                  diffuseTexIndex         = static_cast<float>( textureIndex );
+                  _textures[textureIndex] = texture;
                 }
 
                 memAlignedMeshes[j] = MeshSSBO { glm::vec4( mesh.material.ambient, -1.0F ),

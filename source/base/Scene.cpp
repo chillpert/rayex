@@ -240,36 +240,6 @@ namespace RAYEX_NAMESPACE
     }
 
     _uploadGeometryInstancesToBuffer = true;
-
-    // @todo Remove textures of each material
-    for ( auto it : _geometries )
-    {
-      bool found                 = false;
-      std::string diffuseTexPath = "";
-
-      for ( const auto& mesh : it->meshes )
-      {
-        diffuseTexPath = mesh.material.diffuseTexPath;
-
-        for ( const auto& thisMesh : geometry->meshes )
-        {
-          if ( !mesh.material.diffuseTexPath.empty( ) && !thisMesh.material.diffuseTexPath.empty( ) )
-          {
-            if ( mesh.material.diffuseTexPath == thisMesh.material.diffuseTexPath )
-            {
-              diffuseTexPath = mesh.material.diffuseTexPath;
-              found          = true;
-              break;
-            }
-          }
-        }
-      }
-
-      if ( found )
-      {
-        RX_ERROR( diffuseTexPath, " still needed." );
-      }
-    }
   }
 
   void Scene::removeGeometry( uint32_t geometryIndex )

@@ -110,8 +110,8 @@ namespace RAYEX_NAMESPACE
     bool _uploadDirectionalLightsToBuffer = false; ///< Keeps track of whether or not to upload the directional lights to their respective buffer the next time RAYEX_NAMESPACE::Api::update() is called.
     bool _uploadPointLightsToBuffer       = false; ///< Keeps track of whether or not to upload the point lights to their respective buffer the next time RAYEX_NAMESPACE::Api::update() is called.
     bool _uploadGeometries                = false; ///< Keeps track of whether or not to upload the geometries to their respective buffer the next time RAYEX_NAMESPACE::Api::update() is called.
-    bool _deleteTextures                  = false;
-    bool _dummy                           = false;
+    bool _deleteTextures                  = false; ///< Keeps track of whether or not all textures should be deleted the next time RAYEX_NAMESPACE::Api::update() is called.
+    bool _dummy                           = false; ///< Keeps track of whether or not a dummy element in case of an empty scene is active.
 
     Settings* _settings = nullptr; ///< Refers to the rendering settings stored in Rayex::settings.
   };

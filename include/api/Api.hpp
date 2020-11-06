@@ -1,5 +1,4 @@
-#ifndef API_HPP
-#define API_HPP
+#pragma once
 
 #include "api/Bindings.hpp"
 #include "api/Components.hpp"
@@ -172,5 +171,3 @@ namespace RAYEX_NAMESPACE
     Scene* _scene               = nullptr; ///< Refers to the scene stored in Rayex::scene.
   };
 } // namespace RAYEX_NAMESPACE
-
-#endif // API_HPP

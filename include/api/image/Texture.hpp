@@ -1,5 +1,4 @@
-#ifndef TEXTURE_HPP
-#define TEXTURE_HPP
+#pragma once
 
 #include "api/image/Image.hpp"
 
@@ -30,4 +29,3 @@ namespace RAYEX_NAMESPACE
     vk::UniqueImageView _imageView; ///< The texture's Vulkan image view with a unique handle.
   };
 } // namespace RAYEX_NAMESPACE
-#endif // TEXTURE_HPP

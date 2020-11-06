@@ -1,5 +1,4 @@
-#ifndef SETTINGS_HPP
-#define SETTINGS_HPP
+#pragma once
 
 #include "pch/stdafx.hpp"
 
@@ -167,5 +166,3 @@ namespace RAYEX_NAMESPACE
     bool _automaticSwapchainRefresh = false; ///< Keeps track of whether or not the swapchain should be recreated automatically as soon as possible.
   };
 } // namespace RAYEX_NAMESPACE
-
-#endif // SETTINGS_HPP

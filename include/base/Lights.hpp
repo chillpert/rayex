@@ -1,5 +1,4 @@
-#ifndef LIGHTS_HPP
-#define LIGHTS_HPP
+#pragma once
 
 #include "pch/stdafx.hpp"
 
@@ -48,5 +47,3 @@ namespace RAYEX_NAMESPACE
   /// @ingroup BASE
   RX_API auto pointLightInstance( const glm::vec3& position ) -> std::shared_ptr<PointLight>;
 } // namespace RAYEX_NAMESPACE
-
-#endif // LIGHTS_HPP

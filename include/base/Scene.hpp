@@ -1,5 +1,4 @@
-#ifndef SCENE_HPP
-#define SCENE_HPP
+#pragma once
 
 #include "api/image/Texture.hpp"
 #include "base/Geometry.hpp"
@@ -116,5 +115,3 @@ namespace RAYEX_NAMESPACE
     Settings* _settings = nullptr; ///< Refers to the rendering settings stored in Rayex::settings.
   };
 } // namespace RAYEX_NAMESPACE
-
-#endif // SCENE_HPP

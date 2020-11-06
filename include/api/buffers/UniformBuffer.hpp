@@ -1,5 +1,4 @@
-#ifndef UNIFORM_BUFFER_HPP
-#define UNIFORM_BUFFER_HPP
+#pragma once
 
 #include "api/buffers/Buffer.hpp"
 #include "base/Geometry.hpp"
@@ -83,5 +82,3 @@ namespace RAYEX_NAMESPACE
     std::vector<Buffer> _buffers; ///< A vector of RAYEX_NAMESPACE::Buffers for the uniform buffers.
   };
 } // namespace RAYEX_NAMESPACE
-
-#endif // UNIFORM_BUFFER_HPP

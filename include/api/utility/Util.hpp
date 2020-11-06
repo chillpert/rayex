@@ -1,5 +1,4 @@
-#ifndef UTIL_HPP
-#define UTIL_HPP
+#pragma once
 
 #include "pch/stdafx.hpp"
 
@@ -48,5 +47,3 @@ namespace RAYEX_NAMESPACE
 
   } // namespace Util
 } // namespace RAYEX_NAMESPACE
-
-#endif // UTIL_HPP

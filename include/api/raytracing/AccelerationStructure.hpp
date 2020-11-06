@@ -1,5 +1,4 @@
-#ifndef ACCELERATION_STRUCTURE_HPP
-#define ACCELERATION_STRUCTURE_HPP
+#pragma once
 
 #include "api/Components.hpp"
 #include "pch/stdafx.hpp"
@@ -56,5 +55,3 @@ namespace RAYEX_NAMESPACE
     glm::mat4 transform                = glm::fmat4( 1.0f );                                              ///< The world transform matrix of the bottom level acceleration structure instance.
   };
 } // namespace RAYEX_NAMESPACE
-
-#endif // ACCELERATION_STRUCTURE_HPP

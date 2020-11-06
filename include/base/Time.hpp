@@ -1,5 +1,4 @@
-#ifndef TIME_HPP
-#define TIME_HPP
+#pragma once
 
 #include "Core.hpp"
 
@@ -31,5 +30,3 @@ namespace RAYEX_NAMESPACE
     static void update( );
   };
 } // namespace RAYEX_NAMESPACE
-
-#endif // TIME_HPP

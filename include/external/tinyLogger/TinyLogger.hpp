@@ -1,5 +1,4 @@
-#ifndef LOGGER_HPP
-#define LOGGER_HPP
+#pragma once
 
 // A very simple logger written in C++17.
 // Tested on both Linux and Windows.
@@ -249,5 +248,3 @@ private:
   static const bool capsLock = LOGGER_MESSAGE_TYPE_CAPS_LOCK;
   static const bool align    = LOGGER_ALIGN_MESSAGES;
 };
-
-#endif // LOGGER_HPP

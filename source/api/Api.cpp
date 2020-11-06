@@ -253,7 +253,7 @@ namespace RAYEX_NAMESPACE
       _scene->_deleteTextures = false;
 
       _textures.clear( );
-      _textures.resize( static_cast<uint32_t>( _settings->_maxTextures ) );
+      _textures.resize( static_cast<size_t>( _settings->_maxTextures ) );
     }
 
     // Init geometry storage buffers.
@@ -336,9 +336,7 @@ namespace RAYEX_NAMESPACE
         {
           // Dereference pointers and store values in new vector that will be uploaded.
           memAlignedGeometryInstances.resize( _scene->_geometryInstances.size( ) );
-          std::transform( _scene->_geometryInstances.begin( ),
-                          _scene->_geometryInstances.end( ),
-                          memAlignedGeometryInstances.begin( ),
+          std::transform( _scene->_geometryInstances.begin( ), _scene->_geometryInstances.end( ), memAlignedGeometryInstances.begin( ),
                           []( std::shared_ptr<GeometryInstance> instance ) { return GeometryInstanceSSBO { instance->transform,
                                                                                                            instance->transformIT,
                                                                                                            instance->geometryIndex }; } );
@@ -359,9 +357,7 @@ namespace RAYEX_NAMESPACE
       if ( !_scene->_directionalLights.empty( ) )
       {
         memAlignedDirectionalLights.resize( _scene->_directionalLights.size( ) );
-        std::transform( _scene->_directionalLights.begin( ),
-                        _scene->_directionalLights.end( ),
-                        memAlignedDirectionalLights.begin( ),
+        std::transform( _scene->_directionalLights.begin( ), _scene->_directionalLights.end( ), memAlignedDirectionalLights.begin( ),
                         []( std::shared_ptr<DirectionalLight> light ) { return DirectionalLightSSBO { glm::vec4( light->ambient, light->ambientIntensity ),
                                                                                                       glm::vec4( light->diffuse, light->diffuseIntensity ),
                                                                                                       glm::vec4( light->specular, light->specularIntensity ),
@@ -378,9 +374,7 @@ namespace RAYEX_NAMESPACE
       if ( !_scene->_pointLights.empty( ) )
       {
         memAlignedPointLights.resize( _scene->_pointLights.size( ) );
-        std::transform( _scene->_pointLights.begin( ),
-                        _scene->_pointLights.end( ),
-                        memAlignedPointLights.begin( ),
+        std::transform( _scene->_pointLights.begin( ), _scene->_pointLights.end( ), memAlignedPointLights.begin( ),
                         []( std::shared_ptr<PointLight> light ) { return PointLightSSBO { glm::vec4( light->ambient, light->ambientIntensity ),
                                                                                           glm::vec4( light->diffuse, light->diffuseIntensity ),
                                                                                           glm::vec4( light->specular, light->specularIntensity ),

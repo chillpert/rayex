@@ -1,5 +1,4 @@
-#ifndef INITIALIZERS_HPP
-#define INITIALIZERS_HPP
+#pragma once
 
 #include "api/Components.hpp"
 #include "api/raytracing/AccelerationStructure.hpp"
@@ -177,5 +176,3 @@ namespace vk
     auto initInstance( const std::vector<const char*>& layers, std::vector<const char*>& extensions ) -> UniqueInstance;
   } // namespace Initializer
 } // namespace vk
-
-#endif // INITIALIZERS_HPP

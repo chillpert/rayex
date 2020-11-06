@@ -1,5 +1,4 @@
-#ifndef CAMERA_BASE_HPP
-#define CAMERA_BASE_HPP
+#pragma once
 
 #include "pch/stdafx.hpp"
 
@@ -30,7 +29,7 @@ namespace RAYEX_NAMESPACE
     Camera( const Camera&& ) = delete;
 
     auto operator=( const Camera& ) -> Camera& = default;
-    auto operator=( const Camera && ) -> Camera& = delete;
+    auto operator=( const Camera&& ) -> Camera& = delete;
 
     /// Is used to update camera vectors etc.
     ///
@@ -116,5 +115,3 @@ namespace RAYEX_NAMESPACE
     float _fov         = 45.0F;  ///< The field of view.
   };
 } // namespace RAYEX_NAMESPACE
-
-#endif // CAMERA_BASE_HPP

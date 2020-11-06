@@ -1,5 +1,4 @@
-#ifndef VERTEX_BUFFER_HPP
-#define VERTEX_BUFFER_HPP
+#pragma once
 
 #include "api/Vertex.hpp"
 #include "api/buffers/Buffer.hpp"
@@ -28,5 +27,3 @@ namespace RAYEX_NAMESPACE
     uint32_t _count = 0; ///< The amount of vertices in the buffer.
   };
 } // namespace RAYEX_NAMESPACE
-
-#endif // VERTEX_BUFFER_HPP

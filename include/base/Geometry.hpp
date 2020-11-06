@@ -1,5 +1,4 @@
-#ifndef INTERFACES_HPP
-#define INTERFACES_HPP
+#pragma once
 
 #include "api/Vertex.hpp"
 
@@ -71,5 +70,3 @@ namespace RAYEX_NAMESPACE
   RX_API std::shared_ptr<GeometryInstance> instance( std::shared_ptr<Geometry> geometry, const glm::mat4& transform = glm::mat4( 1.0F ) );
 
 } // namespace RAYEX_NAMESPACE
-
-#endif // INTERFACES_HPP

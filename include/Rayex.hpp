@@ -1,5 +1,4 @@
-#ifndef RAYEX_HPP
-#define RAYEX_HPP
+#pragma once
 
 #include "api/Api.hpp"
 
@@ -83,5 +82,3 @@ namespace RAYEX_NAMESPACE
     Scene _scene       = { }; ///< Contains all meshes, all mesh instances and all light sources.
   };
 } // namespace RAYEX_NAMESPACE
-
-#endif // RAYEX_HPP

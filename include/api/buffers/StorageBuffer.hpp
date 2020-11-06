@@ -1,5 +1,4 @@
-#ifndef STORAGE_BUFFER_HPP
-#define STORAGE_BUFFER_HPP
+#pragma once
 
 #include "api/buffers/Buffer.hpp"
 #include "base/Lights.hpp"
@@ -138,5 +137,3 @@ namespace RAYEX_NAMESPACE
     vk::DeviceSize _maxSize = 0;
   };
 } // namespace RAYEX_NAMESPACE
-
-#endif // STORAGE_BUFFER_HPP

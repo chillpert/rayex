@@ -1,5 +1,4 @@
-#ifndef BUFFER_HPP
-#define BUFFER_HPP
+#pragma once
 
 #include "api/Components.hpp"
 #include "api/image/Image.hpp"
@@ -121,5 +120,3 @@ namespace RAYEX_NAMESPACE
     bool _mapped     = false;
   };
 } // namespace RAYEX_NAMESPACE
-
-#endif // BUFFER_HPP

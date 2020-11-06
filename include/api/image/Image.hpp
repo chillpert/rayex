@@ -1,5 +1,4 @@
-#ifndef IMAGE_HPP
-#define IMAGE_HPP
+#pragma once
 
 #include "pch/stdafx.hpp"
 
@@ -46,5 +45,3 @@ namespace RAYEX_NAMESPACE
     vk::ImageLayout _layout; ///< THe image's layout.
   };
 } // namespace RAYEX_NAMESPACE
-
-#endif // IMAGE_HPP

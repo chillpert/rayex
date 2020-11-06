@@ -1,5 +1,4 @@
-#ifndef COMMAND_BUFFER_HPP
-#define COMMAND_BUFFER_HPP
+#pragma once
 
 #include "pch/stdafx.hpp"
 
@@ -60,5 +59,3 @@ namespace RAYEX_NAMESPACE
     vk::CommandBufferBeginInfo _beginInfo; ///< The Vulkan begin information of the command buffer.
   };
 } // namespace RAYEX_NAMESPACE
-
-#endif // COMMAND_BUFFER_HPP

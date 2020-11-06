@@ -1,5 +1,4 @@
-#ifndef GUI_HPP
-#define GUI_HPP
+#pragma once
 
 #include "api/RenderPass.hpp"
 #include "api/Surface.hpp"
@@ -103,5 +102,3 @@ namespace RAYEX_NAMESPACE
     SDL_Window* _window;
   };
 } // namespace RAYEX_NAMESPACE
-
-#endif // GUI_HPP

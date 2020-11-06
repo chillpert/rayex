@@ -1,5 +1,4 @@
-#ifndef HELPERS_HPP
-#define HELPERS_HPP
+#pragma once
 
 #include "api/RenderPass.hpp"
 #include "api/raytracing/AccelerationStructure.hpp"
@@ -141,5 +140,3 @@ namespace vk
     auto findSupportedImageFormat( vk::PhysicalDevice physicalDevice, const std::vector<vk::Format>& formatsToTest, vk::FormatFeatureFlagBits features, vk::ImageTiling tiling ) -> vk::Format;
   } // namespace Helper
 } // namespace vk
-
-#endif // HELPERS_HPP

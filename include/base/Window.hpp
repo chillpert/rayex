@@ -1,5 +1,4 @@
-#ifndef WINDOW_HPP
-#define WINDOW_HPP
+#pragma once
 
 #include "base/Camera.hpp"
 #include "base/Time.hpp"
@@ -39,7 +38,7 @@ namespace RAYEX_NAMESPACE
     Window( const Window& )  = delete;
     Window( const Window&& ) = delete;
     auto operator=( const Window& ) -> Window& = delete;
-    auto operator=( const Window && ) -> Window& = delete;
+    auto operator=( const Window&& ) -> Window& = delete;
 
     /// Initializes the SDL-window.
     virtual auto init( ) -> bool;
@@ -88,5 +87,3 @@ namespace RAYEX_NAMESPACE
     const char* _title = "Example"; ///< The window's title.
   };
 } // namespace RAYEX_NAMESPACE
-
-#endif // WINDOW_HPP

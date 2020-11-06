@@ -1,5 +1,4 @@
-#ifndef RAYTRACING_BUILDER_HPP
-#define RAYTRACING_BUILDER_HPP
+#pragma once
 
 #include "api/Swapchain.hpp"
 #include "api/buffers/Buffer.hpp"
@@ -39,7 +38,7 @@ namespace RAYEX_NAMESPACE
     RayTracingBuilder( const RayTracingBuilder&& ) = delete;
 
     auto operator=( const RayTracingBuilder& ) -> RayTracingBuilder& = delete;
-    auto operator=( const RayTracingBuilder && ) -> RayTracingBuilder& = delete;
+    auto operator=( const RayTracingBuilder&& ) -> RayTracingBuilder& = delete;
 
     /// Retrieves the physical device's ray tracing capabilities.
     void init( );
@@ -123,5 +122,3 @@ namespace RAYEX_NAMESPACE
     vk::UniqueImageView _storageImageView;                   ///< The storage image's image view.
   };
 } // namespace RAYEX_NAMESPACE
-
-#endif // RAYTRACING_BUILDER_HPP

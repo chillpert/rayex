@@ -1,5 +1,4 @@
-#ifndef DEBUG_MESSENGER_HPP
-#define DEBUG_MESSENGER_HPP
+#pragma once
 
 #include "pch/stdafx.hpp"
 
@@ -21,7 +20,7 @@ namespace RAYEX_NAMESPACE
     DebugMessenger( const DebugMessenger&& ) = delete;
 
     auto operator=( const DebugMessenger& ) -> DebugMessenger& = delete;
-    auto operator=( const DebugMessenger && ) -> DebugMessenger& = delete;
+    auto operator=( const DebugMessenger&& ) -> DebugMessenger& = delete;
 
     /// Creates the debug messenger with the given properties.
     /// @param messageSeverity - Specifies the type of severity of messages that will be logged.
@@ -42,5 +41,3 @@ namespace RAYEX_NAMESPACE
                                                      void* userData ) -> VkBool32;
   /// @endcond
 } // namespace RAYEX_NAMESPACE
-
-#endif // DEBUG_MESSENGER_HPP

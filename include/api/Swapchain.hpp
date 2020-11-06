@@ -83,7 +83,7 @@ namespace RAYEX_NAMESPACE
     Image _depthImage;                   ///< The depth image.
     vk::UniqueImageView _depthImageView; ///< The depth image's image views with a unique handle.
 
-    uint32_t _currentImageIndex; ///< The current swapchain image index.
+    uint32_t _currentImageIndex = 0; ///< The current swapchain image index.
   };
 
   /// Retrieves the depth format supported by a given physical device.

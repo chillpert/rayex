@@ -15,7 +15,7 @@ sed -i '$d' ../README.md
 sed -i '$d' ../README.md
 
 echo '### Documentation' >> ../README.md
-echo 'An extensive documentation of all classes and functions can be found [here](https://christianhilpert.com/rayex).' >> ../README.md
+echo 'An extensive documentation of all classes and functions can be found [here](hhttps://chillpert.github.io/rayex/html/index.html).' >> ../README.md
 
 # Convert to markdown.
 moxygen xml -g -q --output moxygen/api-%s.md

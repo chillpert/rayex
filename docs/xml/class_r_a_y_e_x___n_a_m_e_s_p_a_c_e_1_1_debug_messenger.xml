@@ -4,18 +4,18 @@
     <compoundname>RAYEX_NAMESPACE::DebugMessenger</compoundname>
     <includes refid="_debug_messenger_8hpp" local="no">DebugMessenger.hpp</includes>
       <sectiondef kind="private-attrib">
-      <memberdef kind="variable" id="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_debug_messenger_1aa53cd8355466c6fd012b7fe9906ab241" prot="private" static="no" mutable="no">
+      <memberdef kind="variable" id="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_debug_messenger_1a8cfdee65ff8a102effdbc90b3c462c27" prot="private" static="no" mutable="no">
         <type>vk::DebugUtilsMessengerEXT</type>
-        <definition>vk::DebugUtilsMessengerEXT RAYEX_NAMESPACE::DebugMessenger::debugMessenger</definition>
+        <definition>vk::DebugUtilsMessengerEXT RAYEX_NAMESPACE::DebugMessenger::_debugMessenger</definition>
         <argsstring></argsstring>
-        <name>debugMessenger</name>
+        <name>_debugMessenger</name>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/n30/Repos/rayex/include/api/utility/DebugMessenger.hpp" line="35" column="32" bodyfile="/home/n30/Repos/rayex/include/api/utility/DebugMessenger.hpp" bodystart="35" bodyend="-1"/>
+        <location file="/home/n30/Repos/rayex/include/api/utility/DebugMessenger.hpp" line="34" column="32" bodyfile="/home/n30/Repos/rayex/include/api/utility/DebugMessenger.hpp" bodystart="34" bodyend="-1"/>
       </memberdef>
       </sectiondef>
       <sectiondef kind="public-func">
@@ -30,11 +30,11 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/n30/Repos/rayex/include/api/utility/DebugMessenger.hpp" line="15" column="5"/>
+        <location file="/home/n30/Repos/rayex/include/api/utility/DebugMessenger.hpp" line="14" column="5"/>
       </memberdef>
-      <memberdef kind="function" id="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_debug_messenger_1adccb8eef15ed60f4b90d1b61f6613858" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
-        <type>RX_API</type>
-        <definition>RX_API RAYEX_NAMESPACE::DebugMessenger::~DebugMessenger</definition>
+      <memberdef kind="function" id="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_debug_messenger_1a26dcf2dc1fc8b925737aa21b0fc7c278" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>RAYEX_NAMESPACE::DebugMessenger::~DebugMessenger</definition>
         <argsstring>()</argsstring>
         <name>~DebugMessenger</name>
         <briefdescription>
@@ -44,7 +44,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/n30/Repos/rayex/include/api/utility/DebugMessenger.hpp" line="18" column="12"/>
+        <location file="/home/n30/Repos/rayex/include/api/utility/DebugMessenger.hpp" line="17" column="5"/>
       </memberdef>
       <memberdef kind="function" id="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_debug_messenger_1a9301709792a38dac2faf5ed369f40bad" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type></type>
@@ -60,7 +60,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/n30/Repos/rayex/include/api/utility/DebugMessenger.hpp" line="20" column="5"/>
+        <location file="/home/n30/Repos/rayex/include/api/utility/DebugMessenger.hpp" line="19" column="5"/>
       </memberdef>
       <memberdef kind="function" id="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_debug_messenger_1a02dd17d502dd32e655f8013ecdfc3c3a" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type></type>
@@ -76,7 +76,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/n30/Repos/rayex/include/api/utility/DebugMessenger.hpp" line="21" column="5"/>
+        <location file="/home/n30/Repos/rayex/include/api/utility/DebugMessenger.hpp" line="20" column="5"/>
       </memberdef>
       <memberdef kind="function" id="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_debug_messenger_1adfe593687a69b8a15a8153f52701e9a0" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>auto</type>
@@ -92,7 +92,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/n30/Repos/rayex/include/api/utility/DebugMessenger.hpp" line="23" column="10"/>
+        <location file="/home/n30/Repos/rayex/include/api/utility/DebugMessenger.hpp" line="22" column="10"/>
       </memberdef>
       <memberdef kind="function" id="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_debug_messenger_1adad322d648f63748f7aba7817459015a" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>auto</type>
@@ -108,7 +108,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/n30/Repos/rayex/include/api/utility/DebugMessenger.hpp" line="24" column="10"/>
+        <location file="/home/n30/Repos/rayex/include/api/utility/DebugMessenger.hpp" line="23" column="10"/>
       </memberdef>
       <memberdef kind="function" id="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_debug_messenger_1ad85d8efe16f0ef5fd0a1b632efc100ba" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -150,7 +150,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/n30/Repos/rayex/include/api/utility/DebugMessenger.hpp" line="29" column="10"/>
+        <location file="/home/n30/Repos/rayex/include/api/utility/DebugMessenger.hpp" line="28" column="10"/>
       </memberdef>
       </sectiondef>
       <sectiondef kind="private-func">
@@ -166,7 +166,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/n30/Repos/rayex/include/api/utility/DebugMessenger.hpp" line="33" column="10"/>
+        <location file="/home/n30/Repos/rayex/include/api/utility/DebugMessenger.hpp" line="32" column="10"/>
       </memberdef>
       </sectiondef>
     <briefdescription>
@@ -175,9 +175,9 @@
     <detaileddescription>
 <para>The class features scope-bound destruction. </para>
     </detaileddescription>
-    <location file="/home/n30/Repos/rayex/include/api/utility/DebugMessenger.hpp" line="13" column="1" bodyfile="/home/n30/Repos/rayex/include/api/utility/DebugMessenger.hpp" bodystart="12" bodyend="36"/>
+    <location file="/home/n30/Repos/rayex/include/api/utility/DebugMessenger.hpp" line="12" column="1" bodyfile="/home/n30/Repos/rayex/include/api/utility/DebugMessenger.hpp" bodystart="11" bodyend="35"/>
     <listofallmembers>
-      <member refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_debug_messenger_1aa53cd8355466c6fd012b7fe9906ab241" prot="private" virt="non-virtual"><scope>RAYEX_NAMESPACE::DebugMessenger</scope><name>debugMessenger</name></member>
+      <member refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_debug_messenger_1a8cfdee65ff8a102effdbc90b3c462c27" prot="private" virt="non-virtual"><scope>RAYEX_NAMESPACE::DebugMessenger</scope><name>_debugMessenger</name></member>
       <member refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_debug_messenger_1a69fbeacdb2db1302c0359c274a3ad181" prot="public" virt="non-virtual"><scope>RAYEX_NAMESPACE::DebugMessenger</scope><name>DebugMessenger</name></member>
       <member refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_debug_messenger_1a9301709792a38dac2faf5ed369f40bad" prot="public" virt="non-virtual"><scope>RAYEX_NAMESPACE::DebugMessenger</scope><name>DebugMessenger</name></member>
       <member refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_debug_messenger_1a02dd17d502dd32e655f8013ecdfc3c3a" prot="public" virt="non-virtual"><scope>RAYEX_NAMESPACE::DebugMessenger</scope><name>DebugMessenger</name></member>
@@ -185,7 +185,7 @@
       <member refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_debug_messenger_1ad85d8efe16f0ef5fd0a1b632efc100ba" prot="public" virt="non-virtual"><scope>RAYEX_NAMESPACE::DebugMessenger</scope><name>init</name></member>
       <member refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_debug_messenger_1adfe593687a69b8a15a8153f52701e9a0" prot="public" virt="non-virtual"><scope>RAYEX_NAMESPACE::DebugMessenger</scope><name>operator=</name></member>
       <member refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_debug_messenger_1adad322d648f63748f7aba7817459015a" prot="public" virt="non-virtual"><scope>RAYEX_NAMESPACE::DebugMessenger</scope><name>operator=</name></member>
-      <member refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_debug_messenger_1adccb8eef15ed60f4b90d1b61f6613858" prot="public" virt="non-virtual"><scope>RAYEX_NAMESPACE::DebugMessenger</scope><name>~DebugMessenger</name></member>
+      <member refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_debug_messenger_1a26dcf2dc1fc8b925737aa21b0fc7c278" prot="public" virt="non-virtual"><scope>RAYEX_NAMESPACE::DebugMessenger</scope><name>~DebugMessenger</name></member>
     </listofallmembers>
   </compounddef>
 </doxygen>

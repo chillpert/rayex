@@ -5,6 +5,7 @@ var _helpers_8hpp =
     [ "checkInstanceLayersSupport", "_helpers_8hpp.html#a6c8b9879ee23a500b88b4b8ce0da5ea2", null ],
     [ "evaluatePhysicalDevice", "_helpers_8hpp.html#a3f1c6e5a77a150f0f0da60ca7e3d8b46", null ],
     [ "findMemoryType", "_helpers_8hpp.html#a95e71693ea2ee7e6815e5d7015128921", null ],
+    [ "findSupportedImageFormat", "_helpers_8hpp.html#a66ad6f9e410f31bdea43c49b3a774611", null ],
     [ "getAttachmentDescription", "_helpers_8hpp.html#a679da5dcd94cae0130bf240f715bf64d", null ],
     [ "getDepthAttachmentDescription", "_helpers_8hpp.html#a97d6ba5a488dc2acbeded001c1e65942", null ],
     [ "getImageCreateInfo", "_helpers_8hpp.html#a0771dfbc2ab126947ed56d5fde2878e2", null ],

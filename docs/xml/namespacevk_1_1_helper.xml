@@ -69,7 +69,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/n30/Repos/rayex/include/api/utility/Helpers.hpp" line="19" column="10" declfile="/home/n30/Repos/rayex/include/api/utility/Helpers.hpp" declline="19" declcolumn="10"/>
+        <location file="/home/n30/Repos/rayex/include/api/utility/Helpers.hpp" line="18" column="10" declfile="/home/n30/Repos/rayex/include/api/utility/Helpers.hpp" declline="18" declcolumn="10"/>
       </memberdef>
       <memberdef kind="function" id="namespacevk_1_1_helper_1a0771dfbc2ab126947ed56d5fde2878e2" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>auto</type>
@@ -99,7 +99,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/n30/Repos/rayex/include/api/utility/Helpers.hpp" line="24" column="10" declfile="/home/n30/Repos/rayex/include/api/utility/Helpers.hpp" declline="24" declcolumn="10"/>
+        <location file="/home/n30/Repos/rayex/include/api/utility/Helpers.hpp" line="23" column="10" declfile="/home/n30/Repos/rayex/include/api/utility/Helpers.hpp" declline="23" declcolumn="10"/>
       </memberdef>
       <memberdef kind="function" id="namespacevk_1_1_helper_1af3313c26337284dc7b0f355139e32f56" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>auto</type>
@@ -116,7 +116,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/n30/Repos/rayex/include/api/utility/Helpers.hpp" line="28" column="10" declfile="/home/n30/Repos/rayex/include/api/utility/Helpers.hpp" declline="28" declcolumn="10"/>
+        <location file="/home/n30/Repos/rayex/include/api/utility/Helpers.hpp" line="27" column="10" declfile="/home/n30/Repos/rayex/include/api/utility/Helpers.hpp" declline="27" declcolumn="10"/>
       </memberdef>
       <memberdef kind="function" id="namespacevk_1_1_helper_1aa8d124bdc077abc880ac2d903dc3b93a" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>auto</type>
@@ -182,7 +182,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/n30/Repos/rayex/include/api/utility/Helpers.hpp" line="36" column="10" declfile="/home/n30/Repos/rayex/include/api/utility/Helpers.hpp" declline="36" declcolumn="10"/>
+        <location file="/home/n30/Repos/rayex/include/api/utility/Helpers.hpp" line="35" column="10" declfile="/home/n30/Repos/rayex/include/api/utility/Helpers.hpp" declline="35" declcolumn="10"/>
       </memberdef>
       <memberdef kind="function" id="namespacevk_1_1_helper_1a349d77f5c07695ebbd6c6da462de44b1" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>auto</type>
@@ -224,7 +224,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/n30/Repos/rayex/include/api/utility/Helpers.hpp" line="42" column="10" declfile="/home/n30/Repos/rayex/include/api/utility/Helpers.hpp" declline="42" declcolumn="10"/>
+        <location file="/home/n30/Repos/rayex/include/api/utility/Helpers.hpp" line="41" column="10" declfile="/home/n30/Repos/rayex/include/api/utility/Helpers.hpp" declline="41" declcolumn="10"/>
       </memberdef>
       <memberdef kind="function" id="namespacevk_1_1_helper_1a95e71693ea2ee7e6815e5d7015128921" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>auto</type>
@@ -278,7 +278,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/n30/Repos/rayex/include/api/utility/Helpers.hpp" line="49" column="10" declfile="/home/n30/Repos/rayex/include/api/utility/Helpers.hpp" declline="49" declcolumn="10"/>
+        <location file="/home/n30/Repos/rayex/include/api/utility/Helpers.hpp" line="48" column="10" declfile="/home/n30/Repos/rayex/include/api/utility/Helpers.hpp" declline="48" declcolumn="10"/>
       </memberdef>
       <memberdef kind="function" id="namespacevk_1_1_helper_1ae41dfbb084fe9a3d9757550ee6887333" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <templateparamlist>
@@ -316,7 +316,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/n30/Repos/rayex/include/api/utility/Helpers.hpp" line="55" column="10" bodyfile="/home/n30/Repos/rayex/include/api/utility/Helpers.hpp" bodystart="55" bodyend="63"/>
+        <location file="/home/n30/Repos/rayex/include/api/utility/Helpers.hpp" line="54" column="10" bodyfile="/home/n30/Repos/rayex/include/api/utility/Helpers.hpp" bodystart="54" bodyend="62"/>
       </memberdef>
       <memberdef kind="function" id="namespacevk_1_1_helper_1a68b67b155588fe0e64efb0e26f864618" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>auto</type>
@@ -358,7 +358,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/n30/Repos/rayex/include/api/utility/Helpers.hpp" line="69" column="10" declfile="/home/n30/Repos/rayex/include/api/utility/Helpers.hpp" declline="69" declcolumn="10"/>
+        <location file="/home/n30/Repos/rayex/include/api/utility/Helpers.hpp" line="68" column="10" declfile="/home/n30/Repos/rayex/include/api/utility/Helpers.hpp" declline="68" declcolumn="10"/>
       </memberdef>
       <memberdef kind="function" id="namespacevk_1_1_helper_1a6e1227990cef167f6d5b6b7b1f1b52b2" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -410,7 +410,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/n30/Repos/rayex/include/api/utility/Helpers.hpp" line="75" column="10" declfile="/home/n30/Repos/rayex/include/api/utility/Helpers.hpp" declline="75" declcolumn="10"/>
+        <location file="/home/n30/Repos/rayex/include/api/utility/Helpers.hpp" line="74" column="10" declfile="/home/n30/Repos/rayex/include/api/utility/Helpers.hpp" declline="74" declcolumn="10"/>
       </memberdef>
       <memberdef kind="function" id="namespacevk_1_1_helper_1a9f3fa5a78b202fb543408c03e51a7340" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -474,7 +474,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/n30/Repos/rayex/include/api/utility/Helpers.hpp" line="82" column="10" declfile="/home/n30/Repos/rayex/include/api/utility/Helpers.hpp" declline="82" declcolumn="10"/>
+        <location file="/home/n30/Repos/rayex/include/api/utility/Helpers.hpp" line="81" column="10" declfile="/home/n30/Repos/rayex/include/api/utility/Helpers.hpp" declline="81" declcolumn="10"/>
       </memberdef>
       <memberdef kind="function" id="namespacevk_1_1_helper_1ab5963355a4e7a8fc54821cdb5dffcd0c" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>auto</type>
@@ -528,7 +528,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/n30/Repos/rayex/include/api/utility/Helpers.hpp" line="89" column="10" declfile="/home/n30/Repos/rayex/include/api/utility/Helpers.hpp" declline="89" declcolumn="10"/>
+        <location file="/home/n30/Repos/rayex/include/api/utility/Helpers.hpp" line="88" column="10" declfile="/home/n30/Repos/rayex/include/api/utility/Helpers.hpp" declline="88" declcolumn="10"/>
       </memberdef>
       <memberdef kind="function" id="namespacevk_1_1_helper_1a679da5dcd94cae0130bf240f715bf64d" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>auto</type>
@@ -558,7 +558,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/n30/Repos/rayex/include/api/utility/Helpers.hpp" line="94" column="10" declfile="/home/n30/Repos/rayex/include/api/utility/Helpers.hpp" declline="94" declcolumn="10"/>
+        <location file="/home/n30/Repos/rayex/include/api/utility/Helpers.hpp" line="93" column="10" declfile="/home/n30/Repos/rayex/include/api/utility/Helpers.hpp" declline="93" declcolumn="10"/>
       </memberdef>
       <memberdef kind="function" id="namespacevk_1_1_helper_1a97d6ba5a488dc2acbeded001c1e65942" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>auto</type>
@@ -588,7 +588,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/n30/Repos/rayex/include/api/utility/Helpers.hpp" line="99" column="10" declfile="/home/n30/Repos/rayex/include/api/utility/Helpers.hpp" declline="99" declcolumn="10"/>
+        <location file="/home/n30/Repos/rayex/include/api/utility/Helpers.hpp" line="98" column="10" declfile="/home/n30/Repos/rayex/include/api/utility/Helpers.hpp" declline="98" declcolumn="10"/>
       </memberdef>
       <memberdef kind="function" id="namespacevk_1_1_helper_1af8b7dcb2ec2dbf6188c9772fe6f8205e" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>auto</type>
@@ -616,7 +616,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/n30/Repos/rayex/include/api/utility/Helpers.hpp" line="103" column="10" declfile="/home/n30/Repos/rayex/include/api/utility/Helpers.hpp" declline="103" declcolumn="10"/>
+        <location file="/home/n30/Repos/rayex/include/api/utility/Helpers.hpp" line="102" column="10" declfile="/home/n30/Repos/rayex/include/api/utility/Helpers.hpp" declline="102" declcolumn="10"/>
       </memberdef>
       <memberdef kind="function" id="namespacevk_1_1_helper_1a579209d8855cc201ab98946961429f4f" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>auto</type>
@@ -646,7 +646,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/n30/Repos/rayex/include/api/utility/Helpers.hpp" line="108" column="10" declfile="/home/n30/Repos/rayex/include/api/utility/Helpers.hpp" declline="108" declcolumn="10"/>
+        <location file="/home/n30/Repos/rayex/include/api/utility/Helpers.hpp" line="107" column="10" declfile="/home/n30/Repos/rayex/include/api/utility/Helpers.hpp" declline="107" declcolumn="10"/>
       </memberdef>
       <memberdef kind="function" id="namespacevk_1_1_helper_1a3f1c6e5a77a150f0f0da60ca7e3d8b46" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>auto</type>
@@ -678,7 +678,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/n30/Repos/rayex/include/api/utility/Helpers.hpp" line="114" column="10" declfile="/home/n30/Repos/rayex/include/api/utility/Helpers.hpp" declline="114" declcolumn="10"/>
+        <location file="/home/n30/Repos/rayex/include/api/utility/Helpers.hpp" line="113" column="10" declfile="/home/n30/Repos/rayex/include/api/utility/Helpers.hpp" declline="113" declcolumn="10"/>
       </memberdef>
       <memberdef kind="function" id="namespacevk_1_1_helper_1a9ac8571453eabef79b21edffff9c6e2c" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -706,7 +706,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/n30/Repos/rayex/include/api/utility/Helpers.hpp" line="120" column="10" declfile="/home/n30/Repos/rayex/include/api/utility/Helpers.hpp" declline="120" declcolumn="10"/>
+        <location file="/home/n30/Repos/rayex/include/api/utility/Helpers.hpp" line="119" column="10" declfile="/home/n30/Repos/rayex/include/api/utility/Helpers.hpp" declline="119" declcolumn="10"/>
       </memberdef>
       <memberdef kind="function" id="namespacevk_1_1_helper_1a6c8b9879ee23a500b88b4b8ce0da5ea2" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -736,7 +736,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/n30/Repos/rayex/include/api/utility/Helpers.hpp" line="127" column="10" declfile="/home/n30/Repos/rayex/include/api/utility/Helpers.hpp" declline="127" declcolumn="10"/>
+        <location file="/home/n30/Repos/rayex/include/api/utility/Helpers.hpp" line="126" column="10" declfile="/home/n30/Repos/rayex/include/api/utility/Helpers.hpp" declline="126" declcolumn="10"/>
       </memberdef>
       <memberdef kind="function" id="namespacevk_1_1_helper_1acb8243a4819615e860ed10014e545f36" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -766,7 +766,71 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/n30/Repos/rayex/include/api/utility/Helpers.hpp" line="134" column="10" declfile="/home/n30/Repos/rayex/include/api/utility/Helpers.hpp" declline="134" declcolumn="10"/>
+        <location file="/home/n30/Repos/rayex/include/api/utility/Helpers.hpp" line="133" column="10" declfile="/home/n30/Repos/rayex/include/api/utility/Helpers.hpp" declline="133" declcolumn="10"/>
+      </memberdef>
+      <memberdef kind="function" id="namespacevk_1_1_helper_1a66ad6f9e410f31bdea43c49b3a774611" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>auto</type>
+        <definition>auto vk::Helper::findSupportedImageFormat</definition>
+        <argsstring>(vk::PhysicalDevice physicalDevice, const std::vector&lt; vk::Format &gt; &amp;formatsToTest, vk::FormatFeatureFlagBits features, vk::ImageTiling tiling) -&gt; vk::Format</argsstring>
+        <name>findSupportedImageFormat</name>
+        <param>
+          <type>vk::PhysicalDevice</type>
+          <declname>physicalDevice</declname>
+        </param>
+        <param>
+          <type>const std::vector&lt; vk::Format &gt; &amp;</type>
+          <declname>formatsToTest</declname>
+        </param>
+        <param>
+          <type>vk::FormatFeatureFlagBits</type>
+          <declname>features</declname>
+        </param>
+        <param>
+          <type>vk::ImageTiling</type>
+          <declname>tiling</declname>
+        </param>
+        <briefdescription>
+<para>Retrieves a supported image format for a given physical device. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>physicalDevice</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The physical device to check. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>formatsToTest</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>A vector of formats that will be checked for their support. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>features</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The Vulkan format features. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>tiling</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The Vulkan image tiling. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/n30/Repos/rayex/include/api/utility/Helpers.hpp" line="140" column="10" declfile="/home/n30/Repos/rayex/include/api/utility/Helpers.hpp" declline="140" declcolumn="10"/>
       </memberdef>
       </sectiondef>
     <briefdescription>
@@ -774,6 +838,6 @@
     </briefdescription>
     <detaileddescription>
     </detaileddescription>
-    <location file="/home/n30/Repos/rayex/include/api/utility/Helpers.hpp" line="12" column="1"/>
+    <location file="/home/n30/Repos/rayex/include/api/utility/Helpers.hpp" line="11" column="1"/>
   </compounddef>
 </doxygen>

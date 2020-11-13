@@ -97,59 +97,56 @@ $(document).ready(function(){initNavTree('_util_8hpp_source.html',''); initResiz
 <div class="title">Util.hpp</div>  </div>
 </div><!--header-->
 <div class="contents">
-<a href="_util_8hpp.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;<span class="preprocessor">#ifndef UTIL_HPP</span></div>
-<div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;<span class="preprocessor">#define UTIL_HPP</span></div>
-<div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160; </div>
-<div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="stdafx_8hpp.html">pch/stdafx.hpp</a>&quot;</span></div>
-<div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160; </div>
-<div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;<span class="keyword">namespace </span><a class="code" href="namespace_r_a_y_e_x___n_a_m_e_s_p_a_c_e.html">RAYEX_NAMESPACE</a></div>
-<div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;{</div>
-<div class="line"><a name="l00008"></a><span class="lineno"><a class="line" href="namespace_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_util.html">    8</a></span>&#160;  <span class="keyword">namespace </span>Util</div>
-<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;  {</div>
-<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;    <span class="keyword">auto</span> <a class="code" href="namespace_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_util.html#a0688371689cb8fc05d6a7a85bad79a6a">parseShader</a>( std::string_view path ) -&gt; std::vector&lt;char&gt;;</div>
-<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160; </div>
-<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="namespace_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_util.html#a73f0c4b677c819ecf5a6083506e47b51">processShaderMacros</a>( std::string_view path, uint32_t dirLightNodes, uint32_t pointLightNodes, uint32_t totalModels );</div>
-<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160; </div>
-<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;    <span class="keyword">template</span> &lt;<span class="keyword">typename</span> T, <span class="keyword">typename</span> Container&gt;</div>
-<div class="line"><a name="l00022"></a><span class="lineno"><a class="line" href="namespace_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_util.html#a597142ff896b6224f5dd9e4cd06b186d">   22</a></span>&#160;    <span class="keyword">auto</span> <a class="code" href="namespace_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_util.html#a597142ff896b6224f5dd9e4cd06b186d">find</a>( T value, <span class="keyword">const</span> Container&amp; values ) -&gt; <span class="keywordtype">bool</span></div>
-<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;    {</div>
-<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;      <span class="keywordflow">for</span> ( <span class="keyword">const</span> <span class="keyword">auto</span>&amp; it : values )</div>
-<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;      {</div>
-<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;        <span class="keywordflow">if</span> ( it == value )</div>
-<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;          <span class="keywordflow">return</span> <span class="keyword">true</span>;</div>
-<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;      }</div>
-<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160; </div>
-<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;      <span class="keywordflow">return</span> <span class="keyword">false</span>;</div>
-<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;    }</div>
-<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160; </div>
-<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;    <span class="keyword">auto</span> <a class="code" href="namespace_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_util.html#a68d3d47e91753b329cd0e075f75d26fc">vec4toArray</a>( <span class="keyword">const</span> glm::vec4&amp; vec ) -&gt; std::array&lt;float, 4&gt;;</div>
-<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160; </div>
-<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;    <span class="keyword">template</span> &lt;<span class="keyword">typename</span> T&gt;</div>
-<div class="line"><a name="l00036"></a><span class="lineno"><a class="line" href="namespace_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_util.html#a123f863dbcf88702a681a0217593caa0">   36</a></span>&#160;    <span class="keyword">auto</span> <a class="code" href="namespace_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_util.html#a123f863dbcf88702a681a0217593caa0">listToVec</a>( <span class="keyword">const</span> std::list&lt;T&gt;&amp; vec ) -&gt; std::vector&lt;T&gt;</div>
-<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;    {</div>
-<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;      std::vector&lt;T&gt; result;</div>
-<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;      result.reserve( vec.size( ) );</div>
-<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160; </div>
-<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;      <span class="keywordflow">for</span> ( <span class="keyword">const</span> <span class="keyword">auto</span>&amp; it : vec )</div>
-<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;      {</div>
-<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;        result.push_back( it );</div>
-<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;      }</div>
-<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160; </div>
-<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;      <span class="keywordflow">return</span> result;</div>
-<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;    }</div>
-<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160; </div>
-<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;  } <span class="comment">// namespace Util</span></div>
-<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;} <span class="comment">// namespace RAYEX_NAMESPACE</span></div>
-<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160; </div>
-<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;<span class="preprocessor">#endif // UTIL_HPP</span></div>
+<a href="_util_8hpp.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;<span class="preprocessor">#pragma once</span></div>
+<div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160; </div>
+<div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="stdafx_8hpp.html">pch/stdafx.hpp</a>&quot;</span></div>
+<div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160; </div>
+<div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;<span class="keyword">namespace </span><a class="code" href="namespace_r_a_y_e_x___n_a_m_e_s_p_a_c_e.html">RAYEX_NAMESPACE</a></div>
+<div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;{</div>
+<div class="line"><a name="l00007"></a><span class="lineno"><a class="line" href="namespace_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_util.html">    7</a></span>&#160;  <span class="keyword">namespace </span>Util</div>
+<div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;  {</div>
+<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;    <span class="keyword">auto</span> <a class="code" href="namespace_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_util.html#a0688371689cb8fc05d6a7a85bad79a6a">parseShader</a>( std::string_view path ) -&gt; std::vector&lt;char&gt;;</div>
+<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160; </div>
+<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="namespace_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_util.html#a73f0c4b677c819ecf5a6083506e47b51">processShaderMacros</a>( std::string_view path, uint32_t dirLightNodes, uint32_t pointLightNodes, uint32_t totalModels );</div>
+<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160; </div>
+<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;    <span class="keyword">template</span> &lt;<span class="keyword">typename</span> T, <span class="keyword">typename</span> Container&gt;</div>
+<div class="line"><a name="l00021"></a><span class="lineno"><a class="line" href="namespace_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_util.html#a597142ff896b6224f5dd9e4cd06b186d">   21</a></span>&#160;    <span class="keyword">auto</span> <a class="code" href="namespace_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_util.html#a597142ff896b6224f5dd9e4cd06b186d">find</a>( T value, <span class="keyword">const</span> Container&amp; values ) -&gt; <span class="keywordtype">bool</span></div>
+<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;    {</div>
+<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;      <span class="keywordflow">for</span> ( <span class="keyword">const</span> <span class="keyword">auto</span>&amp; it : values )</div>
+<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;      {</div>
+<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;        <span class="keywordflow">if</span> ( it == value )</div>
+<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;          <span class="keywordflow">return</span> <span class="keyword">true</span>;</div>
+<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;      }</div>
+<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160; </div>
+<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;      <span class="keywordflow">return</span> <span class="keyword">false</span>;</div>
+<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;    }</div>
+<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160; </div>
+<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;    <span class="keyword">auto</span> <a class="code" href="namespace_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_util.html#a68d3d47e91753b329cd0e075f75d26fc">vec4toArray</a>( <span class="keyword">const</span> glm::vec4&amp; vec ) -&gt; std::array&lt;float, 4&gt;;</div>
+<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160; </div>
+<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;    <span class="keyword">template</span> &lt;<span class="keyword">typename</span> T&gt;</div>
+<div class="line"><a name="l00035"></a><span class="lineno"><a class="line" href="namespace_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_util.html#a123f863dbcf88702a681a0217593caa0">   35</a></span>&#160;    <span class="keyword">auto</span> <a class="code" href="namespace_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_util.html#a123f863dbcf88702a681a0217593caa0">listToVec</a>( <span class="keyword">const</span> std::list&lt;T&gt;&amp; vec ) -&gt; std::vector&lt;T&gt;</div>
+<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;    {</div>
+<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;      std::vector&lt;T&gt; result;</div>
+<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;      result.reserve( vec.size( ) );</div>
+<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160; </div>
+<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;      <span class="keywordflow">for</span> ( <span class="keyword">const</span> <span class="keyword">auto</span>&amp; it : vec )</div>
+<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;      {</div>
+<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;        result.push_back( it );</div>
+<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;      }</div>
+<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160; </div>
+<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;      <span class="keywordflow">return</span> result;</div>
+<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;    }</div>
+<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160; </div>
+<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;  } <span class="comment">// namespace Util</span></div>
+<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;} <span class="comment">// namespace RAYEX_NAMESPACE</span></div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->
-<div class="ttc" id="anamespace_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_util_html_a597142ff896b6224f5dd9e4cd06b186d"><div class="ttname"><a href="namespace_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_util.html#a597142ff896b6224f5dd9e4cd06b186d">RAYEX_NAMESPACE::Util::find</a></div><div class="ttdeci">auto find(T value, const Container &amp;values) -&gt; bool</div><div class="ttdoc">Used to find any given element inside a STL container.</div><div class="ttdef"><b>Definition:</b> Util.hpp:22</div></div>
+<div class="ttc" id="anamespace_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_util_html_a597142ff896b6224f5dd9e4cd06b186d"><div class="ttname"><a href="namespace_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_util.html#a597142ff896b6224f5dd9e4cd06b186d">RAYEX_NAMESPACE::Util::find</a></div><div class="ttdeci">auto find(T value, const Container &amp;values) -&gt; bool</div><div class="ttdoc">Used to find any given element inside a STL container.</div><div class="ttdef"><b>Definition:</b> Util.hpp:21</div></div>
 <div class="ttc" id="anamespace_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_util_html_a0688371689cb8fc05d6a7a85bad79a6a"><div class="ttname"><a href="namespace_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_util.html#a0688371689cb8fc05d6a7a85bad79a6a">RAYEX_NAMESPACE::Util::parseShader</a></div><div class="ttdeci">auto parseShader(std::string_view path) -&gt; std::vector&lt; char &gt;</div><div class="ttdoc">Parses a given shader file.</div></div>
 <div class="ttc" id="astdafx_8hpp_html"><div class="ttname"><a href="stdafx_8hpp.html">stdafx.hpp</a></div></div>
-<div class="ttc" id="anamespace_r_a_y_e_x___n_a_m_e_s_p_a_c_e_html"><div class="ttname"><a href="namespace_r_a_y_e_x___n_a_m_e_s_p_a_c_e.html">RAYEX_NAMESPACE</a></div><div class="ttdoc">The rx namespace encapsulates every single component provided by the renderer.</div><div class="ttdef"><b>Definition:</b> Api.hpp:23</div></div>
+<div class="ttc" id="anamespace_r_a_y_e_x___n_a_m_e_s_p_a_c_e_html"><div class="ttname"><a href="namespace_r_a_y_e_x___n_a_m_e_s_p_a_c_e.html">RAYEX_NAMESPACE</a></div><div class="ttdoc">The rx namespace encapsulates every single component provided by the renderer.</div><div class="ttdef"><b>Definition:</b> Api.hpp:22</div></div>
 <div class="ttc" id="anamespace_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_util_html_a73f0c4b677c819ecf5a6083506e47b51"><div class="ttname"><a href="namespace_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_util.html#a73f0c4b677c819ecf5a6083506e47b51">RAYEX_NAMESPACE::Util::processShaderMacros</a></div><div class="ttdeci">void processShaderMacros(std::string_view path, uint32_t dirLightNodes, uint32_t pointLightNodes, uint32_t totalModels)</div></div>
-<div class="ttc" id="anamespace_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_util_html_a123f863dbcf88702a681a0217593caa0"><div class="ttname"><a href="namespace_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_util.html#a123f863dbcf88702a681a0217593caa0">RAYEX_NAMESPACE::Util::listToVec</a></div><div class="ttdeci">auto listToVec(const std::list&lt; T &gt; &amp;vec) -&gt; std::vector&lt; T &gt;</div><div class="ttdef"><b>Definition:</b> Util.hpp:36</div></div>
+<div class="ttc" id="anamespace_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_util_html_a123f863dbcf88702a681a0217593caa0"><div class="ttname"><a href="namespace_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_util.html#a123f863dbcf88702a681a0217593caa0">RAYEX_NAMESPACE::Util::listToVec</a></div><div class="ttdeci">auto listToVec(const std::list&lt; T &gt; &amp;vec) -&gt; std::vector&lt; T &gt;</div><div class="ttdef"><b>Definition:</b> Util.hpp:35</div></div>
 <div class="ttc" id="anamespace_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_util_html_a68d3d47e91753b329cd0e075f75d26fc"><div class="ttname"><a href="namespace_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_util.html#a68d3d47e91753b329cd0e075f75d26fc">RAYEX_NAMESPACE::Util::vec4toArray</a></div><div class="ttdeci">auto vec4toArray(const glm::vec4 &amp;vec) -&gt; std::array&lt; float, 4 &gt;</div></div>
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->

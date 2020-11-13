@@ -2,6 +2,7 @@
 
 #include "api/buffers/Buffer.hpp"
 #include "base/Lights.hpp"
+#include "api/utility/Initializers.hpp"
 
 namespace RAYEX_NAMESPACE
 {

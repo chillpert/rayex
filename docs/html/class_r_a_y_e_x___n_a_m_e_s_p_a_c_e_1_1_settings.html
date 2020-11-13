@@ -98,7 +98,7 @@ $(document).ready(function(){initNavTree('class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_
 <a href="#friends">Friends</a> &#124;
 <a href="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_settings-members.html">List of all members</a>  </div>
   <div class="headertitle">
-<div class="title">RAYEX_NAMESPACE::Settings Class Reference</div>  </div>
+<div class="title">RAYEX_NAMESPACE::Settings Class Reference<div class="ingroups"><a class="el" href="group___b_a_s_e.html">Base</a></div></div>  </div>
 </div><!--header-->
 <div class="contents">
 
@@ -146,6 +146,11 @@ Public Member Functions</h2></td></tr>
 <tr class="separator:ad82e2aa3d853d8b87408d808f36c72a4"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a272c5032d8509892f7ee876d65fcdfe2"><td class="memItemLeft" align="right" valign="top">auto&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_settings.html#a272c5032d8509892f7ee876d65fcdfe2">getMaxRecursionDepth</a> () const -&gt; uint32_t</td></tr>
 <tr class="separator:a272c5032d8509892f7ee876d65fcdfe2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:adec13502be4c85e096764a102beb2c65"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_settings.html#adec13502be4c85e096764a102beb2c65">setMaxGeoemtry</a> (uint32_t amount)</td></tr>
+<tr class="memdesc:adec13502be4c85e096764a102beb2c65"><td class="mdescLeft">&#160;</td><td class="mdescRight">Used to set the maximum of geometry (models).  <a href="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_settings.html#adec13502be4c85e096764a102beb2c65">More...</a><br /></td></tr>
+<tr class="separator:adec13502be4c85e096764a102beb2c65"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:abd9b32871d745deb435e07f2b7006952"><td class="memItemLeft" align="right" valign="top">auto&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_settings.html#abd9b32871d745deb435e07f2b7006952">getMaxGeometry</a> () const -&gt; uint32_t</td></tr>
+<tr class="separator:abd9b32871d745deb435e07f2b7006952"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aafdf9b286388d388b41afc6c4707cc02"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_settings.html#aafdf9b286388d388b41afc6c4707cc02">setEnableJitterCam</a> (bool flag)</td></tr>
 <tr class="memdesc:aafdf9b286388d388b41afc6c4707cc02"><td class="mdescLeft">&#160;</td><td class="mdescRight">Used to toggle the jitter cam.  <a href="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_settings.html#aafdf9b286388d388b41afc6c4707cc02">More...</a><br /></td></tr>
 <tr class="separator:aafdf9b286388d388b41afc6c4707cc02"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -185,8 +190,8 @@ Friends</h2></td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Exposes all graphic settings supported by the renderer. </p>
-<p>Any necessary pipeline recreations and swapchain recreations will not be performed at the point of calling any setter but instead the next time the renderer will be updated.</p>
-<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000007">Todo:</a></b></dt><dd>Add a setUseTotalPathsOnly( bool flag ) </dd></dl>
+<p>Any necessary pipeline recreations and swapchain recreations will not be performed at the point of calling any setter but instead the next time the renderer will be updated. </p><dl class="section warning"><dt>Warning</dt><dd>Any function that sets the maximum of a given entity needs to be called before <a class="el" href="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_rayex.html#a7ab92b96ef9c93d84dced77b0ee2cc4b" title="Initializes the renderer.">RAYEX_NAMESPACE::Rayex::init()</a>.</dd></dl>
+<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000009">Todo:</a></b></dt><dd>Add a setUseTotalPathsOnly( bool flag ) </dd></dl>
 </div><h2 class="groupheader">Member Function Documentation</h2>
 <a id="a8e94a1b47ab849117f0e97bf74332bb0"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a8e94a1b47ab849117f0e97bf74332bb0">&#9670;&nbsp;</a></span>getAssetsPath()</h2>
@@ -318,6 +323,32 @@ Friends</h2></td></tr>
 
 </div>
 </div>
+<a id="abd9b32871d745deb435e07f2b7006952"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#abd9b32871d745deb435e07f2b7006952">&#9670;&nbsp;</a></span>getMaxGeometry()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">auto RAYEX_NAMESPACE::Settings::getMaxGeometry </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const -&gt; uint32_t </td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<dl class="section return"><dt>Returns</dt><dd>Returns the maximum amount of geometry. </dd></dl>
+
+</div>
+</div>
 <a id="a272c5032d8509892f7ee876d65fcdfe2"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a272c5032d8509892f7ee876d65fcdfe2">&#9670;&nbsp;</a></span>getMaxRecursionDepth()</h2>
 
@@ -367,7 +398,7 @@ Friends</h2></td></tr>
 </table>
 </div><div class="memdoc">
 <dl class="section return"><dt>Returns</dt><dd>Returns true if ray tracing is enabled and false if rasterization is enabled. </dd></dl>
-<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000008">Todo:</a></b></dt><dd>This function will be pointless once the new pipeline system is implemented. </dd></dl>
+<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000010">Todo:</a></b></dt><dd>This function will be pointless once the new pipeline system is implemented. </dd></dl>
 
 </div>
 </div>
@@ -614,7 +645,7 @@ Friends</h2></td></tr>
   </table>
   </dd>
 </dl>
-<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000009">Todo:</a></b></dt><dd>This function will be pointless once the new pipeline system is implemented. </dd></dl>
+<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000011">Todo:</a></b></dt><dd>This function will be pointless once the new pipeline system is implemented. </dd></dl>
 
 </div>
 </div>
@@ -720,6 +751,32 @@ Friends</h2></td></tr>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">amount</td><td>The amount of maximum directional lights. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="adec13502be4c85e096764a102beb2c65"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#adec13502be4c85e096764a102beb2c65">&#9670;&nbsp;</a></span>setMaxGeoemtry()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void RAYEX_NAMESPACE::Settings::setMaxGeoemtry </td>
+          <td>(</td>
+          <td class="paramtype">uint32_t&#160;</td>
+          <td class="paramname"><em>amount</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Used to set the maximum of geometry (models). </p>
+<p>Try to keep this as small as possible, as this affects performance. </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">amount</td><td>The amount of maximum geometry. </td></tr>
   </table>
   </dd>
 </dl>

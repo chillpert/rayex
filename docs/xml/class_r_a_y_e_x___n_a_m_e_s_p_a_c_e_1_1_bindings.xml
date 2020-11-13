@@ -4,11 +4,11 @@
     <compoundname>RAYEX_NAMESPACE::Bindings</compoundname>
     <includes refid="_bindings_8hpp" local="no">Bindings.hpp</includes>
       <sectiondef kind="private-attrib">
-      <memberdef kind="variable" id="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_bindings_1a4b159342f025f9c81a66887321267de9" prot="private" static="no" mutable="no">
+      <memberdef kind="variable" id="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_bindings_1adbd45a78de253f746a13aae2cb3b3a78" prot="private" static="no" mutable="no">
         <type>std::vector&lt; vk::DescriptorSetLayoutBinding &gt;</type>
-        <definition>std::vector&lt;vk::DescriptorSetLayoutBinding&gt; RAYEX_NAMESPACE::Bindings::bindings</definition>
+        <definition>std::vector&lt;vk::DescriptorSetLayoutBinding&gt; RAYEX_NAMESPACE::Bindings::_bindings</definition>
         <argsstring></argsstring>
-        <name>bindings</name>
+        <name>_bindings</name>
         <briefdescription>
 <para>Contains the actual binding. </para>
         </briefdescription>
@@ -16,13 +16,13 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/n30/Repos/rayex/include/api/Bindings.hpp" line="89" column="17" bodyfile="/home/n30/Repos/rayex/include/api/Bindings.hpp" bodystart="89" bodyend="-1"/>
+        <location file="/home/n30/Repos/rayex/include/api/Bindings.hpp" line="95" column="17" bodyfile="/home/n30/Repos/rayex/include/api/Bindings.hpp" bodystart="95" bodyend="-1"/>
       </memberdef>
-      <memberdef kind="variable" id="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_bindings_1a010a901b5878fa43e9058fcb913e0598" prot="private" static="no" mutable="no">
+      <memberdef kind="variable" id="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_bindings_1af2fca59def96dcaf467ace1a981eea95" prot="private" static="no" mutable="no">
         <type>std::vector&lt; vk::DescriptorBindingFlags &gt;</type>
-        <definition>std::vector&lt;vk::DescriptorBindingFlags&gt; RAYEX_NAMESPACE::Bindings::flags</definition>
+        <definition>std::vector&lt;vk::DescriptorBindingFlags&gt; RAYEX_NAMESPACE::Bindings::_flags</definition>
         <argsstring></argsstring>
-        <name>flags</name>
+        <name>_flags</name>
         <briefdescription>
 <para>Contains binding flags for each of the actual bindings. </para>
         </briefdescription>
@@ -30,13 +30,13 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/n30/Repos/rayex/include/api/Bindings.hpp" line="90" column="17" bodyfile="/home/n30/Repos/rayex/include/api/Bindings.hpp" bodystart="90" bodyend="-1"/>
+        <location file="/home/n30/Repos/rayex/include/api/Bindings.hpp" line="96" column="17" bodyfile="/home/n30/Repos/rayex/include/api/Bindings.hpp" bodystart="96" bodyend="-1"/>
       </memberdef>
-      <memberdef kind="variable" id="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_bindings_1ab610291ccd228c47cc5c87707ddebe4c" prot="private" static="no" mutable="no">
+      <memberdef kind="variable" id="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_bindings_1a7ae087d0b220658de82b98e697515d62" prot="private" static="no" mutable="no">
         <type>std::optional&lt; std::vector&lt; vk::DescriptorPoolSize &gt; &gt;</type>
-        <definition>std::optional&lt;std::vector&lt;vk::DescriptorPoolSize&gt; &gt; RAYEX_NAMESPACE::Bindings::poolSizes</definition>
+        <definition>std::optional&lt;std::vector&lt;vk::DescriptorPoolSize&gt; &gt; RAYEX_NAMESPACE::Bindings::_poolSizes</definition>
         <argsstring></argsstring>
-        <name>poolSizes</name>
+        <name>_poolSizes</name>
         <briefdescription>
 <para>The pool sizes for allocating the descriptor pool (Only used if <ref refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_bindings_1adb3fefd44d2cff639f5ad5a386b40f8a" kindref="member">setPoolSizes(const std::vector&lt;vk::DescriptorPoolSize&gt;&amp;)</ref> is called). </para>
         </briefdescription>
@@ -44,13 +44,13 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/n30/Repos/rayex/include/api/Bindings.hpp" line="91" column="19" bodyfile="/home/n30/Repos/rayex/include/api/Bindings.hpp" bodystart="91" bodyend="-1"/>
+        <location file="/home/n30/Repos/rayex/include/api/Bindings.hpp" line="97" column="19" bodyfile="/home/n30/Repos/rayex/include/api/Bindings.hpp" bodystart="97" bodyend="-1"/>
       </memberdef>
-      <memberdef kind="variable" id="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_bindings_1af49e279062311c7449fbd8a0814a6e75" prot="private" static="no" mutable="no">
+      <memberdef kind="variable" id="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_bindings_1a676fab1cc09653283492d4171be19dbc" prot="private" static="no" mutable="no">
         <type>std::vector&lt; std::vector&lt; vk::WriteDescriptorSet &gt; &gt;</type>
-        <definition>std::vector&lt;std::vector&lt;vk::WriteDescriptorSet&gt; &gt; RAYEX_NAMESPACE::Bindings::writes</definition>
+        <definition>std::vector&lt;std::vector&lt;vk::WriteDescriptorSet&gt; &gt; RAYEX_NAMESPACE::Bindings::_writes</definition>
         <argsstring></argsstring>
-        <name>writes</name>
+        <name>_writes</name>
         <briefdescription>
 <para>Contains all descriptor writes for each binding. </para>
         </briefdescription>
@@ -58,14 +58,14 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/n30/Repos/rayex/include/api/Bindings.hpp" line="92" column="17" bodyfile="/home/n30/Repos/rayex/include/api/Bindings.hpp" bodystart="92" bodyend="-1"/>
+        <location file="/home/n30/Repos/rayex/include/api/Bindings.hpp" line="98" column="17" bodyfile="/home/n30/Repos/rayex/include/api/Bindings.hpp" bodystart="98" bodyend="-1"/>
       </memberdef>
       </sectiondef>
       <sectiondef kind="public-func">
-      <memberdef kind="function" id="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_bindings_1ae7f6782801197c7aa3d3e55949760c2b" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+      <memberdef kind="function" id="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_bindings_1a37856d36392e371e4fdcfe35d184fa42" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
         <definition>void RAYEX_NAMESPACE::Bindings::add</definition>
-        <argsstring>(uint32_t binding, vk::DescriptorType type, vk::ShaderStageFlags stage, uint32_t count=1, vk::DescriptorBindingFlags flags={ })</argsstring>
+        <argsstring>(uint32_t binding, vk::DescriptorType type, vk::ShaderStageFlags stage, uint32_t count=1, vk::DescriptorBindingFlags flags={ }, vk::Sampler *pImmutableSamplers=nullptr)</argsstring>
         <name>add</name>
         <param>
           <type>uint32_t</type>
@@ -88,6 +88,11 @@
           <type>vk::DescriptorBindingFlags</type>
           <declname>flags</declname>
           <defval>{ }</defval>
+        </param>
+        <param>
+          <type>vk::Sampler *</type>
+          <declname>pImmutableSamplers</declname>
+          <defval>nullptr</defval>
         </param>
         <briefdescription>
 <para>Used to add a binding. </para>
@@ -140,11 +145,16 @@
         </inbodydescription>
         <location file="/home/n30/Repos/rayex/include/api/Bindings.hpp" line="20" column="10"/>
       </memberdef>
-      <memberdef kind="function" id="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_bindings_1a65f1f7e88d734539019ee296f3bf736a" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+      <memberdef kind="function" id="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_bindings_1ac4a04461e4728f35c9146237a47e6e66" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>auto</type>
         <definition>auto RAYEX_NAMESPACE::Bindings::initLayoutUnique</definition>
-        <argsstring>() -&gt; vk::UniqueDescriptorSetLayout</argsstring>
+        <argsstring>(vk::DescriptorSetLayoutCreateFlags flags={ }) -&gt; vk::UniqueDescriptorSetLayout</argsstring>
         <name>initLayoutUnique</name>
+        <param>
+          <type>vk::DescriptorSetLayoutCreateFlags</type>
+          <declname>flags</declname>
+          <defval>{ }</defval>
+        </param>
         <briefdescription>
 <para>Used to initialize a unique descriptor set layout. </para>
         </briefdescription>
@@ -425,10 +435,10 @@
         </inbodydescription>
         <location file="/home/n30/Repos/rayex/include/api/Bindings.hpp" line="58" column="10"/>
       </memberdef>
-      <memberdef kind="function" id="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_bindings_1a74d4d878e189392b1ec2ff7404ce0848" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+      <memberdef kind="function" id="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_bindings_1aa7d770601a7dc6456b8d1d58d1f8e7f4" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
         <definition>void RAYEX_NAMESPACE::Bindings::writeArray</definition>
-        <argsstring>(const std::vector&lt; vk::DescriptorSet &gt; &amp;sets, uint32_t binding, vk::DescriptorBufferInfo *pBufferInfo)</argsstring>
+        <argsstring>(const std::vector&lt; vk::DescriptorSet &gt; &amp;sets, uint32_t binding, const vk::DescriptorBufferInfo *pBufferInfo)</argsstring>
         <name>writeArray</name>
         <param>
           <type>const std::vector&lt; vk::DescriptorSet &gt; &amp;</type>
@@ -439,7 +449,7 @@
           <declname>binding</declname>
         </param>
         <param>
-          <type>vk::DescriptorBufferInfo *</type>
+          <type>const vk::DescriptorBufferInfo *</type>
           <declname>pBufferInfo</declname>
         </param>
         <briefdescription>
@@ -477,6 +487,58 @@
         </inbodydescription>
         <location file="/home/n30/Repos/rayex/include/api/Bindings.hpp" line="64" column="10"/>
       </memberdef>
+      <memberdef kind="function" id="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_bindings_1adea0ef24844370ca397ec05f53682a08" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void RAYEX_NAMESPACE::Bindings::writeArray</definition>
+        <argsstring>(const std::vector&lt; vk::DescriptorSet &gt; &amp;sets, uint32_t binding, const vk::DescriptorImageInfo *pImageInfo)</argsstring>
+        <name>writeArray</name>
+        <param>
+          <type>const std::vector&lt; vk::DescriptorSet &gt; &amp;</type>
+          <declname>sets</declname>
+        </param>
+        <param>
+          <type>uint32_t</type>
+          <declname>binding</declname>
+        </param>
+        <param>
+          <type>const vk::DescriptorImageInfo *</type>
+          <declname>pImageInfo</declname>
+        </param>
+        <briefdescription>
+<para>Used to create an array of descriptor writes for images. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>sets</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The descriptor set handles. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>binding</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The binding&apos;s index. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>pImageInfo</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The pointer to the first element of an array of descriptor image infos. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/n30/Repos/rayex/include/api/Bindings.hpp" line="70" column="10"/>
+      </memberdef>
       <memberdef kind="function" id="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_bindings_1adb3fefd44d2cff639f5ad5a386b40f8a" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
         <definition>void RAYEX_NAMESPACE::Bindings::setPoolSizes</definition>
@@ -505,7 +567,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/n30/Repos/rayex/include/api/Bindings.hpp" line="69" column="10"/>
+        <location file="/home/n30/Repos/rayex/include/api/Bindings.hpp" line="75" column="10"/>
       </memberdef>
       <memberdef kind="function" id="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_bindings_1a6ce4c6073f217615f9212444578ca217" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -519,7 +581,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/n30/Repos/rayex/include/api/Bindings.hpp" line="72" column="10"/>
+        <location file="/home/n30/Repos/rayex/include/api/Bindings.hpp" line="78" column="10"/>
       </memberdef>
       </sectiondef>
       <sectiondef kind="private-func">
@@ -575,7 +637,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/n30/Repos/rayex/include/api/Bindings.hpp" line="80" column="10"/>
+        <location file="/home/n30/Repos/rayex/include/api/Bindings.hpp" line="86" column="10"/>
       </memberdef>
       <memberdef kind="function" id="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_bindings_1a935ee3e3713b15c4509aac21d2f407bb" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>auto</type>
@@ -629,7 +691,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/n30/Repos/rayex/include/api/Bindings.hpp" line="87" column="10"/>
+        <location file="/home/n30/Repos/rayex/include/api/Bindings.hpp" line="93" column="10"/>
       </memberdef>
       </sectiondef>
     <briefdescription>
@@ -637,14 +699,15 @@
     </briefdescription>
     <detaileddescription>
     </detaileddescription>
-    <location file="/home/n30/Repos/rayex/include/api/Bindings.hpp" line="12" column="1" bodyfile="/home/n30/Repos/rayex/include/api/Bindings.hpp" bodystart="11" bodyend="93"/>
+    <location file="/home/n30/Repos/rayex/include/api/Bindings.hpp" line="12" column="1" bodyfile="/home/n30/Repos/rayex/include/api/Bindings.hpp" bodystart="11" bodyend="99"/>
     <listofallmembers>
-      <member refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_bindings_1ae7f6782801197c7aa3d3e55949760c2b" prot="public" virt="non-virtual"><scope>RAYEX_NAMESPACE::Bindings</scope><name>add</name></member>
-      <member refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_bindings_1a4b159342f025f9c81a66887321267de9" prot="private" virt="non-virtual"><scope>RAYEX_NAMESPACE::Bindings</scope><name>bindings</name></member>
-      <member refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_bindings_1a010a901b5878fa43e9058fcb913e0598" prot="private" virt="non-virtual"><scope>RAYEX_NAMESPACE::Bindings</scope><name>flags</name></member>
-      <member refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_bindings_1a65f1f7e88d734539019ee296f3bf736a" prot="public" virt="non-virtual"><scope>RAYEX_NAMESPACE::Bindings</scope><name>initLayoutUnique</name></member>
+      <member refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_bindings_1adbd45a78de253f746a13aae2cb3b3a78" prot="private" virt="non-virtual"><scope>RAYEX_NAMESPACE::Bindings</scope><name>_bindings</name></member>
+      <member refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_bindings_1af2fca59def96dcaf467ace1a981eea95" prot="private" virt="non-virtual"><scope>RAYEX_NAMESPACE::Bindings</scope><name>_flags</name></member>
+      <member refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_bindings_1a7ae087d0b220658de82b98e697515d62" prot="private" virt="non-virtual"><scope>RAYEX_NAMESPACE::Bindings</scope><name>_poolSizes</name></member>
+      <member refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_bindings_1a676fab1cc09653283492d4171be19dbc" prot="private" virt="non-virtual"><scope>RAYEX_NAMESPACE::Bindings</scope><name>_writes</name></member>
+      <member refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_bindings_1a37856d36392e371e4fdcfe35d184fa42" prot="public" virt="non-virtual"><scope>RAYEX_NAMESPACE::Bindings</scope><name>add</name></member>
+      <member refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_bindings_1ac4a04461e4728f35c9146237a47e6e66" prot="public" virt="non-virtual"><scope>RAYEX_NAMESPACE::Bindings</scope><name>initLayoutUnique</name></member>
       <member refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_bindings_1a20edd74ad52f8a3604f7cd892f2239f6" prot="public" virt="non-virtual"><scope>RAYEX_NAMESPACE::Bindings</scope><name>initPoolUnique</name></member>
-      <member refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_bindings_1ab610291ccd228c47cc5c87707ddebe4c" prot="private" virt="non-virtual"><scope>RAYEX_NAMESPACE::Bindings</scope><name>poolSizes</name></member>
       <member refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_bindings_1a6ce4c6073f217615f9212444578ca217" prot="public" virt="non-virtual"><scope>RAYEX_NAMESPACE::Bindings</scope><name>reset</name></member>
       <member refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_bindings_1adb3fefd44d2cff639f5ad5a386b40f8a" prot="public" virt="non-virtual"><scope>RAYEX_NAMESPACE::Bindings</scope><name>setPoolSizes</name></member>
       <member refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_bindings_1a5c7e9adcda6c378e5a1b342d70d3acc5" prot="public" virt="non-virtual"><scope>RAYEX_NAMESPACE::Bindings</scope><name>update</name></member>
@@ -653,9 +716,9 @@
       <member refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_bindings_1a86bc166283b66986b514920652dfbdd9" prot="public" virt="non-virtual"><scope>RAYEX_NAMESPACE::Bindings</scope><name>write</name></member>
       <member refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_bindings_1a504a47e05d5db66c5545bf6402ae6b98" prot="public" virt="non-virtual"><scope>RAYEX_NAMESPACE::Bindings</scope><name>write</name></member>
       <member refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_bindings_1a50cbc7e2d9c2d31fa6bd17315371105a" prot="private" virt="non-virtual"><scope>RAYEX_NAMESPACE::Bindings</scope><name>write</name></member>
-      <member refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_bindings_1a74d4d878e189392b1ec2ff7404ce0848" prot="public" virt="non-virtual"><scope>RAYEX_NAMESPACE::Bindings</scope><name>writeArray</name></member>
+      <member refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_bindings_1aa7d770601a7dc6456b8d1d58d1f8e7f4" prot="public" virt="non-virtual"><scope>RAYEX_NAMESPACE::Bindings</scope><name>writeArray</name></member>
+      <member refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_bindings_1adea0ef24844370ca397ec05f53682a08" prot="public" virt="non-virtual"><scope>RAYEX_NAMESPACE::Bindings</scope><name>writeArray</name></member>
       <member refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_bindings_1a935ee3e3713b15c4509aac21d2f407bb" prot="private" virt="non-virtual"><scope>RAYEX_NAMESPACE::Bindings</scope><name>writeArray</name></member>
-      <member refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_bindings_1af49e279062311c7449fbd8a0814a6e75" prot="private" virt="non-virtual"><scope>RAYEX_NAMESPACE::Bindings</scope><name>writes</name></member>
     </listofallmembers>
   </compounddef>
 </doxygen>

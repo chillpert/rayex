@@ -4,11 +4,11 @@
     <compoundname>RAYEX_NAMESPACE::CommandBuffer</compoundname>
     <includes refid="_command_buffer_8hpp" local="no">CommandBuffer.hpp</includes>
       <sectiondef kind="private-attrib">
-      <memberdef kind="variable" id="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_command_buffer_1a0fcddb9f99267e95315d63147dd63f1b" prot="private" static="no" mutable="no">
+      <memberdef kind="variable" id="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_command_buffer_1acf58bdb9ff4b36fe5111e427f192931f" prot="private" static="no" mutable="no">
         <type>std::vector&lt; vk::CommandBuffer &gt;</type>
-        <definition>std::vector&lt;vk::CommandBuffer&gt; RAYEX_NAMESPACE::CommandBuffer::commandBuffers</definition>
+        <definition>std::vector&lt;vk::CommandBuffer&gt; RAYEX_NAMESPACE::CommandBuffer::_commandBuffers</definition>
         <argsstring></argsstring>
-        <name>commandBuffers</name>
+        <name>_commandBuffers</name>
         <briefdescription>
 <para>A vector of Vulkan command buffers. </para>
         </briefdescription>
@@ -16,13 +16,13 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/n30/Repos/rayex/include/api/buffers/CommandBuffer.hpp" line="61" column="17" bodyfile="/home/n30/Repos/rayex/include/api/buffers/CommandBuffer.hpp" bodystart="61" bodyend="-1"/>
+        <location file="/home/n30/Repos/rayex/include/api/buffers/CommandBuffer.hpp" line="56" column="17" bodyfile="/home/n30/Repos/rayex/include/api/buffers/CommandBuffer.hpp" bodystart="56" bodyend="-1"/>
       </memberdef>
-      <memberdef kind="variable" id="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_command_buffer_1aeebfe3ceb2164000bac0f10e85917e56" prot="private" static="no" mutable="no">
+      <memberdef kind="variable" id="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_command_buffer_1a2d7a3de8b651d8ad220859ceb51670d4" prot="private" static="no" mutable="no">
         <type>vk::CommandPool</type>
-        <definition>vk::CommandPool RAYEX_NAMESPACE::CommandBuffer::commandPool</definition>
+        <definition>vk::CommandPool RAYEX_NAMESPACE::CommandBuffer::_commandPool</definition>
         <argsstring></argsstring>
-        <name>commandPool</name>
+        <name>_commandPool</name>
         <briefdescription>
 <para>The Vulkan command pool used to allocate the command buffer from. </para>
         </briefdescription>
@@ -30,13 +30,13 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/n30/Repos/rayex/include/api/buffers/CommandBuffer.hpp" line="63" column="21" bodyfile="/home/n30/Repos/rayex/include/api/buffers/CommandBuffer.hpp" bodystart="63" bodyend="-1"/>
+        <location file="/home/n30/Repos/rayex/include/api/buffers/CommandBuffer.hpp" line="58" column="21" bodyfile="/home/n30/Repos/rayex/include/api/buffers/CommandBuffer.hpp" bodystart="58" bodyend="-1"/>
       </memberdef>
-      <memberdef kind="variable" id="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_command_buffer_1aa6fbf7ecde842525eef67a250d6c3147" prot="private" static="no" mutable="no">
+      <memberdef kind="variable" id="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_command_buffer_1ad3a75a1669c72224e9ec74e3129d0679" prot="private" static="no" mutable="no">
         <type>vk::CommandBufferBeginInfo</type>
-        <definition>vk::CommandBufferBeginInfo RAYEX_NAMESPACE::CommandBuffer::beginInfo</definition>
+        <definition>vk::CommandBufferBeginInfo RAYEX_NAMESPACE::CommandBuffer::_beginInfo</definition>
         <argsstring></argsstring>
-        <name>beginInfo</name>
+        <name>_beginInfo</name>
         <briefdescription>
 <para>The Vulkan begin information of the command buffer. </para>
         </briefdescription>
@@ -44,7 +44,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/n30/Repos/rayex/include/api/buffers/CommandBuffer.hpp" line="64" column="32" bodyfile="/home/n30/Repos/rayex/include/api/buffers/CommandBuffer.hpp" bodystart="64" bodyend="-1"/>
+        <location file="/home/n30/Repos/rayex/include/api/buffers/CommandBuffer.hpp" line="59" column="32" bodyfile="/home/n30/Repos/rayex/include/api/buffers/CommandBuffer.hpp" bodystart="59" bodyend="-1"/>
       </memberdef>
       </sectiondef>
       <sectiondef kind="public-func">
@@ -59,7 +59,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/n30/Repos/rayex/include/api/buffers/CommandBuffer.hpp" line="13" column="5"/>
+        <location file="/home/n30/Repos/rayex/include/api/buffers/CommandBuffer.hpp" line="12" column="5"/>
       </memberdef>
       <memberdef kind="function" id="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_command_buffer_1a3e8baaca6b363d0a78d30ee70c584a11" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type></type>
@@ -113,7 +113,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/n30/Repos/rayex/include/api/buffers/CommandBuffer.hpp" line="19" column="5"/>
+        <location file="/home/n30/Repos/rayex/include/api/buffers/CommandBuffer.hpp" line="18" column="5"/>
       </memberdef>
       <memberdef kind="function" id="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_command_buffer_1a967443c6c46e162ed9a248f18a4dcd8a" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -167,7 +167,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/n30/Repos/rayex/include/api/buffers/CommandBuffer.hpp" line="25" column="10"/>
+        <location file="/home/n30/Repos/rayex/include/api/buffers/CommandBuffer.hpp" line="24" column="10"/>
       </memberdef>
       <memberdef kind="function" id="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_command_buffer_1ab0537198c1bdf7fc123867ff04109aec" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
         <type>auto</type>
@@ -183,7 +183,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/n30/Repos/rayex/include/api/buffers/CommandBuffer.hpp" line="28" column="11" bodyfile="/home/n30/Repos/rayex/include/api/buffers/CommandBuffer.hpp" bodystart="28" bodyend="28"/>
+        <location file="/home/n30/Repos/rayex/include/api/buffers/CommandBuffer.hpp" line="27" column="10" bodyfile="/home/n30/Repos/rayex/include/api/buffers/CommandBuffer.hpp" bodystart="27" bodyend="27"/>
       </memberdef>
       <memberdef kind="function" id="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_command_buffer_1adede3dee0329159e687a6b7a246ae47c" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
         <type>auto</type>
@@ -213,7 +213,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/n30/Repos/rayex/include/api/buffers/CommandBuffer.hpp" line="33" column="11" bodyfile="/home/n30/Repos/rayex/include/api/buffers/CommandBuffer.hpp" bodystart="33" bodyend="37"/>
+        <location file="/home/n30/Repos/rayex/include/api/buffers/CommandBuffer.hpp" line="32" column="10" bodyfile="/home/n30/Repos/rayex/include/api/buffers/CommandBuffer.hpp" bodystart="32" bodyend="32"/>
       </memberdef>
       <memberdef kind="function" id="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_command_buffer_1a650ea8a7a5d452734b8cefd118639936" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -227,11 +227,11 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/n30/Repos/rayex/include/api/buffers/CommandBuffer.hpp" line="40" column="10"/>
+        <location file="/home/n30/Repos/rayex/include/api/buffers/CommandBuffer.hpp" line="35" column="10"/>
       </memberdef>
-      <memberdef kind="function" id="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_command_buffer_1a7dd7be8f5fea7ebcf338f53e472450f0" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
-        <type>RX_API void</type>
-        <definition>RX_API void RAYEX_NAMESPACE::CommandBuffer::reset</definition>
+      <memberdef kind="function" id="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_command_buffer_1ad3b5f2eb9e334aeb1ce1acc170d326f3" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void RAYEX_NAMESPACE::CommandBuffer::reset</definition>
         <argsstring>()</argsstring>
         <name>reset</name>
         <briefdescription>
@@ -241,7 +241,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/n30/Repos/rayex/include/api/buffers/CommandBuffer.hpp" line="43" column="17"/>
+        <location file="/home/n30/Repos/rayex/include/api/buffers/CommandBuffer.hpp" line="38" column="10"/>
       </memberdef>
       <memberdef kind="function" id="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_command_buffer_1adeb8480e5423081dae4f34e7c756f5d0" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -270,7 +270,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/n30/Repos/rayex/include/api/buffers/CommandBuffer.hpp" line="47" column="10"/>
+        <location file="/home/n30/Repos/rayex/include/api/buffers/CommandBuffer.hpp" line="42" column="10"/>
       </memberdef>
       <memberdef kind="function" id="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_command_buffer_1ad12dd1d9c545827ad5277d596f38c2a8" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -299,16 +299,21 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/n30/Repos/rayex/include/api/buffers/CommandBuffer.hpp" line="51" column="10"/>
+        <location file="/home/n30/Repos/rayex/include/api/buffers/CommandBuffer.hpp" line="46" column="10"/>
       </memberdef>
-      <memberdef kind="function" id="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_command_buffer_1ad840dfe3ad8eb1f77a21bbb9d49985d8" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+      <memberdef kind="function" id="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_command_buffer_1ae47a0b4e332f7b93152e09223f858f54" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
         <definition>void RAYEX_NAMESPACE::CommandBuffer::submitToQueue</definition>
-        <argsstring>(vk::Queue queue, const std::vector&lt; vk::Semaphore &gt; &amp;waitSemaphores={ }, const std::vector&lt; vk::Semaphore &gt; &amp;signalSemaphores={ }, vk::PipelineStageFlags *waitDstStageMask={ })</argsstring>
+        <argsstring>(vk::Queue queue, vk::Fence fence=nullptr, const std::vector&lt; vk::Semaphore &gt; &amp;waitSemaphores={ }, const std::vector&lt; vk::Semaphore &gt; &amp;signalSemaphores={ }, vk::PipelineStageFlags *waitDstStageMask={ })</argsstring>
         <name>submitToQueue</name>
         <param>
           <type>vk::Queue</type>
           <declname>queue</declname>
+        </param>
+        <param>
+          <type>vk::Fence</type>
+          <declname>fence</declname>
+          <defval>nullptr</defval>
         </param>
         <param>
           <type>const std::vector&lt; vk::Semaphore &gt; &amp;</type>
@@ -366,7 +371,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/n30/Repos/rayex/include/api/buffers/CommandBuffer.hpp" line="58" column="10"/>
+        <location file="/home/n30/Repos/rayex/include/api/buffers/CommandBuffer.hpp" line="53" column="10"/>
       </memberdef>
       </sectiondef>
     <briefdescription>
@@ -374,21 +379,21 @@
     </briefdescription>
     <detaileddescription>
     </detaileddescription>
-    <location file="/home/n30/Repos/rayex/include/api/buffers/CommandBuffer.hpp" line="11" column="1" bodyfile="/home/n30/Repos/rayex/include/api/buffers/CommandBuffer.hpp" bodystart="10" bodyend="65"/>
+    <location file="/home/n30/Repos/rayex/include/api/buffers/CommandBuffer.hpp" line="10" column="1" bodyfile="/home/n30/Repos/rayex/include/api/buffers/CommandBuffer.hpp" bodystart="9" bodyend="60"/>
     <listofallmembers>
+      <member refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_command_buffer_1ad3a75a1669c72224e9ec74e3129d0679" prot="private" virt="non-virtual"><scope>RAYEX_NAMESPACE::CommandBuffer</scope><name>_beginInfo</name></member>
+      <member refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_command_buffer_1acf58bdb9ff4b36fe5111e427f192931f" prot="private" virt="non-virtual"><scope>RAYEX_NAMESPACE::CommandBuffer</scope><name>_commandBuffers</name></member>
+      <member refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_command_buffer_1a2d7a3de8b651d8ad220859ceb51670d4" prot="private" virt="non-virtual"><scope>RAYEX_NAMESPACE::CommandBuffer</scope><name>_commandPool</name></member>
       <member refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_command_buffer_1adeb8480e5423081dae4f34e7c756f5d0" prot="public" virt="non-virtual"><scope>RAYEX_NAMESPACE::CommandBuffer</scope><name>begin</name></member>
-      <member refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_command_buffer_1aa6fbf7ecde842525eef67a250d6c3147" prot="private" virt="non-virtual"><scope>RAYEX_NAMESPACE::CommandBuffer</scope><name>beginInfo</name></member>
       <member refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_command_buffer_1abe361754230f783eb86464734b851ff8" prot="public" virt="non-virtual"><scope>RAYEX_NAMESPACE::CommandBuffer</scope><name>CommandBuffer</name></member>
       <member refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_command_buffer_1a3e8baaca6b363d0a78d30ee70c584a11" prot="public" virt="non-virtual"><scope>RAYEX_NAMESPACE::CommandBuffer</scope><name>CommandBuffer</name></member>
-      <member refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_command_buffer_1a0fcddb9f99267e95315d63147dd63f1b" prot="private" virt="non-virtual"><scope>RAYEX_NAMESPACE::CommandBuffer</scope><name>commandBuffers</name></member>
-      <member refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_command_buffer_1aeebfe3ceb2164000bac0f10e85917e56" prot="private" virt="non-virtual"><scope>RAYEX_NAMESPACE::CommandBuffer</scope><name>commandPool</name></member>
       <member refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_command_buffer_1ad12dd1d9c545827ad5277d596f38c2a8" prot="public" virt="non-virtual"><scope>RAYEX_NAMESPACE::CommandBuffer</scope><name>end</name></member>
       <member refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_command_buffer_1a650ea8a7a5d452734b8cefd118639936" prot="public" virt="non-virtual"><scope>RAYEX_NAMESPACE::CommandBuffer</scope><name>free</name></member>
       <member refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_command_buffer_1ab0537198c1bdf7fc123867ff04109aec" prot="public" virt="non-virtual"><scope>RAYEX_NAMESPACE::CommandBuffer</scope><name>get</name></member>
       <member refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_command_buffer_1adede3dee0329159e687a6b7a246ae47c" prot="public" virt="non-virtual"><scope>RAYEX_NAMESPACE::CommandBuffer</scope><name>get</name></member>
       <member refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_command_buffer_1a967443c6c46e162ed9a248f18a4dcd8a" prot="public" virt="non-virtual"><scope>RAYEX_NAMESPACE::CommandBuffer</scope><name>init</name></member>
-      <member refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_command_buffer_1a7dd7be8f5fea7ebcf338f53e472450f0" prot="public" virt="non-virtual"><scope>RAYEX_NAMESPACE::CommandBuffer</scope><name>reset</name></member>
-      <member refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_command_buffer_1ad840dfe3ad8eb1f77a21bbb9d49985d8" prot="public" virt="non-virtual"><scope>RAYEX_NAMESPACE::CommandBuffer</scope><name>submitToQueue</name></member>
+      <member refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_command_buffer_1ad3b5f2eb9e334aeb1ce1acc170d326f3" prot="public" virt="non-virtual"><scope>RAYEX_NAMESPACE::CommandBuffer</scope><name>reset</name></member>
+      <member refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_command_buffer_1ae47a0b4e332f7b93152e09223f858f54" prot="public" virt="non-virtual"><scope>RAYEX_NAMESPACE::CommandBuffer</scope><name>submitToQueue</name></member>
     </listofallmembers>
   </compounddef>
 </doxygen>

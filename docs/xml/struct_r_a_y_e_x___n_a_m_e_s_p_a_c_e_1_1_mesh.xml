@@ -17,7 +17,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/n30/Repos/rayex/include/base/Geometry.hpp" line="22" column="14" bodyfile="/home/n30/Repos/rayex/include/base/Geometry.hpp" bodystart="22" bodyend="-1"/>
+        <location file="/home/n30/Repos/rayex/include/base/Geometry.hpp" line="25" column="14" bodyfile="/home/n30/Repos/rayex/include/base/Geometry.hpp" bodystart="25" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_mesh_1a6d96ab3ebede16df86654d7d25d8435b" prot="public" static="no" mutable="no">
         <type>uint32_t</type>
@@ -32,106 +32,14 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/n30/Repos/rayex/include/base/Geometry.hpp" line="33" column="14" bodyfile="/home/n30/Repos/rayex/include/base/Geometry.hpp" bodystart="33" bodyend="-1"/>
-      </memberdef>
-      </sectiondef>
-      <sectiondef kind="private-attrib">
-      <memberdef kind="variable" id="struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_mesh_1abef3590418d06496b0e195a3fc98a4ba" prot="private" static="no" mutable="no">
-        <type>glm::vec4</type>
-        <definition>glm::vec4 RAYEX_NAMESPACE::Mesh::padding0</definition>
-        <argsstring></argsstring>
-        <name>padding0</name>
-        <initializer>= glm::vec4( 1.0F )</initializer>
-        <briefdescription>
-<para><ref refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_buffer" kindref="compound">Buffer</ref> padding (ignore). </para>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="/home/n30/Repos/rayex/include/base/Geometry.hpp" line="25" column="15" bodyfile="/home/n30/Repos/rayex/include/base/Geometry.hpp" bodystart="25" bodyend="-1"/>
-      </memberdef>
-      <memberdef kind="variable" id="struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_mesh_1a406c823ec0072ea0cb496da3366c0af3" prot="private" static="no" mutable="no">
-        <type>glm::vec4</type>
-        <definition>glm::vec4 RAYEX_NAMESPACE::Mesh::padding1</definition>
-        <argsstring></argsstring>
-        <name>padding1</name>
-        <initializer>= glm::vec4( 1.0F )</initializer>
-        <briefdescription>
-<para><ref refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_buffer" kindref="compound">Buffer</ref> padding (ignore). </para>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="/home/n30/Repos/rayex/include/base/Geometry.hpp" line="26" column="15" bodyfile="/home/n30/Repos/rayex/include/base/Geometry.hpp" bodystart="26" bodyend="-1"/>
-      </memberdef>
-      <memberdef kind="variable" id="struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_mesh_1a63069d67cff1939a1f7821c03445db0b" prot="private" static="no" mutable="no">
-        <type>glm::vec4</type>
-        <definition>glm::vec4 RAYEX_NAMESPACE::Mesh::padding2</definition>
-        <argsstring></argsstring>
-        <name>padding2</name>
-        <initializer>= glm::vec4( 1.0F )</initializer>
-        <briefdescription>
-<para><ref refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_buffer" kindref="compound">Buffer</ref> padding (ignore). </para>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="/home/n30/Repos/rayex/include/base/Geometry.hpp" line="27" column="15" bodyfile="/home/n30/Repos/rayex/include/base/Geometry.hpp" bodystart="27" bodyend="-1"/>
-      </memberdef>
-      <memberdef kind="variable" id="struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_mesh_1abdfa07efd94414c74839101995d55236" prot="private" static="no" mutable="no">
-        <type>uint32_t</type>
-        <definition>uint32_t RAYEX_NAMESPACE::Mesh::padding3</definition>
-        <argsstring></argsstring>
-        <name>padding3</name>
-        <initializer>= 0</initializer>
-        <briefdescription>
-<para><ref refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_buffer" kindref="compound">Buffer</ref> padding (ignore). </para>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="/home/n30/Repos/rayex/include/base/Geometry.hpp" line="28" column="14" bodyfile="/home/n30/Repos/rayex/include/base/Geometry.hpp" bodystart="28" bodyend="-1"/>
-      </memberdef>
-      <memberdef kind="variable" id="struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_mesh_1ab3d37c57640e7c317df9256bc5317d6c" prot="private" static="no" mutable="no">
-        <type>uint32_t</type>
-        <definition>uint32_t RAYEX_NAMESPACE::Mesh::padding4</definition>
-        <argsstring></argsstring>
-        <name>padding4</name>
-        <initializer>= 0</initializer>
-        <briefdescription>
-<para><ref refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_buffer" kindref="compound">Buffer</ref> padding (ignore). </para>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="/home/n30/Repos/rayex/include/base/Geometry.hpp" line="29" column="14" bodyfile="/home/n30/Repos/rayex/include/base/Geometry.hpp" bodystart="29" bodyend="-1"/>
-      </memberdef>
-      <memberdef kind="variable" id="struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_mesh_1af66275682a5d4eae4b51c22a28218bfc" prot="private" static="no" mutable="no">
-        <type>uint32_t</type>
-        <definition>uint32_t RAYEX_NAMESPACE::Mesh::padding5</definition>
-        <argsstring></argsstring>
-        <name>padding5</name>
-        <initializer>= 0</initializer>
-        <briefdescription>
-<para><ref refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_buffer" kindref="compound">Buffer</ref> padding (ignore). </para>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="/home/n30/Repos/rayex/include/base/Geometry.hpp" line="30" column="14" bodyfile="/home/n30/Repos/rayex/include/base/Geometry.hpp" bodystart="30" bodyend="-1"/>
+        <location file="/home/n30/Repos/rayex/include/base/Geometry.hpp" line="26" column="14" bodyfile="/home/n30/Repos/rayex/include/base/Geometry.hpp" bodystart="26" bodyend="-1"/>
       </memberdef>
       </sectiondef>
     <briefdescription>
 <para>Describes a sub-mesh and its material. </para>
     </briefdescription>
     <detaileddescription>
-<para><simplesect kind="warning"><para>If indexOffset is not set correctly the mesh can not be displayed properly. Take a look at <ref refid="namespace_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1ac348076d8b31be1511d1fc0532e75747" kindref="member">loadObj(std::string_view)</ref> for a working example. </para>
+<para><simplesect kind="warning"><para>If indexOffset is not set correctly the mesh can not be displayed properly. Take a look at <ref refid="group___b_a_s_e_1gac348076d8b31be1511d1fc0532e75747" kindref="member">loadObj(std::string_view)</ref> for a working example. </para>
 </simplesect>
 </para>
     </detaileddescription>
@@ -148,16 +56,10 @@
         <link refid="struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_material"/>
       </node>
     </collaborationgraph>
-    <location file="/home/n30/Repos/rayex/include/base/Geometry.hpp" line="21" column="1" bodyfile="/home/n30/Repos/rayex/include/base/Geometry.hpp" bodystart="20" bodyend="34"/>
+    <location file="/home/n30/Repos/rayex/include/base/Geometry.hpp" line="24" column="1" bodyfile="/home/n30/Repos/rayex/include/base/Geometry.hpp" bodystart="23" bodyend="27"/>
     <listofallmembers>
       <member refid="struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_mesh_1a6d96ab3ebede16df86654d7d25d8435b" prot="public" virt="non-virtual"><scope>RAYEX_NAMESPACE::Mesh</scope><name>indexOffset</name></member>
       <member refid="struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_mesh_1a004a9c0382dad39d04524fe4f82929ae" prot="public" virt="non-virtual"><scope>RAYEX_NAMESPACE::Mesh</scope><name>material</name></member>
-      <member refid="struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_mesh_1abef3590418d06496b0e195a3fc98a4ba" prot="private" virt="non-virtual"><scope>RAYEX_NAMESPACE::Mesh</scope><name>padding0</name></member>
-      <member refid="struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_mesh_1a406c823ec0072ea0cb496da3366c0af3" prot="private" virt="non-virtual"><scope>RAYEX_NAMESPACE::Mesh</scope><name>padding1</name></member>
-      <member refid="struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_mesh_1a63069d67cff1939a1f7821c03445db0b" prot="private" virt="non-virtual"><scope>RAYEX_NAMESPACE::Mesh</scope><name>padding2</name></member>
-      <member refid="struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_mesh_1abdfa07efd94414c74839101995d55236" prot="private" virt="non-virtual"><scope>RAYEX_NAMESPACE::Mesh</scope><name>padding3</name></member>
-      <member refid="struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_mesh_1ab3d37c57640e7c317df9256bc5317d6c" prot="private" virt="non-virtual"><scope>RAYEX_NAMESPACE::Mesh</scope><name>padding4</name></member>
-      <member refid="struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_mesh_1af66275682a5d4eae4b51c22a28218bfc" prot="private" virt="non-virtual"><scope>RAYEX_NAMESPACE::Mesh</scope><name>padding5</name></member>
     </listofallmembers>
   </compounddef>
 </doxygen>

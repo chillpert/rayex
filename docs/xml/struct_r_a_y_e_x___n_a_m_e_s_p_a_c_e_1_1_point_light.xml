@@ -17,7 +17,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/n30/Repos/rayex/include/base/Lights.hpp" line="36" column="15" bodyfile="/home/n30/Repos/rayex/include/base/Lights.hpp" bodystart="36" bodyend="-1"/>
+        <location file="/home/n30/Repos/rayex/include/base/Lights.hpp" line="35" column="15" bodyfile="/home/n30/Repos/rayex/include/base/Lights.hpp" bodystart="35" bodyend="-1"/>
       </memberdef>
       </sectiondef>
     <briefdescription>
@@ -49,7 +49,7 @@
         <link refid="struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_light"/>
       </node>
     </collaborationgraph>
-    <location file="/home/n30/Repos/rayex/include/base/Lights.hpp" line="35" column="1" bodyfile="/home/n30/Repos/rayex/include/base/Lights.hpp" bodystart="34" bodyend="37"/>
+    <location file="/home/n30/Repos/rayex/include/base/Lights.hpp" line="34" column="1" bodyfile="/home/n30/Repos/rayex/include/base/Lights.hpp" bodystart="33" bodyend="36"/>
     <listofallmembers>
       <member refid="struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_light_1a7caf60014c05f686a4ca072641d2e8db" prot="public" virt="non-virtual"><scope>RAYEX_NAMESPACE::PointLight</scope><name>ambient</name></member>
       <member refid="struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_light_1ab64fe09dfc039b13271159eef7a93a38" prot="public" virt="non-virtual"><scope>RAYEX_NAMESPACE::PointLight</scope><name>ambientIntensity</name></member>

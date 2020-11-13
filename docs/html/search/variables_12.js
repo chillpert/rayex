@@ -1,7 +1,6 @@
 var searchData=
 [
-  ['up_768',['up',['../class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_camera.html#a6151963e691f56848a6b628b93fa3c4a',1,'RAYEX_NAMESPACE::Camera']]],
-  ['update_769',['update',['../struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_light.html#a9099dc2317d71a5766dbacdf6003428b',1,'RAYEX_NAMESPACE::Light']]],
-  ['updateproj_770',['updateProj',['../class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_camera.html#aefd04f562091ba752ae641181d32d2d4',1,'RAYEX_NAMESPACE::Camera']]],
-  ['updateview_771',['updateView',['../class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_camera.html#abd6bb5ccf88c173842750d7dc6ccb44a',1,'RAYEX_NAMESPACE::Camera']]]
+  ['vertices_820',['vertices',['../struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_geometry.html#a9b4d99a41250521028e9406ef1bf9c15',1,'RAYEX_NAMESPACE::Geometry']]],
+  ['view_821',['view',['../struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_camera_ubo.html#aca2343d9611de4d2cbaaafd25c9a0d4c',1,'RAYEX_NAMESPACE::CameraUbo']]],
+  ['viewinverse_822',['viewInverse',['../struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_camera_ubo.html#a000d7a431db8bf2cbfe5b5d8999550d3',1,'RAYEX_NAMESPACE::CameraUbo']]]
 ];

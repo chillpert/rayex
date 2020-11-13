@@ -16,7 +16,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/n30/Repos/rayex/include/api/raytracing/AccelerationStructure.hpp" line="31" column="27" bodyfile="/home/n30/Repos/rayex/include/api/raytracing/AccelerationStructure.hpp" bodystart="31" bodyend="-1"/>
+        <location file="/home/n30/Repos/rayex/include/api/raytracing/AccelerationStructure.hpp" line="30" column="27" bodyfile="/home/n30/Repos/rayex/include/api/raytracing/AccelerationStructure.hpp" bodystart="30" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_tlas_1a45fd150956fba0341a86f8fa4e946d49" prot="public" static="no" mutable="no">
         <type>vk::BuildAccelerationStructureFlagsKHR</type>
@@ -30,7 +30,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/n30/Repos/rayex/include/api/raytracing/AccelerationStructure.hpp" line="32" column="44" bodyfile="/home/n30/Repos/rayex/include/api/raytracing/AccelerationStructure.hpp" bodystart="32" bodyend="-1"/>
+        <location file="/home/n30/Repos/rayex/include/api/raytracing/AccelerationStructure.hpp" line="31" column="44" bodyfile="/home/n30/Repos/rayex/include/api/raytracing/AccelerationStructure.hpp" bodystart="31" bodyend="-1"/>
       </memberdef>
       </sectiondef>
     <briefdescription>
@@ -51,7 +51,7 @@
         <link refid="struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_acceleration_structure"/>
       </node>
     </collaborationgraph>
-    <location file="/home/n30/Repos/rayex/include/api/raytracing/AccelerationStructure.hpp" line="30" column="1" bodyfile="/home/n30/Repos/rayex/include/api/raytracing/AccelerationStructure.hpp" bodystart="29" bodyend="33"/>
+    <location file="/home/n30/Repos/rayex/include/api/raytracing/AccelerationStructure.hpp" line="29" column="1" bodyfile="/home/n30/Repos/rayex/include/api/raytracing/AccelerationStructure.hpp" bodystart="28" bodyend="32"/>
     <listofallmembers>
       <member refid="struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_tlas_1aef65925b7d115143b5e5b3b61a048566" prot="public" virt="non-virtual"><scope>RAYEX_NAMESPACE::Tlas</scope><name>as</name></member>
       <member refid="struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_tlas_1a45fd150956fba0341a86f8fa4e946d49" prot="public" virt="non-virtual"><scope>RAYEX_NAMESPACE::Tlas</scope><name>flags</name></member>

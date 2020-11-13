@@ -3,10 +3,12 @@
   <compounddef id="_core_8hpp" kind="file" language="C++">
     <compoundname>Core.hpp</compoundname>
     <includes local="yes">external/tinyLogger/TinyLogger.hpp</includes>
+    <includes local="no">chrono</includes>
+    <includes local="no">iostream</includes>
     <includes local="no">sstream</includes>
+    <includes local="no">string_view</includes>
     <includes local="no">SDL2/SDL.h</includes>
     <includes local="no">SDL2/SDL_vulkan.h</includes>
-    <includes local="no">iostream</includes>
     <includes local="no">vulkan/vulkan.hpp</includes>
     <includedby refid="_time_8hpp" local="yes">/home/n30/Repos/rayex/include/base/Time.hpp</includedby>
     <includedby refid="stdafx_8hpp" local="yes">/home/n30/Repos/rayex/include/pch/stdafx.hpp</includedby>
@@ -29,20 +31,30 @@
         </childnode>
         <childnode refid="7" relation="include">
         </childnode>
-      </node>
-      <node id="4">
-        <label>SDL2/SDL.h</label>
-      </node>
-      <node id="3">
-        <label>sstream</label>
-      </node>
-      <node id="6">
-        <label>iostream</label>
+        <childnode refid="8" relation="include">
+        </childnode>
+        <childnode refid="9" relation="include">
+        </childnode>
       </node>
       <node id="7">
-        <label>vulkan/vulkan.hpp</label>
+        <label>SDL2/SDL.h</label>
+      </node>
+      <node id="6">
+        <label>string_view</label>
       </node>
       <node id="5">
+        <label>sstream</label>
+      </node>
+      <node id="4">
+        <label>iostream</label>
+      </node>
+      <node id="3">
+        <label>chrono</label>
+      </node>
+      <node id="9">
+        <label>vulkan/vulkan.hpp</label>
+      </node>
+      <node id="8">
         <label>SDL2/SDL_vulkan.h</label>
       </node>
     </incdepgraph>
@@ -85,7 +97,7 @@
         <childnode refid="5" relation="include">
         </childnode>
       </node>
-      <node id="26">
+      <node id="27">
         <label>/home/n30/Repos/rayex/include/api/utility/DebugMessenger.hpp</label>
         <link refid="_debug_messenger_8hpp"/>
         <childnode refid="5" relation="include">
@@ -97,7 +109,7 @@
         <childnode refid="5" relation="include">
         </childnode>
       </node>
-      <node id="24">
+      <node id="25">
         <label>/home/n30/Repos/rayex/include/api/Pipeline.hpp</label>
         <link refid="_pipeline_8hpp"/>
         <childnode refid="5" relation="include">
@@ -123,14 +135,14 @@
         <childnode refid="17" relation="include">
         </childnode>
       </node>
-      <node id="29">
+      <node id="30">
         <label>/home/n30/Repos/rayex/include/base/Geometry.hpp</label>
         <link refid="_geometry_8hpp"/>
         <childnode refid="11" relation="include">
         </childnode>
         <childnode refid="9" relation="include">
         </childnode>
-        <childnode refid="30" relation="include">
+        <childnode refid="24" relation="include">
         </childnode>
       </node>
       <node id="8">
@@ -148,17 +160,17 @@
         </childnode>
         <childnode refid="22" relation="include">
         </childnode>
-        <childnode refid="24" relation="include">
+        <childnode refid="25" relation="include">
         </childnode>
         <childnode refid="13" relation="include">
-        </childnode>
-        <childnode refid="25" relation="include">
         </childnode>
         <childnode refid="26" relation="include">
         </childnode>
         <childnode refid="27" relation="include">
         </childnode>
         <childnode refid="28" relation="include">
+        </childnode>
+        <childnode refid="29" relation="include">
         </childnode>
         <childnode refid="31" relation="include">
         </childnode>
@@ -217,14 +229,14 @@
         <childnode refid="3" relation="include">
         </childnode>
       </node>
-      <node id="28">
+      <node id="29">
         <label>/home/n30/Repos/rayex/include/api/Vertex.hpp</label>
         <link refid="_vertex_8hpp"/>
         <childnode refid="5" relation="include">
         </childnode>
         <childnode refid="12" relation="include">
         </childnode>
-        <childnode refid="29" relation="include">
+        <childnode refid="30" relation="include">
         </childnode>
       </node>
       <node id="18">
@@ -232,13 +244,15 @@
         <link refid="_initializers_8hpp"/>
         <childnode refid="15" relation="include">
         </childnode>
+        <childnode refid="10" relation="include">
+        </childnode>
       </node>
       <node id="32">
         <label>/home/n30/Repos/rayex/include/base/Lights.hpp</label>
         <link refid="_lights_8hpp"/>
         <childnode refid="10" relation="include">
         </childnode>
-        <childnode refid="30" relation="include">
+        <childnode refid="24" relation="include">
         </childnode>
       </node>
       <node id="23">
@@ -246,14 +260,16 @@
         <link refid="_texture_8hpp"/>
         <childnode refid="5" relation="include">
         </childnode>
+        <childnode refid="24" relation="include">
+        </childnode>
       </node>
-      <node id="30">
+      <node id="24">
         <label>/home/n30/Repos/rayex/include/base/Scene.hpp</label>
         <link refid="_scene_8hpp"/>
         <childnode refid="5" relation="include">
         </childnode>
       </node>
-      <node id="25">
+      <node id="26">
         <label>/home/n30/Repos/rayex/include/api/RenderPass.hpp</label>
         <link refid="_render_pass_8hpp"/>
         <childnode refid="5" relation="include">
@@ -290,9 +306,11 @@
       <node id="33">
         <label>/home/n30/Repos/rayex/include/base/Settings.hpp</label>
         <link refid="_settings_8hpp"/>
-        <childnode refid="24" relation="include">
+        <childnode refid="25" relation="include">
         </childnode>
-        <childnode refid="30" relation="include">
+        <childnode refid="9" relation="include">
+        </childnode>
+        <childnode refid="24" relation="include">
         </childnode>
       </node>
       <node id="5">
@@ -301,7 +319,7 @@
         <childnode refid="6" relation="include">
         </childnode>
       </node>
-      <node id="27">
+      <node id="28">
         <label>/home/n30/Repos/rayex/include/api/utility/Util.hpp</label>
         <link refid="_util_8hpp"/>
         <childnode refid="5" relation="include">
@@ -408,7 +426,7 @@
       <memberdef kind="define" id="_core_8hpp_1a76f659a3b57c3124f3d7282f44be8d5a" prot="public" static="no">
         <name>RX_VERBOSE</name>
         <param><defname>...</defname></param>
-        <initializer>LOGGER_NAMESPACE::verbose( <ref refid="_core_8hpp_1a399610e7e5c0fb86f548931773995a0d" kindref="member">RAYEX_NAMESPACE_STRINGIFIED</ref>, &quot;: &quot;, __VA_ARGS__ )</initializer>
+        <initializer>LOGGER_NAME::verbose( <ref refid="_core_8hpp_1a399610e7e5c0fb86f548931773995a0d" kindref="member">RAYEX_NAMESPACE_STRINGIFIED</ref>, &quot;: &quot;, __VA_ARGS__ )</initializer>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
@@ -420,7 +438,7 @@
       <memberdef kind="define" id="_core_8hpp_1a0f3a7d7270425707e5efd57cead64f01" prot="public" static="no">
         <name>RX_INFO</name>
         <param><defname>...</defname></param>
-        <initializer>LOGGER_NAMESPACE::info( <ref refid="_core_8hpp_1a399610e7e5c0fb86f548931773995a0d" kindref="member">RAYEX_NAMESPACE_STRINGIFIED</ref>, &quot;: &quot;, __VA_ARGS__ )</initializer>
+        <initializer>LOGGER_NAME::info( <ref refid="_core_8hpp_1a399610e7e5c0fb86f548931773995a0d" kindref="member">RAYEX_NAMESPACE_STRINGIFIED</ref>, &quot;: &quot;, __VA_ARGS__ )</initializer>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
@@ -432,7 +450,7 @@
       <memberdef kind="define" id="_core_8hpp_1a8e5f8b734af7dd8b8aaeea6ebaabb81d" prot="public" static="no">
         <name>RX_SUCCESS</name>
         <param><defname>...</defname></param>
-        <initializer>LOGGER_NAMESPACE::success( <ref refid="_core_8hpp_1a399610e7e5c0fb86f548931773995a0d" kindref="member">RAYEX_NAMESPACE_STRINGIFIED</ref>, &quot;: &quot;, __VA_ARGS__ )</initializer>
+        <initializer>LOGGER_NAME::success( <ref refid="_core_8hpp_1a399610e7e5c0fb86f548931773995a0d" kindref="member">RAYEX_NAMESPACE_STRINGIFIED</ref>, &quot;: &quot;, __VA_ARGS__ )</initializer>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
@@ -444,7 +462,7 @@
       <memberdef kind="define" id="_core_8hpp_1a80edd4639b939a0de1ebda1c0de559d6" prot="public" static="no">
         <name>RX_WARN</name>
         <param><defname>...</defname></param>
-        <initializer>LOGGER_NAMESPACE::warning( <ref refid="_core_8hpp_1a399610e7e5c0fb86f548931773995a0d" kindref="member">RAYEX_NAMESPACE_STRINGIFIED</ref>, &quot;: &quot;, __VA_ARGS__ )</initializer>
+        <initializer>LOGGER_NAME::warning( <ref refid="_core_8hpp_1a399610e7e5c0fb86f548931773995a0d" kindref="member">RAYEX_NAMESPACE_STRINGIFIED</ref>, &quot;: &quot;, __VA_ARGS__ )</initializer>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
@@ -456,7 +474,7 @@
       <memberdef kind="define" id="_core_8hpp_1a75bbbb13d55cc9e0680a050df5ca00e2" prot="public" static="no">
         <name>RX_ERROR</name>
         <param><defname>...</defname></param>
-        <initializer>LOGGER_NAMESPACE::error( <ref refid="_core_8hpp_1a399610e7e5c0fb86f548931773995a0d" kindref="member">RAYEX_NAMESPACE_STRINGIFIED</ref>, &quot;: &quot;, __VA_ARGS__ )</initializer>
+        <initializer>LOGGER_NAME::error( <ref refid="_core_8hpp_1a399610e7e5c0fb86f548931773995a0d" kindref="member">RAYEX_NAMESPACE_STRINGIFIED</ref>, &quot;: &quot;, __VA_ARGS__ )</initializer>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
@@ -468,7 +486,7 @@
       <memberdef kind="define" id="_core_8hpp_1ad7ab0669d483b47b41c5160a40e303ff" prot="public" static="no">
         <name>RX_FATAL</name>
         <param><defname>...</defname></param>
-        <initializer>LOGGER_NAMESPACE::fatal( <ref refid="_core_8hpp_1a399610e7e5c0fb86f548931773995a0d" kindref="member">RAYEX_NAMESPACE_STRINGIFIED</ref>, &quot;: &quot;, __VA_ARGS__ )</initializer>
+        <initializer>LOGGER_NAME::fatal( <ref refid="_core_8hpp_1a399610e7e5c0fb86f548931773995a0d" kindref="member">RAYEX_NAMESPACE_STRINGIFIED</ref>, &quot;: &quot;, __VA_ARGS__ )</initializer>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
@@ -481,40 +499,40 @@
         <name>RX_ASSERT</name>
         <param><defname>statement</defname></param>
         <param><defname>...</defname></param>
-        <initializer>LOGGER_NAMESPACE::assert2( statement ? true : false, <ref refid="_core_8hpp_1a399610e7e5c0fb86f548931773995a0d" kindref="member">RAYEX_NAMESPACE_STRINGIFIED</ref>, &quot;: &quot;, __VA_ARGS__ )</initializer>
+        <initializer>LOGGER_NAME::assert2( statement, <ref refid="_core_8hpp_1a399610e7e5c0fb86f548931773995a0d" kindref="member">RAYEX_NAMESPACE_STRINGIFIED</ref>, &quot;: &quot;, __VA_ARGS__ )</initializer>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/n30/Repos/rayex/include/Core.hpp" line="48" column="9" bodyfile="/home/n30/Repos/rayex/include/Core.hpp" bodystart="48" bodyend="-1"/>
+        <location file="/home/n30/Repos/rayex/include/Core.hpp" line="47" column="9" bodyfile="/home/n30/Repos/rayex/include/Core.hpp" bodystart="47" bodyend="-1"/>
       </memberdef>
       <memberdef kind="define" id="_core_8hpp_1aa9d90db74b8dfc478668d1368d4339f8" prot="public" static="no">
         <name>RX_LOG_TIME_START</name>
         <param><defname>...</defname></param>
         <initializer>  std::cout &lt;&lt; std::endl;             \
   float startTime = Time::getTime( ); \
-  LOGGER_NAMESPACE::info( <ref refid="_core_8hpp_1a399610e7e5c0fb86f548931773995a0d" kindref="member">RAYEX_NAMESPACE_STRINGIFIED</ref>, &quot;: &quot;, __VA_ARGS__ )</initializer>
+  LOGGER_NAME::info( <ref refid="_core_8hpp_1a399610e7e5c0fb86f548931773995a0d" kindref="member">RAYEX_NAMESPACE_STRINGIFIED</ref>, &quot;: &quot;, __VA_ARGS__ )</initializer>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/n30/Repos/rayex/include/Core.hpp" line="50" column="9" bodyfile="/home/n30/Repos/rayex/include/Core.hpp" bodystart="50" bodyend="-1"/>
+        <location file="/home/n30/Repos/rayex/include/Core.hpp" line="49" column="9" bodyfile="/home/n30/Repos/rayex/include/Core.hpp" bodystart="49" bodyend="-1"/>
       </memberdef>
       <memberdef kind="define" id="_core_8hpp_1aa8b33c26d9078af255a33ed0d838a64f" prot="public" static="no">
         <name>RX_LOG_TIME_STOP</name>
         <param><defname>...</defname></param>
-        <initializer>LOGGER_NAMESPACE::success( <ref refid="_core_8hpp_1a399610e7e5c0fb86f548931773995a0d" kindref="member">RAYEX_NAMESPACE_STRINGIFIED</ref>, &quot;: &quot;, __VA_ARGS__, &quot; ( Time: &quot;, std::setprecision( std::numeric_limits&lt;float&gt;::digits10 ), Time::getTime( ) - startTime, &quot; ms ).&quot; )</initializer>
+        <initializer>LOGGER_NAME::success( <ref refid="_core_8hpp_1a399610e7e5c0fb86f548931773995a0d" kindref="member">RAYEX_NAMESPACE_STRINGIFIED</ref>, &quot;: &quot;, __VA_ARGS__, &quot; ( Time: &quot;, std::setprecision( std::numeric_limits&lt;float&gt;::digits10 ), Time::getTime( ) - startTime, &quot; s ).&quot; )</initializer>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/n30/Repos/rayex/include/Core.hpp" line="55" column="9" bodyfile="/home/n30/Repos/rayex/include/Core.hpp" bodystart="55" bodyend="-1"/>
+        <location file="/home/n30/Repos/rayex/include/Core.hpp" line="54" column="9" bodyfile="/home/n30/Repos/rayex/include/Core.hpp" bodystart="54" bodyend="-1"/>
       </memberdef>
       </sectiondef>
     <briefdescription>
@@ -561,25 +579,24 @@
 <codeline lineno="38"><highlight class="normal"></highlight></codeline>
 <codeline lineno="39" refid="_core_8hpp_1a399610e7e5c0fb86f548931773995a0d" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>RAYEX_NAMESPACE_STRINGIFIED<sp/>RAYEX_NAMESPACE_STRINGIFY(<sp/>RAYEX_NAMESPACE<sp/>)</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="40"><highlight class="normal"></highlight></codeline>
-<codeline lineno="41" refid="_core_8hpp_1a76f659a3b57c3124f3d7282f44be8d5a" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>RX_VERBOSE(<sp/>...<sp/>)<sp/>LOGGER_NAMESPACE::verbose(<sp/>RAYEX_NAMESPACE_STRINGIFIED,<sp/>&quot;:<sp/>&quot;,<sp/>__VA_ARGS__<sp/>)</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="42" refid="_core_8hpp_1a0f3a7d7270425707e5efd57cead64f01" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>RX_INFO(<sp/>...<sp/>)<sp/><sp/><sp/><sp/>LOGGER_NAMESPACE::info(<sp/>RAYEX_NAMESPACE_STRINGIFIED,<sp/>&quot;:<sp/>&quot;,<sp/>__VA_ARGS__<sp/>)</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="43" refid="_core_8hpp_1a8e5f8b734af7dd8b8aaeea6ebaabb81d" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>RX_SUCCESS(<sp/>...<sp/>)<sp/>LOGGER_NAMESPACE::success(<sp/>RAYEX_NAMESPACE_STRINGIFIED,<sp/>&quot;:<sp/>&quot;,<sp/>__VA_ARGS__<sp/>)</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="44" refid="_core_8hpp_1a80edd4639b939a0de1ebda1c0de559d6" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>RX_WARN(<sp/>...<sp/>)<sp/><sp/><sp/><sp/>LOGGER_NAMESPACE::warning(<sp/>RAYEX_NAMESPACE_STRINGIFIED,<sp/>&quot;:<sp/>&quot;,<sp/>__VA_ARGS__<sp/>)</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="45" refid="_core_8hpp_1a75bbbb13d55cc9e0680a050df5ca00e2" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>RX_ERROR(<sp/>...<sp/>)<sp/><sp/><sp/>LOGGER_NAMESPACE::error(<sp/>RAYEX_NAMESPACE_STRINGIFIED,<sp/>&quot;:<sp/>&quot;,<sp/>__VA_ARGS__<sp/>)</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="46" refid="_core_8hpp_1ad7ab0669d483b47b41c5160a40e303ff" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>RX_FATAL(<sp/>...<sp/>)<sp/><sp/><sp/>LOGGER_NAMESPACE::fatal(<sp/>RAYEX_NAMESPACE_STRINGIFIED,<sp/>&quot;:<sp/>&quot;,<sp/>__VA_ARGS__<sp/>)</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="47"><highlight class="normal"></highlight><highlight class="comment">//<sp/>Using<sp/>redundant<sp/>boolean<sp/>literal<sp/>in<sp/>ternary<sp/>expression<sp/>to<sp/>support<sp/>vulkan<sp/>object<sp/>error<sp/>check.</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="48" refid="_core_8hpp_1a0bc3742e3b5d582081ea5ec272af5330" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>RX_ASSERT(<sp/>statement,<sp/>...<sp/>)<sp/>LOGGER_NAMESPACE::assert2(<sp/>statement<sp/>?<sp/>true<sp/>:<sp/>false,<sp/>RAYEX_NAMESPACE_STRINGIFIED,<sp/>&quot;:<sp/>&quot;,<sp/>__VA_ARGS__<sp/>)</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="49"><highlight class="normal"></highlight></codeline>
-<codeline lineno="50" refid="_core_8hpp_1aa9d90db74b8dfc478668d1368d4339f8" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>RX_LOG_TIME_START(<sp/>...<sp/>)<sp/><sp/><sp/><sp/><sp/><sp/>\</highlight></codeline>
-<codeline lineno="51"><highlight class="preprocessor"><sp/><sp/>std::cout<sp/>&lt;&lt;<sp/>std::endl;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>\</highlight></codeline>
-<codeline lineno="52"><highlight class="preprocessor"><sp/><sp/>float<sp/>startTime<sp/>=<sp/>Time::getTime(<sp/>);<sp/>\</highlight></codeline>
-<codeline lineno="53"><highlight class="preprocessor"><sp/><sp/>LOGGER_NAMESPACE::info(<sp/>RAYEX_NAMESPACE_STRINGIFIED,<sp/>&quot;:<sp/>&quot;,<sp/>__VA_ARGS__<sp/>)</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="54"><highlight class="normal"></highlight></codeline>
-<codeline lineno="55" refid="_core_8hpp_1aa8b33c26d9078af255a33ed0d838a64f" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>RX_LOG_TIME_STOP(<sp/>...<sp/>)<sp/>LOGGER_NAMESPACE::success(<sp/>RAYEX_NAMESPACE_STRINGIFIED,<sp/>&quot;:<sp/>&quot;,<sp/>__VA_ARGS__,<sp/>&quot;<sp/>(<sp/>Time:<sp/>&quot;,<sp/>std::setprecision(<sp/>std::numeric_limits&lt;float&gt;::digits10<sp/>),<sp/>Time::getTime(<sp/>)<sp/>-<sp/>startTime,<sp/>&quot;<sp/>ms<sp/>).&quot;<sp/>)</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="56"><highlight class="normal"></highlight></codeline>
-<codeline lineno="57"><highlight class="normal"></highlight><highlight class="comment">//<sp/>Doxygen<sp/>groups</highlight></codeline>
-<codeline lineno="60"><highlight class="comment"></highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="61"><highlight class="normal"></highlight><highlight class="preprocessor">#endif<sp/>//<sp/>CORE_HPP</highlight></codeline>
+<codeline lineno="41" refid="_core_8hpp_1a76f659a3b57c3124f3d7282f44be8d5a" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>RX_VERBOSE(<sp/>...<sp/>)<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>LOGGER_NAME::verbose(<sp/>RAYEX_NAMESPACE_STRINGIFIED,<sp/>&quot;:<sp/>&quot;,<sp/>__VA_ARGS__<sp/>)</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="42" refid="_core_8hpp_1a0f3a7d7270425707e5efd57cead64f01" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>RX_INFO(<sp/>...<sp/>)<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>LOGGER_NAME::info(<sp/>RAYEX_NAMESPACE_STRINGIFIED,<sp/>&quot;:<sp/>&quot;,<sp/>__VA_ARGS__<sp/>)</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="43" refid="_core_8hpp_1a8e5f8b734af7dd8b8aaeea6ebaabb81d" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>RX_SUCCESS(<sp/>...<sp/>)<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>LOGGER_NAME::success(<sp/>RAYEX_NAMESPACE_STRINGIFIED,<sp/>&quot;:<sp/>&quot;,<sp/>__VA_ARGS__<sp/>)</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="44" refid="_core_8hpp_1a80edd4639b939a0de1ebda1c0de559d6" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>RX_WARN(<sp/>...<sp/>)<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>LOGGER_NAME::warning(<sp/>RAYEX_NAMESPACE_STRINGIFIED,<sp/>&quot;:<sp/>&quot;,<sp/>__VA_ARGS__<sp/>)</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="45" refid="_core_8hpp_1a75bbbb13d55cc9e0680a050df5ca00e2" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>RX_ERROR(<sp/>...<sp/>)<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>LOGGER_NAME::error(<sp/>RAYEX_NAMESPACE_STRINGIFIED,<sp/>&quot;:<sp/>&quot;,<sp/>__VA_ARGS__<sp/>)</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="46" refid="_core_8hpp_1ad7ab0669d483b47b41c5160a40e303ff" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>RX_FATAL(<sp/>...<sp/>)<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>LOGGER_NAME::fatal(<sp/>RAYEX_NAMESPACE_STRINGIFIED,<sp/>&quot;:<sp/>&quot;,<sp/>__VA_ARGS__<sp/>)</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="47" refid="_core_8hpp_1a0bc3742e3b5d582081ea5ec272af5330" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>RX_ASSERT(<sp/>statement,<sp/>...<sp/>)<sp/>LOGGER_NAME::assert2(<sp/>statement,<sp/>RAYEX_NAMESPACE_STRINGIFIED,<sp/>&quot;:<sp/>&quot;,<sp/>__VA_ARGS__<sp/>)</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="48"><highlight class="normal"></highlight></codeline>
+<codeline lineno="49" refid="_core_8hpp_1aa9d90db74b8dfc478668d1368d4339f8" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>RX_LOG_TIME_START(<sp/>...<sp/>)<sp/><sp/><sp/><sp/><sp/><sp/>\</highlight></codeline>
+<codeline lineno="50"><highlight class="preprocessor"><sp/><sp/>std::cout<sp/>&lt;&lt;<sp/>std::endl;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>\</highlight></codeline>
+<codeline lineno="51"><highlight class="preprocessor"><sp/><sp/>float<sp/>startTime<sp/>=<sp/>Time::getTime(<sp/>);<sp/>\</highlight></codeline>
+<codeline lineno="52"><highlight class="preprocessor"><sp/><sp/>LOGGER_NAME::info(<sp/>RAYEX_NAMESPACE_STRINGIFIED,<sp/>&quot;:<sp/>&quot;,<sp/>__VA_ARGS__<sp/>)</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="53"><highlight class="normal"></highlight></codeline>
+<codeline lineno="54" refid="_core_8hpp_1aa8b33c26d9078af255a33ed0d838a64f" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>RX_LOG_TIME_STOP(<sp/>...<sp/>)<sp/>LOGGER_NAME::success(<sp/>RAYEX_NAMESPACE_STRINGIFIED,<sp/>&quot;:<sp/>&quot;,<sp/>__VA_ARGS__,<sp/>&quot;<sp/>(<sp/>Time:<sp/>&quot;,<sp/>std::setprecision(<sp/>std::numeric_limits&lt;float&gt;::digits10<sp/>),<sp/>Time::getTime(<sp/>)<sp/>-<sp/>startTime,<sp/>&quot;<sp/>s<sp/>).&quot;<sp/>)</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="55"><highlight class="normal"></highlight></codeline>
+<codeline lineno="56"><highlight class="normal"></highlight><highlight class="comment">//<sp/>Doxygen<sp/>groups</highlight></codeline>
+<codeline lineno="59"><highlight class="comment"></highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="60"><highlight class="normal"></highlight><highlight class="preprocessor">#endif<sp/>//<sp/>CORE_HPP</highlight></codeline>
     </programlisting>
     <location file="/home/n30/Repos/rayex/include/Core.hpp"/>
   </compounddef>

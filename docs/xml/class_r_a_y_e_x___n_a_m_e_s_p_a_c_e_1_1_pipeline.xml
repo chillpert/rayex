@@ -4,11 +4,11 @@
     <compoundname>RAYEX_NAMESPACE::Pipeline</compoundname>
     <includes refid="_pipeline_8hpp" local="no">Pipeline.hpp</includes>
       <sectiondef kind="private-attrib">
-      <memberdef kind="variable" id="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_pipeline_1a61e6079f04025360879ee1af9b13ca6b" prot="private" static="no" mutable="no">
+      <memberdef kind="variable" id="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_pipeline_1a9e81fbb7530738335d8432b72dd289ce" prot="private" static="no" mutable="no">
         <type>vk::UniquePipeline</type>
-        <definition>vk::UniquePipeline RAYEX_NAMESPACE::Pipeline::pipeline</definition>
+        <definition>vk::UniquePipeline RAYEX_NAMESPACE::Pipeline::_pipeline</definition>
         <argsstring></argsstring>
-        <name>pipeline</name>
+        <name>_pipeline</name>
         <briefdescription>
 <para>The Vulkan pipeline with a unique handle. </para>
         </briefdescription>
@@ -16,13 +16,13 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/n30/Repos/rayex/include/api/Pipeline.hpp" line="48" column="24" bodyfile="/home/n30/Repos/rayex/include/api/Pipeline.hpp" bodystart="48" bodyend="-1"/>
+        <location file="/home/n30/Repos/rayex/include/api/Pipeline.hpp" line="29" column="24" bodyfile="/home/n30/Repos/rayex/include/api/Pipeline.hpp" bodystart="29" bodyend="-1"/>
       </memberdef>
-      <memberdef kind="variable" id="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_pipeline_1a8b50fa498d11198bf31a25e6f156eaaa" prot="private" static="no" mutable="no">
+      <memberdef kind="variable" id="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_pipeline_1a0086bb433c4834c31aab3b5a002750f8" prot="private" static="no" mutable="no">
         <type>vk::UniquePipelineLayout</type>
-        <definition>vk::UniquePipelineLayout RAYEX_NAMESPACE::Pipeline::layout</definition>
+        <definition>vk::UniquePipelineLayout RAYEX_NAMESPACE::Pipeline::_layout</definition>
         <argsstring></argsstring>
-        <name>layout</name>
+        <name>_layout</name>
         <briefdescription>
 <para>The Vulkan pipeline layout with a unique handle. </para>
         </briefdescription>
@@ -30,7 +30,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/n30/Repos/rayex/include/api/Pipeline.hpp" line="49" column="30" bodyfile="/home/n30/Repos/rayex/include/api/Pipeline.hpp" bodystart="49" bodyend="-1"/>
+        <location file="/home/n30/Repos/rayex/include/api/Pipeline.hpp" line="30" column="30" bodyfile="/home/n30/Repos/rayex/include/api/Pipeline.hpp" bodystart="30" bodyend="-1"/>
       </memberdef>
       </sectiondef>
       <sectiondef kind="public-func">
@@ -108,47 +108,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/n30/Repos/rayex/include/api/Pipeline.hpp" line="34" column="10"/>
-      </memberdef>
-      <memberdef kind="function" id="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_pipeline_1ae830eea310aecda9ca5760efce3fe9f3" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
-        <type>void</type>
-        <definition>void RAYEX_NAMESPACE::Pipeline::init</definition>
-        <argsstring>(const std::vector&lt; vk::DescriptorSetLayout &gt; &amp;descriptorSetLayouts, const Settings *settings)</argsstring>
-        <name>init</name>
-        <param>
-          <type>const std::vector&lt; vk::DescriptorSetLayout &gt; &amp;</type>
-          <declname>descriptorSetLayouts</declname>
-        </param>
-        <param>
-          <type>const <ref refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_settings" kindref="compound">Settings</ref> *</type>
-          <declname>settings</declname>
-        </param>
-        <briefdescription>
-<para>Initializes a ray tracing pipeline. </para>
-        </briefdescription>
-        <detaileddescription>
-<para><parameterlist kind="param"><parameteritem>
-<parameternamelist>
-<parametername>descriptorSetLayouts</parametername>
-</parameternamelist>
-<parameterdescription>
-<para>A vector of descriptor set layouts that will be included in the pipeline layout. </para>
-</parameterdescription>
-</parameteritem>
-<parameteritem>
-<parameternamelist>
-<parametername>settings</parametername>
-</parameternamelist>
-<parameterdescription>
-<para>Used to retrieve information like maximum instances or lights of a specific type. </para>
-</parameterdescription>
-</parameteritem>
-</parameterlist>
-</para>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="/home/n30/Repos/rayex/include/api/Pipeline.hpp" line="39" column="10"/>
+        <location file="/home/n30/Repos/rayex/include/api/Pipeline.hpp" line="20" column="10"/>
       </memberdef>
       <memberdef kind="function" id="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_pipeline_1aceb8993023c4f274bb367bc190dc2397" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
         <type>auto</type>
@@ -164,7 +124,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/n30/Repos/rayex/include/api/Pipeline.hpp" line="42" column="10" bodyfile="/home/n30/Repos/rayex/include/api/Pipeline.hpp" bodystart="42" bodyend="42"/>
+        <location file="/home/n30/Repos/rayex/include/api/Pipeline.hpp" line="23" column="10" bodyfile="/home/n30/Repos/rayex/include/api/Pipeline.hpp" bodystart="23" bodyend="23"/>
       </memberdef>
       <memberdef kind="function" id="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_pipeline_1a42a996345362e5e0972ff7f7ba97b1a9" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
         <type>auto</type>
@@ -180,7 +140,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/n30/Repos/rayex/include/api/Pipeline.hpp" line="45" column="10" bodyfile="/home/n30/Repos/rayex/include/api/Pipeline.hpp" bodystart="45" bodyend="45"/>
+        <location file="/home/n30/Repos/rayex/include/api/Pipeline.hpp" line="26" column="10" bodyfile="/home/n30/Repos/rayex/include/api/Pipeline.hpp" bodystart="26" bodyend="26"/>
       </memberdef>
       </sectiondef>
     <briefdescription>
@@ -188,14 +148,13 @@
     </briefdescription>
     <detaileddescription>
     </detaileddescription>
-    <location file="/home/n30/Repos/rayex/include/api/Pipeline.hpp" line="26" column="1" bodyfile="/home/n30/Repos/rayex/include/api/Pipeline.hpp" bodystart="25" bodyend="50"/>
+    <location file="/home/n30/Repos/rayex/include/api/Pipeline.hpp" line="12" column="1" bodyfile="/home/n30/Repos/rayex/include/api/Pipeline.hpp" bodystart="11" bodyend="31"/>
     <listofallmembers>
+      <member refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_pipeline_1a0086bb433c4834c31aab3b5a002750f8" prot="private" virt="non-virtual"><scope>RAYEX_NAMESPACE::Pipeline</scope><name>_layout</name></member>
+      <member refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_pipeline_1a9e81fbb7530738335d8432b72dd289ce" prot="private" virt="non-virtual"><scope>RAYEX_NAMESPACE::Pipeline</scope><name>_pipeline</name></member>
       <member refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_pipeline_1aceb8993023c4f274bb367bc190dc2397" prot="public" virt="non-virtual"><scope>RAYEX_NAMESPACE::Pipeline</scope><name>get</name></member>
       <member refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_pipeline_1a42a996345362e5e0972ff7f7ba97b1a9" prot="public" virt="non-virtual"><scope>RAYEX_NAMESPACE::Pipeline</scope><name>getLayout</name></member>
       <member refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_pipeline_1a560c14e9ae27b02d347ded573a9f1ca3" prot="public" virt="non-virtual"><scope>RAYEX_NAMESPACE::Pipeline</scope><name>init</name></member>
-      <member refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_pipeline_1ae830eea310aecda9ca5760efce3fe9f3" prot="public" virt="non-virtual"><scope>RAYEX_NAMESPACE::Pipeline</scope><name>init</name></member>
-      <member refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_pipeline_1a8b50fa498d11198bf31a25e6f156eaaa" prot="private" virt="non-virtual"><scope>RAYEX_NAMESPACE::Pipeline</scope><name>layout</name></member>
-      <member refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_pipeline_1a61e6079f04025360879ee1af9b13ca6b" prot="private" virt="non-virtual"><scope>RAYEX_NAMESPACE::Pipeline</scope><name>pipeline</name></member>
     </listofallmembers>
   </compounddef>
 </doxygen>

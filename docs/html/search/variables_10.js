@@ -1,13 +1,10 @@
 var searchData=
 [
-  ['samplerate_754',['sampleRate',['../struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_ray_trace_push_constants.html#a15a2f71c607b65c3cd27948bc303715c',1,'RAYEX_NAMESPACE::RayTracePushConstants']]],
-  ['samplerateperraygen_755',['sampleRatePerRayGen',['../struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_ray_trace_push_constants.html#ad9038ea5a090bbca9bd36ac864f35959',1,'RAYEX_NAMESPACE::RayTracePushConstants']]],
-  ['scene_756',['scene',['../class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_rayex.html#a1a12eb0392e6415a346d2f875290ca78',1,'RAYEX_NAMESPACE::Rayex']]],
-  ['sensitivity_757',['sensitivity',['../class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_camera.html#afd1c0517418d1f559507da86c935e64e',1,'RAYEX_NAMESPACE::Camera']]],
-  ['settings_758',['settings',['../class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_rayex.html#aeffc2a614d26af4c71880c5687cbb4d1',1,'RAYEX_NAMESPACE::Rayex']]],
-  ['size_759',['size',['../class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_buffer.html#a808b51d8eb942483c17ae0e67ac03e03',1,'RAYEX_NAMESPACE::Buffer']]],
-  ['specular_760',['specular',['../struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_light_s_s_b_o.html#a0d43cfcb9edc9a98fd8c5d96379c3c79',1,'RAYEX_NAMESPACE::LightSSBO::specular()'],['../struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_material.html#a2b3e419b571eabc95ec760eea7025c22',1,'RAYEX_NAMESPACE::Material::specular()'],['../struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_light.html#a0bc8780a2ab3d6133dc260e2538a2d45',1,'RAYEX_NAMESPACE::Light::specular()']]],
-  ['specularintensity_761',['specularIntensity',['../struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_light.html#ab133a240d8b342dccd16d34752464309',1,'RAYEX_NAMESPACE::Light']]],
-  ['ssaa_762',['ssaa',['../struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_ray_trace_push_constants.html#a8930d7d76a06ca1a6c6aef6b01bcc3fd',1,'RAYEX_NAMESPACE::RayTracePushConstants']]],
-  ['ssaaenabled_763',['ssaaEnabled',['../struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_ray_trace_push_constants.html#aea21696fbb00af19958680fd258fd2bb',1,'RAYEX_NAMESPACE::RayTracePushConstants']]]
+  ['texcoord_812',['texCoord',['../struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_vertex.html#a76904c7ad13909f64ebaaa8a81f7e903',1,'RAYEX_NAMESPACE::Vertex']]],
+  ['textureindex_813',['textureIndex',['../namespace_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1components.html#adba63188318cfcbba40a35ef326df489',1,'RAYEX_NAMESPACE::components']]],
+  ['transfercmdpool_814',['transferCmdPool',['../namespace_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1components.html#a7e17c7dcbb72428dd80b59f67f2ed7f0',1,'RAYEX_NAMESPACE::components']]],
+  ['transferfamilyindex_815',['transferFamilyIndex',['../namespace_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1components.html#ab5e00173e34596647b257c1fb90a4b03',1,'RAYEX_NAMESPACE::components']]],
+  ['transferqueue_816',['transferQueue',['../namespace_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1components.html#a9c3652be28ac920a00d22d6fd4b24158',1,'RAYEX_NAMESPACE::components']]],
+  ['transform_817',['transform',['../struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_geometry_instance_s_s_b_o.html#a549ca0f380012d4039a3c9f1a622632d',1,'RAYEX_NAMESPACE::GeometryInstanceSSBO::transform()'],['../struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_blas_instance.html#af521894ff0383f740d859f6fba2b8b8b',1,'RAYEX_NAMESPACE::BlasInstance::transform()'],['../struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_geometry_instance.html#a6d910049d3ae5f62b582fd1f576246a7',1,'RAYEX_NAMESPACE::GeometryInstance::transform()']]],
+  ['transformit_818',['transformIT',['../struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_geometry_instance_s_s_b_o.html#a1379cb3dfff56920119ce6a1bbb38205',1,'RAYEX_NAMESPACE::GeometryInstanceSSBO::transformIT()'],['../struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_geometry_instance.html#a70a32d8d77163c71da2e8ded720dd30c',1,'RAYEX_NAMESPACE::GeometryInstance::transformIT()']]]
 ];

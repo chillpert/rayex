@@ -5,25 +5,25 @@
     <includes refid="stdafx_8hpp" local="yes">pch/stdafx.hpp</includes>
     <includedby refid="_window_8hpp" local="yes">/home/n30/Repos/rayex/include/base/Window.hpp</includedby>
     <incdepgraph>
-      <node id="28">
+      <node id="30">
         <label>list</label>
       </node>
-      <node id="26">
+      <node id="28">
         <label>iomanip</label>
       </node>
-      <node id="19">
+      <node id="17">
         <label>external/glm/ext/matrix_transform.hpp</label>
       </node>
-      <node id="27">
+      <node id="29">
         <label>limits</label>
       </node>
-      <node id="22">
+      <node id="24">
         <label>filesystem</label>
       </node>
       <node id="4">
         <label>external/tinyLogger/TinyLogger.hpp</label>
       </node>
-      <node id="17">
+      <node id="23">
         <label>charconv</label>
       </node>
       <node id="3">
@@ -41,39 +41,39 @@
         </childnode>
         <childnode refid="9" relation="include">
         </childnode>
+        <childnode refid="10" relation="include">
+        </childnode>
+        <childnode refid="11" relation="include">
+        </childnode>
       </node>
-      <node id="12">
+      <node id="14">
         <label>external/ImGui/imgui_impl_sdl.h</label>
       </node>
-      <node id="18">
+      <node id="16">
         <label>external/glm/ext/matrix_clip_space.hpp</label>
       </node>
-      <node id="29">
+      <node id="31">
         <label>map</label>
       </node>
-      <node id="36">
+      <node id="37">
         <label>unordered_set</label>
       </node>
-      <node id="25">
+      <node id="27">
         <label>gsl/gsl</label>
       </node>
-      <node id="24">
+      <node id="26">
         <label>fstream</label>
       </node>
-      <node id="11">
+      <node id="13">
         <label>external/ImGui/imgui.h</label>
       </node>
-      <node id="15">
+      <node id="21">
         <label>any</label>
       </node>
       <node id="2">
         <label>pch/stdafx.hpp</label>
         <link refid="stdafx_8hpp"/>
         <childnode refid="3" relation="include">
-        </childnode>
-        <childnode refid="10" relation="include">
-        </childnode>
-        <childnode refid="11" relation="include">
         </childnode>
         <childnode refid="12" relation="include">
         </childnode>
@@ -123,41 +123,45 @@
         </childnode>
         <childnode refid="35" relation="include">
         </childnode>
+        <childnode refid="8" relation="include">
+        </childnode>
         <childnode refid="36" relation="include">
         </childnode>
         <childnode refid="37" relation="include">
         </childnode>
         <childnode refid="38" relation="include">
         </childnode>
+        <childnode refid="39" relation="include">
+        </childnode>
       </node>
-      <node id="6">
+      <node id="9">
         <label>SDL2/SDL.h</label>
       </node>
-      <node id="32">
+      <node id="34">
         <label>random</label>
       </node>
-      <node id="20">
+      <node id="18">
         <label>external/glm/glm.hpp</label>
       </node>
-      <node id="34">
+      <node id="8">
         <label>string_view</label>
       </node>
-      <node id="31">
+      <node id="33">
         <label>optional</label>
       </node>
-      <node id="38">
+      <node id="39">
         <label>vector</label>
       </node>
-      <node id="37">
+      <node id="38">
         <label>utility</label>
       </node>
-      <node id="16">
+      <node id="22">
         <label>array</label>
       </node>
-      <node id="21">
+      <node id="19">
         <label>external/glm/gtx/string_cast.hpp</label>
       </node>
-      <node id="5">
+      <node id="7">
         <label>sstream</label>
       </node>
       <node id="1">
@@ -166,37 +170,40 @@
         <childnode refid="2" relation="include">
         </childnode>
       </node>
-      <node id="13">
+      <node id="15">
         <label>external/ImGui/imgui_impl_vulkan.h</label>
       </node>
-      <node id="8">
+      <node id="6">
         <label>iostream</label>
       </node>
-      <node id="35">
+      <node id="36">
         <label>unordered_map</label>
       </node>
-      <node id="33">
+      <node id="5">
+        <label>chrono</label>
+      </node>
+      <node id="35">
         <label>set</label>
       </node>
-      <node id="10">
+      <node id="12">
         <label>base/Time.hpp</label>
         <link refid="_time_8hpp"/>
         <childnode refid="3" relation="include">
         </childnode>
       </node>
-      <node id="23">
+      <node id="25">
         <label>forward_list</label>
       </node>
-      <node id="14">
+      <node id="20">
         <label>algorithm</label>
       </node>
-      <node id="9">
+      <node id="11">
         <label>vulkan/vulkan.hpp</label>
       </node>
-      <node id="30">
+      <node id="32">
         <label>memory</label>
       </node>
-      <node id="7">
+      <node id="10">
         <label>SDL2/SDL_vulkan.h</label>
       </node>
     </incdepgraph>
@@ -300,6 +307,8 @@
         <link refid="_initializers_8hpp"/>
         <childnode refid="14" relation="include">
         </childnode>
+        <childnode refid="9" relation="include">
+        </childnode>
       </node>
       <node id="12">
         <label>/home/n30/Repos/rayex/include/api/raytracing/AccelerationStructure.hpp</label>
@@ -349,84 +358,81 @@
     <detaileddescription>
     </detaileddescription>
     <programlisting>
-<codeline lineno="1"><highlight class="preprocessor">#ifndef<sp/>CAMERA_BASE_HPP</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="2"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>CAMERA_BASE_HPP</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="3"><highlight class="normal"></highlight></codeline>
-<codeline lineno="4"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;<ref refid="stdafx_8hpp" kindref="compound">pch/stdafx.hpp</ref>&quot;</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="5"><highlight class="normal"></highlight></codeline>
-<codeline lineno="6"><highlight class="normal"></highlight><highlight class="keyword">namespace<sp/></highlight><highlight class="normal"><ref refid="namespace_r_a_y_e_x___n_a_m_e_s_p_a_c_e" kindref="compound">RAYEX_NAMESPACE</ref></highlight></codeline>
-<codeline lineno="7"><highlight class="normal">{</highlight></codeline>
-<codeline lineno="19" refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_camera" refkind="compound"><highlight class="normal"><sp/><sp/></highlight><highlight class="keyword">class<sp/></highlight><highlight class="normal"><ref refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_camera" kindref="compound">Camera</ref></highlight></codeline>
-<codeline lineno="20"><highlight class="normal"><sp/><sp/>{</highlight></codeline>
-<codeline lineno="21"><highlight class="normal"><sp/><sp/></highlight><highlight class="keyword">public</highlight><highlight class="normal">:</highlight></codeline>
-<codeline lineno="25"><highlight class="normal"><sp/><sp/><sp/><sp/>RX_API<sp/><ref refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_camera_1a68a8b11d9b44fbf607cf39ce4827247d" kindref="member">Camera</ref>(<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_camera_1abc547465a1f853e1f98b3b5efe6838d9" kindref="member">width</ref>,<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_camera_1ad6da1290d6cf328a700a8155be2165e5" kindref="member">height</ref>,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>glm::vec3&amp;<sp/><ref refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_camera_1a4bcf1463171a160aa37af760fad1959b" kindref="member">position</ref><sp/>=<sp/>{<sp/>0.0F,<sp/>0.0F,<sp/>3.0F<sp/>}<sp/>);</highlight></codeline>
-<codeline lineno="26"><highlight class="normal"></highlight></codeline>
-<codeline lineno="27"><highlight class="normal"><sp/><sp/><sp/><sp/>RX_API<sp/></highlight><highlight class="keyword">virtual</highlight><highlight class="normal"><sp/><ref refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_camera_1a61e6d4d44980a2294b7eff088f700fd9" kindref="member">~Camera</ref>(<sp/>)<sp/>=<sp/></highlight><highlight class="keywordflow">default</highlight><highlight class="normal">;</highlight></codeline>
-<codeline lineno="28"><highlight class="normal"></highlight></codeline>
-<codeline lineno="29"><highlight class="normal"><sp/><sp/><sp/><sp/>RX_API<sp/><ref refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_camera_1a68a8b11d9b44fbf607cf39ce4827247d" kindref="member">Camera</ref>(<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_camera" kindref="compound">Camera</ref>&amp;<sp/>)<sp/>=<sp/></highlight><highlight class="keywordflow">default</highlight><highlight class="normal">;</highlight></codeline>
-<codeline lineno="30"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_camera_1a68a8b11d9b44fbf607cf39ce4827247d" kindref="member">Camera</ref>(<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_camera" kindref="compound">Camera</ref>&amp;&amp;<sp/>)<sp/><sp/><sp/><sp/><sp/><sp/><sp/>=<sp/></highlight><highlight class="keyword">delete</highlight><highlight class="normal">;</highlight></codeline>
-<codeline lineno="31"><highlight class="normal"></highlight></codeline>
-<codeline lineno="32"><highlight class="normal"><sp/><sp/><sp/><sp/>RX_API<sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/><ref refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_camera_1a18132566aef52264d1c82cb4a6b85a46" kindref="member">operator=</ref>(<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_camera" kindref="compound">Camera</ref>&amp;<sp/>)<sp/>-&gt;<sp/><ref refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_camera" kindref="compound">Camera</ref>&amp;<sp/>=<sp/></highlight><highlight class="keywordflow">default</highlight><highlight class="normal">;</highlight></codeline>
-<codeline lineno="33"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/><ref refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_camera_1a18132566aef52264d1c82cb4a6b85a46" kindref="member">operator=</ref>(<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_camera" kindref="compound">Camera</ref><sp/>&amp;&amp;<sp/>)<sp/>-&gt;<sp/><ref refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_camera" kindref="compound">Camera</ref>&amp;<sp/>=<sp/></highlight><highlight class="keyword">delete</highlight><highlight class="normal">;</highlight></codeline>
-<codeline lineno="34"><highlight class="normal"></highlight></codeline>
-<codeline lineno="39"><highlight class="normal"><sp/><sp/><sp/><sp/>RX_API<sp/></highlight><highlight class="keyword">virtual</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_camera_1ab53ec8ef049669ea018405645d0cb5ed" kindref="member">update</ref>(<sp/>);</highlight></codeline>
-<codeline lineno="40"><highlight class="normal"></highlight></codeline>
-<codeline lineno="42" refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_camera_1ad4a222fefb2845510a9a05d6eeb7507a" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>[[nodiscard]]<sp/>RX_API<sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/><ref refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_camera_1ad4a222fefb2845510a9a05d6eeb7507a" kindref="member">getPosition</ref>(<sp/>)<sp/>const<sp/>-&gt;<sp/>const<sp/>glm::vec3&amp;<sp/>{<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/><ref refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_camera_1a4bcf1463171a160aa37af760fad1959b" kindref="member">position</ref>;<sp/>}</highlight></codeline>
-<codeline lineno="43"><highlight class="normal"></highlight></codeline>
-<codeline lineno="46"><highlight class="normal"><sp/><sp/><sp/><sp/>RX_API<sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_camera_1a7df5ab78c0d7c755781183de40ce36b9" kindref="member">setPosition</ref>(<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>glm::vec3&amp;<sp/><ref refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_camera_1a4bcf1463171a160aa37af760fad1959b" kindref="member">position</ref><sp/>);</highlight></codeline>
-<codeline lineno="47"><highlight class="normal"></highlight></codeline>
-<codeline lineno="51"><highlight class="normal"><sp/><sp/><sp/><sp/>RX_API<sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_camera_1aec6722156001046318c55ba685d2ee18" kindref="member">setSize</ref>(<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_camera_1abc547465a1f853e1f98b3b5efe6838d9" kindref="member">width</ref>,<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_camera_1ad6da1290d6cf328a700a8155be2165e5" kindref="member">height</ref><sp/>);</highlight></codeline>
-<codeline lineno="52"><highlight class="normal"></highlight></codeline>
-<codeline lineno="55"><highlight class="normal"><sp/><sp/><sp/><sp/>RX_API<sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_camera_1a2ea2da4418290b6a6b9fa7620e6bd7b9" kindref="member">setFov</ref>(<sp/></highlight><highlight class="keywordtype">float</highlight><highlight class="normal"><sp/><ref refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_camera_1ac086ddc16ca93585a9e09935b022113a" kindref="member">fov</ref><sp/>);</highlight></codeline>
-<codeline lineno="56"><highlight class="normal"></highlight></codeline>
-<codeline lineno="59"><highlight class="normal"><sp/><sp/><sp/><sp/>RX_API<sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_camera_1a9fdfefdba9a848fdd71c882fc18a4134" kindref="member">setSensitivity</ref>(<sp/></highlight><highlight class="keywordtype">float</highlight><highlight class="normal"><sp/><ref refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_camera_1afd1c0517418d1f559507da86c935e64e" kindref="member">sensitivity</ref><sp/>);</highlight></codeline>
-<codeline lineno="60"><highlight class="normal"></highlight></codeline>
-<codeline lineno="62" refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_camera_1ab93f93f316bead7870322c0a6c7938d7" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>[[nodiscard]]<sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/><ref refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_camera_1ab93f93f316bead7870322c0a6c7938d7" kindref="member">getViewMatrix</ref>(<sp/>)<sp/>const<sp/>-&gt;<sp/>const<sp/>glm::mat4&amp;<sp/>{<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/><ref refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_camera_1a5ac095603a19a2fd745250f123438dd7" kindref="member">view</ref>;<sp/>}</highlight></codeline>
-<codeline lineno="63"><highlight class="normal"></highlight></codeline>
-<codeline lineno="65" refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_camera_1a44a23ce5e54d9e67da5abfe53205882f" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>[[nodiscard]]<sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/><ref refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_camera_1a44a23ce5e54d9e67da5abfe53205882f" kindref="member">getProjectionMatrix</ref>(<sp/>)<sp/>const<sp/>-&gt;<sp/>const<sp/>glm::mat4&amp;<sp/>{<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/><ref refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_camera_1a1f992a71469dc28c9b9ea52e63ee429b" kindref="member">projection</ref>;<sp/>}</highlight></codeline>
-<codeline lineno="66"><highlight class="normal"></highlight></codeline>
-<codeline lineno="68" refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_camera_1ad52515b2c20a16149c4d5652a3e0b11c" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>[[nodiscard]]<sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/><ref refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_camera_1ad52515b2c20a16149c4d5652a3e0b11c" kindref="member">getViewInverseMatrix</ref>(<sp/>)<sp/>const<sp/>-&gt;<sp/>const<sp/>glm::mat4&amp;<sp/>{<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/><ref refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_camera_1a7c50c7657eeba2989f54a35720120049" kindref="member">viewInverse</ref>;<sp/>}</highlight></codeline>
-<codeline lineno="69"><highlight class="normal"></highlight></codeline>
-<codeline lineno="71" refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_camera_1a428203c7dfd644026cc8cb6c94f5ed8a" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>[[nodiscard]]<sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/><ref refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_camera_1a428203c7dfd644026cc8cb6c94f5ed8a" kindref="member">getProjectionInverseMatrix</ref>(<sp/>)<sp/>const<sp/>-&gt;<sp/>const<sp/>glm::mat4&amp;<sp/>{<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/><ref refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_camera_1a2364ff321e4eae5893dfae520effc06c" kindref="member">projectionInverse</ref>;<sp/>}</highlight></codeline>
-<codeline lineno="72"><highlight class="normal"></highlight></codeline>
-<codeline lineno="74"><highlight class="normal"><sp/><sp/><sp/><sp/>RX_API<sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_camera_1acc914ffb4d382f0a8fa381e8ec394ef6" kindref="member">updateViewMatrix</ref>(<sp/>);</highlight></codeline>
-<codeline lineno="75"><highlight class="normal"></highlight></codeline>
-<codeline lineno="77"><highlight class="normal"><sp/><sp/><sp/><sp/>RX_API<sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_camera_1ab77a53c918476b7e4e8f60cc02144c30" kindref="member">updateProjectionMatrix</ref>(<sp/>);</highlight></codeline>
-<codeline lineno="78"><highlight class="normal"></highlight></codeline>
-<codeline lineno="82"><highlight class="normal"><sp/><sp/><sp/><sp/>RX_API<sp/></highlight><highlight class="keyword">virtual</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_camera_1a5c575881c73d250e2a31779761ec7802" kindref="member">processMouse</ref>(<sp/></highlight><highlight class="keywordtype">float</highlight><highlight class="normal"><sp/>xOffset,<sp/></highlight><highlight class="keywordtype">float</highlight><highlight class="normal"><sp/>yOffset<sp/>);</highlight></codeline>
-<codeline lineno="83"><highlight class="normal"></highlight></codeline>
-<codeline lineno="84" refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_camera_1ae7d3feb791abeb7b22630c5104582959" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>RX_API<sp/></highlight><highlight class="keyword">virtual</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_camera_1ae7d3feb791abeb7b22630c5104582959" kindref="member">processKeyboard</ref>(<sp/>)<sp/>{}</highlight></codeline>
-<codeline lineno="85"><highlight class="normal"></highlight></codeline>
-<codeline lineno="86" refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_camera_1abd6bb5ccf88c173842750d7dc6ccb44a" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/><ref refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_camera_1abd6bb5ccf88c173842750d7dc6ccb44a" kindref="member">updateView</ref><sp/>=<sp/></highlight><highlight class="keyword">true</highlight><highlight class="normal">;<sp/></highlight></codeline>
-<codeline lineno="87" refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_camera_1aefd04f562091ba752ae641181d32d2d4" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/><ref refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_camera_1aefd04f562091ba752ae641181d32d2d4" kindref="member">updateProj</ref><sp/>=<sp/></highlight><highlight class="keyword">true</highlight><highlight class="normal">;<sp/></highlight></codeline>
-<codeline lineno="88"><highlight class="normal"></highlight></codeline>
-<codeline lineno="89"><highlight class="normal"><sp/><sp/></highlight><highlight class="keyword">protected</highlight><highlight class="normal">:</highlight></codeline>
-<codeline lineno="92"><highlight class="normal"><sp/><sp/><sp/><sp/>RX_API<sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_camera_1a50687e95db7b89210e02610600dcb9df" kindref="member">updateVectors</ref>(<sp/>);</highlight></codeline>
-<codeline lineno="93"><highlight class="normal"></highlight></codeline>
-<codeline lineno="94" refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_camera_1abc547465a1f853e1f98b3b5efe6838d9" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_camera_1abc547465a1f853e1f98b3b5efe6838d9" kindref="member">width</ref>;<sp/><sp/></highlight></codeline>
-<codeline lineno="95" refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_camera_1ad6da1290d6cf328a700a8155be2165e5" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_camera_1ad6da1290d6cf328a700a8155be2165e5" kindref="member">height</ref>;<sp/></highlight></codeline>
-<codeline lineno="96"><highlight class="normal"></highlight></codeline>
-<codeline lineno="97" refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_camera_1a4bcf1463171a160aa37af760fad1959b" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>glm::vec3<sp/><ref refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_camera_1a4bcf1463171a160aa37af760fad1959b" kindref="member">position</ref>;<sp/></highlight></codeline>
+<codeline lineno="1"><highlight class="preprocessor">#pragma<sp/>once</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="2"><highlight class="normal"></highlight></codeline>
+<codeline lineno="3"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;<ref refid="stdafx_8hpp" kindref="compound">pch/stdafx.hpp</ref>&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="4"><highlight class="normal"></highlight></codeline>
+<codeline lineno="5"><highlight class="normal"></highlight><highlight class="keyword">namespace<sp/></highlight><highlight class="normal"><ref refid="namespace_r_a_y_e_x___n_a_m_e_s_p_a_c_e" kindref="compound">RAYEX_NAMESPACE</ref></highlight></codeline>
+<codeline lineno="6"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="18" refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_camera" refkind="compound"><highlight class="normal"><sp/><sp/></highlight><highlight class="keyword">class<sp/></highlight><highlight class="normal">RX_API<sp/><ref refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_camera" kindref="compound">Camera</ref></highlight></codeline>
+<codeline lineno="19"><highlight class="normal"><sp/><sp/>{</highlight></codeline>
+<codeline lineno="20"><highlight class="normal"><sp/><sp/></highlight><highlight class="keyword">public</highlight><highlight class="normal">:</highlight></codeline>
+<codeline lineno="24"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_camera" kindref="compound">Camera</ref>(<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>width,<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>height,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>glm::vec3&amp;<sp/>position<sp/>=<sp/>{<sp/>0.0F,<sp/>0.0F,<sp/>3.0F<sp/>}<sp/>);</highlight></codeline>
+<codeline lineno="25"><highlight class="normal"></highlight></codeline>
+<codeline lineno="26"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">virtual</highlight><highlight class="normal"><sp/>~<ref refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_camera" kindref="compound">Camera</ref>(<sp/>)<sp/>=<sp/></highlight><highlight class="keywordflow">default</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="27"><highlight class="normal"></highlight></codeline>
+<codeline lineno="28"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_camera" kindref="compound">Camera</ref>(<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_camera" kindref="compound">Camera</ref>&amp;<sp/>)<sp/><sp/>=<sp/></highlight><highlight class="keywordflow">default</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="29"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_camera" kindref="compound">Camera</ref>(<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_camera" kindref="compound">Camera</ref>&amp;&amp;<sp/>)<sp/>=<sp/></highlight><highlight class="keyword">delete</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="30"><highlight class="normal"></highlight></codeline>
+<codeline lineno="31"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/>operator=(<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_camera" kindref="compound">Camera</ref>&amp;<sp/>)<sp/>-&gt;<sp/><ref refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_camera" kindref="compound">Camera</ref>&amp;<sp/>=<sp/></highlight><highlight class="keywordflow">default</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="32"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/>operator=(<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_camera" kindref="compound">Camera</ref>&amp;&amp;<sp/>)<sp/>-&gt;<sp/><ref refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_camera" kindref="compound">Camera</ref>&amp;<sp/>=<sp/></highlight><highlight class="keyword">delete</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="33"><highlight class="normal"></highlight></codeline>
+<codeline lineno="38"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">virtual</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>update(<sp/>);</highlight></codeline>
+<codeline lineno="39"><highlight class="normal"></highlight></codeline>
+<codeline lineno="41" refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_camera_1acfcf6d7449755de73dc3de2ea39bf12e" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/><ref refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_camera_1acfcf6d7449755de73dc3de2ea39bf12e" kindref="member">getPosition</ref>(<sp/>)<sp/>const<sp/>-&gt;<sp/>const<sp/>glm::vec3&amp;<sp/>{<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>_position;<sp/>}</highlight></codeline>
+<codeline lineno="42"><highlight class="normal"></highlight></codeline>
+<codeline lineno="45"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>setPosition(<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>glm::vec3&amp;<sp/>position<sp/>);</highlight></codeline>
+<codeline lineno="46"><highlight class="normal"></highlight></codeline>
+<codeline lineno="50"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>setSize(<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>width,<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>height<sp/>);</highlight></codeline>
+<codeline lineno="51"><highlight class="normal"></highlight></codeline>
+<codeline lineno="54"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>setFov(<sp/></highlight><highlight class="keywordtype">float</highlight><highlight class="normal"><sp/>fov<sp/>);</highlight></codeline>
+<codeline lineno="55"><highlight class="normal"></highlight></codeline>
+<codeline lineno="58"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>setSensitivity(<sp/></highlight><highlight class="keywordtype">float</highlight><highlight class="normal"><sp/>sensitivity<sp/>);</highlight></codeline>
+<codeline lineno="59"><highlight class="normal"></highlight></codeline>
+<codeline lineno="61" refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_camera_1ab93f93f316bead7870322c0a6c7938d7" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/><ref refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_camera_1ab93f93f316bead7870322c0a6c7938d7" kindref="member">getViewMatrix</ref>(<sp/>)<sp/>const<sp/>-&gt;<sp/>const<sp/>glm::mat4&amp;<sp/>{<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>_view;<sp/>}</highlight></codeline>
+<codeline lineno="62"><highlight class="normal"></highlight></codeline>
+<codeline lineno="64" refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_camera_1a44a23ce5e54d9e67da5abfe53205882f" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/><ref refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_camera_1a44a23ce5e54d9e67da5abfe53205882f" kindref="member">getProjectionMatrix</ref>(<sp/>)<sp/>const<sp/>-&gt;<sp/>const<sp/>glm::mat4&amp;<sp/>{<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>_projection;<sp/>}</highlight></codeline>
+<codeline lineno="65"><highlight class="normal"></highlight></codeline>
+<codeline lineno="67" refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_camera_1ad52515b2c20a16149c4d5652a3e0b11c" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/><ref refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_camera_1ad52515b2c20a16149c4d5652a3e0b11c" kindref="member">getViewInverseMatrix</ref>(<sp/>)<sp/>const<sp/>-&gt;<sp/>const<sp/>glm::mat4&amp;<sp/>{<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>_viewInverse;<sp/>}</highlight></codeline>
+<codeline lineno="68"><highlight class="normal"></highlight></codeline>
+<codeline lineno="70" refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_camera_1a428203c7dfd644026cc8cb6c94f5ed8a" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/><ref refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_camera_1a428203c7dfd644026cc8cb6c94f5ed8a" kindref="member">getProjectionInverseMatrix</ref>(<sp/>)<sp/>const<sp/>-&gt;<sp/>const<sp/>glm::mat4&amp;<sp/>{<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>_projectionInverse;<sp/>}</highlight></codeline>
+<codeline lineno="71"><highlight class="normal"></highlight></codeline>
+<codeline lineno="73"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>updateViewMatrix(<sp/>);</highlight></codeline>
+<codeline lineno="74"><highlight class="normal"></highlight></codeline>
+<codeline lineno="76"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>updateProjectionMatrix(<sp/>);</highlight></codeline>
+<codeline lineno="77"><highlight class="normal"></highlight></codeline>
+<codeline lineno="81"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">virtual</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>processMouse(<sp/></highlight><highlight class="keywordtype">float</highlight><highlight class="normal"><sp/>xOffset,<sp/></highlight><highlight class="keywordtype">float</highlight><highlight class="normal"><sp/>yOffset<sp/>);</highlight></codeline>
+<codeline lineno="82"><highlight class="normal"></highlight></codeline>
+<codeline lineno="86" refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_camera_1a16f11a54e2249f7b951db9c9a2a3c91f" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">virtual</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_camera_1a16f11a54e2249f7b951db9c9a2a3c91f" kindref="member">processKeyboard</ref>(<sp/>)<sp/>{}</highlight></codeline>
+<codeline lineno="87"><highlight class="normal"></highlight></codeline>
+<codeline lineno="88" refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_camera_1a0e1c547906bc7d47775e672804f895e3" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/>_updateView<sp/>=<sp/></highlight><highlight class="keyword">true</highlight><highlight class="normal">;<sp/></highlight></codeline>
+<codeline lineno="89" refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_camera_1a3fa6186059f5d85399d6b1c6e4303b03" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/>_updateProj<sp/>=<sp/></highlight><highlight class="keyword">true</highlight><highlight class="normal">;<sp/></highlight></codeline>
+<codeline lineno="90"><highlight class="normal"></highlight></codeline>
+<codeline lineno="91"><highlight class="normal"><sp/><sp/></highlight><highlight class="keyword">protected</highlight><highlight class="normal">:</highlight></codeline>
+<codeline lineno="94"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>updateVectors(<sp/>);</highlight></codeline>
+<codeline lineno="95"><highlight class="normal"></highlight></codeline>
+<codeline lineno="96" refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_camera_1a7e9b3a1a0f09cf18554db835ccf28f93" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_camera_1a7e9b3a1a0f09cf18554db835ccf28f93" kindref="member">_width</ref>;<sp/><sp/></highlight></codeline>
+<codeline lineno="97" refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_camera_1aac3c7f080fd0661e2fdbe66388142fa2" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_camera_1aac3c7f080fd0661e2fdbe66388142fa2" kindref="member">_height</ref>;<sp/></highlight></codeline>
 <codeline lineno="98"><highlight class="normal"></highlight></codeline>
-<codeline lineno="99" refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_camera_1a5ac095603a19a2fd745250f123438dd7" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>glm::mat4<sp/><ref refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_camera_1a5ac095603a19a2fd745250f123438dd7" kindref="member">view</ref><sp/><sp/><sp/><sp/><sp/><sp/><sp/>=<sp/>glm::mat4(<sp/>1.0F<sp/>);<sp/></highlight></codeline>
-<codeline lineno="100" refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_camera_1a1f992a71469dc28c9b9ea52e63ee429b" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>glm::mat4<sp/><ref refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_camera_1a1f992a71469dc28c9b9ea52e63ee429b" kindref="member">projection</ref><sp/>=<sp/>glm::mat4(<sp/>1.0F<sp/>);<sp/></highlight></codeline>
-<codeline lineno="101"><highlight class="normal"></highlight></codeline>
-<codeline lineno="102" refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_camera_1a7c50c7657eeba2989f54a35720120049" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>glm::mat4<sp/><ref refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_camera_1a7c50c7657eeba2989f54a35720120049" kindref="member">viewInverse</ref><sp/><sp/><sp/><sp/><sp/><sp/><sp/>=<sp/>glm::mat4(<sp/>1.0F<sp/>);<sp/></highlight></codeline>
-<codeline lineno="103" refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_camera_1a2364ff321e4eae5893dfae520effc06c" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>glm::mat4<sp/><ref refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_camera_1a2364ff321e4eae5893dfae520effc06c" kindref="member">projectionInverse</ref><sp/>=<sp/>glm::mat4(<sp/>1.0F<sp/>);<sp/></highlight></codeline>
-<codeline lineno="104"><highlight class="normal"></highlight></codeline>
-<codeline lineno="105" refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_camera_1acdbab5dcb28d135dcb4b6fadcf2fcacd" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>glm::vec3<sp/><ref refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_camera_1acdbab5dcb28d135dcb4b6fadcf2fcacd" kindref="member">worldUp</ref><sp/>=<sp/>{<sp/>0.0F,<sp/>1.0F,<sp/>0.0F<sp/>};<sp/></highlight></codeline>
-<codeline lineno="106" refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_camera_1a6151963e691f56848a6b628b93fa3c4a" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>glm::vec3<sp/><ref refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_camera_1a6151963e691f56848a6b628b93fa3c4a" kindref="member">up</ref><sp/><sp/><sp/><sp/><sp/><sp/>=<sp/>{<sp/>};<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
-<codeline lineno="107" refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_camera_1afff0ad0e901baca57efc06c5a1b4f81d" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>glm::vec3<sp/><ref refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_camera_1afff0ad0e901baca57efc06c5a1b4f81d" kindref="member">right</ref><sp/><sp/><sp/>=<sp/>{<sp/>};<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
-<codeline lineno="108" refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_camera_1a621f40b7aba2d90899bfe7b5ef8f6292" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>glm::vec3<sp/><ref refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_camera_1a621f40b7aba2d90899bfe7b5ef8f6292" kindref="member">front</ref><sp/><sp/><sp/>=<sp/>{<sp/>};<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
-<codeline lineno="109"><highlight class="normal"></highlight></codeline>
-<codeline lineno="110" refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_camera_1a8623593d33d30628260e42472b9cc2b6" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">float</highlight><highlight class="normal"><sp/><ref refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_camera_1a8623593d33d30628260e42472b9cc2b6" kindref="member">yaw</ref><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>=<sp/>-90.0F;<sp/></highlight></codeline>
-<codeline lineno="111" refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_camera_1afe4117e810213542a6f47d8984e05605" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">float</highlight><highlight class="normal"><sp/><ref refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_camera_1afe4117e810213542a6f47d8984e05605" kindref="member">pitch</ref><sp/><sp/><sp/><sp/><sp/><sp/><sp/>=<sp/>0.0F;<sp/><sp/><sp/></highlight></codeline>
-<codeline lineno="112" refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_camera_1afd1c0517418d1f559507da86c935e64e" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">float</highlight><highlight class="normal"><sp/><ref refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_camera_1afd1c0517418d1f559507da86c935e64e" kindref="member">sensitivity</ref><sp/>=<sp/>0.06F;<sp/><sp/></highlight></codeline>
-<codeline lineno="113" refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_camera_1ac086ddc16ca93585a9e09935b022113a" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">float</highlight><highlight class="normal"><sp/><ref refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_camera_1ac086ddc16ca93585a9e09935b022113a" kindref="member">fov</ref><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>=<sp/>45.0F;<sp/><sp/></highlight></codeline>
-<codeline lineno="114"><highlight class="normal"><sp/><sp/>};</highlight></codeline>
-<codeline lineno="115"><highlight class="normal">}<sp/></highlight><highlight class="comment">//<sp/>namespace<sp/>RAYEX_NAMESPACE</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="116"><highlight class="normal"></highlight></codeline>
-<codeline lineno="117"><highlight class="normal"></highlight><highlight class="preprocessor">#endif<sp/>//<sp/>CAMERA_BASE_HPP</highlight></codeline>
+<codeline lineno="99" refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_camera_1a832b7643b630190398a871cc897fba9e" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>glm::vec3<sp/><ref refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_camera_1a832b7643b630190398a871cc897fba9e" kindref="member">_position</ref>;<sp/></highlight></codeline>
+<codeline lineno="100"><highlight class="normal"></highlight></codeline>
+<codeline lineno="101" refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_camera_1ac3a2c7df14d6db2ef72953c74dd756cb" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>glm::mat4<sp/>_view<sp/><sp/><sp/><sp/><sp/><sp/><sp/>=<sp/>glm::mat4(<sp/>1.0F<sp/>);<sp/></highlight></codeline>
+<codeline lineno="102" refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_camera_1a2ac8736247d2e36edfe4e7e2d6aecb15" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>glm::mat4<sp/>_projection<sp/>=<sp/>glm::mat4(<sp/>1.0F<sp/>);<sp/></highlight></codeline>
+<codeline lineno="103"><highlight class="normal"></highlight></codeline>
+<codeline lineno="104" refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_camera_1a4293f3e4fee845435a318cf73c00a66b" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>glm::mat4<sp/>_viewInverse<sp/><sp/><sp/><sp/><sp/><sp/><sp/>=<sp/>glm::mat4(<sp/>1.0F<sp/>);<sp/></highlight></codeline>
+<codeline lineno="105" refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_camera_1aef5d307749b930f0b4f325772363537b" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>glm::mat4<sp/>_projectionInverse<sp/>=<sp/>glm::mat4(<sp/>1.0F<sp/>);<sp/></highlight></codeline>
+<codeline lineno="106"><highlight class="normal"></highlight></codeline>
+<codeline lineno="107" refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_camera_1a8889d943505d12a92d23ff22dc9c0ec2" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>glm::vec3<sp/>_worldUp<sp/>=<sp/>{<sp/>0.0F,<sp/>1.0F,<sp/>0.0F<sp/>};<sp/></highlight></codeline>
+<codeline lineno="108" refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_camera_1a137954d196ea4ccb344b022fd64e79e6" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>glm::vec3<sp/>_up<sp/><sp/><sp/><sp/><sp/><sp/>=<sp/>{<sp/>};<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="109" refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_camera_1aafcf6405638001f83fbff660114f3286" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>glm::vec3<sp/>_right<sp/><sp/><sp/>=<sp/>{<sp/>};<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="110" refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_camera_1aa85cc233a98dcf2fd2acbecb1886ad03" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>glm::vec3<sp/>_front<sp/><sp/><sp/>=<sp/>{<sp/>};<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="111"><highlight class="normal"></highlight></codeline>
+<codeline lineno="112" refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_camera_1aba4b8adb31113415397e26d3fdd8815d" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">float</highlight><highlight class="normal"><sp/>_yaw<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>=<sp/>-90.0F;<sp/></highlight></codeline>
+<codeline lineno="113" refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_camera_1aa41d0eebc6b61e3727b425f78aaa3478" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">float</highlight><highlight class="normal"><sp/>_pitch<sp/><sp/><sp/><sp/><sp/><sp/><sp/>=<sp/>0.0F;<sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="114" refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_camera_1a11229bd8671fd515f1d53ebb58c45446" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">float</highlight><highlight class="normal"><sp/>_sensitivity<sp/>=<sp/>0.06F;<sp/><sp/></highlight></codeline>
+<codeline lineno="115" refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_camera_1a3a5a0e5e97a893f3f189aaf8545ced4d" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">float</highlight><highlight class="normal"><sp/>_fov<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>=<sp/>45.0F;<sp/><sp/></highlight></codeline>
+<codeline lineno="116"><highlight class="normal"><sp/><sp/>};</highlight></codeline>
+<codeline lineno="117"><highlight class="normal">}<sp/></highlight><highlight class="comment">//<sp/>namespace<sp/>RAYEX_NAMESPACE</highlight><highlight class="normal"></highlight></codeline>
     </programlisting>
     <location file="/home/n30/Repos/rayex/include/base/Camera.hpp"/>
   </compounddef>

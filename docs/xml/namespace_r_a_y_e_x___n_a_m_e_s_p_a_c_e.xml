@@ -17,13 +17,14 @@
     <innerclass refid="struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_directional_light_s_s_b_o" prot="public">RAYEX_NAMESPACE::DirectionalLightSSBO</innerclass>
     <innerclass refid="struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_geometry" prot="public">RAYEX_NAMESPACE::Geometry</innerclass>
     <innerclass refid="struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_geometry_instance" prot="public">RAYEX_NAMESPACE::GeometryInstance</innerclass>
+    <innerclass refid="struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_geometry_instance_s_s_b_o" prot="public">RAYEX_NAMESPACE::GeometryInstanceSSBO</innerclass>
     <innerclass refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_gui" prot="public">RAYEX_NAMESPACE::Gui</innerclass>
     <innerclass refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_image" prot="public">RAYEX_NAMESPACE::Image</innerclass>
     <innerclass refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_index_buffer" prot="public">RAYEX_NAMESPACE::IndexBuffer</innerclass>
     <innerclass refid="struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_light" prot="public">RAYEX_NAMESPACE::Light</innerclass>
-    <innerclass refid="struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_light_s_s_b_o" prot="public">RAYEX_NAMESPACE::LightSSBO</innerclass>
     <innerclass refid="struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_material" prot="public">RAYEX_NAMESPACE::Material</innerclass>
     <innerclass refid="struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_mesh" prot="public">RAYEX_NAMESPACE::Mesh</innerclass>
+    <innerclass refid="struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_mesh_s_s_b_o" prot="public">RAYEX_NAMESPACE::MeshSSBO</innerclass>
     <innerclass refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_pipeline" prot="public">RAYEX_NAMESPACE::Pipeline</innerclass>
     <innerclass refid="struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_point_light" prot="public">RAYEX_NAMESPACE::PointLight</innerclass>
     <innerclass refid="struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_point_light_s_s_b_o" prot="public">RAYEX_NAMESPACE::PointLightSSBO</innerclass>
@@ -43,375 +44,9 @@
     <innerclass refid="struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_vertex" prot="public">RAYEX_NAMESPACE::Vertex</innerclass>
     <innerclass refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_vertex_buffer" prot="public">RAYEX_NAMESPACE::VertexBuffer</innerclass>
     <innerclass refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_window" prot="public">RAYEX_NAMESPACE::Window</innerclass>
+    <innernamespace refid="namespace_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1components">RAYEX_NAMESPACE::components</innernamespace>
     <innernamespace refid="namespace_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_util">RAYEX_NAMESPACE::Util</innernamespace>
       <sectiondef kind="var">
-      <memberdef kind="variable" id="namespace_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1a53914c7ecf6dffbb9bc73f59c2dcafd8" prot="public" static="no" mutable="no">
-        <type>std::shared_ptr&lt; <ref refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_window" kindref="compound">Window</ref> &gt;</type>
-        <definition>std::shared_ptr&lt;Window&gt; RAYEX_NAMESPACE::g_window</definition>
-        <argsstring></argsstring>
-        <name>g_window</name>
-        <briefdescription>
-<para>Reference to the window. </para>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="/home/n30/Repos/rayex/include/api/Components.hpp" line="8" column="26" declfile="/home/n30/Repos/rayex/include/api/Components.hpp" declline="8" declcolumn="26"/>
-      </memberdef>
-      <memberdef kind="variable" id="namespace_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1afa1f27812481e446261f007e22caf715" prot="public" static="no" mutable="no">
-        <type>vk::Instance</type>
-        <definition>vk::Instance RAYEX_NAMESPACE::g_instance</definition>
-        <argsstring></argsstring>
-        <name>g_instance</name>
-        <briefdescription>
-<para>Reference to the Vulkan instance. </para>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="/home/n30/Repos/rayex/include/api/Components.hpp" line="9" column="23" declfile="/home/n30/Repos/rayex/include/api/Components.hpp" declline="9" declcolumn="23"/>
-      </memberdef>
-      <memberdef kind="variable" id="namespace_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1a5e48d9a3b09ffb6adc79cc2b0bf04127" prot="public" static="no" mutable="no">
-        <type>vk::PhysicalDevice</type>
-        <definition>vk::PhysicalDevice RAYEX_NAMESPACE::g_physicalDevice</definition>
-        <argsstring></argsstring>
-        <name>g_physicalDevice</name>
-        <briefdescription>
-<para>Reference to the Vulkan physical device. </para>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="/home/n30/Repos/rayex/include/api/Components.hpp" line="10" column="29" declfile="/home/n30/Repos/rayex/include/api/Components.hpp" declline="10" declcolumn="29"/>
-      </memberdef>
-      <memberdef kind="variable" id="namespace_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1ac0a68a9d0c06a68cf1d0aa9b269b09da" prot="public" static="no" mutable="no">
-        <type>vk::Device</type>
-        <definition>vk::Device RAYEX_NAMESPACE::g_device</definition>
-        <argsstring></argsstring>
-        <name>g_device</name>
-        <briefdescription>
-<para>Reference to the Vulkan logical device. </para>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="/home/n30/Repos/rayex/include/api/Components.hpp" line="11" column="21" declfile="/home/n30/Repos/rayex/include/api/Components.hpp" declline="11" declcolumn="21"/>
-      </memberdef>
-      <memberdef kind="variable" id="namespace_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1ad303bd070587963ac49321311be943f1" prot="public" static="no" mutable="no">
-        <type>vk::SurfaceKHR</type>
-        <definition>vk::SurfaceKHR RAYEX_NAMESPACE::g_surface</definition>
-        <argsstring></argsstring>
-        <name>g_surface</name>
-        <briefdescription>
-<para>Reference to the Vulkan surface. </para>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="/home/n30/Repos/rayex/include/api/Components.hpp" line="12" column="25" declfile="/home/n30/Repos/rayex/include/api/Components.hpp" declline="12" declcolumn="25"/>
-      </memberdef>
-      <memberdef kind="variable" id="namespace_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1afa06e0a2030e50d6f4964899a7a0f2cf" prot="public" static="no" mutable="no">
-        <type>vk::SwapchainKHR</type>
-        <definition>vk::SwapchainKHR RAYEX_NAMESPACE::g_swapchain</definition>
-        <argsstring></argsstring>
-        <name>g_swapchain</name>
-        <briefdescription>
-<para>Reference to the Vulkan swapchain. </para>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="/home/n30/Repos/rayex/include/api/Components.hpp" line="13" column="27" declfile="/home/n30/Repos/rayex/include/api/Components.hpp" declline="13" declcolumn="27"/>
-      </memberdef>
-      <memberdef kind="variable" id="namespace_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1a332947ec9c83496a73423d8fcbff00ac" prot="public" static="no" mutable="no">
-        <type>uint32_t</type>
-        <definition>uint32_t RAYEX_NAMESPACE::g_swapchainImageCount</definition>
-        <argsstring></argsstring>
-        <name>g_swapchainImageCount</name>
-        <briefdescription>
-<para>Variable to store the Vulkan swapchain&apos;s image count. </para>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="/home/n30/Repos/rayex/include/api/Components.hpp" line="14" column="19" declfile="/home/n30/Repos/rayex/include/api/Components.hpp" declline="14" declcolumn="19"/>
-      </memberdef>
-      <memberdef kind="variable" id="namespace_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1a12233310aabeb2dbbad78c98351cfde8" prot="public" static="no" mutable="no">
-        <type>vk::Format</type>
-        <definition>vk::Format RAYEX_NAMESPACE::g_surfaceFormat</definition>
-        <argsstring></argsstring>
-        <name>g_surfaceFormat</name>
-        <briefdescription>
-<para>Reference to the Vulkan surface&apos;s format. </para>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="/home/n30/Repos/rayex/include/api/Components.hpp" line="15" column="21" declfile="/home/n30/Repos/rayex/include/api/Components.hpp" declline="15" declcolumn="21"/>
-      </memberdef>
-      <memberdef kind="variable" id="namespace_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1afafcc6887632267d22088e6a9e3a3fec" prot="public" static="no" mutable="no">
-        <type>std::vector&lt; vk::UniqueImageView &gt;</type>
-        <definition>std::vector&lt;vk::UniqueImageView&gt; RAYEX_NAMESPACE::g_swapchainImageViews</definition>
-        <argsstring></argsstring>
-        <name>g_swapchainImageViews</name>
-        <briefdescription>
-<para>Reference to the Vulkan swapchain image views. </para>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="/home/n30/Repos/rayex/include/api/Components.hpp" line="16" column="22" declfile="/home/n30/Repos/rayex/include/api/Components.hpp" declline="16" declcolumn="22"/>
-      </memberdef>
-      <memberdef kind="variable" id="namespace_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1ae9da783a4d86920ad0cf4ac0d9266ea3" prot="public" static="no" mutable="no">
-        <type>uint32_t</type>
-        <definition>uint32_t RAYEX_NAMESPACE::g_shaderGroups</definition>
-        <argsstring></argsstring>
-        <name>g_shaderGroups</name>
-        <briefdescription>
-<para>Variable to store the Vulkan shader groups. </para>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="/home/n30/Repos/rayex/include/api/Components.hpp" line="17" column="19" declfile="/home/n30/Repos/rayex/include/api/Components.hpp" declline="17" declcolumn="19"/>
-      </memberdef>
-      <memberdef kind="variable" id="namespace_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1a204992b840832ca75299c91e28803257" prot="public" static="no" mutable="no">
-        <type>vk::DynamicLoader</type>
-        <definition>vk::DynamicLoader RAYEX_NAMESPACE::g_dynamicLoader</definition>
-        <argsstring></argsstring>
-        <name>g_dynamicLoader</name>
-        <briefdescription>
-<para>Reference to the dynamic loader used to load function pointers provided by extensions. </para>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="/home/n30/Repos/rayex/include/api/Components.hpp" line="18" column="28" declfile="/home/n30/Repos/rayex/include/api/Components.hpp" declline="18" declcolumn="28"/>
-      </memberdef>
-      <memberdef kind="variable" id="namespace_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1a647bd4d0553da6e2a3ea61ebd2e24cdc" prot="public" static="no" mutable="no">
-        <type>vk::CommandPool</type>
-        <definition>vk::CommandPool RAYEX_NAMESPACE::g_graphicsCmdPool</definition>
-        <argsstring></argsstring>
-        <name>g_graphicsCmdPool</name>
-        <briefdescription>
-<para>Reference to a Vulkan graphics command pool. </para>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="/home/n30/Repos/rayex/include/api/Components.hpp" line="20" column="26" declfile="/home/n30/Repos/rayex/include/api/Components.hpp" declline="20" declcolumn="26"/>
-      </memberdef>
-      <memberdef kind="variable" id="namespace_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1aefbb97ad06cf26ac3aaf63169f3fce96" prot="public" static="no" mutable="no">
-        <type>vk::CommandPool</type>
-        <definition>vk::CommandPool RAYEX_NAMESPACE::g_transferCmdPool</definition>
-        <argsstring></argsstring>
-        <name>g_transferCmdPool</name>
-        <briefdescription>
-<para>Reference to a Vulkan transfer command pool. </para>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="/home/n30/Repos/rayex/include/api/Components.hpp" line="21" column="26" declfile="/home/n30/Repos/rayex/include/api/Components.hpp" declline="21" declcolumn="26"/>
-      </memberdef>
-      <memberdef kind="variable" id="namespace_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1a977cd362536fc24d054f9cef74a2bfa1" prot="public" static="no" mutable="no">
-        <type>vk::Queue</type>
-        <definition>vk::Queue RAYEX_NAMESPACE::g_graphicsQueue</definition>
-        <argsstring></argsstring>
-        <name>g_graphicsQueue</name>
-        <briefdescription>
-<para>Reference to a Vulkan graphics queue. </para>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="/home/n30/Repos/rayex/include/api/Components.hpp" line="22" column="20" declfile="/home/n30/Repos/rayex/include/api/Components.hpp" declline="22" declcolumn="20"/>
-      </memberdef>
-      <memberdef kind="variable" id="namespace_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1a1ee71fd1c0a796783396c42908861025" prot="public" static="no" mutable="no">
-        <type>vk::Queue</type>
-        <definition>vk::Queue RAYEX_NAMESPACE::g_transferQueue</definition>
-        <argsstring></argsstring>
-        <name>g_transferQueue</name>
-        <briefdescription>
-<para>Reference to a Vulkan transfer queue. </para>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="/home/n30/Repos/rayex/include/api/Components.hpp" line="23" column="20" declfile="/home/n30/Repos/rayex/include/api/Components.hpp" declline="23" declcolumn="20"/>
-      </memberdef>
-      <memberdef kind="variable" id="namespace_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1a49ffd35de07ab724be490c9f2bb3e433" prot="public" static="no" mutable="no">
-        <type>uint32_t</type>
-        <definition>uint32_t RAYEX_NAMESPACE::g_graphicsFamilyIndex</definition>
-        <argsstring></argsstring>
-        <name>g_graphicsFamilyIndex</name>
-        <briefdescription>
-<para>stores a Vulkan graphics family index. </para>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="/home/n30/Repos/rayex/include/api/Components.hpp" line="24" column="19" declfile="/home/n30/Repos/rayex/include/api/Components.hpp" declline="24" declcolumn="19"/>
-      </memberdef>
-      <memberdef kind="variable" id="namespace_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1a51f3b0c8b87badfc21d23b4fc1857355" prot="public" static="no" mutable="no">
-        <type>uint32_t</type>
-        <definition>uint32_t RAYEX_NAMESPACE::g_transferFamilyIndex</definition>
-        <argsstring></argsstring>
-        <name>g_transferFamilyIndex</name>
-        <briefdescription>
-<para>stores a Vulkan transfer family index. </para>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="/home/n30/Repos/rayex/include/api/Components.hpp" line="25" column="19" declfile="/home/n30/Repos/rayex/include/api/Components.hpp" declline="25" declcolumn="19"/>
-      </memberdef>
-      <memberdef kind="variable" id="namespace_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1a50f035ef0a6a55eed13e2edb4f620b98" prot="public" static="no" mutable="no">
-        <type>vk::PhysicalDeviceLimits</type>
-        <definition>vk::PhysicalDeviceLimits RAYEX_NAMESPACE::g_physicalDeviceLimits</definition>
-        <argsstring></argsstring>
-        <name>g_physicalDeviceLimits</name>
-        <briefdescription>
-<para>Global variable to store the physical device&apos;s limits. </para>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="/home/n30/Repos/rayex/include/api/Components.hpp" line="27" column="35" declfile="/home/n30/Repos/rayex/include/api/Components.hpp" declline="27" declcolumn="35"/>
-      </memberdef>
-      <memberdef kind="variable" id="namespace_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1aee13ab3d083f74c8bdfd8b72b8933ba6" prot="public" static="no" mutable="no">
-        <type>uint32_t</type>
-        <definition>uint32_t RAYEX_NAMESPACE::g_modelCount</definition>
-        <argsstring></argsstring>
-        <name>g_modelCount</name>
-        <briefdescription>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="/home/n30/Repos/rayex/include/api/Components.hpp" line="29" column="19" declfile="/home/n30/Repos/rayex/include/api/Components.hpp" declline="29" declcolumn="19"/>
-      </memberdef>
-      <memberdef kind="variable" id="namespace_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1a130f880b3d1c6079ed5bafb78f292354" prot="public" static="no" mutable="no">
-        <type>RX_API uint32_t</type>
-        <definition>RX_API uint32_t RAYEX_NAMESPACE::g_frameCount</definition>
-        <argsstring></argsstring>
-        <name>g_frameCount</name>
-        <briefdescription>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="/home/n30/Repos/rayex/include/api/Components.hpp" line="30" column="26" declfile="/home/n30/Repos/rayex/include/api/Components.hpp" declline="30" declcolumn="26"/>
-      </memberdef>
-      <memberdef kind="variable" id="namespace_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1aa11f98251d69eb299c2e3de20f4ed9d6" prot="public" static="no" mutable="no">
-        <type>const size_t</type>
-        <definition>const size_t RAYEX_NAMESPACE::g_maxGeometryInstances</definition>
-        <argsstring></argsstring>
-        <name>g_maxGeometryInstances</name>
-        <initializer>= 2000</initializer>
-        <briefdescription>
-<para>Stores the maximum amount of geometry nodes. </para>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="/home/n30/Repos/rayex/include/api/Components.hpp" line="32" column="16" bodyfile="/home/n30/Repos/rayex/include/api/Components.hpp" bodystart="32" bodyend="-1"/>
-      </memberdef>
-      <memberdef kind="variable" id="namespace_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1a766d2a150125d54b33247539cc1c72eb" prot="public" static="no" mutable="no">
-        <type>const size_t</type>
-        <definition>const size_t RAYEX_NAMESPACE::g_maxTextures</definition>
-        <argsstring></argsstring>
-        <name>g_maxTextures</name>
-        <initializer>= 2000</initializer>
-        <briefdescription>
-<para>Stores the maximum amount of textures. </para>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="/home/n30/Repos/rayex/include/api/Components.hpp" line="33" column="16" bodyfile="/home/n30/Repos/rayex/include/api/Components.hpp" bodystart="33" bodyend="-1"/>
-      </memberdef>
-      <memberdef kind="variable" id="namespace_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1a2758c3b5f00411ea0445ef1ef026ec83" prot="public" static="no" mutable="no">
-        <type>const size_t</type>
-        <definition>const size_t RAYEX_NAMESPACE::g_maxDirectionalLights</definition>
-        <argsstring></argsstring>
-        <name>g_maxDirectionalLights</name>
-        <initializer>= 2000</initializer>
-        <briefdescription>
-<para>Stores the maximum amount of directional light sources. </para>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="/home/n30/Repos/rayex/include/api/Components.hpp" line="34" column="16" bodyfile="/home/n30/Repos/rayex/include/api/Components.hpp" bodystart="34" bodyend="-1"/>
-      </memberdef>
-      <memberdef kind="variable" id="namespace_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1a5c5263652d5f553f4d4aa1eba1678355" prot="public" static="no" mutable="no">
-        <type>const size_t</type>
-        <definition>const size_t RAYEX_NAMESPACE::g_maxPointLights</definition>
-        <argsstring></argsstring>
-        <name>g_maxPointLights</name>
-        <initializer>= 2000</initializer>
-        <briefdescription>
-<para>Stores the maximum amount of point light sources supported. </para>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="/home/n30/Repos/rayex/include/api/Components.hpp" line="35" column="16" bodyfile="/home/n30/Repos/rayex/include/api/Components.hpp" bodystart="35" bodyend="-1"/>
-      </memberdef>
-      <memberdef kind="variable" id="namespace_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1ad6bf6b0077a2a6d8fc92d4824349af2b" prot="public" static="no" mutable="no">
-        <type>const size_t</type>
-        <definition>const size_t RAYEX_NAMESPACE::g_maxModels</definition>
-        <argsstring></argsstring>
-        <name>g_maxModels</name>
-        <initializer>= 2000</initializer>
-        <briefdescription>
-<para>Stores the maximum amount of models supported. </para>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="/home/n30/Repos/rayex/include/api/Components.hpp" line="36" column="16" bodyfile="/home/n30/Repos/rayex/include/api/Components.hpp" bodystart="36" bodyend="-1"/>
-      </memberdef>
-      <memberdef kind="variable" id="namespace_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1aef499aed59c002c1b687eae58dbf035f" prot="public" static="no" mutable="no">
-        <type>std::string</type>
-        <definition>std::string RAYEX_NAMESPACE::g_assetsPath</definition>
-        <argsstring></argsstring>
-        <name>g_assetsPath</name>
-        <briefdescription>
-<para>Path to where shaders, models and textures are stored. </para>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="/home/n30/Repos/rayex/include/api/Components.hpp" line="38" column="22" declfile="/home/n30/Repos/rayex/include/api/Components.hpp" declline="38" declcolumn="22"/>
-      </memberdef>
       <memberdef kind="variable" id="namespace_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1a997bf023e5202653ba7b804848f245e4" prot="public" static="no" mutable="no">
         <type>const int</type>
         <definition>const int RAYEX_NAMESPACE::defaultWidth</definition>
@@ -424,7 +59,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/n30/Repos/rayex/include/base/Window.hpp" line="10" column="13" bodyfile="/home/n30/Repos/rayex/include/base/Window.hpp" bodystart="10" bodyend="-1"/>
+        <location file="/home/n30/Repos/rayex/include/base/Window.hpp" line="9" column="13" bodyfile="/home/n30/Repos/rayex/include/base/Window.hpp" bodystart="9" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="namespace_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1aff8ee7aaab7d155f60fd777d09664159" prot="public" static="no" mutable="no">
         <type>const int</type>
@@ -438,36 +73,10 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/n30/Repos/rayex/include/base/Window.hpp" line="11" column="13" bodyfile="/home/n30/Repos/rayex/include/base/Window.hpp" bodystart="11" bodyend="-1"/>
+        <location file="/home/n30/Repos/rayex/include/base/Window.hpp" line="10" column="13" bodyfile="/home/n30/Repos/rayex/include/base/Window.hpp" bodystart="10" bodyend="-1"/>
       </memberdef>
       </sectiondef>
       <sectiondef kind="func">
-      <memberdef kind="function" id="namespace_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1a38050cc881a8d3e860e8ff7ebc6adc7c" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
-        <templateparamlist>
-          <param>
-            <type>typename T</type>
-          </param>
-        </templateparamlist>
-        <type>void</type>
-        <definition>void RAYEX_NAMESPACE::createStorageBufferWithStaging</definition>
-        <argsstring>(Buffer &amp;buffer, std::vector&lt; T &gt; &amp;data)</argsstring>
-        <name>createStorageBufferWithStaging</name>
-        <param>
-          <type><ref refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_buffer" kindref="compound">Buffer</ref> &amp;</type>
-          <declname>buffer</declname>
-        </param>
-        <param>
-          <type>std::vector&lt; T &gt; &amp;</type>
-          <declname>data</declname>
-        </param>
-        <briefdescription>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="/home/n30/Repos/rayex/include/api/buffers/Buffer.hpp" line="85" column="8" bodyfile="/home/n30/Repos/rayex/include/api/buffers/Buffer.hpp" bodystart="85" bodyend="107"/>
-      </memberdef>
       <memberdef kind="function" id="namespace_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1a12927e95ad03941844c80a5324ef0826" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>auto</type>
         <definition>auto RAYEX_NAMESPACE::getSupportedDepthFormat</definition>
@@ -498,7 +107,7 @@
         </inbodydescription>
         <location file="/home/n30/Repos/rayex/include/api/Swapchain.hpp" line="92" column="8" declfile="/home/n30/Repos/rayex/include/api/Swapchain.hpp" declline="92" declcolumn="8"/>
       </memberdef>
-      <memberdef kind="function" id="namespace_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1ac348076d8b31be1511d1fc0532e75747" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+      <memberdef kind="function" id="group___b_a_s_e_1gac348076d8b31be1511d1fc0532e75747" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>RX_API std::shared_ptr&lt; <ref refid="struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_geometry" kindref="compound">Geometry</ref> &gt;</type>
         <definition>RX_API std::shared_ptr&lt;Geometry&gt; RAYEX_NAMESPACE::loadObj</definition>
         <argsstring>(std::string_view path)</argsstring>
@@ -526,9 +135,9 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/n30/Repos/rayex/include/base/Geometry.hpp" line="72" column="26" declfile="/home/n30/Repos/rayex/include/base/Geometry.hpp" declline="72" declcolumn="26"/>
+        <location file="/home/n30/Repos/rayex/include/base/Geometry.hpp" line="61" column="26" declfile="/home/n30/Repos/rayex/include/base/Geometry.hpp" declline="61" declcolumn="26"/>
       </memberdef>
-      <memberdef kind="function" id="namespace_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1ad880ea304e8ff3dab6ea5258df8970cf" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+      <memberdef kind="function" id="group___b_a_s_e_1gad880ea304e8ff3dab6ea5258df8970cf" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>RX_API std::shared_ptr&lt; <ref refid="struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_geometry_instance" kindref="compound">GeometryInstance</ref> &gt;</type>
         <definition>RX_API std::shared_ptr&lt;GeometryInstance&gt; RAYEX_NAMESPACE::instance</definition>
         <argsstring>(std::shared_ptr&lt; Geometry &gt; geometry, const glm::mat4 &amp;transform=glm::mat4(1.0F))</argsstring>
@@ -569,9 +178,9 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/n30/Repos/rayex/include/base/Geometry.hpp" line="81" column="26" declfile="/home/n30/Repos/rayex/include/base/Geometry.hpp" declline="81" declcolumn="26"/>
+        <location file="/home/n30/Repos/rayex/include/base/Geometry.hpp" line="70" column="26" declfile="/home/n30/Repos/rayex/include/base/Geometry.hpp" declline="70" declcolumn="26"/>
       </memberdef>
-      <memberdef kind="function" id="namespace_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1a2a069b2d151c07c55325dc008f693cb0" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+      <memberdef kind="function" id="group___b_a_s_e_1ga2a069b2d151c07c55325dc008f693cb0" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>RX_API auto</type>
         <definition>RX_API auto RAYEX_NAMESPACE::directionalLightInstance</definition>
         <argsstring>(const glm::vec3 &amp;direction) -&gt; std::shared_ptr&lt; DirectionalLight &gt;</argsstring>
@@ -599,9 +208,9 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/n30/Repos/rayex/include/base/Lights.hpp" line="43" column="15" declfile="/home/n30/Repos/rayex/include/base/Lights.hpp" declline="43" declcolumn="15"/>
+        <location file="/home/n30/Repos/rayex/include/base/Lights.hpp" line="42" column="15" declfile="/home/n30/Repos/rayex/include/base/Lights.hpp" declline="42" declcolumn="15"/>
       </memberdef>
-      <memberdef kind="function" id="namespace_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1ace95101543a8d8577781044c96795140" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+      <memberdef kind="function" id="group___b_a_s_e_1gace95101543a8d8577781044c96795140" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>RX_API auto</type>
         <definition>RX_API auto RAYEX_NAMESPACE::pointLightInstance</definition>
         <argsstring>(const glm::vec3 &amp;position) -&gt; std::shared_ptr&lt; PointLight &gt;</argsstring>
@@ -629,7 +238,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/n30/Repos/rayex/include/base/Lights.hpp" line="49" column="15" declfile="/home/n30/Repos/rayex/include/base/Lights.hpp" declline="49" declcolumn="15"/>
+        <location file="/home/n30/Repos/rayex/include/base/Lights.hpp" line="48" column="15" declfile="/home/n30/Repos/rayex/include/base/Lights.hpp" declline="48" declcolumn="15"/>
       </memberdef>
       </sectiondef>
     <briefdescription>
@@ -637,6 +246,6 @@
     </briefdescription>
     <detaileddescription>
     </detaileddescription>
-    <location file="/home/n30/Repos/rayex/include/api/Api.hpp" line="24" column="1"/>
+    <location file="/home/n30/Repos/rayex/include/api/Api.hpp" line="23" column="1"/>
   </compounddef>
 </doxygen>

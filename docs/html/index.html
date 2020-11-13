@@ -137,11 +137,14 @@ Usage</h2>
 <div class="line">    </div>
 <div class="line">    // Load some geometry and submit it to RAYEX.</div>
 <div class="line">    auto cube   = rx::loadObj( &quot;models/cube.obj&quot; );</div>
-<div class="line">    renderer.submitGeometry( cube );</div>
+<div class="line">    renderer.scene( ).submitGeometry( cube );</div>
 <div class="line"> </div>
 <div class="line">    // Create an instance of the geometry from above and submit it for rendering.</div>
 <div class="line">    auto cubeInstance = rx::instance( cube );</div>
-<div class="line">    renderer.submitGeometryInstance( cubeInstance );</div>
+<div class="line">    renderer.scene( ).submitGeometryInstance( cubeInstance );</div>
+<div class="line"> </div>
+<div class="line">    // Add a light source.</div>
+<div class="line">    renderer.scene( ).submitDirectionalLight( rx::directionalLightInstance( glm::vec3( -4.0F, 10.0F, 5.0F ) ) );</div>
 <div class="line"> </div>
 <div class="line">    // The main loop.</div>
 <div class="line">    while ( renderer.isRunning( ) )</div>

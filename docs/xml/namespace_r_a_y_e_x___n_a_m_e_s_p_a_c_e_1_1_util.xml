@@ -31,7 +31,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/n30/Repos/rayex/include/api/utility/Util.hpp" line="13" column="10" declfile="/home/n30/Repos/rayex/include/api/utility/Util.hpp" declline="13" declcolumn="10"/>
+        <location file="/home/n30/Repos/rayex/include/api/utility/Util.hpp" line="12" column="10" declfile="/home/n30/Repos/rayex/include/api/utility/Util.hpp" declline="12" declcolumn="10"/>
       </memberdef>
       <memberdef kind="function" id="namespace_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_util_1a73f0c4b677c819ecf5a6083506e47b51" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -60,7 +60,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/n30/Repos/rayex/include/api/utility/Util.hpp" line="15" column="10" declfile="/home/n30/Repos/rayex/include/api/utility/Util.hpp" declline="15" declcolumn="10"/>
+        <location file="/home/n30/Repos/rayex/include/api/utility/Util.hpp" line="14" column="10" declfile="/home/n30/Repos/rayex/include/api/utility/Util.hpp" declline="14" declcolumn="10"/>
       </memberdef>
       <memberdef kind="function" id="namespace_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_util_1a597142ff896b6224f5dd9e4cd06b186d" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <templateparamlist>
@@ -110,7 +110,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/n30/Repos/rayex/include/api/utility/Util.hpp" line="22" column="10" bodyfile="/home/n30/Repos/rayex/include/api/utility/Util.hpp" bodystart="22" bodyend="31"/>
+        <location file="/home/n30/Repos/rayex/include/api/utility/Util.hpp" line="21" column="10" bodyfile="/home/n30/Repos/rayex/include/api/utility/Util.hpp" bodystart="21" bodyend="30"/>
       </memberdef>
       <memberdef kind="function" id="namespace_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_util_1a68d3d47e91753b329cd0e075f75d26fc" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>auto</type>
@@ -127,7 +127,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/n30/Repos/rayex/include/api/utility/Util.hpp" line="33" column="10" declfile="/home/n30/Repos/rayex/include/api/utility/Util.hpp" declline="33" declcolumn="10"/>
+        <location file="/home/n30/Repos/rayex/include/api/utility/Util.hpp" line="32" column="10" declfile="/home/n30/Repos/rayex/include/api/utility/Util.hpp" declline="32" declcolumn="10"/>
       </memberdef>
       <memberdef kind="function" id="namespace_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_util_1a123f863dbcf88702a681a0217593caa0" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <templateparamlist>
@@ -149,13 +149,13 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/n30/Repos/rayex/include/api/utility/Util.hpp" line="36" column="10" bodyfile="/home/n30/Repos/rayex/include/api/utility/Util.hpp" bodystart="36" bodyend="47"/>
+        <location file="/home/n30/Repos/rayex/include/api/utility/Util.hpp" line="35" column="10" bodyfile="/home/n30/Repos/rayex/include/api/utility/Util.hpp" bodystart="35" bodyend="46"/>
       </memberdef>
       </sectiondef>
     <briefdescription>
     </briefdescription>
     <detaileddescription>
     </detaileddescription>
-    <location file="/home/n30/Repos/rayex/include/api/utility/Util.hpp" line="9" column="1"/>
+    <location file="/home/n30/Repos/rayex/include/api/utility/Util.hpp" line="8" column="1"/>
   </compounddef>
 </doxygen>

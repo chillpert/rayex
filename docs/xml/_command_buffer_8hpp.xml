@@ -6,10 +6,10 @@
     <includedby refid="_api_8hpp" local="yes">/home/n30/Repos/rayex/include/api/Api.hpp</includedby>
     <includedby refid="_gui_8hpp" local="yes">/home/n30/Repos/rayex/include/base/Gui.hpp</includedby>
     <incdepgraph>
-      <node id="28">
+      <node id="30">
         <label>list</label>
       </node>
-      <node id="26">
+      <node id="28">
         <label>iomanip</label>
       </node>
       <node id="1">
@@ -18,19 +18,19 @@
         <childnode refid="2" relation="include">
         </childnode>
       </node>
-      <node id="19">
+      <node id="17">
         <label>external/glm/ext/matrix_transform.hpp</label>
       </node>
-      <node id="27">
+      <node id="29">
         <label>limits</label>
       </node>
-      <node id="22">
+      <node id="24">
         <label>filesystem</label>
       </node>
       <node id="4">
         <label>external/tinyLogger/TinyLogger.hpp</label>
       </node>
-      <node id="17">
+      <node id="23">
         <label>charconv</label>
       </node>
       <node id="3">
@@ -48,39 +48,39 @@
         </childnode>
         <childnode refid="9" relation="include">
         </childnode>
+        <childnode refid="10" relation="include">
+        </childnode>
+        <childnode refid="11" relation="include">
+        </childnode>
       </node>
-      <node id="12">
+      <node id="14">
         <label>external/ImGui/imgui_impl_sdl.h</label>
       </node>
-      <node id="18">
+      <node id="16">
         <label>external/glm/ext/matrix_clip_space.hpp</label>
       </node>
-      <node id="29">
+      <node id="31">
         <label>map</label>
       </node>
-      <node id="36">
+      <node id="37">
         <label>unordered_set</label>
       </node>
-      <node id="25">
+      <node id="27">
         <label>gsl/gsl</label>
       </node>
-      <node id="24">
+      <node id="26">
         <label>fstream</label>
       </node>
-      <node id="11">
+      <node id="13">
         <label>external/ImGui/imgui.h</label>
       </node>
-      <node id="15">
+      <node id="21">
         <label>any</label>
       </node>
       <node id="2">
         <label>pch/stdafx.hpp</label>
         <link refid="stdafx_8hpp"/>
         <childnode refid="3" relation="include">
-        </childnode>
-        <childnode refid="10" relation="include">
-        </childnode>
-        <childnode refid="11" relation="include">
         </childnode>
         <childnode refid="12" relation="include">
         </childnode>
@@ -130,74 +130,81 @@
         </childnode>
         <childnode refid="35" relation="include">
         </childnode>
+        <childnode refid="8" relation="include">
+        </childnode>
         <childnode refid="36" relation="include">
         </childnode>
         <childnode refid="37" relation="include">
         </childnode>
         <childnode refid="38" relation="include">
         </childnode>
+        <childnode refid="39" relation="include">
+        </childnode>
       </node>
-      <node id="6">
+      <node id="9">
         <label>SDL2/SDL.h</label>
       </node>
-      <node id="32">
+      <node id="34">
         <label>random</label>
       </node>
-      <node id="20">
+      <node id="18">
         <label>external/glm/glm.hpp</label>
       </node>
-      <node id="34">
+      <node id="8">
         <label>string_view</label>
       </node>
-      <node id="31">
+      <node id="33">
         <label>optional</label>
       </node>
-      <node id="38">
+      <node id="39">
         <label>vector</label>
       </node>
-      <node id="37">
+      <node id="38">
         <label>utility</label>
       </node>
-      <node id="16">
+      <node id="22">
         <label>array</label>
       </node>
-      <node id="21">
+      <node id="19">
         <label>external/glm/gtx/string_cast.hpp</label>
       </node>
-      <node id="5">
+      <node id="7">
         <label>sstream</label>
       </node>
-      <node id="13">
+      <node id="15">
         <label>external/ImGui/imgui_impl_vulkan.h</label>
       </node>
-      <node id="8">
+      <node id="6">
         <label>iostream</label>
       </node>
-      <node id="35">
+      <node id="36">
         <label>unordered_map</label>
       </node>
-      <node id="33">
+      <node id="5">
+        <label>chrono</label>
+      </node>
+      <node id="35">
         <label>set</label>
       </node>
-      <node id="10">
+      <node id="12">
         <label>base/Time.hpp</label>
         <link refid="_time_8hpp"/>
         <childnode refid="3" relation="include">
         </childnode>
       </node>
-      <node id="23">
+      <node id="25">
         <label>forward_list</label>
       </node>
-      <node id="14">
+      <node id="20">
         <label>algorithm</label>
       </node>
-      <node id="9">
+      <node id="11">
         <label>vulkan/vulkan.hpp</label>
       </node>
-      <node id="30">
+      <node id="32">
         <label>memory</label>
       </node>
-      <node id="7">
+      <node id="10">
         <label>SDL2/SDL_vulkan.h</label>
       </node>
     </incdepgraph>
@@ -234,49 +241,42 @@
     <detaileddescription>
     </detaileddescription>
     <programlisting>
-<codeline lineno="1"><highlight class="preprocessor">#ifndef<sp/>COMMAND_BUFFER_HPP</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="2"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>COMMAND_BUFFER_HPP</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="3"><highlight class="normal"></highlight></codeline>
-<codeline lineno="4"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;<ref refid="stdafx_8hpp" kindref="compound">pch/stdafx.hpp</ref>&quot;</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="5"><highlight class="normal"></highlight></codeline>
-<codeline lineno="6"><highlight class="normal"></highlight><highlight class="keyword">namespace<sp/></highlight><highlight class="normal"><ref refid="namespace_r_a_y_e_x___n_a_m_e_s_p_a_c_e" kindref="compound">RAYEX_NAMESPACE</ref></highlight></codeline>
-<codeline lineno="7"><highlight class="normal">{</highlight></codeline>
-<codeline lineno="10" refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_command_buffer" refkind="compound"><highlight class="normal"><sp/><sp/></highlight><highlight class="keyword">class<sp/></highlight><highlight class="normal"><ref refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_command_buffer" kindref="compound">CommandBuffer</ref></highlight></codeline>
-<codeline lineno="11"><highlight class="normal"><sp/><sp/>{</highlight></codeline>
-<codeline lineno="12"><highlight class="normal"><sp/><sp/></highlight><highlight class="keyword">public</highlight><highlight class="normal">:</highlight></codeline>
-<codeline lineno="13"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_command_buffer_1abe361754230f783eb86464734b851ff8" kindref="member">CommandBuffer</ref>(<sp/>)<sp/>=<sp/></highlight><highlight class="keywordflow">default</highlight><highlight class="normal">;</highlight></codeline>
-<codeline lineno="14"><highlight class="normal"></highlight></codeline>
-<codeline lineno="19"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_command_buffer_1abe361754230f783eb86464734b851ff8" kindref="member">CommandBuffer</ref>(<sp/>vk::CommandPool<sp/>commandPool,<sp/>uint32_t<sp/>count<sp/>=<sp/>1,<sp/>vk::CommandBufferUsageFlags<sp/>usageFlags<sp/>=<sp/>vk::CommandBufferUsageFlagBits::eOneTimeSubmit<sp/>);</highlight></codeline>
-<codeline lineno="20"><highlight class="normal"></highlight></codeline>
-<codeline lineno="25"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_command_buffer_1a967443c6c46e162ed9a248f18a4dcd8a" kindref="member">init</ref>(<sp/>vk::CommandPool<sp/>commandPool,<sp/>uint32_t<sp/>count<sp/>=<sp/>1,<sp/>vk::CommandBufferUsageFlags<sp/>usageFlags<sp/>=<sp/>vk::CommandBufferUsageFlagBits::eOneTimeSubmit<sp/>);</highlight></codeline>
-<codeline lineno="26"><highlight class="normal"></highlight></codeline>
-<codeline lineno="28" refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_command_buffer_1ab0537198c1bdf7fc123867ff04109aec" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>[[nodiscard]]<sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/><ref refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_command_buffer_1ab0537198c1bdf7fc123867ff04109aec" kindref="member">get</ref>(<sp/>)<sp/>const<sp/>-&gt;<sp/>const<sp/><ref refid="namespacestd" kindref="compound">std</ref>::vector&lt;<ref refid="namespacevk" kindref="compound">vk</ref>::<ref refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_command_buffer" kindref="compound">CommandBuffer</ref>&gt;<sp/>{<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>commandBuffers;<sp/>}</highlight></codeline>
-<codeline lineno="29"><highlight class="normal"></highlight></codeline>
-<codeline lineno="33" refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_command_buffer_1adede3dee0329159e687a6b7a246ae47c" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>[[nodiscard]]<sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/><ref refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_command_buffer_1adede3dee0329159e687a6b7a246ae47c" kindref="member">get</ref>(<sp/></highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal"><sp/>index<sp/>)<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>-&gt;<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>vk::CommandBuffer</highlight></codeline>
-<codeline lineno="34"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
-<codeline lineno="35"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="_core_8hpp_1a0bc3742e3b5d582081ea5ec272af5330" kindref="member">RX_ASSERT</ref>(<sp/>(<sp/>index<sp/>&lt;=<sp/>commandBuffers.size(<sp/>)<sp/>-<sp/>1<sp/>),<sp/></highlight><highlight class="stringliteral">&quot;Failed<sp/>to<sp/>get<sp/>command<sp/>buffer<sp/>because<sp/>vector<sp/>is<sp/>out<sp/>of<sp/>range.&quot;</highlight><highlight class="normal"><sp/>);</highlight></codeline>
-<codeline lineno="36"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>commandBuffers[index];</highlight></codeline>
-<codeline lineno="37"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
-<codeline lineno="38"><highlight class="normal"></highlight></codeline>
-<codeline lineno="40"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_command_buffer_1a650ea8a7a5d452734b8cefd118639936" kindref="member">free</ref>(<sp/>);</highlight></codeline>
-<codeline lineno="41"><highlight class="normal"></highlight></codeline>
-<codeline lineno="43"><highlight class="normal"><sp/><sp/><sp/><sp/>RX_API<sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_command_buffer_1a7dd7be8f5fea7ebcf338f53e472450f0" kindref="member">reset</ref>(<sp/>);</highlight></codeline>
-<codeline lineno="44"><highlight class="normal"></highlight></codeline>
-<codeline lineno="47"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_command_buffer_1adeb8480e5423081dae4f34e7c756f5d0" kindref="member">begin</ref>(<sp/></highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal"><sp/>index<sp/>=<sp/>0<sp/>);</highlight></codeline>
-<codeline lineno="48"><highlight class="normal"></highlight></codeline>
-<codeline lineno="51"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_command_buffer_1ad12dd1d9c545827ad5277d596f38c2a8" kindref="member">end</ref>(<sp/></highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal"><sp/>index<sp/>=<sp/>0<sp/>);</highlight></codeline>
-<codeline lineno="52"><highlight class="normal"></highlight></codeline>
-<codeline lineno="58"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_command_buffer_1ad840dfe3ad8eb1f77a21bbb9d49985d8" kindref="member">submitToQueue</ref>(<sp/>vk::Queue<sp/>queue,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>std::vector&lt;vk::Semaphore&gt;&amp;<sp/>waitSemaphores<sp/>=<sp/>{<sp/>},<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>std::vector&lt;vk::Semaphore&gt;&amp;<sp/>signalSemaphores<sp/>=<sp/>{<sp/>},<sp/>vk::PipelineStageFlags*<sp/>waitDstStageMask<sp/>=<sp/>{<sp/>}<sp/>);</highlight></codeline>
-<codeline lineno="59"><highlight class="normal"></highlight></codeline>
-<codeline lineno="60"><highlight class="normal"><sp/><sp/></highlight><highlight class="keyword">private</highlight><highlight class="normal">:</highlight></codeline>
-<codeline lineno="61"><highlight class="normal"><sp/><sp/><sp/><sp/>std::vector&lt;vk::CommandBuffer&gt;<sp/>commandBuffers;<sp/></highlight></codeline>
-<codeline lineno="62"><highlight class="normal"></highlight></codeline>
-<codeline lineno="63"><highlight class="normal"><sp/><sp/><sp/><sp/>vk::CommandPool<sp/>commandPool;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
-<codeline lineno="64"><highlight class="normal"><sp/><sp/><sp/><sp/>vk::CommandBufferBeginInfo<sp/>beginInfo;<sp/></highlight></codeline>
-<codeline lineno="65"><highlight class="normal"><sp/><sp/>};</highlight></codeline>
-<codeline lineno="66"><highlight class="normal">}<sp/></highlight><highlight class="comment">//<sp/>namespace<sp/>RAYEX_NAMESPACE</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="67"><highlight class="normal"></highlight></codeline>
-<codeline lineno="68"><highlight class="normal"></highlight><highlight class="preprocessor">#endif<sp/>//<sp/>COMMAND_BUFFER_HPP</highlight></codeline>
+<codeline lineno="1"><highlight class="preprocessor">#pragma<sp/>once</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="2"><highlight class="normal"></highlight></codeline>
+<codeline lineno="3"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;<ref refid="stdafx_8hpp" kindref="compound">pch/stdafx.hpp</ref>&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="4"><highlight class="normal"></highlight></codeline>
+<codeline lineno="5"><highlight class="normal"></highlight><highlight class="keyword">namespace<sp/></highlight><highlight class="normal"><ref refid="namespace_r_a_y_e_x___n_a_m_e_s_p_a_c_e" kindref="compound">RAYEX_NAMESPACE</ref></highlight></codeline>
+<codeline lineno="6"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="9" refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_command_buffer" refkind="compound"><highlight class="normal"><sp/><sp/></highlight><highlight class="keyword">class<sp/></highlight><highlight class="normal"><ref refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_command_buffer" kindref="compound">CommandBuffer</ref></highlight></codeline>
+<codeline lineno="10"><highlight class="normal"><sp/><sp/>{</highlight></codeline>
+<codeline lineno="11"><highlight class="normal"><sp/><sp/></highlight><highlight class="keyword">public</highlight><highlight class="normal">:</highlight></codeline>
+<codeline lineno="12"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_command_buffer_1abe361754230f783eb86464734b851ff8" kindref="member">CommandBuffer</ref>(<sp/>)<sp/>=<sp/></highlight><highlight class="keywordflow">default</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="13"><highlight class="normal"></highlight></codeline>
+<codeline lineno="18"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_command_buffer_1abe361754230f783eb86464734b851ff8" kindref="member">CommandBuffer</ref>(<sp/>vk::CommandPool<sp/>commandPool,<sp/>uint32_t<sp/>count<sp/>=<sp/>1,<sp/>vk::CommandBufferUsageFlags<sp/>usageFlags<sp/>=<sp/>vk::CommandBufferUsageFlagBits::eOneTimeSubmit<sp/>);</highlight></codeline>
+<codeline lineno="19"><highlight class="normal"></highlight></codeline>
+<codeline lineno="24"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_command_buffer_1a967443c6c46e162ed9a248f18a4dcd8a" kindref="member">init</ref>(<sp/>vk::CommandPool<sp/>commandPool,<sp/>uint32_t<sp/>count<sp/>=<sp/>1,<sp/>vk::CommandBufferUsageFlags<sp/>usageFlags<sp/>=<sp/>vk::CommandBufferUsageFlagBits::eOneTimeSubmit<sp/>);</highlight></codeline>
+<codeline lineno="25"><highlight class="normal"></highlight></codeline>
+<codeline lineno="27" refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_command_buffer_1ab0537198c1bdf7fc123867ff04109aec" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/><ref refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_command_buffer_1ab0537198c1bdf7fc123867ff04109aec" kindref="member">get</ref>(<sp/>)<sp/>const<sp/>-&gt;<sp/>const<sp/><ref refid="namespacestd" kindref="compound">std</ref>::vector&lt;<ref refid="namespacevk" kindref="compound">vk</ref>::<ref refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_command_buffer" kindref="compound">CommandBuffer</ref>&gt;<sp/>{<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>_commandBuffers;<sp/>}</highlight></codeline>
+<codeline lineno="28"><highlight class="normal"></highlight></codeline>
+<codeline lineno="32" refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_command_buffer_1adede3dee0329159e687a6b7a246ae47c" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/><ref refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_command_buffer_1adede3dee0329159e687a6b7a246ae47c" kindref="member">get</ref>(<sp/></highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal"><sp/>index<sp/>)<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>-&gt;<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>vk::CommandBuffer<sp/>{<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>_commandBuffers[index];<sp/>}</highlight></codeline>
+<codeline lineno="33"><highlight class="normal"></highlight></codeline>
+<codeline lineno="35"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_command_buffer_1a650ea8a7a5d452734b8cefd118639936" kindref="member">free</ref>(<sp/>);</highlight></codeline>
+<codeline lineno="36"><highlight class="normal"></highlight></codeline>
+<codeline lineno="38"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_command_buffer_1ad3b5f2eb9e334aeb1ce1acc170d326f3" kindref="member">reset</ref>(<sp/>);</highlight></codeline>
+<codeline lineno="39"><highlight class="normal"></highlight></codeline>
+<codeline lineno="42"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_command_buffer_1adeb8480e5423081dae4f34e7c756f5d0" kindref="member">begin</ref>(<sp/></highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal"><sp/>index<sp/>=<sp/>0<sp/>);</highlight></codeline>
+<codeline lineno="43"><highlight class="normal"></highlight></codeline>
+<codeline lineno="46"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_command_buffer_1ad12dd1d9c545827ad5277d596f38c2a8" kindref="member">end</ref>(<sp/></highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal"><sp/>index<sp/>=<sp/>0<sp/>);</highlight></codeline>
+<codeline lineno="47"><highlight class="normal"></highlight></codeline>
+<codeline lineno="53"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_command_buffer_1ae47a0b4e332f7b93152e09223f858f54" kindref="member">submitToQueue</ref>(<sp/>vk::Queue<sp/>queue,<sp/>vk::Fence<sp/>fence<sp/>=<sp/></highlight><highlight class="keyword">nullptr</highlight><highlight class="normal">,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>std::vector&lt;vk::Semaphore&gt;&amp;<sp/>waitSemaphores<sp/>=<sp/>{<sp/>},<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>std::vector&lt;vk::Semaphore&gt;&amp;<sp/>signalSemaphores<sp/>=<sp/>{<sp/>},<sp/>vk::PipelineStageFlags*<sp/>waitDstStageMask<sp/>=<sp/>{<sp/>}<sp/>);</highlight></codeline>
+<codeline lineno="54"><highlight class="normal"></highlight></codeline>
+<codeline lineno="55"><highlight class="normal"><sp/><sp/></highlight><highlight class="keyword">private</highlight><highlight class="normal">:</highlight></codeline>
+<codeline lineno="56"><highlight class="normal"><sp/><sp/><sp/><sp/>std::vector&lt;vk::CommandBuffer&gt;<sp/>_commandBuffers;<sp/></highlight></codeline>
+<codeline lineno="57"><highlight class="normal"></highlight></codeline>
+<codeline lineno="58"><highlight class="normal"><sp/><sp/><sp/><sp/>vk::CommandPool<sp/>_commandPool;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="59"><highlight class="normal"><sp/><sp/><sp/><sp/>vk::CommandBufferBeginInfo<sp/>_beginInfo;<sp/></highlight></codeline>
+<codeline lineno="60"><highlight class="normal"><sp/><sp/>};</highlight></codeline>
+<codeline lineno="61"><highlight class="normal">}<sp/></highlight><highlight class="comment">//<sp/>namespace<sp/>RAYEX_NAMESPACE</highlight><highlight class="normal"></highlight></codeline>
     </programlisting>
     <location file="/home/n30/Repos/rayex/include/api/buffers/CommandBuffer.hpp"/>
   </compounddef>

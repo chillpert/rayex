@@ -4,26 +4,26 @@
     <compoundname>RAYEX_NAMESPACE::UniformBuffer</compoundname>
     <includes refid="_uniform_buffer_8hpp" local="no">UniformBuffer.hpp</includes>
       <sectiondef kind="public-attrib">
-      <memberdef kind="variable" id="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_uniform_buffer_1a0e2225556e7e6140f92b55bb02d73e30" prot="public" static="no" mutable="no">
+      <memberdef kind="variable" id="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_uniform_buffer_1a5cdc856aebafa1b2d878b27d91f59ca5" prot="public" static="no" mutable="no">
         <type>std::vector&lt; vk::DescriptorBufferInfo &gt;</type>
-        <definition>std::vector&lt;vk::DescriptorBufferInfo&gt; RAYEX_NAMESPACE::UniformBuffer::bufferInfos</definition>
+        <definition>std::vector&lt;vk::DescriptorBufferInfo&gt; RAYEX_NAMESPACE::UniformBuffer::_bufferInfos</definition>
         <argsstring></argsstring>
-        <name>bufferInfos</name>
+        <name>_bufferInfos</name>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/n30/Repos/rayex/include/api/buffers/UniformBuffer.hpp" line="82" column="17" bodyfile="/home/n30/Repos/rayex/include/api/buffers/UniformBuffer.hpp" bodystart="82" bodyend="-1"/>
+        <location file="/home/n30/Repos/rayex/include/api/buffers/UniformBuffer.hpp" line="79" column="17" bodyfile="/home/n30/Repos/rayex/include/api/buffers/UniformBuffer.hpp" bodystart="79" bodyend="-1"/>
       </memberdef>
       </sectiondef>
       <sectiondef kind="private-attrib">
-      <memberdef kind="variable" id="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_uniform_buffer_1a3499c71b597269d61770ba361f856e35" prot="private" static="no" mutable="no">
+      <memberdef kind="variable" id="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_uniform_buffer_1a07950fadc0daab9cd48669c84fc7ef42" prot="private" static="no" mutable="no">
         <type>std::vector&lt; <ref refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_buffer" kindref="compound">Buffer</ref> &gt;</type>
-        <definition>std::vector&lt;Buffer&gt; RAYEX_NAMESPACE::UniformBuffer::buffers</definition>
+        <definition>std::vector&lt;Buffer&gt; RAYEX_NAMESPACE::UniformBuffer::_buffers</definition>
         <argsstring></argsstring>
-        <name>buffers</name>
+        <name>_buffers</name>
         <briefdescription>
 <para>A vector of RAYEX_NAMESPACE::Buffers for the uniform buffers. </para>
         </briefdescription>
@@ -31,7 +31,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/n30/Repos/rayex/include/api/buffers/UniformBuffer.hpp" line="85" column="17" bodyfile="/home/n30/Repos/rayex/include/api/buffers/UniformBuffer.hpp" bodystart="85" bodyend="-1"/>
+        <location file="/home/n30/Repos/rayex/include/api/buffers/UniformBuffer.hpp" line="82" column="17" bodyfile="/home/n30/Repos/rayex/include/api/buffers/UniformBuffer.hpp" bodystart="82" bodyend="-1"/>
       </memberdef>
       </sectiondef>
       <sectiondef kind="public-func">
@@ -46,7 +46,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/n30/Repos/rayex/include/api/buffers/UniformBuffer.hpp" line="31" column="5"/>
+        <location file="/home/n30/Repos/rayex/include/api/buffers/UniformBuffer.hpp" line="30" column="5"/>
       </memberdef>
       <memberdef kind="function" id="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_uniform_buffer_1a7487ed42dd2de922006db5462e05b1f1" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
         <templateparamlist>
@@ -91,7 +91,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/n30/Repos/rayex/include/api/buffers/UniformBuffer.hpp" line="36" column="5" bodyfile="/home/n30/Repos/rayex/include/api/buffers/UniformBuffer.hpp" bodystart="36" bodyend="40"/>
+        <location file="/home/n30/Repos/rayex/include/api/buffers/UniformBuffer.hpp" line="35" column="5" bodyfile="/home/n30/Repos/rayex/include/api/buffers/UniformBuffer.hpp" bodystart="35" bodyend="39"/>
       </memberdef>
       <memberdef kind="function" id="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_uniform_buffer_1a922bda1b964d1ce9ce903107e358dcf5" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
         <type>auto</type>
@@ -107,11 +107,11 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/n30/Repos/rayex/include/api/buffers/UniformBuffer.hpp" line="43" column="11" bodyfile="/home/n30/Repos/rayex/include/api/buffers/UniformBuffer.hpp" bodystart="43" bodyend="43"/>
+        <location file="/home/n30/Repos/rayex/include/api/buffers/UniformBuffer.hpp" line="42" column="10" bodyfile="/home/n30/Repos/rayex/include/api/buffers/UniformBuffer.hpp" bodystart="42" bodyend="42"/>
       </memberdef>
-      <memberdef kind="function" id="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_uniform_buffer_1a7b8a844ef078691e96fb27eee7d550a6" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
-        <type>RX_API auto</type>
-        <definition>RX_API auto RAYEX_NAMESPACE::UniformBuffer::getRaw</definition>
+      <memberdef kind="function" id="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_uniform_buffer_1a616fbeb0ebf017794e591ca8e37d4b6e" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>auto</type>
+        <definition>auto RAYEX_NAMESPACE::UniformBuffer::getRaw</definition>
         <argsstring>() const -&gt; const std::vector&lt; vk::Buffer &gt;</argsstring>
         <name>getRaw</name>
         <briefdescription>
@@ -123,7 +123,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/n30/Repos/rayex/include/api/buffers/UniformBuffer.hpp" line="46" column="18"/>
+        <location file="/home/n30/Repos/rayex/include/api/buffers/UniformBuffer.hpp" line="45" column="10"/>
       </memberdef>
       <memberdef kind="function" id="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_uniform_buffer_1a98859467eee532952510437766b3da4f" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
         <templateparamlist>
@@ -152,7 +152,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/n30/Repos/rayex/include/api/buffers/UniformBuffer.hpp" line="54" column="10" bodyfile="/home/n30/Repos/rayex/include/api/buffers/UniformBuffer.hpp" bodystart="54" bodyend="71"/>
+        <location file="/home/n30/Repos/rayex/include/api/buffers/UniformBuffer.hpp" line="53" column="10" bodyfile="/home/n30/Repos/rayex/include/api/buffers/UniformBuffer.hpp" bodystart="53" bodyend="68"/>
       </memberdef>
       <memberdef kind="function" id="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_uniform_buffer_1ad511f2a02b2a4e341b5e0d9caa3f9338" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
         <templateparamlist>
@@ -197,7 +197,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/n30/Repos/rayex/include/api/buffers/UniformBuffer.hpp" line="77" column="10" bodyfile="/home/n30/Repos/rayex/include/api/buffers/UniformBuffer.hpp" bodystart="77" bodyend="80"/>
+        <location file="/home/n30/Repos/rayex/include/api/buffers/UniformBuffer.hpp" line="74" column="10" bodyfile="/home/n30/Repos/rayex/include/api/buffers/UniformBuffer.hpp" bodystart="74" bodyend="77"/>
       </memberdef>
       </sectiondef>
     <briefdescription>
@@ -205,12 +205,12 @@
     </briefdescription>
     <detaileddescription>
     </detaileddescription>
-    <location file="/home/n30/Repos/rayex/include/api/buffers/UniformBuffer.hpp" line="29" column="1" bodyfile="/home/n30/Repos/rayex/include/api/buffers/UniformBuffer.hpp" bodystart="28" bodyend="86"/>
+    <location file="/home/n30/Repos/rayex/include/api/buffers/UniformBuffer.hpp" line="28" column="1" bodyfile="/home/n30/Repos/rayex/include/api/buffers/UniformBuffer.hpp" bodystart="27" bodyend="83"/>
     <listofallmembers>
-      <member refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_uniform_buffer_1a0e2225556e7e6140f92b55bb02d73e30" prot="public" virt="non-virtual"><scope>RAYEX_NAMESPACE::UniformBuffer</scope><name>bufferInfos</name></member>
-      <member refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_uniform_buffer_1a3499c71b597269d61770ba361f856e35" prot="private" virt="non-virtual"><scope>RAYEX_NAMESPACE::UniformBuffer</scope><name>buffers</name></member>
+      <member refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_uniform_buffer_1a5cdc856aebafa1b2d878b27d91f59ca5" prot="public" virt="non-virtual"><scope>RAYEX_NAMESPACE::UniformBuffer</scope><name>_bufferInfos</name></member>
+      <member refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_uniform_buffer_1a07950fadc0daab9cd48669c84fc7ef42" prot="private" virt="non-virtual"><scope>RAYEX_NAMESPACE::UniformBuffer</scope><name>_buffers</name></member>
       <member refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_uniform_buffer_1a922bda1b964d1ce9ce903107e358dcf5" prot="public" virt="non-virtual"><scope>RAYEX_NAMESPACE::UniformBuffer</scope><name>get</name></member>
-      <member refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_uniform_buffer_1a7b8a844ef078691e96fb27eee7d550a6" prot="public" virt="non-virtual"><scope>RAYEX_NAMESPACE::UniformBuffer</scope><name>getRaw</name></member>
+      <member refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_uniform_buffer_1a616fbeb0ebf017794e591ca8e37d4b6e" prot="public" virt="non-virtual"><scope>RAYEX_NAMESPACE::UniformBuffer</scope><name>getRaw</name></member>
       <member refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_uniform_buffer_1a98859467eee532952510437766b3da4f" prot="public" virt="non-virtual"><scope>RAYEX_NAMESPACE::UniformBuffer</scope><name>init</name></member>
       <member refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_uniform_buffer_1ae5ddd2f51f1cc616396347bda9092c47" prot="public" virt="non-virtual"><scope>RAYEX_NAMESPACE::UniformBuffer</scope><name>UniformBuffer</name></member>
       <member refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_uniform_buffer_1a7487ed42dd2de922006db5462e05b1f1" prot="public" virt="non-virtual"><scope>RAYEX_NAMESPACE::UniformBuffer</scope><name>UniformBuffer</name></member>

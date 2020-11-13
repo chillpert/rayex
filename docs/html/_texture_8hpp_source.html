@@ -97,62 +97,40 @@ $(document).ready(function(){initNavTree('_texture_8hpp_source.html',''); initRe
 <div class="title">Texture.hpp</div>  </div>
 </div><!--header-->
 <div class="contents">
-<a href="_texture_8hpp.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;<span class="preprocessor">#ifndef TEXTURE_HPP</span></div>
-<div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;<span class="preprocessor">#define TEXTURE_HPP</span></div>
-<div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160; </div>
-<div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="_image_8hpp.html">api/image/Image.hpp</a>&quot;</span></div>
-<div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160; </div>
-<div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;<span class="keyword">namespace </span><a class="code" href="namespace_r_a_y_e_x___n_a_m_e_s_p_a_c_e.html">RAYEX_NAMESPACE</a></div>
-<div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;{</div>
-<div class="line"><a name="l00011"></a><span class="lineno"><a class="line" href="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_texture.html">   11</a></span>&#160;  <span class="keyword">class </span><a class="code" href="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_texture.html">Texture</a> : <span class="keyword">public</span> <a class="code" href="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_image.html">Image</a></div>
-<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;  {</div>
-<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;  <span class="keyword">public</span>:</div>
-<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;    RX_API <a class="code" href="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_texture.html#aa32702a974b407f7c71f7e89f76f3654">Texture</a>( );</div>
+<a href="_texture_8hpp.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;<span class="preprocessor">#pragma once</span></div>
+<div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160; </div>
+<div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="_image_8hpp.html">api/image/Image.hpp</a>&quot;</span></div>
+<div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160; </div>
+<div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;<span class="keyword">namespace </span><a class="code" href="namespace_r_a_y_e_x___n_a_m_e_s_p_a_c_e.html">RAYEX_NAMESPACE</a></div>
+<div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;{</div>
+<div class="line"><a name="l00010"></a><span class="lineno"><a class="line" href="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_texture.html">   10</a></span>&#160;  <span class="keyword">class </span><a class="code" href="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_texture.html">Texture</a> : <span class="keyword">public</span> <a class="code" href="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_image.html">Image</a></div>
+<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;  {</div>
+<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;  <span class="keyword">public</span>:</div>
+<div class="line"><a name="l00014"></a><span class="lineno"><a class="line" href="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_texture.html#a23e2e5a02dc202a05770c5157e00b639">   14</a></span>&#160;    <span class="keyword">auto</span> <a class="code" href="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_texture.html#a23e2e5a02dc202a05770c5157e00b639">getImageView</a>( ) const -&gt; <a class="code" href="namespacevk.html">vk</a>::ImageView { <span class="keywordflow">return</span> _imageView.get( ); }</div>
 <div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160; </div>
-<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;    RX_API <a class="code" href="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_texture.html#aa32702a974b407f7c71f7e89f76f3654">Texture</a>( std::string_view path, <span class="keywordtype">bool</span> initialize = <span class="keyword">true</span> );</div>
-<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160; </div>
-<div class="line"><a name="l00021"></a><span class="lineno"><a class="line" href="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_texture.html#a4d12a159ea5d963015649bcedb241f84">   21</a></span>&#160;    [[nodiscard]] <span class="keyword">auto</span> <a class="code" href="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_texture.html#a4d12a159ea5d963015649bcedb241f84">getImageView</a>( ) -&gt; vk::ImageView { <span class="keywordflow">return</span> imageView.get( ); }</div>
-<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160; </div>
-<div class="line"><a name="l00024"></a><span class="lineno"><a class="line" href="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_texture.html#a79ff0b73b423971bb92556b6722283b1">   24</a></span>&#160;    [[nodiscard]] <span class="keyword">auto</span> <a class="code" href="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_texture.html#a79ff0b73b423971bb92556b6722283b1">getSampler</a>( ) -&gt; vk::Sampler { <span class="keywordflow">return</span> sampler.get( ); }</div>
+<div class="line"><a name="l00017"></a><span class="lineno"><a class="line" href="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_texture.html#ab60fb85070b67258d51ba665725ad92e">   17</a></span>&#160;    <span class="keyword">auto</span> <a class="code" href="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_texture.html#ab60fb85070b67258d51ba665725ad92e">getPath</a>( ) const -&gt; const <a class="code" href="namespacestd.html">std</a>::<span class="keywordtype">string</span>&amp; { <span class="keywordflow">return</span> _path; }</div>
+<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160; </div>
+<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_texture.html#acc3e7b81bbfd57b79f5bd65ff0ae674d">init</a>( std::string_view path );</div>
+<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160; </div>
+<div class="line"><a name="l00024"></a><span class="lineno"><a class="line" href="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_texture.html#ae964bda9a837a27b4a726ee27442c9fa">   24</a></span>&#160;    uint32_t <a class="code" href="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_texture.html#ae964bda9a837a27b4a726ee27442c9fa">_offset</a> = 0;</div>
 <div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160; </div>
-<div class="line"><a name="l00027"></a><span class="lineno"><a class="line" href="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_texture.html#ab60fb85070b67258d51ba665725ad92e">   27</a></span>&#160;    [[nodiscard]] <span class="keyword">auto</span> <a class="code" href="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_texture.html#ab60fb85070b67258d51ba665725ad92e">getPath</a>( ) const -&gt; const <a class="code" href="namespacestd.html">std</a>::<span class="keywordtype">string</span>&amp; { <span class="keywordflow">return</span> path; }</div>
+<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;  <span class="keyword">private</span>:</div>
+<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;    std::string _path; </div>
 <div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160; </div>
-<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_texture.html#acc3e7b81bbfd57b79f5bd65ff0ae674d">init</a>( std::string_view path );</div>
-<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160; </div>
-<div class="line"><a name="l00034"></a><span class="lineno"><a class="line" href="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_texture.html#a815a31f2ad5164a9bc11dfe75a519e01">   34</a></span>&#160;    uint32_t <a class="code" href="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_texture.html#a815a31f2ad5164a9bc11dfe75a519e01">offset</a>;</div>
-<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160; </div>
-<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;  <span class="keyword">private</span>:</div>
-<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;    std::string path; </div>
-<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160; </div>
-<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;    vk::UniqueImageView imageView; </div>
-<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;    vk::UniqueSampler sampler;     </div>
-<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160; </div>
-<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;    <span class="keyword">static</span> uint32_t textureCounter;</div>
-<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;  };</div>
-<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;} <span class="comment">// namespace RAYEX_NAMESPACE</span></div>
-<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160; </div>
-<div class="line"><a name="l00046"></a><span class="lineno"><a class="line" href="namespacestd.html">   46</a></span>&#160;<span class="keyword">namespace </span><a class="code" href="namespacestd.html">std</a></div>
-<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;{</div>
-<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;  <span class="keyword">template</span> &lt;&gt;</div>
-<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;  <span class="keyword">struct </span>hash&lt;<a class="code" href="namespace_r_a_y_e_x___n_a_m_e_s_p_a_c_e.html">RAYEX_NAMESPACE</a>::Texture&gt;</div>
-<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;  {</div>
-<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;    <span class="keyword">auto</span> operator( )( <span class="keyword">const</span> std::shared_ptr&lt;RAYEX_NAMESPACE::Texture&gt; texture ) <span class="keyword">const</span> -&gt; <span class="keywordtype">size_t</span> { <span class="keywordflow">return</span> hash&lt;std::string&gt;( )( texture-&gt;getPath( ) ); }</div>
-<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;  };</div>
-<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;} <span class="comment">// namespace std</span></div>
-<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160; </div>
-<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;<span class="preprocessor">#endif // TEXTURE_HPP</span></div>
+<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;    vk::UniqueImageView _imageView; </div>
+<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;  };</div>
+<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;} <span class="comment">// namespace RAYEX_NAMESPACE</span></div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->
-<div class="ttc" id="aclass_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_texture_html"><div class="ttname"><a href="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_texture.html">RAYEX_NAMESPACE::Texture</a></div><div class="ttdoc">A helper class for creating ready-to-use textures.</div><div class="ttdef"><b>Definition:</b> Texture.hpp:11</div></div>
-<div class="ttc" id="aclass_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_texture_html_a815a31f2ad5164a9bc11dfe75a519e01"><div class="ttname"><a href="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_texture.html#a815a31f2ad5164a9bc11dfe75a519e01">RAYEX_NAMESPACE::Texture::offset</a></div><div class="ttdeci">uint32_t offset</div><div class="ttdef"><b>Definition:</b> Texture.hpp:34</div></div>
+<div class="ttc" id="anamespacevk_html"><div class="ttname"><a href="namespacevk.html">vk</a></div><div class="ttdef"><b>Definition:</b> Helpers.hpp:6</div></div>
+<div class="ttc" id="aclass_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_texture_html"><div class="ttname"><a href="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_texture.html">RAYEX_NAMESPACE::Texture</a></div><div class="ttdoc">A helper class for creating ready-to-use textures.</div><div class="ttdef"><b>Definition:</b> Texture.hpp:10</div></div>
 <div class="ttc" id="a_image_8hpp_html"><div class="ttname"><a href="_image_8hpp.html">Image.hpp</a></div></div>
-<div class="ttc" id="aclass_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_texture_html_a4d12a159ea5d963015649bcedb241f84"><div class="ttname"><a href="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_texture.html#a4d12a159ea5d963015649bcedb241f84">RAYEX_NAMESPACE::Texture::getImageView</a></div><div class="ttdeci">auto getImageView() -&gt; vk::ImageView</div><div class="ttdef"><b>Definition:</b> Texture.hpp:21</div></div>
-<div class="ttc" id="aclass_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_texture_html_ab60fb85070b67258d51ba665725ad92e"><div class="ttname"><a href="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_texture.html#ab60fb85070b67258d51ba665725ad92e">RAYEX_NAMESPACE::Texture::getPath</a></div><div class="ttdeci">auto getPath() const -&gt; const std::string &amp;</div><div class="ttdef"><b>Definition:</b> Texture.hpp:27</div></div>
-<div class="ttc" id="anamespace_r_a_y_e_x___n_a_m_e_s_p_a_c_e_html"><div class="ttname"><a href="namespace_r_a_y_e_x___n_a_m_e_s_p_a_c_e.html">RAYEX_NAMESPACE</a></div><div class="ttdoc">The rx namespace encapsulates every single component provided by the renderer.</div><div class="ttdef"><b>Definition:</b> Api.hpp:23</div></div>
-<div class="ttc" id="aclass_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_image_html"><div class="ttname"><a href="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_image.html">RAYEX_NAMESPACE::Image</a></div><div class="ttdoc">A wrapper class for a Vulkan image.</div><div class="ttdef"><b>Definition:</b> Image.hpp:10</div></div>
-<div class="ttc" id="anamespacestd_html"><div class="ttname"><a href="namespacestd.html">std</a></div><div class="ttdef"><b>Definition:</b> Texture.hpp:46</div></div>
-<div class="ttc" id="aclass_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_texture_html_a79ff0b73b423971bb92556b6722283b1"><div class="ttname"><a href="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_texture.html#a79ff0b73b423971bb92556b6722283b1">RAYEX_NAMESPACE::Texture::getSampler</a></div><div class="ttdeci">auto getSampler() -&gt; vk::Sampler</div><div class="ttdef"><b>Definition:</b> Texture.hpp:24</div></div>
-<div class="ttc" id="aclass_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_texture_html_aa32702a974b407f7c71f7e89f76f3654"><div class="ttname"><a href="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_texture.html#aa32702a974b407f7c71f7e89f76f3654">RAYEX_NAMESPACE::Texture::Texture</a></div><div class="ttdeci">RX_API Texture()</div></div>
+<div class="ttc" id="aclass_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_texture_html_ab60fb85070b67258d51ba665725ad92e"><div class="ttname"><a href="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_texture.html#ab60fb85070b67258d51ba665725ad92e">RAYEX_NAMESPACE::Texture::getPath</a></div><div class="ttdeci">auto getPath() const -&gt; const std::string &amp;</div><div class="ttdef"><b>Definition:</b> Texture.hpp:17</div></div>
+<div class="ttc" id="aclass_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_texture_html_a23e2e5a02dc202a05770c5157e00b639"><div class="ttname"><a href="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_texture.html#a23e2e5a02dc202a05770c5157e00b639">RAYEX_NAMESPACE::Texture::getImageView</a></div><div class="ttdeci">auto getImageView() const -&gt; vk::ImageView</div><div class="ttdef"><b>Definition:</b> Texture.hpp:14</div></div>
+<div class="ttc" id="anamespace_r_a_y_e_x___n_a_m_e_s_p_a_c_e_html"><div class="ttname"><a href="namespace_r_a_y_e_x___n_a_m_e_s_p_a_c_e.html">RAYEX_NAMESPACE</a></div><div class="ttdoc">The rx namespace encapsulates every single component provided by the renderer.</div><div class="ttdef"><b>Definition:</b> Api.hpp:22</div></div>
+<div class="ttc" id="aclass_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_image_html"><div class="ttname"><a href="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_image.html">RAYEX_NAMESPACE::Image</a></div><div class="ttdoc">A wrapper class for a Vulkan image.</div><div class="ttdef"><b>Definition:</b> Image.hpp:9</div></div>
+<div class="ttc" id="anamespacestd_html"><div class="ttname"><a href="namespacestd.html">std</a></div><div class="ttdef"><b>Definition:</b> Vertex.hpp:73</div></div>
+<div class="ttc" id="aclass_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_texture_html_ae964bda9a837a27b4a726ee27442c9fa"><div class="ttname"><a href="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_texture.html#ae964bda9a837a27b4a726ee27442c9fa">RAYEX_NAMESPACE::Texture::_offset</a></div><div class="ttdeci">uint32_t _offset</div><div class="ttdef"><b>Definition:</b> Texture.hpp:24</div></div>
 <div class="ttc" id="aclass_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_texture_html_acc3e7b81bbfd57b79f5bd65ff0ae674d"><div class="ttname"><a href="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_texture.html#acc3e7b81bbfd57b79f5bd65ff0ae674d">RAYEX_NAMESPACE::Texture::init</a></div><div class="ttdeci">void init(std::string_view path)</div><div class="ttdoc">Creates the texture.</div></div>
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->

@@ -5,25 +5,25 @@
     <includes refid="stdafx_8hpp" local="yes">pch/stdafx.hpp</includes>
     <includedby refid="_api_8hpp" local="yes">/home/n30/Repos/rayex/include/api/Api.hpp</includedby>
     <incdepgraph>
-      <node id="28">
+      <node id="30">
         <label>list</label>
       </node>
-      <node id="26">
+      <node id="28">
         <label>iomanip</label>
       </node>
-      <node id="19">
+      <node id="17">
         <label>external/glm/ext/matrix_transform.hpp</label>
       </node>
-      <node id="27">
+      <node id="29">
         <label>limits</label>
       </node>
-      <node id="22">
+      <node id="24">
         <label>filesystem</label>
       </node>
       <node id="4">
         <label>external/tinyLogger/TinyLogger.hpp</label>
       </node>
-      <node id="17">
+      <node id="23">
         <label>charconv</label>
       </node>
       <node id="3">
@@ -41,6 +41,10 @@
         </childnode>
         <childnode refid="9" relation="include">
         </childnode>
+        <childnode refid="10" relation="include">
+        </childnode>
+        <childnode refid="11" relation="include">
+        </childnode>
       </node>
       <node id="1">
         <label>/home/n30/Repos/rayex/include/api/utility/DebugMessenger.hpp</label>
@@ -48,38 +52,34 @@
         <childnode refid="2" relation="include">
         </childnode>
       </node>
-      <node id="12">
+      <node id="14">
         <label>external/ImGui/imgui_impl_sdl.h</label>
       </node>
-      <node id="18">
+      <node id="16">
         <label>external/glm/ext/matrix_clip_space.hpp</label>
       </node>
-      <node id="29">
+      <node id="31">
         <label>map</label>
       </node>
-      <node id="36">
+      <node id="37">
         <label>unordered_set</label>
       </node>
-      <node id="25">
+      <node id="27">
         <label>gsl/gsl</label>
       </node>
-      <node id="24">
+      <node id="26">
         <label>fstream</label>
       </node>
-      <node id="11">
+      <node id="13">
         <label>external/ImGui/imgui.h</label>
       </node>
-      <node id="15">
+      <node id="21">
         <label>any</label>
       </node>
       <node id="2">
         <label>pch/stdafx.hpp</label>
         <link refid="stdafx_8hpp"/>
         <childnode refid="3" relation="include">
-        </childnode>
-        <childnode refid="10" relation="include">
-        </childnode>
-        <childnode refid="11" relation="include">
         </childnode>
         <childnode refid="12" relation="include">
         </childnode>
@@ -129,74 +129,81 @@
         </childnode>
         <childnode refid="35" relation="include">
         </childnode>
+        <childnode refid="8" relation="include">
+        </childnode>
         <childnode refid="36" relation="include">
         </childnode>
         <childnode refid="37" relation="include">
         </childnode>
         <childnode refid="38" relation="include">
         </childnode>
+        <childnode refid="39" relation="include">
+        </childnode>
       </node>
-      <node id="6">
+      <node id="9">
         <label>SDL2/SDL.h</label>
       </node>
-      <node id="32">
+      <node id="34">
         <label>random</label>
       </node>
-      <node id="20">
+      <node id="18">
         <label>external/glm/glm.hpp</label>
       </node>
-      <node id="34">
+      <node id="8">
         <label>string_view</label>
       </node>
-      <node id="31">
+      <node id="33">
         <label>optional</label>
       </node>
-      <node id="38">
+      <node id="39">
         <label>vector</label>
       </node>
-      <node id="37">
+      <node id="38">
         <label>utility</label>
       </node>
-      <node id="16">
+      <node id="22">
         <label>array</label>
       </node>
-      <node id="21">
+      <node id="19">
         <label>external/glm/gtx/string_cast.hpp</label>
       </node>
-      <node id="5">
+      <node id="7">
         <label>sstream</label>
       </node>
-      <node id="13">
+      <node id="15">
         <label>external/ImGui/imgui_impl_vulkan.h</label>
       </node>
-      <node id="8">
+      <node id="6">
         <label>iostream</label>
       </node>
-      <node id="35">
+      <node id="36">
         <label>unordered_map</label>
       </node>
-      <node id="33">
+      <node id="5">
+        <label>chrono</label>
+      </node>
+      <node id="35">
         <label>set</label>
       </node>
-      <node id="10">
+      <node id="12">
         <label>base/Time.hpp</label>
         <link refid="_time_8hpp"/>
         <childnode refid="3" relation="include">
         </childnode>
       </node>
-      <node id="23">
+      <node id="25">
         <label>forward_list</label>
       </node>
-      <node id="14">
+      <node id="20">
         <label>algorithm</label>
       </node>
-      <node id="9">
+      <node id="11">
         <label>vulkan/vulkan.hpp</label>
       </node>
-      <node id="30">
+      <node id="32">
         <label>memory</label>
       </node>
-      <node id="7">
+      <node id="10">
         <label>SDL2/SDL_vulkan.h</label>
       </node>
     </incdepgraph>
@@ -225,41 +232,38 @@
     <detaileddescription>
     </detaileddescription>
     <programlisting>
-<codeline lineno="1"><highlight class="preprocessor">#ifndef<sp/>DEBUG_MESSENGER_HPP</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="2"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>DEBUG_MESSENGER_HPP</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="3"><highlight class="normal"></highlight></codeline>
-<codeline lineno="4"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;<ref refid="stdafx_8hpp" kindref="compound">pch/stdafx.hpp</ref>&quot;</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="5"><highlight class="normal"></highlight></codeline>
-<codeline lineno="6"><highlight class="normal"></highlight><highlight class="keyword">namespace<sp/></highlight><highlight class="normal"><ref refid="namespace_r_a_y_e_x___n_a_m_e_s_p_a_c_e" kindref="compound">RAYEX_NAMESPACE</ref></highlight></codeline>
-<codeline lineno="7"><highlight class="normal">{</highlight></codeline>
-<codeline lineno="12" refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_debug_messenger" refkind="compound"><highlight class="normal"><sp/><sp/></highlight><highlight class="keyword">class<sp/></highlight><highlight class="normal"><ref refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_debug_messenger" kindref="compound">DebugMessenger</ref></highlight></codeline>
-<codeline lineno="13"><highlight class="normal"><sp/><sp/>{</highlight></codeline>
-<codeline lineno="14"><highlight class="normal"><sp/><sp/></highlight><highlight class="keyword">public</highlight><highlight class="normal">:</highlight></codeline>
-<codeline lineno="15"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_debug_messenger_1a69fbeacdb2db1302c0359c274a3ad181" kindref="member">DebugMessenger</ref>(<sp/>)<sp/>=<sp/></highlight><highlight class="keywordflow">default</highlight><highlight class="normal">;</highlight></codeline>
-<codeline lineno="16"><highlight class="normal"></highlight></codeline>
-<codeline lineno="18"><highlight class="normal"><sp/><sp/><sp/><sp/>RX_API<sp/><ref refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_debug_messenger_1adccb8eef15ed60f4b90d1b61f6613858" kindref="member">~DebugMessenger</ref>(<sp/>);</highlight></codeline>
-<codeline lineno="19"><highlight class="normal"></highlight></codeline>
-<codeline lineno="20"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_debug_messenger_1a69fbeacdb2db1302c0359c274a3ad181" kindref="member">DebugMessenger</ref>(<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_debug_messenger" kindref="compound">DebugMessenger</ref>&amp;<sp/>)<sp/><sp/>=<sp/></highlight><highlight class="keyword">delete</highlight><highlight class="normal">;</highlight></codeline>
-<codeline lineno="21"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_debug_messenger_1a69fbeacdb2db1302c0359c274a3ad181" kindref="member">DebugMessenger</ref>(<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_debug_messenger" kindref="compound">DebugMessenger</ref>&amp;&amp;<sp/>)<sp/>=<sp/></highlight><highlight class="keyword">delete</highlight><highlight class="normal">;</highlight></codeline>
-<codeline lineno="22"><highlight class="normal"></highlight></codeline>
-<codeline lineno="23"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/><ref refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_debug_messenger_1adfe593687a69b8a15a8153f52701e9a0" kindref="member">operator=</ref>(<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_debug_messenger" kindref="compound">DebugMessenger</ref>&amp;<sp/>)<sp/>-&gt;<sp/><ref refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_debug_messenger" kindref="compound">DebugMessenger</ref>&amp;<sp/>=<sp/></highlight><highlight class="keyword">delete</highlight><highlight class="normal">;</highlight></codeline>
-<codeline lineno="24"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/><ref refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_debug_messenger_1adfe593687a69b8a15a8153f52701e9a0" kindref="member">operator=</ref>(<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_debug_messenger" kindref="compound">DebugMessenger</ref><sp/>&amp;&amp;<sp/>)<sp/>-&gt;<sp/><ref refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_debug_messenger" kindref="compound">DebugMessenger</ref>&amp;<sp/>=<sp/></highlight><highlight class="keyword">delete</highlight><highlight class="normal">;</highlight></codeline>
-<codeline lineno="25"><highlight class="normal"></highlight></codeline>
-<codeline lineno="29"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_debug_messenger_1ad85d8efe16f0ef5fd0a1b632efc100ba" kindref="member">init</ref>(<sp/>vk::DebugUtilsMessageSeverityFlagsEXT<sp/>messageSeverity<sp/>=<sp/>vk::DebugUtilsMessageSeverityFlagBitsEXT::eVerbose<sp/>|<sp/>vk::DebugUtilsMessageSeverityFlagBitsEXT::eWarning<sp/>|<sp/>vk::DebugUtilsMessageSeverityFlagBitsEXT::eError,<sp/>vk::DebugUtilsMessageTypeFlagsEXT<sp/>messageType<sp/>=<sp/>vk::DebugUtilsMessageTypeFlagBitsEXT::ePerformance<sp/>|<sp/>vk::DebugUtilsMessageTypeFlagBitsEXT::eValidation<sp/>);</highlight></codeline>
-<codeline lineno="30"><highlight class="normal"></highlight></codeline>
-<codeline lineno="31"><highlight class="normal"><sp/><sp/></highlight><highlight class="keyword">private</highlight><highlight class="normal">:</highlight></codeline>
-<codeline lineno="33"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>destroy(<sp/>);</highlight></codeline>
-<codeline lineno="34"><highlight class="normal"></highlight></codeline>
-<codeline lineno="35"><highlight class="normal"><sp/><sp/><sp/><sp/>vk::DebugUtilsMessengerEXT<sp/>debugMessenger;</highlight></codeline>
-<codeline lineno="36"><highlight class="normal"><sp/><sp/>};</highlight></codeline>
-<codeline lineno="37"><highlight class="normal"></highlight></codeline>
-<codeline lineno="39"><highlight class="normal"><sp/><sp/>VKAPI_ATTR<sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/>VKAPI_CALL<sp/>debugMessengerCallback(<sp/>VkDebugUtilsMessageSeverityFlagBitsEXT<sp/>messageSeverity,</highlight></codeline>
-<codeline lineno="40"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>VkDebugUtilsMessageTypeFlagsEXT<sp/>messageType,</highlight></codeline>
-<codeline lineno="41"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>VkDebugUtilsMessengerCallbackDataEXT*<sp/>callbackData,</highlight></codeline>
-<codeline lineno="42"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal">*<sp/>userData<sp/>)<sp/>-&gt;<sp/>VkBool32;</highlight></codeline>
-<codeline lineno="44"><highlight class="normal">}<sp/></highlight><highlight class="comment">//<sp/>namespace<sp/>RAYEX_NAMESPACE</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="45"><highlight class="normal"></highlight></codeline>
-<codeline lineno="46"><highlight class="normal"></highlight><highlight class="preprocessor">#endif<sp/>//<sp/>DEBUG_MESSENGER_HPP</highlight></codeline>
+<codeline lineno="1"><highlight class="preprocessor">#pragma<sp/>once</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="2"><highlight class="normal"></highlight></codeline>
+<codeline lineno="3"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;<ref refid="stdafx_8hpp" kindref="compound">pch/stdafx.hpp</ref>&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="4"><highlight class="normal"></highlight></codeline>
+<codeline lineno="5"><highlight class="normal"></highlight><highlight class="keyword">namespace<sp/></highlight><highlight class="normal"><ref refid="namespace_r_a_y_e_x___n_a_m_e_s_p_a_c_e" kindref="compound">RAYEX_NAMESPACE</ref></highlight></codeline>
+<codeline lineno="6"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="11" refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_debug_messenger" refkind="compound"><highlight class="normal"><sp/><sp/></highlight><highlight class="keyword">class<sp/></highlight><highlight class="normal"><ref refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_debug_messenger" kindref="compound">DebugMessenger</ref></highlight></codeline>
+<codeline lineno="12"><highlight class="normal"><sp/><sp/>{</highlight></codeline>
+<codeline lineno="13"><highlight class="normal"><sp/><sp/></highlight><highlight class="keyword">public</highlight><highlight class="normal">:</highlight></codeline>
+<codeline lineno="14"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_debug_messenger_1a69fbeacdb2db1302c0359c274a3ad181" kindref="member">DebugMessenger</ref>(<sp/>)<sp/>=<sp/></highlight><highlight class="keywordflow">default</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="15"><highlight class="normal"></highlight></codeline>
+<codeline lineno="17"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_debug_messenger_1a26dcf2dc1fc8b925737aa21b0fc7c278" kindref="member">~DebugMessenger</ref>(<sp/>);</highlight></codeline>
+<codeline lineno="18"><highlight class="normal"></highlight></codeline>
+<codeline lineno="19"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_debug_messenger_1a69fbeacdb2db1302c0359c274a3ad181" kindref="member">DebugMessenger</ref>(<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_debug_messenger" kindref="compound">DebugMessenger</ref>&amp;<sp/>)<sp/><sp/>=<sp/></highlight><highlight class="keyword">delete</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="20"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_debug_messenger_1a69fbeacdb2db1302c0359c274a3ad181" kindref="member">DebugMessenger</ref>(<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_debug_messenger" kindref="compound">DebugMessenger</ref>&amp;&amp;<sp/>)<sp/>=<sp/></highlight><highlight class="keyword">delete</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="21"><highlight class="normal"></highlight></codeline>
+<codeline lineno="22"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/><ref refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_debug_messenger_1adfe593687a69b8a15a8153f52701e9a0" kindref="member">operator=</ref>(<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_debug_messenger" kindref="compound">DebugMessenger</ref>&amp;<sp/>)<sp/>-&gt;<sp/><ref refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_debug_messenger" kindref="compound">DebugMessenger</ref>&amp;<sp/>=<sp/></highlight><highlight class="keyword">delete</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="23"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/><ref refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_debug_messenger_1adfe593687a69b8a15a8153f52701e9a0" kindref="member">operator=</ref>(<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_debug_messenger" kindref="compound">DebugMessenger</ref>&amp;&amp;<sp/>)<sp/>-&gt;<sp/><ref refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_debug_messenger" kindref="compound">DebugMessenger</ref>&amp;<sp/>=<sp/></highlight><highlight class="keyword">delete</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="24"><highlight class="normal"></highlight></codeline>
+<codeline lineno="28"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_debug_messenger_1ad85d8efe16f0ef5fd0a1b632efc100ba" kindref="member">init</ref>(<sp/>vk::DebugUtilsMessageSeverityFlagsEXT<sp/>messageSeverity<sp/>=<sp/>vk::DebugUtilsMessageSeverityFlagBitsEXT::eVerbose<sp/>|<sp/>vk::DebugUtilsMessageSeverityFlagBitsEXT::eWarning<sp/>|<sp/>vk::DebugUtilsMessageSeverityFlagBitsEXT::eError,<sp/>vk::DebugUtilsMessageTypeFlagsEXT<sp/>messageType<sp/>=<sp/>vk::DebugUtilsMessageTypeFlagBitsEXT::ePerformance<sp/>|<sp/>vk::DebugUtilsMessageTypeFlagBitsEXT::eValidation<sp/>);</highlight></codeline>
+<codeline lineno="29"><highlight class="normal"></highlight></codeline>
+<codeline lineno="30"><highlight class="normal"><sp/><sp/></highlight><highlight class="keyword">private</highlight><highlight class="normal">:</highlight></codeline>
+<codeline lineno="32"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>destroy(<sp/>);</highlight></codeline>
+<codeline lineno="33"><highlight class="normal"></highlight></codeline>
+<codeline lineno="34"><highlight class="normal"><sp/><sp/><sp/><sp/>vk::DebugUtilsMessengerEXT<sp/>_debugMessenger;</highlight></codeline>
+<codeline lineno="35"><highlight class="normal"><sp/><sp/>};</highlight></codeline>
+<codeline lineno="36"><highlight class="normal"></highlight></codeline>
+<codeline lineno="38"><highlight class="normal"><sp/><sp/>VKAPI_ATTR<sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/>VKAPI_CALL<sp/>debugMessengerCallback(<sp/>VkDebugUtilsMessageSeverityFlagBitsEXT<sp/>messageSeverity,</highlight></codeline>
+<codeline lineno="39"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>VkDebugUtilsMessageTypeFlagsEXT<sp/>messageType,</highlight></codeline>
+<codeline lineno="40"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>VkDebugUtilsMessengerCallbackDataEXT*<sp/>callbackData,</highlight></codeline>
+<codeline lineno="41"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal">*<sp/>userData<sp/>)<sp/>-&gt;<sp/>VkBool32;</highlight></codeline>
+<codeline lineno="43"><highlight class="normal">}<sp/></highlight><highlight class="comment">//<sp/>namespace<sp/>RAYEX_NAMESPACE</highlight><highlight class="normal"></highlight></codeline>
     </programlisting>
     <location file="/home/n30/Repos/rayex/include/api/utility/DebugMessenger.hpp"/>
   </compounddef>

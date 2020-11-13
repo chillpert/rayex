@@ -7,9 +7,7 @@ var dir_2d52abcd54c181b91d630da402923092 =
     [ "Api.hpp", "_api_8hpp.html", null ],
     [ "Bindings.hpp", "_bindings_8hpp.html", null ],
     [ "Components.hpp", "_components_8hpp.html", "_components_8hpp" ],
-    [ "Pipeline.hpp", "_pipeline_8hpp.html", [
-      [ "RayTracePushConstants", "struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_ray_trace_push_constants.html", "struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_ray_trace_push_constants" ]
-    ] ],
+    [ "Pipeline.hpp", "_pipeline_8hpp.html", null ],
     [ "RenderPass.hpp", "_render_pass_8hpp.html", null ],
     [ "Surface.hpp", "_surface_8hpp.html", null ],
     [ "Swapchain.hpp", "_swapchain_8hpp.html", "_swapchain_8hpp" ],

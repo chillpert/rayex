@@ -2,30 +2,31 @@
 <doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.17">
   <compounddef id="_scene_8hpp" kind="file" language="C++">
     <compoundname>Scene.hpp</compoundname>
+    <includes refid="_texture_8hpp" local="yes">api/image/Texture.hpp</includes>
     <includes refid="_geometry_8hpp" local="yes">base/Geometry.hpp</includes>
     <includes refid="_lights_8hpp" local="yes">base/Lights.hpp</includes>
     <includes refid="_settings_8hpp" local="yes">base/Settings.hpp</includes>
     <includedby refid="_api_8hpp" local="yes">/home/n30/Repos/rayex/include/api/Api.hpp</includedby>
     <incdepgraph>
-      <node id="30">
+      <node id="32">
         <label>list</label>
       </node>
-      <node id="28">
+      <node id="30">
         <label>iomanip</label>
       </node>
-      <node id="21">
+      <node id="19">
         <label>external/glm/ext/matrix_transform.hpp</label>
       </node>
-      <node id="29">
+      <node id="31">
         <label>limits</label>
       </node>
-      <node id="24">
+      <node id="26">
         <label>filesystem</label>
       </node>
       <node id="6">
         <label>external/tinyLogger/TinyLogger.hpp</label>
       </node>
-      <node id="19">
+      <node id="25">
         <label>charconv</label>
       </node>
       <node id="5">
@@ -43,45 +44,51 @@
         </childnode>
         <childnode refid="11" relation="include">
         </childnode>
-      </node>
-      <node id="14">
-        <label>external/ImGui/imgui_impl_sdl.h</label>
-      </node>
-      <node id="20">
-        <label>external/glm/ext/matrix_clip_space.hpp</label>
-      </node>
-      <node id="31">
-        <label>map</label>
-      </node>
-      <node id="38">
-        <label>unordered_set</label>
-      </node>
-      <node id="27">
-        <label>gsl/gsl</label>
-      </node>
-      <node id="2">
-        <label>base/Geometry.hpp</label>
-        <link refid="_geometry_8hpp"/>
-        <childnode refid="3" relation="include">
+        <childnode refid="12" relation="include">
+        </childnode>
+        <childnode refid="13" relation="include">
         </childnode>
       </node>
-      <node id="26">
+      <node id="16">
+        <label>external/ImGui/imgui_impl_sdl.h</label>
+      </node>
+      <node id="18">
+        <label>external/glm/ext/matrix_clip_space.hpp</label>
+      </node>
+      <node id="33">
+        <label>map</label>
+      </node>
+      <node id="3">
+        <label>api/image/Image.hpp</label>
+        <link refid="_image_8hpp"/>
+        <childnode refid="4" relation="include">
+        </childnode>
+      </node>
+      <node id="39">
+        <label>unordered_set</label>
+      </node>
+      <node id="29">
+        <label>gsl/gsl</label>
+      </node>
+      <node id="42">
+        <label>base/Geometry.hpp</label>
+        <link refid="_geometry_8hpp"/>
+        <childnode refid="43" relation="include">
+        </childnode>
+      </node>
+      <node id="28">
         <label>fstream</label>
       </node>
-      <node id="13">
+      <node id="15">
         <label>external/ImGui/imgui.h</label>
       </node>
-      <node id="17">
+      <node id="23">
         <label>any</label>
       </node>
       <node id="4">
         <label>pch/stdafx.hpp</label>
         <link refid="stdafx_8hpp"/>
         <childnode refid="5" relation="include">
-        </childnode>
-        <childnode refid="12" relation="include">
-        </childnode>
-        <childnode refid="13" relation="include">
         </childnode>
         <childnode refid="14" relation="include">
         </childnode>
@@ -131,65 +138,75 @@
         </childnode>
         <childnode refid="37" relation="include">
         </childnode>
+        <childnode refid="10" relation="include">
+        </childnode>
         <childnode refid="38" relation="include">
         </childnode>
         <childnode refid="39" relation="include">
         </childnode>
         <childnode refid="40" relation="include">
         </childnode>
+        <childnode refid="41" relation="include">
+        </childnode>
       </node>
-      <node id="8">
+      <node id="11">
         <label>SDL2/SDL.h</label>
       </node>
-      <node id="34">
+      <node id="36">
         <label>random</label>
       </node>
-      <node id="22">
+      <node id="20">
         <label>external/glm/glm.hpp</label>
       </node>
-      <node id="36">
+      <node id="10">
         <label>string_view</label>
       </node>
-      <node id="33">
+      <node id="35">
         <label>optional</label>
       </node>
-      <node id="40">
+      <node id="41">
         <label>vector</label>
       </node>
-      <node id="39">
+      <node id="40">
         <label>utility</label>
       </node>
-      <node id="18">
+      <node id="24">
         <label>array</label>
       </node>
-      <node id="23">
+      <node id="21">
         <label>external/glm/gtx/string_cast.hpp</label>
       </node>
-      <node id="7">
+      <node id="9">
         <label>sstream</label>
       </node>
-      <node id="3">
+      <node id="43">
         <label>api/Vertex.hpp</label>
         <link refid="_vertex_8hpp"/>
         <childnode refid="4" relation="include">
         </childnode>
-        <childnode refid="41" relation="include">
+        <childnode refid="44" relation="include">
         </childnode>
       </node>
-      <node id="42">
+      <node id="45">
         <label>base/Lights.hpp</label>
         <link refid="_lights_8hpp"/>
         <childnode refid="4" relation="include">
         </childnode>
       </node>
-      <node id="15">
+      <node id="17">
         <label>external/ImGui/imgui_impl_vulkan.h</label>
       </node>
-      <node id="10">
+      <node id="8">
         <label>iostream</label>
       </node>
-      <node id="37">
+      <node id="38">
         <label>unordered_map</label>
+      </node>
+      <node id="2">
+        <label>api/image/Texture.hpp</label>
+        <link refid="_texture_8hpp"/>
+        <childnode refid="3" relation="include">
+        </childnode>
       </node>
       <node id="1">
         <label>/home/n30/Repos/rayex/include/base/Scene.hpp</label>
@@ -198,40 +215,45 @@
         </childnode>
         <childnode refid="42" relation="include">
         </childnode>
-        <childnode refid="43" relation="include">
+        <childnode refid="45" relation="include">
+        </childnode>
+        <childnode refid="46" relation="include">
         </childnode>
       </node>
-      <node id="35">
+      <node id="7">
+        <label>chrono</label>
+      </node>
+      <node id="37">
         <label>set</label>
       </node>
-      <node id="12">
+      <node id="14">
         <label>base/Time.hpp</label>
         <link refid="_time_8hpp"/>
         <childnode refid="5" relation="include">
         </childnode>
       </node>
-      <node id="25">
+      <node id="27">
         <label>forward_list</label>
       </node>
-      <node id="16">
+      <node id="22">
         <label>algorithm</label>
       </node>
-      <node id="41">
+      <node id="44">
         <label>external/glm/gtx/hash.hpp</label>
       </node>
-      <node id="43">
+      <node id="46">
         <label>base/Settings.hpp</label>
         <link refid="_settings_8hpp"/>
         <childnode refid="4" relation="include">
         </childnode>
       </node>
-      <node id="11">
+      <node id="13">
         <label>vulkan/vulkan.hpp</label>
       </node>
-      <node id="32">
+      <node id="34">
         <label>memory</label>
       </node>
-      <node id="9">
+      <node id="12">
         <label>SDL2/SDL_vulkan.h</label>
       </node>
     </incdepgraph>
@@ -260,9 +282,9 @@
     <detaileddescription>
     </detaileddescription>
     <programlisting>
-<codeline lineno="1"><highlight class="preprocessor">#ifndef<sp/>SCENE_HPP</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="2"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>SCENE_HPP</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="3"><highlight class="normal"></highlight></codeline>
+<codeline lineno="1"><highlight class="preprocessor">#pragma<sp/>once</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="2"><highlight class="normal"></highlight></codeline>
+<codeline lineno="3"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;<ref refid="_texture_8hpp" kindref="compound">api/image/Texture.hpp</ref>&quot;</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="4"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;<ref refid="_geometry_8hpp" kindref="compound">base/Geometry.hpp</ref>&quot;</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="5"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;<ref refid="_lights_8hpp" kindref="compound">base/Lights.hpp</ref>&quot;</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="6"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;<ref refid="_settings_8hpp" kindref="compound">base/Settings.hpp</ref>&quot;</highlight><highlight class="normal"></highlight></codeline>
@@ -272,53 +294,66 @@
 <codeline lineno="10"><highlight class="normal"><sp/><sp/></highlight><highlight class="keyword">class<sp/></highlight><highlight class="normal">Api;</highlight></codeline>
 <codeline lineno="11"><highlight class="normal"><sp/><sp/></highlight><highlight class="keyword">class<sp/></highlight><highlight class="normal">Rayex;</highlight></codeline>
 <codeline lineno="12"><highlight class="normal"></highlight></codeline>
-<codeline lineno="16" refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_scene" refkind="compound"><highlight class="normal"><sp/><sp/></highlight><highlight class="keyword">class<sp/></highlight><highlight class="normal"><ref refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_scene" kindref="compound">Scene</ref></highlight></codeline>
-<codeline lineno="17"><highlight class="normal"><sp/><sp/>{</highlight></codeline>
-<codeline lineno="18"><highlight class="normal"><sp/><sp/></highlight><highlight class="keyword">public</highlight><highlight class="normal">:</highlight></codeline>
-<codeline lineno="19" refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_scene_1ae002d16199c05b908fbeecc4f7d97733" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">friend</highlight><highlight class="normal"><sp/><ref refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_scene_1ae002d16199c05b908fbeecc4f7d97733" kindref="member">Api</ref>;</highlight></codeline>
-<codeline lineno="20" refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_scene_1a03b7257e44db8e9af952484958a5346c" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">friend</highlight><highlight class="normal"><sp/><ref refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_scene_1a03b7257e44db8e9af952484958a5346c" kindref="member">Rayex</ref>;</highlight></codeline>
-<codeline lineno="21"><highlight class="normal"></highlight></codeline>
-<codeline lineno="23"><highlight class="normal"><sp/><sp/><sp/><sp/>RX_API<sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/><ref refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_scene_1ae4b222234130d400176408f69fbd518d" kindref="member">getGeometryInstances</ref>(<sp/>)<sp/>const<sp/>-&gt;<sp/>const<sp/><ref refid="namespacestd" kindref="compound">std</ref>::vector&lt;<ref refid="namespacestd" kindref="compound">std</ref>::shared_ptr&lt;<ref refid="struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_geometry_instance" kindref="compound">GeometryInstance</ref>&gt;&gt;&amp;;</highlight></codeline>
-<codeline lineno="24"><highlight class="normal"></highlight></codeline>
-<codeline lineno="28"><highlight class="normal"><sp/><sp/><sp/><sp/>RX_API<sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_scene_1a3b96a2de405909bcf142d06ffd01af51" kindref="member">submitGeometryInstance</ref>(<sp/><ref refid="namespacestd" kindref="compound">std</ref>::shared_ptr&lt;<ref refid="struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_geometry_instance" kindref="compound">GeometryInstance</ref>&gt;<sp/>geometryInstance<sp/>);</highlight></codeline>
-<codeline lineno="29"><highlight class="normal"></highlight></codeline>
-<codeline lineno="33"><highlight class="normal"><sp/><sp/><sp/><sp/>RX_API<sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_scene_1ab9ea0ed7c08d009b16df99075471e46a" kindref="member">setGeometryInstances</ref>(<sp/>const<sp/><ref refid="namespacestd" kindref="compound">std</ref>::vector&lt;<ref refid="namespacestd" kindref="compound">std</ref>::shared_ptr&lt;<ref refid="struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_geometry_instance" kindref="compound">GeometryInstance</ref>&gt;&gt;&amp;<sp/>geometryInstances<sp/>);</highlight></codeline>
-<codeline lineno="34"><highlight class="normal"></highlight></codeline>
-<codeline lineno="36"><highlight class="normal"><sp/><sp/><sp/><sp/>RX_API<sp/>auto<sp/><ref refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_scene_1a4dede48ee7babbc92564f8f8e58137d7" kindref="member">getDirectionalLights</ref>(<sp/>)<sp/>const<sp/>-&gt;<sp/>const<sp/><ref refid="namespacestd" kindref="compound">std</ref>::vector&lt;<ref refid="namespacestd" kindref="compound">std</ref>::shared_ptr&lt;<ref refid="struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_directional_light" kindref="compound">DirectionalLight</ref>&gt;&gt;&amp;;</highlight></codeline>
-<codeline lineno="37"><highlight class="normal"></highlight></codeline>
-<codeline lineno="40"><highlight class="normal"><sp/><sp/><sp/><sp/>RX_API<sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_scene_1a2431b32e7e77f9a3a3fe1c507b0ed47e" kindref="member">submitDirectionalLight</ref>(<sp/><ref refid="namespacestd" kindref="compound">std</ref>::shared_ptr&lt;<ref refid="struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_directional_light" kindref="compound">DirectionalLight</ref>&gt;<sp/>light<sp/>);</highlight></codeline>
-<codeline lineno="41"><highlight class="normal"></highlight></codeline>
-<codeline lineno="44"><highlight class="normal"><sp/><sp/><sp/><sp/>RX_API<sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_scene_1a56343cde7839a62a148fe1ff1b02b5a2" kindref="member">removeDirectionalLight</ref>(<sp/><ref refid="namespacestd" kindref="compound">std</ref>::shared_ptr&lt;<ref refid="struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_directional_light" kindref="compound">DirectionalLight</ref>&gt;<sp/>light<sp/>);</highlight></codeline>
-<codeline lineno="45"><highlight class="normal"></highlight></codeline>
-<codeline lineno="47"><highlight class="normal"><sp/><sp/><sp/><sp/>RX_API<sp/>auto<sp/><ref refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_scene_1a62830aa5d68338fa397362348d78f1ea" kindref="member">getPointLights</ref>(<sp/>)<sp/>const<sp/>-&gt;<sp/>const<sp/><ref refid="namespacestd" kindref="compound">std</ref>::vector&lt;<ref refid="namespacestd" kindref="compound">std</ref>::shared_ptr&lt;<ref refid="struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_point_light" kindref="compound">PointLight</ref>&gt;&gt;&amp;;</highlight></codeline>
-<codeline lineno="48"><highlight class="normal"></highlight></codeline>
-<codeline lineno="51"><highlight class="normal"><sp/><sp/><sp/><sp/>RX_API<sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_scene_1a28f1b782d207d9900867d88daf9dc36f" kindref="member">submitPointLight</ref>(<sp/><ref refid="namespacestd" kindref="compound">std</ref>::shared_ptr&lt;<ref refid="struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_point_light" kindref="compound">PointLight</ref>&gt;<sp/>light<sp/>);</highlight></codeline>
-<codeline lineno="52"><highlight class="normal"></highlight></codeline>
-<codeline lineno="55"><highlight class="normal"><sp/><sp/><sp/><sp/>RX_API<sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_scene_1aa1287c66b8b1ec56888839f42eb4caeb" kindref="member">removePointLight</ref>(<sp/><ref refid="namespacestd" kindref="compound">std</ref>::shared_ptr&lt;<ref refid="struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_point_light" kindref="compound">PointLight</ref>&gt;<sp/>light<sp/>);</highlight></codeline>
-<codeline lineno="56"><highlight class="normal"></highlight></codeline>
-<codeline lineno="61"><highlight class="normal"><sp/><sp/><sp/><sp/>RX_API<sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_scene_1a77d27bd137cc821c5a2f27e8a4cb08a0" kindref="member">removeGeometryInstance</ref>(<sp/><ref refid="namespacestd" kindref="compound">std</ref>::shared_ptr&lt;<ref refid="struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_geometry_instance" kindref="compound">GeometryInstance</ref>&gt;<sp/>geometryInstance<sp/>);</highlight></codeline>
-<codeline lineno="62"><highlight class="normal"></highlight></codeline>
-<codeline lineno="67"><highlight class="normal"><sp/><sp/><sp/><sp/>RX_API<sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_scene_1af63d4e9451ca633e359a58c24558b906" kindref="member">submitGeometry</ref>(<sp/><ref refid="namespacestd" kindref="compound">std</ref>::shared_ptr&lt;<ref refid="struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_geometry" kindref="compound">Geometry</ref>&gt;<sp/>geometry<sp/>);</highlight></codeline>
+<codeline lineno="17" refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_scene" refkind="compound"><highlight class="normal"><sp/><sp/></highlight><highlight class="keyword">class<sp/></highlight><highlight class="normal">RX_API<sp/><ref refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_scene" kindref="compound">Scene</ref></highlight></codeline>
+<codeline lineno="18"><highlight class="normal"><sp/><sp/>{</highlight></codeline>
+<codeline lineno="19"><highlight class="normal"><sp/><sp/></highlight><highlight class="keyword">public</highlight><highlight class="normal">:</highlight></codeline>
+<codeline lineno="20" refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_scene_1ae002d16199c05b908fbeecc4f7d97733" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">friend</highlight><highlight class="normal"><sp/><ref refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_scene_1ae002d16199c05b908fbeecc4f7d97733" kindref="member">Api</ref>;</highlight></codeline>
+<codeline lineno="21" refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_scene_1a03b7257e44db8e9af952484958a5346c" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">friend</highlight><highlight class="normal"><sp/><ref refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_scene_1a03b7257e44db8e9af952484958a5346c" kindref="member">Rayex</ref>;</highlight></codeline>
+<codeline lineno="22"><highlight class="normal"></highlight></codeline>
+<codeline lineno="24"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/>getGeometryInstances(<sp/>)<sp/>const<sp/>-&gt;<sp/>const<sp/><ref refid="namespacestd" kindref="compound">std</ref>::vector&lt;<ref refid="namespacestd" kindref="compound">std</ref>::shared_ptr&lt;<ref refid="struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_geometry_instance" kindref="compound">GeometryInstance</ref>&gt;&gt;&amp;;</highlight></codeline>
+<codeline lineno="25"><highlight class="normal"></highlight></codeline>
+<codeline lineno="29"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>submitGeometryInstance(<sp/><ref refid="namespacestd" kindref="compound">std</ref>::shared_ptr&lt;<ref refid="struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_geometry_instance" kindref="compound">GeometryInstance</ref>&gt;<sp/>geometryInstance<sp/>);</highlight></codeline>
+<codeline lineno="30"><highlight class="normal"></highlight></codeline>
+<codeline lineno="34"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>setGeometryInstances(<sp/>const<sp/><ref refid="namespacestd" kindref="compound">std</ref>::vector&lt;<ref refid="namespacestd" kindref="compound">std</ref>::shared_ptr&lt;<ref refid="struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_geometry_instance" kindref="compound">GeometryInstance</ref>&gt;&gt;&amp;<sp/>geometryInstances<sp/>);</highlight></codeline>
+<codeline lineno="35"><highlight class="normal"></highlight></codeline>
+<codeline lineno="37"><highlight class="normal"><sp/><sp/><sp/><sp/>auto<sp/>getDirectionalLights(<sp/>)<sp/>const<sp/>-&gt;<sp/>const<sp/><ref refid="namespacestd" kindref="compound">std</ref>::vector&lt;<ref refid="namespacestd" kindref="compound">std</ref>::shared_ptr&lt;<ref refid="struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_directional_light" kindref="compound">DirectionalLight</ref>&gt;&gt;&amp;;</highlight></codeline>
+<codeline lineno="38"><highlight class="normal"></highlight></codeline>
+<codeline lineno="41"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>submitDirectionalLight(<sp/><ref refid="namespacestd" kindref="compound">std</ref>::shared_ptr&lt;<ref refid="struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_directional_light" kindref="compound">DirectionalLight</ref>&gt;<sp/>light<sp/>);</highlight></codeline>
+<codeline lineno="42"><highlight class="normal"></highlight></codeline>
+<codeline lineno="45"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>removeDirectionalLight(<sp/><ref refid="namespacestd" kindref="compound">std</ref>::shared_ptr&lt;<ref refid="struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_directional_light" kindref="compound">DirectionalLight</ref>&gt;<sp/>light<sp/>);</highlight></codeline>
+<codeline lineno="46"><highlight class="normal"></highlight></codeline>
+<codeline lineno="48"><highlight class="normal"><sp/><sp/><sp/><sp/>auto<sp/>getPointLights(<sp/>)<sp/>const<sp/>-&gt;<sp/>const<sp/><ref refid="namespacestd" kindref="compound">std</ref>::vector&lt;<ref refid="namespacestd" kindref="compound">std</ref>::shared_ptr&lt;<ref refid="struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_point_light" kindref="compound">PointLight</ref>&gt;&gt;&amp;;</highlight></codeline>
+<codeline lineno="49"><highlight class="normal"></highlight></codeline>
+<codeline lineno="52"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>submitPointLight(<sp/><ref refid="namespacestd" kindref="compound">std</ref>::shared_ptr&lt;<ref refid="struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_point_light" kindref="compound">PointLight</ref>&gt;<sp/>light<sp/>);</highlight></codeline>
+<codeline lineno="53"><highlight class="normal"></highlight></codeline>
+<codeline lineno="56"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>removePointLight(<sp/><ref refid="namespacestd" kindref="compound">std</ref>::shared_ptr&lt;<ref refid="struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_point_light" kindref="compound">PointLight</ref>&gt;<sp/>light<sp/>);</highlight></codeline>
+<codeline lineno="57"><highlight class="normal"></highlight></codeline>
+<codeline lineno="62"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>removeGeometryInstance(<sp/><ref refid="namespacestd" kindref="compound">std</ref>::shared_ptr&lt;<ref refid="struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_geometry_instance" kindref="compound">GeometryInstance</ref>&gt;<sp/>geometryInstance<sp/>);</highlight></codeline>
+<codeline lineno="63"><highlight class="normal"></highlight></codeline>
+<codeline lineno="67"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>clearGeometryInstances(<sp/>);</highlight></codeline>
 <codeline lineno="68"><highlight class="normal"></highlight></codeline>
-<codeline lineno="73"><highlight class="normal"><sp/><sp/><sp/><sp/>RX_API<sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_scene_1acb21c780b3ef2f6f7f89903cd9f0451a" kindref="member">setGeometries</ref>(<sp/>const<sp/><ref refid="namespacestd" kindref="compound">std</ref>::vector&lt;<ref refid="namespacestd" kindref="compound">std</ref>::shared_ptr&lt;<ref refid="struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_geometry" kindref="compound">Geometry</ref>&gt;&gt;&amp;<sp/>geometries<sp/>);</highlight></codeline>
-<codeline lineno="74"><highlight class="normal"></highlight></codeline>
-<codeline lineno="77"><highlight class="normal"><sp/><sp/><sp/><sp/>RX_API<sp/>auto<sp/><ref refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_scene_1af86091cefb7ed4c6159610f3fa5bd56d" kindref="member">findGeometry</ref>(<sp/><ref refid="namespacestd" kindref="compound">std</ref>::string_view<sp/>path<sp/>)<sp/>const<sp/>-&gt;<sp/><ref refid="namespacestd" kindref="compound">std</ref>::shared_ptr&lt;<ref refid="struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_geometry" kindref="compound">Geometry</ref>&gt;;</highlight></codeline>
-<codeline lineno="78"><highlight class="normal"></highlight></codeline>
-<codeline lineno="79"><highlight class="normal"><sp/><sp/>private:</highlight></codeline>
-<codeline lineno="80"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="namespacestd" kindref="compound">std</ref>::vector&lt;<ref refid="namespacestd" kindref="compound">std</ref>::shared_ptr&lt;<ref refid="struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_geometry" kindref="compound">Geometry</ref>&gt;&gt;<sp/>geometries;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
-<codeline lineno="81"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="namespacestd" kindref="compound">std</ref>::vector&lt;<ref refid="namespacestd" kindref="compound">std</ref>::shared_ptr&lt;<ref refid="struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_geometry_instance" kindref="compound">GeometryInstance</ref>&gt;&gt;<sp/>geometryInstances;<sp/></highlight></codeline>
-<codeline lineno="82"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="namespacestd" kindref="compound">std</ref>::vector&lt;<ref refid="namespacestd" kindref="compound">std</ref>::shared_ptr&lt;<ref refid="struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_directional_light" kindref="compound">DirectionalLight</ref>&gt;&gt;<sp/>directionalLights;<sp/></highlight></codeline>
-<codeline lineno="83"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="namespacestd" kindref="compound">std</ref>::vector&lt;<ref refid="namespacestd" kindref="compound">std</ref>::shared_ptr&lt;<ref refid="struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_point_light" kindref="compound">PointLight</ref>&gt;&gt;<sp/>pointLights;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
-<codeline lineno="84"><highlight class="normal"></highlight></codeline>
-<codeline lineno="85"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/>uploadGeometryInstancesToBuffer<sp/>=<sp/>false;<sp/></highlight></codeline>
-<codeline lineno="86"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/>uploadDirectionalLightsToBuffer<sp/>=<sp/>false;<sp/></highlight></codeline>
-<codeline lineno="87"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/>uploadPointLightsToBuffer<sp/><sp/><sp/><sp/><sp/><sp/><sp/>=<sp/>false;<sp/></highlight></codeline>
-<codeline lineno="88"><highlight class="normal"></highlight></codeline>
-<codeline lineno="89"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_settings" kindref="compound">Settings</ref>*<sp/>settings<sp/>=<sp/></highlight><highlight class="keywordtype">nullptr</highlight><highlight class="normal">;<sp/></highlight></codeline>
-<codeline lineno="90"><highlight class="normal"><sp/><sp/>};</highlight></codeline>
-<codeline lineno="91"><highlight class="normal">}<sp/></highlight><highlight class="comment">//<sp/>namespace<sp/>RAYEX_NAMESPACE</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="92"><highlight class="normal"></highlight></codeline>
-<codeline lineno="93"><highlight class="normal"></highlight><highlight class="preprocessor">#endif<sp/>//<sp/>SCENE_HPP</highlight></codeline>
+<codeline lineno="70"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>popGeometryInstance(<sp/>);</highlight></codeline>
+<codeline lineno="71"><highlight class="normal"></highlight></codeline>
+<codeline lineno="76"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>submitGeometry(<sp/><ref refid="namespacestd" kindref="compound">std</ref>::shared_ptr&lt;<ref refid="struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_geometry" kindref="compound">Geometry</ref>&gt;<sp/>geometry<sp/>);</highlight></codeline>
+<codeline lineno="77"><highlight class="normal"></highlight></codeline>
+<codeline lineno="82"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>setGeometries(<sp/>const<sp/><ref refid="namespacestd" kindref="compound">std</ref>::vector&lt;<ref refid="namespacestd" kindref="compound">std</ref>::shared_ptr&lt;<ref refid="struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_geometry" kindref="compound">Geometry</ref>&gt;&gt;&amp;<sp/>geometries<sp/>);</highlight></codeline>
+<codeline lineno="83"><highlight class="normal"></highlight></codeline>
+<codeline lineno="86"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>removeGeometry(<sp/><ref refid="namespacestd" kindref="compound">std</ref>::shared_ptr&lt;<ref refid="struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_geometry" kindref="compound">Geometry</ref>&gt;<sp/>geometry<sp/>);</highlight></codeline>
+<codeline lineno="87"><highlight class="normal"></highlight></codeline>
+<codeline lineno="90"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>removeGeometry(<sp/>uint32_t<sp/><ref refid="namespace_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1components_1a4d5dc1bf67c9b9d8737cc266005343f1" kindref="member">geometryIndex</ref><sp/>);</highlight></codeline>
+<codeline lineno="91"><highlight class="normal"></highlight></codeline>
+<codeline lineno="93"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>popGeometry(<sp/>);</highlight></codeline>
+<codeline lineno="94"><highlight class="normal"></highlight></codeline>
+<codeline lineno="96"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>clearGeometries(<sp/>);</highlight></codeline>
+<codeline lineno="97"><highlight class="normal"></highlight></codeline>
+<codeline lineno="100"><highlight class="normal"><sp/><sp/><sp/><sp/>auto<sp/>findGeometry(<sp/><ref refid="namespacestd" kindref="compound">std</ref>::string_view<sp/>path<sp/>)<sp/>const<sp/>-&gt;<sp/><ref refid="namespacestd" kindref="compound">std</ref>::shared_ptr&lt;<ref refid="struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_geometry" kindref="compound">Geometry</ref>&gt;;</highlight></codeline>
+<codeline lineno="101"><highlight class="normal"></highlight></codeline>
+<codeline lineno="102"><highlight class="normal"><sp/><sp/>private:</highlight></codeline>
+<codeline lineno="103"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="namespacestd" kindref="compound">std</ref>::vector&lt;<ref refid="namespacestd" kindref="compound">std</ref>::shared_ptr&lt;<ref refid="struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_geometry" kindref="compound">Geometry</ref>&gt;&gt;<sp/>_geometries;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="104"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="namespacestd" kindref="compound">std</ref>::vector&lt;<ref refid="namespacestd" kindref="compound">std</ref>::shared_ptr&lt;<ref refid="struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_geometry_instance" kindref="compound">GeometryInstance</ref>&gt;&gt;<sp/>_geometryInstances;<sp/></highlight></codeline>
+<codeline lineno="105"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="namespacestd" kindref="compound">std</ref>::vector&lt;<ref refid="namespacestd" kindref="compound">std</ref>::shared_ptr&lt;<ref refid="struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_directional_light" kindref="compound">DirectionalLight</ref>&gt;&gt;<sp/>_directionalLights;<sp/></highlight></codeline>
+<codeline lineno="106"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="namespacestd" kindref="compound">std</ref>::vector&lt;<ref refid="namespacestd" kindref="compound">std</ref>::shared_ptr&lt;<ref refid="struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_point_light" kindref="compound">PointLight</ref>&gt;&gt;<sp/>_pointLights;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="107"><highlight class="normal"></highlight></codeline>
+<codeline lineno="108"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/>_uploadGeometryInstancesToBuffer<sp/>=<sp/>false;<sp/></highlight></codeline>
+<codeline lineno="109"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/>_uploadDirectionalLightsToBuffer<sp/>=<sp/>false;<sp/></highlight></codeline>
+<codeline lineno="110"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/>_uploadPointLightsToBuffer<sp/><sp/><sp/><sp/><sp/><sp/><sp/>=<sp/>false;<sp/></highlight></codeline>
+<codeline lineno="111"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/>_uploadGeometries<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>=<sp/>false;<sp/></highlight></codeline>
+<codeline lineno="112"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/>_deleteTextures<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>=<sp/>false;<sp/></highlight></codeline>
+<codeline lineno="113"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/>_dummy<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>=<sp/>false;<sp/></highlight></codeline>
+<codeline lineno="114"><highlight class="normal"></highlight></codeline>
+<codeline lineno="115"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_settings" kindref="compound">Settings</ref>*<sp/>_settings<sp/>=<sp/></highlight><highlight class="keywordtype">nullptr</highlight><highlight class="normal">;<sp/></highlight></codeline>
+<codeline lineno="116"><highlight class="normal"><sp/><sp/>};</highlight></codeline>
+<codeline lineno="117"><highlight class="normal">}<sp/></highlight><highlight class="comment">//<sp/>namespace<sp/>RAYEX_NAMESPACE</highlight><highlight class="normal"></highlight></codeline>
     </programlisting>
     <location file="/home/n30/Repos/rayex/include/base/Scene.hpp"/>
   </compounddef>

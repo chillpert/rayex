@@ -3,46 +3,12 @@
   <compounddef id="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_rayex" kind="class" language="C++" prot="public">
     <compoundname>RAYEX_NAMESPACE::Rayex</compoundname>
     <includes refid="_rayex_8hpp" local="no">Rayex.hpp</includes>
-      <sectiondef kind="public-attrib">
-      <memberdef kind="variable" id="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_rayex_1aeffc2a614d26af4c71880c5687cbb4d1" prot="public" static="no" mutable="no">
-        <type><ref refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_settings" kindref="compound">Settings</ref></type>
-        <definition>Settings RAYEX_NAMESPACE::Rayex::settings</definition>
-        <argsstring></argsstring>
-        <name>settings</name>
-        <briefdescription>
-<para>Used to modify any interal rendering settings. </para>
-        </briefdescription>
-        <detaileddescription>
-<para><simplesect kind="see"><para><ref refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_settings" kindref="compound">RAYEX_NAMESPACE::Settings</ref> </para>
-</simplesect>
-</para>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="/home/n30/Repos/rayex/include/Rayex.hpp" line="66" column="14" bodyfile="/home/n30/Repos/rayex/include/Rayex.hpp" bodystart="66" bodyend="-1"/>
-      </memberdef>
-      <memberdef kind="variable" id="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_rayex_1a1a12eb0392e6415a346d2f875290ca78" prot="public" static="no" mutable="no">
-        <type><ref refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_scene" kindref="compound">Scene</ref></type>
-        <definition>Scene RAYEX_NAMESPACE::Rayex::scene</definition>
-        <argsstring></argsstring>
-        <name>scene</name>
-        <briefdescription>
-<para>Contains all meshes, all mesh instances and all light sources. </para>
-        </briefdescription>
-        <detaileddescription>
-<para>Used to access the scene directly by adding or removing elements. </para>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="/home/n30/Repos/rayex/include/Rayex.hpp" line="70" column="11" bodyfile="/home/n30/Repos/rayex/include/Rayex.hpp" bodystart="70" bodyend="-1"/>
-      </memberdef>
-      </sectiondef>
       <sectiondef kind="private-attrib">
-      <memberdef kind="variable" id="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_rayex_1a8d7b4f11f338211cb54cd392d15a20bf" prot="private" static="no" mutable="no">
+      <memberdef kind="variable" id="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_rayex_1a9e1e7a24d7d029f3fe184a5807a2cfa9" prot="private" static="no" mutable="no">
         <type>std::shared_ptr&lt; <ref refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_window" kindref="compound">Window</ref> &gt;</type>
-        <definition>std::shared_ptr&lt;Window&gt; RAYEX_NAMESPACE::Rayex::window</definition>
+        <definition>std::shared_ptr&lt;Window&gt; RAYEX_NAMESPACE::Rayex::_window</definition>
         <argsstring></argsstring>
-        <name>window</name>
+        <name>_window</name>
         <initializer>= nullptr</initializer>
         <briefdescription>
 <para>The window used to create a surface from. </para>
@@ -51,13 +17,13 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/n30/Repos/rayex/include/Rayex.hpp" line="73" column="21" bodyfile="/home/n30/Repos/rayex/include/Rayex.hpp" bodystart="73" bodyend="-1"/>
+        <location file="/home/n30/Repos/rayex/include/Rayex.hpp" line="72" column="21" bodyfile="/home/n30/Repos/rayex/include/Rayex.hpp" bodystart="72" bodyend="-1"/>
       </memberdef>
-      <memberdef kind="variable" id="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_rayex_1af93f4c7725569d9655966c5c32816591" prot="private" static="no" mutable="no">
+      <memberdef kind="variable" id="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_rayex_1a889d56ecaa8c40953254f176cf4a0246" prot="private" static="no" mutable="no">
         <type>std::shared_ptr&lt; <ref refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_camera" kindref="compound">Camera</ref> &gt;</type>
-        <definition>std::shared_ptr&lt;Camera&gt; RAYEX_NAMESPACE::Rayex::camera</definition>
+        <definition>std::shared_ptr&lt;Camera&gt; RAYEX_NAMESPACE::Rayex::_camera</definition>
         <argsstring></argsstring>
-        <name>camera</name>
+        <name>_camera</name>
         <initializer>= nullptr</initializer>
         <briefdescription>
 <para>The camera that will be used for rendering. </para>
@@ -66,13 +32,13 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/n30/Repos/rayex/include/Rayex.hpp" line="74" column="21" bodyfile="/home/n30/Repos/rayex/include/Rayex.hpp" bodystart="74" bodyend="-1"/>
+        <location file="/home/n30/Repos/rayex/include/Rayex.hpp" line="73" column="21" bodyfile="/home/n30/Repos/rayex/include/Rayex.hpp" bodystart="73" bodyend="-1"/>
       </memberdef>
-      <memberdef kind="variable" id="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_rayex_1ac900f540394fb0bd7a994f1e38265fef" prot="private" static="no" mutable="no">
+      <memberdef kind="variable" id="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_rayex_1a8434af760e1d55af71683900926c3067" prot="private" static="no" mutable="no">
         <type>std::shared_ptr&lt; <ref refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_gui" kindref="compound">Gui</ref> &gt;</type>
-        <definition>std::shared_ptr&lt;Gui&gt; RAYEX_NAMESPACE::Rayex::gui</definition>
+        <definition>std::shared_ptr&lt;Gui&gt; RAYEX_NAMESPACE::Rayex::_gui</definition>
         <argsstring></argsstring>
-        <name>gui</name>
+        <name>_gui</name>
         <initializer>= nullptr</initializer>
         <briefdescription>
 <para>The ImGui-based GUI. </para>
@@ -81,13 +47,13 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/n30/Repos/rayex/include/Rayex.hpp" line="75" column="21" bodyfile="/home/n30/Repos/rayex/include/Rayex.hpp" bodystart="75" bodyend="-1"/>
+        <location file="/home/n30/Repos/rayex/include/Rayex.hpp" line="74" column="21" bodyfile="/home/n30/Repos/rayex/include/Rayex.hpp" bodystart="74" bodyend="-1"/>
       </memberdef>
-      <memberdef kind="variable" id="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_rayex_1af21beae4fd64c87c66846e74cfb6abc8" prot="private" static="no" mutable="no">
+      <memberdef kind="variable" id="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_rayex_1aa36d8eae1f1326c8ae2163167df7b459" prot="private" static="no" mutable="no">
         <type>std::unique_ptr&lt; <ref refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_api" kindref="compound">Api</ref> &gt;</type>
-        <definition>std::unique_ptr&lt;Api&gt; RAYEX_NAMESPACE::Rayex::api</definition>
+        <definition>std::unique_ptr&lt;Api&gt; RAYEX_NAMESPACE::Rayex::_api</definition>
         <argsstring></argsstring>
-        <name>api</name>
+        <name>_api</name>
         <initializer>= std::make_unique&lt;<ref refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_api" kindref="compound">Api</ref>&gt;( )</initializer>
         <briefdescription>
 <para>Manages Vulkan-related tasks. </para>
@@ -96,13 +62,13 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/n30/Repos/rayex/include/Rayex.hpp" line="76" column="21" bodyfile="/home/n30/Repos/rayex/include/Rayex.hpp" bodystart="76" bodyend="-1"/>
+        <location file="/home/n30/Repos/rayex/include/Rayex.hpp" line="75" column="21" bodyfile="/home/n30/Repos/rayex/include/Rayex.hpp" bodystart="75" bodyend="-1"/>
       </memberdef>
-      <memberdef kind="variable" id="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_rayex_1aa17a0b7201fdb9845cd55e1fdfc18ea5" prot="private" static="no" mutable="no">
+      <memberdef kind="variable" id="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_rayex_1a9eacef49803bd94597a4b16b287fea85" prot="private" static="no" mutable="no">
         <type>bool</type>
-        <definition>bool RAYEX_NAMESPACE::Rayex::initialized</definition>
+        <definition>bool RAYEX_NAMESPACE::Rayex::_initialized</definition>
         <argsstring></argsstring>
-        <name>initialized</name>
+        <name>_initialized</name>
         <initializer>= false</initializer>
         <briefdescription>
 <para>Keeps track of the initialization status. </para>
@@ -111,13 +77,13 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/n30/Repos/rayex/include/Rayex.hpp" line="78" column="10" bodyfile="/home/n30/Repos/rayex/include/Rayex.hpp" bodystart="78" bodyend="-1"/>
+        <location file="/home/n30/Repos/rayex/include/Rayex.hpp" line="77" column="10" bodyfile="/home/n30/Repos/rayex/include/Rayex.hpp" bodystart="77" bodyend="-1"/>
       </memberdef>
-      <memberdef kind="variable" id="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_rayex_1a8ec9e2db29cb91e2e4dcd2f7cef0b603" prot="private" static="no" mutable="no">
+      <memberdef kind="variable" id="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_rayex_1a3b5e922283cd5caf3ea0d929adf2b431" prot="private" static="no" mutable="no">
         <type>bool</type>
-        <definition>bool RAYEX_NAMESPACE::Rayex::running</definition>
+        <definition>bool RAYEX_NAMESPACE::Rayex::_running</definition>
         <argsstring></argsstring>
-        <name>running</name>
+        <name>_running</name>
         <initializer>= true</initializer>
         <briefdescription>
 <para>Keeps track of whether or not the main loop should still be continued. </para>
@@ -126,13 +92,13 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/n30/Repos/rayex/include/Rayex.hpp" line="79" column="10" bodyfile="/home/n30/Repos/rayex/include/Rayex.hpp" bodystart="79" bodyend="-1"/>
+        <location file="/home/n30/Repos/rayex/include/Rayex.hpp" line="78" column="10" bodyfile="/home/n30/Repos/rayex/include/Rayex.hpp" bodystart="78" bodyend="-1"/>
       </memberdef>
-      <memberdef kind="variable" id="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_rayex_1a1392f32dd3309f074f5defc33584e2a8" prot="private" static="no" mutable="no">
+      <memberdef kind="variable" id="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_rayex_1ad34edb049e5bbc77b2d3dd5c6edf6afe" prot="private" static="no" mutable="no">
         <type>bool</type>
-        <definition>bool RAYEX_NAMESPACE::Rayex::initScene</definition>
+        <definition>bool RAYEX_NAMESPACE::Rayex::_initScene</definition>
         <argsstring></argsstring>
-        <name>initScene</name>
+        <name>_initScene</name>
         <initializer>= true</initializer>
         <briefdescription>
 <para>Keeps track of whether or not to initialize the scene. </para>
@@ -141,13 +107,43 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/n30/Repos/rayex/include/Rayex.hpp" line="80" column="10" bodyfile="/home/n30/Repos/rayex/include/Rayex.hpp" bodystart="80" bodyend="-1"/>
+        <location file="/home/n30/Repos/rayex/include/Rayex.hpp" line="79" column="10" bodyfile="/home/n30/Repos/rayex/include/Rayex.hpp" bodystart="79" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_rayex_1a63168529fa230a7faec58368d3110306" prot="private" static="no" mutable="no">
+        <type><ref refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_settings" kindref="compound">Settings</ref></type>
+        <definition>Settings RAYEX_NAMESPACE::Rayex::_settings</definition>
+        <argsstring></argsstring>
+        <name>_settings</name>
+        <initializer>= { }</initializer>
+        <briefdescription>
+<para>Stores all of rayexe&apos;s settings. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/n30/Repos/rayex/include/Rayex.hpp" line="81" column="14" bodyfile="/home/n30/Repos/rayex/include/Rayex.hpp" bodystart="81" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_rayex_1ab81ee70ce8625a418fa9967c84508c14" prot="private" static="no" mutable="no">
+        <type><ref refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_scene" kindref="compound">Scene</ref></type>
+        <definition>Scene RAYEX_NAMESPACE::Rayex::_scene</definition>
+        <argsstring></argsstring>
+        <name>_scene</name>
+        <initializer>= { }</initializer>
+        <briefdescription>
+<para>Contains all meshes, all mesh instances and all light sources. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/n30/Repos/rayex/include/Rayex.hpp" line="82" column="11" bodyfile="/home/n30/Repos/rayex/include/Rayex.hpp" bodystart="82" bodyend="-1"/>
       </memberdef>
       </sectiondef>
       <sectiondef kind="public-func">
-      <memberdef kind="function" id="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_rayex_1a603b64e7ad5ea501077642cd417836a6" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
-        <type>RX_API void</type>
-        <definition>RX_API void RAYEX_NAMESPACE::Rayex::init</definition>
+      <memberdef kind="function" id="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_rayex_1a7ab92b96ef9c93d84dced77b0ee2cc4b" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void RAYEX_NAMESPACE::Rayex::init</definition>
         <argsstring>()</argsstring>
         <name>init</name>
         <briefdescription>
@@ -158,28 +154,28 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/n30/Repos/rayex/include/Rayex.hpp" line="33" column="17"/>
+        <location file="/home/n30/Repos/rayex/include/Rayex.hpp" line="32" column="10"/>
       </memberdef>
-      <memberdef kind="function" id="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_rayex_1ae3073d73c91714b647d95731b0a26885" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
-        <type>RX_API void</type>
-        <definition>RX_API void RAYEX_NAMESPACE::Rayex::run</definition>
+      <memberdef kind="function" id="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_rayex_1a8939d31603f84682c2309b784b3a82ac" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void RAYEX_NAMESPACE::Rayex::run</definition>
         <argsstring>()</argsstring>
         <name>run</name>
         <briefdescription>
 <para>A single function to execute all subcomponents in order. </para>
         </briefdescription>
         <detaileddescription>
-<para>This function updates the window and the camera components and calls the update and render functions of the API. <simplesect kind="see"><para><ref refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_camera_1ab53ec8ef049669ea018405645d0cb5ed" kindref="member">RAYEX_NAMESPACE::Camera::update()</ref>, <ref refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_window_1a8330a97de6371adc64b7d12419ad2a12" kindref="member">RAYEX_NAMESPACE::Window::update()</ref>, RAYEX_NAMESPACE::Api::update(), RAYEX_NAMESPACE::Api::render() </para>
+<para>This function updates the window and the camera components and calls the update and render functions of the API. <simplesect kind="see"><para><ref refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_camera_1a37c5fc1ac50d68f1494f90e5b2a569a9" kindref="member">RAYEX_NAMESPACE::Camera::update()</ref>, <ref refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_window_1ab3e217cf1525ce607cb4e99d762359c1" kindref="member">RAYEX_NAMESPACE::Window::update()</ref>, RAYEX_NAMESPACE::Api::update(), RAYEX_NAMESPACE::Api::render() </para>
 </simplesect>
 </para>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/n30/Repos/rayex/include/Rayex.hpp" line="39" column="17"/>
+        <location file="/home/n30/Repos/rayex/include/Rayex.hpp" line="38" column="10"/>
       </memberdef>
-      <memberdef kind="function" id="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_rayex_1aac607ac7aa791bc2cbd3e52cb09c609d" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
-        <type>RX_API auto</type>
-        <definition>RX_API auto RAYEX_NAMESPACE::Rayex::isRunning</definition>
+      <memberdef kind="function" id="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_rayex_1a3a1d0e4831044f2f7708365c984902bc" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>auto</type>
+        <definition>auto RAYEX_NAMESPACE::Rayex::isRunning</definition>
         <argsstring>() const -&gt; bool</argsstring>
         <name>isRunning</name>
         <briefdescription>
@@ -191,11 +187,11 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/n30/Repos/rayex/include/Rayex.hpp" line="42" column="17"/>
+        <location file="/home/n30/Repos/rayex/include/Rayex.hpp" line="41" column="10"/>
       </memberdef>
-      <memberdef kind="function" id="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_rayex_1ab58f15e6b8f034662ec7207d22296b3d" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
-        <type>RX_API void</type>
-        <definition>RX_API void RAYEX_NAMESPACE::Rayex::setCamera</definition>
+      <memberdef kind="function" id="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_rayex_1a0f4a81c790bed2dc5243288d9f9e57b4" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void RAYEX_NAMESPACE::Rayex::setCamera</definition>
         <argsstring>(std::shared_ptr&lt; Camera &gt; camera)</argsstring>
         <name>setCamera</name>
         <param>
@@ -219,11 +215,11 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/n30/Repos/rayex/include/Rayex.hpp" line="46" column="17"/>
+        <location file="/home/n30/Repos/rayex/include/Rayex.hpp" line="45" column="10"/>
       </memberdef>
-      <memberdef kind="function" id="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_rayex_1adb2244d970b239304b994fb34cb0cbd8" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
-        <type>RX_API void</type>
-        <definition>RX_API void RAYEX_NAMESPACE::Rayex::setWindow</definition>
+      <memberdef kind="function" id="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_rayex_1a364c4dcdb67baf57b1591394386ec3af" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void RAYEX_NAMESPACE::Rayex::setWindow</definition>
         <argsstring>(std::shared_ptr&lt; Window &gt; window)</argsstring>
         <name>setWindow</name>
         <param>
@@ -247,11 +243,11 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/n30/Repos/rayex/include/Rayex.hpp" line="50" column="17"/>
+        <location file="/home/n30/Repos/rayex/include/Rayex.hpp" line="49" column="10"/>
       </memberdef>
-      <memberdef kind="function" id="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_rayex_1afa47f7f0f0687a5eccd67feed5c8b2f6" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
-        <type>RX_API void</type>
-        <definition>RX_API void RAYEX_NAMESPACE::Rayex::setGui</definition>
+      <memberdef kind="function" id="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_rayex_1a9c80416850a65f7a7968f58a9b8666c3" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void RAYEX_NAMESPACE::Rayex::setGui</definition>
         <argsstring>(std::shared_ptr&lt; Gui &gt; gui)</argsstring>
         <name>setGui</name>
         <param>
@@ -275,11 +271,11 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/n30/Repos/rayex/include/Rayex.hpp" line="56" column="17"/>
+        <location file="/home/n30/Repos/rayex/include/Rayex.hpp" line="55" column="10"/>
       </memberdef>
-      <memberdef kind="function" id="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_rayex_1a3be83e8f0afa19c75faeffd7889863dc" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
-        <type>RX_API auto</type>
-        <definition>RX_API auto RAYEX_NAMESPACE::Rayex::getWindow</definition>
+      <memberdef kind="function" id="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_rayex_1a6a3eaad6809863354889f00ad3972b07" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>auto</type>
+        <definition>auto RAYEX_NAMESPACE::Rayex::getWindow</definition>
         <argsstring>() const -&gt; std::shared_ptr&lt; Window &gt;</argsstring>
         <name>getWindow</name>
         <briefdescription>
@@ -291,11 +287,11 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/n30/Repos/rayex/include/Rayex.hpp" line="59" column="25" bodyfile="/home/n30/Repos/rayex/include/Rayex.hpp" bodystart="59" bodyend="59"/>
+        <location file="/home/n30/Repos/rayex/include/Rayex.hpp" line="58" column="10" bodyfile="/home/n30/Repos/rayex/include/Rayex.hpp" bodystart="58" bodyend="58"/>
       </memberdef>
-      <memberdef kind="function" id="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_rayex_1a4550a4c84e09b25d252c74d3d2bfbcf2" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
-        <type>RX_API auto</type>
-        <definition>RX_API auto RAYEX_NAMESPACE::Rayex::getCamera</definition>
+      <memberdef kind="function" id="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_rayex_1a46b366bc4157a8cdc31738a505eabbbe" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>auto</type>
+        <definition>auto RAYEX_NAMESPACE::Rayex::getCamera</definition>
         <argsstring>() const -&gt; std::shared_ptr&lt; Camera &gt;</argsstring>
         <name>getCamera</name>
         <briefdescription>
@@ -307,7 +303,41 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/n30/Repos/rayex/include/Rayex.hpp" line="62" column="25" bodyfile="/home/n30/Repos/rayex/include/Rayex.hpp" bodystart="62" bodyend="62"/>
+        <location file="/home/n30/Repos/rayex/include/Rayex.hpp" line="61" column="10" bodyfile="/home/n30/Repos/rayex/include/Rayex.hpp" bodystart="61" bodyend="61"/>
+      </memberdef>
+      <memberdef kind="function" id="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_rayex_1af39e7ea862f949f987aae25faa392d29" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>auto</type>
+        <definition>auto RAYEX_NAMESPACE::Rayex::settings</definition>
+        <argsstring>() -&gt; Settings &amp;</argsstring>
+        <name>settings</name>
+        <briefdescription>
+<para>Used to modify any interal rendering settings. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>Returns the settings. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/n30/Repos/rayex/include/Rayex.hpp" line="65" column="10" bodyfile="/home/n30/Repos/rayex/include/Rayex.hpp" bodystart="65" bodyend="65"/>
+      </memberdef>
+      <memberdef kind="function" id="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_rayex_1ac4de2be6f21929ce1c9cebdbeef56aa6" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>auto</type>
+        <definition>auto RAYEX_NAMESPACE::Rayex::scene</definition>
+        <argsstring>() -&gt; Scene &amp;</argsstring>
+        <name>scene</name>
+        <briefdescription>
+<para>Used to access the scene directly by adding or removing elements. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>Returns the scene. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/n30/Repos/rayex/include/Rayex.hpp" line="69" column="10" bodyfile="/home/n30/Repos/rayex/include/Rayex.hpp" bodystart="69" bodyend="69"/>
       </memberdef>
       </sectiondef>
     <briefdescription>
@@ -330,45 +360,27 @@
 </programlisting> </para>
 </sect3>
     </detaileddescription>
-    <collaborationgraph>
-      <node id="3">
-        <label>RAYEX_NAMESPACE::Settings</label>
-        <link refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_settings"/>
-      </node>
-      <node id="1">
-        <label>RAYEX_NAMESPACE::Rayex</label>
-        <link refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_rayex"/>
-        <childnode refid="2" relation="usage">
-          <edgelabel>scene</edgelabel>
-        </childnode>
-        <childnode refid="3" relation="usage">
-          <edgelabel>settings</edgelabel>
-        </childnode>
-      </node>
-      <node id="2">
-        <label>RAYEX_NAMESPACE::Scene</label>
-        <link refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_scene"/>
-      </node>
-    </collaborationgraph>
-    <location file="/home/n30/Repos/rayex/include/Rayex.hpp" line="28" column="1" bodyfile="/home/n30/Repos/rayex/include/Rayex.hpp" bodystart="27" bodyend="81"/>
+    <location file="/home/n30/Repos/rayex/include/Rayex.hpp" line="27" column="1" bodyfile="/home/n30/Repos/rayex/include/Rayex.hpp" bodystart="26" bodyend="83"/>
     <listofallmembers>
-      <member refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_rayex_1af21beae4fd64c87c66846e74cfb6abc8" prot="private" virt="non-virtual"><scope>RAYEX_NAMESPACE::Rayex</scope><name>api</name></member>
-      <member refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_rayex_1af93f4c7725569d9655966c5c32816591" prot="private" virt="non-virtual"><scope>RAYEX_NAMESPACE::Rayex</scope><name>camera</name></member>
-      <member refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_rayex_1a4550a4c84e09b25d252c74d3d2bfbcf2" prot="public" virt="non-virtual"><scope>RAYEX_NAMESPACE::Rayex</scope><name>getCamera</name></member>
-      <member refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_rayex_1a3be83e8f0afa19c75faeffd7889863dc" prot="public" virt="non-virtual"><scope>RAYEX_NAMESPACE::Rayex</scope><name>getWindow</name></member>
-      <member refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_rayex_1ac900f540394fb0bd7a994f1e38265fef" prot="private" virt="non-virtual"><scope>RAYEX_NAMESPACE::Rayex</scope><name>gui</name></member>
-      <member refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_rayex_1a603b64e7ad5ea501077642cd417836a6" prot="public" virt="non-virtual"><scope>RAYEX_NAMESPACE::Rayex</scope><name>init</name></member>
-      <member refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_rayex_1aa17a0b7201fdb9845cd55e1fdfc18ea5" prot="private" virt="non-virtual"><scope>RAYEX_NAMESPACE::Rayex</scope><name>initialized</name></member>
-      <member refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_rayex_1a1392f32dd3309f074f5defc33584e2a8" prot="private" virt="non-virtual"><scope>RAYEX_NAMESPACE::Rayex</scope><name>initScene</name></member>
-      <member refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_rayex_1aac607ac7aa791bc2cbd3e52cb09c609d" prot="public" virt="non-virtual"><scope>RAYEX_NAMESPACE::Rayex</scope><name>isRunning</name></member>
-      <member refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_rayex_1ae3073d73c91714b647d95731b0a26885" prot="public" virt="non-virtual"><scope>RAYEX_NAMESPACE::Rayex</scope><name>run</name></member>
-      <member refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_rayex_1a8ec9e2db29cb91e2e4dcd2f7cef0b603" prot="private" virt="non-virtual"><scope>RAYEX_NAMESPACE::Rayex</scope><name>running</name></member>
-      <member refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_rayex_1a1a12eb0392e6415a346d2f875290ca78" prot="public" virt="non-virtual"><scope>RAYEX_NAMESPACE::Rayex</scope><name>scene</name></member>
-      <member refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_rayex_1ab58f15e6b8f034662ec7207d22296b3d" prot="public" virt="non-virtual"><scope>RAYEX_NAMESPACE::Rayex</scope><name>setCamera</name></member>
-      <member refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_rayex_1afa47f7f0f0687a5eccd67feed5c8b2f6" prot="public" virt="non-virtual"><scope>RAYEX_NAMESPACE::Rayex</scope><name>setGui</name></member>
-      <member refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_rayex_1aeffc2a614d26af4c71880c5687cbb4d1" prot="public" virt="non-virtual"><scope>RAYEX_NAMESPACE::Rayex</scope><name>settings</name></member>
-      <member refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_rayex_1adb2244d970b239304b994fb34cb0cbd8" prot="public" virt="non-virtual"><scope>RAYEX_NAMESPACE::Rayex</scope><name>setWindow</name></member>
-      <member refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_rayex_1a8d7b4f11f338211cb54cd392d15a20bf" prot="private" virt="non-virtual"><scope>RAYEX_NAMESPACE::Rayex</scope><name>window</name></member>
+      <member refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_rayex_1aa36d8eae1f1326c8ae2163167df7b459" prot="private" virt="non-virtual"><scope>RAYEX_NAMESPACE::Rayex</scope><name>_api</name></member>
+      <member refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_rayex_1a889d56ecaa8c40953254f176cf4a0246" prot="private" virt="non-virtual"><scope>RAYEX_NAMESPACE::Rayex</scope><name>_camera</name></member>
+      <member refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_rayex_1a8434af760e1d55af71683900926c3067" prot="private" virt="non-virtual"><scope>RAYEX_NAMESPACE::Rayex</scope><name>_gui</name></member>
+      <member refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_rayex_1a9eacef49803bd94597a4b16b287fea85" prot="private" virt="non-virtual"><scope>RAYEX_NAMESPACE::Rayex</scope><name>_initialized</name></member>
+      <member refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_rayex_1ad34edb049e5bbc77b2d3dd5c6edf6afe" prot="private" virt="non-virtual"><scope>RAYEX_NAMESPACE::Rayex</scope><name>_initScene</name></member>
+      <member refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_rayex_1a3b5e922283cd5caf3ea0d929adf2b431" prot="private" virt="non-virtual"><scope>RAYEX_NAMESPACE::Rayex</scope><name>_running</name></member>
+      <member refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_rayex_1ab81ee70ce8625a418fa9967c84508c14" prot="private" virt="non-virtual"><scope>RAYEX_NAMESPACE::Rayex</scope><name>_scene</name></member>
+      <member refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_rayex_1a63168529fa230a7faec58368d3110306" prot="private" virt="non-virtual"><scope>RAYEX_NAMESPACE::Rayex</scope><name>_settings</name></member>
+      <member refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_rayex_1a9e1e7a24d7d029f3fe184a5807a2cfa9" prot="private" virt="non-virtual"><scope>RAYEX_NAMESPACE::Rayex</scope><name>_window</name></member>
+      <member refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_rayex_1a46b366bc4157a8cdc31738a505eabbbe" prot="public" virt="non-virtual"><scope>RAYEX_NAMESPACE::Rayex</scope><name>getCamera</name></member>
+      <member refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_rayex_1a6a3eaad6809863354889f00ad3972b07" prot="public" virt="non-virtual"><scope>RAYEX_NAMESPACE::Rayex</scope><name>getWindow</name></member>
+      <member refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_rayex_1a7ab92b96ef9c93d84dced77b0ee2cc4b" prot="public" virt="non-virtual"><scope>RAYEX_NAMESPACE::Rayex</scope><name>init</name></member>
+      <member refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_rayex_1a3a1d0e4831044f2f7708365c984902bc" prot="public" virt="non-virtual"><scope>RAYEX_NAMESPACE::Rayex</scope><name>isRunning</name></member>
+      <member refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_rayex_1a8939d31603f84682c2309b784b3a82ac" prot="public" virt="non-virtual"><scope>RAYEX_NAMESPACE::Rayex</scope><name>run</name></member>
+      <member refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_rayex_1ac4de2be6f21929ce1c9cebdbeef56aa6" prot="public" virt="non-virtual"><scope>RAYEX_NAMESPACE::Rayex</scope><name>scene</name></member>
+      <member refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_rayex_1a0f4a81c790bed2dc5243288d9f9e57b4" prot="public" virt="non-virtual"><scope>RAYEX_NAMESPACE::Rayex</scope><name>setCamera</name></member>
+      <member refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_rayex_1a9c80416850a65f7a7968f58a9b8666c3" prot="public" virt="non-virtual"><scope>RAYEX_NAMESPACE::Rayex</scope><name>setGui</name></member>
+      <member refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_rayex_1af39e7ea862f949f987aae25faa392d29" prot="public" virt="non-virtual"><scope>RAYEX_NAMESPACE::Rayex</scope><name>settings</name></member>
+      <member refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_rayex_1a364c4dcdb67baf57b1591394386ec3af" prot="public" virt="non-virtual"><scope>RAYEX_NAMESPACE::Rayex</scope><name>setWindow</name></member>
     </listofallmembers>
   </compounddef>
 </doxygen>

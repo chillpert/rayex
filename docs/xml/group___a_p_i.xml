@@ -9,6 +9,11 @@
     <innerclass refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_buffer" prot="public">RAYEX_NAMESPACE::Buffer</innerclass>
     <innerclass refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_command_buffer" prot="public">RAYEX_NAMESPACE::CommandBuffer</innerclass>
     <innerclass refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_index_buffer" prot="public">RAYEX_NAMESPACE::IndexBuffer</innerclass>
+    <innerclass refid="struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_directional_light_s_s_b_o" prot="public">RAYEX_NAMESPACE::DirectionalLightSSBO</innerclass>
+    <innerclass refid="struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_point_light_s_s_b_o" prot="public">RAYEX_NAMESPACE::PointLightSSBO</innerclass>
+    <innerclass refid="struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_mesh_s_s_b_o" prot="public">RAYEX_NAMESPACE::MeshSSBO</innerclass>
+    <innerclass refid="struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_geometry_instance_s_s_b_o" prot="public">RAYEX_NAMESPACE::GeometryInstanceSSBO</innerclass>
+    <innerclass refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_storage_buffer" prot="public">RAYEX_NAMESPACE::StorageBuffer</innerclass>
     <innerclass refid="struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_camera_ubo" prot="public">RAYEX_NAMESPACE::CameraUbo</innerclass>
     <innerclass refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_uniform_buffer" prot="public">RAYEX_NAMESPACE::UniformBuffer</innerclass>
     <innerclass refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_vertex_buffer" prot="public">RAYEX_NAMESPACE::VertexBuffer</innerclass>

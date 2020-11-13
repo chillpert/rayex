@@ -97,7 +97,7 @@ $(document).ready(function(){initNavTree('struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1
 <a href="#pub-attribs">Public Attributes</a> &#124;
 <a href="struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_geometry-members.html">List of all members</a>  </div>
   <div class="headertitle">
-<div class="title">RAYEX_NAMESPACE::Geometry Struct Reference</div>  </div>
+<div class="title">RAYEX_NAMESPACE::Geometry Struct Reference<div class="ingroups"><a class="el" href="group___b_a_s_e.html">Base</a></div></div>  </div>
 </div><!--header-->
 <div class="contents">
 
@@ -120,9 +120,12 @@ Public Attributes</h2></td></tr>
 <tr class="memitem:ab185f8dac7b31f826e611b5a24cb30ce"><td class="memItemLeft" align="right" valign="top">uint32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_geometry.html#ab185f8dac7b31f826e611b5a24cb30ce">geometryIndex</a> = 0</td></tr>
 <tr class="memdesc:ab185f8dac7b31f826e611b5a24cb30ce"><td class="mdescLeft">&#160;</td><td class="mdescRight">A unique index required by the acceleration structures.  <a href="struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_geometry.html#ab185f8dac7b31f826e611b5a24cb30ce">More...</a><br /></td></tr>
 <tr class="separator:ab185f8dac7b31f826e611b5a24cb30ce"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a503d828c8cd38560e2506ace136b829e"><td class="memItemLeft" align="right" valign="top">std::string_view&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_geometry.html#a503d828c8cd38560e2506ace136b829e">path</a></td></tr>
-<tr class="memdesc:a503d828c8cd38560e2506ace136b829e"><td class="mdescLeft">&#160;</td><td class="mdescRight">The model's path, relative to the path to assets.  <a href="struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_geometry.html#a503d828c8cd38560e2506ace136b829e">More...</a><br /></td></tr>
-<tr class="separator:a503d828c8cd38560e2506ace136b829e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab1abb0b9dda1f43c9b2f92fe83a08588"><td class="memItemLeft" align="right" valign="top">std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_geometry.html#ab1abb0b9dda1f43c9b2f92fe83a08588">path</a> = &quot;&quot;</td></tr>
+<tr class="memdesc:ab1abb0b9dda1f43c9b2f92fe83a08588"><td class="mdescLeft">&#160;</td><td class="mdescRight">The model's path, relative to the path to assets.  <a href="struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_geometry.html#ab1abb0b9dda1f43c9b2f92fe83a08588">More...</a><br /></td></tr>
+<tr class="separator:ab1abb0b9dda1f43c9b2f92fe83a08588"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af7124a02f0e2ab740618cf30c1ea748c"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_geometry.html#af7124a02f0e2ab740618cf30c1ea748c">initialized</a> = false</td></tr>
+<tr class="memdesc:af7124a02f0e2ab740618cf30c1ea748c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Keeps track of whether or not the geometry was initialized.  <a href="struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_geometry.html#af7124a02f0e2ab740618cf30c1ea748c">More...</a><br /></td></tr>
+<tr class="separator:af7124a02f0e2ab740618cf30c1ea748c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Describes a geometry <a class="el" href="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_rayex.html" title="The main user interface.">Rayex</a> can render. </p>
@@ -160,6 +163,22 @@ Public Attributes</h2></td></tr>
 
 </div>
 </div>
+<a id="af7124a02f0e2ab740618cf30c1ea748c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af7124a02f0e2ab740618cf30c1ea748c">&#9670;&nbsp;</a></span>initialized</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool RAYEX_NAMESPACE::Geometry::initialized = false</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Keeps track of whether or not the geometry was initialized. </p>
+
+</div>
+</div>
 <a id="a7d3f368a8e407c602170ce356b3c5945"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a7d3f368a8e407c602170ce356b3c5945">&#9670;&nbsp;</a></span>meshes</h2>
 
@@ -176,14 +195,14 @@ Public Attributes</h2></td></tr>
 
 </div>
 </div>
-<a id="a503d828c8cd38560e2506ace136b829e"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a503d828c8cd38560e2506ace136b829e">&#9670;&nbsp;</a></span>path</h2>
+<a id="ab1abb0b9dda1f43c9b2f92fe83a08588"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab1abb0b9dda1f43c9b2f92fe83a08588">&#9670;&nbsp;</a></span>path</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">std::string_view RAYEX_NAMESPACE::Geometry::path</td>
+          <td class="memname">std::string RAYEX_NAMESPACE::Geometry::path = &quot;&quot;</td>
         </tr>
       </table>
 </div><div class="memdoc">

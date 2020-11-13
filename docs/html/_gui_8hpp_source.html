@@ -97,88 +97,73 @@ $(document).ready(function(){initNavTree('_gui_8hpp_source.html',''); initResiza
 <div class="title">Gui.hpp</div>  </div>
 </div><!--header-->
 <div class="contents">
-<a href="_gui_8hpp.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;<span class="preprocessor">#ifndef GUI_HPP</span></div>
-<div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;<span class="preprocessor">#define GUI_HPP</span></div>
-<div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160; </div>
-<div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="_render_pass_8hpp.html">api/RenderPass.hpp</a>&quot;</span></div>
-<div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="_surface_8hpp.html">api/Surface.hpp</a>&quot;</span></div>
-<div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="_swapchain_8hpp.html">api/Swapchain.hpp</a>&quot;</span></div>
-<div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="_command_buffer_8hpp.html">api/buffers/CommandBuffer.hpp</a>&quot;</span></div>
-<div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;<span class="preprocessor">#include &quot;external/ImGui/imgui.h&quot;</span></div>
-<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;<span class="preprocessor">#include &quot;external/ImGui/imgui_impl_vulkan.h&quot;</span></div>
-<div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160; </div>
-<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;<span class="keyword">namespace </span><a class="code" href="namespace_r_a_y_e_x___n_a_m_e_s_p_a_c_e.html">RAYEX_NAMESPACE</a></div>
-<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;{</div>
-<div class="line"><a name="l00037"></a><span class="lineno"><a class="line" href="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_gui.html">   37</a></span>&#160;  <span class="keyword">class </span><a class="code" href="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_gui.html">Gui</a></div>
-<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;  {</div>
-<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;  <span class="keyword">public</span>:</div>
-<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;    RX_API <span class="keyword">virtual</span> <a class="code" href="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_gui.html#a990162f98e24078b92f7d0fa71774ea5">~Gui</a>( ) = <span class="keywordflow">default</span>;</div>
-<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160; </div>
-<div class="line"><a name="l00045"></a><span class="lineno"><a class="line" href="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_gui.html#a8e3a6b5982891d85abb8dc8613f1d249">   45</a></span>&#160;    [[nodiscard]] <span class="keyword">auto</span> <a class="code" href="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_gui.html#a8e3a6b5982891d85abb8dc8613f1d249">getCommandBuffer</a>( uint32_t index ) <span class="keyword">const</span> -&gt; vk::CommandBuffer { <span class="keywordflow">return</span> commandBuffers.<a class="code" href="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_command_buffer.html#ab0537198c1bdf7fc123867ff04109aec">get</a>( index ); }</div>
-<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160; </div>
-<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;    RX_API <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code" href="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_gui.html#a7b99401be8a1bd42b501a09ca4c6b12e">configure</a>( );</div>
-<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160; </div>
-<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;    RX_API <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code" href="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_gui.html#acd2c8c3254cf577dbf4ccbedadd2cf4d">render</a>( );</div>
-<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160; </div>
-<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_gui.html#aa49af0a07e34a8ea5505cf9727781adf">init</a>( <span class="keyword">const</span> <a class="code" href="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_surface.html">Surface</a>* surface, vk::Extent2D swapchainImageExtent, <span class="keyword">const</span> std::vector&lt;vk::ImageView&gt;&amp; swapchainImageViews );</div>
-<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160; </div>
-<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_gui.html#a56569780013e4a2c2bcd78ce86ee5712">recreate</a>( vk::Extent2D swapchainImageExtent, <span class="keyword">const</span> std::vector&lt;vk::ImageView&gt;&amp; swapchainImageViews );</div>
-<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160; </div>
-<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;    <span class="keyword">static</span> <span class="keywordtype">void</span> <a class="code" href="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_gui.html#ab288d19532705107cc08e7d8d3608468">newFrame</a>( );</div>
+<a href="_gui_8hpp.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;<span class="preprocessor">#pragma once</span></div>
+<div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160; </div>
+<div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="_render_pass_8hpp.html">api/RenderPass.hpp</a>&quot;</span></div>
+<div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="_surface_8hpp.html">api/Surface.hpp</a>&quot;</span></div>
+<div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="_swapchain_8hpp.html">api/Swapchain.hpp</a>&quot;</span></div>
+<div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="_command_buffer_8hpp.html">api/buffers/CommandBuffer.hpp</a>&quot;</span></div>
+<div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;<span class="preprocessor">#include &quot;external/ImGui/imgui.h&quot;</span></div>
+<div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;<span class="preprocessor">#include &quot;external/ImGui/imgui_impl_vulkan.h&quot;</span></div>
+<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160; </div>
+<div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;<span class="keyword">namespace </span><a class="code" href="namespace_r_a_y_e_x___n_a_m_e_s_p_a_c_e.html">RAYEX_NAMESPACE</a></div>
+<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;{</div>
+<div class="line"><a name="l00036"></a><span class="lineno"><a class="line" href="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_gui.html">   36</a></span>&#160;  <span class="keyword">class </span>RX_API <a class="code" href="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_gui.html">Gui</a></div>
+<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;  {</div>
+<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;  <span class="keyword">public</span>:</div>
+<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;    <span class="keyword">virtual</span> ~<a class="code" href="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_gui.html">Gui</a>( ) = <span class="keywordflow">default</span>;</div>
+<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160; </div>
+<div class="line"><a name="l00044"></a><span class="lineno"><a class="line" href="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_gui.html#a8e3a6b5982891d85abb8dc8613f1d249">   44</a></span>&#160;    <span class="keyword">auto</span> <a class="code" href="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_gui.html#a8e3a6b5982891d85abb8dc8613f1d249">getCommandBuffer</a>( uint32_t index ) <span class="keyword">const</span> -&gt; vk::CommandBuffer { <span class="keywordflow">return</span> _commandBuffers.get( index ); }</div>
+<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160; </div>
+<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;    <span class="keyword">virtual</span> <span class="keywordtype">void</span> configure( );</div>
+<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160; </div>
+<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;    <span class="keyword">virtual</span> <span class="keywordtype">void</span> render( );</div>
+<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160; </div>
+<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;    <span class="keywordtype">void</span> init( SDL_Window* window, <span class="keyword">const</span> <a class="code" href="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_surface.html">Surface</a>* <a class="code" href="namespace_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1components.html#a67af4230d7523391d12e00d0a8e0e750">surface</a>, vk::Extent2D swapchainImageExtent, <span class="keyword">const</span> std::vector&lt;vk::ImageView&gt;&amp; swapchainImageViews );</div>
+<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160; </div>
+<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;    <span class="keywordtype">void</span> recreate( vk::Extent2D swapchainImageExtent, <span class="keyword">const</span> std::vector&lt;vk::ImageView&gt;&amp; swapchainImageViews );</div>
+<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160; </div>
+<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;    <span class="keywordtype">void</span> renderDrawData( uint32_t imageIndex );</div>
 <div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160; </div>
-<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;    <span class="keyword">static</span> <span class="keywordtype">void</span> <a class="code" href="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_gui.html#add19adec232909372d571a2793193fcf">endRender</a>( );</div>
+<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;    <span class="keywordtype">void</span> destroy( );</div>
 <div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160; </div>
-<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_gui.html#a1eef3b87927ad2b9823a70d0f8ae8c8b">renderDrawData</a>( uint32_t imageIndex );</div>
+<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;  <span class="keyword">private</span>:</div>
+<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;    <span class="keywordtype">void</span> initDescriptorPool( );</div>
 <div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160; </div>
-<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;    RX_API <span class="keywordtype">void</span> <a class="code" href="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_gui.html#ae529a5eabb168a4c5a8d2f6755f08461">destroy</a>( );</div>
-<div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160; </div>
-<div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;  <span class="keyword">private</span>:</div>
-<div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160;    <span class="keywordtype">void</span> initDescriptorPool( );</div>
+<div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;    <span class="keywordtype">void</span> initRenderPass( <span class="keyword">const</span> <a class="code" href="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_surface.html">Surface</a>* <a class="code" href="namespace_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1components.html#a67af4230d7523391d12e00d0a8e0e750">surface</a> );</div>
+<div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160; </div>
+<div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="namespacevk_1_1_initializer.html#a4f31060460247e2cec9de6164b6e0057">initCommandPool</a>( );</div>
 <div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160; </div>
-<div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160;    <span class="keywordtype">void</span> initRenderPass( <span class="keyword">const</span> <a class="code" href="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_surface.html">Surface</a>* surface );</div>
-<div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160; </div>
-<div class="line"><a name="l00090"></a><span class="lineno">   90</span>&#160;    <span class="keywordtype">void</span> initCommandPool( );</div>
-<div class="line"><a name="l00091"></a><span class="lineno">   91</span>&#160; </div>
-<div class="line"><a name="l00093"></a><span class="lineno">   93</span>&#160;    <span class="keywordtype">void</span> initFonts( );</div>
+<div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160;    <span class="keywordtype">void</span> initFonts( );</div>
+<div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160; </div>
+<div class="line"><a name="l00089"></a><span class="lineno">   89</span>&#160;    <span class="keywordtype">void</span> initCommandBuffers( );</div>
+<div class="line"><a name="l00090"></a><span class="lineno">   90</span>&#160; </div>
+<div class="line"><a name="l00093"></a><span class="lineno">   93</span>&#160;    <span class="keywordtype">void</span> initFramebuffers( <span class="keyword">const</span> std::vector&lt;vk::ImageView&gt;&amp; swapchainImageViews );</div>
 <div class="line"><a name="l00094"></a><span class="lineno">   94</span>&#160; </div>
-<div class="line"><a name="l00096"></a><span class="lineno">   96</span>&#160;    <span class="keywordtype">void</span> initCommandBuffers( );</div>
-<div class="line"><a name="l00097"></a><span class="lineno">   97</span>&#160; </div>
-<div class="line"><a name="l00100"></a><span class="lineno">  100</span>&#160;    <span class="keywordtype">void</span> initFramebuffers( <span class="keyword">const</span> std::vector&lt;vk::ImageView&gt;&amp; swapchainImageViews );</div>
-<div class="line"><a name="l00101"></a><span class="lineno">  101</span>&#160; </div>
-<div class="line"><a name="l00102"></a><span class="lineno">  102</span>&#160;  <span class="keyword">private</span>:</div>
-<div class="line"><a name="l00103"></a><span class="lineno">  103</span>&#160;    vk::UniqueDescriptorPool descriptorPool;         </div>
-<div class="line"><a name="l00104"></a><span class="lineno">  104</span>&#160;    vk::UniqueCommandPool commandPool;               </div>
-<div class="line"><a name="l00105"></a><span class="lineno">  105</span>&#160;    <a class="code" href="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_command_buffer.html">CommandBuffer</a> commandBuffers;                    </div>
-<div class="line"><a name="l00106"></a><span class="lineno">  106</span>&#160;    <a class="code" href="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_render_pass.html">RenderPass</a> renderPass;                           </div>
-<div class="line"><a name="l00107"></a><span class="lineno">  107</span>&#160;    std::vector&lt;vk::UniqueFramebuffer&gt; framebuffers; </div>
-<div class="line"><a name="l00108"></a><span class="lineno">  108</span>&#160; </div>
-<div class="line"><a name="l00109"></a><span class="lineno">  109</span>&#160;    vk::Extent2D swapchainImageExtent; </div>
-<div class="line"><a name="l00110"></a><span class="lineno">  110</span>&#160;  };</div>
-<div class="line"><a name="l00111"></a><span class="lineno">  111</span>&#160;} <span class="comment">// namespace RAYEX_NAMESPACE</span></div>
-<div class="line"><a name="l00112"></a><span class="lineno">  112</span>&#160; </div>
-<div class="line"><a name="l00113"></a><span class="lineno">  113</span>&#160;<span class="preprocessor">#endif // GUI_HPP</span></div>
+<div class="line"><a name="l00095"></a><span class="lineno">   95</span>&#160;  <span class="keyword">private</span>:</div>
+<div class="line"><a name="l00096"></a><span class="lineno">   96</span>&#160;    vk::UniqueDescriptorPool _descriptorPool;         </div>
+<div class="line"><a name="l00097"></a><span class="lineno">   97</span>&#160;    vk::UniqueCommandPool _commandPool;               </div>
+<div class="line"><a name="l00098"></a><span class="lineno">   98</span>&#160;    <a class="code" href="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_command_buffer.html">CommandBuffer</a> _commandBuffers;                    </div>
+<div class="line"><a name="l00099"></a><span class="lineno">   99</span>&#160;    <a class="code" href="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_render_pass.html">RenderPass</a> _renderPass;                           </div>
+<div class="line"><a name="l00100"></a><span class="lineno">  100</span>&#160;    std::vector&lt;vk::UniqueFramebuffer&gt; _framebuffers; </div>
+<div class="line"><a name="l00101"></a><span class="lineno">  101</span>&#160;    vk::Extent2D _swapchainImageExtent;               </div>
+<div class="line"><a name="l00102"></a><span class="lineno">  102</span>&#160;    SDL_Window* _window;</div>
+<div class="line"><a name="l00103"></a><span class="lineno">  103</span>&#160;  };</div>
+<div class="line"><a name="l00104"></a><span class="lineno">  104</span>&#160;} <span class="comment">// namespace RAYEX_NAMESPACE</span></div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->
-<div class="ttc" id="aclass_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_gui_html_a1eef3b87927ad2b9823a70d0f8ae8c8b"><div class="ttname"><a href="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_gui.html#a1eef3b87927ad2b9823a70d0f8ae8c8b">RAYEX_NAMESPACE::Gui::renderDrawData</a></div><div class="ttdeci">void renderDrawData(uint32_t imageIndex)</div><div class="ttdoc">Records the ImGui rendering calls to the command buffer at the given image index.</div></div>
 <div class="ttc" id="a_render_pass_8hpp_html"><div class="ttname"><a href="_render_pass_8hpp.html">RenderPass.hpp</a></div></div>
-<div class="ttc" id="aclass_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_gui_html"><div class="ttname"><a href="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_gui.html">RAYEX_NAMESPACE::Gui</a></div><div class="ttdoc">A class to create an ImGui-based GUI.</div><div class="ttdef"><b>Definition:</b> Gui.hpp:37</div></div>
-<div class="ttc" id="aclass_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_gui_html_acd2c8c3254cf577dbf4ccbedadd2cf4d"><div class="ttname"><a href="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_gui.html#acd2c8c3254cf577dbf4ccbedadd2cf4d">RAYEX_NAMESPACE::Gui::render</a></div><div class="ttdeci">virtual RX_API void render()</div><div class="ttdoc">This function is for calling the individual ImGui components, e.g.</div></div>
+<div class="ttc" id="aclass_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_gui_html"><div class="ttname"><a href="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_gui.html">RAYEX_NAMESPACE::Gui</a></div><div class="ttdoc">A class to create an ImGui-based GUI.</div><div class="ttdef"><b>Definition:</b> Gui.hpp:36</div></div>
 <div class="ttc" id="a_surface_8hpp_html"><div class="ttname"><a href="_surface_8hpp.html">Surface.hpp</a></div></div>
-<div class="ttc" id="aclass_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_gui_html_ab288d19532705107cc08e7d8d3608468"><div class="ttname"><a href="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_gui.html#ab288d19532705107cc08e7d8d3608468">RAYEX_NAMESPACE::Gui::newFrame</a></div><div class="ttdeci">static void newFrame()</div><div class="ttdoc">Creates a new ImGui frame.</div></div>
 <div class="ttc" id="aclass_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_surface_html"><div class="ttname"><a href="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_surface.html">RAYEX_NAMESPACE::Surface</a></div><div class="ttdoc">A wrapper class for a Vulkan surface.</div><div class="ttdef"><b>Definition:</b> Surface.hpp:10</div></div>
 <div class="ttc" id="a_swapchain_8hpp_html"><div class="ttname"><a href="_swapchain_8hpp.html">Swapchain.hpp</a></div></div>
-<div class="ttc" id="aclass_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_command_buffer_html"><div class="ttname"><a href="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_command_buffer.html">RAYEX_NAMESPACE::CommandBuffer</a></div><div class="ttdoc">A wrapper class for Vulkan command buffers.</div><div class="ttdef"><b>Definition:</b> CommandBuffer.hpp:10</div></div>
-<div class="ttc" id="aclass_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_gui_html_aa49af0a07e34a8ea5505cf9727781adf"><div class="ttname"><a href="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_gui.html#aa49af0a07e34a8ea5505cf9727781adf">RAYEX_NAMESPACE::Gui::init</a></div><div class="ttdeci">void init(const Surface *surface, vk::Extent2D swapchainImageExtent, const std::vector&lt; vk::ImageView &gt; &amp;swapchainImageViews)</div><div class="ttdoc">Creates the GUI and all required Vulkan components.</div></div>
-<div class="ttc" id="aclass_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_command_buffer_html_ab0537198c1bdf7fc123867ff04109aec"><div class="ttname"><a href="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_command_buffer.html#ab0537198c1bdf7fc123867ff04109aec">RAYEX_NAMESPACE::CommandBuffer::get</a></div><div class="ttdeci">auto get() const -&gt; const std::vector&lt; vk::CommandBuffer &gt;</div><div class="ttdef"><b>Definition:</b> CommandBuffer.hpp:28</div></div>
+<div class="ttc" id="aclass_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_command_buffer_html"><div class="ttname"><a href="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_command_buffer.html">RAYEX_NAMESPACE::CommandBuffer</a></div><div class="ttdoc">A wrapper class for Vulkan command buffers.</div><div class="ttdef"><b>Definition:</b> CommandBuffer.hpp:9</div></div>
 <div class="ttc" id="aclass_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_render_pass_html"><div class="ttname"><a href="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_render_pass.html">RAYEX_NAMESPACE::RenderPass</a></div><div class="ttdoc">A wrapper class for a Vulkan render pass.</div><div class="ttdef"><b>Definition:</b> RenderPass.hpp:10</div></div>
-<div class="ttc" id="anamespace_r_a_y_e_x___n_a_m_e_s_p_a_c_e_html"><div class="ttname"><a href="namespace_r_a_y_e_x___n_a_m_e_s_p_a_c_e.html">RAYEX_NAMESPACE</a></div><div class="ttdoc">The rx namespace encapsulates every single component provided by the renderer.</div><div class="ttdef"><b>Definition:</b> Api.hpp:23</div></div>
-<div class="ttc" id="aclass_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_gui_html_ae529a5eabb168a4c5a8d2f6755f08461"><div class="ttname"><a href="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_gui.html#ae529a5eabb168a4c5a8d2f6755f08461">RAYEX_NAMESPACE::Gui::destroy</a></div><div class="ttdeci">RX_API void destroy()</div><div class="ttdoc">Destroys all ImGui resources.</div></div>
+<div class="ttc" id="anamespace_r_a_y_e_x___n_a_m_e_s_p_a_c_e_html"><div class="ttname"><a href="namespace_r_a_y_e_x___n_a_m_e_s_p_a_c_e.html">RAYEX_NAMESPACE</a></div><div class="ttdoc">The rx namespace encapsulates every single component provided by the renderer.</div><div class="ttdef"><b>Definition:</b> Api.hpp:22</div></div>
 <div class="ttc" id="a_command_buffer_8hpp_html"><div class="ttname"><a href="_command_buffer_8hpp.html">CommandBuffer.hpp</a></div></div>
-<div class="ttc" id="aclass_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_gui_html_a7b99401be8a1bd42b501a09ca4c6b12e"><div class="ttname"><a href="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_gui.html#a7b99401be8a1bd42b501a09ca4c6b12e">RAYEX_NAMESPACE::Gui::configure</a></div><div class="ttdeci">virtual RX_API void configure()</div><div class="ttdoc">Used to configure all ImGui settings.</div></div>
-<div class="ttc" id="aclass_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_gui_html_a8e3a6b5982891d85abb8dc8613f1d249"><div class="ttname"><a href="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_gui.html#a8e3a6b5982891d85abb8dc8613f1d249">RAYEX_NAMESPACE::Gui::getCommandBuffer</a></div><div class="ttdeci">auto getCommandBuffer(uint32_t index) const -&gt; vk::CommandBuffer</div><div class="ttdoc">Returns the GUI's command buffer at the given index.</div><div class="ttdef"><b>Definition:</b> Gui.hpp:45</div></div>
-<div class="ttc" id="aclass_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_gui_html_a990162f98e24078b92f7d0fa71774ea5"><div class="ttname"><a href="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_gui.html#a990162f98e24078b92f7d0fa71774ea5">RAYEX_NAMESPACE::Gui::~Gui</a></div><div class="ttdeci">virtual RX_API ~Gui()=default</div></div>
-<div class="ttc" id="aclass_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_gui_html_add19adec232909372d571a2793193fcf"><div class="ttname"><a href="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_gui.html#add19adec232909372d571a2793193fcf">RAYEX_NAMESPACE::Gui::endRender</a></div><div class="ttdeci">static void endRender()</div><div class="ttdoc">Calls the actual ImGui render call.</div></div>
-<div class="ttc" id="aclass_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_gui_html_a56569780013e4a2c2bcd78ce86ee5712"><div class="ttname"><a href="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_gui.html#a56569780013e4a2c2bcd78ce86ee5712">RAYEX_NAMESPACE::Gui::recreate</a></div><div class="ttdeci">void recreate(vk::Extent2D swapchainImageExtent, const std::vector&lt; vk::ImageView &gt; &amp;swapchainImageViews)</div><div class="ttdoc">Used to recreate the GUI in case the window size was changed.</div></div>
+<div class="ttc" id="anamespace_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1components_html_a67af4230d7523391d12e00d0a8e0e750"><div class="ttname"><a href="namespace_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1components.html#a67af4230d7523391d12e00d0a8e0e750">RAYEX_NAMESPACE::components::surface</a></div><div class="ttdeci">vk::SurfaceKHR surface</div><div class="ttdoc">Reference to the Vulkan surface.</div></div>
+<div class="ttc" id="aclass_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_gui_html_a8e3a6b5982891d85abb8dc8613f1d249"><div class="ttname"><a href="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_gui.html#a8e3a6b5982891d85abb8dc8613f1d249">RAYEX_NAMESPACE::Gui::getCommandBuffer</a></div><div class="ttdeci">auto getCommandBuffer(uint32_t index) const -&gt; vk::CommandBuffer</div><div class="ttdoc">Returns the GUI's command buffer at the given index.</div><div class="ttdef"><b>Definition:</b> Gui.hpp:44</div></div>
+<div class="ttc" id="anamespacevk_1_1_initializer_html_a4f31060460247e2cec9de6164b6e0057"><div class="ttname"><a href="namespacevk_1_1_initializer.html#a4f31060460247e2cec9de6164b6e0057">vk::Initializer::initCommandPool</a></div><div class="ttdeci">auto initCommandPool(uint32_t queueFamilyIndex, CommandPoolCreateFlags flags={ }) -&gt; CommandPool</div><div class="ttdoc">Creates a command pool.</div></div>
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>

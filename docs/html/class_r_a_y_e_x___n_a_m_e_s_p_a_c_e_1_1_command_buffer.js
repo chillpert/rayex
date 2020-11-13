@@ -8,6 +8,6 @@ var class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_command_buffer =
     [ "get", "class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_command_buffer.html#ab0537198c1bdf7fc123867ff04109aec", null ],
     [ "get", "class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_command_buffer.html#adede3dee0329159e687a6b7a246ae47c", null ],
     [ "init", "class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_command_buffer.html#a967443c6c46e162ed9a248f18a4dcd8a", null ],
-    [ "reset", "class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_command_buffer.html#a7dd7be8f5fea7ebcf338f53e472450f0", null ],
-    [ "submitToQueue", "class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_command_buffer.html#ad840dfe3ad8eb1f77a21bbb9d49985d8", null ]
+    [ "reset", "class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_command_buffer.html#ad3b5f2eb9e334aeb1ce1acc170d326f3", null ],
+    [ "submitToQueue", "class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_command_buffer.html#ae47a0b4e332f7b93152e09223f858f54", null ]
 ];

@@ -8,43 +8,44 @@
     <includes refid="_vertex_buffer_8hpp" local="yes">api/buffers/VertexBuffer.hpp</includes>
     <includes refid="_acceleration_structure_8hpp" local="yes">api/raytracing/AccelerationStructure.hpp</includes>
     <includes refid="_geometry_8hpp" local="yes">base/Geometry.hpp</includes>
+    <includes refid="_settings_8hpp" local="yes">base/Settings.hpp</includes>
     <includedby refid="_api_8hpp" local="yes">/home/n30/Repos/rayex/include/api/Api.hpp</includedby>
     <incdepgraph>
-      <node id="32">
+      <node id="34">
         <label>list</label>
       </node>
-      <node id="30">
+      <node id="32">
         <label>iomanip</label>
       </node>
-      <node id="23">
+      <node id="21">
         <label>external/glm/ext/matrix_transform.hpp</label>
       </node>
-      <node id="31">
+      <node id="33">
         <label>limits</label>
       </node>
-      <node id="26">
+      <node id="28">
         <label>filesystem</label>
       </node>
       <node id="8">
         <label>external/tinyLogger/TinyLogger.hpp</label>
       </node>
-      <node id="21">
+      <node id="27">
         <label>charconv</label>
       </node>
-      <node id="50">
+      <node id="51">
         <label>api/buffers/VertexBuffer.hpp</label>
         <link refid="_vertex_buffer_8hpp"/>
-        <childnode refid="51" relation="include">
+        <childnode refid="52" relation="include">
         </childnode>
-        <childnode refid="48" relation="include">
+        <childnode refid="49" relation="include">
         </childnode>
       </node>
-      <node id="44">
+      <node id="45">
         <label>api/utility/Helpers.hpp</label>
         <link refid="_helpers_8hpp"/>
-        <childnode refid="45" relation="include">
-        </childnode>
         <childnode refid="46" relation="include">
+        </childnode>
+        <childnode refid="47" relation="include">
         </childnode>
       </node>
       <node id="7">
@@ -62,39 +63,45 @@
         </childnode>
         <childnode refid="13" relation="include">
         </childnode>
+        <childnode refid="14" relation="include">
+        </childnode>
+        <childnode refid="15" relation="include">
+        </childnode>
       </node>
       <node id="1">
         <label>/home/n30/Repos/rayex/include/api/raytracing/RayTracingBuilder.hpp</label>
         <link refid="_ray_tracing_builder_8hpp"/>
         <childnode refid="2" relation="include">
         </childnode>
-        <childnode refid="48" relation="include">
-        </childnode>
         <childnode refid="49" relation="include">
         </childnode>
         <childnode refid="50" relation="include">
         </childnode>
-        <childnode refid="46" relation="include">
+        <childnode refid="51" relation="include">
         </childnode>
-        <childnode refid="53" relation="include">
+        <childnode refid="47" relation="include">
+        </childnode>
+        <childnode refid="54" relation="include">
+        </childnode>
+        <childnode refid="55" relation="include">
         </childnode>
       </node>
-      <node id="16">
+      <node id="18">
         <label>external/ImGui/imgui_impl_sdl.h</label>
       </node>
-      <node id="22">
+      <node id="20">
         <label>external/glm/ext/matrix_clip_space.hpp</label>
       </node>
-      <node id="33">
+      <node id="35">
         <label>map</label>
       </node>
-      <node id="43">
+      <node id="44">
         <label>api/image/Image.hpp</label>
         <link refid="_image_8hpp"/>
         <childnode refid="6" relation="include">
         </childnode>
       </node>
-      <node id="40">
+      <node id="41">
         <label>unordered_set</label>
       </node>
       <node id="2">
@@ -102,43 +109,39 @@
         <link refid="_swapchain_8hpp"/>
         <childnode refid="3" relation="include">
         </childnode>
-        <childnode refid="43" relation="include">
-        </childnode>
         <childnode refid="44" relation="include">
         </childnode>
+        <childnode refid="45" relation="include">
+        </childnode>
       </node>
-      <node id="29">
+      <node id="31">
         <label>gsl/gsl</label>
       </node>
-      <node id="53">
+      <node id="54">
         <label>base/Geometry.hpp</label>
         <link refid="_geometry_8hpp"/>
-        <childnode refid="51" relation="include">
+        <childnode refid="52" relation="include">
         </childnode>
       </node>
-      <node id="28">
+      <node id="30">
         <label>fstream</label>
       </node>
-      <node id="49">
+      <node id="50">
         <label>api/buffers/IndexBuffer.hpp</label>
         <link refid="_index_buffer_8hpp"/>
-        <childnode refid="48" relation="include">
+        <childnode refid="49" relation="include">
         </childnode>
       </node>
-      <node id="15">
+      <node id="17">
         <label>external/ImGui/imgui.h</label>
       </node>
-      <node id="19">
+      <node id="25">
         <label>any</label>
       </node>
       <node id="6">
         <label>pch/stdafx.hpp</label>
         <link refid="stdafx_8hpp"/>
         <childnode refid="7" relation="include">
-        </childnode>
-        <childnode refid="14" relation="include">
-        </childnode>
-        <childnode refid="15" relation="include">
         </childnode>
         <childnode refid="16" relation="include">
         </childnode>
@@ -188,23 +191,27 @@
         </childnode>
         <childnode refid="39" relation="include">
         </childnode>
+        <childnode refid="12" relation="include">
+        </childnode>
         <childnode refid="40" relation="include">
         </childnode>
         <childnode refid="41" relation="include">
         </childnode>
         <childnode refid="42" relation="include">
         </childnode>
+        <childnode refid="43" relation="include">
+        </childnode>
       </node>
-      <node id="10">
+      <node id="13">
         <label>SDL2/SDL.h</label>
       </node>
-      <node id="36">
+      <node id="38">
         <label>random</label>
       </node>
-      <node id="24">
+      <node id="22">
         <label>external/glm/glm.hpp</label>
       </node>
-      <node id="38">
+      <node id="12">
         <label>string_view</label>
       </node>
       <node id="3">
@@ -213,18 +220,18 @@
         <childnode refid="4" relation="include">
         </childnode>
       </node>
-      <node id="35">
+      <node id="37">
         <label>optional</label>
       </node>
-      <node id="42">
+      <node id="43">
         <label>vector</label>
       </node>
-      <node id="48">
+      <node id="49">
         <label>api/buffers/Buffer.hpp</label>
         <link refid="_buffer_8hpp"/>
-        <childnode refid="47" relation="include">
+        <childnode refid="48" relation="include">
         </childnode>
-        <childnode refid="43" relation="include">
+        <childnode refid="44" relation="include">
         </childnode>
       </node>
       <node id="4">
@@ -232,21 +239,21 @@
         <link refid="_window_8hpp"/>
         <childnode refid="5" relation="include">
         </childnode>
-        <childnode refid="14" relation="include">
+        <childnode refid="16" relation="include">
         </childnode>
         <childnode refid="6" relation="include">
         </childnode>
       </node>
-      <node id="41">
+      <node id="42">
         <label>utility</label>
       </node>
-      <node id="20">
+      <node id="26">
         <label>array</label>
       </node>
-      <node id="25">
+      <node id="23">
         <label>external/glm/gtx/string_cast.hpp</label>
       </node>
-      <node id="9">
+      <node id="11">
         <label>sstream</label>
       </node>
       <node id="5">
@@ -255,65 +262,74 @@
         <childnode refid="6" relation="include">
         </childnode>
       </node>
-      <node id="51">
+      <node id="52">
         <label>api/Vertex.hpp</label>
         <link refid="_vertex_8hpp"/>
         <childnode refid="6" relation="include">
         </childnode>
-        <childnode refid="52" relation="include">
+        <childnode refid="53" relation="include">
         </childnode>
       </node>
-      <node id="17">
+      <node id="19">
         <label>external/ImGui/imgui_impl_vulkan.h</label>
       </node>
-      <node id="12">
+      <node id="10">
         <label>iostream</label>
       </node>
-      <node id="39">
+      <node id="40">
         <label>unordered_map</label>
       </node>
-      <node id="45">
+      <node id="9">
+        <label>chrono</label>
+      </node>
+      <node id="46">
         <label>api/RenderPass.hpp</label>
         <link refid="_render_pass_8hpp"/>
         <childnode refid="6" relation="include">
         </childnode>
       </node>
-      <node id="46">
+      <node id="47">
         <label>api/raytracing/AccelerationStructure.hpp</label>
         <link refid="_acceleration_structure_8hpp"/>
-        <childnode refid="47" relation="include">
+        <childnode refid="48" relation="include">
         </childnode>
         <childnode refid="6" relation="include">
         </childnode>
       </node>
-      <node id="37">
+      <node id="39">
         <label>set</label>
       </node>
-      <node id="14">
+      <node id="16">
         <label>base/Time.hpp</label>
         <link refid="_time_8hpp"/>
         <childnode refid="7" relation="include">
         </childnode>
       </node>
-      <node id="27">
+      <node id="29">
         <label>forward_list</label>
       </node>
-      <node id="18">
+      <node id="24">
         <label>algorithm</label>
       </node>
-      <node id="52">
+      <node id="53">
         <label>external/glm/gtx/hash.hpp</label>
       </node>
-      <node id="13">
+      <node id="55">
+        <label>base/Settings.hpp</label>
+        <link refid="_settings_8hpp"/>
+        <childnode refid="6" relation="include">
+        </childnode>
+      </node>
+      <node id="15">
         <label>vulkan/vulkan.hpp</label>
       </node>
-      <node id="34">
+      <node id="36">
         <label>memory</label>
       </node>
-      <node id="11">
+      <node id="14">
         <label>SDL2/SDL_vulkan.h</label>
       </node>
-      <node id="47">
+      <node id="48">
         <label>api/Components.hpp</label>
         <link refid="_components_8hpp"/>
         <childnode refid="4" relation="include">
@@ -338,6 +354,7 @@
         </childnode>
       </node>
     </invincdepgraph>
+    <innerclass refid="struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_ray_trace_push_constants" prot="public">RAYEX_NAMESPACE::RayTracePushConstants</innerclass>
     <innerclass refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_ray_tracing_builder" prot="public">RAYEX_NAMESPACE::RayTracingBuilder</innerclass>
     <innernamespace refid="namespace_r_a_y_e_x___n_a_m_e_s_p_a_c_e">RAYEX_NAMESPACE</innernamespace>
     <briefdescription>
@@ -345,75 +362,92 @@
     <detaileddescription>
     </detaileddescription>
     <programlisting>
-<codeline lineno="1"><highlight class="preprocessor">#ifndef<sp/>RAYTRACING_BUILDER_HPP</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="2"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>RAYTRACING_BUILDER_HPP</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="3"><highlight class="normal"></highlight></codeline>
-<codeline lineno="4"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;<ref refid="_swapchain_8hpp" kindref="compound">api/Swapchain.hpp</ref>&quot;</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="5"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;<ref refid="_buffer_8hpp" kindref="compound">api/buffers/Buffer.hpp</ref>&quot;</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="6"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;<ref refid="_index_buffer_8hpp" kindref="compound">api/buffers/IndexBuffer.hpp</ref>&quot;</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="7"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;<ref refid="_vertex_buffer_8hpp" kindref="compound">api/buffers/VertexBuffer.hpp</ref>&quot;</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="8"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;<ref refid="_acceleration_structure_8hpp" kindref="compound">api/raytracing/AccelerationStructure.hpp</ref>&quot;</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="9"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;<ref refid="_geometry_8hpp" kindref="compound">base/Geometry.hpp</ref>&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="1"><highlight class="preprocessor">#pragma<sp/>once</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="2"><highlight class="normal"></highlight></codeline>
+<codeline lineno="3"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;<ref refid="_swapchain_8hpp" kindref="compound">api/Swapchain.hpp</ref>&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="4"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;<ref refid="_buffer_8hpp" kindref="compound">api/buffers/Buffer.hpp</ref>&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="5"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;<ref refid="_index_buffer_8hpp" kindref="compound">api/buffers/IndexBuffer.hpp</ref>&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="6"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;<ref refid="_vertex_buffer_8hpp" kindref="compound">api/buffers/VertexBuffer.hpp</ref>&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="7"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;<ref refid="_acceleration_structure_8hpp" kindref="compound">api/raytracing/AccelerationStructure.hpp</ref>&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="8"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;<ref refid="_geometry_8hpp" kindref="compound">base/Geometry.hpp</ref>&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="9"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;<ref refid="_settings_8hpp" kindref="compound">base/Settings.hpp</ref>&quot;</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="10"><highlight class="normal"></highlight></codeline>
 <codeline lineno="11"><highlight class="normal"></highlight><highlight class="keyword">namespace<sp/></highlight><highlight class="normal"><ref refid="namespace_r_a_y_e_x___n_a_m_e_s_p_a_c_e" kindref="compound">RAYEX_NAMESPACE</ref></highlight></codeline>
 <codeline lineno="12"><highlight class="normal">{</highlight></codeline>
-<codeline lineno="15" refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_ray_tracing_builder" refkind="compound"><highlight class="normal"><sp/><sp/></highlight><highlight class="keyword">class<sp/></highlight><highlight class="normal"><ref refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_ray_tracing_builder" kindref="compound">RayTracingBuilder</ref></highlight></codeline>
-<codeline lineno="16"><highlight class="normal"><sp/><sp/>{</highlight></codeline>
-<codeline lineno="17"><highlight class="normal"><sp/><sp/></highlight><highlight class="keyword">public</highlight><highlight class="normal">:</highlight></codeline>
-<codeline lineno="18"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_ray_tracing_builder_1a3550f65cf36456128e878ca1890bd7b6" kindref="member">RayTracingBuilder</ref>(<sp/>)<sp/>=<sp/></highlight><highlight class="keywordflow">default</highlight><highlight class="normal">;</highlight></codeline>
-<codeline lineno="19"><highlight class="normal"></highlight></codeline>
-<codeline lineno="21"><highlight class="normal"><sp/><sp/><sp/><sp/>RX_API<sp/><ref refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_ray_tracing_builder_1a178bbda46383db643b95fbc3209103f7" kindref="member">~RayTracingBuilder</ref>(<sp/>);</highlight></codeline>
-<codeline lineno="22"><highlight class="normal"></highlight></codeline>
-<codeline lineno="23"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_ray_tracing_builder_1a3550f65cf36456128e878ca1890bd7b6" kindref="member">RayTracingBuilder</ref>(<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_ray_tracing_builder" kindref="compound">RayTracingBuilder</ref>&amp;<sp/>)<sp/><sp/>=<sp/></highlight><highlight class="keyword">delete</highlight><highlight class="normal">;</highlight></codeline>
-<codeline lineno="24"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_ray_tracing_builder_1a3550f65cf36456128e878ca1890bd7b6" kindref="member">RayTracingBuilder</ref>(<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_ray_tracing_builder" kindref="compound">RayTracingBuilder</ref>&amp;&amp;<sp/>)<sp/>=<sp/></highlight><highlight class="keyword">delete</highlight><highlight class="normal">;</highlight></codeline>
-<codeline lineno="25"><highlight class="normal"></highlight></codeline>
-<codeline lineno="26"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/><ref refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_ray_tracing_builder_1ab85ed5e5008b6f83a962a768926c855a" kindref="member">operator=</ref>(<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_ray_tracing_builder" kindref="compound">RayTracingBuilder</ref>&amp;<sp/>)<sp/>-&gt;<sp/><ref refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_ray_tracing_builder" kindref="compound">RayTracingBuilder</ref>&amp;<sp/>=<sp/></highlight><highlight class="keyword">delete</highlight><highlight class="normal">;</highlight></codeline>
-<codeline lineno="27"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/><ref refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_ray_tracing_builder_1ab85ed5e5008b6f83a962a768926c855a" kindref="member">operator=</ref>(<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_ray_tracing_builder" kindref="compound">RayTracingBuilder</ref><sp/>&amp;&amp;<sp/>)<sp/>-&gt;<sp/><ref refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_ray_tracing_builder" kindref="compound">RayTracingBuilder</ref>&amp;<sp/>=<sp/></highlight><highlight class="keyword">delete</highlight><highlight class="normal">;</highlight></codeline>
-<codeline lineno="28"><highlight class="normal"></highlight></codeline>
-<codeline lineno="30"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_ray_tracing_builder_1afdd8c600cef05e5e9bfd6dbb31182f4f" kindref="member">init</ref>(<sp/>);</highlight></codeline>
-<codeline lineno="31"><highlight class="normal"></highlight></codeline>
-<codeline lineno="33"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_ray_tracing_builder_1a3189e091b6301e38a325310edf894beb" kindref="member">destroy</ref>(<sp/>);</highlight></codeline>
-<codeline lineno="34"><highlight class="normal"></highlight></codeline>
-<codeline lineno="36" refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_ray_tracing_builder_1a48aa91a99a89e50b3b6209778f04057c" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/><ref refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_ray_tracing_builder_1a48aa91a99a89e50b3b6209778f04057c" kindref="member">getTlas</ref>(<sp/>)<sp/>const<sp/>-&gt;<sp/>const<sp/><ref refid="struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_tlas" kindref="compound">Tlas</ref>&amp;<sp/>{<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>this-&gt;tlas;<sp/>}</highlight></codeline>
-<codeline lineno="37"><highlight class="normal"></highlight></codeline>
-<codeline lineno="39" refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_ray_tracing_builder_1a09fe2e3ccb7a99c43ee54e5a8852f779" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/><ref refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_ray_tracing_builder_1a09fe2e3ccb7a99c43ee54e5a8852f779" kindref="member">getRtProperties</ref>(<sp/>)<sp/>const<sp/>-&gt;<sp/>const<sp/><ref refid="namespacevk" kindref="compound">vk</ref>::PhysicalDeviceRayTracingPropertiesKHR&amp;<sp/>{<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>this-&gt;rtProperties;<sp/>}</highlight></codeline>
-<codeline lineno="40"><highlight class="normal"></highlight></codeline>
-<codeline lineno="42" refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_ray_tracing_builder_1a768200b01d60ce411a687b95627195b5" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/><ref refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_ray_tracing_builder_1a768200b01d60ce411a687b95627195b5" kindref="member">getStorageImageView</ref>(<sp/>)<sp/>const<sp/>-&gt;<sp/><ref refid="namespacevk" kindref="compound">vk</ref>::ImageView<sp/>{<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>this-&gt;storageImageView.get(<sp/>);<sp/>}</highlight></codeline>
-<codeline lineno="43"><highlight class="normal"></highlight></codeline>
-<codeline lineno="48"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/><ref refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_ray_tracing_builder_1a930233f3a42a6b863b177bfc93e71777" kindref="member">modelToBlas</ref>(<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_vertex_buffer" kindref="compound">VertexBuffer</ref>&amp;<sp/>vertexBuffer,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_index_buffer" kindref="compound">IndexBuffer</ref>&amp;<sp/>indexBuffer<sp/>)<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>-&gt;<sp/><ref refid="struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_blas" kindref="compound">Blas</ref>;</highlight></codeline>
-<codeline lineno="49"><highlight class="normal"></highlight></codeline>
-<codeline lineno="53"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/><ref refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_ray_tracing_builder_1a60388a55e372319ce0d2158c7267ad56" kindref="member">instanceToVkGeometryInstanceKHR</ref>(<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_blas_instance" kindref="compound">BlasInstance</ref>&amp;<sp/><ref refid="namespace_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1ad880ea304e8ff3dab6ea5258df8970cf" kindref="member">instance</ref><sp/>)<sp/>-&gt;<sp/>vk::AccelerationStructureInstanceKHR;</highlight></codeline>
+<codeline lineno="13" refid="struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_ray_trace_push_constants" refkind="compound"><highlight class="normal"><sp/><sp/></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal"><ref refid="struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_ray_trace_push_constants" kindref="compound">RayTracePushConstants</ref></highlight></codeline>
+<codeline lineno="14"><highlight class="normal"><sp/><sp/>{</highlight></codeline>
+<codeline lineno="15" refid="struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_ray_trace_push_constants_1af365c7f54b574d8cf21a4e17563b0ed2" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>glm::vec4<sp/><ref refid="struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_ray_trace_push_constants_1af365c7f54b574d8cf21a4e17563b0ed2" kindref="member">clearColor</ref><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>=<sp/>glm::vec4(<sp/>1.0F<sp/>);</highlight></codeline>
+<codeline lineno="16" refid="struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_ray_trace_push_constants_1a15a2f71c607b65c3cd27948bc303715c" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>uint32_t<sp/><ref refid="struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_ray_trace_push_constants_1a15a2f71c607b65c3cd27948bc303715c" kindref="member">sampleRate</ref><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>=<sp/>100;</highlight></codeline>
+<codeline lineno="17" refid="struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_ray_trace_push_constants_1ad9038ea5a090bbca9bd36ac864f35959" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>uint32_t<sp/><ref refid="struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_ray_trace_push_constants_1ad9038ea5a090bbca9bd36ac864f35959" kindref="member">sampleRatePerRayGen</ref><sp/><sp/><sp/>=<sp/>1;</highlight></codeline>
+<codeline lineno="18" refid="struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_ray_trace_push_constants_1a8930d7d76a06ca1a6c6aef6b01bcc3fd" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>uint32_t<sp/><ref refid="struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_ray_trace_push_constants_1a8930d7d76a06ca1a6c6aef6b01bcc3fd" kindref="member">ssaa</ref><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>=<sp/>8;</highlight></codeline>
+<codeline lineno="19" refid="struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_ray_trace_push_constants_1acd062e237d8f91d45795f8c63ff553bd" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>uint32_t<sp/><ref refid="struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_ray_trace_push_constants_1acd062e237d8f91d45795f8c63ff553bd" kindref="member">jitterCamEnabled</ref><sp/><sp/><sp/><sp/><sp/><sp/>=<sp/>0;</highlight></codeline>
+<codeline lineno="20" refid="struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_ray_trace_push_constants_1aea21696fbb00af19958680fd258fd2bb" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>uint32_t<sp/><ref refid="struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_ray_trace_push_constants_1aea21696fbb00af19958680fd258fd2bb" kindref="member">ssaaEnabled</ref><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>=<sp/>1;</highlight></codeline>
+<codeline lineno="21" refid="struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_ray_trace_push_constants_1ad745f064a779470d7867c02705732514" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>uint32_t<sp/><ref refid="struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_ray_trace_push_constants_1ad745f064a779470d7867c02705732514" kindref="member">directionalLightCount</ref><sp/>=<sp/>0;</highlight></codeline>
+<codeline lineno="22" refid="struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_ray_trace_push_constants_1ab25bb59f1b1282d5c1bb79577afb9d93" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>uint32_t<sp/><ref refid="struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_ray_trace_push_constants_1ab25bb59f1b1282d5c1bb79577afb9d93" kindref="member">pointLightCount</ref><sp/><sp/><sp/><sp/><sp/><sp/><sp/>=<sp/>0;</highlight></codeline>
+<codeline lineno="23"><highlight class="normal"></highlight></codeline>
+<codeline lineno="24" refid="struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_ray_trace_push_constants_1a606247352a60e579c47a5547a5bb4de8" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">float</highlight><highlight class="normal"><sp/><ref refid="struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_ray_trace_push_constants_1a606247352a60e579c47a5547a5bb4de8" kindref="member">padding2</ref><sp/>=<sp/>0.0f;</highlight></codeline>
+<codeline lineno="25"><highlight class="normal"><sp/><sp/>};</highlight></codeline>
+<codeline lineno="26"><highlight class="normal"></highlight></codeline>
+<codeline lineno="29" refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_ray_tracing_builder" refkind="compound"><highlight class="normal"><sp/><sp/></highlight><highlight class="keyword">class<sp/></highlight><highlight class="normal"><ref refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_ray_tracing_builder" kindref="compound">RayTracingBuilder</ref></highlight></codeline>
+<codeline lineno="30"><highlight class="normal"><sp/><sp/>{</highlight></codeline>
+<codeline lineno="31"><highlight class="normal"><sp/><sp/></highlight><highlight class="keyword">public</highlight><highlight class="normal">:</highlight></codeline>
+<codeline lineno="32"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_ray_tracing_builder_1a3550f65cf36456128e878ca1890bd7b6" kindref="member">RayTracingBuilder</ref>(<sp/>)<sp/>=<sp/></highlight><highlight class="keywordflow">default</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="33"><highlight class="normal"></highlight></codeline>
+<codeline lineno="35"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_ray_tracing_builder_1a7ab7f534ea552b547e1334289f654642" kindref="member">~RayTracingBuilder</ref>(<sp/>);</highlight></codeline>
+<codeline lineno="36"><highlight class="normal"></highlight></codeline>
+<codeline lineno="37"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_ray_tracing_builder_1a3550f65cf36456128e878ca1890bd7b6" kindref="member">RayTracingBuilder</ref>(<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_ray_tracing_builder" kindref="compound">RayTracingBuilder</ref>&amp;<sp/>)<sp/><sp/>=<sp/></highlight><highlight class="keyword">delete</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="38"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_ray_tracing_builder_1a3550f65cf36456128e878ca1890bd7b6" kindref="member">RayTracingBuilder</ref>(<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_ray_tracing_builder" kindref="compound">RayTracingBuilder</ref>&amp;&amp;<sp/>)<sp/>=<sp/></highlight><highlight class="keyword">delete</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="39"><highlight class="normal"></highlight></codeline>
+<codeline lineno="40"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/><ref refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_ray_tracing_builder_1ab85ed5e5008b6f83a962a768926c855a" kindref="member">operator=</ref>(<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_ray_tracing_builder" kindref="compound">RayTracingBuilder</ref>&amp;<sp/>)<sp/>-&gt;<sp/><ref refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_ray_tracing_builder" kindref="compound">RayTracingBuilder</ref>&amp;<sp/>=<sp/></highlight><highlight class="keyword">delete</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="41"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/><ref refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_ray_tracing_builder_1ab85ed5e5008b6f83a962a768926c855a" kindref="member">operator=</ref>(<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_ray_tracing_builder" kindref="compound">RayTracingBuilder</ref>&amp;&amp;<sp/>)<sp/>-&gt;<sp/><ref refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_ray_tracing_builder" kindref="compound">RayTracingBuilder</ref>&amp;<sp/>=<sp/></highlight><highlight class="keyword">delete</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="42"><highlight class="normal"></highlight></codeline>
+<codeline lineno="44"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_ray_tracing_builder_1afdd8c600cef05e5e9bfd6dbb31182f4f" kindref="member">init</ref>(<sp/>);</highlight></codeline>
+<codeline lineno="45"><highlight class="normal"></highlight></codeline>
+<codeline lineno="47"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_ray_tracing_builder_1a3189e091b6301e38a325310edf894beb" kindref="member">destroy</ref>(<sp/>);</highlight></codeline>
+<codeline lineno="48"><highlight class="normal"></highlight></codeline>
+<codeline lineno="50" refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_ray_tracing_builder_1a48aa91a99a89e50b3b6209778f04057c" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/><ref refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_ray_tracing_builder_1a48aa91a99a89e50b3b6209778f04057c" kindref="member">getTlas</ref>(<sp/>)<sp/>const<sp/>-&gt;<sp/>const<sp/><ref refid="struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_tlas" kindref="compound">Tlas</ref>&amp;<sp/>{<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>_tlas;<sp/>}</highlight></codeline>
+<codeline lineno="51"><highlight class="normal"></highlight></codeline>
+<codeline lineno="53" refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_ray_tracing_builder_1a09fe2e3ccb7a99c43ee54e5a8852f779" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/><ref refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_ray_tracing_builder_1a09fe2e3ccb7a99c43ee54e5a8852f779" kindref="member">getRtProperties</ref>(<sp/>)<sp/>const<sp/>-&gt;<sp/>const<sp/><ref refid="namespacevk" kindref="compound">vk</ref>::PhysicalDeviceRayTracingPropertiesKHR&amp;<sp/>{<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>_rtProperties;<sp/>}</highlight></codeline>
 <codeline lineno="54"><highlight class="normal"></highlight></codeline>
-<codeline lineno="58"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_ray_tracing_builder_1a42b8ce4dcbd3a85f5e923c21432b529e" kindref="member">createBottomLevelAS</ref>(<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>std::vector&lt;VertexBuffer&gt;&amp;<sp/>vertexBuffers,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>std::vector&lt;IndexBuffer&gt;&amp;<sp/>indexBuffers<sp/>);</highlight></codeline>
-<codeline lineno="59"><highlight class="normal"></highlight></codeline>
-<codeline lineno="63"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_ray_tracing_builder_1af900141703e8b05e7840aa4473557708" kindref="member">buildBlas</ref>(<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>std::vector&lt;Blas&gt;&amp;<sp/>blas_,<sp/>vk::BuildAccelerationStructureFlagsKHR<sp/>flags<sp/>=<sp/>vk::BuildAccelerationStructureFlagBitsKHR::ePreferFastTrace<sp/>);</highlight></codeline>
-<codeline lineno="64"><highlight class="normal"></highlight></codeline>
-<codeline lineno="67"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_ray_tracing_builder_1a5c6a10e0124ce4356bc41f9848cf85e9" kindref="member">createTopLevelAS</ref>(<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>std::vector&lt;std::shared_ptr&lt;GeometryInstance&gt;&gt;&amp;<sp/>geometryInstances<sp/>);</highlight></codeline>
-<codeline lineno="68"><highlight class="normal"></highlight></codeline>
-<codeline lineno="72"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_ray_tracing_builder_1a90a77c2884d4831c6af205c37836cc4b" kindref="member">buildTlas</ref>(<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>std::vector&lt;BlasInstance&gt;&amp;<sp/>instances,<sp/>vk::BuildAccelerationStructureFlagsKHR<sp/>flags<sp/>=<sp/>vk::BuildAccelerationStructureFlagBitsKHR::ePreferFastTrace<sp/>);</highlight></codeline>
-<codeline lineno="73"><highlight class="normal"></highlight></codeline>
-<codeline lineno="76"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_ray_tracing_builder_1ab224b9213162354a3a540fc7708c47b5" kindref="member">createStorageImage</ref>(<sp/>vk::Extent2D<sp/>swapchainExtent<sp/>);</highlight></codeline>
-<codeline lineno="77"><highlight class="normal"></highlight></codeline>
-<codeline lineno="80"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_ray_tracing_builder_1a2dfe6cb875357e7190f0efd50106c145" kindref="member">createShaderBindingTable</ref>(<sp/>vk::Pipeline<sp/>rtPipeline<sp/>);</highlight></codeline>
-<codeline lineno="81"><highlight class="normal"></highlight></codeline>
-<codeline lineno="86"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_ray_tracing_builder_1ac62d95b180821e50c060e3722c229e7a" kindref="member">rayTrace</ref>(<sp/>vk::CommandBuffer<sp/>swapchaincommandBuffer,<sp/>vk::Image<sp/>swapchainImage,<sp/>vk::Extent2D<sp/>extent<sp/>);</highlight></codeline>
-<codeline lineno="87"><highlight class="normal"></highlight></codeline>
-<codeline lineno="88"><highlight class="normal"><sp/><sp/></highlight><highlight class="keyword">private</highlight><highlight class="normal">:</highlight></codeline>
-<codeline lineno="89"><highlight class="normal"><sp/><sp/><sp/><sp/>vk::PhysicalDeviceRayTracingPropertiesKHR<sp/>rtProperties;<sp/></highlight></codeline>
-<codeline lineno="90"><highlight class="normal"></highlight></codeline>
-<codeline lineno="91"><highlight class="normal"><sp/><sp/><sp/><sp/>std::vector&lt;Blas&gt;<sp/>blas_;<sp/></highlight></codeline>
-<codeline lineno="92"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_tlas" kindref="compound">Tlas</ref><sp/>tlas;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="56" refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_ray_tracing_builder_1a768200b01d60ce411a687b95627195b5" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/><ref refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_ray_tracing_builder_1a768200b01d60ce411a687b95627195b5" kindref="member">getStorageImageView</ref>(<sp/>)<sp/>const<sp/>-&gt;<sp/><ref refid="namespacevk" kindref="compound">vk</ref>::ImageView<sp/>{<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>_storageImageView.get(<sp/>);<sp/>}</highlight></codeline>
+<codeline lineno="57"><highlight class="normal"></highlight></codeline>
+<codeline lineno="59" refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_ray_tracing_builder_1a71070812d4d677caf2dc1b12af5efe17" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/><ref refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_ray_tracing_builder_1a71070812d4d677caf2dc1b12af5efe17" kindref="member">getPipeline</ref>(<sp/>)<sp/>const<sp/>-&gt;<sp/><ref refid="namespacevk" kindref="compound">vk</ref>::<ref refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_pipeline" kindref="compound">Pipeline</ref><sp/>{<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>_pipeline.get(<sp/>);<sp/>}</highlight></codeline>
+<codeline lineno="60"><highlight class="normal"></highlight></codeline>
+<codeline lineno="62" refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_ray_tracing_builder_1aa90251bb96a16dd99d82c10d993300dd" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/><ref refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_ray_tracing_builder_1aa90251bb96a16dd99d82c10d993300dd" kindref="member">getPipelineLayout</ref>(<sp/>)<sp/>const<sp/>-&gt;<sp/><ref refid="namespacevk" kindref="compound">vk</ref>::PipelineLayout<sp/>{<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>_layout.get(<sp/>);<sp/>};</highlight></codeline>
+<codeline lineno="63"><highlight class="normal"></highlight></codeline>
+<codeline lineno="68"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/><ref refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_ray_tracing_builder_1a930233f3a42a6b863b177bfc93e71777" kindref="member">modelToBlas</ref>(<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_vertex_buffer" kindref="compound">VertexBuffer</ref>&amp;<sp/>vertexBuffer,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_index_buffer" kindref="compound">IndexBuffer</ref>&amp;<sp/>indexBuffer<sp/>)<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>-&gt;<sp/><ref refid="struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_blas" kindref="compound">Blas</ref>;</highlight></codeline>
+<codeline lineno="69"><highlight class="normal"></highlight></codeline>
+<codeline lineno="73"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/><ref refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_ray_tracing_builder_1a60388a55e372319ce0d2158c7267ad56" kindref="member">instanceToVkGeometryInstanceKHR</ref>(<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_blas_instance" kindref="compound">BlasInstance</ref>&amp;<sp/><ref refid="group___b_a_s_e_1gad880ea304e8ff3dab6ea5258df8970cf" kindref="member">instance</ref><sp/>)<sp/>-&gt;<sp/>vk::AccelerationStructureInstanceKHR;</highlight></codeline>
+<codeline lineno="74"><highlight class="normal"></highlight></codeline>
+<codeline lineno="78"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_ray_tracing_builder_1a42b8ce4dcbd3a85f5e923c21432b529e" kindref="member">createBottomLevelAS</ref>(<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>std::vector&lt;VertexBuffer&gt;&amp;<sp/>vertexBuffers,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>std::vector&lt;IndexBuffer&gt;&amp;<sp/>indexBuffers<sp/>);</highlight></codeline>
+<codeline lineno="79"><highlight class="normal"></highlight></codeline>
+<codeline lineno="83"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_ray_tracing_builder_1af900141703e8b05e7840aa4473557708" kindref="member">buildBlas</ref>(<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>std::vector&lt;Blas&gt;&amp;<sp/>blas_,<sp/>vk::BuildAccelerationStructureFlagsKHR<sp/>flags<sp/>=<sp/>vk::BuildAccelerationStructureFlagBitsKHR::ePreferFastTrace<sp/>);</highlight></codeline>
+<codeline lineno="84"><highlight class="normal"></highlight></codeline>
+<codeline lineno="87"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_ray_tracing_builder_1a5c6a10e0124ce4356bc41f9848cf85e9" kindref="member">createTopLevelAS</ref>(<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>std::vector&lt;std::shared_ptr&lt;GeometryInstance&gt;&gt;&amp;<sp/>geometryInstances<sp/>);</highlight></codeline>
+<codeline lineno="88"><highlight class="normal"></highlight></codeline>
+<codeline lineno="92"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_ray_tracing_builder_1a90a77c2884d4831c6af205c37836cc4b" kindref="member">buildTlas</ref>(<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>std::vector&lt;BlasInstance&gt;&amp;<sp/>instances,<sp/>vk::BuildAccelerationStructureFlagsKHR<sp/>flags<sp/>=<sp/>vk::BuildAccelerationStructureFlagBitsKHR::ePreferFastTrace<sp/>);</highlight></codeline>
 <codeline lineno="93"><highlight class="normal"></highlight></codeline>
-<codeline lineno="94"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_buffer" kindref="compound">Buffer</ref><sp/>instanceBuffer;<sp/></highlight></codeline>
-<codeline lineno="95"><highlight class="normal"></highlight></codeline>
-<codeline lineno="96"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_buffer" kindref="compound">Buffer</ref><sp/>sbtBuffer;<sp/></highlight></codeline>
+<codeline lineno="96"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_ray_tracing_builder_1ab224b9213162354a3a540fc7708c47b5" kindref="member">createStorageImage</ref>(<sp/>vk::Extent2D<sp/>swapchainExtent<sp/>);</highlight></codeline>
 <codeline lineno="97"><highlight class="normal"></highlight></codeline>
-<codeline lineno="98"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_image" kindref="compound">Image</ref><sp/>storageImage;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
-<codeline lineno="99"><highlight class="normal"><sp/><sp/><sp/><sp/>vk::UniqueImageView<sp/>storageImageView;<sp/></highlight></codeline>
-<codeline lineno="100"><highlight class="normal"><sp/><sp/>};</highlight></codeline>
-<codeline lineno="101"><highlight class="normal">}<sp/></highlight><highlight class="comment">//<sp/>namespace<sp/>RAYEX_NAMESPACE</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="102"><highlight class="normal"></highlight></codeline>
-<codeline lineno="103"><highlight class="normal"></highlight><highlight class="preprocessor">#endif<sp/>//<sp/>RAYTRACING_BUILDER_HPP</highlight></codeline>
+<codeline lineno="99"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_ray_tracing_builder_1af5fb816195cf838a10d566fc4aa5fae8" kindref="member">createShaderBindingTable</ref>(<sp/>);</highlight></codeline>
+<codeline lineno="100"><highlight class="normal"></highlight></codeline>
+<codeline lineno="104"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_ray_tracing_builder_1aa3662d69cbf85434c89e831fe6bbcb0c" kindref="member">createPipeline</ref>(<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>std::vector&lt;vk::DescriptorSetLayout&gt;&amp;<sp/>descriptorSetLayouts,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_settings" kindref="compound">Settings</ref>*<sp/>settings<sp/>);</highlight></codeline>
+<codeline lineno="105"><highlight class="normal"></highlight></codeline>
+<codeline lineno="110"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_ray_tracing_builder_1ac62d95b180821e50c060e3722c229e7a" kindref="member">rayTrace</ref>(<sp/>vk::CommandBuffer<sp/>swapchaincommandBuffer,<sp/>vk::Image<sp/>swapchainImage,<sp/>vk::Extent2D<sp/>extent<sp/>);</highlight></codeline>
+<codeline lineno="111"><highlight class="normal"></highlight></codeline>
+<codeline lineno="112"><highlight class="normal"><sp/><sp/></highlight><highlight class="keyword">private</highlight><highlight class="normal">:</highlight></codeline>
+<codeline lineno="113"><highlight class="normal"><sp/><sp/><sp/><sp/>vk::UniquePipeline<sp/>_pipeline;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="114"><highlight class="normal"><sp/><sp/><sp/><sp/>vk::UniquePipelineLayout<sp/>_layout;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="115"><highlight class="normal"><sp/><sp/><sp/><sp/>uint32_t<sp/>_shaderGroups;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="116"><highlight class="normal"><sp/><sp/><sp/><sp/>vk::PhysicalDeviceRayTracingPropertiesKHR<sp/>_rtProperties;<sp/></highlight></codeline>
+<codeline lineno="117"><highlight class="normal"><sp/><sp/><sp/><sp/>std::vector&lt;Blas&gt;<sp/>_blas_;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="118"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_tlas" kindref="compound">Tlas</ref><sp/>_tlas;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="119"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_buffer" kindref="compound">Buffer</ref><sp/>_instanceBuffer;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="120"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_buffer" kindref="compound">Buffer</ref><sp/>_sbtBuffer;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="121"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_image" kindref="compound">Image</ref><sp/>_storageImage;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="122"><highlight class="normal"><sp/><sp/><sp/><sp/>vk::UniqueImageView<sp/>_storageImageView;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="123"><highlight class="normal"><sp/><sp/>};</highlight></codeline>
+<codeline lineno="124"><highlight class="normal">}<sp/></highlight><highlight class="comment">//<sp/>namespace<sp/>RAYEX_NAMESPACE</highlight><highlight class="normal"></highlight></codeline>
     </programlisting>
     <location file="/home/n30/Repos/rayex/include/api/raytracing/RayTracingBuilder.hpp"/>
   </compounddef>

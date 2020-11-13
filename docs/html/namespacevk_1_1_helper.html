@@ -163,6 +163,9 @@ Functions</h2></td></tr>
 <tr class="memitem:acb8243a4819615e860ed10014e545f36"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacevk_1_1_helper.html#acb8243a4819615e860ed10014e545f36">checkInstanceExtensionsSupport</a> (const std::vector&lt; const char * &gt; &amp;extensions)</td></tr>
 <tr class="memdesc:acb8243a4819615e860ed10014e545f36"><td class="mdescLeft">&#160;</td><td class="mdescRight">Checks if all instance extensions provided are supported.  <a href="namespacevk_1_1_helper.html#acb8243a4819615e860ed10014e545f36">More...</a><br /></td></tr>
 <tr class="separator:acb8243a4819615e860ed10014e545f36"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a66ad6f9e410f31bdea43c49b3a774611"><td class="memItemLeft" align="right" valign="top">auto&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacevk_1_1_helper.html#a66ad6f9e410f31bdea43c49b3a774611">findSupportedImageFormat</a> (vk::PhysicalDevice physicalDevice, const std::vector&lt; vk::Format &gt; &amp;formatsToTest, vk::FormatFeatureFlagBits features, vk::ImageTiling tiling) -&gt; vk::Format</td></tr>
+<tr class="memdesc:a66ad6f9e410f31bdea43c49b3a774611"><td class="mdescLeft">&#160;</td><td class="mdescRight">Retrieves a supported image format for a given physical device.  <a href="namespacevk_1_1_helper.html#a66ad6f9e410f31bdea43c49b3a774611">More...</a><br /></td></tr>
+<tr class="separator:a66ad6f9e410f31bdea43c49b3a774611"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>A collection of helper functions for various purposes such as simplifying the process of filling Vulkan structs and objects with their respective parameters. </p>
@@ -317,6 +320,57 @@ Functions</h2></td></tr>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>Returns the memory type matching the function input. </dd></dl>
+
+</div>
+</div>
+<a id="a66ad6f9e410f31bdea43c49b3a774611"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a66ad6f9e410f31bdea43c49b3a774611">&#9670;&nbsp;</a></span>findSupportedImageFormat()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">auto vk::Helper::findSupportedImageFormat </td>
+          <td>(</td>
+          <td class="paramtype">vk::PhysicalDevice&#160;</td>
+          <td class="paramname"><em>physicalDevice</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const std::vector&lt; vk::Format &gt; &amp;&#160;</td>
+          <td class="paramname"><em>formatsToTest</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">vk::FormatFeatureFlagBits&#160;</td>
+          <td class="paramname"><em>features</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">vk::ImageTiling&#160;</td>
+          <td class="paramname"><em>tiling</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td> -&gt;  vk::Format</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Retrieves a supported image format for a given physical device. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">physicalDevice</td><td>The physical device to check. </td></tr>
+    <tr><td class="paramname">formatsToTest</td><td>A vector of formats that will be checked for their support. </td></tr>
+    <tr><td class="paramname">features</td><td>The Vulkan format features. </td></tr>
+    <tr><td class="paramname">tiling</td><td>The Vulkan image tiling. </td></tr>
+  </table>
+  </dd>
+</dl>
 
 </div>
 </div>

@@ -7,14 +7,14 @@
     <includes local="yes">external/ImGui/imgui.h</includes>
     <includes local="yes">external/ImGui/imgui_impl_sdl.h</includes>
     <includes local="yes">external/ImGui/imgui_impl_vulkan.h</includes>
+    <includes local="yes">external/glm/ext/matrix_clip_space.hpp</includes>
+    <includes local="yes">external/glm/ext/matrix_transform.hpp</includes>
+    <includes local="yes">external/glm/glm.hpp</includes>
+    <includes local="yes">external/glm/gtx/string_cast.hpp</includes>
     <includes local="no">algorithm</includes>
     <includes local="no">any</includes>
     <includes local="no">array</includes>
     <includes local="no">charconv</includes>
-    <includes local="no">external/glm/ext/matrix_clip_space.hpp</includes>
-    <includes local="no">external/glm/ext/matrix_transform.hpp</includes>
-    <includes local="no">external/glm/glm.hpp</includes>
-    <includes local="no">external/glm/gtx/string_cast.hpp</includes>
     <includes local="no">filesystem</includes>
     <includes local="no">forward_list</includes>
     <includes local="no">fstream</includes>
@@ -45,25 +45,25 @@
     <includedby refid="_settings_8hpp" local="yes">/home/n30/Repos/rayex/include/base/Settings.hpp</includedby>
     <includedby refid="_window_8hpp" local="yes">/home/n30/Repos/rayex/include/base/Window.hpp</includedby>
     <incdepgraph>
-      <node id="27">
+      <node id="29">
         <label>list</label>
       </node>
-      <node id="25">
+      <node id="27">
         <label>iomanip</label>
       </node>
-      <node id="18">
+      <node id="16">
         <label>external/glm/ext/matrix_transform.hpp</label>
       </node>
-      <node id="26">
+      <node id="28">
         <label>limits</label>
       </node>
-      <node id="21">
+      <node id="23">
         <label>filesystem</label>
       </node>
       <node id="3">
         <label>external/tinyLogger/TinyLogger.hpp</label>
       </node>
-      <node id="16">
+      <node id="22">
         <label>charconv</label>
       </node>
       <node id="2">
@@ -81,39 +81,39 @@
         </childnode>
         <childnode refid="8" relation="include">
         </childnode>
+        <childnode refid="9" relation="include">
+        </childnode>
+        <childnode refid="10" relation="include">
+        </childnode>
       </node>
-      <node id="11">
+      <node id="13">
         <label>external/ImGui/imgui_impl_sdl.h</label>
       </node>
-      <node id="17">
+      <node id="15">
         <label>external/glm/ext/matrix_clip_space.hpp</label>
       </node>
-      <node id="28">
+      <node id="30">
         <label>map</label>
       </node>
-      <node id="35">
+      <node id="36">
         <label>unordered_set</label>
       </node>
-      <node id="24">
+      <node id="26">
         <label>gsl/gsl</label>
       </node>
-      <node id="23">
+      <node id="25">
         <label>fstream</label>
       </node>
-      <node id="10">
+      <node id="12">
         <label>external/ImGui/imgui.h</label>
       </node>
-      <node id="14">
+      <node id="20">
         <label>any</label>
       </node>
       <node id="1">
         <label>/home/n30/Repos/rayex/include/pch/stdafx.hpp</label>
         <link refid="stdafx_8hpp"/>
         <childnode refid="2" relation="include">
-        </childnode>
-        <childnode refid="9" relation="include">
-        </childnode>
-        <childnode refid="10" relation="include">
         </childnode>
         <childnode refid="11" relation="include">
         </childnode>
@@ -163,74 +163,81 @@
         </childnode>
         <childnode refid="34" relation="include">
         </childnode>
+        <childnode refid="7" relation="include">
+        </childnode>
         <childnode refid="35" relation="include">
         </childnode>
         <childnode refid="36" relation="include">
         </childnode>
         <childnode refid="37" relation="include">
         </childnode>
+        <childnode refid="38" relation="include">
+        </childnode>
       </node>
-      <node id="5">
+      <node id="8">
         <label>SDL2/SDL.h</label>
       </node>
-      <node id="31">
+      <node id="33">
         <label>random</label>
       </node>
-      <node id="19">
+      <node id="17">
         <label>external/glm/glm.hpp</label>
       </node>
-      <node id="33">
+      <node id="7">
         <label>string_view</label>
       </node>
-      <node id="30">
+      <node id="32">
         <label>optional</label>
       </node>
-      <node id="37">
+      <node id="38">
         <label>vector</label>
       </node>
-      <node id="36">
+      <node id="37">
         <label>utility</label>
       </node>
-      <node id="15">
+      <node id="21">
         <label>array</label>
       </node>
-      <node id="20">
+      <node id="18">
         <label>external/glm/gtx/string_cast.hpp</label>
       </node>
-      <node id="4">
+      <node id="6">
         <label>sstream</label>
       </node>
-      <node id="12">
+      <node id="14">
         <label>external/ImGui/imgui_impl_vulkan.h</label>
       </node>
-      <node id="7">
+      <node id="5">
         <label>iostream</label>
       </node>
-      <node id="34">
+      <node id="35">
         <label>unordered_map</label>
       </node>
-      <node id="32">
+      <node id="4">
+        <label>chrono</label>
+      </node>
+      <node id="34">
         <label>set</label>
       </node>
-      <node id="9">
+      <node id="11">
         <label>base/Time.hpp</label>
         <link refid="_time_8hpp"/>
         <childnode refid="2" relation="include">
         </childnode>
       </node>
-      <node id="22">
+      <node id="24">
         <label>forward_list</label>
       </node>
-      <node id="13">
+      <node id="19">
         <label>algorithm</label>
       </node>
-      <node id="8">
+      <node id="10">
         <label>vulkan/vulkan.hpp</label>
       </node>
-      <node id="29">
+      <node id="31">
         <label>memory</label>
       </node>
-      <node id="6">
+      <node id="9">
         <label>SDL2/SDL_vulkan.h</label>
       </node>
     </incdepgraph>
@@ -251,12 +258,12 @@
         <childnode refid="9" relation="include">
         </childnode>
       </node>
-      <node id="17">
+      <node id="18">
         <label>/home/n30/Repos/rayex/include/api/utility/Helpers.hpp</label>
         <link refid="_helpers_8hpp"/>
-        <childnode refid="18" relation="include">
+        <childnode refid="19" relation="include">
         </childnode>
-        <childnode refid="14" relation="include">
+        <childnode refid="15" relation="include">
         </childnode>
       </node>
       <node id="9">
@@ -265,7 +272,7 @@
         <childnode refid="3" relation="include">
         </childnode>
       </node>
-      <node id="21">
+      <node id="22">
         <label>/home/n30/Repos/rayex/include/api/utility/DebugMessenger.hpp</label>
         <link refid="_debug_messenger_8hpp"/>
         <childnode refid="3" relation="include">
@@ -277,7 +284,7 @@
         <childnode refid="3" relation="include">
         </childnode>
       </node>
-      <node id="15">
+      <node id="16">
         <label>/home/n30/Repos/rayex/include/api/Pipeline.hpp</label>
         <link refid="_pipeline_8hpp"/>
         <childnode refid="3" relation="include">
@@ -290,10 +297,10 @@
         </childnode>
         <childnode refid="13" relation="include">
         </childnode>
-        <childnode refid="14" relation="include">
+        <childnode refid="15" relation="include">
         </childnode>
       </node>
-      <node id="14">
+      <node id="15">
         <label>/home/n30/Repos/rayex/include/api/Swapchain.hpp</label>
         <link refid="_swapchain_8hpp"/>
         <childnode refid="3" relation="include">
@@ -303,14 +310,14 @@
         <childnode refid="5" relation="include">
         </childnode>
       </node>
-      <node id="24">
+      <node id="25">
         <label>/home/n30/Repos/rayex/include/base/Geometry.hpp</label>
         <link refid="_geometry_8hpp"/>
         <childnode refid="11" relation="include">
         </childnode>
         <childnode refid="9" relation="include">
         </childnode>
-        <childnode refid="25" relation="include">
+        <childnode refid="14" relation="include">
         </childnode>
       </node>
       <node id="8">
@@ -328,17 +335,17 @@
         </childnode>
         <childnode refid="6" relation="include">
         </childnode>
-        <childnode refid="15" relation="include">
-        </childnode>
         <childnode refid="16" relation="include">
         </childnode>
-        <childnode refid="20" relation="include">
+        <childnode refid="17" relation="include">
         </childnode>
         <childnode refid="21" relation="include">
         </childnode>
         <childnode refid="22" relation="include">
         </childnode>
         <childnode refid="23" relation="include">
+        </childnode>
+        <childnode refid="24" relation="include">
         </childnode>
         <childnode refid="26" relation="include">
         </childnode>
@@ -354,7 +361,7 @@
         <link refid="_surface_8hpp"/>
         <childnode refid="3" relation="include">
         </childnode>
-        <childnode refid="14" relation="include">
+        <childnode refid="15" relation="include">
         </childnode>
         <childnode refid="5" relation="include">
         </childnode>
@@ -397,20 +404,22 @@
         <childnode refid="27" relation="include">
         </childnode>
       </node>
-      <node id="23">
+      <node id="24">
         <label>/home/n30/Repos/rayex/include/api/Vertex.hpp</label>
         <link refid="_vertex_8hpp"/>
         <childnode refid="3" relation="include">
         </childnode>
         <childnode refid="12" relation="include">
         </childnode>
-        <childnode refid="24" relation="include">
+        <childnode refid="25" relation="include">
         </childnode>
       </node>
-      <node id="19">
+      <node id="20">
         <label>/home/n30/Repos/rayex/include/api/utility/Initializers.hpp</label>
         <link refid="_initializers_8hpp"/>
-        <childnode refid="18" relation="include">
+        <childnode refid="19" relation="include">
+        </childnode>
+        <childnode refid="10" relation="include">
         </childnode>
       </node>
       <node id="30">
@@ -418,7 +427,7 @@
         <link refid="_lights_8hpp"/>
         <childnode refid="10" relation="include">
         </childnode>
-        <childnode refid="25" relation="include">
+        <childnode refid="14" relation="include">
         </childnode>
       </node>
       <node id="13">
@@ -426,31 +435,33 @@
         <link refid="_texture_8hpp"/>
         <childnode refid="3" relation="include">
         </childnode>
+        <childnode refid="14" relation="include">
+        </childnode>
       </node>
-      <node id="25">
+      <node id="14">
         <label>/home/n30/Repos/rayex/include/base/Scene.hpp</label>
         <link refid="_scene_8hpp"/>
         <childnode refid="3" relation="include">
         </childnode>
       </node>
-      <node id="20">
+      <node id="21">
         <label>/home/n30/Repos/rayex/include/api/RenderPass.hpp</label>
         <link refid="_render_pass_8hpp"/>
         <childnode refid="3" relation="include">
         </childnode>
-        <childnode refid="17" relation="include">
+        <childnode refid="18" relation="include">
         </childnode>
         <childnode refid="5" relation="include">
         </childnode>
       </node>
-      <node id="16">
+      <node id="17">
         <label>/home/n30/Repos/rayex/include/api/raytracing/AccelerationStructure.hpp</label>
         <link refid="_acceleration_structure_8hpp"/>
         <childnode refid="9" relation="include">
         </childnode>
-        <childnode refid="17" relation="include">
+        <childnode refid="18" relation="include">
         </childnode>
-        <childnode refid="19" relation="include">
+        <childnode refid="20" relation="include">
         </childnode>
       </node>
       <node id="5">
@@ -462,9 +473,11 @@
       <node id="31">
         <label>/home/n30/Repos/rayex/include/base/Settings.hpp</label>
         <link refid="_settings_8hpp"/>
-        <childnode refid="15" relation="include">
+        <childnode refid="16" relation="include">
         </childnode>
-        <childnode refid="25" relation="include">
+        <childnode refid="9" relation="include">
+        </childnode>
+        <childnode refid="14" relation="include">
         </childnode>
       </node>
       <node id="3">
@@ -473,13 +486,13 @@
         <childnode refid="4" relation="include">
         </childnode>
       </node>
-      <node id="22">
+      <node id="23">
         <label>/home/n30/Repos/rayex/include/api/utility/Util.hpp</label>
         <link refid="_util_8hpp"/>
         <childnode refid="3" relation="include">
         </childnode>
       </node>
-      <node id="18">
+      <node id="19">
         <label>/home/n30/Repos/rayex/include/api/Bindings.hpp</label>
         <link refid="_bindings_8hpp"/>
         <childnode refid="3" relation="include">
@@ -492,9 +505,9 @@
         </childnode>
         <childnode refid="7" relation="include">
         </childnode>
-        <childnode refid="16" relation="include">
+        <childnode refid="17" relation="include">
         </childnode>
-        <childnode refid="19" relation="include">
+        <childnode refid="20" relation="include">
         </childnode>
       </node>
     </invincdepgraph>
@@ -507,7 +520,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/n30/Repos/rayex/include/pch/stdafx.hpp" line="10" column="9" bodyfile="/home/n30/Repos/rayex/include/pch/stdafx.hpp" bodystart="10" bodyend="-1"/>
+        <location file="/home/n30/Repos/rayex/include/pch/stdafx.hpp" line="15" column="9" bodyfile="/home/n30/Repos/rayex/include/pch/stdafx.hpp" bodystart="15" bodyend="-1"/>
       </memberdef>
       </sectiondef>
     <briefdescription>
@@ -523,35 +536,36 @@
 <codeline lineno="6"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;external/ImGui/imgui.h&quot;</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="7"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;external/ImGui/imgui_impl_sdl.h&quot;</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="8"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;external/ImGui/imgui_impl_vulkan.h&quot;</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="9"><highlight class="normal"></highlight></codeline>
-<codeline lineno="10" refid="stdafx_8hpp_1afbfadc6efcb8ee2a896cebb8b30da7b3" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>GLFORCE_DEPTH_ZERO_TO_ONE</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="11"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;algorithm&gt;</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="12"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;any&gt;</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="13"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;array&gt;</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="14"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;charconv&gt;</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="15"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;external/glm/ext/matrix_clip_space.hpp&gt;</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="16"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;external/glm/ext/matrix_transform.hpp&gt;</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="17"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;external/glm/glm.hpp&gt;</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="18"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;external/glm/gtx/string_cast.hpp&gt;</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="19"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;filesystem&gt;</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="20"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;forward_list&gt;</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="21"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;fstream&gt;</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="22"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;gsl/gsl&gt;</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="23"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;iomanip&gt;</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="24"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;limits&gt;</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="25"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;list&gt;</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="26"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;map&gt;</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="27"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;memory&gt;</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="28"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;optional&gt;</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="29"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;random&gt;</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="30"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;set&gt;</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="31"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;string_view&gt;</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="32"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;unordered_map&gt;</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="33"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;unordered_set&gt;</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="34"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;utility&gt;</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="35"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;vector&gt;</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="36"><highlight class="normal"></highlight></codeline>
-<codeline lineno="37"><highlight class="normal"></highlight><highlight class="preprocessor">#endif<sp/>//<sp/>STDAFX_HPP</highlight></codeline>
+<codeline lineno="9"><highlight class="normal"></highlight><highlight class="comment">//#define<sp/>GLM_SWIZZLE</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="10"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;external/glm/ext/matrix_clip_space.hpp&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="11"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;external/glm/ext/matrix_transform.hpp&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="12"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;external/glm/glm.hpp&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="13"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;external/glm/gtx/string_cast.hpp&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="14"><highlight class="normal"></highlight></codeline>
+<codeline lineno="15" refid="stdafx_8hpp_1afbfadc6efcb8ee2a896cebb8b30da7b3" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>GLFORCE_DEPTH_ZERO_TO_ONE</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="16"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;algorithm&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="17"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;any&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="18"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;array&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="19"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;charconv&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="20"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;filesystem&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="21"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;forward_list&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="22"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;fstream&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="23"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;gsl/gsl&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="24"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;iomanip&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="25"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;limits&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="26"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;list&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="27"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;map&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="28"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;memory&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="29"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;optional&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="30"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;random&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="31"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;set&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="32"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;string_view&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="33"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;unordered_map&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="34"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;unordered_set&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="35"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;utility&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="36"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;vector&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="37"><highlight class="normal"></highlight></codeline>
+<codeline lineno="38"><highlight class="normal"></highlight><highlight class="preprocessor">#endif<sp/>//<sp/>STDAFX_HPP</highlight></codeline>
     </programlisting>
     <location file="/home/n30/Repos/rayex/include/pch/stdafx.hpp"/>
   </compounddef>

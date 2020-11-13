@@ -8,25 +8,25 @@
     <includedby refid="_acceleration_structure_8hpp" local="yes">/home/n30/Repos/rayex/include/api/raytracing/AccelerationStructure.hpp</includedby>
     <includedby refid="_initializers_8hpp" local="yes">/home/n30/Repos/rayex/include/api/utility/Initializers.hpp</includedby>
     <incdepgraph>
-      <node id="30">
+      <node id="32">
         <label>list</label>
       </node>
-      <node id="28">
+      <node id="30">
         <label>iomanip</label>
       </node>
-      <node id="21">
+      <node id="19">
         <label>external/glm/ext/matrix_transform.hpp</label>
       </node>
-      <node id="29">
+      <node id="31">
         <label>limits</label>
       </node>
-      <node id="24">
+      <node id="26">
         <label>filesystem</label>
       </node>
       <node id="6">
         <label>external/tinyLogger/TinyLogger.hpp</label>
       </node>
-      <node id="19">
+      <node id="25">
         <label>charconv</label>
       </node>
       <node id="5">
@@ -44,39 +44,39 @@
         </childnode>
         <childnode refid="11" relation="include">
         </childnode>
+        <childnode refid="12" relation="include">
+        </childnode>
+        <childnode refid="13" relation="include">
+        </childnode>
       </node>
-      <node id="14">
+      <node id="16">
         <label>external/ImGui/imgui_impl_sdl.h</label>
       </node>
-      <node id="20">
+      <node id="18">
         <label>external/glm/ext/matrix_clip_space.hpp</label>
       </node>
-      <node id="31">
+      <node id="33">
         <label>map</label>
       </node>
-      <node id="38">
+      <node id="39">
         <label>unordered_set</label>
       </node>
-      <node id="27">
+      <node id="29">
         <label>gsl/gsl</label>
       </node>
-      <node id="26">
+      <node id="28">
         <label>fstream</label>
       </node>
-      <node id="13">
+      <node id="15">
         <label>external/ImGui/imgui.h</label>
       </node>
-      <node id="17">
+      <node id="23">
         <label>any</label>
       </node>
       <node id="4">
         <label>pch/stdafx.hpp</label>
         <link refid="stdafx_8hpp"/>
         <childnode refid="5" relation="include">
-        </childnode>
-        <childnode refid="12" relation="include">
-        </childnode>
-        <childnode refid="13" relation="include">
         </childnode>
         <childnode refid="14" relation="include">
         </childnode>
@@ -126,29 +126,33 @@
         </childnode>
         <childnode refid="37" relation="include">
         </childnode>
+        <childnode refid="10" relation="include">
+        </childnode>
         <childnode refid="38" relation="include">
         </childnode>
         <childnode refid="39" relation="include">
         </childnode>
         <childnode refid="40" relation="include">
         </childnode>
+        <childnode refid="41" relation="include">
+        </childnode>
       </node>
-      <node id="8">
+      <node id="11">
         <label>SDL2/SDL.h</label>
       </node>
-      <node id="34">
+      <node id="36">
         <label>random</label>
       </node>
-      <node id="22">
+      <node id="20">
         <label>external/glm/glm.hpp</label>
       </node>
-      <node id="36">
+      <node id="10">
         <label>string_view</label>
       </node>
-      <node id="33">
+      <node id="35">
         <label>optional</label>
       </node>
-      <node id="40">
+      <node id="41">
         <label>vector</label>
       </node>
       <node id="2">
@@ -156,21 +160,21 @@
         <link refid="_window_8hpp"/>
         <childnode refid="3" relation="include">
         </childnode>
-        <childnode refid="12" relation="include">
+        <childnode refid="14" relation="include">
         </childnode>
         <childnode refid="4" relation="include">
         </childnode>
       </node>
-      <node id="39">
+      <node id="40">
         <label>utility</label>
       </node>
-      <node id="18">
+      <node id="24">
         <label>array</label>
       </node>
-      <node id="23">
+      <node id="21">
         <label>external/glm/gtx/string_cast.hpp</label>
       </node>
-      <node id="7">
+      <node id="9">
         <label>sstream</label>
       </node>
       <node id="3">
@@ -179,37 +183,40 @@
         <childnode refid="4" relation="include">
         </childnode>
       </node>
-      <node id="15">
+      <node id="17">
         <label>external/ImGui/imgui_impl_vulkan.h</label>
       </node>
-      <node id="10">
+      <node id="8">
         <label>iostream</label>
       </node>
-      <node id="37">
+      <node id="38">
         <label>unordered_map</label>
       </node>
-      <node id="35">
+      <node id="7">
+        <label>chrono</label>
+      </node>
+      <node id="37">
         <label>set</label>
       </node>
-      <node id="12">
+      <node id="14">
         <label>base/Time.hpp</label>
         <link refid="_time_8hpp"/>
         <childnode refid="5" relation="include">
         </childnode>
       </node>
-      <node id="25">
+      <node id="27">
         <label>forward_list</label>
       </node>
-      <node id="16">
+      <node id="22">
         <label>algorithm</label>
       </node>
-      <node id="11">
+      <node id="13">
         <label>vulkan/vulkan.hpp</label>
       </node>
-      <node id="32">
+      <node id="34">
         <label>memory</label>
       </node>
-      <node id="9">
+      <node id="12">
         <label>SDL2/SDL_vulkan.h</label>
       </node>
       <node id="1">
@@ -295,6 +302,8 @@
         <link refid="_initializers_8hpp"/>
         <childnode refid="12" relation="include">
         </childnode>
+        <childnode refid="7" relation="include">
+        </childnode>
       </node>
       <node id="10">
         <label>/home/n30/Repos/rayex/include/api/raytracing/AccelerationStructure.hpp</label>
@@ -338,6 +347,7 @@
       </node>
     </invincdepgraph>
     <innernamespace refid="namespace_r_a_y_e_x___n_a_m_e_s_p_a_c_e">RAYEX_NAMESPACE</innernamespace>
+    <innernamespace refid="namespace_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1components">RAYEX_NAMESPACE::components</innernamespace>
     <briefdescription>
     </briefdescription>
     <detaileddescription>
@@ -350,40 +360,35 @@
 <codeline lineno="5"><highlight class="normal"></highlight></codeline>
 <codeline lineno="6"><highlight class="normal"></highlight><highlight class="keyword">namespace<sp/></highlight><highlight class="normal"><ref refid="namespace_r_a_y_e_x___n_a_m_e_s_p_a_c_e" kindref="compound">RAYEX_NAMESPACE</ref></highlight></codeline>
 <codeline lineno="7"><highlight class="normal">{</highlight></codeline>
-<codeline lineno="8"><highlight class="normal"><sp/><sp/></highlight><highlight class="keyword">extern</highlight><highlight class="normal"><sp/>std::shared_ptr&lt;Window&gt;<sp/><ref refid="namespace_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1a53914c7ecf6dffbb9bc73f59c2dcafd8" kindref="member">g_window</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
-<codeline lineno="9"><highlight class="normal"><sp/><sp/></highlight><highlight class="keyword">extern</highlight><highlight class="normal"><sp/>vk::Instance<sp/><ref refid="namespace_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1afa1f27812481e446261f007e22caf715" kindref="member">g_instance</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
-<codeline lineno="10"><highlight class="normal"><sp/><sp/></highlight><highlight class="keyword">extern</highlight><highlight class="normal"><sp/>vk::PhysicalDevice<sp/><ref refid="namespace_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1a5e48d9a3b09ffb6adc79cc2b0bf04127" kindref="member">g_physicalDevice</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
-<codeline lineno="11"><highlight class="normal"><sp/><sp/></highlight><highlight class="keyword">extern</highlight><highlight class="normal"><sp/>vk::Device<sp/><ref refid="namespace_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1ac0a68a9d0c06a68cf1d0aa9b269b09da" kindref="member">g_device</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
-<codeline lineno="12"><highlight class="normal"><sp/><sp/></highlight><highlight class="keyword">extern</highlight><highlight class="normal"><sp/>vk::SurfaceKHR<sp/><ref refid="namespace_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1ad303bd070587963ac49321311be943f1" kindref="member">g_surface</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
-<codeline lineno="13"><highlight class="normal"><sp/><sp/></highlight><highlight class="keyword">extern</highlight><highlight class="normal"><sp/>vk::SwapchainKHR<sp/><ref refid="namespace_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1afa06e0a2030e50d6f4964899a7a0f2cf" kindref="member">g_swapchain</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
-<codeline lineno="14"><highlight class="normal"><sp/><sp/></highlight><highlight class="keyword">extern</highlight><highlight class="normal"><sp/>uint32_t<sp/><ref refid="namespace_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1a332947ec9c83496a73423d8fcbff00ac" kindref="member">g_swapchainImageCount</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
-<codeline lineno="15"><highlight class="normal"><sp/><sp/></highlight><highlight class="keyword">extern</highlight><highlight class="normal"><sp/>vk::Format<sp/><ref refid="namespace_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1a12233310aabeb2dbbad78c98351cfde8" kindref="member">g_surfaceFormat</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
-<codeline lineno="16"><highlight class="normal"><sp/><sp/></highlight><highlight class="keyword">extern</highlight><highlight class="normal"><sp/>std::vector&lt;vk::UniqueImageView&gt;<sp/><ref refid="namespace_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1afafcc6887632267d22088e6a9e3a3fec" kindref="member">g_swapchainImageViews</ref>;<sp/></highlight></codeline>
-<codeline lineno="17"><highlight class="normal"><sp/><sp/></highlight><highlight class="keyword">extern</highlight><highlight class="normal"><sp/>uint32_t<sp/><ref refid="namespace_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1ae9da783a4d86920ad0cf4ac0d9266ea3" kindref="member">g_shaderGroups</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
-<codeline lineno="18"><highlight class="normal"><sp/><sp/></highlight><highlight class="keyword">extern</highlight><highlight class="normal"><sp/>vk::DynamicLoader<sp/><ref refid="namespace_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1a204992b840832ca75299c91e28803257" kindref="member">g_dynamicLoader</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
-<codeline lineno="19"><highlight class="normal"></highlight></codeline>
-<codeline lineno="20"><highlight class="normal"><sp/><sp/></highlight><highlight class="keyword">extern</highlight><highlight class="normal"><sp/>vk::CommandPool<sp/><ref refid="namespace_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1a647bd4d0553da6e2a3ea61ebd2e24cdc" kindref="member">g_graphicsCmdPool</ref>;<sp/></highlight></codeline>
-<codeline lineno="21"><highlight class="normal"><sp/><sp/></highlight><highlight class="keyword">extern</highlight><highlight class="normal"><sp/>vk::CommandPool<sp/><ref refid="namespace_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1aefbb97ad06cf26ac3aaf63169f3fce96" kindref="member">g_transferCmdPool</ref>;<sp/></highlight></codeline>
-<codeline lineno="22"><highlight class="normal"><sp/><sp/></highlight><highlight class="keyword">extern</highlight><highlight class="normal"><sp/>vk::Queue<sp/><ref refid="namespace_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1a977cd362536fc24d054f9cef74a2bfa1" kindref="member">g_graphicsQueue</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
-<codeline lineno="23"><highlight class="normal"><sp/><sp/></highlight><highlight class="keyword">extern</highlight><highlight class="normal"><sp/>vk::Queue<sp/><ref refid="namespace_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1a1ee71fd1c0a796783396c42908861025" kindref="member">g_transferQueue</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
-<codeline lineno="24"><highlight class="normal"><sp/><sp/></highlight><highlight class="keyword">extern</highlight><highlight class="normal"><sp/>uint32_t<sp/><ref refid="namespace_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1a49ffd35de07ab724be490c9f2bb3e433" kindref="member">g_graphicsFamilyIndex</ref>;<sp/><sp/><sp/><sp/></highlight></codeline>
-<codeline lineno="25"><highlight class="normal"><sp/><sp/></highlight><highlight class="keyword">extern</highlight><highlight class="normal"><sp/>uint32_t<sp/><ref refid="namespace_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1a51f3b0c8b87badfc21d23b4fc1857355" kindref="member">g_transferFamilyIndex</ref>;<sp/><sp/><sp/><sp/></highlight></codeline>
-<codeline lineno="26"><highlight class="normal"></highlight></codeline>
-<codeline lineno="27"><highlight class="normal"><sp/><sp/></highlight><highlight class="keyword">extern</highlight><highlight class="normal"><sp/>vk::PhysicalDeviceLimits<sp/><ref refid="namespace_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1a50f035ef0a6a55eed13e2edb4f620b98" kindref="member">g_physicalDeviceLimits</ref>;<sp/></highlight></codeline>
-<codeline lineno="28"><highlight class="normal"></highlight></codeline>
-<codeline lineno="29"><highlight class="normal"><sp/><sp/></highlight><highlight class="keyword">extern</highlight><highlight class="normal"><sp/>uint32_t<sp/><ref refid="namespace_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1aee13ab3d083f74c8bdfd8b72b8933ba6" kindref="member">g_modelCount</ref>;</highlight></codeline>
-<codeline lineno="30"><highlight class="normal"><sp/><sp/>RX_API<sp/></highlight><highlight class="keyword">extern</highlight><highlight class="normal"><sp/>uint32_t<sp/><ref refid="namespace_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1a130f880b3d1c6079ed5bafb78f292354" kindref="member">g_frameCount</ref>;</highlight></codeline>
-<codeline lineno="31"><highlight class="normal"></highlight></codeline>
-<codeline lineno="32" refid="namespace_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1aa11f98251d69eb299c2e3de20f4ed9d6" refkind="member"><highlight class="normal"><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal"><sp/><ref refid="namespace_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1aa11f98251d69eb299c2e3de20f4ed9d6" kindref="member">g_maxGeometryInstances</ref><sp/>=<sp/>2000;<sp/></highlight></codeline>
-<codeline lineno="33" refid="namespace_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1a766d2a150125d54b33247539cc1c72eb" refkind="member"><highlight class="normal"><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal"><sp/><ref refid="namespace_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1a766d2a150125d54b33247539cc1c72eb" kindref="member">g_maxTextures</ref><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>=<sp/>2000;<sp/></highlight></codeline>
-<codeline lineno="34" refid="namespace_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1a2758c3b5f00411ea0445ef1ef026ec83" refkind="member"><highlight class="normal"><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal"><sp/><ref refid="namespace_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1a2758c3b5f00411ea0445ef1ef026ec83" kindref="member">g_maxDirectionalLights</ref><sp/>=<sp/>2000;<sp/></highlight></codeline>
-<codeline lineno="35" refid="namespace_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1a5c5263652d5f553f4d4aa1eba1678355" refkind="member"><highlight class="normal"><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal"><sp/><ref refid="namespace_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1a5c5263652d5f553f4d4aa1eba1678355" kindref="member">g_maxPointLights</ref><sp/><sp/><sp/><sp/><sp/><sp/><sp/>=<sp/>2000;<sp/></highlight></codeline>
-<codeline lineno="36" refid="namespace_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1ad6bf6b0077a2a6d8fc92d4824349af2b" refkind="member"><highlight class="normal"><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal"><sp/><ref refid="namespace_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1ad6bf6b0077a2a6d8fc92d4824349af2b" kindref="member">g_maxModels</ref><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>=<sp/>2000;<sp/></highlight></codeline>
-<codeline lineno="37"><highlight class="normal"></highlight></codeline>
-<codeline lineno="38"><highlight class="normal"><sp/><sp/></highlight><highlight class="keyword">extern</highlight><highlight class="normal"><sp/>std::string<sp/><ref refid="namespace_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1aef499aed59c002c1b687eae58dbf035f" kindref="member">g_assetsPath</ref>;<sp/></highlight></codeline>
-<codeline lineno="39"><highlight class="normal">}<sp/></highlight><highlight class="comment">//<sp/>namespace<sp/>RAYEX_NAMESPACE</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="40"><highlight class="normal"></highlight></codeline>
-<codeline lineno="41"><highlight class="normal"></highlight><highlight class="preprocessor">#endif<sp/>//<sp/>COMPONENTS_HPP</highlight></codeline>
+<codeline lineno="8" refid="namespace_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1components" refkind="compound"><highlight class="normal"><sp/><sp/></highlight><highlight class="keyword">namespace<sp/></highlight><highlight class="normal">components</highlight></codeline>
+<codeline lineno="9"><highlight class="normal"><sp/><sp/>{</highlight></codeline>
+<codeline lineno="10"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">extern</highlight><highlight class="normal"><sp/>vk::Instance<sp/><ref refid="namespace_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1components_1a6578075ba1994daebf5b6149e4d4123b" kindref="member">instance</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="11"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">extern</highlight><highlight class="normal"><sp/>vk::PhysicalDevice<sp/><ref refid="namespace_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1components_1a344e77a6a2c22737ebf523815d78f9d3" kindref="member">physicalDevice</ref>;<sp/></highlight></codeline>
+<codeline lineno="12"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">extern</highlight><highlight class="normal"><sp/>vk::Device<sp/><ref refid="namespace_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1components_1ab4f6e30d71b69d7538d92a2583aea3e5" kindref="member">device</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="13"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">extern</highlight><highlight class="normal"><sp/>vk::SurfaceKHR<sp/><ref refid="namespace_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1components_1a67af4230d7523391d12e00d0a8e0e750" kindref="member">surface</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="14"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">extern</highlight><highlight class="normal"><sp/>vk::SwapchainKHR<sp/><ref refid="namespace_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1components_1ab464302e0493d4314485f7abc01971b4" kindref="member">swapchain</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="15"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">extern</highlight><highlight class="normal"><sp/>uint32_t<sp/><ref refid="namespace_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1components_1ae415dbf36f0af255d963eadd438edc19" kindref="member">swapchainImageCount</ref>;<sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="16"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">extern</highlight><highlight class="normal"><sp/>vk::DynamicLoader<sp/><ref refid="namespace_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1components_1a8c89792fbe59059a3febf9d142cc68f0" kindref="member">dynamicLoader</ref>;<sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="17"><highlight class="normal"></highlight></codeline>
+<codeline lineno="18"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">extern</highlight><highlight class="normal"><sp/>vk::CommandPool<sp/><ref refid="namespace_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1components_1afdc1199b17f232177eed2a9db7e08658" kindref="member">graphicsCmdPool</ref>;<sp/></highlight></codeline>
+<codeline lineno="19"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">extern</highlight><highlight class="normal"><sp/>vk::CommandPool<sp/><ref refid="namespace_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1components_1a7e17c7dcbb72428dd80b59f67f2ed7f0" kindref="member">transferCmdPool</ref>;<sp/></highlight></codeline>
+<codeline lineno="20"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">extern</highlight><highlight class="normal"><sp/>vk::Queue<sp/><ref refid="namespace_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1components_1a9e6819996087ad141270f35b37f95dfa" kindref="member">graphicsQueue</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="21"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">extern</highlight><highlight class="normal"><sp/>vk::Queue<sp/><ref refid="namespace_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1components_1a9c3652be28ac920a00d22d6fd4b24158" kindref="member">transferQueue</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="22"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">extern</highlight><highlight class="normal"><sp/>uint32_t<sp/><ref refid="namespace_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1components_1a9b3a3a4de8b6a714346502ddbcc7ff40" kindref="member">graphicsFamilyIndex</ref>;<sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="23"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">extern</highlight><highlight class="normal"><sp/>uint32_t<sp/><ref refid="namespace_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1components_1ab5e00173e34596647b257c1fb90a4b03" kindref="member">transferFamilyIndex</ref>;<sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="24"><highlight class="normal"></highlight></codeline>
+<codeline lineno="25"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">extern</highlight><highlight class="normal"><sp/>vk::PhysicalDeviceLimits<sp/><ref refid="namespace_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1components_1aadcda946d57c0408c18dab07f09540fa" kindref="member">physicalDeviceLimits</ref>;<sp/></highlight></codeline>
+<codeline lineno="26"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">extern</highlight><highlight class="normal"><sp/>uint32_t<sp/><ref refid="namespace_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1components_1aa21545281ea5e93fe4bbbab15e9b2b75" kindref="member">frameCount</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="27"><highlight class="normal"></highlight></codeline>
+<codeline lineno="28"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">extern</highlight><highlight class="normal"><sp/>std::string<sp/><ref refid="namespace_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1components_1a524acb5e30cc3e3c5bf3ceb81d83fc6a" kindref="member">assetsPath</ref>;<sp/></highlight></codeline>
+<codeline lineno="29"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">extern</highlight><highlight class="normal"><sp/>uint32_t<sp/><ref refid="namespace_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1components_1a4d5dc1bf67c9b9d8737cc266005343f1" kindref="member">geometryIndex</ref>;</highlight></codeline>
+<codeline lineno="30"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">extern</highlight><highlight class="normal"><sp/>uint32_t<sp/><ref refid="namespace_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1components_1adba63188318cfcbba40a35ef326df489" kindref="member">textureIndex</ref>;</highlight></codeline>
+<codeline lineno="31" refid="namespace_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1components_1a339363085d98dd34e0fc07104fc86a6c" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal"><sp/><ref refid="namespace_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1components_1a339363085d98dd34e0fc07104fc86a6c" kindref="member">maxResources</ref><sp/>=<sp/>2;</highlight></codeline>
+<codeline lineno="32"><highlight class="normal"></highlight></codeline>
+<codeline lineno="33"><highlight class="normal"><sp/><sp/>}<sp/></highlight><highlight class="comment">//<sp/>namespace<sp/>components</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="34"><highlight class="normal">}<sp/></highlight><highlight class="comment">//<sp/>namespace<sp/>RAYEX_NAMESPACE</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="35"><highlight class="normal"></highlight></codeline>
+<codeline lineno="36"><highlight class="normal"></highlight><highlight class="preprocessor">#endif<sp/>//<sp/>COMPONENTS_HPP</highlight></codeline>
     </programlisting>
     <location file="/home/n30/Repos/rayex/include/api/Components.hpp"/>
   </compounddef>

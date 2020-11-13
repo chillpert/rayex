@@ -6,25 +6,25 @@
     <includes refid="_initializers_8hpp" local="yes">api/utility/Initializers.hpp</includes>
     <includedby refid="_api_8hpp" local="yes">/home/n30/Repos/rayex/include/api/Api.hpp</includedby>
     <incdepgraph>
-      <node id="30">
+      <node id="32">
         <label>list</label>
       </node>
-      <node id="28">
+      <node id="30">
         <label>iomanip</label>
       </node>
-      <node id="21">
+      <node id="19">
         <label>external/glm/ext/matrix_transform.hpp</label>
       </node>
-      <node id="29">
+      <node id="31">
         <label>limits</label>
       </node>
-      <node id="24">
+      <node id="26">
         <label>filesystem</label>
       </node>
       <node id="6">
         <label>external/tinyLogger/TinyLogger.hpp</label>
       </node>
-      <node id="19">
+      <node id="25">
         <label>charconv</label>
       </node>
       <node id="2">
@@ -32,7 +32,7 @@
         <link refid="_helpers_8hpp"/>
         <childnode refid="3" relation="include">
         </childnode>
-        <childnode refid="41" relation="include">
+        <childnode refid="42" relation="include">
         </childnode>
       </node>
       <node id="5">
@@ -50,39 +50,39 @@
         </childnode>
         <childnode refid="11" relation="include">
         </childnode>
+        <childnode refid="12" relation="include">
+        </childnode>
+        <childnode refid="13" relation="include">
+        </childnode>
       </node>
-      <node id="14">
+      <node id="16">
         <label>external/ImGui/imgui_impl_sdl.h</label>
       </node>
-      <node id="20">
+      <node id="18">
         <label>external/glm/ext/matrix_clip_space.hpp</label>
       </node>
-      <node id="31">
+      <node id="33">
         <label>map</label>
       </node>
-      <node id="38">
+      <node id="39">
         <label>unordered_set</label>
       </node>
-      <node id="27">
+      <node id="29">
         <label>gsl/gsl</label>
       </node>
-      <node id="26">
+      <node id="28">
         <label>fstream</label>
       </node>
-      <node id="13">
+      <node id="15">
         <label>external/ImGui/imgui.h</label>
       </node>
-      <node id="17">
+      <node id="23">
         <label>any</label>
       </node>
       <node id="4">
         <label>pch/stdafx.hpp</label>
         <link refid="stdafx_8hpp"/>
         <childnode refid="5" relation="include">
-        </childnode>
-        <childnode refid="12" relation="include">
-        </childnode>
-        <childnode refid="13" relation="include">
         </childnode>
         <childnode refid="14" relation="include">
         </childnode>
@@ -132,75 +132,82 @@
         </childnode>
         <childnode refid="37" relation="include">
         </childnode>
+        <childnode refid="10" relation="include">
+        </childnode>
         <childnode refid="38" relation="include">
         </childnode>
         <childnode refid="39" relation="include">
         </childnode>
         <childnode refid="40" relation="include">
         </childnode>
+        <childnode refid="41" relation="include">
+        </childnode>
       </node>
-      <node id="8">
+      <node id="11">
         <label>SDL2/SDL.h</label>
       </node>
-      <node id="34">
+      <node id="36">
         <label>random</label>
       </node>
-      <node id="22">
+      <node id="20">
         <label>external/glm/glm.hpp</label>
       </node>
-      <node id="36">
+      <node id="10">
         <label>string_view</label>
       </node>
-      <node id="33">
+      <node id="35">
         <label>optional</label>
       </node>
-      <node id="40">
+      <node id="41">
         <label>vector</label>
       </node>
-      <node id="43">
+      <node id="44">
         <label>base/Window.hpp</label>
         <link refid="_window_8hpp"/>
-        <childnode refid="44" relation="include">
+        <childnode refid="45" relation="include">
         </childnode>
-        <childnode refid="12" relation="include">
+        <childnode refid="14" relation="include">
         </childnode>
         <childnode refid="4" relation="include">
         </childnode>
       </node>
-      <node id="39">
+      <node id="40">
         <label>utility</label>
       </node>
-      <node id="18">
+      <node id="24">
         <label>array</label>
       </node>
-      <node id="23">
+      <node id="21">
         <label>external/glm/gtx/string_cast.hpp</label>
       </node>
-      <node id="7">
+      <node id="9">
         <label>sstream</label>
       </node>
-      <node id="44">
+      <node id="45">
         <label>base/Camera.hpp</label>
         <link refid="_camera_8hpp"/>
         <childnode refid="4" relation="include">
         </childnode>
       </node>
-      <node id="45">
+      <node id="46">
         <label>api/utility/Initializers.hpp</label>
         <link refid="_initializers_8hpp"/>
+        <childnode refid="43" relation="include">
+        </childnode>
         <childnode refid="42" relation="include">
         </childnode>
-        <childnode refid="41" relation="include">
-        </childnode>
       </node>
-      <node id="15">
+      <node id="17">
         <label>external/ImGui/imgui_impl_vulkan.h</label>
       </node>
-      <node id="10">
+      <node id="8">
         <label>iostream</label>
       </node>
-      <node id="37">
+      <node id="38">
         <label>unordered_map</label>
+      </node>
+      <node id="7">
+        <label>chrono</label>
       </node>
       <node id="3">
         <label>api/RenderPass.hpp</label>
@@ -208,27 +215,27 @@
         <childnode refid="4" relation="include">
         </childnode>
       </node>
-      <node id="41">
+      <node id="42">
         <label>api/raytracing/AccelerationStructure.hpp</label>
         <link refid="_acceleration_structure_8hpp"/>
-        <childnode refid="42" relation="include">
+        <childnode refid="43" relation="include">
         </childnode>
         <childnode refid="4" relation="include">
         </childnode>
       </node>
-      <node id="35">
+      <node id="37">
         <label>set</label>
       </node>
-      <node id="12">
+      <node id="14">
         <label>base/Time.hpp</label>
         <link refid="_time_8hpp"/>
         <childnode refid="5" relation="include">
         </childnode>
       </node>
-      <node id="25">
+      <node id="27">
         <label>forward_list</label>
       </node>
-      <node id="16">
+      <node id="22">
         <label>algorithm</label>
       </node>
       <node id="1">
@@ -236,22 +243,22 @@
         <link refid="_bindings_8hpp"/>
         <childnode refid="2" relation="include">
         </childnode>
-        <childnode refid="45" relation="include">
+        <childnode refid="46" relation="include">
         </childnode>
       </node>
-      <node id="11">
+      <node id="13">
         <label>vulkan/vulkan.hpp</label>
       </node>
-      <node id="32">
+      <node id="34">
         <label>memory</label>
       </node>
-      <node id="9">
+      <node id="12">
         <label>SDL2/SDL_vulkan.h</label>
       </node>
-      <node id="42">
+      <node id="43">
         <label>api/Components.hpp</label>
         <link refid="_components_8hpp"/>
-        <childnode refid="43" relation="include">
+        <childnode refid="44" relation="include">
         </childnode>
       </node>
     </incdepgraph>
@@ -292,9 +299,9 @@
 <codeline lineno="11" refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_bindings" refkind="compound"><highlight class="normal"><sp/><sp/></highlight><highlight class="keyword">class<sp/></highlight><highlight class="normal"><ref refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_bindings" kindref="compound">Bindings</ref></highlight></codeline>
 <codeline lineno="12"><highlight class="normal"><sp/><sp/>{</highlight></codeline>
 <codeline lineno="13"><highlight class="normal"><sp/><sp/></highlight><highlight class="keyword">public</highlight><highlight class="normal">:</highlight></codeline>
-<codeline lineno="20"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_bindings_1ae7f6782801197c7aa3d3e55949760c2b" kindref="member">add</ref>(<sp/>uint32_t<sp/>binding,<sp/>vk::DescriptorType<sp/>type,<sp/>vk::ShaderStageFlags<sp/>stage,<sp/>uint32_t<sp/>count<sp/>=<sp/>1,<sp/>vk::DescriptorBindingFlags<sp/>flags<sp/>=<sp/>{<sp/>}<sp/>);</highlight></codeline>
+<codeline lineno="20"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_bindings_1a37856d36392e371e4fdcfe35d184fa42" kindref="member">add</ref>(<sp/>uint32_t<sp/>binding,<sp/>vk::DescriptorType<sp/>type,<sp/>vk::ShaderStageFlags<sp/>stage,<sp/>uint32_t<sp/>count<sp/>=<sp/>1,<sp/>vk::DescriptorBindingFlags<sp/>flags<sp/>=<sp/>{<sp/>},<sp/>vk::Sampler*<sp/>pImmutableSamplers<sp/>=<sp/>nullptr<sp/>);</highlight></codeline>
 <codeline lineno="21"><highlight class="normal"></highlight></codeline>
-<codeline lineno="24"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/><ref refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_bindings_1a65f1f7e88d734539019ee296f3bf736a" kindref="member">initLayoutUnique</ref>(<sp/>)<sp/>-&gt;<sp/>vk::UniqueDescriptorSetLayout;</highlight></codeline>
+<codeline lineno="24"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/><ref refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_bindings_1ac4a04461e4728f35c9146237a47e6e66" kindref="member">initLayoutUnique</ref>(<sp/>vk::DescriptorSetLayoutCreateFlags<sp/>flags<sp/>=<sp/>{<sp/>}<sp/>)<sp/>-&gt;<sp/>vk::UniqueDescriptorSetLayout;</highlight></codeline>
 <codeline lineno="25"><highlight class="normal"></highlight></codeline>
 <codeline lineno="30"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/><ref refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_bindings_1a20edd74ad52f8a3604f7cd892f2239f6" kindref="member">initPoolUnique</ref>(<sp/>uint32_t<sp/>maxSets,<sp/>vk::DescriptorPoolCreateFlags<sp/>flags<sp/>=<sp/>{<sp/>}<sp/>)<sp/>-&gt;<sp/>vk::UniqueDescriptorPool;</highlight></codeline>
 <codeline lineno="31"><highlight class="normal"></highlight></codeline>
@@ -308,33 +315,35 @@
 <codeline lineno="53"><highlight class="normal"></highlight></codeline>
 <codeline lineno="58"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_bindings_1a8ff18f3ca1c5644d8a6237eac7292928" kindref="member">write</ref>(<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>std::vector&lt;vk::DescriptorSet&gt;&amp;<sp/>sets,<sp/>uint32_t<sp/>binding,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>std::vector&lt;vk::DescriptorBufferInfo&gt;&amp;<sp/>uniformBufferInfos<sp/>);</highlight></codeline>
 <codeline lineno="59"><highlight class="normal"></highlight></codeline>
-<codeline lineno="64"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_bindings_1a74d4d878e189392b1ec2ff7404ce0848" kindref="member">writeArray</ref>(<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>std::vector&lt;vk::DescriptorSet&gt;&amp;<sp/>sets,<sp/>uint32_t<sp/>binding,<sp/>vk::DescriptorBufferInfo*<sp/>pBufferInfo<sp/>);</highlight></codeline>
+<codeline lineno="64"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_bindings_1aa7d770601a7dc6456b8d1d58d1f8e7f4" kindref="member">writeArray</ref>(<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>std::vector&lt;vk::DescriptorSet&gt;&amp;<sp/>sets,<sp/>uint32_t<sp/>binding,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>vk::DescriptorBufferInfo*<sp/>pBufferInfo<sp/>);</highlight></codeline>
 <codeline lineno="65"><highlight class="normal"></highlight></codeline>
-<codeline lineno="69"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_bindings_1adb3fefd44d2cff639f5ad5a386b40f8a" kindref="member">setPoolSizes</ref>(<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>std::vector&lt;vk::DescriptorPoolSize&gt;&amp;<sp/>poolSizes<sp/>);</highlight></codeline>
-<codeline lineno="70"><highlight class="normal"></highlight></codeline>
-<codeline lineno="72"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_bindings_1a6ce4c6073f217615f9212444578ca217" kindref="member">reset</ref>(<sp/>);</highlight></codeline>
-<codeline lineno="73"><highlight class="normal"></highlight></codeline>
-<codeline lineno="74"><highlight class="normal"><sp/><sp/></highlight><highlight class="keyword">private</highlight><highlight class="normal">:</highlight></codeline>
-<codeline lineno="80"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/><ref refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_bindings_1a8ff18f3ca1c5644d8a6237eac7292928" kindref="member">write</ref>(<sp/>vk::DescriptorSet<sp/>set,<sp/></highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal"><sp/>writeIndex,<sp/>uint32_t<sp/>binding<sp/>)<sp/>-&gt;<sp/>size_t;</highlight></codeline>
-<codeline lineno="81"><highlight class="normal"></highlight></codeline>
-<codeline lineno="87"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/><ref refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_bindings_1a74d4d878e189392b1ec2ff7404ce0848" kindref="member">writeArray</ref>(<sp/>vk::DescriptorSet<sp/>set,<sp/></highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal"><sp/>writeIndex,<sp/>uint32_t<sp/>binding<sp/>)<sp/>-&gt;<sp/>size_t;</highlight></codeline>
-<codeline lineno="88"><highlight class="normal"></highlight></codeline>
-<codeline lineno="89"><highlight class="normal"><sp/><sp/><sp/><sp/>std::vector&lt;vk::DescriptorSetLayoutBinding&gt;<sp/>bindings;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
-<codeline lineno="90"><highlight class="normal"><sp/><sp/><sp/><sp/>std::vector&lt;vk::DescriptorBindingFlags&gt;<sp/>flags;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
-<codeline lineno="91"><highlight class="normal"><sp/><sp/><sp/><sp/>std::optional&lt;std::vector&lt;vk::DescriptorPoolSize&gt;&gt;<sp/>poolSizes;<sp/></highlight></codeline>
-<codeline lineno="92"><highlight class="normal"><sp/><sp/><sp/><sp/>std::vector&lt;std::vector&lt;vk::WriteDescriptorSet&gt;&gt;<sp/>writes;<sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
-<codeline lineno="93"><highlight class="normal"><sp/><sp/>};</highlight></codeline>
+<codeline lineno="70"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_bindings_1aa7d770601a7dc6456b8d1d58d1f8e7f4" kindref="member">writeArray</ref>(<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>std::vector&lt;vk::DescriptorSet&gt;&amp;<sp/>sets,<sp/>uint32_t<sp/>binding,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>vk::DescriptorImageInfo*<sp/>pImageInfo<sp/>);</highlight></codeline>
+<codeline lineno="71"><highlight class="normal"></highlight></codeline>
+<codeline lineno="75"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_bindings_1adb3fefd44d2cff639f5ad5a386b40f8a" kindref="member">setPoolSizes</ref>(<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>std::vector&lt;vk::DescriptorPoolSize&gt;&amp;<sp/>poolSizes<sp/>);</highlight></codeline>
+<codeline lineno="76"><highlight class="normal"></highlight></codeline>
+<codeline lineno="78"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_bindings_1a6ce4c6073f217615f9212444578ca217" kindref="member">reset</ref>(<sp/>);</highlight></codeline>
+<codeline lineno="79"><highlight class="normal"></highlight></codeline>
+<codeline lineno="80"><highlight class="normal"><sp/><sp/></highlight><highlight class="keyword">private</highlight><highlight class="normal">:</highlight></codeline>
+<codeline lineno="86"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/><ref refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_bindings_1a8ff18f3ca1c5644d8a6237eac7292928" kindref="member">write</ref>(<sp/>vk::DescriptorSet<sp/>set,<sp/></highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal"><sp/>writeIndex,<sp/>uint32_t<sp/>binding<sp/>)<sp/>-&gt;<sp/>size_t;</highlight></codeline>
+<codeline lineno="87"><highlight class="normal"></highlight></codeline>
+<codeline lineno="93"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/><ref refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_bindings_1aa7d770601a7dc6456b8d1d58d1f8e7f4" kindref="member">writeArray</ref>(<sp/>vk::DescriptorSet<sp/>set,<sp/></highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal"><sp/>writeIndex,<sp/>uint32_t<sp/>binding<sp/>)<sp/>-&gt;<sp/>size_t;</highlight></codeline>
 <codeline lineno="94"><highlight class="normal"></highlight></codeline>
-<codeline lineno="97" refid="struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_descriptors" refkind="compound"><highlight class="normal"><sp/><sp/></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal"><ref refid="struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_descriptors" kindref="compound">Descriptors</ref></highlight></codeline>
-<codeline lineno="98"><highlight class="normal"><sp/><sp/>{</highlight></codeline>
-<codeline lineno="99" refid="struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_descriptors_1a51cfd85e56864588a7f9b5380b31cb39" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>vk::UniqueDescriptorSetLayout<sp/><ref refid="struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_descriptors_1a51cfd85e56864588a7f9b5380b31cb39" kindref="member">layout</ref>;</highlight></codeline>
-<codeline lineno="100" refid="struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_descriptors_1a7142e00b8b54818edec0ff40fb322671" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>vk::UniqueDescriptorPool<sp/><ref refid="struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_descriptors_1a7142e00b8b54818edec0ff40fb322671" kindref="member">pool</ref>;</highlight></codeline>
-<codeline lineno="101" refid="struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_descriptors_1a3563c7ff3e828a1657fc61e90501e9c5" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_bindings" kindref="compound">Bindings</ref><sp/><ref refid="struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_descriptors_1a3563c7ff3e828a1657fc61e90501e9c5" kindref="member">bindings</ref>;</highlight></codeline>
-<codeline lineno="102"><highlight class="normal"><sp/><sp/>};</highlight></codeline>
-<codeline lineno="103"><highlight class="normal"></highlight></codeline>
-<codeline lineno="104"><highlight class="normal">}<sp/></highlight><highlight class="comment">//<sp/>namespace<sp/>RAYEX_NAMESPACE</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="105"><highlight class="normal"></highlight></codeline>
-<codeline lineno="106"><highlight class="normal"></highlight><highlight class="preprocessor">#endif<sp/>//<sp/>BINDING_HPP</highlight></codeline>
+<codeline lineno="95"><highlight class="normal"><sp/><sp/><sp/><sp/>std::vector&lt;vk::DescriptorSetLayoutBinding&gt;<sp/>_bindings;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="96"><highlight class="normal"><sp/><sp/><sp/><sp/>std::vector&lt;vk::DescriptorBindingFlags&gt;<sp/>_flags;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="97"><highlight class="normal"><sp/><sp/><sp/><sp/>std::optional&lt;std::vector&lt;vk::DescriptorPoolSize&gt;&gt;<sp/>_poolSizes;<sp/></highlight></codeline>
+<codeline lineno="98"><highlight class="normal"><sp/><sp/><sp/><sp/>std::vector&lt;std::vector&lt;vk::WriteDescriptorSet&gt;&gt;<sp/>_writes;<sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="99"><highlight class="normal"><sp/><sp/>};</highlight></codeline>
+<codeline lineno="100"><highlight class="normal"></highlight></codeline>
+<codeline lineno="103" refid="struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_descriptors" refkind="compound"><highlight class="normal"><sp/><sp/></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal"><ref refid="struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_descriptors" kindref="compound">Descriptors</ref></highlight></codeline>
+<codeline lineno="104"><highlight class="normal"><sp/><sp/>{</highlight></codeline>
+<codeline lineno="105" refid="struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_descriptors_1a51cfd85e56864588a7f9b5380b31cb39" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>vk::UniqueDescriptorSetLayout<sp/><ref refid="struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_descriptors_1a51cfd85e56864588a7f9b5380b31cb39" kindref="member">layout</ref>;</highlight></codeline>
+<codeline lineno="106" refid="struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_descriptors_1a7142e00b8b54818edec0ff40fb322671" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>vk::UniqueDescriptorPool<sp/><ref refid="struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_descriptors_1a7142e00b8b54818edec0ff40fb322671" kindref="member">pool</ref>;</highlight></codeline>
+<codeline lineno="107" refid="struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_descriptors_1a3563c7ff3e828a1657fc61e90501e9c5" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_bindings" kindref="compound">Bindings</ref><sp/><ref refid="struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_descriptors_1a3563c7ff3e828a1657fc61e90501e9c5" kindref="member">bindings</ref>;</highlight></codeline>
+<codeline lineno="108"><highlight class="normal"><sp/><sp/>};</highlight></codeline>
+<codeline lineno="109"><highlight class="normal"></highlight></codeline>
+<codeline lineno="110"><highlight class="normal">}<sp/></highlight><highlight class="comment">//<sp/>namespace<sp/>RAYEX_NAMESPACE</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="111"><highlight class="normal"></highlight></codeline>
+<codeline lineno="112"><highlight class="normal"></highlight><highlight class="preprocessor">#endif<sp/>//<sp/>BINDING_HPP</highlight></codeline>
     </programlisting>
     <location file="/home/n30/Repos/rayex/include/api/Bindings.hpp"/>
   </compounddef>

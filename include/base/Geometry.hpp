@@ -39,6 +39,7 @@ namespace RAYEX_NAMESPACE
     uint32_t geometryIndex = 0;     ///< A unique index required by the acceleration structures.
     std::string path       = "";    ///< The model's path, relative to the path to assets.
     bool initialized       = false; ///< Keeps track of whether or not the geometry was initialized.
+    bool dynamic           = false; ///< Keeps track of whether or not the geometry is dynamic or static.
   };
 
   /// Describes an instance of some geometry.
@@ -56,9 +57,10 @@ namespace RAYEX_NAMESPACE
   /// The function will attempt to find sub-meshes in the file and retrieve all materials.
   /// A user is encouraged to create their own model loader function or classes.
   /// @param path The model's path, relative to the path to assets.
+  /// @param dynamic If true, the geometry can be animated. Otherwise the geometry is static throughout its entire lifetime.
   /// @return Returns a pointer to a geometry object.
   /// @ingroup BASE
-  RX_API std::shared_ptr<Geometry> loadObj( std::string_view path );
+  RX_API std::shared_ptr<Geometry> loadObj( std::string_view path, bool dynamic = false );
 
   /// A commodity function for allocating an instance from a given geometry and set its matrices.
   ///

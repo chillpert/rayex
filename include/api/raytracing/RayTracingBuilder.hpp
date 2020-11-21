@@ -38,7 +38,7 @@ namespace RAYEX_NAMESPACE
     RayTracingBuilder( const RayTracingBuilder&& ) = delete;
 
     auto operator=( const RayTracingBuilder& ) -> RayTracingBuilder& = delete;
-    auto operator=( const RayTracingBuilder&& ) -> RayTracingBuilder& = delete;
+    auto operator=( const RayTracingBuilder && ) -> RayTracingBuilder& = delete;
 
     /// Retrieves the physical device's ray tracing capabilities.
     void init( );
@@ -65,7 +65,7 @@ namespace RAYEX_NAMESPACE
     /// @param vertexBuffer A vertex buffer of some geometry.
     /// @param indexBuffer An index buffer of some geometry.
     /// @return Returns the bottom level acceleration structure.
-    auto modelToBlas( const VertexBuffer& vertexBuffer, const IndexBuffer& indexBuffer ) const -> Blas;
+    auto modelToBlas( const VertexBuffer& vertexBuffer, const IndexBuffer& indexBuffer, bool allowTransforms ) const -> Blas;
 
     /// Used to convert a bottom level acceleration structure instance to a Vulkan geometry instance.
     /// @param instance A bottom level acceleration structure instance.
@@ -75,12 +75,12 @@ namespace RAYEX_NAMESPACE
     /// Used to prepare building the bottom level acceleration structures.
     /// @param vertexBuffers Vertex buffers of all geometry in the scene.
     /// @param indexBuffers Index buffers of all geometry in the scene.
-    void createBottomLevelAS( const std::vector<VertexBuffer>& vertexBuffers, const std::vector<IndexBuffer>& indexBuffers );
+    void createBottomLevelAS( const std::vector<VertexBuffer>& vertexBuffers, const std::vector<IndexBuffer>& indexBuffers, const std::vector<std::shared_ptr<Geometry>>& geometries );
 
     /// Builds all bottom level acceleration structures.
     /// @param blas_ A vector of RAYEX_NAMESPACE::Blas objects containing all bottom level acceleration structures prepared in createBottomLevelAS().
     /// @param flags The build flags.
-    void buildBlas( const std::vector<Blas>& blas_, vk::BuildAccelerationStructureFlagsKHR flags = vk::BuildAccelerationStructureFlagBitsKHR::ePreferFastTrace );
+    void buildBlas( std::vector<Blas>& blas_, vk::BuildAccelerationStructureFlagsKHR flags = vk::BuildAccelerationStructureFlagBitsKHR::ePreferFastTrace );
 
     /// Used to prepare building the top level acceleration structure.
     /// @param geometryInstances All geometry instances in the scene.
@@ -114,11 +114,14 @@ namespace RAYEX_NAMESPACE
     vk::UniquePipelineLayout _layout;                        ///< The Vulkan pipeline layout with a unique handle.
     uint32_t _shaderGroups;                                  ///< The total amount of ray tracing shaders.
     vk::PhysicalDeviceRayTracingPropertiesKHR _rtProperties; ///< The physical device's ray tracing capabilities.
-    std::vector<Blas> _blas_;                                ///< A vector containing all bottom level acceleration structures.
-    Tlas _tlas;                                              ///< The top level acceleration structure.
-    Buffer _instanceBuffer;                                  ///< The instance buffer.
-    Buffer _sbtBuffer;                                       ///< The shader binding table buffer.
-    Image _storageImage;                                     ///< The storage image.
-    vk::UniqueImageView _storageImageView;                   ///< The storage image's image view.
+    std::vector<Blas> _staticBlas_;                          ///< A vector containing all static bottom level acceleration structures.
+    std::vector<Blas> _dynamicBlas_;                         ///< A vector containing all dynamic bottom level acceleration structures.
+    std::vector<Blas> _blas_;                                ///< Both, all static and dynamic blas.
+    std::map<uint32_t, std::pair<size_t, bool>> _indices;
+    Tlas _tlas;                            ///< The top level acceleration structure.
+    Buffer _instanceBuffer;                ///< The instance buffer.
+    Buffer _sbtBuffer;                     ///< The shader binding table buffer.
+    Image _storageImage;                   ///< The storage image.
+    vk::UniqueImageView _storageImageView; ///< The storage image's image view.
   };
 } // namespace RAYEX_NAMESPACE

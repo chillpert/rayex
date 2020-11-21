@@ -22,22 +22,40 @@ namespace RAYEX_NAMESPACE
   {
     components::device.waitIdle( );
 
-    for ( Blas& blas : _blas_ )
+    for ( Blas& blas : _staticBlas_ )
+    {
       blas.as.destroy( );
+    }
+
+    for ( Blas& blas : _dynamicBlas_ )
+    {
+      blas.as.destroy( );
+    }
+
+    /*
+    for ( Blas& blas : _blas_ )
+    {
+      blas.as.destroy( );
+    }
+    */
 
     _tlas.as.destroy( );
 
+    _staticBlas_.clear( );
+    _dynamicBlas_.clear( );
+
     _blas_.clear( );
+    _indices.clear( );
   }
 
-  auto RayTracingBuilder::modelToBlas( const VertexBuffer& vertexBuffer, const IndexBuffer& indexBuffer ) const -> Blas
+  auto RayTracingBuilder::modelToBlas( const VertexBuffer& vertexBuffer, const IndexBuffer& indexBuffer, bool allowTransforms ) const -> Blas
   {
     vk::AccelerationStructureCreateGeometryTypeInfoKHR asCreate( vk::GeometryTypeKHR::eTriangles,    // geometryType
                                                                  indexBuffer.getCount( ) / 3,        // maxPrimitiveCount
                                                                  vk::IndexType::eUint32,             // indexType
                                                                  vertexBuffer.getCount( ),           // maxVertexCount
                                                                  Vertex::getVertexPositionFormat( ), // vertexFormat
-                                                                 VK_FALSE );                         // allowsTransforms
+                                                                 allowTransforms );                  // allowsTransforms
 
     vk::DeviceAddress vertexAddress = components::device.getBufferAddress( { vertexBuffer.get( ) } );
     vk::DeviceAddress indexAddress  = components::device.getBufferAddress( { indexBuffer.get( ) } );
@@ -87,47 +105,111 @@ namespace RAYEX_NAMESPACE
     return gInst;
   }
 
-  void RayTracingBuilder::createBottomLevelAS( const std::vector<VertexBuffer>& vertexBuffers, const std::vector<IndexBuffer>& indexBuffers )
+  void RayTracingBuilder::createBottomLevelAS( const std::vector<VertexBuffer>& vertexBuffers, const std::vector<IndexBuffer>& indexBuffers, const std::vector<std::shared_ptr<Geometry>>& geometries )
   {
     // Clean up previous acceleration structures and free all memory.
     destroy( );
 
     // BLAS - Storing each primitive in a geometry.
-    std::vector<Blas> allBlas;
-    allBlas.reserve( vertexBuffers.size( ) );
+    std::vector<Blas> allStaticBlas;
+    allStaticBlas.reserve( vertexBuffers.size( ) );
+
+    std::vector<Blas> allDynamicBlas;
+    allDynamicBlas.reserve( vertexBuffers.size( ) );
+
+    std::vector<uint32_t> staticBlasIndices;
+    staticBlasIndices.reserve( vertexBuffers.size( ) );
+
+    std::vector<uint32_t> dynamicBlasIndices;
+    dynamicBlasIndices.reserve( vertexBuffers.size( ) );
 
     for ( size_t i = 0; i < vertexBuffers.size( ); ++i )
     {
       if ( vertexBuffers[i].get( ) && indexBuffers[i].get( ) )
       {
-        Blas blas = modelToBlas( vertexBuffers[i], indexBuffers[i] );
+        Blas blas;
+
+        std::pair<size_t, bool> temp;
 
         // We could add more geometry in each BLAS, but we add only one for now.
-        allBlas.emplace_back( blas );
+        if ( geometries.size( ) > i )
+        {
+          if ( geometries[i] != nullptr )
+          {
+            if ( geometries[i]->dynamic )
+            {
+              blas = modelToBlas( vertexBuffers[i], indexBuffers[i], true );
+              allDynamicBlas.emplace_back( blas );
+              dynamicBlasIndices.push_back( geometries[i]->geometryIndex );
+
+              temp.first  = allDynamicBlas.size( ) - 1;
+              temp.second = true;
+            }
+            else
+            {
+              blas = modelToBlas( vertexBuffers[i], indexBuffers[i], false );
+              allStaticBlas.emplace_back( blas );
+              staticBlasIndices.push_back( geometries[i]->geometryIndex );
+
+              temp.first  = allStaticBlas.size( ) - 1;
+              temp.second = false;
+            }
+
+            _indices.insert( { geometries[i]->geometryIndex, temp } );
+          }
+        }
       }
     }
 
-    if ( !allBlas.empty( ) )
+    if ( !allStaticBlas.empty( ) )
     {
-      buildBlas( allBlas, vk::BuildAccelerationStructureFlagBitsKHR::eAllowCompaction | vk::BuildAccelerationStructureFlagBitsKHR::eAllowUpdate | vk::BuildAccelerationStructureFlagBitsKHR::ePreferFastBuild );
+      // @todo Check if eAllowUpdate is necessary.
+      buildBlas( allStaticBlas, vk::BuildAccelerationStructureFlagBitsKHR::eAllowCompaction | vk::BuildAccelerationStructureFlagBitsKHR::ePreferFastTrace );
+      // Keep a copy.
+      _staticBlas_ = allStaticBlas;
+    }
+
+    if ( !allDynamicBlas.empty( ) )
+    {
+      buildBlas( allDynamicBlas, vk::BuildAccelerationStructureFlagBitsKHR::eAllowCompaction | vk::BuildAccelerationStructureFlagBitsKHR::eAllowUpdate | vk::BuildAccelerationStructureFlagBitsKHR::ePreferFastBuild );
+      // Keep a copy.
+      _dynamicBlas_ = allDynamicBlas;
+    }
+
+    _blas_.reserve( vertexBuffers.size( ) );
+
+    for ( size_t i = 0; i < vertexBuffers.size( ); ++i )
+    {
+      auto it = _indices.find( i );
+      if ( it != _indices.end( ) )
+      {
+        // Dynamic
+        if ( it->second.second )
+        {
+          _blas_.emplace_back( _dynamicBlas_[it->second.first] );
+        }
+        // Static
+        else
+        {
+          _blas_.emplace_back( _staticBlas_[it->second.first] );
+        }
+      }
     }
   }
 
-  void RayTracingBuilder::buildBlas( const std::vector<Blas>& blas_, vk::BuildAccelerationStructureFlagsKHR flags )
+  void RayTracingBuilder::buildBlas( std::vector<Blas>& blas_, vk::BuildAccelerationStructureFlagsKHR flags )
   {
-    _blas_ = blas_;
-
     vk::DeviceSize maxScratch = 0;
 
     // Is compaction requested?
     bool doCompaction = ( flags & vk::BuildAccelerationStructureFlagBitsKHR::eAllowCompaction ) == vk::BuildAccelerationStructureFlagBitsKHR::eAllowCompaction;
 
     std::vector<vk::DeviceSize> originalSizes;
-    originalSizes.resize( _blas_.size( ) );
+    originalSizes.resize( blas_.size( ) );
 
     // Iterate over the groups of geometries, creating one BLAS for each group
     int index = 0;
-    for ( Blas& blas : _blas_ )
+    for ( Blas& blas : blas_ )
     {
       vk::AccelerationStructureCreateInfoKHR asCreateInfo( { },                                                        // compactedSize
                                                            vk::AccelerationStructureTypeKHR::eBottomLevel,             // type
@@ -169,16 +251,16 @@ namespace RAYEX_NAMESPACE
     vk::DeviceAddress scratchAddress = components::device.getBufferAddress( bufferInfo );
 
     // Query size of compact BLAS.
-    vk::UniqueQueryPool queryPool = vk::Initializer::initQueryPoolUnique( static_cast<uint32_t>( _blas_.size( ) ), vk::QueryType::eAccelerationStructureCompactedSizeKHR );
+    vk::UniqueQueryPool queryPool = vk::Initializer::initQueryPoolUnique( static_cast<uint32_t>( blas_.size( ) ), vk::QueryType::eAccelerationStructureCompactedSizeKHR );
 
     // Create a command buffer containing all the BLAS builds.
     vk::UniqueCommandPool commandPool = vk::Initializer::initCommandPoolUnique( { components::graphicsFamilyIndex } );
     int ctr                           = 0;
 
-    CommandBuffer cmdBuf( commandPool.get( ), static_cast<uint32_t>( _blas_.size( ) ) );
+    CommandBuffer cmdBuf( commandPool.get( ), static_cast<uint32_t>( blas_.size( ) ) );
 
     index = 0;
-    for ( Blas& blas : _blas_ )
+    for ( Blas& blas : blas_ )
     {
       const vk::AccelerationStructureGeometryKHR* pGeometry = blas.asGeometry.data( );
 
@@ -236,7 +318,7 @@ namespace RAYEX_NAMESPACE
     {
       CommandBuffer compactionCmdBuf( components::graphicsCmdPool );
 
-      std::vector<vk::DeviceSize> compactSizes( _blas_.size( ) );
+      std::vector<vk::DeviceSize> compactSizes( blas_.size( ) );
 
       components::device.getQueryPoolResults( queryPool.get( ),                                // queryPool
                                               0,                                               // firstQuery
@@ -246,14 +328,14 @@ namespace RAYEX_NAMESPACE
                                               sizeof( vk::DeviceSize ),                        // stride
                                               vk::QueryResultFlagBits::eWait );                // flags
 
-      std::vector<AccelerationStructure> cleanupAS( _blas_.size( ) );
+      std::vector<AccelerationStructure> cleanupAS( blas_.size( ) );
 
       uint32_t totalOriginalSize = 0;
       uint32_t totalCompactSize  = 0;
 
       compactionCmdBuf.begin( 0 );
 
-      for ( int i = 0; i < _blas_.size( ); ++i )
+      for ( int i = 0; i < blas_.size( ); ++i )
       {
         totalOriginalSize += static_cast<uint32_t>( originalSizes[i] );
         totalCompactSize += static_cast<uint32_t>( compactSizes[i] );
@@ -269,14 +351,14 @@ namespace RAYEX_NAMESPACE
         auto as = vk::Initializer::initAccelerationStructure( asCreateInfo );
 
         // Copy the original BLAS to a compact version
-        vk::CopyAccelerationStructureInfoKHR copyInfo( _blas_[i].as.as,                                  // src
+        vk::CopyAccelerationStructureInfoKHR copyInfo( blas_[i].as.as,                                   // src
                                                        as.as,                                            // dst
                                                        vk::CopyAccelerationStructureModeKHR::eCompact ); // mode
 
         compactionCmdBuf.get( 0 ).copyAccelerationStructureKHR( &copyInfo );
 
-        cleanupAS[i] = _blas_[i].as;
-        _blas_[i].as = as;
+        cleanupAS[i] = blas_[i].as;
+        blas_[i].as  = as;
       }
 
       compactionCmdBuf.end( 0 );
@@ -294,21 +376,19 @@ namespace RAYEX_NAMESPACE
     std::vector<BlasInstance> instances;
     instances.reserve( geometryInstances.size( ) );
 
-    uint32_t i = 0;
-    for ( const auto& geometryInstance : geometryInstances )
+    for ( uint32_t i = 0; i < geometryInstances.size( ); ++i )
     {
       BlasInstance rayInst;
-      rayInst.transform  = geometryInstance->transform;
+      rayInst.transform  = geometryInstances[i]->transform;
       rayInst.instanceId = i;
-      rayInst.blasId     = geometryInstance->geometryIndex;
+      rayInst.blasId     = geometryInstances[i]->geometryIndex;
       rayInst.hitGroupId = 0; // We will use the same hit group for all objects
       rayInst.flags      = vk::GeometryInstanceFlagBitsKHR::eTriangleFacingCullDisable;
 
       instances.push_back( rayInst );
-      ++i;
     }
 
-    if ( !instances.empty( ) && !_blas_.empty( ) )
+    if ( !instances.empty( ) )
     {
       buildTlas( instances, vk::BuildAccelerationStructureFlagBitsKHR::ePreferFastTrace | vk::BuildAccelerationStructureFlagBitsKHR::eAllowUpdate );
     }

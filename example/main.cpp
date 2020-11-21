@@ -30,7 +30,7 @@ auto main( ) -> int
 
   // Load geometries.
   auto awp   = rx::loadObj( "models/awpdlore/awpdlore.obj" );
-  auto plane = rx::loadObj( "models/plane.obj" );
+  auto plane = rx::loadObj( "models/plane.obj", true );
 
   plane->meshes[0].material.diffuseTexPath = "models/metal.png";
 

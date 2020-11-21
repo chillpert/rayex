@@ -139,8 +139,12 @@ void main( )
     float tMax  = lightDistance;
     vec3 origin = gl_WorldRayOriginEXT + gl_WorldRayDirectionEXT * gl_HitTEXT;
     vec3 rayDir = L;
-    uint flags  = gl_RayFlagsTerminateOnFirstHitEXT | gl_RayFlagsOpaqueEXT | gl_RayFlagsSkipClosestHitShaderEXT;
-    isShadowed  = true;
+
+    // gl_RayFlagsSkipClosestHitShaderKHR: Will not invoke the hit shader, only the miss shader
+    // gl_RayFlagsOpaqueKHR : Will not call the any hit shader, so all objects will be opaque
+    // gl_RayFlagsTerminateOnFirstHitKHR : The first hit is always good.
+    uint flags = gl_RayFlagsTerminateOnFirstHitEXT | gl_RayFlagsOpaqueEXT | gl_RayFlagsSkipClosestHitShaderEXT;
+    isShadowed = true;
     traceRayEXT( topLevelAS, // acceleration structure
                  flags,      // rayFlags
                  0xFF,       // cullMask
@@ -151,12 +155,16 @@ void main( )
                  tMin,       // ray min range
                  rayDir,     // ray direction
                  tMax,       // ray max range
-                 1           // payload (location = 1)
-    );
+                 1 );        // payload (location = 1)
 
     if ( isShadowed )
     {
       attenuation = 0.3;
+    }
+    // Only calculate specular light if hit is not in shadow.
+    else
+    {
+      // compute specular
     }
   }
 

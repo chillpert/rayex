@@ -553,7 +553,7 @@ namespace RAYEX_NAMESPACE
     RX_LOG_TIME_START( "Updating acceleration structures ..." );
 
     // @TODO Try to call this as few times as possible.
-    _rtBuilder.createBottomLevelAS( _vertexBuffers, _indexBuffers );
+    _rtBuilder.createBottomLevelAS( _vertexBuffers, _indexBuffers, _scene->_geometries );
     _rtBuilder.createTopLevelAS( _scene->_geometryInstances );
 
     // Update ray tracing descriptor set.

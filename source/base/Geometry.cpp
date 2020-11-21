@@ -7,13 +7,14 @@
 
 namespace RAYEX_NAMESPACE
 {
-  std::shared_ptr<Geometry> loadObj( std::string_view path )
+  std::shared_ptr<Geometry> loadObj( std::string_view path, bool dynamic )
   {
     RX_LOG_TIME_START( "Loading model from ", path, "." );
 
     std::shared_ptr<Geometry> geometry = std::make_shared<Geometry>( );
     geometry->path                     = path;
     geometry->geometryIndex            = components::geometryIndex++;
+    geometry->dynamic                  = dynamic;
 
     tinyobj::attrib_t attrib;
     std::vector<tinyobj::shape_t> shapes;

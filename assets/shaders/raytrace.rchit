@@ -198,9 +198,8 @@ void main( )
 
   if ( modelIndex == 0 )
   {
-    //diffuse = texture( skybox, vec3( -texCoord.x, texCoord.y, 0.0 ) ).xyz;
-    vec3 pos     = vec3( texCoord.x, texCoord.y, 1.0 );
-    prd.hitValue = texture( skybox, pos ).xyz;
+    vec3 pos     = prd.rayDirection.xyz;
+    prd.hitValue = texture( skybox, -pos ).xyz;
     return;
   }
   else
@@ -219,6 +218,7 @@ void main( )
       }
     }
   }
+
   float dotNL  = max( dot( normal, L ), 0.2 );
   prd.hitValue = vec3( dotNL ) * diffuse * attenuation;
 }

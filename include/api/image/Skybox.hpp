@@ -56,9 +56,11 @@ namespace rx
       auto imageViewCreateInfo                        = vk::Helper::getImageViewCreateInfo( _image.get( ), _format, vk::ImageViewType::eCube );
       imageViewCreateInfo.subresourceRange.layerCount = 6;
       imageViewCreateInfo.subresourceRange.levelCount = texture->numLevels;
+      imageViewCreateInfo.components                  = { vk::ComponentSwizzle::eR, vk::ComponentSwizzle::eG, vk::ComponentSwizzle::eB, vk::ComponentSwizzle::eA };
 
       // Create buffer copy regions
-      std::vector<vk::BufferImageCopy> bufferCopyRegions;
+      std::vector<vk::BufferImageCopy>
+        bufferCopyRegions;
       bufferCopyRegions.reserve( 6 * texture->numLevels );
 
       for ( uint32_t face = 0; face < 6; ++face )
@@ -66,8 +68,7 @@ namespace rx
         for ( uint32_t mipLevel = 0; mipLevel < texture->numLevels; ++mipLevel )
         {
           ktx_size_t offset;
-          KTX_error_code ret = ktxTexture_GetImageOffset( texture, mipLevel, 0, face, &offset );
-          assert( ret == KTX_SUCCESS );
+          RX_ASSERT( ktxTexture_GetImageOffset( texture, mipLevel, 0, face, &offset ) == KTX_SUCCESS, "KTX: Failed to get image offset." );
           vk::BufferImageCopy bufferCopyRegion             = { };
           bufferCopyRegion.imageSubresource.aspectMask     = vk::ImageAspectFlagBits::eColor;
           bufferCopyRegion.imageSubresource.mipLevel       = mipLevel;
@@ -113,6 +114,9 @@ namespace rx
 
       // Init image view
       _imageView = vk::Initializer::initImageViewUnique( imageViewCreateInfo );
+
+      // Clean up
+      ktxTexture_Destroy( texture );
     }
 
   private:

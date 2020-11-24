@@ -37,20 +37,16 @@ namespace vk::Helper
 
   auto getImageViewCreateInfo( Image image, Format format, ImageViewType viewType, ImageAspectFlags aspectFlags ) -> ImageViewCreateInfo
   {
-    ComponentMapping components = {
-      ComponentSwizzle::eIdentity,
-      ComponentSwizzle::eIdentity,
-      ComponentSwizzle::eIdentity,
-      ComponentSwizzle::eIdentity
-    };
+    ComponentMapping components = { ComponentSwizzle::eIdentity,
+                                    ComponentSwizzle::eIdentity,
+                                    ComponentSwizzle::eIdentity,
+                                    ComponentSwizzle::eIdentity };
 
-    ImageSubresourceRange subresourceRange = {
-      aspectFlags, // aspectMask
-      0U,          // baseMipLevel
-      1U,          // levelCount
-      0U,          // baseArrayLayer
-      1U           // layerCount
-    };
+    ImageSubresourceRange subresourceRange = { aspectFlags, // aspectMask
+                                               0U,          // baseMipLevel
+                                               1U,          // levelCount
+                                               0U,          // baseArrayLayer
+                                               1U };        // layerCount
 
     return ImageViewCreateInfo( { },                // flags
                                 image,              // image

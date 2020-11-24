@@ -39,11 +39,13 @@ auto main( ) -> int
   renderer.scene( ).setGeometries( { cube, awp, plane } );
 
   // Create instances of the geometries.
-  auto cubeInstance = rx::instance( cube );
+  auto transform = glm::scale( glm::mat4( 1.0F ), glm::vec3( 1000.0F ) );
 
-  auto transform = glm::scale( glm::mat4( 1.0F ), glm::vec3( 0.25F ) );
-  transform      = glm::rotate( transform, glm::radians( 45.0F ), glm::vec3( 0.0F, 1.0F, 0.0F ) );
-  transform      = glm::translate( transform, glm::vec3( 0.0F, -1.0F, 0.5F ) );
+  auto cubeInstance = rx::instance( cube, transform );
+
+  transform = glm::scale( glm::mat4( 1.0F ), glm::vec3( 0.25F ) );
+  transform = glm::rotate( transform, glm::radians( 45.0F ), glm::vec3( 0.0F, 1.0F, 0.0F ) );
+  transform = glm::translate( transform, glm::vec3( 0.0F, -1.0F, 0.5F ) );
 
   auto awpInstance1 = rx::instance( awp, transform );
 

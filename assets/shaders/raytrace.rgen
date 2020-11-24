@@ -46,6 +46,8 @@ void rayTrace( vec2 positionWithinPixel )
   vec4 target    = cam.projInverse * vec4( d.x, d.y, 1, 1 );
   vec4 direction = cam.viewInverse * vec4( normalize( target.xyz ), 0 );
 
+  prd.rayDirection = direction;
+
   uint rayFlags = gl_RayFlagsOpaqueEXT;
   float tMin    = 0.001;
   float tMax    = 10000.0;

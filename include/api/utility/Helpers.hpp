@@ -22,6 +22,14 @@ namespace vk
     /// @return Returns the completed image create info.
     auto getImageCreateInfo( Extent3D extent ) -> ImageCreateInfo;
 
+    /// Simplifies the process of setting up an image view create info with the most common settings.
+    /// @param image The image to init an image view for.
+    /// @param format The target format of the image view.
+    /// @param viewType The image's view type.
+    /// @param aspectFlags The image's aspect flags.
+    /// @return Returns the image view create info.
+    auto getImageViewCreateInfo( Image image, Format format, ImageViewType viewType = ImageViewType::e2D, ImageAspectFlags aspectFlags = ImageAspectFlagBits::eColor ) -> ImageViewCreateInfo;
+
     /// Simplifies the process of setting up a sampler create info for texture usage.
     /// @return Returns the completed sampler create info.
     auto getSamplerCreateInfo( ) -> SamplerCreateInfo;
@@ -84,8 +92,9 @@ namespace vk
     /// @param image The vulkan image.
     /// @param oldLayout The current image layout of the given vulkan image.
     /// @param newLayout The target image layout.
+    /// @param subresourceRange The image view's subresource range.
     /// @return Returns a tuple containing the actual image memory barrier as well as the source stage mask and the destination stage mask.
-    auto getImageMemoryBarrierInfo( Image image, ImageLayout oldLayout, ImageLayout newLayout ) -> std::tuple<ImageMemoryBarrier, PipelineStageFlags, PipelineStageFlags>;
+    auto getImageMemoryBarrierInfo( Image image, ImageLayout oldLayout, ImageLayout newLayout, ImageSubresourceRange* subresourceRange = nullptr ) -> std::tuple<ImageMemoryBarrier, PipelineStageFlags, PipelineStageFlags>;
 
     /// Simplifies the process of setting up an attachment description for a render pass.
     /// @param surfaceFormat The surface's format.

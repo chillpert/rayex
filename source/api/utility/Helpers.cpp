@@ -28,11 +28,36 @@ namespace vk::Helper
                                 ImageTiling::eOptimal,                                           // tiling
                                 ImageUsageFlagBits::eTransferDst | ImageUsageFlagBits::eSampled, // usage
                                 SharingMode::eExclusive,                                         // sharingMode
-                                0U,                                                              // queueFamilyIndexCount
+                                RAYEX_NAMESPACE::components::graphicsFamilyIndex,                // queueFamilyIndexCount
                                 nullptr,                                                         // pQueueFamilyIndices
                                 ImageLayout::eUndefined );                                       // initialLayout
 
     return createInfo;
+  }
+
+  auto getImageViewCreateInfo( Image image, Format format, ImageViewType viewType, ImageAspectFlags aspectFlags ) -> ImageViewCreateInfo
+  {
+    ComponentMapping components = {
+      ComponentSwizzle::eIdentity,
+      ComponentSwizzle::eIdentity,
+      ComponentSwizzle::eIdentity,
+      ComponentSwizzle::eIdentity
+    };
+
+    ImageSubresourceRange subresourceRange = {
+      aspectFlags, // aspectMask
+      0U,          // baseMipLevel
+      1U,          // levelCount
+      0U,          // baseArrayLayer
+      1U           // layerCount
+    };
+
+    return ImageViewCreateInfo( { },                // flags
+                                image,              // image
+                                viewType,           // viewType
+                                format,             // format
+                                components,         // components
+                                subresourceRange ); // subresourceRange
   }
 
   auto getSamplerCreateInfo( ) -> SamplerCreateInfo
@@ -170,20 +195,28 @@ namespace vk::Helper
                                    &std::get<0>( barrierInfo ) ); // barrier
   }
 
-  auto getImageMemoryBarrierInfo( Image image, ImageLayout oldLayout, ImageLayout newLayout ) -> std::tuple<ImageMemoryBarrier, PipelineStageFlags, PipelineStageFlags>
+  auto getImageMemoryBarrierInfo( Image image, ImageLayout oldLayout, ImageLayout newLayout, ImageSubresourceRange* subresourceRange ) -> std::tuple<ImageMemoryBarrier, PipelineStageFlags, PipelineStageFlags>
   {
     // TODO: not style conform.
     ImageMemoryBarrier barrier;
-    barrier.oldLayout                       = oldLayout;
-    barrier.newLayout                       = newLayout;
-    barrier.srcQueueFamilyIndex             = VK_QUEUE_FAMILY_IGNORED;
-    barrier.dstQueueFamilyIndex             = VK_QUEUE_FAMILY_IGNORED;
-    barrier.image                           = image;
-    barrier.subresourceRange.aspectMask     = ImageAspectFlagBits::eColor;
-    barrier.subresourceRange.baseMipLevel   = 0;
-    barrier.subresourceRange.levelCount     = 1;
-    barrier.subresourceRange.baseArrayLayer = 0;
-    barrier.subresourceRange.layerCount     = 1;
+    barrier.oldLayout           = oldLayout;
+    barrier.newLayout           = newLayout;
+    barrier.srcQueueFamilyIndex = VK_QUEUE_FAMILY_IGNORED;
+    barrier.dstQueueFamilyIndex = VK_QUEUE_FAMILY_IGNORED;
+    barrier.image               = image;
+
+    if ( subresourceRange == nullptr )
+    {
+      barrier.subresourceRange.aspectMask     = ImageAspectFlagBits::eColor;
+      barrier.subresourceRange.baseMipLevel   = 0;
+      barrier.subresourceRange.levelCount     = 1;
+      barrier.subresourceRange.baseArrayLayer = 0;
+      barrier.subresourceRange.layerCount     = 1;
+    }
+    else
+    {
+      barrier.subresourceRange = *subresourceRange;
+    }
 
     PipelineStageFlags srcStageMask = PipelineStageFlagBits::eAllCommands;
     PipelineStageFlags dstStageMask = PipelineStageFlagBits::eAllCommands;

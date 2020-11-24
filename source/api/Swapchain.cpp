@@ -35,10 +35,10 @@ namespace RAYEX_NAMESPACE
     createInfo.preTransform    = surfaceCapabilities.currentTransform;
 
     // Prefer opaque bit over any other composite alpha value.
-    createInfo.compositeAlpha = surfaceCapabilities.supportedCompositeAlpha & vk::CompositeAlphaFlagBitsKHR::eOpaque         ? vk::CompositeAlphaFlagBitsKHR::eOpaque :
-                                surfaceCapabilities.supportedCompositeAlpha & vk::CompositeAlphaFlagBitsKHR::ePreMultiplied  ? vk::CompositeAlphaFlagBitsKHR::ePreMultiplied :
-                                surfaceCapabilities.supportedCompositeAlpha & vk::CompositeAlphaFlagBitsKHR::ePostMultiplied ? vk::CompositeAlphaFlagBitsKHR::ePostMultiplied :
-                                                                                                                               vk::CompositeAlphaFlagBitsKHR::eInherit;
+    createInfo.compositeAlpha = surfaceCapabilities.supportedCompositeAlpha & vk::CompositeAlphaFlagBitsKHR::eOpaque ? vk::CompositeAlphaFlagBitsKHR::eOpaque :
+                                                                                                                       surfaceCapabilities.supportedCompositeAlpha & vk::CompositeAlphaFlagBitsKHR::ePreMultiplied ? vk::CompositeAlphaFlagBitsKHR::ePreMultiplied :
+                                                                                                                                                                                                                     surfaceCapabilities.supportedCompositeAlpha & vk::CompositeAlphaFlagBitsKHR::ePostMultiplied ? vk::CompositeAlphaFlagBitsKHR::ePostMultiplied :
+                                                                                                                                                                                                                                                                                                                    vk::CompositeAlphaFlagBitsKHR::eInherit;
 
     // Handle the swap chain image extent.
     if ( surfaceCapabilities.currentExtent.width != UINT32_MAX )
@@ -132,7 +132,7 @@ namespace RAYEX_NAMESPACE
     _imageViews.resize( _images.size( ) );
     for ( size_t i = 0; i < _imageViews.size( ); ++i )
     {
-      _imageViews[i] = vk::Initializer::initImageViewUnique( _images[i], surfaceFormat, _imageAspect );
+      _imageViews[i] = vk::Initializer::initImageViewUnique( vk::Helper::getImageViewCreateInfo( _images[i], surfaceFormat, vk::ImageViewType::e2D, _imageAspect ) );
     }
   }
 
@@ -148,7 +148,7 @@ namespace RAYEX_NAMESPACE
     _depthImage.init( imageCreateInfo );
 
     // Image view for depth image
-    _depthImageView = vk::Initializer::initImageViewUnique( _depthImage.get( ), depthFormat, vk::ImageAspectFlagBits::eDepth );
+    _depthImageView = vk::Initializer::initImageViewUnique( vk::Helper::getImageViewCreateInfo( _depthImage.get( ), depthFormat, vk::ImageViewType::e2D, vk::ImageAspectFlagBits::eDepth ) );
   }
 
   void Swapchain::initFramebuffers( vk::RenderPass renderPass )

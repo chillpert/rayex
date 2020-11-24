@@ -65,6 +65,18 @@ else()
   message(FATAL_ERROR, "Target platform not supported")
 endif()
 
+# KTX
+if(${OS} STREQUAL "Windows")
+  link_directories(${PROJECT_SOURCE_DIR}/external/KTX)
+  include_directories(${PROJECT_SOURCE_DIR}/external/KTX)
+
+  set(KTX ${KTX} "ktx.lib")
+elseif(${OS} STREQUAL "Linux")
+  message(FATAL_ERROR, "KTX NOT HANDLED FOR LINUX YET.")
+else()
+  message(FATAL_ERROR, "Target platform not supported")
+endif()
+
 include_directories(${PROJECT_SOURCE_DIR}/external/STB)
 include_directories(${PROJECT_SOURCE_DIR}/external/ModelLoading)
 
@@ -79,6 +91,7 @@ set_target_properties(renderer PROPERTIES COMPILE_DEFINITIONS "RX_BUILD_DLL")
 target_link_libraries(renderer
   ${WINDOWING}
   ${Vulkan_LIBRARY}
+  ${KTX}
 )
 
 target_precompile_headers(renderer

@@ -21,8 +21,6 @@ namespace RAYEX_NAMESPACE
     /// @todo Latest changes to this class might be causing errors once texture are working again.
     void init( std::string_view path );
 
-    uint32_t _offset = 0;
-
   private:
     std::string _path; ///< The relative path to the texture file.
 

@@ -520,7 +520,7 @@ namespace RAYEX_NAMESPACE
     _storageImage.init( storageImageInfo );
     _storageImage.transitionToLayout( vk::ImageLayout::eGeneral );
 
-    _storageImageView = vk::Initializer::initImageViewUnique( _storageImage.get( ), _storageImage.getFormat( ) );
+    _storageImageView = vk::Initializer::initImageViewUnique( vk::Helper::getImageViewCreateInfo( _storageImage.get( ), _storageImage.getFormat( ) ) );
   }
 
   void RayTracingBuilder::createShaderBindingTable( )

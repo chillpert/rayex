@@ -63,7 +63,9 @@ layout( binding = 2, set = 2 ) buffer Meshes
 }
 meshes[];
 
-layout( binding = 3, set = 2 ) uniform sampler2D textures[];
+layout( binding = 3, set = 2 ) uniform samplerCube skybox;
+
+layout( binding = 4, set = 2 ) uniform sampler2D textures[];
 
 layout( push_constant ) uniform Constants
 {
@@ -194,20 +196,29 @@ void main( )
   vec3 diffuse  = vec3( 1.0 );
   vec2 texCoord = v0.texCoord * barycentrics.x + v1.texCoord * barycentrics.y + v2.texCoord * barycentrics.z;
 
-  if ( found )
+  if ( modelIndex == 0 )
   {
-    // No texture assigned.
-    if ( mat.diffuse.w == -1.0F )
+    //diffuse = texture( skybox, vec3( -texCoord.x, texCoord.y, 0.0 ) ).xyz;
+    vec3 pos     = vec3( texCoord.x, texCoord.y, 1.0 );
+    prd.hitValue = texture( skybox, pos ).xyz;
+    return;
+  }
+  else
+  {
+    if ( found )
     {
-      diffuse = mat.diffuse.xyz;
-    }
-    // Texture assigned.
-    else
-    {
-      diffuse = mat.diffuse.xyz + texture( textures[nonuniformEXT( int( mat.diffuse.w ) )], texCoord ).xyz;
+      // No texture assigned.
+      if ( mat.diffuse.w == -1.0F )
+      {
+        diffuse = mat.diffuse.xyz;
+      }
+      // Texture assigned.
+      else
+      {
+        diffuse = mat.diffuse.xyz + texture( textures[nonuniformEXT( int( mat.diffuse.w ) )], texCoord ).xyz;
+      }
     }
   }
-
   float dotNL  = max( dot( normal, L ), 0.2 );
   prd.hitValue = vec3( dotNL ) * diffuse * attenuation;
 }

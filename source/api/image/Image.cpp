@@ -18,9 +18,9 @@ namespace RAYEX_NAMESPACE
     _memory = vk::Initializer::allocateMemoryUnique( _image.get( ) );
   }
 
-  void Image::transitionToLayout( vk::ImageLayout layout )
+  void Image::transitionToLayout( vk::ImageLayout layout, vk::ImageSubresourceRange* subresourceRange )
   {
-    auto barrierInfo = vk::Helper::getImageMemoryBarrierInfo( _image.get( ), _layout, layout );
+    auto barrierInfo = vk::Helper::getImageMemoryBarrierInfo( _image.get( ), _layout, layout, subresourceRange );
 
     CommandBuffer commandBuffer;
     commandBuffer.init( components::graphicsCmdPool );

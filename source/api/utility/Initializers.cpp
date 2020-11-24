@@ -203,60 +203,16 @@ namespace vk::Initializer
     ;
   }
 
-  auto initImageViewUnique( Image image, Format format, ImageAspectFlags aspectFlags ) -> UniqueImageView
+  auto initImageViewUnique( ImageViewCreateInfo createInfo ) -> UniqueImageView
   {
-    ComponentMapping components = {
-      ComponentSwizzle::eIdentity,
-      ComponentSwizzle::eIdentity,
-      ComponentSwizzle::eIdentity,
-      ComponentSwizzle::eIdentity
-    };
-
-    ImageSubresourceRange subresourceRange = {
-      aspectFlags, // aspectMask
-      0U,          // baseMipLevel
-      1U,          // levelCount
-      0U,          // baseArrayLayer
-      1U           // layerCount
-    };
-
-    ImageViewCreateInfo createInfo( { },                // flags
-                                    image,              // image
-                                    ImageViewType::e2D, // viewType
-                                    format,             // format
-                                    components,         // components
-                                    subresourceRange ); // subresourceRange
-
     UniqueImageView imageView = RAYEX_NAMESPACE::components::device.createImageViewUnique( createInfo );
     RX_ASSERT( imageView.get( ), "Failed to create image view." );
 
     return imageView;
   }
 
-  auto initImageView( Image image, Format format, ImageAspectFlags aspectFlags ) -> ImageView
+  auto initImageView( ImageViewCreateInfo createInfo ) -> ImageView
   {
-    ComponentMapping components = {
-      ComponentSwizzle::eIdentity,
-      ComponentSwizzle::eIdentity,
-      ComponentSwizzle::eIdentity,
-      ComponentSwizzle::eIdentity
-    };
-
-    ImageSubresourceRange subresourceRange = {
-      aspectFlags, // aspectMask
-      0U,          // baseMipLevel
-      1U,          // levelCount
-      0U,          // baseArrayLayer
-      1U           // layerCount
-    };
-
-    ImageViewCreateInfo createInfo( { },                // flags
-                                    image,              // image
-                                    ImageViewType::e2D, // viewType
-                                    format,             // format
-                                    components,         // components
-                                    subresourceRange ); // subresourceRange
-
     ImageView imageView = RAYEX_NAMESPACE::components::device.createImageView( createInfo );
     RX_ASSERT( imageView, "Failed to create image view." );
 

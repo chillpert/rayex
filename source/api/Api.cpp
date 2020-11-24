@@ -138,10 +138,10 @@ namespace RAYEX_NAMESPACE
     std::vector<PointLightSSBO> pointLights( _settings->_maxPointLights );
     _pointLightsBuffer.init( pointLights, components::maxResources );
 
-    _vertexBuffers.resize( static_cast<uint32_t>( _settings->_maxGeometry ) );
-    _indexBuffers.resize( static_cast<uint32_t>( _settings->_maxGeometry ) );
-    _meshBuffers.resize( static_cast<uint32_t>( _settings->_maxGeometry ) );
-    _textures.resize( static_cast<uint32_t>( _settings->_maxTextures ) );
+    _vertexBuffers.resize( static_cast<size_t>( _settings->_maxGeometry ) );
+    _indexBuffers.resize( static_cast<size_t>( _settings->_maxGeometry ) );
+    _meshBuffers.resize( static_cast<size_t>( _settings->_maxGeometry ) );
+    _textures.resize( static_cast<size_t>( _settings->_maxTextures ) );
 
     RX_LOG_TIME_STOP( "Finished initializing Vulkan (base)" );
   }
@@ -334,7 +334,6 @@ namespace RAYEX_NAMESPACE
 
         if ( !_scene->_geometryInstances.empty( ) )
         {
-          // Dereference pointers and store values in new vector that will be uploaded.
           memAlignedGeometryInstances.resize( _scene->_geometryInstances.size( ) );
           std::transform( _scene->_geometryInstances.begin( ), _scene->_geometryInstances.end( ), memAlignedGeometryInstances.begin( ),
                           []( std::shared_ptr<GeometryInstance> instance ) { return GeometryInstanceSSBO { instance->transform,
@@ -381,6 +380,20 @@ namespace RAYEX_NAMESPACE
                                                                                           glm::vec4( light->position, 1.0F ) }; } );
 
         _pointLightsBuffer.upload( memAlignedPointLights, imageIndex % maxFramesInFlight );
+      }
+    }
+
+    if ( _scene->_uploadSkyboxToBuffer )
+    {
+      _scene->_uploadSkyboxToBuffer = false;
+
+      // Skybox was set by user.
+      if ( !_scene->_skyboxTexturePaths.empty( ) )
+      {
+      }
+      // Skybox was not set by user, using clear value instead.
+      else
+      {
       }
     }
 
@@ -928,6 +941,13 @@ namespace RAYEX_NAMESPACE
                                          _settings->_maxGeometry,
                                          vk::DescriptorBindingFlagBits::eUpdateAfterBind );
 
+      // Skybox
+      _geometryDescriptors.bindings.add( 3,
+                                         vk::DescriptorType::eCombinedImageSampler,
+                                         vk::ShaderStageFlagBits::eClosestHitKHR,
+                                         1 );
+
+      // Textures
       _immutableSamplers.reserve( _settings->_maxTextures );
       for ( uint32_t i = 0; i < _settings->_maxTextures; ++i )
       {
@@ -942,7 +962,7 @@ namespace RAYEX_NAMESPACE
                       immutableSamplers.begin( ),
                       []( const vk::UniqueSampler& sampler ) { return vk::Sampler( sampler.get( ) ); } );
 
-      _geometryDescriptors.bindings.add( 3,
+      _geometryDescriptors.bindings.add( 4,
                                          vk::DescriptorType::eCombinedImageSampler,
                                          vk::ShaderStageFlagBits::eClosestHitKHR,
                                          _settings->_maxTextures,
@@ -1044,17 +1064,7 @@ namespace RAYEX_NAMESPACE
       }
     }
 
-    /*
-    auto awpdloreTex = std::make_shared<Texture>( );
-    awpdloreTex->init( "models/awpdlore/awpdlore.png" );
-
-    auto containerTex = std::make_shared<Texture>( );
-    containerTex->init( "textures/container.png" );
-
-    _textures[0] = awpdloreTex;
-    _textures[1] = containerTex;
-    */
-
+    // Mesh textures
     std::vector<vk::DescriptorImageInfo> textureInfos;
     textureInfos.reserve( _textures.size( ) );
     for ( size_t i = 0; i < _settings->_maxTextures; ++i )
@@ -1076,10 +1086,28 @@ namespace RAYEX_NAMESPACE
       textureInfos.push_back( textureInfo );
     }
 
+    // Skybox
+    _skybox.init( _scene->_skyboxTexturePaths );
+
+    vk::DescriptorImageInfo skyboxTextureInfo;
+    if ( !_scene->_skyboxTexturePaths.empty( ) )
+    {
+      skyboxTextureInfo.imageLayout = _skybox.getLayout( );
+      skyboxTextureInfo.imageView   = _skybox.getImageView( );
+      skyboxTextureInfo.sampler     = _skybox.getSampler( );
+    }
+    else
+    {
+      skyboxTextureInfo.imageLayout = { };
+    }
+
+    // Skybox textures
     _geometryDescriptors.bindings.writeArray( _geometryDescriptorSets, 0, vertexBufferInfos.data( ) );
     _geometryDescriptors.bindings.writeArray( _geometryDescriptorSets, 1, indexBufferInfos.data( ) );
     _geometryDescriptors.bindings.writeArray( _geometryDescriptorSets, 2, meshBufferInfos.data( ) );
-    _geometryDescriptors.bindings.writeArray( _geometryDescriptorSets, 3, textureInfos.data( ) );
+    _geometryDescriptors.bindings.write( _geometryDescriptorSets, 3, &skyboxTextureInfo );
+    _geometryDescriptors.bindings.writeArray( _geometryDescriptorSets, 4, textureInfos.data( ) );
+
     _geometryDescriptors.bindings.update( );
   }
 

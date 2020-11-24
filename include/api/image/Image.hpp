@@ -28,7 +28,7 @@ namespace RAYEX_NAMESPACE
     /// Used to transition this image's layout.
     /// @param layout The target layout.
     /// @note This function creates its own single-time usage command buffer.
-    void transitionToLayout( vk::ImageLayout layout );
+    void transitionToLayout( vk::ImageLayout layout, vk::ImageSubresourceRange* subresourceRange = nullptr );
 
     /// Used to transition this image's layout.
     /// @param layout The target layout

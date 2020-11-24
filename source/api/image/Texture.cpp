@@ -5,7 +5,7 @@
 #include "api/utility/Initializers.hpp"
 
 #define STB_IMAGE_IMPLEMENTATION
-#include <stb_image.h>
+#include "stb_image.h"
 
 namespace RAYEX_NAMESPACE
 {
@@ -44,6 +44,6 @@ namespace RAYEX_NAMESPACE
     stagingBuffer.copyToImage( _image.get( ), _extent );
     transitionToLayout( vk::ImageLayout::eShaderReadOnlyOptimal );
 
-    _imageView = vk::Initializer::initImageViewUnique( _image.get( ), _format );
+    _imageView = vk::Initializer::initImageViewUnique( vk::Helper::getImageViewCreateInfo( _image.get( ), _format ) );
   }
 } // namespace RAYEX_NAMESPACE

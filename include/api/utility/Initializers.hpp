@@ -85,18 +85,14 @@ namespace vk
     auto allocateMemory( Buffer buffer, MemoryPropertyFlags propertyFlags = MemoryPropertyFlagBits::eDeviceLocal, void* pNext = nullptr ) -> DeviceMemory;
 
     /// Create an image view with a unique handle.
-    /// @param image The image to init an image view for.
-    /// @param aspectFlags The image's aspect flags.
-    /// @param format The target format of the image view.
+    /// @param createInfo The image view create info.
     /// @return Returns the image view.
-    auto initImageViewUnique( Image image, Format format, ImageAspectFlags aspectFlags = ImageAspectFlagBits::eColor ) -> UniqueImageView;
+    auto initImageViewUnique( ImageViewCreateInfo createInfo ) -> UniqueImageView;
 
     /// Create an image view.
-    /// @param image The image to init an image view for.
-    /// @param aspectFlags The image's aspect flags.
-    /// @param format The target format of the image view.
+    /// @param createInfo The image view create info.
     /// @return Returns the image view.
-    auto initImageView( Image image, Format format, ImageAspectFlags aspectFlags = ImageAspectFlagBits::eColor ) -> ImageView;
+    auto initImageView( ImageViewCreateInfo createInfo ) -> ImageView;
 
     /// Create a sampler with a unique handle.
     /// @param createInfo The Vulkan init info for the sampler.

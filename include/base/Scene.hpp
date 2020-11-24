@@ -99,15 +99,20 @@ namespace RAYEX_NAMESPACE
     /// @param path The geometry's model's path, relative to the path to assets.
     auto findGeometry( std::string_view path ) const -> std::shared_ptr<Geometry>;
 
+    void setSkybox( std::string_view left, std::string_view right, std::string_view top, std::string_view bottom, std::string_view front, std::string_view back );
+
   private:
     std::vector<std::shared_ptr<Geometry>> _geometries;                ///< Stores all geometries.
     std::vector<std::shared_ptr<GeometryInstance>> _geometryInstances; ///< Stores all geometry instances.
     std::vector<std::shared_ptr<DirectionalLight>> _directionalLights; ///< Stores all directional lights.
     std::vector<std::shared_ptr<PointLight>> _pointLights;             ///< Stores all point lights.
 
+    std::array<std::string_view, 6> _skyboxTexturePaths;
+
     bool _uploadGeometryInstancesToBuffer = false; ///< Keeps track of whether or not to upload the ray tracing instances to their respective buffer the next time RAYEX_NAMESPACE::Api::update() is called.
     bool _uploadDirectionalLightsToBuffer = false; ///< Keeps track of whether or not to upload the directional lights to their respective buffer the next time RAYEX_NAMESPACE::Api::update() is called.
     bool _uploadPointLightsToBuffer       = false; ///< Keeps track of whether or not to upload the point lights to their respective buffer the next time RAYEX_NAMESPACE::Api::update() is called.
+    bool _uploadSkyboxToBuffer            = false;
     bool _uploadGeometries                = false; ///< Keeps track of whether or not to upload the geometries to their respective buffer the next time RAYEX_NAMESPACE::Api::update() is called.
     bool _deleteTextures                  = false; ///< Keeps track of whether or not all textures should be deleted the next time RAYEX_NAMESPACE::Api::update() is called.
     bool _dummy                           = false; ///< Keeps track of whether or not a dummy element in case of an empty scene is active.

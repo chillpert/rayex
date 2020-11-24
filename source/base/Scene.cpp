@@ -309,4 +309,13 @@ namespace RAYEX_NAMESPACE
     RX_INFO( "Could not find geometry in scene." );
     return nullptr;
   }
+
+  void Scene::setSkybox( std::string_view left, std::string_view right, std::string_view top, std::string_view bottom, std::string_view front, std::string_view back )
+  {
+    _skyboxTexturePaths = { left, right, top, bottom, front, back };
+
+    // Create cube for skybox.
+
+    _uploadSkyboxToBuffer = true;
+  }
 } // namespace RAYEX_NAMESPACE

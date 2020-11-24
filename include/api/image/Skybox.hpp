@@ -59,8 +59,7 @@ namespace rx
       imageViewCreateInfo.components                  = { vk::ComponentSwizzle::eR, vk::ComponentSwizzle::eG, vk::ComponentSwizzle::eB, vk::ComponentSwizzle::eA };
 
       // Create buffer copy regions
-      std::vector<vk::BufferImageCopy>
-        bufferCopyRegions;
+      std::vector<vk::BufferImageCopy> bufferCopyRegions;
       bufferCopyRegions.reserve( 6 * texture->numLevels );
 
       for ( uint32_t face = 0; face < 6; ++face )

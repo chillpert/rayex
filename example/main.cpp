@@ -55,7 +55,10 @@ auto main( ) -> int
 
   auto awpInstance2 = rx::instance( awp, transform );
 
-  auto planeInstance = rx::instance( plane );
+  transform = glm::scale( glm::mat4( 1.0F ), glm::vec3( 0.1F ) );
+  transform = glm::translate( transform, glm::vec3( 0.0F, -80.0F, 0.0F ) );
+
+  auto planeInstance = rx::instance( plane, transform );
 
   renderer.scene( ).setSkybox( "models/skybox/left.jpg", "models/skybox/right.jpg", "models/skybox/top.jpg", "models/skybox/bottom.jpg", "models/skybox/front.jpg", "models/skybox/back.jpg" );
 

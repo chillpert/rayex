@@ -99,6 +99,14 @@ void main( )
 {
   uint modelIndex = geometryInstances.i[gl_InstanceID].modelIndex;
 
+  // Skybox
+  if ( modelIndex == 0 )
+  {
+    vec3 pos     = prd.rayDirection.xyz;
+    prd.hitValue = texture( skybox, -pos ).xyz;
+    return;
+  }
+
   ivec3 ind = ivec3( indices[nonuniformEXT( modelIndex )].i[3 * gl_PrimitiveID + 0],   //
                      indices[nonuniformEXT( modelIndex )].i[3 * gl_PrimitiveID + 1],   //
                      indices[nonuniformEXT( modelIndex )].i[3 * gl_PrimitiveID + 2] ); //
@@ -121,7 +129,7 @@ void main( )
   worldPos = vec3( geometryInstances.i[gl_InstanceID].transform * vec4( worldPos, 1.0 ) );
 
   vec3 L              = vec3( 0.0 );
-  float lightDistance = 100000.0;
+  float lightDistance = 1000.0;
   float attenuation   = 1;
 
   if ( directionalLightCount > 0 )
@@ -196,26 +204,17 @@ void main( )
   vec3 diffuse  = vec3( 1.0 );
   vec2 texCoord = v0.texCoord * barycentrics.x + v1.texCoord * barycentrics.y + v2.texCoord * barycentrics.z;
 
-  if ( modelIndex == 0 )
+  if ( found )
   {
-    vec3 pos     = prd.rayDirection.xyz;
-    prd.hitValue = texture( skybox, -pos ).xyz;
-    return;
-  }
-  else
-  {
-    if ( found )
+    // No texture assigned.
+    if ( mat.diffuse.w == -1.0F )
     {
-      // No texture assigned.
-      if ( mat.diffuse.w == -1.0F )
-      {
-        diffuse = mat.diffuse.xyz;
-      }
-      // Texture assigned.
-      else
-      {
-        diffuse = mat.diffuse.xyz + texture( textures[nonuniformEXT( int( mat.diffuse.w ) )], texCoord ).xyz;
-      }
+      diffuse = mat.diffuse.xyz;
+    }
+    // Texture assigned.
+    else
+    {
+      diffuse = mat.diffuse.xyz + texture( textures[nonuniformEXT( int( mat.diffuse.w ) )], texCoord ).xyz;
     }
   }
 

@@ -360,6 +360,24 @@ namespace RAYEX_NAMESPACE
       RX_SUCCESS( "Uploaded Geometries." );
     }
 
+    if ( !_scene->_geometryInstances.empty( ) )
+    {
+      if ( !_rtBuilder.instances.empty( ) )
+      {
+        size_t i = 0;
+        for ( BlasInstance& instance : _rtBuilder.instances )
+        {
+          if ( instance.blasId != _scene->_skyboxCubeGeometryIndex )
+          {
+            instance.transform = _scene->_geometryInstances[i]->transform;
+          }
+          ++i;
+        }
+
+        _rtBuilder.buildTlas( _rtBuilder.instances, vk::BuildAccelerationStructureFlagBitsKHR::ePreferFastTrace | vk::BuildAccelerationStructureFlagBitsKHR::eAllowUpdate, true );
+      }
+    }
+
     if ( _scene->_uploadGeometryInstancesToBuffer )
     {
       if ( imageIndex % maxFramesInFlight == 0 )
@@ -414,24 +432,6 @@ namespace RAYEX_NAMESPACE
                                                                                           glm::vec4( light->position, 1.0F ) }; } );
 
         _pointLightsBuffer.upload( memAlignedPointLights, imageIndex % maxFramesInFlight );
-      }
-    }
-
-    if ( !_scene->_geometryInstances.empty( ) )
-    {
-      if ( !_rtBuilder.instances.empty( ) )
-      {
-        size_t i = 0;
-        for ( BlasInstance& instance : _rtBuilder.instances )
-        {
-          if ( instance.blasId != _scene->_skyboxCubeGeometryIndex )
-          {
-            instance           = _rtBuilder.instances[_scene->_geometryInstances[i]->geometryIndex];
-            instance.transform = _scene->_geometryInstances[i]->transform;
-          }
-          ++i;
-        }
-        _rtBuilder.buildTlas( _rtBuilder.instances, vk::BuildAccelerationStructureFlagBitsKHR::ePreferFastTrace | vk::BuildAccelerationStructureFlagBitsKHR::eAllowUpdate, true );
       }
     }
 

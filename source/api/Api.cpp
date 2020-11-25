@@ -283,12 +283,6 @@ namespace RAYEX_NAMESPACE
     {
       _scene->_uploadGeometries = false;
 
-      for ( auto it : _scene->_geometries )
-      {
-        std::cout << it->geometryIndex << ": " << it->path << std::endl;
-      }
-      std::cout << std::endl;
-
       for ( size_t i = 0; i < _scene->_geometries.size( ); ++i )
       {
         if ( i < _scene->_geometries.size( ) )

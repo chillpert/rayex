@@ -355,27 +355,12 @@ namespace RAYEX_NAMESPACE
         }
       }
 
+      vk::Result result = components::device.waitForFences( 1, &_inFlightFences[prevFrame].get( ), VK_TRUE, UINT64_MAX );
+      RX_ASSERT( result == vk::Result::eSuccess, "Failed to wait for fences." );
+
       updateRayTracingModelData( ); // Contains descriptors for vertices and indices.
 
       RX_SUCCESS( "Uploaded Geometries." );
-    }
-
-    if ( !_scene->_geometryInstances.empty( ) )
-    {
-      if ( !_rtBuilder.instances.empty( ) )
-      {
-        size_t i = 0;
-        for ( BlasInstance& instance : _rtBuilder.instances )
-        {
-          if ( instance.blasId != _scene->_skyboxCubeGeometryIndex )
-          {
-            instance.transform = _scene->_geometryInstances[i]->transform;
-          }
-          ++i;
-        }
-
-        _rtBuilder.buildTlas( _rtBuilder.instances, vk::BuildAccelerationStructureFlagBitsKHR::ePreferFastTrace | vk::BuildAccelerationStructureFlagBitsKHR::eAllowUpdate, true );
-      }
     }
 
     if ( _scene->_uploadGeometryInstancesToBuffer )
@@ -397,6 +382,26 @@ namespace RAYEX_NAMESPACE
           updateAccelerationStructures( );
 
           RX_SUCCESS( "Uploaded geometry instances." );
+        }
+      }
+    }
+    else
+    {
+      if ( !_scene->_geometryInstances.empty( ) )
+      {
+        if ( !_rtBuilder.instances.empty( ) )
+        {
+          size_t i = 0;
+          for ( BlasInstance& instance : _rtBuilder.instances )
+          {
+            if ( instance.blasId != _scene->_skyboxCubeGeometryIndex )
+            {
+              instance.transform = _scene->_geometryInstances[i]->transform;
+            }
+            ++i;
+          }
+
+          _rtBuilder.buildTlas( _rtBuilder.instances, vk::BuildAccelerationStructureFlagBitsKHR::ePreferFastTrace | vk::BuildAccelerationStructureFlagBitsKHR::eAllowUpdate, true );
         }
       }
     }

@@ -256,6 +256,13 @@ private:
       {
         _renderer->scene( ).setSkybox( "models/skybox/cubemap_yokohama_bc3_unorm.ktx" );
       }
+
+      ImGui::SameLine( );
+
+      if ( ImGui::Button( "Remove skybox" ) )
+      {
+        _renderer->scene( ).removeSkybox( );
+      }
     }
 
     ImGui::End( );

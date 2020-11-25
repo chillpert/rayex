@@ -5,6 +5,7 @@
 
 #include "instance.glsl"
 #include "lights.glsl"
+#include "random.glsl"
 #include "raycommon.glsl"
 
 #define TOTAL_DIRECTIONAL_LIGHTS 1
@@ -100,6 +101,7 @@ void main( )
   uint modelIndex = geometryInstances.i[gl_InstanceID].modelIndex;
 
   // Skybox
+  // Maybe this can be put inside miss shader, which might be more efficient?
   if ( modelIndex == skyboxCubeGeometryIndex )
   {
     vec3 pos     = prd.rayDirection.xyz;
@@ -132,8 +134,28 @@ void main( )
   float lightDistance = 1000.0;
   float attenuation   = 1;
 
+  vec2 texCoord = v0.texCoord * barycentrics.x + v1.texCoord * barycentrics.y + v2.texCoord * barycentrics.z;
+
   if ( directionalLightCount > 0 )
   {
+    //uint lightType = uint( fract( sin( dot( texCoord, vec2( 12.9898, 78.233 ) ) ) * 43758.5453 ) ) % 2;
+    //
+    //if ( lightType == 0 )
+    //{
+    //  prd.hitValue = vec3( 1.0, 0.0, 0.0 );
+    //  return;
+    //}
+    //else if ( lightType == 1 )
+    //{
+    //  prd.hitValue = vec3( 0.0, 1.0, 0.0 );
+    //  return;
+    //}
+    //else if ( lightType == 2 )
+    //{
+    //  prd.hitValue = vec3( 0.0, 0.0, 1.0 );
+    //  return;
+    //}
+
     L = normalize( directionalLights[0].direction.xyz );
   }
   else
@@ -201,8 +223,7 @@ void main( )
     }
   }
 
-  vec3 diffuse  = vec3( 1.0 );
-  vec2 texCoord = v0.texCoord * barycentrics.x + v1.texCoord * barycentrics.y + v2.texCoord * barycentrics.z;
+  vec3 diffuse = vec3( 1.0 );
 
   if ( found )
   {
@@ -218,6 +239,8 @@ void main( )
     }
   }
 
-  float dotNL  = max( dot( normal, L ), 0.2 );
+  float dotNL = max( dot( normal, L ), 0.2 );
+  //float gamma  = 2.2;
+  //prd.hitValue = pow( ( vec3( dotNL ) * diffuse * attenuation ), vec3( 1.0 / gamma ) );
   prd.hitValue = vec3( dotNL ) * diffuse * attenuation;
 }

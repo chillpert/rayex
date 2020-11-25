@@ -5,15 +5,12 @@
 #include "api/buffers/CommandBuffer.hpp"
 #include "api/utility/Helpers.hpp"
 #include "api/utility/Initializers.hpp"
-
-#include <ktx/ktx.h>
-#include <ktx/ktxvulkan.h>
+#include "ktx/ktx.h"
 
 namespace RAYEX_NAMESPACE
 {
   void Skybox::init( std::string_view path )
   {
-    ktxResult result;
     ktxTexture* texture = nullptr;
 
     ktx_uint8_t data         = '0';

@@ -9,7 +9,7 @@ namespace RAYEX_NAMESPACE
   struct Material
   {
     glm::vec3 ambient  = glm::vec3( 1.0F, 1.0F, 1.0F );
-    glm::vec3 diffuse  = glm::vec3( 0.2F, 1.0F, 1.0F );
+    glm::vec3 diffuse  = glm::vec3( 1.0F, 1.0F, 1.0F );
     glm::vec3 specular = glm::vec3( 1.0F, 1.0F, 1.0F );
 
     std::string ambientTexPath  = "";
@@ -47,6 +47,8 @@ namespace RAYEX_NAMESPACE
   /// @ingroup BASE
   struct GeometryInstance
   {
+    RX_API void setTransform( const glm::mat4& transform );
+
     glm::mat4 transform    = glm::mat4( 1.0F ); ///< The instance's world transform matrix.
     glm::mat4 transformIT  = glm::mat4( 1.0F ); ///< The inverse transpose of transform.
     uint32_t geometryIndex = 0;                 ///< Used to assign this instance a model.

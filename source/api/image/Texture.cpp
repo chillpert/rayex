@@ -5,6 +5,7 @@
 #include "api/utility/Initializers.hpp"
 
 #define STB_IMAGE_IMPLEMENTATION
+#include "ktx/ktx.h"
 #include "stb_image.h"
 
 namespace RAYEX_NAMESPACE
@@ -45,5 +46,43 @@ namespace RAYEX_NAMESPACE
     transitionToLayout( vk::ImageLayout::eShaderReadOnlyOptimal );
 
     _imageView = vk::Initializer::initImageViewUnique( vk::Helper::getImageViewCreateInfo( _image.get( ), _format ) );
+
+    /*
+    _path = path;
+
+    ktxTexture* texture = nullptr;
+
+    std::string fullPath = components::assetsPath + std::string( path );
+
+    if ( ktxTexture_CreateFromNamedFile( fullPath.c_str( ), KTX_TEXTURE_CREATE_LOAD_IMAGE_DATA_BIT, &texture ) != KTX_SUCCESS )
+    {
+      RX_FATAL( "Failed to load KTX file from: ", fullPath );
+    }
+
+    ktx_uint8_t* textureData = texture->pData;
+    ktx_size_t textureSize   = texture->dataSize;
+    uint32_t width           = texture->baseWidth;
+    uint32_t height          = texture->baseHeight;
+    uint32_t numLevels       = 1;
+
+    // Set up the staging buffer.
+    Buffer stagingBuffer( textureSize,
+                          vk::BufferUsageFlagBits::eTransferSrc,
+                          { components::graphicsFamilyIndex },
+                          vk::MemoryPropertyFlagBits::eHostVisible | vk::MemoryPropertyFlagBits::eHostCoherent );
+
+    stagingBuffer.fill<ktx_uint8_t>( textureData );
+
+    auto imageCreateInfo = vk::Helper::getImageCreateInfo( vk::Extent3D { static_cast<uint32_t>( width ), static_cast<uint32_t>( height ), 1 } );
+    Image::init( imageCreateInfo );
+
+    transitionToLayout( vk::ImageLayout::eTransferDstOptimal );
+    stagingBuffer.copyToImage( _image.get( ), _extent );
+    transitionToLayout( vk::ImageLayout::eShaderReadOnlyOptimal );
+
+    _imageView = vk::Initializer::initImageViewUnique( vk::Helper::getImageViewCreateInfo( _image.get( ), _format ) );
+
+    ktxTexture_Destroy( texture );
+    */
   }
 } // namespace RAYEX_NAMESPACE

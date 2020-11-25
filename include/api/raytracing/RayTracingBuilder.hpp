@@ -76,6 +76,8 @@ namespace RAYEX_NAMESPACE
     /// @param indexBuffers Index buffers of all geometry in the scene.
     void createBottomLevelAS( const std::vector<VertexBuffer>& vertexBuffers, const std::vector<IndexBuffer>& indexBuffers, const std::vector<std::shared_ptr<Geometry>>& geometries );
 
+    void updateDynamicBottomLevelAS( );
+
     /// Builds all bottom level acceleration structures.
     /// @param blas_ A vector of RAYEX_NAMESPACE::Blas objects containing all bottom level acceleration structures prepared in createBottomLevelAS().
     /// @param flags The build flags.
@@ -88,7 +90,7 @@ namespace RAYEX_NAMESPACE
     /// Build the top level acceleration structure.
     /// @param instances A vector of bottom level acceleration structure instances.
     /// @param flags The build flags.
-    void buildTlas( const std::vector<BlasInstance>& instances, vk::BuildAccelerationStructureFlagsKHR flags = vk::BuildAccelerationStructureFlagBitsKHR::ePreferFastTrace );
+    void buildTlas( const std::vector<BlasInstance>& instances, vk::BuildAccelerationStructureFlagsKHR flags = vk::BuildAccelerationStructureFlagBitsKHR::ePreferFastTrace, bool reuse = false );
 
     /// Creates the storage image which the ray tracing shaders will write to.
     /// @param swapchainExtent The swapchain images' extent.
@@ -107,6 +109,8 @@ namespace RAYEX_NAMESPACE
     /// @param swapchainImage The current image in the swapchain.
     /// @param extent The swapchain images' extent.
     void rayTrace( vk::CommandBuffer swapchaincommandBuffer, vk::Image swapchainImage, vk::Extent2D extent );
+
+    std::vector<BlasInstance> instances;
 
   private:
     vk::UniquePipeline _pipeline;                            ///< The Vulkan pipeline with a unique handle.

@@ -417,6 +417,24 @@ namespace RAYEX_NAMESPACE
       }
     }
 
+    if ( !_scene->_geometryInstances.empty( ) )
+    {
+      if ( !_rtBuilder.instances.empty( ) )
+      {
+        size_t i = 0;
+        for ( BlasInstance& instance : _rtBuilder.instances )
+        {
+          if ( instance.blasId != _scene->_skyboxCubeGeometryIndex )
+          {
+            instance           = _rtBuilder.instances[_scene->_geometryInstances[i]->geometryIndex];
+            instance.transform = _scene->_geometryInstances[i]->transform;
+          }
+          ++i;
+        }
+        _rtBuilder.buildTlas( _rtBuilder.instances, vk::BuildAccelerationStructureFlagBitsKHR::ePreferFastTrace | vk::BuildAccelerationStructureFlagBitsKHR::eAllowUpdate, true );
+      }
+    }
+
     if ( _settings->getJitterCamEnabled( ) )
     {
       if ( components::frameCount >= _settings->_jitterCamSampleRate )

@@ -7,6 +7,8 @@
 
 namespace RAYEX_NAMESPACE
 {
+  std::vector<Blas> allDynamicBlas;
+
   RayTracingBuilder::~RayTracingBuilder( )
   {
     destroy( );
@@ -46,6 +48,13 @@ namespace RAYEX_NAMESPACE
 
     _blas_.clear( );
     _indices.clear( );
+
+    for ( Blas& blas : allDynamicBlas )
+    {
+      blas.as.destroy( );
+    }
+
+    allDynamicBlas.clear( );
   }
 
   auto RayTracingBuilder::modelToBlas( const VertexBuffer& vertexBuffer, const IndexBuffer& indexBuffer, bool allowTransforms ) const -> Blas
@@ -114,7 +123,6 @@ namespace RAYEX_NAMESPACE
     std::vector<Blas> allStaticBlas;
     allStaticBlas.reserve( vertexBuffers.size( ) );
 
-    std::vector<Blas> allDynamicBlas;
     allDynamicBlas.reserve( vertexBuffers.size( ) );
 
     std::vector<uint32_t> staticBlasIndices;
@@ -197,6 +205,20 @@ namespace RAYEX_NAMESPACE
     }
   }
 
+  void RayTracingBuilder::updateDynamicBottomLevelAS( )
+  {
+    /*
+    for ( Blas& blas : _dynamicBlas_ )
+    {
+      blas.as.destroy( );
+    }
+
+    _dynamicBlas_.clear( );
+    */
+
+    buildBlas( _dynamicBlas_, vk::BuildAccelerationStructureFlagBitsKHR::eAllowCompaction | vk::BuildAccelerationStructureFlagBitsKHR::eAllowUpdate | vk::BuildAccelerationStructureFlagBitsKHR::ePreferFastBuild );
+  }
+
   void RayTracingBuilder::buildBlas( std::vector<Blas>& blas_, vk::BuildAccelerationStructureFlagsKHR flags )
   {
     vk::DeviceSize maxScratch = 0;
@@ -211,6 +233,16 @@ namespace RAYEX_NAMESPACE
     int index = 0;
     for ( Blas& blas : blas_ )
     {
+      if ( !blas.as.as )
+      {
+        components::device.destroyAccelerationStructureKHR( blas.as.as );
+      }
+
+      if ( !blas.as.memory )
+      {
+        components::device.freeMemory( blas.as.memory );
+      }
+
       vk::AccelerationStructureCreateInfoKHR asCreateInfo( { },                                                        // compactedSize
                                                            vk::AccelerationStructureTypeKHR::eBottomLevel,             // type
                                                            flags,                                                      // flags
@@ -277,7 +309,9 @@ namespace RAYEX_NAMESPACE
       // Pointers of offset.
       std::vector<const vk::AccelerationStructureBuildOffsetInfoKHR*> pBuildOffset( blas.asBuildOffsetInfo.size( ) );
       for ( size_t i = 0; i < blas.asBuildOffsetInfo.size( ); ++i )
+      {
         pBuildOffset[i] = &blas.asBuildOffsetInfo[i];
+      }
 
       cmdBuf.begin( index );
 
@@ -373,7 +407,7 @@ namespace RAYEX_NAMESPACE
 
   void RayTracingBuilder::createTopLevelAS( const std::vector<std::shared_ptr<GeometryInstance>>& geometryInstances )
   {
-    std::vector<BlasInstance> instances;
+    instances.clear( );
     instances.reserve( geometryInstances.size( ) );
 
     for ( uint32_t i = 0; i < geometryInstances.size( ); ++i )
@@ -394,31 +428,33 @@ namespace RAYEX_NAMESPACE
     }
   }
 
-  void RayTracingBuilder::buildTlas( const std::vector<BlasInstance>& instances, vk::BuildAccelerationStructureFlagsKHR flags )
+  void RayTracingBuilder::buildTlas( const std::vector<BlasInstance>& instances, vk::BuildAccelerationStructureFlagsKHR flags, bool reuse )
   {
     _tlas.flags = flags;
 
-    vk::AccelerationStructureCreateGeometryTypeInfoKHR geometryCreate( vk::GeometryTypeKHR::eInstances,            // geometryType
-                                                                       static_cast<uint32_t>( instances.size( ) ), // maxPrimitiveCount
-                                                                       { },                                        // indexType
-                                                                       { },                                        // maxVertexCount
-                                                                       { },                                        // vertexFormat
-                                                                       VK_TRUE );                                  // allowsTransforms
+    if ( !reuse )
+    {
+      vk::AccelerationStructureCreateGeometryTypeInfoKHR geometryCreate( vk::GeometryTypeKHR::eInstances,            // geometryType
+                                                                         static_cast<uint32_t>( instances.size( ) ), // maxPrimitiveCount
+                                                                         { },                                        // indexType
+                                                                         { },                                        // maxVertexCount
+                                                                         { },                                        // vertexFormat
+                                                                         VK_TRUE );                                  // allowsTransforms
 
-    vk::AccelerationStructureCreateInfoKHR asCreateInfo( { },                                         // compactedSize
-                                                         vk::AccelerationStructureTypeKHR::eTopLevel, // type
-                                                         flags,                                       // flags
-                                                         1,                                           // maxGeometryCount
-                                                         &geometryCreate,                             // pGeometryInfos
-                                                         { } );                                       // deviceAddress
+      vk::AccelerationStructureCreateInfoKHR asCreateInfo( { },                                         // compactedSize
+                                                           vk::AccelerationStructureTypeKHR::eTopLevel, // type
+                                                           flags,                                       // flags
+                                                           1,                                           // maxGeometryCount
+                                                           &geometryCreate,                             // pGeometryInfos
+                                                           { } );                                       // deviceAddress
 
-    _tlas.as = vk::Initializer::initAccelerationStructure( asCreateInfo );
-
+      _tlas.as = vk::Initializer::initAccelerationStructure( asCreateInfo );
+    }
     // TODO: Just like the BLAS creation we need a scratch buffer. We could save one allocation by re-using the BLAS scratch buffer.
     vk::AccelerationStructureMemoryRequirementsInfoKHR memoryRequirementsInfo( vk::AccelerationStructureMemoryRequirementsTypeKHR::eBuildScratch, // type
                                                                                vk::AccelerationStructureBuildTypeKHR::eDevice,                    // buildType
-                                                                               _tlas.as.as );                                                     // accelerationStructure
-
+                                                                               _tlas.as.as );
+    // accelerationStructure
     vk::MemoryRequirements2 reqMem = components::device.getAccelerationStructureMemoryRequirementsKHR( memoryRequirementsInfo );
     vk::DeviceSize scratchSize     = reqMem.memoryRequirements.size;
 
@@ -456,7 +492,6 @@ namespace RAYEX_NAMESPACE
                           &allocateFlags );                                                                        // pNextMemory
 
     _instanceBuffer.fill<vk::AccelerationStructureInstanceKHR>( geometryInstances );
-
     vk::DeviceAddress instanceAddress = components::device.getBufferAddress( { _instanceBuffer.get( ) } );
 
     // Make sure the copy of the instance buffer are copied before triggering the acceleration structure build.
@@ -486,15 +521,15 @@ namespace RAYEX_NAMESPACE
 
     const vk::AccelerationStructureGeometryKHR* pGeometry = &topAsGeometry;
 
-    vk::AccelerationStructureBuildGeometryInfoKHR topAsInfo( vk::AccelerationStructureTypeKHR::eTopLevel, // type
-                                                             flags,                                       // flags
-                                                             VK_FALSE,                                    // update
-                                                             nullptr,                                     // srcAccelerationStructure
-                                                             _tlas.as.as,                                 // dstAccelerationStructure
-                                                             VK_FALSE,                                    // geometryArrayOfPointers
-                                                             1,                                           // geometryCount
-                                                             &pGeometry,                                  // ppGeometries
-                                                             scratchAddress );                            // scratchData
+    vk::AccelerationStructureBuildGeometryInfoKHR topAsInfo( vk::AccelerationStructureTypeKHR::eTopLevel,             // type
+                                                             vk::BuildAccelerationStructureFlagBitsKHR::eAllowUpdate, // flags
+                                                             VK_FALSE,                                                // update
+                                                             nullptr,                                                 // srcAccelerationStructure
+                                                             _tlas.as.as,                                             // dstAccelerationStructure
+                                                             VK_FALSE,                                                // geometryArrayOfPointers
+                                                             1,                                                       // geometryCount
+                                                             &pGeometry,                                              // ppGeometries
+                                                             scratchAddress );                                        // scratchData
 
     // Build Offsets info: n instances.
     vk::AccelerationStructureBuildOffsetInfoKHR buildOffsetInfo( static_cast<uint32_t>( instances.size( ) ), // primitiveCount

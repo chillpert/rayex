@@ -144,4 +144,10 @@ namespace RAYEX_NAMESPACE
 
     return std::move( result );
   }
+
+  void GeometryInstance::setTransform( const glm::mat4& transform )
+  {
+    this->transform = transform;
+    transformIT     = glm::transpose( glm::inverse( transform ) );
+  }
 } // namespace RAYEX_NAMESPACE

@@ -360,4 +360,10 @@ namespace RAYEX_NAMESPACE
 
     _uploadSkyboxToBuffer = true;
   }
+
+  void Scene::removeSkybox( )
+  {
+    removeGeometry( _skyboxCubeGeometryIndex );
+  }
+
 } // namespace RAYEX_NAMESPACE

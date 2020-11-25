@@ -36,6 +36,8 @@ namespace RAYEX_NAMESPACE
   std::shared_ptr<Geometry> triangle                 = nullptr; ///< A dummy triangle that will be placed in the scene if it empty. This assures the AS creation.
   std::shared_ptr<GeometryInstance> triangleInstance = nullptr;
 
+  bool removeSkybox = false;
+
   // Defines the maximum amount of frames that will be processed concurrently.
   const size_t maxFramesInFlight = 2;
 
@@ -172,8 +174,12 @@ namespace RAYEX_NAMESPACE
     // Init and record swapchain command buffers.
     _swapchainCommandBuffers.init( _graphicsCmdPool.get( ), components::swapchainImageCount, vk::CommandBufferUsageFlagBits::eRenderPassContinue );
 
-    // Set default skybox.
-    _scene->setSkybox( "models/skybox/cubemap_yokohama_bc3_unorm.ktx" );
+    // If user has not set a skybox themself set a default one, to guarantee successful start up.
+    if ( !_scene->_uploadSkyboxToBuffer )
+    {
+      _scene->setSkybox( "models/skybox/cubemap_yokohama_bc3_unorm.ktx" );
+      removeSkybox = true;
+    }
 
     RX_LOG_TIME_STOP( "Finished initializing Vulkan (scene)" );
   }
@@ -274,6 +280,12 @@ namespace RAYEX_NAMESPACE
       RX_ASSERT( result == vk::Result::eSuccess, "Failed to wait for fences." );
 
       _skybox.init( _scene->_skyboxTexturePath );
+
+      if ( removeSkybox )
+      {
+        _scene->removeSkybox( );
+        removeSkybox = false;
+      }
 
       updateRayTracingModelData( );
     }

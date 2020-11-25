@@ -63,7 +63,7 @@ auto main( ) -> int
 
   renderer.scene( ).submitDirectionalLight( directionalLight );
 
-  //renderer.scene( ).setSkybox( "models/skybox/cubemap_yokohama_bc3_unorm.ktx" );
+  renderer.scene( ).setSkybox( "models/skybox/cubemap_yokohama_bc3_unorm.ktx" );
 
   while ( renderer.isRunning( ) )
   {

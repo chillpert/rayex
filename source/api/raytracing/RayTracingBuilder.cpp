@@ -521,15 +521,15 @@ namespace RAYEX_NAMESPACE
 
     const vk::AccelerationStructureGeometryKHR* pGeometry = &topAsGeometry;
 
-    vk::AccelerationStructureBuildGeometryInfoKHR topAsInfo( vk::AccelerationStructureTypeKHR::eTopLevel,             // type
-                                                             vk::BuildAccelerationStructureFlagBitsKHR::eAllowUpdate, // flags
-                                                             VK_FALSE,                                                // update
-                                                             nullptr,                                                 // srcAccelerationStructure
-                                                             _tlas.as.as,                                             // dstAccelerationStructure
-                                                             VK_FALSE,                                                // geometryArrayOfPointers
-                                                             1,                                                       // geometryCount
-                                                             &pGeometry,                                              // ppGeometries
-                                                             scratchAddress );                                        // scratchData
+    vk::AccelerationStructureBuildGeometryInfoKHR topAsInfo( vk::AccelerationStructureTypeKHR::eTopLevel, // type
+                                                             { },                                         // flags
+                                                             VK_FALSE,                                    // update
+                                                             nullptr,                                     // srcAccelerationStructure
+                                                             _tlas.as.as,                                 // dstAccelerationStructure
+                                                             VK_FALSE,                                    // geometryArrayOfPointers
+                                                             1,                                           // geometryCount
+                                                             &pGeometry,                                  // ppGeometries
+                                                             scratchAddress );                            // scratchData
 
     // Build Offsets info: n instances.
     vk::AccelerationStructureBuildOffsetInfoKHR buildOffsetInfo( static_cast<uint32_t>( instances.size( ) ), // primitiveCount

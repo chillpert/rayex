@@ -185,7 +185,7 @@ private:
       ImGui::ShowDemoWindow( );
     }
 
-    if ( ImGui::Begin( "Settings" ) )
+    if ( ImGui::Begin( "Scene" ) )
     {
       if ( ImGui::Button( "Add box" ) )
       {
@@ -252,6 +252,41 @@ private:
         }
       }
 
+      if ( ImGui::Button( "Set skybox" ) )
+      {
+        _renderer->scene( ).setSkybox( "models/skybox/cubemap_yokohama_bc3_unorm.ktx" );
+      }
+    }
+
+    ImGui::End( );
+
+    if ( ImGui::Begin( "Resource Monitor" ) )
+    {
+      const size_t maxFrames = 10000;
+      static std::array<float, maxFrames> frameTimes;
+
+      static size_t counter = 0;
+      counter               = counter % maxFrames;
+
+      float dt = rx::Time::getDeltaTime( );
+      if ( dt > 0.001f )
+      {
+        if ( counter >= maxFrames - 1 )
+        {
+          std::fill( frameTimes.begin( ), frameTimes.end( ), 0.0f );
+        }
+
+        frameTimes[counter] = dt;
+        ++counter;
+      }
+
+      ImGui::PlotLines( "Frametimes", frameTimes.data( ), maxFrames, 0, "Frametime", 0.0F, 0.01F, ImVec2( 0.0F, 80.0F ) );
+    }
+
+    ImGui::End( );
+
+    if ( ImGui::Begin( "Settings" ) )
+    {
       ImGui::Checkbox( "Show ImGui demo window", &showDemoWindow );
 
       auto clearColor = _renderer->settings( ).getClearColor( );
@@ -314,26 +349,6 @@ private:
           _renderer->settings( ).setRecursionDepth( static_cast<uint32_t>( depth ) );
         }
       }
-
-      const size_t maxFrames = 10000;
-      static std::array<float, maxFrames> frameTimes;
-
-      static size_t counter = 0;
-      counter               = counter % maxFrames;
-
-      float dt = rx::Time::getDeltaTime( );
-      if ( dt > 0.001f )
-      {
-        if ( counter >= maxFrames - 1 )
-        {
-          std::fill( frameTimes.begin( ), frameTimes.end( ), 0.0f );
-        }
-
-        frameTimes[counter] = dt;
-        ++counter;
-      }
-
-      ImGui::PlotLines( "Frametimes", frameTimes.data( ), maxFrames, 0, "Frametime", 0.0F, 0.01F, ImVec2( 0.0F, 80.0F ) );
     }
 
     ImGui::End( );

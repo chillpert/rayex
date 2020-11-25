@@ -177,7 +177,7 @@ namespace RAYEX_NAMESPACE
     // If user has not set a skybox themself set a default one, to guarantee successful start up.
     if ( !_scene->_uploadSkyboxToBuffer )
     {
-      _scene->setSkybox( "models/skybox/cubemap_yokohama_bc3_unorm.ktx" );
+      _scene->setSkybox( "" );
       removeSkybox = true;
     }
 

@@ -99,7 +99,9 @@ namespace RAYEX_NAMESPACE
     /// @param path The geometry's model's path, relative to the path to assets.
     auto findGeometry( std::string_view path ) const -> std::shared_ptr<Geometry>;
 
-    void setSkybox( std::string_view left, std::string_view right, std::string_view top, std::string_view bottom, std::string_view front, std::string_view back );
+    void setSkybox( std::string_view path );
+
+    void removeSkybox( );
 
   private:
     std::vector<std::shared_ptr<Geometry>> _geometries;                ///< Stores all geometries.
@@ -107,7 +109,8 @@ namespace RAYEX_NAMESPACE
     std::vector<std::shared_ptr<DirectionalLight>> _directionalLights; ///< Stores all directional lights.
     std::vector<std::shared_ptr<PointLight>> _pointLights;             ///< Stores all point lights.
 
-    std::array<std::string_view, 6> _skyboxTexturePaths;
+    std::string_view _skyboxTexturePath;
+    uint32_t _skyboxCubeGeometryIndex = std::numeric_limits<uint32_t>::max( );
 
     bool _uploadGeometryInstancesToBuffer = false; ///< Keeps track of whether or not to upload the ray tracing instances to their respective buffer the next time RAYEX_NAMESPACE::Api::update() is called.
     bool _uploadDirectionalLightsToBuffer = false; ///< Keeps track of whether or not to upload the directional lights to their respective buffer the next time RAYEX_NAMESPACE::Api::update() is called.

@@ -12,16 +12,15 @@ namespace RAYEX_NAMESPACE
 {
   struct RayTracePushConstants
   {
-    glm::vec4 clearColor           = glm::vec4( 1.0F );
-    uint32_t sampleRate            = 100;
-    uint32_t sampleRatePerRayGen   = 1;
-    uint32_t ssaa                  = 8;
-    uint32_t jitterCamEnabled      = 0;
-    uint32_t ssaaEnabled           = 1;
-    uint32_t directionalLightCount = 0;
-    uint32_t pointLightCount       = 0;
-
-    float padding2 = 0.0f;
+    glm::vec4 clearColor             = glm::vec4( 1.0F );
+    uint32_t sampleRate              = 100;
+    uint32_t sampleRatePerRayGen     = 1;
+    uint32_t ssaa                    = 8;
+    uint32_t jitterCamEnabled        = 0;
+    uint32_t ssaaEnabled             = 1;
+    uint32_t directionalLightCount   = 0;
+    uint32_t pointLightCount         = 0;
+    uint32_t skyboxCubeGeometryIndex = 0;
   };
 
   /// Manages the building process of the acceleration structures.
@@ -38,7 +37,7 @@ namespace RAYEX_NAMESPACE
     RayTracingBuilder( const RayTracingBuilder&& ) = delete;
 
     auto operator=( const RayTracingBuilder& ) -> RayTracingBuilder& = delete;
-    auto operator=( const RayTracingBuilder && ) -> RayTracingBuilder& = delete;
+    auto operator=( const RayTracingBuilder&& ) -> RayTracingBuilder& = delete;
 
     /// Retrieves the physical device's ray tracing capabilities.
     void init( );

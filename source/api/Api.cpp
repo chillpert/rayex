@@ -172,6 +172,9 @@ namespace RAYEX_NAMESPACE
     // Init and record swapchain command buffers.
     _swapchainCommandBuffers.init( _graphicsCmdPool.get( ), components::swapchainImageCount, vk::CommandBufferUsageFlagBits::eRenderPassContinue );
 
+    // Set default skybox.
+    _scene->setSkybox( "models/skybox/cubemap_yokohama_bc3_unorm.ktx" );
+
     RX_LOG_TIME_STOP( "Finished initializing Vulkan (scene)" );
   }
 
@@ -228,6 +231,7 @@ namespace RAYEX_NAMESPACE
       triangle->indices       = { 0, 1, 2 };
       triangle->geometryIndex = components::geometryIndex++;
       triangle->meshes.push_back( { { }, 0 } );
+      triangle->path = "Custom Dummy Triangle";
 
       triangleInstance = instance( triangle );
 
@@ -245,6 +249,12 @@ namespace RAYEX_NAMESPACE
         RX_VERBOSE( "Removing dummy element." );
         _scene->removeGeometry( triangle );
         triangle = nullptr;
+
+        // In case a skybox was added right after the scene was empty and a dummy was added, decrease the cube geometry index.
+        if ( _scene->_uploadSkyboxToBuffer )
+        {
+          --_scene->_skyboxCubeGeometryIndex;
+        }
       }
     }
 
@@ -256,10 +266,28 @@ namespace RAYEX_NAMESPACE
       _textures.resize( static_cast<size_t>( _settings->_maxTextures ) );
     }
 
+    if ( _scene->_uploadSkyboxToBuffer )
+    {
+      _scene->_uploadSkyboxToBuffer = false;
+
+      vk::Result result = components::device.waitForFences( 1, &_inFlightFences[prevFrame].get( ), VK_TRUE, UINT64_MAX );
+      RX_ASSERT( result == vk::Result::eSuccess, "Failed to wait for fences." );
+
+      _skybox.init( _scene->_skyboxTexturePath );
+
+      updateRayTracingModelData( );
+    }
+
     // Init geometry storage buffers.
     if ( _scene->_uploadGeometries )
     {
       _scene->_uploadGeometries = false;
+
+      for ( auto it : _scene->_geometries )
+      {
+        std::cout << it->geometryIndex << ": " << it->path << std::endl;
+      }
+      std::cout << std::endl;
 
       for ( size_t i = 0; i < _scene->_geometries.size( ); ++i )
       {
@@ -380,20 +408,6 @@ namespace RAYEX_NAMESPACE
                                                                                           glm::vec4( light->position, 1.0F ) }; } );
 
         _pointLightsBuffer.upload( memAlignedPointLights, imageIndex % maxFramesInFlight );
-      }
-    }
-
-    if ( _scene->_uploadSkyboxToBuffer )
-    {
-      _scene->_uploadSkyboxToBuffer = false;
-
-      // Skybox was set by user.
-      if ( !_scene->_skyboxTexturePaths.empty( ) )
-      {
-      }
-      // Skybox was not set by user, using clear value instead.
-      else
-      {
       }
     }
 
@@ -824,7 +838,8 @@ namespace RAYEX_NAMESPACE
                                        static_cast<uint32_t>( _settings->getJitterCamEnabled( ) ), // BAD: bool to uint32_t cast, but bool alignment is only 1 byte
                                        static_cast<uint32_t>( _settings->getSsaaEnabled( ) ),      // BAD: bool to uint32_t cast, but bool alignment is only 1 byte
                                        directionalLightCount,
-                                       pointLightCount };
+                                       pointLightCount,
+                                       _scene->_skyboxCubeGeometryIndex };
 
       _swapchainCommandBuffers.get( imageIndex ).pushConstants( _rtBuilder.getPipelineLayout( ),                                                                                   // layout
                                                                 vk::ShaderStageFlagBits::eRaygenKHR | vk::ShaderStageFlagBits::eMissKHR | vk::ShaderStageFlagBits::eClosestHitKHR, // stageFlags
@@ -944,8 +959,7 @@ namespace RAYEX_NAMESPACE
       // Skybox
       _geometryDescriptors.bindings.add( 3,
                                          vk::DescriptorType::eCombinedImageSampler,
-                                         vk::ShaderStageFlagBits::eClosestHitKHR,
-                                         1 );
+                                         vk::ShaderStageFlagBits::eClosestHitKHR );
 
       // Textures
       _immutableSamplers.reserve( _settings->_maxTextures );
@@ -1087,10 +1101,8 @@ namespace RAYEX_NAMESPACE
     }
 
     // Skybox
-    _skybox.init( _scene->_skyboxTexturePaths );
-
     vk::DescriptorImageInfo skyboxTextureInfo;
-    if ( !_scene->_skyboxTexturePaths.empty( ) )
+    if ( _skybox.getImageView( ) && _skybox.getSampler( ) )
     {
       skyboxTextureInfo.imageLayout = _skybox.getLayout( );
       skyboxTextureInfo.imageView   = _skybox.getImageView( );
@@ -1098,7 +1110,7 @@ namespace RAYEX_NAMESPACE
     }
     else
     {
-      skyboxTextureInfo.imageLayout = { };
+      RX_FATAL( "No default skybox provided." );
     }
 
     // Skybox textures

@@ -14,9 +14,9 @@ layout( push_constant ) uniform Constants
   bool jitterCamEnabled;
   bool ssaaEnabled;
 
-  float padding0;
-  float padding1;
-  float padding2;
+  uint directionalLightCount;
+  uint pointLightCount;
+  uint skyboxCubeGeometryIndex;
 };
 
 void main( )

@@ -248,6 +248,12 @@ namespace RAYEX_NAMESPACE
     {
       if ( it->geometryIndex == geometryIndex )
       {
+        if ( geometryIndex == _skyboxCubeGeometryIndex )
+        {
+          _skyboxTexturePath       = std::string_view( );
+          _skyboxCubeGeometryIndex = std::numeric_limits<uint32_t>::max( );
+        }
+
         removeGeometry( it );
         break;
       }
@@ -261,22 +267,15 @@ namespace RAYEX_NAMESPACE
     // Remove all instances.
     for ( auto geometry : _geometries )
     {
-      std::vector<std::shared_ptr<GeometryInstance>> instancesToDelete;
-      for ( auto it : _geometryInstances )
+      if ( geometry->geometryIndex == _skyboxCubeGeometryIndex )
       {
-        if ( it->geometryIndex == geometry->geometryIndex )
-        {
-          instancesToDelete.push_back( it );
-        }
-      }
-
-      for ( auto it : instancesToDelete )
-      {
-        removeGeometryInstance( it );
+        _skyboxTexturePath       = std::string_view( );
+        _skyboxCubeGeometryIndex = std::numeric_limits<uint32_t>::max( );
       }
     }
 
     _geometries.clear( );
+    _geometryInstances.clear( );
 
     // Reset index counter.
     components::geometryIndex = 0;
@@ -284,8 +283,9 @@ namespace RAYEX_NAMESPACE
     // Reset texture counter.
     components::textureIndex = 0;
 
-    _deleteTextures   = true;
-    _uploadGeometries = true;
+    _deleteTextures                  = true;
+    _uploadGeometries                = true;
+    _uploadGeometryInstancesToBuffer = true;
   }
 
   void Scene::popGeometry( )
@@ -310,11 +310,53 @@ namespace RAYEX_NAMESPACE
     return nullptr;
   }
 
-  void Scene::setSkybox( std::string_view left, std::string_view right, std::string_view top, std::string_view bottom, std::string_view front, std::string_view back )
+  void Scene::setSkybox( std::string_view path )
   {
-    _skyboxTexturePaths = { left, right, top, bottom, front, back };
+    // If the skybox was not set previously, generate geometry and geometry instance.
+    if ( _skyboxTexturePath.empty( ) )
+    {
+      auto cube = std::make_shared<Geometry>( );
 
-    // Create cube for skybox.
+      std::vector<Vertex> vertices = { { { -5.0F, -5.0F, -5.0F } },
+                                       { { -5.0F, 5.0F, -5.0F } },
+                                       { { 5.0F, 5.0F, -5.0F } },
+                                       { { 5.0F, -5.0F, -5.0F } },
+                                       { { -5.0F, -5.0F, 5.0F } },
+                                       { { 5.0F, -5.0F, 5.0F } },
+                                       { { 5.0F, 5.0F, 5.0F } },
+                                       { { -5.0F, 5.0F, 5.0F } },
+                                       { { -5.0F, -5.0F, -5.0F } },
+                                       { { 5.0F, -5.0F, -5.0F } },
+                                       { { 5.0F, -5.0F, 5.0F } },
+                                       { { -5.0F, -5.0F, 5.0F } },
+                                       { { 5.0F, 5.0F, -5.0F } },
+                                       { { 5.0F, -5.0F, 5.0F } },
+                                       { { 5.0F, 5.0F, -5.0F } },
+                                       { { -5.0F, 5.0F, -5.0F } },
+                                       { { -5.0F, 5.0F, 5.0F } },
+                                       { { 5.0F, 5.0F, 5.0F } },
+                                       { { -5.0F, 5.0F, -5.0F } },
+                                       { { -5.0F, -5.0F, 5.0F } } };
+
+      std::vector<uint32_t> indices = { 0, 1, 2, 2, 3, 0, 4, 5, 6, 6, 7, 4, 8, 9, 10, 10,
+                                        11, 8, 3, 12, 6, 6, 13, 3, 14, 15, 16, 16, 17, 14, 18, 0, 19, 19, 7, 18 };
+
+      cube->vertices = vertices;
+      cube->indices  = indices;
+      cube->meshes.push_back( { } );
+      cube->path          = "Custom Skybox Cube";
+      cube->geometryIndex = components::geometryIndex++;
+
+      _skyboxTexturePath       = path;
+      _skyboxCubeGeometryIndex = cube->geometryIndex;
+
+      submitGeometry( cube );
+
+      auto transform    = glm::scale( glm::mat4( 1.0F ), glm::vec3( 1000.0F ) );
+      auto cubeInstance = instance( cube, transform );
+
+      submitGeometryInstance( cubeInstance );
+    }
 
     _uploadSkyboxToBuffer = true;
   }

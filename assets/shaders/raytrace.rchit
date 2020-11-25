@@ -78,7 +78,7 @@ layout( push_constant ) uniform Constants
 
   uint directionalLightCount;
   uint pointLightCount;
-  float padding0;
+  uint skyboxCubeGeometryIndex;
 };
 
 Vertex unpackVertex( uint index, uint modelIndex )
@@ -100,7 +100,7 @@ void main( )
   uint modelIndex = geometryInstances.i[gl_InstanceID].modelIndex;
 
   // Skybox
-  if ( modelIndex == 0 )
+  if ( modelIndex == skyboxCubeGeometryIndex )
   {
     vec3 pos     = prd.rayDirection.xyz;
     prd.hitValue = texture( skybox, -pos ).xyz;

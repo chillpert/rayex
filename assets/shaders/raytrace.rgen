@@ -34,7 +34,7 @@ layout( push_constant ) uniform Constants
 
   uint directionalLightCount;
   uint pointLightCount;
-  float padding0;
+  uint skyboxCubeGeometryIndex;
 };
 
 void rayTrace( vec2 positionWithinPixel )

@@ -43,7 +43,7 @@ namespace RAYEX_NAMESPACE
     Api( const Api& )  = delete;
     Api( const Api&& ) = delete;
     auto operator=( const Api& ) -> Api& = delete;
-    auto operator=( const Api && ) -> Api& = delete;
+    auto operator=( const Api&& ) -> Api& = delete;
 
   private:
     /// Used to set the GUI that will be used.
@@ -146,7 +146,6 @@ namespace RAYEX_NAMESPACE
     std::vector<vk::DescriptorSet> _textureDescriptorSets;  ///< Descriptor sets for texture data.
 
     Skybox _skybox;
-    vk::UniqueSampler _immutableSkyboxSampler;
     std::vector<vk::UniqueSampler> _immutableSamplers;
 
     std::vector<VertexBuffer> _vertexBuffers;          ///< Multiple buffers for vertices because of variable descriptor indexing.

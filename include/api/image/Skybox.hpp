@@ -16,11 +16,11 @@ namespace rx
 
     auto getSampler( ) const -> vk::Sampler { return _sampler.get( ); }
 
-    void init( const std::array<std::string_view, 6>& texturePaths )
+    void init( std::string_view path )
     {
       ktxResult result;
       ktxTexture* texture;
-      std::string fullPath = components::assetsPath + "models/skybox/cubemap_yokohama_bc3_unorm.ktx";
+      std::string fullPath = components::assetsPath + std::string( path );
 
       if ( ktxTexture_CreateFromNamedFile( fullPath.c_str( ), KTX_TEXTURE_CREATE_LOAD_IMAGE_DATA_BIT, &texture ) != KTX_SUCCESS )
       {
@@ -119,7 +119,9 @@ namespace rx
     }
 
   private:
-    vk::UniqueImageView _imageView;
     vk::UniqueSampler _sampler;
+    vk::UniqueImageView _imageView;
+
+    bool _initialized = false;
   };
 } // namespace rx

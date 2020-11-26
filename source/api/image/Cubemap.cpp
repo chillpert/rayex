@@ -1,4 +1,4 @@
-#include "api/image/Skybox.hpp"
+#include "api/image/Cubemap.hpp"
 
 #include "api/Components.hpp"
 #include "api/buffers/Buffer.hpp"
@@ -9,7 +9,7 @@
 
 namespace RAYEX_NAMESPACE
 {
-  void Skybox::init( std::string_view path )
+  void Cubemap::init( std::string_view path )
   {
     ktxTexture* texture = nullptr;
 

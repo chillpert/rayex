@@ -279,7 +279,7 @@ namespace RAYEX_NAMESPACE
       vk::Result result = components::device.waitForFences( 1, &_inFlightFences[prevFrame].get( ), VK_TRUE, UINT64_MAX );
       RX_ASSERT( result == vk::Result::eSuccess, "Failed to wait for fences." );
 
-      _skybox.init( _scene->_skyboxTexturePath );
+      _environmentMap.init( _scene->_skyboxTexturePath );
 
       if ( removeSkybox )
       {
@@ -1131,11 +1131,11 @@ namespace RAYEX_NAMESPACE
 
     // Skybox
     vk::DescriptorImageInfo skyboxTextureInfo;
-    if ( _skybox.getImageView( ) && _skybox.getSampler( ) )
+    if ( _environmentMap.getImageView( ) && _environmentMap.getSampler( ) )
     {
-      skyboxTextureInfo.imageLayout = _skybox.getLayout( );
-      skyboxTextureInfo.imageView   = _skybox.getImageView( );
-      skyboxTextureInfo.sampler     = _skybox.getSampler( );
+      skyboxTextureInfo.imageLayout = _environmentMap.getLayout( );
+      skyboxTextureInfo.imageView   = _environmentMap.getImageView( );
+      skyboxTextureInfo.sampler     = _environmentMap.getSampler( );
     }
     else
     {

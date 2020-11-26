@@ -4,7 +4,7 @@
 
 namespace rx
 {
-  class Skybox : public Image
+  class Cubemap : public Image
   {
   public:
     /// @return Returns the skybox's image view.

@@ -12,7 +12,7 @@
 #include "api/buffers/StorageBuffer.hpp"
 #include "api/buffers/UniformBuffer.hpp"
 #include "api/buffers/VertexBuffer.hpp"
-#include "api/image/Skybox.hpp"
+#include "api/image/Cubemap.hpp"
 #include "api/image/Texture.hpp"
 #include "api/raytracing/RayTracingBuilder.hpp"
 #include "api/utility/DebugMessenger.hpp"
@@ -145,7 +145,7 @@ namespace RAYEX_NAMESPACE
     std::vector<vk::DescriptorSet> _geometryDescriptorSets; ///< Descriptor sets for vertex data.
     std::vector<vk::DescriptorSet> _textureDescriptorSets;  ///< Descriptor sets for texture data.
 
-    Skybox _skybox;
+    Cubemap _environmentMap;
     std::vector<vk::UniqueSampler> _immutableSamplers;
 
     std::vector<VertexBuffer> _vertexBuffers;          ///< Multiple buffers for vertices because of variable descriptor indexing.

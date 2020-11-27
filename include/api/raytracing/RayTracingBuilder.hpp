@@ -12,15 +12,15 @@ namespace RAYEX_NAMESPACE
 {
   struct RayTracePushConstants
   {
-    glm::vec4 clearColor             = glm::vec4( 1.0F );
-    uint32_t sampleRate              = 100;
-    uint32_t sampleRatePerRayGen     = 1;
-    uint32_t ssaa                    = 8;
-    uint32_t jitterCamEnabled        = 0;
-    uint32_t ssaaEnabled             = 1;
-    uint32_t directionalLightCount   = 0;
-    uint32_t pointLightCount         = 0;
-    uint32_t skyboxCubeGeometryIndex = 0;
+    glm::vec4 clearColor           = glm::vec4( 1.0F );
+    uint32_t sampleRate            = 100;
+    uint32_t sampleRatePerRayGen   = 1;
+    uint32_t ssaa                  = 8;
+    uint32_t jitterCamEnabled      = 0;
+    uint32_t ssaaEnabled           = 1;
+    uint32_t directionalLightCount = 0;
+    uint32_t pointLightCount       = 0;
+    uint32_t useEnvironmentMap     = 0;
   };
 
   /// Manages the building process of the acceleration structures.

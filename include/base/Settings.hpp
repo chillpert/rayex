@@ -153,7 +153,7 @@ namespace RAYEX_NAMESPACE
 
     std::string _assetsPath; ///< Where all assets like models, textures and shaders are stored.
 
-    glm::vec4 _clearColor                  = glm::vec4( 0.45F, 0.45F, 0.45F, 1.0F ); ///< Stores the clear color.
+    glm::vec4 _clearColor                  = glm::vec4( 0.45F, 0.45F, 0.45F, 0.8F ); ///< Stores the clear color.
     uint32_t _maxRecursionDepth            = 2;                                      ///< The maximum recursion depth.
     uint32_t _recursionDepth               = 2;                                      ///< The current recursion depth.
     bool _jitterCamEnabled                 = false;                                  ///< Keeps track of whether or not the jitter cam is enabled.

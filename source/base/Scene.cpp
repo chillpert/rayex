@@ -250,8 +250,8 @@ namespace RAYEX_NAMESPACE
       {
         if ( geometryIndex == _skyboxCubeGeometryIndex )
         {
-          _skyboxTexturePath       = std::string_view( );
-          _skyboxCubeGeometryIndex = std::numeric_limits<uint32_t>::max( );
+          _environmentMapTexturePath = std::string_view( );
+          _skyboxCubeGeometryIndex   = std::numeric_limits<uint32_t>::max( );
         }
 
         removeGeometry( it );
@@ -269,8 +269,8 @@ namespace RAYEX_NAMESPACE
     {
       if ( geometry->geometryIndex == _skyboxCubeGeometryIndex )
       {
-        _skyboxTexturePath       = std::string_view( );
-        _skyboxCubeGeometryIndex = std::numeric_limits<uint32_t>::max( );
+        _environmentMapTexturePath = std::string_view( );
+        _skyboxCubeGeometryIndex   = std::numeric_limits<uint32_t>::max( );
       }
     }
 
@@ -310,63 +310,16 @@ namespace RAYEX_NAMESPACE
     return nullptr;
   }
 
-  void Scene::setSkybox( std::string_view path )
+  void Scene::setEnvironmentMap( std::string_view path )
   {
-    /*
-    // If the skybox was not set previously, generate geometry and geometry instance.
-    if ( _skyboxTexturePath.empty( ) )
-    {
-      auto cube = std::make_shared<Geometry>( );
-
-      std::vector<Vertex> vertices = { { { -5.0F, -5.0F, -5.0F } },
-                                       { { -5.0F, 5.0F, -5.0F } },
-                                       { { 5.0F, 5.0F, -5.0F } },
-                                       { { 5.0F, -5.0F, -5.0F } },
-                                       { { -5.0F, -5.0F, 5.0F } },
-                                       { { 5.0F, -5.0F, 5.0F } },
-                                       { { 5.0F, 5.0F, 5.0F } },
-                                       { { -5.0F, 5.0F, 5.0F } },
-                                       { { -5.0F, -5.0F, -5.0F } },
-                                       { { 5.0F, -5.0F, -5.0F } },
-                                       { { 5.0F, -5.0F, 5.0F } },
-                                       { { -5.0F, -5.0F, 5.0F } },
-                                       { { 5.0F, 5.0F, -5.0F } },
-                                       { { 5.0F, -5.0F, 5.0F } },
-                                       { { 5.0F, 5.0F, -5.0F } },
-                                       { { -5.0F, 5.0F, -5.0F } },
-                                       { { -5.0F, 5.0F, 5.0F } },
-                                       { { 5.0F, 5.0F, 5.0F } },
-                                       { { -5.0F, 5.0F, -5.0F } },
-                                       { { -5.0F, -5.0F, 5.0F } } };
-
-      std::vector<uint32_t> indices = { 0, 1, 2, 2, 3, 0, 4, 5, 6, 6, 7, 4, 8, 9, 10, 10,
-                                        11, 8, 3, 12, 6, 6, 13, 3, 14, 15, 16, 16, 17, 14, 18, 0, 19, 19, 7, 18 };
-
-      cube->vertices = vertices;
-      cube->indices  = indices;
-      cube->meshes.push_back( { } );
-      cube->path          = "Custom Skybox Cube";
-      cube->geometryIndex = components::geometryIndex++;
-
-      _skyboxTexturePath       = path;
-      _skyboxCubeGeometryIndex = cube->geometryIndex;
-
-      submitGeometry( cube );
-
-      auto transform    = glm::scale( glm::mat4( 1.0F ), glm::vec3( 1000.0F ) );
-      auto cubeInstance = instance( cube, transform );
-
-      submitGeometryInstance( cubeInstance );
-    }
-    */
-
-    _skyboxTexturePath    = path;
-    _uploadSkyboxToBuffer = true;
+    _environmentMapTexturePath = path;
+    _useEnvironmentMap         = true;
+    _uploadEnvironmentMap      = true;
   }
 
-  void Scene::removeSkybox( )
+  void Scene::removeEnvironmentMap( )
   {
-    removeGeometry( _skyboxCubeGeometryIndex );
+    _useEnvironmentMap = false;
   }
 
 } // namespace RAYEX_NAMESPACE

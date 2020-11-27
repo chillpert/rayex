@@ -16,7 +16,7 @@ layout( push_constant ) uniform Constants
 
   uint directionalLightCount;
   uint pointLightCount;
-  uint skyboxCubeGeometryIndex;
+  bool useEnvironmentMap;
 };
 
 layout( binding = 3, set = 2 ) uniform samplerCube environmentMap;
@@ -31,8 +31,14 @@ void main( )
   // If the ray hits nothing right away
   if ( prd.depth == 0 )
   {
-    //prd.hitValue = clearColor.xyz * 0.8;
-    prd.hitValue = texture( environmentMap, -prd.rayDirection ).xyz;
+    if ( useEnvironmentMap )
+    {
+      prd.hitValue = texture( environmentMap, -prd.rayDirection ).xyz;
+    }
+    else
+    {
+      prd.hitValue = clearColor.xyz * clearColor.w;
+    }
   }
   else
   {

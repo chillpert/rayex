@@ -99,9 +99,9 @@ namespace RAYEX_NAMESPACE
     /// @param path The geometry's model's path, relative to the path to assets.
     auto findGeometry( std::string_view path ) const -> std::shared_ptr<Geometry>;
 
-    void setSkybox( std::string_view path );
+    void setEnvironmentMap( std::string_view path );
 
-    void removeSkybox( );
+    void removeEnvironmentMap( );
 
   private:
     std::vector<std::shared_ptr<Geometry>> _geometries;                ///< Stores all geometries.
@@ -109,13 +109,14 @@ namespace RAYEX_NAMESPACE
     std::vector<std::shared_ptr<DirectionalLight>> _directionalLights; ///< Stores all directional lights.
     std::vector<std::shared_ptr<PointLight>> _pointLights;             ///< Stores all point lights.
 
-    std::string_view _skyboxTexturePath;
+    std::string_view _environmentMapTexturePath;
+    bool _useEnvironmentMap           = false;
     uint32_t _skyboxCubeGeometryIndex = std::numeric_limits<uint32_t>::max( );
 
     bool _uploadGeometryInstancesToBuffer = false; ///< Keeps track of whether or not to upload the ray tracing instances to their respective buffer the next time RAYEX_NAMESPACE::Api::update() is called.
     bool _uploadDirectionalLightsToBuffer = false; ///< Keeps track of whether or not to upload the directional lights to their respective buffer the next time RAYEX_NAMESPACE::Api::update() is called.
     bool _uploadPointLightsToBuffer       = false; ///< Keeps track of whether or not to upload the point lights to their respective buffer the next time RAYEX_NAMESPACE::Api::update() is called.
-    bool _uploadSkyboxToBuffer            = false;
+    bool _uploadEnvironmentMap            = false;
     bool _uploadGeometries                = false; ///< Keeps track of whether or not to upload the geometries to their respective buffer the next time RAYEX_NAMESPACE::Api::update() is called.
     bool _deleteTextures                  = false; ///< Keeps track of whether or not all textures should be deleted the next time RAYEX_NAMESPACE::Api::update() is called.
     bool _dummy                           = false; ///< Keeps track of whether or not a dummy element in case of an empty scene is active.

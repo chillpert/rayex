@@ -254,14 +254,14 @@ private:
 
       if ( ImGui::Button( "Set skybox" ) )
       {
-        _renderer->scene( ).setSkybox( "models/skybox/cubemap_yokohama_bc3_unorm.ktx" );
+        _renderer->scene( ).setEnvironmentMap( "models/skybox/cubemap_yokohama_bc3_unorm.ktx" );
       }
 
       ImGui::SameLine( );
 
       if ( ImGui::Button( "Remove skybox" ) )
       {
-        _renderer->scene( ).removeSkybox( );
+        _renderer->scene( ).removeEnvironmentMap( );
       }
     }
 

@@ -26,7 +26,7 @@ namespace RAYEX_NAMESPACE
 
       if ( ktxTexture_CreateFromNamedFile( fullPath.c_str( ), KTX_TEXTURE_CREATE_LOAD_IMAGE_DATA_BIT, &texture ) != KTX_SUCCESS )
       {
-        RX_FATAL( "Failed to load KTX file from: ", fullPath );
+        RX_FATAL( "Failed t o load KTX file from: ", fullPath );
       }
 
       textureData = texture->pData;

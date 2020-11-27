@@ -157,8 +157,8 @@ namespace RAYEX_NAMESPACE
     uint32_t _maxRecursionDepth            = 2;                                      ///< The maximum recursion depth.
     uint32_t _recursionDepth               = 2;                                      ///< The current recursion depth.
     bool _jitterCamEnabled                 = false;                                  ///< Keeps track of whether or not the jitter cam is enabled.
-    uint32_t _jitterCamSampleRate          = 100;                                    ///< Stores the sample rate of the jitter cam.
-    uint32_t _jitterCamSampleRatePerRayGen = 1;                                      ///< Stores the sample rate per raygen invocation.
+    uint32_t _jitterCamSampleRate          = 1;                                      ///< Stores the sample rate of the jitter cam.
+    uint32_t _jitterCamSampleRatePerRayGen = 10;                                     ///< Stores the sample rate per raygen invocation.
     bool _ssaaEnabled                      = true;                                   ///< Keeps track of whether or not SSAA is enabled.
     uint32_t _ssaaSampleRate               = 2;                                      ///< Stores the amount of samples per pixel for SSAA.
 

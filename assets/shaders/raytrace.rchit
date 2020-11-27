@@ -64,8 +64,6 @@ layout( binding = 2, set = 2 ) buffer Meshes
 }
 meshes[];
 
-layout( binding = 3, set = 2 ) uniform samplerCube skybox;
-
 layout( binding = 4, set = 2 ) uniform sampler2D textures[];
 
 layout( push_constant ) uniform Constants
@@ -100,15 +98,6 @@ void main( )
 {
   uint modelIndex = geometryInstances.i[gl_InstanceID].modelIndex;
 
-  // Skybox
-  // Maybe this can be put inside miss shader, which might be more efficient?
-  if ( modelIndex == skyboxCubeGeometryIndex )
-  {
-    vec3 pos     = prd.rayDirection.xyz;
-    prd.hitValue = texture( skybox, -pos ).xyz;
-    return;
-  }
-
   ivec3 ind = ivec3( indices[nonuniformEXT( modelIndex )].i[3 * gl_PrimitiveID + 0],   //
                      indices[nonuniformEXT( modelIndex )].i[3 * gl_PrimitiveID + 1],   //
                      indices[nonuniformEXT( modelIndex )].i[3 * gl_PrimitiveID + 2] ); //
@@ -118,87 +107,17 @@ void main( )
   Vertex v2 = unpackVertex( ind.z, modelIndex );
 
   const vec3 barycentrics = vec3( 1.0 - attribs.x - attribs.y, attribs.x, attribs.y );
-  vec3 normal             = v0.normal * barycentrics.x + v1.normal * barycentrics.y + v2.normal * barycentrics.z;
-  normal                  = normalize( vec3( geometryInstances.i[gl_InstanceID].transformIT * vec4( normal, 0.0 ) ) );
+  // Computing the normal at hit position
+  vec3 normal = v0.normal * barycentrics.x + v1.normal * barycentrics.y + v2.normal * barycentrics.z;
+  // Transforming the normal to world space
+  normal = normalize( vec3( geometryInstances.i[gl_InstanceID].transformIT * vec4( normal, 0.0 ) ) );
 
-  // Calculate world space position (the unprecise way)
-  //vec3 worldPos = gl_WorldRayOriginEXT + gl_WorldRayDirectionEXT * gl_HitTEXT;
-
-  // or better like this:
   // Computing the coordinates of the hit position
   vec3 worldPos = v0.pos * barycentrics.x + v1.pos * barycentrics.y + v2.pos * barycentrics.z;
   // Transforming the position to world space
   worldPos = vec3( geometryInstances.i[gl_InstanceID].transform * vec4( worldPos, 1.0 ) );
 
-  vec3 L              = vec3( 0.0 );
-  float lightDistance = 1000.0;
-  float attenuation   = 1;
-
   vec2 texCoord = v0.texCoord * barycentrics.x + v1.texCoord * barycentrics.y + v2.texCoord * barycentrics.z;
-
-  if ( directionalLightCount > 0 )
-  {
-    //uint lightType = uint( fract( sin( dot( texCoord, vec2( 12.9898, 78.233 ) ) ) * 43758.5453 ) ) % 2;
-    //
-    //if ( lightType == 0 )
-    //{
-    //  prd.hitValue = vec3( 1.0, 0.0, 0.0 );
-    //  return;
-    //}
-    //else if ( lightType == 1 )
-    //{
-    //  prd.hitValue = vec3( 0.0, 1.0, 0.0 );
-    //  return;
-    //}
-    //else if ( lightType == 2 )
-    //{
-    //  prd.hitValue = vec3( 0.0, 0.0, 1.0 );
-    //  return;
-    //}
-
-    L = normalize( directionalLights[0].direction.xyz );
-  }
-  else
-  {
-    prd.hitValue = vec3( 0.0 );
-    return;
-  }
-
-  // Tracing shadow ray only if the light is visible from the surface
-  if ( dot( normal, L ) > 0 )
-  {
-    float tMin  = 0.001;
-    float tMax  = lightDistance;
-    vec3 origin = gl_WorldRayOriginEXT + gl_WorldRayDirectionEXT * gl_HitTEXT;
-    vec3 rayDir = L;
-
-    // gl_RayFlagsSkipClosestHitShaderKHR: Will not invoke the hit shader, only the miss shader
-    // gl_RayFlagsOpaqueKHR : Will not call the any hit shader, so all objects will be opaque
-    // gl_RayFlagsTerminateOnFirstHitKHR : The first hit is always good.
-    uint flags = gl_RayFlagsTerminateOnFirstHitEXT | gl_RayFlagsOpaqueEXT | gl_RayFlagsSkipClosestHitShaderEXT;
-    isShadowed = true;
-    traceRayEXT( topLevelAS, // acceleration structure
-                 flags,      // rayFlags
-                 0xFF,       // cullMask
-                 0,          // sbtRecordOffset
-                 0,          // sbtRecordStride
-                 1,          // missIndex
-                 origin,     // ray origin
-                 tMin,       // ray min range
-                 rayDir,     // ray direction
-                 tMax,       // ray max range
-                 1 );        // payload (location = 1)
-
-    if ( isShadowed )
-    {
-      attenuation = 0.3;
-    }
-    // Only calculate specular light if hit is not in shadow.
-    else
-    {
-      // compute specular
-    }
-  }
 
   // The following lines access the meshes SSBO to figure out to which submesh the current face belongs and retrieve its material.
   Material mat;
@@ -223,6 +142,7 @@ void main( )
     }
   }
 
+  // Diffuse lighting
   vec3 diffuse = vec3( 1.0 );
 
   if ( found )
@@ -239,8 +159,44 @@ void main( )
     }
   }
 
-  float dotNL = max( dot( normal, L ), 0.2 );
-  //float gamma  = 2.2;
-  //prd.hitValue = pow( ( vec3( dotNL ) * diffuse * attenuation ), vec3( 1.0 / gamma ) );
-  prd.hitValue = vec3( dotNL ) * diffuse * attenuation;
+  // Pick a random direction from here and keep going.
+  vec3 tangent, bitangent;
+  createCoordinateSystem( normal, tangent, bitangent );
+  vec3 rayOrigin    = worldPos;
+  vec3 rayDirection = samplingHemisphere( prd.seed, tangent, bitangent, normal );
+
+  // Probability of the newRay (cosine distributed)
+  const float p = 1 / M_PI;
+
+  // Compute the BRDF for this ray (assuming Lambertian reflection)
+  float cos_theta = dot( rayDirection, normal );
+  //vec3 BRDF       = vec3( 1.0, 1.0, 1.0 ) / M_PI;
+  vec3 BRDF = diffuse.xyz / M_PI;
+
+  // Recursively trace reflected light sources.
+  if ( prd.depth < 10 )
+  {
+    prd.depth++;
+    float tMin = 0.001;
+    float tMax = 100000000.0;
+    uint flags = gl_RayFlagsOpaqueEXT;
+    traceRayEXT( topLevelAS,   // acceleration structure
+                 flags,        // rayFlags
+                 0xFF,         // cullMask
+                 0,            // sbtRecordOffset
+                 0,            // sbtRecordStride
+                 0,            // missIndex
+                 rayOrigin,    // ray origin
+                 tMin,         // ray min range
+                 rayDirection, // ray direction
+                 tMax,         // ray max range
+                 0             // payload (location = 0)
+    );
+  }
+
+  vec3 incoming = prd.hitValue;
+
+  // Apply the Rendering Equation here.
+  float emittance = 0.1;
+  prd.hitValue    = emittance + ( BRDF * incoming * cos_theta / p );
 }

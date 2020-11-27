@@ -402,6 +402,7 @@ namespace vk::Helper
          rayTracingFeatures.rayTracing == VK_FALSE ||
          rayTracingFeatures.rayQuery == VK_FALSE ||
          feats.samplerAnisotropy == VK_FALSE ||
+         feats.shaderInt64 == VK_FALSE ||
          deviceAddressFeatures.bufferDeviceAddress == VK_FALSE ||
          robustness2Features.nullDescriptor == VK_FALSE )
     {

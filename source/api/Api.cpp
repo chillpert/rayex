@@ -8,7 +8,7 @@ namespace RAYEX_NAMESPACE
 {
   const std::vector<const char*> layers = { "VK_LAYER_KHRONOS_validation" };
 #ifdef RX_DEBUG
-  std::vector<const char*> extensions = { "VK_EXT_debug_utils" };
+  std::vector<const char*> extensions = { "VK_EXT_debug_utils", "VK_KHR_get_physical_device_properties2" };
 #else
   std::vector<const char*> extensions;
 #endif
@@ -17,7 +17,8 @@ namespace RAYEX_NAMESPACE
     VK_KHR_DEFERRED_HOST_OPERATIONS_EXTENSION_NAME,
     VK_KHR_PIPELINE_LIBRARY_EXTENSION_NAME,
     VK_KHR_RAY_TRACING_EXTENSION_NAME,
-    VK_KHR_SWAPCHAIN_EXTENSION_NAME
+    VK_KHR_SWAPCHAIN_EXTENSION_NAME,
+    VK_KHR_SHADER_CLOCK_EXTENSION_NAME
   };
 
   size_t currentFrame = 0;
@@ -257,10 +258,12 @@ namespace RAYEX_NAMESPACE
         triangle = nullptr;
 
         // In case a skybox was added right after the scene was empty and a dummy was added, decrease the cube geometry index.
+        /*
         if ( _scene->_uploadSkyboxToBuffer )
         {
           --_scene->_skyboxCubeGeometryIndex;
         }
+        */
       }
     }
 
@@ -281,11 +284,13 @@ namespace RAYEX_NAMESPACE
 
       _environmentMap.init( _scene->_skyboxTexturePath );
 
+      /*
       if ( removeSkybox )
       {
         _scene->removeSkybox( );
         removeSkybox = false;
       }
+      */
 
       updateRayTracingModelData( );
     }
@@ -988,7 +993,7 @@ namespace RAYEX_NAMESPACE
       // Skybox
       _geometryDescriptors.bindings.add( 3,
                                          vk::DescriptorType::eCombinedImageSampler,
-                                         vk::ShaderStageFlagBits::eClosestHitKHR );
+                                         vk::ShaderStageFlagBits::eMissKHR );
 
       // Textures
       _immutableSamplers.reserve( _settings->_maxTextures );

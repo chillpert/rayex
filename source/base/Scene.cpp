@@ -312,6 +312,7 @@ namespace RAYEX_NAMESPACE
 
   void Scene::setSkybox( std::string_view path )
   {
+    /*
     // If the skybox was not set previously, generate geometry and geometry instance.
     if ( _skyboxTexturePath.empty( ) )
     {
@@ -357,7 +358,9 @@ namespace RAYEX_NAMESPACE
 
       submitGeometryInstance( cubeInstance );
     }
+    */
 
+    _skyboxTexturePath    = path;
     _uploadSkyboxToBuffer = true;
   }
 

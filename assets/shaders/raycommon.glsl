@@ -1,5 +1,7 @@
 struct hitPayload
 {
-  vec4 rayDirection;
+  vec3 rayDirection;
   vec3 hitValue;
+  uint seed;
+  uint depth;
 };

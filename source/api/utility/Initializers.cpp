@@ -472,6 +472,7 @@ namespace vk::Initializer
 
     PhysicalDeviceFeatures deviceFeatures;
     deviceFeatures.samplerAnisotropy = VK_TRUE;
+    deviceFeatures.shaderInt64       = VK_TRUE;
 
     PhysicalDeviceFeatures2 deviceFeatures2 { deviceFeatures };
     deviceFeatures2.pNext = &bufferDeviceAddressFeatures;

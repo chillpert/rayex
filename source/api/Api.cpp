@@ -31,9 +31,6 @@ namespace RAYEX_NAMESPACE
 
   CameraUbo cameraUbo;
 
-  vk::Viewport viewport; ///< The application's viewport.
-  vk::Rect2D scissor;    ///< The application's scissor.
-
   std::shared_ptr<Geometry> triangle                 = nullptr; ///< A dummy triangle that will be placed in the scene if it empty. This assures the AS creation.
   std::shared_ptr<GeometryInstance> triangleInstance = nullptr;
 
@@ -129,6 +126,10 @@ namespace RAYEX_NAMESPACE
     // Create fences and semaphores.
     initSyncObjects( );
 
+    // Path tracer (part 1)
+    _rtBuilder.init( );
+    _settings->_maxRecursionDepth = _rtBuilder.getRtProperties( ).maxRecursionDepth;
+
     // Resize and initialize buffers with "dummy data".
     // The advantage of doing this is that the buffers are all initialized right away (even though it is invalid data) and
     // this makes it possible to call fill instead of init again, when changing any of the data below.
@@ -165,12 +166,9 @@ namespace RAYEX_NAMESPACE
     // Initialize a rasterization and raytracing pipeline.
     initPipelines( );
 
-    // Ray tracing
-    _rtBuilder.init( );
+    // Path tracer (part 2)
     _rtBuilder.createStorageImage( _swapchain.getExtent( ) );
     _rtBuilder.createShaderBindingTable( );
-
-    _settings->_maxRecursionDepth = _rtBuilder.getRtProperties( ).maxRecursionDepth;
 
     // Init and record swapchain command buffers.
     _swapchainCommandBuffers.init( _graphicsCmdPool.get( ), components::swapchainImageCount, vk::CommandBufferUsageFlagBits::eRenderPassContinue );
@@ -432,16 +430,15 @@ namespace RAYEX_NAMESPACE
       }
     }
 
-    if ( _settings->getJitterCamEnabled( ) )
+    // Stop taking samples
+    if ( components::frameCount >= _settings->_totalFramesToAccumulate )
     {
-      if ( components::frameCount >= _settings->_jitterCamSampleRate )
-      {
-        return;
-      }
-
-      // Increment frame counter for jitter cam.
-      ++components::frameCount;
+      return;
     }
+
+    // Increment frame counter for jitter cam.
+    ++components::frameCount;
+
   } // namespace RAYEX_NAMESPACE
 
   auto Api::prepareFrame( ) -> bool
@@ -652,15 +649,6 @@ namespace RAYEX_NAMESPACE
 
     _rtBuilder.createPipeline( allRtDescriptorSetLayouts, _settings );
 
-    // Rasterization pipeline
-    glm::vec2 extent = { static_cast<float>( _swapchain.getExtent( ).width ), static_cast<float>( _swapchain.getExtent( ).height ) };
-    viewport         = vk::Viewport( 0.0F, 0.0F, extent.x, extent.y, 0.0F, 1.0F );
-    scissor          = vk::Rect2D( 0, _swapchain.getExtent( ) );
-
-    std::vector<vk::DescriptorSetLayout> allRsDescriptorSetLayouts = { _rsSceneDescriptors.layout.get( ) };
-
-    _rsPipeline.init( allRsDescriptorSetLayouts, _renderPass.get( ), viewport, scissor, _settings );
-
     _pipelinesReady             = true;
     _settings->_refreshPipeline = false;
 
@@ -724,122 +712,7 @@ namespace RAYEX_NAMESPACE
   {
     RX_ASSERT( _pipelinesReady, "Can not record swapchain command buffers because the pipelines have not been initialized yet." );
 
-    if ( _settings->_rayTrace )
-    {
-      rayTrace( );
-    }
-    else
-    {
-      rasterize( );
-    }
-  }
-
-  void Api::rasterize( )
-  {
-    std::map<std::string_view, uint32_t> temp;
-
-    for ( auto geometry : _scene->_geometries )
-    {
-      temp.emplace( geometry->path, 0 );
-    }
-
-    for ( const auto& geometryInstance : _scene->_geometryInstances )
-    {
-      std::shared_ptr<Geometry> it = findGeometry( geometryInstance->geometryIndex );
-      RX_ASSERT( it != nullptr, "Could not find model. Did you forget to introduce the renderer to this model using Rayex::setModels( ) after initializing the renderer?" );
-
-      auto it2 = temp.find( it->path );
-      if ( it2 != temp.end( ) )
-      {
-        ++( it2->second );
-      }
-    }
-
-    // Set up render pass begin info
-    std::array<vk::ClearValue, 2> clearValues;
-    clearValues[0].color        = { Util::vec4toArray( _settings->getClearColor( ) ) };
-    clearValues[1].depthStencil = vk::ClearDepthStencilValue { 1.0F, 0 };
-
-    // Start recording the swapchain framebuffers
-    for ( size_t imageIndex = 0; imageIndex < _swapchainCommandBuffers.get( ).size( ); ++imageIndex )
-    {
-      _swapchainCommandBuffers.begin( imageIndex );
-
-      _renderPass.begin( _swapchain.getFramebuffer( imageIndex ),
-                         _swapchainCommandBuffers.get( imageIndex ),
-                         { 0, _swapchain.getExtent( ) },
-                         { clearValues[0], clearValues[1] } );
-
-      _swapchainCommandBuffers.get( imageIndex ).bindPipeline( vk::PipelineBindPoint::eGraphics, _rsPipeline.get( ) ); // CMD
-
-      // Dynamic states
-      viewport.width  = static_cast<float>( _window->getWidth( ) );
-      viewport.height = static_cast<float>( _window->getHeight( ) );
-
-      _swapchainCommandBuffers.get( imageIndex ).setViewport( 0, 1, &viewport ); // CMD
-
-      scissor.extent = _window->getExtent( );
-
-      _swapchainCommandBuffers.get( imageIndex ).setScissor( 0, 1, &scissor ); // CMD
-
-      // Draw models
-      uint32_t id = 0;
-      for ( const auto& geometryInstance : _scene->_geometryInstances )
-      {
-        auto geo = findGeometry( geometryInstance->geometryIndex );
-        RX_ASSERT( geo != nullptr, "Could not find model. Did you forget to introduce the renderer to this model using Rayex::setModels( ) after initializing the renderer?" );
-
-        uint32_t instanceCount = 1;
-        auto it2               = temp.find( geo->path );
-        if ( it2 != temp.end( ) )
-        {
-          instanceCount = it2->second;
-
-          if ( instanceCount == 0 )
-          {
-            continue;
-          }
-        }
-
-        _swapchainCommandBuffers.get( imageIndex ).pushConstants( _rsPipeline.getLayout( ),         // layout
-                                                                  vk::ShaderStageFlagBits::eVertex, // stageFlags
-                                                                  0,                                // offset
-                                                                  sizeof( uint32_t ),               // size
-                                                                  &id );                            // pValues
-
-        std::array<vk::Buffer, 1> vertexBuffers { _vertexBuffers[geometryInstance->geometryIndex].get( ) };
-        std::array<vk::DeviceSize, 1> offsets { 0 };
-
-        _swapchainCommandBuffers.get( imageIndex ).bindVertexBuffers( 0,                     // first binding
-                                                                      1,                     // binding count
-                                                                      vertexBuffers.data( ), // pBuffers
-                                                                      offsets.data( ) );     // pOffsets
-
-        _swapchainCommandBuffers.get( imageIndex ).bindIndexBuffer( _indexBuffers[geometryInstance->geometryIndex].get( ),
-                                                                    0, // offset
-                                                                    vk::IndexType::eUint32 );
-
-        std::vector<vk::DescriptorSet> descriptorSets = { _rsSceneDescriptorSets[imageIndex % maxFramesInFlight] };
-
-        _swapchainCommandBuffers.get( imageIndex ).bindDescriptorSets( vk::PipelineBindPoint::eGraphics, _rsPipeline.getLayout( ),
-                                                                       0,                                               // first set
-                                                                       static_cast<uint32_t>( descriptorSets.size( ) ), // descriptor set count
-                                                                       descriptorSets.data( ),                          // descriptor sets
-                                                                       0,                                               // dynamic offset count
-                                                                       nullptr );                                       // dynamic offsets
-
-        _swapchainCommandBuffers.get( imageIndex ).drawIndexed( _indexBuffers[geometryInstance->geometryIndex].getCount( ), // index count
-                                                                instanceCount,                                              // instance count
-                                                                0,                                                          // first index
-                                                                0,                                                          // vertex offset
-                                                                0 );                                                        // first instance
-
-        ++id;
-      }
-
-      _renderPass.end( _swapchainCommandBuffers.get( imageIndex ) );
-      _swapchainCommandBuffers.end( imageIndex );
-    }
+    rayTrace( );
   }
 
   void Api::rayTrace( )
@@ -852,12 +725,10 @@ namespace RAYEX_NAMESPACE
     {
       _swapchainCommandBuffers.begin( imageIndex );
 
-      RayTracePushConstants chitPc = { _settings->getClearColor( ),
+      RayTracePushConstants chitPc = { _settings->_clearColor,
                                        components::frameCount,
-                                       _settings->getJitterCamSampleRatePerRayGen( ),
-                                       _settings->getSsaaSampleRate( ),
-                                       static_cast<uint32_t>( _settings->getJitterCamEnabled( ) ), // BAD: bool to uint32_t cast, but bool alignment is only 1 byte
-                                       static_cast<uint32_t>( _settings->getSsaaEnabled( ) ),      // BAD: bool to uint32_t cast, but bool alignment is only 1 byte
+                                       _settings->_perPixelSampleRate,
+                                       _settings->_recursionDepth,
                                        directionalLightCount,
                                        pointLightCount,
                                        static_cast<uint32_t>( _scene->_useEnvironmentMap ) };
@@ -885,7 +756,7 @@ namespace RAYEX_NAMESPACE
 
       _swapchainCommandBuffers.end( imageIndex );
     }
-  }
+  } // namespace RAYEX_NAMESPACE
 
   void Api::initSyncObjects( )
   {

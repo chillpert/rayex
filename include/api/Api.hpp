@@ -2,7 +2,6 @@
 
 #include "api/Bindings.hpp"
 #include "api/Components.hpp"
-#include "api/Pipeline.hpp"
 #include "api/RenderPass.hpp"
 #include "api/Surface.hpp"
 #include "api/Swapchain.hpp"
@@ -108,9 +107,6 @@ namespace RAYEX_NAMESPACE
     /// Submits the swapchain command buffers to a queue and presents an image on the screen.
     auto submitFrame( ) -> bool;
 
-    /// Records rasterization draw calls to the swapchain command buffers.
-    void rasterize( );
-
     /// Records ray tracing calls to the swapchain command buffers.
     void rayTrace( );
 
@@ -161,7 +157,6 @@ namespace RAYEX_NAMESPACE
 
     Swapchain _swapchain;   ///< A RAYEX_NAMESPACE::Swapchain to manage swapchain related operations.
     RenderPass _renderPass; ///< A RAYEX_NAMESPACE::RenderPass to create, begin and end a render pass.
-    Pipeline _rsPipeline;   ///< A RAYEX_NAMESPACE::Pipeline for managing a rasterization pipeline.
 
     CommandBuffer _swapchainCommandBuffers; ///< A RAYEX_NAMESPACE::CommandBuffer containing as many command buffers as there are images in the swapchain.
 

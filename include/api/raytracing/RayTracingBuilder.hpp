@@ -13,14 +13,15 @@ namespace RAYEX_NAMESPACE
   struct RayTracePushConstants
   {
     glm::vec4 clearColor           = glm::vec4( 1.0F );
-    uint32_t sampleRate            = 100;
-    uint32_t sampleRatePerRayGen   = 1;
-    uint32_t ssaa                  = 8;
-    uint32_t jitterCamEnabled      = 0;
-    uint32_t ssaaEnabled           = 1;
+    uint32_t frameCount            = 0;
+    uint32_t sampleRatePerPixel    = 4;
+    uint32_t recursionDepth        = 4;
     uint32_t directionalLightCount = 0;
     uint32_t pointLightCount       = 0;
     uint32_t useEnvironmentMap     = 0;
+
+    uint32_t padding0 = 0;
+    uint32_t padding1 = 0;
   };
 
   /// Manages the building process of the acceleration structures.
@@ -102,7 +103,7 @@ namespace RAYEX_NAMESPACE
     /// Used to create a ray tracing pipeline.
     /// @param descriptorSetLayouts The descriptor set layouts for the shaders.
     /// @param settings The renderer settings.
-    void createPipeline( const std::vector<vk::DescriptorSetLayout>& descriptorSetLayouts, const Settings* settings );
+    void createPipeline( const std::vector<vk::DescriptorSetLayout>& descriptorSetLayouts, Settings* settings );
 
     /// Used to record the actual ray tracing commands to a given command buffer.
     /// @param swapchaincommandBuffer The command buffer to record to.

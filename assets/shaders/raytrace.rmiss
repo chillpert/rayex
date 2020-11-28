@@ -9,14 +9,14 @@ layout( push_constant ) uniform Constants
 {
   vec4 clearColor;
   uint frameCount;
-  uint jitterCamSampleRatePerRayGen;
-  uint ssaa;
-  bool jitterCamEnabled;
-  bool ssaaEnabled;
-
+  uint sampleRatePerPixel;
+  uint maxRecursionDepth;
   uint directionalLightCount;
   uint pointLightCount;
   bool useEnvironmentMap;
+
+  uint padding0;
+  uint padding1;
 };
 
 layout( binding = 3, set = 2 ) uniform samplerCube environmentMap;

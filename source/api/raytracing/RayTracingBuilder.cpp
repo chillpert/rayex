@@ -590,8 +590,16 @@ namespace RAYEX_NAMESPACE
     components::device.unmapMemory( _sbtBuffer.getMemory( ) );
   }
 
-  void RayTracingBuilder::createPipeline( const std::vector<vk::DescriptorSetLayout>& descriptorSetLayouts, const Settings* settings )
+  void RayTracingBuilder::createPipeline( const std::vector<vk::DescriptorSetLayout>& descriptorSetLayouts, Settings* settings )
   {
+    // Check if selected recursion depth exceeds maximum supported value.
+    auto recursionDepth = settings->getRecursionDepth( );
+    if ( recursionDepth > _rtProperties.maxRecursionDepth )
+    {
+      RX_WARN( "Selected recursion depth of ", recursionDepth, " exceeds maximum of ", _rtProperties.maxRecursionDepth, ". Using maximum value instead." );
+      settings->setRecursionDepth( _rtProperties.maxRecursionDepth );
+    }
+
     //uint32_t anticipatedDirectionalLights = settings->maxDirectionalLights.has_value( ) ? settings->maxDirectionalLights.value( ) : components::maxDirectionalLights;
     //uint32_t anticipatedPointLights       = settings->maxPointLights.has_value( ) ? settings->maxPointLights.value( ) : components::maxPointLights;
     //Util::processShaderMacros( "shaders/raytrace.rchit", anticipatedDirectionalLights, anticipatedPointLights, components::modelCount );

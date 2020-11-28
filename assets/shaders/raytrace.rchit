@@ -70,14 +70,14 @@ layout( push_constant ) uniform Constants
 {
   vec4 clearColor;
   uint frameCount;
-  uint jitterCamSampleRatePerRayGen;
-  uint ssaa;
-  bool jitterCamEnabled;
-  bool ssaaEnabled;
-
+  uint sampleRatePerPixel;
+  uint maxRecursionDepth;
   uint directionalLightCount;
   uint pointLightCount;
-  uint skyboxCubeGeometryIndex;
+  bool uintuseEnvironmentMap;
+
+  uint padding0;
+  uint padding1;
 };
 
 Vertex unpackVertex( uint index, uint modelIndex )
@@ -173,30 +173,9 @@ void main( )
   //vec3 BRDF       = vec3( 1.0, 1.0, 1.0 ) / M_PI;
   vec3 BRDF = diffuse.xyz / M_PI;
 
-  // Recursively trace reflected light sources.
-  if ( prd.depth < 10 )
-  {
-    prd.depth++;
-    float tMin = 0.001;
-    float tMax = 100000000.0;
-    uint flags = gl_RayFlagsOpaqueEXT;
-    traceRayEXT( topLevelAS,   // acceleration structure
-                 flags,        // rayFlags
-                 0xFF,         // cullMask
-                 0,            // sbtRecordOffset
-                 0,            // sbtRecordStride
-                 0,            // missIndex
-                 rayOrigin,    // ray origin
-                 tMin,         // ray min range
-                 rayDirection, // ray direction
-                 tMax,         // ray max range
-                 0             // payload (location = 0)
-    );
-  }
-
-  vec3 incoming = prd.hitValue;
-
-  // Apply the Rendering Equation here.
-  float emittance = 0.1;
-  prd.hitValue    = emittance + ( BRDF * incoming * cos_theta / p );
+  vec3 emittance   = diffuse.xyz;
+  prd.rayOrigin    = rayOrigin;
+  prd.rayDirection = rayDirection;
+  prd.weight       = BRDF * cos_theta / p;
+  prd.hitValue     = emittance;
 }

@@ -57,14 +57,6 @@ namespace RAYEX_NAMESPACE
     components::assetsPath = _assetsPath;
   }
 
-  void Settings::setEnableRayTracing( bool flag )
-  {
-    _rayTrace         = flag;
-    _refreshSwapchain = true;
-
-    components::frameCount = 0;
-  }
-
   void Settings::setAutomaticPipelineRefresh( bool flag )
   {
     _automaticPipelineRefresh = flag;
@@ -131,35 +123,14 @@ namespace RAYEX_NAMESPACE
     RX_WARN( "No path to assets specified. Using default path as path to resources: ", _assetsPath );
   }
 
-  void Settings::setEnableJitterCam( bool flag )
+  void Settings::setPerPixelSampleRate( uint32_t sampleRate )
   {
-    _jitterCamEnabled      = flag;
-    _ssaaEnabled           = false;
-    components::frameCount = 0;
+    _perPixelSampleRate = sampleRate;
   }
 
-  void Settings::setJitterCamSampleRate( uint32_t sampleRate )
+  void Settings::setTotalFramesToAccumulate( uint32_t totalFramesToAccumulate )
   {
-    // Make sure the sample rate is always greater than zero.
-    _jitterCamSampleRate   = sampleRate > 0 ? sampleRate : 1;
-    components::frameCount = 0;
-  }
-
-  void Settings::setJitterCamSampleRatePerRayGen( uint32_t sampleRate )
-  {
-    // Make sure the sample rate per raygen is always greater than zero.
-    _jitterCamSampleRatePerRayGen = sampleRate > 0 ? sampleRate : 1;
-    components::frameCount        = 0;
-  }
-
-  void Settings::setEnableSsaa( bool flag )
-  {
-    _ssaaEnabled      = flag;
-    _jitterCamEnabled = false;
-  }
-
-  void Settings::setSsaaSampleRate( uint32_t sampleRate )
-  {
-    _ssaaSampleRate = sampleRate > 0 ? sampleRate : 1;
+    _totalFramesToAccumulate = totalFramesToAccumulate;
+    components::frameCount   = 0;
   }
 } // namespace RAYEX_NAMESPACE

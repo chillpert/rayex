@@ -302,59 +302,22 @@ private:
         _renderer->settings( ).setClearColor( clearColor );
       }
 
-      bool rayTrace = _renderer->settings( ).getRayTracingEnabled( );
-      if ( ImGui::Checkbox( "Toggle ray tracing", &rayTrace ) )
+      int perPixelSampleRate = static_cast<int>( _renderer->settings( ).getPerPixelSampleRate( ) );
+      if ( ImGui::SliderInt( "Per pixel sample rate", &perPixelSampleRate, 1, 100 ) )
       {
-        _renderer->settings( ).setEnableRayTracing( rayTrace );
-        if ( !rayTrace )
-        {
-          _renderer->settings( ).setEnableJitterCam( false );
-        }
+        _renderer->settings( ).setPerPixelSampleRate( perPixelSampleRate );
       }
 
-      if ( rayTrace )
+      int depth = static_cast<int>( _renderer->settings( ).getRecursionDepth( ) );
+      if ( ImGui::SliderInt( "Recursion depth", &depth, 0, 31 ) )
       {
-        bool jitterCamEnabled = _renderer->settings( ).getJitterCamEnabled( );
-        if ( ImGui::Checkbox( "Toggle jitter cam", &jitterCamEnabled ) )
-        {
-          _renderer->settings( ).setEnableJitterCam( jitterCamEnabled );
-        }
+        _renderer->settings( ).setRecursionDepth( static_cast<uint32_t>( depth ) );
+      }
 
-        if ( jitterCamEnabled )
-        {
-          int jitterCamSampleRate = static_cast<int>( _renderer->settings( ).getJitterCamSampleRate( ) );
-          if ( ImGui::SliderInt( "Set jitter cam sample rate", &jitterCamSampleRate, 1, 100 ) )
-          {
-            _renderer->settings( ).setJitterCamSampleRate( jitterCamSampleRate );
-          }
-
-          int jitterCamSampleRatePerRayGen = static_cast<int>( _renderer->settings( ).getJitterCamSampleRatePerRayGen( ) );
-          if ( ImGui::SliderInt( "Set jitter cam sample rate per ray gen", &jitterCamSampleRatePerRayGen, 1, 10 ) )
-          {
-            _renderer->settings( ).setJitterCamSampleRatePerRayGen( jitterCamSampleRatePerRayGen );
-          }
-        }
-
-        bool ssaaEnabled = _renderer->settings( ).getSsaaEnabled( );
-        if ( ImGui::Checkbox( "Toggle SSAA", &ssaaEnabled ) )
-        {
-          _renderer->settings( ).setEnableSsaa( ssaaEnabled );
-        }
-
-        if ( ssaaEnabled )
-        {
-          int ssaaSampleRate = static_cast<int>( _renderer->settings( ).getSsaaSampleRate( ) );
-          if ( ImGui::SliderInt( "Set SSAA sample rate", &ssaaSampleRate, 1, 4 ) )
-          {
-            _renderer->settings( ).setSsaaSampleRate( ssaaSampleRate );
-          }
-        }
-
-        int depth = static_cast<int>( _renderer->settings( ).getRecursionDepth( ) );
-        if ( ImGui::SliderInt( "Recursion depth", &depth, 0, 31 ) )
-        {
-          _renderer->settings( ).setRecursionDepth( static_cast<uint32_t>( depth ) );
-        }
+      int totalFramesToAccumulate = static_cast<int>( _renderer->settings( ).getTotalFramesToAccumulate( ) );
+      if ( ImGui::SliderInt( "Frames to accumulate", &totalFramesToAccumulate, 0, 200 ) )
+      {
+        _renderer->settings( ).setTotalFramesToAccumulate( static_cast<uint32_t>( totalFramesToAccumulate ) );
       }
     }
 

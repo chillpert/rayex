@@ -113,7 +113,7 @@ namespace RAYEX_NAMESPACE
     bool _useEnvironmentMap           = false;
     uint32_t _skyboxCubeGeometryIndex = std::numeric_limits<uint32_t>::max( );
 
-    bool _uploadGeometryInstancesToBuffer = false; ///< Keeps track of whether or not to upload the ray tracing instances to their respective buffer the next time RAYEX_NAMESPACE::Api::update() is called.
+    bool _uploadGeometryInstancesToBuffer = false; ///< Keeps track of whether or not to upload the path tracing instances to their respective buffer the next time RAYEX_NAMESPACE::Api::update() is called.
     bool _uploadDirectionalLightsToBuffer = false; ///< Keeps track of whether or not to upload the directional lights to their respective buffer the next time RAYEX_NAMESPACE::Api::update() is called.
     bool _uploadPointLightsToBuffer       = false; ///< Keeps track of whether or not to upload the point lights to their respective buffer the next time RAYEX_NAMESPACE::Api::update() is called.
     bool _uploadEnvironmentMap            = false;

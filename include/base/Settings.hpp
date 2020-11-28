@@ -94,7 +94,6 @@ namespace RAYEX_NAMESPACE
     /// @warning This function might file in setting the correct path. That is why it is recommended to set it automatically using setAssetsPath(std::string).
     void setDefaultAssetsPath( );
 
-    bool _rayTrace         = true;  ///< If true renderer will use ray tracing, if false it will use rasterization.
     bool _refreshPipeline  = false; ///< Keeps track of whether or not the graphics pipeline needs to be recreated.
     bool _refreshSwapchain = false; ///< Keeps track of whether or not the swapchain needs to be recreated.
 

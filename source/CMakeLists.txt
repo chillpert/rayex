@@ -5,7 +5,7 @@ file(GLOB FILES_LIB
   "${PROJECT_SOURCE_DIR}/source/api/*.cpp"
   "${PROJECT_SOURCE_DIR}/source/api/buffers/*.cpp"
   "${PROJECT_SOURCE_DIR}/source/api/image/*.cpp"
-  "${PROJECT_SOURCE_DIR}/source/api/raytracing/*.cpp"
+  "${PROJECT_SOURCE_DIR}/source/api/pathtrace/*.cpp"
   "${PROJECT_SOURCE_DIR}/source/api/utility/*.cpp"
 
   "${PROJECT_SOURCE_DIR}/source/pch/*.cpp"

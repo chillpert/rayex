@@ -1,4 +1,4 @@
-#include "api/raytracing/RayTracingBuilder.hpp"
+#include "api/pathtrace/PathTraceBuilder.hpp"
 
 #include "api/Components.hpp"
 #include "api/buffers/CommandBuffer.hpp"
@@ -9,18 +9,18 @@ namespace RAYEX_NAMESPACE
 {
   std::vector<Blas> allDynamicBlas;
 
-  RayTracingBuilder::~RayTracingBuilder( )
+  PathTraceBuilder::~PathTraceBuilder( )
   {
     destroy( );
   }
 
-  void RayTracingBuilder::init( )
+  void PathTraceBuilder::init( )
   {
     auto properties = components::physicalDevice.getProperties2<vk::PhysicalDeviceProperties2, vk::PhysicalDeviceRayTracingPropertiesKHR>( );
-    _rtProperties   = properties.get<vk::PhysicalDeviceRayTracingPropertiesKHR>( );
+    _ptProperties   = properties.get<vk::PhysicalDeviceRayTracingPropertiesKHR>( );
   }
 
-  void RayTracingBuilder::destroy( )
+  void PathTraceBuilder::destroy( )
   {
     components::device.waitIdle( );
 
@@ -57,7 +57,7 @@ namespace RAYEX_NAMESPACE
     allDynamicBlas.clear( );
   }
 
-  auto RayTracingBuilder::modelToBlas( const VertexBuffer& vertexBuffer, const IndexBuffer& indexBuffer, bool allowTransforms ) const -> Blas
+  auto PathTraceBuilder::modelToBlas( const VertexBuffer& vertexBuffer, const IndexBuffer& indexBuffer, bool allowTransforms ) const -> Blas
   {
     vk::AccelerationStructureCreateGeometryTypeInfoKHR asCreate( vk::GeometryTypeKHR::eTriangles,    // geometryType
                                                                  indexBuffer.getCount( ) / 3,        // maxPrimitiveCount
@@ -93,7 +93,7 @@ namespace RAYEX_NAMESPACE
     return blas;
   }
 
-  auto RayTracingBuilder::instanceToVkGeometryInstanceKHR( const BlasInstance& instance ) -> vk::AccelerationStructureInstanceKHR
+  auto PathTraceBuilder::instanceToVkGeometryInstanceKHR( const BlasInstance& instance ) -> vk::AccelerationStructureInstanceKHR
   {
     Blas& blas { _blas_[instance.blasId] };
 
@@ -114,7 +114,7 @@ namespace RAYEX_NAMESPACE
     return gInst;
   }
 
-  void RayTracingBuilder::createBottomLevelAS( const std::vector<VertexBuffer>& vertexBuffers, const std::vector<IndexBuffer>& indexBuffers, const std::vector<std::shared_ptr<Geometry>>& geometries )
+  void PathTraceBuilder::createBottomLevelAS( const std::vector<VertexBuffer>& vertexBuffers, const std::vector<IndexBuffer>& indexBuffers, const std::vector<std::shared_ptr<Geometry>>& geometries )
   {
     // Clean up previous acceleration structures and free all memory.
     destroy( );
@@ -205,7 +205,7 @@ namespace RAYEX_NAMESPACE
     }
   }
 
-  void RayTracingBuilder::updateDynamicBottomLevelAS( )
+  void PathTraceBuilder::updateDynamicBottomLevelAS( )
   {
     /*
     for ( Blas& blas : _dynamicBlas_ )
@@ -219,7 +219,7 @@ namespace RAYEX_NAMESPACE
     buildBlas( _dynamicBlas_, vk::BuildAccelerationStructureFlagBitsKHR::eAllowCompaction | vk::BuildAccelerationStructureFlagBitsKHR::eAllowUpdate | vk::BuildAccelerationStructureFlagBitsKHR::ePreferFastBuild );
   }
 
-  void RayTracingBuilder::buildBlas( std::vector<Blas>& blas_, vk::BuildAccelerationStructureFlagsKHR flags )
+  void PathTraceBuilder::buildBlas( std::vector<Blas>& blas_, vk::BuildAccelerationStructureFlagsKHR flags )
   {
     vk::DeviceSize maxScratch = 0;
 
@@ -405,7 +405,7 @@ namespace RAYEX_NAMESPACE
     }
   }
 
-  void RayTracingBuilder::createTopLevelAS( const std::vector<std::shared_ptr<GeometryInstance>>& geometryInstances )
+  void PathTraceBuilder::createTopLevelAS( const std::vector<std::shared_ptr<GeometryInstance>>& geometryInstances )
   {
     instances.clear( );
     instances.reserve( geometryInstances.size( ) );
@@ -428,7 +428,7 @@ namespace RAYEX_NAMESPACE
     }
   }
 
-  void RayTracingBuilder::buildTlas( const std::vector<BlasInstance>& instances, vk::BuildAccelerationStructureFlagsKHR flags, bool reuse )
+  void PathTraceBuilder::buildTlas( const std::vector<BlasInstance>& instances, vk::BuildAccelerationStructureFlagsKHR flags, bool reuse )
   {
     _tlas.flags = flags;
 
@@ -546,7 +546,7 @@ namespace RAYEX_NAMESPACE
     cmdBuf.submitToQueue( components::graphicsQueue );
   }
 
-  void RayTracingBuilder::createStorageImage( vk::Extent2D swapchainExtent )
+  void PathTraceBuilder::createStorageImage( vk::Extent2D swapchainExtent )
   {
     auto storageImageInfo   = vk::Helper::getImageCreateInfo( vk::Extent3D( swapchainExtent.width, swapchainExtent.height, 1 ) );
     storageImageInfo.usage  = vk::ImageUsageFlagBits::eTransferSrc | vk::ImageUsageFlagBits::eStorage;
@@ -558,10 +558,10 @@ namespace RAYEX_NAMESPACE
     _storageImageView = vk::Initializer::initImageViewUnique( vk::Helper::getImageViewCreateInfo( _storageImage.get( ), _storageImage.getFormat( ) ) );
   }
 
-  void RayTracingBuilder::createShaderBindingTable( )
+  void PathTraceBuilder::createShaderBindingTable( )
   {
-    uint32_t groupHandleSize = _rtProperties.shaderGroupHandleSize;
-    uint32_t baseAlignment   = _rtProperties.shaderGroupBaseAlignment;
+    uint32_t groupHandleSize = _ptProperties.shaderGroupHandleSize;
+    uint32_t baseAlignment   = _ptProperties.shaderGroupBaseAlignment;
 
     uint32_t sbtSize = _shaderGroups * baseAlignment;
 
@@ -590,30 +590,30 @@ namespace RAYEX_NAMESPACE
     components::device.unmapMemory( _sbtBuffer.getMemory( ) );
   }
 
-  void RayTracingBuilder::createPipeline( const std::vector<vk::DescriptorSetLayout>& descriptorSetLayouts, Settings* settings )
+  void PathTraceBuilder::createPipeline( const std::vector<vk::DescriptorSetLayout>& descriptorSetLayouts, Settings* settings )
   {
     // Check if selected recursion depth exceeds maximum supported value.
     auto recursionDepth = settings->getRecursionDepth( );
-    if ( recursionDepth > _rtProperties.maxRecursionDepth )
+    if ( recursionDepth > _ptProperties.maxRecursionDepth )
     {
-      RX_WARN( "Selected recursion depth of ", recursionDepth, " exceeds maximum of ", _rtProperties.maxRecursionDepth, ". Using maximum value instead." );
-      settings->setRecursionDepth( _rtProperties.maxRecursionDepth );
+      RX_WARN( "Selected recursion depth of ", recursionDepth, " exceeds maximum of ", _ptProperties.maxRecursionDepth, ". Using maximum value instead." );
+      settings->setRecursionDepth( _ptProperties.maxRecursionDepth );
     }
 
     //uint32_t anticipatedDirectionalLights = settings->maxDirectionalLights.has_value( ) ? settings->maxDirectionalLights.value( ) : components::maxDirectionalLights;
     //uint32_t anticipatedPointLights       = settings->maxPointLights.has_value( ) ? settings->maxPointLights.value( ) : components::maxPointLights;
-    //Util::processShaderMacros( "shaders/raytrace.rchit", anticipatedDirectionalLights, anticipatedPointLights, components::modelCount );
+    //Util::processShaderMacros( "shaders/PathTrace.rchit", anticipatedDirectionalLights, anticipatedPointLights, components::modelCount );
 
-    auto rgen       = vk::Initializer::initShaderModuleUnique( "shaders/raytrace.rgen" );
-    auto miss       = vk::Initializer::initShaderModuleUnique( "shaders/raytrace.rmiss" );
-    auto chit       = vk::Initializer::initShaderModuleUnique( "shaders/raytrace.rchit" );
-    auto missShadow = vk::Initializer::initShaderModuleUnique( "shaders/raytraceShadow.rmiss" );
+    auto rgen       = vk::Initializer::initShaderModuleUnique( "shaders/PathTrace.rgen" );
+    auto miss       = vk::Initializer::initShaderModuleUnique( "shaders/PathTrace.rmiss" );
+    auto chit       = vk::Initializer::initShaderModuleUnique( "shaders/PathTrace.rchit" );
+    auto missShadow = vk::Initializer::initShaderModuleUnique( "shaders/PathTraceShadow.rmiss" );
 
-    vk::PushConstantRange rtPushConstant( vk::ShaderStageFlagBits::eRaygenKHR | vk::ShaderStageFlagBits::eMissKHR | vk::ShaderStageFlagBits::eClosestHitKHR, // stageFlags
+    vk::PushConstantRange ptPushConstant( vk::ShaderStageFlagBits::eRaygenKHR | vk::ShaderStageFlagBits::eMissKHR | vk::ShaderStageFlagBits::eClosestHitKHR, // stageFlags
                                           0,                                                                                                                 // offset
-                                          sizeof( RayTracePushConstants ) );                                                                                 // size
+                                          sizeof( PtPushConstants ) );                                                                                       // size
 
-    std::array<vk::PushConstantRange, 1> pushConstantRanges = { rtPushConstant };
+    std::array<vk::PushConstantRange, 1> pushConstantRanges = { ptPushConstant };
 
     vk::PipelineLayoutCreateInfo layoutInfo( { },                                                   // flags
                                              static_cast<uint32_t>( descriptorSetLayouts.size( ) ), // setLayoutCount
@@ -622,7 +622,7 @@ namespace RAYEX_NAMESPACE
                                              pushConstantRanges.data( ) );                          // pPushConstantRanges
 
     _layout = components::device.createPipelineLayoutUnique( layoutInfo );
-    RX_ASSERT( _layout.get( ), "Failed to create pipeline layout for ray tracing pipeline." );
+    RX_ASSERT( _layout.get( ), "Failed to create pipeline layout for path tracing pipeline." );
 
     std::array<vk::PipelineShaderStageCreateInfo, 4> shaderStages;
     shaderStages[0] = vk::Helper::getPipelineShaderStageCreateInfo( vk::ShaderStageFlagBits::eRaygenKHR, rgen.get( ) );
@@ -630,7 +630,7 @@ namespace RAYEX_NAMESPACE
     shaderStages[2] = vk::Helper::getPipelineShaderStageCreateInfo( vk::ShaderStageFlagBits::eMissKHR, missShadow.get( ) );
     shaderStages[3] = vk::Helper::getPipelineShaderStageCreateInfo( vk::ShaderStageFlagBits::eClosestHitKHR, chit.get( ) );
 
-    // Set up raytracing shader groups.
+    // Set up path tracing shader groups.
     std::array<vk::RayTracingShaderGroupCreateInfoKHR, 4> groups;
 
     for ( auto& group : groups )
@@ -668,12 +668,12 @@ namespace RAYEX_NAMESPACE
                                                     0 );                                           // basePipelineIndex
 
     _pipeline = components::device.createRayTracingPipelineKHRUnique( nullptr, createInfo );
-    RX_ASSERT( _pipeline.get( ), "Failed to create ray tracing pipeline." );
+    RX_ASSERT( _pipeline.get( ), "Failed to create path tracing pipeline." );
   }
 
-  void RayTracingBuilder::rayTrace( vk::CommandBuffer swapchainCommandBuffer, vk::Image swapchainImage, vk::Extent2D extent )
+  void PathTraceBuilder::pathTrace( vk::CommandBuffer swapchainCommandBuffer, vk::Image swapchainImage, vk::Extent2D extent )
   {
-    vk::DeviceSize progSize = _rtProperties.shaderGroupBaseAlignment;
+    vk::DeviceSize progSize = _ptProperties.shaderGroupBaseAlignment;
     vk::DeviceSize sbtSize  = progSize * static_cast<vk::DeviceSize>( _shaderGroups );
 
     vk::DeviceSize rayGenOffset        = 0U * progSize; // Start at the beginning of _sbtBuffer
@@ -713,7 +713,7 @@ namespace RAYEX_NAMESPACE
     vk::Helper::transitionImageLayout( swapchainImage, vk::ImageLayout::eUndefined, vk::ImageLayout::eTransferDstOptimal, swapchainCommandBuffer );
     _storageImage.transitionToLayout( vk::ImageLayout::eTransferSrcOptimal, swapchainCommandBuffer );
 
-    // Copy ray tracing output (storage image) to swapchain image.
+    // Copy path tracing output (storage image) to swapchain image.
     vk::ImageCopy copyRegion( { vk::ImageAspectFlagBits::eColor, 0, 0, 1 }, // srcSubresource
                               { 0, 0, 0 },                                  // srcOffset
                               { vk::ImageAspectFlagBits::eColor, 0, 0, 1 }, // dstSubresource

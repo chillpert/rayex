@@ -1,7 +1,7 @@
 #pragma once
 
 #include "api/RenderPass.hpp"
-#include "api/raytracing/AccelerationStructure.hpp"
+#include "api/pathtrace/AccelerationStructure.hpp"
 
 namespace vk
 {

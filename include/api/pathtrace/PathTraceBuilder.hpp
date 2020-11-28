@@ -4,13 +4,13 @@
 #include "api/buffers/Buffer.hpp"
 #include "api/buffers/IndexBuffer.hpp"
 #include "api/buffers/VertexBuffer.hpp"
-#include "api/raytracing/AccelerationStructure.hpp"
+#include "api/pathtrace/AccelerationStructure.hpp"
 #include "base/Geometry.hpp"
 #include "base/Settings.hpp"
 
 namespace RAYEX_NAMESPACE
 {
-  struct RayTracePushConstants
+  struct PtPushConstants
   {
     glm::vec4 clearColor           = glm::vec4( 1.0F );
     uint32_t frameCount            = 0;
@@ -26,21 +26,21 @@ namespace RAYEX_NAMESPACE
 
   /// Manages the building process of the acceleration structures.
   /// @ingroup API
-  class RayTracingBuilder
+  class PathTraceBuilder
   {
   public:
-    RayTracingBuilder( ) = default;
+    PathTraceBuilder( ) = default;
 
     /// Calls destroy().
-    ~RayTracingBuilder( );
+    ~PathTraceBuilder( );
 
-    RayTracingBuilder( const RayTracingBuilder& )  = delete;
-    RayTracingBuilder( const RayTracingBuilder&& ) = delete;
+    PathTraceBuilder( const PathTraceBuilder& )  = delete;
+    PathTraceBuilder( const PathTraceBuilder&& ) = delete;
 
-    auto operator=( const RayTracingBuilder& ) -> RayTracingBuilder& = delete;
-    auto operator=( const RayTracingBuilder&& ) -> RayTracingBuilder& = delete;
+    auto operator=( const PathTraceBuilder& ) -> PathTraceBuilder& = delete;
+    auto operator=( const PathTraceBuilder&& ) -> PathTraceBuilder& = delete;
 
-    /// Retrieves the physical device's ray tracing capabilities.
+    /// Retrieves the physical device's path tracing capabilities.
     void init( );
 
     /// Destroys all bottom and top level acceleration structures.
@@ -49,16 +49,16 @@ namespace RAYEX_NAMESPACE
     /// @return Returns the top level acceleration structure.
     auto getTlas( ) const -> const Tlas& { return _tlas; }
 
-    /// @return Returns the physical device's ray tracing properties.
-    auto getRtProperties( ) const -> const vk::PhysicalDeviceRayTracingPropertiesKHR& { return _rtProperties; }
+    /// @return Returns the physical device's path tracing properties.
+    auto getDevicePathTracingProperties( ) const -> const vk::PhysicalDeviceRayTracingPropertiesKHR& { return _ptProperties; }
 
     /// @return Returns the storage image's image view.
     auto getStorageImageView( ) const -> vk::ImageView { return _storageImageView.get( ); }
 
-    /// @return Returns the ray tracing pipeline.
+    /// @return Returns the path tracing pipeline.
     auto getPipeline( ) const -> vk::Pipeline { return _pipeline.get( ); }
 
-    /// @return Returns the ray tracing pipeline layout.
+    /// @return Returns the path tracing pipeline layout.
     auto getPipelineLayout( ) const -> vk::PipelineLayout { return _layout.get( ); };
 
     /// Used to convert wavefront models to a bottom level acceleration structure.
@@ -93,31 +93,31 @@ namespace RAYEX_NAMESPACE
     /// @param flags The build flags.
     void buildTlas( const std::vector<BlasInstance>& instances, vk::BuildAccelerationStructureFlagsKHR flags = vk::BuildAccelerationStructureFlagBitsKHR::ePreferFastTrace, bool reuse = false );
 
-    /// Creates the storage image which the ray tracing shaders will write to.
+    /// Creates the storage image which the path tracing shaders will write to.
     /// @param swapchainExtent The swapchain images' extent.
     void createStorageImage( vk::Extent2D swapchainExtent );
 
     /// Creates the shader binding tables.
     void createShaderBindingTable( );
 
-    /// Used to create a ray tracing pipeline.
+    /// Used to create a path tracing pipeline.
     /// @param descriptorSetLayouts The descriptor set layouts for the shaders.
     /// @param settings The renderer settings.
     void createPipeline( const std::vector<vk::DescriptorSetLayout>& descriptorSetLayouts, Settings* settings );
 
-    /// Used to record the actual ray tracing commands to a given command buffer.
+    /// Used to record the actual path tracing commands to a given command buffer.
     /// @param swapchaincommandBuffer The command buffer to record to.
     /// @param swapchainImage The current image in the swapchain.
     /// @param extent The swapchain images' extent.
-    void rayTrace( vk::CommandBuffer swapchaincommandBuffer, vk::Image swapchainImage, vk::Extent2D extent );
+    void pathTrace( vk::CommandBuffer swapchaincommandBuffer, vk::Image swapchainImage, vk::Extent2D extent );
 
     std::vector<BlasInstance> instances;
 
   private:
     vk::UniquePipeline _pipeline;                            ///< The Vulkan pipeline with a unique handle.
     vk::UniquePipelineLayout _layout;                        ///< The Vulkan pipeline layout with a unique handle.
-    uint32_t _shaderGroups;                                  ///< The total amount of ray tracing shaders.
-    vk::PhysicalDeviceRayTracingPropertiesKHR _rtProperties; ///< The physical device's ray tracing capabilities.
+    uint32_t _shaderGroups;                                  ///< The total amount of path tracing shaders.
+    vk::PhysicalDeviceRayTracingPropertiesKHR _ptProperties; ///< The physical device's path tracing capabilities.
     std::vector<Blas> _staticBlas_;                          ///< A vector containing all static bottom level acceleration structures.
     std::vector<Blas> _dynamicBlas_;                         ///< A vector containing all dynamic bottom level acceleration structures.
     std::vector<Blas> _blas_;                                ///< Both, all static and dynamic blas.

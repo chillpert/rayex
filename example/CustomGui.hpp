@@ -315,7 +315,7 @@ private:
       }
 
       int totalFramesToAccumulate = static_cast<int>( _renderer->settings( ).getTotalFramesToAccumulate( ) );
-      if ( ImGui::SliderInt( "Frames to accumulate", &totalFramesToAccumulate, 0, 200 ) )
+      if ( ImGui::SliderInt( "Frames to accumulate", &totalFramesToAccumulate, 0, 100 ) )
       {
         _renderer->settings( ).setTotalFramesToAccumulate( static_cast<uint32_t>( totalFramesToAccumulate ) );
       }

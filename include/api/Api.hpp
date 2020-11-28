@@ -13,7 +13,7 @@
 #include "api/buffers/VertexBuffer.hpp"
 #include "api/image/Cubemap.hpp"
 #include "api/image/Texture.hpp"
-#include "api/raytracing/RayTracingBuilder.hpp"
+#include "api/pathtrace/PathTraceBuilder.hpp"
 #include "api/utility/DebugMessenger.hpp"
 #include "api/utility/Util.hpp"
 #include "base/Gui.hpp"
@@ -86,14 +86,14 @@ namespace RAYEX_NAMESPACE
     /// Creates all fences and semaphores required to sync the rendering process.
     void initSyncObjects( );
 
-    /// Creates a descriptor set layout for each the ray tracing components and the models.
+    /// Creates a descriptor set layout for each the path tracing components and the models.
     void initDescriptorSets( );
 
-    /// Updates scene descriptors for camera, lights and ray tracing instances.
+    /// Updates scene descriptors for camera, lights and path tracing instances.
     void updateSceneDescriptors( );
 
     /// Updates the descriptor set with bindings to the total vertices and total indices buffers.
-    void updateRayTracingModelData( );
+    void updatePathTracingModelData( );
 
     /// Handles swapchain and pipeline recreations triggered by the user using setters provided in RAYEX_NAMESPACE::Settings.
     void updateSettings( );
@@ -107,8 +107,8 @@ namespace RAYEX_NAMESPACE
     /// Submits the swapchain command buffers to a queue and presents an image on the screen.
     auto submitFrame( ) -> bool;
 
-    /// Records ray tracing calls to the swapchain command buffers.
-    void rayTrace( );
+    /// Records path tracing calls to the swapchain command buffers.
+    void pathTrace( );
 
     /// Used to retrieve a geometry based on its index.
     /// @param geometryIndex The geometry's index.
@@ -123,21 +123,21 @@ namespace RAYEX_NAMESPACE
     vk::UniqueDevice _device;                  ///< A unique Vulkan logical device for interfacing the physical device.
     vk::UniqueCommandPool _graphicsCmdPool;    ///< A single unique Vulkan command pool for graphics queue operations.
     vk::UniqueCommandPool _transferCmdPool;    ///< A single unique Vulkan command pool for transfer queue operations.
-    RayTracingBuilder _rtBuilder;              ///< The RAYEX_NAMESPACE::RayTracingBuilder for setting up all ray tracing-related structures and the ray tracing process itself.
+    PathTraceBuilder _ptBuilder;               ///< The RAYEX_NAMESPACE::PathTraceBuilder for setting up all path tracing-related structures and the path tracing process itself.
 
     std::vector<vk::Fence> _imagesInFlight;                     ///< A vector of fences for synchronizing images that are in flight.
     std::vector<vk::UniqueFence> _inFlightFences;               ///< In flight fences used for synchronization.
     std::vector<vk::UniqueSemaphore> _imageAvailableSemaphores; ///< All semaphores for signaling that a particular swapchain image is available.
     std::vector<vk::UniqueSemaphore> _finishedRenderSemaphores; ///< All semaphores for signaling that a render operation has finished.
 
-    Descriptors _rtDescriptors;       ///< Descriptors for ray-tracing-related data ( no equivalent in rasterization shader ).
-    Descriptors _rtSceneDescriptors;  ///< Descriptors for scene-related data in ray tracing.
+    Descriptors _ptDescriptors;       ///< Descriptors for ray-tracing-related data ( no equivalent in rasterization shader ).
+    Descriptors _ptSceneDescriptors;  ///< Descriptors for scene-related data in path tracing.
     Descriptors _rsSceneDescriptors;  ///< Descriptors for scene-related data in rasterization.
     Descriptors _geometryDescriptors; ///< Descriptors for vertex data.
 
-    std::vector<vk::DescriptorSet> _rtDescriptorSets;       ///< Descriptor sets for ray tracing-related data.
-    std::vector<vk::DescriptorSet> _rtSceneDescriptorSets;  ///< Descriptor sets for scene-related data in rasterization shaders.
-    std::vector<vk::DescriptorSet> _rsSceneDescriptorSets;  ///< Descriptor sets for scene-related data in ray tracing shaders.
+    std::vector<vk::DescriptorSet> _ptDescriptorSets;       ///< Descriptor sets for path tracing-related data.
+    std::vector<vk::DescriptorSet> _ptSceneDescriptorSets;  ///< Descriptor sets for scene-related data in rasterization shaders.
+    std::vector<vk::DescriptorSet> _rsSceneDescriptorSets;  ///< Descriptor sets for scene-related data in path tracing shaders.
     std::vector<vk::DescriptorSet> _geometryDescriptorSets; ///< Descriptor sets for vertex data.
     std::vector<vk::DescriptorSet> _textureDescriptorSets;  ///< Descriptor sets for texture data.
 
@@ -149,7 +149,7 @@ namespace RAYEX_NAMESPACE
     std::vector<StorageBuffer<MeshSSBO>> _meshBuffers; ///< Multiple buffers for meshes because of variable descriptor indexing.
     std::vector<std::shared_ptr<Texture>> _textures;   ///< Stores all textures.
 
-    StorageBuffer<GeometryInstanceSSBO> _geometryInstancesBuffer; ///< A storage buffer for the ray tracing instances.
+    StorageBuffer<GeometryInstanceSSBO> _geometryInstancesBuffer; ///< A storage buffer for the path tracing instances.
     StorageBuffer<DirectionalLightSSBO> _directionalLightsBuffer; ///< A storage buffer for directional light data.
     StorageBuffer<PointLightSSBO> _pointLightsBuffer;             ///< A storage buffer for point light data.
 

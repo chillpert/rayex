@@ -3,10 +3,10 @@
 #extension GL_EXT_scalar_block_layout : enable
 #extension GL_EXT_nonuniform_qualifier : enable
 
-#include "instance.glsl"
-#include "lights.glsl"
-#include "random.glsl"
-#include "raycommon.glsl"
+#include "Instance.glsl"
+#include "Lights.glsl"
+#include "Random.glsl"
+#include "Ray.glsl"
 
 #define TOTAL_DIRECTIONAL_LIGHTS 1
 #define TOTAL_POINT_LIGHTS       1
@@ -173,7 +173,7 @@ void main( )
   //vec3 BRDF       = vec3( 1.0, 1.0, 1.0 ) / M_PI;
   vec3 BRDF = diffuse.xyz / M_PI;
 
-  vec3 emittance   = diffuse.xyz;
+  vec3 emittance   = diffuse.xyz; // This is kind of stupid thing to do. It makes the object glow in its diffuse color like a light source.
   prd.rayOrigin    = rayOrigin;
   prd.rayDirection = rayDirection;
   prd.weight       = BRDF * cos_theta / p;

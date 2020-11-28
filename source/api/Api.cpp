@@ -127,8 +127,8 @@ namespace RAYEX_NAMESPACE
     initSyncObjects( );
 
     // Path tracer (part 1)
-    _rtBuilder.init( );
-    _settings->_maxRecursionDepth = _rtBuilder.getRtProperties( ).maxRecursionDepth;
+    _ptBuilder.init( );
+    _settings->_maxRecursionDepth = _ptBuilder.getDevicePathTracingProperties( ).maxRecursionDepth;
 
     // Resize and initialize buffers with "dummy data".
     // The advantage of doing this is that the buffers are all initialized right away (even though it is invalid data) and
@@ -163,12 +163,12 @@ namespace RAYEX_NAMESPACE
     // Update RT scene descriptor sets.
     updateSceneDescriptors( );
 
-    // Initialize a rasterization and raytracing pipeline.
+    // Initialize the path tracing pipeline.
     initPipelines( );
 
     // Path tracer (part 2)
-    _rtBuilder.createStorageImage( _swapchain.getExtent( ) );
-    _rtBuilder.createShaderBindingTable( );
+    _ptBuilder.createStorageImage( _swapchain.getExtent( ) );
+    _ptBuilder.createShaderBindingTable( );
 
     // Init and record swapchain command buffers.
     _swapchainCommandBuffers.init( _graphicsCmdPool.get( ), components::swapchainImageCount, vk::CommandBufferUsageFlagBits::eRenderPassContinue );
@@ -280,7 +280,7 @@ namespace RAYEX_NAMESPACE
         removeEnvironmentMap = false;
       }
 
-      updateRayTracingModelData( );
+      updatePathTracingModelData( );
     }
 
     // Init geometry storage buffers.
@@ -351,7 +351,7 @@ namespace RAYEX_NAMESPACE
       vk::Result result = components::device.waitForFences( 1, &_inFlightFences[prevFrame].get( ), VK_TRUE, UINT64_MAX );
       RX_ASSERT( result == vk::Result::eSuccess, "Failed to wait for fences." );
 
-      updateRayTracingModelData( ); // Contains descriptors for vertices and indices.
+      updatePathTracingModelData( ); // Contains descriptors for vertices and indices.
 
       RX_SUCCESS( "Uploaded Geometries." );
     }
@@ -382,16 +382,16 @@ namespace RAYEX_NAMESPACE
     {
       if ( !_scene->_geometryInstances.empty( ) )
       {
-        if ( !_rtBuilder.instances.empty( ) )
+        if ( !_ptBuilder.instances.empty( ) )
         {
           size_t i = 0;
-          for ( BlasInstance& instance : _rtBuilder.instances )
+          for ( BlasInstance& instance : _ptBuilder.instances )
           {
             instance.transform = _scene->_geometryInstances[i]->transform;
             ++i;
           }
 
-          _rtBuilder.buildTlas( _rtBuilder.instances, vk::BuildAccelerationStructureFlagBitsKHR::ePreferFastTrace | vk::BuildAccelerationStructureFlagBitsKHR::eAllowUpdate, true );
+          _ptBuilder.buildTlas( _ptBuilder.instances, vk::BuildAccelerationStructureFlagBitsKHR::ePreferFastTrace | vk::BuildAccelerationStructureFlagBitsKHR::eAllowUpdate, true );
         }
       }
     }
@@ -561,19 +561,19 @@ namespace RAYEX_NAMESPACE
     // Recreating the swapchain.
     _swapchain.init( &_surface, _renderPass.get( ) );
 
-    // Recreate storage image with the new swapchain image size and update the ray tracing descriptor set to use the new storage image view.
-    _rtBuilder.createStorageImage( _swapchain.getExtent( ) );
+    // Recreate storage image with the new swapchain image size and update the path tracing descriptor set to use the new storage image view.
+    _ptBuilder.createStorageImage( _swapchain.getExtent( ) );
 
     vk::WriteDescriptorSetAccelerationStructureKHR tlasInfo( 1,
-                                                             &_rtBuilder.getTlas( ).as.as );
+                                                             &_ptBuilder.getTlas( ).as.as );
 
     vk::DescriptorImageInfo storageImageInfo( nullptr,
-                                              _rtBuilder.getStorageImageView( ),
+                                              _ptBuilder.getStorageImageView( ),
                                               vk::ImageLayout::eGeneral );
 
-    _rtDescriptors.bindings.write( _rtDescriptorSets, 0, &tlasInfo );
-    _rtDescriptors.bindings.write( _rtDescriptorSets, 1, &storageImageInfo );
-    _rtDescriptors.bindings.update( );
+    _ptDescriptors.bindings.write( _ptDescriptorSets, 0, &tlasInfo );
+    _ptDescriptors.bindings.write( _ptDescriptorSets, 1, &storageImageInfo );
+    _ptDescriptors.bindings.update( );
 
     // Swapchain command buffers
     _swapchainCommandBuffers.init( _graphicsCmdPool.get( ), components::swapchainImageCount, vk::CommandBufferUsageFlagBits::eRenderPassContinue );
@@ -598,20 +598,20 @@ namespace RAYEX_NAMESPACE
     RX_LOG_TIME_START( "Updating acceleration structures ..." );
 
     // @TODO Try to call this as few times as possible.
-    _rtBuilder.createBottomLevelAS( _vertexBuffers, _indexBuffers, _scene->_geometries );
-    _rtBuilder.createTopLevelAS( _scene->_geometryInstances );
+    _ptBuilder.createBottomLevelAS( _vertexBuffers, _indexBuffers, _scene->_geometries );
+    _ptBuilder.createTopLevelAS( _scene->_geometryInstances );
 
-    // Update ray tracing descriptor set.
+    // Update path tracing descriptor set.
     vk::WriteDescriptorSetAccelerationStructureKHR tlasInfo( 1,
-                                                             &_rtBuilder.getTlas( ).as.as );
+                                                             &_ptBuilder.getTlas( ).as.as );
 
     vk::DescriptorImageInfo storageImageInfo( nullptr,
-                                              _rtBuilder.getStorageImageView( ),
+                                              _ptBuilder.getStorageImageView( ),
                                               vk::ImageLayout::eGeneral );
 
-    _rtDescriptors.bindings.write( _rtDescriptorSets, 0, &tlasInfo );
-    _rtDescriptors.bindings.write( _rtDescriptorSets, 1, &storageImageInfo );
-    _rtDescriptors.bindings.update( );
+    _ptDescriptors.bindings.write( _ptDescriptorSets, 0, &tlasInfo );
+    _ptDescriptors.bindings.write( _ptDescriptorSets, 1, &storageImageInfo );
+    _ptDescriptors.bindings.update( );
 
     RX_LOG_TIME_STOP( "Finished updating acceleration structures" );
   }
@@ -621,19 +621,19 @@ namespace RAYEX_NAMESPACE
     RX_LOG_TIME_START( "Updating top level acceleration structures ..." );
 
     // @TODO Try to call this as few times as possible.
-    _rtBuilder.createTopLevelAS( _scene->_geometryInstances );
+    _ptBuilder.createTopLevelAS( _scene->_geometryInstances );
 
-    // Update ray tracing descriptor set.
+    // Update path tracing descriptor set.
     vk::WriteDescriptorSetAccelerationStructureKHR tlasInfo( 1,
-                                                             &_rtBuilder.getTlas( ).as.as );
+                                                             &_ptBuilder.getTlas( ).as.as );
 
     vk::DescriptorImageInfo storageImageInfo( nullptr,
-                                              _rtBuilder.getStorageImageView( ),
+                                              _ptBuilder.getStorageImageView( ),
                                               vk::ImageLayout::eGeneral );
 
-    _rtDescriptors.bindings.write( _rtDescriptorSets, 0, &tlasInfo );
-    _rtDescriptors.bindings.write( _rtDescriptorSets, 1, &storageImageInfo );
-    _rtDescriptors.bindings.update( );
+    _ptDescriptors.bindings.write( _ptDescriptorSets, 0, &tlasInfo );
+    _ptDescriptors.bindings.write( _ptDescriptorSets, 1, &storageImageInfo );
+    _ptDescriptors.bindings.update( );
 
     RX_LOG_TIME_STOP( "Finished updating top level acceleration structures" );
   }
@@ -642,12 +642,12 @@ namespace RAYEX_NAMESPACE
   {
     RX_LOG_TIME_START( "Initializing graphic pipelines ..." );
 
-    // Ray tracing pipeline
-    std::vector<vk::DescriptorSetLayout> allRtDescriptorSetLayouts = { _rtDescriptors.layout.get( ),
-                                                                       _rtSceneDescriptors.layout.get( ),
+    // path tracing pipeline
+    std::vector<vk::DescriptorSetLayout> allRtDescriptorSetLayouts = { _ptDescriptors.layout.get( ),
+                                                                       _ptSceneDescriptors.layout.get( ),
                                                                        _geometryDescriptors.layout.get( ) };
 
-    _rtBuilder.createPipeline( allRtDescriptorSetLayouts, _settings );
+    _ptBuilder.createPipeline( allRtDescriptorSetLayouts, _settings );
 
     _pipelinesReady             = true;
     _settings->_refreshPipeline = false;
@@ -712,10 +712,10 @@ namespace RAYEX_NAMESPACE
   {
     RX_ASSERT( _pipelinesReady, "Can not record swapchain command buffers because the pipelines have not been initialized yet." );
 
-    rayTrace( );
+    pathTrace( );
   }
 
-  void Api::rayTrace( )
+  void Api::pathTrace( )
   {
     auto directionalLightCount = static_cast<uint32_t>( _scene->_directionalLights.size( ) );
     auto pointLightCount       = static_cast<uint32_t>( _scene->_pointLights.size( ) );
@@ -725,34 +725,34 @@ namespace RAYEX_NAMESPACE
     {
       _swapchainCommandBuffers.begin( imageIndex );
 
-      RayTracePushConstants chitPc = { _settings->_clearColor,
-                                       components::frameCount,
-                                       _settings->_perPixelSampleRate,
-                                       _settings->_recursionDepth,
-                                       directionalLightCount,
-                                       pointLightCount,
-                                       static_cast<uint32_t>( _scene->_useEnvironmentMap ) };
+      PtPushConstants chitPc = { _settings->_clearColor,
+                                 components::frameCount,
+                                 _settings->_perPixelSampleRate,
+                                 _settings->_recursionDepth,
+                                 directionalLightCount,
+                                 pointLightCount,
+                                 static_cast<uint32_t>( _scene->_useEnvironmentMap ) };
 
-      _swapchainCommandBuffers.get( imageIndex ).pushConstants( _rtBuilder.getPipelineLayout( ),                                                                                   // layout
+      _swapchainCommandBuffers.get( imageIndex ).pushConstants( _ptBuilder.getPipelineLayout( ),                                                                                   // layout
                                                                 vk::ShaderStageFlagBits::eRaygenKHR | vk::ShaderStageFlagBits::eMissKHR | vk::ShaderStageFlagBits::eClosestHitKHR, // stageFlags
                                                                 0,                                                                                                                 // offset
-                                                                sizeof( RayTracePushConstants ),                                                                                   // size
+                                                                sizeof( PtPushConstants ),                                                                                         // size
                                                                 &chitPc );                                                                                                         // pValues
 
-      _swapchainCommandBuffers.get( imageIndex ).bindPipeline( vk::PipelineBindPoint::eRayTracingKHR, _rtBuilder.getPipeline( ) );
+      _swapchainCommandBuffers.get( imageIndex ).bindPipeline( vk::PipelineBindPoint::eRayTracingKHR, _ptBuilder.getPipeline( ) );
 
-      std::vector<vk::DescriptorSet> descriptorSets = { _rtDescriptorSets[imageIndex % maxFramesInFlight],
-                                                        _rtSceneDescriptorSets[imageIndex % maxFramesInFlight],
+      std::vector<vk::DescriptorSet> descriptorSets = { _ptDescriptorSets[imageIndex % maxFramesInFlight],
+                                                        _ptSceneDescriptorSets[imageIndex % maxFramesInFlight],
                                                         _geometryDescriptorSets[imageIndex % maxFramesInFlight] };
 
-      _swapchainCommandBuffers.get( imageIndex ).bindDescriptorSets( vk::PipelineBindPoint::eRayTracingKHR, _rtBuilder.getPipelineLayout( ),
+      _swapchainCommandBuffers.get( imageIndex ).bindDescriptorSets( vk::PipelineBindPoint::eRayTracingKHR, _ptBuilder.getPipelineLayout( ),
                                                                      0,                                               // first set
                                                                      static_cast<uint32_t>( descriptorSets.size( ) ), // descriptor set count
                                                                      descriptorSets.data( ),                          // descriptor sets
                                                                      0,                                               // dynamic offset count
                                                                      nullptr );                                       // dynamic offsets
 
-      _rtBuilder.rayTrace( _swapchainCommandBuffers.get( imageIndex ), _swapchain.getImage( imageIndex ), _swapchain.getExtent( ) );
+      _ptBuilder.pathTrace( _swapchainCommandBuffers.get( imageIndex ), _swapchain.getImage( imageIndex ), _swapchain.getExtent( ) );
 
       _swapchainCommandBuffers.end( imageIndex );
     }
@@ -775,40 +775,40 @@ namespace RAYEX_NAMESPACE
 
   void Api::initDescriptorSets( )
   {
-    // Create the ray tracing descriptor set layout
+    // Create the path tracing descriptor set layout
     {
       // TLAS
-      _rtDescriptors.bindings.add( 0,
+      _ptDescriptors.bindings.add( 0,
                                    vk::DescriptorType::eAccelerationStructureKHR,
                                    vk::ShaderStageFlagBits::eRaygenKHR | vk::ShaderStageFlagBits::eClosestHitKHR,
                                    1,
                                    vk::DescriptorBindingFlagBits::eUpdateUnusedWhilePending | vk::DescriptorBindingFlagBits::ePartiallyBound );
       // Output image
-      _rtDescriptors.bindings.add( 1,
+      _ptDescriptors.bindings.add( 1,
                                    vk::DescriptorType::eStorageImage,
                                    vk::ShaderStageFlagBits::eRaygenKHR,
                                    1,
                                    vk::DescriptorBindingFlagBits::eUpdateUnusedWhilePending | vk::DescriptorBindingFlagBits::ePartiallyBound );
 
-      _rtDescriptors.layout = _rtDescriptors.bindings.initLayoutUnique( );
-      _rtDescriptors.pool   = _rtDescriptors.bindings.initPoolUnique( components::swapchainImageCount );
-      _rtDescriptorSets     = vk::Initializer::initDescriptorSetsUnique( _rtDescriptors.pool, _rtDescriptors.layout );
+      _ptDescriptors.layout = _ptDescriptors.bindings.initLayoutUnique( );
+      _ptDescriptors.pool   = _ptDescriptors.bindings.initPoolUnique( components::swapchainImageCount );
+      _ptDescriptorSets     = vk::Initializer::initDescriptorSetsUnique( _ptDescriptors.pool, _ptDescriptors.layout );
     }
 
     // RT Scene descriptor set layout.
     {
       // Camera uniform buffer
-      _rtSceneDescriptors.bindings.add( 0, vk::DescriptorType::eUniformBuffer, vk::ShaderStageFlagBits::eRaygenKHR );
+      _ptSceneDescriptors.bindings.add( 0, vk::DescriptorType::eUniformBuffer, vk::ShaderStageFlagBits::eRaygenKHR );
       // Directional lights storage buffer
-      _rtSceneDescriptors.bindings.add( 1, vk::DescriptorType::eStorageBuffer, vk::ShaderStageFlagBits::eClosestHitKHR );
+      _ptSceneDescriptors.bindings.add( 1, vk::DescriptorType::eStorageBuffer, vk::ShaderStageFlagBits::eClosestHitKHR );
       // Point lights storage buffer
-      _rtSceneDescriptors.bindings.add( 2, vk::DescriptorType::eStorageBuffer, vk::ShaderStageFlagBits::eClosestHitKHR );
+      _ptSceneDescriptors.bindings.add( 2, vk::DescriptorType::eStorageBuffer, vk::ShaderStageFlagBits::eClosestHitKHR );
       // Scene description buffer
-      _rtSceneDescriptors.bindings.add( 3, vk::DescriptorType::eStorageBuffer, vk::ShaderStageFlagBits::eClosestHitKHR );
+      _ptSceneDescriptors.bindings.add( 3, vk::DescriptorType::eStorageBuffer, vk::ShaderStageFlagBits::eClosestHitKHR );
 
-      _rtSceneDescriptors.layout = _rtSceneDescriptors.bindings.initLayoutUnique( );
-      _rtSceneDescriptors.pool   = _rtSceneDescriptors.bindings.initPoolUnique( components::maxResources );
-      _rtSceneDescriptorSets     = vk::Initializer::initDescriptorSetsUnique( _rtSceneDescriptors.pool, _rtSceneDescriptors.layout );
+      _ptSceneDescriptors.layout = _ptSceneDescriptors.bindings.initLayoutUnique( );
+      _ptSceneDescriptors.pool   = _ptSceneDescriptors.bindings.initPoolUnique( components::maxResources );
+      _ptSceneDescriptorSets     = vk::Initializer::initDescriptorSetsUnique( _ptSceneDescriptors.pool, _ptSceneDescriptors.layout );
     }
 
     // RS Scene descriptor set layout.
@@ -897,7 +897,7 @@ namespace RAYEX_NAMESPACE
 #endif
 
       initPipelines( );
-      _rtBuilder.createShaderBindingTable( );
+      _ptBuilder.createShaderBindingTable( );
     }
 
     if ( _settings->_refreshSwapchain )
@@ -911,11 +911,11 @@ namespace RAYEX_NAMESPACE
   void Api::updateSceneDescriptors( )
   {
     // Update RT scene descriptor sets.
-    _rtSceneDescriptors.bindings.writeArray( _rtSceneDescriptorSets, 0, _cameraUniformBuffer._bufferInfos.data( ) );
-    _rtSceneDescriptors.bindings.writeArray( _rtSceneDescriptorSets, 1, _directionalLightsBuffer.getDescriptorInfos( ).data( ) );
-    _rtSceneDescriptors.bindings.writeArray( _rtSceneDescriptorSets, 2, _pointLightsBuffer.getDescriptorInfos( ).data( ) );
-    _rtSceneDescriptors.bindings.writeArray( _rtSceneDescriptorSets, 3, _geometryInstancesBuffer.getDescriptorInfos( ).data( ) );
-    _rtSceneDescriptors.bindings.update( );
+    _ptSceneDescriptors.bindings.writeArray( _ptSceneDescriptorSets, 0, _cameraUniformBuffer._bufferInfos.data( ) );
+    _ptSceneDescriptors.bindings.writeArray( _ptSceneDescriptorSets, 1, _directionalLightsBuffer.getDescriptorInfos( ).data( ) );
+    _ptSceneDescriptors.bindings.writeArray( _ptSceneDescriptorSets, 2, _pointLightsBuffer.getDescriptorInfos( ).data( ) );
+    _ptSceneDescriptors.bindings.writeArray( _ptSceneDescriptorSets, 3, _geometryInstancesBuffer.getDescriptorInfos( ).data( ) );
+    _ptSceneDescriptors.bindings.update( );
 
     // Update RS scene descriptor sets.
     _rsSceneDescriptors.bindings.writeArray( _rsSceneDescriptorSets, 0, _cameraUniformBuffer._bufferInfos.data( ) );
@@ -924,7 +924,7 @@ namespace RAYEX_NAMESPACE
     _rsSceneDescriptors.bindings.update( );
   }
 
-  void Api::updateRayTracingModelData( )
+  void Api::updatePathTracingModelData( )
   {
     RX_ASSERT( _scene->_geometries.size( ) <= _settings->_maxGeometry, "Can not bind more than ", _settings->_maxGeometry, " geometries." );
     RX_ASSERT( _meshBuffers.size( ) <= _settings->_maxGeometry, "Can not bind more than ", _settings->_maxGeometry, " meshes." );

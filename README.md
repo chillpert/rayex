@@ -1,5 +1,5 @@
 # RAYEX
-RAYEX is a work-in-progress, cross-platform, cross-vendor, Vulkan-based, path tracing library. 
+RAYEX is a work-in-progress, cross-platform, cross-vendor, Vulkan-based, real-time path tracer. 
 
 It runs on both Linux (x64) and Windows (x64) using the Vulkan API. The purpose of this software is to provide a cross-platform, cross-vendor path tracer that is easy to integrate into existing projects. Vendor independence is achieved by using KHRONOS' new Vulkan ray tracing extension (first published on March 17, 2020). It uses [SDL2](https://www.libsdl.org/index.php) for windowing and [glm](https://glm.g-truc.net/0.9.9/index.html) as its math library. RAYEX features native [Dear ImGui](https://github.com/ocornut/imgui) support, enabling the user to create user interfaces without having to write any API-related code.
 

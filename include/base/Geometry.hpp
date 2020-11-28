@@ -33,6 +33,8 @@ namespace RAYEX_NAMESPACE
   /// @ingroup BASE
   struct Geometry
   {
+    RX_API void setMaterial( const Material& material );
+
     std::vector<Vertex> vertices;   ///< Contains all vertices of the geometry.
     std::vector<uint32_t> indices;  ///< Contains all indices of the geometry.
     std::vector<Mesh> meshes;       ///< Contains all sub-meshes and their respective materials.

@@ -133,6 +133,14 @@ namespace RAYEX_NAMESPACE
     return std::move( geometry );
   }
 
+  void Geometry::setMaterial( const Material& material )
+  {
+    for ( Mesh& mesh : meshes )
+    {
+      mesh.material = material;
+    }
+  }
+
   std::shared_ptr<GeometryInstance> instance( std::shared_ptr<Geometry> geometry, const glm::mat4& transform )
   {
     RX_ASSERT( geometry != nullptr, "Invalid geometry." );

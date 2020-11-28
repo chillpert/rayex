@@ -32,7 +32,9 @@ auto main( ) -> int
   auto awp   = rx::loadObj( "models/awpdlore/awpdlore.obj" );
   auto plane = rx::loadObj( "models/plane.obj" );
 
-  plane->meshes[0].material.diffuseTexPath = "models/metal.png";
+  rx::Material customMaterial;
+  customMaterial.diffuseTexPath = "models/metal.png";
+  plane->setMaterial( customMaterial );
 
   // Submit geometries.
   renderer.scene( ).setGeometries( { awp, plane } );

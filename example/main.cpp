@@ -5,8 +5,8 @@
 auto main( ) -> int
 {
   // Window dimensions.
-  const int width  = 1400;
-  const int height = 900;
+  const int width  = 1920;
+  const int height = 1080;
 
   rx::Rayex renderer;
 
@@ -22,18 +22,17 @@ auto main( ) -> int
   // Use resources efficiently by introducing the renderer to the anticipated total amount of various entities.
   renderer.settings( ).setMaxDirectionalLights( 2 );
   renderer.settings( ).setMaxPointLights( 20 );
-  renderer.settings( ).setMaxGeometryInstances( 100 );
+  renderer.settings( ).setMaxGeometryInstances( 1000 );
   renderer.settings( ).setMaxGeoemtry( 8 );
 
   // ... and initialize the renderer.
   renderer.init( );
 
   // Load geometries.
-  auto awp     = rx::loadObj( "models/awpdlore/awpdlore.obj" );
-  auto plane   = rx::loadObj( "models/plane.obj" );
-  auto cornell = rx::loadObj( "models/CornellBox.obj" );
-  //cornell->meshes[7].material.
-  // todo: insert emissivenss
+  auto awp                              = rx::loadObj( "models/awpdlore/awpdlore.obj" );
+  auto plane                            = rx::loadObj( "models/plane.obj" );
+  auto cornell                          = rx::loadObj( "models/CornellBox.obj" );
+  cornell->meshes[7].material.emittance = glm::vec3( 15.0F );
 
   rx::Material customMaterial;
   customMaterial.diffuseTexPath = "models/metal.png";

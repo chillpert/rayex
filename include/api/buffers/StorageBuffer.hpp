@@ -1,8 +1,8 @@
 #pragma once
 
 #include "api/buffers/Buffer.hpp"
-#include "base/Lights.hpp"
 #include "api/utility/Initializers.hpp"
+#include "base/Lights.hpp"
 
 namespace RAYEX_NAMESPACE
 {
@@ -34,9 +34,9 @@ namespace RAYEX_NAMESPACE
     glm::vec4 diffuse  = glm::vec4( 0.2F, 1.0F, 1.0F, -1.0F ); // vec3 diffuse  + vec1 texture index
     glm::vec4 specular = glm::vec4( 1.0F, 1.0F, 1.0F, -1.0F ); // vec3 specular + vec1 texture index
 
-    glm::vec4 padding0 = glm::vec4( 1.0F ); ///< Buffer padding (ignore).
-    glm::vec4 padding1 = glm::vec4( 1.0F ); ///< Buffer padding (ignore).
-    glm::vec4 padding2 = glm::vec4( 1.0F ); ///< Buffer padding (ignore).
+    glm::vec4 emittance = glm::vec4( 1.0F );
+    glm::vec4 padding1  = glm::vec4( 1.0F ); ///< Buffer padding (ignore).
+    glm::vec4 padding2  = glm::vec4( 1.0F ); ///< Buffer padding (ignore).
 
     uint32_t indexOffset = 0; ///< Refers to the offset of this mesh inside a Geometry::indices container.
 

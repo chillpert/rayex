@@ -123,6 +123,7 @@ void main( )
   Material mat;
   bool found       = false;
   int subMeshCount = meshes[nonuniformEXT( modelIndex )].m.length( );
+  int foundIndex   = -1;
 
   for ( int i = 0; i < subMeshCount; ++i )
   {
@@ -136,17 +137,21 @@ void main( )
 
     if ( gl_PrimitiveID < offset && gl_PrimitiveID >= prevOffset )
     {
-      mat   = meshes[nonuniformEXT( modelIndex )].m[i].material;
-      found = true;
+      mat        = meshes[nonuniformEXT( modelIndex )].m[i].material;
+      found      = true;
+      foundIndex = i;
       break;
     }
   }
 
   // Diffuse lighting
-  vec3 diffuse = vec3( 1.0 );
+  vec3 diffuse   = vec3( 1.0 );
+  vec3 emittance = vec3( 0.0 );
 
   if ( found )
   {
+    emittance = meshes[nonuniformEXT( modelIndex )].m[foundIndex].emittance.xyz;
+
     // No texture assigned.
     if ( mat.diffuse.w == -1.0F )
     {
@@ -172,14 +177,8 @@ void main( )
   float cos_theta = dot( rayDirection, normal );
   vec3 BRDF       = diffuse.xyz / M_PI;
 
-  vec3 emittance   = vec3( 0.0 ); //diffuse.xyz / M_PI; // This is kind of stupid thing to do. It makes the object glow in its diffuse color like a light source.
   prd.rayOrigin    = rayOrigin;
   prd.rayDirection = rayDirection;
   prd.weight       = BRDF * cos_theta / p;
   prd.hitValue     = emittance;
-
-  if ( modelIndex == 1 )
-  {
-    prd.hitValue = vec3( 2.0 );
-  }
 }

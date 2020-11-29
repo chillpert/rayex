@@ -20,7 +20,7 @@ struct Mesh
 {
   Material material;
 
-  vec4 padding0;
+  vec4 emittance;
   vec4 padding1;
   vec4 padding2;
 

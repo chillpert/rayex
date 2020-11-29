@@ -331,7 +331,7 @@ namespace RAYEX_NAMESPACE
                 memAlignedMeshes[j] = MeshSSBO { glm::vec4( mesh.material.ambient, -1.0F ),
                                                  glm::vec4( mesh.material.diffuse, diffuseTexIndex ),
                                                  glm::vec4( mesh.material.specular, -1.0F ),
-                                                 { },
+                                                 glm::vec4( mesh.material.emittance, 1.0F ),
                                                  { },
                                                  { },
                                                  mesh.indexOffset };

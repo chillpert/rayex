@@ -32,6 +32,8 @@ auto main( ) -> int
   auto awp     = rx::loadObj( "models/awpdlore/awpdlore.obj" );
   auto plane   = rx::loadObj( "models/plane.obj" );
   auto cornell = rx::loadObj( "models/CornellBox.obj" );
+  //cornell->meshes[7].material.
+  // todo: insert emissivenss
 
   rx::Material customMaterial;
   customMaterial.diffuseTexPath = "models/metal.png";
@@ -74,11 +76,12 @@ auto main( ) -> int
   while ( renderer.isRunning( ) )
   {
     renderer.run( );
-
+    /*
     if ( awpInstance1 != nullptr )
     {
       awpInstance1->setTransform( glm::rotate( awpInstance1->transform, rx::Time::getDeltaTime( ) * 0.5F, glm::vec3( 0.0F, 1.0F, 0.0F ) ) );
     }
+    */
 
     // Extra tests for memcpy error: (hold to spawn many boxes at once)
     if ( Key::eB )

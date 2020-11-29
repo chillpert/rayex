@@ -46,28 +46,27 @@ namespace RAYEX_NAMESPACE
     uint32_t prevOffsets = 0;
 
     // Loop over shapes.
-    for ( size_t s = 0; s < shapes.size( ); s++ )
+    int i = 0;
+    for ( const auto& shape : shapes )
     {
-      Mesh mesh        = { };
-      mesh.indexOffset = prevOffsets + static_cast<uint32_t>( shapes[s].mesh.num_face_vertices.size( ) );
-      prevOffsets += mesh.indexOffset;
+      Mesh mesh            = { };
+      auto numFaceVertices = static_cast<uint32_t>( shape.mesh.num_face_vertices.size( ) );
+      mesh.indexOffset     = prevOffsets + numFaceVertices;
+      prevOffsets += numFaceVertices;
 
-      int materialIndex = shapes[s].mesh.material_ids[0];
+      int materialIndex = shape.mesh.material_ids[0];
       if ( materialIndex != -1 )
       {
-        Material mat = { };
-        float z      = -1.0F;
+        float z = -1.0F;
 
-        auto ambient = materials[materialIndex].ambient;
-        mat.ambient  = glm::vec3( ambient[0], ambient[1], ambient[2] );
+        auto ambient          = materials[materialIndex].ambient;
+        mesh.material.ambient = glm::vec3( ambient[0], ambient[1], ambient[2] );
 
-        auto diffuse = materials[materialIndex].diffuse;
-        mat.diffuse  = glm::vec3( diffuse[0], diffuse[1], diffuse[2] );
+        auto diffuse          = materials[materialIndex].diffuse;
+        mesh.material.diffuse = glm::vec3( diffuse[0], diffuse[1], diffuse[2] );
 
-        auto specular = materials[materialIndex].specular;
-        mat.specular  = glm::vec3( specular[0], specular[1], specular[2] );
-
-        mesh.material = mat;
+        auto specular          = materials[materialIndex].specular;
+        mesh.material.specular = glm::vec3( specular[0], specular[1], specular[2] );
 
         // @todo Add relative path here instead of inside the .mtl file.
         mesh.material.diffuseTexPath = materials[materialIndex].diffuse_texname;
@@ -75,55 +74,43 @@ namespace RAYEX_NAMESPACE
 
       geometry->meshes.push_back( mesh );
 
-      // Loop over faces.
-      size_t index_offset = 0;
-      for ( size_t f = 0; f < shapes[s].mesh.num_face_vertices.size( ); f++ )
+      for ( const auto& index : shape.mesh.indices )
       {
-        int fv = shapes[s].mesh.num_face_vertices[f];
-
-        // Loop over vertices in the face.
-        for ( size_t v = 0; v < fv; v++ )
+        Vertex vertex = { };
+        if ( attrib.vertices.size( ) > 3 * index.vertex_index + 0 )
         {
-          tinyobj::index_t idx = shapes[s].mesh.indices[index_offset + v];
-
-          Vertex vertex = { };
-          if ( attrib.vertices.size( ) > 3 * idx.vertex_index + 0 )
-          {
-            vertex.pos.x = attrib.vertices[3 * idx.vertex_index + 0];
-            vertex.pos.y = attrib.vertices[3 * idx.vertex_index + 1];
-            vertex.pos.z = attrib.vertices[3 * idx.vertex_index + 2];
-          }
-
-          if ( attrib.normals.size( ) > 3 * idx.normal_index + 0 )
-          {
-            vertex.normal.x = attrib.normals[3 * idx.normal_index + 0];
-            vertex.normal.y = attrib.normals[3 * idx.normal_index + 1];
-            vertex.normal.z = attrib.normals[3 * idx.normal_index + 2];
-          }
-
-          if ( attrib.texcoords.size( ) > 2 * idx.texcoord_index + 1 )
-          {
-            vertex.texCoord.x = attrib.texcoords[2 * idx.texcoord_index + 0];
-            vertex.texCoord.y = 1.0F - attrib.texcoords[2 * idx.texcoord_index + 1];
-          }
-
-          if ( attrib.colors.size( ) > 3 * idx.vertex_index + 2 )
-          {
-            vertex.color.x = attrib.colors[3 * idx.vertex_index + 0];
-            vertex.color.y = attrib.colors[3 * idx.vertex_index + 1];
-            vertex.color.z = attrib.colors[3 * idx.vertex_index + 2];
-          }
-
-          if ( uniqueVertices.count( vertex ) == 0 )
-          {
-            uniqueVertices[vertex] = static_cast<uint32_t>( geometry->vertices.size( ) );
-            geometry->vertices.push_back( vertex );
-          }
-
-          geometry->indices.push_back( uniqueVertices[vertex] );
+          vertex.pos.x = attrib.vertices[3 * index.vertex_index + 0];
+          vertex.pos.y = attrib.vertices[3 * index.vertex_index + 1];
+          vertex.pos.z = attrib.vertices[3 * index.vertex_index + 2];
         }
 
-        index_offset += fv;
+        if ( attrib.normals.size( ) > 3 * index.normal_index + 0 )
+        {
+          vertex.normal.x = attrib.normals[3 * index.normal_index + 0];
+          vertex.normal.y = attrib.normals[3 * index.normal_index + 1];
+          vertex.normal.z = attrib.normals[3 * index.normal_index + 2];
+        }
+
+        if ( attrib.texcoords.size( ) > 2 * index.texcoord_index + 1 )
+        {
+          vertex.texCoord.x = attrib.texcoords[2 * index.texcoord_index + 0];
+          vertex.texCoord.y = 1.0F - attrib.texcoords[2 * index.texcoord_index + 1];
+        }
+
+        if ( attrib.colors.size( ) > 3 * index.vertex_index + 2 )
+        {
+          vertex.color.x = attrib.colors[3 * index.vertex_index + 0];
+          vertex.color.y = attrib.colors[3 * index.vertex_index + 1];
+          vertex.color.z = attrib.colors[3 * index.vertex_index + 2];
+        }
+
+        if ( uniqueVertices.count( vertex ) == 0 )
+        {
+          uniqueVertices[vertex] = static_cast<uint32_t>( geometry->vertices.size( ) );
+          geometry->vertices.push_back( vertex );
+        }
+
+        geometry->indices.push_back( uniqueVertices[vertex] );
       }
     }
 

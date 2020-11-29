@@ -42,7 +42,8 @@ void main( )
   }
   else
   {
-    // This will make it so that the skybox can be seen through objects
+    // This will make it so that the skybox can be seen through objects. At least it used to. Now it looks like it's just kind of
+    // giving a small contribution to the final color. Which kind of makes sense.
     // prd.hitValue = texture( environmentMap, -prd.rayDirection ).xyz * 0.1
 
     prd.hitValue = vec3( 0.01 ); // Tiny contribution from environment

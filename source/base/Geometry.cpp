@@ -1,9 +1,8 @@
 #include "base/Geometry.hpp"
 
 #include "api/Components.hpp"
-
 #define TINYOBJLOADER_IMPLEMENTATION
-#include <tiny_obj_loader.h>
+#include "tinyObj/tiny_obj_loader.h"
 
 namespace RAYEX_NAMESPACE
 {

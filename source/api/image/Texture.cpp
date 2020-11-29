@@ -6,7 +6,7 @@
 
 #define STB_IMAGE_IMPLEMENTATION
 #include "ktx/ktx.h"
-#include "stb_image.h"
+#include "stb/stb_image.h"
 
 namespace RAYEX_NAMESPACE
 {

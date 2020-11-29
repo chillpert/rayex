@@ -322,4 +322,10 @@ namespace RAYEX_NAMESPACE
     _useEnvironmentMap = false;
   }
 
+  void Scene::load( std::string_view path )
+  {
+    _scenePath = path;
+    _loadScene = true;
+  }
+
 } // namespace RAYEX_NAMESPACE

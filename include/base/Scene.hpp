@@ -103,6 +103,8 @@ namespace RAYEX_NAMESPACE
 
     void removeEnvironmentMap( );
 
+    void load( std::string_view path );
+
   private:
     std::vector<std::shared_ptr<Geometry>> _geometries;                ///< Stores all geometries.
     std::vector<std::shared_ptr<GeometryInstance>> _geometryInstances; ///< Stores all geometry instances.
@@ -120,6 +122,9 @@ namespace RAYEX_NAMESPACE
     bool _uploadGeometries                = false; ///< Keeps track of whether or not to upload the geometries to their respective buffer the next time RAYEX_NAMESPACE::Api::update() is called.
     bool _deleteTextures                  = false; ///< Keeps track of whether or not all textures should be deleted the next time RAYEX_NAMESPACE::Api::update() is called.
     bool _dummy                           = false; ///< Keeps track of whether or not a dummy element in case of an empty scene is active.
+
+    std::string_view _scenePath;
+    bool _loadScene = false;
 
     Settings* _settings = nullptr; ///< Refers to the rendering settings stored in Rayex::settings.
   };

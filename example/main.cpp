@@ -31,6 +31,7 @@ auto main( ) -> int
   // Load geometries.
   auto awp   = rx::loadObj( "models/awpdlore/awpdlore.obj" );
   auto plane = rx::loadObj( "models/plane.obj" );
+  //auto cornell = rx::loadObj( "models/cornell_box.obj" );
 
   rx::Material customMaterial;
   customMaterial.diffuseTexPath = "models/metal.png";
@@ -56,6 +57,8 @@ auto main( ) -> int
   transform = glm::translate( transform, glm::vec3( 0.0F, -80.0F, 0.0F ) );
 
   auto planeInstance = rx::instance( plane, transform );
+
+  //auto cornellInstance = rx::instance( cornell );
 
   // Submit instances for drawing.
   renderer.scene( ).setGeometryInstances( { awpInstance1, planeInstance, awpInstance2 } );

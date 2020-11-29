@@ -106,11 +106,28 @@ namespace RAYEX_NAMESPACE
 
     if ( amount % 4 != 0 )
     {
-      RX_WARN( "Minimum storage buffer alignment must be a multiple of 4. Using 16 instead." );
+      RX_WARN( "Minimum storage buffer for geometries alignment must be a multiple of 4. Using 16 instead." );
       amount = 16;
     }
 
     _maxGeometry = amount;
+  }
+
+  void Settings::setMaxMeshes( uint32_t amount )
+  {
+    if ( amount == 0 )
+    {
+      RX_WARN( "Can not use value 0 for the amonut of maximum goemetry. Using 32 instead." );
+      amount = 32;
+    }
+
+    if ( amount % 4 != 0 )
+    {
+      RX_WARN( "Minimum storage buffer for meshes alignment must be a multiple of 4. Using 16 instead." );
+      amount = 32;
+    }
+
+    _maxMeshes = amount;
   }
 
   void Settings::setDefaultAssetsPath( )

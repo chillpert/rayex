@@ -144,7 +144,7 @@ namespace RAYEX_NAMESPACE
 
     _vertexBuffers.resize( static_cast<size_t>( _settings->_maxGeometry ) );
     _indexBuffers.resize( static_cast<size_t>( _settings->_maxGeometry ) );
-    _meshBuffers.resize( static_cast<size_t>( _settings->_maxGeometry ) );
+    _meshBuffers.resize( static_cast<size_t>( _settings->_maxMeshes ) );
     _textures.resize( static_cast<size_t>( _settings->_maxTextures ) );
 
     RX_LOG_TIME_STOP( "Finished initializing Vulkan (base)" );
@@ -845,7 +845,7 @@ namespace RAYEX_NAMESPACE
       _geometryDescriptors.bindings.add( 2,
                                          vk::DescriptorType::eStorageBuffer,
                                          vk::ShaderStageFlagBits::eClosestHitKHR,
-                                         _settings->_maxGeometry,
+                                         _settings->_maxMeshes,
                                          vk::DescriptorBindingFlagBits::eUpdateAfterBind );
 
       // Environment map
@@ -927,7 +927,7 @@ namespace RAYEX_NAMESPACE
   void Api::updatePathTracingModelData( )
   {
     RX_ASSERT( _scene->_geometries.size( ) <= _settings->_maxGeometry, "Can not bind more than ", _settings->_maxGeometry, " geometries." );
-    RX_ASSERT( _meshBuffers.size( ) <= _settings->_maxGeometry, "Can not bind more than ", _settings->_maxGeometry, " meshes." );
+    RX_ASSERT( _meshBuffers.size( ) <= _settings->_maxMeshes, "Can not bind more than ", _settings->_maxMeshes, " meshes." );
 
     // Update RT model data.
     std::vector<vk::DescriptorBufferInfo> vertexBufferInfos;

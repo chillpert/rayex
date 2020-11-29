@@ -95,14 +95,13 @@ void accumulateSamples( )
 
 void main( )
 {
-  prd.seed  = tea( gl_LaunchIDEXT.y * gl_LaunchSizeEXT.x + gl_LaunchIDEXT.x, int( clockARB( ) ) );
-  prd.depth = 0;
-
   uint seed      = tea( gl_LaunchIDEXT.y * gl_LaunchSizeEXT.x + gl_LaunchIDEXT.x, frameCount );
   vec3 hitValues = vec3( 0.0 );
 
   for ( uint i = 0; i < sampleRatePerPixel; ++i )
   {
+    prd.seed = tea( gl_LaunchIDEXT.y * gl_LaunchSizeEXT.x + gl_LaunchIDEXT.x, int( clockARB( ) ) );
+
     vec2 positionWithinPixel = vec2( gl_LaunchIDEXT.xy ) + vec2( rnd( seed ), rnd( seed ) );
     const vec2 inUV          = positionWithinPixel / vec2( gl_LaunchSizeEXT.xy );
     vec2 d                   = inUV * 2.0 - 1.0;
@@ -122,7 +121,7 @@ void main( )
     float tMin    = 0.001;
     float tMax    = 10000.0;
 
-    for ( ; prd.depth < maxRecursionDepth; prd.depth++ )
+    for ( prd.depth = 0; prd.depth < maxRecursionDepth; prd.depth++ )
     {
       traceRayEXT( topLevelAS,       // acceleration structure
                    rayFlags,         // rayFlags

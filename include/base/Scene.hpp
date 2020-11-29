@@ -110,6 +110,7 @@ namespace RAYEX_NAMESPACE
     std::vector<std::shared_ptr<GeometryInstance>> _geometryInstances; ///< Stores all geometry instances.
     std::vector<std::shared_ptr<DirectionalLight>> _directionalLights; ///< Stores all directional lights.
     std::vector<std::shared_ptr<PointLight>> _pointLights;             ///< Stores all point lights.
+    std::vector<std::shared_ptr<Material>> _materials;
 
     std::string_view _environmentMapTexturePath;
     bool _useEnvironmentMap           = false;

@@ -81,6 +81,10 @@ namespace RAYEX_NAMESPACE
     /// @return Returns the maximum amount of geometry.
     auto getMaxGeometry( ) const -> uint32_t { return _maxGeometry; }
 
+    void setMaxMeshes( uint32_t amount );
+
+    auto getMaxMeshes( ) const -> uint32_t { return _maxMeshes; }
+
     void setPerPixelSampleRate( uint32_t sampleRate );
 
     auto getPerPixelSampleRate( ) const -> uint32_t { return _perPixelSampleRate; }
@@ -102,6 +106,7 @@ namespace RAYEX_NAMESPACE
     uint32_t _maxGeometryInstances = 100; ///< Can be set to avoid pipeline recreation everytime a geometry instance is added.
     uint32_t _maxGeometry          = 64;  ///< The maximum amount of geometry (Must be a multiple of minimum storage buffer alignment).
     uint32_t _maxTextures          = 5;   ///< The maximum amount of textures.
+    uint32_t _maxMeshes            = 200; ///< The maximum amount of meshes. Each geometry can have multiple sub meshes.
 
     std::string _assetsPath; ///< Where all assets like models, textures and shaders are stored.
 

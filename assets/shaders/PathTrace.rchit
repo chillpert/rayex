@@ -170,12 +170,16 @@ void main( )
 
   // Compute the BRDF for this ray (assuming Lambertian reflection)
   float cos_theta = dot( rayDirection, normal );
-  //vec3 BRDF       = vec3( 1.0, 1.0, 1.0 ) / M_PI;
-  vec3 BRDF = diffuse.xyz / M_PI;
+  vec3 BRDF       = diffuse.xyz / M_PI;
 
-  vec3 emittance   = diffuse.xyz; // This is kind of stupid thing to do. It makes the object glow in its diffuse color like a light source.
+  vec3 emittance   = vec3( 0.0 ); //diffuse.xyz / M_PI; // This is kind of stupid thing to do. It makes the object glow in its diffuse color like a light source.
   prd.rayOrigin    = rayOrigin;
   prd.rayDirection = rayDirection;
   prd.weight       = BRDF * cos_theta / p;
   prd.hitValue     = emittance;
+
+  if ( modelIndex == 1 )
+  {
+    prd.hitValue = vec3( 2.0 );
+  }
 }

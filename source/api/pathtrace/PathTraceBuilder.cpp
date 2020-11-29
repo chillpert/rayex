@@ -450,6 +450,7 @@ namespace RAYEX_NAMESPACE
 
       _tlas.as = vk::Initializer::initAccelerationStructure( asCreateInfo );
     }
+
     // TODO: Just like the BLAS creation we need a scratch buffer. We could save one allocation by re-using the BLAS scratch buffer.
     vk::AccelerationStructureMemoryRequirementsInfoKHR memoryRequirementsInfo( vk::AccelerationStructureMemoryRequirementsTypeKHR::eBuildScratch, // type
                                                                                vk::AccelerationStructureBuildTypeKHR::eDevice,                    // buildType

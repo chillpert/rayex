@@ -29,16 +29,16 @@ auto main( ) -> int
   renderer.init( );
 
   // Load geometries.
-  auto awp   = rx::loadObj( "models/awpdlore/awpdlore.obj" );
-  auto plane = rx::loadObj( "models/plane.obj" );
-  //auto cornell = rx::loadObj( "models/cornell_box.obj" );
+  auto awp     = rx::loadObj( "models/awpdlore/awpdlore.obj" );
+  auto plane   = rx::loadObj( "models/plane.obj" );
+  auto cornell = rx::loadObj( "models/CornellBox.obj" );
 
   rx::Material customMaterial;
   customMaterial.diffuseTexPath = "models/metal.png";
   plane->setMaterial( customMaterial );
 
   // Submit geometries.
-  renderer.scene( ).setGeometries( { awp, plane } );
+  renderer.scene( ).setGeometries( { awp, plane, cornell } );
 
   // Create instances of the geometries.
   auto transform = glm::scale( glm::mat4( 1.0F ), glm::vec3( 0.25F ) );
@@ -58,10 +58,11 @@ auto main( ) -> int
 
   auto planeInstance = rx::instance( plane, transform );
 
-  //auto cornellInstance = rx::instance( cornell );
+  transform            = glm::translate( glm::mat4( 1.0F ), glm::vec3( -5.0F, 0.0F, 0.0F ) );
+  auto cornellInstance = rx::instance( cornell, transform );
 
   // Submit instances for drawing.
-  renderer.scene( ).setGeometryInstances( { awpInstance1, planeInstance, awpInstance2 } );
+  renderer.scene( ).setGeometryInstances( { awpInstance1, planeInstance, awpInstance2, cornellInstance } );
 
   // Submit lights.
   auto directionalLight = rx::directionalLightInstance( glm::vec3( -4.0F, 10.0F, 5.0F ) );

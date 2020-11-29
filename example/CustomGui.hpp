@@ -287,7 +287,8 @@ private:
         ++counter;
       }
 
-      ImGui::PlotLines( "Frametimes", frameTimes.data( ), maxFrames, 0, "Frametime", 0.0F, 0.01F, ImVec2( 0.0F, 80.0F ) );
+      ImGui::SetNextItemWidth( -1 );
+      ImGui::PlotLines( "Frametimes", frameTimes.data( ), maxFrames, 0, "Frametime", 0.0F, 0.12F, ImVec2( 0.0F, 120.0F ) );
     }
 
     ImGui::End( );

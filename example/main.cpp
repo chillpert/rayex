@@ -29,13 +29,15 @@ auto main( ) -> int
   renderer.init( );
 
   // Load geometries.
-  auto awp                              = rx::loadObj( "models/awpdlore/awpdlore.obj" );
-  auto plane                            = rx::loadObj( "models/plane.obj" );
-  auto cornell                          = rx::loadObj( "models/CornellBox.obj" );
+  auto awp     = rx::loadObj( "models/awpdlore/awpdlore.obj" );
+  auto plane   = rx::loadObj( "models/plane.obj" );
+  auto cornell = rx::loadObj( "models/CornellBox.obj" );
+  // Set lamp submesh emittance.
   cornell->meshes[7].material.emittance = glm::vec3( 15.0F );
 
   rx::Material customMaterial;
   customMaterial.diffuseTexPath = "models/metal.png";
+  customMaterial.emittance      = glm::vec3( 3.0F );
   plane->setMaterial( customMaterial );
 
   // Submit geometries.
@@ -75,12 +77,11 @@ auto main( ) -> int
   while ( renderer.isRunning( ) )
   {
     renderer.run( );
-    /*
+
     if ( awpInstance1 != nullptr )
     {
       awpInstance1->setTransform( glm::rotate( awpInstance1->transform, rx::Time::getDeltaTime( ) * 0.5F, glm::vec3( 0.0F, 1.0F, 0.0F ) ) );
     }
-    */
 
     // Extra tests for memcpy error: (hold to spawn many boxes at once)
     if ( Key::eB )

@@ -123,7 +123,6 @@ void main( )
   Material mat;
   bool found       = false;
   int subMeshCount = meshes[nonuniformEXT( modelIndex )].m.length( );
-  int foundIndex   = -1;
 
   for ( int i = 0; i < subMeshCount; ++i )
   {
@@ -137,9 +136,8 @@ void main( )
 
     if ( gl_PrimitiveID < offset && gl_PrimitiveID >= prevOffset )
     {
-      mat        = meshes[nonuniformEXT( modelIndex )].m[i].material;
-      found      = true;
-      foundIndex = i;
+      mat   = meshes[nonuniformEXT( modelIndex )].m[i].material;
+      found = true;
       break;
     }
   }
@@ -150,7 +148,7 @@ void main( )
 
   if ( found )
   {
-    emittance = meshes[nonuniformEXT( modelIndex )].m[foundIndex].emittance.xyz;
+    emittance = mat.emittance.xyz;
 
     // No texture assigned.
     if ( mat.diffuse.w == -1.0F )

@@ -53,7 +53,7 @@ namespace RAYEX_NAMESPACE
     imageCreateInfo.arrayLayers = 6;
     imageCreateInfo.flags       = vk::ImageCreateFlagBits::eCubeCompatible;
     imageCreateInfo.mipLevels   = numLevels;
-    imageCreateInfo.format      = vk::Format::eBc2UnormBlock; // @todo add format support handling
+    imageCreateInfo.format      = vk::Format::eR8G8B8A8Unorm; // @todo add format support handling
 
     Image::init( imageCreateInfo );
 

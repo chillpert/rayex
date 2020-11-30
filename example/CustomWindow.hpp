@@ -7,9 +7,9 @@
 class CustomWindow : public rx::Window
 {
 public:
-  CustomWindow( int width, int height, const char* title, uint32_t flags, std::shared_ptr<rx::Camera> camera ) :
+  CustomWindow( int width, int height, const char* title, uint32_t flags, rx::Scene* scene ) :
     rx::Window( width, height, title, flags ),
-    _camera( std::move( camera ) )
+    _scene( scene )
   {
   }
 
@@ -31,7 +31,7 @@ public:
       return false;
     }
 
-    _camera->setSize( _width, _height );
+    _scene->getCamera( )->setSize( _width, _height );
 
     // Add your custom event polling and integrate your event system.
     SDL_Event event;
@@ -170,7 +170,7 @@ public:
             int x;
             int y;
             SDL_GetRelativeMouseState( &x, &y );
-            _camera->processMouse( x, -y );
+            _scene->getCamera( )->processMouse( x, -y );
             break;
           }
         }
@@ -181,7 +181,7 @@ public:
   }
 
 private:
-  std::shared_ptr<rx::Camera> _camera;
+  rx::Scene* _scene;
   bool _mouseVisible = true;
 };
 

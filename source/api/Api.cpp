@@ -187,6 +187,8 @@ namespace RAYEX_NAMESPACE
   {
     uint32_t imageIndex = _swapchain.getCurrentImageIndex( );
 
+    _camera = _scene->_currentCamera;
+
     // Upload camera.
     if ( _camera != nullptr )
     {

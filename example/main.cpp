@@ -5,16 +5,16 @@
 auto main( ) -> int
 {
   // Window dimensions.
-  const int width  = 1920;
-  const int height = 1080;
+  const int width  = 1840;
+  const int height = 1000;
 
   rx::Rayex renderer;
 
   // Custom camera
-  renderer.setCamera( std::make_shared<CustomCamera>( width, height, glm::vec3( 0.0F, 0.0F, 3.0F ) ) );
+  renderer.scene( ).setCamera( std::make_shared<CustomCamera>( width, height, glm::vec3( 0.0F, 0.0F, 3.0F ) ) );
 
   // Custom window
-  renderer.setWindow( std::make_shared<CustomWindow>( width, height, "Rayex Example", SDL_WINDOW_RESIZABLE, renderer.getCamera( ) ) );
+  renderer.setWindow( std::make_shared<CustomWindow>( width, height, "Rayex Example", SDL_WINDOW_RESIZABLE, &renderer.scene( ) ) );
 
   // Custom ImGui based Gui
   renderer.setGui( std::make_shared<CustomGui>( &renderer ) );
@@ -33,11 +33,11 @@ auto main( ) -> int
   auto plane   = rx::loadObj( "models/plane.obj" );
   auto cornell = rx::loadObj( "models/CornellBox.obj" );
   // Set lamp submesh emittance.
-  cornell->meshes[7].material.emittance = glm::vec3( 15.0F );
+  cornell->meshes[7].material.emittance = glm::vec3( 1.0F );
 
   rx::Material customMaterial;
   customMaterial.diffuseTexPath = "models/metal.png";
-  customMaterial.emittance      = glm::vec3( 3.0F );
+  customMaterial.emittance      = glm::vec3( 1.0F );
   plane->setMaterial( customMaterial );
 
   // Submit geometries.
@@ -72,7 +72,7 @@ auto main( ) -> int
 
   renderer.scene( ).submitDirectionalLight( directionalLight );
 
-  renderer.scene( ).setEnvironmentMap( "models/skybox/cubemap_yokohama_bc3_unorm.ktx" );
+  renderer.scene( ).setEnvironmentMap( "models/skybox/cubemap_yokohama_rgba.ktx" );
 
   while ( renderer.isRunning( ) )
   {

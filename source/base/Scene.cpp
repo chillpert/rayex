@@ -2,6 +2,11 @@
 
 #include "api/Components.hpp"
 
+#define TINYGLTF_IMPLEMENTATION
+#define STB_IMAGE_WRITE_IMPLEMENTATION
+
+#include "external/gltf/tiny_gltf.h"
+
 namespace RAYEX_NAMESPACE
 {
   auto Scene::getGeometryInstances( ) const -> const std::vector<std::shared_ptr<GeometryInstance>>&
@@ -322,10 +327,33 @@ namespace RAYEX_NAMESPACE
     _useEnvironmentMap = false;
   }
 
-  void Scene::load( std::string_view path )
+  void Scene::setCamera( std::shared_ptr<Camera> camera )
   {
-    _scenePath = path;
-    _loadScene = true;
+    _cameras.insert( camera );
+    _currentCamera = camera;
+  }
+
+  void Scene::load( const std::string& path )
+  {
+    tinygltf::Model model;
+    tinygltf::TinyGLTF loader;
+
+    std::string errors;
+    std::string warnings;
+
+    bool res = loader.LoadASCIIFromFile( &model, &errors, &warnings, path );
+
+    if ( !warnings.empty( ) )
+    {
+      RX_WARN( "GLTF: ", warnings );
+    }
+
+    if ( !errors.empty( ) )
+    {
+      RX_ERROR( "GLTF: ", errors );
+    }
+
+    RX_ASSERT( res, "Failed to parse gltf file at ", path );
   }
 
 } // namespace RAYEX_NAMESPACE

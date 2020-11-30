@@ -40,10 +40,6 @@ namespace RAYEX_NAMESPACE
     /// @return Returns true if the application is still running and false if the application has stopped.
     auto isRunning( ) const -> bool;
 
-    /// Used to set a custom camera.
-    /// @param camera A pointer to a RAYEX_NAMESPACE::Camera object.
-    void setCamera( std::shared_ptr<Camera> camera );
-
     /// Used to set a custom window.
     /// @param window A pointer to a RAYEX_NAMESPACE::Window object.
     void setWindow( std::shared_ptr<Window> window );
@@ -57,9 +53,6 @@ namespace RAYEX_NAMESPACE
     /// @return Returns a pointer to the renderer's window.
     auto getWindow( ) const -> std::shared_ptr<Window> { return _window; }
 
-    /// @return Returns a pointer to the renderer's camera.
-    auto getCamera( ) const -> std::shared_ptr<Camera> { return _camera; }
-
     /// Used to modify any interal rendering settings.
     /// @return Returns the settings.
     auto settings( ) -> Settings& { return _settings; }
@@ -70,7 +63,6 @@ namespace RAYEX_NAMESPACE
 
   private:
     std::shared_ptr<Window> _window = nullptr;                  ///< The window used to create a surface from.
-    std::shared_ptr<Camera> _camera = nullptr;                  ///< The camera that will be used for rendering.
     std::shared_ptr<Gui> _gui       = nullptr;                  ///< The ImGui-based GUI.
     std::unique_ptr<Api> _api       = std::make_unique<Api>( ); ///< Manages Vulkan-related tasks.
 

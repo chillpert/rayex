@@ -1,6 +1,7 @@
 #pragma once
 
 #include "api/image/Texture.hpp"
+#include "base/Camera.hpp"
 #include "base/Geometry.hpp"
 #include "base/Lights.hpp"
 #include "base/Settings.hpp"
@@ -103,7 +104,14 @@ namespace RAYEX_NAMESPACE
 
     void removeEnvironmentMap( );
 
-    void load( std::string_view path );
+    void load( const std::string& path );
+
+    /// Used to set a custom camera.
+    /// @param camera A pointer to a RAYEX_NAMESPACE::Camera object.
+    void setCamera( std::shared_ptr<Camera> camera );
+
+    /// @return Returns a pointer to the renderer's camera.
+    auto getCamera( ) const -> std::shared_ptr<Camera> { return _currentCamera; }
 
   private:
     std::vector<std::shared_ptr<Geometry>> _geometries;                ///< Stores all geometries.
@@ -124,8 +132,8 @@ namespace RAYEX_NAMESPACE
     bool _deleteTextures                  = false; ///< Keeps track of whether or not all textures should be deleted the next time RAYEX_NAMESPACE::Api::update() is called.
     bool _dummy                           = false; ///< Keeps track of whether or not a dummy element in case of an empty scene is active.
 
-    std::string_view _scenePath;
-    bool _loadScene = false;
+    std::unordered_set<std::shared_ptr<Camera>> _cameras; ///< The cameras that can be used for rendering.
+    std::shared_ptr<Camera> _currentCamera;               ///< The camera that is currently being used for rendering.
 
     Settings* _settings = nullptr; ///< Refers to the rendering settings stored in Rayex::settings.
   };

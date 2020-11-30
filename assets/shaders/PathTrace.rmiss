@@ -33,7 +33,7 @@ void main( )
   {
     if ( useEnvironmentMap )
     {
-      prd.hitValue = texture( environmentMap, -prd.rayDirection ).xyz;
+      prd.hitValue = texture( environmentMap, prd.rayDirection ).xyz;
     }
     else
     {

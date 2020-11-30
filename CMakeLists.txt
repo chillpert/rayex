@@ -68,11 +68,12 @@ endif()
 # KTX
 if(${OS} STREQUAL "Windows")
   link_directories(${PROJECT_SOURCE_DIR}/external/KTX)
-  include_directories(${PROJECT_SOURCE_DIR}/external/KTX)
 
   set(KTX ${KTX} "ktx.lib")
 elseif(${OS} STREQUAL "Linux")
-  message(FATAL_ERROR, "KTX NOT HANDLED FOR LINUX YET.")
+  link_directories(${PROJECT_SOURCE_DIR}/external/KTX)
+  
+  set(KTX ${KTX} "libktx.so" "libktx_read.so")  
 else()
   message(FATAL_ERROR, "Target platform not supported")
 endif()

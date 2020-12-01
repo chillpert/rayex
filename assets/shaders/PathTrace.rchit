@@ -25,7 +25,7 @@ struct Vertex
 
 hitAttributeEXT vec3 attribs;
 
-layout( location = 0 ) rayPayloadInEXT hitPayload prd;
+layout( location = 0 ) rayPayloadInEXT RayPayLoad ray;
 layout( location = 1 ) rayPayloadEXT bool isShadowed;
 
 layout( binding = 0, set = 0 ) uniform accelerationStructureEXT topLevelAS;
@@ -143,12 +143,12 @@ void main( )
   }
 
   // Diffuse lighting
-  vec3 diffuse   = vec3( 1.0 );
-  vec3 emittance = vec3( 0.0 );
+  vec3 diffuse  = vec3( 1.0 );
+  vec3 emission = vec3( 0.0 ); // emittance / emissiveFactor
 
   if ( found )
   {
-    emittance = mat.emittance.xyz;
+    emission = mat.emission.xyz;
 
     // No texture assigned.
     if ( mat.diffuse.w == -1.0F )
@@ -166,17 +166,17 @@ void main( )
   vec3 tangent, bitangent;
   createCoordinateSystem( normal, tangent, bitangent );
   vec3 rayOrigin    = worldPos;
-  vec3 rayDirection = samplingHemisphere( prd.seed, tangent, bitangent, normal );
+  vec3 rayDirection = samplingHemisphere( ray.seed, tangent, bitangent, normal );
 
-  // Probability of the newRay (cosine distributed)
+  // Probability of the new ray (cosine distributed)
   const float p = 1 / M_PI;
 
   // Compute the BRDF for this ray (assuming Lambertian reflection)
   float cos_theta = dot( rayDirection, normal );
   vec3 BRDF       = diffuse.xyz / M_PI;
 
-  prd.rayOrigin    = rayOrigin;
-  prd.rayDirection = rayDirection;
-  prd.weight       = BRDF * cos_theta / p;
-  prd.hitValue     = emittance;
+  ray.rayOrigin    = rayOrigin;
+  ray.rayDirection = rayDirection;
+  ray.weight       = BRDF * cos_theta / p;
+  ray.hitValue     = emission;
 }

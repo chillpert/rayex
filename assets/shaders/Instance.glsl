@@ -11,10 +11,11 @@ struct GeometryInstance
 
 struct Material
 {
-  vec4 ambient;   // vec3 ambient  + vec1 texture index
-  vec4 diffuse;   // vec3 diffuse  + vec1 texture index
-  vec4 specular;  // vec3 specular + vec1 texture index
-  vec4 emittance; // vec3 emittance
+  vec4 ambient;       // vec3 ambient  + vec1 texture index
+  vec4 diffuse;       // vec3 diffuse  + vec1 texture index
+  vec4 specular;      // vec3 specular + vec1 texture index
+  vec4 emission;      // vec3 emission
+  vec4 transmittance; // vec3 transmittance
 };
 
 struct Mesh
@@ -22,11 +23,10 @@ struct Mesh
   Material material;
 
   vec4 padding1;
-  vec4 padding2;
 
   uint indexOffset;
 
+  uint padding2;
   uint padding3;
   uint padding4;
-  uint padding5;
 };

@@ -1,4 +1,4 @@
-struct hitPayload
+struct RayPayLoad
 {
   vec3 rayDirection;
   vec3 hitValue;

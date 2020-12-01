@@ -34,15 +34,15 @@ namespace RAYEX_NAMESPACE
     glm::vec4 diffuse  = glm::vec4( 0.2F, 1.0F, 1.0F, -1.0F ); // vec3 diffuse  + vec1 texture index
     glm::vec4 specular = glm::vec4( 1.0F, 1.0F, 1.0F, -1.0F ); // vec3 specular + vec1 texture index
 
+    glm::vec4 emission  = glm::vec4( 1.0F );
     glm::vec4 emittance = glm::vec4( 1.0F );
     glm::vec4 padding1  = glm::vec4( 1.0F ); ///< Buffer padding (ignore).
-    glm::vec4 padding2  = glm::vec4( 1.0F ); ///< Buffer padding (ignore).
 
     uint32_t indexOffset = 0; ///< Refers to the offset of this mesh inside a Geometry::indices container.
 
+    uint32_t padding2 = 0; ///< Buffer padding (ignore).
     uint32_t padding3 = 0; ///< Buffer padding (ignore).
     uint32_t padding4 = 0; ///< Buffer padding (ignore).
-    uint32_t padding5 = 0; ///< Buffer padding (ignore).
   };
 
   /// A wrapper for RAYEX_NAMESPACE::GeometryInstanceSSBO matching the buffer alignment requirements.

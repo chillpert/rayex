@@ -254,7 +254,7 @@ private:
 
       if ( ImGui::Button( "Set skybox" ) )
       {
-        _renderer->scene( ).setEnvironmentMap( "models/skybox/cubemap_yokohama_bc3_unorm.ktx" );
+        _renderer->scene( ).setEnvironmentMap( "models/skybox/cubemap_yokohama_rgba.ktx" );
       }
 
       ImGui::SameLine( );

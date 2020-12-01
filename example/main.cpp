@@ -28,16 +28,18 @@ auto main( ) -> int
   // ... and initialize the renderer.
   renderer.init( );
 
+  //renderer.scene( ).load( "models/chinesedragon.gltf" );
+
   // Load geometries.
   auto awp     = rx::loadObj( "models/awpdlore/awpdlore.obj" );
   auto plane   = rx::loadObj( "models/plane.obj" );
   auto cornell = rx::loadObj( "models/CornellBox.obj" );
   // Set lamp submesh emittance.
-  cornell->meshes[7].material.emittance = glm::vec3( 1.0F );
+  cornell->meshes[7].material.emission = glm::vec3( 1.0F );
 
   rx::Material customMaterial;
   customMaterial.diffuseTexPath = "models/metal.png";
-  customMaterial.emittance      = glm::vec3( 1.0F );
+  customMaterial.emission       = glm::vec3( 1.0F );
   plane->setMaterial( customMaterial );
 
   // Submit geometries.
@@ -56,7 +58,7 @@ auto main( ) -> int
 
   auto awpInstance2 = rx::instance( awp, transform );
 
-  transform = glm::scale( glm::mat4( 1.0F ), glm::vec3( 0.1F ) );
+  transform = glm::scale( glm::mat4( 1.0F ), glm::vec3( 1.0F ) );
   transform = glm::translate( transform, glm::vec3( 0.0F, -80.0F, 0.0F ) );
 
   auto planeInstance = rx::instance( plane, transform );
@@ -65,7 +67,7 @@ auto main( ) -> int
   auto cornellInstance = rx::instance( cornell, transform );
 
   // Submit instances for drawing.
-  renderer.scene( ).setGeometryInstances( { awpInstance1, planeInstance, awpInstance2, cornellInstance } );
+  renderer.scene( ).setGeometryInstances( { awpInstance1, awpInstance2, cornellInstance, planeInstance } );
 
   // Submit lights.
   auto directionalLight = rx::directionalLightInstance( glm::vec3( -4.0F, 10.0F, 5.0F ) );

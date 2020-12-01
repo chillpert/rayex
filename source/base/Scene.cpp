@@ -335,6 +335,7 @@ namespace RAYEX_NAMESPACE
 
   void Scene::load( const std::string& path )
   {
+    // This might need to be moved to api.cpp anyways, because it requires direct access to some of the buffers apparently.
     tinygltf::Model model;
     tinygltf::TinyGLTF loader;
 
@@ -354,6 +355,8 @@ namespace RAYEX_NAMESPACE
     }
 
     RX_ASSERT( res, "Failed to parse gltf file at ", path );
+
+    RX_WARN( "GLTF support not implemented yet." );
   }
 
 } // namespace RAYEX_NAMESPACE

@@ -5,7 +5,7 @@
 #include "Random.glsl"
 #include "Ray.glsl"
 
-layout( location = 0 ) rayPayloadEXT hitPayload prd;
+layout( location = 0 ) rayPayloadEXT RayPayLoad ray;
 
 layout( binding = 0, set = 0 ) uniform accelerationStructureEXT topLevelAS;
 layout( binding = 1, set = 0, rgba32f ) uniform image2D image;
@@ -40,12 +40,12 @@ layout( push_constant ) uniform Constants
 
 void main( )
 {
-  uint seed      = tea( gl_LaunchIDEXT.y * gl_LaunchSizeEXT.x + gl_LaunchIDEXT.x, frameCount );
+  uint seed      = tea( gl_LaunchIDEXT.y * gl_LaunchSizeEXT.x + gl_LaunchIDEXT.x, int( clockARB( ) ) );
   vec3 hitValues = vec3( 0.0F );
 
   for ( uint i = 0; i < sampleRatePerPixel; ++i )
   {
-    prd.seed = tea( gl_LaunchIDEXT.y * gl_LaunchSizeEXT.x + gl_LaunchIDEXT.x, int( clockARB( ) ) );
+    ray.seed = tea( gl_LaunchIDEXT.y * gl_LaunchSizeEXT.x + gl_LaunchIDEXT.x, int( clockARB( ) ) );
 
     vec2 positionWithinPixel = vec2( gl_LaunchIDEXT.xy ) + vec2( rnd( seed ), rnd( seed ) );
     const vec2 inUV          = positionWithinPixel / vec2( gl_LaunchSizeEXT.xy );
@@ -55,18 +55,18 @@ void main( )
     vec4 target    = cam.projInverse * vec4( d.x, d.y, 1.0F, 1.0F );
     vec4 direction = cam.viewInverse * vec4( normalize( target.xyz ), 0.0F );
 
-    prd.rayDirection = direction.xyz;
-    prd.rayOrigin    = origin.xyz;
-    prd.weight       = vec3( 0.0F );
+    ray.rayDirection = direction.xyz;
+    ray.rayOrigin    = origin.xyz;
+    ray.weight       = vec3( 0.0F );
 
-    vec3 curWeight = vec3( 1.0F );
-    vec3 hitValue  = vec3( 0.0F );
+    vec3 weight   = vec3( 1.0F );
+    vec3 hitValue = vec3( 0.0F );
 
     uint rayFlags = gl_RayFlagsOpaqueEXT;
     float tMin    = 0.001;
     float tMax    = 10000.0;
 
-    for ( prd.depth = 0; prd.depth < maxRecursionDepth; prd.depth++ )
+    for ( ray.depth = 0; ray.depth < maxRecursionDepth; ray.depth++ )
     {
       traceRayEXT( topLevelAS,       // acceleration structure
                    rayFlags,         // rayFlags
@@ -74,20 +74,20 @@ void main( )
                    0,                // sbtRecordOffset
                    0,                // sbtRecordStride
                    0,                // missIndex
-                   prd.rayOrigin,    // ray origin
+                   ray.rayOrigin,    // ray origin
                    tMin,             // ray min range
-                   prd.rayDirection, // ray direction
+                   ray.rayDirection, // ray direction
                    tMax,             // ray max range
                    0 );              // payload (location = 0)
 
-      hitValue += prd.hitValue * curWeight;
-      curWeight *= prd.weight;
+      hitValue += ray.hitValue * weight;
+      weight *= ray.weight;
     }
 
     hitValues += hitValue;
   }
 
-  prd.hitValue = hitValues / sampleRatePerPixel;
+  ray.hitValue = hitValues / sampleRatePerPixel;
 
   // Do accumulation over time
   vec4 finalColor;
@@ -95,13 +95,13 @@ void main( )
   {
     vec3 oldColor = imageLoad( image, ivec2( gl_LaunchIDEXT.xy ) ).xyz;
     // Linearly interpolate between old and latest color.
-    finalColor = vec4( mix( oldColor, prd.hitValue, 1.0F / float( frameCount + 1 ) ), 1.0F );
+    finalColor = vec4( mix( oldColor, ray.hitValue, 1.0F / float( frameCount + 1 ) ), 1.0F );
     imageStore( image, ivec2( gl_LaunchIDEXT.xy ), finalColor );
   }
   else
   {
     // First frame, replace the value in the buffer
-    finalColor = vec4( prd.hitValue, 1.0f );
+    finalColor = vec4( ray.hitValue, 1.0f );
     imageStore( image, ivec2( gl_LaunchIDEXT.xy ), finalColor );
   }
 }

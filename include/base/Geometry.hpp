@@ -16,7 +16,8 @@ namespace RAYEX_NAMESPACE
     std::string diffuseTexPath  = "";
     std::string specularTexPath = "";
 
-    glm::vec3 emittance = glm::vec3( 0.0F );
+    glm::vec3 emission      = glm::vec3( 0.0F );
+    glm::vec3 transmittance = glm::vec3( 0.0F );
   };
 
   /// Describes a sub-mesh and its material.

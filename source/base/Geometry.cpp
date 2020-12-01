@@ -68,6 +68,12 @@ namespace RAYEX_NAMESPACE
         auto specular          = materials[materialIndex].specular;
         mesh.material.specular = glm::vec3( specular[0], specular[1], specular[2] );
 
+        auto emission          = materials[materialIndex].emission;
+        mesh.material.emission = glm::vec3( emission[0], emission[1], emission[2] );
+
+        auto transmittance          = materials[materialIndex].transmittance;
+        mesh.material.transmittance = glm::vec3( transmittance[0], transmittance[1], transmittance[2] );
+
         // @todo Add relative path here instead of inside the .mtl file.
         mesh.material.diffuseTexPath = materials[materialIndex].diffuse_texname;
       }

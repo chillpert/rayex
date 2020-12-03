@@ -297,6 +297,10 @@ private:
     {
       ImGui::Checkbox( "Show ImGui demo window", &showDemoWindow );
 
+      bool accumulateFrames = _renderer->settings( ).isAccumulatingFrames( );
+      ImGui::Checkbox( "Accumulate frames", &accumulateFrames );
+      _renderer->settings( ).setAccumulatingFrames( accumulateFrames );
+
       auto clearColor = _renderer->settings( ).getClearColor( );
       if ( ImGui::ColorEdit4( "##AmbientColor", &clearColor[0] ) )
       {
@@ -313,12 +317,6 @@ private:
       if ( ImGui::SliderInt( "Recursion depth", &depth, 0, 31 ) )
       {
         _renderer->settings( ).setRecursionDepth( static_cast<uint32_t>( depth ) );
-      }
-
-      int totalFramesToAccumulate = static_cast<int>( _renderer->settings( ).getTotalFramesToAccumulate( ) );
-      if ( ImGui::SliderInt( "Frames to accumulate", &totalFramesToAccumulate, 0, 100 ) )
-      {
-        _renderer->settings( ).setTotalFramesToAccumulate( static_cast<uint32_t>( totalFramesToAccumulate ) );
       }
     }
 

@@ -89,9 +89,9 @@ namespace RAYEX_NAMESPACE
 
     auto getPerPixelSampleRate( ) const -> uint32_t { return _perPixelSampleRate; }
 
-    void setTotalFramesToAccumulate( uint32_t totalFramesToAccumulate );
+    void setAccumulatingFrames( bool flag );
 
-    auto getTotalFramesToAccumulate( ) const -> uint32_t { return _totalFramesToAccumulate; }
+    auto isAccumulatingFrames( ) const -> bool { return _accumulateFrames; }
 
   private:
     /// This function will be called by Rayex::init() in case the path was not set manually.
@@ -110,11 +110,12 @@ namespace RAYEX_NAMESPACE
 
     std::string _assetsPath; ///< Where all assets like models, textures and shaders are stored.
 
-    glm::vec4 _clearColor             = glm::vec4( 0.45F, 0.45F, 0.45F, 0.8F ); ///< Stores the clear color.
-    uint32_t _maxRecursionDepth       = 10;                                     ///< The maximum recursion depth.
-    uint32_t _recursionDepth          = 10;                                     ///< The current recursion depth.
-    uint32_t _perPixelSampleRate      = 4;                                      ///< Stores the total amount of samples that will be taken and averaged per pixel.
-    uint32_t _totalFramesToAccumulate = 0;                                      ///< Stores the amount of frames whose results will be accumulated. If value is e.g. 10, then starting from the first frame, all other frames will use the results of the previous one.
+    glm::vec4 _clearColor        = glm::vec4( 0.45F, 0.45F, 0.45F, 0.8F ); ///< Stores the clear color.
+    uint32_t _maxRecursionDepth  = 10;                                     ///< The maximum recursion depth.
+    uint32_t _recursionDepth     = 10;                                     ///< The current recursion depth.
+    uint32_t _perPixelSampleRate = 4;                                      ///< Stores the total amount of samples that will be taken and averaged per pixel.
+
+    bool _accumulateFrames = true;
 
     bool _automaticPipelineRefresh  = false; ///< Keeps track of whether or not the graphics pipelines should be recreated automatically as soon as possible.
     bool _automaticSwapchainRefresh = false; ///< Keeps track of whether or not the swapchain should be recreated automatically as soon as possible.

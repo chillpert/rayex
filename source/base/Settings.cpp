@@ -24,7 +24,7 @@ namespace RAYEX_NAMESPACE
     _clearColor       = clearColor;
     _refreshSwapchain = true;
 
-    components::frameCount = 0;
+    components::frameCount = -1;
   }
 
   void Settings::setAssetsPath( int argc, char* argv[] )
@@ -145,9 +145,8 @@ namespace RAYEX_NAMESPACE
     _perPixelSampleRate = sampleRate;
   }
 
-  void Settings::setTotalFramesToAccumulate( uint32_t totalFramesToAccumulate )
+  void Settings::setAccumulatingFrames( bool flag )
   {
-    _totalFramesToAccumulate = totalFramesToAccumulate;
-    components::frameCount   = 0;
+    _accumulateFrames = flag;
   }
 } // namespace RAYEX_NAMESPACE

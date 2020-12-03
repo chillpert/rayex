@@ -432,14 +432,11 @@ namespace RAYEX_NAMESPACE
       }
     }
 
-    // Stop taking samples
-    if ( components::frameCount >= _settings->_totalFramesToAccumulate )
-    {
-      return;
-    }
-
     // Increment frame counter for jitter cam.
-    ++components::frameCount;
+    if ( _settings->_accumulateFrames )
+    {
+      ++components::frameCount;
+    }
 
   } // namespace RAYEX_NAMESPACE
 

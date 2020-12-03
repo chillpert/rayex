@@ -158,7 +158,8 @@ void main( )
     // Texture assigned.
     else
     {
-      diffuse = mat.diffuse.xyz + texture( textures[nonuniformEXT( int( mat.diffuse.w ) )], texCoord ).xyz;
+      // albedo = pbrBaseColorFactor * texture
+      diffuse = mat.diffuse.xyz * texture( textures[nonuniformEXT( int( mat.diffuse.w ) )], texCoord ).xyz;
     }
   }
 

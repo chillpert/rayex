@@ -24,6 +24,19 @@ namespace RAYEX_NAMESPACE
     uint32_t padding1 = 0;
   };
 
+  struct PathTracingCapabilities
+  {
+    vk::PhysicalDeviceRayTracingPipelinePropertiesKHR pipelineProperties; ///< The physical device's path tracing capabilities.
+    /*
+    vk::PhysicalDeviceRayTracingPipelineFeaturesKHR pipelineFeatures;
+
+    vk::PhysicalDeviceAccelerationStructurePropertiesKHR accelerationStructureProperties;
+    vk::PhysicalDeviceAccelerationStructureFeaturesKHR accelerationStructureFeatures;
+
+    vk::PhysicalDeviceRayQueryFeaturesKHR rayQueryFeatures;
+    */
+  };
+
   /// Manages the building process of the acceleration structures.
   /// @ingroup API
   class PathTraceBuilder
@@ -50,7 +63,7 @@ namespace RAYEX_NAMESPACE
     auto getTlas( ) const -> const Tlas& { return _tlas; }
 
     /// @return Returns the physical device's path tracing properties.
-    auto getDevicePathTracingProperties( ) const -> const vk::PhysicalDeviceRayTracingPropertiesKHR& { return _ptProperties; }
+    auto getCapabilities( ) const -> const PathTracingCapabilities& { return _capabilities; }
 
     /// @return Returns the storage image's image view.
     auto getStorageImageView( ) const -> vk::ImageView { return _storageImageView.get( ); }
@@ -76,8 +89,6 @@ namespace RAYEX_NAMESPACE
     /// @param vertexBuffers Vertex buffers of all geometry in the scene.
     /// @param indexBuffers Index buffers of all geometry in the scene.
     void createBottomLevelAS( const std::vector<VertexBuffer>& vertexBuffers, const std::vector<IndexBuffer>& indexBuffers, const std::vector<std::shared_ptr<Geometry>>& geometries );
-
-    void updateDynamicBottomLevelAS( );
 
     /// Builds all bottom level acceleration structures.
     /// @param blas_ A vector of RAYEX_NAMESPACE::Blas objects containing all bottom level acceleration structures prepared in createBottomLevelAS().
@@ -114,16 +125,18 @@ namespace RAYEX_NAMESPACE
     std::vector<BlasInstance> instances;
 
   private:
-    vk::UniquePipeline _pipeline;                            ///< The Vulkan pipeline with a unique handle.
-    vk::UniquePipelineLayout _layout;                        ///< The Vulkan pipeline layout with a unique handle.
-    uint32_t _shaderGroups;                                  ///< The total amount of path tracing shaders.
-    vk::PhysicalDeviceRayTracingPropertiesKHR _ptProperties; ///< The physical device's path tracing capabilities.
-    std::vector<Blas> _staticBlas_;                          ///< A vector containing all static bottom level acceleration structures.
-    std::vector<Blas> _dynamicBlas_;                         ///< A vector containing all dynamic bottom level acceleration structures.
-    std::vector<Blas> _blas_;                                ///< Both, all static and dynamic blas.
+    PathTracingCapabilities _capabilities;
+
+    vk::UniquePipeline _pipeline;     ///< The Vulkan pipeline with a unique handle.
+    vk::UniquePipelineLayout _layout; ///< The Vulkan pipeline layout with a unique handle.
+    uint32_t _shaderGroups;           ///< The total amount of path tracing shaders.
+
+    std::vector<Blas> _staticBlas_;  ///< A vector containing all static bottom level acceleration structures.
+    std::vector<Blas> _dynamicBlas_; ///< A vector containing all dynamic bottom level acceleration structures.
+    std::vector<Blas> _blas_;        ///< Both, all static and dynamic blas.
     std::map<uint32_t, std::pair<size_t, bool>> _indices;
     Tlas _tlas;                            ///< The top level acceleration structure.
-    Buffer _instanceBuffer;                ///< The instance buffer.
+    Buffer _instancesBuffer;               ///< The instance buffer.
     Buffer _sbtBuffer;                     ///< The shader binding table buffer.
     Image _storageImage;                   ///< The storage image.
     vk::UniqueImageView _storageImageView; ///< The storage image's image view.

@@ -37,7 +37,7 @@ void main( )
     }
     else
     {
-      ray.hitValue = clearColor.xyz * clearColor.w;
+      ray.hitValue = vec3( 1.0, 1.0, 1.0 ) * clearColor.w;
     }
   }
   else

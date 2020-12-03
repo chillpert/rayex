@@ -65,6 +65,8 @@ namespace RAYEX_NAMESPACE
   class StorageBuffer
   {
   public:
+    auto get( size_t index ) -> vk::Buffer { return _storageBuffers[index]; }
+
     auto getDescriptorInfos( ) const -> const std::vector<vk::DescriptorBufferInfo>& { return _bufferInfos; }
 
     void init( const std::vector<T>& data, size_t copies = 1 )

@@ -38,9 +38,8 @@ namespace RAYEX_NAMESPACE
     AccelerationStructure as;                     ///< The RAYEX_NAMESPACE::AccelerationStructure object containing the Vulkan acceleration structure.
     vk::BuildAccelerationStructureFlagsKHR flags; ///< The top level acceleration structure's build flags.
 
-    std::vector<vk::AccelerationStructureCreateGeometryTypeInfoKHR> asCreateGeometryInfo; ///< Specifies the shape of geometries that will be built into an acceleration structure.
-    std::vector<vk::AccelerationStructureGeometryKHR> asGeometry;                         ///< Data used to build acceleration structure geometry.
-    std::vector<vk::AccelerationStructureBuildOffsetInfoKHR> asBuildOffsetInfo;           ///< The offset between acceleration structures when building.
+    std::vector<vk::AccelerationStructureGeometryKHR> asGeometry;             ///< Data used to build acceleration structure geometry.
+    std::vector<vk::AccelerationStructureBuildRangeInfoKHR> asBuildRangeInfo; ///< The offset between acceleration structures when building.
   };
 
   /// An instance of a bottom level acceleration structure.

@@ -373,10 +373,10 @@ namespace vk::Helper
     auto props = physicalDevice.getProperties( );
     auto feats = physicalDevice.getFeatures( );
 
-    PhysicalDeviceRayTracingFeaturesKHR rayTracingFeatures;
+    PhysicalDeviceRayQueryFeaturesKHR rayQueryFeatures;
 
     PhysicalDeviceDescriptorIndexingFeatures indexingFeatures;
-    rayTracingFeatures.pNext = &indexingFeatures;
+    rayQueryFeatures.pNext = &indexingFeatures;
 
     PhysicalDeviceBufferDeviceAddressFeatures deviceAddressFeatures;
     indexingFeatures.pNext = &deviceAddressFeatures;
@@ -385,7 +385,7 @@ namespace vk::Helper
     deviceAddressFeatures.pNext = &robustness2Features;
 
     PhysicalDeviceFeatures2 features2;
-    features2.pNext = &rayTracingFeatures;
+    features2.pNext = &rayQueryFeatures;
 
     physicalDevice.getFeatures2( &features2 );
 
@@ -399,8 +399,7 @@ namespace vk::Helper
          indexingFeatures.descriptorBindingUpdateUnusedWhilePending == VK_FALSE ||
          indexingFeatures.descriptorBindingSampledImageUpdateAfterBind == VK_FALSE ||
          indexingFeatures.shaderSampledImageArrayNonUniformIndexing == VK_FALSE ||
-         rayTracingFeatures.rayTracing == VK_FALSE ||
-         rayTracingFeatures.rayQuery == VK_FALSE ||
+         rayQueryFeatures.rayQuery == VK_FALSE ||
          feats.samplerAnisotropy == VK_FALSE ||
          feats.shaderInt64 == VK_FALSE ||
          deviceAddressFeatures.bufferDeviceAddress == VK_FALSE ||

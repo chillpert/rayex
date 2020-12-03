@@ -4,6 +4,10 @@
 #include "api/utility/Initializers.hpp"
 #include "api/utility/Util.hpp"
 
+#ifndef VK_KHR_acceleration_structure
+  #error The local Vulkan SDK does not support VK_KHR_acceleration_structure. Consider building the Vulkan headers yourself or updating the SDK.
+#endif
+
 namespace RAYEX_NAMESPACE
 {
   const std::vector<const char*> layers = { "VK_LAYER_KHRONOS_validation" };
@@ -13,13 +17,15 @@ namespace RAYEX_NAMESPACE
   std::vector<const char*> extensions;
 #endif
 
-  std::vector<const char*> deviceExtensions = {
-    VK_KHR_DEFERRED_HOST_OPERATIONS_EXTENSION_NAME,
-    VK_KHR_PIPELINE_LIBRARY_EXTENSION_NAME,
-    VK_KHR_RAY_TRACING_EXTENSION_NAME,
-    VK_KHR_SWAPCHAIN_EXTENSION_NAME,
-    VK_KHR_SHADER_CLOCK_EXTENSION_NAME
-  };
+  std::vector<const char*> deviceExtensions = { VK_KHR_DEFERRED_HOST_OPERATIONS_EXTENSION_NAME,
+                                                VK_KHR_PIPELINE_LIBRARY_EXTENSION_NAME,
+                                                VK_KHR_ACCELERATION_STRUCTURE_EXTENSION_NAME,
+                                                VK_KHR_RAY_TRACING_PIPELINE_EXTENSION_NAME,
+                                                VK_KHR_MAINTENANCE3_EXTENSION_NAME,
+                                                VK_KHR_PIPELINE_LIBRARY_EXTENSION_NAME,
+                                                VK_KHR_BUFFER_DEVICE_ADDRESS_EXTENSION_NAME,
+                                                VK_KHR_SWAPCHAIN_EXTENSION_NAME,
+                                                VK_KHR_SHADER_CLOCK_EXTENSION_NAME };
 
   size_t currentFrame = 0;
   size_t prevFrame    = 0;
@@ -128,7 +134,7 @@ namespace RAYEX_NAMESPACE
 
     // Path tracer (part 1)
     _ptBuilder.init( );
-    _settings->_maxRecursionDepth = _ptBuilder.getDevicePathTracingProperties( ).maxRecursionDepth;
+    _settings->_maxRecursionDepth = _ptBuilder.getCapabilities( ).pipelineProperties.maxRayRecursionDepth;
 
     // Resize and initialize buffers with "dummy data".
     // The advantage of doing this is that the buffers are all initialized right away (even though it is invalid data) and

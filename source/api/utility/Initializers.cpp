@@ -2,6 +2,7 @@
 
 #include "api/Components.hpp"
 #include "api/Vertex.hpp"
+#include "api/buffers/Buffer.hpp"
 #include "api/buffers/CommandBuffer.hpp"
 #include "api/utility/Helpers.hpp"
 #include "api/utility/Util.hpp"
@@ -156,35 +157,6 @@ namespace vk::Initializer
     ;
   }
 
-  void allocateMemory( RAYEX_NAMESPACE::AccelerationStructure& as )
-  {
-    AccelerationStructureMemoryRequirementsInfoKHR memInfo( AccelerationStructureMemoryRequirementsTypeKHR::eObject, // type
-                                                            AccelerationStructureBuildTypeKHR::eDevice,              // buildType
-                                                            as.as );                                                 // accelerationStructure
-
-    MemoryRequirements2 memoryRequirements = RAYEX_NAMESPACE::components::device.getAccelerationStructureMemoryRequirementsKHR( memInfo );
-
-    MemoryAllocateFlagsInfo allocateFlags( MemoryAllocateFlagBits::eDeviceAddress, // flags
-                                           { } );                                  // deviceMask
-
-    MemoryAllocateInfo allocateInfo( memoryRequirements.memoryRequirements.size,                                                                                                                          // allocationSize
-                                     Helper::findMemoryType( RAYEX_NAMESPACE::components::physicalDevice, memoryRequirements.memoryRequirements.memoryTypeBits, MemoryPropertyFlagBits::eDeviceLocal ) ); // memoryTypeIndex
-
-    as.memory = RAYEX_NAMESPACE::components::device.allocateMemory( allocateInfo );
-    RX_ASSERT( as.memory, "Failed to create memory for acceleration structure." );
-
-    BindAccelerationStructureMemoryInfoKHR bindInfo( as.as,     // accelerationStructure
-                                                     as.memory, // memory
-                                                     0,         // memoryOffset
-                                                     0,         // deviceIndexCount
-                                                     nullptr ); // pDeviceIndices
-
-    if ( RAYEX_NAMESPACE::components::device.bindAccelerationStructureMemoryKHR( 1, &bindInfo ) != Result::eSuccess )
-    {
-      RX_ERROR( "Failed to bind acceleration structure memory." );
-    }
-  }
-
   auto allocateMemory( Buffer buffer, MemoryPropertyFlags propertyFlags, void* pNext ) -> DeviceMemory
   {
     auto memoryRequirements = RAYEX_NAMESPACE::components::device.getBufferMemoryRequirements( buffer );
@@ -321,12 +293,16 @@ namespace vk::Initializer
     return shaderModule;
   }
 
-  auto initAccelerationStructure( const AccelerationStructureCreateInfoKHR& asCreateInfo ) -> RAYEX_NAMESPACE::AccelerationStructure
+  auto initAccelerationStructure( AccelerationStructureCreateInfoKHR& asCreateInfo ) -> RAYEX_NAMESPACE::AccelerationStructure
   {
     RAYEX_NAMESPACE::AccelerationStructure resultAs;
-    resultAs.as = RAYEX_NAMESPACE::components::device.createAccelerationStructureKHR( asCreateInfo, nullptr );
 
-    allocateMemory( resultAs );
+    rx::Buffer buffer;
+    buffer.init( asCreateInfo.size, vk::BufferUsageFlagBits::eAccelerationStructureStorageKHR | vk::BufferUsageFlagBits::eShaderDeviceAddress );
+
+    asCreateInfo.buffer = buffer.get( );
+
+    resultAs.as = RAYEX_NAMESPACE::components::device.createAccelerationStructureKHR( asCreateInfo, nullptr );
 
     return resultAs;
   }
@@ -461,14 +437,13 @@ namespace vk::Initializer
     robustness2FeaturesEXT.nullDescriptor = VK_TRUE;
     robustness2FeaturesEXT.pNext          = &indexingFeatures;
 
-    PhysicalDeviceRayTracingFeaturesKHR rayTracingFeatures;
-    rayTracingFeatures.rayTracing = VK_TRUE;
-    rayTracingFeatures.rayQuery   = VK_TRUE;
-    rayTracingFeatures.pNext      = &robustness2FeaturesEXT;
+    PhysicalDeviceRayQueryFeaturesKHR rayQueryFeatures;
+    rayQueryFeatures.rayQuery = VK_TRUE;
+    rayQueryFeatures.pNext    = &robustness2FeaturesEXT;
 
     PhysicalDeviceBufferDeviceAddressFeatures bufferDeviceAddressFeatures;
     bufferDeviceAddressFeatures.bufferDeviceAddress = VK_TRUE;
-    bufferDeviceAddressFeatures.pNext               = &rayTracingFeatures;
+    bufferDeviceAddressFeatures.pNext               = &rayQueryFeatures;
 
     PhysicalDeviceFeatures deviceFeatures;
     deviceFeatures.samplerAnisotropy = VK_TRUE;

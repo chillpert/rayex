@@ -2,6 +2,7 @@
 
 #include "api/Bindings.hpp"
 #include "api/Components.hpp"
+#include "api/PostProcessingRenderer.hpp"
 #include "api/RenderPass.hpp"
 #include "api/Surface.hpp"
 #include "api/Swapchain.hpp"
@@ -13,7 +14,7 @@
 #include "api/buffers/VertexBuffer.hpp"
 #include "api/image/Cubemap.hpp"
 #include "api/image/Texture.hpp"
-#include "api/pathtrace/PathTraceBuilder.hpp"
+#include "api/pathtrace/PathTracer.hpp"
 #include "api/utility/DebugMessenger.hpp"
 #include "api/utility/Util.hpp"
 #include "base/Gui.hpp"
@@ -76,9 +77,6 @@ namespace RAYEX_NAMESPACE
     /// @todo This function will be pointless once the new pipeline system is implemented.
     void initPipelines( );
 
-    /// Initializes the render pass with a color and depth attachment.
-    void initRenderPass( );
-
     /// Records commands to the swapchain command buffers that will be used for rendering.
     /// @todo Rasterization has been removed for now. Might want to re-add rasterization support with RT-compatible shaders again.
     void recordSwapchainCommandBuffers( );
@@ -123,7 +121,7 @@ namespace RAYEX_NAMESPACE
     vk::UniqueDevice _device;                  ///< A unique Vulkan logical device for interfacing the physical device.
     vk::UniqueCommandPool _graphicsCmdPool;    ///< A single unique Vulkan command pool for graphics queue operations.
     vk::UniqueCommandPool _transferCmdPool;    ///< A single unique Vulkan command pool for transfer queue operations.
-    PathTraceBuilder _ptBuilder;               ///< The RAYEX_NAMESPACE::PathTraceBuilder for setting up all path tracing-related structures and the path tracing process itself.
+    PathTracer _ptBuilder;                     ///< The RAYEX_NAMESPACE::PathTracer for setting up all path tracing-related structures and the path tracing process itself.
 
     std::vector<vk::Fence> _imagesInFlight;                     ///< A vector of fences for synchronizing images that are in flight.
     std::vector<vk::UniqueFence> _inFlightFences;               ///< In flight fences used for synchronization.
@@ -155,8 +153,8 @@ namespace RAYEX_NAMESPACE
 
     UniformBuffer _cameraUniformBuffer; ///< Uniform buffers containing camera data.
 
-    Swapchain _swapchain;   ///< A RAYEX_NAMESPACE::Swapchain to manage swapchain related operations.
-    RenderPass _renderPass; ///< A RAYEX_NAMESPACE::RenderPass to create, begin and end a render pass.
+    Swapchain _swapchain; ///< A RAYEX_NAMESPACE::Swapchain to manage swapchain related operations.
+    PostProcessingRenderer _postProcessingRenderer;
 
     CommandBuffer _swapchainCommandBuffers; ///< A RAYEX_NAMESPACE::CommandBuffer containing as many command buffers as there are images in the swapchain.
 

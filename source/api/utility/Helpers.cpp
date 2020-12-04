@@ -225,6 +225,14 @@ namespace vk::Helper
       srcStageMask = PipelineStageFlagBits::eTopOfPipe;
       dstStageMask = PipelineStageFlagBits::eTransfer;
     }
+    else if ( oldLayout == ImageLayout::eUndefined && newLayout == ImageLayout::eDepthStencilAttachmentOptimal )
+    {
+      barrier.srcAccessMask = { };
+      barrier.dstAccessMask = AccessFlagBits::eDepthStencilAttachmentWrite;
+
+      srcStageMask = PipelineStageFlagBits::eTopOfPipe;
+      dstStageMask = PipelineStageFlagBits::eEarlyFragmentTests;
+    }
     else if ( oldLayout == ImageLayout::eTransferDstOptimal && newLayout == ImageLayout::eShaderReadOnlyOptimal )
     {
       barrier.srcAccessMask = AccessFlagBits::eTransferWrite;

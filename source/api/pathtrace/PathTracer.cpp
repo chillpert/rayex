@@ -1,7 +1,6 @@
-#include "api/pathtrace/PathTraceBuilder.hpp"
-
 #include "api/Components.hpp"
 #include "api/buffers/CommandBuffer.hpp"
+#include "api/pathtrace/PathTracer.hpp"
 #include "api/utility/Helpers.hpp"
 #include "api/utility/Initializers.hpp"
 
@@ -9,18 +8,18 @@ namespace RAYEX_NAMESPACE
 {
   std::vector<Blas> allDynamicBlas;
 
-  PathTraceBuilder::~PathTraceBuilder( )
+  PathTracer::~PathTracer( )
   {
     destroy( );
   }
 
-  void PathTraceBuilder::init( )
+  void PathTracer::init( )
   {
     auto properties = components::physicalDevice.getProperties2<vk::PhysicalDeviceProperties2, vk::PhysicalDeviceRayTracingPropertiesKHR>( );
     _ptProperties   = properties.get<vk::PhysicalDeviceRayTracingPropertiesKHR>( );
   }
 
-  void PathTraceBuilder::destroy( )
+  void PathTracer::destroy( )
   {
     components::device.waitIdle( );
 
@@ -57,7 +56,7 @@ namespace RAYEX_NAMESPACE
     allDynamicBlas.clear( );
   }
 
-  auto PathTraceBuilder::modelToBlas( const VertexBuffer& vertexBuffer, const IndexBuffer& indexBuffer, bool allowTransforms ) const -> Blas
+  auto PathTracer::modelToBlas( const VertexBuffer& vertexBuffer, const IndexBuffer& indexBuffer, bool allowTransforms ) const -> Blas
   {
     vk::AccelerationStructureCreateGeometryTypeInfoKHR asCreate( vk::GeometryTypeKHR::eTriangles,    // geometryType
                                                                  indexBuffer.getCount( ) / 3,        // maxPrimitiveCount
@@ -93,7 +92,7 @@ namespace RAYEX_NAMESPACE
     return blas;
   }
 
-  auto PathTraceBuilder::instanceToVkGeometryInstanceKHR( const BlasInstance& instance ) -> vk::AccelerationStructureInstanceKHR
+  auto PathTracer::instanceToVkGeometryInstanceKHR( const BlasInstance& instance ) -> vk::AccelerationStructureInstanceKHR
   {
     Blas& blas { _blas_[instance.blasId] };
 
@@ -114,7 +113,7 @@ namespace RAYEX_NAMESPACE
     return gInst;
   }
 
-  void PathTraceBuilder::createBottomLevelAS( const std::vector<VertexBuffer>& vertexBuffers, const std::vector<IndexBuffer>& indexBuffers, const std::vector<std::shared_ptr<Geometry>>& geometries )
+  void PathTracer::createBottomLevelAS( const std::vector<VertexBuffer>& vertexBuffers, const std::vector<IndexBuffer>& indexBuffers, const std::vector<std::shared_ptr<Geometry>>& geometries )
   {
     // Clean up previous acceleration structures and free all memory.
     destroy( );
@@ -205,7 +204,7 @@ namespace RAYEX_NAMESPACE
     }
   }
 
-  void PathTraceBuilder::updateDynamicBottomLevelAS( )
+  void PathTracer::updateDynamicBottomLevelAS( )
   {
     /*
     for ( Blas& blas : _dynamicBlas_ )
@@ -219,7 +218,7 @@ namespace RAYEX_NAMESPACE
     buildBlas( _dynamicBlas_, vk::BuildAccelerationStructureFlagBitsKHR::eAllowCompaction | vk::BuildAccelerationStructureFlagBitsKHR::eAllowUpdate | vk::BuildAccelerationStructureFlagBitsKHR::ePreferFastBuild );
   }
 
-  void PathTraceBuilder::buildBlas( std::vector<Blas>& blas_, vk::BuildAccelerationStructureFlagsKHR flags )
+  void PathTracer::buildBlas( std::vector<Blas>& blas_, vk::BuildAccelerationStructureFlagsKHR flags )
   {
     vk::DeviceSize maxScratch = 0;
 
@@ -405,7 +404,7 @@ namespace RAYEX_NAMESPACE
     }
   }
 
-  void PathTraceBuilder::createTopLevelAS( const std::vector<std::shared_ptr<GeometryInstance>>& geometryInstances )
+  void PathTracer::createTopLevelAS( const std::vector<std::shared_ptr<GeometryInstance>>& geometryInstances )
   {
     instances.clear( );
     instances.reserve( geometryInstances.size( ) );
@@ -428,7 +427,7 @@ namespace RAYEX_NAMESPACE
     }
   }
 
-  void PathTraceBuilder::buildTlas( const std::vector<BlasInstance>& instances, vk::BuildAccelerationStructureFlagsKHR flags, bool reuse )
+  void PathTracer::buildTlas( const std::vector<BlasInstance>& instances, vk::BuildAccelerationStructureFlagsKHR flags, bool reuse )
   {
     _tlas.flags = flags;
 
@@ -547,7 +546,7 @@ namespace RAYEX_NAMESPACE
     cmdBuf.submitToQueue( components::graphicsQueue );
   }
 
-  void PathTraceBuilder::createStorageImage( vk::Extent2D swapchainExtent )
+  void PathTracer::createStorageImage( vk::Extent2D swapchainExtent )
   {
     auto storageImageInfo   = vk::Helper::getImageCreateInfo( vk::Extent3D( swapchainExtent.width, swapchainExtent.height, 1 ) );
     storageImageInfo.usage  = vk::ImageUsageFlagBits::eTransferSrc | vk::ImageUsageFlagBits::eStorage;
@@ -559,7 +558,7 @@ namespace RAYEX_NAMESPACE
     _storageImageView = vk::Initializer::initImageViewUnique( vk::Helper::getImageViewCreateInfo( _storageImage.get( ), _storageImage.getFormat( ) ) );
   }
 
-  void PathTraceBuilder::createShaderBindingTable( )
+  void PathTracer::createShaderBindingTable( )
   {
     uint32_t groupHandleSize = _ptProperties.shaderGroupHandleSize;
     uint32_t baseAlignment   = _ptProperties.shaderGroupBaseAlignment;
@@ -591,7 +590,7 @@ namespace RAYEX_NAMESPACE
     components::device.unmapMemory( _sbtBuffer.getMemory( ) );
   }
 
-  void PathTraceBuilder::createPipeline( const std::vector<vk::DescriptorSetLayout>& descriptorSetLayouts, Settings* settings )
+  void PathTracer::createPipeline( const std::vector<vk::DescriptorSetLayout>& descriptorSetLayouts, Settings* settings )
   {
     // Check if selected recursion depth exceeds maximum supported value.
     auto recursionDepth = settings->getRecursionDepth( );
@@ -672,7 +671,7 @@ namespace RAYEX_NAMESPACE
     RX_ASSERT( _pipeline.get( ), "Failed to create path tracing pipeline." );
   }
 
-  void PathTraceBuilder::pathTrace( vk::CommandBuffer swapchainCommandBuffer, vk::Image swapchainImage, vk::Extent2D extent )
+  void PathTracer::pathTrace( vk::CommandBuffer swapchainCommandBuffer, vk::Image swapchainImage, vk::Extent2D extent )
   {
     vk::DeviceSize progSize = _ptProperties.shaderGroupBaseAlignment;
     vk::DeviceSize sbtSize  = progSize * static_cast<vk::DeviceSize>( _shaderGroups );

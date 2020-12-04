@@ -106,19 +106,21 @@ namespace RAYEX_NAMESPACE
     components::device.getQueue( components::graphicsFamilyIndex, 0, &components::graphicsQueue );
     components::device.getQueue( components::transferFamilyIndex, 0, &components::transferQueue );
 
-    // Render pass
-    initRenderPass( );
-
-    // Swapchain
-    _swapchain.init( &_surface, _renderPass.get( ) );
-    _settings->_refreshSwapchain = false;
-
     // Command pools
     _graphicsCmdPool            = vk::Initializer::initCommandPoolUnique( components::graphicsFamilyIndex, vk::CommandPoolCreateFlagBits::eResetCommandBuffer );
     components::graphicsCmdPool = _graphicsCmdPool.get( );
 
     _transferCmdPool            = vk::Initializer::initCommandPoolUnique( components::transferFamilyIndex, { } );
     components::transferCmdPool = _transferCmdPool.get( );
+
+    // Offscreen renderer
+    _postProcessingRenderer.initColorImage( _surface.getExtent( ) );
+    _postProcessingRenderer.initDepthImage( _surface.getExtent( ) );
+    _postProcessingRenderer.initRenderPass( _surface.getFormat( ) );
+
+    // Swapchain
+    _swapchain.init( &_surface, _postProcessingRenderer.getRenderPass( ).get( ) );
+    _settings->_refreshSwapchain = false;
 
     // GUI
     initGui( );
@@ -558,7 +560,7 @@ namespace RAYEX_NAMESPACE
     _swapchain.destroy( );
 
     // Recreating the swapchain.
-    _swapchain.init( &_surface, _renderPass.get( ) );
+    _swapchain.init( &_surface, _postProcessingRenderer.getRenderPass( ).get( ) );
 
     // Recreate storage image with the new swapchain image size and update the path tracing descriptor set to use the new storage image view.
     _ptBuilder.createStorageImage( _swapchain.getExtent( ) );
@@ -654,55 +656,11 @@ namespace RAYEX_NAMESPACE
     RX_LOG_TIME_STOP( "Finished graphic pipelines initialization" );
   }
 
-  void Api::initRenderPass( )
-  {
-    auto colorAttachmentDescription = vk::Helper::getAttachmentDescription( _surface.getFormat( ) );
-
-    vk::AttachmentReference colorAttachmentReference( 0,                                          // attachment
-                                                      vk::ImageLayout::eColorAttachmentOptimal ); // layout
-
-    auto depthAttachmentDescription = vk::Helper::getDepthAttachmentDescription( getSupportedDepthFormat( components::physicalDevice ) );
-
-    vk::AttachmentReference depthAttachmentRef( 1,                                                 // attachment
-                                                vk::ImageLayout::eDepthStencilAttachmentOptimal ); // layout
-
-    vk::SubpassDescription subpassDescription( { },                              // flags
-                                               vk::PipelineBindPoint::eGraphics, // pipelineBindPoint
-                                               0,                                // inputAttachmentsCount
-                                               nullptr,                          // pInputAttachments
-                                               1,                                // colorAttachmentsCount
-                                               &colorAttachmentReference,        // pColorAttachments
-                                               nullptr,                          // pResolveAttachments
-                                               &depthAttachmentRef,              // pDepthStencilAttachment
-                                               0,                                // preserveAttachemntCount
-                                               nullptr );                        // pPreserveAttachments
-
-    std::vector<vk::SubpassDependency> subpassDependencies( 2 );
-
-    subpassDependencies[0] = { VK_SUBPASS_EXTERNAL,                                                                  // srcSubpass
-                               0,                                                                                    // dstSubpass
-                               vk::PipelineStageFlagBits::eBottomOfPipe,                                             // srcStageMask
-                               vk::PipelineStageFlagBits::eColorAttachmentOutput,                                    // dstStageMask
-                               vk::AccessFlagBits::eMemoryRead,                                                      // srcAccessMask
-                               vk::AccessFlagBits::eColorAttachmentRead | vk::AccessFlagBits::eColorAttachmentWrite, // dstAccessMask
-                               vk::DependencyFlagBits::eByRegion };                                                  // dependencyFlags
-
-    subpassDependencies[1] = { 0,                                                                                    // srcSubpass
-                               VK_SUBPASS_EXTERNAL,                                                                  // dstSubpass
-                               vk::PipelineStageFlagBits::eColorAttachmentOutput,                                    // srcStageMask
-                               vk::PipelineStageFlagBits::eBottomOfPipe,                                             // dstStageMask
-                               vk::AccessFlagBits::eColorAttachmentRead | vk::AccessFlagBits::eColorAttachmentWrite, // srcAccessMask
-                               vk::AccessFlagBits::eMemoryRead,                                                      // dstAccessMask
-                               vk::DependencyFlagBits::eByRegion };                                                  // dependencyFlags
-
-    _renderPass.init( { colorAttachmentDescription, depthAttachmentDescription }, { subpassDescription }, subpassDependencies );
-  }
-
   void Api::initGui( )
   {
     if ( _gui != nullptr )
     {
-      initRenderPass( );
+      _postProcessingRenderer.initRenderPass( _surface.getFormat( ) );
       _gui->init( _window->get( ), &_surface, _swapchain.getExtent( ), _swapchain.getImageViews( ) );
     }
   }

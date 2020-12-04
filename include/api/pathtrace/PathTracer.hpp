@@ -26,19 +26,19 @@ namespace RAYEX_NAMESPACE
 
   /// Manages the building process of the acceleration structures.
   /// @ingroup API
-  class PathTraceBuilder
+  class PathTracer
   {
   public:
-    PathTraceBuilder( ) = default;
+    PathTracer( ) = default;
 
     /// Calls destroy().
-    ~PathTraceBuilder( );
+    ~PathTracer( );
 
-    PathTraceBuilder( const PathTraceBuilder& )  = delete;
-    PathTraceBuilder( const PathTraceBuilder&& ) = delete;
+    PathTracer( const PathTracer& )  = delete;
+    PathTracer( const PathTracer&& ) = delete;
 
-    auto operator=( const PathTraceBuilder& ) -> PathTraceBuilder& = delete;
-    auto operator=( const PathTraceBuilder&& ) -> PathTraceBuilder& = delete;
+    auto operator=( const PathTracer& ) -> PathTracer& = delete;
+    auto operator=( const PathTracer&& ) -> PathTracer& = delete;
 
     /// Retrieves the physical device's path tracing capabilities.
     void init( );

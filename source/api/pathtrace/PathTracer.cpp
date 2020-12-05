@@ -1,6 +1,7 @@
+#include "api/pathtrace/PathTracer.hpp"
+
 #include "api/Components.hpp"
 #include "api/buffers/CommandBuffer.hpp"
-#include "api/pathtrace/PathTracer.hpp"
 #include "api/utility/Helpers.hpp"
 #include "api/utility/Initializers.hpp"
 
@@ -549,7 +550,7 @@ namespace RAYEX_NAMESPACE
   void PathTracer::createStorageImage( vk::Extent2D swapchainExtent )
   {
     auto storageImageInfo   = vk::Helper::getImageCreateInfo( vk::Extent3D( swapchainExtent.width, swapchainExtent.height, 1 ) );
-    storageImageInfo.usage  = vk::ImageUsageFlagBits::eTransferSrc | vk::ImageUsageFlagBits::eStorage;
+    storageImageInfo.usage  = vk::ImageUsageFlagBits::eStorage | vk::ImageUsageFlagBits::eSampled | vk::ImageUsageFlagBits::eColorAttachment;
     storageImageInfo.format = vk::Format::eB8G8R8A8Unorm; // TODO: make this the surface format, and not hard-coded
 
     _storageImage.init( storageImageInfo );
@@ -709,6 +710,7 @@ namespace RAYEX_NAMESPACE
                                          extent.height,               // height
                                          1 );                         // depth
 
+    /*
     // Image layout transitions for copying.
     vk::Helper::transitionImageLayout( swapchainImage, vk::ImageLayout::eUndefined, vk::ImageLayout::eTransferDstOptimal, swapchainCommandBuffer );
     _storageImage.transitionToLayout( vk::ImageLayout::eTransferSrcOptimal, swapchainCommandBuffer );
@@ -730,5 +732,6 @@ namespace RAYEX_NAMESPACE
     // Undo image layout transitions.
     vk::Helper::transitionImageLayout( swapchainImage, vk::ImageLayout::eTransferDstOptimal, vk::ImageLayout::ePresentSrcKHR, swapchainCommandBuffer );
     _storageImage.transitionToLayout( vk::ImageLayout::eGeneral, swapchainCommandBuffer );
+    */
   }
 } // namespace RAYEX_NAMESPACE

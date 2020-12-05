@@ -172,6 +172,19 @@ namespace RAYEX_NAMESPACE
     _ptBuilder.createStorageImage( _swapchain.getExtent( ) );
     _ptBuilder.createShaderBindingTable( );
 
+    // Post processing renderer
+    _postProcessingRenderer.initDescriptorSet( );
+
+    auto extent = _swapchain.getExtent( );
+    auto width  = static_cast<float>( extent.width );
+    auto height = static_cast<float>( extent.height );
+
+    vk::Viewport viewport( 0.0F, 0.0F, width, height, 0.0F, 1.0F );
+    vk::Rect2D scissor( { { 0, 0 }, extent } );
+
+    _postProcessingRenderer.initPipeline( viewport, scissor );
+    _postProcessingRenderer.updateDescriptors( _ptBuilder.getStorageImageView( ), _ptBuilder.getStorageImage( ).getLayout( ) );
+
     // Init and record swapchain command buffers.
     _swapchainCommandBuffers.init( _graphicsCmdPool.get( ), components::swapchainImageCount, vk::CommandBufferUsageFlagBits::eRenderPassContinue );
 
@@ -485,6 +498,7 @@ namespace RAYEX_NAMESPACE
 
     // Add GUI command buffer to swapchain command buffer if GUI is enabled.
     std::vector<vk::CommandBuffer> commandBuffers = { _swapchainCommandBuffers.get( )[imageIndex] };
+
     if ( _gui != nullptr )
     {
       commandBuffers.push_back( _gui->getCommandBuffer( imageIndex ) );
@@ -565,12 +579,14 @@ namespace RAYEX_NAMESPACE
     // Recreate storage image with the new swapchain image size and update the path tracing descriptor set to use the new storage image view.
     _ptBuilder.createStorageImage( _swapchain.getExtent( ) );
 
+    _postProcessingRenderer.updateDescriptors( _ptBuilder.getStorageImageView( ), _ptBuilder.getStorageImage( ).getLayout( ) );
+
     vk::WriteDescriptorSetAccelerationStructureKHR tlasInfo( 1,
                                                              &_ptBuilder.getTlas( ).as.as );
 
     vk::DescriptorImageInfo storageImageInfo( nullptr,
                                               _ptBuilder.getStorageImageView( ),
-                                              vk::ImageLayout::eGeneral );
+                                              vk::ImageLayout::eGeneral ); // @todo Do not hardcode this value.
 
     _ptDescriptors.bindings.write( _ptDescriptorSets, 0, &tlasInfo );
     _ptDescriptors.bindings.write( _ptDescriptorSets, 1, &storageImageInfo );
@@ -660,7 +676,7 @@ namespace RAYEX_NAMESPACE
   {
     if ( _gui != nullptr )
     {
-      _postProcessingRenderer.initRenderPass( _surface.getFormat( ) );
+      //_postProcessingRenderer.initRenderPass( _surface.getFormat( ) );
       _gui->init( _window->get( ), &_surface, _swapchain.getExtent( ), _swapchain.getImageViews( ) );
     }
   }
@@ -702,7 +718,8 @@ namespace RAYEX_NAMESPACE
                                                         _ptSceneDescriptorSets[imageIndex % maxFramesInFlight],
                                                         _geometryDescriptorSets[imageIndex % maxFramesInFlight] };
 
-      _swapchainCommandBuffers.get( imageIndex ).bindDescriptorSets( vk::PipelineBindPoint::eRayTracingKHR, _ptBuilder.getPipelineLayout( ),
+      _swapchainCommandBuffers.get( imageIndex ).bindDescriptorSets( vk::PipelineBindPoint::eRayTracingKHR,           // pipelineBindPoint
+                                                                     _ptBuilder.getPipelineLayout( ),                 // layout
                                                                      0,                                               // first set
                                                                      static_cast<uint32_t>( descriptorSets.size( ) ), // descriptor set count
                                                                      descriptorSets.data( ),                          // descriptor sets
@@ -710,6 +727,23 @@ namespace RAYEX_NAMESPACE
                                                                      nullptr );                                       // dynamic offsets
 
       _ptBuilder.pathTrace( _swapchainCommandBuffers.get( imageIndex ), _swapchain.getImage( imageIndex ), _swapchain.getExtent( ) );
+
+      // Post processing
+      _postProcessingRenderer.beginRenderPass( _swapchainCommandBuffers.get( imageIndex ), _swapchain.getFramebuffer( imageIndex ), _swapchain.getExtent( ) );
+      {
+        _postProcessingRenderer.render( _swapchainCommandBuffers.get( imageIndex ), _swapchain.getExtent( ), imageIndex % maxFramesInFlight );
+
+        /*
+        ImGui_ImplVulkan_NewFrame( );
+        ImGui_ImplSDL2_NewFrame( _window->get( ) );
+        ImGui::NewFrame( );
+        render( );
+        ImGui::Render( );
+
+        ImGui_ImplVulkan_RenderDrawData( ImGui::GetDrawData( ), _swapchainCommandBuffers.get( imageIndex ) );
+        */
+      }
+      _postProcessingRenderer.endRenderPass( _swapchainCommandBuffers.get( imageIndex ) );
 
       _swapchainCommandBuffers.end( imageIndex );
     }

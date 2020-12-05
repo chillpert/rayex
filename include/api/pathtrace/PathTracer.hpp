@@ -49,6 +49,8 @@ namespace RAYEX_NAMESPACE
     /// @return Returns the top level acceleration structure.
     auto getTlas( ) const -> const Tlas& { return _tlas; }
 
+    auto getStorageImage( ) const -> const Image& { return _storageImage; }
+
     /// @return Returns the physical device's path tracing properties.
     auto getDevicePathTracingProperties( ) const -> const vk::PhysicalDeviceRayTracingPropertiesKHR& { return _ptProperties; }
 

@@ -4,11 +4,10 @@ layout( location = 0 ) out vec4 fragColor;
 
 layout( set = 0, binding = 0 ) uniform sampler2D pathTracingOutput;
 
-layout( push_constant ) uniform shaderInformation
+layout( push_constant ) uniform PushConstants
 {
   float aspectRatio;
-}
-pushc;
+};
 
 void main( )
 {
@@ -16,5 +15,5 @@ void main( )
 
   // Apply gamma correction
   float gamma = 1.0 / 2.2;
-  fragColor   = pow( texture( pathTracingOutput, uv ).rgba, vec4( gamma ) );
+  fragColor   = pow( texture( pathTracingOutput, uv ), vec4( gamma ) );
 }

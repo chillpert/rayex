@@ -2,7 +2,7 @@
 #include "CustomGui.hpp"
 #include "CustomWindow.hpp"
 
-auto main( ) -> int
+int main( )
 {
   // Window dimensions.
   const int width  = 1280;
@@ -19,16 +19,12 @@ auto main( ) -> int
   // Custom ImGui based Gui
   renderer.setGui( std::make_shared<CustomGui>( &renderer ) );
 
-  // Use resources efficiently by introducing the renderer to the anticipated total amount of various entities.
-  renderer.settings( ).setMaxDirectionalLights( 2 );
-  renderer.settings( ).setMaxPointLights( 20 );
+  // Avoid buffer recreations by setting an upper limit to geometries and geometry instances.
   renderer.settings( ).setMaxGeometryInstances( 1000 );
   renderer.settings( ).setMaxGeoemtry( 8 );
 
   // ... and initialize the renderer.
   renderer.init( );
-
-  //renderer.scene( ).load( "models/chinesedragon.gltf" );
 
   /*
   // Load geometries.

@@ -30,17 +30,7 @@ layout( location = 1 ) rayPayloadEXT bool isShadowed;
 
 layout( binding = 0, set = 0 ) uniform accelerationStructureEXT topLevelAS;
 
-layout( binding = 1, set = 1 ) buffer DirectionalLights
-{
-  DirectionalLight directionalLights[];
-};
-
-layout( binding = 2, set = 1 ) buffer PointLights
-{
-  PointLight pointLights[];
-};
-
-layout( binding = 3, set = 1 ) buffer GeometryInstances
+layout( binding = 1, set = 1 ) buffer GeometryInstances
 {
   GeometryInstance i[];
 }
@@ -72,12 +62,12 @@ layout( push_constant ) uniform Constants
   uint frameCount;
   uint sampleRatePerPixel;
   uint maxRecursionDepth;
-  uint directionalLightCount;
-  uint pointLightCount;
-  bool uintuseEnvironmentMap;
+  bool useEnvironmentMap;
 
   uint padding0;
   uint padding1;
+  uint padding2;
+  uint padding3;
 };
 
 Vertex unpackVertex( uint index, uint modelIndex )

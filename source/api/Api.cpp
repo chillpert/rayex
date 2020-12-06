@@ -26,8 +26,6 @@ namespace RAYEX_NAMESPACE
 
   std::vector<GeometryInstanceSSBO> memAlignedGeometryInstances;
   std::vector<MeshSSBO> memAlignedMeshes;
-  std::vector<DirectionalLightSSBO> memAlignedDirectionalLights;
-  std::vector<PointLightSSBO> memAlignedPointLights;
 
   CameraUbo cameraUbo;
 
@@ -137,12 +135,6 @@ namespace RAYEX_NAMESPACE
     // this makes it possible to call fill instead of init again, when changing any of the data below.
     std::vector<GeometryInstanceSSBO> geometryInstances( _settings->_maxGeometryInstances );
     _geometryInstancesBuffer.init( geometryInstances, components::maxResources );
-
-    std::vector<DirectionalLightSSBO> directionalLights( _settings->_maxDirectionalLights );
-    _directionalLightsBuffer.init( directionalLights, components::maxResources );
-
-    std::vector<PointLightSSBO> pointLights( _settings->_maxPointLights );
-    _pointLightsBuffer.init( pointLights, components::maxResources );
 
     _vertexBuffers.resize( static_cast<size_t>( _settings->_maxGeometry ) );
     _indexBuffers.resize( static_cast<size_t>( _settings->_maxGeometry ) );
@@ -390,7 +382,7 @@ namespace RAYEX_NAMESPACE
 
           _geometryInstancesBuffer.upload( memAlignedGeometryInstances, imageIndex % maxFramesInFlight );
 
-          updateAccelerationStructures( );
+          updateAccelerationStructuresDescriptors( );
 
           RX_SUCCESS( "Uploaded geometry instances." );
         }
@@ -414,40 +406,6 @@ namespace RAYEX_NAMESPACE
       }
     }
 
-    if ( _scene->_uploadDirectionalLightsToBuffer )
-    {
-      _scene->_uploadDirectionalLightsToBuffer = false;
-
-      if ( !_scene->_directionalLights.empty( ) )
-      {
-        memAlignedDirectionalLights.resize( _scene->_directionalLights.size( ) );
-        std::transform( _scene->_directionalLights.begin( ), _scene->_directionalLights.end( ), memAlignedDirectionalLights.begin( ),
-                        []( std::shared_ptr<DirectionalLight> light ) { return DirectionalLightSSBO { glm::vec4( light->ambient, light->ambientIntensity ),
-                                                                                                      glm::vec4( light->diffuse, light->diffuseIntensity ),
-                                                                                                      glm::vec4( light->specular, light->specularIntensity ),
-                                                                                                      glm::vec4( light->direction, 1.0F ) }; } );
-
-        _directionalLightsBuffer.upload( memAlignedDirectionalLights, imageIndex % maxFramesInFlight );
-      }
-    }
-
-    if ( _scene->_uploadPointLightsToBuffer )
-    {
-      _scene->_uploadPointLightsToBuffer = false;
-
-      if ( !_scene->_pointLights.empty( ) )
-      {
-        memAlignedPointLights.resize( _scene->_pointLights.size( ) );
-        std::transform( _scene->_pointLights.begin( ), _scene->_pointLights.end( ), memAlignedPointLights.begin( ),
-                        []( std::shared_ptr<PointLight> light ) { return PointLightSSBO { glm::vec4( light->ambient, light->ambientIntensity ),
-                                                                                          glm::vec4( light->diffuse, light->diffuseIntensity ),
-                                                                                          glm::vec4( light->specular, light->specularIntensity ),
-                                                                                          glm::vec4( light->position, 1.0F ) }; } );
-
-        _pointLightsBuffer.upload( memAlignedPointLights, imageIndex % maxFramesInFlight );
-      }
-    }
-
     // Increment frame counter for jitter cam.
     if ( _settings->_accumulateFrames )
     {
@@ -459,13 +417,9 @@ namespace RAYEX_NAMESPACE
   void Api::prepareFrame( )
   {
     _swapchain.acquireNextImage( _imageAvailableSemaphores[currentFrame].get( ), nullptr );
-
-    // Wait for the current frame's fences.
-    //vk::Result result = components::device.waitForFences( 1, &_inFlightFences[currentFrame].get( ), VK_TRUE, UINT64_MAX );
-    //RX_ASSERT( result == vk::Result::eSuccess, "Failed to wait for fences." );
   }
 
-  auto Api::submitFrame( ) -> bool
+  void Api::submitFrame( )
   {
     uint32_t imageIndex = _swapchain.getCurrentImageIndex( );
 
@@ -508,7 +462,36 @@ namespace RAYEX_NAMESPACE
 
     prevFrame    = currentFrame;
     currentFrame = ( currentFrame + 1 ) % maxFramesInFlight;
-    return false;
+  }
+
+  void Api::updateSettings( )
+  {
+    // Handle pipeline refresh
+    if ( _settings->_refreshPipeline )
+    {
+      _settings->_refreshPipeline = false;
+
+      // Calling wait idle, because pipeline recreation is assumed to be a very rare event to happen.
+      components::device.waitIdle( );
+
+#ifdef RX_COPY_ASSETS
+      // Copies shader resources to binary output directory. This way a shader can be changed during runtime.
+      // Make sure only to edit the ones in /assets/shaders and not in /build/bin/debug/assets/shaders as the latter gets overridden.
+      RX_INFO( "Copying shader resources to binary output directory. " );
+      std::filesystem::copy( RX_ASSETS_PATH "shaders", RX_PATH_TO_LIBRARY "shaders", std::filesystem::copy_options::overwrite_existing | std::filesystem::copy_options::recursive );
+#endif
+
+      initPipelines( );
+      _pathTracer.createShaderBindingTable( );
+    }
+
+    // Handle swapchain refresh
+    if ( _settings->_refreshSwapchain )
+    {
+      _settings->_refreshSwapchain = false;
+
+      recreateSwapchain( );
+    }
   }
 
   auto Api::render( ) -> bool
@@ -537,10 +520,7 @@ namespace RAYEX_NAMESPACE
 
     recordSwapchainCommandBuffers( );
 
-    if ( submitFrame( ) )
-    {
-      return true;
-    }
+    submitFrame( );
 
     return true;
   }
@@ -591,7 +571,7 @@ namespace RAYEX_NAMESPACE
     RX_LOG_TIME_STOP( "Finished re-creating swapchain" );
   }
 
-  void Api::updateAccelerationStructures( )
+  void Api::updateAccelerationStructuresDescriptors( )
   {
     RX_LOG_TIME_START( "Updating acceleration structures ..." );
 
@@ -612,28 +592,6 @@ namespace RAYEX_NAMESPACE
     _ptDescriptors.bindings.update( );
 
     RX_LOG_TIME_STOP( "Finished updating acceleration structures" );
-  }
-
-  void Api::updateTopLevelAccelerationStructure( )
-  {
-    RX_LOG_TIME_START( "Updating top level acceleration structures ..." );
-
-    // @TODO Try to call this as few times as possible.
-    _pathTracer.createTopLevelAS( _scene->_geometryInstances );
-
-    // Update path tracing descriptor set.
-    vk::WriteDescriptorSetAccelerationStructureKHR tlasInfo( 1,
-                                                             &_pathTracer.getTlas( ).as.as );
-
-    vk::DescriptorImageInfo storageImageInfo( nullptr,
-                                              _pathTracer.getStorageImageView( ),
-                                              vk::ImageLayout::eGeneral );
-
-    _ptDescriptors.bindings.write( _ptDescriptorSets, 0, &tlasInfo );
-    _ptDescriptors.bindings.write( _ptDescriptorSets, 1, &storageImageInfo );
-    _ptDescriptors.bindings.update( );
-
-    RX_LOG_TIME_STOP( "Finished updating top level acceleration structures" );
   }
 
   void Api::initPipelines( )
@@ -670,15 +628,10 @@ namespace RAYEX_NAMESPACE
     vk::Result result = components::device.waitForFences( 1, &_inFlightFences[prevFrame].get( ), VK_TRUE, UINT64_MAX );
     RX_ASSERT( result == vk::Result::eSuccess, "Failed to wait for fences." );
 
-    auto directionalLightCount = static_cast<uint32_t>( _scene->_directionalLights.size( ) );
-    auto pointLightCount       = static_cast<uint32_t>( _scene->_pointLights.size( ) );
-
     PtPushConstants chitPc = { _settings->_clearColor,
                                components::frameCount,
                                _settings->_perPixelSampleRate,
                                _settings->_recursionDepth,
-                               directionalLightCount,
-                               pointLightCount,
                                static_cast<uint32_t>( _scene->_useEnvironmentMap ) };
 
     // Start recording the swapchain framebuffers?
@@ -770,12 +723,8 @@ namespace RAYEX_NAMESPACE
     {
       // Camera uniform buffer
       _ptSceneDescriptors.bindings.add( 0, vk::DescriptorType::eUniformBuffer, vk::ShaderStageFlagBits::eRaygenKHR );
-      // Directional lights storage buffer
-      _ptSceneDescriptors.bindings.add( 1, vk::DescriptorType::eStorageBuffer, vk::ShaderStageFlagBits::eClosestHitKHR );
-      // Point lights storage buffer
-      _ptSceneDescriptors.bindings.add( 2, vk::DescriptorType::eStorageBuffer, vk::ShaderStageFlagBits::eClosestHitKHR );
       // Scene description buffer
-      _ptSceneDescriptors.bindings.add( 3, vk::DescriptorType::eStorageBuffer, vk::ShaderStageFlagBits::eClosestHitKHR );
+      _ptSceneDescriptors.bindings.add( 1, vk::DescriptorType::eStorageBuffer, vk::ShaderStageFlagBits::eClosestHitKHR );
 
       _ptSceneDescriptors.layout = _ptSceneDescriptors.bindings.initLayoutUnique( );
       _ptSceneDescriptors.pool   = _ptSceneDescriptors.bindings.initPoolUnique( components::maxResources );
@@ -838,40 +787,11 @@ namespace RAYEX_NAMESPACE
     }
   }
 
-  void Api::updateSettings( )
-  {
-    if ( _settings->_refreshPipeline )
-    {
-      _settings->_refreshPipeline = false;
-
-      components::device.waitIdle( );
-
-#ifdef RX_COPY_ASSETS
-      // Copies shader resources to binary output directory. This way a shader can be changed during runtime.
-      // Make sure only to edit the ones in /assets/shaders and not in /build/bin/debug/assets/shaders as the latter gets overridden.
-      RX_INFO( "Copying shader resources to binary output directory. " );
-      std::filesystem::copy( RX_ASSETS_PATH "shaders", RX_PATH_TO_LIBRARY "shaders", std::filesystem::copy_options::overwrite_existing | std::filesystem::copy_options::recursive );
-#endif
-
-      initPipelines( );
-      _pathTracer.createShaderBindingTable( );
-    }
-
-    if ( _settings->_refreshSwapchain )
-    {
-      _settings->_refreshSwapchain = false;
-
-      recreateSwapchain( );
-    }
-  }
-
   void Api::updateSceneDescriptors( )
   {
     // Update scene descriptor sets
     _ptSceneDescriptors.bindings.writeArray( _ptSceneDescriptorSets, 0, _cameraUniformBuffer._bufferInfos.data( ) );
-    _ptSceneDescriptors.bindings.writeArray( _ptSceneDescriptorSets, 1, _directionalLightsBuffer.getDescriptorInfos( ).data( ) );
-    _ptSceneDescriptors.bindings.writeArray( _ptSceneDescriptorSets, 2, _pointLightsBuffer.getDescriptorInfos( ).data( ) );
-    _ptSceneDescriptors.bindings.writeArray( _ptSceneDescriptorSets, 3, _geometryInstancesBuffer.getDescriptorInfos( ).data( ) );
+    _ptSceneDescriptors.bindings.writeArray( _ptSceneDescriptorSets, 1, _geometryInstancesBuffer.getDescriptorInfos( ).data( ) );
     _ptSceneDescriptors.bindings.update( );
   }
 

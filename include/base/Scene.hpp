@@ -34,28 +34,6 @@ namespace RAYEX_NAMESPACE
     /// @note This function does not invoke any draw calls.
     void setGeometryInstances( const std::vector<std::shared_ptr<GeometryInstance>>& geometryInstances );
 
-    /// @return Returns all directional lights in the scene.
-    auto getDirectionalLights( ) const -> const std::vector<std::shared_ptr<DirectionalLight>>&;
-
-    /// Used to submit a directional light.
-    /// @param light The directional light to submit.
-    void submitDirectionalLight( std::shared_ptr<DirectionalLight> light );
-
-    /// Used to remove a directional light.
-    /// @param light The directional light to remove.
-    void removeDirectionalLight( std::shared_ptr<DirectionalLight> light );
-
-    /// @return Returns all point lights in the scene.
-    auto getPointLights( ) const -> const std::vector<std::shared_ptr<PointLight>>&;
-
-    /// Used to submit a point light.
-    /// @param light The point light to submit.
-    void submitPointLight( std::shared_ptr<PointLight> light );
-
-    /// Used to remove a point light.
-    /// @param light The point light to remove.
-    void removePointLight( std::shared_ptr<PointLight> light );
-
     /// Used to remove a geometry instance.
     ///
     /// Once a geometry instance was removed, it will no longer be rendered.
@@ -116,8 +94,6 @@ namespace RAYEX_NAMESPACE
   private:
     std::vector<std::shared_ptr<Geometry>> _geometries;                ///< Stores all geometries.
     std::vector<std::shared_ptr<GeometryInstance>> _geometryInstances; ///< Stores all geometry instances.
-    std::vector<std::shared_ptr<DirectionalLight>> _directionalLights; ///< Stores all directional lights.
-    std::vector<std::shared_ptr<PointLight>> _pointLights;             ///< Stores all point lights.
     std::vector<std::shared_ptr<Material>> _materials;
 
     std::string_view _environmentMapTexturePath;
@@ -125,8 +101,6 @@ namespace RAYEX_NAMESPACE
     uint32_t _skyboxCubeGeometryIndex = std::numeric_limits<uint32_t>::max( );
 
     bool _uploadGeometryInstancesToBuffer = false; ///< Keeps track of whether or not to upload the path tracing instances to their respective buffer the next time RAYEX_NAMESPACE::Api::update() is called.
-    bool _uploadDirectionalLightsToBuffer = false; ///< Keeps track of whether or not to upload the directional lights to their respective buffer the next time RAYEX_NAMESPACE::Api::update() is called.
-    bool _uploadPointLightsToBuffer       = false; ///< Keeps track of whether or not to upload the point lights to their respective buffer the next time RAYEX_NAMESPACE::Api::update() is called.
     bool _uploadEnvironmentMap            = false;
     bool _uploadGeometries                = false; ///< Keeps track of whether or not to upload the geometries to their respective buffer the next time RAYEX_NAMESPACE::Api::update() is called.
     bool _deleteTextures                  = false; ///< Keeps track of whether or not all textures should be deleted the next time RAYEX_NAMESPACE::Api::update() is called.

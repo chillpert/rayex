@@ -69,9 +69,7 @@ namespace RAYEX_NAMESPACE
     void initGui( );
 
     /// Updates both top and bottom level acceleration structures as well as their descriptor bindings.
-    void updateAccelerationStructures( );
-
-    void updateTopLevelAccelerationStructure( );
+    void updateAccelerationStructuresDescriptors( );
 
     /// Initilializes a rasterization as well as a graphics pipeline.
     /// @todo This function will be pointless once the new pipeline system is implemented.
@@ -103,7 +101,7 @@ namespace RAYEX_NAMESPACE
     void prepareFrame( );
 
     /// Submits the swapchain command buffers to a queue and presents an image on the screen.
-    auto submitFrame( ) -> bool;
+    void submitFrame( );
 
     std::shared_ptr<Window> _window = nullptr; ///< A pointer to a RAYEX_NAMESPACE::Window object whose surface is going to be rendered to.
     std::shared_ptr<Camera> _camera = nullptr; ///< A pointer to a RAYEX_NAMESPACE::Camera object whose matrices will be used for rendering.
@@ -138,8 +136,6 @@ namespace RAYEX_NAMESPACE
     std::vector<std::shared_ptr<Texture>> _textures;   ///< Stores all textures.
 
     StorageBuffer<GeometryInstanceSSBO> _geometryInstancesBuffer; ///< A storage buffer for the path tracing instances.
-    StorageBuffer<DirectionalLightSSBO> _directionalLightsBuffer; ///< A storage buffer for directional light data.
-    StorageBuffer<PointLightSSBO> _pointLightsBuffer;             ///< A storage buffer for point light data.
 
     UniformBuffer _cameraUniformBuffer; ///< Uniform buffers containing camera data.
 

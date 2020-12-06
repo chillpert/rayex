@@ -62,28 +62,6 @@ namespace RAYEX_NAMESPACE
     _automaticPipelineRefresh = flag;
   }
 
-  void Settings::setMaxDirectionalLights( uint32_t amount )
-  {
-    if ( amount == 0 )
-    {
-      ++amount;
-      RX_WARN( "Can not use value 0 for the amount of maximum directional lights. Using 1 instead." );
-    }
-    _maxDirectionalLights = amount;
-    _refreshPipeline      = true;
-  }
-
-  void Settings::setMaxPointLights( uint32_t amount )
-  {
-    if ( amount == 0 )
-    {
-      ++amount;
-      RX_WARN( "Can not use value 0 for the amount of maximum point lights. Using 1 instead." );
-    }
-    _maxPointLights  = amount;
-    _refreshPipeline = true;
-  }
-
   void Settings::setMaxGeometryInstances( uint32_t amount )
   {
     if ( amount == 0 )

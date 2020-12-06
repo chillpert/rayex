@@ -11,12 +11,12 @@ layout( push_constant ) uniform Constants
   uint frameCount;
   uint sampleRatePerPixel;
   uint maxRecursionDepth;
-  uint directionalLightCount;
-  uint pointLightCount;
   bool useEnvironmentMap;
 
   uint padding0;
   uint padding1;
+  uint padding2;
+  uint padding3;
 };
 
 layout( binding = 3, set = 2 ) uniform samplerCube environmentMap;

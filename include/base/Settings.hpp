@@ -58,14 +58,6 @@ namespace RAYEX_NAMESPACE
     /// @param flag If false, the pipelines will not be recreated automatically until this function is called with true.
     void setAutomaticPipelineRefresh( bool flag );
 
-    /// Used to set the maximum amount of directional lights that can be used.
-    /// @param amount The amount of maximum directional lights.
-    void setMaxDirectionalLights( uint32_t amount );
-
-    /// Used to set the maximum amount of point lights that can be used.
-    /// @param amount The amount of maximum point lights.
-    void setMaxPointLights( uint32_t amount );
-
     /// Used to set the maximum amount of geometrys that can be used.
     /// @param amount The amount of maximum geometrys.
     void setMaxGeometryInstances( uint32_t amount );
@@ -101,8 +93,6 @@ namespace RAYEX_NAMESPACE
     bool _refreshPipeline  = false; ///< Keeps track of whether or not the graphics pipeline needs to be recreated.
     bool _refreshSwapchain = false; ///< Keeps track of whether or not the swapchain needs to be recreated.
 
-    uint32_t _maxDirectionalLights = 100; ///< Can be set to avoid pipeline recreation everytime a directional light is added.
-    uint32_t _maxPointLights       = 100; ///< Can be set to avoid pipeline recreation everytime a point light is added.
     uint32_t _maxGeometryInstances = 100; ///< Can be set to avoid pipeline recreation everytime a geometry instance is added.
     uint32_t _maxGeometry          = 64;  ///< The maximum amount of geometry (Must be a multiple of minimum storage buffer alignment).
     uint32_t _maxTextures          = 5;   ///< The maximum amount of textures.

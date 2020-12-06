@@ -12,16 +12,16 @@ namespace RAYEX_NAMESPACE
 {
   struct PtPushConstants
   {
-    glm::vec4 clearColor           = glm::vec4( 1.0F );
-    uint32_t frameCount            = 0;
-    uint32_t sampleRatePerPixel    = 4;
-    uint32_t recursionDepth        = 4;
-    uint32_t directionalLightCount = 0;
-    uint32_t pointLightCount       = 0;
-    uint32_t useEnvironmentMap     = 0;
+    glm::vec4 clearColor        = glm::vec4( 1.0F );
+    uint32_t frameCount         = 0;
+    uint32_t sampleRatePerPixel = 4;
+    uint32_t recursionDepth     = 4;
+    uint32_t useEnvironmentMap  = 0;
 
     uint32_t padding0 = 0;
     uint32_t padding1 = 0;
+    uint32_t padding2 = 0;
+    uint32_t padding3 = 0;
   };
 
   /// Manages the building process of the acceleration structures.

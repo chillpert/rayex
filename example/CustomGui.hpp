@@ -232,26 +232,6 @@ private:
         _renderer->scene( ).popGeometry( );
       }
 
-      if ( ImGui::Button( "Add directional light" ) )
-      {
-        auto directionalLight = rx::directionalLightInstance( getRandomUniquePosition( 5.0F, 10.0F ) );
-        directionalLight->direction.x *= -1;
-
-        _renderer->scene( ).submitDirectionalLight( directionalLight );
-      }
-
-      ImGui::SameLine( );
-
-      if ( ImGui::Button( "Remove directional lights" ) )
-      {
-        auto directionalLights = _renderer->scene( ).getDirectionalLights( );
-
-        for ( auto directionalLight : directionalLights )
-        {
-          _renderer->scene( ).removeDirectionalLight( directionalLight );
-        }
-      }
-
       if ( ImGui::Button( "Set skybox" ) )
       {
         _renderer->scene( ).setEnvironmentMap( "models/skybox/cubemap_yokohama_rgba.ktx" );

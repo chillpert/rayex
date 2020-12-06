@@ -57,7 +57,7 @@ namespace RAYEX_NAMESPACE
     allDynamicBlas.clear( );
   }
 
-  auto PathTracer::modelToBlas( StorageBuffer<Vertex>& vertexBuffer, const IndexBuffer& indexBuffer, bool allowTransforms ) const -> Blas
+  auto PathTracer::modelToBlas( StorageBuffer<Vertex>& vertexBuffer, const StorageBuffer<uint32_t>& indexBuffer, bool allowTransforms ) const -> Blas
   {
     vk::AccelerationStructureCreateGeometryTypeInfoKHR asCreate( vk::GeometryTypeKHR::eTriangles,    // geometryType
                                                                  indexBuffer.getCount( ) / 3,        // maxPrimitiveCount
@@ -67,7 +67,7 @@ namespace RAYEX_NAMESPACE
                                                                  allowTransforms );                  // allowsTransforms
 
     vk::DeviceAddress vertexAddress = components::device.getBufferAddress( { vertexBuffer.get( 0 ) } );
-    vk::DeviceAddress indexAddress  = components::device.getBufferAddress( { indexBuffer.get( ) } );
+    vk::DeviceAddress indexAddress  = components::device.getBufferAddress( { indexBuffer.get( 0 ) } );
 
     vk::AccelerationStructureGeometryTrianglesDataKHR triangles( asCreate.vertexFormat, // vertexFormat
                                                                  vertexAddress,         // vertexData
@@ -114,7 +114,7 @@ namespace RAYEX_NAMESPACE
     return gInst;
   }
 
-  void PathTracer::createBottomLevelAS( std::vector<StorageBuffer<Vertex>>& vertexBuffers, const std::vector<IndexBuffer>& indexBuffers, const std::vector<std::shared_ptr<Geometry>>& geometries )
+  void PathTracer::createBottomLevelAS( std::vector<StorageBuffer<Vertex>>& vertexBuffers, const std::vector<StorageBuffer<uint32_t>>& indexBuffers, const std::vector<std::shared_ptr<Geometry>>& geometries )
   {
     // Clean up previous acceleration structures and free all memory.
     destroy( );

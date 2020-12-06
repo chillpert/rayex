@@ -2,7 +2,6 @@
 
 #include "api/Swapchain.hpp"
 #include "api/buffers/Buffer.hpp"
-#include "api/buffers/IndexBuffer.hpp"
 #include "api/buffers/StorageBuffer.hpp"
 #include "api/pathtrace/AccelerationStructure.hpp"
 #include "base/Geometry.hpp"
@@ -67,7 +66,7 @@ namespace RAYEX_NAMESPACE
     /// @param vertexBuffer A vertex buffer of some geometry.
     /// @param indexBuffer An index buffer of some geometry.
     /// @return Returns the bottom level acceleration structure.
-    auto modelToBlas( StorageBuffer<Vertex>& vertexBuffer, const IndexBuffer& indexBuffer, bool allowTransforms ) const -> Blas;
+    auto modelToBlas( StorageBuffer<Vertex>& vertexBuffer, const StorageBuffer<uint32_t>& indexBuffer, bool allowTransforms ) const -> Blas;
 
     /// Used to convert a bottom level acceleration structure instance to a Vulkan geometry instance.
     /// @param instance A bottom level acceleration structure instance.
@@ -77,7 +76,7 @@ namespace RAYEX_NAMESPACE
     /// Used to prepare building the bottom level acceleration structures.
     /// @param vertexBuffers Vertex buffers of all geometry in the scene.
     /// @param indexBuffers Index buffers of all geometry in the scene.
-    void createBottomLevelAS( std::vector<StorageBuffer<Vertex>>& vertexBuffers, const std::vector<IndexBuffer>& indexBuffers, const std::vector<std::shared_ptr<Geometry>>& geometries );
+    void createBottomLevelAS( std::vector<StorageBuffer<Vertex>>& vertexBuffers, const std::vector<StorageBuffer<uint32_t>>& indexBuffers, const std::vector<std::shared_ptr<Geometry>>& geometries );
 
     void updateDynamicBottomLevelAS( );
 

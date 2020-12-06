@@ -8,7 +8,6 @@
 #include "api/Swapchain.hpp"
 #include "api/Vertex.hpp"
 #include "api/buffers/CommandBuffer.hpp"
-#include "api/buffers/IndexBuffer.hpp"
 #include "api/buffers/StorageBuffer.hpp"
 #include "api/buffers/UniformBuffer.hpp"
 #include "api/image/Cubemap.hpp"
@@ -122,7 +121,7 @@ namespace RAYEX_NAMESPACE
     Cubemap _environmentMap;
     std::vector<vk::UniqueSampler> _immutableSamplers;
 
-    std::vector<IndexBuffer> _indexBuffers;
+    std::vector<StorageBuffer<uint32_t>> _indexBuffers;
     std::vector<StorageBuffer<Vertex>> _vertexBuffers;
     std::vector<StorageBuffer<MeshSSBO>> _meshBuffers;
     std::vector<std::shared_ptr<Texture>> _textures;

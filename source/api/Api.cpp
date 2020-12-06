@@ -298,8 +298,9 @@ namespace RAYEX_NAMESPACE
           {
             if ( !_scene._geometries[i]->initialized )
             {
+              // Only keep one copy of both index and vertex buffers each.
               _vertexBuffers[i].init( _scene._geometries[i]->vertices, 1, true );
-              _indexBuffers[i].init( _scene._geometries[i]->indices );
+              _indexBuffers[i].init( _scene._geometries[i]->indices, 1, true );
 
               memAlignedMeshes.resize( _scene._geometries[i]->meshes.size( ) );
 
@@ -798,13 +799,7 @@ namespace RAYEX_NAMESPACE
     vertexBufferInfos.reserve( _vertexBuffers.size( ) );
     for ( const auto& vertexBuffer : _vertexBuffers )
     {
-      vk::Buffer buffer = nullptr;
-      if ( !vertexBuffer.get( ).empty( ) )
-      {
-        buffer = vertexBuffer.get( 0 );
-      }
-
-      vk::DescriptorBufferInfo vertexDataBufferInfo( buffer,
+      vk::DescriptorBufferInfo vertexDataBufferInfo( vertexBuffer.get( ).empty( ) ? nullptr : vertexBuffer.get( 0 ),
                                                      0,
                                                      VK_WHOLE_SIZE );
 
@@ -816,7 +811,7 @@ namespace RAYEX_NAMESPACE
     indexBufferInfos.reserve( _indexBuffers.size( ) );
     for ( const auto& indexBuffer : _indexBuffers )
     {
-      vk::DescriptorBufferInfo indexDataBufferInfo( indexBuffer.get( ),
+      vk::DescriptorBufferInfo indexDataBufferInfo( indexBuffer.get( ).empty( ) ? nullptr : indexBuffer.get( 0 ),
                                                     0,
                                                     VK_WHOLE_SIZE );
 

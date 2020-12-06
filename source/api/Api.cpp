@@ -129,8 +129,8 @@ namespace RAYEX_NAMESPACE
     initSyncObjects( );
 
     // Path tracer (part 1)
-    _ptBuilder.init( );
-    _settings->_maxRecursionDepth = _ptBuilder.getDevicePathTracingProperties( ).maxRecursionDepth;
+    _pathTracer.init( );
+    _settings->_maxRecursionDepth = _pathTracer.getDevicePathTracingProperties( ).maxRecursionDepth;
 
     // Resize and initialize buffers with "dummy data".
     // The advantage of doing this is that the buffers are all initialized right away (even though it is invalid data) and
@@ -169,8 +169,8 @@ namespace RAYEX_NAMESPACE
     initPipelines( );
 
     // Path tracer (part 2)
-    _ptBuilder.createStorageImage( _swapchain.getExtent( ) );
-    _ptBuilder.createShaderBindingTable( );
+    _pathTracer.createStorageImage( _swapchain.getExtent( ) );
+    _pathTracer.createShaderBindingTable( );
 
     // Post processing renderer
     _postProcessingRenderer.initDescriptorSet( );
@@ -183,7 +183,7 @@ namespace RAYEX_NAMESPACE
     vk::Rect2D scissor( { { 0, 0 }, extent } );
 
     _postProcessingRenderer.initPipeline( viewport, scissor );
-    _postProcessingRenderer.updateDescriptors( _ptBuilder.getStorageImageView( ), _ptBuilder.getStorageImage( ).getLayout( ) );
+    _postProcessingRenderer.updateDescriptors( _pathTracer.getStorageImageView( ), _pathTracer.getStorageImage( ).getLayout( ) );
 
     // Init and record swapchain command buffers.
     _swapchainCommandBuffers.init( _graphicsCmdPool.get( ), components::swapchainImageCount, vk::CommandBufferUsageFlagBits::eRenderPassContinue );
@@ -297,7 +297,7 @@ namespace RAYEX_NAMESPACE
         removeEnvironmentMap = false;
       }
 
-      updatePathTracingModelData( );
+      updateGeometryDescriptors( );
     }
 
     // Init geometry storage buffers.
@@ -368,13 +368,14 @@ namespace RAYEX_NAMESPACE
       vk::Result result = components::device.waitForFences( 1, &_inFlightFences[prevFrame].get( ), VK_TRUE, UINT64_MAX );
       RX_ASSERT( result == vk::Result::eSuccess, "Failed to wait for fences." );
 
-      updatePathTracingModelData( ); // Contains descriptors for vertices and indices.
+      updateGeometryDescriptors( ); // Contains descriptors for vertices and indices.
 
       RX_SUCCESS( "Uploaded Geometries." );
     }
 
     if ( _scene->_uploadGeometryInstancesToBuffer )
     {
+      // This check should not exist - @self investigate!
       if ( imageIndex % maxFramesInFlight == 0 )
       {
         _scene->_uploadGeometryInstancesToBuffer = false;
@@ -399,16 +400,16 @@ namespace RAYEX_NAMESPACE
     {
       if ( !_scene->_geometryInstances.empty( ) )
       {
-        if ( !_ptBuilder.instances.empty( ) )
+        if ( !_pathTracer.instances.empty( ) )
         {
           size_t i = 0;
-          for ( BlasInstance& instance : _ptBuilder.instances )
+          for ( BlasInstance& instance : _pathTracer.instances )
           {
             instance.transform = _scene->_geometryInstances[i]->transform;
             ++i;
           }
 
-          _ptBuilder.buildTlas( _ptBuilder.instances, vk::BuildAccelerationStructureFlagBitsKHR::ePreferFastTrace | vk::BuildAccelerationStructureFlagBitsKHR::eAllowUpdate, true );
+          _pathTracer.buildTlas( _pathTracer.instances, vk::BuildAccelerationStructureFlagBitsKHR::ePreferFastTrace | vk::BuildAccelerationStructureFlagBitsKHR::eAllowUpdate, true );
         }
       }
     }
@@ -455,31 +456,13 @@ namespace RAYEX_NAMESPACE
 
   } // namespace RAYEX_NAMESPACE
 
-  auto Api::prepareFrame( ) -> bool
+  void Api::prepareFrame( )
   {
-    // If the window is minimized then simply do not render anything anymore.
-    if ( _window->minimized( ) )
-    {
-      return true;
-    }
-
-    // If the window size has changed the swapchain has to be recreated.
-    if ( _window->changed( ) || _needSwapchainRecreate )
-    {
-      _camera->_updateProj = true;
-
-      _needSwapchainRecreate = false;
-      recreateSwapchain( );
-      return true;
-    }
-
     _swapchain.acquireNextImage( _imageAvailableSemaphores[currentFrame].get( ), nullptr );
 
     // Wait for the current frame's fences.
     //vk::Result result = components::device.waitForFences( 1, &_inFlightFences[currentFrame].get( ), VK_TRUE, UINT64_MAX );
     //RX_ASSERT( result == vk::Result::eSuccess, "Failed to wait for fences." );
-
-    return false;
   }
 
   auto Api::submitFrame( ) -> bool
@@ -532,16 +515,25 @@ namespace RAYEX_NAMESPACE
   {
     updateSettings( );
 
-    if ( prepareFrame( ) )
+    // If the window is minimized then simply do not render anything anymore.
+    if ( _window->minimized( ) )
     {
       return true;
     }
 
-    update( );
+    // If the window size has changed the swapchain has to be recreated.
+    if ( _window->changed( ) || _needSwapchainRecreate )
+    {
+      _camera->_updateProj = true;
 
-    // Wait for previous frame to finish command buffer execution.
-    vk::Result result = components::device.waitForFences( 1, &_inFlightFences[prevFrame].get( ), VK_TRUE, UINT64_MAX );
-    RX_ASSERT( result == vk::Result::eSuccess, "Failed to wait for fences." );
+      _needSwapchainRecreate = false;
+      recreateSwapchain( );
+      return true;
+    }
+
+    prepareFrame( );
+
+    update( );
 
     recordSwapchainCommandBuffers( );
 
@@ -566,15 +558,15 @@ namespace RAYEX_NAMESPACE
     _swapchain.init( &_surface, _postProcessingRenderer.getRenderPass( ).get( ) );
 
     // Recreate storage image with the new swapchain image size and update the path tracing descriptor set to use the new storage image view.
-    _ptBuilder.createStorageImage( _swapchain.getExtent( ) );
+    _pathTracer.createStorageImage( _swapchain.getExtent( ) );
 
-    _postProcessingRenderer.updateDescriptors( _ptBuilder.getStorageImageView( ), _ptBuilder.getStorageImage( ).getLayout( ) );
+    _postProcessingRenderer.updateDescriptors( _pathTracer.getStorageImageView( ), _pathTracer.getStorageImage( ).getLayout( ) );
 
     vk::WriteDescriptorSetAccelerationStructureKHR tlasInfo( 1,
-                                                             &_ptBuilder.getTlas( ).as.as );
+                                                             &_pathTracer.getTlas( ).as.as );
 
     vk::DescriptorImageInfo storageImageInfo( nullptr,
-                                              _ptBuilder.getStorageImageView( ),
+                                              _pathTracer.getStorageImageView( ),
                                               vk::ImageLayout::eGeneral ); // @todo Do not hardcode this value.
 
     _ptDescriptors.bindings.write( _ptDescriptorSets, 0, &tlasInfo );
@@ -604,15 +596,15 @@ namespace RAYEX_NAMESPACE
     RX_LOG_TIME_START( "Updating acceleration structures ..." );
 
     // @TODO Try to call this as few times as possible.
-    _ptBuilder.createBottomLevelAS( _vertexBuffers, _indexBuffers, _scene->_geometries );
-    _ptBuilder.createTopLevelAS( _scene->_geometryInstances );
+    _pathTracer.createBottomLevelAS( _vertexBuffers, _indexBuffers, _scene->_geometries );
+    _pathTracer.createTopLevelAS( _scene->_geometryInstances );
 
     // Update path tracing descriptor set.
     vk::WriteDescriptorSetAccelerationStructureKHR tlasInfo( 1,
-                                                             &_ptBuilder.getTlas( ).as.as );
+                                                             &_pathTracer.getTlas( ).as.as );
 
     vk::DescriptorImageInfo storageImageInfo( nullptr,
-                                              _ptBuilder.getStorageImageView( ),
+                                              _pathTracer.getStorageImageView( ),
                                               vk::ImageLayout::eGeneral );
 
     _ptDescriptors.bindings.write( _ptDescriptorSets, 0, &tlasInfo );
@@ -627,14 +619,14 @@ namespace RAYEX_NAMESPACE
     RX_LOG_TIME_START( "Updating top level acceleration structures ..." );
 
     // @TODO Try to call this as few times as possible.
-    _ptBuilder.createTopLevelAS( _scene->_geometryInstances );
+    _pathTracer.createTopLevelAS( _scene->_geometryInstances );
 
     // Update path tracing descriptor set.
     vk::WriteDescriptorSetAccelerationStructureKHR tlasInfo( 1,
-                                                             &_ptBuilder.getTlas( ).as.as );
+                                                             &_pathTracer.getTlas( ).as.as );
 
     vk::DescriptorImageInfo storageImageInfo( nullptr,
-                                              _ptBuilder.getStorageImageView( ),
+                                              _pathTracer.getStorageImageView( ),
                                               vk::ImageLayout::eGeneral );
 
     _ptDescriptors.bindings.write( _ptDescriptorSets, 0, &tlasInfo );
@@ -653,7 +645,7 @@ namespace RAYEX_NAMESPACE
                                                                        _ptSceneDescriptors.layout.get( ),
                                                                        _geometryDescriptors.layout.get( ) };
 
-    _ptBuilder.createPipeline( allRtDescriptorSetLayouts, _settings );
+    _pathTracer.createPipeline( allRtDescriptorSetLayouts, _settings );
 
     _pipelinesReady             = true;
     _settings->_refreshPipeline = false;
@@ -674,65 +666,68 @@ namespace RAYEX_NAMESPACE
   {
     RX_ASSERT( _pipelinesReady, "Can not record swapchain command buffers because the pipelines have not been initialized yet." );
 
-    pathTrace( );
-  }
+    // Wait for previous frame to finish command buffer execution.
+    vk::Result result = components::device.waitForFences( 1, &_inFlightFences[prevFrame].get( ), VK_TRUE, UINT64_MAX );
+    RX_ASSERT( result == vk::Result::eSuccess, "Failed to wait for fences." );
 
-  void Api::pathTrace( )
-  {
     auto directionalLightCount = static_cast<uint32_t>( _scene->_directionalLights.size( ) );
     auto pointLightCount       = static_cast<uint32_t>( _scene->_pointLights.size( ) );
+
+    PtPushConstants chitPc = { _settings->_clearColor,
+                               components::frameCount,
+                               _settings->_perPixelSampleRate,
+                               _settings->_recursionDepth,
+                               directionalLightCount,
+                               pointLightCount,
+                               static_cast<uint32_t>( _scene->_useEnvironmentMap ) };
 
     // Start recording the swapchain framebuffers?
     for ( size_t imageIndex = 0; imageIndex < _swapchainCommandBuffers.get( ).size( ); ++imageIndex )
     {
+      vk::CommandBuffer cmdBuf = _swapchainCommandBuffers.get( imageIndex );
+
       _swapchainCommandBuffers.begin( imageIndex );
       {
-        PtPushConstants chitPc = { _settings->_clearColor,
-                                   components::frameCount,
-                                   _settings->_perPixelSampleRate,
-                                   _settings->_recursionDepth,
-                                   directionalLightCount,
-                                   pointLightCount,
-                                   static_cast<uint32_t>( _scene->_useEnvironmentMap ) };
+        cmdBuf.pushConstants( _pathTracer.getPipelineLayout( ),                                                                                  // layout
+                              vk::ShaderStageFlagBits::eRaygenKHR | vk::ShaderStageFlagBits::eMissKHR | vk::ShaderStageFlagBits::eClosestHitKHR, // stageFlags
+                              0,                                                                                                                 // offset
+                              sizeof( PtPushConstants ),                                                                                         // size
+                              &chitPc );                                                                                                         // pValues
 
-        _swapchainCommandBuffers.get( imageIndex ).pushConstants( _ptBuilder.getPipelineLayout( ),                                                                                   // layout
-                                                                  vk::ShaderStageFlagBits::eRaygenKHR | vk::ShaderStageFlagBits::eMissKHR | vk::ShaderStageFlagBits::eClosestHitKHR, // stageFlags
-                                                                  0,                                                                                                                 // offset
-                                                                  sizeof( PtPushConstants ),                                                                                         // size
-                                                                  &chitPc );                                                                                                         // pValues
-
-        _swapchainCommandBuffers.get( imageIndex ).bindPipeline( vk::PipelineBindPoint::eRayTracingKHR, _ptBuilder.getPipeline( ) );
+        cmdBuf.bindPipeline( vk::PipelineBindPoint::eRayTracingKHR, _pathTracer.getPipeline( ) );
 
         std::vector<vk::DescriptorSet> descriptorSets = { _ptDescriptorSets[imageIndex % maxFramesInFlight],
                                                           _ptSceneDescriptorSets[imageIndex % maxFramesInFlight],
                                                           _geometryDescriptorSets[imageIndex % maxFramesInFlight] };
 
-        _swapchainCommandBuffers.get( imageIndex ).bindDescriptorSets( vk::PipelineBindPoint::eRayTracingKHR,           // pipelineBindPoint
-                                                                       _ptBuilder.getPipelineLayout( ),                 // layout
-                                                                       0,                                               // first set
-                                                                       static_cast<uint32_t>( descriptorSets.size( ) ), // descriptor set count
-                                                                       descriptorSets.data( ),                          // descriptor sets
-                                                                       0,                                               // dynamic offset count
-                                                                       nullptr );                                       // dynamic offsets
+        cmdBuf.bindDescriptorSets( vk::PipelineBindPoint::eRayTracingKHR,           // pipelineBindPoint
+                                   _pathTracer.getPipelineLayout( ),                // layout
+                                   0,                                               // first set
+                                   static_cast<uint32_t>( descriptorSets.size( ) ), // descriptor set count
+                                   descriptorSets.data( ),                          // descriptor sets
+                                   0,                                               // dynamic offset count
+                                   nullptr );                                       // dynamic offsets
 
-        _ptBuilder.pathTrace( _swapchainCommandBuffers.get( imageIndex ), _swapchain.getImage( imageIndex ), _swapchain.getExtent( ) );
+        // First pass (path tracing)
+        _pathTracer.pathTrace( cmdBuf, _swapchain.getImage( imageIndex ), _swapchain.getExtent( ) );
 
-        // Post processing
-        _postProcessingRenderer.beginRenderPass( _swapchainCommandBuffers.get( imageIndex ), _swapchain.getFramebuffer( imageIndex ), _swapchain.getExtent( ) );
+        // Second pass
+        _postProcessingRenderer.beginRenderPass( cmdBuf, _swapchain.getFramebuffer( imageIndex ), _swapchain.getExtent( ) );
         {
-          _postProcessingRenderer.render( _swapchainCommandBuffers.get( imageIndex ), _swapchain.getExtent( ), imageIndex % maxFramesInFlight );
+          // 2. Post processing
+          _postProcessingRenderer.render( cmdBuf, _swapchain.getExtent( ), imageIndex % maxFramesInFlight );
 
+          // 3. ImGui
           if ( _gui != nullptr )
           {
-            _gui->renderDrawData( _swapchainCommandBuffers.get( imageIndex ) );
+            _gui->renderDrawData( cmdBuf );
           }
         }
-
-        _postProcessingRenderer.endRenderPass( _swapchainCommandBuffers.get( imageIndex ) );
+        _postProcessingRenderer.endRenderPass( cmdBuf );
       }
       _swapchainCommandBuffers.end( imageIndex );
     }
-  } // namespace RAYEX_NAMESPACE
+  }
 
   void Api::initSyncObjects( )
   {
@@ -771,7 +766,7 @@ namespace RAYEX_NAMESPACE
       _ptDescriptorSets     = vk::Initializer::initDescriptorSetsUnique( _ptDescriptors.pool, _ptDescriptors.layout );
     }
 
-    // RT Scene descriptor set layout.
+    // Scene descriptor set layout.
     {
       // Camera uniform buffer
       _ptSceneDescriptors.bindings.add( 0, vk::DescriptorType::eUniformBuffer, vk::ShaderStageFlagBits::eRaygenKHR );
@@ -785,20 +780,6 @@ namespace RAYEX_NAMESPACE
       _ptSceneDescriptors.layout = _ptSceneDescriptors.bindings.initLayoutUnique( );
       _ptSceneDescriptors.pool   = _ptSceneDescriptors.bindings.initPoolUnique( components::maxResources );
       _ptSceneDescriptorSets     = vk::Initializer::initDescriptorSetsUnique( _ptSceneDescriptors.pool, _ptSceneDescriptors.layout );
-    }
-
-    // RS Scene descriptor set layout.
-    {
-      // Camera uniform buffer
-      _rsSceneDescriptors.bindings.add( 0, vk::DescriptorType::eUniformBuffer, vk::ShaderStageFlagBits::eVertex );
-      // Lights storage buffer
-      _rsSceneDescriptors.bindings.add( 1, vk::DescriptorType::eStorageBuffer, vk::ShaderStageFlagBits::eFragment );
-      // Scene description buffer
-      _rsSceneDescriptors.bindings.add( 2, vk::DescriptorType::eStorageBuffer, vk::ShaderStageFlagBits::eVertex );
-
-      _rsSceneDescriptors.layout = _rsSceneDescriptors.bindings.initLayoutUnique( );
-      _rsSceneDescriptors.pool   = _rsSceneDescriptors.bindings.initPoolUnique( components::maxResources );
-      _rsSceneDescriptorSets     = vk::Initializer::initDescriptorSetsUnique( _rsSceneDescriptors.pool, _rsSceneDescriptors.layout );
     }
 
     // Geometry descriptor set layout.
@@ -873,7 +854,7 @@ namespace RAYEX_NAMESPACE
 #endif
 
       initPipelines( );
-      _ptBuilder.createShaderBindingTable( );
+      _pathTracer.createShaderBindingTable( );
     }
 
     if ( _settings->_refreshSwapchain )
@@ -886,26 +867,20 @@ namespace RAYEX_NAMESPACE
 
   void Api::updateSceneDescriptors( )
   {
-    // Update RT scene descriptor sets.
+    // Update scene descriptor sets
     _ptSceneDescriptors.bindings.writeArray( _ptSceneDescriptorSets, 0, _cameraUniformBuffer._bufferInfos.data( ) );
     _ptSceneDescriptors.bindings.writeArray( _ptSceneDescriptorSets, 1, _directionalLightsBuffer.getDescriptorInfos( ).data( ) );
     _ptSceneDescriptors.bindings.writeArray( _ptSceneDescriptorSets, 2, _pointLightsBuffer.getDescriptorInfos( ).data( ) );
     _ptSceneDescriptors.bindings.writeArray( _ptSceneDescriptorSets, 3, _geometryInstancesBuffer.getDescriptorInfos( ).data( ) );
     _ptSceneDescriptors.bindings.update( );
-
-    // Update RS scene descriptor sets.
-    _rsSceneDescriptors.bindings.writeArray( _rsSceneDescriptorSets, 0, _cameraUniformBuffer._bufferInfos.data( ) );
-    _rsSceneDescriptors.bindings.writeArray( _rsSceneDescriptorSets, 1, _directionalLightsBuffer.getDescriptorInfos( ).data( ) );
-    _rsSceneDescriptors.bindings.writeArray( _rsSceneDescriptorSets, 2, _geometryInstancesBuffer.getDescriptorInfos( ).data( ) );
-    _rsSceneDescriptors.bindings.update( );
   }
 
-  void Api::updatePathTracingModelData( )
+  void Api::updateGeometryDescriptors( )
   {
     RX_ASSERT( _scene->_geometries.size( ) <= _settings->_maxGeometry, "Can not bind more than ", _settings->_maxGeometry, " geometries." );
     RX_ASSERT( _meshBuffers.size( ) <= _settings->_maxMeshes, "Can not bind more than ", _settings->_maxMeshes, " meshes." );
 
-    // Update RT model data.
+    // Vertex buffers infos
     std::vector<vk::DescriptorBufferInfo> vertexBufferInfos;
     vertexBufferInfos.reserve( _vertexBuffers.size( ) );
     for ( const auto& vertexBuffer : _vertexBuffers )
@@ -917,6 +892,7 @@ namespace RAYEX_NAMESPACE
       vertexBufferInfos.push_back( vertexDataBufferInfo );
     }
 
+    // Index buffers infos
     std::vector<vk::DescriptorBufferInfo> indexBufferInfos;
     indexBufferInfos.reserve( _indexBuffers.size( ) );
     for ( const auto& indexBuffer : _indexBuffers )
@@ -928,6 +904,7 @@ namespace RAYEX_NAMESPACE
       indexBufferInfos.push_back( indexDataBufferInfo );
     }
 
+    // Mesh buffers info (each geometry stores n materials and offsets into the array of index buffers)
     std::vector<vk::DescriptorBufferInfo> meshBufferInfos;
     meshBufferInfos.reserve( _meshBuffers.size( ) );
     for ( auto& meshBuffer : _meshBuffers )
@@ -946,7 +923,7 @@ namespace RAYEX_NAMESPACE
       }
     }
 
-    // Mesh textures
+    // Texture samplers
     std::vector<vk::DescriptorImageInfo> textureInfos;
     textureInfos.reserve( _textures.size( ) );
     for ( size_t i = 0; i < _settings->_maxTextures; ++i )
@@ -981,6 +958,7 @@ namespace RAYEX_NAMESPACE
       RX_FATAL( "No default environment map provided." );
     }
 
+    // Write to and update descriptor bindings
     _geometryDescriptors.bindings.writeArray( _geometryDescriptorSets, 0, vertexBufferInfos.data( ) );
     _geometryDescriptors.bindings.writeArray( _geometryDescriptorSets, 1, indexBufferInfos.data( ) );
     _geometryDescriptors.bindings.writeArray( _geometryDescriptorSets, 2, meshBufferInfos.data( ) );
@@ -988,19 +966,5 @@ namespace RAYEX_NAMESPACE
     _geometryDescriptors.bindings.writeArray( _geometryDescriptorSets, 4, textureInfos.data( ) );
 
     _geometryDescriptors.bindings.update( );
-  }
-
-  auto Api::findGeometry( uint32_t geometryIndex ) -> std::shared_ptr<Geometry>
-  {
-    for ( std::shared_ptr<Geometry> geometry : _scene->_geometries )
-    {
-      if ( geometry->geometryIndex == geometryIndex )
-      {
-        return geometry;
-      }
-    }
-
-    RX_FATAL( "Could not find geometry in scene." );
-    return nullptr;
   }
 } // namespace RAYEX_NAMESPACE

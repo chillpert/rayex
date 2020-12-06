@@ -91,7 +91,7 @@ namespace RAYEX_NAMESPACE
     void updateSceneDescriptors( );
 
     /// Updates the descriptor set with bindings to the total vertices and total indices buffers.
-    void updatePathTracingModelData( );
+    void updateGeometryDescriptors( );
 
     /// Handles swapchain and pipeline recreations triggered by the user using setters provided in RAYEX_NAMESPACE::Settings.
     void updateSettings( );
@@ -100,18 +100,10 @@ namespace RAYEX_NAMESPACE
     void recreateSwapchain( );
 
     /// Acquires the next image from the swapchain.
-    auto prepareFrame( ) -> bool;
+    void prepareFrame( );
 
     /// Submits the swapchain command buffers to a queue and presents an image on the screen.
     auto submitFrame( ) -> bool;
-
-    /// Records path tracing calls to the swapchain command buffers.
-    void pathTrace( );
-
-    /// Used to retrieve a geometry based on its index.
-    /// @param geometryIndex The geometry's index.
-    /// @return Returns the geometry.
-    auto findGeometry( uint32_t geometryIndex ) -> std::shared_ptr<Geometry>;
 
     std::shared_ptr<Window> _window = nullptr; ///< A pointer to a RAYEX_NAMESPACE::Window object whose surface is going to be rendered to.
     std::shared_ptr<Camera> _camera = nullptr; ///< A pointer to a RAYEX_NAMESPACE::Camera object whose matrices will be used for rendering.
@@ -121,7 +113,7 @@ namespace RAYEX_NAMESPACE
     vk::UniqueDevice _device;                  ///< A unique Vulkan logical device for interfacing the physical device.
     vk::UniqueCommandPool _graphicsCmdPool;    ///< A single unique Vulkan command pool for graphics queue operations.
     vk::UniqueCommandPool _transferCmdPool;    ///< A single unique Vulkan command pool for transfer queue operations.
-    PathTracer _ptBuilder;                     ///< The RAYEX_NAMESPACE::PathTracer for setting up all path tracing-related structures and the path tracing process itself.
+    PathTracer _pathTracer;                    ///< The RAYEX_NAMESPACE::PathTracer for setting up all path tracing-related structures and the path tracing process itself.
 
     std::vector<vk::Fence> _imagesInFlight;                     ///< A vector of fences for synchronizing images that are in flight.
     std::vector<vk::UniqueFence> _inFlightFences;               ///< In flight fences used for synchronization.
@@ -130,12 +122,10 @@ namespace RAYEX_NAMESPACE
 
     Descriptors _ptDescriptors;       ///< Descriptors for ray-tracing-related data ( no equivalent in rasterization shader ).
     Descriptors _ptSceneDescriptors;  ///< Descriptors for scene-related data in path tracing.
-    Descriptors _rsSceneDescriptors;  ///< Descriptors for scene-related data in rasterization.
     Descriptors _geometryDescriptors; ///< Descriptors for vertex data.
 
     std::vector<vk::DescriptorSet> _ptDescriptorSets;       ///< Descriptor sets for path tracing-related data.
     std::vector<vk::DescriptorSet> _ptSceneDescriptorSets;  ///< Descriptor sets for scene-related data in rasterization shaders.
-    std::vector<vk::DescriptorSet> _rsSceneDescriptorSets;  ///< Descriptor sets for scene-related data in path tracing shaders.
     std::vector<vk::DescriptorSet> _geometryDescriptorSets; ///< Descriptor sets for vertex data.
     std::vector<vk::DescriptorSet> _textureDescriptorSets;  ///< Descriptor sets for texture data.
 

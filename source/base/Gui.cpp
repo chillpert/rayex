@@ -13,7 +13,7 @@ namespace RAYEX_NAMESPACE
     (void) io;
   }
 
-  void Gui::init( SDL_Window* window, const Surface* const surface, vk::Extent2D swapchainImageExtent, const std::vector<vk::ImageView>& swapchainImageViews )
+  void Gui::init( SDL_Window* window, const Surface* const surface, vk::Extent2D swapchainImageExtent, vk::RenderPass renderPass )
   {
     _window               = window;
     _swapchainImageExtent = swapchainImageExtent;
@@ -36,19 +36,14 @@ namespace RAYEX_NAMESPACE
     init_info.MinImageCount  = surface->getCapabilities( ).minImageCount + 1;
     init_info.ImageCount     = static_cast<uint32_t>( components::swapchainImageCount );
 
-    initRenderPass( surface );
-    RX_ASSERT( ImGui_ImplVulkan_Init( &init_info, _renderPass.get( ) ), "Failed to initialize Vulkan for ImGui." );
-    initCommandPool( );
+    RX_ASSERT( ImGui_ImplVulkan_Init( &init_info, renderPass ), "Failed to initialize Vulkan for ImGui." );
+
     initFonts( );
-    initCommandBuffers( );
-    initFramebuffers( swapchainImageViews );
   }
 
-  void Gui::recreate( vk::Extent2D swapchainImageExtent, const std::vector<vk::ImageView>& swapchainImageViews )
+  void Gui::recreate( vk::Extent2D swapchainImageExtent )
   {
     _swapchainImageExtent = swapchainImageExtent;
-
-    initFramebuffers( swapchainImageViews );
   }
 
   void Gui::render( )
@@ -56,21 +51,14 @@ namespace RAYEX_NAMESPACE
     ImGui::ShowDemoWindow( );
   }
 
-  void Gui::renderDrawData( uint32_t imageIndex )
+  void Gui::renderDrawData( vk::CommandBuffer commandBuffer )
   {
-    ImGui_ImplVulkan_NewFrame( );
     ImGui_ImplSDL2_NewFrame( _window );
     ImGui::NewFrame( );
     render( );
     ImGui::Render( );
 
-    _commandBuffers.begin( imageIndex );
-    _renderPass.begin( _framebuffers[imageIndex].get( ), _commandBuffers.get( imageIndex ), { 0, _swapchainImageExtent }, { { std::array<float, 4> { 0.5F, 0.5, 0.5F, 1.0F } } } );
-
-    ImGui_ImplVulkan_RenderDrawData( ImGui::GetDrawData( ), _commandBuffers.get( )[imageIndex] );
-
-    _renderPass.end( _commandBuffers.get( imageIndex ) );
-    _commandBuffers.end( imageIndex );
+    ImGui_ImplVulkan_RenderDrawData( ImGui::GetDrawData( ), commandBuffer );
   }
 
   void Gui::destroy( )
@@ -78,11 +66,6 @@ namespace RAYEX_NAMESPACE
     ImGui_ImplVulkan_Shutdown( );
     ImGui_ImplSDL2_Shutdown( );
     ImGui::DestroyContext( );
-  }
-
-  void Gui::initCommandPool( )
-  {
-    _commandPool = vk::Initializer::initCommandPoolUnique( components::graphicsFamilyIndex, vk::CommandPoolCreateFlagBits::eResetCommandBuffer );
   }
 
   void Gui::initDescriptorPool( )
@@ -104,53 +87,10 @@ namespace RAYEX_NAMESPACE
     _descriptorPool = vk::Initializer::initDescriptorPoolUnique( poolSizes, components::swapchainImageCount );
   }
 
-  void Gui::initRenderPass( const Surface* const surface )
-  {
-    vk::AttachmentDescription attachment( { },                               // flags
-                                          surface->getFormat( ),             // format
-                                          vk::SampleCountFlagBits::e1,       // samples
-                                          vk::AttachmentLoadOp::eLoad,       // loadOp
-                                          vk::AttachmentStoreOp::eStore,     // storeOp
-                                          vk::AttachmentLoadOp::eDontCare,   // stencilLoadOp
-                                          vk::AttachmentStoreOp::eDontCare,  // stencilStoreOp
-                                          vk::ImageLayout::ePresentSrcKHR,   // initialLayout
-                                          vk::ImageLayout::ePresentSrcKHR ); // finalLayout
-
-    vk::AttachmentReference colorAttachment( 0,                                          // attachment
-                                             vk::ImageLayout::eColorAttachmentOptimal ); // layout
-
-    vk::SubpassDescription subpass( { },                              // flags
-                                    vk::PipelineBindPoint::eGraphics, // pipelineBindPoint
-                                    0,                                // inputAttachmentsCount
-                                    nullptr,                          // pInputAttachments
-                                    1,                                // colorAttachmentsCount
-                                    &colorAttachment,                 // pColorAttachments
-                                    nullptr,                          // pResolveAttachments
-                                    nullptr,                          // pDepthStencilAttachment
-                                    0,                                // preserveAttachemntCount
-                                    nullptr );                        // pPreserveAttachments
-
-    vk::SubpassDependency dependency( VK_SUBPASS_EXTERNAL,                               // srcSubpass
-                                      0,                                                 // dstSubpass
-                                      vk::PipelineStageFlagBits::eColorAttachmentOutput, // srcStageMask
-                                      vk::PipelineStageFlagBits::eColorAttachmentOutput, // dstStageMask
-                                      vk::AccessFlagBits::eColorAttachmentWrite,         // srcAccessMask
-                                      vk::AccessFlagBits::eColorAttachmentWrite,         // dstAccessMask
-                                      { } );                                             // dependencyFlags
-
-    vk::RenderPassCreateInfo info( { },           // flags
-                                   1,             // attachmentCount
-                                   &attachment,   // pAttachments
-                                   1,             // subpassCount
-                                   &subpass,      // pSubpasses
-                                   1,             // dependencyCount
-                                   &dependency ); // pDependencies
-
-    _renderPass.init( { attachment }, { subpass }, { dependency } );
-  }
-
   void Gui::initFonts( )
   {
+    _commandPool = vk::Initializer::initCommandPoolUnique( components::graphicsFamilyIndex, vk::CommandPoolCreateFlagBits::eResetCommandBuffer );
+
     CommandBuffer commandBuffer( _commandPool.get( ) );
     commandBuffer.begin( );
 
@@ -158,20 +98,5 @@ namespace RAYEX_NAMESPACE
 
     commandBuffer.end( );
     commandBuffer.submitToQueue( components::graphicsQueue );
-  }
-
-  void Gui::initCommandBuffers( )
-  {
-    // Create command buffers for each image in the swapchain.
-    _commandBuffers.init( _commandPool.get( ), components::swapchainImageCount, vk::CommandBufferUsageFlagBits::eRenderPassContinue );
-  }
-
-  void Gui::initFramebuffers( const std::vector<vk::ImageView>& swapchainImageViews )
-  {
-    _framebuffers.resize( static_cast<uint32_t>( swapchainImageViews.size( ) ) );
-    for ( size_t i = 0; i < _framebuffers.size( ); ++i )
-    {
-      _framebuffers[i] = vk::Initializer::initFramebufferUnique( { swapchainImageViews[i] }, _renderPass.get( ), _swapchainImageExtent );
-    }
   }
 } // namespace RAYEX_NAMESPACE

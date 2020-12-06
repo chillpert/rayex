@@ -113,7 +113,7 @@ namespace RAYEX_NAMESPACE
     _transferCmdPool            = vk::Initializer::initCommandPoolUnique( components::transferFamilyIndex, { } );
     components::transferCmdPool = _transferCmdPool.get( );
 
-    // Offscreen renderer
+    // Post processing renderer
     _postProcessingRenderer.initColorImage( _surface.getExtent( ) );
     _postProcessingRenderer.initDepthImage( _surface.getExtent( ) );
     _postProcessingRenderer.initRenderPass( _surface.getFormat( ) );
@@ -496,13 +496,7 @@ namespace RAYEX_NAMESPACE
     // This will mark the current image to be in use by this frame.
     _imagesInFlight[imageIndex] = _inFlightFences[currentFrame].get( );
 
-    // Add GUI command buffer to swapchain command buffer if GUI is enabled.
     std::vector<vk::CommandBuffer> commandBuffers = { _swapchainCommandBuffers.get( )[imageIndex] };
-
-    if ( _gui != nullptr )
-    {
-      commandBuffers.push_back( _gui->getCommandBuffer( imageIndex ) );
-    }
 
     // Reset the signaled state of the current frame's fence to the unsignaled one.
     components::device.resetFences( 1, &_inFlightFences[currentFrame].get( ) );
@@ -551,11 +545,6 @@ namespace RAYEX_NAMESPACE
 
     recordSwapchainCommandBuffers( );
 
-    if ( _gui != nullptr )
-    {
-      _gui->renderDrawData( _swapchain.getCurrentImageIndex( ) );
-    }
-
     if ( submitFrame( ) )
     {
       return true;
@@ -598,7 +587,7 @@ namespace RAYEX_NAMESPACE
 
     if ( _gui != nullptr )
     {
-      _gui->recreate( _swapchain.getExtent( ), _swapchain.getImageViews( ) );
+      _gui->recreate( _swapchain.getExtent( ) );
     }
 
     // Update the camera screen size to avoid image stretching.
@@ -677,7 +666,7 @@ namespace RAYEX_NAMESPACE
     if ( _gui != nullptr )
     {
       //_postProcessingRenderer.initRenderPass( _surface.getFormat( ) );
-      _gui->init( _window->get( ), &_surface, _swapchain.getExtent( ), _swapchain.getImageViews( ) );
+      _gui->init( _window->get( ), &_surface, _swapchain.getExtent( ), _postProcessingRenderer.getRenderPass( ).get( ) );
     }
   }
 
@@ -697,54 +686,50 @@ namespace RAYEX_NAMESPACE
     for ( size_t imageIndex = 0; imageIndex < _swapchainCommandBuffers.get( ).size( ); ++imageIndex )
     {
       _swapchainCommandBuffers.begin( imageIndex );
-
-      PtPushConstants chitPc = { _settings->_clearColor,
-                                 components::frameCount,
-                                 _settings->_perPixelSampleRate,
-                                 _settings->_recursionDepth,
-                                 directionalLightCount,
-                                 pointLightCount,
-                                 static_cast<uint32_t>( _scene->_useEnvironmentMap ) };
-
-      _swapchainCommandBuffers.get( imageIndex ).pushConstants( _ptBuilder.getPipelineLayout( ),                                                                                   // layout
-                                                                vk::ShaderStageFlagBits::eRaygenKHR | vk::ShaderStageFlagBits::eMissKHR | vk::ShaderStageFlagBits::eClosestHitKHR, // stageFlags
-                                                                0,                                                                                                                 // offset
-                                                                sizeof( PtPushConstants ),                                                                                         // size
-                                                                &chitPc );                                                                                                         // pValues
-
-      _swapchainCommandBuffers.get( imageIndex ).bindPipeline( vk::PipelineBindPoint::eRayTracingKHR, _ptBuilder.getPipeline( ) );
-
-      std::vector<vk::DescriptorSet> descriptorSets = { _ptDescriptorSets[imageIndex % maxFramesInFlight],
-                                                        _ptSceneDescriptorSets[imageIndex % maxFramesInFlight],
-                                                        _geometryDescriptorSets[imageIndex % maxFramesInFlight] };
-
-      _swapchainCommandBuffers.get( imageIndex ).bindDescriptorSets( vk::PipelineBindPoint::eRayTracingKHR,           // pipelineBindPoint
-                                                                     _ptBuilder.getPipelineLayout( ),                 // layout
-                                                                     0,                                               // first set
-                                                                     static_cast<uint32_t>( descriptorSets.size( ) ), // descriptor set count
-                                                                     descriptorSets.data( ),                          // descriptor sets
-                                                                     0,                                               // dynamic offset count
-                                                                     nullptr );                                       // dynamic offsets
-
-      _ptBuilder.pathTrace( _swapchainCommandBuffers.get( imageIndex ), _swapchain.getImage( imageIndex ), _swapchain.getExtent( ) );
-
-      // Post processing
-      _postProcessingRenderer.beginRenderPass( _swapchainCommandBuffers.get( imageIndex ), _swapchain.getFramebuffer( imageIndex ), _swapchain.getExtent( ) );
       {
-        _postProcessingRenderer.render( _swapchainCommandBuffers.get( imageIndex ), _swapchain.getExtent( ), imageIndex % maxFramesInFlight );
+        PtPushConstants chitPc = { _settings->_clearColor,
+                                   components::frameCount,
+                                   _settings->_perPixelSampleRate,
+                                   _settings->_recursionDepth,
+                                   directionalLightCount,
+                                   pointLightCount,
+                                   static_cast<uint32_t>( _scene->_useEnvironmentMap ) };
 
-        /*
-        ImGui_ImplVulkan_NewFrame( );
-        ImGui_ImplSDL2_NewFrame( _window->get( ) );
-        ImGui::NewFrame( );
-        render( );
-        ImGui::Render( );
+        _swapchainCommandBuffers.get( imageIndex ).pushConstants( _ptBuilder.getPipelineLayout( ),                                                                                   // layout
+                                                                  vk::ShaderStageFlagBits::eRaygenKHR | vk::ShaderStageFlagBits::eMissKHR | vk::ShaderStageFlagBits::eClosestHitKHR, // stageFlags
+                                                                  0,                                                                                                                 // offset
+                                                                  sizeof( PtPushConstants ),                                                                                         // size
+                                                                  &chitPc );                                                                                                         // pValues
 
-        ImGui_ImplVulkan_RenderDrawData( ImGui::GetDrawData( ), _swapchainCommandBuffers.get( imageIndex ) );
-        */
+        _swapchainCommandBuffers.get( imageIndex ).bindPipeline( vk::PipelineBindPoint::eRayTracingKHR, _ptBuilder.getPipeline( ) );
+
+        std::vector<vk::DescriptorSet> descriptorSets = { _ptDescriptorSets[imageIndex % maxFramesInFlight],
+                                                          _ptSceneDescriptorSets[imageIndex % maxFramesInFlight],
+                                                          _geometryDescriptorSets[imageIndex % maxFramesInFlight] };
+
+        _swapchainCommandBuffers.get( imageIndex ).bindDescriptorSets( vk::PipelineBindPoint::eRayTracingKHR,           // pipelineBindPoint
+                                                                       _ptBuilder.getPipelineLayout( ),                 // layout
+                                                                       0,                                               // first set
+                                                                       static_cast<uint32_t>( descriptorSets.size( ) ), // descriptor set count
+                                                                       descriptorSets.data( ),                          // descriptor sets
+                                                                       0,                                               // dynamic offset count
+                                                                       nullptr );                                       // dynamic offsets
+
+        _ptBuilder.pathTrace( _swapchainCommandBuffers.get( imageIndex ), _swapchain.getImage( imageIndex ), _swapchain.getExtent( ) );
+
+        // Post processing
+        _postProcessingRenderer.beginRenderPass( _swapchainCommandBuffers.get( imageIndex ), _swapchain.getFramebuffer( imageIndex ), _swapchain.getExtent( ) );
+        {
+          _postProcessingRenderer.render( _swapchainCommandBuffers.get( imageIndex ), _swapchain.getExtent( ), imageIndex % maxFramesInFlight );
+
+          if ( _gui != nullptr )
+          {
+            _gui->renderDrawData( _swapchainCommandBuffers.get( imageIndex ) );
+          }
+        }
+
+        _postProcessingRenderer.endRenderPass( _swapchainCommandBuffers.get( imageIndex ) );
       }
-      _postProcessingRenderer.endRenderPass( _swapchainCommandBuffers.get( imageIndex ) );
-
       _swapchainCommandBuffers.end( imageIndex );
     }
   } // namespace RAYEX_NAMESPACE

@@ -11,7 +11,6 @@
 #include "api/buffers/IndexBuffer.hpp"
 #include "api/buffers/StorageBuffer.hpp"
 #include "api/buffers/UniformBuffer.hpp"
-#include "api/buffers/VertexBuffer.hpp"
 #include "api/image/Cubemap.hpp"
 #include "api/image/Texture.hpp"
 #include "api/pathtrace/PathTracer.hpp"
@@ -24,9 +23,9 @@ namespace RAYEX_NAMESPACE
 {
   class Rayex;
 
-  /// Initializes and owns all Vulkan components and displays a picture on the screen.
+  /// Initializes and owns all Vulkan components and renders an image.
   /// @note All API components and resources are freed using scope-bound destruction.
-  /// @warning Because of scope-bound destruction it is required to pay close attention to the order of resource allocations done by the user.
+  /// @warning Because of scope-bound destruction it is required to pay close attention to the order of resource allocations.
   /// @ingroup API
   class Api
   {
@@ -35,10 +34,6 @@ namespace RAYEX_NAMESPACE
 
     Api( ) = default;
     ~Api( );
-
-    /// @param window A pointer to a window object that the API will use to display an image.
-    /// @param camera A pointer to a camera object that will be used to "capture" the scene.
-    Api( std::shared_ptr<Window> window, std::shared_ptr<Camera> camera );
 
     Api( const Api& )  = delete;
     Api( const Api&& ) = delete;
@@ -65,14 +60,8 @@ namespace RAYEX_NAMESPACE
     /// Retrieves an image from the swapchain and presents it.
     auto render( ) -> bool;
 
-    /// Re-initializes the render pass to support the GUI and initializes the GUI itself.
     void initGui( );
 
-    /// Updates both top and bottom level acceleration structures as well as their descriptor bindings.
-    void updateAccelerationStructuresDescriptors( );
-
-    /// Initilializes a rasterization as well as a graphics pipeline.
-    /// @todo This function will be pointless once the new pipeline system is implemented.
     void initPipelines( );
 
     /// Records commands to the swapchain command buffers that will be used for rendering.
@@ -91,6 +80,9 @@ namespace RAYEX_NAMESPACE
     /// Updates the descriptor set with bindings to the total vertices and total indices buffers.
     void updateGeometryDescriptors( );
 
+    /// Updates both top and bottom level acceleration structures as well as their descriptor bindings.
+    void updateAccelerationStructuresDescriptors( );
+
     /// Handles swapchain and pipeline recreations triggered by the user using setters provided in RAYEX_NAMESPACE::Settings.
     void updateSettings( );
 
@@ -103,52 +95,52 @@ namespace RAYEX_NAMESPACE
     /// Submits the swapchain command buffers to a queue and presents an image on the screen.
     void submitFrame( );
 
-    std::shared_ptr<Window> _window = nullptr; ///< A pointer to a RAYEX_NAMESPACE::Window object whose surface is going to be rendered to.
-    std::shared_ptr<Camera> _camera = nullptr; ///< A pointer to a RAYEX_NAMESPACE::Camera object whose matrices will be used for rendering.
-    vk::UniqueInstance _instance;              ///< A unique Vulkan instance.
-    DebugMessenger _debugMessenger;            ///< The debug messenger for logging validation messages.
-    Surface _surface;                          ///< The surface containing surface parameters.
-    vk::UniqueDevice _device;                  ///< A unique Vulkan logical device for interfacing the physical device.
-    vk::UniqueCommandPool _graphicsCmdPool;    ///< A single unique Vulkan command pool for graphics queue operations.
-    vk::UniqueCommandPool _transferCmdPool;    ///< A single unique Vulkan command pool for transfer queue operations.
-    PathTracer _pathTracer;                    ///< The RAYEX_NAMESPACE::PathTracer for setting up all path tracing-related structures and the path tracing process itself.
+    std::shared_ptr<Window> _window = nullptr;
+    std::shared_ptr<Camera> _camera = nullptr;
+    vk::UniqueInstance _instance;
+    DebugMessenger _debugMessenger;
+    Surface _surface;
+    vk::UniqueDevice _device;
+    vk::UniqueCommandPool _graphicsCmdPool;
+    vk::UniqueCommandPool _transferCmdPool;
+    PathTracer _pathTracer;
 
-    std::vector<vk::Fence> _imagesInFlight;                     ///< A vector of fences for synchronizing images that are in flight.
-    std::vector<vk::UniqueFence> _inFlightFences;               ///< In flight fences used for synchronization.
-    std::vector<vk::UniqueSemaphore> _imageAvailableSemaphores; ///< All semaphores for signaling that a particular swapchain image is available.
-    std::vector<vk::UniqueSemaphore> _finishedRenderSemaphores; ///< All semaphores for signaling that a render operation has finished.
+    std::vector<vk::Fence> _imagesInFlight;
+    std::vector<vk::UniqueFence> _inFlightFences;
+    std::vector<vk::UniqueSemaphore> _imageAvailableSemaphores;
+    std::vector<vk::UniqueSemaphore> _finishedRenderSemaphores;
 
-    Descriptors _ptDescriptors;       ///< Descriptors for ray-tracing-related data ( no equivalent in rasterization shader ).
-    Descriptors _ptSceneDescriptors;  ///< Descriptors for scene-related data in path tracing.
-    Descriptors _geometryDescriptors; ///< Descriptors for vertex data.
+    Descriptors _ptDescriptors;
+    Descriptors _ptSceneDescriptors;
+    Descriptors _geometryDescriptors;
 
-    std::vector<vk::DescriptorSet> _ptDescriptorSets;       ///< Descriptor sets for path tracing-related data.
-    std::vector<vk::DescriptorSet> _ptSceneDescriptorSets;  ///< Descriptor sets for scene-related data in rasterization shaders.
-    std::vector<vk::DescriptorSet> _geometryDescriptorSets; ///< Descriptor sets for vertex data.
-    std::vector<vk::DescriptorSet> _textureDescriptorSets;  ///< Descriptor sets for texture data.
+    std::vector<vk::DescriptorSet> _ptDescriptorSets;
+    std::vector<vk::DescriptorSet> _ptSceneDescriptorSets;
+    std::vector<vk::DescriptorSet> _geometryDescriptorSets;
+    std::vector<vk::DescriptorSet> _textureDescriptorSets;
 
     Cubemap _environmentMap;
     std::vector<vk::UniqueSampler> _immutableSamplers;
 
-    std::vector<VertexBuffer> _vertexBuffers;          ///< Multiple buffers for vertices because of variable descriptor indexing.
-    std::vector<IndexBuffer> _indexBuffers;            ///< Multiple buffers for indices because of variable descriptor indexing.
-    std::vector<StorageBuffer<MeshSSBO>> _meshBuffers; ///< Multiple buffers for meshes because of variable descriptor indexing.
-    std::vector<std::shared_ptr<Texture>> _textures;   ///< Stores all textures.
+    std::vector<IndexBuffer> _indexBuffers;
+    std::vector<StorageBuffer<Vertex>> _vertexBuffers;
+    std::vector<StorageBuffer<MeshSSBO>> _meshBuffers;
+    std::vector<std::shared_ptr<Texture>> _textures;
 
-    StorageBuffer<GeometryInstanceSSBO> _geometryInstancesBuffer; ///< A storage buffer for the path tracing instances.
+    StorageBuffer<GeometryInstanceSSBO> _geometryInstancesBuffer;
 
-    UniformBuffer _cameraUniformBuffer; ///< Uniform buffers containing camera data.
+    UniformBuffer _cameraUniformBuffer;
 
-    Swapchain _swapchain; ///< A RAYEX_NAMESPACE::Swapchain to manage swapchain related operations.
+    Swapchain _swapchain;
     PostProcessingRenderer _postProcessingRenderer;
 
-    CommandBuffer _swapchainCommandBuffers; ///< A RAYEX_NAMESPACE::CommandBuffer containing as many command buffers as there are images in the swapchain.
+    CommandBuffer _swapchainCommandBuffers;
 
-    std::shared_ptr<Gui> _gui = nullptr; ///< A pointer to a RAYEX_NAMESPACE::Gui object that will be used for rendering the GUI.
+    std::shared_ptr<Gui> _gui = nullptr;
+    Settings _settings;
+    Scene _scene;
 
-    bool _needSwapchainRecreate = false;   ///< Keeps track of whether or not the swapchain needs to be re-created.
-    bool _pipelinesReady        = false;   ///< Keeps track of whether or not the graphics pipelines are ready.
-    Settings* _settings         = nullptr; ///< Refers to the rendering settings stored in Rayex::settings.
-    Scene* _scene               = nullptr; ///< Refers to the scene stored in Rayex::scene.
+    bool _needSwapchainRecreate = false;
+    bool _pipelinesReady        = false;
   };
 } // namespace RAYEX_NAMESPACE

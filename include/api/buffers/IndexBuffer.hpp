@@ -26,18 +26,17 @@ namespace RAYEX_NAMESPACE
 
       // Set up the staging buffer.
       Buffer stagingBuffer( size,
-                            vk::BufferUsageFlagBits::eTransferSrc | vk::BufferUsageFlagBits::eShaderDeviceAddress,
+                            vk::BufferUsageFlagBits::eTransferSrc,
                             { components::transferFamilyIndex },
-                            vk::MemoryPropertyFlagBits::eHostVisible | vk::MemoryPropertyFlagBits::eHostCoherent,
-                            &allocateFlags );
+                            vk::MemoryPropertyFlagBits::eHostVisible | vk::MemoryPropertyFlagBits::eHostCoherent );
 
       stagingBuffer.fill<uint32_t>( indices );
 
       // Set up the actual index buffer.
       Buffer::init( size,
-                    vk::BufferUsageFlagBits::eStorageBuffer | vk::BufferUsageFlagBits::eTransferDst | vk::BufferUsageFlagBits::eIndexBuffer | vk::BufferUsageFlagBits::eShaderDeviceAddress,
+                    vk::BufferUsageFlagBits::eStorageBuffer | vk::BufferUsageFlagBits::eTransferDst | vk::BufferUsageFlagBits::eShaderDeviceAddress,
                     { components::transferFamilyIndex },
-                    vk::MemoryPropertyFlagBits::eHostVisible | vk::MemoryPropertyFlagBits::eHostCoherent,
+                    vk::MemoryPropertyFlagBits::eDeviceLocal,
                     &allocateFlags );
 
       // Copy staging buffer to the actual index buffer.

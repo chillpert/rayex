@@ -51,6 +51,8 @@ namespace RAYEX_NAMESPACE
     /// @return Returns the size of the buffer.
     auto getSize( ) const -> const vk::DeviceSize { return _size; }
 
+    auto getCount( ) const -> uint32_t { return _count; }
+
     /// Creates the buffer and allocates memory for it.
     /// @param size The size of the buffer.
     /// @param usage The buffer's usage flags.
@@ -65,6 +67,8 @@ namespace RAYEX_NAMESPACE
     template <class T>
     void fill( const std::vector<T>& data, vk::DeviceSize offset = 0, std::optional<vk::DeviceSize> size = { } )
     {
+      _count = static_cast<uint32_t>( data.size( ) );
+
       vk::DeviceSize actualSize = data.size( ) * sizeof( data[0] );
 
       // Only call mapMemory once or everytime the buffer has been initialized again.
@@ -115,6 +119,7 @@ namespace RAYEX_NAMESPACE
     vk::UniqueDeviceMemory _memory; ///< The buffer's memory with a unique handle.
 
     vk::DeviceSize _size = 0; ///< The buffer's size.
+    uint32_t _count      = 0;
 
     void* _ptrToData = nullptr;
     bool _mapped     = false;

@@ -45,10 +45,18 @@ namespace RAYEX_NAMESPACE
   class StorageBuffer
   {
   public:
+    auto get( ) const -> const std::vector<Buffer>& { return _storageBuffers; }
+
+    auto get( size_t index ) const -> const vk::Buffer { return _storageBuffers[index].get( ); }
+
+    auto getCount( ) const -> uint32_t { return _count; }
+
     auto getDescriptorInfos( ) const -> const std::vector<vk::DescriptorBufferInfo>& { return _bufferInfos; }
 
-    void init( const std::vector<T>& data, size_t copies = 1 )
+    void init( const std::vector<T>& data, size_t copies = 1, bool deviceAddressVisible = false )
     {
+      _count = static_cast<uint32_t>( data.size( ) );
+
       _maxSize = sizeof( data[0] ) * data.size( );
 
       _stagingBuffers.resize( copies );
@@ -56,17 +64,31 @@ namespace RAYEX_NAMESPACE
       _bufferInfos.resize( copies );
       _fences.resize( copies );
 
+      vk::MemoryAllocateFlagsInfo* allocateFlags = nullptr;
+      if ( deviceAddressVisible )
+      {
+        allocateFlags = &vk::MemoryAllocateFlagsInfo( vk::MemoryAllocateFlagBitsKHR::eDeviceAddress );
+      }
+
       for ( size_t i = 0; i < copies; ++i )
       {
-        _stagingBuffers[i].init( _maxSize,                                                                               // size
-                                 vk::BufferUsageFlagBits::eTransferSrc,                                                  // usage
-                                 { components::transferFamilyIndex },                                                    // queueFamilyIndices
-                                 vk::MemoryPropertyFlagBits::eHostVisible | vk::MemoryPropertyFlagBits::eHostCoherent ); // memoryPropertyFlags
+        _stagingBuffers[i].init( _maxSize,                                                                             // size
+                                 vk::BufferUsageFlagBits::eTransferSrc,                                                // usage
+                                 { components::transferFamilyIndex },                                                  // queueFamilyIndices
+                                 vk::MemoryPropertyFlagBits::eHostVisible | vk::MemoryPropertyFlagBits::eHostCoherent, // memoryPropertyFlags
+                                 allocateFlags );
 
-        _storageBuffers[i].init( _maxSize,                                                                        // size
-                                 vk::BufferUsageFlagBits::eTransferDst | vk::BufferUsageFlagBits::eStorageBuffer, // usage
-                                 { components::transferFamilyIndex },                                             // queueFamilyIndices
-                                 vk::MemoryPropertyFlagBits::eDeviceLocal );                                      // memoryPropertyFlags
+        vk::BufferUsageFlags bufferUsageFlags = vk::BufferUsageFlagBits::eTransferDst | vk::BufferUsageFlagBits::eStorageBuffer;
+        if ( deviceAddressVisible )
+        {
+          bufferUsageFlags |= vk::BufferUsageFlagBits::eShaderDeviceAddress;
+        }
+
+        _storageBuffers[i].init( _maxSize,                                 // size
+                                 bufferUsageFlags,                         // usage
+                                 { components::transferFamilyIndex },      // queueFamilyIndices
+                                 vk::MemoryPropertyFlagBits::eDeviceLocal, // memoryPropertyFlags
+                                 allocateFlags );
 
         _bufferInfos[i].buffer = _storageBuffers[i].get( );
         _bufferInfos[i].offset = 0;
@@ -91,20 +113,14 @@ namespace RAYEX_NAMESPACE
       {
         for ( size_t i = 0; i < _storageBuffers.size( ); ++i )
         {
-          //components::device.waitForFences( 1, &_fences[i].get( ), VK_TRUE, UINT64_MAX );
-          //components::device.resetFences( 1, &_fences[i].get( ) );
-
           _stagingBuffers[i].fill<T>( data );
-          _stagingBuffers[i].copyToBuffer( _storageBuffers[i].get( ) ); //, _fences[i].get( ) );
+          _stagingBuffers[i].copyToBuffer( _storageBuffers[i].get( ) );
         }
       }
       else
       {
-        //components::device.waitForFences( 1, &_fences[index.value( )].get( ), VK_TRUE, UINT64_MAX );
-        //components::device.resetFences( 1, &_fences[index.value( )].get( ) );
-
         _stagingBuffers[index.value( )].fill<T>( data );
-        _stagingBuffers[index.value( )].copyToBuffer( _storageBuffers[index.value( )].get( ) ); //, _fences[index.value( )].get( ) );
+        _stagingBuffers[index.value( )].copyToBuffer( _storageBuffers[index.value( )].get( ) );
       }
     }
 
@@ -116,5 +132,6 @@ namespace RAYEX_NAMESPACE
     std::vector<vk::UniqueFence> _fences;
 
     vk::DeviceSize _maxSize = 0;
+    uint32_t _count         = 0;
   };
 } // namespace RAYEX_NAMESPACE

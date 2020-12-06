@@ -57,7 +57,7 @@ namespace RAYEX_NAMESPACE
     allDynamicBlas.clear( );
   }
 
-  auto PathTracer::modelToBlas( const VertexBuffer& vertexBuffer, const IndexBuffer& indexBuffer, bool allowTransforms ) const -> Blas
+  auto PathTracer::modelToBlas( StorageBuffer<Vertex>& vertexBuffer, const IndexBuffer& indexBuffer, bool allowTransforms ) const -> Blas
   {
     vk::AccelerationStructureCreateGeometryTypeInfoKHR asCreate( vk::GeometryTypeKHR::eTriangles,    // geometryType
                                                                  indexBuffer.getCount( ) / 3,        // maxPrimitiveCount
@@ -66,7 +66,7 @@ namespace RAYEX_NAMESPACE
                                                                  Vertex::getVertexPositionFormat( ), // vertexFormat
                                                                  allowTransforms );                  // allowsTransforms
 
-    vk::DeviceAddress vertexAddress = components::device.getBufferAddress( { vertexBuffer.get( ) } );
+    vk::DeviceAddress vertexAddress = components::device.getBufferAddress( { vertexBuffer.get( 0 ) } );
     vk::DeviceAddress indexAddress  = components::device.getBufferAddress( { indexBuffer.get( ) } );
 
     vk::AccelerationStructureGeometryTrianglesDataKHR triangles( asCreate.vertexFormat, // vertexFormat
@@ -114,7 +114,7 @@ namespace RAYEX_NAMESPACE
     return gInst;
   }
 
-  void PathTracer::createBottomLevelAS( const std::vector<VertexBuffer>& vertexBuffers, const std::vector<IndexBuffer>& indexBuffers, const std::vector<std::shared_ptr<Geometry>>& geometries )
+  void PathTracer::createBottomLevelAS( std::vector<StorageBuffer<Vertex>>& vertexBuffers, const std::vector<IndexBuffer>& indexBuffers, const std::vector<std::shared_ptr<Geometry>>& geometries )
   {
     // Clean up previous acceleration structures and free all memory.
     destroy( );
@@ -133,38 +133,35 @@ namespace RAYEX_NAMESPACE
 
     for ( size_t i = 0; i < vertexBuffers.size( ); ++i )
     {
-      if ( vertexBuffers[i].get( ) && indexBuffers[i].get( ) )
+      Blas blas;
+
+      std::pair<size_t, bool> temp;
+
+      // We could add more geometry in each BLAS, but we add only one for now.
+      if ( geometries.size( ) > i )
       {
-        Blas blas;
-
-        std::pair<size_t, bool> temp;
-
-        // We could add more geometry in each BLAS, but we add only one for now.
-        if ( geometries.size( ) > i )
+        if ( geometries[i] != nullptr )
         {
-          if ( geometries[i] != nullptr )
+          if ( geometries[i]->dynamic )
           {
-            if ( geometries[i]->dynamic )
-            {
-              blas = modelToBlas( vertexBuffers[i], indexBuffers[i], true );
-              allDynamicBlas.emplace_back( blas );
-              dynamicBlasIndices.push_back( geometries[i]->geometryIndex );
+            blas = modelToBlas( vertexBuffers[i], indexBuffers[i], true );
+            allDynamicBlas.emplace_back( blas );
+            dynamicBlasIndices.push_back( geometries[i]->geometryIndex );
 
-              temp.first  = allDynamicBlas.size( ) - 1;
-              temp.second = true;
-            }
-            else
-            {
-              blas = modelToBlas( vertexBuffers[i], indexBuffers[i], false );
-              allStaticBlas.emplace_back( blas );
-              staticBlasIndices.push_back( geometries[i]->geometryIndex );
-
-              temp.first  = allStaticBlas.size( ) - 1;
-              temp.second = false;
-            }
-
-            _indices.insert( { geometries[i]->geometryIndex, temp } );
+            temp.first  = allDynamicBlas.size( ) - 1;
+            temp.second = true;
           }
+          else
+          {
+            blas = modelToBlas( vertexBuffers[i], indexBuffers[i], false );
+            allStaticBlas.emplace_back( blas );
+            staticBlasIndices.push_back( geometries[i]->geometryIndex );
+
+            temp.first  = allStaticBlas.size( ) - 1;
+            temp.second = false;
+          }
+
+          _indices.insert( { geometries[i]->geometryIndex, temp } );
         }
       }
     }

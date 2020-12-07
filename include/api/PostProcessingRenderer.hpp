@@ -24,7 +24,7 @@ namespace RAYEX_NAMESPACE
     void initDescriptorSet( );
 
     /// @param imageInfo The descriptor image info of the path tracer's storage image.
-    void updateDescriptors( vk::DescriptorImageInfo imageInfo );
+    void updateDescriptors( const vk::DescriptorImageInfo& imageInfo );
 
     void initPipeline( );
 

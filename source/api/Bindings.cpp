@@ -107,7 +107,7 @@ namespace RAYEX_NAMESPACE
     return 0;
   }
 
-  void Bindings::write( const std::vector<vk::DescriptorSet>& sets, uint32_t binding, vk::WriteDescriptorSetAccelerationStructureKHR* pWriteDescriptorSetAccelerationStructureKHR )
+  void Bindings::write( const std::vector<vk::DescriptorSet>& sets, uint32_t binding, const vk::WriteDescriptorSetAccelerationStructureKHR* pWriteDescriptorSetAccelerationStructureKHR )
   {
     for ( size_t i = 0; i < sets.size( ); ++i )
     {
@@ -116,7 +116,7 @@ namespace RAYEX_NAMESPACE
     }
   }
 
-  void Bindings::write( const std::vector<vk::DescriptorSet>& sets, uint32_t binding, vk::DescriptorImageInfo* pImageInfo )
+  void Bindings::write( const std::vector<vk::DescriptorSet>& sets, uint32_t binding, const vk::DescriptorImageInfo* pImageInfo )
   {
     for ( size_t i = 0; i < sets.size( ); ++i )
     {
@@ -125,7 +125,7 @@ namespace RAYEX_NAMESPACE
     }
   }
 
-  void Bindings::write( const std::vector<vk::DescriptorSet>& sets, uint32_t binding, vk::DescriptorBufferInfo* pBufferInfo )
+  void Bindings::write( const std::vector<vk::DescriptorSet>& sets, uint32_t binding, const vk::DescriptorBufferInfo* pBufferInfo )
   {
     for ( size_t i = 0; i < sets.size( ); ++i )
     {

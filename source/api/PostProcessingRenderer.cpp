@@ -89,7 +89,7 @@ namespace RAYEX_NAMESPACE
     _descriptorSets     = vk::Initializer::initDescriptorSetsUnique( _descriptors.pool, _descriptors.layout );
   }
 
-  void PostProcessingRenderer::updateDescriptors( vk::DescriptorImageInfo imageInfo )
+  void PostProcessingRenderer::updateDescriptors( const vk::DescriptorImageInfo& imageInfo )
   {
     _descriptors.bindings.write( _descriptorSets, 0, &imageInfo );
     _descriptors.bindings.update( );

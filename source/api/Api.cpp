@@ -350,7 +350,7 @@ namespace RAYEX_NAMESPACE
     // Recreate storage image with the new swapchain image size and update the path tracing descriptor set to use the new storage image view.
     _pathTracer.createStorageImage( _swapchain.getExtent( ) );
 
-    auto storageImageInfo = _pathTracer.getStorageImageInfo( );
+    const auto& storageImageInfo = _pathTracer.getStorageImageInfo( );
 
     _postProcessingRenderer.updateDescriptors( storageImageInfo );
 
@@ -429,10 +429,9 @@ namespace RAYEX_NAMESPACE
 
         size_t index = imageIndex % _sync.getMaxFramesInFlight( );
 
-        std::vector<vk::DescriptorSet>
-          descriptorSets = { _pathTracer.getDescriptorSet( index ),
-                             _scene._sceneDescriptorsets[index],
-                             _scene._geometryDescriptorSets[index] };
+        std::vector<vk::DescriptorSet> descriptorSets = { _pathTracer.getDescriptorSet( index ),
+                                                          _scene._sceneDescriptorsets[index],
+                                                          _scene._geometryDescriptorSets[index] };
 
         cmdBuf.bindDescriptorSets( vk::PipelineBindPoint::eRayTracingKHR,           // pipelineBindPoint
                                    _pathTracer.getPipelineLayout( ),                // layout

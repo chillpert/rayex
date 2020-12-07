@@ -59,7 +59,7 @@ layout( binding = 4, set = 2 ) uniform sampler2D textures[];
 layout( push_constant ) uniform Constants
 {
   vec4 clearColor;
-  uint frameCount;
+  int frameCount;
   uint sampleRatePerPixel;
   uint maxRecursionDepth;
   bool useEnvironmentMap;

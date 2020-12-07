@@ -8,7 +8,7 @@ layout( location = 0 ) rayPayloadInEXT RayPayLoad ray;
 layout( push_constant ) uniform Constants
 {
   vec4 clearColor;
-  uint frameCount;
+  int frameCount;
   uint sampleRatePerPixel;
   uint maxRecursionDepth;
   bool useEnvironmentMap;

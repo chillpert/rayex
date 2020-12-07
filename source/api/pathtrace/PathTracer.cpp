@@ -556,6 +556,13 @@ namespace RAYEX_NAMESPACE
     _storageImage.transitionToLayout( vk::ImageLayout::eGeneral );
 
     _storageImageView = vk::Initializer::initImageViewUnique( vk::Helper::getImageViewCreateInfo( _storageImage.get( ), _storageImage.getFormat( ) ) );
+
+    auto samplerCreateInfo = vk::Helper::getSamplerCreateInfo( );
+    _storageImageSampler   = vk::Initializer::initSamplerUnique( samplerCreateInfo );
+
+    _storageImageInfo.sampler     = _storageImageSampler.get( );
+    _storageImageInfo.imageView   = _storageImageView.get( );
+    _storageImageInfo.imageLayout = _storageImage.getLayout( );
   }
 
   void PathTracer::createShaderBindingTable( )

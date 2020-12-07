@@ -48,7 +48,7 @@ namespace RAYEX_NAMESPACE
     /// @return Returns the top level acceleration structure.
     auto getTlas( ) const -> const Tlas& { return _tlas; }
 
-    auto getStorageImage( ) const -> const Image& { return _storageImage; }
+    auto getStorageImageInfo( ) const -> const vk::DescriptorImageInfo& { return _storageImageInfo; }
 
     /// @return Returns the physical device's path tracing properties.
     auto getDevicePathTracingProperties( ) const -> const vk::PhysicalDeviceRayTracingPropertiesKHR& { return _ptProperties; }
@@ -115,18 +115,21 @@ namespace RAYEX_NAMESPACE
     std::vector<BlasInstance> instances;
 
   private:
-    vk::UniquePipeline _pipeline;                            ///< The Vulkan pipeline with a unique handle.
-    vk::UniquePipelineLayout _layout;                        ///< The Vulkan pipeline layout with a unique handle.
-    uint32_t _shaderGroups;                                  ///< The total amount of path tracing shaders.
-    vk::PhysicalDeviceRayTracingPropertiesKHR _ptProperties; ///< The physical device's path tracing capabilities.
-    std::vector<Blas> _staticBlas_;                          ///< A vector containing all static bottom level acceleration structures.
-    std::vector<Blas> _dynamicBlas_;                         ///< A vector containing all dynamic bottom level acceleration structures.
-    std::vector<Blas> _blas_;                                ///< Both, all static and dynamic blas.
+    vk::UniquePipeline _pipeline;
+    vk::UniquePipelineLayout _layout;
+    uint32_t _shaderGroups;
+    vk::PhysicalDeviceRayTracingPropertiesKHR _ptProperties;
+    std::vector<Blas> _staticBlas_;  ///< A vector containing all static bottom level acceleration structures.
+    std::vector<Blas> _dynamicBlas_; ///< A vector containing all dynamic bottom level acceleration structures.
+    std::vector<Blas> _blas_;        ///< Both, all static and dynamic blas.
     std::map<uint32_t, std::pair<size_t, bool>> _indices;
-    Tlas _tlas;                            ///< The top level acceleration structure.
-    Buffer _instanceBuffer;                ///< The instance buffer.
-    Buffer _sbtBuffer;                     ///< The shader binding table buffer.
-    Image _storageImage;                   ///< The storage image.
-    vk::UniqueImageView _storageImageView; ///< The storage image's image view.
+    Tlas _tlas; ///< The top level acceleration structure.
+    Buffer _instanceBuffer;
+    Buffer _sbtBuffer; ///< The shader binding table buffer.
+
+    Image _storageImage;
+    vk::UniqueImageView _storageImageView;
+    vk::UniqueSampler _storageImageSampler;
+    vk::DescriptorImageInfo _storageImageInfo;
   };
 } // namespace RAYEX_NAMESPACE

@@ -105,7 +105,6 @@ namespace RAYEX_NAMESPACE
     components::transferCmdPool = _transferCmdPool.get( );
 
     // Post processing renderer
-    _postProcessingRenderer.initColorImage( _surface.getExtent( ) );
     _postProcessingRenderer.initDepthImage( _surface.getExtent( ) );
     _postProcessingRenderer.initRenderPass( _surface.getFormat( ) );
 
@@ -164,11 +163,8 @@ namespace RAYEX_NAMESPACE
     auto width  = static_cast<float>( extent.width );
     auto height = static_cast<float>( extent.height );
 
-    vk::Viewport viewport( 0.0F, 0.0F, width, height, 0.0F, 1.0F );
-    vk::Rect2D scissor( { { 0, 0 }, extent } );
-
-    _postProcessingRenderer.initPipeline( viewport, scissor );
-    _postProcessingRenderer.updateDescriptors( _pathTracer.getStorageImageView( ), _pathTracer.getStorageImage( ).getLayout( ) );
+    _postProcessingRenderer.initPipeline( );
+    _postProcessingRenderer.updateDescriptors( _pathTracer.getStorageImageInfo( ) );
 
     // Init and record swapchain command buffers.
     _swapchainCommandBuffers.init( _graphicsCmdPool.get( ), components::swapchainImageCount, vk::CommandBufferUsageFlagBits::eRenderPassContinue );
@@ -538,14 +534,12 @@ namespace RAYEX_NAMESPACE
     // Recreate storage image with the new swapchain image size and update the path tracing descriptor set to use the new storage image view.
     _pathTracer.createStorageImage( _swapchain.getExtent( ) );
 
-    _postProcessingRenderer.updateDescriptors( _pathTracer.getStorageImageView( ), _pathTracer.getStorageImage( ).getLayout( ) );
+    auto storageImageInfo = _pathTracer.getStorageImageInfo( );
+
+    _postProcessingRenderer.updateDescriptors( storageImageInfo );
 
     vk::WriteDescriptorSetAccelerationStructureKHR tlasInfo( 1,
                                                              &_pathTracer.getTlas( ).as.as );
-
-    vk::DescriptorImageInfo storageImageInfo( nullptr,
-                                              _pathTracer.getStorageImageView( ),
-                                              vk::ImageLayout::eGeneral ); // @todo Do not hardcode this value.
 
     _ptDescriptors.bindings.write( _ptDescriptorSets, 0, &tlasInfo );
     _ptDescriptors.bindings.write( _ptDescriptorSets, 1, &storageImageInfo );

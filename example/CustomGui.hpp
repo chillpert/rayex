@@ -185,121 +185,121 @@ private:
       ImGui::ShowDemoWindow( );
     }
 
-    if ( ImGui::Begin( "Scene" ) )
-    {
-      if ( ImGui::Button( "Add box" ) )
-      {
-        addBox( _renderer );
-      }
-
-      ImGui::SameLine( );
-
-      if ( ImGui::Button( "Add sphere" ) )
-      {
-        addSphere( _renderer );
-      }
-
-      ImGui::SameLine( );
-
-      if ( ImGui::Button( "Add awp" ) )
-      {
-        addAwp( _renderer );
-      }
-
-      ImGui::SameLine( );
-
-      if ( ImGui::Button( "Clear instances" ) )
-      {
-        _renderer->scene( ).clearGeometryInstances( );
-      }
-
-      ImGui::SameLine( );
-
-      if ( ImGui::Button( "Clear geometry" ) )
-      {
-        _renderer->scene( ).clearGeometries( );
-      }
-
-      if ( ImGui::Button( "Pop geometry instance" ) )
-      {
-        _renderer->scene( ).popGeometryInstance( );
-      }
-
-      ImGui::SameLine( );
-
-      if ( ImGui::Button( "Pop geometry" ) )
-      {
-        _renderer->scene( ).popGeometry( );
-      }
-
-      if ( ImGui::Button( "Set skybox" ) )
-      {
-        _renderer->scene( ).setEnvironmentMap( "models/skybox/cubemap_yokohama_rgba.ktx" );
-      }
-
-      ImGui::SameLine( );
-
-      if ( ImGui::Button( "Remove skybox" ) )
-      {
-        _renderer->scene( ).removeEnvironmentMap( );
-      }
-    }
-
-    ImGui::End( );
-
-    if ( ImGui::Begin( "Resource Monitor" ) )
-    {
-      const size_t maxFrames = 10000;
-      static std::array<float, maxFrames> frameTimes;
-
-      static size_t counter = 0;
-      counter               = counter % maxFrames;
-
-      float dt = rx::Time::getDeltaTime( );
-      if ( dt > 0.001f )
-      {
-        if ( counter >= maxFrames - 1 )
-        {
-          std::fill( frameTimes.begin( ), frameTimes.end( ), 0.0f );
-        }
-
-        frameTimes[counter] = dt;
-        ++counter;
-      }
-
-      ImGui::SetNextItemWidth( -1 );
-      ImGui::PlotLines( "Frametimes", frameTimes.data( ), maxFrames, 0, "Frametime", 0.0F, 0.12F, ImVec2( 0.0F, 120.0F ) );
-    }
-
-    ImGui::End( );
+    static auto flags = ImGuiTreeNodeFlags_DefaultOpen;
 
     if ( ImGui::Begin( "Settings" ) )
     {
-      ImGui::Checkbox( "Show ImGui demo window", &showDemoWindow );
-
-      bool accumulateFrames = _renderer->settings( ).isAccumulatingFrames( );
-      ImGui::Checkbox( "Accumulate frames", &accumulateFrames );
-      _renderer->settings( ).setAccumulatingFrames( accumulateFrames );
-
-      auto clearColor = _renderer->settings( ).getClearColor( );
-      if ( ImGui::ColorEdit4( "##AmbientColor", &clearColor[0] ) )
+      if ( ImGui::CollapsingHeader( "Scene", flags ) )
       {
-        _renderer->settings( ).setClearColor( clearColor );
+        if ( ImGui::Button( "Add box" ) )
+        {
+          addBox( _renderer );
+        }
+
+        ImGui::SameLine( );
+
+        if ( ImGui::Button( "Add sphere" ) )
+        {
+          addSphere( _renderer );
+        }
+
+        ImGui::SameLine( );
+
+        if ( ImGui::Button( "Add awp" ) )
+        {
+          addAwp( _renderer );
+        }
+
+        ImGui::SameLine( );
+
+        if ( ImGui::Button( "Clear instances" ) )
+        {
+          _renderer->scene( ).clearGeometryInstances( );
+        }
+
+        ImGui::SameLine( );
+
+        if ( ImGui::Button( "Clear geometry" ) )
+        {
+          _renderer->scene( ).clearGeometries( );
+        }
+
+        if ( ImGui::Button( "Pop geometry instance" ) )
+        {
+          _renderer->scene( ).popGeometryInstance( );
+        }
+
+        ImGui::SameLine( );
+
+        if ( ImGui::Button( "Pop geometry" ) )
+        {
+          _renderer->scene( ).popGeometry( );
+        }
+
+        if ( ImGui::Button( "Set skybox" ) )
+        {
+          _renderer->scene( ).setEnvironmentMap( "models/skybox/cubemap_yokohama_rgba.ktx" );
+        }
+
+        ImGui::SameLine( );
+
+        if ( ImGui::Button( "Remove skybox" ) )
+        {
+          _renderer->scene( ).removeEnvironmentMap( );
+        }
       }
 
-      int perPixelSampleRate = static_cast<int>( _renderer->settings( ).getPerPixelSampleRate( ) );
-      if ( ImGui::SliderInt( "Per pixel sample rate", &perPixelSampleRate, 1, 100 ) )
+      if ( ImGui::CollapsingHeader( "Resource Monitor", flags ) )
       {
-        _renderer->settings( ).setPerPixelSampleRate( perPixelSampleRate );
+        const size_t maxFrames = 10000;
+        static std::array<float, maxFrames> frameTimes;
+
+        static size_t counter = 0;
+        counter               = counter % maxFrames;
+
+        float dt = rx::Time::getDeltaTime( );
+        if ( dt > 0.001f )
+        {
+          if ( counter >= maxFrames - 1 )
+          {
+            std::fill( frameTimes.begin( ), frameTimes.end( ), 0.0f );
+          }
+
+          frameTimes[counter] = dt;
+          ++counter;
+        }
+
+        ImGui::SetNextItemWidth( -1 );
+        ImGui::PlotLines( "Frametimes", frameTimes.data( ), maxFrames, 0, "Frametime", 0.0F, 0.12F, ImVec2( 0.0F, 120.0F ) );
       }
 
-      int depth = static_cast<int>( _renderer->settings( ).getRecursionDepth( ) );
-      if ( ImGui::SliderInt( "Recursion depth", &depth, 0, 31 ) )
+      if ( ImGui::CollapsingHeader( "Settings", flags ) )
       {
-        _renderer->settings( ).setRecursionDepth( static_cast<uint32_t>( depth ) );
+        ImGui::Checkbox( "Show ImGui demo window", &showDemoWindow );
+
+        bool accumulateFrames = _renderer->settings( ).isAccumulatingFrames( );
+        ImGui::Checkbox( "Accumulate frames", &accumulateFrames );
+        _renderer->settings( ).setAccumulatingFrames( accumulateFrames );
+
+        auto clearColor = _renderer->settings( ).getClearColor( );
+        if ( ImGui::ColorEdit4( "##AmbientColor", &clearColor[0] ) )
+        {
+          _renderer->settings( ).setClearColor( clearColor );
+        }
+
+        int perPixelSampleRate = static_cast<int>( _renderer->settings( ).getPerPixelSampleRate( ) );
+        if ( ImGui::SliderInt( "Per pixel sample rate", &perPixelSampleRate, 1, 100 ) )
+        {
+          _renderer->settings( ).setPerPixelSampleRate( perPixelSampleRate );
+        }
+
+        int depth = static_cast<int>( _renderer->settings( ).getRecursionDepth( ) );
+        if ( ImGui::SliderInt( "Recursion depth", &depth, 0, 31 ) )
+        {
+          _renderer->settings( ).setRecursionDepth( static_cast<uint32_t>( depth ) );
+        }
       }
     }
-
     ImGui::End( );
   }
 

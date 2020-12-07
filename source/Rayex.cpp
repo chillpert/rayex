@@ -14,23 +14,20 @@ namespace RAYEX_NAMESPACE
       _window = std::make_shared<Window>( );
     }
 
-    if ( scene._currentCamera == nullptr )
+    if ( _api._scene._currentCamera == nullptr )
     {
       RX_VERBOSE( "No custom camera implementation was provided. Using default implementation instead." );
-      scene._currentCamera = std::make_shared<Camera>( _window->getWidth( ), _window->getHeight( ) );
-      scene._cameras.insert( scene._currentCamera );
+      _api._scene._currentCamera = std::make_shared<Camera>( _window->getWidth( ), _window->getHeight( ) );
+      _api._scene._cameras.insert( _api._scene._currentCamera );
     }
 
-    _api->_window   = _window;
-    _api->_camera   = scene._currentCamera;
-    scene._settings = &settings;
+    _api._window          = _window;
+    _api._camera          = _api._scene._currentCamera;
+    _api._scene._settings = &_api._settings;
 
-    _api->_settings = &settings;
-    _api->_scene    = &scene;
-
-    if ( settings.getAssetsPath( ).empty( ) )
+    if ( _api._settings.getAssetsPath( ).empty( ) )
     {
-      settings.setDefaultAssetsPath( );
+      _api._settings.setDefaultAssetsPath( );
     }
 
     if ( _initialized )
@@ -47,7 +44,7 @@ namespace RAYEX_NAMESPACE
 #endif
 
     _initialized = _window->init( );
-    _api->initBase( );
+    _api.initBase( );
   }
 
   auto Rayex::isRunning( ) const -> bool
@@ -73,7 +70,7 @@ namespace RAYEX_NAMESPACE
     static bool firstRun = true;
     if ( _initScene )
     {
-      _api->initScene( );
+      _api.initScene( );
       _initScene = false;
     }
     else
@@ -89,33 +86,19 @@ namespace RAYEX_NAMESPACE
     firstRun = false;
 
     _running = _window->update( );
-    scene._currentCamera->update( );
+    _api._scene._currentCamera->update( );
 
-    if ( !_running )
-    {
-      return;
-    }
-
-    _running = _api->render( );
-
-    if ( !_running )
-    {
-      return;
-    }
+    _api.render( );
   }
 
   void Rayex::setWindow( std::shared_ptr<Window> window )
   {
-    _window = window;
-
-    if ( _api != nullptr )
-    {
-      _api->_window = _window;
-    }
+    _window      = window;
+    _api._window = _window;
   }
 
   void Rayex::setGui( std::shared_ptr<Gui> gui )
   {
-    _initialized ? _api->setGui( gui, true ) : _api->setGui( gui );
+    _initialized ? _api.setGui( gui, true ) : _api.setGui( gui );
   }
 } // namespace RAYEX_NAMESPACE

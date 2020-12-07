@@ -1,5 +1,7 @@
 #include "api/PostProcessingRenderer.hpp"
 
+#include "api/Swapchain.hpp"
+
 namespace RAYEX_NAMESPACE
 {
   void PostProcessingRenderer::initDepthImage( vk::Extent2D extent )

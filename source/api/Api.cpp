@@ -24,16 +24,6 @@ namespace RAYEX_NAMESPACE
   size_t currentFrame = 0;
   size_t prevFrame    = 0;
 
-  std::vector<GeometryInstanceSSBO> memAlignedGeometryInstances;
-  std::vector<MeshSSBO> memAlignedMeshes;
-
-  CameraUbo cameraUbo;
-
-  std::shared_ptr<Geometry> triangle                 = nullptr; ///< A dummy triangle that will be placed in the scene if it empty. This assures the AS creation.
-  std::shared_ptr<GeometryInstance> triangleInstance = nullptr;
-
-  bool removeEnvironmentMap = false;
-
   // Defines the maximum amount of frames that will be processed concurrently.
   const size_t maxFramesInFlight = 2;
 
@@ -110,7 +100,7 @@ namespace RAYEX_NAMESPACE
 
     // Swapchain
     _swapchain.init( &_surface, _postProcessingRenderer.getRenderPass( ).get( ) );
-    _settings->_refreshSwapchain = false;
+    _settings._refreshSwapchain = false;
 
     // GUI
     initGui( );
@@ -120,18 +110,9 @@ namespace RAYEX_NAMESPACE
 
     // Path tracer (part 1)
     _pathTracer.init( );
-    _settings->_maxRecursionDepth = _pathTracer.getDevicePathTracingProperties( ).maxRecursionDepth;
+    _settings._maxRecursionDepth = _pathTracer.getDevicePathTracingProperties( ).maxRecursionDepth;
 
-    // Resize and initialize buffers with "dummy data".
-    // The advantage of doing this is that the buffers are all initialized right away (even though it is invalid data) and
-    // this makes it possible to call fill instead of init again, when changing any of the data below.
-    std::vector<GeometryInstanceSSBO> geometryInstances( _settings->_maxGeometryInstances );
-    _geometryInstancesBuffer.init( geometryInstances, components::maxResources );
-
-    _vertexBuffers.resize( static_cast<size_t>( _settings->_maxGeometry ) );
-    _indexBuffers.resize( static_cast<size_t>( _settings->_maxGeometry ) );
-    _meshBuffers.resize( static_cast<size_t>( _settings->_maxMeshes ) );
-    _textures.resize( static_cast<size_t>( _settings->_maxTextures ) );
+    _scene.prepareBuffers( );
 
     RX_LOG_TIME_STOP( "Finished initializing Vulkan (base)" );
   }
@@ -141,13 +122,15 @@ namespace RAYEX_NAMESPACE
     RX_LOG_TIME_START( "Initializing Vulkan (scene) ..." );
 
     // Uniform buffers for camera
-    _cameraUniformBuffer.init<CameraUbo>( );
+    // @todo check if this cant be happen sooner? maybe possibly inside scene::prepareBuffers()
+    _scene.initCameraBuffer( );
 
     // Descriptor sets and layouts
-    initDescriptorSets( );
+    _pathTracer.initDescriptorSet( );
+    _scene.initDescriptorSets( );
 
     // Update RT scene descriptor sets.
-    updateSceneDescriptors( );
+    _scene.updateSceneDescriptors( );
 
     // Initialize the path tracing pipeline.
     initPipelines( );
@@ -158,11 +141,6 @@ namespace RAYEX_NAMESPACE
 
     // Post processing renderer
     _postProcessingRenderer.initDescriptorSet( );
-
-    auto extent = _swapchain.getExtent( );
-    auto width  = static_cast<float>( extent.width );
-    auto height = static_cast<float>( extent.height );
-
     _postProcessingRenderer.initPipeline( );
     _postProcessingRenderer.updateDescriptors( _pathTracer.getStorageImageInfo( ) );
 
@@ -170,234 +148,77 @@ namespace RAYEX_NAMESPACE
     _swapchainCommandBuffers.init( _graphicsCmdPool.get( ), components::swapchainImageCount, vk::CommandBufferUsageFlagBits::eRenderPassContinue );
 
     // If user has not set an environment map themself set a default one, to guarantee successful start up.
-    if ( !_scene->_uploadEnvironmentMap )
+    if ( !_scene._uploadEnvironmentMap )
     {
-      _scene->setEnvironmentMap( "" );
-      removeEnvironmentMap = true;
+      _scene.setEnvironmentMap( "" );
+      _scene._removeEnvironmentMap = true;
     }
 
     RX_LOG_TIME_STOP( "Finished initializing Vulkan (scene)" );
+  }
+
+  void Api::waitForPrevFrame( )
+  {
+    vk::Result result = components::device.waitForFences( 1, &_inFlightFences[prevFrame].get( ), VK_TRUE, UINT64_MAX );
+    RX_ASSERT( result == vk::Result::eSuccess, "Failed to wait for fences." );
   }
 
   void Api::update( )
   {
     uint32_t imageIndex = _swapchain.getCurrentImageIndex( );
 
-    _camera = _scene->_currentCamera;
+    _scene.uploadCameraBuffer( imageIndex % maxFramesInFlight );
 
-    // Upload camera.
-    if ( _camera != nullptr )
+    // If the scene is empty add a dummy triangle so that the acceleration structures can be built successfully.
+    if ( _scene._geometryInstances.empty( ) )
     {
-      if ( _camera->_updateView )
-      {
-        cameraUbo.view        = _camera->getViewMatrix( );
-        cameraUbo.viewInverse = _camera->getViewInverseMatrix( );
-
-        _camera->_updateView = false;
-      }
-
-      if ( _camera->_updateProj )
-      {
-        cameraUbo.projection        = _camera->getProjectionMatrix( );
-        cameraUbo.projectionInverse = _camera->getProjectionInverseMatrix( );
-
-        _camera->_updateProj = false;
-      }
-
-      cameraUbo.position = glm::vec4( _camera->getPosition( ), 1.0F );
-    }
-
-    _cameraUniformBuffer.upload<CameraUbo>( imageIndex % maxFramesInFlight, cameraUbo );
-
-    // If the scene is empty add a dummy triangle so that a TLAS can be built successfully.
-    if ( _scene->_geometryInstances.empty( ) )
-    {
-      _scene->_dummy = true;
-
-      vk::Result result = components::device.waitForFences( 1, &_inFlightFences[prevFrame].get( ), VK_TRUE, UINT64_MAX );
-      RX_ASSERT( result == vk::Result::eSuccess, "Failed to wait for fences." );
-
-      Vertex v1;
-      v1.normal = glm::vec3( 0.0F, 1.0F, 0.0F );
-      v1.pos    = glm::vec3( -0.00001F, 0.0F, 0.00001F );
-
-      Vertex v2;
-      v2.normal = glm::vec3( 0.0F, 1.0F, 0.0F );
-      v2.pos    = glm::vec3( 0.00001F, 0.0F, 0.00001F );
-
-      Vertex v3;
-      v3.normal = glm::vec3( 0.0F, 1.0F, 0.0F );
-      v3.pos    = glm::vec3( 0.00001F, 0.0F, -0.00001F );
-
-      triangle                = std::make_shared<Geometry>( );
-      triangle->vertices      = { v1, v2, v3 };
-      triangle->indices       = { 0, 1, 2 };
-      triangle->geometryIndex = components::geometryIndex++;
-      triangle->meshes.push_back( { { }, 0 } );
-      triangle->path = "Custom Dummy Triangle";
-
-      triangleInstance = instance( triangle );
-
-      _scene->submitGeometry( triangle );
-      _scene->submitGeometryInstance( triangleInstance );
-
-      RX_VERBOSE( "Scene is empty. Added dummy element." );
+      waitForPrevFrame( );
+      _scene.addDummy( );
     }
     else
     {
-      if ( triangle != nullptr && _scene->_geometryInstances.size( ) > 1 )
-      {
-        _scene->_dummy = false;
-
-        RX_VERBOSE( "Removing dummy element." );
-        _scene->removeGeometry( triangle );
-        triangle = nullptr;
-      }
+      waitForPrevFrame( );
+      _scene.removeDummy( );
     }
 
-    if ( _scene->_deleteTextures )
+    if ( _scene._deleteTextures )
     {
-      _scene->_deleteTextures = false;
-
-      _textures.clear( );
-      _textures.resize( static_cast<size_t>( _settings->_maxTextures ) );
+      _scene.clearTextures( );
     }
 
-    if ( _scene->_uploadEnvironmentMap )
+    if ( _scene._uploadEnvironmentMap )
     {
-      _scene->_uploadEnvironmentMap = false;
-
-      vk::Result result = components::device.waitForFences( 1, &_inFlightFences[prevFrame].get( ), VK_TRUE, UINT64_MAX );
-      RX_ASSERT( result == vk::Result::eSuccess, "Failed to wait for fences." );
-
-      _environmentMap.init( _scene->_environmentMapTexturePath );
-
-      if ( removeEnvironmentMap )
-      {
-        _scene->removeEnvironmentMap( );
-        removeEnvironmentMap = false;
-      }
-
-      updateGeometryDescriptors( );
+      waitForPrevFrame( );
+      _scene.uploadEnvironmentMap( );
     }
 
-    // Init geometry storage buffers.
-    if ( _scene->_uploadGeometries )
+    if ( _scene._uploadGeometries )
     {
-      _scene->_uploadGeometries = false;
-
-      for ( size_t i = 0; i < _scene->_geometries.size( ); ++i )
-      {
-        if ( i < _scene->_geometries.size( ) )
-        {
-          if ( _scene->_geometries[i] != nullptr )
-          {
-            if ( !_scene->_geometries[i]->initialized )
-            {
-              // Only keep one copy of both index and vertex buffers each.
-              _vertexBuffers[i].init( _scene->_geometries[i]->vertices, 1, true );
-              _indexBuffers[i].init( _scene->_geometries[i]->indices, 1, true );
-
-              memAlignedMeshes.resize( _scene->_geometries[i]->meshes.size( ) );
-
-              // Textures
-              int j                 = 0;
-              float diffuseTexIndex = -1.0F;
-              for ( const auto& mesh : _scene->_geometries[i]->meshes )
-              {
-                diffuseTexIndex = -1.0F;
-
-                // @todo Rare bug where textureIndex would be std::numeric_limits<size_t>::max( ). Do not know how to reproduce yet.
-                size_t textureIndex = std::numeric_limits<size_t>::max( );
-                for ( size_t i = 0; i < _textures.size( ); ++i )
-                {
-                  if ( _textures[i] == nullptr )
-                  {
-                    textureIndex = i;
-                  }
-                }
-
-                RX_ASSERT( textureIndex != std::numeric_limits<size_t>::max( ), "Can not have more than ", _settings->_maxTextures, " textures." );
-
-                if ( _textures[textureIndex] == nullptr && !mesh.material.diffuseTexPath.empty( ) )
-                {
-                  auto texture = std::make_shared<Texture>( );
-                  texture->init( mesh.material.diffuseTexPath );
-                  diffuseTexIndex         = static_cast<float>( textureIndex );
-                  _textures[textureIndex] = texture;
-                }
-
-                memAlignedMeshes[j] = MeshSSBO { glm::vec4( mesh.material.ambient, -1.0F ),
-                                                 glm::vec4( mesh.material.diffuse, diffuseTexIndex ),
-                                                 glm::vec4( mesh.material.specular, -1.0F ),
-                                                 glm::vec4( mesh.material.emission, 1.0F ),
-                                                 glm::vec4( mesh.material.transmittance, 1.0F ),
-                                                 { },
-                                                 mesh.indexOffset };
-                ++j;
-              }
-
-              // Meshes
-              _meshBuffers[i].init( memAlignedMeshes );
-
-              _scene->_geometries[i]->initialized = true;
-              RX_SUCCESS( "Initialized Geometries." );
-            }
-          }
-        }
-      }
-
-      vk::Result result = components::device.waitForFences( 1, &_inFlightFences[prevFrame].get( ), VK_TRUE, UINT64_MAX );
-      RX_ASSERT( result == vk::Result::eSuccess, "Failed to wait for fences." );
-
-      updateGeometryDescriptors( ); // Contains descriptors for vertices and indices.
-
-      RX_SUCCESS( "Uploaded Geometries." );
+      waitForPrevFrame( );
+      _scene.uploadGeometries( );
+      _scene.updateGeoemtryDescriptors( );
     }
 
-    if ( _scene->_uploadGeometryInstancesToBuffer )
+    if ( _scene._uploadGeometryInstancesToBuffer )
     {
       // This check should not exist - @self investigate!
       if ( imageIndex % maxFramesInFlight == 0 )
       {
-        _scene->_uploadGeometryInstancesToBuffer = false;
+        _scene.uploadGeometryInstances( imageIndex % maxFramesInFlight );
 
-        if ( !_scene->_geometryInstances.empty( ) )
-        {
-          memAlignedGeometryInstances.resize( _scene->_geometryInstances.size( ) );
-          std::transform( _scene->_geometryInstances.begin( ), _scene->_geometryInstances.end( ), memAlignedGeometryInstances.begin( ),
-                          []( std::shared_ptr<GeometryInstance> instance ) { return GeometryInstanceSSBO { instance->transform,
-                                                                                                           instance->transformIT,
-                                                                                                           instance->geometryIndex }; } );
-
-          _geometryInstancesBuffer.upload( memAlignedGeometryInstances, imageIndex % maxFramesInFlight );
-
-          updateAccelerationStructuresDescriptors( );
-
-          RX_SUCCESS( "Uploaded geometry instances." );
-        }
+        // @TODO Try to call this as few times as possible.
+        _pathTracer.createBottomLevelAS( _scene._vertexBuffers, _scene._indexBuffers, _scene._geometries );
+        _pathTracer.buildTlas( _scene._geometryInstances );
+        _pathTracer.updateDescriptors( );
       }
     }
     else
     {
-      if ( !_scene->_geometryInstances.empty( ) )
-      {
-        if ( !_pathTracer.instances.empty( ) )
-        {
-          size_t i = 0;
-          for ( BlasInstance& instance : _pathTracer.instances )
-          {
-            instance.transform = _scene->_geometryInstances[i]->transform;
-            ++i;
-          }
-
-          _pathTracer.buildTlas( _pathTracer.instances, vk::BuildAccelerationStructureFlagBitsKHR::ePreferFastTrace | vk::BuildAccelerationStructureFlagBitsKHR::eAllowUpdate, true );
-        }
-      }
+      _pathTracer.buildTlas( _scene._geometryInstances, vk::BuildAccelerationStructureFlagBitsKHR::ePreferFastTrace | vk::BuildAccelerationStructureFlagBitsKHR::eAllowUpdate, true );
     }
 
     // Increment frame counter for jitter cam.
-    if ( _settings->_accumulateFrames )
+    if ( _settings._accumulateFrames )
     {
       ++components::frameCount;
     }
@@ -460,9 +281,9 @@ namespace RAYEX_NAMESPACE
   void Api::updateSettings( )
   {
     // Handle pipeline refresh
-    if ( _settings->_refreshPipeline )
+    if ( _settings._refreshPipeline )
     {
-      _settings->_refreshPipeline = false;
+      _settings._refreshPipeline = false;
 
       // Calling wait idle, because pipeline recreation is assumed to be a very rare event to happen.
       components::device.waitIdle( );
@@ -479,22 +300,22 @@ namespace RAYEX_NAMESPACE
     }
 
     // Handle swapchain refresh
-    if ( _settings->_refreshSwapchain )
+    if ( _settings._refreshSwapchain )
     {
-      _settings->_refreshSwapchain = false;
+      _settings._refreshSwapchain = false;
 
       recreateSwapchain( );
     }
   }
 
-  auto Api::render( ) -> bool
+  void Api::render( )
   {
     updateSettings( );
 
     // If the window is minimized then simply do not render anything anymore.
     if ( _window->minimized( ) )
     {
-      return true;
+      return;
     }
 
     // If the window size has changed the swapchain has to be recreated.
@@ -504,7 +325,7 @@ namespace RAYEX_NAMESPACE
 
       _needSwapchainRecreate = false;
       recreateSwapchain( );
-      return true;
+      return;
     }
 
     prepareFrame( );
@@ -514,8 +335,6 @@ namespace RAYEX_NAMESPACE
     recordSwapchainCommandBuffers( );
 
     submitFrame( );
-
-    return true;
   }
 
   void Api::recreateSwapchain( )
@@ -538,12 +357,7 @@ namespace RAYEX_NAMESPACE
 
     _postProcessingRenderer.updateDescriptors( storageImageInfo );
 
-    vk::WriteDescriptorSetAccelerationStructureKHR tlasInfo( 1,
-                                                             &_pathTracer.getTlas( ).as.as );
-
-    _ptDescriptors.bindings.write( _ptDescriptorSets, 0, &tlasInfo );
-    _ptDescriptors.bindings.write( _ptDescriptorSets, 1, &storageImageInfo );
-    _ptDescriptors.bindings.update( );
+    _pathTracer.updateDescriptors( );
 
     // Swapchain command buffers
     _swapchainCommandBuffers.init( _graphicsCmdPool.get( ), components::swapchainImageCount, vk::CommandBufferUsageFlagBits::eRenderPassContinue );
@@ -558,32 +372,9 @@ namespace RAYEX_NAMESPACE
     auto screenSize = _swapchain.getExtent( );
     _camera->setSize( screenSize.width, screenSize.height );
 
-    _settings->_refreshSwapchain = false;
+    _settings._refreshSwapchain = false;
 
     RX_LOG_TIME_STOP( "Finished re-creating swapchain" );
-  }
-
-  void Api::updateAccelerationStructuresDescriptors( )
-  {
-    RX_LOG_TIME_START( "Updating acceleration structures ..." );
-
-    // @TODO Try to call this as few times as possible.
-    _pathTracer.createBottomLevelAS( _vertexBuffers, _indexBuffers, _scene->_geometries );
-    _pathTracer.createTopLevelAS( _scene->_geometryInstances );
-
-    // Update path tracing descriptor set.
-    vk::WriteDescriptorSetAccelerationStructureKHR tlasInfo( 1,
-                                                             &_pathTracer.getTlas( ).as.as );
-
-    vk::DescriptorImageInfo storageImageInfo( nullptr,
-                                              _pathTracer.getStorageImageView( ),
-                                              vk::ImageLayout::eGeneral );
-
-    _ptDescriptors.bindings.write( _ptDescriptorSets, 0, &tlasInfo );
-    _ptDescriptors.bindings.write( _ptDescriptorSets, 1, &storageImageInfo );
-    _ptDescriptors.bindings.update( );
-
-    RX_LOG_TIME_STOP( "Finished updating acceleration structures" );
   }
 
   void Api::initPipelines( )
@@ -591,14 +382,14 @@ namespace RAYEX_NAMESPACE
     RX_LOG_TIME_START( "Initializing graphic pipelines ..." );
 
     // path tracing pipeline
-    std::vector<vk::DescriptorSetLayout> allRtDescriptorSetLayouts = { _ptDescriptors.layout.get( ),
-                                                                       _ptSceneDescriptors.layout.get( ),
-                                                                       _geometryDescriptors.layout.get( ) };
+    std::vector<vk::DescriptorSetLayout> descriptorSetLayouts = { _pathTracer.getDescriptorSetLayout( ),
+                                                                  _scene._sceneDescriptors.layout.get( ),
+                                                                  _scene._geometryDescriptors.layout.get( ) };
 
-    _pathTracer.createPipeline( allRtDescriptorSetLayouts, _settings );
+    _pathTracer.createPipeline( descriptorSetLayouts, &_settings );
 
-    _pipelinesReady             = true;
-    _settings->_refreshPipeline = false;
+    _pipelinesReady            = true;
+    _settings._refreshPipeline = false;
 
     RX_LOG_TIME_STOP( "Finished graphic pipelines initialization" );
   }
@@ -619,11 +410,11 @@ namespace RAYEX_NAMESPACE
     vk::Result result = components::device.waitForFences( 1, &_inFlightFences[prevFrame].get( ), VK_TRUE, UINT64_MAX );
     RX_ASSERT( result == vk::Result::eSuccess, "Failed to wait for fences." );
 
-    PtPushConstants chitPc = { _settings->_clearColor,
+    PtPushConstants chitPc = { _settings._clearColor,
                                components::frameCount,
-                               _settings->_perPixelSampleRate,
-                               _settings->_recursionDepth,
-                               static_cast<uint32_t>( _scene->_useEnvironmentMap ) };
+                               _settings._perPixelSampleRate,
+                               _settings._recursionDepth,
+                               static_cast<uint32_t>( _scene._useEnvironmentMap ) };
 
     // Start recording the swapchain framebuffers?
     for ( size_t imageIndex = 0; imageIndex < _swapchainCommandBuffers.get( ).size( ); ++imageIndex )
@@ -640,9 +431,9 @@ namespace RAYEX_NAMESPACE
 
         cmdBuf.bindPipeline( vk::PipelineBindPoint::eRayTracingKHR, _pathTracer.getPipeline( ) );
 
-        std::vector<vk::DescriptorSet> descriptorSets = { _ptDescriptorSets[imageIndex % maxFramesInFlight],
-                                                          _ptSceneDescriptorSets[imageIndex % maxFramesInFlight],
-                                                          _geometryDescriptorSets[imageIndex % maxFramesInFlight] };
+        std::vector<vk::DescriptorSet> descriptorSets = { _pathTracer.getDescriptorSet( imageIndex % maxFramesInFlight ),
+                                                          _scene._sceneDescriptorsets[imageIndex % maxFramesInFlight],
+                                                          _scene._geometryDescriptorSets[imageIndex % maxFramesInFlight] };
 
         cmdBuf.bindDescriptorSets( vk::PipelineBindPoint::eRayTracingKHR,           // pipelineBindPoint
                                    _pathTracer.getPipelineLayout( ),                // layout
@@ -686,196 +477,5 @@ namespace RAYEX_NAMESPACE
       _finishedRenderSemaphores[i] = vk::Initializer::initSemaphoreUnique( );
       _inFlightFences[i]           = vk::Initializer::initFenceUnique( vk::FenceCreateFlagBits::eSignaled );
     }
-  }
-
-  void Api::initDescriptorSets( )
-  {
-    // Create the path tracing descriptor set layout
-    {
-      // TLAS
-      _ptDescriptors.bindings.add( 0,
-                                   vk::DescriptorType::eAccelerationStructureKHR,
-                                   vk::ShaderStageFlagBits::eRaygenKHR | vk::ShaderStageFlagBits::eClosestHitKHR,
-                                   1,
-                                   vk::DescriptorBindingFlagBits::eUpdateUnusedWhilePending | vk::DescriptorBindingFlagBits::ePartiallyBound );
-      // Output image
-      _ptDescriptors.bindings.add( 1,
-                                   vk::DescriptorType::eStorageImage,
-                                   vk::ShaderStageFlagBits::eRaygenKHR,
-                                   1,
-                                   vk::DescriptorBindingFlagBits::eUpdateUnusedWhilePending | vk::DescriptorBindingFlagBits::ePartiallyBound );
-
-      _ptDescriptors.layout = _ptDescriptors.bindings.initLayoutUnique( );
-      _ptDescriptors.pool   = _ptDescriptors.bindings.initPoolUnique( components::swapchainImageCount );
-      _ptDescriptorSets     = vk::Initializer::initDescriptorSetsUnique( _ptDescriptors.pool, _ptDescriptors.layout );
-    }
-
-    // Scene descriptor set layout.
-    {
-      // Camera uniform buffer
-      _ptSceneDescriptors.bindings.add( 0, vk::DescriptorType::eUniformBuffer, vk::ShaderStageFlagBits::eRaygenKHR );
-      // Scene description buffer
-      _ptSceneDescriptors.bindings.add( 1, vk::DescriptorType::eStorageBuffer, vk::ShaderStageFlagBits::eClosestHitKHR );
-
-      _ptSceneDescriptors.layout = _ptSceneDescriptors.bindings.initLayoutUnique( );
-      _ptSceneDescriptors.pool   = _ptSceneDescriptors.bindings.initPoolUnique( components::maxResources );
-      _ptSceneDescriptorSets     = vk::Initializer::initDescriptorSetsUnique( _ptSceneDescriptors.pool, _ptSceneDescriptors.layout );
-    }
-
-    // Geometry descriptor set layout.
-    {
-      // Vertex buffers
-      _geometryDescriptors.bindings.add( 0,
-                                         vk::DescriptorType::eStorageBuffer,
-                                         vk::ShaderStageFlagBits::eClosestHitKHR,
-                                         _settings->_maxGeometry,
-                                         vk::DescriptorBindingFlagBits::eUpdateAfterBind );
-
-      // Index buffers
-      _geometryDescriptors.bindings.add( 1,
-                                         vk::DescriptorType::eStorageBuffer,
-                                         vk::ShaderStageFlagBits::eClosestHitKHR,
-                                         _settings->_maxGeometry,
-                                         vk::DescriptorBindingFlagBits::eUpdateAfterBind );
-
-      // Mesh buffers
-      _geometryDescriptors.bindings.add( 2,
-                                         vk::DescriptorType::eStorageBuffer,
-                                         vk::ShaderStageFlagBits::eClosestHitKHR,
-                                         _settings->_maxMeshes,
-                                         vk::DescriptorBindingFlagBits::eUpdateAfterBind );
-
-      // Environment map
-      _geometryDescriptors.bindings.add( 3,
-                                         vk::DescriptorType::eCombinedImageSampler,
-                                         vk::ShaderStageFlagBits::eMissKHR );
-
-      // Textures
-      _immutableSamplers.reserve( _settings->_maxTextures );
-      for ( uint32_t i = 0; i < _settings->_maxTextures; ++i )
-      {
-        // @todo re-use the same sampler for all of these.
-        auto samplerCreateInfo = vk::Helper::getSamplerCreateInfo( );
-        _immutableSamplers.push_back( std::move( vk::Initializer::initSamplerUnique( samplerCreateInfo ) ) );
-      }
-
-      std::vector<vk::Sampler> immutableSamplers( _immutableSamplers.size( ) );
-      std::transform( _immutableSamplers.begin( ),
-                      _immutableSamplers.end( ),
-                      immutableSamplers.begin( ),
-                      []( const vk::UniqueSampler& sampler ) { return vk::Sampler( sampler.get( ) ); } );
-
-      _geometryDescriptors.bindings.add( 4,
-                                         vk::DescriptorType::eCombinedImageSampler,
-                                         vk::ShaderStageFlagBits::eClosestHitKHR,
-                                         _settings->_maxTextures,
-                                         vk::DescriptorBindingFlagBits::eUpdateAfterBind | vk::DescriptorBindingFlagBits::eVariableDescriptorCount,
-                                         immutableSamplers.data( ) );
-
-      _geometryDescriptors.layout = _geometryDescriptors.bindings.initLayoutUnique( vk::DescriptorSetLayoutCreateFlagBits::eUpdateAfterBindPool );
-      _geometryDescriptors.pool   = _geometryDescriptors.bindings.initPoolUnique( components::swapchainImageCount, vk::DescriptorPoolCreateFlagBits::eUpdateAfterBind );
-      _geometryDescriptorSets     = vk::Initializer::initDescriptorSetsUnique( _geometryDescriptors.pool, _geometryDescriptors.layout );
-    }
-  }
-
-  void Api::updateSceneDescriptors( )
-  {
-    // Update scene descriptor sets
-    _ptSceneDescriptors.bindings.writeArray( _ptSceneDescriptorSets, 0, _cameraUniformBuffer._bufferInfos.data( ) );
-    _ptSceneDescriptors.bindings.writeArray( _ptSceneDescriptorSets, 1, _geometryInstancesBuffer.getDescriptorInfos( ).data( ) );
-    _ptSceneDescriptors.bindings.update( );
-  }
-
-  void Api::updateGeometryDescriptors( )
-  {
-    RX_ASSERT( _scene->_geometries.size( ) <= _settings->_maxGeometry, "Can not bind more than ", _settings->_maxGeometry, " geometries." );
-    RX_ASSERT( _meshBuffers.size( ) <= _settings->_maxMeshes, "Can not bind more than ", _settings->_maxMeshes, " meshes." );
-
-    // Vertex buffers infos
-    std::vector<vk::DescriptorBufferInfo> vertexBufferInfos;
-    vertexBufferInfos.reserve( _vertexBuffers.size( ) );
-    for ( const auto& vertexBuffer : _vertexBuffers )
-    {
-      vk::DescriptorBufferInfo vertexDataBufferInfo( vertexBuffer.get( ).empty( ) ? nullptr : vertexBuffer.get( 0 ),
-                                                     0,
-                                                     VK_WHOLE_SIZE );
-
-      vertexBufferInfos.push_back( vertexDataBufferInfo );
-    }
-
-    // Index buffers infos
-    std::vector<vk::DescriptorBufferInfo> indexBufferInfos;
-    indexBufferInfos.reserve( _indexBuffers.size( ) );
-    for ( const auto& indexBuffer : _indexBuffers )
-    {
-      vk::DescriptorBufferInfo indexDataBufferInfo( indexBuffer.get( ).empty( ) ? nullptr : indexBuffer.get( 0 ),
-                                                    0,
-                                                    VK_WHOLE_SIZE );
-
-      indexBufferInfos.push_back( indexDataBufferInfo );
-    }
-
-    // Mesh buffers info (each geometry stores n materials and offsets into the array of index buffers)
-    std::vector<vk::DescriptorBufferInfo> meshBufferInfos;
-    meshBufferInfos.reserve( _meshBuffers.size( ) );
-    for ( auto& meshBuffer : _meshBuffers )
-    {
-      if ( meshBuffer.getDescriptorInfos( ).empty( ) )
-      {
-        vk::DescriptorBufferInfo meshBufferInfo( nullptr,
-                                                 0,
-                                                 VK_WHOLE_SIZE );
-
-        meshBufferInfos.push_back( meshBufferInfo );
-      }
-      else
-      {
-        meshBufferInfos.push_back( meshBuffer.getDescriptorInfos( )[0] );
-      }
-    }
-
-    // Texture samplers
-    std::vector<vk::DescriptorImageInfo> textureInfos;
-    textureInfos.reserve( _textures.size( ) );
-    for ( size_t i = 0; i < _settings->_maxTextures; ++i )
-    {
-      vk::DescriptorImageInfo textureInfo = { };
-
-      if ( _textures[i] != nullptr )
-      {
-        textureInfo.imageLayout = _textures[i]->getLayout( );
-        textureInfo.imageView   = _textures[i]->getImageView( );
-        textureInfo.sampler     = _immutableSamplers[i].get( );
-      }
-      else
-      {
-        textureInfo.imageLayout = { };
-        textureInfo.sampler     = _immutableSamplers[i].get( );
-      }
-
-      textureInfos.push_back( textureInfo );
-    }
-
-    // Environment map
-    vk::DescriptorImageInfo environmentMapTextureInfo;
-    if ( _environmentMap.getImageView( ) && _environmentMap.getSampler( ) )
-    {
-      environmentMapTextureInfo.imageLayout = _environmentMap.getLayout( );
-      environmentMapTextureInfo.imageView   = _environmentMap.getImageView( );
-      environmentMapTextureInfo.sampler     = _environmentMap.getSampler( );
-    }
-    else
-    {
-      RX_FATAL( "No default environment map provided." );
-    }
-
-    // Write to and update descriptor bindings
-    _geometryDescriptors.bindings.writeArray( _geometryDescriptorSets, 0, vertexBufferInfos.data( ) );
-    _geometryDescriptors.bindings.writeArray( _geometryDescriptorSets, 1, indexBufferInfos.data( ) );
-    _geometryDescriptors.bindings.writeArray( _geometryDescriptorSets, 2, meshBufferInfos.data( ) );
-    _geometryDescriptors.bindings.write( _geometryDescriptorSets, 3, &environmentMapTextureInfo );
-    _geometryDescriptors.bindings.writeArray( _geometryDescriptorSets, 4, textureInfos.data( ) );
-
-    _geometryDescriptors.bindings.update( );
   }
 } // namespace RAYEX_NAMESPACE

@@ -1,15 +1,13 @@
 #pragma once
 
 #include "api/Bindings.hpp"
-#include "api/Components.hpp"
 #include "api/RenderPass.hpp"
-#include "api/Swapchain.hpp"
 #include "api/image/Image.hpp"
-#include "api/utility/Helpers.hpp"
-#include "api/utility/Util.hpp"
 
 namespace RAYEX_NAMESPACE
 {
+  /// The post processing renderer acts as a second render pass for enabling post processing operations, such as gamma correction.
+  /// @ingroup API
   class PostProcessingRenderer
   {
   public:
@@ -25,6 +23,7 @@ namespace RAYEX_NAMESPACE
 
     void initDescriptorSet( );
 
+    /// @param imageInfo The descriptor image info of the path tracer's storage image.
     void updateDescriptors( vk::DescriptorImageInfo imageInfo );
 
     void initPipeline( );
@@ -33,6 +32,8 @@ namespace RAYEX_NAMESPACE
 
     void endRenderPass( vk::CommandBuffer commandBuffer );
 
+    /// Records the draw calls to a given command buffer.
+    /// @param imageIndex The current swapchain image index for selecting the correct descriptor set.
     void render( vk::CommandBuffer commandBuffer, vk::Extent2D size, size_t imageIndex );
 
   private:

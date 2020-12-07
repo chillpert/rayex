@@ -50,11 +50,11 @@ inline auto getRandomFloat( float min, float max ) -> float
 inline void addBox( rx::Rayex* renderer )
 {
   std::string_view path = "models/cube.obj";
-  auto cube             = renderer->scene.findGeometry( path );
+  auto cube             = renderer->scene( ).findGeometry( path );
   if ( cube == nullptr )
   {
     cube = rx::loadObj( path );
-    renderer->scene.submitGeometry( cube );
+    renderer->scene( ).submitGeometry( cube );
   }
 
   auto transform = glm::scale( glm::mat4( 1.0F ), glm::vec3( 0.3F, 0.3F, 0.3F ) );
@@ -62,17 +62,17 @@ inline void addBox( rx::Rayex* renderer )
   transform      = glm::translate( transform, getRandomUniquePosition( -25.0F, 25.0F ) );
 
   auto cubeInstance = rx::instance( cube, transform );
-  renderer->scene.submitGeometryInstance( cubeInstance );
+  renderer->scene( ).submitGeometryInstance( cubeInstance );
 }
 
 inline void addSphere( rx::Rayex* renderer )
 {
   std::string_view path = "models/sphere.obj";
-  auto sphere           = renderer->scene.findGeometry( path );
+  auto sphere           = renderer->scene( ).findGeometry( path );
   if ( sphere == nullptr )
   {
     sphere = rx::loadObj( path );
-    renderer->scene.submitGeometry( sphere );
+    renderer->scene( ).submitGeometry( sphere );
   }
 
   auto transform = glm::scale( glm::mat4( 1.0F ), glm::vec3( 0.1F, 0.1F, 0.1F ) );
@@ -80,17 +80,17 @@ inline void addSphere( rx::Rayex* renderer )
   transform      = glm::translate( transform, getRandomUniquePosition( -70.0F, 70.0F ) );
 
   auto sphereInstance = rx::instance( sphere, transform );
-  renderer->scene.submitGeometryInstance( sphereInstance );
+  renderer->scene( ).submitGeometryInstance( sphereInstance );
 }
 
 inline void addAwp( rx::Rayex* renderer )
 {
   std::string_view path = "models/awpdlore/awpdlore.obj";
-  auto awp              = renderer->scene.findGeometry( path );
+  auto awp              = renderer->scene( ).findGeometry( path );
   if ( awp == nullptr )
   {
     awp = rx::loadObj( path );
-    renderer->scene.submitGeometry( awp );
+    renderer->scene( ).submitGeometry( awp );
   }
 
   auto transform = glm::scale( glm::mat4( 1.0F ), glm::vec3( 0.3F, 0.3F, 0.3F ) );
@@ -98,7 +98,7 @@ inline void addAwp( rx::Rayex* renderer )
   transform      = glm::translate( transform, getRandomUniquePosition( -10.0F, 10.0F ) );
 
   auto awpInstance = rx::instance( awp, transform );
-  renderer->scene.submitGeometryInstance( awpInstance );
+  renderer->scene( ).submitGeometryInstance( awpInstance );
 }
 
 class CustomGui : public rx::Gui
@@ -210,38 +210,38 @@ private:
 
       if ( ImGui::Button( "Clear instances" ) )
       {
-        _renderer->scene.clearGeometryInstances( );
+        _renderer->scene( ).clearGeometryInstances( );
       }
 
       ImGui::SameLine( );
 
       if ( ImGui::Button( "Clear geometry" ) )
       {
-        _renderer->scene.clearGeometries( );
+        _renderer->scene( ).clearGeometries( );
       }
 
       if ( ImGui::Button( "Pop geometry instance" ) )
       {
-        _renderer->scene.popGeometryInstance( );
+        _renderer->scene( ).popGeometryInstance( );
       }
 
       ImGui::SameLine( );
 
       if ( ImGui::Button( "Pop geometry" ) )
       {
-        _renderer->scene.popGeometry( );
+        _renderer->scene( ).popGeometry( );
       }
 
       if ( ImGui::Button( "Set skybox" ) )
       {
-        _renderer->scene.setEnvironmentMap( "models/skybox/cubemap_yokohama_rgba.ktx" );
+        _renderer->scene( ).setEnvironmentMap( "models/skybox/cubemap_yokohama_rgba.ktx" );
       }
 
       ImGui::SameLine( );
 
       if ( ImGui::Button( "Remove skybox" ) )
       {
-        _renderer->scene.removeEnvironmentMap( );
+        _renderer->scene( ).removeEnvironmentMap( );
       }
     }
 
@@ -277,26 +277,26 @@ private:
     {
       ImGui::Checkbox( "Show ImGui demo window", &showDemoWindow );
 
-      bool accumulateFrames = _renderer->settings.isAccumulatingFrames( );
+      bool accumulateFrames = _renderer->settings( ).isAccumulatingFrames( );
       ImGui::Checkbox( "Accumulate frames", &accumulateFrames );
-      _renderer->settings.setAccumulatingFrames( accumulateFrames );
+      _renderer->settings( ).setAccumulatingFrames( accumulateFrames );
 
-      auto clearColor = _renderer->settings.getClearColor( );
+      auto clearColor = _renderer->settings( ).getClearColor( );
       if ( ImGui::ColorEdit4( "##AmbientColor", &clearColor[0] ) )
       {
-        _renderer->settings.setClearColor( clearColor );
+        _renderer->settings( ).setClearColor( clearColor );
       }
 
-      int perPixelSampleRate = static_cast<int>( _renderer->settings.getPerPixelSampleRate( ) );
+      int perPixelSampleRate = static_cast<int>( _renderer->settings( ).getPerPixelSampleRate( ) );
       if ( ImGui::SliderInt( "Per pixel sample rate", &perPixelSampleRate, 1, 100 ) )
       {
-        _renderer->settings.setPerPixelSampleRate( perPixelSampleRate );
+        _renderer->settings( ).setPerPixelSampleRate( perPixelSampleRate );
       }
 
-      int depth = static_cast<int>( _renderer->settings.getRecursionDepth( ) );
+      int depth = static_cast<int>( _renderer->settings( ).getRecursionDepth( ) );
       if ( ImGui::SliderInt( "Recursion depth", &depth, 0, 31 ) )
       {
-        _renderer->settings.setRecursionDepth( static_cast<uint32_t>( depth ) );
+        _renderer->settings( ).setRecursionDepth( static_cast<uint32_t>( depth ) );
       }
     }
 

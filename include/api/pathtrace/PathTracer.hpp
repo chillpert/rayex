@@ -1,5 +1,6 @@
 #pragma once
 
+#include "api/Bindings.hpp"
 #include "api/Swapchain.hpp"
 #include "api/buffers/Buffer.hpp"
 #include "api/buffers/StorageBuffer.hpp"
@@ -50,17 +51,17 @@ namespace RAYEX_NAMESPACE
 
     auto getStorageImageInfo( ) const -> const vk::DescriptorImageInfo& { return _storageImageInfo; }
 
-    /// @return Returns the physical device's path tracing properties.
     auto getDevicePathTracingProperties( ) const -> const vk::PhysicalDeviceRayTracingPropertiesKHR& { return _ptProperties; }
 
-    /// @return Returns the storage image's image view.
     auto getStorageImageView( ) const -> vk::ImageView { return _storageImageView.get( ); }
 
-    /// @return Returns the path tracing pipeline.
     auto getPipeline( ) const -> vk::Pipeline { return _pipeline.get( ); }
 
-    /// @return Returns the path tracing pipeline layout.
     auto getPipelineLayout( ) const -> vk::PipelineLayout { return _layout.get( ); };
+
+    auto getDescriptorSetLayout( ) -> vk::DescriptorSetLayout { return _descriptors.layout.get( ); }
+
+    auto getDescriptorSet( size_t index ) -> vk::DescriptorSet { return _descriptorSets[index]; }
 
     /// Used to convert wavefront models to a bottom level acceleration structure.
     /// @param vertexBuffer A vertex buffer of some geometry.
@@ -71,7 +72,7 @@ namespace RAYEX_NAMESPACE
     /// Used to convert a bottom level acceleration structure instance to a Vulkan geometry instance.
     /// @param instance A bottom level acceleration structure instance.
     /// @return Returns the Vulkan geometry instance.
-    auto instanceToVkGeometryInstanceKHR( const BlasInstance& instance ) -> vk::AccelerationStructureInstanceKHR;
+    auto instanceToVkGeometryInstanceKHR( std::shared_ptr<GeometryInstance>& geometryInstance ) -> vk::AccelerationStructureInstanceKHR;
 
     /// Used to prepare building the bottom level acceleration structures.
     /// @param vertexBuffers Vertex buffers of all geometry in the scene.
@@ -85,14 +86,10 @@ namespace RAYEX_NAMESPACE
     /// @param flags The build flags.
     void buildBlas( std::vector<Blas>& blas_, vk::BuildAccelerationStructureFlagsKHR flags = vk::BuildAccelerationStructureFlagBitsKHR::ePreferFastTrace );
 
-    /// Used to prepare building the top level acceleration structure.
-    /// @param geometryInstances All geometry instances in the scene.
-    void createTopLevelAS( const std::vector<std::shared_ptr<GeometryInstance>>& geometryInstances );
-
     /// Build the top level acceleration structure.
     /// @param instances A vector of bottom level acceleration structure instances.
     /// @param flags The build flags.
-    void buildTlas( const std::vector<BlasInstance>& instances, vk::BuildAccelerationStructureFlagsKHR flags = vk::BuildAccelerationStructureFlagBitsKHR::ePreferFastTrace, bool reuse = false );
+    void buildTlas( const std::vector<std::shared_ptr<GeometryInstance>>& geometryInstances, vk::BuildAccelerationStructureFlagsKHR flags = vk::BuildAccelerationStructureFlagBitsKHR::ePreferFastTrace, bool reuse = false );
 
     /// Creates the storage image which the path tracing shaders will write to.
     /// @param swapchainExtent The swapchain images' extent.
@@ -112,7 +109,9 @@ namespace RAYEX_NAMESPACE
     /// @param extent The swapchain images' extent.
     void pathTrace( vk::CommandBuffer swapchaincommandBuffer, vk::Image swapchainImage, vk::Extent2D extent );
 
-    std::vector<BlasInstance> instances;
+    void initDescriptorSet( );
+
+    void updateDescriptors( );
 
   private:
     vk::UniquePipeline _pipeline;
@@ -131,5 +130,8 @@ namespace RAYEX_NAMESPACE
     vk::UniqueImageView _storageImageView;
     vk::UniqueSampler _storageImageSampler;
     vk::DescriptorImageInfo _storageImageInfo;
+
+    Descriptors _descriptors;
+    std::vector<vk::DescriptorSet> _descriptorSets;
   };
 } // namespace RAYEX_NAMESPACE

@@ -53,17 +53,21 @@ namespace RAYEX_NAMESPACE
     /// @return Returns a pointer to the renderer's window.
     auto getWindow( ) const -> std::shared_ptr<Window> { return _window; }
 
-    Scene scene;
+    /// Used to modify any interal rendering settings.
+    /// @return Returns the settings.
+    auto settings( ) -> Settings& { return _api._settings; }
 
-    Settings settings;
+    /// Used to access the scene directly by adding or removing elements.
+    /// @return Returns the scene.
+    auto scene( ) -> Scene& { return _api._scene; }
 
   private:
-    std::shared_ptr<Window> _window = nullptr;                  ///< The window used to create a surface from.
-    std::shared_ptr<Gui> _gui       = nullptr;                  ///< The ImGui-based GUI.
-    std::unique_ptr<Api> _api       = std::make_unique<Api>( ); ///< Manages Vulkan-related tasks.
+    std::shared_ptr<Window> _window = nullptr; ///< The window used to create a surface from.
+    std::shared_ptr<Gui> _gui       = nullptr; ///< The ImGui-based GUI.
+    Api _api;                                  ///< Manages Vulkan-related tasks.
 
-    bool _initialized = false; ///< Keeps track of the initialization status.
-    bool _running     = true;  ///< Keeps track of whether or not the main loop should still be continued.
-    bool _initScene   = true;  ///< Keeps track of whether or not to initialize the scene.
+    bool _initialized = false;
+    bool _running     = true; ///< Keeps track of whether or not the main loop should still be continued.
+    bool _initScene   = true; ///< Keeps track of whether or not to initialize the scene.
   };
 } // namespace RAYEX_NAMESPACE

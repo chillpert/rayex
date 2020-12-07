@@ -93,21 +93,21 @@ namespace RAYEX_NAMESPACE
     return blas;
   }
 
-  auto PathTracer::instanceToVkGeometryInstanceKHR( const BlasInstance& instance ) -> vk::AccelerationStructureInstanceKHR
+  auto PathTracer::instanceToVkGeometryInstanceKHR( std::shared_ptr<GeometryInstance>& geometryInstance ) -> vk::AccelerationStructureInstanceKHR
   {
-    Blas& blas { _blas_[instance.blasId] };
+    Blas& blas { _blas_[geometryInstance->geometryIndex] };
 
     vk::AccelerationStructureDeviceAddressInfoKHR addressInfo( blas.as.as );
     vk::DeviceAddress blasAddress = components::device.getAccelerationStructureAddressKHR( addressInfo );
 
-    glm::mat4 transpose = glm::transpose( instance.transform );
+    glm::mat4 transpose = glm::transpose( geometryInstance->transform );
 
-    vk::AccelerationStructureInstanceKHR gInst( { },                 // transform
-                                                instance.instanceId, // instanceCustomIndex
-                                                instance.mask,       // mask
-                                                instance.hitGroupId, // instanceShaderBindingTableRecordOffset
-                                                instance.flags,      // flags
-                                                blasAddress );       // accelerationStructureReference
+    vk::AccelerationStructureInstanceKHR gInst( { },                                                         // transform
+                                                geometryInstance->geometryIndex,                             // instanceCustomIndex
+                                                0xFF,                                                        // mask
+                                                0,                                                           // instanceShaderBindingTableRecordOffset
+                                                vk::GeometryInstanceFlagBitsKHR::eTriangleFacingCullDisable, // flags
+                                                blasAddress );                                               // accelerationStructureReference
 
     memcpy( &gInst.transform, &transpose, sizeof( gInst.transform ) );
 
@@ -404,41 +404,18 @@ namespace RAYEX_NAMESPACE
     }
   }
 
-  void PathTracer::createTopLevelAS( const std::vector<std::shared_ptr<GeometryInstance>>& geometryInstances )
-  {
-    instances.clear( );
-    instances.reserve( geometryInstances.size( ) );
-
-    for ( uint32_t i = 0; i < geometryInstances.size( ); ++i )
-    {
-      BlasInstance rayInst;
-      rayInst.transform  = geometryInstances[i]->transform;
-      rayInst.instanceId = i;
-      rayInst.blasId     = geometryInstances[i]->geometryIndex;
-      rayInst.hitGroupId = 0; // We will use the same hit group for all objects
-      rayInst.flags      = vk::GeometryInstanceFlagBitsKHR::eTriangleFacingCullDisable;
-
-      instances.push_back( rayInst );
-    }
-
-    if ( !instances.empty( ) )
-    {
-      buildTlas( instances, vk::BuildAccelerationStructureFlagBitsKHR::ePreferFastTrace | vk::BuildAccelerationStructureFlagBitsKHR::eAllowUpdate );
-    }
-  }
-
-  void PathTracer::buildTlas( const std::vector<BlasInstance>& instances, vk::BuildAccelerationStructureFlagsKHR flags, bool reuse )
+  void PathTracer::buildTlas( const std::vector<std::shared_ptr<GeometryInstance>>& geometryInstances, vk::BuildAccelerationStructureFlagsKHR flags, bool reuse )
   {
     _tlas.flags = flags;
 
     if ( !reuse )
     {
-      vk::AccelerationStructureCreateGeometryTypeInfoKHR geometryCreate( vk::GeometryTypeKHR::eInstances,            // geometryType
-                                                                         static_cast<uint32_t>( instances.size( ) ), // maxPrimitiveCount
-                                                                         { },                                        // indexType
-                                                                         { },                                        // maxVertexCount
-                                                                         { },                                        // vertexFormat
-                                                                         VK_TRUE );                                  // allowsTransforms
+      vk::AccelerationStructureCreateGeometryTypeInfoKHR geometryCreate( vk::GeometryTypeKHR::eInstances,                    // geometryType
+                                                                         static_cast<uint32_t>( geometryInstances.size( ) ), // maxPrimitiveCount
+                                                                         { },                                                // indexType
+                                                                         { },                                                // maxVertexCount
+                                                                         { },                                                // vertexFormat
+                                                                         VK_TRUE );                                          // allowsTransforms
 
       vk::AccelerationStructureCreateInfoKHR asCreateInfo( { },                                         // compactedSize
                                                            vk::AccelerationStructureTypeKHR::eTopLevel, // type
@@ -469,12 +446,12 @@ namespace RAYEX_NAMESPACE
 
     vk::DeviceAddress scratchAddress = components::device.getBufferAddress( { scratchBuffer.get( ) } );
 
-    std::vector<vk::AccelerationStructureInstanceKHR> geometryInstances;
-    geometryInstances.reserve( instances.size( ) );
+    std::vector<vk::AccelerationStructureInstanceKHR> tlasInstances;
+    tlasInstances.reserve( geometryInstances.size( ) );
 
-    for ( const auto& instance : instances )
+    for ( auto instance : geometryInstances )
     {
-      geometryInstances.push_back( instanceToVkGeometryInstanceKHR( instance ) );
+      tlasInstances.push_back( instanceToVkGeometryInstanceKHR( instance ) );
     }
 
     // Building the TLAS.
@@ -482,7 +459,7 @@ namespace RAYEX_NAMESPACE
     CommandBuffer cmdBuf( commandPool.get( ) );
 
     // Create a buffer holding the actual instance data for use by the AS builder.
-    vk::DeviceSize instanceDescsSizeInBytes = instances.size( ) * sizeof( vk::AccelerationStructureInstanceKHR );
+    vk::DeviceSize instanceDescsSizeInBytes = geometryInstances.size( ) * sizeof( vk::AccelerationStructureInstanceKHR );
 
     // Allocate the instance buffer and copy its contents from host to device memory.
     _instanceBuffer.init( instanceDescsSizeInBytes,                                                                // size
@@ -491,7 +468,7 @@ namespace RAYEX_NAMESPACE
                           vk::MemoryPropertyFlagBits::eHostVisible,                                                // memoryPropertyFlags
                           &allocateFlags );                                                                        // pNextMemory
 
-    _instanceBuffer.fill<vk::AccelerationStructureInstanceKHR>( geometryInstances );
+    _instanceBuffer.fill<vk::AccelerationStructureInstanceKHR>( tlasInstances );
     vk::DeviceAddress instanceAddress = components::device.getBufferAddress( { _instanceBuffer.get( ) } );
 
     // Make sure the copy of the instance buffer are copied before triggering the acceleration structure build.
@@ -532,10 +509,10 @@ namespace RAYEX_NAMESPACE
                                                              scratchAddress );                            // scratchData
 
     // Build Offsets info: n instances.
-    vk::AccelerationStructureBuildOffsetInfoKHR buildOffsetInfo( static_cast<uint32_t>( instances.size( ) ), // primitiveCount
-                                                                 0,                                          // primitiveOffset
-                                                                 0,                                          // firstVertex
-                                                                 0 );                                        // transformOffset
+    vk::AccelerationStructureBuildOffsetInfoKHR buildOffsetInfo( static_cast<uint32_t>( geometryInstances.size( ) ), // primitiveCount
+                                                                 0,                                                  // primitiveOffset
+                                                                 0,                                                  // firstVertex
+                                                                 0 );                                                // transformOffset
 
     const vk::AccelerationStructureBuildOffsetInfoKHR* pBuildOffsetInfo = &buildOffsetInfo;
 
@@ -743,4 +720,35 @@ namespace RAYEX_NAMESPACE
     _storageImage.transitionToLayout( vk::ImageLayout::eGeneral, swapchainCommandBuffer );
     */
   }
+
+  void PathTracer::initDescriptorSet( )
+  {
+    // TLAS
+    _descriptors.bindings.add( 0,
+                               vk::DescriptorType::eAccelerationStructureKHR,
+                               vk::ShaderStageFlagBits::eRaygenKHR | vk::ShaderStageFlagBits::eClosestHitKHR,
+                               1,
+                               vk::DescriptorBindingFlagBits::eUpdateUnusedWhilePending | vk::DescriptorBindingFlagBits::ePartiallyBound );
+    // Output image
+    _descriptors.bindings.add( 1,
+                               vk::DescriptorType::eStorageImage,
+                               vk::ShaderStageFlagBits::eRaygenKHR,
+                               1,
+                               vk::DescriptorBindingFlagBits::eUpdateUnusedWhilePending | vk::DescriptorBindingFlagBits::ePartiallyBound );
+
+    _descriptors.layout = _descriptors.bindings.initLayoutUnique( );
+    _descriptors.pool   = _descriptors.bindings.initPoolUnique( components::swapchainImageCount );
+    _descriptorSets     = vk::Initializer::initDescriptorSetsUnique( _descriptors.pool, _descriptors.layout );
+  }
+
+  void PathTracer::updateDescriptors( )
+  {
+    vk::WriteDescriptorSetAccelerationStructureKHR tlasInfo( 1,
+                                                             &_tlas.as.as );
+
+    _descriptors.bindings.write( _descriptorSets, 0, &tlasInfo );
+    _descriptors.bindings.write( _descriptorSets, 1, &_storageImageInfo );
+    _descriptors.bindings.update( );
+  }
+
 } // namespace RAYEX_NAMESPACE

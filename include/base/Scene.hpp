@@ -1,9 +1,12 @@
 #pragma once
 
+#include "api/Bindings.hpp"
+#include "api/buffers/StorageBuffer.hpp"
+#include "api/buffers/UniformBuffer.hpp"
+#include "api/image/Cubemap.hpp"
 #include "api/image/Texture.hpp"
 #include "base/Camera.hpp"
 #include "base/Geometry.hpp"
-#include "base/Lights.hpp"
 #include "base/Settings.hpp"
 
 namespace RAYEX_NAMESPACE
@@ -15,6 +18,7 @@ namespace RAYEX_NAMESPACE
   /// Provides functions to change said data.
   /// @todo removeGeometry()
   /// @ingroup BASE
+  /// @ingroup API
   class RX_API Scene
   {
   public:
@@ -45,7 +49,7 @@ namespace RAYEX_NAMESPACE
     /// However, geometries remain loaded and must be deleted explicitely.
     void clearGeometryInstances( );
 
-    /// Used to remove the last geoemtry instance.
+    /// Used to remove the last geometry instance.
     void popGeometryInstance( );
 
     /// Used to submit a geometry and set up its buffers.
@@ -92,12 +96,57 @@ namespace RAYEX_NAMESPACE
     auto getCamera( ) const -> std::shared_ptr<Camera> { return _currentCamera; }
 
   private:
+    void prepareBuffers( );
+
+    void initCameraBuffer( );
+
+    void uploadCameraBuffer( uint32_t imageIndex );
+
+    void uploadEnvironmentMap( );
+
+    void uploadGeometries( );
+
+    void uploadGeometryInstances( uint32_t imageIndex );
+
+    void clearTextures( );
+
+    void addDummy( );
+
+    void removeDummy( );
+
+    void initDescriptorSets( );
+
+    void updateSceneDescriptors( );
+
+    void updateGeoemtryDescriptors( );
+
+    void upload( vk::Fence fence, uint32_t imageIndex );
+
+    Descriptors _sceneDescriptors;
+    Descriptors _geometryDescriptors;
+
+    std::vector<vk::DescriptorSet> _sceneDescriptorsets;
+    std::vector<vk::DescriptorSet> _geometryDescriptorSets;
+    std::vector<vk::DescriptorSet> _textureDescriptorSets;
+
+    Cubemap _environmentMap;
+    std::vector<vk::UniqueSampler> _immutableSamplers;
+
+    std::vector<StorageBuffer<uint32_t>> _indexBuffers;
+    std::vector<StorageBuffer<Vertex>> _vertexBuffers;
+    std::vector<StorageBuffer<MeshSSBO>> _meshBuffers;
+    std::vector<std::shared_ptr<Texture>> _textures;
+    StorageBuffer<GeometryInstanceSSBO> _geometryInstancesBuffer;
+
+    UniformBuffer _cameraUniformBuffer;
+
     std::vector<std::shared_ptr<Geometry>> _geometries;
     std::vector<std::shared_ptr<GeometryInstance>> _geometryInstances;
     std::vector<std::shared_ptr<Material>> _materials;
 
     std::string_view _environmentMapTexturePath;
-    bool _useEnvironmentMap = false;
+    bool _useEnvironmentMap    = false;
+    bool _removeEnvironmentMap = false;
 
     bool _uploadGeometryInstancesToBuffer = false;
     bool _uploadEnvironmentMap            = false;

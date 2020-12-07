@@ -2,7 +2,6 @@
 
 #include "api/buffers/Buffer.hpp"
 #include "api/utility/Initializers.hpp"
-#include "base/Lights.hpp"
 
 namespace RAYEX_NAMESPACE
 {
@@ -104,7 +103,7 @@ namespace RAYEX_NAMESPACE
     ///
     /// First, the data is being copied to the staging buffer which is visible to the host.
     /// Finally, the staging buffer is copied to the actual buffer on the device.
-    /// @param data The data to upload.
+    /// @param index Optionally used in case the data should only be uploaded to a specific buffer.
     void upload( const std::vector<T>& data, std::optional<uint32_t> index = { } )
     {
       RX_ASSERT( _maxSize >= sizeof( data[0] ) * data.size( ), "Exceeded maximum storage buffer size." );

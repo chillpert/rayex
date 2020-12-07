@@ -57,7 +57,7 @@ namespace RAYEX_NAMESPACE
     void update( );
 
     /// Retrieves an image from the swapchain and presents it.
-    auto render( ) -> bool;
+    void render( );
 
     void initGui( );
 
@@ -69,18 +69,6 @@ namespace RAYEX_NAMESPACE
 
     /// Creates all fences and semaphores required to sync the rendering process.
     void initSyncObjects( );
-
-    /// Creates a descriptor set layout for each the path tracing components and the models.
-    void initDescriptorSets( );
-
-    /// Updates scene descriptors for camera, lights and path tracing instances.
-    void updateSceneDescriptors( );
-
-    /// Updates the descriptor set with bindings to the total vertices and total indices buffers.
-    void updateGeometryDescriptors( );
-
-    /// Updates both top and bottom level acceleration structures as well as their descriptor bindings.
-    void updateAccelerationStructuresDescriptors( );
 
     /// Handles swapchain and pipeline recreations triggered by the user using setters provided in RAYEX_NAMESPACE::Settings.
     void updateSettings( );
@@ -94,6 +82,8 @@ namespace RAYEX_NAMESPACE
     /// Submits the swapchain command buffers to a queue and presents an image on the screen.
     void submitFrame( );
 
+    void waitForPrevFrame( );
+
     std::shared_ptr<Window> _window = nullptr;
     std::shared_ptr<Camera> _camera = nullptr;
     vk::UniqueInstance _instance;
@@ -102,44 +92,25 @@ namespace RAYEX_NAMESPACE
     vk::UniqueDevice _device;
     vk::UniqueCommandPool _graphicsCmdPool;
     vk::UniqueCommandPool _transferCmdPool;
-    PathTracer _pathTracer;
 
+    PathTracer _pathTracer;
+    PostProcessingRenderer _postProcessingRenderer;
+
+    // Sync
     std::vector<vk::Fence> _imagesInFlight;
     std::vector<vk::UniqueFence> _inFlightFences;
     std::vector<vk::UniqueSemaphore> _imageAvailableSemaphores;
     std::vector<vk::UniqueSemaphore> _finishedRenderSemaphores;
 
-    Descriptors _ptDescriptors;
-    Descriptors _ptSceneDescriptors;
-    Descriptors _geometryDescriptors;
-
-    std::vector<vk::DescriptorSet> _ptDescriptorSets;
-    std::vector<vk::DescriptorSet> _ptSceneDescriptorSets;
-    std::vector<vk::DescriptorSet> _geometryDescriptorSets;
-    std::vector<vk::DescriptorSet> _textureDescriptorSets;
-
-    Cubemap _environmentMap;
-    std::vector<vk::UniqueSampler> _immutableSamplers;
-    std::vector<StorageBuffer<uint32_t>> _indexBuffers;
-    std::vector<StorageBuffer<Vertex>> _vertexBuffers;
-    std::vector<StorageBuffer<MeshSSBO>> _meshBuffers;
-    std::vector<std::shared_ptr<Texture>> _textures;
-
-    StorageBuffer<GeometryInstanceSSBO> _geometryInstancesBuffer;
-
-    UniformBuffer _cameraUniformBuffer;
-
     Swapchain _swapchain;
-    PostProcessingRenderer _postProcessingRenderer;
-
     CommandBuffer _swapchainCommandBuffers;
 
     std::shared_ptr<Gui> _gui = nullptr;
 
-    Scene* _scene       = nullptr;
-    Settings* _settings = nullptr;
+    Scene _scene;
+    Settings _settings;
 
-    bool _needSwapchainRecreate = false;
+    bool _needSwapchainRecreate = false; // @todo Cant this just be removed?
     bool _pipelinesReady        = false;
   };
 } // namespace RAYEX_NAMESPACE

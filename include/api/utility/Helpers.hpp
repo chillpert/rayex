@@ -34,20 +34,6 @@ namespace vk
     /// @return Returns the completed sampler create info.
     auto getSamplerCreateInfo( ) -> SamplerCreateInfo;
 
-    /// Simplifies the process of setting up a submit info for the rendering process.
-    /// @param waitSemaphore The wait semaphore. Only one wait semaphore can be passed.
-    /// @param signalSemaphore The signal semaphore. Only one signal semaphore can be passed.
-    /// @param commandBuffers A vector of vulkan command buffers which contain the recorded draw calls.
-    /// @param pWaitDstStageMask Specifies a pipeline stage at which the semaphore wait will occur.
-    /// @return Returns the completed submit info.
-    auto getSubmitInfo( const Semaphore& waitSemaphore, const Semaphore& signalSemaphore, const std::vector<CommandBuffer>& commandBuffers, const PipelineStageFlags& pWaitDstStageMask ) -> SubmitInfo;
-
-    /// Simplifies the process of setting up a present info for the rendering process.
-    /// @param waitSemaphore The wait semaphore. Only one wait semaphore can be passed.
-    /// @param imageIndex The current image index that will be used to access the correct image in the swapchain.
-    /// @return Returns the completed present info.
-    auto getPresentInfoKHR( const Semaphore& waitSemaphore, uint32_t& imageIndex ) -> PresentInfoKHR;
-
     /// Helps finding the suitable memory type based on the function input.
     /// @param physicalDevice The GPU that you want to find the correct memory type for.
     /// @param typeFilter Is a bitmask containing one bit set for every memory type which the specified windows handle can be imported as.

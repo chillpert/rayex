@@ -241,12 +241,25 @@ namespace RAYEX_NAMESPACE
     components::device.resetFences( 1, &_sync.getInFlightFence( currentFrame ) );
 
     // Submits / executes the current image's / framebuffer's command buffer.
-    auto pWaitDstStageMask = vk::PipelineStageFlagBits::eColorAttachmentOutput;
-    auto submitInfo        = vk::Helper::getSubmitInfo( _sync.getImageAvailableSemaphore( currentFrame ), _sync.getFinishedRenderSemaphore( currentFrame ), commandBuffers, pWaitDstStageMask );
+    vk::PipelineStageFlags pWaitDstStageMask = vk::PipelineStageFlagBits::eColorAttachmentOutput;
+
+    vk::SubmitInfo submitInfo( 1,                                                   // waitSemaphoreCount
+                               &_sync.getImageAvailableSemaphore( currentFrame ),   // pWaitSemaphores
+                               &pWaitDstStageMask,                                  // pWaitDstStageMask
+                               1,                                                   // commandBufferCount
+                               commandBuffers.data( ),                              // pCommandBuffers
+                               1,                                                   // signalSemaphoreCount
+                               &_sync.getFinishedRenderSemaphore( currentFrame ) ); // pSignalSemaphores
+
     components::graphicsQueue.submit( submitInfo, _sync.getInFlightFence( currentFrame ) );
 
     // Tell the presentation engine that the current image is ready.
-    auto presentInfo = vk::Helper::getPresentInfoKHR( _sync.getFinishedRenderSemaphore( currentFrame ), imageIndex );
+    vk::PresentInfoKHR presentInfo( 1,                                                 // waitSemaphoreCount
+                                    &_sync.getFinishedRenderSemaphore( currentFrame ), // pWaitSemaphores
+                                    1,                                                 // swapchainCount
+                                    &components::swapchain,                            // pSwapchains
+                                    &imageIndex,                                       // pImageIndices
+                                    nullptr );                                         // pResults
 
     try
     {

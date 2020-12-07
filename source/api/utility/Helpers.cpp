@@ -77,27 +77,6 @@ namespace vk::Helper
     return createInfo;
   }
 
-  auto getSubmitInfo( const Semaphore& waitSemaphore, const Semaphore& signalSemaphore, const std::vector<CommandBuffer>& commandBuffers, const PipelineStageFlags& pWaitDstStageMask ) -> SubmitInfo
-  {
-    return SubmitInfo( 1,                                               // waitSemaphoreCount
-                       &waitSemaphore,                                  // pWaitSemaphores
-                       &pWaitDstStageMask,                              // pWaitDstStageMask
-                       static_cast<uint32_t>( commandBuffers.size( ) ), // commandBufferCount
-                       commandBuffers.data( ),                          // pCommandBuffers
-                       1,                                               // signalSemaphoreCount
-                       &signalSemaphore );                              // pSignalSemaphores
-  }
-
-  auto getPresentInfoKHR( const Semaphore& waitSemaphore, uint32_t& imageIndex ) -> PresentInfoKHR
-  {
-    return PresentInfoKHR( 1,                                       // waitSemaphoreCount
-                           &waitSemaphore,                          // pWaitSemaphores
-                           1,                                       // swapchainCount
-                           &RAYEX_NAMESPACE::components::swapchain, // pSwapchains
-                           &imageIndex,                             // pImageIndices
-                           nullptr );                               // pResults
-  }
-
   auto findMemoryType( PhysicalDevice physicalDevice, uint32_t typeFilter, MemoryPropertyFlags properties ) -> uint32_t
   {
     static PhysicalDeviceMemoryProperties memoryProperties = physicalDevice.getMemoryProperties( );

@@ -136,8 +136,8 @@ namespace RAYEX_NAMESPACE
 
     std::shared_ptr<Gui> _gui = nullptr;
 
-    Scene* _scene;
-    Settings* _settings;
+    Scene* _scene       = nullptr;
+    Settings* _settings = nullptr;
 
     bool _needSwapchainRecreate = false;
     bool _pipelinesReady        = false;

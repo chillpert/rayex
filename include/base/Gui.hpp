@@ -76,6 +76,6 @@ namespace RAYEX_NAMESPACE
     vk::UniqueDescriptorPool _descriptorPool; ///< A Vulkan descriptor pool with a unique handle.
     vk::UniqueCommandPool _commandPool;       ///< A Vulkan command pool with a unique handle.
     vk::Extent2D _swapchainImageExtent;       ///< The swapchain images' image extent.
-    SDL_Window* _window;
+    SDL_Window* _window = nullptr;
   };
 } // namespace RAYEX_NAMESPACE

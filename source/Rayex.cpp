@@ -14,23 +14,23 @@ namespace RAYEX_NAMESPACE
       _window = std::make_shared<Window>( );
     }
 
-    if ( _scene._currentCamera == nullptr )
+    if ( scene._currentCamera == nullptr )
     {
       RX_VERBOSE( "No custom camera implementation was provided. Using default implementation instead." );
-      _scene._currentCamera = std::make_shared<Camera>( _window->getWidth( ), _window->getHeight( ) );
-      _scene._cameras.insert( _scene._currentCamera );
+      scene._currentCamera = std::make_shared<Camera>( _window->getWidth( ), _window->getHeight( ) );
+      scene._cameras.insert( scene._currentCamera );
     }
 
-    _api->_window    = _window;
-    _api->_camera    = _scene._currentCamera;
-    _scene._settings = &_settings;
+    _api->_window   = _window;
+    _api->_camera   = scene._currentCamera;
+    scene._settings = &settings;
 
-    _api->_settings = &_settings;
-    _api->_scene    = &_scene;
+    _api->_settings = &settings;
+    _api->_scene    = &scene;
 
-    if ( _settings.getAssetsPath( ).empty( ) )
+    if ( settings.getAssetsPath( ).empty( ) )
     {
-      _settings.setDefaultAssetsPath( );
+      settings.setDefaultAssetsPath( );
     }
 
     if ( _initialized )
@@ -89,7 +89,7 @@ namespace RAYEX_NAMESPACE
     firstRun = false;
 
     _running = _window->update( );
-    _scene._currentCamera->update( );
+    scene._currentCamera->update( );
 
     if ( !_running )
     {

@@ -351,13 +351,15 @@ namespace RAYEX_NAMESPACE
 
       std::vector<vk::DeviceSize> compactSizes( blas_.size( ) );
 
-      components::device.getQueryPoolResults( queryPool.get( ),                                // queryPool
-                                              0,                                               // firstQuery
-                                              static_cast<uint32_t>( compactSizes.size( ) ),   // queryCount
-                                              compactSizes.size( ) * sizeof( vk::DeviceSize ), // dataSize
-                                              compactSizes.data( ),                            // pData
-                                              sizeof( vk::DeviceSize ),                        // stride
-                                              vk::QueryResultFlagBits::eWait );                // flags
+      vk::Result result = components::device.getQueryPoolResults( queryPool.get( ),                                // queryPool
+                                                                  0,                                               // firstQuery
+                                                                  static_cast<uint32_t>( compactSizes.size( ) ),   // queryCount
+                                                                  compactSizes.size( ) * sizeof( vk::DeviceSize ), // dataSize
+                                                                  compactSizes.data( ),                            // pData
+                                                                  sizeof( vk::DeviceSize ),                        // stride
+                                                                  vk::QueryResultFlagBits::eWait );                // flags
+
+      RX_ASSERT( result == vk::Result::eSuccess, "Failed to get query pool result for BLAS compation process." );
 
       std::vector<AccelerationStructure> cleanupAS( blas_.size( ) );
 
@@ -569,14 +571,17 @@ namespace RAYEX_NAMESPACE
                      vk::MemoryPropertyFlagBits::eHostVisible );
 
     std::vector<uint8_t> shaderHandleStorage( sbtSize );
-    components::device.getRayTracingShaderGroupHandlesKHR( _pipeline.get( ),
-                                                           0,
-                                                           _shaderGroups,
-                                                           sbtSize,
-                                                           shaderHandleStorage.data( ) );
+    vk::Result result = components::device.getRayTracingShaderGroupHandlesKHR( _pipeline.get( ),
+                                                                               0,
+                                                                               _shaderGroups,
+                                                                               sbtSize,
+                                                                               shaderHandleStorage.data( ) );
+
+    RX_ASSERT( result == vk::Result::eSuccess, "Failed to get ray tracing shader group handles." );
 
     void* mapped = NULL;
-    components::device.mapMemory( _sbtBuffer.getMemory( ), 0, _sbtBuffer.getSize( ), { }, &mapped );
+    result       = components::device.mapMemory( _sbtBuffer.getMemory( ), 0, _sbtBuffer.getSize( ), { }, &mapped );
+    RX_ASSERT( result == vk::Result::eSuccess, "Failed to map memory from shader binding table buffer." );
 
     auto* pData = reinterpret_cast<uint8_t*>( mapped );
     for ( uint32_t i = 0; i < _shaderGroups; ++i )

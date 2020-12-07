@@ -24,9 +24,6 @@ namespace RAYEX_NAMESPACE
   size_t currentFrame = 0;
   size_t prevFrame    = 0;
 
-  // Defines the maximum amount of frames that will be processed concurrently.
-  const size_t maxFramesInFlight = 2;
-
   Api::~Api( )
   {
     components::device.waitIdle( );
@@ -106,7 +103,7 @@ namespace RAYEX_NAMESPACE
     initGui( );
 
     // Create fences and semaphores.
-    initSyncObjects( );
+    _sync.init( );
 
     // Path tracer (part 1)
     _pathTracer.init( );
@@ -157,27 +154,22 @@ namespace RAYEX_NAMESPACE
     RX_LOG_TIME_STOP( "Finished initializing Vulkan (scene)" );
   }
 
-  void Api::waitForPrevFrame( )
-  {
-    vk::Result result = components::device.waitForFences( 1, &_inFlightFences[prevFrame].get( ), VK_TRUE, UINT64_MAX );
-    RX_ASSERT( result == vk::Result::eSuccess, "Failed to wait for fences." );
-  }
-
   void Api::update( )
   {
-    uint32_t imageIndex = _swapchain.getCurrentImageIndex( );
+    uint32_t imageIndex        = _swapchain.getCurrentImageIndex( );
+    uint32_t maxFramesInFlight = static_cast<uint32_t>( _sync.getMaxFramesInFlight( ) );
 
     _scene.uploadCameraBuffer( imageIndex % maxFramesInFlight );
 
     // If the scene is empty add a dummy triangle so that the acceleration structures can be built successfully.
     if ( _scene._geometryInstances.empty( ) )
     {
-      waitForPrevFrame( );
+      _sync.waitForFrame( prevFrame );
       _scene.addDummy( );
     }
     else
     {
-      waitForPrevFrame( );
+      _sync.waitForFrame( prevFrame );
       _scene.removeDummy( );
     }
 
@@ -188,29 +180,25 @@ namespace RAYEX_NAMESPACE
 
     if ( _scene._uploadEnvironmentMap )
     {
-      waitForPrevFrame( );
+      _sync.waitForFrame( prevFrame );
       _scene.uploadEnvironmentMap( );
     }
 
     if ( _scene._uploadGeometries )
     {
-      waitForPrevFrame( );
+      _sync.waitForFrame( prevFrame );
       _scene.uploadGeometries( );
       _scene.updateGeoemtryDescriptors( );
     }
 
     if ( _scene._uploadGeometryInstancesToBuffer )
     {
-      // This check should not exist - @self investigate!
-      if ( imageIndex % maxFramesInFlight == 0 )
-      {
-        _scene.uploadGeometryInstances( imageIndex % maxFramesInFlight );
+      _scene.uploadGeometryInstances( imageIndex % maxFramesInFlight );
 
-        // @TODO Try to call this as few times as possible.
-        _pathTracer.createBottomLevelAS( _scene._vertexBuffers, _scene._indexBuffers, _scene._geometries );
-        _pathTracer.buildTlas( _scene._geometryInstances );
-        _pathTracer.updateDescriptors( );
-      }
+      // @TODO Try to call this as few times as possible.
+      _pathTracer.createBottomLevelAS( _scene._vertexBuffers, _scene._indexBuffers, _scene._geometries );
+      _pathTracer.buildTlas( _scene._geometryInstances );
+      _pathTracer.updateDescriptors( );
     }
     else
     {
@@ -230,35 +218,35 @@ namespace RAYEX_NAMESPACE
 
   void Api::prepareFrame( )
   {
-    _swapchain.acquireNextImage( _imageAvailableSemaphores[currentFrame].get( ), nullptr );
+    _swapchain.acquireNextImage( _sync.getImageAvailableSemaphore( currentFrame ), nullptr );
   }
 
   void Api::submitFrame( )
   {
     uint32_t imageIndex = _swapchain.getCurrentImageIndex( );
+    size_t imageIndex_t = static_cast<size_t>( imageIndex );
 
     // Check if a previous frame is using the current image.
-    if ( _imagesInFlight[imageIndex] )
+    if ( _sync.getImageInFlight( imageIndex ) )
     {
-      vk::Result result = components::device.waitForFences( 1, &_imagesInFlight[currentFrame], VK_TRUE, UINT64_MAX );
-      RX_ASSERT( result == vk::Result::eSuccess, "Failed to wait for fences." );
+      _sync.waitForFrame( currentFrame );
     }
 
     // This will mark the current image to be in use by this frame.
-    _imagesInFlight[imageIndex] = _inFlightFences[currentFrame].get( );
+    _sync.getImageInFlight( imageIndex_t ) = _sync.getInFlightFence( currentFrame );
 
     std::vector<vk::CommandBuffer> commandBuffers = { _swapchainCommandBuffers.get( )[imageIndex] };
 
     // Reset the signaled state of the current frame's fence to the unsignaled one.
-    components::device.resetFences( 1, &_inFlightFences[currentFrame].get( ) );
+    components::device.resetFences( 1, &_sync.getInFlightFence( currentFrame ) );
 
     // Submits / executes the current image's / framebuffer's command buffer.
     auto pWaitDstStageMask = vk::PipelineStageFlagBits::eColorAttachmentOutput;
-    auto submitInfo        = vk::Helper::getSubmitInfo( _imageAvailableSemaphores[currentFrame].get( ), _finishedRenderSemaphores[currentFrame].get( ), commandBuffers, pWaitDstStageMask );
-    components::graphicsQueue.submit( submitInfo, _inFlightFences[currentFrame].get( ) );
+    auto submitInfo        = vk::Helper::getSubmitInfo( _sync.getImageAvailableSemaphore( currentFrame ), _sync.getFinishedRenderSemaphore( currentFrame ), commandBuffers, pWaitDstStageMask );
+    components::graphicsQueue.submit( submitInfo, _sync.getInFlightFence( currentFrame ) );
 
     // Tell the presentation engine that the current image is ready.
-    auto presentInfo = vk::Helper::getPresentInfoKHR( _finishedRenderSemaphores[currentFrame].get( ), imageIndex );
+    auto presentInfo = vk::Helper::getPresentInfoKHR( _sync.getFinishedRenderSemaphore( currentFrame ), imageIndex );
 
     try
     {
@@ -275,7 +263,7 @@ namespace RAYEX_NAMESPACE
     }
 
     prevFrame    = currentFrame;
-    currentFrame = ( currentFrame + 1 ) % maxFramesInFlight;
+    currentFrame = ( currentFrame + 1 ) % _sync.getMaxFramesInFlight( );
   }
 
   void Api::updateSettings( )
@@ -407,8 +395,7 @@ namespace RAYEX_NAMESPACE
     RX_ASSERT( _pipelinesReady, "Can not record swapchain command buffers because the pipelines have not been initialized yet." );
 
     // Wait for previous frame to finish command buffer execution.
-    vk::Result result = components::device.waitForFences( 1, &_inFlightFences[prevFrame].get( ), VK_TRUE, UINT64_MAX );
-    RX_ASSERT( result == vk::Result::eSuccess, "Failed to wait for fences." );
+    _sync.waitForFrame( prevFrame );
 
     PtPushConstants chitPc = { _settings._clearColor,
                                components::frameCount,
@@ -431,9 +418,12 @@ namespace RAYEX_NAMESPACE
 
         cmdBuf.bindPipeline( vk::PipelineBindPoint::eRayTracingKHR, _pathTracer.getPipeline( ) );
 
-        std::vector<vk::DescriptorSet> descriptorSets = { _pathTracer.getDescriptorSet( imageIndex % maxFramesInFlight ),
-                                                          _scene._sceneDescriptorsets[imageIndex % maxFramesInFlight],
-                                                          _scene._geometryDescriptorSets[imageIndex % maxFramesInFlight] };
+        size_t index = imageIndex % _sync.getMaxFramesInFlight( );
+
+        std::vector<vk::DescriptorSet>
+          descriptorSets = { _pathTracer.getDescriptorSet( index ),
+                             _scene._sceneDescriptorsets[index],
+                             _scene._geometryDescriptorSets[index] };
 
         cmdBuf.bindDescriptorSets( vk::PipelineBindPoint::eRayTracingKHR,           // pipelineBindPoint
                                    _pathTracer.getPipelineLayout( ),                // layout
@@ -450,7 +440,7 @@ namespace RAYEX_NAMESPACE
         _postProcessingRenderer.beginRenderPass( cmdBuf, _swapchain.getFramebuffer( imageIndex ), _swapchain.getExtent( ) );
         {
           // 2. Post processing
-          _postProcessingRenderer.render( cmdBuf, _swapchain.getExtent( ), imageIndex % maxFramesInFlight );
+          _postProcessingRenderer.render( cmdBuf, _swapchain.getExtent( ), index );
 
           // 3. ImGui
           if ( _gui != nullptr )
@@ -461,21 +451,6 @@ namespace RAYEX_NAMESPACE
         _postProcessingRenderer.endRenderPass( cmdBuf );
       }
       _swapchainCommandBuffers.end( imageIndex );
-    }
-  }
-
-  void Api::initSyncObjects( )
-  {
-    _imageAvailableSemaphores.resize( maxFramesInFlight );
-    _finishedRenderSemaphores.resize( maxFramesInFlight );
-    _inFlightFences.resize( maxFramesInFlight );
-    _imagesInFlight.resize( components::swapchainImageCount, nullptr );
-
-    for ( size_t i = 0; i < maxFramesInFlight; ++i )
-    {
-      _imageAvailableSemaphores[i] = vk::Initializer::initSemaphoreUnique( );
-      _finishedRenderSemaphores[i] = vk::Initializer::initSemaphoreUnique( );
-      _inFlightFences[i]           = vk::Initializer::initFenceUnique( vk::FenceCreateFlagBits::eSignaled );
     }
   }
 } // namespace RAYEX_NAMESPACE

@@ -6,6 +6,7 @@
 #include "api/RenderPass.hpp"
 #include "api/Surface.hpp"
 #include "api/Swapchain.hpp"
+#include "api/Sync.hpp"
 #include "api/Vertex.hpp"
 #include "api/buffers/CommandBuffer.hpp"
 #include "api/buffers/StorageBuffer.hpp"
@@ -67,9 +68,6 @@ namespace RAYEX_NAMESPACE
     /// @todo Rasterization has been removed for now. Might want to re-add rasterization support with RT-compatible shaders again.
     void recordSwapchainCommandBuffers( );
 
-    /// Creates all fences and semaphores required to sync the rendering process.
-    void initSyncObjects( );
-
     /// Handles swapchain and pipeline recreations triggered by the user using setters provided in RAYEX_NAMESPACE::Settings.
     void updateSettings( );
 
@@ -81,8 +79,6 @@ namespace RAYEX_NAMESPACE
 
     /// Submits the swapchain command buffers to a queue and presents an image on the screen.
     void submitFrame( );
-
-    void waitForPrevFrame( );
 
     std::shared_ptr<Window> _window = nullptr;
     std::shared_ptr<Camera> _camera = nullptr;
@@ -97,10 +93,7 @@ namespace RAYEX_NAMESPACE
     PostProcessingRenderer _postProcessingRenderer;
 
     // Sync
-    std::vector<vk::Fence> _imagesInFlight;
-    std::vector<vk::UniqueFence> _inFlightFences;
-    std::vector<vk::UniqueSemaphore> _imageAvailableSemaphores;
-    std::vector<vk::UniqueSemaphore> _finishedRenderSemaphores;
+    Sync _sync;
 
     Swapchain _swapchain;
     CommandBuffer _swapchainCommandBuffers;

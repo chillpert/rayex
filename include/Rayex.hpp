@@ -55,11 +55,11 @@ namespace RAYEX_NAMESPACE
 
     /// Used to modify any interal rendering settings.
     /// @return Returns the settings.
-    auto settings( ) -> Settings& { return _api->_settings; }
+    auto settings( ) -> Settings& { return _settings; }
 
     /// Used to access the scene directly by adding or removing elements.
     /// @return Returns the scene.
-    auto scene( ) -> Scene& { return _api->_scene; }
+    auto scene( ) -> Scene& { return _scene; }
 
   private:
     std::shared_ptr<Window> _window = nullptr;                  ///< The window used to create a surface from.
@@ -69,5 +69,8 @@ namespace RAYEX_NAMESPACE
     bool _initialized = false; ///< Keeps track of the initialization status.
     bool _running     = true;  ///< Keeps track of whether or not the main loop should still be continued.
     bool _initScene   = true;  ///< Keeps track of whether or not to initialize the scene.
+
+    Scene _scene;
+    Settings _settings;
   };
 } // namespace RAYEX_NAMESPACE

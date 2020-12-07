@@ -92,19 +92,18 @@ namespace RAYEX_NAMESPACE
     auto getCamera( ) const -> std::shared_ptr<Camera> { return _currentCamera; }
 
   private:
-    std::vector<std::shared_ptr<Geometry>> _geometries;                ///< Stores all geometries.
-    std::vector<std::shared_ptr<GeometryInstance>> _geometryInstances; ///< Stores all geometry instances.
+    std::vector<std::shared_ptr<Geometry>> _geometries;
+    std::vector<std::shared_ptr<GeometryInstance>> _geometryInstances;
     std::vector<std::shared_ptr<Material>> _materials;
 
     std::string_view _environmentMapTexturePath;
-    bool _useEnvironmentMap           = false;
-    uint32_t _skyboxCubeGeometryIndex = std::numeric_limits<uint32_t>::max( );
+    bool _useEnvironmentMap = false;
 
-    bool _uploadGeometryInstancesToBuffer = false; ///< Keeps track of whether or not to upload the path tracing instances to their respective buffer the next time RAYEX_NAMESPACE::Api::update() is called.
+    bool _uploadGeometryInstancesToBuffer = false;
     bool _uploadEnvironmentMap            = false;
-    bool _uploadGeometries                = false; ///< Keeps track of whether or not to upload the geometries to their respective buffer the next time RAYEX_NAMESPACE::Api::update() is called.
-    bool _deleteTextures                  = false; ///< Keeps track of whether or not all textures should be deleted the next time RAYEX_NAMESPACE::Api::update() is called.
-    bool _dummy                           = false; ///< Keeps track of whether or not a dummy element in case of an empty scene is active.
+    bool _uploadGeometries                = false;
+    bool _deleteTextures                  = false;
+    bool _dummy                           = false;
 
     std::unordered_set<std::shared_ptr<Camera>> _cameras; ///< The cameras that can be used for rendering.
     std::shared_ptr<Camera> _currentCamera;               ///< The camera that is currently being used for rendering.

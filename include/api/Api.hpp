@@ -120,7 +120,6 @@ namespace RAYEX_NAMESPACE
 
     Cubemap _environmentMap;
     std::vector<vk::UniqueSampler> _immutableSamplers;
-
     std::vector<StorageBuffer<uint32_t>> _indexBuffers;
     std::vector<StorageBuffer<Vertex>> _vertexBuffers;
     std::vector<StorageBuffer<MeshSSBO>> _meshBuffers;
@@ -136,8 +135,9 @@ namespace RAYEX_NAMESPACE
     CommandBuffer _swapchainCommandBuffers;
 
     std::shared_ptr<Gui> _gui = nullptr;
-    Settings _settings;
-    Scene _scene;
+
+    Scene* _scene;
+    Settings* _settings;
 
     bool _needSwapchainRecreate = false;
     bool _pipelinesReady        = false;

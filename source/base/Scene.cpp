@@ -173,12 +173,6 @@ namespace RAYEX_NAMESPACE
     {
       if ( it->geometryIndex == geometryIndex )
       {
-        if ( geometryIndex == _skyboxCubeGeometryIndex )
-        {
-          _environmentMapTexturePath = std::string_view( );
-          _skyboxCubeGeometryIndex   = std::numeric_limits<uint32_t>::max( );
-        }
-
         removeGeometry( it );
         break;
       }
@@ -188,16 +182,6 @@ namespace RAYEX_NAMESPACE
   void Scene::clearGeometries( )
   {
     RX_INFO( "Clearing geoemtry." );
-
-    // Remove all instances.
-    for ( auto geometry : _geometries )
-    {
-      if ( geometry->geometryIndex == _skyboxCubeGeometryIndex )
-      {
-        _environmentMapTexturePath = std::string_view( );
-        _skyboxCubeGeometryIndex   = std::numeric_limits<uint32_t>::max( );
-      }
-    }
 
     _geometries.clear( );
     _geometryInstances.clear( );

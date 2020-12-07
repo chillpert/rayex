@@ -12,7 +12,7 @@ namespace RAYEX_NAMESPACE
   struct PtPushConstants
   {
     glm::vec4 clearColor        = glm::vec4( 1.0F );
-    uint32_t frameCount         = 0;
+    int frameCount              = 0;
     uint32_t sampleRatePerPixel = 4;
     uint32_t recursionDepth     = 4;
     uint32_t useEnvironmentMap  = 0;

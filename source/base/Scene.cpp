@@ -283,6 +283,8 @@ namespace RAYEX_NAMESPACE
     _indexBuffers.resize( static_cast<size_t>( _settings->_maxGeometry ) );
     _meshBuffers.resize( static_cast<size_t>( _settings->_maxMeshes ) );
     _textures.resize( static_cast<size_t>( _settings->_maxTextures ) );
+
+    initCameraBuffer( );
   }
 
   void Scene::initCameraBuffer( )

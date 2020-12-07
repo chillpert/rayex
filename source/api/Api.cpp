@@ -118,10 +118,6 @@ namespace RAYEX_NAMESPACE
   {
     RX_LOG_TIME_START( "Initializing Vulkan (scene) ..." );
 
-    // Uniform buffers for camera
-    // @todo check if this cant be happen sooner? maybe possibly inside scene::prepareBuffers()
-    _scene.initCameraBuffer( );
-
     // Descriptor sets and layouts
     _pathTracer.initDescriptorSet( );
     _scene.initDescriptorSets( );

@@ -231,7 +231,7 @@ namespace RAYEX_NAMESPACE
     // This will mark the current image to be in use by this frame.
     _sync.getImageInFlight( imageIndex_t ) = _sync.getInFlightFence( currentFrame );
 
-    std::vector<vk::CommandBuffer> commandBuffers = { _swapchainCommandBuffers.get( )[imageIndex] };
+    vk::CommandBuffer cmdBuf = _swapchainCommandBuffers.get( imageIndex );
 
     // Reset the signaled state of the current frame's fence to the unsignaled one.
     auto currentInFlightFence_t = _sync.getInFlightFence( currentFrame );
@@ -243,13 +243,13 @@ namespace RAYEX_NAMESPACE
     auto waitSemaphore    = _sync.getImageAvailableSemaphore( currentFrame );
     auto signaleSemaphore = _sync.getFinishedRenderSemaphore( currentFrame );
 
-    vk::SubmitInfo submitInfo( 1,                      // waitSemaphoreCount
-                               &waitSemaphore,         // pWaitSemaphores
-                               &pWaitDstStageMask,     // pWaitDstStageMask
-                               1,                      // commandBufferCount
-                               commandBuffers.data( ), // pCommandBuffers
-                               1,                      // signalSemaphoreCount
-                               &signaleSemaphore );    // pSignalSemaphores
+    vk::SubmitInfo submitInfo( 1,                   // waitSemaphoreCount
+                               &waitSemaphore,      // pWaitSemaphores
+                               &pWaitDstStageMask,  // pWaitDstStageMask
+                               1,                   // commandBufferCount
+                               &cmdBuf,             // pCommandBuffers
+                               1,                   // signalSemaphoreCount
+                               &signaleSemaphore ); // pSignalSemaphores
 
     components::graphicsQueue.submit( submitInfo, currentInFlightFence_t );
 

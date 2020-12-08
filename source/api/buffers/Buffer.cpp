@@ -6,11 +6,16 @@
 
 namespace RAYEX_NAMESPACE
 {
-  Buffer::Buffer( vk::DeviceSize size, vk::BufferUsageFlags usage, const std::vector<uint32_t>& queueFamilyIndices, vk::MemoryPropertyFlags memoryPropertyFlags, void* pNextMemory, bool initialize )
+  Buffer::Buffer( vk::DeviceSize size, vk::BufferUsageFlags usage, const std::vector<uint32_t>& queueFamilyIndices, vk::MemoryPropertyFlags memoryPropertyFlags, void* pNextMemory )
   {
-    if ( initialize )
+    init( size, usage, queueFamilyIndices, memoryPropertyFlags, pNextMemory );
+  }
+
+  Buffer::~Buffer( )
+  {
+    if ( _memory && _mapped )
     {
-      init( size, usage, queueFamilyIndices, memoryPropertyFlags, pNextMemory );
+      components::device.unmapMemory( _memory.get( ) );
     }
   }
 
@@ -28,8 +33,7 @@ namespace RAYEX_NAMESPACE
   void Buffer::init( vk::DeviceSize size, vk::BufferUsageFlags usage, const std::vector<uint32_t>& queueFamilyIndices, vk::MemoryPropertyFlags memoryPropertyFlags, void* pNextMemory )
   {
     _mapped = false;
-
-    _size = size;
+    _size   = size;
 
     vk::SharingMode sharingMode = queueFamilyIndices.size( ) > 1 ? vk::SharingMode::eConcurrent : vk::SharingMode::eExclusive;
 
@@ -46,16 +50,9 @@ namespace RAYEX_NAMESPACE
     _memory = vk::Initializer::allocateMemoryUnique( _buffer.get( ), memoryPropertyFlags, pNextMemory );
   }
 
-  void Buffer::copyToBuffer( const Buffer& buffer ) const
+  void Buffer::copyToBuffer( const Buffer& buffer, vk::Fence fence ) const
   {
-    CommandBuffer commandBuffer( components::transferCmdPool );
-    commandBuffer.begin( );
-    {
-      vk::BufferCopy copyRegion( 0, 0, _size );
-      commandBuffer.get( 0 ).copyBuffer( _buffer.get( ), buffer.get( ), 1, &copyRegion ); // CMD
-    }
-    commandBuffer.end( );
-    commandBuffer.submitToQueue( components::transferQueue );
+    copyToBuffer( buffer.get( ), fence );
   }
 
   void Buffer::copyToBuffer( vk::Buffer buffer, vk::Fence fence ) const
@@ -68,6 +65,11 @@ namespace RAYEX_NAMESPACE
     }
     commandBuffer.end( );
     commandBuffer.submitToQueue( components::transferQueue, fence );
+  }
+
+  void Buffer::copyToImage( const Image& image ) const
+  {
+    copyToImage( image.get( ), image.getExtent( ) );
   }
 
   void Buffer::copyToImage( vk::Image image, vk::Extent3D extent ) const

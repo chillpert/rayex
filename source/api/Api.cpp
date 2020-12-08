@@ -234,29 +234,34 @@ namespace RAYEX_NAMESPACE
     std::vector<vk::CommandBuffer> commandBuffers = { _swapchainCommandBuffers.get( )[imageIndex] };
 
     // Reset the signaled state of the current frame's fence to the unsignaled one.
-    components::device.resetFences( 1, &_sync.getInFlightFence( currentFrame ) );
+    auto currentInFlightFence_t = _sync.getInFlightFence( currentFrame );
+    components::device.resetFences( 1, &currentInFlightFence_t );
 
     // Submits / executes the current image's / framebuffer's command buffer.
     vk::PipelineStageFlags pWaitDstStageMask = vk::PipelineStageFlagBits::eColorAttachmentOutput;
 
-    vk::SubmitInfo submitInfo( 1,                                                   // waitSemaphoreCount
-                               &_sync.getImageAvailableSemaphore( currentFrame ),   // pWaitSemaphores
-                               &pWaitDstStageMask,                                  // pWaitDstStageMask
-                               1,                                                   // commandBufferCount
-                               commandBuffers.data( ),                              // pCommandBuffers
-                               1,                                                   // signalSemaphoreCount
-                               &_sync.getFinishedRenderSemaphore( currentFrame ) ); // pSignalSemaphores
+    auto waitSemaphore    = _sync.getImageAvailableSemaphore( currentFrame );
+    auto signaleSemaphore = _sync.getFinishedRenderSemaphore( currentFrame );
 
-    components::graphicsQueue.submit( submitInfo, _sync.getInFlightFence( currentFrame ) );
+    vk::SubmitInfo submitInfo( 1,                      // waitSemaphoreCount
+                               &waitSemaphore,         // pWaitSemaphores
+                               &pWaitDstStageMask,     // pWaitDstStageMask
+                               1,                      // commandBufferCount
+                               commandBuffers.data( ), // pCommandBuffers
+                               1,                      // signalSemaphoreCount
+                               &signaleSemaphore );    // pSignalSemaphores
+
+    components::graphicsQueue.submit( submitInfo, currentInFlightFence_t );
 
     // Tell the presentation engine that the current image is ready.
-    vk::PresentInfoKHR presentInfo( 1,                                                 // waitSemaphoreCount
-                                    &_sync.getFinishedRenderSemaphore( currentFrame ), // pWaitSemaphores
-                                    1,                                                 // swapchainCount
-                                    &components::swapchain,                            // pSwapchains
-                                    &imageIndex,                                       // pImageIndices
-                                    nullptr );                                         // pResults
+    vk::PresentInfoKHR presentInfo( 1,                      // waitSemaphoreCount
+                                    &signaleSemaphore,      // pWaitSemaphores
+                                    1,                      // swapchainCount
+                                    &components::swapchain, // pSwapchains
+                                    &imageIndex,            // pImageIndices
+                                    nullptr );              // pResults
 
+    // This try catch block is only necesary on Linux for whatever reason. Without it, resizing the window will result in an unhandled throw of vk::Result::eErrorOutOfDateKHR.
     try
     {
       vk::Result result = components::graphicsQueue.presentKHR( presentInfo );

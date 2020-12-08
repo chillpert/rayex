@@ -64,9 +64,11 @@ namespace RAYEX_NAMESPACE
       _fences.resize( copies );
 
       vk::MemoryAllocateFlagsInfo* allocateFlags = nullptr;
+      vk::MemoryAllocateFlagsInfo temp( vk::MemoryAllocateFlagBitsKHR::eDeviceAddress );
+
       if ( deviceAddressVisible )
       {
-        allocateFlags = &vk::MemoryAllocateFlagsInfo( vk::MemoryAllocateFlagBitsKHR::eDeviceAddress );
+        allocateFlags = &temp;
       }
 
       for ( size_t i = 0; i < copies; ++i )

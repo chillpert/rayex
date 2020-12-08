@@ -39,7 +39,6 @@ namespace RAYEX_NAMESPACE
 
   /// A shader storage buffer specilization class.
   /// @ingroup API
-  /// @todo documentation
   template <class T>
   class StorageBuffer
   {
@@ -130,8 +129,8 @@ namespace RAYEX_NAMESPACE
     }
 
   private:
-    std::vector<Buffer> _stagingBuffers;
-    std::vector<Buffer> _storageBuffers;
+    std::vector<Buffer> _stagingBuffers; ///< Holds the staging buffer and all its copies.
+    std::vector<Buffer> _storageBuffers; ///< Holds the storage buffer and all its copies.
 
     std::vector<vk::DescriptorBufferInfo> _bufferInfos;
     std::vector<vk::UniqueFence> _fences;

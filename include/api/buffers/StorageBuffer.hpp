@@ -5,7 +5,7 @@
 
 namespace RAYEX_NAMESPACE
 {
-  /// A wrapper for RAYEX_NAMESPACE::MeshSSBO matching the buffer alignment requirements.
+  /// A wrapper for MeshSSBO matching the buffer alignment requirements.
   /// @ingroup API
   struct MeshSSBO
   {
@@ -15,16 +15,16 @@ namespace RAYEX_NAMESPACE
 
     glm::vec4 emission  = glm::vec4( 1.0F );
     glm::vec4 emittance = glm::vec4( 1.0F );
-    glm::vec4 padding1  = glm::vec4( 1.0F ); ///< Buffer padding (ignore).
+    glm::vec4 padding0  = glm::vec4( 1.0F ); ///< Buffer padding (ignore).
 
     uint32_t indexOffset = 0; ///< Refers to the offset of this mesh inside a Geometry::indices container.
 
+    uint32_t padding1 = 0; ///< Buffer padding (ignore).
     uint32_t padding2 = 0; ///< Buffer padding (ignore).
     uint32_t padding3 = 0; ///< Buffer padding (ignore).
-    uint32_t padding4 = 0; ///< Buffer padding (ignore).
   };
 
-  /// A wrapper for RAYEX_NAMESPACE::GeometryInstanceSSBO matching the buffer alignment requirements.
+  /// A wrapper for GeometryInstanceSSBO matching the buffer alignment requirements.
   /// @ingroup API
   struct GeometryInstanceSSBO
   {
@@ -37,7 +37,7 @@ namespace RAYEX_NAMESPACE
     float padding2 = 0.0F; ///< Buffer padding (ignore).
   };
 
-  /// A shader storage buffer wrapper class.
+  /// A shader storage buffer specilization class.
   /// @ingroup API
   /// @todo documentation
   template <class T>
@@ -52,6 +52,10 @@ namespace RAYEX_NAMESPACE
 
     auto getDescriptorInfos( ) const -> const std::vector<vk::DescriptorBufferInfo>& { return _bufferInfos; }
 
+    /// Creates a storage buffer and n copies.
+    /// @param data The data to fill the storage buffer(s) with.
+    /// @param copies The amount of copies to make.
+    /// @param deviceAddressVisible If true, the buffer will be device visible.
     void init( const std::vector<T>& data, size_t copies = 1, bool deviceAddressVisible = false )
     {
       _count = static_cast<uint32_t>( data.size( ) );

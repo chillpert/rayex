@@ -4,21 +4,21 @@
 
 namespace rx
 {
+  /// A specialization class for creating cubemaps.
+  /// @ingroup API
   class Cubemap : public Image
   {
   public:
-    /// @return Returns the skybox's image view.
-    auto getImageView( ) const -> vk::ImageView { return _imageView.get( ); }
+    auto getImageView( ) const -> const vk::ImageView { return _imageView.get( ); }
 
-    /// @return Returns the skybox's sampler.
-    auto getSampler( ) const -> vk::Sampler { return _sampler.get( ); }
+    auto getSampler( ) const -> const vk::Sampler { return _sampler.get( ); }
 
-    /// Initializes the skybox cubemap.
-    /// @param path A path to a ktx cubemap file. If left empty, a black cubemap will be created.
+    /// Initializes the cubemap.
+    /// @param path A path to a ktx cubemap file. If left empty, an empty cubemap will be created instead.
     void init( std::string_view path = std::string_view( ) );
 
   private:
-    vk::UniqueSampler _sampler;     ///< The skybox's sampler.
-    vk::UniqueImageView _imageView; ///< THe skybox's image view.
+    vk::UniqueSampler _sampler;
+    vk::UniqueImageView _imageView;
   };
 } // namespace rx

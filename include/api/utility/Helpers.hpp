@@ -80,7 +80,7 @@ namespace vk
     /// @param newLayout The target image layout.
     /// @param subresourceRange The image view's subresource range.
     /// @return Returns a tuple containing the actual image memory barrier as well as the source stage mask and the destination stage mask.
-    auto getImageMemoryBarrierInfo( Image image, ImageLayout oldLayout, ImageLayout newLayout, ImageSubresourceRange* subresourceRange = nullptr ) -> std::tuple<ImageMemoryBarrier, PipelineStageFlags, PipelineStageFlags>;
+    auto getImageMemoryBarrierInfo( Image image, ImageLayout oldLayout, ImageLayout newLayout, const ImageSubresourceRange* subresourceRange = nullptr ) -> std::tuple<ImageMemoryBarrier, PipelineStageFlags, PipelineStageFlags>;
 
     /// Simplifies the process of setting up an attachment description for a render pass.
     /// @param surfaceFormat The surface's format.

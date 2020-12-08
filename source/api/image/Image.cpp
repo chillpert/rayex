@@ -18,7 +18,7 @@ namespace RAYEX_NAMESPACE
     _memory = vk::Initializer::allocateMemoryUnique( _image.get( ) );
   }
 
-  void Image::transitionToLayout( vk::ImageLayout layout, vk::ImageSubresourceRange* subresourceRange )
+  void Image::transitionToLayout( vk::ImageLayout layout, const vk::ImageSubresourceRange* subresourceRange )
   {
     auto barrierInfo = vk::Helper::getImageMemoryBarrierInfo( _image.get( ), _layout, layout, subresourceRange );
 
@@ -42,9 +42,9 @@ namespace RAYEX_NAMESPACE
     _layout = layout;
   }
 
-  void Image::transitionToLayout( vk::ImageLayout layout, vk::CommandBuffer commandBuffer )
+  void Image::transitionToLayout( vk::ImageLayout layout, vk::CommandBuffer commandBuffer, const vk::ImageSubresourceRange* subresourceRange )
   {
-    auto barrierInfo = vk::Helper::getImageMemoryBarrierInfo( _image.get( ), _layout, layout );
+    auto barrierInfo = vk::Helper::getImageMemoryBarrierInfo( _image.get( ), _layout, layout, subresourceRange );
 
     commandBuffer.pipelineBarrier( std::get<1>( barrierInfo ), // srcStageMask
                                    std::get<2>( barrierInfo ), // dstStageMask

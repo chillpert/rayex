@@ -170,7 +170,7 @@ namespace vk::Helper
                                    &std::get<0>( barrierInfo ) ); // barrier
   }
 
-  auto getImageMemoryBarrierInfo( Image image, ImageLayout oldLayout, ImageLayout newLayout, ImageSubresourceRange* subresourceRange ) -> std::tuple<ImageMemoryBarrier, PipelineStageFlags, PipelineStageFlags>
+  auto getImageMemoryBarrierInfo( Image image, ImageLayout oldLayout, ImageLayout newLayout, const ImageSubresourceRange* subresourceRange ) -> std::tuple<ImageMemoryBarrier, PipelineStageFlags, PipelineStageFlags>
   {
     // TODO: not style conform.
     ImageMemoryBarrier barrier;

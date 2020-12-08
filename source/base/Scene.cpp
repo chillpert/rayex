@@ -289,7 +289,7 @@ namespace RAYEX_NAMESPACE
 
   void Scene::initCameraBuffer( )
   {
-    _cameraUniformBuffer.init<CameraUbo>( );
+    _cameraUniformBuffer.init( );
   }
 
   void Scene::uploadCameraBuffer( uint32_t imageIndex )
@@ -316,7 +316,7 @@ namespace RAYEX_NAMESPACE
       cameraUbo.position = glm::vec4( _currentCamera->getPosition( ), 1.0F );
     }
 
-    _cameraUniformBuffer.upload<CameraUbo>( imageIndex, cameraUbo );
+    _cameraUniformBuffer.upload( imageIndex, cameraUbo );
   }
 
   void Scene::uploadEnvironmentMap( )

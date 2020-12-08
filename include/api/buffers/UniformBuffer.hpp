@@ -5,8 +5,7 @@
 
 namespace RAYEX_NAMESPACE
 {
-  /// A uniform buffer object for camera data.
-  /// @todo Camera position could easily be a push constant, which would make this UBO much smaller in size.
+  /// A memory aligned uniform buffer object for camera data.
   /// @ingroup API
   struct CameraUbo
   {
@@ -17,39 +16,25 @@ namespace RAYEX_NAMESPACE
     glm::vec4 position          = glm::vec4( 1.0F );
 
   private:
-    glm::vec4 padding0 = glm::vec4( 1.0F );
-    glm::vec4 padding1 = glm::vec4( 1.0F );
-    glm::vec4 padding2 = glm::vec4( 1.0F );
+    glm::vec4 padding0 = glm::vec4( 1.0F ); ///< Padding (ignore).
+    glm::vec4 padding1 = glm::vec4( 1.0F ); ///< Padding (ignore).
+    glm::vec4 padding2 = glm::vec4( 1.0F ); ///< Padding (ignore).
   };
 
-  /// A specialised buffer for uniforms.
+  /// A uniform buffer specialization class.
   /// @ingroup API
+  template <class T>
   class UniformBuffer
   {
   public:
     UniformBuffer( ) = default;
 
-    /// @param swapchainImagesCount The amount of images in the swapchain.
-    /// @param initialize If true, the uniform buffer will be initialized right away without an additional call to init().
-    template <typename T>
-    UniformBuffer( size_t swapchainImagesCount, bool initialize = true )
-    {
-      if ( initialize )
-        init<T>( swapchainImagesCount );
-    }
-
-    /// @return Returns the vector of uniform buffers.
     auto get( ) const -> const std::vector<Buffer>& { return _buffers; }
-
-    /// @return Returns the vector of uniform buffers as raw Vulkan buffer objects.
-    auto getRaw( ) const -> const std::vector<vk::Buffer>;
 
     /// Creates the uniform buffer and allocates memory for it.
     ///
     /// The function will create as many uniform buffers as there are images in the swapchain.
     /// Additionally, it will create the descriptor buffer infos which can be later used to write to a descriptor set.
-    /// @param swapchainImagesCount The amount of images in the swapchain.
-    template <typename T>
     void init( )
     {
       _buffers.resize( components::maxResources );
@@ -63,14 +48,16 @@ namespace RAYEX_NAMESPACE
       }
 
       _bufferInfos.resize( components::maxResources );
+
       for ( size_t i = 0; i < _buffers.size( ); ++i )
+      {
         _bufferInfos[i] = vk::DescriptorBufferInfo( _buffers[i].get( ), 0, sizeof( T ) );
+      }
     }
 
     /// Used to fill an image's buffer.
     /// @param imageIndex The image's index in the swapchain.
     /// @param ubo The actual uniform buffer object holding the data.
-    template <typename T>
     void upload( uint32_t imageIndex, T& ubo )
     {
       _buffers[imageIndex].fill<T>( &ubo );
@@ -79,6 +66,6 @@ namespace RAYEX_NAMESPACE
     std::vector<vk::DescriptorBufferInfo> _bufferInfos;
 
   private:
-    std::vector<Buffer> _buffers; ///< A vector of RAYEX_NAMESPACE::Buffers for the uniform buffers.
+    std::vector<Buffer> _buffers; ///< Holds the uniform buffer and all its copies.
   };
 } // namespace RAYEX_NAMESPACE

@@ -138,7 +138,7 @@ namespace RAYEX_NAMESPACE
     std::vector<std::shared_ptr<Texture>> _textures;
     StorageBuffer<GeometryInstanceSSBO> _geometryInstancesBuffer;
 
-    UniformBuffer _cameraUniformBuffer;
+    UniformBuffer<CameraUbo> _cameraUniformBuffer;
 
     std::vector<std::shared_ptr<Geometry>> _geometries;
     std::vector<std::shared_ptr<GeometryInstance>> _geometryInstances;

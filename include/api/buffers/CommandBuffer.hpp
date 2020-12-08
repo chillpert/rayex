@@ -4,17 +4,14 @@
 
 namespace RAYEX_NAMESPACE
 {
-  /// A wrapper class for Vulkan command buffers.
+  /// A wrapper class for Vulkan command buffer objects.
   /// @ingroup API
   class CommandBuffer
   {
   public:
     CommandBuffer( ) = default;
 
-    /// Creates the command buffers and calls initializes them right away.
-    /// @param commandPool The command pool from which the command buffers will be allocated from.
-    /// @param count The amount of Vulkan command buffers to initialize (the same as the amount of images in the swapchain).
-    /// @param usageFlags Specifies what the buffer will be used for.
+    /// Call to init(vk::CommandPool, uint32_t, vk::CommandBufferUsageFlags).
     CommandBuffer( vk::CommandPool commandPool, uint32_t count = 1, vk::CommandBufferUsageFlags usageFlags = vk::CommandBufferUsageFlagBits::eOneTimeSubmit );
 
     /// Creates the command buffers.
@@ -23,18 +20,12 @@ namespace RAYEX_NAMESPACE
     /// @param usageFlags Specifies what the buffer will be used for.
     void init( vk::CommandPool commandPool, uint32_t count = 1, vk::CommandBufferUsageFlags usageFlags = vk::CommandBufferUsageFlagBits::eOneTimeSubmit );
 
-    /// @return Returns the vector of command buffers.
     auto get( ) const -> const std::vector<vk::CommandBuffer> { return _commandBuffers; }
 
-    /// Returns the command buffer by some index.
-    /// @param index The index of the desired command buffer.
-    /// @return Returns the command buffer.
     auto get( size_t index ) const -> const vk::CommandBuffer { return _commandBuffers[index]; }
 
-    /// Frees the command buffer.
     void free( );
 
-    /// Resets the command buffer.
     void reset( );
 
     /// Used to begin the command buffer recording.
@@ -47,15 +38,15 @@ namespace RAYEX_NAMESPACE
 
     /// Submits the recorded commands to a queue.
     /// @param queue The queue to submit to.
-    /// @param waitSemaphores A vector of semaphores to wait for.
-    /// @param signalSemaphores A vector of semaphores to signal.
+    /// @param waitSemaphores A std::vector of semaphores to wait for.
+    /// @param signalSemaphores A std::vector of semaphores to signal.
     /// @param waitDstStageMask The pipeline stage where the commands will be executed.
     void submitToQueue( vk::Queue queue, vk::Fence fence = nullptr, const std::vector<vk::Semaphore>& waitSemaphores = { }, const std::vector<vk::Semaphore>& signalSemaphores = { }, vk::PipelineStageFlags* waitDstStageMask = { } );
 
   private:
-    std::vector<vk::CommandBuffer> _commandBuffers; ///< A vector of Vulkan command buffers.
+    std::vector<vk::CommandBuffer> _commandBuffers;
 
-    vk::CommandPool _commandPool;          ///< The Vulkan command pool used to allocate the command buffer from.
-    vk::CommandBufferBeginInfo _beginInfo; ///< The Vulkan begin information of the command buffer.
+    vk::CommandPool _commandPool; ///< The command pool used to allocate the command buffer from.
+    vk::CommandBufferBeginInfo _beginInfo;
   };
 } // namespace RAYEX_NAMESPACE

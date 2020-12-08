@@ -110,10 +110,10 @@ namespace RAYEX_NAMESPACE
     }
 
   protected:
-    vk::UniqueBuffer _buffer;       ///< The buffer object with a unique handle.
-    vk::UniqueDeviceMemory _memory; ///< The buffer's memory with a unique handle.
+    vk::UniqueBuffer _buffer;
+    vk::UniqueDeviceMemory _memory;
 
-    vk::DeviceSize _size = 0; ///< The buffer's size.
+    vk::DeviceSize _size = 0;
 
     void* _ptrToData = nullptr;
     bool _mapped     = false;

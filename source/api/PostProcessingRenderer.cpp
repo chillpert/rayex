@@ -204,7 +204,7 @@ namespace RAYEX_NAMESPACE
                                                nullptr,                                       // basePipelineHandle
                                                0 );                                           // basePipelineIndex
 
-    _pipeline = components::device.createGraphicsPipelineUnique( nullptr, createInfo, nullptr );
+    _pipeline = static_cast<vk::UniquePipeline>( components::device.createGraphicsPipelineUnique( nullptr, createInfo, nullptr ) );
     RX_ASSERT( _pipeline.get( ), "Failed to create rasterization pipeline." );
   }
 

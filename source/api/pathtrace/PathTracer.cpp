@@ -654,7 +654,7 @@ namespace RAYEX_NAMESPACE
                                                     nullptr,                                       // basePipelineHandle
                                                     0 );                                           // basePipelineIndex
 
-    _pipeline = components::device.createRayTracingPipelineKHRUnique( nullptr, createInfo );
+    _pipeline = static_cast<vk::UniquePipeline>( components::device.createRayTracingPipelineKHRUnique( nullptr, createInfo ) );
     RX_ASSERT( _pipeline.get( ), "Failed to create path tracing pipeline." );
   }
 

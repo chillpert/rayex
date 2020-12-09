@@ -37,6 +37,8 @@ namespace RAYEX_NAMESPACE
     /// @note The function will be called every tick.
     virtual void update( );
 
+    void reset( );
+
     /// @return Returns the camera's position.
     auto getPosition( ) const -> const glm::vec3& { return _position; }
 

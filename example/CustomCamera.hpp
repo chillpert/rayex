@@ -8,7 +8,9 @@ class CustomCamera : public rx::Camera
 {
 public:
   CustomCamera( int width, int height, const glm::vec3& position ) :
-    rx::Camera( width, height, position ) {}
+    rx::Camera( width, height, position )
+  {
+  }
 
   void processKeyboard( ) override
   {

@@ -26,11 +26,10 @@ private:
     style.PopupRounding     = 4.0f;
     style.ScrollbarRounding = 4.0f;
 
-    ImVec4* colors = ImGui::GetStyle( ).Colors;
-
+    ImVec4* colors                         = ImGui::GetStyle( ).Colors;
     colors[ImGuiCol_Text]                  = ImVec4( 1.00f, 1.00f, 1.00f, 1.00f );
     colors[ImGuiCol_TextDisabled]          = ImVec4( 0.50f, 0.50f, 0.50f, 1.00f );
-    colors[ImGuiCol_WindowBg]              = ImVec4( 0.18f, 0.18f, 0.18f, 1.00f );
+    colors[ImGuiCol_WindowBg]              = ImVec4( 0.18f, 0.18f, 0.18f, 0.61f );
     colors[ImGuiCol_ChildBg]               = ImVec4( 0.18f, 0.18f, 0.18f, 1.00f );
     colors[ImGuiCol_PopupBg]               = ImVec4( 0.18f, 0.18f, 0.18f, 1.00f );
     colors[ImGuiCol_Border]                = ImVec4( 0.22f, 0.22f, 0.22f, 1.00f );
@@ -139,14 +138,14 @@ private:
           _renderer->scene( ).popGeometry( );
         }
 
-        if ( ImGui::Button( "Set skybox" ) )
+        if ( ImGui::Button( "Set environment map" ) )
         {
           _renderer->scene( ).setEnvironmentMap( "models/skybox/cubemap_yokohama_rgba.ktx" );
         }
 
         ImGui::SameLine( );
 
-        if ( ImGui::Button( "Remove skybox" ) )
+        if ( ImGui::Button( "Remove environment map" ) )
         {
           _renderer->scene( ).removeEnvironmentMap( );
         }
@@ -215,6 +214,8 @@ private:
         {
           loadCornellScene( _renderer );
         }
+
+        ImGui::SameLine( );
 
         if ( ImGui::Button( "Dynamic" ) )
         {

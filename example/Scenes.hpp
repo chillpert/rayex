@@ -4,6 +4,8 @@ inline void loadCornellScene( rx::Rayex* renderer )
 {
   renderer->reset( );
 
+  renderer->scene( ).getCamera( )->reset( );
+
   auto cornell = rx::loadObj( "models/CornellBox.obj" );
   // Set lamp submesh emittance.
   cornell->meshes[7].material.emission = glm::vec3( 10.0F );
@@ -14,26 +16,28 @@ inline void loadCornellScene( rx::Rayex* renderer )
   auto cornellInstance = rx::instance( cornell, transform );
 
   renderer->scene( ).setGeometryInstances( { cornellInstance } );
+
+  renderer->scene( ).removeEnvironmentMap( );
 }
 
 inline void loadDebugScene( rx::Rayex* renderer )
 {
   renderer->reset( );
 
-  // Load geometries.
-  auto awp     = rx::loadObj( "models/awpdlore/awpdlore.obj" );
-  auto plane   = rx::loadObj( "models/plane.obj" );
-  auto cornell = rx::loadObj( "models/CornellBox.obj" );
-  // Set lamp submesh emittance.
-  cornell->meshes[7].material.emission = glm::vec3( 10.0F );
+  renderer->scene( ).getCamera( )->reset( );
 
+  // Load geometries.
+  auto awp   = rx::loadObj( "models/awpdlore/awpdlore.obj" );
+  auto plane = rx::loadObj( "models/plane.obj" );
+
+  // Make a custom material for an emissive surface (light source).
   rx::Material customMaterial;
   customMaterial.diffuseTexPath = "models/metal.png";
   customMaterial.emission       = glm::vec3( 1.0F );
   plane->setMaterial( customMaterial );
 
   // Submit geometries.
-  renderer->scene( ).setGeometries( { awp, plane, cornell } );
+  renderer->scene( ).setGeometries( { awp, plane } );
 
   // Create instances of the geometries.
   auto transform = glm::scale( glm::mat4( 1.0F ), glm::vec3( 0.25F ) );
@@ -53,11 +57,8 @@ inline void loadDebugScene( rx::Rayex* renderer )
 
   auto planeInstance = rx::instance( plane, transform );
 
-  transform            = glm::translate( glm::mat4( 1.0F ), glm::vec3( -5.0F, 0.0F, 0.0F ) );
-  auto cornellInstance = rx::instance( cornell, transform );
-
   // Submit instances for drawing.
-  renderer->scene( ).setGeometryInstances( { awpInstance1, awpInstance2, cornellInstance, planeInstance } );
+  renderer->scene( ).setGeometryInstances( { awpInstance1, awpInstance2, planeInstance } );
 
   renderer->scene( ).setEnvironmentMap( "models/skybox/cubemap_yokohama_rgba.ktx" );
 }

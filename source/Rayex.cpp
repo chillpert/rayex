@@ -106,6 +106,7 @@ namespace RAYEX_NAMESPACE
   {
     rx::components::geometryIndex = 0;
     rx::components::textureIndex  = 0;
+    rx::components::frameCount    = -1;
 
     _api._scene._deleteTextures = true;
 

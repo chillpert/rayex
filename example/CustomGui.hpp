@@ -2,104 +2,7 @@
 #define CUSTOM_GUI_HPP
 
 #include "Keys.hpp"
-#include "Rayex.hpp"
-
-inline auto getRandomUniquePosition( float min, float max ) -> glm::vec3
-{
-  static std::vector<glm::vec3> positions;
-
-  static std::random_device rd;
-  static std::mt19937 mt( rd( ) );
-  std::uniform_real_distribution<float> dist( min, max );
-
-  glm::vec3 result = glm::vec3( 0.0F );
-
-  while ( true )
-  {
-    result.x = dist( mt );
-    result.y = dist( mt );
-    result.z = dist( mt );
-
-    bool accepted = true;
-    for ( const auto& position : positions )
-    {
-      if ( result == position )
-      {
-        accepted = false;
-      }
-    }
-
-    if ( accepted )
-    {
-      break;
-    }
-  };
-
-  return result;
-}
-
-inline auto getRandomFloat( float min, float max ) -> float
-{
-  static std::random_device rd;
-  static std::mt19937 mt( rd( ) );
-  std::uniform_real_distribution<float> dist( min, max );
-
-  return dist( mt );
-}
-
-inline void addBox( rx::Rayex* renderer )
-{
-  std::string_view path = "models/cube.obj";
-  auto cube             = renderer->scene( ).findGeometry( path );
-  if ( cube == nullptr )
-  {
-    cube = rx::loadObj( path );
-    renderer->scene( ).submitGeometry( cube );
-  }
-
-  auto transform = glm::scale( glm::mat4( 1.0F ), glm::vec3( 0.3F, 0.3F, 0.3F ) );
-  transform      = glm::rotate( transform, getRandomFloat( 0.0F, 360.0F ), glm::vec3( 0.0F, 1.0F, 0.0F ) );
-  transform      = glm::translate( transform, getRandomUniquePosition( -25.0F, 25.0F ) );
-
-  auto cubeInstance = rx::instance( cube, transform );
-  renderer->scene( ).submitGeometryInstance( cubeInstance );
-}
-
-inline void addSphere( rx::Rayex* renderer )
-{
-  std::string_view path = "models/sphere.obj";
-  auto sphere           = renderer->scene( ).findGeometry( path );
-  if ( sphere == nullptr )
-  {
-    sphere = rx::loadObj( path );
-    renderer->scene( ).submitGeometry( sphere );
-  }
-
-  auto transform = glm::scale( glm::mat4( 1.0F ), glm::vec3( 0.1F, 0.1F, 0.1F ) );
-  transform      = glm::rotate( transform, getRandomFloat( 0.0F, 360.0F ), glm::vec3( 0.0F, 1.0F, 0.0F ) );
-  transform      = glm::translate( transform, getRandomUniquePosition( -70.0F, 70.0F ) );
-
-  auto sphereInstance = rx::instance( sphere, transform );
-  renderer->scene( ).submitGeometryInstance( sphereInstance );
-}
-
-inline void addAwp( rx::Rayex* renderer )
-{
-  std::string_view path = "models/awpdlore/awpdlore.obj";
-  auto awp              = renderer->scene( ).findGeometry( path );
-  if ( awp == nullptr )
-  {
-    awp = rx::loadObj( path );
-    renderer->scene( ).submitGeometry( awp );
-  }
-
-  auto transform = glm::scale( glm::mat4( 1.0F ), glm::vec3( 0.3F, 0.3F, 0.3F ) );
-  transform      = glm::rotate( transform, getRandomFloat( 0.0F, 360.0F ), glm::vec3( 0.0F, 1.0F, 0.0F ) );
-  transform      = glm::translate( transform, getRandomUniquePosition( -10.0F, 10.0F ) );
-
-  auto awpInstance = rx::instance( awp, transform );
-  renderer->scene( ).submitGeometryInstance( awpInstance );
-}
+#include "Scenes.hpp"
 
 class CustomGui : public rx::Gui
 {
@@ -249,6 +152,8 @@ private:
         }
       }
 
+      ImGui::NewLine( );
+
       if ( ImGui::CollapsingHeader( "Resource Monitor", flags ) )
       {
         const size_t maxFrames = 10000;
@@ -272,6 +177,8 @@ private:
         ImGui::SetNextItemWidth( -1 );
         ImGui::PlotLines( "Frametimes", frameTimes.data( ), maxFrames, 0, "Frametime", 0.0F, 0.12F, ImVec2( 0.0F, 120.0F ) );
       }
+
+      ImGui::NewLine( );
 
       if ( ImGui::CollapsingHeader( "Settings", flags ) )
       {
@@ -297,6 +204,21 @@ private:
         if ( ImGui::SliderInt( "Recursion depth", &depth, 0, 31 ) )
         {
           _renderer->settings( ).setRecursionDepth( static_cast<uint32_t>( depth ) );
+        }
+      }
+
+      ImGui::NewLine( );
+
+      if ( ImGui::CollapsingHeader( "Scenes", flags ) )
+      {
+        if ( ImGui::Button( "Cornell box" ) )
+        {
+          loadCornellScene( _renderer );
+        }
+
+        if ( ImGui::Button( "Dynamic" ) )
+        {
+          loadDebugScene( _renderer );
         }
       }
     }

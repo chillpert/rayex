@@ -101,4 +101,15 @@ namespace RAYEX_NAMESPACE
   {
     _initialized ? _api.setGui( gui, true ) : _api.setGui( gui );
   }
+
+  void Rayex::reset( )
+  {
+    rx::components::geometryIndex = 0;
+    rx::components::textureIndex  = 0;
+
+    _api._scene._deleteTextures = true;
+
+    //components::device.waitIdle( );
+    //_api._scene.prepareBuffers( );
+  }
 } // namespace RAYEX_NAMESPACE

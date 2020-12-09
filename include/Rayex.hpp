@@ -61,6 +61,8 @@ namespace RAYEX_NAMESPACE
     /// @return Returns the scene.
     auto scene( ) -> Scene& { return _api._scene; }
 
+    void reset( );
+
   private:
     std::shared_ptr<Window> _window = nullptr; ///< The window used to create a surface from.
     std::shared_ptr<Gui> _gui       = nullptr; ///< The ImGui-based GUI.

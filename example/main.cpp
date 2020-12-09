@@ -26,59 +26,7 @@ int main( )
   // ... and initialize the renderer.
   renderer.init( );
 
-  /*
-  // Load geometries.
-  auto awp     = rx::loadObj( "models/awpdlore/awpdlore.obj" );
-  auto plane   = rx::loadObj( "models/plane.obj" );
-  auto cornell = rx::loadObj( "models/CornellBox.obj" );
-  // Set lamp submesh emittance.
-  cornell->meshes[7].material.emission = glm::vec3( 10.0F );
-
-  rx::Material customMaterial;
-  customMaterial.diffuseTexPath = "models/metal.png";
-  customMaterial.emission       = glm::vec3( 1.0F );
-  plane->setMaterial( customMaterial );
-
-  // Submit geometries.
-  renderer.scene( ).setGeometries( { awp, plane, cornell } );
-
-  // Create instances of the geometries.
-  auto transform = glm::scale( glm::mat4( 1.0F ), glm::vec3( 0.25F ) );
-  transform      = glm::rotate( transform, glm::radians( 45.0F ), glm::vec3( 0.0F, 1.0F, 0.0F ) );
-  transform      = glm::translate( transform, glm::vec3( 0.0F, -1.0F, 0.5F ) );
-
-  auto awpInstance1 = rx::instance( awp, transform );
-
-  transform = glm::scale( glm::mat4( 1.0F ), glm::vec3( 0.25F ) );
-  transform = glm::rotate( transform, glm::radians( 90.0F ), glm::vec3( 0.0F, 1.0F, 0.0F ) );
-  transform = glm::translate( transform, glm::vec3( 1.0F, 2.0F, 0.0F ) );
-
-  auto awpInstance2 = rx::instance( awp, transform );
-
-  transform = glm::scale( glm::mat4( 1.0F ), glm::vec3( 1.0F ) );
-  transform = glm::translate( transform, glm::vec3( 0.0F, -80.0F, 0.0F ) );
-
-  auto planeInstance = rx::instance( plane, transform );
-
-  transform            = glm::translate( glm::mat4( 1.0F ), glm::vec3( -5.0F, 0.0F, 0.0F ) );
-  auto cornellInstance = rx::instance( cornell, transform );
-
-  // Submit instances for drawing.
-  renderer.scene( ).setGeometryInstances( { awpInstance1, awpInstance2, cornellInstance, planeInstance } );
-
-  renderer.scene( ).setEnvironmentMap( "models/skybox/cubemap_yokohama_rgba.ktx" );
-  */
-
-  auto cornell = rx::loadObj( "models/CornellBox.obj" );
-  // Set lamp submesh emittance.
-  cornell->meshes[7].material.emission = glm::vec3( 10.0F );
-
-  renderer.scene( ).submitGeometry( cornell );
-
-  auto transform       = glm::translate( glm::mat4( 1.0F ), glm::vec3( 0.75F, -1.0F, -1.0F ) );
-  auto cornellInstance = rx::instance( cornell, transform );
-
-  renderer.scene( ).submitGeometryInstance( cornellInstance );
+  loadCornellScene( &renderer );
 
   while ( renderer.isRunning( ) )
   {
@@ -91,7 +39,6 @@ int main( )
     }
     */
 
-    // Extra tests for memcpy error: (hold to spawn many boxes at once)
     if ( Key::eB )
     {
       addBox( &renderer );

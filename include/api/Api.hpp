@@ -52,7 +52,7 @@ namespace RAYEX_NAMESPACE
     void initBase( );
 
     /// Initializes all Vulkan objects that are scene-specific.
-    void initScene( );
+    RX_API void initScene( );
 
     /// Used to update and upload uniform buffers.
     void update( );

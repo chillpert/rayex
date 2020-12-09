@@ -26,28 +26,13 @@ int main( )
   // ... and initialize the renderer.
   renderer.init( );
 
-  loadCornellScene( &renderer );
+  loadScene( &renderer, Scene::eCornell );
 
   while ( renderer.isRunning( ) )
   {
+    updateScene( &renderer );
+
     renderer.run( );
-
-    /*
-    if ( awpInstance1 != nullptr )
-    {
-      awpInstance1->setTransform( glm::rotate( awpInstance1->transform, rx::Time::getDeltaTime( ) * 0.5F, glm::vec3( 0.0F, 1.0F, 0.0F ) ) );
-    }
-    */
-
-    if ( Key::eB )
-    {
-      addBox( &renderer );
-    }
-
-    if ( Key::eL )
-    {
-      addSphere( &renderer );
-    }
   }
 
   return 0;

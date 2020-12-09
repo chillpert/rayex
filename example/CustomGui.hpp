@@ -210,16 +210,16 @@ private:
 
       if ( ImGui::CollapsingHeader( "Scenes", flags ) )
       {
-        if ( ImGui::Button( "Cornell box" ) )
+        if ( ImGui::Button( "Cornell" ) )
         {
-          loadCornellScene( _renderer );
+          loadScene( _renderer, Scene::eCornell );
         }
 
         ImGui::SameLine( );
 
-        if ( ImGui::Button( "Dynamic" ) )
+        if ( ImGui::Button( "Debug" ) )
         {
-          loadDebugScene( _renderer );
+          loadScene( _renderer, Scene::eDebug );
         }
       }
     }

@@ -1,16 +1,16 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
-<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.17">
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.20" xml:lang="en-US">
   <compounddef id="indexpage" kind="page">
     <compoundname>index</compoundname>
     <title>RAYEX</title>
     <briefdescription>
     </briefdescription>
     <detaileddescription>
-<para>RAYEX is a work-in-progress, cross-platform, cross-vendor, Vulkan-based, path tracing library.</para>
+<para><anchor id="index_1md_C__Repos_rayex_README"/>RAYEX is a work-in-progress, cross-platform, cross-vendor, Vulkan-based, real-time path tracer.</para>
 <para>It runs on both Linux (x64) and Windows (x64) using the Vulkan API. The purpose of this software is to provide a cross-platform, cross-vendor path tracer that is easy to integrate into existing projects. Vendor independence is achieved by using KHRONOS&apos; new Vulkan ray tracing extension (first published on March 17, 2020). It uses <ulink url="https://www.libsdl.org/index.php">SDL2</ulink> for windowing and <ulink url="https://glm.g-truc.net/0.9.9/index.html">glm</ulink> as its math library. RAYEX features native <ulink url="https://github.com/ocornut/imgui">Dear ImGui</ulink> support, enabling the user to create user interfaces without having to write any API-related code.</para>
 <sect1 id="index_1autotoc_md1">
 <title>Requirements</title>
-<para>Unfortunately, KHRONOS&apos; Vulkan ray tracing extension is not yet part of the NVIDIA main driver. Download the NVIDIA Vulkan beta drivers <ulink url="https://developer.nvidia.com/vulkan-driver">here</ulink>.</para>
+<para>Unfortunately, KHRONOS&apos; Vulkan ray tracing extension is not yet part of the NVIDIA main driver. Download the NVIDIA Vulkan beta drivers <ulink url="https://developer.nvidia.com/vulkan-driver">here</ulink>. AMD drivers can be downloaded <ulink url="https://www.amd.com/en/support/kb/release-notes/rn-rad-win-20-11-2-vrt-beta">here</ulink> instead.</para>
 </sect1>
 <sect1 id="index_1autotoc_md2">
 <title>Deploy</title>
@@ -59,9 +59,6 @@
 <codeline><highlight class="normal"><sp/><sp/><sp/><sp/>auto<sp/>cubeInstance<sp/>=<sp/>rx::instance(<sp/>cube<sp/>);</highlight></codeline>
 <codeline><highlight class="normal"><sp/><sp/><sp/><sp/>renderer.scene(<sp/>).submitGeometryInstance(<sp/>cubeInstance<sp/>);</highlight></codeline>
 <codeline></codeline>
-<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>//<sp/>Add<sp/>a<sp/>light<sp/>source.</highlight></codeline>
-<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>renderer.scene(<sp/>).submitDirectionalLight(<sp/>rx::directionalLightInstance(<sp/>glm::vec3(<sp/>-4.0F,<sp/>10.0F,<sp/>5.0F<sp/>)<sp/>)<sp/>);</highlight></codeline>
-<codeline></codeline>
 <codeline><highlight class="normal"><sp/><sp/><sp/><sp/>//<sp/>The<sp/>main<sp/>loop.</highlight></codeline>
 <codeline><highlight class="normal"><sp/><sp/><sp/><sp/>while<sp/>(<sp/>renderer.isRunning(<sp/>)<sp/>)</highlight></codeline>
 <codeline><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
@@ -70,10 +67,10 @@
 <codeline><highlight class="normal">}</highlight></codeline>
 </programlisting></para>
 </sect2>
-</sect1>
-<sect1 id="index_1autotoc_md7">
-<title>Download</title>
-<para>You can find the GitHub repository <ulink url="https://github.com/chillpert/rayex">here</ulink>. </para>
+<sect2 id="index_1autotoc_md7">
+<title>Documentation</title>
+<para>An extensive documentation of all classes and functions can be found <ulink url="https://chillpert.github.io/rayex/html/index.html">here</ulink>. </para>
+</sect2>
 </sect1>
     </detaileddescription>
   </compounddef>

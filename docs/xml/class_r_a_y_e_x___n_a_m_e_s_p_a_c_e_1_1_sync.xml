@@ -1,0 +1,207 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.20" xml:lang="en-US">
+  <compounddef id="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_sync" kind="class" language="C++" prot="public">
+    <compoundname>RAYEX_NAMESPACE::Sync</compoundname>
+    <includes refid="_sync_8hpp" local="no">Sync.hpp</includes>
+      <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_sync_1a678ce9e0cccaccf75a3ae4000ec77cdd" prot="private" static="no" mutable="no">
+        <type>std::vector&lt; vk::Fence &gt;</type>
+        <definition>std::vector&lt;vk::Fence&gt; RAYEX_NAMESPACE::Sync::_imagesInFlight</definition>
+        <argsstring></argsstring>
+        <name>_imagesInFlight</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Repos/rayex/include/api/Sync.hpp" line="42" column="17" bodyfile="C:/Repos/rayex/include/api/Sync.hpp" bodystart="42" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_sync_1ab11b0270334724eb062f075d661f83ee" prot="private" static="no" mutable="no">
+        <type>std::vector&lt; vk::UniqueFence &gt;</type>
+        <definition>std::vector&lt;vk::UniqueFence&gt; RAYEX_NAMESPACE::Sync::_inFlightFences</definition>
+        <argsstring></argsstring>
+        <name>_inFlightFences</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Repos/rayex/include/api/Sync.hpp" line="43" column="17" bodyfile="C:/Repos/rayex/include/api/Sync.hpp" bodystart="43" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_sync_1ab51b0e0d5c6bbc84ab0a8d9bc085ff9f" prot="private" static="no" mutable="no">
+        <type>std::vector&lt; vk::UniqueSemaphore &gt;</type>
+        <definition>std::vector&lt;vk::UniqueSemaphore&gt; RAYEX_NAMESPACE::Sync::_imageAvailableSemaphores</definition>
+        <argsstring></argsstring>
+        <name>_imageAvailableSemaphores</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Repos/rayex/include/api/Sync.hpp" line="44" column="17" bodyfile="C:/Repos/rayex/include/api/Sync.hpp" bodystart="44" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_sync_1a7c657bc209d49798efbbf4144ae24248" prot="private" static="no" mutable="no">
+        <type>std::vector&lt; vk::UniqueSemaphore &gt;</type>
+        <definition>std::vector&lt;vk::UniqueSemaphore&gt; RAYEX_NAMESPACE::Sync::_finishedRenderSemaphores</definition>
+        <argsstring></argsstring>
+        <name>_finishedRenderSemaphores</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Repos/rayex/include/api/Sync.hpp" line="45" column="17" bodyfile="C:/Repos/rayex/include/api/Sync.hpp" bodystart="45" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_sync_1ac4b29a96504501aca6ebbb2a16e0ce7b" prot="private" static="no" mutable="no">
+        <type>const size_t</type>
+        <definition>const size_t RAYEX_NAMESPACE::Sync::_maxFramesInFlight</definition>
+        <argsstring></argsstring>
+        <name>_maxFramesInFlight</name>
+        <initializer>= 2</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Repos/rayex/include/api/Sync.hpp" line="48" column="18" bodyfile="C:/Repos/rayex/include/api/Sync.hpp" bodystart="48" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_sync_1aa3daba9fa994917c02b7d28e2b14fd9a" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>auto</type>
+        <definition>auto RAYEX_NAMESPACE::Sync::getMaxFramesInFlight</definition>
+        <argsstring>() -&gt; size_t</argsstring>
+        <name>getMaxFramesInFlight</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Repos/rayex/include/api/Sync.hpp" line="10" column="10" bodyfile="C:/Repos/rayex/include/api/Sync.hpp" bodystart="10" bodyend="10"/>
+      </memberdef>
+      <memberdef kind="function" id="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_sync_1a34c84386f46fc65d85dbe0dc0931e2a5" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>auto</type>
+        <definition>auto RAYEX_NAMESPACE::Sync::getImageInFlight</definition>
+        <argsstring>(size_t imageIndex) -&gt; vk::Fence</argsstring>
+        <name>getImageInFlight</name>
+        <param>
+          <type>size_t</type>
+          <declname>imageIndex</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Repos/rayex/include/api/Sync.hpp" line="12" column="10" bodyfile="C:/Repos/rayex/include/api/Sync.hpp" bodystart="12" bodyend="12"/>
+      </memberdef>
+      <memberdef kind="function" id="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_sync_1a965460ca3c750c12ad812309937fd7ff" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>auto</type>
+        <definition>auto RAYEX_NAMESPACE::Sync::getInFlightFence</definition>
+        <argsstring>(size_t imageIndex) -&gt; vk::Fence</argsstring>
+        <name>getInFlightFence</name>
+        <param>
+          <type>size_t</type>
+          <declname>imageIndex</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Repos/rayex/include/api/Sync.hpp" line="14" column="10" bodyfile="C:/Repos/rayex/include/api/Sync.hpp" bodystart="14" bodyend="14"/>
+      </memberdef>
+      <memberdef kind="function" id="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_sync_1aff75b18f455fb4a3562fc5086bd68ed6" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>auto</type>
+        <definition>auto RAYEX_NAMESPACE::Sync::getImageAvailableSemaphore</definition>
+        <argsstring>(size_t imageIndex) -&gt; vk::Semaphore</argsstring>
+        <name>getImageAvailableSemaphore</name>
+        <param>
+          <type>size_t</type>
+          <declname>imageIndex</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Repos/rayex/include/api/Sync.hpp" line="16" column="10" bodyfile="C:/Repos/rayex/include/api/Sync.hpp" bodystart="16" bodyend="16"/>
+      </memberdef>
+      <memberdef kind="function" id="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_sync_1a469d979f910acd49650eb5fa94727a8f" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>auto</type>
+        <definition>auto RAYEX_NAMESPACE::Sync::getFinishedRenderSemaphore</definition>
+        <argsstring>(size_t imageIndex) -&gt; vk::Semaphore</argsstring>
+        <name>getFinishedRenderSemaphore</name>
+        <param>
+          <type>size_t</type>
+          <declname>imageIndex</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Repos/rayex/include/api/Sync.hpp" line="18" column="10" bodyfile="C:/Repos/rayex/include/api/Sync.hpp" bodystart="18" bodyend="18"/>
+      </memberdef>
+      <memberdef kind="function" id="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_sync_1a049cc57d2e795bfa68788aa3b92eb807" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void RAYEX_NAMESPACE::Sync::init</definition>
+        <argsstring>()</argsstring>
+        <name>init</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Repos/rayex/include/api/Sync.hpp" line="20" column="10" bodyfile="C:/Repos/rayex/include/api/Sync.hpp" bodystart="20" bodyend="33"/>
+      </memberdef>
+      <memberdef kind="function" id="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_sync_1a1d614dbdad9623d888de6812cc563361" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void RAYEX_NAMESPACE::Sync::waitForFrame</definition>
+        <argsstring>(size_t frame)</argsstring>
+        <name>waitForFrame</name>
+        <param>
+          <type>size_t</type>
+          <declname>frame</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Repos/rayex/include/api/Sync.hpp" line="35" column="10" bodyfile="C:/Repos/rayex/include/api/Sync.hpp" bodystart="35" bodyend="39"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="C:/Repos/rayex/include/api/Sync.hpp" line="7" column="3" bodyfile="C:/Repos/rayex/include/api/Sync.hpp" bodystart="8" bodyend="49"/>
+    <listofallmembers>
+      <member refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_sync_1a7c657bc209d49798efbbf4144ae24248" prot="private" virt="non-virtual"><scope>RAYEX_NAMESPACE::Sync</scope><name>_finishedRenderSemaphores</name></member>
+      <member refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_sync_1ab51b0e0d5c6bbc84ab0a8d9bc085ff9f" prot="private" virt="non-virtual"><scope>RAYEX_NAMESPACE::Sync</scope><name>_imageAvailableSemaphores</name></member>
+      <member refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_sync_1a678ce9e0cccaccf75a3ae4000ec77cdd" prot="private" virt="non-virtual"><scope>RAYEX_NAMESPACE::Sync</scope><name>_imagesInFlight</name></member>
+      <member refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_sync_1ab11b0270334724eb062f075d661f83ee" prot="private" virt="non-virtual"><scope>RAYEX_NAMESPACE::Sync</scope><name>_inFlightFences</name></member>
+      <member refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_sync_1ac4b29a96504501aca6ebbb2a16e0ce7b" prot="private" virt="non-virtual"><scope>RAYEX_NAMESPACE::Sync</scope><name>_maxFramesInFlight</name></member>
+      <member refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_sync_1a469d979f910acd49650eb5fa94727a8f" prot="public" virt="non-virtual"><scope>RAYEX_NAMESPACE::Sync</scope><name>getFinishedRenderSemaphore</name></member>
+      <member refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_sync_1aff75b18f455fb4a3562fc5086bd68ed6" prot="public" virt="non-virtual"><scope>RAYEX_NAMESPACE::Sync</scope><name>getImageAvailableSemaphore</name></member>
+      <member refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_sync_1a34c84386f46fc65d85dbe0dc0931e2a5" prot="public" virt="non-virtual"><scope>RAYEX_NAMESPACE::Sync</scope><name>getImageInFlight</name></member>
+      <member refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_sync_1a965460ca3c750c12ad812309937fd7ff" prot="public" virt="non-virtual"><scope>RAYEX_NAMESPACE::Sync</scope><name>getInFlightFence</name></member>
+      <member refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_sync_1aa3daba9fa994917c02b7d28e2b14fd9a" prot="public" virt="non-virtual"><scope>RAYEX_NAMESPACE::Sync</scope><name>getMaxFramesInFlight</name></member>
+      <member refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_sync_1a049cc57d2e795bfa68788aa3b92eb807" prot="public" virt="non-virtual"><scope>RAYEX_NAMESPACE::Sync</scope><name>init</name></member>
+      <member refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_sync_1a1d614dbdad9623d888de6812cc563361" prot="public" virt="non-virtual"><scope>RAYEX_NAMESPACE::Sync</scope><name>waitForFrame</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
-<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.17">
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.20" xml:lang="en-US">
   <compounddef id="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_camera" kind="class" language="C++" prot="public">
     <compoundname>RAYEX_NAMESPACE::Camera</compoundname>
     <includes refid="_camera_8hpp" local="no">Camera.hpp</includes>
@@ -17,7 +17,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/n30/Repos/rayex/include/base/Camera.hpp" line="88" column="10" bodyfile="/home/n30/Repos/rayex/include/base/Camera.hpp" bodystart="88" bodyend="-1"/>
+        <location file="C:/Repos/rayex/include/base/Camera.hpp" line="90" column="10" bodyfile="C:/Repos/rayex/include/base/Camera.hpp" bodystart="90" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_camera_1a3fa6186059f5d85399d6b1c6e4303b03" prot="public" static="no" mutable="no">
         <type>bool</type>
@@ -32,7 +32,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/n30/Repos/rayex/include/base/Camera.hpp" line="89" column="10" bodyfile="/home/n30/Repos/rayex/include/base/Camera.hpp" bodystart="89" bodyend="-1"/>
+        <location file="C:/Repos/rayex/include/base/Camera.hpp" line="91" column="10" bodyfile="C:/Repos/rayex/include/base/Camera.hpp" bodystart="91" bodyend="-1"/>
       </memberdef>
       </sectiondef>
       <sectiondef kind="protected-attrib">
@@ -48,7 +48,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/n30/Repos/rayex/include/base/Camera.hpp" line="96" column="9" bodyfile="/home/n30/Repos/rayex/include/base/Camera.hpp" bodystart="96" bodyend="-1"/>
+        <location file="C:/Repos/rayex/include/base/Camera.hpp" line="98" column="9" bodyfile="C:/Repos/rayex/include/base/Camera.hpp" bodystart="98" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_camera_1aac3c7f080fd0661e2fdbe66388142fa2" prot="protected" static="no" mutable="no">
         <type>int</type>
@@ -62,7 +62,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/n30/Repos/rayex/include/base/Camera.hpp" line="97" column="9" bodyfile="/home/n30/Repos/rayex/include/base/Camera.hpp" bodystart="97" bodyend="-1"/>
+        <location file="C:/Repos/rayex/include/base/Camera.hpp" line="99" column="9" bodyfile="C:/Repos/rayex/include/base/Camera.hpp" bodystart="99" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_camera_1a832b7643b630190398a871cc897fba9e" prot="protected" static="no" mutable="no">
         <type>glm::vec3</type>
@@ -76,7 +76,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/n30/Repos/rayex/include/base/Camera.hpp" line="99" column="15" bodyfile="/home/n30/Repos/rayex/include/base/Camera.hpp" bodystart="99" bodyend="-1"/>
+        <location file="C:/Repos/rayex/include/base/Camera.hpp" line="101" column="15" bodyfile="C:/Repos/rayex/include/base/Camera.hpp" bodystart="101" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_camera_1ac3a2c7df14d6db2ef72953c74dd756cb" prot="protected" static="no" mutable="no">
         <type>glm::mat4</type>
@@ -91,7 +91,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/n30/Repos/rayex/include/base/Camera.hpp" line="101" column="15" bodyfile="/home/n30/Repos/rayex/include/base/Camera.hpp" bodystart="101" bodyend="-1"/>
+        <location file="C:/Repos/rayex/include/base/Camera.hpp" line="103" column="15" bodyfile="C:/Repos/rayex/include/base/Camera.hpp" bodystart="103" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_camera_1a2ac8736247d2e36edfe4e7e2d6aecb15" prot="protected" static="no" mutable="no">
         <type>glm::mat4</type>
@@ -106,7 +106,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/n30/Repos/rayex/include/base/Camera.hpp" line="102" column="15" bodyfile="/home/n30/Repos/rayex/include/base/Camera.hpp" bodystart="102" bodyend="-1"/>
+        <location file="C:/Repos/rayex/include/base/Camera.hpp" line="104" column="15" bodyfile="C:/Repos/rayex/include/base/Camera.hpp" bodystart="104" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_camera_1a4293f3e4fee845435a318cf73c00a66b" prot="protected" static="no" mutable="no">
         <type>glm::mat4</type>
@@ -121,7 +121,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/n30/Repos/rayex/include/base/Camera.hpp" line="104" column="15" bodyfile="/home/n30/Repos/rayex/include/base/Camera.hpp" bodystart="104" bodyend="-1"/>
+        <location file="C:/Repos/rayex/include/base/Camera.hpp" line="106" column="15" bodyfile="C:/Repos/rayex/include/base/Camera.hpp" bodystart="106" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_camera_1aef5d307749b930f0b4f325772363537b" prot="protected" static="no" mutable="no">
         <type>glm::mat4</type>
@@ -136,7 +136,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/n30/Repos/rayex/include/base/Camera.hpp" line="105" column="15" bodyfile="/home/n30/Repos/rayex/include/base/Camera.hpp" bodystart="105" bodyend="-1"/>
+        <location file="C:/Repos/rayex/include/base/Camera.hpp" line="107" column="15" bodyfile="C:/Repos/rayex/include/base/Camera.hpp" bodystart="107" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_camera_1a8889d943505d12a92d23ff22dc9c0ec2" prot="protected" static="no" mutable="no">
         <type>glm::vec3</type>
@@ -151,7 +151,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/n30/Repos/rayex/include/base/Camera.hpp" line="107" column="15" bodyfile="/home/n30/Repos/rayex/include/base/Camera.hpp" bodystart="107" bodyend="-1"/>
+        <location file="C:/Repos/rayex/include/base/Camera.hpp" line="109" column="15" bodyfile="C:/Repos/rayex/include/base/Camera.hpp" bodystart="109" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_camera_1a137954d196ea4ccb344b022fd64e79e6" prot="protected" static="no" mutable="no">
         <type>glm::vec3</type>
@@ -166,7 +166,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/n30/Repos/rayex/include/base/Camera.hpp" line="108" column="15" bodyfile="/home/n30/Repos/rayex/include/base/Camera.hpp" bodystart="108" bodyend="-1"/>
+        <location file="C:/Repos/rayex/include/base/Camera.hpp" line="110" column="15" bodyfile="C:/Repos/rayex/include/base/Camera.hpp" bodystart="110" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_camera_1aafcf6405638001f83fbff660114f3286" prot="protected" static="no" mutable="no">
         <type>glm::vec3</type>
@@ -181,7 +181,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/n30/Repos/rayex/include/base/Camera.hpp" line="109" column="15" bodyfile="/home/n30/Repos/rayex/include/base/Camera.hpp" bodystart="109" bodyend="-1"/>
+        <location file="C:/Repos/rayex/include/base/Camera.hpp" line="111" column="15" bodyfile="C:/Repos/rayex/include/base/Camera.hpp" bodystart="111" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_camera_1aa85cc233a98dcf2fd2acbecb1886ad03" prot="protected" static="no" mutable="no">
         <type>glm::vec3</type>
@@ -196,7 +196,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/n30/Repos/rayex/include/base/Camera.hpp" line="110" column="15" bodyfile="/home/n30/Repos/rayex/include/base/Camera.hpp" bodystart="110" bodyend="-1"/>
+        <location file="C:/Repos/rayex/include/base/Camera.hpp" line="112" column="15" bodyfile="C:/Repos/rayex/include/base/Camera.hpp" bodystart="112" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_camera_1aba4b8adb31113415397e26d3fdd8815d" prot="protected" static="no" mutable="no">
         <type>float</type>
@@ -211,7 +211,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/n30/Repos/rayex/include/base/Camera.hpp" line="112" column="11" bodyfile="/home/n30/Repos/rayex/include/base/Camera.hpp" bodystart="112" bodyend="-1"/>
+        <location file="C:/Repos/rayex/include/base/Camera.hpp" line="114" column="11" bodyfile="C:/Repos/rayex/include/base/Camera.hpp" bodystart="114" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_camera_1aa41d0eebc6b61e3727b425f78aaa3478" prot="protected" static="no" mutable="no">
         <type>float</type>
@@ -226,7 +226,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/n30/Repos/rayex/include/base/Camera.hpp" line="113" column="11" bodyfile="/home/n30/Repos/rayex/include/base/Camera.hpp" bodystart="113" bodyend="-1"/>
+        <location file="C:/Repos/rayex/include/base/Camera.hpp" line="115" column="11" bodyfile="C:/Repos/rayex/include/base/Camera.hpp" bodystart="115" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_camera_1a11229bd8671fd515f1d53ebb58c45446" prot="protected" static="no" mutable="no">
         <type>float</type>
@@ -241,7 +241,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/n30/Repos/rayex/include/base/Camera.hpp" line="114" column="11" bodyfile="/home/n30/Repos/rayex/include/base/Camera.hpp" bodystart="114" bodyend="-1"/>
+        <location file="C:/Repos/rayex/include/base/Camera.hpp" line="116" column="11" bodyfile="C:/Repos/rayex/include/base/Camera.hpp" bodystart="116" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_camera_1a3a5a0e5e97a893f3f189aaf8545ced4d" prot="protected" static="no" mutable="no">
         <type>float</type>
@@ -256,7 +256,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/n30/Repos/rayex/include/base/Camera.hpp" line="115" column="11" bodyfile="/home/n30/Repos/rayex/include/base/Camera.hpp" bodystart="115" bodyend="-1"/>
+        <location file="C:/Repos/rayex/include/base/Camera.hpp" line="117" column="11" bodyfile="C:/Repos/rayex/include/base/Camera.hpp" bodystart="117" bodyend="-1"/>
       </memberdef>
       </sectiondef>
       <sectiondef kind="public-func">
@@ -310,7 +310,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/n30/Repos/rayex/include/base/Camera.hpp" line="24" column="5"/>
+        <location file="C:/Repos/rayex/include/base/Camera.hpp" line="24" column="5"/>
       </memberdef>
       <memberdef kind="function" id="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_camera_1ae5ba5ab21b8be3e27f89f605e260cf7d" prot="public" static="no" const="no" explicit="no" inline="no" virt="virtual">
         <type></type>
@@ -323,7 +323,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/n30/Repos/rayex/include/base/Camera.hpp" line="26" column="13"/>
+        <location file="C:/Repos/rayex/include/base/Camera.hpp" line="26" column="13"/>
       </memberdef>
       <memberdef kind="function" id="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_camera_1a46421fbe0eaa8549c4610fd0a0668d05" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type></type>
@@ -339,7 +339,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/n30/Repos/rayex/include/base/Camera.hpp" line="28" column="5"/>
+        <location file="C:/Repos/rayex/include/base/Camera.hpp" line="28" column="5"/>
       </memberdef>
       <memberdef kind="function" id="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_camera_1a81848737678ca365e989e8f4e6585c2b" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type></type>
@@ -355,7 +355,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/n30/Repos/rayex/include/base/Camera.hpp" line="29" column="5"/>
+        <location file="C:/Repos/rayex/include/base/Camera.hpp" line="29" column="5"/>
       </memberdef>
       <memberdef kind="function" id="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_camera_1a1d2cb96a89ed49bcf4fc3b1f103c8a0d" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>auto</type>
@@ -371,7 +371,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/n30/Repos/rayex/include/base/Camera.hpp" line="31" column="10"/>
+        <location file="C:/Repos/rayex/include/base/Camera.hpp" line="31" column="10"/>
       </memberdef>
       <memberdef kind="function" id="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_camera_1a1211b4836b93378f4e90b1cf780cf0d7" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>auto</type>
@@ -387,7 +387,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/n30/Repos/rayex/include/base/Camera.hpp" line="32" column="10"/>
+        <location file="C:/Repos/rayex/include/base/Camera.hpp" line="32" column="10"/>
       </memberdef>
       <memberdef kind="function" id="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_camera_1a37c5fc1ac50d68f1494f90e5b2a569a9" prot="public" static="no" const="no" explicit="no" inline="no" virt="virtual">
         <type>void</type>
@@ -404,7 +404,20 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/n30/Repos/rayex/include/base/Camera.hpp" line="38" column="18"/>
+        <location file="C:/Repos/rayex/include/base/Camera.hpp" line="38" column="18"/>
+      </memberdef>
+      <memberdef kind="function" id="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_camera_1acea55c6c1228dfeeb54f3c916917cd66" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void RAYEX_NAMESPACE::Camera::reset</definition>
+        <argsstring>()</argsstring>
+        <name>reset</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Repos/rayex/include/base/Camera.hpp" line="40" column="10"/>
       </memberdef>
       <memberdef kind="function" id="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_camera_1acfcf6d7449755de73dc3de2ea39bf12e" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
         <type>auto</type>
@@ -420,7 +433,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/n30/Repos/rayex/include/base/Camera.hpp" line="41" column="10" bodyfile="/home/n30/Repos/rayex/include/base/Camera.hpp" bodystart="41" bodyend="41"/>
+        <location file="C:/Repos/rayex/include/base/Camera.hpp" line="43" column="10" bodyfile="C:/Repos/rayex/include/base/Camera.hpp" bodystart="43" bodyend="43"/>
       </memberdef>
       <memberdef kind="function" id="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_camera_1a2dd871594937d080d24bb13eac812341" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -448,7 +461,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/n30/Repos/rayex/include/base/Camera.hpp" line="45" column="10"/>
+        <location file="C:/Repos/rayex/include/base/Camera.hpp" line="47" column="10"/>
       </memberdef>
       <memberdef kind="function" id="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_camera_1a544e60fd334db538c5dea452c57c94fb" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -488,7 +501,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/n30/Repos/rayex/include/base/Camera.hpp" line="50" column="10"/>
+        <location file="C:/Repos/rayex/include/base/Camera.hpp" line="52" column="10"/>
       </memberdef>
       <memberdef kind="function" id="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_camera_1ab533363e7361b17dc13253fe224cd00e" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -516,7 +529,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/n30/Repos/rayex/include/base/Camera.hpp" line="54" column="10"/>
+        <location file="C:/Repos/rayex/include/base/Camera.hpp" line="56" column="10"/>
       </memberdef>
       <memberdef kind="function" id="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_camera_1a30ef8288accfbc9c43986e58ffeb2f16" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -544,7 +557,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/n30/Repos/rayex/include/base/Camera.hpp" line="58" column="10"/>
+        <location file="C:/Repos/rayex/include/base/Camera.hpp" line="60" column="10"/>
       </memberdef>
       <memberdef kind="function" id="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_camera_1ab93f93f316bead7870322c0a6c7938d7" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
         <type>auto</type>
@@ -560,7 +573,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/n30/Repos/rayex/include/base/Camera.hpp" line="61" column="10" bodyfile="/home/n30/Repos/rayex/include/base/Camera.hpp" bodystart="61" bodyend="61"/>
+        <location file="C:/Repos/rayex/include/base/Camera.hpp" line="63" column="10" bodyfile="C:/Repos/rayex/include/base/Camera.hpp" bodystart="63" bodyend="63"/>
       </memberdef>
       <memberdef kind="function" id="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_camera_1a44a23ce5e54d9e67da5abfe53205882f" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
         <type>auto</type>
@@ -576,7 +589,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/n30/Repos/rayex/include/base/Camera.hpp" line="64" column="10" bodyfile="/home/n30/Repos/rayex/include/base/Camera.hpp" bodystart="64" bodyend="64"/>
+        <location file="C:/Repos/rayex/include/base/Camera.hpp" line="66" column="10" bodyfile="C:/Repos/rayex/include/base/Camera.hpp" bodystart="66" bodyend="66"/>
       </memberdef>
       <memberdef kind="function" id="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_camera_1ad52515b2c20a16149c4d5652a3e0b11c" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
         <type>auto</type>
@@ -592,7 +605,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/n30/Repos/rayex/include/base/Camera.hpp" line="67" column="10" bodyfile="/home/n30/Repos/rayex/include/base/Camera.hpp" bodystart="67" bodyend="67"/>
+        <location file="C:/Repos/rayex/include/base/Camera.hpp" line="69" column="10" bodyfile="C:/Repos/rayex/include/base/Camera.hpp" bodystart="69" bodyend="69"/>
       </memberdef>
       <memberdef kind="function" id="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_camera_1a428203c7dfd644026cc8cb6c94f5ed8a" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
         <type>auto</type>
@@ -608,7 +621,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/n30/Repos/rayex/include/base/Camera.hpp" line="70" column="10" bodyfile="/home/n30/Repos/rayex/include/base/Camera.hpp" bodystart="70" bodyend="70"/>
+        <location file="C:/Repos/rayex/include/base/Camera.hpp" line="72" column="10" bodyfile="C:/Repos/rayex/include/base/Camera.hpp" bodystart="72" bodyend="72"/>
       </memberdef>
       <memberdef kind="function" id="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_camera_1a874a4dac36c1a798d9f91927d56d4f00" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -622,7 +635,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/n30/Repos/rayex/include/base/Camera.hpp" line="73" column="10"/>
+        <location file="C:/Repos/rayex/include/base/Camera.hpp" line="75" column="10"/>
       </memberdef>
       <memberdef kind="function" id="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_camera_1a1897c6c6c9177d4b3c383ef8ce5ffeab" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -636,7 +649,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/n30/Repos/rayex/include/base/Camera.hpp" line="76" column="10"/>
+        <location file="C:/Repos/rayex/include/base/Camera.hpp" line="78" column="10"/>
       </memberdef>
       <memberdef kind="function" id="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_camera_1a5c04a4f2e338a637c3ec45acdbf7dc50" prot="public" static="no" const="no" explicit="no" inline="no" virt="virtual">
         <type>void</type>
@@ -676,7 +689,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/n30/Repos/rayex/include/base/Camera.hpp" line="81" column="18"/>
+        <location file="C:/Repos/rayex/include/base/Camera.hpp" line="83" column="18"/>
       </memberdef>
       <memberdef kind="function" id="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_camera_1a16f11a54e2249f7b951db9c9a2a3c91f" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
         <type>void</type>
@@ -693,7 +706,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/n30/Repos/rayex/include/base/Camera.hpp" line="86" column="18" bodyfile="/home/n30/Repos/rayex/include/base/Camera.hpp" bodystart="86" bodyend="86"/>
+        <location file="C:/Repos/rayex/include/base/Camera.hpp" line="88" column="18" bodyfile="C:/Repos/rayex/include/base/Camera.hpp" bodystart="88" bodyend="88"/>
       </memberdef>
       </sectiondef>
       <sectiondef kind="protected-func">
@@ -712,7 +725,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/n30/Repos/rayex/include/base/Camera.hpp" line="94" column="10"/>
+        <location file="C:/Repos/rayex/include/base/Camera.hpp" line="96" column="10"/>
       </memberdef>
       </sectiondef>
     <briefdescription>
@@ -732,7 +745,7 @@
 </para>
 </sect3>
     </detaileddescription>
-    <location file="/home/n30/Repos/rayex/include/base/Camera.hpp" line="19" column="1" bodyfile="/home/n30/Repos/rayex/include/base/Camera.hpp" bodystart="18" bodyend="116"/>
+    <location file="C:/Repos/rayex/include/base/Camera.hpp" line="18" column="3" bodyfile="C:/Repos/rayex/include/base/Camera.hpp" bodystart="19" bodyend="118"/>
     <listofallmembers>
       <member refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_camera_1a3a5a0e5e97a893f3f189aaf8545ced4d" prot="protected" virt="non-virtual"><scope>RAYEX_NAMESPACE::Camera</scope><name>_fov</name></member>
       <member refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_camera_1aa85cc233a98dcf2fd2acbecb1886ad03" prot="protected" virt="non-virtual"><scope>RAYEX_NAMESPACE::Camera</scope><name>_front</name></member>
@@ -763,6 +776,7 @@
       <member refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_camera_1a1211b4836b93378f4e90b1cf780cf0d7" prot="public" virt="non-virtual"><scope>RAYEX_NAMESPACE::Camera</scope><name>operator=</name></member>
       <member refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_camera_1a16f11a54e2249f7b951db9c9a2a3c91f" prot="public" virt="virtual"><scope>RAYEX_NAMESPACE::Camera</scope><name>processKeyboard</name></member>
       <member refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_camera_1a5c04a4f2e338a637c3ec45acdbf7dc50" prot="public" virt="virtual"><scope>RAYEX_NAMESPACE::Camera</scope><name>processMouse</name></member>
+      <member refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_camera_1acea55c6c1228dfeeb54f3c916917cd66" prot="public" virt="non-virtual"><scope>RAYEX_NAMESPACE::Camera</scope><name>reset</name></member>
       <member refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_camera_1ab533363e7361b17dc13253fe224cd00e" prot="public" virt="non-virtual"><scope>RAYEX_NAMESPACE::Camera</scope><name>setFov</name></member>
       <member refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_camera_1a2dd871594937d080d24bb13eac812341" prot="public" virt="non-virtual"><scope>RAYEX_NAMESPACE::Camera</scope><name>setPosition</name></member>
       <member refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_camera_1a30ef8288accfbc9c43986e58ffeb2f16" prot="public" virt="non-virtual"><scope>RAYEX_NAMESPACE::Camera</scope><name>setSensitivity</name></member>

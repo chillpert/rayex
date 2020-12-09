@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
-<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.17">
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.20" xml:lang="en-US">
   <compounddef id="struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_mesh" kind="struct" language="C++" prot="public">
     <compoundname>RAYEX_NAMESPACE::Mesh</compoundname>
     <includes refid="_geometry_8hpp" local="no">Geometry.hpp</includes>
@@ -17,7 +17,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/n30/Repos/rayex/include/base/Geometry.hpp" line="25" column="14" bodyfile="/home/n30/Repos/rayex/include/base/Geometry.hpp" bodystart="25" bodyend="-1"/>
+        <location file="C:/Repos/rayex/include/base/Geometry.hpp" line="28" column="14" bodyfile="C:/Repos/rayex/include/base/Geometry.hpp" bodystart="28" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_mesh_1a6d96ab3ebede16df86654d7d25d8435b" prot="public" static="no" mutable="no">
         <type>uint32_t</type>
@@ -32,14 +32,14 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/n30/Repos/rayex/include/base/Geometry.hpp" line="26" column="14" bodyfile="/home/n30/Repos/rayex/include/base/Geometry.hpp" bodystart="26" bodyend="-1"/>
+        <location file="C:/Repos/rayex/include/base/Geometry.hpp" line="29" column="14" bodyfile="C:/Repos/rayex/include/base/Geometry.hpp" bodystart="29" bodyend="-1"/>
       </memberdef>
       </sectiondef>
     <briefdescription>
 <para>Describes a sub-mesh and its material. </para>
     </briefdescription>
     <detaileddescription>
-<para><simplesect kind="warning"><para>If indexOffset is not set correctly the mesh can not be displayed properly. Take a look at <ref refid="group___b_a_s_e_1gac348076d8b31be1511d1fc0532e75747" kindref="member">loadObj(std::string_view)</ref> for a working example. </para>
+<para><simplesect kind="warning"><para>If indexOffset is not set correctly the mesh can not be displayed properly. Take a look at loadObj(std::string_view) for a working example. </para>
 </simplesect>
 </para>
     </detaileddescription>
@@ -56,7 +56,7 @@
         <link refid="struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_material"/>
       </node>
     </collaborationgraph>
-    <location file="/home/n30/Repos/rayex/include/base/Geometry.hpp" line="24" column="1" bodyfile="/home/n30/Repos/rayex/include/base/Geometry.hpp" bodystart="23" bodyend="27"/>
+    <location file="C:/Repos/rayex/include/base/Geometry.hpp" line="26" column="3" bodyfile="C:/Repos/rayex/include/base/Geometry.hpp" bodystart="27" bodyend="30"/>
     <listofallmembers>
       <member refid="struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_mesh_1a6d96ab3ebede16df86654d7d25d8435b" prot="public" virt="non-virtual"><scope>RAYEX_NAMESPACE::Mesh</scope><name>indexOffset</name></member>
       <member refid="struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_mesh_1a004a9c0382dad39d04524fe4f82929ae" prot="public" virt="non-virtual"><scope>RAYEX_NAMESPACE::Mesh</scope><name>material</name></member>

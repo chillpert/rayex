@@ -1,0 +1,151 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.20" xml:lang="en-US">
+  <compounddef id="struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_pt_push_constants" kind="struct" language="C++" prot="public">
+    <compoundname>RAYEX_NAMESPACE::PtPushConstants</compoundname>
+    <includes refid="_path_tracer_8hpp" local="no">PathTracer.hpp</includes>
+      <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_pt_push_constants_1a3ba8a6a04c23dbe4615a07b62d0bd16d" prot="public" static="no" mutable="no">
+        <type>glm::vec4</type>
+        <definition>glm::vec4 RAYEX_NAMESPACE::PtPushConstants::clearColor</definition>
+        <argsstring></argsstring>
+        <name>clearColor</name>
+        <initializer>= glm::vec4( 1.0F )</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Repos/rayex/include/api/pathtrace/PathTracer.hpp" line="15" column="15" bodyfile="C:/Repos/rayex/include/api/pathtrace/PathTracer.hpp" bodystart="15" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_pt_push_constants_1a454ea364c55d93435ddca8eb378adfeb" prot="public" static="no" mutable="no">
+        <type>int</type>
+        <definition>int RAYEX_NAMESPACE::PtPushConstants::frameCount</definition>
+        <argsstring></argsstring>
+        <name>frameCount</name>
+        <initializer>= 0</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Repos/rayex/include/api/pathtrace/PathTracer.hpp" line="16" column="9" bodyfile="C:/Repos/rayex/include/api/pathtrace/PathTracer.hpp" bodystart="16" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_pt_push_constants_1a89fb0472e0ddd30f8b356e49e7ba4cf6" prot="public" static="no" mutable="no">
+        <type>uint32_t</type>
+        <definition>uint32_t RAYEX_NAMESPACE::PtPushConstants::sampleRatePerPixel</definition>
+        <argsstring></argsstring>
+        <name>sampleRatePerPixel</name>
+        <initializer>= 4</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Repos/rayex/include/api/pathtrace/PathTracer.hpp" line="17" column="14" bodyfile="C:/Repos/rayex/include/api/pathtrace/PathTracer.hpp" bodystart="17" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_pt_push_constants_1ad0bb423b1a0b2ec6c5e97e4c7501aa10" prot="public" static="no" mutable="no">
+        <type>uint32_t</type>
+        <definition>uint32_t RAYEX_NAMESPACE::PtPushConstants::recursionDepth</definition>
+        <argsstring></argsstring>
+        <name>recursionDepth</name>
+        <initializer>= 4</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Repos/rayex/include/api/pathtrace/PathTracer.hpp" line="18" column="14" bodyfile="C:/Repos/rayex/include/api/pathtrace/PathTracer.hpp" bodystart="18" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_pt_push_constants_1a62c1ec01c17eab95a4818b2fdd3dbe08" prot="public" static="no" mutable="no">
+        <type>uint32_t</type>
+        <definition>uint32_t RAYEX_NAMESPACE::PtPushConstants::useEnvironmentMap</definition>
+        <argsstring></argsstring>
+        <name>useEnvironmentMap</name>
+        <initializer>= 0</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Repos/rayex/include/api/pathtrace/PathTracer.hpp" line="19" column="14" bodyfile="C:/Repos/rayex/include/api/pathtrace/PathTracer.hpp" bodystart="19" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_pt_push_constants_1ae73cf3b67a73fca2e3fac0057d6e5cb4" prot="public" static="no" mutable="no">
+        <type>uint32_t</type>
+        <definition>uint32_t RAYEX_NAMESPACE::PtPushConstants::padding0</definition>
+        <argsstring></argsstring>
+        <name>padding0</name>
+        <initializer>= 0</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Repos/rayex/include/api/pathtrace/PathTracer.hpp" line="21" column="14" bodyfile="C:/Repos/rayex/include/api/pathtrace/PathTracer.hpp" bodystart="21" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_pt_push_constants_1a26a9e201da80ba41562f36b7d0a16db5" prot="public" static="no" mutable="no">
+        <type>uint32_t</type>
+        <definition>uint32_t RAYEX_NAMESPACE::PtPushConstants::padding1</definition>
+        <argsstring></argsstring>
+        <name>padding1</name>
+        <initializer>= 0</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Repos/rayex/include/api/pathtrace/PathTracer.hpp" line="22" column="14" bodyfile="C:/Repos/rayex/include/api/pathtrace/PathTracer.hpp" bodystart="22" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_pt_push_constants_1a195778d715bf5c3801e2b3e4e56cb65f" prot="public" static="no" mutable="no">
+        <type>uint32_t</type>
+        <definition>uint32_t RAYEX_NAMESPACE::PtPushConstants::padding2</definition>
+        <argsstring></argsstring>
+        <name>padding2</name>
+        <initializer>= 0</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Repos/rayex/include/api/pathtrace/PathTracer.hpp" line="23" column="14" bodyfile="C:/Repos/rayex/include/api/pathtrace/PathTracer.hpp" bodystart="23" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_pt_push_constants_1a38860e72e52fa5df91e07f9bdf26d7d4" prot="public" static="no" mutable="no">
+        <type>uint32_t</type>
+        <definition>uint32_t RAYEX_NAMESPACE::PtPushConstants::padding3</definition>
+        <argsstring></argsstring>
+        <name>padding3</name>
+        <initializer>= 0</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Repos/rayex/include/api/pathtrace/PathTracer.hpp" line="24" column="14" bodyfile="C:/Repos/rayex/include/api/pathtrace/PathTracer.hpp" bodystart="24" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="C:/Repos/rayex/include/api/pathtrace/PathTracer.hpp" line="13" column="3" bodyfile="C:/Repos/rayex/include/api/pathtrace/PathTracer.hpp" bodystart="14" bodyend="25"/>
+    <listofallmembers>
+      <member refid="struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_pt_push_constants_1a3ba8a6a04c23dbe4615a07b62d0bd16d" prot="public" virt="non-virtual"><scope>RAYEX_NAMESPACE::PtPushConstants</scope><name>clearColor</name></member>
+      <member refid="struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_pt_push_constants_1a454ea364c55d93435ddca8eb378adfeb" prot="public" virt="non-virtual"><scope>RAYEX_NAMESPACE::PtPushConstants</scope><name>frameCount</name></member>
+      <member refid="struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_pt_push_constants_1ae73cf3b67a73fca2e3fac0057d6e5cb4" prot="public" virt="non-virtual"><scope>RAYEX_NAMESPACE::PtPushConstants</scope><name>padding0</name></member>
+      <member refid="struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_pt_push_constants_1a26a9e201da80ba41562f36b7d0a16db5" prot="public" virt="non-virtual"><scope>RAYEX_NAMESPACE::PtPushConstants</scope><name>padding1</name></member>
+      <member refid="struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_pt_push_constants_1a195778d715bf5c3801e2b3e4e56cb65f" prot="public" virt="non-virtual"><scope>RAYEX_NAMESPACE::PtPushConstants</scope><name>padding2</name></member>
+      <member refid="struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_pt_push_constants_1a38860e72e52fa5df91e07f9bdf26d7d4" prot="public" virt="non-virtual"><scope>RAYEX_NAMESPACE::PtPushConstants</scope><name>padding3</name></member>
+      <member refid="struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_pt_push_constants_1ad0bb423b1a0b2ec6c5e97e4c7501aa10" prot="public" virt="non-virtual"><scope>RAYEX_NAMESPACE::PtPushConstants</scope><name>recursionDepth</name></member>
+      <member refid="struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_pt_push_constants_1a89fb0472e0ddd30f8b356e49e7ba4cf6" prot="public" virt="non-virtual"><scope>RAYEX_NAMESPACE::PtPushConstants</scope><name>sampleRatePerPixel</name></member>
+      <member refid="struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_pt_push_constants_1a62c1ec01c17eab95a4818b2fdd3dbe08" prot="public" virt="non-virtual"><scope>RAYEX_NAMESPACE::PtPushConstants</scope><name>useEnvironmentMap</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

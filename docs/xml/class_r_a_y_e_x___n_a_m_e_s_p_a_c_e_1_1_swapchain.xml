@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
-<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.17">
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.20" xml:lang="en-US">
   <compounddef id="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_swapchain" kind="class" language="C++" prot="public">
     <compoundname>RAYEX_NAMESPACE::Swapchain</compoundname>
     <includes refid="_swapchain_8hpp" local="no">Swapchain.hpp</includes>
@@ -16,7 +16,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/n30/Repos/rayex/include/api/Swapchain.hpp" line="73" column="28" bodyfile="/home/n30/Repos/rayex/include/api/Swapchain.hpp" bodystart="73" bodyend="-1"/>
+        <location file="C:/Repos/rayex/include/api/Swapchain.hpp" line="73" column="28" bodyfile="C:/Repos/rayex/include/api/Swapchain.hpp" bodystart="73" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_swapchain_1a88e6efb17d1dccae4118edf4d5081731" prot="private" static="no" mutable="no">
         <type>vk::Extent2D</type>
@@ -30,7 +30,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/n30/Repos/rayex/include/api/Swapchain.hpp" line="75" column="18" bodyfile="/home/n30/Repos/rayex/include/api/Swapchain.hpp" bodystart="75" bodyend="-1"/>
+        <location file="C:/Repos/rayex/include/api/Swapchain.hpp" line="75" column="18" bodyfile="C:/Repos/rayex/include/api/Swapchain.hpp" bodystart="75" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_swapchain_1a5989d45d1ef7790444c7a58cff495e94" prot="private" static="no" mutable="no">
         <type>vk::ImageAspectFlags</type>
@@ -45,7 +45,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/n30/Repos/rayex/include/api/Swapchain.hpp" line="76" column="26" bodyfile="/home/n30/Repos/rayex/include/api/Swapchain.hpp" bodystart="76" bodyend="-1"/>
+        <location file="C:/Repos/rayex/include/api/Swapchain.hpp" line="76" column="26" bodyfile="C:/Repos/rayex/include/api/Swapchain.hpp" bodystart="76" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_swapchain_1a878b3a50cf311e0636b806463ecc0788" prot="private" static="no" mutable="no">
         <type>std::vector&lt; vk::Image &gt;</type>
@@ -59,7 +59,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/n30/Repos/rayex/include/api/Swapchain.hpp" line="78" column="17" bodyfile="/home/n30/Repos/rayex/include/api/Swapchain.hpp" bodystart="78" bodyend="-1"/>
+        <location file="C:/Repos/rayex/include/api/Swapchain.hpp" line="78" column="17" bodyfile="C:/Repos/rayex/include/api/Swapchain.hpp" bodystart="78" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_swapchain_1a1ae86c49b6658e28ea7d5f1ddbb99e0a" prot="private" static="no" mutable="no">
         <type>std::vector&lt; vk::UniqueImageView &gt;</type>
@@ -73,7 +73,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/n30/Repos/rayex/include/api/Swapchain.hpp" line="79" column="17" bodyfile="/home/n30/Repos/rayex/include/api/Swapchain.hpp" bodystart="79" bodyend="-1"/>
+        <location file="C:/Repos/rayex/include/api/Swapchain.hpp" line="79" column="17" bodyfile="C:/Repos/rayex/include/api/Swapchain.hpp" bodystart="79" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_swapchain_1aec24cbe3d0fdc0e80c640d4cf4810802" prot="private" static="no" mutable="no">
         <type>std::vector&lt; vk::UniqueFramebuffer &gt;</type>
@@ -87,7 +87,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/n30/Repos/rayex/include/api/Swapchain.hpp" line="81" column="17" bodyfile="/home/n30/Repos/rayex/include/api/Swapchain.hpp" bodystart="81" bodyend="-1"/>
+        <location file="C:/Repos/rayex/include/api/Swapchain.hpp" line="81" column="17" bodyfile="C:/Repos/rayex/include/api/Swapchain.hpp" bodystart="81" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_swapchain_1ade0d634e291ed8e8a265e530e04a3ea2" prot="private" static="no" mutable="no">
         <type><ref refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_image" kindref="compound">Image</ref></type>
@@ -101,7 +101,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/n30/Repos/rayex/include/api/Swapchain.hpp" line="83" column="11" bodyfile="/home/n30/Repos/rayex/include/api/Swapchain.hpp" bodystart="83" bodyend="-1"/>
+        <location file="C:/Repos/rayex/include/api/Swapchain.hpp" line="83" column="11" bodyfile="C:/Repos/rayex/include/api/Swapchain.hpp" bodystart="83" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_swapchain_1a77ab6147cffce108f54252c82c58a087" prot="private" static="no" mutable="no">
         <type>vk::UniqueImageView</type>
@@ -115,7 +115,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/n30/Repos/rayex/include/api/Swapchain.hpp" line="84" column="25" bodyfile="/home/n30/Repos/rayex/include/api/Swapchain.hpp" bodystart="84" bodyend="-1"/>
+        <location file="C:/Repos/rayex/include/api/Swapchain.hpp" line="84" column="25" bodyfile="C:/Repos/rayex/include/api/Swapchain.hpp" bodystart="84" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_swapchain_1adaded4bc2fe509c3fc4c2081274b4ba1" prot="private" static="no" mutable="no">
         <type>uint32_t</type>
@@ -130,7 +130,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/n30/Repos/rayex/include/api/Swapchain.hpp" line="86" column="14" bodyfile="/home/n30/Repos/rayex/include/api/Swapchain.hpp" bodystart="86" bodyend="-1"/>
+        <location file="C:/Repos/rayex/include/api/Swapchain.hpp" line="86" column="14" bodyfile="C:/Repos/rayex/include/api/Swapchain.hpp" bodystart="86" bodyend="-1"/>
       </memberdef>
       </sectiondef>
       <sectiondef kind="public-func">
@@ -172,7 +172,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/n30/Repos/rayex/include/api/Swapchain.hpp" line="18" column="10"/>
+        <location file="C:/Repos/rayex/include/api/Swapchain.hpp" line="18" column="10"/>
       </memberdef>
       <memberdef kind="function" id="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_swapchain_1a23485ef75854f3ffb881877e18ddd2c2" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -186,7 +186,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/n30/Repos/rayex/include/api/Swapchain.hpp" line="21" column="10"/>
+        <location file="C:/Repos/rayex/include/api/Swapchain.hpp" line="21" column="10"/>
       </memberdef>
       <memberdef kind="function" id="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_swapchain_1ab3315f20384b5fa3e1e4156bd1c638c7" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
         <type>auto</type>
@@ -206,7 +206,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/n30/Repos/rayex/include/api/Swapchain.hpp" line="24" column="10" bodyfile="/home/n30/Repos/rayex/include/api/Swapchain.hpp" bodystart="24" bodyend="24"/>
+        <location file="C:/Repos/rayex/include/api/Swapchain.hpp" line="24" column="10" bodyfile="C:/Repos/rayex/include/api/Swapchain.hpp" bodystart="24" bodyend="24"/>
       </memberdef>
       <memberdef kind="function" id="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_swapchain_1ac7a765f1861061db7373460b77ddeb3e" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
         <type>auto</type>
@@ -222,7 +222,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/n30/Repos/rayex/include/api/Swapchain.hpp" line="27" column="10" bodyfile="/home/n30/Repos/rayex/include/api/Swapchain.hpp" bodystart="27" bodyend="27"/>
+        <location file="C:/Repos/rayex/include/api/Swapchain.hpp" line="27" column="10" bodyfile="C:/Repos/rayex/include/api/Swapchain.hpp" bodystart="27" bodyend="27"/>
       </memberdef>
       <memberdef kind="function" id="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_swapchain_1a9789ac0aaa93867052947d4445f2a0e2" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
         <type>auto</type>
@@ -238,7 +238,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/n30/Repos/rayex/include/api/Swapchain.hpp" line="30" column="10" bodyfile="/home/n30/Repos/rayex/include/api/Swapchain.hpp" bodystart="30" bodyend="30"/>
+        <location file="C:/Repos/rayex/include/api/Swapchain.hpp" line="30" column="10" bodyfile="C:/Repos/rayex/include/api/Swapchain.hpp" bodystart="30" bodyend="30"/>
       </memberdef>
       <memberdef kind="function" id="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_swapchain_1a58e9cbc1d98d0eb97ee273b15c1f4713" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
         <type>auto</type>
@@ -254,7 +254,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/n30/Repos/rayex/include/api/Swapchain.hpp" line="33" column="10" bodyfile="/home/n30/Repos/rayex/include/api/Swapchain.hpp" bodystart="33" bodyend="33"/>
+        <location file="C:/Repos/rayex/include/api/Swapchain.hpp" line="33" column="10" bodyfile="C:/Repos/rayex/include/api/Swapchain.hpp" bodystart="33" bodyend="33"/>
       </memberdef>
       <memberdef kind="function" id="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_swapchain_1a190ce92331100a2db14c729d67341b9f" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
         <type>auto</type>
@@ -284,7 +284,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/n30/Repos/rayex/include/api/Swapchain.hpp" line="38" column="10" bodyfile="/home/n30/Repos/rayex/include/api/Swapchain.hpp" bodystart="38" bodyend="38"/>
+        <location file="C:/Repos/rayex/include/api/Swapchain.hpp" line="38" column="10" bodyfile="C:/Repos/rayex/include/api/Swapchain.hpp" bodystart="38" bodyend="38"/>
       </memberdef>
       <memberdef kind="function" id="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_swapchain_1a747f3cd62d8784b05baf6e192d86002a" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
         <type>auto</type>
@@ -300,7 +300,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/n30/Repos/rayex/include/api/Swapchain.hpp" line="41" column="10" bodyfile="/home/n30/Repos/rayex/include/api/Swapchain.hpp" bodystart="41" bodyend="41"/>
+        <location file="C:/Repos/rayex/include/api/Swapchain.hpp" line="41" column="10" bodyfile="C:/Repos/rayex/include/api/Swapchain.hpp" bodystart="41" bodyend="41"/>
       </memberdef>
       <memberdef kind="function" id="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_swapchain_1a30b4e27c52d6fa9bb634b5cb579b7b10" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
         <type>auto</type>
@@ -312,12 +312,12 @@
         <detaileddescription>
 <para><simplesect kind="return"><para>Returns a vector containing all swapchain image views. </para>
 </simplesect>
-<xrefsect id="todo_1_todo000007"><xreftitle>Todo</xreftitle><xrefdescription><para>Returning by reference will result in size 0. </para>
+<xrefsect id="todo_1_todo000002"><xreftitle>Todo</xreftitle><xrefdescription><para>Returning by reference will result in size 0. </para>
 </xrefdescription></xrefsect></para>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/n30/Repos/rayex/include/api/Swapchain.hpp" line="45" column="10" bodyfile="/home/n30/Repos/rayex/include/api/Swapchain.hpp" bodystart="45" bodyend="45"/>
+        <location file="C:/Repos/rayex/include/api/Swapchain.hpp" line="45" column="10" bodyfile="C:/Repos/rayex/include/api/Swapchain.hpp" bodystart="45" bodyend="45"/>
       </memberdef>
       <memberdef kind="function" id="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_swapchain_1a50a497610d30300482aa3d2a5f05e6ff" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -335,7 +335,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/n30/Repos/rayex/include/api/Swapchain.hpp" line="48" column="10"/>
+        <location file="C:/Repos/rayex/include/api/Swapchain.hpp" line="48" column="10"/>
       </memberdef>
       <memberdef kind="function" id="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_swapchain_1a9d4b15bff7fb5bda19cb5b7dd02783f4" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -375,7 +375,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/n30/Repos/rayex/include/api/Swapchain.hpp" line="53" column="10"/>
+        <location file="C:/Repos/rayex/include/api/Swapchain.hpp" line="53" column="10"/>
       </memberdef>
       <memberdef kind="function" id="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_swapchain_1a3df5993a7b2582f01bad19a397cf0afe" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -415,7 +415,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/n30/Repos/rayex/include/api/Swapchain.hpp" line="58" column="10"/>
+        <location file="C:/Repos/rayex/include/api/Swapchain.hpp" line="58" column="10"/>
       </memberdef>
       </sectiondef>
       <sectiondef kind="private-func">
@@ -457,7 +457,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/n30/Repos/rayex/include/api/Swapchain.hpp" line="64" column="10"/>
+        <location file="C:/Repos/rayex/include/api/Swapchain.hpp" line="64" column="10"/>
       </memberdef>
       <memberdef kind="function" id="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_swapchain_1abf2fccdd91679e634b63e9e139acb721" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -471,7 +471,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/n30/Repos/rayex/include/api/Swapchain.hpp" line="67" column="10"/>
+        <location file="C:/Repos/rayex/include/api/Swapchain.hpp" line="67" column="10"/>
       </memberdef>
       <memberdef kind="function" id="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_swapchain_1aa7e6a410fe3eeee2ecdedfaab1c6228c" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -499,7 +499,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/n30/Repos/rayex/include/api/Swapchain.hpp" line="71" column="10"/>
+        <location file="C:/Repos/rayex/include/api/Swapchain.hpp" line="71" column="10"/>
       </memberdef>
       </sectiondef>
     <briefdescription>
@@ -507,7 +507,7 @@
     </briefdescription>
     <detaileddescription>
     </detaileddescription>
-    <location file="/home/n30/Repos/rayex/include/api/Swapchain.hpp" line="13" column="1" bodyfile="/home/n30/Repos/rayex/include/api/Swapchain.hpp" bodystart="12" bodyend="87"/>
+    <location file="C:/Repos/rayex/include/api/Swapchain.hpp" line="12" column="3" bodyfile="C:/Repos/rayex/include/api/Swapchain.hpp" bodystart="13" bodyend="87"/>
     <listofallmembers>
       <member refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_swapchain_1adaded4bc2fe509c3fc4c2081274b4ba1" prot="private" virt="non-virtual"><scope>RAYEX_NAMESPACE::Swapchain</scope><name>_currentImageIndex</name></member>
       <member refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_swapchain_1ade0d634e291ed8e8a265e530e04a3ea2" prot="private" virt="non-virtual"><scope>RAYEX_NAMESPACE::Swapchain</scope><name>_depthImage</name></member>

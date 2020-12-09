@@ -13,6 +13,7 @@ var class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_camera =
     [ "operator=", "class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_camera.html#a1d2cb96a89ed49bcf4fc3b1f103c8a0d", null ],
     [ "processKeyboard", "class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_camera.html#a16f11a54e2249f7b951db9c9a2a3c91f", null ],
     [ "processMouse", "class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_camera.html#a5c04a4f2e338a637c3ec45acdbf7dc50", null ],
+    [ "reset", "class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_camera.html#acea55c6c1228dfeeb54f3c916917cd66", null ],
     [ "setFov", "class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_camera.html#ab533363e7361b17dc13253fe224cd00e", null ],
     [ "setPosition", "class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_camera.html#a2dd871594937d080d24bb13eac812341", null ],
     [ "setSensitivity", "class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_camera.html#a30ef8288accfbc9c43986e58ffeb2f16", null ],

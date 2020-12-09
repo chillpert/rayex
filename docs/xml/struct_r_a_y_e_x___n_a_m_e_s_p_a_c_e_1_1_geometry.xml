@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
-<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.17">
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.20" xml:lang="en-US">
   <compounddef id="struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_geometry" kind="struct" language="C++" prot="public">
     <compoundname>RAYEX_NAMESPACE::Geometry</compoundname>
     <includes refid="_geometry_8hpp" local="no">Geometry.hpp</includes>
@@ -16,7 +16,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/n30/Repos/rayex/include/base/Geometry.hpp" line="36" column="17" bodyfile="/home/n30/Repos/rayex/include/base/Geometry.hpp" bodystart="36" bodyend="-1"/>
+        <location file="C:/Repos/rayex/include/base/Geometry.hpp" line="41" column="17" bodyfile="C:/Repos/rayex/include/base/Geometry.hpp" bodystart="41" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_geometry_1a11ecc2461cc8f940666cc5535e977c0f" prot="public" static="no" mutable="no">
         <type>std::vector&lt; uint32_t &gt;</type>
@@ -30,7 +30,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/n30/Repos/rayex/include/base/Geometry.hpp" line="37" column="17" bodyfile="/home/n30/Repos/rayex/include/base/Geometry.hpp" bodystart="37" bodyend="-1"/>
+        <location file="C:/Repos/rayex/include/base/Geometry.hpp" line="42" column="17" bodyfile="C:/Repos/rayex/include/base/Geometry.hpp" bodystart="42" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_geometry_1a7d3f368a8e407c602170ce356b3c5945" prot="public" static="no" mutable="no">
         <type>std::vector&lt; <ref refid="struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_mesh" kindref="compound">Mesh</ref> &gt;</type>
@@ -44,7 +44,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/n30/Repos/rayex/include/base/Geometry.hpp" line="38" column="17" bodyfile="/home/n30/Repos/rayex/include/base/Geometry.hpp" bodystart="38" bodyend="-1"/>
+        <location file="C:/Repos/rayex/include/base/Geometry.hpp" line="43" column="17" bodyfile="C:/Repos/rayex/include/base/Geometry.hpp" bodystart="43" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_geometry_1ab185f8dac7b31f826e611b5a24cb30ce" prot="public" static="no" mutable="no">
         <type>uint32_t</type>
@@ -59,7 +59,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/n30/Repos/rayex/include/base/Geometry.hpp" line="39" column="14" bodyfile="/home/n30/Repos/rayex/include/base/Geometry.hpp" bodystart="39" bodyend="-1"/>
+        <location file="C:/Repos/rayex/include/base/Geometry.hpp" line="44" column="14" bodyfile="C:/Repos/rayex/include/base/Geometry.hpp" bodystart="44" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_geometry_1ab1abb0b9dda1f43c9b2f92fe83a08588" prot="public" static="no" mutable="no">
         <type>std::string</type>
@@ -74,7 +74,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/n30/Repos/rayex/include/base/Geometry.hpp" line="40" column="17" bodyfile="/home/n30/Repos/rayex/include/base/Geometry.hpp" bodystart="40" bodyend="-1"/>
+        <location file="C:/Repos/rayex/include/base/Geometry.hpp" line="45" column="17" bodyfile="C:/Repos/rayex/include/base/Geometry.hpp" bodystart="45" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_geometry_1af7124a02f0e2ab740618cf30c1ea748c" prot="public" static="no" mutable="no">
         <type>bool</type>
@@ -89,7 +89,41 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/n30/Repos/rayex/include/base/Geometry.hpp" line="41" column="10" bodyfile="/home/n30/Repos/rayex/include/base/Geometry.hpp" bodystart="41" bodyend="-1"/>
+        <location file="C:/Repos/rayex/include/base/Geometry.hpp" line="46" column="10" bodyfile="C:/Repos/rayex/include/base/Geometry.hpp" bodystart="46" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_geometry_1a4a926e0a1c48cf58f445b501c79bebb1" prot="public" static="no" mutable="no">
+        <type>bool</type>
+        <definition>bool RAYEX_NAMESPACE::Geometry::dynamic</definition>
+        <argsstring></argsstring>
+        <name>dynamic</name>
+        <initializer>= false</initializer>
+        <briefdescription>
+<para>Keeps track of whether or not the geometry is dynamic or static. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Repos/rayex/include/base/Geometry.hpp" line="47" column="10" bodyfile="C:/Repos/rayex/include/base/Geometry.hpp" bodystart="47" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_geometry_1a20ea3640e900acebb235adc345de1bd0" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>RX_API void</type>
+        <definition>RX_API void RAYEX_NAMESPACE::Geometry::setMaterial</definition>
+        <argsstring>(const Material &amp;material)</argsstring>
+        <name>setMaterial</name>
+        <param>
+          <type>const <ref refid="struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_material" kindref="compound">Material</ref> &amp;</type>
+          <declname>material</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Repos/rayex/include/base/Geometry.hpp" line="39" column="17"/>
       </memberdef>
       </sectiondef>
     <briefdescription>
@@ -100,13 +134,15 @@
 </simplesect>
 </para>
     </detaileddescription>
-    <location file="/home/n30/Repos/rayex/include/base/Geometry.hpp" line="35" column="1" bodyfile="/home/n30/Repos/rayex/include/base/Geometry.hpp" bodystart="34" bodyend="42"/>
+    <location file="C:/Repos/rayex/include/base/Geometry.hpp" line="37" column="3" bodyfile="C:/Repos/rayex/include/base/Geometry.hpp" bodystart="38" bodyend="48"/>
     <listofallmembers>
+      <member refid="struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_geometry_1a4a926e0a1c48cf58f445b501c79bebb1" prot="public" virt="non-virtual"><scope>RAYEX_NAMESPACE::Geometry</scope><name>dynamic</name></member>
       <member refid="struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_geometry_1ab185f8dac7b31f826e611b5a24cb30ce" prot="public" virt="non-virtual"><scope>RAYEX_NAMESPACE::Geometry</scope><name>geometryIndex</name></member>
       <member refid="struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_geometry_1a11ecc2461cc8f940666cc5535e977c0f" prot="public" virt="non-virtual"><scope>RAYEX_NAMESPACE::Geometry</scope><name>indices</name></member>
       <member refid="struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_geometry_1af7124a02f0e2ab740618cf30c1ea748c" prot="public" virt="non-virtual"><scope>RAYEX_NAMESPACE::Geometry</scope><name>initialized</name></member>
       <member refid="struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_geometry_1a7d3f368a8e407c602170ce356b3c5945" prot="public" virt="non-virtual"><scope>RAYEX_NAMESPACE::Geometry</scope><name>meshes</name></member>
       <member refid="struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_geometry_1ab1abb0b9dda1f43c9b2f92fe83a08588" prot="public" virt="non-virtual"><scope>RAYEX_NAMESPACE::Geometry</scope><name>path</name></member>
+      <member refid="struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_geometry_1a20ea3640e900acebb235adc345de1bd0" prot="public" virt="non-virtual"><scope>RAYEX_NAMESPACE::Geometry</scope><name>setMaterial</name></member>
       <member refid="struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_geometry_1a9b4d99a41250521028e9406ef1bf9c15" prot="public" virt="non-virtual"><scope>RAYEX_NAMESPACE::Geometry</scope><name>vertices</name></member>
     </listofallmembers>
   </compounddef>

@@ -64,4 +64,4 @@ int main( )
 ```
 
 ### Documentation
-An extensive documentation of all classes and functions can be found [here](https://christianhilpert.com/rayex).
+An extensive documentation of all classes and functions can be found [here](https://chillpert.github.io/rayex/html/index.html).

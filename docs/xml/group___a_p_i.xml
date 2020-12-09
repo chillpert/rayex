@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
-<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.17">
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.20" xml:lang="en-US">
   <compounddef id="group___a_p_i" kind="group">
     <compoundname>API</compoundname>
     <title>Vulkan</title>
@@ -8,29 +8,27 @@
     <innerclass refid="struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_descriptors" prot="public">RAYEX_NAMESPACE::Descriptors</innerclass>
     <innerclass refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_buffer" prot="public">RAYEX_NAMESPACE::Buffer</innerclass>
     <innerclass refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_command_buffer" prot="public">RAYEX_NAMESPACE::CommandBuffer</innerclass>
-    <innerclass refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_index_buffer" prot="public">RAYEX_NAMESPACE::IndexBuffer</innerclass>
-    <innerclass refid="struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_directional_light_s_s_b_o" prot="public">RAYEX_NAMESPACE::DirectionalLightSSBO</innerclass>
-    <innerclass refid="struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_point_light_s_s_b_o" prot="public">RAYEX_NAMESPACE::PointLightSSBO</innerclass>
     <innerclass refid="struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_mesh_s_s_b_o" prot="public">RAYEX_NAMESPACE::MeshSSBO</innerclass>
     <innerclass refid="struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_geometry_instance_s_s_b_o" prot="public">RAYEX_NAMESPACE::GeometryInstanceSSBO</innerclass>
     <innerclass refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_storage_buffer" prot="public">RAYEX_NAMESPACE::StorageBuffer</innerclass>
     <innerclass refid="struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_camera_ubo" prot="public">RAYEX_NAMESPACE::CameraUbo</innerclass>
     <innerclass refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_uniform_buffer" prot="public">RAYEX_NAMESPACE::UniformBuffer</innerclass>
-    <innerclass refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_vertex_buffer" prot="public">RAYEX_NAMESPACE::VertexBuffer</innerclass>
+    <innerclass refid="classrx_1_1_cubemap" prot="public">rx::Cubemap</innerclass>
     <innerclass refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_image" prot="public">RAYEX_NAMESPACE::Image</innerclass>
     <innerclass refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_texture" prot="public">RAYEX_NAMESPACE::Texture</innerclass>
-    <innerclass refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_pipeline" prot="public">RAYEX_NAMESPACE::Pipeline</innerclass>
     <innerclass refid="struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_acceleration_structure" prot="public">RAYEX_NAMESPACE::AccelerationStructure</innerclass>
     <innerclass refid="struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_tlas" prot="public">RAYEX_NAMESPACE::Tlas</innerclass>
     <innerclass refid="struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_blas" prot="public">RAYEX_NAMESPACE::Blas</innerclass>
     <innerclass refid="struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_blas_instance" prot="public">RAYEX_NAMESPACE::BlasInstance</innerclass>
-    <innerclass refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_ray_tracing_builder" prot="public">RAYEX_NAMESPACE::RayTracingBuilder</innerclass>
+    <innerclass refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_path_tracer" prot="public">RAYEX_NAMESPACE::PathTracer</innerclass>
+    <innerclass refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_post_processing_renderer" prot="public">RAYEX_NAMESPACE::PostProcessingRenderer</innerclass>
     <innerclass refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_render_pass" prot="public">RAYEX_NAMESPACE::RenderPass</innerclass>
     <innerclass refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_surface" prot="public">RAYEX_NAMESPACE::Surface</innerclass>
     <innerclass refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_swapchain" prot="public">RAYEX_NAMESPACE::Swapchain</innerclass>
     <innerclass refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_debug_messenger" prot="public">RAYEX_NAMESPACE::DebugMessenger</innerclass>
     <innerclass refid="struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_vertex" prot="public">RAYEX_NAMESPACE::Vertex</innerclass>
     <innerclass refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_gui" prot="public">RAYEX_NAMESPACE::Gui</innerclass>
+    <innerclass refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_scene" prot="public">RAYEX_NAMESPACE::Scene</innerclass>
     <innernamespace refid="namespacevk_1_1_helper">vk::Helper</innernamespace>
     <innernamespace refid="namespacevk_1_1_initializer">vk::Initializer</innernamespace>
     <briefdescription>

@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
-<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.17">
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.20" xml:lang="en-US">
   <compounddef id="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_gui" kind="class" language="C++" prot="public">
     <compoundname>RAYEX_NAMESPACE::Gui</compoundname>
     <includes refid="_gui_8hpp" local="no">Gui.hpp</includes>
@@ -16,7 +16,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/n30/Repos/rayex/include/base/Gui.hpp" line="96" column="30" bodyfile="/home/n30/Repos/rayex/include/base/Gui.hpp" bodystart="96" bodyend="-1"/>
+        <location file="C:/Repos/rayex/include/base/Gui.hpp" line="76" column="30" bodyfile="C:/Repos/rayex/include/base/Gui.hpp" bodystart="76" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_gui_1aeb530f206d0b2ba9bb02190b834f6cc9" prot="private" static="no" mutable="no">
         <type>vk::UniqueCommandPool</type>
@@ -30,49 +30,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/n30/Repos/rayex/include/base/Gui.hpp" line="97" column="27" bodyfile="/home/n30/Repos/rayex/include/base/Gui.hpp" bodystart="97" bodyend="-1"/>
-      </memberdef>
-      <memberdef kind="variable" id="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_gui_1aaab076d699507b567c7f610e3380c1b3" prot="private" static="no" mutable="no">
-        <type><ref refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_command_buffer" kindref="compound">CommandBuffer</ref></type>
-        <definition>CommandBuffer RAYEX_NAMESPACE::Gui::_commandBuffers</definition>
-        <argsstring></argsstring>
-        <name>_commandBuffers</name>
-        <briefdescription>
-<para>A <ref refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_command_buffer" kindref="compound">RAYEX_NAMESPACE::CommandBuffer</ref>. </para>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="/home/n30/Repos/rayex/include/base/Gui.hpp" line="98" column="19" bodyfile="/home/n30/Repos/rayex/include/base/Gui.hpp" bodystart="98" bodyend="-1"/>
-      </memberdef>
-      <memberdef kind="variable" id="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_gui_1a7df62578500ef5b47903982269930ac5" prot="private" static="no" mutable="no">
-        <type><ref refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_render_pass" kindref="compound">RenderPass</ref></type>
-        <definition>RenderPass RAYEX_NAMESPACE::Gui::_renderPass</definition>
-        <argsstring></argsstring>
-        <name>_renderPass</name>
-        <briefdescription>
-<para>A Vulkan render pass. </para>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="/home/n30/Repos/rayex/include/base/Gui.hpp" line="99" column="16" bodyfile="/home/n30/Repos/rayex/include/base/Gui.hpp" bodystart="99" bodyend="-1"/>
-      </memberdef>
-      <memberdef kind="variable" id="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_gui_1a7efeea9eb773d948282ed9d70c9cb3c1" prot="private" static="no" mutable="no">
-        <type>std::vector&lt; vk::UniqueFramebuffer &gt;</type>
-        <definition>std::vector&lt;vk::UniqueFramebuffer&gt; RAYEX_NAMESPACE::Gui::_framebuffers</definition>
-        <argsstring></argsstring>
-        <name>_framebuffers</name>
-        <briefdescription>
-<para>A vector of Vulkan framebuffers with unique handles. </para>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="/home/n30/Repos/rayex/include/base/Gui.hpp" line="100" column="17" bodyfile="/home/n30/Repos/rayex/include/base/Gui.hpp" bodystart="100" bodyend="-1"/>
+        <location file="C:/Repos/rayex/include/base/Gui.hpp" line="77" column="27" bodyfile="C:/Repos/rayex/include/base/Gui.hpp" bodystart="77" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_gui_1af2585fff8afb01291db7edf5e74e5890" prot="private" static="no" mutable="no">
         <type>vk::Extent2D</type>
@@ -86,20 +44,21 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/n30/Repos/rayex/include/base/Gui.hpp" line="101" column="18" bodyfile="/home/n30/Repos/rayex/include/base/Gui.hpp" bodystart="101" bodyend="-1"/>
+        <location file="C:/Repos/rayex/include/base/Gui.hpp" line="78" column="18" bodyfile="C:/Repos/rayex/include/base/Gui.hpp" bodystart="78" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_gui_1a41f5124f6dc42b716857585da394f0e2" prot="private" static="no" mutable="no">
         <type>SDL_Window *</type>
         <definition>SDL_Window* RAYEX_NAMESPACE::Gui::_window</definition>
         <argsstring></argsstring>
         <name>_window</name>
+        <initializer>= nullptr</initializer>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/n30/Repos/rayex/include/base/Gui.hpp" line="102" column="16" bodyfile="/home/n30/Repos/rayex/include/base/Gui.hpp" bodystart="102" bodyend="-1"/>
+        <location file="C:/Repos/rayex/include/base/Gui.hpp" line="79" column="16" bodyfile="C:/Repos/rayex/include/base/Gui.hpp" bodystart="79" bodyend="-1"/>
       </memberdef>
       </sectiondef>
       <sectiondef kind="public-func">
@@ -114,37 +73,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/n30/Repos/rayex/include/base/Gui.hpp" line="39" column="13"/>
-      </memberdef>
-      <memberdef kind="function" id="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_gui_1a8e3a6b5982891d85abb8dc8613f1d249" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
-        <type>auto</type>
-        <definition>auto RAYEX_NAMESPACE::Gui::getCommandBuffer</definition>
-        <argsstring>(uint32_t index) const -&gt; vk::CommandBuffer</argsstring>
-        <name>getCommandBuffer</name>
-        <param>
-          <type>uint32_t</type>
-          <declname>index</declname>
-        </param>
-        <briefdescription>
-<para>Returns the GUI&apos;s command buffer at the given index. </para>
-        </briefdescription>
-        <detaileddescription>
-<para><parameterlist kind="param"><parameteritem>
-<parameternamelist>
-<parametername>index</parametername>
-</parameternamelist>
-<parameterdescription>
-<para>The index of the command buffer to access. </para>
-</parameterdescription>
-</parameteritem>
-</parameterlist>
-<simplesect kind="return"><para>Returns the Vulkan command buffer. </para>
-</simplesect>
-</para>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="/home/n30/Repos/rayex/include/base/Gui.hpp" line="44" column="10" bodyfile="/home/n30/Repos/rayex/include/base/Gui.hpp" bodystart="44" bodyend="44"/>
+        <location file="C:/Repos/rayex/include/base/Gui.hpp" line="39" column="13"/>
       </memberdef>
       <memberdef kind="function" id="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_gui_1a9683c711717892adbc9a5091ba5a1018" prot="public" static="no" const="no" explicit="no" inline="no" virt="virtual">
         <type>void</type>
@@ -159,7 +88,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/n30/Repos/rayex/include/base/Gui.hpp" line="49" column="18"/>
+        <location file="C:/Repos/rayex/include/base/Gui.hpp" line="44" column="18"/>
       </memberdef>
       <memberdef kind="function" id="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_gui_1a3e5134da1391b2ca38bc65f17895d767" prot="public" static="no" const="no" explicit="no" inline="no" virt="virtual">
         <type>void</type>
@@ -175,12 +104,12 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/n30/Repos/rayex/include/base/Gui.hpp" line="54" column="18"/>
+        <location file="C:/Repos/rayex/include/base/Gui.hpp" line="49" column="18"/>
       </memberdef>
-      <memberdef kind="function" id="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_gui_1a0f744057e610d3c5e0417664dc78d358" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+      <memberdef kind="function" id="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_gui_1a872d3b5dd0876f2412bd6ee64cfc1285" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
         <definition>void RAYEX_NAMESPACE::Gui::init</definition>
-        <argsstring>(SDL_Window *window, const Surface *surface, vk::Extent2D swapchainImageExtent, const std::vector&lt; vk::ImageView &gt; &amp;swapchainImageViews)</argsstring>
+        <argsstring>(SDL_Window *window, const Surface *surface, vk::Extent2D swapchainImageExtent, vk::RenderPass renderPass)</argsstring>
         <name>init</name>
         <param>
           <type>SDL_Window *</type>
@@ -195,8 +124,8 @@
           <declname>swapchainImageExtent</declname>
         </param>
         <param>
-          <type>const std::vector&lt; vk::ImageView &gt; &amp;</type>
-          <declname>swapchainImageViews</declname>
+          <type>vk::RenderPass</type>
+          <declname>renderPass</declname>
         </param>
         <briefdescription>
 <para>Creates the GUI and all required Vulkan components. </para>
@@ -218,33 +147,21 @@
 <para>The extent of the swapchain images. </para>
 </parameterdescription>
 </parameteritem>
-<parameteritem>
-<parameternamelist>
-<parametername>swapchainImageViews</parametername>
-</parameternamelist>
-<parameterdescription>
-<para>The swapchain images&apos; image views. </para>
-</parameterdescription>
-</parameteritem>
 </parameterlist>
 </para>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/n30/Repos/rayex/include/base/Gui.hpp" line="60" column="10"/>
+        <location file="C:/Repos/rayex/include/base/Gui.hpp" line="54" column="10"/>
       </memberdef>
-      <memberdef kind="function" id="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_gui_1a56569780013e4a2c2bcd78ce86ee5712" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+      <memberdef kind="function" id="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_gui_1af1bbc6bf62822168f9d28e42fd1345e5" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
         <definition>void RAYEX_NAMESPACE::Gui::recreate</definition>
-        <argsstring>(vk::Extent2D swapchainImageExtent, const std::vector&lt; vk::ImageView &gt; &amp;swapchainImageViews)</argsstring>
+        <argsstring>(vk::Extent2D swapchainImageExtent)</argsstring>
         <name>recreate</name>
         <param>
           <type>vk::Extent2D</type>
           <declname>swapchainImageExtent</declname>
-        </param>
-        <param>
-          <type>const std::vector&lt; vk::ImageView &gt; &amp;</type>
-          <declname>swapchainImageViews</declname>
         </param>
         <briefdescription>
 <para>Used to recreate the GUI in case the window size was changed. </para>
@@ -271,16 +188,16 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/n30/Repos/rayex/include/base/Gui.hpp" line="65" column="10"/>
+        <location file="C:/Repos/rayex/include/base/Gui.hpp" line="59" column="10"/>
       </memberdef>
-      <memberdef kind="function" id="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_gui_1a1eef3b87927ad2b9823a70d0f8ae8c8b" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+      <memberdef kind="function" id="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_gui_1aec9cbe4d9c91740401c8781e760b7e49" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
         <definition>void RAYEX_NAMESPACE::Gui::renderDrawData</definition>
-        <argsstring>(uint32_t imageIndex)</argsstring>
+        <argsstring>(vk::CommandBuffer commandBuffer)</argsstring>
         <name>renderDrawData</name>
         <param>
-          <type>uint32_t</type>
-          <declname>imageIndex</declname>
+          <type>vk::CommandBuffer</type>
+          <declname>commandBuffer</declname>
         </param>
         <briefdescription>
 <para>Records the ImGui rendering calls to the command buffer at the given image index. </para>
@@ -299,7 +216,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/n30/Repos/rayex/include/base/Gui.hpp" line="69" column="10"/>
+        <location file="C:/Repos/rayex/include/base/Gui.hpp" line="63" column="10"/>
       </memberdef>
       <memberdef kind="function" id="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_gui_1acdc42f7c0d1a54a0a2e3bc9bb89df3ee" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -313,7 +230,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/n30/Repos/rayex/include/base/Gui.hpp" line="72" column="10"/>
+        <location file="C:/Repos/rayex/include/base/Gui.hpp" line="66" column="10"/>
       </memberdef>
       </sectiondef>
       <sectiondef kind="private-func">
@@ -329,49 +246,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/n30/Repos/rayex/include/base/Gui.hpp" line="76" column="10"/>
-      </memberdef>
-      <memberdef kind="function" id="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_gui_1ad267c674332f3036c71347594028e28e" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
-        <type>void</type>
-        <definition>void RAYEX_NAMESPACE::Gui::initRenderPass</definition>
-        <argsstring>(const Surface *surface)</argsstring>
-        <name>initRenderPass</name>
-        <param>
-          <type>const <ref refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_surface" kindref="compound">Surface</ref> *</type>
-          <declname>surface</declname>
-        </param>
-        <briefdescription>
-<para>Creates a render pass for the GUI. </para>
-        </briefdescription>
-        <detaileddescription>
-<para><parameterlist kind="param"><parameteritem>
-<parameternamelist>
-<parametername>surface</parametername>
-</parameternamelist>
-<parameterdescription>
-<para>A pointer to a <ref refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_surface" kindref="compound">RAYEX_NAMESPACE::Surface</ref> object. </para>
-</parameterdescription>
-</parameteritem>
-</parameterlist>
-</para>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="/home/n30/Repos/rayex/include/base/Gui.hpp" line="80" column="10"/>
-      </memberdef>
-      <memberdef kind="function" id="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_gui_1aedba159ee81ef6e7655de06c32cecf7c" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
-        <type>void</type>
-        <definition>void RAYEX_NAMESPACE::Gui::initCommandPool</definition>
-        <argsstring>()</argsstring>
-        <name>initCommandPool</name>
-        <briefdescription>
-<para>Creates a command pool for the GUI&apos;s command buffers. </para>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="/home/n30/Repos/rayex/include/base/Gui.hpp" line="83" column="10"/>
+        <location file="C:/Repos/rayex/include/base/Gui.hpp" line="70" column="10"/>
       </memberdef>
       <memberdef kind="function" id="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_gui_1ae8a4c10c9cfe926b1083ce7ed5bbe853" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -385,49 +260,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/n30/Repos/rayex/include/base/Gui.hpp" line="86" column="10"/>
-      </memberdef>
-      <memberdef kind="function" id="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_gui_1a37502c601edddc167cc2952801098dee" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
-        <type>void</type>
-        <definition>void RAYEX_NAMESPACE::Gui::initCommandBuffers</definition>
-        <argsstring>()</argsstring>
-        <name>initCommandBuffers</name>
-        <briefdescription>
-<para>Creates the command buffers to record the ImGui rendering commands to. </para>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="/home/n30/Repos/rayex/include/base/Gui.hpp" line="89" column="10"/>
-      </memberdef>
-      <memberdef kind="function" id="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_gui_1a61bc7aa9466e93c34f6aa964b2fad77f" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
-        <type>void</type>
-        <definition>void RAYEX_NAMESPACE::Gui::initFramebuffers</definition>
-        <argsstring>(const std::vector&lt; vk::ImageView &gt; &amp;swapchainImageViews)</argsstring>
-        <name>initFramebuffers</name>
-        <param>
-          <type>const std::vector&lt; vk::ImageView &gt; &amp;</type>
-          <declname>swapchainImageViews</declname>
-        </param>
-        <briefdescription>
-<para>Creates framebuffers for the render pass. </para>
-        </briefdescription>
-        <detaileddescription>
-<para><parameterlist kind="param"><parameteritem>
-<parameternamelist>
-<parametername>swapchainImageViews</parametername>
-</parameternamelist>
-<parameterdescription>
-<para>A vector holding the swapchain images&apos; image view. </para>
-</parameterdescription>
-</parameteritem>
-</parameterlist>
-</para>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="/home/n30/Repos/rayex/include/base/Gui.hpp" line="93" column="10"/>
+        <location file="C:/Repos/rayex/include/base/Gui.hpp" line="73" column="10"/>
       </memberdef>
       </sectiondef>
     <briefdescription>
@@ -455,28 +288,20 @@
 </simplesect>
 </para>
     </detaileddescription>
-    <location file="/home/n30/Repos/rayex/include/base/Gui.hpp" line="37" column="1" bodyfile="/home/n30/Repos/rayex/include/base/Gui.hpp" bodystart="36" bodyend="103"/>
+    <location file="C:/Repos/rayex/include/base/Gui.hpp" line="36" column="3" bodyfile="C:/Repos/rayex/include/base/Gui.hpp" bodystart="37" bodyend="80"/>
     <listofallmembers>
-      <member refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_gui_1aaab076d699507b567c7f610e3380c1b3" prot="private" virt="non-virtual"><scope>RAYEX_NAMESPACE::Gui</scope><name>_commandBuffers</name></member>
       <member refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_gui_1aeb530f206d0b2ba9bb02190b834f6cc9" prot="private" virt="non-virtual"><scope>RAYEX_NAMESPACE::Gui</scope><name>_commandPool</name></member>
       <member refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_gui_1a869039a08a4988d6b862f4f6491e7ca8" prot="private" virt="non-virtual"><scope>RAYEX_NAMESPACE::Gui</scope><name>_descriptorPool</name></member>
-      <member refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_gui_1a7efeea9eb773d948282ed9d70c9cb3c1" prot="private" virt="non-virtual"><scope>RAYEX_NAMESPACE::Gui</scope><name>_framebuffers</name></member>
-      <member refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_gui_1a7df62578500ef5b47903982269930ac5" prot="private" virt="non-virtual"><scope>RAYEX_NAMESPACE::Gui</scope><name>_renderPass</name></member>
       <member refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_gui_1af2585fff8afb01291db7edf5e74e5890" prot="private" virt="non-virtual"><scope>RAYEX_NAMESPACE::Gui</scope><name>_swapchainImageExtent</name></member>
       <member refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_gui_1a41f5124f6dc42b716857585da394f0e2" prot="private" virt="non-virtual"><scope>RAYEX_NAMESPACE::Gui</scope><name>_window</name></member>
       <member refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_gui_1a9683c711717892adbc9a5091ba5a1018" prot="public" virt="virtual"><scope>RAYEX_NAMESPACE::Gui</scope><name>configure</name></member>
       <member refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_gui_1acdc42f7c0d1a54a0a2e3bc9bb89df3ee" prot="public" virt="non-virtual"><scope>RAYEX_NAMESPACE::Gui</scope><name>destroy</name></member>
-      <member refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_gui_1a8e3a6b5982891d85abb8dc8613f1d249" prot="public" virt="non-virtual"><scope>RAYEX_NAMESPACE::Gui</scope><name>getCommandBuffer</name></member>
-      <member refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_gui_1a0f744057e610d3c5e0417664dc78d358" prot="public" virt="non-virtual"><scope>RAYEX_NAMESPACE::Gui</scope><name>init</name></member>
-      <member refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_gui_1a37502c601edddc167cc2952801098dee" prot="private" virt="non-virtual"><scope>RAYEX_NAMESPACE::Gui</scope><name>initCommandBuffers</name></member>
-      <member refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_gui_1aedba159ee81ef6e7655de06c32cecf7c" prot="private" virt="non-virtual"><scope>RAYEX_NAMESPACE::Gui</scope><name>initCommandPool</name></member>
+      <member refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_gui_1a872d3b5dd0876f2412bd6ee64cfc1285" prot="public" virt="non-virtual"><scope>RAYEX_NAMESPACE::Gui</scope><name>init</name></member>
       <member refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_gui_1aa735d67aa54d5fb34c7f5b9fb8ab3900" prot="private" virt="non-virtual"><scope>RAYEX_NAMESPACE::Gui</scope><name>initDescriptorPool</name></member>
       <member refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_gui_1ae8a4c10c9cfe926b1083ce7ed5bbe853" prot="private" virt="non-virtual"><scope>RAYEX_NAMESPACE::Gui</scope><name>initFonts</name></member>
-      <member refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_gui_1a61bc7aa9466e93c34f6aa964b2fad77f" prot="private" virt="non-virtual"><scope>RAYEX_NAMESPACE::Gui</scope><name>initFramebuffers</name></member>
-      <member refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_gui_1ad267c674332f3036c71347594028e28e" prot="private" virt="non-virtual"><scope>RAYEX_NAMESPACE::Gui</scope><name>initRenderPass</name></member>
-      <member refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_gui_1a56569780013e4a2c2bcd78ce86ee5712" prot="public" virt="non-virtual"><scope>RAYEX_NAMESPACE::Gui</scope><name>recreate</name></member>
+      <member refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_gui_1af1bbc6bf62822168f9d28e42fd1345e5" prot="public" virt="non-virtual"><scope>RAYEX_NAMESPACE::Gui</scope><name>recreate</name></member>
       <member refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_gui_1a3e5134da1391b2ca38bc65f17895d767" prot="public" virt="virtual"><scope>RAYEX_NAMESPACE::Gui</scope><name>render</name></member>
-      <member refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_gui_1a1eef3b87927ad2b9823a70d0f8ae8c8b" prot="public" virt="non-virtual"><scope>RAYEX_NAMESPACE::Gui</scope><name>renderDrawData</name></member>
+      <member refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_gui_1aec9cbe4d9c91740401c8781e760b7e49" prot="public" virt="non-virtual"><scope>RAYEX_NAMESPACE::Gui</scope><name>renderDrawData</name></member>
       <member refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_gui_1a37b52ebf2ec5b33b5bb817b6dc157169" prot="public" virt="virtual"><scope>RAYEX_NAMESPACE::Gui</scope><name>~Gui</name></member>
     </listofallmembers>
   </compounddef>

@@ -1,88 +1,133 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
-<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.17">
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.20" xml:lang="en-US">
   <compounddef id="_bindings_8hpp" kind="file" language="C++">
     <compoundname>Bindings.hpp</compoundname>
     <includes refid="_helpers_8hpp" local="yes">api/utility/Helpers.hpp</includes>
     <includes refid="_initializers_8hpp" local="yes">api/utility/Initializers.hpp</includes>
-    <includedby refid="_api_8hpp" local="yes">/home/n30/Repos/rayex/include/api/Api.hpp</includedby>
+    <includedby refid="_api_8hpp" local="yes">C:/Repos/rayex/include/api/Api.hpp</includedby>
+    <includedby refid="_path_tracer_8hpp" local="yes">C:/Repos/rayex/include/api/pathtrace/PathTracer.hpp</includedby>
+    <includedby refid="_post_processing_renderer_8hpp" local="yes">C:/Repos/rayex/include/api/PostProcessingRenderer.hpp</includedby>
+    <includedby refid="_scene_8hpp" local="yes">C:/Repos/rayex/include/base/Scene.hpp</includedby>
     <incdepgraph>
-      <node id="32">
+      <node id="29">
         <label>list</label>
       </node>
-      <node id="30">
+      <node id="41">
+        <label>api/Components.hpp</label>
+        <link refid="_components_8hpp"/>
+        <childnode refid="42" relation="include">
+        </childnode>
+      </node>
+      <node id="27">
         <label>iomanip</label>
       </node>
-      <node id="19">
+      <node id="16">
         <label>external/glm/ext/matrix_transform.hpp</label>
       </node>
-      <node id="31">
+      <node id="28">
         <label>limits</label>
       </node>
-      <node id="26">
+      <node id="44">
+        <label>api/utility/Initializers.hpp</label>
+        <link refid="_initializers_8hpp"/>
+        <childnode refid="41" relation="include">
+        </childnode>
+        <childnode refid="40" relation="include">
+        </childnode>
+      </node>
+      <node id="23">
         <label>filesystem</label>
       </node>
       <node id="6">
         <label>external/tinyLogger/TinyLogger.hpp</label>
       </node>
-      <node id="25">
+      <node id="22">
         <label>charconv</label>
       </node>
-      <node id="2">
-        <label>api/utility/Helpers.hpp</label>
-        <link refid="_helpers_8hpp"/>
-        <childnode refid="3" relation="include">
-        </childnode>
-        <childnode refid="42" relation="include">
+      <node id="43">
+        <label>base/Camera.hpp</label>
+        <link refid="_camera_8hpp"/>
+        <childnode refid="4" relation="include">
         </childnode>
       </node>
-      <node id="5">
-        <label>Core.hpp</label>
-        <link refid="_core_8hpp"/>
-        <childnode refid="6" relation="include">
+      <node id="42">
+        <label>base/Window.hpp</label>
+        <link refid="_window_8hpp"/>
+        <childnode refid="43" relation="include">
         </childnode>
-        <childnode refid="7" relation="include">
+        <childnode refid="11" relation="include">
         </childnode>
-        <childnode refid="8" relation="include">
+        <childnode refid="4" relation="include">
         </childnode>
-        <childnode refid="9" relation="include">
+      </node>
+      <node id="40">
+        <label>api/pathtrace/AccelerationStructure.hpp</label>
+        <link refid="_acceleration_structure_8hpp"/>
+        <childnode refid="41" relation="include">
         </childnode>
-        <childnode refid="10" relation="include">
+        <childnode refid="4" relation="include">
+        </childnode>
+      </node>
+      <node id="13">
+        <label>external/ImGui/imgui_impl_sdl.h</label>
+      </node>
+      <node id="15">
+        <label>external/glm/ext/matrix_clip_space.hpp</label>
+      </node>
+      <node id="1">
+        <label>C:/Repos/rayex/include/api/Bindings.hpp</label>
+        <link refid="_bindings_8hpp"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="44" relation="include">
+        </childnode>
+      </node>
+      <node id="30">
+        <label>map</label>
+      </node>
+      <node id="37">
+        <label>unordered_set</label>
+      </node>
+      <node id="26">
+        <label>gsl/gsl</label>
+      </node>
+      <node id="25">
+        <label>fstream</label>
+      </node>
+      <node id="12">
+        <label>external/ImGui/imgui.h</label>
+      </node>
+      <node id="20">
+        <label>any</label>
+      </node>
+      <node id="7">
+        <label>SDL2/SDL.h</label>
+      </node>
+      <node id="33">
+        <label>random</label>
+      </node>
+      <node id="17">
+        <label>external/glm/glm.hpp</label>
+      </node>
+      <node id="35">
+        <label>string_view</label>
+      </node>
+      <node id="32">
+        <label>optional</label>
+      </node>
+      <node id="39">
+        <label>vector</label>
+      </node>
+      <node id="4">
+        <label>pch/stdafx.hpp</label>
+        <link refid="stdafx_8hpp"/>
+        <childnode refid="5" relation="include">
         </childnode>
         <childnode refid="11" relation="include">
         </childnode>
         <childnode refid="12" relation="include">
         </childnode>
         <childnode refid="13" relation="include">
-        </childnode>
-      </node>
-      <node id="16">
-        <label>external/ImGui/imgui_impl_sdl.h</label>
-      </node>
-      <node id="18">
-        <label>external/glm/ext/matrix_clip_space.hpp</label>
-      </node>
-      <node id="33">
-        <label>map</label>
-      </node>
-      <node id="39">
-        <label>unordered_set</label>
-      </node>
-      <node id="29">
-        <label>gsl/gsl</label>
-      </node>
-      <node id="28">
-        <label>fstream</label>
-      </node>
-      <node id="15">
-        <label>external/ImGui/imgui.h</label>
-      </node>
-      <node id="23">
-        <label>any</label>
-      </node>
-      <node id="4">
-        <label>pch/stdafx.hpp</label>
-        <link refid="stdafx_8hpp"/>
-        <childnode refid="5" relation="include">
         </childnode>
         <childnode refid="14" relation="include">
         </childnode>
@@ -132,82 +177,57 @@
         </childnode>
         <childnode refid="37" relation="include">
         </childnode>
-        <childnode refid="10" relation="include">
-        </childnode>
         <childnode refid="38" relation="include">
         </childnode>
         <childnode refid="39" relation="include">
         </childnode>
-        <childnode refid="40" relation="include">
-        </childnode>
-        <childnode refid="41" relation="include">
-        </childnode>
-      </node>
-      <node id="11">
-        <label>SDL2/SDL.h</label>
-      </node>
-      <node id="36">
-        <label>random</label>
-      </node>
-      <node id="20">
-        <label>external/glm/glm.hpp</label>
-      </node>
-      <node id="10">
-        <label>string_view</label>
-      </node>
-      <node id="35">
-        <label>optional</label>
-      </node>
-      <node id="41">
-        <label>vector</label>
-      </node>
-      <node id="44">
-        <label>base/Window.hpp</label>
-        <link refid="_window_8hpp"/>
-        <childnode refid="45" relation="include">
-        </childnode>
-        <childnode refid="14" relation="include">
-        </childnode>
-        <childnode refid="4" relation="include">
-        </childnode>
-      </node>
-      <node id="40">
-        <label>utility</label>
-      </node>
-      <node id="24">
-        <label>array</label>
-      </node>
-      <node id="21">
-        <label>external/glm/gtx/string_cast.hpp</label>
-      </node>
-      <node id="9">
-        <label>sstream</label>
-      </node>
-      <node id="45">
-        <label>base/Camera.hpp</label>
-        <link refid="_camera_8hpp"/>
-        <childnode refid="4" relation="include">
-        </childnode>
-      </node>
-      <node id="46">
-        <label>api/utility/Initializers.hpp</label>
-        <link refid="_initializers_8hpp"/>
-        <childnode refid="43" relation="include">
-        </childnode>
-        <childnode refid="42" relation="include">
-        </childnode>
-      </node>
-      <node id="17">
-        <label>external/ImGui/imgui_impl_vulkan.h</label>
-      </node>
-      <node id="8">
-        <label>iostream</label>
       </node>
       <node id="38">
+        <label>utility</label>
+      </node>
+      <node id="21">
+        <label>array</label>
+      </node>
+      <node id="18">
+        <label>external/glm/gtx/string_cast.hpp</label>
+      </node>
+      <node id="2">
+        <label>api/utility/Helpers.hpp</label>
+        <link refid="_helpers_8hpp"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="40" relation="include">
+        </childnode>
+      </node>
+      <node id="14">
+        <label>external/ImGui/imgui_impl_vulkan.h</label>
+      </node>
+      <node id="9">
+        <label>iostream</label>
+      </node>
+      <node id="36">
         <label>unordered_map</label>
       </node>
-      <node id="7">
-        <label>chrono</label>
+      <node id="34">
+        <label>set</label>
+      </node>
+      <node id="24">
+        <label>forward_list</label>
+      </node>
+      <node id="19">
+        <label>algorithm</label>
+      </node>
+      <node id="11">
+        <label>base/Time.hpp</label>
+        <link refid="_time_8hpp"/>
+        <childnode refid="5" relation="include">
+        </childnode>
+      </node>
+      <node id="10">
+        <label>vulkan/vulkan.hpp</label>
+      </node>
+      <node id="31">
+        <label>memory</label>
       </node>
       <node id="3">
         <label>api/RenderPass.hpp</label>
@@ -215,67 +235,62 @@
         <childnode refid="4" relation="include">
         </childnode>
       </node>
-      <node id="42">
-        <label>api/raytracing/AccelerationStructure.hpp</label>
-        <link refid="_acceleration_structure_8hpp"/>
-        <childnode refid="43" relation="include">
-        </childnode>
-        <childnode refid="4" relation="include">
-        </childnode>
-      </node>
-      <node id="37">
-        <label>set</label>
-      </node>
-      <node id="14">
-        <label>base/Time.hpp</label>
-        <link refid="_time_8hpp"/>
-        <childnode refid="5" relation="include">
-        </childnode>
-      </node>
-      <node id="27">
-        <label>forward_list</label>
-      </node>
-      <node id="22">
-        <label>algorithm</label>
-      </node>
-      <node id="1">
-        <label>/home/n30/Repos/rayex/include/api/Bindings.hpp</label>
-        <link refid="_bindings_8hpp"/>
-        <childnode refid="2" relation="include">
-        </childnode>
-        <childnode refid="46" relation="include">
-        </childnode>
-      </node>
-      <node id="13">
-        <label>vulkan/vulkan.hpp</label>
-      </node>
-      <node id="34">
-        <label>memory</label>
-      </node>
-      <node id="12">
+      <node id="8">
         <label>SDL2/SDL_vulkan.h</label>
       </node>
-      <node id="43">
-        <label>api/Components.hpp</label>
-        <link refid="_components_8hpp"/>
-        <childnode refid="44" relation="include">
+      <node id="5">
+        <label>Core.hpp</label>
+        <link refid="_core_8hpp"/>
+        <childnode refid="6" relation="include">
+        </childnode>
+        <childnode refid="7" relation="include">
+        </childnode>
+        <childnode refid="8" relation="include">
+        </childnode>
+        <childnode refid="9" relation="include">
+        </childnode>
+        <childnode refid="10" relation="include">
         </childnode>
       </node>
     </incdepgraph>
     <invincdepgraph>
+      <node id="5">
+        <label>C:/Repos/rayex/include/api/PostProcessingRenderer.hpp</label>
+        <link refid="_post_processing_renderer_8hpp"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+      </node>
+      <node id="4">
+        <label>C:/Repos/rayex/include/api/pathtrace/PathTracer.hpp</label>
+        <link refid="_path_tracer_8hpp"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+      </node>
       <node id="3">
-        <label>/home/n30/Repos/rayex/include/Rayex.hpp</label>
+        <label>C:/Repos/rayex/include/Rayex.hpp</label>
         <link refid="_rayex_8hpp"/>
       </node>
+      <node id="1">
+        <label>C:/Repos/rayex/include/api/Bindings.hpp</label>
+        <link refid="_bindings_8hpp"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="6" relation="include">
+        </childnode>
+      </node>
       <node id="2">
-        <label>/home/n30/Repos/rayex/include/api/Api.hpp</label>
+        <label>C:/Repos/rayex/include/api/Api.hpp</label>
         <link refid="_api_8hpp"/>
         <childnode refid="3" relation="include">
         </childnode>
       </node>
-      <node id="1">
-        <label>/home/n30/Repos/rayex/include/api/Bindings.hpp</label>
-        <link refid="_bindings_8hpp"/>
+      <node id="6">
+        <label>C:/Repos/rayex/include/base/Scene.hpp</label>
+        <link refid="_scene_8hpp"/>
         <childnode refid="2" relation="include">
         </childnode>
       </node>
@@ -299,32 +314,32 @@
 <codeline lineno="11" refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_bindings" refkind="compound"><highlight class="normal"><sp/><sp/></highlight><highlight class="keyword">class<sp/></highlight><highlight class="normal"><ref refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_bindings" kindref="compound">Bindings</ref></highlight></codeline>
 <codeline lineno="12"><highlight class="normal"><sp/><sp/>{</highlight></codeline>
 <codeline lineno="13"><highlight class="normal"><sp/><sp/></highlight><highlight class="keyword">public</highlight><highlight class="normal">:</highlight></codeline>
-<codeline lineno="20"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_bindings_1a37856d36392e371e4fdcfe35d184fa42" kindref="member">add</ref>(<sp/>uint32_t<sp/>binding,<sp/>vk::DescriptorType<sp/>type,<sp/>vk::ShaderStageFlags<sp/>stage,<sp/>uint32_t<sp/>count<sp/>=<sp/>1,<sp/>vk::DescriptorBindingFlags<sp/>flags<sp/>=<sp/>{<sp/>},<sp/>vk::Sampler*<sp/>pImmutableSamplers<sp/>=<sp/>nullptr<sp/>);</highlight></codeline>
+<codeline lineno="20" refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_bindings_1a37856d36392e371e4fdcfe35d184fa42" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_bindings_1a37856d36392e371e4fdcfe35d184fa42" kindref="member">add</ref>(<sp/>uint32_t<sp/>binding,<sp/>vk::DescriptorType<sp/>type,<sp/>vk::ShaderStageFlags<sp/>stage,<sp/>uint32_t<sp/>count<sp/>=<sp/>1,<sp/>vk::DescriptorBindingFlags<sp/>flags<sp/>=<sp/>{<sp/>},<sp/>vk::Sampler*<sp/>pImmutableSamplers<sp/>=<sp/>nullptr<sp/>);</highlight></codeline>
 <codeline lineno="21"><highlight class="normal"></highlight></codeline>
-<codeline lineno="24"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/><ref refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_bindings_1ac4a04461e4728f35c9146237a47e6e66" kindref="member">initLayoutUnique</ref>(<sp/>vk::DescriptorSetLayoutCreateFlags<sp/>flags<sp/>=<sp/>{<sp/>}<sp/>)<sp/>-&gt;<sp/>vk::UniqueDescriptorSetLayout;</highlight></codeline>
+<codeline lineno="24" refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_bindings_1ac4a04461e4728f35c9146237a47e6e66" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/><ref refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_bindings_1ac4a04461e4728f35c9146237a47e6e66" kindref="member">initLayoutUnique</ref>(<sp/>vk::DescriptorSetLayoutCreateFlags<sp/>flags<sp/>=<sp/>{<sp/>}<sp/>)<sp/>-&gt;<sp/>vk::UniqueDescriptorSetLayout;</highlight></codeline>
 <codeline lineno="25"><highlight class="normal"></highlight></codeline>
-<codeline lineno="30"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/><ref refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_bindings_1a20edd74ad52f8a3604f7cd892f2239f6" kindref="member">initPoolUnique</ref>(<sp/>uint32_t<sp/>maxSets,<sp/>vk::DescriptorPoolCreateFlags<sp/>flags<sp/>=<sp/>{<sp/>}<sp/>)<sp/>-&gt;<sp/>vk::UniqueDescriptorPool;</highlight></codeline>
+<codeline lineno="30" refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_bindings_1a20edd74ad52f8a3604f7cd892f2239f6" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/><ref refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_bindings_1a20edd74ad52f8a3604f7cd892f2239f6" kindref="member">initPoolUnique</ref>(<sp/>uint32_t<sp/>maxSets,<sp/>vk::DescriptorPoolCreateFlags<sp/>flags<sp/>=<sp/>{<sp/>}<sp/>)<sp/>-&gt;<sp/>vk::UniqueDescriptorPool;</highlight></codeline>
 <codeline lineno="31"><highlight class="normal"></highlight></codeline>
-<codeline lineno="34"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_bindings_1a5c7e9adcda6c378e5a1b342d70d3acc5" kindref="member">update</ref>(<sp/>);</highlight></codeline>
+<codeline lineno="34" refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_bindings_1a5c7e9adcda6c378e5a1b342d70d3acc5" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_bindings_1a5c7e9adcda6c378e5a1b342d70d3acc5" kindref="member">update</ref>(<sp/>);</highlight></codeline>
 <codeline lineno="35"><highlight class="normal"></highlight></codeline>
-<codeline lineno="40"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_bindings_1a8ff18f3ca1c5644d8a6237eac7292928" kindref="member">write</ref>(<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>std::vector&lt;vk::DescriptorSet&gt;&amp;<sp/>sets,<sp/>uint32_t<sp/>binding,<sp/>vk::WriteDescriptorSetAccelerationStructureKHR*<sp/>pWriteDescriptorSetAccelerationStructureKHR<sp/>);</highlight></codeline>
+<codeline lineno="40" refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_bindings_1aea6967de37d60d1399037e3a5a2494fa" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_bindings_1aea6967de37d60d1399037e3a5a2494fa" kindref="member">write</ref>(<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>std::vector&lt;vk::DescriptorSet&gt;&amp;<sp/>sets,<sp/>uint32_t<sp/>binding,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>vk::WriteDescriptorSetAccelerationStructureKHR*<sp/>pWriteDescriptorSetAccelerationStructureKHR<sp/>);</highlight></codeline>
 <codeline lineno="41"><highlight class="normal"></highlight></codeline>
-<codeline lineno="46"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_bindings_1a8ff18f3ca1c5644d8a6237eac7292928" kindref="member">write</ref>(<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>std::vector&lt;vk::DescriptorSet&gt;&amp;<sp/>sets,<sp/>uint32_t<sp/>binding,<sp/>vk::DescriptorImageInfo*<sp/>pImageInfo<sp/>);</highlight></codeline>
+<codeline lineno="46" refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_bindings_1a2862f850721b66b56104481eaf242852" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_bindings_1a2862f850721b66b56104481eaf242852" kindref="member">write</ref>(<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>std::vector&lt;vk::DescriptorSet&gt;&amp;<sp/>sets,<sp/>uint32_t<sp/>binding,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>vk::DescriptorImageInfo*<sp/>pImageInfo<sp/>);</highlight></codeline>
 <codeline lineno="47"><highlight class="normal"></highlight></codeline>
-<codeline lineno="52"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_bindings_1a8ff18f3ca1c5644d8a6237eac7292928" kindref="member">write</ref>(<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>std::vector&lt;vk::DescriptorSet&gt;&amp;<sp/>sets,<sp/>uint32_t<sp/>binding,<sp/>vk::DescriptorBufferInfo*<sp/>pBufferInfo<sp/>);</highlight></codeline>
+<codeline lineno="52" refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_bindings_1afd5d8362c953f91609aff1db5bf4f07c" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_bindings_1afd5d8362c953f91609aff1db5bf4f07c" kindref="member">write</ref>(<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>std::vector&lt;vk::DescriptorSet&gt;&amp;<sp/>sets,<sp/>uint32_t<sp/>binding,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>vk::DescriptorBufferInfo*<sp/>pBufferInfo<sp/>);</highlight></codeline>
 <codeline lineno="53"><highlight class="normal"></highlight></codeline>
-<codeline lineno="58"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_bindings_1a8ff18f3ca1c5644d8a6237eac7292928" kindref="member">write</ref>(<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>std::vector&lt;vk::DescriptorSet&gt;&amp;<sp/>sets,<sp/>uint32_t<sp/>binding,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>std::vector&lt;vk::DescriptorBufferInfo&gt;&amp;<sp/>uniformBufferInfos<sp/>);</highlight></codeline>
+<codeline lineno="58" refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_bindings_1a504a47e05d5db66c5545bf6402ae6b98" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_bindings_1a504a47e05d5db66c5545bf6402ae6b98" kindref="member">write</ref>(<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>std::vector&lt;vk::DescriptorSet&gt;&amp;<sp/>sets,<sp/>uint32_t<sp/>binding,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>std::vector&lt;vk::DescriptorBufferInfo&gt;&amp;<sp/>uniformBufferInfos<sp/>);</highlight></codeline>
 <codeline lineno="59"><highlight class="normal"></highlight></codeline>
-<codeline lineno="64"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_bindings_1aa7d770601a7dc6456b8d1d58d1f8e7f4" kindref="member">writeArray</ref>(<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>std::vector&lt;vk::DescriptorSet&gt;&amp;<sp/>sets,<sp/>uint32_t<sp/>binding,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>vk::DescriptorBufferInfo*<sp/>pBufferInfo<sp/>);</highlight></codeline>
+<codeline lineno="64" refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_bindings_1aa7d770601a7dc6456b8d1d58d1f8e7f4" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_bindings_1aa7d770601a7dc6456b8d1d58d1f8e7f4" kindref="member">writeArray</ref>(<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>std::vector&lt;vk::DescriptorSet&gt;&amp;<sp/>sets,<sp/>uint32_t<sp/>binding,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>vk::DescriptorBufferInfo*<sp/>pBufferInfo<sp/>);</highlight></codeline>
 <codeline lineno="65"><highlight class="normal"></highlight></codeline>
-<codeline lineno="70"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_bindings_1aa7d770601a7dc6456b8d1d58d1f8e7f4" kindref="member">writeArray</ref>(<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>std::vector&lt;vk::DescriptorSet&gt;&amp;<sp/>sets,<sp/>uint32_t<sp/>binding,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>vk::DescriptorImageInfo*<sp/>pImageInfo<sp/>);</highlight></codeline>
+<codeline lineno="70" refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_bindings_1adea0ef24844370ca397ec05f53682a08" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_bindings_1adea0ef24844370ca397ec05f53682a08" kindref="member">writeArray</ref>(<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>std::vector&lt;vk::DescriptorSet&gt;&amp;<sp/>sets,<sp/>uint32_t<sp/>binding,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>vk::DescriptorImageInfo*<sp/>pImageInfo<sp/>);</highlight></codeline>
 <codeline lineno="71"><highlight class="normal"></highlight></codeline>
-<codeline lineno="75"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_bindings_1adb3fefd44d2cff639f5ad5a386b40f8a" kindref="member">setPoolSizes</ref>(<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>std::vector&lt;vk::DescriptorPoolSize&gt;&amp;<sp/>poolSizes<sp/>);</highlight></codeline>
+<codeline lineno="75" refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_bindings_1adb3fefd44d2cff639f5ad5a386b40f8a" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_bindings_1adb3fefd44d2cff639f5ad5a386b40f8a" kindref="member">setPoolSizes</ref>(<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>std::vector&lt;vk::DescriptorPoolSize&gt;&amp;<sp/>poolSizes<sp/>);</highlight></codeline>
 <codeline lineno="76"><highlight class="normal"></highlight></codeline>
-<codeline lineno="78"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_bindings_1a6ce4c6073f217615f9212444578ca217" kindref="member">reset</ref>(<sp/>);</highlight></codeline>
+<codeline lineno="78" refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_bindings_1a6ce4c6073f217615f9212444578ca217" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_bindings_1a6ce4c6073f217615f9212444578ca217" kindref="member">reset</ref>(<sp/>);</highlight></codeline>
 <codeline lineno="79"><highlight class="normal"></highlight></codeline>
 <codeline lineno="80"><highlight class="normal"><sp/><sp/></highlight><highlight class="keyword">private</highlight><highlight class="normal">:</highlight></codeline>
-<codeline lineno="86"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/><ref refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_bindings_1a8ff18f3ca1c5644d8a6237eac7292928" kindref="member">write</ref>(<sp/>vk::DescriptorSet<sp/>set,<sp/></highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal"><sp/>writeIndex,<sp/>uint32_t<sp/>binding<sp/>)<sp/>-&gt;<sp/>size_t;</highlight></codeline>
+<codeline lineno="86"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/><ref refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_bindings_1aea6967de37d60d1399037e3a5a2494fa" kindref="member">write</ref>(<sp/>vk::DescriptorSet<sp/>set,<sp/></highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal"><sp/>writeIndex,<sp/>uint32_t<sp/>binding<sp/>)<sp/>-&gt;<sp/>size_t;</highlight></codeline>
 <codeline lineno="87"><highlight class="normal"></highlight></codeline>
 <codeline lineno="93"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/><ref refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_bindings_1aa7d770601a7dc6456b8d1d58d1f8e7f4" kindref="member">writeArray</ref>(<sp/>vk::DescriptorSet<sp/>set,<sp/></highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal"><sp/>writeIndex,<sp/>uint32_t<sp/>binding<sp/>)<sp/>-&gt;<sp/>size_t;</highlight></codeline>
 <codeline lineno="94"><highlight class="normal"></highlight></codeline>
@@ -345,6 +360,6 @@
 <codeline lineno="111"><highlight class="normal"></highlight></codeline>
 <codeline lineno="112"><highlight class="normal"></highlight><highlight class="preprocessor">#endif<sp/>//<sp/>BINDING_HPP</highlight></codeline>
     </programlisting>
-    <location file="/home/n30/Repos/rayex/include/api/Bindings.hpp"/>
+    <location file="C:/Repos/rayex/include/api/Bindings.hpp"/>
   </compounddef>
 </doxygen>

@@ -1,92 +1,129 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
-<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.17">
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.20" xml:lang="en-US">
   <compounddef id="_uniform_buffer_8hpp" kind="file" language="C++">
     <compoundname>UniformBuffer.hpp</compoundname>
     <includes refid="_buffer_8hpp" local="yes">api/buffers/Buffer.hpp</includes>
     <includes refid="_geometry_8hpp" local="yes">base/Geometry.hpp</includes>
-    <includedby refid="_api_8hpp" local="yes">/home/n30/Repos/rayex/include/api/Api.hpp</includedby>
+    <includedby refid="_api_8hpp" local="yes">C:/Repos/rayex/include/api/Api.hpp</includedby>
+    <includedby refid="_scene_8hpp" local="yes">C:/Repos/rayex/include/base/Scene.hpp</includedby>
     <incdepgraph>
-      <node id="34">
+      <node id="31">
         <label>list</label>
       </node>
-      <node id="32">
+      <node id="3">
+        <label>api/Components.hpp</label>
+        <link refid="_components_8hpp"/>
+        <childnode refid="4" relation="include">
+        </childnode>
+      </node>
+      <node id="29">
         <label>iomanip</label>
       </node>
-      <node id="21">
+      <node id="18">
         <label>external/glm/ext/matrix_transform.hpp</label>
       </node>
-      <node id="33">
+      <node id="30">
         <label>limits</label>
       </node>
-      <node id="28">
+      <node id="1">
+        <label>C:/Repos/rayex/include/api/buffers/UniformBuffer.hpp</label>
+        <link refid="_uniform_buffer_8hpp"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="43" relation="include">
+        </childnode>
+      </node>
+      <node id="25">
         <label>filesystem</label>
       </node>
       <node id="8">
         <label>external/tinyLogger/TinyLogger.hpp</label>
       </node>
-      <node id="27">
+      <node id="24">
         <label>charconv</label>
       </node>
-      <node id="7">
-        <label>Core.hpp</label>
-        <link refid="_core_8hpp"/>
-        <childnode refid="8" relation="include">
+      <node id="5">
+        <label>base/Camera.hpp</label>
+        <link refid="_camera_8hpp"/>
+        <childnode refid="6" relation="include">
         </childnode>
-        <childnode refid="9" relation="include">
+      </node>
+      <node id="4">
+        <label>base/Window.hpp</label>
+        <link refid="_window_8hpp"/>
+        <childnode refid="5" relation="include">
         </childnode>
-        <childnode refid="10" relation="include">
+        <childnode refid="13" relation="include">
         </childnode>
-        <childnode refid="11" relation="include">
+        <childnode refid="6" relation="include">
         </childnode>
-        <childnode refid="12" relation="include">
+      </node>
+      <node id="15">
+        <label>external/ImGui/imgui_impl_sdl.h</label>
+      </node>
+      <node id="17">
+        <label>external/glm/ext/matrix_clip_space.hpp</label>
+      </node>
+      <node id="32">
+        <label>map</label>
+      </node>
+      <node id="39">
+        <label>unordered_set</label>
+      </node>
+      <node id="28">
+        <label>gsl/gsl</label>
+      </node>
+      <node id="27">
+        <label>fstream</label>
+      </node>
+      <node id="14">
+        <label>external/ImGui/imgui.h</label>
+      </node>
+      <node id="22">
+        <label>any</label>
+      </node>
+      <node id="9">
+        <label>SDL2/SDL.h</label>
+      </node>
+      <node id="35">
+        <label>random</label>
+      </node>
+      <node id="19">
+        <label>external/glm/glm.hpp</label>
+      </node>
+      <node id="37">
+        <label>string_view</label>
+      </node>
+      <node id="42">
+        <label>api/image/Image.hpp</label>
+        <link refid="_image_8hpp"/>
+        <childnode refid="6" relation="include">
+        </childnode>
+      </node>
+      <node id="34">
+        <label>optional</label>
+      </node>
+      <node id="41">
+        <label>vector</label>
+      </node>
+      <node id="44">
+        <label>api/Vertex.hpp</label>
+        <link refid="_vertex_8hpp"/>
+        <childnode refid="6" relation="include">
+        </childnode>
+        <childnode refid="45" relation="include">
+        </childnode>
+      </node>
+      <node id="6">
+        <label>pch/stdafx.hpp</label>
+        <link refid="stdafx_8hpp"/>
+        <childnode refid="7" relation="include">
         </childnode>
         <childnode refid="13" relation="include">
         </childnode>
         <childnode refid="14" relation="include">
         </childnode>
         <childnode refid="15" relation="include">
-        </childnode>
-      </node>
-      <node id="18">
-        <label>external/ImGui/imgui_impl_sdl.h</label>
-      </node>
-      <node id="20">
-        <label>external/glm/ext/matrix_clip_space.hpp</label>
-      </node>
-      <node id="35">
-        <label>map</label>
-      </node>
-      <node id="44">
-        <label>api/image/Image.hpp</label>
-        <link refid="_image_8hpp"/>
-        <childnode refid="6" relation="include">
-        </childnode>
-      </node>
-      <node id="41">
-        <label>unordered_set</label>
-      </node>
-      <node id="31">
-        <label>gsl/gsl</label>
-      </node>
-      <node id="45">
-        <label>base/Geometry.hpp</label>
-        <link refid="_geometry_8hpp"/>
-        <childnode refid="46" relation="include">
-        </childnode>
-      </node>
-      <node id="30">
-        <label>fstream</label>
-      </node>
-      <node id="17">
-        <label>external/ImGui/imgui.h</label>
-      </node>
-      <node id="25">
-        <label>any</label>
-      </node>
-      <node id="6">
-        <label>pch/stdafx.hpp</label>
-        <link refid="stdafx_8hpp"/>
-        <childnode refid="7" relation="include">
         </childnode>
         <childnode refid="16" relation="include">
         </childnode>
@@ -136,148 +173,108 @@
         </childnode>
         <childnode refid="39" relation="include">
         </childnode>
-        <childnode refid="12" relation="include">
-        </childnode>
         <childnode refid="40" relation="include">
         </childnode>
         <childnode refid="41" relation="include">
         </childnode>
-        <childnode refid="42" relation="include">
-        </childnode>
-        <childnode refid="43" relation="include">
-        </childnode>
       </node>
-      <node id="13">
-        <label>SDL2/SDL.h</label>
+      <node id="40">
+        <label>utility</label>
       </node>
-      <node id="38">
-        <label>random</label>
+      <node id="23">
+        <label>array</label>
       </node>
-      <node id="22">
-        <label>external/glm/glm.hpp</label>
-      </node>
-      <node id="12">
-        <label>string_view</label>
-      </node>
-      <node id="1">
-        <label>/home/n30/Repos/rayex/include/api/buffers/UniformBuffer.hpp</label>
-        <link refid="_uniform_buffer_8hpp"/>
-        <childnode refid="2" relation="include">
-        </childnode>
-        <childnode refid="45" relation="include">
-        </childnode>
-      </node>
-      <node id="37">
-        <label>optional</label>
+      <node id="20">
+        <label>external/glm/gtx/string_cast.hpp</label>
       </node>
       <node id="43">
-        <label>vector</label>
+        <label>base/Geometry.hpp</label>
+        <link refid="_geometry_8hpp"/>
+        <childnode refid="44" relation="include">
+        </childnode>
+      </node>
+      <node id="16">
+        <label>external/ImGui/imgui_impl_vulkan.h</label>
+      </node>
+      <node id="11">
+        <label>iostream</label>
+      </node>
+      <node id="38">
+        <label>unordered_map</label>
       </node>
       <node id="2">
         <label>api/buffers/Buffer.hpp</label>
         <link refid="_buffer_8hpp"/>
         <childnode refid="3" relation="include">
         </childnode>
-        <childnode refid="44" relation="include">
+        <childnode refid="42" relation="include">
         </childnode>
       </node>
-      <node id="4">
-        <label>base/Window.hpp</label>
-        <link refid="_window_8hpp"/>
-        <childnode refid="5" relation="include">
-        </childnode>
-        <childnode refid="16" relation="include">
-        </childnode>
-        <childnode refid="6" relation="include">
-        </childnode>
-      </node>
-      <node id="42">
-        <label>utility</label>
-      </node>
-      <node id="26">
-        <label>array</label>
-      </node>
-      <node id="23">
-        <label>external/glm/gtx/string_cast.hpp</label>
-      </node>
-      <node id="11">
-        <label>sstream</label>
-      </node>
-      <node id="5">
-        <label>base/Camera.hpp</label>
-        <link refid="_camera_8hpp"/>
-        <childnode refid="6" relation="include">
-        </childnode>
-      </node>
-      <node id="46">
-        <label>api/Vertex.hpp</label>
-        <link refid="_vertex_8hpp"/>
-        <childnode refid="6" relation="include">
-        </childnode>
-        <childnode refid="47" relation="include">
-        </childnode>
-      </node>
-      <node id="19">
-        <label>external/ImGui/imgui_impl_vulkan.h</label>
-      </node>
-      <node id="10">
-        <label>iostream</label>
-      </node>
-      <node id="40">
-        <label>unordered_map</label>
-      </node>
-      <node id="9">
-        <label>chrono</label>
-      </node>
-      <node id="39">
+      <node id="36">
         <label>set</label>
       </node>
-      <node id="16">
+      <node id="26">
+        <label>forward_list</label>
+      </node>
+      <node id="21">
+        <label>algorithm</label>
+      </node>
+      <node id="45">
+        <label>external/glm/gtx/hash.hpp</label>
+      </node>
+      <node id="13">
         <label>base/Time.hpp</label>
         <link refid="_time_8hpp"/>
         <childnode refid="7" relation="include">
         </childnode>
       </node>
-      <node id="29">
-        <label>forward_list</label>
-      </node>
-      <node id="24">
-        <label>algorithm</label>
-      </node>
-      <node id="47">
-        <label>external/glm/gtx/hash.hpp</label>
-      </node>
-      <node id="15">
+      <node id="12">
         <label>vulkan/vulkan.hpp</label>
       </node>
-      <node id="36">
+      <node id="33">
         <label>memory</label>
       </node>
-      <node id="14">
+      <node id="10">
         <label>SDL2/SDL_vulkan.h</label>
       </node>
-      <node id="3">
-        <label>api/Components.hpp</label>
-        <link refid="_components_8hpp"/>
-        <childnode refid="4" relation="include">
+      <node id="7">
+        <label>Core.hpp</label>
+        <link refid="_core_8hpp"/>
+        <childnode refid="8" relation="include">
+        </childnode>
+        <childnode refid="9" relation="include">
+        </childnode>
+        <childnode refid="10" relation="include">
+        </childnode>
+        <childnode refid="11" relation="include">
+        </childnode>
+        <childnode refid="12" relation="include">
         </childnode>
       </node>
     </incdepgraph>
     <invincdepgraph>
       <node id="1">
-        <label>/home/n30/Repos/rayex/include/api/buffers/UniformBuffer.hpp</label>
+        <label>C:/Repos/rayex/include/api/buffers/UniformBuffer.hpp</label>
         <link refid="_uniform_buffer_8hpp"/>
         <childnode refid="2" relation="include">
         </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
       </node>
       <node id="3">
-        <label>/home/n30/Repos/rayex/include/Rayex.hpp</label>
+        <label>C:/Repos/rayex/include/Rayex.hpp</label>
         <link refid="_rayex_8hpp"/>
       </node>
       <node id="2">
-        <label>/home/n30/Repos/rayex/include/api/Api.hpp</label>
+        <label>C:/Repos/rayex/include/api/Api.hpp</label>
         <link refid="_api_8hpp"/>
         <childnode refid="3" relation="include">
+        </childnode>
+      </node>
+      <node id="4">
+        <label>C:/Repos/rayex/include/base/Scene.hpp</label>
+        <link refid="_scene_8hpp"/>
+        <childnode refid="2" relation="include">
         </childnode>
       </node>
     </invincdepgraph>
@@ -296,67 +293,60 @@
 <codeline lineno="5"><highlight class="normal"></highlight></codeline>
 <codeline lineno="6"><highlight class="normal"></highlight><highlight class="keyword">namespace<sp/></highlight><highlight class="normal"><ref refid="namespace_r_a_y_e_x___n_a_m_e_s_p_a_c_e" kindref="compound">RAYEX_NAMESPACE</ref></highlight></codeline>
 <codeline lineno="7"><highlight class="normal">{</highlight></codeline>
-<codeline lineno="11" refid="struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_camera_ubo" refkind="compound"><highlight class="normal"><sp/><sp/></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal"><ref refid="struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_camera_ubo" kindref="compound">CameraUbo</ref></highlight></codeline>
-<codeline lineno="12"><highlight class="normal"><sp/><sp/>{</highlight></codeline>
-<codeline lineno="13" refid="struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_camera_ubo_1aca2343d9611de4d2cbaaafd25c9a0d4c" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>glm::mat4<sp/><ref refid="struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_camera_ubo_1aca2343d9611de4d2cbaaafd25c9a0d4c" kindref="member">view</ref><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>=<sp/>glm::mat4(<sp/>1.0F<sp/>);</highlight></codeline>
-<codeline lineno="14" refid="struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_camera_ubo_1a7903a2467fb163ff5716bf08e2621ad5" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>glm::mat4<sp/><ref refid="struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_camera_ubo_1a7903a2467fb163ff5716bf08e2621ad5" kindref="member">projection</ref><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>=<sp/>glm::mat4(<sp/>1.0F<sp/>);</highlight></codeline>
-<codeline lineno="15" refid="struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_camera_ubo_1a000d7a431db8bf2cbfe5b5d8999550d3" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>glm::mat4<sp/><ref refid="struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_camera_ubo_1a000d7a431db8bf2cbfe5b5d8999550d3" kindref="member">viewInverse</ref><sp/><sp/><sp/><sp/><sp/><sp/><sp/>=<sp/>glm::mat4(<sp/>1.0F<sp/>);</highlight></codeline>
-<codeline lineno="16" refid="struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_camera_ubo_1a84ded90503475453e221c733388e2fdf" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>glm::mat4<sp/><ref refid="struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_camera_ubo_1a84ded90503475453e221c733388e2fdf" kindref="member">projectionInverse</ref><sp/>=<sp/>glm::mat4(<sp/>1.0F<sp/>);</highlight></codeline>
-<codeline lineno="17" refid="struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_camera_ubo_1a5145cf4a6253d5788426724810bca2ae" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>glm::vec4<sp/><ref refid="struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_camera_ubo_1a5145cf4a6253d5788426724810bca2ae" kindref="member">position</ref><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>=<sp/>glm::vec4(<sp/>1.0F<sp/>);</highlight></codeline>
-<codeline lineno="18"><highlight class="normal"></highlight></codeline>
-<codeline lineno="19"><highlight class="normal"><sp/><sp/></highlight><highlight class="keyword">private</highlight><highlight class="normal">:</highlight></codeline>
-<codeline lineno="20"><highlight class="normal"><sp/><sp/><sp/><sp/>glm::vec4<sp/>padding0<sp/>=<sp/>glm::vec4(<sp/>1.0F<sp/>);</highlight></codeline>
-<codeline lineno="21"><highlight class="normal"><sp/><sp/><sp/><sp/>glm::vec4<sp/>padding1<sp/>=<sp/>glm::vec4(<sp/>1.0F<sp/>);</highlight></codeline>
-<codeline lineno="22"><highlight class="normal"><sp/><sp/><sp/><sp/>glm::vec4<sp/>padding2<sp/>=<sp/>glm::vec4(<sp/>1.0F<sp/>);</highlight></codeline>
-<codeline lineno="23"><highlight class="normal"><sp/><sp/>};</highlight></codeline>
-<codeline lineno="24"><highlight class="normal"></highlight></codeline>
+<codeline lineno="10" refid="struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_camera_ubo" refkind="compound"><highlight class="normal"><sp/><sp/></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal"><ref refid="struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_camera_ubo" kindref="compound">CameraUbo</ref></highlight></codeline>
+<codeline lineno="11"><highlight class="normal"><sp/><sp/>{</highlight></codeline>
+<codeline lineno="12" refid="struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_camera_ubo_1aca2343d9611de4d2cbaaafd25c9a0d4c" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>glm::mat4<sp/><ref refid="struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_camera_ubo_1aca2343d9611de4d2cbaaafd25c9a0d4c" kindref="member">view</ref><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>=<sp/>glm::mat4(<sp/>1.0F<sp/>);</highlight></codeline>
+<codeline lineno="13" refid="struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_camera_ubo_1a7903a2467fb163ff5716bf08e2621ad5" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>glm::mat4<sp/><ref refid="struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_camera_ubo_1a7903a2467fb163ff5716bf08e2621ad5" kindref="member">projection</ref><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>=<sp/>glm::mat4(<sp/>1.0F<sp/>);</highlight></codeline>
+<codeline lineno="14" refid="struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_camera_ubo_1a000d7a431db8bf2cbfe5b5d8999550d3" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>glm::mat4<sp/><ref refid="struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_camera_ubo_1a000d7a431db8bf2cbfe5b5d8999550d3" kindref="member">viewInverse</ref><sp/><sp/><sp/><sp/><sp/><sp/><sp/>=<sp/>glm::mat4(<sp/>1.0F<sp/>);</highlight></codeline>
+<codeline lineno="15" refid="struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_camera_ubo_1a84ded90503475453e221c733388e2fdf" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>glm::mat4<sp/><ref refid="struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_camera_ubo_1a84ded90503475453e221c733388e2fdf" kindref="member">projectionInverse</ref><sp/>=<sp/>glm::mat4(<sp/>1.0F<sp/>);</highlight></codeline>
+<codeline lineno="16" refid="struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_camera_ubo_1a5145cf4a6253d5788426724810bca2ae" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>glm::vec4<sp/><ref refid="struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_camera_ubo_1a5145cf4a6253d5788426724810bca2ae" kindref="member">position</ref><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>=<sp/>glm::vec4(<sp/>1.0F<sp/>);</highlight></codeline>
+<codeline lineno="17"><highlight class="normal"></highlight></codeline>
+<codeline lineno="18"><highlight class="normal"><sp/><sp/></highlight><highlight class="keyword">private</highlight><highlight class="normal">:</highlight></codeline>
+<codeline lineno="19"><highlight class="normal"><sp/><sp/><sp/><sp/>glm::vec4<sp/>padding0<sp/>=<sp/>glm::vec4(<sp/>1.0F<sp/>);<sp/></highlight></codeline>
+<codeline lineno="20"><highlight class="normal"><sp/><sp/><sp/><sp/>glm::vec4<sp/>padding1<sp/>=<sp/>glm::vec4(<sp/>1.0F<sp/>);<sp/></highlight></codeline>
+<codeline lineno="21"><highlight class="normal"><sp/><sp/><sp/><sp/>glm::vec4<sp/>padding2<sp/>=<sp/>glm::vec4(<sp/>1.0F<sp/>);<sp/></highlight></codeline>
+<codeline lineno="22"><highlight class="normal"><sp/><sp/>};</highlight></codeline>
+<codeline lineno="23"><highlight class="normal"></highlight></codeline>
+<codeline lineno="26"><highlight class="normal"><sp/><sp/></highlight><highlight class="keyword">template</highlight><highlight class="normal"><sp/>&lt;</highlight><highlight class="keyword">class</highlight><highlight class="normal"><sp/>T&gt;</highlight></codeline>
 <codeline lineno="27" refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_uniform_buffer" refkind="compound"><highlight class="normal"><sp/><sp/></highlight><highlight class="keyword">class<sp/></highlight><highlight class="normal"><ref refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_uniform_buffer" kindref="compound">UniformBuffer</ref></highlight></codeline>
 <codeline lineno="28"><highlight class="normal"><sp/><sp/>{</highlight></codeline>
 <codeline lineno="29"><highlight class="normal"><sp/><sp/></highlight><highlight class="keyword">public</highlight><highlight class="normal">:</highlight></codeline>
-<codeline lineno="30"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_uniform_buffer_1ae5ddd2f51f1cc616396347bda9092c47" kindref="member">UniformBuffer</ref>(<sp/>)<sp/>=<sp/></highlight><highlight class="keywordflow">default</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="30" refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_uniform_buffer_1affbaace86b871f6780ad26d8c14532c5" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_uniform_buffer_1affbaace86b871f6780ad26d8c14532c5" kindref="member">UniformBuffer</ref>(<sp/>)<sp/>=<sp/></highlight><highlight class="keywordflow">default</highlight><highlight class="normal">;</highlight></codeline>
 <codeline lineno="31"><highlight class="normal"></highlight></codeline>
-<codeline lineno="34"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">template</highlight><highlight class="normal"><sp/>&lt;</highlight><highlight class="keyword">typename</highlight><highlight class="normal"><sp/>T&gt;</highlight></codeline>
-<codeline lineno="35" refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_uniform_buffer_1a7487ed42dd2de922006db5462e05b1f1" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_uniform_buffer_1a7487ed42dd2de922006db5462e05b1f1" kindref="member">UniformBuffer</ref>(<sp/></highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal"><sp/>swapchainImagesCount,<sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/>initialize<sp/>=<sp/></highlight><highlight class="keyword">true</highlight><highlight class="normal"><sp/>)</highlight></codeline>
-<codeline lineno="36"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
-<codeline lineno="37"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(<sp/>initialize<sp/>)</highlight></codeline>
-<codeline lineno="38"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>init&lt;T&gt;(<sp/>swapchainImagesCount<sp/>);</highlight></codeline>
-<codeline lineno="39"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
-<codeline lineno="40"><highlight class="normal"></highlight></codeline>
-<codeline lineno="42" refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_uniform_buffer_1a922bda1b964d1ce9ce903107e358dcf5" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/><ref refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_uniform_buffer_1a922bda1b964d1ce9ce903107e358dcf5" kindref="member">get</ref>(<sp/>)<sp/>const<sp/>-&gt;<sp/>const<sp/><ref refid="namespacestd" kindref="compound">std</ref>::vector&lt;<ref refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_buffer" kindref="compound">Buffer</ref>&gt;&amp;<sp/>{<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>_buffers;<sp/>}</highlight></codeline>
-<codeline lineno="43"><highlight class="normal"></highlight></codeline>
-<codeline lineno="45"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/><ref refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_uniform_buffer_1a616fbeb0ebf017794e591ca8e37d4b6e" kindref="member">getRaw</ref>(<sp/>)<sp/>const<sp/>-&gt;<sp/>const<sp/><ref refid="namespacestd" kindref="compound">std</ref>::vector&lt;<ref refid="namespacevk" kindref="compound">vk</ref>::<ref refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_buffer" kindref="compound">Buffer</ref>&gt;;</highlight></codeline>
-<codeline lineno="46"><highlight class="normal"></highlight></codeline>
-<codeline lineno="52"><highlight class="normal"><sp/><sp/><sp/><sp/>template<sp/>&lt;typename<sp/>T&gt;</highlight></codeline>
-<codeline lineno="53" refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_uniform_buffer_1a98859467eee532952510437766b3da4f" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_uniform_buffer_1a98859467eee532952510437766b3da4f" kindref="member">init</ref>(<sp/>)</highlight></codeline>
-<codeline lineno="54"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
-<codeline lineno="55"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>_buffers.resize(<sp/><ref refid="namespace_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1components_1a339363085d98dd34e0fc07104fc86a6c" kindref="member">components::maxResources</ref><sp/>);</highlight></codeline>
-<codeline lineno="56"><highlight class="normal"></highlight></codeline>
-<codeline lineno="57"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>(<sp/><ref refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_buffer" kindref="compound">Buffer</ref>&amp;<sp/>buffer<sp/>:<sp/>_buffers<sp/>)</highlight></codeline>
-<codeline lineno="58"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
-<codeline lineno="59"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>buffer.init(<sp/></highlight><highlight class="keyword">sizeof</highlight><highlight class="normal">(<sp/>T<sp/>),</highlight></codeline>
-<codeline lineno="60"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>vk::BufferUsageFlagBits::eUniformBuffer,</highlight></codeline>
-<codeline lineno="61"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{<sp/>},</highlight></codeline>
-<codeline lineno="62"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>vk::MemoryPropertyFlagBits::eHostVisible<sp/>|<sp/>vk::MemoryPropertyFlagBits::eHostCoherent<sp/>);</highlight></codeline>
-<codeline lineno="63"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
-<codeline lineno="64"><highlight class="normal"></highlight></codeline>
-<codeline lineno="65"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_uniform_buffer_1a5cdc856aebafa1b2d878b27d91f59ca5" kindref="member">_bufferInfos</ref>.resize(<sp/><ref refid="namespace_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1components_1a339363085d98dd34e0fc07104fc86a6c" kindref="member">components::maxResources</ref><sp/>);</highlight></codeline>
-<codeline lineno="66"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>(<sp/></highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal"><sp/>i<sp/>=<sp/>0;<sp/>i<sp/>&lt;<sp/>_buffers.size(<sp/>);<sp/>++i<sp/>)</highlight></codeline>
-<codeline lineno="67"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_uniform_buffer_1a5cdc856aebafa1b2d878b27d91f59ca5" kindref="member">_bufferInfos</ref>[i]<sp/>=<sp/>vk::DescriptorBufferInfo(<sp/>_buffers[i].<ref refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_uniform_buffer_1a922bda1b964d1ce9ce903107e358dcf5" kindref="member">get</ref>(<sp/>),<sp/>0,<sp/></highlight><highlight class="keyword">sizeof</highlight><highlight class="normal">(<sp/>T<sp/>)<sp/>);</highlight></codeline>
-<codeline lineno="68"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
-<codeline lineno="69"><highlight class="normal"></highlight></codeline>
-<codeline lineno="73"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">template</highlight><highlight class="normal"><sp/>&lt;</highlight><highlight class="keyword">typename</highlight><highlight class="normal"><sp/>T&gt;</highlight></codeline>
-<codeline lineno="74" refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_uniform_buffer_1ad511f2a02b2a4e341b5e0d9caa3f9338" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_uniform_buffer_1ad511f2a02b2a4e341b5e0d9caa3f9338" kindref="member">upload</ref>(<sp/>uint32_t<sp/>imageIndex,<sp/>T&amp;<sp/>ubo<sp/>)</highlight></codeline>
-<codeline lineno="75"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
-<codeline lineno="76"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>_buffers[imageIndex].fill&lt;T&gt;(<sp/>&amp;ubo<sp/>);</highlight></codeline>
-<codeline lineno="77"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
-<codeline lineno="78"><highlight class="normal"></highlight></codeline>
-<codeline lineno="79" refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_uniform_buffer_1a5cdc856aebafa1b2d878b27d91f59ca5" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>std::vector&lt;vk::DescriptorBufferInfo&gt;<sp/><ref refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_uniform_buffer_1a5cdc856aebafa1b2d878b27d91f59ca5" kindref="member">_bufferInfos</ref>;</highlight></codeline>
-<codeline lineno="80"><highlight class="normal"></highlight></codeline>
-<codeline lineno="81"><highlight class="normal"><sp/><sp/></highlight><highlight class="keyword">private</highlight><highlight class="normal">:</highlight></codeline>
-<codeline lineno="82"><highlight class="normal"><sp/><sp/><sp/><sp/>std::vector&lt;Buffer&gt;<sp/>_buffers;<sp/></highlight></codeline>
-<codeline lineno="83"><highlight class="normal"><sp/><sp/>};</highlight></codeline>
-<codeline lineno="84"><highlight class="normal">}<sp/></highlight><highlight class="comment">//<sp/>namespace<sp/>RAYEX_NAMESPACE</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="32" refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_uniform_buffer_1a078e32def6522eef0fa09c6c721f7900" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/><ref refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_uniform_buffer_1a078e32def6522eef0fa09c6c721f7900" kindref="member">get</ref>(<sp/>)<sp/>const<sp/>-&gt;<sp/>const<sp/><ref refid="namespacestd" kindref="compound">std</ref>::vector&lt;<ref refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_buffer" kindref="compound">Buffer</ref>&gt;&amp;<sp/>{<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>_buffers;<sp/>}</highlight></codeline>
+<codeline lineno="33"><highlight class="normal"></highlight></codeline>
+<codeline lineno="38" refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_uniform_buffer_1ac29800940f2c5c6af6afc6ef21a6526c" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_uniform_buffer_1ac29800940f2c5c6af6afc6ef21a6526c" kindref="member">init</ref>(<sp/>)</highlight></codeline>
+<codeline lineno="39"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="40"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>_buffers.resize(<sp/><ref refid="namespace_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1components_1a339363085d98dd34e0fc07104fc86a6c" kindref="member">components::maxResources</ref><sp/>);</highlight></codeline>
+<codeline lineno="41"><highlight class="normal"></highlight></codeline>
+<codeline lineno="42"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>(<sp/><ref refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_buffer" kindref="compound">Buffer</ref>&amp;<sp/>buffer<sp/>:<sp/>_buffers<sp/>)</highlight></codeline>
+<codeline lineno="43"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="44"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>buffer.init(<sp/></highlight><highlight class="keyword">sizeof</highlight><highlight class="normal">(<sp/>T<sp/>),</highlight></codeline>
+<codeline lineno="45"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>vk::BufferUsageFlagBits::eUniformBuffer,</highlight></codeline>
+<codeline lineno="46"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{<sp/>},</highlight></codeline>
+<codeline lineno="47"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>vk::MemoryPropertyFlagBits::eHostVisible<sp/>|<sp/>vk::MemoryPropertyFlagBits::eHostCoherent<sp/>);</highlight></codeline>
+<codeline lineno="48"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="49"><highlight class="normal"></highlight></codeline>
+<codeline lineno="50"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_uniform_buffer_1adf8b54f055aaa830221088940fc7aa08" kindref="member">_bufferInfos</ref>.resize(<sp/><ref refid="namespace_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1components_1a339363085d98dd34e0fc07104fc86a6c" kindref="member">components::maxResources</ref><sp/>);</highlight></codeline>
+<codeline lineno="51"><highlight class="normal"></highlight></codeline>
+<codeline lineno="52"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>(<sp/></highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal"><sp/>i<sp/>=<sp/>0;<sp/>i<sp/>&lt;<sp/>_buffers.size(<sp/>);<sp/>++i<sp/>)</highlight></codeline>
+<codeline lineno="53"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="54"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_uniform_buffer_1adf8b54f055aaa830221088940fc7aa08" kindref="member">_bufferInfos</ref>[i]<sp/>=<sp/>vk::DescriptorBufferInfo(<sp/>_buffers[i].<ref refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_uniform_buffer_1a078e32def6522eef0fa09c6c721f7900" kindref="member">get</ref>(<sp/>),<sp/>0,<sp/></highlight><highlight class="keyword">sizeof</highlight><highlight class="normal">(<sp/>T<sp/>)<sp/>);</highlight></codeline>
+<codeline lineno="55"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="56"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="57"><highlight class="normal"></highlight></codeline>
+<codeline lineno="61" refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_uniform_buffer_1a1b6844e890ba9e11740728fac32bfb04" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_uniform_buffer_1a1b6844e890ba9e11740728fac32bfb04" kindref="member">upload</ref>(<sp/>uint32_t<sp/>imageIndex,<sp/>T&amp;<sp/>ubo<sp/>)</highlight></codeline>
+<codeline lineno="62"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="63"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>_buffers[imageIndex].fill&lt;T&gt;(<sp/>&amp;ubo<sp/>);</highlight></codeline>
+<codeline lineno="64"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="65"><highlight class="normal"></highlight></codeline>
+<codeline lineno="66" refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_uniform_buffer_1adf8b54f055aaa830221088940fc7aa08" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>std::vector&lt;vk::DescriptorBufferInfo&gt;<sp/><ref refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_uniform_buffer_1adf8b54f055aaa830221088940fc7aa08" kindref="member">_bufferInfos</ref>;</highlight></codeline>
+<codeline lineno="67"><highlight class="normal"></highlight></codeline>
+<codeline lineno="68"><highlight class="normal"><sp/><sp/></highlight><highlight class="keyword">private</highlight><highlight class="normal">:</highlight></codeline>
+<codeline lineno="69"><highlight class="normal"><sp/><sp/><sp/><sp/>std::vector&lt;Buffer&gt;<sp/>_buffers;<sp/></highlight></codeline>
+<codeline lineno="70"><highlight class="normal"><sp/><sp/>};</highlight></codeline>
+<codeline lineno="71"><highlight class="normal">}<sp/></highlight><highlight class="comment">//<sp/>namespace<sp/>RAYEX_NAMESPACE</highlight><highlight class="normal"></highlight></codeline>
     </programlisting>
-    <location file="/home/n30/Repos/rayex/include/api/buffers/UniformBuffer.hpp"/>
+    <location file="C:/Repos/rayex/include/api/buffers/UniformBuffer.hpp"/>
   </compounddef>
 </doxygen>

@@ -1,5 +1,5 @@
 var searchData=
 [
-  ['clearcolor_755',['clearColor',['../struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_ray_trace_push_constants.html#af365c7f54b574d8cf21a4e17563b0ed2',1,'RAYEX_NAMESPACE::RayTracePushConstants']]],
-  ['color_756',['color',['../struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_vertex.html#a8fff4b1de2eb2f1029b85181edea46a1',1,'RAYEX_NAMESPACE::Vertex']]]
+  ['clearcolor_742',['clearColor',['../struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_pt_push_constants.html#a3ba8a6a04c23dbe4615a07b62d0bd16d',1,'RAYEX_NAMESPACE::PtPushConstants']]],
+  ['color_743',['color',['../struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_vertex.html#a8fff4b1de2eb2f1029b85181edea46a1',1,'RAYEX_NAMESPACE::Vertex']]]
 ];

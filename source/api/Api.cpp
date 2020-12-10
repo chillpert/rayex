@@ -292,7 +292,6 @@ namespace RAYEX_NAMESPACE
   {
     if ( _settings._maxGeometryChanged || _settings._maxMeshesChanged || _settings._maxTexturesChanged )
     {
-      //components::device.waitIdle( );
       _sync.waitForFrame( prevFrame );
 
       _settings._maxGeometryChanged = false;
@@ -308,9 +307,7 @@ namespace RAYEX_NAMESPACE
       _scene.initGeoemtryDescriptorSets( );
       _scene.updateGeoemtryDescriptors( );
 
-      // Temporary fix:
-      static bool firstRun = true;
-      firstRun ? firstRun = false : _settings._refreshPipeline = true;
+      _settings._refreshPipeline = true;
     }
 
     // Handle pipeline refresh
@@ -321,18 +318,15 @@ namespace RAYEX_NAMESPACE
       // Calling wait idle, because pipeline recreation is assumed to be a very rare event to happen.
       components::device.waitIdle( );
 
-      /*
 #ifdef RX_COPY_ASSETS
       // Copies shader resources to binary output directory. This way a shader can be changed during runtime.
       // Make sure only to edit the ones in /assets/shaders and not in /build/bin/debug/assets/shaders as the latter gets overridden.
       RX_INFO( "Copying shader resources to binary output directory. " );
       std::filesystem::copy( RX_ASSETS_PATH "shaders", RX_PATH_TO_LIBRARY "shaders", std::filesystem::copy_options::overwrite_existing | std::filesystem::copy_options::recursive );
 #endif
-      */
 
       initPipelines( );
       _pathTracer.createShaderBindingTable( );
-      _pathTracer.updateDescriptors( );
     }
 
     // Handle swapchain refresh
@@ -347,6 +341,7 @@ namespace RAYEX_NAMESPACE
   void Api::render( )
   {
     updateSettings( );
+
     update( );
 
     // If the window is minimized then simply do not render anything anymore.

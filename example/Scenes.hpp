@@ -117,7 +117,7 @@ inline void loadScene( rx::Rayex* renderer, Scene scene )
   {
     renderer->settings( ).setMaxGeoemtry( 1 ); // Will give a warning.
     renderer->settings( ).setMaxGeometryInstances( 1 );
-    renderer->settings( ).setMaxTextures( 3 ); // Will give a warning.
+    renderer->settings( ).setMaxTextures( 0 ); // Will give a warning.
 
     // Enable frame accumulation because scene is static.
     renderer->settings( ).setAccumulatingFrames( true );
@@ -137,8 +137,8 @@ inline void loadScene( rx::Rayex* renderer, Scene scene )
   }
   else
   {
-    renderer->settings( ).setMaxGeoemtry( 15 ); // Will give a warning.
-    renderer->settings( ).setMaxGeometryInstances( 5 );
+    renderer->settings( ).setMaxGeoemtry( 5 ); // Will give a warning.
+    renderer->settings( ).setMaxGeometryInstances( 2000 );
     renderer->settings( ).setMaxTextures( 4 ); // Will give a warning.
 
     // Disable frame accumulation because scene contains moving elements.

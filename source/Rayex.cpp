@@ -109,7 +109,7 @@ namespace RAYEX_NAMESPACE
     rx::components::textureIndex  = 0;
     rx::components::frameCount    = -1;
 
-    _api._scene._deleteTextures = true;
+    //_api._scene._deleteTextures = true;
 
     //components::device.waitIdle( );
     //_api._scene.prepareBuffers( );

@@ -112,8 +112,6 @@ namespace RAYEX_NAMESPACE
 
     void uploadGeometryInstances( uint32_t imageIndex );
 
-    void clearTextures( );
-
     void addDummy( );
 
     void removeDummy( );
@@ -153,7 +151,6 @@ namespace RAYEX_NAMESPACE
     bool _uploadGeometryInstancesToBuffer = false;
     bool _uploadEnvironmentMap            = false;
     bool _uploadGeometries                = false;
-    bool _deleteTextures                  = false;
     bool _dummy                           = false;
 
     std::unordered_set<std::shared_ptr<Camera>> _cameras; ///< The cameras that can be used for rendering.

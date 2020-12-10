@@ -209,7 +209,6 @@ namespace RAYEX_NAMESPACE
     // Reset texture counter.
     components::textureIndex = 0;
 
-    _deleteTextures                  = true;
     _uploadGeometries                = true;
     _uploadGeometryInstancesToBuffer = true;
   }
@@ -437,14 +436,6 @@ namespace RAYEX_NAMESPACE
 
       RX_SUCCESS( "Uploaded geometry instances." );
     }
-  }
-
-  void Scene::clearTextures( )
-  {
-    _deleteTextures = false;
-
-    _textures.clear( );
-    _textures.resize( _settings->_maxTextures );
   }
 
   void Scene::addDummy( )

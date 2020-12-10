@@ -187,6 +187,11 @@ private:
         ImGui::Checkbox( "Accumulate frames", &accumulateFrames );
         _renderer->settings( ).setAccumulatingFrames( accumulateFrames );
 
+        if ( ImGui::Button( "Recompile shaders" ) )
+        {
+          _renderer->settings( ).triggerPipelineRefresh( );
+        }
+
         auto clearColor = _renderer->settings( ).getClearColor( );
         if ( ImGui::ColorEdit4( "##AmbientColor", &clearColor[0] ) )
         {

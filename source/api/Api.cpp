@@ -162,11 +162,6 @@ namespace RAYEX_NAMESPACE
       _scene.removeDummy( );
     }
 
-    if ( _scene._deleteTextures )
-    {
-      _scene.clearTextures( );
-    }
-
     if ( _scene._uploadEnvironmentMap )
     {
       _sync.waitForFrame( prevFrame );
@@ -204,7 +199,6 @@ namespace RAYEX_NAMESPACE
     {
       components::frameCount = -1;
     }
-
   } // namespace RAYEX_NAMESPACE
 
   void Api::prepareFrame( )
@@ -290,12 +284,9 @@ namespace RAYEX_NAMESPACE
       _scene._meshBuffers.resize( _settings._maxMeshes );
       _scene._textures.resize( _settings._maxTextures );
 
-      // @todo check if this cant be just waiting for frame instead
       _scene.initGeoemtryDescriptorSets( );
-      _scene.updateGeoemtryDescriptors( );
 
       _settings._refreshPipeline = true;
-      //_settings._refreshSwapchain = true;
     }
 
     // Handle pipeline refresh

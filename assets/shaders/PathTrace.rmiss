@@ -23,11 +23,6 @@ layout( binding = 2, set = 1 ) uniform samplerCube environmentMap;
 
 void main( )
 {
-  //ray.hitValue = clearColor.xyz * 0.8; // * clearColor.w;
-  //return;
-
-  //ray.hitValue = texture( skybox, ray.rayDirection ).xyz
-
   // If the ray hits nothing right away
   if ( ray.depth == 0 )
   {
@@ -42,8 +37,10 @@ void main( )
   }
   else
   {
-    ray.hitValue = vec3( 0.01 ); // Tiny contribution from environment
+    // Tiny contribution from environment
+    ray.hitValue = vec3( 0.01 );
   }
 
-  ray.depth = maxRecursionDepth + 1; // Ending trace
+  // End the path
+  ray.depth = maxRecursionDepth + 1;
 }

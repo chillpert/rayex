@@ -72,7 +72,6 @@ namespace RAYEX_NAMESPACE
     /// Creates the ImGui font textures.
     void initFonts( );
 
-  private:
     vk::UniqueDescriptorPool _descriptorPool; ///< A Vulkan descriptor pool with a unique handle.
     vk::UniqueCommandPool _commandPool;       ///< A Vulkan command pool with a unique handle.
     vk::Extent2D _swapchainImageExtent;       ///< The swapchain images' image extent.

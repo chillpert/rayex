@@ -11,9 +11,15 @@ public:
     _renderer( renderer ) {}
 
 private:
+  ImFont* _font = nullptr;
+
   void configure( ) override
   {
     rx::Gui::configure( );
+
+    ImGuiIO& io      = ImGui::GetIO( );
+    std::string path = std::string( _renderer->settings( ).getAssetsPath( ) ) + "DroidSans.ttf";
+    _font            = io.Fonts->AddFontFromFileTTF( path.c_str( ), 15.0f );
 
     ImGui::StyleColorsDark( );
     ImGuiStyle& style = ImGui::GetStyle( );
@@ -81,6 +87,12 @@ private:
 
   void render( ) override
   {
+    if ( _font != nullptr )
+    {
+      ImGui::PushFont( _font );
+      ImGui::PopFont( );
+    }
+
     static bool showDemoWindow = false;
     if ( showDemoWindow )
     {

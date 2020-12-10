@@ -10,8 +10,6 @@ namespace RAYEX_NAMESPACE
   {
     IMGUI_CHECKVERSION( );
     ImGui::CreateContext( );
-    ImGuiIO& io = ImGui::GetIO( );
-    (void) io;
   }
 
   void Gui::init( SDL_Window* window, const Surface* const surface, vk::Extent2D swapchainImageExtent, vk::RenderPass renderPass )
@@ -56,6 +54,7 @@ namespace RAYEX_NAMESPACE
   {
     ImGui_ImplSDL2_NewFrame( _window );
     ImGui::NewFrame( );
+
     render( );
     ImGui::Render( );
 
@@ -71,19 +70,17 @@ namespace RAYEX_NAMESPACE
 
   void Gui::initDescriptorPool( )
   {
-    std::vector<vk::DescriptorPoolSize> poolSizes = {
-      { vk::DescriptorType::eSampler, 1000 },
-      { vk::DescriptorType::eCombinedImageSampler, 1000 },
-      { vk::DescriptorType::eSampledImage, 1000 },
-      { vk::DescriptorType::eStorageImage, 1000 },
-      { vk::DescriptorType::eUniformTexelBuffer, 1000 },
-      { vk::DescriptorType::eStorageTexelBuffer, 1000 },
-      { vk::DescriptorType::eUniformBuffer, 1000 },
-      { vk::DescriptorType::eStorageBuffer, 1000 },
-      { vk::DescriptorType::eUniformBufferDynamic, 1000 },
-      { vk::DescriptorType::eStorageBufferDynamic, 1000 },
-      { vk::DescriptorType::eInputAttachment, 1000 }
-    };
+    std::vector<vk::DescriptorPoolSize> poolSizes = { { vk::DescriptorType::eSampler, 1000 },
+                                                      { vk::DescriptorType::eCombinedImageSampler, 1000 },
+                                                      { vk::DescriptorType::eSampledImage, 1000 },
+                                                      { vk::DescriptorType::eStorageImage, 1000 },
+                                                      { vk::DescriptorType::eUniformTexelBuffer, 1000 },
+                                                      { vk::DescriptorType::eStorageTexelBuffer, 1000 },
+                                                      { vk::DescriptorType::eUniformBuffer, 1000 },
+                                                      { vk::DescriptorType::eStorageBuffer, 1000 },
+                                                      { vk::DescriptorType::eUniformBufferDynamic, 1000 },
+                                                      { vk::DescriptorType::eStorageBufferDynamic, 1000 },
+                                                      { vk::DescriptorType::eInputAttachment, 1000 } };
 
     _descriptorPool = vk::Initializer::initDescriptorPoolUnique( poolSizes, components::swapchainImageCount );
   }

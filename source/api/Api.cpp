@@ -143,6 +143,8 @@ namespace RAYEX_NAMESPACE
 
   void Api::update( )
   {
+    updateSettings( );
+
     uint32_t imageIndex        = _swapchain.getCurrentImageIndex( );
     uint32_t maxFramesInFlight = static_cast<uint32_t>( _sync.getMaxFramesInFlight( ) );
 
@@ -154,7 +156,7 @@ namespace RAYEX_NAMESPACE
       _sync.waitForFrame( prevFrame );
       _scene.addDummy( );
     }
-    else
+    else if ( _scene._dummy )
     {
       _sync.waitForFrame( prevFrame );
       _scene.removeDummy( );
@@ -326,8 +328,6 @@ namespace RAYEX_NAMESPACE
 
   void Api::render( )
   {
-    updateSettings( );
-
     update( );
 
     // If the window is minimized then simply do not render anything anymore.
@@ -367,14 +367,9 @@ namespace RAYEX_NAMESPACE
     _pathTracer.createStorageImage( _swapchain.getExtent( ) );
 
     const auto& storageImageInfo = _pathTracer.getStorageImageInfo( );
-
     _postProcessingRenderer.updateDescriptors( storageImageInfo );
 
     _pathTracer.updateDescriptors( );
-
-    // Swapchain command buffers
-    _swapchainCommandBuffers.init( _graphicsCmdPool.get( ), components::swapchainImageCount, vk::CommandBufferUsageFlagBits::eRenderPassContinue );
-    recordSwapchainCommandBuffers( );
 
     if ( _gui != nullptr )
     {

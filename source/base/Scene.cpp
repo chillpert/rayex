@@ -532,20 +532,16 @@ namespace RAYEX_NAMESPACE
                                        vk::DescriptorBindingFlagBits::eUpdateAfterBind );
 
     // Textures
-    _immutableSamplers.clear( );
-    _immutableSamplers.reserve( _settings->_maxTextures );
-    for ( uint32_t i = 0; i < _settings->_maxTextures; ++i )
+    if ( !_immutableSampler )
     {
-      // @todo re-use the same sampler for all of these.
-      auto samplerCreateInfo = vk::Helper::getSamplerCreateInfo( );
-      _immutableSamplers.push_back( std::move( vk::Initializer::initSamplerUnique( samplerCreateInfo ) ) );
+      _immutableSampler = vk::Initializer::initSamplerUnique( vk::Helper::getSamplerCreateInfo( ) );
     }
 
-    std::vector<vk::Sampler> immutableSamplers( _immutableSamplers.size( ) );
-    std::transform( _immutableSamplers.begin( ),
-                    _immutableSamplers.end( ),
-                    immutableSamplers.begin( ),
-                    []( const vk::UniqueSampler& sampler ) { return vk::Sampler( sampler.get( ) ); } );
+    std::vector<vk::Sampler> immutableSamplers( _settings->_maxTextures );
+    for ( auto& immutableSampler : immutableSamplers )
+    {
+      immutableSampler = _immutableSampler.get( );
+    }
 
     _geometryDescriptors.bindings.add( 3,
                                        vk::DescriptorType::eCombinedImageSampler,
@@ -584,7 +580,6 @@ namespace RAYEX_NAMESPACE
   {
     RX_ASSERT( _geometries.size( ) <= _settings->_maxGeometry, "Can not bind more than ", _settings->_maxGeometry, " geometries." );
     RX_ASSERT( _meshBuffers.size( ) <= _settings->_maxMeshes, "Can not bind more than ", _settings->_maxMeshes, " meshes." );
-    RX_ASSERT( _immutableSamplers.size( ) == _textures.size( ), "There are not as many immutable samplers as textures." );
 
     // Vertex buffers infos
     std::vector<vk::DescriptorBufferInfo> vertexBufferInfos;
@@ -640,12 +635,12 @@ namespace RAYEX_NAMESPACE
       {
         textureInfo.imageLayout = _textures[i]->getLayout( );
         textureInfo.imageView   = _textures[i]->getImageView( );
-        textureInfo.sampler     = _immutableSamplers[i].get( );
+        textureInfo.sampler     = _immutableSampler.get( );
       }
       else
       {
         textureInfo.imageLayout = { };
-        textureInfo.sampler     = _immutableSamplers[i].get( );
+        textureInfo.sampler     = _immutableSampler.get( );
       }
 
       textureInfos.push_back( textureInfo );

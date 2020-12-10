@@ -51,9 +51,9 @@ namespace RAYEX_NAMESPACE
     }
   }
 
-  void Api::initBase( )
+  void Api::init( )
   {
-    RX_LOG_TIME_START( "Initializing Vulkan (base) ..." );
+    RX_LOG_TIME_START( "API start up ..." );
 
     // Retrieve and add window extensions to other extensions.
     auto windowExtensions = _window->getExtensions( );
@@ -105,35 +105,21 @@ namespace RAYEX_NAMESPACE
     // Create fences and semaphores.
     _sync.init( );
 
-    // Path tracer (part 1)
+    // Path tracer
     _pathTracer.init( );
     _settings._maxRecursionDepth = _pathTracer.getDevicePathTracingProperties( ).maxRecursionDepth;
 
     _scene.prepareBuffers( );
-
-    RX_LOG_TIME_STOP( "Finished initializing Vulkan (base)" );
-  }
-
-  void Api::initScene( )
-  {
-    RX_LOG_TIME_START( "Initializing Vulkan (scene) ..." );
 
     // Descriptor sets and layouts
     _pathTracer.initDescriptorSet( );
     _scene.initSceneDescriptorSets( );
     _scene.initGeoemtryDescriptorSets( );
 
-    // If user has not set an environment map themself set a default one, to guarantee successful start up.
-    if ( !_scene._uploadEnvironmentMap )
-    {
-      _scene.setEnvironmentMap( "" );
-      _scene.uploadEnvironmentMap( );
-      _scene.removeEnvironmentMap( );
-    }
-    else
-    {
-      _scene.uploadEnvironmentMap( );
-    }
+    // Default environment map to assure start up.
+    _scene.setEnvironmentMap( "" );
+    _scene.uploadEnvironmentMap( );
+    _scene.removeEnvironmentMap( );
 
     // Update scene descriptor sets.
     _scene.updateSceneDescriptors( );
@@ -141,7 +127,6 @@ namespace RAYEX_NAMESPACE
     // Initialize the path tracing pipeline.
     initPipelines( );
 
-    // Path tracer (part 2)
     _pathTracer.createStorageImage( _swapchain.getExtent( ) );
     _pathTracer.createShaderBindingTable( );
 
@@ -153,7 +138,7 @@ namespace RAYEX_NAMESPACE
     // Init and record swapchain command buffers.
     _swapchainCommandBuffers.init( _graphicsCmdPool.get( ), components::swapchainImageCount, vk::CommandBufferUsageFlagBits::eRenderPassContinue );
 
-    RX_LOG_TIME_STOP( "Finished initializing Vulkan (scene)" );
+    RX_LOG_TIME_STOP( "API finished" );
   }
 
   void Api::update( )
@@ -308,6 +293,7 @@ namespace RAYEX_NAMESPACE
       _scene.updateGeoemtryDescriptors( );
 
       _settings._refreshPipeline = true;
+      //_settings._refreshSwapchain = true;
     }
 
     // Handle pipeline refresh

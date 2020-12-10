@@ -70,6 +70,5 @@ namespace RAYEX_NAMESPACE
 
     bool _initialized = false;
     bool _running     = true; ///< Keeps track of whether or not the main loop should still be continued.
-    bool _initScene   = true; ///< Keeps track of whether or not to initialize the scene.
   };
 } // namespace RAYEX_NAMESPACE

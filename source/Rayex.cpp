@@ -45,7 +45,7 @@ namespace RAYEX_NAMESPACE
 #endif
 
     _initialized = _window->init( );
-    _api.initBase( );
+    _api.init( );
   }
 
   auto Rayex::isRunning( ) const -> bool
@@ -67,24 +67,6 @@ namespace RAYEX_NAMESPACE
     {
       return;
     }
-
-    static bool firstRun = true;
-    if ( _initScene )
-    {
-      _api.initScene( );
-      _initScene = false;
-    }
-    else
-    {
-      if ( firstRun )
-      {
-        RX_ERROR( "Failed to initialize scene. Did you forget to call setModels(std::vector<std::string>)?" );
-        _running = false;
-        return;
-      }
-    }
-
-    firstRun = false;
 
     _running = _window->update( );
     _api._scene._currentCamera->update( );

@@ -48,11 +48,7 @@ namespace RAYEX_NAMESPACE
     /// @param initialize If true, the GUI object will be initialized (false if not specified).
     void setGui( const std::shared_ptr<Gui>& gui, bool initialize = false );
 
-    /// Initializes all universal Vulkan objects.
-    void initBase( );
-
-    /// Initializes all Vulkan objects that are scene-specific.
-    RX_API void initScene( );
+    void init( );
 
     /// Used to update and upload uniform buffers.
     void update( );

@@ -132,7 +132,7 @@ namespace RAYEX_NAMESPACE
     std::vector<vk::DescriptorSet> _textureDescriptorSets;
 
     Cubemap _environmentMap;
-    std::vector<vk::UniqueSampler> _immutableSamplers;
+    vk::UniqueSampler _immutableSampler;
 
     std::vector<StorageBuffer<uint32_t>> _indexBuffers;
     std::vector<StorageBuffer<Vertex>> _vertexBuffers;

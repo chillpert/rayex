@@ -19,10 +19,6 @@ int main( )
   // Custom ImGui based Gui
   renderer.setGui( std::make_shared<CustomGui>( &renderer ) );
 
-  // Avoid buffer recreations by setting an upper limit to geometries and geometry instances.
-  renderer.settings( ).setMaxGeometryInstances( 1000 );
-  renderer.settings( ).setMaxGeoemtry( 8 );
-
   // ... and initialize the renderer.
   renderer.init( );
 

@@ -54,7 +54,7 @@ layout( binding = 2, set = 2 ) buffer Meshes
 }
 meshes[];
 
-layout( binding = 4, set = 2 ) uniform sampler2D textures[];
+layout( binding = 3, set = 2 ) uniform sampler2D textures[];
 
 layout( push_constant ) uniform Constants
 {

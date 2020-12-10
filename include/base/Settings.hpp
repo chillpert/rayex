@@ -73,6 +73,10 @@ namespace RAYEX_NAMESPACE
     /// @return Returns the maximum amount of geometry.
     auto getMaxGeometry( ) const -> uint32_t { return _maxGeometry; }
 
+    void setMaxTextures( size_t amount );
+
+    auto getMaxTextures( ) const -> size_t { return _maxTextures; }
+
     void setMaxMeshes( uint32_t amount );
 
     auto getMaxMeshes( ) const -> uint32_t { return _maxMeshes; }
@@ -83,20 +87,35 @@ namespace RAYEX_NAMESPACE
 
     void setAccumulatingFrames( bool flag );
 
+    void update( );
+
     auto isAccumulatingFrames( ) const -> bool { return _accumulateFrames; }
+
+    void triggerPipelineRefresh( )
+    {
+      _refreshPipeline = true;
+      //triggerSwapchainRefresh( );
+    }
+
+    void triggerSwapchainRefresh( ) { _refreshSwapchain = true; }
 
   private:
     /// This function will be called by Rayex::init() in case the path was not set manually.
     /// @warning This function might file in setting the correct path. That is why it is recommended to set it automatically using setAssetsPath(std::string).
-    void setDefaultAssetsPath( );
+    void
+    setDefaultAssetsPath( );
 
     bool _refreshPipeline  = false; ///< Keeps track of whether or not the graphics pipeline needs to be recreated.
     bool _refreshSwapchain = false; ///< Keeps track of whether or not the swapchain needs to be recreated.
 
-    uint32_t _maxGeometryInstances = 100; ///< Can be set to avoid pipeline recreation everytime a geometry instance is added.
-    uint32_t _maxGeometry          = 64;  ///< The maximum amount of geometry (Must be a multiple of minimum storage buffer alignment).
-    uint32_t _maxTextures          = 5;   ///< The maximum amount of textures.
-    uint32_t _maxMeshes            = 200; ///< The maximum amount of meshes. Each geometry can have multiple sub meshes.
+    size_t _maxGeometryInstances      = 100; ///< Can be set to avoid pipeline recreation everytime a geometry instance is added.
+    bool _maxGeometryInstancesChanged = false;
+    size_t _maxGeometry               = 64; ///< The maximum amount of geometry (Must be a multiple of minimum storage buffer alignment).
+    bool _maxGeometryChanged          = false;
+    size_t _maxTextures               = 5; ///< The maximum amount of textures.
+    bool _maxTexturesChanged          = false;
+    size_t _maxMeshes                 = 200; ///< The maximum amount of meshes. Each geometry can have multiple sub meshes.
+    bool _maxMeshesChanged            = false;
 
     std::string _assetsPath; ///< Where all assets like models, textures and shaders are stored.
 
@@ -106,6 +125,8 @@ namespace RAYEX_NAMESPACE
     uint32_t _perPixelSampleRate = 4;                                      ///< Stores the total amount of samples that will be taken and averaged per pixel.
 
     bool _accumulateFrames = true;
+
+    Scene* _scene = nullptr;
 
     bool _automaticPipelineRefresh  = false; ///< Keeps track of whether or not the graphics pipelines should be recreated automatically as soon as possible.
     bool _automaticSwapchainRefresh = false; ///< Keeps track of whether or not the swapchain should be recreated automatically as soon as possible.

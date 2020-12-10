@@ -16,13 +16,13 @@ namespace RAYEX_NAMESPACE
       RX_WARN( "Exceeded maximum recursion depth of ", _maxRecursionDepth, ". Using highest possible value instead." );
     }
 
-    _refreshPipeline = true;
+    triggerPipelineRefresh( );
   }
 
   void Settings::setClearColor( const glm::vec4& clearColor )
   {
-    _clearColor       = clearColor;
-    _refreshSwapchain = true;
+    _clearColor = clearColor;
+    triggerSwapchainRefresh( );
 
     components::frameCount = -1;
   }
@@ -67,18 +67,26 @@ namespace RAYEX_NAMESPACE
     if ( amount == 0 )
     {
       ++amount;
-      RX_WARN( "Can not use value 0 for the amount of maximum directional lights. Using 1 instead." );
+      RX_WARN( "Can not use value 0 for the maximum amount of geometry instances. Using 1 instead." );
     }
 
     // Increment by one to accommodate the triangle dummy for emtpy scenes.
     _maxGeometryInstances = ++amount;
+
+    _maxGeometryInstancesChanged = true;
   }
 
   void Settings::setMaxGeoemtry( uint32_t amount )
   {
     if ( amount == 0 )
     {
-      RX_WARN( "Can not use value 0 for the amount of maximum geometry. Using 16 instead." );
+      RX_WARN( "Can not use value 0 for the maximum number of geometries. Using 16 instead." );
+      amount = 16;
+    }
+
+    if ( amount < 16 )
+    {
+      RX_WARN( "Can not use value ", amount, " for the maximum number of geometries. Using 16 instead." );
       amount = 16;
     }
 
@@ -89,13 +97,15 @@ namespace RAYEX_NAMESPACE
     }
 
     _maxGeometry = amount;
+
+    _maxGeometryChanged = true;
   }
 
   void Settings::setMaxMeshes( uint32_t amount )
   {
     if ( amount == 0 )
     {
-      RX_WARN( "Can not use value 0 for the amonut of maximum goemetry. Using 32 instead." );
+      RX_WARN( "Can not use value 0 for the maximum number of meshes. Using 32 instead." );
       amount = 32;
     }
 
@@ -106,6 +116,21 @@ namespace RAYEX_NAMESPACE
     }
 
     _maxMeshes = amount;
+
+    _maxMeshesChanged = true;
+  }
+
+  void Settings::setMaxTextures( size_t amount )
+  {
+    if ( amount == 0 )
+    {
+      ++amount;
+      RX_WARN( "Can not use value 0 for the maximum amount of textures. Using 1 instead." );
+    }
+
+    _maxTextures = amount;
+
+    _maxTexturesChanged = true;
   }
 
   void Settings::setDefaultAssetsPath( )
@@ -126,5 +151,9 @@ namespace RAYEX_NAMESPACE
   void Settings::setAccumulatingFrames( bool flag )
   {
     _accumulateFrames = flag;
+  }
+
+  void Settings::update( )
+  {
   }
 } // namespace RAYEX_NAMESPACE

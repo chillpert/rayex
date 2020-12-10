@@ -91,6 +91,8 @@ namespace RAYEX_NAMESPACE
 
   void PostProcessingRenderer::updateDescriptors( const vk::DescriptorImageInfo& imageInfo )
   {
+    RX_ASSERT( imageInfo.imageView && imageInfo.sampler, "Failed to update post processing renderer descriptor sets because storage image info contains invalid elements." );
+
     _descriptors.bindings.write( _descriptorSets, 0, &imageInfo );
     _descriptors.bindings.update( );
   }

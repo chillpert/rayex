@@ -102,8 +102,5 @@ namespace RAYEX_NAMESPACE
 
     Scene _scene;
     Settings _settings;
-
-    bool _needSwapchainRecreate = false; // @todo Cant this just be removed?
-    bool _pipelinesReady        = false;
   };
 } // namespace RAYEX_NAMESPACE

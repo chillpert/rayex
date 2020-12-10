@@ -19,7 +19,7 @@ layout( push_constant ) uniform Constants
   uint padding3;
 };
 
-layout( binding = 3, set = 2 ) uniform samplerCube environmentMap;
+layout( binding = 2, set = 1 ) uniform samplerCube environmentMap;
 
 void main( )
 {

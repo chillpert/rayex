@@ -24,10 +24,13 @@ namespace RAYEX_NAMESPACE
 
   void Scene::submitGeometryInstance( std::shared_ptr<GeometryInstance> geometryInstance )
   {
-    if ( _geometryInstances.size( ) >= _settings->_maxGeometryInstances - 1 )
+    if ( !_dummy )
     {
-      RX_ERROR( "Failed to submit geometry instance because instance buffer size has been exceeded. To avoid this error, increase the amount of supported geometry instances using RAYEX_NAMESPACE::Rayex::Settings::setMaxGeometryInstances(uint32_t)." );
-      return;
+      if ( _geometryInstances.size( ) >= _settings->_maxGeometryInstances - 1 )
+      {
+        RX_ERROR( "Failed to submit geometry instance because instance buffer size has been exceeded. To avoid this error, increase the amount of supported geometry instances using RAYEX_NAMESPACE::Rayex::Settings::setMaxGeometryInstances(uint32_t)." );
+        return;
+      }
     }
 
     _geometryInstances.push_back( geometryInstance );
@@ -36,13 +39,14 @@ namespace RAYEX_NAMESPACE
 
   void Scene::setGeometryInstances( const std::vector<std::shared_ptr<GeometryInstance>>& geometryInstances )
   {
-    if ( _geometryInstances.size( ) >= _settings->_maxGeometryInstances - 1 )
+    _geometryInstances.clear( );
+    _geometryInstances.reserve( geometryInstances.size( ) );
+
+    for ( auto geometryInstance : geometryInstances )
     {
-      RX_ERROR( "Failed to set geometry instances because instance buffer size has been exceeded. To avoid this error, increase the amount of supported geometry instances using RAYEX_NAMESPACE::Rayex::Settings::setMaxGeometryInstances(uint32_t)." );
-      return;
+      submitGeometryInstance( geometryInstance );
     }
 
-    _geometryInstances               = geometryInstances;
     _uploadGeometryInstancesToBuffer = true;
   }
 
@@ -91,10 +95,14 @@ namespace RAYEX_NAMESPACE
 
   void Scene::submitGeometry( std::shared_ptr<Geometry> geometry )
   {
-    if ( _geometries.size( ) >= _settings->_maxGeometryInstances - 1 )
+    if ( !_dummy )
     {
-      RX_ERROR( "Failed to add geometry. You have exceeded the maximum amount of geometry supported." );
-      return;
+      if ( _geometries.size( ) >= _settings->_maxGeometryInstances - 1 )
+      {
+        RX_ERROR( "Failed to submit geometry because geometries buffer size has been exceeded. To avoid this error, increase the amount of supported geometries using RAYEX_NAMESPACE::Rayex::Settings::setMaxGeometries(uint32_t)." );
+
+        return;
+      }
     }
 
     _geometries.push_back( geometry );
@@ -103,13 +111,14 @@ namespace RAYEX_NAMESPACE
 
   void Scene::setGeometries( const std::vector<std::shared_ptr<Geometry>>& geometries )
   {
-    if ( _geometries.size( ) >= _settings->_maxGeometryInstances )
+    _geometries.clear( );
+    _geometries.reserve( geometries.size( ) );
+
+    for ( auto geometry : geometries )
     {
-      RX_ERROR( "Failed to set geometries. You have exceeded the maximum amount of geometry supported." );
-      return;
+      submitGeometry( geometry );
     }
 
-    _geometries       = geometries;
     _uploadGeometries = true;
   }
 
@@ -279,10 +288,10 @@ namespace RAYEX_NAMESPACE
     std::vector<GeometryInstanceSSBO> geometryInstances( _settings->_maxGeometryInstances );
     _geometryInstancesBuffer.init( geometryInstances, components::maxResources );
 
-    _vertexBuffers.resize( static_cast<size_t>( _settings->_maxGeometry ) );
-    _indexBuffers.resize( static_cast<size_t>( _settings->_maxGeometry ) );
-    _meshBuffers.resize( static_cast<size_t>( _settings->_maxMeshes ) );
-    _textures.resize( static_cast<size_t>( _settings->_maxTextures ) );
+    _vertexBuffers.resize( _settings->_maxGeometry );
+    _indexBuffers.resize( _settings->_maxGeometry );
+    _meshBuffers.resize( _settings->_maxMeshes );
+    _textures.resize( _settings->_maxTextures );
 
     initCameraBuffer( );
   }
@@ -330,8 +339,6 @@ namespace RAYEX_NAMESPACE
       removeEnvironmentMap( );
       _removeEnvironmentMap = false;
     }
-
-    updateGeoemtryDescriptors( );
   }
 
   void Scene::uploadGeometries( )
@@ -359,7 +366,6 @@ namespace RAYEX_NAMESPACE
             {
               diffuseTexIndex = -1.0F;
 
-              // @todo Rare bug where textureIndex would be std::numeric_limits<size_t>::max( ). Do not know how to reproduce yet.
               size_t textureIndex = std::numeric_limits<size_t>::max( );
               for ( size_t i = 0; i < _textures.size( ); ++i )
               {
@@ -369,14 +375,17 @@ namespace RAYEX_NAMESPACE
                 }
               }
 
-              RX_ASSERT( textureIndex != std::numeric_limits<size_t>::max( ), "Can not have more than ", _settings->_maxTextures, " textures." );
-
-              if ( _textures[textureIndex] == nullptr && !mesh.material.diffuseTexPath.empty( ) )
+              if ( textureIndex != std::numeric_limits<size_t>::max( ) )
               {
-                auto texture = std::make_shared<Texture>( );
-                texture->init( mesh.material.diffuseTexPath );
-                diffuseTexIndex         = static_cast<float>( textureIndex );
-                _textures[textureIndex] = texture;
+                RX_ASSERT( textureIndex != std::numeric_limits<size_t>::max( ), "Can not have more than ", _settings->_maxTextures, " textures." );
+
+                if ( _textures[textureIndex] == nullptr && !mesh.material.diffuseTexPath.empty( ) )
+                {
+                  auto texture = std::make_shared<Texture>( );
+                  texture->init( mesh.material.diffuseTexPath );
+                  diffuseTexIndex         = static_cast<float>( textureIndex );
+                  _textures[textureIndex] = texture;
+                }
               }
 
               memAlignedMeshes[j] = MeshSSBO { glm::vec4( mesh.material.ambient, -1.0F ),
@@ -404,6 +413,16 @@ namespace RAYEX_NAMESPACE
 
   void Scene::uploadGeometryInstances( uint32_t imageIndex )
   {
+    if ( _settings->_maxGeometryInstancesChanged )
+    {
+      _settings->_maxGeometryInstancesChanged = false;
+
+      std::vector<GeometryInstanceSSBO> geometryInstances( _settings->_maxGeometryInstances );
+      _geometryInstancesBuffer.init( geometryInstances, components::maxResources );
+
+      updateSceneDescriptors( );
+    }
+
     _uploadGeometryInstancesToBuffer = false;
 
     if ( !_geometryInstances.empty( ) )
@@ -425,7 +444,7 @@ namespace RAYEX_NAMESPACE
     _deleteTextures = false;
 
     _textures.clear( );
-    _textures.resize( static_cast<size_t>( _settings->_maxTextures ) );
+    _textures.resize( _settings->_maxTextures );
   }
 
   void Scene::addDummy( )
@@ -471,78 +490,93 @@ namespace RAYEX_NAMESPACE
     }
   }
 
-  void Scene::initDescriptorSets( )
+  void Scene::initSceneDescriptorSets( )
   {
-    {
-      // Camera uniform buffer
-      _sceneDescriptors.bindings.add( 0, vk::DescriptorType::eUniformBuffer, vk::ShaderStageFlagBits::eRaygenKHR );
-      // Scene description buffer
-      _sceneDescriptors.bindings.add( 1, vk::DescriptorType::eStorageBuffer, vk::ShaderStageFlagBits::eClosestHitKHR );
+    _sceneDescriptors.bindings.reset( );
 
-      _sceneDescriptors.layout = _sceneDescriptors.bindings.initLayoutUnique( );
-      _sceneDescriptors.pool   = _sceneDescriptors.bindings.initPoolUnique( components::maxResources );
-      _sceneDescriptorsets     = vk::Initializer::initDescriptorSetsUnique( _sceneDescriptors.pool, _sceneDescriptors.layout );
+    // Camera uniform buffer
+    _sceneDescriptors.bindings.add( 0, vk::DescriptorType::eUniformBuffer, vk::ShaderStageFlagBits::eRaygenKHR );
+    // Scene description buffer
+    _sceneDescriptors.bindings.add( 1, vk::DescriptorType::eStorageBuffer, vk::ShaderStageFlagBits::eClosestHitKHR );
+    // Environment map
+    _sceneDescriptors.bindings.add( 2, vk::DescriptorType::eCombinedImageSampler, vk::ShaderStageFlagBits::eMissKHR );
+
+    _sceneDescriptors.layout = _sceneDescriptors.bindings.initLayoutUnique( );
+    _sceneDescriptors.pool   = _sceneDescriptors.bindings.initPoolUnique( components::maxResources );
+    _sceneDescriptorsets     = vk::Initializer::initDescriptorSetsUnique( _sceneDescriptors.pool, _sceneDescriptors.layout );
+  }
+
+  void Scene::initGeoemtryDescriptorSets( )
+  {
+    _geometryDescriptors.bindings.reset( );
+
+    // Vertex buffers
+    _geometryDescriptors.bindings.add( 0,
+                                       vk::DescriptorType::eStorageBuffer,
+                                       vk::ShaderStageFlagBits::eClosestHitKHR,
+                                       _settings->_maxGeometry,
+                                       vk::DescriptorBindingFlagBits::eUpdateAfterBind );
+
+    // Index buffers
+    _geometryDescriptors.bindings.add( 1,
+                                       vk::DescriptorType::eStorageBuffer,
+                                       vk::ShaderStageFlagBits::eClosestHitKHR,
+                                       _settings->_maxGeometry,
+                                       vk::DescriptorBindingFlagBits::eUpdateAfterBind );
+
+    // Mesh buffers
+    _geometryDescriptors.bindings.add( 2,
+                                       vk::DescriptorType::eStorageBuffer,
+                                       vk::ShaderStageFlagBits::eClosestHitKHR,
+                                       _settings->_maxMeshes,
+                                       vk::DescriptorBindingFlagBits::eUpdateAfterBind );
+
+    // Textures
+    _immutableSamplers.clear( );
+    _immutableSamplers.reserve( _settings->_maxTextures );
+    for ( uint32_t i = 0; i < _settings->_maxTextures; ++i )
+    {
+      // @todo re-use the same sampler for all of these.
+      auto samplerCreateInfo = vk::Helper::getSamplerCreateInfo( );
+      _immutableSamplers.push_back( std::move( vk::Initializer::initSamplerUnique( samplerCreateInfo ) ) );
     }
 
-    {
-      // Vertex buffers
-      _geometryDescriptors.bindings.add( 0,
-                                         vk::DescriptorType::eStorageBuffer,
-                                         vk::ShaderStageFlagBits::eClosestHitKHR,
-                                         _settings->_maxGeometry,
-                                         vk::DescriptorBindingFlagBits::eUpdateAfterBind );
+    std::vector<vk::Sampler> immutableSamplers( _immutableSamplers.size( ) );
+    std::transform( _immutableSamplers.begin( ),
+                    _immutableSamplers.end( ),
+                    immutableSamplers.begin( ),
+                    []( const vk::UniqueSampler& sampler ) { return vk::Sampler( sampler.get( ) ); } );
 
-      // Index buffers
-      _geometryDescriptors.bindings.add( 1,
-                                         vk::DescriptorType::eStorageBuffer,
-                                         vk::ShaderStageFlagBits::eClosestHitKHR,
-                                         _settings->_maxGeometry,
-                                         vk::DescriptorBindingFlagBits::eUpdateAfterBind );
+    _geometryDescriptors.bindings.add( 3,
+                                       vk::DescriptorType::eCombinedImageSampler,
+                                       vk::ShaderStageFlagBits::eClosestHitKHR,
+                                       _settings->_maxTextures,
+                                       vk::DescriptorBindingFlagBits::eUpdateAfterBind | vk::DescriptorBindingFlagBits::eVariableDescriptorCount,
+                                       immutableSamplers.data( ) );
 
-      // Mesh buffers
-      _geometryDescriptors.bindings.add( 2,
-                                         vk::DescriptorType::eStorageBuffer,
-                                         vk::ShaderStageFlagBits::eClosestHitKHR,
-                                         _settings->_maxMeshes,
-                                         vk::DescriptorBindingFlagBits::eUpdateAfterBind );
-
-      // Environment map
-      _geometryDescriptors.bindings.add( 3,
-                                         vk::DescriptorType::eCombinedImageSampler,
-                                         vk::ShaderStageFlagBits::eMissKHR );
-
-      // Textures
-      _immutableSamplers.reserve( _settings->_maxTextures );
-      for ( uint32_t i = 0; i < _settings->_maxTextures; ++i )
-      {
-        // @todo re-use the same sampler for all of these.
-        auto samplerCreateInfo = vk::Helper::getSamplerCreateInfo( );
-        _immutableSamplers.push_back( std::move( vk::Initializer::initSamplerUnique( samplerCreateInfo ) ) );
-      }
-
-      std::vector<vk::Sampler> immutableSamplers( _immutableSamplers.size( ) );
-      std::transform( _immutableSamplers.begin( ),
-                      _immutableSamplers.end( ),
-                      immutableSamplers.begin( ),
-                      []( const vk::UniqueSampler& sampler ) { return vk::Sampler( sampler.get( ) ); } );
-
-      _geometryDescriptors.bindings.add( 4,
-                                         vk::DescriptorType::eCombinedImageSampler,
-                                         vk::ShaderStageFlagBits::eClosestHitKHR,
-                                         _settings->_maxTextures,
-                                         vk::DescriptorBindingFlagBits::eUpdateAfterBind | vk::DescriptorBindingFlagBits::eVariableDescriptorCount,
-                                         immutableSamplers.data( ) );
-
-      _geometryDescriptors.layout = _geometryDescriptors.bindings.initLayoutUnique( vk::DescriptorSetLayoutCreateFlagBits::eUpdateAfterBindPool );
-      _geometryDescriptors.pool   = _geometryDescriptors.bindings.initPoolUnique( components::swapchainImageCount, vk::DescriptorPoolCreateFlagBits::eUpdateAfterBind );
-      _geometryDescriptorSets     = vk::Initializer::initDescriptorSetsUnique( _geometryDescriptors.pool, _geometryDescriptors.layout );
-    }
+    _geometryDescriptors.layout = _geometryDescriptors.bindings.initLayoutUnique( vk::DescriptorSetLayoutCreateFlagBits::eUpdateAfterBindPool );
+    _geometryDescriptors.pool   = _geometryDescriptors.bindings.initPoolUnique( components::swapchainImageCount, vk::DescriptorPoolCreateFlagBits::eUpdateAfterBind );
+    _geometryDescriptorSets     = vk::Initializer::initDescriptorSetsUnique( _geometryDescriptors.pool, _geometryDescriptors.layout );
   }
 
   void Scene::updateSceneDescriptors( )
   {
+    // Environment map
+    vk::DescriptorImageInfo environmentMapTextureInfo;
+    if ( _environmentMap.getImageView( ) && _environmentMap.getSampler( ) )
+    {
+      environmentMapTextureInfo.imageLayout = _environmentMap.getLayout( );
+      environmentMapTextureInfo.imageView   = _environmentMap.getImageView( );
+      environmentMapTextureInfo.sampler     = _environmentMap.getSampler( );
+    }
+    else
+    {
+      RX_FATAL( "No default environment map provided." );
+    }
+
     _sceneDescriptors.bindings.writeArray( _sceneDescriptorsets, 0, _cameraUniformBuffer._bufferInfos.data( ) );
     _sceneDescriptors.bindings.writeArray( _sceneDescriptorsets, 1, _geometryInstancesBuffer.getDescriptorInfos( ).data( ) );
+    _sceneDescriptors.bindings.write( _sceneDescriptorsets, 2, &environmentMapTextureInfo );
     _sceneDescriptors.bindings.update( );
   }
 
@@ -550,6 +584,7 @@ namespace RAYEX_NAMESPACE
   {
     RX_ASSERT( _geometries.size( ) <= _settings->_maxGeometry, "Can not bind more than ", _settings->_maxGeometry, " geometries." );
     RX_ASSERT( _meshBuffers.size( ) <= _settings->_maxMeshes, "Can not bind more than ", _settings->_maxMeshes, " meshes." );
+    RX_ASSERT( _immutableSamplers.size( ) == _textures.size( ), "There are not as many immutable samplers as textures." );
 
     // Vertex buffers infos
     std::vector<vk::DescriptorBufferInfo> vertexBufferInfos;
@@ -616,25 +651,11 @@ namespace RAYEX_NAMESPACE
       textureInfos.push_back( textureInfo );
     }
 
-    // Environment map
-    vk::DescriptorImageInfo environmentMapTextureInfo;
-    if ( _environmentMap.getImageView( ) && _environmentMap.getSampler( ) )
-    {
-      environmentMapTextureInfo.imageLayout = _environmentMap.getLayout( );
-      environmentMapTextureInfo.imageView   = _environmentMap.getImageView( );
-      environmentMapTextureInfo.sampler     = _environmentMap.getSampler( );
-    }
-    else
-    {
-      RX_FATAL( "No default environment map provided." );
-    }
-
     // Write to and update descriptor bindings
     _geometryDescriptors.bindings.writeArray( _geometryDescriptorSets, 0, vertexBufferInfos.data( ) );
     _geometryDescriptors.bindings.writeArray( _geometryDescriptorSets, 1, indexBufferInfos.data( ) );
     _geometryDescriptors.bindings.writeArray( _geometryDescriptorSets, 2, meshBufferInfos.data( ) );
-    _geometryDescriptors.bindings.write( _geometryDescriptorSets, 3, &environmentMapTextureInfo );
-    _geometryDescriptors.bindings.writeArray( _geometryDescriptorSets, 4, textureInfos.data( ) );
+    _geometryDescriptors.bindings.writeArray( _geometryDescriptorSets, 3, textureInfos.data( ) );
 
     _geometryDescriptors.bindings.update( );
   }

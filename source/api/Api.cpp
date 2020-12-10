@@ -120,9 +120,22 @@ namespace RAYEX_NAMESPACE
 
     // Descriptor sets and layouts
     _pathTracer.initDescriptorSet( );
-    _scene.initDescriptorSets( );
+    _scene.initSceneDescriptorSets( );
+    _scene.initGeoemtryDescriptorSets( );
 
-    // Update RT scene descriptor sets.
+    // If user has not set an environment map themself set a default one, to guarantee successful start up.
+    if ( !_scene._uploadEnvironmentMap )
+    {
+      _scene.setEnvironmentMap( "" );
+      _scene.uploadEnvironmentMap( );
+      _scene.removeEnvironmentMap( );
+    }
+    else
+    {
+      _scene.uploadEnvironmentMap( );
+    }
+
+    // Update scene descriptor sets.
     _scene.updateSceneDescriptors( );
 
     // Initialize the path tracing pipeline.
@@ -139,13 +152,6 @@ namespace RAYEX_NAMESPACE
 
     // Init and record swapchain command buffers.
     _swapchainCommandBuffers.init( _graphicsCmdPool.get( ), components::swapchainImageCount, vk::CommandBufferUsageFlagBits::eRenderPassContinue );
-
-    // If user has not set an environment map themself set a default one, to guarantee successful start up.
-    if ( !_scene._uploadEnvironmentMap )
-    {
-      _scene.setEnvironmentMap( "" );
-      _scene._removeEnvironmentMap = true;
-    }
 
     RX_LOG_TIME_STOP( "Finished initializing Vulkan (scene)" );
   }
@@ -178,6 +184,7 @@ namespace RAYEX_NAMESPACE
     {
       _sync.waitForFrame( prevFrame );
       _scene.uploadEnvironmentMap( );
+      _scene.updateSceneDescriptors( );
     }
 
     if ( _scene._uploadGeometries )
@@ -210,6 +217,7 @@ namespace RAYEX_NAMESPACE
     {
       components::frameCount = -1;
     }
+
   } // namespace RAYEX_NAMESPACE
 
   void Api::prepareFrame( )
@@ -267,13 +275,13 @@ namespace RAYEX_NAMESPACE
       vk::Result result = components::graphicsQueue.presentKHR( presentInfo );
       if ( result == vk::Result::eErrorOutOfDateKHR || result == vk::Result::eSuboptimalKHR )
       {
-        _needSwapchainRecreate = true;
+        _settings.triggerSwapchainRefresh( );
         RX_WARN( "Swapchain out of data or suboptimal." );
       }
     }
     catch ( ... )
     {
-      _needSwapchainRecreate = true;
+      _settings.triggerSwapchainRefresh( );
     }
 
     prevFrame    = currentFrame;
@@ -282,6 +290,29 @@ namespace RAYEX_NAMESPACE
 
   void Api::updateSettings( )
   {
+    if ( _settings._maxGeometryChanged || _settings._maxMeshesChanged || _settings._maxTexturesChanged )
+    {
+      //components::device.waitIdle( );
+      _sync.waitForFrame( prevFrame );
+
+      _settings._maxGeometryChanged = false;
+      _settings._maxMeshesChanged   = false;
+      _settings._maxTexturesChanged = false;
+
+      _scene._vertexBuffers.resize( _settings._maxGeometry );
+      _scene._indexBuffers.resize( _settings._maxGeometry );
+      _scene._meshBuffers.resize( _settings._maxMeshes );
+      _scene._textures.resize( _settings._maxTextures );
+
+      // @todo check if this cant be just waiting for frame instead
+      _scene.initGeoemtryDescriptorSets( );
+      _scene.updateGeoemtryDescriptors( );
+
+      // Temporary fix:
+      static bool firstRun = true;
+      firstRun ? firstRun = false : _settings._refreshPipeline = true;
+    }
+
     // Handle pipeline refresh
     if ( _settings._refreshPipeline )
     {
@@ -290,15 +321,18 @@ namespace RAYEX_NAMESPACE
       // Calling wait idle, because pipeline recreation is assumed to be a very rare event to happen.
       components::device.waitIdle( );
 
+      /*
 #ifdef RX_COPY_ASSETS
       // Copies shader resources to binary output directory. This way a shader can be changed during runtime.
       // Make sure only to edit the ones in /assets/shaders and not in /build/bin/debug/assets/shaders as the latter gets overridden.
       RX_INFO( "Copying shader resources to binary output directory. " );
       std::filesystem::copy( RX_ASSETS_PATH "shaders", RX_PATH_TO_LIBRARY "shaders", std::filesystem::copy_options::overwrite_existing | std::filesystem::copy_options::recursive );
 #endif
+      */
 
       initPipelines( );
       _pathTracer.createShaderBindingTable( );
+      _pathTracer.updateDescriptors( );
     }
 
     // Handle swapchain refresh
@@ -313,6 +347,7 @@ namespace RAYEX_NAMESPACE
   void Api::render( )
   {
     updateSettings( );
+    update( );
 
     // If the window is minimized then simply do not render anything anymore.
     if ( _window->minimized( ) )
@@ -321,18 +356,13 @@ namespace RAYEX_NAMESPACE
     }
 
     // If the window size has changed the swapchain has to be recreated.
-    if ( _window->changed( ) || _needSwapchainRecreate )
+    if ( _window->changed( ) )
     {
       _camera->_updateProj = true;
-
-      _needSwapchainRecreate = false;
-      recreateSwapchain( );
       return;
     }
 
     prepareFrame( );
-
-    update( );
 
     recordSwapchainCommandBuffers( );
 
@@ -389,8 +419,6 @@ namespace RAYEX_NAMESPACE
                                                                   _scene._geometryDescriptors.layout.get( ) };
 
     _pathTracer.createPipeline( descriptorSetLayouts, &_settings );
-
-    _pipelinesReady            = true;
     _settings._refreshPipeline = false;
 
     RX_LOG_TIME_STOP( "Finished graphic pipelines initialization" );
@@ -406,7 +434,7 @@ namespace RAYEX_NAMESPACE
 
   void Api::recordSwapchainCommandBuffers( )
   {
-    RX_ASSERT( _pipelinesReady, "Can not record swapchain command buffers because the pipelines have not been initialized yet." );
+    RX_ASSERT( _pathTracer.getPipeline( ) && _postProcessingRenderer.getPipeline( ), "Can not record swapchain command buffers because the pipelines have not been initialized yet." );
 
     // Wait for previous frame to finish command buffer execution.
     _sync.waitForFrame( prevFrame );

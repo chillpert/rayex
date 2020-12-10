@@ -25,15 +25,6 @@ namespace RAYEX_NAMESPACE
     friend Api;
     friend Rayex;
 
-    Scene& operator=( const Scene& scene )
-    {
-      RX_INFO( "Scene operator=" );
-
-      //*this = scene;
-
-      return *this;
-    }
-
     /// @return Returns all geometry instances in the scene.
     auto getGeometryInstances( ) const -> const std::vector<std::shared_ptr<GeometryInstance>>&;
 
@@ -105,6 +96,10 @@ namespace RAYEX_NAMESPACE
     auto getCamera( ) const -> std::shared_ptr<Camera> { return _currentCamera; }
 
   private:
+    void initSceneDescriptorSets( );
+
+    void initGeoemtryDescriptorSets( );
+
     void prepareBuffers( );
 
     void initCameraBuffer( );
@@ -122,8 +117,6 @@ namespace RAYEX_NAMESPACE
     void addDummy( );
 
     void removeDummy( );
-
-    void initDescriptorSets( );
 
     void updateSceneDescriptors( );
 

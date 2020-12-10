@@ -24,6 +24,7 @@ namespace RAYEX_NAMESPACE
     _api._window          = _window;
     _api._camera          = _api._scene._currentCamera;
     _api._scene._settings = &_api._settings;
+    _api._settings._scene = &_api._scene;
 
     if ( _api._settings.getAssetsPath( ).empty( ) )
     {

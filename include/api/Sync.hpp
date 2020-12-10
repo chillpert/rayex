@@ -1,6 +1,6 @@
 #pragma once
 
-#include "api/Components.hpp"
+#include "pch/stdafx.hpp"
 
 namespace RAYEX_NAMESPACE
 {
@@ -17,26 +17,9 @@ namespace RAYEX_NAMESPACE
 
     auto getFinishedRenderSemaphore( size_t imageIndex ) -> vk::Semaphore { return _finishedRenderSemaphores[imageIndex].get( ); }
 
-    void init( )
-    {
-      _imageAvailableSemaphores.resize( _maxFramesInFlight );
-      _finishedRenderSemaphores.resize( _maxFramesInFlight );
-      _inFlightFences.resize( _maxFramesInFlight );
-      _imagesInFlight.resize( components::swapchainImageCount, nullptr );
+    void init( );
 
-      for ( size_t i = 0; i < _maxFramesInFlight; ++i )
-      {
-        _imageAvailableSemaphores[i] = vk::Initializer::initSemaphoreUnique( );
-        _finishedRenderSemaphores[i] = vk::Initializer::initSemaphoreUnique( );
-        _inFlightFences[i]           = vk::Initializer::initFenceUnique( vk::FenceCreateFlagBits::eSignaled );
-      }
-    }
-
-    void waitForFrame( size_t frame )
-    {
-      vk::Result result = components::device.waitForFences( 1, &_inFlightFences[frame].get( ), VK_TRUE, UINT64_MAX );
-      RX_ASSERT( result == vk::Result::eSuccess, "Failed to wait for fences." );
-    }
+    void waitForFrame( size_t frame );
 
   private:
     std::vector<vk::Fence> _imagesInFlight;

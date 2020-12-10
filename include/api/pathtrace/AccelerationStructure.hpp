@@ -1,6 +1,5 @@
 #pragma once
 
-#include "api/Components.hpp"
 #include "pch/stdafx.hpp"
 
 namespace RAYEX_NAMESPACE
@@ -13,14 +12,7 @@ namespace RAYEX_NAMESPACE
     vk::DeviceMemory memory;         ///< The acceleration structure's memory.
 
     /// Used to destroy the acceleration structure and free its memory.
-    void destroy( )
-    {
-      if ( as )
-        components::device.destroyAccelerationStructureKHR( as );
-
-      if ( memory )
-        components::device.freeMemory( memory );
-    }
+    void destroy( );
   };
 
   /// A wrapper for a top level acceleration structure.

@@ -1,5 +1,6 @@
 #include "api/buffers/Buffer.hpp"
 
+#include "api/Components.hpp"
 #include "api/buffers/CommandBuffer.hpp"
 #include "api/utility/Helpers.hpp"
 #include "api/utility/Initializers.hpp"

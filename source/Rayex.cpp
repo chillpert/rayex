@@ -1,5 +1,7 @@
 #include "Rayex.hpp"
 
+#include "api/Components.hpp"
+
 #include <utility>
 
 namespace RAYEX_NAMESPACE

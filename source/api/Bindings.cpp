@@ -1,5 +1,7 @@
 #include "api/Bindings.hpp"
 
+#include "api/Components.hpp"
+
 namespace RAYEX_NAMESPACE
 {
   void Bindings::add( uint32_t binding, vk::DescriptorType type, vk::ShaderStageFlags stage, uint32_t count, vk::DescriptorBindingFlags flags, vk::Sampler* pImmutableSamplers )

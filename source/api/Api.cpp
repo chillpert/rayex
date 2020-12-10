@@ -1,5 +1,6 @@
 #include "api/Api.hpp"
 
+#include "api/Components.hpp"
 #include "api/utility/Helpers.hpp"
 #include "api/utility/Initializers.hpp"
 #include "api/utility/Util.hpp"
@@ -199,7 +200,7 @@ namespace RAYEX_NAMESPACE
     {
       components::frameCount = -1;
     }
-  } // namespace RAYEX_NAMESPACE
+  }
 
   void Api::prepareFrame( )
   {

@@ -1,7 +1,6 @@
 #pragma once
 
 #include "api/Bindings.hpp"
-#include "api/Components.hpp"
 #include "api/PostProcessingRenderer.hpp"
 #include "api/RenderPass.hpp"
 #include "api/Surface.hpp"

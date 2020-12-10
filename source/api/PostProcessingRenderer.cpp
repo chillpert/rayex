@@ -1,5 +1,6 @@
 #include "api/PostProcessingRenderer.hpp"
 
+#include "api/Components.hpp"
 #include "api/Swapchain.hpp"
 
 namespace RAYEX_NAMESPACE

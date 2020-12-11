@@ -3,25 +3,10 @@
 #extension GL_EXT_scalar_block_layout : enable
 #extension GL_EXT_nonuniform_qualifier : enable
 
+#include "Geometry.glsl"
 #include "Instance.glsl"
-#include "Lights.glsl"
 #include "Random.glsl"
 #include "Ray.glsl"
-
-#define TOTAL_DIRECTIONAL_LIGHTS 1
-#define TOTAL_POINT_LIGHTS       1
-
-#define TOTAL_MODELS 1
-
-struct Vertex
-{
-  vec3 pos;
-  vec3 normal;
-  vec3 color;
-  vec2 texCoord;
-
-  float padding0;
-};
 
 hitAttributeEXT vec3 attribs;
 
@@ -70,11 +55,11 @@ layout( push_constant ) uniform Constants
   uint padding3;
 };
 
-Vertex unpackVertex( uint index, uint modelIndex )
+Vertex unpackVertex( uint index, uint geometryIndex )
 {
-  vec4 d0 = vertices[nonuniformEXT( modelIndex )].v[3 * index + 0];
-  vec4 d1 = vertices[nonuniformEXT( modelIndex )].v[3 * index + 1];
-  vec4 d2 = vertices[nonuniformEXT( modelIndex )].v[3 * index + 2];
+  vec4 d0 = vertices[nonuniformEXT( geometryIndex )].v[3 * index + 0];
+  vec4 d1 = vertices[nonuniformEXT( geometryIndex )].v[3 * index + 1];
+  vec4 d2 = vertices[nonuniformEXT( geometryIndex )].v[3 * index + 2];
 
   Vertex v;
   v.pos      = d0.xyz;
@@ -86,15 +71,15 @@ Vertex unpackVertex( uint index, uint modelIndex )
 
 void main( )
 {
-  uint modelIndex = geometryInstances.i[gl_InstanceID].modelIndex;
+  uint geometryIndex = geometryInstances.i[gl_InstanceID].geometryIndex;
 
-  ivec3 ind = ivec3( indices[nonuniformEXT( modelIndex )].i[3 * gl_PrimitiveID + 0],   //
-                     indices[nonuniformEXT( modelIndex )].i[3 * gl_PrimitiveID + 1],   //
-                     indices[nonuniformEXT( modelIndex )].i[3 * gl_PrimitiveID + 2] ); //
+  ivec3 ind = ivec3( indices[nonuniformEXT( geometryIndex )].i[3 * gl_PrimitiveID + 0],   //
+                     indices[nonuniformEXT( geometryIndex )].i[3 * gl_PrimitiveID + 1],   //
+                     indices[nonuniformEXT( geometryIndex )].i[3 * gl_PrimitiveID + 2] ); //
 
-  Vertex v0 = unpackVertex( ind.x, modelIndex );
-  Vertex v1 = unpackVertex( ind.y, modelIndex );
-  Vertex v2 = unpackVertex( ind.z, modelIndex );
+  Vertex v0 = unpackVertex( ind.x, geometryIndex );
+  Vertex v1 = unpackVertex( ind.y, geometryIndex );
+  Vertex v2 = unpackVertex( ind.z, geometryIndex );
 
   const vec3 barycentrics = vec3( 1.0 - attribs.x - attribs.y, attribs.x, attribs.y );
   // Computing the normal at hit position
@@ -112,21 +97,21 @@ void main( )
   // The following lines access the meshes SSBO to figure out to which submesh the current face belongs and retrieve its material.
   Material mat;
   bool found       = false;
-  int subMeshCount = meshes[nonuniformEXT( modelIndex )].m.length( );
+  int subMeshCount = meshes[nonuniformEXT( geometryIndex )].m.length( );
 
   for ( int i = 0; i < subMeshCount; ++i )
   {
-    uint offset     = meshes[nonuniformEXT( modelIndex )].m[i].indexOffset;
+    uint offset     = meshes[nonuniformEXT( geometryIndex )].m[i].indexOffset;
     uint prevOffset = 0;
 
     if ( i > 0 )
     {
-      prevOffset = meshes[nonuniformEXT( modelIndex )].m[i - 1].indexOffset;
+      prevOffset = meshes[nonuniformEXT( geometryIndex )].m[i - 1].indexOffset;
     }
 
     if ( gl_PrimitiveID < offset && gl_PrimitiveID >= prevOffset )
     {
-      mat   = meshes[nonuniformEXT( modelIndex )].m[i].material;
+      mat   = meshes[nonuniformEXT( geometryIndex )].m[i].material;
       found = true;
       break;
     }

@@ -16,8 +16,16 @@ namespace RAYEX_NAMESPACE
     std::string diffuseTexPath  = "";
     std::string specularTexPath = "";
 
-    glm::vec3 emission      = glm::vec3( 0.0F );
-    glm::vec3 transmittance = glm::vec3( 0.0F );
+    glm::vec3 emission = glm::vec3( 0.0F );
+
+    /// 0 - A constant color illumination model, using the Kd for the material.
+    /// 1 - A diffuse illumination model using Lambertian shading, taking into account Ka, Kd, the intensity and position of each light source and the angle at which it strikes the surface.
+    /// 2 - A diffuse and specular illumination model using Lambertian shading and Blinn's interpretation of Phong's specular illumination model, taking into account Ka, Kd, Ks, and the intensity and position of each light source and the angle at which it strikes the surface.
+    uint32_t illuminationModel = 0;
+
+    /// Transparency (Ranges between 0.0 and 1.0)
+    /// Either as d (where d = 1.0 means the material being fully opqaue) or Tr (where Tr = 1.0 means fully transparent).
+    float opaque = 1.0F;
   };
 
   /// Describes a sub-mesh and its material.

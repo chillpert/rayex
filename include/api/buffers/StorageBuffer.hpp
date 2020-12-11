@@ -2,6 +2,7 @@
 
 #include "api/buffers/Buffer.hpp"
 #include "api/utility/Initializers.hpp"
+#include "base/Geometry.hpp"
 
 namespace RAYEX_NAMESPACE
 {
@@ -9,19 +10,38 @@ namespace RAYEX_NAMESPACE
   /// @ingroup API
   struct MeshSSBO
   {
+    MeshSSBO( ) = default;
+
+    MeshSSBO( const Mesh& mesh, float diffuseTexIndex )
+    {
+      set( mesh, diffuseTexIndex );
+    }
+
     glm::vec4 ambient  = glm::vec4( 1.0F, 1.0F, 1.0F, -1.0F ); // vec3 ambient  + vec1 texture index
     glm::vec4 diffuse  = glm::vec4( 0.2F, 1.0F, 1.0F, -1.0F ); // vec3 diffuse  + vec1 texture index
     glm::vec4 specular = glm::vec4( 1.0F, 1.0F, 1.0F, -1.0F ); // vec3 specular + vec1 texture index
+    glm::vec4 emission = glm::vec4( 1.0F );
 
-    glm::vec4 emission  = glm::vec4( 1.0F );
-    glm::vec4 emittance = glm::vec4( 1.0F );
-    glm::vec4 padding0  = glm::vec4( 1.0F ); ///< Buffer padding (ignore).
+    uint32_t illuminationModel = 0;
+    float opaque               = 1.0F;
+    uint32_t padding0          = 0; ///< Buffer padding (ignore).
+    uint32_t padding1          = 0; ///< Buffer padding (ignore).
 
     uint32_t indexOffset = 0; ///< Refers to the offset of this mesh inside a Geometry::indices container.
+    uint32_t padding2    = 0; ///< Buffer padding (ignore).
+    uint32_t padding3    = 0; ///< Buffer padding (ignore).
+    uint32_t padding4    = 0; ///< Buffer padding (ignore).
 
-    uint32_t padding1 = 0; ///< Buffer padding (ignore).
-    uint32_t padding2 = 0; ///< Buffer padding (ignore).
-    uint32_t padding3 = 0; ///< Buffer padding (ignore).
+    void set( const Mesh& mesh, float diffuseTexIndex )
+    {
+      ambient           = glm::vec4( mesh.material.ambient, -1.0F );
+      diffuse           = glm::vec4( mesh.material.diffuse, diffuseTexIndex );
+      specular          = glm::vec4( mesh.material.specular, -1.0F );
+      emission          = glm::vec4( mesh.material.emission, 1.0F );
+      illuminationModel = mesh.material.illuminationModel;
+      opaque            = mesh.material.opaque;
+      indexOffset       = mesh.indexOffset;
+    }
   };
 
   /// A wrapper for GeometryInstanceSSBO matching the buffer alignment requirements.

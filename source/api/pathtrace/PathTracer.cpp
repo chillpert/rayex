@@ -57,7 +57,7 @@ namespace RAYEX_NAMESPACE
     allDynamicBlas.clear( );
   }
 
-  auto PathTracer::modelToBlas( StorageBuffer<Vertex>& vertexBuffer, const StorageBuffer<uint32_t>& indexBuffer, bool allowTransforms ) const -> Blas
+  auto PathTracer::modelToBlas( const StorageBuffer<Vertex>& vertexBuffer, const StorageBuffer<uint32_t>& indexBuffer, bool allowTransforms ) const -> Blas
   {
     vk::AccelerationStructureCreateGeometryTypeInfoKHR asCreate( vk::GeometryTypeKHR::eTriangles,    // geometryType
                                                                  indexBuffer.getCount( ) / 3,        // maxPrimitiveCount
@@ -76,9 +76,9 @@ namespace RAYEX_NAMESPACE
                                                                  indexAddress,          // indexData
                                                                  { } );                 // transformData
 
-    vk::AccelerationStructureGeometryKHR asGeom( asCreate.geometryType,              // geometryType
-                                                 triangles,                          // geometry
-                                                 vk::GeometryFlagBitsKHR::eOpaque ); // flags
+    vk::AccelerationStructureGeometryKHR asGeom( asCreate.geometryType,                                   // geometryType
+                                                 triangles,                                               // geometry
+                                                 vk::GeometryFlagBitsKHR::eNoDuplicateAnyHitInvocation ); // flags
 
     vk::AccelerationStructureBuildOffsetInfoKHR offset( asCreate.maxPrimitiveCount, // primitiveCount
                                                         0,                          // primitiveOffset
@@ -594,6 +594,7 @@ namespace RAYEX_NAMESPACE
     auto rgen       = vk::Initializer::initShaderModuleUnique( "shaders/PathTrace.rgen" );
     auto miss       = vk::Initializer::initShaderModuleUnique( "shaders/PathTrace.rmiss" );
     auto chit       = vk::Initializer::initShaderModuleUnique( "shaders/PathTrace.rchit" );
+    auto ahit       = vk::Initializer::initShaderModuleUnique( "shaders/PathTrace.rahit" );
     auto missShadow = vk::Initializer::initShaderModuleUnique( "shaders/PathTraceShadow.rmiss" );
 
     vk::PushConstantRange ptPushConstant( vk::ShaderStageFlagBits::eRaygenKHR | vk::ShaderStageFlagBits::eMissKHR | vk::ShaderStageFlagBits::eClosestHitKHR, // stageFlags
@@ -611,11 +612,12 @@ namespace RAYEX_NAMESPACE
     _layout = components::device.createPipelineLayoutUnique( layoutInfo );
     RX_ASSERT( _layout.get( ), "Failed to create pipeline layout for path tracing pipeline." );
 
-    std::array<vk::PipelineShaderStageCreateInfo, 4> shaderStages;
+    std::array<vk::PipelineShaderStageCreateInfo, 5> shaderStages;
     shaderStages[0] = vk::Helper::getPipelineShaderStageCreateInfo( vk::ShaderStageFlagBits::eRaygenKHR, rgen.get( ) );
     shaderStages[1] = vk::Helper::getPipelineShaderStageCreateInfo( vk::ShaderStageFlagBits::eMissKHR, miss.get( ) );
     shaderStages[2] = vk::Helper::getPipelineShaderStageCreateInfo( vk::ShaderStageFlagBits::eMissKHR, missShadow.get( ) );
     shaderStages[3] = vk::Helper::getPipelineShaderStageCreateInfo( vk::ShaderStageFlagBits::eClosestHitKHR, chit.get( ) );
+    shaderStages[4] = vk::Helper::getPipelineShaderStageCreateInfo( vk::ShaderStageFlagBits::eAnyHitKHR, ahit.get( ) );
 
     // Set up path tracing shader groups.
     std::array<vk::RayTracingShaderGroupCreateInfoKHR, 4> groups;
@@ -638,6 +640,7 @@ namespace RAYEX_NAMESPACE
     groups[2].type          = vk::RayTracingShaderGroupTypeKHR::eGeneral;
 
     groups[3].closestHitShader = 3;
+    groups[3].anyHitShader     = 4;
     groups[3].type             = vk::RayTracingShaderGroupTypeKHR::eTrianglesHitGroup;
 
     _shaderGroups = static_cast<uint32_t>( groups.size( ) );

@@ -62,7 +62,7 @@ void main( )
     vec3 weight   = vec3( 1.0F );
     vec3 hitValue = vec3( 0.0F );
 
-    uint rayFlags = gl_RayFlagsOpaqueEXT;
+    uint rayFlags = gl_RayFlagsNoneEXT;
     float tMin    = 0.001;
     float tMax    = 10000.0;
 

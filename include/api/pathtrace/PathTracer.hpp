@@ -67,7 +67,7 @@ namespace RAYEX_NAMESPACE
     /// @param vertexBuffer A vertex buffer of some geometry.
     /// @param indexBuffer An index buffer of some geometry.
     /// @return Returns the bottom level acceleration structure.
-    auto modelToBlas( StorageBuffer<Vertex>& vertexBuffer, const StorageBuffer<uint32_t>& indexBuffer, bool allowTransforms ) const -> Blas;
+    auto modelToBlas( const StorageBuffer<Vertex>& vertexBuffer, const StorageBuffer<uint32_t>& indexBuffer, bool allowTransforms ) const -> Blas;
 
     /// Used to convert a bottom level acceleration structure instance to a Vulkan geometry instance.
     /// @param instance A bottom level acceleration structure instance.

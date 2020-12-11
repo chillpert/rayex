@@ -6,5 +6,5 @@ struct RayPayLoad
   vec3 weight;
   uint seed;
   uint depth;
-  //float reflectivity;
+  float reflectivity;
 };

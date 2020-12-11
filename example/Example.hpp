@@ -1,12 +1,13 @@
 #include "Rayex.hpp"
 
-enum class Scene
+enum class Level
 {
   eCornell,
-  eDebug
+  eDebug,
+  eSpheres
 };
 
-inline Scene currentScene;
+inline Level currentLevel;
 
 inline auto getRandomUniquePosition( float min, float max ) -> glm::vec3
 {
@@ -105,13 +106,13 @@ inline void addAwp( rx::Rayex* renderer )
   renderer->scene( ).submitGeometryInstance( awpInstance );
 }
 
-inline void loadScene( rx::Rayex* renderer, Scene scene )
+inline void loadScene( rx::Rayex* renderer, Level scene )
 {
-  currentScene = scene;
+  currentLevel = scene;
 
   renderer->scene( ).getCamera( )->reset( );
 
-  if ( scene == Scene::eCornell )
+  if ( scene == Level::eCornell )
   {
     renderer->reset( );
     renderer->settings( ).setMaxGeoemtry( 1 ); // Will give a warning.
@@ -134,7 +135,7 @@ inline void loadScene( rx::Rayex* renderer, Scene scene )
 
     renderer->scene( ).removeEnvironmentMap( );
   }
-  else
+  else if ( scene == Level::eDebug )
   {
     renderer->reset( );
     renderer->settings( ).setMaxGeoemtry( 5 ); // Will give a warning.
@@ -180,6 +181,27 @@ inline void loadScene( rx::Rayex* renderer, Scene scene )
 
     renderer->scene( ).setEnvironmentMap( "models/skybox/cubemap_yokohama_rgba.ktx" );
   }
+  else if ( scene == Level::eSpheres )
+  {
+    renderer->reset( );
+    renderer->settings( ).setMaxGeoemtry( 1 ); // Will give a warning.
+    renderer->settings( ).setMaxGeometryInstances( 1000 );
+    renderer->settings( ).setMaxTextures( 1 ); // Will give a warning.
+
+    renderer->settings( ).setAccumulatingFrames( true );
+
+    auto sphere = rx::loadObj( "models/sphere.obj" );
+    rx::Material mat;
+    sphere->setMaterial( mat );
+
+    renderer->scene( ).setGeometries( { sphere } );
+
+    auto sphereInstance = rx::instance( sphere );
+
+    renderer->scene( ).setGeometryInstances( { sphereInstance } );
+
+    renderer->scene( ).setEnvironmentMap( "models/skybox/cubemap_yokohama_rgba.ktx" );
+  }
 }
 
 void updateScene( rx::Rayex* renderer )
@@ -194,11 +216,11 @@ void updateScene( rx::Rayex* renderer )
     addSphere( renderer );
   }
 
-  if ( currentScene == Scene::eCornell )
+  if ( currentLevel == Level::eCornell )
   {
     // No updates needed.
   }
-  else
+  else if ( currentLevel == Level::eDebug )
   {
     auto instances = renderer->scene( ).getGeometryInstances( );
 
@@ -209,5 +231,8 @@ void updateScene( rx::Rayex* renderer )
         instances[0]->setTransform( glm::rotate( instances[0]->transform, rx::Time::getDeltaTime( ) * 0.5F, glm::vec3( 0.0F, 1.0F, 0.0F ) ) );
       }
     }
+  }
+  else if ( currentLevel == Level::eSpheres )
+  {
   }
 }

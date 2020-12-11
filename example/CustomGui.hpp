@@ -1,8 +1,8 @@
 #ifndef CUSTOM_GUI_HPP
 #define CUSTOM_GUI_HPP
 
+#include "Example.hpp"
 #include "Keys.hpp"
-#include "Scenes.hpp"
 
 class CustomGui : public rx::Gui
 {
@@ -229,14 +229,21 @@ private:
       {
         if ( ImGui::Button( "Cornell" ) )
         {
-          loadScene( _renderer, Scene::eCornell );
+          loadScene( _renderer, Level::eCornell );
         }
 
         ImGui::SameLine( );
 
         if ( ImGui::Button( "Debug" ) )
         {
-          loadScene( _renderer, Scene::eDebug );
+          loadScene( _renderer, Level::eDebug );
+        }
+
+        ImGui::SameLine( );
+
+        if ( ImGui::Button( "Spheres" ) )
+        {
+          loadScene( _renderer, Level::eSpheres );
         }
       }
     }

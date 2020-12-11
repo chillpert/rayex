@@ -40,7 +40,7 @@ layout( push_constant ) uniform Constants
 
 void main( )
 {
-  uint seed      = tea( gl_LaunchIDEXT.y * gl_LaunchSizeEXT.x + gl_LaunchIDEXT.x, int( clockARB( ) ) );
+  uint seed      = tea( gl_LaunchIDEXT.y * gl_LaunchSizeEXT.x + gl_LaunchIDEXT.x, frameCount );
   vec3 hitValues = vec3( 0.0 );
 
   for ( uint i = 0; i < sampleRatePerPixel; ++i )

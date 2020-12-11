@@ -78,13 +78,16 @@ void main( )
     }
   }
 
-  // Transparency
-  if ( mat.opaque == 0.0 )
+  if ( found )
   {
-    ignoreIntersectionEXT( );
-  }
-  else if ( rnd( ray.seed ) > mat.opaque )
-  {
-    ignoreIntersectionEXT( );
+    // Transparency
+    if ( mat.opaque == 0.0 )
+    {
+      ignoreIntersectionEXT( );
+    }
+    else if ( rnd( ray.seed ) > mat.opaque )
+    {
+      ignoreIntersectionEXT( );
+    }
   }
 }

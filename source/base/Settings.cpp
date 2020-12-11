@@ -96,7 +96,7 @@ namespace RAYEX_NAMESPACE
       amount = 16;
     }
 
-    _maxGeometry = amount;
+    _maxGeometry = ++amount;
 
     _maxGeometryChanged = true;
   }
@@ -115,7 +115,7 @@ namespace RAYEX_NAMESPACE
       amount = 32;
     }
 
-    _maxMeshes = amount;
+    _maxMeshes = ++amount;
 
     _maxMeshesChanged = true;
   }
@@ -128,7 +128,7 @@ namespace RAYEX_NAMESPACE
       RX_WARN( "Can not use value 0 for the maximum amount of textures. Using 1 instead." );
     }
 
-    _maxTextures = amount;
+    _maxTextures = ++amount;
 
     _maxTexturesChanged = true;
   }

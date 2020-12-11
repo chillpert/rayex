@@ -41,7 +41,7 @@ layout( push_constant ) uniform Constants
 void main( )
 {
   uint seed      = tea( gl_LaunchIDEXT.y * gl_LaunchSizeEXT.x + gl_LaunchIDEXT.x, int( clockARB( ) ) );
-  vec3 hitValues = vec3( 0.0F );
+  vec3 hitValues = vec3( 0.0 );
 
   for ( uint i = 0; i < sampleRatePerPixel; ++i )
   {
@@ -51,16 +51,17 @@ void main( )
     const vec2 inUV          = positionWithinPixel / vec2( gl_LaunchSizeEXT.xy );
     vec2 d                   = inUV * 2.0F - 1.0F;
 
-    vec4 origin    = cam.viewInverse * vec4( 0.0F, 0.0F, 0.0F, 1.0F );
-    vec4 target    = cam.projInverse * vec4( d.x, d.y, 1.0F, 1.0F );
-    vec4 direction = cam.viewInverse * vec4( normalize( target.xyz ), 0.0F );
+    vec4 origin    = cam.viewInverse * vec4( 0.0, 0.0, 0.0, 1.0 );
+    vec4 target    = cam.projInverse * vec4( d.x, d.y, 1.0, 1.0 );
+    vec4 direction = cam.viewInverse * vec4( normalize( target.xyz ), 0.0 );
 
     ray.rayDirection = direction.xyz;
     ray.rayOrigin    = origin.xyz;
-    ray.weight       = vec3( 0.0F );
+    ray.weight       = vec3( 0.0 );
+    //ray.reflectivity = 0.0;
 
-    vec3 weight   = vec3( 1.0F );
-    vec3 hitValue = vec3( 0.0F );
+    vec3 weight   = vec3( 1.0 );
+    vec3 hitValue = vec3( 0.0 );
 
     uint rayFlags = gl_RayFlagsNoneEXT;
     float tMin    = 0.001;
@@ -95,7 +96,7 @@ void main( )
   {
     vec3 oldColor = imageLoad( image, ivec2( gl_LaunchIDEXT.xy ) ).xyz;
     // Linearly interpolate between old and latest color.
-    finalColor = vec4( mix( oldColor, ray.hitValue, 1.0F / float( frameCount + 1 ) ), 1.0F );
+    finalColor = vec4( mix( oldColor, ray.hitValue, 1.0 / float( frameCount + 1 ) ), 1.0F );
     imageStore( image, ivec2( gl_LaunchIDEXT.xy ), finalColor );
   }
   else

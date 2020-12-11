@@ -154,4 +154,6 @@ void main( )
   ray.rayDirection = rayDirection;
   ray.weight       = BRDF * cos_theta / p;
   ray.hitValue     = emission;
+  //ray.reflectivity = 0.0;
+  //ray.reflectivity = 0.9;
 }

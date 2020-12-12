@@ -82,12 +82,12 @@ vec3 getAmbientLight( Material mat, vec2 texCoord )
   return ambientStrength * ambient;
 }
 
-vec3 getDiffuseLight( Material mat, vec2 texCoord, vec3 lightPos, )
+vec3 getDiffuseLight( Material mat, vec2 texCoord )
 {
   vec3 diffuse = mat.diffuse.xyz;
   if ( mat.diffuse.w != -1.0 )
   {
-    diffuse += texture( textures[nonuniformEXT( int( mat.diffuse.w ) )], texCoord ).xyz;
+    diffuse = texture( textures[nonuniformEXT( int( mat.diffuse.w ) )], texCoord ).xyz;
   }
 
   return diffuse;
@@ -95,13 +95,8 @@ vec3 getDiffuseLight( Material mat, vec2 texCoord, vec3 lightPos, )
 
 vec3 getSpecularLight( Material mat, vec2 texCoord, vec3 viewDir, vec3 lightDir, vec3 normal )
 {
-  //if ( mat.illum < 2 )
-  //{
-  //  return vec3( 0 );
-  //}
-
-  const float shininess        = max( 16.0, 4.0 );
-  const float specularStrength = 0.5;
+  const float shininess        = max( mat.ns, 4.0 );
+  const float specularStrength = 1.0; //0.5;
 
   viewDir         = normalize( -viewDir );
   vec3 reflectDir = reflect( -lightDir, normal );
@@ -113,7 +108,7 @@ vec3 getSpecularLight( Material mat, vec2 texCoord, vec3 viewDir, vec3 lightDir,
     specularColor += texture( textures[nonuniformEXT( int( mat.specular.w ) )], texCoord ).xyz;
   }
 
-  return specularStrength * specular * specularColor; // vec3( 1.0 ) should be mat.specular which is the color of the specular light
+  return specularStrength * specular * specularColor;
 }
 
 void main( )
@@ -183,9 +178,21 @@ void main( )
   {
     emission = mat.emission.xyz;
 
-    ambient  = getAmbientLight( mat, texCoord );
-    diffuse  = getDiffuseLight( mat, texCoord );
-    specular = getSpecularLight( mat, texCoord, gl_WorldRayDirectionEXT, rayDirection, normal );
+    if ( mat.illum == 0 )
+    {
+      diffuse = getDiffuseLight( mat, texCoord );
+    }
+    else if ( mat.illum == 1 )
+    {
+      ambient = getAmbientLight( mat, texCoord );
+      diffuse = getDiffuseLight( mat, texCoord );
+    }
+    else if ( mat.illum == 2 )
+    {
+      ambient  = getAmbientLight( mat, texCoord );
+      diffuse  = getDiffuseLight( mat, texCoord );
+      specular = getSpecularLight( mat, texCoord, gl_WorldRayDirectionEXT, rayDirection, normal );
+    }
   }
 
   // Compute the BRDF for this ray (assuming Lambertian reflection)

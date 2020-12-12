@@ -5,10 +5,10 @@ struct Material
   vec4 specular; // vec3 specular + vec1 texture index
   vec4 emission; // vec3 emission
 
-  uint illuminationModel; // illum
-  float opaque;           // d / Tr
-  uint padding0;
-  uint padding1;
+  uint illum;
+  float d;
+  float ns;
+  float ni;
 };
 
 struct Mesh

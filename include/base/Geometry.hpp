@@ -5,12 +5,14 @@
 namespace RAYEX_NAMESPACE
 {
   /// Describes the rendering properties of a mesh.
+  ///
+  /// Property descriptions copied from https://www.loc.gov/preservation/digital/formats/fdd/fdd000508.shtml.
   /// @ingroup BASE
   struct Material
   {
-    glm::vec3 ambient  = glm::vec3( 1.0F, 1.0F, 1.0F );
-    glm::vec3 diffuse  = glm::vec3( 1.0F, 1.0F, 1.0F );
-    glm::vec3 specular = glm::vec3( 1.0F, 1.0F, 1.0F );
+    glm::vec3 ka = glm::vec3( 1.0F, 1.0F, 1.0F ); /// Ambient color
+    glm::vec3 kd = glm::vec3( 1.0F, 1.0F, 1.0F ); /// Diffuse color
+    glm::vec3 ks = glm::vec3( 1.0F, 1.0F, 1.0F ); /// Specular color
 
     std::string ambientTexPath  = "";
     std::string diffuseTexPath  = "";
@@ -18,14 +20,20 @@ namespace RAYEX_NAMESPACE
 
     glm::vec3 emission = glm::vec3( 0.0F );
 
+    /// Illumination model.
     /// 0 - A constant color illumination model, using the Kd for the material.
     /// 1 - A diffuse illumination model using Lambertian shading, taking into account Ka, Kd, the intensity and position of each light source and the angle at which it strikes the surface.
     /// 2 - A diffuse and specular illumination model using Lambertian shading and Blinn's interpretation of Phong's specular illumination model, taking into account Ka, Kd, Ks, and the intensity and position of each light source and the angle at which it strikes the surface.
-    uint32_t illuminationModel = 0;
+    uint32_t illum = 0;
 
-    /// Transparency (Ranges between 0.0 and 1.0)
-    /// Either as d (where d = 1.0 means the material being fully opqaue) or Tr (where Tr = 1.0 means fully transparent).
-    float opaque = 1.0F;
+    /// Specifies a factor for dissolve, how much this material dissolves into the background. A factor of 1.0 is fully opaque. A factor of 0.0 is completely transparent.
+    float d = 1.0F;
+
+    /// Focus of the specular light (aka shininess). Ranges from 0 to 1000, with a high value resulting in a tight, concentrated highlight.
+    float ns = 0.0F;
+
+    /// Optical density (aka index of refraction). Ranges from 0.001 to 10. A value of 1.0 means that light does not bend as it passes through an object.
+    float ni = 1.0F;
   };
 
   /// Describes a sub-mesh and its material.

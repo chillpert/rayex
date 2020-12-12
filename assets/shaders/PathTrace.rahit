@@ -81,11 +81,11 @@ void main( )
   if ( found )
   {
     // Transparency
-    if ( mat.opaque == 0.0 )
+    if ( mat.d == 0.0 )
     {
       ignoreIntersectionEXT( );
     }
-    else if ( rnd( ray.seed ) > mat.opaque )
+    else if ( rnd( ray.seed ) > mat.d )
     {
       ignoreIntersectionEXT( );
     }

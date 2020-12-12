@@ -151,8 +151,7 @@ inline void loadScene( rx::Rayex* renderer, Level scene )
 
     // Make a custom material for an emissive surface (light source).
     rx::Material customMaterial;
-    customMaterial.diffuseTexPath = "models/metal.png";
-    customMaterial.emission       = glm::vec3( 1.0F );
+    customMaterial.emission = glm::vec3( 1.0F );
     plane->setMaterial( customMaterial );
 
     // Submit geometries.
@@ -192,16 +191,17 @@ inline void loadScene( rx::Rayex* renderer, Level scene )
 
     auto sphere = rx::loadObj( "models/sphere.obj" );
     rx::Material mat;
-    mat.diffuse = glm::vec3( 0.0F, 0.0F, 0.0F );
+    mat.illum = 2;
+    mat.ns    = 1000.0F;
+    mat.kd    = glm::vec3( 0.0F, 0.0F, 1.0F );
+    mat.ks    = glm::vec3( 1.0F, 1.0F, 1.0F );
     sphere->setMaterial( mat );
 
     auto plane = rx::loadObj( "models/plane.obj" );
 
     // Make a custom material for an emissive surface (light source).
     rx::Material mat2;
-    mat2.diffuseTexPath = "models/metal.png";
-    mat2.emission       = glm::vec3( 1.0F );
-    //mat2.opaque         = 0.0F;
+    mat2.emission = glm::vec3( 1.0F );
     plane->setMaterial( mat2 );
 
     renderer->scene( ).setGeometries( { sphere, plane } );

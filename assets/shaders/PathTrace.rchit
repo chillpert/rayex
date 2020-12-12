@@ -69,6 +69,53 @@ Vertex unpackVertex( uint index, uint geometryIndex )
   return v;
 }
 
+vec3 getAmbientLight( Material mat, vec2 texCoord )
+{
+  const float ambientStrength = 0.1;
+
+  vec3 ambient = mat.ambient.xyz;
+  if ( mat.ambient.w != -1.0 )
+  {
+    ambient += texture( textures[nonuniformEXT( int( mat.ambient.w ) )], texCoord ).xyz;
+  }
+
+  return ambientStrength * ambient;
+}
+
+vec3 getDiffuseLight( Material mat, vec2 texCoord, vec3 lightPos, )
+{
+  vec3 diffuse = mat.diffuse.xyz;
+  if ( mat.diffuse.w != -1.0 )
+  {
+    diffuse += texture( textures[nonuniformEXT( int( mat.diffuse.w ) )], texCoord ).xyz;
+  }
+
+  return diffuse;
+}
+
+vec3 getSpecularLight( Material mat, vec2 texCoord, vec3 viewDir, vec3 lightDir, vec3 normal )
+{
+  //if ( mat.illum < 2 )
+  //{
+  //  return vec3( 0 );
+  //}
+
+  const float shininess        = max( 16.0, 4.0 );
+  const float specularStrength = 0.5;
+
+  viewDir         = normalize( -viewDir );
+  vec3 reflectDir = reflect( -lightDir, normal );
+  float specular  = pow( max( dot( viewDir, reflectDir ), 0.0 ), shininess );
+
+  vec3 specularColor = mat.specular.xyz;
+  if ( mat.specular.w != -1.0 )
+  {
+    specularColor += texture( textures[nonuniformEXT( int( mat.specular.w ) )], texCoord ).xyz;
+  }
+
+  return specularStrength * specular * specularColor; // vec3( 1.0 ) should be mat.specular which is the color of the specular light
+}
+
 void main( )
 {
   uint geometryIndex = geometryInstances.i[gl_InstanceID].geometryIndex;
@@ -94,7 +141,7 @@ void main( )
 
   vec2 texCoord = v0.texCoord * barycentrics.x + v1.texCoord * barycentrics.y + v2.texCoord * barycentrics.z;
 
-  // The following lines access the meshes SSBO to figure out to which submesh the current face belongs and retrieve its material.
+  // Access the meshes SSBO to figure out to which submesh the current triangle belongs and retrieve its material.
   Material mat;
   bool found       = false;
   int subMeshCount = meshes[nonuniformEXT( geometryIndex )].m.length( );
@@ -117,26 +164,6 @@ void main( )
     }
   }
 
-  // Diffuse lighting
-  vec3 diffuse  = vec3( 1.0 );
-  vec3 emission = vec3( 0.0 ); // emittance / emissiveFactor
-
-  if ( found )
-  {
-    emission = mat.emission.xyz;
-
-    // No texture assigned.
-    if ( mat.diffuse.w == -1.0F )
-    {
-      diffuse = mat.diffuse.xyz;
-    }
-    // Texture assigned.
-    else
-    {
-      diffuse = mat.diffuse.xyz + texture( textures[nonuniformEXT( int( mat.diffuse.w ) )], texCoord ).xyz;
-    }
-  }
-
   // Pick a random direction from here and keep going.
   vec3 tangent, bitangent;
   createCoordinateSystem( normal, tangent, bitangent );
@@ -146,14 +173,31 @@ void main( )
   // Probability of the new ray (cosine distributed)
   const float p = 1 / M_PI;
 
+  // Lighting
+  vec3 ambient  = vec3( 0.0 );
+  vec3 diffuse  = vec3( 0.0 );
+  vec3 specular = vec3( 0.0 );
+  vec3 emission = vec3( 0.0 ); // emittance / emissiveFactor
+
+  if ( found )
+  {
+    emission = mat.emission.xyz;
+
+    ambient  = getAmbientLight( mat, texCoord );
+    diffuse  = getDiffuseLight( mat, texCoord );
+    specular = getSpecularLight( mat, texCoord, gl_WorldRayDirectionEXT, rayDirection, normal );
+  }
+
   // Compute the BRDF for this ray (assuming Lambertian reflection)
-  float cos_theta = dot( rayDirection, normal );
-  vec3 BRDF       = diffuse.xyz / M_PI;
+  vec3 BRDF = ( ambient + diffuse + specular ) / M_PI;
+
+  float cosTheta = dot( rayDirection, normal );
 
   ray.rayOrigin    = rayOrigin;
   ray.rayDirection = rayDirection;
-  ray.weight       = BRDF * cos_theta / p;
+  ray.weight       = BRDF * cosTheta / p;
   ray.hitValue     = emission;
+
   //ray.reflectivity = 0.0;
   ray.reflectivity = 0.9;
 }

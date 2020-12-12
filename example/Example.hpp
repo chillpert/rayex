@@ -192,13 +192,28 @@ inline void loadScene( rx::Rayex* renderer, Level scene )
 
     auto sphere = rx::loadObj( "models/sphere.obj" );
     rx::Material mat;
+    mat.diffuse = glm::vec3( 0.0F, 0.0F, 0.0F );
     sphere->setMaterial( mat );
 
-    renderer->scene( ).setGeometries( { sphere } );
+    auto plane = rx::loadObj( "models/plane.obj" );
+
+    // Make a custom material for an emissive surface (light source).
+    rx::Material mat2;
+    mat2.diffuseTexPath = "models/metal.png";
+    mat2.emission       = glm::vec3( 1.0F );
+    //mat2.opaque         = 0.0F;
+    plane->setMaterial( mat2 );
+
+    renderer->scene( ).setGeometries( { sphere, plane } );
 
     auto sphereInstance = rx::instance( sphere );
 
-    renderer->scene( ).setGeometryInstances( { sphereInstance } );
+    auto transform = glm::scale( glm::mat4( 1.0F ), glm::vec3( 1.0F ) );
+    transform      = glm::translate( transform, glm::vec3( 0.0F, 80.0F, 0.0F ) );
+
+    auto planeInstance = rx::instance( plane, transform );
+
+    renderer->scene( ).setGeometryInstances( { sphereInstance, planeInstance } );
 
     renderer->scene( ).setEnvironmentMap( "models/skybox/cubemap_yokohama_rgba.ktx" );
   }

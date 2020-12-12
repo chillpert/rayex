@@ -10,9 +10,9 @@ namespace RAYEX_NAMESPACE
   /// @ingroup BASE
   struct Material
   {
-    glm::vec3 ka = glm::vec3( 1.0F, 1.0F, 1.0F ); /// Ambient color
-    glm::vec3 kd = glm::vec3( 1.0F, 1.0F, 1.0F ); /// Diffuse color
-    glm::vec3 ks = glm::vec3( 1.0F, 1.0F, 1.0F ); /// Specular color
+    glm::vec3 ka = glm::vec3( 0.0F, 0.0F, 0.0F ); /// Ambient color
+    glm::vec3 kd = glm::vec3( 0.0F, 0.0F, 0.0F ); /// Diffuse color
+    glm::vec3 ks = glm::vec3( 0.0F, 0.0F, 0.0F ); /// Specular color
 
     std::string ambientTexPath  = "";
     std::string diffuseTexPath  = "";

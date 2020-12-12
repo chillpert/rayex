@@ -76,7 +76,7 @@ vec3 getAmbientLight( Material mat, vec2 texCoord )
   vec3 ambient = mat.ambient.xyz;
   if ( mat.ambient.w != -1.0 )
   {
-    ambient += texture( textures[nonuniformEXT( int( mat.ambient.w ) )], texCoord ).xyz;
+    ambient *= texture( textures[nonuniformEXT( int( mat.ambient.w ) )], texCoord ).xyz;
   }
 
   return ambientStrength * ambient;
@@ -87,7 +87,7 @@ vec3 getDiffuseLight( Material mat, vec2 texCoord )
   vec3 diffuse = mat.diffuse.xyz;
   if ( mat.diffuse.w != -1.0 )
   {
-    diffuse = texture( textures[nonuniformEXT( int( mat.diffuse.w ) )], texCoord ).xyz;
+    diffuse *= texture( textures[nonuniformEXT( int( mat.diffuse.w ) )], texCoord ).xyz;
   }
 
   return diffuse;
@@ -105,7 +105,7 @@ vec3 getSpecularLight( Material mat, vec2 texCoord, vec3 viewDir, vec3 lightDir,
   vec3 specularColor = mat.specular.xyz;
   if ( mat.specular.w != -1.0 )
   {
-    specularColor += texture( textures[nonuniformEXT( int( mat.specular.w ) )], texCoord ).xyz;
+    specularColor *= texture( textures[nonuniformEXT( int( mat.specular.w ) )], texCoord ).xyz;
   }
 
   return specularStrength * specular * specularColor;
@@ -195,7 +195,7 @@ void main( )
     }
   }
 
-  // Compute the BRDF for this ray (assuming Lambertian reflection)
+  // Compute the BRDF for this ray (assuming Lambertian reflection).
   vec3 BRDF = ( ambient + diffuse + specular ) / M_PI;
 
   float cosTheta = dot( rayDirection, normal );

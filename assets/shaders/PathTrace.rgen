@@ -60,6 +60,7 @@ void main( )
     ray.weight       = vec3( 0.0 );
     ray.reflectivity = 0.0;
     ray.attenuation  = vec3( 1.0 );
+    ray.done         = 1;
 
     vec3 weight   = vec3( 1.0 );
     vec3 hitValue = vec3( 0.0 );

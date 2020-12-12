@@ -7,5 +7,7 @@ struct RayPayLoad
   vec3 attenuation;
   uint seed;
   uint depth;
+  int done;
+
   float reflectivity;
 };

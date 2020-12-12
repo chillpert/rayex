@@ -190,11 +190,12 @@ inline void loadScene( rx::Rayex* renderer, Level scene )
     renderer->settings( ).setAccumulatingFrames( true );
 
     auto sphere = rx::loadObj( "models/sphere.obj" );
+    // 95% reflective material
     rx::Material mat;
-    mat.illum = 2;
-    mat.ns    = 1000.0F;
-    mat.kd    = glm::vec3( 0.0F, 0.0F, 1.0F );
-    mat.ks    = glm::vec3( 1.0F, 1.0F, 1.0F );
+    mat.illum = 3;
+    mat.ns    = 32.0F;
+    mat.ni    = 0.0F;
+    mat.ks    = glm::vec3( 0.95F, 0.95F, 0.95F );
     sphere->setMaterial( mat );
 
     auto plane = rx::loadObj( "models/plane.obj" );

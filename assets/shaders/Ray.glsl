@@ -8,6 +8,5 @@ struct RayPayLoad
   uint seed;
   uint depth;
   int done;
-
-  float reflectivity;
+  bool reflective;
 };

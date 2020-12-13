@@ -47,9 +47,10 @@ void main( )
   {
     ray.seed = tea( gl_LaunchIDEXT.y * gl_LaunchSizeEXT.x + gl_LaunchIDEXT.x, int( clockARB( ) ) );
 
+    // Jitter position within pixel to get free AA.
     vec2 positionWithinPixel = vec2( gl_LaunchIDEXT.xy ) + vec2( rnd( seed ), rnd( seed ) );
     const vec2 inUV          = positionWithinPixel / vec2( gl_LaunchSizeEXT.xy );
-    vec2 d                   = inUV * 2.0F - 1.0F;
+    vec2 d                   = inUV * 2.0 - 1.0;
 
     vec4 origin    = cam.viewInverse * vec4( 0.0, 0.0, 0.0, 1.0 );
     vec4 target    = cam.projInverse * vec4( d.x, d.y, 1.0, 1.0 );
@@ -58,9 +59,10 @@ void main( )
     ray.rayDirection = direction.xyz;
     ray.rayOrigin    = origin.xyz;
     ray.weight       = vec3( 0.0 );
-    ray.reflectivity = 0.0;
     ray.attenuation  = vec3( 1.0 );
+    ray.hitValue     = vec3( 0.0 );
     ray.done         = 1;
+    ray.reflective   = false;
 
     vec3 weight   = vec3( 1.0 );
     vec3 hitValue = vec3( 0.0 );
@@ -69,8 +71,16 @@ void main( )
     float tMin    = 0.001;
     float tMax    = 10000.0;
 
-    for ( ray.depth = 0; ray.depth < maxRecursionDepth; ray.depth++ )
+    for ( ray.depth = 0; ray.depth <= maxRecursionDepth + 1; ray.depth++ )
     {
+      // Idea to make end of recursion the clear color or environment map color instead of pitch black.
+      //if ( ray.depth >= maxRecursionDepth )
+      //{
+      //  hitValue += clearColor.xyz * weight;
+      //  weight *= ray.weight;
+      //}
+      //else
+      //{
       traceRayEXT( topLevelAS,       // acceleration structure
                    rayFlags,         // rayFlags
                    0xFF,             // cullMask
@@ -85,6 +95,7 @@ void main( )
 
       hitValue += ray.hitValue * weight;
       weight *= ray.weight;
+      //}
     }
 
     hitValues += hitValue;
@@ -98,13 +109,13 @@ void main( )
   {
     vec3 oldColor = imageLoad( image, ivec2( gl_LaunchIDEXT.xy ) ).xyz;
     // Linearly interpolate between old and latest color.
-    finalColor = vec4( mix( oldColor, ray.hitValue, 1.0 / float( frameCount + 1 ) ), 1.0F );
+    finalColor = vec4( mix( oldColor, ray.hitValue, 1.0 / float( frameCount ) ), 1.0 );
     imageStore( image, ivec2( gl_LaunchIDEXT.xy ), finalColor );
   }
   else
   {
     // First frame, replace the value in the buffer
-    finalColor = vec4( ray.hitValue, 1.0f );
+    finalColor = vec4( ray.hitValue, 1.0 );
     imageStore( image, ivec2( gl_LaunchIDEXT.xy ), finalColor );
   }
 }

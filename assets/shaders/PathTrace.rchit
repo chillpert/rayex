@@ -96,7 +96,7 @@ vec3 getDiffuseLight( Material mat, vec2 texCoord )
 vec3 getSpecularLight( Material mat, vec2 texCoord, vec3 viewDir, vec3 lightDir, vec3 normal )
 {
   const float shininess        = max( mat.ns, 4.0 );
-  const float specularStrength = 1.0; //0.5;
+  const float specularStrength = 0.5;
 
   viewDir         = normalize( -viewDir );
   vec3 reflectDir = reflect( -lightDir, normal );
@@ -193,6 +193,11 @@ void main( )
       diffuse  = getDiffuseLight( mat, texCoord );
       specular = getSpecularLight( mat, texCoord, gl_WorldRayDirectionEXT, rayDirection, normal );
     }
+    else if ( mat.illum == 3 )
+    {
+      diffuse  = getDiffuseLight( mat, texCoord );
+      specular = getSpecularLight( mat, texCoord, gl_WorldRayDirectionEXT, rayDirection, normal );
+    }
   }
 
   // Compute the BRDF for this ray (assuming Lambertian reflection).
@@ -205,6 +210,9 @@ void main( )
   ray.weight       = BRDF * cosTheta / p;
   ray.hitValue     = emission;
 
-  //ray.reflectivity = 0.0;
-  ray.reflectivity = 0.9;
+  if ( found && mat.illum == 3 )
+  {
+    ray.rayDirection = reflect( gl_WorldRayDirectionEXT, normal );
+    ray.reflective   = true;
+  }
 }

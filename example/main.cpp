@@ -22,7 +22,7 @@ int main( )
   // ... and initialize the renderer.
   renderer.init( );
 
-  loadScene( &renderer, Level::eSpheres );
+  loadScene( &renderer, Level::eReflections );
 
   while ( renderer.isRunning( ) )
   {

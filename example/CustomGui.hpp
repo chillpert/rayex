@@ -245,6 +245,13 @@ private:
         {
           loadScene( _renderer, Level::eSpheres );
         }
+
+        ImGui::SameLine( );
+
+        if ( ImGui::Button( "Reflections" ) )
+        {
+          loadScene( _renderer, Level::eReflections );
+        }
       }
     }
     ImGui::End( );

@@ -37,27 +37,24 @@ void main( )
   }
   else
   {
-    // Tiny contribution from environment
-    ray.hitValue = vec3( 0.01 );
-    //ray.weight   = texture( environmentMap, ray.rayDirection ).xyz * 0.8F;
-    //ray.hitValue = texture( environmentMap, ray.rayDirection ).xyz * 0.8F;
+    if ( ray.reflective )
+    {
+      ray.reflective = false;
 
-    //if ( ray.reflectivity == 0.0 )
-    //{
-    //  // Tiny contribution from environment
-    //  ray.hitValue = vec3( 0.01 );
-    //}
-    //else
-    //{
-    //  if ( useEnvironmentMap )
-    //  {
-    //    ray.hitValue = ( texture( environmentMap, ray.rayDirection ).xyz * 0.8F ) / ( float( ray.depth ) * ( 1.0 - ray.reflectivity ) );
-    //  }
-    //  else
-    //  {
-    //    ray.hitValue = ( clearColor.xyz * clearColor.w ) / ( float( ray.depth ) * ( 1.0 - ray.reflectivity ) );
-    //  }
-    //}
+      if ( useEnvironmentMap )
+      {
+        ray.hitValue = texture( environmentMap, ray.rayDirection ).xyz;
+      }
+      else
+      {
+        ray.hitValue = clearColor.xyz * clearColor.w;
+      }
+    }
+    else
+    {
+      // Tiny contribution from environment
+      ray.hitValue = vec3( 0.01 );
+    }
   }
 
   // End the path

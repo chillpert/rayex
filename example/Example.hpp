@@ -4,7 +4,8 @@ enum class Level
 {
   eCornell,
   eDebug,
-  eSpheres
+  eSpheres,
+  eReflections
 };
 
 inline Level currentLevel;
@@ -195,7 +196,7 @@ inline void loadScene( rx::Rayex* renderer, Level scene )
     mat.illum = 3;
     mat.ns    = 32.0F;
     mat.ni    = 0.0F;
-    mat.ks    = glm::vec3( 0.95F, 0.95F, 0.95F );
+    mat.ks    = glm::vec3( 1.0F );
     sphere->setMaterial( mat );
 
     auto plane = rx::loadObj( "models/plane.obj" );
@@ -209,14 +210,57 @@ inline void loadScene( rx::Rayex* renderer, Level scene )
 
     auto sphereInstance = rx::instance( sphere );
 
-    auto transform = glm::scale( glm::mat4( 1.0F ), glm::vec3( 1.0F ) );
-    transform      = glm::translate( transform, glm::vec3( 0.0F, 80.0F, 0.0F ) );
+    auto transform = glm::translate( glm::mat4( 1.0F ), glm::vec3( 0.0F, 80.0F, 0.0F ) );
 
     auto planeInstance = rx::instance( plane, transform );
 
     renderer->scene( ).setGeometryInstances( { sphereInstance, planeInstance } );
 
     renderer->scene( ).setEnvironmentMap( "models/skybox/cubemap_yokohama_rgba.ktx" );
+  }
+  else if ( scene == Level::eReflections )
+  {
+    renderer->reset( );
+    renderer->settings( ).setMaxGeoemtry( 2 ); // Will give a warning.
+    renderer->settings( ).setMaxGeometryInstances( 1000 );
+    renderer->settings( ).setMaxTextures( 0 ); // Will give a warning.
+
+    renderer->settings( ).setAccumulatingFrames( true );
+    //renderer->settings( ).setClearColor( glm::vec4( 0.1F, 0.1F, 0.5F, 1.0F ) );
+
+    renderer->scene( ).removeEnvironmentMap( );
+
+    auto lightPlane = rx::loadObj( "models/plane.obj" );
+    rx::Material lightMaterial;
+    lightMaterial.emission = glm::vec3( 1.0F );
+    lightPlane->setMaterial( lightMaterial );
+
+    auto mirrorPlane = rx::loadObj( "models/plane.obj" );
+    rx::Material mirrorMaterial;
+    mirrorMaterial.illum = 3;
+    mirrorMaterial.ns    = 32.0F;
+    mirrorMaterial.ni    = 0.0F;
+    mirrorMaterial.ks    = glm::vec3( 1.0F );
+    mirrorMaterial.kd    = glm::vec3( 1.0F );
+    mirrorPlane->setMaterial( mirrorMaterial );
+
+    renderer->scene( ).setGeometries( { lightPlane, mirrorPlane } );
+
+    auto transform          = glm::translate( glm::mat4( 1.0F ), glm::vec3( 0.0F, 80.0F, 0.0F ) );
+    auto lightPlaneInstance = rx::instance( lightPlane, transform );
+
+    transform                 = glm::scale( glm::mat4( 1.0F ), glm::vec3( 0.1F ) );
+    transform                 = glm::rotate( transform, glm::radians( 180.0F ), glm::vec3( 0.0F, 1.0F, 0.0F ) );
+    transform                 = glm::rotate( transform, glm::radians( 90.0F ), glm::vec3( 1.0F, 0.0F, 0.0F ) );
+    transform                 = glm::translate( transform, glm::vec3( 0.0F, -100.0F, 0.0F ) );
+    auto mirrorPlaneInstance1 = rx::instance( mirrorPlane, transform );
+
+    transform                 = glm::scale( glm::mat4( 1.0F ), glm::vec3( 0.1F ) );
+    transform                 = glm::rotate( transform, glm::radians( 90.0F ), glm::vec3( 1.0F, 0.0F, 0.0F ) );
+    transform                 = glm::translate( transform, glm::vec3( 0.0F, -100.0F, 0.0F ) );
+    auto mirrorPlaneInstance2 = rx::instance( mirrorPlane, transform );
+
+    renderer->scene( ).setGeometryInstances( { mirrorPlaneInstance1, mirrorPlaneInstance2, lightPlaneInstance } );
   }
 }
 
@@ -232,11 +276,7 @@ void updateScene( rx::Rayex* renderer )
     addSphere( renderer );
   }
 
-  if ( currentLevel == Level::eCornell )
-  {
-    // No updates needed.
-  }
-  else if ( currentLevel == Level::eDebug )
+  if ( currentLevel == Level::eDebug )
   {
     auto instances = renderer->scene( ).getGeometryInstances( );
 
@@ -247,8 +287,5 @@ void updateScene( rx::Rayex* renderer )
         instances[0]->setTransform( glm::rotate( instances[0]->transform, rx::Time::getDeltaTime( ) * 0.5F, glm::vec3( 0.0F, 1.0F, 0.0F ) ) );
       }
     }
-  }
-  else if ( currentLevel == Level::eSpheres )
-  {
   }
 }

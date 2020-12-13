@@ -226,7 +226,7 @@ inline void loadScene( rx::Rayex* renderer, Level scene )
     renderer->settings( ).setMaxTextures( 0 ); // Will give a warning.
 
     renderer->settings( ).setAccumulatingFrames( true );
-    //renderer->settings( ).setClearColor( glm::vec4( 0.1F, 0.1F, 0.5F, 1.0F ) );
+    renderer->settings( ).setClearColor( glm::vec4( 0.5F, 0.5F, 0.7F, 1.0F ) );
 
     renderer->scene( ).removeEnvironmentMap( );
 

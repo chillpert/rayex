@@ -21,8 +21,18 @@ namespace RAYEX_NAMESPACE
 
   void Settings::setClearColor( const glm::vec4& clearColor )
   {
+    static bool firstRun = true;
+
+    if ( firstRun )
+    {
+      firstRun = false;
+    }
+    else
+    {
+      triggerSwapchainRefresh( );
+    }
+
     _clearColor = clearColor;
-    triggerSwapchainRefresh( );
 
     components::frameCount = -1;
   }

@@ -22,6 +22,8 @@ namespace RAYEX_NAMESPACE
     /// @return Returns the time passed between the current and the last frame.
     static auto getDeltaTime( ) -> float;
 
+    static auto getFramesPerSecond( ) -> uint32_t;
+
   private:
     /// Updates the timing.
     ///

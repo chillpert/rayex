@@ -359,35 +359,65 @@ namespace RAYEX_NAMESPACE
             memAlignedMeshes.resize( _geometries[i]->meshes.size( ) );
 
             // Textures
-            int j                 = 0;
-            float diffuseTexIndex = -1.0F;
+            int j = 0;
             for ( const auto& mesh : _geometries[i]->meshes )
             {
-              diffuseTexIndex = -1.0F;
+              float diffuseTexIndex = -1.0F;
 
-              size_t textureIndex = std::numeric_limits<size_t>::max( );
-              for ( size_t i = 0; i < _settings->_maxTextures; ++i )
+              if ( !mesh.material.diffuseTexPath.empty( ) )
               {
-                if ( _textures[i] == nullptr )
+                size_t availablePosition = std::numeric_limits<size_t>::max( );
+                bool reuse               = false;
+
+                // Iterate over all textures and find the last spot in the array that does not contain an initialized texture yet.
+                // Iterate over all textures and check if the texture can be re-used.
+                for ( size_t i = 0; i < _textures.size( ) - 1; ++i )
                 {
-                  textureIndex = i;
+                  if ( _textures[i] == nullptr )
+                  {
+                    //RX_WARN( "FOUND AN AVAILABLE POSITION at ", i );
+                    availablePosition = i;
+                    break;
+                  }
+
+                  if ( _textures[i] != nullptr )
+                  {
+                    if ( _textures[i]->getPath( ) == mesh.material.diffuseTexPath )
+                    {
+                      // Make sure a new texture will not be created.
+                      reuse = true;
+                      //RX_WARN( "REUSING: ", mesh.material.diffuseTexPath, " at index: ", i );
+
+                      diffuseTexIndex = static_cast<float>( i );
+                      break;
+                    }
+                  }
                 }
-              }
 
-              if ( textureIndex != std::numeric_limits<size_t>::max( ) )
-              {
-                RX_ASSERT( textureIndex != std::numeric_limits<size_t>::max( ), "Can not have more than ", _settings->_maxTextures, " textures." );
-
-                if ( _textures[textureIndex] == nullptr && !mesh.material.diffuseTexPath.empty( ) )
+                // Create a new texture in case it does not already exist.
+                if ( !reuse )
                 {
-                  auto texture = std::make_shared<Texture>( );
-                  texture->init( mesh.material.diffuseTexPath );
-                  diffuseTexIndex         = static_cast<float>( textureIndex );
-                  _textures[textureIndex] = texture;
+                  if ( availablePosition == std::numeric_limits<size_t>::max( ) )
+                  {
+                    //RX_WARN( "TRIED TO CREATE A NEW TEXTURE FROM: ", mesh.material.diffuseTexPath, " BUT ARRAY IS OUT OF BOUND." );
+                  }
+                  else
+                  {
+                    if ( _textures[availablePosition] == nullptr && !mesh.material.diffuseTexPath.empty( ) )
+                    {
+                      //RX_WARN( "CREATING NEW TEXTURE at index: ", availablePosition, " from: ", mesh.material.diffuseTexPath );
+                      auto texture = std::make_shared<Texture>( );
+                      texture->init( mesh.material.diffuseTexPath );
+                      _textures[availablePosition] = texture;
+                      diffuseTexIndex              = static_cast<float>( availablePosition );
+                    }
+                  }
                 }
               }
 
               memAlignedMeshes[j] = MeshSSBO( mesh, diffuseTexIndex );
+              //RX_WARN( "THE TEXTURE WAS SET AT: ", diffuseTexIndex );
+
               ++j;
             }
 
@@ -418,7 +448,7 @@ namespace RAYEX_NAMESPACE
 
     _uploadGeometryInstancesToBuffer = false;
 
-    if ( !_geometryInstances.empty( ) )
+    if ( !_geometryInstances.empty( ) && imageIndex % 2 == 0 ) // @todo % 2 == 0 statememt is a temporary fix. Probably a sync error.
     {
       memAlignedGeometryInstances.resize( _geometryInstances.size( ) );
       std::transform( _geometryInstances.begin( ), _geometryInstances.end( ), memAlignedGeometryInstances.begin( ),

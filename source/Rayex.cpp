@@ -91,13 +91,16 @@ namespace RAYEX_NAMESPACE
 
   void Rayex::reset( )
   {
+    // Reset indices
     rx::components::geometryIndex = 0;
     rx::components::textureIndex  = 0;
-    rx::components::frameCount    = -1;
 
-    //_api._scene._deleteTextures = true;
+    // Reset frame counter
+    rx::components::frameCount = -1;
 
-    //components::device.waitIdle( );
-    //_api._scene.prepareBuffers( );
+    // Delete all textures
+    _api._scene._textures.clear( );
+    _api._scene._textures.resize( static_cast<size_t>( _api._scene._settings->_maxTextures ) );
+    _api._scene.updateGeoemtryDescriptors( );
   }
 } // namespace RAYEX_NAMESPACE

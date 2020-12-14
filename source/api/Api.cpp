@@ -179,6 +179,7 @@ namespace RAYEX_NAMESPACE
 
     if ( _scene._uploadGeometryInstancesToBuffer )
     {
+      //_sync.waitForFrame( prevFrame );
       _scene.uploadGeometryInstances( imageIndex % maxFramesInFlight );
 
       // @TODO Try to call this as few times as possible.

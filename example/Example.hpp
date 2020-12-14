@@ -115,10 +115,7 @@ inline void loadScene( rx::Rayex* renderer, Level scene )
 
   if ( scene == Level::eCornell )
   {
-    renderer->reset( );
-    renderer->settings( ).setMaxGeoemtry( 1 ); // Will give a warning.
-    renderer->settings( ).setMaxGeometryInstances( 1 );
-    renderer->settings( ).setMaxTextures( 0 ); // Will give a warning.
+    renderer->settings( ).setLimits( 1, 1, 8, 0 );
 
     // Enable frame accumulation because scene is static.
     renderer->settings( ).setAccumulatingFrames( true );
@@ -139,9 +136,9 @@ inline void loadScene( rx::Rayex* renderer, Level scene )
   else if ( scene == Level::eDebug )
   {
     renderer->reset( );
-    renderer->settings( ).setMaxGeoemtry( 5 ); // Will give a warning.
-    renderer->settings( ).setMaxGeometryInstances( 4000 );
-    renderer->settings( ).setMaxTextures( 4 ); // Will give a warning.
+    renderer->settings( ).setGeometryLimit( 5 ); // Will give a warning.
+    renderer->settings( ).setGeometryInstanceLimit( 4000 );
+    renderer->settings( ).setTextureLimit( 4 ); // Will give a warning.
 
     // Disable frame accumulation because scene contains moving elements.
     renderer->settings( ).setAccumulatingFrames( false );
@@ -184,9 +181,9 @@ inline void loadScene( rx::Rayex* renderer, Level scene )
   else if ( scene == Level::eSpheres )
   {
     renderer->reset( );
-    renderer->settings( ).setMaxGeoemtry( 1 ); // Will give a warning.
-    renderer->settings( ).setMaxGeometryInstances( 1000 );
-    renderer->settings( ).setMaxTextures( 1 ); // Will give a warning.
+    renderer->settings( ).setGeometryLimit( 1 ); // Will give a warning.
+    renderer->settings( ).setGeometryInstanceLimit( 1000 );
+    renderer->settings( ).setTextureLimit( 1 ); // Will give a warning.
 
     renderer->settings( ).setAccumulatingFrames( true );
 
@@ -221,9 +218,9 @@ inline void loadScene( rx::Rayex* renderer, Level scene )
   else if ( scene == Level::eReflections )
   {
     renderer->reset( );
-    renderer->settings( ).setMaxGeoemtry( 2 ); // Will give a warning.
-    renderer->settings( ).setMaxGeometryInstances( 50 );
-    renderer->settings( ).setMaxTextures( 2 ); // Will give a warning.
+    renderer->settings( ).setGeometryLimit( 2 ); // Will give a warning.
+    renderer->settings( ).setGeometryInstanceLimit( 5 );
+    renderer->settings( ).setTextureLimit( 2 ); // Will give a warning.
 
     renderer->settings( ).setAccumulatingFrames( true );
     renderer->settings( ).setClearColor( glm::vec4( 0.5F, 0.5F, 0.7F, 1.0F ) );

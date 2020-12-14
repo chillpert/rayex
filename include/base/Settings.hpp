@@ -29,6 +29,9 @@ namespace RAYEX_NAMESPACE
     /// @param recursionDepth The new value for the recursion depth.
     void setRecursionDepth( uint32_t recursionDepth );
 
+    /// @return Returns the maximum recursion depth on the GPU.
+    auto getMaxRecursionDepth( ) const -> uint32_t { return _maxRecursionDepth; }
+
     /// @return Returns the clear color.
     auto getClearColor( ) const -> const glm::vec4& { return _clearColor; }
 
@@ -58,28 +61,24 @@ namespace RAYEX_NAMESPACE
     /// @param flag If false, the pipelines will not be recreated automatically until this function is called with true.
     void setAutomaticPipelineRefresh( bool flag );
 
-    /// Used to set the maximum amount of geometrys that can be used.
-    /// @param amount The amount of maximum geometrys.
-    void setMaxGeometryInstances( uint32_t amount );
+    /// Used to set the maximum amount of geometry (3D models) that can be loaded.
+    void setGeometryLimit( size_t amount );
 
-    /// @return Returns the maximum recursion depth on the GPU.
-    auto getMaxRecursionDepth( ) const -> uint32_t { return _maxRecursionDepth; }
+    /// Used to set the maximum amount of geometry instances (instances of 3D models) that can be loaded.
+    void setGeometryInstanceLimit( uint32_t amount );
 
-    /// Used to set the maximum of geometry (models).
-    /// Try to keep this as small as possible, as this affects performance.
-    /// @param amount The amount of maximum geometry.
-    void setMaxGeoemtry( uint32_t amount );
+    /// Used to set the maximum amount of textures that can be loaded.
+    void setTextureLimit( size_t amount );
 
-    /// @return Returns the maximum amount of geometry.
-    auto getMaxGeometry( ) const -> uint32_t { return _maxGeometry; }
+    /// Used to set the maximum amount of meshes that can be loaded.
+    ///
+    /// This value is not strictly related to the amount of geometries. Each geometry can have an arbitrary amount of meshes or sub-mehes.
+    /// To optimize the buffer size it is recommended to make at least a rough estimate on the amount of submeshes that are going to be in the scene.
+    void setMeshLimit( size_t amount );
 
-    void setMaxTextures( size_t amount );
-
-    auto getMaxTextures( ) const -> size_t { return _maxTextures; }
-
-    void setMaxMeshes( uint32_t amount );
-
-    auto getMaxMeshes( ) const -> uint32_t { return _maxMeshes; }
+    /// Used to set the geometry limit, geometry instance limit, mesh limit and texture limit at once.
+    /// @see setGeometryLimit(size_t), setGeometryInstanceLimit(size_t), setMeshLimit(size_t) and setTextureLimit(size_t).
+    void setLimits( size_t geometryLimit, size_t geometryInstanceLimit, size_t meshLimit, size_t textureLimit );
 
     void setPerPixelSampleRate( uint32_t sampleRate );
 
@@ -87,15 +86,9 @@ namespace RAYEX_NAMESPACE
 
     void setAccumulatingFrames( bool flag );
 
-    void update( );
-
     auto isAccumulatingFrames( ) const -> bool { return _accumulateFrames; }
 
-    void triggerPipelineRefresh( )
-    {
-      _refreshPipeline = true;
-      //triggerSwapchainRefresh( );
-    }
+    void triggerPipelineRefresh( ) { _refreshPipeline = true; }
 
     void triggerSwapchainRefresh( ) { _refreshSwapchain = true; }
 

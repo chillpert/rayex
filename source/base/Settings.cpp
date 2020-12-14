@@ -72,7 +72,7 @@ namespace RAYEX_NAMESPACE
     _automaticPipelineRefresh = flag;
   }
 
-  void Settings::setMaxGeometryInstances( uint32_t amount )
+  void Settings::setGeometryInstanceLimit( uint32_t amount )
   {
     if ( amount == 0 )
     {
@@ -86,7 +86,7 @@ namespace RAYEX_NAMESPACE
     _maxGeometryInstancesChanged = true;
   }
 
-  void Settings::setMaxGeoemtry( uint32_t amount )
+  void Settings::setGeometryLimit( size_t amount )
   {
     if ( amount == 0 )
     {
@@ -111,7 +111,7 @@ namespace RAYEX_NAMESPACE
     _maxGeometryChanged = true;
   }
 
-  void Settings::setMaxMeshes( uint32_t amount )
+  void Settings::setMeshLimit( size_t amount )
   {
     if ( amount == 0 )
     {
@@ -130,7 +130,7 @@ namespace RAYEX_NAMESPACE
     _maxMeshesChanged = true;
   }
 
-  void Settings::setMaxTextures( size_t amount )
+  void Settings::setTextureLimit( size_t amount )
   {
     if ( amount == 0 )
     {
@@ -141,6 +141,14 @@ namespace RAYEX_NAMESPACE
     _maxTextures = ++amount;
 
     _maxTexturesChanged = true;
+  }
+
+  void Settings::setLimits( size_t geometryLimit, size_t geometryInstanceLimit, size_t meshLimit, size_t textureLimit )
+  {
+    setGeometryLimit( geometryLimit );
+    setGeometryInstanceLimit( geometryInstanceLimit );
+    setMeshLimit( meshLimit );
+    setTextureLimit( textureLimit );
   }
 
   void Settings::setDefaultAssetsPath( )
@@ -161,9 +169,5 @@ namespace RAYEX_NAMESPACE
   void Settings::setAccumulatingFrames( bool flag )
   {
     _accumulateFrames = flag;
-  }
-
-  void Settings::update( )
-  {
   }
 } // namespace RAYEX_NAMESPACE

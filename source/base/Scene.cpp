@@ -28,7 +28,7 @@ namespace RAYEX_NAMESPACE
     {
       if ( _geometryInstances.size( ) >= _settings->_maxGeometryInstances - 1 )
       {
-        RX_ERROR( "Failed to submit geometry instance because instance buffer size has been exceeded. To avoid this error, increase the amount of supported geometry instances using RAYEX_NAMESPACE::Rayex::Settings::setMaxGeometryInstances(uint32_t)." );
+        RX_ERROR( "Failed to submit geometry instance because instance buffer size has been exceeded. To avoid this error, increase the amount of supported geometry instances using RAYEX_NAMESPACE::Rayex::Settings::setMaxGeometryInstances(size_t)." );
         return;
       }
     }
@@ -99,8 +99,7 @@ namespace RAYEX_NAMESPACE
     {
       if ( _geometries.size( ) >= _settings->_maxGeometryInstances - 1 )
       {
-        RX_ERROR( "Failed to submit geometry because geometries buffer size has been exceeded. To avoid this error, increase the amount of supported geometries using RAYEX_NAMESPACE::Rayex::Settings::setMaxGeometries(uint32_t)." );
-
+        RX_ERROR( "Failed to submit geometry because geometries buffer size has been exceeded. To avoid this error, increase the amount of supported geometries using RAYEX_NAMESPACE::Rayex::Settings::setMaxGeometries(size_t)." );
         return;
       }
     }

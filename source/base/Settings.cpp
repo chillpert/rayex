@@ -138,7 +138,7 @@ namespace RAYEX_NAMESPACE
       RX_WARN( "Can not use value 0 for the maximum amount of textures. Using 1 instead." );
     }
 
-    _maxTextures = ++amount;
+    _maxTextures = amount;
 
     _maxTexturesChanged = true;
   }

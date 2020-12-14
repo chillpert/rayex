@@ -366,7 +366,7 @@ namespace RAYEX_NAMESPACE
               diffuseTexIndex = -1.0F;
 
               size_t textureIndex = std::numeric_limits<size_t>::max( );
-              for ( size_t i = 0; i < _textures.size( ); ++i )
+              for ( size_t i = 0; i < _settings->_maxTextures; ++i )
               {
                 if ( _textures[i] == nullptr )
                 {

@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
-<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.17">
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.20" xml:lang="en-US">
   <compounddef id="struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_acceleration_structure" kind="struct" language="C++" prot="public">
     <compoundname>RAYEX_NAMESPACE::AccelerationStructure</compoundname>
     <includes refid="_acceleration_structure_8hpp" local="no">AccelerationStructure.hpp</includes>
@@ -16,7 +16,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/n30/Repos/rayex/include/api/raytracing/AccelerationStructure.hpp" line="12" column="34" bodyfile="/home/n30/Repos/rayex/include/api/raytracing/AccelerationStructure.hpp" bodystart="12" bodyend="-1"/>
+        <location file="C:/Repos/rayex/include/api/pathtrace/AccelerationStructure.hpp" line="12" column="34" bodyfile="C:/Repos/rayex/include/api/pathtrace/AccelerationStructure.hpp" bodystart="12" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_acceleration_structure_1a67c749f7c097fac7a114c947b88752c0" prot="public" static="no" mutable="no">
         <type>vk::DeviceMemory</type>
@@ -30,7 +30,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/n30/Repos/rayex/include/api/raytracing/AccelerationStructure.hpp" line="13" column="22" bodyfile="/home/n30/Repos/rayex/include/api/raytracing/AccelerationStructure.hpp" bodystart="13" bodyend="-1"/>
+        <location file="C:/Repos/rayex/include/api/pathtrace/AccelerationStructure.hpp" line="13" column="22" bodyfile="C:/Repos/rayex/include/api/pathtrace/AccelerationStructure.hpp" bodystart="13" bodyend="-1"/>
       </memberdef>
       </sectiondef>
       <sectiondef kind="public-func">
@@ -46,7 +46,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/n30/Repos/rayex/include/api/raytracing/AccelerationStructure.hpp" line="16" column="10" bodyfile="/home/n30/Repos/rayex/include/api/raytracing/AccelerationStructure.hpp" bodystart="16" bodyend="23"/>
+        <location file="C:/Repos/rayex/include/api/pathtrace/AccelerationStructure.hpp" line="16" column="10" bodyfile="C:/Repos/rayex/include/api/pathtrace/AccelerationStructure.hpp" bodystart="16" bodyend="23"/>
       </memberdef>
       </sectiondef>
     <briefdescription>
@@ -54,7 +54,7 @@
     </briefdescription>
     <detaileddescription>
     </detaileddescription>
-    <location file="/home/n30/Repos/rayex/include/api/raytracing/AccelerationStructure.hpp" line="11" column="1" bodyfile="/home/n30/Repos/rayex/include/api/raytracing/AccelerationStructure.hpp" bodystart="10" bodyend="24"/>
+    <location file="C:/Repos/rayex/include/api/pathtrace/AccelerationStructure.hpp" line="10" column="3" bodyfile="C:/Repos/rayex/include/api/pathtrace/AccelerationStructure.hpp" bodystart="11" bodyend="24"/>
     <listofallmembers>
       <member refid="struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_acceleration_structure_1a310d8142a50e671e29b626943fa2b6c8" prot="public" virt="non-virtual"><scope>RAYEX_NAMESPACE::AccelerationStructure</scope><name>as</name></member>
       <member refid="struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_acceleration_structure_1a8e189940953cc7155465cf65a2f1d4f4" prot="public" virt="non-virtual"><scope>RAYEX_NAMESPACE::AccelerationStructure</scope><name>destroy</name></member>

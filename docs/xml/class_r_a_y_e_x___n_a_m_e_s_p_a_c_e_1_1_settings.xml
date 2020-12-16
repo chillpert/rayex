@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
-<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.17">
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.20" xml:lang="en-US">
   <compounddef id="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_settings" kind="class" language="C++" prot="public">
     <compoundname>RAYEX_NAMESPACE::Settings</compoundname>
     <includes refid="_settings_8hpp" local="no">Settings.hpp</includes>
@@ -15,7 +15,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/n30/Repos/rayex/include/base/Settings.hpp" line="17" column="5" bodyfile="/home/n30/Repos/rayex/include/base/Settings.hpp" bodystart="17" bodyend="-1"/>
+        <location file="C:/Repos/rayex/include/base/Settings.hpp" line="17" column="5" bodyfile="C:/Repos/rayex/include/base/Settings.hpp" bodystart="17" bodyend="-1"/>
       </memberdef>
       <memberdef kind="friend" id="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_settings_1a9c4583a217a46ad12593f4255e2a6061" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>friend class</type>
@@ -28,7 +28,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/n30/Repos/rayex/include/base/Settings.hpp" line="18" column="5" bodyfile="/home/n30/Repos/rayex/include/base/Settings.hpp" bodystart="18" bodyend="-1"/>
+        <location file="C:/Repos/rayex/include/base/Settings.hpp" line="18" column="5" bodyfile="C:/Repos/rayex/include/base/Settings.hpp" bodystart="18" bodyend="-1"/>
       </memberdef>
       <memberdef kind="friend" id="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_settings_1af9f0f1adbd5baee7830839447205af8d" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>friend class</type>
@@ -41,7 +41,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/n30/Repos/rayex/include/base/Settings.hpp" line="19" column="5" bodyfile="/home/n30/Repos/rayex/include/base/Settings.hpp" bodystart="19" bodyend="-1"/>
+        <location file="C:/Repos/rayex/include/base/Settings.hpp" line="19" column="5" bodyfile="C:/Repos/rayex/include/base/Settings.hpp" bodystart="19" bodyend="-1"/>
       </memberdef>
       <memberdef kind="friend" id="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_settings_1a032858ae1fe02d2d1170981c2af2d67c" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>friend class</type>
@@ -54,25 +54,10 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/n30/Repos/rayex/include/base/Settings.hpp" line="20" column="5" bodyfile="/home/n30/Repos/rayex/include/base/Settings.hpp" bodystart="20" bodyend="-1"/>
+        <location file="C:/Repos/rayex/include/base/Settings.hpp" line="20" column="5" bodyfile="C:/Repos/rayex/include/base/Settings.hpp" bodystart="20" bodyend="-1"/>
       </memberdef>
       </sectiondef>
       <sectiondef kind="private-attrib">
-      <memberdef kind="variable" id="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_settings_1aa02e79210eea96db00355ad8041a8e80" prot="private" static="no" mutable="no">
-        <type>bool</type>
-        <definition>bool RAYEX_NAMESPACE::Settings::_rayTrace</definition>
-        <argsstring></argsstring>
-        <name>_rayTrace</name>
-        <initializer>= true</initializer>
-        <briefdescription>
-<para>If true renderer will use ray tracing, if false it will use rasterization. </para>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="/home/n30/Repos/rayex/include/base/Settings.hpp" line="144" column="10" bodyfile="/home/n30/Repos/rayex/include/base/Settings.hpp" bodystart="144" bodyend="-1"/>
-      </memberdef>
       <memberdef kind="variable" id="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_settings_1ab2dde0ed44fbfc246820efae526585bd" prot="private" static="no" mutable="no">
         <type>bool</type>
         <definition>bool RAYEX_NAMESPACE::Settings::_refreshPipeline</definition>
@@ -86,7 +71,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/n30/Repos/rayex/include/base/Settings.hpp" line="145" column="10" bodyfile="/home/n30/Repos/rayex/include/base/Settings.hpp" bodystart="145" bodyend="-1"/>
+        <location file="C:/Repos/rayex/include/base/Settings.hpp" line="93" column="10" bodyfile="C:/Repos/rayex/include/base/Settings.hpp" bodystart="93" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_settings_1acbf1be3ef5f6a63a517036fa67ebf67e" prot="private" static="no" mutable="no">
         <type>bool</type>
@@ -101,37 +86,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/n30/Repos/rayex/include/base/Settings.hpp" line="146" column="10" bodyfile="/home/n30/Repos/rayex/include/base/Settings.hpp" bodystart="146" bodyend="-1"/>
-      </memberdef>
-      <memberdef kind="variable" id="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_settings_1aacb5b6eda77cc516d9ed07f988a0539a" prot="private" static="no" mutable="no">
-        <type>uint32_t</type>
-        <definition>uint32_t RAYEX_NAMESPACE::Settings::_maxDirectionalLights</definition>
-        <argsstring></argsstring>
-        <name>_maxDirectionalLights</name>
-        <initializer>= 100</initializer>
-        <briefdescription>
-<para>Can be set to avoid pipeline recreation everytime a directional light is added. </para>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="/home/n30/Repos/rayex/include/base/Settings.hpp" line="148" column="14" bodyfile="/home/n30/Repos/rayex/include/base/Settings.hpp" bodystart="148" bodyend="-1"/>
-      </memberdef>
-      <memberdef kind="variable" id="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_settings_1a361c2e5dd268e62b4d8e6f4726da493b" prot="private" static="no" mutable="no">
-        <type>uint32_t</type>
-        <definition>uint32_t RAYEX_NAMESPACE::Settings::_maxPointLights</definition>
-        <argsstring></argsstring>
-        <name>_maxPointLights</name>
-        <initializer>= 100</initializer>
-        <briefdescription>
-<para>Can be set to avoid pipeline recreation everytime a point light is added. </para>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="/home/n30/Repos/rayex/include/base/Settings.hpp" line="149" column="14" bodyfile="/home/n30/Repos/rayex/include/base/Settings.hpp" bodystart="149" bodyend="-1"/>
+        <location file="C:/Repos/rayex/include/base/Settings.hpp" line="94" column="10" bodyfile="C:/Repos/rayex/include/base/Settings.hpp" bodystart="94" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_settings_1a03e30b12f5fb2f731604479e1910a5e8" prot="private" static="no" mutable="no">
         <type>uint32_t</type>
@@ -146,7 +101,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/n30/Repos/rayex/include/base/Settings.hpp" line="150" column="14" bodyfile="/home/n30/Repos/rayex/include/base/Settings.hpp" bodystart="150" bodyend="-1"/>
+        <location file="C:/Repos/rayex/include/base/Settings.hpp" line="96" column="14" bodyfile="C:/Repos/rayex/include/base/Settings.hpp" bodystart="96" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_settings_1aa716d7606247cc77379e42c5cd4550b1" prot="private" static="no" mutable="no">
         <type>uint32_t</type>
@@ -161,7 +116,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/n30/Repos/rayex/include/base/Settings.hpp" line="151" column="14" bodyfile="/home/n30/Repos/rayex/include/base/Settings.hpp" bodystart="151" bodyend="-1"/>
+        <location file="C:/Repos/rayex/include/base/Settings.hpp" line="97" column="14" bodyfile="C:/Repos/rayex/include/base/Settings.hpp" bodystart="97" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_settings_1aed9eedff5f74ed359fba1b5a657d5be1" prot="private" static="no" mutable="no">
         <type>uint32_t</type>
@@ -176,7 +131,22 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/n30/Repos/rayex/include/base/Settings.hpp" line="152" column="14" bodyfile="/home/n30/Repos/rayex/include/base/Settings.hpp" bodystart="152" bodyend="-1"/>
+        <location file="C:/Repos/rayex/include/base/Settings.hpp" line="98" column="14" bodyfile="C:/Repos/rayex/include/base/Settings.hpp" bodystart="98" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_settings_1ab0f8c471cd90882b2dbdaafae28d2a3b" prot="private" static="no" mutable="no">
+        <type>uint32_t</type>
+        <definition>uint32_t RAYEX_NAMESPACE::Settings::_maxMeshes</definition>
+        <argsstring></argsstring>
+        <name>_maxMeshes</name>
+        <initializer>= 200</initializer>
+        <briefdescription>
+<para>The maximum amount of meshes. Each geometry can have multiple sub meshes. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Repos/rayex/include/base/Settings.hpp" line="99" column="14" bodyfile="C:/Repos/rayex/include/base/Settings.hpp" bodystart="99" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_settings_1aa9bae490016f531057f313a30c4d3cf4" prot="private" static="no" mutable="no">
         <type>std::string</type>
@@ -190,14 +160,14 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/n30/Repos/rayex/include/base/Settings.hpp" line="154" column="17" bodyfile="/home/n30/Repos/rayex/include/base/Settings.hpp" bodystart="154" bodyend="-1"/>
+        <location file="C:/Repos/rayex/include/base/Settings.hpp" line="101" column="17" bodyfile="C:/Repos/rayex/include/base/Settings.hpp" bodystart="101" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_settings_1a6046e58440d78076e7111586f8f9bec3" prot="private" static="no" mutable="no">
         <type>glm::vec4</type>
         <definition>glm::vec4 RAYEX_NAMESPACE::Settings::_clearColor</definition>
         <argsstring></argsstring>
         <name>_clearColor</name>
-        <initializer>= glm::vec4( 0.45F, 0.45F, 0.45F, 1.0F )</initializer>
+        <initializer>= glm::vec4( 0.45F, 0.45F, 0.45F, 0.8F )</initializer>
         <briefdescription>
 <para>Stores the clear color. </para>
         </briefdescription>
@@ -205,14 +175,14 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/n30/Repos/rayex/include/base/Settings.hpp" line="156" column="15" bodyfile="/home/n30/Repos/rayex/include/base/Settings.hpp" bodystart="156" bodyend="-1"/>
+        <location file="C:/Repos/rayex/include/base/Settings.hpp" line="103" column="15" bodyfile="C:/Repos/rayex/include/base/Settings.hpp" bodystart="103" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_settings_1a9c9b88f11abba98296a8f089b1138e43" prot="private" static="no" mutable="no">
         <type>uint32_t</type>
         <definition>uint32_t RAYEX_NAMESPACE::Settings::_maxRecursionDepth</definition>
         <argsstring></argsstring>
         <name>_maxRecursionDepth</name>
-        <initializer>= 2</initializer>
+        <initializer>= 10</initializer>
         <briefdescription>
 <para>The maximum recursion depth. </para>
         </briefdescription>
@@ -220,14 +190,14 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/n30/Repos/rayex/include/base/Settings.hpp" line="157" column="14" bodyfile="/home/n30/Repos/rayex/include/base/Settings.hpp" bodystart="157" bodyend="-1"/>
+        <location file="C:/Repos/rayex/include/base/Settings.hpp" line="104" column="14" bodyfile="C:/Repos/rayex/include/base/Settings.hpp" bodystart="104" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_settings_1a2a6262173c207f636a0bb61e417b9cd3" prot="private" static="no" mutable="no">
         <type>uint32_t</type>
         <definition>uint32_t RAYEX_NAMESPACE::Settings::_recursionDepth</definition>
         <argsstring></argsstring>
         <name>_recursionDepth</name>
-        <initializer>= 2</initializer>
+        <initializer>= 10</initializer>
         <briefdescription>
 <para>The current recursion depth. </para>
         </briefdescription>
@@ -235,82 +205,36 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/n30/Repos/rayex/include/base/Settings.hpp" line="158" column="14" bodyfile="/home/n30/Repos/rayex/include/base/Settings.hpp" bodystart="158" bodyend="-1"/>
+        <location file="C:/Repos/rayex/include/base/Settings.hpp" line="105" column="14" bodyfile="C:/Repos/rayex/include/base/Settings.hpp" bodystart="105" bodyend="-1"/>
       </memberdef>
-      <memberdef kind="variable" id="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_settings_1a5d5e17b6604510586254c3e60ad44e99" prot="private" static="no" mutable="no">
-        <type>bool</type>
-        <definition>bool RAYEX_NAMESPACE::Settings::_jitterCamEnabled</definition>
-        <argsstring></argsstring>
-        <name>_jitterCamEnabled</name>
-        <initializer>= false</initializer>
-        <briefdescription>
-<para>Keeps track of whether or not the jitter cam is enabled. </para>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="/home/n30/Repos/rayex/include/base/Settings.hpp" line="159" column="10" bodyfile="/home/n30/Repos/rayex/include/base/Settings.hpp" bodystart="159" bodyend="-1"/>
-      </memberdef>
-      <memberdef kind="variable" id="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_settings_1ae2425f704e80375176105a8459e2dda9" prot="private" static="no" mutable="no">
+      <memberdef kind="variable" id="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_settings_1a5cf6abf1dd3a3dc32f951f9b5813e1f1" prot="private" static="no" mutable="no">
         <type>uint32_t</type>
-        <definition>uint32_t RAYEX_NAMESPACE::Settings::_jitterCamSampleRate</definition>
+        <definition>uint32_t RAYEX_NAMESPACE::Settings::_perPixelSampleRate</definition>
         <argsstring></argsstring>
-        <name>_jitterCamSampleRate</name>
-        <initializer>= 100</initializer>
+        <name>_perPixelSampleRate</name>
+        <initializer>= 4</initializer>
         <briefdescription>
-<para>Stores the sample rate of the jitter cam. </para>
+<para>Stores the total amount of samples that will be taken and averaged per pixel. </para>
         </briefdescription>
         <detaileddescription>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/n30/Repos/rayex/include/base/Settings.hpp" line="160" column="14" bodyfile="/home/n30/Repos/rayex/include/base/Settings.hpp" bodystart="160" bodyend="-1"/>
+        <location file="C:/Repos/rayex/include/base/Settings.hpp" line="106" column="14" bodyfile="C:/Repos/rayex/include/base/Settings.hpp" bodystart="106" bodyend="-1"/>
       </memberdef>
-      <memberdef kind="variable" id="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_settings_1aeb99c0a22e6c24e68a779314e9bed504" prot="private" static="no" mutable="no">
-        <type>uint32_t</type>
-        <definition>uint32_t RAYEX_NAMESPACE::Settings::_jitterCamSampleRatePerRayGen</definition>
-        <argsstring></argsstring>
-        <name>_jitterCamSampleRatePerRayGen</name>
-        <initializer>= 1</initializer>
-        <briefdescription>
-<para>Stores the sample rate per raygen invocation. </para>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="/home/n30/Repos/rayex/include/base/Settings.hpp" line="161" column="14" bodyfile="/home/n30/Repos/rayex/include/base/Settings.hpp" bodystart="161" bodyend="-1"/>
-      </memberdef>
-      <memberdef kind="variable" id="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_settings_1a953baf0e3f7a2d90e861494a2edb31ee" prot="private" static="no" mutable="no">
+      <memberdef kind="variable" id="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_settings_1a70ec096042ddab71a5c0235250417053" prot="private" static="no" mutable="no">
         <type>bool</type>
-        <definition>bool RAYEX_NAMESPACE::Settings::_ssaaEnabled</definition>
+        <definition>bool RAYEX_NAMESPACE::Settings::_accumulateFrames</definition>
         <argsstring></argsstring>
-        <name>_ssaaEnabled</name>
+        <name>_accumulateFrames</name>
         <initializer>= true</initializer>
         <briefdescription>
-<para>Keeps track of whether or not SSAA is enabled. </para>
         </briefdescription>
         <detaileddescription>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/n30/Repos/rayex/include/base/Settings.hpp" line="162" column="10" bodyfile="/home/n30/Repos/rayex/include/base/Settings.hpp" bodystart="162" bodyend="-1"/>
-      </memberdef>
-      <memberdef kind="variable" id="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_settings_1af87a181541cfbdc171646a7b6e55c930" prot="private" static="no" mutable="no">
-        <type>uint32_t</type>
-        <definition>uint32_t RAYEX_NAMESPACE::Settings::_ssaaSampleRate</definition>
-        <argsstring></argsstring>
-        <name>_ssaaSampleRate</name>
-        <initializer>= 2</initializer>
-        <briefdescription>
-<para>Stores the amount of samples per pixel for SSAA. </para>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="/home/n30/Repos/rayex/include/base/Settings.hpp" line="163" column="14" bodyfile="/home/n30/Repos/rayex/include/base/Settings.hpp" bodystart="163" bodyend="-1"/>
+        <location file="C:/Repos/rayex/include/base/Settings.hpp" line="108" column="10" bodyfile="C:/Repos/rayex/include/base/Settings.hpp" bodystart="108" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_settings_1aab98776f7fdab811c9eeaed831c4e460" prot="private" static="no" mutable="no">
         <type>bool</type>
@@ -325,7 +249,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/n30/Repos/rayex/include/base/Settings.hpp" line="165" column="10" bodyfile="/home/n30/Repos/rayex/include/base/Settings.hpp" bodystart="165" bodyend="-1"/>
+        <location file="C:/Repos/rayex/include/base/Settings.hpp" line="110" column="10" bodyfile="C:/Repos/rayex/include/base/Settings.hpp" bodystart="110" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_settings_1aae49e3535d240284b342ffbc738b478b" prot="private" static="no" mutable="no">
         <type>bool</type>
@@ -340,7 +264,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/n30/Repos/rayex/include/base/Settings.hpp" line="166" column="10" bodyfile="/home/n30/Repos/rayex/include/base/Settings.hpp" bodystart="166" bodyend="-1"/>
+        <location file="C:/Repos/rayex/include/base/Settings.hpp" line="111" column="10" bodyfile="C:/Repos/rayex/include/base/Settings.hpp" bodystart="111" bodyend="-1"/>
       </memberdef>
       </sectiondef>
       <sectiondef kind="public-func">
@@ -358,7 +282,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/n30/Repos/rayex/include/base/Settings.hpp" line="23" column="10" bodyfile="/home/n30/Repos/rayex/include/base/Settings.hpp" bodystart="23" bodyend="23"/>
+        <location file="C:/Repos/rayex/include/base/Settings.hpp" line="23" column="10" bodyfile="C:/Repos/rayex/include/base/Settings.hpp" bodystart="23" bodyend="23"/>
       </memberdef>
       <memberdef kind="function" id="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_settings_1a2219f20482a7eca65a8f8cd819b75d45" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -386,7 +310,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/n30/Repos/rayex/include/base/Settings.hpp" line="30" column="10"/>
+        <location file="C:/Repos/rayex/include/base/Settings.hpp" line="30" column="10"/>
       </memberdef>
       <memberdef kind="function" id="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_settings_1a3fbc4ba4e79dcb84f8065d8657cd09d8" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
         <type>auto</type>
@@ -402,7 +326,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/n30/Repos/rayex/include/base/Settings.hpp" line="33" column="10" bodyfile="/home/n30/Repos/rayex/include/base/Settings.hpp" bodystart="33" bodyend="33"/>
+        <location file="C:/Repos/rayex/include/base/Settings.hpp" line="33" column="10" bodyfile="C:/Repos/rayex/include/base/Settings.hpp" bodystart="33" bodyend="33"/>
       </memberdef>
       <memberdef kind="function" id="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_settings_1a7c23cd33060112e22df368eeb8fc4c62" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -430,7 +354,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/n30/Repos/rayex/include/base/Settings.hpp" line="39" column="10"/>
+        <location file="C:/Repos/rayex/include/base/Settings.hpp" line="39" column="10"/>
       </memberdef>
       <memberdef kind="function" id="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_settings_1a8e94a1b47ab849117f0e97bf74332bb0" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
         <type>auto</type>
@@ -446,7 +370,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/n30/Repos/rayex/include/base/Settings.hpp" line="42" column="10" bodyfile="/home/n30/Repos/rayex/include/base/Settings.hpp" bodystart="42" bodyend="42"/>
+        <location file="C:/Repos/rayex/include/base/Settings.hpp" line="42" column="10" bodyfile="C:/Repos/rayex/include/base/Settings.hpp" bodystart="42" bodyend="42"/>
       </memberdef>
       <memberdef kind="function" id="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_settings_1a00b2c779dbe061631b409240d99477fb" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -487,7 +411,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/n30/Repos/rayex/include/base/Settings.hpp" line="49" column="10"/>
+        <location file="C:/Repos/rayex/include/base/Settings.hpp" line="49" column="10"/>
       </memberdef>
       <memberdef kind="function" id="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_settings_1a63ae460c13863b4d90fd673039ea6b11" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -515,53 +439,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/n30/Repos/rayex/include/base/Settings.hpp" line="55" column="10"/>
-      </memberdef>
-      <memberdef kind="function" id="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_settings_1a2e953079038a847e3ed0cb77abb4e4fd" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
-        <type>auto</type>
-        <definition>auto RAYEX_NAMESPACE::Settings::getRayTracingEnabled</definition>
-        <argsstring>() const -&gt; bool</argsstring>
-        <name>getRayTracingEnabled</name>
-        <briefdescription>
-        </briefdescription>
-        <detaileddescription>
-<para><simplesect kind="return"><para>Returns true if ray tracing is enabled and false if rasterization is enabled. </para>
-</simplesect>
-<xrefsect id="todo_1_todo000010"><xreftitle>Todo</xreftitle><xrefdescription><para>This function will be pointless once the new pipeline system is implemented. </para>
-</xrefdescription></xrefsect></para>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="/home/n30/Repos/rayex/include/base/Settings.hpp" line="59" column="10" bodyfile="/home/n30/Repos/rayex/include/base/Settings.hpp" bodystart="59" bodyend="59"/>
-      </memberdef>
-      <memberdef kind="function" id="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_settings_1a86e1a739d623859c7a9f49334cc21400" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
-        <type>void</type>
-        <definition>void RAYEX_NAMESPACE::Settings::setEnableRayTracing</definition>
-        <argsstring>(bool flag)</argsstring>
-        <name>setEnableRayTracing</name>
-        <param>
-          <type>bool</type>
-          <declname>flag</declname>
-        </param>
-        <briefdescription>
-<para>Used to enable or disable ray tracing. </para>
-        </briefdescription>
-        <detaileddescription>
-<para>The function will trigger a swapchain recreation as soon as possible unless it was explicitely disabled using <ref refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_settings_1ac444874c6f8feb0a7c4385bc17728176" kindref="member">setAutomaticPipelineRefresh(bool)</ref>. <parameterlist kind="param"><parameteritem>
-<parameternamelist>
-<parametername>flag</parametername>
-</parameternamelist>
-<parameterdescription>
-<para>If false, ray tracing will be disabled. </para>
-</parameterdescription>
-</parameteritem>
-</parameterlist>
-<xrefsect id="todo_1_todo000011"><xreftitle>Todo</xreftitle><xrefdescription><para>This function will be pointless once the new pipeline system is implemented. </para>
-</xrefdescription></xrefsect></para>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="/home/n30/Repos/rayex/include/base/Settings.hpp" line="66" column="10"/>
+        <location file="C:/Repos/rayex/include/base/Settings.hpp" line="55" column="10"/>
       </memberdef>
       <memberdef kind="function" id="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_settings_1ac444874c6f8feb0a7c4385bc17728176" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -589,63 +467,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/n30/Repos/rayex/include/base/Settings.hpp" line="70" column="10"/>
-      </memberdef>
-      <memberdef kind="function" id="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_settings_1aae6e3c01ef0d90c89c82c97c5eafb250" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
-        <type>void</type>
-        <definition>void RAYEX_NAMESPACE::Settings::setMaxDirectionalLights</definition>
-        <argsstring>(uint32_t amount)</argsstring>
-        <name>setMaxDirectionalLights</name>
-        <param>
-          <type>uint32_t</type>
-          <declname>amount</declname>
-        </param>
-        <briefdescription>
-<para>Used to set the maximum amount of directional lights that can be used. </para>
-        </briefdescription>
-        <detaileddescription>
-<para><parameterlist kind="param"><parameteritem>
-<parameternamelist>
-<parametername>amount</parametername>
-</parameternamelist>
-<parameterdescription>
-<para>The amount of maximum directional lights. </para>
-</parameterdescription>
-</parameteritem>
-</parameterlist>
-</para>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="/home/n30/Repos/rayex/include/base/Settings.hpp" line="74" column="10"/>
-      </memberdef>
-      <memberdef kind="function" id="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_settings_1aa4f5d03705f7d75e752766f2136cff57" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
-        <type>void</type>
-        <definition>void RAYEX_NAMESPACE::Settings::setMaxPointLights</definition>
-        <argsstring>(uint32_t amount)</argsstring>
-        <name>setMaxPointLights</name>
-        <param>
-          <type>uint32_t</type>
-          <declname>amount</declname>
-        </param>
-        <briefdescription>
-<para>Used to set the maximum amount of point lights that can be used. </para>
-        </briefdescription>
-        <detaileddescription>
-<para><parameterlist kind="param"><parameteritem>
-<parameternamelist>
-<parametername>amount</parametername>
-</parameternamelist>
-<parameterdescription>
-<para>The amount of maximum point lights. </para>
-</parameterdescription>
-</parameteritem>
-</parameterlist>
-</para>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="/home/n30/Repos/rayex/include/base/Settings.hpp" line="78" column="10"/>
+        <location file="C:/Repos/rayex/include/base/Settings.hpp" line="59" column="10"/>
       </memberdef>
       <memberdef kind="function" id="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_settings_1ad82e2aa3d853d8b87408d808f36c72a4" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -673,7 +495,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/n30/Repos/rayex/include/base/Settings.hpp" line="82" column="10"/>
+        <location file="C:/Repos/rayex/include/base/Settings.hpp" line="63" column="10"/>
       </memberdef>
       <memberdef kind="function" id="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_settings_1a272c5032d8509892f7ee876d65fcdfe2" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
         <type>auto</type>
@@ -689,7 +511,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/n30/Repos/rayex/include/base/Settings.hpp" line="85" column="10" bodyfile="/home/n30/Repos/rayex/include/base/Settings.hpp" bodystart="85" bodyend="85"/>
+        <location file="C:/Repos/rayex/include/base/Settings.hpp" line="66" column="10" bodyfile="C:/Repos/rayex/include/base/Settings.hpp" bodystart="66" bodyend="66"/>
       </memberdef>
       <memberdef kind="function" id="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_settings_1adec13502be4c85e096764a102beb2c65" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -717,7 +539,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/n30/Repos/rayex/include/base/Settings.hpp" line="90" column="10"/>
+        <location file="C:/Repos/rayex/include/base/Settings.hpp" line="71" column="10"/>
       </memberdef>
       <memberdef kind="function" id="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_settings_1abd9b32871d745deb435e07f2b7006952" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
         <type>auto</type>
@@ -733,237 +555,97 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/n30/Repos/rayex/include/base/Settings.hpp" line="93" column="10" bodyfile="/home/n30/Repos/rayex/include/base/Settings.hpp" bodystart="93" bodyend="93"/>
+        <location file="C:/Repos/rayex/include/base/Settings.hpp" line="74" column="10" bodyfile="C:/Repos/rayex/include/base/Settings.hpp" bodystart="74" bodyend="74"/>
       </memberdef>
-      <memberdef kind="function" id="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_settings_1aafdf9b286388d388b41afc6c4707cc02" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+      <memberdef kind="function" id="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_settings_1a851a63528bb8cca62b144df9c52709fa" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
-        <definition>void RAYEX_NAMESPACE::Settings::setEnableJitterCam</definition>
+        <definition>void RAYEX_NAMESPACE::Settings::setMaxMeshes</definition>
+        <argsstring>(uint32_t amount)</argsstring>
+        <name>setMaxMeshes</name>
+        <param>
+          <type>uint32_t</type>
+          <declname>amount</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Repos/rayex/include/base/Settings.hpp" line="76" column="10"/>
+      </memberdef>
+      <memberdef kind="function" id="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_settings_1a55d7ec2dbcf93834d279d1684f424b4e" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>auto</type>
+        <definition>auto RAYEX_NAMESPACE::Settings::getMaxMeshes</definition>
+        <argsstring>() const -&gt; uint32_t</argsstring>
+        <name>getMaxMeshes</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Repos/rayex/include/base/Settings.hpp" line="78" column="10" bodyfile="C:/Repos/rayex/include/base/Settings.hpp" bodystart="78" bodyend="78"/>
+      </memberdef>
+      <memberdef kind="function" id="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_settings_1a25bcf507ecb541403562560a520f7277" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void RAYEX_NAMESPACE::Settings::setPerPixelSampleRate</definition>
+        <argsstring>(uint32_t sampleRate)</argsstring>
+        <name>setPerPixelSampleRate</name>
+        <param>
+          <type>uint32_t</type>
+          <declname>sampleRate</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Repos/rayex/include/base/Settings.hpp" line="80" column="10"/>
+      </memberdef>
+      <memberdef kind="function" id="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_settings_1a085992c9cf68599ca39d1d2e18f853d8" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>auto</type>
+        <definition>auto RAYEX_NAMESPACE::Settings::getPerPixelSampleRate</definition>
+        <argsstring>() const -&gt; uint32_t</argsstring>
+        <name>getPerPixelSampleRate</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Repos/rayex/include/base/Settings.hpp" line="82" column="10" bodyfile="C:/Repos/rayex/include/base/Settings.hpp" bodystart="82" bodyend="82"/>
+      </memberdef>
+      <memberdef kind="function" id="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_settings_1aee44e96b9e45b36bde83d6d1ef23aebe" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void RAYEX_NAMESPACE::Settings::setAccumulatingFrames</definition>
         <argsstring>(bool flag)</argsstring>
-        <name>setEnableJitterCam</name>
+        <name>setAccumulatingFrames</name>
         <param>
           <type>bool</type>
           <declname>flag</declname>
         </param>
         <briefdescription>
-<para>Used to toggle the jitter cam. </para>
         </briefdescription>
         <detaileddescription>
-<para>A jitter cam can be used for anti aliasing a static scene. A ray that will be cast into the scene normally starts off at the exact same position. The jitter cam will jitter or scatter the ray&apos;s starting position slightly using random values. <parameterlist kind="param"><parameteritem>
-<parameternamelist>
-<parametername>flag</parametername>
-</parameternamelist>
-<parameterdescription>
-<para>Enable or disable the jitter cam. </para>
-</parameterdescription>
-</parameteritem>
-</parameterlist>
-<simplesect kind="note"><para>Disables SSAA automatically. </para>
-</simplesect>
-</para>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/n30/Repos/rayex/include/base/Settings.hpp" line="102" column="10"/>
+        <location file="C:/Repos/rayex/include/base/Settings.hpp" line="84" column="10"/>
       </memberdef>
-      <memberdef kind="function" id="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_settings_1a4fe503cf5a095b02606751381ea0538f" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+      <memberdef kind="function" id="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_settings_1ac5a799f6d25e7a02fd751b8acb37cdb7" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
         <type>auto</type>
-        <definition>auto RAYEX_NAMESPACE::Settings::getJitterCamEnabled</definition>
+        <definition>auto RAYEX_NAMESPACE::Settings::isAccumulatingFrames</definition>
         <argsstring>() const -&gt; bool</argsstring>
-        <name>getJitterCamEnabled</name>
+        <name>isAccumulatingFrames</name>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
-<para><simplesect kind="return"><para>Returns true, if jitter cam is enabled. </para>
-</simplesect>
-</para>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/n30/Repos/rayex/include/base/Settings.hpp" line="105" column="10" bodyfile="/home/n30/Repos/rayex/include/base/Settings.hpp" bodystart="105" bodyend="105"/>
-      </memberdef>
-      <memberdef kind="function" id="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_settings_1a7c02b5affa6d65710d438a1300b369d6" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
-        <type>void</type>
-        <definition>void RAYEX_NAMESPACE::Settings::setJitterCamSampleRate</definition>
-        <argsstring>(uint32_t sampleRate)</argsstring>
-        <name>setJitterCamSampleRate</name>
-        <param>
-          <type>uint32_t</type>
-          <declname>sampleRate</declname>
-        </param>
-        <briefdescription>
-<para>Used to set the jitter cam&apos;s sample rate. </para>
-        </briefdescription>
-        <detaileddescription>
-<para><parameterlist kind="param"><parameteritem>
-<parameternamelist>
-<parametername>sampleRate</parametername>
-</parameternamelist>
-<parameterdescription>
-<para>The jitter cam&apos;s sample rate. </para>
-</parameterdescription>
-</parameteritem>
-</parameterlist>
-<simplesect kind="see"><para><ref refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_settings_1a6b646409950dbe255f929a0b8d07901a" kindref="member">setJitterCamSampleRatePerRayGen(uint32_t)</ref> </para>
-</simplesect>
-</para>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="/home/n30/Repos/rayex/include/base/Settings.hpp" line="110" column="10"/>
-      </memberdef>
-      <memberdef kind="function" id="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_settings_1abaab03bdd69de36f34d224933fe422c5" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
-        <type>auto</type>
-        <definition>auto RAYEX_NAMESPACE::Settings::getJitterCamSampleRate</definition>
-        <argsstring>() const -&gt; uint32_t</argsstring>
-        <name>getJitterCamSampleRate</name>
-        <briefdescription>
-        </briefdescription>
-        <detaileddescription>
-<para><simplesect kind="return"><para>Returns the jitter cam&apos;s sample rate . </para>
-</simplesect>
-</para>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="/home/n30/Repos/rayex/include/base/Settings.hpp" line="113" column="10" bodyfile="/home/n30/Repos/rayex/include/base/Settings.hpp" bodystart="113" bodyend="113"/>
-      </memberdef>
-      <memberdef kind="function" id="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_settings_1a6b646409950dbe255f929a0b8d07901a" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
-        <type>void</type>
-        <definition>void RAYEX_NAMESPACE::Settings::setJitterCamSampleRatePerRayGen</definition>
-        <argsstring>(uint32_t sampleRate)</argsstring>
-        <name>setJitterCamSampleRatePerRayGen</name>
-        <param>
-          <type>uint32_t</type>
-          <declname>sampleRate</declname>
-        </param>
-        <briefdescription>
-<para>Used to set the jitter cam&apos;s sample rate per raygen. </para>
-        </briefdescription>
-        <detaileddescription>
-<para><parameterlist kind="param"><parameteritem>
-<parameternamelist>
-<parametername>sampleRate</parametername>
-</parameternamelist>
-<parameterdescription>
-<para>Used to make the jitter cam faster by casting n rays directly in the raygen shader. </para>
-</parameterdescription>
-</parameteritem>
-</parameterlist>
-<simplesect kind="note"><para>It is advised to set a higher value for sampleRatePerRayGen and lowering sampleRate instead. </para>
-</simplesect>
-<simplesect kind="see"><para>setJitterCamSamplesRate(uint32_t) </para>
-</simplesect>
-</para>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="/home/n30/Repos/rayex/include/base/Settings.hpp" line="119" column="10"/>
-      </memberdef>
-      <memberdef kind="function" id="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_settings_1ab25392e78df5f9d79224e5006bed0f12" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
-        <type>auto</type>
-        <definition>auto RAYEX_NAMESPACE::Settings::getJitterCamSampleRatePerRayGen</definition>
-        <argsstring>() const -&gt; uint32_t</argsstring>
-        <name>getJitterCamSampleRatePerRayGen</name>
-        <briefdescription>
-        </briefdescription>
-        <detaileddescription>
-<para><simplesect kind="return"><para>Returns the jitter cam&apos;s sample rate per raygen. </para>
-</simplesect>
-</para>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="/home/n30/Repos/rayex/include/base/Settings.hpp" line="122" column="10" bodyfile="/home/n30/Repos/rayex/include/base/Settings.hpp" bodystart="122" bodyend="122"/>
-      </memberdef>
-      <memberdef kind="function" id="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_settings_1ae2aa8cc8634003231583eb3627d47de4" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
-        <type>void</type>
-        <definition>void RAYEX_NAMESPACE::Settings::setEnableSsaa</definition>
-        <argsstring>(bool flag)</argsstring>
-        <name>setEnableSsaa</name>
-        <param>
-          <type>bool</type>
-          <declname>flag</declname>
-        </param>
-        <briefdescription>
-<para>Used to toggle SSAA. </para>
-        </briefdescription>
-        <detaileddescription>
-<para><parameterlist kind="param"><parameteritem>
-<parameternamelist>
-<parametername>flag</parametername>
-</parameternamelist>
-<parameterdescription>
-<para>If true, SSAA will be activated. </para>
-</parameterdescription>
-</parameteritem>
-</parameterlist>
-<simplesect kind="note"><para>Disables jitter cam automatically. </para>
-</simplesect>
-</para>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="/home/n30/Repos/rayex/include/base/Settings.hpp" line="127" column="10"/>
-      </memberdef>
-      <memberdef kind="function" id="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_settings_1aa9344909d0bc98798245f5907e77cf96" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
-        <type>auto</type>
-        <definition>auto RAYEX_NAMESPACE::Settings::getSsaaEnabled</definition>
-        <argsstring>() const -&gt; bool</argsstring>
-        <name>getSsaaEnabled</name>
-        <briefdescription>
-        </briefdescription>
-        <detaileddescription>
-<para><simplesect kind="return"><para>Returns true, if SSAA is enabled. </para>
-</simplesect>
-</para>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="/home/n30/Repos/rayex/include/base/Settings.hpp" line="130" column="10" bodyfile="/home/n30/Repos/rayex/include/base/Settings.hpp" bodystart="130" bodyend="130"/>
-      </memberdef>
-      <memberdef kind="function" id="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_settings_1a2f760bb865eeb7f541ff7954809a49e0" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
-        <type>void</type>
-        <definition>void RAYEX_NAMESPACE::Settings::setSsaaSampleRate</definition>
-        <argsstring>(uint32_t sampleRate)</argsstring>
-        <name>setSsaaSampleRate</name>
-        <param>
-          <type>uint32_t</type>
-          <declname>sampleRate</declname>
-        </param>
-        <briefdescription>
-<para>Used to set the SSAA sample rate. </para>
-        </briefdescription>
-        <detaileddescription>
-<para><parameterlist kind="param"><parameteritem>
-<parameternamelist>
-<parametername>sampleRate</parametername>
-</parameternamelist>
-<parameterdescription>
-<para>The desired SSAA sample rate. If this value is zero, then the sample rate will be set to one. </para>
-</parameterdescription>
-</parameteritem>
-</parameterlist>
-</para>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="/home/n30/Repos/rayex/include/base/Settings.hpp" line="134" column="10"/>
-      </memberdef>
-      <memberdef kind="function" id="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_settings_1af11c9ed9a5d84a89f2642b16702deaf1" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
-        <type>auto</type>
-        <definition>auto RAYEX_NAMESPACE::Settings::getSsaaSampleRate</definition>
-        <argsstring>() const -&gt; uint32_t</argsstring>
-        <name>getSsaaSampleRate</name>
-        <briefdescription>
-        </briefdescription>
-        <detaileddescription>
-<para><simplesect kind="return"><para>Returns the SSAA sample rate. </para>
-</simplesect>
-</para>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="/home/n30/Repos/rayex/include/base/Settings.hpp" line="137" column="10" bodyfile="/home/n30/Repos/rayex/include/base/Settings.hpp" bodystart="137" bodyend="137"/>
+        <location file="C:/Repos/rayex/include/base/Settings.hpp" line="86" column="10" bodyfile="C:/Repos/rayex/include/base/Settings.hpp" bodystart="86" bodyend="86"/>
       </memberdef>
       </sectiondef>
       <sectiondef kind="private-func">
@@ -982,7 +664,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/n30/Repos/rayex/include/base/Settings.hpp" line="142" column="10"/>
+        <location file="C:/Repos/rayex/include/base/Settings.hpp" line="91" column="10"/>
       </memberdef>
       </sectiondef>
     <briefdescription>
@@ -991,61 +673,48 @@
     <detaileddescription>
 <para>Any necessary pipeline recreations and swapchain recreations will not be performed at the point of calling any setter but instead the next time the renderer will be updated. <simplesect kind="warning"><para>Any function that sets the maximum of a given entity needs to be called before <ref refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_rayex_1a7ab92b96ef9c93d84dced77b0ee2cc4b" kindref="member">RAYEX_NAMESPACE::Rayex::init()</ref>.</para>
 </simplesect>
-<xrefsect id="todo_1_todo000009"><xreftitle>Todo</xreftitle><xrefdescription><para>Add a setUseTotalPathsOnly( bool flag ) </para>
+<xrefsect id="todo_1_todo000004"><xreftitle>Todo</xreftitle><xrefdescription><para>Add a setUseTotalPathsOnly( bool flag ) </para>
 </xrefdescription></xrefsect></para>
     </detaileddescription>
-    <location file="/home/n30/Repos/rayex/include/base/Settings.hpp" line="15" column="1" bodyfile="/home/n30/Repos/rayex/include/base/Settings.hpp" bodystart="14" bodyend="167"/>
+    <location file="C:/Repos/rayex/include/base/Settings.hpp" line="14" column="3" bodyfile="C:/Repos/rayex/include/base/Settings.hpp" bodystart="15" bodyend="112"/>
     <listofallmembers>
+      <member refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_settings_1a70ec096042ddab71a5c0235250417053" prot="private" virt="non-virtual"><scope>RAYEX_NAMESPACE::Settings</scope><name>_accumulateFrames</name></member>
       <member refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_settings_1aa9bae490016f531057f313a30c4d3cf4" prot="private" virt="non-virtual"><scope>RAYEX_NAMESPACE::Settings</scope><name>_assetsPath</name></member>
       <member refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_settings_1aab98776f7fdab811c9eeaed831c4e460" prot="private" virt="non-virtual"><scope>RAYEX_NAMESPACE::Settings</scope><name>_automaticPipelineRefresh</name></member>
       <member refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_settings_1aae49e3535d240284b342ffbc738b478b" prot="private" virt="non-virtual"><scope>RAYEX_NAMESPACE::Settings</scope><name>_automaticSwapchainRefresh</name></member>
       <member refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_settings_1a6046e58440d78076e7111586f8f9bec3" prot="private" virt="non-virtual"><scope>RAYEX_NAMESPACE::Settings</scope><name>_clearColor</name></member>
-      <member refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_settings_1a5d5e17b6604510586254c3e60ad44e99" prot="private" virt="non-virtual"><scope>RAYEX_NAMESPACE::Settings</scope><name>_jitterCamEnabled</name></member>
-      <member refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_settings_1ae2425f704e80375176105a8459e2dda9" prot="private" virt="non-virtual"><scope>RAYEX_NAMESPACE::Settings</scope><name>_jitterCamSampleRate</name></member>
-      <member refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_settings_1aeb99c0a22e6c24e68a779314e9bed504" prot="private" virt="non-virtual"><scope>RAYEX_NAMESPACE::Settings</scope><name>_jitterCamSampleRatePerRayGen</name></member>
-      <member refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_settings_1aacb5b6eda77cc516d9ed07f988a0539a" prot="private" virt="non-virtual"><scope>RAYEX_NAMESPACE::Settings</scope><name>_maxDirectionalLights</name></member>
       <member refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_settings_1aa716d7606247cc77379e42c5cd4550b1" prot="private" virt="non-virtual"><scope>RAYEX_NAMESPACE::Settings</scope><name>_maxGeometry</name></member>
       <member refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_settings_1a03e30b12f5fb2f731604479e1910a5e8" prot="private" virt="non-virtual"><scope>RAYEX_NAMESPACE::Settings</scope><name>_maxGeometryInstances</name></member>
-      <member refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_settings_1a361c2e5dd268e62b4d8e6f4726da493b" prot="private" virt="non-virtual"><scope>RAYEX_NAMESPACE::Settings</scope><name>_maxPointLights</name></member>
+      <member refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_settings_1ab0f8c471cd90882b2dbdaafae28d2a3b" prot="private" virt="non-virtual"><scope>RAYEX_NAMESPACE::Settings</scope><name>_maxMeshes</name></member>
       <member refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_settings_1a9c9b88f11abba98296a8f089b1138e43" prot="private" virt="non-virtual"><scope>RAYEX_NAMESPACE::Settings</scope><name>_maxRecursionDepth</name></member>
       <member refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_settings_1aed9eedff5f74ed359fba1b5a657d5be1" prot="private" virt="non-virtual"><scope>RAYEX_NAMESPACE::Settings</scope><name>_maxTextures</name></member>
-      <member refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_settings_1aa02e79210eea96db00355ad8041a8e80" prot="private" virt="non-virtual"><scope>RAYEX_NAMESPACE::Settings</scope><name>_rayTrace</name></member>
+      <member refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_settings_1a5cf6abf1dd3a3dc32f951f9b5813e1f1" prot="private" virt="non-virtual"><scope>RAYEX_NAMESPACE::Settings</scope><name>_perPixelSampleRate</name></member>
       <member refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_settings_1a2a6262173c207f636a0bb61e417b9cd3" prot="private" virt="non-virtual"><scope>RAYEX_NAMESPACE::Settings</scope><name>_recursionDepth</name></member>
       <member refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_settings_1ab2dde0ed44fbfc246820efae526585bd" prot="private" virt="non-virtual"><scope>RAYEX_NAMESPACE::Settings</scope><name>_refreshPipeline</name></member>
       <member refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_settings_1acbf1be3ef5f6a63a517036fa67ebf67e" prot="private" virt="non-virtual"><scope>RAYEX_NAMESPACE::Settings</scope><name>_refreshSwapchain</name></member>
-      <member refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_settings_1a953baf0e3f7a2d90e861494a2edb31ee" prot="private" virt="non-virtual"><scope>RAYEX_NAMESPACE::Settings</scope><name>_ssaaEnabled</name></member>
-      <member refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_settings_1af87a181541cfbdc171646a7b6e55c930" prot="private" virt="non-virtual"><scope>RAYEX_NAMESPACE::Settings</scope><name>_ssaaSampleRate</name></member>
       <member refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_settings_1a1f45b14d517f25b1c55c57861c1ecef6" prot="public" virt="non-virtual"><scope>RAYEX_NAMESPACE::Settings</scope><name>Api</name></member>
       <member refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_settings_1a8e94a1b47ab849117f0e97bf74332bb0" prot="public" virt="non-virtual"><scope>RAYEX_NAMESPACE::Settings</scope><name>getAssetsPath</name></member>
       <member refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_settings_1a3fbc4ba4e79dcb84f8065d8657cd09d8" prot="public" virt="non-virtual"><scope>RAYEX_NAMESPACE::Settings</scope><name>getClearColor</name></member>
-      <member refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_settings_1a4fe503cf5a095b02606751381ea0538f" prot="public" virt="non-virtual"><scope>RAYEX_NAMESPACE::Settings</scope><name>getJitterCamEnabled</name></member>
-      <member refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_settings_1abaab03bdd69de36f34d224933fe422c5" prot="public" virt="non-virtual"><scope>RAYEX_NAMESPACE::Settings</scope><name>getJitterCamSampleRate</name></member>
-      <member refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_settings_1ab25392e78df5f9d79224e5006bed0f12" prot="public" virt="non-virtual"><scope>RAYEX_NAMESPACE::Settings</scope><name>getJitterCamSampleRatePerRayGen</name></member>
       <member refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_settings_1abd9b32871d745deb435e07f2b7006952" prot="public" virt="non-virtual"><scope>RAYEX_NAMESPACE::Settings</scope><name>getMaxGeometry</name></member>
+      <member refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_settings_1a55d7ec2dbcf93834d279d1684f424b4e" prot="public" virt="non-virtual"><scope>RAYEX_NAMESPACE::Settings</scope><name>getMaxMeshes</name></member>
       <member refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_settings_1a272c5032d8509892f7ee876d65fcdfe2" prot="public" virt="non-virtual"><scope>RAYEX_NAMESPACE::Settings</scope><name>getMaxRecursionDepth</name></member>
-      <member refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_settings_1a2e953079038a847e3ed0cb77abb4e4fd" prot="public" virt="non-virtual"><scope>RAYEX_NAMESPACE::Settings</scope><name>getRayTracingEnabled</name></member>
+      <member refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_settings_1a085992c9cf68599ca39d1d2e18f853d8" prot="public" virt="non-virtual"><scope>RAYEX_NAMESPACE::Settings</scope><name>getPerPixelSampleRate</name></member>
       <member refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_settings_1a971ae0e67209a44e3ea350924ab22830" prot="public" virt="non-virtual"><scope>RAYEX_NAMESPACE::Settings</scope><name>getRecursionDepth</name></member>
-      <member refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_settings_1aa9344909d0bc98798245f5907e77cf96" prot="public" virt="non-virtual"><scope>RAYEX_NAMESPACE::Settings</scope><name>getSsaaEnabled</name></member>
-      <member refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_settings_1af11c9ed9a5d84a89f2642b16702deaf1" prot="public" virt="non-virtual"><scope>RAYEX_NAMESPACE::Settings</scope><name>getSsaaSampleRate</name></member>
+      <member refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_settings_1ac5a799f6d25e7a02fd751b8acb37cdb7" prot="public" virt="non-virtual"><scope>RAYEX_NAMESPACE::Settings</scope><name>isAccumulatingFrames</name></member>
       <member refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_settings_1af9f0f1adbd5baee7830839447205af8d" prot="public" virt="non-virtual"><scope>RAYEX_NAMESPACE::Settings</scope><name>Pipeline</name></member>
       <member refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_settings_1a9c4583a217a46ad12593f4255e2a6061" prot="public" virt="non-virtual"><scope>RAYEX_NAMESPACE::Settings</scope><name>Rayex</name></member>
       <member refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_settings_1a032858ae1fe02d2d1170981c2af2d67c" prot="public" virt="non-virtual"><scope>RAYEX_NAMESPACE::Settings</scope><name>Scene</name></member>
+      <member refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_settings_1aee44e96b9e45b36bde83d6d1ef23aebe" prot="public" virt="non-virtual"><scope>RAYEX_NAMESPACE::Settings</scope><name>setAccumulatingFrames</name></member>
       <member refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_settings_1a00b2c779dbe061631b409240d99477fb" prot="public" virt="non-virtual"><scope>RAYEX_NAMESPACE::Settings</scope><name>setAssetsPath</name></member>
       <member refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_settings_1a63ae460c13863b4d90fd673039ea6b11" prot="public" virt="non-virtual"><scope>RAYEX_NAMESPACE::Settings</scope><name>setAssetsPath</name></member>
       <member refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_settings_1ac444874c6f8feb0a7c4385bc17728176" prot="public" virt="non-virtual"><scope>RAYEX_NAMESPACE::Settings</scope><name>setAutomaticPipelineRefresh</name></member>
       <member refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_settings_1a7c23cd33060112e22df368eeb8fc4c62" prot="public" virt="non-virtual"><scope>RAYEX_NAMESPACE::Settings</scope><name>setClearColor</name></member>
       <member refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_settings_1aa83d6dbcb06e088adadb1ffe6aa8a801" prot="private" virt="non-virtual"><scope>RAYEX_NAMESPACE::Settings</scope><name>setDefaultAssetsPath</name></member>
-      <member refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_settings_1aafdf9b286388d388b41afc6c4707cc02" prot="public" virt="non-virtual"><scope>RAYEX_NAMESPACE::Settings</scope><name>setEnableJitterCam</name></member>
-      <member refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_settings_1a86e1a739d623859c7a9f49334cc21400" prot="public" virt="non-virtual"><scope>RAYEX_NAMESPACE::Settings</scope><name>setEnableRayTracing</name></member>
-      <member refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_settings_1ae2aa8cc8634003231583eb3627d47de4" prot="public" virt="non-virtual"><scope>RAYEX_NAMESPACE::Settings</scope><name>setEnableSsaa</name></member>
-      <member refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_settings_1a7c02b5affa6d65710d438a1300b369d6" prot="public" virt="non-virtual"><scope>RAYEX_NAMESPACE::Settings</scope><name>setJitterCamSampleRate</name></member>
-      <member refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_settings_1a6b646409950dbe255f929a0b8d07901a" prot="public" virt="non-virtual"><scope>RAYEX_NAMESPACE::Settings</scope><name>setJitterCamSampleRatePerRayGen</name></member>
-      <member refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_settings_1aae6e3c01ef0d90c89c82c97c5eafb250" prot="public" virt="non-virtual"><scope>RAYEX_NAMESPACE::Settings</scope><name>setMaxDirectionalLights</name></member>
       <member refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_settings_1adec13502be4c85e096764a102beb2c65" prot="public" virt="non-virtual"><scope>RAYEX_NAMESPACE::Settings</scope><name>setMaxGeoemtry</name></member>
       <member refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_settings_1ad82e2aa3d853d8b87408d808f36c72a4" prot="public" virt="non-virtual"><scope>RAYEX_NAMESPACE::Settings</scope><name>setMaxGeometryInstances</name></member>
-      <member refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_settings_1aa4f5d03705f7d75e752766f2136cff57" prot="public" virt="non-virtual"><scope>RAYEX_NAMESPACE::Settings</scope><name>setMaxPointLights</name></member>
+      <member refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_settings_1a851a63528bb8cca62b144df9c52709fa" prot="public" virt="non-virtual"><scope>RAYEX_NAMESPACE::Settings</scope><name>setMaxMeshes</name></member>
+      <member refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_settings_1a25bcf507ecb541403562560a520f7277" prot="public" virt="non-virtual"><scope>RAYEX_NAMESPACE::Settings</scope><name>setPerPixelSampleRate</name></member>
       <member refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_settings_1a2219f20482a7eca65a8f8cd819b75d45" prot="public" virt="non-virtual"><scope>RAYEX_NAMESPACE::Settings</scope><name>setRecursionDepth</name></member>
-      <member refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_settings_1a2f760bb865eeb7f541ff7954809a49e0" prot="public" virt="non-virtual"><scope>RAYEX_NAMESPACE::Settings</scope><name>setSsaaSampleRate</name></member>
     </listofallmembers>
   </compounddef>
 </doxygen>

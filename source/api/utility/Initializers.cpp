@@ -297,10 +297,23 @@ namespace vk::Initializer
   {
     RAYEX_NAMESPACE::AccelerationStructure resultAs;
 
-    rx::Buffer buffer;
-    buffer.init( asCreateInfo.size, vk::BufferUsageFlagBits::eAccelerationStructureStorageKHR | vk::BufferUsageFlagBits::eShaderDeviceAddress );
+    vk::MemoryAllocateFlagsInfo allocateFlags( vk::MemoryAllocateFlagBitsKHR::eDeviceAddress );
 
-    asCreateInfo.buffer = buffer.get( );
+    vk::BufferCreateInfo createInfo( { },                                                                                                       // flags
+                                     asCreateInfo.size,                                                                                         // size
+                                     vk::BufferUsageFlagBits::eAccelerationStructureStorageKHR | vk::BufferUsageFlagBits::eShaderDeviceAddress, // usage
+                                     vk::SharingMode::eExclusive,                                                                               // sharingMode
+                                     1,                                                                                                         // queueFamilyIndexCount
+                                     &rx::components::graphicsFamilyIndex );                                                                    // pQueueFamilyIndices
+
+    resultAs.buffer = rx::components::device.createBuffer( createInfo );
+    RX_ASSERT( resultAs.buffer, "Failed to create buffer." );
+
+    resultAs.memory = vk::Initializer::allocateMemory( resultAs.buffer,
+                                                       vk::MemoryPropertyFlagBits::eDeviceLocal | vk::MemoryPropertyFlagBits::eHostCoherent,
+                                                       &allocateFlags );
+
+    asCreateInfo.buffer = resultAs.buffer;
 
     resultAs.as = RAYEX_NAMESPACE::components::device.createAccelerationStructureKHR( asCreateInfo, nullptr );
 
@@ -423,6 +436,16 @@ namespace vk::Initializer
       ++index;
     }
 
+    PhysicalDeviceAccelerationStructureFeaturesKHR asFeatures;
+    asFeatures.accelerationStructure = VK_TRUE;
+
+    // @todo Check for these features when evaluating physical devices.
+    PhysicalDeviceRayTracingPipelineFeaturesKHR rtPipelineFeatures;
+    rtPipelineFeatures.rayTracingPipeline                  = VK_TRUE;
+    rtPipelineFeatures.rayTracingPipelineTraceRaysIndirect = VK_TRUE;
+    rtPipelineFeatures.rayTraversalPrimitiveCulling        = VK_TRUE;
+    rtPipelineFeatures.pNext                               = &asFeatures;
+
     PhysicalDeviceDescriptorIndexingFeatures indexingFeatures;
     indexingFeatures.runtimeDescriptorArray                        = VK_TRUE;
     indexingFeatures.shaderStorageBufferArrayNonUniformIndexing    = VK_TRUE;
@@ -432,6 +455,7 @@ namespace vk::Initializer
     indexingFeatures.descriptorBindingUpdateUnusedWhilePending     = VK_TRUE;
     indexingFeatures.descriptorBindingSampledImageUpdateAfterBind  = VK_TRUE;
     indexingFeatures.shaderSampledImageArrayNonUniformIndexing     = VK_TRUE;
+    indexingFeatures.pNext                                         = &rtPipelineFeatures;
 
     PhysicalDeviceRobustness2FeaturesEXT robustness2FeaturesEXT;
     robustness2FeaturesEXT.nullDescriptor = VK_TRUE;

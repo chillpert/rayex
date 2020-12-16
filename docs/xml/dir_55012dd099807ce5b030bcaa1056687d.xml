@@ -1,17 +1,15 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
-<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.17">
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.20" xml:lang="en-US">
   <compounddef id="dir_55012dd099807ce5b030bcaa1056687d" kind="dir">
-    <compoundname>/home/n30/Repos/rayex/include/api/buffers</compoundname>
+    <compoundname>C:/Repos/rayex/include/api/buffers</compoundname>
     <innerfile refid="_buffer_8hpp">Buffer.hpp</innerfile>
     <innerfile refid="_command_buffer_8hpp">CommandBuffer.hpp</innerfile>
-    <innerfile refid="_index_buffer_8hpp">IndexBuffer.hpp</innerfile>
     <innerfile refid="_storage_buffer_8hpp">StorageBuffer.hpp</innerfile>
     <innerfile refid="_uniform_buffer_8hpp">UniformBuffer.hpp</innerfile>
-    <innerfile refid="_vertex_buffer_8hpp">VertexBuffer.hpp</innerfile>
     <briefdescription>
     </briefdescription>
     <detaileddescription>
     </detaileddescription>
-    <location file="/home/n30/Repos/rayex/include/api/buffers/"/>
+    <location file="C:/Repos/rayex/include/api/buffers/"/>
   </compounddef>
 </doxygen>

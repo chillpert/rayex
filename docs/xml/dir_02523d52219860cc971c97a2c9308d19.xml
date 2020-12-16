@@ -1,13 +1,14 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
-<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.17">
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.20" xml:lang="en-US">
   <compounddef id="dir_02523d52219860cc971c97a2c9308d19" kind="dir">
-    <compoundname>/home/n30/Repos/rayex/include/api/image</compoundname>
+    <compoundname>C:/Repos/rayex/include/api/image</compoundname>
+    <innerfile refid="_cubemap_8hpp">Cubemap.hpp</innerfile>
     <innerfile refid="_image_8hpp">Image.hpp</innerfile>
     <innerfile refid="_texture_8hpp">Texture.hpp</innerfile>
     <briefdescription>
     </briefdescription>
     <detaileddescription>
     </detaileddescription>
-    <location file="/home/n30/Repos/rayex/include/api/image/"/>
+    <location file="C:/Repos/rayex/include/api/image/"/>
   </compounddef>
 </doxygen>

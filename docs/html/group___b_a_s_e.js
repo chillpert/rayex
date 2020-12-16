@@ -14,6 +14,7 @@ var group___b_a_s_e =
       [ "operator=", "class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_camera.html#a1d2cb96a89ed49bcf4fc3b1f103c8a0d", null ],
       [ "processKeyboard", "class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_camera.html#a16f11a54e2249f7b951db9c9a2a3c91f", null ],
       [ "processMouse", "class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_camera.html#a5c04a4f2e338a637c3ec45acdbf7dc50", null ],
+      [ "reset", "class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_camera.html#acea55c6c1228dfeeb54f3c916917cd66", null ],
       [ "setFov", "class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_camera.html#ab533363e7361b17dc13253fe224cd00e", null ],
       [ "setPosition", "class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_camera.html#a2dd871594937d080d24bb13eac812341", null ],
       [ "setSensitivity", "class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_camera.html#a30ef8288accfbc9c43986e58ffeb2f16", null ],
@@ -45,14 +46,18 @@ var group___b_a_s_e =
       [ "ambientTexPath", "struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_material.html#a8948b3f56c7dcadf9e70a2af417f3e59", null ],
       [ "diffuse", "struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_material.html#afa1db16e87d06229251a605fed642e31", null ],
       [ "diffuseTexPath", "struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_material.html#a58d73159efe7b4974c952671d50f2531", null ],
+      [ "emission", "struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_material.html#a7c4c5f7a82461a66b18c2119411073d3", null ],
       [ "specular", "struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_material.html#a2add0cd69a003e0a01faead2ade81446", null ],
-      [ "specularTexPath", "struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_material.html#adaf2168f7e03c0c1c263f4145c6c9a88", null ]
+      [ "specularTexPath", "struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_material.html#adaf2168f7e03c0c1c263f4145c6c9a88", null ],
+      [ "transmittance", "struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_material.html#abb2f5557ba7ce5711af41ba969b48b85", null ]
     ] ],
     [ "Mesh", "struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_mesh.html", [
       [ "indexOffset", "struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_mesh.html#a6d96ab3ebede16df86654d7d25d8435b", null ],
       [ "material", "struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_mesh.html#a004a9c0382dad39d04524fe4f82929ae", null ]
     ] ],
     [ "Geometry", "struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_geometry.html", [
+      [ "setMaterial", "struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_geometry.html#a20ea3640e900acebb235adc345de1bd0", null ],
+      [ "dynamic", "struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_geometry.html#a4a926e0a1c48cf58f445b501c79bebb1", null ],
       [ "geometryIndex", "struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_geometry.html#ab185f8dac7b31f826e611b5a24cb30ce", null ],
       [ "indices", "struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_geometry.html#a11ecc2461cc8f940666cc5535e977c0f", null ],
       [ "initialized", "struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_geometry.html#af7124a02f0e2ab740618cf30c1ea748c", null ],
@@ -61,6 +66,7 @@ var group___b_a_s_e =
       [ "vertices", "struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_geometry.html#a9b4d99a41250521028e9406ef1bf9c15", null ]
     ] ],
     [ "GeometryInstance", "struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_geometry_instance.html", [
+      [ "setTransform", "struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_geometry_instance.html#a165e07ad30882bac25ab130fd1116dd5", null ],
       [ "geometryIndex", "struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_geometry_instance.html#a6104e92fc78364e8f3fb395caf466e39", null ],
       [ "transform", "struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_geometry_instance.html#a6d910049d3ae5f62b582fd1f576246a7", null ],
       [ "transformIT", "struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_geometry_instance.html#a70a32d8d77163c71da2e8ded720dd30c", null ]
@@ -69,77 +75,53 @@ var group___b_a_s_e =
       [ "~Gui", "class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_gui.html#a37b52ebf2ec5b33b5bb817b6dc157169", null ],
       [ "configure", "class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_gui.html#a9683c711717892adbc9a5091ba5a1018", null ],
       [ "destroy", "class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_gui.html#acdc42f7c0d1a54a0a2e3bc9bb89df3ee", null ],
-      [ "getCommandBuffer", "class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_gui.html#a8e3a6b5982891d85abb8dc8613f1d249", null ],
-      [ "init", "class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_gui.html#a0f744057e610d3c5e0417664dc78d358", null ],
-      [ "recreate", "class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_gui.html#a56569780013e4a2c2bcd78ce86ee5712", null ],
+      [ "init", "class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_gui.html#a872d3b5dd0876f2412bd6ee64cfc1285", null ],
+      [ "recreate", "class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_gui.html#af1bbc6bf62822168f9d28e42fd1345e5", null ],
       [ "render", "class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_gui.html#a3e5134da1391b2ca38bc65f17895d767", null ],
-      [ "renderDrawData", "class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_gui.html#a1eef3b87927ad2b9823a70d0f8ae8c8b", null ]
-    ] ],
-    [ "Light", "struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_light.html", [
-      [ "ambient", "struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_light.html#a7caf60014c05f686a4ca072641d2e8db", null ],
-      [ "ambientIntensity", "struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_light.html#ab64fe09dfc039b13271159eef7a93a38", null ],
-      [ "diffuse", "struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_light.html#a4159b357e9900158ab92b85ee50746d0", null ],
-      [ "diffuseIntensity", "struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_light.html#ac4c1d48c802b6b78d5acbf1d0e7fd396", null ],
-      [ "specular", "struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_light.html#a0bc8780a2ab3d6133dc260e2538a2d45", null ],
-      [ "specularIntensity", "struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_light.html#ab133a240d8b342dccd16d34752464309", null ],
-      [ "update", "struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_light.html#a9099dc2317d71a5766dbacdf6003428b", null ]
-    ] ],
-    [ "DirectionalLight", "struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_directional_light.html", [
-      [ "direction", "struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_directional_light.html#a292ade676ead3692bc3d2dd418a765f8", null ]
-    ] ],
-    [ "PointLight", "struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_point_light.html", [
-      [ "position", "struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_point_light.html#a61392310ead7d93a498c26839d1f25f1", null ]
+      [ "renderDrawData", "class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_gui.html#aec9cbe4d9c91740401c8781e760b7e49", null ]
     ] ],
     [ "Scene", "class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_scene.html", [
       [ "clearGeometries", "class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_scene.html#ac89ff3616b43e6c2b7e6a23995784a53", null ],
       [ "clearGeometryInstances", "class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_scene.html#a42dc12d8a200591532dc336f72a4847d", null ],
       [ "findGeometry", "class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_scene.html#a344905cab1fbaf5a5585a6df25635bbc", null ],
-      [ "getDirectionalLights", "class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_scene.html#abd17c0c5eda2b09916ab74cd0c91794d", null ],
+      [ "getCamera", "class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_scene.html#a93bff45acd035aa5c72445bca9604075", null ],
       [ "getGeometryInstances", "class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_scene.html#aef804f5fc22e5d0b27530a00cd054060", null ],
-      [ "getPointLights", "class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_scene.html#aefa4c39c0f32defc0e35019048b0bb17", null ],
+      [ "load", "class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_scene.html#a7f8086b8e638a0ad2089255fa76d127e", null ],
+      [ "operator=", "class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_scene.html#a455c1bc49b4516cd7a007692fb5fca47", null ],
       [ "popGeometry", "class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_scene.html#ae68fc066eddb4ff7ee2a16c26b06f5ba", null ],
       [ "popGeometryInstance", "class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_scene.html#a838076f7347dd4788ee1aaa8ffd28374", null ],
-      [ "removeDirectionalLight", "class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_scene.html#a8654b0489ad56a058af3647ab85c6095", null ],
+      [ "removeEnvironmentMap", "class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_scene.html#a76b628140f11ee0ad272ac1da0e6c0ff", null ],
       [ "removeGeometry", "class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_scene.html#a8004b0c0dfb783070ea82af111378718", null ],
       [ "removeGeometry", "class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_scene.html#adc0e77e152173899b4edf08fbe62ca18", null ],
       [ "removeGeometryInstance", "class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_scene.html#a11fc56eb116fe3301a59c5c594ee2bea", null ],
-      [ "removePointLight", "class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_scene.html#aef891c0cb5abb107b620142ec9ccec00", null ],
+      [ "setCamera", "class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_scene.html#aa3d8bb2201e4529f67dd8138d7f0e538", null ],
+      [ "setEnvironmentMap", "class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_scene.html#a87356635d94226e8c69857c0b48d3ad1", null ],
       [ "setGeometries", "class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_scene.html#ab191100612c6087204b476aadfd8b6db", null ],
       [ "setGeometryInstances", "class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_scene.html#a86b0c09d5294dabeeb550b84ef4ac0c4", null ],
-      [ "submitDirectionalLight", "class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_scene.html#a0950f2d94e6e9fec8ae01200f001878e", null ],
       [ "submitGeometry", "class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_scene.html#a53c0ef48ca0c5e0d2336869a8e75085b", null ],
       [ "submitGeometryInstance", "class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_scene.html#a4ca1e82f10c27e433eff652710e8e700", null ],
-      [ "submitPointLight", "class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_scene.html#a2bf002f75dd17d8c28e0641e461ad2bd", null ],
       [ "Api", "class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_scene.html#ae002d16199c05b908fbeecc4f7d97733", null ],
       [ "Rayex", "class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_scene.html#a03b7257e44db8e9af952484958a5346c", null ]
     ] ],
     [ "Settings", "class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_settings.html", [
       [ "getAssetsPath", "class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_settings.html#a8e94a1b47ab849117f0e97bf74332bb0", null ],
       [ "getClearColor", "class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_settings.html#a3fbc4ba4e79dcb84f8065d8657cd09d8", null ],
-      [ "getJitterCamEnabled", "class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_settings.html#a4fe503cf5a095b02606751381ea0538f", null ],
-      [ "getJitterCamSampleRate", "class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_settings.html#abaab03bdd69de36f34d224933fe422c5", null ],
-      [ "getJitterCamSampleRatePerRayGen", "class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_settings.html#ab25392e78df5f9d79224e5006bed0f12", null ],
       [ "getMaxGeometry", "class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_settings.html#abd9b32871d745deb435e07f2b7006952", null ],
+      [ "getMaxMeshes", "class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_settings.html#a55d7ec2dbcf93834d279d1684f424b4e", null ],
       [ "getMaxRecursionDepth", "class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_settings.html#a272c5032d8509892f7ee876d65fcdfe2", null ],
-      [ "getRayTracingEnabled", "class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_settings.html#a2e953079038a847e3ed0cb77abb4e4fd", null ],
+      [ "getPerPixelSampleRate", "class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_settings.html#a085992c9cf68599ca39d1d2e18f853d8", null ],
       [ "getRecursionDepth", "class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_settings.html#a971ae0e67209a44e3ea350924ab22830", null ],
-      [ "getSsaaEnabled", "class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_settings.html#aa9344909d0bc98798245f5907e77cf96", null ],
-      [ "getSsaaSampleRate", "class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_settings.html#af11c9ed9a5d84a89f2642b16702deaf1", null ],
+      [ "isAccumulatingFrames", "class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_settings.html#ac5a799f6d25e7a02fd751b8acb37cdb7", null ],
+      [ "setAccumulatingFrames", "class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_settings.html#aee44e96b9e45b36bde83d6d1ef23aebe", null ],
       [ "setAssetsPath", "class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_settings.html#a00b2c779dbe061631b409240d99477fb", null ],
       [ "setAssetsPath", "class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_settings.html#a63ae460c13863b4d90fd673039ea6b11", null ],
       [ "setAutomaticPipelineRefresh", "class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_settings.html#ac444874c6f8feb0a7c4385bc17728176", null ],
       [ "setClearColor", "class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_settings.html#a7c23cd33060112e22df368eeb8fc4c62", null ],
-      [ "setEnableJitterCam", "class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_settings.html#aafdf9b286388d388b41afc6c4707cc02", null ],
-      [ "setEnableRayTracing", "class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_settings.html#a86e1a739d623859c7a9f49334cc21400", null ],
-      [ "setEnableSsaa", "class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_settings.html#ae2aa8cc8634003231583eb3627d47de4", null ],
-      [ "setJitterCamSampleRate", "class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_settings.html#a7c02b5affa6d65710d438a1300b369d6", null ],
-      [ "setJitterCamSampleRatePerRayGen", "class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_settings.html#a6b646409950dbe255f929a0b8d07901a", null ],
-      [ "setMaxDirectionalLights", "class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_settings.html#aae6e3c01ef0d90c89c82c97c5eafb250", null ],
       [ "setMaxGeoemtry", "class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_settings.html#adec13502be4c85e096764a102beb2c65", null ],
       [ "setMaxGeometryInstances", "class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_settings.html#ad82e2aa3d853d8b87408d808f36c72a4", null ],
-      [ "setMaxPointLights", "class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_settings.html#aa4f5d03705f7d75e752766f2136cff57", null ],
+      [ "setMaxMeshes", "class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_settings.html#a851a63528bb8cca62b144df9c52709fa", null ],
+      [ "setPerPixelSampleRate", "class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_settings.html#a25bcf507ecb541403562560a520f7277", null ],
       [ "setRecursionDepth", "class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_settings.html#a2219f20482a7eca65a8f8cd819b75d45", null ],
-      [ "setSsaaSampleRate", "class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_settings.html#a2f760bb865eeb7f541ff7954809a49e0", null ],
       [ "Api", "class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_settings.html#a1f45b14d517f25b1c55c57861c1ecef6", null ],
       [ "Pipeline", "class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_settings.html#af9f0f1adbd5baee7830839447205af8d", null ],
       [ "Rayex", "class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_settings.html#a9c4583a217a46ad12593f4255e2a6061", null ],
@@ -173,19 +155,16 @@ var group___b_a_s_e =
       [ "_window", "class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_window.html#a6081e88e96a2b2fe645bcf25d86a7b8a", null ]
     ] ],
     [ "Rayex", "class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_rayex.html", [
-      [ "getCamera", "class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_rayex.html#a46b366bc4157a8cdc31738a505eabbbe", null ],
       [ "getWindow", "class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_rayex.html#a6a3eaad6809863354889f00ad3972b07", null ],
       [ "init", "class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_rayex.html#a7ab92b96ef9c93d84dced77b0ee2cc4b", null ],
       [ "isRunning", "class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_rayex.html#a3a1d0e4831044f2f7708365c984902bc", null ],
+      [ "reset", "class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_rayex.html#a64614dc316d4da644a62ff9463fca0dd", null ],
       [ "run", "class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_rayex.html#a8939d31603f84682c2309b784b3a82ac", null ],
       [ "scene", "class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_rayex.html#ac4de2be6f21929ce1c9cebdbeef56aa6", null ],
-      [ "setCamera", "class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_rayex.html#a0f4a81c790bed2dc5243288d9f9e57b4", null ],
       [ "setGui", "class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_rayex.html#a9c80416850a65f7a7968f58a9b8666c3", null ],
       [ "settings", "class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_rayex.html#af39e7ea862f949f987aae25faa392d29", null ],
       [ "setWindow", "class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_rayex.html#a364c4dcdb67baf57b1591394386ec3af", null ]
     ] ],
-    [ "directionalLightInstance", "group___b_a_s_e.html#ga2a069b2d151c07c55325dc008f693cb0", null ],
     [ "instance", "group___b_a_s_e.html#gad880ea304e8ff3dab6ea5258df8970cf", null ],
-    [ "loadObj", "group___b_a_s_e.html#gac348076d8b31be1511d1fc0532e75747", null ],
-    [ "pointLightInstance", "group___b_a_s_e.html#gace95101543a8d8577781044c96795140", null ]
+    [ "loadObj", "group___b_a_s_e.html#ga2d50e1cd402880131042e1bcab773b46", null ]
 ];

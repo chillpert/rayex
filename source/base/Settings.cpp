@@ -16,15 +16,25 @@ namespace RAYEX_NAMESPACE
       RX_WARN( "Exceeded maximum recursion depth of ", _maxRecursionDepth, ". Using highest possible value instead." );
     }
 
-    _refreshPipeline = true;
+    triggerPipelineRefresh( );
   }
 
   void Settings::setClearColor( const glm::vec4& clearColor )
   {
-    _clearColor       = clearColor;
-    _refreshSwapchain = true;
+    static bool firstRun = true;
 
-    components::frameCount = 0;
+    if ( firstRun )
+    {
+      firstRun = false;
+    }
+    else
+    {
+      triggerSwapchainRefresh( );
+    }
+
+    _clearColor = clearColor;
+
+    components::frameCount = -1;
   }
 
   void Settings::setAssetsPath( int argc, char* argv[] )
@@ -62,45 +72,31 @@ namespace RAYEX_NAMESPACE
     _automaticPipelineRefresh = flag;
   }
 
-  void Settings::setMaxDirectionalLights( uint32_t amount )
+  void Settings::setGeometryInstanceLimit( uint32_t amount )
   {
     if ( amount == 0 )
     {
       ++amount;
-      RX_WARN( "Can not use value 0 for the amount of maximum directional lights. Using 1 instead." );
-    }
-    _maxDirectionalLights = amount;
-    _refreshPipeline      = true;
-  }
-
-  void Settings::setMaxPointLights( uint32_t amount )
-  {
-    if ( amount == 0 )
-    {
-      ++amount;
-      RX_WARN( "Can not use value 0 for the amount of maximum point lights. Using 1 instead." );
-    }
-    _maxPointLights  = amount;
-    _refreshPipeline = true;
-  }
-
-  void Settings::setMaxGeometryInstances( uint32_t amount )
-  {
-    if ( amount == 0 )
-    {
-      ++amount;
-      RX_WARN( "Can not use value 0 for the amount of maximum directional lights. Using 1 instead." );
+      RX_WARN( "Can not use value 0 for the maximum amount of geometry instances. Using 1 instead." );
     }
 
     // Increment by one to accommodate the triangle dummy for emtpy scenes.
     _maxGeometryInstances = ++amount;
+
+    _maxGeometryInstancesChanged = true;
   }
 
-  void Settings::setMaxGeoemtry( uint32_t amount )
+  void Settings::setGeometryLimit( size_t amount )
   {
     if ( amount == 0 )
     {
-      RX_WARN( "Can not use value 0 for the amount of maximum geometry. Using 16 instead." );
+      RX_WARN( "Can not use value 0 for the maximum number of geometries. Using 16 instead." );
+      amount = 16;
+    }
+
+    if ( amount < 16 )
+    {
+      RX_WARN( "Can not use value ", amount, " for the maximum number of geometries. Using 16 instead." );
       amount = 16;
     }
 
@@ -110,14 +106,16 @@ namespace RAYEX_NAMESPACE
       amount = 16;
     }
 
-    _maxGeometry = amount;
+    _maxGeometry = ++amount;
+
+    _maxGeometryChanged = true;
   }
 
-  void Settings::setMaxMeshes( uint32_t amount )
+  void Settings::setMeshLimit( size_t amount )
   {
     if ( amount == 0 )
     {
-      RX_WARN( "Can not use value 0 for the amonut of maximum goemetry. Using 32 instead." );
+      RX_WARN( "Can not use value 0 for the maximum number of meshes. Using 32 instead." );
       amount = 32;
     }
 
@@ -127,7 +125,30 @@ namespace RAYEX_NAMESPACE
       amount = 32;
     }
 
-    _maxMeshes = amount;
+    _maxMeshes = ++amount;
+
+    _maxMeshesChanged = true;
+  }
+
+  void Settings::setTextureLimit( size_t amount )
+  {
+    if ( amount == 0 )
+    {
+      amount;
+      RX_WARN( "Can not use value 0 for the maximum amount of textures. Using 1 instead." );
+    }
+
+    _maxTextures = ++amount;
+
+    _maxTexturesChanged = true;
+  }
+
+  void Settings::setLimits( size_t geometryLimit, size_t geometryInstanceLimit, size_t meshLimit, size_t textureLimit )
+  {
+    setGeometryLimit( geometryLimit );
+    setGeometryInstanceLimit( geometryInstanceLimit );
+    setMeshLimit( meshLimit );
+    setTextureLimit( textureLimit );
   }
 
   void Settings::setDefaultAssetsPath( )
@@ -145,9 +166,8 @@ namespace RAYEX_NAMESPACE
     _perPixelSampleRate = sampleRate;
   }
 
-  void Settings::setTotalFramesToAccumulate( uint32_t totalFramesToAccumulate )
+  void Settings::setAccumulatingFrames( bool flag )
   {
-    _totalFramesToAccumulate = totalFramesToAccumulate;
-    components::frameCount   = 0;
+    _accumulateFrames = flag;
   }
 } // namespace RAYEX_NAMESPACE

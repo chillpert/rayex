@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
-<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.17">
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.20" xml:lang="en-US">
   <compounddef id="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_surface" kind="class" language="C++" prot="public">
     <compoundname>RAYEX_NAMESPACE::Surface</compoundname>
     <includes refid="_surface_8hpp" local="no">Surface.hpp</includes>
@@ -17,7 +17,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/n30/Repos/rayex/include/api/Surface.hpp" line="52" column="20" bodyfile="/home/n30/Repos/rayex/include/api/Surface.hpp" bodystart="52" bodyend="-1"/>
+        <location file="C:/Repos/rayex/include/api/Surface.hpp" line="52" column="20" bodyfile="C:/Repos/rayex/include/api/Surface.hpp" bodystart="52" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_surface_1ae53cc30f72761d093b75234bbd779854" prot="private" static="no" mutable="no">
         <type>vk::Format</type>
@@ -32,7 +32,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/n30/Repos/rayex/include/api/Surface.hpp" line="53" column="16" bodyfile="/home/n30/Repos/rayex/include/api/Surface.hpp" bodystart="53" bodyend="-1"/>
+        <location file="C:/Repos/rayex/include/api/Surface.hpp" line="53" column="16" bodyfile="C:/Repos/rayex/include/api/Surface.hpp" bodystart="53" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_surface_1ae7592ae5ca56ffafc6339e8d44883657" prot="private" static="no" mutable="no">
         <type>vk::ColorSpaceKHR</type>
@@ -47,7 +47,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/n30/Repos/rayex/include/api/Surface.hpp" line="54" column="23" bodyfile="/home/n30/Repos/rayex/include/api/Surface.hpp" bodystart="54" bodyend="-1"/>
+        <location file="C:/Repos/rayex/include/api/Surface.hpp" line="54" column="23" bodyfile="C:/Repos/rayex/include/api/Surface.hpp" bodystart="54" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_surface_1a8a9b02a76a4c1d89b785ea52bbc854c4" prot="private" static="no" mutable="no">
         <type>vk::PresentModeKHR</type>
@@ -62,7 +62,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/n30/Repos/rayex/include/api/Surface.hpp" line="55" column="24" bodyfile="/home/n30/Repos/rayex/include/api/Surface.hpp" bodystart="55" bodyend="-1"/>
+        <location file="C:/Repos/rayex/include/api/Surface.hpp" line="55" column="24" bodyfile="C:/Repos/rayex/include/api/Surface.hpp" bodystart="55" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_surface_1a2c79fa28e90560e64c31c266ab05d4d6" prot="private" static="no" mutable="no">
         <type>vk::SurfaceCapabilitiesKHR</type>
@@ -77,7 +77,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/n30/Repos/rayex/include/api/Surface.hpp" line="56" column="32" bodyfile="/home/n30/Repos/rayex/include/api/Surface.hpp" bodystart="56" bodyend="-1"/>
+        <location file="C:/Repos/rayex/include/api/Surface.hpp" line="56" column="32" bodyfile="C:/Repos/rayex/include/api/Surface.hpp" bodystart="56" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_surface_1a4784dac34bdd7d213212ef8f7bbbea48" prot="private" static="no" mutable="no">
         <type>vk::Extent2D</type>
@@ -92,7 +92,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/n30/Repos/rayex/include/api/Surface.hpp" line="57" column="18" bodyfile="/home/n30/Repos/rayex/include/api/Surface.hpp" bodystart="57" bodyend="-1"/>
+        <location file="C:/Repos/rayex/include/api/Surface.hpp" line="57" column="18" bodyfile="C:/Repos/rayex/include/api/Surface.hpp" bodystart="57" bodyend="-1"/>
       </memberdef>
       </sectiondef>
       <sectiondef kind="public-func">
@@ -107,7 +107,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/n30/Repos/rayex/include/api/Surface.hpp" line="13" column="5"/>
+        <location file="C:/Repos/rayex/include/api/Surface.hpp" line="13" column="5"/>
       </memberdef>
       <memberdef kind="function" id="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_surface_1a067165bde59c846051f20c18e635ffe7" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type></type>
@@ -121,7 +121,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/n30/Repos/rayex/include/api/Surface.hpp" line="16" column="5"/>
+        <location file="C:/Repos/rayex/include/api/Surface.hpp" line="16" column="5"/>
       </memberdef>
       <memberdef kind="function" id="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_surface_1aff20a5ec7ec7eda1408ea424e007dabd" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type></type>
@@ -137,7 +137,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/n30/Repos/rayex/include/api/Surface.hpp" line="18" column="5"/>
+        <location file="C:/Repos/rayex/include/api/Surface.hpp" line="18" column="5"/>
       </memberdef>
       <memberdef kind="function" id="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_surface_1a366763190dfacc0bd80d1ee7551928c3" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type></type>
@@ -153,7 +153,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/n30/Repos/rayex/include/api/Surface.hpp" line="19" column="5"/>
+        <location file="C:/Repos/rayex/include/api/Surface.hpp" line="19" column="5"/>
       </memberdef>
       <memberdef kind="function" id="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_surface_1af379c8a571dcefa5494a12d27b1c2743" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>auto</type>
@@ -169,7 +169,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/n30/Repos/rayex/include/api/Surface.hpp" line="21" column="10"/>
+        <location file="C:/Repos/rayex/include/api/Surface.hpp" line="21" column="10"/>
       </memberdef>
       <memberdef kind="function" id="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_surface_1aec6dd8d9491bd12b5f5a3dae75844ac6" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>auto</type>
@@ -185,7 +185,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/n30/Repos/rayex/include/api/Surface.hpp" line="22" column="10"/>
+        <location file="C:/Repos/rayex/include/api/Surface.hpp" line="22" column="10"/>
       </memberdef>
       <memberdef kind="function" id="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_surface_1a11570390ba2497255d964315e0e3afaf" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
         <type>auto</type>
@@ -201,7 +201,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/n30/Repos/rayex/include/api/Surface.hpp" line="25" column="10" bodyfile="/home/n30/Repos/rayex/include/api/Surface.hpp" bodystart="25" bodyend="25"/>
+        <location file="C:/Repos/rayex/include/api/Surface.hpp" line="25" column="10" bodyfile="C:/Repos/rayex/include/api/Surface.hpp" bodystart="25" bodyend="25"/>
       </memberdef>
       <memberdef kind="function" id="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_surface_1a70902541ad7dfec48032ca084f913378" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
         <type>auto</type>
@@ -217,7 +217,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/n30/Repos/rayex/include/api/Surface.hpp" line="28" column="10" bodyfile="/home/n30/Repos/rayex/include/api/Surface.hpp" bodystart="28" bodyend="28"/>
+        <location file="C:/Repos/rayex/include/api/Surface.hpp" line="28" column="10" bodyfile="C:/Repos/rayex/include/api/Surface.hpp" bodystart="28" bodyend="28"/>
       </memberdef>
       <memberdef kind="function" id="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_surface_1a48595aa6fcd51e7a83524e69f7498d47" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
         <type>auto</type>
@@ -233,7 +233,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/n30/Repos/rayex/include/api/Surface.hpp" line="31" column="10" bodyfile="/home/n30/Repos/rayex/include/api/Surface.hpp" bodystart="31" bodyend="31"/>
+        <location file="C:/Repos/rayex/include/api/Surface.hpp" line="31" column="10" bodyfile="C:/Repos/rayex/include/api/Surface.hpp" bodystart="31" bodyend="31"/>
       </memberdef>
       <memberdef kind="function" id="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_surface_1a4ce2ebf931003afa86f9a0497b4b8d06" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
         <type>auto</type>
@@ -249,7 +249,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/n30/Repos/rayex/include/api/Surface.hpp" line="34" column="10" bodyfile="/home/n30/Repos/rayex/include/api/Surface.hpp" bodystart="34" bodyend="34"/>
+        <location file="C:/Repos/rayex/include/api/Surface.hpp" line="34" column="10" bodyfile="C:/Repos/rayex/include/api/Surface.hpp" bodystart="34" bodyend="34"/>
       </memberdef>
       <memberdef kind="function" id="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_surface_1a0c406f4f252f4a6de19daf3f1bff8d5f" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
         <type>auto</type>
@@ -265,7 +265,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/n30/Repos/rayex/include/api/Surface.hpp" line="37" column="10" bodyfile="/home/n30/Repos/rayex/include/api/Surface.hpp" bodystart="37" bodyend="37"/>
+        <location file="C:/Repos/rayex/include/api/Surface.hpp" line="37" column="10" bodyfile="C:/Repos/rayex/include/api/Surface.hpp" bodystart="37" bodyend="37"/>
       </memberdef>
       <memberdef kind="function" id="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_surface_1adc4ef455c8eabfba752bfe7702ada7ff" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -295,7 +295,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/n30/Repos/rayex/include/api/Surface.hpp" line="42" column="10"/>
+        <location file="C:/Repos/rayex/include/api/Surface.hpp" line="42" column="10"/>
       </memberdef>
       <memberdef kind="function" id="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_surface_1a75d89305da7ff2a6e62619637ff7bf37" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -312,7 +312,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/n30/Repos/rayex/include/api/Surface.hpp" line="46" column="10"/>
+        <location file="C:/Repos/rayex/include/api/Surface.hpp" line="46" column="10"/>
       </memberdef>
       </sectiondef>
       <sectiondef kind="private-func">
@@ -328,7 +328,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/n30/Repos/rayex/include/api/Surface.hpp" line="50" column="10"/>
+        <location file="C:/Repos/rayex/include/api/Surface.hpp" line="50" column="10"/>
       </memberdef>
       </sectiondef>
     <briefdescription>
@@ -336,7 +336,7 @@
     </briefdescription>
     <detaileddescription>
     </detaileddescription>
-    <location file="/home/n30/Repos/rayex/include/api/Surface.hpp" line="11" column="1" bodyfile="/home/n30/Repos/rayex/include/api/Surface.hpp" bodystart="10" bodyend="58"/>
+    <location file="C:/Repos/rayex/include/api/Surface.hpp" line="10" column="3" bodyfile="C:/Repos/rayex/include/api/Surface.hpp" bodystart="11" bodyend="58"/>
     <listofallmembers>
       <member refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_surface_1a2c79fa28e90560e64c31c266ab05d4d6" prot="private" virt="non-virtual"><scope>RAYEX_NAMESPACE::Surface</scope><name>_capabilities</name></member>
       <member refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_surface_1ae7592ae5ca56ffafc6339e8d44883657" prot="private" virt="non-virtual"><scope>RAYEX_NAMESPACE::Surface</scope><name>_colorSpace</name></member>

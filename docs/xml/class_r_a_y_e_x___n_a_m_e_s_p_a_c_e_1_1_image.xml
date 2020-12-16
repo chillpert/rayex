@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
-<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.17">
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.20" xml:lang="en-US">
   <compounddef id="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_image" kind="class" language="C++" prot="public">
     <compoundname>RAYEX_NAMESPACE::Image</compoundname>
     <derivedcompoundref refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_texture" prot="public" virt="non-virtual">RAYEX_NAMESPACE::Texture</derivedcompoundref>
@@ -11,13 +11,12 @@
         <argsstring></argsstring>
         <name>_image</name>
         <briefdescription>
-<para>The Vulkan image with a unique handle. </para>
         </briefdescription>
         <detaileddescription>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/n30/Repos/rayex/include/api/image/Image.hpp" line="40" column="21" bodyfile="/home/n30/Repos/rayex/include/api/image/Image.hpp" bodystart="40" bodyend="-1"/>
+        <location file="C:/Repos/rayex/include/api/image/Image.hpp" line="37" column="21" bodyfile="C:/Repos/rayex/include/api/image/Image.hpp" bodystart="37" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_image_1aae687e65b91862f544568ef874768b8b" prot="protected" static="no" mutable="no">
         <type>vk::UniqueDeviceMemory</type>
@@ -25,13 +24,12 @@
         <argsstring></argsstring>
         <name>_memory</name>
         <briefdescription>
-<para>The image&apos;s memory with a unique handle. </para>
         </briefdescription>
         <detaileddescription>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/n30/Repos/rayex/include/api/image/Image.hpp" line="41" column="28" bodyfile="/home/n30/Repos/rayex/include/api/image/Image.hpp" bodystart="41" bodyend="-1"/>
+        <location file="C:/Repos/rayex/include/api/image/Image.hpp" line="38" column="28" bodyfile="C:/Repos/rayex/include/api/image/Image.hpp" bodystart="38" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_image_1a8834ea7c4275a33ee2e25dbe26db3b4b" prot="protected" static="no" mutable="no">
         <type>vk::Extent3D</type>
@@ -39,13 +37,12 @@
         <argsstring></argsstring>
         <name>_extent</name>
         <briefdescription>
-<para>The image&apos;s extent. </para>
         </briefdescription>
         <detaileddescription>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/n30/Repos/rayex/include/api/image/Image.hpp" line="43" column="18" bodyfile="/home/n30/Repos/rayex/include/api/image/Image.hpp" bodystart="43" bodyend="-1"/>
+        <location file="C:/Repos/rayex/include/api/image/Image.hpp" line="40" column="18" bodyfile="C:/Repos/rayex/include/api/image/Image.hpp" bodystart="40" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_image_1ab6642f61a0126ead754188b04b28842b" prot="protected" static="no" mutable="no">
         <type>vk::Format</type>
@@ -53,13 +50,12 @@
         <argsstring></argsstring>
         <name>_format</name>
         <briefdescription>
-<para>The image&apos;s format. </para>
         </briefdescription>
         <detaileddescription>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/n30/Repos/rayex/include/api/image/Image.hpp" line="44" column="16" bodyfile="/home/n30/Repos/rayex/include/api/image/Image.hpp" bodystart="44" bodyend="-1"/>
+        <location file="C:/Repos/rayex/include/api/image/Image.hpp" line="41" column="16" bodyfile="C:/Repos/rayex/include/api/image/Image.hpp" bodystart="41" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_image_1a59216cbdf2bf251eb817c00fdff907a8" prot="protected" static="no" mutable="no">
         <type>vk::ImageLayout</type>
@@ -67,13 +63,12 @@
         <argsstring></argsstring>
         <name>_layout</name>
         <briefdescription>
-<para>THe image&apos;s layout. </para>
         </briefdescription>
         <detaileddescription>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/n30/Repos/rayex/include/api/image/Image.hpp" line="45" column="21" bodyfile="/home/n30/Repos/rayex/include/api/image/Image.hpp" bodystart="45" bodyend="-1"/>
+        <location file="C:/Repos/rayex/include/api/image/Image.hpp" line="42" column="21" bodyfile="C:/Repos/rayex/include/api/image/Image.hpp" bodystart="42" bodyend="-1"/>
       </memberdef>
       </sectiondef>
       <sectiondef kind="public-func">
@@ -85,13 +80,10 @@
         <briefdescription>
         </briefdescription>
         <detaileddescription>
-<para><simplesect kind="return"><para>Returns the Vulkan image object without the unique handle. </para>
-</simplesect>
-</para>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/n30/Repos/rayex/include/api/image/Image.hpp" line="13" column="10" bodyfile="/home/n30/Repos/rayex/include/api/image/Image.hpp" bodystart="13" bodyend="13"/>
+        <location file="C:/Repos/rayex/include/api/image/Image.hpp" line="12" column="10" bodyfile="C:/Repos/rayex/include/api/image/Image.hpp" bodystart="12" bodyend="12"/>
       </memberdef>
       <memberdef kind="function" id="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_image_1a5a4ccd30feb5e47b653997faac3e4adb" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
         <type>auto</type>
@@ -101,13 +93,10 @@
         <briefdescription>
         </briefdescription>
         <detaileddescription>
-<para><simplesect kind="return"><para>Returns the iamge&apos;s extent. </para>
-</simplesect>
-</para>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/n30/Repos/rayex/include/api/image/Image.hpp" line="16" column="10" bodyfile="/home/n30/Repos/rayex/include/api/image/Image.hpp" bodystart="16" bodyend="16"/>
+        <location file="C:/Repos/rayex/include/api/image/Image.hpp" line="14" column="10" bodyfile="C:/Repos/rayex/include/api/image/Image.hpp" bodystart="14" bodyend="14"/>
       </memberdef>
       <memberdef kind="function" id="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_image_1a189584e4d28a640f7a91e2711aac4bb4" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
         <type>auto</type>
@@ -117,13 +106,10 @@
         <briefdescription>
         </briefdescription>
         <detaileddescription>
-<para><simplesect kind="return"><para>Returns the image&apos;s format. </para>
-</simplesect>
-</para>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/n30/Repos/rayex/include/api/image/Image.hpp" line="19" column="10" bodyfile="/home/n30/Repos/rayex/include/api/image/Image.hpp" bodystart="19" bodyend="19"/>
+        <location file="C:/Repos/rayex/include/api/image/Image.hpp" line="16" column="10" bodyfile="C:/Repos/rayex/include/api/image/Image.hpp" bodystart="16" bodyend="16"/>
       </memberdef>
       <memberdef kind="function" id="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_image_1ab3f6fda72b3f94186af3bca7230195c6" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
         <type>auto</type>
@@ -133,13 +119,10 @@
         <briefdescription>
         </briefdescription>
         <detaileddescription>
-<para><simplesect kind="return"><para>Returns the image&apos;s layout. </para>
-</simplesect>
-</para>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/n30/Repos/rayex/include/api/image/Image.hpp" line="22" column="10" bodyfile="/home/n30/Repos/rayex/include/api/image/Image.hpp" bodystart="22" bodyend="22"/>
+        <location file="C:/Repos/rayex/include/api/image/Image.hpp" line="18" column="10" bodyfile="C:/Repos/rayex/include/api/image/Image.hpp" bodystart="18" bodyend="18"/>
       </memberdef>
       <memberdef kind="function" id="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_image_1a2e018b9b5ea0b1d6cb387357ad721593" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -167,16 +150,21 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/n30/Repos/rayex/include/api/image/Image.hpp" line="26" column="10"/>
+        <location file="C:/Repos/rayex/include/api/image/Image.hpp" line="22" column="10"/>
       </memberdef>
-      <memberdef kind="function" id="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_image_1a4905385e6ab351022f1cc717dbd1cb6f" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+      <memberdef kind="function" id="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_image_1a844f7384bb145b04ec2ac4a103b69f52" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
         <definition>void RAYEX_NAMESPACE::Image::transitionToLayout</definition>
-        <argsstring>(vk::ImageLayout layout)</argsstring>
+        <argsstring>(vk::ImageLayout layout, const vk::ImageSubresourceRange *subresourceRange=nullptr)</argsstring>
         <name>transitionToLayout</name>
         <param>
           <type>vk::ImageLayout</type>
           <declname>layout</declname>
+        </param>
+        <param>
+          <type>const vk::ImageSubresourceRange *</type>
+          <declname>subresourceRange</declname>
+          <defval>nullptr</defval>
         </param>
         <briefdescription>
 <para>Used to transition this image&apos;s layout. </para>
@@ -190,6 +178,14 @@
 <para>The target layout. </para>
 </parameterdescription>
 </parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>subresourceRange</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Optionally used to define a non-standard subresource range. </para>
+</parameterdescription>
+</parameteritem>
 </parameterlist>
 <simplesect kind="note"><para>This function creates its own single-time usage command buffer. </para>
 </simplesect>
@@ -197,12 +193,12 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/n30/Repos/rayex/include/api/image/Image.hpp" line="31" column="10"/>
+        <location file="C:/Repos/rayex/include/api/image/Image.hpp" line="28" column="10"/>
       </memberdef>
-      <memberdef kind="function" id="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_image_1abd46b661d5593c29cf4b9960e2b30681" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+      <memberdef kind="function" id="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_image_1a86ea2ee513d93efe66d99f1672445888" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
         <definition>void RAYEX_NAMESPACE::Image::transitionToLayout</definition>
-        <argsstring>(vk::ImageLayout layout, vk::CommandBuffer commandBuffer)</argsstring>
+        <argsstring>(vk::ImageLayout layout, vk::CommandBuffer commandBuffer, const vk::ImageSubresourceRange *subresourceRange=nullptr)</argsstring>
         <name>transitionToLayout</name>
         <param>
           <type>vk::ImageLayout</type>
@@ -212,8 +208,13 @@
           <type>vk::CommandBuffer</type>
           <declname>commandBuffer</declname>
         </param>
+        <param>
+          <type>const vk::ImageSubresourceRange *</type>
+          <declname>subresourceRange</declname>
+          <defval>nullptr</defval>
+        </param>
         <briefdescription>
-<para>Used to transition this image&apos;s layout. </para>
+<para>Used to transition this image&apos;s layout using an already existing command buffer. </para>
         </briefdescription>
         <detaileddescription>
 <para><parameterlist kind="param"><parameteritem>
@@ -232,14 +233,20 @@
 <para>The command buffer that will be used to set up a pipeline barrier. </para>
 </parameterdescription>
 </parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>subresourceRange</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Optionally used to define a non-standard subresource range. </para>
+</parameterdescription>
+</parameteritem>
 </parameterlist>
-<simplesect kind="warning"><para>It is required to call vk::CommandBuffer::begin() or <ref refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_command_buffer_1adeb8480e5423081dae4f34e7c756f5d0" kindref="member">RAYEX_NAMESPACE::CommandBuffer::begin()</ref> before calling this function. </para>
-</simplesect>
 </para>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/n30/Repos/rayex/include/api/image/Image.hpp" line="37" column="10"/>
+        <location file="C:/Repos/rayex/include/api/image/Image.hpp" line="34" column="10"/>
       </memberdef>
       </sectiondef>
     <briefdescription>
@@ -259,7 +266,7 @@
         <link refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_image"/>
       </node>
     </inheritancegraph>
-    <location file="/home/n30/Repos/rayex/include/api/image/Image.hpp" line="10" column="1" bodyfile="/home/n30/Repos/rayex/include/api/image/Image.hpp" bodystart="9" bodyend="46"/>
+    <location file="C:/Repos/rayex/include/api/image/Image.hpp" line="9" column="3" bodyfile="C:/Repos/rayex/include/api/image/Image.hpp" bodystart="10" bodyend="43"/>
     <listofallmembers>
       <member refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_image_1a8834ea7c4275a33ee2e25dbe26db3b4b" prot="protected" virt="non-virtual"><scope>RAYEX_NAMESPACE::Image</scope><name>_extent</name></member>
       <member refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_image_1ab6642f61a0126ead754188b04b28842b" prot="protected" virt="non-virtual"><scope>RAYEX_NAMESPACE::Image</scope><name>_format</name></member>
@@ -271,8 +278,8 @@
       <member refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_image_1a189584e4d28a640f7a91e2711aac4bb4" prot="public" virt="non-virtual"><scope>RAYEX_NAMESPACE::Image</scope><name>getFormat</name></member>
       <member refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_image_1ab3f6fda72b3f94186af3bca7230195c6" prot="public" virt="non-virtual"><scope>RAYEX_NAMESPACE::Image</scope><name>getLayout</name></member>
       <member refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_image_1a2e018b9b5ea0b1d6cb387357ad721593" prot="public" virt="non-virtual"><scope>RAYEX_NAMESPACE::Image</scope><name>init</name></member>
-      <member refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_image_1a4905385e6ab351022f1cc717dbd1cb6f" prot="public" virt="non-virtual"><scope>RAYEX_NAMESPACE::Image</scope><name>transitionToLayout</name></member>
-      <member refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_image_1abd46b661d5593c29cf4b9960e2b30681" prot="public" virt="non-virtual"><scope>RAYEX_NAMESPACE::Image</scope><name>transitionToLayout</name></member>
+      <member refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_image_1a844f7384bb145b04ec2ac4a103b69f52" prot="public" virt="non-virtual"><scope>RAYEX_NAMESPACE::Image</scope><name>transitionToLayout</name></member>
+      <member refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_image_1a86ea2ee513d93efe66d99f1672445888" prot="public" virt="non-virtual"><scope>RAYEX_NAMESPACE::Image</scope><name>transitionToLayout</name></member>
     </listofallmembers>
   </compounddef>
 </doxygen>

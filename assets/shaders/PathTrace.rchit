@@ -3,25 +3,10 @@
 #extension GL_EXT_scalar_block_layout : enable
 #extension GL_EXT_nonuniform_qualifier : enable
 
+#include "Geometry.glsl"
 #include "Instance.glsl"
-#include "Lights.glsl"
 #include "Random.glsl"
 #include "Ray.glsl"
-
-#define TOTAL_DIRECTIONAL_LIGHTS 1
-#define TOTAL_POINT_LIGHTS       1
-
-#define TOTAL_MODELS 1
-
-struct Vertex
-{
-  vec3 pos;
-  vec3 normal;
-  vec3 color;
-  vec2 texCoord;
-
-  float padding0;
-};
 
 hitAttributeEXT vec3 attribs;
 
@@ -30,17 +15,7 @@ layout( location = 1 ) rayPayloadEXT bool isShadowed;
 
 layout( binding = 0, set = 0 ) uniform accelerationStructureEXT topLevelAS;
 
-layout( binding = 1, set = 1 ) buffer DirectionalLights
-{
-  DirectionalLight directionalLights[];
-};
-
-layout( binding = 2, set = 1 ) buffer PointLights
-{
-  PointLight pointLights[];
-};
-
-layout( binding = 3, set = 1 ) buffer GeometryInstances
+layout( binding = 1, set = 1 ) buffer GeometryInstances
 {
   GeometryInstance i[];
 }
@@ -64,27 +39,27 @@ layout( binding = 2, set = 2 ) buffer Meshes
 }
 meshes[];
 
-layout( binding = 4, set = 2 ) uniform sampler2D textures[];
+layout( binding = 3, set = 2 ) uniform sampler2D textures[];
 
 layout( push_constant ) uniform Constants
 {
   vec4 clearColor;
-  uint frameCount;
+  int frameCount;
   uint sampleRatePerPixel;
   uint maxRecursionDepth;
-  uint directionalLightCount;
-  uint pointLightCount;
-  bool uintuseEnvironmentMap;
+  bool useEnvironmentMap;
 
   uint padding0;
   uint padding1;
+  uint padding2;
+  uint padding3;
 };
 
-Vertex unpackVertex( uint index, uint modelIndex )
+Vertex unpackVertex( uint index, uint geometryIndex )
 {
-  vec4 d0 = vertices[nonuniformEXT( modelIndex )].v[3 * index + 0];
-  vec4 d1 = vertices[nonuniformEXT( modelIndex )].v[3 * index + 1];
-  vec4 d2 = vertices[nonuniformEXT( modelIndex )].v[3 * index + 2];
+  vec4 d0 = vertices[nonuniformEXT( geometryIndex )].v[3 * index + 0];
+  vec4 d1 = vertices[nonuniformEXT( geometryIndex )].v[3 * index + 1];
+  vec4 d2 = vertices[nonuniformEXT( geometryIndex )].v[3 * index + 2];
 
   Vertex v;
   v.pos      = d0.xyz;
@@ -94,17 +69,59 @@ Vertex unpackVertex( uint index, uint modelIndex )
   return v;
 }
 
+vec3 getAmbientLight( Material mat, vec2 texCoord )
+{
+  const float ambientStrength = 0.1;
+
+  vec3 ambient = mat.ambient.xyz;
+  if ( mat.ambient.w != -1.0 )
+  {
+    ambient *= texture( textures[nonuniformEXT( int( mat.ambient.w ) )], texCoord ).xyz;
+  }
+
+  return ambientStrength * ambient;
+}
+
+vec3 getDiffuseLight( Material mat, vec2 texCoord )
+{
+  vec3 diffuse = mat.diffuse.xyz;
+  if ( mat.diffuse.w != -1.0 )
+  {
+    diffuse *= texture( textures[nonuniformEXT( int( mat.diffuse.w ) )], texCoord ).xyz;
+  }
+
+  return diffuse;
+}
+
+vec3 getSpecularLight( Material mat, vec2 texCoord, vec3 viewDir, vec3 lightDir, vec3 normal )
+{
+  const float shininess        = max( mat.ns, 4.0 );
+  const float specularStrength = 0.5;
+
+  viewDir         = normalize( -viewDir );
+  vec3 reflectDir = reflect( -lightDir, normal );
+  float specular  = pow( max( dot( viewDir, reflectDir ), 0.0 ), shininess );
+
+  vec3 specularColor = mat.specular.xyz;
+  if ( mat.specular.w != -1.0 )
+  {
+    specularColor *= texture( textures[nonuniformEXT( int( mat.specular.w ) )], texCoord ).xyz;
+  }
+
+  return specularStrength * specular * specularColor;
+}
+
 void main( )
 {
-  uint modelIndex = geometryInstances.i[gl_InstanceID].modelIndex;
+  uint geometryIndex = geometryInstances.i[gl_InstanceID].geometryIndex;
 
-  ivec3 ind = ivec3( indices[nonuniformEXT( modelIndex )].i[3 * gl_PrimitiveID + 0],   //
-                     indices[nonuniformEXT( modelIndex )].i[3 * gl_PrimitiveID + 1],   //
-                     indices[nonuniformEXT( modelIndex )].i[3 * gl_PrimitiveID + 2] ); //
+  ivec3 ind = ivec3( indices[nonuniformEXT( geometryIndex )].i[3 * gl_PrimitiveID + 0],   //
+                     indices[nonuniformEXT( geometryIndex )].i[3 * gl_PrimitiveID + 1],   //
+                     indices[nonuniformEXT( geometryIndex )].i[3 * gl_PrimitiveID + 2] ); //
 
-  Vertex v0 = unpackVertex( ind.x, modelIndex );
-  Vertex v1 = unpackVertex( ind.y, modelIndex );
-  Vertex v2 = unpackVertex( ind.z, modelIndex );
+  Vertex v0 = unpackVertex( ind.x, geometryIndex );
+  Vertex v1 = unpackVertex( ind.y, geometryIndex );
+  Vertex v2 = unpackVertex( ind.z, geometryIndex );
 
   const vec3 barycentrics = vec3( 1.0 - attribs.x - attribs.y, attribs.x, attribs.y );
   // Computing the normal at hit position
@@ -119,47 +136,26 @@ void main( )
 
   vec2 texCoord = v0.texCoord * barycentrics.x + v1.texCoord * barycentrics.y + v2.texCoord * barycentrics.z;
 
-  // The following lines access the meshes SSBO to figure out to which submesh the current face belongs and retrieve its material.
+  // Access the meshes SSBO to figure out to which submesh the current triangle belongs and retrieve its material.
   Material mat;
   bool found       = false;
-  int subMeshCount = meshes[nonuniformEXT( modelIndex )].m.length( );
+  int subMeshCount = meshes[nonuniformEXT( geometryIndex )].m.length( );
 
   for ( int i = 0; i < subMeshCount; ++i )
   {
-    uint offset     = meshes[nonuniformEXT( modelIndex )].m[i].indexOffset;
+    uint offset     = meshes[nonuniformEXT( geometryIndex )].m[i].indexOffset;
     uint prevOffset = 0;
 
     if ( i > 0 )
     {
-      prevOffset = meshes[nonuniformEXT( modelIndex )].m[i - 1].indexOffset;
+      prevOffset = meshes[nonuniformEXT( geometryIndex )].m[i - 1].indexOffset;
     }
 
     if ( gl_PrimitiveID < offset && gl_PrimitiveID >= prevOffset )
     {
-      mat   = meshes[nonuniformEXT( modelIndex )].m[i].material;
+      mat   = meshes[nonuniformEXT( geometryIndex )].m[i].material;
       found = true;
       break;
-    }
-  }
-
-  // Diffuse lighting
-  vec3 diffuse  = vec3( 1.0 );
-  vec3 emission = vec3( 0.0 ); // emittance / emissiveFactor
-
-  if ( found )
-  {
-    emission = mat.emission.xyz;
-
-    // No texture assigned.
-    if ( mat.diffuse.w == -1.0F )
-    {
-      diffuse = mat.diffuse.xyz;
-    }
-    // Texture assigned.
-    else
-    {
-      // albedo = pbrBaseColorFactor * texture
-      diffuse = mat.diffuse.xyz * texture( textures[nonuniformEXT( int( mat.diffuse.w ) )], texCoord ).xyz;
     }
   }
 
@@ -172,12 +168,51 @@ void main( )
   // Probability of the new ray (cosine distributed)
   const float p = 1 / M_PI;
 
-  // Compute the BRDF for this ray (assuming Lambertian reflection)
-  float cos_theta = dot( rayDirection, normal );
-  vec3 BRDF       = diffuse.xyz / M_PI;
+  // Lighting
+  vec3 ambient  = vec3( 0.0 );
+  vec3 diffuse  = vec3( 0.0 );
+  vec3 specular = vec3( 0.0 );
+  vec3 emission = vec3( 0.0 ); // emittance / emissiveFactor
+
+  if ( found )
+  {
+    emission = mat.emission.xyz;
+
+    if ( mat.illum == 0 )
+    {
+      diffuse = getDiffuseLight( mat, texCoord );
+    }
+    else if ( mat.illum == 1 )
+    {
+      ambient = getAmbientLight( mat, texCoord );
+      diffuse = getDiffuseLight( mat, texCoord );
+    }
+    else if ( mat.illum == 2 )
+    {
+      ambient  = getAmbientLight( mat, texCoord );
+      diffuse  = getDiffuseLight( mat, texCoord );
+      specular = getSpecularLight( mat, texCoord, gl_WorldRayDirectionEXT, rayDirection, normal );
+    }
+    else if ( mat.illum == 3 )
+    {
+      diffuse  = getDiffuseLight( mat, texCoord );
+      specular = getSpecularLight( mat, texCoord, gl_WorldRayDirectionEXT, rayDirection, normal );
+    }
+  }
+
+  // Compute the BRDF for this ray (assuming Lambertian reflection).
+  vec3 BRDF = ( ambient + diffuse + specular ) / M_PI;
+
+  float cosTheta = dot( rayDirection, normal );
 
   ray.rayOrigin    = rayOrigin;
   ray.rayDirection = rayDirection;
-  ray.weight       = BRDF * cos_theta / p;
+  ray.weight       = BRDF * cosTheta / p;
   ray.hitValue     = emission;
+
+  if ( found && mat.illum == 3 )
+  {
+    ray.rayDirection = reflect( gl_WorldRayDirectionEXT, normal );
+    ray.reflective   = true;
+  }
 }

@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
-<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.17">
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.20" xml:lang="en-US">
   <compounddef id="_r_e_a_d_m_e_8md" kind="file" language="Markdown">
     <compoundname>README.md</compoundname>
     <briefdescription>
@@ -8,12 +8,13 @@
     </detaileddescription>
     <programlisting>
 <codeline><highlight class="normal">#<sp/>RAYEX</highlight></codeline>
-<codeline><highlight class="normal">RAYEX<sp/>is<sp/>a<sp/>work-in-progress,<sp/>cross-platform,<sp/>cross-vendor,<sp/>Vulkan-based,<sp/>path<sp/>tracing<sp/>library.<sp/></highlight></codeline>
+<codeline><highlight class="normal">RAYEX<sp/>is<sp/>a<sp/>work-in-progress,<sp/>cross-platform,<sp/>cross-vendor,<sp/>Vulkan-based,<sp/>real-time<sp/>path<sp/>tracer.<sp/></highlight></codeline>
 <codeline></codeline>
 <codeline><highlight class="normal">It<sp/>runs<sp/>on<sp/>both<sp/>Linux<sp/>(x64)<sp/>and<sp/>Windows<sp/>(x64)<sp/>using<sp/>the<sp/>Vulkan<sp/>API.<sp/>The<sp/>purpose<sp/>of<sp/>this<sp/>software<sp/>is<sp/>to<sp/>provide<sp/>a<sp/>cross-platform,<sp/>cross-vendor<sp/>path<sp/>tracer<sp/>that<sp/>is<sp/>easy<sp/>to<sp/>integrate<sp/>into<sp/>existing<sp/>projects.<sp/>Vendor<sp/>independence<sp/>is<sp/>achieved<sp/>by<sp/>using<sp/>KHRONOS&apos;<sp/>new<sp/>Vulkan<sp/>ray<sp/>tracing<sp/>extension<sp/>(first<sp/>published<sp/>on<sp/>March<sp/>17,<sp/>2020).<sp/>It<sp/>uses<sp/>[SDL2](https://www.libsdl.org/index.php)<sp/>for<sp/>windowing<sp/>and<sp/>[glm](https://glm.g-truc.net/0.9.9/index.html)<sp/>as<sp/>its<sp/>math<sp/>library.<sp/>RAYEX<sp/>features<sp/>native<sp/>[Dear<sp/>ImGui](https://github.com/ocornut/imgui)<sp/>support,<sp/>enabling<sp/>the<sp/>user<sp/>to<sp/>create<sp/>user<sp/>interfaces<sp/>without<sp/>having<sp/>to<sp/>write<sp/>any<sp/>API-related<sp/>code.</highlight></codeline>
 <codeline></codeline>
 <codeline><highlight class="normal">##<sp/>Requirements</highlight></codeline>
-<codeline><highlight class="normal">Unfortunately,<sp/>KHRONOS&apos;<sp/>Vulkan<sp/>ray<sp/>tracing<sp/>extension<sp/>is<sp/>not<sp/>yet<sp/>part<sp/>of<sp/>the<sp/>NVIDIA<sp/>main<sp/>driver.<sp/>Download<sp/>the<sp/>NVIDIA<sp/>Vulkan<sp/>beta<sp/>drivers<sp/>[here](https://developer.nvidia.com/vulkan-driver).</highlight></codeline>
+<codeline><highlight class="normal">Unfortunately,<sp/>KHRONOS&apos;<sp/>Vulkan<sp/>ray<sp/>tracing<sp/>extension<sp/>is<sp/>not<sp/>yet<sp/>part<sp/>of<sp/>the<sp/>NVIDIA<sp/>main<sp/>driver.<sp/>Download<sp/>the<sp/>NVIDIA<sp/>Vulkan<sp/>beta<sp/>drivers<sp/>[here](https://developer.nvidia.com/vulkan-driver).<sp/></highlight></codeline>
+<codeline><highlight class="normal">AMD<sp/>drivers<sp/>can<sp/>be<sp/>downloaded<sp/>[here](https://www.amd.com/en/support/kb/release-notes/rn-rad-win-20-11-2-vrt-beta)<sp/>instead.</highlight></codeline>
 <codeline></codeline>
 <codeline><highlight class="normal">##<sp/>Deploy</highlight></codeline>
 <codeline><highlight class="normal">To<sp/>integrate<sp/>RAYEX<sp/>in<sp/>your<sp/>existing<sp/>C++<sp/>/<sp/>CMake<sp/>project,<sp/>follow<sp/>the<sp/>steps<sp/>below.</highlight></codeline>
@@ -63,9 +64,6 @@
 <codeline><highlight class="normal"><sp/><sp/><sp/><sp/>auto<sp/>cubeInstance<sp/>=<sp/>rx::instance(<sp/>cube<sp/>);</highlight></codeline>
 <codeline><highlight class="normal"><sp/><sp/><sp/><sp/>renderer.scene(<sp/>).submitGeometryInstance(<sp/>cubeInstance<sp/>);</highlight></codeline>
 <codeline></codeline>
-<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>//<sp/>Add<sp/>a<sp/>light<sp/>source.</highlight></codeline>
-<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>renderer.scene(<sp/>).submitDirectionalLight(<sp/>rx::directionalLightInstance(<sp/>glm::vec3(<sp/>-4.0F,<sp/>10.0F,<sp/>5.0F<sp/>)<sp/>)<sp/>);</highlight></codeline>
-<codeline></codeline>
 <codeline><highlight class="normal"><sp/><sp/><sp/><sp/>//<sp/>The<sp/>main<sp/>loop.</highlight></codeline>
 <codeline><highlight class="normal"><sp/><sp/><sp/><sp/>while<sp/>(<sp/>renderer.isRunning(<sp/>)<sp/>)</highlight></codeline>
 <codeline><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
@@ -74,10 +72,9 @@
 <codeline><highlight class="normal">}</highlight></codeline>
 <codeline><highlight class="normal">```</highlight></codeline>
 <codeline></codeline>
-<codeline></codeline>
-<codeline><highlight class="normal">##<sp/>Download</highlight></codeline>
-<codeline><highlight class="normal">You<sp/>can<sp/>find<sp/>the<sp/>GitHub<sp/>repository<sp/>[here](https://github.com/chillpert/rayex).</highlight></codeline>
+<codeline><highlight class="normal">###<sp/>Documentation</highlight></codeline>
+<codeline><highlight class="normal">An<sp/>extensive<sp/>documentation<sp/>of<sp/>all<sp/>classes<sp/>and<sp/>functions<sp/>can<sp/>be<sp/>found<sp/>[here](https://chillpert.github.io/rayex/html/index.html).</highlight></codeline>
     </programlisting>
-    <location file="/home/n30/Repos/rayex/README.md"/>
+    <location file="C:/Repos/rayex/README.md"/>
   </compounddef>
 </doxygen>

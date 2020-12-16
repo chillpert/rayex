@@ -23,7 +23,7 @@ namespace RAYEX_NAMESPACE
     extern uint32_t transferFamilyIndex;    ///< stores a Vulkan transfer family index.
 
     extern vk::PhysicalDeviceLimits physicalDeviceLimits; ///< Global variable to store the physical device's limits.
-    extern uint32_t frameCount;                           ///< Stores the current frame count required by the jitter cam.
+    extern int frameCount;                                ///< Stores the current frame count required by the jitter cam.
 
     extern std::string assetsPath; ///< Path to where shaders, models and textures are stored.
     extern uint32_t geometryIndex;

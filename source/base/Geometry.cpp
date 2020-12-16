@@ -59,20 +59,25 @@ namespace RAYEX_NAMESPACE
       {
         float z = -1.0F;
 
-        auto ambient          = materials[materialIndex].ambient;
-        mesh.material.ambient = glm::vec3( ambient[0], ambient[1], ambient[2] );
+        auto ambient     = materials[materialIndex].ambient;
+        mesh.material.ka = glm::vec3( ambient[0], ambient[1], ambient[2] );
 
-        auto diffuse          = materials[materialIndex].diffuse;
-        mesh.material.diffuse = glm::vec3( diffuse[0], diffuse[1], diffuse[2] );
+        auto diffuse     = materials[materialIndex].diffuse;
+        mesh.material.kd = glm::vec3( diffuse[0], diffuse[1], diffuse[2] );
 
-        auto specular          = materials[materialIndex].specular;
-        mesh.material.specular = glm::vec3( specular[0], specular[1], specular[2] );
+        auto specular    = materials[materialIndex].specular;
+        mesh.material.ks = glm::vec3( specular[0], specular[1], specular[2] );
 
         auto emission          = materials[materialIndex].emission;
         mesh.material.emission = glm::vec3( emission[0], emission[1], emission[2] );
 
-        auto transmittance          = materials[materialIndex].transmittance;
-        mesh.material.transmittance = glm::vec3( transmittance[0], transmittance[1], transmittance[2] );
+        mesh.material.illum = static_cast<uint32_t>( materials[materialIndex].illum );
+        mesh.material.d     = materials[materialIndex].dissolve;
+        mesh.material.ns    = materials[materialIndex].shininess;
+        mesh.material.ni    = materials[materialIndex].ior;
+
+        //auto transmittance          = materials[materialIndex].transmittance;
+        //mesh.material.transmittance = glm::vec3( transmittance[0], transmittance[1], transmittance[2] );
 
         // @todo Add relative path here instead of inside the .mtl file.
         mesh.material.diffuseTexPath = materials[materialIndex].diffuse_texname;

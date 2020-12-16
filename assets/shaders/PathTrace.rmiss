@@ -8,26 +8,21 @@ layout( location = 0 ) rayPayloadInEXT RayPayLoad ray;
 layout( push_constant ) uniform Constants
 {
   vec4 clearColor;
-  uint frameCount;
+  int frameCount;
   uint sampleRatePerPixel;
   uint maxRecursionDepth;
-  uint directionalLightCount;
-  uint pointLightCount;
   bool useEnvironmentMap;
 
   uint padding0;
   uint padding1;
+  uint padding2;
+  uint padding3;
 };
 
-layout( binding = 3, set = 2 ) uniform samplerCube environmentMap;
+layout( binding = 2, set = 1 ) uniform samplerCube environmentMap;
 
 void main( )
 {
-  //ray.hitValue = clearColor.xyz * 0.8; // * clearColor.w;
-  //return;
-
-  //ray.hitValue = texture( skybox, ray.rayDirection ).xyz
-
   // If the ray hits nothing right away
   if ( ray.depth == 0 )
   {
@@ -37,13 +32,31 @@ void main( )
     }
     else
     {
-      ray.hitValue = vec3( 1.0, 1.0, 1.0 ) * clearColor.w;
+      ray.hitValue = clearColor.xyz * clearColor.w;
     }
   }
   else
   {
-    ray.hitValue = vec3( 0.01 ); // Tiny contribution from environment
+    if ( ray.reflective )
+    {
+      ray.reflective = false;
+
+      if ( useEnvironmentMap )
+      {
+        ray.hitValue = texture( environmentMap, ray.rayDirection ).xyz;
+      }
+      else
+      {
+        ray.hitValue = clearColor.xyz * clearColor.w;
+      }
+    }
+    else
+    {
+      // Tiny contribution from environment
+      ray.hitValue = vec3( 0.01 );
+    }
   }
 
-  ray.depth = maxRecursionDepth + 1; // Ending trace
+  // End the path
+  ray.depth = maxRecursionDepth + 1;
 }

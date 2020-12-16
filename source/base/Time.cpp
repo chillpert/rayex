@@ -8,6 +8,7 @@ namespace RAYEX_NAMESPACE
   float prevTime;
   std::vector<uint32_t> allFrames;
 
+  uint32_t fps    = 0;
   uint32_t frames = 0;
   float prevTime2 = 0.0F;
 
@@ -41,6 +42,11 @@ namespace RAYEX_NAMESPACE
     return deltaTime;
   }
 
+  auto Time::getFramesPerSecond( ) -> uint32_t
+  {
+    return fps;
+  }
+
   void Time::update( )
   {
     float current_time = static_cast<float>( SDL_GetTicks( ) ) / 1000.0F;
@@ -56,6 +62,8 @@ namespace RAYEX_NAMESPACE
       // Give the application some time to start before recording the fps.
       if ( current_time > timeToWaitForStartingBenchmark )
       {
+        fps = frames;
+
         RX_VERBOSE( "FPS: ", frames );
         allFrames.push_back( frames );
       }

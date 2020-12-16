@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
-<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.17">
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.20" xml:lang="en-US">
   <compounddef id="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_storage_buffer" kind="class" language="C++" prot="public">
     <compoundname>RAYEX_NAMESPACE::StorageBuffer</compoundname>
     <includes refid="_storage_buffer_8hpp" local="no">StorageBuffer.hpp</includes>
@@ -15,12 +15,13 @@
         <argsstring></argsstring>
         <name>_stagingBuffers</name>
         <briefdescription>
+<para>Holds the staging buffer and all its copies. </para>
         </briefdescription>
         <detaileddescription>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/n30/Repos/rayex/include/api/buffers/StorageBuffer.hpp" line="132" column="17" bodyfile="/home/n30/Repos/rayex/include/api/buffers/StorageBuffer.hpp" bodystart="132" bodyend="-1"/>
+        <location file="C:/Repos/rayex/include/api/buffers/StorageBuffer.hpp" line="132" column="17" bodyfile="C:/Repos/rayex/include/api/buffers/StorageBuffer.hpp" bodystart="132" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_storage_buffer_1af847b86f7ebde97dd90d3b296dc44c7e" prot="private" static="no" mutable="no">
         <type>std::vector&lt; <ref refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_buffer" kindref="compound">Buffer</ref> &gt;</type>
@@ -28,12 +29,13 @@
         <argsstring></argsstring>
         <name>_storageBuffers</name>
         <briefdescription>
+<para>Holds the storage buffer and all its copies. </para>
         </briefdescription>
         <detaileddescription>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/n30/Repos/rayex/include/api/buffers/StorageBuffer.hpp" line="133" column="17" bodyfile="/home/n30/Repos/rayex/include/api/buffers/StorageBuffer.hpp" bodystart="133" bodyend="-1"/>
+        <location file="C:/Repos/rayex/include/api/buffers/StorageBuffer.hpp" line="133" column="17" bodyfile="C:/Repos/rayex/include/api/buffers/StorageBuffer.hpp" bodystart="133" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_storage_buffer_1adc3c8276069432c00591b03b00d3e900" prot="private" static="no" mutable="no">
         <type>std::vector&lt; vk::DescriptorBufferInfo &gt;</type>
@@ -46,7 +48,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/n30/Repos/rayex/include/api/buffers/StorageBuffer.hpp" line="135" column="17" bodyfile="/home/n30/Repos/rayex/include/api/buffers/StorageBuffer.hpp" bodystart="135" bodyend="-1"/>
+        <location file="C:/Repos/rayex/include/api/buffers/StorageBuffer.hpp" line="135" column="17" bodyfile="C:/Repos/rayex/include/api/buffers/StorageBuffer.hpp" bodystart="135" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_storage_buffer_1ac206d2fe3c66dd7f4b25d627231d95a4" prot="private" static="no" mutable="no">
         <type>std::vector&lt; vk::UniqueFence &gt;</type>
@@ -59,7 +61,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/n30/Repos/rayex/include/api/buffers/StorageBuffer.hpp" line="136" column="17" bodyfile="/home/n30/Repos/rayex/include/api/buffers/StorageBuffer.hpp" bodystart="136" bodyend="-1"/>
+        <location file="C:/Repos/rayex/include/api/buffers/StorageBuffer.hpp" line="136" column="17" bodyfile="C:/Repos/rayex/include/api/buffers/StorageBuffer.hpp" bodystart="136" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_storage_buffer_1aa7d08adc9b9803ebd372fd0d55ba6101" prot="private" static="no" mutable="no">
         <type>vk::DeviceSize</type>
@@ -73,10 +75,67 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/n30/Repos/rayex/include/api/buffers/StorageBuffer.hpp" line="138" column="20" bodyfile="/home/n30/Repos/rayex/include/api/buffers/StorageBuffer.hpp" bodystart="138" bodyend="-1"/>
+        <location file="C:/Repos/rayex/include/api/buffers/StorageBuffer.hpp" line="138" column="20" bodyfile="C:/Repos/rayex/include/api/buffers/StorageBuffer.hpp" bodystart="138" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_storage_buffer_1a64ae176b93d2fbe4ac66ce1965631957" prot="private" static="no" mutable="no">
+        <type>uint32_t</type>
+        <definition>uint32_t RAYEX_NAMESPACE::StorageBuffer&lt; T &gt;::_count</definition>
+        <argsstring></argsstring>
+        <name>_count</name>
+        <initializer>= 0</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Repos/rayex/include/api/buffers/StorageBuffer.hpp" line="139" column="14" bodyfile="C:/Repos/rayex/include/api/buffers/StorageBuffer.hpp" bodystart="139" bodyend="-1"/>
       </memberdef>
       </sectiondef>
       <sectiondef kind="public-func">
+      <memberdef kind="function" id="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_storage_buffer_1a4a4b15943d78e5be05b047e105cb88c3" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>auto</type>
+        <definition>auto RAYEX_NAMESPACE::StorageBuffer&lt; T &gt;::get</definition>
+        <argsstring>() const -&gt; const std::vector&lt; Buffer &gt; &amp;</argsstring>
+        <name>get</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Repos/rayex/include/api/buffers/StorageBuffer.hpp" line="46" column="10" bodyfile="C:/Repos/rayex/include/api/buffers/StorageBuffer.hpp" bodystart="46" bodyend="46"/>
+      </memberdef>
+      <memberdef kind="function" id="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_storage_buffer_1a6f17799aedbc4c8b3da1786fae161177" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>auto</type>
+        <definition>auto RAYEX_NAMESPACE::StorageBuffer&lt; T &gt;::get</definition>
+        <argsstring>(size_t index) const -&gt; const vk::Buffer</argsstring>
+        <name>get</name>
+        <param>
+          <type>size_t</type>
+          <declname>index</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Repos/rayex/include/api/buffers/StorageBuffer.hpp" line="48" column="10" bodyfile="C:/Repos/rayex/include/api/buffers/StorageBuffer.hpp" bodystart="48" bodyend="48"/>
+      </memberdef>
+      <memberdef kind="function" id="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_storage_buffer_1aaf06e3ae5e4b6a5983e39332105729d6" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>auto</type>
+        <definition>auto RAYEX_NAMESPACE::StorageBuffer&lt; T &gt;::getCount</definition>
+        <argsstring>() const -&gt; uint32_t</argsstring>
+        <name>getCount</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Repos/rayex/include/api/buffers/StorageBuffer.hpp" line="50" column="10" bodyfile="C:/Repos/rayex/include/api/buffers/StorageBuffer.hpp" bodystart="50" bodyend="50"/>
+      </memberdef>
       <memberdef kind="function" id="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_storage_buffer_1a8b2a59bc880192f2b5bd3df9a9805339" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
         <type>auto</type>
         <definition>auto RAYEX_NAMESPACE::StorageBuffer&lt; T &gt;::getDescriptorInfos</definition>
@@ -88,12 +147,12 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/n30/Repos/rayex/include/api/buffers/StorageBuffer.hpp" line="68" column="10" bodyfile="/home/n30/Repos/rayex/include/api/buffers/StorageBuffer.hpp" bodystart="68" bodyend="68"/>
+        <location file="C:/Repos/rayex/include/api/buffers/StorageBuffer.hpp" line="52" column="10" bodyfile="C:/Repos/rayex/include/api/buffers/StorageBuffer.hpp" bodystart="52" bodyend="52"/>
       </memberdef>
-      <memberdef kind="function" id="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_storage_buffer_1a2d53c9b1bf1ebdffae8934a72d050f7c" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+      <memberdef kind="function" id="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_storage_buffer_1a0c6194dad42c9069d52649ce336ab23f" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
         <type>void</type>
         <definition>void RAYEX_NAMESPACE::StorageBuffer&lt; T &gt;::init</definition>
-        <argsstring>(const std::vector&lt; T &gt; &amp;data, size_t copies=1)</argsstring>
+        <argsstring>(const std::vector&lt; T &gt; &amp;data, size_t copies=1, bool deviceAddressVisible=false)</argsstring>
         <name>init</name>
         <param>
           <type>const std::vector&lt; T &gt; &amp;</type>
@@ -104,13 +163,45 @@
           <declname>copies</declname>
           <defval>1</defval>
         </param>
+        <param>
+          <type>bool</type>
+          <declname>deviceAddressVisible</declname>
+          <defval>false</defval>
+        </param>
         <briefdescription>
+<para>Creates a storage buffer and n copies. </para>
         </briefdescription>
         <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>data</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The data to fill the storage buffer(s) with. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>copies</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The amount of copies to make. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>deviceAddressVisible</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>If true, the buffer will be device visible. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/n30/Repos/rayex/include/api/buffers/StorageBuffer.hpp" line="70" column="10" bodyfile="/home/n30/Repos/rayex/include/api/buffers/StorageBuffer.hpp" bodystart="70" bodyend="99"/>
+        <location file="C:/Repos/rayex/include/api/buffers/StorageBuffer.hpp" line="58" column="10" bodyfile="C:/Repos/rayex/include/api/buffers/StorageBuffer.hpp" bodystart="58" bodyend="105"/>
       </memberdef>
       <memberdef kind="function" id="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_storage_buffer_1ad3db83a68972b7ea54a1dde49d272684" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
         <type>void</type>
@@ -132,10 +223,10 @@
         <detaileddescription>
 <para>First, the data is being copied to the staging buffer which is visible to the host. Finally, the staging buffer is copied to the actual buffer on the device. <parameterlist kind="param"><parameteritem>
 <parameternamelist>
-<parametername>data</parametername>
+<parametername>index</parametername>
 </parameternamelist>
 <parameterdescription>
-<para>The data to upload. </para>
+<para>Optionally used in case the data should only be uploaded to a specific buffer. </para>
 </parameterdescription>
 </parameteritem>
 </parameterlist>
@@ -143,25 +234,27 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/n30/Repos/rayex/include/api/buffers/StorageBuffer.hpp" line="106" column="10" bodyfile="/home/n30/Repos/rayex/include/api/buffers/StorageBuffer.hpp" bodystart="106" bodyend="129"/>
+        <location file="C:/Repos/rayex/include/api/buffers/StorageBuffer.hpp" line="112" column="10" bodyfile="C:/Repos/rayex/include/api/buffers/StorageBuffer.hpp" bodystart="112" bodyend="129"/>
       </memberdef>
       </sectiondef>
     <briefdescription>
-<para>A shader storage buffer wrapper class. </para>
+<para>A shader storage buffer specilization class. </para>
     </briefdescription>
     <detaileddescription>
-<para><xrefsect id="todo_1_todo000003"><xreftitle>Todo</xreftitle><xrefdescription><para>documentation </para>
-</xrefdescription></xrefsect></para>
     </detaileddescription>
-    <location file="/home/n30/Repos/rayex/include/api/buffers/StorageBuffer.hpp" line="66" column="1" bodyfile="/home/n30/Repos/rayex/include/api/buffers/StorageBuffer.hpp" bodystart="65" bodyend="139"/>
+    <location file="C:/Repos/rayex/include/api/buffers/StorageBuffer.hpp" line="43" column="3" bodyfile="C:/Repos/rayex/include/api/buffers/StorageBuffer.hpp" bodystart="44" bodyend="140"/>
     <listofallmembers>
       <member refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_storage_buffer_1adc3c8276069432c00591b03b00d3e900" prot="private" virt="non-virtual"><scope>RAYEX_NAMESPACE::StorageBuffer</scope><name>_bufferInfos</name></member>
+      <member refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_storage_buffer_1a64ae176b93d2fbe4ac66ce1965631957" prot="private" virt="non-virtual"><scope>RAYEX_NAMESPACE::StorageBuffer</scope><name>_count</name></member>
       <member refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_storage_buffer_1ac206d2fe3c66dd7f4b25d627231d95a4" prot="private" virt="non-virtual"><scope>RAYEX_NAMESPACE::StorageBuffer</scope><name>_fences</name></member>
       <member refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_storage_buffer_1aa7d08adc9b9803ebd372fd0d55ba6101" prot="private" virt="non-virtual"><scope>RAYEX_NAMESPACE::StorageBuffer</scope><name>_maxSize</name></member>
       <member refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_storage_buffer_1a53ed27ee41cca6993faf8df52e4704f6" prot="private" virt="non-virtual"><scope>RAYEX_NAMESPACE::StorageBuffer</scope><name>_stagingBuffers</name></member>
       <member refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_storage_buffer_1af847b86f7ebde97dd90d3b296dc44c7e" prot="private" virt="non-virtual"><scope>RAYEX_NAMESPACE::StorageBuffer</scope><name>_storageBuffers</name></member>
+      <member refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_storage_buffer_1a4a4b15943d78e5be05b047e105cb88c3" prot="public" virt="non-virtual"><scope>RAYEX_NAMESPACE::StorageBuffer</scope><name>get</name></member>
+      <member refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_storage_buffer_1a6f17799aedbc4c8b3da1786fae161177" prot="public" virt="non-virtual"><scope>RAYEX_NAMESPACE::StorageBuffer</scope><name>get</name></member>
+      <member refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_storage_buffer_1aaf06e3ae5e4b6a5983e39332105729d6" prot="public" virt="non-virtual"><scope>RAYEX_NAMESPACE::StorageBuffer</scope><name>getCount</name></member>
       <member refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_storage_buffer_1a8b2a59bc880192f2b5bd3df9a9805339" prot="public" virt="non-virtual"><scope>RAYEX_NAMESPACE::StorageBuffer</scope><name>getDescriptorInfos</name></member>
-      <member refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_storage_buffer_1a2d53c9b1bf1ebdffae8934a72d050f7c" prot="public" virt="non-virtual"><scope>RAYEX_NAMESPACE::StorageBuffer</scope><name>init</name></member>
+      <member refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_storage_buffer_1a0c6194dad42c9069d52649ce336ab23f" prot="public" virt="non-virtual"><scope>RAYEX_NAMESPACE::StorageBuffer</scope><name>init</name></member>
       <member refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_storage_buffer_1ad3db83a68972b7ea54a1dde49d272684" prot="public" virt="non-virtual"><scope>RAYEX_NAMESPACE::StorageBuffer</scope><name>upload</name></member>
     </listofallmembers>
   </compounddef>

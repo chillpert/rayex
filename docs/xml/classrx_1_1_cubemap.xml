@@ -1,0 +1,128 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.20" xml:lang="en-US">
+  <compounddef id="classrx_1_1_cubemap" kind="class" language="C++" prot="public">
+    <compoundname>rx::Cubemap</compoundname>
+    <basecompoundref prot="public" virt="non-virtual">Image</basecompoundref>
+    <includes refid="_cubemap_8hpp" local="no">Cubemap.hpp</includes>
+      <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="classrx_1_1_cubemap_1a77bd307a28d48d32c3b95b481c97b67b" prot="private" static="no" mutable="no">
+        <type>vk::UniqueSampler</type>
+        <definition>vk::UniqueSampler rx::Cubemap::_sampler</definition>
+        <argsstring></argsstring>
+        <name>_sampler</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Repos/rayex/include/api/image/Cubemap.hpp" line="21" column="23" bodyfile="C:/Repos/rayex/include/api/image/Cubemap.hpp" bodystart="21" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classrx_1_1_cubemap_1a684a5655cc97d8ee5d440bf4aae63b41" prot="private" static="no" mutable="no">
+        <type>vk::UniqueImageView</type>
+        <definition>vk::UniqueImageView rx::Cubemap::_imageView</definition>
+        <argsstring></argsstring>
+        <name>_imageView</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Repos/rayex/include/api/image/Cubemap.hpp" line="22" column="25" bodyfile="C:/Repos/rayex/include/api/image/Cubemap.hpp" bodystart="22" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="classrx_1_1_cubemap_1a7fd0aa6342aa2fe103b7d6b590a4f226" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>auto</type>
+        <definition>auto rx::Cubemap::getImageView</definition>
+        <argsstring>() const -&gt; const vk::ImageView</argsstring>
+        <name>getImageView</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Repos/rayex/include/api/image/Cubemap.hpp" line="12" column="10" bodyfile="C:/Repos/rayex/include/api/image/Cubemap.hpp" bodystart="12" bodyend="12"/>
+      </memberdef>
+      <memberdef kind="function" id="classrx_1_1_cubemap_1ac566abc766cb39d4a43f3d2e6697c9b5" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>auto</type>
+        <definition>auto rx::Cubemap::getSampler</definition>
+        <argsstring>() const -&gt; const vk::Sampler</argsstring>
+        <name>getSampler</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Repos/rayex/include/api/image/Cubemap.hpp" line="14" column="10" bodyfile="C:/Repos/rayex/include/api/image/Cubemap.hpp" bodystart="14" bodyend="14"/>
+      </memberdef>
+      <memberdef kind="function" id="classrx_1_1_cubemap_1a54d3f91a8e1023c3b7f5ec01881a71e9" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void rx::Cubemap::init</definition>
+        <argsstring>(std::string_view path=std::string_view())</argsstring>
+        <name>init</name>
+        <param>
+          <type>std::string_view</type>
+          <declname>path</declname>
+          <defval>std::string_view()</defval>
+        </param>
+        <briefdescription>
+<para>Initializes the cubemap. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>path</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>A path to a ktx cubemap file. If left empty, an empty cubemap will be created instead. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Repos/rayex/include/api/image/Cubemap.hpp" line="18" column="10"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+<para>A specialization class for creating cubemaps. </para>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="1">
+        <label>rx::Cubemap</label>
+        <link refid="classrx_1_1_cubemap"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>Image</label>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="1">
+        <label>rx::Cubemap</label>
+        <link refid="classrx_1_1_cubemap"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>Image</label>
+      </node>
+    </collaborationgraph>
+    <location file="C:/Repos/rayex/include/api/image/Cubemap.hpp" line="9" column="3" bodyfile="C:/Repos/rayex/include/api/image/Cubemap.hpp" bodystart="10" bodyend="23"/>
+    <listofallmembers>
+      <member refid="classrx_1_1_cubemap_1a684a5655cc97d8ee5d440bf4aae63b41" prot="private" virt="non-virtual"><scope>rx::Cubemap</scope><name>_imageView</name></member>
+      <member refid="classrx_1_1_cubemap_1a77bd307a28d48d32c3b95b481c97b67b" prot="private" virt="non-virtual"><scope>rx::Cubemap</scope><name>_sampler</name></member>
+      <member refid="classrx_1_1_cubemap_1a7fd0aa6342aa2fe103b7d6b590a4f226" prot="public" virt="non-virtual"><scope>rx::Cubemap</scope><name>getImageView</name></member>
+      <member refid="classrx_1_1_cubemap_1ac566abc766cb39d4a43f3d2e6697c9b5" prot="public" virt="non-virtual"><scope>rx::Cubemap</scope><name>getSampler</name></member>
+      <member refid="classrx_1_1_cubemap_1a54d3f91a8e1023c3b7f5ec01881a71e9" prot="public" virt="non-virtual"><scope>rx::Cubemap</scope><name>init</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

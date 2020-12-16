@@ -9,9 +9,27 @@ namespace RAYEX_NAMESPACE
     _height( height ),
     _position( position )
   {
+    reset( );
+  }
+
+  void Camera::reset( )
+  {
+    static glm::vec3 position = _position;
+    static float yaw          = _yaw;
+    static float pitch        = _pitch;
+
+    _position = position;
+    _yaw      = yaw;
+    _pitch    = pitch;
+
     updateVectors( );
     updateViewMatrix( );
     updateProjectionMatrix( );
+
+    _updateView = true;
+    _updateProj = true;
+
+    components::frameCount = -1;
   }
 
   void Camera::update( )
@@ -20,7 +38,7 @@ namespace RAYEX_NAMESPACE
     static glm::vec3 prevPosition = _position;
     if ( prevPosition != _position )
     {
-      components::frameCount = 0;
+      components::frameCount = -1;
       prevPosition           = _position;
     }
 
@@ -104,7 +122,7 @@ namespace RAYEX_NAMESPACE
     updateVectors( );
 
     // Frame counter for jitter cam needs to be reset.
-    components::frameCount = 0;
+    components::frameCount = -1;
   }
 
   void Camera::updateVectors( )

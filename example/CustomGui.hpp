@@ -1,105 +1,8 @@
 #ifndef CUSTOM_GUI_HPP
 #define CUSTOM_GUI_HPP
 
+#include "Example.hpp"
 #include "Keys.hpp"
-#include "Rayex.hpp"
-
-inline auto getRandomUniquePosition( float min, float max ) -> glm::vec3
-{
-  static std::vector<glm::vec3> positions;
-
-  static std::random_device rd;
-  static std::mt19937 mt( rd( ) );
-  std::uniform_real_distribution<float> dist( min, max );
-
-  glm::vec3 result = glm::vec3( 0.0F );
-
-  while ( true )
-  {
-    result.x = dist( mt );
-    result.y = dist( mt );
-    result.z = dist( mt );
-
-    bool accepted = true;
-    for ( const auto& position : positions )
-    {
-      if ( result == position )
-      {
-        accepted = false;
-      }
-    }
-
-    if ( accepted )
-    {
-      break;
-    }
-  };
-
-  return result;
-}
-
-inline auto getRandomFloat( float min, float max ) -> float
-{
-  static std::random_device rd;
-  static std::mt19937 mt( rd( ) );
-  std::uniform_real_distribution<float> dist( min, max );
-
-  return dist( mt );
-}
-
-inline void addBox( rx::Rayex* renderer )
-{
-  std::string_view path = "models/cube.obj";
-  auto cube             = renderer->scene( ).findGeometry( path );
-  if ( cube == nullptr )
-  {
-    cube = rx::loadObj( path );
-    renderer->scene( ).submitGeometry( cube );
-  }
-
-  auto transform = glm::scale( glm::mat4( 1.0F ), glm::vec3( 0.3F, 0.3F, 0.3F ) );
-  transform      = glm::rotate( transform, getRandomFloat( 0.0F, 360.0F ), glm::vec3( 0.0F, 1.0F, 0.0F ) );
-  transform      = glm::translate( transform, getRandomUniquePosition( -25.0F, 25.0F ) );
-
-  auto cubeInstance = rx::instance( cube, transform );
-  renderer->scene( ).submitGeometryInstance( cubeInstance );
-}
-
-inline void addSphere( rx::Rayex* renderer )
-{
-  std::string_view path = "models/sphere.obj";
-  auto sphere           = renderer->scene( ).findGeometry( path );
-  if ( sphere == nullptr )
-  {
-    sphere = rx::loadObj( path );
-    renderer->scene( ).submitGeometry( sphere );
-  }
-
-  auto transform = glm::scale( glm::mat4( 1.0F ), glm::vec3( 0.1F, 0.1F, 0.1F ) );
-  transform      = glm::rotate( transform, getRandomFloat( 0.0F, 360.0F ), glm::vec3( 0.0F, 1.0F, 0.0F ) );
-  transform      = glm::translate( transform, getRandomUniquePosition( -70.0F, 70.0F ) );
-
-  auto sphereInstance = rx::instance( sphere, transform );
-  renderer->scene( ).submitGeometryInstance( sphereInstance );
-}
-
-inline void addAwp( rx::Rayex* renderer )
-{
-  std::string_view path = "models/awpdlore/awpdlore.obj";
-  auto awp              = renderer->scene( ).findGeometry( path );
-  if ( awp == nullptr )
-  {
-    awp = rx::loadObj( path );
-    renderer->scene( ).submitGeometry( awp );
-  }
-
-  auto transform = glm::scale( glm::mat4( 1.0F ), glm::vec3( 0.3F, 0.3F, 0.3F ) );
-  transform      = glm::rotate( transform, getRandomFloat( 0.0F, 360.0F ), glm::vec3( 0.0F, 1.0F, 0.0F ) );
-  transform      = glm::translate( transform, getRandomUniquePosition( -10.0F, 10.0F ) );
-
-  auto awpInstance = rx::instance( awp, transform );
-  renderer->scene( ).submitGeometryInstance( awpInstance );
-}
 
 class CustomGui : public rx::Gui
 {
@@ -108,9 +11,15 @@ public:
     _renderer( renderer ) {}
 
 private:
+  ImFont* _font = nullptr;
+
   void configure( ) override
   {
     rx::Gui::configure( );
+
+    ImGuiIO& io      = ImGui::GetIO( );
+    std::string path = std::string( _renderer->settings( ).getAssetsPath( ) ) + "DroidSans.ttf";
+    _font            = io.Fonts->AddFontFromFileTTF( path.c_str( ), 15.0f );
 
     ImGui::StyleColorsDark( );
     ImGuiStyle& style = ImGui::GetStyle( );
@@ -123,11 +32,10 @@ private:
     style.PopupRounding     = 4.0f;
     style.ScrollbarRounding = 4.0f;
 
-    ImVec4* colors = ImGui::GetStyle( ).Colors;
-
+    ImVec4* colors                         = ImGui::GetStyle( ).Colors;
     colors[ImGuiCol_Text]                  = ImVec4( 1.00f, 1.00f, 1.00f, 1.00f );
     colors[ImGuiCol_TextDisabled]          = ImVec4( 0.50f, 0.50f, 0.50f, 1.00f );
-    colors[ImGuiCol_WindowBg]              = ImVec4( 0.18f, 0.18f, 0.18f, 1.00f );
+    colors[ImGuiCol_WindowBg]              = ImVec4( 0.18f, 0.18f, 0.18f, 0.61f );
     colors[ImGuiCol_ChildBg]               = ImVec4( 0.18f, 0.18f, 0.18f, 1.00f );
     colors[ImGuiCol_PopupBg]               = ImVec4( 0.18f, 0.18f, 0.18f, 1.00f );
     colors[ImGuiCol_Border]                = ImVec4( 0.22f, 0.22f, 0.22f, 1.00f );
@@ -179,149 +87,176 @@ private:
 
   void render( ) override
   {
+    if ( _font != nullptr )
+    {
+      ImGui::PushFont( _font );
+      ImGui::PopFont( );
+    }
+
     static bool showDemoWindow = false;
     if ( showDemoWindow )
     {
       ImGui::ShowDemoWindow( );
     }
 
-    if ( ImGui::Begin( "Scene" ) )
-    {
-      if ( ImGui::Button( "Add box" ) )
-      {
-        addBox( _renderer );
-      }
-
-      ImGui::SameLine( );
-
-      if ( ImGui::Button( "Add sphere" ) )
-      {
-        addSphere( _renderer );
-      }
-
-      ImGui::SameLine( );
-
-      if ( ImGui::Button( "Add awp" ) )
-      {
-        addAwp( _renderer );
-      }
-
-      ImGui::SameLine( );
-
-      if ( ImGui::Button( "Clear instances" ) )
-      {
-        _renderer->scene( ).clearGeometryInstances( );
-      }
-
-      ImGui::SameLine( );
-
-      if ( ImGui::Button( "Clear geometry" ) )
-      {
-        _renderer->scene( ).clearGeometries( );
-      }
-
-      if ( ImGui::Button( "Pop geometry instance" ) )
-      {
-        _renderer->scene( ).popGeometryInstance( );
-      }
-
-      ImGui::SameLine( );
-
-      if ( ImGui::Button( "Pop geometry" ) )
-      {
-        _renderer->scene( ).popGeometry( );
-      }
-
-      if ( ImGui::Button( "Add directional light" ) )
-      {
-        auto directionalLight = rx::directionalLightInstance( getRandomUniquePosition( 5.0F, 10.0F ) );
-        directionalLight->direction.x *= -1;
-
-        _renderer->scene( ).submitDirectionalLight( directionalLight );
-      }
-
-      ImGui::SameLine( );
-
-      if ( ImGui::Button( "Remove directional lights" ) )
-      {
-        auto directionalLights = _renderer->scene( ).getDirectionalLights( );
-
-        for ( auto directionalLight : directionalLights )
-        {
-          _renderer->scene( ).removeDirectionalLight( directionalLight );
-        }
-      }
-
-      if ( ImGui::Button( "Set skybox" ) )
-      {
-        _renderer->scene( ).setEnvironmentMap( "models/skybox/cubemap_yokohama_rgba.ktx" );
-      }
-
-      ImGui::SameLine( );
-
-      if ( ImGui::Button( "Remove skybox" ) )
-      {
-        _renderer->scene( ).removeEnvironmentMap( );
-      }
-    }
-
-    ImGui::End( );
-
-    if ( ImGui::Begin( "Resource Monitor" ) )
-    {
-      const size_t maxFrames = 10000;
-      static std::array<float, maxFrames> frameTimes;
-
-      static size_t counter = 0;
-      counter               = counter % maxFrames;
-
-      float dt = rx::Time::getDeltaTime( );
-      if ( dt > 0.001f )
-      {
-        if ( counter >= maxFrames - 1 )
-        {
-          std::fill( frameTimes.begin( ), frameTimes.end( ), 0.0f );
-        }
-
-        frameTimes[counter] = dt;
-        ++counter;
-      }
-
-      ImGui::SetNextItemWidth( -1 );
-      ImGui::PlotLines( "Frametimes", frameTimes.data( ), maxFrames, 0, "Frametime", 0.0F, 0.12F, ImVec2( 0.0F, 120.0F ) );
-    }
-
-    ImGui::End( );
+    static auto flags = ImGuiTreeNodeFlags_DefaultOpen;
 
     if ( ImGui::Begin( "Settings" ) )
     {
-      ImGui::Checkbox( "Show ImGui demo window", &showDemoWindow );
-
-      auto clearColor = _renderer->settings( ).getClearColor( );
-      if ( ImGui::ColorEdit4( "##AmbientColor", &clearColor[0] ) )
+      if ( ImGui::CollapsingHeader( "Scene", flags ) )
       {
-        _renderer->settings( ).setClearColor( clearColor );
+        if ( ImGui::Button( "Add box" ) )
+        {
+          addBox( _renderer );
+        }
+
+        ImGui::SameLine( );
+
+        if ( ImGui::Button( "Add sphere" ) )
+        {
+          addSphere( _renderer );
+        }
+
+        ImGui::SameLine( );
+
+        if ( ImGui::Button( "Add awp" ) )
+        {
+          addAwp( _renderer );
+        }
+
+        ImGui::SameLine( );
+
+        if ( ImGui::Button( "Clear instances" ) )
+        {
+          _renderer->scene( ).clearGeometryInstances( );
+        }
+
+        ImGui::SameLine( );
+
+        if ( ImGui::Button( "Clear geometry" ) )
+        {
+          _renderer->scene( ).clearGeometries( );
+        }
+
+        if ( ImGui::Button( "Pop geometry instance" ) )
+        {
+          _renderer->scene( ).popGeometryInstance( );
+        }
+
+        ImGui::SameLine( );
+
+        if ( ImGui::Button( "Pop geometry" ) )
+        {
+          _renderer->scene( ).popGeometry( );
+        }
+
+        if ( ImGui::Button( "Set environment map" ) )
+        {
+          _renderer->scene( ).setEnvironmentMap( "models/skybox/cubemap_yokohama_rgba.ktx" );
+        }
+
+        ImGui::SameLine( );
+
+        if ( ImGui::Button( "Remove environment map" ) )
+        {
+          _renderer->scene( ).removeEnvironmentMap( );
+        }
       }
 
-      int perPixelSampleRate = static_cast<int>( _renderer->settings( ).getPerPixelSampleRate( ) );
-      if ( ImGui::SliderInt( "Per pixel sample rate", &perPixelSampleRate, 1, 100 ) )
+      ImGui::NewLine( );
+
+      if ( ImGui::CollapsingHeader( "Resource Monitor", flags ) )
       {
-        _renderer->settings( ).setPerPixelSampleRate( perPixelSampleRate );
+        const size_t maxFrames = 10000;
+        static std::array<float, maxFrames> frameTimes;
+
+        static size_t counter = 0;
+        counter               = counter % maxFrames;
+
+        float dt = rx::Time::getDeltaTime( );
+        if ( dt > 0.001f )
+        {
+          if ( counter >= maxFrames - 1 )
+          {
+            std::fill( frameTimes.begin( ), frameTimes.end( ), 0.0f );
+          }
+
+          frameTimes[counter] = dt;
+          ++counter;
+        }
+
+        ImGui::SetNextItemWidth( -1 );
+        ImGui::PlotLines( "Frametimes", frameTimes.data( ), maxFrames, 0, "Frametime", 0.0F, 0.12F, ImVec2( 0.0F, 120.0F ) );
+
+        std::string fpsDisplay = "FPS: " + std::to_string( rx::Time::getFramesPerSecond( ) );
+        ImGui::Text( fpsDisplay.c_str( ) );
       }
 
-      int depth = static_cast<int>( _renderer->settings( ).getRecursionDepth( ) );
-      if ( ImGui::SliderInt( "Recursion depth", &depth, 0, 31 ) )
+      ImGui::NewLine( );
+
+      if ( ImGui::CollapsingHeader( "Settings", flags ) )
       {
-        _renderer->settings( ).setRecursionDepth( static_cast<uint32_t>( depth ) );
+        ImGui::Checkbox( "Show ImGui demo window", &showDemoWindow );
+
+        bool accumulateFrames = _renderer->settings( ).isAccumulatingFrames( );
+        ImGui::Checkbox( "Accumulate frames", &accumulateFrames );
+        _renderer->settings( ).setAccumulatingFrames( accumulateFrames );
+
+        if ( ImGui::Button( "Recompile shaders" ) )
+        {
+          _renderer->settings( ).triggerPipelineRefresh( );
+        }
+
+        auto clearColor = _renderer->settings( ).getClearColor( );
+        if ( ImGui::ColorEdit4( "##AmbientColor", &clearColor[0] ) )
+        {
+          _renderer->settings( ).setClearColor( clearColor );
+        }
+
+        int perPixelSampleRate = static_cast<int>( _renderer->settings( ).getPerPixelSampleRate( ) );
+        if ( ImGui::SliderInt( "Per pixel sample rate", &perPixelSampleRate, 1, 100 ) )
+        {
+          _renderer->settings( ).setPerPixelSampleRate( perPixelSampleRate );
+        }
+
+        int depth = static_cast<int>( _renderer->settings( ).getRecursionDepth( ) );
+        if ( ImGui::SliderInt( "Recursion depth", &depth, 0, 31 ) )
+        {
+          _renderer->settings( ).setRecursionDepth( static_cast<uint32_t>( depth ) );
+        }
       }
 
-      int totalFramesToAccumulate = static_cast<int>( _renderer->settings( ).getTotalFramesToAccumulate( ) );
-      if ( ImGui::SliderInt( "Frames to accumulate", &totalFramesToAccumulate, 0, 100 ) )
+      ImGui::NewLine( );
+
+      if ( ImGui::CollapsingHeader( "Scenes", flags ) )
       {
-        _renderer->settings( ).setTotalFramesToAccumulate( static_cast<uint32_t>( totalFramesToAccumulate ) );
+        if ( ImGui::Button( "Cornell" ) )
+        {
+          loadScene( _renderer, Level::eCornell );
+        }
+
+        ImGui::SameLine( );
+
+        if ( ImGui::Button( "Debug" ) )
+        {
+          loadScene( _renderer, Level::eDebug );
+        }
+
+        ImGui::SameLine( );
+
+        if ( ImGui::Button( "Spheres" ) )
+        {
+          loadScene( _renderer, Level::eSpheres );
+        }
+
+        ImGui::SameLine( );
+
+        if ( ImGui::Button( "Reflections" ) )
+        {
+          loadScene( _renderer, Level::eReflections );
+        }
       }
     }
-
     ImGui::End( );
   }
 

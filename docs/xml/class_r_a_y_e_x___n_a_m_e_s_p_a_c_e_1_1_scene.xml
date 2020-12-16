@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
-<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.17">
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.20" xml:lang="en-US">
   <compounddef id="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_scene" kind="class" language="C++" prot="public">
     <compoundname>RAYEX_NAMESPACE::Scene</compoundname>
     <includes refid="_scene_8hpp" local="no">Scene.hpp</includes>
@@ -15,7 +15,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/n30/Repos/rayex/include/base/Scene.hpp" line="20" column="12" bodyfile="/home/n30/Repos/rayex/include/base/Scene.hpp" bodystart="20" bodyend="-1"/>
+        <location file="C:/Repos/rayex/include/base/Scene.hpp" line="25" column="12" bodyfile="C:/Repos/rayex/include/base/Scene.hpp" bodystart="25" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_scene_1a03b7257e44db8e9af952484958a5346c" prot="public" static="no" mutable="no">
         <type>friend</type>
@@ -28,23 +28,191 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/n30/Repos/rayex/include/base/Scene.hpp" line="21" column="12" bodyfile="/home/n30/Repos/rayex/include/base/Scene.hpp" bodystart="21" bodyend="-1"/>
+        <location file="C:/Repos/rayex/include/base/Scene.hpp" line="26" column="12" bodyfile="C:/Repos/rayex/include/base/Scene.hpp" bodystart="26" bodyend="-1"/>
       </memberdef>
       </sectiondef>
       <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_scene_1a89aa9c9d13cb0e6080ab6b95e199f2d5" prot="private" static="no" mutable="no">
+        <type><ref refid="struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_descriptors" kindref="compound">Descriptors</ref></type>
+        <definition>Descriptors RAYEX_NAMESPACE::Scene::_sceneDescriptors</definition>
+        <argsstring></argsstring>
+        <name>_sceneDescriptors</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Repos/rayex/include/base/Scene.hpp" line="134" column="17" bodyfile="C:/Repos/rayex/include/base/Scene.hpp" bodystart="134" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_scene_1a4e4471f5e1b0d292a1a32a0425cf69c2" prot="private" static="no" mutable="no">
+        <type><ref refid="struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_descriptors" kindref="compound">Descriptors</ref></type>
+        <definition>Descriptors RAYEX_NAMESPACE::Scene::_geometryDescriptors</definition>
+        <argsstring></argsstring>
+        <name>_geometryDescriptors</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Repos/rayex/include/base/Scene.hpp" line="135" column="17" bodyfile="C:/Repos/rayex/include/base/Scene.hpp" bodystart="135" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_scene_1af8458a06dcb03bb0a5b06e5205b26adb" prot="private" static="no" mutable="no">
+        <type>std::vector&lt; vk::DescriptorSet &gt;</type>
+        <definition>std::vector&lt;vk::DescriptorSet&gt; RAYEX_NAMESPACE::Scene::_sceneDescriptorsets</definition>
+        <argsstring></argsstring>
+        <name>_sceneDescriptorsets</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Repos/rayex/include/base/Scene.hpp" line="137" column="17" bodyfile="C:/Repos/rayex/include/base/Scene.hpp" bodystart="137" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_scene_1a81695ad3637f188d7a87d77bd95544f7" prot="private" static="no" mutable="no">
+        <type>std::vector&lt; vk::DescriptorSet &gt;</type>
+        <definition>std::vector&lt;vk::DescriptorSet&gt; RAYEX_NAMESPACE::Scene::_geometryDescriptorSets</definition>
+        <argsstring></argsstring>
+        <name>_geometryDescriptorSets</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Repos/rayex/include/base/Scene.hpp" line="138" column="17" bodyfile="C:/Repos/rayex/include/base/Scene.hpp" bodystart="138" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_scene_1a85be43437f96020ce4741cd1b36a8e99" prot="private" static="no" mutable="no">
+        <type>std::vector&lt; vk::DescriptorSet &gt;</type>
+        <definition>std::vector&lt;vk::DescriptorSet&gt; RAYEX_NAMESPACE::Scene::_textureDescriptorSets</definition>
+        <argsstring></argsstring>
+        <name>_textureDescriptorSets</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Repos/rayex/include/base/Scene.hpp" line="139" column="17" bodyfile="C:/Repos/rayex/include/base/Scene.hpp" bodystart="139" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_scene_1aeabf4fe202c41ebcda4465d725568f43" prot="private" static="no" mutable="no">
+        <type>Cubemap</type>
+        <definition>Cubemap RAYEX_NAMESPACE::Scene::_environmentMap</definition>
+        <argsstring></argsstring>
+        <name>_environmentMap</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Repos/rayex/include/base/Scene.hpp" line="141" column="13" bodyfile="C:/Repos/rayex/include/base/Scene.hpp" bodystart="141" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_scene_1a87324174dc0c3f0c1e06cff18cca585c" prot="private" static="no" mutable="no">
+        <type>std::vector&lt; vk::UniqueSampler &gt;</type>
+        <definition>std::vector&lt;vk::UniqueSampler&gt; RAYEX_NAMESPACE::Scene::_immutableSamplers</definition>
+        <argsstring></argsstring>
+        <name>_immutableSamplers</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Repos/rayex/include/base/Scene.hpp" line="142" column="17" bodyfile="C:/Repos/rayex/include/base/Scene.hpp" bodystart="142" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_scene_1aed56b86ff4c36d0bcb9ce00c40cee7e2" prot="private" static="no" mutable="no">
+        <type>std::vector&lt; <ref refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_storage_buffer" kindref="compound">StorageBuffer</ref>&lt; uint32_t &gt; &gt;</type>
+        <definition>std::vector&lt;StorageBuffer&lt;uint32_t&gt; &gt; RAYEX_NAMESPACE::Scene::_indexBuffers</definition>
+        <argsstring></argsstring>
+        <name>_indexBuffers</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Repos/rayex/include/base/Scene.hpp" line="144" column="17" bodyfile="C:/Repos/rayex/include/base/Scene.hpp" bodystart="144" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_scene_1abcd1ccc7fd851f8c8e86da5960bff0f8" prot="private" static="no" mutable="no">
+        <type>std::vector&lt; <ref refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_storage_buffer" kindref="compound">StorageBuffer</ref>&lt; <ref refid="struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_vertex" kindref="compound">Vertex</ref> &gt; &gt;</type>
+        <definition>std::vector&lt;StorageBuffer&lt;Vertex&gt; &gt; RAYEX_NAMESPACE::Scene::_vertexBuffers</definition>
+        <argsstring></argsstring>
+        <name>_vertexBuffers</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Repos/rayex/include/base/Scene.hpp" line="145" column="17" bodyfile="C:/Repos/rayex/include/base/Scene.hpp" bodystart="145" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_scene_1a57da6e6521fe2c7e35c926c1b2aba0cd" prot="private" static="no" mutable="no">
+        <type>std::vector&lt; <ref refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_storage_buffer" kindref="compound">StorageBuffer</ref>&lt; <ref refid="struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_mesh_s_s_b_o" kindref="compound">MeshSSBO</ref> &gt; &gt;</type>
+        <definition>std::vector&lt;StorageBuffer&lt;MeshSSBO&gt; &gt; RAYEX_NAMESPACE::Scene::_meshBuffers</definition>
+        <argsstring></argsstring>
+        <name>_meshBuffers</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Repos/rayex/include/base/Scene.hpp" line="146" column="17" bodyfile="C:/Repos/rayex/include/base/Scene.hpp" bodystart="146" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_scene_1a1cc33224edc0b7da5d6e1815cecb2b4b" prot="private" static="no" mutable="no">
+        <type>std::vector&lt; std::shared_ptr&lt; <ref refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_texture" kindref="compound">Texture</ref> &gt; &gt;</type>
+        <definition>std::vector&lt;std::shared_ptr&lt;Texture&gt; &gt; RAYEX_NAMESPACE::Scene::_textures</definition>
+        <argsstring></argsstring>
+        <name>_textures</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Repos/rayex/include/base/Scene.hpp" line="147" column="17" bodyfile="C:/Repos/rayex/include/base/Scene.hpp" bodystart="147" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_scene_1a7856a2cf3316a331889e97e4680cdcf1" prot="private" static="no" mutable="no">
+        <type><ref refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_storage_buffer" kindref="compound">StorageBuffer</ref>&lt; <ref refid="struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_geometry_instance_s_s_b_o" kindref="compound">GeometryInstanceSSBO</ref> &gt;</type>
+        <definition>StorageBuffer&lt;GeometryInstanceSSBO&gt; RAYEX_NAMESPACE::Scene::_geometryInstancesBuffer</definition>
+        <argsstring></argsstring>
+        <name>_geometryInstancesBuffer</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Repos/rayex/include/base/Scene.hpp" line="148" column="19" bodyfile="C:/Repos/rayex/include/base/Scene.hpp" bodystart="148" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_scene_1ac60aa58d249ae9ae2ce287799dd32684" prot="private" static="no" mutable="no">
+        <type><ref refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_uniform_buffer" kindref="compound">UniformBuffer</ref>&lt; <ref refid="struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_camera_ubo" kindref="compound">CameraUbo</ref> &gt;</type>
+        <definition>UniformBuffer&lt;CameraUbo&gt; RAYEX_NAMESPACE::Scene::_cameraUniformBuffer</definition>
+        <argsstring></argsstring>
+        <name>_cameraUniformBuffer</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Repos/rayex/include/base/Scene.hpp" line="150" column="19" bodyfile="C:/Repos/rayex/include/base/Scene.hpp" bodystart="150" bodyend="-1"/>
+      </memberdef>
       <memberdef kind="variable" id="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_scene_1a4544c0ae3ef5de4e6310a1118caad95e" prot="private" static="no" mutable="no">
         <type>std::vector&lt; std::shared_ptr&lt; <ref refid="struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_geometry" kindref="compound">Geometry</ref> &gt; &gt;</type>
         <definition>std::vector&lt;std::shared_ptr&lt;Geometry&gt; &gt; RAYEX_NAMESPACE::Scene::_geometries</definition>
         <argsstring></argsstring>
         <name>_geometries</name>
         <briefdescription>
-<para>Stores all geometries. </para>
         </briefdescription>
         <detaileddescription>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/n30/Repos/rayex/include/base/Scene.hpp" line="103" column="17" bodyfile="/home/n30/Repos/rayex/include/base/Scene.hpp" bodystart="103" bodyend="-1"/>
+        <location file="C:/Repos/rayex/include/base/Scene.hpp" line="152" column="17" bodyfile="C:/Repos/rayex/include/base/Scene.hpp" bodystart="152" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_scene_1a4f8f10cfbcf836e854c1cf47886730e2" prot="private" static="no" mutable="no">
         <type>std::vector&lt; std::shared_ptr&lt; <ref refid="struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_geometry_instance" kindref="compound">GeometryInstance</ref> &gt; &gt;</type>
@@ -52,41 +220,66 @@
         <argsstring></argsstring>
         <name>_geometryInstances</name>
         <briefdescription>
-<para>Stores all geometry instances. </para>
         </briefdescription>
         <detaileddescription>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/n30/Repos/rayex/include/base/Scene.hpp" line="104" column="17" bodyfile="/home/n30/Repos/rayex/include/base/Scene.hpp" bodystart="104" bodyend="-1"/>
+        <location file="C:/Repos/rayex/include/base/Scene.hpp" line="153" column="17" bodyfile="C:/Repos/rayex/include/base/Scene.hpp" bodystart="153" bodyend="-1"/>
       </memberdef>
-      <memberdef kind="variable" id="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_scene_1a535d3cbbfa18f7fe88ec6848100a93e8" prot="private" static="no" mutable="no">
-        <type>std::vector&lt; std::shared_ptr&lt; <ref refid="struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_directional_light" kindref="compound">DirectionalLight</ref> &gt; &gt;</type>
-        <definition>std::vector&lt;std::shared_ptr&lt;DirectionalLight&gt; &gt; RAYEX_NAMESPACE::Scene::_directionalLights</definition>
+      <memberdef kind="variable" id="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_scene_1a32c9565b4900d5d18eb84069e568c1bd" prot="private" static="no" mutable="no">
+        <type>std::vector&lt; std::shared_ptr&lt; <ref refid="struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_material" kindref="compound">Material</ref> &gt; &gt;</type>
+        <definition>std::vector&lt;std::shared_ptr&lt;Material&gt; &gt; RAYEX_NAMESPACE::Scene::_materials</definition>
         <argsstring></argsstring>
-        <name>_directionalLights</name>
+        <name>_materials</name>
         <briefdescription>
-<para>Stores all directional lights. </para>
         </briefdescription>
         <detaileddescription>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/n30/Repos/rayex/include/base/Scene.hpp" line="105" column="17" bodyfile="/home/n30/Repos/rayex/include/base/Scene.hpp" bodystart="105" bodyend="-1"/>
+        <location file="C:/Repos/rayex/include/base/Scene.hpp" line="154" column="17" bodyfile="C:/Repos/rayex/include/base/Scene.hpp" bodystart="154" bodyend="-1"/>
       </memberdef>
-      <memberdef kind="variable" id="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_scene_1a61c47ac2381a03b39c2c4eacfb3e7e11" prot="private" static="no" mutable="no">
-        <type>std::vector&lt; std::shared_ptr&lt; <ref refid="struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_point_light" kindref="compound">PointLight</ref> &gt; &gt;</type>
-        <definition>std::vector&lt;std::shared_ptr&lt;PointLight&gt; &gt; RAYEX_NAMESPACE::Scene::_pointLights</definition>
+      <memberdef kind="variable" id="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_scene_1af8e0e122f41441aa6e2050de8663d4e7" prot="private" static="no" mutable="no">
+        <type>std::string_view</type>
+        <definition>std::string_view RAYEX_NAMESPACE::Scene::_environmentMapTexturePath</definition>
         <argsstring></argsstring>
-        <name>_pointLights</name>
+        <name>_environmentMapTexturePath</name>
         <briefdescription>
-<para>Stores all point lights. </para>
         </briefdescription>
         <detaileddescription>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/n30/Repos/rayex/include/base/Scene.hpp" line="106" column="17" bodyfile="/home/n30/Repos/rayex/include/base/Scene.hpp" bodystart="106" bodyend="-1"/>
+        <location file="C:/Repos/rayex/include/base/Scene.hpp" line="156" column="22" bodyfile="C:/Repos/rayex/include/base/Scene.hpp" bodystart="156" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_scene_1a21377f5d7f6ede0f68e72be717684ec2" prot="private" static="no" mutable="no">
+        <type>bool</type>
+        <definition>bool RAYEX_NAMESPACE::Scene::_useEnvironmentMap</definition>
+        <argsstring></argsstring>
+        <name>_useEnvironmentMap</name>
+        <initializer>= false</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Repos/rayex/include/base/Scene.hpp" line="157" column="10" bodyfile="C:/Repos/rayex/include/base/Scene.hpp" bodystart="157" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_scene_1a17726aecb6a81e2f22bd15eee6ab2ff5" prot="private" static="no" mutable="no">
+        <type>bool</type>
+        <definition>bool RAYEX_NAMESPACE::Scene::_removeEnvironmentMap</definition>
+        <argsstring></argsstring>
+        <name>_removeEnvironmentMap</name>
+        <initializer>= false</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Repos/rayex/include/base/Scene.hpp" line="158" column="10" bodyfile="C:/Repos/rayex/include/base/Scene.hpp" bodystart="158" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_scene_1a3bda047b3d5ac4fd27f7f15c4e047736" prot="private" static="no" mutable="no">
         <type>bool</type>
@@ -95,43 +288,26 @@
         <name>_uploadGeometryInstancesToBuffer</name>
         <initializer>= false</initializer>
         <briefdescription>
-<para>Keeps track of whether or not to upload the ray tracing instances to their respective buffer the next time RAYEX_NAMESPACE::Api::update() is called. </para>
         </briefdescription>
         <detaileddescription>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/n30/Repos/rayex/include/base/Scene.hpp" line="108" column="10" bodyfile="/home/n30/Repos/rayex/include/base/Scene.hpp" bodystart="108" bodyend="-1"/>
+        <location file="C:/Repos/rayex/include/base/Scene.hpp" line="160" column="10" bodyfile="C:/Repos/rayex/include/base/Scene.hpp" bodystart="160" bodyend="-1"/>
       </memberdef>
-      <memberdef kind="variable" id="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_scene_1a21adc7a3a7d08eab34897105d3ea04c4" prot="private" static="no" mutable="no">
+      <memberdef kind="variable" id="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_scene_1ac2800a4e3508bcce5a7d25e87e05f571" prot="private" static="no" mutable="no">
         <type>bool</type>
-        <definition>bool RAYEX_NAMESPACE::Scene::_uploadDirectionalLightsToBuffer</definition>
+        <definition>bool RAYEX_NAMESPACE::Scene::_uploadEnvironmentMap</definition>
         <argsstring></argsstring>
-        <name>_uploadDirectionalLightsToBuffer</name>
+        <name>_uploadEnvironmentMap</name>
         <initializer>= false</initializer>
         <briefdescription>
-<para>Keeps track of whether or not to upload the directional lights to their respective buffer the next time RAYEX_NAMESPACE::Api::update() is called. </para>
         </briefdescription>
         <detaileddescription>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/n30/Repos/rayex/include/base/Scene.hpp" line="109" column="10" bodyfile="/home/n30/Repos/rayex/include/base/Scene.hpp" bodystart="109" bodyend="-1"/>
-      </memberdef>
-      <memberdef kind="variable" id="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_scene_1a197c32c6da0c36cee58bedc0d24256ca" prot="private" static="no" mutable="no">
-        <type>bool</type>
-        <definition>bool RAYEX_NAMESPACE::Scene::_uploadPointLightsToBuffer</definition>
-        <argsstring></argsstring>
-        <name>_uploadPointLightsToBuffer</name>
-        <initializer>= false</initializer>
-        <briefdescription>
-<para>Keeps track of whether or not to upload the point lights to their respective buffer the next time RAYEX_NAMESPACE::Api::update() is called. </para>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="/home/n30/Repos/rayex/include/base/Scene.hpp" line="110" column="10" bodyfile="/home/n30/Repos/rayex/include/base/Scene.hpp" bodystart="110" bodyend="-1"/>
+        <location file="C:/Repos/rayex/include/base/Scene.hpp" line="161" column="10" bodyfile="C:/Repos/rayex/include/base/Scene.hpp" bodystart="161" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_scene_1a4336f26ec64676aecacbd543c482ee0e" prot="private" static="no" mutable="no">
         <type>bool</type>
@@ -140,13 +316,12 @@
         <name>_uploadGeometries</name>
         <initializer>= false</initializer>
         <briefdescription>
-<para>Keeps track of whether or not to upload the geometries to their respective buffer the next time RAYEX_NAMESPACE::Api::update() is called. </para>
         </briefdescription>
         <detaileddescription>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/n30/Repos/rayex/include/base/Scene.hpp" line="111" column="10" bodyfile="/home/n30/Repos/rayex/include/base/Scene.hpp" bodystart="111" bodyend="-1"/>
+        <location file="C:/Repos/rayex/include/base/Scene.hpp" line="162" column="10" bodyfile="C:/Repos/rayex/include/base/Scene.hpp" bodystart="162" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_scene_1add17e79f3bd3f40363b8259ff62f13d8" prot="private" static="no" mutable="no">
         <type>bool</type>
@@ -155,13 +330,12 @@
         <name>_deleteTextures</name>
         <initializer>= false</initializer>
         <briefdescription>
-<para>Keeps track of whether or not all textures should be deleted the next time RAYEX_NAMESPACE::Api::update() is called. </para>
         </briefdescription>
         <detaileddescription>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/n30/Repos/rayex/include/base/Scene.hpp" line="112" column="10" bodyfile="/home/n30/Repos/rayex/include/base/Scene.hpp" bodystart="112" bodyend="-1"/>
+        <location file="C:/Repos/rayex/include/base/Scene.hpp" line="163" column="10" bodyfile="C:/Repos/rayex/include/base/Scene.hpp" bodystart="163" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_scene_1aaf50a0a8b28eae93f42123039357f362" prot="private" static="no" mutable="no">
         <type>bool</type>
@@ -170,13 +344,40 @@
         <name>_dummy</name>
         <initializer>= false</initializer>
         <briefdescription>
-<para>Keeps track of whether or not a dummy element in case of an empty scene is active. </para>
         </briefdescription>
         <detaileddescription>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/n30/Repos/rayex/include/base/Scene.hpp" line="113" column="10" bodyfile="/home/n30/Repos/rayex/include/base/Scene.hpp" bodystart="113" bodyend="-1"/>
+        <location file="C:/Repos/rayex/include/base/Scene.hpp" line="164" column="10" bodyfile="C:/Repos/rayex/include/base/Scene.hpp" bodystart="164" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_scene_1a1d129fa78ea48f67ec3cf270b8b1b393" prot="private" static="no" mutable="no">
+        <type>std::unordered_set&lt; std::shared_ptr&lt; <ref refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_camera" kindref="compound">Camera</ref> &gt; &gt;</type>
+        <definition>std::unordered_set&lt;std::shared_ptr&lt;Camera&gt; &gt; RAYEX_NAMESPACE::Scene::_cameras</definition>
+        <argsstring></argsstring>
+        <name>_cameras</name>
+        <briefdescription>
+<para>The cameras that can be used for rendering. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Repos/rayex/include/base/Scene.hpp" line="166" column="24" bodyfile="C:/Repos/rayex/include/base/Scene.hpp" bodystart="166" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_scene_1a37d63b7f9de61d7bf866e0e269898833" prot="private" static="no" mutable="no">
+        <type>std::shared_ptr&lt; <ref refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_camera" kindref="compound">Camera</ref> &gt;</type>
+        <definition>std::shared_ptr&lt;Camera&gt; RAYEX_NAMESPACE::Scene::_currentCamera</definition>
+        <argsstring></argsstring>
+        <name>_currentCamera</name>
+        <briefdescription>
+<para>The camera that is currently being used for rendering. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Repos/rayex/include/base/Scene.hpp" line="167" column="21" bodyfile="C:/Repos/rayex/include/base/Scene.hpp" bodystart="167" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_scene_1a0fbb2c7fd1ede86c0dab9473b729bf9e" prot="private" static="no" mutable="no">
         <type><ref refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_settings" kindref="compound">Settings</ref> *</type>
@@ -191,10 +392,27 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/n30/Repos/rayex/include/base/Scene.hpp" line="115" column="14" bodyfile="/home/n30/Repos/rayex/include/base/Scene.hpp" bodystart="115" bodyend="-1"/>
+        <location file="C:/Repos/rayex/include/base/Scene.hpp" line="169" column="14" bodyfile="C:/Repos/rayex/include/base/Scene.hpp" bodystart="169" bodyend="-1"/>
       </memberdef>
       </sectiondef>
       <sectiondef kind="public-func">
+      <memberdef kind="function" id="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_scene_1a455c1bc49b4516cd7a007692fb5fca47" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_scene" kindref="compound">Scene</ref> &amp;</type>
+        <definition>Scene&amp; RAYEX_NAMESPACE::Scene::operator=</definition>
+        <argsstring>(const Scene &amp;scene)</argsstring>
+        <name>operator=</name>
+        <param>
+          <type>const <ref refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_scene" kindref="compound">Scene</ref> &amp;</type>
+          <declname>scene</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Repos/rayex/include/base/Scene.hpp" line="28" column="11" bodyfile="C:/Repos/rayex/include/base/Scene.hpp" bodystart="28" bodyend="35"/>
+      </memberdef>
       <memberdef kind="function" id="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_scene_1aef804f5fc22e5d0b27530a00cd054060" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
         <type>auto</type>
         <definition>auto RAYEX_NAMESPACE::Scene::getGeometryInstances</definition>
@@ -209,7 +427,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/n30/Repos/rayex/include/base/Scene.hpp" line="24" column="10"/>
+        <location file="C:/Repos/rayex/include/base/Scene.hpp" line="38" column="10"/>
       </memberdef>
       <memberdef kind="function" id="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_scene_1a4ca1e82f10c27e433eff652710e8e700" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -239,7 +457,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/n30/Repos/rayex/include/base/Scene.hpp" line="29" column="10"/>
+        <location file="C:/Repos/rayex/include/base/Scene.hpp" line="43" column="10"/>
       </memberdef>
       <memberdef kind="function" id="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_scene_1a86b0c09d5294dabeeb550b84ef4ac0c4" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -269,151 +487,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/n30/Repos/rayex/include/base/Scene.hpp" line="34" column="10"/>
-      </memberdef>
-      <memberdef kind="function" id="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_scene_1abd17c0c5eda2b09916ab74cd0c91794d" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
-        <type>auto</type>
-        <definition>auto RAYEX_NAMESPACE::Scene::getDirectionalLights</definition>
-        <argsstring>() const -&gt; const std::vector&lt; std::shared_ptr&lt; DirectionalLight &gt;&gt; &amp;</argsstring>
-        <name>getDirectionalLights</name>
-        <briefdescription>
-        </briefdescription>
-        <detaileddescription>
-<para><simplesect kind="return"><para>Returns all directional lights in the scene. </para>
-</simplesect>
-</para>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="/home/n30/Repos/rayex/include/base/Scene.hpp" line="37" column="10"/>
-      </memberdef>
-      <memberdef kind="function" id="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_scene_1a0950f2d94e6e9fec8ae01200f001878e" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
-        <type>void</type>
-        <definition>void RAYEX_NAMESPACE::Scene::submitDirectionalLight</definition>
-        <argsstring>(std::shared_ptr&lt; DirectionalLight &gt; light)</argsstring>
-        <name>submitDirectionalLight</name>
-        <param>
-          <type>std::shared_ptr&lt; <ref refid="struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_directional_light" kindref="compound">DirectionalLight</ref> &gt;</type>
-          <declname>light</declname>
-        </param>
-        <briefdescription>
-<para>Used to submit a directional light. </para>
-        </briefdescription>
-        <detaileddescription>
-<para><parameterlist kind="param"><parameteritem>
-<parameternamelist>
-<parametername>light</parametername>
-</parameternamelist>
-<parameterdescription>
-<para>The directional light to submit. </para>
-</parameterdescription>
-</parameteritem>
-</parameterlist>
-</para>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="/home/n30/Repos/rayex/include/base/Scene.hpp" line="41" column="10"/>
-      </memberdef>
-      <memberdef kind="function" id="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_scene_1a8654b0489ad56a058af3647ab85c6095" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
-        <type>void</type>
-        <definition>void RAYEX_NAMESPACE::Scene::removeDirectionalLight</definition>
-        <argsstring>(std::shared_ptr&lt; DirectionalLight &gt; light)</argsstring>
-        <name>removeDirectionalLight</name>
-        <param>
-          <type>std::shared_ptr&lt; <ref refid="struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_directional_light" kindref="compound">DirectionalLight</ref> &gt;</type>
-          <declname>light</declname>
-        </param>
-        <briefdescription>
-<para>Used to remove a directional light. </para>
-        </briefdescription>
-        <detaileddescription>
-<para><parameterlist kind="param"><parameteritem>
-<parameternamelist>
-<parametername>light</parametername>
-</parameternamelist>
-<parameterdescription>
-<para>The directional light to remove. </para>
-</parameterdescription>
-</parameteritem>
-</parameterlist>
-</para>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="/home/n30/Repos/rayex/include/base/Scene.hpp" line="45" column="10"/>
-      </memberdef>
-      <memberdef kind="function" id="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_scene_1aefa4c39c0f32defc0e35019048b0bb17" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
-        <type>auto</type>
-        <definition>auto RAYEX_NAMESPACE::Scene::getPointLights</definition>
-        <argsstring>() const -&gt; const std::vector&lt; std::shared_ptr&lt; PointLight &gt;&gt; &amp;</argsstring>
-        <name>getPointLights</name>
-        <briefdescription>
-        </briefdescription>
-        <detaileddescription>
-<para><simplesect kind="return"><para>Returns all point lights in the scene. </para>
-</simplesect>
-</para>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="/home/n30/Repos/rayex/include/base/Scene.hpp" line="48" column="10"/>
-      </memberdef>
-      <memberdef kind="function" id="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_scene_1a2bf002f75dd17d8c28e0641e461ad2bd" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
-        <type>void</type>
-        <definition>void RAYEX_NAMESPACE::Scene::submitPointLight</definition>
-        <argsstring>(std::shared_ptr&lt; PointLight &gt; light)</argsstring>
-        <name>submitPointLight</name>
-        <param>
-          <type>std::shared_ptr&lt; <ref refid="struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_point_light" kindref="compound">PointLight</ref> &gt;</type>
-          <declname>light</declname>
-        </param>
-        <briefdescription>
-<para>Used to submit a point light. </para>
-        </briefdescription>
-        <detaileddescription>
-<para><parameterlist kind="param"><parameteritem>
-<parameternamelist>
-<parametername>light</parametername>
-</parameternamelist>
-<parameterdescription>
-<para>The point light to submit. </para>
-</parameterdescription>
-</parameteritem>
-</parameterlist>
-</para>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="/home/n30/Repos/rayex/include/base/Scene.hpp" line="52" column="10"/>
-      </memberdef>
-      <memberdef kind="function" id="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_scene_1aef891c0cb5abb107b620142ec9ccec00" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
-        <type>void</type>
-        <definition>void RAYEX_NAMESPACE::Scene::removePointLight</definition>
-        <argsstring>(std::shared_ptr&lt; PointLight &gt; light)</argsstring>
-        <name>removePointLight</name>
-        <param>
-          <type>std::shared_ptr&lt; <ref refid="struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_point_light" kindref="compound">PointLight</ref> &gt;</type>
-          <declname>light</declname>
-        </param>
-        <briefdescription>
-<para>Used to remove a point light. </para>
-        </briefdescription>
-        <detaileddescription>
-<para><parameterlist kind="param"><parameteritem>
-<parameternamelist>
-<parametername>light</parametername>
-</parameternamelist>
-<parameterdescription>
-<para>The point light to remove. </para>
-</parameterdescription>
-</parameteritem>
-</parameterlist>
-</para>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="/home/n30/Repos/rayex/include/base/Scene.hpp" line="56" column="10"/>
+        <location file="C:/Repos/rayex/include/base/Scene.hpp" line="48" column="10"/>
       </memberdef>
       <memberdef kind="function" id="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_scene_1a11fc56eb116fe3301a59c5c594ee2bea" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -441,7 +515,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/n30/Repos/rayex/include/base/Scene.hpp" line="62" column="10"/>
+        <location file="C:/Repos/rayex/include/base/Scene.hpp" line="54" column="10"/>
       </memberdef>
       <memberdef kind="function" id="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_scene_1a42dc12d8a200591532dc336f72a4847d" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -456,7 +530,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/n30/Repos/rayex/include/base/Scene.hpp" line="67" column="10"/>
+        <location file="C:/Repos/rayex/include/base/Scene.hpp" line="59" column="10"/>
       </memberdef>
       <memberdef kind="function" id="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_scene_1a838076f7347dd4788ee1aaa8ffd28374" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -464,13 +538,13 @@
         <argsstring>()</argsstring>
         <name>popGeometryInstance</name>
         <briefdescription>
-<para>Used to remove the last geoemtry instance. </para>
+<para>Used to remove the last geometry instance. </para>
         </briefdescription>
         <detaileddescription>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/n30/Repos/rayex/include/base/Scene.hpp" line="70" column="10"/>
+        <location file="C:/Repos/rayex/include/base/Scene.hpp" line="62" column="10"/>
       </memberdef>
       <memberdef kind="function" id="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_scene_1a53c0ef48ca0c5e0d2336869a8e75085b" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -498,7 +572,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/n30/Repos/rayex/include/base/Scene.hpp" line="76" column="10"/>
+        <location file="C:/Repos/rayex/include/base/Scene.hpp" line="68" column="10"/>
       </memberdef>
       <memberdef kind="function" id="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_scene_1ab191100612c6087204b476aadfd8b6db" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -526,7 +600,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/n30/Repos/rayex/include/base/Scene.hpp" line="82" column="10"/>
+        <location file="C:/Repos/rayex/include/base/Scene.hpp" line="74" column="10"/>
       </memberdef>
       <memberdef kind="function" id="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_scene_1a8004b0c0dfb783070ea82af111378718" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -554,7 +628,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/n30/Repos/rayex/include/base/Scene.hpp" line="86" column="10"/>
+        <location file="C:/Repos/rayex/include/base/Scene.hpp" line="78" column="10"/>
       </memberdef>
       <memberdef kind="function" id="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_scene_1adc0e77e152173899b4edf08fbe62ca18" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -582,7 +656,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/n30/Repos/rayex/include/base/Scene.hpp" line="90" column="10"/>
+        <location file="C:/Repos/rayex/include/base/Scene.hpp" line="82" column="10"/>
       </memberdef>
       <memberdef kind="function" id="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_scene_1ae68fc066eddb4ff7ee2a16c26b06f5ba" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -596,7 +670,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/n30/Repos/rayex/include/base/Scene.hpp" line="93" column="10"/>
+        <location file="C:/Repos/rayex/include/base/Scene.hpp" line="85" column="10"/>
       </memberdef>
       <memberdef kind="function" id="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_scene_1ac89ff3616b43e6c2b7e6a23995784a53" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -610,7 +684,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/n30/Repos/rayex/include/base/Scene.hpp" line="96" column="10"/>
+        <location file="C:/Repos/rayex/include/base/Scene.hpp" line="88" column="10"/>
       </memberdef>
       <memberdef kind="function" id="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_scene_1a344905cab1fbaf5a5585a6df25635bbc" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
         <type>auto</type>
@@ -638,50 +712,357 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/n30/Repos/rayex/include/base/Scene.hpp" line="100" column="10"/>
+        <location file="C:/Repos/rayex/include/base/Scene.hpp" line="92" column="10"/>
+      </memberdef>
+      <memberdef kind="function" id="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_scene_1a87356635d94226e8c69857c0b48d3ad1" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void RAYEX_NAMESPACE::Scene::setEnvironmentMap</definition>
+        <argsstring>(std::string_view path)</argsstring>
+        <name>setEnvironmentMap</name>
+        <param>
+          <type>std::string_view</type>
+          <declname>path</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Repos/rayex/include/base/Scene.hpp" line="94" column="10"/>
+      </memberdef>
+      <memberdef kind="function" id="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_scene_1a76b628140f11ee0ad272ac1da0e6c0ff" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void RAYEX_NAMESPACE::Scene::removeEnvironmentMap</definition>
+        <argsstring>()</argsstring>
+        <name>removeEnvironmentMap</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Repos/rayex/include/base/Scene.hpp" line="96" column="10"/>
+      </memberdef>
+      <memberdef kind="function" id="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_scene_1a7f8086b8e638a0ad2089255fa76d127e" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void RAYEX_NAMESPACE::Scene::load</definition>
+        <argsstring>(const std::string &amp;path)</argsstring>
+        <name>load</name>
+        <param>
+          <type>const std::string &amp;</type>
+          <declname>path</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Repos/rayex/include/base/Scene.hpp" line="98" column="10"/>
+      </memberdef>
+      <memberdef kind="function" id="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_scene_1aa3d8bb2201e4529f67dd8138d7f0e538" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void RAYEX_NAMESPACE::Scene::setCamera</definition>
+        <argsstring>(std::shared_ptr&lt; Camera &gt; camera)</argsstring>
+        <name>setCamera</name>
+        <param>
+          <type>std::shared_ptr&lt; <ref refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_camera" kindref="compound">Camera</ref> &gt;</type>
+          <declname>camera</declname>
+        </param>
+        <briefdescription>
+<para>Used to set a custom camera. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>camera</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>A pointer to a <ref refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_camera" kindref="compound">RAYEX_NAMESPACE::Camera</ref> object. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Repos/rayex/include/base/Scene.hpp" line="102" column="10"/>
+      </memberdef>
+      <memberdef kind="function" id="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_scene_1a93bff45acd035aa5c72445bca9604075" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>auto</type>
+        <definition>auto RAYEX_NAMESPACE::Scene::getCamera</definition>
+        <argsstring>() const -&gt; std::shared_ptr&lt; Camera &gt;</argsstring>
+        <name>getCamera</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>Returns a pointer to the renderer&apos;s camera. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Repos/rayex/include/base/Scene.hpp" line="105" column="10" bodyfile="C:/Repos/rayex/include/base/Scene.hpp" bodystart="105" bodyend="105"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="private-func">
+      <memberdef kind="function" id="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_scene_1ae5e712303a761cf45f407a928ed50eb9" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void RAYEX_NAMESPACE::Scene::prepareBuffers</definition>
+        <argsstring>()</argsstring>
+        <name>prepareBuffers</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Repos/rayex/include/base/Scene.hpp" line="108" column="10"/>
+      </memberdef>
+      <memberdef kind="function" id="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_scene_1a7bfc02c5eb5a97ac6e8d03c5b90b12f3" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void RAYEX_NAMESPACE::Scene::initCameraBuffer</definition>
+        <argsstring>()</argsstring>
+        <name>initCameraBuffer</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Repos/rayex/include/base/Scene.hpp" line="110" column="10"/>
+      </memberdef>
+      <memberdef kind="function" id="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_scene_1a84d228890a7d8bc1832a226eecd59774" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void RAYEX_NAMESPACE::Scene::uploadCameraBuffer</definition>
+        <argsstring>(uint32_t imageIndex)</argsstring>
+        <name>uploadCameraBuffer</name>
+        <param>
+          <type>uint32_t</type>
+          <declname>imageIndex</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Repos/rayex/include/base/Scene.hpp" line="112" column="10"/>
+      </memberdef>
+      <memberdef kind="function" id="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_scene_1ac4e74346314a14c673590ddbbde1ff9f" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void RAYEX_NAMESPACE::Scene::uploadEnvironmentMap</definition>
+        <argsstring>()</argsstring>
+        <name>uploadEnvironmentMap</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Repos/rayex/include/base/Scene.hpp" line="114" column="10"/>
+      </memberdef>
+      <memberdef kind="function" id="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_scene_1a8c84766caa12d2de5a1fe7907b6d39ad" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void RAYEX_NAMESPACE::Scene::uploadGeometries</definition>
+        <argsstring>()</argsstring>
+        <name>uploadGeometries</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Repos/rayex/include/base/Scene.hpp" line="116" column="10"/>
+      </memberdef>
+      <memberdef kind="function" id="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_scene_1a67e47ee287834e0e89e1e890d4275364" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void RAYEX_NAMESPACE::Scene::uploadGeometryInstances</definition>
+        <argsstring>(uint32_t imageIndex)</argsstring>
+        <name>uploadGeometryInstances</name>
+        <param>
+          <type>uint32_t</type>
+          <declname>imageIndex</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Repos/rayex/include/base/Scene.hpp" line="118" column="10"/>
+      </memberdef>
+      <memberdef kind="function" id="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_scene_1a9db5d9ebd71def4c2160b44ac0db012e" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void RAYEX_NAMESPACE::Scene::clearTextures</definition>
+        <argsstring>()</argsstring>
+        <name>clearTextures</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Repos/rayex/include/base/Scene.hpp" line="120" column="10"/>
+      </memberdef>
+      <memberdef kind="function" id="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_scene_1af772173d6a1037fd6fb31a45cb8324d8" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void RAYEX_NAMESPACE::Scene::addDummy</definition>
+        <argsstring>()</argsstring>
+        <name>addDummy</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Repos/rayex/include/base/Scene.hpp" line="122" column="10"/>
+      </memberdef>
+      <memberdef kind="function" id="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_scene_1ad591c4c7531990877fcd8040d076f07c" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void RAYEX_NAMESPACE::Scene::removeDummy</definition>
+        <argsstring>()</argsstring>
+        <name>removeDummy</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Repos/rayex/include/base/Scene.hpp" line="124" column="10"/>
+      </memberdef>
+      <memberdef kind="function" id="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_scene_1a6a221b114a6c27a011f0576efd418752" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void RAYEX_NAMESPACE::Scene::initDescriptorSets</definition>
+        <argsstring>()</argsstring>
+        <name>initDescriptorSets</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Repos/rayex/include/base/Scene.hpp" line="126" column="10"/>
+      </memberdef>
+      <memberdef kind="function" id="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_scene_1ae6f484f4bd331894118ce85b6bbdb65e" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void RAYEX_NAMESPACE::Scene::updateSceneDescriptors</definition>
+        <argsstring>()</argsstring>
+        <name>updateSceneDescriptors</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Repos/rayex/include/base/Scene.hpp" line="128" column="10"/>
+      </memberdef>
+      <memberdef kind="function" id="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_scene_1aff42c582b7197d94565a9bf7562c02a5" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void RAYEX_NAMESPACE::Scene::updateGeoemtryDescriptors</definition>
+        <argsstring>()</argsstring>
+        <name>updateGeoemtryDescriptors</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Repos/rayex/include/base/Scene.hpp" line="130" column="10"/>
+      </memberdef>
+      <memberdef kind="function" id="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_scene_1ae9f11ab21eea7a1850f7ad514e95a12a" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void RAYEX_NAMESPACE::Scene::upload</definition>
+        <argsstring>(vk::Fence fence, uint32_t imageIndex)</argsstring>
+        <name>upload</name>
+        <param>
+          <type>vk::Fence</type>
+          <declname>fence</declname>
+        </param>
+        <param>
+          <type>uint32_t</type>
+          <declname>imageIndex</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Repos/rayex/include/base/Scene.hpp" line="132" column="10"/>
       </memberdef>
       </sectiondef>
     <briefdescription>
 <para>Stores all geoemtry, geometry instances and light sources. </para>
     </briefdescription>
     <detaileddescription>
-<para>Provides functions to change said data. <xrefsect id="todo_1_todo000008"><xreftitle>Todo</xreftitle><xrefdescription><para><ref refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_scene_1a8004b0c0dfb783070ea82af111378718" kindref="member">removeGeometry()</ref> </para>
+<para>Provides functions to change said data. <xrefsect id="todo_1_todo000003"><xreftitle>Todo</xreftitle><xrefdescription><para><ref refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_scene_1a8004b0c0dfb783070ea82af111378718" kindref="member">removeGeometry()</ref></para>
 </xrefdescription></xrefsect></para>
     </detaileddescription>
-    <location file="/home/n30/Repos/rayex/include/base/Scene.hpp" line="18" column="1" bodyfile="/home/n30/Repos/rayex/include/base/Scene.hpp" bodystart="17" bodyend="116"/>
+    <location file="C:/Repos/rayex/include/base/Scene.hpp" line="22" column="3" bodyfile="C:/Repos/rayex/include/base/Scene.hpp" bodystart="23" bodyend="170"/>
     <listofallmembers>
+      <member refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_scene_1a1d129fa78ea48f67ec3cf270b8b1b393" prot="private" virt="non-virtual"><scope>RAYEX_NAMESPACE::Scene</scope><name>_cameras</name></member>
+      <member refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_scene_1ac60aa58d249ae9ae2ce287799dd32684" prot="private" virt="non-virtual"><scope>RAYEX_NAMESPACE::Scene</scope><name>_cameraUniformBuffer</name></member>
+      <member refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_scene_1a37d63b7f9de61d7bf866e0e269898833" prot="private" virt="non-virtual"><scope>RAYEX_NAMESPACE::Scene</scope><name>_currentCamera</name></member>
       <member refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_scene_1add17e79f3bd3f40363b8259ff62f13d8" prot="private" virt="non-virtual"><scope>RAYEX_NAMESPACE::Scene</scope><name>_deleteTextures</name></member>
-      <member refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_scene_1a535d3cbbfa18f7fe88ec6848100a93e8" prot="private" virt="non-virtual"><scope>RAYEX_NAMESPACE::Scene</scope><name>_directionalLights</name></member>
       <member refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_scene_1aaf50a0a8b28eae93f42123039357f362" prot="private" virt="non-virtual"><scope>RAYEX_NAMESPACE::Scene</scope><name>_dummy</name></member>
+      <member refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_scene_1aeabf4fe202c41ebcda4465d725568f43" prot="private" virt="non-virtual"><scope>RAYEX_NAMESPACE::Scene</scope><name>_environmentMap</name></member>
+      <member refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_scene_1af8e0e122f41441aa6e2050de8663d4e7" prot="private" virt="non-virtual"><scope>RAYEX_NAMESPACE::Scene</scope><name>_environmentMapTexturePath</name></member>
       <member refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_scene_1a4544c0ae3ef5de4e6310a1118caad95e" prot="private" virt="non-virtual"><scope>RAYEX_NAMESPACE::Scene</scope><name>_geometries</name></member>
+      <member refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_scene_1a4e4471f5e1b0d292a1a32a0425cf69c2" prot="private" virt="non-virtual"><scope>RAYEX_NAMESPACE::Scene</scope><name>_geometryDescriptors</name></member>
+      <member refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_scene_1a81695ad3637f188d7a87d77bd95544f7" prot="private" virt="non-virtual"><scope>RAYEX_NAMESPACE::Scene</scope><name>_geometryDescriptorSets</name></member>
       <member refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_scene_1a4f8f10cfbcf836e854c1cf47886730e2" prot="private" virt="non-virtual"><scope>RAYEX_NAMESPACE::Scene</scope><name>_geometryInstances</name></member>
-      <member refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_scene_1a61c47ac2381a03b39c2c4eacfb3e7e11" prot="private" virt="non-virtual"><scope>RAYEX_NAMESPACE::Scene</scope><name>_pointLights</name></member>
+      <member refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_scene_1a7856a2cf3316a331889e97e4680cdcf1" prot="private" virt="non-virtual"><scope>RAYEX_NAMESPACE::Scene</scope><name>_geometryInstancesBuffer</name></member>
+      <member refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_scene_1a87324174dc0c3f0c1e06cff18cca585c" prot="private" virt="non-virtual"><scope>RAYEX_NAMESPACE::Scene</scope><name>_immutableSamplers</name></member>
+      <member refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_scene_1aed56b86ff4c36d0bcb9ce00c40cee7e2" prot="private" virt="non-virtual"><scope>RAYEX_NAMESPACE::Scene</scope><name>_indexBuffers</name></member>
+      <member refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_scene_1a32c9565b4900d5d18eb84069e568c1bd" prot="private" virt="non-virtual"><scope>RAYEX_NAMESPACE::Scene</scope><name>_materials</name></member>
+      <member refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_scene_1a57da6e6521fe2c7e35c926c1b2aba0cd" prot="private" virt="non-virtual"><scope>RAYEX_NAMESPACE::Scene</scope><name>_meshBuffers</name></member>
+      <member refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_scene_1a17726aecb6a81e2f22bd15eee6ab2ff5" prot="private" virt="non-virtual"><scope>RAYEX_NAMESPACE::Scene</scope><name>_removeEnvironmentMap</name></member>
+      <member refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_scene_1a89aa9c9d13cb0e6080ab6b95e199f2d5" prot="private" virt="non-virtual"><scope>RAYEX_NAMESPACE::Scene</scope><name>_sceneDescriptors</name></member>
+      <member refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_scene_1af8458a06dcb03bb0a5b06e5205b26adb" prot="private" virt="non-virtual"><scope>RAYEX_NAMESPACE::Scene</scope><name>_sceneDescriptorsets</name></member>
       <member refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_scene_1a0fbb2c7fd1ede86c0dab9473b729bf9e" prot="private" virt="non-virtual"><scope>RAYEX_NAMESPACE::Scene</scope><name>_settings</name></member>
-      <member refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_scene_1a21adc7a3a7d08eab34897105d3ea04c4" prot="private" virt="non-virtual"><scope>RAYEX_NAMESPACE::Scene</scope><name>_uploadDirectionalLightsToBuffer</name></member>
+      <member refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_scene_1a85be43437f96020ce4741cd1b36a8e99" prot="private" virt="non-virtual"><scope>RAYEX_NAMESPACE::Scene</scope><name>_textureDescriptorSets</name></member>
+      <member refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_scene_1a1cc33224edc0b7da5d6e1815cecb2b4b" prot="private" virt="non-virtual"><scope>RAYEX_NAMESPACE::Scene</scope><name>_textures</name></member>
+      <member refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_scene_1ac2800a4e3508bcce5a7d25e87e05f571" prot="private" virt="non-virtual"><scope>RAYEX_NAMESPACE::Scene</scope><name>_uploadEnvironmentMap</name></member>
       <member refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_scene_1a4336f26ec64676aecacbd543c482ee0e" prot="private" virt="non-virtual"><scope>RAYEX_NAMESPACE::Scene</scope><name>_uploadGeometries</name></member>
       <member refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_scene_1a3bda047b3d5ac4fd27f7f15c4e047736" prot="private" virt="non-virtual"><scope>RAYEX_NAMESPACE::Scene</scope><name>_uploadGeometryInstancesToBuffer</name></member>
-      <member refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_scene_1a197c32c6da0c36cee58bedc0d24256ca" prot="private" virt="non-virtual"><scope>RAYEX_NAMESPACE::Scene</scope><name>_uploadPointLightsToBuffer</name></member>
+      <member refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_scene_1a21377f5d7f6ede0f68e72be717684ec2" prot="private" virt="non-virtual"><scope>RAYEX_NAMESPACE::Scene</scope><name>_useEnvironmentMap</name></member>
+      <member refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_scene_1abcd1ccc7fd851f8c8e86da5960bff0f8" prot="private" virt="non-virtual"><scope>RAYEX_NAMESPACE::Scene</scope><name>_vertexBuffers</name></member>
+      <member refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_scene_1af772173d6a1037fd6fb31a45cb8324d8" prot="private" virt="non-virtual"><scope>RAYEX_NAMESPACE::Scene</scope><name>addDummy</name></member>
       <member refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_scene_1ae002d16199c05b908fbeecc4f7d97733" prot="public" virt="non-virtual"><scope>RAYEX_NAMESPACE::Scene</scope><name>Api</name></member>
       <member refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_scene_1ac89ff3616b43e6c2b7e6a23995784a53" prot="public" virt="non-virtual"><scope>RAYEX_NAMESPACE::Scene</scope><name>clearGeometries</name></member>
       <member refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_scene_1a42dc12d8a200591532dc336f72a4847d" prot="public" virt="non-virtual"><scope>RAYEX_NAMESPACE::Scene</scope><name>clearGeometryInstances</name></member>
+      <member refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_scene_1a9db5d9ebd71def4c2160b44ac0db012e" prot="private" virt="non-virtual"><scope>RAYEX_NAMESPACE::Scene</scope><name>clearTextures</name></member>
       <member refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_scene_1a344905cab1fbaf5a5585a6df25635bbc" prot="public" virt="non-virtual"><scope>RAYEX_NAMESPACE::Scene</scope><name>findGeometry</name></member>
-      <member refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_scene_1abd17c0c5eda2b09916ab74cd0c91794d" prot="public" virt="non-virtual"><scope>RAYEX_NAMESPACE::Scene</scope><name>getDirectionalLights</name></member>
+      <member refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_scene_1a93bff45acd035aa5c72445bca9604075" prot="public" virt="non-virtual"><scope>RAYEX_NAMESPACE::Scene</scope><name>getCamera</name></member>
       <member refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_scene_1aef804f5fc22e5d0b27530a00cd054060" prot="public" virt="non-virtual"><scope>RAYEX_NAMESPACE::Scene</scope><name>getGeometryInstances</name></member>
-      <member refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_scene_1aefa4c39c0f32defc0e35019048b0bb17" prot="public" virt="non-virtual"><scope>RAYEX_NAMESPACE::Scene</scope><name>getPointLights</name></member>
+      <member refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_scene_1a7bfc02c5eb5a97ac6e8d03c5b90b12f3" prot="private" virt="non-virtual"><scope>RAYEX_NAMESPACE::Scene</scope><name>initCameraBuffer</name></member>
+      <member refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_scene_1a6a221b114a6c27a011f0576efd418752" prot="private" virt="non-virtual"><scope>RAYEX_NAMESPACE::Scene</scope><name>initDescriptorSets</name></member>
+      <member refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_scene_1a7f8086b8e638a0ad2089255fa76d127e" prot="public" virt="non-virtual"><scope>RAYEX_NAMESPACE::Scene</scope><name>load</name></member>
+      <member refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_scene_1a455c1bc49b4516cd7a007692fb5fca47" prot="public" virt="non-virtual"><scope>RAYEX_NAMESPACE::Scene</scope><name>operator=</name></member>
       <member refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_scene_1ae68fc066eddb4ff7ee2a16c26b06f5ba" prot="public" virt="non-virtual"><scope>RAYEX_NAMESPACE::Scene</scope><name>popGeometry</name></member>
       <member refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_scene_1a838076f7347dd4788ee1aaa8ffd28374" prot="public" virt="non-virtual"><scope>RAYEX_NAMESPACE::Scene</scope><name>popGeometryInstance</name></member>
+      <member refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_scene_1ae5e712303a761cf45f407a928ed50eb9" prot="private" virt="non-virtual"><scope>RAYEX_NAMESPACE::Scene</scope><name>prepareBuffers</name></member>
       <member refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_scene_1a03b7257e44db8e9af952484958a5346c" prot="public" virt="non-virtual"><scope>RAYEX_NAMESPACE::Scene</scope><name>Rayex</name></member>
-      <member refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_scene_1a8654b0489ad56a058af3647ab85c6095" prot="public" virt="non-virtual"><scope>RAYEX_NAMESPACE::Scene</scope><name>removeDirectionalLight</name></member>
+      <member refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_scene_1ad591c4c7531990877fcd8040d076f07c" prot="private" virt="non-virtual"><scope>RAYEX_NAMESPACE::Scene</scope><name>removeDummy</name></member>
+      <member refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_scene_1a76b628140f11ee0ad272ac1da0e6c0ff" prot="public" virt="non-virtual"><scope>RAYEX_NAMESPACE::Scene</scope><name>removeEnvironmentMap</name></member>
       <member refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_scene_1a8004b0c0dfb783070ea82af111378718" prot="public" virt="non-virtual"><scope>RAYEX_NAMESPACE::Scene</scope><name>removeGeometry</name></member>
       <member refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_scene_1adc0e77e152173899b4edf08fbe62ca18" prot="public" virt="non-virtual"><scope>RAYEX_NAMESPACE::Scene</scope><name>removeGeometry</name></member>
       <member refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_scene_1a11fc56eb116fe3301a59c5c594ee2bea" prot="public" virt="non-virtual"><scope>RAYEX_NAMESPACE::Scene</scope><name>removeGeometryInstance</name></member>
-      <member refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_scene_1aef891c0cb5abb107b620142ec9ccec00" prot="public" virt="non-virtual"><scope>RAYEX_NAMESPACE::Scene</scope><name>removePointLight</name></member>
+      <member refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_scene_1aa3d8bb2201e4529f67dd8138d7f0e538" prot="public" virt="non-virtual"><scope>RAYEX_NAMESPACE::Scene</scope><name>setCamera</name></member>
+      <member refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_scene_1a87356635d94226e8c69857c0b48d3ad1" prot="public" virt="non-virtual"><scope>RAYEX_NAMESPACE::Scene</scope><name>setEnvironmentMap</name></member>
       <member refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_scene_1ab191100612c6087204b476aadfd8b6db" prot="public" virt="non-virtual"><scope>RAYEX_NAMESPACE::Scene</scope><name>setGeometries</name></member>
       <member refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_scene_1a86b0c09d5294dabeeb550b84ef4ac0c4" prot="public" virt="non-virtual"><scope>RAYEX_NAMESPACE::Scene</scope><name>setGeometryInstances</name></member>
-      <member refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_scene_1a0950f2d94e6e9fec8ae01200f001878e" prot="public" virt="non-virtual"><scope>RAYEX_NAMESPACE::Scene</scope><name>submitDirectionalLight</name></member>
       <member refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_scene_1a53c0ef48ca0c5e0d2336869a8e75085b" prot="public" virt="non-virtual"><scope>RAYEX_NAMESPACE::Scene</scope><name>submitGeometry</name></member>
       <member refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_scene_1a4ca1e82f10c27e433eff652710e8e700" prot="public" virt="non-virtual"><scope>RAYEX_NAMESPACE::Scene</scope><name>submitGeometryInstance</name></member>
-      <member refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_scene_1a2bf002f75dd17d8c28e0641e461ad2bd" prot="public" virt="non-virtual"><scope>RAYEX_NAMESPACE::Scene</scope><name>submitPointLight</name></member>
+      <member refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_scene_1aff42c582b7197d94565a9bf7562c02a5" prot="private" virt="non-virtual"><scope>RAYEX_NAMESPACE::Scene</scope><name>updateGeoemtryDescriptors</name></member>
+      <member refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_scene_1ae6f484f4bd331894118ce85b6bbdb65e" prot="private" virt="non-virtual"><scope>RAYEX_NAMESPACE::Scene</scope><name>updateSceneDescriptors</name></member>
+      <member refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_scene_1ae9f11ab21eea7a1850f7ad514e95a12a" prot="private" virt="non-virtual"><scope>RAYEX_NAMESPACE::Scene</scope><name>upload</name></member>
+      <member refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_scene_1a84d228890a7d8bc1832a226eecd59774" prot="private" virt="non-virtual"><scope>RAYEX_NAMESPACE::Scene</scope><name>uploadCameraBuffer</name></member>
+      <member refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_scene_1ac4e74346314a14c673590ddbbde1ff9f" prot="private" virt="non-virtual"><scope>RAYEX_NAMESPACE::Scene</scope><name>uploadEnvironmentMap</name></member>
+      <member refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_scene_1a8c84766caa12d2de5a1fe7907b6d39ad" prot="private" virt="non-virtual"><scope>RAYEX_NAMESPACE::Scene</scope><name>uploadGeometries</name></member>
+      <member refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_scene_1a67e47ee287834e0e89e1e890d4275364" prot="private" virt="non-virtual"><scope>RAYEX_NAMESPACE::Scene</scope><name>uploadGeometryInstances</name></member>
     </listofallmembers>
   </compounddef>
 </doxygen>

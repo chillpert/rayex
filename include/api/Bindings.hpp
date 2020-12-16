@@ -37,19 +37,19 @@ namespace RAYEX_NAMESPACE
     /// @param sets The descriptor set handles.
     /// @param binding The binding's index.
     /// @param pWriteDescriptorSetAccelerationStructureKHR A pointer to a acceleration structure descriptor write.
-    void write( const std::vector<vk::DescriptorSet>& sets, uint32_t binding, vk::WriteDescriptorSetAccelerationStructureKHR* pWriteDescriptorSetAccelerationStructureKHR );
+    void write( const std::vector<vk::DescriptorSet>& sets, uint32_t binding, const vk::WriteDescriptorSetAccelerationStructureKHR* pWriteDescriptorSetAccelerationStructureKHR );
 
     /// Used to create a descriptor write for an image.
     /// @param sets The descriptor set handles.
     /// @param binding The binding's index.
     /// @param pImageInfo A pointer to an image descriptor write.
-    void write( const std::vector<vk::DescriptorSet>& sets, uint32_t binding, vk::DescriptorImageInfo* pImageInfo );
+    void write( const std::vector<vk::DescriptorSet>& sets, uint32_t binding, const vk::DescriptorImageInfo* pImageInfo );
 
     /// Used to create a descriptor write for a buffer.
     /// @param sets The descriptor set handles.
     /// @param binding The binding's index.
     /// @param pBufferInfo A pointer to a buffer descriptor write.
-    void write( const std::vector<vk::DescriptorSet>& sets, uint32_t binding, vk::DescriptorBufferInfo* pBufferInfo );
+    void write( const std::vector<vk::DescriptorSet>& sets, uint32_t binding, const vk::DescriptorBufferInfo* pBufferInfo );
 
     /// Used to create a descriptor write for uniform buffers.
     /// @param sets The descriptor set handles.

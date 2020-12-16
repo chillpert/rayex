@@ -29,6 +29,9 @@ namespace RAYEX_NAMESPACE
     /// @param recursionDepth The new value for the recursion depth.
     void setRecursionDepth( uint32_t recursionDepth );
 
+    /// @return Returns the maximum recursion depth on the GPU.
+    auto getMaxRecursionDepth( ) const -> uint32_t { return _maxRecursionDepth; }
+
     /// @return Returns the clear color.
     auto getClearColor( ) const -> const glm::vec4& { return _clearColor; }
 
@@ -58,63 +61,65 @@ namespace RAYEX_NAMESPACE
     /// @param flag If false, the pipelines will not be recreated automatically until this function is called with true.
     void setAutomaticPipelineRefresh( bool flag );
 
-    /// Used to set the maximum amount of directional lights that can be used.
-    /// @param amount The amount of maximum directional lights.
-    void setMaxDirectionalLights( uint32_t amount );
+    /// Used to set the maximum amount of geometry (3D models) that can be loaded.
+    void setGeometryLimit( size_t amount );
 
-    /// Used to set the maximum amount of point lights that can be used.
-    /// @param amount The amount of maximum point lights.
-    void setMaxPointLights( uint32_t amount );
+    /// Used to set the maximum amount of geometry instances (instances of 3D models) that can be loaded.
+    void setGeometryInstanceLimit( uint32_t amount );
 
-    /// Used to set the maximum amount of geometrys that can be used.
-    /// @param amount The amount of maximum geometrys.
-    void setMaxGeometryInstances( uint32_t amount );
+    /// Used to set the maximum amount of textures that can be loaded.
+    void setTextureLimit( size_t amount );
 
-    /// @return Returns the maximum recursion depth on the GPU.
-    auto getMaxRecursionDepth( ) const -> uint32_t { return _maxRecursionDepth; }
+    /// Used to set the maximum amount of meshes that can be loaded.
+    ///
+    /// This value is not strictly related to the amount of geometries. Each geometry can have an arbitrary amount of meshes or sub-mehes.
+    /// To optimize the buffer size it is recommended to make at least a rough estimate on the amount of submeshes that are going to be in the scene.
+    void setMeshLimit( size_t amount );
 
-    /// Used to set the maximum of geometry (models).
-    /// Try to keep this as small as possible, as this affects performance.
-    /// @param amount The amount of maximum geometry.
-    void setMaxGeoemtry( uint32_t amount );
-
-    /// @return Returns the maximum amount of geometry.
-    auto getMaxGeometry( ) const -> uint32_t { return _maxGeometry; }
-
-    void setMaxMeshes( uint32_t amount );
-
-    auto getMaxMeshes( ) const -> uint32_t { return _maxMeshes; }
+    /// Used to set the geometry limit, geometry instance limit, mesh limit and texture limit at once.
+    /// @see setGeometryLimit(size_t), setGeometryInstanceLimit(size_t), setMeshLimit(size_t) and setTextureLimit(size_t).
+    void setLimits( size_t geometryLimit, size_t geometryInstanceLimit, size_t meshLimit, size_t textureLimit );
 
     void setPerPixelSampleRate( uint32_t sampleRate );
 
     auto getPerPixelSampleRate( ) const -> uint32_t { return _perPixelSampleRate; }
 
-    void setTotalFramesToAccumulate( uint32_t totalFramesToAccumulate );
+    void setAccumulatingFrames( bool flag );
 
-    auto getTotalFramesToAccumulate( ) const -> uint32_t { return _totalFramesToAccumulate; }
+    auto isAccumulatingFrames( ) const -> bool { return _accumulateFrames; }
+
+    void triggerPipelineRefresh( ) { _refreshPipeline = true; }
+
+    void triggerSwapchainRefresh( ) { _refreshSwapchain = true; }
 
   private:
     /// This function will be called by Rayex::init() in case the path was not set manually.
     /// @warning This function might file in setting the correct path. That is why it is recommended to set it automatically using setAssetsPath(std::string).
-    void setDefaultAssetsPath( );
+    void
+    setDefaultAssetsPath( );
 
     bool _refreshPipeline  = false; ///< Keeps track of whether or not the graphics pipeline needs to be recreated.
     bool _refreshSwapchain = false; ///< Keeps track of whether or not the swapchain needs to be recreated.
 
-    uint32_t _maxDirectionalLights = 100; ///< Can be set to avoid pipeline recreation everytime a directional light is added.
-    uint32_t _maxPointLights       = 100; ///< Can be set to avoid pipeline recreation everytime a point light is added.
-    uint32_t _maxGeometryInstances = 100; ///< Can be set to avoid pipeline recreation everytime a geometry instance is added.
-    uint32_t _maxGeometry          = 64;  ///< The maximum amount of geometry (Must be a multiple of minimum storage buffer alignment).
-    uint32_t _maxTextures          = 5;   ///< The maximum amount of textures.
-    uint32_t _maxMeshes            = 200; ///< The maximum amount of meshes. Each geometry can have multiple sub meshes.
+    size_t _maxGeometryInstances      = 32; ///< Can be set to avoid pipeline recreation everytime a geometry instance is added.
+    bool _maxGeometryInstancesChanged = false;
+    size_t _maxGeometry               = 16; ///< The maximum amount of geometry (Must be a multiple of minimum storage buffer alignment).
+    bool _maxGeometryChanged          = false;
+    size_t _maxTextures               = 8; ///< The maximum amount of textures.
+    bool _maxTexturesChanged          = false;
+    size_t _maxMeshes                 = 4; ///< The maximum amount of meshes. Each geometry can have multiple sub meshes.
+    bool _maxMeshesChanged            = false;
 
     std::string _assetsPath; ///< Where all assets like models, textures and shaders are stored.
 
-    glm::vec4 _clearColor             = glm::vec4( 0.45F, 0.45F, 0.45F, 0.8F ); ///< Stores the clear color.
-    uint32_t _maxRecursionDepth       = 10;                                     ///< The maximum recursion depth.
-    uint32_t _recursionDepth          = 10;                                     ///< The current recursion depth.
-    uint32_t _perPixelSampleRate      = 4;                                      ///< Stores the total amount of samples that will be taken and averaged per pixel.
-    uint32_t _totalFramesToAccumulate = 0;                                      ///< Stores the amount of frames whose results will be accumulated. If value is e.g. 10, then starting from the first frame, all other frames will use the results of the previous one.
+    glm::vec4 _clearColor        = glm::vec4( 0.45F, 0.45F, 0.45F, 0.8F ); ///< Stores the clear color.
+    uint32_t _maxRecursionDepth  = 10;                                     ///< The maximum recursion depth.
+    uint32_t _recursionDepth     = 10;                                     ///< The current recursion depth.
+    uint32_t _perPixelSampleRate = 4;                                      ///< Stores the total amount of samples that will be taken and averaged per pixel.
+
+    bool _accumulateFrames = true;
+
+    Scene* _scene = nullptr;
 
     bool _automaticPipelineRefresh  = false; ///< Keeps track of whether or not the graphics pipelines should be recreated automatically as soon as possible.
     bool _automaticSwapchainRefresh = false; ///< Keeps track of whether or not the swapchain should be recreated automatically as soon as possible.

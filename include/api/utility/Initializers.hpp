@@ -1,6 +1,5 @@
 #pragma once
 
-#include "api/Components.hpp"
 #include "api/pathtrace/AccelerationStructure.hpp"
 
 namespace vk

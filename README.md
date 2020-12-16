@@ -55,9 +55,6 @@ int main( )
     auto cubeInstance = rx::instance( cube );
     renderer.scene( ).submitGeometryInstance( cubeInstance );
 
-    // Add a light source.
-    renderer.scene( ).submitDirectionalLight( rx::directionalLightInstance( glm::vec3( -4.0F, 10.0F, 5.0F ) ) );
-
     // The main loop.
     while ( renderer.isRunning( ) )
     {

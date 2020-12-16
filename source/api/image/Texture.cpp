@@ -1,5 +1,6 @@
 #include "api/image/Texture.hpp"
 
+#include "api/Components.hpp"
 #include "api/buffers/Buffer.hpp"
 #include "api/utility/Helpers.hpp"
 #include "api/utility/Initializers.hpp"

@@ -1,9 +1,12 @@
 #pragma once
 
+#include "api/Bindings.hpp"
+#include "api/buffers/StorageBuffer.hpp"
+#include "api/buffers/UniformBuffer.hpp"
+#include "api/image/Cubemap.hpp"
 #include "api/image/Texture.hpp"
 #include "base/Camera.hpp"
 #include "base/Geometry.hpp"
-#include "base/Lights.hpp"
 #include "base/Settings.hpp"
 
 namespace RAYEX_NAMESPACE
@@ -15,6 +18,7 @@ namespace RAYEX_NAMESPACE
   /// Provides functions to change said data.
   /// @todo removeGeometry()
   /// @ingroup BASE
+  /// @ingroup API
   class RX_API Scene
   {
   public:
@@ -34,28 +38,6 @@ namespace RAYEX_NAMESPACE
     /// @note This function does not invoke any draw calls.
     void setGeometryInstances( const std::vector<std::shared_ptr<GeometryInstance>>& geometryInstances );
 
-    /// @return Returns all directional lights in the scene.
-    auto getDirectionalLights( ) const -> const std::vector<std::shared_ptr<DirectionalLight>>&;
-
-    /// Used to submit a directional light.
-    /// @param light The directional light to submit.
-    void submitDirectionalLight( std::shared_ptr<DirectionalLight> light );
-
-    /// Used to remove a directional light.
-    /// @param light The directional light to remove.
-    void removeDirectionalLight( std::shared_ptr<DirectionalLight> light );
-
-    /// @return Returns all point lights in the scene.
-    auto getPointLights( ) const -> const std::vector<std::shared_ptr<PointLight>>&;
-
-    /// Used to submit a point light.
-    /// @param light The point light to submit.
-    void submitPointLight( std::shared_ptr<PointLight> light );
-
-    /// Used to remove a point light.
-    /// @param light The point light to remove.
-    void removePointLight( std::shared_ptr<PointLight> light );
-
     /// Used to remove a geometry instance.
     ///
     /// Once a geometry instance was removed, it will no longer be rendered.
@@ -67,7 +49,7 @@ namespace RAYEX_NAMESPACE
     /// However, geometries remain loaded and must be deleted explicitely.
     void clearGeometryInstances( );
 
-    /// Used to remove the last geoemtry instance.
+    /// Used to remove the last geometry instance.
     void popGeometryInstance( );
 
     /// Used to submit a geometry and set up its buffers.
@@ -114,23 +96,62 @@ namespace RAYEX_NAMESPACE
     auto getCamera( ) const -> std::shared_ptr<Camera> { return _currentCamera; }
 
   private:
-    std::vector<std::shared_ptr<Geometry>> _geometries;                ///< Stores all geometries.
-    std::vector<std::shared_ptr<GeometryInstance>> _geometryInstances; ///< Stores all geometry instances.
-    std::vector<std::shared_ptr<DirectionalLight>> _directionalLights; ///< Stores all directional lights.
-    std::vector<std::shared_ptr<PointLight>> _pointLights;             ///< Stores all point lights.
+    void initSceneDescriptorSets( );
+
+    void initGeoemtryDescriptorSets( );
+
+    void prepareBuffers( );
+
+    void initCameraBuffer( );
+
+    void uploadCameraBuffer( uint32_t imageIndex );
+
+    void uploadEnvironmentMap( );
+
+    void uploadGeometries( );
+
+    void uploadGeometryInstances( uint32_t imageIndex );
+
+    void addDummy( );
+
+    void removeDummy( );
+
+    void updateSceneDescriptors( );
+
+    void updateGeoemtryDescriptors( );
+
+    void upload( vk::Fence fence, uint32_t imageIndex );
+
+    Descriptors _sceneDescriptors;
+    Descriptors _geometryDescriptors;
+
+    std::vector<vk::DescriptorSet> _sceneDescriptorsets;
+    std::vector<vk::DescriptorSet> _geometryDescriptorSets;
+    std::vector<vk::DescriptorSet> _textureDescriptorSets;
+
+    Cubemap _environmentMap;
+    vk::UniqueSampler _immutableSampler;
+
+    std::vector<StorageBuffer<uint32_t>> _indexBuffers;
+    std::vector<StorageBuffer<Vertex>> _vertexBuffers;
+    std::vector<StorageBuffer<MeshSSBO>> _meshBuffers;
+    std::vector<std::shared_ptr<Texture>> _textures;
+    StorageBuffer<GeometryInstanceSSBO> _geometryInstancesBuffer;
+
+    UniformBuffer<CameraUbo> _cameraUniformBuffer;
+
+    std::vector<std::shared_ptr<Geometry>> _geometries;
+    std::vector<std::shared_ptr<GeometryInstance>> _geometryInstances;
     std::vector<std::shared_ptr<Material>> _materials;
 
     std::string_view _environmentMapTexturePath;
-    bool _useEnvironmentMap           = false;
-    uint32_t _skyboxCubeGeometryIndex = std::numeric_limits<uint32_t>::max( );
+    bool _useEnvironmentMap    = false;
+    bool _removeEnvironmentMap = false;
 
-    bool _uploadGeometryInstancesToBuffer = false; ///< Keeps track of whether or not to upload the path tracing instances to their respective buffer the next time RAYEX_NAMESPACE::Api::update() is called.
-    bool _uploadDirectionalLightsToBuffer = false; ///< Keeps track of whether or not to upload the directional lights to their respective buffer the next time RAYEX_NAMESPACE::Api::update() is called.
-    bool _uploadPointLightsToBuffer       = false; ///< Keeps track of whether or not to upload the point lights to their respective buffer the next time RAYEX_NAMESPACE::Api::update() is called.
+    bool _uploadGeometryInstancesToBuffer = false;
     bool _uploadEnvironmentMap            = false;
-    bool _uploadGeometries                = false; ///< Keeps track of whether or not to upload the geometries to their respective buffer the next time RAYEX_NAMESPACE::Api::update() is called.
-    bool _deleteTextures                  = false; ///< Keeps track of whether or not all textures should be deleted the next time RAYEX_NAMESPACE::Api::update() is called.
-    bool _dummy                           = false; ///< Keeps track of whether or not a dummy element in case of an empty scene is active.
+    bool _uploadGeometries                = false;
+    bool _dummy                           = false;
 
     std::unordered_set<std::shared_ptr<Camera>> _cameras; ///< The cameras that can be used for rendering.
     std::shared_ptr<Camera> _currentCamera;               ///< The camera that is currently being used for rendering.

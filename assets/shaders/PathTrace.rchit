@@ -178,6 +178,12 @@ void main( )
   {
     emission = mat.emission.xyz;
 
+    // Stop recursion if a light source is hit.
+    if ( emission != vec3( 0.0 ) )
+    {
+      ray.depth = maxRecursionDepth + 1;
+    }
+
     if ( mat.illum == 0 )
     {
       diffuse = getDiffuseLight( mat, texCoord );

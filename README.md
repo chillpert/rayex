@@ -80,7 +80,7 @@ int main( )
 - [x] Add environment mapping
 - [x] Add a post processing pass for gamma correction and future post processing effects
 - [x] Add simple reflections and transparency
-- [ ] Add an efficient way of building and updating acceleration structures for any specific scene
+- [ ] Add an efficient way of building and updating acceleration structures based on a scene's requirements
 - [ ] Add importance and multiple importance sampling
 - [ ] Add HDR skymaps and skyboxes as light sources
 - [ ] Add more material properties

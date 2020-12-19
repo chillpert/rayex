@@ -4,6 +4,7 @@
 #include "api/buffers/CommandBuffer.hpp"
 #include "api/utility/Helpers.hpp"
 #include "api/utility/Initializers.hpp"
+#include "base/Settings.hpp"
 
 namespace RAYEX_NAMESPACE
 {

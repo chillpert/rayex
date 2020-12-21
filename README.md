@@ -77,17 +77,18 @@ int main( )
 
 ### Planned Features
 
-- [x] Add environment mapping
-- [x] Add a post processing pass for gamma correction and future post processing effects
-- [x] Add simple reflections and transparency
-- [ ] Add an efficient way of building and updating acceleration structures based on a scene's requirements
-- [ ] Add importance and multiple importance sampling
-- [ ] Add HDR skymaps and skyboxes as light sources
-- [ ] Add more material properties
-- [ ] Add denoising
-- [ ] Add callable shader support
-- [ ] Add bidirectional and volumetric path tracing
-- [ ] Add further post processing features
+- [x] Global illumination
+- [x] Environment mapping
+- [x] A post processing pass for gamma correction and future post processing effects
+- [x] Simple reflections and transparency
+- [ ] An efficient way of building and updating acceleration structures based on a scene's requirements
+- [ ] Importance and multiple importance sampling
+- [ ] HDR skymaps and skyboxes as light sources
+- [ ] More material properties
+- [ ] Denoising
+- [ ] Callable shader support
+- [ ] Bidirectional and volumetric path tracing
+- [ ] Further post processing features
 
 ### Documentation
 Extensive documentation of all classes and functions can be found [here](https://chillpert.github.io/rayex/html/index.html).

@@ -8,8 +8,8 @@
 #define VK_ENABLE_BETA_EXTENSIONS
 //#define VULKAN_HPP_NO_EXCEPTIONS
 
-#include <external/tinyLogger/TinyLogger.hpp>
-#include <external/vkCore/vkCore/vkCore.hpp>
+#include <tinyLogger/TinyLogger.hpp>
+#include <vkCore/vkCore.hpp>
 
 #ifdef RX_BUILD_EXAMPLES
   #undef RX_BUILD_DLL

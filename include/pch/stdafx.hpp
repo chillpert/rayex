@@ -3,14 +3,15 @@
 
 #include "Core.hpp"
 #include "base/Time.hpp"
-#include "external/ImGui/imgui.h"
-#include "external/ImGui/imgui_impl_sdl.h"
-#include "external/ImGui/imgui_impl_vulkan.h"
+
+#include <imgui/imgui.h>
+#include <imgui/imgui_impl_sdl.h>
+#include <imgui/imgui_impl_vulkan.h>
 //#define GLM_SWIZZLE
-#include "external/glm/ext/matrix_clip_space.hpp"
-#include "external/glm/ext/matrix_transform.hpp"
-#include "external/glm/glm.hpp"
-#include "external/glm/gtx/string_cast.hpp"
+#include <glm/ext/matrix_clip_space.hpp>
+#include <glm/ext/matrix_transform.hpp>
+#include <glm/glm.hpp>
+#include <glm/gtx/string_cast.hpp>
 
 #define GLFORCE_DEPTH_ZERO_TO_ONE
 #include <algorithm>

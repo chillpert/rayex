@@ -4,7 +4,7 @@
 #include "pch/stdafx.hpp"
 
 #define GLENABLE_EXPERIMENTAL
-#include "external/glm/gtx/hash.hpp"
+#include <glm/gtx/hash.hpp>
 
 namespace RAYEX_NAMESPACE
 {

@@ -5,7 +5,7 @@
 #define TINYGLTF_IMPLEMENTATION
 #define STB_IMAGE_WRITE_IMPLEMENTATION
 
-#include "external/gltf/tiny_gltf.h"
+#include <gltf/tiny_gltf.h>
 
 namespace RAYEX_NAMESPACE
 {

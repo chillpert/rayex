@@ -1,28 +1,28 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
-<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.20" xml:lang="en-US">
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.17">
   <compounddef id="indexpage" kind="page">
     <compoundname>index</compoundname>
     <title>RAYEX</title>
     <briefdescription>
     </briefdescription>
     <detaileddescription>
-<para><anchor id="index_1md_C__Repos_rayex_README"/>RAYEX is a work-in-progress, cross-platform, cross-vendor, Vulkan-based, real-time path tracer.</para>
-<para>It runs on both Linux (x64) and Windows (x64) using the Vulkan API. The purpose of this software is to provide a cross-platform, cross-vendor path tracer that is easy to integrate into existing projects. Vendor independence is achieved by using KHRONOS&apos; new Vulkan ray tracing extension (first published on March 17, 2020). It uses <ulink url="https://www.libsdl.org/index.php">SDL2</ulink> for windowing and <ulink url="https://glm.g-truc.net/0.9.9/index.html">glm</ulink> as its math library. RAYEX features native <ulink url="https://github.com/ocornut/imgui">Dear ImGui</ulink> support, enabling the user to create user interfaces without having to write any API-related code.</para>
+<para>RAYEX is a work-in-progress, cross-platform, cross-vendor, Vulkan-based, real-time path tracer.</para>
+<para>It runs on both Linux (x64) and Windows (x64) using the Vulkan API. This software aims to provide a cross-platform, cross-vendor path tracer that is easy to integrate into existing projects. Vendor independence is achieved by using the new KHRONOS Vulkan ray tracing extension (first published on March 17, 2020, as an experimental version). It uses <ulink url="https://www.libsdl.org/index.php">SDL2</ulink> for windowing and <ulink url="https://glm.g-truc.net/0.9.9/index.html">glm</ulink> as its math library. RAYEX features native <ulink url="https://github.com/ocornut/imgui">Dear ImGui</ulink> support, enabling the user to create user interfaces without writing any API-related code.</para>
 <sect1 id="index_1autotoc_md1">
 <title>Requirements</title>
-<para>Unfortunately, KHRONOS&apos; Vulkan ray tracing extension is not yet part of the NVIDIA main driver. Download the NVIDIA Vulkan beta drivers <ulink url="https://developer.nvidia.com/vulkan-driver">here</ulink>. AMD drivers can be downloaded <ulink url="https://www.amd.com/en/support/kb/release-notes/rn-rad-win-20-11-2-vrt-beta">here</ulink> instead.</para>
+<para>Unfortunately, the KHRONOS Vulkan ray tracing extension is not yet part of the NVIDIA main driver. Download the NVIDIA Vulkan beta drivers <ulink url="https://developer.nvidia.com/vulkan-driver">here</ulink>. AMD drivers can be downloaded <ulink url="https://www.amd.com/en/support/kb/release-notes/rn-rad-win-20-11-2-vrt-beta">here</ulink> instead.</para>
 </sect1>
 <sect1 id="index_1autotoc_md2">
 <title>Deploy</title>
-<para>To integrate RAYEX in your existing C++ / CMake project, follow the steps below.</para>
+<para>To integrate RAYEX in an existing C++ / CMake project, please follow the steps below.</para>
 <para><orderedlist>
 <listitem><para>Download the latest <ulink url="https://github.com/chillpert/rayex">release</ulink> or build the library yourself.</para>
-</listitem><listitem><para>Place the <bold>shared library objects</bold> and the provided <bold>include folder</bold> somewhere inside your project.</para>
+</listitem><listitem><para>Place the <bold>shared library objects</bold>, and the provided <bold>include folder</bold> somewhere inside your project.</para>
 </listitem><listitem><para>Include the CMakeLists.txt inside the <bold>include folder</bold> to your CMakeLists.txt.</para>
 </listitem><listitem><para>Link your target against the <bold>shared library objects</bold> and against SDL2.</para>
 </listitem></orderedlist>
 </para>
-<para>Using CMake is not obligatory but recommended as RAYEX comes with its own CMakeLists.txt that will properly include all project headers. A release also comes with a fully functional example including a complete CMakeLists.txt that can be used for reference.</para>
+<para>Using CMake is not obligatory but recommended as RAYEX comes with its own CMakeLists.txt that will properly include all project headers. A release also comes with a fully functional example, including a complete CMakeLists.txt that can be used for reference.</para>
 </sect1>
 <sect1 id="index_1autotoc_md3">
 <title>Build</title>
@@ -39,11 +39,11 @@
 </sect2>
 <sect2 id="index_1autotoc_md5">
 <title>Windows</title>
-<para>Generate a Visual Studio 2019 solution using CMake and build it or simply open the project folder using Visual Studio 2019, confirm the prompt to generate the CMake cache and build it.</para>
+<para>Generate a Visual Studio 2019 solution using CMake and build it or open the project folder using Visual Studio 2019, confirm the prompt to generate the CMake cache, and build it.</para>
 </sect2>
 <sect2 id="index_1autotoc_md6">
 <title>Usage</title>
-<para>The following cope snippet renders a cube. For a proper example take a look at the <bold>documentation</bold> or at <bold>example/example.cpp</bold>. <programlisting><codeline><highlight class="normal">#include<sp/>&quot;Rayex.hpp&quot;</highlight></codeline>
+<para>The following cope snippet renders a cube. For a proper example, take a look at the <bold>documentation</bold> or <bold>example/example.cpp</bold>. <programlisting><codeline><highlight class="normal">#include<sp/>&quot;Rayex.hpp&quot;</highlight></codeline>
 <codeline></codeline>
 <codeline><highlight class="normal">int<sp/>main(<sp/>)</highlight></codeline>
 <codeline><highlight class="normal">{</highlight></codeline>
@@ -68,8 +68,40 @@
 </programlisting></para>
 </sect2>
 <sect2 id="index_1autotoc_md7">
+<title>Issues</title>
+<para><itemizedlist>
+<listitem><para>[x] Update to latest SDK and official release version of VK_RAY_TRACING_KHR</para>
+</listitem><listitem><para>[ ] Remove unnecessary documentation and add missing documentation</para>
+</listitem><listitem><para>[ ] Fix upload storage buffers to GPU issues</para>
+</listitem><listitem><para>[ ] Fix any hit shader</para>
+</listitem><listitem><para>[ ] Fix reflection issue in Cornell box scene</para>
+</listitem><listitem><para>[ ] Clean up Vulkan-related functions and classes</para>
+</listitem><listitem><para>[ ] Outsource any ray tracing-related code from most Vulkan-related functions and classes</para>
+</listitem><listitem><para>[ ] Move all Vulkan-related functions and classes into their own folder and namespace</para>
+</listitem><listitem><para>[ ] Proper documentation and README grammar check</para>
+</listitem></itemizedlist>
+</para>
+</sect2>
+<sect2 id="index_1autotoc_md8">
+<title>Planned Features</title>
+<para><itemizedlist>
+<listitem><para>[x] Add environment mapping</para>
+</listitem><listitem><para>[x] Add a post processing pass for gamma correction and future post processing effects</para>
+</listitem><listitem><para>[x] Add simple reflections and transparency</para>
+</listitem><listitem><para>[ ] Add an efficient way of building and updating acceleration structures based on a scene&apos;s requirements</para>
+</listitem><listitem><para>[ ] Add importance and multiple importance sampling</para>
+</listitem><listitem><para>[ ] Add HDR skymaps and skyboxes as light sources</para>
+</listitem><listitem><para>[ ] Add more material properties</para>
+</listitem><listitem><para>[ ] Add denoising</para>
+</listitem><listitem><para>[ ] Add callable shader support</para>
+</listitem><listitem><para>[ ] Add bidirectional and volumetric path tracing</para>
+</listitem><listitem><para>[ ] Add further post processing features</para>
+</listitem></itemizedlist>
+</para>
+</sect2>
+<sect2 id="index_1autotoc_md9">
 <title>Documentation</title>
-<para>An extensive documentation of all classes and functions can be found <ulink url="https://chillpert.github.io/rayex/html/index.html">here</ulink>. </para>
+<para>Extensive documentation of all classes and functions can be found <ulink url="https://chillpert.github.io/rayex/html/index.html">here</ulink>. </para>
 </sect2>
 </sect1>
     </detaileddescription>

@@ -2,10 +2,9 @@ var _initializers_8hpp =
 [
     [ "allocateMemory", "_initializers_8hpp.html#acf85382b3d1c452170cae8ebc6aa0b7d", null ],
     [ "allocateMemory", "_initializers_8hpp.html#af484445cf6e33bde051680745478e92e", null ],
-    [ "allocateMemory", "_initializers_8hpp.html#a963a17ac2f2468b0dd00c9279e007bb4", null ],
     [ "allocateMemoryUnique", "_initializers_8hpp.html#a12c5bd8256a38e454966161b5742d75d", null ],
     [ "allocateMemoryUnique", "_initializers_8hpp.html#a493d221cb9855740252a5e69a8ca0838", null ],
-    [ "initAccelerationStructure", "_initializers_8hpp.html#a9303367f62b6a2725158e079ef371942", null ],
+    [ "initAccelerationStructure", "_initializers_8hpp.html#ae65d6ff7a9d8f5852eb9d49a1dea3eb7", null ],
     [ "initCommandPool", "_initializers_8hpp.html#a4f31060460247e2cec9de6164b6e0057", null ],
     [ "initCommandPoolUnique", "_initializers_8hpp.html#acef14128475ec3fe6c547ff6673fd23a", null ],
     [ "initDescriptorPoolUnique", "_initializers_8hpp.html#acdbf982d7f7d6c943c5d7698640eeb28", null ],

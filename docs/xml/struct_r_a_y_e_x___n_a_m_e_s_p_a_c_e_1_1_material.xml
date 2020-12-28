@@ -1,50 +1,52 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
-<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.20" xml:lang="en-US">
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.17">
   <compounddef id="struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_material" kind="struct" language="C++" prot="public">
     <compoundname>RAYEX_NAMESPACE::Material</compoundname>
     <includes refid="_geometry_8hpp" local="no">Geometry.hpp</includes>
       <sectiondef kind="public-attrib">
-      <memberdef kind="variable" id="struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_material_1aed286d4563c3708e031c22b1dfdd0850" prot="public" static="no" mutable="no">
+      <memberdef kind="variable" id="struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_material_1a7450ad0dc89bbcfd69a89d64b46eec77" prot="public" static="no" mutable="no">
         <type>glm::vec3</type>
-        <definition>glm::vec3 RAYEX_NAMESPACE::Material::ambient</definition>
+        <definition>glm::vec3 RAYEX_NAMESPACE::Material::ka</definition>
         <argsstring></argsstring>
-        <name>ambient</name>
-        <initializer>= glm::vec3( 1.0F, 1.0F, 1.0F )</initializer>
+        <name>ka</name>
+        <initializer>= glm::vec3( 0.0F, 0.0F, 0.0F )</initializer>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="C:/Repos/rayex/include/base/Geometry.hpp" line="11" column="15" bodyfile="C:/Repos/rayex/include/base/Geometry.hpp" bodystart="11" bodyend="-1"/>
+        <location file="/mnt/c/Repos/rayex/include/base/Geometry.hpp" line="13" column="15" bodyfile="/mnt/c/Repos/rayex/include/base/Geometry.hpp" bodystart="13" bodyend="-1"/>
       </memberdef>
-      <memberdef kind="variable" id="struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_material_1afa1db16e87d06229251a605fed642e31" prot="public" static="no" mutable="no">
+      <memberdef kind="variable" id="struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_material_1a9018051af4ed4bfd9299ba4051f93827" prot="public" static="no" mutable="no">
         <type>glm::vec3</type>
-        <definition>glm::vec3 RAYEX_NAMESPACE::Material::diffuse</definition>
+        <definition>glm::vec3 RAYEX_NAMESPACE::Material::kd</definition>
         <argsstring></argsstring>
-        <name>diffuse</name>
-        <initializer>= glm::vec3( 1.0F, 1.0F, 1.0F )</initializer>
+        <name>kd</name>
+        <initializer>= glm::vec3( 0.0F, 0.0F, 0.0F )</initializer>
         <briefdescription>
+<para>Ambient color. </para>
         </briefdescription>
         <detaileddescription>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="C:/Repos/rayex/include/base/Geometry.hpp" line="12" column="15" bodyfile="C:/Repos/rayex/include/base/Geometry.hpp" bodystart="12" bodyend="-1"/>
+        <location file="/mnt/c/Repos/rayex/include/base/Geometry.hpp" line="14" column="15" bodyfile="/mnt/c/Repos/rayex/include/base/Geometry.hpp" bodystart="14" bodyend="-1"/>
       </memberdef>
-      <memberdef kind="variable" id="struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_material_1a2add0cd69a003e0a01faead2ade81446" prot="public" static="no" mutable="no">
+      <memberdef kind="variable" id="struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_material_1a5ef48ca2998c12c026b08eecf951e1d4" prot="public" static="no" mutable="no">
         <type>glm::vec3</type>
-        <definition>glm::vec3 RAYEX_NAMESPACE::Material::specular</definition>
+        <definition>glm::vec3 RAYEX_NAMESPACE::Material::ks</definition>
         <argsstring></argsstring>
-        <name>specular</name>
-        <initializer>= glm::vec3( 1.0F, 1.0F, 1.0F )</initializer>
+        <name>ks</name>
+        <initializer>= glm::vec3( 0.0F, 0.0F, 0.0F )</initializer>
         <briefdescription>
+<para>Diffuse color. </para>
         </briefdescription>
         <detaileddescription>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="C:/Repos/rayex/include/base/Geometry.hpp" line="13" column="15" bodyfile="C:/Repos/rayex/include/base/Geometry.hpp" bodystart="13" bodyend="-1"/>
+        <location file="/mnt/c/Repos/rayex/include/base/Geometry.hpp" line="15" column="15" bodyfile="/mnt/c/Repos/rayex/include/base/Geometry.hpp" bodystart="15" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_material_1a8948b3f56c7dcadf9e70a2af417f3e59" prot="public" static="no" mutable="no">
         <type>std::string</type>
@@ -53,12 +55,13 @@
         <name>ambientTexPath</name>
         <initializer>= &quot;&quot;</initializer>
         <briefdescription>
+<para>Specular color. </para>
         </briefdescription>
         <detaileddescription>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="C:/Repos/rayex/include/base/Geometry.hpp" line="15" column="17" bodyfile="C:/Repos/rayex/include/base/Geometry.hpp" bodystart="15" bodyend="-1"/>
+        <location file="/mnt/c/Repos/rayex/include/base/Geometry.hpp" line="17" column="17" bodyfile="/mnt/c/Repos/rayex/include/base/Geometry.hpp" bodystart="17" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_material_1a58d73159efe7b4974c952671d50f2531" prot="public" static="no" mutable="no">
         <type>std::string</type>
@@ -72,7 +75,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="C:/Repos/rayex/include/base/Geometry.hpp" line="16" column="17" bodyfile="C:/Repos/rayex/include/base/Geometry.hpp" bodystart="16" bodyend="-1"/>
+        <location file="/mnt/c/Repos/rayex/include/base/Geometry.hpp" line="18" column="17" bodyfile="/mnt/c/Repos/rayex/include/base/Geometry.hpp" bodystart="18" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_material_1adaf2168f7e03c0c1c263f4145c6c9a88" prot="public" static="no" mutable="no">
         <type>std::string</type>
@@ -86,7 +89,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="C:/Repos/rayex/include/base/Geometry.hpp" line="17" column="17" bodyfile="C:/Repos/rayex/include/base/Geometry.hpp" bodystart="17" bodyend="-1"/>
+        <location file="/mnt/c/Repos/rayex/include/base/Geometry.hpp" line="19" column="17" bodyfile="/mnt/c/Repos/rayex/include/base/Geometry.hpp" bodystart="19" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_material_1a7c4c5f7a82461a66b18c2119411073d3" prot="public" static="no" mutable="no">
         <type>glm::vec3</type>
@@ -100,38 +103,89 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="C:/Repos/rayex/include/base/Geometry.hpp" line="19" column="15" bodyfile="C:/Repos/rayex/include/base/Geometry.hpp" bodystart="19" bodyend="-1"/>
+        <location file="/mnt/c/Repos/rayex/include/base/Geometry.hpp" line="21" column="15" bodyfile="/mnt/c/Repos/rayex/include/base/Geometry.hpp" bodystart="21" bodyend="-1"/>
       </memberdef>
-      <memberdef kind="variable" id="struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_material_1abb2f5557ba7ce5711af41ba969b48b85" prot="public" static="no" mutable="no">
-        <type>glm::vec3</type>
-        <definition>glm::vec3 RAYEX_NAMESPACE::Material::transmittance</definition>
+      <memberdef kind="variable" id="struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_material_1a2985375b4f62c77adc4f5aae8f884ed9" prot="public" static="no" mutable="no">
+        <type>uint32_t</type>
+        <definition>uint32_t RAYEX_NAMESPACE::Material::illum</definition>
         <argsstring></argsstring>
-        <name>transmittance</name>
-        <initializer>= glm::vec3( 0.0F )</initializer>
+        <name>illum</name>
+        <initializer>= 0</initializer>
         <briefdescription>
+<para>Illumination model. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>0 - A constant color illumination model, using the Kd for the material. 1 - A diffuse illumination model using Lambertian shading, taking into account Ka, Kd, the intensity and position of each light source and the angle at which it strikes the surface. 2 - A diffuse and specular illumination model using Lambertian shading and Blinn&apos;s interpretation of Phong&apos;s specular illumination model, taking into account Ka, Kd, Ks, and the intensity and position of each light source and the angle at which it strikes the surface. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/mnt/c/Repos/rayex/include/base/Geometry.hpp" line="27" column="14" bodyfile="/mnt/c/Repos/rayex/include/base/Geometry.hpp" bodystart="27" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_material_1a4aadf85f61539cbd7e335754621f8fd3" prot="public" static="no" mutable="no">
+        <type>float</type>
+        <definition>float RAYEX_NAMESPACE::Material::d</definition>
+        <argsstring></argsstring>
+        <name>d</name>
+        <initializer>= 1.0F</initializer>
+        <briefdescription>
+<para>Specifies a factor for dissolve, how much this material dissolves into the background. A factor of 1.0 is fully opaque. A factor of 0.0 is completely transparent. </para>
         </briefdescription>
         <detaileddescription>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="C:/Repos/rayex/include/base/Geometry.hpp" line="20" column="15" bodyfile="C:/Repos/rayex/include/base/Geometry.hpp" bodystart="20" bodyend="-1"/>
+        <location file="/mnt/c/Repos/rayex/include/base/Geometry.hpp" line="30" column="11" bodyfile="/mnt/c/Repos/rayex/include/base/Geometry.hpp" bodystart="30" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_material_1a309eafdbd92cf69e4a7daa6a59c93573" prot="public" static="no" mutable="no">
+        <type>float</type>
+        <definition>float RAYEX_NAMESPACE::Material::ns</definition>
+        <argsstring></argsstring>
+        <name>ns</name>
+        <initializer>= 0.0F</initializer>
+        <briefdescription>
+<para>Focus of the specular light (aka shininess). Ranges from 0 to 1000, with a high value resulting in a tight, concentrated highlight. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/mnt/c/Repos/rayex/include/base/Geometry.hpp" line="33" column="11" bodyfile="/mnt/c/Repos/rayex/include/base/Geometry.hpp" bodystart="33" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_material_1a4a2874571c4c3307df4235f57c5c6639" prot="public" static="no" mutable="no">
+        <type>float</type>
+        <definition>float RAYEX_NAMESPACE::Material::ni</definition>
+        <argsstring></argsstring>
+        <name>ni</name>
+        <initializer>= 1.0F</initializer>
+        <briefdescription>
+<para>Optical density (aka index of refraction). Ranges from 0.001 to 10. A value of 1.0 means that light does not bend as it passes through an object. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/mnt/c/Repos/rayex/include/base/Geometry.hpp" line="36" column="11" bodyfile="/mnt/c/Repos/rayex/include/base/Geometry.hpp" bodystart="36" bodyend="-1"/>
       </memberdef>
       </sectiondef>
     <briefdescription>
 <para>Describes the rendering properties of a mesh. </para>
     </briefdescription>
     <detaileddescription>
+<para>Property descriptions copied from <ulink url="https://www.loc.gov/preservation/digital/formats/fdd/fdd000508.shtml">https://www.loc.gov/preservation/digital/formats/fdd/fdd000508.shtml</ulink>. </para>
     </detaileddescription>
-    <location file="C:/Repos/rayex/include/base/Geometry.hpp" line="9" column="3" bodyfile="C:/Repos/rayex/include/base/Geometry.hpp" bodystart="10" bodyend="21"/>
+    <location file="/mnt/c/Repos/rayex/include/base/Geometry.hpp" line="12" column="1" bodyfile="/mnt/c/Repos/rayex/include/base/Geometry.hpp" bodystart="11" bodyend="37"/>
     <listofallmembers>
-      <member refid="struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_material_1aed286d4563c3708e031c22b1dfdd0850" prot="public" virt="non-virtual"><scope>RAYEX_NAMESPACE::Material</scope><name>ambient</name></member>
       <member refid="struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_material_1a8948b3f56c7dcadf9e70a2af417f3e59" prot="public" virt="non-virtual"><scope>RAYEX_NAMESPACE::Material</scope><name>ambientTexPath</name></member>
-      <member refid="struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_material_1afa1db16e87d06229251a605fed642e31" prot="public" virt="non-virtual"><scope>RAYEX_NAMESPACE::Material</scope><name>diffuse</name></member>
+      <member refid="struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_material_1a4aadf85f61539cbd7e335754621f8fd3" prot="public" virt="non-virtual"><scope>RAYEX_NAMESPACE::Material</scope><name>d</name></member>
       <member refid="struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_material_1a58d73159efe7b4974c952671d50f2531" prot="public" virt="non-virtual"><scope>RAYEX_NAMESPACE::Material</scope><name>diffuseTexPath</name></member>
       <member refid="struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_material_1a7c4c5f7a82461a66b18c2119411073d3" prot="public" virt="non-virtual"><scope>RAYEX_NAMESPACE::Material</scope><name>emission</name></member>
-      <member refid="struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_material_1a2add0cd69a003e0a01faead2ade81446" prot="public" virt="non-virtual"><scope>RAYEX_NAMESPACE::Material</scope><name>specular</name></member>
+      <member refid="struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_material_1a2985375b4f62c77adc4f5aae8f884ed9" prot="public" virt="non-virtual"><scope>RAYEX_NAMESPACE::Material</scope><name>illum</name></member>
+      <member refid="struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_material_1a7450ad0dc89bbcfd69a89d64b46eec77" prot="public" virt="non-virtual"><scope>RAYEX_NAMESPACE::Material</scope><name>ka</name></member>
+      <member refid="struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_material_1a9018051af4ed4bfd9299ba4051f93827" prot="public" virt="non-virtual"><scope>RAYEX_NAMESPACE::Material</scope><name>kd</name></member>
+      <member refid="struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_material_1a5ef48ca2998c12c026b08eecf951e1d4" prot="public" virt="non-virtual"><scope>RAYEX_NAMESPACE::Material</scope><name>ks</name></member>
+      <member refid="struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_material_1a4a2874571c4c3307df4235f57c5c6639" prot="public" virt="non-virtual"><scope>RAYEX_NAMESPACE::Material</scope><name>ni</name></member>
+      <member refid="struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_material_1a309eafdbd92cf69e4a7daa6a59c93573" prot="public" virt="non-virtual"><scope>RAYEX_NAMESPACE::Material</scope><name>ns</name></member>
       <member refid="struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_material_1adaf2168f7e03c0c1c263f4145c6c9a88" prot="public" virt="non-virtual"><scope>RAYEX_NAMESPACE::Material</scope><name>specularTexPath</name></member>
-      <member refid="struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_material_1abb2f5557ba7ce5711af41ba969b48b85" prot="public" virt="non-virtual"><scope>RAYEX_NAMESPACE::Material</scope><name>transmittance</name></member>
     </listofallmembers>
   </compounddef>
 </doxygen>

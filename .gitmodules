@@ -1,0 +1,6 @@
+[submodule "include/external/vkCore"]
+	path = include/external/vkCore
+	url = https://github.com/chillpert/vkCore
+[submodule "include/external/tinyLogger"]
+	path = include/external/tinyLogger
+	url = https://github.com/chillpert/tinyLogger

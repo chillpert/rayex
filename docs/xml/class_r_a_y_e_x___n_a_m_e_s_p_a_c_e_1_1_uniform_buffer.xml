@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
-<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.20" xml:lang="en-US">
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.17">
   <compounddef id="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_uniform_buffer" kind="class" language="C++" prot="public">
     <compoundname>RAYEX_NAMESPACE::UniformBuffer</compoundname>
     <includes refid="_uniform_buffer_8hpp" local="no">UniformBuffer.hpp</includes>
@@ -20,7 +20,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="C:/Repos/rayex/include/api/buffers/UniformBuffer.hpp" line="66" column="17" bodyfile="C:/Repos/rayex/include/api/buffers/UniformBuffer.hpp" bodystart="66" bodyend="-1"/>
+        <location file="/mnt/c/Repos/rayex/include/api/buffers/UniformBuffer.hpp" line="66" column="17" bodyfile="/mnt/c/Repos/rayex/include/api/buffers/UniformBuffer.hpp" bodystart="66" bodyend="-1"/>
       </memberdef>
       </sectiondef>
       <sectiondef kind="private-attrib">
@@ -36,7 +36,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="C:/Repos/rayex/include/api/buffers/UniformBuffer.hpp" line="69" column="17" bodyfile="C:/Repos/rayex/include/api/buffers/UniformBuffer.hpp" bodystart="69" bodyend="-1"/>
+        <location file="/mnt/c/Repos/rayex/include/api/buffers/UniformBuffer.hpp" line="69" column="17" bodyfile="/mnt/c/Repos/rayex/include/api/buffers/UniformBuffer.hpp" bodystart="69" bodyend="-1"/>
       </memberdef>
       </sectiondef>
       <sectiondef kind="public-func">
@@ -51,7 +51,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="C:/Repos/rayex/include/api/buffers/UniformBuffer.hpp" line="30" column="5"/>
+        <location file="/mnt/c/Repos/rayex/include/api/buffers/UniformBuffer.hpp" line="30" column="5"/>
       </memberdef>
       <memberdef kind="function" id="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_uniform_buffer_1a078e32def6522eef0fa09c6c721f7900" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
         <type>auto</type>
@@ -64,7 +64,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="C:/Repos/rayex/include/api/buffers/UniformBuffer.hpp" line="32" column="10" bodyfile="C:/Repos/rayex/include/api/buffers/UniformBuffer.hpp" bodystart="32" bodyend="32"/>
+        <location file="/mnt/c/Repos/rayex/include/api/buffers/UniformBuffer.hpp" line="32" column="10" bodyfile="/mnt/c/Repos/rayex/include/api/buffers/UniformBuffer.hpp" bodystart="32" bodyend="32"/>
       </memberdef>
       <memberdef kind="function" id="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_uniform_buffer_1ac29800940f2c5c6af6afc6ef21a6526c" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
         <type>void</type>
@@ -79,7 +79,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="C:/Repos/rayex/include/api/buffers/UniformBuffer.hpp" line="38" column="10" bodyfile="C:/Repos/rayex/include/api/buffers/UniformBuffer.hpp" bodystart="38" bodyend="56"/>
+        <location file="/mnt/c/Repos/rayex/include/api/buffers/UniformBuffer.hpp" line="38" column="10" bodyfile="/mnt/c/Repos/rayex/include/api/buffers/UniformBuffer.hpp" bodystart="38" bodyend="56"/>
       </memberdef>
       <memberdef kind="function" id="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_uniform_buffer_1a1b6844e890ba9e11740728fac32bfb04" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
         <type>void</type>
@@ -119,7 +119,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="C:/Repos/rayex/include/api/buffers/UniformBuffer.hpp" line="61" column="10" bodyfile="C:/Repos/rayex/include/api/buffers/UniformBuffer.hpp" bodystart="61" bodyend="64"/>
+        <location file="/mnt/c/Repos/rayex/include/api/buffers/UniformBuffer.hpp" line="61" column="10" bodyfile="/mnt/c/Repos/rayex/include/api/buffers/UniformBuffer.hpp" bodystart="61" bodyend="64"/>
       </memberdef>
       </sectiondef>
     <briefdescription>
@@ -127,7 +127,7 @@
     </briefdescription>
     <detaileddescription>
     </detaileddescription>
-    <location file="C:/Repos/rayex/include/api/buffers/UniformBuffer.hpp" line="27" column="3" bodyfile="C:/Repos/rayex/include/api/buffers/UniformBuffer.hpp" bodystart="28" bodyend="70"/>
+    <location file="/mnt/c/Repos/rayex/include/api/buffers/UniformBuffer.hpp" line="28" column="1" bodyfile="/mnt/c/Repos/rayex/include/api/buffers/UniformBuffer.hpp" bodystart="27" bodyend="70"/>
     <listofallmembers>
       <member refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_uniform_buffer_1adf8b54f055aaa830221088940fc7aa08" prot="public" virt="non-virtual"><scope>RAYEX_NAMESPACE::UniformBuffer</scope><name>_bufferInfos</name></member>
       <member refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_uniform_buffer_1a60d4970c452b11bfd9cf279320121f48" prot="private" virt="non-virtual"><scope>RAYEX_NAMESPACE::UniformBuffer</scope><name>_buffers</name></member>

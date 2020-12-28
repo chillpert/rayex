@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
-<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.20" xml:lang="en-US">
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.17">
   <compounddef id="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_buffer" kind="class" language="C++" prot="public">
     <compoundname>RAYEX_NAMESPACE::Buffer</compoundname>
     <includes refid="_buffer_8hpp" local="no">Buffer.hpp</includes>
@@ -15,7 +15,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="C:/Repos/rayex/include/api/buffers/Buffer.hpp" line="113" column="22" bodyfile="C:/Repos/rayex/include/api/buffers/Buffer.hpp" bodystart="113" bodyend="-1"/>
+        <location file="/mnt/c/Repos/rayex/include/api/buffers/Buffer.hpp" line="112" column="22" bodyfile="/mnt/c/Repos/rayex/include/api/buffers/Buffer.hpp" bodystart="112" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_buffer_1ac6c20a052b87d02195db7cee2dd291cd" prot="protected" static="no" mutable="no">
         <type>vk::UniqueDeviceMemory</type>
@@ -28,7 +28,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="C:/Repos/rayex/include/api/buffers/Buffer.hpp" line="114" column="28" bodyfile="C:/Repos/rayex/include/api/buffers/Buffer.hpp" bodystart="114" bodyend="-1"/>
+        <location file="/mnt/c/Repos/rayex/include/api/buffers/Buffer.hpp" line="113" column="28" bodyfile="/mnt/c/Repos/rayex/include/api/buffers/Buffer.hpp" bodystart="113" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_buffer_1a316c2534dca0f0b865308726753712f7" prot="protected" static="no" mutable="no">
         <type>vk::DeviceSize</type>
@@ -42,7 +42,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="C:/Repos/rayex/include/api/buffers/Buffer.hpp" line="116" column="20" bodyfile="C:/Repos/rayex/include/api/buffers/Buffer.hpp" bodystart="116" bodyend="-1"/>
+        <location file="/mnt/c/Repos/rayex/include/api/buffers/Buffer.hpp" line="115" column="20" bodyfile="/mnt/c/Repos/rayex/include/api/buffers/Buffer.hpp" bodystart="115" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_buffer_1a3e7f1befed2b79696954e9b3aa8ce2f1" prot="protected" static="no" mutable="no">
         <type>void *</type>
@@ -56,7 +56,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="C:/Repos/rayex/include/api/buffers/Buffer.hpp" line="118" column="10" bodyfile="C:/Repos/rayex/include/api/buffers/Buffer.hpp" bodystart="118" bodyend="-1"/>
+        <location file="/mnt/c/Repos/rayex/include/api/buffers/Buffer.hpp" line="117" column="10" bodyfile="/mnt/c/Repos/rayex/include/api/buffers/Buffer.hpp" bodystart="117" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_buffer_1a6b7afa466fa6c68fc161086f5f576c00" prot="protected" static="no" mutable="no">
         <type>bool</type>
@@ -70,7 +70,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="C:/Repos/rayex/include/api/buffers/Buffer.hpp" line="119" column="10" bodyfile="C:/Repos/rayex/include/api/buffers/Buffer.hpp" bodystart="119" bodyend="-1"/>
+        <location file="/mnt/c/Repos/rayex/include/api/buffers/Buffer.hpp" line="118" column="10" bodyfile="/mnt/c/Repos/rayex/include/api/buffers/Buffer.hpp" bodystart="118" bodyend="-1"/>
       </memberdef>
       </sectiondef>
       <sectiondef kind="public-func">
@@ -85,7 +85,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="C:/Repos/rayex/include/api/buffers/Buffer.hpp" line="13" column="5"/>
+        <location file="/mnt/c/Repos/rayex/include/api/buffers/Buffer.hpp" line="12" column="5"/>
       </memberdef>
       <memberdef kind="function" id="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_buffer_1ad0e923c2df3bc18f094576af940f2321" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type></type>
@@ -122,7 +122,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="C:/Repos/rayex/include/api/buffers/Buffer.hpp" line="16" column="5"/>
+        <location file="/mnt/c/Repos/rayex/include/api/buffers/Buffer.hpp" line="15" column="5"/>
       </memberdef>
       <memberdef kind="function" id="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_buffer_1ab17e6322e8113df32af870a37a5e0e27" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type></type>
@@ -136,7 +136,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="C:/Repos/rayex/include/api/buffers/Buffer.hpp" line="19" column="5"/>
+        <location file="/mnt/c/Repos/rayex/include/api/buffers/Buffer.hpp" line="18" column="5"/>
       </memberdef>
       <memberdef kind="function" id="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_buffer_1a133961b9bd24490925aeed994ae1a4d4" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type></type>
@@ -163,7 +163,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="C:/Repos/rayex/include/api/buffers/Buffer.hpp" line="22" column="5"/>
+        <location file="/mnt/c/Repos/rayex/include/api/buffers/Buffer.hpp" line="21" column="5"/>
       </memberdef>
       <memberdef kind="function" id="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_buffer_1a2b633d1f23ddf0ae8ee27987e9373c1a" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type></type>
@@ -179,7 +179,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="C:/Repos/rayex/include/api/buffers/Buffer.hpp" line="23" column="5"/>
+        <location file="/mnt/c/Repos/rayex/include/api/buffers/Buffer.hpp" line="22" column="5"/>
       </memberdef>
       <memberdef kind="function" id="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_buffer_1adccdf72dc2b5a56496881e97c683d5ca" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>auto</type>
@@ -196,7 +196,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="C:/Repos/rayex/include/api/buffers/Buffer.hpp" line="26" column="10"/>
+        <location file="/mnt/c/Repos/rayex/include/api/buffers/Buffer.hpp" line="25" column="10"/>
       </memberdef>
       <memberdef kind="function" id="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_buffer_1a53ea2ff685692af62529589df9fa18a8" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>auto</type>
@@ -212,7 +212,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="C:/Repos/rayex/include/api/buffers/Buffer.hpp" line="27" column="10"/>
+        <location file="/mnt/c/Repos/rayex/include/api/buffers/Buffer.hpp" line="26" column="10"/>
       </memberdef>
       <memberdef kind="function" id="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_buffer_1a6aa15487587ed4a275726dea52d9bd1f" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
         <type>auto</type>
@@ -225,7 +225,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="C:/Repos/rayex/include/api/buffers/Buffer.hpp" line="29" column="10" bodyfile="C:/Repos/rayex/include/api/buffers/Buffer.hpp" bodystart="29" bodyend="29"/>
+        <location file="/mnt/c/Repos/rayex/include/api/buffers/Buffer.hpp" line="28" column="10" bodyfile="/mnt/c/Repos/rayex/include/api/buffers/Buffer.hpp" bodystart="28" bodyend="28"/>
       </memberdef>
       <memberdef kind="function" id="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_buffer_1a3e59b7d59f338fde8570cd541162cabd" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
         <type>auto</type>
@@ -238,7 +238,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="C:/Repos/rayex/include/api/buffers/Buffer.hpp" line="31" column="10" bodyfile="C:/Repos/rayex/include/api/buffers/Buffer.hpp" bodystart="31" bodyend="31"/>
+        <location file="/mnt/c/Repos/rayex/include/api/buffers/Buffer.hpp" line="30" column="10" bodyfile="/mnt/c/Repos/rayex/include/api/buffers/Buffer.hpp" bodystart="30" bodyend="30"/>
       </memberdef>
       <memberdef kind="function" id="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_buffer_1aa51128ff5d6822bb2df9c2dcd25f99b6" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
         <type>auto</type>
@@ -251,7 +251,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="C:/Repos/rayex/include/api/buffers/Buffer.hpp" line="33" column="10" bodyfile="C:/Repos/rayex/include/api/buffers/Buffer.hpp" bodystart="33" bodyend="33"/>
+        <location file="/mnt/c/Repos/rayex/include/api/buffers/Buffer.hpp" line="32" column="10" bodyfile="/mnt/c/Repos/rayex/include/api/buffers/Buffer.hpp" bodystart="32" bodyend="32"/>
       </memberdef>
       <memberdef kind="function" id="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_buffer_1af4c1f7cd28ec3d75feccf91f704e67d3" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -314,7 +314,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="C:/Repos/rayex/include/api/buffers/Buffer.hpp" line="39" column="10"/>
+        <location file="/mnt/c/Repos/rayex/include/api/buffers/Buffer.hpp" line="38" column="10"/>
       </memberdef>
       <memberdef kind="function" id="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_buffer_1a1cb2f8899ca4dbc523029233e63e5f07" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -355,7 +355,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="C:/Repos/rayex/include/api/buffers/Buffer.hpp" line="44" column="10"/>
+        <location file="/mnt/c/Repos/rayex/include/api/buffers/Buffer.hpp" line="43" column="10"/>
       </memberdef>
       <memberdef kind="function" id="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_buffer_1a4b5a87dce23eab7c91448652ed8072be" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -396,7 +396,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="C:/Repos/rayex/include/api/buffers/Buffer.hpp" line="49" column="10"/>
+        <location file="/mnt/c/Repos/rayex/include/api/buffers/Buffer.hpp" line="48" column="10"/>
       </memberdef>
       <memberdef kind="function" id="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_buffer_1a56d4379c382a99311c6e292e419fc183" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -424,7 +424,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="C:/Repos/rayex/include/api/buffers/Buffer.hpp" line="53" column="10"/>
+        <location file="/mnt/c/Repos/rayex/include/api/buffers/Buffer.hpp" line="52" column="10"/>
       </memberdef>
       <memberdef kind="function" id="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_buffer_1acdc10ad7e5e4a12ea82c3d3e1d4493b2" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -464,7 +464,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="C:/Repos/rayex/include/api/buffers/Buffer.hpp" line="58" column="10"/>
+        <location file="/mnt/c/Repos/rayex/include/api/buffers/Buffer.hpp" line="57" column="10"/>
       </memberdef>
       <memberdef kind="function" id="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_buffer_1a8b2ffc5a8f5476f1108b24d8986c6726" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
         <templateparamlist>
@@ -515,7 +515,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="C:/Repos/rayex/include/api/buffers/Buffer.hpp" line="64" column="10" bodyfile="C:/Repos/rayex/include/api/buffers/Buffer.hpp" bodystart="64" bodyend="81"/>
+        <location file="/mnt/c/Repos/rayex/include/api/buffers/Buffer.hpp" line="63" column="10" bodyfile="/mnt/c/Repos/rayex/include/api/buffers/Buffer.hpp" bodystart="63" bodyend="80"/>
       </memberdef>
       <memberdef kind="function" id="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_buffer_1a09d0408e61c757b411009e6381d56153" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
         <templateparamlist>
@@ -574,7 +574,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="C:/Repos/rayex/include/api/buffers/Buffer.hpp" line="88" column="10" bodyfile="C:/Repos/rayex/include/api/buffers/Buffer.hpp" bodystart="88" bodyend="110"/>
+        <location file="/mnt/c/Repos/rayex/include/api/buffers/Buffer.hpp" line="87" column="10" bodyfile="/mnt/c/Repos/rayex/include/api/buffers/Buffer.hpp" bodystart="87" bodyend="109"/>
       </memberdef>
       </sectiondef>
     <briefdescription>
@@ -582,7 +582,7 @@
     </briefdescription>
     <detaileddescription>
     </detaileddescription>
-    <location file="C:/Repos/rayex/include/api/buffers/Buffer.hpp" line="10" column="3" bodyfile="C:/Repos/rayex/include/api/buffers/Buffer.hpp" bodystart="11" bodyend="120"/>
+    <location file="/mnt/c/Repos/rayex/include/api/buffers/Buffer.hpp" line="10" column="1" bodyfile="/mnt/c/Repos/rayex/include/api/buffers/Buffer.hpp" bodystart="9" bodyend="119"/>
     <listofallmembers>
       <member refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_buffer_1a3e7582e91c4af47f8acebae60524263b" prot="protected" virt="non-virtual"><scope>RAYEX_NAMESPACE::Buffer</scope><name>_buffer</name></member>
       <member refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_buffer_1a6b7afa466fa6c68fc161086f5f576c00" prot="protected" virt="non-virtual"><scope>RAYEX_NAMESPACE::Buffer</scope><name>_mapped</name></member>

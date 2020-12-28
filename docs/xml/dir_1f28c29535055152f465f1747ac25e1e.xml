@@ -1,12 +1,12 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
-<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.20" xml:lang="en-US">
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.17">
   <compounddef id="dir_1f28c29535055152f465f1747ac25e1e" kind="dir">
-    <compoundname>C:/Repos/rayex/include/pch</compoundname>
+    <compoundname>/mnt/c/Repos/rayex/include/pch</compoundname>
     <innerfile refid="stdafx_8hpp">stdafx.hpp</innerfile>
     <briefdescription>
     </briefdescription>
     <detaileddescription>
     </detaileddescription>
-    <location file="C:/Repos/rayex/include/pch/"/>
+    <location file="/mnt/c/Repos/rayex/include/pch/"/>
   </compounddef>
 </doxygen>

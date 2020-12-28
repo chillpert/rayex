@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
-<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.20" xml:lang="en-US">
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.17">
   <compounddef id="struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_mesh_s_s_b_o" kind="struct" language="C++" prot="public">
     <compoundname>RAYEX_NAMESPACE::MeshSSBO</compoundname>
     <includes refid="_storage_buffer_8hpp" local="no">StorageBuffer.hpp</includes>
@@ -11,26 +11,28 @@
         <name>ambient</name>
         <initializer>= glm::vec4( 1.0F, 1.0F, 1.0F, -1.0F )</initializer>
         <briefdescription>
+<para>vec3 ambient + vec1 texture index </para>
         </briefdescription>
         <detaileddescription>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="C:/Repos/rayex/include/api/buffers/StorageBuffer.hpp" line="12" column="15" bodyfile="C:/Repos/rayex/include/api/buffers/StorageBuffer.hpp" bodystart="12" bodyend="-1"/>
+        <location file="/mnt/c/Repos/rayex/include/api/buffers/StorageBuffer.hpp" line="20" column="15" bodyfile="/mnt/c/Repos/rayex/include/api/buffers/StorageBuffer.hpp" bodystart="20" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_mesh_s_s_b_o_1ad7dfd9e1d94bf8b61d75c5cb5b96029c" prot="public" static="no" mutable="no">
         <type>glm::vec4</type>
         <definition>glm::vec4 RAYEX_NAMESPACE::MeshSSBO::diffuse</definition>
         <argsstring></argsstring>
         <name>diffuse</name>
-        <initializer>= glm::vec4( 0.2F, 1.0F, 1.0F, -1.0F )</initializer>
+        <initializer>= glm::vec4( 1.0F, 1.0F, 1.0F, -1.0F )</initializer>
         <briefdescription>
+<para>vec3 diffuse + vec1 texture index </para>
         </briefdescription>
         <detaileddescription>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="C:/Repos/rayex/include/api/buffers/StorageBuffer.hpp" line="13" column="15" bodyfile="C:/Repos/rayex/include/api/buffers/StorageBuffer.hpp" bodystart="13" bodyend="-1"/>
+        <location file="/mnt/c/Repos/rayex/include/api/buffers/StorageBuffer.hpp" line="21" column="15" bodyfile="/mnt/c/Repos/rayex/include/api/buffers/StorageBuffer.hpp" bodystart="21" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_mesh_s_s_b_o_1a82baebb3cacb3f4b74ef8621fe9fdb34" prot="public" static="no" mutable="no">
         <type>glm::vec4</type>
@@ -39,55 +41,84 @@
         <name>specular</name>
         <initializer>= glm::vec4( 1.0F, 1.0F, 1.0F, -1.0F )</initializer>
         <briefdescription>
+<para>vec3 specular + vec1 texture index </para>
         </briefdescription>
         <detaileddescription>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="C:/Repos/rayex/include/api/buffers/StorageBuffer.hpp" line="14" column="15" bodyfile="C:/Repos/rayex/include/api/buffers/StorageBuffer.hpp" bodystart="14" bodyend="-1"/>
+        <location file="/mnt/c/Repos/rayex/include/api/buffers/StorageBuffer.hpp" line="22" column="15" bodyfile="/mnt/c/Repos/rayex/include/api/buffers/StorageBuffer.hpp" bodystart="22" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_mesh_s_s_b_o_1a7fcf00acc1ec69abc1b1cd9a14149b5c" prot="public" static="no" mutable="no">
         <type>glm::vec4</type>
         <definition>glm::vec4 RAYEX_NAMESPACE::MeshSSBO::emission</definition>
         <argsstring></argsstring>
         <name>emission</name>
-        <initializer>= glm::vec4( 1.0F )</initializer>
+        <initializer>= glm::vec4( 0.0F, 0.0F, 0.0F, -1.0F )</initializer>
         <briefdescription>
+<para>vec3 emission + vec1 texture index </para>
         </briefdescription>
         <detaileddescription>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="C:/Repos/rayex/include/api/buffers/StorageBuffer.hpp" line="16" column="15" bodyfile="C:/Repos/rayex/include/api/buffers/StorageBuffer.hpp" bodystart="16" bodyend="-1"/>
+        <location file="/mnt/c/Repos/rayex/include/api/buffers/StorageBuffer.hpp" line="23" column="15" bodyfile="/mnt/c/Repos/rayex/include/api/buffers/StorageBuffer.hpp" bodystart="23" bodyend="-1"/>
       </memberdef>
-      <memberdef kind="variable" id="struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_mesh_s_s_b_o_1a51b7ac9072c257ee8dcca83b1288efe4" prot="public" static="no" mutable="no">
-        <type>glm::vec4</type>
-        <definition>glm::vec4 RAYEX_NAMESPACE::MeshSSBO::emittance</definition>
+      <memberdef kind="variable" id="struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_mesh_s_s_b_o_1ac234ac13f69f4325c449a78fa5d04925" prot="public" static="no" mutable="no">
+        <type>uint32_t</type>
+        <definition>uint32_t RAYEX_NAMESPACE::MeshSSBO::illum</definition>
         <argsstring></argsstring>
-        <name>emittance</name>
-        <initializer>= glm::vec4( 1.0F )</initializer>
+        <name>illum</name>
+        <initializer>= 0</initializer>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="C:/Repos/rayex/include/api/buffers/StorageBuffer.hpp" line="17" column="15" bodyfile="C:/Repos/rayex/include/api/buffers/StorageBuffer.hpp" bodystart="17" bodyend="-1"/>
+        <location file="/mnt/c/Repos/rayex/include/api/buffers/StorageBuffer.hpp" line="25" column="14" bodyfile="/mnt/c/Repos/rayex/include/api/buffers/StorageBuffer.hpp" bodystart="25" bodyend="-1"/>
       </memberdef>
-      <memberdef kind="variable" id="struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_mesh_s_s_b_o_1a7f00903c22d51da1da0c607ad9259591" prot="public" static="no" mutable="no">
-        <type>glm::vec4</type>
-        <definition>glm::vec4 RAYEX_NAMESPACE::MeshSSBO::padding0</definition>
+      <memberdef kind="variable" id="struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_mesh_s_s_b_o_1a7a21ad8a0b5301090fb445dc5de3027a" prot="public" static="no" mutable="no">
+        <type>float</type>
+        <definition>float RAYEX_NAMESPACE::MeshSSBO::d</definition>
         <argsstring></argsstring>
-        <name>padding0</name>
-        <initializer>= glm::vec4( 1.0F )</initializer>
+        <name>d</name>
+        <initializer>= 1.0F</initializer>
         <briefdescription>
-<para><ref refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_buffer" kindref="compound">Buffer</ref> padding (ignore). </para>
         </briefdescription>
         <detaileddescription>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="C:/Repos/rayex/include/api/buffers/StorageBuffer.hpp" line="18" column="15" bodyfile="C:/Repos/rayex/include/api/buffers/StorageBuffer.hpp" bodystart="18" bodyend="-1"/>
+        <location file="/mnt/c/Repos/rayex/include/api/buffers/StorageBuffer.hpp" line="26" column="11" bodyfile="/mnt/c/Repos/rayex/include/api/buffers/StorageBuffer.hpp" bodystart="26" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_mesh_s_s_b_o_1afe758e896b9c1ea5656c3402b35462ba" prot="public" static="no" mutable="no">
+        <type>float</type>
+        <definition>float RAYEX_NAMESPACE::MeshSSBO::ns</definition>
+        <argsstring></argsstring>
+        <name>ns</name>
+        <initializer>= 0.0F</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/mnt/c/Repos/rayex/include/api/buffers/StorageBuffer.hpp" line="27" column="11" bodyfile="/mnt/c/Repos/rayex/include/api/buffers/StorageBuffer.hpp" bodystart="27" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_mesh_s_s_b_o_1aac714eae32d19dcfa68661ffa006520c" prot="public" static="no" mutable="no">
+        <type>float</type>
+        <definition>float RAYEX_NAMESPACE::MeshSSBO::ni</definition>
+        <argsstring></argsstring>
+        <name>ni</name>
+        <initializer>= 1.0F</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/mnt/c/Repos/rayex/include/api/buffers/StorageBuffer.hpp" line="28" column="11" bodyfile="/mnt/c/Repos/rayex/include/api/buffers/StorageBuffer.hpp" bodystart="28" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_mesh_s_s_b_o_1a8a30eb7713b788d6abf948cbe029acdd" prot="public" static="no" mutable="no">
         <type>uint32_t</type>
@@ -102,7 +133,22 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="C:/Repos/rayex/include/api/buffers/StorageBuffer.hpp" line="20" column="14" bodyfile="C:/Repos/rayex/include/api/buffers/StorageBuffer.hpp" bodystart="20" bodyend="-1"/>
+        <location file="/mnt/c/Repos/rayex/include/api/buffers/StorageBuffer.hpp" line="30" column="14" bodyfile="/mnt/c/Repos/rayex/include/api/buffers/StorageBuffer.hpp" bodystart="30" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_mesh_s_s_b_o_1a0c0eaca095bc79dcaf63e60d0f71db7e" prot="public" static="no" mutable="no">
+        <type>uint32_t</type>
+        <definition>uint32_t RAYEX_NAMESPACE::MeshSSBO::padding0</definition>
+        <argsstring></argsstring>
+        <name>padding0</name>
+        <initializer>= 0</initializer>
+        <briefdescription>
+<para><ref refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_buffer" kindref="compound">Buffer</ref> padding (ignore). </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/mnt/c/Repos/rayex/include/api/buffers/StorageBuffer.hpp" line="31" column="14" bodyfile="/mnt/c/Repos/rayex/include/api/buffers/StorageBuffer.hpp" bodystart="31" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_mesh_s_s_b_o_1a54e54f44292cedf0a51415bbb34ea9fb" prot="public" static="no" mutable="no">
         <type>uint32_t</type>
@@ -117,7 +163,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="C:/Repos/rayex/include/api/buffers/StorageBuffer.hpp" line="22" column="14" bodyfile="C:/Repos/rayex/include/api/buffers/StorageBuffer.hpp" bodystart="22" bodyend="-1"/>
+        <location file="/mnt/c/Repos/rayex/include/api/buffers/StorageBuffer.hpp" line="32" column="14" bodyfile="/mnt/c/Repos/rayex/include/api/buffers/StorageBuffer.hpp" bodystart="32" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_mesh_s_s_b_o_1a4f5c5d76b5f953139f857b130e34e40d" prot="public" static="no" mutable="no">
         <type>uint32_t</type>
@@ -132,22 +178,64 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="C:/Repos/rayex/include/api/buffers/StorageBuffer.hpp" line="23" column="14" bodyfile="C:/Repos/rayex/include/api/buffers/StorageBuffer.hpp" bodystart="23" bodyend="-1"/>
+        <location file="/mnt/c/Repos/rayex/include/api/buffers/StorageBuffer.hpp" line="33" column="14" bodyfile="/mnt/c/Repos/rayex/include/api/buffers/StorageBuffer.hpp" bodystart="33" bodyend="-1"/>
       </memberdef>
-      <memberdef kind="variable" id="struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_mesh_s_s_b_o_1a3357df15c77fc36d71dedd31ae8804c7" prot="public" static="no" mutable="no">
-        <type>uint32_t</type>
-        <definition>uint32_t RAYEX_NAMESPACE::MeshSSBO::padding3</definition>
-        <argsstring></argsstring>
-        <name>padding3</name>
-        <initializer>= 0</initializer>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_mesh_s_s_b_o_1ad8e3bd702c57644a9b5ca13e0dd79c9b" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>RAYEX_NAMESPACE::MeshSSBO::MeshSSBO</definition>
+        <argsstring>()=default</argsstring>
+        <name>MeshSSBO</name>
         <briefdescription>
-<para><ref refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_buffer" kindref="compound">Buffer</ref> padding (ignore). </para>
         </briefdescription>
         <detaileddescription>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="C:/Repos/rayex/include/api/buffers/StorageBuffer.hpp" line="24" column="14" bodyfile="C:/Repos/rayex/include/api/buffers/StorageBuffer.hpp" bodystart="24" bodyend="-1"/>
+        <location file="/mnt/c/Repos/rayex/include/api/buffers/StorageBuffer.hpp" line="13" column="5"/>
+      </memberdef>
+      <memberdef kind="function" id="struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_mesh_s_s_b_o_1a2f11eb9c12cbbb7424d020c1acc0beee" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>RAYEX_NAMESPACE::MeshSSBO::MeshSSBO</definition>
+        <argsstring>(const Mesh &amp;mesh, float diffuseTexIndex)</argsstring>
+        <name>MeshSSBO</name>
+        <param>
+          <type>const <ref refid="struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_mesh" kindref="compound">Mesh</ref> &amp;</type>
+          <declname>mesh</declname>
+        </param>
+        <param>
+          <type>float</type>
+          <declname>diffuseTexIndex</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/mnt/c/Repos/rayex/include/api/buffers/StorageBuffer.hpp" line="15" column="5" bodyfile="/mnt/c/Repos/rayex/include/api/buffers/StorageBuffer.hpp" bodystart="15" bodyend="18"/>
+      </memberdef>
+      <memberdef kind="function" id="struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_mesh_s_s_b_o_1a39423de79f0f958e9b23053c3b0f7387" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void RAYEX_NAMESPACE::MeshSSBO::set</definition>
+        <argsstring>(const Mesh &amp;mesh, float diffuseTexIndex)</argsstring>
+        <name>set</name>
+        <param>
+          <type>const <ref refid="struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_mesh" kindref="compound">Mesh</ref> &amp;</type>
+          <declname>mesh</declname>
+        </param>
+        <param>
+          <type>float</type>
+          <declname>diffuseTexIndex</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/mnt/c/Repos/rayex/include/api/buffers/StorageBuffer.hpp" line="35" column="10" bodyfile="/mnt/c/Repos/rayex/include/api/buffers/StorageBuffer.hpp" bodystart="35" bodyend="44"/>
       </memberdef>
       </sectiondef>
     <briefdescription>
@@ -155,17 +243,22 @@
     </briefdescription>
     <detaileddescription>
     </detaileddescription>
-    <location file="C:/Repos/rayex/include/api/buffers/StorageBuffer.hpp" line="10" column="3" bodyfile="C:/Repos/rayex/include/api/buffers/StorageBuffer.hpp" bodystart="11" bodyend="25"/>
+    <location file="/mnt/c/Repos/rayex/include/api/buffers/StorageBuffer.hpp" line="12" column="1" bodyfile="/mnt/c/Repos/rayex/include/api/buffers/StorageBuffer.hpp" bodystart="11" bodyend="45"/>
     <listofallmembers>
       <member refid="struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_mesh_s_s_b_o_1a7ee226655334d745110ea673d3f415b7" prot="public" virt="non-virtual"><scope>RAYEX_NAMESPACE::MeshSSBO</scope><name>ambient</name></member>
+      <member refid="struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_mesh_s_s_b_o_1a7a21ad8a0b5301090fb445dc5de3027a" prot="public" virt="non-virtual"><scope>RAYEX_NAMESPACE::MeshSSBO</scope><name>d</name></member>
       <member refid="struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_mesh_s_s_b_o_1ad7dfd9e1d94bf8b61d75c5cb5b96029c" prot="public" virt="non-virtual"><scope>RAYEX_NAMESPACE::MeshSSBO</scope><name>diffuse</name></member>
       <member refid="struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_mesh_s_s_b_o_1a7fcf00acc1ec69abc1b1cd9a14149b5c" prot="public" virt="non-virtual"><scope>RAYEX_NAMESPACE::MeshSSBO</scope><name>emission</name></member>
-      <member refid="struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_mesh_s_s_b_o_1a51b7ac9072c257ee8dcca83b1288efe4" prot="public" virt="non-virtual"><scope>RAYEX_NAMESPACE::MeshSSBO</scope><name>emittance</name></member>
+      <member refid="struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_mesh_s_s_b_o_1ac234ac13f69f4325c449a78fa5d04925" prot="public" virt="non-virtual"><scope>RAYEX_NAMESPACE::MeshSSBO</scope><name>illum</name></member>
       <member refid="struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_mesh_s_s_b_o_1a8a30eb7713b788d6abf948cbe029acdd" prot="public" virt="non-virtual"><scope>RAYEX_NAMESPACE::MeshSSBO</scope><name>indexOffset</name></member>
-      <member refid="struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_mesh_s_s_b_o_1a7f00903c22d51da1da0c607ad9259591" prot="public" virt="non-virtual"><scope>RAYEX_NAMESPACE::MeshSSBO</scope><name>padding0</name></member>
+      <member refid="struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_mesh_s_s_b_o_1ad8e3bd702c57644a9b5ca13e0dd79c9b" prot="public" virt="non-virtual"><scope>RAYEX_NAMESPACE::MeshSSBO</scope><name>MeshSSBO</name></member>
+      <member refid="struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_mesh_s_s_b_o_1a2f11eb9c12cbbb7424d020c1acc0beee" prot="public" virt="non-virtual"><scope>RAYEX_NAMESPACE::MeshSSBO</scope><name>MeshSSBO</name></member>
+      <member refid="struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_mesh_s_s_b_o_1aac714eae32d19dcfa68661ffa006520c" prot="public" virt="non-virtual"><scope>RAYEX_NAMESPACE::MeshSSBO</scope><name>ni</name></member>
+      <member refid="struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_mesh_s_s_b_o_1afe758e896b9c1ea5656c3402b35462ba" prot="public" virt="non-virtual"><scope>RAYEX_NAMESPACE::MeshSSBO</scope><name>ns</name></member>
+      <member refid="struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_mesh_s_s_b_o_1a0c0eaca095bc79dcaf63e60d0f71db7e" prot="public" virt="non-virtual"><scope>RAYEX_NAMESPACE::MeshSSBO</scope><name>padding0</name></member>
       <member refid="struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_mesh_s_s_b_o_1a54e54f44292cedf0a51415bbb34ea9fb" prot="public" virt="non-virtual"><scope>RAYEX_NAMESPACE::MeshSSBO</scope><name>padding1</name></member>
       <member refid="struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_mesh_s_s_b_o_1a4f5c5d76b5f953139f857b130e34e40d" prot="public" virt="non-virtual"><scope>RAYEX_NAMESPACE::MeshSSBO</scope><name>padding2</name></member>
-      <member refid="struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_mesh_s_s_b_o_1a3357df15c77fc36d71dedd31ae8804c7" prot="public" virt="non-virtual"><scope>RAYEX_NAMESPACE::MeshSSBO</scope><name>padding3</name></member>
+      <member refid="struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_mesh_s_s_b_o_1a39423de79f0f958e9b23053c3b0f7387" prot="public" virt="non-virtual"><scope>RAYEX_NAMESPACE::MeshSSBO</scope><name>set</name></member>
       <member refid="struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_mesh_s_s_b_o_1a82baebb3cacb3f4b74ef8621fe9fdb34" prot="public" virt="non-virtual"><scope>RAYEX_NAMESPACE::MeshSSBO</scope><name>specular</name></member>
     </listofallmembers>
   </compounddef>

@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
-<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.20" xml:lang="en-US">
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.17">
   <compounddef id="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_time" kind="class" language="C++" prot="public">
     <compoundname>RAYEX_NAMESPACE::Time</compoundname>
     <includes refid="_time_8hpp" local="no">Time.hpp</includes>
@@ -15,7 +15,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="C:/Repos/rayex/include/base/Time.hpp" line="15" column="12" bodyfile="C:/Repos/rayex/include/base/Time.hpp" bodystart="15" bodyend="-1"/>
+        <location file="/mnt/c/Repos/rayex/include/base/Time.hpp" line="15" column="12" bodyfile="/mnt/c/Repos/rayex/include/base/Time.hpp" bodystart="15" bodyend="-1"/>
       </memberdef>
       </sectiondef>
       <sectiondef kind="public-static-func">
@@ -31,7 +31,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="C:/Repos/rayex/include/base/Time.hpp" line="18" column="17"/>
+        <location file="/mnt/c/Repos/rayex/include/base/Time.hpp" line="18" column="17"/>
       </memberdef>
       <memberdef kind="function" id="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_time_1a5c49f7ed02e39fb8da91d7b67783ecba" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>auto</type>
@@ -47,7 +47,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="C:/Repos/rayex/include/base/Time.hpp" line="21" column="17"/>
+        <location file="/mnt/c/Repos/rayex/include/base/Time.hpp" line="21" column="17"/>
       </memberdef>
       <memberdef kind="function" id="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_time_1a6ec786d4acef7bd1d907efc943fb3911" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>auto</type>
@@ -63,7 +63,20 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="C:/Repos/rayex/include/base/Time.hpp" line="23" column="17"/>
+        <location file="/mnt/c/Repos/rayex/include/base/Time.hpp" line="23" column="17"/>
+      </memberdef>
+      <memberdef kind="function" id="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_time_1af72a31538fdb2194cfe5c72b8de01567" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>auto</type>
+        <definition>static auto RAYEX_NAMESPACE::Time::getFramesPerSecond</definition>
+        <argsstring>() -&gt; uint32_t</argsstring>
+        <name>getFramesPerSecond</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/mnt/c/Repos/rayex/include/base/Time.hpp" line="25" column="17"/>
       </memberdef>
       </sectiondef>
       <sectiondef kind="private-static-func">
@@ -82,7 +95,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="C:/Repos/rayex/include/base/Time.hpp" line="30" column="17"/>
+        <location file="/mnt/c/Repos/rayex/include/base/Time.hpp" line="32" column="17"/>
       </memberdef>
       </sectiondef>
     <briefdescription>
@@ -92,10 +105,11 @@
 <para><xrefsect id="todo_1_todo000005"><xreftitle>Todo</xreftitle><xrefdescription><para>Average FPS are pointless. Implement minimum FPS and frametimes instead. </para>
 </xrefdescription></xrefsect></para>
     </detaileddescription>
-    <location file="C:/Repos/rayex/include/base/Time.hpp" line="12" column="3" bodyfile="C:/Repos/rayex/include/base/Time.hpp" bodystart="13" bodyend="31"/>
+    <location file="/mnt/c/Repos/rayex/include/base/Time.hpp" line="13" column="1" bodyfile="/mnt/c/Repos/rayex/include/base/Time.hpp" bodystart="12" bodyend="33"/>
     <listofallmembers>
       <member refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_time_1a7524698161fee241c3ac7c19dbead84b" prot="public" virt="non-virtual"><scope>RAYEX_NAMESPACE::Time</scope><name>benchmark</name></member>
       <member refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_time_1a6ec786d4acef7bd1d907efc943fb3911" prot="public" virt="non-virtual"><scope>RAYEX_NAMESPACE::Time</scope><name>getDeltaTime</name></member>
+      <member refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_time_1af72a31538fdb2194cfe5c72b8de01567" prot="public" virt="non-virtual"><scope>RAYEX_NAMESPACE::Time</scope><name>getFramesPerSecond</name></member>
       <member refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_time_1a5c49f7ed02e39fb8da91d7b67783ecba" prot="public" virt="non-virtual"><scope>RAYEX_NAMESPACE::Time</scope><name>getTime</name></member>
       <member refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_time_1aadccea2434acc97541a9a318335e2754" prot="private" virt="non-virtual"><scope>RAYEX_NAMESPACE::Time</scope><name>update</name></member>
       <member refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_time_1a626c5328d806f10740e91a064ceb44a2" prot="public" virt="non-virtual"><scope>RAYEX_NAMESPACE::Time</scope><name>Window</name></member>

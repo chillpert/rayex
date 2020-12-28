@@ -1,86 +1,116 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
-<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.20" xml:lang="en-US">
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.17">
   <compounddef id="_render_pass_8hpp" kind="file" language="C++">
     <compoundname>RenderPass.hpp</compoundname>
     <includes refid="stdafx_8hpp" local="yes">pch/stdafx.hpp</includes>
-    <includedby refid="_api_8hpp" local="yes">C:/Repos/rayex/include/api/Api.hpp</includedby>
-    <includedby refid="_post_processing_renderer_8hpp" local="yes">C:/Repos/rayex/include/api/PostProcessingRenderer.hpp</includedby>
-    <includedby refid="_helpers_8hpp" local="yes">C:/Repos/rayex/include/api/utility/Helpers.hpp</includedby>
-    <includedby refid="_gui_8hpp" local="yes">C:/Repos/rayex/include/base/Gui.hpp</includedby>
+    <includedby refid="_api_8hpp" local="yes">/mnt/c/Repos/rayex/include/api/Api.hpp</includedby>
+    <includedby refid="_post_processing_renderer_8hpp" local="yes">/mnt/c/Repos/rayex/include/api/PostProcessingRenderer.hpp</includedby>
+    <includedby refid="_helpers_8hpp" local="yes">/mnt/c/Repos/rayex/include/api/utility/Helpers.hpp</includedby>
+    <includedby refid="_gui_8hpp" local="yes">/mnt/c/Repos/rayex/include/base/Gui.hpp</includedby>
     <incdepgraph>
-      <node id="27">
+      <node id="30">
         <label>list</label>
       </node>
-      <node id="25">
+      <node id="12">
+        <label>base/Time.hpp</label>
+        <link refid="_time_8hpp"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+      </node>
+      <node id="28">
         <label>iomanip</label>
       </node>
-      <node id="14">
+      <node id="17">
         <label>external/glm/ext/matrix_transform.hpp</label>
       </node>
-      <node id="26">
+      <node id="29">
         <label>limits</label>
       </node>
-      <node id="21">
+      <node id="24">
         <label>filesystem</label>
       </node>
       <node id="4">
         <label>external/tinyLogger/TinyLogger.hpp</label>
       </node>
-      <node id="20">
+      <node id="23">
         <label>charconv</label>
       </node>
-      <node id="11">
+      <node id="14">
         <label>external/ImGui/imgui_impl_sdl.h</label>
       </node>
-      <node id="13">
+      <node id="16">
         <label>external/glm/ext/matrix_clip_space.hpp</label>
       </node>
-      <node id="28">
+      <node id="31">
         <label>map</label>
       </node>
-      <node id="35">
+      <node id="37">
         <label>unordered_set</label>
       </node>
-      <node id="24">
+      <node id="27">
         <label>gsl/gsl</label>
       </node>
-      <node id="23">
+      <node id="26">
         <label>fstream</label>
       </node>
-      <node id="10">
+      <node id="13">
         <label>external/ImGui/imgui.h</label>
       </node>
-      <node id="18">
+      <node id="21">
         <label>any</label>
       </node>
-      <node id="5">
+      <node id="9">
         <label>SDL2/SDL.h</label>
       </node>
-      <node id="31">
+      <node id="34">
         <label>random</label>
       </node>
-      <node id="15">
+      <node id="18">
         <label>external/glm/glm.hpp</label>
       </node>
-      <node id="33">
+      <node id="8">
         <label>string_view</label>
       </node>
-      <node id="30">
+      <node id="33">
         <label>optional</label>
       </node>
-      <node id="37">
+      <node id="39">
         <label>vector</label>
+      </node>
+      <node id="38">
+        <label>utility</label>
+      </node>
+      <node id="22">
+        <label>array</label>
+      </node>
+      <node id="19">
+        <label>external/glm/gtx/string_cast.hpp</label>
+      </node>
+      <node id="7">
+        <label>sstream</label>
+      </node>
+      <node id="1">
+        <label>/mnt/c/Repos/rayex/include/api/RenderPass.hpp</label>
+        <link refid="_render_pass_8hpp"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+      </node>
+      <node id="15">
+        <label>external/ImGui/imgui_impl_vulkan.h</label>
+      </node>
+      <node id="6">
+        <label>iostream</label>
+      </node>
+      <node id="36">
+        <label>unordered_map</label>
+      </node>
+      <node id="5">
+        <label>chrono</label>
       </node>
       <node id="2">
         <label>pch/stdafx.hpp</label>
         <link refid="stdafx_8hpp"/>
         <childnode refid="3" relation="include">
-        </childnode>
-        <childnode refid="9" relation="include">
-        </childnode>
-        <childnode refid="10" relation="include">
-        </childnode>
-        <childnode refid="11" relation="include">
         </childnode>
         <childnode refid="12" relation="include">
         </childnode>
@@ -130,58 +160,28 @@
         </childnode>
         <childnode refid="35" relation="include">
         </childnode>
+        <childnode refid="8" relation="include">
+        </childnode>
         <childnode refid="36" relation="include">
         </childnode>
         <childnode refid="37" relation="include">
         </childnode>
+        <childnode refid="38" relation="include">
+        </childnode>
+        <childnode refid="39" relation="include">
+        </childnode>
       </node>
-      <node id="36">
-        <label>utility</label>
-      </node>
-      <node id="19">
-        <label>array</label>
-      </node>
-      <node id="16">
-        <label>external/glm/gtx/string_cast.hpp</label>
-      </node>
-      <node id="12">
-        <label>external/ImGui/imgui_impl_vulkan.h</label>
-      </node>
-      <node id="7">
-        <label>iostream</label>
-      </node>
-      <node id="34">
-        <label>unordered_map</label>
-      </node>
-      <node id="32">
+      <node id="35">
         <label>set</label>
       </node>
-      <node id="22">
+      <node id="25">
         <label>forward_list</label>
       </node>
-      <node id="17">
+      <node id="20">
         <label>algorithm</label>
       </node>
-      <node id="9">
-        <label>base/Time.hpp</label>
-        <link refid="_time_8hpp"/>
-        <childnode refid="3" relation="include">
-        </childnode>
-      </node>
-      <node id="8">
+      <node id="11">
         <label>vulkan/vulkan.hpp</label>
-      </node>
-      <node id="29">
-        <label>memory</label>
-      </node>
-      <node id="1">
-        <label>C:/Repos/rayex/include/api/RenderPass.hpp</label>
-        <link refid="_render_pass_8hpp"/>
-        <childnode refid="2" relation="include">
-        </childnode>
-      </node>
-      <node id="6">
-        <label>SDL2/SDL_vulkan.h</label>
       </node>
       <node id="3">
         <label>Core.hpp</label>
@@ -196,27 +196,39 @@
         </childnode>
         <childnode refid="8" relation="include">
         </childnode>
+        <childnode refid="9" relation="include">
+        </childnode>
+        <childnode refid="10" relation="include">
+        </childnode>
+        <childnode refid="11" relation="include">
+        </childnode>
+      </node>
+      <node id="32">
+        <label>memory</label>
+      </node>
+      <node id="10">
+        <label>SDL2/SDL_vulkan.h</label>
       </node>
     </incdepgraph>
     <invincdepgraph>
-      <node id="4">
-        <label>C:/Repos/rayex/include/api/PostProcessingRenderer.hpp</label>
-        <link refid="_post_processing_renderer_8hpp"/>
-        <childnode refid="2" relation="include">
-        </childnode>
-      </node>
-      <node id="7">
-        <label>C:/Repos/rayex/include/api/pathtrace/PathTracer.hpp</label>
-        <link refid="_path_tracer_8hpp"/>
-        <childnode refid="2" relation="include">
-        </childnode>
-      </node>
       <node id="3">
-        <label>C:/Repos/rayex/include/Rayex.hpp</label>
+        <label>/mnt/c/Repos/rayex/include/Rayex.hpp</label>
         <link refid="_rayex_8hpp"/>
       </node>
+      <node id="2">
+        <label>/mnt/c/Repos/rayex/include/api/Api.hpp</label>
+        <link refid="_api_8hpp"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+      </node>
+      <node id="8">
+        <label>/mnt/c/Repos/rayex/include/base/Scene.hpp</label>
+        <link refid="_scene_8hpp"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+      </node>
       <node id="6">
-        <label>C:/Repos/rayex/include/api/Bindings.hpp</label>
+        <label>/mnt/c/Repos/rayex/include/api/Bindings.hpp</label>
         <link refid="_bindings_8hpp"/>
         <childnode refid="2" relation="include">
         </childnode>
@@ -227,44 +239,8 @@
         <childnode refid="8" relation="include">
         </childnode>
       </node>
-      <node id="10">
-        <label>C:/Repos/rayex/include/base/Gui.hpp</label>
-        <link refid="_gui_8hpp"/>
-        <childnode refid="2" relation="include">
-        </childnode>
-      </node>
-      <node id="5">
-        <label>C:/Repos/rayex/include/api/utility/Helpers.hpp</label>
-        <link refid="_helpers_8hpp"/>
-        <childnode refid="6" relation="include">
-        </childnode>
-        <childnode refid="9" relation="include">
-        </childnode>
-      </node>
-      <node id="2">
-        <label>C:/Repos/rayex/include/api/Api.hpp</label>
-        <link refid="_api_8hpp"/>
-        <childnode refid="3" relation="include">
-        </childnode>
-      </node>
-      <node id="9">
-        <label>C:/Repos/rayex/include/api/Swapchain.hpp</label>
-        <link refid="_swapchain_8hpp"/>
-        <childnode refid="2" relation="include">
-        </childnode>
-        <childnode refid="7" relation="include">
-        </childnode>
-        <childnode refid="10" relation="include">
-        </childnode>
-      </node>
-      <node id="8">
-        <label>C:/Repos/rayex/include/base/Scene.hpp</label>
-        <link refid="_scene_8hpp"/>
-        <childnode refid="2" relation="include">
-        </childnode>
-      </node>
       <node id="1">
-        <label>C:/Repos/rayex/include/api/RenderPass.hpp</label>
+        <label>/mnt/c/Repos/rayex/include/api/RenderPass.hpp</label>
         <link refid="_render_pass_8hpp"/>
         <childnode refid="2" relation="include">
         </childnode>
@@ -273,6 +249,42 @@
         <childnode refid="5" relation="include">
         </childnode>
         <childnode refid="10" relation="include">
+        </childnode>
+      </node>
+      <node id="7">
+        <label>/mnt/c/Repos/rayex/include/api/pathtrace/PathTracer.hpp</label>
+        <link refid="_path_tracer_8hpp"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+      </node>
+      <node id="9">
+        <label>/mnt/c/Repos/rayex/include/api/Swapchain.hpp</label>
+        <link refid="_swapchain_8hpp"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="7" relation="include">
+        </childnode>
+        <childnode refid="10" relation="include">
+        </childnode>
+      </node>
+      <node id="4">
+        <label>/mnt/c/Repos/rayex/include/api/PostProcessingRenderer.hpp</label>
+        <link refid="_post_processing_renderer_8hpp"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+      </node>
+      <node id="10">
+        <label>/mnt/c/Repos/rayex/include/base/Gui.hpp</label>
+        <link refid="_gui_8hpp"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+      </node>
+      <node id="5">
+        <label>/mnt/c/Repos/rayex/include/api/utility/Helpers.hpp</label>
+        <link refid="_helpers_8hpp"/>
+        <childnode refid="6" relation="include">
+        </childnode>
+        <childnode refid="9" relation="include">
         </childnode>
       </node>
     </invincdepgraph>
@@ -295,11 +307,11 @@
 <codeline lineno="12"><highlight class="normal"><sp/><sp/></highlight><highlight class="keyword">public</highlight><highlight class="normal">:</highlight></codeline>
 <codeline lineno="14" refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_render_pass_1a54b6544e81c939178fcd3204703cd795" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/><ref refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_render_pass_1a54b6544e81c939178fcd3204703cd795" kindref="member">get</ref>(<sp/>)<sp/>const<sp/>-&gt;<sp/><ref refid="namespacevk" kindref="compound">vk</ref>::<ref refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_render_pass" kindref="compound">RenderPass</ref><sp/>{<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>_renderPass.get(<sp/>);<sp/>}</highlight></codeline>
 <codeline lineno="15"><highlight class="normal"></highlight></codeline>
-<codeline lineno="20" refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_render_pass_1a59530fba847d5b02e6e705d5257562aa" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_render_pass_1a59530fba847d5b02e6e705d5257562aa" kindref="member">init</ref>(<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>std::vector&lt;vk::AttachmentDescription&gt;&amp;<sp/>attachments,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>std::vector&lt;vk::SubpassDescription&gt;&amp;<sp/>subpasses,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>std::vector&lt;vk::SubpassDependency&gt;&amp;<sp/>dependencies<sp/>);</highlight></codeline>
+<codeline lineno="20"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_render_pass_1a59530fba847d5b02e6e705d5257562aa" kindref="member">init</ref>(<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>std::vector&lt;vk::AttachmentDescription&gt;&amp;<sp/>attachments,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>std::vector&lt;vk::SubpassDescription&gt;&amp;<sp/>subpasses,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>std::vector&lt;vk::SubpassDependency&gt;&amp;<sp/>dependencies<sp/>);</highlight></codeline>
 <codeline lineno="21"><highlight class="normal"></highlight></codeline>
-<codeline lineno="28" refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_render_pass_1ae7cd1dc3852a28c45702bacd5958c533" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_render_pass_1ae7cd1dc3852a28c45702bacd5958c533" kindref="member">begin</ref>(<sp/>vk::Framebuffer<sp/>framebuffer,<sp/>vk::CommandBuffer<sp/>commandBuffer,<sp/>vk::Rect2D<sp/>renderArea,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>std::vector&lt;vk::ClearValue&gt;&amp;<sp/>clearValues<sp/>)<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="28"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_render_pass_1ae7cd1dc3852a28c45702bacd5958c533" kindref="member">begin</ref>(<sp/>vk::Framebuffer<sp/>framebuffer,<sp/>vk::CommandBuffer<sp/>commandBuffer,<sp/>vk::Rect2D<sp/>renderArea,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>std::vector&lt;vk::ClearValue&gt;&amp;<sp/>clearValues<sp/>)<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal">;</highlight></codeline>
 <codeline lineno="29"><highlight class="normal"></highlight></codeline>
-<codeline lineno="32" refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_render_pass_1a34096c7ba0418e1583a0fb255f975d02" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_render_pass_1a34096c7ba0418e1583a0fb255f975d02" kindref="member">end</ref>(<sp/>vk::CommandBuffer<sp/>commandBuffer<sp/>)<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="32"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_render_pass_1a34096c7ba0418e1583a0fb255f975d02" kindref="member">end</ref>(<sp/>vk::CommandBuffer<sp/>commandBuffer<sp/>)<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal">;</highlight></codeline>
 <codeline lineno="33"><highlight class="normal"></highlight></codeline>
 <codeline lineno="34"><highlight class="normal"><sp/><sp/></highlight><highlight class="keyword">private</highlight><highlight class="normal">:</highlight></codeline>
 <codeline lineno="35"><highlight class="normal"><sp/><sp/><sp/><sp/>vk::UniqueRenderPass<sp/>_renderPass;<sp/></highlight></codeline>
@@ -308,6 +320,6 @@
 <codeline lineno="38"><highlight class="normal"></highlight></codeline>
 <codeline lineno="39"><highlight class="normal"></highlight><highlight class="preprocessor">#endif<sp/>//<sp/>RENDER_PASS_HPP</highlight></codeline>
     </programlisting>
-    <location file="C:/Repos/rayex/include/api/RenderPass.hpp"/>
+    <location file="/mnt/c/Repos/rayex/include/api/RenderPass.hpp"/>
   </compounddef>
 </doxygen>

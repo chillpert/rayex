@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
-<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.20" xml:lang="en-US">
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.17">
   <compounddef id="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_rayex" kind="class" language="C++" prot="public">
     <compoundname>RAYEX_NAMESPACE::Rayex</compoundname>
     <includes refid="_rayex_8hpp" local="no">Rayex.hpp</includes>
@@ -17,7 +17,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="C:/Repos/rayex/include/Rayex.hpp" line="67" column="21" bodyfile="C:/Repos/rayex/include/Rayex.hpp" bodystart="67" bodyend="-1"/>
+        <location file="/mnt/c/Repos/rayex/include/Rayex.hpp" line="67" column="21" bodyfile="/mnt/c/Repos/rayex/include/Rayex.hpp" bodystart="67" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_rayex_1a8434af760e1d55af71683900926c3067" prot="private" static="no" mutable="no">
         <type>std::shared_ptr&lt; <ref refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_gui" kindref="compound">Gui</ref> &gt;</type>
@@ -32,7 +32,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="C:/Repos/rayex/include/Rayex.hpp" line="68" column="21" bodyfile="C:/Repos/rayex/include/Rayex.hpp" bodystart="68" bodyend="-1"/>
+        <location file="/mnt/c/Repos/rayex/include/Rayex.hpp" line="68" column="21" bodyfile="/mnt/c/Repos/rayex/include/Rayex.hpp" bodystart="68" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_rayex_1ad63a36fb7c827cecd76cef2dd51006e2" prot="private" static="no" mutable="no">
         <type><ref refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_api" kindref="compound">Api</ref></type>
@@ -46,7 +46,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="C:/Repos/rayex/include/Rayex.hpp" line="69" column="9" bodyfile="C:/Repos/rayex/include/Rayex.hpp" bodystart="69" bodyend="-1"/>
+        <location file="/mnt/c/Repos/rayex/include/Rayex.hpp" line="69" column="9" bodyfile="/mnt/c/Repos/rayex/include/Rayex.hpp" bodystart="69" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_rayex_1a9eacef49803bd94597a4b16b287fea85" prot="private" static="no" mutable="no">
         <type>bool</type>
@@ -60,7 +60,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="C:/Repos/rayex/include/Rayex.hpp" line="71" column="10" bodyfile="C:/Repos/rayex/include/Rayex.hpp" bodystart="71" bodyend="-1"/>
+        <location file="/mnt/c/Repos/rayex/include/Rayex.hpp" line="71" column="10" bodyfile="/mnt/c/Repos/rayex/include/Rayex.hpp" bodystart="71" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_rayex_1a3b5e922283cd5caf3ea0d929adf2b431" prot="private" static="no" mutable="no">
         <type>bool</type>
@@ -75,22 +75,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="C:/Repos/rayex/include/Rayex.hpp" line="72" column="10" bodyfile="C:/Repos/rayex/include/Rayex.hpp" bodystart="72" bodyend="-1"/>
-      </memberdef>
-      <memberdef kind="variable" id="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_rayex_1ad34edb049e5bbc77b2d3dd5c6edf6afe" prot="private" static="no" mutable="no">
-        <type>bool</type>
-        <definition>bool RAYEX_NAMESPACE::Rayex::_initScene</definition>
-        <argsstring></argsstring>
-        <name>_initScene</name>
-        <initializer>= true</initializer>
-        <briefdescription>
-<para>Keeps track of whether or not to initialize the scene. </para>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="C:/Repos/rayex/include/Rayex.hpp" line="73" column="10" bodyfile="C:/Repos/rayex/include/Rayex.hpp" bodystart="73" bodyend="-1"/>
+        <location file="/mnt/c/Repos/rayex/include/Rayex.hpp" line="72" column="10" bodyfile="/mnt/c/Repos/rayex/include/Rayex.hpp" bodystart="72" bodyend="-1"/>
       </memberdef>
       </sectiondef>
       <sectiondef kind="public-func">
@@ -107,7 +92,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="C:/Repos/rayex/include/Rayex.hpp" line="32" column="10"/>
+        <location file="/mnt/c/Repos/rayex/include/Rayex.hpp" line="32" column="10"/>
       </memberdef>
       <memberdef kind="function" id="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_rayex_1a8939d31603f84682c2309b784b3a82ac" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -124,7 +109,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="C:/Repos/rayex/include/Rayex.hpp" line="38" column="10"/>
+        <location file="/mnt/c/Repos/rayex/include/Rayex.hpp" line="38" column="10"/>
       </memberdef>
       <memberdef kind="function" id="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_rayex_1a3a1d0e4831044f2f7708365c984902bc" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
         <type>auto</type>
@@ -140,7 +125,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="C:/Repos/rayex/include/Rayex.hpp" line="41" column="10"/>
+        <location file="/mnt/c/Repos/rayex/include/Rayex.hpp" line="41" column="10"/>
       </memberdef>
       <memberdef kind="function" id="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_rayex_1a364c4dcdb67baf57b1591394386ec3af" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -168,7 +153,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="C:/Repos/rayex/include/Rayex.hpp" line="45" column="10"/>
+        <location file="/mnt/c/Repos/rayex/include/Rayex.hpp" line="45" column="10"/>
       </memberdef>
       <memberdef kind="function" id="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_rayex_1a9c80416850a65f7a7968f58a9b8666c3" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -196,7 +181,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="C:/Repos/rayex/include/Rayex.hpp" line="51" column="10"/>
+        <location file="/mnt/c/Repos/rayex/include/Rayex.hpp" line="51" column="10"/>
       </memberdef>
       <memberdef kind="function" id="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_rayex_1a6a3eaad6809863354889f00ad3972b07" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
         <type>auto</type>
@@ -212,7 +197,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="C:/Repos/rayex/include/Rayex.hpp" line="54" column="10" bodyfile="C:/Repos/rayex/include/Rayex.hpp" bodystart="54" bodyend="54"/>
+        <location file="/mnt/c/Repos/rayex/include/Rayex.hpp" line="54" column="10" bodyfile="/mnt/c/Repos/rayex/include/Rayex.hpp" bodystart="54" bodyend="54"/>
       </memberdef>
       <memberdef kind="function" id="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_rayex_1af39e7ea862f949f987aae25faa392d29" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
         <type>auto</type>
@@ -229,7 +214,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="C:/Repos/rayex/include/Rayex.hpp" line="58" column="10" bodyfile="C:/Repos/rayex/include/Rayex.hpp" bodystart="58" bodyend="58"/>
+        <location file="/mnt/c/Repos/rayex/include/Rayex.hpp" line="58" column="10" bodyfile="/mnt/c/Repos/rayex/include/Rayex.hpp" bodystart="58" bodyend="58"/>
       </memberdef>
       <memberdef kind="function" id="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_rayex_1ac4de2be6f21929ce1c9cebdbeef56aa6" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
         <type>auto</type>
@@ -246,7 +231,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="C:/Repos/rayex/include/Rayex.hpp" line="62" column="10" bodyfile="C:/Repos/rayex/include/Rayex.hpp" bodystart="62" bodyend="62"/>
+        <location file="/mnt/c/Repos/rayex/include/Rayex.hpp" line="62" column="10" bodyfile="/mnt/c/Repos/rayex/include/Rayex.hpp" bodystart="62" bodyend="62"/>
       </memberdef>
       <memberdef kind="function" id="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_rayex_1a64614dc316d4da644a62ff9463fca0dd" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -259,7 +244,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="C:/Repos/rayex/include/Rayex.hpp" line="64" column="10"/>
+        <location file="/mnt/c/Repos/rayex/include/Rayex.hpp" line="64" column="10"/>
       </memberdef>
       </sectiondef>
     <briefdescription>
@@ -267,7 +252,7 @@
     </briefdescription>
     <detaileddescription>
 <para>This class provides everything to set up a main loop and fill the scene with geometry and light sources. Furthermore, the renderer&apos;s settings can be changed to better fit the user&apos;s purpose. </para>
-<sect3 id="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_rayex_1autotoc_md10">
+<sect3 id="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_rayex_1autotoc_md12">
 <title>Example</title>
 <para><programlisting filename=".cpp"><codeline><highlight class="comment">//<sp/>The<sp/>following<sp/>example<sp/>renders<sp/>a<sp/>cube<sp/>in<sp/>less<sp/>than<sp/>10<sp/>lines<sp/>of<sp/>code.</highlight><highlight class="normal"></highlight></codeline>
 <codeline><highlight class="normal">Rayex<sp/>myRenderer;</highlight></codeline>
@@ -282,12 +267,11 @@
 </programlisting> </para>
 </sect3>
     </detaileddescription>
-    <location file="C:/Repos/rayex/include/Rayex.hpp" line="26" column="3" bodyfile="C:/Repos/rayex/include/Rayex.hpp" bodystart="27" bodyend="74"/>
+    <location file="/mnt/c/Repos/rayex/include/Rayex.hpp" line="27" column="1" bodyfile="/mnt/c/Repos/rayex/include/Rayex.hpp" bodystart="26" bodyend="73"/>
     <listofallmembers>
       <member refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_rayex_1ad63a36fb7c827cecd76cef2dd51006e2" prot="private" virt="non-virtual"><scope>RAYEX_NAMESPACE::Rayex</scope><name>_api</name></member>
       <member refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_rayex_1a8434af760e1d55af71683900926c3067" prot="private" virt="non-virtual"><scope>RAYEX_NAMESPACE::Rayex</scope><name>_gui</name></member>
       <member refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_rayex_1a9eacef49803bd94597a4b16b287fea85" prot="private" virt="non-virtual"><scope>RAYEX_NAMESPACE::Rayex</scope><name>_initialized</name></member>
-      <member refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_rayex_1ad34edb049e5bbc77b2d3dd5c6edf6afe" prot="private" virt="non-virtual"><scope>RAYEX_NAMESPACE::Rayex</scope><name>_initScene</name></member>
       <member refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_rayex_1a3b5e922283cd5caf3ea0d929adf2b431" prot="private" virt="non-virtual"><scope>RAYEX_NAMESPACE::Rayex</scope><name>_running</name></member>
       <member refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_rayex_1a9e1e7a24d7d029f3fe184a5807a2cfa9" prot="private" virt="non-virtual"><scope>RAYEX_NAMESPACE::Rayex</scope><name>_window</name></member>
       <member refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_rayex_1a6a3eaad6809863354889f00ad3972b07" prot="public" virt="non-virtual"><scope>RAYEX_NAMESPACE::Rayex</scope><name>getWindow</name></member>

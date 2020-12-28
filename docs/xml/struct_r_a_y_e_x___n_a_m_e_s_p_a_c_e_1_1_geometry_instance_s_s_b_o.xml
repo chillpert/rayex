@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
-<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.20" xml:lang="en-US">
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.17">
   <compounddef id="struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_geometry_instance_s_s_b_o" kind="struct" language="C++" prot="public">
     <compoundname>RAYEX_NAMESPACE::GeometryInstanceSSBO</compoundname>
     <includes refid="_storage_buffer_8hpp" local="no">StorageBuffer.hpp</includes>
@@ -17,7 +17,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="C:/Repos/rayex/include/api/buffers/StorageBuffer.hpp" line="31" column="15" bodyfile="C:/Repos/rayex/include/api/buffers/StorageBuffer.hpp" bodystart="31" bodyend="-1"/>
+        <location file="/mnt/c/Repos/rayex/include/api/buffers/StorageBuffer.hpp" line="51" column="15" bodyfile="/mnt/c/Repos/rayex/include/api/buffers/StorageBuffer.hpp" bodystart="51" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_geometry_instance_s_s_b_o_1a1379cb3dfff56920119ce6a1bbb38205" prot="public" static="no" mutable="no">
         <type>glm::mat4</type>
@@ -32,7 +32,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="C:/Repos/rayex/include/api/buffers/StorageBuffer.hpp" line="32" column="15" bodyfile="C:/Repos/rayex/include/api/buffers/StorageBuffer.hpp" bodystart="32" bodyend="-1"/>
+        <location file="/mnt/c/Repos/rayex/include/api/buffers/StorageBuffer.hpp" line="52" column="15" bodyfile="/mnt/c/Repos/rayex/include/api/buffers/StorageBuffer.hpp" bodystart="52" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_geometry_instance_s_s_b_o_1a4899744b1f0ee202bbf9ff02af61b4c4" prot="public" static="no" mutable="no">
         <type>uint32_t</type>
@@ -47,7 +47,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="C:/Repos/rayex/include/api/buffers/StorageBuffer.hpp" line="33" column="14" bodyfile="C:/Repos/rayex/include/api/buffers/StorageBuffer.hpp" bodystart="33" bodyend="-1"/>
+        <location file="/mnt/c/Repos/rayex/include/api/buffers/StorageBuffer.hpp" line="53" column="14" bodyfile="/mnt/c/Repos/rayex/include/api/buffers/StorageBuffer.hpp" bodystart="53" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_geometry_instance_s_s_b_o_1ac708ce2bf5edf245a01181441632b7ca" prot="public" static="no" mutable="no">
         <type>float</type>
@@ -62,7 +62,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="C:/Repos/rayex/include/api/buffers/StorageBuffer.hpp" line="35" column="11" bodyfile="C:/Repos/rayex/include/api/buffers/StorageBuffer.hpp" bodystart="35" bodyend="-1"/>
+        <location file="/mnt/c/Repos/rayex/include/api/buffers/StorageBuffer.hpp" line="55" column="11" bodyfile="/mnt/c/Repos/rayex/include/api/buffers/StorageBuffer.hpp" bodystart="55" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_geometry_instance_s_s_b_o_1a11f43ebd571824166af4d080c989706b" prot="public" static="no" mutable="no">
         <type>float</type>
@@ -77,7 +77,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="C:/Repos/rayex/include/api/buffers/StorageBuffer.hpp" line="36" column="11" bodyfile="C:/Repos/rayex/include/api/buffers/StorageBuffer.hpp" bodystart="36" bodyend="-1"/>
+        <location file="/mnt/c/Repos/rayex/include/api/buffers/StorageBuffer.hpp" line="56" column="11" bodyfile="/mnt/c/Repos/rayex/include/api/buffers/StorageBuffer.hpp" bodystart="56" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_geometry_instance_s_s_b_o_1a9730ed86d0ee5f518395e2b6c13ea2dc" prot="public" static="no" mutable="no">
         <type>float</type>
@@ -92,7 +92,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="C:/Repos/rayex/include/api/buffers/StorageBuffer.hpp" line="37" column="11" bodyfile="C:/Repos/rayex/include/api/buffers/StorageBuffer.hpp" bodystart="37" bodyend="-1"/>
+        <location file="/mnt/c/Repos/rayex/include/api/buffers/StorageBuffer.hpp" line="57" column="11" bodyfile="/mnt/c/Repos/rayex/include/api/buffers/StorageBuffer.hpp" bodystart="57" bodyend="-1"/>
       </memberdef>
       </sectiondef>
     <briefdescription>
@@ -100,7 +100,7 @@
     </briefdescription>
     <detaileddescription>
     </detaileddescription>
-    <location file="C:/Repos/rayex/include/api/buffers/StorageBuffer.hpp" line="29" column="3" bodyfile="C:/Repos/rayex/include/api/buffers/StorageBuffer.hpp" bodystart="30" bodyend="38"/>
+    <location file="/mnt/c/Repos/rayex/include/api/buffers/StorageBuffer.hpp" line="50" column="1" bodyfile="/mnt/c/Repos/rayex/include/api/buffers/StorageBuffer.hpp" bodystart="49" bodyend="58"/>
     <listofallmembers>
       <member refid="struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_geometry_instance_s_s_b_o_1a4899744b1f0ee202bbf9ff02af61b4c4" prot="public" virt="non-virtual"><scope>RAYEX_NAMESPACE::GeometryInstanceSSBO</scope><name>geometryIndex</name></member>
       <member refid="struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_geometry_instance_s_s_b_o_1ac708ce2bf5edf245a01181441632b7ca" prot="public" virt="non-virtual"><scope>RAYEX_NAMESPACE::GeometryInstanceSSBO</scope><name>padding0</name></member>

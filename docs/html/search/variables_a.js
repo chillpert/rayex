@@ -1,4 +1,6 @@
 var searchData=
 [
-  ['layout_765',['layout',['../struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_descriptors.html#a51cfd85e56864588a7f9b5380b31cb39',1,'RAYEX_NAMESPACE::Descriptors']]]
+  ['ka_778',['ka',['../struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_material.html#a7450ad0dc89bbcfd69a89d64b46eec77',1,'RAYEX_NAMESPACE::Material']]],
+  ['kd_779',['kd',['../struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_material.html#a9018051af4ed4bfd9299ba4051f93827',1,'RAYEX_NAMESPACE::Material']]],
+  ['ks_780',['ks',['../struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_material.html#a5ef48ca2998c12c026b08eecf951e1d4',1,'RAYEX_NAMESPACE::Material']]]
 ];

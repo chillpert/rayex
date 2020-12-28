@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
-<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.20" xml:lang="en-US">
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.17">
   <compounddef id="group___b_a_s_e" kind="group">
     <compoundname>BASE</compoundname>
     <title>Base</title>
@@ -56,7 +56,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="C:/Repos/rayex/include/base/Geometry.hpp" line="70" column="26" declfile="C:/Repos/rayex/include/base/Geometry.hpp" declline="70" declcolumn="26"/>
+        <location file="/mnt/c/Repos/rayex/include/base/Geometry.hpp" line="86" column="26" declfile="/mnt/c/Repos/rayex/include/base/Geometry.hpp" declline="86" declcolumn="26"/>
       </memberdef>
       <memberdef kind="function" id="group___b_a_s_e_1gad880ea304e8ff3dab6ea5258df8970cf" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>RX_API std::shared_ptr&lt; GeometryInstance &gt;</type>
@@ -99,7 +99,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="C:/Repos/rayex/include/base/Geometry.hpp" line="79" column="26" declfile="C:/Repos/rayex/include/base/Geometry.hpp" declline="79" declcolumn="26"/>
+        <location file="/mnt/c/Repos/rayex/include/base/Geometry.hpp" line="95" column="26" declfile="/mnt/c/Repos/rayex/include/base/Geometry.hpp" declline="95" declcolumn="26"/>
       </memberdef>
       </sectiondef>
     <briefdescription>

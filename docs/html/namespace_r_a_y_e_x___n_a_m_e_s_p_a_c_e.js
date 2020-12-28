@@ -20,6 +20,7 @@ var namespace_r_a_y_e_x___n_a_m_e_s_p_a_c_e =
     [ "Mesh", "struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_mesh.html", "struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_mesh" ],
     [ "MeshSSBO", "struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_mesh_s_s_b_o.html", "struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_mesh_s_s_b_o" ],
     [ "PathTracer", "class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_path_tracer.html", "class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_path_tracer" ],
+    [ "PathTracingCapabilities", "struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_path_tracing_capabilities.html", "struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_path_tracing_capabilities" ],
     [ "PostProcessingRenderer", "class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_post_processing_renderer.html", "class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_post_processing_renderer" ],
     [ "PtPushConstants", "struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_pt_push_constants.html", "struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_pt_push_constants" ],
     [ "Rayex", "class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_rayex.html", "class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_rayex" ],

@@ -6,7 +6,6 @@ var class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_scene =
     [ "getCamera", "class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_scene.html#a93bff45acd035aa5c72445bca9604075", null ],
     [ "getGeometryInstances", "class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_scene.html#aef804f5fc22e5d0b27530a00cd054060", null ],
     [ "load", "class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_scene.html#a7f8086b8e638a0ad2089255fa76d127e", null ],
-    [ "operator=", "class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_scene.html#a455c1bc49b4516cd7a007692fb5fca47", null ],
     [ "popGeometry", "class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_scene.html#ae68fc066eddb4ff7ee2a16c26b06f5ba", null ],
     [ "popGeometryInstance", "class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_scene.html#a838076f7347dd4788ee1aaa8ffd28374", null ],
     [ "removeEnvironmentMap", "class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_scene.html#a76b628140f11ee0ad272ac1da0e6c0ff", null ],

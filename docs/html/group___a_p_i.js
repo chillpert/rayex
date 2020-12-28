@@ -67,15 +67,20 @@ var group___a_p_i =
       [ "submitToQueue", "class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_command_buffer.html#ae47a0b4e332f7b93152e09223f858f54", null ]
     ] ],
     [ "MeshSSBO", "struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_mesh_s_s_b_o.html", [
+      [ "MeshSSBO", "struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_mesh_s_s_b_o.html#ad8e3bd702c57644a9b5ca13e0dd79c9b", null ],
+      [ "MeshSSBO", "struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_mesh_s_s_b_o.html#a2f11eb9c12cbbb7424d020c1acc0beee", null ],
+      [ "set", "struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_mesh_s_s_b_o.html#a39423de79f0f958e9b23053c3b0f7387", null ],
       [ "ambient", "struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_mesh_s_s_b_o.html#a7ee226655334d745110ea673d3f415b7", null ],
+      [ "d", "struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_mesh_s_s_b_o.html#a7a21ad8a0b5301090fb445dc5de3027a", null ],
       [ "diffuse", "struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_mesh_s_s_b_o.html#ad7dfd9e1d94bf8b61d75c5cb5b96029c", null ],
       [ "emission", "struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_mesh_s_s_b_o.html#a7fcf00acc1ec69abc1b1cd9a14149b5c", null ],
-      [ "emittance", "struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_mesh_s_s_b_o.html#a51b7ac9072c257ee8dcca83b1288efe4", null ],
+      [ "illum", "struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_mesh_s_s_b_o.html#ac234ac13f69f4325c449a78fa5d04925", null ],
       [ "indexOffset", "struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_mesh_s_s_b_o.html#a8a30eb7713b788d6abf948cbe029acdd", null ],
-      [ "padding0", "struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_mesh_s_s_b_o.html#a7f00903c22d51da1da0c607ad9259591", null ],
+      [ "ni", "struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_mesh_s_s_b_o.html#aac714eae32d19dcfa68661ffa006520c", null ],
+      [ "ns", "struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_mesh_s_s_b_o.html#afe758e896b9c1ea5656c3402b35462ba", null ],
+      [ "padding0", "struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_mesh_s_s_b_o.html#a0c0eaca095bc79dcaf63e60d0f71db7e", null ],
       [ "padding1", "struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_mesh_s_s_b_o.html#a54e54f44292cedf0a51415bbb34ea9fb", null ],
       [ "padding2", "struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_mesh_s_s_b_o.html#a4f5c5d76b5f953139f857b130e34e40d", null ],
-      [ "padding3", "struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_mesh_s_s_b_o.html#a3357df15c77fc36d71dedd31ae8804c7", null ],
       [ "specular", "struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_mesh_s_s_b_o.html#a82baebb3cacb3f4b74ef8621fe9fdb34", null ]
     ] ],
     [ "GeometryInstanceSSBO", "struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_geometry_instance_s_s_b_o.html", [
@@ -135,6 +140,7 @@ var group___a_p_i =
     [ "AccelerationStructure", "struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_acceleration_structure.html", [
       [ "destroy", "struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_acceleration_structure.html#a8e189940953cc7155465cf65a2f1d4f4", null ],
       [ "as", "struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_acceleration_structure.html#a310d8142a50e671e29b626943fa2b6c8", null ],
+      [ "buffer", "struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_acceleration_structure.html#a6add5ce884f6fb46a60a89bfb565fc09", null ],
       [ "memory", "struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_acceleration_structure.html#a67c749f7c097fac7a114c947b88752c0", null ]
     ] ],
     [ "Tlas", "struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_tlas.html", [
@@ -143,8 +149,7 @@ var group___a_p_i =
     ] ],
     [ "Blas", "struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_blas.html", [
       [ "as", "struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_blas.html#afeefd899332ab00ffc38a7641424de2d", null ],
-      [ "asBuildOffsetInfo", "struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_blas.html#ae30215c68a91e95453fcdb608b89d550", null ],
-      [ "asCreateGeometryInfo", "struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_blas.html#a0cefbce2e06e7f94be5201129d2c9507", null ],
+      [ "asBuildRangeInfo", "struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_blas.html#a612e8ebe1c04fd44ab8e9c22fc7c9787", null ],
       [ "asGeometry", "struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_blas.html#a7a270840d9f4e6b141a6f142abda68c5", null ],
       [ "flags", "struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_blas.html#a5735232656e5d5b3e3284475efab22b9", null ]
     ] ],
@@ -161,16 +166,17 @@ var group___a_p_i =
       [ "~PathTracer", "class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_path_tracer.html#aef8229369df0e2e75fea08d0163c0bfc", null ],
       [ "PathTracer", "class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_path_tracer.html#a962dbd0ccd7400ccb8bba85f93dc263c", null ],
       [ "PathTracer", "class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_path_tracer.html#a4ebf5206c031cf0532596adb9b68fc3b", null ],
-      [ "buildBlas", "class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_path_tracer.html#a72f62ced720e553f641355821255b452", null ],
+      [ "buildBlas", "class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_path_tracer.html#a5df109c2da39664245ad141e2d9c0e4a", null ],
       [ "buildTlas", "class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_path_tracer.html#a3c2f2045a533d9fe53faafdb885f5831", null ],
       [ "createBottomLevelAS", "class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_path_tracer.html#a58b6d931f0656a922e61ac387058bce5", null ],
       [ "createPipeline", "class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_path_tracer.html#af72332595cb39c940f0a6c9afee439ef", null ],
       [ "createShaderBindingTable", "class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_path_tracer.html#aef800dfb214e83264e2a573039a5aed3", null ],
       [ "createStorageImage", "class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_path_tracer.html#a504cc5e1802f0174272f637ad6e8f4c6", null ],
       [ "destroy", "class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_path_tracer.html#a29bafe2e2c61bd1ef76999885efa9188", null ],
+      [ "geometryInstanceToAccelerationStructureInstance", "class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_path_tracer.html#ae092e3687d1f24b48bcf056e5b8cb481", null ],
+      [ "getCapabilities", "class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_path_tracer.html#a88b082f3c08f346b4bfa71836a9e3f81", null ],
       [ "getDescriptorSet", "class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_path_tracer.html#a1305b431a280fa0bb99a15ea2d49eed6", null ],
       [ "getDescriptorSetLayout", "class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_path_tracer.html#a37d390a924dc52e0195248cedd5fe670", null ],
-      [ "getDevicePathTracingProperties", "class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_path_tracer.html#ac774a994b9afa13de03f95e8d1329e5f", null ],
       [ "getPipeline", "class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_path_tracer.html#a87b1e74178484ae54e891f62b897b079", null ],
       [ "getPipelineLayout", "class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_path_tracer.html#a88b7351717bcb2731cda5254316384a3", null ],
       [ "getStorageImageInfo", "class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_path_tracer.html#abde61bef57499d13e9df3cc3db0b8e39", null ],
@@ -178,13 +184,11 @@ var group___a_p_i =
       [ "getTlas", "class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_path_tracer.html#aa57a79727d5cab887d198231377d0c7e", null ],
       [ "init", "class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_path_tracer.html#aec2798527165512a51c4028be6dd5da0", null ],
       [ "initDescriptorSet", "class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_path_tracer.html#a30d8d1231355d7493d29b8226cfe728a", null ],
-      [ "instanceToVkGeometryInstanceKHR", "class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_path_tracer.html#a73b970d915d15015ea92165a0e17beff", null ],
-      [ "modelToBlas", "class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_path_tracer.html#a0fcaf406a0953408e05832e58cf1e6a3", null ],
+      [ "modelToBlas", "class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_path_tracer.html#a11da70ffbe4a318d73af0d75060b0cde", null ],
       [ "operator=", "class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_path_tracer.html#abc9fc7f8c1a71ef1cb056c5f5531af42", null ],
       [ "operator=", "class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_path_tracer.html#a01b3b0262634e7993b1173c289f0db02", null ],
       [ "pathTrace", "class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_path_tracer.html#aed6907560423957efa3aec52c69aa240", null ],
-      [ "updateDescriptors", "class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_path_tracer.html#a76874c6e9156b8c8f1624b43265fbc73", null ],
-      [ "updateDynamicBottomLevelAS", "class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_path_tracer.html#a5b5571b550e07f71642e9879d8f1648c", null ]
+      [ "updateDescriptors", "class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_path_tracer.html#a76874c6e9156b8c8f1624b43265fbc73", null ]
     ] ],
     [ "PostProcessingRenderer", "class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_post_processing_renderer.html", [
       [ "beginRenderPass", "class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_post_processing_renderer.html#acceeba217e38d1e290a3d39fe76f7be1", null ],
@@ -266,7 +270,6 @@ var group___a_p_i =
       [ "getCamera", "class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_scene.html#a93bff45acd035aa5c72445bca9604075", null ],
       [ "getGeometryInstances", "class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_scene.html#aef804f5fc22e5d0b27530a00cd054060", null ],
       [ "load", "class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_scene.html#a7f8086b8e638a0ad2089255fa76d127e", null ],
-      [ "operator=", "class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_scene.html#a455c1bc49b4516cd7a007692fb5fca47", null ],
       [ "popGeometry", "class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_scene.html#ae68fc066eddb4ff7ee2a16c26b06f5ba", null ],
       [ "popGeometryInstance", "class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_scene.html#a838076f7347dd4788ee1aaa8ffd28374", null ],
       [ "removeEnvironmentMap", "class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_scene.html#a76b628140f11ee0ad272ac1da0e6c0ff", null ],

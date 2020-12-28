@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
-<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.20" xml:lang="en-US">
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.17">
   <compounddef id="namespacevk_1_1_initializer" kind="namespace" language="C++">
     <compoundname>vk::Initializer</compoundname>
       <sectiondef kind="func">
@@ -32,7 +32,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="C:/Repos/rayex/include/api/utility/Initializers.hpp" line="15" column="10" declfile="C:/Repos/rayex/include/api/utility/Initializers.hpp" declline="15" declcolumn="10"/>
+        <location file="/mnt/c/Repos/rayex/include/api/utility/Initializers.hpp" line="14" column="10" declfile="/mnt/c/Repos/rayex/include/api/utility/Initializers.hpp" declline="14" declcolumn="10"/>
       </memberdef>
       <memberdef kind="function" id="namespacevk_1_1_initializer_1af6bf761ce27237bb82fb5e02535617d9" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>auto</type>
@@ -63,7 +63,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="C:/Repos/rayex/include/api/utility/Initializers.hpp" line="20" column="10" declfile="C:/Repos/rayex/include/api/utility/Initializers.hpp" declline="20" declcolumn="10"/>
+        <location file="/mnt/c/Repos/rayex/include/api/utility/Initializers.hpp" line="19" column="10" declfile="/mnt/c/Repos/rayex/include/api/utility/Initializers.hpp" declline="19" declcolumn="10"/>
       </memberdef>
       <memberdef kind="function" id="namespacevk_1_1_initializer_1a375ed5917667a58eff188349cf3f9050" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>auto</type>
@@ -94,7 +94,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="C:/Repos/rayex/include/api/utility/Initializers.hpp" line="25" column="10" declfile="C:/Repos/rayex/include/api/utility/Initializers.hpp" declline="25" declcolumn="10"/>
+        <location file="/mnt/c/Repos/rayex/include/api/utility/Initializers.hpp" line="24" column="10" declfile="/mnt/c/Repos/rayex/include/api/utility/Initializers.hpp" declline="24" declcolumn="10"/>
       </memberdef>
       <memberdef kind="function" id="namespacevk_1_1_initializer_1ac1ec2f4e793ae3383e4c69db03ff4fc1" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>auto</type>
@@ -125,7 +125,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="C:/Repos/rayex/include/api/utility/Initializers.hpp" line="30" column="10" declfile="C:/Repos/rayex/include/api/utility/Initializers.hpp" declline="30" declcolumn="10"/>
+        <location file="/mnt/c/Repos/rayex/include/api/utility/Initializers.hpp" line="29" column="10" declfile="/mnt/c/Repos/rayex/include/api/utility/Initializers.hpp" declline="29" declcolumn="10"/>
       </memberdef>
       <memberdef kind="function" id="namespacevk_1_1_initializer_1acef14128475ec3fe6c547ff6673fd23a" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>auto</type>
@@ -168,7 +168,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="C:/Repos/rayex/include/api/utility/Initializers.hpp" line="36" column="10" declfile="C:/Repos/rayex/include/api/utility/Initializers.hpp" declline="36" declcolumn="10"/>
+        <location file="/mnt/c/Repos/rayex/include/api/utility/Initializers.hpp" line="35" column="10" declfile="/mnt/c/Repos/rayex/include/api/utility/Initializers.hpp" declline="35" declcolumn="10"/>
       </memberdef>
       <memberdef kind="function" id="namespacevk_1_1_initializer_1a4f31060460247e2cec9de6164b6e0057" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>auto</type>
@@ -211,7 +211,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="C:/Repos/rayex/include/api/utility/Initializers.hpp" line="42" column="10" declfile="C:/Repos/rayex/include/api/utility/Initializers.hpp" declline="42" declcolumn="10"/>
+        <location file="/mnt/c/Repos/rayex/include/api/utility/Initializers.hpp" line="41" column="10" declfile="/mnt/c/Repos/rayex/include/api/utility/Initializers.hpp" declline="41" declcolumn="10"/>
       </memberdef>
       <memberdef kind="function" id="namespacevk_1_1_initializer_1acdbf982d7f7d6c943c5d7698640eeb28" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>auto</type>
@@ -265,7 +265,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="C:/Repos/rayex/include/api/utility/Initializers.hpp" line="48" column="10" declfile="C:/Repos/rayex/include/api/utility/Initializers.hpp" declline="48" declcolumn="10"/>
+        <location file="/mnt/c/Repos/rayex/include/api/utility/Initializers.hpp" line="47" column="10" declfile="/mnt/c/Repos/rayex/include/api/utility/Initializers.hpp" declline="47" declcolumn="10"/>
       </memberdef>
       <memberdef kind="function" id="namespacevk_1_1_initializer_1aed58fa91ff66a059c1a2aba841c62094" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>auto</type>
@@ -305,7 +305,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="C:/Repos/rayex/include/api/utility/Initializers.hpp" line="53" column="10" declfile="C:/Repos/rayex/include/api/utility/Initializers.hpp" declline="53" declcolumn="10"/>
+        <location file="/mnt/c/Repos/rayex/include/api/utility/Initializers.hpp" line="52" column="10" declfile="/mnt/c/Repos/rayex/include/api/utility/Initializers.hpp" declline="52" declcolumn="10"/>
       </memberdef>
       <memberdef kind="function" id="namespacevk_1_1_initializer_1a493d221cb9855740252a5e69a8ca0838" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>auto</type>
@@ -361,7 +361,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="C:/Repos/rayex/include/api/utility/Initializers.hpp" line="60" column="10" declfile="C:/Repos/rayex/include/api/utility/Initializers.hpp" declline="60" declcolumn="10"/>
+        <location file="/mnt/c/Repos/rayex/include/api/utility/Initializers.hpp" line="59" column="10" declfile="/mnt/c/Repos/rayex/include/api/utility/Initializers.hpp" declline="59" declcolumn="10"/>
       </memberdef>
       <memberdef kind="function" id="namespacevk_1_1_initializer_1af484445cf6e33bde051680745478e92e" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>auto</type>
@@ -417,7 +417,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="C:/Repos/rayex/include/api/utility/Initializers.hpp" line="67" column="10" declfile="C:/Repos/rayex/include/api/utility/Initializers.hpp" declline="67" declcolumn="10"/>
+        <location file="/mnt/c/Repos/rayex/include/api/utility/Initializers.hpp" line="66" column="10" declfile="/mnt/c/Repos/rayex/include/api/utility/Initializers.hpp" declline="66" declcolumn="10"/>
       </memberdef>
       <memberdef kind="function" id="namespacevk_1_1_initializer_1a12c5bd8256a38e454966161b5742d75d" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>auto</type>
@@ -473,35 +473,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="C:/Repos/rayex/include/api/utility/Initializers.hpp" line="74" column="10" declfile="C:/Repos/rayex/include/api/utility/Initializers.hpp" declline="74" declcolumn="10"/>
-      </memberdef>
-      <memberdef kind="function" id="namespacevk_1_1_initializer_1a963a17ac2f2468b0dd00c9279e007bb4" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
-        <type>void</type>
-        <definition>void vk::Initializer::allocateMemory</definition>
-        <argsstring>(RAYEX_NAMESPACE::AccelerationStructure &amp;as)</argsstring>
-        <name>allocateMemory</name>
-        <param>
-          <type><ref refid="struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_acceleration_structure" kindref="compound">RAYEX_NAMESPACE::AccelerationStructure</ref> &amp;</type>
-          <declname>as</declname>
-        </param>
-        <briefdescription>
-<para>Allocates and binds unique memory for an acceleration structure object. </para>
-        </briefdescription>
-        <detaileddescription>
-<para><parameterlist kind="param"><parameteritem>
-<parameternamelist>
-<parametername>as</parametername>
-</parameternamelist>
-<parameterdescription>
-<para>The <ref refid="struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_acceleration_structure" kindref="compound">RAYEX_NAMESPACE::AccelerationStructure</ref> object the memory will be allocated for. </para>
-</parameterdescription>
-</parameteritem>
-</parameterlist>
-</para>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="C:/Repos/rayex/include/api/utility/Initializers.hpp" line="78" column="10" declfile="C:/Repos/rayex/include/api/utility/Initializers.hpp" declline="78" declcolumn="10"/>
+        <location file="/mnt/c/Repos/rayex/include/api/utility/Initializers.hpp" line="73" column="10" declfile="/mnt/c/Repos/rayex/include/api/utility/Initializers.hpp" declline="73" declcolumn="10"/>
       </memberdef>
       <memberdef kind="function" id="namespacevk_1_1_initializer_1acf85382b3d1c452170cae8ebc6aa0b7d" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>auto</type>
@@ -557,7 +529,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="C:/Repos/rayex/include/api/utility/Initializers.hpp" line="85" column="10" declfile="C:/Repos/rayex/include/api/utility/Initializers.hpp" declline="85" declcolumn="10"/>
+        <location file="/mnt/c/Repos/rayex/include/api/utility/Initializers.hpp" line="80" column="10" declfile="/mnt/c/Repos/rayex/include/api/utility/Initializers.hpp" declline="80" declcolumn="10"/>
       </memberdef>
       <memberdef kind="function" id="namespacevk_1_1_initializer_1a868e3684ba1c9bb641994154b8f0a328" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>auto</type>
@@ -587,7 +559,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="C:/Repos/rayex/include/api/utility/Initializers.hpp" line="90" column="10" declfile="C:/Repos/rayex/include/api/utility/Initializers.hpp" declline="90" declcolumn="10"/>
+        <location file="/mnt/c/Repos/rayex/include/api/utility/Initializers.hpp" line="85" column="10" declfile="/mnt/c/Repos/rayex/include/api/utility/Initializers.hpp" declline="85" declcolumn="10"/>
       </memberdef>
       <memberdef kind="function" id="namespacevk_1_1_initializer_1af42815d5a927f8476cf33d90112c4b24" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>auto</type>
@@ -617,7 +589,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="C:/Repos/rayex/include/api/utility/Initializers.hpp" line="95" column="10" declfile="C:/Repos/rayex/include/api/utility/Initializers.hpp" declline="95" declcolumn="10"/>
+        <location file="/mnt/c/Repos/rayex/include/api/utility/Initializers.hpp" line="90" column="10" declfile="/mnt/c/Repos/rayex/include/api/utility/Initializers.hpp" declline="90" declcolumn="10"/>
       </memberdef>
       <memberdef kind="function" id="namespacevk_1_1_initializer_1a36373e7db0323614fb7a613a25034b88" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>auto</type>
@@ -649,7 +621,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="C:/Repos/rayex/include/api/utility/Initializers.hpp" line="101" column="10" declfile="C:/Repos/rayex/include/api/utility/Initializers.hpp" declline="101" declcolumn="10"/>
+        <location file="/mnt/c/Repos/rayex/include/api/utility/Initializers.hpp" line="96" column="10" declfile="/mnt/c/Repos/rayex/include/api/utility/Initializers.hpp" declline="96" declcolumn="10"/>
       </memberdef>
       <memberdef kind="function" id="namespacevk_1_1_initializer_1a12f3e62260a13de38ef88a420ba60728" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>auto</type>
@@ -681,7 +653,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="C:/Repos/rayex/include/api/utility/Initializers.hpp" line="107" column="10" declfile="C:/Repos/rayex/include/api/utility/Initializers.hpp" declline="107" declcolumn="10"/>
+        <location file="/mnt/c/Repos/rayex/include/api/utility/Initializers.hpp" line="102" column="10" declfile="/mnt/c/Repos/rayex/include/api/utility/Initializers.hpp" declline="102" declcolumn="10"/>
       </memberdef>
       <memberdef kind="function" id="namespacevk_1_1_initializer_1a9e3b424e471133a3a1108d239ad3b0d5" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>auto</type>
@@ -735,7 +707,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="C:/Repos/rayex/include/api/utility/Initializers.hpp" line="114" column="10" declfile="C:/Repos/rayex/include/api/utility/Initializers.hpp" declline="114" declcolumn="10"/>
+        <location file="/mnt/c/Repos/rayex/include/api/utility/Initializers.hpp" line="109" column="10" declfile="/mnt/c/Repos/rayex/include/api/utility/Initializers.hpp" declline="109" declcolumn="10"/>
       </memberdef>
       <memberdef kind="function" id="namespacevk_1_1_initializer_1a8a203917e1ea8b661b32363a2498d3fb" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>auto</type>
@@ -789,7 +761,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="C:/Repos/rayex/include/api/utility/Initializers.hpp" line="121" column="10" declfile="C:/Repos/rayex/include/api/utility/Initializers.hpp" declline="121" declcolumn="10"/>
+        <location file="/mnt/c/Repos/rayex/include/api/utility/Initializers.hpp" line="116" column="10" declfile="/mnt/c/Repos/rayex/include/api/utility/Initializers.hpp" declline="116" declcolumn="10"/>
       </memberdef>
       <memberdef kind="function" id="namespacevk_1_1_initializer_1a79c8c72a6ff7bfe8023ea424950b537c" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>auto</type>
@@ -829,7 +801,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="C:/Repos/rayex/include/api/utility/Initializers.hpp" line="127" column="10" declfile="C:/Repos/rayex/include/api/utility/Initializers.hpp" declline="127" declcolumn="10"/>
+        <location file="/mnt/c/Repos/rayex/include/api/utility/Initializers.hpp" line="122" column="10" declfile="/mnt/c/Repos/rayex/include/api/utility/Initializers.hpp" declline="122" declcolumn="10"/>
       </memberdef>
       <memberdef kind="function" id="namespacevk_1_1_initializer_1a948d9f0a9db128c05db21a601e5d3edb" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>auto</type>
@@ -871,7 +843,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="C:/Repos/rayex/include/api/utility/Initializers.hpp" line="133" column="10" declfile="C:/Repos/rayex/include/api/utility/Initializers.hpp" declline="133" declcolumn="10"/>
+        <location file="/mnt/c/Repos/rayex/include/api/utility/Initializers.hpp" line="128" column="10" declfile="/mnt/c/Repos/rayex/include/api/utility/Initializers.hpp" declline="128" declcolumn="10"/>
       </memberdef>
       <memberdef kind="function" id="namespacevk_1_1_initializer_1ac5138790657c39af09df37198eb9fbb7" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>auto</type>
@@ -901,7 +873,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="C:/Repos/rayex/include/api/utility/Initializers.hpp" line="138" column="10" declfile="C:/Repos/rayex/include/api/utility/Initializers.hpp" declline="138" declcolumn="10"/>
+        <location file="/mnt/c/Repos/rayex/include/api/utility/Initializers.hpp" line="133" column="10" declfile="/mnt/c/Repos/rayex/include/api/utility/Initializers.hpp" declline="133" declcolumn="10"/>
       </memberdef>
       <memberdef kind="function" id="namespacevk_1_1_initializer_1a5ea60eaa2fc1b0d0dce038f5d6b3720a" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>auto</type>
@@ -931,15 +903,15 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="C:/Repos/rayex/include/api/utility/Initializers.hpp" line="143" column="10" declfile="C:/Repos/rayex/include/api/utility/Initializers.hpp" declline="143" declcolumn="10"/>
+        <location file="/mnt/c/Repos/rayex/include/api/utility/Initializers.hpp" line="138" column="10" declfile="/mnt/c/Repos/rayex/include/api/utility/Initializers.hpp" declline="138" declcolumn="10"/>
       </memberdef>
-      <memberdef kind="function" id="namespacevk_1_1_initializer_1a9303367f62b6a2725158e079ef371942" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+      <memberdef kind="function" id="namespacevk_1_1_initializer_1ae65d6ff7a9d8f5852eb9d49a1dea3eb7" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>auto</type>
         <definition>auto vk::Initializer::initAccelerationStructure</definition>
-        <argsstring>(const AccelerationStructureCreateInfoKHR &amp;asCreateInfo) -&gt; RAYEX_NAMESPACE::AccelerationStructure</argsstring>
+        <argsstring>(AccelerationStructureCreateInfoKHR &amp;asCreateInfo) -&gt; RAYEX_NAMESPACE::AccelerationStructure</argsstring>
         <name>initAccelerationStructure</name>
         <param>
-          <type>const AccelerationStructureCreateInfoKHR &amp;</type>
+          <type>AccelerationStructureCreateInfoKHR &amp;</type>
           <declname>asCreateInfo</declname>
         </param>
         <briefdescription>
@@ -961,7 +933,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="C:/Repos/rayex/include/api/utility/Initializers.hpp" line="148" column="10" declfile="C:/Repos/rayex/include/api/utility/Initializers.hpp" declline="148" declcolumn="10"/>
+        <location file="/mnt/c/Repos/rayex/include/api/utility/Initializers.hpp" line="143" column="10" declfile="/mnt/c/Repos/rayex/include/api/utility/Initializers.hpp" declline="143" declcolumn="10"/>
       </memberdef>
       <memberdef kind="function" id="namespacevk_1_1_initializer_1aa312efed5e4aa5e591b86a2759248d55" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>auto</type>
@@ -980,7 +952,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="C:/Repos/rayex/include/api/utility/Initializers.hpp" line="155" column="10" declfile="C:/Repos/rayex/include/api/utility/Initializers.hpp" declline="155" declcolumn="10"/>
+        <location file="/mnt/c/Repos/rayex/include/api/utility/Initializers.hpp" line="150" column="10" declfile="/mnt/c/Repos/rayex/include/api/utility/Initializers.hpp" declline="150" declcolumn="10"/>
       </memberdef>
       <memberdef kind="function" id="namespacevk_1_1_initializer_1a41bd7737bda712ebcd0c6a66d336e4ab" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -999,7 +971,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="C:/Repos/rayex/include/api/utility/Initializers.hpp" line="160" column="10" declfile="C:/Repos/rayex/include/api/utility/Initializers.hpp" declline="160" declcolumn="10"/>
+        <location file="/mnt/c/Repos/rayex/include/api/utility/Initializers.hpp" line="155" column="10" declfile="/mnt/c/Repos/rayex/include/api/utility/Initializers.hpp" declline="155" declcolumn="10"/>
       </memberdef>
       <memberdef kind="function" id="namespacevk_1_1_initializer_1a162632da0a356f8cc311c6c0290cfff1" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>auto</type>
@@ -1029,7 +1001,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="C:/Repos/rayex/include/api/utility/Initializers.hpp" line="165" column="10" declfile="C:/Repos/rayex/include/api/utility/Initializers.hpp" declline="165" declcolumn="10"/>
+        <location file="/mnt/c/Repos/rayex/include/api/utility/Initializers.hpp" line="160" column="10" declfile="/mnt/c/Repos/rayex/include/api/utility/Initializers.hpp" declline="160" declcolumn="10"/>
       </memberdef>
       <memberdef kind="function" id="namespacevk_1_1_initializer_1a837538230a0f3327ba32f5803e174c62" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>auto</type>
@@ -1073,7 +1045,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="C:/Repos/rayex/include/api/utility/Initializers.hpp" line="172" column="10" declfile="C:/Repos/rayex/include/api/utility/Initializers.hpp" declline="172" declcolumn="10"/>
+        <location file="/mnt/c/Repos/rayex/include/api/utility/Initializers.hpp" line="167" column="10" declfile="/mnt/c/Repos/rayex/include/api/utility/Initializers.hpp" declline="167" declcolumn="10"/>
       </memberdef>
       </sectiondef>
     <briefdescription>
@@ -1081,6 +1053,6 @@
     </briefdescription>
     <detaileddescription>
     </detaileddescription>
-    <location file="C:/Repos/rayex/include/api/utility/Initializers.hpp" line="10" column="3"/>
+    <location file="/mnt/c/Repos/rayex/include/api/utility/Initializers.hpp" line="10" column="1"/>
   </compounddef>
 </doxygen>

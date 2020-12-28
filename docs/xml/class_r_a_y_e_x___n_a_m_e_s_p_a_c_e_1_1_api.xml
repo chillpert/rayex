@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
-<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.20" xml:lang="en-US">
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.17">
   <compounddef id="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_api" kind="class" language="C++" prot="public">
     <compoundname>RAYEX_NAMESPACE::Api</compoundname>
     <includes refid="_api_8hpp" local="no">Api.hpp</includes>
@@ -15,7 +15,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="C:/Repos/rayex/include/api/Api.hpp" line="33" column="12" bodyfile="C:/Repos/rayex/include/api/Api.hpp" bodystart="33" bodyend="-1"/>
+        <location file="/mnt/c/Repos/rayex/include/api/Api.hpp" line="32" column="12" bodyfile="/mnt/c/Repos/rayex/include/api/Api.hpp" bodystart="32" bodyend="-1"/>
       </memberdef>
       </sectiondef>
       <sectiondef kind="private-attrib">
@@ -31,7 +31,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="C:/Repos/rayex/include/api/Api.hpp" line="83" column="21" bodyfile="C:/Repos/rayex/include/api/Api.hpp" bodystart="83" bodyend="-1"/>
+        <location file="/mnt/c/Repos/rayex/include/api/Api.hpp" line="78" column="21" bodyfile="/mnt/c/Repos/rayex/include/api/Api.hpp" bodystart="78" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_api_1a752789ecf0b4f3ba18a958b67fd680ff" prot="private" static="no" mutable="no">
         <type>std::shared_ptr&lt; <ref refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_camera" kindref="compound">Camera</ref> &gt;</type>
@@ -45,7 +45,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="C:/Repos/rayex/include/api/Api.hpp" line="84" column="21" bodyfile="C:/Repos/rayex/include/api/Api.hpp" bodystart="84" bodyend="-1"/>
+        <location file="/mnt/c/Repos/rayex/include/api/Api.hpp" line="79" column="21" bodyfile="/mnt/c/Repos/rayex/include/api/Api.hpp" bodystart="79" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_api_1a8b8069ac2473a420c5b282d86634f5c6" prot="private" static="no" mutable="no">
         <type>vk::UniqueInstance</type>
@@ -58,7 +58,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="C:/Repos/rayex/include/api/Api.hpp" line="85" column="24" bodyfile="C:/Repos/rayex/include/api/Api.hpp" bodystart="85" bodyend="-1"/>
+        <location file="/mnt/c/Repos/rayex/include/api/Api.hpp" line="80" column="24" bodyfile="/mnt/c/Repos/rayex/include/api/Api.hpp" bodystart="80" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_api_1a6c4e354a3740b593e51e351769b19b08" prot="private" static="no" mutable="no">
         <type><ref refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_debug_messenger" kindref="compound">DebugMessenger</ref></type>
@@ -71,7 +71,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="C:/Repos/rayex/include/api/Api.hpp" line="86" column="20" bodyfile="C:/Repos/rayex/include/api/Api.hpp" bodystart="86" bodyend="-1"/>
+        <location file="/mnt/c/Repos/rayex/include/api/Api.hpp" line="81" column="20" bodyfile="/mnt/c/Repos/rayex/include/api/Api.hpp" bodystart="81" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_api_1a654b03d85b44164e7df574fd455b0cf2" prot="private" static="no" mutable="no">
         <type><ref refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_surface" kindref="compound">Surface</ref></type>
@@ -84,7 +84,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="C:/Repos/rayex/include/api/Api.hpp" line="87" column="13" bodyfile="C:/Repos/rayex/include/api/Api.hpp" bodystart="87" bodyend="-1"/>
+        <location file="/mnt/c/Repos/rayex/include/api/Api.hpp" line="82" column="13" bodyfile="/mnt/c/Repos/rayex/include/api/Api.hpp" bodystart="82" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_api_1a0b7b3d4b73c0d6942c03d7b20f8fc16a" prot="private" static="no" mutable="no">
         <type>vk::UniqueDevice</type>
@@ -97,7 +97,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="C:/Repos/rayex/include/api/Api.hpp" line="88" column="22" bodyfile="C:/Repos/rayex/include/api/Api.hpp" bodystart="88" bodyend="-1"/>
+        <location file="/mnt/c/Repos/rayex/include/api/Api.hpp" line="83" column="22" bodyfile="/mnt/c/Repos/rayex/include/api/Api.hpp" bodystart="83" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_api_1a9efbc3d7a78fda743592d9b9b119e9e8" prot="private" static="no" mutable="no">
         <type>vk::UniqueCommandPool</type>
@@ -110,7 +110,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="C:/Repos/rayex/include/api/Api.hpp" line="89" column="27" bodyfile="C:/Repos/rayex/include/api/Api.hpp" bodystart="89" bodyend="-1"/>
+        <location file="/mnt/c/Repos/rayex/include/api/Api.hpp" line="84" column="27" bodyfile="/mnt/c/Repos/rayex/include/api/Api.hpp" bodystart="84" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_api_1a9634a1e17a4e37a1b0d49f3fed86c7a8" prot="private" static="no" mutable="no">
         <type>vk::UniqueCommandPool</type>
@@ -123,7 +123,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="C:/Repos/rayex/include/api/Api.hpp" line="90" column="27" bodyfile="C:/Repos/rayex/include/api/Api.hpp" bodystart="90" bodyend="-1"/>
+        <location file="/mnt/c/Repos/rayex/include/api/Api.hpp" line="85" column="27" bodyfile="/mnt/c/Repos/rayex/include/api/Api.hpp" bodystart="85" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_api_1ae56bd4b772ccae3ad1e815a7c722bb59" prot="private" static="no" mutable="no">
         <type><ref refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_path_tracer" kindref="compound">PathTracer</ref></type>
@@ -136,7 +136,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="C:/Repos/rayex/include/api/Api.hpp" line="92" column="16" bodyfile="C:/Repos/rayex/include/api/Api.hpp" bodystart="92" bodyend="-1"/>
+        <location file="/mnt/c/Repos/rayex/include/api/Api.hpp" line="87" column="16" bodyfile="/mnt/c/Repos/rayex/include/api/Api.hpp" bodystart="87" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_api_1ac34ca7c4a555d32fcbc859ff42375517" prot="private" static="no" mutable="no">
         <type><ref refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_post_processing_renderer" kindref="compound">PostProcessingRenderer</ref></type>
@@ -149,7 +149,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="C:/Repos/rayex/include/api/Api.hpp" line="93" column="28" bodyfile="C:/Repos/rayex/include/api/Api.hpp" bodystart="93" bodyend="-1"/>
+        <location file="/mnt/c/Repos/rayex/include/api/Api.hpp" line="88" column="28" bodyfile="/mnt/c/Repos/rayex/include/api/Api.hpp" bodystart="88" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_api_1a2616f58a03a70020840d7930b2dca991" prot="private" static="no" mutable="no">
         <type><ref refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_sync" kindref="compound">Sync</ref></type>
@@ -162,7 +162,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="C:/Repos/rayex/include/api/Api.hpp" line="96" column="10" bodyfile="C:/Repos/rayex/include/api/Api.hpp" bodystart="96" bodyend="-1"/>
+        <location file="/mnt/c/Repos/rayex/include/api/Api.hpp" line="91" column="10" bodyfile="/mnt/c/Repos/rayex/include/api/Api.hpp" bodystart="91" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_api_1a2d748f16e1578e035d226d035dd673d7" prot="private" static="no" mutable="no">
         <type><ref refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_swapchain" kindref="compound">Swapchain</ref></type>
@@ -175,7 +175,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="C:/Repos/rayex/include/api/Api.hpp" line="98" column="15" bodyfile="C:/Repos/rayex/include/api/Api.hpp" bodystart="98" bodyend="-1"/>
+        <location file="/mnt/c/Repos/rayex/include/api/Api.hpp" line="93" column="15" bodyfile="/mnt/c/Repos/rayex/include/api/Api.hpp" bodystart="93" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_api_1a24288f5a3629d3f897f3a4b5020d3ba5" prot="private" static="no" mutable="no">
         <type><ref refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_command_buffer" kindref="compound">CommandBuffer</ref></type>
@@ -188,7 +188,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="C:/Repos/rayex/include/api/Api.hpp" line="99" column="19" bodyfile="C:/Repos/rayex/include/api/Api.hpp" bodystart="99" bodyend="-1"/>
+        <location file="/mnt/c/Repos/rayex/include/api/Api.hpp" line="94" column="19" bodyfile="/mnt/c/Repos/rayex/include/api/Api.hpp" bodystart="94" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_api_1a4ff94fa2534477282e4816c90e55b080" prot="private" static="no" mutable="no">
         <type>std::shared_ptr&lt; <ref refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_gui" kindref="compound">Gui</ref> &gt;</type>
@@ -202,7 +202,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="C:/Repos/rayex/include/api/Api.hpp" line="101" column="21" bodyfile="C:/Repos/rayex/include/api/Api.hpp" bodystart="101" bodyend="-1"/>
+        <location file="/mnt/c/Repos/rayex/include/api/Api.hpp" line="96" column="21" bodyfile="/mnt/c/Repos/rayex/include/api/Api.hpp" bodystart="96" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_api_1a78f88bb0be3893766f4b56ff15162eac" prot="private" static="no" mutable="no">
         <type><ref refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_scene" kindref="compound">Scene</ref></type>
@@ -215,7 +215,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="C:/Repos/rayex/include/api/Api.hpp" line="103" column="11" bodyfile="C:/Repos/rayex/include/api/Api.hpp" bodystart="103" bodyend="-1"/>
+        <location file="/mnt/c/Repos/rayex/include/api/Api.hpp" line="98" column="11" bodyfile="/mnt/c/Repos/rayex/include/api/Api.hpp" bodystart="98" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_api_1a23007f9070dd7a184b72798266b4ed37" prot="private" static="no" mutable="no">
         <type><ref refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_settings" kindref="compound">Settings</ref></type>
@@ -228,35 +228,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="C:/Repos/rayex/include/api/Api.hpp" line="104" column="14" bodyfile="C:/Repos/rayex/include/api/Api.hpp" bodystart="104" bodyend="-1"/>
-      </memberdef>
-      <memberdef kind="variable" id="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_api_1a9b33d579dc96a4a629a880d6419233a4" prot="private" static="no" mutable="no">
-        <type>bool</type>
-        <definition>bool RAYEX_NAMESPACE::Api::_needSwapchainRecreate</definition>
-        <argsstring></argsstring>
-        <name>_needSwapchainRecreate</name>
-        <initializer>= false</initializer>
-        <briefdescription>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="C:/Repos/rayex/include/api/Api.hpp" line="106" column="10" bodyfile="C:/Repos/rayex/include/api/Api.hpp" bodystart="106" bodyend="-1"/>
-      </memberdef>
-      <memberdef kind="variable" id="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_api_1ab32a748192ba13629fa27fb458ff3fda" prot="private" static="no" mutable="no">
-        <type>bool</type>
-        <definition>bool RAYEX_NAMESPACE::Api::_pipelinesReady</definition>
-        <argsstring></argsstring>
-        <name>_pipelinesReady</name>
-        <initializer>= false</initializer>
-        <briefdescription>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="C:/Repos/rayex/include/api/Api.hpp" line="107" column="10" bodyfile="C:/Repos/rayex/include/api/Api.hpp" bodystart="107" bodyend="-1"/>
+        <location file="/mnt/c/Repos/rayex/include/api/Api.hpp" line="99" column="14" bodyfile="/mnt/c/Repos/rayex/include/api/Api.hpp" bodystart="99" bodyend="-1"/>
       </memberdef>
       </sectiondef>
       <sectiondef kind="public-func">
@@ -271,7 +243,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="C:/Repos/rayex/include/api/Api.hpp" line="35" column="5"/>
+        <location file="/mnt/c/Repos/rayex/include/api/Api.hpp" line="34" column="5"/>
       </memberdef>
       <memberdef kind="function" id="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_api_1a2466f3fcfd89ab8d1d80eed1254950c0" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type></type>
@@ -284,7 +256,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="C:/Repos/rayex/include/api/Api.hpp" line="36" column="5"/>
+        <location file="/mnt/c/Repos/rayex/include/api/Api.hpp" line="35" column="5"/>
       </memberdef>
       <memberdef kind="function" id="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_api_1a75fc41dab952a0b3c08d95a30ff451a8" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type></type>
@@ -300,7 +272,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="C:/Repos/rayex/include/api/Api.hpp" line="38" column="5"/>
+        <location file="/mnt/c/Repos/rayex/include/api/Api.hpp" line="37" column="5"/>
       </memberdef>
       <memberdef kind="function" id="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_api_1a12e91dc6ced5d4022accb12716616d11" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type></type>
@@ -316,7 +288,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="C:/Repos/rayex/include/api/Api.hpp" line="39" column="5"/>
+        <location file="/mnt/c/Repos/rayex/include/api/Api.hpp" line="38" column="5"/>
       </memberdef>
       <memberdef kind="function" id="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_api_1afe3d5724cdbbf6e5756ec4b7c8cba6f0" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>auto</type>
@@ -332,7 +304,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="C:/Repos/rayex/include/api/Api.hpp" line="40" column="10"/>
+        <location file="/mnt/c/Repos/rayex/include/api/Api.hpp" line="39" column="10"/>
       </memberdef>
       <memberdef kind="function" id="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_api_1a48e629366ef5f94b8573a288c872955c" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>auto</type>
@@ -348,7 +320,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="C:/Repos/rayex/include/api/Api.hpp" line="41" column="10"/>
+        <location file="/mnt/c/Repos/rayex/include/api/Api.hpp" line="40" column="10"/>
       </memberdef>
       </sectiondef>
       <sectiondef kind="private-func">
@@ -391,35 +363,20 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="C:/Repos/rayex/include/api/Api.hpp" line="49" column="10"/>
+        <location file="/mnt/c/Repos/rayex/include/api/Api.hpp" line="48" column="10"/>
       </memberdef>
-      <memberdef kind="function" id="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_api_1a5df8bc32c9a3e04a4339c3e3b0e0ab12" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+      <memberdef kind="function" id="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_api_1aa5b85a62bae32c3dc90fa00aab67f2db" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
-        <definition>void RAYEX_NAMESPACE::Api::initBase</definition>
+        <definition>void RAYEX_NAMESPACE::Api::init</definition>
         <argsstring>()</argsstring>
-        <name>initBase</name>
+        <name>init</name>
         <briefdescription>
-<para>Initializes all universal Vulkan objects. </para>
         </briefdescription>
         <detaileddescription>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="C:/Repos/rayex/include/api/Api.hpp" line="52" column="10"/>
-      </memberdef>
-      <memberdef kind="function" id="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_api_1aa53ed7ac17170fc73b2d42ad40390594" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
-        <type>RX_API void</type>
-        <definition>RX_API void RAYEX_NAMESPACE::Api::initScene</definition>
-        <argsstring>()</argsstring>
-        <name>initScene</name>
-        <briefdescription>
-<para>Initializes all Vulkan objects that are scene-specific. </para>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="C:/Repos/rayex/include/api/Api.hpp" line="55" column="17"/>
+        <location file="/mnt/c/Repos/rayex/include/api/Api.hpp" line="50" column="10"/>
       </memberdef>
       <memberdef kind="function" id="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_api_1a5ac2e83575733e1b41d7fe54641f5121" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -433,7 +390,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="C:/Repos/rayex/include/api/Api.hpp" line="58" column="10"/>
+        <location file="/mnt/c/Repos/rayex/include/api/Api.hpp" line="53" column="10"/>
       </memberdef>
       <memberdef kind="function" id="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_api_1a01a12538c78965cc460b27955e49ed40" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -447,7 +404,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="C:/Repos/rayex/include/api/Api.hpp" line="61" column="10"/>
+        <location file="/mnt/c/Repos/rayex/include/api/Api.hpp" line="56" column="10"/>
       </memberdef>
       <memberdef kind="function" id="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_api_1a73eb56a6f6693c233a00f0e7a11ecb1f" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -460,7 +417,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="C:/Repos/rayex/include/api/Api.hpp" line="63" column="10"/>
+        <location file="/mnt/c/Repos/rayex/include/api/Api.hpp" line="58" column="10"/>
       </memberdef>
       <memberdef kind="function" id="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_api_1a09d27ca069f486dd58062de98b62ba61" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -473,7 +430,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="C:/Repos/rayex/include/api/Api.hpp" line="65" column="10"/>
+        <location file="/mnt/c/Repos/rayex/include/api/Api.hpp" line="60" column="10"/>
       </memberdef>
       <memberdef kind="function" id="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_api_1a108ef62cb7d2e66415673a318344d9f3" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -489,7 +446,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="C:/Repos/rayex/include/api/Api.hpp" line="69" column="10"/>
+        <location file="/mnt/c/Repos/rayex/include/api/Api.hpp" line="64" column="10"/>
       </memberdef>
       <memberdef kind="function" id="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_api_1a1b353f7e10864adec9fcaae6a600ff14" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -503,7 +460,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="C:/Repos/rayex/include/api/Api.hpp" line="72" column="10"/>
+        <location file="/mnt/c/Repos/rayex/include/api/Api.hpp" line="67" column="10"/>
       </memberdef>
       <memberdef kind="function" id="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_api_1a6c4f95f8d82d754ac5205f9b71750102" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -517,7 +474,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="C:/Repos/rayex/include/api/Api.hpp" line="75" column="10"/>
+        <location file="/mnt/c/Repos/rayex/include/api/Api.hpp" line="70" column="10"/>
       </memberdef>
       <memberdef kind="function" id="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_api_1a9f2b00b47b2600fa303c3853effd1e2f" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -531,7 +488,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="C:/Repos/rayex/include/api/Api.hpp" line="78" column="10"/>
+        <location file="/mnt/c/Repos/rayex/include/api/Api.hpp" line="73" column="10"/>
       </memberdef>
       <memberdef kind="function" id="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_api_1a676e59e4285451eb8d4f73fe5dfbbf5d" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -545,7 +502,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="C:/Repos/rayex/include/api/Api.hpp" line="81" column="10"/>
+        <location file="/mnt/c/Repos/rayex/include/api/Api.hpp" line="76" column="10"/>
       </memberdef>
       </sectiondef>
     <briefdescription>
@@ -558,7 +515,7 @@
 </simplesect>
 </para>
     </detaileddescription>
-    <location file="C:/Repos/rayex/include/api/Api.hpp" line="30" column="3" bodyfile="C:/Repos/rayex/include/api/Api.hpp" bodystart="31" bodyend="108"/>
+    <location file="/mnt/c/Repos/rayex/include/api/Api.hpp" line="30" column="1" bodyfile="/mnt/c/Repos/rayex/include/api/Api.hpp" bodystart="29" bodyend="100"/>
     <listofallmembers>
       <member refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_api_1a752789ecf0b4f3ba18a958b67fd680ff" prot="private" virt="non-virtual"><scope>RAYEX_NAMESPACE::Api</scope><name>_camera</name></member>
       <member refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_api_1a6c4e354a3740b593e51e351769b19b08" prot="private" virt="non-virtual"><scope>RAYEX_NAMESPACE::Api</scope><name>_debugMessenger</name></member>
@@ -566,9 +523,7 @@
       <member refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_api_1a9efbc3d7a78fda743592d9b9b119e9e8" prot="private" virt="non-virtual"><scope>RAYEX_NAMESPACE::Api</scope><name>_graphicsCmdPool</name></member>
       <member refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_api_1a4ff94fa2534477282e4816c90e55b080" prot="private" virt="non-virtual"><scope>RAYEX_NAMESPACE::Api</scope><name>_gui</name></member>
       <member refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_api_1a8b8069ac2473a420c5b282d86634f5c6" prot="private" virt="non-virtual"><scope>RAYEX_NAMESPACE::Api</scope><name>_instance</name></member>
-      <member refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_api_1a9b33d579dc96a4a629a880d6419233a4" prot="private" virt="non-virtual"><scope>RAYEX_NAMESPACE::Api</scope><name>_needSwapchainRecreate</name></member>
       <member refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_api_1ae56bd4b772ccae3ad1e815a7c722bb59" prot="private" virt="non-virtual"><scope>RAYEX_NAMESPACE::Api</scope><name>_pathTracer</name></member>
-      <member refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_api_1ab32a748192ba13629fa27fb458ff3fda" prot="private" virt="non-virtual"><scope>RAYEX_NAMESPACE::Api</scope><name>_pipelinesReady</name></member>
       <member refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_api_1ac34ca7c4a555d32fcbc859ff42375517" prot="private" virt="non-virtual"><scope>RAYEX_NAMESPACE::Api</scope><name>_postProcessingRenderer</name></member>
       <member refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_api_1a78f88bb0be3893766f4b56ff15162eac" prot="private" virt="non-virtual"><scope>RAYEX_NAMESPACE::Api</scope><name>_scene</name></member>
       <member refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_api_1a23007f9070dd7a184b72798266b4ed37" prot="private" virt="non-virtual"><scope>RAYEX_NAMESPACE::Api</scope><name>_settings</name></member>
@@ -581,10 +536,9 @@
       <member refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_api_1a6d337866b5a344ec9f2a1c3e968f1fef" prot="public" virt="non-virtual"><scope>RAYEX_NAMESPACE::Api</scope><name>Api</name></member>
       <member refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_api_1a75fc41dab952a0b3c08d95a30ff451a8" prot="public" virt="non-virtual"><scope>RAYEX_NAMESPACE::Api</scope><name>Api</name></member>
       <member refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_api_1a12e91dc6ced5d4022accb12716616d11" prot="public" virt="non-virtual"><scope>RAYEX_NAMESPACE::Api</scope><name>Api</name></member>
-      <member refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_api_1a5df8bc32c9a3e04a4339c3e3b0e0ab12" prot="private" virt="non-virtual"><scope>RAYEX_NAMESPACE::Api</scope><name>initBase</name></member>
+      <member refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_api_1aa5b85a62bae32c3dc90fa00aab67f2db" prot="private" virt="non-virtual"><scope>RAYEX_NAMESPACE::Api</scope><name>init</name></member>
       <member refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_api_1a73eb56a6f6693c233a00f0e7a11ecb1f" prot="private" virt="non-virtual"><scope>RAYEX_NAMESPACE::Api</scope><name>initGui</name></member>
       <member refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_api_1a09d27ca069f486dd58062de98b62ba61" prot="private" virt="non-virtual"><scope>RAYEX_NAMESPACE::Api</scope><name>initPipelines</name></member>
-      <member refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_api_1aa53ed7ac17170fc73b2d42ad40390594" prot="private" virt="non-virtual"><scope>RAYEX_NAMESPACE::Api</scope><name>initScene</name></member>
       <member refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_api_1afe3d5724cdbbf6e5756ec4b7c8cba6f0" prot="public" virt="non-virtual"><scope>RAYEX_NAMESPACE::Api</scope><name>operator=</name></member>
       <member refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_api_1a48e629366ef5f94b8573a288c872955c" prot="public" virt="non-virtual"><scope>RAYEX_NAMESPACE::Api</scope><name>operator=</name></member>
       <member refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_api_1a9f2b00b47b2600fa303c3853effd1e2f" prot="private" virt="non-virtual"><scope>RAYEX_NAMESPACE::Api</scope><name>prepareFrame</name></member>

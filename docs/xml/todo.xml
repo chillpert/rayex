@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
-<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.20" xml:lang="en-US">
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.17">
   <compounddef id="todo" kind="page">
     <compoundname>todo</compoundname>
     <title>Todo List</title>
@@ -7,15 +7,14 @@
     </briefdescription>
     <detaileddescription>
 <para><variablelist>
-<varlistentry><term>Member <ref refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_swapchain_1a30b4e27c52d6fa9bb634b5cb579b7b10" kindref="member">RAYEX_NAMESPACE::Swapchain::getImageViews</ref>  () const -&gt; std::vector&lt; vk::ImageView &gt;</term></varlistentry>
-<listitem><para><anchor id="todo_1_todo000002"/>Returning by reference will result in size 0.  </para>
-</listitem>
 <varlistentry><term>Class <ref refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_scene" kindref="compound">RAYEX_NAMESPACE::Scene</ref>  </term></varlistentry>
-<listitem><para><anchor id="todo_1_todo000003"/><ref refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_scene_1a8004b0c0dfb783070ea82af111378718" kindref="member">removeGeometry()</ref></para>
-<para></para>
+<listitem><para><anchor id="todo_1_todo000003"/><ref refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_scene_1a8004b0c0dfb783070ea82af111378718" kindref="member">removeGeometry()</ref>  </para>
 </listitem>
 <varlistentry><term>Class <ref refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_settings" kindref="compound">RAYEX_NAMESPACE::Settings</ref>  </term></varlistentry>
 <listitem><para><anchor id="todo_1_todo000004"/>Add a setUseTotalPathsOnly( bool flag )  </para>
+</listitem>
+<varlistentry><term>Member <ref refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_swapchain_1a30b4e27c52d6fa9bb634b5cb579b7b10" kindref="member">RAYEX_NAMESPACE::Swapchain::getImageViews</ref>  () const -&gt; std::vector&lt; vk::ImageView &gt;</term></varlistentry>
+<listitem><para><anchor id="todo_1_todo000002"/>Returning by reference will result in size 0.  </para>
 </listitem>
 <varlistentry><term>Class <ref refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_time" kindref="compound">RAYEX_NAMESPACE::Time</ref>  </term></varlistentry>
 <listitem><para><anchor id="todo_1_todo000005"/>Average FPS are pointless. Implement minimum FPS and frametimes instead.  </para>

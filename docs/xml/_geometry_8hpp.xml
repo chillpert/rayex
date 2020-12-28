@@ -1,93 +1,118 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
-<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.20" xml:lang="en-US">
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.17">
   <compounddef id="_geometry_8hpp" kind="file" language="C++">
     <compoundname>Geometry.hpp</compoundname>
     <includes refid="_vertex_8hpp" local="yes">api/Vertex.hpp</includes>
-    <includedby refid="_uniform_buffer_8hpp" local="yes">C:/Repos/rayex/include/api/buffers/UniformBuffer.hpp</includedby>
-    <includedby refid="_path_tracer_8hpp" local="yes">C:/Repos/rayex/include/api/pathtrace/PathTracer.hpp</includedby>
-    <includedby refid="_scene_8hpp" local="yes">C:/Repos/rayex/include/base/Scene.hpp</includedby>
+    <includedby refid="_storage_buffer_8hpp" local="yes">/mnt/c/Repos/rayex/include/api/buffers/StorageBuffer.hpp</includedby>
+    <includedby refid="_uniform_buffer_8hpp" local="yes">/mnt/c/Repos/rayex/include/api/buffers/UniformBuffer.hpp</includedby>
+    <includedby refid="_path_tracer_8hpp" local="yes">/mnt/c/Repos/rayex/include/api/pathtrace/PathTracer.hpp</includedby>
+    <includedby refid="_scene_8hpp" local="yes">/mnt/c/Repos/rayex/include/base/Scene.hpp</includedby>
     <incdepgraph>
-      <node id="28">
+      <node id="31">
         <label>list</label>
       </node>
-      <node id="26">
+      <node id="13">
+        <label>base/Time.hpp</label>
+        <link refid="_time_8hpp"/>
+        <childnode refid="4" relation="include">
+        </childnode>
+      </node>
+      <node id="29">
         <label>iomanip</label>
       </node>
-      <node id="15">
+      <node id="18">
         <label>external/glm/ext/matrix_transform.hpp</label>
       </node>
-      <node id="27">
+      <node id="30">
         <label>limits</label>
       </node>
-      <node id="22">
+      <node id="25">
         <label>filesystem</label>
       </node>
       <node id="5">
         <label>external/tinyLogger/TinyLogger.hpp</label>
       </node>
-      <node id="21">
+      <node id="24">
         <label>charconv</label>
       </node>
-      <node id="12">
+      <node id="15">
         <label>external/ImGui/imgui_impl_sdl.h</label>
       </node>
-      <node id="14">
+      <node id="17">
         <label>external/glm/ext/matrix_clip_space.hpp</label>
       </node>
-      <node id="29">
-        <label>map</label>
-      </node>
-      <node id="36">
-        <label>unordered_set</label>
-      </node>
-      <node id="25">
-        <label>gsl/gsl</label>
-      </node>
-      <node id="24">
-        <label>fstream</label>
-      </node>
-      <node id="11">
-        <label>external/ImGui/imgui.h</label>
-      </node>
-      <node id="19">
-        <label>any</label>
-      </node>
-      <node id="6">
-        <label>SDL2/SDL.h</label>
-      </node>
       <node id="32">
-        <label>random</label>
-      </node>
-      <node id="16">
-        <label>external/glm/glm.hpp</label>
-      </node>
-      <node id="34">
-        <label>string_view</label>
-      </node>
-      <node id="31">
-        <label>optional</label>
-      </node>
-      <node id="38">
-        <label>vector</label>
+        <label>map</label>
       </node>
       <node id="2">
         <label>api/Vertex.hpp</label>
         <link refid="_vertex_8hpp"/>
         <childnode refid="3" relation="include">
         </childnode>
-        <childnode refid="39" relation="include">
+        <childnode refid="41" relation="include">
         </childnode>
+      </node>
+      <node id="38">
+        <label>unordered_set</label>
+      </node>
+      <node id="28">
+        <label>gsl/gsl</label>
+      </node>
+      <node id="27">
+        <label>fstream</label>
+      </node>
+      <node id="14">
+        <label>external/ImGui/imgui.h</label>
+      </node>
+      <node id="22">
+        <label>any</label>
+      </node>
+      <node id="10">
+        <label>SDL2/SDL.h</label>
+      </node>
+      <node id="35">
+        <label>random</label>
+      </node>
+      <node id="19">
+        <label>external/glm/glm.hpp</label>
+      </node>
+      <node id="9">
+        <label>string_view</label>
+      </node>
+      <node id="34">
+        <label>optional</label>
+      </node>
+      <node id="40">
+        <label>vector</label>
+      </node>
+      <node id="39">
+        <label>utility</label>
+      </node>
+      <node id="23">
+        <label>array</label>
+      </node>
+      <node id="20">
+        <label>external/glm/gtx/string_cast.hpp</label>
+      </node>
+      <node id="8">
+        <label>sstream</label>
+      </node>
+      <node id="16">
+        <label>external/ImGui/imgui_impl_vulkan.h</label>
+      </node>
+      <node id="7">
+        <label>iostream</label>
+      </node>
+      <node id="37">
+        <label>unordered_map</label>
+      </node>
+      <node id="6">
+        <label>chrono</label>
       </node>
       <node id="3">
         <label>pch/stdafx.hpp</label>
         <link refid="stdafx_8hpp"/>
         <childnode refid="4" relation="include">
-        </childnode>
-        <childnode refid="10" relation="include">
-        </childnode>
-        <childnode refid="11" relation="include">
-        </childnode>
-        <childnode refid="12" relation="include">
         </childnode>
         <childnode refid="13" relation="include">
         </childnode>
@@ -137,61 +162,31 @@
         </childnode>
         <childnode refid="36" relation="include">
         </childnode>
+        <childnode refid="9" relation="include">
+        </childnode>
         <childnode refid="37" relation="include">
         </childnode>
         <childnode refid="38" relation="include">
         </childnode>
-      </node>
-      <node id="37">
-        <label>utility</label>
-      </node>
-      <node id="20">
-        <label>array</label>
-      </node>
-      <node id="17">
-        <label>external/glm/gtx/string_cast.hpp</label>
-      </node>
-      <node id="1">
-        <label>C:/Repos/rayex/include/base/Geometry.hpp</label>
-        <link refid="_geometry_8hpp"/>
-        <childnode refid="2" relation="include">
+        <childnode refid="39" relation="include">
+        </childnode>
+        <childnode refid="40" relation="include">
         </childnode>
       </node>
-      <node id="13">
-        <label>external/ImGui/imgui_impl_vulkan.h</label>
-      </node>
-      <node id="8">
-        <label>iostream</label>
-      </node>
-      <node id="35">
-        <label>unordered_map</label>
-      </node>
-      <node id="33">
+      <node id="36">
         <label>set</label>
       </node>
-      <node id="23">
+      <node id="26">
         <label>forward_list</label>
       </node>
-      <node id="18">
+      <node id="21">
         <label>algorithm</label>
       </node>
-      <node id="39">
+      <node id="41">
         <label>external/glm/gtx/hash.hpp</label>
       </node>
-      <node id="10">
-        <label>base/Time.hpp</label>
-        <link refid="_time_8hpp"/>
-        <childnode refid="4" relation="include">
-        </childnode>
-      </node>
-      <node id="9">
+      <node id="12">
         <label>vulkan/vulkan.hpp</label>
-      </node>
-      <node id="30">
-        <label>memory</label>
-      </node>
-      <node id="7">
-        <label>SDL2/SDL_vulkan.h</label>
       </node>
       <node id="4">
         <label>Core.hpp</label>
@@ -206,47 +201,77 @@
         </childnode>
         <childnode refid="9" relation="include">
         </childnode>
-      </node>
-    </incdepgraph>
-    <invincdepgraph>
-      <node id="2">
-        <label>C:/Repos/rayex/include/api/buffers/UniformBuffer.hpp</label>
-        <link refid="_uniform_buffer_8hpp"/>
-        <childnode refid="3" relation="include">
+        <childnode refid="10" relation="include">
         </childnode>
-        <childnode refid="5" relation="include">
+        <childnode refid="11" relation="include">
+        </childnode>
+        <childnode refid="12" relation="include">
         </childnode>
       </node>
-      <node id="6">
-        <label>C:/Repos/rayex/include/api/pathtrace/PathTracer.hpp</label>
-        <link refid="_path_tracer_8hpp"/>
-        <childnode refid="3" relation="include">
-        </childnode>
+      <node id="33">
+        <label>memory</label>
       </node>
-      <node id="4">
-        <label>C:/Repos/rayex/include/Rayex.hpp</label>
-        <link refid="_rayex_8hpp"/>
+      <node id="11">
+        <label>SDL2/SDL_vulkan.h</label>
       </node>
       <node id="1">
-        <label>C:/Repos/rayex/include/base/Geometry.hpp</label>
+        <label>/mnt/c/Repos/rayex/include/base/Geometry.hpp</label>
         <link refid="_geometry_8hpp"/>
         <childnode refid="2" relation="include">
         </childnode>
-        <childnode refid="6" relation="include">
-        </childnode>
-        <childnode refid="5" relation="include">
-        </childnode>
+      </node>
+    </incdepgraph>
+    <invincdepgraph>
+      <node id="4">
+        <label>/mnt/c/Repos/rayex/include/Rayex.hpp</label>
+        <link refid="_rayex_8hpp"/>
       </node>
       <node id="3">
-        <label>C:/Repos/rayex/include/api/Api.hpp</label>
+        <label>/mnt/c/Repos/rayex/include/api/Api.hpp</label>
         <link refid="_api_8hpp"/>
         <childnode refid="4" relation="include">
         </childnode>
       </node>
-      <node id="5">
-        <label>C:/Repos/rayex/include/base/Scene.hpp</label>
+      <node id="6">
+        <label>/mnt/c/Repos/rayex/include/base/Scene.hpp</label>
         <link refid="_scene_8hpp"/>
         <childnode refid="3" relation="include">
+        </childnode>
+      </node>
+      <node id="7">
+        <label>/mnt/c/Repos/rayex/include/api/buffers/UniformBuffer.hpp</label>
+        <link refid="_uniform_buffer_8hpp"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="6" relation="include">
+        </childnode>
+      </node>
+      <node id="5">
+        <label>/mnt/c/Repos/rayex/include/api/pathtrace/PathTracer.hpp</label>
+        <link refid="_path_tracer_8hpp"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>/mnt/c/Repos/rayex/include/api/buffers/StorageBuffer.hpp</label>
+        <link refid="_storage_buffer_8hpp"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="6" relation="include">
+        </childnode>
+      </node>
+      <node id="1">
+        <label>/mnt/c/Repos/rayex/include/base/Geometry.hpp</label>
+        <link refid="_geometry_8hpp"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="7" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="6" relation="include">
         </childnode>
       </node>
     </invincdepgraph>
@@ -266,54 +291,61 @@
 <codeline lineno="4"><highlight class="normal"></highlight></codeline>
 <codeline lineno="5"><highlight class="normal"></highlight><highlight class="keyword">namespace<sp/></highlight><highlight class="normal"><ref refid="namespace_r_a_y_e_x___n_a_m_e_s_p_a_c_e" kindref="compound">RAYEX_NAMESPACE</ref></highlight></codeline>
 <codeline lineno="6"><highlight class="normal">{</highlight></codeline>
-<codeline lineno="9" refid="struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_material" refkind="compound"><highlight class="normal"><sp/><sp/></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal"><ref refid="struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_material" kindref="compound">Material</ref></highlight></codeline>
-<codeline lineno="10"><highlight class="normal"><sp/><sp/>{</highlight></codeline>
-<codeline lineno="11" refid="struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_material_1aed286d4563c3708e031c22b1dfdd0850" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>glm::vec3<sp/><ref refid="struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_material_1aed286d4563c3708e031c22b1dfdd0850" kindref="member">ambient</ref><sp/><sp/>=<sp/>glm::vec3(<sp/>1.0F,<sp/>1.0F,<sp/>1.0F<sp/>);</highlight></codeline>
-<codeline lineno="12" refid="struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_material_1afa1db16e87d06229251a605fed642e31" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>glm::vec3<sp/><ref refid="struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_material_1afa1db16e87d06229251a605fed642e31" kindref="member">diffuse</ref><sp/><sp/>=<sp/>glm::vec3(<sp/>1.0F,<sp/>1.0F,<sp/>1.0F<sp/>);</highlight></codeline>
-<codeline lineno="13" refid="struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_material_1a2add0cd69a003e0a01faead2ade81446" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>glm::vec3<sp/><ref refid="struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_material_1a2add0cd69a003e0a01faead2ade81446" kindref="member">specular</ref><sp/>=<sp/>glm::vec3(<sp/>1.0F,<sp/>1.0F,<sp/>1.0F<sp/>);</highlight></codeline>
-<codeline lineno="14"><highlight class="normal"></highlight></codeline>
-<codeline lineno="15" refid="struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_material_1a8948b3f56c7dcadf9e70a2af417f3e59" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>std::string<sp/><ref refid="struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_material_1a8948b3f56c7dcadf9e70a2af417f3e59" kindref="member">ambientTexPath</ref><sp/><sp/>=<sp/></highlight><highlight class="stringliteral">&quot;&quot;</highlight><highlight class="normal">;</highlight></codeline>
-<codeline lineno="16" refid="struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_material_1a58d73159efe7b4974c952671d50f2531" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>std::string<sp/><ref refid="struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_material_1a58d73159efe7b4974c952671d50f2531" kindref="member">diffuseTexPath</ref><sp/><sp/>=<sp/></highlight><highlight class="stringliteral">&quot;&quot;</highlight><highlight class="normal">;</highlight></codeline>
-<codeline lineno="17" refid="struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_material_1adaf2168f7e03c0c1c263f4145c6c9a88" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>std::string<sp/><ref refid="struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_material_1adaf2168f7e03c0c1c263f4145c6c9a88" kindref="member">specularTexPath</ref><sp/>=<sp/></highlight><highlight class="stringliteral">&quot;&quot;</highlight><highlight class="normal">;</highlight></codeline>
-<codeline lineno="18"><highlight class="normal"></highlight></codeline>
-<codeline lineno="19" refid="struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_material_1a7c4c5f7a82461a66b18c2119411073d3" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>glm::vec3<sp/><ref refid="struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_material_1a7c4c5f7a82461a66b18c2119411073d3" kindref="member">emission</ref><sp/><sp/><sp/><sp/><sp/><sp/>=<sp/>glm::vec3(<sp/>0.0F<sp/>);</highlight></codeline>
-<codeline lineno="20" refid="struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_material_1abb2f5557ba7ce5711af41ba969b48b85" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>glm::vec3<sp/><ref refid="struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_material_1abb2f5557ba7ce5711af41ba969b48b85" kindref="member">transmittance</ref><sp/>=<sp/>glm::vec3(<sp/>0.0F<sp/>);</highlight></codeline>
-<codeline lineno="21"><highlight class="normal"><sp/><sp/>};</highlight></codeline>
+<codeline lineno="11" refid="struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_material" refkind="compound"><highlight class="normal"><sp/><sp/></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal"><ref refid="struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_material" kindref="compound">Material</ref></highlight></codeline>
+<codeline lineno="12"><highlight class="normal"><sp/><sp/>{</highlight></codeline>
+<codeline lineno="13" refid="struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_material_1a7450ad0dc89bbcfd69a89d64b46eec77" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>glm::vec3<sp/><ref refid="struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_material_1a7450ad0dc89bbcfd69a89d64b46eec77" kindref="member">ka</ref><sp/>=<sp/>glm::vec3(<sp/>0.0F,<sp/>0.0F,<sp/>0.0F<sp/>);<sp/></highlight></codeline>
+<codeline lineno="14" refid="struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_material_1a9018051af4ed4bfd9299ba4051f93827" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>glm::vec3<sp/><ref refid="struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_material_1a9018051af4ed4bfd9299ba4051f93827" kindref="member">kd</ref><sp/>=<sp/>glm::vec3(<sp/>0.0F,<sp/>0.0F,<sp/>0.0F<sp/>);<sp/></highlight></codeline>
+<codeline lineno="15" refid="struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_material_1a5ef48ca2998c12c026b08eecf951e1d4" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>glm::vec3<sp/><ref refid="struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_material_1a5ef48ca2998c12c026b08eecf951e1d4" kindref="member">ks</ref><sp/>=<sp/>glm::vec3(<sp/>0.0F,<sp/>0.0F,<sp/>0.0F<sp/>);<sp/></highlight></codeline>
+<codeline lineno="16"><highlight class="normal"></highlight></codeline>
+<codeline lineno="17" refid="struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_material_1a8948b3f56c7dcadf9e70a2af417f3e59" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>std::string<sp/><ref refid="struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_material_1a8948b3f56c7dcadf9e70a2af417f3e59" kindref="member">ambientTexPath</ref><sp/><sp/>=<sp/></highlight><highlight class="stringliteral">&quot;&quot;</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="18" refid="struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_material_1a58d73159efe7b4974c952671d50f2531" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>std::string<sp/><ref refid="struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_material_1a58d73159efe7b4974c952671d50f2531" kindref="member">diffuseTexPath</ref><sp/><sp/>=<sp/></highlight><highlight class="stringliteral">&quot;&quot;</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="19" refid="struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_material_1adaf2168f7e03c0c1c263f4145c6c9a88" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>std::string<sp/><ref refid="struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_material_1adaf2168f7e03c0c1c263f4145c6c9a88" kindref="member">specularTexPath</ref><sp/>=<sp/></highlight><highlight class="stringliteral">&quot;&quot;</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="20"><highlight class="normal"></highlight></codeline>
+<codeline lineno="21" refid="struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_material_1a7c4c5f7a82461a66b18c2119411073d3" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>glm::vec3<sp/><ref refid="struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_material_1a7c4c5f7a82461a66b18c2119411073d3" kindref="member">emission</ref><sp/>=<sp/>glm::vec3(<sp/>0.0F<sp/>);</highlight></codeline>
 <codeline lineno="22"><highlight class="normal"></highlight></codeline>
-<codeline lineno="26" refid="struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_mesh" refkind="compound"><highlight class="normal"><sp/><sp/></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal"><ref refid="struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_mesh" kindref="compound">Mesh</ref></highlight></codeline>
-<codeline lineno="27"><highlight class="normal"><sp/><sp/>{</highlight></codeline>
-<codeline lineno="28" refid="struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_mesh_1a004a9c0382dad39d04524fe4f82929ae" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_material" kindref="compound">Material</ref><sp/><ref refid="struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_mesh_1a004a9c0382dad39d04524fe4f82929ae" kindref="member">material</ref><sp/><sp/><sp/><sp/>=<sp/>{<sp/>};<sp/></highlight></codeline>
-<codeline lineno="29" refid="struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_mesh_1a6d96ab3ebede16df86654d7d25d8435b" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>uint32_t<sp/><ref refid="struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_mesh_1a6d96ab3ebede16df86654d7d25d8435b" kindref="member">indexOffset</ref><sp/>=<sp/>0;<sp/><sp/><sp/></highlight></codeline>
-<codeline lineno="30"><highlight class="normal"><sp/><sp/>};</highlight></codeline>
+<codeline lineno="27" refid="struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_material_1a2985375b4f62c77adc4f5aae8f884ed9" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>uint32_t<sp/><ref refid="struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_material_1a2985375b4f62c77adc4f5aae8f884ed9" kindref="member">illum</ref><sp/>=<sp/>0;</highlight></codeline>
+<codeline lineno="28"><highlight class="normal"></highlight></codeline>
+<codeline lineno="30" refid="struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_material_1a4aadf85f61539cbd7e335754621f8fd3" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">float</highlight><highlight class="normal"><sp/><ref refid="struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_material_1a4aadf85f61539cbd7e335754621f8fd3" kindref="member">d</ref><sp/>=<sp/>1.0F;</highlight></codeline>
 <codeline lineno="31"><highlight class="normal"></highlight></codeline>
-<codeline lineno="37" refid="struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_geometry" refkind="compound"><highlight class="normal"><sp/><sp/></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal"><ref refid="struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_geometry" kindref="compound">Geometry</ref></highlight></codeline>
-<codeline lineno="38"><highlight class="normal"><sp/><sp/>{</highlight></codeline>
-<codeline lineno="39" refid="struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_geometry_1a20ea3640e900acebb235adc345de1bd0" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>RX_API<sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_geometry_1a20ea3640e900acebb235adc345de1bd0" kindref="member">setMaterial</ref>(<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_material" kindref="compound">Material</ref>&amp;<sp/>material<sp/>);</highlight></codeline>
-<codeline lineno="40"><highlight class="normal"></highlight></codeline>
-<codeline lineno="41" refid="struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_geometry_1a9b4d99a41250521028e9406ef1bf9c15" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>std::vector&lt;Vertex&gt;<sp/><ref refid="struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_geometry_1a9b4d99a41250521028e9406ef1bf9c15" kindref="member">vertices</ref>;<sp/><sp/><sp/></highlight></codeline>
-<codeline lineno="42" refid="struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_geometry_1a11ecc2461cc8f940666cc5535e977c0f" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>std::vector&lt;uint32_t&gt;<sp/><ref refid="struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_geometry_1a11ecc2461cc8f940666cc5535e977c0f" kindref="member">indices</ref>;<sp/><sp/></highlight></codeline>
-<codeline lineno="43" refid="struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_geometry_1a7d3f368a8e407c602170ce356b3c5945" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>std::vector&lt;Mesh&gt;<sp/><ref refid="struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_geometry_1a7d3f368a8e407c602170ce356b3c5945" kindref="member">meshes</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
-<codeline lineno="44" refid="struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_geometry_1ab185f8dac7b31f826e611b5a24cb30ce" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>uint32_t<sp/><ref refid="struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_geometry_1ab185f8dac7b31f826e611b5a24cb30ce" kindref="member">geometryIndex</ref><sp/>=<sp/>0;<sp/><sp/><sp/><sp/><sp/></highlight></codeline>
-<codeline lineno="45" refid="struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_geometry_1ab1abb0b9dda1f43c9b2f92fe83a08588" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>std::string<sp/><ref refid="struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_geometry_1ab1abb0b9dda1f43c9b2f92fe83a08588" kindref="member">path</ref><sp/><sp/><sp/><sp/><sp/><sp/><sp/>=<sp/></highlight><highlight class="stringliteral">&quot;&quot;</highlight><highlight class="normal">;<sp/><sp/><sp/><sp/></highlight></codeline>
-<codeline lineno="46" refid="struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_geometry_1af7124a02f0e2ab740618cf30c1ea748c" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/><ref refid="struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_geometry_1af7124a02f0e2ab740618cf30c1ea748c" kindref="member">initialized</ref><sp/><sp/><sp/><sp/><sp/><sp/><sp/>=<sp/></highlight><highlight class="keyword">false</highlight><highlight class="normal">;<sp/></highlight></codeline>
-<codeline lineno="47" refid="struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_geometry_1a4a926e0a1c48cf58f445b501c79bebb1" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/><ref refid="struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_geometry_1a4a926e0a1c48cf58f445b501c79bebb1" kindref="member">dynamic</ref><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>=<sp/></highlight><highlight class="keyword">false</highlight><highlight class="normal">;<sp/></highlight></codeline>
-<codeline lineno="48"><highlight class="normal"><sp/><sp/>};</highlight></codeline>
-<codeline lineno="49"><highlight class="normal"></highlight></codeline>
-<codeline lineno="53" refid="struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_geometry_instance" refkind="compound"><highlight class="normal"><sp/><sp/></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal"><ref refid="struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_geometry_instance" kindref="compound">GeometryInstance</ref></highlight></codeline>
+<codeline lineno="33" refid="struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_material_1a309eafdbd92cf69e4a7daa6a59c93573" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">float</highlight><highlight class="normal"><sp/><ref refid="struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_material_1a309eafdbd92cf69e4a7daa6a59c93573" kindref="member">ns</ref><sp/>=<sp/>0.0F;</highlight></codeline>
+<codeline lineno="34"><highlight class="normal"></highlight></codeline>
+<codeline lineno="36" refid="struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_material_1a4a2874571c4c3307df4235f57c5c6639" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">float</highlight><highlight class="normal"><sp/><ref refid="struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_material_1a4a2874571c4c3307df4235f57c5c6639" kindref="member">ni</ref><sp/>=<sp/>1.0F;</highlight></codeline>
+<codeline lineno="37"><highlight class="normal"><sp/><sp/>};</highlight></codeline>
+<codeline lineno="38"><highlight class="normal"></highlight></codeline>
+<codeline lineno="42" refid="struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_mesh" refkind="compound"><highlight class="normal"><sp/><sp/></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal"><ref refid="struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_mesh" kindref="compound">Mesh</ref></highlight></codeline>
+<codeline lineno="43"><highlight class="normal"><sp/><sp/>{</highlight></codeline>
+<codeline lineno="44" refid="struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_mesh_1a004a9c0382dad39d04524fe4f82929ae" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_material" kindref="compound">Material</ref><sp/><ref refid="struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_mesh_1a004a9c0382dad39d04524fe4f82929ae" kindref="member">material</ref><sp/><sp/><sp/><sp/>=<sp/>{<sp/>};<sp/></highlight></codeline>
+<codeline lineno="45" refid="struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_mesh_1a6d96ab3ebede16df86654d7d25d8435b" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>uint32_t<sp/><ref refid="struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_mesh_1a6d96ab3ebede16df86654d7d25d8435b" kindref="member">indexOffset</ref><sp/>=<sp/>0;<sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="46"><highlight class="normal"><sp/><sp/>};</highlight></codeline>
+<codeline lineno="47"><highlight class="normal"></highlight></codeline>
+<codeline lineno="53" refid="struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_geometry" refkind="compound"><highlight class="normal"><sp/><sp/></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal"><ref refid="struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_geometry" kindref="compound">Geometry</ref></highlight></codeline>
 <codeline lineno="54"><highlight class="normal"><sp/><sp/>{</highlight></codeline>
-<codeline lineno="55" refid="struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_geometry_instance_1a165e07ad30882bac25ab130fd1116dd5" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>RX_API<sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_geometry_instance_1a165e07ad30882bac25ab130fd1116dd5" kindref="member">setTransform</ref>(<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>glm::mat4&amp;<sp/><ref refid="struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_geometry_instance_1a6d910049d3ae5f62b582fd1f576246a7" kindref="member">transform</ref><sp/>);</highlight></codeline>
+<codeline lineno="55"><highlight class="normal"><sp/><sp/><sp/><sp/>RX_API<sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_geometry_1a20ea3640e900acebb235adc345de1bd0" kindref="member">setMaterial</ref>(<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_material" kindref="compound">Material</ref>&amp;<sp/>material<sp/>);</highlight></codeline>
 <codeline lineno="56"><highlight class="normal"></highlight></codeline>
-<codeline lineno="57" refid="struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_geometry_instance_1a6d910049d3ae5f62b582fd1f576246a7" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>glm::mat4<sp/><ref refid="struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_geometry_instance_1a6d910049d3ae5f62b582fd1f576246a7" kindref="member">transform</ref><sp/><sp/><sp/><sp/>=<sp/>glm::mat4(<sp/>1.0F<sp/>);<sp/></highlight></codeline>
-<codeline lineno="58" refid="struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_geometry_instance_1a70a32d8d77163c71da2e8ded720dd30c" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>glm::mat4<sp/><ref refid="struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_geometry_instance_1a70a32d8d77163c71da2e8ded720dd30c" kindref="member">transformIT</ref><sp/><sp/>=<sp/>glm::mat4(<sp/>1.0F<sp/>);<sp/></highlight></codeline>
-<codeline lineno="59" refid="struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_geometry_instance_1a6104e92fc78364e8f3fb395caf466e39" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>uint32_t<sp/><ref refid="struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_geometry_instance_1a6104e92fc78364e8f3fb395caf466e39" kindref="member">geometryIndex</ref><sp/>=<sp/>0;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
-<codeline lineno="60"><highlight class="normal"><sp/><sp/>};</highlight></codeline>
-<codeline lineno="61"><highlight class="normal"></highlight></codeline>
-<codeline lineno="70" refid="group___b_a_s_e_1ga2d50e1cd402880131042e1bcab773b46" refkind="member"><highlight class="normal"><sp/><sp/>RX_API<sp/>std::shared_ptr&lt;Geometry&gt;<sp/><ref refid="group___b_a_s_e_1ga2d50e1cd402880131042e1bcab773b46" kindref="member">loadObj</ref>(<sp/>std::string_view<sp/>path,<sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/>dynamic<sp/>=<sp/></highlight><highlight class="keyword">false</highlight><highlight class="normal"><sp/>);</highlight></codeline>
-<codeline lineno="71"><highlight class="normal"></highlight></codeline>
-<codeline lineno="79" refid="group___b_a_s_e_1gad880ea304e8ff3dab6ea5258df8970cf" refkind="member"><highlight class="normal"><sp/><sp/>RX_API<sp/>std::shared_ptr&lt;GeometryInstance&gt;<sp/><ref refid="group___b_a_s_e_1gad880ea304e8ff3dab6ea5258df8970cf" kindref="member">instance</ref>(<sp/>std::shared_ptr&lt;Geometry&gt;<sp/>geometry,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>glm::mat4&amp;<sp/>transform<sp/>=<sp/>glm::mat4(<sp/>1.0F<sp/>)<sp/>);</highlight></codeline>
-<codeline lineno="80"><highlight class="normal"></highlight></codeline>
-<codeline lineno="81"><highlight class="normal">}<sp/></highlight><highlight class="comment">//<sp/>namespace<sp/>RAYEX_NAMESPACE</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="57" refid="struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_geometry_1a9b4d99a41250521028e9406ef1bf9c15" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>std::vector&lt;Vertex&gt;<sp/><ref refid="struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_geometry_1a9b4d99a41250521028e9406ef1bf9c15" kindref="member">vertices</ref>;<sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="58" refid="struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_geometry_1a11ecc2461cc8f940666cc5535e977c0f" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>std::vector&lt;uint32_t&gt;<sp/><ref refid="struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_geometry_1a11ecc2461cc8f940666cc5535e977c0f" kindref="member">indices</ref>;<sp/><sp/></highlight></codeline>
+<codeline lineno="59" refid="struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_geometry_1a7d3f368a8e407c602170ce356b3c5945" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>std::vector&lt;Mesh&gt;<sp/><ref refid="struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_geometry_1a7d3f368a8e407c602170ce356b3c5945" kindref="member">meshes</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="60" refid="struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_geometry_1ab185f8dac7b31f826e611b5a24cb30ce" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>uint32_t<sp/><ref refid="struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_geometry_1ab185f8dac7b31f826e611b5a24cb30ce" kindref="member">geometryIndex</ref><sp/>=<sp/>0;<sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="61" refid="struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_geometry_1ab1abb0b9dda1f43c9b2f92fe83a08588" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>std::string<sp/><ref refid="struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_geometry_1ab1abb0b9dda1f43c9b2f92fe83a08588" kindref="member">path</ref><sp/><sp/><sp/><sp/><sp/><sp/><sp/>=<sp/></highlight><highlight class="stringliteral">&quot;&quot;</highlight><highlight class="normal">;<sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="62" refid="struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_geometry_1af7124a02f0e2ab740618cf30c1ea748c" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/><ref refid="struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_geometry_1af7124a02f0e2ab740618cf30c1ea748c" kindref="member">initialized</ref><sp/><sp/><sp/><sp/><sp/><sp/><sp/>=<sp/></highlight><highlight class="keyword">false</highlight><highlight class="normal">;<sp/></highlight></codeline>
+<codeline lineno="63" refid="struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_geometry_1a4a926e0a1c48cf58f445b501c79bebb1" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/><ref refid="struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_geometry_1a4a926e0a1c48cf58f445b501c79bebb1" kindref="member">dynamic</ref><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>=<sp/></highlight><highlight class="keyword">false</highlight><highlight class="normal">;<sp/></highlight></codeline>
+<codeline lineno="64"><highlight class="normal"><sp/><sp/>};</highlight></codeline>
+<codeline lineno="65"><highlight class="normal"></highlight></codeline>
+<codeline lineno="69" refid="struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_geometry_instance" refkind="compound"><highlight class="normal"><sp/><sp/></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal"><ref refid="struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_geometry_instance" kindref="compound">GeometryInstance</ref></highlight></codeline>
+<codeline lineno="70"><highlight class="normal"><sp/><sp/>{</highlight></codeline>
+<codeline lineno="71"><highlight class="normal"><sp/><sp/><sp/><sp/>RX_API<sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_geometry_instance_1a165e07ad30882bac25ab130fd1116dd5" kindref="member">setTransform</ref>(<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>glm::mat4&amp;<sp/><ref refid="struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_geometry_instance_1a6d910049d3ae5f62b582fd1f576246a7" kindref="member">transform</ref><sp/>);</highlight></codeline>
+<codeline lineno="72"><highlight class="normal"></highlight></codeline>
+<codeline lineno="73" refid="struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_geometry_instance_1a6d910049d3ae5f62b582fd1f576246a7" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>glm::mat4<sp/><ref refid="struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_geometry_instance_1a6d910049d3ae5f62b582fd1f576246a7" kindref="member">transform</ref><sp/><sp/><sp/><sp/>=<sp/>glm::mat4(<sp/>1.0F<sp/>);<sp/></highlight></codeline>
+<codeline lineno="74" refid="struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_geometry_instance_1a70a32d8d77163c71da2e8ded720dd30c" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>glm::mat4<sp/><ref refid="struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_geometry_instance_1a70a32d8d77163c71da2e8ded720dd30c" kindref="member">transformIT</ref><sp/><sp/>=<sp/>glm::mat4(<sp/>1.0F<sp/>);<sp/></highlight></codeline>
+<codeline lineno="75" refid="struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_geometry_instance_1a6104e92fc78364e8f3fb395caf466e39" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>uint32_t<sp/><ref refid="struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_geometry_instance_1a6104e92fc78364e8f3fb395caf466e39" kindref="member">geometryIndex</ref><sp/>=<sp/>0;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="76"><highlight class="normal"><sp/><sp/>};</highlight></codeline>
+<codeline lineno="77"><highlight class="normal"></highlight></codeline>
+<codeline lineno="86"><highlight class="normal"><sp/><sp/>RX_API<sp/>std::shared_ptr&lt;Geometry&gt;<sp/><ref refid="group___b_a_s_e_1ga2d50e1cd402880131042e1bcab773b46" kindref="member">loadObj</ref>(<sp/>std::string_view<sp/>path,<sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/>dynamic<sp/>=<sp/></highlight><highlight class="keyword">false</highlight><highlight class="normal"><sp/>);</highlight></codeline>
+<codeline lineno="87"><highlight class="normal"></highlight></codeline>
+<codeline lineno="95"><highlight class="normal"><sp/><sp/>RX_API<sp/>std::shared_ptr&lt;GeometryInstance&gt;<sp/><ref refid="group___b_a_s_e_1gad880ea304e8ff3dab6ea5258df8970cf" kindref="member">instance</ref>(<sp/>std::shared_ptr&lt;Geometry&gt;<sp/>geometry,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>glm::mat4&amp;<sp/>transform<sp/>=<sp/>glm::mat4(<sp/>1.0F<sp/>)<sp/>);</highlight></codeline>
+<codeline lineno="96"><highlight class="normal"></highlight></codeline>
+<codeline lineno="97"><highlight class="normal">}<sp/></highlight><highlight class="comment">//<sp/>namespace<sp/>RAYEX_NAMESPACE</highlight><highlight class="normal"></highlight></codeline>
     </programlisting>
-    <location file="C:/Repos/rayex/include/base/Geometry.hpp"/>
+    <location file="/mnt/c/Repos/rayex/include/base/Geometry.hpp"/>
   </compounddef>
 </doxygen>

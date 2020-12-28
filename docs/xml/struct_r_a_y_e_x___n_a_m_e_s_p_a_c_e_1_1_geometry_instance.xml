@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
-<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.20" xml:lang="en-US">
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.17">
   <compounddef id="struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_geometry_instance" kind="struct" language="C++" prot="public">
     <compoundname>RAYEX_NAMESPACE::GeometryInstance</compoundname>
     <includes refid="_geometry_8hpp" local="no">Geometry.hpp</includes>
@@ -17,7 +17,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="C:/Repos/rayex/include/base/Geometry.hpp" line="57" column="15" bodyfile="C:/Repos/rayex/include/base/Geometry.hpp" bodystart="57" bodyend="-1"/>
+        <location file="/mnt/c/Repos/rayex/include/base/Geometry.hpp" line="73" column="15" bodyfile="/mnt/c/Repos/rayex/include/base/Geometry.hpp" bodystart="73" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_geometry_instance_1a70a32d8d77163c71da2e8ded720dd30c" prot="public" static="no" mutable="no">
         <type>glm::mat4</type>
@@ -32,7 +32,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="C:/Repos/rayex/include/base/Geometry.hpp" line="58" column="15" bodyfile="C:/Repos/rayex/include/base/Geometry.hpp" bodystart="58" bodyend="-1"/>
+        <location file="/mnt/c/Repos/rayex/include/base/Geometry.hpp" line="74" column="15" bodyfile="/mnt/c/Repos/rayex/include/base/Geometry.hpp" bodystart="74" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_geometry_instance_1a6104e92fc78364e8f3fb395caf466e39" prot="public" static="no" mutable="no">
         <type>uint32_t</type>
@@ -47,7 +47,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="C:/Repos/rayex/include/base/Geometry.hpp" line="59" column="14" bodyfile="C:/Repos/rayex/include/base/Geometry.hpp" bodystart="59" bodyend="-1"/>
+        <location file="/mnt/c/Repos/rayex/include/base/Geometry.hpp" line="75" column="14" bodyfile="/mnt/c/Repos/rayex/include/base/Geometry.hpp" bodystart="75" bodyend="-1"/>
       </memberdef>
       </sectiondef>
       <sectiondef kind="public-func">
@@ -66,7 +66,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="C:/Repos/rayex/include/base/Geometry.hpp" line="55" column="17"/>
+        <location file="/mnt/c/Repos/rayex/include/base/Geometry.hpp" line="71" column="17"/>
       </memberdef>
       </sectiondef>
     <briefdescription>
@@ -77,7 +77,7 @@
 </simplesect>
 </para>
     </detaileddescription>
-    <location file="C:/Repos/rayex/include/base/Geometry.hpp" line="53" column="3" bodyfile="C:/Repos/rayex/include/base/Geometry.hpp" bodystart="54" bodyend="60"/>
+    <location file="/mnt/c/Repos/rayex/include/base/Geometry.hpp" line="70" column="1" bodyfile="/mnt/c/Repos/rayex/include/base/Geometry.hpp" bodystart="69" bodyend="76"/>
     <listofallmembers>
       <member refid="struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_geometry_instance_1a6104e92fc78364e8f3fb395caf466e39" prot="public" virt="non-virtual"><scope>RAYEX_NAMESPACE::GeometryInstance</scope><name>geometryIndex</name></member>
       <member refid="struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_geometry_instance_1a165e07ad30882bac25ab130fd1116dd5" prot="public" virt="non-virtual"><scope>RAYEX_NAMESPACE::GeometryInstance</scope><name>setTransform</name></member>

@@ -1,0 +1,31 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.17">
+  <compounddef id="struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_path_tracing_capabilities" kind="struct" language="C++" prot="public">
+    <compoundname>RAYEX_NAMESPACE::PathTracingCapabilities</compoundname>
+    <includes refid="_path_tracer_8hpp" local="no">PathTracer.hpp</includes>
+      <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_path_tracing_capabilities_1a47265ef799d8058bc56e7dff41970c47" prot="public" static="no" mutable="no">
+        <type>vk::PhysicalDeviceRayTracingPipelinePropertiesKHR</type>
+        <definition>vk::PhysicalDeviceRayTracingPipelinePropertiesKHR RAYEX_NAMESPACE::PathTracingCapabilities::pipelineProperties</definition>
+        <argsstring></argsstring>
+        <name>pipelineProperties</name>
+        <briefdescription>
+<para>The physical device&apos;s path tracing capabilities. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/mnt/c/Repos/rayex/include/api/pathtrace/PathTracer.hpp" line="29" column="55" bodyfile="/mnt/c/Repos/rayex/include/api/pathtrace/PathTracer.hpp" bodystart="29" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="/mnt/c/Repos/rayex/include/api/pathtrace/PathTracer.hpp" line="28" column="1" bodyfile="/mnt/c/Repos/rayex/include/api/pathtrace/PathTracer.hpp" bodystart="27" bodyend="38"/>
+    <listofallmembers>
+      <member refid="struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_path_tracing_capabilities_1a47265ef799d8058bc56e7dff41970c47" prot="public" virt="non-virtual"><scope>RAYEX_NAMESPACE::PathTracingCapabilities</scope><name>pipelineProperties</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

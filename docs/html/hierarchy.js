@@ -25,6 +25,7 @@ var hierarchy =
     [ "RAYEX_NAMESPACE::Mesh", "struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_mesh.html", null ],
     [ "RAYEX_NAMESPACE::MeshSSBO", "struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_mesh_s_s_b_o.html", null ],
     [ "RAYEX_NAMESPACE::PathTracer", "class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_path_tracer.html", null ],
+    [ "RAYEX_NAMESPACE::PathTracingCapabilities", "struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_path_tracing_capabilities.html", null ],
     [ "RAYEX_NAMESPACE::PostProcessingRenderer", "class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_post_processing_renderer.html", null ],
     [ "RAYEX_NAMESPACE::PtPushConstants", "struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_pt_push_constants.html", null ],
     [ "RAYEX_NAMESPACE::Rayex", "class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_rayex.html", null ],

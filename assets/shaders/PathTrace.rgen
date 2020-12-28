@@ -71,7 +71,7 @@ void main( )
     float tMin    = 0.001;
     float tMax    = 10000.0;
 
-    for ( ray.depth = 0; ray.depth <= maxRecursionDepth + 1; ray.depth++ )
+    for ( ray.depth = 0; ray.depth <= maxRecursionDepth; ++ray.depth )
     {
       // Idea to make end of recursion the clear color or environment map color instead of pitch black.
       //if ( ray.depth >= maxRecursionDepth )

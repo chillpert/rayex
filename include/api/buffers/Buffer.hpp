@@ -64,7 +64,7 @@ namespace RAYEX_NAMESPACE
     {
       vk::DeviceSize actualSize = data.size( ) * sizeof( data[0] );
 
-      // Only call mapMemory once or everytime the buffer has been initialized again.
+      // Only call mapMemory once or every time the buffer has been initialized again.
       if ( !_mapped )
       {
         _mapped = true;
@@ -92,7 +92,7 @@ namespace RAYEX_NAMESPACE
         finalSize = size.value( );
       }
 
-      // Only call mapMemory once or everytime the buffer has been initialized again.
+      // Only call mapMemory once or every time the buffer has been initialized again.
       if ( !_mapped )
       {
         _mapped = true;

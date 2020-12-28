@@ -1,8 +1,6 @@
 #ifndef CORE_HPP
 #define CORE_HPP
 
-#include "external/tinyLogger/TinyLogger.hpp"
-
 #define SDL_MAIN_HANDLED
 #include <SDL2/SDL.h>
 #include <SDL2/SDL_vulkan.h>
@@ -10,8 +8,8 @@
 #define VK_ENABLE_BETA_EXTENSIONS
 //#define VULKAN_HPP_NO_EXCEPTIONS
 
-#include <iostream>
-#include <vulkan/vulkan.hpp>
+#include <external/tinyLogger/TinyLogger.hpp>
+#include <external/vkCore/vkCore/vkCore.hpp>
 
 #ifdef RX_BUILD_EXAMPLES
   #undef RX_BUILD_DLL
@@ -39,20 +37,20 @@
 
 #define RAYEX_NAMESPACE_STRINGIFIED RAYEX_NAMESPACE_STRINGIFY( RAYEX_NAMESPACE )
 
-#define RX_VERBOSE( ... )           LOGGER_NAME::verbose( RAYEX_NAMESPACE_STRINGIFIED, ": ", __VA_ARGS__ )
-#define RX_INFO( ... )              LOGGER_NAME::info( RAYEX_NAMESPACE_STRINGIFIED, ": ", __VA_ARGS__ )
-#define RX_SUCCESS( ... )           LOGGER_NAME::success( RAYEX_NAMESPACE_STRINGIFIED, ": ", __VA_ARGS__ )
-#define RX_WARN( ... )              LOGGER_NAME::warning( RAYEX_NAMESPACE_STRINGIFIED, ": ", __VA_ARGS__ )
-#define RX_ERROR( ... )             LOGGER_NAME::error( RAYEX_NAMESPACE_STRINGIFIED, ": ", __VA_ARGS__ )
-#define RX_FATAL( ... )             LOGGER_NAME::fatal( RAYEX_NAMESPACE_STRINGIFIED, ": ", __VA_ARGS__ )
-#define RX_ASSERT( statement, ... ) LOGGER_NAME::assert2( statement, RAYEX_NAMESPACE_STRINGIFIED, ": ", __VA_ARGS__ )
+#define RX_VERBOSE( ... )           TINY_LOGGER_NAME::verbose( RAYEX_NAMESPACE_STRINGIFIED, ": ", __VA_ARGS__ )
+#define RX_INFO( ... )              TINY_LOGGER_NAME::info( RAYEX_NAMESPACE_STRINGIFIED, ": ", __VA_ARGS__ )
+#define RX_SUCCESS( ... )           TINY_LOGGER_NAME::success( RAYEX_NAMESPACE_STRINGIFIED, ": ", __VA_ARGS__ )
+#define RX_WARN( ... )              TINY_LOGGER_NAME::warning( RAYEX_NAMESPACE_STRINGIFIED, ": ", __VA_ARGS__ )
+#define RX_ERROR( ... )             TINY_LOGGER_NAME::error( RAYEX_NAMESPACE_STRINGIFIED, ": ", __VA_ARGS__ )
+#define RX_FATAL( ... )             TINY_LOGGER_NAME::fatal( RAYEX_NAMESPACE_STRINGIFIED, ": ", __VA_ARGS__ )
+#define RX_ASSERT( statement, ... ) TINY_LOGGER_NAME::assert2( statement, RAYEX_NAMESPACE_STRINGIFIED, ": ", __VA_ARGS__ )
 
 #define RX_LOG_TIME_START( ... )      \
   std::cout << std::endl;             \
   float startTime = Time::getTime( ); \
-  LOGGER_NAME::info( RAYEX_NAMESPACE_STRINGIFIED, ": ", __VA_ARGS__ )
+  TINY_LOGGER_NAME::info( RAYEX_NAMESPACE_STRINGIFIED, ": ", __VA_ARGS__ )
 
-#define RX_LOG_TIME_STOP( ... ) LOGGER_NAME::success( RAYEX_NAMESPACE_STRINGIFIED, ": ", __VA_ARGS__, " ( Time: ", std::setprecision( std::numeric_limits<float>::digits10 ), Time::getTime( ) - startTime, " s )." )
+#define RX_LOG_TIME_STOP( ... ) TINY_LOGGER_NAME::success( RAYEX_NAMESPACE_STRINGIFIED, ": ", __VA_ARGS__, " ( Time: ", std::setprecision( std::numeric_limits<float>::digits10 ), Time::getTime( ) - startTime, " s )." )
 
 // Doxygen groups
 /// @defgroup BASE Base

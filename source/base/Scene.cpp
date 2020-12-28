@@ -197,7 +197,7 @@ namespace RAYEX_NAMESPACE
 
   void Scene::clearGeometries( )
   {
-    RX_INFO( "Clearing geoemtry." );
+    RX_INFO( "Clearing geometry." );
 
     _geometries.clear( );
     _geometryInstances.clear( );
@@ -282,7 +282,7 @@ namespace RAYEX_NAMESPACE
   {
     // Resize and initialize buffers with "dummy data".
     // The advantage of doing this is that the buffers are all initialized right away (even though it is invalid data) and
-    // this makes it possible to call fill instead of init again, when changing any of the data below.
+    // this makes it possible to call fill instead of initialize again, when changing any of the data below.
     std::vector<GeometryInstanceSSBO> geometryInstances( _settings->_maxGeometryInstances );
     _geometryInstancesBuffer.init( geometryInstances, components::maxResources );
 
@@ -447,7 +447,7 @@ namespace RAYEX_NAMESPACE
 
     _uploadGeometryInstancesToBuffer = false;
 
-    if ( !_geometryInstances.empty( ) && imageIndex % 2 == 0 ) // @todo % 2 == 0 statememt is a temporary fix. Probably a sync error.
+    if ( !_geometryInstances.empty( ) && imageIndex % 2 == 0 ) // @todo % 2 == 0 statement is a temporary fix. Probably a sync error.
     {
       memAlignedGeometryInstances.resize( _geometryInstances.size( ) );
       std::transform( _geometryInstances.begin( ), _geometryInstances.end( ), memAlignedGeometryInstances.begin( ),

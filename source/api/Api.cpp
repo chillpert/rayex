@@ -142,7 +142,7 @@ namespace RAYEX_NAMESPACE
     _postProcessingRenderer.initPipeline( );
     _postProcessingRenderer.updateDescriptors( _pathTracer.getStorageImageInfo( ) );
 
-    // Init and record swapchain command buffers.
+    // Initialize and record swapchain command buffers.
     _swapchainCommandBuffers.init( _graphicsCmdPool.get( ), components::swapchainImageCount, vk::CommandBufferUsageFlagBits::eRenderPassContinue );
 
     RX_LOG_TIME_STOP( "API finished" );
@@ -258,7 +258,7 @@ namespace RAYEX_NAMESPACE
                                     &imageIndex,            // pImageIndices
                                     nullptr );              // pResults
 
-    // This try catch block is only necesary on Linux for whatever reason. Without it, resizing the window will result in an unhandled throw of vk::Result::eErrorOutOfDateKHR.
+    // This try catch block is only necessary on Linux for whatever reason. Without it, resizing the window will result in an unhandled throw of vk::Result::eErrorOutOfDateKHR.
     try
     {
       vk::Result result = components::graphicsQueue.presentKHR( presentInfo );

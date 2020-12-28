@@ -8,7 +8,7 @@
 #include "Random.glsl"
 #include "Ray.glsl"
 
-layout( location = 0 ) rayPayloadInEXT RayPayLoad ray;
+layout( location = 1 ) rayPayloadInEXT RayPayLoad ray;
 
 layout( binding = 1, set = 1 ) buffer GeometryInstances
 {
@@ -52,10 +52,6 @@ Vertex unpackVertex( uint index, uint geometryIndex )
 
 void main( )
 {
-  ray.hitValue = vec3( 1.0, 0.0, 0.0 );
-  ray.weight   = vec3( 1.0, 0.0, 0.0 );
-  return;
-
   // Retrieve the geometry that was hit.
   uint geometryIndex = geometryInstances.i[gl_InstanceCustomIndexEXT].geometryIndex;
 

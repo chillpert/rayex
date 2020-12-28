@@ -53,7 +53,7 @@ namespace RAYEX_NAMESPACE
     /// @return Returns a pointer to the renderer's window.
     auto getWindow( ) const -> std::shared_ptr<Window> { return _window; }
 
-    /// Used to modify any interal rendering settings.
+    /// Used to modify any internal rendering settings.
     /// @return Returns the settings.
     auto settings( ) -> Settings& { return _api._settings; }
 

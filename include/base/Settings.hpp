@@ -117,10 +117,7 @@ namespace RAYEX_NAMESPACE
     uint32_t _recursionDepth     = 10;                                     ///< The current recursion depth.
     uint32_t _perPixelSampleRate = 4;                                      ///< Stores the total amount of samples that will be taken and averaged per pixel.
 
-    bool _accumulateFrames = true;
-
-    Scene* _scene = nullptr;
-
+    bool _accumulateFrames          = true;
     bool _automaticPipelineRefresh  = false; ///< Keeps track of whether or not the graphics pipelines should be recreated automatically as soon as possible.
     bool _automaticSwapchainRefresh = false; ///< Keeps track of whether or not the swapchain should be recreated automatically as soon as possible.
   };

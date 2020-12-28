@@ -1,5 +1,6 @@
 #pragma once
 
+#include "api/Components.hpp"
 #include "api/image/Image.hpp"
 
 namespace RAYEX_NAMESPACE
@@ -23,7 +24,7 @@ namespace RAYEX_NAMESPACE
 
     /// Call to copyToBuffer(Buffer).
     auto operator=( const Buffer& ) -> Buffer&;
-    auto operator=( const Buffer&& ) -> Buffer& = delete;
+    auto operator=( const Buffer && ) -> Buffer& = delete;
 
     auto get( ) const -> const vk::Buffer { return _buffer.get( ); }
 

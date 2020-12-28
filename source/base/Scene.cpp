@@ -517,7 +517,7 @@ namespace RAYEX_NAMESPACE
 
     _sceneDescriptors.layout = _sceneDescriptors.bindings.initLayoutUnique( );
     _sceneDescriptors.pool   = _sceneDescriptors.bindings.initPoolUnique( components::maxResources );
-    _sceneDescriptorsets     = vk::Initializer::initDescriptorSetsUnique( _sceneDescriptors.pool, _sceneDescriptors.layout );
+    _sceneDescriptorsets     = vkCore::initDescriptorSetsUnique( _sceneDescriptors.pool, _sceneDescriptors.layout );
   }
 
   void Scene::initGeoemtryDescriptorSets( )
@@ -566,7 +566,7 @@ namespace RAYEX_NAMESPACE
 
     _geometryDescriptors.layout = _geometryDescriptors.bindings.initLayoutUnique( vk::DescriptorSetLayoutCreateFlagBits::eUpdateAfterBindPool );
     _geometryDescriptors.pool   = _geometryDescriptors.bindings.initPoolUnique( components::swapchainImageCount, vk::DescriptorPoolCreateFlagBits::eUpdateAfterBind );
-    _geometryDescriptorSets     = vk::Initializer::initDescriptorSetsUnique( _geometryDescriptors.pool, _geometryDescriptors.layout );
+    _geometryDescriptorSets     = vkCore::initDescriptorSetsUnique( _geometryDescriptors.pool, _geometryDescriptors.layout );
   }
 
   void Scene::updateSceneDescriptors( )

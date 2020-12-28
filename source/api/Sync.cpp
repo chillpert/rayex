@@ -14,9 +14,9 @@ namespace RAYEX_NAMESPACE
 
     for ( size_t i = 0; i < _maxFramesInFlight; ++i )
     {
-      _imageAvailableSemaphores[i] = vk::Initializer::initSemaphoreUnique( );
-      _finishedRenderSemaphores[i] = vk::Initializer::initSemaphoreUnique( );
-      _inFlightFences[i]           = vk::Initializer::initFenceUnique( vk::FenceCreateFlagBits::eSignaled );
+      _imageAvailableSemaphores[i] = vkCore::initSemaphoreUnique( );
+      _finishedRenderSemaphores[i] = vkCore::initSemaphoreUnique( );
+      _inFlightFences[i]           = vkCore::initFenceUnique( vk::FenceCreateFlagBits::eSignaled );
     }
   }
 

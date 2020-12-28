@@ -9,6 +9,10 @@
   #error The local Vulkan SDK does not support VK_KHR_acceleration_structure. Consider building the Vulkan headers yourself or updating the SDK.
 #endif
 
+#define VULKAN_HPP_STORAGE_SHARED
+#define VULKAN_HPP_STORAGE_SHARED_EXPORT
+VULKAN_HPP_DEFAULT_DISPATCH_LOADER_DYNAMIC_STORAGE
+
 namespace RAYEX_NAMESPACE
 {
   const std::vector<const char*> layers = { "VK_LAYER_KHRONOS_validation" };
@@ -87,15 +91,17 @@ namespace RAYEX_NAMESPACE
     // Logical device
     _device = vk::Initializer::initDevice( deviceExtensions );
 
+    vkCore::global::device = _device.get( );
+
     // Retrieve all queue handles.
     components::device.getQueue( components::graphicsFamilyIndex, 0, &components::graphicsQueue );
     components::device.getQueue( components::transferFamilyIndex, 0, &components::transferQueue );
 
     // Command pools
-    _graphicsCmdPool            = vk::Initializer::initCommandPoolUnique( components::graphicsFamilyIndex, vk::CommandPoolCreateFlagBits::eResetCommandBuffer );
+    _graphicsCmdPool            = vkCore::initCommandPoolUnique( components::graphicsFamilyIndex, vk::CommandPoolCreateFlagBits::eResetCommandBuffer );
     components::graphicsCmdPool = _graphicsCmdPool.get( );
 
-    _transferCmdPool            = vk::Initializer::initCommandPoolUnique( components::transferFamilyIndex, { } );
+    _transferCmdPool            = vkCore::initCommandPoolUnique( components::transferFamilyIndex, { } );
     components::transferCmdPool = _transferCmdPool.get( );
 
     // Post processing renderer

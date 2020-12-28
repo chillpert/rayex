@@ -82,12 +82,12 @@ namespace RAYEX_NAMESPACE
                                                       { vk::DescriptorType::eStorageBufferDynamic, 1000 },
                                                       { vk::DescriptorType::eInputAttachment, 1000 } };
 
-    _descriptorPool = vk::Initializer::initDescriptorPoolUnique( poolSizes, components::swapchainImageCount );
+    _descriptorPool = vkCore::initDescriptorPoolUnique( poolSizes, components::swapchainImageCount );
   }
 
   void Gui::initFonts( )
   {
-    _commandPool = vk::Initializer::initCommandPoolUnique( components::graphicsFamilyIndex, vk::CommandPoolCreateFlagBits::eResetCommandBuffer );
+    _commandPool = vkCore::initCommandPoolUnique( components::graphicsFamilyIndex, vk::CommandPoolCreateFlagBits::eResetCommandBuffer );
 
     CommandBuffer commandBuffer( _commandPool.get( ) );
     commandBuffer.begin( );

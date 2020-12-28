@@ -87,7 +87,7 @@ namespace RAYEX_NAMESPACE
 
     _descriptors.layout = _descriptors.bindings.initLayoutUnique( );
     _descriptors.pool   = _descriptors.bindings.initPoolUnique( components::swapchainImageCount );
-    _descriptorSets     = vk::Initializer::initDescriptorSetsUnique( _descriptors.pool, _descriptors.layout );
+    _descriptorSets     = vkCore::initDescriptorSetsUnique( _descriptors.pool, _descriptors.layout );
   }
 
   void PostProcessingRenderer::updateDescriptors( const vk::DescriptorImageInfo& imageInfo )

@@ -212,7 +212,7 @@ namespace RAYEX_NAMESPACE
     vk::UniqueQueryPool queryPool = vk::Initializer::initQueryPoolUnique( blasCount, vk::QueryType::eAccelerationStructureCompactedSizeKHR );
 
     // Create a command buffer containing all the BLAS builds.
-    vk::UniqueCommandPool commandPool = vk::Initializer::initCommandPoolUnique( { components::graphicsFamilyIndex } );
+    vk::UniqueCommandPool commandPool = vkCore::initCommandPoolUnique( { components::graphicsFamilyIndex } );
     int ctr                           = 0;
 
     CommandBuffer cmdBuf( commandPool.get( ), blasCount );
@@ -355,7 +355,7 @@ namespace RAYEX_NAMESPACE
     vk::BufferDeviceAddressInfo bufferInfo( _instanceBuffer.get( ) );
     vk::DeviceAddress instanceAddress = components::device.getBufferAddress( &bufferInfo );
 
-    vk::UniqueCommandPool commandPool = vk::Initializer::initCommandPoolUnique( components::graphicsFamilyIndex );
+    vk::UniqueCommandPool commandPool = vkCore::initCommandPoolUnique( components::graphicsFamilyIndex );
     CommandBuffer cmdBuf( commandPool.get( ) );
 
     cmdBuf.begin( 0 );
@@ -642,7 +642,7 @@ namespace RAYEX_NAMESPACE
 
     _descriptors.layout = _descriptors.bindings.initLayoutUnique( );
     _descriptors.pool   = _descriptors.bindings.initPoolUnique( components::swapchainImageCount );
-    _descriptorSets     = vk::Initializer::initDescriptorSetsUnique( _descriptors.pool, _descriptors.layout );
+    _descriptorSets     = vkCore::initDescriptorSetsUnique( _descriptors.pool, _descriptors.layout );
   }
 
   void PathTracer::updateDescriptors( )

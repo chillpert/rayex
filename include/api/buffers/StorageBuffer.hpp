@@ -118,7 +118,7 @@ namespace RAYEX_NAMESPACE
         _bufferInfos[i].offset = 0;
         _bufferInfos[i].range  = VK_WHOLE_SIZE;
 
-        _fences[i] = vk::Initializer::initFenceUnique( vk::FenceCreateFlagBits::eSignaled );
+        _fences[i] = vkCore::initFenceUnique( vk::FenceCreateFlagBits::eSignaled );
       }
 
       upload( data );

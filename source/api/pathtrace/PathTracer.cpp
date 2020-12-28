@@ -642,7 +642,7 @@ namespace RAYEX_NAMESPACE
 
     _descriptors.layout = _descriptors.bindings.initLayoutUnique( );
     _descriptors.pool   = _descriptors.bindings.initPoolUnique( components::swapchainImageCount );
-    _descriptorSets     = vkCore::initDescriptorSetsUnique( _descriptors.pool, _descriptors.layout );
+    _descriptorSets     = vkCore::initDescriptorSets( _descriptors.pool.get( ), _descriptors.layout.get( ) );
   }
 
   void PathTracer::updateDescriptors( )

@@ -48,7 +48,8 @@ namespace RAYEX_NAMESPACE
     _buffer = components::device.createBufferUnique( createInfo );
     RX_ASSERT( _buffer.get( ), "Failed to create buffer." );
 
-    _memory = vk::Initializer::allocateMemoryUnique( _buffer.get( ), memoryPropertyFlags, pNextMemory );
+    _memory = vkCore::allocateMemoryUnique( _buffer, memoryPropertyFlags, pNextMemory );
+    components::device.bindBufferMemory( _buffer.get( ), _memory.get( ), 0 );
   }
 
   void Buffer::copyToBuffer( const Buffer& buffer, vk::Fence fence ) const

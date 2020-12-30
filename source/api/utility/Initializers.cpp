@@ -9,192 +9,38 @@
 
 namespace vk::Initializer
 {
-  auto allocateMemoryUnique( Image image, MemoryPropertyFlags propertyFlags, void* pNext ) -> UniqueDeviceMemory
+  auto findMemoryType2( vk::PhysicalDevice physicalDevice, uint32_t typeFilter, vk::MemoryPropertyFlags properties ) -> uint32_t
   {
-    auto memoryRequirements = RAYEX_NAMESPACE::components::device.getImageMemoryRequirements( image );
+    static vk::PhysicalDeviceMemoryProperties memoryProperties = physicalDevice.getMemoryProperties( );
 
-    MemoryAllocateInfo allocateInfo( memoryRequirements.size,                                                                                                   // allocationSize
-                                     Helper::findMemoryType( RAYEX_NAMESPACE::components::physicalDevice, memoryRequirements.memoryTypeBits, propertyFlags ) ); // memoryTypeIndex
+    for ( uint32_t i = 0; i < memoryProperties.memoryTypeCount; ++i )
+    {
+      if ( ( ( typeFilter & ( 1 << i ) ) != 0U ) && ( memoryProperties.memoryTypes[i].propertyFlags & properties ) == properties )
+      {
+        return i;
+      }
+    }
+
+    throw std::runtime_error( "vkCore: Failed to find suitable memory type." );
+
+    return 0U;
+  }
+
+  auto allocateBufferMemory2( vk::Buffer buffer, vk::MemoryPropertyFlags propertyFlags, void* pNext ) -> vk::DeviceMemory
+  {
+    auto memoryRequirements = rx::components::device.getBufferMemoryRequirements( buffer );
+
+    vk::MemoryAllocateInfo allocateInfo( memoryRequirements.size,                                                                               // allocationSize
+                                         findMemoryType2( rx::components::physicalDevice, memoryRequirements.memoryTypeBits, propertyFlags ) ); // memoryTypeIndex
 
     allocateInfo.pNext = pNext;
 
-    UniqueDeviceMemory memory = RAYEX_NAMESPACE::components::device.allocateMemoryUnique( allocateInfo );
-    RX_ASSERT( memory.get( ), "Failed to create memory for image." );
+    auto memory = rx::components::device.allocateMemory( allocateInfo );
+    VK_CORE_ASSERT( memory, "Failed to create memory for image." );
 
-    RAYEX_NAMESPACE::components::device.bindImageMemory( image, memory.get( ), 0 );
-
-    return memory;
-  }
-
-  auto allocateMemory( Image image, MemoryPropertyFlags propertyFlags, void* pNext ) -> DeviceMemory
-  {
-    auto memoryRequirements = RAYEX_NAMESPACE::components::device.getImageMemoryRequirements( image );
-
-    MemoryAllocateInfo allocateInfo( memoryRequirements.size,                                                                                                   // allocationSize
-                                     Helper::findMemoryType( RAYEX_NAMESPACE::components::physicalDevice, memoryRequirements.memoryTypeBits, propertyFlags ) ); // memoryTypeIndex
-
-    allocateInfo.pNext = pNext;
-
-    DeviceMemory memory = RAYEX_NAMESPACE::components::device.allocateMemory( allocateInfo );
-    RX_ASSERT( memory, "Failed to create memory for image." );
-
-    RAYEX_NAMESPACE::components::device.bindImageMemory( image, memory, 0 );
+    rx::components::device.bindBufferMemory( buffer, memory, 0 );
 
     return memory;
-  }
-
-  auto allocateMemoryUnique( Buffer buffer, MemoryPropertyFlags propertyFlags, void* pNext ) -> UniqueDeviceMemory
-  {
-    auto memoryRequirements = RAYEX_NAMESPACE::components::device.getBufferMemoryRequirements( buffer );
-
-    MemoryAllocateInfo allocateInfo( memoryRequirements.size,                                                                                                   // allocationSize
-                                     Helper::findMemoryType( RAYEX_NAMESPACE::components::physicalDevice, memoryRequirements.memoryTypeBits, propertyFlags ) ); // memoryTypeIndex
-
-    allocateInfo.pNext = pNext;
-
-    UniqueDeviceMemory memory = RAYEX_NAMESPACE::components::device.allocateMemoryUnique( allocateInfo );
-    RX_ASSERT( memory.get( ), "Failed to create memory for image." );
-
-    RAYEX_NAMESPACE::components::device.bindBufferMemory( buffer, memory.get( ), 0 );
-
-    return memory;
-    ;
-  }
-
-  auto allocateMemory( Buffer buffer, MemoryPropertyFlags propertyFlags, void* pNext ) -> DeviceMemory
-  {
-    auto memoryRequirements = RAYEX_NAMESPACE::components::device.getBufferMemoryRequirements( buffer );
-
-    MemoryAllocateInfo allocateInfo( memoryRequirements.size,                                                                                                   // allocationSize
-                                     Helper::findMemoryType( RAYEX_NAMESPACE::components::physicalDevice, memoryRequirements.memoryTypeBits, propertyFlags ) ); // memoryTypeIndex
-
-    allocateInfo.pNext = pNext;
-
-    DeviceMemory memory = RAYEX_NAMESPACE::components::device.allocateMemory( allocateInfo );
-    RX_ASSERT( memory, "Failed to create memory for image." );
-
-    RAYEX_NAMESPACE::components::device.bindBufferMemory( buffer, memory, 0 );
-
-    return memory;
-    ;
-  }
-
-  auto initImageViewUnique( ImageViewCreateInfo createInfo ) -> UniqueImageView
-  {
-    UniqueImageView imageView = RAYEX_NAMESPACE::components::device.createImageViewUnique( createInfo );
-    RX_ASSERT( imageView.get( ), "Failed to create image view." );
-
-    return imageView;
-  }
-
-  auto initImageView( ImageViewCreateInfo createInfo ) -> ImageView
-  {
-    ImageView imageView = RAYEX_NAMESPACE::components::device.createImageView( createInfo );
-    RX_ASSERT( imageView, "Failed to create image view." );
-
-    return imageView;
-  }
-
-  auto initSamplerUnique( const SamplerCreateInfo& createInfo ) -> UniqueSampler
-  {
-    UniqueSampler sampler = RAYEX_NAMESPACE::components::device.createSamplerUnique( createInfo );
-    RX_ASSERT( sampler.get( ), "Failed to create sampler." );
-
-    return sampler;
-  }
-
-  auto initSampler( const SamplerCreateInfo& createInfo ) -> Sampler
-  {
-    Sampler sampler = RAYEX_NAMESPACE::components::device.createSampler( createInfo );
-    RX_ASSERT( sampler, "Failed to create sampler." );
-
-    return sampler;
-  }
-
-  auto initFramebufferUnique( const std::vector<ImageView>& attachments, RenderPass renderPass, const Extent2D& extent ) -> UniqueFramebuffer
-  {
-    FramebufferCreateInfo createInfo( { },                                          // flags
-                                      renderPass,                                   // renderPass
-                                      static_cast<uint32_t>( attachments.size( ) ), // attachmentCount
-                                      attachments.data( ),                          // pAttachments
-                                      extent.width,                                 // width
-                                      extent.height,                                // height
-                                      1U );                                         // layers
-
-    UniqueFramebuffer framebuffer = RAYEX_NAMESPACE::components::device.createFramebufferUnique( createInfo );
-    RX_ASSERT( framebuffer.get( ), "Failed to create framebuffer." );
-
-    return framebuffer;
-  }
-
-  auto initFramebuffer( const std::vector<ImageView>& attachments, RenderPass renderPass, const Extent2D& extent ) -> Framebuffer
-  {
-    FramebufferCreateInfo createInfo( { },                                          // flags
-                                      renderPass,                                   // renderPass
-                                      static_cast<uint32_t>( attachments.size( ) ), // attachmentCount
-                                      attachments.data( ),                          // pAttachments
-                                      extent.width,                                 // width
-                                      extent.height,                                // height
-                                      1U );                                         // layers
-
-    Framebuffer framebuffer = RAYEX_NAMESPACE::components::device.createFramebuffer( createInfo );
-    RX_ASSERT( framebuffer, "Failed to create framebuffer." );
-
-    return framebuffer;
-  }
-
-  auto initQueryPoolUnique( uint32_t count, QueryType type ) -> UniqueQueryPool
-  {
-    QueryPoolCreateInfo createInfo( { },   // flags
-                                    type,  // queryType
-                                    count, // queryCount
-                                    { } ); // pipelineStatistics
-
-    UniqueQueryPool queryPool = RAYEX_NAMESPACE::components::device.createQueryPoolUnique( createInfo );
-    RX_ASSERT( queryPool.get( ), "Failed to create query pool." );
-
-    return queryPool;
-  }
-
-  auto initQueryPool( uint32_t count, QueryType type ) -> QueryPool
-  {
-    QueryPoolCreateInfo createInfo( { },   // flags
-                                    type,  // queryType
-                                    count, // queryCount
-                                    { } ); // pipelineStatistics
-
-    QueryPool queryPool = RAYEX_NAMESPACE::components::device.createQueryPool( createInfo );
-    RX_ASSERT( queryPool, "Failed to create query pool." );
-
-    return queryPool;
-  }
-
-  auto initShaderModuleUnique( std::string_view path ) -> UniqueShaderModule
-  {
-    std::vector<char> source = RAYEX_NAMESPACE::Util::parseShader( path );
-
-    ShaderModuleCreateInfo createInfo( { },                                                   // flags
-                                       source.size( ),                                        // codeSize
-                                       reinterpret_cast<const uint32_t*>( source.data( ) ) ); // pCode
-
-    UniqueShaderModule shaderModule = RAYEX_NAMESPACE::components::device.createShaderModuleUnique( createInfo );
-    RX_ASSERT( shaderModule.get( ), "Failed to create shader module." );
-
-    return shaderModule;
-  }
-
-  auto initShaderModule( std::string_view path ) -> ShaderModule
-  {
-    std::vector<char> source = RAYEX_NAMESPACE::Util::parseShader( path );
-
-    ShaderModuleCreateInfo createInfo( { },                                                   // flags
-                                       source.size( ),                                        // codeSize
-                                       reinterpret_cast<const uint32_t*>( source.data( ) ) ); // pCode
-
-    ShaderModule shaderModule = RAYEX_NAMESPACE::components::device.createShaderModule( createInfo );
-    RX_ASSERT( shaderModule, "Failed to create shader module." );
-
-    return shaderModule;
   }
 
   auto initAccelerationStructure( AccelerationStructureCreateInfoKHR& asCreateInfo ) -> RAYEX_NAMESPACE::AccelerationStructure
@@ -213,9 +59,9 @@ namespace vk::Initializer
     resultAs.buffer = rx::components::device.createBuffer( createInfo );
     RX_ASSERT( resultAs.buffer, "Failed to create buffer." );
 
-    resultAs.memory = vk::Initializer::allocateMemory( resultAs.buffer,
-                                                       vk::MemoryPropertyFlagBits::eDeviceLocal | vk::MemoryPropertyFlagBits::eHostCoherent,
-                                                       &allocateFlags );
+    resultAs.memory = allocateBufferMemory2( resultAs.buffer,
+                                             vk::MemoryPropertyFlagBits::eDeviceLocal | vk::MemoryPropertyFlagBits::eHostCoherent,
+                                             &allocateFlags );
 
     asCreateInfo.buffer = resultAs.buffer;
 

@@ -46,7 +46,7 @@ namespace RAYEX_NAMESPACE
     stagingBuffer.copyToImage( _image.get( ), _extent );
     transitionToLayout( vk::ImageLayout::eShaderReadOnlyOptimal );
 
-    _imageView = vk::Initializer::initImageViewUnique( vk::Helper::getImageViewCreateInfo( _image.get( ), _format ) );
+    _imageView = vkCore::initImageViewUnique( vk::Helper::getImageViewCreateInfo( _image.get( ), _format ) );
 
     /*
     _path = path;
@@ -81,7 +81,7 @@ namespace RAYEX_NAMESPACE
     stagingBuffer.copyToImage( _image.get( ), _extent );
     transitionToLayout( vk::ImageLayout::eShaderReadOnlyOptimal );
 
-    _imageView = vk::Initializer::initImageViewUnique( vk::Helper::getImageViewCreateInfo( _image.get( ), _format ) );
+    _imageView = vkCore::initImageViewUnique( vk::Helper::getImageViewCreateInfo( _image.get( ), _format ) );
 
     ktxTexture_Destroy( texture );
     */

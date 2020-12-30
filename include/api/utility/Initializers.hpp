@@ -8,92 +8,6 @@ namespace vk
   /// @ingroup API
   namespace Initializer
   {
-    /// Allocates and binds unique memory for an image.
-    /// @param image The image to allocate memory for.
-    /// @param propertyFlags The memory property flags.
-    /// @param pNext The pNext chain of the Vulkan allocation info.
-    /// @return Returns the memory.
-    auto allocateMemoryUnique( Image image, MemoryPropertyFlags propertyFlags = MemoryPropertyFlagBits::eDeviceLocal, void* pNext = nullptr ) -> UniqueDeviceMemory;
-
-    /// Allocates and binds memory for an image.
-    /// @param image The image to allocate memory for.
-    /// @param propertyFlags The memory property flags.
-    /// @param pNext The pNext chain of the Vulkan allocation info.
-    /// @return Returns the memory.
-    auto allocateMemory( Image image, MemoryPropertyFlags propertyFlags = MemoryPropertyFlagBits::eDeviceLocal, void* pNext = nullptr ) -> DeviceMemory;
-
-    /// Allocates and binds unique memory for a buffer.
-    /// @param buffer The buffer to allocate memory for.
-    /// @param propertyFlags The memory property flags.
-    /// @param pNext The pNext chain of the Vulkan allocation info.
-    /// @return Returns the memory.
-    auto allocateMemoryUnique( Buffer buffer, MemoryPropertyFlags propertyFlags = MemoryPropertyFlagBits::eDeviceLocal, void* pNext = nullptr ) -> UniqueDeviceMemory;
-
-    /// Allocates and binds memory for a buffer.
-    /// @param buffer The buffer to allocate memory for.
-    /// @param propertyFlags The memory property flags.
-    /// @param pNext The pNext chain of the Vulkan allocation info.
-    /// @return Returns the memory.
-    auto allocateMemory( Buffer buffer, MemoryPropertyFlags propertyFlags = MemoryPropertyFlagBits::eDeviceLocal, void* pNext = nullptr ) -> DeviceMemory;
-
-    /// Create an image view with a unique handle.
-    /// @param createInfo The image view create info.
-    /// @return Returns the image view.
-    auto initImageViewUnique( ImageViewCreateInfo createInfo ) -> UniqueImageView;
-
-    /// Create an image view.
-    /// @param createInfo The image view create info.
-    /// @return Returns the image view.
-    auto initImageView( ImageViewCreateInfo createInfo ) -> ImageView;
-
-    /// Create a sampler with a unique handle.
-    /// @param createInfo The Vulkan init info for the sampler.
-    /// @return Returns the sampler.
-    /// @note Use RAYEX_NAMESPACE::Helper::getSamplerCreateInfo to get a predefined init info.
-    auto initSamplerUnique( const SamplerCreateInfo& createInfo ) -> UniqueSampler;
-
-    /// Create a sampler.
-    /// @param createInfo The Vulkan init info for the sampler.
-    /// @return Returns the sampler.
-    /// @note Use RAYEX_NAMESPACE::Helper::getSamplerCreateInfo to get a predefined init info.
-    auto initSampler( const SamplerCreateInfo& createInfo ) -> Sampler;
-
-    /// Create a framebuffer with a unique handle.
-    /// @param attachments All the image view attachments for the framebuffer.
-    /// @param renderPass The render pass for which the framebuffer will be used.
-    /// @param extent The extent of the framebuffer.
-    /// @return Returns the framebuffer.
-    auto initFramebufferUnique( const std::vector<ImageView>& attachments, RenderPass renderPass, const Extent2D& extent ) -> UniqueFramebuffer;
-
-    /// Create a framebuffer.
-    /// @param attachments All the image view attachments for the framebuffer.
-    /// @param renderPass The render pass for which the framebuffer will be used.
-    /// @param extent The extent of the framebuffer.
-    /// @return Returns the framebuffer.
-    auto initFramebuffer( const std::vector<ImageView>& attachments, RenderPass renderPass, const Extent2D& extent ) -> Framebuffer;
-
-    /// Create a query pool with a unique handle.
-    /// @param count The number of queries managed by the pool.
-    /// @param type Specifies the type of queries managed by the pool.
-    /// return Returns the query pool.
-    auto initQueryPoolUnique( uint32_t count, QueryType type ) -> UniqueQueryPool;
-
-    /// Create a query pool.
-    /// @param count The number of queries managed by the pool.
-    /// @param type Specifies the type of queries managed by the pool.
-    /// @return Returns the query pool.
-    auto initQueryPool( uint32_t count, QueryType type ) -> QueryPool;
-
-    /// Parses a given shader and inits a shader module with a unique handle.
-    /// @param path The full path to the GLSL shader file.
-    /// @return Returns the shader module.
-    auto initShaderModuleUnique( std::string_view path ) -> UniqueShaderModule;
-
-    /// Parses a given shader and inits a shader module.
-    /// @param path The full path to the GLSL shader file.
-    /// @return Returns the shader module.
-    auto initShaderModule( std::string_view path ) -> ShaderModule;
-
     /// Creates the acceleration structure and allocates and binds memory for it.
     /// @param asCreateInfo The Vulkan init info for the acceleration structure.
     /// @return Returns an RAYEX_NAMESPACE::AccelerationStructure object that contains the AS itself as well as the memory for it.
@@ -102,9 +16,9 @@ namespace vk
     /// Retrieves the most suited GPU on the current machine.
     ///
     /// If a device is found its properties and features will be retrieved.
-    /// @return Returns true if the initilization was successful.
+    /// @return Returns true if the initialization was successful.
     /// @note Multiple GPUs can not be utilized.
-    auto initPhysicalDevice( ) -> PhysicalDevice;
+    //auto initPhysicalDevice( ) -> PhysicalDevice;
 
     /// Retrieves the queue family indices for both graphics and transfer queue families.
     /// @note The function tries to find a transfer queue family index that is not the same as the graphics queue family index.

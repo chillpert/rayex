@@ -15,7 +15,7 @@ namespace RAYEX_NAMESPACE
     _depthImage.init( imageCreateInfo );
 
     auto imageViewCreateInfo = vk::Helper::getImageViewCreateInfo( _depthImage.get( ), format, vk::ImageViewType::e2D, vk::ImageAspectFlagBits::eDepth );
-    _depthImageView          = vk::Initializer::initImageViewUnique( imageViewCreateInfo );
+    _depthImageView          = vkCore::initImageViewUnique( imageViewCreateInfo );
 
     vk::ImageSubresourceRange subresourceRange( vk::ImageAspectFlagBits::eDepth, // aspectMask
                                                 0,                               // baseMipLevel
@@ -87,7 +87,7 @@ namespace RAYEX_NAMESPACE
 
     _descriptors.layout = _descriptors.bindings.initLayoutUnique( );
     _descriptors.pool   = _descriptors.bindings.initPoolUnique( components::swapchainImageCount );
-    _descriptorSets     = vkCore::initDescriptorSets( _descriptors.pool.get( ), _descriptors.layout.get( ) );
+    _descriptorSets     = vkCore::allocateDescriptorSets( _descriptors.pool.get( ), _descriptors.layout.get( ) );
   }
 
   void PostProcessingRenderer::updateDescriptors( const vk::DescriptorImageInfo& imageInfo )
@@ -182,8 +182,8 @@ namespace RAYEX_NAMESPACE
     _pipelineLayout = components::device.createPipelineLayoutUnique( layoutCreateInfo );
     RX_ASSERT( _pipelineLayout.get( ), "Failed to create pipeline layout for post processing renderer." );
 
-    auto vert = vk::Initializer::initShaderModuleUnique( "shaders/PostProcessing.vert" );
-    auto frag = vk::Initializer::initShaderModuleUnique( "shaders/PostProcessing.frag" );
+    auto vert = vkCore::initShaderModuleUnique( components::assetsPath + "shaders/PostProcessing.vert", RX_GLSLC_PATH );
+    auto frag = vkCore::initShaderModuleUnique( components::assetsPath + "shaders/PostProcessing.frag", RX_GLSLC_PATH );
 
     std::array<vk::PipelineShaderStageCreateInfo, 2> shaderStages;
     shaderStages[0] = vk::Helper::getPipelineShaderStageCreateInfo( vk::ShaderStageFlagBits::eVertex, vert.get( ) );

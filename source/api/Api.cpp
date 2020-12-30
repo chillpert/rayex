@@ -71,16 +71,19 @@ namespace RAYEX_NAMESPACE
     extensions.insert( extensions.end( ), windowExtensions.begin( ), windowExtensions.end( ) );
 
     // Instance
-    _instance = vk::Initializer::initInstance( layers, extensions );
+    _instance                = vk::Initializer::initInstance( layers, extensions );
+    vkCore::global::instance = _instance.get( );
 
     // Debug messenger
     _debugMessenger.init( );
 
     // Surface
     _surface.init( _window );
+    vkCore::global::surface = components::surface;
 
     // Physical device
-    components::physicalDevice = vk::Initializer::initPhysicalDevice( );
+    components::physicalDevice     = vkCore::initPhysicalDevice( );
+    vkCore::global::physicalDevice = components::physicalDevice;
 
     // Reassess the support of the preferred surface settings.
     _surface.assessSettings( );

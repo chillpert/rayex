@@ -117,10 +117,10 @@ namespace RAYEX_NAMESPACE
     samplerCreateInfo.maxAnisotropy = 1.0F;
     samplerCreateInfo.compareOp     = vk::CompareOp::eNever;
 
-    _sampler = vk::Initializer::initSamplerUnique( samplerCreateInfo );
+    _sampler = vkCore::initSamplerUnique( samplerCreateInfo );
 
     // Init image view
-    _imageView = vk::Initializer::initImageViewUnique( imageViewCreateInfo );
+    _imageView = vkCore::initImageViewUnique( imageViewCreateInfo );
 
     // Clean up
     if ( texture != nullptr )

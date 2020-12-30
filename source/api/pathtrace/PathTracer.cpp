@@ -183,8 +183,8 @@ namespace RAYEX_NAMESPACE
                                                          vk::AccelerationStructureTypeKHR::eBottomLevel, // type
                                                          { } );                                          // deviceAddress
 
-      blas.as    = vk::Initializer::initAccelerationStructure( createInfo );
-      blas.flags = flags;
+      blas.as = vk::Initializer::initAccelerationStructure( createInfo );
+      //blas.flags = flags;
 
       buildInfo.dstAccelerationStructure = blas.as.as;
 
@@ -209,7 +209,7 @@ namespace RAYEX_NAMESPACE
     vk::DeviceAddress scratchAddress = components::device.getBufferAddress( &bufferInfo );
 
     // Query size of compact BLAS.
-    vk::UniqueQueryPool queryPool = vk::Initializer::initQueryPoolUnique( blasCount, vk::QueryType::eAccelerationStructureCompactedSizeKHR );
+    vk::UniqueQueryPool queryPool = vkCore::initQueryPoolUnique( blasCount, vk::QueryType::eAccelerationStructureCompactedSizeKHR );
 
     // Create a command buffer containing all the BLAS builds.
     vk::UniqueCommandPool commandPool = vkCore::initCommandPoolUnique( { components::graphicsFamilyIndex } );
@@ -327,7 +327,7 @@ namespace RAYEX_NAMESPACE
 
   void PathTracer::buildTlas( const std::vector<std::shared_ptr<GeometryInstance>>& geometryInstances, vk::BuildAccelerationStructureFlagsKHR flags, bool reuse )
   {
-    _tlas.flags = flags;
+    //_tlas.flags = flags;
 
     std::vector<vk::AccelerationStructureInstanceKHR> tlasInstances;
     tlasInstances.reserve( geometryInstances.size( ) );
@@ -449,10 +449,10 @@ namespace RAYEX_NAMESPACE
     _storageImage.init( storageImageInfo );
     _storageImage.transitionToLayout( vk::ImageLayout::eGeneral );
 
-    _storageImageView = vk::Initializer::initImageViewUnique( vk::Helper::getImageViewCreateInfo( _storageImage.get( ), _storageImage.getFormat( ) ) );
+    _storageImageView = vkCore::initImageViewUnique( vk::Helper::getImageViewCreateInfo( _storageImage.get( ), _storageImage.getFormat( ) ) );
 
     auto samplerCreateInfo = vk::Helper::getSamplerCreateInfo( );
-    _storageImageSampler   = vk::Initializer::initSamplerUnique( samplerCreateInfo );
+    _storageImageSampler   = vkCore::initSamplerUnique( samplerCreateInfo );
 
     _storageImageInfo.sampler     = _storageImageSampler.get( );
     _storageImageInfo.imageView   = _storageImageView.get( );
@@ -512,10 +512,10 @@ namespace RAYEX_NAMESPACE
     //uint32_t anticipatedPointLights       = settings->maxPointLights.has_value( ) ? settings->maxPointLights.value( ) : components::maxPointLights;
     //Util::processShaderMacros( "shaders/PathTrace.rchit", anticipatedDirectionalLights, anticipatedPointLights, components::modelCount );
 
-    auto rgen = vk::Initializer::initShaderModuleUnique( "shaders/PathTrace.rgen" );
-    auto miss = vk::Initializer::initShaderModuleUnique( "shaders/PathTrace.rmiss" );
-    auto chit = vk::Initializer::initShaderModuleUnique( "shaders/PathTrace.rchit" );
-    auto ahit = vk::Initializer::initShaderModuleUnique( "shaders/PathTrace.rahit" );
+    auto rgen = vkCore::initShaderModuleUnique( components::assetsPath + "shaders/PathTrace.rgen", RX_GLSLC_PATH );
+    auto miss = vkCore::initShaderModuleUnique( components::assetsPath + "shaders/PathTrace.rmiss", RX_GLSLC_PATH );
+    auto chit = vkCore::initShaderModuleUnique( components::assetsPath + "shaders/PathTrace.rchit", RX_GLSLC_PATH );
+    auto ahit = vkCore::initShaderModuleUnique( components::assetsPath + "shaders/PathTrace.rahit", RX_GLSLC_PATH );
     //auto ahit1 = vk::Initializer::initShaderModuleUnique( "shaders/PathTrace1.rahit" );
     //auto missShadow = vk::Initializer::initShaderModuleUnique( "shaders/PathTraceShadow.rmiss" );
 
@@ -596,21 +596,17 @@ namespace RAYEX_NAMESPACE
 
     vk::DeviceAddress sbtAddress = components::device.getBufferAddress( _sbtBuffer.get( ) );
 
-    vk::DeviceSize rayGenOffset    = 0U * progSize; // Start at the beginning of _sbtBuffer
-    vk::DeviceSize missOffset      = 1U * progSize; // Jump over raygen
-    vk::DeviceSize chitGroupOffset = 2U * progSize; // Jump over the previous two miss shaders
+    vk::StridedDeviceAddressRegionKHR bufferRegionRayGen( sbtAddress,     // deviceAddress
+                                                          progSize,       // stride
+                                                          progSize * 1 ); // size
 
-    vk::StridedDeviceAddressRegionKHR bufferRegionRayGen( sbtAddress + rayGenOffset, // deviceAddress
-                                                          progSize,                  // stride
-                                                          progSize * 1 );            // size
+    vk::StridedDeviceAddressRegionKHR bufferRegionMiss( sbtAddress + ( 1U * progSize ), // deviceAddress
+                                                        progSize,                       // stride
+                                                        progSize * 1 );                 // size
 
-    vk::StridedDeviceAddressRegionKHR bufferRegionMiss( sbtAddress + missOffset, // deviceAddress
-                                                        progSize,                // stride
-                                                        progSize * 1 );          // size
-
-    vk::StridedDeviceAddressRegionKHR bufferRegionChit( sbtAddress + chitGroupOffset, // deviceAddress
-                                                        progSize,                     // stride
-                                                        progSize * 1 );               // size
+    vk::StridedDeviceAddressRegionKHR bufferRegionChit( sbtAddress + ( 2U * progSize ), // deviceAddress
+                                                        progSize,                       // stride
+                                                        progSize * 1 );                 // size
 
     vk::StridedDeviceAddressRegionKHR callableShaderBindingTable( 0,   // deviceAddress
                                                                   0,   // stride
@@ -642,7 +638,7 @@ namespace RAYEX_NAMESPACE
 
     _descriptors.layout = _descriptors.bindings.initLayoutUnique( );
     _descriptors.pool   = _descriptors.bindings.initPoolUnique( components::swapchainImageCount );
-    _descriptorSets     = vkCore::initDescriptorSets( _descriptors.pool.get( ), _descriptors.layout.get( ) );
+    _descriptorSets     = vkCore::allocateDescriptorSets( _descriptors.pool.get( ), _descriptors.layout.get( ) );
   }
 
   void PathTracer::updateDescriptors( )

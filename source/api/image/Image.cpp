@@ -15,7 +15,8 @@ namespace RAYEX_NAMESPACE
 
     _image = components::device.createImageUnique( createInfo );
     RX_ASSERT( _image.get( ), "Failed to create image" );
-    _memory = vk::Initializer::allocateMemoryUnique( _image.get( ) );
+    _memory = vkCore::allocateMemoryUnique( _image.get( ), vk::MemoryPropertyFlagBits::eDeviceLocal );
+    components::device.bindImageMemory( _image.get( ), _memory.get( ), 0 );
   }
 
   void Image::transitionToLayout( vk::ImageLayout layout, const vk::ImageSubresourceRange* subresourceRange )

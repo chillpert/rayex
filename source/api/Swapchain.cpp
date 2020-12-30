@@ -132,7 +132,7 @@ namespace RAYEX_NAMESPACE
     _imageViews.resize( _images.size( ) );
     for ( size_t i = 0; i < _imageViews.size( ); ++i )
     {
-      _imageViews[i] = vk::Initializer::initImageViewUnique( vk::Helper::getImageViewCreateInfo( _images[i], surfaceFormat, vk::ImageViewType::e2D, _imageAspect ) );
+      _imageViews[i] = vkCore::initImageViewUnique( vk::Helper::getImageViewCreateInfo( _images[i], surfaceFormat, vk::ImageViewType::e2D, _imageAspect ) );
     }
   }
 
@@ -148,7 +148,7 @@ namespace RAYEX_NAMESPACE
     _depthImage.init( imageCreateInfo );
 
     // Image view for depth image
-    _depthImageView = vk::Initializer::initImageViewUnique( vk::Helper::getImageViewCreateInfo( _depthImage.get( ), depthFormat, vk::ImageViewType::e2D, vk::ImageAspectFlagBits::eDepth ) );
+    _depthImageView = vkCore::initImageViewUnique( vk::Helper::getImageViewCreateInfo( _depthImage.get( ), depthFormat, vk::ImageViewType::e2D, vk::ImageAspectFlagBits::eDepth ) );
   }
 
   void Swapchain::initFramebuffers( vk::RenderPass renderPass )
@@ -156,7 +156,7 @@ namespace RAYEX_NAMESPACE
     _framebuffers.resize( _imageViews.size( ) );
     for ( size_t i = 0; i < _framebuffers.size( ); ++i )
     {
-      _framebuffers[i] = vk::Initializer::initFramebufferUnique( { _imageViews[i].get( ), _depthImageView.get( ) }, renderPass, _extent );
+      _framebuffers[i] = vkCore::initFramebufferUnique( { _imageViews[i].get( ), _depthImageView.get( ) }, renderPass, _extent );
     }
   }
 

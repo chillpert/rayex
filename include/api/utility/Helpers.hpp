@@ -107,26 +107,6 @@ namespace vk
     /// @note RTX hardware surpasses any other GPU.
     auto evaluatePhysicalDevice( PhysicalDevice physicalDevice ) -> std::pair<unsigned int, std::string>;
 
-    /// Checks if all device extensions provided are supported.
-    ///
-    /// If any device extension is not supported the application will shut down immediately.
-    /// @param extensions All device extensions that should be activated.
-    void checkDeviceExtensionSupport( const std::vector<const char*>& extensions );
-
-    /// Checks if all layers provided are supported.
-    ///
-    /// If any layer is not supported the application will shut down immediately.
-    /// @param layers All validation layers that should be activated.
-    /// @return Returns true if initialization was successful.
-    void checkInstanceLayersSupport( const std::vector<const char*>& layers );
-
-    /// Checks if all instance extensions provided are supported.
-    ///
-    /// If any instance extension is not supported the application will shut down immediately.
-    /// @param extensions All instance extensions that should be activated.
-    /// @return Returns true if initialization was successful.
-    void checkInstanceExtensionsSupport( const std::vector<const char*>& extensions );
-
     /// Retrieves a supported image format for a given physical device.
     /// @param physicalDevice The physical device to check.
     /// @param formatsToTest A vector of formats that will be checked for their support.

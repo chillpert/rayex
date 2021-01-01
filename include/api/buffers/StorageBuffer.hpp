@@ -1,7 +1,6 @@
 #pragma once
 
 #include "api/buffers/Buffer.hpp"
-#include "api/utility/Initializers.hpp"
 #include "base/Geometry.hpp"
 
 namespace RAYEX_NAMESPACE

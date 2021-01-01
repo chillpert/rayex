@@ -3,7 +3,6 @@
 #include "api/Components.hpp"
 #include "api/buffers/CommandBuffer.hpp"
 #include "api/utility/Helpers.hpp"
-#include "api/utility/Initializers.hpp"
 
 namespace RAYEX_NAMESPACE
 {

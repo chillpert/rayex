@@ -1,7 +1,6 @@
 #include "api/Sync.hpp"
 
 #include "api/Components.hpp"
-#include "api/utility/Initializers.hpp"
 
 namespace RAYEX_NAMESPACE
 {

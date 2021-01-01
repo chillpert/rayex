@@ -3,7 +3,6 @@
 #include "api/Components.hpp"
 #include "api/buffers/CommandBuffer.hpp"
 #include "api/utility/Helpers.hpp"
-#include "api/utility/Initializers.hpp"
 #include "base/Settings.hpp"
 
 namespace RAYEX_NAMESPACE
@@ -183,7 +182,7 @@ namespace RAYEX_NAMESPACE
                                                          vk::AccelerationStructureTypeKHR::eBottomLevel, // type
                                                          { } );                                          // deviceAddress
 
-      blas.as = vk::Initializer::initAccelerationStructure( createInfo );
+      blas.as = initAccelerationStructure( createInfo );
       //blas.flags = flags;
 
       buildInfo.dstAccelerationStructure = blas.as.as;
@@ -302,7 +301,7 @@ namespace RAYEX_NAMESPACE
                                                              vk::AccelerationStructureTypeKHR::eBottomLevel, // type
                                                              { } );                                          // deviceAddress
 
-        auto as = vk::Initializer::initAccelerationStructure( asCreateInfo );
+        auto as = initAccelerationStructure( asCreateInfo );
 
         // Copy the original BLAS to a compact version
         vk::CopyAccelerationStructureInfoKHR copyInfo( _blas_[i].as.as,                                  // src
@@ -409,7 +408,7 @@ namespace RAYEX_NAMESPACE
                                                            vk::AccelerationStructureTypeKHR::eTopLevel, // type
                                                            { } );                                       // deviceAddress
 
-      _tlas.as = vk::Initializer::initAccelerationStructure( asCreateInfo );
+      _tlas.as = initAccelerationStructure( asCreateInfo );
     }
 
     vk::MemoryAllocateFlagsInfo allocateInfo( vk::MemoryAllocateFlagBitsKHR::eDeviceAddress );

@@ -2,7 +2,6 @@
 
 #include "api/Components.hpp"
 #include "api/utility/Helpers.hpp"
-#include "api/utility/Initializers.hpp"
 #include "api/utility/Util.hpp"
 
 #ifndef VK_KHR_acceleration_structure
@@ -71,8 +70,8 @@ namespace RAYEX_NAMESPACE
     extensions.insert( extensions.end( ), windowExtensions.begin( ), windowExtensions.end( ) );
 
     // Instance
-    _instance                = vk::Initializer::initInstance( layers, extensions );
-    vkCore::global::instance = _instance.get( );
+    _instance            = vkCore::initInstanceUnique( layers, extensions, VK_API_VERSION_1_2 );
+    components::instance = _instance.get( );
 
     // Debug messenger
     _debugMessenger.init( );
@@ -82,19 +81,61 @@ namespace RAYEX_NAMESPACE
     vkCore::global::surface = components::surface;
 
     // Physical device
-    components::physicalDevice     = vkCore::initPhysicalDevice( );
-    vkCore::global::physicalDevice = components::physicalDevice;
+    components::physicalDevice = vkCore::initPhysicalDevice( );
 
     // Reassess the support of the preferred surface settings.
     _surface.assessSettings( );
 
     // Queues
-    vk::Initializer::initQueueFamilyIndices( );
+    vkCore::initQueueFamilyIndices( );
+
+    components::graphicsFamilyIndex = vkCore::global::graphicsFamilyIndex;
+    components::transferFamilyIndex = vkCore::global::transferFamilyIndex;
 
     // Logical device
-    _device = vk::Initializer::initDevice( deviceExtensions );
+    vk::PhysicalDeviceAccelerationStructureFeaturesKHR asFeatures;
+    asFeatures.accelerationStructure = VK_TRUE;
+
+    vk::PhysicalDeviceRayTracingPipelineFeaturesKHR rtPipelineFeatures;
+    rtPipelineFeatures.rayTracingPipeline                  = VK_TRUE;
+    rtPipelineFeatures.rayTracingPipelineTraceRaysIndirect = VK_TRUE;
+    rtPipelineFeatures.rayTraversalPrimitiveCulling        = VK_TRUE;
+    rtPipelineFeatures.pNext                               = &asFeatures;
+
+    vk::PhysicalDeviceDescriptorIndexingFeatures indexingFeatures;
+    indexingFeatures.runtimeDescriptorArray                        = VK_TRUE;
+    indexingFeatures.shaderStorageBufferArrayNonUniformIndexing    = VK_TRUE;
+    indexingFeatures.descriptorBindingVariableDescriptorCount      = VK_TRUE;
+    indexingFeatures.descriptorBindingPartiallyBound               = VK_TRUE;
+    indexingFeatures.descriptorBindingStorageBufferUpdateAfterBind = VK_TRUE;
+    indexingFeatures.descriptorBindingUpdateUnusedWhilePending     = VK_TRUE;
+    indexingFeatures.descriptorBindingSampledImageUpdateAfterBind  = VK_TRUE;
+    indexingFeatures.shaderSampledImageArrayNonUniformIndexing     = VK_TRUE;
+    indexingFeatures.pNext                                         = &rtPipelineFeatures;
+
+    vk::PhysicalDeviceRobustness2FeaturesEXT robustness2FeaturesEXT;
+    robustness2FeaturesEXT.nullDescriptor = VK_TRUE;
+    robustness2FeaturesEXT.pNext          = &indexingFeatures;
+
+    vk::PhysicalDeviceRayQueryFeaturesKHR rayQueryFeatures;
+    rayQueryFeatures.rayQuery = VK_TRUE;
+    rayQueryFeatures.pNext    = &robustness2FeaturesEXT;
+
+    vk::PhysicalDeviceBufferDeviceAddressFeatures bufferDeviceAddressFeatures;
+    bufferDeviceAddressFeatures.bufferDeviceAddress = VK_TRUE;
+    bufferDeviceAddressFeatures.pNext               = &rayQueryFeatures;
+
+    vk::PhysicalDeviceFeatures deviceFeatures;
+    deviceFeatures.samplerAnisotropy = VK_TRUE;
+    deviceFeatures.shaderInt64       = VK_TRUE;
+
+    vk::PhysicalDeviceFeatures2 deviceFeatures2 { deviceFeatures };
+    deviceFeatures2.pNext = &bufferDeviceAddressFeatures;
+
+    _device = vkCore::initDeviceUnique( deviceExtensions, { }, deviceFeatures2 );
 
     vkCore::global::device = _device.get( );
+    components::device     = vkCore::global::device;
 
     // Retrieve all queue handles.
     components::device.getQueue( components::graphicsFamilyIndex, 0, &components::graphicsQueue );

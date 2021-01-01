@@ -3,7 +3,6 @@
 #include "api/Components.hpp"
 #include "api/buffers/Buffer.hpp"
 #include "api/utility/Helpers.hpp"
-#include "api/utility/Initializers.hpp"
 
 #define STB_IMAGE_IMPLEMENTATION
 #include "ktx/ktx.h"

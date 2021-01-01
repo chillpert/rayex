@@ -478,56 +478,6 @@ namespace vk::Helper
     }
   }
 
-  void checkInstanceLayersSupport( const std::vector<const char*>& layers )
-  {
-    auto properties = vk::enumerateInstanceLayerProperties( );
-
-    for ( const char* name : layers )
-    {
-      bool found = false;
-      for ( const auto& property : properties )
-      {
-        if ( strcmp( property.layerName, name ) == 0 )
-        {
-          found = true;
-          break;
-        }
-      }
-
-      if ( !found )
-      {
-        RX_FATAL( "Validation layer ", name, " is not available on this device." );
-      }
-
-      RX_VERBOSE( "Added layer: ", name, "." );
-    }
-  }
-
-  void checkInstanceExtensionsSupport( const std::vector<const char*>& extensions )
-  {
-    auto properties = vk::enumerateInstanceExtensionProperties( );
-
-    for ( const char* name : extensions )
-    {
-      bool found = false;
-      for ( const auto& property : properties )
-      {
-        if ( strcmp( property.extensionName, name ) == 0 )
-        {
-          found = true;
-          break;
-        }
-      }
-
-      if ( !found )
-      {
-        RX_FATAL( "Instance extensions ", name, " is not available on this device." );
-      }
-
-      RX_VERBOSE( "Added instance extension: ", name, "." );
-    }
-  }
-
   auto findSupportedImageFormat( vk::PhysicalDevice physicalDevice, const std::vector<vk::Format>& formatsToTest, vk::FormatFeatureFlagBits features, vk::ImageTiling tiling ) -> vk::Format
   {
     for ( vk::Format format : formatsToTest )

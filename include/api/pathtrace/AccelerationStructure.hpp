@@ -35,6 +35,11 @@ namespace RAYEX_NAMESPACE
     std::vector<vk::AccelerationStructureBuildRangeInfoKHR> asBuildRangeInfo; ///< The offset between acceleration structures when building.
   };
 
+  /// Creates the acceleration structure and allocates and binds memory for it.
+  /// @param asCreateInfo The Vulkan init info for the acceleration structure.
+  /// @return Returns an RAYEX_NAMESPACE::AccelerationStructure object that contains the AS itself as well as the memory for it.
+  auto initAccelerationStructure( vk::AccelerationStructureCreateInfoKHR& asCreateInfo ) -> AccelerationStructure;
+
   /*
   /// An instance of a bottom level acceleration structure.
   /// @ingroup API

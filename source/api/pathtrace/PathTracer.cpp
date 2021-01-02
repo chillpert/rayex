@@ -1,7 +1,6 @@
 #include "api/pathtrace/PathTracer.hpp"
 
 #include "api/Components.hpp"
-#include "api/buffers/CommandBuffer.hpp"
 #include "api/utility/Helpers.hpp"
 #include "base/Settings.hpp"
 
@@ -214,7 +213,7 @@ namespace RAYEX_NAMESPACE
     vk::UniqueCommandPool commandPool = vkCore::initCommandPoolUnique( { components::graphicsFamilyIndex } );
     int ctr                           = 0;
 
-    CommandBuffer cmdBuf( commandPool.get( ), blasCount );
+    vkCore::CommandBuffer cmdBuf( commandPool.get( ), blasCount );
 
     index = 0;
     for ( Blas& blas : _blas_ )
@@ -267,7 +266,7 @@ namespace RAYEX_NAMESPACE
 
     if ( doCompaction )
     {
-      CommandBuffer compactionCmdBuf( components::graphicsCmdPool );
+      vkCore::CommandBuffer compactionCmdBuf( components::graphicsCmdPool );
 
       std::vector<vk::DeviceSize> compactSizes( _blas_.size( ) );
 
@@ -355,7 +354,7 @@ namespace RAYEX_NAMESPACE
     vk::DeviceAddress instanceAddress = components::device.getBufferAddress( &bufferInfo );
 
     vk::UniqueCommandPool commandPool = vkCore::initCommandPoolUnique( components::graphicsFamilyIndex );
-    CommandBuffer cmdBuf( commandPool.get( ) );
+    vkCore::CommandBuffer cmdBuf( commandPool.get( ) );
 
     cmdBuf.begin( 0 );
 

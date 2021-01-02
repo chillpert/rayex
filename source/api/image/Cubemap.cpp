@@ -2,7 +2,6 @@
 
 #include "api/Components.hpp"
 #include "api/buffers/Buffer.hpp"
-#include "api/buffers/CommandBuffer.hpp"
 #include "api/utility/Helpers.hpp"
 #include "ktx/ktx.h"
 
@@ -91,7 +90,7 @@ namespace RAYEX_NAMESPACE
     // Fill the actual image.
     transitionToLayout( vk::ImageLayout::eTransferDstOptimal, &imageViewCreateInfo.subresourceRange );
 
-    CommandBuffer commandBuffer( components::graphicsCmdPool );
+    vkCore::CommandBuffer commandBuffer( components::graphicsCmdPool );
     commandBuffer.begin( );
     {
       commandBuffer.get( 0 ).copyBufferToImage( stagingBuffer.get( ),

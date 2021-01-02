@@ -1,6 +1,5 @@
 #include "api/Components.hpp"
 #include "api/buffers/Buffer.hpp"
-#include "api/buffers/CommandBuffer.hpp"
 #include "api/image/Texture.hpp"
 #include "api/utility/Helpers.hpp"
 
@@ -22,7 +21,7 @@ namespace RAYEX_NAMESPACE
   {
     auto barrierInfo = vk::Helper::getImageMemoryBarrierInfo( _image.get( ), _layout, layout, subresourceRange );
 
-    CommandBuffer commandBuffer;
+    vkCore::CommandBuffer commandBuffer;
     commandBuffer.init( components::graphicsCmdPool );
     commandBuffer.begin( );
 

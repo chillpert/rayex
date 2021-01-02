@@ -7,7 +7,6 @@
 #include "api/Swapchain.hpp"
 #include "api/Sync.hpp"
 #include "api/Vertex.hpp"
-#include "api/buffers/CommandBuffer.hpp"
 #include "api/buffers/StorageBuffer.hpp"
 #include "api/buffers/UniformBuffer.hpp"
 #include "api/image/Cubemap.hpp"
@@ -91,7 +90,7 @@ namespace RAYEX_NAMESPACE
     Sync _sync;
 
     Swapchain _swapchain;
-    CommandBuffer _swapchainCommandBuffers;
+    vkCore::CommandBuffer _swapchainCommandBuffers;
 
     std::shared_ptr<Gui> _gui = nullptr;
 

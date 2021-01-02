@@ -1,7 +1,6 @@
 #include "api/buffers/Buffer.hpp"
 
 #include "api/Components.hpp"
-#include "api/buffers/CommandBuffer.hpp"
 #include "api/utility/Helpers.hpp"
 
 namespace RAYEX_NAMESPACE
@@ -58,7 +57,7 @@ namespace RAYEX_NAMESPACE
 
   void Buffer::copyToBuffer( vk::Buffer buffer, vk::Fence fence ) const
   {
-    CommandBuffer commandBuffer( components::transferCmdPool );
+    vkCore::CommandBuffer commandBuffer( components::transferCmdPool );
     commandBuffer.begin( );
     {
       vk::BufferCopy copyRegion( 0, 0, _size );
@@ -75,7 +74,7 @@ namespace RAYEX_NAMESPACE
 
   void Buffer::copyToImage( vk::Image image, vk::Extent3D extent ) const
   {
-    CommandBuffer commandBuffer( components::graphicsCmdPool );
+    vkCore::CommandBuffer commandBuffer( components::graphicsCmdPool );
     commandBuffer.begin( );
     {
       vk::BufferImageCopy region( 0,                                            // bufferOffset

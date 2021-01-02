@@ -1,7 +1,6 @@
 #include "base/Gui.hpp"
 
 #include "api/Components.hpp"
-#include "api/buffers/CommandBuffer.hpp"
 
 namespace RAYEX_NAMESPACE
 {
@@ -88,7 +87,7 @@ namespace RAYEX_NAMESPACE
   {
     _commandPool = vkCore::initCommandPoolUnique( components::graphicsFamilyIndex, vk::CommandPoolCreateFlagBits::eResetCommandBuffer );
 
-    CommandBuffer commandBuffer( _commandPool.get( ) );
+    vkCore::CommandBuffer commandBuffer( _commandPool.get( ) );
     commandBuffer.begin( );
 
     RX_ASSERT( ImGui_ImplVulkan_CreateFontsTexture( commandBuffer.get( 0 ) ), "Failed to create ImGui fonts texture." );

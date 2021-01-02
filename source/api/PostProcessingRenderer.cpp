@@ -1,20 +1,19 @@
 #include "api/PostProcessingRenderer.hpp"
 
 #include "api/Components.hpp"
-#include "api/Swapchain.hpp"
 
 namespace RAYEX_NAMESPACE
 {
   void PostProcessingRenderer::initDepthImage( vk::Extent2D extent )
   {
-    vk::Format format = getSupportedDepthFormat( components::physicalDevice );
+    vk::Format format = vkCore::getSupportedDepthFormat( components::physicalDevice );
 
-    auto imageCreateInfo   = vk::Helper::getImageCreateInfo( vk::Extent3D( extent, 1 ) );
+    auto imageCreateInfo   = vkCore::getImageCreateInfo( vk::Extent3D( extent, 1 ) );
     imageCreateInfo.format = format;
     imageCreateInfo.usage  = vk::ImageUsageFlagBits::eDepthStencilAttachment;
     _depthImage.init( imageCreateInfo );
 
-    auto imageViewCreateInfo = vk::Helper::getImageViewCreateInfo( _depthImage.get( ), format, vk::ImageViewType::e2D, vk::ImageAspectFlagBits::eDepth );
+    auto imageViewCreateInfo = vkCore::getImageViewCreateInfo( _depthImage.get( ), format, vk::ImageViewType::e2D, vk::ImageAspectFlagBits::eDepth );
     _depthImageView          = vkCore::initImageViewUnique( imageViewCreateInfo );
 
     vk::ImageSubresourceRange subresourceRange( vk::ImageAspectFlagBits::eDepth, // aspectMask
@@ -40,15 +39,15 @@ namespace RAYEX_NAMESPACE
                                                           vk::ImageLayout::ePresentSrcKHR ); // finalLayout
 
     // Depth attachment
-    vk::AttachmentDescription depthAttachmentDescription( { },                                                   // flags
-                                                          getSupportedDepthFormat( components::physicalDevice ), // format
-                                                          vk::SampleCountFlagBits::e1,                           // samples
-                                                          vk::AttachmentLoadOp::eClear,                          // loadOp
-                                                          { },                                                   // storeOp
-                                                          vk::AttachmentLoadOp::eClear,                          // stencilLoadOp
-                                                          { },                                                   // stencilStoreOp
-                                                          { },                                                   // initialLayout
-                                                          vk::ImageLayout::eDepthStencilAttachmentOptimal );     // finalLayout
+    vk::AttachmentDescription depthAttachmentDescription( { },                                                           // flags
+                                                          vkCore::getSupportedDepthFormat( components::physicalDevice ), // format
+                                                          vk::SampleCountFlagBits::e1,                                   // samples
+                                                          vk::AttachmentLoadOp::eClear,                                  // loadOp
+                                                          { },                                                           // storeOp
+                                                          vk::AttachmentLoadOp::eClear,                                  // stencilLoadOp
+                                                          { },                                                           // stencilStoreOp
+                                                          { },                                                           // initialLayout
+                                                          vk::ImageLayout::eDepthStencilAttachmentOptimal );             // finalLayout
 
     vk::AttachmentReference colorAttachmentReference( 0,                                          // attachment
                                                       vk::ImageLayout::eColorAttachmentOptimal ); // layout
@@ -186,8 +185,8 @@ namespace RAYEX_NAMESPACE
     auto frag = vkCore::initShaderModuleUnique( components::assetsPath + "shaders/PostProcessing.frag", RX_GLSLC_PATH );
 
     std::array<vk::PipelineShaderStageCreateInfo, 2> shaderStages;
-    shaderStages[0] = vk::Helper::getPipelineShaderStageCreateInfo( vk::ShaderStageFlagBits::eVertex, vert.get( ) );
-    shaderStages[1] = vk::Helper::getPipelineShaderStageCreateInfo( vk::ShaderStageFlagBits::eFragment, frag.get( ) );
+    shaderStages[0] = vkCore::getPipelineShaderStageCreateInfo( vk::ShaderStageFlagBits::eVertex, vert.get( ) );
+    shaderStages[1] = vkCore::getPipelineShaderStageCreateInfo( vk::ShaderStageFlagBits::eFragment, frag.get( ) );
 
     vk::GraphicsPipelineCreateInfo createInfo( { },                                           // flags
                                                static_cast<uint32_t>( shaderStages.size( ) ), // stageCount

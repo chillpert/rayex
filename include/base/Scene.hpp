@@ -1,10 +1,5 @@
 #pragma once
 
-#include "api/Bindings.hpp"
-#include "api/buffers/StorageBuffer.hpp"
-#include "api/buffers/UniformBuffer.hpp"
-#include "api/image/Cubemap.hpp"
-#include "api/image/Texture.hpp"
 #include "base/Camera.hpp"
 #include "base/Geometry.hpp"
 #include "base/Settings.hpp"
@@ -122,23 +117,23 @@ namespace RAYEX_NAMESPACE
 
     void upload( vk::Fence fence, uint32_t imageIndex );
 
-    Descriptors _sceneDescriptors;
-    Descriptors _geometryDescriptors;
+    vkCore::Descriptors _sceneDescriptors;
+    vkCore::Descriptors _geometryDescriptors;
 
     std::vector<vk::DescriptorSet> _sceneDescriptorsets;
     std::vector<vk::DescriptorSet> _geometryDescriptorSets;
     std::vector<vk::DescriptorSet> _textureDescriptorSets;
 
-    Cubemap _environmentMap;
+    vkCore::Cubemap _environmentMap;
     vk::UniqueSampler _immutableSampler;
 
-    std::vector<StorageBuffer<uint32_t>> _indexBuffers;
-    std::vector<StorageBuffer<Vertex>> _vertexBuffers;
-    std::vector<StorageBuffer<MeshSSBO>> _meshBuffers;
-    std::vector<std::shared_ptr<Texture>> _textures;
-    StorageBuffer<GeometryInstanceSSBO> _geometryInstancesBuffer;
+    std::vector<vkCore::StorageBuffer<uint32_t>> _indexBuffers;
+    std::vector<vkCore::StorageBuffer<Vertex>> _vertexBuffers;
+    std::vector<vkCore::StorageBuffer<MeshSSBO>> _meshBuffers;
+    std::vector<std::shared_ptr<vkCore::Texture>> _textures;
+    vkCore::StorageBuffer<GeometryInstanceSSBO> _geometryInstancesBuffer;
 
-    UniformBuffer<CameraUbo> _cameraUniformBuffer;
+    vkCore::UniformBuffer<CameraUbo> _cameraUniformBuffer;
 
     std::vector<std::shared_ptr<Geometry>> _geometries;
     std::vector<std::shared_ptr<GeometryInstance>> _geometryInstances;

@@ -1,8 +1,6 @@
 #pragma once
 
-#include "api/Bindings.hpp"
-#include "api/RenderPass.hpp"
-#include "api/image/Image.hpp"
+#include "pch/stdafx.hpp"
 
 namespace RAYEX_NAMESPACE
 {
@@ -11,7 +9,7 @@ namespace RAYEX_NAMESPACE
   class PostProcessingRenderer
   {
   public:
-    auto getRenderPass( ) const -> const RenderPass& { return _renderPass; }
+    auto getRenderPass( ) const -> const vkCore::RenderPass& { return _renderPass; }
 
     auto getPipeline( ) const -> const vk::Pipeline { return _pipeline.get( ); }
 
@@ -37,15 +35,15 @@ namespace RAYEX_NAMESPACE
     void render( vk::CommandBuffer commandBuffer, vk::Extent2D size, size_t imageIndex );
 
   private:
-    Image _depthImage;
+    vkCore::Image _depthImage;
     vk::UniqueImageView _depthImageView;
 
-    RenderPass _renderPass;
+    vkCore::RenderPass _renderPass;
 
     vk::UniquePipeline _pipeline;
     vk::UniquePipelineLayout _pipelineLayout;
 
-    Descriptors _descriptors;
+    vkCore::Descriptors _descriptors;
     std::vector<vk::DescriptorSet> _descriptorSets;
   };
 } // namespace RAYEX_NAMESPACE

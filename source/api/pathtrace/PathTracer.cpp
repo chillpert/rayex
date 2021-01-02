@@ -1,7 +1,6 @@
 #include "api/pathtrace/PathTracer.hpp"
 
 #include "api/Components.hpp"
-#include "api/utility/Helpers.hpp"
 #include "base/Settings.hpp"
 
 namespace RAYEX_NAMESPACE
@@ -38,7 +37,7 @@ namespace RAYEX_NAMESPACE
     _indices.clear( );
   }
 
-  auto PathTracer::modelToBlas( const StorageBuffer<Vertex>& vertexBuffer, const StorageBuffer<uint32_t>& indexBuffer, bool allowTransforms ) const -> Blas
+  auto PathTracer::modelToBlas( const vkCore::StorageBuffer<Vertex>& vertexBuffer, const vkCore::StorageBuffer<uint32_t>& indexBuffer, bool allowTransforms ) const -> Blas
   {
     // Using index 0, because there are no copies of these buffers.
     vk::BufferDeviceAddressInfo vertexAddressInfo( vertexBuffer.get( 0 ) );
@@ -93,7 +92,7 @@ namespace RAYEX_NAMESPACE
     return gInst;
   }
 
-  void PathTracer::createBottomLevelAS( std::vector<StorageBuffer<Vertex>>& vertexBuffers, const std::vector<StorageBuffer<uint32_t>>& indexBuffers, const std::vector<std::shared_ptr<Geometry>>& geometries )
+  void PathTracer::createBottomLevelAS( std::vector<vkCore::StorageBuffer<Vertex>>& vertexBuffers, const std::vector<vkCore::StorageBuffer<uint32_t>>& indexBuffers, const std::vector<std::shared_ptr<Geometry>>& geometries )
   {
     RX_ASSERT( !vertexBuffers.empty( ), "Failed to build bottom level acceleration structures because no geometry was provided." );
 
@@ -197,11 +196,11 @@ namespace RAYEX_NAMESPACE
     // Allocate the scratch buffers holding the temporary data of the acceleration structure builder.
     vk::MemoryAllocateFlagsInfo allocateFlags( vk::MemoryAllocateFlagBitsKHR::eDeviceAddress );
 
-    Buffer scratchBuffer( maxScratch,                                                                              // size
-                          vk::BufferUsageFlagBits::eShaderDeviceAddress | vk::BufferUsageFlagBits::eStorageBuffer, // usage
-                          { components::graphicsFamilyIndex },                                                     // queueFamilyIndices
-                          vk::MemoryPropertyFlagBits::eDeviceLocal,                                                // memoryPropertyFlags
-                          &allocateFlags );
+    vkCore::Buffer scratchBuffer( maxScratch,                                                                              // size
+                                  vk::BufferUsageFlagBits::eShaderDeviceAddress | vk::BufferUsageFlagBits::eStorageBuffer, // usage
+                                  { components::graphicsFamilyIndex },                                                     // queueFamilyIndices
+                                  vk::MemoryPropertyFlagBits::eDeviceLocal,                                                // memoryPropertyFlags
+                                  &allocateFlags );
 
     vk::BufferDeviceAddressInfo bufferInfo( scratchBuffer.get( ) );
     vk::DeviceAddress scratchAddress = components::device.getBufferAddress( &bufferInfo );
@@ -412,11 +411,11 @@ namespace RAYEX_NAMESPACE
 
     vk::MemoryAllocateFlagsInfo allocateInfo( vk::MemoryAllocateFlagBitsKHR::eDeviceAddress );
 
-    Buffer scratchBuffer( buildSizesInfo.buildScratchSize,                                                                           // size
-                          vk::BufferUsageFlagBits::eAccelerationStructureStorageKHR | vk::BufferUsageFlagBits::eShaderDeviceAddress, // usage
-                          { components::graphicsFamilyIndex },                                                                       // queueFamilyIndices
-                          vk::MemoryPropertyFlagBits::eDeviceLocal | vk::MemoryPropertyFlagBits::eHostCoherent,                      // memoryPropertyFlags
-                          &allocateInfo );
+    vkCore::Buffer scratchBuffer( buildSizesInfo.buildScratchSize,                                                                           // size
+                                  vk::BufferUsageFlagBits::eAccelerationStructureStorageKHR | vk::BufferUsageFlagBits::eShaderDeviceAddress, // usage
+                                  { components::graphicsFamilyIndex },                                                                       // queueFamilyIndices
+                                  vk::MemoryPropertyFlagBits::eDeviceLocal | vk::MemoryPropertyFlagBits::eHostCoherent,                      // memoryPropertyFlags
+                                  &allocateInfo );
 
     vk::BufferDeviceAddressInfo scratchBufferInfo( scratchBuffer.get( ) );
     vk::DeviceAddress scratchAddress = components::device.getBufferAddress( &scratchBufferInfo );
@@ -440,16 +439,16 @@ namespace RAYEX_NAMESPACE
 
   void PathTracer::createStorageImage( vk::Extent2D swapchainExtent )
   {
-    auto storageImageInfo   = vk::Helper::getImageCreateInfo( vk::Extent3D( swapchainExtent.width, swapchainExtent.height, 1 ) );
+    auto storageImageInfo   = vkCore::getImageCreateInfo( vk::Extent3D( swapchainExtent.width, swapchainExtent.height, 1 ) );
     storageImageInfo.usage  = vk::ImageUsageFlagBits::eStorage | vk::ImageUsageFlagBits::eSampled | vk::ImageUsageFlagBits::eColorAttachment;
     storageImageInfo.format = vk::Format::eB8G8R8A8Unorm; // TODO: make this the surface format, and not hard-coded
 
     _storageImage.init( storageImageInfo );
     _storageImage.transitionToLayout( vk::ImageLayout::eGeneral );
 
-    _storageImageView = vkCore::initImageViewUnique( vk::Helper::getImageViewCreateInfo( _storageImage.get( ), _storageImage.getFormat( ) ) );
+    _storageImageView = vkCore::initImageViewUnique( vkCore::getImageViewCreateInfo( _storageImage.get( ), _storageImage.getFormat( ) ) );
 
-    auto samplerCreateInfo = vk::Helper::getSamplerCreateInfo( );
+    auto samplerCreateInfo = vkCore::getSamplerCreateInfo( );
     _storageImageSampler   = vkCore::initSamplerUnique( samplerCreateInfo );
 
     _storageImageInfo.sampler     = _storageImageSampler.get( );
@@ -533,12 +532,12 @@ namespace RAYEX_NAMESPACE
     RX_ASSERT( _layout.get( ), "Failed to create pipeline layout for path tracing pipeline." );
 
     std::array<vk::PipelineShaderStageCreateInfo, 4> shaderStages;
-    shaderStages[0] = vk::Helper::getPipelineShaderStageCreateInfo( vk::ShaderStageFlagBits::eRaygenKHR, rgen.get( ) );
-    shaderStages[1] = vk::Helper::getPipelineShaderStageCreateInfo( vk::ShaderStageFlagBits::eMissKHR, miss.get( ) );
-    //shaderStages[2] = vk::Helper::getPipelineShaderStageCreateInfo( vk::ShaderStageFlagBits::eMissKHR, missShadow.get( ) );
-    shaderStages[2] = vk::Helper::getPipelineShaderStageCreateInfo( vk::ShaderStageFlagBits::eClosestHitKHR, chit.get( ) );
-    shaderStages[3] = vk::Helper::getPipelineShaderStageCreateInfo( vk::ShaderStageFlagBits::eAnyHitKHR, ahit.get( ) );
-    //shaderStages[4] = vk::Helper::getPipelineShaderStageCreateInfo( vk::ShaderStageFlagBits::eAnyHitKHR, ahit1.get( ) );
+    shaderStages[0] = vkCore::getPipelineShaderStageCreateInfo( vk::ShaderStageFlagBits::eRaygenKHR, rgen.get( ) );
+    shaderStages[1] = vkCore::getPipelineShaderStageCreateInfo( vk::ShaderStageFlagBits::eMissKHR, miss.get( ) );
+    //shaderStages[2] =vkCore::getPipelineShaderStageCreateInfo( vk::ShaderStageFlagBits::eMissKHR, missShadow.get( ) );
+    shaderStages[2] = vkCore::getPipelineShaderStageCreateInfo( vk::ShaderStageFlagBits::eClosestHitKHR, chit.get( ) );
+    shaderStages[3] = vkCore::getPipelineShaderStageCreateInfo( vk::ShaderStageFlagBits::eAnyHitKHR, ahit.get( ) );
+    //shaderStages[4] = vkCore::getPipelineShaderStageCreateInfo( vk::ShaderStageFlagBits::eAnyHitKHR, ahit1.get( ) );
 
     // Set up path tracing shader groups.
     std::array<vk::RayTracingShaderGroupCreateInfoKHR, 3> groups;

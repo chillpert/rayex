@@ -10,7 +10,7 @@ namespace RAYEX_NAMESPACE
     ImGui::CreateContext( );
   }
 
-  void Gui::init( SDL_Window* window, const Surface* const surface, vk::Extent2D swapchainImageExtent, vk::RenderPass renderPass )
+  void Gui::init( SDL_Window* window, const vkCore::Surface* const surface, vk::Extent2D swapchainImageExtent, vk::RenderPass renderPass )
   {
     _window               = window;
     _swapchainImageExtent = swapchainImageExtent;

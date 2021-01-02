@@ -1,8 +1,8 @@
 #include "api/Api.hpp"
 
 #include "api/Components.hpp"
-#include "api/utility/Helpers.hpp"
-#include "api/utility/Util.hpp"
+
+#define STB_IMAGE_IMPLEMENTATION
 
 #ifndef VK_KHR_acceleration_structure
   #error The local Vulkan SDK does not support VK_KHR_acceleration_structure. Consider building the Vulkan headers yourself or updating the SDK.
@@ -77,11 +77,19 @@ namespace RAYEX_NAMESPACE
     _debugMessenger.init( );
 
     // Surface
-    _surface.init( _window );
-    vkCore::global::surface = components::surface;
+    VkSurfaceKHR surface;
+    SDL_bool result = SDL_Vulkan_CreateSurface( _window->get( ), components::instance, &surface );
+
+    if ( result != SDL_TRUE )
+    {
+      RX_ERROR( "Failed to create surface" );
+    }
+
+    _surface.init( surface, _window->getExtent( ) );
+    components::surface = vkCore::global::surface;
 
     // Physical device
-    components::physicalDevice = vkCore::initPhysicalDevice( );
+    components::physicalDevice = vkCore::initPhysicalDevice( ); // @todo This function does not check if any feature is available when evaluating a device.
 
     // Reassess the support of the preferred surface settings.
     _surface.assessSettings( );
@@ -141,12 +149,17 @@ namespace RAYEX_NAMESPACE
     components::device.getQueue( components::graphicsFamilyIndex, 0, &components::graphicsQueue );
     components::device.getQueue( components::transferFamilyIndex, 0, &components::transferQueue );
 
-    // Command pools
-    _graphicsCmdPool            = vkCore::initCommandPoolUnique( components::graphicsFamilyIndex, vk::CommandPoolCreateFlagBits::eResetCommandBuffer );
-    components::graphicsCmdPool = _graphicsCmdPool.get( );
+    vkCore::global::graphicsQueue = components::graphicsQueue;
+    vkCore::global::transferQueue = components::transferQueue;
 
-    _transferCmdPool            = vkCore::initCommandPoolUnique( components::transferFamilyIndex, { } );
-    components::transferCmdPool = _transferCmdPool.get( );
+    // Command pools
+    _graphicsCmdPool                = vkCore::initCommandPoolUnique( components::graphicsFamilyIndex, vk::CommandPoolCreateFlagBits::eResetCommandBuffer );
+    components::graphicsCmdPool     = _graphicsCmdPool.get( );
+    vkCore::global::graphicsCmdPool = _graphicsCmdPool.get( );
+
+    _transferCmdPool                = vkCore::initCommandPoolUnique( components::transferFamilyIndex, { } );
+    components::transferCmdPool     = _transferCmdPool.get( );
+    vkCore::global::transferCmdPool = _transferCmdPool.get( );
 
     // Post processing renderer
     _postProcessingRenderer.initDepthImage( _surface.getExtent( ) );
@@ -154,7 +167,9 @@ namespace RAYEX_NAMESPACE
 
     // Swapchain
     _swapchain.init( &_surface, _postProcessingRenderer.getRenderPass( ).get( ) );
-    _settings._refreshSwapchain = false;
+    components::swapchain           = vkCore::global::swapchain;
+    components::swapchainImageCount = vkCore::global::swapchainImageCount;
+    _settings._refreshSwapchain     = false;
 
     // GUI
     initGui( );

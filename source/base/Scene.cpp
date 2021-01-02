@@ -5,7 +5,7 @@
 #define TINYGLTF_IMPLEMENTATION
 #define STB_IMAGE_WRITE_IMPLEMENTATION
 
-#include <gltf/tiny_gltf.h>
+//#include <gltf/tiny_gltf.h>
 
 namespace RAYEX_NAMESPACE
 {
@@ -254,6 +254,7 @@ namespace RAYEX_NAMESPACE
 
   void Scene::load( const std::string& path )
   {
+    /*
     // This might need to be moved to api.cpp anyways, because it requires direct access to some of the buffers apparently.
     tinygltf::Model model;
     tinygltf::TinyGLTF loader;
@@ -276,6 +277,7 @@ namespace RAYEX_NAMESPACE
     RX_ASSERT( res, "Failed to parse gltf file at ", path );
 
     RX_WARN( "GLTF support not implemented yet." );
+    */
   }
 
   void Scene::prepareBuffers( )
@@ -405,8 +407,8 @@ namespace RAYEX_NAMESPACE
                     if ( _textures[availablePosition] == nullptr && !mesh.material.diffuseTexPath.empty( ) )
                     {
                       //RX_WARN( "CREATING NEW TEXTURE at index: ", availablePosition, " from: ", mesh.material.diffuseTexPath );
-                      auto texture = std::make_shared<Texture>( );
-                      texture->init( mesh.material.diffuseTexPath );
+                      auto texture = std::make_shared<vkCore::Texture>( );
+                      texture->init( components::assetsPath + mesh.material.diffuseTexPath );
                       _textures[availablePosition] = texture;
                       diffuseTexIndex              = static_cast<float>( availablePosition );
                     }
@@ -548,7 +550,7 @@ namespace RAYEX_NAMESPACE
     // Textures
     if ( !_immutableSampler )
     {
-      _immutableSampler = vkCore::initSamplerUnique( vk::Helper::getSamplerCreateInfo( ) );
+      _immutableSampler = vkCore::initSamplerUnique( vkCore::getSamplerCreateInfo( ) );
     }
 
     std::vector<vk::Sampler> immutableSamplers( _settings->_maxTextures );

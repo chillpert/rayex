@@ -1,9 +1,5 @@
 #pragma once
 
-#include "api/Bindings.hpp"
-#include "api/Swapchain.hpp"
-#include "api/buffers/Buffer.hpp"
-#include "api/buffers/StorageBuffer.hpp"
 #include "api/pathtrace/AccelerationStructure.hpp"
 #include "base/Geometry.hpp"
 #include "base/Settings.hpp"
@@ -80,7 +76,7 @@ namespace RAYEX_NAMESPACE
     /// @param vertexBuffer A vertex buffer of some geometry.
     /// @param indexBuffer An index buffer of some geometry.
     /// @return Returns the bottom level acceleration structure.
-    auto modelToBlas( const StorageBuffer<Vertex>& vertexBuffer, const StorageBuffer<uint32_t>& indexBuffer, bool allowTransforms ) const -> Blas;
+    auto modelToBlas( const vkCore::StorageBuffer<Vertex>& vertexBuffer, const vkCore::StorageBuffer<uint32_t>& indexBuffer, bool allowTransforms ) const -> Blas;
 
     /// Used to convert a bottom level acceleration structure instance to a Vulkan geometry instance.
     /// @param instance A bottom level acceleration structure instance.
@@ -90,7 +86,7 @@ namespace RAYEX_NAMESPACE
     /// Used to prepare building the bottom level acceleration structures.
     /// @param vertexBuffers Vertex buffers of all geometry in the scene.
     /// @param indexBuffers Index buffers of all geometry in the scene.
-    void createBottomLevelAS( std::vector<StorageBuffer<Vertex>>& vertexBuffers, const std::vector<StorageBuffer<uint32_t>>& indexBuffers, const std::vector<std::shared_ptr<Geometry>>& geometries );
+    void createBottomLevelAS( std::vector<vkCore::StorageBuffer<Vertex>>& vertexBuffers, const std::vector<vkCore::StorageBuffer<uint32_t>>& indexBuffers, const std::vector<std::shared_ptr<Geometry>>& geometries );
 
     /// Builds all bottom level acceleration structures.
     /// @param blas_ A vector of RAYEX_NAMESPACE::Blas objects containing all bottom level acceleration structures prepared in createBottomLevelAS().
@@ -132,15 +128,15 @@ namespace RAYEX_NAMESPACE
     std::vector<Blas> _blas_;
     std::map<uint32_t, std::pair<size_t, bool>> _indices;
     Tlas _tlas; ///< The top level acceleration structure.
-    Buffer _instanceBuffer;
-    Buffer _sbtBuffer; ///< The shader binding table buffer.
+    vkCore::Buffer _instanceBuffer;
+    vkCore::Buffer _sbtBuffer; ///< The shader binding table buffer.
 
-    Image _storageImage;
+    vkCore::Image _storageImage;
     vk::UniqueImageView _storageImageView;
     vk::UniqueSampler _storageImageSampler;
     vk::DescriptorImageInfo _storageImageInfo;
 
-    Descriptors _descriptors;
+    vkCore::Descriptors _descriptors;
     std::vector<vk::DescriptorSet> _descriptorSets;
   };
 } // namespace RAYEX_NAMESPACE

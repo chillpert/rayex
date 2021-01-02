@@ -1,21 +1,11 @@
 #pragma once
 
-#include "api/Bindings.hpp"
 #include "api/PostProcessingRenderer.hpp"
-#include "api/RenderPass.hpp"
-#include "api/Surface.hpp"
-#include "api/Swapchain.hpp"
-#include "api/Sync.hpp"
 #include "api/Vertex.hpp"
-#include "api/buffers/StorageBuffer.hpp"
-#include "api/buffers/UniformBuffer.hpp"
-#include "api/image/Cubemap.hpp"
-#include "api/image/Texture.hpp"
 #include "api/pathtrace/PathTracer.hpp"
-#include "api/utility/DebugMessenger.hpp"
-#include "api/utility/Util.hpp"
 #include "base/Gui.hpp"
 #include "base/Scene.hpp"
+#include "base/Window.hpp"
 
 namespace RAYEX_NAMESPACE
 {
@@ -77,8 +67,8 @@ namespace RAYEX_NAMESPACE
     std::shared_ptr<Window> _window = nullptr;
     std::shared_ptr<Camera> _camera = nullptr;
     vk::UniqueInstance _instance;
-    DebugMessenger _debugMessenger;
-    Surface _surface;
+    vkCore::DebugMessenger _debugMessenger;
+    vkCore::Surface _surface;
     vk::UniqueDevice _device;
     vk::UniqueCommandPool _graphicsCmdPool;
     vk::UniqueCommandPool _transferCmdPool;
@@ -87,9 +77,9 @@ namespace RAYEX_NAMESPACE
     PostProcessingRenderer _postProcessingRenderer;
 
     // Sync
-    Sync _sync;
+    vkCore::Sync _sync;
 
-    Swapchain _swapchain;
+    vkCore::Swapchain _swapchain;
     vkCore::CommandBuffer _swapchainCommandBuffers;
 
     std::shared_ptr<Gui> _gui = nullptr;

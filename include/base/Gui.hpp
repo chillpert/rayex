@@ -1,11 +1,8 @@
 #pragma once
 
-#include "api/RenderPass.hpp"
-#include "api/Surface.hpp"
-#include "api/Swapchain.hpp"
-
 #include <imgui/imgui.h>
 #include <imgui/imgui_impl_vulkan.h>
+#include <pch/stdafx.hpp>
 
 namespace RAYEX_NAMESPACE
 {
@@ -51,7 +48,7 @@ namespace RAYEX_NAMESPACE
     /// Creates the GUI and all required Vulkan components.
     /// @param surface A pointer to a RAYEX_NAMESPACE::Surface object.
     /// @param swapchainImageExtent The extent of the swapchain images.
-    void init( SDL_Window* window, const Surface* surface, vk::Extent2D swapchainImageExtent, vk::RenderPass renderPass );
+    void init( SDL_Window* window, const vkCore::Surface* surface, vk::Extent2D swapchainImageExtent, vk::RenderPass renderPass );
 
     /// Used to recreate the GUI in case the window size was changed.
     /// @param swapchainImageExtent The extent of the swapchain images.

@@ -116,4 +116,20 @@ namespace RAYEX_NAMESPACE
     float _sensitivity = 0.06F;  ///< The mouse sensitivity.
     float _fov         = 45.0F;  ///< The field of view.
   };
+
+  /// A memory aligned uniform buffer object for camera data.
+  /// @ingroup API
+  struct CameraUbo
+  {
+    glm::mat4 view              = glm::mat4( 1.0F );
+    glm::mat4 projection        = glm::mat4( 1.0F );
+    glm::mat4 viewInverse       = glm::mat4( 1.0F );
+    glm::mat4 projectionInverse = glm::mat4( 1.0F );
+    glm::vec4 position          = glm::vec4( 1.0F );
+
+  private:
+    glm::vec4 padding0 = glm::vec4( 1.0F ); ///< Padding (ignore).
+    glm::vec4 padding1 = glm::vec4( 1.0F ); ///< Padding (ignore).
+    glm::vec4 padding2 = glm::vec4( 1.0F ); ///< Padding (ignore).
+  };
 } // namespace RAYEX_NAMESPACE

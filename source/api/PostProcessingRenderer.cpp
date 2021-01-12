@@ -6,7 +6,7 @@ namespace RAYEX_NAMESPACE
 {
   void PostProcessingRenderer::initDepthImage( vk::Extent2D extent )
   {
-    vk::Format format = vkCore::getSupportedDepthFormat( components::physicalDevice );
+    vk::Format format = vkCore::getSupportedDepthFormat( vkCore::global::physicalDevice );
 
     auto imageCreateInfo   = vkCore::getImageCreateInfo( vk::Extent3D( extent, 1 ) );
     imageCreateInfo.format = format;
@@ -39,15 +39,15 @@ namespace RAYEX_NAMESPACE
                                                           vk::ImageLayout::ePresentSrcKHR ); // finalLayout
 
     // Depth attachment
-    vk::AttachmentDescription depthAttachmentDescription( { },                                                           // flags
-                                                          vkCore::getSupportedDepthFormat( components::physicalDevice ), // format
-                                                          vk::SampleCountFlagBits::e1,                                   // samples
-                                                          vk::AttachmentLoadOp::eClear,                                  // loadOp
-                                                          { },                                                           // storeOp
-                                                          vk::AttachmentLoadOp::eClear,                                  // stencilLoadOp
-                                                          { },                                                           // stencilStoreOp
-                                                          { },                                                           // initialLayout
-                                                          vk::ImageLayout::eDepthStencilAttachmentOptimal );             // finalLayout
+    vk::AttachmentDescription depthAttachmentDescription( { },                                                               // flags
+                                                          vkCore::getSupportedDepthFormat( vkCore::global::physicalDevice ), // format
+                                                          vk::SampleCountFlagBits::e1,                                       // samples
+                                                          vk::AttachmentLoadOp::eClear,                                      // loadOp
+                                                          { },                                                               // storeOp
+                                                          vk::AttachmentLoadOp::eClear,                                      // stencilLoadOp
+                                                          { },                                                               // stencilStoreOp
+                                                          { },                                                               // initialLayout
+                                                          vk::ImageLayout::eDepthStencilAttachmentOptimal );                 // finalLayout
 
     vk::AttachmentReference colorAttachmentReference( 0,                                          // attachment
                                                       vk::ImageLayout::eColorAttachmentOptimal ); // layout
@@ -85,7 +85,7 @@ namespace RAYEX_NAMESPACE
                                vk::ShaderStageFlagBits::eFragment );
 
     _descriptors.layout = _descriptors.bindings.initLayoutUnique( );
-    _descriptors.pool   = _descriptors.bindings.initPoolUnique( components::swapchainImageCount );
+    _descriptors.pool   = _descriptors.bindings.initPoolUnique( vkCore::global::swapchainImageCount );
     _descriptorSets     = vkCore::allocateDescriptorSets( _descriptors.pool.get( ), _descriptors.layout.get( ) );
   }
 
@@ -178,7 +178,7 @@ namespace RAYEX_NAMESPACE
                                                    1,                           // pushConstantRangeCount
                                                    &pushConstantRange );        // pPushConstantRanges
 
-    _pipelineLayout = components::device.createPipelineLayoutUnique( layoutCreateInfo );
+    _pipelineLayout = vkCore::global::device.createPipelineLayoutUnique( layoutCreateInfo );
     RX_ASSERT( _pipelineLayout.get( ), "Failed to create pipeline layout for post processing renderer." );
 
     auto vert = vkCore::initShaderModuleUnique( components::assetsPath + "shaders/PostProcessing.vert", RX_GLSLC_PATH );
@@ -206,7 +206,7 @@ namespace RAYEX_NAMESPACE
                                                nullptr,                                       // basePipelineHandle
                                                0 );                                           // basePipelineIndex
 
-    _pipeline = static_cast<vk::UniquePipeline>( components::device.createGraphicsPipelineUnique( nullptr, createInfo, nullptr ) );
+    _pipeline = static_cast<vk::UniquePipeline>( vkCore::global::device.createGraphicsPipelineUnique( nullptr, createInfo, nullptr ) );
     RX_ASSERT( _pipeline.get( ), "Failed to create rasterization pipeline." );
   }
 

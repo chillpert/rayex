@@ -8,17 +8,17 @@ namespace RAYEX_NAMESPACE
   {
     if ( as )
     {
-      components::device.destroyAccelerationStructureKHR( as );
+      vkCore::global::device.destroyAccelerationStructureKHR( as );
     }
 
     if ( buffer )
     {
-      components::device.destroyBuffer( buffer );
+      vkCore::global::device.destroyBuffer( buffer );
     }
 
     if ( memory )
     {
-      components::device.freeMemory( memory );
+      vkCore::global::device.freeMemory( memory );
     }
   }
 
@@ -33,20 +33,20 @@ namespace RAYEX_NAMESPACE
                                      vk::BufferUsageFlagBits::eAccelerationStructureStorageKHR | vk::BufferUsageFlagBits::eShaderDeviceAddress, // usage
                                      vk::SharingMode::eExclusive,                                                                               // sharingMode
                                      1,                                                                                                         // queueFamilyIndexCount
-                                     &rx::components::graphicsFamilyIndex );                                                                    // pQueueFamilyIndices
+                                     &vkCore::global::graphicsFamilyIndex );                                                                    // pQueueFamilyIndices
 
-    resultAs.buffer = rx::components::device.createBuffer( createInfo );
+    resultAs.buffer = vkCore::global::device.createBuffer( createInfo );
     RX_ASSERT( resultAs.buffer, "Failed to create buffer." );
 
     resultAs.memory = vkCore::allocateMemory( resultAs.buffer,
                                               vk::MemoryPropertyFlagBits::eDeviceLocal | vk::MemoryPropertyFlagBits::eHostCoherent,
                                               &allocateFlags );
 
-    RAYEX_NAMESPACE::components::device.bindBufferMemory( resultAs.buffer, resultAs.memory, 0 );
+    vkCore::global::device.bindBufferMemory( resultAs.buffer, resultAs.memory, 0 );
 
     asCreateInfo.buffer = resultAs.buffer;
 
-    resultAs.as = RAYEX_NAMESPACE::components::device.createAccelerationStructureKHR( asCreateInfo, nullptr );
+    resultAs.as = vkCore::global::device.createAccelerationStructureKHR( asCreateInfo, nullptr );
 
     return resultAs;
   }

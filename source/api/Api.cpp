@@ -36,7 +36,7 @@ namespace RAYEX_NAMESPACE
 
   Api::~Api( )
   {
-    components::device.waitIdle( );
+    vkCore::global::device.waitIdle( );
 
     // Gui needs to be destroyed manually, as RAII destruction will not be possible.
     if ( _gui != nullptr )
@@ -70,15 +70,14 @@ namespace RAYEX_NAMESPACE
     extensions.insert( extensions.end( ), windowExtensions.begin( ), windowExtensions.end( ) );
 
     // Instance
-    _instance            = vkCore::initInstanceUnique( layers, extensions, VK_API_VERSION_1_2 );
-    components::instance = _instance.get( );
+    _instance = vkCore::initInstanceUnique( layers, extensions, VK_API_VERSION_1_2 );
 
     // Debug messenger
     _debugMessenger.init( );
 
     // Surface
     VkSurfaceKHR surface;
-    SDL_bool result = SDL_Vulkan_CreateSurface( _window->get( ), components::instance, &surface );
+    SDL_bool result = SDL_Vulkan_CreateSurface( _window->get( ), vkCore::global::instance, &surface );
 
     if ( result != SDL_TRUE )
     {
@@ -86,19 +85,15 @@ namespace RAYEX_NAMESPACE
     }
 
     _surface.init( surface, _window->getExtent( ) );
-    components::surface = vkCore::global::surface;
 
     // Physical device
-    components::physicalDevice = vkCore::initPhysicalDevice( ); // @todo This function does not check if any feature is available when evaluating a device.
+    vkCore::global::physicalDevice = vkCore::initPhysicalDevice( ); // @todo This function does not check if any feature is available when evaluating a device. Additionally, it is pointless to assign vkCore::global::physicalDevice in here because it doesn't need a unique handle.
 
     // Reassess the support of the preferred surface settings.
     _surface.assessSettings( );
 
     // Queues
     vkCore::initQueueFamilyIndices( );
-
-    components::graphicsFamilyIndex = vkCore::global::graphicsFamilyIndex;
-    components::transferFamilyIndex = vkCore::global::transferFamilyIndex;
 
     // Logical device
     vk::PhysicalDeviceAccelerationStructureFeaturesKHR asFeatures;
@@ -143,22 +138,16 @@ namespace RAYEX_NAMESPACE
     _device = vkCore::initDeviceUnique( deviceExtensions, { }, deviceFeatures2 );
 
     vkCore::global::device = _device.get( );
-    components::device     = vkCore::global::device;
 
     // Retrieve all queue handles.
-    components::device.getQueue( components::graphicsFamilyIndex, 0, &components::graphicsQueue );
-    components::device.getQueue( components::transferFamilyIndex, 0, &components::transferQueue );
-
-    vkCore::global::graphicsQueue = components::graphicsQueue;
-    vkCore::global::transferQueue = components::transferQueue;
+    vkCore::global::device.getQueue( vkCore::global::graphicsFamilyIndex, 0, &vkCore::global::graphicsQueue );
+    vkCore::global::device.getQueue( vkCore::global::transferFamilyIndex, 0, &vkCore::global::transferQueue );
 
     // Command pools
-    _graphicsCmdPool                = vkCore::initCommandPoolUnique( components::graphicsFamilyIndex, vk::CommandPoolCreateFlagBits::eResetCommandBuffer );
-    components::graphicsCmdPool     = _graphicsCmdPool.get( );
+    _graphicsCmdPool                = vkCore::initCommandPoolUnique( vkCore::global::graphicsFamilyIndex, vk::CommandPoolCreateFlagBits::eResetCommandBuffer );
     vkCore::global::graphicsCmdPool = _graphicsCmdPool.get( );
 
-    _transferCmdPool                = vkCore::initCommandPoolUnique( components::transferFamilyIndex, { } );
-    components::transferCmdPool     = _transferCmdPool.get( );
+    _transferCmdPool                = vkCore::initCommandPoolUnique( vkCore::global::transferFamilyIndex, { } );
     vkCore::global::transferCmdPool = _transferCmdPool.get( );
 
     // Post processing renderer
@@ -167,9 +156,7 @@ namespace RAYEX_NAMESPACE
 
     // Swapchain
     _swapchain.init( &_surface, _postProcessingRenderer.getRenderPass( ).get( ) );
-    components::swapchain           = vkCore::global::swapchain;
-    components::swapchainImageCount = vkCore::global::swapchainImageCount;
-    _settings._refreshSwapchain     = false;
+    _settings._refreshSwapchain = false;
 
     // GUI
     initGui( );
@@ -208,7 +195,7 @@ namespace RAYEX_NAMESPACE
     _postProcessingRenderer.updateDescriptors( _pathTracer.getStorageImageInfo( ) );
 
     // Initialize and record swapchain command buffers.
-    _swapchainCommandBuffers.init( _graphicsCmdPool.get( ), components::swapchainImageCount, vk::CommandBufferUsageFlagBits::eRenderPassContinue );
+    _swapchainCommandBuffers.init( _graphicsCmdPool.get( ), vkCore::global::swapchainImageCount, vk::CommandBufferUsageFlagBits::eRenderPassContinue );
 
     RX_LOG_TIME_STOP( "API finished" );
   }
@@ -297,7 +284,7 @@ namespace RAYEX_NAMESPACE
 
     // Reset the signaled state of the current frame's fence to the unsignaled one.
     auto currentInFlightFence_t = _sync.getInFlightFence( currentFrame );
-    components::device.resetFences( 1, &currentInFlightFence_t );
+    vkCore::global::device.resetFences( 1, &currentInFlightFence_t );
 
     // Submits / executes the current image's / framebuffer's command buffer.
     vk::PipelineStageFlags pWaitDstStageMask = vk::PipelineStageFlagBits::eColorAttachmentOutput;
@@ -313,20 +300,20 @@ namespace RAYEX_NAMESPACE
                                1,                   // signalSemaphoreCount
                                &signaleSemaphore ); // pSignalSemaphores
 
-    components::graphicsQueue.submit( submitInfo, currentInFlightFence_t );
+    vkCore::global::graphicsQueue.submit( submitInfo, currentInFlightFence_t );
 
     // Tell the presentation engine that the current image is ready.
-    vk::PresentInfoKHR presentInfo( 1,                      // waitSemaphoreCount
-                                    &signaleSemaphore,      // pWaitSemaphores
-                                    1,                      // swapchainCount
-                                    &components::swapchain, // pSwapchains
-                                    &imageIndex,            // pImageIndices
-                                    nullptr );              // pResults
+    vk::PresentInfoKHR presentInfo( 1,                          // waitSemaphoreCount
+                                    &signaleSemaphore,          // pWaitSemaphores
+                                    1,                          // swapchainCount
+                                    &vkCore::global::swapchain, // pSwapchains
+                                    &imageIndex,                // pImageIndices
+                                    nullptr );                  // pResults
 
     // This try catch block is only necessary on Linux for whatever reason. Without it, resizing the window will result in an unhandled throw of vk::Result::eErrorOutOfDateKHR.
     try
     {
-      vk::Result result = components::graphicsQueue.presentKHR( presentInfo );
+      vk::Result result = vkCore::global::graphicsQueue.presentKHR( presentInfo );
       if ( result == vk::Result::eErrorOutOfDateKHR || result == vk::Result::eSuboptimalKHR )
       {
         _settings.triggerSwapchainRefresh( );
@@ -368,7 +355,7 @@ namespace RAYEX_NAMESPACE
       _settings._refreshPipeline = false;
 
       // Calling wait idle, because pipeline recreation is assumed to be a very rare event to happen.
-      components::device.waitIdle( );
+      vkCore::global::device.waitIdle( );
 
 #ifdef RX_COPY_ASSETS
       // Copies shader resources to binary output directory. This way a shader can be changed during runtime.
@@ -419,7 +406,7 @@ namespace RAYEX_NAMESPACE
     RX_LOG_TIME_START( "Re-creating swapchain ..." );
 
     // Waiting idle because this event is considered to be very rare.
-    components::device.waitIdle( );
+    vkCore::global::device.waitIdle( );
 
     // Clean up existing swapchain and dependencies.
     _swapchain.destroy( );

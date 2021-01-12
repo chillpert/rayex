@@ -22,16 +22,16 @@ namespace RAYEX_NAMESPACE
     initDescriptorPool( );
 
     ImGui_ImplVulkan_InitInfo init_info { };
-    init_info.Instance       = components::instance;
-    init_info.PhysicalDevice = components::physicalDevice;
-    init_info.Device         = components::device;
-    init_info.QueueFamily    = components::graphicsFamilyIndex;
-    init_info.Queue          = components::graphicsQueue;
+    init_info.Instance       = vkCore::global::instance;
+    init_info.PhysicalDevice = vkCore::global::physicalDevice;
+    init_info.Device         = vkCore::global::device;
+    init_info.QueueFamily    = vkCore::global::graphicsFamilyIndex;
+    init_info.Queue          = vkCore::global::graphicsQueue;
     init_info.PipelineCache  = nullptr;
     init_info.DescriptorPool = _descriptorPool.get( );
     init_info.Allocator      = nullptr;
     init_info.MinImageCount  = surface->getCapabilities( ).minImageCount + 1;
-    init_info.ImageCount     = static_cast<uint32_t>( components::swapchainImageCount );
+    init_info.ImageCount     = static_cast<uint32_t>( vkCore::global::swapchainImageCount );
 
     RX_ASSERT( ImGui_ImplVulkan_Init( &init_info, renderPass ), "Failed to initialize Vulkan for ImGui." );
 
@@ -80,12 +80,12 @@ namespace RAYEX_NAMESPACE
                                                       { vk::DescriptorType::eStorageBufferDynamic, 1000 },
                                                       { vk::DescriptorType::eInputAttachment, 1000 } };
 
-    _descriptorPool = vkCore::initDescriptorPoolUnique( poolSizes, components::swapchainImageCount );
+    _descriptorPool = vkCore::initDescriptorPoolUnique( poolSizes, vkCore::global::swapchainImageCount );
   }
 
   void Gui::initFonts( )
   {
-    _commandPool = vkCore::initCommandPoolUnique( components::graphicsFamilyIndex, vk::CommandPoolCreateFlagBits::eResetCommandBuffer );
+    _commandPool = vkCore::initCommandPoolUnique( vkCore::global::graphicsFamilyIndex, vk::CommandPoolCreateFlagBits::eResetCommandBuffer );
 
     vkCore::CommandBuffer commandBuffer( _commandPool.get( ) );
     commandBuffer.begin( );
@@ -93,6 +93,6 @@ namespace RAYEX_NAMESPACE
     RX_ASSERT( ImGui_ImplVulkan_CreateFontsTexture( commandBuffer.get( 0 ) ), "Failed to create ImGui fonts texture." );
 
     commandBuffer.end( );
-    commandBuffer.submitToQueue( components::graphicsQueue );
+    commandBuffer.submitToQueue( vkCore::global::graphicsQueue );
   }
 } // namespace RAYEX_NAMESPACE

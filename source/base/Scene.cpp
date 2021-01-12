@@ -567,7 +567,7 @@ namespace RAYEX_NAMESPACE
                                        immutableSamplers.data( ) );
 
     _geometryDescriptors.layout = _geometryDescriptors.bindings.initLayoutUnique( vk::DescriptorSetLayoutCreateFlagBits::eUpdateAfterBindPool );
-    _geometryDescriptors.pool   = _geometryDescriptors.bindings.initPoolUnique( components::swapchainImageCount, vk::DescriptorPoolCreateFlagBits::eUpdateAfterBind );
+    _geometryDescriptors.pool   = _geometryDescriptors.bindings.initPoolUnique( vkCore::global::swapchainImageCount, vk::DescriptorPoolCreateFlagBits::eUpdateAfterBind );
     _geometryDescriptorSets     = vkCore::allocateDescriptorSets( _geometryDescriptors.pool.get( ), _geometryDescriptors.layout.get( ) );
   }
 

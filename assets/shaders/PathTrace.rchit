@@ -221,4 +221,9 @@ void main( )
     ray.rayDirection = reflect( gl_WorldRayDirectionEXT, normal );
     ray.reflective   = true;
   }
+
+  if ( emission != vec3( 0.0 ) )
+  {
+    ray.depth = maxRecursionDepth + 1;
+  }
 }

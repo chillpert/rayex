@@ -126,6 +126,7 @@ void main( )
   const vec3 barycentrics = vec3( 1.0 - attribs.x - attribs.y, attribs.x, attribs.y );
   // Computing the normal at hit position
   vec3 normal = v0.normal * barycentrics.x + v1.normal * barycentrics.y + v2.normal * barycentrics.z;
+
   // Transforming the normal to world space
   normal = normalize( vec3( geometryInstances.i[gl_InstanceID].transformIT * vec4( normal, 0.0 ) ) );
 
@@ -159,15 +160,6 @@ void main( )
     }
   }
 
-  // Pick a random direction from here and keep going.
-  vec3 tangent, bitangent;
-  createCoordinateSystem( normal, tangent, bitangent );
-  vec3 rayOrigin    = worldPos;
-  vec3 rayDirection = samplingHemisphere( ray.seed, tangent, bitangent, normal );
-
-  // Probability of the new ray (cosine distributed)
-  const float p = 1 / M_PI;
-
   // Lighting
   vec3 ambient  = vec3( 0.0 );
   vec3 diffuse  = vec3( 0.0 );
@@ -197,14 +189,33 @@ void main( )
     {
       ambient  = getAmbientLight( mat, texCoord );
       diffuse  = getDiffuseLight( mat, texCoord );
-      specular = getSpecularLight( mat, texCoord, gl_WorldRayDirectionEXT, rayDirection, normal );
+      specular = getSpecularLight( mat, texCoord, gl_WorldRayDirectionEXT, ray.rayDirection, normal );
     }
     else if ( mat.illum == 3 )
     {
       diffuse  = getDiffuseLight( mat, texCoord );
-      specular = getSpecularLight( mat, texCoord, gl_WorldRayDirectionEXT, rayDirection, normal );
+      specular = getSpecularLight( mat, texCoord, gl_WorldRayDirectionEXT, ray.rayDirection, normal );
     }
   }
+
+  // Pick a random direction from here and keep going.
+  vec3 rayOrigin = worldPos;
+  vec3 rayDirection;
+
+  if ( found && mat.illum == 3 )
+  {
+    rayDirection   = reflect( gl_WorldRayDirectionEXT, normal ); // Normal is not correct
+    ray.reflective = true;
+  }
+  else
+  {
+    vec3 tangent, bitangent;
+    createCoordinateSystem( normal, tangent, bitangent );
+    rayDirection = samplingHemisphere( ray.seed, tangent, bitangent, normal );
+  }
+
+  // Probability of the new ray (cosine distributed)
+  const float p = 1 / M_PI;
 
   // Compute the BRDF for this ray (assuming Lambertian reflection).
   vec3 BRDF = ( ambient + diffuse + specular ) / M_PI;
@@ -215,15 +226,4 @@ void main( )
   ray.rayDirection = rayDirection;
   ray.weight       = BRDF * cosTheta / p;
   ray.hitValue     = emission;
-
-  if ( found && mat.illum == 3 )
-  {
-    ray.rayDirection = reflect( gl_WorldRayDirectionEXT, normal );
-    ray.reflective   = true;
-  }
-
-  if ( emission != vec3( 0.0 ) )
-  {
-    ray.depth = maxRecursionDepth + 1;
-  }
 }

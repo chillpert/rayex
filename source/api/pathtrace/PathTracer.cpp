@@ -512,7 +512,7 @@ namespace RAYEX_NAMESPACE
     auto rgen = vkCore::initShaderModuleUnique( components::assetsPath + "shaders/PathTrace.rgen", RX_GLSLC_PATH );
     auto miss = vkCore::initShaderModuleUnique( components::assetsPath + "shaders/PathTrace.rmiss", RX_GLSLC_PATH );
     auto chit = vkCore::initShaderModuleUnique( components::assetsPath + "shaders/PathTrace.rchit", RX_GLSLC_PATH );
-    auto ahit = vkCore::initShaderModuleUnique( components::assetsPath + "shaders/PathTrace.rahit", RX_GLSLC_PATH );
+    //auto ahit = vkCore::initShaderModuleUnique( components::assetsPath + "shaders/PathTrace.rahit", RX_GLSLC_PATH );
     //auto ahit1 = vk::Initializer::initShaderModuleUnique( "shaders/PathTrace1.rahit" );
     //auto missShadow = vk::Initializer::initShaderModuleUnique( "shaders/PathTraceShadow.rmiss" );
 
@@ -531,12 +531,12 @@ namespace RAYEX_NAMESPACE
     _layout = vkCore::global::device.createPipelineLayoutUnique( layoutInfo );
     RX_ASSERT( _layout.get( ), "Failed to create pipeline layout for path tracing pipeline." );
 
-    std::array<vk::PipelineShaderStageCreateInfo, 4> shaderStages;
+    std::array<vk::PipelineShaderStageCreateInfo, 3> shaderStages;
     shaderStages[0] = vkCore::getPipelineShaderStageCreateInfo( vk::ShaderStageFlagBits::eRaygenKHR, rgen.get( ) );
     shaderStages[1] = vkCore::getPipelineShaderStageCreateInfo( vk::ShaderStageFlagBits::eMissKHR, miss.get( ) );
     //shaderStages[2] =vkCore::getPipelineShaderStageCreateInfo( vk::ShaderStageFlagBits::eMissKHR, missShadow.get( ) );
     shaderStages[2] = vkCore::getPipelineShaderStageCreateInfo( vk::ShaderStageFlagBits::eClosestHitKHR, chit.get( ) );
-    shaderStages[3] = vkCore::getPipelineShaderStageCreateInfo( vk::ShaderStageFlagBits::eAnyHitKHR, ahit.get( ) );
+    //shaderStages[3] = vkCore::getPipelineShaderStageCreateInfo( vk::ShaderStageFlagBits::eAnyHitKHR, ahit.get( ) );
     //shaderStages[4] = vkCore::getPipelineShaderStageCreateInfo( vk::ShaderStageFlagBits::eAnyHitKHR, ahit1.get( ) );
 
     // Set up path tracing shader groups.
@@ -560,8 +560,8 @@ namespace RAYEX_NAMESPACE
     //groups[2].type          = vk::RayTracingShaderGroupTypeKHR::eGeneral;
 
     groups[2].closestHitShader = 2;
-    groups[2].anyHitShader     = 3;
-    groups[2].type             = vk::RayTracingShaderGroupTypeKHR::eTrianglesHitGroup;
+    //groups[2].anyHitShader     = 3;
+    groups[2].type = vk::RayTracingShaderGroupTypeKHR::eTrianglesHitGroup;
 
     //groups[3].closestHitShader = 4;
     //groups[3].anyHitShader = 4;

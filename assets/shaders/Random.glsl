@@ -36,15 +36,21 @@ float rnd( inout uint prev )
 }
 
 // Randomly sampling around +Z
-vec3 samplingHemisphere( inout uint seed, in vec3 x, in vec3 y, in vec3 z )
+vec3 samplingHemisphere( inout uint seed, in vec3 tangent, in vec3 bitangent, in vec3 normal )
 {
-  float r1 = rnd( seed );
-  float r2 = rnd( seed );
-  float sq = sqrt( 1.0 - r2 );
+  float u0 = clamp( rnd( seed ), 0.0, 3.0 );
+  float u1 = clamp( rnd( seed ), 0.0, 3.0 );
+  float sq = sqrt( u1 );
 
-  vec3 direction = vec3( cos( 2 * M_PI * r1 ) * sq, sin( 2 * M_PI * r1 ) * sq, sqrt( r2 ) );
+  vec3 direction;
+
+  // Sample direction.
+  direction.x = ( cos( 2 * M_PI * u0 ) * sq );
+  direction.y = ( sin( 2 * M_PI * u0 ) * sq );
+  direction.z = sqrt( 1.0 - u1 );
+
   // Transform to local tangent space of the surface.
-  direction = direction.x * x + direction.y * y + direction.z * z;
+  direction = direction.x * tangent + direction.y * bitangent + direction.z * normal;
 
   return direction;
 }

@@ -22,7 +22,7 @@ int main( )
   // ... and initialize the renderer.
   renderer.init( );
 
-  loadScene( &renderer, Level::eReflections );
+  loadScene( &renderer, Level::eCornell );
 
   while ( renderer.isRunning( ) )
   {

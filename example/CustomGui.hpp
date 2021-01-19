@@ -219,10 +219,11 @@ private:
           _renderer->settings( ).setPerPixelSampleRate( perPixelSampleRate );
         }
 
-        int depth = static_cast<int>( _renderer->settings( ).getRecursionDepth( ) );
-        if ( ImGui::SliderInt( "Recursion depth", &depth, 0, 31 ) )
+        static int maxDepth = static_cast<int>( _renderer->settings( ).getMaxPathDepth( ) );
+        int depth           = static_cast<int>( _renderer->settings( ).getPathDepth( ) );
+        if ( ImGui::SliderInt( "Path depth", &depth, 0, maxDepth ) )
         {
-          _renderer->settings( ).setRecursionDepth( static_cast<uint32_t>( depth ) );
+          _renderer->settings( ).setPathDepth( static_cast<uint32_t>( depth ) );
         }
       }
 

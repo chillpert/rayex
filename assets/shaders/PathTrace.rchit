@@ -189,12 +189,12 @@ void main( )
     {
       ambient  = getAmbientLight( mat, texCoord );
       diffuse  = getDiffuseLight( mat, texCoord );
-      specular = getSpecularLight( mat, texCoord, gl_WorldRayDirectionEXT, ray.rayDirection, normal );
+      specular = getSpecularLight( mat, texCoord, gl_WorldRayDirectionEXT, ray.rayDirection, normal ); // Param probably wrong
     }
     else if ( mat.illum == 3 )
     {
       diffuse  = getDiffuseLight( mat, texCoord );
-      specular = getSpecularLight( mat, texCoord, gl_WorldRayDirectionEXT, ray.rayDirection, normal );
+      specular = getSpecularLight( mat, texCoord, gl_WorldRayDirectionEXT, ray.rayDirection, normal ); // Param probably wrong
     }
   }
 
@@ -202,11 +202,13 @@ void main( )
   vec3 rayOrigin = worldPos;
   vec3 rayDirection;
 
+  // Perfect reflection
   if ( found && mat.illum == 3 )
   {
     rayDirection   = reflect( gl_WorldRayDirectionEXT, normal ); // Normal is not correct
     ray.reflective = true;
   }
+  // Random sampling direction of hemisphere
   else
   {
     vec3 tangent, bitangent;
@@ -214,7 +216,7 @@ void main( )
     rayDirection = samplingHemisphere( ray.seed, tangent, bitangent, normal );
   }
 
-  // Probability of the new ray (cosine distributed)
+  // Probability of the new ray (cosine-distributed)
   const float p = 1 / M_PI;
 
   // Compute the BRDF for this ray (assuming Lambertian reflection).

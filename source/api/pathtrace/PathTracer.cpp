@@ -498,11 +498,11 @@ namespace RAYEX_NAMESPACE
   void PathTracer::createPipeline( const std::vector<vk::DescriptorSetLayout>& descriptorSetLayouts, Settings* settings )
   {
     // Check if selected recursion depth exceeds maximum supported value.
-    auto recursionDepth = settings->getRecursionDepth( );
-    if ( recursionDepth > _capabilities.pipelineProperties.maxRayRecursionDepth )
+    auto pathDepth = settings->getPathDepth( );
+    if ( pathDepth > _capabilities.pipelineProperties.maxRayRecursionDepth )
     {
-      RX_WARN( "Selected recursion depth of ", recursionDepth, " exceeds maximum of ", _capabilities.pipelineProperties.maxRayRecursionDepth, ". Using maximum value instead." );
-      settings->setRecursionDepth( _capabilities.pipelineProperties.maxRayRecursionDepth );
+      RX_WARN( "Selected recursion depth of ", pathDepth, " exceeds maximum of ", _capabilities.pipelineProperties.maxRayRecursionDepth, ". Using maximum value instead." );
+      settings->setPathDepth( _capabilities.pipelineProperties.maxRayRecursionDepth );
     }
 
     //uint32_t anticipatedDirectionalLights = settings->maxDirectionalLights.has_value( ) ? settings->maxDirectionalLights.value( ) : components::maxDirectionalLights;
@@ -574,7 +574,7 @@ namespace RAYEX_NAMESPACE
                                                     shaderStages.data( ),                          // pStages
                                                     static_cast<uint32_t>( groups.size( ) ),       // groupCount
                                                     groups.data( ),                                // pGroups
-                                                    settings->getRecursionDepth( ),                // maxPipelineRayRecursionDepth
+                                                    settings->getPathDepth( ),                     // maxPipelineRayRecursionDepth
                                                     { },                                           // pLibraryInfo
                                                     nullptr,                                       // pLibraryInterface
                                                     { },                                           // pDynamicState

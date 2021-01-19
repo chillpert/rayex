@@ -166,7 +166,7 @@ namespace RAYEX_NAMESPACE
 
     // Path tracer
     _pathTracer.init( );
-    _settings._maxRecursionDepth = _pathTracer.getCapabilities( ).pipelineProperties.maxRayRecursionDepth;
+    _settings._maxPathDepth = _pathTracer.getCapabilities( ).pipelineProperties.maxRayRecursionDepth;
 
     _scene.prepareBuffers( );
 
@@ -469,7 +469,7 @@ namespace RAYEX_NAMESPACE
     PtPushConstants chitPc = { _settings._clearColor,
                                components::frameCount,
                                _settings._perPixelSampleRate,
-                               _settings._recursionDepth,
+                               _settings._pathDepth,
                                static_cast<uint32_t>( _scene._useEnvironmentMap ) };
 
     // Start recording the swapchain framebuffers?

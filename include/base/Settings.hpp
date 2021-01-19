@@ -19,18 +19,18 @@ namespace RAYEX_NAMESPACE
     friend class Pipeline;
     friend class Scene;
 
-    /// @return Returns the recursion depth.
-    auto getRecursionDepth( ) const -> uint32_t { return _recursionDepth; }
+    /// @return Returns the path depth.
+    auto getPathDepth( ) const -> uint32_t { return _pathDepth; }
 
-    /// Used to set the recursion depth.
+    /// Used to set the path depth.
     ///
     /// The function will trigger a pipeline recreation as soon as possible unless it was explicitely disabled using setAutomaticPipelineRefresh(bool).
     /// If a value higher than the device's maximum supported value is set, it will use the maximum value instead.
     /// @param recursionDepth The new value for the recursion depth.
-    void setRecursionDepth( uint32_t recursionDepth );
+    void setPathDepth( uint32_t recursionDepth );
 
-    /// @return Returns the maximum recursion depth on the GPU.
-    auto getMaxRecursionDepth( ) const -> uint32_t { return _maxRecursionDepth; }
+    /// @return Returns the maximum path depth on the GPU.
+    auto getMaxPathDepth( ) const -> uint32_t { return _maxPathDepth; }
 
     /// @return Returns the clear color.
     auto getClearColor( ) const -> const glm::vec4& { return _clearColor; }
@@ -113,8 +113,8 @@ namespace RAYEX_NAMESPACE
     std::string _assetsPath; ///< Where all assets like models, textures and shaders are stored.
 
     glm::vec4 _clearColor        = glm::vec4( 0.45F, 0.45F, 0.45F, 0.8F ); ///< Stores the clear color.
-    uint32_t _maxRecursionDepth  = 10;                                     ///< The maximum recursion depth.
-    uint32_t _recursionDepth     = 10;                                     ///< The current recursion depth.
+    uint32_t _maxPathDepth       = 10;                                     ///< The maximum path depth.
+    uint32_t _pathDepth          = 10;                                     ///< The current path depth.
     uint32_t _perPixelSampleRate = 4;                                      ///< Stores the total amount of samples that will be taken and averaged per pixel.
 
     bool _accumulateFrames          = true;

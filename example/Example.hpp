@@ -133,7 +133,7 @@ inline void loadScene( rx::Rayex* renderer, Level scene )
     renderer->scene( ).setGeometries( { cornell } );
 
     auto transform       = glm::translate( glm::mat4( 1.0F ), glm::vec3( 0.0F, -1.0F, -1.0F ) );
-    auto cornellInstance = rx::instance( cornell, transform );
+    auto cornellInstance = rx::instance( cornell ); //, transform );
 
     renderer->scene( ).setGeometryInstances( { cornellInstance } );
 

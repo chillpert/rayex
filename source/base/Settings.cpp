@@ -4,18 +4,19 @@
 
 namespace RAYEX_NAMESPACE
 {
-  void Settings::setRecursionDepth( uint32_t recursionDepth )
+  void Settings::setPathDepth( uint32_t recursionDepth )
   {
-    if ( recursionDepth <= _maxRecursionDepth )
+    if ( recursionDepth <= _maxPathDepth )
     {
-      _recursionDepth = recursionDepth;
+      _pathDepth = recursionDepth;
     }
     else
     {
-      _recursionDepth = _maxRecursionDepth;
-      RX_WARN( "Exceeded maximum recursion depth of ", _maxRecursionDepth, ". Using highest possible value instead." );
+      _pathDepth = _maxPathDepth;
+      RX_WARN( "Exceeded maximum path depth of ", _maxPathDepth, ". Using highest possible value instead." );
     }
 
+    _pathDepth = recursionDepth;
     triggerPipelineRefresh( );
   }
 

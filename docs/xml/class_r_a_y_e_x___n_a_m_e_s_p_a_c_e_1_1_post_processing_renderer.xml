@@ -4,9 +4,9 @@
     <compoundname>RAYEX_NAMESPACE::PostProcessingRenderer</compoundname>
     <includes refid="_post_processing_renderer_8hpp" local="no">PostProcessingRenderer.hpp</includes>
       <sectiondef kind="private-attrib">
-      <memberdef kind="variable" id="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_post_processing_renderer_1a16b8a18e3a427c950903619b58879850" prot="private" static="no" mutable="no">
-        <type><ref refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_image" kindref="compound">Image</ref></type>
-        <definition>Image RAYEX_NAMESPACE::PostProcessingRenderer::_depthImage</definition>
+      <memberdef kind="variable" id="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_post_processing_renderer_1adfd3bb9a206a4e6b28357b0a6014e4a0" prot="private" static="no" mutable="no">
+        <type>vkCore::Image</type>
+        <definition>vkCore::Image RAYEX_NAMESPACE::PostProcessingRenderer::_depthImage</definition>
         <argsstring></argsstring>
         <name>_depthImage</name>
         <briefdescription>
@@ -15,7 +15,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/mnt/c/Repos/rayex/include/api/PostProcessingRenderer.hpp" line="40" column="11" bodyfile="/mnt/c/Repos/rayex/include/api/PostProcessingRenderer.hpp" bodystart="40" bodyend="-1"/>
+        <location file="/home/n30/Repos/rayex/include/api/PostProcessingRenderer.hpp" line="38" column="19" bodyfile="/home/n30/Repos/rayex/include/api/PostProcessingRenderer.hpp" bodystart="38" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_post_processing_renderer_1a596c45025f610779d3e1106331ca729e" prot="private" static="no" mutable="no">
         <type>vk::UniqueImageView</type>
@@ -28,11 +28,11 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/mnt/c/Repos/rayex/include/api/PostProcessingRenderer.hpp" line="41" column="25" bodyfile="/mnt/c/Repos/rayex/include/api/PostProcessingRenderer.hpp" bodystart="41" bodyend="-1"/>
+        <location file="/home/n30/Repos/rayex/include/api/PostProcessingRenderer.hpp" line="39" column="25" bodyfile="/home/n30/Repos/rayex/include/api/PostProcessingRenderer.hpp" bodystart="39" bodyend="-1"/>
       </memberdef>
-      <memberdef kind="variable" id="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_post_processing_renderer_1ab326b4db01732559325cb2e00c14c96a" prot="private" static="no" mutable="no">
-        <type><ref refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_render_pass" kindref="compound">RenderPass</ref></type>
-        <definition>RenderPass RAYEX_NAMESPACE::PostProcessingRenderer::_renderPass</definition>
+      <memberdef kind="variable" id="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_post_processing_renderer_1ac2233b784615561708c9250bda3c85d6" prot="private" static="no" mutable="no">
+        <type>vkCore::RenderPass</type>
+        <definition>vkCore::RenderPass RAYEX_NAMESPACE::PostProcessingRenderer::_renderPass</definition>
         <argsstring></argsstring>
         <name>_renderPass</name>
         <briefdescription>
@@ -41,7 +41,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/mnt/c/Repos/rayex/include/api/PostProcessingRenderer.hpp" line="43" column="16" bodyfile="/mnt/c/Repos/rayex/include/api/PostProcessingRenderer.hpp" bodystart="43" bodyend="-1"/>
+        <location file="/home/n30/Repos/rayex/include/api/PostProcessingRenderer.hpp" line="41" column="24" bodyfile="/home/n30/Repos/rayex/include/api/PostProcessingRenderer.hpp" bodystart="41" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_post_processing_renderer_1a6f7c4a9e15ec33e16583a141e25a3d0d" prot="private" static="no" mutable="no">
         <type>vk::UniquePipeline</type>
@@ -54,7 +54,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/mnt/c/Repos/rayex/include/api/PostProcessingRenderer.hpp" line="45" column="24" bodyfile="/mnt/c/Repos/rayex/include/api/PostProcessingRenderer.hpp" bodystart="45" bodyend="-1"/>
+        <location file="/home/n30/Repos/rayex/include/api/PostProcessingRenderer.hpp" line="43" column="24" bodyfile="/home/n30/Repos/rayex/include/api/PostProcessingRenderer.hpp" bodystart="43" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_post_processing_renderer_1a74b4a6274c28a14dab988fd811de1092" prot="private" static="no" mutable="no">
         <type>vk::UniquePipelineLayout</type>
@@ -67,11 +67,11 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/mnt/c/Repos/rayex/include/api/PostProcessingRenderer.hpp" line="46" column="30" bodyfile="/mnt/c/Repos/rayex/include/api/PostProcessingRenderer.hpp" bodystart="46" bodyend="-1"/>
+        <location file="/home/n30/Repos/rayex/include/api/PostProcessingRenderer.hpp" line="44" column="30" bodyfile="/home/n30/Repos/rayex/include/api/PostProcessingRenderer.hpp" bodystart="44" bodyend="-1"/>
       </memberdef>
-      <memberdef kind="variable" id="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_post_processing_renderer_1af3dac15fbce280fbebb9eee800bba279" prot="private" static="no" mutable="no">
-        <type><ref refid="struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_descriptors" kindref="compound">Descriptors</ref></type>
-        <definition>Descriptors RAYEX_NAMESPACE::PostProcessingRenderer::_descriptors</definition>
+      <memberdef kind="variable" id="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_post_processing_renderer_1a6cd576ca2cd05fac14b987b72fa5e6cd" prot="private" static="no" mutable="no">
+        <type>vkCore::Descriptors</type>
+        <definition>vkCore::Descriptors RAYEX_NAMESPACE::PostProcessingRenderer::_descriptors</definition>
         <argsstring></argsstring>
         <name>_descriptors</name>
         <briefdescription>
@@ -80,7 +80,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/mnt/c/Repos/rayex/include/api/PostProcessingRenderer.hpp" line="48" column="17" bodyfile="/mnt/c/Repos/rayex/include/api/PostProcessingRenderer.hpp" bodystart="48" bodyend="-1"/>
+        <location file="/home/n30/Repos/rayex/include/api/PostProcessingRenderer.hpp" line="46" column="25" bodyfile="/home/n30/Repos/rayex/include/api/PostProcessingRenderer.hpp" bodystart="46" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_post_processing_renderer_1ab183f4f1c5893de2b6c6dd05a53e34a1" prot="private" static="no" mutable="no">
         <type>std::vector&lt; vk::DescriptorSet &gt;</type>
@@ -93,14 +93,14 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/mnt/c/Repos/rayex/include/api/PostProcessingRenderer.hpp" line="49" column="17" bodyfile="/mnt/c/Repos/rayex/include/api/PostProcessingRenderer.hpp" bodystart="49" bodyend="-1"/>
+        <location file="/home/n30/Repos/rayex/include/api/PostProcessingRenderer.hpp" line="47" column="17" bodyfile="/home/n30/Repos/rayex/include/api/PostProcessingRenderer.hpp" bodystart="47" bodyend="-1"/>
       </memberdef>
       </sectiondef>
       <sectiondef kind="public-func">
-      <memberdef kind="function" id="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_post_processing_renderer_1aceafbaa163760cad61042437918a0588" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+      <memberdef kind="function" id="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_post_processing_renderer_1a2d3bd5259c28c3da4bc035017393fc2c" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
         <type>auto</type>
         <definition>auto RAYEX_NAMESPACE::PostProcessingRenderer::getRenderPass</definition>
-        <argsstring>() const -&gt; const RenderPass &amp;</argsstring>
+        <argsstring>() const -&gt; const vkCore::RenderPass &amp;</argsstring>
         <name>getRenderPass</name>
         <briefdescription>
         </briefdescription>
@@ -108,7 +108,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/mnt/c/Repos/rayex/include/api/PostProcessingRenderer.hpp" line="14" column="10" bodyfile="/mnt/c/Repos/rayex/include/api/PostProcessingRenderer.hpp" bodystart="14" bodyend="14"/>
+        <location file="/home/n30/Repos/rayex/include/api/PostProcessingRenderer.hpp" line="12" column="10" bodyfile="/home/n30/Repos/rayex/include/api/PostProcessingRenderer.hpp" bodystart="12" bodyend="12"/>
       </memberdef>
       <memberdef kind="function" id="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_post_processing_renderer_1a743e500ac21ab9b6b40005694dd6d738" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
         <type>auto</type>
@@ -121,7 +121,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/mnt/c/Repos/rayex/include/api/PostProcessingRenderer.hpp" line="16" column="10" bodyfile="/mnt/c/Repos/rayex/include/api/PostProcessingRenderer.hpp" bodystart="16" bodyend="16"/>
+        <location file="/home/n30/Repos/rayex/include/api/PostProcessingRenderer.hpp" line="14" column="10" bodyfile="/home/n30/Repos/rayex/include/api/PostProcessingRenderer.hpp" bodystart="14" bodyend="14"/>
       </memberdef>
       <memberdef kind="function" id="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_post_processing_renderer_1a011a18a3e3704b7a1db9538e090db1b1" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
         <type>auto</type>
@@ -134,7 +134,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/mnt/c/Repos/rayex/include/api/PostProcessingRenderer.hpp" line="18" column="10" bodyfile="/mnt/c/Repos/rayex/include/api/PostProcessingRenderer.hpp" bodystart="18" bodyend="18"/>
+        <location file="/home/n30/Repos/rayex/include/api/PostProcessingRenderer.hpp" line="16" column="10" bodyfile="/home/n30/Repos/rayex/include/api/PostProcessingRenderer.hpp" bodystart="16" bodyend="16"/>
       </memberdef>
       <memberdef kind="function" id="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_post_processing_renderer_1a01e2c8a445d8ea4f6df86cd05f3ab637" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -151,7 +151,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/mnt/c/Repos/rayex/include/api/PostProcessingRenderer.hpp" line="20" column="10"/>
+        <location file="/home/n30/Repos/rayex/include/api/PostProcessingRenderer.hpp" line="18" column="10"/>
       </memberdef>
       <memberdef kind="function" id="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_post_processing_renderer_1a0d7a6f02d459e8f7197e75e0a54b795a" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -168,7 +168,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/mnt/c/Repos/rayex/include/api/PostProcessingRenderer.hpp" line="22" column="10"/>
+        <location file="/home/n30/Repos/rayex/include/api/PostProcessingRenderer.hpp" line="20" column="10"/>
       </memberdef>
       <memberdef kind="function" id="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_post_processing_renderer_1a72d0b080d0e74207c556ce50959c4474" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -181,7 +181,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/mnt/c/Repos/rayex/include/api/PostProcessingRenderer.hpp" line="24" column="10"/>
+        <location file="/home/n30/Repos/rayex/include/api/PostProcessingRenderer.hpp" line="22" column="10"/>
       </memberdef>
       <memberdef kind="function" id="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_post_processing_renderer_1a226a9f0e524c8901ed48d31959e4c692" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -208,7 +208,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/mnt/c/Repos/rayex/include/api/PostProcessingRenderer.hpp" line="27" column="10"/>
+        <location file="/home/n30/Repos/rayex/include/api/PostProcessingRenderer.hpp" line="25" column="10"/>
       </memberdef>
       <memberdef kind="function" id="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_post_processing_renderer_1a8d2842efa22f36b3c680eef8a23b3048" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -221,7 +221,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/mnt/c/Repos/rayex/include/api/PostProcessingRenderer.hpp" line="29" column="10"/>
+        <location file="/home/n30/Repos/rayex/include/api/PostProcessingRenderer.hpp" line="27" column="10"/>
       </memberdef>
       <memberdef kind="function" id="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_post_processing_renderer_1acceeba217e38d1e290a3d39fe76f7be1" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -246,7 +246,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/mnt/c/Repos/rayex/include/api/PostProcessingRenderer.hpp" line="31" column="10"/>
+        <location file="/home/n30/Repos/rayex/include/api/PostProcessingRenderer.hpp" line="29" column="10"/>
       </memberdef>
       <memberdef kind="function" id="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_post_processing_renderer_1ad609d5474fe35a3c56fcb219f37ec2ed" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -263,7 +263,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/mnt/c/Repos/rayex/include/api/PostProcessingRenderer.hpp" line="33" column="10"/>
+        <location file="/home/n30/Repos/rayex/include/api/PostProcessingRenderer.hpp" line="31" column="10"/>
       </memberdef>
       <memberdef kind="function" id="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_post_processing_renderer_1aaf6b1d01d5a03b30ef04a6e491ee09ee" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -299,7 +299,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/mnt/c/Repos/rayex/include/api/PostProcessingRenderer.hpp" line="37" column="10"/>
+        <location file="/home/n30/Repos/rayex/include/api/PostProcessingRenderer.hpp" line="35" column="10"/>
       </memberdef>
       </sectiondef>
     <briefdescription>
@@ -307,20 +307,20 @@
     </briefdescription>
     <detaileddescription>
     </detaileddescription>
-    <location file="/mnt/c/Repos/rayex/include/api/PostProcessingRenderer.hpp" line="12" column="1" bodyfile="/mnt/c/Repos/rayex/include/api/PostProcessingRenderer.hpp" bodystart="11" bodyend="50"/>
+    <location file="/home/n30/Repos/rayex/include/api/PostProcessingRenderer.hpp" line="10" column="1" bodyfile="/home/n30/Repos/rayex/include/api/PostProcessingRenderer.hpp" bodystart="9" bodyend="48"/>
     <listofallmembers>
-      <member refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_post_processing_renderer_1a16b8a18e3a427c950903619b58879850" prot="private" virt="non-virtual"><scope>RAYEX_NAMESPACE::PostProcessingRenderer</scope><name>_depthImage</name></member>
+      <member refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_post_processing_renderer_1adfd3bb9a206a4e6b28357b0a6014e4a0" prot="private" virt="non-virtual"><scope>RAYEX_NAMESPACE::PostProcessingRenderer</scope><name>_depthImage</name></member>
       <member refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_post_processing_renderer_1a596c45025f610779d3e1106331ca729e" prot="private" virt="non-virtual"><scope>RAYEX_NAMESPACE::PostProcessingRenderer</scope><name>_depthImageView</name></member>
-      <member refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_post_processing_renderer_1af3dac15fbce280fbebb9eee800bba279" prot="private" virt="non-virtual"><scope>RAYEX_NAMESPACE::PostProcessingRenderer</scope><name>_descriptors</name></member>
+      <member refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_post_processing_renderer_1a6cd576ca2cd05fac14b987b72fa5e6cd" prot="private" virt="non-virtual"><scope>RAYEX_NAMESPACE::PostProcessingRenderer</scope><name>_descriptors</name></member>
       <member refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_post_processing_renderer_1ab183f4f1c5893de2b6c6dd05a53e34a1" prot="private" virt="non-virtual"><scope>RAYEX_NAMESPACE::PostProcessingRenderer</scope><name>_descriptorSets</name></member>
       <member refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_post_processing_renderer_1a6f7c4a9e15ec33e16583a141e25a3d0d" prot="private" virt="non-virtual"><scope>RAYEX_NAMESPACE::PostProcessingRenderer</scope><name>_pipeline</name></member>
       <member refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_post_processing_renderer_1a74b4a6274c28a14dab988fd811de1092" prot="private" virt="non-virtual"><scope>RAYEX_NAMESPACE::PostProcessingRenderer</scope><name>_pipelineLayout</name></member>
-      <member refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_post_processing_renderer_1ab326b4db01732559325cb2e00c14c96a" prot="private" virt="non-virtual"><scope>RAYEX_NAMESPACE::PostProcessingRenderer</scope><name>_renderPass</name></member>
+      <member refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_post_processing_renderer_1ac2233b784615561708c9250bda3c85d6" prot="private" virt="non-virtual"><scope>RAYEX_NAMESPACE::PostProcessingRenderer</scope><name>_renderPass</name></member>
       <member refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_post_processing_renderer_1acceeba217e38d1e290a3d39fe76f7be1" prot="public" virt="non-virtual"><scope>RAYEX_NAMESPACE::PostProcessingRenderer</scope><name>beginRenderPass</name></member>
       <member refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_post_processing_renderer_1ad609d5474fe35a3c56fcb219f37ec2ed" prot="public" virt="non-virtual"><scope>RAYEX_NAMESPACE::PostProcessingRenderer</scope><name>endRenderPass</name></member>
       <member refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_post_processing_renderer_1a743e500ac21ab9b6b40005694dd6d738" prot="public" virt="non-virtual"><scope>RAYEX_NAMESPACE::PostProcessingRenderer</scope><name>getPipeline</name></member>
       <member refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_post_processing_renderer_1a011a18a3e3704b7a1db9538e090db1b1" prot="public" virt="non-virtual"><scope>RAYEX_NAMESPACE::PostProcessingRenderer</scope><name>getPipelineLayout</name></member>
-      <member refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_post_processing_renderer_1aceafbaa163760cad61042437918a0588" prot="public" virt="non-virtual"><scope>RAYEX_NAMESPACE::PostProcessingRenderer</scope><name>getRenderPass</name></member>
+      <member refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_post_processing_renderer_1a2d3bd5259c28c3da4bc035017393fc2c" prot="public" virt="non-virtual"><scope>RAYEX_NAMESPACE::PostProcessingRenderer</scope><name>getRenderPass</name></member>
       <member refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_post_processing_renderer_1a01e2c8a445d8ea4f6df86cd05f3ab637" prot="public" virt="non-virtual"><scope>RAYEX_NAMESPACE::PostProcessingRenderer</scope><name>initDepthImage</name></member>
       <member refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_post_processing_renderer_1a72d0b080d0e74207c556ce50959c4474" prot="public" virt="non-virtual"><scope>RAYEX_NAMESPACE::PostProcessingRenderer</scope><name>initDescriptorSet</name></member>
       <member refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_post_processing_renderer_1a8d2842efa22f36b3c680eef8a23b3048" prot="public" virt="non-virtual"><scope>RAYEX_NAMESPACE::PostProcessingRenderer</scope><name>initPipeline</name></member>

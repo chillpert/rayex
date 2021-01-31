@@ -3,35 +3,11 @@
   <compounddef id="_time_8hpp" kind="file" language="C++">
     <compoundname>Time.hpp</compoundname>
     <includes refid="_core_8hpp" local="yes">Core.hpp</includes>
-    <includedby refid="_window_8hpp" local="yes">/mnt/c/Repos/rayex/include/base/Window.hpp</includedby>
-    <includedby refid="stdafx_8hpp" local="yes">/mnt/c/Repos/rayex/include/pch/stdafx.hpp</includedby>
+    <includedby refid="_window_8hpp" local="yes">/home/n30/Repos/rayex/include/base/Window.hpp</includedby>
+    <includedby refid="stdafx_8hpp" local="yes">/home/n30/Repos/rayex/include/pch/stdafx.hpp</includedby>
     <incdepgraph>
-      <node id="1">
-        <label>/mnt/c/Repos/rayex/include/base/Time.hpp</label>
-        <link refid="_time_8hpp"/>
-        <childnode refid="2" relation="include">
-        </childnode>
-      </node>
-      <node id="3">
-        <label>external/tinyLogger/TinyLogger.hpp</label>
-      </node>
-      <node id="8">
-        <label>SDL2/SDL.h</label>
-      </node>
-      <node id="7">
-        <label>string_view</label>
-      </node>
       <node id="6">
-        <label>sstream</label>
-      </node>
-      <node id="5">
-        <label>iostream</label>
-      </node>
-      <node id="4">
-        <label>chrono</label>
-      </node>
-      <node id="10">
-        <label>vulkan/vulkan.hpp</label>
+        <label>vkCore/vkCore.hpp</label>
       </node>
       <node id="2">
         <label>Core.hpp</label>
@@ -44,289 +20,133 @@
         </childnode>
         <childnode refid="6" relation="include">
         </childnode>
-        <childnode refid="7" relation="include">
-        </childnode>
-        <childnode refid="8" relation="include">
-        </childnode>
-        <childnode refid="9" relation="include">
-        </childnode>
-        <childnode refid="10" relation="include">
+      </node>
+      <node id="3">
+        <label>SDL2/SDL.h</label>
+      </node>
+      <node id="1">
+        <label>/home/n30/Repos/rayex/include/base/Time.hpp</label>
+        <link refid="_time_8hpp"/>
+        <childnode refid="2" relation="include">
         </childnode>
       </node>
-      <node id="9">
+      <node id="5">
+        <label>tinyLogger/TinyLogger.hpp</label>
+      </node>
+      <node id="4">
         <label>SDL2/SDL_vulkan.h</label>
       </node>
     </incdepgraph>
     <invincdepgraph>
-      <node id="1">
-        <label>/mnt/c/Repos/rayex/include/base/Time.hpp</label>
-        <link refid="_time_8hpp"/>
-        <childnode refid="2" relation="include">
-        </childnode>
-        <childnode refid="10" relation="include">
-        </childnode>
-      </node>
-      <node id="27">
-        <label>/mnt/c/Repos/rayex/include/api/utility/Util.hpp</label>
-        <link refid="_util_8hpp"/>
-        <childnode refid="5" relation="include">
-        </childnode>
-      </node>
-      <node id="6">
-        <label>/mnt/c/Repos/rayex/include/Rayex.hpp</label>
-        <link refid="_rayex_8hpp"/>
-      </node>
-      <node id="23">
-        <label>/mnt/c/Repos/rayex/include/api/utility/Initializers.hpp</label>
-        <link refid="_initializers_8hpp"/>
-        <childnode refid="22" relation="include">
-        </childnode>
-        <childnode refid="14" relation="include">
-        </childnode>
-      </node>
-      <node id="4">
-        <label>/mnt/c/Repos/rayex/include/api/Surface.hpp</label>
-        <link refid="_surface_8hpp"/>
-        <childnode refid="5" relation="include">
-        </childnode>
-        <childnode refid="7" relation="include">
-        </childnode>
-        <childnode refid="9" relation="include">
-        </childnode>
-      </node>
-      <node id="25">
-        <label>/mnt/c/Repos/rayex/include/api/Sync.hpp</label>
-        <link refid="_sync_8hpp"/>
-        <childnode refid="5" relation="include">
-        </childnode>
-      </node>
-      <node id="31">
-        <label>/mnt/c/Repos/rayex/include/base/Settings.hpp</label>
-        <link refid="_settings_8hpp"/>
-        <childnode refid="8" relation="include">
-        </childnode>
-        <childnode refid="15" relation="include">
-        </childnode>
-      </node>
-      <node id="3">
-        <label>/mnt/c/Repos/rayex/include/api/Components.hpp</label>
-        <link refid="_components_8hpp"/>
-      </node>
-      <node id="28">
-        <label>/mnt/c/Repos/rayex/include/api/Vertex.hpp</label>
-        <link refid="_vertex_8hpp"/>
-        <childnode refid="5" relation="include">
-        </childnode>
-        <childnode refid="29" relation="include">
-        </childnode>
-      </node>
-      <node id="5">
-        <label>/mnt/c/Repos/rayex/include/api/Api.hpp</label>
-        <link refid="_api_8hpp"/>
-        <childnode refid="6" relation="include">
-        </childnode>
-      </node>
-      <node id="15">
-        <label>/mnt/c/Repos/rayex/include/base/Scene.hpp</label>
-        <link refid="_scene_8hpp"/>
-        <childnode refid="5" relation="include">
-        </childnode>
-      </node>
-      <node id="26">
-        <label>/mnt/c/Repos/rayex/include/api/utility/DebugMessenger.hpp</label>
-        <link refid="_debug_messenger_8hpp"/>
-        <childnode refid="5" relation="include">
-        </childnode>
-      </node>
-      <node id="16">
-        <label>/mnt/c/Repos/rayex/include/api/buffers/UniformBuffer.hpp</label>
-        <link refid="_uniform_buffer_8hpp"/>
-        <childnode refid="5" relation="include">
-        </childnode>
-        <childnode refid="15" relation="include">
-        </childnode>
-      </node>
-      <node id="12">
-        <label>/mnt/c/Repos/rayex/include/api/image/Image.hpp</label>
-        <link refid="_image_8hpp"/>
-        <childnode refid="13" relation="include">
-        </childnode>
-        <childnode refid="17" relation="include">
-        </childnode>
-        <childnode refid="18" relation="include">
-        </childnode>
-        <childnode refid="19" relation="include">
-        </childnode>
-        <childnode refid="7" relation="include">
-        </childnode>
-      </node>
-      <node id="30">
-        <label>/mnt/c/Repos/rayex/include/base/Camera.hpp</label>
-        <link refid="_camera_8hpp"/>
-        <childnode refid="15" relation="include">
-        </childnode>
-        <childnode refid="2" relation="include">
-        </childnode>
-      </node>
-      <node id="22">
-        <label>/mnt/c/Repos/rayex/include/api/Bindings.hpp</label>
-        <link refid="_bindings_8hpp"/>
-        <childnode refid="5" relation="include">
-        </childnode>
-        <childnode refid="8" relation="include">
-        </childnode>
-        <childnode refid="19" relation="include">
-        </childnode>
-        <childnode refid="15" relation="include">
-        </childnode>
-      </node>
-      <node id="17">
-        <label>/mnt/c/Repos/rayex/include/api/image/Cubemap.hpp</label>
-        <link refid="_cubemap_8hpp"/>
-        <childnode refid="5" relation="include">
-        </childnode>
-        <childnode refid="15" relation="include">
-        </childnode>
-      </node>
-      <node id="24">
-        <label>/mnt/c/Repos/rayex/include/api/RenderPass.hpp</label>
-        <link refid="_render_pass_8hpp"/>
-        <childnode refid="5" relation="include">
-        </childnode>
-        <childnode refid="19" relation="include">
-        </childnode>
-        <childnode refid="21" relation="include">
-        </childnode>
-        <childnode refid="9" relation="include">
-        </childnode>
-      </node>
       <node id="8">
-        <label>/mnt/c/Repos/rayex/include/api/pathtrace/PathTracer.hpp</label>
+        <label>/home/n30/Repos/rayex/include/api/pathtrace/PathTracer.hpp</label>
         <link refid="_path_tracer_8hpp"/>
-        <childnode refid="5" relation="include">
-        </childnode>
-      </node>
-      <node id="2">
-        <label>/mnt/c/Repos/rayex/include/base/Window.hpp</label>
-        <link refid="_window_8hpp"/>
         <childnode refid="3" relation="include">
-        </childnode>
-        <childnode refid="4" relation="include">
-        </childnode>
-      </node>
-      <node id="14">
-        <label>/mnt/c/Repos/rayex/include/api/buffers/StorageBuffer.hpp</label>
-        <link refid="_storage_buffer_8hpp"/>
-        <childnode refid="5" relation="include">
-        </childnode>
-        <childnode refid="8" relation="include">
-        </childnode>
-        <childnode refid="15" relation="include">
-        </childnode>
-      </node>
-      <node id="20">
-        <label>/mnt/c/Repos/rayex/include/api/pathtrace/AccelerationStructure.hpp</label>
-        <link refid="_acceleration_structure_8hpp"/>
-        <childnode refid="8" relation="include">
-        </childnode>
-        <childnode refid="21" relation="include">
-        </childnode>
-        <childnode refid="23" relation="include">
-        </childnode>
-      </node>
-      <node id="19">
-        <label>/mnt/c/Repos/rayex/include/api/PostProcessingRenderer.hpp</label>
-        <link refid="_post_processing_renderer_8hpp"/>
-        <childnode refid="5" relation="include">
-        </childnode>
-      </node>
-      <node id="7">
-        <label>/mnt/c/Repos/rayex/include/api/Swapchain.hpp</label>
-        <link refid="_swapchain_8hpp"/>
-        <childnode refid="5" relation="include">
-        </childnode>
-        <childnode refid="8" relation="include">
-        </childnode>
-        <childnode refid="9" relation="include">
-        </childnode>
-      </node>
-      <node id="10">
-        <label>/mnt/c/Repos/rayex/include/pch/stdafx.hpp</label>
-        <link refid="stdafx_8hpp"/>
-        <childnode refid="11" relation="include">
-        </childnode>
-        <childnode refid="12" relation="include">
-        </childnode>
-        <childnode refid="20" relation="include">
-        </childnode>
-        <childnode refid="24" relation="include">
-        </childnode>
-        <childnode refid="25" relation="include">
-        </childnode>
-        <childnode refid="26" relation="include">
-        </childnode>
-        <childnode refid="27" relation="include">
-        </childnode>
-        <childnode refid="28" relation="include">
-        </childnode>
-        <childnode refid="30" relation="include">
-        </childnode>
-        <childnode refid="31" relation="include">
-        </childnode>
-        <childnode refid="2" relation="include">
-        </childnode>
-      </node>
-      <node id="9">
-        <label>/mnt/c/Repos/rayex/include/base/Gui.hpp</label>
-        <link refid="_gui_8hpp"/>
-        <childnode refid="5" relation="include">
-        </childnode>
-      </node>
-      <node id="21">
-        <label>/mnt/c/Repos/rayex/include/api/utility/Helpers.hpp</label>
-        <link refid="_helpers_8hpp"/>
-        <childnode refid="22" relation="include">
-        </childnode>
-        <childnode refid="7" relation="include">
-        </childnode>
-      </node>
-      <node id="18">
-        <label>/mnt/c/Repos/rayex/include/api/image/Texture.hpp</label>
-        <link refid="_texture_8hpp"/>
-        <childnode refid="5" relation="include">
-        </childnode>
-        <childnode refid="15" relation="include">
-        </childnode>
-      </node>
-      <node id="13">
-        <label>/mnt/c/Repos/rayex/include/api/buffers/Buffer.hpp</label>
-        <link refid="_buffer_8hpp"/>
-        <childnode refid="14" relation="include">
-        </childnode>
-        <childnode refid="16" relation="include">
-        </childnode>
-        <childnode refid="8" relation="include">
         </childnode>
       </node>
       <node id="11">
-        <label>/mnt/c/Repos/rayex/include/api/buffers/CommandBuffer.hpp</label>
-        <link refid="_command_buffer_8hpp"/>
-        <childnode refid="5" relation="include">
+        <label>/home/n30/Repos/rayex/include/base/Geometry.hpp</label>
+        <link refid="_geometry_8hpp"/>
+        <childnode refid="8" relation="include">
+        </childnode>
+        <childnode refid="12" relation="include">
+        </childnode>
+      </node>
+      <node id="7">
+        <label>/home/n30/Repos/rayex/include/api/pathtrace/AccelerationStructure.hpp</label>
+        <link refid="_acceleration_structure_8hpp"/>
+        <childnode refid="8" relation="include">
+        </childnode>
+      </node>
+      <node id="6">
+        <label>/home/n30/Repos/rayex/include/pch/stdafx.hpp</label>
+        <link refid="stdafx_8hpp"/>
+        <childnode refid="7" relation="include">
         </childnode>
         <childnode refid="9" relation="include">
         </childnode>
-      </node>
-      <node id="29">
-        <label>/mnt/c/Repos/rayex/include/base/Geometry.hpp</label>
-        <link refid="_geometry_8hpp"/>
+        <childnode refid="10" relation="include">
+        </childnode>
+        <childnode refid="13" relation="include">
+        </childnode>
         <childnode refid="14" relation="include">
-        </childnode>
-        <childnode refid="16" relation="include">
-        </childnode>
-        <childnode refid="8" relation="include">
         </childnode>
         <childnode refid="15" relation="include">
         </childnode>
+        <childnode refid="2" relation="include">
+        </childnode>
+      </node>
+      <node id="4">
+        <label>/home/n30/Repos/rayex/include/Rayex.hpp</label>
+        <link refid="_rayex_8hpp"/>
+      </node>
+      <node id="2">
+        <label>/home/n30/Repos/rayex/include/base/Window.hpp</label>
+        <link refid="_window_8hpp"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+      </node>
+      <node id="13">
+        <label>/home/n30/Repos/rayex/include/base/Camera.hpp</label>
+        <link refid="_camera_8hpp"/>
+        <childnode refid="12" relation="include">
+        </childnode>
+        <childnode refid="2" relation="include">
+        </childnode>
+      </node>
+      <node id="10">
+        <label>/home/n30/Repos/rayex/include/api/Vertex.hpp</label>
+        <link refid="_vertex_8hpp"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="11" relation="include">
+        </childnode>
+      </node>
+      <node id="12">
+        <label>/home/n30/Repos/rayex/include/base/Scene.hpp</label>
+        <link refid="_scene_8hpp"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+      </node>
+      <node id="9">
+        <label>/home/n30/Repos/rayex/include/api/PostProcessingRenderer.hpp</label>
+        <link refid="_post_processing_renderer_8hpp"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+      </node>
+      <node id="1">
+        <label>/home/n30/Repos/rayex/include/base/Time.hpp</label>
+        <link refid="_time_8hpp"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="6" relation="include">
+        </childnode>
+      </node>
+      <node id="14">
+        <label>/home/n30/Repos/rayex/include/base/Gui.hpp</label>
+        <link refid="_gui_8hpp"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+      </node>
+      <node id="15">
+        <label>/home/n30/Repos/rayex/include/base/Settings.hpp</label>
+        <link refid="_settings_8hpp"/>
+        <childnode refid="8" relation="include">
+        </childnode>
+        <childnode refid="12" relation="include">
+        </childnode>
+      </node>
+      <node id="3">
+        <label>/home/n30/Repos/rayex/include/api/Api.hpp</label>
+        <link refid="_api_8hpp"/>
+        <childnode refid="4" relation="include">
+        </childnode>
+      </node>
+      <node id="5">
+        <label>/home/n30/Repos/rayex/include/api/Components.hpp</label>
+        <link refid="_components_8hpp"/>
       </node>
     </invincdepgraph>
     <innerclass refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_time" prot="public">RAYEX_NAMESPACE::Time</innerclass>
@@ -361,6 +181,6 @@
 <codeline lineno="33"><highlight class="normal"><sp/><sp/>};</highlight></codeline>
 <codeline lineno="34"><highlight class="normal">}<sp/></highlight><highlight class="comment">//<sp/>namespace<sp/>RAYEX_NAMESPACE</highlight><highlight class="normal"></highlight></codeline>
     </programlisting>
-    <location file="/mnt/c/Repos/rayex/include/base/Time.hpp"/>
+    <location file="/home/n30/Repos/rayex/include/base/Time.hpp"/>
   </compounddef>
 </doxygen>

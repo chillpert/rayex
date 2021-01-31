@@ -11,16 +11,16 @@
     <member refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_api_1a7bec7beaea4f0a7759c687c96d2c8bea" kind="variable"><name>_window</name></member>
     <member refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_api_1a752789ecf0b4f3ba18a958b67fd680ff" kind="variable"><name>_camera</name></member>
     <member refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_api_1a8b8069ac2473a420c5b282d86634f5c6" kind="variable"><name>_instance</name></member>
-    <member refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_api_1a6c4e354a3740b593e51e351769b19b08" kind="variable"><name>_debugMessenger</name></member>
-    <member refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_api_1a654b03d85b44164e7df574fd455b0cf2" kind="variable"><name>_surface</name></member>
+    <member refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_api_1a2bcd117c844d3d8b6230532fd96c6262" kind="variable"><name>_debugMessenger</name></member>
+    <member refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_api_1ab5f38b4feee282726b859044b03c66fe" kind="variable"><name>_surface</name></member>
     <member refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_api_1a0b7b3d4b73c0d6942c03d7b20f8fc16a" kind="variable"><name>_device</name></member>
     <member refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_api_1a9efbc3d7a78fda743592d9b9b119e9e8" kind="variable"><name>_graphicsCmdPool</name></member>
     <member refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_api_1a9634a1e17a4e37a1b0d49f3fed86c7a8" kind="variable"><name>_transferCmdPool</name></member>
     <member refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_api_1ae56bd4b772ccae3ad1e815a7c722bb59" kind="variable"><name>_pathTracer</name></member>
     <member refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_api_1ac34ca7c4a555d32fcbc859ff42375517" kind="variable"><name>_postProcessingRenderer</name></member>
-    <member refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_api_1a2616f58a03a70020840d7930b2dca991" kind="variable"><name>_sync</name></member>
-    <member refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_api_1a2d748f16e1578e035d226d035dd673d7" kind="variable"><name>_swapchain</name></member>
-    <member refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_api_1a24288f5a3629d3f897f3a4b5020d3ba5" kind="variable"><name>_swapchainCommandBuffers</name></member>
+    <member refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_api_1ae05826dc5eae1520aec667fc60311a32" kind="variable"><name>_sync</name></member>
+    <member refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_api_1a423538b4513b31c7cdfa9b0979c497df" kind="variable"><name>_swapchain</name></member>
+    <member refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_api_1a696b10de1aac1edbc3cd5a17bd601a10" kind="variable"><name>_swapchainCommandBuffers</name></member>
     <member refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_api_1a4ff94fa2534477282e4816c90e55b080" kind="variable"><name>_gui</name></member>
     <member refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_api_1a78f88bb0be3893766f4b56ff15162eac" kind="variable"><name>_scene</name></member>
     <member refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_api_1a23007f9070dd7a184b72798266b4ed37" kind="variable"><name>_settings</name></member>
@@ -42,63 +42,10 @@
     <member refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_api_1a9f2b00b47b2600fa303c3853effd1e2f" kind="function"><name>prepareFrame</name></member>
     <member refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_api_1a676e59e4285451eb8d4f73fe5dfbbf5d" kind="function"><name>submitFrame</name></member>
   </compound>
-  <compound refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_bindings" kind="class"><name>RAYEX_NAMESPACE::Bindings</name>
-    <member refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_bindings_1adbd45a78de253f746a13aae2cb3b3a78" kind="variable"><name>_bindings</name></member>
-    <member refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_bindings_1af2fca59def96dcaf467ace1a981eea95" kind="variable"><name>_flags</name></member>
-    <member refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_bindings_1a7ae087d0b220658de82b98e697515d62" kind="variable"><name>_poolSizes</name></member>
-    <member refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_bindings_1a676fab1cc09653283492d4171be19dbc" kind="variable"><name>_writes</name></member>
-    <member refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_bindings_1a37856d36392e371e4fdcfe35d184fa42" kind="function"><name>add</name></member>
-    <member refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_bindings_1ac4a04461e4728f35c9146237a47e6e66" kind="function"><name>initLayoutUnique</name></member>
-    <member refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_bindings_1a20edd74ad52f8a3604f7cd892f2239f6" kind="function"><name>initPoolUnique</name></member>
-    <member refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_bindings_1a5c7e9adcda6c378e5a1b342d70d3acc5" kind="function"><name>update</name></member>
-    <member refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_bindings_1aea6967de37d60d1399037e3a5a2494fa" kind="function"><name>write</name></member>
-    <member refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_bindings_1a2862f850721b66b56104481eaf242852" kind="function"><name>write</name></member>
-    <member refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_bindings_1afd5d8362c953f91609aff1db5bf4f07c" kind="function"><name>write</name></member>
-    <member refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_bindings_1a504a47e05d5db66c5545bf6402ae6b98" kind="function"><name>write</name></member>
-    <member refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_bindings_1aa7d770601a7dc6456b8d1d58d1f8e7f4" kind="function"><name>writeArray</name></member>
-    <member refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_bindings_1adea0ef24844370ca397ec05f53682a08" kind="function"><name>writeArray</name></member>
-    <member refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_bindings_1adb3fefd44d2cff639f5ad5a386b40f8a" kind="function"><name>setPoolSizes</name></member>
-    <member refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_bindings_1a6ce4c6073f217615f9212444578ca217" kind="function"><name>reset</name></member>
-    <member refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_bindings_1a50cbc7e2d9c2d31fa6bd17315371105a" kind="function"><name>write</name></member>
-    <member refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_bindings_1a935ee3e3713b15c4509aac21d2f407bb" kind="function"><name>writeArray</name></member>
-  </compound>
   <compound refid="struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_blas" kind="struct"><name>RAYEX_NAMESPACE::Blas</name>
     <member refid="struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_blas_1afeefd899332ab00ffc38a7641424de2d" kind="variable"><name>as</name></member>
-    <member refid="struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_blas_1a5735232656e5d5b3e3284475efab22b9" kind="variable"><name>flags</name></member>
     <member refid="struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_blas_1a7a270840d9f4e6b141a6f142abda68c5" kind="variable"><name>asGeometry</name></member>
     <member refid="struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_blas_1a612e8ebe1c04fd44ab8e9c22fc7c9787" kind="variable"><name>asBuildRangeInfo</name></member>
-  </compound>
-  <compound refid="struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_blas_instance" kind="struct"><name>RAYEX_NAMESPACE::BlasInstance</name>
-    <member refid="struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_blas_instance_1a17e6f6e2576131a69f83902510f0e60d" kind="variable"><name>blasId</name></member>
-    <member refid="struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_blas_instance_1a1dd11e314a88b4daf48b5f5616d07c1c" kind="variable"><name>instanceId</name></member>
-    <member refid="struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_blas_instance_1abc119b6598b884820ac07b7afa30d6be" kind="variable"><name>hitGroupId</name></member>
-    <member refid="struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_blas_instance_1a080061a774fa9881372198e1bf13630f" kind="variable"><name>mask</name></member>
-    <member refid="struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_blas_instance_1ac7125d67baa983ea7b466a16ec36c70b" kind="variable"><name>flags</name></member>
-    <member refid="struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_blas_instance_1af521894ff0383f740d859f6fba2b8b8b" kind="variable"><name>transform</name></member>
-  </compound>
-  <compound refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_buffer" kind="class"><name>RAYEX_NAMESPACE::Buffer</name>
-    <member refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_buffer_1a3e7582e91c4af47f8acebae60524263b" kind="variable"><name>_buffer</name></member>
-    <member refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_buffer_1ac6c20a052b87d02195db7cee2dd291cd" kind="variable"><name>_memory</name></member>
-    <member refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_buffer_1a316c2534dca0f0b865308726753712f7" kind="variable"><name>_size</name></member>
-    <member refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_buffer_1a3e7f1befed2b79696954e9b3aa8ce2f1" kind="variable"><name>_ptrToData</name></member>
-    <member refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_buffer_1a6b7afa466fa6c68fc161086f5f576c00" kind="variable"><name>_mapped</name></member>
-    <member refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_buffer_1a453a0a1cab9ce09237de96956ad5084e" kind="function"><name>Buffer</name></member>
-    <member refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_buffer_1ad0e923c2df3bc18f094576af940f2321" kind="function"><name>Buffer</name></member>
-    <member refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_buffer_1ab17e6322e8113df32af870a37a5e0e27" kind="function"><name>~Buffer</name></member>
-    <member refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_buffer_1a133961b9bd24490925aeed994ae1a4d4" kind="function"><name>Buffer</name></member>
-    <member refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_buffer_1a2b633d1f23ddf0ae8ee27987e9373c1a" kind="function"><name>Buffer</name></member>
-    <member refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_buffer_1adccdf72dc2b5a56496881e97c683d5ca" kind="function"><name>operator=</name></member>
-    <member refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_buffer_1a53ea2ff685692af62529589df9fa18a8" kind="function"><name>operator=</name></member>
-    <member refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_buffer_1a6aa15487587ed4a275726dea52d9bd1f" kind="function"><name>get</name></member>
-    <member refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_buffer_1a3e59b7d59f338fde8570cd541162cabd" kind="function"><name>getMemory</name></member>
-    <member refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_buffer_1aa51128ff5d6822bb2df9c2dcd25f99b6" kind="function"><name>getSize</name></member>
-    <member refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_buffer_1af4c1f7cd28ec3d75feccf91f704e67d3" kind="function"><name>init</name></member>
-    <member refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_buffer_1a1cb2f8899ca4dbc523029233e63e5f07" kind="function"><name>copyToBuffer</name></member>
-    <member refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_buffer_1a4b5a87dce23eab7c91448652ed8072be" kind="function"><name>copyToBuffer</name></member>
-    <member refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_buffer_1a56d4379c382a99311c6e292e419fc183" kind="function"><name>copyToImage</name></member>
-    <member refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_buffer_1acdc10ad7e5e4a12ea82c3d3e1d4493b2" kind="function"><name>copyToImage</name></member>
-    <member refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_buffer_1a8b2ffc5a8f5476f1108b24d8986c6726" kind="function"><name>fill</name></member>
-    <member refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_buffer_1a09d0408e61c757b411009e6381d56153" kind="function"><name>fill</name></member>
   </compound>
   <compound refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_camera" kind="class"><name>RAYEX_NAMESPACE::Camera</name>
     <member refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_camera_1a0e1c547906bc7d47775e672804f895e3" kind="variable"><name>_updateView</name></member>
@@ -151,44 +98,6 @@
     <member refid="struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_camera_ubo_1adb3b2580d900a4afefd12c8c7d30a29c" kind="variable"><name>padding1</name></member>
     <member refid="struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_camera_ubo_1aab4676a09b92925f28bd422d2f10bc43" kind="variable"><name>padding2</name></member>
   </compound>
-  <compound refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_command_buffer" kind="class"><name>RAYEX_NAMESPACE::CommandBuffer</name>
-    <member refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_command_buffer_1acf58bdb9ff4b36fe5111e427f192931f" kind="variable"><name>_commandBuffers</name></member>
-    <member refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_command_buffer_1a2d7a3de8b651d8ad220859ceb51670d4" kind="variable"><name>_commandPool</name></member>
-    <member refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_command_buffer_1ad3a75a1669c72224e9ec74e3129d0679" kind="variable"><name>_beginInfo</name></member>
-    <member refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_command_buffer_1abe361754230f783eb86464734b851ff8" kind="function"><name>CommandBuffer</name></member>
-    <member refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_command_buffer_1a3e8baaca6b363d0a78d30ee70c584a11" kind="function"><name>CommandBuffer</name></member>
-    <member refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_command_buffer_1a967443c6c46e162ed9a248f18a4dcd8a" kind="function"><name>init</name></member>
-    <member refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_command_buffer_1ab0537198c1bdf7fc123867ff04109aec" kind="function"><name>get</name></member>
-    <member refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_command_buffer_1adede3dee0329159e687a6b7a246ae47c" kind="function"><name>get</name></member>
-    <member refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_command_buffer_1a650ea8a7a5d452734b8cefd118639936" kind="function"><name>free</name></member>
-    <member refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_command_buffer_1ad3b5f2eb9e334aeb1ce1acc170d326f3" kind="function"><name>reset</name></member>
-    <member refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_command_buffer_1adeb8480e5423081dae4f34e7c756f5d0" kind="function"><name>begin</name></member>
-    <member refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_command_buffer_1ad12dd1d9c545827ad5277d596f38c2a8" kind="function"><name>end</name></member>
-    <member refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_command_buffer_1ae47a0b4e332f7b93152e09223f858f54" kind="function"><name>submitToQueue</name></member>
-  </compound>
-  <compound refid="classrx_1_1_cubemap" kind="class"><name>rx::Cubemap</name>
-    <member refid="classrx_1_1_cubemap_1a77bd307a28d48d32c3b95b481c97b67b" kind="variable"><name>_sampler</name></member>
-    <member refid="classrx_1_1_cubemap_1a684a5655cc97d8ee5d440bf4aae63b41" kind="variable"><name>_imageView</name></member>
-    <member refid="classrx_1_1_cubemap_1a7fd0aa6342aa2fe103b7d6b590a4f226" kind="function"><name>getImageView</name></member>
-    <member refid="classrx_1_1_cubemap_1ac566abc766cb39d4a43f3d2e6697c9b5" kind="function"><name>getSampler</name></member>
-    <member refid="classrx_1_1_cubemap_1a54d3f91a8e1023c3b7f5ec01881a71e9" kind="function"><name>init</name></member>
-  </compound>
-  <compound refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_debug_messenger" kind="class"><name>RAYEX_NAMESPACE::DebugMessenger</name>
-    <member refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_debug_messenger_1a8cfdee65ff8a102effdbc90b3c462c27" kind="variable"><name>_debugMessenger</name></member>
-    <member refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_debug_messenger_1a69fbeacdb2db1302c0359c274a3ad181" kind="function"><name>DebugMessenger</name></member>
-    <member refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_debug_messenger_1a26dcf2dc1fc8b925737aa21b0fc7c278" kind="function"><name>~DebugMessenger</name></member>
-    <member refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_debug_messenger_1a9301709792a38dac2faf5ed369f40bad" kind="function"><name>DebugMessenger</name></member>
-    <member refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_debug_messenger_1a02dd17d502dd32e655f8013ecdfc3c3a" kind="function"><name>DebugMessenger</name></member>
-    <member refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_debug_messenger_1adfe593687a69b8a15a8153f52701e9a0" kind="function"><name>operator=</name></member>
-    <member refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_debug_messenger_1adad322d648f63748f7aba7817459015a" kind="function"><name>operator=</name></member>
-    <member refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_debug_messenger_1ad85d8efe16f0ef5fd0a1b632efc100ba" kind="function"><name>init</name></member>
-    <member refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_debug_messenger_1af0acd8ca1b78151b20207aa04c687afe" kind="function"><name>destroy</name></member>
-  </compound>
-  <compound refid="struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_descriptors" kind="struct"><name>RAYEX_NAMESPACE::Descriptors</name>
-    <member refid="struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_descriptors_1a51cfd85e56864588a7f9b5380b31cb39" kind="variable"><name>layout</name></member>
-    <member refid="struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_descriptors_1a7142e00b8b54818edec0ff40fb322671" kind="variable"><name>pool</name></member>
-    <member refid="struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_descriptors_1a3563c7ff3e828a1657fc61e90501e9c5" kind="variable"><name>bindings</name></member>
-  </compound>
   <compound refid="struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_geometry" kind="struct"><name>RAYEX_NAMESPACE::Geometry</name>
     <member refid="struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_geometry_1a9b4d99a41250521028e9406ef1bf9c15" kind="variable"><name>vertices</name></member>
     <member refid="struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_geometry_1a11ecc2461cc8f940666cc5535e977c0f" kind="variable"><name>indices</name></member>
@@ -221,26 +130,12 @@
     <member refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_gui_1a37b52ebf2ec5b33b5bb817b6dc157169" kind="function"><name>~Gui</name></member>
     <member refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_gui_1a9683c711717892adbc9a5091ba5a1018" kind="function"><name>configure</name></member>
     <member refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_gui_1a3e5134da1391b2ca38bc65f17895d767" kind="function"><name>render</name></member>
-    <member refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_gui_1a872d3b5dd0876f2412bd6ee64cfc1285" kind="function"><name>init</name></member>
+    <member refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_gui_1ab572cd6afb74d6d3303d3393dbaf6c06" kind="function"><name>init</name></member>
     <member refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_gui_1af1bbc6bf62822168f9d28e42fd1345e5" kind="function"><name>recreate</name></member>
     <member refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_gui_1aec9cbe4d9c91740401c8781e760b7e49" kind="function"><name>renderDrawData</name></member>
     <member refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_gui_1acdc42f7c0d1a54a0a2e3bc9bb89df3ee" kind="function"><name>destroy</name></member>
     <member refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_gui_1aa735d67aa54d5fb34c7f5b9fb8ab3900" kind="function"><name>initDescriptorPool</name></member>
     <member refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_gui_1ae8a4c10c9cfe926b1083ce7ed5bbe853" kind="function"><name>initFonts</name></member>
-  </compound>
-  <compound refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_image" kind="class"><name>RAYEX_NAMESPACE::Image</name>
-    <member refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_image_1ada6c5252fc7fb31fa855c1012cc05ac9" kind="variable"><name>_image</name></member>
-    <member refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_image_1aae687e65b91862f544568ef874768b8b" kind="variable"><name>_memory</name></member>
-    <member refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_image_1a8834ea7c4275a33ee2e25dbe26db3b4b" kind="variable"><name>_extent</name></member>
-    <member refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_image_1ab6642f61a0126ead754188b04b28842b" kind="variable"><name>_format</name></member>
-    <member refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_image_1a59216cbdf2bf251eb817c00fdff907a8" kind="variable"><name>_layout</name></member>
-    <member refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_image_1abc8b3131fd792888cd54cae0338ebc5a" kind="function"><name>get</name></member>
-    <member refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_image_1a5a4ccd30feb5e47b653997faac3e4adb" kind="function"><name>getExtent</name></member>
-    <member refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_image_1a189584e4d28a640f7a91e2711aac4bb4" kind="function"><name>getFormat</name></member>
-    <member refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_image_1ab3f6fda72b3f94186af3bca7230195c6" kind="function"><name>getLayout</name></member>
-    <member refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_image_1a2e018b9b5ea0b1d6cb387357ad721593" kind="function"><name>init</name></member>
-    <member refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_image_1a844f7384bb145b04ec2ac4a103b69f52" kind="function"><name>transitionToLayout</name></member>
-    <member refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_image_1a86ea2ee513d93efe66d99f1672445888" kind="function"><name>transitionToLayout</name></member>
   </compound>
   <compound refid="struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_material" kind="struct"><name>RAYEX_NAMESPACE::Material</name>
     <member refid="struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_material_1a7450ad0dc89bbcfd69a89d64b46eec77" kind="variable"><name>ka</name></member>
@@ -284,13 +179,13 @@
     <member refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_path_tracer_1a4f8665a60fa4463ba2e8f9f81b8c3471" kind="variable"><name>_blas_</name></member>
     <member refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_path_tracer_1ada39103f23d5e5c076b70a8983fec2d4" kind="variable"><name>_indices</name></member>
     <member refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_path_tracer_1a9f71fc22babc4da3212f6110c86472c8" kind="variable"><name>_tlas</name></member>
-    <member refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_path_tracer_1a1f64481a6643711f71534dd48d5febbc" kind="variable"><name>_instanceBuffer</name></member>
-    <member refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_path_tracer_1aac2bf7ab6e88171c356471a07933767b" kind="variable"><name>_sbtBuffer</name></member>
-    <member refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_path_tracer_1a462515bba8365764e548eb86d7d4cf1b" kind="variable"><name>_storageImage</name></member>
+    <member refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_path_tracer_1afff63e1cc8c29df49b7e8a44b5a59f72" kind="variable"><name>_instanceBuffer</name></member>
+    <member refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_path_tracer_1aba4b06c094ad0a0ac0909b50a68f4e27" kind="variable"><name>_sbtBuffer</name></member>
+    <member refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_path_tracer_1ae23e259bdcb62930b131670658bcabf2" kind="variable"><name>_storageImage</name></member>
     <member refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_path_tracer_1ab103bbe5d3b7a386b4e79da38da2655b" kind="variable"><name>_storageImageView</name></member>
     <member refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_path_tracer_1ad219896e8cb09829d7a4427522dfe8a3" kind="variable"><name>_storageImageSampler</name></member>
     <member refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_path_tracer_1a8ca158f5bc4ae2bbf6d360d7270e11b6" kind="variable"><name>_storageImageInfo</name></member>
-    <member refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_path_tracer_1a1af1b4afc4eee2f25703a94d5591af0a" kind="variable"><name>_descriptors</name></member>
+    <member refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_path_tracer_1a0d18cde0f2dddcf45c39ff26469d519f" kind="variable"><name>_descriptors</name></member>
     <member refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_path_tracer_1abcaaa19330b056579faab727da0ea10a" kind="variable"><name>_descriptorSets</name></member>
     <member refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_path_tracer_1ac98b96323e113ca2ac96c7d08ffaf624" kind="function"><name>PathTracer</name></member>
     <member refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_path_tracer_1aef8229369df0e2e75fea08d0163c0bfc" kind="function"><name>~PathTracer</name></member>
@@ -308,9 +203,9 @@
     <member refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_path_tracer_1a88b7351717bcb2731cda5254316384a3" kind="function"><name>getPipelineLayout</name></member>
     <member refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_path_tracer_1a37d390a924dc52e0195248cedd5fe670" kind="function"><name>getDescriptorSetLayout</name></member>
     <member refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_path_tracer_1a1305b431a280fa0bb99a15ea2d49eed6" kind="function"><name>getDescriptorSet</name></member>
-    <member refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_path_tracer_1a11da70ffbe4a318d73af0d75060b0cde" kind="function"><name>modelToBlas</name></member>
+    <member refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_path_tracer_1afe9a29b1bff77d11f7eb77a56d635356" kind="function"><name>modelToBlas</name></member>
     <member refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_path_tracer_1ae092e3687d1f24b48bcf056e5b8cb481" kind="function"><name>geometryInstanceToAccelerationStructureInstance</name></member>
-    <member refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_path_tracer_1a58b6d931f0656a922e61ac387058bce5" kind="function"><name>createBottomLevelAS</name></member>
+    <member refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_path_tracer_1a01e426560fbcea32ea1a1fb0b8fc3a6a" kind="function"><name>createBottomLevelAS</name></member>
     <member refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_path_tracer_1a5df109c2da39664245ad141e2d9c0e4a" kind="function"><name>buildBlas</name></member>
     <member refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_path_tracer_1a3c2f2045a533d9fe53faafdb885f5831" kind="function"><name>buildTlas</name></member>
     <member refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_path_tracer_1a504cc5e1802f0174272f637ad6e8f4c6" kind="function"><name>createStorageImage</name></member>
@@ -324,14 +219,14 @@
     <member refid="struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_path_tracing_capabilities_1a47265ef799d8058bc56e7dff41970c47" kind="variable"><name>pipelineProperties</name></member>
   </compound>
   <compound refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_post_processing_renderer" kind="class"><name>RAYEX_NAMESPACE::PostProcessingRenderer</name>
-    <member refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_post_processing_renderer_1a16b8a18e3a427c950903619b58879850" kind="variable"><name>_depthImage</name></member>
+    <member refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_post_processing_renderer_1adfd3bb9a206a4e6b28357b0a6014e4a0" kind="variable"><name>_depthImage</name></member>
     <member refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_post_processing_renderer_1a596c45025f610779d3e1106331ca729e" kind="variable"><name>_depthImageView</name></member>
-    <member refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_post_processing_renderer_1ab326b4db01732559325cb2e00c14c96a" kind="variable"><name>_renderPass</name></member>
+    <member refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_post_processing_renderer_1ac2233b784615561708c9250bda3c85d6" kind="variable"><name>_renderPass</name></member>
     <member refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_post_processing_renderer_1a6f7c4a9e15ec33e16583a141e25a3d0d" kind="variable"><name>_pipeline</name></member>
     <member refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_post_processing_renderer_1a74b4a6274c28a14dab988fd811de1092" kind="variable"><name>_pipelineLayout</name></member>
-    <member refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_post_processing_renderer_1af3dac15fbce280fbebb9eee800bba279" kind="variable"><name>_descriptors</name></member>
+    <member refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_post_processing_renderer_1a6cd576ca2cd05fac14b987b72fa5e6cd" kind="variable"><name>_descriptors</name></member>
     <member refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_post_processing_renderer_1ab183f4f1c5893de2b6c6dd05a53e34a1" kind="variable"><name>_descriptorSets</name></member>
-    <member refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_post_processing_renderer_1aceafbaa163760cad61042437918a0588" kind="function"><name>getRenderPass</name></member>
+    <member refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_post_processing_renderer_1a2d3bd5259c28c3da4bc035017393fc2c" kind="function"><name>getRenderPass</name></member>
     <member refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_post_processing_renderer_1a743e500ac21ab9b6b40005694dd6d738" kind="function"><name>getPipeline</name></member>
     <member refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_post_processing_renderer_1a011a18a3e3704b7a1db9538e090db1b1" kind="function"><name>getPipelineLayout</name></member>
     <member refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_post_processing_renderer_1a01e2c8a445d8ea4f6df86cd05f3ab637" kind="function"><name>initDepthImage</name></member>
@@ -370,29 +265,22 @@
     <member refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_rayex_1ac4de2be6f21929ce1c9cebdbeef56aa6" kind="function"><name>scene</name></member>
     <member refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_rayex_1a64614dc316d4da644a62ff9463fca0dd" kind="function"><name>reset</name></member>
   </compound>
-  <compound refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_render_pass" kind="class"><name>RAYEX_NAMESPACE::RenderPass</name>
-    <member refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_render_pass_1a8038194bd0d2645434dab0ece344c7c7" kind="variable"><name>_renderPass</name></member>
-    <member refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_render_pass_1a54b6544e81c939178fcd3204703cd795" kind="function"><name>get</name></member>
-    <member refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_render_pass_1a59530fba847d5b02e6e705d5257562aa" kind="function"><name>init</name></member>
-    <member refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_render_pass_1ae7cd1dc3852a28c45702bacd5958c533" kind="function"><name>begin</name></member>
-    <member refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_render_pass_1a34096c7ba0418e1583a0fb255f975d02" kind="function"><name>end</name></member>
-  </compound>
   <compound refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_scene" kind="class"><name>RAYEX_NAMESPACE::Scene</name>
     <member refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_scene_1ae002d16199c05b908fbeecc4f7d97733" kind="variable"><name>Api</name></member>
     <member refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_scene_1a03b7257e44db8e9af952484958a5346c" kind="variable"><name>Rayex</name></member>
-    <member refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_scene_1a89aa9c9d13cb0e6080ab6b95e199f2d5" kind="variable"><name>_sceneDescriptors</name></member>
-    <member refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_scene_1a4e4471f5e1b0d292a1a32a0425cf69c2" kind="variable"><name>_geometryDescriptors</name></member>
+    <member refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_scene_1a804b7e6417ea6df24c785169f40453db" kind="variable"><name>_sceneDescriptors</name></member>
+    <member refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_scene_1aec46b955fdc1163d3e9916b93ab8091e" kind="variable"><name>_geometryDescriptors</name></member>
     <member refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_scene_1af8458a06dcb03bb0a5b06e5205b26adb" kind="variable"><name>_sceneDescriptorsets</name></member>
     <member refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_scene_1a81695ad3637f188d7a87d77bd95544f7" kind="variable"><name>_geometryDescriptorSets</name></member>
     <member refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_scene_1a85be43437f96020ce4741cd1b36a8e99" kind="variable"><name>_textureDescriptorSets</name></member>
-    <member refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_scene_1aeabf4fe202c41ebcda4465d725568f43" kind="variable"><name>_environmentMap</name></member>
+    <member refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_scene_1a223301d76b8bb1ef4e46951558704ec5" kind="variable"><name>_environmentMap</name></member>
     <member refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_scene_1a7d99080348f6951af20415b49cd43c56" kind="variable"><name>_immutableSampler</name></member>
-    <member refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_scene_1aed56b86ff4c36d0bcb9ce00c40cee7e2" kind="variable"><name>_indexBuffers</name></member>
-    <member refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_scene_1abcd1ccc7fd851f8c8e86da5960bff0f8" kind="variable"><name>_vertexBuffers</name></member>
-    <member refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_scene_1a57da6e6521fe2c7e35c926c1b2aba0cd" kind="variable"><name>_meshBuffers</name></member>
-    <member refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_scene_1a1cc33224edc0b7da5d6e1815cecb2b4b" kind="variable"><name>_textures</name></member>
-    <member refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_scene_1a7856a2cf3316a331889e97e4680cdcf1" kind="variable"><name>_geometryInstancesBuffer</name></member>
-    <member refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_scene_1ac60aa58d249ae9ae2ce287799dd32684" kind="variable"><name>_cameraUniformBuffer</name></member>
+    <member refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_scene_1a1d3a2526bed679745f9d47ab418efebe" kind="variable"><name>_indexBuffers</name></member>
+    <member refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_scene_1a3f4d0f5063bac8be9037b9a40395f1f5" kind="variable"><name>_vertexBuffers</name></member>
+    <member refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_scene_1a68752f4c4d43da6941d155f4479e06ce" kind="variable"><name>_meshBuffers</name></member>
+    <member refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_scene_1a0605a348cfe2b7f4cc11b7f372eecb9c" kind="variable"><name>_textures</name></member>
+    <member refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_scene_1a1dfffd741e70cd4a0b2c8ef7978761ba" kind="variable"><name>_geometryInstancesBuffer</name></member>
+    <member refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_scene_1a3d97a80d04063014582a8408174c4984" kind="variable"><name>_cameraUniformBuffer</name></member>
     <member refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_scene_1a4544c0ae3ef5de4e6310a1118caad95e" kind="variable"><name>_geometries</name></member>
     <member refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_scene_1a4f8f10cfbcf836e854c1cf47886730e2" kind="variable"><name>_geometryInstances</name></member>
     <member refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_scene_1a32c9565b4900d5d18eb84069e568c1bd" kind="variable"><name>_materials</name></member>
@@ -455,16 +343,15 @@
     <member refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_settings_1a809f9a6a39b8ceff5cf30ee53bb6d2f8" kind="variable"><name>_maxMeshesChanged</name></member>
     <member refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_settings_1aa9bae490016f531057f313a30c4d3cf4" kind="variable"><name>_assetsPath</name></member>
     <member refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_settings_1a6046e58440d78076e7111586f8f9bec3" kind="variable"><name>_clearColor</name></member>
-    <member refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_settings_1a9c9b88f11abba98296a8f089b1138e43" kind="variable"><name>_maxRecursionDepth</name></member>
-    <member refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_settings_1a2a6262173c207f636a0bb61e417b9cd3" kind="variable"><name>_recursionDepth</name></member>
+    <member refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_settings_1a1c6ba026c9e83b3dd9c74a1693584886" kind="variable"><name>_maxPathDepth</name></member>
+    <member refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_settings_1a7c5e1601119aea24987aca5f3a69e189" kind="variable"><name>_pathDepth</name></member>
     <member refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_settings_1a5cf6abf1dd3a3dc32f951f9b5813e1f1" kind="variable"><name>_perPixelSampleRate</name></member>
     <member refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_settings_1a70ec096042ddab71a5c0235250417053" kind="variable"><name>_accumulateFrames</name></member>
-    <member refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_settings_1a4a841202bb468cb4ed6b128ef1794310" kind="variable"><name>_scene</name></member>
     <member refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_settings_1aab98776f7fdab811c9eeaed831c4e460" kind="variable"><name>_automaticPipelineRefresh</name></member>
     <member refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_settings_1aae49e3535d240284b342ffbc738b478b" kind="variable"><name>_automaticSwapchainRefresh</name></member>
-    <member refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_settings_1a971ae0e67209a44e3ea350924ab22830" kind="function"><name>getRecursionDepth</name></member>
-    <member refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_settings_1a2219f20482a7eca65a8f8cd819b75d45" kind="function"><name>setRecursionDepth</name></member>
-    <member refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_settings_1a272c5032d8509892f7ee876d65fcdfe2" kind="function"><name>getMaxRecursionDepth</name></member>
+    <member refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_settings_1af3f3b1866e7523db6be4179e63ba1e90" kind="function"><name>getPathDepth</name></member>
+    <member refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_settings_1a2be035bb411588e1f262f323cff87731" kind="function"><name>setPathDepth</name></member>
+    <member refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_settings_1a2d14d58f91d69177df062bb546422cf1" kind="function"><name>getMaxPathDepth</name></member>
     <member refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_settings_1a3fbc4ba4e79dcb84f8065d8657cd09d8" kind="function"><name>getClearColor</name></member>
     <member refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_settings_1a7c23cd33060112e22df368eeb8fc4c62" kind="function"><name>setClearColor</name></member>
     <member refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_settings_1a8e94a1b47ab849117f0e97bf74332bb0" kind="function"><name>getAssetsPath</name></member>
@@ -484,89 +371,6 @@
     <member refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_settings_1acc7b4dff13bd3a8686ba2070b939fabd" kind="function"><name>triggerSwapchainRefresh</name></member>
     <member refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_settings_1aa83d6dbcb06e088adadb1ffe6aa8a801" kind="function"><name>setDefaultAssetsPath</name></member>
   </compound>
-  <compound refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_storage_buffer" kind="class"><name>RAYEX_NAMESPACE::StorageBuffer</name>
-    <member refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_storage_buffer_1a53ed27ee41cca6993faf8df52e4704f6" kind="variable"><name>_stagingBuffers</name></member>
-    <member refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_storage_buffer_1af847b86f7ebde97dd90d3b296dc44c7e" kind="variable"><name>_storageBuffers</name></member>
-    <member refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_storage_buffer_1adc3c8276069432c00591b03b00d3e900" kind="variable"><name>_bufferInfos</name></member>
-    <member refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_storage_buffer_1ac206d2fe3c66dd7f4b25d627231d95a4" kind="variable"><name>_fences</name></member>
-    <member refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_storage_buffer_1aa7d08adc9b9803ebd372fd0d55ba6101" kind="variable"><name>_maxSize</name></member>
-    <member refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_storage_buffer_1a64ae176b93d2fbe4ac66ce1965631957" kind="variable"><name>_count</name></member>
-    <member refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_storage_buffer_1a4a4b15943d78e5be05b047e105cb88c3" kind="function"><name>get</name></member>
-    <member refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_storage_buffer_1a6f17799aedbc4c8b3da1786fae161177" kind="function"><name>get</name></member>
-    <member refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_storage_buffer_1aaf06e3ae5e4b6a5983e39332105729d6" kind="function"><name>getCount</name></member>
-    <member refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_storage_buffer_1a8b2a59bc880192f2b5bd3df9a9805339" kind="function"><name>getDescriptorInfos</name></member>
-    <member refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_storage_buffer_1a0c6194dad42c9069d52649ce336ab23f" kind="function"><name>init</name></member>
-    <member refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_storage_buffer_1ad3db83a68972b7ea54a1dde49d272684" kind="function"><name>upload</name></member>
-  </compound>
-  <compound refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_surface" kind="class"><name>RAYEX_NAMESPACE::Surface</name>
-    <member refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_surface_1a81668fa31ac95298be5991bc4e2de8ff" kind="variable"><name>_surface</name></member>
-    <member refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_surface_1ae53cc30f72761d093b75234bbd779854" kind="variable"><name>_format</name></member>
-    <member refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_surface_1ae7592ae5ca56ffafc6339e8d44883657" kind="variable"><name>_colorSpace</name></member>
-    <member refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_surface_1a8a9b02a76a4c1d89b785ea52bbc854c4" kind="variable"><name>_presentMode</name></member>
-    <member refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_surface_1a2c79fa28e90560e64c31c266ab05d4d6" kind="variable"><name>_capabilities</name></member>
-    <member refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_surface_1a4784dac34bdd7d213212ef8f7bbbea48" kind="variable"><name>_extent</name></member>
-    <member refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_surface_1a50507969dee14dca7f6d7caabc140f3f" kind="function"><name>Surface</name></member>
-    <member refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_surface_1a067165bde59c846051f20c18e635ffe7" kind="function"><name>~Surface</name></member>
-    <member refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_surface_1aff20a5ec7ec7eda1408ea424e007dabd" kind="function"><name>Surface</name></member>
-    <member refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_surface_1a366763190dfacc0bd80d1ee7551928c3" kind="function"><name>Surface</name></member>
-    <member refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_surface_1af379c8a571dcefa5494a12d27b1c2743" kind="function"><name>operator=</name></member>
-    <member refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_surface_1aec6dd8d9491bd12b5f5a3dae75844ac6" kind="function"><name>operator=</name></member>
-    <member refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_surface_1a11570390ba2497255d964315e0e3afaf" kind="function"><name>getFormat</name></member>
-    <member refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_surface_1a70902541ad7dfec48032ca084f913378" kind="function"><name>getColorSpace</name></member>
-    <member refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_surface_1a48595aa6fcd51e7a83524e69f7498d47" kind="function"><name>getPresentMode</name></member>
-    <member refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_surface_1a4ce2ebf931003afa86f9a0497b4b8d06" kind="function"><name>getCapabilities</name></member>
-    <member refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_surface_1a0c406f4f252f4a6de19daf3f1bff8d5f" kind="function"><name>getExtent</name></member>
-    <member refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_surface_1adc4ef455c8eabfba752bfe7702ada7ff" kind="function"><name>init</name></member>
-    <member refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_surface_1a75d89305da7ff2a6e62619637ff7bf37" kind="function"><name>assessSettings</name></member>
-    <member refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_surface_1ae303d92db03e9ddc00d872144579aecc" kind="function"><name>destroy</name></member>
-  </compound>
-  <compound refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_swapchain" kind="class"><name>RAYEX_NAMESPACE::Swapchain</name>
-    <member refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_swapchain_1ad8ab3ef3cb6a82ede15685dae0cea0a5" kind="variable"><name>_swapchain</name></member>
-    <member refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_swapchain_1a88e6efb17d1dccae4118edf4d5081731" kind="variable"><name>_extent</name></member>
-    <member refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_swapchain_1a5989d45d1ef7790444c7a58cff495e94" kind="variable"><name>_imageAspect</name></member>
-    <member refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_swapchain_1a878b3a50cf311e0636b806463ecc0788" kind="variable"><name>_images</name></member>
-    <member refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_swapchain_1a1ae86c49b6658e28ea7d5f1ddbb99e0a" kind="variable"><name>_imageViews</name></member>
-    <member refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_swapchain_1aec24cbe3d0fdc0e80c640d4cf4810802" kind="variable"><name>_framebuffers</name></member>
-    <member refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_swapchain_1ade0d634e291ed8e8a265e530e04a3ea2" kind="variable"><name>_depthImage</name></member>
-    <member refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_swapchain_1a77ab6147cffce108f54252c82c58a087" kind="variable"><name>_depthImageView</name></member>
-    <member refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_swapchain_1adaded4bc2fe509c3fc4c2081274b4ba1" kind="variable"><name>_currentImageIndex</name></member>
-    <member refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_swapchain_1ad85e687e114973ff8fc6b852db078879" kind="function"><name>init</name></member>
-    <member refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_swapchain_1a23485ef75854f3ffb881877e18ddd2c2" kind="function"><name>destroy</name></member>
-    <member refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_swapchain_1ab3315f20384b5fa3e1e4156bd1c638c7" kind="function"><name>getFramebuffer</name></member>
-    <member refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_swapchain_1ac7a765f1861061db7373460b77ddeb3e" kind="function"><name>getCurrentImageIndex</name></member>
-    <member refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_swapchain_1a9789ac0aaa93867052947d4445f2a0e2" kind="function"><name>getExtent</name></member>
-    <member refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_swapchain_1a58e9cbc1d98d0eb97ee273b15c1f4713" kind="function"><name>getImageAspect</name></member>
-    <member refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_swapchain_1a190ce92331100a2db14c729d67341b9f" kind="function"><name>getImage</name></member>
-    <member refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_swapchain_1a747f3cd62d8784b05baf6e192d86002a" kind="function"><name>getImages</name></member>
-    <member refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_swapchain_1a30b4e27c52d6fa9bb634b5cb579b7b10" kind="function"><name>getImageViews</name></member>
-    <member refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_swapchain_1a50a497610d30300482aa3d2a5f05e6ff" kind="function"><name>setImageAspect</name></member>
-    <member refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_swapchain_1a9d4b15bff7fb5bda19cb5b7dd02783f4" kind="function"><name>setImageLayout</name></member>
-    <member refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_swapchain_1a3df5993a7b2582f01bad19a397cf0afe" kind="function"><name>acquireNextImage</name></member>
-    <member refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_swapchain_1ae4ebd45251a39b7fef67642146b28516" kind="function"><name>initImages</name></member>
-    <member refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_swapchain_1abf2fccdd91679e634b63e9e139acb721" kind="function"><name>initDepthImage</name></member>
-    <member refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_swapchain_1aa7e6a410fe3eeee2ecdedfaab1c6228c" kind="function"><name>initFramebuffers</name></member>
-  </compound>
-  <compound refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_sync" kind="class"><name>RAYEX_NAMESPACE::Sync</name>
-    <member refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_sync_1a678ce9e0cccaccf75a3ae4000ec77cdd" kind="variable"><name>_imagesInFlight</name></member>
-    <member refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_sync_1ab11b0270334724eb062f075d661f83ee" kind="variable"><name>_inFlightFences</name></member>
-    <member refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_sync_1ab51b0e0d5c6bbc84ab0a8d9bc085ff9f" kind="variable"><name>_imageAvailableSemaphores</name></member>
-    <member refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_sync_1a7c657bc209d49798efbbf4144ae24248" kind="variable"><name>_finishedRenderSemaphores</name></member>
-    <member refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_sync_1ac4b29a96504501aca6ebbb2a16e0ce7b" kind="variable"><name>_maxFramesInFlight</name></member>
-    <member refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_sync_1aa3daba9fa994917c02b7d28e2b14fd9a" kind="function"><name>getMaxFramesInFlight</name></member>
-    <member refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_sync_1a34c84386f46fc65d85dbe0dc0931e2a5" kind="function"><name>getImageInFlight</name></member>
-    <member refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_sync_1a965460ca3c750c12ad812309937fd7ff" kind="function"><name>getInFlightFence</name></member>
-    <member refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_sync_1aff75b18f455fb4a3562fc5086bd68ed6" kind="function"><name>getImageAvailableSemaphore</name></member>
-    <member refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_sync_1a469d979f910acd49650eb5fa94727a8f" kind="function"><name>getFinishedRenderSemaphore</name></member>
-    <member refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_sync_1a049cc57d2e795bfa68788aa3b92eb807" kind="function"><name>init</name></member>
-    <member refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_sync_1a1d614dbdad9623d888de6812cc563361" kind="function"><name>waitForFrame</name></member>
-  </compound>
-  <compound refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_texture" kind="class"><name>RAYEX_NAMESPACE::Texture</name>
-    <member refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_texture_1aa3848d707ae7b2fe5fd073a3df962a07" kind="variable"><name>_path</name></member>
-    <member refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_texture_1a983108f10030607bcabfa65ba7323018" kind="variable"><name>_imageView</name></member>
-    <member refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_texture_1a23e2e5a02dc202a05770c5157e00b639" kind="function"><name>getImageView</name></member>
-    <member refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_texture_1ab60fb85070b67258d51ba665725ad92e" kind="function"><name>getPath</name></member>
-    <member refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_texture_1acc3e7b81bbfd57b79f5bd65ff0ae674d" kind="function"><name>init</name></member>
-  </compound>
   <compound refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_time" kind="class"><name>RAYEX_NAMESPACE::Time</name>
     <member refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_time_1a626c5328d806f10740e91a064ceb44a2" kind="variable"><name>Window</name></member>
     <member refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_time_1a7524698161fee241c3ac7c19dbead84b" kind="function"><name>benchmark</name></member>
@@ -577,15 +381,6 @@
   </compound>
   <compound refid="struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_tlas" kind="struct"><name>RAYEX_NAMESPACE::Tlas</name>
     <member refid="struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_tlas_1aef65925b7d115143b5e5b3b61a048566" kind="variable"><name>as</name></member>
-    <member refid="struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_tlas_1a45fd150956fba0341a86f8fa4e946d49" kind="variable"><name>flags</name></member>
-  </compound>
-  <compound refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_uniform_buffer" kind="class"><name>RAYEX_NAMESPACE::UniformBuffer</name>
-    <member refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_uniform_buffer_1adf8b54f055aaa830221088940fc7aa08" kind="variable"><name>_bufferInfos</name></member>
-    <member refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_uniform_buffer_1a60d4970c452b11bfd9cf279320121f48" kind="variable"><name>_buffers</name></member>
-    <member refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_uniform_buffer_1affbaace86b871f6780ad26d8c14532c5" kind="function"><name>UniformBuffer</name></member>
-    <member refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_uniform_buffer_1a078e32def6522eef0fa09c6c721f7900" kind="function"><name>get</name></member>
-    <member refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_uniform_buffer_1ac29800940f2c5c6af6afc6ef21a6526c" kind="function"><name>init</name></member>
-    <member refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_uniform_buffer_1a1b6844e890ba9e11740728fac32bfb04" kind="function"><name>upload</name></member>
   </compound>
   <compound refid="struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_vertex" kind="struct"><name>RAYEX_NAMESPACE::Vertex</name>
     <member refid="struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_vertex_1a2939dfc92a6910299aba3f4425be1be8" kind="variable"><name>pos</name></member>
@@ -624,135 +419,28 @@
   <compound refid="namespace_r_a_y_e_x___n_a_m_e_s_p_a_c_e" kind="namespace"><name>RAYEX_NAMESPACE</name>
     <member refid="namespace_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1a997bf023e5202653ba7b804848f245e4" kind="variable"><name>defaultWidth</name></member>
     <member refid="namespace_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1aff8ee7aaab7d155f60fd777d09664159" kind="variable"><name>defaultHeight</name></member>
-    <member refid="namespace_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1a12927e95ad03941844c80a5324ef0826" kind="function"><name>getSupportedDepthFormat</name></member>
+    <member refid="namespace_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1a3544ae5f32fe827a6e65b423d680c963" kind="function"><name>initAccelerationStructure</name></member>
     <member refid="group___b_a_s_e_1ga2d50e1cd402880131042e1bcab773b46" kind="function"><name>loadObj</name></member>
     <member refid="group___b_a_s_e_1gad880ea304e8ff3dab6ea5258df8970cf" kind="function"><name>instance</name></member>
   </compound>
   <compound refid="namespace_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1components" kind="namespace"><name>RAYEX_NAMESPACE::components</name>
-    <member refid="namespace_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1components_1a6578075ba1994daebf5b6149e4d4123b" kind="variable"><name>instance</name></member>
-    <member refid="namespace_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1components_1a344e77a6a2c22737ebf523815d78f9d3" kind="variable"><name>physicalDevice</name></member>
-    <member refid="namespace_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1components_1ab4f6e30d71b69d7538d92a2583aea3e5" kind="variable"><name>device</name></member>
-    <member refid="namespace_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1components_1a67af4230d7523391d12e00d0a8e0e750" kind="variable"><name>surface</name></member>
-    <member refid="namespace_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1components_1ab464302e0493d4314485f7abc01971b4" kind="variable"><name>swapchain</name></member>
-    <member refid="namespace_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1components_1ae415dbf36f0af255d963eadd438edc19" kind="variable"><name>swapchainImageCount</name></member>
-    <member refid="namespace_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1components_1a8c89792fbe59059a3febf9d142cc68f0" kind="variable"><name>dynamicLoader</name></member>
-    <member refid="namespace_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1components_1afdc1199b17f232177eed2a9db7e08658" kind="variable"><name>graphicsCmdPool</name></member>
-    <member refid="namespace_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1components_1a7e17c7dcbb72428dd80b59f67f2ed7f0" kind="variable"><name>transferCmdPool</name></member>
-    <member refid="namespace_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1components_1a9e6819996087ad141270f35b37f95dfa" kind="variable"><name>graphicsQueue</name></member>
-    <member refid="namespace_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1components_1a9c3652be28ac920a00d22d6fd4b24158" kind="variable"><name>transferQueue</name></member>
-    <member refid="namespace_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1components_1a9b3a3a4de8b6a714346502ddbcc7ff40" kind="variable"><name>graphicsFamilyIndex</name></member>
-    <member refid="namespace_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1components_1ab5e00173e34596647b257c1fb90a4b03" kind="variable"><name>transferFamilyIndex</name></member>
-    <member refid="namespace_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1components_1aadcda946d57c0408c18dab07f09540fa" kind="variable"><name>physicalDeviceLimits</name></member>
     <member refid="namespace_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1components_1aad615ab85dcde4fa21ceaedc57465b51" kind="variable"><name>frameCount</name></member>
     <member refid="namespace_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1components_1a524acb5e30cc3e3c5bf3ceb81d83fc6a" kind="variable"><name>assetsPath</name></member>
     <member refid="namespace_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1components_1a4d5dc1bf67c9b9d8737cc266005343f1" kind="variable"><name>geometryIndex</name></member>
     <member refid="namespace_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1components_1adba63188318cfcbba40a35ef326df489" kind="variable"><name>textureIndex</name></member>
     <member refid="namespace_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1components_1a339363085d98dd34e0fc07104fc86a6c" kind="variable"><name>maxResources</name></member>
   </compound>
-  <compound refid="namespace_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_util" kind="namespace"><name>RAYEX_NAMESPACE::Util</name>
-    <member refid="namespace_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_util_1a0688371689cb8fc05d6a7a85bad79a6a" kind="function"><name>parseShader</name></member>
-    <member refid="namespace_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_util_1a73f0c4b677c819ecf5a6083506e47b51" kind="function"><name>processShaderMacros</name></member>
-    <member refid="namespace_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_util_1a597142ff896b6224f5dd9e4cd06b186d" kind="function"><name>find</name></member>
-    <member refid="namespace_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_util_1a68d3d47e91753b329cd0e075f75d26fc" kind="function"><name>vec4toArray</name></member>
-    <member refid="namespace_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_util_1a123f863dbcf88702a681a0217593caa0" kind="function"><name>listToVec</name></member>
-  </compound>
-  <compound refid="namespacerx" kind="namespace"><name>rx</name>
-  </compound>
   <compound refid="namespacestd" kind="namespace"><name>std</name>
-  </compound>
-  <compound refid="namespacevk" kind="namespace"><name>vk</name>
-  </compound>
-  <compound refid="namespacevk_1_1_helper" kind="namespace"><name>vk::Helper</name>
-    <member refid="namespacevk_1_1_helper_1ad788eee3dfd87ddde000dd9a0023bb7d" kind="function"><name>getPipelineShaderStageCreateInfo</name></member>
-    <member refid="namespacevk_1_1_helper_1a0771dfbc2ab126947ed56d5fde2878e2" kind="function"><name>getImageCreateInfo</name></member>
-    <member refid="namespacevk_1_1_helper_1a9b8d3e169a2f8c5cd9111d056e325319" kind="function"><name>getImageViewCreateInfo</name></member>
-    <member refid="namespacevk_1_1_helper_1af3313c26337284dc7b0f355139e32f56" kind="function"><name>getSamplerCreateInfo</name></member>
-    <member refid="namespacevk_1_1_helper_1a95e71693ea2ee7e6815e5d7015128921" kind="function"><name>findMemoryType</name></member>
-    <member refid="namespacevk_1_1_helper_1ae41dfbb084fe9a3d9757550ee6887333" kind="function"><name>unpack</name></member>
-    <member refid="namespacevk_1_1_helper_1a68b67b155588fe0e64efb0e26f864618" kind="function"><name>getPoolSizes</name></member>
-    <member refid="namespacevk_1_1_helper_1a6e1227990cef167f6d5b6b7b1f1b52b2" kind="function"><name>transitionImageLayout</name></member>
-    <member refid="namespacevk_1_1_helper_1a9f3fa5a78b202fb543408c03e51a7340" kind="function"><name>transitionImageLayout</name></member>
-    <member refid="namespacevk_1_1_helper_1a03b66bc6980679ba138631d754e85993" kind="function"><name>getImageMemoryBarrierInfo</name></member>
-    <member refid="namespacevk_1_1_helper_1a679da5dcd94cae0130bf240f715bf64d" kind="function"><name>getAttachmentDescription</name></member>
-    <member refid="namespacevk_1_1_helper_1a97d6ba5a488dc2acbeded001c1e65942" kind="function"><name>getDepthAttachmentDescription</name></member>
-    <member refid="namespacevk_1_1_helper_1af8b7dcb2ec2dbf6188c9772fe6f8205e" kind="function"><name>isPhysicalDeviceQueueComplete</name></member>
-    <member refid="namespacevk_1_1_helper_1a579209d8855cc201ab98946961429f4f" kind="function"><name>isPhysicalDeviceWithDedicatedTransferQueueFamily</name></member>
-    <member refid="namespacevk_1_1_helper_1a3f1c6e5a77a150f0f0da60ca7e3d8b46" kind="function"><name>evaluatePhysicalDevice</name></member>
-    <member refid="namespacevk_1_1_helper_1a9ac8571453eabef79b21edffff9c6e2c" kind="function"><name>checkDeviceExtensionSupport</name></member>
-    <member refid="namespacevk_1_1_helper_1a6c8b9879ee23a500b88b4b8ce0da5ea2" kind="function"><name>checkInstanceLayersSupport</name></member>
-    <member refid="namespacevk_1_1_helper_1acb8243a4819615e860ed10014e545f36" kind="function"><name>checkInstanceExtensionsSupport</name></member>
-    <member refid="namespacevk_1_1_helper_1a66ad6f9e410f31bdea43c49b3a774611" kind="function"><name>findSupportedImageFormat</name></member>
-  </compound>
-  <compound refid="namespacevk_1_1_initializer" kind="namespace"><name>vk::Initializer</name>
-    <member refid="namespacevk_1_1_initializer_1ae6a5303506418677ec639446ef16cc46" kind="function"><name>initFenceUnique</name></member>
-    <member refid="namespacevk_1_1_initializer_1af6bf761ce27237bb82fb5e02535617d9" kind="function"><name>initFence</name></member>
-    <member refid="namespacevk_1_1_initializer_1a375ed5917667a58eff188349cf3f9050" kind="function"><name>initSemaphoreUnique</name></member>
-    <member refid="namespacevk_1_1_initializer_1ac1ec2f4e793ae3383e4c69db03ff4fc1" kind="function"><name>initSemaphore</name></member>
-    <member refid="namespacevk_1_1_initializer_1acef14128475ec3fe6c547ff6673fd23a" kind="function"><name>initCommandPoolUnique</name></member>
-    <member refid="namespacevk_1_1_initializer_1a4f31060460247e2cec9de6164b6e0057" kind="function"><name>initCommandPool</name></member>
-    <member refid="namespacevk_1_1_initializer_1acdbf982d7f7d6c943c5d7698640eeb28" kind="function"><name>initDescriptorPoolUnique</name></member>
-    <member refid="namespacevk_1_1_initializer_1aed58fa91ff66a059c1a2aba841c62094" kind="function"><name>initDescriptorSetsUnique</name></member>
-    <member refid="namespacevk_1_1_initializer_1a493d221cb9855740252a5e69a8ca0838" kind="function"><name>allocateMemoryUnique</name></member>
-    <member refid="namespacevk_1_1_initializer_1af484445cf6e33bde051680745478e92e" kind="function"><name>allocateMemory</name></member>
-    <member refid="namespacevk_1_1_initializer_1a12c5bd8256a38e454966161b5742d75d" kind="function"><name>allocateMemoryUnique</name></member>
-    <member refid="namespacevk_1_1_initializer_1acf85382b3d1c452170cae8ebc6aa0b7d" kind="function"><name>allocateMemory</name></member>
-    <member refid="namespacevk_1_1_initializer_1a868e3684ba1c9bb641994154b8f0a328" kind="function"><name>initImageViewUnique</name></member>
-    <member refid="namespacevk_1_1_initializer_1af42815d5a927f8476cf33d90112c4b24" kind="function"><name>initImageView</name></member>
-    <member refid="namespacevk_1_1_initializer_1a36373e7db0323614fb7a613a25034b88" kind="function"><name>initSamplerUnique</name></member>
-    <member refid="namespacevk_1_1_initializer_1a12f3e62260a13de38ef88a420ba60728" kind="function"><name>initSampler</name></member>
-    <member refid="namespacevk_1_1_initializer_1a9e3b424e471133a3a1108d239ad3b0d5" kind="function"><name>initFramebufferUnique</name></member>
-    <member refid="namespacevk_1_1_initializer_1a8a203917e1ea8b661b32363a2498d3fb" kind="function"><name>initFramebuffer</name></member>
-    <member refid="namespacevk_1_1_initializer_1a79c8c72a6ff7bfe8023ea424950b537c" kind="function"><name>initQueryPoolUnique</name></member>
-    <member refid="namespacevk_1_1_initializer_1a948d9f0a9db128c05db21a601e5d3edb" kind="function"><name>initQueryPool</name></member>
-    <member refid="namespacevk_1_1_initializer_1ac5138790657c39af09df37198eb9fbb7" kind="function"><name>initShaderModuleUnique</name></member>
-    <member refid="namespacevk_1_1_initializer_1a5ea60eaa2fc1b0d0dce038f5d6b3720a" kind="function"><name>initShaderModule</name></member>
-    <member refid="namespacevk_1_1_initializer_1ae65d6ff7a9d8f5852eb9d49a1dea3eb7" kind="function"><name>initAccelerationStructure</name></member>
-    <member refid="namespacevk_1_1_initializer_1aa312efed5e4aa5e591b86a2759248d55" kind="function"><name>initPhysicalDevice</name></member>
-    <member refid="namespacevk_1_1_initializer_1a41bd7737bda712ebcd0c6a66d336e4ab" kind="function"><name>initQueueFamilyIndices</name></member>
-    <member refid="namespacevk_1_1_initializer_1a162632da0a356f8cc311c6c0290cfff1" kind="function"><name>initDevice</name></member>
-    <member refid="namespacevk_1_1_initializer_1a837538230a0f3327ba32f5803e174c62" kind="function"><name>initInstance</name></member>
   </compound>
   <compound refid="_api_8hpp" kind="file"><name>Api.hpp</name>
   </compound>
-  <compound refid="_bindings_8hpp" kind="file"><name>Bindings.hpp</name>
-  </compound>
-  <compound refid="_buffer_8hpp" kind="file"><name>Buffer.hpp</name>
-  </compound>
-  <compound refid="_command_buffer_8hpp" kind="file"><name>CommandBuffer.hpp</name>
-  </compound>
-  <compound refid="_storage_buffer_8hpp" kind="file"><name>StorageBuffer.hpp</name>
-  </compound>
-  <compound refid="_uniform_buffer_8hpp" kind="file"><name>UniformBuffer.hpp</name>
-  </compound>
   <compound refid="_components_8hpp" kind="file"><name>Components.hpp</name>
-  </compound>
-  <compound refid="_cubemap_8hpp" kind="file"><name>Cubemap.hpp</name>
-  </compound>
-  <compound refid="_image_8hpp" kind="file"><name>Image.hpp</name>
-  </compound>
-  <compound refid="_texture_8hpp" kind="file"><name>Texture.hpp</name>
   </compound>
   <compound refid="_acceleration_structure_8hpp" kind="file"><name>AccelerationStructure.hpp</name>
   </compound>
   <compound refid="_path_tracer_8hpp" kind="file"><name>PathTracer.hpp</name>
   </compound>
   <compound refid="_post_processing_renderer_8hpp" kind="file"><name>PostProcessingRenderer.hpp</name>
-  </compound>
-  <compound refid="_render_pass_8hpp" kind="file"><name>RenderPass.hpp</name>
-  </compound>
-  <compound refid="_surface_8hpp" kind="file"><name>Surface.hpp</name>
-  </compound>
-  <compound refid="_swapchain_8hpp" kind="file"><name>Swapchain.hpp</name>
-  </compound>
-  <compound refid="_sync_8hpp" kind="file"><name>Sync.hpp</name>
-  </compound>
-  <compound refid="_debug_messenger_8hpp" kind="file"><name>DebugMessenger.hpp</name>
-  </compound>
-  <compound refid="_helpers_8hpp" kind="file"><name>Helpers.hpp</name>
-  </compound>
-  <compound refid="_initializers_8hpp" kind="file"><name>Initializers.hpp</name>
-  </compound>
-  <compound refid="_util_8hpp" kind="file"><name>Util.hpp</name>
   </compound>
   <compound refid="_vertex_8hpp" kind="file"><name>Vertex.hpp</name>
     <member refid="_vertex_8hpp_1ab7b56463f2ca50b08e1c0e1080dced5a" kind="define"><name>GLENABLE_EXPERIMENTAL</name></member>
@@ -804,21 +492,15 @@
   </compound>
   <compound refid="todo" kind="page"><name>todo</name>
   </compound>
-  <compound refid="dir_2d52abcd54c181b91d630da402923092" kind="dir"><name>/mnt/c/Repos/rayex/include/api</name>
+  <compound refid="dir_2d52abcd54c181b91d630da402923092" kind="dir"><name>/home/n30/Repos/rayex/include/api</name>
   </compound>
-  <compound refid="dir_ab1c81409f0df724f17c9ef30afee877" kind="dir"><name>/mnt/c/Repos/rayex/include/base</name>
+  <compound refid="dir_ab1c81409f0df724f17c9ef30afee877" kind="dir"><name>/home/n30/Repos/rayex/include/base</name>
   </compound>
-  <compound refid="dir_55012dd099807ce5b030bcaa1056687d" kind="dir"><name>/mnt/c/Repos/rayex/include/api/buffers</name>
+  <compound refid="dir_d44c64559bbebec7f509842c48db8b23" kind="dir"><name>/home/n30/Repos/rayex/include</name>
   </compound>
-  <compound refid="dir_02523d52219860cc971c97a2c9308d19" kind="dir"><name>/mnt/c/Repos/rayex/include/api/image</name>
+  <compound refid="dir_13f008643341461089740a9b1206915a" kind="dir"><name>/home/n30/Repos/rayex/include/api/pathtrace</name>
   </compound>
-  <compound refid="dir_d44c64559bbebec7f509842c48db8b23" kind="dir"><name>/mnt/c/Repos/rayex/include</name>
-  </compound>
-  <compound refid="dir_13f008643341461089740a9b1206915a" kind="dir"><name>/mnt/c/Repos/rayex/include/api/pathtrace</name>
-  </compound>
-  <compound refid="dir_1f28c29535055152f465f1747ac25e1e" kind="dir"><name>/mnt/c/Repos/rayex/include/pch</name>
-  </compound>
-  <compound refid="dir_d95d88259bb69c813963ad097d10ad2c" kind="dir"><name>/mnt/c/Repos/rayex/include/api/utility</name>
+  <compound refid="dir_1f28c29535055152f465f1747ac25e1e" kind="dir"><name>/home/n30/Repos/rayex/include/pch</name>
   </compound>
   <compound refid="indexpage" kind="page"><name>index</name>
   </compound>

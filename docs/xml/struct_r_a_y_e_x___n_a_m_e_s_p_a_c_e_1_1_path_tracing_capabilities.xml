@@ -16,14 +16,14 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/mnt/c/Repos/rayex/include/api/pathtrace/PathTracer.hpp" line="29" column="55" bodyfile="/mnt/c/Repos/rayex/include/api/pathtrace/PathTracer.hpp" bodystart="29" bodyend="-1"/>
+        <location file="/home/n30/Repos/rayex/include/api/pathtrace/PathTracer.hpp" line="25" column="55" bodyfile="/home/n30/Repos/rayex/include/api/pathtrace/PathTracer.hpp" bodystart="25" bodyend="-1"/>
       </memberdef>
       </sectiondef>
     <briefdescription>
     </briefdescription>
     <detaileddescription>
     </detaileddescription>
-    <location file="/mnt/c/Repos/rayex/include/api/pathtrace/PathTracer.hpp" line="28" column="1" bodyfile="/mnt/c/Repos/rayex/include/api/pathtrace/PathTracer.hpp" bodystart="27" bodyend="38"/>
+    <location file="/home/n30/Repos/rayex/include/api/pathtrace/PathTracer.hpp" line="24" column="1" bodyfile="/home/n30/Repos/rayex/include/api/pathtrace/PathTracer.hpp" bodystart="23" bodyend="34"/>
     <listofallmembers>
       <member refid="struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_path_tracing_capabilities_1a47265ef799d8058bc56e7dff41970c47" prot="public" virt="non-virtual"><scope>RAYEX_NAMESPACE::PathTracingCapabilities</scope><name>pipelineProperties</name></member>
     </listofallmembers>

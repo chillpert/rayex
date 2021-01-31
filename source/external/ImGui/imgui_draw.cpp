@@ -26,13 +26,13 @@ Index of this file:
   #define _CRT_SECURE_NO_WARNINGS
 #endif
 
-#include "imgui/imgui.h"
+#include "ImGui/imgui.h"
 #ifndef IMGUI_DISABLE
 
   #ifndef IMGUI_DEFINE_MATH_OPERATORS
     #define IMGUI_DEFINE_MATH_OPERATORS
   #endif
-  #include "imgui/imgui_internal.h"
+  #include "ImGui/imgui_internal.h"
 
   #include <stdio.h> // vsnprintf, sscanf, printf
   #if !defined( alloca )
@@ -114,7 +114,7 @@ namespace IMGUI_STB_NAMESPACE
   #if defined( __GNUC__ )
     #pragma GCC diagnostic push
     #pragma GCC diagnostic ignored "-Wtype-limits" // warning: comparison is always true due to limited range of data type [-Wtype-limits]
-    #pragma GCC diagnostic ignored "-Wcast-qual" // warning: cast from type 'const xxxx *' to type 'xxxx *' casts away qualifiers
+    #pragma GCC diagnostic ignored "-Wcast-qual"   // warning: cast from type 'const xxxx *' to type 'xxxx *' casts away qualifiers
   #endif
 
   #ifndef STB_RECT_PACK_IMPLEMENTATION // in case the user already have an implementation in the _same_ compilation unit (e.g. unity builds)
@@ -131,7 +131,7 @@ namespace IMGUI_STB_NAMESPACE
     #ifdef IMGUI_STB_RECT_PACK_FILENAME
       #include IMGUI_STB_RECT_PACK_FILENAME
     #else
-      #include "imgui/imstb_rectpack.h"
+      #include "ImGui/imstb_rectpack.h"
     #endif
   #endif
 
@@ -158,7 +158,7 @@ namespace IMGUI_STB_NAMESPACE
     #ifdef IMGUI_STB_TRUETYPE_FILENAME
       #include IMGUI_STB_TRUETYPE_FILENAME
     #else
-      #include "imgui/imstb_truetype.h"
+      #include "ImGui/imstb_truetype.h"
     #endif
   #endif
 
@@ -2240,9 +2240,7 @@ bool ImFontAtlasBuildWithStbTruetype( ImFontAtlas* atlas )
   if ( atlas->TexDesiredWidth > 0 )
     atlas->TexWidth = atlas->TexDesiredWidth;
   else
-    atlas->TexWidth = ( surface_sqrt >= 4096 * 0.7f ) ? 4096 : ( surface_sqrt >= 2048 * 0.7f ) ? 2048 :
-                                                             ( surface_sqrt >= 1024 * 0.7f )   ? 1024 :
-                                                                                                 512;
+    atlas->TexWidth = ( surface_sqrt >= 4096 * 0.7f ) ? 4096 : ( surface_sqrt >= 2048 * 0.7f ) ? 2048 : ( surface_sqrt >= 1024 * 0.7f ) ? 1024 : 512;
 
   // 5. Start packing
   // Pack our extra data rectangles first, so it will be on the upper-left corner of our texture (UV will have small values).

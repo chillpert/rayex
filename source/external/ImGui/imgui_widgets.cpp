@@ -32,13 +32,13 @@ Index of this file:
   #define _CRT_SECURE_NO_WARNINGS
 #endif
 
-#include "imgui/imgui.h"
+#include "ImGui/imgui.h"
 #ifndef IMGUI_DISABLE
 
   #ifndef IMGUI_DEFINE_MATH_OPERATORS
     #define IMGUI_DEFINE_MATH_OPERATORS
   #endif
-  #include "imgui/imgui_internal.h"
+  #include "ImGui/imgui_internal.h"
 
   #include <ctype.h>                          // toupper
   #if defined( _MSC_VER ) && _MSC_VER <= 1500 // MSVC 2008 or earlier
@@ -678,8 +678,7 @@ bool ImGui::ButtonEx( const char* label, const ImVec2& size_arg, ImGuiButtonFlag
   bool pressed = ButtonBehavior( bb, id, &hovered, &held, flags );
 
   // Render
-  const ImU32 col = GetColorU32( ( held && hovered ) ? ImGuiCol_ButtonActive : hovered ? ImGuiCol_ButtonHovered :
-                                                                                         ImGuiCol_Button );
+  const ImU32 col = GetColorU32( ( held && hovered ) ? ImGuiCol_ButtonActive : hovered ? ImGuiCol_ButtonHovered : ImGuiCol_Button );
   RenderNavHighlight( bb, id );
   RenderFrame( bb.Min, bb.Max, col, true, style.FrameRounding );
   RenderTextClipped( bb.Min + style.FramePadding, bb.Max - style.FramePadding, label, NULL, &label_size, style.ButtonTextAlign, &bb );
@@ -753,8 +752,7 @@ bool ImGui::ArrowButtonEx( const char* str_id, ImGuiDir dir, ImVec2 size, ImGuiB
   bool pressed = ButtonBehavior( bb, id, &hovered, &held, flags );
 
   // Render
-  const ImU32 bg_col   = GetColorU32( ( held && hovered ) ? ImGuiCol_ButtonActive : hovered ? ImGuiCol_ButtonHovered :
-                                                                                              ImGuiCol_Button );
+  const ImU32 bg_col   = GetColorU32( ( held && hovered ) ? ImGuiCol_ButtonActive : hovered ? ImGuiCol_ButtonHovered : ImGuiCol_Button );
   const ImU32 text_col = GetColorU32( ImGuiCol_Text );
   RenderNavHighlight( bb, id );
   RenderFrame( bb.Min, bb.Max, bg_col, true, g.Style.FrameRounding );
@@ -814,8 +812,7 @@ bool ImGui::CollapseButton( ImGuiID id, const ImVec2& pos, ImGuiDockNode* dock_n
   // Render
   //bool is_dock_menu = (window->DockNodeAsHost && !window->Collapsed);
   ImVec2 off     = dock_node ? ImVec2( IM_FLOOR( -g.Style.ItemInnerSpacing.x * 0.5f ) + 0.5f, 0.0f ) : ImVec2( 0.0f, 0.0f );
-  ImU32 bg_col   = GetColorU32( ( held && hovered ) ? ImGuiCol_ButtonActive : hovered ? ImGuiCol_ButtonHovered :
-                                                                                        ImGuiCol_Button );
+  ImU32 bg_col   = GetColorU32( ( held && hovered ) ? ImGuiCol_ButtonActive : hovered ? ImGuiCol_ButtonHovered : ImGuiCol_Button );
   ImU32 text_col = GetColorU32( ImGuiCol_Text );
   ImVec2 center  = bb.GetCenter( );
   if ( hovered || held )
@@ -966,8 +963,7 @@ bool ImGui::ScrollbarEx( const ImRect& bb_frame, ImGuiID id, ImGuiAxis axis, flo
 
   // Render
   const ImU32 bg_col   = GetColorU32( ImGuiCol_ScrollbarBg );
-  const ImU32 grab_col = GetColorU32( held ? ImGuiCol_ScrollbarGrabActive : hovered ? ImGuiCol_ScrollbarGrabHovered :
-                                                                                      ImGuiCol_ScrollbarGrab,
+  const ImU32 grab_col = GetColorU32( held ? ImGuiCol_ScrollbarGrabActive : hovered ? ImGuiCol_ScrollbarGrabHovered : ImGuiCol_ScrollbarGrab,
                                       alpha );
   window->DrawList->AddRectFilled( bb_frame.Min, bb_frame.Max, bg_col, window->WindowRounding, rounding_corners );
   ImRect grab_rect;
@@ -1034,8 +1030,7 @@ bool ImGui::ImageButton( ImTextureID user_texture_id, const ImVec2& size, const 
   bool pressed = ButtonBehavior( bb, id, &hovered, &held );
 
   // Render
-  const ImU32 col = GetColorU32( ( held && hovered ) ? ImGuiCol_ButtonActive : hovered ? ImGuiCol_ButtonHovered :
-                                                                                         ImGuiCol_Button );
+  const ImU32 col = GetColorU32( ( held && hovered ) ? ImGuiCol_ButtonActive : hovered ? ImGuiCol_ButtonHovered : ImGuiCol_Button );
   RenderNavHighlight( bb, id );
   RenderFrame( bb.Min, bb.Max, col, true, ImClamp( (float) ImMin( padding.x, padding.y ), 0.0f, style.FrameRounding ) );
   if ( bg_col.w > 0.0f )
@@ -1073,8 +1068,7 @@ bool ImGui::Checkbox( const char* label, bool* v )
 
   const ImRect check_bb( pos, pos + ImVec2( square_sz, square_sz ) );
   RenderNavHighlight( total_bb, id );
-  RenderFrame( check_bb.Min, check_bb.Max, GetColorU32( ( held && hovered ) ? ImGuiCol_FrameBgActive : hovered ? ImGuiCol_FrameBgHovered :
-                                                                                                                 ImGuiCol_FrameBg ),
+  RenderFrame( check_bb.Min, check_bb.Max, GetColorU32( ( held && hovered ) ? ImGuiCol_FrameBgActive : hovered ? ImGuiCol_FrameBgHovered : ImGuiCol_FrameBg ),
                true, style.FrameRounding );
   ImU32 check_col = GetColorU32( ImGuiCol_CheckMark );
   if ( window->DC.ItemFlags & ImGuiItemFlags_MixedValue )
@@ -1143,8 +1137,7 @@ bool ImGui::RadioButton( const char* label, bool active )
     MarkItemEdited( id );
 
   RenderNavHighlight( total_bb, id );
-  window->DrawList->AddCircleFilled( center, radius, GetColorU32( ( held && hovered ) ? ImGuiCol_FrameBgActive : hovered ? ImGuiCol_FrameBgHovered :
-                                                                                                                           ImGuiCol_FrameBg ),
+  window->DrawList->AddCircleFilled( center, radius, GetColorU32( ( held && hovered ) ? ImGuiCol_FrameBgActive : hovered ? ImGuiCol_FrameBgHovered : ImGuiCol_FrameBg ),
                                      16 );
   if ( active )
   {
@@ -1418,8 +1411,7 @@ bool ImGui::SplitterBehavior( const ImRect& bb, ImGuiID id, ImGuiAxis axis, floa
   }
 
   // Render
-  const ImU32 col = GetColorU32( held ? ImGuiCol_SeparatorActive : ( hovered && g.HoveredIdTimer >= hover_visibility_delay ) ? ImGuiCol_SeparatorHovered :
-                                                                                                                               ImGuiCol_Separator );
+  const ImU32 col = GetColorU32( held ? ImGuiCol_SeparatorActive : ( hovered && g.HoveredIdTimer >= hover_visibility_delay ) ? ImGuiCol_SeparatorHovered : ImGuiCol_Separator );
   window->DrawList->AddRectFilled( bb_render.Min, bb_render.Max, col, 0.0f );
 
   return held;
@@ -2275,8 +2267,7 @@ bool ImGui::DragScalar( const char* label, ImGuiDataType data_type, void* p_data
     return TempInputScalar( frame_bb, id, label, data_type, p_data, format ); // , p_min, p_max);
 
   // Draw frame
-  const ImU32 frame_col = GetColorU32( g.ActiveId == id ? ImGuiCol_FrameBgActive : g.HoveredId == id ? ImGuiCol_FrameBgHovered :
-                                                                                                       ImGuiCol_FrameBg );
+  const ImU32 frame_col = GetColorU32( g.ActiveId == id ? ImGuiCol_FrameBgActive : g.HoveredId == id ? ImGuiCol_FrameBgHovered : ImGuiCol_FrameBg );
   RenderNavHighlight( frame_bb, id );
   RenderFrame( frame_bb.Min, frame_bb.Max, frame_col, true, style.FrameRounding );
 
@@ -2749,8 +2740,7 @@ bool ImGui::SliderScalar( const char* label, ImGuiDataType data_type, void* p_da
     return TempInputScalar( frame_bb, id, label, data_type, p_data, format ); // , p_min, p_max);
 
   // Draw frame
-  const ImU32 frame_col = GetColorU32( g.ActiveId == id ? ImGuiCol_FrameBgActive : g.HoveredId == id ? ImGuiCol_FrameBgHovered :
-                                                                                                       ImGuiCol_FrameBg );
+  const ImU32 frame_col = GetColorU32( g.ActiveId == id ? ImGuiCol_FrameBgActive : g.HoveredId == id ? ImGuiCol_FrameBgHovered : ImGuiCol_FrameBg );
   RenderNavHighlight( frame_bb, id );
   RenderFrame( frame_bb.Min, frame_bb.Max, frame_col, true, g.Style.FrameRounding );
 
@@ -2896,8 +2886,7 @@ bool ImGui::VSliderScalar( const char* label, const ImVec2& size, ImGuiDataType 
   }
 
   // Draw frame
-  const ImU32 frame_col = GetColorU32( g.ActiveId == id ? ImGuiCol_FrameBgActive : g.HoveredId == id ? ImGuiCol_FrameBgHovered :
-                                                                                                       ImGuiCol_FrameBg );
+  const ImU32 frame_col = GetColorU32( g.ActiveId == id ? ImGuiCol_FrameBgActive : g.HoveredId == id ? ImGuiCol_FrameBgHovered : ImGuiCol_FrameBg );
   RenderNavHighlight( frame_bb, id );
   RenderFrame( frame_bb.Min, frame_bb.Max, frame_col, true, g.Style.FrameRounding );
 
@@ -3495,7 +3484,7 @@ namespace ImStb
   #define STB_TEXTEDIT_K_SHIFT     0x400000
 
   #define STB_TEXTEDIT_IMPLEMENTATION
-  #include "imgui/imstb_textedit.h"
+  #include "ImGui/imstb_textedit.h"
 
   // stb_textedit internally allows for a single undo record to do addition and deletion, but somehow, calling
   // the stb_textedit_paste() function creates two separate records, so we perform it manually. (FIXME: Report to nothings/stb?)
@@ -3960,13 +3949,11 @@ bool ImGui::InputTextEx( const char* label, const char* hint, char* buf, int buf
     const bool is_undo  = ( ( is_shortcut_key && IsKeyPressedMap( ImGuiKey_Z ) ) && !is_readonly && is_undoable );
     const bool is_redo  = ( ( is_shortcut_key && IsKeyPressedMap( ImGuiKey_Y ) ) || ( is_osx_shift_shortcut && IsKeyPressedMap( ImGuiKey_Z ) ) ) && !is_readonly && is_undoable;
 
-    if ( IsKeyPressedMap( ImGuiKey_LeftArrow ) ) { state->OnKeyPressed( ( is_startend_key_down ? STB_TEXTEDIT_K_LINESTART : is_wordmove_key_down ? STB_TEXTEDIT_K_WORDLEFT :
-                                                                                                                                                   STB_TEXTEDIT_K_LEFT ) |
+    if ( IsKeyPressedMap( ImGuiKey_LeftArrow ) ) { state->OnKeyPressed( ( is_startend_key_down ? STB_TEXTEDIT_K_LINESTART : is_wordmove_key_down ? STB_TEXTEDIT_K_WORDLEFT : STB_TEXTEDIT_K_LEFT ) |
                                                                         k_mask ); }
     else if ( IsKeyPressedMap( ImGuiKey_RightArrow ) )
     {
-      state->OnKeyPressed( ( is_startend_key_down ? STB_TEXTEDIT_K_LINEEND : is_wordmove_key_down ? STB_TEXTEDIT_K_WORDRIGHT :
-                                                                                                    STB_TEXTEDIT_K_RIGHT ) |
+      state->OnKeyPressed( ( is_startend_key_down ? STB_TEXTEDIT_K_LINEEND : is_wordmove_key_down ? STB_TEXTEDIT_K_WORDRIGHT : STB_TEXTEDIT_K_RIGHT ) |
                            k_mask );
     }
     else if ( IsKeyPressedMap( ImGuiKey_UpArrow ) && is_multiline )
@@ -4594,8 +4581,7 @@ bool ImGui::ColorEdit4( const char* label, float col[4], ImGuiColorEditFlags fla
       { "R:%0.3f", "G:%0.3f", "B:%0.3f", "A:%0.3f" }, // Long display for RGBA
       { "H:%0.3f", "S:%0.3f", "V:%0.3f", "A:%0.3f" }  // Long display for HSVA
     };
-    const int fmt_idx = hide_prefix ? 0 : ( flags & ImGuiColorEditFlags_DisplayHSV ) ? 2 :
-                                                                                       1;
+    const int fmt_idx = hide_prefix ? 0 : ( flags & ImGuiColorEditFlags_DisplayHSV ) ? 2 : 1;
 
     for ( int n = 0; n < components; n++ )
     {
@@ -5670,8 +5656,7 @@ bool ImGui::TreeNodeBehavior( ImGuiID id, ImGuiTreeNodeFlags flags, const char* 
   if ( display_frame )
   {
     // Framed type
-    const ImU32 bg_col = GetColorU32( ( held && hovered ) ? ImGuiCol_HeaderActive : hovered ? ImGuiCol_HeaderHovered :
-                                                                                              ImGuiCol_Header );
+    const ImU32 bg_col = GetColorU32( ( held && hovered ) ? ImGuiCol_HeaderActive : hovered ? ImGuiCol_HeaderHovered : ImGuiCol_Header );
     RenderFrame( frame_bb.Min, frame_bb.Max, bg_col, true, style.FrameRounding );
     RenderNavHighlight( frame_bb, id, nav_highlight_flags );
     if ( flags & ImGuiTreeNodeFlags_Bullet )
@@ -5701,8 +5686,7 @@ bool ImGui::TreeNodeBehavior( ImGuiID id, ImGuiTreeNodeFlags flags, const char* 
     // Unframed typed for tree nodes
     if ( hovered || selected )
     {
-      const ImU32 bg_col = GetColorU32( ( held && hovered ) ? ImGuiCol_HeaderActive : hovered ? ImGuiCol_HeaderHovered :
-                                                                                                ImGuiCol_Header );
+      const ImU32 bg_col = GetColorU32( ( held && hovered ) ? ImGuiCol_HeaderActive : hovered ? ImGuiCol_HeaderHovered : ImGuiCol_Header );
       RenderFrame( frame_bb.Min, frame_bb.Max, bg_col, false );
       RenderNavHighlight( frame_bb, id, nav_highlight_flags );
     }
@@ -5941,8 +5925,7 @@ bool ImGui::Selectable( const char* label, bool selected, ImGuiSelectableFlags f
     hovered = true;
   if ( hovered || selected )
   {
-    const ImU32 col = GetColorU32( ( held && hovered ) ? ImGuiCol_HeaderActive : hovered ? ImGuiCol_HeaderHovered :
-                                                                                           ImGuiCol_Header );
+    const ImU32 col = GetColorU32( ( held && hovered ) ? ImGuiCol_HeaderActive : hovered ? ImGuiCol_HeaderHovered : ImGuiCol_Header );
     RenderFrame( bb_enlarged.Min, bb_enlarged.Max, col, false, 0.0f );
     RenderNavHighlight( bb_enlarged, id, ImGuiNavHighlightFlags_TypeThin | ImGuiNavHighlightFlags_NoRounding );
   }
@@ -7556,8 +7539,7 @@ bool ImGui::TabItemEx( ImGuiTabBar* tab_bar, const char* label, bool* p_open, Im
 
   // Render tab shape
   ImDrawList* display_draw_list = window->DrawList;
-  const ImU32 tab_col           = GetColorU32( ( held || hovered ) ? ImGuiCol_TabHovered : tab_contents_visible ? ( tab_bar_focused ? ImGuiCol_TabActive : ImGuiCol_TabUnfocusedActive ) :
-                                                                                                                  ( tab_bar_focused ? ImGuiCol_Tab : ImGuiCol_TabUnfocused ) );
+  const ImU32 tab_col           = GetColorU32( ( held || hovered ) ? ImGuiCol_TabHovered : tab_contents_visible ? ( tab_bar_focused ? ImGuiCol_TabActive : ImGuiCol_TabUnfocusedActive ) : ( tab_bar_focused ? ImGuiCol_Tab : ImGuiCol_TabUnfocused ) );
   TabItemBackground( display_draw_list, bb, flags, tab_col );
   RenderNavHighlight( bb, id );
 
@@ -8097,8 +8079,7 @@ void ImGui::EndColumns( )
       }
 
       // Draw column
-      const ImU32 col = GetColorU32( held ? ImGuiCol_SeparatorActive : hovered ? ImGuiCol_SeparatorHovered :
-                                                                                 ImGuiCol_Separator );
+      const ImU32 col = GetColorU32( held ? ImGuiCol_SeparatorActive : hovered ? ImGuiCol_SeparatorHovered : ImGuiCol_Separator );
       const float xi  = IM_FLOOR( x );
       window->DrawList->AddLine( ImVec2( xi, y1 + 1.0f ), ImVec2( xi, y2 ), col );
     }

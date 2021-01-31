@@ -12,5 +12,5 @@ file(GLOB FILES_LIB
   "${PROJECT_SOURCE_DIR}/source/base/*.cpp"
 
   # ImGui files
-  "${PROJECT_SOURCE_DIR}/source/external/imgui/*.cpp"
+  "${PROJECT_SOURCE_DIR}/source/external/ImGui/*.cpp"
 )

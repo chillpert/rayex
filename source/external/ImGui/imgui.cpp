@@ -816,13 +816,13 @@ CODE
   #define _CRT_SECURE_NO_WARNINGS
 #endif
 
-#include "imgui/imgui.h"
+#include "ImGui/imgui.h"
 #ifndef IMGUI_DISABLE
 
   #ifndef IMGUI_DEFINE_MATH_OPERATORS
     #define IMGUI_DEFINE_MATH_OPERATORS
   #endif
-  #include "imgui/imgui_internal.h"
+  #include "ImGui/imgui_internal.h"
 
   // System includes
   #include <ctype.h>                          // toupper
@@ -4088,8 +4088,7 @@ void ImGui::UpdateMouseWheel( )
   }
 
   // Horizontal Mouse Wheel scrolling, or Vertical Mouse Wheel w/ Shift held
-  const float wheel_x = ( g.IO.MouseWheelH != 0.0f && !g.IO.KeyShift ) ? g.IO.MouseWheelH : ( g.IO.MouseWheel != 0.0f && g.IO.KeyShift ) ? g.IO.MouseWheel :
-                                                                                                                                           0.0f;
+  const float wheel_x = ( g.IO.MouseWheelH != 0.0f && !g.IO.KeyShift ) ? g.IO.MouseWheelH : ( g.IO.MouseWheel != 0.0f && g.IO.KeyShift ) ? g.IO.MouseWheel : 0.0f;
   if ( wheel_x != 0.0f && !g.IO.KeyCtrl )
   {
     StartLockWheelingWindow( window );
@@ -5827,8 +5826,7 @@ static bool ImGui::UpdateWindowManualResize( ImGuiWindow* window, const ImVec2& 
       CalcResizePosSizeFromAnyCorner( window, corner_target, grip.CornerPosN, &pos_target, &size_target );
     }
     if ( resize_grip_n == 0 || held || hovered )
-      resize_grip_col[resize_grip_n] = GetColorU32( held ? ImGuiCol_ResizeGripActive : hovered ? ImGuiCol_ResizeGripHovered :
-                                                                                                 ImGuiCol_ResizeGrip );
+      resize_grip_col[resize_grip_n] = GetColorU32( held ? ImGuiCol_ResizeGripActive : hovered ? ImGuiCol_ResizeGripHovered : ImGuiCol_ResizeGrip );
   }
   for ( int border_n = 0; border_n < resize_border_count; border_n++ )
   {
@@ -6041,8 +6039,7 @@ void ImGui::RenderWindowDecorations( ImGuiWindow* window, const ImRect& title_ba
         StartMouseMovingWindowOrNode( window, node, true );
 
       // FIXME-DOCK: Ideally we'd use ImGuiCol_TitleBgActive/ImGuiCol_TitleBg here, but neither is guaranteed to be visible enough at this sort of size..
-      ImU32 col = GetColorU32( ( ( held && hovered ) || ( node->IsFocused && !hovered ) ) ? ImGuiCol_ButtonActive : hovered ? ImGuiCol_ButtonHovered :
-                                                                                                                              ImGuiCol_Button );
+      ImU32 col = GetColorU32( ( ( held && hovered ) || ( node->IsFocused && !hovered ) ) ? ImGuiCol_ButtonActive : hovered ? ImGuiCol_ButtonHovered : ImGuiCol_Button );
       window->DrawList->AddTriangleFilled( p, p + ImVec2( unhide_sz_draw, 0.0f ), p + ImVec2( 0.0f, unhide_sz_draw ), col );
     }
 
@@ -6259,8 +6256,7 @@ bool ImGui::Begin( const char* name, bool* p_open, ImGuiWindowFlags flags )
   }
 
   // Parent window is latched only on the first call to Begin() of the frame, so further append-calls can be done from a different window stack
-  ImGuiWindow* parent_window_in_stack = window->DockIsActive ? window->DockNode->HostWindow : g.CurrentWindowStack.empty( ) ? NULL :
-                                                                                                                              g.CurrentWindowStack.back( );
+  ImGuiWindow* parent_window_in_stack = window->DockIsActive ? window->DockNode->HostWindow : g.CurrentWindowStack.empty( ) ? NULL : g.CurrentWindowStack.back( );
   ImGuiWindow* parent_window          = first_begin_of_the_frame ? ( ( flags & ( ImGuiWindowFlags_ChildWindow | ImGuiWindowFlags_Popup ) ) ? parent_window_in_stack : NULL ) : window->ParentWindow;
   IM_ASSERT( parent_window != NULL || !( flags & ImGuiWindowFlags_ChildWindow ) );
 
@@ -6633,8 +6629,7 @@ bool ImGui::Begin( const char* name, bool* p_open, ImGuiWindowFlags flags )
     if ( window->ViewportOwned || window->DockIsActive )
       window->WindowRounding = 0.0f;
     else
-      window->WindowRounding = ( flags & ImGuiWindowFlags_ChildWindow ) ? style.ChildRounding : ( ( flags & ImGuiWindowFlags_Popup ) && !( flags & ImGuiWindowFlags_Modal ) ) ? style.PopupRounding :
-                                                                                                                                                                                style.WindowRounding;
+      window->WindowRounding = ( flags & ImGuiWindowFlags_ChildWindow ) ? style.ChildRounding : ( ( flags & ImGuiWindowFlags_Popup ) && !( flags & ImGuiWindowFlags_Modal ) ) ? style.PopupRounding : style.WindowRounding;
 
     // Apply window focus (new and reactivated windows are moved to front)
     bool want_focus = false;
@@ -9073,10 +9068,8 @@ ImVec2 ImGui::FindBestWindowPosForPopupEx( const ImVec2& ref_pos, const ImVec2& 
     if ( avail_w < size.x || avail_h < size.y )
       continue;
     ImVec2 pos;
-    pos.x     = ( dir == ImGuiDir_Left ) ? r_avoid.Min.x - size.x : ( dir == ImGuiDir_Right ) ? r_avoid.Max.x :
-                                                                                                base_pos_clamped.x;
-    pos.y     = ( dir == ImGuiDir_Up ) ? r_avoid.Min.y - size.y : ( dir == ImGuiDir_Down ) ? r_avoid.Max.y :
-                                                                                             base_pos_clamped.y;
+    pos.x     = ( dir == ImGuiDir_Left ) ? r_avoid.Min.x - size.x : ( dir == ImGuiDir_Right ) ? r_avoid.Max.x : base_pos_clamped.x;
+    pos.y     = ( dir == ImGuiDir_Up ) ? r_avoid.Min.y - size.y : ( dir == ImGuiDir_Down ) ? r_avoid.Max.y : base_pos_clamped.y;
     *last_dir = dir;
     return pos;
   }
@@ -13621,8 +13614,7 @@ static void ImGui::DockNodeUpdateTabBar( ImGuiDockNode* node, ImGuiWindow* host_
   // Title bar
   if ( is_focused )
     node->LastFrameFocused = g.FrameCount;
-  ImU32 title_bar_col = GetColorU32( host_window->Collapsed ? ImGuiCol_TitleBgCollapsed : is_focused ? ImGuiCol_TitleBgActive :
-                                                                                                       ImGuiCol_TitleBg );
+  ImU32 title_bar_col = GetColorU32( host_window->Collapsed ? ImGuiCol_TitleBgCollapsed : is_focused ? ImGuiCol_TitleBgActive : ImGuiCol_TitleBg );
   host_window->DrawList->AddRectFilled( title_bar_rect.Min, title_bar_rect.Max, title_bar_col, host_window->WindowRounding, ImDrawCornerFlags_Top );
 
   // Docking/Collapse button
@@ -16174,8 +16166,7 @@ void ImGui::ShowMetricsWindow( bool* p_open )
       if ( node->Windows.Size > 0 )
         open = ImGui::TreeNode( (void*) (intptr_t) node->ID, "%s 0x%04X%s: %d windows (vis: '%s')", label, node->ID, node->IsVisible ? "" : " (hidden)", node->Windows.Size, node->VisibleWindow ? node->VisibleWindow->Name : "NULL" );
       else
-        open = ImGui::TreeNode( (void*) (intptr_t) node->ID, "%s 0x%04X%s: %s split (vis: '%s')", label, node->ID, node->IsVisible ? "" : " (hidden)", ( node->SplitAxis == ImGuiAxis_X ) ? "horizontal" : ( node->SplitAxis == ImGuiAxis_Y ) ? "vertical" :
-                                                                                                                                                                                                                                                "n/a",
+        open = ImGui::TreeNode( (void*) (intptr_t) node->ID, "%s 0x%04X%s: %s split (vis: '%s')", label, node->ID, node->IsVisible ? "" : " (hidden)", ( node->SplitAxis == ImGuiAxis_X ) ? "horizontal" : ( node->SplitAxis == ImGuiAxis_Y ) ? "vertical" : "n/a",
                                 node->VisibleWindow ? node->VisibleWindow->Name : "NULL" );
       if ( open )
       {
@@ -16420,8 +16411,7 @@ void ImGui::ShowMetricsWindow( bool* p_open )
           else if ( ImGuiWindowSettings* window_settings = FindWindowSettings( settings->SelectedWindowId ) )
             selected_tab_name = window_settings->GetName( );
         }
-        ImGui::BulletText( "Node %08X, Parent %08X, SelectedTab %08X ('%s')", settings->ID, settings->ParentNodeId, settings->SelectedWindowId, selected_tab_name ? selected_tab_name : settings->SelectedWindowId ? "N/A" :
-                                                                                                                                                                                                                     "" );
+        ImGui::BulletText( "Node %08X, Parent %08X, SelectedTab %08X ('%s')", settings->ID, settings->ParentNodeId, settings->SelectedWindowId, selected_tab_name ? selected_tab_name : settings->SelectedWindowId ? "N/A" : "" );
       }
       ImGui::TreePop( );
     }

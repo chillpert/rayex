@@ -4,9 +4,9 @@
 #include "Core.hpp"
 #include "base/Time.hpp"
 
-#include <imgui/imgui.h>
-#include <imgui/imgui_impl_sdl.h>
-#include <imgui/imgui_impl_vulkan.h>
+#include <ImGui/imgui.h>
+#include <ImGui/imgui_impl_sdl.h>
+#include <ImGui/imgui_impl_vulkan.h>
 //#define GLM_SWIZZLE
 #include <glm/ext/matrix_clip_space.hpp>
 #include <glm/ext/matrix_transform.hpp>

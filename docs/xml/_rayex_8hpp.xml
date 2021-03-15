@@ -4,315 +4,107 @@
     <compoundname>Rayex.hpp</compoundname>
     <includes refid="_api_8hpp" local="yes">api/Api.hpp</includes>
     <incdepgraph>
-      <node id="34">
+      <node id="28">
         <label>list</label>
       </node>
-      <node id="16">
-        <label>base/Time.hpp</label>
-        <link refid="_time_8hpp"/>
-        <childnode refid="7" relation="include">
-        </childnode>
+      <node id="12">
+        <label>imgui/imgui_impl_sdl.h</label>
       </node>
-      <node id="65">
-        <label>api/utility/Util.hpp</label>
-        <link refid="_util_8hpp"/>
-        <childnode refid="6" relation="include">
-        </childnode>
+      <node id="40">
+        <label>glm/gtx/hash.hpp</label>
       </node>
-      <node id="1">
-        <label>/mnt/c/Repos/rayex/include/Rayex.hpp</label>
-        <link refid="_rayex_8hpp"/>
-        <childnode refid="2" relation="include">
-        </childnode>
-      </node>
-      <node id="45">
-        <label>api/utility/Initializers.hpp</label>
-        <link refid="_initializers_8hpp"/>
-        <childnode refid="44" relation="include">
-        </childnode>
-      </node>
-      <node id="32">
+      <node id="26">
         <label>iomanip</label>
       </node>
-      <node id="21">
-        <label>external/glm/ext/matrix_transform.hpp</label>
-      </node>
-      <node id="33">
-        <label>limits</label>
-      </node>
-      <node id="48">
-        <label>api/Surface.hpp</label>
-        <link refid="_surface_8hpp"/>
-        <childnode refid="49" relation="include">
-        </childnode>
-      </node>
-      <node id="28">
-        <label>filesystem</label>
-      </node>
-      <node id="52">
-        <label>api/Sync.hpp</label>
-        <link refid="_sync_8hpp"/>
-        <childnode refid="6" relation="include">
-        </childnode>
-      </node>
-      <node id="8">
-        <label>external/tinyLogger/TinyLogger.hpp</label>
-      </node>
-      <node id="63">
-        <label>base/Settings.hpp</label>
-        <link refid="_settings_8hpp"/>
-        <childnode refid="6" relation="include">
-        </childnode>
+      <node id="15">
+        <label>glm/ext/matrix_transform.hpp</label>
       </node>
       <node id="27">
+        <label>limits</label>
+      </node>
+      <node id="22">
+        <label>filesystem</label>
+      </node>
+      <node id="9">
+        <label>vkCore/vkCore.hpp</label>
+      </node>
+      <node id="11">
+        <label>imgui/imgui.h</label>
+      </node>
+      <node id="21">
         <label>charconv</label>
       </node>
-      <node id="18">
-        <label>external/ImGui/imgui_impl_sdl.h</label>
+      <node id="13">
+        <label>imgui/imgui_impl_vulkan.h</label>
       </node>
-      <node id="20">
-        <label>external/glm/ext/matrix_clip_space.hpp</label>
-      </node>
-      <node id="35">
-        <label>map</label>
-      </node>
-      <node id="53">
-        <label>api/Vertex.hpp</label>
-        <link refid="_vertex_8hpp"/>
+      <node id="5">
+        <label>Core.hpp</label>
+        <link refid="_core_8hpp"/>
         <childnode refid="6" relation="include">
         </childnode>
-        <childnode refid="54" relation="include">
+        <childnode refid="7" relation="include">
+        </childnode>
+        <childnode refid="8" relation="include">
+        </childnode>
+        <childnode refid="9" relation="include">
         </childnode>
       </node>
       <node id="41">
-        <label>unordered_set</label>
-      </node>
-      <node id="31">
-        <label>gsl/gsl</label>
-      </node>
-      <node id="2">
-        <label>api/Api.hpp</label>
-        <link refid="_api_8hpp"/>
-        <childnode refid="3" relation="include">
-        </childnode>
-        <childnode refid="46" relation="include">
-        </childnode>
-        <childnode refid="5" relation="include">
-        </childnode>
-        <childnode refid="48" relation="include">
-        </childnode>
-        <childnode refid="51" relation="include">
-        </childnode>
-        <childnode refid="52" relation="include">
-        </childnode>
-        <childnode refid="53" relation="include">
-        </childnode>
-        <childnode refid="55" relation="include">
-        </childnode>
-        <childnode refid="56" relation="include">
-        </childnode>
-        <childnode refid="59" relation="include">
-        </childnode>
-        <childnode refid="60" relation="include">
-        </childnode>
-        <childnode refid="61" relation="include">
-        </childnode>
-        <childnode refid="62" relation="include">
-        </childnode>
-        <childnode refid="64" relation="include">
-        </childnode>
-        <childnode refid="65" relation="include">
-        </childnode>
-        <childnode refid="66" relation="include">
-        </childnode>
-        <childnode refid="67" relation="include">
-        </childnode>
-      </node>
-      <node id="30">
-        <label>fstream</label>
-      </node>
-      <node id="67">
-        <label>base/Scene.hpp</label>
-        <link refid="_scene_8hpp"/>
-        <childnode refid="3" relation="include">
-        </childnode>
-        <childnode refid="56" relation="include">
-        </childnode>
-        <childnode refid="59" relation="include">
-        </childnode>
-        <childnode refid="60" relation="include">
-        </childnode>
-        <childnode refid="61" relation="include">
-        </childnode>
-        <childnode refid="50" relation="include">
-        </childnode>
-        <childnode refid="58" relation="include">
-        </childnode>
-        <childnode refid="63" relation="include">
-        </childnode>
-      </node>
-      <node id="64">
-        <label>api/utility/DebugMessenger.hpp</label>
-        <link refid="_debug_messenger_8hpp"/>
-        <childnode refid="6" relation="include">
-        </childnode>
-      </node>
-      <node id="59">
-        <label>api/buffers/UniformBuffer.hpp</label>
-        <link refid="_uniform_buffer_8hpp"/>
-        <childnode refid="57" relation="include">
-        </childnode>
-        <childnode refid="58" relation="include">
-        </childnode>
-      </node>
-      <node id="17">
-        <label>external/ImGui/imgui.h</label>
-      </node>
-      <node id="25">
-        <label>any</label>
-      </node>
-      <node id="13">
-        <label>SDL2/SDL.h</label>
-      </node>
-      <node id="47">
-        <label>api/image/Image.hpp</label>
-        <link refid="_image_8hpp"/>
-        <childnode refid="6" relation="include">
-        </childnode>
-      </node>
-      <node id="38">
-        <label>random</label>
-      </node>
-      <node id="22">
-        <label>external/glm/glm.hpp</label>
-      </node>
-      <node id="12">
-        <label>string_view</label>
-      </node>
-      <node id="50">
-        <label>base/Camera.hpp</label>
-        <link refid="_camera_8hpp"/>
-        <childnode refid="6" relation="include">
-        </childnode>
-      </node>
-      <node id="37">
-        <label>optional</label>
-      </node>
-      <node id="3">
-        <label>api/Bindings.hpp</label>
-        <link refid="_bindings_8hpp"/>
-        <childnode refid="4" relation="include">
-        </childnode>
-        <childnode refid="45" relation="include">
-        </childnode>
-      </node>
-      <node id="43">
-        <label>vector</label>
-      </node>
-      <node id="60">
-        <label>api/image/Cubemap.hpp</label>
-        <link refid="_cubemap_8hpp"/>
-        <childnode refid="47" relation="include">
-        </childnode>
-      </node>
-      <node id="42">
-        <label>utility</label>
-      </node>
-      <node id="26">
-        <label>array</label>
-      </node>
-      <node id="23">
-        <label>external/glm/gtx/string_cast.hpp</label>
-      </node>
-      <node id="11">
-        <label>sstream</label>
-      </node>
-      <node id="5">
-        <label>api/RenderPass.hpp</label>
-        <link refid="_render_pass_8hpp"/>
-        <childnode refid="6" relation="include">
-        </childnode>
-      </node>
-      <node id="62">
         <label>api/pathtrace/PathTracer.hpp</label>
         <link refid="_path_tracer_8hpp"/>
-        <childnode refid="3" relation="include">
+        <childnode refid="42" relation="include">
         </childnode>
-        <childnode refid="51" relation="include">
-        </childnode>
-        <childnode refid="57" relation="include">
-        </childnode>
-        <childnode refid="56" relation="include">
+        <childnode refid="43" relation="include">
         </childnode>
         <childnode refid="44" relation="include">
         </childnode>
-        <childnode refid="58" relation="include">
-        </childnode>
-        <childnode refid="63" relation="include">
+      </node>
+      <node id="29">
+        <label>map</label>
+      </node>
+      <node id="36">
+        <label>unordered_set</label>
+      </node>
+      <node id="25">
+        <label>gsl/gsl</label>
+      </node>
+      <node id="43">
+        <label>base/Geometry.hpp</label>
+        <link refid="_geometry_8hpp"/>
+        <childnode refid="39" relation="include">
         </childnode>
       </node>
-      <node id="19">
-        <label>external/ImGui/imgui_impl_vulkan.h</label>
+      <node id="24">
+        <label>fstream</label>
       </node>
-      <node id="10">
-        <label>iostream</label>
+      <node id="17">
+        <label>glm/gtx/string_cast.hpp</label>
       </node>
-      <node id="49">
-        <label>base/Window.hpp</label>
-        <link refid="_window_8hpp"/>
-        <childnode refid="50" relation="include">
-        </childnode>
-        <childnode refid="16" relation="include">
-        </childnode>
-        <childnode refid="6" relation="include">
-        </childnode>
-      </node>
-      <node id="40">
-        <label>unordered_map</label>
-      </node>
-      <node id="56">
-        <label>api/buffers/StorageBuffer.hpp</label>
-        <link refid="_storage_buffer_8hpp"/>
-        <childnode refid="57" relation="include">
-        </childnode>
-        <childnode refid="45" relation="include">
-        </childnode>
-        <childnode refid="58" relation="include">
-        </childnode>
-      </node>
-      <node id="44">
+      <node id="42">
         <label>api/pathtrace/AccelerationStructure.hpp</label>
         <link refid="_acceleration_structure_8hpp"/>
-        <childnode refid="6" relation="include">
-        </childnode>
-      </node>
-      <node id="51">
-        <label>api/Swapchain.hpp</label>
-        <link refid="_swapchain_8hpp"/>
-        <childnode refid="48" relation="include">
-        </childnode>
-        <childnode refid="47" relation="include">
-        </childnode>
         <childnode refid="4" relation="include">
         </childnode>
       </node>
-      <node id="46">
-        <label>api/PostProcessingRenderer.hpp</label>
-        <link refid="_post_processing_renderer_8hpp"/>
-        <childnode refid="3" relation="include">
-        </childnode>
-        <childnode refid="5" relation="include">
-        </childnode>
-        <childnode refid="47" relation="include">
-        </childnode>
+      <node id="19">
+        <label>any</label>
       </node>
-      <node id="9">
-        <label>chrono</label>
-      </node>
-      <node id="6">
+      <node id="4">
         <label>pch/stdafx.hpp</label>
         <link refid="stdafx_8hpp"/>
-        <childnode refid="7" relation="include">
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="10" relation="include">
+        </childnode>
+        <childnode refid="11" relation="include">
+        </childnode>
+        <childnode refid="12" relation="include">
+        </childnode>
+        <childnode refid="13" relation="include">
+        </childnode>
+        <childnode refid="14" relation="include">
+        </childnode>
+        <childnode refid="15" relation="include">
         </childnode>
         <childnode refid="16" relation="include">
         </childnode>
@@ -360,107 +152,138 @@
         </childnode>
         <childnode refid="38" relation="include">
         </childnode>
-        <childnode refid="39" relation="include">
+      </node>
+      <node id="6">
+        <label>SDL2/SDL.h</label>
+      </node>
+      <node id="32">
+        <label>random</label>
+      </node>
+      <node id="34">
+        <label>string_view</label>
+      </node>
+      <node id="31">
+        <label>optional</label>
+      </node>
+      <node id="1">
+        <label>/home/n30/Repos/rayex/include/Rayex.hpp</label>
+        <link refid="_rayex_8hpp"/>
+        <childnode refid="2" relation="include">
         </childnode>
-        <childnode refid="12" relation="include">
+      </node>
+      <node id="38">
+        <label>vector</label>
+      </node>
+      <node id="48">
+        <label>base/Window.hpp</label>
+        <link refid="_window_8hpp"/>
+        <childnode refid="47" relation="include">
+        </childnode>
+        <childnode refid="10" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+      </node>
+      <node id="37">
+        <label>utility</label>
+      </node>
+      <node id="20">
+        <label>array</label>
+      </node>
+      <node id="47">
+        <label>base/Camera.hpp</label>
+        <link refid="_camera_8hpp"/>
+        <childnode refid="4" relation="include">
+        </childnode>
+      </node>
+      <node id="39">
+        <label>api/Vertex.hpp</label>
+        <link refid="_vertex_8hpp"/>
+        <childnode refid="4" relation="include">
         </childnode>
         <childnode refid="40" relation="include">
         </childnode>
-        <childnode refid="41" relation="include">
-        </childnode>
-        <childnode refid="42" relation="include">
+      </node>
+      <node id="35">
+        <label>unordered_map</label>
+      </node>
+      <node id="46">
+        <label>base/Scene.hpp</label>
+        <link refid="_scene_8hpp"/>
+        <childnode refid="47" relation="include">
         </childnode>
         <childnode refid="43" relation="include">
-        </childnode>
-      </node>
-      <node id="66">
-        <label>base/Gui.hpp</label>
-        <link refid="_gui_8hpp"/>
-        <childnode refid="5" relation="include">
-        </childnode>
-        <childnode refid="48" relation="include">
-        </childnode>
-        <childnode refid="51" relation="include">
-        </childnode>
-        <childnode refid="55" relation="include">
-        </childnode>
-        <childnode refid="17" relation="include">
-        </childnode>
-        <childnode refid="19" relation="include">
-        </childnode>
-      </node>
-      <node id="4">
-        <label>api/utility/Helpers.hpp</label>
-        <link refid="_helpers_8hpp"/>
-        <childnode refid="5" relation="include">
         </childnode>
         <childnode refid="44" relation="include">
         </childnode>
       </node>
-      <node id="61">
-        <label>api/image/Texture.hpp</label>
-        <link refid="_texture_8hpp"/>
-        <childnode refid="47" relation="include">
+      <node id="14">
+        <label>glm/ext/matrix_clip_space.hpp</label>
+      </node>
+      <node id="3">
+        <label>api/PostProcessingRenderer.hpp</label>
+        <link refid="_post_processing_renderer_8hpp"/>
+        <childnode refid="4" relation="include">
         </childnode>
       </node>
-      <node id="39">
+      <node id="33">
         <label>set</label>
       </node>
-      <node id="29">
-        <label>forward_list</label>
-      </node>
-      <node id="24">
-        <label>algorithm</label>
-      </node>
-      <node id="57">
-        <label>api/buffers/Buffer.hpp</label>
-        <link refid="_buffer_8hpp"/>
-        <childnode refid="47" relation="include">
+      <node id="10">
+        <label>base/Time.hpp</label>
+        <link refid="_time_8hpp"/>
+        <childnode refid="5" relation="include">
         </childnode>
       </node>
-      <node id="54">
-        <label>external/glm/gtx/hash.hpp</label>
-      </node>
-      <node id="15">
-        <label>vulkan/vulkan.hpp</label>
-      </node>
-      <node id="7">
-        <label>Core.hpp</label>
-        <link refid="_core_8hpp"/>
-        <childnode refid="8" relation="include">
-        </childnode>
-        <childnode refid="9" relation="include">
-        </childnode>
-        <childnode refid="10" relation="include">
-        </childnode>
+      <node id="45">
+        <label>base/Gui.hpp</label>
+        <link refid="_gui_8hpp"/>
         <childnode refid="11" relation="include">
-        </childnode>
-        <childnode refid="12" relation="include">
         </childnode>
         <childnode refid="13" relation="include">
         </childnode>
-        <childnode refid="14" relation="include">
-        </childnode>
-        <childnode refid="15" relation="include">
+        <childnode refid="4" relation="include">
         </childnode>
       </node>
-      <node id="36">
+      <node id="23">
+        <label>forward_list</label>
+      </node>
+      <node id="18">
+        <label>algorithm</label>
+      </node>
+      <node id="8">
+        <label>tinyLogger/TinyLogger.hpp</label>
+      </node>
+      <node id="44">
+        <label>base/Settings.hpp</label>
+        <link refid="_settings_8hpp"/>
+        <childnode refid="4" relation="include">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>api/Api.hpp</label>
+        <link refid="_api_8hpp"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="39" relation="include">
+        </childnode>
+        <childnode refid="41" relation="include">
+        </childnode>
+        <childnode refid="45" relation="include">
+        </childnode>
+        <childnode refid="46" relation="include">
+        </childnode>
+        <childnode refid="48" relation="include">
+        </childnode>
+      </node>
+      <node id="30">
         <label>memory</label>
       </node>
-      <node id="14">
+      <node id="7">
         <label>SDL2/SDL_vulkan.h</label>
       </node>
-      <node id="55">
-        <label>api/buffers/CommandBuffer.hpp</label>
-        <link refid="_command_buffer_8hpp"/>
-        <childnode refid="6" relation="include">
-        </childnode>
-      </node>
-      <node id="58">
-        <label>base/Geometry.hpp</label>
-        <link refid="_geometry_8hpp"/>
-        <childnode refid="53" relation="include">
-        </childnode>
+      <node id="16">
+        <label>glm/glm.hpp</label>
       </node>
     </incdepgraph>
     <innerclass refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_rayex" prot="public">RAYEX_NAMESPACE::Rayex</innerclass>
@@ -507,6 +330,6 @@
 <codeline lineno="73"><highlight class="normal"><sp/><sp/>};</highlight></codeline>
 <codeline lineno="74"><highlight class="normal">}<sp/></highlight><highlight class="comment">//<sp/>namespace<sp/>RAYEX_NAMESPACE</highlight><highlight class="normal"></highlight></codeline>
     </programlisting>
-    <location file="/mnt/c/Repos/rayex/include/Rayex.hpp"/>
+    <location file="/home/n30/Repos/rayex/include/Rayex.hpp"/>
   </compounddef>
 </doxygen>

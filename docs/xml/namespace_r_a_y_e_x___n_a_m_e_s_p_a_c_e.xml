@@ -4,20 +4,13 @@
     <compoundname>RAYEX_NAMESPACE</compoundname>
     <innerclass refid="struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_acceleration_structure" prot="public">RAYEX_NAMESPACE::AccelerationStructure</innerclass>
     <innerclass refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_api" prot="public">RAYEX_NAMESPACE::Api</innerclass>
-    <innerclass refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_bindings" prot="public">RAYEX_NAMESPACE::Bindings</innerclass>
     <innerclass refid="struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_blas" prot="public">RAYEX_NAMESPACE::Blas</innerclass>
-    <innerclass refid="struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_blas_instance" prot="public">RAYEX_NAMESPACE::BlasInstance</innerclass>
-    <innerclass refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_buffer" prot="public">RAYEX_NAMESPACE::Buffer</innerclass>
     <innerclass refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_camera" prot="public">RAYEX_NAMESPACE::Camera</innerclass>
     <innerclass refid="struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_camera_ubo" prot="public">RAYEX_NAMESPACE::CameraUbo</innerclass>
-    <innerclass refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_command_buffer" prot="public">RAYEX_NAMESPACE::CommandBuffer</innerclass>
-    <innerclass refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_debug_messenger" prot="public">RAYEX_NAMESPACE::DebugMessenger</innerclass>
-    <innerclass refid="struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_descriptors" prot="public">RAYEX_NAMESPACE::Descriptors</innerclass>
     <innerclass refid="struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_geometry" prot="public">RAYEX_NAMESPACE::Geometry</innerclass>
     <innerclass refid="struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_geometry_instance" prot="public">RAYEX_NAMESPACE::GeometryInstance</innerclass>
     <innerclass refid="struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_geometry_instance_s_s_b_o" prot="public">RAYEX_NAMESPACE::GeometryInstanceSSBO</innerclass>
     <innerclass refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_gui" prot="public">RAYEX_NAMESPACE::Gui</innerclass>
-    <innerclass refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_image" prot="public">RAYEX_NAMESPACE::Image</innerclass>
     <innerclass refid="struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_material" prot="public">RAYEX_NAMESPACE::Material</innerclass>
     <innerclass refid="struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_mesh" prot="public">RAYEX_NAMESPACE::Mesh</innerclass>
     <innerclass refid="struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_mesh_s_s_b_o" prot="public">RAYEX_NAMESPACE::MeshSSBO</innerclass>
@@ -26,21 +19,13 @@
     <innerclass refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_post_processing_renderer" prot="public">RAYEX_NAMESPACE::PostProcessingRenderer</innerclass>
     <innerclass refid="struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_pt_push_constants" prot="public">RAYEX_NAMESPACE::PtPushConstants</innerclass>
     <innerclass refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_rayex" prot="public">RAYEX_NAMESPACE::Rayex</innerclass>
-    <innerclass refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_render_pass" prot="public">RAYEX_NAMESPACE::RenderPass</innerclass>
     <innerclass refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_scene" prot="public">RAYEX_NAMESPACE::Scene</innerclass>
     <innerclass refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_settings" prot="public">RAYEX_NAMESPACE::Settings</innerclass>
-    <innerclass refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_storage_buffer" prot="public">RAYEX_NAMESPACE::StorageBuffer</innerclass>
-    <innerclass refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_surface" prot="public">RAYEX_NAMESPACE::Surface</innerclass>
-    <innerclass refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_swapchain" prot="public">RAYEX_NAMESPACE::Swapchain</innerclass>
-    <innerclass refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_sync" prot="public">RAYEX_NAMESPACE::Sync</innerclass>
-    <innerclass refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_texture" prot="public">RAYEX_NAMESPACE::Texture</innerclass>
     <innerclass refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_time" prot="public">RAYEX_NAMESPACE::Time</innerclass>
     <innerclass refid="struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_tlas" prot="public">RAYEX_NAMESPACE::Tlas</innerclass>
-    <innerclass refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_uniform_buffer" prot="public">RAYEX_NAMESPACE::UniformBuffer</innerclass>
     <innerclass refid="struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_vertex" prot="public">RAYEX_NAMESPACE::Vertex</innerclass>
     <innerclass refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_window" prot="public">RAYEX_NAMESPACE::Window</innerclass>
     <innernamespace refid="namespace_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1components">RAYEX_NAMESPACE::components</innernamespace>
-    <innernamespace refid="namespace_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_util">RAYEX_NAMESPACE::Util</innernamespace>
       <sectiondef kind="var">
       <memberdef kind="variable" id="namespace_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1a997bf023e5202653ba7b804848f245e4" prot="public" static="no" mutable="no">
         <type>const int</type>
@@ -54,7 +39,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/mnt/c/Repos/rayex/include/base/Window.hpp" line="9" column="13" bodyfile="/mnt/c/Repos/rayex/include/base/Window.hpp" bodystart="9" bodyend="-1"/>
+        <location file="/home/n30/Repos/rayex/include/base/Window.hpp" line="9" column="13" bodyfile="/home/n30/Repos/rayex/include/base/Window.hpp" bodystart="9" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="namespace_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1aff8ee7aaab7d155f60fd777d09664159" prot="public" static="no" mutable="no">
         <type>const int</type>
@@ -68,39 +53,39 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/mnt/c/Repos/rayex/include/base/Window.hpp" line="10" column="13" bodyfile="/mnt/c/Repos/rayex/include/base/Window.hpp" bodystart="10" bodyend="-1"/>
+        <location file="/home/n30/Repos/rayex/include/base/Window.hpp" line="10" column="13" bodyfile="/home/n30/Repos/rayex/include/base/Window.hpp" bodystart="10" bodyend="-1"/>
       </memberdef>
       </sectiondef>
       <sectiondef kind="func">
-      <memberdef kind="function" id="namespace_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1a12927e95ad03941844c80a5324ef0826" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+      <memberdef kind="function" id="namespace_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1a3544ae5f32fe827a6e65b423d680c963" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>auto</type>
-        <definition>auto RAYEX_NAMESPACE::getSupportedDepthFormat</definition>
-        <argsstring>(vk::PhysicalDevice physicalDevice) -&gt; vk::Format</argsstring>
-        <name>getSupportedDepthFormat</name>
+        <definition>auto RAYEX_NAMESPACE::initAccelerationStructure</definition>
+        <argsstring>(vk::AccelerationStructureCreateInfoKHR &amp;asCreateInfo) -&gt; AccelerationStructure</argsstring>
+        <name>initAccelerationStructure</name>
         <param>
-          <type>vk::PhysicalDevice</type>
-          <declname>physicalDevice</declname>
+          <type>vk::AccelerationStructureCreateInfoKHR &amp;</type>
+          <declname>asCreateInfo</declname>
         </param>
         <briefdescription>
-<para>Retrieves the depth format supported by a given physical device. </para>
+<para>Creates the acceleration structure and allocates and binds memory for it. </para>
         </briefdescription>
         <detaileddescription>
 <para><parameterlist kind="param"><parameteritem>
 <parameternamelist>
-<parametername>physicalDevice</parametername>
+<parametername>asCreateInfo</parametername>
 </parameternamelist>
 <parameterdescription>
-<para>The physical device to check. </para>
+<para>The Vulkan init info for the acceleration structure. </para>
 </parameterdescription>
 </parameteritem>
 </parameterlist>
-<simplesect kind="return"><para>Returns the supported depth format. </para>
+<simplesect kind="return"><para>Returns an <ref refid="struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_acceleration_structure" kindref="compound">RAYEX_NAMESPACE::AccelerationStructure</ref> object that contains the AS itself as well as the memory for it. </para>
 </simplesect>
 </para>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/mnt/c/Repos/rayex/include/api/Swapchain.hpp" line="92" column="8" declfile="/mnt/c/Repos/rayex/include/api/Swapchain.hpp" declline="92" declcolumn="8"/>
+        <location file="/home/n30/Repos/rayex/include/api/pathtrace/AccelerationStructure.hpp" line="41" column="8" declfile="/home/n30/Repos/rayex/include/api/pathtrace/AccelerationStructure.hpp" declline="41" declcolumn="8"/>
       </memberdef>
       <memberdef kind="function" id="group___b_a_s_e_1ga2d50e1cd402880131042e1bcab773b46" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>RX_API std::shared_ptr&lt; <ref refid="struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_geometry" kindref="compound">Geometry</ref> &gt;</type>
@@ -143,7 +128,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/mnt/c/Repos/rayex/include/base/Geometry.hpp" line="86" column="26" declfile="/mnt/c/Repos/rayex/include/base/Geometry.hpp" declline="86" declcolumn="26"/>
+        <location file="/home/n30/Repos/rayex/include/base/Geometry.hpp" line="86" column="26" declfile="/home/n30/Repos/rayex/include/base/Geometry.hpp" declline="86" declcolumn="26"/>
       </memberdef>
       <memberdef kind="function" id="group___b_a_s_e_1gad880ea304e8ff3dab6ea5258df8970cf" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>RX_API std::shared_ptr&lt; <ref refid="struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_geometry_instance" kindref="compound">GeometryInstance</ref> &gt;</type>
@@ -186,7 +171,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/mnt/c/Repos/rayex/include/base/Geometry.hpp" line="95" column="26" declfile="/mnt/c/Repos/rayex/include/base/Geometry.hpp" declline="95" declcolumn="26"/>
+        <location file="/home/n30/Repos/rayex/include/base/Geometry.hpp" line="95" column="26" declfile="/home/n30/Repos/rayex/include/base/Geometry.hpp" declline="95" declcolumn="26"/>
       </memberdef>
       </sectiondef>
     <briefdescription>
@@ -194,6 +179,6 @@
     </briefdescription>
     <detaileddescription>
     </detaileddescription>
-    <location file="/mnt/c/Repos/rayex/include/api/Api.hpp" line="22" column="1"/>
+    <location file="/home/n30/Repos/rayex/include/api/Api.hpp" line="11" column="1"/>
   </compounddef>
 </doxygen>

@@ -66,7 +66,7 @@ Index of this file:
   #define _CRT_SECURE_NO_WARNINGS
 #endif
 
-#include "imgui/imgui.h"
+#include "ImGui/imgui.h"
 #ifndef IMGUI_DISABLE
 
   #include <ctype.h>                          // toupper
@@ -129,8 +129,7 @@ Index of this file:
   // In other imgui sources we can use nicer internal functions from imgui_internal.h (ImMin/ImMax) but not in the demo.
   #define IM_MIN( A, B )        ( ( ( A ) < ( B ) ) ? ( A ) : ( B ) )
   #define IM_MAX( A, B )        ( ( ( A ) >= ( B ) ) ? ( A ) : ( B ) )
-  #define IM_CLAMP( V, MN, MX ) ( ( V ) < ( MN ) ? ( MN ) : ( V ) > ( MX ) ? ( MX ) : \
-                                                                             ( V ) )
+  #define IM_CLAMP( V, MN, MX ) ( ( V ) < ( MN ) ? ( MN ) : ( V ) > ( MX ) ? ( MX ) : ( V ) )
 
 //-----------------------------------------------------------------------------
 // [SECTION] Forward Declarations, Helpers
@@ -2772,9 +2771,7 @@ static void ShowDemoWindowLayout( )
         ImGui::PushID( n + line * 1000 );
         char num_buf[16];
         sprintf( num_buf, "%d", n );
-        const char* label = ( !( n % 15 ) ) ? "FizzBuzz" : ( !( n % 3 ) ) ? "Fizz" :
-                                                         ( !( n % 5 ) )   ? "Buzz" :
-                                                                            num_buf;
+        const char* label = ( !( n % 15 ) ) ? "FizzBuzz" : ( !( n % 3 ) ) ? "Fizz" : ( !( n % 5 ) ) ? "Buzz" : num_buf;
         float hue         = n * 0.05f;
         ImGui::PushStyleColor( ImGuiCol_Button, (ImVec4) ImColor::HSV( hue, 0.6f, 0.6f ) );
         ImGui::PushStyleColor( ImGuiCol_ButtonHovered, (ImVec4) ImColor::HSV( hue, 0.7f, 0.7f ) );

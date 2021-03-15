@@ -30,9 +30,9 @@ var NAVTREE =
       [ "Windows", "index.html#autotoc_md5", null ],
       [ "Usage", "index.html#autotoc_md6", null ],
       [ "Issues", "index.html#autotoc_md7", null ],
-      [ "Planned Features", "index.html#autotoc_md8", null ],
-      [ "Documentation", "index.html#autotoc_md9", null ]
+      [ "Planned Features", "index.html#autotoc_md8", null ]
     ] ],
+    [ "Download", "index.html#autotoc_md9", null ],
     [ "Todo List", "todo.html", null ],
     [ "Modules", "modules.html", "modules" ],
     [ "Namespaces", "namespaces.html", [
@@ -46,10 +46,9 @@ var NAVTREE =
     [ "Classes", "annotated.html", [
       [ "Class List", "annotated.html", "annotated_dup" ],
       [ "Class Index", "classes.html", null ],
-      [ "Class Hierarchy", "hierarchy.html", "hierarchy" ],
       [ "Class Members", "functions.html", [
         [ "All", "functions.html", "functions_dup" ],
-        [ "Functions", "functions_func.html", "functions_func" ],
+        [ "Functions", "functions_func.html", null ],
         [ "Variables", "functions_vars.html", null ],
         [ "Related Functions", "functions_rela.html", null ]
       ] ]
@@ -67,8 +66,7 @@ var NAVTREE =
 var NAVTREEINDEX =
 [
 "_acceleration_structure_8hpp.html",
-"class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_debug_messenger.html",
-"functions.html"
+"class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_window.html#a3b2477e338e063b1cfe3b1764a7f9de5"
 ];
 
 var SYNCONMSG = 'click to disable panel synchronisation';

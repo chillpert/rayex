@@ -86,21 +86,23 @@
 <codeline></codeline>
 <codeline><highlight class="normal">###<sp/>Planned<sp/>Features</highlight></codeline>
 <codeline></codeline>
-<codeline><highlight class="normal">-<sp/>[x]<sp/>Add<sp/>environment<sp/>mapping</highlight></codeline>
-<codeline><highlight class="normal">-<sp/>[x]<sp/>Add<sp/>a<sp/>post<sp/>processing<sp/>pass<sp/>for<sp/>gamma<sp/>correction<sp/>and<sp/>future<sp/>post<sp/>processing<sp/>effects</highlight></codeline>
-<codeline><highlight class="normal">-<sp/>[x]<sp/>Add<sp/>simple<sp/>reflections<sp/>and<sp/>transparency</highlight></codeline>
-<codeline><highlight class="normal">-<sp/>[<sp/>]<sp/>Add<sp/>an<sp/>efficient<sp/>way<sp/>of<sp/>building<sp/>and<sp/>updating<sp/>acceleration<sp/>structures<sp/>based<sp/>on<sp/>a<sp/>scene&apos;s<sp/>requirements</highlight></codeline>
-<codeline><highlight class="normal">-<sp/>[<sp/>]<sp/>Add<sp/>importance<sp/>and<sp/>multiple<sp/>importance<sp/>sampling</highlight></codeline>
-<codeline><highlight class="normal">-<sp/>[<sp/>]<sp/>Add<sp/>HDR<sp/>skymaps<sp/>and<sp/>skyboxes<sp/>as<sp/>light<sp/>sources</highlight></codeline>
-<codeline><highlight class="normal">-<sp/>[<sp/>]<sp/>Add<sp/>more<sp/>material<sp/>properties</highlight></codeline>
-<codeline><highlight class="normal">-<sp/>[<sp/>]<sp/>Add<sp/>denoising</highlight></codeline>
-<codeline><highlight class="normal">-<sp/>[<sp/>]<sp/>Add<sp/>callable<sp/>shader<sp/>support</highlight></codeline>
-<codeline><highlight class="normal">-<sp/>[<sp/>]<sp/>Add<sp/>bidirectional<sp/>and<sp/>volumetric<sp/>path<sp/>tracing</highlight></codeline>
-<codeline><highlight class="normal">-<sp/>[<sp/>]<sp/>Add<sp/>further<sp/>post<sp/>processing<sp/>features</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>[x]<sp/>Global<sp/>illumination</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>[x]<sp/>Environment<sp/>mapping</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>[x]<sp/>A<sp/>post<sp/>processing<sp/>pass<sp/>for<sp/>gamma<sp/>correction<sp/>and<sp/>future<sp/>post<sp/>processing<sp/>effects</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>[x]<sp/>Simple<sp/>reflections<sp/>and<sp/>transparency</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>[<sp/>]<sp/>An<sp/>efficient<sp/>way<sp/>of<sp/>building<sp/>and<sp/>updating<sp/>acceleration<sp/>structures<sp/>based<sp/>on<sp/>a<sp/>scene&apos;s<sp/>requirements</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>[<sp/>]<sp/>Importance<sp/>and<sp/>multiple<sp/>importance<sp/>sampling</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>[<sp/>]<sp/>HDR<sp/>skymaps<sp/>and<sp/>skyboxes<sp/>as<sp/>light<sp/>sources</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>[<sp/>]<sp/>More<sp/>material<sp/>properties</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>[<sp/>]<sp/>Denoising</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>[<sp/>]<sp/>Callable<sp/>shader<sp/>support</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>[<sp/>]<sp/>Bidirectional<sp/>and<sp/>volumetric<sp/>path<sp/>tracing</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>[<sp/>]<sp/>Further<sp/>post<sp/>processing<sp/>features</highlight></codeline>
 <codeline></codeline>
-<codeline><highlight class="normal">###<sp/>Documentation</highlight></codeline>
-<codeline><highlight class="normal">Extensive<sp/>documentation<sp/>of<sp/>all<sp/>classes<sp/>and<sp/>functions<sp/>can<sp/>be<sp/>found<sp/>[here](https://chillpert.github.io/rayex/html/index.html).</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">##<sp/>Download</highlight></codeline>
+<codeline><highlight class="normal">You<sp/>can<sp/>find<sp/>the<sp/>GitHub<sp/>repository<sp/>[here](https://github.com/chillpert/rayex).</highlight></codeline>
     </programlisting>
-    <location file="/mnt/c/Repos/rayex/README.md"/>
+    <location file="/home/n30/Repos/rayex/README.md"/>
   </compounddef>
 </doxygen>

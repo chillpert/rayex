@@ -3,113 +3,86 @@
   <compounddef id="_acceleration_structure_8hpp" kind="file" language="C++">
     <compoundname>AccelerationStructure.hpp</compoundname>
     <includes refid="stdafx_8hpp" local="yes">pch/stdafx.hpp</includes>
-    <includedby refid="_path_tracer_8hpp" local="yes">/mnt/c/Repos/rayex/include/api/pathtrace/PathTracer.hpp</includedby>
-    <includedby refid="_helpers_8hpp" local="yes">/mnt/c/Repos/rayex/include/api/utility/Helpers.hpp</includedby>
-    <includedby refid="_initializers_8hpp" local="yes">/mnt/c/Repos/rayex/include/api/utility/Initializers.hpp</includedby>
+    <includedby refid="_path_tracer_8hpp" local="yes">/home/n30/Repos/rayex/include/api/pathtrace/PathTracer.hpp</includedby>
     <incdepgraph>
-      <node id="30">
+      <node id="26">
         <label>list</label>
       </node>
-      <node id="12">
-        <label>base/Time.hpp</label>
-        <link refid="_time_8hpp"/>
-        <childnode refid="3" relation="include">
-        </childnode>
-      </node>
-      <node id="28">
-        <label>iomanip</label>
-      </node>
-      <node id="17">
-        <label>external/glm/ext/matrix_transform.hpp</label>
-      </node>
-      <node id="29">
-        <label>limits</label>
+      <node id="10">
+        <label>imgui/imgui_impl_sdl.h</label>
       </node>
       <node id="24">
-        <label>filesystem</label>
-      </node>
-      <node id="4">
-        <label>external/tinyLogger/TinyLogger.hpp</label>
-      </node>
-      <node id="23">
-        <label>charconv</label>
-      </node>
-      <node id="14">
-        <label>external/ImGui/imgui_impl_sdl.h</label>
-      </node>
-      <node id="16">
-        <label>external/glm/ext/matrix_clip_space.hpp</label>
-      </node>
-      <node id="31">
-        <label>map</label>
-      </node>
-      <node id="37">
-        <label>unordered_set</label>
-      </node>
-      <node id="27">
-        <label>gsl/gsl</label>
-      </node>
-      <node id="26">
-        <label>fstream</label>
+        <label>iomanip</label>
       </node>
       <node id="13">
-        <label>external/ImGui/imgui.h</label>
+        <label>glm/ext/matrix_transform.hpp</label>
       </node>
-      <node id="21">
-        <label>any</label>
+      <node id="25">
+        <label>limits</label>
       </node>
-      <node id="9">
-        <label>SDL2/SDL.h</label>
-      </node>
-      <node id="34">
-        <label>random</label>
-      </node>
-      <node id="18">
-        <label>external/glm/glm.hpp</label>
-      </node>
-      <node id="8">
-        <label>string_view</label>
-      </node>
-      <node id="33">
-        <label>optional</label>
-      </node>
-      <node id="39">
-        <label>vector</label>
-      </node>
-      <node id="38">
-        <label>utility</label>
-      </node>
-      <node id="22">
-        <label>array</label>
-      </node>
-      <node id="19">
-        <label>external/glm/gtx/string_cast.hpp</label>
+      <node id="20">
+        <label>filesystem</label>
       </node>
       <node id="7">
-        <label>sstream</label>
+        <label>vkCore/vkCore.hpp</label>
+      </node>
+      <node id="9">
+        <label>imgui/imgui.h</label>
+      </node>
+      <node id="19">
+        <label>charconv</label>
+      </node>
+      <node id="11">
+        <label>imgui/imgui_impl_vulkan.h</label>
+      </node>
+      <node id="3">
+        <label>Core.hpp</label>
+        <link refid="_core_8hpp"/>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="6" relation="include">
+        </childnode>
+        <childnode refid="7" relation="include">
+        </childnode>
+      </node>
+      <node id="27">
+        <label>map</label>
+      </node>
+      <node id="34">
+        <label>unordered_set</label>
+      </node>
+      <node id="23">
+        <label>gsl/gsl</label>
+      </node>
+      <node id="22">
+        <label>fstream</label>
       </node>
       <node id="15">
-        <label>external/ImGui/imgui_impl_vulkan.h</label>
-      </node>
-      <node id="6">
-        <label>iostream</label>
-      </node>
-      <node id="36">
-        <label>unordered_map</label>
+        <label>glm/gtx/string_cast.hpp</label>
       </node>
       <node id="1">
-        <label>/mnt/c/Repos/rayex/include/api/pathtrace/AccelerationStructure.hpp</label>
+        <label>/home/n30/Repos/rayex/include/api/pathtrace/AccelerationStructure.hpp</label>
         <link refid="_acceleration_structure_8hpp"/>
         <childnode refid="2" relation="include">
         </childnode>
       </node>
-      <node id="5">
-        <label>chrono</label>
+      <node id="17">
+        <label>any</label>
       </node>
       <node id="2">
         <label>pch/stdafx.hpp</label>
         <link refid="stdafx_8hpp"/>
         <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="8" relation="include">
+        </childnode>
+        <childnode refid="9" relation="include">
+        </childnode>
+        <childnode refid="10" relation="include">
+        </childnode>
+        <childnode refid="11" relation="include">
         </childnode>
         <childnode refid="12" relation="include">
         </childnode>
@@ -159,154 +132,91 @@
         </childnode>
         <childnode refid="35" relation="include">
         </childnode>
-        <childnode refid="8" relation="include">
-        </childnode>
         <childnode refid="36" relation="include">
         </childnode>
-        <childnode refid="37" relation="include">
-        </childnode>
-        <childnode refid="38" relation="include">
-        </childnode>
-        <childnode refid="39" relation="include">
-        </childnode>
       </node>
-      <node id="35">
-        <label>set</label>
+      <node id="4">
+        <label>SDL2/SDL.h</label>
       </node>
-      <node id="25">
-        <label>forward_list</label>
-      </node>
-      <node id="20">
-        <label>algorithm</label>
-      </node>
-      <node id="11">
-        <label>vulkan/vulkan.hpp</label>
-      </node>
-      <node id="3">
-        <label>Core.hpp</label>
-        <link refid="_core_8hpp"/>
-        <childnode refid="4" relation="include">
-        </childnode>
-        <childnode refid="5" relation="include">
-        </childnode>
-        <childnode refid="6" relation="include">
-        </childnode>
-        <childnode refid="7" relation="include">
-        </childnode>
-        <childnode refid="8" relation="include">
-        </childnode>
-        <childnode refid="9" relation="include">
-        </childnode>
-        <childnode refid="10" relation="include">
-        </childnode>
-        <childnode refid="11" relation="include">
-        </childnode>
+      <node id="30">
+        <label>random</label>
       </node>
       <node id="32">
+        <label>string_view</label>
+      </node>
+      <node id="29">
+        <label>optional</label>
+      </node>
+      <node id="36">
+        <label>vector</label>
+      </node>
+      <node id="35">
+        <label>utility</label>
+      </node>
+      <node id="18">
+        <label>array</label>
+      </node>
+      <node id="33">
+        <label>unordered_map</label>
+      </node>
+      <node id="12">
+        <label>glm/ext/matrix_clip_space.hpp</label>
+      </node>
+      <node id="31">
+        <label>set</label>
+      </node>
+      <node id="8">
+        <label>base/Time.hpp</label>
+        <link refid="_time_8hpp"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+      </node>
+      <node id="21">
+        <label>forward_list</label>
+      </node>
+      <node id="16">
+        <label>algorithm</label>
+      </node>
+      <node id="6">
+        <label>tinyLogger/TinyLogger.hpp</label>
+      </node>
+      <node id="28">
         <label>memory</label>
       </node>
-      <node id="10">
+      <node id="5">
         <label>SDL2/SDL_vulkan.h</label>
+      </node>
+      <node id="14">
+        <label>glm/glm.hpp</label>
       </node>
     </incdepgraph>
     <invincdepgraph>
-      <node id="4">
-        <label>/mnt/c/Repos/rayex/include/Rayex.hpp</label>
-        <link refid="_rayex_8hpp"/>
-      </node>
-      <node id="11">
-        <label>/mnt/c/Repos/rayex/include/api/utility/Initializers.hpp</label>
-        <link refid="_initializers_8hpp"/>
-        <childnode refid="6" relation="include">
-        </childnode>
-        <childnode refid="12" relation="include">
-        </childnode>
-      </node>
-      <node id="3">
-        <label>/mnt/c/Repos/rayex/include/api/Api.hpp</label>
-        <link refid="_api_8hpp"/>
-        <childnode refid="4" relation="include">
-        </childnode>
-      </node>
-      <node id="8">
-        <label>/mnt/c/Repos/rayex/include/base/Scene.hpp</label>
-        <link refid="_scene_8hpp"/>
-        <childnode refid="3" relation="include">
-        </childnode>
-      </node>
-      <node id="6">
-        <label>/mnt/c/Repos/rayex/include/api/Bindings.hpp</label>
-        <link refid="_bindings_8hpp"/>
-        <childnode refid="3" relation="include">
-        </childnode>
-        <childnode refid="2" relation="include">
-        </childnode>
-        <childnode refid="7" relation="include">
-        </childnode>
-        <childnode refid="8" relation="include">
-        </childnode>
-      </node>
       <node id="2">
-        <label>/mnt/c/Repos/rayex/include/api/pathtrace/PathTracer.hpp</label>
+        <label>/home/n30/Repos/rayex/include/api/pathtrace/PathTracer.hpp</label>
         <link refid="_path_tracer_8hpp"/>
         <childnode refid="3" relation="include">
         </childnode>
       </node>
-      <node id="12">
-        <label>/mnt/c/Repos/rayex/include/api/buffers/StorageBuffer.hpp</label>
-        <link refid="_storage_buffer_8hpp"/>
-        <childnode refid="3" relation="include">
-        </childnode>
-        <childnode refid="2" relation="include">
-        </childnode>
-        <childnode refid="8" relation="include">
-        </childnode>
-      </node>
       <node id="1">
-        <label>/mnt/c/Repos/rayex/include/api/pathtrace/AccelerationStructure.hpp</label>
+        <label>/home/n30/Repos/rayex/include/api/pathtrace/AccelerationStructure.hpp</label>
         <link refid="_acceleration_structure_8hpp"/>
         <childnode refid="2" relation="include">
         </childnode>
-        <childnode refid="5" relation="include">
-        </childnode>
-        <childnode refid="11" relation="include">
-        </childnode>
       </node>
-      <node id="9">
-        <label>/mnt/c/Repos/rayex/include/api/Swapchain.hpp</label>
-        <link refid="_swapchain_8hpp"/>
-        <childnode refid="3" relation="include">
-        </childnode>
-        <childnode refid="2" relation="include">
-        </childnode>
-        <childnode refid="10" relation="include">
-        </childnode>
+      <node id="4">
+        <label>/home/n30/Repos/rayex/include/Rayex.hpp</label>
+        <link refid="_rayex_8hpp"/>
       </node>
-      <node id="7">
-        <label>/mnt/c/Repos/rayex/include/api/PostProcessingRenderer.hpp</label>
-        <link refid="_post_processing_renderer_8hpp"/>
-        <childnode refid="3" relation="include">
-        </childnode>
-      </node>
-      <node id="10">
-        <label>/mnt/c/Repos/rayex/include/base/Gui.hpp</label>
-        <link refid="_gui_8hpp"/>
-        <childnode refid="3" relation="include">
-        </childnode>
-      </node>
-      <node id="5">
-        <label>/mnt/c/Repos/rayex/include/api/utility/Helpers.hpp</label>
-        <link refid="_helpers_8hpp"/>
-        <childnode refid="6" relation="include">
-        </childnode>
-        <childnode refid="9" relation="include">
+      <node id="3">
+        <label>/home/n30/Repos/rayex/include/api/Api.hpp</label>
+        <link refid="_api_8hpp"/>
+        <childnode refid="4" relation="include">
         </childnode>
       </node>
     </invincdepgraph>
     <innerclass refid="struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_acceleration_structure" prot="public">RAYEX_NAMESPACE::AccelerationStructure</innerclass>
     <innerclass refid="struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_tlas" prot="public">RAYEX_NAMESPACE::Tlas</innerclass>
     <innerclass refid="struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_blas" prot="public">RAYEX_NAMESPACE::Blas</innerclass>
-    <innerclass refid="struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_blas_instance" prot="public">RAYEX_NAMESPACE::BlasInstance</innerclass>
     <innernamespace refid="namespace_r_a_y_e_x___n_a_m_e_s_p_a_c_e">RAYEX_NAMESPACE</innernamespace>
     <briefdescription>
     </briefdescription>
@@ -330,30 +240,34 @@
 <codeline lineno="18"><highlight class="normal"></highlight></codeline>
 <codeline lineno="21" refid="struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_tlas" refkind="compound"><highlight class="normal"><sp/><sp/></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal"><ref refid="struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_tlas" kindref="compound">Tlas</ref></highlight></codeline>
 <codeline lineno="22"><highlight class="normal"><sp/><sp/>{</highlight></codeline>
-<codeline lineno="23" refid="struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_tlas_1aef65925b7d115143b5e5b3b61a048566" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_acceleration_structure" kindref="compound">AccelerationStructure</ref><sp/><ref refid="struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_tlas_1aef65925b7d115143b5e5b3b61a048566" kindref="member">as</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
-<codeline lineno="24" refid="struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_tlas_1a45fd150956fba0341a86f8fa4e946d49" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>vk::BuildAccelerationStructureFlagsKHR<sp/><ref refid="struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_tlas_1a45fd150956fba0341a86f8fa4e946d49" kindref="member">flags</ref>;<sp/></highlight></codeline>
+<codeline lineno="23" refid="struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_tlas_1aef65925b7d115143b5e5b3b61a048566" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_acceleration_structure" kindref="compound">AccelerationStructure</ref><sp/><ref refid="struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_tlas_1aef65925b7d115143b5e5b3b61a048566" kindref="member">as</ref>;<sp/></highlight></codeline>
+<codeline lineno="24"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//vk::BuildAccelerationStructureFlagsKHR<sp/>flags;<sp/>///&lt;<sp/>The<sp/>top<sp/>level<sp/>acceleration<sp/>structure&apos;s<sp/>build<sp/>flags.</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="25"><highlight class="normal"><sp/><sp/>};</highlight></codeline>
 <codeline lineno="26"><highlight class="normal"></highlight></codeline>
 <codeline lineno="29" refid="struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_blas" refkind="compound"><highlight class="normal"><sp/><sp/></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal"><ref refid="struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_blas" kindref="compound">Blas</ref></highlight></codeline>
 <codeline lineno="30"><highlight class="normal"><sp/><sp/>{</highlight></codeline>
-<codeline lineno="31" refid="struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_blas_1afeefd899332ab00ffc38a7641424de2d" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_acceleration_structure" kindref="compound">AccelerationStructure</ref><sp/><ref refid="struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_blas_1afeefd899332ab00ffc38a7641424de2d" kindref="member">as</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
-<codeline lineno="32" refid="struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_blas_1a5735232656e5d5b3e3284475efab22b9" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>vk::BuildAccelerationStructureFlagsKHR<sp/><ref refid="struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_blas_1a5735232656e5d5b3e3284475efab22b9" kindref="member">flags</ref>;<sp/></highlight></codeline>
+<codeline lineno="31" refid="struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_blas_1afeefd899332ab00ffc38a7641424de2d" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_acceleration_structure" kindref="compound">AccelerationStructure</ref><sp/><ref refid="struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_blas_1afeefd899332ab00ffc38a7641424de2d" kindref="member">as</ref>;<sp/></highlight></codeline>
+<codeline lineno="32"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//vk::BuildAccelerationStructureFlagsKHR<sp/>flags;<sp/>///&lt;<sp/>The<sp/>top<sp/>level<sp/>acceleration<sp/>structure&apos;s<sp/>build<sp/>flags.</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="33"><highlight class="normal"></highlight></codeline>
 <codeline lineno="34" refid="struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_blas_1a7a270840d9f4e6b141a6f142abda68c5" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>std::vector&lt;vk::AccelerationStructureGeometryKHR&gt;<sp/><ref refid="struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_blas_1a7a270840d9f4e6b141a6f142abda68c5" kindref="member">asGeometry</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
 <codeline lineno="35" refid="struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_blas_1a612e8ebe1c04fd44ab8e9c22fc7c9787" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>std::vector&lt;vk::AccelerationStructureBuildRangeInfoKHR&gt;<sp/><ref refid="struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_blas_1a612e8ebe1c04fd44ab8e9c22fc7c9787" kindref="member">asBuildRangeInfo</ref>;<sp/></highlight></codeline>
 <codeline lineno="36"><highlight class="normal"><sp/><sp/>};</highlight></codeline>
 <codeline lineno="37"><highlight class="normal"></highlight></codeline>
-<codeline lineno="40" refid="struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_blas_instance" refkind="compound"><highlight class="normal"><sp/><sp/></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal"><ref refid="struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_blas_instance" kindref="compound">BlasInstance</ref></highlight></codeline>
-<codeline lineno="41"><highlight class="normal"><sp/><sp/>{</highlight></codeline>
-<codeline lineno="42" refid="struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_blas_instance_1a17e6f6e2576131a69f83902510f0e60d" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>uint32_t<sp/><ref refid="struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_blas_instance_1a17e6f6e2576131a69f83902510f0e60d" kindref="member">blasId</ref><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>=<sp/>0;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
-<codeline lineno="43" refid="struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_blas_instance_1a1dd11e314a88b4daf48b5f5616d07c1c" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>uint32_t<sp/><ref refid="struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_blas_instance_1a1dd11e314a88b4daf48b5f5616d07c1c" kindref="member">instanceId</ref><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>=<sp/>0;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
-<codeline lineno="44" refid="struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_blas_instance_1abc119b6598b884820ac07b7afa30d6be" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>uint32_t<sp/><ref refid="struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_blas_instance_1abc119b6598b884820ac07b7afa30d6be" kindref="member">hitGroupId</ref><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>=<sp/>0;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
-<codeline lineno="45" refid="struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_blas_instance_1a080061a774fa9881372198e1bf13630f" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>uint32_t<sp/><ref refid="struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_blas_instance_1a080061a774fa9881372198e1bf13630f" kindref="member">mask</ref><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>=<sp/>0xFF;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
-<codeline lineno="46" refid="struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_blas_instance_1ac7125d67baa983ea7b466a16ec36c70b" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>vk::GeometryInstanceFlagsKHR<sp/><ref refid="struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_blas_instance_1ac7125d67baa983ea7b466a16ec36c70b" kindref="member">flags</ref><sp/>=<sp/>{<sp/>vk::GeometryInstanceFlagBitsKHR::eTriangleFacingCullDisable<sp/>};<sp/></highlight></codeline>
-<codeline lineno="47" refid="struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_blas_instance_1af521894ff0383f740d859f6fba2b8b8b" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>glm::mat4<sp/><ref refid="struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_blas_instance_1af521894ff0383f740d859f6fba2b8b8b" kindref="member">transform</ref><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>=<sp/>glm::fmat4(<sp/>1.0f<sp/>);<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
-<codeline lineno="48"><highlight class="normal"><sp/><sp/>};</highlight></codeline>
-<codeline lineno="49"><highlight class="normal">}<sp/></highlight><highlight class="comment">//<sp/>namespace<sp/>RAYEX_NAMESPACE</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="41"><highlight class="normal"><sp/><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/><ref refid="namespace_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1a3544ae5f32fe827a6e65b423d680c963" kindref="member">initAccelerationStructure</ref>(<sp/>vk::AccelerationStructureCreateInfoKHR&amp;<sp/>asCreateInfo<sp/>)<sp/>-&gt;<sp/><ref refid="struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_acceleration_structure" kindref="compound">AccelerationStructure</ref>;</highlight></codeline>
+<codeline lineno="42"><highlight class="normal"></highlight></codeline>
+<codeline lineno="43"><highlight class="normal"><sp/><sp/></highlight><highlight class="comment">/*</highlight></codeline>
+<codeline lineno="46"><highlight class="comment"><sp/><sp/>struct<sp/>BlasInstance</highlight></codeline>
+<codeline lineno="47"><highlight class="comment"><sp/><sp/>{</highlight></codeline>
+<codeline lineno="48"><highlight class="comment"><sp/><sp/><sp/><sp/>uint32_t<sp/>blasId<sp/><sp/><sp/><sp/><sp/>=<sp/>0;<sp/>///&lt;<sp/>The<sp/>index<sp/>of<sp/>the<sp/>bottom<sp/>level<sp/>acceleration<sp/>structure<sp/>in<sp/>blas_.</highlight></codeline>
+<codeline lineno="49"><highlight class="comment"><sp/><sp/><sp/><sp/>uint32_t<sp/>instanceId<sp/>=<sp/>0;<sp/>///&lt;<sp/>The<sp/>instance<sp/>index<sp/>(gl_InstanceID).</highlight></codeline>
+<codeline lineno="50"><highlight class="comment"><sp/><sp/><sp/><sp/>uint32_t<sp/>hitGroupId<sp/>=<sp/>0;<sp/>///&lt;<sp/>The<sp/>hit<sp/>group<sp/>index<sp/>in<sp/>the<sp/>shader<sp/>binding<sp/>table.</highlight></codeline>
+<codeline lineno="51"><highlight class="comment"><sp/><sp/><sp/><sp/>uint32_t<sp/>mask<sp/><sp/><sp/><sp/><sp/><sp/><sp/>=<sp/>0xFF;<sp/>///&lt;<sp/>The<sp/>visibility<sp/>mask,<sp/>will<sp/>be<sp/>AND-ed<sp/>with<sp/>the<sp/>ray<sp/>mask.</highlight></codeline>
+<codeline lineno="52"><highlight class="comment"><sp/><sp/><sp/><sp/>vk::GeometryInstanceFlagsKHR<sp/>flags<sp/>=<sp/>{<sp/>vk::GeometryInstanceFlagBitsKHR::eTriangleFacingCullDisable<sp/>};<sp/>///&lt;<sp/>The<sp/>geometry<sp/>display<sp/>options.</highlight></codeline>
+<codeline lineno="53"><highlight class="comment"><sp/><sp/><sp/><sp/>glm::mat4<sp/>transform<sp/>=<sp/>glm::fmat4(<sp/>1.0f<sp/>);<sp/>///&lt;<sp/>The<sp/>world<sp/>transform<sp/>matrix<sp/>of<sp/>the<sp/>bottom<sp/>level<sp/>acceleration<sp/>structure<sp/>instance.</highlight></codeline>
+<codeline lineno="54"><highlight class="comment"><sp/><sp/>};</highlight></codeline>
+<codeline lineno="55"><highlight class="comment"><sp/><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="56"><highlight class="normal">}<sp/></highlight><highlight class="comment">//<sp/>namespace<sp/>RAYEX_NAMESPACE</highlight><highlight class="normal"></highlight></codeline>
     </programlisting>
-    <location file="/mnt/c/Repos/rayex/include/api/pathtrace/AccelerationStructure.hpp"/>
+    <location file="/home/n30/Repos/rayex/include/api/pathtrace/AccelerationStructure.hpp"/>
   </compounddef>
 </doxygen>

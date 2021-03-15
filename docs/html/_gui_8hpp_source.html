@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.8.17"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>RAYEX: /mnt/c/Repos/rayex/include/base/Gui.hpp Source File</title>
+<title>RAYEX: /home/n30/Repos/rayex/include/base/Gui.hpp Source File</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -99,53 +99,45 @@ $(document).ready(function(){initNavTree('_gui_8hpp_source.html',''); initResiza
 <div class="contents">
 <a href="_gui_8hpp.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;<span class="preprocessor">#pragma once</span></div>
 <div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160; </div>
-<div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="_render_pass_8hpp.html">api/RenderPass.hpp</a>&quot;</span></div>
-<div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="_surface_8hpp.html">api/Surface.hpp</a>&quot;</span></div>
-<div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="_swapchain_8hpp.html">api/Swapchain.hpp</a>&quot;</span></div>
-<div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="_command_buffer_8hpp.html">api/buffers/CommandBuffer.hpp</a>&quot;</span></div>
-<div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;<span class="preprocessor">#include &quot;external/ImGui/imgui.h&quot;</span></div>
-<div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;<span class="preprocessor">#include &quot;external/ImGui/imgui_impl_vulkan.h&quot;</span></div>
-<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160; </div>
-<div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;<span class="keyword">namespace </span><a class="code" href="namespace_r_a_y_e_x___n_a_m_e_s_p_a_c_e.html">RAYEX_NAMESPACE</a></div>
-<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;{</div>
-<div class="line"><a name="l00036"></a><span class="lineno"><a class="line" href="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_gui.html">   36</a></span>&#160;  <span class="keyword">class </span>RX_API <a class="code" href="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_gui.html">Gui</a></div>
-<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;  {</div>
-<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;  <span class="keyword">public</span>:</div>
-<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;    <span class="keyword">virtual</span> ~<a class="code" href="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_gui.html">Gui</a>( ) = <span class="keywordflow">default</span>;</div>
-<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160; </div>
-<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;    <span class="keyword">virtual</span> <span class="keywordtype">void</span> configure( );</div>
-<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160; </div>
-<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;    <span class="keyword">virtual</span> <span class="keywordtype">void</span> render( );</div>
-<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160; </div>
-<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;    <span class="keywordtype">void</span> init( SDL_Window* window, <span class="keyword">const</span> <a class="code" href="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_surface.html">Surface</a>* <a class="code" href="namespace_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1components.html#a67af4230d7523391d12e00d0a8e0e750">surface</a>, vk::Extent2D swapchainImageExtent, vk::RenderPass renderPass );</div>
-<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160; </div>
-<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;    <span class="keywordtype">void</span> recreate( vk::Extent2D swapchainImageExtent );</div>
-<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160; </div>
-<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;    <span class="keywordtype">void</span> renderDrawData( vk::CommandBuffer commandBuffer );</div>
+<div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160;<span class="preprocessor">#include &lt;imgui/imgui.h&gt;</span></div>
+<div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160;<span class="preprocessor">#include &lt;imgui/imgui_impl_vulkan.h&gt;</span></div>
+<div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;<span class="preprocessor">#include &lt;<a class="code" href="stdafx_8hpp.html">pch/stdafx.hpp</a>&gt;</span></div>
+<div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160; </div>
+<div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;<span class="keyword">namespace </span><a class="code" href="namespace_r_a_y_e_x___n_a_m_e_s_p_a_c_e.html">RAYEX_NAMESPACE</a></div>
+<div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;{</div>
+<div class="line"><a name="l00033"></a><span class="lineno"><a class="line" href="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_gui.html">   33</a></span>&#160;  <span class="keyword">class </span>RX_API <a class="code" href="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_gui.html">Gui</a></div>
+<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;  {</div>
+<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;  <span class="keyword">public</span>:</div>
+<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;    <span class="keyword">virtual</span> ~<a class="code" href="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_gui.html">Gui</a>( ) = <span class="keywordflow">default</span>;</div>
+<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160; </div>
+<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;    <span class="keyword">virtual</span> <span class="keywordtype">void</span> configure( );</div>
+<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160; </div>
+<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;    <span class="keyword">virtual</span> <span class="keywordtype">void</span> render( );</div>
+<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160; </div>
+<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;    <span class="keywordtype">void</span> init( SDL_Window* window, <span class="keyword">const</span> vkCore::Surface* surface, vk::Extent2D swapchainImageExtent, vk::RenderPass renderPass );</div>
+<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160; </div>
+<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;    <span class="keywordtype">void</span> recreate( vk::Extent2D swapchainImageExtent );</div>
+<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160; </div>
+<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;    <span class="keywordtype">void</span> renderDrawData( vk::CommandBuffer commandBuffer );</div>
+<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160; </div>
+<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;    <span class="keywordtype">void</span> destroy( );</div>
 <div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160; </div>
-<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;    <span class="keywordtype">void</span> destroy( );</div>
-<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160; </div>
-<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;  <span class="keyword">private</span>:</div>
-<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;    <span class="keywordtype">void</span> initDescriptorPool( );</div>
+<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;  <span class="keyword">private</span>:</div>
+<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;    <span class="keywordtype">void</span> initDescriptorPool( );</div>
+<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160; </div>
+<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;    <span class="keywordtype">void</span> initFonts( );</div>
 <div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160; </div>
-<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;    <span class="keywordtype">void</span> initFonts( );</div>
-<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160; </div>
-<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;    vk::UniqueDescriptorPool _descriptorPool; </div>
-<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;    vk::UniqueCommandPool _commandPool;       </div>
-<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;    vk::Extent2D _swapchainImageExtent;       </div>
-<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;    SDL_Window* _window = <span class="keyword">nullptr</span>;</div>
-<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;  };</div>
-<div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;} <span class="comment">// namespace RAYEX_NAMESPACE</span></div>
+<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;    vk::UniqueDescriptorPool _descriptorPool; </div>
+<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;    vk::UniqueCommandPool _commandPool;       </div>
+<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;    vk::Extent2D _swapchainImageExtent;       </div>
+<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;    SDL_Window* _window = <span class="keyword">nullptr</span>;</div>
+<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;  };</div>
+<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;} <span class="comment">// namespace RAYEX_NAMESPACE</span></div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->
-<div class="ttc" id="a_render_pass_8hpp_html"><div class="ttname"><a href="_render_pass_8hpp.html">RenderPass.hpp</a></div></div>
-<div class="ttc" id="aclass_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_gui_html"><div class="ttname"><a href="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_gui.html">RAYEX_NAMESPACE::Gui</a></div><div class="ttdoc">A class to create an ImGui-based GUI.</div><div class="ttdef"><b>Definition:</b> Gui.hpp:36</div></div>
-<div class="ttc" id="a_surface_8hpp_html"><div class="ttname"><a href="_surface_8hpp.html">Surface.hpp</a></div></div>
-<div class="ttc" id="aclass_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_surface_html"><div class="ttname"><a href="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_surface.html">RAYEX_NAMESPACE::Surface</a></div><div class="ttdoc">A wrapper class for a Vulkan surface.</div><div class="ttdef"><b>Definition:</b> Surface.hpp:10</div></div>
-<div class="ttc" id="a_swapchain_8hpp_html"><div class="ttname"><a href="_swapchain_8hpp.html">Swapchain.hpp</a></div></div>
-<div class="ttc" id="anamespace_r_a_y_e_x___n_a_m_e_s_p_a_c_e_html"><div class="ttname"><a href="namespace_r_a_y_e_x___n_a_m_e_s_p_a_c_e.html">RAYEX_NAMESPACE</a></div><div class="ttdoc">The rx namespace encapsulates every single component provided by the renderer.</div><div class="ttdef"><b>Definition:</b> Api.hpp:21</div></div>
-<div class="ttc" id="a_command_buffer_8hpp_html"><div class="ttname"><a href="_command_buffer_8hpp.html">CommandBuffer.hpp</a></div></div>
-<div class="ttc" id="anamespace_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1components_html_a67af4230d7523391d12e00d0a8e0e750"><div class="ttname"><a href="namespace_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1components.html#a67af4230d7523391d12e00d0a8e0e750">RAYEX_NAMESPACE::components::surface</a></div><div class="ttdeci">vk::SurfaceKHR surface</div><div class="ttdoc">Reference to the Vulkan surface.</div></div>
+<div class="ttc" id="aclass_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_gui_html"><div class="ttname"><a href="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_gui.html">RAYEX_NAMESPACE::Gui</a></div><div class="ttdoc">A class to create an ImGui-based GUI.</div><div class="ttdef"><b>Definition:</b> Gui.hpp:33</div></div>
+<div class="ttc" id="astdafx_8hpp_html"><div class="ttname"><a href="stdafx_8hpp.html">stdafx.hpp</a></div></div>
+<div class="ttc" id="anamespace_r_a_y_e_x___n_a_m_e_s_p_a_c_e_html"><div class="ttname"><a href="namespace_r_a_y_e_x___n_a_m_e_s_p_a_c_e.html">RAYEX_NAMESPACE</a></div><div class="ttdoc">The rx namespace encapsulates every single component provided by the renderer.</div><div class="ttdef"><b>Definition:</b> Api.hpp:10</div></div>
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>

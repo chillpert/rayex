@@ -3,202 +3,6 @@
   <compounddef id="namespace_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1components" kind="namespace" language="C++">
     <compoundname>RAYEX_NAMESPACE::components</compoundname>
       <sectiondef kind="var">
-      <memberdef kind="variable" id="namespace_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1components_1a6578075ba1994daebf5b6149e4d4123b" prot="public" static="no" mutable="no">
-        <type>vk::Instance</type>
-        <definition>vk::Instance RAYEX_NAMESPACE::components::instance</definition>
-        <argsstring></argsstring>
-        <name>instance</name>
-        <briefdescription>
-<para>Reference to the Vulkan instance. </para>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="/mnt/c/Repos/rayex/include/api/Components.hpp" line="10" column="25" declfile="/mnt/c/Repos/rayex/include/api/Components.hpp" declline="10" declcolumn="25"/>
-      </memberdef>
-      <memberdef kind="variable" id="namespace_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1components_1a344e77a6a2c22737ebf523815d78f9d3" prot="public" static="no" mutable="no">
-        <type>vk::PhysicalDevice</type>
-        <definition>vk::PhysicalDevice RAYEX_NAMESPACE::components::physicalDevice</definition>
-        <argsstring></argsstring>
-        <name>physicalDevice</name>
-        <briefdescription>
-<para>Reference to the Vulkan physical device. </para>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="/mnt/c/Repos/rayex/include/api/Components.hpp" line="11" column="31" declfile="/mnt/c/Repos/rayex/include/api/Components.hpp" declline="11" declcolumn="31"/>
-      </memberdef>
-      <memberdef kind="variable" id="namespace_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1components_1ab4f6e30d71b69d7538d92a2583aea3e5" prot="public" static="no" mutable="no">
-        <type>vk::Device</type>
-        <definition>vk::Device RAYEX_NAMESPACE::components::device</definition>
-        <argsstring></argsstring>
-        <name>device</name>
-        <briefdescription>
-<para>Reference to the Vulkan logical device. </para>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="/mnt/c/Repos/rayex/include/api/Components.hpp" line="12" column="23" declfile="/mnt/c/Repos/rayex/include/api/Components.hpp" declline="12" declcolumn="23"/>
-      </memberdef>
-      <memberdef kind="variable" id="namespace_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1components_1a67af4230d7523391d12e00d0a8e0e750" prot="public" static="no" mutable="no">
-        <type>vk::SurfaceKHR</type>
-        <definition>vk::SurfaceKHR RAYEX_NAMESPACE::components::surface</definition>
-        <argsstring></argsstring>
-        <name>surface</name>
-        <briefdescription>
-<para>Reference to the Vulkan surface. </para>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="/mnt/c/Repos/rayex/include/api/Components.hpp" line="13" column="27" declfile="/mnt/c/Repos/rayex/include/api/Components.hpp" declline="13" declcolumn="27"/>
-      </memberdef>
-      <memberdef kind="variable" id="namespace_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1components_1ab464302e0493d4314485f7abc01971b4" prot="public" static="no" mutable="no">
-        <type>vk::SwapchainKHR</type>
-        <definition>vk::SwapchainKHR RAYEX_NAMESPACE::components::swapchain</definition>
-        <argsstring></argsstring>
-        <name>swapchain</name>
-        <briefdescription>
-<para>Reference to the Vulkan swapchain. </para>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="/mnt/c/Repos/rayex/include/api/Components.hpp" line="14" column="29" declfile="/mnt/c/Repos/rayex/include/api/Components.hpp" declline="14" declcolumn="29"/>
-      </memberdef>
-      <memberdef kind="variable" id="namespace_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1components_1ae415dbf36f0af255d963eadd438edc19" prot="public" static="no" mutable="no">
-        <type>uint32_t</type>
-        <definition>uint32_t RAYEX_NAMESPACE::components::swapchainImageCount</definition>
-        <argsstring></argsstring>
-        <name>swapchainImageCount</name>
-        <briefdescription>
-<para>Variable to store the Vulkan swapchain&apos;s image count. </para>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="/mnt/c/Repos/rayex/include/api/Components.hpp" line="15" column="21" declfile="/mnt/c/Repos/rayex/include/api/Components.hpp" declline="15" declcolumn="21"/>
-      </memberdef>
-      <memberdef kind="variable" id="namespace_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1components_1a8c89792fbe59059a3febf9d142cc68f0" prot="public" static="no" mutable="no">
-        <type>vk::DynamicLoader</type>
-        <definition>vk::DynamicLoader RAYEX_NAMESPACE::components::dynamicLoader</definition>
-        <argsstring></argsstring>
-        <name>dynamicLoader</name>
-        <briefdescription>
-<para>Reference to the dynamic loader used to load function pointers provided by extensions. </para>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="/mnt/c/Repos/rayex/include/api/Components.hpp" line="16" column="30" declfile="/mnt/c/Repos/rayex/include/api/Components.hpp" declline="16" declcolumn="30"/>
-      </memberdef>
-      <memberdef kind="variable" id="namespace_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1components_1afdc1199b17f232177eed2a9db7e08658" prot="public" static="no" mutable="no">
-        <type>vk::CommandPool</type>
-        <definition>vk::CommandPool RAYEX_NAMESPACE::components::graphicsCmdPool</definition>
-        <argsstring></argsstring>
-        <name>graphicsCmdPool</name>
-        <briefdescription>
-<para>Reference to a Vulkan graphics command pool. </para>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="/mnt/c/Repos/rayex/include/api/Components.hpp" line="18" column="28" declfile="/mnt/c/Repos/rayex/include/api/Components.hpp" declline="18" declcolumn="28"/>
-      </memberdef>
-      <memberdef kind="variable" id="namespace_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1components_1a7e17c7dcbb72428dd80b59f67f2ed7f0" prot="public" static="no" mutable="no">
-        <type>vk::CommandPool</type>
-        <definition>vk::CommandPool RAYEX_NAMESPACE::components::transferCmdPool</definition>
-        <argsstring></argsstring>
-        <name>transferCmdPool</name>
-        <briefdescription>
-<para>Reference to a Vulkan transfer command pool. </para>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="/mnt/c/Repos/rayex/include/api/Components.hpp" line="19" column="28" declfile="/mnt/c/Repos/rayex/include/api/Components.hpp" declline="19" declcolumn="28"/>
-      </memberdef>
-      <memberdef kind="variable" id="namespace_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1components_1a9e6819996087ad141270f35b37f95dfa" prot="public" static="no" mutable="no">
-        <type>vk::Queue</type>
-        <definition>vk::Queue RAYEX_NAMESPACE::components::graphicsQueue</definition>
-        <argsstring></argsstring>
-        <name>graphicsQueue</name>
-        <briefdescription>
-<para>Reference to a Vulkan graphics queue. </para>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="/mnt/c/Repos/rayex/include/api/Components.hpp" line="20" column="22" declfile="/mnt/c/Repos/rayex/include/api/Components.hpp" declline="20" declcolumn="22"/>
-      </memberdef>
-      <memberdef kind="variable" id="namespace_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1components_1a9c3652be28ac920a00d22d6fd4b24158" prot="public" static="no" mutable="no">
-        <type>vk::Queue</type>
-        <definition>vk::Queue RAYEX_NAMESPACE::components::transferQueue</definition>
-        <argsstring></argsstring>
-        <name>transferQueue</name>
-        <briefdescription>
-<para>Reference to a Vulkan transfer queue. </para>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="/mnt/c/Repos/rayex/include/api/Components.hpp" line="21" column="22" declfile="/mnt/c/Repos/rayex/include/api/Components.hpp" declline="21" declcolumn="22"/>
-      </memberdef>
-      <memberdef kind="variable" id="namespace_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1components_1a9b3a3a4de8b6a714346502ddbcc7ff40" prot="public" static="no" mutable="no">
-        <type>uint32_t</type>
-        <definition>uint32_t RAYEX_NAMESPACE::components::graphicsFamilyIndex</definition>
-        <argsstring></argsstring>
-        <name>graphicsFamilyIndex</name>
-        <briefdescription>
-<para>stores a Vulkan graphics family index. </para>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="/mnt/c/Repos/rayex/include/api/Components.hpp" line="22" column="21" declfile="/mnt/c/Repos/rayex/include/api/Components.hpp" declline="22" declcolumn="21"/>
-      </memberdef>
-      <memberdef kind="variable" id="namespace_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1components_1ab5e00173e34596647b257c1fb90a4b03" prot="public" static="no" mutable="no">
-        <type>uint32_t</type>
-        <definition>uint32_t RAYEX_NAMESPACE::components::transferFamilyIndex</definition>
-        <argsstring></argsstring>
-        <name>transferFamilyIndex</name>
-        <briefdescription>
-<para>stores a Vulkan transfer family index. </para>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="/mnt/c/Repos/rayex/include/api/Components.hpp" line="23" column="21" declfile="/mnt/c/Repos/rayex/include/api/Components.hpp" declline="23" declcolumn="21"/>
-      </memberdef>
-      <memberdef kind="variable" id="namespace_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1components_1aadcda946d57c0408c18dab07f09540fa" prot="public" static="no" mutable="no">
-        <type>vk::PhysicalDeviceLimits</type>
-        <definition>vk::PhysicalDeviceLimits RAYEX_NAMESPACE::components::physicalDeviceLimits</definition>
-        <argsstring></argsstring>
-        <name>physicalDeviceLimits</name>
-        <briefdescription>
-<para>Global variable to store the physical device&apos;s limits. </para>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="/mnt/c/Repos/rayex/include/api/Components.hpp" line="25" column="37" declfile="/mnt/c/Repos/rayex/include/api/Components.hpp" declline="25" declcolumn="37"/>
-      </memberdef>
       <memberdef kind="variable" id="namespace_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1components_1aad615ab85dcde4fa21ceaedc57465b51" prot="public" static="no" mutable="no">
         <type>int</type>
         <definition>int RAYEX_NAMESPACE::components::frameCount</definition>
@@ -211,7 +15,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/mnt/c/Repos/rayex/include/api/Components.hpp" line="26" column="16" declfile="/mnt/c/Repos/rayex/include/api/Components.hpp" declline="26" declcolumn="16"/>
+        <location file="/home/n30/Repos/rayex/include/api/Components.hpp" line="10" column="16" declfile="/home/n30/Repos/rayex/include/api/Components.hpp" declline="10" declcolumn="16"/>
       </memberdef>
       <memberdef kind="variable" id="namespace_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1components_1a524acb5e30cc3e3c5bf3ceb81d83fc6a" prot="public" static="no" mutable="no">
         <type>std::string</type>
@@ -225,7 +29,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/mnt/c/Repos/rayex/include/api/Components.hpp" line="28" column="24" declfile="/mnt/c/Repos/rayex/include/api/Components.hpp" declline="28" declcolumn="24"/>
+        <location file="/home/n30/Repos/rayex/include/api/Components.hpp" line="12" column="24" declfile="/home/n30/Repos/rayex/include/api/Components.hpp" declline="12" declcolumn="24"/>
       </memberdef>
       <memberdef kind="variable" id="namespace_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1components_1a4d5dc1bf67c9b9d8737cc266005343f1" prot="public" static="no" mutable="no">
         <type>uint32_t</type>
@@ -238,7 +42,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/mnt/c/Repos/rayex/include/api/Components.hpp" line="29" column="21" declfile="/mnt/c/Repos/rayex/include/api/Components.hpp" declline="29" declcolumn="21"/>
+        <location file="/home/n30/Repos/rayex/include/api/Components.hpp" line="13" column="21" declfile="/home/n30/Repos/rayex/include/api/Components.hpp" declline="13" declcolumn="21"/>
       </memberdef>
       <memberdef kind="variable" id="namespace_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1components_1adba63188318cfcbba40a35ef326df489" prot="public" static="no" mutable="no">
         <type>uint32_t</type>
@@ -251,7 +55,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/mnt/c/Repos/rayex/include/api/Components.hpp" line="30" column="21" declfile="/mnt/c/Repos/rayex/include/api/Components.hpp" declline="30" declcolumn="21"/>
+        <location file="/home/n30/Repos/rayex/include/api/Components.hpp" line="14" column="21" declfile="/home/n30/Repos/rayex/include/api/Components.hpp" declline="14" declcolumn="21"/>
       </memberdef>
       <memberdef kind="variable" id="namespace_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1components_1a339363085d98dd34e0fc07104fc86a6c" prot="public" static="no" mutable="no">
         <type>const size_t</type>
@@ -265,13 +69,13 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/mnt/c/Repos/rayex/include/api/Components.hpp" line="31" column="18" bodyfile="/mnt/c/Repos/rayex/include/api/Components.hpp" bodystart="31" bodyend="-1"/>
+        <location file="/home/n30/Repos/rayex/include/api/Components.hpp" line="15" column="18" bodyfile="/home/n30/Repos/rayex/include/api/Components.hpp" bodystart="15" bodyend="-1"/>
       </memberdef>
       </sectiondef>
     <briefdescription>
     </briefdescription>
     <detaileddescription>
     </detaileddescription>
-    <location file="/mnt/c/Repos/rayex/include/api/Components.hpp" line="9" column="1"/>
+    <location file="/home/n30/Repos/rayex/include/api/Components.hpp" line="9" column="1"/>
   </compounddef>
 </doxygen>

@@ -4,12 +4,9 @@
 
  Members                        | Descriptions                                
 --------------------------------|---------------------------------------------
-`public RX_API std::shared_ptr< Geometry > `[`loadObj`](#group___b_a_s_e_1gac348076d8b31be1511d1fc0532e75747)`(std::string_view path)`            | A commodity function for loading a wavefront (.obj) model file and allocate a geometry object from it.
+`public RX_API std::shared_ptr< Geometry > `[`loadObj`](#group___b_a_s_e_1ga2d50e1cd402880131042e1bcab773b46)`(std::string_view path,bool dynamic)`            | A commodity function for loading a wavefront (.obj) model file and allocate a geometry object from it.
 `public RX_API std::shared_ptr< GeometryInstance > `[`instance`](#group___b_a_s_e_1gad880ea304e8ff3dab6ea5258df8970cf)`(std::shared_ptr< Geometry > geometry,const glm::mat4 & transform)`            | A commodity function for allocating an instance from a given geometry and set its matrices.
-`public RX_API auto `[`directionalLightInstance`](#group___b_a_s_e_1ga2a069b2d151c07c55325dc008f693cb0)`(const glm::vec3 & direction)`            | A commodity function for allocating a directional light instance.
-`public RX_API auto `[`pointLightInstance`](#group___b_a_s_e_1gace95101543a8d8577781044c96795140)`(const glm::vec3 & position)`            | A commodity function for allocating a point light instance.
 `class `[`RAYEX_NAMESPACE::Camera`](#class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_camera) | A minimal camera implementation.
-`class `[`RAYEX_NAMESPACE::Scene`](#class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_scene) | Stores all geoemtry, geometry instances and light sources.
 `class `[`RAYEX_NAMESPACE::Settings`](#class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_settings) | Exposes all graphic settings supported by the renderer.
 `class `[`RAYEX_NAMESPACE::Time`](#class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_time) | Used to keep track of the application's timing.
 `class `[`RAYEX_NAMESPACE::Window`](#class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_window) | Implements a SDL-based window.
@@ -18,19 +15,18 @@
 `struct `[`RAYEX_NAMESPACE::Mesh`](#struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_mesh) | Describes a sub-mesh and its material.
 `struct `[`RAYEX_NAMESPACE::Geometry`](#struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_geometry) | Describes a geometry [Rayex](moxygen/api-BASE.md#class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_rayex) can render.
 `struct `[`RAYEX_NAMESPACE::GeometryInstance`](#struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_geometry_instance) | Describes an instance of some geometry.
-`struct `[`RAYEX_NAMESPACE::Light`](#struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_light) | A common base for all light types.
-`struct `[`RAYEX_NAMESPACE::DirectionalLight`](#struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_directional_light) | A directional light.
-`struct `[`RAYEX_NAMESPACE::PointLight`](#struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_point_light) | A point light.
 
 ## Members
 
-#### `public RX_API std::shared_ptr< Geometry > `[`loadObj`](#group___b_a_s_e_1gac348076d8b31be1511d1fc0532e75747)`(std::string_view path)` 
+#### `public RX_API std::shared_ptr< Geometry > `[`loadObj`](#group___b_a_s_e_1ga2d50e1cd402880131042e1bcab773b46)`(std::string_view path,bool dynamic)` 
 
 A commodity function for loading a wavefront (.obj) model file and allocate a geometry object from it.
 
 The function will attempt to find sub-meshes in the file and retrieve all materials. A user is encouraged to create their own model loader function or classes. 
 #### Parameters
 * `path` The model's path, relative to the path to assets. 
+
+* `dynamic` If true, the geometry can be animated. Otherwise the geometry is static throughout its entire lifetime. 
 
 #### Returns
 Returns a pointer to a geometry object.
@@ -47,26 +43,6 @@ The function will also automatically set the inverse transpose matrix.
 
 #### Returns
 Returns a pointer to a geometry instance.
-
-#### `public RX_API auto `[`directionalLightInstance`](#group___b_a_s_e_1ga2a069b2d151c07c55325dc008f693cb0)`(const glm::vec3 & direction)` 
-
-A commodity function for allocating a directional light instance.
-
-#### Parameters
-* `direction` The directional lights' direction. 
-
-#### Returns
-Returns a pointer to a directional light instance.
-
-#### `public RX_API auto `[`pointLightInstance`](#group___b_a_s_e_1gace95101543a8d8577781044c96795140)`(const glm::vec3 & position)` 
-
-A commodity function for allocating a point light instance.
-
-#### Parameters
-* `position` The point lights' position. 
-
-#### Returns
-Returns a pointer to a point light instance.
 
 # class `RAYEX_NAMESPACE::Camera` 
 
@@ -97,6 +73,7 @@ Do not forget to re-calculate the view or projection matrix if the camera or the
 `public auto `[`operator=`](#class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_camera_1a1d2cb96a89ed49bcf4fc3b1f103c8a0d)`(const `[`Camera`](#class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_camera)` &) = default` | 
 `public auto `[`operator=`](#class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_camera_1a1211b4836b93378f4e90b1cf780cf0d7)`(const `[`Camera`](#class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_camera)` &&) = delete` | 
 `public virtual void `[`update`](#class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_camera_1a37c5fc1ac50d68f1494f90e5b2a569a9)`()` | Is used to update camera vectors etc.
+`public void `[`reset`](#class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_camera_1acea55c6c1228dfeeb54f3c916917cd66)`()` | 
 `public inline auto `[`getPosition`](#class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_camera_1acfcf6d7449755de73dc3de2ea39bf12e)`() const` | #### Returns
 `public void `[`setPosition`](#class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_camera_1a2dd871594937d080d24bb13eac812341)`(const glm::vec3 & position)` | Is used to change the camera's position.
 `public void `[`setSize`](#class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_camera_1a544e60fd334db538c5dea452c57c94fb)`(int width,int height)` | Is used to set a size for the camera that fits the viewport dimensions.
@@ -161,6 +138,8 @@ Keeps track of whether or not to udpate the projection matrix.
 Is used to update camera vectors etc.
 
 The user has to override this function for the camera to work like intended. The function will be called every tick.
+
+#### `public void `[`reset`](#class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_camera_1acea55c6c1228dfeeb54f3c916917cd66)`()` 
 
 #### `public inline auto `[`getPosition`](#class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_camera_1acfcf6d7449755de73dc3de2ea39bf12e)`() const` 
 
@@ -306,169 +285,6 @@ Updates the camera vectors.
 
 Only needs to be called if mouse was moved.
 
-# class `RAYEX_NAMESPACE::Scene` 
-
-Stores all geoemtry, geometry instances and light sources.
-
-Provides functions to change said data. 
-> Todo: [removeGeometry()](moxygen/api-BASE.md#class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_scene_1a8004b0c0dfb783070ea82af111378718)
-
-## Summary
-
- Members                        | Descriptions                                
---------------------------------|---------------------------------------------
-`public friend `[`Api`](#class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_scene_1ae002d16199c05b908fbeecc4f7d97733) | 
-`public friend `[`Rayex`](#class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_scene_1a03b7257e44db8e9af952484958a5346c) | 
-`public auto `[`getGeometryInstances`](#class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_scene_1aef804f5fc22e5d0b27530a00cd054060)`() const` | #### Returns
-`public void `[`submitGeometryInstance`](#class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_scene_1a4ca1e82f10c27e433eff652710e8e700)`(std::shared_ptr< `[`GeometryInstance`](moxygen/api-BASE.md#struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_geometry_instance)` > geometryInstance)` | Used to submit a geometry instance for rendering.
-`public void `[`setGeometryInstances`](#class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_scene_1a86b0c09d5294dabeeb550b84ef4ac0c4)`(const std::vector< std::shared_ptr< `[`GeometryInstance`](moxygen/api-BASE.md#struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_geometry_instance)` >> & geometryInstances)` | Used to submit multiple geometry instances for rendering, replacing all existing instances.
-`public auto `[`getDirectionalLights`](#class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_scene_1abd17c0c5eda2b09916ab74cd0c91794d)`() const` | #### Returns
-`public void `[`submitDirectionalLight`](#class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_scene_1a0950f2d94e6e9fec8ae01200f001878e)`(std::shared_ptr< `[`DirectionalLight`](moxygen/api-BASE.md#struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_directional_light)` > light)` | Used to submit a directional light.
-`public void `[`removeDirectionalLight`](#class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_scene_1a8654b0489ad56a058af3647ab85c6095)`(std::shared_ptr< `[`DirectionalLight`](moxygen/api-BASE.md#struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_directional_light)` > light)` | Used to remove a directional light.
-`public auto `[`getPointLights`](#class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_scene_1aefa4c39c0f32defc0e35019048b0bb17)`() const` | #### Returns
-`public void `[`submitPointLight`](#class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_scene_1a2bf002f75dd17d8c28e0641e461ad2bd)`(std::shared_ptr< `[`PointLight`](moxygen/api-BASE.md#struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_point_light)` > light)` | Used to submit a point light.
-`public void `[`removePointLight`](#class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_scene_1aef891c0cb5abb107b620142ec9ccec00)`(std::shared_ptr< `[`PointLight`](moxygen/api-BASE.md#struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_point_light)` > light)` | Used to remove a point light.
-`public void `[`removeGeometryInstance`](#class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_scene_1a11fc56eb116fe3301a59c5c594ee2bea)`(std::shared_ptr< `[`GeometryInstance`](moxygen/api-BASE.md#struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_geometry_instance)` > geometryInstance)` | Used to remove a geometry instance.
-`public void `[`clearGeometryInstances`](#class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_scene_1a42dc12d8a200591532dc336f72a4847d)`()` | Used to remove all geometry instances.
-`public void `[`popGeometryInstance`](#class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_scene_1a838076f7347dd4788ee1aaa8ffd28374)`()` | Used to remove the last geoemtry instance.
-`public void `[`submitGeometry`](#class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_scene_1a53c0ef48ca0c5e0d2336869a8e75085b)`(std::shared_ptr< `[`Geometry`](moxygen/api-BASE.md#struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_geometry)` > geometry)` | Used to submit a geometry and set up its buffers.
-`public void `[`setGeometries`](#class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_scene_1ab191100612c6087204b476aadfd8b6db)`(const std::vector< std::shared_ptr< `[`Geometry`](moxygen/api-BASE.md#struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_geometry)` >> & geometries)` | Used to submit multiple geometries and set up their buffers.
-`public void `[`removeGeometry`](#class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_scene_1a8004b0c0dfb783070ea82af111378718)`(std::shared_ptr< `[`Geometry`](moxygen/api-BASE.md#struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_geometry)` > geometry)` | Used to remove a geometry.
-`public void `[`removeGeometry`](#class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_scene_1adc0e77e152173899b4edf08fbe62ca18)`(uint32_t geometryIndex)` | Used to remove a geometry.
-`public void `[`popGeometry`](#class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_scene_1ae68fc066eddb4ff7ee2a16c26b06f5ba)`()` | Used to remove the last geometry and all its instances.
-`public void `[`clearGeometries`](#class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_scene_1ac89ff3616b43e6c2b7e6a23995784a53)`()` | Used to remove all geometries.
-`public auto `[`findGeometry`](#class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_scene_1a344905cab1fbaf5a5585a6df25635bbc)`(std::string_view path) const` | Used to retrieve a geoemtry based on its path.
-
-## Members
-
-#### `public friend `[`Api`](#class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_scene_1ae002d16199c05b908fbeecc4f7d97733) 
-
-#### `public friend `[`Rayex`](#class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_scene_1a03b7257e44db8e9af952484958a5346c) 
-
-#### `public auto `[`getGeometryInstances`](#class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_scene_1aef804f5fc22e5d0b27530a00cd054060)`() const` 
-
-#### Returns
-Returns all geometry instances in the scene.
-
-#### `public void `[`submitGeometryInstance`](#class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_scene_1a4ca1e82f10c27e433eff652710e8e700)`(std::shared_ptr< `[`GeometryInstance`](moxygen/api-BASE.md#struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_geometry_instance)` > geometryInstance)` 
-
-Used to submit a geometry instance for rendering.
-
-#### Parameters
-* `geometryInstance` The instance to queue for rendering. 
-
-This function does not invoke any draw calls.
-
-#### `public void `[`setGeometryInstances`](#class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_scene_1a86b0c09d5294dabeeb550b84ef4ac0c4)`(const std::vector< std::shared_ptr< `[`GeometryInstance`](moxygen/api-BASE.md#struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_geometry_instance)` >> & geometryInstances)` 
-
-Used to submit multiple geometry instances for rendering, replacing all existing instances.
-
-#### Parameters
-* `geometryInstances` The instances to queue for rendering. 
-
-This function does not invoke any draw calls.
-
-#### `public auto `[`getDirectionalLights`](#class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_scene_1abd17c0c5eda2b09916ab74cd0c91794d)`() const` 
-
-#### Returns
-Returns all directional lights in the scene.
-
-#### `public void `[`submitDirectionalLight`](#class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_scene_1a0950f2d94e6e9fec8ae01200f001878e)`(std::shared_ptr< `[`DirectionalLight`](moxygen/api-BASE.md#struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_directional_light)` > light)` 
-
-Used to submit a directional light.
-
-#### Parameters
-* `light` The directional light to submit.
-
-#### `public void `[`removeDirectionalLight`](#class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_scene_1a8654b0489ad56a058af3647ab85c6095)`(std::shared_ptr< `[`DirectionalLight`](moxygen/api-BASE.md#struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_directional_light)` > light)` 
-
-Used to remove a directional light.
-
-#### Parameters
-* `light` The directional light to remove.
-
-#### `public auto `[`getPointLights`](#class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_scene_1aefa4c39c0f32defc0e35019048b0bb17)`() const` 
-
-#### Returns
-Returns all point lights in the scene.
-
-#### `public void `[`submitPointLight`](#class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_scene_1a2bf002f75dd17d8c28e0641e461ad2bd)`(std::shared_ptr< `[`PointLight`](moxygen/api-BASE.md#struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_point_light)` > light)` 
-
-Used to submit a point light.
-
-#### Parameters
-* `light` The point light to submit.
-
-#### `public void `[`removePointLight`](#class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_scene_1aef891c0cb5abb107b620142ec9ccec00)`(std::shared_ptr< `[`PointLight`](moxygen/api-BASE.md#struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_point_light)` > light)` 
-
-Used to remove a point light.
-
-#### Parameters
-* `light` The point light to remove.
-
-#### `public void `[`removeGeometryInstance`](#class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_scene_1a11fc56eb116fe3301a59c5c594ee2bea)`(std::shared_ptr< `[`GeometryInstance`](moxygen/api-BASE.md#struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_geometry_instance)` > geometryInstance)` 
-
-Used to remove a geometry instance.
-
-Once a geometry instance was removed, it will no longer be rendered. 
-#### Parameters
-* `geometryInstance` The instance to remove.
-
-#### `public void `[`clearGeometryInstances`](#class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_scene_1a42dc12d8a200591532dc336f72a4847d)`()` 
-
-Used to remove all geometry instances.
-
-However, geometries remain loaded and must be deleted explicitely.
-
-#### `public void `[`popGeometryInstance`](#class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_scene_1a838076f7347dd4788ee1aaa8ffd28374)`()` 
-
-Used to remove the last geoemtry instance.
-
-#### `public void `[`submitGeometry`](#class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_scene_1a53c0ef48ca0c5e0d2336869a8e75085b)`(std::shared_ptr< `[`Geometry`](moxygen/api-BASE.md#struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_geometry)` > geometry)` 
-
-Used to submit a geometry and set up its buffers.
-
-Once a geometry was submitted, geometry instances referencing this particular geometry can be drawn. 
-#### Parameters
-* `geometry` The geometry to submit.
-
-#### `public void `[`setGeometries`](#class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_scene_1ab191100612c6087204b476aadfd8b6db)`(const std::vector< std::shared_ptr< `[`Geometry`](moxygen/api-BASE.md#struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_geometry)` >> & geometries)` 
-
-Used to submit multiple geometries and set up their buffers.
-
-Once a geometry was submitted, geometry instances referencing this particular geometry can be drawn. 
-#### Parameters
-* `geometries` The geometries to submit.
-
-#### `public void `[`removeGeometry`](#class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_scene_1a8004b0c0dfb783070ea82af111378718)`(std::shared_ptr< `[`Geometry`](moxygen/api-BASE.md#struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_geometry)` > geometry)` 
-
-Used to remove a geometry.
-
-#### Parameters
-* `geometry` The geometry to remove.
-
-#### `public void `[`removeGeometry`](#class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_scene_1adc0e77e152173899b4edf08fbe62ca18)`(uint32_t geometryIndex)` 
-
-Used to remove a geometry.
-
-#### Parameters
-* `geometryIndex` The geometry's index.
-
-#### `public void `[`popGeometry`](#class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_scene_1ae68fc066eddb4ff7ee2a16c26b06f5ba)`()` 
-
-Used to remove the last geometry and all its instances.
-
-#### `public void `[`clearGeometries`](#class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_scene_1ac89ff3616b43e6c2b7e6a23995784a53)`()` 
-
-Used to remove all geometries.
-
-#### `public auto `[`findGeometry`](#class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_scene_1a344905cab1fbaf5a5585a6df25635bbc)`(std::string_view path) const` 
-
-Used to retrieve a geoemtry based on its path.
-
-#### Parameters
-* `path` The geometry's model's path, relative to the path to assets.
-
 # class `RAYEX_NAMESPACE::Settings` 
 
 Exposes all graphic settings supported by the renderer.
@@ -481,47 +297,46 @@ Any necessary pipeline recreations and swapchain recreations will not be perform
 
  Members                        | Descriptions                                
 --------------------------------|---------------------------------------------
-`public inline auto `[`getRecursionDepth`](#class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_settings_1a971ae0e67209a44e3ea350924ab22830)`() const` | #### Returns
-`public void `[`setRecursionDepth`](#class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_settings_1a2219f20482a7eca65a8f8cd819b75d45)`(uint32_t recursionDepth)` | Used to set the recursion depth.
+`public inline auto `[`getPathDepth`](#class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_settings_1af3f3b1866e7523db6be4179e63ba1e90)`() const` | #### Returns
+`public void `[`setPathDepth`](#class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_settings_1a2be035bb411588e1f262f323cff87731)`(uint32_t recursionDepth)` | Used to set the path depth.
+`public inline auto `[`getMaxPathDepth`](#class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_settings_1a2d14d58f91d69177df062bb546422cf1)`() const` | #### Returns
 `public inline auto `[`getClearColor`](#class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_settings_1a3fbc4ba4e79dcb84f8065d8657cd09d8)`() const` | #### Returns
 `public void `[`setClearColor`](#class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_settings_1a7c23cd33060112e22df368eeb8fc4c62)`(const glm::vec4 & clearColor)` | Used to changed the clear color.
 `public inline auto `[`getAssetsPath`](#class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_settings_1a8e94a1b47ab849117f0e97bf74332bb0)`() const` | #### Returns
 `public void `[`setAssetsPath`](#class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_settings_1a00b2c779dbe061631b409240d99477fb)`(int argc,char * argv)` | Used to set a path to the directory containing all assets.
 `public void `[`setAssetsPath`](#class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_settings_1a63ae460c13863b4d90fd673039ea6b11)`(std::string_view path)` | Used to set a path to the directory containing all assets.
-`public inline auto `[`getRayTracingEnabled`](#class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_settings_1a2e953079038a847e3ed0cb77abb4e4fd)`() const` | #### Returns
-`public void `[`setEnableRayTracing`](#class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_settings_1a86e1a739d623859c7a9f49334cc21400)`(bool flag)` | Used to enable or disable ray tracing.
 `public void `[`setAutomaticPipelineRefresh`](#class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_settings_1ac444874c6f8feb0a7c4385bc17728176)`(bool flag)` | Used to toggle the automatic pipeline recreation.
-`public void `[`setMaxDirectionalLights`](#class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_settings_1aae6e3c01ef0d90c89c82c97c5eafb250)`(uint32_t amount)` | Used to set the maximum amount of directional lights that can be used.
-`public void `[`setMaxPointLights`](#class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_settings_1aa4f5d03705f7d75e752766f2136cff57)`(uint32_t amount)` | Used to set the maximum amount of point lights that can be used.
-`public void `[`setMaxGeometryInstances`](#class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_settings_1ad82e2aa3d853d8b87408d808f36c72a4)`(uint32_t amount)` | Used to set the maximum amount of geometrys that can be used.
-`public inline auto `[`getMaxRecursionDepth`](#class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_settings_1a272c5032d8509892f7ee876d65fcdfe2)`() const` | #### Returns
-`public void `[`setMaxGeoemtry`](#class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_settings_1adec13502be4c85e096764a102beb2c65)`(uint32_t amount)` | Used to set the maximum of geometry (models).
-`public inline auto `[`getMaxGeometry`](#class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_settings_1abd9b32871d745deb435e07f2b7006952)`() const` | #### Returns
-`public void `[`setEnableJitterCam`](#class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_settings_1aafdf9b286388d388b41afc6c4707cc02)`(bool flag)` | Used to toggle the jitter cam.
-`public inline auto `[`getJitterCamEnabled`](#class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_settings_1a4fe503cf5a095b02606751381ea0538f)`() const` | #### Returns
-`public void `[`setJitterCamSampleRate`](#class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_settings_1a7c02b5affa6d65710d438a1300b369d6)`(uint32_t sampleRate)` | Used to set the jitter cam's sample rate.
-`public inline auto `[`getJitterCamSampleRate`](#class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_settings_1abaab03bdd69de36f34d224933fe422c5)`() const` | #### Returns
-`public void `[`setJitterCamSampleRatePerRayGen`](#class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_settings_1a6b646409950dbe255f929a0b8d07901a)`(uint32_t sampleRate)` | Used to set the jitter cam's sample rate per raygen.
-`public inline auto `[`getJitterCamSampleRatePerRayGen`](#class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_settings_1ab25392e78df5f9d79224e5006bed0f12)`() const` | #### Returns
-`public void `[`setEnableSsaa`](#class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_settings_1ae2aa8cc8634003231583eb3627d47de4)`(bool flag)` | Used to toggle SSAA.
-`public inline auto `[`getSsaaEnabled`](#class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_settings_1aa9344909d0bc98798245f5907e77cf96)`() const` | #### Returns
-`public void `[`setSsaaSampleRate`](#class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_settings_1a2f760bb865eeb7f541ff7954809a49e0)`(uint32_t sampleRate)` | Used to set the SSAA sample rate.
-`public inline auto `[`getSsaaSampleRate`](#class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_settings_1af11c9ed9a5d84a89f2642b16702deaf1)`() const` | #### Returns
+`public void `[`setGeometryLimit`](#class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_settings_1ade1e5f9edb4a9e0d845f9274c29c69ee)`(size_t amount)` | Used to set the maximum amount of geometry (3D models) that can be loaded.
+`public void `[`setGeometryInstanceLimit`](#class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_settings_1a13df13c3975521216f1a89092d0ce88f)`(uint32_t amount)` | Used to set the maximum amount of geometry instances (instances of 3D models) that can be loaded.
+`public void `[`setTextureLimit`](#class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_settings_1a10e2253fd1a2a09c615cc481d2936777)`(size_t amount)` | Used to set the maximum amount of textures that can be loaded.
+`public void `[`setMeshLimit`](#class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_settings_1a408bd0ccc0d66b520012842c7679102e)`(size_t amount)` | Used to set the maximum amount of meshes that can be loaded.
+`public void `[`setLimits`](#class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_settings_1af7642a28e1d98e0374b55bd4a51fa7cd)`(size_t geometryLimit,size_t geometryInstanceLimit,size_t meshLimit,size_t textureLimit)` | Used to set the geometry limit, geometry instance limit, mesh limit and texture limit at once.
+`public void `[`setPerPixelSampleRate`](#class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_settings_1a25bcf507ecb541403562560a520f7277)`(uint32_t sampleRate)` | 
+`public inline auto `[`getPerPixelSampleRate`](#class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_settings_1a085992c9cf68599ca39d1d2e18f853d8)`() const` | 
+`public void `[`setAccumulatingFrames`](#class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_settings_1aee44e96b9e45b36bde83d6d1ef23aebe)`(bool flag)` | 
+`public inline auto `[`isAccumulatingFrames`](#class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_settings_1ac5a799f6d25e7a02fd751b8acb37cdb7)`() const` | 
+`public inline void `[`triggerPipelineRefresh`](#class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_settings_1a908de1120d121ee07d91269ade6dd4ea)`()` | 
+`public inline void `[`triggerSwapchainRefresh`](#class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_settings_1acc7b4dff13bd3a8686ba2070b939fabd)`()` | 
 
 ## Members
 
-#### `public inline auto `[`getRecursionDepth`](#class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_settings_1a971ae0e67209a44e3ea350924ab22830)`() const` 
+#### `public inline auto `[`getPathDepth`](#class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_settings_1af3f3b1866e7523db6be4179e63ba1e90)`() const` 
 
 #### Returns
-Returns the recursion depth.
+Returns the path depth.
 
-#### `public void `[`setRecursionDepth`](#class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_settings_1a2219f20482a7eca65a8f8cd819b75d45)`(uint32_t recursionDepth)` 
+#### `public void `[`setPathDepth`](#class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_settings_1a2be035bb411588e1f262f323cff87731)`(uint32_t recursionDepth)` 
 
-Used to set the recursion depth.
+Used to set the path depth.
 
 The function will trigger a pipeline recreation as soon as possible unless it was explicitely disabled using [setAutomaticPipelineRefresh(bool)](moxygen/api-BASE.md#class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_settings_1ac444874c6f8feb0a7c4385bc17728176). If a value higher than the device's maximum supported value is set, it will use the maximum value instead. 
 #### Parameters
 * `recursionDepth` The new value for the recursion depth.
+
+#### `public inline auto `[`getMaxPathDepth`](#class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_settings_1a2d14d58f91d69177df062bb546422cf1)`() const` 
+
+#### Returns
+Returns the maximum path depth on the GPU.
 
 #### `public inline auto `[`getClearColor`](#class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_settings_1a3fbc4ba4e79dcb84f8065d8657cd09d8)`() const` 
 
@@ -559,23 +374,6 @@ This path should contain all models, textures and shaders.
 #### Parameters
 * `path` The path to assets.
 
-#### `public inline auto `[`getRayTracingEnabled`](#class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_settings_1a2e953079038a847e3ed0cb77abb4e4fd)`() const` 
-
-#### Returns
-Returns true if ray tracing is enabled and false if rasterization is enabled. 
-
-> Todo: This function will be pointless once the new pipeline system is implemented.
-
-#### `public void `[`setEnableRayTracing`](#class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_settings_1a86e1a739d623859c7a9f49334cc21400)`(bool flag)` 
-
-Used to enable or disable ray tracing.
-
-The function will trigger a swapchain recreation as soon as possible unless it was explicitely disabled using [setAutomaticPipelineRefresh(bool)](moxygen/api-BASE.md#class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_settings_1ac444874c6f8feb0a7c4385bc17728176). 
-#### Parameters
-* `flag` If false, ray tracing will be disabled. 
-
-> Todo: This function will be pointless once the new pipeline system is implemented.
-
 #### `public void `[`setAutomaticPipelineRefresh`](#class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_settings_1ac444874c6f8feb0a7c4385bc17728176)`(bool flag)` 
 
 Used to toggle the automatic pipeline recreation.
@@ -583,115 +381,41 @@ Used to toggle the automatic pipeline recreation.
 #### Parameters
 * `flag` If false, the pipelines will not be recreated automatically until this function is called with true.
 
-#### `public void `[`setMaxDirectionalLights`](#class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_settings_1aae6e3c01ef0d90c89c82c97c5eafb250)`(uint32_t amount)` 
+#### `public void `[`setGeometryLimit`](#class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_settings_1ade1e5f9edb4a9e0d845f9274c29c69ee)`(size_t amount)` 
 
-Used to set the maximum amount of directional lights that can be used.
+Used to set the maximum amount of geometry (3D models) that can be loaded.
 
-#### Parameters
-* `amount` The amount of maximum directional lights.
+#### `public void `[`setGeometryInstanceLimit`](#class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_settings_1a13df13c3975521216f1a89092d0ce88f)`(uint32_t amount)` 
 
-#### `public void `[`setMaxPointLights`](#class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_settings_1aa4f5d03705f7d75e752766f2136cff57)`(uint32_t amount)` 
+Used to set the maximum amount of geometry instances (instances of 3D models) that can be loaded.
 
-Used to set the maximum amount of point lights that can be used.
+#### `public void `[`setTextureLimit`](#class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_settings_1a10e2253fd1a2a09c615cc481d2936777)`(size_t amount)` 
 
-#### Parameters
-* `amount` The amount of maximum point lights.
+Used to set the maximum amount of textures that can be loaded.
 
-#### `public void `[`setMaxGeometryInstances`](#class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_settings_1ad82e2aa3d853d8b87408d808f36c72a4)`(uint32_t amount)` 
+#### `public void `[`setMeshLimit`](#class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_settings_1a408bd0ccc0d66b520012842c7679102e)`(size_t amount)` 
 
-Used to set the maximum amount of geometrys that can be used.
+Used to set the maximum amount of meshes that can be loaded.
 
-#### Parameters
-* `amount` The amount of maximum geometrys.
+This value is not strictly related to the amount of geometries. Each geometry can have an arbitrary amount of meshes or sub-mehes. To optimize the buffer size it is recommended to make at least a rough estimate on the amount of submeshes that are going to be in the scene.
 
-#### `public inline auto `[`getMaxRecursionDepth`](#class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_settings_1a272c5032d8509892f7ee876d65fcdfe2)`() const` 
+#### `public void `[`setLimits`](#class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_settings_1af7642a28e1d98e0374b55bd4a51fa7cd)`(size_t geometryLimit,size_t geometryInstanceLimit,size_t meshLimit,size_t textureLimit)` 
 
-#### Returns
-Returns the maximum recursion depth on the GPU.
+Used to set the geometry limit, geometry instance limit, mesh limit and texture limit at once.
 
-#### `public void `[`setMaxGeoemtry`](#class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_settings_1adec13502be4c85e096764a102beb2c65)`(uint32_t amount)` 
+**See also**: [setGeometryLimit(size_t)](moxygen/api-BASE.md#class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_settings_1ade1e5f9edb4a9e0d845f9274c29c69ee), setGeometryInstanceLimit(size_t), [setMeshLimit(size_t)](moxygen/api-BASE.md#class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_settings_1a408bd0ccc0d66b520012842c7679102e) and [setTextureLimit(size_t)](moxygen/api-BASE.md#class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_settings_1a10e2253fd1a2a09c615cc481d2936777).
 
-Used to set the maximum of geometry (models).
+#### `public void `[`setPerPixelSampleRate`](#class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_settings_1a25bcf507ecb541403562560a520f7277)`(uint32_t sampleRate)` 
 
-Try to keep this as small as possible, as this affects performance. 
-#### Parameters
-* `amount` The amount of maximum geometry.
+#### `public inline auto `[`getPerPixelSampleRate`](#class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_settings_1a085992c9cf68599ca39d1d2e18f853d8)`() const` 
 
-#### `public inline auto `[`getMaxGeometry`](#class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_settings_1abd9b32871d745deb435e07f2b7006952)`() const` 
+#### `public void `[`setAccumulatingFrames`](#class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_settings_1aee44e96b9e45b36bde83d6d1ef23aebe)`(bool flag)` 
 
-#### Returns
-Returns the maximum amount of geometry.
+#### `public inline auto `[`isAccumulatingFrames`](#class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_settings_1ac5a799f6d25e7a02fd751b8acb37cdb7)`() const` 
 
-#### `public void `[`setEnableJitterCam`](#class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_settings_1aafdf9b286388d388b41afc6c4707cc02)`(bool flag)` 
+#### `public inline void `[`triggerPipelineRefresh`](#class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_settings_1a908de1120d121ee07d91269ade6dd4ea)`()` 
 
-Used to toggle the jitter cam.
-
-A jitter cam can be used for anti aliasing a static scene. A ray that will be cast into the scene normally starts off at the exact same position. The jitter cam will jitter or scatter the ray's starting position slightly using random values. 
-#### Parameters
-* `flag` Enable or disable the jitter cam. 
-
-Disables SSAA automatically.
-
-#### `public inline auto `[`getJitterCamEnabled`](#class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_settings_1a4fe503cf5a095b02606751381ea0538f)`() const` 
-
-#### Returns
-Returns true, if jitter cam is enabled.
-
-#### `public void `[`setJitterCamSampleRate`](#class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_settings_1a7c02b5affa6d65710d438a1300b369d6)`(uint32_t sampleRate)` 
-
-Used to set the jitter cam's sample rate.
-
-#### Parameters
-* `sampleRate` The jitter cam's sample rate. 
-
-**See also**: [setJitterCamSampleRatePerRayGen(uint32_t)](moxygen/api-BASE.md#class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_settings_1a6b646409950dbe255f929a0b8d07901a)
-
-#### `public inline auto `[`getJitterCamSampleRate`](#class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_settings_1abaab03bdd69de36f34d224933fe422c5)`() const` 
-
-#### Returns
-Returns the jitter cam's sample rate .
-
-#### `public void `[`setJitterCamSampleRatePerRayGen`](#class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_settings_1a6b646409950dbe255f929a0b8d07901a)`(uint32_t sampleRate)` 
-
-Used to set the jitter cam's sample rate per raygen.
-
-#### Parameters
-* `sampleRate` Used to make the jitter cam faster by casting n rays directly in the raygen shader. 
-
-It is advised to set a higher value for sampleRatePerRayGen and lowering sampleRate instead. 
-
-**See also**: setJitterCamSamplesRate(uint32_t)
-
-#### `public inline auto `[`getJitterCamSampleRatePerRayGen`](#class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_settings_1ab25392e78df5f9d79224e5006bed0f12)`() const` 
-
-#### Returns
-Returns the jitter cam's sample rate per raygen.
-
-#### `public void `[`setEnableSsaa`](#class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_settings_1ae2aa8cc8634003231583eb3627d47de4)`(bool flag)` 
-
-Used to toggle SSAA.
-
-#### Parameters
-* `flag` If true, SSAA will be activated. 
-
-Disables jitter cam automatically.
-
-#### `public inline auto `[`getSsaaEnabled`](#class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_settings_1aa9344909d0bc98798245f5907e77cf96)`() const` 
-
-#### Returns
-Returns true, if SSAA is enabled.
-
-#### `public void `[`setSsaaSampleRate`](#class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_settings_1a2f760bb865eeb7f541ff7954809a49e0)`(uint32_t sampleRate)` 
-
-Used to set the SSAA sample rate.
-
-#### Parameters
-* `sampleRate` The desired SSAA sample rate. If this value is zero, then the sample rate will be set to one.
-
-#### `public inline auto `[`getSsaaSampleRate`](#class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_settings_1af11c9ed9a5d84a89f2642b16702deaf1)`() const` 
-
-#### Returns
-Returns the SSAA sample rate.
+#### `public inline void `[`triggerSwapchainRefresh`](#class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_settings_1acc7b4dff13bd3a8686ba2070b939fabd)`()` 
 
 # class `RAYEX_NAMESPACE::Time` 
 
@@ -885,13 +609,12 @@ while ( myRenderer.isRunning( ) )
 `public void `[`init`](#class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_rayex_1a7ab92b96ef9c93d84dced77b0ee2cc4b)`()` | Initializes the renderer.
 `public void `[`run`](#class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_rayex_1a8939d31603f84682c2309b784b3a82ac)`()` | A single function to execute all subcomponents in order.
 `public auto `[`isRunning`](#class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_rayex_1a3a1d0e4831044f2f7708365c984902bc)`() const` | #### Returns
-`public void `[`setCamera`](#class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_rayex_1a0f4a81c790bed2dc5243288d9f9e57b4)`(std::shared_ptr< `[`Camera`](moxygen/api-BASE.md#class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_camera)` > camera)` | Used to set a custom camera.
 `public void `[`setWindow`](#class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_rayex_1a364c4dcdb67baf57b1591394386ec3af)`(std::shared_ptr< `[`Window`](moxygen/api-BASE.md#class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_window)` > window)` | Used to set a custom window.
 `public void `[`setGui`](#class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_rayex_1a9c80416850a65f7a7968f58a9b8666c3)`(std::shared_ptr< `[`Gui`](moxygen/api-API.md#class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_gui)` > gui)` | Used to set a custom GUI.
 `public inline auto `[`getWindow`](#class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_rayex_1a6a3eaad6809863354889f00ad3972b07)`() const` | #### Returns
-`public inline auto `[`getCamera`](#class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_rayex_1a46b366bc4157a8cdc31738a505eabbbe)`() const` | #### Returns
-`public inline auto `[`settings`](#class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_rayex_1af39e7ea862f949f987aae25faa392d29)`()` | Used to modify any interal rendering settings.
+`public inline auto `[`settings`](#class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_rayex_1af39e7ea862f949f987aae25faa392d29)`()` | Used to modify any internal rendering settings.
 `public inline auto `[`scene`](#class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_rayex_1ac4de2be6f21929ce1c9cebdbeef56aa6)`()` | Used to access the scene directly by adding or removing elements.
+`public void `[`reset`](#class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_rayex_1a64614dc316d4da644a62ff9463fca0dd)`()` | 
 
 ## Members
 
@@ -913,13 +636,6 @@ This function updates the window and the camera components and calls the update 
 #### Returns
 Returns true if the application is still running and false if the application has stopped.
 
-#### `public void `[`setCamera`](#class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_rayex_1a0f4a81c790bed2dc5243288d9f9e57b4)`(std::shared_ptr< `[`Camera`](moxygen/api-BASE.md#class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_camera)` > camera)` 
-
-Used to set a custom camera.
-
-#### Parameters
-* `camera` A pointer to a [RAYEX_NAMESPACE::Camera](moxygen/api-BASE.md#class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_camera) object.
-
 #### `public void `[`setWindow`](#class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_rayex_1a364c4dcdb67baf57b1591394386ec3af)`(std::shared_ptr< `[`Window`](moxygen/api-BASE.md#class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_window)` > window)` 
 
 Used to set a custom window.
@@ -940,14 +656,9 @@ The GUI can be changed multiple times. Even during runtime.
 #### Returns
 Returns a pointer to the renderer's window.
 
-#### `public inline auto `[`getCamera`](#class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_rayex_1a46b366bc4157a8cdc31738a505eabbbe)`() const` 
-
-#### Returns
-Returns a pointer to the renderer's camera.
-
 #### `public inline auto `[`settings`](#class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_rayex_1af39e7ea862f949f987aae25faa392d29)`()` 
 
-Used to modify any interal rendering settings.
+Used to modify any internal rendering settings.
 
 #### Returns
 Returns the settings.
@@ -959,40 +670,75 @@ Used to access the scene directly by adding or removing elements.
 #### Returns
 Returns the scene.
 
+#### `public void `[`reset`](#class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_rayex_1a64614dc316d4da644a62ff9463fca0dd)`()` 
+
 # struct `RAYEX_NAMESPACE::Material` 
 
 Describes the rendering properties of a mesh.
+
+Property descriptions copied from [https://www.loc.gov/preservation/digital/formats/fdd/fdd000508.shtml](https://www.loc.gov/preservation/digital/formats/fdd/fdd000508.shtml).
 
 ## Summary
 
  Members                        | Descriptions                                
 --------------------------------|---------------------------------------------
-`public glm::vec3 `[`ambient`](#struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_material_1aed286d4563c3708e031c22b1dfdd0850) | 
-`public glm::vec3 `[`diffuse`](#struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_material_1afa1db16e87d06229251a605fed642e31) | 
-`public glm::vec3 `[`specular`](#struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_material_1a2add0cd69a003e0a01faead2ade81446) | 
-`public std::string `[`ambientTexPath`](#struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_material_1a8948b3f56c7dcadf9e70a2af417f3e59) | 
+`public glm::vec3 `[`ka`](#struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_material_1a7450ad0dc89bbcfd69a89d64b46eec77) | 
+`public glm::vec3 `[`kd`](#struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_material_1a9018051af4ed4bfd9299ba4051f93827) | Ambient color.
+`public glm::vec3 `[`ks`](#struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_material_1a5ef48ca2998c12c026b08eecf951e1d4) | Diffuse color.
+`public std::string `[`ambientTexPath`](#struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_material_1a8948b3f56c7dcadf9e70a2af417f3e59) | Specular color.
 `public std::string `[`diffuseTexPath`](#struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_material_1a58d73159efe7b4974c952671d50f2531) | 
 `public std::string `[`specularTexPath`](#struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_material_1adaf2168f7e03c0c1c263f4145c6c9a88) | 
+`public glm::vec3 `[`emission`](#struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_material_1a7c4c5f7a82461a66b18c2119411073d3) | 
+`public uint32_t `[`illum`](#struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_material_1a2985375b4f62c77adc4f5aae8f884ed9) | Illumination model.
+`public float `[`d`](#struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_material_1a4aadf85f61539cbd7e335754621f8fd3) | Specifies a factor for dissolve, how much this material dissolves into the background. A factor of 1.0 is fully opaque. A factor of 0.0 is completely transparent.
+`public float `[`ns`](#struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_material_1a309eafdbd92cf69e4a7daa6a59c93573) | Focus of the specular light (aka shininess). Ranges from 0 to 1000, with a high value resulting in a tight, concentrated highlight.
+`public float `[`ni`](#struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_material_1a4a2874571c4c3307df4235f57c5c6639) | Optical density (aka index of refraction). Ranges from 0.001 to 10. A value of 1.0 means that light does not bend as it passes through an object.
 
 ## Members
 
-#### `public glm::vec3 `[`ambient`](#struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_material_1aed286d4563c3708e031c22b1dfdd0850) 
+#### `public glm::vec3 `[`ka`](#struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_material_1a7450ad0dc89bbcfd69a89d64b46eec77) 
 
-#### `public glm::vec3 `[`diffuse`](#struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_material_1afa1db16e87d06229251a605fed642e31) 
+#### `public glm::vec3 `[`kd`](#struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_material_1a9018051af4ed4bfd9299ba4051f93827) 
 
-#### `public glm::vec3 `[`specular`](#struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_material_1a2add0cd69a003e0a01faead2ade81446) 
+Ambient color.
+
+#### `public glm::vec3 `[`ks`](#struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_material_1a5ef48ca2998c12c026b08eecf951e1d4) 
+
+Diffuse color.
 
 #### `public std::string `[`ambientTexPath`](#struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_material_1a8948b3f56c7dcadf9e70a2af417f3e59) 
+
+Specular color.
 
 #### `public std::string `[`diffuseTexPath`](#struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_material_1a58d73159efe7b4974c952671d50f2531) 
 
 #### `public std::string `[`specularTexPath`](#struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_material_1adaf2168f7e03c0c1c263f4145c6c9a88) 
 
+#### `public glm::vec3 `[`emission`](#struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_material_1a7c4c5f7a82461a66b18c2119411073d3) 
+
+#### `public uint32_t `[`illum`](#struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_material_1a2985375b4f62c77adc4f5aae8f884ed9) 
+
+Illumination model.
+
+0 - A constant color illumination model, using the Kd for the material. 1 - A diffuse illumination model using Lambertian shading, taking into account Ka, Kd, the intensity and position of each light source and the angle at which it strikes the surface. 2 - A diffuse and specular illumination model using Lambertian shading and Blinn's interpretation of Phong's specular illumination model, taking into account Ka, Kd, Ks, and the intensity and position of each light source and the angle at which it strikes the surface.
+
+#### `public float `[`d`](#struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_material_1a4aadf85f61539cbd7e335754621f8fd3) 
+
+Specifies a factor for dissolve, how much this material dissolves into the background. A factor of 1.0 is fully opaque. A factor of 0.0 is completely transparent.
+
+#### `public float `[`ns`](#struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_material_1a309eafdbd92cf69e4a7daa6a59c93573) 
+
+Focus of the specular light (aka shininess). Ranges from 0 to 1000, with a high value resulting in a tight, concentrated highlight.
+
+#### `public float `[`ni`](#struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_material_1a4a2874571c4c3307df4235f57c5c6639) 
+
+Optical density (aka index of refraction). Ranges from 0.001 to 10. A value of 1.0 means that light does not bend as it passes through an object.
+
 # struct `RAYEX_NAMESPACE::Mesh` 
 
 Describes a sub-mesh and its material.
 
-If indexOffset is not set correctly the mesh can not be displayed properly. Take a look at [loadObj(std::string_view)](moxygen/api-undefined.md#group___b_a_s_e_1gac348076d8b31be1511d1fc0532e75747) for a working example.
+If indexOffset is not set correctly the mesh can not be displayed properly. Take a look at loadObj(std::string_view) for a working example.
 
 ## Summary
 
@@ -1027,6 +773,8 @@ Even if a model consists out of multiple sub-meshes, all vertices and indices mu
 `public uint32_t `[`geometryIndex`](#struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_geometry_1ab185f8dac7b31f826e611b5a24cb30ce) | A unique index required by the acceleration structures.
 `public std::string `[`path`](#struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_geometry_1ab1abb0b9dda1f43c9b2f92fe83a08588) | The model's path, relative to the path to assets.
 `public bool `[`initialized`](#struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_geometry_1af7124a02f0e2ab740618cf30c1ea748c) | Keeps track of whether or not the geometry was initialized.
+`public bool `[`dynamic`](#struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_geometry_1a4a926e0a1c48cf58f445b501c79bebb1) | Keeps track of whether or not the geometry is dynamic or static.
+`public RX_API void `[`setMaterial`](#struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_geometry_1a20ea3640e900acebb235adc345de1bd0)`(const `[`Material`](moxygen/api-BASE.md#struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_material)` & material)` | 
 
 ## Members
 
@@ -1054,6 +802,12 @@ The model's path, relative to the path to assets.
 
 Keeps track of whether or not the geometry was initialized.
 
+#### `public bool `[`dynamic`](#struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_geometry_1a4a926e0a1c48cf58f445b501c79bebb1) 
+
+Keeps track of whether or not the geometry is dynamic or static.
+
+#### `public RX_API void `[`setMaterial`](#struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_geometry_1a20ea3640e900acebb235adc345de1bd0)`(const `[`Material`](moxygen/api-BASE.md#struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_material)` & material)` 
+
 # struct `RAYEX_NAMESPACE::GeometryInstance` 
 
 Describes an instance of some geometry.
@@ -1067,6 +821,7 @@ To assign a specific geometry to an instance, both must have the same value for 
 `public glm::mat4 `[`transform`](#struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_geometry_instance_1a6d910049d3ae5f62b582fd1f576246a7) | The instance's world transform matrix.
 `public glm::mat4 `[`transformIT`](#struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_geometry_instance_1a70a32d8d77163c71da2e8ded720dd30c) | The inverse transpose of transform.
 `public uint32_t `[`geometryIndex`](#struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_geometry_instance_1a6104e92fc78364e8f3fb395caf466e39) | Used to assign this instance a model.
+`public RX_API void `[`setTransform`](#struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_geometry_instance_1a165e07ad30882bac25ab130fd1116dd5)`(const glm::mat4 & transform)` | 
 
 ## Members
 
@@ -1082,89 +837,5 @@ The inverse transpose of transform.
 
 Used to assign this instance a model.
 
-# struct `RAYEX_NAMESPACE::Light` 
-
-A common base for all light types.
-
-Instances of this type should not be used anywhere.
-
-## Summary
-
- Members                        | Descriptions                                
---------------------------------|---------------------------------------------
-`public glm::vec3 `[`ambient`](#struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_light_1a7caf60014c05f686a4ca072641d2e8db) | The ambient color.
-`public glm::vec3 `[`diffuse`](#struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_light_1a4159b357e9900158ab92b85ee50746d0) | The diffuse color.
-`public glm::vec3 `[`specular`](#struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_light_1a0bc8780a2ab3d6133dc260e2538a2d45) | The specular color.
-`public float `[`ambientIntensity`](#struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_light_1ab64fe09dfc039b13271159eef7a93a38) | The intensity of the ambient color.
-`public float `[`diffuseIntensity`](#struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_light_1ac4c1d48c802b6b78d5acbf1d0e7fd396) | The intensity of the diffuse color.
-`public float `[`specularIntensity`](#struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_light_1ab133a240d8b342dccd16d34752464309) | The intensity of the specular color.
-`public bool `[`update`](#struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_light_1a9099dc2317d71a5766dbacdf6003428b) | If set to true the light will be re-uploaded to the physical device.
-
-## Members
-
-#### `public glm::vec3 `[`ambient`](#struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_light_1a7caf60014c05f686a4ca072641d2e8db) 
-
-The ambient color.
-
-#### `public glm::vec3 `[`diffuse`](#struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_light_1a4159b357e9900158ab92b85ee50746d0) 
-
-The diffuse color.
-
-#### `public glm::vec3 `[`specular`](#struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_light_1a0bc8780a2ab3d6133dc260e2538a2d45) 
-
-The specular color.
-
-#### `public float `[`ambientIntensity`](#struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_light_1ab64fe09dfc039b13271159eef7a93a38) 
-
-The intensity of the ambient color.
-
-#### `public float `[`diffuseIntensity`](#struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_light_1ac4c1d48c802b6b78d5acbf1d0e7fd396) 
-
-The intensity of the diffuse color.
-
-#### `public float `[`specularIntensity`](#struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_light_1ab133a240d8b342dccd16d34752464309) 
-
-The intensity of the specular color.
-
-#### `public bool `[`update`](#struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_light_1a9099dc2317d71a5766dbacdf6003428b) 
-
-If set to true the light will be re-uploaded to the physical device.
-
-# struct `RAYEX_NAMESPACE::DirectionalLight` 
-
-```
-struct RAYEX_NAMESPACE::DirectionalLight
-  : public RAYEX_NAMESPACE::Light
-```  
-
-A directional light.
-
-## Summary
-
- Members                        | Descriptions                                
---------------------------------|---------------------------------------------
-`public glm::vec3 `[`direction`](#struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_directional_light_1a292ade676ead3692bc3d2dd418a765f8) | 
-
-## Members
-
-#### `public glm::vec3 `[`direction`](#struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_directional_light_1a292ade676ead3692bc3d2dd418a765f8) 
-
-# struct `RAYEX_NAMESPACE::PointLight` 
-
-```
-struct RAYEX_NAMESPACE::PointLight
-  : public RAYEX_NAMESPACE::Light
-```  
-
-A point light.
-
-## Summary
-
- Members                        | Descriptions                                
---------------------------------|---------------------------------------------
-`public glm::vec3 `[`position`](#struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_point_light_1a61392310ead7d93a498c26839d1f25f1) | 
-
-## Members
-
-#### `public glm::vec3 `[`position`](#struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_point_light_1a61392310ead7d93a498c26839d1f25f1) 
+#### `public RX_API void `[`setTransform`](#struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_geometry_instance_1a165e07ad30882bac25ab130fd1116dd5)`(const glm::mat4 & transform)` 
 

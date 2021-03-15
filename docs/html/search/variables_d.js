@@ -1,6 +1,5 @@
 var searchData=
 [
-  ['ni_787',['ni',['../struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_mesh_s_s_b_o.html#aac714eae32d19dcfa68661ffa006520c',1,'RAYEX_NAMESPACE::MeshSSBO::ni()'],['../struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_material.html#a4a2874571c4c3307df4235f57c5c6639',1,'RAYEX_NAMESPACE::Material::ni()']]],
-  ['normal_788',['normal',['../struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_vertex.html#a4ac28ad5e150039b65a80a67dddb3127',1,'RAYEX_NAMESPACE::Vertex']]],
-  ['ns_789',['ns',['../struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_mesh_s_s_b_o.html#afe758e896b9c1ea5656c3402b35462ba',1,'RAYEX_NAMESPACE::MeshSSBO::ns()'],['../struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_material.html#a309eafdbd92cf69e4a7daa6a59c93573',1,'RAYEX_NAMESPACE::Material::ns()']]]
+  ['rayex_483',['Rayex',['../class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_api.html#a654c4ab4f46b43e1dac112eafb763aac',1,'RAYEX_NAMESPACE::Api::Rayex()'],['../class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_scene.html#a03b7257e44db8e9af952484958a5346c',1,'RAYEX_NAMESPACE::Scene::Rayex()']]],
+  ['recursiondepth_484',['recursionDepth',['../struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_pt_push_constants.html#ad0bb423b1a0b2ec6c5e97e4c7501aa10',1,'RAYEX_NAMESPACE::PtPushConstants']]]
 ];

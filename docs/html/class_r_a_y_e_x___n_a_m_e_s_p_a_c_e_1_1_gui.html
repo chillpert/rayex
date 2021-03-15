@@ -116,9 +116,9 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a3e5134da1391b2ca38bc65f17895d767"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_gui.html#a3e5134da1391b2ca38bc65f17895d767">render</a> ()</td></tr>
 <tr class="memdesc:a3e5134da1391b2ca38bc65f17895d767"><td class="mdescLeft">&#160;</td><td class="mdescRight">This function is for calling the individual ImGui components, e.g.  <a href="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_gui.html#a3e5134da1391b2ca38bc65f17895d767">More...</a><br /></td></tr>
 <tr class="separator:a3e5134da1391b2ca38bc65f17895d767"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a872d3b5dd0876f2412bd6ee64cfc1285"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_gui.html#a872d3b5dd0876f2412bd6ee64cfc1285">init</a> (SDL_Window *window, const <a class="el" href="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_surface.html">Surface</a> *surface, vk::Extent2D swapchainImageExtent, vk::RenderPass renderPass)</td></tr>
-<tr class="memdesc:a872d3b5dd0876f2412bd6ee64cfc1285"><td class="mdescLeft">&#160;</td><td class="mdescRight">Creates the GUI and all required Vulkan components.  <a href="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_gui.html#a872d3b5dd0876f2412bd6ee64cfc1285">More...</a><br /></td></tr>
-<tr class="separator:a872d3b5dd0876f2412bd6ee64cfc1285"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab572cd6afb74d6d3303d3393dbaf6c06"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_gui.html#ab572cd6afb74d6d3303d3393dbaf6c06">init</a> (SDL_Window *window, const vkCore::Surface *surface, vk::Extent2D swapchainImageExtent, vk::RenderPass renderPass)</td></tr>
+<tr class="memdesc:ab572cd6afb74d6d3303d3393dbaf6c06"><td class="mdescLeft">&#160;</td><td class="mdescRight">Creates the GUI and all required Vulkan components.  <a href="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_gui.html#ab572cd6afb74d6d3303d3393dbaf6c06">More...</a><br /></td></tr>
+<tr class="separator:ab572cd6afb74d6d3303d3393dbaf6c06"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:af1bbc6bf62822168f9d28e42fd1345e5"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_gui.html#af1bbc6bf62822168f9d28e42fd1345e5">recreate</a> (vk::Extent2D swapchainImageExtent)</td></tr>
 <tr class="memdesc:af1bbc6bf62822168f9d28e42fd1345e5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Used to recreate the GUI in case the window size was changed.  <a href="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_gui.html#af1bbc6bf62822168f9d28e42fd1345e5">More...</a><br /></td></tr>
 <tr class="separator:af1bbc6bf62822168f9d28e42fd1345e5"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -222,8 +222,8 @@ Public Member Functions</h2></td></tr>
 
 </div>
 </div>
-<a id="a872d3b5dd0876f2412bd6ee64cfc1285"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a872d3b5dd0876f2412bd6ee64cfc1285">&#9670;&nbsp;</a></span>init()</h2>
+<a id="ab572cd6afb74d6d3303d3393dbaf6c06"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab572cd6afb74d6d3303d3393dbaf6c06">&#9670;&nbsp;</a></span>init()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -237,7 +237,7 @@ Public Member Functions</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">const <a class="el" href="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_surface.html">Surface</a> *&#160;</td>
+          <td class="paramtype">const vkCore::Surface *&#160;</td>
           <td class="paramname"><em>surface</em>, </td>
         </tr>
         <tr>
@@ -263,7 +263,7 @@ Public Member Functions</h2></td></tr>
 <p>Creates the GUI and all required Vulkan components. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">surface</td><td>A pointer to a <a class="el" href="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_surface.html" title="A wrapper class for a Vulkan surface.">RAYEX_NAMESPACE::Surface</a> object. </td></tr>
+    <tr><td class="paramname">surface</td><td>A pointer to a RAYEX_NAMESPACE::Surface object. </td></tr>
     <tr><td class="paramname">swapchainImageExtent</td><td>The extent of the swapchain images. </td></tr>
   </table>
   </dd>

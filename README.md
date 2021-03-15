@@ -91,4 +91,4 @@ int main( )
 - [ ] Further post processing features
 
 ### Documentation
-Extensive documentation of all classes and functions can be found [here](https://chillpert.github.io/rayex/html/index.html).
+An extensive documentation of all classes and functions can be found [here](https://chillpert.github.io/rayex/html/index.html).

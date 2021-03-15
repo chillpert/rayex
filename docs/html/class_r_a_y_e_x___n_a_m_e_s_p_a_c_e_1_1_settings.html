@@ -109,13 +109,13 @@ $(document).ready(function(){initNavTree('class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:a971ae0e67209a44e3ea350924ab22830"><td class="memItemLeft" align="right" valign="top">auto&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_settings.html#a971ae0e67209a44e3ea350924ab22830">getRecursionDepth</a> () const -&gt; uint32_t</td></tr>
-<tr class="separator:a971ae0e67209a44e3ea350924ab22830"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a2219f20482a7eca65a8f8cd819b75d45"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_settings.html#a2219f20482a7eca65a8f8cd819b75d45">setRecursionDepth</a> (uint32_t recursionDepth)</td></tr>
-<tr class="memdesc:a2219f20482a7eca65a8f8cd819b75d45"><td class="mdescLeft">&#160;</td><td class="mdescRight">Used to set the recursion depth.  <a href="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_settings.html#a2219f20482a7eca65a8f8cd819b75d45">More...</a><br /></td></tr>
-<tr class="separator:a2219f20482a7eca65a8f8cd819b75d45"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a272c5032d8509892f7ee876d65fcdfe2"><td class="memItemLeft" align="right" valign="top">auto&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_settings.html#a272c5032d8509892f7ee876d65fcdfe2">getMaxRecursionDepth</a> () const -&gt; uint32_t</td></tr>
-<tr class="separator:a272c5032d8509892f7ee876d65fcdfe2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af3f3b1866e7523db6be4179e63ba1e90"><td class="memItemLeft" align="right" valign="top">auto&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_settings.html#af3f3b1866e7523db6be4179e63ba1e90">getPathDepth</a> () const -&gt; uint32_t</td></tr>
+<tr class="separator:af3f3b1866e7523db6be4179e63ba1e90"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2be035bb411588e1f262f323cff87731"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_settings.html#a2be035bb411588e1f262f323cff87731">setPathDepth</a> (uint32_t recursionDepth)</td></tr>
+<tr class="memdesc:a2be035bb411588e1f262f323cff87731"><td class="mdescLeft">&#160;</td><td class="mdescRight">Used to set the path depth.  <a href="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_settings.html#a2be035bb411588e1f262f323cff87731">More...</a><br /></td></tr>
+<tr class="separator:a2be035bb411588e1f262f323cff87731"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2d14d58f91d69177df062bb546422cf1"><td class="memItemLeft" align="right" valign="top">auto&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_settings.html#a2d14d58f91d69177df062bb546422cf1">getMaxPathDepth</a> () const -&gt; uint32_t</td></tr>
+<tr class="separator:a2d14d58f91d69177df062bb546422cf1"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a3fbc4ba4e79dcb84f8065d8657cd09d8"><td class="memItemLeft" align="right" valign="top">auto&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_settings.html#a3fbc4ba4e79dcb84f8065d8657cd09d8">getClearColor</a> () const -&gt; const glm::vec4 &amp;</td></tr>
 <tr class="separator:a3fbc4ba4e79dcb84f8065d8657cd09d8"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a7c23cd33060112e22df368eeb8fc4c62"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_settings.html#a7c23cd33060112e22df368eeb8fc4c62">setClearColor</a> (const glm::vec4 &amp;clearColor)</td></tr>
@@ -174,7 +174,7 @@ Friends</h2></td></tr>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Exposes all graphic settings supported by the renderer. </p>
 <p>Any necessary pipeline recreations and swapchain recreations will not be performed at the point of calling any setter but instead the next time the renderer will be updated. </p><dl class="section warning"><dt>Warning</dt><dd>Any function that sets the maximum of a given entity needs to be called before <a class="el" href="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_rayex.html#a7ab92b96ef9c93d84dced77b0ee2cc4b" title="Initializes the renderer.">RAYEX_NAMESPACE::Rayex::init()</a>.</dd></dl>
-<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000004">Todo:</a></b></dt><dd>Add a setUseTotalPathsOnly( bool flag ) </dd></dl>
+<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000003">Todo:</a></b></dt><dd>Add a setUseTotalPathsOnly( bool flag ) </dd></dl>
 </div><h2 class="groupheader">Member Function Documentation</h2>
 <a id="a8e94a1b47ab849117f0e97bf74332bb0"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a8e94a1b47ab849117f0e97bf74332bb0">&#9670;&nbsp;</a></span>getAssetsPath()</h2>
@@ -228,8 +228,8 @@ Friends</h2></td></tr>
 
 </div>
 </div>
-<a id="a272c5032d8509892f7ee876d65fcdfe2"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a272c5032d8509892f7ee876d65fcdfe2">&#9670;&nbsp;</a></span>getMaxRecursionDepth()</h2>
+<a id="a2d14d58f91d69177df062bb546422cf1"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2d14d58f91d69177df062bb546422cf1">&#9670;&nbsp;</a></span>getMaxPathDepth()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -238,7 +238,7 @@ Friends</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">auto RAYEX_NAMESPACE::Settings::getMaxRecursionDepth </td>
+          <td class="memname">auto RAYEX_NAMESPACE::Settings::getMaxPathDepth </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
           <td> const -&gt; uint32_t </td>
@@ -250,7 +250,33 @@ Friends</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
-<dl class="section return"><dt>Returns</dt><dd>Returns the maximum recursion depth on the GPU. </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>Returns the maximum path depth on the GPU. </dd></dl>
+
+</div>
+</div>
+<a id="af3f3b1866e7523db6be4179e63ba1e90"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af3f3b1866e7523db6be4179e63ba1e90">&#9670;&nbsp;</a></span>getPathDepth()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">auto RAYEX_NAMESPACE::Settings::getPathDepth </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const -&gt; uint32_t </td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<dl class="section return"><dt>Returns</dt><dd>Returns the path depth. </dd></dl>
 
 </div>
 </div>
@@ -276,32 +302,6 @@ Friends</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
-
-</div>
-</div>
-<a id="a971ae0e67209a44e3ea350924ab22830"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a971ae0e67209a44e3ea350924ab22830">&#9670;&nbsp;</a></span>getRecursionDepth()</h2>
-
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">auto RAYEX_NAMESPACE::Settings::getRecursionDepth </td>
-          <td>(</td>
-          <td class="paramname"></td><td>)</td>
-          <td> const -&gt; uint32_t </td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-<dl class="section return"><dt>Returns</dt><dd>Returns the recursion depth. </dd></dl>
 
 </div>
 </div>
@@ -567,6 +567,32 @@ Friends</h2></td></tr>
 
 </div>
 </div>
+<a id="a2be035bb411588e1f262f323cff87731"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2be035bb411588e1f262f323cff87731">&#9670;&nbsp;</a></span>setPathDepth()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void RAYEX_NAMESPACE::Settings::setPathDepth </td>
+          <td>(</td>
+          <td class="paramtype">uint32_t&#160;</td>
+          <td class="paramname"><em>recursionDepth</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Used to set the path depth. </p>
+<p>The function will trigger a pipeline recreation as soon as possible unless it was explicitely disabled using <a class="el" href="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_settings.html#ac444874c6f8feb0a7c4385bc17728176" title="Used to toggle the automatic pipeline recreation.">setAutomaticPipelineRefresh(bool)</a>. If a value higher than the device's maximum supported value is set, it will use the maximum value instead. </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">recursionDepth</td><td>The new value for the recursion depth. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
 <a id="a25bcf507ecb541403562560a520f7277"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a25bcf507ecb541403562560a520f7277">&#9670;&nbsp;</a></span>setPerPixelSampleRate()</h2>
 
@@ -582,32 +608,6 @@ Friends</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-
-</div>
-</div>
-<a id="a2219f20482a7eca65a8f8cd819b75d45"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a2219f20482a7eca65a8f8cd819b75d45">&#9670;&nbsp;</a></span>setRecursionDepth()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void RAYEX_NAMESPACE::Settings::setRecursionDepth </td>
-          <td>(</td>
-          <td class="paramtype">uint32_t&#160;</td>
-          <td class="paramname"><em>recursionDepth</em></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Used to set the recursion depth. </p>
-<p>The function will trigger a pipeline recreation as soon as possible unless it was explicitely disabled using <a class="el" href="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_settings.html#ac444874c6f8feb0a7c4385bc17728176" title="Used to toggle the automatic pipeline recreation.">setAutomaticPipelineRefresh(bool)</a>. If a value higher than the device's maximum supported value is set, it will use the maximum value instead. </p><dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">recursionDepth</td><td>The new value for the recursion depth. </td></tr>
-  </table>
-  </dd>
-</dl>
 
 </div>
 </div>

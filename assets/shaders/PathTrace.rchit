@@ -46,7 +46,7 @@ layout( push_constant ) uniform Constants
   vec4 clearColor;
   int frameCount;
   uint sampleRatePerPixel;
-  uint maxRecursionDepth;
+  uint maxPathDepth;
   bool useEnvironmentMap;
 
   uint padding0;
@@ -69,48 +69,6 @@ Vertex unpackVertex( uint index, uint geometryIndex )
   return v;
 }
 
-vec3 getAmbientLight( Material mat, vec2 texCoord )
-{
-  const float ambientStrength = 0.1;
-
-  vec3 ambient = mat.ambient.xyz;
-  if ( mat.ambient.w != -1.0 )
-  {
-    ambient *= texture( textures[nonuniformEXT( int( mat.ambient.w ) )], texCoord ).xyz;
-  }
-
-  return ambientStrength * ambient;
-}
-
-vec3 getDiffuseLight( Material mat, vec2 texCoord )
-{
-  vec3 diffuse = mat.diffuse.xyz;
-  if ( mat.diffuse.w != -1.0 )
-  {
-    diffuse *= texture( textures[nonuniformEXT( int( mat.diffuse.w ) )], texCoord ).xyz;
-  }
-
-  return diffuse;
-}
-
-vec3 getSpecularLight( Material mat, vec2 texCoord, vec3 viewDir, vec3 lightDir, vec3 normal )
-{
-  const float shininess        = max( mat.ns, 4.0 );
-  const float specularStrength = 0.5;
-
-  viewDir         = normalize( -viewDir );
-  vec3 reflectDir = reflect( -lightDir, normal );
-  float specular  = pow( max( dot( viewDir, reflectDir ), 0.0 ), shininess );
-
-  vec3 specularColor = mat.specular.xyz;
-  if ( mat.specular.w != -1.0 )
-  {
-    specularColor *= texture( textures[nonuniformEXT( int( mat.specular.w ) )], texCoord ).xyz;
-  }
-
-  return specularStrength * specular * specularColor;
-}
-
 void main( )
 {
   uint geometryIndex = geometryInstances.i[gl_InstanceID].geometryIndex;
@@ -124,20 +82,18 @@ void main( )
   Vertex v2 = unpackVertex( ind.z, geometryIndex );
 
   const vec3 barycentrics = vec3( 1.0 - attribs.x - attribs.y, attribs.x, attribs.y );
+
   // Computing the normal at hit position
   vec3 normal = v0.normal * barycentrics.x + v1.normal * barycentrics.y + v2.normal * barycentrics.z;
 
   // Transforming the normal to world space
-  normal = normalize( vec3( geometryInstances.i[gl_InstanceID].transformIT * vec4( normal, 0.0 ) ) );
+  normal = normalize( vec3( normal * gl_WorldToObjectEXT ) );
 
-  // Computing the coordinates of the hit position
-  vec3 worldPos = v0.pos * barycentrics.x + v1.pos * barycentrics.y + v2.pos * barycentrics.z;
-  // Transforming the position to world space
-  worldPos = vec3( geometryInstances.i[gl_InstanceID].transform * vec4( worldPos, 1.0 ) );
+  vec3 worldPos = gl_WorldRayOriginEXT + gl_WorldRayDirectionEXT * gl_HitTEXT;
 
   vec2 texCoord = v0.texCoord * barycentrics.x + v1.texCoord * barycentrics.y + v2.texCoord * barycentrics.z;
 
-  // Access the meshes SSBO to figure out to which submesh the current triangle belongs and retrieve its material.
+  // Access the meshes SSBO to figure out to which sub-mesh the current triangle belongs and retrieve its material.
   Material mat;
   bool found       = false;
   int subMeshCount = meshes[nonuniformEXT( geometryIndex )].m.length( );
@@ -160,10 +116,8 @@ void main( )
     }
   }
 
-  // Lighting
-  vec3 ambient  = vec3( 0.0 );
+  // Colors
   vec3 diffuse  = vec3( 0.0 );
-  vec3 specular = vec3( 0.0 );
   vec3 emission = vec3( 0.0 ); // emittance / emissiveFactor
 
   if ( found )
@@ -173,59 +127,96 @@ void main( )
     // Stop recursion if a light source is hit.
     if ( emission != vec3( 0.0 ) )
     {
-      ray.depth = maxRecursionDepth + 1;
+      ray.depth = maxPathDepth + 1;
     }
 
-    if ( mat.illum == 0 )
+    // Retrieve material textures and colors
+    diffuse = mat.diffuse.xyz;
+    if ( mat.diffuse.w != -1.0 )
     {
-      diffuse = getDiffuseLight( mat, texCoord );
-    }
-    else if ( mat.illum == 1 )
-    {
-      ambient = getAmbientLight( mat, texCoord );
-      diffuse = getDiffuseLight( mat, texCoord );
-    }
-    else if ( mat.illum == 2 )
-    {
-      ambient  = getAmbientLight( mat, texCoord );
-      diffuse  = getDiffuseLight( mat, texCoord );
-      specular = getSpecularLight( mat, texCoord, gl_WorldRayDirectionEXT, ray.rayDirection, normal ); // Param probably wrong
-    }
-    else if ( mat.illum == 3 )
-    {
-      diffuse  = getDiffuseLight( mat, texCoord );
-      specular = getSpecularLight( mat, texCoord, gl_WorldRayDirectionEXT, ray.rayDirection, normal ); // Param probably wrong
+      diffuse *= texture( textures[nonuniformEXT( int( mat.diffuse.w ) )], texCoord ).xyz;
     }
   }
 
   // Pick a random direction from here and keep going.
   vec3 rayOrigin = worldPos;
-  vec3 rayDirection;
+  vec3 nextDirection;
 
-  // Perfect reflection
-  if ( found && mat.illum == 3 )
+  // Metallic reflection
+  if ( found && mat.illum == 2 )
   {
-    rayDirection   = reflect( gl_WorldRayDirectionEXT, normal ); // Normal is not correct
+    const vec3 reflectionDirection = reflect( ray.direction, normal ); // Normal is not correct for sub meshes
+
+    nextDirection  = reflectionDirection + mat.fuzziness * samplingHemisphere( ray.seed, normal );
     ray.reflective = true;
   }
-  // Random sampling direction of hemisphere
-  else
+  // @todo Resulting background color is inverted for any 2D surface
+  // Dielectric reflection ( Peter Shirley's "Ray Tracing in one Weekend" Chapter 9 )
+  else if ( found && mat.illum == 1 )
   {
-    vec3 tangent, bitangent;
-    createCoordinateSystem( normal, tangent, bitangent );
-    rayDirection = samplingHemisphere( ray.seed, tangent, bitangent, normal );
+    vec3 outwardNormal;
+    vec3 reflected = reflect( ray.direction, normal );
+    float niOverNt;
+    vec3 refracted;
+    float reflectProb;
+    float cosine;
+
+    // Back of triangle - invert normal
+    if ( gl_HitKindEXT == gl_HitKindBackFacingTriangleEXT )
+    {
+      outwardNormal = -normal;
+      niOverNt      = mat.ni;
+      cosine        = dot( ray.direction, normal ) / ray.direction.length( );
+      cosine        = sqrt( 1 - mat.ni * mat.ni * ( 1 - cosine * cosine ) );
+    }
+    // Front of triangle - take surface normal (world space)
+    else
+    {
+      outwardNormal = normal;
+      niOverNt      = 1.0 / mat.ni;
+      cosine        = -dot( ray.direction, normal ) / ray.direction.length( );
+    }
+
+    if ( refract2( ray.direction, outwardNormal, niOverNt, refracted ) )
+    {
+      reflectProb = Schlick( cosine, mat.ni );
+    }
+    else
+    {
+      reflectProb = 1.0;
+    }
+
+    if ( rnd( ray.seed ) < reflectProb )
+    {
+      nextDirection = samplingHemisphere( ray.seed, normal );
+    }
+    else
+    {
+      nextDirection  = refracted;
+      ray.refractive = true;
+      ray.reflective = true;
+    }
+
+    diffuse = vec3( 1.0, 1.0, 1.0 );
+  }
+  // Diffuse reflection
+  else if ( found && mat.illum == 0 )
+  {
+    nextDirection  = samplingHemisphere( ray.seed, normal );
+    ray.reflective = false;
   }
 
   // Probability of the new ray (cosine-distributed)
   const float p = 1 / M_PI;
 
-  // Compute the BRDF for this ray (assuming Lambertian reflection).
-  vec3 BRDF = ( ambient + diffuse + specular ) / M_PI;
+  // BSDF (Divide by Pi to ensure energy conversation)
+  vec3 BSDF = diffuse / M_PI;
 
-  float cosTheta = dot( rayDirection, normal );
+  // Assume Lambertian reflection
+  float cosTheta = dot( nextDirection, normal );
 
-  ray.rayOrigin    = rayOrigin;
-  ray.rayDirection = rayDirection;
-  ray.weight       = BRDF * cosTheta / p;
-  ray.hitValue     = emission;
+  ray.origin    = rayOrigin;
+  ray.direction = nextDirection;
+  ray.emission  = emission;
+  ray.weight    = BSDF * cosTheta / p;
 }

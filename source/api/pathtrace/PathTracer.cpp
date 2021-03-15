@@ -12,13 +12,9 @@ namespace RAYEX_NAMESPACE
 
   void PathTracer::init( )
   {
-    auto pipelineProperties          = vkCore::global::physicalDevice.getProperties2<vk::PhysicalDeviceProperties2, vk::PhysicalDeviceRayTracingPipelinePropertiesKHR>( );
-    _capabilities.pipelineProperties = pipelineProperties.get<vk::PhysicalDeviceRayTracingPipelinePropertiesKHR>( );
-
-    /*
-    auto accelerationStructureProperties          = vkCore::global::physicalDevice.getProperties2<vk::PhysicalDeviceProperties2, vk::PhysicalDeviceAccelerationStructurePropertiesKHR>( );
-    _capabilities.accelerationStructureProperties = accelerationStructureProperties.get<vk::PhysicalDeviceAccelerationStructurePropertiesKHR>( );
-    */
+    auto pipelineProperties                       = vkCore::global::physicalDevice.getProperties2<vk::PhysicalDeviceProperties2, vk::PhysicalDeviceRayTracingPipelinePropertiesKHR, vk::PhysicalDeviceAccelerationStructurePropertiesKHR>( );
+    _capabilities.pipelineProperties              = pipelineProperties.get<vk::PhysicalDeviceRayTracingPipelinePropertiesKHR>( );
+    _capabilities.accelerationStructureProperties = pipelineProperties.get<vk::PhysicalDeviceAccelerationStructurePropertiesKHR>( );
   }
 
   void PathTracer::destroy( )
@@ -33,8 +29,6 @@ namespace RAYEX_NAMESPACE
     _tlas.as.destroy( );
 
     _blas_.clear( );
-
-    _indices.clear( );
   }
 
   auto PathTracer::modelToBlas( const vkCore::StorageBuffer<Vertex>& vertexBuffer, const vkCore::StorageBuffer<uint32_t>& indexBuffer, bool allowTransforms ) const -> Blas
@@ -54,9 +48,9 @@ namespace RAYEX_NAMESPACE
                                                                      indexAddress,                       // indexData
                                                                      { } );                              // transformData
 
-    vk::AccelerationStructureGeometryKHR asGeom( vk::GeometryTypeKHR::eTriangles,    // geometryType
-                                                 trianglesData,                      // geometry
-                                                 vk::GeometryFlagBitsKHR::eOpaque ); // flags
+    vk::AccelerationStructureGeometryKHR asGeom( vk::GeometryTypeKHR::eTriangles,                         // geometryType
+                                                 trianglesData,                                           // geometry
+                                                 vk::GeometryFlagBitsKHR::eNoDuplicateAnyHitInvocation ); // flags
 
     vk::AccelerationStructureBuildRangeInfoKHR offset( indexBuffer.getCount( ) / 3, // primitiveCount
                                                        0,                           // primitiveOffset
@@ -139,12 +133,10 @@ namespace RAYEX_NAMESPACE
         vkCore::global::device.destroyAccelerationStructureKHR( blas.as.as );
       }
 
-      /*
       if ( !blas.as.memory )
       {
         vkCore::global::device.freeMemory( blas.as.memory );
       }
-      */
 
       if ( !blas.as.buffer )
       {
@@ -171,8 +163,8 @@ namespace RAYEX_NAMESPACE
       vk::AccelerationStructureBuildSizesInfoKHR sizeInfo;
       vkCore::global::device.getAccelerationStructureBuildSizesKHR( vk::AccelerationStructureBuildTypeKHR::eDevice, &buildInfo, maxPrimitiveCount.data( ), &sizeInfo );
 
-      // Create accleration structure
-      // @todo Potentially, pass size and type to initAccelerationStructure and return createInfo instead.
+      // Create acceleration structure
+      // @todo Potentially, pass size and type to initAccelerationStructure.
       vk::AccelerationStructureCreateInfoKHR createInfo( { },                                            // createFlags
                                                          { },                                            // buffer
                                                          { },                                            // offset
@@ -316,7 +308,9 @@ namespace RAYEX_NAMESPACE
       compactionCmdBuf.submitToQueue( vkCore::global::graphicsQueue );
 
       for ( auto& as : cleanupAS )
+      {
         as.destroy( );
+      }
 
       RX_VERBOSE( "BLAS: Compaction Results: ", totalOriginalSize, " -> ", totalCompactSize, " | Total: ", totalOriginalSize - totalCompactSize );
     }
@@ -497,14 +491,6 @@ namespace RAYEX_NAMESPACE
 
   void PathTracer::createPipeline( const std::vector<vk::DescriptorSetLayout>& descriptorSetLayouts, Settings* settings )
   {
-    // Check if selected recursion depth exceeds maximum supported value.
-    auto pathDepth = settings->getPathDepth( );
-    if ( pathDepth > _capabilities.pipelineProperties.maxRayRecursionDepth )
-    {
-      RX_WARN( "Selected recursion depth of ", pathDepth, " exceeds maximum of ", _capabilities.pipelineProperties.maxRayRecursionDepth, ". Using maximum value instead." );
-      settings->setPathDepth( _capabilities.pipelineProperties.maxRayRecursionDepth );
-    }
-
     //uint32_t anticipatedDirectionalLights = settings->maxDirectionalLights.has_value( ) ? settings->maxDirectionalLights.value( ) : components::maxDirectionalLights;
     //uint32_t anticipatedPointLights       = settings->maxPointLights.has_value( ) ? settings->maxPointLights.value( ) : components::maxPointLights;
     //Util::processShaderMacros( "shaders/PathTrace.rchit", anticipatedDirectionalLights, anticipatedPointLights, components::modelCount );
@@ -512,7 +498,7 @@ namespace RAYEX_NAMESPACE
     auto rgen = vkCore::initShaderModuleUnique( components::assetsPath + "shaders/PathTrace.rgen", RX_GLSLC_PATH );
     auto miss = vkCore::initShaderModuleUnique( components::assetsPath + "shaders/PathTrace.rmiss", RX_GLSLC_PATH );
     auto chit = vkCore::initShaderModuleUnique( components::assetsPath + "shaders/PathTrace.rchit", RX_GLSLC_PATH );
-    //auto ahit = vkCore::initShaderModuleUnique( components::assetsPath + "shaders/PathTrace.rahit", RX_GLSLC_PATH );
+    auto ahit = vkCore::initShaderModuleUnique( components::assetsPath + "shaders/PathTrace.rahit", RX_GLSLC_PATH );
     //auto ahit1 = vk::Initializer::initShaderModuleUnique( "shaders/PathTrace1.rahit" );
     //auto missShadow = vk::Initializer::initShaderModuleUnique( "shaders/PathTraceShadow.rmiss" );
 
@@ -531,12 +517,12 @@ namespace RAYEX_NAMESPACE
     _layout = vkCore::global::device.createPipelineLayoutUnique( layoutInfo );
     RX_ASSERT( _layout.get( ), "Failed to create pipeline layout for path tracing pipeline." );
 
-    std::array<vk::PipelineShaderStageCreateInfo, 3> shaderStages;
+    std::array<vk::PipelineShaderStageCreateInfo, 4> shaderStages;
     shaderStages[0] = vkCore::getPipelineShaderStageCreateInfo( vk::ShaderStageFlagBits::eRaygenKHR, rgen.get( ) );
     shaderStages[1] = vkCore::getPipelineShaderStageCreateInfo( vk::ShaderStageFlagBits::eMissKHR, miss.get( ) );
     //shaderStages[2] =vkCore::getPipelineShaderStageCreateInfo( vk::ShaderStageFlagBits::eMissKHR, missShadow.get( ) );
     shaderStages[2] = vkCore::getPipelineShaderStageCreateInfo( vk::ShaderStageFlagBits::eClosestHitKHR, chit.get( ) );
-    //shaderStages[3] = vkCore::getPipelineShaderStageCreateInfo( vk::ShaderStageFlagBits::eAnyHitKHR, ahit.get( ) );
+    shaderStages[3] = vkCore::getPipelineShaderStageCreateInfo( vk::ShaderStageFlagBits::eAnyHitKHR, ahit.get( ) );
     //shaderStages[4] = vkCore::getPipelineShaderStageCreateInfo( vk::ShaderStageFlagBits::eAnyHitKHR, ahit1.get( ) );
 
     // Set up path tracing shader groups.
@@ -560,11 +546,11 @@ namespace RAYEX_NAMESPACE
     //groups[2].type          = vk::RayTracingShaderGroupTypeKHR::eGeneral;
 
     groups[2].closestHitShader = 2;
-    //groups[2].anyHitShader     = 3;
-    groups[2].type = vk::RayTracingShaderGroupTypeKHR::eTrianglesHitGroup;
+    groups[2].anyHitShader     = 3;
+    groups[2].type             = vk::RayTracingShaderGroupTypeKHR::eTrianglesHitGroup;
 
     //groups[3].closestHitShader = 4;
-    //groups[3].anyHitShader = 4;
+    //groups[3].anyHitShader = 3;
     //groups[3].type         = vk::RayTracingShaderGroupTypeKHR::eTrianglesHitGroup;
 
     _shaderGroups = static_cast<uint32_t>( groups.size( ) );
@@ -574,7 +560,7 @@ namespace RAYEX_NAMESPACE
                                                     shaderStages.data( ),                          // pStages
                                                     static_cast<uint32_t>( groups.size( ) ),       // groupCount
                                                     groups.data( ),                                // pGroups
-                                                    settings->getPathDepth( ),                     // maxPipelineRayRecursionDepth
+                                                    0,                                             // maxPipelineRayRecursionDepth
                                                     { },                                           // pLibraryInfo
                                                     nullptr,                                       // pLibraryInterface
                                                     { },                                           // pDynamicState
@@ -599,7 +585,7 @@ namespace RAYEX_NAMESPACE
 
     vk::StridedDeviceAddressRegionKHR bufferRegionMiss( sbtAddress + ( 1U * progSize ), // deviceAddress
                                                         progSize,                       // stride
-                                                        progSize * 1 );                 // size
+                                                        progSize * 2 );                 // size
 
     vk::StridedDeviceAddressRegionKHR bufferRegionChit( sbtAddress + ( 2U * progSize ), // deviceAddress
                                                         progSize,                       // stride
@@ -623,15 +609,11 @@ namespace RAYEX_NAMESPACE
     // TLAS
     _descriptors.bindings.add( 0,
                                vk::DescriptorType::eAccelerationStructureKHR,
-                               vk::ShaderStageFlagBits::eRaygenKHR | vk::ShaderStageFlagBits::eClosestHitKHR,
-                               1,
-                               vk::DescriptorBindingFlagBits::eUpdateUnusedWhilePending | vk::DescriptorBindingFlagBits::ePartiallyBound );
+                               vk::ShaderStageFlagBits::eRaygenKHR );
     // Output image
     _descriptors.bindings.add( 1,
                                vk::DescriptorType::eStorageImage,
-                               vk::ShaderStageFlagBits::eRaygenKHR,
-                               1,
-                               vk::DescriptorBindingFlagBits::eUpdateUnusedWhilePending | vk::DescriptorBindingFlagBits::ePartiallyBound );
+                               vk::ShaderStageFlagBits::eRaygenKHR );
 
     _descriptors.layout = _descriptors.bindings.initLayoutUnique( );
     _descriptors.pool   = _descriptors.bindings.initPoolUnique( vkCore::global::swapchainImageCount );

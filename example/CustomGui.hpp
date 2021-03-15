@@ -161,6 +161,24 @@ private:
         {
           _renderer->scene( ).removeEnvironmentMap( );
         }
+
+        if ( ImGui::Button( "Spawn 500 spheres" ) )
+        {
+          for ( int i = 0; i < 500; ++i )
+          {
+            addSphere( _renderer );
+          }
+        }
+
+        ImGui::SameLine( );
+
+        if ( ImGui::Button( "Spawn 500 boxes" ) )
+        {
+          for ( int i = 0; i < 500; ++i )
+          {
+            addBox( _renderer );
+          }
+        }
       }
 
       ImGui::NewLine( );
@@ -190,6 +208,16 @@ private:
 
         std::string fpsDisplay = "FPS: " + std::to_string( rx::Time::getFramesPerSecond( ) );
         ImGui::Text( fpsDisplay.c_str( ) );
+
+        static float length = 5.0F;
+        ImGui::SliderFloat( "Length", &length, 5.0F, 60.0F );
+
+        ImGui::SameLine( );
+
+        if ( ImGui::Button( "Start" ) )
+        {
+          rx::Time::startBenchmark( length );
+        }
       }
 
       ImGui::NewLine( );
@@ -219,9 +247,8 @@ private:
           _renderer->settings( ).setPerPixelSampleRate( perPixelSampleRate );
         }
 
-        static int maxDepth = static_cast<int>( _renderer->settings( ).getMaxPathDepth( ) );
-        int depth           = static_cast<int>( _renderer->settings( ).getPathDepth( ) );
-        if ( ImGui::SliderInt( "Path depth", &depth, 0, maxDepth ) )
+        int depth = static_cast<int>( _renderer->settings( ).getPathDepth( ) );
+        if ( ImGui::SliderInt( "Path depth", &depth, 0, 100 ) )
         {
           _renderer->settings( ).setPathDepth( static_cast<uint32_t>( depth ) );
         }
@@ -238,9 +265,9 @@ private:
 
         ImGui::SameLine( );
 
-        if ( ImGui::Button( "Debug" ) )
+        if ( ImGui::Button( "Animations" ) )
         {
-          loadScene( _renderer, Level::eDebug );
+          loadScene( _renderer, Level::eAnimations );
         }
 
         ImGui::SameLine( );
@@ -252,9 +279,16 @@ private:
 
         ImGui::SameLine( );
 
-        if ( ImGui::Button( "Reflections" ) )
+        if ( ImGui::Button( "Mirrors" ) )
         {
-          loadScene( _renderer, Level::eReflections );
+          loadScene( _renderer, Level::eMirrors );
+        }
+
+        ImGui::SameLine( );
+
+        if ( ImGui::Button( "Stress Test" ) )
+        {
+          loadScene( _renderer, Level::eStressTest );
         }
       }
     }

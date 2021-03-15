@@ -23,12 +23,10 @@ namespace RAYEX_NAMESPACE
   struct PathTracingCapabilities
   {
     vk::PhysicalDeviceRayTracingPipelinePropertiesKHR pipelineProperties; ///< The physical device's path tracing capabilities.
+    vk::PhysicalDeviceAccelerationStructurePropertiesKHR accelerationStructureProperties;
     /*
     vk::PhysicalDeviceRayTracingPipelineFeaturesKHR pipelineFeatures;
-
-    vk::PhysicalDeviceAccelerationStructurePropertiesKHR accelerationStructureProperties;
     vk::PhysicalDeviceAccelerationStructureFeaturesKHR accelerationStructureFeatures;
-
     vk::PhysicalDeviceRayQueryFeaturesKHR rayQueryFeatures;
     */
   };
@@ -126,7 +124,6 @@ namespace RAYEX_NAMESPACE
     uint32_t _shaderGroups;
     PathTracingCapabilities _capabilities;
     std::vector<Blas> _blas_;
-    std::map<uint32_t, std::pair<size_t, bool>> _indices;
     Tlas _tlas; ///< The top level acceleration structure.
     vkCore::Buffer _instanceBuffer;
     vkCore::Buffer _sbtBuffer; ///< The shader binding table buffer.

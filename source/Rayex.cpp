@@ -55,9 +55,6 @@ namespace RAYEX_NAMESPACE
   {
     if ( !_running )
     {
-      // Print results of the session.
-      rx::Time::benchmark( );
-
       RX_INFO( "Shutting down Rayex." );
     }
 

@@ -1,0 +1,4 @@
+<map id="RAYEX_NAMESPACE::Scene" name="RAYEX_NAMESPACE::Scene">
+<area shape="rect" id="node1" title="Stores all geoemtry, geometry instances and light sources." alt="" coords="18,688,219,1601"/>
+<area shape="rect" id="node2" href="$class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_settings.html" title="Exposes all graphic settings supported by the renderer." alt="" coords="5,5,232,625"/>
+</map>

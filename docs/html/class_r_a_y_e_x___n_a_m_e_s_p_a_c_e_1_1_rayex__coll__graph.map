@@ -1,0 +1,11 @@
+<map id="RAYEX_NAMESPACE::Rayex" name="RAYEX_NAMESPACE::Rayex">
+<area shape="rect" id="node1" title="The main user interface." alt="" coords="364,2399,564,2637"/>
+<area shape="rect" id="node2" href="$class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_api.html" title="Initializes and owns all Vulkan components and renders an image." alt="" coords="346,1848,582,2336"/>
+<area shape="rect" id="node3" href="$class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_scene.html" title="Stores all geoemtry, geometry instances and light sources." alt="" coords="176,872,377,1785"/>
+<area shape="rect" id="node4" href="$class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_settings.html" title="Exposes all graphic settings supported by the renderer." alt="" coords="35,189,262,809"/>
+<area shape="rect" id="node5" href="$class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_post_processing_renderer.html" title="The post processing renderer acts as a second render pass for enabling post processing operations,..." alt="" coords="401,1165,656,1492"/>
+<area shape="rect" id="node6" href="$class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_path_tracer.html" title="Manages the building process of the acceleration structures." alt="" coords="680,1004,907,1653"/>
+<area shape="rect" id="node7" href="$struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_tlas.html" title="A wrapper for a top level acceleration structure." alt="" coords="542,461,728,538"/>
+<area shape="rect" id="node8" href="$struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_acceleration_structure.html" title="A wrapper for a Vulkan acceleration Structure." alt="" coords="518,5,752,127"/>
+<area shape="rect" id="node9" href="$struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_path_tracing_capabilities.html" title=" " alt="" coords="752,453,984,545"/>
+</map>

@@ -15,7 +15,7 @@ namespace RAYEX_NAMESPACE
 
     auto getPipelineLayout( ) const -> const vk::PipelineLayout { return _pipelineLayout.get( ); }
 
-    void initDepthImage( vk::Extent2D extent );
+    //void initDepthImage( vk::Extent2D extent );
 
     void initRenderPass( vk::Format format );
 
@@ -35,8 +35,8 @@ namespace RAYEX_NAMESPACE
     void render( vk::CommandBuffer commandBuffer, vk::Extent2D size, size_t imageIndex );
 
   private:
-    vkCore::Image _depthImage;
-    vk::UniqueImageView _depthImageView;
+    //vkCore::Image _depthImage;
+    //vk::UniqueImageView _depthImageView;
 
     vkCore::RenderPass _renderPass;
 

@@ -1,5 +1,6 @@
 #define M_PI 3.141592
 
+// @Nvidia vk_ray_tracing_KHR tutorial
 // Generate a random unsigned int from two unsigned int values, using 16 pairs
 // of rounds of the Tiny Encryption Algorithm. See Zafar, Olano, and Curtis,
 // "GPU Random Numbers via the Tiny Encryption Algorithm"
@@ -19,6 +20,7 @@ uint tea( uint val0, uint val1 )
   return v0;
 }
 
+// @Nvidia vk_ray_tracing_KHR tutorial
 // Generate a random unsigned int in [0, 2^24) given the previous RNG state
 // using the Numerical Recipes linear congruential generator
 uint lcg( inout uint prev )
@@ -29,43 +31,44 @@ uint lcg( inout uint prev )
   return prev & 0x00FFFFFF;
 }
 
+// @Nvidia vk_ray_tracing_KHR tutorial
 // Generate a random float in [0, 1) given the previous RNG state
 float rnd( inout uint prev )
 {
   return ( float( lcg( prev ) ) / float( 0x01000000 ) );
 }
 
-// Randomly sampling around +Z
-vec3 samplingHemisphere( inout uint seed, in vec3 tangent, in vec3 bitangent, in vec3 normal )
+// Randomly sampling in hemisphere ( Peter Shirley's "Ray Tracing in one Weekend" )
+vec3 samplingHemisphere( inout uint seed, in vec3 normal )
 {
-  float u0 = clamp( rnd( seed ), 0.0, 3.0 );
-  float u1 = clamp( rnd( seed ), 0.0, 3.0 );
-  float sq = sqrt( u1 );
+  const float theta = M_PI * 2 * rnd( seed );  // Random in [0, 2pi]
+  const float u     = 2.0 * rnd( seed ) - 1.0; // Random in [-1, 1]
+  const float r     = sqrt( 1.0 - u * u );
+  vec3 rayDirection = normal + vec3( r * cos( theta ), r * sin( theta ), u );
 
-  vec3 direction;
-
-  // Sample direction.
-  direction.x = ( cos( 2 * M_PI * u0 ) * sq );
-  direction.y = ( sin( 2 * M_PI * u0 ) * sq );
-  direction.z = sqrt( 1.0 - u1 );
-
-  // Transform to local tangent space of the surface.
-  direction = direction.x * tangent + direction.y * bitangent + direction.z * normal;
-
-  return direction;
+  return normalize( rayDirection );
 }
 
-// Return the tangent and binormal from the incoming normal
-void createCoordinateSystem( in vec3 normal, out vec3 tangent, out vec3 bitangent )
+// Randomly sampling in hemisphere ( Peter Shirley's "Ray Tracing in one Weekend" )
+float Schlick( const float cosine, const float ni )
 {
-  if ( abs( normal.x ) > abs( normal.y ) )
+  float r0 = ( 1 - ni ) / ( 1 + ni );
+  r0 *= r0;
+  return r0 + ( 1 - r0 ) * pow( 1 - cosine, 5 );
+}
+
+bool refract2( inout vec3 v, inout vec3 n, float niOverNt, inout vec3 refracted )
+{
+  vec3 uv            = normalize( v );
+  float dt           = dot( uv, n );
+  float discriminant = 1.0 - niOverNt * niOverNt * ( 1 - dt * dt );
+  if ( discriminant > 0 )
   {
-    tangent = vec3( normal.z, 0, -normal.x ) / sqrt( normal.x * normal.x + normal.z * normal.z );
+    refracted = niOverNt * ( uv - n * dt ) - n * sqrt( discriminant );
+    return true;
   }
   else
   {
-    tangent = vec3( 0, -normal.z, normal.y ) / sqrt( normal.y * normal.y + normal.z * normal.z );
+    return false;
   }
-
-  bitangent = cross( normal, tangent );
 }

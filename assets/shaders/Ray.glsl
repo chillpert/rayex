@@ -1,12 +1,11 @@
 struct RayPayLoad
 {
-  vec3 rayDirection;
-  vec3 hitValue;
-  vec3 rayOrigin;
+  vec3 direction;
+  vec3 emission;
+  vec3 origin;
   vec3 weight;
-  vec3 attenuation;
   uint seed;
   uint depth;
-  int done;
   bool reflective;
+  bool refractive;
 };

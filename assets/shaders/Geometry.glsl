@@ -7,7 +7,7 @@ struct Material
 
   uint illum;
   float d;
-  float ns;
+  float fuzziness;
   float ni;
 };
 

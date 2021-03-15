@@ -4,6 +4,7 @@
 
 namespace RAYEX_NAMESPACE
 {
+  /*
   void PostProcessingRenderer::initDepthImage( vk::Extent2D extent )
   {
     vk::Format format = vkCore::getSupportedDepthFormat( vkCore::global::physicalDevice );
@@ -24,6 +25,7 @@ namespace RAYEX_NAMESPACE
 
     _depthImage.transitionToLayout( vk::ImageLayout::eDepthStencilAttachmentOptimal, &subresourceRange );
   }
+  */
 
   void PostProcessingRenderer::initRenderPass( vk::Format format )
   {
@@ -38,22 +40,8 @@ namespace RAYEX_NAMESPACE
                                                           { },                               // initialLayout
                                                           vk::ImageLayout::ePresentSrcKHR ); // finalLayout
 
-    // Depth attachment
-    vk::AttachmentDescription depthAttachmentDescription( { },                                                               // flags
-                                                          vkCore::getSupportedDepthFormat( vkCore::global::physicalDevice ), // format
-                                                          vk::SampleCountFlagBits::e1,                                       // samples
-                                                          vk::AttachmentLoadOp::eClear,                                      // loadOp
-                                                          { },                                                               // storeOp
-                                                          vk::AttachmentLoadOp::eClear,                                      // stencilLoadOp
-                                                          { },                                                               // stencilStoreOp
-                                                          { },                                                               // initialLayout
-                                                          vk::ImageLayout::eDepthStencilAttachmentOptimal );                 // finalLayout
-
     vk::AttachmentReference colorAttachmentReference( 0,                                          // attachment
                                                       vk::ImageLayout::eColorAttachmentOptimal ); // layout
-
-    vk::AttachmentReference depthAttachmentRef( 1,                                                 // attachment
-                                                vk::ImageLayout::eDepthStencilAttachmentOptimal ); // layout
 
     vk::SubpassDescription subpassDescription( { },                              // flags
                                                vk::PipelineBindPoint::eGraphics, // pipelineBindPoint
@@ -62,7 +50,7 @@ namespace RAYEX_NAMESPACE
                                                1,                                // colorAttachmentsCount
                                                &colorAttachmentReference,        // pColorAttachments
                                                nullptr,                          // pResolveAttachments
-                                               &depthAttachmentRef,              // pDepthStencilAttachment
+                                               nullptr,                          // pDepthStencilAttachment
                                                0,                                // preserveAttachemntCount
                                                nullptr );                        // pPreserveAttachments
 
@@ -74,7 +62,7 @@ namespace RAYEX_NAMESPACE
                                                vk::AccessFlagBits::eColorAttachmentRead | vk::AccessFlagBits::eColorAttachmentWrite, // dstAccessMask
                                                vk::DependencyFlagBits::eByRegion );                                                  // dependencyFlags
 
-    _renderPass.init( { colorAttachmentDescription, depthAttachmentDescription }, { subpassDescription }, { subpassDependencies } );
+    _renderPass.init( { colorAttachmentDescription }, { subpassDescription }, { subpassDependencies } );
   }
 
   void PostProcessingRenderer::initDescriptorSet( )
@@ -135,17 +123,6 @@ namespace RAYEX_NAMESPACE
                                                           VK_FALSE,                    // alphaToCoverageEnable
                                                           VK_FALSE );                  // alphaToOneEnable
 
-    vk::PipelineDepthStencilStateCreateInfo depthStencil( { },                         // flags
-                                                          VK_TRUE,                     // depthTestEnable
-                                                          VK_TRUE,                     // depthWriteEnable
-                                                          vk::CompareOp::eLessOrEqual, // depthCompareOp
-                                                          VK_FALSE,                    // depthBoundsTestEnable
-                                                          VK_FALSE,                    // stencilTestEnable
-                                                          { },                         // front
-                                                          { },                         // back
-                                                          0.0F,                        // minDepthBounds
-                                                          0.0F );                      // maxDepthBounds
-
     vk::PipelineColorBlendAttachmentState colorBlendAttachment( VK_FALSE,                                                                                                                            // blendEnable
                                                                 { },                                                                                                                                 // srcColorBlendFactor
                                                                 { },                                                                                                                                 // dstColorBlendFactor
@@ -197,7 +174,7 @@ namespace RAYEX_NAMESPACE
                                                &viewportState,                                // pViewportStage
                                                &rasterizer,                                   // pRasterizationState
                                                &multisampling,                                // pMultisampleState
-                                               &depthStencil,                                 // pDepthStencilState
+                                               nullptr,                                       // pDepthStencilState
                                                &colorBlending,                                // pColorBlendState
                                                &dynamicStateInfo,                             // pDynamicState
                                                _pipelineLayout.get( ),                        // layout

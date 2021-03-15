@@ -80,8 +80,13 @@ void main( )
 
   if ( found )
   {
+    // IDEA TO REFRACT HERE AND JUST UPDATE DIRECTION?
+    if ( mat.illum == 2 )
+    {
+      //ray.direction = refract( ray.direction, normal, niOverNt );
+    }
     // Transparency
-    if ( mat.d == 0.0 )
+    else if ( mat.d == 0.0 )
     {
       ignoreIntersectionEXT;
     }

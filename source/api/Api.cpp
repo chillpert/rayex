@@ -151,7 +151,7 @@ namespace RAYEX_NAMESPACE
     vkCore::global::transferCmdPool = _transferCmdPool.get( );
 
     // Post processing renderer
-    _postProcessingRenderer.initDepthImage( _surface.getExtent( ) );
+    //_postProcessingRenderer.initDepthImage( _surface.getExtent( ) );
     _postProcessingRenderer.initRenderPass( _surface.getFormat( ) );
 
     // Swapchain
@@ -223,7 +223,7 @@ namespace RAYEX_NAMESPACE
 
     if ( _scene._uploadEnvironmentMap )
     {
-      _sync.waitForFrame( prevFrame );
+      //_sync.waitForFrame( prevFrame );
       _scene.uploadEnvironmentMap( );
       _scene.updateSceneDescriptors( );
     }
@@ -247,7 +247,9 @@ namespace RAYEX_NAMESPACE
     }
     else
     {
+      //RX_LOG_TIME_START( "TLAS REAL TIME BUILD" );
       _pathTracer.buildTlas( _scene._geometryInstances, vk::BuildAccelerationStructureFlagBitsKHR::ePreferFastTrace | vk::BuildAccelerationStructureFlagBitsKHR::eAllowUpdate, true );
+      //RX_LOG_TIME_STOP( "TLAS REAL TIME BUILD" );
     }
 
     // Increment frame counter for jitter cam.

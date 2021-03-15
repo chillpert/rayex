@@ -1,0 +1,6 @@
+<map id="RAYEX_NAMESPACE::PathTracer" name="RAYEX_NAMESPACE::PathTracer">
+<area shape="rect" id="node1" title="Manages the building process of the acceleration structures." alt="" coords="184,344,411,993"/>
+<area shape="rect" id="node2" href="$struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_tlas.html" title="A wrapper for a top level acceleration structure." alt="" coords="29,197,216,274"/>
+<area shape="rect" id="node3" href="$struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_acceleration_structure.html" title="A wrapper for a Vulkan acceleration Structure." alt="" coords="5,5,240,127"/>
+<area shape="rect" id="node4" href="$struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_path_tracing_capabilities.html" title=" " alt="" coords="240,189,472,281"/>
+</map>

@@ -42,6 +42,9 @@ namespace RAYEX_NAMESPACE
     /// @return Returns the camera's position.
     auto getPosition( ) const -> const glm::vec3& { return _position; }
 
+    /// @return Returns the camera's front vector / viewing direction.
+    auto getFront( ) const -> const glm::vec3& { return _front; }
+
     /// Is used to change the camera's position.
     /// @param position The new camera position.
     void setPosition( const glm::vec3& position );
@@ -126,9 +129,9 @@ namespace RAYEX_NAMESPACE
     glm::mat4 viewInverse       = glm::mat4( 1.0F );
     glm::mat4 projectionInverse = glm::mat4( 1.0F );
     glm::vec4 position          = glm::vec4( 1.0F );
+    glm::vec4 front             = glm::vec4( 1.0F );
 
   private:
-    glm::vec4 padding0 = glm::vec4( 1.0F ); ///< Padding (ignore).
     glm::vec4 padding1 = glm::vec4( 1.0F ); ///< Padding (ignore).
     glm::vec4 padding2 = glm::vec4( 1.0F ); ///< Padding (ignore).
   };

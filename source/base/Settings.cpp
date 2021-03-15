@@ -82,7 +82,7 @@ namespace RAYEX_NAMESPACE
     }
 
     // Increment by one to accommodate the triangle dummy for emtpy scenes.
-    _maxGeometryInstances = ++amount;
+    _maxGeometryInstances = amount;
 
     _maxGeometryInstancesChanged = true;
   }

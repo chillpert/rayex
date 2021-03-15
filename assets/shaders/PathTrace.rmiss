@@ -10,7 +10,7 @@ layout( push_constant ) uniform Constants
   vec4 clearColor;
   int frameCount;
   uint sampleRatePerPixel;
-  uint maxRecursionDepth;
+  uint maxPathDepth;
   bool useEnvironmentMap;
 
   uint padding0;
@@ -28,11 +28,11 @@ void main( )
   {
     if ( useEnvironmentMap )
     {
-      ray.hitValue = texture( environmentMap, ray.rayDirection ).xyz * 0.8F;
+      ray.emission = texture( environmentMap, ray.direction ).xyz * 0.8F;
     }
     else
     {
-      ray.hitValue = clearColor.xyz * clearColor.w;
+      ray.emission = clearColor.xyz * clearColor.w;
     }
   }
   else
@@ -43,20 +43,15 @@ void main( )
 
       if ( useEnvironmentMap )
       {
-        ray.hitValue = texture( environmentMap, ray.rayDirection ).xyz;
+        ray.emission = texture( environmentMap, ray.direction ).xyz;
       }
       else
       {
-        ray.hitValue = clearColor.xyz * clearColor.w;
+        ray.emission = clearColor.xyz * clearColor.w;
       }
-    }
-    else
-    {
-      // Tiny contribution from environment
-      ray.hitValue = vec3( 0.01 );
     }
   }
 
   // End the path
-  ray.depth = maxRecursionDepth + 1;
+  ray.depth = maxPathDepth + 1;
 }

@@ -26,7 +26,7 @@ namespace RAYEX_NAMESPACE
   {
     if ( !_dummy )
     {
-      if ( _geometryInstances.size( ) >= _settings->_maxGeometryInstances - 1 )
+      if ( _geometryInstances.size( ) > _settings->_maxGeometryInstances )
       {
         RX_ERROR( "Failed to submit geometry instance because instance buffer size has been exceeded. To avoid this error, increase the amount of supported geometry instances using RAYEX_NAMESPACE::Rayex::Settings::setMaxGeometryInstances(size_t)." );
         return;
@@ -97,7 +97,7 @@ namespace RAYEX_NAMESPACE
   {
     if ( !_dummy )
     {
-      if ( _geometries.size( ) >= _settings->_maxGeometryInstances - 1 )
+      if ( _geometries.size( ) >= _settings->_maxGeometry )
       {
         RX_ERROR( "Failed to submit geometry because geometries buffer size has been exceeded. To avoid this error, increase the amount of supported geometries using RAYEX_NAMESPACE::Rayex::Settings::setMaxGeometries(size_t)." );
         return;
@@ -323,6 +323,7 @@ namespace RAYEX_NAMESPACE
       }
 
       cameraUbo.position = glm::vec4( _currentCamera->getPosition( ), 1.0F );
+      cameraUbo.front    = glm::vec4( _currentCamera->getFront( ), 1.0F );
     }
 
     _cameraUniformBuffer.upload( imageIndex, cameraUbo );

@@ -22,6 +22,8 @@ namespace RAYEX_NAMESPACE
     _yaw      = yaw;
     _pitch    = pitch;
 
+    _fov = 45.0F;
+
     updateVectors( );
     updateViewMatrix( );
     updateProjectionMatrix( );

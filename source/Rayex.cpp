@@ -94,6 +94,8 @@ namespace RAYEX_NAMESPACE
     // Reset frame counter
     rx::components::frameCount = -1;
 
+    _api._scene.getCamera( )->reset( );
+
     // Delete all textures
     _api._scene._textures.clear( );
     _api._scene._textures.resize( static_cast<size_t>( _api._scene._settings->_maxTextures ) );

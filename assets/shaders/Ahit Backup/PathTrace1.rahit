@@ -1,4 +1,0 @@
-#version 460
-
-#define PAYLOAD_1
-#include "PathTraceRahit.glsl"

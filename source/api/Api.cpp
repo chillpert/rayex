@@ -15,11 +15,13 @@ VULKAN_HPP_DEFAULT_DISPATCH_LOADER_DYNAMIC_STORAGE
 namespace RAYEX_NAMESPACE
 {
   const std::vector<const char*> layers = { "VK_LAYER_KHRONOS_validation" };
-#ifdef RX_DEBUG
-  std::vector<const char*> extensions = { "VK_EXT_debug_utils", "VK_KHR_get_physical_device_properties2" };
-#else
-  std::vector<const char*> extensions;
-#endif
+  std::vector<const char*> extensions = { "VK_EXT_debug_utils" };
+
+  /// @todo Currently always build with debug utils because an error might cause instant
+//#ifdef RX_DEBUG
+//  std::vector<const char*> extensions;
+//#else
+//#endif
 
   std::vector<const char*> deviceExtensions = { VK_KHR_DEFERRED_HOST_OPERATIONS_EXTENSION_NAME,
                                                 VK_KHR_PIPELINE_LIBRARY_EXTENSION_NAME,

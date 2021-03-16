@@ -188,7 +188,7 @@ void main( )
 
     if ( rnd( ray.seed ) < reflectProb )
     {
-      nextDirection = samplingHemisphere( ray.seed, normal );
+      nextDirection = normal + samplingUnitSphere( ray.seed );
     }
     else
     {
@@ -197,7 +197,7 @@ void main( )
       ray.reflective = true;
     }
 
-    diffuse = vec3( 1.0, 1.0, 1.0 );
+    //diffuse = vec3( 1.0, 1.0, 1.0 );
   }
   // Diffuse reflection
   else if ( found && mat.illum == 0 )

@@ -50,6 +50,18 @@ void main( )
         ray.emission = clearColor.xyz * clearColor.w;
       }
     }
+    else
+    {
+      // small contribution from environment
+      if ( useEnvironmentMap )
+      {
+        ray.emission = texture( environmentMap, ray.direction ).xyz * 0.01;
+      }
+      else
+      {
+        ray.emission = clearColor.xyz * clearColor.w * 0.01;
+      }
+    }
   }
 
   // End the path

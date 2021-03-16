@@ -6,7 +6,7 @@ enum class Level
   eAnimations,
   eSpheres,
   eMirrors,
-  eStressTest
+  eSponza
 };
 
 inline Level currentLevel;
@@ -54,6 +54,18 @@ inline auto getRandomFloat( float min, float max ) -> float
   return dist( mt );
 }
 
+inline void addModel( rx::Rayex* renderer, std::string_view path, glm::mat4 transform = glm::mat4( 1.0F ) )
+{
+  auto model = renderer->scene( ).findGeometry( path );
+  if ( model == nullptr )
+  {
+    model = rx::loadObj( path );
+    renderer->scene( ).submitGeometry( model );
+  }
+
+  renderer->scene( ).submitGeometryInstance( rx::instance( model, transform ) );
+}
+
 inline void addBox( rx::Rayex* renderer )
 {
   std::string_view path = "models/cube.obj";
@@ -90,24 +102,6 @@ inline void addSphere( rx::Rayex* renderer )
   renderer->scene( ).submitGeometryInstance( sphereInstance );
 }
 
-inline void addAwp( rx::Rayex* renderer )
-{
-  std::string_view path = "models/awpdlore/awpdlore.obj";
-  auto awp              = renderer->scene( ).findGeometry( path );
-  if ( awp == nullptr )
-  {
-    awp = rx::loadObj( path );
-    renderer->scene( ).submitGeometry( awp );
-  }
-
-  auto transform = glm::scale( glm::mat4( 1.0F ), glm::vec3( 0.3F, 0.3F, 0.3F ) );
-  transform      = glm::rotate( transform, getRandomFloat( 0.0F, 360.0F ), glm::vec3( 0.0F, 1.0F, 0.0F ) );
-  transform      = glm::translate( transform, getRandomUniquePosition( -10.0F, 10.0F ) );
-
-  auto awpInstance = rx::instance( awp, transform );
-  renderer->scene( ).submitGeometryInstance( awpInstance );
-}
-
 inline void loadScene( rx::Rayex* renderer, Level scene )
 {
   currentLevel = scene;
@@ -140,15 +134,15 @@ inline void loadScene( rx::Rayex* renderer, Level scene )
   else if ( scene == Level::eAnimations )
   {
     renderer->reset( );
-    renderer->settings( ).setGeometryLimit( 5 ); // Will give a warning.
+    renderer->settings( ).setGeometryLimit( 5 );
     renderer->settings( ).setGeometryInstanceLimit( 4000 );
-    renderer->settings( ).setTextureLimit( 4 ); // Will give a warning.
-
-    // Disable frame accumulation because scene contains moving elements.
+    renderer->settings( ).setTextureLimit( 4 );
+    renderer->settings( ).setMeshLimit( 100 );
     renderer->settings( ).setAccumulatingFrames( false );
+    renderer->settings( ).setClearColor( glm::vec4( 0.0F, 0.0F, 0.0F, 1.0F ) );
 
     // Load geometries.
-    auto awp   = rx::loadObj( "models/awpdlore/awpdlore.obj" );
+    auto awp   = rx::loadObj( "models/scene.obj" );
     auto plane = rx::loadObj( "models/plane.obj" );
 
     // Make a custom material for an emissive surface (light source).
@@ -162,25 +156,17 @@ inline void loadScene( rx::Rayex* renderer, Level scene )
     // Create instances of the geometries.
     auto transform = glm::scale( glm::mat4( 1.0F ), glm::vec3( 0.25F ) );
     transform      = glm::rotate( transform, glm::radians( 45.0F ), glm::vec3( 0.0F, 1.0F, 0.0F ) );
-    transform      = glm::translate( transform, glm::vec3( 0.0F, -1.0F, 0.5F ) );
+    transform      = glm::translate( transform, glm::vec3( 0.0F, -2.0F, 1.0F ) );
 
     auto awpInstance1 = rx::instance( awp, transform );
 
-    transform = glm::scale( glm::mat4( 1.0F ), glm::vec3( 0.25F ) );
-    transform = glm::rotate( transform, glm::radians( 90.0F ), glm::vec3( 0.0F, 1.0F, 0.0F ) );
-    transform = glm::translate( transform, glm::vec3( 1.0F, 2.0F, 0.0F ) );
-
-    auto awpInstance2 = rx::instance( awp, transform );
-
-    transform = glm::scale( glm::mat4( 1.0F ), glm::vec3( 1.0F ) );
-    transform = glm::translate( transform, glm::vec3( 0.0F, -80.0F, 0.0F ) );
-
+    transform          = glm::translate( glm::mat4( 1.0F ), glm::vec3( 0.0F, 80.0F, 0.0F ) );
     auto planeInstance = rx::instance( plane, transform );
 
     // Submit instances for drawing.
-    renderer->scene( ).setGeometryInstances( { awpInstance1, awpInstance2, planeInstance } );
+    renderer->scene( ).setGeometryInstances( { awpInstance1, planeInstance } );
 
-    renderer->scene( ).setEnvironmentMap( "models/skybox/cubemap_yokohama_rgba.ktx" );
+    renderer->scene( ).removeEnvironmentMap( );
   }
   else if ( scene == Level::eSpheres )
   {
@@ -189,10 +175,11 @@ inline void loadScene( rx::Rayex* renderer, Level scene )
     renderer->settings( ).setGeometryInstanceLimit( 15000 );
     renderer->settings( ).setTextureLimit( 100 ); // Will give a warning.
     renderer->settings( ).setMeshLimit( 100 );
-
-    renderer->settings( ).setAccumulatingFrames( false );
-
+    renderer->settings( ).setAccumulatingFrames( true );
     renderer->settings( ).setClearColor( glm::vec4( 0.0F, 0.0F, 0.0F, 1.0F ) );
+
+    renderer->scene( ).getCamera( )->setPosition( glm::vec3( -12.6F, 1.1F, 16.2F ) );
+    renderer->scene( ).getCamera( )->setFront( glm::vec3( 0.67F, 0.0F, -0.7F ) );
 
     auto lightPlane = rx::loadObj( "models/plane.obj" );
     rx::Material lightMaterial;
@@ -303,12 +290,14 @@ inline void loadScene( rx::Rayex* renderer, Level scene )
   {
     renderer->reset( );
     renderer->settings( ).setGeometryLimit( 3 ); // Will give a warning.
-    renderer->settings( ).setGeometryInstanceLimit( 1000 );
+    renderer->settings( ).setGeometryInstanceLimit( 50000 );
     renderer->settings( ).setTextureLimit( 2 ); // Will give a warning.
 
-    renderer->settings( ).setAccumulatingFrames( true );
+    renderer->settings( ).setAccumulatingFrames( false );
     renderer->settings( ).setClearColor( glm::vec4( 0.5F, 0.5F, 0.7F, 1.0F ) );
 
+    renderer->scene( ).getCamera( )->setPosition( glm::vec3( 9.8F, 0.3F, 7.7F ) );
+    renderer->scene( ).getCamera( )->setFront( glm::vec3( -0.5F, 0.0F, -0.8F ) );
     renderer->scene( ).removeEnvironmentMap( );
 
     auto lightPlane = rx::loadObj( "models/plane.obj" );
@@ -346,34 +335,37 @@ inline void loadScene( rx::Rayex* renderer, Level scene )
       addSphere( renderer );
     }
   }
-  else if ( scene == Level::eStressTest )
+  else if ( scene == Level::eSponza )
   {
     renderer->reset( );
-    renderer->settings( ).setGeometryLimit( 3 ); // Will give a warning.
-    renderer->settings( ).setGeometryInstanceLimit( 15000 );
-    renderer->settings( ).setTextureLimit( 2 ); // Will give a warning.
-
+    renderer->settings( ).setGeometryLimit( 100 ); // Will give a warning.
+    renderer->settings( ).setGeometryInstanceLimit( 1000 );
+    renderer->settings( ).setTextureLimit( 50 );      // Will give a warning.
+    renderer->settings( ).setPerPixelSampleRate( 1 ); // Will give a warning.
+    renderer->settings( ).setPathDepth( 2 );          // Will give a warning.
     renderer->settings( ).setAccumulatingFrames( true );
-    renderer->settings( ).setClearColor( glm::vec4( 0.5F, 0.5F, 0.7F, 1.0F ) );
+    renderer->settings( ).setClearColor( glm::vec4( 1.0F ) );
 
     renderer->scene( ).removeEnvironmentMap( );
+    renderer->scene( ).getCamera( )->setPosition( glm::vec3( -11.6F, 2.4F, -0.73F ) );
+    renderer->scene( ).getCamera( )->setFront( glm::vec3( 0.98F, 0.19F, 0.0F ) );
 
     auto lightPlane = rx::loadObj( "models/plane.obj" );
     rx::Material lightMaterial;
     lightMaterial.emission = glm::vec3( 1.0F );
     lightPlane->setMaterial( lightMaterial );
 
-    renderer->scene( ).setGeometries( { lightPlane } );
+    auto sponza = rx::loadObj( "models/sponza/sponza.obj" );
 
-    auto transform          = glm::translate( glm::mat4( 1.0F ), glm::vec3( 0.0F, 80.0F, 0.0F ) );
+    renderer->scene( ).setGeometries( { lightPlane, sponza } );
+
+    auto transform          = glm::translate( glm::mat4( 1.0F ), glm::vec3( 0.0F, 30.0F, 0.0F ) );
     auto lightPlaneInstance = rx::instance( lightPlane, transform );
 
-    renderer->scene( ).setGeometryInstances( { lightPlaneInstance } );
+    transform           = glm::scale( glm::mat4( 1.0F ), glm::vec3( 0.01F ) );
+    auto sponzaInstance = rx::instance( sponza, transform );
 
-    for ( int i = 1; i < 7500; ++i )
-    {
-      addSphere( renderer );
-    }
+    renderer->scene( ).setGeometryInstances( { lightPlaneInstance, sponzaInstance } );
   }
 }
 
@@ -381,12 +373,22 @@ void updateScene( rx::Rayex* renderer )
 {
   if ( Key::eB )
   {
-    addBox( renderer );
+    for ( int i = 0; i < 100; ++i )
+    {
+      addBox( renderer );
+    }
+
+    Key::eB = false;
   }
 
   if ( Key::eL )
   {
-    addSphere( renderer );
+    for ( int i = 0; i < 100; ++i )
+    {
+      addSphere( renderer );
+    }
+
+    Key::eL = false;
   }
 
   if ( currentLevel == Level::eAnimations )
@@ -397,7 +399,7 @@ void updateScene( rx::Rayex* renderer )
     {
       if ( instances[0] != nullptr )
       {
-        instances[0]->setTransform( glm::rotate( instances[0]->transform, rx::Time::getDeltaTime( ) * 0.5F, glm::vec3( 0.0F, 1.0F, 0.0F ) ) );
+        instances[0]->setTransform( glm::rotate( instances[0]->transform, rx::Time::getDeltaTime( ) * 0.1F, glm::vec3( 0.0F, 1.0F, 0.0F ) ) );
       }
     }
   }

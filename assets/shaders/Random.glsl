@@ -38,7 +38,8 @@ float rnd( inout uint prev )
   return ( float( lcg( prev ) ) / float( 0x01000000 ) );
 }
 
-// Randomly sampling in hemisphere ( Peter Shirley's "Ray Tracing in one Weekend" )
+// From Nvidia's vk_mini_path_tracer and ultimately from Peter Shirley's "Ray Tracing in one Weekend"
+// Randomly sampling in hemisphere
 vec3 samplingHemisphere( inout uint seed, in vec3 normal )
 {
   const float theta = M_PI * 2 * rnd( seed );  // Random in [0, 2pi]
@@ -47,6 +48,17 @@ vec3 samplingHemisphere( inout uint seed, in vec3 normal )
   vec3 rayDirection = normal + vec3( r * cos( theta ), r * sin( theta ), u );
 
   return normalize( rayDirection );
+}
+
+// Randomly sampling in hemisphere ( Peter Shirley's "Ray Tracing in one Weekend" )
+vec3 samplingUnitSphere( inout uint seed )
+{
+  vec3 pos = vec3( 0.0 );
+  do {
+    pos = vec3( rnd( seed ), rnd( seed ), rnd( seed ) ) * 2.0 - 1.0;
+  } while ( dot( pos, pos ) >= 1.0 );
+
+  return pos;
 }
 
 // Randomly sampling in hemisphere ( Peter Shirley's "Ray Tracing in one Weekend" )

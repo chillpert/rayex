@@ -54,6 +54,13 @@ namespace RAYEX_NAMESPACE
     updateViewMatrix( );
   }
 
+  void Camera::setFront( const glm::vec3& front )
+  {
+    _front = front;
+
+    updateViewMatrix( );
+  }
+
   void Camera::setSize( int width, int height )
   {
     _width  = width;

@@ -5,8 +5,8 @@
 int main( )
 {
   // Window dimensions.
-  const int width  = 1280;
-  const int height = 720;
+  const int width  = 1920;
+  const int height = 1080;
 
   rx::Rayex renderer;
 
@@ -22,7 +22,7 @@ int main( )
   // ... and initialize the renderer.
   renderer.init( );
 
-  loadScene( &renderer, Level::eSpheres );
+  loadScene( &renderer, Level::eAnimations );
 
   while ( renderer.isRunning( ) )
   {

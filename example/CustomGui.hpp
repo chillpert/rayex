@@ -105,27 +105,6 @@ private:
     {
       if ( ImGui::CollapsingHeader( "Scene", flags ) )
       {
-        if ( ImGui::Button( "Add box" ) )
-        {
-          addBox( _renderer );
-        }
-
-        ImGui::SameLine( );
-
-        if ( ImGui::Button( "Add sphere" ) )
-        {
-          addSphere( _renderer );
-        }
-
-        ImGui::SameLine( );
-
-        if ( ImGui::Button( "Add awp" ) )
-        {
-          addAwp( _renderer );
-        }
-
-        ImGui::SameLine( );
-
         if ( ImGui::Button( "Clear instances" ) )
         {
           _renderer->scene( ).clearGeometryInstances( );
@@ -162,21 +141,31 @@ private:
           _renderer->scene( ).removeEnvironmentMap( );
         }
 
-        if ( ImGui::Button( "Spawn 500 spheres" ) )
-        {
-          for ( int i = 0; i < 500; ++i )
-          {
-            addSphere( _renderer );
-          }
-        }
+        const char* items[]     = { "bunny", "vulkan", "venus", "dragon", "teapot", "voyager" };
+        static int item_current = 0;
+        ImGui::SetNextItemWidth( 200.0F );
+        ImGui::Combo( "##model", &item_current, items, IM_ARRAYSIZE( items ) );
+
+        static int quantity = 1;
+        ImGui::SetNextItemWidth( 100.0F );
+        ImGui::InputInt( "##Quantity", &quantity );
 
         ImGui::SameLine( );
 
-        if ( ImGui::Button( "Spawn 500 boxes" ) )
+        static bool random = true;
+        ImGui::Checkbox( "Random Position", &random );
+
+        ImGui::SameLine( );
+
+        if ( ImGui::Button( "Spawn Model" ) )
         {
-          for ( int i = 0; i < 500; ++i )
+          std::string temp( items[item_current] );
+          std::string temp2 = "models/" + temp + ".obj";
+
+          for ( int i = 0; i < quantity; ++i )
           {
-            addBox( _renderer );
+            auto transform = random ? glm::translate( glm::mat4( 1.0F ), getRandomUniquePosition( -25.0F, 25.0F ) ) : glm::mat4( 1.0F );
+            addModel( _renderer, temp2.c_str( ), transform );
           }
         }
       }
@@ -286,10 +275,19 @@ private:
 
         ImGui::SameLine( );
 
-        if ( ImGui::Button( "Stress Test" ) )
+        if ( ImGui::Button( "Sponza" ) )
         {
-          loadScene( _renderer, Level::eStressTest );
+          loadScene( _renderer, Level::eSponza );
         }
+
+        ImGui::Separator( );
+        ImGui::Text( "Cam Pos:   " );
+        ImGui::SameLine( );
+        ImGui::Text( glm::to_string( _renderer->scene( ).getCamera( )->getPosition( ) ).c_str( ) );
+
+        ImGui::Text( "Cam Front: " );
+        ImGui::SameLine( );
+        ImGui::Text( glm::to_string( _renderer->scene( ).getCamera( )->getFront( ) ).c_str( ) );
       }
     }
     ImGui::End( );

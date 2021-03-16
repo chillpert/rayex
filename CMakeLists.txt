@@ -11,6 +11,9 @@ if(NOT CMAKE_BUILD_TYPE)
   set(CMAKE_BUILD_TYPE "Debug" CACHE STRING "No build type was set" FORCE)
 endif(NOT CMAKE_BUILD_TYPE)
 
+# Enforce Rlease (Temporarily)
+#set(CMAKE_BUILD_TYPE "Release" CACHE STRING "No build type was set" FORCE)
+
 message("Build type: " ${CMAKE_BUILD_TYPE})
 
 if(WIN32 OR MSVC)

@@ -49,6 +49,8 @@ namespace RAYEX_NAMESPACE
     /// @param position The new camera position.
     void setPosition( const glm::vec3& position );
 
+    void setFront( const glm::vec3& front );
+
     /// Is used to set a size for the camera that fits the viewport dimensions.
     /// @param width The width of the viewport.
     /// @param height The height of the viewport.

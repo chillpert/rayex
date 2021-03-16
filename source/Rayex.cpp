@@ -29,7 +29,7 @@ namespace RAYEX_NAMESPACE
 
     if ( _api._settings.getAssetsPath( ).empty( ) )
     {
-      _api._settings.setDefaultAssetsPath( );
+      //_api._settings.setDefaultAssetsPath( );
     }
 
     if ( _initialized )

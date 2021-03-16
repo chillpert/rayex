@@ -401,7 +401,7 @@ namespace RAYEX_NAMESPACE
                 {
                   if ( availablePosition == std::numeric_limits<size_t>::max( ) )
                   {
-                    //RX_WARN( "TRIED TO CREATE A NEW TEXTURE FROM: ", mesh.material.diffuseTexPath, " BUT ARRAY IS OUT OF BOUND." );
+                    RX_WARN( "TRIED TO CREATE A NEW TEXTURE FROM: ", mesh.material.diffuseTexPath, " BUT ARRAY IS OUT OF BOUND." );
                   }
                   else
                   {

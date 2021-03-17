@@ -72,18 +72,11 @@ void main( )
 
     for ( ray.depth = 0; ray.depth <= maxPathDepth; ++ray.depth )
     {
-      //if ( ray.refractive )
-      //{
-      //  ray.refractive = false;
-      //  rayFlags       = gl_RayFlagsSkipClosestHitShaderEXT;
-      //
-      //  // Since the next closest hit will be skipped, do not increment ray depth
-      //  ray.depth -= 1;
-      //}
-      //else
-      //{
-      //  rayFlags = gl_RayFlagsNoneEXT;
-      //}
+      // refractive rays are allowed to bounce more time to have the all effects at lower sample rates
+      if ( ray.refractive )
+      {
+        ray.depth -= 1;
+      }
 
       // Clear color overwrites black
       //if ( ray.depth >= maxPathDepth )
@@ -113,20 +106,21 @@ void main( )
     hitValues += hitValue;
   }
 
-  ray.emission = hitValues / sampleRatePerPixel;
+  // weighted average
+  vec3 color = hitValues / sampleRatePerPixel;
 
   // Interpolate results over time (length defined on host as frame count (int))
   // First frame
   if ( frameCount <= 0 )
   {
-    vec4 finalColor = vec4( ray.emission, 1.0 );
+    vec4 finalColor = vec4( color, 1.0 );
     imageStore( image, ivec2( gl_LaunchIDEXT.xy ), finalColor );
   }
   // Following frames: linearly interpolate between previous and current color.
   else
   {
     vec3 oldColor   = imageLoad( image, ivec2( gl_LaunchIDEXT.xy ) ).xyz;
-    vec4 finalColor = vec4( mix( oldColor, ray.emission, 1.0 / float( frameCount ) ), 1.0 );
+    vec4 finalColor = vec4( mix( oldColor, color, 1.0 / float( frameCount ) ), 1.0 );
     imageStore( image, ivec2( gl_LaunchIDEXT.xy ), finalColor );
   }
 }

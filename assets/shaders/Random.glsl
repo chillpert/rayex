@@ -185,11 +185,11 @@ vec3 samplingUnitSphere( inout uint seed )
 }
 
 // Randomly sampling in hemisphere ( Peter Shirley's "Ray Tracing in one Weekend" )
-float Schlick( const float cosine, const float ni )
+float Schlick( const float cosine, const float ior )
 {
-  float r0 = ( 1 - ni ) / ( 1 + ni );
+  float r0 = ( 1.0 - ior ) / ( 1.0 + ior );
   r0 *= r0;
-  return r0 + ( 1 - r0 ) * pow( 1 - cosine, 5 );
+  return r0 + ( 1.0 - r0 ) * pow( 1.0 - cosine, 5.0 );
 }
 
 bool refract2( inout vec3 v, inout vec3 n, float niOverNt, inout vec3 refracted )

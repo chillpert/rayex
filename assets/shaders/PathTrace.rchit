@@ -168,43 +168,22 @@ void main( )
   // Dielectric reflection ( Peter Shirley's "Ray Tracing in one Weekend" Chapter 9 )
   else if ( found && mat.illum == 1 )
   {
-    vec3 outwardNormal;
-    vec3 reflected = reflect( ray.direction, normal );
-    float niOverNt;
-    vec3 refracted;
-    float reflectProb;
-    float cosine;
+    // True, if the incoming ray traversed a medium. False, if the incoming ray was in vacuum.
+    bool isTransmitted = ( gl_HitKindEXT == gl_HitKindBackFacingTriangleEXT );
 
-    // Back of triangle - invert normal
-    if ( gl_HitKindEXT == gl_HitKindBackFacingTriangleEXT )
-    {
-      outwardNormal = -normal;
-      niOverNt      = mat.ni;
-      cosine        = dot( ray.direction, normal ) / ray.direction.length( );
-      cosine        = sqrt( 1 - mat.ni * mat.ni * ( 1 - cosine * cosine ) );
+    // This is the back of the triangle. This means that a surface has been traversed meaning the incoming ray was refracted.
+    // So let's refract again!
+    ray.refractive = isTransmitted ? true : false;
 
-      // This is the back of the triangle. This means that a surface has been traversed meaning the incoming ray was refracted.
-      // So let's refract again!
-      ray.refractive = true;
-    }
-    // Front of triangle
-    else
-    {
-      outwardNormal = normal;
-      niOverNt      = 1.0 / mat.ni;
-      cosine        = -dot( ray.direction, normal ) / ray.direction.length( );
+    // Flip the normal if transmitted
+    vec3 temp = isTransmitted ? -normal : normal;
 
-      ray.refractive = false;
-    }
+    float dot    = dot( ray.direction, normal );
+    float cosine = dot > 0 ? mat.ni * dot : -dot;
+    float ior    = dot > 0 ? mat.ni : 1 / mat.ni;
 
-    if ( refract2( ray.direction, outwardNormal, niOverNt, refracted ) )
-    {
-      reflectProb = Schlick( cosine, mat.ni );
-    }
-    else
-    {
-      reflectProb = 1.0;
-    }
+    vec3 refracted    = refract( ray.direction, temp, ior );
+    float reflectProb = refracted != vec3( 0.0 ) ? Schlick( cosine, mat.ni ) : 1.0;
 
     if ( rnd( ray.seed ) < reflectProb && !ray.refractive )
     {
@@ -215,7 +194,6 @@ void main( )
     else
     {
       nextDirection = refracted;
-      //ray.refractive = true;
     }
 
     pdf = 1.0 / M_PI;
@@ -229,7 +207,7 @@ void main( )
     bsdf *= cosTheta;
   }
 
-  pdf = 1.0 / ( 1.5 * M_PI ); // Is this even correct?
+  pdf = 1.0 / ( 1.5 * M_PI ); // Overwrites all other PDFs. This is completely random and probably wrong!
 
   ray.origin    = rayOrigin;
   ray.direction = nextDirection;

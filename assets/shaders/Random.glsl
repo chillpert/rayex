@@ -38,28 +38,67 @@ float rnd( inout uint prev )
   return ( float( lcg( prev ) ) / float( 0x01000000 ) );
 }
 
+// Random functions from Alan Wolfe's excellent tutorials (https://blog.demofox.org/)
+uint wang_hash( inout uint seed )
+{
+  seed = uint( seed ^ uint( 61 ) ) ^ uint( seed >> uint( 16 ) );
+  seed *= uint( 9 );
+  seed = seed ^ ( seed >> 4 );
+  seed *= uint( 0x27d4eb2d );
+  seed = seed ^ ( seed >> 15 );
+  return seed;
+}
+
+float RandomFloat01( inout uint state )
+{
+  return float( wang_hash( state ) ) / 4294967296.0;
+}
+
 // From Nvidia's vk_mini_path_tracer and ultimately from Peter Shirley's "Ray Tracing in one Weekend"
 // Randomly sampling in hemisphere
+// Generates a random point on a sphere of radius 1 centered at the normal. Uses random_unit_vector function
 vec3 samplingHemisphere( inout uint seed, in vec3 normal )
 {
-  // reduce fireflies
-  // but results in loss of energy
-  float u0 = clamp( rnd( seed ), 0.0, 3.0 );
-  float u1 = clamp( rnd( seed ), 0.0, 3.0 );
+  // @todo check performance of both methods
 
-  const float theta = M_PI * 2 * u0;  // Random in [0, 2pi]
-  const float u     = 2.0 * u1 - 1.0; // Random in [-1, 1]
-  const float r     = sqrt( 1.0 - u * u );
-  vec3 rayDirection = normal + vec3( r * cos( theta ), r * sin( theta ), u );
+  //// reduce fireflies
+  //// but results in loss of energy
+  //float u0 = clamp( rnd( seed ), 0.0, 3.0 );
+  //float u1 = clamp( rnd( seed ), 0.0, 3.0 );
+  //
+  //const float theta = M_PI * 2 * u0;  // Random in [0, 2pi]
+  //const float u     = 2.0 * u1 - 1.0; // Random in [-1, 1]
+  //const float r     = sqrt( 1.0 - u * u );
+  //vec3 rayDirection = normal + vec3( r * cos( theta ), r * sin( theta ), u );
+  //
+  //return normalize( rayDirection );
 
-  return normalize( rayDirection );
+  // A rejection method ( "Ray Tracing in one Weekend" p. 22)
+  vec3 inUnitSphere = vec3( 0.0 );
+  do
+  {
+    // x,y, and z range from -1 to 1
+    // if point is outside the sphere -> reject it and try again
+    inUnitSphere = vec3( rnd( seed ), rnd( seed ), rnd( seed ) ) * 2.0 - 1.0;
+  } while ( dot( inUnitSphere, inUnitSphere ) >= 1.0 );
+
+  // In the same hemisphere as the normal
+  if ( dot( inUnitSphere, normal ) > 0.0 )
+  {
+    return inUnitSphere;
+  }
+  // Flip normal
+  else
+  {
+    return -inUnitSphere;
+  }
 }
 
 // From raytracinggems p.240
 vec3 samplingHemisphere2( inout uint seed )
 {
-  float u0 = rnd( seed );
-  float u1 = rnd( seed );
+  float u0 = clamp( rnd( seed ), 0.0, 3.0 );
+  float u1 = clamp( rnd( seed ), 0.0, 3.0 );
 
   vec3 dir;
   dir.x = sqrt( u0 ) * cos( 2.0 * M_PI * u1 );
@@ -167,4 +206,19 @@ bool refract2( inout vec3 v, inout vec3 n, float niOverNt, inout vec3 refracted 
   {
     return false;
   }
+}
+
+// @Nvidia vk_ray_tracing_KHR tutorial
+// Return the tangent and binormal from the incoming normal
+void createCoordinateSystem( in vec3 N, out vec3 Nt, out vec3 Nb )
+{
+  if ( abs( N.x ) > abs( N.y ) )
+  {
+    Nt = vec3( N.z, 0, -N.x ) / sqrt( N.x * N.x + N.z * N.z );
+  }
+  else
+  {
+    Nt = vec3( 0, -N.z, N.y ) / sqrt( N.y * N.y + N.z * N.z );
+  }
+  Nb = cross( N, Nt );
 }

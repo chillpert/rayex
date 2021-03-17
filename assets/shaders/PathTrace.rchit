@@ -84,10 +84,10 @@ void main( )
   const vec3 barycentrics = vec3( 1.0 - attribs.x - attribs.y, attribs.x, attribs.y );
 
   // Computing the normal at hit position
-  vec3 normal = v0.normal * barycentrics.x + v1.normal * barycentrics.y + v2.normal * barycentrics.z;
+  vec3 localNormal = v0.normal * barycentrics.x + v1.normal * barycentrics.y + v2.normal * barycentrics.z;
 
   // Transforming the normal to world space
-  normal = normalize( vec3( normal * gl_WorldToObjectEXT ) );
+  vec3 normal = normalize( vec3( localNormal * gl_WorldToObjectEXT ) );
 
   vec3 worldPos = gl_WorldRayOriginEXT + gl_WorldRayDirectionEXT * gl_HitTEXT;
 
@@ -159,6 +159,10 @@ void main( )
 
     //p = 1.0 / ( 2.0 * M_PI * ( 1.0 - cos( mat.fuzziness ) ) );
     pdf = 1 / M_PI;
+
+    // If removed than mirror won't be visible at all in mirror scene
+    cosTheta = dot( nextDirection, normal ); // The steeper the incident direction to the surface is the more important the sample gets
+    bsdf *= cosTheta;
   }
   // @todo Resulting background color is inverted for any 2D surface
   // Dielectric reflection ( Peter Shirley's "Ray Tracing in one Weekend" Chapter 9 )
@@ -179,7 +183,7 @@ void main( )
       cosine        = dot( ray.direction, normal ) / ray.direction.length( );
       cosine        = sqrt( 1 - mat.ni * mat.ni * ( 1 - cosine * cosine ) );
     }
-    // Front of triangle - take surface normal (world space)
+    // Front of triangle
     else
     {
       outwardNormal = normal;
@@ -196,15 +200,25 @@ void main( )
       reflectProb = 1.0;
     }
 
-    if ( rnd( ray.seed ) < reflectProb )
+    //if ( ray.refractive )
     {
-      nextDirection = samplingHemisphere( ray.seed, normal );
+      //nextDirection  = refracted;
+      //ray.refractive = true;
     }
-    elseS
+    //else
     {
-      nextDirection  = refracted;
-      ray.refractive = true;
-      ray.reflective = true;
+      if ( rnd( ray.seed ) < reflectProb )
+      {
+        const vec3 reflectionDirection = reflect( ray.direction, normal ); // Normal is not correct for sub meshes
+        nextDirection                  = reflectionDirection + mat.fuzziness * samplingHemisphere( ray.seed, normal );
+        ray.reflective                 = true;
+      }
+      else
+      {
+        nextDirection  = refracted;
+        ray.refractive = true;
+        ray.reflective = true;
+      }
     }
 
     pdf = 1.0 / M_PI;

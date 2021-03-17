@@ -197,10 +197,11 @@ inline void loadScene( rx::Rayex* renderer, Level scene )
 
     auto sphere = rx::loadObj( "models/sphere.obj" );
     rx::Material mat;
-    mat.kd    = glm::vec3( 1.0F );
-    mat.ni    = 1.0F;
-    mat.illum = 1;
-    mat.ni    = 2.4F;
+    mat.kd        = glm::vec3( 1.0F );
+    mat.ni        = 1.0F;
+    mat.illum     = 1;
+    mat.fuzziness = 0.0F;
+    mat.ni        = 2.4F;
     sphere->setMaterial( mat );
 
     auto sphere1 = rx::loadObj( "models/sphere.obj" );
@@ -244,10 +245,11 @@ inline void loadScene( rx::Rayex* renderer, Level scene )
 
     auto glass = rx::loadObj( "models/plane.obj" );
     rx::Material glassMaterial;
-    glassMaterial.kd    = glm::vec3( 1.0F );
-    glassMaterial.ni    = 1.0F;
-    glassMaterial.illum = 1;
-    glassMaterial.ni    = 1.6;
+    glassMaterial.kd        = glm::vec3( 1.0F );
+    glassMaterial.ni        = 1.0F;
+    glassMaterial.illum     = 1;
+    glassMaterial.ni        = 2.6;
+    glassMaterial.fuzziness = 2.6;
     glass->setMaterial( glassMaterial );
 
     renderer->scene( ).setGeometries( { lightPlane, floor, sphere, sphere1, sphere2, sphere3, sphere4, sphere5, sphere6, sphere7, glass } );

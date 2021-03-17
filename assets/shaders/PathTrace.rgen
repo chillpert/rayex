@@ -76,6 +76,9 @@ void main( )
       {
         ray.refractive = false;
         rayFlags       = gl_RayFlagsSkipClosestHitShaderEXT;
+
+        // Since the next closest hit will be skipped, do not increment ray depth
+        ray.depth -= 1;
       }
       else
       {

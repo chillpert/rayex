@@ -188,7 +188,7 @@ void main( )
 
     if ( rnd( ray.seed ) < reflectProb )
     {
-      nextDirection = normal + samplingUnitSphere( ray.seed );
+      nextDirection = samplingHemisphere( ray.seed, normal );
     }
     else
     {
@@ -197,7 +197,7 @@ void main( )
       ray.reflective = true;
     }
 
-    //diffuse = vec3( 1.0, 1.0, 1.0 );
+    diffuse = vec3( 1.0, 1.0, 1.0 );
   }
   // Diffuse reflection
   else if ( found && mat.illum == 0 )
@@ -210,6 +210,7 @@ void main( )
   const float p = 1 / M_PI;
 
   // BSDF (Divide by Pi to ensure energy conversation)
+  // @todo path regularization: blur the bsdf for indirect rays (raytracinggems p.251)
   vec3 BSDF = diffuse / M_PI;
 
   // Assume Lambertian reflection

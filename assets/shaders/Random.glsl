@@ -42,17 +42,66 @@ float rnd( inout uint prev )
 // Randomly sampling in hemisphere
 vec3 samplingHemisphere( inout uint seed, in vec3 normal )
 {
-  const float theta = M_PI * 2 * rnd( seed );  // Random in [0, 2pi]
-  const float u     = 2.0 * rnd( seed ) - 1.0; // Random in [-1, 1]
+  // reduce fireflies
+  // but results in loss of energy
+  float u0 = clamp( rnd( seed ), 0.0, 3.0 );
+  float u1 = clamp( rnd( seed ), 0.0, 3.0 );
+
+  const float theta = M_PI * 2 * u0;  // Random in [0, 2pi]
+  const float u     = 2.0 * u1 - 1.0; // Random in [-1, 1]
   const float r     = sqrt( 1.0 - u * u );
   vec3 rayDirection = normal + vec3( r * cos( theta ), r * sin( theta ), u );
 
   return normalize( rayDirection );
 }
 
+// @https://www.iue.tuwien.ac.at/phd/ertl/node100.html
+vec3 samplingUnitSphere2( inout uint seed )
+{
+  float a;
+  float a1;
+  float a2;
+
+  do
+  {
+    a1 = 2.0 * rnd( seed ) - 1;
+    a2 = 2.0 * rnd( seed ) - 1;
+    a  = a1 * a1 + a2 + a2;
+  } while ( a < 1 );
+
+  vec3 dir;
+  dir.x = 1.0 - 2.0 * a;
+  a     = 2 * sqrt( 1.0 - a );
+  dir.y = a1 * a;
+  dir.z = a2 * a;
+
+  return normalize( dir );
+}
+
+// @https://www.iue.tuwien.ac.at/phd/ertl/node100.html
+// Cosine distributed
+// not working
+vec3 samplingCone( inout uint seed, vec3 v )
+{
+  vec3 dir;
+  float a;
+
+  do
+  {
+    dir = samplingUnitSphere2( seed );
+    dir += v;
+    a = sqrt( dir.x * dir.x + dir.y * dir.y + dir.z * dir.z );
+  } while ( a != 0.0 );
+
+  dir = dir / a;
+  return normalize( dir );
+}
+
 // Randomly sampling in hemisphere ( Peter Shirley's "Ray Tracing in one Weekend" )
 vec3 samplingUnitSphere( inout uint seed )
 {
+  // @todo consider adding clamping here as well
+
   vec3 pos = vec3( 0.0 );
   do {
     pos = vec3( rnd( seed ), rnd( seed ), rnd( seed ) ) * 2.0 - 1.0;

@@ -218,9 +218,10 @@ inline void loadScene( rx::Rayex* renderer, Level scene )
     mat.d        = 1.0;
     sphere2->setMaterial( mat );
 
-    auto sphere3 = rx::loadObj( "models/sphere.obj" );
-    mat.illum    = 2;
-    mat.kd       = glm::vec3( 1.0F, 0.8F, 0.0F );
+    auto sphere3  = rx::loadObj( "models/sphere.obj" );
+    mat.illum     = 2;
+    mat.kd        = glm::vec3( 1.0F, 0.8F, 0.0F );
+    mat.fuzziness = 0.0F;
     sphere3->setMaterial( mat );
 
     auto sphere4  = rx::loadObj( "models/sphere.obj" );

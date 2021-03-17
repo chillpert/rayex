@@ -192,22 +192,6 @@ float Schlick( const float cosine, const float ior )
   return r0 + ( 1.0 - r0 ) * pow( 1.0 - cosine, 5.0 );
 }
 
-bool refract2( inout vec3 v, inout vec3 n, float niOverNt, inout vec3 refracted )
-{
-  vec3 uv            = normalize( v );
-  float dt           = dot( uv, n );
-  float discriminant = 1.0 - niOverNt * niOverNt * ( 1 - dt * dt );
-  if ( discriminant > 0 )
-  {
-    refracted = niOverNt * ( uv - n * dt ) - n * sqrt( discriminant );
-    return true;
-  }
-  else
-  {
-    return false;
-  }
-}
-
 // @Nvidia vk_ray_tracing_KHR tutorial
 // Return the tangent and binormal from the incoming normal
 void createCoordinateSystem( in vec3 N, out vec3 Nt, out vec3 Nb )

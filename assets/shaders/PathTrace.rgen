@@ -70,12 +70,20 @@ void main( )
     float tMin    = 0.001;
     float tMax    = 10000.0;
 
+    int refractionCounter = 0;
+
     for ( ray.depth = 0; ray.depth <= maxPathDepth; ++ray.depth )
     {
       // refractive rays are allowed to bounce more time to have the all effects at lower sample rates
       if ( ray.refractive )
       {
         ray.depth -= 1;
+        ++refractionCounter;
+      }
+
+      if ( refractionCounter > 5 )
+      {
+        ray.depth = maxPathDepth + 1;
       }
 
       // Clear color overwrites black

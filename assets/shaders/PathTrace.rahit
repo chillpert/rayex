@@ -52,6 +52,8 @@ Vertex unpackVertex( uint index, uint geometryIndex )
 
 void main( )
 {
+  // @todo Consider moving material index to ray payload once it is removed from being part of the mesh object
+
   // Retrieve the geometry that was hit.
   uint geometryIndex = geometryInstances.i[gl_InstanceCustomIndexEXT].geometryIndex;
 
@@ -80,13 +82,8 @@ void main( )
 
   if ( found )
   {
-    // IDEA TO REFRACT HERE AND JUST UPDATE DIRECTION?
-    if ( mat.illum == 2 )
-    {
-      //ray.direction = refract( ray.direction, normal, niOverNt );
-    }
     // Transparency
-    else if ( mat.d == 0.0 )
+    if ( mat.d == 0.0 )
     {
       ignoreIntersectionEXT;
     }

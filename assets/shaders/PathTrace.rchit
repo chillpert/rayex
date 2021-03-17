@@ -160,7 +160,7 @@ void main( )
     //p = 1.0 / ( 2.0 * M_PI * ( 1.0 - cos( mat.fuzziness ) ) );
     pdf = 1 / M_PI;
 
-    // If removed than mirror won't be visible at all in mirror scene
+    // If removed than mirror won't be visible at all in mirror scene (I don't know what is more realistic)
     cosTheta = dot( nextDirection, normal ); // The steeper the incident direction to the surface is the more important the sample gets
     bsdf *= cosTheta;
   }
@@ -207,7 +207,7 @@ void main( )
     bsdf *= cosTheta;
   }
 
-  pdf = 1.0 / ( 1.5 * M_PI ); // Overwrites all other PDFs. This is completely random and probably wrong!
+  //pdf = 1 / ( 1.5 * M_PI );
 
   ray.origin    = rayOrigin;
   ray.direction = nextDirection;

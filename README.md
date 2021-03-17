@@ -4,7 +4,7 @@ RAYEX is a work-in-progress, cross-platform, cross-vendor, Vulkan-based, real-ti
 It runs on both Linux (x64) and Windows (x64) using the Vulkan API. This software aims to provide a cross-platform, cross-vendor path tracer that is easy to integrate into existing projects. Vendor independence is achieved by using the new KHRONOS Vulkan ray tracing extension (first published on March 17, 2020, as an experimental version). It uses [SDL2](https://www.libsdl.org/index.php) for windowing and [glm](https://glm.g-truc.net/0.9.9/index.html) as its math library. RAYEX features native [Dear ImGui](https://github.com/ocornut/imgui) support, enabling the user to create user interfaces without writing any API-related code.
 
 ## Requirements
-Unfortunately, the KHRONOS Vulkan ray tracing extension is not yet part of the NVIDIA main driver. Download the NVIDIA Vulkan beta drivers [here](https://developer.nvidia.com/vulkan-driver). 
+Install the latest NVIDIA driver. If you run into issues try the NVIDIA Vulkan beta drivers [here](https://developer.nvidia.com/vulkan-driver), or check your GPU compatibility.
 AMD drivers can be downloaded [here](https://www.amd.com/en/support/kb/release-notes/rn-rad-win-20-11-2-vrt-beta) instead.
 
 ## Deploy
@@ -74,7 +74,7 @@ int main( )
 
 - [x] Global illumination
 - [x] Environment mapping
-- [x] A post processing pass for gamma correction and future post processing effects
+- [x] A post processing pass
 - [x] Diffuse and glossy reflections
 - [x] Dielectrics
 - [ ] An efficient way of building and updating acceleration structures based on a scene's requirements
@@ -82,7 +82,6 @@ int main( )
 - [ ] HDR skymaps and skyboxes as light sources
 - [ ] Denoising
 - [ ] Next event estimation
-- [ ] More post processing features
 
 ### Documentation
 An extensive documentation of all classes and functions can be found [here](https://chillpert.github.io/rayex/html/index.html).

@@ -66,29 +66,23 @@ int main( )
 ### Issues
 
 - [x] Update to latest SDK and official release version of VK_RAY_TRACING_KHR
+- [x] Fix any hit shader
 - [ ] Remove unnecessary documentation and add missing documentation
 - [ ] Fix upload storage buffers to GPU issues
-- [ ] Fix any hit shader
-- [ ] Fix reflection issue in Cornell box scene
-- [ ] Clean up Vulkan-related functions and classes
-- [ ] Outsource any ray tracing-related code from most Vulkan-related functions and classes
-- [ ] Move all Vulkan-related functions and classes into their own folder and namespace
-- [ ] Proper documentation and README grammar check
 
 ### Planned Features
 
 - [x] Global illumination
 - [x] Environment mapping
 - [x] A post processing pass for gamma correction and future post processing effects
-- [x] Simple reflections and transparency
+- [x] Diffuse and glossy reflections
+- [x] Dielectrics
 - [ ] An efficient way of building and updating acceleration structures based on a scene's requirements
-- [ ] Importance and multiple importance sampling
+- [ ] Multiple importance sampling
 - [ ] HDR skymaps and skyboxes as light sources
-- [ ] More material properties
 - [ ] Denoising
-- [ ] Callable shader support
-- [ ] Bidirectional and volumetric path tracing
-- [ ] Further post processing features
+- [ ] Next event estimation
+- [ ] More post processing features
 
 ### Documentation
 An extensive documentation of all classes and functions can be found [here](https://chillpert.github.io/rayex/html/index.html).

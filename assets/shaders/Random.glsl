@@ -55,6 +55,20 @@ vec3 samplingHemisphere( inout uint seed, in vec3 normal )
   return normalize( rayDirection );
 }
 
+// From raytracinggems p.240
+vec3 samplingHemisphere2( inout uint seed )
+{
+  float u0 = rnd( seed );
+  float u1 = rnd( seed );
+
+  vec3 dir;
+  dir.x = sqrt( u0 ) * cos( 2.0 * M_PI * u1 );
+  dir.y = sqrt( u0 ) * sin( 2.0 * M_PI * u1 );
+  dir.z = sqrt( 1.0 - u0 );
+
+  return dir;
+}
+
 // @https://www.iue.tuwien.ac.at/phd/ertl/node100.html
 vec3 samplingUnitSphere2( inout uint seed )
 {
@@ -81,7 +95,7 @@ vec3 samplingUnitSphere2( inout uint seed )
 // @https://www.iue.tuwien.ac.at/phd/ertl/node100.html
 // Cosine distributed
 // not working
-vec3 samplingCone( inout uint seed, vec3 v )
+vec3 samplingCone2( inout uint seed, vec3 v )
 {
   vec3 dir;
   float a;
@@ -97,6 +111,23 @@ vec3 samplingCone( inout uint seed, vec3 v )
   return normalize( dir );
 }
 
+vec3 samplingCone( inout uint seed, float fuzziness )
+{
+  float u0 = rnd( seed );
+  float u1 = rnd( seed );
+
+  float cosTheta = ( 1.0 - u0 ) + u0 * fuzziness;
+  float sinTheta = sqrt( 1 - cosTheta * cosTheta );
+  float phi      = u1 * 2.0 * M_PI;
+
+  vec3 dir;
+  dir.x = cos( phi ) * sinTheta;
+  dir.y = sin( phi ) * sinTheta;
+  dir.z = cosTheta;
+
+  return normalize( dir );
+}
+
 // Randomly sampling in hemisphere ( Peter Shirley's "Ray Tracing in one Weekend" )
 vec3 samplingUnitSphere( inout uint seed )
 {
@@ -104,7 +135,11 @@ vec3 samplingUnitSphere( inout uint seed )
 
   vec3 pos = vec3( 0.0 );
   do {
-    pos = vec3( rnd( seed ), rnd( seed ), rnd( seed ) ) * 2.0 - 1.0;
+    float u0 = rnd( seed ); //clamp( rnd( seed ), 0.0, 1.0 );
+    float u1 = rnd( seed ); //clamp( rnd( seed ), 0.0, 1.0 );
+    float u2 = rnd( seed ); //clamp( rnd( seed ), 0.0, 1.0 );
+
+    pos = vec3( u0, u1, u2 ) * 2.0 - 1.0;
   } while ( dot( pos, pos ) >= 1.0 );
 
   return pos;

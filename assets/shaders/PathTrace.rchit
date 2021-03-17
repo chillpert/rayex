@@ -117,8 +117,8 @@ void main( )
   }
 
   // Colors
-  vec3 diffuse  = vec3( 0.0 );
-  vec3 emission = vec3( 0.0 ); // emittance / emissiveFactor
+  vec3 reflectance = vec3( 0.0 );
+  vec3 emission    = vec3( 0.0 ); // emittance / emissiveFactor
 
   if ( found )
   {
@@ -131,10 +131,10 @@ void main( )
     }
 
     // Retrieve material textures and colors
-    diffuse = mat.diffuse.xyz;
+    reflectance = mat.diffuse.xyz;
     if ( mat.diffuse.w != -1.0 )
     {
-      diffuse *= texture( textures[nonuniformEXT( int( mat.diffuse.w ) )], texCoord ).xyz;
+      reflectance *= texture( textures[nonuniformEXT( int( mat.diffuse.w ) )], texCoord ).xyz;
     }
   }
 
@@ -142,13 +142,23 @@ void main( )
   vec3 rayOrigin = worldPos;
   vec3 nextDirection;
 
+  // Probability of the new ray (PDF)
+  float pdf      = 1.0;
+  float cosTheta = 1.0;
+
+  // BSDF (Divide by Pi to ensure energy conversation)
+  // @todo path regularization: blur the bsdf for indirect rays (raytracinggems p.251)
+  vec3 bsdf = reflectance / M_PI;
+
   // Metallic reflection
   if ( found && mat.illum == 2 )
   {
     const vec3 reflectionDirection = reflect( ray.direction, normal ); // Normal is not correct for sub meshes
+    nextDirection                  = reflectionDirection + mat.fuzziness * samplingHemisphere( ray.seed, normal );
+    ray.reflective                 = true;
 
-    nextDirection  = reflectionDirection + mat.fuzziness * samplingHemisphere( ray.seed, normal );
-    ray.reflective = true;
+    //p = 1.0 / ( 2.0 * M_PI * ( 1.0 - cos( mat.fuzziness ) ) );
+    pdf = 1 / M_PI;
   }
   // @todo Resulting background color is inverted for any 2D surface
   // Dielectric reflection ( Peter Shirley's "Ray Tracing in one Weekend" Chapter 9 )
@@ -190,34 +200,26 @@ void main( )
     {
       nextDirection = samplingHemisphere( ray.seed, normal );
     }
-    else
+    elseS
     {
       nextDirection  = refracted;
       ray.refractive = true;
       ray.reflective = true;
     }
 
-    diffuse = vec3( 1.0, 1.0, 1.0 );
+    pdf = 1.0 / M_PI;
   }
-  // Diffuse reflection
+  // Diffuse / Lambertian reflection
   else if ( found && mat.illum == 0 )
   {
-    nextDirection  = samplingHemisphere( ray.seed, normal );
-    ray.reflective = false;
+    nextDirection = samplingHemisphere( ray.seed, normal );
+    pdf           = 1.0 / M_PI;                   // PDF of sampling a hemisphere
+    cosTheta      = dot( nextDirection, normal ); // The steeper the incident direction to the surface is the more important the sample gets
+    bsdf *= cosTheta;
   }
-
-  // Probability of the new ray (cosine-distributed)
-  const float p = 1 / M_PI;
-
-  // BSDF (Divide by Pi to ensure energy conversation)
-  // @todo path regularization: blur the bsdf for indirect rays (raytracinggems p.251)
-  vec3 BSDF = diffuse / M_PI;
-
-  // Assume Lambertian reflection
-  float cosTheta = dot( nextDirection, normal );
 
   ray.origin    = rayOrigin;
   ray.direction = nextDirection;
   ray.emission  = emission;
-  ray.weight    = BSDF * cosTheta / p;
+  ray.weight    = bsdf / pdf; // divide reflectance by PDF
 }

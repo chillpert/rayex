@@ -333,8 +333,10 @@ inline void loadScene( rx::Rayex* renderer, Level scene )
 
     renderer->scene( ).setGeometryInstances( { mirrorPlaneInstance1, mirrorPlaneInstance2, lightPlaneInstance } );
 
-    for ( int i = 1; i < 5000; ++i )
+    for ( int i = 1; i < 15000; ++i )
     {
+      //auto transform = glm::translate( glm::mat4( 1.0F ), getRandomUniquePosition( -25.0F, 25.0F ) );
+      //addModel( renderer, "models/bunny.obj", transform);
       addSphere( renderer );
     }
   }

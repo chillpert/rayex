@@ -5,7 +5,7 @@
 #define STB_IMAGE_IMPLEMENTATION
 
 #ifndef VK_KHR_acceleration_structure
-  #error The local Vulkan SDK does not support VK_KHR_acceleration_structure. Consider building the Vulkan headers yourself or updating the SDK.
+  #error The local Vulkan SDK does not support VK_KHR_acceleration_structure. Please update your SDK.
 #endif
 
 #define VULKAN_HPP_STORAGE_SHARED
@@ -15,12 +15,14 @@ VULKAN_HPP_DEFAULT_DISPATCH_LOADER_DYNAMIC_STORAGE
 namespace RAYEX_NAMESPACE
 {
   const std::vector<const char*> layers = { "VK_LAYER_KHRONOS_validation" };
-  std::vector<const char*> extensions = { "VK_EXT_debug_utils" };
 
   /// @todo Currently always build with debug utils because an error might cause instant
+  std::vector<const char*> extensions = { "VK_EXT_debug_utils" };
+
 //#ifdef RX_DEBUG
-//  std::vector<const char*> extensions;
+//  std::vector<const char*> extensions = { "VK_EXT_debug_utils" };
 //#else
+//  std::vector<const char*> extensions;
 //#endif
 
   std::vector<const char*> deviceExtensions = { VK_KHR_DEFERRED_HOST_OPERATIONS_EXTENSION_NAME,
@@ -364,8 +366,13 @@ namespace RAYEX_NAMESPACE
 #ifdef RX_COPY_ASSETS
       // Copies shader resources to binary output directory. This way a shader can be changed during runtime.
       // Make sure only to edit the ones in /assets/shaders and not in /build/bin/debug/assets/shaders as the latter gets overridden.
-      RX_INFO( "Copying shader resources to binary output directory. " );
+      RX_INFO( "Copying shader resources to binary output directory.\nFrom: ", RX_ASSETS_PATH, "shaders\nto: ", RX_PATH_TO_LIBRARY, "shaders" );
       std::filesystem::copy( RX_ASSETS_PATH "shaders", RX_PATH_TO_LIBRARY "shaders", std::filesystem::copy_options::overwrite_existing | std::filesystem::copy_options::recursive );
+
+      //std::filesystem::copy( RX_ASSETS_PATH "shaders", RX_PATH_TO_LIBRARY "shaders", std::filesystem::copy_options::overwrite_existing | std::filesystem::copy_options::recursive );
+      //std::filesystem::copy( RX_ASSETS_PATH "models", RX_PATH_TO_LIBRARY "models", std::filesystem::copy_options::overwrite_existing | std::filesystem::copy_options::recursive );
+      //std::filesystem::copy( RX_ASSETS_PATH "DroidSans.ttf", RX_PATH_TO_LIBRARY "DroidSans.ttf", std::filesystem::copy_options::overwrite_existing | std::filesystem::copy_options::recursive );
+ 
 #endif
 
       initPipelines( );

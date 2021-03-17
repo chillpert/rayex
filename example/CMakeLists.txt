@@ -3,10 +3,14 @@ cmake_minimum_required(VERSION 3.16.2)
 # This makes it possible to use relative paths which usually start from the application's location. This may vary depending on your setup.
 option(COPY_ASSETS_TO_BINARY "Copy assets to binary" ON)
 
-if(CMAKE_BUILD_TYPE STREQUAL "Debug")
-  if(COPY_ASSETS_TO_BINARY)
-    add_compile_definitions(RX_COPY_ASSETS)
-  endif()
+# if(CMAKE_BUILD_TYPE STREQUAL "Debug")
+#   if(COPY_ASSETS_TO_BINARY)
+#     add_compile_definitions(RX_COPY_ASSETS)
+#   endif()
+# endif()
+
+if(COPY_ASSETS_TO_BINARY)
+  add_compile_definitions(RX_COPY_ASSETS)
 endif()
 
 # SDL

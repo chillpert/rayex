@@ -72,18 +72,18 @@ void main( )
 
     for ( ray.depth = 0; ray.depth <= maxPathDepth; ++ray.depth )
     {
-      if ( ray.refractive )
-      {
-        ray.refractive = false;
-        rayFlags       = gl_RayFlagsSkipClosestHitShaderEXT;
-
-        // Since the next closest hit will be skipped, do not increment ray depth
-        ray.depth -= 1;
-      }
-      else
-      {
-        rayFlags = gl_RayFlagsNoneEXT;
-      }
+      //if ( ray.refractive )
+      //{
+      //  ray.refractive = false;
+      //  rayFlags       = gl_RayFlagsSkipClosestHitShaderEXT;
+      //
+      //  // Since the next closest hit will be skipped, do not increment ray depth
+      //  ray.depth -= 1;
+      //}
+      //else
+      //{
+      //  rayFlags = gl_RayFlagsNoneEXT;
+      //}
 
       // Clear color overwrites black
       //if ( ray.depth >= maxPathDepth )

@@ -182,6 +182,10 @@ void main( )
       niOverNt      = mat.ni;
       cosine        = dot( ray.direction, normal ) / ray.direction.length( );
       cosine        = sqrt( 1 - mat.ni * mat.ni * ( 1 - cosine * cosine ) );
+
+      // This is the back of the triangle. This means that a surface has been traversed meaning the incoming ray was refracted.
+      // So let's refract again!
+      ray.refractive = true;
     }
     // Front of triangle
     else
@@ -189,6 +193,8 @@ void main( )
       outwardNormal = normal;
       niOverNt      = 1.0 / mat.ni;
       cosine        = -dot( ray.direction, normal ) / ray.direction.length( );
+
+      ray.refractive = false;
     }
 
     if ( refract2( ray.direction, outwardNormal, niOverNt, refracted ) )
@@ -200,25 +206,16 @@ void main( )
       reflectProb = 1.0;
     }
 
-    //if ( ray.refractive )
+    if ( rnd( ray.seed ) < reflectProb && !ray.refractive )
     {
-      //nextDirection  = refracted;
-      //ray.refractive = true;
+      const vec3 reflectionDirection = reflect( ray.direction, normal ); // Normal is not correct for sub meshes
+      nextDirection                  = reflectionDirection + mat.fuzziness * samplingHemisphere( ray.seed, normal );
+      ray.reflective                 = true;
     }
-    //else
+    else
     {
-      if ( rnd( ray.seed ) < reflectProb )
-      {
-        const vec3 reflectionDirection = reflect( ray.direction, normal ); // Normal is not correct for sub meshes
-        nextDirection                  = reflectionDirection + mat.fuzziness * samplingHemisphere( ray.seed, normal );
-        ray.reflective                 = true;
-      }
-      else
-      {
-        nextDirection  = refracted;
-        ray.refractive = true;
-        ray.reflective = true;
-      }
+      nextDirection = refracted;
+      //ray.refractive = true;
     }
 
     pdf = 1.0 / M_PI;
@@ -231,6 +228,8 @@ void main( )
     cosTheta      = dot( nextDirection, normal ); // The steeper the incident direction to the surface is the more important the sample gets
     bsdf *= cosTheta;
   }
+
+  pdf = 1.0 / ( 1.5 * M_PI ); // Is this even correct?
 
   ray.origin    = rayOrigin;
   ray.direction = nextDirection;

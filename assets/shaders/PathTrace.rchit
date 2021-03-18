@@ -153,9 +153,8 @@ void main( )
   // Metallic reflection
   if ( found && mat.illum == 2 )
   {
-    const vec3 reflectionDirection = reflect( ray.direction, normal ); // Normal is not correct for sub meshes
-    nextDirection                  = reflectionDirection + mat.fuzziness * samplingHemisphere( ray.seed, normal );
-    ray.reflective                 = true;
+    nextDirection  = reflect( ray.direction, normal ) + mat.fuzziness * samplingHemisphere( ray.seed, normal );
+    ray.reflective = true;
 
     //p = 1.0 / ( 2.0 * M_PI * ( 1.0 - cos( mat.fuzziness ) ) );
     pdf = 1 / M_PI;
@@ -168,32 +167,24 @@ void main( )
   // Dielectric reflection ( Peter Shirley's "Ray Tracing in one Weekend" Chapter 9 )
   else if ( found && mat.illum == 1 )
   {
-    // True, if the incoming ray traversed a medium. False, if the incoming ray was in vacuum.
-    bool isTransmitted = ( gl_HitKindEXT == gl_HitKindBackFacingTriangleEXT );
-
-    // This is the back of the triangle. This means that a surface has been traversed meaning the incoming ray was refracted.
-    // So let's refract again!
-    ray.refractive = isTransmitted ? true : false;
-
-    // Flip the normal if transmitted
-    vec3 temp = isTransmitted ? -normal : normal;
+    // Flip the normal if ray is transmitted
+    vec3 temp = gl_HitKindEXT == gl_HitKindBackFacingTriangleEXT ? -normal : normal;
 
     float dot    = dot( ray.direction, normal );
     float cosine = dot > 0 ? mat.ni * dot : -dot;
     float ior    = dot > 0 ? mat.ni : 1 / mat.ni;
-
+ 
     vec3 refracted    = refract( ray.direction, temp, ior );
     float reflectProb = refracted != vec3( 0.0 ) ? Schlick( cosine, mat.ni ) : 1.0;
 
-    if ( rnd( ray.seed ) < reflectProb && !ray.refractive )
+    if ( rnd( ray.seed ) < reflectProb )
     {
-      const vec3 reflectionDirection = reflect( ray.direction, normal ); // Normal is not correct for sub meshes
-      nextDirection                  = reflectionDirection + mat.fuzziness * samplingHemisphere( ray.seed, normal );
-      ray.reflective                 = true;
+      nextDirection  = reflect( ray.direction, normal ) + mat.fuzziness * samplingHemisphere( ray.seed, normal );
     }
     else
     {
       nextDirection = refracted;
+      ray.refractive = true;
     }
 
     pdf = 1.0 / M_PI;
@@ -207,7 +198,7 @@ void main( )
     bsdf *= cosTheta;
   }
 
-  //pdf = 1 / ( 1.5 * M_PI );
+  //pdf = 1 / ( 1.5 * M_PI ); // the smaller the higher the contribution
 
   ray.origin    = rayOrigin;
   ray.direction = nextDirection;

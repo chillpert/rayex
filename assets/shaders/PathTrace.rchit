@@ -173,17 +173,17 @@ void main( )
     float dot    = dot( ray.direction, normal );
     float cosine = dot > 0 ? mat.ni * dot : -dot;
     float ior    = dot > 0 ? mat.ni : 1 / mat.ni;
- 
+
     vec3 refracted    = refract( ray.direction, temp, ior );
     float reflectProb = refracted != vec3( 0.0 ) ? Schlick( cosine, mat.ni ) : 1.0;
 
     if ( rnd( ray.seed ) < reflectProb )
     {
-      nextDirection  = reflect( ray.direction, normal ) + mat.fuzziness * samplingHemisphere( ray.seed, normal );
+      nextDirection = reflect( ray.direction, normal ) + mat.fuzziness * samplingHemisphere( ray.seed, normal );
     }
     else
     {
-      nextDirection = refracted;
+      nextDirection  = refracted;
       ray.refractive = true;
     }
 

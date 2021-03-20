@@ -31,17 +31,17 @@ layout( push_constant ) uniform Constants
   uint sampleRatePerPixel;
   uint maxPathDepth;
   bool useEnvironmentMap;
+  bool russianRoulette;
+  uint russianRouletteMinBounces;
 
-  uint padding0;
-  uint padding1;
   uint padding2;
   uint padding3;
 };
 
 void main( )
 {
-  uint seed      = tea( gl_LaunchIDEXT.y * gl_LaunchSizeEXT.x + gl_LaunchIDEXT.x, int( clockARB( ) ) );
-  vec3 hitValues = vec3( 0.0 );
+  uint seed   = tea( gl_LaunchIDEXT.y * gl_LaunchSizeEXT.x + gl_LaunchIDEXT.x, int( clockARB( ) ) );
+  vec3 colors = vec3( 0.0 );
 
   for ( uint i = 0; i < sampleRatePerPixel; ++i )
   {
@@ -63,8 +63,8 @@ void main( )
     ray.reflective = false;
     ray.refractive = false;
 
-    vec3 weight   = vec3( 1.0 );
-    vec3 hitValue = vec3( 0.0 );
+    vec3 weight = vec3( 1.0 );
+    vec3 color  = vec3( 0.0 );
 
     uint rayFlags = gl_RayFlagsNoneEXT;
     float tMin    = 0.001;
@@ -81,19 +81,12 @@ void main( )
         ++refractionCounter;
       }
 
+      // but to make sure this is not an endless loop, quit after five refraction bounces
       if ( refractionCounter > 5 )
       {
         ray.depth = maxPathDepth + 1;
       }
 
-      // Clear color overwrites black
-      //if ( ray.depth >= maxPathDepth )
-      //{
-      //  hitValue += clearColor.xyz * weight;
-      //  weight *= ray.weight;
-      //}
-      //else
-      //{
       traceRayEXT( topLevelAS,    // acceleration structure
                    rayFlags,      // rayFlags
                    0xFF,          // cullMask
@@ -106,29 +99,44 @@ void main( )
                    tMax,          // ray max range
                    0 );           // payload (location = 0)
 
-      hitValue += ray.emission * weight;
+      color += ray.emission * weight;
       weight *= ray.weight;
-      //}
+
+      // Russian roulette
+      // Randomly terminate a path with a probability inversely equal to the throughput
+      if ( russianRoulette && ray.depth >= russianRouletteMinBounces )
+      {
+        float p = max( weight.x, max( weight.y, weight.z ) );
+        //float rand = clamp( rnd( ray.seed ), 0.0, 1.0 );
+        float rand = rnd( ray.seed );
+
+        if ( rand > p )
+        {
+          break;
+        }
+
+        // Add the energy "lost" by randomly terminating paths
+        weight *= 1.0 / p;
+      }
     }
 
-    hitValues += hitValue;
+    colors += color;
   }
 
   // weighted average
-  vec3 color = hitValues / sampleRatePerPixel;
+  vec3 finalColor = colors / sampleRatePerPixel;
 
   // Interpolate results over time (length defined on host as frame count (int))
   // First frame
   if ( frameCount <= 0 )
   {
-    vec4 finalColor = vec4( color, 1.0 );
-    imageStore( image, ivec2( gl_LaunchIDEXT.xy ), finalColor );
+    imageStore( image, ivec2( gl_LaunchIDEXT.xy ), vec4( finalColor, 1.0 ) );
   }
   // Following frames: linearly interpolate between previous and current color.
   else
   {
-    vec3 oldColor   = imageLoad( image, ivec2( gl_LaunchIDEXT.xy ) ).xyz;
-    vec4 finalColor = vec4( mix( oldColor, color, 1.0 / float( frameCount ) ), 1.0 );
-    imageStore( image, ivec2( gl_LaunchIDEXT.xy ), finalColor );
+    vec3 oldColor = imageLoad( image, ivec2( gl_LaunchIDEXT.xy ) ).xyz;
+    vec4 temp     = vec4( mix( oldColor, finalColor, 1.0 / float( frameCount ) ), 1.0 );
+    imageStore( image, ivec2( gl_LaunchIDEXT.xy ), temp );
   }
 }

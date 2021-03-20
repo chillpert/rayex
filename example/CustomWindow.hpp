@@ -38,6 +38,8 @@ public:
 
     while ( SDL_PollEvent( &event ) != 0 )
     {
+      ImGui_ImplSDL2_ProcessEvent( &event );
+
       switch ( event.type )
       {
         case SDL_QUIT: {

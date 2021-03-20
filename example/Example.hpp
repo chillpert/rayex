@@ -304,6 +304,7 @@ inline void loadScene( rx::Rayex* renderer, Level scene )
 
     renderer->scene( ).getCamera( )->setPosition( glm::vec3( 9.8F, 0.3F, 7.7F ) );
     renderer->scene( ).getCamera( )->setFront( glm::vec3( -0.5F, 0.0F, -0.8F ) );
+    //renderer->scene( ).getCamera( )->setFront( glm::vec3( -0.5F, 0.0F, -0.8F ) );
     renderer->scene( ).removeEnvironmentMap( );
 
     auto lightPlane = rx::loadObj( "models/plane.obj" );

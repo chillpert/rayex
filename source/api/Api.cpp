@@ -19,11 +19,11 @@ namespace RAYEX_NAMESPACE
   /// @todo Currently always build with debug utils because an error might cause instant
   std::vector<const char*> extensions = { "VK_EXT_debug_utils" };
 
-//#ifdef RX_DEBUG
-//  std::vector<const char*> extensions = { "VK_EXT_debug_utils" };
-//#else
-//  std::vector<const char*> extensions;
-//#endif
+  //#ifdef RX_DEBUG
+  //  std::vector<const char*> extensions = { "VK_EXT_debug_utils" };
+  //#else
+  //  std::vector<const char*> extensions;
+  //#endif
 
   std::vector<const char*> deviceExtensions = { VK_KHR_DEFERRED_HOST_OPERATIONS_EXTENSION_NAME,
                                                 VK_KHR_PIPELINE_LIBRARY_EXTENSION_NAME,
@@ -372,7 +372,7 @@ namespace RAYEX_NAMESPACE
       //std::filesystem::copy( RX_ASSETS_PATH "shaders", RX_PATH_TO_LIBRARY "shaders", std::filesystem::copy_options::overwrite_existing | std::filesystem::copy_options::recursive );
       //std::filesystem::copy( RX_ASSETS_PATH "models", RX_PATH_TO_LIBRARY "models", std::filesystem::copy_options::overwrite_existing | std::filesystem::copy_options::recursive );
       //std::filesystem::copy( RX_ASSETS_PATH "DroidSans.ttf", RX_PATH_TO_LIBRARY "DroidSans.ttf", std::filesystem::copy_options::overwrite_existing | std::filesystem::copy_options::recursive );
- 
+
 #endif
 
       initPipelines( );
@@ -481,7 +481,9 @@ namespace RAYEX_NAMESPACE
                                components::frameCount,
                                _settings._perPixelSampleRate,
                                _settings._pathDepth,
-                               static_cast<uint32_t>( _scene._useEnvironmentMap ) };
+                               static_cast<uint32_t>( _scene._useEnvironmentMap ),
+                               static_cast<uint32_t>( _settings._russianRoulette ),
+                               _settings._russianRouletteMinBounces };
 
     // Start recording the swapchain framebuffers?
     for ( size_t imageIndex = 0; imageIndex < _swapchainCommandBuffers.get( ).size( ); ++imageIndex )

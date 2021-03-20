@@ -29,6 +29,14 @@ namespace RAYEX_NAMESPACE
     /// @param recursionDepth The new value for the recursion depth.
     void setPathDepth( uint32_t recursionDepth );
 
+    bool getRussianRoulette( ) { return _russianRoulette; }
+
+    void setRussianRoulette( bool flag );
+
+    uint32_t getRussianRouletteMinBounces( ) { return _russianRouletteMinBounces; }
+
+    void setRussianRouletteMinBounces( uint32_t minBounces );
+
     /// @return Returns the maximum path depth on the GPU.
     auto getMaxPathDepth( ) const -> uint32_t { return _maxPathDepth; }
 
@@ -95,8 +103,7 @@ namespace RAYEX_NAMESPACE
   private:
     /// This function will be called by Rayex::init() in case the path was not set manually.
     /// @warning This function might file in setting the correct path. That is why it is recommended to set it automatically using setAssetsPath(std::string).
-    void
-    setDefaultAssetsPath( );
+    void setDefaultAssetsPath( );
 
     bool _refreshPipeline  = false; ///< Keeps track of whether or not the graphics pipeline needs to be recreated.
     bool _refreshSwapchain = false; ///< Keeps track of whether or not the swapchain needs to be recreated.
@@ -112,12 +119,14 @@ namespace RAYEX_NAMESPACE
 
     std::string _assetsPath; ///< Where all assets like models, textures and shaders are stored.
 
-    glm::vec4 _clearColor        = glm::vec4( 0.45F, 0.45F, 0.45F, 0.8F ); ///< Stores the clear color.
-    uint32_t _maxPathDepth       = 10;                                     ///< The maximum path depth.
-    uint32_t _pathDepth          = 10;                                     ///< The current path depth.
-    uint32_t _perPixelSampleRate = 4;                                      ///< Stores the total amount of samples that will be taken and averaged per pixel.
+    glm::vec4 _clearColor               = glm::vec4( 0.45F, 0.45F, 0.45F, 0.8F ); ///< Stores the clear color.
+    uint32_t _maxPathDepth              = 10;                                     ///< The maximum path depth.
+    uint32_t _pathDepth                 = 10;                                     ///< The current path depth.
+    uint32_t _perPixelSampleRate        = 4;                                      ///< Stores the total amount of samples that will be taken and averaged per pixel.
+    uint32_t _russianRouletteMinBounces = 1;
 
     bool _accumulateFrames          = true;
+    bool _russianRoulette           = true;
     bool _automaticPipelineRefresh  = false; ///< Keeps track of whether or not the graphics pipelines should be recreated automatically as soon as possible.
     bool _automaticSwapchainRefresh = false; ///< Keeps track of whether or not the swapchain should be recreated automatically as soon as possible.
   };

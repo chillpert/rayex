@@ -17,7 +17,7 @@ namespace RAYEX_NAMESPACE
     }
 
     _pathDepth = recursionDepth;
-    triggerPipelineRefresh( );
+    //triggerPipelineRefresh( );
   }
 
   void Settings::setClearColor( const glm::vec4& clearColor )
@@ -36,6 +36,16 @@ namespace RAYEX_NAMESPACE
     _clearColor = clearColor;
 
     components::frameCount = -1;
+  }
+
+  void Settings::setRussianRoulette( bool flag )
+  {
+    _russianRoulette = flag;
+  }
+
+  void Settings::setRussianRouletteMinBounces( uint32_t minBounces )
+  {
+    _russianRouletteMinBounces = minBounces;
   }
 
   void Settings::setAssetsPath( int argc, char* argv[] )

@@ -219,27 +219,40 @@ private:
         ImGui::Checkbox( "Accumulate frames", &accumulateFrames );
         _renderer->settings( ).setAccumulatingFrames( accumulateFrames );
 
-        if ( ImGui::Button( "Recompile shaders" ) )
-        {
-          _renderer->settings( ).triggerPipelineRefresh( );
-        }
-
         auto clearColor = _renderer->settings( ).getClearColor( );
         if ( ImGui::ColorEdit4( "##AmbientColor", &clearColor[0] ) )
         {
           _renderer->settings( ).setClearColor( clearColor );
         }
 
-        int perPixelSampleRate = static_cast<int>( _renderer->settings( ).getPerPixelSampleRate( ) );
-        if ( ImGui::SliderInt( "Per pixel sample rate", &perPixelSampleRate, 1, 100 ) )
+        bool russianRoulette = _renderer->settings( ).getRussianRoulette( );
+        ImGui::Checkbox( "##Russian Roulette 2", &russianRoulette );
+        _renderer->settings( ).setRussianRoulette( russianRoulette );
+
+        ImGui::SameLine( );
+
+        static int minBounces = static_cast<int>( _renderer->settings( ).getRussianRouletteMinBounces( ) );
+        ImGui::SetNextItemWidth( 235.0F );
+        if ( ImGui::SliderInt( "Russian Roulette", &minBounces, 0, 10 ) )
+        {
+          _renderer->settings( ).setRussianRouletteMinBounces( static_cast<uint32_t>( minBounces ) );
+        }
+
+        static int perPixelSampleRate = static_cast<int>( _renderer->settings( ).getPerPixelSampleRate( ) );
+        if ( ImGui::InputInt( "Per pixel sample rate", &perPixelSampleRate, 1, 100 ) )
         {
           _renderer->settings( ).setPerPixelSampleRate( perPixelSampleRate );
         }
 
-        int depth = static_cast<int>( _renderer->settings( ).getPathDepth( ) );
-        if ( ImGui::SliderInt( "Path depth", &depth, 0, 100 ) )
+        static int depth = static_cast<int>( _renderer->settings( ).getPathDepth( ) );
+        if ( ImGui::InputInt( "Path depth", &depth, 0, 100 ) )
         {
           _renderer->settings( ).setPathDepth( static_cast<uint32_t>( depth ) );
+        }
+
+        if ( ImGui::Button( "Recompile shaders" ) )
+        {
+          _renderer->settings( ).triggerPipelineRefresh( );
         }
       }
 

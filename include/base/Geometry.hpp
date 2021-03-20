@@ -23,7 +23,8 @@ namespace RAYEX_NAMESPACE
     float d = 1.0F;
 
     /// Focus of the specular light (aka shininess). Ranges from 0 to 1000, with a high value resulting in a tight, concentrated highlight.
-    //float ns = 0.0F;
+    float ns = 0.0F;
+
     float fuzziness = 0.0F;
 
     /// Optical density (aka index of refraction). Ranges from 0.001 to 10. A value of 1.0 means that light does not bend as it passes through an object.
@@ -102,13 +103,12 @@ namespace RAYEX_NAMESPACE
     glm::vec4 ambient  = glm::vec4( 1.0F, 1.0F, 1.0F, -1.0F ); ///< vec3 ambient  + vec1 texture index
     glm::vec4 diffuse  = glm::vec4( 1.0F, 1.0F, 1.0F, -1.0F ); ///< vec3 diffuse  + vec1 texture index
     glm::vec4 specular = glm::vec4( 1.0F, 1.0F, 1.0F, -1.0F ); ///< vec3 specular + vec1 texture index
-    glm::vec4 emission = glm::vec4( 0.0F, 0.0F, 0.0F, -1.0F ); ///< vec3 emission + vec1 texture index
+    glm::vec4 emission = glm::vec4( 0.0F, 0.0F, 0.0F, 64.0F ); ///< vec3 emission + vec1 texture index
 
     uint32_t illum  = 0;
     float d         = 1.0F;
     float fuzziness = 0.0F;
-    //float ns       = 0.0F;
-    float ni = 1.0F;
+    float ni        = 1.0F;
 
     uint32_t indexOffset = 0; ///< Refers to the offset of this mesh inside a Geometry::indices container.
     uint32_t padding0    = 0; ///< Buffer padding (ignore).
@@ -124,6 +124,7 @@ namespace RAYEX_NAMESPACE
       indexOffset = mesh.indexOffset;
       ni          = mesh.material.ni;
       fuzziness   = mesh.material.fuzziness;
+      emission.w  = mesh.material.ns;
     }
   };
 

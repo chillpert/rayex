@@ -226,28 +226,36 @@ private:
         }
 
         bool russianRoulette = _renderer->settings( ).getRussianRoulette( );
-        ImGui::Checkbox( "##Russian Roulette 2", &russianRoulette );
+        if ( ImGui::Checkbox( "##Russian Roulette 2", &russianRoulette ) )
+        {
+          _renderer->settings( ).setAccumulatingFrames( false );
+        }
         _renderer->settings( ).setRussianRoulette( russianRoulette );
 
         ImGui::SameLine( );
 
         static int minBounces = static_cast<int>( _renderer->settings( ).getRussianRouletteMinBounces( ) );
-        ImGui::SetNextItemWidth( 235.0F );
-        if ( ImGui::SliderInt( "Russian Roulette", &minBounces, 0, 10 ) )
+        ImGui::SetNextItemWidth( 100.0F );
+        if ( ImGui::InputInt( "Russian Roulette", &minBounces ) )
         {
           _renderer->settings( ).setRussianRouletteMinBounces( static_cast<uint32_t>( minBounces ) );
+          _renderer->settings( ).setAccumulatingFrames( false );
         }
 
         static int perPixelSampleRate = static_cast<int>( _renderer->settings( ).getPerPixelSampleRate( ) );
-        if ( ImGui::InputInt( "Per pixel sample rate", &perPixelSampleRate, 1, 100 ) )
+        ImGui::SetNextItemWidth( 129.0F );
+        if ( ImGui::InputInt( "Per pixel sample rate", &perPixelSampleRate ) )
         {
           _renderer->settings( ).setPerPixelSampleRate( perPixelSampleRate );
+          _renderer->settings( ).setAccumulatingFrames( false );
         }
 
         static int depth = static_cast<int>( _renderer->settings( ).getPathDepth( ) );
-        if ( ImGui::InputInt( "Path depth", &depth, 0, 100 ) )
+        ImGui::SetNextItemWidth( 129.0F );
+        if ( ImGui::InputInt( "Path depth", &depth ) )
         {
           _renderer->settings( ).setPathDepth( static_cast<uint32_t>( depth ) );
+          _renderer->settings( ).setAccumulatingFrames( false );
         }
 
         if ( ImGui::Button( "Recompile shaders" ) )
@@ -293,14 +301,14 @@ private:
           loadScene( _renderer, Level::eSponza );
         }
 
-        ImGui::Separator( );
-        ImGui::Text( "Cam Pos:   " );
-        ImGui::SameLine( );
-        ImGui::Text( glm::to_string( _renderer->scene( ).getCamera( )->getPosition( ) ).c_str( ) );
-
-        ImGui::Text( "Cam Front: " );
-        ImGui::SameLine( );
-        ImGui::Text( glm::to_string( _renderer->scene( ).getCamera( )->getFront( ) ).c_str( ) );
+        //ImGui::Separator( );
+        //ImGui::Text( "Cam Pos:   " );
+        //ImGui::SameLine( );
+        //ImGui::Text( glm::to_string( _renderer->scene( ).getCamera( )->getPosition( ) ).c_str( ) );
+        //
+        //ImGui::Text( "Cam Front: " );
+        //ImGui::SameLine( );
+        //ImGui::Text( glm::to_string( _renderer->scene( ).getCamera( )->getFront( ) ).c_str( ) );
       }
     }
     ImGui::End( );

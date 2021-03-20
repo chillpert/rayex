@@ -92,6 +92,17 @@ vec3 samplingHemisphere( inout uint seed, in vec3 normal )
   {
     return -inUnitSphere;
   }
+
+  // cosine distributed from rtgems p. 211
+  //float u0 = clamp( rnd( seed ), 0.0, 3.0 );
+  //float u1 = clamp( rnd( seed ), 0.0, 3.0 );
+  //
+  //vec3 dir;
+  //dir.x = sqrt( u0 ) * cos( 2.0 * M_PI * u1 );
+  //dir.y = sqrt( u0 ) * sin( 2.0 * M_PI * u1 );
+  //dir.z = sqrt( 1.0 - u0 );
+  //
+  //return normal + normalize( dir ); // probably wrong
 }
 
 // From raytracinggems p.240

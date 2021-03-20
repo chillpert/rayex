@@ -201,11 +201,13 @@ inline void loadScene( rx::Rayex* renderer, Level scene )
     mat.ni        = 1.0F;
     mat.illum     = 1;
     mat.fuzziness = 0.0F;
+    mat.ns        = 128.0F;
     mat.ni        = 1.4F;
     sphere->setMaterial( mat );
 
     auto sphere1 = rx::loadObj( "models/sphere.obj" );
     mat.kd       = glm::vec3( 1.0F, 0.8F, 0.0F );
+    mat.ns       = 0.0F;
     mat.ni       = 1;
     mat.illum    = 0;
     mat.d        = 0.5;
@@ -316,7 +318,7 @@ inline void loadScene( rx::Rayex* renderer, Level scene )
     rx::Material mirrorMaterial;
     mirrorMaterial.illum     = 2;
     mirrorMaterial.fuzziness = 0.0F;
-    mirrorMaterial.kd        = glm::vec3( 1.0F );
+    mirrorMaterial.kd        = glm::vec3( 0.95F );
     mirrorPlane->setMaterial( mirrorMaterial );
 
     renderer->scene( ).setGeometries( { lightPlane, mirrorPlane } );

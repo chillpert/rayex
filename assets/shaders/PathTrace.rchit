@@ -55,6 +55,20 @@ layout( push_constant ) uniform Constants
   uint padding3;
 };
 
+layout( binding = 0, set = 1 ) uniform CameraProperties
+{
+  mat4 view;
+  mat4 proj;
+  mat4 viewInverse;
+  mat4 projInverse;
+  vec4 position;
+  vec4 viewingDirection;
+
+  vec4 padding1;
+  vec4 padding2;
+}
+cam;
+
 Vertex unpackVertex( uint index, uint geometryIndex )
 {
   vec4 d0 = vertices[nonuniformEXT( geometryIndex )].v[3 * index + 0];
@@ -153,15 +167,11 @@ void main( )
   // Metallic reflection
   if ( found && mat.illum == 2 )
   {
-    nextDirection  = reflect( ray.direction, normal ) + mat.fuzziness * samplingHemisphere( ray.seed, normal );
-    ray.reflective = true;
+    vec3 reflectDir = reflect( ray.direction, normal );
+    nextDirection   = reflectDir + mat.fuzziness * samplingHemisphere( ray.seed, normal );
+    ray.reflective  = true;
 
-    //p = 1.0 / ( 2.0 * M_PI * ( 1.0 - cos( mat.fuzziness ) ) );
     pdf = 1 / M_PI;
-
-    // If removed than mirror won't be visible at all in mirror scene (I don't know what is more realistic)
-    cosTheta = dot( nextDirection, normal ); // The steeper the incident direction to the surface is the more important the sample gets
-    bsdf *= cosTheta;
   }
   // @todo Resulting background color is inverted for any 2D surface
   // Dielectric reflection ( Peter Shirley's "Ray Tracing in one Weekend" Chapter 9 )
@@ -170,9 +180,9 @@ void main( )
     // Flip the normal if ray is transmitted
     vec3 temp = gl_HitKindEXT == gl_HitKindBackFacingTriangleEXT ? -normal : normal;
 
-    float dot    = dot( ray.direction, normal );
-    float cosine = dot > 0 ? mat.ni * dot : -dot;
-    float ior    = dot > 0 ? mat.ni : 1 / mat.ni;
+    float dot_   = dot( ray.direction, normal );
+    float cosine = dot_ > 0 ? mat.ni * dot_ : -dot_;
+    float ior    = dot_ > 0 ? mat.ni : 1 / mat.ni;
 
     vec3 refracted    = refract( ray.direction, temp, ior );
     float reflectProb = refracted != vec3( 0.0 ) ? Schlick( cosine, mat.ni ) : 1.0;
@@ -188,6 +198,7 @@ void main( )
     }
 
     pdf = 1.0 / M_PI;
+    //p = 1.0 / ( 2.0 * M_PI * ( 1.0 - cos( mat.fuzziness ) ) );
   }
   // Diffuse / Lambertian reflection
   else if ( found && mat.illum == 0 )
@@ -196,6 +207,17 @@ void main( )
     pdf           = 1.0 / M_PI;                   // PDF of sampling a hemisphere
     cosTheta      = dot( nextDirection, normal ); // The steeper the incident direction to the surface is the more important the sample gets
     bsdf *= cosTheta;
+  }
+
+  // Add specular highlight
+  if ( found && mat.emission.w > 0.0 && mat.illum != 0 )
+  {
+    vec3 reflectDir = reflect( ray.direction, normal );
+    float spec      = pow( max( dot( normalize( cam.position.xyz - worldPos ), reflectDir ), 0.0 ), mat.emission.w );
+    if ( spec > 0.0 )
+    {
+      bsdf = ( reflectance + clamp( spec, 0, 1 ) ) / M_PI;
+    }
   }
 
   //pdf = 1 / ( 1.5 * M_PI ); // the smaller the higher the contribution

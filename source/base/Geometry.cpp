@@ -65,10 +65,12 @@ namespace RAYEX_NAMESPACE
         auto emission          = materials[materialIndex].emission;
         mesh.material.emission = glm::vec3( emission[0], emission[1], emission[2] );
 
-        mesh.material.illum = static_cast<uint32_t>( materials[materialIndex].illum );
-        mesh.material.d     = materials[materialIndex].dissolve;
-        //mesh.material.ns    = materials[materialIndex].shininess;
-        mesh.material.ni = materials[materialIndex].ior;
+        mesh.material.illum     = static_cast<uint32_t>( materials[materialIndex].illum );
+        mesh.material.d         = materials[materialIndex].dissolve;
+        mesh.material.ns        = materials[materialIndex].shininess;
+        mesh.material.ni        = materials[materialIndex].ior;
+        mesh.material.fuzziness = materials[materialIndex].roughness;
+        //materials[materialIndex].metallic / roughness
 
         //auto transmittance          = materials[materialIndex].transmittance;
         //mesh.material.transmittance = glm::vec3( transmittance[0], transmittance[1], transmittance[2] );

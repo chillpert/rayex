@@ -500,7 +500,7 @@ namespace RAYEX_NAMESPACE
     auto chit = vkCore::initShaderModuleUnique( components::assetsPath + "shaders/PathTrace.rchit", RX_GLSLC_PATH );
     auto ahit = vkCore::initShaderModuleUnique( components::assetsPath + "shaders/PathTrace.rahit", RX_GLSLC_PATH );
     //auto ahit1 = vk::Initializer::initShaderModuleUnique( "shaders/PathTrace1.rahit" );
-    //auto missShadow = vk::Initializer::initShaderModuleUnique( "shaders/PathTraceShadow.rmiss" );
+    auto missShadow = vkCore::initShaderModuleUnique( components::assetsPath + "shaders/PathTraceShadow.rmiss", RX_GLSLC_PATH );
 
     vk::PushConstantRange ptPushConstant( vk::ShaderStageFlagBits::eRaygenKHR | vk::ShaderStageFlagBits::eMissKHR | vk::ShaderStageFlagBits::eClosestHitKHR, // stageFlags
                                           0,                                                                                                                 // offset
@@ -517,16 +517,16 @@ namespace RAYEX_NAMESPACE
     _layout = vkCore::global::device.createPipelineLayoutUnique( layoutInfo );
     RX_ASSERT( _layout.get( ), "Failed to create pipeline layout for path tracing pipeline." );
 
-    std::array<vk::PipelineShaderStageCreateInfo, 4> shaderStages;
+    std::array<vk::PipelineShaderStageCreateInfo, 5> shaderStages;
     shaderStages[0] = vkCore::getPipelineShaderStageCreateInfo( vk::ShaderStageFlagBits::eRaygenKHR, rgen.get( ) );
     shaderStages[1] = vkCore::getPipelineShaderStageCreateInfo( vk::ShaderStageFlagBits::eMissKHR, miss.get( ) );
-    //shaderStages[2] =vkCore::getPipelineShaderStageCreateInfo( vk::ShaderStageFlagBits::eMissKHR, missShadow.get( ) );
-    shaderStages[2] = vkCore::getPipelineShaderStageCreateInfo( vk::ShaderStageFlagBits::eClosestHitKHR, chit.get( ) );
-    shaderStages[3] = vkCore::getPipelineShaderStageCreateInfo( vk::ShaderStageFlagBits::eAnyHitKHR, ahit.get( ) );
+    shaderStages[2] = vkCore::getPipelineShaderStageCreateInfo( vk::ShaderStageFlagBits::eMissKHR, missShadow.get( ) );
+    shaderStages[3] = vkCore::getPipelineShaderStageCreateInfo( vk::ShaderStageFlagBits::eClosestHitKHR, chit.get( ) );
+    shaderStages[4] = vkCore::getPipelineShaderStageCreateInfo( vk::ShaderStageFlagBits::eAnyHitKHR, ahit.get( ) );
     //shaderStages[4] = vkCore::getPipelineShaderStageCreateInfo( vk::ShaderStageFlagBits::eAnyHitKHR, ahit1.get( ) );
 
     // Set up path tracing shader groups.
-    std::array<vk::RayTracingShaderGroupCreateInfoKHR, 3> groups;
+    std::array<vk::RayTracingShaderGroupCreateInfoKHR, 4> groups;
 
     for ( auto& group : groups )
     {
@@ -542,12 +542,12 @@ namespace RAYEX_NAMESPACE
     groups[1].generalShader = 1;
     groups[1].type          = vk::RayTracingShaderGroupTypeKHR::eGeneral;
 
-    //groups[2].generalShader = 2;
-    //groups[2].type          = vk::RayTracingShaderGroupTypeKHR::eGeneral;
+    groups[2].generalShader = 2;
+    groups[2].type          = vk::RayTracingShaderGroupTypeKHR::eGeneral;
 
-    groups[2].closestHitShader = 2;
-    groups[2].anyHitShader     = 3;
-    groups[2].type             = vk::RayTracingShaderGroupTypeKHR::eTrianglesHitGroup;
+    groups[3].closestHitShader = 3;
+    groups[3].anyHitShader     = 4;
+    groups[3].type             = vk::RayTracingShaderGroupTypeKHR::eTrianglesHitGroup;
 
     //groups[3].closestHitShader = 4;
     //groups[3].anyHitShader = 3;
@@ -555,12 +555,13 @@ namespace RAYEX_NAMESPACE
 
     _shaderGroups = static_cast<uint32_t>( groups.size( ) );
 
+    // @todo change hard-coded recursion depth
     vk::RayTracingPipelineCreateInfoKHR createInfo( { },                                           // flags
                                                     static_cast<uint32_t>( shaderStages.size( ) ), // stageCount
                                                     shaderStages.data( ),                          // pStages
                                                     static_cast<uint32_t>( groups.size( ) ),       // groupCount
                                                     groups.data( ),                                // pGroups
-                                                    0,                                             // maxPipelineRayRecursionDepth
+                                                    30,                                            // maxPipelineRayRecursionDepth
                                                     { },                                           // pLibraryInfo
                                                     nullptr,                                       // pLibraryInterface
                                                     { },                                           // pDynamicState
@@ -587,7 +588,7 @@ namespace RAYEX_NAMESPACE
                                                         progSize,                       // stride
                                                         progSize * 2 );                 // size
 
-    vk::StridedDeviceAddressRegionKHR bufferRegionChit( sbtAddress + ( 2U * progSize ), // deviceAddress
+    vk::StridedDeviceAddressRegionKHR bufferRegionChit( sbtAddress + ( 3U * progSize ), // deviceAddress
                                                         progSize,                       // stride
                                                         progSize * 1 );                 // size
 
@@ -609,7 +610,7 @@ namespace RAYEX_NAMESPACE
     // TLAS
     _descriptors.bindings.add( 0,
                                vk::DescriptorType::eAccelerationStructureKHR,
-                               vk::ShaderStageFlagBits::eRaygenKHR );
+                               vk::ShaderStageFlagBits::eRaygenKHR | vk::ShaderStageFlagBits::eClosestHitKHR );
     // Output image
     _descriptors.bindings.add( 1,
                                vk::DescriptorType::eStorageImage,

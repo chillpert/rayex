@@ -301,14 +301,14 @@ private:
           loadScene( _renderer, Level::eSponza );
         }
 
-        //ImGui::Separator( );
-        //ImGui::Text( "Cam Pos:   " );
-        //ImGui::SameLine( );
-        //ImGui::Text( glm::to_string( _renderer->scene( ).getCamera( )->getPosition( ) ).c_str( ) );
-        //
-        //ImGui::Text( "Cam Front: " );
-        //ImGui::SameLine( );
-        //ImGui::Text( glm::to_string( _renderer->scene( ).getCamera( )->getFront( ) ).c_str( ) );
+        ImGui::Separator( );
+        ImGui::Text( "Cam Pos:   " );
+        ImGui::SameLine( );
+        ImGui::Text( glm::to_string( _renderer->scene( ).getCamera( )->getPosition( ) ).c_str( ) );
+
+        ImGui::Text( "Cam Front: " );
+        ImGui::SameLine( );
+        ImGui::Text( glm::to_string( _renderer->scene( ).getCamera( )->getFront( ) ).c_str( ) );
       }
     }
     ImGui::End( );

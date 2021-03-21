@@ -54,11 +54,63 @@ float RandomFloat01( inout uint state )
   return float( wang_hash( state ) ) / 4294967296.0;
 }
 
+// @Nvidia vk_ray_tracing_KHR tutorial
+// Return the tangent and binormal from the incoming normal
+void createCoordinateSystem( in vec3 N, out vec3 Nt, out vec3 Nb )
+{
+  if ( abs( N.x ) > abs( N.y ) )
+  {
+    Nt = vec3( N.z, 0, -N.x ) / sqrt( N.x * N.x + N.z * N.z );
+  }
+  else
+  {
+    Nt = vec3( 0, -N.z, N.y ) / sqrt( N.y * N.y + N.z * N.z );
+  }
+  Nb = cross( N, Nt );
+}
+
 // From Nvidia's vk_mini_path_tracer and ultimately from Peter Shirley's "Ray Tracing in one Weekend"
 // Randomly sampling in hemisphere
 // Generates a random point on a sphere of radius 1 centered at the normal. Uses random_unit_vector function
-vec3 samplingHemisphere( inout uint seed, in vec3 normal )
+vec3 samplingHemisphere( inout uint seed, inout float pdf, in vec3 normal, in vec3 localNormal )
 {
+  //float u0 = rnd( seed ); //clamp( rnd( seed ), 0.0, 3.0 );
+  //float u1 = rnd( seed ); //clamp( rnd( seed ), 0.0, 3.0 );
+  //
+  //vec3 dir;
+  //dir.x = sqrt( u0 ) * cos( 2.0 * M_PI * u1 );
+  //dir.y = sqrt( u0 ) * sin( 2.0 * M_PI * u1 );
+  //dir.z = sqrt( 1.0 - u0 );
+  //
+  //pdf = dir.z / M_PI;
+  //
+  //// Transform sample to local tangent space of the surface that is rendered
+  //vec3 tangent;
+  //vec3 bitangent;
+  //createCoordinateSystem( normal, tangent, bitangent );
+  //mat3 tangentToWorld = ( mat3( tangent, bitangent, localNormal ) );
+  //dir                 = normalize( tangentToWorld * dir );
+  //
+  //return dir;
+
+  // cosine distributed sampling
+  float u0 = rnd( seed );
+  float u1 = rnd( seed );
+  float sq = sqrt( 1.0 - u1 );
+
+  vec3 direction = vec3( cos( 2 * M_PI * u0 ) * sq, sin( 2 * M_PI * u0 ) * sq, sqrt( u1 ) );
+
+  // PDF of cosine distributed hemisphere sampling
+  pdf = 1.0 / M_PI;
+
+  vec3 tangent;
+  vec3 bitangent;
+  createCoordinateSystem( normal, tangent, bitangent );
+
+  direction = direction.x * tangent + direction.y * bitangent + direction.z * normal;
+
+  return direction;
+
   // @todo check performance of both methods
 
   //// reduce fireflies
@@ -74,24 +126,25 @@ vec3 samplingHemisphere( inout uint seed, in vec3 normal )
   //return normalize( rayDirection );
 
   // A rejection method ( "Ray Tracing in one Weekend" p. 22)
-  vec3 inUnitSphere = vec3( 0.0 );
-  do
-  {
-    // x,y, and z range from -1 to 1
-    // if point is outside the sphere -> reject it and try again
-    inUnitSphere = vec3( rnd( seed ), rnd( seed ), rnd( seed ) ) * 2.0 - 1.0;
-  } while ( dot( inUnitSphere, inUnitSphere ) >= 1.0 );
-
-  // In the same hemisphere as the normal
-  if ( dot( inUnitSphere, normal ) > 0.0 )
-  {
-    return inUnitSphere;
-  }
-  // Flip normal
-  else
-  {
-    return -inUnitSphere;
-  }
+  //pdf               = 1.0 / M_PI;
+  //vec3 inUnitSphere = vec3( 0.0 );
+  //do
+  //{
+  //  // x,y, and z range from -1 to 1
+  //  // if point is outside the sphere -> reject it and try again
+  //  inUnitSphere = vec3( rnd( seed ), rnd( seed ), rnd( seed ) ) * 2.0 - 1.0;
+  //} while ( dot( inUnitSphere, inUnitSphere ) >= 1.0 );
+  //
+  //// In the same hemisphere as the normal
+  //if ( dot( inUnitSphere, normal ) > 0.0 )
+  //{
+  //  return inUnitSphere;
+  //}
+  //// Flip normal
+  //else
+  //{
+  //  return -inUnitSphere;
+  //}
 
   // cosine distributed from rtgems p. 211
   //float u0 = clamp( rnd( seed ), 0.0, 3.0 );
@@ -201,19 +254,4 @@ float Schlick( const float cosine, const float ior )
   float r0 = ( 1.0 - ior ) / ( 1.0 + ior );
   r0 *= r0;
   return r0 + ( 1.0 - r0 ) * pow( 1.0 - cosine, 5.0 );
-}
-
-// @Nvidia vk_ray_tracing_KHR tutorial
-// Return the tangent and binormal from the incoming normal
-void createCoordinateSystem( in vec3 N, out vec3 Nt, out vec3 Nb )
-{
-  if ( abs( N.x ) > abs( N.y ) )
-  {
-    Nt = vec3( N.z, 0, -N.x ) / sqrt( N.x * N.x + N.z * N.z );
-  }
-  else
-  {
-    Nt = vec3( 0, -N.z, N.y ) / sqrt( N.y * N.y + N.z * N.z );
-  }
-  Nb = cross( N, Nt );
 }

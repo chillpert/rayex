@@ -118,10 +118,10 @@ inline void loadScene( rx::Rayex* renderer, Level scene )
     renderer->settings( ).setClearColor( glm::vec4( 0.45F, 0.45F, 0.45F, 0.8F ) );
     renderer->settings( ).setAccumulatingFrames( true );
 
-    renderer->scene( ).getCamera( )->setPosition( glm::vec3( 0.0F, 0.0F, -0.5F ) );
-    renderer->scene( ).getCamera( )->setFov( 90.0F );
+    //renderer->scene( ).getCamera( )->setPosition( glm::vec3( 0.0F, 0.0F, -0.5F ) );
+    //renderer->scene( ).getCamera( )->setFov( 90.0F );
 
-    auto cornell = rx::loadObj( "models/CornellBox2.obj" );
+    auto cornell = rx::loadObj( "models/CornellBox.obj" );
     // Set lamp submesh emittance.
     cornell->meshes[7].material.emission = glm::vec3( 10.0F );
 

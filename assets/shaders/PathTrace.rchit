@@ -157,7 +157,7 @@ void main( )
   vec3 nextDirection;
 
   // Probability of the new ray (PDF)
-  float pdf      = 1.0;
+  float pdf;
   float cosTheta = 1.0;
 
   // BSDF (Divide by Pi to ensure energy conversation)
@@ -168,10 +168,8 @@ void main( )
   if ( found && mat.illum == 2 )
   {
     vec3 reflectDir = reflect( ray.direction, normal );
-    nextDirection   = reflectDir + mat.fuzziness * samplingHemisphere( ray.seed, normal );
+    nextDirection   = reflectDir + mat.fuzziness * samplingHemisphere( ray.seed, pdf, normal, localNormal );
     ray.reflective  = true;
-
-    pdf = 1 / M_PI;
   }
   // @todo Resulting background color is inverted for any 2D surface
   // Dielectric reflection ( Peter Shirley's "Ray Tracing in one Weekend" Chapter 9 )
@@ -189,22 +187,18 @@ void main( )
 
     if ( rnd( ray.seed ) < reflectProb )
     {
-      nextDirection = reflect( ray.direction, normal ) + mat.fuzziness * samplingHemisphere( ray.seed, normal );
+      nextDirection = reflect( ray.direction, normal ) + mat.fuzziness * samplingHemisphere( ray.seed, pdf, normal, localNormal );
     }
     else
     {
       nextDirection  = refracted;
       ray.refractive = true;
     }
-
-    pdf = 1.0 / M_PI;
-    //p = 1.0 / ( 2.0 * M_PI * ( 1.0 - cos( mat.fuzziness ) ) );
   }
-  // Diffuse / Lambertian reflection
+  // Lambertian reflection
   else if ( found && mat.illum == 0 )
   {
-    nextDirection = samplingHemisphere( ray.seed, normal );
-    pdf           = 1.0 / M_PI;                   // PDF of sampling a hemisphere
+    nextDirection = samplingHemisphere( ray.seed, pdf, normal, localNormal );
     cosTheta      = dot( nextDirection, normal ); // The steeper the incident direction to the surface is the more important the sample gets
     bsdf *= cosTheta;
   }
@@ -221,6 +215,68 @@ void main( )
   }
 
   //pdf = 1 / ( 1.5 * M_PI ); // the smaller the higher the contribution
+
+  // trace shadow ray
+  // Tracing shadow ray only if the light is visible from the surface
+  if ( false && emission == vec3( 0.0 ) && ray.depth >= 0 )
+  {
+    vec3 L;
+    L = vec3( -22.0, 6.0, 12.0 ); // spheres
+    L = vec3( -0.0, 0.8, -1.0 );  // cornell
+    L = vec3( -0.7, 14.0, 0.0 );  // sponza
+    L = vec3( 0.0, 10.0, 0.0 );   // animation
+
+    L = normalize( L );
+
+    if ( dot( normal, L ) > 0.0 )
+    {
+      float tMin = 0.001;
+      float tMax = 2.0;
+      uint flags = gl_RayFlagsTerminateOnFirstHitEXT | gl_RayFlagsOpaqueEXT | gl_RayFlagsSkipClosestHitShaderEXT;
+      isShadowed = true;
+
+      float lightDistance = 100000.0;
+      vec3 lightDirection = L - worldPos;
+      lightDistance       = length( lightDirection );
+
+      traceRayEXT( topLevelAS,    // acceleration structure
+                   flags,         // rayFlags
+                   0xFF,          // cullMask
+                   0,             // sbtRecordOffset
+                   0,             // sbtRecordStride
+                   1,             // missIndex
+                   worldPos,      // ray origin
+                   tMin,          // ray min range
+                   L,             // ray direction
+                   lightDistance, // ray max range
+                   1              // payload (location = 1)
+      );
+
+      if ( isShadowed )
+      {
+        //emission = vec3( 0.0, 1.0, 0.0 ); // * clamp( length( L - ray.origin ), 0.0, 1.0 ) * 5.0;
+        // bsdf = vec3( 0.0, 1.0, 0.0 );
+      }
+      else
+      {
+        //cosTheta = dot( normal, L ); // The steeper the incident direction to the surface is the more important the sample gets
+        //bsdf *= cosTheta;
+
+        //const float distance_      = length( L - worldPos );
+        //const float lightConstant  = 1.0;
+        //const float lightLinear    = 0.09;
+        //const float lightQuadratic = 0.032;
+        //float attenuation          = 1.0 / ( lightConstant + lightLinear * distance_ + lightQuadratic * ( distance_ * distance_ ) );
+        //
+        //bsdf *= attenuation;
+        //emission = vec3( 1.0 ) * attenuation;
+        emission = vec3( 1.0, 1.0, 0.8 ); // / ( ray.depth * 1.0 ); // * cosTheta;
+
+        //bsdf *= attenuation;
+        //emission = vec3( 0.0, 0.0, 1.0 );
+      }
+    }
+  }
 
   ray.origin    = rayOrigin;
   ray.direction = nextDirection;

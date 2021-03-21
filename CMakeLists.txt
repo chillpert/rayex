@@ -12,7 +12,7 @@ if(NOT CMAKE_BUILD_TYPE)
 endif(NOT CMAKE_BUILD_TYPE)
 
 # Enforce Rlease (Temporarily)
-set(CMAKE_BUILD_TYPE "Release" CACHE STRING "No build type was set" FORCE)
+# set(CMAKE_BUILD_TYPE "Release" CACHE STRING "No build type was set" FORCE)
 
 message("Build type: " ${CMAKE_BUILD_TYPE})
 

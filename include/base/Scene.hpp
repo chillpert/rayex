@@ -103,7 +103,7 @@ namespace RAYEX_NAMESPACE
 
     void uploadEnvironmentMap( );
 
-    void uploadGeometries( );
+    void uploadGeometries( uint32_t imageIndex );
 
     void uploadGeometryInstances( uint32_t imageIndex );
 
@@ -128,16 +128,16 @@ namespace RAYEX_NAMESPACE
     vk::UniqueSampler _immutableSampler;
 
     std::vector<vkCore::StorageBuffer<uint32_t>> _indexBuffers;
+    std::vector<vkCore::StorageBuffer<uint32_t>> _materialIndexBuffers;
     std::vector<vkCore::StorageBuffer<Vertex>> _vertexBuffers;
-    std::vector<vkCore::StorageBuffer<MeshSSBO>> _meshBuffers;
-    std::vector<std::shared_ptr<vkCore::Texture>> _textures;
+    vkCore::StorageBuffer<MaterialSSBO> _materialBuffers;
     vkCore::StorageBuffer<GeometryInstanceSSBO> _geometryInstancesBuffer;
+    std::vector<std::shared_ptr<vkCore::Texture>> _textures;
 
     vkCore::UniformBuffer<CameraUbo> _cameraUniformBuffer;
 
     std::vector<std::shared_ptr<Geometry>> _geometries;
     std::vector<std::shared_ptr<GeometryInstance>> _geometryInstances;
-    std::vector<std::shared_ptr<Material>> _materials;
 
     std::string_view _environmentMapTexturePath;
     bool _useEnvironmentMap    = false;

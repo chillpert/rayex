@@ -117,6 +117,8 @@ namespace RAYEX_NAMESPACE
     size_t _maxMeshes                 = 4; ///< The maximum amount of meshes. Each geometry can have multiple sub meshes.
     bool _maxMeshesChanged            = false;
 
+    size_t _maxMaterials = 1024;
+
     std::string _assetsPath; ///< Where all assets like models, textures and shaders are stored.
 
     glm::vec4 _clearColor               = glm::vec4( 0.45F, 0.45F, 0.45F, 0.8F ); ///< Stores the clear color.

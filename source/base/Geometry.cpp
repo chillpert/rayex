@@ -6,6 +6,18 @@
 
 namespace RAYEX_NAMESPACE
 {
+  bool operator==( const Material& m1, const Material& m2 )
+  {
+    return ( m1.kd == m2.kd ) &&
+           ( m1.emission == m2.emission ) &&
+           ( m1.diffuseTexPath == m2.diffuseTexPath ) &&
+           ( m1.illum == m2.illum ) &&
+           ( m1.d == m2.d ) &&
+           ( m1.ns == m2.ns ) &&
+           ( m1.ni == m2.ni ) &&
+           ( m1.fuzziness == m2.fuzziness );
+  }
+
   std::shared_ptr<Geometry> loadObj( std::string_view path, bool dynamic )
   {
     RX_LOG_TIME_START( "Loading model from ", path, "." );
@@ -40,46 +52,85 @@ namespace RAYEX_NAMESPACE
     }
 
     std::unordered_map<Vertex, uint32_t> uniqueVertices;
-    geometry->meshes.reserve( shapes.size( ) );
 
-    bool firstRun        = true;
-    uint32_t prevOffsets = 0;
+    bool firstRun = true;
+
+    // Size of matIndex should equal the amount of triangles of the entire object (all sub-meshes)
+    size_t totalAmountOfTriangles = 0;
+    geometry->subMeshCount        = shapes.size( );
+
+    for ( const auto& shape : shapes )
+    {
+      totalAmountOfTriangles += shape.mesh.num_face_vertices.size( );
+    }
+
+    geometry->matIndex.reserve( totalAmountOfTriangles );
 
     // Loop over shapes.
     int i = 0;
     for ( const auto& shape : shapes )
     {
-      Mesh mesh            = { };
-      auto numFaceVertices = static_cast<uint32_t>( shape.mesh.num_face_vertices.size( ) );
-      mesh.indexOffset     = prevOffsets + numFaceVertices;
-      prevOffsets += numFaceVertices;
+      // Set up the material.
+      Material mat;
 
       int materialIndex = shape.mesh.material_ids[0];
+      // This shape (sub-mesh) has a material.
       if ( materialIndex != -1 )
       {
-        float z = -1.0F;
-
-        auto diffuse     = materials[materialIndex].diffuse;
-        mesh.material.kd = glm::vec3( diffuse[0], diffuse[1], diffuse[2] );
-
-        auto emission          = materials[materialIndex].emission;
-        mesh.material.emission = glm::vec3( emission[0], emission[1], emission[2] );
-
-        mesh.material.illum     = static_cast<uint32_t>( materials[materialIndex].illum );
-        mesh.material.d         = materials[materialIndex].dissolve;
-        mesh.material.ns        = materials[materialIndex].shininess;
-        mesh.material.ni        = materials[materialIndex].ior;
-        mesh.material.fuzziness = materials[materialIndex].roughness;
-        //materials[materialIndex].metallic / roughness
-
-        //auto transmittance          = materials[materialIndex].transmittance;
-        //mesh.material.transmittance = glm::vec3( transmittance[0], transmittance[1], transmittance[2] );
-
+        auto diffuse  = materials[materialIndex].diffuse;
+        mat.kd        = glm::vec3( diffuse[0], diffuse[1], diffuse[2] );
+        auto emission = materials[materialIndex].emission;
+        mat.emission  = glm::vec3( emission[0], emission[1], emission[2] );
+        mat.illum     = static_cast<uint32_t>( materials[materialIndex].illum );
+        mat.d         = materials[materialIndex].dissolve;
+        mat.ns        = materials[materialIndex].shininess;
+        mat.ni        = materials[materialIndex].ior;
+        mat.fuzziness = materials[materialIndex].roughness;
         // @todo Add relative path here instead of inside the .mtl file.
-        mesh.material.diffuseTexPath = materials[materialIndex].diffuse_texname;
-      }
+        mat.diffuseTexPath = materials[materialIndex].diffuse_texname;
 
-      geometry->meshes.push_back( mesh );
+        bool found           = false;
+        size_t materialIndex = 0;
+        for ( size_t i = 0; i < components::_materials.size( ); ++i )
+        {
+          if ( mat == components::_materials[i] )
+          {
+            found         = true;
+            materialIndex = i;
+            break;
+          }
+        }
+
+        // The material is new and unique
+        if ( !found )
+        {
+          components::_materials.push_back( mat );
+
+          // Increment the material as the next material will be a new one and, thus, will need a new index.
+          ++components::materialIndex;
+
+          for ( size_t i = 0; i < shape.mesh.num_face_vertices.size( ); ++i )
+          {
+            geometry->matIndex.push_back( components::materialIndex - 1 );
+          }
+        }
+        // The material already exists, so let's reuse it
+        else
+        {
+          for ( size_t i = 0; i < shape.mesh.num_face_vertices.size( ); ++i )
+          {
+            geometry->matIndex.push_back( materialIndex );
+          }
+        }
+      }
+      // There is no material. Use the highest value as its index. Surely nobody will ever access the buffer at this index ... right?
+      else
+      {
+        for ( size_t i = 0; i < shape.mesh.num_face_vertices.size( ); ++i )
+        {
+          geometry->matIndex.push_back( std::numeric_limits<uint32_t>::max( ) );
+        }
+      }
 
       for ( const auto& index : shape.mesh.indices )
       {
@@ -121,16 +172,19 @@ namespace RAYEX_NAMESPACE
       }
     }
 
-    RX_LOG_TIME_STOP( "Loaded ", geometry->meshes.size( ), " sub-mesh(es)" );
+    RX_LOG_TIME_STOP( "Loaded ", shapes.size( ), " sub-mesh(es)" );
 
     return std::move( geometry );
   }
 
   void Geometry::setMaterial( const Material& material )
   {
-    for ( Mesh& mesh : meshes )
+    components::_materials.push_back( material );
+    components::materialIndex++;
+
+    for ( auto& it : matIndex )
     {
-      mesh.material = material;
+      it = components::materialIndex - 1;
     }
   }
 

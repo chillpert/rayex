@@ -15,7 +15,7 @@ namespace RAYEX_NAMESPACE
   std::shared_ptr<GeometryInstance> triangleInstance = nullptr;
 
   std::vector<GeometryInstanceSSBO> memAlignedGeometryInstances;
-  std::vector<MeshSSBO> memAlignedMeshes;
+  std::vector<MaterialSSBO> memAlignedMaterials;
 
   auto Scene::getGeometryInstances( ) const -> const std::vector<std::shared_ptr<GeometryInstance>>&
   {
@@ -288,9 +288,13 @@ namespace RAYEX_NAMESPACE
     std::vector<GeometryInstanceSSBO> geometryInstances( _settings->_maxGeometryInstances );
     _geometryInstancesBuffer.init( geometryInstances, components::maxResources );
 
+    // @todo is this even necessary?
+    std::vector<MaterialSSBO> materials( _settings->_maxMaterials );
+    _materialBuffers.init( materials, components::maxResources );
+
     _vertexBuffers.resize( _settings->_maxGeometry );
     _indexBuffers.resize( _settings->_maxGeometry );
-    _meshBuffers.resize( _settings->_maxMeshes );
+    _materialIndexBuffers.resize( _settings->_maxGeometry );
     _textures.resize( _settings->_maxTextures );
 
     initCameraBuffer( );
@@ -342,9 +346,40 @@ namespace RAYEX_NAMESPACE
     }
   }
 
-  void Scene::uploadGeometries( )
+  void Scene::uploadGeometries( uint32_t imageIndex )
   {
     _uploadGeometries = false;
+
+    memAlignedMaterials.clear( );
+    memAlignedMaterials.reserve( components::_materials.size( ) );
+
+    // Create all textures of a material
+    for ( size_t i = 0; i < components::_materials.size( ); ++i )
+    {
+      // Convert to memory aligned struct
+      MaterialSSBO mat2;
+      mat2.diffuse   = glm::vec4( components::_materials[i].kd, -1.0F );
+      mat2.emission  = glm::vec4( components::_materials[i].emission, components::_materials[i].ns );
+      mat2.dissolve  = components::_materials[i].d;
+      mat2.ior       = components::_materials[i].ni;
+      mat2.illum     = components::_materials[i].illum;
+      mat2.fuzziness = components::_materials[i].fuzziness;
+
+      // Set up texture
+      if ( !components::_materials[i].diffuseTexPath.empty( ) )
+      {
+        mat2.diffuse.w = static_cast<float>( components::textureIndex );
+
+        auto texture = std::make_shared<vkCore::Texture>( );
+        texture->init( components::assetsPath + components::_materials[i].diffuseTexPath );
+        _textures[components::textureIndex++] = texture;
+      }
+
+      memAlignedMaterials.push_back( mat2 );
+    }
+
+    // upload materials
+    _materialBuffers.upload( memAlignedMaterials );
 
     for ( size_t i = 0; i < _geometries.size( ); ++i )
     {
@@ -357,74 +392,7 @@ namespace RAYEX_NAMESPACE
             // Only keep one copy of both index and vertex buffers each.
             _vertexBuffers[i].init( _geometries[i]->vertices, 1, true );
             _indexBuffers[i].init( _geometries[i]->indices, 1, true );
-
-            memAlignedMeshes.resize( _geometries[i]->meshes.size( ) );
-
-            // Textures
-            int j = 0;
-            for ( const auto& mesh : _geometries[i]->meshes )
-            {
-              float diffuseTexIndex = -1.0F;
-
-              if ( !mesh.material.diffuseTexPath.empty( ) )
-              {
-                size_t availablePosition = std::numeric_limits<size_t>::max( );
-                bool reuse               = false;
-
-                // Iterate over all textures and find the last spot in the array that does not contain an initialized texture yet.
-                // Iterate over all textures and check if the texture can be re-used.
-                for ( size_t i = 0; i < _textures.size( ) - 1; ++i )
-                {
-                  if ( _textures[i] == nullptr )
-                  {
-                    //RX_WARN( "FOUND AN AVAILABLE POSITION at ", i );
-                    availablePosition = i;
-                    break;
-                  }
-
-                  if ( _textures[i] != nullptr )
-                  {
-                    if ( _textures[i]->getPath( ) == mesh.material.diffuseTexPath )
-                    {
-                      // Make sure a new texture will not be created.
-                      reuse = true;
-                      //RX_WARN( "REUSING: ", mesh.material.diffuseTexPath, " at index: ", i );
-
-                      diffuseTexIndex = static_cast<float>( i );
-                      break;
-                    }
-                  }
-                }
-
-                // Create a new texture in case it does not already exist.
-                if ( !reuse )
-                {
-                  if ( availablePosition == std::numeric_limits<size_t>::max( ) )
-                  {
-                    RX_WARN( "TRIED TO CREATE A NEW TEXTURE FROM: ", mesh.material.diffuseTexPath, " BUT ARRAY IS OUT OF BOUND." );
-                  }
-                  else
-                  {
-                    if ( _textures[availablePosition] == nullptr && !mesh.material.diffuseTexPath.empty( ) )
-                    {
-                      //RX_WARN( "CREATING NEW TEXTURE at index: ", availablePosition, " from: ", mesh.material.diffuseTexPath );
-                      auto texture = std::make_shared<vkCore::Texture>( );
-                      texture->init( components::assetsPath + mesh.material.diffuseTexPath );
-                      _textures[availablePosition] = texture;
-                      diffuseTexIndex              = static_cast<float>( availablePosition );
-                    }
-                  }
-                }
-              }
-
-              memAlignedMeshes[j] = MeshSSBO( mesh, diffuseTexIndex );
-              //RX_WARN( "THE TEXTURE WAS SET AT: ", diffuseTexIndex );
-
-              ++j;
-            }
-
-            // Meshes
-            _meshBuffers[i].init( memAlignedMeshes );
+            _materialIndexBuffers[i].init( _geometries[i]->matIndex, 1, true );
 
             _geometries[i]->initialized = true;
             RX_SUCCESS( "Initialized Geometries." );
@@ -484,7 +452,7 @@ namespace RAYEX_NAMESPACE
     triangle->vertices      = { v1, v2, v3 };
     triangle->indices       = { 0, 1, 2 };
     triangle->geometryIndex = components::geometryIndex++;
-    triangle->meshes.push_back( { { }, 0 } );
+    //triangle->meshes.push_back( { { }, 0 } );
     triangle->path = "Custom Dummy Triangle";
 
     triangleInstance = instance( triangle );
@@ -541,11 +509,11 @@ namespace RAYEX_NAMESPACE
                                        _settings->_maxGeometry,
                                        vk::DescriptorBindingFlagBits::eUpdateAfterBind );
 
-    // Mesh buffers
+    // MatIndex buffers
     _geometryDescriptors.bindings.add( 2,
                                        vk::DescriptorType::eStorageBuffer,
                                        vk::ShaderStageFlagBits::eClosestHitKHR | vk::ShaderStageFlagBits::eAnyHitKHR,
-                                       _settings->_maxMeshes,
+                                       _settings->_maxGeometry,
                                        vk::DescriptorBindingFlagBits::eUpdateAfterBind );
 
     // Textures
@@ -566,6 +534,12 @@ namespace RAYEX_NAMESPACE
                                        _settings->_maxTextures,
                                        vk::DescriptorBindingFlagBits::eUpdateAfterBind,
                                        immutableSamplers.data( ) );
+
+    _geometryDescriptors.bindings.add( 4,
+                                       vk::DescriptorType::eStorageBuffer,
+                                       vk::ShaderStageFlagBits::eClosestHitKHR | vk::ShaderStageFlagBits::eAnyHitKHR,
+                                       1,
+                                       vk::DescriptorBindingFlagBits::eUpdateAfterBind );
 
     _geometryDescriptors.layout = _geometryDescriptors.bindings.initLayoutUnique( vk::DescriptorSetLayoutCreateFlagBits::eUpdateAfterBindPool );
     _geometryDescriptors.pool   = _geometryDescriptors.bindings.initPoolUnique( vkCore::global::swapchainImageCount, vk::DescriptorPoolCreateFlagBits::eUpdateAfterBind );
@@ -596,10 +570,8 @@ namespace RAYEX_NAMESPACE
   void Scene::updateGeoemtryDescriptors( )
   {
     RX_ASSERT( _geometries.size( ) <= _settings->_maxGeometry, "Can not bind more than ", _settings->_maxGeometry, " geometries." );
-    RX_ASSERT( _meshBuffers.size( ) <= _settings->_maxMeshes, "Can not bind more than ", _settings->_maxMeshes, " meshes." );
     RX_ASSERT( _vertexBuffers.size( ) == _settings->_maxGeometry, "Vertex buffers container size and geometry limit must be identical." );
     RX_ASSERT( _indexBuffers.size( ) == _settings->_maxGeometry, "Index buffers container size and geometry limit must be identical." );
-    RX_ASSERT( _meshBuffers.size( ) == _settings->_maxMeshes, "Mesh buffers container size and mesh limit must be identical." );
     RX_ASSERT( _textures.size( ) == _settings->_maxTextures, "Texture container size and texture limit must be identical." );
 
     // Vertex buffers infos
@@ -626,23 +598,16 @@ namespace RAYEX_NAMESPACE
       indexBufferInfos.push_back( indexDataBufferInfo );
     }
 
-    // Mesh buffers info (each geometry stores n materials and offsets into the array of index buffers)
-    std::vector<vk::DescriptorBufferInfo> meshBufferInfos;
-    meshBufferInfos.reserve( _meshBuffers.size( ) );
-    for ( auto& meshBuffer : _meshBuffers )
+    // MatIndices infos
+    std::vector<vk::DescriptorBufferInfo> matIndexBufferInfos;
+    matIndexBufferInfos.reserve( _materialIndexBuffers.size( ) );
+    for ( const auto& materialIndexBuffer : _materialIndexBuffers )
     {
-      if ( meshBuffer.getDescriptorInfos( ).empty( ) )
-      {
-        vk::DescriptorBufferInfo meshBufferInfo( nullptr,
-                                                 0,
-                                                 VK_WHOLE_SIZE );
+      vk::DescriptorBufferInfo materialIndexDataBufferInfo( materialIndexBuffer.get( ).empty( ) ? nullptr : materialIndexBuffer.get( 0 ),
+                                                            0,
+                                                            VK_WHOLE_SIZE );
 
-        meshBufferInfos.push_back( meshBufferInfo );
-      }
-      else
-      {
-        meshBufferInfos.push_back( meshBuffer.getDescriptorInfos( )[0] );
-      }
+      matIndexBufferInfos.push_back( materialIndexDataBufferInfo );
     }
 
     // Texture samplers
@@ -670,12 +635,11 @@ namespace RAYEX_NAMESPACE
     // Write to and update descriptor bindings
     _geometryDescriptors.bindings.writeArray( _geometryDescriptorSets, 0, vertexBufferInfos.data( ) );
     _geometryDescriptors.bindings.writeArray( _geometryDescriptorSets, 1, indexBufferInfos.data( ) );
-    _geometryDescriptors.bindings.writeArray( _geometryDescriptorSets, 2, meshBufferInfos.data( ) );
+    _geometryDescriptors.bindings.writeArray( _geometryDescriptorSets, 2, matIndexBufferInfos.data( ) ); // matIndices
     _geometryDescriptors.bindings.writeArray( _geometryDescriptorSets, 3, textureInfos.data( ) );
+    _geometryDescriptors.bindings.writeArray( _geometryDescriptorSets, 4, _materialBuffers.getDescriptorInfos( ).data( ) ); // materials
 
     _geometryDescriptors.bindings.update( );
-
-    int i = 5;
   }
 
   void Scene::upload( vk::Fence fence, uint32_t imageIndex )

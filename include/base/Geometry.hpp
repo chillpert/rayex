@@ -29,15 +29,8 @@ namespace RAYEX_NAMESPACE
 
     /// Optical density (aka index of refraction). Ranges from 0.001 to 10. A value of 1.0 means that light does not bend as it passes through an object.
     float ni = 1.0F;
-  };
 
-  /// Describes a sub-mesh and its material.
-  /// @warning If indexOffset is not set correctly the mesh can not be displayed properly. Take a look at loadObj(std::string_view) for a working example.
-  /// @ingroup BASE
-  struct Mesh
-  {
-    Material material    = { }; ///< The mesh's material.
-    uint32_t indexOffset = 0;   ///< Refers to the offset of this mesh inside a Geometry::indices container.
+    friend bool operator==( const Material& m1, const Material& m2 );
   };
 
   /// Describes a geometry Rayex can render.
@@ -51,8 +44,9 @@ namespace RAYEX_NAMESPACE
 
     std::vector<Vertex> vertices;   ///< Contains all vertices of the geometry.
     std::vector<uint32_t> indices;  ///< Contains all indices of the geometry.
-    std::vector<Mesh> meshes;       ///< Contains all sub-meshes and their respective materials.
+    std::vector<uint32_t> matIndex; ///< Contains all sub-meshes and their respective materials.
     uint32_t geometryIndex = 0;     ///< A unique index required by the acceleration structures.
+    size_t subMeshCount    = 0;
     std::string path       = "";    ///< The model's path, relative to the path to assets.
     bool initialized       = false; ///< Keeps track of whether or not the geometry was initialized.
     bool dynamic           = false; ///< Keeps track of whether or not the geometry is dynamic or static.
@@ -91,41 +85,15 @@ namespace RAYEX_NAMESPACE
 
   /// A wrapper for MeshSSBO matching the buffer alignment requirements.
   /// @ingroup API
-  struct MeshSSBO
+  struct MaterialSSBO
   {
-    MeshSSBO( ) = default;
-
-    MeshSSBO( const Mesh& mesh, float diffuseTexIndex )
-    {
-      set( mesh, diffuseTexIndex );
-    }
-
-    glm::vec4 ambient  = glm::vec4( 1.0F, 1.0F, 1.0F, -1.0F ); ///< vec3 ambient  + vec1 texture index
     glm::vec4 diffuse  = glm::vec4( 1.0F, 1.0F, 1.0F, -1.0F ); ///< vec3 diffuse  + vec1 texture index
-    glm::vec4 specular = glm::vec4( 1.0F, 1.0F, 1.0F, -1.0F ); ///< vec3 specular + vec1 texture index
-    glm::vec4 emission = glm::vec4( 0.0F, 0.0F, 0.0F, 64.0F ); ///< vec3 emission + vec1 texture index
+    glm::vec4 emission = glm::vec4( 0.0F, 0.0F, 0.0F, 64.0F ); ///< vec3 emission + vec1 shininess
 
     uint32_t illum  = 0;
-    float d         = 1.0F;
+    float dissolve  = 1.0F;
     float fuzziness = 0.0F;
-    float ni        = 1.0F;
-
-    uint32_t indexOffset = 0; ///< Refers to the offset of this mesh inside a Geometry::indices container.
-    uint32_t padding0    = 0; ///< Buffer padding (ignore).
-    uint32_t padding1    = 0; ///< Buffer padding (ignore).
-    uint32_t padding2    = 0; ///< Buffer padding (ignore).
-
-    void set( const Mesh& mesh, float diffuseTexIndex )
-    {
-      diffuse     = glm::vec4( mesh.material.kd, diffuseTexIndex );
-      emission    = glm::vec4( mesh.material.emission, -1.0F );
-      illum       = mesh.material.illum;
-      d           = mesh.material.d;
-      indexOffset = mesh.indexOffset;
-      ni          = mesh.material.ni;
-      fuzziness   = mesh.material.fuzziness;
-      emission.w  = mesh.material.ns;
-    }
+    float ior       = 1.0F;
   };
 
   /// A wrapper for GeometryInstanceSSBO matching the buffer alignment requirements.

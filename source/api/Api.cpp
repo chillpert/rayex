@@ -235,7 +235,7 @@ namespace RAYEX_NAMESPACE
     if ( _scene._uploadGeometries )
     {
       _sync.waitForFrame( prevFrame );
-      _scene.uploadGeometries( );
+      _scene.uploadGeometries( imageIndex % maxFramesInFlight );
       _scene.updateGeoemtryDescriptors( );
     }
 
@@ -347,7 +347,7 @@ namespace RAYEX_NAMESPACE
 
       _scene._vertexBuffers.resize( _settings._maxGeometry );
       _scene._indexBuffers.resize( _settings._maxGeometry );
-      _scene._meshBuffers.resize( _settings._maxMeshes );
+      _scene._materialIndexBuffers.resize( _settings._maxGeometry );
       _scene._textures.resize( _settings._maxTextures );
 
       _scene.initGeoemtryDescriptorSets( );

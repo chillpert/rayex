@@ -122,13 +122,20 @@ inline void loadScene( rx::Rayex* renderer, Level scene )
     //renderer->scene( ).getCamera( )->setFov( 90.0F );
 
     auto cornell = rx::loadObj( "models/CornellBox.obj" );
-    // Set lamp submesh emittance.
-    cornell->meshes[7].material.emission = glm::vec3( 10.0F );
+    //auto cornell = rx::loadObj( "models/Sphere.obj" );
+
+    //auto lightPlane = rx::loadObj( "models/plane.obj" );
+    //rx::Material lightMaterial;
+    //lightMaterial.emission = glm::vec3( 10.0F );
+    //lightPlane->setMaterial( lightMaterial );
 
     renderer->scene( ).setGeometries( { cornell } );
 
     auto transform       = glm::translate( glm::mat4( 1.0F ), glm::vec3( 0.0F, -1.0F, -1.0F ) );
     auto cornellInstance = rx::instance( cornell, transform );
+
+    //transform               = glm::translate( glm::mat4( 1.0F ), glm::vec3( 0.0F, 80.0F, 0.0F ) );
+    //auto lightPlaneInstance = rx::instance( lightPlane, transform );
 
     renderer->scene( ).setGeometryInstances( { cornellInstance } );
 

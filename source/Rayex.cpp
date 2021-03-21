@@ -90,6 +90,7 @@ namespace RAYEX_NAMESPACE
     // Reset indices
     rx::components::geometryIndex = 0;
     rx::components::textureIndex  = 0;
+    rx::components::materialIndex = 0;
 
     // Reset frame counter
     rx::components::frameCount = -1;
@@ -97,6 +98,9 @@ namespace RAYEX_NAMESPACE
     _api._scene.getCamera( )->reset( );
 
     // Delete all textures
+    components::_materials.clear( );
+    components::_materials.reserve( _api._scene._settings->_maxMaterials );
+
     _api._scene._textures.clear( );
     _api._scene._textures.resize( static_cast<size_t>( _api._scene._settings->_maxTextures ) );
     _api._scene.updateGeoemtryDescriptors( );

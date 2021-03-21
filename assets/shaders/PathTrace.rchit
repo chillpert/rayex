@@ -33,13 +33,19 @@ layout( binding = 1, set = 2 ) buffer Indices
 }
 indices[];
 
-layout( binding = 2, set = 2 ) buffer Meshes
+layout( binding = 2, set = 2 ) buffer MatIndices
 {
-  Mesh m[];
+  uint i[];
 }
-meshes[];
+matIndices[];
 
 layout( binding = 3, set = 2 ) uniform sampler2D textures[];
+
+layout( binding = 4, set = 2 ) buffer Materials
+{
+  Material m[];
+}
+materials;
 
 layout( push_constant ) uniform Constants
 {
@@ -107,49 +113,26 @@ void main( )
 
   vec2 texCoord = v0.texCoord * barycentrics.x + v1.texCoord * barycentrics.y + v2.texCoord * barycentrics.z;
 
-  // Access the meshes SSBO to figure out to which sub-mesh the current triangle belongs and retrieve its material.
-  Material mat;
-  bool found       = false;
-  int subMeshCount = meshes[nonuniformEXT( geometryIndex )].m.length( );
-
-  for ( int i = 0; i < subMeshCount; ++i )
-  {
-    uint offset     = meshes[nonuniformEXT( geometryIndex )].m[i].indexOffset;
-    uint prevOffset = 0;
-
-    if ( i > 0 )
-    {
-      prevOffset = meshes[nonuniformEXT( geometryIndex )].m[i - 1].indexOffset;
-    }
-
-    if ( gl_PrimitiveID < offset && gl_PrimitiveID >= prevOffset )
-    {
-      mat   = meshes[nonuniformEXT( geometryIndex )].m[i].material;
-      found = true;
-      break;
-    }
-  }
+  uint matIndex = matIndices[nonuniformEXT( geometryIndex )].i[gl_PrimitiveID];
+  Material mat  = materials.m[matIndex];
 
   // Colors
   vec3 reflectance = vec3( 0.0 );
   vec3 emission    = vec3( 0.0 ); // emittance / emissiveFactor
 
-  if ( found )
+  emission = mat.emission.xyz;
+
+  // Stop recursion if a light source is hit.
+  if ( emission != vec3( 0.0 ) )
   {
-    emission = mat.emission.xyz;
+    ray.depth = maxPathDepth + 1;
+  }
 
-    // Stop recursion if a light source is hit.
-    if ( emission != vec3( 0.0 ) )
-    {
-      ray.depth = maxPathDepth + 1;
-    }
-
-    // Retrieve material textures and colors
-    reflectance = mat.diffuse.xyz;
-    if ( mat.diffuse.w != -1.0 )
-    {
-      reflectance *= texture( textures[nonuniformEXT( int( mat.diffuse.w ) )], texCoord ).xyz;
-    }
+  // Retrieve material textures and colors
+  reflectance = mat.diffuse.xyz;
+  if ( mat.diffuse.w != -1.0 )
+  {
+    reflectance *= texture( textures[nonuniformEXT( int( mat.diffuse.w ) )], texCoord ).xyz;
   }
 
   // Pick a random direction from here and keep going.
@@ -165,7 +148,7 @@ void main( )
   vec3 bsdf = reflectance / M_PI;
 
   // Metallic reflection
-  if ( found && mat.illum == 2 )
+  if ( mat.illum == 2 )
   {
     vec3 reflectDir = reflect( ray.direction, normal );
     nextDirection   = reflectDir + mat.fuzziness * samplingHemisphere( ray.seed, pdf, normal, localNormal );
@@ -173,7 +156,7 @@ void main( )
   }
   // @todo Resulting background color is inverted for any 2D surface
   // Dielectric reflection ( Peter Shirley's "Ray Tracing in one Weekend" Chapter 9 )
-  else if ( found && mat.illum == 1 )
+  else if ( mat.illum == 1 )
   {
     // Flip the normal if ray is transmitted
     vec3 temp = gl_HitKindEXT == gl_HitKindBackFacingTriangleEXT ? -normal : normal;
@@ -196,7 +179,7 @@ void main( )
     }
   }
   // Lambertian reflection
-  else if ( found && mat.illum == 0 )
+  else if ( mat.illum == 0 )
   {
     nextDirection = samplingHemisphere( ray.seed, pdf, normal, localNormal );
     cosTheta      = dot( nextDirection, normal ); // The steeper the incident direction to the surface is the more important the sample gets
@@ -204,7 +187,7 @@ void main( )
   }
 
   // Add specular highlight
-  if ( found && mat.emission.w > 0.0 && mat.illum != 0 )
+  if ( mat.emission.w > 0.0 && mat.illum != 0 )
   {
     vec3 reflectDir = reflect( ray.direction, normal );
     float spec      = pow( max( dot( normalize( cam.position.xyz - worldPos ), reflectDir ), 0.0 ), mat.emission.w );
@@ -218,7 +201,7 @@ void main( )
 
   // trace shadow ray
   // Tracing shadow ray only if the light is visible from the surface
-  if ( false && emission == vec3( 0.0 ) && ray.depth >= 0 )
+  if ( false && emission == vec3( 0.0 ) && ray.depth >= 1 )
   {
     vec3 L;
     L = vec3( -22.0, 6.0, 12.0 ); // spheres
@@ -268,9 +251,9 @@ void main( )
         //const float lightQuadratic = 0.032;
         //float attenuation          = 1.0 / ( lightConstant + lightLinear * distance_ + lightQuadratic * ( distance_ * distance_ ) );
         //
-        //bsdf *= attenuation;
+        // bsdf *= attenuation;
         //emission = vec3( 1.0 ) * attenuation;
-        emission = vec3( 1.0, 1.0, 0.8 ); // / ( ray.depth * 1.0 ); // * cosTheta;
+        emission = vec3( 1.0, 1.0, 1.0 ); // / ( ray.depth * 1.0 ); // * cosTheta;
 
         //bsdf *= attenuation;
         //emission = vec3( 0.0, 0.0, 1.0 );

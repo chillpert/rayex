@@ -58,12 +58,17 @@ namespace RAYEX_NAMESPACE
       return;
     }
 
+    // Create a copy of all geometry instances
     std::vector<std::shared_ptr<GeometryInstance>> temp( _geometryInstances );
+
+    // Clear the original container
     _geometryInstances.clear( );
     _geometryInstances.reserve( temp.size( ) );
 
+    // Iterate over the container with the copies
     for ( auto it : temp )
     {
+      // Delete the given geometry instance if it matches
       if ( it != geometryInstance )
       {
         _geometryInstances.push_back( it );
@@ -139,10 +144,25 @@ namespace RAYEX_NAMESPACE
       }
     }
 
-    for ( auto it : instancesToDelete )
+    // Remove all instances of that geometry index
+    // Create a copy of all geometry instances
+    std::vector<std::shared_ptr<GeometryInstance>> temp3( _geometryInstances );
+
+    // Clear the original container
+    _geometryInstances.clear( );
+    _geometryInstances.reserve( temp3.size( ) );
+
+    // Iterate over the container with the copies
+    for ( auto it : temp3 )
     {
-      removeGeometryInstance( it );
+      // Delete the given geometry instance if it matches
+      if ( it->geometryIndex != geometry->geometryIndex )
+      {
+        _geometryInstances.push_back( it );
+      }
     }
+
+    _uploadGeometryInstancesToBuffer = true;
 
     std::vector<std::shared_ptr<Geometry>> temp( _geometries );
     _geometries.clear( );

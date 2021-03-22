@@ -15,25 +15,25 @@ layout( location = 1 ) rayPayloadEXT bool isShadowed;
 
 layout( binding = 0, set = 0 ) uniform accelerationStructureEXT topLevelAS;
 
-layout( binding = 1, set = 1 ) buffer GeometryInstances
+layout( binding = 1, set = 1 ) readonly buffer GeometryInstances
 {
   GeometryInstance i[];
 }
 geometryInstances;
 
-layout( binding = 0, set = 2 ) buffer Vertices
+layout( binding = 0, set = 2 ) readonly buffer Vertices
 {
   vec4 v[];
 }
 vertices[];
 
-layout( binding = 1, set = 2 ) buffer Indices
+layout( binding = 1, set = 2 ) readonly buffer Indices
 {
   uint i[];
 }
 indices[];
 
-layout( binding = 2, set = 2 ) buffer MatIndices
+layout( binding = 2, set = 2 ) readonly buffer MatIndices
 {
   uint i[];
 }
@@ -41,7 +41,7 @@ matIndices[];
 
 layout( binding = 3, set = 2 ) uniform sampler2D textures[];
 
-layout( binding = 4, set = 2 ) buffer Materials
+layout( binding = 4, set = 2 ) readonly buffer Materials
 {
   Material m[];
 }

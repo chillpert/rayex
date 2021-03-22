@@ -10,19 +10,19 @@
 
 layout( location = 1 ) rayPayloadInEXT RayPayLoad ray;
 
-layout( binding = 1, set = 1 ) buffer GeometryInstances
+layout( binding = 1, set = 1 ) readonly buffer GeometryInstances
 {
   GeometryInstance i[];
 }
 geometryInstances;
 
-layout( binding = 2, set = 2 ) buffer MatIndices
+layout( binding = 2, set = 2 ) readonly buffer MatIndices
 {
   uint i[];
 }
 matIndices[];
 
-layout( binding = 4, set = 2 ) buffer Materials
+layout( binding = 4, set = 2 ) readonly buffer Materials
 {
   Material m[];
 }

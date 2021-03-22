@@ -11,7 +11,7 @@ layout( location = 1 ) rayPayloadEXT bool isShadowed;
 layout( binding = 0, set = 0 ) uniform accelerationStructureEXT topLevelAS;
 layout( binding = 1, set = 0, rgba32f ) uniform image2D image;
 
-layout( binding = 0, set = 1 ) uniform CameraProperties
+layout( binding = 0, set = 1 ) readonly uniform CameraProperties
 {
   mat4 view;
   mat4 proj;
@@ -188,7 +188,7 @@ void main( )
   else
   {
     vec3 oldColor = imageLoad( image, ivec2( gl_LaunchIDEXT.xy ) ).xyz;
-    vec4 temp     = vec4( mix( oldColor, finalColor, 1.0 / float( frameCount ) ), 1.0 );
+    vec4 temp     = vec4( mix( oldColor, finalColor, 1.0 / float( frameCount + 1 ) ), 1.0 );
     imageStore( image, ivec2( gl_LaunchIDEXT.xy ), temp );
   }
 }

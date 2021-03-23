@@ -242,6 +242,23 @@ private:
           _renderer->settings( ).setAccumulatingFrames( false );
         }
 
+        bool nee = _renderer->settings( ).getNextEventEstimation( );
+        if ( ImGui::Checkbox( "##Next Event Estimation 2", &nee ) )
+        {
+          _renderer->settings( ).setAccumulatingFrames( false );
+        }
+        _renderer->settings( ).setNextEventEstimation( nee );
+
+        ImGui::SameLine( );
+
+        static int neeMinBounces = static_cast<int>( _renderer->settings( ).getNextEventEstimationMinBounces( ) );
+        ImGui::SetNextItemWidth( 100.0F );
+        if ( ImGui::InputInt( "Next Event Estimation", &neeMinBounces ) )
+        {
+          _renderer->settings( ).setNextEventEstimationMinBounces( static_cast<uint32_t>( neeMinBounces ) );
+          _renderer->settings( ).setAccumulatingFrames( false );
+        }
+
         static int perPixelSampleRate = static_cast<int>( _renderer->settings( ).getPerPixelSampleRate( ) );
         ImGui::SetNextItemWidth( 129.0F );
         if ( ImGui::InputInt( "Per pixel sample rate", &perPixelSampleRate ) )

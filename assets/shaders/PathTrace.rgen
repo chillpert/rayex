@@ -2,6 +2,7 @@
 #extension GL_EXT_ray_tracing : require
 #extension GL_ARB_shader_clock : enable
 
+#include "PushConstants.glsl"
 #include "Random.glsl"
 #include "Ray.glsl"
 
@@ -24,20 +25,6 @@ layout( binding = 0, set = 1 ) readonly uniform CameraProperties
   vec4 padding2;
 }
 cam;
-
-layout( push_constant ) uniform Constants
-{
-  vec4 clearColor;
-  int frameCount;
-  uint sampleRatePerPixel;
-  uint maxPathDepth;
-  bool useEnvironmentMap;
-  bool russianRoulette;
-  uint russianRouletteMinBounces;
-
-  uint padding2;
-  uint padding3;
-};
 
 void main( )
 {
@@ -100,57 +87,6 @@ void main( )
                    tMax,          // ray max range
                    0 );           // payload (location = 0)
 
-      //if ( false && ray.emission == vec3( 0.0 ) && ray.depth == 0 )
-      //{
-      //  vec3 L;
-      //  L = vec3( -0.7, 14.0, 0.0 );  // sponza
-      //  L = vec3( 0.0, 3.0, 0.0 );    // animation
-      //  L = vec3( -22.0, 6.0, 12.0 ); // spheres
-      //  L = vec3( -0.0, 0.8, -1.0 );  // cornell
-      //
-      //  float tMin = 0.001;
-      //  float tMax = 10000.0;
-      //  uint flags = gl_RayFlagsTerminateOnFirstHitEXT | gl_RayFlagsOpaqueEXT | gl_RayFlagsSkipClosestHitShaderEXT;
-      //  isShadowed = true;
-      //  traceRayEXT( topLevelAS, // acceleration structure
-      //               flags,      // rayFlags
-      //               0xFF,       // cullMask
-      //               0,          // sbtRecordOffset
-      //               0,          // sbtRecordStride
-      //               1,          // missIndex
-      //               ray.origin, // ray origin
-      //               tMin,       // ray min range
-      //               L,          // ray direction
-      //               tMax,       // ray max range
-      //               1           // payload (location = 1)
-      //  );
-      //
-      //  if ( isShadowed )
-      //  {
-      //    //emission = vec3( 1.0 ); // * clamp( length( L - ray.origin ), 0.0, 1.0 ) * 5.0;
-      //    // bsdf = vec3( 0.0, 1.0, 0.0 );
-      //  }
-      //  else
-      //  {
-      //    //cosTheta = dot( normal, L ); // The steeper the incident direction to the surface is the more important the sample gets
-      //    //bsdf *= cosTheta;
-      //
-      //    //const float distance_      = length( L - worldPos );
-      //    //const float lightConstant  = 1.0;
-      //    //const float lightLinear    = 0.09;
-      //    //const float lightQuadratic = 0.032;
-      //    //float attenuation          = 1.0 / ( lightConstant + lightLinear * distance_ + lightQuadratic * ( distance_ * distance_ ) );
-      //    //
-      //    //bsdf *= attenuation;
-      //    //emission = vec3( 1.0 ) * attenuation;
-      //    ray.emission = vec3( 1.0 ); // * cosTheta;
-      //    // Specular
-      //
-      //    //bsdf *= attenuation;
-      //    //emission = vec3( 0.0, 0.0, 1.0 );
-      //  }
-      //}
-
       color += ray.emission * weight;
       weight *= ray.weight;
 
@@ -164,10 +100,11 @@ void main( )
 
         if ( rand > p )
         {
+          //ray.depth = maxPathDepth + 1;
           break;
         }
 
-        // Add the energy "lost" by randomly terminating paths
+        // Add the energy "lost" by randomly terminating paths (this only happens if a ray was not terminated)
         weight *= 1.0 / p;
       }
     }
@@ -177,6 +114,11 @@ void main( )
 
   // weighted average
   vec3 finalColor = colors / sampleRatePerPixel;
+
+  // tone mapping
+  //const float limit = 1.5;
+  //float luminance   = 0.3 * finalColor.x + 0.6 * finalColor.y + 0.1 * finalColor.z;
+  //finalColor *= ( 1.0 / ( 1.0 + luminance / limit ) );
 
   // Interpolate results over time (length defined on host as frame count (int))
   // First frame

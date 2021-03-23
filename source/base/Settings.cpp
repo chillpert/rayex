@@ -38,6 +38,16 @@ namespace RAYEX_NAMESPACE
     components::frameCount = -1;
   }
 
+  void Settings::setNextEventEstimation( bool flag )
+  {
+    _nextEventEstimation = flag;
+  }
+
+  void Settings::setNextEventEstimationMinBounces( uint32_t minBounces )
+  {
+    _nextEventEstimationMinBounces = minBounces;
+  }
+
   void Settings::setRussianRoulette( bool flag )
   {
     _russianRoulette = flag;
@@ -122,25 +132,6 @@ namespace RAYEX_NAMESPACE
     _maxGeometryChanged = true;
   }
 
-  void Settings::setMeshLimit( size_t amount )
-  {
-    if ( amount == 0 )
-    {
-      RX_WARN( "Can not use value 0 for the maximum number of meshes. Using 32 instead." );
-      amount = 32;
-    }
-
-    if ( amount % 4 != 0 )
-    {
-      RX_WARN( "Minimum storage buffer for meshes alignment must be a multiple of 4. Using 16 instead." );
-      amount = 32;
-    }
-
-    _maxMeshes = ++amount;
-
-    _maxMeshesChanged = true;
-  }
-
   void Settings::setTextureLimit( size_t amount )
   {
     if ( amount == 0 )
@@ -152,14 +143,6 @@ namespace RAYEX_NAMESPACE
     _maxTextures = ++amount;
 
     _maxTexturesChanged = true;
-  }
-
-  void Settings::setLimits( size_t geometryLimit, size_t geometryInstanceLimit, size_t meshLimit, size_t textureLimit )
-  {
-    setGeometryLimit( geometryLimit );
-    setGeometryInstanceLimit( geometryInstanceLimit );
-    setMeshLimit( meshLimit );
-    setTextureLimit( textureLimit );
   }
 
   void Settings::setDefaultAssetsPath( )

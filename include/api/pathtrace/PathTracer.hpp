@@ -14,10 +14,10 @@ namespace RAYEX_NAMESPACE
     uint32_t recursionDepth     = 4;
     uint32_t useEnvironmentMap  = 0;
 
-    uint32_t padding0 = 0;
-    uint32_t padding1 = 0;
-    uint32_t padding2 = 0;
-    uint32_t padding3 = 0;
+    uint32_t russianRoulette               = 0;
+    uint32_t russianRouletteMinBounces     = 0;
+    uint32_t nextEventEstimation           = 0;
+    uint32_t nextEventEstimationMinBounces = 0;
   };
 
   struct PathTracingCapabilities

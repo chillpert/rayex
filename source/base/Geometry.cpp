@@ -66,6 +66,9 @@ namespace RAYEX_NAMESPACE
 
     geometry->matIndex.reserve( totalAmountOfTriangles );
 
+    // Assuming that any given model does assign a material per sub-mesh
+    components::_materials.reserve( shapes.size( ) );
+
     // Loop over shapes.
     int i = 0;
     for ( const auto& shape : shapes )

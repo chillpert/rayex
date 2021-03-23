@@ -5,6 +5,7 @@
 
 #include "Geometry.glsl"
 #include "Instance.glsl"
+#include "PushConstants.glsl"
 #include "Random.glsl"
 #include "Ray.glsl"
 
@@ -46,20 +47,6 @@ layout( binding = 4, set = 2 ) readonly buffer Materials
   Material m[];
 }
 materials;
-
-layout( push_constant ) uniform Constants
-{
-  vec4 clearColor;
-  int frameCount;
-  uint sampleRatePerPixel;
-  uint maxPathDepth;
-  bool useEnvironmentMap;
-
-  uint padding0;
-  uint padding1;
-  uint padding2;
-  uint padding3;
-};
 
 layout( binding = 0, set = 1 ) uniform CameraProperties
 {
@@ -201,17 +188,20 @@ void main( )
 
   // trace shadow ray
   // Tracing shadow ray only if the light is visible from the surface
-  if ( false && emission == vec3( 0.0 ) && ray.depth >= 1 )
+  // https://computergraphics.stackexchange.com/questions/7929/how-does-a-path-tracer-with-next-event-estimation-work
+  if ( nextEventEstimation && emission == vec3( 0.0 ) && ray.depth >= nextEventEstimationMinBounces )
   {
     vec3 L;
     L = vec3( -22.0, 6.0, 12.0 ); // spheres
     L = vec3( -0.0, 0.8, -1.0 );  // cornell
-    L = vec3( -0.7, 14.0, 0.0 );  // sponza
     L = vec3( 0.0, 10.0, 0.0 );   // animation
+    L = vec3( -0.7, 8.0, 0.0 );   // sponza
 
-    L = normalize( L );
+    L                   = normalize( L );
+    float lengthSquared = length( L ) * length( L );
 
-    if ( dot( normal, L ) > 0.0 )
+    float cosTheta = dot( normal, L );
+    if ( cosTheta > 0.0 )
     {
       float tMin = 0.001;
       float tMax = 2.0;
@@ -253,7 +243,10 @@ void main( )
         //
         // bsdf *= attenuation;
         //emission = vec3( 1.0 ) * attenuation;
-        emission = vec3( 1.0, 1.0, 1.0 ); // / ( ray.depth * 1.0 ); // * cosTheta;
+
+        float denom = 4.0 * M_PI * lengthSquared;
+        emission    = vec3( 1.0, 1.0, 1.0 ) * cosTheta / denom; // / ( ray.depth * 1.0 ); // * cosTheta;
+                                                                // emission = vec3( 1.0, 1.0, 1.0 ); // / ( ray.depth * 1.0 ); // * cosTheta;
 
         //bsdf *= attenuation;
         //emission = vec3( 0.0, 0.0, 1.0 );

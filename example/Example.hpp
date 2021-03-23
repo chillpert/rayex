@@ -114,7 +114,6 @@ inline void loadScene( rx::Rayex* renderer, Level scene )
     renderer->settings( ).setGeometryLimit( 1000 ); // Will give a warning.
     renderer->settings( ).setGeometryInstanceLimit( 10000 );
     renderer->settings( ).setTextureLimit( 1000 ); // Will give a warning.
-    renderer->settings( ).setMeshLimit( 1000 );
     renderer->settings( ).setClearColor( glm::vec4( 0.45F, 0.45F, 0.45F, 0.8F ) );
     renderer->settings( ).setAccumulatingFrames( true );
 
@@ -147,7 +146,6 @@ inline void loadScene( rx::Rayex* renderer, Level scene )
     renderer->settings( ).setGeometryLimit( 5 );
     renderer->settings( ).setGeometryInstanceLimit( 4000 );
     renderer->settings( ).setTextureLimit( 4 );
-    renderer->settings( ).setMeshLimit( 100 );
     renderer->settings( ).setAccumulatingFrames( false );
     renderer->settings( ).setClearColor( glm::vec4( 0.0F, 0.0F, 0.0F, 1.0F ) );
 
@@ -184,7 +182,6 @@ inline void loadScene( rx::Rayex* renderer, Level scene )
     renderer->settings( ).setGeometryLimit( 100 ); // Will give a warning.
     renderer->settings( ).setGeometryInstanceLimit( 15000 );
     renderer->settings( ).setTextureLimit( 100 ); // Will give a warning.
-    renderer->settings( ).setMeshLimit( 100 );
     renderer->settings( ).setAccumulatingFrames( true );
     renderer->settings( ).setClearColor( glm::vec4( 0.0F, 0.0F, 0.0F, 1.0F ) );
 
@@ -258,8 +255,8 @@ inline void loadScene( rx::Rayex* renderer, Level scene )
     glassMaterial.kd        = glm::vec3( 1.0F );
     glassMaterial.ni        = 1.0F;
     glassMaterial.illum     = 1;
-    glassMaterial.ni        = 2.6;
-    glassMaterial.fuzziness = 2.6;
+    glassMaterial.ni        = 2.6F;
+    glassMaterial.fuzziness = 1.0F;
     glass->setMaterial( glassMaterial );
 
     renderer->scene( ).setGeometries( { lightPlane, floor, sphere, sphere1, sphere2, sphere3, sphere4, sphere5, sphere6, sphere7, glass } );
@@ -348,8 +345,6 @@ inline void loadScene( rx::Rayex* renderer, Level scene )
 
     for ( int i = 1; i < 15000; ++i )
     {
-      //auto transform = glm::translate( glm::mat4( 1.0F ), getRandomUniquePosition( -25.0F, 25.0F ) );
-      //addModel( renderer, "models/bunny.obj", transform);
       addSphere( renderer );
     }
   }

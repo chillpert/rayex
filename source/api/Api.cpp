@@ -337,12 +337,11 @@ namespace RAYEX_NAMESPACE
 
   void Api::updateSettings( )
   {
-    if ( _settings._maxGeometryChanged || _settings._maxMeshesChanged || _settings._maxTexturesChanged )
+    if ( _settings._maxGeometryChanged || _settings._maxTexturesChanged )
     {
       _sync.waitForFrame( prevFrame );
 
       _settings._maxGeometryChanged = false;
-      _settings._maxMeshesChanged   = false;
       _settings._maxTexturesChanged = false;
 
       _scene._vertexBuffers.resize( _settings._maxGeometry );
@@ -483,7 +482,9 @@ namespace RAYEX_NAMESPACE
                                _settings._pathDepth,
                                static_cast<uint32_t>( _scene._useEnvironmentMap ),
                                static_cast<uint32_t>( _settings._russianRoulette ),
-                               _settings._russianRouletteMinBounces };
+                               _settings._russianRouletteMinBounces,
+                               _settings._nextEventEstimation,
+                               _settings._nextEventEstimationMinBounces };
 
     // Start recording the swapchain framebuffers?
     for ( size_t imageIndex = 0; imageIndex < _swapchainCommandBuffers.get( ).size( ); ++imageIndex )

@@ -518,14 +518,14 @@ namespace RAYEX_NAMESPACE
     // Vertex buffers
     _geometryDescriptors.bindings.add( 0,
                                        vk::DescriptorType::eStorageBuffer,
-                                       vk::ShaderStageFlagBits::eClosestHitKHR | vk::ShaderStageFlagBits::eAnyHitKHR,
+                                       vk::ShaderStageFlagBits::eClosestHitKHR,
                                        _settings->_maxGeometry,
                                        vk::DescriptorBindingFlagBits::eUpdateAfterBind );
 
     // Index buffers
     _geometryDescriptors.bindings.add( 1,
                                        vk::DescriptorType::eStorageBuffer,
-                                       vk::ShaderStageFlagBits::eClosestHitKHR | vk::ShaderStageFlagBits::eAnyHitKHR,
+                                       vk::ShaderStageFlagBits::eClosestHitKHR,
                                        _settings->_maxGeometry,
                                        vk::DescriptorBindingFlagBits::eUpdateAfterBind );
 
@@ -550,7 +550,7 @@ namespace RAYEX_NAMESPACE
 
     _geometryDescriptors.bindings.add( 3,
                                        vk::DescriptorType::eCombinedImageSampler,
-                                       vk::ShaderStageFlagBits::eClosestHitKHR | vk::ShaderStageFlagBits::eAnyHitKHR,
+                                       vk::ShaderStageFlagBits::eClosestHitKHR,
                                        _settings->_maxTextures,
                                        vk::DescriptorBindingFlagBits::eUpdateAfterBind,
                                        immutableSamplers.data( ) );

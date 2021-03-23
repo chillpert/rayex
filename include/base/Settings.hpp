@@ -33,6 +33,14 @@ namespace RAYEX_NAMESPACE
 
     void setRussianRoulette( bool flag );
 
+    bool getNextEventEstimation( ) { return _nextEventEstimation; }
+
+    void setNextEventEstimation( bool flag );
+
+    uint32_t getNextEventEstimationMinBounces( ) { return _nextEventEstimationMinBounces; }
+
+    void setNextEventEstimationMinBounces( uint32_t minBounces );
+
     uint32_t getRussianRouletteMinBounces( ) { return _russianRouletteMinBounces; }
 
     void setRussianRouletteMinBounces( uint32_t minBounces );
@@ -78,16 +86,6 @@ namespace RAYEX_NAMESPACE
     /// Used to set the maximum amount of textures that can be loaded.
     void setTextureLimit( size_t amount );
 
-    /// Used to set the maximum amount of meshes that can be loaded.
-    ///
-    /// This value is not strictly related to the amount of geometries. Each geometry can have an arbitrary amount of meshes or sub-mehes.
-    /// To optimize the buffer size it is recommended to make at least a rough estimate on the amount of submeshes that are going to be in the scene.
-    void setMeshLimit( size_t amount );
-
-    /// Used to set the geometry limit, geometry instance limit, mesh limit and texture limit at once.
-    /// @see setGeometryLimit(size_t), setGeometryInstanceLimit(size_t), setMeshLimit(size_t) and setTextureLimit(size_t).
-    void setLimits( size_t geometryLimit, size_t geometryInstanceLimit, size_t meshLimit, size_t textureLimit );
-
     void setPerPixelSampleRate( uint32_t sampleRate );
 
     auto getPerPixelSampleRate( ) const -> uint32_t { return _perPixelSampleRate; }
@@ -114,10 +112,7 @@ namespace RAYEX_NAMESPACE
     bool _maxGeometryChanged          = false;
     size_t _maxTextures               = 8; ///< The maximum amount of textures.
     bool _maxTexturesChanged          = false;
-    size_t _maxMeshes                 = 4; ///< The maximum amount of meshes. Each geometry can have multiple sub meshes.
-    bool _maxMeshesChanged            = false;
-
-    size_t _maxMaterials = 1024;
+    size_t _maxMaterials              = 1024;
 
     std::string _assetsPath; ///< Where all assets like models, textures and shaders are stored.
 
@@ -126,6 +121,9 @@ namespace RAYEX_NAMESPACE
     uint32_t _pathDepth                 = 10;                                     ///< The current path depth.
     uint32_t _perPixelSampleRate        = 4;                                      ///< Stores the total amount of samples that will be taken and averaged per pixel.
     uint32_t _russianRouletteMinBounces = 1;
+
+    bool _nextEventEstimation               = true;
+    uint32_t _nextEventEstimationMinBounces = 0; // temporary for debugging
 
     bool _accumulateFrames          = true;
     bool _russianRoulette           = true;

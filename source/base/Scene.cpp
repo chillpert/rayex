@@ -346,8 +346,8 @@ namespace RAYEX_NAMESPACE
         _currentCamera->_updateProj = false;
       }
 
-      cameraUbo.position = glm::vec4( _currentCamera->getPosition( ), 1.0F );
-      cameraUbo.front    = glm::vec4( _currentCamera->getFront( ), 1.0F );
+      cameraUbo.position = glm::vec4( _currentCamera->getPosition( ), _currentCamera->getAperture( ) );
+      cameraUbo.front    = glm::vec4( _currentCamera->getFront( ), _currentCamera->getFocalDistance( ) );
     }
 
     _cameraUniformBuffer.upload( imageIndex, cameraUbo );

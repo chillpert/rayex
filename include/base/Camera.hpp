@@ -51,6 +51,14 @@ namespace RAYEX_NAMESPACE
 
     void setFront( const glm::vec3& front );
 
+    void setAperture( float aperture );
+
+    float getAperture( ) { return _aperture; }
+
+    void setFocalDistance( float focalDistance );
+
+    float getFocalDistance( ) { return _focalDistance; }
+
     /// Is used to set a size for the camera that fits the viewport dimensions.
     /// @param width The width of the viewport.
     /// @param height The height of the viewport.
@@ -116,13 +124,16 @@ namespace RAYEX_NAMESPACE
     glm::vec3 _right   = { };                  ///< The local right vector.
     glm::vec3 _front   = { };                  ///< The viewing direction.
 
-    float _yaw         = -90.0F; ///< The yaw (left and right).
-    float _pitch       = 0.0F;   ///< The pitch (down and up).
-    float _sensitivity = 0.06F;  ///< The mouse sensitivity.
-    float _fov         = 45.0F;  ///< The field of view.
+    float _yaw           = -90.0F; ///< The yaw (left and right).
+    float _pitch         = 0.0F;   ///< The pitch (down and up).
+    float _sensitivity   = 0.06F;  ///< The mouse sensitivity.
+    float _fov           = 45.0F;  ///< The field of view.
+    float _aperture      = 0.0F;   // DOF disabled by default
+    float _focalDistance = 5.0F;
   };
 
-  /// A memory aligned uniform buffer object for camera data.
+  /// A memory aligned uniform buffer object for camera data.\
+  /// @todo poorly aligned
   /// @ingroup API
   struct CameraUbo
   {
@@ -130,8 +141,8 @@ namespace RAYEX_NAMESPACE
     glm::mat4 projection        = glm::mat4( 1.0F );
     glm::mat4 viewInverse       = glm::mat4( 1.0F );
     glm::mat4 projectionInverse = glm::mat4( 1.0F );
-    glm::vec4 position          = glm::vec4( 1.0F );
-    glm::vec4 front             = glm::vec4( 1.0F );
+    glm::vec4 position          = glm::vec4( 1.0F ); // vec3 pos + vec1 aperture
+    glm::vec4 front             = glm::vec4( 1.0F ); // vec3 front + vec1 focalDistance
 
   private:
     glm::vec4 padding1 = glm::vec4( 1.0F ); ///< Padding (ignore).

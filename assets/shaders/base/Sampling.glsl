@@ -2,18 +2,39 @@
 
 // @Nvidia vk_ray_tracing_KHR tutorial
 // Return the tangent and binormal from the incoming normal
-void createCoordinateSystem( in vec3 N, out vec3 Nt, out vec3 Nb )
+// transform +Z to tangent space
+vec3 transformLocalToWorld( vec3 direction, vec3 normal )
 {
-  if ( abs( N.x ) > abs( N.y ) )
+  vec3 tangent;
+  vec3 bitangent;
+
+  if ( abs( normal.x ) > abs( normal.y ) )
   {
-    Nt = vec3( N.z, 0, -N.x ) / sqrt( N.x * N.x + N.z * N.z );
+    tangent = vec3( normal.z, 0, -normal.x ) / sqrt( normal.x * normal.x + normal.z * normal.z );
   }
   else
   {
-    Nt = vec3( 0, -N.z, N.y ) / sqrt( N.y * N.y + N.z * N.z );
+    tangent = vec3( 0, -normal.z, normal.y ) / sqrt( normal.y * normal.y + normal.z * normal.z );
   }
 
-  Nb = cross( N, Nt );
+  bitangent = cross( normal, tangent );
+
+  return direction.x * tangent + direction.y * bitangent + direction.z * normal;
+}
+
+vec3 cosineHemisphereSampling( inout uint seed, inout float pdf, in vec3 normal )
+{
+  // cosine distributed sampling
+  float u0 = rnd( seed );
+  float u1 = rnd( seed );
+  float sq = sqrt( 1.0 - u1 );
+
+  vec3 direction = vec3( cos( 2 * M_PI * u0 ) * sq, sin( 2 * M_PI * u0 ) * sq, sqrt( u1 ) );
+
+  // PDF of cosine distributed hemisphere sampling
+  pdf = 1.0 / M_PI;
+
+  return transformLocalToWorld( direction, normal );
 }
 
 // From Nvidia's vk_mini_path_tracer and ultimately from Peter Shirley's "Ray Tracing in one Weekend"
@@ -33,26 +54,22 @@ vec3 cosineHemisphereSampling2( inout uint seed, inout float pdf, in vec3 normal
   return normalize( direction );
 }
 
-vec3 cosineHemisphereSampling( inout uint seed, inout float pdf, in vec3 normal )
+// from RayTracingGems p. 240
+// Requires no transforming but lacks precision for the grazing case
+vec3 cosineHemisphereSampling3( inout uint seed, inout float pdf, in vec3 normal )
 {
-  // cosine distributed sampling
-  float u0 = rnd( seed );
-  float u1 = rnd( seed );
-  float sq = sqrt( 1.0 - u1 );
+  float a   = 1.0 - 2.0 * rnd( seed );
+  float b   = sqrt( 1.0 - a * a );
+  float phi = 2.0 * M_PI * rnd( seed );
 
-  vec3 direction = vec3( cos( 2 * M_PI * u0 ) * sq, sin( 2 * M_PI * u0 ) * sq, sqrt( u1 ) );
+  vec3 dir;
+  dir.x = normal.x + b * cos( phi );
+  dir.y = normal.y + b * sin( phi );
+  dir.z = normal.z + a;
 
-  // PDF of cosine distributed hemisphere sampling
-  pdf = 1.0 / M_PI;
+  pdf = a / M_PI;
 
-  // transform to local tangent space
-  vec3 tangent;
-  vec3 bitangent;
-  createCoordinateSystem( normal, tangent, bitangent );
-
-  direction = direction.x * tangent + direction.y * bitangent + direction.z * normal;
-
-  return direction;
+  return dir;
 }
 
 vec3 uniformSphereSampling( inout uint seed, inout float pdf, in vec3 normal )
@@ -89,39 +106,36 @@ vec3 uniformHemisphereSampling( inout uint seed, inout float pdf, in vec3 normal
   }
 }
 
-// @https://www.iue.tuwien.ac.at/phd/ertl/node100.html
-// Cosine distributed
-// not working
-vec3 samplingCone2( inout uint seed, inout float pdf, in vec3 normal, in vec3 reflectionDirection )
+// Not working
+// from RayTracingGems p. 241
+vec3 coneSampling( inout uint seed, inout float pdf, in vec3 normal, float fuzziness )
 {
-  vec3 dir;
-  float a;
+  float cosThetaMax = fuzziness;
 
-  do
-  {
-    dir = uniformSphereSampling( seed, pdf, normal );
-    dir += reflectionDirection;
-    a = sqrt( dir.x * dir.x + dir.y * dir.y + dir.z * dir.z );
-  } while ( a != 0.0 );
+  pdf = 1.0 / ( 2.0 * M_PI * ( 1.0 - cos( cosThetaMax ) ) );
 
-  dir = dir / a;
-
-  return normal + normalize( dir );
-}
-
-vec3 samplingCone( inout uint seed, float maxTheta )
-{
   float u0 = rnd( seed );
   float u1 = rnd( seed );
 
-  float cosTheta = ( 1.0 - u0 ) + u0 * maxTheta;
-  float sinTheta = sqrt( 1 - cosTheta * cosTheta );
+  float cosTheta = ( 1.0 - u0 ) + u0 * cosThetaMax;
+  float sinTheta = sqrt( 1.0 - cosTheta * cosTheta );
   float phi      = u1 * 2.0 * M_PI;
-
   vec3 dir;
   dir.x = cos( phi ) * sinTheta;
   dir.y = sin( phi ) * sinTheta;
   dir.z = cosTheta;
 
-  return normalize( dir );
+  return transformLocalToWorld( dir, normal );
+}
+
+vec2 diskSampling( inout uint seed )
+{
+  vec2 p;
+
+  do
+  {
+    p = 2.0 * vec2( rnd( seed ), rnd( seed ) ) - 1.0;
+  } while ( dot( p, p ) >= 1.0 );
+
+  return p;
 }

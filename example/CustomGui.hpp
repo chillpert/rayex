@@ -141,7 +141,7 @@ private:
           _renderer->scene( ).removeEnvironmentMap( );
         }
 
-        const char* items[]     = { "bunny", "vulkan", "venus", "dragon", "teapot", "voyager" };
+        const char* items[]     = { "bunny", "vulkan", "venus", "dragon", "teapot", "voyager", "lucy" };
         static int item_current = 0;
         ImGui::SetNextItemWidth( 200.0F );
         ImGui::Combo( "##model", &item_current, items, IM_ARRAYSIZE( items ) );
@@ -318,14 +318,28 @@ private:
           loadScene( _renderer, Level::eSponza );
         }
 
-        ImGui::Separator( );
-        ImGui::Text( "Cam Pos:   " );
-        ImGui::SameLine( );
-        ImGui::Text( glm::to_string( _renderer->scene( ).getCamera( )->getPosition( ) ).c_str( ) );
+        static float aperture = static_cast<int>( _renderer->scene( ).getCamera( )->getAperture( ) );
+        if ( ImGui::SliderFloat( "Aperture", &aperture, 0.0F, 2.0F ) )
+        {
+          _renderer->scene( ).getCamera( )->setAperture( aperture );
+          _renderer->settings( ).setAccumulatingFrames( false );
+        }
 
-        ImGui::Text( "Cam Front: " );
-        ImGui::SameLine( );
-        ImGui::Text( glm::to_string( _renderer->scene( ).getCamera( )->getFront( ) ).c_str( ) );
+        static float focalDistance = static_cast<int>( _renderer->scene( ).getCamera( )->getFocalDistance( ) );
+        if ( ImGui::SliderFloat( "Focal Point", &focalDistance, 0.0F, 20.0F ) )
+        {
+          _renderer->scene( ).getCamera( )->setFocalDistance( focalDistance );
+          _renderer->settings( ).setAccumulatingFrames( false );
+        }
+
+        //ImGui::Separator( );
+        //ImGui::Text( "Cam Pos:   " );
+        //ImGui::SameLine( );
+        //ImGui::Text( glm::to_string( _renderer->scene( ).getCamera( )->getPosition( ) ).c_str( ) );
+        //
+        //ImGui::Text( "Cam Front: " );
+        //ImGui::SameLine( );
+        //ImGui::Text( glm::to_string( _renderer->scene( ).getCamera( )->getFront( ) ).c_str( ) );
       }
     }
     ImGui::End( );

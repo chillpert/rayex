@@ -4,8 +4,8 @@
 
 #include "base/Camera.glsl"
 #include "base/PushConstants.glsl"
-#include "base/Random.glsl"
 #include "base/Ray.glsl"
+#include "base/Sampling.glsl"
 
 layout( location = 0 ) rayPayloadEXT RayPayLoad ray;
 layout( location = 1 ) rayPayloadEXT bool isShadowed;
@@ -27,9 +27,24 @@ void main( )
     const vec2 normalizedPixel = positionWithinPixel / vec2( gl_LaunchSizeEXT.xy );
     vec2 d                     = normalizedPixel * 2.0 - 1.0;
 
-    vec4 origin    = cam.viewInverse * vec4( 0.0, 0.0, 0.0, 1.0 );
-    vec4 target    = cam.projInverse * vec4( d.x, d.y, 1.0, 1.0 );
-    vec4 direction = cam.viewInverse * vec4( normalize( target.xyz ), 0.0 );
+    // depth of field
+    float aperture      = cam.position.w;
+    float focusDistance = cam.viewingDirection.w;
+    vec2 offset         = aperture / 2.0 * diskSampling( ray.seed );
+
+    vec4 origin, direction;
+    vec4 target = cam.projInverse * vec4( d.x, d.y, 1.0, 1.0 );
+
+    if ( aperture > 0.0 )
+    {
+      origin    = cam.viewInverse * vec4( offset, 0.0, 1.0 );
+      direction = cam.viewInverse * vec4( normalize( target.xyz * focusDistance - vec3( offset, 0.0 ) ), 0.0 );
+    }
+    else
+    {
+      origin    = cam.viewInverse * vec4( 0.0, 0.0, 0.0, 1.0 );
+      direction = cam.viewInverse * vec4( normalize( target.xyz ), 0.0 );
+    }
 
     ray.direction  = direction.xyz;
     ray.origin     = origin.xyz;

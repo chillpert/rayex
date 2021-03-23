@@ -49,6 +49,16 @@ namespace RAYEX_NAMESPACE
     updateViewMatrix( );
   }
 
+  void Camera::setAperture( float aperture )
+  {
+    _aperture = aperture;
+  }
+
+  void Camera::setFocalDistance( float focalDistance )
+  {
+    _focalDistance = focalDistance;
+  }
+
   void Camera::setPosition( const glm::vec3& position )
   {
     _position = position;

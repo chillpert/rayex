@@ -3,10 +3,9 @@
 #extension GL_EXT_scalar_block_layout : enable
 #extension GL_EXT_nonuniform_qualifier : enable
 
-#include "Geometry.glsl"
-#include "Instance.glsl"
-#include "Random.glsl"
-#include "Ray.glsl"
+#include "base/Geometry.glsl"
+#include "base/Random.glsl"
+#include "base/Ray.glsl"
 
 layout( location = 1 ) rayPayloadInEXT RayPayLoad ray;
 

@@ -2,29 +2,16 @@
 #extension GL_EXT_ray_tracing : require
 #extension GL_ARB_shader_clock : enable
 
-#include "PushConstants.glsl"
-#include "Random.glsl"
-#include "Ray.glsl"
+#include "base/Camera.glsl"
+#include "base/PushConstants.glsl"
+#include "base/Random.glsl"
+#include "base/Ray.glsl"
 
 layout( location = 0 ) rayPayloadEXT RayPayLoad ray;
 layout( location = 1 ) rayPayloadEXT bool isShadowed;
 
 layout( binding = 0, set = 0 ) uniform accelerationStructureEXT topLevelAS;
 layout( binding = 1, set = 0, rgba32f ) uniform image2D image;
-
-layout( binding = 0, set = 1 ) readonly uniform CameraProperties
-{
-  mat4 view;
-  mat4 proj;
-  mat4 viewInverse;
-  mat4 projInverse;
-  vec4 position;
-  vec4 viewingDirection;
-
-  vec4 padding1;
-  vec4 padding2;
-}
-cam;
 
 void main( )
 {

@@ -353,9 +353,7 @@ inline void loadScene( rx::Rayex* renderer, Level scene )
     renderer->reset( );
     renderer->settings( ).setGeometryLimit( 100 ); // Will give a warning.
     renderer->settings( ).setGeometryInstanceLimit( 1000 );
-    renderer->settings( ).setTextureLimit( 50 );      // Will give a warning.
-    renderer->settings( ).setPerPixelSampleRate( 1 ); // Will give a warning.
-    renderer->settings( ).setPathDepth( 2 );          // Will give a warning.
+    renderer->settings( ).setTextureLimit( 50 ); // Will give a warning.
     renderer->settings( ).setAccumulatingFrames( true );
     renderer->settings( ).setClearColor( glm::vec4( 1.0F ) );
 

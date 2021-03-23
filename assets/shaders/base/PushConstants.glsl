@@ -9,7 +9,7 @@ layout( push_constant ) uniform Constants
 
   bool russianRoulette;
   uint russianRouletteMinBounces;
-  bool nextEventEstimation;
+  bool isNextEventEstimation;
   uint nextEventEstimationMinBounces;
 
   // @note Do not forget to pad when adding more.

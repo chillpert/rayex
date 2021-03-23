@@ -3,11 +3,12 @@
 #extension GL_EXT_scalar_block_layout : enable
 #extension GL_EXT_nonuniform_qualifier : enable
 
-#include "Geometry.glsl"
-#include "Instance.glsl"
-#include "PushConstants.glsl"
-#include "Random.glsl"
-#include "Ray.glsl"
+#include "base/Camera.glsl"
+#include "base/Geometry.glsl"
+#include "base/PushConstants.glsl"
+#include "base/Ray.glsl"
+#include "base/Sampling.glsl"
+#include "base/Shading.glsl"
 
 hitAttributeEXT vec3 attribs;
 
@@ -48,20 +49,6 @@ layout( binding = 4, set = 2 ) readonly buffer Materials
 }
 materials;
 
-layout( binding = 0, set = 1 ) uniform CameraProperties
-{
-  mat4 view;
-  mat4 proj;
-  mat4 viewInverse;
-  mat4 projInverse;
-  vec4 position;
-  vec4 viewingDirection;
-
-  vec4 padding1;
-  vec4 padding2;
-}
-cam;
-
 Vertex unpackVertex( uint index, uint geometryIndex )
 {
   vec4 d0 = vertices[nonuniformEXT( geometryIndex )].v[3 * index + 0];
@@ -76,14 +63,17 @@ Vertex unpackVertex( uint index, uint geometryIndex )
   return v;
 }
 
-void main( )
+Material getShadingData( inout vec3 localNormal, inout vec3 worldNormal, inout vec3 worldPosition, inout vec2 uv )
 {
+  // Access the instance in the array when TLAS was built and get its geometry index
   uint geometryIndex = geometryInstances.i[gl_InstanceID].geometryIndex;
 
+  // Use geometry index and current primitive ID to access indices
   ivec3 ind = ivec3( indices[nonuniformEXT( geometryIndex )].i[3 * gl_PrimitiveID + 0],   //
                      indices[nonuniformEXT( geometryIndex )].i[3 * gl_PrimitiveID + 1],   //
                      indices[nonuniformEXT( geometryIndex )].i[3 * gl_PrimitiveID + 2] ); //
 
+  // Retrieve vertices using the indices from above
   Vertex v0 = unpackVertex( ind.x, geometryIndex );
   Vertex v1 = unpackVertex( ind.y, geometryIndex );
   Vertex v2 = unpackVertex( ind.z, geometryIndex );
@@ -91,111 +81,34 @@ void main( )
   const vec3 barycentrics = vec3( 1.0 - attribs.x - attribs.y, attribs.x, attribs.y );
 
   // Computing the normal at hit position
-  vec3 localNormal = v0.normal * barycentrics.x + v1.normal * barycentrics.y + v2.normal * barycentrics.z;
+  localNormal = v0.normal * barycentrics.x + v1.normal * barycentrics.y + v2.normal * barycentrics.z;
 
   // Transforming the normal to world space
-  vec3 normal = normalize( vec3( localNormal * gl_WorldToObjectEXT ) );
+  worldNormal = normalize( vec3( localNormal * gl_WorldToObjectEXT ) );
 
-  vec3 worldPos = gl_WorldRayOriginEXT + gl_WorldRayDirectionEXT * gl_HitTEXT;
+  // Intersection position in world space
+  worldPosition = gl_WorldRayOriginEXT + gl_WorldRayDirectionEXT * gl_HitTEXT;
 
-  vec2 texCoord = v0.texCoord * barycentrics.x + v1.texCoord * barycentrics.y + v2.texCoord * barycentrics.z;
+  // Texture coordinate
+  uv = v0.texCoord * barycentrics.x + v1.texCoord * barycentrics.y + v2.texCoord * barycentrics.z;
 
+  // Retrieve material
   uint matIndex = matIndices[nonuniformEXT( geometryIndex )].i[gl_PrimitiveID];
-  Material mat  = materials.m[matIndex];
+  return materials.m[matIndex];
+}
 
-  // Colors
-  vec3 reflectance = vec3( 0.0 );
-  vec3 emission    = vec3( 0.0 ); // emittance / emissiveFactor
-
-  emission = mat.emission.xyz;
-
-  // Stop recursion if a light source is hit.
-  if ( emission != vec3( 0.0 ) )
-  {
-    ray.depth = maxPathDepth + 1;
-  }
-
-  // Retrieve material textures and colors
-  reflectance = mat.diffuse.xyz;
-  if ( mat.diffuse.w != -1.0 )
-  {
-    reflectance *= texture( textures[nonuniformEXT( int( mat.diffuse.w ) )], texCoord ).xyz;
-  }
-
-  // Pick a random direction from here and keep going.
-  vec3 rayOrigin = worldPos;
-  vec3 nextDirection;
-
-  // Probability of the new ray (PDF)
-  float pdf;
-  float cosTheta = 1.0;
-
-  // BSDF (Divide by Pi to ensure energy conversation)
-  // @todo path regularization: blur the bsdf for indirect rays (raytracinggems p.251)
-  vec3 bsdf = reflectance / M_PI;
-
-  // Metallic reflection
-  if ( mat.illum == 2 )
-  {
-    vec3 reflectDir = reflect( ray.direction, normal );
-    nextDirection   = reflectDir + mat.fuzziness * samplingHemisphere( ray.seed, pdf, normal, localNormal );
-    ray.reflective  = true;
-  }
-  // @todo Resulting background color is inverted for any 2D surface
-  // Dielectric reflection ( Peter Shirley's "Ray Tracing in one Weekend" Chapter 9 )
-  else if ( mat.illum == 1 )
-  {
-    // Flip the normal if ray is transmitted
-    vec3 temp = gl_HitKindEXT == gl_HitKindBackFacingTriangleEXT ? -normal : normal;
-
-    float dot_   = dot( ray.direction, normal );
-    float cosine = dot_ > 0 ? mat.ni * dot_ : -dot_;
-    float ior    = dot_ > 0 ? mat.ni : 1 / mat.ni;
-
-    vec3 refracted    = refract( ray.direction, temp, ior );
-    float reflectProb = refracted != vec3( 0.0 ) ? Schlick( cosine, mat.ni ) : 1.0;
-
-    if ( rnd( ray.seed ) < reflectProb )
-    {
-      nextDirection = reflect( ray.direction, normal ) + mat.fuzziness * samplingHemisphere( ray.seed, pdf, normal, localNormal );
-    }
-    else
-    {
-      nextDirection  = refracted;
-      ray.refractive = true;
-    }
-  }
-  // Lambertian reflection
-  else if ( mat.illum == 0 )
-  {
-    nextDirection = samplingHemisphere( ray.seed, pdf, normal, localNormal );
-    cosTheta      = dot( nextDirection, normal ); // The steeper the incident direction to the surface is the more important the sample gets
-    bsdf *= cosTheta;
-  }
-
-  // Add specular highlight
-  if ( mat.emission.w > 0.0 && mat.illum != 0 )
-  {
-    vec3 reflectDir = reflect( ray.direction, normal );
-    float spec      = pow( max( dot( normalize( cam.position.xyz - worldPos ), reflectDir ), 0.0 ), mat.emission.w );
-    if ( spec > 0.0 )
-    {
-      bsdf = ( reflectance + clamp( spec, 0, 1 ) ) / M_PI;
-    }
-  }
-
-  //pdf = 1 / ( 1.5 * M_PI ); // the smaller the higher the contribution
-
+void nextEventEstimation( inout vec3 emission, in vec3 worldPos, in vec3 normal )
+{
   // trace shadow ray
   // Tracing shadow ray only if the light is visible from the surface
   // https://computergraphics.stackexchange.com/questions/7929/how-does-a-path-tracer-with-next-event-estimation-work
-  if ( nextEventEstimation && emission == vec3( 0.0 ) && ray.depth >= nextEventEstimationMinBounces )
+  if ( isNextEventEstimation && emission == vec3( 0.0 ) && ray.depth >= nextEventEstimationMinBounces )
   {
     vec3 L;
-    L = vec3( -22.0, 6.0, 12.0 ); // spheres
-    L = vec3( -0.0, 0.8, -1.0 );  // cornell
     L = vec3( 0.0, 10.0, 0.0 );   // animation
     L = vec3( -0.7, 8.0, 0.0 );   // sponza
+    L = vec3( 0.0, 0.8, -1.0 );   // cornell
+    L = vec3( -22.0, 6.0, 12.0 ); // spheres
 
     L                   = normalize( L );
     float lengthSquared = length( L ) * length( L );
@@ -253,9 +166,113 @@ void main( )
       }
     }
   }
+}
+
+void main( )
+{
+  vec3 localNormal, normal, worldPos;
+  vec2 uv;
+  Material mat = getShadingData( localNormal, normal, worldPos, uv );
+
+  // Colors
+  vec3 reflectance = vec3( 0.0 );
+  vec3 emission    = vec3( 0.0 ); // emittance / emissiveFactor
+
+  emission = mat.emission.xyz;
+
+  // Stop recursion if a light source is hit.
+  if ( emission != vec3( 0.0 ) )
+  {
+    ray.depth = maxPathDepth + 1;
+  }
+
+  // Retrieve material textures and colors
+  reflectance = mat.diffuse.xyz;
+  if ( mat.diffuse.w != -1.0 )
+  {
+    reflectance *= texture( textures[nonuniformEXT( int( mat.diffuse.w ) )], uv ).xyz;
+  }
+
+  // Pick a random direction from here and keep going.
+  vec3 rayOrigin = worldPos;
+  vec3 nextDirection;
+
+  // Probability of the new ray (PDF)
+  float pdf;
+  float cosTheta = 1.0;
+
+  // BSDF (Divide by Pi to ensure energy conversation)
+  // @todo path regularization: blur the bsdf for indirect rays (raytracinggems p.251)
+  vec3 bsdf = reflectance / M_PI;
+
+  // Metallic reflection
+  if ( mat.illum == 2 )
+  {
+    vec3 reflectDir = reflect( ray.direction, normal );
+    nextDirection   = reflectDir + mat.fuzziness * cosineHemisphereSampling( ray.seed, pdf, normal );
+    ray.reflective  = true;
+  }
+  // @todo Resulting background color is inverted for any 2D surface
+  // Dielectric reflection ( Peter Shirley's "Ray Tracing in one Weekend" Chapter 9 )
+  else if ( mat.illum == 1 )
+  {
+    // Flip the normal if ray is transmitted
+    vec3 temp = gl_HitKindEXT == gl_HitKindBackFacingTriangleEXT ? -normal : normal;
+
+    float dot_   = dot( ray.direction, normal );
+    float cosine = dot_ > 0 ? mat.ni * dot_ : -dot_;
+    float ior    = dot_ > 0 ? mat.ni : 1 / mat.ni;
+
+    vec3 refracted    = refract( ray.direction, temp, ior );
+    float reflectProb = refracted != vec3( 0.0 ) ? Schlick( cosine, mat.ni ) : 1.0;
+
+    if ( rnd( ray.seed ) < reflectProb )
+    {
+      nextDirection = reflect( ray.direction, normal ) + mat.fuzziness * cosineHemisphereSampling( ray.seed, pdf, normal );
+    }
+    else
+    {
+      nextDirection  = refracted;
+      ray.refractive = true;
+    }
+  }
+  // Lambertian reflection
+  else if ( mat.illum == 0 )
+  {
+    nextDirection = cosineHemisphereSampling( ray.seed, pdf, normal );
+    cosTheta      = dot( nextDirection, normal ); // The steeper the incident direction to the surface is the more important the sample gets
+    bsdf *= cosTheta;
+  }
+
+  // Add specular highlight
+  if ( mat.emission.w > 0.0 && mat.illum != 0 )
+  {
+    vec3 reflectDir = reflect( ray.direction, normal );
+    float spec      = pow( max( dot( normalize( cam.position.xyz - worldPos ), reflectDir ), 0.0 ), mat.emission.w );
+    if ( spec > 0.0 )
+    {
+      bsdf = ( reflectance + clamp( spec, 0, 1 ) ) / M_PI;
+    }
+  }
+
+  //pdf = 1 / ( 1.5 * M_PI ); // the smaller the higher the contribution
+
+  nextEventEstimation( emission, worldPos, normal );
 
   ray.origin    = rayOrigin;
   ray.direction = nextDirection;
-  ray.emission  = emission;
-  ray.weight    = bsdf / pdf; // divide reflectance by PDF
+
+  // If NEE is performed we sample light at every intersection (except for the first?), so we skip emission for any secondary ray to not sample twice
+  // For primary rays
+  // WIP
+  if ( ray.depth == 0 )
+  {
+    ray.emission = emission;
+  }
+  else
+  {
+    ray.emission = emission;
+  }
+
+  ray.weight = bsdf / pdf; // divide reflectance by PDF
 }

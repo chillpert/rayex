@@ -118,8 +118,8 @@ namespace RAYEX_NAMESPACE
 
     glm::vec4 _clearColor               = glm::vec4( 0.45F, 0.45F, 0.45F, 0.8F ); ///< Stores the clear color.
     uint32_t _maxPathDepth              = 10;                                     ///< The maximum path depth.
-    uint32_t _pathDepth                 = 10;                                     ///< The current path depth.
-    uint32_t _perPixelSampleRate        = 4;                                      ///< Stores the total amount of samples that will be taken and averaged per pixel.
+    uint32_t _pathDepth                 = 5;                                      ///< The current path depth.
+    uint32_t _perPixelSampleRate        = 1;                                      ///< Stores the total amount of samples that will be taken and averaged per pixel.
     uint32_t _russianRouletteMinBounces = 1;
 
     bool _nextEventEstimation               = true;

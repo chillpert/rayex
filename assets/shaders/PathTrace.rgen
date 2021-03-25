@@ -130,7 +130,7 @@ void main( )
   vec3 finalColor = colors / sampleRatePerPixel;
 
 #ifdef VARIANCE
-  // write variance to buffer
+  // write sample to variance buffer
   varianceBuffer.v[mapping] = ( finalColor.x + finalColor.y + finalColor.z ) / 3.0;
 #endif
 

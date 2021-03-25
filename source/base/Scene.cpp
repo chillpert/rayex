@@ -443,7 +443,6 @@ namespace RAYEX_NAMESPACE
       memAlignedGeometryInstances.resize( _geometryInstances.size( ) );
       std::transform( _geometryInstances.begin( ), _geometryInstances.end( ), memAlignedGeometryInstances.begin( ),
                       []( std::shared_ptr<GeometryInstance> instance ) { return GeometryInstanceSSBO { instance->transform,
-                                                                                                       instance->transformIT,
                                                                                                        instance->geometryIndex }; } );
 
       _geometryInstancesBuffer.upload( memAlignedGeometryInstances, imageIndex );

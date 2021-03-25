@@ -261,18 +261,6 @@ void main( )
 
   ray.origin    = rayOrigin;
   ray.direction = nextDirection;
-
-  // If NEE is performed we sample light at every intersection (except for the first?), so we skip emission for any secondary ray to not sample twice
-  // For primary rays
-  // WIP
-  if ( ray.depth == 0 )
-  {
-    ray.emission = emission;
-  }
-  else
-  {
-    ray.emission = emission;
-  }
-
-  ray.weight = bsdf / pdf; // divide reflectance by PDF
+  ray.emission  = emission;
+  ray.weight    = bsdf / pdf; // divide reflectance by PDF
 }

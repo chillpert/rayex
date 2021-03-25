@@ -59,9 +59,9 @@ namespace RAYEX_NAMESPACE
   {
     RX_API void setTransform( const glm::mat4& transform );
 
-    glm::mat4 transform    = glm::mat4( 1.0F ); ///< The instance's world transform matrix.
-    glm::mat4 transformIT  = glm::mat4( 1.0F ); ///< The inverse transpose of transform.
-    uint32_t geometryIndex = 0;                 ///< Used to assign this instance a model.
+    glm::mat4 transform = glm::mat4( 1.0F ); ///< The instance's world transform matrix.
+    //glm::mat4 transformIT  = glm::mat4( 1.0F ); ///< The inverse transpose of transform.
+    uint32_t geometryIndex = 0; ///< Used to assign this instance a model.
   };
 
   /// A commodity function for loading a wavefront (.obj) model file and allocate a geometry object from it.
@@ -100,13 +100,13 @@ namespace RAYEX_NAMESPACE
   /// @ingroup API
   struct GeometryInstanceSSBO
   {
-    glm::mat4 transform    = glm::mat4( 1.0F ); ///< The instance's world transform matrix.
-    glm::mat4 transformIT  = glm::mat4( 1.0F ); ///< The inverse transpose of transform.
-    uint32_t geometryIndex = 0;                 ///< Used to assign this instance a model.
+    glm::mat4 transform = glm::mat4( 1.0F ); ///< The instance's world transform matrix.
+    //glm::mat4 padding   = glm::mat4( 1.0F ); ///< The inverse transpose of transform.
+    uint32_t geometryIndex = 0;
 
-    float padding0 = 0.0F; ///< Buffer padding (ignore).
-    float padding1 = 0.0F; ///< Buffer padding (ignore).
-    float padding2 = 0.0F; ///< Buffer padding (ignore).
+    uint32_t padding0 = 0;
+    uint32_t padding1 = 0;
+    uint32_t padding2 = 0;
   };
 
 } // namespace RAYEX_NAMESPACE

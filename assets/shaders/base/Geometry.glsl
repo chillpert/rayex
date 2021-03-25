@@ -14,17 +14,14 @@ struct Vertex
   vec3 normal;
   vec3 color;
   vec2 texCoord;
-
-  float padding0;
 };
 
 struct GeometryInstance
 {
   mat4 transform;
-  mat4 transformIT;
   uint geometryIndex;
 
-  float padding0;
-  float padding1;
-  float padding2;
+  uint padding0;
+  uint padding1;
+  uint padding2;
 };

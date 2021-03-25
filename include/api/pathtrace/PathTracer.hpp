@@ -106,7 +106,7 @@ namespace RAYEX_NAMESPACE
     /// Used to create a path tracing pipeline.
     /// @param descriptorSetLayouts The descriptor set layouts for the shaders.
     /// @param settings The renderer settings.
-    void createPipeline( const std::vector<vk::DescriptorSetLayout>& descriptorSetLayouts, Settings* settings );
+    void createPipeline( const std::vector<vk::DescriptorSetLayout>& descriptorSetLayouts );
 
     /// Used to record the actual path tracing commands to a given command buffer.
     /// @param swapchaincommandBuffer The command buffer to record to.
@@ -117,6 +117,10 @@ namespace RAYEX_NAMESPACE
     void initDescriptorSet( );
 
     void updateDescriptors( );
+
+    void initVarianceBuffer( float width, float height );
+
+    float getVariance( int width, int height, int perPixelSamples );
 
   private:
     vk::UniquePipeline _pipeline;
@@ -135,5 +139,7 @@ namespace RAYEX_NAMESPACE
 
     vkCore::Descriptors _descriptors;
     std::vector<vk::DescriptorSet> _descriptorSets;
+
+    vkCore::Buffer _varianceBuffer;
   };
 } // namespace RAYEX_NAMESPACE

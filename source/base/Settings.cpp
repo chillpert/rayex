@@ -164,4 +164,9 @@ namespace RAYEX_NAMESPACE
   {
     _accumulateFrames = flag;
   }
+
+  void Settings::updateVariance( )
+  {
+    _updateVariance = true;
+  }
 } // namespace RAYEX_NAMESPACE

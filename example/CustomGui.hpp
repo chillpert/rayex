@@ -207,6 +207,25 @@ private:
         {
           rx::Time::startBenchmark( length );
         }
+
+        float variance                   = _renderer->settings( ).getVariance( );
+        static bool continueCalcVariance = false;
+
+        if ( ImGui::Button( "Calc Variance" ) || continueCalcVariance )
+        {
+          _renderer->settings( ).updateVariance( );
+        }
+
+        ImGui::SameLine( );
+
+        ImGui::Checkbox( "Endless", &continueCalcVariance );
+
+        ImGui::SameLine( );
+
+        char var[64];
+        sprintf( var, "%f", variance );
+
+        ImGui::Text( var );
       }
 
       ImGui::NewLine( );

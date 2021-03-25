@@ -12,11 +12,18 @@ layout( location = 1 ) rayPayloadEXT bool isShadowed;
 
 layout( binding = 0, set = 0 ) uniform accelerationStructureEXT topLevelAS;
 layout( binding = 1, set = 0, rgba32f ) uniform image2D image;
+layout( binding = 2, set = 0 ) buffer VarianceBuffer
+{
+  float v[];
+}
+varianceBuffer;
 
 void main( )
 {
-  uint seed   = tea( gl_LaunchIDEXT.y * gl_LaunchSizeEXT.x + gl_LaunchIDEXT.x, int( clockARB( ) ) );
-  vec3 colors = vec3( 0.0 );
+  // maps an entry in the 2D array (image grid) to a 1D array
+  uint mapping = gl_LaunchIDEXT.y * gl_LaunchSizeEXT.x + gl_LaunchIDEXT.x;
+  uint seed    = tea( mapping, int( clockARB( ) ) );
+  vec3 colors  = vec3( 0.0 );
 
   for ( uint i = 0; i < sampleRatePerPixel; ++i )
   {
@@ -116,6 +123,9 @@ void main( )
 
   // weighted average
   vec3 finalColor = colors / sampleRatePerPixel;
+
+  // write variance to buffer
+  varianceBuffer.v[mapping] = ( finalColor.x + finalColor.y + finalColor.z ) / 3.0;
 
   // tone mapping
   //const float limit = 1.5;

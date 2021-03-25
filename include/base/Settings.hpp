@@ -98,6 +98,10 @@ namespace RAYEX_NAMESPACE
 
     void triggerSwapchainRefresh( ) { _refreshSwapchain = true; }
 
+    float getVariance( ) { return _variance; }
+
+    void updateVariance( );
+
   private:
     /// This function will be called by Rayex::init() in case the path was not set manually.
     /// @warning This function might file in setting the correct path. That is why it is recommended to set it automatically using setAssetsPath(std::string).
@@ -124,6 +128,9 @@ namespace RAYEX_NAMESPACE
 
     bool _nextEventEstimation               = true;
     uint32_t _nextEventEstimationMinBounces = 0; // temporary for debugging
+
+    float _variance      = 0.0F;
+    bool _updateVariance = false;
 
     bool _accumulateFrames          = true;
     bool _russianRoulette           = true;

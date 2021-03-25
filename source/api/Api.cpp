@@ -171,6 +171,7 @@ namespace RAYEX_NAMESPACE
     // Path tracer
     _pathTracer.init( );
     _settings._maxPathDepth = _pathTracer.getCapabilities( ).pipelineProperties.maxRayRecursionDepth;
+    _pathTracer.initVarianceBuffer( static_cast<float>( _window->getWidth( ) ), static_cast<float>( _window->getHeight( ) ) );
 
     _scene.prepareBuffers( );
 
@@ -207,6 +208,13 @@ namespace RAYEX_NAMESPACE
   void Api::update( )
   {
     updateSettings( );
+
+    // update variance
+    if ( _settings._updateVariance )
+    {
+      _settings._variance       = _pathTracer.getVariance( _window->getWidth( ), _window->getHeight( ), _settings._perPixelSampleRate );
+      _settings._updateVariance = false;
+    }
 
     uint32_t imageIndex        = _swapchain.getCurrentImageIndex( );
     uint32_t maxFramesInFlight = static_cast<uint32_t>( _sync.getMaxFramesInFlight( ) );
@@ -455,7 +463,7 @@ namespace RAYEX_NAMESPACE
                                                                   _scene._sceneDescriptors.layout.get( ),
                                                                   _scene._geometryDescriptors.layout.get( ) };
 
-    _pathTracer.createPipeline( descriptorSetLayouts, &_settings );
+    _pathTracer.createPipeline( descriptorSetLayouts );
     _settings._refreshPipeline = false;
 
     RX_LOG_TIME_STOP( "Finished graphic pipelines initialization" );

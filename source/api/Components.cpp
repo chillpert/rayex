@@ -9,7 +9,6 @@ namespace RAYEX_NAMESPACE
     uint32_t geometryIndex = 0;
     uint32_t materialIndex = 0;
     uint32_t textureIndex  = 0;
-
     std::vector<Material> _materials;
 
   } // namespace components

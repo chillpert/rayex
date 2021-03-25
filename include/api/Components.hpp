@@ -15,7 +15,6 @@ namespace RAYEX_NAMESPACE
     extern uint32_t materialIndex;
     extern uint32_t textureIndex;
     const size_t maxResources = 2;
-
     extern std::vector<Material> _materials; //? @todo this should not be global
 
   } // namespace components

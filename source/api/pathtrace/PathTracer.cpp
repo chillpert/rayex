@@ -489,7 +489,7 @@ namespace RAYEX_NAMESPACE
     vkCore::global::device.unmapMemory( _sbtBuffer.getMemory( ) );
   }
 
-  void PathTracer::createPipeline( const std::vector<vk::DescriptorSetLayout>& descriptorSetLayouts, Settings* settings )
+  void PathTracer::createPipeline( const std::vector<vk::DescriptorSetLayout>& descriptorSetLayouts )
   {
     //uint32_t anticipatedDirectionalLights = settings->maxDirectionalLights.has_value( ) ? settings->maxDirectionalLights.value( ) : components::maxDirectionalLights;
     //uint32_t anticipatedPointLights       = settings->maxPointLights.has_value( ) ? settings->maxPointLights.value( ) : components::maxPointLights;
@@ -616,6 +616,11 @@ namespace RAYEX_NAMESPACE
                                vk::DescriptorType::eStorageImage,
                                vk::ShaderStageFlagBits::eRaygenKHR );
 
+    // Variance buffer
+    _descriptors.bindings.add( 2,
+                               vk::DescriptorType::eStorageBuffer,
+                               vk::ShaderStageFlagBits::eRaygenKHR );
+
     _descriptors.layout = _descriptors.bindings.initLayoutUnique( );
     _descriptors.pool   = _descriptors.bindings.initPoolUnique( vkCore::global::swapchainImageCount );
     _descriptorSets     = vkCore::allocateDescriptorSets( _descriptors.pool.get( ), _descriptors.layout.get( ) );
@@ -626,9 +631,58 @@ namespace RAYEX_NAMESPACE
     vk::WriteDescriptorSetAccelerationStructureKHR tlasInfo( 1,
                                                              &_tlas.as.as );
 
+    vk::DescriptorBufferInfo varianceBufferInfo( _varianceBuffer.get( ),
+                                                 0,
+                                                 VK_WHOLE_SIZE );
+
     _descriptors.bindings.write( _descriptorSets, 0, &tlasInfo );
     _descriptors.bindings.write( _descriptorSets, 1, &_storageImageInfo );
+    _descriptors.bindings.write( _descriptorSets, 2, &varianceBufferInfo );
     _descriptors.bindings.update( );
   }
 
+  void PathTracer::initVarianceBuffer( float width, float height )
+  {
+    // Create buffer to store variance value
+    _varianceBuffer.init( sizeof( float ) * 3 * width * height,
+                          vk::BufferUsageFlagBits::eStorageBuffer,
+                          { vkCore::global::graphicsFamilyIndex },
+                          vk::MemoryPropertyFlagBits::eHostVisible );
+  }
+
+  float PathTracer::getVariance( int width, int height, int perPixelSamples )
+  {
+    static bool alreadyMapped = false;
+    static void* mapped       = NULL;
+
+    if ( !alreadyMapped )
+    {
+      alreadyMapped     = true;
+      vk::Result result = vkCore::global::device.mapMemory( _varianceBuffer.getMemory( ), 0, _varianceBuffer.getSize( ), { }, &mapped );
+      RX_ASSERT( result == vk::Result::eSuccess, "Failed to map memory of variance buffer." );
+    }
+
+    auto* pData = reinterpret_cast<float*>( mapped );
+
+    float average = 0.0F;
+    int n         = width * height;
+
+    for ( int i = 0; i < n; ++i )
+    {
+      average += ( pData )[i];
+    }
+
+    average /= n;
+
+    float sumOfSquares = 0.0F;
+
+    for ( int i = 0; i < n; ++i )
+    {
+      float deviationFromMean = ( pData )[i] - average;
+      sumOfSquares += deviationFromMean * deviationFromMean;
+    }
+
+    float res = sumOfSquares / ( n * perPixelSamples - 1 );
+    return res;
+  }
 } // namespace RAYEX_NAMESPACE

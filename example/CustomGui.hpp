@@ -208,6 +208,7 @@ private:
           rx::Time::startBenchmark( length );
         }
 
+#ifdef RX_VARIANCE_CALCULATOR
         float variance                   = _renderer->settings( ).getVariance( );
         static bool continueCalcVariance = false;
 
@@ -226,6 +227,7 @@ private:
         sprintf( var, "%f", variance );
 
         ImGui::Text( var );
+#endif
       }
 
       ImGui::NewLine( );

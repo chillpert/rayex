@@ -5,6 +5,7 @@ message("Using compiler: " + ${CMAKE_CXX_COMPILER_ID})
 
 option(BUILD_EXAMPLES "Build examples" ON)
 option(CLANG_TIDY_LINUX_DEBUG "Use clang-tidy for a Linux debug build" OFF)
+option(VARIANCE_CALCULATOR "Variance can be calculated at a high performance penalty." OFF)
 
 if(NOT CMAKE_BUILD_TYPE)
   message("MX: Build type not set. Continuing with: Debug")
@@ -13,6 +14,10 @@ endif(NOT CMAKE_BUILD_TYPE)
 
 # Enforce Rlease (Temporarily)
 # set(CMAKE_BUILD_TYPE "Release" CACHE STRING "No build type was set" FORCE)
+
+if(VARIANCE_CALCULATOR)
+  add_compile_definitions(RX_VARIANCE_CALCULATOR)
+endif()
 
 message("Build type: " ${CMAKE_BUILD_TYPE})
 

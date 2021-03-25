@@ -12,11 +12,16 @@ layout( location = 1 ) rayPayloadEXT bool isShadowed;
 
 layout( binding = 0, set = 0 ) uniform accelerationStructureEXT topLevelAS;
 layout( binding = 1, set = 0, rgba32f ) uniform image2D image;
+
+//#define VARIANCE
+
+#ifdef VARIANCE
 layout( binding = 2, set = 0 ) buffer VarianceBuffer
 {
   float v[];
 }
 varianceBuffer;
+#endif
 
 void main( )
 {
@@ -124,8 +129,10 @@ void main( )
   // weighted average
   vec3 finalColor = colors / sampleRatePerPixel;
 
+#ifdef VARIANCE
   // write variance to buffer
   varianceBuffer.v[mapping] = ( finalColor.x + finalColor.y + finalColor.z ) / 3.0;
+#endif
 
   // tone mapping
   //const float limit = 1.5;

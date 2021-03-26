@@ -98,6 +98,8 @@ namespace RAYEX_NAMESPACE
     _view = glm::lookAt( _position, _position + _front, _worldUp );
 
     _viewInverse = glm::inverse( _view );
+
+    _updateView = true;
   }
 
   void Camera::updateProjectionMatrix( )
@@ -106,6 +108,8 @@ namespace RAYEX_NAMESPACE
     _projection[1, 1] *= -1;
 
     _projectionInverse = glm::inverse( _projection );
+
+    _updateProj = true;
   }
 
   void Camera::processMouse( float xOffset, float yOffset )

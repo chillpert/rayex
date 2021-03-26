@@ -68,6 +68,8 @@ namespace RAYEX_NAMESPACE
     /// @param fov The new field of view.
     void setFov( float fov );
 
+    float getFov( ) { return _fov; }
+
     /// Is used to set the mouse sensitivity.
     /// @param sensitivity The new mouse sensitivity.
     void setSensitivity( float sensitivity );

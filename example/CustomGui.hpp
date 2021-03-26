@@ -168,9 +168,9 @@ private:
             addModel( _renderer, temp2.c_str( ), transform );
           }
         }
-      }
 
-      ImGui::NewLine( );
+        ImGui::NewLine( );
+      }
 
       if ( ImGui::CollapsingHeader( "Resource Monitor", flags ) )
       {
@@ -241,10 +241,10 @@ private:
         char var[64];
         sprintf( var, "%f", variance );
         ImGui::Text( var );
-#endif
-      }
 
-      ImGui::NewLine( );
+#endif
+        ImGui::NewLine( );
+      }
 
       if ( ImGui::CollapsingHeader( "Settings", flags ) )
       {
@@ -314,9 +314,9 @@ private:
         {
           _renderer->settings( ).triggerPipelineRefresh( );
         }
-      }
 
-      ImGui::NewLine( );
+        ImGui::NewLine( );
+      }
 
       if ( ImGui::CollapsingHeader( "Scenes", flags ) )
       {
@@ -353,6 +353,11 @@ private:
           loadScene( _renderer, Level::eSponza );
         }
 
+        ImGui::NewLine( );
+      }
+
+      if ( ImGui::CollapsingHeader( "Camera", flags ) )
+      {
         static float aperture = static_cast<int>( _renderer->scene( ).getCamera( )->getAperture( ) );
         if ( ImGui::SliderFloat( "Aperture", &aperture, 0.0F, 2.0F ) )
         {
@@ -364,6 +369,13 @@ private:
         if ( ImGui::SliderFloat( "Focal Point", &focalDistance, 0.0F, 20.0F ) )
         {
           _renderer->scene( ).getCamera( )->setFocalDistance( focalDistance );
+          _renderer->settings( ).setAccumulatingFrames( false );
+        }
+
+        static float fov = static_cast<int>( _renderer->scene( ).getCamera( )->getFov( ) );
+        if ( ImGui::SliderFloat( "Field of View", &fov, 10.0F, 150.0F ) )
+        {
+          _renderer->scene( ).getCamera( )->setFov( fov );
           _renderer->settings( ).setAccumulatingFrames( false );
         }
 

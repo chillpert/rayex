@@ -23,12 +23,15 @@ layout( binding = 2, set = 1 ) uniform samplerCube environmentMap;
 
 void main( )
 {
+  vec3 dir = ray.direction;
+  dir.x *= -1.0; // mirror
+
   // If the ray hits nothing right away
   if ( ray.depth == 0 )
   {
     if ( useEnvironmentMap )
     {
-      ray.emission = texture( environmentMap, ray.direction ).xyz * 0.8F;
+      ray.emission = texture( environmentMap, dir ).xyz * 0.8F;
     }
     else
     {
@@ -43,7 +46,7 @@ void main( )
 
       if ( useEnvironmentMap )
       {
-        ray.emission = texture( environmentMap, ray.direction ).xyz;
+        ray.emission = texture( environmentMap, dir ).xyz;
       }
       else
       {
@@ -55,7 +58,7 @@ void main( )
       // small contribution from environment
       if ( useEnvironmentMap )
       {
-        ray.emission = texture( environmentMap, ray.direction ).xyz * 0.01;
+        ray.emission = texture( environmentMap, dir ).xyz * 0.01;
       }
       else
       {

@@ -74,7 +74,7 @@ namespace RAYEX_NAMESPACE
     /// @param vertexBuffer A vertex buffer of some geometry.
     /// @param indexBuffer An index buffer of some geometry.
     /// @return Returns the bottom level acceleration structure.
-    auto modelToBlas( const vkCore::StorageBuffer<Vertex>& vertexBuffer, const vkCore::StorageBuffer<uint32_t>& indexBuffer, bool allowTransforms ) const -> Blas;
+    auto modelToBlas( const vkCore::StorageBuffer<Vertex>& vertexBuffer, const vkCore::StorageBuffer<uint32_t>& indexBuffer, bool opaque ) const -> Blas;
 
     /// Used to convert a bottom level acceleration structure instance to a Vulkan geometry instance.
     /// @param instance A bottom level acceleration structure instance.
@@ -120,7 +120,7 @@ namespace RAYEX_NAMESPACE
 
     void initVarianceBuffer( float width, float height );
 
-    float getVariance( int width, int height, int perPixelSamples );
+    float getPixelVariance( uint32_t index );
 
   private:
     vk::UniquePipeline _pipeline;

@@ -209,12 +209,69 @@ namespace RAYEX_NAMESPACE
   {
     updateSettings( );
 
+#ifdef RX_VARIANCE_CALCULATOR
     // update variance
     if ( _settings._updateVariance )
     {
-      _settings._variance       = _pathTracer.getVariance( _window->getWidth( ), _window->getHeight( ), _settings._perPixelSampleRate );
-      _settings._updateVariance = false;
+      static uint32_t counter = 0;
+      const int maxSize       = 100;
+      static std::vector<std::array<float, maxSize>> ppVariances; // vector of vector. outer for each pixel and inner for each accumulated sample
+
+      auto extent     = _swapchain.getExtent( );
+      auto pixelCount = 1;
+      //extent.width* extent.height;
+      ppVariances.resize( pixelCount ); // as many ppVariances as pixels
+
+      RX_ASSERT( maxSize > _settings._perPixelSampleRate, "Variance Estimates Out Of Bound" );
+
+      // 1. Gathering stage
+      bool finishedGatheringPp = false;
+      if ( counter < _settings._perPixelSampleRate )
+      {
+        // For each new sample of a frame for each pixel set estimated variance
+        for ( uint32_t i = 0; i < pixelCount; ++i )
+        {
+          ppVariances[i][counter] = _pathTracer.getPixelVariance( i );
+          std::cout << ppVariances[i][counter] << std::endl;
+        }
+
+        ++counter;
+      }
+      else
+      {
+        finishedGatheringPp = true;
+      }
+
+      // 2. Averaging State
+      if ( finishedGatheringPp )
+      {
+        counter = 0;
+
+        std::vector<float> ppSum( pixelCount, 0.0F );
+
+        // Sum up samples for each pixel and store results separately
+        for ( uint32_t i = 0; i < _settings._perPixelSampleRate; ++i )
+        {
+          for ( uint32_t j = 0; j < pixelCount; ++j )
+          {
+            ppSum[j] += ppVariances[j][i];
+          }
+        }
+
+        float avg = 0.0F;
+        // calculate final average
+        for ( size_t i = 0; i < ppSum.size( ); ++i )
+        {
+          // Do not forget to take the average of the previous sample sum per pixel
+          avg += ppSum[i] / static_cast<float>( _settings._perPixelSampleRate );
+        }
+
+        _settings._variance = avg / pixelCount;
+      }
     }
+
+    //std::cout << _pathTracer.getPixelVariance( ) << std::endl;
+#endif
 
     uint32_t imageIndex        = _swapchain.getCurrentImageIndex( );
     uint32_t maxFramesInFlight = static_cast<uint32_t>( _sync.getMaxFramesInFlight( ) );

@@ -209,23 +209,37 @@ private:
         }
 
 #ifdef RX_VARIANCE_CALCULATOR
-        float variance                   = _renderer->settings( ).getVariance( );
-        static bool continueCalcVariance = false;
+        static float variance        = 0.0F;
+        static bool estimateVariance = false;
 
-        if ( ImGui::Button( "Calc Variance" ) || continueCalcVariance )
-        {
-          _renderer->settings( ).updateVariance( );
-        }
+        static int varLength = 1;
+        ImGui::SetNextItemWidth( 100.0F );
+        ImGui::InputInt( "##LengthVar", &varLength, 1.0F, 60.0F );
 
         ImGui::SameLine( );
 
-        ImGui::Checkbox( "Endless", &continueCalcVariance );
+        static float endTime   = 0.0F;
+        static bool startedVar = false;
+        if ( ImGui::Button( "Estimate Variance" ) )
+        {
+          endTime = rx::Time::getTime( ) + static_cast<float>( varLength );
+
+          _renderer->settings( ).updateVariance( true );
+          startedVar = true;
+        }
+
+        if ( startedVar && rx::Time::getTime( ) >= endTime )
+        {
+          _renderer->settings( ).updateVariance( false );
+          variance   = _renderer->settings( ).getVariance( );
+          endTime    = 0.0F;
+          startedVar = false;
+        }
 
         ImGui::SameLine( );
 
         char var[64];
         sprintf( var, "%f", variance );
-
         ImGui::Text( var );
 #endif
       }

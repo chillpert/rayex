@@ -50,6 +50,7 @@ namespace RAYEX_NAMESPACE
     std::string path       = "";    ///< The model's path, relative to the path to assets.
     bool initialized       = false; ///< Keeps track of whether or not the geometry was initialized.
     bool dynamic           = false; ///< Keeps track of whether or not the geometry is dynamic or static.
+    bool isOpaque          = true;
   };
 
   /// Describes an instance of some geometry.

@@ -31,7 +31,7 @@ namespace RAYEX_NAMESPACE
     _blas_.clear( );
   }
 
-  auto PathTracer::modelToBlas( const vkCore::StorageBuffer<Vertex>& vertexBuffer, const vkCore::StorageBuffer<uint32_t>& indexBuffer, bool allowTransforms ) const -> Blas
+  auto PathTracer::modelToBlas( const vkCore::StorageBuffer<Vertex>& vertexBuffer, const vkCore::StorageBuffer<uint32_t>& indexBuffer, bool opaque ) const -> Blas
   {
     // Using index 0, because there are no copies of these buffers.
     vk::BufferDeviceAddressInfo vertexAddressInfo( vertexBuffer.get( 0 ) );
@@ -48,9 +48,9 @@ namespace RAYEX_NAMESPACE
                                                                      indexAddress,                       // indexData
                                                                      { } );                              // transformData
 
-    vk::AccelerationStructureGeometryKHR asGeom( vk::GeometryTypeKHR::eTriangles,                         // geometryType
-                                                 trianglesData,                                           // geometry
-                                                 vk::GeometryFlagBitsKHR::eNoDuplicateAnyHitInvocation ); // flags
+    vk::AccelerationStructureGeometryKHR asGeom( vk::GeometryTypeKHR::eTriangles,                                                                     // geometryType
+                                                 trianglesData,                                                                                       // geometry
+                                                 opaque ? vk::GeometryFlagBitsKHR::eOpaque : vk::GeometryFlagBitsKHR::eNoDuplicateAnyHitInvocation ); // flags
 
     vk::AccelerationStructureBuildRangeInfoKHR offset( indexBuffer.getCount( ) / 3, // primitiveCount
                                                        0,                           // primitiveOffset
@@ -101,7 +101,7 @@ namespace RAYEX_NAMESPACE
       {
         if ( geometries[i] != nullptr )
         {
-          auto blas = modelToBlas( vertexBuffers[i], indexBuffers[i], false );
+          auto blas = modelToBlas( vertexBuffers[i], indexBuffers[i], geometries[i]->isOpaque );
           _blas_.push_back( blas );
         }
       }
@@ -656,7 +656,9 @@ namespace RAYEX_NAMESPACE
                           vk::MemoryPropertyFlagBits::eHostVisible );
   }
 
-  float PathTracer::getVariance( int width, int height, int perPixelSamples )
+  // This is wrong! This calculates variance off all pixel colors of a frame.
+  // Instead, one should look at the individual pixel at increased sample rates, right?
+  float PathTracer::getPixelVariance( uint32_t index )
   {
     static bool alreadyMapped = false;
     static void* mapped       = NULL;
@@ -670,25 +672,7 @@ namespace RAYEX_NAMESPACE
 
     auto* pData = reinterpret_cast<float*>( mapped );
 
-    float average = 0.0F;
-    int n         = width * height;
-
-    for ( int i = 0; i < n; ++i )
-    {
-      average += ( pData )[i];
-    }
-
-    average /= n;
-
-    float sumOfSquares = 0.0F;
-
-    for ( int i = 0; i < n; ++i )
-    {
-      float deviationFromMean = ( pData )[i] - average;
-      sumOfSquares += deviationFromMean * deviationFromMean;
-    }
-
-    float res = sumOfSquares / ( n * perPixelSamples - 1 );
+    float res = ( pData )[index];
     return res;
   }
 } // namespace RAYEX_NAMESPACE

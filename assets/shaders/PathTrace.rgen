@@ -30,6 +30,15 @@ void main( )
   uint seed    = tea( mapping, int( clockARB( ) ) );
   vec3 colors  = vec3( 0.0 );
 
+#ifdef VARIANCE
+  float meanX = 0.0;
+  float meanY = 0.0;
+  float meanZ = 0.0;
+  float valuesX[100];
+  float valuesY[100];
+  float valuesZ[100];
+#endif
+
   for ( uint i = 0; i < sampleRatePerPixel; ++i )
   {
     ray.seed = tea( gl_LaunchIDEXT.y * gl_LaunchSizeEXT.x + gl_LaunchIDEXT.x, int( clockARB( ) ) );
@@ -123,6 +132,17 @@ void main( )
       }
     }
 
+#ifdef VARIANCE
+    meanX += color.x;
+    valuesX[sampleRatePerPixel] = color.x;
+
+    meanY += color.y;
+    valuesY[sampleRatePerPixel] = color.y;
+
+    meanZ += color.z;
+    valuesZ[sampleRatePerPixel] = color.z;
+#endif
+
     colors += color;
   }
 
@@ -131,7 +151,32 @@ void main( )
 
 #ifdef VARIANCE
   // write sample to variance buffer
-  varianceBuffer.v[mapping] = ( finalColor.x + finalColor.y + finalColor.z ) / 3.0;
+  meanX /= sampleRatePerPixel;
+  meanY /= sampleRatePerPixel;
+  meanZ /= sampleRatePerPixel;
+
+  float sumX = 0.0;
+  float sumY = 0.0;
+  float sumZ = 0.0;
+
+  for ( uint i = 0; i < sampleRatePerPixel; ++i )
+  {
+    float deviationX = valuesX[i] - meanX;
+    sumX += deviationX * deviationX;
+
+    float deviationY = valuesY[i] - meanY;
+    sumY += deviationY * deviationY;
+
+    float deviationZ = valuesZ[i] - meanZ;
+    sumZ += deviationZ * deviationZ;
+  }
+
+  float div  = sampleRatePerPixel == 1 ? 1.0 : ( sampleRatePerPixel - 1 ); // is this even valid?
+  float varX = sumX / div;
+  float varY = sumY / div;
+  float varZ = sumZ / div;
+
+  varianceBuffer.v[mapping] = ( varX + varY + varZ ) / 3.0;
 #endif
 
   // tone mapping

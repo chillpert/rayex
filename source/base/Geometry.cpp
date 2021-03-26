@@ -86,6 +86,10 @@ namespace RAYEX_NAMESPACE
         mat.emission  = glm::vec3( emission[0], emission[1], emission[2] );
         mat.illum     = static_cast<uint32_t>( materials[materialIndex].illum );
         mat.d         = materials[materialIndex].dissolve;
+        if ( mat.d < 1.0F )
+        {
+          geometry->isOpaque = false;
+        }
         mat.ns        = materials[materialIndex].shininess;
         mat.ni        = materials[materialIndex].ior;
         mat.fuzziness = materials[materialIndex].roughness;
@@ -182,6 +186,15 @@ namespace RAYEX_NAMESPACE
 
   void Geometry::setMaterial( const Material& material )
   {
+    if ( material.d < 1.0F )
+    {
+      isOpaque = false;
+    }
+    else
+    {
+      isOpaque = true;
+    }
+
     components::_materials.push_back( material );
     components::materialIndex++;
 

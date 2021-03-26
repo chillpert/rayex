@@ -100,7 +100,7 @@ namespace RAYEX_NAMESPACE
 
     float getVariance( ) { return _variance; }
 
-    void updateVariance( );
+    void updateVariance( bool flag );
 
   private:
     /// This function will be called by Rayex::init() in case the path was not set manually.

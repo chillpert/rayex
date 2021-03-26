@@ -209,7 +209,7 @@ namespace RAYEX_NAMESPACE
   {
     updateSettings( );
 
-#ifdef RX_VARIANCE_CALCULATOR
+#ifdef RX_VARIANCE_ESTIMATOR
     // update variance
     if ( _settings._updateVariance )
     {

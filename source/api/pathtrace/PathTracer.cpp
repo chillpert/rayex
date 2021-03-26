@@ -616,7 +616,7 @@ namespace RAYEX_NAMESPACE
                                vk::DescriptorType::eStorageImage,
                                vk::ShaderStageFlagBits::eRaygenKHR );
 
-#ifdef RX_VARIANCE_CALCULATOR
+#ifdef RX_VARIANCE_ESTIMATOR
     // Variance buffer
     _descriptors.bindings.add( 2,
                                vk::DescriptorType::eStorageBuffer,
@@ -640,7 +640,7 @@ namespace RAYEX_NAMESPACE
     _descriptors.bindings.write( _descriptorSets, 0, &tlasInfo );
     _descriptors.bindings.write( _descriptorSets, 1, &_storageImageInfo );
 
-#ifdef RX_VARIANCE_CALCULATOR
+#ifdef RX_VARIANCE_ESTIMATOR
     _descriptors.bindings.write( _descriptorSets, 2, &varianceBufferInfo );
 #endif
 

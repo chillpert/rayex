@@ -44,6 +44,8 @@ namespace RAYEX_NAMESPACE
     /// @param window A pointer to a RAYEX_NAMESPACE::Window object.
     void setWindow( std::shared_ptr<Window> window );
 
+    void setWindow( int width = defaultWidth, int height = defaultHeight, const char* title = "My Application", uint32_t flags = 0 );
+
     /// Used to set a custom GUI.
     ///
     /// The GUI can be changed multiple times. Even during runtime.

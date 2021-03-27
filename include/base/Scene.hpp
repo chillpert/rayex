@@ -23,6 +23,8 @@ namespace RAYEX_NAMESPACE
     /// @return Returns all geometry instances in the scene.
     auto getGeometryInstances( ) const -> const std::vector<std::shared_ptr<GeometryInstance>>&;
 
+    auto getGeometryInstance( size_t index ) const -> std::shared_ptr<GeometryInstance>;
+
     /// Used to submit a geometry instance for rendering.
     /// @param geometryInstance The instance to queue for rendering.
     /// @note This function does not invoke any draw calls.
@@ -86,6 +88,8 @@ namespace RAYEX_NAMESPACE
     /// Used to set a custom camera.
     /// @param camera A pointer to a RAYEX_NAMESPACE::Camera object.
     void setCamera( std::shared_ptr<Camera> camera );
+
+    void setCamera( int width, int height, const glm::vec3& position = { 0.0F, 0.0F, 3.0F } );
 
     /// @return Returns a pointer to the renderer's camera.
     auto getCamera( ) const -> std::shared_ptr<Camera> { return _currentCamera; }

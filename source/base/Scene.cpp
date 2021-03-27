@@ -22,6 +22,19 @@ namespace RAYEX_NAMESPACE
     return _geometryInstances;
   }
 
+  auto Scene::getGeometryInstance( size_t index ) const -> std::shared_ptr<GeometryInstance>
+  {
+    if ( index < _geometryInstances.size( ) )
+    {
+      return _geometryInstances[index];
+    }
+    else
+    {
+      RX_ERROR( "Geometry Instances out of bound." );
+      return nullptr;
+    }
+  }
+
   void Scene::submitGeometryInstance( std::shared_ptr<GeometryInstance> geometryInstance )
   {
     if ( !_dummy )
@@ -270,6 +283,13 @@ namespace RAYEX_NAMESPACE
   {
     _cameras.insert( camera );
     _currentCamera = camera;
+  }
+
+  void Scene::setCamera( int width, int height, const glm::vec3& position )
+  {
+    auto cam = std::make_shared<Camera>( width, height, position );
+    _cameras.insert( cam );
+    _currentCamera = cam;
   }
 
   void Scene::load( const std::string& path )

@@ -80,6 +80,12 @@ namespace RAYEX_NAMESPACE
     _api._window = _window;
   }
 
+  void Rayex::setWindow( int width, int height, const char* title, uint32_t flags )
+  {
+    _window      = std::make_shared<Window>( width, height, title, flags );
+    _api._window = _window;
+  }
+
   void Rayex::setGui( std::shared_ptr<Gui> gui )
   {
     _initialized ? _api.setGui( gui, true ) : _api.setGui( gui );

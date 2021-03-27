@@ -404,14 +404,11 @@ void updateScene( rx::Rayex* renderer )
 
   if ( currentLevel == Level::eAnimations )
   {
-    auto instances = renderer->scene( ).getGeometryInstances( );
+    auto instance = renderer->scene( ).getGeometryInstance( 0 );
 
-    if ( !instances.empty( ) )
+    if ( instance != nullptr )
     {
-      if ( instances[0] != nullptr )
-      {
-        instances[0]->setTransform( glm::rotate( instances[0]->transform, rx::Time::getDeltaTime( ) * 0.1F, glm::vec3( 0.0F, 1.0F, 0.0F ) ) );
-      }
+      instance->setTransform( glm::rotate( instance->transform, rx::Time::getDeltaTime( ) * 0.1F, glm::vec3( 0.0F, 1.0F, 0.0F ) ) );
     }
   }
 }

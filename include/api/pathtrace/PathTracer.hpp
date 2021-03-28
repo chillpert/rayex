@@ -96,6 +96,8 @@ namespace RAYEX_NAMESPACE
     /// @param flags The build flags.
     void buildTlas( const std::vector<std::shared_ptr<GeometryInstance>>& geometryInstances, vk::BuildAccelerationStructureFlagsKHR flags = vk::BuildAccelerationStructureFlagBitsKHR::ePreferFastTrace, bool reuse = false );
 
+    void updateTlas( const std::vector<std::shared_ptr<GeometryInstance>>& geometryInstances, vk::BuildAccelerationStructureFlagsKHR flags = vk::BuildAccelerationStructureFlagBitsKHR::ePreferFastTrace | vk::BuildAccelerationStructureFlagBitsKHR::eAllowUpdate );
+
     /// Creates the storage image which the path tracing shaders will write to.
     /// @param swapchainExtent The swapchain images' extent.
     void createStorageImage( vk::Extent2D swapchainExtent );

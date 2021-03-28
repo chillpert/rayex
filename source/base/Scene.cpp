@@ -386,7 +386,7 @@ namespace RAYEX_NAMESPACE
     }
   }
 
-  void Scene::uploadGeometries( uint32_t imageIndex )
+  void Scene::uploadGeometries( )
   {
     _uploadGeometries = false;
 
@@ -430,9 +430,9 @@ namespace RAYEX_NAMESPACE
           if ( !_geometries[i]->initialized )
           {
             // Only keep one copy of both index and vertex buffers each.
-            _vertexBuffers[i].init( _geometries[i]->vertices, 1, true );
-            _indexBuffers[i].init( _geometries[i]->indices, 1, true );
-            _materialIndexBuffers[i].init( _geometries[i]->matIndex, 1, true );
+            _vertexBuffers[i].init( _geometries[i]->vertices, 2, true );
+            _indexBuffers[i].init( _geometries[i]->indices, 2, true );
+            _materialIndexBuffers[i].init( _geometries[i]->matIndex, 2, true );
 
             _geometries[i]->initialized = true;
             RX_SUCCESS( "Initialized Geometries." );
@@ -444,7 +444,7 @@ namespace RAYEX_NAMESPACE
     RX_SUCCESS( "Uploaded Geometries." );
   }
 
-  void Scene::uploadGeometryInstances( uint32_t imageIndex )
+  void Scene::uploadGeometryInstances( )
   {
     if ( _settings->_maxGeometryInstancesChanged )
     {
@@ -458,17 +458,14 @@ namespace RAYEX_NAMESPACE
 
     _uploadGeometryInstancesToBuffer = false;
 
-    if ( !_geometryInstances.empty( ) && imageIndex % 2 == 0 ) // @todo % 2 == 0 statement is a temporary fix. Probably a sync error.
-    {
-      memAlignedGeometryInstances.resize( _geometryInstances.size( ) );
-      std::transform( _geometryInstances.begin( ), _geometryInstances.end( ), memAlignedGeometryInstances.begin( ),
-                      []( std::shared_ptr<GeometryInstance> instance ) { return GeometryInstanceSSBO { instance->transform,
-                                                                                                       instance->geometryIndex }; } );
+    memAlignedGeometryInstances.resize( _geometryInstances.size( ) );
+    std::transform( _geometryInstances.begin( ), _geometryInstances.end( ), memAlignedGeometryInstances.begin( ),
+                    []( std::shared_ptr<GeometryInstance> instance ) { return GeometryInstanceSSBO { instance->transform,
+                                                                                                     instance->geometryIndex }; } );
 
-      _geometryInstancesBuffer.upload( memAlignedGeometryInstances, imageIndex );
+    _geometryInstancesBuffer.upload( memAlignedGeometryInstances );
 
-      RX_SUCCESS( "Uploaded geometry instances." );
-    }
+    RX_SUCCESS( "Uploaded geometry instances." );
   }
 
   void Scene::addDummy( )
@@ -491,8 +488,11 @@ namespace RAYEX_NAMESPACE
     triangle->vertices      = { v1, v2, v3 };
     triangle->indices       = { 0, 1, 2 };
     triangle->geometryIndex = components::geometryIndex++;
-    //triangle->meshes.push_back( { { }, 0 } );
-    triangle->path = "Custom Dummy Triangle";
+    triangle->matIndex      = { 0 }; // a single triangle for the material buffer
+    triangle->path          = "Custom Dummy Triangle";
+
+    Material mat;
+    triangle->setMaterial( mat );
 
     triangleInstance = instance( triangle );
 

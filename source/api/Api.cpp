@@ -281,33 +281,29 @@ namespace RAYEX_NAMESPACE
     // If the scene is empty add a dummy triangle so that the acceleration structures can be built successfully.
     if ( _scene._geometryInstances.empty( ) )
     {
-      _sync.waitForFrame( prevFrame );
       _scene.addDummy( );
     }
     else if ( _scene._dummy )
     {
-      _sync.waitForFrame( prevFrame );
       _scene.removeDummy( );
     }
 
     if ( _scene._uploadEnvironmentMap )
     {
-      //_sync.waitForFrame( prevFrame );
+      _sync.waitForFrame( prevFrame );
       _scene.uploadEnvironmentMap( );
       _scene.updateSceneDescriptors( );
     }
 
     if ( _scene._uploadGeometries )
     {
-      _sync.waitForFrame( prevFrame );
-      _scene.uploadGeometries( imageIndex % maxFramesInFlight );
+      _scene.uploadGeometries( );
       _scene.updateGeoemtryDescriptors( );
     }
 
     if ( _scene._uploadGeometryInstancesToBuffer )
     {
-      //_sync.waitForFrame( prevFrame );
-      _scene.uploadGeometryInstances( imageIndex % maxFramesInFlight );
+      _scene.uploadGeometryInstances( );
 
       // @TODO Try to call this as few times as possible.
       _pathTracer.createBottomLevelAS( _scene._vertexBuffers, _scene._indexBuffers, _scene._geometries );
@@ -316,9 +312,7 @@ namespace RAYEX_NAMESPACE
     }
     else
     {
-      //RX_LOG_TIME_START( "TLAS REAL TIME BUILD" );
-      _pathTracer.buildTlas( _scene._geometryInstances, vk::BuildAccelerationStructureFlagBitsKHR::ePreferFastTrace | vk::BuildAccelerationStructureFlagBitsKHR::eAllowUpdate, true );
-      //RX_LOG_TIME_STOP( "TLAS REAL TIME BUILD" );
+      _pathTracer.updateTlas( _scene._geometryInstances, vk::BuildAccelerationStructureFlagBitsKHR::ePreferFastTrace | vk::BuildAccelerationStructureFlagBitsKHR::eAllowUpdate );
     }
 
     // Increment frame counter for jitter cam.

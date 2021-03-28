@@ -316,6 +316,11 @@ namespace RAYEX_NAMESPACE
     }
   }
 
+  void PathTracer::updateTlas( const std::vector<std::shared_ptr<GeometryInstance>>& geometryInstances, vk::BuildAccelerationStructureFlagsKHR flags )
+  {
+    buildTlas( geometryInstances, flags, true );
+  }
+
   void PathTracer::buildTlas( const std::vector<std::shared_ptr<GeometryInstance>>& geometryInstances, vk::BuildAccelerationStructureFlagsKHR flags, bool reuse )
   {
     //_tlas.flags = flags;

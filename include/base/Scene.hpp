@@ -107,9 +107,9 @@ namespace RAYEX_NAMESPACE
 
     void uploadEnvironmentMap( );
 
-    void uploadGeometries( uint32_t imageIndex );
+    void uploadGeometries( );
 
-    void uploadGeometryInstances( uint32_t imageIndex );
+    void uploadGeometryInstances( );
 
     void addDummy( );
 

@@ -115,6 +115,8 @@ namespace RAYEX_NAMESPACE
 
     void removeDummy( );
 
+    void translateDummy( );
+
     void updateSceneDescriptors( );
 
     void updateGeoemtryDescriptors( );

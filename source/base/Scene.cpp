@@ -468,6 +468,13 @@ namespace RAYEX_NAMESPACE
     RX_SUCCESS( "Uploaded geometry instances." );
   }
 
+  void Scene::translateDummy( )
+  {
+    auto dummyInstance = getGeometryInstance( triangle->geometryIndex );
+    auto camPos        = _currentCamera->getPosition( );
+    dummyInstance->setTransform( glm::translate( glm::mat4( 1.0F ), glm::vec3( camPos.x, camPos.y, camPos.z + 2.0F ) ) );
+  }
+
   void Scene::addDummy( )
   {
     _dummy = true;
@@ -490,10 +497,13 @@ namespace RAYEX_NAMESPACE
     triangle->geometryIndex = components::geometryIndex++;
     triangle->matIndex      = { 0 }; // a single triangle for the material buffer
     triangle->path          = "Custom Dummy Triangle";
+    triangle->dynamic       = true;
 
     Material mat;
     triangle->setMaterial( mat );
 
+    auto camPos      = _currentCamera->getPosition( );
+    auto transform   = glm::translate( glm::mat4( 1.0F ), glm::vec3( camPos.x, camPos.y, camPos.z + 2.0F ) );
     triangleInstance = instance( triangle );
 
     submitGeometry( triangle );

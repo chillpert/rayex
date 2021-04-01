@@ -124,9 +124,9 @@ namespace RAYEX_NAMESPACE
     uint32_t _maxPathDepth              = 10;                                     ///< The maximum path depth.
     uint32_t _pathDepth                 = 5;                                      ///< The current path depth.
     uint32_t _perPixelSampleRate        = 1;                                      ///< Stores the total amount of samples that will be taken and averaged per pixel.
-    uint32_t _russianRouletteMinBounces = 1;
+    uint32_t _russianRouletteMinBounces = 3;
 
-    bool _nextEventEstimation               = true;
+    bool _nextEventEstimation               = false;
     uint32_t _nextEventEstimationMinBounces = 0; // temporary for debugging
 
     float _variance      = 0.0F;

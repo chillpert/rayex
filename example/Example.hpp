@@ -150,7 +150,7 @@ inline void loadScene( rx::Rayex* renderer, Level scene )
     renderer->settings( ).setClearColor( glm::vec4( 0.0F, 0.0F, 0.0F, 1.0F ) );
 
     // Load geometries.
-    auto awp   = rx::loadObj( "models/scene.obj" );
+    auto scene = rx::loadObj( "models/scene.obj" );
     auto plane = rx::loadObj( "models/plane.obj" );
 
     // Make a custom material for an emissive surface (light source).
@@ -159,20 +159,20 @@ inline void loadScene( rx::Rayex* renderer, Level scene )
     plane->setMaterial( customMaterial );
 
     // Submit geometries.
-    renderer->scene( ).setGeometries( { awp, plane } );
+    renderer->scene( ).setGeometries( { scene, plane } );
 
     // Create instances of the geometries.
     auto transform = glm::scale( glm::mat4( 1.0F ), glm::vec3( 0.25F ) );
     transform      = glm::rotate( transform, glm::radians( 45.0F ), glm::vec3( 0.0F, 1.0F, 0.0F ) );
     transform      = glm::translate( transform, glm::vec3( 0.0F, -2.0F, 1.0F ) );
 
-    auto awpInstance1 = rx::instance( awp, transform );
+    auto sceneInstance = rx::instance( scene, transform );
 
     transform          = glm::translate( glm::mat4( 1.0F ), glm::vec3( 0.0F, 80.0F, 0.0F ) );
     auto planeInstance = rx::instance( plane, transform );
 
     // Submit instances for drawing.
-    renderer->scene( ).setGeometryInstances( { awpInstance1, planeInstance } );
+    renderer->scene( ).setGeometryInstances( { sceneInstance, planeInstance } );
 
     renderer->scene( ).removeEnvironmentMap( );
   }
@@ -343,7 +343,7 @@ inline void loadScene( rx::Rayex* renderer, Level scene )
 
     renderer->scene( ).setGeometryInstances( { mirrorPlaneInstance1, mirrorPlaneInstance2, lightPlaneInstance } );
 
-    for ( int i = 1; i < 15000; ++i )
+    for ( int i = 1; i < 25000; ++i )
     {
       addSphere( renderer );
     }
@@ -410,5 +410,13 @@ void updateScene( rx::Rayex* renderer )
     {
       instance->setTransform( glm::rotate( instance->transform, rx::Time::getDeltaTime( ) * 0.1F, glm::vec3( 0.0F, 1.0F, 0.0F ) ) );
     }
+  }
+  else if ( currentLevel == Level::eMirrors )
+  {
+    //auto instances = renderer->scene( ).getGeometryInstances( );
+    //for ( auto instance : instances )
+    //{
+    //  instance->setTransform( glm::rotate( instance->transform, rx::Time::getDeltaTime( ) * 0.1F, glm::vec3( 0.0F, 1.0F, 0.0F ) ) );
+    //}
   }
 }

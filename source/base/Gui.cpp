@@ -22,18 +22,18 @@ namespace RAYEX_NAMESPACE
     initDescriptorPool( );
 
     ImGui_ImplVulkan_InitInfo init_info { };
-    init_info.Instance       = vkCore::global::instance;
-    init_info.PhysicalDevice = vkCore::global::physicalDevice;
-    init_info.Device         = vkCore::global::device;
+    init_info.Instance       = static_cast<VkInstance>( vkCore::global::instance );
+    init_info.PhysicalDevice = static_cast<VkPhysicalDevice>( vkCore::global::physicalDevice );
+    init_info.Device         = static_cast<VkDevice>( vkCore::global::device );
     init_info.QueueFamily    = vkCore::global::graphicsFamilyIndex;
-    init_info.Queue          = vkCore::global::graphicsQueue;
-    init_info.PipelineCache  = nullptr;
-    init_info.DescriptorPool = _descriptorPool.get( );
-    init_info.Allocator      = nullptr;
+    init_info.Queue          = static_cast<VkQueue>( vkCore::global::graphicsQueue );
+    init_info.PipelineCache  = NULL;
+    init_info.DescriptorPool = static_cast<VkDescriptorPool>( _descriptorPool.get( ) );
+    init_info.Allocator      = NULL;
     init_info.MinImageCount  = surface->getCapabilities( ).minImageCount + 1;
     init_info.ImageCount     = static_cast<uint32_t>( vkCore::global::swapchainImageCount );
 
-    RX_ASSERT( ImGui_ImplVulkan_Init( &init_info, renderPass ), "Failed to initialize Vulkan for ImGui." );
+    RX_ASSERT( ImGui_ImplVulkan_Init( &init_info, static_cast<VkRenderPass>( renderPass ) ), "Failed to initialize Vulkan for ImGui." );
 
     initFonts( );
   }
@@ -56,7 +56,7 @@ namespace RAYEX_NAMESPACE
     render( );
     ImGui::Render( );
 
-    ImGui_ImplVulkan_RenderDrawData( ImGui::GetDrawData( ), commandBuffer );
+    ImGui_ImplVulkan_RenderDrawData( ImGui::GetDrawData( ), static_cast<VkCommandBuffer>( commandBuffer ) );
   }
 
   void Gui::destroy( )
@@ -90,7 +90,7 @@ namespace RAYEX_NAMESPACE
     vkCore::CommandBuffer commandBuffer( _commandPool.get( ) );
     commandBuffer.begin( );
 
-    RX_ASSERT( ImGui_ImplVulkan_CreateFontsTexture( commandBuffer.get( 0 ) ), "Failed to create ImGui fonts texture." );
+    RX_ASSERT( ImGui_ImplVulkan_CreateFontsTexture( static_cast<VkCommandBuffer>( commandBuffer.get( 0 ) ) ), "Failed to create ImGui fonts texture." );
 
     commandBuffer.end( );
     commandBuffer.submitToQueue( vkCore::global::graphicsQueue );

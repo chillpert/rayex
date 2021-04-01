@@ -81,14 +81,14 @@ namespace RAYEX_NAMESPACE
 
     // Surface
     VkSurfaceKHR surface;
-    SDL_bool result = SDL_Vulkan_CreateSurface( _window->get( ), vkCore::global::instance, &surface );
+    SDL_bool result = SDL_Vulkan_CreateSurface( _window->get( ), static_cast<VkInstance>( vkCore::global::instance ), &surface );
 
     if ( result != SDL_TRUE )
     {
       RX_ERROR( "Failed to create surface" );
     }
 
-    _surface.init( surface, _window->getExtent( ) );
+    _surface.init( vk::SurfaceKHR( surface ), _window->getExtent( ) );
 
     // Physical device
     vkCore::global::physicalDevice = vkCore::initPhysicalDevice( ); // @todo This function does not check if any feature is available when evaluating a device. Additionally, it is pointless to assign vkCore::global::physicalDevice in here because it doesn't need a unique handle.

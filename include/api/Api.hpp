@@ -21,7 +21,7 @@ namespace RAYEX_NAMESPACE
     friend Rayex;
 
     Api( ) = default;
-    ~Api( );
+    RX_API ~Api( );
 
     Api( const Api& )  = delete;
     Api( const Api&& ) = delete;

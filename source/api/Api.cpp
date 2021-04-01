@@ -279,6 +279,13 @@ namespace RAYEX_NAMESPACE
     _scene.uploadCameraBuffer( imageIndex % maxFramesInFlight );
 
     // If the scene is empty add a dummy triangle so that the acceleration structures can be built successfully.
+
+    // Move dummy behind camera
+    if ( _scene._dummy )
+    {
+      _scene.translateDummy( );
+    }
+
     if ( _scene._geometryInstances.empty( ) )
     {
       _scene.addDummy( );

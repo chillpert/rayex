@@ -198,7 +198,7 @@ private:
         std::string fpsDisplay = "FPS: " + std::to_string( rx::Time::getFramesPerSecond( ) );
         ImGui::Text( fpsDisplay.c_str( ) );
 
-        static float length = 5.0F;
+        static float length = 60.0F;
         ImGui::SliderFloat( "Length", &length, 5.0F, 60.0F );
 
         ImGui::SameLine( );

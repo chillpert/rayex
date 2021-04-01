@@ -56,10 +56,12 @@ namespace RAYEX_NAMESPACE
     std::sort( frameTimes.begin( ), frameTimes.end( ), std::greater<float>( ) );
     std::sort( allFrames.begin( ), allFrames.end( ), std::greater<uint32_t>( ) );
 
-    RX_INFO( "Average FPS          : ", average, " ( Time: ", benchmarkLength, " s )." );
-    RX_INFO( "Average frame time   : ", 1.0F / average );
-    RX_INFO( "Highest frame time   : ", frameTimes[0] );
-    RX_INFO( "1% (min frame time)  : ", percentile( frameTimes ) );
+    RX_INFO( "Benchmark Results ( Length: ", benchmarkLength, " s.)" );
+    RX_INFO( "Average FPS          : ", average );
+    RX_INFO( "1% Min FPS           : ", 1.0F / percentile( frameTimes ) );
+    //RX_INFO( "Average frame time   : ", 1.0F / average );
+    //RX_INFO( "Highest frame time   : ", frameTimes[0] );
+    //RX_INFO( "1% (min frame time)  : ", percentile( frameTimes ) );
   }
 
   void Time::startBenchmark( float length )

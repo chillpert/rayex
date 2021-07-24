@@ -1,3 +1,7 @@
+# TODO: 
+# - don't use include_directories etc it will infect global scope! Use target_include_directories etc
+# - add proper error handling for Arch fix
+
 cmake_minimum_required(VERSION 3.16.2)
 project(Renderer VERSION 0.0.1)
 
@@ -65,7 +69,13 @@ if(${OS} STREQUAL "Windows")
 
   set(WINDOWING ${WINDOWING} "SDL2main.lib" "SDL2.lib")
 elseif(${OS} STREQUAL "Linux")
-  find_package(SDL2 REQUIRED)
+  #find_package(SDL2 REQUIRED)
+
+  # Fix for Arch Linux (make sure that you have "pkgconf" installed)
+  # Also install validation layers with pacman in case of a debug build
+  find_package(PkgConfig REQUIRED)
+  pkg_check_modules(SDL2 REQUIRED sdl2)
+  
   include_directories(${SDL2_INCLUDE_DIRS})
 
   set(WINDOWING ${WINDOWING} "${SDL2_LIBRARIES}")

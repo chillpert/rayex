@@ -241,11 +241,16 @@ namespace RAYEX_NAMESPACE
 
       if ( doCompaction )
       {
+        // After query pool creation, each query must be reset before it is used. Queries must also be reset between uses.
+        // https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCmdResetQueryPool.html
+        cmdBuf.get( index ).resetQueryPool( queryPool.get( ), index, 1 );
+
         cmdBuf.get( index ).writeAccelerationStructuresPropertiesKHR( 1,                                                     // accelerationStructureCount
                                                                       &blas.as.as,                                           // pAccelerationStructures
                                                                       vk::QueryType::eAccelerationStructureCompactedSizeKHR, // queryType
                                                                       queryPool.get( ),                                      // queryPool
                                                                       ctr++ );                                               // firstQuery
+      
       }
 
       cmdBuf.end( index );
@@ -253,6 +258,7 @@ namespace RAYEX_NAMESPACE
       ++index;
     }
 
+    
     cmdBuf.submitToQueue( vkCore::global::graphicsQueue );
 
     if ( doCompaction )
@@ -341,7 +347,7 @@ namespace RAYEX_NAMESPACE
     vk::MemoryAllocateFlagsInfo allocateFlags( vk::MemoryAllocateFlagBitsKHR::eDeviceAddress );
 
     _instanceBuffer.init( sizeof( vk::AccelerationStructureInstanceKHR ) * geometryInstances.size( ),
-                          vk::BufferUsageFlagBits::eShaderDeviceAddress,
+                          vk::BufferUsageFlagBits::eShaderDeviceAddress | vk::BufferUsageFlagBits::eAccelerationStructureBuildInputReadOnlyKHR,
                           { vkCore::global::graphicsFamilyIndex },
                           vk::MemoryPropertyFlagBits::eDeviceLocal | vk::MemoryPropertyFlagBits::eHostCoherent,
                           &allocateFlags );

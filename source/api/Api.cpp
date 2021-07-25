@@ -100,8 +100,12 @@ namespace RAYEX_NAMESPACE
     vkCore::initQueueFamilyIndices( );
 
     // Logical device
+    vk::PhysicalDeviceShaderClockFeaturesKHR shaderClockFeatures;
+    shaderClockFeatures.shaderSubgroupClock = VK_TRUE;
+
     vk::PhysicalDeviceAccelerationStructureFeaturesKHR asFeatures;
     asFeatures.accelerationStructure = VK_TRUE;
+    asFeatures.pNext = &shaderClockFeatures;
 
     vk::PhysicalDeviceRayTracingPipelineFeaturesKHR rtPipelineFeatures;
     rtPipelineFeatures.rayTracingPipeline                  = VK_TRUE;

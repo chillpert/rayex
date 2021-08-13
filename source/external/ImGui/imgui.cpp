@@ -376,6 +376,9 @@ CODE
  When you are not sure about an old symbol or function name, try using the Search/Find function of your IDE to look for comments or references in all imgui files.
  You can read releases logs https://github.com/ocornut/imgui/releases for more details.
 
+ - 2021/07/26 (1.84) - commented out redirecting functions/enums names that were marked obsolete in 1.67 and 1.69 (March 2019):
+                        - ImGui::GetOverlayDrawList() -> use ImGui::GetForegroundDrawList()
+                        - ImFont::GlyphRangesBuilder  -> use ImFontGlyphRangesBuilder
  - 2021/05/19 (1.83) - backends: obsoleted direct access to ImDrawCmd::TextureId in favor of calling ImDrawCmd::GetTexID().
                         - if you are using official backends from the source tree: you have nothing to do.
                         - if you have copied old backend code or using your own: change access to draw_cmd->TextureId to draw_cmd->GetTexID().
@@ -768,13 +771,13 @@ CODE
 #define _CRT_SECURE_NO_WARNINGS
 #endif
 
-#include "ImGui/imgui.h"
+#include "imgui.h"
 #ifndef IMGUI_DISABLE
 
 #ifndef IMGUI_DEFINE_MATH_OPERATORS
 #define IMGUI_DEFINE_MATH_OPERATORS
 #endif
-#include "ImGui/imgui_internal.h"
+#include "imgui_internal.h"
 
 // System includes
 #include <ctype.h>      // toupper
@@ -4102,7 +4105,6 @@ void ImGui::NewFrame()
     g.ItemFlagsStack.resize(0);
     g.ItemFlagsStack.push_back(ImGuiItemFlags_None);
     g.GroupStack.resize(0);
-    ClosePopupsOverWindow(g.NavWindow, false);
 
     // [DEBUG] Item picker tool - start with DebugStartItemPicker() - useful to visually select an item and break into its call-stack.
     UpdateDebugToolItemPicker();
@@ -6336,7 +6338,6 @@ bool ImGui::Begin(const char* name, bool* p_open, ImGuiWindowFlags flags)
     }
 
     // Pull/inherit current state
-    g.CurrentItemFlags = g.ItemFlagsStack.back(); // Inherit from shared stack
     window->DC.NavFocusScopeIdCurrent = (flags & ImGuiWindowFlags_ChildWindow) ? parent_window->DC.NavFocusScopeIdCurrent : window->GetID("#FOCUSSCOPE"); // Inherit from parent only // -V595
 
     PushClipRect(window->InnerClipRect.Min, window->InnerClipRect.Max, true);
@@ -11766,7 +11767,7 @@ void ImGui::DebugNodeViewport(ImGuiViewportP*) {}
 // Include imgui_user.inl at the end of imgui.cpp to access private data/functions that aren't exposed.
 // Prefer just including imgui_internal.h from your code rather than using this define. If a declaration is missing from imgui_internal.h add it or request it on the github.
 #ifdef IMGUI_INCLUDE_IMGUI_USER_INL
-#include "ImGui/imgui_user.inl"
+#include "imgui_user.inl"
 #endif
 
 //-----------------------------------------------------------------------------

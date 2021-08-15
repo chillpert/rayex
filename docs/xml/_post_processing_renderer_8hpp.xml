@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
-<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.17">
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
   <compounddef id="_post_processing_renderer_8hpp" kind="file" language="C++">
     <compoundname>PostProcessingRenderer.hpp</compoundname>
     <includes refid="stdafx_8hpp" local="yes">pch/stdafx.hpp</includes>
@@ -7,9 +7,6 @@
     <incdepgraph>
       <node id="26">
         <label>list</label>
-      </node>
-      <node id="10">
-        <label>imgui/imgui_impl_sdl.h</label>
       </node>
       <node id="24">
         <label>iomanip</label>
@@ -26,14 +23,8 @@
       <node id="7">
         <label>vkCore/vkCore.hpp</label>
       </node>
-      <node id="9">
-        <label>imgui/imgui.h</label>
-      </node>
       <node id="19">
         <label>charconv</label>
-      </node>
-      <node id="11">
-        <label>imgui/imgui_impl_vulkan.h</label>
       </node>
       <node id="3">
         <label>Core.hpp</label>
@@ -138,17 +129,26 @@
       <node id="32">
         <label>string_view</label>
       </node>
+      <node id="9">
+        <label>ImGui/imgui.h</label>
+      </node>
       <node id="29">
         <label>optional</label>
       </node>
       <node id="36">
         <label>vector</label>
       </node>
+      <node id="10">
+        <label>ImGui/imgui_impl_sdl.h</label>
+      </node>
       <node id="35">
         <label>utility</label>
       </node>
       <node id="18">
         <label>array</label>
+      </node>
+      <node id="11">
+        <label>ImGui/imgui_impl_vulkan.h</label>
       </node>
       <node id="33">
         <label>unordered_map</label>
@@ -230,25 +230,25 @@
 <codeline lineno="15"><highlight class="normal"></highlight></codeline>
 <codeline lineno="16" refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_post_processing_renderer_1a011a18a3e3704b7a1db9538e090db1b1" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/><ref refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_post_processing_renderer_1a011a18a3e3704b7a1db9538e090db1b1" kindref="member">getPipelineLayout</ref>(<sp/>)<sp/>const<sp/>-&gt;<sp/>const<sp/>vk::PipelineLayout<sp/>{<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>_pipelineLayout.get(<sp/>);<sp/>}</highlight></codeline>
 <codeline lineno="17"><highlight class="normal"></highlight></codeline>
-<codeline lineno="18"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_post_processing_renderer_1a01e2c8a445d8ea4f6df86cd05f3ab637" kindref="member">initDepthImage</ref>(<sp/>vk::Extent2D<sp/>extent<sp/>);</highlight></codeline>
+<codeline lineno="18"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//void<sp/>initDepthImage(<sp/>vk::Extent2D<sp/>extent<sp/>);</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="19"><highlight class="normal"></highlight></codeline>
-<codeline lineno="20"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_post_processing_renderer_1a0d7a6f02d459e8f7197e75e0a54b795a" kindref="member">initRenderPass</ref>(<sp/>vk::Format<sp/>format<sp/>);</highlight></codeline>
+<codeline lineno="20" refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_post_processing_renderer_1a0d7a6f02d459e8f7197e75e0a54b795a" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_post_processing_renderer_1a0d7a6f02d459e8f7197e75e0a54b795a" kindref="member">initRenderPass</ref>(<sp/>vk::Format<sp/>format<sp/>);</highlight></codeline>
 <codeline lineno="21"><highlight class="normal"></highlight></codeline>
-<codeline lineno="22"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_post_processing_renderer_1a72d0b080d0e74207c556ce50959c4474" kindref="member">initDescriptorSet</ref>(<sp/>);</highlight></codeline>
+<codeline lineno="22" refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_post_processing_renderer_1a72d0b080d0e74207c556ce50959c4474" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_post_processing_renderer_1a72d0b080d0e74207c556ce50959c4474" kindref="member">initDescriptorSet</ref>(<sp/>);</highlight></codeline>
 <codeline lineno="23"><highlight class="normal"></highlight></codeline>
-<codeline lineno="25"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_post_processing_renderer_1a226a9f0e524c8901ed48d31959e4c692" kindref="member">updateDescriptors</ref>(<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>vk::DescriptorImageInfo&amp;<sp/>imageInfo<sp/>);</highlight></codeline>
+<codeline lineno="25" refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_post_processing_renderer_1a226a9f0e524c8901ed48d31959e4c692" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_post_processing_renderer_1a226a9f0e524c8901ed48d31959e4c692" kindref="member">updateDescriptors</ref>(<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>vk::DescriptorImageInfo&amp;<sp/>imageInfo<sp/>);</highlight></codeline>
 <codeline lineno="26"><highlight class="normal"></highlight></codeline>
-<codeline lineno="27"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_post_processing_renderer_1a8d2842efa22f36b3c680eef8a23b3048" kindref="member">initPipeline</ref>(<sp/>);</highlight></codeline>
+<codeline lineno="27" refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_post_processing_renderer_1a8d2842efa22f36b3c680eef8a23b3048" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_post_processing_renderer_1a8d2842efa22f36b3c680eef8a23b3048" kindref="member">initPipeline</ref>(<sp/>);</highlight></codeline>
 <codeline lineno="28"><highlight class="normal"></highlight></codeline>
-<codeline lineno="29"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_post_processing_renderer_1acceeba217e38d1e290a3d39fe76f7be1" kindref="member">beginRenderPass</ref>(<sp/>vk::CommandBuffer<sp/>commandBuffer,<sp/>vk::Framebuffer<sp/>framebuffer,<sp/>vk::Extent2D<sp/>size<sp/>);</highlight></codeline>
+<codeline lineno="29" refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_post_processing_renderer_1acceeba217e38d1e290a3d39fe76f7be1" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_post_processing_renderer_1acceeba217e38d1e290a3d39fe76f7be1" kindref="member">beginRenderPass</ref>(<sp/>vk::CommandBuffer<sp/>commandBuffer,<sp/>vk::Framebuffer<sp/>framebuffer,<sp/>vk::Extent2D<sp/>size<sp/>);</highlight></codeline>
 <codeline lineno="30"><highlight class="normal"></highlight></codeline>
-<codeline lineno="31"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_post_processing_renderer_1ad609d5474fe35a3c56fcb219f37ec2ed" kindref="member">endRenderPass</ref>(<sp/>vk::CommandBuffer<sp/>commandBuffer<sp/>);</highlight></codeline>
+<codeline lineno="31" refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_post_processing_renderer_1ad609d5474fe35a3c56fcb219f37ec2ed" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_post_processing_renderer_1ad609d5474fe35a3c56fcb219f37ec2ed" kindref="member">endRenderPass</ref>(<sp/>vk::CommandBuffer<sp/>commandBuffer<sp/>);</highlight></codeline>
 <codeline lineno="32"><highlight class="normal"></highlight></codeline>
-<codeline lineno="35"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_post_processing_renderer_1aaf6b1d01d5a03b30ef04a6e491ee09ee" kindref="member">render</ref>(<sp/>vk::CommandBuffer<sp/>commandBuffer,<sp/>vk::Extent2D<sp/>size,<sp/></highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal"><sp/>imageIndex<sp/>);</highlight></codeline>
+<codeline lineno="35" refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_post_processing_renderer_1aaf6b1d01d5a03b30ef04a6e491ee09ee" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_post_processing_renderer_1aaf6b1d01d5a03b30ef04a6e491ee09ee" kindref="member">render</ref>(<sp/>vk::CommandBuffer<sp/>commandBuffer,<sp/>vk::Extent2D<sp/>size,<sp/></highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal"><sp/>imageIndex<sp/>);</highlight></codeline>
 <codeline lineno="36"><highlight class="normal"></highlight></codeline>
 <codeline lineno="37"><highlight class="normal"><sp/><sp/></highlight><highlight class="keyword">private</highlight><highlight class="normal">:</highlight></codeline>
-<codeline lineno="38"><highlight class="normal"><sp/><sp/><sp/><sp/>vkCore::Image<sp/>_depthImage;</highlight></codeline>
-<codeline lineno="39"><highlight class="normal"><sp/><sp/><sp/><sp/>vk::UniqueImageView<sp/>_depthImageView;</highlight></codeline>
+<codeline lineno="38"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//vkCore::Image<sp/>_depthImage;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="39"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//vk::UniqueImageView<sp/>_depthImageView;</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="40"><highlight class="normal"></highlight></codeline>
 <codeline lineno="41"><highlight class="normal"><sp/><sp/><sp/><sp/>vkCore::RenderPass<sp/>_renderPass;</highlight></codeline>
 <codeline lineno="42"><highlight class="normal"></highlight></codeline>

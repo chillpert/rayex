@@ -7,7 +7,7 @@ var class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_path_tracer =
     [ "buildBlas", "class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_path_tracer.html#a5df109c2da39664245ad141e2d9c0e4a", null ],
     [ "buildTlas", "class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_path_tracer.html#a3c2f2045a533d9fe53faafdb885f5831", null ],
     [ "createBottomLevelAS", "class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_path_tracer.html#a01e426560fbcea32ea1a1fb0b8fc3a6a", null ],
-    [ "createPipeline", "class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_path_tracer.html#af72332595cb39c940f0a6c9afee439ef", null ],
+    [ "createPipeline", "class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_path_tracer.html#ae30f5e7aa6a8df5dcb7b8b544298f9a5", null ],
     [ "createShaderBindingTable", "class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_path_tracer.html#aef800dfb214e83264e2a573039a5aed3", null ],
     [ "createStorageImage", "class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_path_tracer.html#a504cc5e1802f0174272f637ad6e8f4c6", null ],
     [ "destroy", "class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_path_tracer.html#a29bafe2e2c61bd1ef76999885efa9188", null ],
@@ -17,14 +17,17 @@ var class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_path_tracer =
     [ "getDescriptorSetLayout", "class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_path_tracer.html#a37d390a924dc52e0195248cedd5fe670", null ],
     [ "getPipeline", "class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_path_tracer.html#a87b1e74178484ae54e891f62b897b079", null ],
     [ "getPipelineLayout", "class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_path_tracer.html#a88b7351717bcb2731cda5254316384a3", null ],
+    [ "getPixelVariance", "class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_path_tracer.html#add5f5aedbbad7e8e1751ae53154f19a6", null ],
     [ "getStorageImageInfo", "class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_path_tracer.html#abde61bef57499d13e9df3cc3db0b8e39", null ],
     [ "getStorageImageView", "class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_path_tracer.html#a148b5a6c45676515d7db5efe50e67428", null ],
     [ "getTlas", "class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_path_tracer.html#aa57a79727d5cab887d198231377d0c7e", null ],
     [ "init", "class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_path_tracer.html#aec2798527165512a51c4028be6dd5da0", null ],
     [ "initDescriptorSet", "class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_path_tracer.html#a30d8d1231355d7493d29b8226cfe728a", null ],
-    [ "modelToBlas", "class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_path_tracer.html#afe9a29b1bff77d11f7eb77a56d635356", null ],
+    [ "initVarianceBuffer", "class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_path_tracer.html#aa58aa606adc0fa0931dda689a0c3d453", null ],
+    [ "modelToBlas", "class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_path_tracer.html#a06e8c5d6ceea3bfde8c9e52f465f8edf", null ],
     [ "operator=", "class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_path_tracer.html#abc9fc7f8c1a71ef1cb056c5f5531af42", null ],
     [ "operator=", "class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_path_tracer.html#a01b3b0262634e7993b1173c289f0db02", null ],
     [ "pathTrace", "class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_path_tracer.html#aed6907560423957efa3aec52c69aa240", null ],
-    [ "updateDescriptors", "class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_path_tracer.html#a76874c6e9156b8c8f1624b43265fbc73", null ]
+    [ "updateDescriptors", "class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_path_tracer.html#a76874c6e9156b8c8f1624b43265fbc73", null ],
+    [ "updateTlas", "class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_path_tracer.html#a384214253537ed75c2be84ed37801a40", null ]
 ];

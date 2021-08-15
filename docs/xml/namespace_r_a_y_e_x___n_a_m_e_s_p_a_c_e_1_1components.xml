@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
-<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.17">
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
   <compounddef id="namespace_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1components" kind="namespace" language="C++">
     <compoundname>RAYEX_NAMESPACE::components</compoundname>
       <sectiondef kind="var">
@@ -15,7 +15,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/n30/Repos/rayex/include/api/Components.hpp" line="10" column="16" declfile="/home/n30/Repos/rayex/include/api/Components.hpp" declline="10" declcolumn="16"/>
+        <location file="/home/n30/Repos/rayex/include/api/Components.hpp" line="11" column="16" declfile="/home/n30/Repos/rayex/include/api/Components.hpp" declline="11" declcolumn="16"/>
       </memberdef>
       <memberdef kind="variable" id="namespace_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1components_1a524acb5e30cc3e3c5bf3ceb81d83fc6a" prot="public" static="no" mutable="no">
         <type>std::string</type>
@@ -29,7 +29,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/n30/Repos/rayex/include/api/Components.hpp" line="12" column="24" declfile="/home/n30/Repos/rayex/include/api/Components.hpp" declline="12" declcolumn="24"/>
+        <location file="/home/n30/Repos/rayex/include/api/Components.hpp" line="13" column="24" declfile="/home/n30/Repos/rayex/include/api/Components.hpp" declline="13" declcolumn="24"/>
       </memberdef>
       <memberdef kind="variable" id="namespace_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1components_1a4d5dc1bf67c9b9d8737cc266005343f1" prot="public" static="no" mutable="no">
         <type>uint32_t</type>
@@ -42,7 +42,20 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/n30/Repos/rayex/include/api/Components.hpp" line="13" column="21" declfile="/home/n30/Repos/rayex/include/api/Components.hpp" declline="13" declcolumn="21"/>
+        <location file="/home/n30/Repos/rayex/include/api/Components.hpp" line="14" column="21" declfile="/home/n30/Repos/rayex/include/api/Components.hpp" declline="14" declcolumn="21"/>
+      </memberdef>
+      <memberdef kind="variable" id="namespace_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1components_1aac6d1a0fafb836f435e87a10bd9d66b0" prot="public" static="no" mutable="no">
+        <type>uint32_t</type>
+        <definition>uint32_t RAYEX_NAMESPACE::components::materialIndex</definition>
+        <argsstring></argsstring>
+        <name>materialIndex</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/n30/Repos/rayex/include/api/Components.hpp" line="15" column="21" declfile="/home/n30/Repos/rayex/include/api/Components.hpp" declline="15" declcolumn="21"/>
       </memberdef>
       <memberdef kind="variable" id="namespace_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1components_1adba63188318cfcbba40a35ef326df489" prot="public" static="no" mutable="no">
         <type>uint32_t</type>
@@ -55,7 +68,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/n30/Repos/rayex/include/api/Components.hpp" line="14" column="21" declfile="/home/n30/Repos/rayex/include/api/Components.hpp" declline="14" declcolumn="21"/>
+        <location file="/home/n30/Repos/rayex/include/api/Components.hpp" line="16" column="21" declfile="/home/n30/Repos/rayex/include/api/Components.hpp" declline="16" declcolumn="21"/>
       </memberdef>
       <memberdef kind="variable" id="namespace_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1components_1a339363085d98dd34e0fc07104fc86a6c" prot="public" static="no" mutable="no">
         <type>const size_t</type>
@@ -69,13 +82,26 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/n30/Repos/rayex/include/api/Components.hpp" line="15" column="18" bodyfile="/home/n30/Repos/rayex/include/api/Components.hpp" bodystart="15" bodyend="-1"/>
+        <location file="/home/n30/Repos/rayex/include/api/Components.hpp" line="17" column="18" bodyfile="/home/n30/Repos/rayex/include/api/Components.hpp" bodystart="17" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="namespace_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1components_1ab5ba0e98b48f0e487d4bfebd67a4d033" prot="public" static="no" mutable="no">
+        <type>std::vector&lt; <ref refid="struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_material" kindref="compound">Material</ref> &gt;</type>
+        <definition>std::vector&lt;Material&gt; RAYEX_NAMESPACE::components::_materials</definition>
+        <argsstring></argsstring>
+        <name>_materials</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/n30/Repos/rayex/include/api/Components.hpp" line="18" column="24" declfile="/home/n30/Repos/rayex/include/api/Components.hpp" declline="18" declcolumn="24"/>
       </memberdef>
       </sectiondef>
     <briefdescription>
     </briefdescription>
     <detaileddescription>
     </detaileddescription>
-    <location file="/home/n30/Repos/rayex/include/api/Components.hpp" line="9" column="1"/>
+    <location file="/home/n30/Repos/rayex/include/api/Components.hpp" line="9" column="3"/>
   </compounddef>
 </doxygen>

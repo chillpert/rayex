@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
-<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.17">
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
   <compounddef id="struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_path_tracing_capabilities" kind="struct" language="C++" prot="public">
     <compoundname>RAYEX_NAMESPACE::PathTracingCapabilities</compoundname>
     <includes refid="_path_tracer_8hpp" local="no">PathTracer.hpp</includes>
@@ -16,15 +16,30 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/n30/Repos/rayex/include/api/pathtrace/PathTracer.hpp" line="25" column="55" bodyfile="/home/n30/Repos/rayex/include/api/pathtrace/PathTracer.hpp" bodystart="25" bodyend="-1"/>
+        <location file="/home/n30/Repos/rayex/include/api/pathtrace/PathTracer.hpp" line="28" column="55" bodyfile="/home/n30/Repos/rayex/include/api/pathtrace/PathTracer.hpp" bodystart="28" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_path_tracing_capabilities_1a79c7eb34134644dc041c2257cc9026ca" prot="public" static="no" mutable="no">
+        <type>vk::PhysicalDeviceAccelerationStructurePropertiesKHR</type>
+        <definition>vk::PhysicalDeviceAccelerationStructurePropertiesKHR RAYEX_NAMESPACE::PathTracingCapabilities::accelerationStructureProperties</definition>
+        <argsstring></argsstring>
+        <name>accelerationStructureProperties</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/n30/Repos/rayex/include/api/pathtrace/PathTracer.hpp" line="29" column="58" bodyfile="/home/n30/Repos/rayex/include/api/pathtrace/PathTracer.hpp" bodystart="29" bodyend="-1"/>
       </memberdef>
       </sectiondef>
     <briefdescription>
+<para>Used to pool all features and properties required for path tracing. </para>
     </briefdescription>
     <detaileddescription>
     </detaileddescription>
-    <location file="/home/n30/Repos/rayex/include/api/pathtrace/PathTracer.hpp" line="24" column="1" bodyfile="/home/n30/Repos/rayex/include/api/pathtrace/PathTracer.hpp" bodystart="23" bodyend="34"/>
+    <location file="/home/n30/Repos/rayex/include/api/pathtrace/PathTracer.hpp" line="26" column="3" bodyfile="/home/n30/Repos/rayex/include/api/pathtrace/PathTracer.hpp" bodystart="27" bodyend="35"/>
     <listofallmembers>
+      <member refid="struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_path_tracing_capabilities_1a79c7eb34134644dc041c2257cc9026ca" prot="public" virt="non-virtual"><scope>RAYEX_NAMESPACE::PathTracingCapabilities</scope><name>accelerationStructureProperties</name></member>
       <member refid="struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_path_tracing_capabilities_1a47265ef799d8058bc56e7dff41970c47" prot="public" virt="non-virtual"><scope>RAYEX_NAMESPACE::PathTracingCapabilities</scope><name>pipelineProperties</name></member>
     </listofallmembers>
   </compounddef>

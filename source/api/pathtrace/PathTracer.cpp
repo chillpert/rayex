@@ -622,7 +622,7 @@ namespace RAYEX_NAMESPACE
     _descriptors.bindings.add( 0,
                                vk::DescriptorType::eAccelerationStructureKHR,
                                vk::ShaderStageFlagBits::eRaygenKHR | vk::ShaderStageFlagBits::eClosestHitKHR );
-    // Output image
+    // Storage image
     _descriptors.bindings.add( 1,
                                vk::DescriptorType::eStorageImage,
                                vk::ShaderStageFlagBits::eRaygenKHR );
@@ -644,9 +644,11 @@ namespace RAYEX_NAMESPACE
     vk::WriteDescriptorSetAccelerationStructureKHR tlasInfo( 1,
                                                              &_tlas.as.as );
 
+#ifdef RX_VARIANCE_ESTIMATOR
     vk::DescriptorBufferInfo varianceBufferInfo( _varianceBuffer.get( ),
                                                  0,
                                                  VK_WHOLE_SIZE );
+#endif
 
     _descriptors.bindings.write( _descriptorSets, 0, &tlasInfo );
     _descriptors.bindings.write( _descriptorSets, 1, &_storageImageInfo );
@@ -668,7 +670,7 @@ namespace RAYEX_NAMESPACE
   }
 
   // This is wrong! This calculates variance off all pixel colors of a frame.
-  // Instead, one should look at the individual pixel at increased sample rates, right?
+  // Instead, one should look at the individual pixel at increased sample rates (?)
   float PathTracer::getPixelVariance( uint32_t index )
   {
     static bool alreadyMapped = false;

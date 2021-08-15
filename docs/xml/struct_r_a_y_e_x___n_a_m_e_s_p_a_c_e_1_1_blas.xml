@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
-<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.17">
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
   <compounddef id="struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_blas" kind="struct" language="C++" prot="public">
     <compoundname>RAYEX_NAMESPACE::Blas</compoundname>
     <includes refid="_acceleration_structure_8hpp" local="no">AccelerationStructure.hpp</includes>
@@ -65,7 +65,7 @@
         <link refid="struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_acceleration_structure"/>
       </node>
     </collaborationgraph>
-    <location file="/home/n30/Repos/rayex/include/api/pathtrace/AccelerationStructure.hpp" line="30" column="1" bodyfile="/home/n30/Repos/rayex/include/api/pathtrace/AccelerationStructure.hpp" bodystart="29" bodyend="36"/>
+    <location file="/home/n30/Repos/rayex/include/api/pathtrace/AccelerationStructure.hpp" line="29" column="3" bodyfile="/home/n30/Repos/rayex/include/api/pathtrace/AccelerationStructure.hpp" bodystart="30" bodyend="36"/>
     <listofallmembers>
       <member refid="struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_blas_1afeefd899332ab00ffc38a7641424de2d" prot="public" virt="non-virtual"><scope>RAYEX_NAMESPACE::Blas</scope><name>as</name></member>
       <member refid="struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_blas_1a612e8ebe1c04fd44ab8e9c22fc7c9787" prot="public" virt="non-virtual"><scope>RAYEX_NAMESPACE::Blas</scope><name>asBuildRangeInfo</name></member>

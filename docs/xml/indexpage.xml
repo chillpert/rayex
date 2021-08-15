@@ -1,16 +1,16 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
-<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.17">
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
   <compounddef id="indexpage" kind="page">
     <compoundname>index</compoundname>
     <title>RAYEX</title>
     <briefdescription>
     </briefdescription>
     <detaileddescription>
-<para>RAYEX is a work-in-progress, cross-platform, cross-vendor, Vulkan-based, real-time path tracer.</para>
+<para><anchor id="index_1md__home_n30_Repos_rayex_README"/>RAYEX is a work-in-progress, cross-platform, cross-vendor, Vulkan-based, real-time path tracer.</para>
 <para>It runs on both Linux (x64) and Windows (x64) using the Vulkan API. This software aims to provide a cross-platform, cross-vendor path tracer that is easy to integrate into existing projects. Vendor independence is achieved by using the new KHRONOS Vulkan ray tracing extension (first published on March 17, 2020, as an experimental version). It uses <ulink url="https://www.libsdl.org/index.php">SDL2</ulink> for windowing and <ulink url="https://glm.g-truc.net/0.9.9/index.html">glm</ulink> as its math library. RAYEX features native <ulink url="https://github.com/ocornut/imgui">Dear ImGui</ulink> support, enabling the user to create user interfaces without writing any API-related code.</para>
 <sect1 id="index_1autotoc_md1">
 <title>Requirements</title>
-<para>Unfortunately, the KHRONOS Vulkan ray tracing extension is not yet part of the NVIDIA main driver. Download the NVIDIA Vulkan beta drivers <ulink url="https://developer.nvidia.com/vulkan-driver">here</ulink>. AMD drivers can be downloaded <ulink url="https://www.amd.com/en/support/kb/release-notes/rn-rad-win-20-11-2-vrt-beta">here</ulink> instead.</para>
+<para>Install the latest NVIDIA driver. If you run into issues try the NVIDIA Vulkan beta drivers <ulink url="https://developer.nvidia.com/vulkan-driver">here</ulink>, or check your GPU compatibility. AMD drivers can be downloaded <ulink url="https://www.amd.com/en/support/kb/release-notes/rn-rad-win-20-11-2-vrt-beta">here</ulink> instead.</para>
 </sect1>
 <sect1 id="index_1autotoc_md2">
 <title>Deploy</title>
@@ -33,8 +33,7 @@
 <codeline><highlight class="normal">$<sp/>mkdir<sp/>build<sp/>&amp;&amp;<sp/>cd<sp/>build</highlight></codeline>
 <codeline><highlight class="normal">$<sp/>cmake<sp/>..</highlight></codeline>
 <codeline><highlight class="normal">$<sp/>make<sp/>all</highlight></codeline>
-</programlisting></para>
-<para>Execute the example. Depending on the build type you want to choose, replace [buildtype]. <programlisting filename=".sh"><codeline><highlight class="normal">$<sp/>./bin/[buildtype]/example</highlight></codeline>
+</programlisting> Execute the example. Depending on the build type you want to choose, replace [buildtype]. <programlisting filename=".sh"><codeline><highlight class="normal">$<sp/>./bin/[buildtype]/example</highlight></codeline>
 </programlisting></para>
 </sect2>
 <sect2 id="index_1autotoc_md5">
@@ -71,14 +70,9 @@
 <title>Issues</title>
 <para><itemizedlist>
 <listitem><para>[x] Update to latest SDK and official release version of VK_RAY_TRACING_KHR</para>
+</listitem><listitem><para>[x] Fix any hit shader</para>
 </listitem><listitem><para>[ ] Remove unnecessary documentation and add missing documentation</para>
 </listitem><listitem><para>[ ] Fix upload storage buffers to GPU issues</para>
-</listitem><listitem><para>[ ] Fix any hit shader</para>
-</listitem><listitem><para>[ ] Fix reflection issue in Cornell box scene</para>
-</listitem><listitem><para>[ ] Clean up Vulkan-related functions and classes</para>
-</listitem><listitem><para>[ ] Outsource any ray tracing-related code from most Vulkan-related functions and classes</para>
-</listitem><listitem><para>[ ] Move all Vulkan-related functions and classes into their own folder and namespace</para>
-</listitem><listitem><para>[ ] Proper documentation and README grammar check</para>
 </listitem></itemizedlist>
 </para>
 </sect2>
@@ -87,16 +81,14 @@
 <para><itemizedlist>
 <listitem><para>[x] Global illumination</para>
 </listitem><listitem><para>[x] Environment mapping</para>
-</listitem><listitem><para>[x] A post processing pass for gamma correction and future post processing effects</para>
-</listitem><listitem><para>[x] Simple reflections and transparency</para>
+</listitem><listitem><para>[x] A post processing pass</para>
+</listitem><listitem><para>[x] Diffuse and glossy reflections</para>
+</listitem><listitem><para>[x] Dielectrics</para>
 </listitem><listitem><para>[ ] An efficient way of building and updating acceleration structures based on a scene&apos;s requirements</para>
-</listitem><listitem><para>[ ] Importance and multiple importance sampling</para>
+</listitem><listitem><para>[ ] Multiple importance sampling</para>
 </listitem><listitem><para>[ ] HDR skymaps and skyboxes as light sources</para>
-</listitem><listitem><para>[ ] More material properties</para>
 </listitem><listitem><para>[ ] Denoising</para>
-</listitem><listitem><para>[ ] Callable shader support</para>
-</listitem><listitem><para>[ ] Bidirectional and volumetric path tracing</para>
-</listitem><listitem><para>[ ] Further post processing features</para>
+</listitem><listitem><para>[ ] Next event estimation</para>
 </listitem></itemizedlist>
 </para>
 </sect2>
@@ -106,5 +98,6 @@
 <para>You can find the GitHub repository <ulink url="https://github.com/chillpert/rayex">here</ulink>. </para>
 </sect1>
     </detaileddescription>
+    <location file="/home/n30/Repos/rayex/README.md"/>
   </compounddef>
 </doxygen>

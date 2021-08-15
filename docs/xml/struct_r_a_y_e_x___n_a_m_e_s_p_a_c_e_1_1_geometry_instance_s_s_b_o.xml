@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
-<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.17">
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
   <compounddef id="struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_geometry_instance_s_s_b_o" kind="struct" language="C++" prot="public">
     <compoundname>RAYEX_NAMESPACE::GeometryInstanceSSBO</compoundname>
     <includes refid="_geometry_8hpp" local="no">Geometry.hpp</includes>
@@ -17,22 +17,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/n30/Repos/rayex/include/base/Geometry.hpp" line="139" column="15" bodyfile="/home/n30/Repos/rayex/include/base/Geometry.hpp" bodystart="139" bodyend="-1"/>
-      </memberdef>
-      <memberdef kind="variable" id="struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_geometry_instance_s_s_b_o_1a1379cb3dfff56920119ce6a1bbb38205" prot="public" static="no" mutable="no">
-        <type>glm::mat4</type>
-        <definition>glm::mat4 RAYEX_NAMESPACE::GeometryInstanceSSBO::transformIT</definition>
-        <argsstring></argsstring>
-        <name>transformIT</name>
-        <initializer>= glm::mat4( 1.0F )</initializer>
-        <briefdescription>
-<para>The inverse transpose of transform. </para>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="/home/n30/Repos/rayex/include/base/Geometry.hpp" line="140" column="15" bodyfile="/home/n30/Repos/rayex/include/base/Geometry.hpp" bodystart="140" bodyend="-1"/>
+        <location file="/home/n30/Repos/rayex/include/base/Geometry.hpp" line="104" column="15" bodyfile="/home/n30/Repos/rayex/include/base/Geometry.hpp" bodystart="104" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_geometry_instance_s_s_b_o_1a4899744b1f0ee202bbf9ff02af61b4c4" prot="public" static="no" mutable="no">
         <type>uint32_t</type>
@@ -41,58 +26,54 @@
         <name>geometryIndex</name>
         <initializer>= 0</initializer>
         <briefdescription>
-<para>Used to assign this instance a model. </para>
         </briefdescription>
         <detaileddescription>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/n30/Repos/rayex/include/base/Geometry.hpp" line="141" column="14" bodyfile="/home/n30/Repos/rayex/include/base/Geometry.hpp" bodystart="141" bodyend="-1"/>
+        <location file="/home/n30/Repos/rayex/include/base/Geometry.hpp" line="106" column="14" bodyfile="/home/n30/Repos/rayex/include/base/Geometry.hpp" bodystart="106" bodyend="-1"/>
       </memberdef>
-      <memberdef kind="variable" id="struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_geometry_instance_s_s_b_o_1ac708ce2bf5edf245a01181441632b7ca" prot="public" static="no" mutable="no">
-        <type>float</type>
-        <definition>float RAYEX_NAMESPACE::GeometryInstanceSSBO::padding0</definition>
+      <memberdef kind="variable" id="struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_geometry_instance_s_s_b_o_1ae41542834c59d9c2d63bcde3030bd74c" prot="public" static="no" mutable="no">
+        <type>uint32_t</type>
+        <definition>uint32_t RAYEX_NAMESPACE::GeometryInstanceSSBO::padding0</definition>
         <argsstring></argsstring>
         <name>padding0</name>
-        <initializer>= 0.0F</initializer>
+        <initializer>= 0</initializer>
         <briefdescription>
-<para>Buffer padding (ignore). </para>
         </briefdescription>
         <detaileddescription>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/n30/Repos/rayex/include/base/Geometry.hpp" line="143" column="11" bodyfile="/home/n30/Repos/rayex/include/base/Geometry.hpp" bodystart="143" bodyend="-1"/>
+        <location file="/home/n30/Repos/rayex/include/base/Geometry.hpp" line="108" column="14" bodyfile="/home/n30/Repos/rayex/include/base/Geometry.hpp" bodystart="108" bodyend="-1"/>
       </memberdef>
-      <memberdef kind="variable" id="struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_geometry_instance_s_s_b_o_1a11f43ebd571824166af4d080c989706b" prot="public" static="no" mutable="no">
-        <type>float</type>
-        <definition>float RAYEX_NAMESPACE::GeometryInstanceSSBO::padding1</definition>
+      <memberdef kind="variable" id="struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_geometry_instance_s_s_b_o_1a8477e51fc24b96ab82ad19a44dd97bb3" prot="public" static="no" mutable="no">
+        <type>uint32_t</type>
+        <definition>uint32_t RAYEX_NAMESPACE::GeometryInstanceSSBO::padding1</definition>
         <argsstring></argsstring>
         <name>padding1</name>
-        <initializer>= 0.0F</initializer>
+        <initializer>= 0</initializer>
         <briefdescription>
-<para>Buffer padding (ignore). </para>
         </briefdescription>
         <detaileddescription>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/n30/Repos/rayex/include/base/Geometry.hpp" line="144" column="11" bodyfile="/home/n30/Repos/rayex/include/base/Geometry.hpp" bodystart="144" bodyend="-1"/>
+        <location file="/home/n30/Repos/rayex/include/base/Geometry.hpp" line="109" column="14" bodyfile="/home/n30/Repos/rayex/include/base/Geometry.hpp" bodystart="109" bodyend="-1"/>
       </memberdef>
-      <memberdef kind="variable" id="struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_geometry_instance_s_s_b_o_1a9730ed86d0ee5f518395e2b6c13ea2dc" prot="public" static="no" mutable="no">
-        <type>float</type>
-        <definition>float RAYEX_NAMESPACE::GeometryInstanceSSBO::padding2</definition>
+      <memberdef kind="variable" id="struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_geometry_instance_s_s_b_o_1afb43100a06850eba9f4b7b1a920db914" prot="public" static="no" mutable="no">
+        <type>uint32_t</type>
+        <definition>uint32_t RAYEX_NAMESPACE::GeometryInstanceSSBO::padding2</definition>
         <argsstring></argsstring>
         <name>padding2</name>
-        <initializer>= 0.0F</initializer>
+        <initializer>= 0</initializer>
         <briefdescription>
-<para>Buffer padding (ignore). </para>
         </briefdescription>
         <detaileddescription>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/n30/Repos/rayex/include/base/Geometry.hpp" line="145" column="11" bodyfile="/home/n30/Repos/rayex/include/base/Geometry.hpp" bodystart="145" bodyend="-1"/>
+        <location file="/home/n30/Repos/rayex/include/base/Geometry.hpp" line="110" column="14" bodyfile="/home/n30/Repos/rayex/include/base/Geometry.hpp" bodystart="110" bodyend="-1"/>
       </memberdef>
       </sectiondef>
     <briefdescription>
@@ -100,14 +81,13 @@
     </briefdescription>
     <detaileddescription>
     </detaileddescription>
-    <location file="/home/n30/Repos/rayex/include/base/Geometry.hpp" line="138" column="1" bodyfile="/home/n30/Repos/rayex/include/base/Geometry.hpp" bodystart="137" bodyend="146"/>
+    <location file="/home/n30/Repos/rayex/include/base/Geometry.hpp" line="102" column="3" bodyfile="/home/n30/Repos/rayex/include/base/Geometry.hpp" bodystart="103" bodyend="111"/>
     <listofallmembers>
       <member refid="struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_geometry_instance_s_s_b_o_1a4899744b1f0ee202bbf9ff02af61b4c4" prot="public" virt="non-virtual"><scope>RAYEX_NAMESPACE::GeometryInstanceSSBO</scope><name>geometryIndex</name></member>
-      <member refid="struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_geometry_instance_s_s_b_o_1ac708ce2bf5edf245a01181441632b7ca" prot="public" virt="non-virtual"><scope>RAYEX_NAMESPACE::GeometryInstanceSSBO</scope><name>padding0</name></member>
-      <member refid="struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_geometry_instance_s_s_b_o_1a11f43ebd571824166af4d080c989706b" prot="public" virt="non-virtual"><scope>RAYEX_NAMESPACE::GeometryInstanceSSBO</scope><name>padding1</name></member>
-      <member refid="struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_geometry_instance_s_s_b_o_1a9730ed86d0ee5f518395e2b6c13ea2dc" prot="public" virt="non-virtual"><scope>RAYEX_NAMESPACE::GeometryInstanceSSBO</scope><name>padding2</name></member>
+      <member refid="struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_geometry_instance_s_s_b_o_1ae41542834c59d9c2d63bcde3030bd74c" prot="public" virt="non-virtual"><scope>RAYEX_NAMESPACE::GeometryInstanceSSBO</scope><name>padding0</name></member>
+      <member refid="struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_geometry_instance_s_s_b_o_1a8477e51fc24b96ab82ad19a44dd97bb3" prot="public" virt="non-virtual"><scope>RAYEX_NAMESPACE::GeometryInstanceSSBO</scope><name>padding1</name></member>
+      <member refid="struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_geometry_instance_s_s_b_o_1afb43100a06850eba9f4b7b1a920db914" prot="public" virt="non-virtual"><scope>RAYEX_NAMESPACE::GeometryInstanceSSBO</scope><name>padding2</name></member>
       <member refid="struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_geometry_instance_s_s_b_o_1a549ca0f380012d4039a3c9f1a622632d" prot="public" virt="non-virtual"><scope>RAYEX_NAMESPACE::GeometryInstanceSSBO</scope><name>transform</name></member>
-      <member refid="struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_geometry_instance_s_s_b_o_1a1379cb3dfff56920119ce6a1bbb38205" prot="public" virt="non-virtual"><scope>RAYEX_NAMESPACE::GeometryInstanceSSBO</scope><name>transformIT</name></member>
     </listofallmembers>
   </compounddef>
 </doxygen>

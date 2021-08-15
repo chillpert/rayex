@@ -6,6 +6,7 @@
 
 namespace RAYEX_NAMESPACE
 {
+  /// @note See documentation of rx::Settings for explanations of each value.
   struct PtPushConstants
   {
     glm::vec4 clearColor        = glm::vec4( 1.0F );
@@ -20,6 +21,8 @@ namespace RAYEX_NAMESPACE
     uint32_t nextEventEstimationMinBounces = 0;
   };
 
+  /// Used to pool all features and properties required for path tracing.
+  /// @ingroup API
   struct PathTracingCapabilities
   {
     vk::PhysicalDeviceRayTracingPipelinePropertiesKHR pipelineProperties; ///< The physical device's path tracing capabilities.
@@ -96,6 +99,7 @@ namespace RAYEX_NAMESPACE
     /// @param flags The build flags.
     void buildTlas( const std::vector<std::shared_ptr<GeometryInstance>>& geometryInstances, vk::BuildAccelerationStructureFlagsKHR flags = vk::BuildAccelerationStructureFlagBitsKHR::ePreferFastTrace, bool reuse = false );
 
+    /// Rebuilds the top level acceleration structure without recreating the acceleration structure handles.
     void updateTlas( const std::vector<std::shared_ptr<GeometryInstance>>& geometryInstances, vk::BuildAccelerationStructureFlagsKHR flags = vk::BuildAccelerationStructureFlagBitsKHR::ePreferFastTrace | vk::BuildAccelerationStructureFlagBitsKHR::eAllowUpdate );
 
     /// Creates the storage image which the path tracing shaders will write to.
@@ -116,12 +120,20 @@ namespace RAYEX_NAMESPACE
     /// @param extent The swapchain images' extent.
     void pathTrace( vk::CommandBuffer swapchaincommandBuffer, vk::Image swapchainImage, vk::Extent2D extent );
 
+    /// Used to configure bindings for the top level acceleration structure and the storage image and creates the descriptor set, set layout and pool. 
     void initDescriptorSet( );
 
+    /// Used to write the top level acceleration structure and storage image to the descriptor set.
     void updateDescriptors( );
 
+    /// Used to set up a buffer that can be read by the host for the experimental variance measuring tool. 
+    /// @note Requires the RX_VARIANCE_ESTIMATOR macro to be defined.
     void initVarianceBuffer( float width, float height );
 
+    /// Used to estimate a variance value per pixel.
+    /// @param index An index to the variance buffer storing the value mesaured in the ray generation stage.
+    /// @note Requires the RX_VARIANCE_ESTIMATOR macro to be defined.
+    /// @warning Does not work as intended.
     float getPixelVariance( uint32_t index );
 
   private:

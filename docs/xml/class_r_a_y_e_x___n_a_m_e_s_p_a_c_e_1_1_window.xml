@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
-<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.17">
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
   <compounddef id="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_window" kind="class" language="C++" prot="public">
     <compoundname>RAYEX_NAMESPACE::Window</compoundname>
     <includes refid="_window_8hpp" local="no">Window.hpp</includes>
@@ -436,14 +436,13 @@
 <title>Example</title>
 <para><programlisting filename=".cpp"><codeline><highlight class="comment">//<sp/>This<sp/>example<sp/>requires<sp/>the<sp/>user<sp/>to<sp/>implement<sp/>a<sp/>custom<sp/>window<sp/>class<sp/>that<sp/>inherits<sp/>from<sp/>Window.</highlight><highlight class="normal"></highlight></codeline>
 <codeline><highlight class="normal"></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/>myWindow<sp/>=<sp/>std::make_shared&lt;CustomWindow&gt;(<sp/>width,<sp/>height,<sp/></highlight><highlight class="stringliteral">&quot;Example&quot;</highlight><highlight class="normal">,<sp/>WINDOW_RESIZABLE<sp/>|<sp/>WINDOW_INPUT_FOCUS<sp/>);</highlight></codeline>
-</programlisting></para>
-<para><simplesect kind="see"><para><ref refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_window_1ab3e217cf1525ce607cb4e99d762359c1" kindref="member">update()</ref></para>
+</programlisting> <simplesect kind="see"><para><ref refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_window_1ab3e217cf1525ce607cb4e99d762359c1" kindref="member">update()</ref></para>
 </simplesect>
-<xrefsect id="todo_1_todo000005"><xreftitle>Todo</xreftitle><xrefdescription><para>To avoid the user having to link to SDL themselves requires to write a complete SDL2 wrapper. </para>
+<xrefsect id="todo_1_todo000007"><xreftitle>Todo</xreftitle><xrefdescription><para>To avoid the user having to link to SDL themselves requires to write a complete SDL2 wrapper. </para>
 </xrefdescription></xrefsect></para>
 </sect3>
     </detaileddescription>
-    <location file="/home/n30/Repos/rayex/include/base/Window.hpp" line="24" column="1" bodyfile="/home/n30/Repos/rayex/include/base/Window.hpp" bodystart="23" bodyend="88"/>
+    <location file="/home/n30/Repos/rayex/include/base/Window.hpp" line="23" column="3" bodyfile="/home/n30/Repos/rayex/include/base/Window.hpp" bodystart="24" bodyend="88"/>
     <listofallmembers>
       <member refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_window_1a4ab26c8f1916d145a575d6b11103455f" prot="protected" virt="non-virtual"><scope>RAYEX_NAMESPACE::Window</scope><name>_flags</name></member>
       <member refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_window_1a09ca97a63cd6c046a90213188c128a8d" prot="protected" virt="non-virtual"><scope>RAYEX_NAMESPACE::Window</scope><name>_height</name></member>

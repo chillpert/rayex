@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
-<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.17">
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
   <compounddef id="_acceleration_structure_8hpp" kind="file" language="C++">
     <compoundname>AccelerationStructure.hpp</compoundname>
     <includes refid="stdafx_8hpp" local="yes">pch/stdafx.hpp</includes>
@@ -7,9 +7,6 @@
     <incdepgraph>
       <node id="26">
         <label>list</label>
-      </node>
-      <node id="10">
-        <label>imgui/imgui_impl_sdl.h</label>
       </node>
       <node id="24">
         <label>iomanip</label>
@@ -26,14 +23,8 @@
       <node id="7">
         <label>vkCore/vkCore.hpp</label>
       </node>
-      <node id="9">
-        <label>imgui/imgui.h</label>
-      </node>
       <node id="19">
         <label>charconv</label>
-      </node>
-      <node id="11">
-        <label>imgui/imgui_impl_vulkan.h</label>
       </node>
       <node id="3">
         <label>Core.hpp</label>
@@ -144,17 +135,26 @@
       <node id="32">
         <label>string_view</label>
       </node>
+      <node id="9">
+        <label>ImGui/imgui.h</label>
+      </node>
       <node id="29">
         <label>optional</label>
       </node>
       <node id="36">
         <label>vector</label>
       </node>
+      <node id="10">
+        <label>ImGui/imgui_impl_sdl.h</label>
+      </node>
       <node id="35">
         <label>utility</label>
       </node>
       <node id="18">
         <label>array</label>
+      </node>
+      <node id="11">
+        <label>ImGui/imgui_impl_vulkan.h</label>
       </node>
       <node id="33">
         <label>unordered_map</label>
@@ -235,7 +235,7 @@
 <codeline lineno="12" refid="struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_acceleration_structure_1a67c749f7c097fac7a114c947b88752c0" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>vk::DeviceMemory<sp/><ref refid="struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_acceleration_structure_1a67c749f7c097fac7a114c947b88752c0" kindref="member">memory</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
 <codeline lineno="13" refid="struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_acceleration_structure_1a6add5ce884f6fb46a60a89bfb565fc09" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>vk::Buffer<sp/><ref refid="struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_acceleration_structure_1a6add5ce884f6fb46a60a89bfb565fc09" kindref="member">buffer</ref>;</highlight></codeline>
 <codeline lineno="14"><highlight class="normal"></highlight></codeline>
-<codeline lineno="16"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_acceleration_structure_1a8e189940953cc7155465cf65a2f1d4f4" kindref="member">destroy</ref>(<sp/>);</highlight></codeline>
+<codeline lineno="16" refid="struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_acceleration_structure_1a8e189940953cc7155465cf65a2f1d4f4" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_acceleration_structure_1a8e189940953cc7155465cf65a2f1d4f4" kindref="member">destroy</ref>(<sp/>);</highlight></codeline>
 <codeline lineno="17"><highlight class="normal"><sp/><sp/>};</highlight></codeline>
 <codeline lineno="18"><highlight class="normal"></highlight></codeline>
 <codeline lineno="21" refid="struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_tlas" refkind="compound"><highlight class="normal"><sp/><sp/></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal"><ref refid="struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_tlas" kindref="compound">Tlas</ref></highlight></codeline>
@@ -253,7 +253,7 @@
 <codeline lineno="35" refid="struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_blas_1a612e8ebe1c04fd44ab8e9c22fc7c9787" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>std::vector&lt;vk::AccelerationStructureBuildRangeInfoKHR&gt;<sp/><ref refid="struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_blas_1a612e8ebe1c04fd44ab8e9c22fc7c9787" kindref="member">asBuildRangeInfo</ref>;<sp/></highlight></codeline>
 <codeline lineno="36"><highlight class="normal"><sp/><sp/>};</highlight></codeline>
 <codeline lineno="37"><highlight class="normal"></highlight></codeline>
-<codeline lineno="41"><highlight class="normal"><sp/><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/><ref refid="namespace_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1a3544ae5f32fe827a6e65b423d680c963" kindref="member">initAccelerationStructure</ref>(<sp/>vk::AccelerationStructureCreateInfoKHR&amp;<sp/>asCreateInfo<sp/>)<sp/>-&gt;<sp/><ref refid="struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_acceleration_structure" kindref="compound">AccelerationStructure</ref>;</highlight></codeline>
+<codeline lineno="41" refid="namespace_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1a3544ae5f32fe827a6e65b423d680c963" refkind="member"><highlight class="normal"><sp/><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/><ref refid="namespace_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1a3544ae5f32fe827a6e65b423d680c963" kindref="member">initAccelerationStructure</ref>(<sp/>vk::AccelerationStructureCreateInfoKHR&amp;<sp/>asCreateInfo<sp/>)<sp/>-&gt;<sp/><ref refid="struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_acceleration_structure" kindref="compound">AccelerationStructure</ref>;</highlight></codeline>
 <codeline lineno="42"><highlight class="normal"></highlight></codeline>
 <codeline lineno="43"><highlight class="normal"><sp/><sp/></highlight><highlight class="comment">/*</highlight></codeline>
 <codeline lineno="46"><highlight class="comment"><sp/><sp/>struct<sp/>BlasInstance</highlight></codeline>

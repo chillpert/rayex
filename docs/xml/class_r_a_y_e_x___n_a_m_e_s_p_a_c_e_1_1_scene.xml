@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
-<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.17">
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
   <compounddef id="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_scene" kind="class" language="C++" prot="public">
     <compoundname>RAYEX_NAMESPACE::Scene</compoundname>
     <includes refid="_scene_8hpp" local="no">Scene.hpp</includes>
@@ -43,7 +43,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/n30/Repos/rayex/include/base/Scene.hpp" line="120" column="25" bodyfile="/home/n30/Repos/rayex/include/base/Scene.hpp" bodystart="120" bodyend="-1"/>
+        <location file="/home/n30/Repos/rayex/include/base/Scene.hpp" line="126" column="25" bodyfile="/home/n30/Repos/rayex/include/base/Scene.hpp" bodystart="126" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_scene_1aec46b955fdc1163d3e9916b93ab8091e" prot="private" static="no" mutable="no">
         <type>vkCore::Descriptors</type>
@@ -56,7 +56,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/n30/Repos/rayex/include/base/Scene.hpp" line="121" column="25" bodyfile="/home/n30/Repos/rayex/include/base/Scene.hpp" bodystart="121" bodyend="-1"/>
+        <location file="/home/n30/Repos/rayex/include/base/Scene.hpp" line="127" column="25" bodyfile="/home/n30/Repos/rayex/include/base/Scene.hpp" bodystart="127" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_scene_1af8458a06dcb03bb0a5b06e5205b26adb" prot="private" static="no" mutable="no">
         <type>std::vector&lt; vk::DescriptorSet &gt;</type>
@@ -69,7 +69,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/n30/Repos/rayex/include/base/Scene.hpp" line="123" column="17" bodyfile="/home/n30/Repos/rayex/include/base/Scene.hpp" bodystart="123" bodyend="-1"/>
+        <location file="/home/n30/Repos/rayex/include/base/Scene.hpp" line="129" column="17" bodyfile="/home/n30/Repos/rayex/include/base/Scene.hpp" bodystart="129" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_scene_1a81695ad3637f188d7a87d77bd95544f7" prot="private" static="no" mutable="no">
         <type>std::vector&lt; vk::DescriptorSet &gt;</type>
@@ -82,7 +82,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/n30/Repos/rayex/include/base/Scene.hpp" line="124" column="17" bodyfile="/home/n30/Repos/rayex/include/base/Scene.hpp" bodystart="124" bodyend="-1"/>
+        <location file="/home/n30/Repos/rayex/include/base/Scene.hpp" line="130" column="17" bodyfile="/home/n30/Repos/rayex/include/base/Scene.hpp" bodystart="130" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_scene_1a85be43437f96020ce4741cd1b36a8e99" prot="private" static="no" mutable="no">
         <type>std::vector&lt; vk::DescriptorSet &gt;</type>
@@ -95,7 +95,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/n30/Repos/rayex/include/base/Scene.hpp" line="125" column="17" bodyfile="/home/n30/Repos/rayex/include/base/Scene.hpp" bodystart="125" bodyend="-1"/>
+        <location file="/home/n30/Repos/rayex/include/base/Scene.hpp" line="131" column="17" bodyfile="/home/n30/Repos/rayex/include/base/Scene.hpp" bodystart="131" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_scene_1a223301d76b8bb1ef4e46951558704ec5" prot="private" static="no" mutable="no">
         <type>vkCore::Cubemap</type>
@@ -108,7 +108,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/n30/Repos/rayex/include/base/Scene.hpp" line="127" column="21" bodyfile="/home/n30/Repos/rayex/include/base/Scene.hpp" bodystart="127" bodyend="-1"/>
+        <location file="/home/n30/Repos/rayex/include/base/Scene.hpp" line="133" column="21" bodyfile="/home/n30/Repos/rayex/include/base/Scene.hpp" bodystart="133" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_scene_1a7d99080348f6951af20415b49cd43c56" prot="private" static="no" mutable="no">
         <type>vk::UniqueSampler</type>
@@ -121,7 +121,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/n30/Repos/rayex/include/base/Scene.hpp" line="128" column="23" bodyfile="/home/n30/Repos/rayex/include/base/Scene.hpp" bodystart="128" bodyend="-1"/>
+        <location file="/home/n30/Repos/rayex/include/base/Scene.hpp" line="134" column="23" bodyfile="/home/n30/Repos/rayex/include/base/Scene.hpp" bodystart="134" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_scene_1a1d3a2526bed679745f9d47ab418efebe" prot="private" static="no" mutable="no">
         <type>std::vector&lt; vkCore::StorageBuffer&lt; uint32_t &gt; &gt;</type>
@@ -134,7 +134,20 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/n30/Repos/rayex/include/base/Scene.hpp" line="130" column="17" bodyfile="/home/n30/Repos/rayex/include/base/Scene.hpp" bodystart="130" bodyend="-1"/>
+        <location file="/home/n30/Repos/rayex/include/base/Scene.hpp" line="136" column="17" bodyfile="/home/n30/Repos/rayex/include/base/Scene.hpp" bodystart="136" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_scene_1a674d0566906b5e0697cdf20cdff3eecb" prot="private" static="no" mutable="no">
+        <type>std::vector&lt; vkCore::StorageBuffer&lt; uint32_t &gt; &gt;</type>
+        <definition>std::vector&lt;vkCore::StorageBuffer&lt;uint32_t&gt; &gt; RAYEX_NAMESPACE::Scene::_materialIndexBuffers</definition>
+        <argsstring></argsstring>
+        <name>_materialIndexBuffers</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/n30/Repos/rayex/include/base/Scene.hpp" line="137" column="17" bodyfile="/home/n30/Repos/rayex/include/base/Scene.hpp" bodystart="137" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_scene_1a3f4d0f5063bac8be9037b9a40395f1f5" prot="private" static="no" mutable="no">
         <type>std::vector&lt; vkCore::StorageBuffer&lt; <ref refid="struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_vertex" kindref="compound">Vertex</ref> &gt; &gt;</type>
@@ -147,33 +160,20 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/n30/Repos/rayex/include/base/Scene.hpp" line="131" column="17" bodyfile="/home/n30/Repos/rayex/include/base/Scene.hpp" bodystart="131" bodyend="-1"/>
+        <location file="/home/n30/Repos/rayex/include/base/Scene.hpp" line="138" column="17" bodyfile="/home/n30/Repos/rayex/include/base/Scene.hpp" bodystart="138" bodyend="-1"/>
       </memberdef>
-      <memberdef kind="variable" id="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_scene_1a68752f4c4d43da6941d155f4479e06ce" prot="private" static="no" mutable="no">
-        <type>std::vector&lt; vkCore::StorageBuffer&lt; <ref refid="struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_mesh_s_s_b_o" kindref="compound">MeshSSBO</ref> &gt; &gt;</type>
-        <definition>std::vector&lt;vkCore::StorageBuffer&lt;MeshSSBO&gt; &gt; RAYEX_NAMESPACE::Scene::_meshBuffers</definition>
+      <memberdef kind="variable" id="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_scene_1ab2c68404d2b05b1f1a0b4dd1bf00d926" prot="private" static="no" mutable="no">
+        <type>vkCore::StorageBuffer&lt; <ref refid="struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_material_s_s_b_o" kindref="compound">MaterialSSBO</ref> &gt;</type>
+        <definition>vkCore::StorageBuffer&lt;MaterialSSBO&gt; RAYEX_NAMESPACE::Scene::_materialBuffers</definition>
         <argsstring></argsstring>
-        <name>_meshBuffers</name>
+        <name>_materialBuffers</name>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/n30/Repos/rayex/include/base/Scene.hpp" line="132" column="17" bodyfile="/home/n30/Repos/rayex/include/base/Scene.hpp" bodystart="132" bodyend="-1"/>
-      </memberdef>
-      <memberdef kind="variable" id="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_scene_1a0605a348cfe2b7f4cc11b7f372eecb9c" prot="private" static="no" mutable="no">
-        <type>std::vector&lt; std::shared_ptr&lt; vkCore::Texture &gt; &gt;</type>
-        <definition>std::vector&lt;std::shared_ptr&lt;vkCore::Texture&gt; &gt; RAYEX_NAMESPACE::Scene::_textures</definition>
-        <argsstring></argsstring>
-        <name>_textures</name>
-        <briefdescription>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="/home/n30/Repos/rayex/include/base/Scene.hpp" line="133" column="17" bodyfile="/home/n30/Repos/rayex/include/base/Scene.hpp" bodystart="133" bodyend="-1"/>
+        <location file="/home/n30/Repos/rayex/include/base/Scene.hpp" line="139" column="27" bodyfile="/home/n30/Repos/rayex/include/base/Scene.hpp" bodystart="139" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_scene_1a1dfffd741e70cd4a0b2c8ef7978761ba" prot="private" static="no" mutable="no">
         <type>vkCore::StorageBuffer&lt; <ref refid="struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_geometry_instance_s_s_b_o" kindref="compound">GeometryInstanceSSBO</ref> &gt;</type>
@@ -186,7 +186,20 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/n30/Repos/rayex/include/base/Scene.hpp" line="134" column="27" bodyfile="/home/n30/Repos/rayex/include/base/Scene.hpp" bodystart="134" bodyend="-1"/>
+        <location file="/home/n30/Repos/rayex/include/base/Scene.hpp" line="140" column="27" bodyfile="/home/n30/Repos/rayex/include/base/Scene.hpp" bodystart="140" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_scene_1a0605a348cfe2b7f4cc11b7f372eecb9c" prot="private" static="no" mutable="no">
+        <type>std::vector&lt; std::shared_ptr&lt; vkCore::Texture &gt; &gt;</type>
+        <definition>std::vector&lt;std::shared_ptr&lt;vkCore::Texture&gt; &gt; RAYEX_NAMESPACE::Scene::_textures</definition>
+        <argsstring></argsstring>
+        <name>_textures</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/n30/Repos/rayex/include/base/Scene.hpp" line="141" column="17" bodyfile="/home/n30/Repos/rayex/include/base/Scene.hpp" bodystart="141" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_scene_1a3d97a80d04063014582a8408174c4984" prot="private" static="no" mutable="no">
         <type>vkCore::UniformBuffer&lt; <ref refid="struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_camera_ubo" kindref="compound">CameraUbo</ref> &gt;</type>
@@ -199,7 +212,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/n30/Repos/rayex/include/base/Scene.hpp" line="136" column="27" bodyfile="/home/n30/Repos/rayex/include/base/Scene.hpp" bodystart="136" bodyend="-1"/>
+        <location file="/home/n30/Repos/rayex/include/base/Scene.hpp" line="143" column="27" bodyfile="/home/n30/Repos/rayex/include/base/Scene.hpp" bodystart="143" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_scene_1a4544c0ae3ef5de4e6310a1118caad95e" prot="private" static="no" mutable="no">
         <type>std::vector&lt; std::shared_ptr&lt; <ref refid="struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_geometry" kindref="compound">Geometry</ref> &gt; &gt;</type>
@@ -212,7 +225,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/n30/Repos/rayex/include/base/Scene.hpp" line="138" column="17" bodyfile="/home/n30/Repos/rayex/include/base/Scene.hpp" bodystart="138" bodyend="-1"/>
+        <location file="/home/n30/Repos/rayex/include/base/Scene.hpp" line="145" column="17" bodyfile="/home/n30/Repos/rayex/include/base/Scene.hpp" bodystart="145" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_scene_1a4f8f10cfbcf836e854c1cf47886730e2" prot="private" static="no" mutable="no">
         <type>std::vector&lt; std::shared_ptr&lt; <ref refid="struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_geometry_instance" kindref="compound">GeometryInstance</ref> &gt; &gt;</type>
@@ -225,20 +238,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/n30/Repos/rayex/include/base/Scene.hpp" line="139" column="17" bodyfile="/home/n30/Repos/rayex/include/base/Scene.hpp" bodystart="139" bodyend="-1"/>
-      </memberdef>
-      <memberdef kind="variable" id="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_scene_1a32c9565b4900d5d18eb84069e568c1bd" prot="private" static="no" mutable="no">
-        <type>std::vector&lt; std::shared_ptr&lt; <ref refid="struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_material" kindref="compound">Material</ref> &gt; &gt;</type>
-        <definition>std::vector&lt;std::shared_ptr&lt;Material&gt; &gt; RAYEX_NAMESPACE::Scene::_materials</definition>
-        <argsstring></argsstring>
-        <name>_materials</name>
-        <briefdescription>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="/home/n30/Repos/rayex/include/base/Scene.hpp" line="140" column="17" bodyfile="/home/n30/Repos/rayex/include/base/Scene.hpp" bodystart="140" bodyend="-1"/>
+        <location file="/home/n30/Repos/rayex/include/base/Scene.hpp" line="146" column="17" bodyfile="/home/n30/Repos/rayex/include/base/Scene.hpp" bodystart="146" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_scene_1af8e0e122f41441aa6e2050de8663d4e7" prot="private" static="no" mutable="no">
         <type>std::string_view</type>
@@ -251,7 +251,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/n30/Repos/rayex/include/base/Scene.hpp" line="142" column="22" bodyfile="/home/n30/Repos/rayex/include/base/Scene.hpp" bodystart="142" bodyend="-1"/>
+        <location file="/home/n30/Repos/rayex/include/base/Scene.hpp" line="148" column="22" bodyfile="/home/n30/Repos/rayex/include/base/Scene.hpp" bodystart="148" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_scene_1a21377f5d7f6ede0f68e72be717684ec2" prot="private" static="no" mutable="no">
         <type>bool</type>
@@ -265,7 +265,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/n30/Repos/rayex/include/base/Scene.hpp" line="143" column="10" bodyfile="/home/n30/Repos/rayex/include/base/Scene.hpp" bodystart="143" bodyend="-1"/>
+        <location file="/home/n30/Repos/rayex/include/base/Scene.hpp" line="149" column="10" bodyfile="/home/n30/Repos/rayex/include/base/Scene.hpp" bodystart="149" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_scene_1a17726aecb6a81e2f22bd15eee6ab2ff5" prot="private" static="no" mutable="no">
         <type>bool</type>
@@ -279,7 +279,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/n30/Repos/rayex/include/base/Scene.hpp" line="144" column="10" bodyfile="/home/n30/Repos/rayex/include/base/Scene.hpp" bodystart="144" bodyend="-1"/>
+        <location file="/home/n30/Repos/rayex/include/base/Scene.hpp" line="150" column="10" bodyfile="/home/n30/Repos/rayex/include/base/Scene.hpp" bodystart="150" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_scene_1a3bda047b3d5ac4fd27f7f15c4e047736" prot="private" static="no" mutable="no">
         <type>bool</type>
@@ -293,7 +293,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/n30/Repos/rayex/include/base/Scene.hpp" line="146" column="10" bodyfile="/home/n30/Repos/rayex/include/base/Scene.hpp" bodystart="146" bodyend="-1"/>
+        <location file="/home/n30/Repos/rayex/include/base/Scene.hpp" line="152" column="10" bodyfile="/home/n30/Repos/rayex/include/base/Scene.hpp" bodystart="152" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_scene_1ac2800a4e3508bcce5a7d25e87e05f571" prot="private" static="no" mutable="no">
         <type>bool</type>
@@ -307,7 +307,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/n30/Repos/rayex/include/base/Scene.hpp" line="147" column="10" bodyfile="/home/n30/Repos/rayex/include/base/Scene.hpp" bodystart="147" bodyend="-1"/>
+        <location file="/home/n30/Repos/rayex/include/base/Scene.hpp" line="153" column="10" bodyfile="/home/n30/Repos/rayex/include/base/Scene.hpp" bodystart="153" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_scene_1a4336f26ec64676aecacbd543c482ee0e" prot="private" static="no" mutable="no">
         <type>bool</type>
@@ -321,7 +321,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/n30/Repos/rayex/include/base/Scene.hpp" line="148" column="10" bodyfile="/home/n30/Repos/rayex/include/base/Scene.hpp" bodystart="148" bodyend="-1"/>
+        <location file="/home/n30/Repos/rayex/include/base/Scene.hpp" line="154" column="10" bodyfile="/home/n30/Repos/rayex/include/base/Scene.hpp" bodystart="154" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_scene_1aaf50a0a8b28eae93f42123039357f362" prot="private" static="no" mutable="no">
         <type>bool</type>
@@ -335,7 +335,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/n30/Repos/rayex/include/base/Scene.hpp" line="149" column="10" bodyfile="/home/n30/Repos/rayex/include/base/Scene.hpp" bodystart="149" bodyend="-1"/>
+        <location file="/home/n30/Repos/rayex/include/base/Scene.hpp" line="155" column="10" bodyfile="/home/n30/Repos/rayex/include/base/Scene.hpp" bodystart="155" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_scene_1a1d129fa78ea48f67ec3cf270b8b1b393" prot="private" static="no" mutable="no">
         <type>std::unordered_set&lt; std::shared_ptr&lt; <ref refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_camera" kindref="compound">Camera</ref> &gt; &gt;</type>
@@ -349,7 +349,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/n30/Repos/rayex/include/base/Scene.hpp" line="151" column="24" bodyfile="/home/n30/Repos/rayex/include/base/Scene.hpp" bodystart="151" bodyend="-1"/>
+        <location file="/home/n30/Repos/rayex/include/base/Scene.hpp" line="157" column="24" bodyfile="/home/n30/Repos/rayex/include/base/Scene.hpp" bodystart="157" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_scene_1a37d63b7f9de61d7bf866e0e269898833" prot="private" static="no" mutable="no">
         <type>std::shared_ptr&lt; <ref refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_camera" kindref="compound">Camera</ref> &gt;</type>
@@ -363,7 +363,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/n30/Repos/rayex/include/base/Scene.hpp" line="152" column="21" bodyfile="/home/n30/Repos/rayex/include/base/Scene.hpp" bodystart="152" bodyend="-1"/>
+        <location file="/home/n30/Repos/rayex/include/base/Scene.hpp" line="158" column="21" bodyfile="/home/n30/Repos/rayex/include/base/Scene.hpp" bodystart="158" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_scene_1a0fbb2c7fd1ede86c0dab9473b729bf9e" prot="private" static="no" mutable="no">
         <type><ref refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_settings" kindref="compound">Settings</ref> *</type>
@@ -378,7 +378,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/n30/Repos/rayex/include/base/Scene.hpp" line="154" column="14" bodyfile="/home/n30/Repos/rayex/include/base/Scene.hpp" bodystart="154" bodyend="-1"/>
+        <location file="/home/n30/Repos/rayex/include/base/Scene.hpp" line="160" column="14" bodyfile="/home/n30/Repos/rayex/include/base/Scene.hpp" bodystart="160" bodyend="-1"/>
       </memberdef>
       </sectiondef>
       <sectiondef kind="public-func">
@@ -397,6 +397,23 @@
         <inbodydescription>
         </inbodydescription>
         <location file="/home/n30/Repos/rayex/include/base/Scene.hpp" line="24" column="10"/>
+      </memberdef>
+      <memberdef kind="function" id="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_scene_1ac73bc3b1a6b7844f94d14af6682ba5c0" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>auto</type>
+        <definition>auto RAYEX_NAMESPACE::Scene::getGeometryInstance</definition>
+        <argsstring>(size_t index) const -&gt; std::shared_ptr&lt; GeometryInstance &gt;</argsstring>
+        <name>getGeometryInstance</name>
+        <param>
+          <type>size_t</type>
+          <declname>index</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/n30/Repos/rayex/include/base/Scene.hpp" line="26" column="10"/>
       </memberdef>
       <memberdef kind="function" id="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_scene_1a4ca1e82f10c27e433eff652710e8e700" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -426,7 +443,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/n30/Repos/rayex/include/base/Scene.hpp" line="29" column="10"/>
+        <location file="/home/n30/Repos/rayex/include/base/Scene.hpp" line="31" column="10"/>
       </memberdef>
       <memberdef kind="function" id="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_scene_1a86b0c09d5294dabeeb550b84ef4ac0c4" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -456,7 +473,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/n30/Repos/rayex/include/base/Scene.hpp" line="34" column="10"/>
+        <location file="/home/n30/Repos/rayex/include/base/Scene.hpp" line="36" column="10"/>
       </memberdef>
       <memberdef kind="function" id="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_scene_1a11fc56eb116fe3301a59c5c594ee2bea" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -484,7 +501,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/n30/Repos/rayex/include/base/Scene.hpp" line="40" column="10"/>
+        <location file="/home/n30/Repos/rayex/include/base/Scene.hpp" line="42" column="10"/>
       </memberdef>
       <memberdef kind="function" id="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_scene_1a42dc12d8a200591532dc336f72a4847d" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -499,7 +516,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/n30/Repos/rayex/include/base/Scene.hpp" line="45" column="10"/>
+        <location file="/home/n30/Repos/rayex/include/base/Scene.hpp" line="47" column="10"/>
       </memberdef>
       <memberdef kind="function" id="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_scene_1a838076f7347dd4788ee1aaa8ffd28374" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -513,7 +530,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/n30/Repos/rayex/include/base/Scene.hpp" line="48" column="10"/>
+        <location file="/home/n30/Repos/rayex/include/base/Scene.hpp" line="50" column="10"/>
       </memberdef>
       <memberdef kind="function" id="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_scene_1a53c0ef48ca0c5e0d2336869a8e75085b" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -541,7 +558,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/n30/Repos/rayex/include/base/Scene.hpp" line="54" column="10"/>
+        <location file="/home/n30/Repos/rayex/include/base/Scene.hpp" line="56" column="10"/>
       </memberdef>
       <memberdef kind="function" id="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_scene_1ab191100612c6087204b476aadfd8b6db" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -569,7 +586,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/n30/Repos/rayex/include/base/Scene.hpp" line="60" column="10"/>
+        <location file="/home/n30/Repos/rayex/include/base/Scene.hpp" line="62" column="10"/>
       </memberdef>
       <memberdef kind="function" id="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_scene_1a8004b0c0dfb783070ea82af111378718" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -597,7 +614,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/n30/Repos/rayex/include/base/Scene.hpp" line="64" column="10"/>
+        <location file="/home/n30/Repos/rayex/include/base/Scene.hpp" line="66" column="10"/>
       </memberdef>
       <memberdef kind="function" id="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_scene_1adc0e77e152173899b4edf08fbe62ca18" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -625,7 +642,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/n30/Repos/rayex/include/base/Scene.hpp" line="68" column="10"/>
+        <location file="/home/n30/Repos/rayex/include/base/Scene.hpp" line="70" column="10"/>
       </memberdef>
       <memberdef kind="function" id="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_scene_1ae68fc066eddb4ff7ee2a16c26b06f5ba" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -639,7 +656,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/n30/Repos/rayex/include/base/Scene.hpp" line="71" column="10"/>
+        <location file="/home/n30/Repos/rayex/include/base/Scene.hpp" line="73" column="10"/>
       </memberdef>
       <memberdef kind="function" id="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_scene_1ac89ff3616b43e6c2b7e6a23995784a53" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -653,7 +670,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/n30/Repos/rayex/include/base/Scene.hpp" line="74" column="10"/>
+        <location file="/home/n30/Repos/rayex/include/base/Scene.hpp" line="76" column="10"/>
       </memberdef>
       <memberdef kind="function" id="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_scene_1a344905cab1fbaf5a5585a6df25635bbc" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
         <type>auto</type>
@@ -681,7 +698,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/n30/Repos/rayex/include/base/Scene.hpp" line="78" column="10"/>
+        <location file="/home/n30/Repos/rayex/include/base/Scene.hpp" line="80" column="10"/>
       </memberdef>
       <memberdef kind="function" id="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_scene_1a87356635d94226e8c69857c0b48d3ad1" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -698,7 +715,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/n30/Repos/rayex/include/base/Scene.hpp" line="80" column="10"/>
+        <location file="/home/n30/Repos/rayex/include/base/Scene.hpp" line="82" column="10"/>
       </memberdef>
       <memberdef kind="function" id="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_scene_1a76b628140f11ee0ad272ac1da0e6c0ff" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -711,7 +728,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/n30/Repos/rayex/include/base/Scene.hpp" line="82" column="10"/>
+        <location file="/home/n30/Repos/rayex/include/base/Scene.hpp" line="84" column="10"/>
       </memberdef>
       <memberdef kind="function" id="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_scene_1a7f8086b8e638a0ad2089255fa76d127e" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -728,7 +745,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/n30/Repos/rayex/include/base/Scene.hpp" line="84" column="10"/>
+        <location file="/home/n30/Repos/rayex/include/base/Scene.hpp" line="86" column="10"/>
       </memberdef>
       <memberdef kind="function" id="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_scene_1aa3d8bb2201e4529f67dd8138d7f0e538" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -756,7 +773,33 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/n30/Repos/rayex/include/base/Scene.hpp" line="88" column="10"/>
+        <location file="/home/n30/Repos/rayex/include/base/Scene.hpp" line="90" column="10"/>
+      </memberdef>
+      <memberdef kind="function" id="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_scene_1af74024223023f08ef0a75bc8dafaa2c9" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void RAYEX_NAMESPACE::Scene::setCamera</definition>
+        <argsstring>(int width, int height, const glm::vec3 &amp;position={ 0.0F, 0.0F, 3.0F })</argsstring>
+        <name>setCamera</name>
+        <param>
+          <type>int</type>
+          <declname>width</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>height</declname>
+        </param>
+        <param>
+          <type>const glm::vec3 &amp;</type>
+          <declname>position</declname>
+          <defval>{ 0.0F, 0.0F, 3.0F }</defval>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/n30/Repos/rayex/include/base/Scene.hpp" line="92" column="10"/>
       </memberdef>
       <memberdef kind="function" id="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_scene_1a93bff45acd035aa5c72445bca9604075" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
         <type>auto</type>
@@ -772,7 +815,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/n30/Repos/rayex/include/base/Scene.hpp" line="91" column="10" bodyfile="/home/n30/Repos/rayex/include/base/Scene.hpp" bodystart="91" bodyend="91"/>
+        <location file="/home/n30/Repos/rayex/include/base/Scene.hpp" line="95" column="10" bodyfile="/home/n30/Repos/rayex/include/base/Scene.hpp" bodystart="95" bodyend="95"/>
       </memberdef>
       </sectiondef>
       <sectiondef kind="private-func">
@@ -787,7 +830,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/n30/Repos/rayex/include/base/Scene.hpp" line="94" column="10"/>
+        <location file="/home/n30/Repos/rayex/include/base/Scene.hpp" line="98" column="10"/>
       </memberdef>
       <memberdef kind="function" id="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_scene_1a17c3fd2c879bb52872693eb92471ee4f" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -800,7 +843,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/n30/Repos/rayex/include/base/Scene.hpp" line="96" column="10"/>
+        <location file="/home/n30/Repos/rayex/include/base/Scene.hpp" line="100" column="10"/>
       </memberdef>
       <memberdef kind="function" id="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_scene_1ae5e712303a761cf45f407a928ed50eb9" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -813,7 +856,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/n30/Repos/rayex/include/base/Scene.hpp" line="98" column="10"/>
+        <location file="/home/n30/Repos/rayex/include/base/Scene.hpp" line="102" column="10"/>
       </memberdef>
       <memberdef kind="function" id="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_scene_1a7bfc02c5eb5a97ac6e8d03c5b90b12f3" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -826,7 +869,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/n30/Repos/rayex/include/base/Scene.hpp" line="100" column="10"/>
+        <location file="/home/n30/Repos/rayex/include/base/Scene.hpp" line="104" column="10"/>
       </memberdef>
       <memberdef kind="function" id="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_scene_1a84d228890a7d8bc1832a226eecd59774" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -843,7 +886,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/n30/Repos/rayex/include/base/Scene.hpp" line="102" column="10"/>
+        <location file="/home/n30/Repos/rayex/include/base/Scene.hpp" line="106" column="10"/>
       </memberdef>
       <memberdef kind="function" id="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_scene_1ac4e74346314a14c673590ddbbde1ff9f" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -856,7 +899,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/n30/Repos/rayex/include/base/Scene.hpp" line="104" column="10"/>
+        <location file="/home/n30/Repos/rayex/include/base/Scene.hpp" line="108" column="10"/>
       </memberdef>
       <memberdef kind="function" id="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_scene_1a8c84766caa12d2de5a1fe7907b6d39ad" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -869,24 +912,20 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/n30/Repos/rayex/include/base/Scene.hpp" line="106" column="10"/>
+        <location file="/home/n30/Repos/rayex/include/base/Scene.hpp" line="110" column="10"/>
       </memberdef>
-      <memberdef kind="function" id="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_scene_1a67e47ee287834e0e89e1e890d4275364" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+      <memberdef kind="function" id="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_scene_1aa6b949b1359b3f98f8664a3752b100f6" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
         <definition>void RAYEX_NAMESPACE::Scene::uploadGeometryInstances</definition>
-        <argsstring>(uint32_t imageIndex)</argsstring>
+        <argsstring>()</argsstring>
         <name>uploadGeometryInstances</name>
-        <param>
-          <type>uint32_t</type>
-          <declname>imageIndex</declname>
-        </param>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/n30/Repos/rayex/include/base/Scene.hpp" line="108" column="10"/>
+        <location file="/home/n30/Repos/rayex/include/base/Scene.hpp" line="112" column="10"/>
       </memberdef>
       <memberdef kind="function" id="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_scene_1af772173d6a1037fd6fb31a45cb8324d8" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -899,7 +938,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/n30/Repos/rayex/include/base/Scene.hpp" line="110" column="10"/>
+        <location file="/home/n30/Repos/rayex/include/base/Scene.hpp" line="114" column="10"/>
       </memberdef>
       <memberdef kind="function" id="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_scene_1ad591c4c7531990877fcd8040d076f07c" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -912,7 +951,20 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/n30/Repos/rayex/include/base/Scene.hpp" line="112" column="10"/>
+        <location file="/home/n30/Repos/rayex/include/base/Scene.hpp" line="116" column="10"/>
+      </memberdef>
+      <memberdef kind="function" id="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_scene_1a252bced1af530d2589e79f71423de08e" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void RAYEX_NAMESPACE::Scene::translateDummy</definition>
+        <argsstring>()</argsstring>
+        <name>translateDummy</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/n30/Repos/rayex/include/base/Scene.hpp" line="118" column="10"/>
       </memberdef>
       <memberdef kind="function" id="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_scene_1ae6f484f4bd331894118ce85b6bbdb65e" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -925,7 +977,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/n30/Repos/rayex/include/base/Scene.hpp" line="114" column="10"/>
+        <location file="/home/n30/Repos/rayex/include/base/Scene.hpp" line="120" column="10"/>
       </memberdef>
       <memberdef kind="function" id="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_scene_1aff42c582b7197d94565a9bf7562c02a5" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -938,7 +990,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/n30/Repos/rayex/include/base/Scene.hpp" line="116" column="10"/>
+        <location file="/home/n30/Repos/rayex/include/base/Scene.hpp" line="122" column="10"/>
       </memberdef>
       <memberdef kind="function" id="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_scene_1ae9f11ab21eea7a1850f7ad514e95a12a" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -959,17 +1011,17 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/n30/Repos/rayex/include/base/Scene.hpp" line="118" column="10"/>
+        <location file="/home/n30/Repos/rayex/include/base/Scene.hpp" line="124" column="10"/>
       </memberdef>
       </sectiondef>
     <briefdescription>
 <para>Stores all geoemtry, geometry instances and light sources. </para>
     </briefdescription>
     <detaileddescription>
-<para>Provides functions to change said data. <xrefsect id="todo_1_todo000002"><xreftitle>Todo</xreftitle><xrefdescription><para><ref refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_scene_1a8004b0c0dfb783070ea82af111378718" kindref="member">removeGeometry()</ref> </para>
+<para>Provides functions to change said data. <xrefsect id="todo_1_todo000004"><xreftitle>Todo</xreftitle><xrefdescription><para><ref refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_scene_1a8004b0c0dfb783070ea82af111378718" kindref="member">removeGeometry()</ref></para>
 </xrefdescription></xrefsect></para>
     </detaileddescription>
-    <location file="/home/n30/Repos/rayex/include/base/Scene.hpp" line="18" column="1" bodyfile="/home/n30/Repos/rayex/include/base/Scene.hpp" bodystart="17" bodyend="155"/>
+    <location file="/home/n30/Repos/rayex/include/base/Scene.hpp" line="17" column="3" bodyfile="/home/n30/Repos/rayex/include/base/Scene.hpp" bodystart="18" bodyend="161"/>
     <listofallmembers>
       <member refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_scene_1a1d129fa78ea48f67ec3cf270b8b1b393" prot="private" virt="non-virtual"><scope>RAYEX_NAMESPACE::Scene</scope><name>_cameras</name></member>
       <member refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_scene_1a3d97a80d04063014582a8408174c4984" prot="private" virt="non-virtual"><scope>RAYEX_NAMESPACE::Scene</scope><name>_cameraUniformBuffer</name></member>
@@ -984,8 +1036,8 @@
       <member refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_scene_1a1dfffd741e70cd4a0b2c8ef7978761ba" prot="private" virt="non-virtual"><scope>RAYEX_NAMESPACE::Scene</scope><name>_geometryInstancesBuffer</name></member>
       <member refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_scene_1a7d99080348f6951af20415b49cd43c56" prot="private" virt="non-virtual"><scope>RAYEX_NAMESPACE::Scene</scope><name>_immutableSampler</name></member>
       <member refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_scene_1a1d3a2526bed679745f9d47ab418efebe" prot="private" virt="non-virtual"><scope>RAYEX_NAMESPACE::Scene</scope><name>_indexBuffers</name></member>
-      <member refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_scene_1a32c9565b4900d5d18eb84069e568c1bd" prot="private" virt="non-virtual"><scope>RAYEX_NAMESPACE::Scene</scope><name>_materials</name></member>
-      <member refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_scene_1a68752f4c4d43da6941d155f4479e06ce" prot="private" virt="non-virtual"><scope>RAYEX_NAMESPACE::Scene</scope><name>_meshBuffers</name></member>
+      <member refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_scene_1ab2c68404d2b05b1f1a0b4dd1bf00d926" prot="private" virt="non-virtual"><scope>RAYEX_NAMESPACE::Scene</scope><name>_materialBuffers</name></member>
+      <member refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_scene_1a674d0566906b5e0697cdf20cdff3eecb" prot="private" virt="non-virtual"><scope>RAYEX_NAMESPACE::Scene</scope><name>_materialIndexBuffers</name></member>
       <member refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_scene_1a17726aecb6a81e2f22bd15eee6ab2ff5" prot="private" virt="non-virtual"><scope>RAYEX_NAMESPACE::Scene</scope><name>_removeEnvironmentMap</name></member>
       <member refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_scene_1a804b7e6417ea6df24c785169f40453db" prot="private" virt="non-virtual"><scope>RAYEX_NAMESPACE::Scene</scope><name>_sceneDescriptors</name></member>
       <member refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_scene_1af8458a06dcb03bb0a5b06e5205b26adb" prot="private" virt="non-virtual"><scope>RAYEX_NAMESPACE::Scene</scope><name>_sceneDescriptorsets</name></member>
@@ -1003,6 +1055,7 @@
       <member refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_scene_1a42dc12d8a200591532dc336f72a4847d" prot="public" virt="non-virtual"><scope>RAYEX_NAMESPACE::Scene</scope><name>clearGeometryInstances</name></member>
       <member refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_scene_1a344905cab1fbaf5a5585a6df25635bbc" prot="public" virt="non-virtual"><scope>RAYEX_NAMESPACE::Scene</scope><name>findGeometry</name></member>
       <member refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_scene_1a93bff45acd035aa5c72445bca9604075" prot="public" virt="non-virtual"><scope>RAYEX_NAMESPACE::Scene</scope><name>getCamera</name></member>
+      <member refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_scene_1ac73bc3b1a6b7844f94d14af6682ba5c0" prot="public" virt="non-virtual"><scope>RAYEX_NAMESPACE::Scene</scope><name>getGeometryInstance</name></member>
       <member refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_scene_1aef804f5fc22e5d0b27530a00cd054060" prot="public" virt="non-virtual"><scope>RAYEX_NAMESPACE::Scene</scope><name>getGeometryInstances</name></member>
       <member refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_scene_1a7bfc02c5eb5a97ac6e8d03c5b90b12f3" prot="private" virt="non-virtual"><scope>RAYEX_NAMESPACE::Scene</scope><name>initCameraBuffer</name></member>
       <member refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_scene_1a17c3fd2c879bb52872693eb92471ee4f" prot="private" virt="non-virtual"><scope>RAYEX_NAMESPACE::Scene</scope><name>initGeoemtryDescriptorSets</name></member>
@@ -1018,18 +1071,20 @@
       <member refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_scene_1adc0e77e152173899b4edf08fbe62ca18" prot="public" virt="non-virtual"><scope>RAYEX_NAMESPACE::Scene</scope><name>removeGeometry</name></member>
       <member refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_scene_1a11fc56eb116fe3301a59c5c594ee2bea" prot="public" virt="non-virtual"><scope>RAYEX_NAMESPACE::Scene</scope><name>removeGeometryInstance</name></member>
       <member refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_scene_1aa3d8bb2201e4529f67dd8138d7f0e538" prot="public" virt="non-virtual"><scope>RAYEX_NAMESPACE::Scene</scope><name>setCamera</name></member>
+      <member refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_scene_1af74024223023f08ef0a75bc8dafaa2c9" prot="public" virt="non-virtual"><scope>RAYEX_NAMESPACE::Scene</scope><name>setCamera</name></member>
       <member refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_scene_1a87356635d94226e8c69857c0b48d3ad1" prot="public" virt="non-virtual"><scope>RAYEX_NAMESPACE::Scene</scope><name>setEnvironmentMap</name></member>
       <member refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_scene_1ab191100612c6087204b476aadfd8b6db" prot="public" virt="non-virtual"><scope>RAYEX_NAMESPACE::Scene</scope><name>setGeometries</name></member>
       <member refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_scene_1a86b0c09d5294dabeeb550b84ef4ac0c4" prot="public" virt="non-virtual"><scope>RAYEX_NAMESPACE::Scene</scope><name>setGeometryInstances</name></member>
       <member refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_scene_1a53c0ef48ca0c5e0d2336869a8e75085b" prot="public" virt="non-virtual"><scope>RAYEX_NAMESPACE::Scene</scope><name>submitGeometry</name></member>
       <member refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_scene_1a4ca1e82f10c27e433eff652710e8e700" prot="public" virt="non-virtual"><scope>RAYEX_NAMESPACE::Scene</scope><name>submitGeometryInstance</name></member>
+      <member refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_scene_1a252bced1af530d2589e79f71423de08e" prot="private" virt="non-virtual"><scope>RAYEX_NAMESPACE::Scene</scope><name>translateDummy</name></member>
       <member refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_scene_1aff42c582b7197d94565a9bf7562c02a5" prot="private" virt="non-virtual"><scope>RAYEX_NAMESPACE::Scene</scope><name>updateGeoemtryDescriptors</name></member>
       <member refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_scene_1ae6f484f4bd331894118ce85b6bbdb65e" prot="private" virt="non-virtual"><scope>RAYEX_NAMESPACE::Scene</scope><name>updateSceneDescriptors</name></member>
       <member refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_scene_1ae9f11ab21eea7a1850f7ad514e95a12a" prot="private" virt="non-virtual"><scope>RAYEX_NAMESPACE::Scene</scope><name>upload</name></member>
       <member refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_scene_1a84d228890a7d8bc1832a226eecd59774" prot="private" virt="non-virtual"><scope>RAYEX_NAMESPACE::Scene</scope><name>uploadCameraBuffer</name></member>
       <member refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_scene_1ac4e74346314a14c673590ddbbde1ff9f" prot="private" virt="non-virtual"><scope>RAYEX_NAMESPACE::Scene</scope><name>uploadEnvironmentMap</name></member>
       <member refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_scene_1a8c84766caa12d2de5a1fe7907b6d39ad" prot="private" virt="non-virtual"><scope>RAYEX_NAMESPACE::Scene</scope><name>uploadGeometries</name></member>
-      <member refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_scene_1a67e47ee287834e0e89e1e890d4275364" prot="private" virt="non-virtual"><scope>RAYEX_NAMESPACE::Scene</scope><name>uploadGeometryInstances</name></member>
+      <member refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_scene_1aa6b949b1359b3f98f8664a3752b100f6" prot="private" virt="non-virtual"><scope>RAYEX_NAMESPACE::Scene</scope><name>uploadGeometryInstances</name></member>
     </listofallmembers>
   </compounddef>
 </doxygen>

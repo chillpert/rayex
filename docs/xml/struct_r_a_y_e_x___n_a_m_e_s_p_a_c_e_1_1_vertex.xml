@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
-<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.17">
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
   <compounddef id="struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_vertex" kind="struct" language="C++" prot="public">
     <compoundname>RAYEX_NAMESPACE::Vertex</compoundname>
     <includes refid="_vertex_8hpp" local="no">Vertex.hpp</includes>
@@ -130,7 +130,7 @@
     </briefdescription>
     <detaileddescription>
     </detaileddescription>
-    <location file="/home/n30/Repos/rayex/include/api/Vertex.hpp" line="14" column="1" bodyfile="/home/n30/Repos/rayex/include/api/Vertex.hpp" bodystart="13" bodyend="70"/>
+    <location file="/home/n30/Repos/rayex/include/api/Vertex.hpp" line="13" column="3" bodyfile="/home/n30/Repos/rayex/include/api/Vertex.hpp" bodystart="14" bodyend="70"/>
     <listofallmembers>
       <member refid="struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_vertex_1a8fff4b1de2eb2f1029b85181edea46a1" prot="public" virt="non-virtual"><scope>RAYEX_NAMESPACE::Vertex</scope><name>color</name></member>
       <member refid="struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_vertex_1a75204a4a77d7ad7409f04afa5f3b8711" prot="public" virt="non-virtual"><scope>RAYEX_NAMESPACE::Vertex</scope><name>getAttributeDescriptions</name></member>

@@ -2,7 +2,7 @@ var group___a_p_i =
 [
     [ "Api", "class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_api.html", [
       [ "Api", "class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_api.html#a6d337866b5a344ec9f2a1c3e968f1fef", null ],
-      [ "~Api", "class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_api.html#a2466f3fcfd89ab8d1d80eed1254950c0", null ],
+      [ "~Api", "class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_api.html#a00b9e277abbc01e990f044edef3ef033", null ],
       [ "Api", "class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_api.html#a75fc41dab952a0b3c08d95a30ff451a8", null ],
       [ "Api", "class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_api.html#a12e91dc6ced5d4022accb12716616d11", null ],
       [ "operator=", "class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_api.html#a48e629366ef5f94b8573a288c872955c", null ],
@@ -23,6 +23,10 @@ var group___a_p_i =
       [ "asBuildRangeInfo", "struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_blas.html#a612e8ebe1c04fd44ab8e9c22fc7c9787", null ],
       [ "asGeometry", "struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_blas.html#a7a270840d9f4e6b141a6f142abda68c5", null ]
     ] ],
+    [ "PathTracingCapabilities", "struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_path_tracing_capabilities.html", [
+      [ "accelerationStructureProperties", "struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_path_tracing_capabilities.html#a79c7eb34134644dc041c2257cc9026ca", null ],
+      [ "pipelineProperties", "struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_path_tracing_capabilities.html#a47265ef799d8058bc56e7dff41970c47", null ]
+    ] ],
     [ "PathTracer", "class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_path_tracer.html", [
       [ "PathTracer", "class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_path_tracer.html#ac98b96323e113ca2ac96c7d08ffaf624", null ],
       [ "~PathTracer", "class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_path_tracer.html#aef8229369df0e2e75fea08d0163c0bfc", null ],
@@ -31,7 +35,7 @@ var group___a_p_i =
       [ "buildBlas", "class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_path_tracer.html#a5df109c2da39664245ad141e2d9c0e4a", null ],
       [ "buildTlas", "class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_path_tracer.html#a3c2f2045a533d9fe53faafdb885f5831", null ],
       [ "createBottomLevelAS", "class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_path_tracer.html#a01e426560fbcea32ea1a1fb0b8fc3a6a", null ],
-      [ "createPipeline", "class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_path_tracer.html#af72332595cb39c940f0a6c9afee439ef", null ],
+      [ "createPipeline", "class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_path_tracer.html#ae30f5e7aa6a8df5dcb7b8b544298f9a5", null ],
       [ "createShaderBindingTable", "class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_path_tracer.html#aef800dfb214e83264e2a573039a5aed3", null ],
       [ "createStorageImage", "class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_path_tracer.html#a504cc5e1802f0174272f637ad6e8f4c6", null ],
       [ "destroy", "class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_path_tracer.html#a29bafe2e2c61bd1ef76999885efa9188", null ],
@@ -41,16 +45,19 @@ var group___a_p_i =
       [ "getDescriptorSetLayout", "class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_path_tracer.html#a37d390a924dc52e0195248cedd5fe670", null ],
       [ "getPipeline", "class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_path_tracer.html#a87b1e74178484ae54e891f62b897b079", null ],
       [ "getPipelineLayout", "class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_path_tracer.html#a88b7351717bcb2731cda5254316384a3", null ],
+      [ "getPixelVariance", "class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_path_tracer.html#add5f5aedbbad7e8e1751ae53154f19a6", null ],
       [ "getStorageImageInfo", "class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_path_tracer.html#abde61bef57499d13e9df3cc3db0b8e39", null ],
       [ "getStorageImageView", "class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_path_tracer.html#a148b5a6c45676515d7db5efe50e67428", null ],
       [ "getTlas", "class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_path_tracer.html#aa57a79727d5cab887d198231377d0c7e", null ],
       [ "init", "class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_path_tracer.html#aec2798527165512a51c4028be6dd5da0", null ],
       [ "initDescriptorSet", "class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_path_tracer.html#a30d8d1231355d7493d29b8226cfe728a", null ],
-      [ "modelToBlas", "class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_path_tracer.html#afe9a29b1bff77d11f7eb77a56d635356", null ],
+      [ "initVarianceBuffer", "class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_path_tracer.html#aa58aa606adc0fa0931dda689a0c3d453", null ],
+      [ "modelToBlas", "class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_path_tracer.html#a06e8c5d6ceea3bfde8c9e52f465f8edf", null ],
       [ "operator=", "class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_path_tracer.html#abc9fc7f8c1a71ef1cb056c5f5531af42", null ],
       [ "operator=", "class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_path_tracer.html#a01b3b0262634e7993b1173c289f0db02", null ],
       [ "pathTrace", "class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_path_tracer.html#aed6907560423957efa3aec52c69aa240", null ],
-      [ "updateDescriptors", "class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_path_tracer.html#a76874c6e9156b8c8f1624b43265fbc73", null ]
+      [ "updateDescriptors", "class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_path_tracer.html#a76874c6e9156b8c8f1624b43265fbc73", null ],
+      [ "updateTlas", "class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_path_tracer.html#a384214253537ed75c2be84ed37801a40", null ]
     ] ],
     [ "PostProcessingRenderer", "class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_post_processing_renderer.html", [
       [ "beginRenderPass", "class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_post_processing_renderer.html#acceeba217e38d1e290a3d39fe76f7be1", null ],
@@ -58,7 +65,6 @@ var group___a_p_i =
       [ "getPipeline", "class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_post_processing_renderer.html#a743e500ac21ab9b6b40005694dd6d738", null ],
       [ "getPipelineLayout", "class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_post_processing_renderer.html#a011a18a3e3704b7a1db9538e090db1b1", null ],
       [ "getRenderPass", "class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_post_processing_renderer.html#a2d3bd5259c28c3da4bc035017393fc2c", null ],
-      [ "initDepthImage", "class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_post_processing_renderer.html#a01e2c8a445d8ea4f6df86cd05f3ab637", null ],
       [ "initDescriptorSet", "class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_post_processing_renderer.html#a72d0b080d0e74207c556ce50959c4474", null ],
       [ "initPipeline", "class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_post_processing_renderer.html#a8d2842efa22f36b3c680eef8a23b3048", null ],
       [ "initRenderPass", "class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_post_processing_renderer.html#a0d7a6f02d459e8f7197e75e0a54b795a", null ],
@@ -73,36 +79,27 @@ var group___a_p_i =
       [ "texCoord", "struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_vertex.html#a76904c7ad13909f64ebaaa8a81f7e903", null ]
     ] ],
     [ "CameraUbo", "struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_camera_ubo.html", [
+      [ "front", "struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_camera_ubo.html#a0ba212d0c43387248b80cff8d852848f", null ],
       [ "position", "struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_camera_ubo.html#a5145cf4a6253d5788426724810bca2ae", null ],
       [ "projection", "struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_camera_ubo.html#a7903a2467fb163ff5716bf08e2621ad5", null ],
       [ "projectionInverse", "struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_camera_ubo.html#a84ded90503475453e221c733388e2fdf", null ],
       [ "view", "struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_camera_ubo.html#aca2343d9611de4d2cbaaafd25c9a0d4c", null ],
       [ "viewInverse", "struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_camera_ubo.html#a000d7a431db8bf2cbfe5b5d8999550d3", null ]
     ] ],
-    [ "MeshSSBO", "struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_mesh_s_s_b_o.html", [
-      [ "MeshSSBO", "struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_mesh_s_s_b_o.html#ad8e3bd702c57644a9b5ca13e0dd79c9b", null ],
-      [ "MeshSSBO", "struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_mesh_s_s_b_o.html#a2f11eb9c12cbbb7424d020c1acc0beee", null ],
-      [ "set", "struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_mesh_s_s_b_o.html#a39423de79f0f958e9b23053c3b0f7387", null ],
-      [ "ambient", "struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_mesh_s_s_b_o.html#a7ee226655334d745110ea673d3f415b7", null ],
-      [ "d", "struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_mesh_s_s_b_o.html#a7a21ad8a0b5301090fb445dc5de3027a", null ],
-      [ "diffuse", "struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_mesh_s_s_b_o.html#ad7dfd9e1d94bf8b61d75c5cb5b96029c", null ],
-      [ "emission", "struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_mesh_s_s_b_o.html#a7fcf00acc1ec69abc1b1cd9a14149b5c", null ],
-      [ "illum", "struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_mesh_s_s_b_o.html#ac234ac13f69f4325c449a78fa5d04925", null ],
-      [ "indexOffset", "struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_mesh_s_s_b_o.html#a8a30eb7713b788d6abf948cbe029acdd", null ],
-      [ "ni", "struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_mesh_s_s_b_o.html#aac714eae32d19dcfa68661ffa006520c", null ],
-      [ "ns", "struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_mesh_s_s_b_o.html#afe758e896b9c1ea5656c3402b35462ba", null ],
-      [ "padding0", "struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_mesh_s_s_b_o.html#a0c0eaca095bc79dcaf63e60d0f71db7e", null ],
-      [ "padding1", "struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_mesh_s_s_b_o.html#a54e54f44292cedf0a51415bbb34ea9fb", null ],
-      [ "padding2", "struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_mesh_s_s_b_o.html#a4f5c5d76b5f953139f857b130e34e40d", null ],
-      [ "specular", "struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_mesh_s_s_b_o.html#a82baebb3cacb3f4b74ef8621fe9fdb34", null ]
+    [ "MaterialSSBO", "struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_material_s_s_b_o.html", [
+      [ "diffuse", "struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_material_s_s_b_o.html#a5bfab34ff9aa0bb0f66a3b635f4dbdf8", null ],
+      [ "dissolve", "struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_material_s_s_b_o.html#a5f862a24d2d96a1ba91d5c6d5c099055", null ],
+      [ "emission", "struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_material_s_s_b_o.html#a493a24f655420ec8e3cdfeb7e5758371", null ],
+      [ "fuzziness", "struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_material_s_s_b_o.html#a67091b7a1cbe670a4abd88cf2f7aabff", null ],
+      [ "illum", "struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_material_s_s_b_o.html#aaf7eee6ccb70a3f4374fa87e2a0942f8", null ],
+      [ "ior", "struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_material_s_s_b_o.html#ac6ae5a7277716fdd5e95b6b31c7d8bcd", null ]
     ] ],
     [ "GeometryInstanceSSBO", "struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_geometry_instance_s_s_b_o.html", [
       [ "geometryIndex", "struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_geometry_instance_s_s_b_o.html#a4899744b1f0ee202bbf9ff02af61b4c4", null ],
-      [ "padding0", "struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_geometry_instance_s_s_b_o.html#ac708ce2bf5edf245a01181441632b7ca", null ],
-      [ "padding1", "struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_geometry_instance_s_s_b_o.html#a11f43ebd571824166af4d080c989706b", null ],
-      [ "padding2", "struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_geometry_instance_s_s_b_o.html#a9730ed86d0ee5f518395e2b6c13ea2dc", null ],
-      [ "transform", "struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_geometry_instance_s_s_b_o.html#a549ca0f380012d4039a3c9f1a622632d", null ],
-      [ "transformIT", "struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_geometry_instance_s_s_b_o.html#a1379cb3dfff56920119ce6a1bbb38205", null ]
+      [ "padding0", "struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_geometry_instance_s_s_b_o.html#ae41542834c59d9c2d63bcde3030bd74c", null ],
+      [ "padding1", "struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_geometry_instance_s_s_b_o.html#a8477e51fc24b96ab82ad19a44dd97bb3", null ],
+      [ "padding2", "struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_geometry_instance_s_s_b_o.html#afb43100a06850eba9f4b7b1a920db914", null ],
+      [ "transform", "struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_geometry_instance_s_s_b_o.html#a549ca0f380012d4039a3c9f1a622632d", null ]
     ] ],
     [ "Gui", "class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_gui.html", [
       [ "~Gui", "class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_gui.html#a37b52ebf2ec5b33b5bb817b6dc157169", null ],
@@ -118,6 +115,7 @@ var group___a_p_i =
       [ "clearGeometryInstances", "class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_scene.html#a42dc12d8a200591532dc336f72a4847d", null ],
       [ "findGeometry", "class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_scene.html#a344905cab1fbaf5a5585a6df25635bbc", null ],
       [ "getCamera", "class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_scene.html#a93bff45acd035aa5c72445bca9604075", null ],
+      [ "getGeometryInstance", "class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_scene.html#ac73bc3b1a6b7844f94d14af6682ba5c0", null ],
       [ "getGeometryInstances", "class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_scene.html#aef804f5fc22e5d0b27530a00cd054060", null ],
       [ "load", "class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_scene.html#a7f8086b8e638a0ad2089255fa76d127e", null ],
       [ "popGeometry", "class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_scene.html#ae68fc066eddb4ff7ee2a16c26b06f5ba", null ],
@@ -126,6 +124,7 @@ var group___a_p_i =
       [ "removeGeometry", "class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_scene.html#a8004b0c0dfb783070ea82af111378718", null ],
       [ "removeGeometry", "class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_scene.html#adc0e77e152173899b4edf08fbe62ca18", null ],
       [ "removeGeometryInstance", "class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_scene.html#a11fc56eb116fe3301a59c5c594ee2bea", null ],
+      [ "setCamera", "class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_scene.html#af74024223023f08ef0a75bc8dafaa2c9", null ],
       [ "setCamera", "class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_scene.html#aa3d8bb2201e4529f67dd8138d7f0e538", null ],
       [ "setEnvironmentMap", "class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_scene.html#a87356635d94226e8c69857c0b48d3ad1", null ],
       [ "setGeometries", "class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_scene.html#ab191100612c6087204b476aadfd8b6db", null ],

@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
-<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.17">
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
   <compounddef id="struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_acceleration_structure" kind="struct" language="C++" prot="public">
     <compoundname>RAYEX_NAMESPACE::AccelerationStructure</compoundname>
     <includes refid="_acceleration_structure_8hpp" local="no">AccelerationStructure.hpp</includes>
@@ -67,7 +67,7 @@
     </briefdescription>
     <detaileddescription>
     </detaileddescription>
-    <location file="/home/n30/Repos/rayex/include/api/pathtrace/AccelerationStructure.hpp" line="10" column="1" bodyfile="/home/n30/Repos/rayex/include/api/pathtrace/AccelerationStructure.hpp" bodystart="9" bodyend="17"/>
+    <location file="/home/n30/Repos/rayex/include/api/pathtrace/AccelerationStructure.hpp" line="9" column="3" bodyfile="/home/n30/Repos/rayex/include/api/pathtrace/AccelerationStructure.hpp" bodystart="10" bodyend="17"/>
     <listofallmembers>
       <member refid="struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_acceleration_structure_1a310d8142a50e671e29b626943fa2b6c8" prot="public" virt="non-virtual"><scope>RAYEX_NAMESPACE::AccelerationStructure</scope><name>as</name></member>
       <member refid="struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_acceleration_structure_1a6add5ce884f6fb46a60a89bfb565fc09" prot="public" virt="non-virtual"><scope>RAYEX_NAMESPACE::AccelerationStructure</scope><name>buffer</name></member>

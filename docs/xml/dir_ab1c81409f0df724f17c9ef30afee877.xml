@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
-<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.17">
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
   <compounddef id="dir_ab1c81409f0df724f17c9ef30afee877" kind="dir">
     <compoundname>/home/n30/Repos/rayex/include/base</compoundname>
     <innerfile refid="_camera_8hpp">Camera.hpp</innerfile>

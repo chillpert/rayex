@@ -8,5 +8,6 @@ var class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_rayex =
     [ "scene", "class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_rayex.html#ac4de2be6f21929ce1c9cebdbeef56aa6", null ],
     [ "setGui", "class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_rayex.html#a9c80416850a65f7a7968f58a9b8666c3", null ],
     [ "settings", "class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_rayex.html#af39e7ea862f949f987aae25faa392d29", null ],
+    [ "setWindow", "class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_rayex.html#a9ced9885b2c797823daaf398fada24b1", null ],
     [ "setWindow", "class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_rayex.html#a364c4dcdb67baf57b1591394386ec3af", null ]
 ];

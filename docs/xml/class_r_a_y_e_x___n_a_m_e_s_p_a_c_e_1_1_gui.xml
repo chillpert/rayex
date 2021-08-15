@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
-<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.17">
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
   <compounddef id="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_gui" kind="class" language="C++" prot="public">
     <compoundname>RAYEX_NAMESPACE::Gui</compoundname>
     <includes refid="_gui_8hpp" local="no">Gui.hpp</includes>
@@ -16,7 +16,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/n30/Repos/rayex/include/base/Gui.hpp" line="72" column="30" bodyfile="/home/n30/Repos/rayex/include/base/Gui.hpp" bodystart="72" bodyend="-1"/>
+        <location file="/home/n30/Repos/rayex/include/base/Gui.hpp" line="70" column="30" bodyfile="/home/n30/Repos/rayex/include/base/Gui.hpp" bodystart="70" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_gui_1aeb530f206d0b2ba9bb02190b834f6cc9" prot="private" static="no" mutable="no">
         <type>vk::UniqueCommandPool</type>
@@ -30,7 +30,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/n30/Repos/rayex/include/base/Gui.hpp" line="73" column="27" bodyfile="/home/n30/Repos/rayex/include/base/Gui.hpp" bodystart="73" bodyend="-1"/>
+        <location file="/home/n30/Repos/rayex/include/base/Gui.hpp" line="71" column="27" bodyfile="/home/n30/Repos/rayex/include/base/Gui.hpp" bodystart="71" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_gui_1af2585fff8afb01291db7edf5e74e5890" prot="private" static="no" mutable="no">
         <type>vk::Extent2D</type>
@@ -44,7 +44,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/n30/Repos/rayex/include/base/Gui.hpp" line="74" column="18" bodyfile="/home/n30/Repos/rayex/include/base/Gui.hpp" bodystart="74" bodyend="-1"/>
+        <location file="/home/n30/Repos/rayex/include/base/Gui.hpp" line="72" column="18" bodyfile="/home/n30/Repos/rayex/include/base/Gui.hpp" bodystart="72" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_gui_1a41f5124f6dc42b716857585da394f0e2" prot="private" static="no" mutable="no">
         <type>SDL_Window *</type>
@@ -58,7 +58,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/n30/Repos/rayex/include/base/Gui.hpp" line="75" column="16" bodyfile="/home/n30/Repos/rayex/include/base/Gui.hpp" bodystart="75" bodyend="-1"/>
+        <location file="/home/n30/Repos/rayex/include/base/Gui.hpp" line="73" column="16" bodyfile="/home/n30/Repos/rayex/include/base/Gui.hpp" bodystart="73" bodyend="-1"/>
       </memberdef>
       </sectiondef>
       <sectiondef kind="public-func">
@@ -73,7 +73,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/n30/Repos/rayex/include/base/Gui.hpp" line="36" column="13"/>
+        <location file="/home/n30/Repos/rayex/include/base/Gui.hpp" line="34" column="13"/>
       </memberdef>
       <memberdef kind="function" id="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_gui_1a9683c711717892adbc9a5091ba5a1018" prot="public" static="no" const="no" explicit="no" inline="no" virt="virtual">
         <type>void</type>
@@ -88,7 +88,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/n30/Repos/rayex/include/base/Gui.hpp" line="41" column="18"/>
+        <location file="/home/n30/Repos/rayex/include/base/Gui.hpp" line="39" column="18"/>
       </memberdef>
       <memberdef kind="function" id="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_gui_1a3e5134da1391b2ca38bc65f17895d767" prot="public" static="no" const="no" explicit="no" inline="no" virt="virtual">
         <type>void</type>
@@ -104,7 +104,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/n30/Repos/rayex/include/base/Gui.hpp" line="46" column="18"/>
+        <location file="/home/n30/Repos/rayex/include/base/Gui.hpp" line="44" column="18"/>
       </memberdef>
       <memberdef kind="function" id="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_gui_1ab572cd6afb74d6d3303d3393dbaf6c06" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -152,7 +152,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/n30/Repos/rayex/include/base/Gui.hpp" line="51" column="10"/>
+        <location file="/home/n30/Repos/rayex/include/base/Gui.hpp" line="49" column="10"/>
       </memberdef>
       <memberdef kind="function" id="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_gui_1af1bbc6bf62822168f9d28e42fd1345e5" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -188,7 +188,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/n30/Repos/rayex/include/base/Gui.hpp" line="56" column="10"/>
+        <location file="/home/n30/Repos/rayex/include/base/Gui.hpp" line="54" column="10"/>
       </memberdef>
       <memberdef kind="function" id="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_gui_1aec9cbe4d9c91740401c8781e760b7e49" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -216,7 +216,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/n30/Repos/rayex/include/base/Gui.hpp" line="60" column="10"/>
+        <location file="/home/n30/Repos/rayex/include/base/Gui.hpp" line="58" column="10"/>
       </memberdef>
       <memberdef kind="function" id="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_gui_1acdc42f7c0d1a54a0a2e3bc9bb89df3ee" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -230,7 +230,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/n30/Repos/rayex/include/base/Gui.hpp" line="63" column="10"/>
+        <location file="/home/n30/Repos/rayex/include/base/Gui.hpp" line="61" column="10"/>
       </memberdef>
       </sectiondef>
       <sectiondef kind="private-func">
@@ -246,7 +246,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/n30/Repos/rayex/include/base/Gui.hpp" line="67" column="10"/>
+        <location file="/home/n30/Repos/rayex/include/base/Gui.hpp" line="65" column="10"/>
       </memberdef>
       <memberdef kind="function" id="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_gui_1ae8a4c10c9cfe926b1083ce7ed5bbe853" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -260,7 +260,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/n30/Repos/rayex/include/base/Gui.hpp" line="70" column="10"/>
+        <location file="/home/n30/Repos/rayex/include/base/Gui.hpp" line="68" column="10"/>
       </memberdef>
       </sectiondef>
     <briefdescription>
@@ -283,12 +283,11 @@
 <codeline><highlight class="normal"></highlight><highlight class="comment">//<sp/>Put<sp/>this<sp/>line<sp/>after<sp/>the<sp/>declaration<sp/>of<sp/>the<sp/>RAYEX_NAMESPACE::Rayexobject.</highlight><highlight class="normal"></highlight></codeline>
 <codeline><highlight class="normal"></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/>myGui<sp/>=<sp/>std::make_shared&lt;CustomGui&gt;(<sp/>);</highlight></codeline>
 <codeline><highlight class="normal">myRenderer.setGui(<sp/>myGui<sp/>);</highlight></codeline>
-</programlisting></para>
-<para><simplesect kind="warning"><para>The GUI object must be declared after the renderer to ensure the correct order for destroying and freeing resources. </para>
+</programlisting> <simplesect kind="warning"><para>The GUI object must be declared after the renderer to ensure the correct order for destroying and freeing resources. </para>
 </simplesect>
 </para>
     </detaileddescription>
-    <location file="/home/n30/Repos/rayex/include/base/Gui.hpp" line="34" column="1" bodyfile="/home/n30/Repos/rayex/include/base/Gui.hpp" bodystart="33" bodyend="76"/>
+    <location file="/home/n30/Repos/rayex/include/base/Gui.hpp" line="31" column="3" bodyfile="/home/n30/Repos/rayex/include/base/Gui.hpp" bodystart="32" bodyend="74"/>
     <listofallmembers>
       <member refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_gui_1aeb530f206d0b2ba9bb02190b834f6cc9" prot="private" virt="non-virtual"><scope>RAYEX_NAMESPACE::Gui</scope><name>_commandPool</name></member>
       <member refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_gui_1a869039a08a4988d6b862f4f6491e7ca8" prot="private" virt="non-virtual"><scope>RAYEX_NAMESPACE::Gui</scope><name>_descriptorPool</name></member>

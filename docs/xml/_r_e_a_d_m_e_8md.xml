@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
-<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.17">
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
   <compounddef id="_r_e_a_d_m_e_8md" kind="file" language="Markdown">
     <compoundname>README.md</compoundname>
     <briefdescription>
@@ -13,7 +13,7 @@
 <codeline><highlight class="normal">It<sp/>runs<sp/>on<sp/>both<sp/>Linux<sp/>(x64)<sp/>and<sp/>Windows<sp/>(x64)<sp/>using<sp/>the<sp/>Vulkan<sp/>API.<sp/>This<sp/>software<sp/>aims<sp/>to<sp/>provide<sp/>a<sp/>cross-platform,<sp/>cross-vendor<sp/>path<sp/>tracer<sp/>that<sp/>is<sp/>easy<sp/>to<sp/>integrate<sp/>into<sp/>existing<sp/>projects.<sp/>Vendor<sp/>independence<sp/>is<sp/>achieved<sp/>by<sp/>using<sp/>the<sp/>new<sp/>KHRONOS<sp/>Vulkan<sp/>ray<sp/>tracing<sp/>extension<sp/>(first<sp/>published<sp/>on<sp/>March<sp/>17,<sp/>2020,<sp/>as<sp/>an<sp/>experimental<sp/>version).<sp/>It<sp/>uses<sp/>[SDL2](https://www.libsdl.org/index.php)<sp/>for<sp/>windowing<sp/>and<sp/>[glm](https://glm.g-truc.net/0.9.9/index.html)<sp/>as<sp/>its<sp/>math<sp/>library.<sp/>RAYEX<sp/>features<sp/>native<sp/>[Dear<sp/>ImGui](https://github.com/ocornut/imgui)<sp/>support,<sp/>enabling<sp/>the<sp/>user<sp/>to<sp/>create<sp/>user<sp/>interfaces<sp/>without<sp/>writing<sp/>any<sp/>API-related<sp/>code.</highlight></codeline>
 <codeline></codeline>
 <codeline><highlight class="normal">##<sp/>Requirements</highlight></codeline>
-<codeline><highlight class="normal">Unfortunately,<sp/>the<sp/>KHRONOS<sp/>Vulkan<sp/>ray<sp/>tracing<sp/>extension<sp/>is<sp/>not<sp/>yet<sp/>part<sp/>of<sp/>the<sp/>NVIDIA<sp/>main<sp/>driver.<sp/>Download<sp/>the<sp/>NVIDIA<sp/>Vulkan<sp/>beta<sp/>drivers<sp/>[here](https://developer.nvidia.com/vulkan-driver).<sp/></highlight></codeline>
+<codeline><highlight class="normal">Install<sp/>the<sp/>latest<sp/>NVIDIA<sp/>driver.<sp/>If<sp/>you<sp/>run<sp/>into<sp/>issues<sp/>try<sp/>the<sp/>NVIDIA<sp/>Vulkan<sp/>beta<sp/>drivers<sp/>[here](https://developer.nvidia.com/vulkan-driver),<sp/>or<sp/>check<sp/>your<sp/>GPU<sp/>compatibility.</highlight></codeline>
 <codeline><highlight class="normal">AMD<sp/>drivers<sp/>can<sp/>be<sp/>downloaded<sp/>[here](https://www.amd.com/en/support/kb/release-notes/rn-rad-win-20-11-2-vrt-beta)<sp/>instead.</highlight></codeline>
 <codeline></codeline>
 <codeline><highlight class="normal">##<sp/>Deploy</highlight></codeline>
@@ -75,29 +75,22 @@
 <codeline><highlight class="normal">###<sp/>Issues</highlight></codeline>
 <codeline></codeline>
 <codeline><highlight class="normal">-<sp/>[x]<sp/>Update<sp/>to<sp/>latest<sp/>SDK<sp/>and<sp/>official<sp/>release<sp/>version<sp/>of<sp/>VK_RAY_TRACING_KHR</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>[x]<sp/>Fix<sp/>any<sp/>hit<sp/>shader</highlight></codeline>
 <codeline><highlight class="normal">-<sp/>[<sp/>]<sp/>Remove<sp/>unnecessary<sp/>documentation<sp/>and<sp/>add<sp/>missing<sp/>documentation</highlight></codeline>
 <codeline><highlight class="normal">-<sp/>[<sp/>]<sp/>Fix<sp/>upload<sp/>storage<sp/>buffers<sp/>to<sp/>GPU<sp/>issues</highlight></codeline>
-<codeline><highlight class="normal">-<sp/>[<sp/>]<sp/>Fix<sp/>any<sp/>hit<sp/>shader</highlight></codeline>
-<codeline><highlight class="normal">-<sp/>[<sp/>]<sp/>Fix<sp/>reflection<sp/>issue<sp/>in<sp/>Cornell<sp/>box<sp/>scene</highlight></codeline>
-<codeline><highlight class="normal">-<sp/>[<sp/>]<sp/>Clean<sp/>up<sp/>Vulkan-related<sp/>functions<sp/>and<sp/>classes</highlight></codeline>
-<codeline><highlight class="normal">-<sp/>[<sp/>]<sp/>Outsource<sp/>any<sp/>ray<sp/>tracing-related<sp/>code<sp/>from<sp/>most<sp/>Vulkan-related<sp/>functions<sp/>and<sp/>classes</highlight></codeline>
-<codeline><highlight class="normal">-<sp/>[<sp/>]<sp/>Move<sp/>all<sp/>Vulkan-related<sp/>functions<sp/>and<sp/>classes<sp/>into<sp/>their<sp/>own<sp/>folder<sp/>and<sp/>namespace</highlight></codeline>
-<codeline><highlight class="normal">-<sp/>[<sp/>]<sp/>Proper<sp/>documentation<sp/>and<sp/>README<sp/>grammar<sp/>check</highlight></codeline>
 <codeline></codeline>
 <codeline><highlight class="normal">###<sp/>Planned<sp/>Features</highlight></codeline>
 <codeline></codeline>
 <codeline><highlight class="normal">-<sp/>[x]<sp/>Global<sp/>illumination</highlight></codeline>
 <codeline><highlight class="normal">-<sp/>[x]<sp/>Environment<sp/>mapping</highlight></codeline>
-<codeline><highlight class="normal">-<sp/>[x]<sp/>A<sp/>post<sp/>processing<sp/>pass<sp/>for<sp/>gamma<sp/>correction<sp/>and<sp/>future<sp/>post<sp/>processing<sp/>effects</highlight></codeline>
-<codeline><highlight class="normal">-<sp/>[x]<sp/>Simple<sp/>reflections<sp/>and<sp/>transparency</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>[x]<sp/>A<sp/>post<sp/>processing<sp/>pass</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>[x]<sp/>Diffuse<sp/>and<sp/>glossy<sp/>reflections</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>[x]<sp/>Dielectrics</highlight></codeline>
 <codeline><highlight class="normal">-<sp/>[<sp/>]<sp/>An<sp/>efficient<sp/>way<sp/>of<sp/>building<sp/>and<sp/>updating<sp/>acceleration<sp/>structures<sp/>based<sp/>on<sp/>a<sp/>scene&apos;s<sp/>requirements</highlight></codeline>
-<codeline><highlight class="normal">-<sp/>[<sp/>]<sp/>Importance<sp/>and<sp/>multiple<sp/>importance<sp/>sampling</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>[<sp/>]<sp/>Multiple<sp/>importance<sp/>sampling</highlight></codeline>
 <codeline><highlight class="normal">-<sp/>[<sp/>]<sp/>HDR<sp/>skymaps<sp/>and<sp/>skyboxes<sp/>as<sp/>light<sp/>sources</highlight></codeline>
-<codeline><highlight class="normal">-<sp/>[<sp/>]<sp/>More<sp/>material<sp/>properties</highlight></codeline>
 <codeline><highlight class="normal">-<sp/>[<sp/>]<sp/>Denoising</highlight></codeline>
-<codeline><highlight class="normal">-<sp/>[<sp/>]<sp/>Callable<sp/>shader<sp/>support</highlight></codeline>
-<codeline><highlight class="normal">-<sp/>[<sp/>]<sp/>Bidirectional<sp/>and<sp/>volumetric<sp/>path<sp/>tracing</highlight></codeline>
-<codeline><highlight class="normal">-<sp/>[<sp/>]<sp/>Further<sp/>post<sp/>processing<sp/>features</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>[<sp/>]<sp/>Next<sp/>event<sp/>estimation</highlight></codeline>
 <codeline></codeline>
 <codeline></codeline>
 <codeline><highlight class="normal">##<sp/>Download</highlight></codeline>

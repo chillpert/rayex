@@ -1,11 +1,10 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
-<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.17">
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
   <compounddef id="group___b_a_s_e" kind="group">
     <compoundname>BASE</compoundname>
     <title>Base</title>
     <innerclass refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_camera" prot="public">RAYEX_NAMESPACE::Camera</innerclass>
     <innerclass refid="struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_material" prot="public">RAYEX_NAMESPACE::Material</innerclass>
-    <innerclass refid="struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_mesh" prot="public">RAYEX_NAMESPACE::Mesh</innerclass>
     <innerclass refid="struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_geometry" prot="public">RAYEX_NAMESPACE::Geometry</innerclass>
     <innerclass refid="struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_geometry_instance" prot="public">RAYEX_NAMESPACE::GeometryInstance</innerclass>
     <innerclass refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_gui" prot="public">RAYEX_NAMESPACE::Gui</innerclass>
@@ -56,7 +55,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/n30/Repos/rayex/include/base/Geometry.hpp" line="86" column="26" declfile="/home/n30/Repos/rayex/include/base/Geometry.hpp" declline="86" declcolumn="26"/>
+        <location file="/home/n30/Repos/rayex/include/base/Geometry.hpp" line="76" column="26" declfile="/home/n30/Repos/rayex/include/base/Geometry.hpp" declline="76" declcolumn="26"/>
       </memberdef>
       <memberdef kind="function" id="group___b_a_s_e_1gad880ea304e8ff3dab6ea5258df8970cf" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>RX_API std::shared_ptr&lt; GeometryInstance &gt;</type>
@@ -99,7 +98,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/n30/Repos/rayex/include/base/Geometry.hpp" line="95" column="26" declfile="/home/n30/Repos/rayex/include/base/Geometry.hpp" declline="95" declcolumn="26"/>
+        <location file="/home/n30/Repos/rayex/include/base/Geometry.hpp" line="85" column="26" declfile="/home/n30/Repos/rayex/include/base/Geometry.hpp" declline="85" declcolumn="26"/>
       </memberdef>
       </sectiondef>
     <briefdescription>

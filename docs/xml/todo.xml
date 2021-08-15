@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
-<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.17">
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
   <compounddef id="todo" kind="page">
     <compoundname>todo</compoundname>
     <title>Todo List</title>
@@ -7,20 +7,29 @@
     </briefdescription>
     <detaileddescription>
 <para><variablelist>
+<varlistentry><term>Class <ref refid="struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_camera_ubo" kindref="compound">RAYEX_NAMESPACE::CameraUbo</ref>  </term></varlistentry>
+<listitem><para><anchor id="todo_1_todo000002"/>poorly aligned</para>
+<para></para>
+</listitem>
+<varlistentry><term>Member <ref refid="struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_material_1a2985375b4f62c77adc4f5aae8f884ed9" kindref="member">RAYEX_NAMESPACE::Material::illum</ref>  </term></varlistentry>
+<listitem><para><anchor id="todo_1_todo000003"/>documentation  </para>
+</listitem>
 <varlistentry><term>Class <ref refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_scene" kindref="compound">RAYEX_NAMESPACE::Scene</ref>  </term></varlistentry>
-<listitem><para><anchor id="todo_1_todo000002"/><ref refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_scene_1a8004b0c0dfb783070ea82af111378718" kindref="member">removeGeometry()</ref>  </para>
+<listitem><para><anchor id="todo_1_todo000004"/><ref refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_scene_1a8004b0c0dfb783070ea82af111378718" kindref="member">removeGeometry()</ref></para>
+<para></para>
 </listitem>
 <varlistentry><term>Class <ref refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_settings" kindref="compound">RAYEX_NAMESPACE::Settings</ref>  </term></varlistentry>
-<listitem><para><anchor id="todo_1_todo000003"/>Add a setUseTotalPathsOnly( bool flag )  </para>
+<listitem><para><anchor id="todo_1_todo000005"/>Add a setUseTotalPathsOnly( bool flag )  </para>
 </listitem>
 <varlistentry><term>Class <ref refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_time" kindref="compound">RAYEX_NAMESPACE::Time</ref>  </term></varlistentry>
-<listitem><para><anchor id="todo_1_todo000004"/>Average FPS are pointless. Implement minimum FPS and frametimes instead.  </para>
+<listitem><para><anchor id="todo_1_todo000006"/>Average FPS are pointless. Implement minimum FPS and frametimes instead.  </para>
 </listitem>
 <varlistentry><term>Class <ref refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_window" kindref="compound">RAYEX_NAMESPACE::Window</ref>  </term></varlistentry>
-<listitem><para><anchor id="todo_1_todo000005"/>To avoid the user having to link to SDL themselves requires to write a complete SDL2 wrapper. </para>
+<listitem><para><anchor id="todo_1_todo000007"/>To avoid the user having to link to SDL themselves requires to write a complete SDL2 wrapper. </para>
 </listitem>
 </variablelist>
 </para>
     </detaileddescription>
+    <location file="todo"/>
   </compounddef>
 </doxygen>

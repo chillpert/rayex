@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
-<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.17">
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
   <compounddef id="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_api" kind="class" language="C++" prot="public">
     <compoundname>RAYEX_NAMESPACE::Api</compoundname>
     <includes refid="_api_8hpp" local="no">Api.hpp</includes>
@@ -245,9 +245,9 @@
         </inbodydescription>
         <location file="/home/n30/Repos/rayex/include/api/Api.hpp" line="23" column="5"/>
       </memberdef>
-      <memberdef kind="function" id="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_api_1a2466f3fcfd89ab8d1d80eed1254950c0" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
-        <type></type>
-        <definition>RAYEX_NAMESPACE::Api::~Api</definition>
+      <memberdef kind="function" id="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_api_1a00b9e277abbc01e990f044edef3ef033" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>RX_API</type>
+        <definition>RX_API RAYEX_NAMESPACE::Api::~Api</definition>
         <argsstring>()</argsstring>
         <name>~Api</name>
         <briefdescription>
@@ -256,7 +256,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/n30/Repos/rayex/include/api/Api.hpp" line="24" column="5"/>
+        <location file="/home/n30/Repos/rayex/include/api/Api.hpp" line="24" column="12"/>
       </memberdef>
       <memberdef kind="function" id="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_api_1a75fc41dab952a0b3c08d95a30ff451a8" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type></type>
@@ -515,7 +515,7 @@
 </simplesect>
 </para>
     </detaileddescription>
-    <location file="/home/n30/Repos/rayex/include/api/Api.hpp" line="19" column="1" bodyfile="/home/n30/Repos/rayex/include/api/Api.hpp" bodystart="18" bodyend="89"/>
+    <location file="/home/n30/Repos/rayex/include/api/Api.hpp" line="18" column="3" bodyfile="/home/n30/Repos/rayex/include/api/Api.hpp" bodystart="19" bodyend="89"/>
     <listofallmembers>
       <member refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_api_1a752789ecf0b4f3ba18a958b67fd680ff" prot="private" virt="non-virtual"><scope>RAYEX_NAMESPACE::Api</scope><name>_camera</name></member>
       <member refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_api_1a2bcd117c844d3d8b6230532fd96c6262" prot="private" virt="non-virtual"><scope>RAYEX_NAMESPACE::Api</scope><name>_debugMessenger</name></member>
@@ -550,7 +550,7 @@
       <member refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_api_1a676e59e4285451eb8d4f73fe5dfbbf5d" prot="private" virt="non-virtual"><scope>RAYEX_NAMESPACE::Api</scope><name>submitFrame</name></member>
       <member refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_api_1a5ac2e83575733e1b41d7fe54641f5121" prot="private" virt="non-virtual"><scope>RAYEX_NAMESPACE::Api</scope><name>update</name></member>
       <member refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_api_1a1b353f7e10864adec9fcaae6a600ff14" prot="private" virt="non-virtual"><scope>RAYEX_NAMESPACE::Api</scope><name>updateSettings</name></member>
-      <member refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_api_1a2466f3fcfd89ab8d1d80eed1254950c0" prot="public" virt="non-virtual"><scope>RAYEX_NAMESPACE::Api</scope><name>~Api</name></member>
+      <member refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_api_1a00b9e277abbc01e990f044edef3ef033" prot="public" virt="non-virtual"><scope>RAYEX_NAMESPACE::Api</scope><name>~Api</name></member>
     </listofallmembers>
   </compounddef>
 </doxygen>

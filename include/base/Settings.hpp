@@ -29,23 +29,37 @@ namespace RAYEX_NAMESPACE
     /// @param recursionDepth The new value for the recursion depth.
     void setPathDepth( uint32_t recursionDepth );
 
+    /// @see setRussianRoulette(bool)
     bool getRussianRoulette( ) { return _russianRoulette; }
 
+    /// Used to toggle Russian roulette ray termination.
+    /// 
+    /// This can be used to improve performance at a moderate increase of variance.
+    /// @param flag The actual toggle.
     void setRussianRoulette( bool flag );
 
+    /// @see setNextEventEstimation(bool)
     bool getNextEventEstimation( ) { return _nextEventEstimation; }
 
+    /// Used to toggle next event estimation (NEE).
+    /// @param flag The actual toggle.
     void setNextEventEstimation( bool flag );
 
     uint32_t getNextEventEstimationMinBounces( ) { return _nextEventEstimationMinBounces; }
 
+    /// Used to set a minimum amount of bounces (rays) in a path before NEE will be applied.
+    /// @param minBounces The total amount of bounces to skip.
+    /// @warning This is for debugging purposes.
     void setNextEventEstimationMinBounces( uint32_t minBounces );
 
+    /// @see setRussianRouletteMinBounces(uint32_t)
     uint32_t getRussianRouletteMinBounces( ) { return _russianRouletteMinBounces; }
 
+    /// Used to set a minimum amount of bounces (rays) in a path before Russian roulette termination will be applied.
+    /// @param minBounces The total amount of bounces to skip.
     void setRussianRouletteMinBounces( uint32_t minBounces );
 
-    /// @return Returns the maximum path depth on the GPU.
+    /// @return Returns the maximum path depth on the GPU for recursively tracing rays.
     auto getMaxPathDepth( ) const -> uint32_t { return _maxPathDepth; }
 
     /// @return Returns the clear color.
@@ -78,28 +92,51 @@ namespace RAYEX_NAMESPACE
     void setAutomaticPipelineRefresh( bool flag );
 
     /// Used to set the maximum amount of geometry (3D models) that can be loaded.
+    /// @param amount The upper limit.
     void setGeometryLimit( size_t amount );
 
     /// Used to set the maximum amount of geometry instances (instances of 3D models) that can be loaded.
+    /// @param amount The upper limit.
     void setGeometryInstanceLimit( uint32_t amount );
 
     /// Used to set the maximum amount of textures that can be loaded.
+    /// @param amount The upper limit.
     void setTextureLimit( size_t amount );
 
+    /// Used to set the amount of paths sampled per pixel.
+    /// @param sampleRate The upper limit.
     void setPerPixelSampleRate( uint32_t sampleRate );
 
+    /// @see setPerPixelSampleRate(uint32_t)
     auto getPerPixelSampleRate( ) const -> uint32_t { return _perPixelSampleRate; }
 
+    /// Used to toggle frame accumulation.
+    ///
+    /// Can be used to retrieve a converged image of static scenes.
+    /// @param flag The actual toggle
     void setAccumulatingFrames( bool flag );
 
+    /// @see setAccumulatingFrames(bool)
     auto isAccumulatingFrames( ) const -> bool { return _accumulateFrames; }
 
+    /// Used to recreate the pipeline manually.
+    ///
+    /// The pipeline recreation event will be handled within the same application tick.
     void triggerPipelineRefresh( ) { _refreshPipeline = true; }
 
+    /// Used to recreate the swapchain manually.
+    ///
+    /// The swapchain recreation event will be handled within the same application tick.
     void triggerSwapchainRefresh( ) { _refreshSwapchain = true; }
 
+    /// @return Returns a total variance estimate calculated when updateVariance(flag) was called.
+    /// @warning This feature is still experimental and does not work as intended.
+    /// @note Requires the RX_VARIANCE_ESTIMATOR macro to be defined.
     float getVariance( ) { return _variance; }
 
+    /// Used to calculate the variance of the current image.
+    /// @warning This feature is still experimental and does not work as intended.
+    /// @note Requires the RX_VARIANCE_ESTIMATOR macro to be defined.
     void updateVariance( bool flag );
 
   private:
@@ -127,7 +164,7 @@ namespace RAYEX_NAMESPACE
     uint32_t _russianRouletteMinBounces = 3;
 
     bool _nextEventEstimation               = false;
-    uint32_t _nextEventEstimationMinBounces = 0; // temporary for debugging
+    uint32_t _nextEventEstimationMinBounces = 0; /// Temporary for debugging.
 
     float _variance      = 0.0F;
     bool _updateVariance = false;

@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
-<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.17">
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
   <compounddef id="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_path_tracer" kind="class" language="C++" prot="public">
     <compoundname>RAYEX_NAMESPACE::PathTracer</compoundname>
     <includes refid="_path_tracer_8hpp" local="no">PathTracer.hpp</includes>
@@ -15,7 +15,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/n30/Repos/rayex/include/api/pathtrace/PathTracer.hpp" line="124" column="24" bodyfile="/home/n30/Repos/rayex/include/api/pathtrace/PathTracer.hpp" bodystart="124" bodyend="-1"/>
+        <location file="/home/n30/Repos/rayex/include/api/pathtrace/PathTracer.hpp" line="140" column="24" bodyfile="/home/n30/Repos/rayex/include/api/pathtrace/PathTracer.hpp" bodystart="140" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_path_tracer_1a276895d53ec19f4b026595940c30594c" prot="private" static="no" mutable="no">
         <type>vk::UniquePipelineLayout</type>
@@ -28,7 +28,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/n30/Repos/rayex/include/api/pathtrace/PathTracer.hpp" line="125" column="30" bodyfile="/home/n30/Repos/rayex/include/api/pathtrace/PathTracer.hpp" bodystart="125" bodyend="-1"/>
+        <location file="/home/n30/Repos/rayex/include/api/pathtrace/PathTracer.hpp" line="141" column="30" bodyfile="/home/n30/Repos/rayex/include/api/pathtrace/PathTracer.hpp" bodystart="141" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_path_tracer_1a718a1af75af548b2fcd5eb079e741045" prot="private" static="no" mutable="no">
         <type>uint32_t</type>
@@ -41,7 +41,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/n30/Repos/rayex/include/api/pathtrace/PathTracer.hpp" line="126" column="14" bodyfile="/home/n30/Repos/rayex/include/api/pathtrace/PathTracer.hpp" bodystart="126" bodyend="-1"/>
+        <location file="/home/n30/Repos/rayex/include/api/pathtrace/PathTracer.hpp" line="142" column="14" bodyfile="/home/n30/Repos/rayex/include/api/pathtrace/PathTracer.hpp" bodystart="142" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_path_tracer_1aaa80abec1668072b51a4977a44185506" prot="private" static="no" mutable="no">
         <type><ref refid="struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_path_tracing_capabilities" kindref="compound">PathTracingCapabilities</ref></type>
@@ -54,7 +54,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/n30/Repos/rayex/include/api/pathtrace/PathTracer.hpp" line="127" column="29" bodyfile="/home/n30/Repos/rayex/include/api/pathtrace/PathTracer.hpp" bodystart="127" bodyend="-1"/>
+        <location file="/home/n30/Repos/rayex/include/api/pathtrace/PathTracer.hpp" line="143" column="29" bodyfile="/home/n30/Repos/rayex/include/api/pathtrace/PathTracer.hpp" bodystart="143" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_path_tracer_1a4f8665a60fa4463ba2e8f9f81b8c3471" prot="private" static="no" mutable="no">
         <type>std::vector&lt; <ref refid="struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_blas" kindref="compound">Blas</ref> &gt;</type>
@@ -67,20 +67,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/n30/Repos/rayex/include/api/pathtrace/PathTracer.hpp" line="128" column="17" bodyfile="/home/n30/Repos/rayex/include/api/pathtrace/PathTracer.hpp" bodystart="128" bodyend="-1"/>
-      </memberdef>
-      <memberdef kind="variable" id="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_path_tracer_1ada39103f23d5e5c076b70a8983fec2d4" prot="private" static="no" mutable="no">
-        <type>std::map&lt; uint32_t, std::pair&lt; size_t, bool &gt; &gt;</type>
-        <definition>std::map&lt;uint32_t, std::pair&lt;size_t, bool&gt; &gt; RAYEX_NAMESPACE::PathTracer::_indices</definition>
-        <argsstring></argsstring>
-        <name>_indices</name>
-        <briefdescription>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="/home/n30/Repos/rayex/include/api/pathtrace/PathTracer.hpp" line="129" column="14" bodyfile="/home/n30/Repos/rayex/include/api/pathtrace/PathTracer.hpp" bodystart="129" bodyend="-1"/>
+        <location file="/home/n30/Repos/rayex/include/api/pathtrace/PathTracer.hpp" line="144" column="17" bodyfile="/home/n30/Repos/rayex/include/api/pathtrace/PathTracer.hpp" bodystart="144" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_path_tracer_1a9f71fc22babc4da3212f6110c86472c8" prot="private" static="no" mutable="no">
         <type><ref refid="struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_tlas" kindref="compound">Tlas</ref></type>
@@ -94,7 +81,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/n30/Repos/rayex/include/api/pathtrace/PathTracer.hpp" line="130" column="10" bodyfile="/home/n30/Repos/rayex/include/api/pathtrace/PathTracer.hpp" bodystart="130" bodyend="-1"/>
+        <location file="/home/n30/Repos/rayex/include/api/pathtrace/PathTracer.hpp" line="145" column="10" bodyfile="/home/n30/Repos/rayex/include/api/pathtrace/PathTracer.hpp" bodystart="145" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_path_tracer_1afff63e1cc8c29df49b7e8a44b5a59f72" prot="private" static="no" mutable="no">
         <type>vkCore::Buffer</type>
@@ -107,7 +94,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/n30/Repos/rayex/include/api/pathtrace/PathTracer.hpp" line="131" column="20" bodyfile="/home/n30/Repos/rayex/include/api/pathtrace/PathTracer.hpp" bodystart="131" bodyend="-1"/>
+        <location file="/home/n30/Repos/rayex/include/api/pathtrace/PathTracer.hpp" line="146" column="20" bodyfile="/home/n30/Repos/rayex/include/api/pathtrace/PathTracer.hpp" bodystart="146" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_path_tracer_1aba4b06c094ad0a0ac0909b50a68f4e27" prot="private" static="no" mutable="no">
         <type>vkCore::Buffer</type>
@@ -121,7 +108,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/n30/Repos/rayex/include/api/pathtrace/PathTracer.hpp" line="132" column="20" bodyfile="/home/n30/Repos/rayex/include/api/pathtrace/PathTracer.hpp" bodystart="132" bodyend="-1"/>
+        <location file="/home/n30/Repos/rayex/include/api/pathtrace/PathTracer.hpp" line="147" column="20" bodyfile="/home/n30/Repos/rayex/include/api/pathtrace/PathTracer.hpp" bodystart="147" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_path_tracer_1ae23e259bdcb62930b131670658bcabf2" prot="private" static="no" mutable="no">
         <type>vkCore::Image</type>
@@ -134,7 +121,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/n30/Repos/rayex/include/api/pathtrace/PathTracer.hpp" line="134" column="19" bodyfile="/home/n30/Repos/rayex/include/api/pathtrace/PathTracer.hpp" bodystart="134" bodyend="-1"/>
+        <location file="/home/n30/Repos/rayex/include/api/pathtrace/PathTracer.hpp" line="149" column="19" bodyfile="/home/n30/Repos/rayex/include/api/pathtrace/PathTracer.hpp" bodystart="149" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_path_tracer_1ab103bbe5d3b7a386b4e79da38da2655b" prot="private" static="no" mutable="no">
         <type>vk::UniqueImageView</type>
@@ -147,7 +134,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/n30/Repos/rayex/include/api/pathtrace/PathTracer.hpp" line="135" column="25" bodyfile="/home/n30/Repos/rayex/include/api/pathtrace/PathTracer.hpp" bodystart="135" bodyend="-1"/>
+        <location file="/home/n30/Repos/rayex/include/api/pathtrace/PathTracer.hpp" line="150" column="25" bodyfile="/home/n30/Repos/rayex/include/api/pathtrace/PathTracer.hpp" bodystart="150" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_path_tracer_1ad219896e8cb09829d7a4427522dfe8a3" prot="private" static="no" mutable="no">
         <type>vk::UniqueSampler</type>
@@ -160,7 +147,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/n30/Repos/rayex/include/api/pathtrace/PathTracer.hpp" line="136" column="23" bodyfile="/home/n30/Repos/rayex/include/api/pathtrace/PathTracer.hpp" bodystart="136" bodyend="-1"/>
+        <location file="/home/n30/Repos/rayex/include/api/pathtrace/PathTracer.hpp" line="151" column="23" bodyfile="/home/n30/Repos/rayex/include/api/pathtrace/PathTracer.hpp" bodystart="151" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_path_tracer_1a8ca158f5bc4ae2bbf6d360d7270e11b6" prot="private" static="no" mutable="no">
         <type>vk::DescriptorImageInfo</type>
@@ -173,7 +160,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/n30/Repos/rayex/include/api/pathtrace/PathTracer.hpp" line="137" column="29" bodyfile="/home/n30/Repos/rayex/include/api/pathtrace/PathTracer.hpp" bodystart="137" bodyend="-1"/>
+        <location file="/home/n30/Repos/rayex/include/api/pathtrace/PathTracer.hpp" line="152" column="29" bodyfile="/home/n30/Repos/rayex/include/api/pathtrace/PathTracer.hpp" bodystart="152" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_path_tracer_1a0d18cde0f2dddcf45c39ff26469d519f" prot="private" static="no" mutable="no">
         <type>vkCore::Descriptors</type>
@@ -186,7 +173,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/n30/Repos/rayex/include/api/pathtrace/PathTracer.hpp" line="139" column="25" bodyfile="/home/n30/Repos/rayex/include/api/pathtrace/PathTracer.hpp" bodystart="139" bodyend="-1"/>
+        <location file="/home/n30/Repos/rayex/include/api/pathtrace/PathTracer.hpp" line="154" column="25" bodyfile="/home/n30/Repos/rayex/include/api/pathtrace/PathTracer.hpp" bodystart="154" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_path_tracer_1abcaaa19330b056579faab727da0ea10a" prot="private" static="no" mutable="no">
         <type>std::vector&lt; vk::DescriptorSet &gt;</type>
@@ -199,7 +186,20 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/n30/Repos/rayex/include/api/pathtrace/PathTracer.hpp" line="140" column="17" bodyfile="/home/n30/Repos/rayex/include/api/pathtrace/PathTracer.hpp" bodystart="140" bodyend="-1"/>
+        <location file="/home/n30/Repos/rayex/include/api/pathtrace/PathTracer.hpp" line="155" column="17" bodyfile="/home/n30/Repos/rayex/include/api/pathtrace/PathTracer.hpp" bodystart="155" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_path_tracer_1a2bcb0eee204b74511ebb75488822b428" prot="private" static="no" mutable="no">
+        <type>vkCore::Buffer</type>
+        <definition>vkCore::Buffer RAYEX_NAMESPACE::PathTracer::_varianceBuffer</definition>
+        <argsstring></argsstring>
+        <name>_varianceBuffer</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/n30/Repos/rayex/include/api/pathtrace/PathTracer.hpp" line="157" column="20" bodyfile="/home/n30/Repos/rayex/include/api/pathtrace/PathTracer.hpp" bodystart="157" bodyend="-1"/>
       </memberdef>
       </sectiondef>
       <sectiondef kind="public-func">
@@ -214,7 +214,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/n30/Repos/rayex/include/api/pathtrace/PathTracer.hpp" line="41" column="5"/>
+        <location file="/home/n30/Repos/rayex/include/api/pathtrace/PathTracer.hpp" line="42" column="5"/>
       </memberdef>
       <memberdef kind="function" id="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_path_tracer_1aef8229369df0e2e75fea08d0163c0bfc" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type></type>
@@ -228,7 +228,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/n30/Repos/rayex/include/api/pathtrace/PathTracer.hpp" line="44" column="5"/>
+        <location file="/home/n30/Repos/rayex/include/api/pathtrace/PathTracer.hpp" line="45" column="5"/>
       </memberdef>
       <memberdef kind="function" id="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_path_tracer_1a962dbd0ccd7400ccb8bba85f93dc263c" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type></type>
@@ -244,7 +244,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/n30/Repos/rayex/include/api/pathtrace/PathTracer.hpp" line="46" column="5"/>
+        <location file="/home/n30/Repos/rayex/include/api/pathtrace/PathTracer.hpp" line="47" column="5"/>
       </memberdef>
       <memberdef kind="function" id="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_path_tracer_1a4ebf5206c031cf0532596adb9b68fc3b" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type></type>
@@ -260,7 +260,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/n30/Repos/rayex/include/api/pathtrace/PathTracer.hpp" line="47" column="5"/>
+        <location file="/home/n30/Repos/rayex/include/api/pathtrace/PathTracer.hpp" line="48" column="5"/>
       </memberdef>
       <memberdef kind="function" id="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_path_tracer_1a01b3b0262634e7993b1173c289f0db02" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>auto</type>
@@ -276,7 +276,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/n30/Repos/rayex/include/api/pathtrace/PathTracer.hpp" line="49" column="10"/>
+        <location file="/home/n30/Repos/rayex/include/api/pathtrace/PathTracer.hpp" line="50" column="10"/>
       </memberdef>
       <memberdef kind="function" id="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_path_tracer_1abc9fc7f8c1a71ef1cb056c5f5531af42" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>auto</type>
@@ -292,7 +292,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/n30/Repos/rayex/include/api/pathtrace/PathTracer.hpp" line="50" column="10"/>
+        <location file="/home/n30/Repos/rayex/include/api/pathtrace/PathTracer.hpp" line="51" column="10"/>
       </memberdef>
       <memberdef kind="function" id="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_path_tracer_1aec2798527165512a51c4028be6dd5da0" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -306,7 +306,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/n30/Repos/rayex/include/api/pathtrace/PathTracer.hpp" line="53" column="10"/>
+        <location file="/home/n30/Repos/rayex/include/api/pathtrace/PathTracer.hpp" line="54" column="10"/>
       </memberdef>
       <memberdef kind="function" id="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_path_tracer_1a29bafe2e2c61bd1ef76999885efa9188" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -320,7 +320,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/n30/Repos/rayex/include/api/pathtrace/PathTracer.hpp" line="56" column="10"/>
+        <location file="/home/n30/Repos/rayex/include/api/pathtrace/PathTracer.hpp" line="57" column="10"/>
       </memberdef>
       <memberdef kind="function" id="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_path_tracer_1aa57a79727d5cab887d198231377d0c7e" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
         <type>auto</type>
@@ -336,7 +336,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/n30/Repos/rayex/include/api/pathtrace/PathTracer.hpp" line="59" column="10" bodyfile="/home/n30/Repos/rayex/include/api/pathtrace/PathTracer.hpp" bodystart="59" bodyend="59"/>
+        <location file="/home/n30/Repos/rayex/include/api/pathtrace/PathTracer.hpp" line="60" column="10" bodyfile="/home/n30/Repos/rayex/include/api/pathtrace/PathTracer.hpp" bodystart="60" bodyend="60"/>
       </memberdef>
       <memberdef kind="function" id="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_path_tracer_1abde61bef57499d13e9df3cc3db0b8e39" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
         <type>auto</type>
@@ -349,7 +349,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/n30/Repos/rayex/include/api/pathtrace/PathTracer.hpp" line="61" column="10" bodyfile="/home/n30/Repos/rayex/include/api/pathtrace/PathTracer.hpp" bodystart="61" bodyend="61"/>
+        <location file="/home/n30/Repos/rayex/include/api/pathtrace/PathTracer.hpp" line="62" column="10" bodyfile="/home/n30/Repos/rayex/include/api/pathtrace/PathTracer.hpp" bodystart="62" bodyend="62"/>
       </memberdef>
       <memberdef kind="function" id="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_path_tracer_1a88b082f3c08f346b4bfa71836a9e3f81" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
         <type>auto</type>
@@ -362,7 +362,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/n30/Repos/rayex/include/api/pathtrace/PathTracer.hpp" line="63" column="10" bodyfile="/home/n30/Repos/rayex/include/api/pathtrace/PathTracer.hpp" bodystart="63" bodyend="63"/>
+        <location file="/home/n30/Repos/rayex/include/api/pathtrace/PathTracer.hpp" line="64" column="10" bodyfile="/home/n30/Repos/rayex/include/api/pathtrace/PathTracer.hpp" bodystart="64" bodyend="64"/>
       </memberdef>
       <memberdef kind="function" id="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_path_tracer_1a148b5a6c45676515d7db5efe50e67428" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
         <type>auto</type>
@@ -375,7 +375,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/n30/Repos/rayex/include/api/pathtrace/PathTracer.hpp" line="65" column="10" bodyfile="/home/n30/Repos/rayex/include/api/pathtrace/PathTracer.hpp" bodystart="65" bodyend="65"/>
+        <location file="/home/n30/Repos/rayex/include/api/pathtrace/PathTracer.hpp" line="66" column="10" bodyfile="/home/n30/Repos/rayex/include/api/pathtrace/PathTracer.hpp" bodystart="66" bodyend="66"/>
       </memberdef>
       <memberdef kind="function" id="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_path_tracer_1a87b1e74178484ae54e891f62b897b079" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
         <type>auto</type>
@@ -388,7 +388,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/n30/Repos/rayex/include/api/pathtrace/PathTracer.hpp" line="67" column="10" bodyfile="/home/n30/Repos/rayex/include/api/pathtrace/PathTracer.hpp" bodystart="67" bodyend="67"/>
+        <location file="/home/n30/Repos/rayex/include/api/pathtrace/PathTracer.hpp" line="68" column="10" bodyfile="/home/n30/Repos/rayex/include/api/pathtrace/PathTracer.hpp" bodystart="68" bodyend="68"/>
       </memberdef>
       <memberdef kind="function" id="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_path_tracer_1a88b7351717bcb2731cda5254316384a3" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
         <type>auto</type>
@@ -401,7 +401,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/n30/Repos/rayex/include/api/pathtrace/PathTracer.hpp" line="69" column="10" bodyfile="/home/n30/Repos/rayex/include/api/pathtrace/PathTracer.hpp" bodystart="69" bodyend="69"/>
+        <location file="/home/n30/Repos/rayex/include/api/pathtrace/PathTracer.hpp" line="70" column="10" bodyfile="/home/n30/Repos/rayex/include/api/pathtrace/PathTracer.hpp" bodystart="70" bodyend="70"/>
       </memberdef>
       <memberdef kind="function" id="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_path_tracer_1a37d390a924dc52e0195248cedd5fe670" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
         <type>auto</type>
@@ -414,7 +414,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/n30/Repos/rayex/include/api/pathtrace/PathTracer.hpp" line="71" column="10" bodyfile="/home/n30/Repos/rayex/include/api/pathtrace/PathTracer.hpp" bodystart="71" bodyend="71"/>
+        <location file="/home/n30/Repos/rayex/include/api/pathtrace/PathTracer.hpp" line="72" column="10" bodyfile="/home/n30/Repos/rayex/include/api/pathtrace/PathTracer.hpp" bodystart="72" bodyend="72"/>
       </memberdef>
       <memberdef kind="function" id="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_path_tracer_1a1305b431a280fa0bb99a15ea2d49eed6" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
         <type>auto</type>
@@ -431,12 +431,12 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/n30/Repos/rayex/include/api/pathtrace/PathTracer.hpp" line="73" column="10" bodyfile="/home/n30/Repos/rayex/include/api/pathtrace/PathTracer.hpp" bodystart="73" bodyend="73"/>
+        <location file="/home/n30/Repos/rayex/include/api/pathtrace/PathTracer.hpp" line="74" column="10" bodyfile="/home/n30/Repos/rayex/include/api/pathtrace/PathTracer.hpp" bodystart="74" bodyend="74"/>
       </memberdef>
-      <memberdef kind="function" id="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_path_tracer_1afe9a29b1bff77d11f7eb77a56d635356" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+      <memberdef kind="function" id="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_path_tracer_1a06e8c5d6ceea3bfde8c9e52f465f8edf" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
         <type>auto</type>
         <definition>auto RAYEX_NAMESPACE::PathTracer::modelToBlas</definition>
-        <argsstring>(const vkCore::StorageBuffer&lt; Vertex &gt; &amp;vertexBuffer, const vkCore::StorageBuffer&lt; uint32_t &gt; &amp;indexBuffer, bool allowTransforms) const -&gt; Blas</argsstring>
+        <argsstring>(const vkCore::StorageBuffer&lt; Vertex &gt; &amp;vertexBuffer, const vkCore::StorageBuffer&lt; uint32_t &gt; &amp;indexBuffer, bool opaque) const -&gt; Blas</argsstring>
         <name>modelToBlas</name>
         <param>
           <type>const vkCore::StorageBuffer&lt; <ref refid="struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_vertex" kindref="compound">Vertex</ref> &gt; &amp;</type>
@@ -448,7 +448,7 @@
         </param>
         <param>
           <type>bool</type>
-          <declname>allowTransforms</declname>
+          <declname>opaque</declname>
         </param>
         <briefdescription>
 <para>Used to convert wavefront models to a bottom level acceleration structure. </para>
@@ -477,7 +477,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/n30/Repos/rayex/include/api/pathtrace/PathTracer.hpp" line="79" column="10"/>
+        <location file="/home/n30/Repos/rayex/include/api/pathtrace/PathTracer.hpp" line="80" column="10"/>
       </memberdef>
       <memberdef kind="function" id="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_path_tracer_1ae092e3687d1f24b48bcf056e5b8cb481" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>auto</type>
@@ -507,7 +507,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/n30/Repos/rayex/include/api/pathtrace/PathTracer.hpp" line="84" column="10"/>
+        <location file="/home/n30/Repos/rayex/include/api/pathtrace/PathTracer.hpp" line="85" column="10"/>
       </memberdef>
       <memberdef kind="function" id="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_path_tracer_1a01e426560fbcea32ea1a1fb0b8fc3a6a" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -551,7 +551,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/n30/Repos/rayex/include/api/pathtrace/PathTracer.hpp" line="89" column="10"/>
+        <location file="/home/n30/Repos/rayex/include/api/pathtrace/PathTracer.hpp" line="90" column="10"/>
       </memberdef>
       <memberdef kind="function" id="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_path_tracer_1a5df109c2da39664245ad141e2d9c0e4a" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -588,7 +588,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/n30/Repos/rayex/include/api/pathtrace/PathTracer.hpp" line="94" column="10"/>
+        <location file="/home/n30/Repos/rayex/include/api/pathtrace/PathTracer.hpp" line="95" column="10"/>
       </memberdef>
       <memberdef kind="function" id="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_path_tracer_1a3c2f2045a533d9fe53faafdb885f5831" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -634,7 +634,30 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/n30/Repos/rayex/include/api/pathtrace/PathTracer.hpp" line="99" column="10"/>
+        <location file="/home/n30/Repos/rayex/include/api/pathtrace/PathTracer.hpp" line="100" column="10"/>
+      </memberdef>
+      <memberdef kind="function" id="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_path_tracer_1a384214253537ed75c2be84ed37801a40" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void RAYEX_NAMESPACE::PathTracer::updateTlas</definition>
+        <argsstring>(const std::vector&lt; std::shared_ptr&lt; GeometryInstance &gt;&gt; &amp;geometryInstances, vk::BuildAccelerationStructureFlagsKHR flags=vk::BuildAccelerationStructureFlagBitsKHR::ePreferFastTrace|vk::BuildAccelerationStructureFlagBitsKHR::eAllowUpdate)</argsstring>
+        <name>updateTlas</name>
+        <param>
+          <type>const std::vector&lt; std::shared_ptr&lt; <ref refid="struct_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_geometry_instance" kindref="compound">GeometryInstance</ref> &gt;&gt; &amp;</type>
+          <declname>geometryInstances</declname>
+        </param>
+        <param>
+          <type>vk::BuildAccelerationStructureFlagsKHR</type>
+          <declname>flags</declname>
+          <defval>vk::BuildAccelerationStructureFlagBitsKHR::ePreferFastTrace|vk::BuildAccelerationStructureFlagBitsKHR::eAllowUpdate</defval>
+        </param>
+        <briefdescription>
+<para>Rebuilds the top level acceleration structure without recreating the acceleration structure handles. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/n30/Repos/rayex/include/api/pathtrace/PathTracer.hpp" line="103" column="10"/>
       </memberdef>
       <memberdef kind="function" id="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_path_tracer_1a504cc5e1802f0174272f637ad6e8f4c6" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -662,7 +685,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/n30/Repos/rayex/include/api/pathtrace/PathTracer.hpp" line="103" column="10"/>
+        <location file="/home/n30/Repos/rayex/include/api/pathtrace/PathTracer.hpp" line="107" column="10"/>
       </memberdef>
       <memberdef kind="function" id="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_path_tracer_1aef800dfb214e83264e2a573039a5aed3" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -676,20 +699,16 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/n30/Repos/rayex/include/api/pathtrace/PathTracer.hpp" line="106" column="10"/>
+        <location file="/home/n30/Repos/rayex/include/api/pathtrace/PathTracer.hpp" line="110" column="10"/>
       </memberdef>
-      <memberdef kind="function" id="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_path_tracer_1af72332595cb39c940f0a6c9afee439ef" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+      <memberdef kind="function" id="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_path_tracer_1ae30f5e7aa6a8df5dcb7b8b544298f9a5" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
         <definition>void RAYEX_NAMESPACE::PathTracer::createPipeline</definition>
-        <argsstring>(const std::vector&lt; vk::DescriptorSetLayout &gt; &amp;descriptorSetLayouts, Settings *settings)</argsstring>
+        <argsstring>(const std::vector&lt; vk::DescriptorSetLayout &gt; &amp;descriptorSetLayouts)</argsstring>
         <name>createPipeline</name>
         <param>
           <type>const std::vector&lt; vk::DescriptorSetLayout &gt; &amp;</type>
           <declname>descriptorSetLayouts</declname>
-        </param>
-        <param>
-          <type><ref refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_settings" kindref="compound">Settings</ref> *</type>
-          <declname>settings</declname>
         </param>
         <briefdescription>
 <para>Used to create a path tracing pipeline. </para>
@@ -716,7 +735,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/n30/Repos/rayex/include/api/pathtrace/PathTracer.hpp" line="111" column="10"/>
+        <location file="/home/n30/Repos/rayex/include/api/pathtrace/PathTracer.hpp" line="115" column="10"/>
       </memberdef>
       <memberdef kind="function" id="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_path_tracer_1aed6907560423957efa3aec52c69aa240" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -768,7 +787,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/n30/Repos/rayex/include/api/pathtrace/PathTracer.hpp" line="117" column="10"/>
+        <location file="/home/n30/Repos/rayex/include/api/pathtrace/PathTracer.hpp" line="121" column="10"/>
       </memberdef>
       <memberdef kind="function" id="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_path_tracer_1a30d8d1231355d7493d29b8226cfe728a" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -776,12 +795,13 @@
         <argsstring>()</argsstring>
         <name>initDescriptorSet</name>
         <briefdescription>
+<para>Used to configure bindings for the top level acceleration structure and the storage image and creates the descriptor set, set layout and pool. </para>
         </briefdescription>
         <detaileddescription>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/n30/Repos/rayex/include/api/pathtrace/PathTracer.hpp" line="119" column="10"/>
+        <location file="/home/n30/Repos/rayex/include/api/pathtrace/PathTracer.hpp" line="124" column="10"/>
       </memberdef>
       <memberdef kind="function" id="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_path_tracer_1a76874c6e9156b8c8f1624b43265fbc73" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -789,12 +809,70 @@
         <argsstring>()</argsstring>
         <name>updateDescriptors</name>
         <briefdescription>
+<para>Used to write the top level acceleration structure and storage image to the descriptor set. </para>
         </briefdescription>
         <detaileddescription>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/n30/Repos/rayex/include/api/pathtrace/PathTracer.hpp" line="121" column="10"/>
+        <location file="/home/n30/Repos/rayex/include/api/pathtrace/PathTracer.hpp" line="127" column="10"/>
+      </memberdef>
+      <memberdef kind="function" id="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_path_tracer_1aa58aa606adc0fa0931dda689a0c3d453" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void RAYEX_NAMESPACE::PathTracer::initVarianceBuffer</definition>
+        <argsstring>(float width, float height)</argsstring>
+        <name>initVarianceBuffer</name>
+        <param>
+          <type>float</type>
+          <declname>width</declname>
+        </param>
+        <param>
+          <type>float</type>
+          <declname>height</declname>
+        </param>
+        <briefdescription>
+<para>Used to set up a buffer that can be read by the host for the experimental variance measuring tool. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="note"><para>Requires the RX_VARIANCE_ESTIMATOR macro to be defined. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/n30/Repos/rayex/include/api/pathtrace/PathTracer.hpp" line="131" column="10"/>
+      </memberdef>
+      <memberdef kind="function" id="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_path_tracer_1add5f5aedbbad7e8e1751ae53154f19a6" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>float</type>
+        <definition>float RAYEX_NAMESPACE::PathTracer::getPixelVariance</definition>
+        <argsstring>(uint32_t index)</argsstring>
+        <name>getPixelVariance</name>
+        <param>
+          <type>uint32_t</type>
+          <declname>index</declname>
+        </param>
+        <briefdescription>
+<para>Used to estimate a variance value per pixel. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>index</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>An index to the variance buffer storing the value mesaured in the ray generation stage. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="note"><para>Requires the RX_VARIANCE_ESTIMATOR macro to be defined. </para>
+</simplesect>
+<simplesect kind="warning"><para>Does not work as intended. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/n30/Repos/rayex/include/api/pathtrace/PathTracer.hpp" line="137" column="11"/>
       </memberdef>
       </sectiondef>
     <briefdescription>
@@ -802,13 +880,12 @@
     </briefdescription>
     <detaileddescription>
     </detaileddescription>
-    <location file="/home/n30/Repos/rayex/include/api/pathtrace/PathTracer.hpp" line="39" column="1" bodyfile="/home/n30/Repos/rayex/include/api/pathtrace/PathTracer.hpp" bodystart="38" bodyend="141"/>
+    <location file="/home/n30/Repos/rayex/include/api/pathtrace/PathTracer.hpp" line="39" column="3" bodyfile="/home/n30/Repos/rayex/include/api/pathtrace/PathTracer.hpp" bodystart="40" bodyend="158"/>
     <listofallmembers>
       <member refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_path_tracer_1a4f8665a60fa4463ba2e8f9f81b8c3471" prot="private" virt="non-virtual"><scope>RAYEX_NAMESPACE::PathTracer</scope><name>_blas_</name></member>
       <member refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_path_tracer_1aaa80abec1668072b51a4977a44185506" prot="private" virt="non-virtual"><scope>RAYEX_NAMESPACE::PathTracer</scope><name>_capabilities</name></member>
       <member refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_path_tracer_1a0d18cde0f2dddcf45c39ff26469d519f" prot="private" virt="non-virtual"><scope>RAYEX_NAMESPACE::PathTracer</scope><name>_descriptors</name></member>
       <member refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_path_tracer_1abcaaa19330b056579faab727da0ea10a" prot="private" virt="non-virtual"><scope>RAYEX_NAMESPACE::PathTracer</scope><name>_descriptorSets</name></member>
-      <member refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_path_tracer_1ada39103f23d5e5c076b70a8983fec2d4" prot="private" virt="non-virtual"><scope>RAYEX_NAMESPACE::PathTracer</scope><name>_indices</name></member>
       <member refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_path_tracer_1afff63e1cc8c29df49b7e8a44b5a59f72" prot="private" virt="non-virtual"><scope>RAYEX_NAMESPACE::PathTracer</scope><name>_instanceBuffer</name></member>
       <member refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_path_tracer_1a276895d53ec19f4b026595940c30594c" prot="private" virt="non-virtual"><scope>RAYEX_NAMESPACE::PathTracer</scope><name>_layout</name></member>
       <member refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_path_tracer_1a347ee9819b898ddaab9489f00a9b3b11" prot="private" virt="non-virtual"><scope>RAYEX_NAMESPACE::PathTracer</scope><name>_pipeline</name></member>
@@ -819,10 +896,11 @@
       <member refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_path_tracer_1ad219896e8cb09829d7a4427522dfe8a3" prot="private" virt="non-virtual"><scope>RAYEX_NAMESPACE::PathTracer</scope><name>_storageImageSampler</name></member>
       <member refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_path_tracer_1ab103bbe5d3b7a386b4e79da38da2655b" prot="private" virt="non-virtual"><scope>RAYEX_NAMESPACE::PathTracer</scope><name>_storageImageView</name></member>
       <member refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_path_tracer_1a9f71fc22babc4da3212f6110c86472c8" prot="private" virt="non-virtual"><scope>RAYEX_NAMESPACE::PathTracer</scope><name>_tlas</name></member>
+      <member refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_path_tracer_1a2bcb0eee204b74511ebb75488822b428" prot="private" virt="non-virtual"><scope>RAYEX_NAMESPACE::PathTracer</scope><name>_varianceBuffer</name></member>
       <member refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_path_tracer_1a5df109c2da39664245ad141e2d9c0e4a" prot="public" virt="non-virtual"><scope>RAYEX_NAMESPACE::PathTracer</scope><name>buildBlas</name></member>
       <member refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_path_tracer_1a3c2f2045a533d9fe53faafdb885f5831" prot="public" virt="non-virtual"><scope>RAYEX_NAMESPACE::PathTracer</scope><name>buildTlas</name></member>
       <member refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_path_tracer_1a01e426560fbcea32ea1a1fb0b8fc3a6a" prot="public" virt="non-virtual"><scope>RAYEX_NAMESPACE::PathTracer</scope><name>createBottomLevelAS</name></member>
-      <member refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_path_tracer_1af72332595cb39c940f0a6c9afee439ef" prot="public" virt="non-virtual"><scope>RAYEX_NAMESPACE::PathTracer</scope><name>createPipeline</name></member>
+      <member refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_path_tracer_1ae30f5e7aa6a8df5dcb7b8b544298f9a5" prot="public" virt="non-virtual"><scope>RAYEX_NAMESPACE::PathTracer</scope><name>createPipeline</name></member>
       <member refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_path_tracer_1aef800dfb214e83264e2a573039a5aed3" prot="public" virt="non-virtual"><scope>RAYEX_NAMESPACE::PathTracer</scope><name>createShaderBindingTable</name></member>
       <member refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_path_tracer_1a504cc5e1802f0174272f637ad6e8f4c6" prot="public" virt="non-virtual"><scope>RAYEX_NAMESPACE::PathTracer</scope><name>createStorageImage</name></member>
       <member refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_path_tracer_1a29bafe2e2c61bd1ef76999885efa9188" prot="public" virt="non-virtual"><scope>RAYEX_NAMESPACE::PathTracer</scope><name>destroy</name></member>
@@ -832,12 +910,14 @@
       <member refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_path_tracer_1a37d390a924dc52e0195248cedd5fe670" prot="public" virt="non-virtual"><scope>RAYEX_NAMESPACE::PathTracer</scope><name>getDescriptorSetLayout</name></member>
       <member refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_path_tracer_1a87b1e74178484ae54e891f62b897b079" prot="public" virt="non-virtual"><scope>RAYEX_NAMESPACE::PathTracer</scope><name>getPipeline</name></member>
       <member refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_path_tracer_1a88b7351717bcb2731cda5254316384a3" prot="public" virt="non-virtual"><scope>RAYEX_NAMESPACE::PathTracer</scope><name>getPipelineLayout</name></member>
+      <member refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_path_tracer_1add5f5aedbbad7e8e1751ae53154f19a6" prot="public" virt="non-virtual"><scope>RAYEX_NAMESPACE::PathTracer</scope><name>getPixelVariance</name></member>
       <member refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_path_tracer_1abde61bef57499d13e9df3cc3db0b8e39" prot="public" virt="non-virtual"><scope>RAYEX_NAMESPACE::PathTracer</scope><name>getStorageImageInfo</name></member>
       <member refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_path_tracer_1a148b5a6c45676515d7db5efe50e67428" prot="public" virt="non-virtual"><scope>RAYEX_NAMESPACE::PathTracer</scope><name>getStorageImageView</name></member>
       <member refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_path_tracer_1aa57a79727d5cab887d198231377d0c7e" prot="public" virt="non-virtual"><scope>RAYEX_NAMESPACE::PathTracer</scope><name>getTlas</name></member>
       <member refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_path_tracer_1aec2798527165512a51c4028be6dd5da0" prot="public" virt="non-virtual"><scope>RAYEX_NAMESPACE::PathTracer</scope><name>init</name></member>
       <member refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_path_tracer_1a30d8d1231355d7493d29b8226cfe728a" prot="public" virt="non-virtual"><scope>RAYEX_NAMESPACE::PathTracer</scope><name>initDescriptorSet</name></member>
-      <member refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_path_tracer_1afe9a29b1bff77d11f7eb77a56d635356" prot="public" virt="non-virtual"><scope>RAYEX_NAMESPACE::PathTracer</scope><name>modelToBlas</name></member>
+      <member refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_path_tracer_1aa58aa606adc0fa0931dda689a0c3d453" prot="public" virt="non-virtual"><scope>RAYEX_NAMESPACE::PathTracer</scope><name>initVarianceBuffer</name></member>
+      <member refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_path_tracer_1a06e8c5d6ceea3bfde8c9e52f465f8edf" prot="public" virt="non-virtual"><scope>RAYEX_NAMESPACE::PathTracer</scope><name>modelToBlas</name></member>
       <member refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_path_tracer_1a01b3b0262634e7993b1173c289f0db02" prot="public" virt="non-virtual"><scope>RAYEX_NAMESPACE::PathTracer</scope><name>operator=</name></member>
       <member refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_path_tracer_1abc9fc7f8c1a71ef1cb056c5f5531af42" prot="public" virt="non-virtual"><scope>RAYEX_NAMESPACE::PathTracer</scope><name>operator=</name></member>
       <member refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_path_tracer_1aed6907560423957efa3aec52c69aa240" prot="public" virt="non-virtual"><scope>RAYEX_NAMESPACE::PathTracer</scope><name>pathTrace</name></member>
@@ -845,6 +925,7 @@
       <member refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_path_tracer_1a962dbd0ccd7400ccb8bba85f93dc263c" prot="public" virt="non-virtual"><scope>RAYEX_NAMESPACE::PathTracer</scope><name>PathTracer</name></member>
       <member refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_path_tracer_1a4ebf5206c031cf0532596adb9b68fc3b" prot="public" virt="non-virtual"><scope>RAYEX_NAMESPACE::PathTracer</scope><name>PathTracer</name></member>
       <member refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_path_tracer_1a76874c6e9156b8c8f1624b43265fbc73" prot="public" virt="non-virtual"><scope>RAYEX_NAMESPACE::PathTracer</scope><name>updateDescriptors</name></member>
+      <member refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_path_tracer_1a384214253537ed75c2be84ed37801a40" prot="public" virt="non-virtual"><scope>RAYEX_NAMESPACE::PathTracer</scope><name>updateTlas</name></member>
       <member refid="class_r_a_y_e_x___n_a_m_e_s_p_a_c_e_1_1_path_tracer_1aef8229369df0e2e75fea08d0163c0bfc" prot="public" virt="non-virtual"><scope>RAYEX_NAMESPACE::PathTracer</scope><name>~PathTracer</name></member>
     </listofallmembers>
   </compounddef>

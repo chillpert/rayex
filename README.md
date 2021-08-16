@@ -67,8 +67,9 @@ int main( )
 
 - [x] Update to latest SDK and official release version of VK_RAY_TRACING_KHR
 - [x] Fix any hit shader
+- [x] Fix upload storage buffers to GPU issues
 - [ ] Remove unnecessary documentation and add missing documentation
-- [ ] Fix upload storage buffers to GPU issues
+- [ ] Reimplement hardware support check in VkCore
 
 ### Planned Features
 
@@ -81,7 +82,7 @@ int main( )
 - [ ] Multiple importance sampling
 - [ ] HDR skymaps and skyboxes as light sources
 - [ ] Denoising
-- [ ] Next event estimation
+- [ ] Add area light sampling for next event estimation
 
 ### Documentation
 An extensive documentation of all classes and functions can be found [here](https://chillpert.github.io/rayex/html/index.html).

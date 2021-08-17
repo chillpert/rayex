@@ -70,6 +70,9 @@ int main( )
 - [x] Fix upload storage buffers to GPU issues
 - [ ] Remove unnecessary documentation and add missing documentation
 - [ ] Reimplement hardware support check in VkCore
+- [ ] Add additional checks to VkCore like:
+	- warn user when main initializers have already been called
+	- always check if a handle is valid
 
 ### Planned Features
 

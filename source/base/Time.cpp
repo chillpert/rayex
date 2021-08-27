@@ -64,10 +64,10 @@ namespace RAYEX_NAMESPACE
     //RX_INFO( "1% (min frame time)  : ", percentile( frameTimes ) );
   }
 
-  void Time::startBenchmark( float length )
+  void Time::startBenchmark( size_t length )
   {
     allFrames.clear( );
-    allFrames.reserve( static_cast<size_t>( length ) );
+    allFrames.reserve( length );
 
     frameTimes.clear( );
     frameTimes.reserve( 3600 ); // max one minute

@@ -17,7 +17,7 @@ namespace RAYEX_NAMESPACE
     /// Prints the average fps as well as the time since recording.
     static void printBenchmarkResults( );
 
-    static void startBenchmark( float length );
+    static void startBenchmark( size_t length );
 
     /// @return Returns the time passed since application start in seconds.
     static auto getTime( ) -> float;

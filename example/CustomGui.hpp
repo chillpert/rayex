@@ -198,14 +198,18 @@ private:
         std::string fpsDisplay = "FPS: " + std::to_string( rx::Time::getFramesPerSecond( ) );
         ImGui::Text( fpsDisplay.c_str( ) );
 
-        static float length = 60.0F;
-        ImGui::SliderFloat( "Length", &length, 5.0F, 60.0F );
+        static int benchmark_length = 60;
+        ImGui::InputInt( "Length", &benchmark_length );
+        if ( benchmark_length < 5 )
+        {
+          benchmark_length = 5;
+        }
 
         ImGui::SameLine( );
 
         if ( ImGui::Button( "Start" ) )
         {
-          rx::Time::startBenchmark( length );
+          rx::Time::startBenchmark( static_cast<size_t>( benchmark_length ) );
         }
 
 #ifdef RX_VARIANCE_CALCULATOR

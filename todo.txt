@@ -1,7 +1,0 @@
-Work in progress:
-
-Issues:
-- Crash when GUI disabled
-
-Planned:
-- expose vk::BufferUsageFlags when creating buffers in VkCore

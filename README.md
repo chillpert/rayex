@@ -11,7 +11,7 @@ AMD drivers can be downloaded [here](https://www.amd.com/en/support/kb/release-n
 To integrate RAYEX in an existing C++ / CMake project, please follow the steps below.
 
 1. Download the latest [release](https://github.com/chillpert/rayex) or build the library yourself.
-2. Place the **shared library objects**, and the provided **include folder** somewhere inside your project.
+2. Place the **shared library objects** and the provided **include folder** somewhere inside your project.
 3. Include the CMakeLists.txt inside the **include folder** to your CMakeLists.txt.
 4. Link your target against the **shared library objects** and against SDL2.
 
@@ -63,29 +63,29 @@ int main( )
 }
 ```
 
-### Issues
+### TODO
 
 - [x] Update to latest SDK and official release version of VK_RAY_TRACING_KHR
 - [x] Fix any hit shader
 - [x] Fix upload storage buffers to GPU issues
-- [ ] Remove unnecessary documentation and add missing documentation
-- [ ] Reimplement hardware support check in VkCore
-- [ ] Add additional checks to VkCore like:
-	- warn user when main initializers have already been called
-	- always check if a handle is valid
+- [ ] Fix hardware evaluation (in VkCore)
+- [ ] Crashes again when GUI disabled
+- [ ] Provide any third party code as git submodules
 
 ### Planned Features
 
 - [x] Global illumination
 - [x] Environment mapping
 - [x] A post processing pass
-- [x] Diffuse and glossy reflections
+- [x] Glossy reflections
 - [x] Dielectrics
-- [ ] An efficient way of building and updating acceleration structures based on a scene's requirements
+- [ ] Improve documentation (especially requirements for model loading)
+- [ ] Improved acceleration structure handling with optional performance tweaks
+- [ ] Implement stochastic level of detail
 - [ ] Multiple importance sampling
 - [ ] HDR skymaps and skyboxes as light sources
 - [ ] Denoising
 - [ ] Add area light sampling for next event estimation
 
 ### Documentation
-An extensive documentation of all classes and functions can be found [here](https://chillpert.github.io/rayex/html/index.html).
+A documentation of all classes and functions can be found [here](https://chillpert.github.io/rayex/html/index.html).

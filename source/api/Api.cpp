@@ -105,7 +105,7 @@ namespace RAYEX_NAMESPACE
 
     vk::PhysicalDeviceAccelerationStructureFeaturesKHR asFeatures;
     asFeatures.accelerationStructure = VK_TRUE;
-    asFeatures.pNext = &shaderClockFeatures;
+    asFeatures.pNext                 = &shaderClockFeatures;
 
     vk::PhysicalDeviceRayTracingPipelineFeaturesKHR rtPipelineFeatures;
     rtPipelineFeatures.rayTracingPipeline                  = VK_TRUE;
@@ -360,7 +360,12 @@ namespace RAYEX_NAMESPACE
 
     // Reset the signaled state of the current frame's fence to the unsignaled one.
     auto currentInFlightFence_t = _sync.getInFlightFence( currentFrame );
-    vkCore::global::device.resetFences( 1, &currentInFlightFence_t );
+    auto result                 = vkCore::global::device.resetFences( 1, &currentInFlightFence_t );
+
+    if ( result != vk::Result::eSuccess )
+    {
+      RX_ERROR( "Failed to reset fence of current in-flight fence." );
+    }
 
     // Submits / executes the current image's / framebuffer's command buffer.
     vk::PipelineStageFlags pWaitDstStageMask = vk::PipelineStageFlagBits::eColorAttachmentOutput;
@@ -389,7 +394,7 @@ namespace RAYEX_NAMESPACE
     // This try catch block is only necessary on Linux for whatever reason. Without it, resizing the window will result in an unhandled throw of vk::Result::eErrorOutOfDateKHR.
     try
     {
-      vk::Result result = vkCore::global::graphicsQueue.presentKHR( presentInfo );
+      result = vkCore::global::graphicsQueue.presentKHR( presentInfo );
       if ( result == vk::Result::eErrorOutOfDateKHR || result == vk::Result::eSuboptimalKHR )
       {
         _settings.triggerSwapchainRefresh( );

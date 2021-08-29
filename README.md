@@ -73,6 +73,7 @@ int main( )
 - [ ] Enable all warnings for Rayex and disable all warnings for third party
 - [ ] Test Rayex deploy with only headers and libs again
 - [ ] Remove any paths set at compile time
+- [ ] Remove big examples and put it in separate repo (combined with ) 
 
 ### Planned Features
 

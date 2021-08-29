@@ -51,7 +51,7 @@ find_package(Vulkan REQUIRED)
 if(${CMAKE_SYSTEM_NAME} STREQUAL "Linux")
   find_package(SDL2 REQUIRED)
 else()
-  set(SDL2_INCLUDE_DIRS ${PROJECT_SOURCE_DIR}/external/SDL2/include)
+  set(SDL2_INCLUDE_DIRS ${PROJECT_SOURCE_DIR}/include/external/SDL/include)
   set(SDL2_LIBRARIES "SDL2main.lib" "SDL2.lib")
 endif()
 
@@ -116,7 +116,6 @@ target_include_directories(rayex
     ${PROJECT_SOURCE_DIR}/include/external/imgui
     ${PROJECT_SOURCE_DIR}/include/external/imgui/backends
 
-  PRIVATE
     ${Vulkan_INCLUDE_DIRS}
     ${SDL2_INCLUDE_DIRS}
 )

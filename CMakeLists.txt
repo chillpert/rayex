@@ -14,10 +14,8 @@ if(NOT((${CMAKE_SYSTEM_NAME} STREQUAL "Windows") OR (${CMAKE_SYSTEM_NAME} STREQU
 endif()
 
 # Build options
-option(BUILD_EXAMPLES "Build examples" ON)
 option(CLANG_TIDY_LINUX_DEBUG "Use clang-tidy for a Linux debug build" OFF)
 option(VARIANCE_CALCULATOR "Variance can be estimated at a high performance penalty." OFF)
-option(COPY_ASSETS_TO_BINARY "Copy assets folder to binary location" ON)
 
 # In case no build type was specified continue with debug build
 if(NOT CMAKE_BUILD_TYPE)
@@ -29,8 +27,6 @@ message("OS:                              " ${CMAKE_SYSTEM_NAME})
 message("Using compiler:                  " ${CMAKE_CXX_COMPILER_ID})
 message("Compiler version:                " ${CMAKE_CXX_COMPILER_VERSION})
 message("Build type:                      " ${CMAKE_BUILD_TYPE})
-message("Build example:                   " ${BUILD_EXAMPLES})
-message("Copy assets to binary location   " ${COPY_ASSETS_TO_BINARY})
 message("Clang Tidy:                      " ${CLANG_TIDY_LINUX_DEBUG})
 message("Experimental variance estimator: " ${VARIANCE_CALCULATOR} "\n")
 
@@ -86,11 +82,6 @@ target_compile_definitions(rayex
   PRIVATE
     $<$<BOOL:${VARIANCE_CALCULATOR}>:RX_VARIANCE_ESTIMATOR>
     
-    # Paths for copying resources
-    $<$<BOOL:${COPY_ASSETS_TO_BINARY}>:RX_COPY_ASSETS>
-    $<$<BOOL:${COPY_ASSETS_TO_BINARY}>:RX_ASSETS_PATH="${PROJECT_SOURCE_DIR}/assets/">
-    $<$<BOOL:${COPY_ASSETS_TO_BINARY}>:RX_PATH_TO_LIBRARY="${PROJECT_SOURCE_DIR}/build/${CMAKE_BUILD_TYPE}/">
-
     # Validation layers and error checking is only active in debug builds
     $<$<STREQUAL:${CMAKE_BUILD_TYPE},Debug>:RX_DEBUG>
 
@@ -139,8 +130,3 @@ set_target_properties(rayex PROPERTIES
   LIBRARY_OUTPUT_DIRECTORY "${PROJECT_SOURCE_DIR}/build/${CMAKE_BUILD_TYPE}"
   RUNTIME_OUTPUT_DIRECTORY "${PROJECT_SOURCE_DIR}/build/${CMAKE_BUILD_TYPE}"
 )
-
-# Configure Rayex examples if option is enabled
-if(BUILD_EXAMPLES)
-  include(${PROJECT_SOURCE_DIR}/example/CMakeLists.txt)
-endif()

@@ -38,14 +38,6 @@ namespace RAYEX_NAMESPACE
       return;
     }
 
-#ifdef RX_COPY_ASSETS
-    RX_INFO( "Copying resources to binary output directory. " );
-
-    std::filesystem::copy( RX_ASSETS_PATH "shaders", RX_PATH_TO_LIBRARY "shaders", std::filesystem::copy_options::overwrite_existing | std::filesystem::copy_options::recursive );
-    std::filesystem::copy( RX_ASSETS_PATH "models", RX_PATH_TO_LIBRARY "models", std::filesystem::copy_options::overwrite_existing | std::filesystem::copy_options::recursive );
-    std::filesystem::copy( RX_ASSETS_PATH "DroidSans.ttf", RX_PATH_TO_LIBRARY "DroidSans.ttf", std::filesystem::copy_options::overwrite_existing | std::filesystem::copy_options::recursive );
-#endif
-
     _initialized = _window->init( );
     _api.init( );
   }

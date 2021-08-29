@@ -437,17 +437,7 @@ namespace RAYEX_NAMESPACE
       // Calling wait idle, because pipeline recreation is assumed to be a very rare event to happen.
       vkCore::global::device.waitIdle( );
 
-#ifdef RX_COPY_ASSETS
-      // Copies shader resources to binary output directory. This way a shader can be changed during runtime.
-      // Make sure only to edit the ones in /assets/shaders and not in /build/<build_type>/assets/shaders as the latter gets overridden.
-      RX_INFO( "Copying shader resources to binary output directory.\nFrom: ", RX_ASSETS_PATH, "shaders\nto: ", RX_PATH_TO_LIBRARY, "shaders" );
-      std::filesystem::copy( RX_ASSETS_PATH "shaders", RX_PATH_TO_LIBRARY "shaders", std::filesystem::copy_options::overwrite_existing | std::filesystem::copy_options::recursive );
-
-      //std::filesystem::copy( RX_ASSETS_PATH "shaders", RX_PATH_TO_LIBRARY "shaders", std::filesystem::copy_options::overwrite_existing | std::filesystem::copy_options::recursive );
-      //std::filesystem::copy( RX_ASSETS_PATH "models", RX_PATH_TO_LIBRARY "models", std::filesystem::copy_options::overwrite_existing | std::filesystem::copy_options::recursive );
-      //std::filesystem::copy( RX_ASSETS_PATH "DroidSans.ttf", RX_PATH_TO_LIBRARY "DroidSans.ttf", std::filesystem::copy_options::overwrite_existing | std::filesystem::copy_options::recursive );
-
-#endif
+      RX_WARN( "Api.cpp:442: TODO: This is where usually I would re-copy the assets to enable changes in shaders at runtime" );
 
       initPipelines( );
       _pathTracer.createShaderBindingTable( );

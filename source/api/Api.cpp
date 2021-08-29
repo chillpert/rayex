@@ -561,7 +561,7 @@ namespace RAYEX_NAMESPACE
                                _settings._nextEventEstimation,
                                _settings._nextEventEstimationMinBounces };
 
-    // Start recording the swapchain framebuffers?
+    // Start recording
     for ( size_t imageIndex = 0; imageIndex < _swapchainCommandBuffers.get( ).size( ); ++imageIndex )
     {
       vk::CommandBuffer cmdBuf = _swapchainCommandBuffers.get( imageIndex );
@@ -593,13 +593,13 @@ namespace RAYEX_NAMESPACE
         // First pass (path tracing)
         _pathTracer.pathTrace( cmdBuf, _swapchain.getImage( imageIndex ), _swapchain.getExtent( ) );
 
-        // Second pass
+        // Second pass (rasterization)
         _postProcessingRenderer.beginRenderPass( cmdBuf, _swapchain.getFramebuffer( imageIndex ), _swapchain.getExtent( ) );
         {
-          // 2. Post processing
+          // 1. Post processing
           _postProcessingRenderer.render( cmdBuf, _swapchain.getExtent( ), index );
 
-          // 3. ImGui
+          // 2. ImGui
           if ( _gui != nullptr )
           {
             _gui->renderDrawData( cmdBuf );

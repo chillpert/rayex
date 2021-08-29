@@ -79,6 +79,7 @@ int main( )
 - [x] A post processing pass
 - [x] Glossy reflections
 - [x] Dielectrics
+- [ ] Use rasterization for primary rays
 - [ ] Improve documentation (especially requirements for model loading)
 - [ ] Improved acceleration structure handling with optional performance tweaks
 - [ ] Implement stochastic level of detail

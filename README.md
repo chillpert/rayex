@@ -7,7 +7,7 @@ It runs on both Linux (x64) and Windows (x64) using the Vulkan API. This softwar
 Install the latest NVIDIA driver. If you run into issues try the NVIDIA Vulkan beta drivers [here](https://developer.nvidia.com/vulkan-driver), or check your GPU compatibility.
 AMD drivers can be downloaded [here](https://www.amd.com/en/support/kb/release-notes/rn-rad-win-20-11-2-vrt-beta) instead.
 
-## Deploy
+## Deploy [OUT OF DATE]
 To integrate RAYEX in an existing C++ / CMake project, please follow the steps below.
 
 1. Download the latest [release](https://github.com/chillpert/rayex) or build the library yourself.
@@ -16,7 +16,7 @@ To integrate RAYEX in an existing C++ / CMake project, please follow the steps b
 
 Using CMake is not obligatory but recommended as RAYEX comes with its own CMakeLists.txt that will properly include all project headers. A release also comes with a fully functional example, including a complete CMakeLists.txt that can be used for reference.
 
-## Build
+## Build [OUT OF DATE]
 ### Linux
 To build the entire library yourself follow the steps below. 
 If you want to build the provided example, make sure to enable the RX_BUILD_EXAMPLES build option in CMake.
@@ -35,7 +35,7 @@ $ ./bin/[buildtype]/example
 ### Windows
 Generate a Visual Studio 2019 solution using CMake and build it or open the project folder using Visual Studio 2019, confirm the prompt to generate the CMake cache, and build it.
 
-### Usage
+### Usage [OUT OF DATE]
 The following cope snippet renders a cube. For a proper example, take a look at the **documentation** or **example/example.cpp**.
 ```
 #include "Rayex.hpp"
@@ -73,7 +73,8 @@ int main( )
 - [ ] Enable all warnings for Rayex and disable all warnings for third party
 - [ ] Test Rayex deploy with only headers and libs again
 - [ ] Remove any paths set at compile time
-- [ ] Remove big examples and put it in separate repo (combined with ) 
+- [ ] Remove big examples and put it in separate repo (combined with )
+- [ ] Try to decrease project size (either compile SDL and KTX as well or only provide necessary headers since precompiled binaries have to be used under Windows)
 
 ### Planned Features
 

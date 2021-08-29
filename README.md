@@ -64,37 +64,18 @@ int main( )
 
 ### TODO
 
-- [x] Update to latest SDK and official release version of VK_RAY_TRACING_KHR
-- [x] Fix any hit shader
-- [x] Fix upload storage buffers to GPU issues
 - [ ] Fix hardware evaluation (in VkCore)
 - [ ] Crashes again when GUI disabled
-- [ ] Provide any third party lib in git submodules
 - [ ] Do a complete C++ guidelines check
-- [ ] Modernize CMakeLists (replace include_directories with target_include_directories) (https://pabloariasal.github.io/2018/02/19/its-time-to-do-cmake-right/)
-- [ ] Move all precompiled binaries for Windows to /include/external/libs
-- [ ] Get rid of gsl
-- [ ] Set up Windows in virtual box to test compilation in Windows
-- [ ] Figure out how to set build type externally without hack in CMakeLists 
-- [ ] Try to use glslc.exe from 
-- [ ] Add dependency list for Linux to readme and add more informative error messages if a package is not available
+- [ ] Test Windows build
 - [ ] Remove unncessary includes (especially in PCH)
 - [ ] Provide new binaries for all platforms
-- [ ] Only require lowest CMake version required
 - [ ] Enable all warnings for Rayex and disable all warnings for third party
 - [ ] Test Rayex deploy with only headers and libs again
-- [ ] Consider providing a single header for rayex (of course no function defintions)
-- [ ] Everytime a path is specified at compile time it could lead to issues when deployed
-- [ ] integrate tinyLogger in vkCore to unify command line ouput
-- [ ] Eliminate any third party files from vkCore
+- [ ] Remove any paths set at compile time
 
 ### Planned Features
 
-- [x] Global illumination
-- [x] Environment mapping
-- [x] A post processing pass
-- [x] Glossy reflections
-- [x] Dielectrics
 - [ ] Use rasterization for primary rays
 - [ ] Improve documentation (especially requirements for model loading)
 - [ ] Improved acceleration structure handling with optional performance tweaks

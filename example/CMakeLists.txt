@@ -46,6 +46,6 @@ add_custom_command(
   COMMAND ${CMAKE_COMMAND} -E copy
           ${PROJECT_SOURCE_DIR}/include/external/libs/ktx.dll
           ${PROJECT_SOURCE_DIR}/build/${CMAKE_BUILD_TYPE}/${CMAKE_BUILD_TYPE}/ktx.dll
-  COMMENT "Running POST_BUILD action: Copying SDL2d.dll to binary location"
+  COMMENT "Running POST_BUILD action: Copying ktx.dll to binary location"
   )
 endif()

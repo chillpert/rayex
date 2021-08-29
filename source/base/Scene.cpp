@@ -5,8 +5,6 @@
 #define TINYGLTF_IMPLEMENTATION
 #define STB_IMAGE_WRITE_IMPLEMENTATION
 
-//#include <gltf/tiny_gltf.h>
-
 namespace RAYEX_NAMESPACE
 {
   CameraUbo cameraUbo;

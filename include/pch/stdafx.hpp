@@ -4,16 +4,21 @@
 #include "Core.hpp"
 #include "base/Time.hpp"
 
-#include <ImGui/imgui.h>
-#include <ImGui/imgui_impl_sdl.h>
-#include <ImGui/imgui_impl_vulkan.h>
-//#define GLM_SWIZZLE
-#include <glm/ext/matrix_clip_space.hpp>
-#include <glm/ext/matrix_transform.hpp>
-#include <glm/glm.hpp>
-#include <glm/gtx/string_cast.hpp>
+// ImGui
+#include <imgui/backends/imgui_impl_sdl.h>
+#include <imgui/backends/imgui_impl_vulkan.h>
+#include <imgui/imgui.h>
 
+// GLM
+#define GLENABLE_EXPERIMENTAL
 #define GLFORCE_DEPTH_ZERO_TO_ONE
+#include <glm/glm/ext/matrix_clip_space.hpp>
+#include <glm/glm/ext/matrix_transform.hpp>
+#include <glm/glm/glm.hpp>
+#include <glm/glm/gtx/hash.hpp>
+#include <glm/glm/gtx/string_cast.hpp>
+
+// STL
 #include <algorithm>
 #include <any>
 #include <array>
@@ -21,7 +26,6 @@
 #include <filesystem>
 #include <forward_list>
 #include <fstream>
-#include <gsl/gsl>
 #include <iomanip>
 #include <limits>
 #include <list>
@@ -30,6 +34,7 @@
 #include <optional>
 #include <random>
 #include <set>
+#include <span>
 #include <string_view>
 #include <unordered_map>
 #include <unordered_set>

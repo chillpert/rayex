@@ -76,7 +76,7 @@ namespace RAYEX_NAMESPACE
     auto minimized( ) -> bool;
 
     /// @return Returns the Vulkan extensions required by the SDL window.
-    auto getExtensions( ) const -> gsl::span<const char*>;
+    auto getExtensions( ) const -> std::span<const char*>;
 
   protected:
     SDL_Window* _window = nullptr; ///< The actual SDL_Window object.

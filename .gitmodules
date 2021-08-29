@@ -16,3 +16,6 @@
 [submodule "include/external/KTX-Software"]
 	path = include/external/KTX-Software
 	url = https://github.com/KhronosGroup/KTX-Software
+[submodule "include/external/imgui"]
+	path = include/external/imgui
+	url = https://github.com/ocornut/imgui

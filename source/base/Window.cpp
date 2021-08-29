@@ -111,7 +111,7 @@ namespace RAYEX_NAMESPACE
     return ( ( SDL_GetWindowFlags( _window ) & SDL_WINDOW_MINIMIZED ) != 0U );
   }
 
-  auto Window::getExtensions( ) const -> gsl::span<const char*>
+  auto Window::getExtensions( ) const -> std::span<const char*>
   {
     // Retrieve all extensions needed by SDL2.
     uint32_t sdlExtensionsCount;
@@ -122,14 +122,14 @@ namespace RAYEX_NAMESPACE
       RX_ERROR( "Failed to get extensions required by SDL." );
     }
 
-    gsl::owner<const char**> sdlExtensionsNames = new const char*[sdlExtensionsCount];
-    result                                      = SDL_Vulkan_GetInstanceExtensions( _window, &sdlExtensionsCount, sdlExtensionsNames );
+    const char** sdlExtensionsNames = new const char*[sdlExtensionsCount];
+    result                          = SDL_Vulkan_GetInstanceExtensions( _window, &sdlExtensionsCount, sdlExtensionsNames );
 
     if ( result != SDL_TRUE )
     {
       RX_ERROR( "Failed to get extensions required by SDL." );
     }
 
-    return gsl::span<const char*>( sdlExtensionsNames, sdlExtensionsCount );
+    return std::span<const char*>( sdlExtensionsNames, sdlExtensionsCount );
   }
 } // namespace RAYEX_NAMESPACE

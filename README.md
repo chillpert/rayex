@@ -11,9 +11,8 @@ AMD drivers can be downloaded [here](https://www.amd.com/en/support/kb/release-n
 To integrate RAYEX in an existing C++ / CMake project, please follow the steps below.
 
 1. Download the latest [release](https://github.com/chillpert/rayex) or build the library yourself.
-2. Place the **shared library objects** and the provided **include folder** somewhere inside your project.
-3. Include the CMakeLists.txt inside the **include folder** to your CMakeLists.txt.
-4. Link your target against the **shared library objects** and against SDL2.
+2. Place the **Rayex library** and the provided **include folder** somewhere inside your project.
+3. Link your target against the **Rayex library**.
 
 Using CMake is not obligatory but recommended as RAYEX comes with its own CMakeLists.txt that will properly include all project headers. A release also comes with a fully functional example, including a complete CMakeLists.txt that can be used for reference.
 
@@ -70,7 +69,24 @@ int main( )
 - [x] Fix upload storage buffers to GPU issues
 - [ ] Fix hardware evaluation (in VkCore)
 - [ ] Crashes again when GUI disabled
-- [ ] Provide any third party code as git submodules
+- [ ] Provide any third party lib in git submodules
+- [ ] Do a complete C++ guidelines check
+- [ ] Modernize CMakeLists (replace include_directories with target_include_directories) (https://pabloariasal.github.io/2018/02/19/its-time-to-do-cmake-right/)
+- [ ] Move all precompiled binaries for Windows to /include/external/libs
+- [ ] Get rid of gsl
+- [ ] Set up Windows in virtual box to test compilation in Windows
+- [ ] Figure out how to set build type externally without hack in CMakeLists 
+- [ ] Try to use glslc.exe from 
+- [ ] Add dependency list for Linux to readme and add more informative error messages if a package is not available
+- [ ] Remove unncessary includes (especially in PCH)
+- [ ] Provide new binaries for all platforms
+- [ ] Only require lowest CMake version required
+- [ ] Enable all warnings for Rayex and disable all warnings for third party
+- [ ] Test Rayex deploy with only headers and libs again
+- [ ] Consider providing a single header for rayex (of course no function defintions)
+- [ ] Everytime a path is specified at compile time it could lead to issues when deployed
+- [ ] integrate tinyLogger in vkCore to unify command line ouput
+- [ ] Eliminate any third party files from vkCore
 
 ### Planned Features
 

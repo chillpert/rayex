@@ -3,9 +3,6 @@
 
 #include "pch/stdafx.hpp"
 
-#define GLENABLE_EXPERIMENTAL
-#include <glm/gtx/hash.hpp>
-
 namespace RAYEX_NAMESPACE
 {
   /// Describes a vertex and its data.

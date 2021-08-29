@@ -1,159 +1,147 @@
-# TODO: 
-# - don't use include_directories etc it will infect global scope! Use target_include_directories etc
-# - add proper error handling for Arch fix
+cmake_minimum_required(VERSION 3.16)
+set(PROJECT_NAME "Rayex")
+project(${PROJECT_NAME} VERSION 0.1.0)
 
-cmake_minimum_required(VERSION 3.16.2)
-project(Renderer VERSION 0.0.1)
+# Notes: 
+# - change build type by calling '$ cmake -DCMAKE_BUILD_TYPE=<some_build_type> ..'
+# - do not forget about the different build options below
 
-message("Using compiler: " + ${CMAKE_CXX_COMPILER_ID})
+message("===================== ${PROJECT_NAME} ======================")
 
+# Check operating system compatibility
+if(NOT((${CMAKE_SYSTEM_NAME} STREQUAL "Windows") OR (${CMAKE_SYSTEM_NAME} STREQUAL "Linux")))
+  message(FATAL_ERROR "Target platform is not supported. Rayex only supports Microsoft Windows and GNU/Linux.")
+endif()
+
+# Build options
 option(BUILD_EXAMPLES "Build examples" ON)
 option(CLANG_TIDY_LINUX_DEBUG "Use clang-tidy for a Linux debug build" OFF)
 option(VARIANCE_CALCULATOR "Variance can be estimated at a high performance penalty." OFF)
+option(COPY_ASSETS_TO_BINARY "Copy assets folder to binary location" ON)
 
+# In case no build type was specified continue with debug build
 if(NOT CMAKE_BUILD_TYPE)
-  message("MX: Build type not set. Continuing with: Debug")
   set(CMAKE_BUILD_TYPE "Debug" CACHE STRING "No build type was set" FORCE)
 endif(NOT CMAKE_BUILD_TYPE)
 
-# Enforce Rlease (Temporarily)
-# set(CMAKE_BUILD_TYPE "Release" CACHE STRING "No build type was set" FORCE)
+# Print some information about the system and Rayex's build options
+message("OS:                              " ${CMAKE_SYSTEM_NAME})
+message("Using compiler:                  " ${CMAKE_CXX_COMPILER_ID})
+message("Compiler version:                " ${CMAKE_CXX_COMPILER_VERSION})
+message("Build type:                      " ${CMAKE_BUILD_TYPE})
+message("Build example:                   " ${BUILD_EXAMPLES})
+message("Copy assets to binary location   " ${COPY_ASSETS_TO_BINARY})
+message("Clang Tidy:                      " ${CLANG_TIDY_LINUX_DEBUG})
+message("Experimental variance estimator: " ${VARIANCE_CALCULATOR} "\n")
 
-if(VARIANCE_CALCULATOR)
-  add_compile_definitions(RX_VARIANCE_ESTIMATOR)
-endif()
-
-message("Build type: " ${CMAKE_BUILD_TYPE})
-
-if(WIN32 OR MSVC)
-  set(OS ${OS} "Windows")
-  message("Renderer: Target platform Windows (x64)")
-elseif(UNIX)
-  set(OS ${OS} "Linux")
-  message("Renderer: Target platform Linux (x64)")
-else()
-  message(FATAL_ERROR "Renderer: Target platform is not supported")
-endif()
-
-set (CMAKE_MODULE_PATH "${PROJECT_SOURCE_DIR}/external/Cotire")
+message("==================== Starting ====================")
 
 if(CMAKE_BUILD_TYPE STREQUAL "Debug")
-  add_compile_definitions(RX_DEBUG)
-endif()
-
-if(BUILD_EXAMPLES)
-  add_compile_definitions(RX_ASSETS_PATH="${PROJECT_SOURCE_DIR}/assets/")
-else()
-  add_compile_definitions(RX_ASSETS_PATH="")
-endif()
-
-# VULKAN
-find_package(Vulkan REQUIRED)
-include_directories(${Vulkan_INCLUDE_DIRS})
-
-if(${OS} STREQUAL "Windows")
-  add_compile_definitions(RX_GLSLC_PATH="${Vulkan_INCLUDE_DIRS}/../Bin/glslc.exe")
-elseif(${OS} STREQUAL "Linux")
-  add_compile_definitions(RX_GLSLC_PATH="/usr/bin/glslc")
-  if(CMAKE_BUILD_TYPE STREQUAL "Debug")
-    if(CLANG_TIDY_LINUX_DEBUG)
-      set(CMAKE_CXX_CLANG_TIDY "clang-tidy;-checks=*")
-    endif()
+  # TODO: modernize
+  # Use with clang tidy
+  if(CLANG_TIDY_LINUX_DEBUG)
+    set(CMAKE_CXX_CLANG_TIDY "clang-tidy;-checks=*")
   endif()
 endif()
 
+# Vulkan
+find_package(Vulkan REQUIRED)
+
 # SDL
-if(${OS} STREQUAL "Windows")
-  link_directories(${PROJECT_SOURCE_DIR}/external/SDL2/binaries/win64)
-  include_directories(${PROJECT_SOURCE_DIR}/external/SDL2/include)
-
-  set(WINDOWING ${WINDOWING} "SDL2main.lib" "SDL2.lib")
-elseif(${OS} STREQUAL "Linux")
-  #find_package(SDL2 REQUIRED)
-
-  # Fix for Arch Linux (make sure that you have "pkgconf" installed)
-  # Also install validation layers with pacman in case of a debug build
-  find_package(PkgConfig REQUIRED)
-  pkg_check_modules(SDL2 REQUIRED sdl2)
-  
-  include_directories(${SDL2_INCLUDE_DIRS})
-
-  set(WINDOWING ${WINDOWING} "${SDL2_LIBRARIES}")
+if(${CMAKE_SYSTEM_NAME} STREQUAL "Linux")
+  find_package(SDL2 REQUIRED)
 else()
-  message(FATAL_ERROR, "Target platform not supported")
+  set(SDL2_INCLUDE_DIRS ${PROJECT_SOURCE_DIR}/external/SDL2/include)
+  set(SDL2_LIBRARIES "SDL2main.lib" "SDL2.lib")
 endif()
 
 # KTX
-if(${OS} STREQUAL "Windows")
-  link_directories(${PROJECT_SOURCE_DIR}/external/KTX)
-
-  set(KTX ${KTX} "ktx.lib")
-elseif(${OS} STREQUAL "Linux")
-  link_directories(${PROJECT_SOURCE_DIR}/external/KTX)
-  
-  set(KTX ${KTX} "libktx.so" "libktx_read.so")  
+if(${CMAKE_SYSTEM_NAME} STREQUAL "Linux")
+  set(KTX "libktx.so" "libktx_read.so")  
 else()
-  message(FATAL_ERROR, "Target platform not supported")
+  set(KTX "ktx.lib")
 endif()
 
-include_directories(${PROJECT_SOURCE_DIR}/external/STB)
-include_directories(${PROJECT_SOURCE_DIR}/external/ModelLoading)
+# Sources to compile
+file(GLOB FILES_LIB
+  "${PROJECT_SOURCE_DIR}/source/api/*.cpp"
+  "${PROJECT_SOURCE_DIR}/source/api/pathtrace/*.cpp"
 
-include(${PROJECT_SOURCE_DIR}/include/CMakeLists.txt)
-include(${PROJECT_SOURCE_DIR}/source/CMakeLists.txt)
+  "${PROJECT_SOURCE_DIR}/source/pch/*.cpp"
+  "${PROJECT_SOURCE_DIR}/source/events/*.cpp"
+  "${PROJECT_SOURCE_DIR}/source/utils/*.cpp"
+  "${PROJECT_SOURCE_DIR}/source/*.cpp"
+  "${PROJECT_SOURCE_DIR}/source/base/*.cpp"
 
-# LIBRARY
-add_library(renderer SHARED ${FILES_LIB})
+  # ImGui files
+  "${PROJECT_SOURCE_DIR}/include/external/imgui/*.cpp"
+  "${PROJECT_SOURCE_DIR}/include/external/imgui/backends/imgui_impl_sdl.cpp"
+  "${PROJECT_SOURCE_DIR}/include/external/imgui/backends/imgui_impl_vulkan.cpp"
+)
 
-set_target_properties(renderer PROPERTIES COMPILE_DEFINITIONS "RX_BUILD_DLL")
+# Rayex (library)
+add_library(rayex SHARED ${FILES_LIB})
 
-target_link_libraries(renderer
-  ${WINDOWING}
+target_compile_definitions(rayex 
+  PRIVATE
+    $<$<BOOL:${VARIANCE_CALCULATOR}>:RX_VARIANCE_ESTIMATOR>
+    
+    # Paths for copying resources
+    $<$<BOOL:${COPY_ASSETS_TO_BINARY}>:RX_COPY_ASSETS>
+    $<$<BOOL:${COPY_ASSETS_TO_BINARY}>:RX_ASSETS_PATH="${PROJECT_SOURCE_DIR}/assets/">
+    $<$<BOOL:${COPY_ASSETS_TO_BINARY}>:RX_PATH_TO_LIBRARY="${PROJECT_SOURCE_DIR}/build/${CMAKE_BUILD_TYPE}/">
+
+    # Validation layers and error checking is only active in debug builds
+    $<$<STREQUAL:${CMAKE_BUILD_TYPE},Debug>:RX_DEBUG>
+
+    # Tell compiler about location of glslc
+    $<$<STREQUAL:${CMAKE_SYSTEM_NAME},Linux>:RX_GLSLC_PATH="/usr/bin/glslc">
+    $<$<STREQUAL:${CMAKE_SYSTEM_NAME},Windows>:RX_GLSLC_PATH="${Vulkan_INCLUDE_DIRS}/../Bin/glslc.exe">
+
+    RX_BUILD_DLL
+)
+
+target_link_directories(rayex 
+  PUBLIC
+    link_directories(${PROJECT_SOURCE_DIR}/include/external/libs)
+)
+
+# Include directories for Rayex
+target_include_directories(rayex 
+  PUBLIC
+    # TODO: try to expose only Rayex.hpp and nothing else if possible
+    # Include Rayex's own headers
+    ${PROJECT_SOURCE_DIR}/include
+    ${PROJECT_SOURCE_DIR}/include/external
+    ${PROJECT_SOURCE_DIR}/include/external/imgui
+    ${PROJECT_SOURCE_DIR}/include/external/imgui/backends
+
+  PRIVATE
+    ${Vulkan_INCLUDE_DIRS}
+    ${SDL2_INCLUDE_DIRS}
+)
+
+target_link_libraries(rayex
+  ${SDL2_LIBRARIES}
   ${Vulkan_LIBRARY}
   ${KTX}
 )
 
-target_precompile_headers(renderer
+# Configure the PCH
+target_precompile_headers(rayex
   PUBLIC "${PROJECT_SOURCE_DIR}/include/pch/stdafx.hpp"
 )
 
-set_target_properties(renderer PROPERTIES
-  CXX_STANDARD 17
+# Configure output directories for all build types
+set_target_properties(rayex PROPERTIES
+  CXX_STANDARD 20
+
+  ARCHIVE_OUTPUT_DIRECTORY "${PROJECT_SOURCE_DIR}/build/${CMAKE_BUILD_TYPE}"
+  LIBRARY_OUTPUT_DIRECTORY "${PROJECT_SOURCE_DIR}/build/${CMAKE_BUILD_TYPE}"
+  RUNTIME_OUTPUT_DIRECTORY "${PROJECT_SOURCE_DIR}/build/${CMAKE_BUILD_TYPE}"
 )
 
-set_target_properties(renderer
-  PROPERTIES
-  ARCHIVE_OUTPUT_DIRECTORY_DEBUG "${PROJECT_SOURCE_DIR}/build/lib/debug"
-  LIBRARY_OUTPUT_DIRECTORY_DEBUG "${PROJECT_SOURCE_DIR}/build/lib/debug"
-  RUNTIME_OUTPUT_DIRECTORY_DEBUG "${PROJECT_SOURCE_DIR}/build/bin/debug"
-
-  ARCHIVE_OUTPUT_DIRECTORY_RELEASE "${PROJECT_SOURCE_DIR}/build/lib/release"
-  LIBRARY_OUTPUT_DIRECTORY_RELEASE "${PROJECT_SOURCE_DIR}/build/lib/release"
-  RUNTIME_OUTPUT_DIRECTORY_RELEASE "${PROJECT_SOURCE_DIR}/build/bin/release"
-
-  ARCHIVE_OUTPUT_DIRECTORY_MINSIZEREL "${PROJECT_SOURCE_DIR}/build/lib/minsizerel"
-  LIBRARY_OUTPUT_DIRECTORY_MINSIZEREL "${PROJECT_SOURCE_DIR}/build/lib/minsizerel"
-  RUNTIME_OUTPUT_DIRECTORY_MINSIZEREL "${PROJECT_SOURCE_DIR}/build/bin/minsizerel"   
-
-  ARCHIVE_OUTPUT_DIRECTORY_RELWITHDEBINFO "${PROJECT_SOURCE_DIR}/build/lib/relwithbebinfo"
-  LIBRARY_OUTPUT_DIRECTORY_RELWITHDEBINFO "${PROJECT_SOURCE_DIR}/build/lib/relwithbebinfo"
-  RUNTIME_OUTPUT_DIRECTORY_RELWITHDEBINFO "${PROJECT_SOURCE_DIR}/build/bin/relwithbebinfo"
-)
-
-# set build paths
-if(${CMAKE_BUILD_TYPE} STREQUAL "Debug")
-  set(BUILD_PATH debug)
-elseif(${CMAKE_BUILD_TYPE} STREQUAL "Release")
-  set(BUILD_PATH release)
-elseif(${CMAKE_BUILD_TYPE} STREQUAL "RelWithDebInfo")
-  set(BUILD_PATH relWithDebInfo) 
-elseif(${CMAKE_BUILD_TYPE} STREQUAL "MinSizeRel")
-  set(BUILD_PATH minSizeRel)
-endif()
-
-# EXAMPLE
+# Configure Rayex examples if option is enabled
 if(BUILD_EXAMPLES)
   include(${PROJECT_SOURCE_DIR}/example/CMakeLists.txt)
 endif()
-
-add_compile_definitions(RX_PATH_TO_LIBRARY="${PROJECT_SOURCE_DIR}/build/bin/${BUILD_PATH}/")

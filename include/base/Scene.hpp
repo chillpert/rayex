@@ -1,5 +1,6 @@
 #pragma once
 
+#include "api/pathtrace/Cubemap.hpp"
 #include "base/Camera.hpp"
 #include "base/Geometry.hpp"
 #include "base/Settings.hpp"
@@ -130,7 +131,7 @@ namespace RAYEX_NAMESPACE
     std::vector<vk::DescriptorSet> _geometryDescriptorSets;
     std::vector<vk::DescriptorSet> _textureDescriptorSets;
 
-    vkCore::Cubemap _environmentMap;
+    Cubemap _environmentMap;
     vk::UniqueSampler _immutableSampler;
 
     std::vector<vkCore::StorageBuffer<uint32_t>> _indexBuffers;

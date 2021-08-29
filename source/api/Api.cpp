@@ -439,7 +439,7 @@ namespace RAYEX_NAMESPACE
 
 #ifdef RX_COPY_ASSETS
       // Copies shader resources to binary output directory. This way a shader can be changed during runtime.
-      // Make sure only to edit the ones in /assets/shaders and not in /build/bin/debug/assets/shaders as the latter gets overridden.
+      // Make sure only to edit the ones in /assets/shaders and not in /build/<build_type>/assets/shaders as the latter gets overridden.
       RX_INFO( "Copying shader resources to binary output directory.\nFrom: ", RX_ASSETS_PATH, "shaders\nto: ", RX_PATH_TO_LIBRARY, "shaders" );
       std::filesystem::copy( RX_ASSETS_PATH "shaders", RX_PATH_TO_LIBRARY "shaders", std::filesystem::copy_options::overwrite_existing | std::filesystem::copy_options::recursive );
 

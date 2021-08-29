@@ -2,7 +2,7 @@
 
 #include "api/Components.hpp"
 #define TINYOBJLOADER_IMPLEMENTATION
-#include "tinyObj/tiny_obj_loader.h"
+#include "tinyobjloader/tiny_obj_loader.h"
 
 namespace RAYEX_NAMESPACE
 {

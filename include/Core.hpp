@@ -2,8 +2,8 @@
 #define CORE_HPP
 
 #define SDL_MAIN_HANDLED
-#include <SDL2/SDL.h>
-#include <SDL2/SDL_vulkan.h>
+#include <SDL/include/SDL.h>
+#include <SDL/include/SDL_vulkan.h>
 #define VULKAN_HPP_DISPATCH_LOADER_DYNAMIC 1
 #define VK_ENABLE_BETA_EXTENSIONS
 //#define VULKAN_HPP_NO_EXCEPTIONS

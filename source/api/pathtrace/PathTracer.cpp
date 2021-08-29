@@ -250,7 +250,6 @@ namespace RAYEX_NAMESPACE
                                                                       vk::QueryType::eAccelerationStructureCompactedSizeKHR, // queryType
                                                                       queryPool.get( ),                                      // queryPool
                                                                       ctr++ );                                               // firstQuery
-      
       }
 
       cmdBuf.end( index );
@@ -258,7 +257,6 @@ namespace RAYEX_NAMESPACE
       ++index;
     }
 
-    
     cmdBuf.submitToQueue( vkCore::global::graphicsQueue );
 
     if ( doCompaction )

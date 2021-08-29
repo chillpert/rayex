@@ -20,12 +20,12 @@ namespace RAYEX_NAMESPACE
 
   std::shared_ptr<Geometry> loadObj( std::string_view path, bool dynamic )
   {
-    RX_LOG_TIME_START( "Loading model from ", path, "." );
-
     std::shared_ptr<Geometry> geometry = std::make_shared<Geometry>( );
-    geometry->path                     = path;
+    geometry->path                     = std::string( path );
     geometry->geometryIndex            = components::geometryIndex++;
     geometry->dynamic                  = dynamic;
+
+    RX_LOG_TIME_START( "Loading model from ", geometry->path, "." );
 
     tinyobj::attrib_t attrib;
     std::vector<tinyobj::shape_t> shapes;
@@ -34,7 +34,7 @@ namespace RAYEX_NAMESPACE
     std::string warn;
     std::string err;
 
-    bool res = tinyobj::LoadObj( &attrib, &shapes, &materials, &warn, &err, std::string( path ).c_str( ) );
+    bool res = tinyobj::LoadObj( &attrib, &shapes, &materials, &warn, &err, geometry->path.c_str( ) );
 
     if ( !warn.empty( ) )
     {
@@ -43,12 +43,12 @@ namespace RAYEX_NAMESPACE
 
     if ( !err.empty( ) )
     {
-      RX_FATAL( "Failed to load model from ", path, "\nERROR: ", err );
+      RX_FATAL( "Failed to load model from ", geometry->path, "\nERROR: ", err );
     }
 
     if ( !res )
     {
-      RX_FATAL( "Failed to load model from ", path );
+      RX_FATAL( "Failed to load model from ", geometry->path );
     }
 
     std::unordered_map<Vertex, uint32_t> uniqueVertices;

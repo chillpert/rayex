@@ -504,12 +504,12 @@ namespace RAYEX_NAMESPACE
     //uint32_t anticipatedPointLights       = settings->maxPointLights.has_value( ) ? settings->maxPointLights.value( ) : components::maxPointLights;
     //Util::processShaderMacros( "shaders/PathTrace.rchit", anticipatedDirectionalLights, anticipatedPointLights, components::modelCount );
 
-    auto rgen = vkCore::initShaderModuleUnique( components::assetsPath + "shaders/PathTrace.rgen", RX_GLSLC_PATH );
-    auto miss = vkCore::initShaderModuleUnique( components::assetsPath + "shaders/PathTrace.rmiss", RX_GLSLC_PATH );
-    auto chit = vkCore::initShaderModuleUnique( components::assetsPath + "shaders/PathTrace.rchit", RX_GLSLC_PATH );
-    auto ahit = vkCore::initShaderModuleUnique( components::assetsPath + "shaders/PathTrace.rahit", RX_GLSLC_PATH );
+    auto rgen = vkCore::initShaderModuleUnique( components::shaderPath + "shaders/PathTrace.rgen", RX_GLSLC_PATH );
+    auto miss = vkCore::initShaderModuleUnique( components::shaderPath + "shaders/PathTrace.rmiss", RX_GLSLC_PATH );
+    auto chit = vkCore::initShaderModuleUnique( components::shaderPath + "shaders/PathTrace.rchit", RX_GLSLC_PATH );
+    auto ahit = vkCore::initShaderModuleUnique( components::shaderPath + "shaders/PathTrace.rahit", RX_GLSLC_PATH );
     //auto ahit1 = vk::Initializer::initShaderModuleUnique( "shaders/PathTrace1.rahit" );
-    auto missShadow = vkCore::initShaderModuleUnique( components::assetsPath + "shaders/PathTraceShadow.rmiss", RX_GLSLC_PATH );
+    auto missShadow = vkCore::initShaderModuleUnique( components::shaderPath + "shaders/PathTraceShadow.rmiss", RX_GLSLC_PATH );
 
     vk::PushConstantRange ptPushConstant( vk::ShaderStageFlagBits::eRaygenKHR | vk::ShaderStageFlagBits::eMissKHR | vk::ShaderStageFlagBits::eClosestHitKHR, // stageFlags
                                           0,                                                                                                                 // offset

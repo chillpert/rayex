@@ -6,6 +6,7 @@ namespace RAYEX_NAMESPACE
   {
     int frameCount = -1;
     std::string assetsPath;
+    std::string shaderPath;
     uint32_t geometryIndex = 0;
     uint32_t materialIndex = 0;
     uint32_t textureIndex  = 0;

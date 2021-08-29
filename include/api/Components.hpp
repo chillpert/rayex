@@ -10,7 +10,8 @@ namespace RAYEX_NAMESPACE
   {
     extern int frameCount; ///< Stores the current frame count required by the jitter cam.
 
-    extern std::string assetsPath; ///< Path to where shaders, models and textures are stored.
+    extern std::string assetsPath; ///< Path to where models and textures are stored.
+    extern std::string shaderPath; ///< Path to where shaders are stored.
     extern uint32_t geometryIndex;
     extern uint32_t materialIndex;
     extern uint32_t textureIndex;

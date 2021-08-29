@@ -88,6 +88,20 @@ namespace RAYEX_NAMESPACE
     components::assetsPath = _assetsPath;
   }
 
+  void Settings::setShadersPath( std::string_view path )
+  {
+    _shadersPath = path;
+
+    std::replace( _shadersPath.begin( ), _shadersPath.end( ), '\\', '/' );
+
+    if ( path[path.size( ) - 1] != '/' )
+    {
+      _shadersPath += '/';
+    }
+
+    components::shaderPath = _shadersPath;
+  }
+
   void Settings::setAutomaticPipelineRefresh( bool flag )
   {
     _automaticPipelineRefresh = flag;

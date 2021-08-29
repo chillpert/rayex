@@ -158,8 +158,8 @@ namespace RAYEX_NAMESPACE
     _pipelineLayout = vkCore::global::device.createPipelineLayoutUnique( layoutCreateInfo );
     RX_ASSERT( _pipelineLayout.get( ), "Failed to create pipeline layout for post processing renderer." );
 
-    auto vert = vkCore::initShaderModuleUnique( components::assetsPath + "shaders/PostProcessing.vert", RX_GLSLC_PATH );
-    auto frag = vkCore::initShaderModuleUnique( components::assetsPath + "shaders/PostProcessing.frag", RX_GLSLC_PATH );
+    auto vert = vkCore::initShaderModuleUnique( components::shaderPath + "shaders/PostProcessing.vert", RX_GLSLC_PATH );
+    auto frag = vkCore::initShaderModuleUnique( components::shaderPath + "shaders/PostProcessing.frag", RX_GLSLC_PATH );
 
     std::array<vk::PipelineShaderStageCreateInfo, 2> shaderStages;
     shaderStages[0] = vkCore::getPipelineShaderStageCreateInfo( vk::ShaderStageFlagBits::eVertex, vert.get( ) );

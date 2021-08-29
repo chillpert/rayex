@@ -33,7 +33,7 @@ namespace RAYEX_NAMESPACE
     bool getRussianRoulette( ) { return _russianRoulette; }
 
     /// Used to toggle Russian roulette ray termination.
-    /// 
+    ///
     /// This can be used to improve performance at a moderate increase of variance.
     /// @param flag The actual toggle.
     void setRussianRoulette( bool flag );
@@ -86,6 +86,8 @@ namespace RAYEX_NAMESPACE
     /// This path should contain all models, textures and shaders.
     /// @param path The path to assets.
     void setAssetsPath( std::string_view path );
+
+    void setShadersPath( std::string_view path );
 
     /// Used to toggle the automatic pipeline recreation.
     /// @param flag If false, the pipelines will not be recreated automatically until this function is called with true.
@@ -156,6 +158,7 @@ namespace RAYEX_NAMESPACE
     size_t _maxMaterials              = 1024;
 
     std::string _assetsPath; ///< Where all assets like models, textures and shaders are stored.
+    std::string _shadersPath;
 
     glm::vec4 _clearColor               = glm::vec4( 0.45F, 0.45F, 0.45F, 0.8F ); ///< Stores the clear color.
     uint32_t _maxPathDepth              = 10;                                     ///< The maximum path depth.

@@ -4,3 +4,15 @@
 [submodule "include/external/tinyLogger"]
 	path = include/external/tinyLogger
 	url = https://github.com/chillpert/tinyLogger
+[submodule "include/external/SDL"]
+	path = include/external/SDL
+	url = https://github.com/libsdl-org/SDL
+[submodule "include/external/glm"]
+	path = include/external/glm
+	url = https://github.com/g-truc/glm
+[submodule "include/external/tinyobjloader"]
+	path = include/external/tinyobjloader
+	url = https://github.com/tinyobjloader/tinyobjloader
+[submodule "include/external/KTX-Software"]
+	path = include/external/KTX-Software
+	url = https://github.com/KhronosGroup/KTX-Software

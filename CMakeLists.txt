@@ -40,6 +40,9 @@ if(CMAKE_BUILD_TYPE STREQUAL "Debug")
   endif()
 endif()
 
+# Include 'include helper'
+include(${PROJECT_SOURCE_DIR}/include/CMakeLists.txt)
+
 # Vulkan
 find_package(Vulkan REQUIRED)
 
@@ -57,8 +60,6 @@ if(${CMAKE_SYSTEM_NAME} STREQUAL "Linux")
 else()
   set(KTX "ktx.lib")
 endif()
-
-include(${PROJECT_SOURCE_DIR}/include/CMakeLists.txt)
 
 # Sources to compile
 file(GLOB FILES_LIB
@@ -88,8 +89,7 @@ target_compile_definitions(rayex
     $<$<STREQUAL:${CMAKE_BUILD_TYPE},Debug>:RX_DEBUG>
 
     # Tell compiler about location of glslc
-    $<$<STREQUAL:${CMAKE_SYSTEM_NAME},Linux>:RX_GLSLC_PATH="/usr/bin/glslc">
-    $<$<STREQUAL:${CMAKE_SYSTEM_NAME},Windows>:RX_GLSLC_PATH="${Vulkan_INCLUDE_DIRS}/../Bin/glslc.exe">
+    RX_GLSLC_PATH="${Vulkan_GLSLC_EXECUTABLE}"
 
     RX_BUILD_DLL
 )

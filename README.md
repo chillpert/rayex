@@ -1,8 +1,8 @@
 # Rayex
 
-Rayex is a work-in-progress, cross-platform, cross-vendor, Vulkan-based, real-time path tracer. 
+Rayex is a framework for cross-platform, cross-vendor, real-time path tracing in Vulkan. It runs on both Linux and Windows and is implemented using the new Khronos Vulkan ray tracing extension. Additionally rayex uses [SDL2](https://www.libsdl.org/index.php) for windowing and [glm](https://glm.g-truc.net/0.9.9/index.html) as its math library. The framework also features native [Dear ImGui](https://github.com/ocornut/imgui) support enabling the user to create graphical user interfaces without writing any API-related code.
 
-It runs on both Linux (x64) and Windows (x64) using the Vulkan API. This software aims to provide a cross-platform, cross-vendor path tracer that is easy to integrate into existing projects. Vendor independence is achieved by using the new Khronos Vulkan ray tracing extension (first published on March 17, 2020, as an experimental version). It uses [SDL2](https://www.libsdl.org/index.php) for windowing and [glm](https://glm.g-truc.net/0.9.9/index.html) as its math library. Rayex features native [Dear ImGui](https://github.com/ocornut/imgui) support, enabling the user to create user interfaces without writing any API-related code.
+Rayex is still in development, so documentation and examples might not always be up to date or complete.
 
 ## Table of Contents
 1. [Requirements](#requirements)
@@ -51,7 +51,7 @@ $ cmake ..
 $ make
 ```
 
-**Note:** On Windows simply open the Visual Studio solution file (.sln) in the build directory and compile instead of `$ make`.
+**Note:** On Windows open the Visual Studio solution file (.sln) in the build directory and compile instead of `$ make`.
 
 ## Examples
 The following cope snippet shows how to render a single mesh. For a proper example, take a look at the **documentation** and at the official [examples](https://github.com/chillpert/rayex-examples) for rayex.

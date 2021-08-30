@@ -43,26 +43,13 @@ endif()
 # Include 'include helper'
 include(${PROJECT_SOURCE_DIR}/include/CMakeLists.txt)
 
-# Vulkan
-find_package(Vulkan REQUIRED)
-
 # SDL
-if(${CMAKE_SYSTEM_NAME} STREQUAL "Linux")
-  find_package(SDL2 REQUIRED)
-else()
-  set(SDL2_INCLUDE_DIRS ${PROJECT_SOURCE_DIR}/include/external/SDL/include)
-  set(SDL2_LIBRARIES "SDL2main.lib" "SDL2.lib")
-endif()
-
-# KTX
-if(${CMAKE_SYSTEM_NAME} STREQUAL "Linux")
-  set(KTX "libktx.so" "libktx_read.so")  
-else()
-  set(KTX "ktx.lib")
-endif()
+#add_subdirectory(${PROJECT_SOURCE_DIR}/include/external/SDL ${PROJECT_SOURCE_DIR}/include/external/SDL/build)
+#set(SDL2_INCLUDE_DIRS ${PROJECT_SOURCE_DIR}/include/external/SDL/include)
+#set(SDL2_LIBRARIES "libSDL2d.a")
 
 # Sources to compile
-file(GLOB FILES_LIB
+file(GLOB RAYEX_SOURCES
   "${PROJECT_SOURCE_DIR}/source/api/*.cpp"
   "${PROJECT_SOURCE_DIR}/source/api/pathtrace/*.cpp"
 
@@ -72,14 +59,16 @@ file(GLOB FILES_LIB
   "${PROJECT_SOURCE_DIR}/source/*.cpp"
   "${PROJECT_SOURCE_DIR}/source/base/*.cpp"
 
-  # ImGui files
   "${PROJECT_SOURCE_DIR}/include/external/imgui/*.cpp"
   "${PROJECT_SOURCE_DIR}/include/external/imgui/backends/imgui_impl_sdl.cpp"
   "${PROJECT_SOURCE_DIR}/include/external/imgui/backends/imgui_impl_vulkan.cpp"
 )
 
 # Rayex (library)
-add_library(rayex SHARED ${FILES_LIB})
+add_library(rayex 
+  SHARED
+    ${RAYEX_SOURCES} 
+)
 
 target_compile_definitions(rayex 
   PRIVATE
@@ -94,11 +83,6 @@ target_compile_definitions(rayex
     RX_BUILD_DLL
 )
 
-target_link_directories(rayex 
-  PUBLIC
-    link_directories(${PROJECT_SOURCE_DIR}/include/external/libs)
-)
-
 # Include directories for Rayex
 target_include_directories(rayex 
   PUBLIC
@@ -106,15 +90,10 @@ target_include_directories(rayex
     ${SDL2_INCLUDE_DIRS}
 )
 
-target_link_libraries(rayex
-  ${SDL2_LIBRARIES}
-  ${Vulkan_LIBRARY}
-  ${KTX}
-)
-
 # Configure the PCH
 target_precompile_headers(rayex
-  PUBLIC "${PROJECT_SOURCE_DIR}/include/pch/stdafx.hpp"
+  PUBLIC 
+    "${PROJECT_SOURCE_DIR}/include/pch/stdafx.hpp"
 )
 
 # Configure output directories for all build types
@@ -124,4 +103,16 @@ set_target_properties(rayex PROPERTIES
   ARCHIVE_OUTPUT_DIRECTORY "${PROJECT_SOURCE_DIR}/build"
   LIBRARY_OUTPUT_DIRECTORY "${PROJECT_SOURCE_DIR}/build"
   RUNTIME_OUTPUT_DIRECTORY "${PROJECT_SOURCE_DIR}/build"
+)
+
+target_link_directories(rayex 
+  PUBLIC
+    ${PROJECT_SOURCE_DIR}/include/external/libs
+)
+
+target_link_libraries(rayex
+  PUBLIC
+    ${SDL2_LIBRARIES}
+    ${Vulkan_LIBRARY}
+    ${KTX}
 )

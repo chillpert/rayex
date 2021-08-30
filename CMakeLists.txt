@@ -58,6 +58,8 @@ else()
   set(KTX "ktx.lib")
 endif()
 
+include(${PROJECT_SOURCE_DIR}/include/CMakeLists.txt)
+
 # Sources to compile
 file(GLOB FILES_LIB
   "${PROJECT_SOURCE_DIR}/source/api/*.cpp"
@@ -100,13 +102,6 @@ target_link_directories(rayex
 # Include directories for Rayex
 target_include_directories(rayex 
   PUBLIC
-    # TODO: try to expose only Rayex.hpp and nothing else if possible
-    # Include Rayex's own headers
-    ${PROJECT_SOURCE_DIR}/include
-    ${PROJECT_SOURCE_DIR}/include/external
-    ${PROJECT_SOURCE_DIR}/include/external/imgui
-    ${PROJECT_SOURCE_DIR}/include/external/imgui/backends
-
     ${Vulkan_INCLUDE_DIRS}
     ${SDL2_INCLUDE_DIRS}
 )
@@ -126,7 +121,7 @@ target_precompile_headers(rayex
 set_target_properties(rayex PROPERTIES
   CXX_STANDARD 20
 
-  ARCHIVE_OUTPUT_DIRECTORY "${PROJECT_SOURCE_DIR}/build/${CMAKE_BUILD_TYPE}"
-  LIBRARY_OUTPUT_DIRECTORY "${PROJECT_SOURCE_DIR}/build/${CMAKE_BUILD_TYPE}"
-  RUNTIME_OUTPUT_DIRECTORY "${PROJECT_SOURCE_DIR}/build/${CMAKE_BUILD_TYPE}"
+  ARCHIVE_OUTPUT_DIRECTORY "${PROJECT_SOURCE_DIR}/build"
+  LIBRARY_OUTPUT_DIRECTORY "${PROJECT_SOURCE_DIR}/build"
+  RUNTIME_OUTPUT_DIRECTORY "${PROJECT_SOURCE_DIR}/build"
 )

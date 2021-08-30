@@ -58,16 +58,13 @@ file(GLOB RAYEX_SOURCES
   "${PROJECT_SOURCE_DIR}/source/utils/*.cpp"
   "${PROJECT_SOURCE_DIR}/source/*.cpp"
   "${PROJECT_SOURCE_DIR}/source/base/*.cpp"
-
-  "${PROJECT_SOURCE_DIR}/include/external/imgui/*.cpp"
-  "${PROJECT_SOURCE_DIR}/include/external/imgui/backends/imgui_impl_sdl.cpp"
-  "${PROJECT_SOURCE_DIR}/include/external/imgui/backends/imgui_impl_vulkan.cpp"
 )
 
 # Rayex (library)
 add_library(rayex 
   SHARED
     ${RAYEX_SOURCES} 
+    ${IMGUI_SOURCES}
 )
 
 target_compile_definitions(rayex 
@@ -86,8 +83,7 @@ target_compile_definitions(rayex
 # Include directories for Rayex
 target_include_directories(rayex 
   PUBLIC
-    ${Vulkan_INCLUDE_DIRS}
-    ${SDL2_INCLUDE_DIRS}
+    ${RAYEX_INCLUDE_DIRS}
 )
 
 # Configure the PCH
@@ -107,12 +103,10 @@ set_target_properties(rayex PROPERTIES
 
 target_link_directories(rayex 
   PUBLIC
-    ${PROJECT_SOURCE_DIR}/include/external/libs
+    ${RAYEX_EXTERNAL_LINK_DIRS}
 )
 
 target_link_libraries(rayex
   PUBLIC
-    ${SDL2_LIBRARIES}
-    ${Vulkan_LIBRARY}
-    ${KTX}
+    ${RAYEX_EXTERNAL_LIBRARIES}
 )

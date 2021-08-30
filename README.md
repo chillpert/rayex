@@ -35,11 +35,11 @@ To integrate rayex in an existing C++ / CMake project, please follow the steps b
    ```
    2. Inform CMake about the location of all binaries required, e.g.
    ```
-   target_link_directories(example PRIVATE ${PROJECT_SOURCE_DIR}/external/ rayex/libs)
+   target_link_directories(example PRIVATE ${PROJECT_SOURCE_DIR}/external/rayex/libs)
    ``` 
    3. Link your target against the rayex and SDL, e.g.
    ```
-   target_link_libraries(example ${RAYEX_LIBRARIES})
+   target_link_libraries(example librayex.so SDL2main SDL2)
    ```
 
 ## Build

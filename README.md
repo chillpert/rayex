@@ -98,7 +98,10 @@ A documentation of all classes and functions can be found [here](https://chillpe
 - [ ] Remove big examples and put it in separate repo (combined with )
 - [ ] Consider decreasing project size
 - [ ] Fix camera reset when moving mouse after loading a scene
-
+- [ ] SDL2main is unnecessary - remove it
+- [ ] Set up a tool chain that automatically converts any texture to a ktx format of any given model (using toktx, from PNG) - OR - remove ktx and try to use STB image only
+- [ ] figure out why everything needs be linked twice
+ 
 ### Planned Features
 - [ ] Use rasterization for primary rays
 - [ ] Improve documentation (especially requirements for model loading)

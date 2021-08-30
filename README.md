@@ -28,7 +28,6 @@ To integrate rayex in an existing C++ / CMake project, please follow the steps b
 
 1. [Download](https://github.com/chillpert/rayex) pre-built binaries for your system and place them inside your project (assuming `myProject/external/rayex`).
 2. Inside your project's CMakeLists.txt:
-  
   1. Include **"include/CMakeLists.txt"** to get all necessary rayex headers, e.g.
   ```
   include(${PROJECT_SOURCE_DIR}/external/rayex/include/CMakeLists.txt)

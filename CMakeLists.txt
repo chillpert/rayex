@@ -59,9 +59,9 @@ file(GLOB RAYEX_SOURCES
   "${PROJECT_SOURCE_DIR}/source/*.cpp"
   "${PROJECT_SOURCE_DIR}/source/base/*.cpp"
 
-  "${CMAKE_CURRENT_LIST_DIR}/external/imgui/*.cpp"
-  "${CMAKE_CURRENT_LIST_DIR}/external/imgui/backends/imgui_impl_sdl.cpp"
-  "${CMAKE_CURRENT_LIST_DIR}/external/imgui/backends/imgui_impl_vulkan.cpp"
+  "${PROJECT_SOURCE_DIR}/include/external/imgui/*.cpp"
+  "${PROJECT_SOURCE_DIR}/include/external/imgui/backends/imgui_impl_sdl.cpp"
+  "${PROJECT_SOURCE_DIR}/include/external/imgui/backends/imgui_impl_vulkan.cpp"
 )
 
 # Rayex (library)

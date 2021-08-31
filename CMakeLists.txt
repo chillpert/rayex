@@ -5,7 +5,6 @@ project(${PROJECT_NAME} VERSION 0.1.0)
 # Notes: 
 # - change build type by calling '$ cmake -DCMAKE_BUILD_TYPE=<some_build_type> ..'
 # - do not forget about the different build options below
-set(BUILDING_RAYEX ON)
 
 message("===================== ${PROJECT_NAME} ======================")
 
@@ -23,14 +22,17 @@ if(NOT CMAKE_BUILD_TYPE)
   set(CMAKE_BUILD_TYPE "Debug" CACHE STRING "No build type was set" FORCE)
 endif(NOT CMAKE_BUILD_TYPE)
 
+# Set build output path 
+set(RAYEX_OUTPUT_PATH "${PROJECT_SOURCE_DIR}/build")
+
 # Print some information about the system and Rayex's build options
 message("OS:                              " ${CMAKE_SYSTEM_NAME})
 message("Using compiler:                  " ${CMAKE_CXX_COMPILER_ID})
 message("Compiler version:                " ${CMAKE_CXX_COMPILER_VERSION})
 message("Build type:                      " ${CMAKE_BUILD_TYPE})
 message("Clang Tidy:                      " ${CLANG_TIDY_LINUX_DEBUG})
-message("Experimental variance estimator: " ${VARIANCE_CALCULATOR} "\n")
-
+message("Experimental variance estimator: " ${VARIANCE_CALCULATOR})
+message("Rayex build output path:         " ${RAYEX_OUTPUT_PATH} "\n")
 message("==================== Starting ====================")
 
 if(CMAKE_BUILD_TYPE STREQUAL "Debug")
@@ -40,6 +42,9 @@ if(CMAKE_BUILD_TYPE STREQUAL "Debug")
     set(CMAKE_CXX_CLANG_TIDY "clang-tidy;-checks=*")
   endif()
 endif()
+
+# DO NOT CHANGE!
+set(BUILDING_RAYEX ON)
 
 # Include helper variables
 include(${PROJECT_SOURCE_DIR}/include/CMakeLists.txt)
@@ -92,22 +97,17 @@ target_precompile_headers(rayex
     "${PROJECT_SOURCE_DIR}/include/pch/stdafx.hpp"
 )
 
-# Note: Hack to make sure that CMake won't put output in build/<build_type> under Windows
-#       and will use build/ instead
-if(${CMAKE_SYSTEM_NAME} STREQUAL Windows)
-  set(OUTPUT_PREFIX PREFIX ../)
-endif()
-
 # Configure output directories for all build types
 set_target_properties(rayex PROPERTIES
   CXX_STANDARD 20
 
-  ARCHIVE_OUTPUT_DIRECTORY "${PROJECT_SOURCE_DIR}/build"
-  LIBRARY_OUTPUT_DIRECTORY "${PROJECT_SOURCE_DIR}/build"
-  RUNTIME_OUTPUT_DIRECTORY "${PROJECT_SOURCE_DIR}/build"
-
-  # Prefix will be empty on Linux and "../" on Windows (see note above)
-  ${OUTPUT_PREFIX}
+  ARCHIVE_OUTPUT_DIRECTORY_DEBUG ${RAYEX_OUTPUT_PATH}
+  LIBRARY_OUTPUT_DIRECTORY_DEBUG ${RAYEX_OUTPUT_PATH}
+  RUNTIME_OUTPUT_DIRECTORY_DEBUG ${RAYEX_OUTPUT_PATH}
+  
+  ARCHIVE_OUTPUT_DIRECTORY_RELEASE ${RAYEX_OUTPUT_PATH}
+  LIBRARY_OUTPUT_DIRECTORY_RELEASE ${RAYEX_OUTPUT_PATH}
+  RUNTIME_OUTPUT_DIRECTORY_RELEASE ${RAYEX_OUTPUT_PATH}
 )
 
 target_link_directories(rayex 

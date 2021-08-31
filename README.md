@@ -59,7 +59,7 @@ $ make
 **Note:** On Windows open the Visual Studio solution file (.sln) in the build directory and compile instead of `$ make`.
 
 ## Examples
-The following cope snippet shows how to render a single mesh. For a proper example, take a look at the **documentation** and at the official [examples](https://github.com/chillpert/rayex-examples) for rayex.
+The following code snippet shows how to render a single mesh. For a proper example, take a look at the **documentation** and at the official [examples-repository](https://github.com/chillpert/rayex-examples) for rayex.
 
 ```
 #include "Rayex.hpp"

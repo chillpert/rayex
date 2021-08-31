@@ -1,11 +1,5 @@
 cmake_minimum_required(VERSION 3.16)
 
-file(GLOB IMGUI_SOURCES
-  "${CMAKE_CURRENT_LIST_DIR}/external/imgui/*.cpp"
-  "${CMAKE_CURRENT_LIST_DIR}/external/imgui/backends/imgui_impl_sdl.cpp"
-  "${CMAKE_CURRENT_LIST_DIR}/external/imgui/backends/imgui_impl_vulkan.cpp"
-)
-
 # Vulkan
 find_package(Vulkan REQUIRED)
 

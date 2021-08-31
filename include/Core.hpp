@@ -17,9 +17,11 @@
 
 #if defined( _WIN32 ) || defined( _WIN64 )
   #ifdef RX_BUILD_DLL
-    #define RX_API __declspec( dllexport )
+    #define RX_API    __declspec( dllexport )
+    #define IMGUI_API __declspec( dllexport )
   #else
-    #define RX_API __declspec( dllimport )
+    #define RX_API    __declspec( dllimport )
+    #define IMGUI_API __declspec( dllimport )
   #endif
 #elif defined( unix ) || defined( __unix ) || defined( __unix__ )
   #ifdef RX_BUILD_DLL

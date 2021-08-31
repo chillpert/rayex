@@ -18,30 +18,26 @@ else()
   set(KTX "ktx.lib")
 endif()
 
-message("Including Rayex headers from " ${CMAKE_CURRENT_LIST_DIR})
-
-include_directories(
+set(RAYEX_INCLUDE_DIRS
   ${CMAKE_CURRENT_LIST_DIR}
   ${CMAKE_CURRENT_LIST_DIR}/external
   ${CMAKE_CURRENT_LIST_DIR}/external/imgui
-  ${CMAKE_CURRENT_LIST_DIR}/external/imgui/backends
-)
+  #${CMAKE_CURRENT_LIST_DIR}/external/imgui/backends
 
-set(RAYEX_INCLUDE_DIRS
   ${Vulkan_INCLUDE_DIRS}
   ${SDL2_INCLUDE_DIRS}
 )
 
-set(RAYEX_EXTERNAL_LINK_DIRS
+set(RAYEX_LINK_DIRS
+  $<$<STREQUAL:${BUILDING_RAYEX},>:${PATH_TO_RAYEX}/build>
+
   ${CMAKE_CURRENT_LIST_DIR}/external/libs
 )
 
-set(RAYEX_LIBRARY
-  $<$<STREQUAL:${CMAKE_SYSTEM_NAME},Linux>:librayex.so>
-  $<$<STREQUAL:${CMAKE_SYSTEM_NAME},Windows>:rayex.lib>
-)
-
-set(RAYEX_EXTERNAL_LIBRARIES 
+set(RAYEX_LIBRARIES
+  $<$<AND:$<STREQUAL:${BUILDING_RAYEX},>,$<STREQUAL:${CMAKE_SYSTEM_NAME},Linux>>:librayex.so>
+  $<$<AND:$<STREQUAL:${BUILDING_RAYEX},>,$<STREQUAL:${CMAKE_SYSTEM_NAME},Windows>>:rayex.lib>
+  
   ${Vulkan_LIBRARY}
   ${SDL2_LIBRARIES}
   ${KTX}

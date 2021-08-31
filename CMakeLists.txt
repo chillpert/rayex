@@ -5,6 +5,7 @@ project(${PROJECT_NAME} VERSION 0.1.0)
 # Notes: 
 # - change build type by calling '$ cmake -DCMAKE_BUILD_TYPE=<some_build_type> ..'
 # - do not forget about the different build options below
+set(BUILDING_RAYEX ON)
 
 message("===================== ${PROJECT_NAME} ======================")
 
@@ -40,13 +41,8 @@ if(CMAKE_BUILD_TYPE STREQUAL "Debug")
   endif()
 endif()
 
-# Include 'include helper'
+# Include helper variables
 include(${PROJECT_SOURCE_DIR}/include/CMakeLists.txt)
-
-# SDL
-#add_subdirectory(${PROJECT_SOURCE_DIR}/include/external/SDL ${PROJECT_SOURCE_DIR}/include/external/SDL/build)
-#set(SDL2_INCLUDE_DIRS ${PROJECT_SOURCE_DIR}/include/external/SDL/include)
-#set(SDL2_LIBRARIES "libSDL2d.a")
 
 # Sources to compile
 file(GLOB RAYEX_SOURCES
@@ -96,6 +92,12 @@ target_precompile_headers(rayex
     "${PROJECT_SOURCE_DIR}/include/pch/stdafx.hpp"
 )
 
+# Note: Hack to make sure that CMake won't put output in build/<build_type> under Windows
+#       and will use build/ instead
+if(${CMAKE_SYSTEM_NAME} STREQUAL Windows)
+  set(OUTPUT_PREFIX PREFIX ../)
+endif()
+
 # Configure output directories for all build types
 set_target_properties(rayex PROPERTIES
   CXX_STANDARD 20
@@ -103,14 +105,17 @@ set_target_properties(rayex PROPERTIES
   ARCHIVE_OUTPUT_DIRECTORY "${PROJECT_SOURCE_DIR}/build"
   LIBRARY_OUTPUT_DIRECTORY "${PROJECT_SOURCE_DIR}/build"
   RUNTIME_OUTPUT_DIRECTORY "${PROJECT_SOURCE_DIR}/build"
+
+  # Prefix will be empty on Linux and "../" on Windows (see note above)
+  ${OUTPUT_PREFIX}
 )
 
 target_link_directories(rayex 
   PUBLIC
-    ${RAYEX_EXTERNAL_LINK_DIRS}
+    ${RAYEX_LINK_DIRS}
 )
 
 target_link_libraries(rayex
   PUBLIC
-    ${RAYEX_EXTERNAL_LIBRARIES}
+    ${RAYEX_LIBRARIES}
 )

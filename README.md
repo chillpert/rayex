@@ -47,6 +47,7 @@ To integrate rayex in an existing C++ / CMake project, please follow the steps b
    ```
 
 ## Build
+Alternatively, build rayex yourself:
 ```sh
 $ git clone https://github.com/chillpert/rayex --recursive
 $ cd rayex 

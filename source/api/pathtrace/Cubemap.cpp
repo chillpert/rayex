@@ -1,5 +1,3 @@
-#pragma once
-
 #include "api/pathtrace/Cubemap.hpp"
 
 #include "KTX-Software/include/ktx.h"

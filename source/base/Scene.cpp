@@ -2,8 +2,8 @@
 
 #include "api/Components.hpp"
 
-#define TINYGLTF_IMPLEMENTATION
-#define STB_IMAGE_WRITE_IMPLEMENTATION
+#define STB_IMAGE_IMPLEMENTATION
+#include "stb/stb_image.h"
 
 namespace RAYEX_NAMESPACE
 {
@@ -404,12 +404,29 @@ namespace RAYEX_NAMESPACE
       mat2.fuzziness = components::_materials[i].fuzziness;
 
       // Set up texture
+      /// TODO: move STB process to a dedicated function
       if ( !components::_materials[i].diffuseTexPath.empty( ) )
       {
         mat2.diffuse.w = static_cast<float>( components::textureIndex );
+        auto texture   = std::make_shared<vkCore::Texture>( );
 
-        auto texture = std::make_shared<vkCore::Texture>( );
-        texture->init( components::assetsPath + components::_materials[i].diffuseTexPath );
+        std::string path = components::assetsPath + components::_materials[i].diffuseTexPath;
+
+        int width;
+        int height;
+        int channels;
+
+        stbi_uc* pixels = stbi_load( path.c_str( ), &width, &height, &channels, STBI_rgb_alpha );
+
+        if ( pixels == nullptr )
+        {
+          RX_ERROR( "Failed to load texture from ", path );
+        }
+
+        texture->init<stbi_uc>( path, pixels, width, height );
+
+        stbi_image_free( pixels );
+
         _textures[components::textureIndex++] = texture;
       }
 

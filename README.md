@@ -106,6 +106,7 @@ A documentation of all classes and functions can be found [here](https://chillpe
 - [ ] SDL2main is unnecessary - remove it
 - [ ] Set up a tool chain that automatically converts any texture to a ktx format of any given model (using toktx, from PNG) - OR - remove ktx and try to use STB image only
 - [ ] figure out why everything needs be linked twice
+- [ ] fix validation errors on latest Vulkan SDK
  
 ### Planned Features
 - [ ] Use rasterization for primary rays

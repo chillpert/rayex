@@ -1,5 +1,6 @@
 .vscode
 tags
+.cache
 .vs
 build
 out

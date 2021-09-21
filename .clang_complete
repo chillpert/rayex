@@ -1,6 +1,0 @@
--I/home/n30/Repos/rayex/include
--I/home/n30/Repos/rayex/include/external
--I/home/n30/Repos/rayex/include/external/imgui
--I/usr/include/SDL2
--I/usr/include/vulkan/vulkan.hpp
--std=gnu++20
